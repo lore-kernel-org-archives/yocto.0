@@ -1,81 +1,77 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <ron.eggler@mistywest.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C2FEC38A2D
-	for <webhook@archiver.kernel.org>; Wed, 26 Oct 2022 19:18:53 +0000 (UTC)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web08.90.1666811923472624022
- for <yocto@lists.yoctoproject.org>;
- Wed, 26 Oct 2022 12:18:43 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=SWRiFuBK;
- spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: jpewhacker@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id p8so30708490lfu.11
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Oct 2022 12:18:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QfSqQxcjMrtMfjUfzGtnMSyef2bOR3m+OlDnoJpH5TU=;
-        b=SWRiFuBK75/PRPULKoBkZBBTLTobfknY/YG27rGpTkFKAgeGcDR1awU3WU7LmR87EG
-         w90Zavibdp8CF8KZeDrVIKW+n7jYpJP8kKH/CHVoCShNCD5347nVYLjY+uKAUKq4dbSC
-         Jt8vRJ3YUvPDeTYNaNTDeXkCWrgt4RMZjsBS4LCwYxRq6hjRqD63bEXD4TE/XRhClOmR
-         2PNiquOA2avp8o0RRCwMLObAfDvdjMbIEo3L3t+fETQZGUNNfagVGVOcgv5DVZLxGZFQ
-         T/tVnWXcn+tudogh2JmgApa6Bv1RXE7+BKBQlioSrloYZ252bhoZ25FOfLmKZ+fn2Dmu
-         YGbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QfSqQxcjMrtMfjUfzGtnMSyef2bOR3m+OlDnoJpH5TU=;
-        b=RCrELpVeKsNz2Hp6QxMUOmTiq5YODfweHpDlIVJdJsOFcnzg3F09gYsYUPX0C41lj0
-         kduIYAJUJ8rHo9naounJ6KI067kG99ilLJqLeZjptAX64kOFOharodvMMs7Tz4yTR/BR
-         ON1KHNrtMSp1CARjSv5pZLLQjh3bWuK+nG9JxvR1/Vi5SYFFDpE61GDEqT/i18lUvhVk
-         utXR8dOIJtoaQSdCq0ZittpnJVotCtwca1sGDJZ/kRzO3v+mtiPjI7Hc7oTaC6VwpC8o
-         3GrgsYzLlXgf9sLEQN5hqJijk6qtoTNCriSmVkEaJOMPtBMvDAdX+LKlwywSU64oQpvt
-         EH+Q==
-X-Gm-Message-State: ACrzQf0WC0nt2dJQ0mn72iivH0KPeI96jeko2r0giHO4Ttuu9AmGAAJJ
-	Bpn+jR3VF/DrC9HNNv0VNjixJWDm7Z7nrdY7cJgpjmCl
-X-Google-Smtp-Source: AMsMyM7y97HmCbiIh7X30FMoUOpFFrcSSrTrAAcnuVbUubZI6zQOTiXY0XOxP2nr/FkV2gjTns+bCYFOnglquPeZ1ss=
-X-Received: by 2002:aa7:dc06:0:b0:461:b683:5fba with SMTP id
- b6-20020aa7dc06000000b00461b6835fbamr17337027edu.72.1666811911415; Wed, 26
- Oct 2022 12:18:31 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E21E8C433FE
+	for <webhook@archiver.kernel.org>; Thu, 27 Oct 2022 00:59:55 +0000 (UTC)
+Subject: patching of device tree from layer
+To: yocto@lists.yoctoproject.org
+From: ron.eggler@mistywest.com
+X-Originating-Location: Vancouver, British Columbia, CA (24.87.53.111)
+X-Originating-Platform: Linux Chrome 105
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <87baa7a6-ddcc-10d5-9fb3-11d05738ea67@kernel.crashing.org>
-In-Reply-To: <87baa7a6-ddcc-10d5-9fb3-11d05738ea67@kernel.crashing.org>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Wed, 26 Oct 2022 14:18:19 -0500
-Message-ID: <CAJdd5Gb9w-Ehbfj3GFSJzghr_trtv=_-ADWPE6VozROSXg1khA@mail.gmail.com>
-Subject: Re: [yocto] [meta-mingw] Branch for langdale?
-To: Mark Hatle <mark.hatle@kernel.crashing.org>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Wed, 26 Oct 2022 17:59:51 -0700
+Message-ID: <nSWO.1666832391012021941.SCBQ@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Xenh9kgvFL0t14erwBR0"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Oct 2022 19:18:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58420
+ <yocto@lists.yoctoproject.org>; Thu, 27 Oct 2022 00:59:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58421
 
-Ya, I'll push one now
+--Xenh9kgvFL0t14erwBR0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 26, 2022 at 2:17 PM Mark Hatle
-<mark.hatle@kernel.crashing.org> wrote:
->
-> Doesn't look like langdale has been branched in meta-mingw.  Is it in a state
-> where it can be branched?
->
-> (I tried master and it seems to work for my use-case.)
->
-> --Mark
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58419): https://lists.yoctoproject.org/g/yocto/message/58419
-> Mute This Topic: https://lists.yoctoproject.org/mt/94589220/3616693
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [JPEWhacker@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Hi,
+
+I'm new here and relatively new to working with Yocto (creating my own laye=
+rs anyways). I'm working on developing a SOM platform based on Renesas RZ s=
+eries of MPUs.
+
+I've followed the guide on Digikey by Shawn Hymel to learn about device tre=
+e patching ( https://www.digikey.ca/en/maker/projects/intro-to-embedded-lin=
+ux-part-5-how-to-enable-i2c-in-the-yocto-project/6843bbf9a83c4c96888fccada1=
+e7aedf ). I assume many of you know about it as well.
+It does a good job in describing how to add changes in a dts file. In the e=
+xample, a i2c5 node is added in the dts, overwriting what had been defined =
+in the original dtsi file and I'm doubting the cleanliness of it.
+Would it not be better, to patch the node in the dtsi file and add the requ=
+ired changes there instead of adding them to the dts file essentially overw=
+riting what was set previously? I imagine this will essentially lead to two=
+ nodes being defined with the same name, the latter just overwriting the fo=
+rmer, is that so?
+How would one go about patching the dtsi and making sure that the patch is =
+applied before ther file is included?
+
+Thank you all,
+Mistyron
+
+--Xenh9kgvFL0t14erwBR0
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi,</p>
+<p>I'm new here and relatively new to working with Yocto (creating my own l=
+ayers anyways). I'm working on developing a SOM platform based on Renesas R=
+Z series of MPUs.</p>
+<p>I've followed the guide on Digikey by Shawn Hymel to learn about device =
+tree patching (<a href=3D"https://www.digikey.ca/en/maker/projects/intro-to=
+-embedded-linux-part-5-how-to-enable-i2c-in-the-yocto-project/6843bbf9a83c4=
+c96888fccada1e7aedf" target=3D"_blank" rel=3D"noopener">https://www.digikey=
+.ca/en/maker/projects/intro-to-embedded-linux-part-5-how-to-enable-i2c-in-t=
+he-yocto-project/6843bbf9a83c4c96888fccada1e7aedf</a>). I assume many of yo=
+u know about it as well.&nbsp;<br />It does a good job in describing how to=
+ add changes in a dts file. In the example, a i2c5 node is added in the dts=
+, overwriting what had been defined in the original dtsi file and I'm doubt=
+ing the cleanliness of it. <br />Would it not be better, to patch the node =
+in the dtsi file and add the required changes there instead of adding them =
+to the dts file essentially overwriting what was set previously? I imagine =
+this will essentially lead to two nodes being defined with the same name, t=
+he latter just overwriting the former, is that so?<br />How would one go ab=
+out patching the dtsi and making sure that the patch is applied before ther=
+ file is included?<br /><br />Thank you all,<br />Mistyron</p>
+
+--Xenh9kgvFL0t14erwBR0--
 
