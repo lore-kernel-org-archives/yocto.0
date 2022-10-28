@@ -1,123 +1,98 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <Muhammad_Hamza@mentor.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8019C38A02
-	for <webhook@archiver.kernel.org>; Fri, 28 Oct 2022 12:45:06 +0000 (UTC)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
- by mx.groups.io with SMTP id smtpd.web09.5790.1666961104498203011
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4473ECAAA1
+	for <webhook@archiver.kernel.org>; Fri, 28 Oct 2022 12:50:06 +0000 (UTC)
+Received: from esa3.mentor.iphmx.com (esa3.mentor.iphmx.com [68.232.137.180])
+ by mx.groups.io with SMTP id smtpd.web09.5830.1666961401136281774
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Oct 2022 05:45:04 -0700
+ Fri, 28 Oct 2022 05:50:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ikRcsDNo;
- spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: jpewhacker@gmail.com)
-Received: by mail-lj1-f180.google.com with SMTP id j14so8175411ljh.12
-        for <yocto@lists.yoctoproject.org>; Fri, 28 Oct 2022 05:45:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=09t7l++ma8JRpNBVEutUr+eVyMsSja5hT6RqctLkazI=;
-        b=ikRcsDNosrZZhkRudFpRTkTpldyegdcZX0zBUTxPZJ+Xx7xltPjBL47/OmYn2tPldN
-         6eImeOHMY8JiffZ8kwEPu5P6JFAgJKT6diubVtzG8kMEG3AuAXB2yoapbQPAFOu8uRTP
-         YK5mAcPU8B0JLlHahJhM99RZlZDdRNSTRxeqz861mU4sXNuRofF6ZiT4bWml7a9SQoXS
-         sN5pojYxrhT9TKth8vMStvaaXIo6pYo8wVruumU+g8RFd32NEQPxoWOw+jbKXklbJe4z
-         yq4jHReUn2Il4Uu5f/GlQuxi5CD2X1GzEjLUdWtBCb4vYSZh1IXH89TaP/kWSYFeg3pB
-         EOzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=09t7l++ma8JRpNBVEutUr+eVyMsSja5hT6RqctLkazI=;
-        b=b5jTofS54F+KeTM5x1jSIBlf6MyV5tjCNq9n3657+cPg9vhjRFDGWV8xL/2odf//vz
-         aBW6RCV5yOh6uvG412J1mQqR3BxkLhjL2+HNv2oN4jjKVzsBIOKGJo6PAU23zSE0Gxyz
-         AdtSlqbAcGojukwOP9FhK+N7jMqnGDj8a/qbMh3APUtnY8Sf7asDoNDF9Fw9nmEulBQa
-         P3zksbt2ABbvV3zpu0uw8L4Xy7Q0WCa6oFe9qaQ9vYcJmV8l7Wirl4sF55B85xSe2RHj
-         QKSqeBSRDcg4tOmpR2HXNwOOIBXXAo9QLhAgAiVg/fAblGX+uXnmBHRWPfD7itOURDDr
-         fJBw==
-X-Gm-Message-State: ACrzQf1ebXhPWQcUD4LiZoHlWHDheu7nZkHvn9Sg8SNr7jpf0IoaDPY2
-	Csl7mmyd0GWMp16A7U9h72p43DBMNAZfoqvhkx3XgBl+
-X-Google-Smtp-Source: AMsMyM5eKADDKyo9dCjgYBdAh4f3cYXXVS85zPMK3qCJc9YP1RfdBdMumDG9XyneoD7DTIV/wOucLer9l+WjMustH2o=
-X-Received: by 2002:aa7:dc06:0:b0:461:b683:5fba with SMTP id
- b6-20020aa7dc06000000b00461b6835fbamr25368765edu.72.1666961092083; Fri, 28
- Oct 2022 05:44:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221024060230.946830-1-muhammad_hamza@mentor.com> <426f6c96ddb74076a281a02249c6e125@mentor.com>
-In-Reply-To: <426f6c96ddb74076a281a02249c6e125@mentor.com>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Fri, 28 Oct 2022 07:44:40 -0500
-Message-ID: <CAJdd5GaZ0x=SefGPAqPfOtF1G3rAHMSXBgemtEUe-v0rF_DM1A@mail.gmail.com>
-Subject: Re: [meta-mingw][kirkstone][PATCH] toolchain-scripts-mingw32.bbclass:
+ dkim=missing; spf=pass (domain: mentor.com, ip: 68.232.137.180, mailfrom: muhammad_hamza@mentor.com)
+X-IronPort-AV: E=Sophos;i="5.95,221,1661846400"; 
+   d="scan'208";a="85443202"
+Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
+  by esa3.mentor.iphmx.com with ESMTP; 28 Oct 2022 04:49:58 -0800
+IronPort-SDR: K/OYp/mqdhJrr4WCqPYbGfctmIvkZWJsZgyfIyblBH1S2lgP6TIelgVGu6DTzDPgRNTUdGh8JH
+ 8coNaFZJPhGqALhV2N57q5Wc6kzbKKSpWUjTo+vTngotu6lN9Vc9yPaBAiuNMtqdZU25TP8dX8
+ 09TrzaMIx/msS7Szq0pQyUd6xuPow2/yMnzI2WVRXjIe0psGLbO3KTvrH/CcaF07gQcF1q0VcP
+ +gKlLSt9bYt3GsHwa6iUnGXkyXTTx/CZypSXiihDhtz6T73F77V0r+fB6PtdeUchtblSRWDAsL
+ wOI=
+From: "Hamza, Muhammad" <Muhammad_Hamza@mentor.com>
+To: Joshua Watt <jpewhacker@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [meta-mingw][kirkstone][PATCH] toolchain-scripts-mingw32.bbclass:
  Remove trailing slash in SDKROOT
-To: "Hamza, Muhammad" <Muhammad_Hamza@mentor.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thread-Topic: [meta-mingw][kirkstone][PATCH]
+ toolchain-scripts-mingw32.bbclass: Remove trailing slash in SDKROOT
+Thread-Index: AQHY5243gVRYIIZn5UOFtMQJE89wbq4jusOw///7tACAABIoMA==
+Date: Fri, 28 Oct 2022 12:49:53 +0000
+Message-ID: <74bbaff535514898ae71fe2cb55fc5ef@mentor.com>
+References: <20221024060230.946830-1-muhammad_hamza@mentor.com>
+ <426f6c96ddb74076a281a02249c6e125@mentor.com>
+ <CAJdd5GaZ0x=SefGPAqPfOtF1G3rAHMSXBgemtEUe-v0rF_DM1A@mail.gmail.com>
+In-Reply-To: <CAJdd5GaZ0x=SefGPAqPfOtF1G3rAHMSXBgemtEUe-v0rF_DM1A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.202.0.90]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Oct 2022 12:45:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58431
+ <yocto@lists.yoctoproject.org>; Fri, 28 Oct 2022 12:50:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58432
 
-Ya, I queued it in master-next. Let me run it through the AB then we
-can merge it
-
-On Fri, Oct 28, 2022 at 7:00 AM Hamza, Muhammad
-<Muhammad_Hamza@mentor.com> wrote:
->
-> Hi,
-> Any update on this?
->
-> -----Original Message-----
-> From: Hamza, Muhammad <Muhammad_Hamza@mentor.com>
-> Sent: Monday, October 24, 2022 11:03 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: jpewhacker@gmail.com; Hamza, Muhammad <Muhammad_Hamza@mentor.com>
-> Subject: [meta-mingw][kirkstone][PATCH] toolchain-scripts-mingw32.bbclass=
-: Remove trailing slash in SDKROOT
->
-> Modify toolchain-scripts-mingw32.bbclass to add a check in environment-se=
-tup script which removes trailing slash in path of SDKROOT.
-> This is needed to avoid multiple adjacent slashes in paths which are prod=
-uced by appending to SDKROOT.
-> In reference to https://learn.microsoft.com/en-us/windows/win32/fileio/na=
-ming-a-file?redirectedfrom=3DMSDN
-> naming convention used for paths and disk drives in windows should use a =
-single backslash. Even though in some cases windows ignores double slashes =
-in paths and it might work but it isn't documented as a right naming conven=
-tion and does fail in some cases eg. dir command cannot interpret double sl=
-ashes and fails.
->
-> For example if my SDK is located in D: drive, the environment setup scrip=
-ts sets "SDKROOT=3DD:\" and hence SDKTARGETSYSROOT gets set as "SDKTARGETSY=
-SROOT=3DD:\\sysroots\armv8a-oe-linux"
-> The introduced check removes additional slash in SDKROOT to set it as "SD=
-KROOT=3DD:" so all other variables using SDKROOT get set without additional=
- slash.
->
-> Signed-off-by: Muhammad Hamza <muhammad_hamza@mentor.com>
-> ---
->  classes/toolchain-scripts-mingw32.bbclass | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/classes/toolchain-scripts-mingw32.bbclass b/classes/toolchai=
-n-scripts-mingw32.bbclass
-> index d96cb40..8cb426a 100644
-> --- a/classes/toolchain-scripts-mingw32.bbclass
-> +++ b/classes/toolchain-scripts-mingw32.bbclass
-> @@ -12,6 +12,7 @@ toolchain_create_sdk_env_script:sdkmingw32 () {
->         touch $script
->         # Be sure to use the 'short' path, so we can have deeper director=
-ies.
->         echo 'set SDKROOT=3D%~sdp0%' >> $script
-> +       echo 'IF %SDKROOT:~-1%=3D=3D\ set SDKROOT=3D%SDKROOT:~0,-1%' >> $=
-script
->
->         # Convert to mingw32 subpaths
->         sysroot=3D'%SDKROOT%'${sysroot##${SDKPATH}}
-> --
-> 2.25.1
->
+QWxsIHJpZ2h0LCB0aGFua3MuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBK
+b3NodWEgV2F0dCA8anBld2hhY2tlckBnbWFpbC5jb20+IA0KU2VudDogRnJpZGF5LCBPY3RvYmVy
+IDI4LCAyMDIyIDU6NDUgUE0NClRvOiBIYW16YSwgTXVoYW1tYWQgPE11aGFtbWFkX0hhbXphQG1l
+bnRvci5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6
+IFttZXRhLW1pbmd3XVtraXJrc3RvbmVdW1BBVENIXSB0b29sY2hhaW4tc2NyaXB0cy1taW5ndzMy
+LmJiY2xhc3M6IFJlbW92ZSB0cmFpbGluZyBzbGFzaCBpbiBTREtST09UDQoNCllhLCBJIHF1ZXVl
+ZCBpdCBpbiBtYXN0ZXItbmV4dC4gTGV0IG1lIHJ1biBpdCB0aHJvdWdoIHRoZSBBQiB0aGVuIHdl
+IGNhbiBtZXJnZSBpdA0KDQpPbiBGcmksIE9jdCAyOCwgMjAyMiBhdCA3OjAwIEFNIEhhbXphLCBN
+dWhhbW1hZCA8TXVoYW1tYWRfSGFtemFAbWVudG9yLmNvbT4gd3JvdGU6DQo+DQo+IEhpLA0KPiBB
+bnkgdXBkYXRlIG9uIHRoaXM/DQo+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
+b206IEhhbXphLCBNdWhhbW1hZCA8TXVoYW1tYWRfSGFtemFAbWVudG9yLmNvbT4NCj4gU2VudDog
+TW9uZGF5LCBPY3RvYmVyIDI0LCAyMDIyIDExOjAzIEFNDQo+IFRvOiB5b2N0b0BsaXN0cy55b2N0
+b3Byb2plY3Qub3JnDQo+IENjOiBqcGV3aGFja2VyQGdtYWlsLmNvbTsgSGFtemEsIE11aGFtbWFk
+IDxNdWhhbW1hZF9IYW16YUBtZW50b3IuY29tPg0KPiBTdWJqZWN0OiBbbWV0YS1taW5nd11ba2ly
+a3N0b25lXVtQQVRDSF0gDQo+IHRvb2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzczogUmVt
+b3ZlIHRyYWlsaW5nIHNsYXNoIGluIFNES1JPT1QNCj4NCj4gTW9kaWZ5IHRvb2xjaGFpbi1zY3Jp
+cHRzLW1pbmd3MzIuYmJjbGFzcyB0byBhZGQgYSBjaGVjayBpbiBlbnZpcm9ubWVudC1zZXR1cCBz
+Y3JpcHQgd2hpY2ggcmVtb3ZlcyB0cmFpbGluZyBzbGFzaCBpbiBwYXRoIG9mIFNES1JPT1QuDQo+
+IFRoaXMgaXMgbmVlZGVkIHRvIGF2b2lkIG11bHRpcGxlIGFkamFjZW50IHNsYXNoZXMgaW4gcGF0
+aHMgd2hpY2ggYXJlIHByb2R1Y2VkIGJ5IGFwcGVuZGluZyB0byBTREtST09ULg0KPiBJbiByZWZl
+cmVuY2UgdG8gDQo+IGh0dHBzOi8vbGVhcm4ubWljcm9zb2Z0LmNvbS9lbi11cy93aW5kb3dzL3dp
+bjMyL2ZpbGVpby9uYW1pbmctYS1maWxlP3INCj4gZWRpcmVjdGVkZnJvbT1NU0ROIG5hbWluZyBj
+b252ZW50aW9uIHVzZWQgZm9yIHBhdGhzIGFuZCBkaXNrIGRyaXZlcyBpbiANCj4gd2luZG93cyBz
+aG91bGQgdXNlIGEgc2luZ2xlIGJhY2tzbGFzaC4gRXZlbiB0aG91Z2ggaW4gc29tZSBjYXNlcyB3
+aW5kb3dzIGlnbm9yZXMgZG91YmxlIHNsYXNoZXMgaW4gcGF0aHMgYW5kIGl0IG1pZ2h0IHdvcmsg
+YnV0IGl0IGlzbid0IGRvY3VtZW50ZWQgYXMgYSByaWdodCBuYW1pbmcgY29udmVudGlvbiBhbmQg
+ZG9lcyBmYWlsIGluIHNvbWUgY2FzZXMgZWcuIGRpciBjb21tYW5kIGNhbm5vdCBpbnRlcnByZXQg
+ZG91YmxlIHNsYXNoZXMgYW5kIGZhaWxzLg0KPg0KPiBGb3IgZXhhbXBsZSBpZiBteSBTREsgaXMg
+bG9jYXRlZCBpbiBEOiBkcml2ZSwgdGhlIGVudmlyb25tZW50IHNldHVwIHNjcmlwdHMgc2V0cyAi
+U0RLUk9PVD1EOlwiIGFuZCBoZW5jZSBTREtUQVJHRVRTWVNST09UIGdldHMgc2V0IGFzICJTREtU
+QVJHRVRTWVNST09UPUQ6XFxzeXNyb290c1xhcm12OGEtb2UtbGludXgiDQo+IFRoZSBpbnRyb2R1
+Y2VkIGNoZWNrIHJlbW92ZXMgYWRkaXRpb25hbCBzbGFzaCBpbiBTREtST09UIHRvIHNldCBpdCBh
+cyAiU0RLUk9PVD1EOiIgc28gYWxsIG90aGVyIHZhcmlhYmxlcyB1c2luZyBTREtST09UIGdldCBz
+ZXQgd2l0aG91dCBhZGRpdGlvbmFsIHNsYXNoLg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBNdWhhbW1h
+ZCBIYW16YSA8bXVoYW1tYWRfaGFtemFAbWVudG9yLmNvbT4NCj4gLS0tDQo+ICBjbGFzc2VzL3Rv
+b2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzcyB8IDEgKw0KPiAgMSBmaWxlIGNoYW5nZWQs
+IDEgaW5zZXJ0aW9uKCspDQo+DQo+IGRpZmYgLS1naXQgYS9jbGFzc2VzL3Rvb2xjaGFpbi1zY3Jp
+cHRzLW1pbmd3MzIuYmJjbGFzcyANCj4gYi9jbGFzc2VzL3Rvb2xjaGFpbi1zY3JpcHRzLW1pbmd3
+MzIuYmJjbGFzcw0KPiBpbmRleCBkOTZjYjQwLi44Y2I0MjZhIDEwMDY0NA0KPiAtLS0gYS9jbGFz
+c2VzL3Rvb2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzcw0KPiArKysgYi9jbGFzc2VzL3Rv
+b2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzcw0KPiBAQCAtMTIsNiArMTIsNyBAQCB0b29s
+Y2hhaW5fY3JlYXRlX3Nka19lbnZfc2NyaXB0OnNka21pbmd3MzIgKCkgew0KPiAgICAgICAgIHRv
+dWNoICRzY3JpcHQNCj4gICAgICAgICAjIEJlIHN1cmUgdG8gdXNlIHRoZSAnc2hvcnQnIHBhdGgs
+IHNvIHdlIGNhbiBoYXZlIGRlZXBlciBkaXJlY3Rvcmllcy4NCj4gICAgICAgICBlY2hvICdzZXQg
+U0RLUk9PVD0lfnNkcDAlJyA+PiAkc2NyaXB0DQo+ICsgICAgICAgZWNobyAnSUYgJVNES1JPT1Q6
+fi0xJT09XCBzZXQgU0RLUk9PVD0lU0RLUk9PVDp+MCwtMSUnID4+IA0KPiArICRzY3JpcHQNCj4N
+Cj4gICAgICAgICAjIENvbnZlcnQgdG8gbWluZ3czMiBzdWJwYXRocw0KPiAgICAgICAgIHN5c3Jv
+b3Q9JyVTREtST09UJScke3N5c3Jvb3QjIyR7U0RLUEFUSH19DQo+IC0tDQo+IDIuMjUuMQ0KPg0K
 
