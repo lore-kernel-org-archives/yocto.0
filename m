@@ -1,164 +1,99 @@
-Return-Path: <ron.eggler@mistywest.com>
+Return-Path: <Muhammad_Hamza@mentor.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5058FA3740
-	for <webhook@archiver.kernel.org>; Thu, 27 Oct 2022 21:20:40 +0000 (UTC)
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
- by mx.groups.io with SMTP id smtpd.web08.2976.1666905632274629844
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FF9DFA3740
+	for <webhook@archiver.kernel.org>; Fri, 28 Oct 2022 12:00:36 +0000 (UTC)
+Received: from esa2.mentor.iphmx.com (esa2.mentor.iphmx.com [68.232.141.98])
+ by mx.groups.io with SMTP id smtpd.web11.5358.1666958428811939961
  for <yocto@lists.yoctoproject.org>;
- Thu, 27 Oct 2022 14:20:32 -0700
+ Fri, 28 Oct 2022 05:00:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistywest-com.20210112.gappssmtp.com header.s=20210112 header.b=ojQzqjbw;
- spf=pass (domain: mistywest.com, ip: 209.85.215.171, mailfrom: ron.eggler@mistywest.com)
-Received: by mail-pg1-f171.google.com with SMTP id 78so2841939pgb.13
-        for <yocto@lists.yoctoproject.org>; Thu, 27 Oct 2022 14:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistywest-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=IXZXq2wz78AO6wlzT/ax/MKth3dG0D/CwbSsyh5Y+h0=;
-        b=ojQzqjbwSHo5MHmwAZkd9hIpN/Lnqgh840VV6XNZFThMZR5YBVObIL+Kk/nqrjyv1+
-         dOHgoSp/h++v5ywbspsfPzJ8nBoRSVL3w54zmRqsUQ6J56wRR74nyAE7bGxjDr+U5ptE
-         h7SNHkRYbioKva6lYtTH3GCiY+bRzxvRlcdaMr7XwEjqKAKBPSfrIKvbg4oboujwMPMD
-         y/f/Q1im9sMvKM9FuUu6FJkEfPzF4PrlzW9jqqI9KAb2I1O/qCI8lewzRzjwISZv1EOv
-         otvNIe34KuUIUsoBRqquJvzjYo7Gnp8WjtFffofCchitSBByzjRKCiZ3hCTr05knLGlk
-         UWrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IXZXq2wz78AO6wlzT/ax/MKth3dG0D/CwbSsyh5Y+h0=;
-        b=rZB6Wxqwu494arudvDiRaLhMtqQlJZOcxK4fsYEBht157uDI4SVMWw+6moQI7a7OJg
-         gX/qVSTTGKlcETFlf1mF15cYRBRhoPixnW0RzGyyrYsckdExD0Fo3BdkgPU1tPPMJdQA
-         2J/MphLAY7mYgKxbJyHIcGlggrIQcFe9cDuFBRrG9/WHPJEUZgSV1OJCsjS5PdK+/nrQ
-         NEmkfDF5TuFIgh7UHkALzExZdtEwXUHWHicxZ91LByymM4YZgbzJ4d5tUPfLaMSeRr6W
-         qnkS2gvDySkg6UwEkV1i2045j9ykyzDZ4uWIV8v9bOIwHhNSoAimLdDxXeEqFyeoKe/w
-         BUUA==
-X-Gm-Message-State: ACrzQf1UEJORynrHKc48ZWGOUcqbUTHOlN1NAGSrF8ZU3CA3rySJEaSE
-	ZGdDxBC8UO8z868kCgxrk7Vt6w==
-X-Google-Smtp-Source: AMsMyM7X/8arIstkreZHkt4G2ZfJ9Dd2XqojxcUE2xxQfcXFcTHhsHlXqMap812g/o6spDGh8fBSDw==
-X-Received: by 2002:a63:1b0f:0:b0:46b:910:6cd9 with SMTP id b15-20020a631b0f000000b0046b09106cd9mr43814514pgb.5.1666905631272;
-        Thu, 27 Oct 2022 14:20:31 -0700 (PDT)
-Received: from [192.168.1.222] (S01067898e84c4253.vc.shawcable.net. [24.87.53.111])
-        by smtp.gmail.com with ESMTPSA id h187-20020a62dec4000000b0056ba7ce4d5asm1589646pfg.52.2022.10.27.14.20.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 14:20:30 -0700 (PDT)
-Message-ID: <bd56c331-c507-b160-5538-19b0bcd4a227@mistywest.com>
-Date: Thu, 27 Oct 2022 14:20:28 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [yocto] patching of device tree from layer
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>, yocto@lists.yoctoproject.org
-References: <nSWO.1666832391012021941.SCBQ@lists.yoctoproject.org>
- <133de83c-2697-fcc0-9b07-803f2d6eb4a7@ibeeto.com>
+ dkim=missing; spf=pass (domain: mentor.com, ip: 68.232.141.98, mailfrom: muhammad_hamza@mentor.com)
+X-IronPort-AV: E=Sophos;i="5.95,221,1661846400"; 
+   d="scan'208";a="85739906"
+Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
+  by esa2.mentor.iphmx.com with ESMTP; 28 Oct 2022 04:00:27 -0800
+IronPort-SDR: 2Z7XQdVgEVwn5F/hTtmM5AlHMG82bvY42zb3bmxDHBn7G6/KgJwqAo79Hjs38JVQLVWO8+37QJ
+ 6mjDLc2PHVfwYoLsApWimMkPxTB3i4Eyyq17krEB0PM6I/T+j7v0uH9Q9uZS1VAlrzGbqM6mNK
+ Jk7z1xr/fNpSe1ARDJG2HcjxY6Xq7xPoU3HTd0GtxcLW8ErXGFLc454qDtbdaseZX1l+Oyieou
+ 8HNaU7Xbi25/k2EmR9J0oGTktSzR7ObfuHou2AOilH62ikv2wGpxF+EWy/1uyXwx8JqKVwMmIw
+ ezA=
+From: "Hamza, Muhammad" <Muhammad_Hamza@mentor.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+CC: "jpewhacker@gmail.com" <jpewhacker@gmail.com>
+Subject: RE: [meta-mingw][kirkstone][PATCH] toolchain-scripts-mingw32.bbclass:
+ Remove trailing slash in SDKROOT
+Thread-Topic: [meta-mingw][kirkstone][PATCH]
+ toolchain-scripts-mingw32.bbclass: Remove trailing slash in SDKROOT
+Thread-Index: AQHY5243gVRYIIZn5UOFtMQJE89wbq4jusOw
+Date: Fri, 28 Oct 2022 12:00:23 +0000
+Message-ID: <426f6c96ddb74076a281a02249c6e125@mentor.com>
+References: <20221024060230.946830-1-muhammad_hamza@mentor.com>
+In-Reply-To: <20221024060230.946830-1-muhammad_hamza@mentor.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Ron Eggler <ron.eggler@mistywest.com>
-In-Reply-To: <133de83c-2697-fcc0-9b07-803f2d6eb4a7@ibeeto.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.202.0.90]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 27 Oct 2022 21:20:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58429
+ <yocto@lists.yoctoproject.org>; Fri, 28 Oct 2022 12:00:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58430
 
-On 2022-10-27 12:00, Rudolf J Streif wrote:
-> Ron,
->
-> On 10/26/22 17:59, ron.eggler@mistywest.com wrote:
->>
->> Hi,
->>
->> I'm new here and relatively new to working with Yocto (creating my 
->> own layers anyways). I'm working on developing a SOM platform based 
->> on Renesas RZ series of MPUs.
->>
-> Welcome. When asking a question on a mailing list it is always 
-> advisable to put all relevant information pertaining to the question 
-> into the email and be specific about what you think the problem is. It 
-> alleviates people from having to collect additional data to understand 
-> the problem.
+Hi,
+Any update on this?
 
-Thanks and yes makes sense, I'll do my best!
+-----Original Message-----
+From: Hamza, Muhammad <Muhammad_Hamza@mentor.com>=20
+Sent: Monday, October 24, 2022 11:03 AM
+To: yocto@lists.yoctoproject.org
+Cc: jpewhacker@gmail.com; Hamza, Muhammad <Muhammad_Hamza@mentor.com>
+Subject: [meta-mingw][kirkstone][PATCH] toolchain-scripts-mingw32.bbclass: =
+Remove trailing slash in SDKROOT
 
->>
->> I've followed the guide on Digikey by Shawn Hymel to learn about 
->> device tree patching 
->> (https://www.digikey.ca/en/maker/projects/intro-to-embedded-linux-part-5-how-to-enable-i2c-in-the-yocto-project/6843bbf9a83c4c96888fccada1e7aedf). 
->> I assume many of you know about it as well.
->>
-> Not necessarily. There are so many different devices and there's 
-> probably nobody who knows them all. :)
+Modify toolchain-scripts-mingw32.bbclass to add a check in environment-setu=
+p script which removes trailing slash in path of SDKROOT.
+This is needed to avoid multiple adjacent slashes in paths which are produc=
+ed by appending to SDKROOT.
+In reference to https://learn.microsoft.com/en-us/windows/win32/fileio/nami=
+ng-a-file?redirectedfrom=3DMSDN
+naming convention used for paths and disk drives in windows should use a si=
+ngle backslash. Even though in some cases windows ignores double slashes in=
+ paths and it might work but it isn't documented as a right naming conventi=
+on and does fail in some cases eg. dir command cannot interpret double slas=
+hes and fails.
 
-Yes, I see my statement was not clear, I referred to the tutorial but 
-you're right, nobody knows them all!
+For example if my SDK is located in D: drive, the environment setup scripts=
+ sets "SDKROOT=3DD:\" and hence SDKTARGETSYSROOT gets set as "SDKTARGETSYSR=
+OOT=3DD:\\sysroots\armv8a-oe-linux"
+The introduced check removes additional slash in SDKROOT to set it as "SDKR=
+OOT=3DD:" so all other variables using SDKROOT get set without additional s=
+lash.
 
->>
->> It does a good job in describing how to add changes in a dts file. In 
->> the example, a i2c5 node is added in the dts, overwriting what had 
->> been defined in the original dtsi file and I'm doubting the 
->> cleanliness of it.
->>
-> It is good practice to override definitions from a dtsi in a dts. That 
-> is the entire idea of the device tree include file which is what the 
-> 'i' suggests. The idea is to use dtsi to define device nodes that are 
-> shared between different platforms. Some of them are always enabled 
-> since all platforms use them. Others, like the i2c bus in question, 
-> may only be used on some devices and hence they are disabled. Some 
-> nodes might only be templates and the platform's dts needs to complete 
-> them if they are used.
->
-> In this particular case it would have been better to simply add
->
-> &i2c5 {
->    status = "ok";
-> };
->
-> to the dts as the other definitions were already present as such in 
-> the dtsi stm32mp15xx-dkx.dtsi
+Signed-off-by: Muhammad Hamza <muhammad_hamza@mentor.com>
+---
+ classes/toolchain-scripts-mingw32.bbclass | 1 +
+ 1 file changed, 1 insertion(+)
 
-Oh yeah, that makes better sense now!
-
->
->
->> Would it not be better, to patch the node in the dtsi file and add 
->> the required changes there instead of adding them to the dts file 
->> essentially overwriting what was set previously? I imagine this will 
->> essentially lead to two nodes being defined with the same name, the 
->> latter just overwriting the former, is that so?
->>
-> Nope, that is the idea of using the & before the device node name. All 
-> of the &'s and the node's root definition will be merged by the device 
-> tree compiler into the resulting device node definition. In this case 
-> the i2c5 node's root definition is in stm32mp151.dtsi which is 
-> included by stm32mp153.dts which is in turn included by 
-> stm32mp157.dtsi which is included by stm32157d-dk1.dts. (I might be 
-> wrong with the details of the chain as just browsed through it quickly 
-> but you get the idea.)
-
-Oh okay, yeah, I get it! Thanks for the clarification
-
->>
->> How would one go about patching the dtsi and making sure that the 
->> patch is applied before ther file is included?
->>
-> I don't recommend doing this but the example explains how to patch the 
-> dts file. It works the same way for the dtsi.
-Yes, I realize now that it's a bad idea!
->>
->>
->> Thank you all,
->> Mistyron
->>
->>
-> :rjs
-
-I learnt a bunch from your response, Thank you!
-
-Mistyron
+diff --git a/classes/toolchain-scripts-mingw32.bbclass b/classes/toolchain-=
+scripts-mingw32.bbclass
+index d96cb40..8cb426a 100644
+--- a/classes/toolchain-scripts-mingw32.bbclass
++++ b/classes/toolchain-scripts-mingw32.bbclass
+@@ -12,6 +12,7 @@ toolchain_create_sdk_env_script:sdkmingw32 () {
+ 	touch $script
+ 	# Be sure to use the 'short' path, so we can have deeper directories.
+ 	echo 'set SDKROOT=3D%~sdp0%' >> $script
++	echo 'IF %SDKROOT:~-1%=3D=3D\ set SDKROOT=3D%SDKROOT:~0,-1%' >> $script
+=20
+ 	# Convert to mingw32 subpaths
+ 	sysroot=3D'%SDKROOT%'${sysroot##${SDKPATH}}
+--
+2.25.1
 
 
