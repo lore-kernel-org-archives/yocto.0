@@ -1,98 +1,170 @@
-Return-Path: <Muhammad_Hamza@mentor.com>
+Return-Path: <gary@missionsecure.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4473ECAAA1
-	for <webhook@archiver.kernel.org>; Fri, 28 Oct 2022 12:50:06 +0000 (UTC)
-Received: from esa3.mentor.iphmx.com (esa3.mentor.iphmx.com [68.232.137.180])
- by mx.groups.io with SMTP id smtpd.web09.5830.1666961401136281774
- for <yocto@lists.yoctoproject.org>;
- Fri, 28 Oct 2022 05:50:01 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: mentor.com, ip: 68.232.137.180, mailfrom: muhammad_hamza@mentor.com)
-X-IronPort-AV: E=Sophos;i="5.95,221,1661846400"; 
-   d="scan'208";a="85443202"
-Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
-  by esa3.mentor.iphmx.com with ESMTP; 28 Oct 2022 04:49:58 -0800
-IronPort-SDR: K/OYp/mqdhJrr4WCqPYbGfctmIvkZWJsZgyfIyblBH1S2lgP6TIelgVGu6DTzDPgRNTUdGh8JH
- 8coNaFZJPhGqALhV2N57q5Wc6kzbKKSpWUjTo+vTngotu6lN9Vc9yPaBAiuNMtqdZU25TP8dX8
- 09TrzaMIx/msS7Szq0pQyUd6xuPow2/yMnzI2WVRXjIe0psGLbO3KTvrH/CcaF07gQcF1q0VcP
- +gKlLSt9bYt3GsHwa6iUnGXkyXTTx/CZypSXiihDhtz6T73F77V0r+fB6PtdeUchtblSRWDAsL
- wOI=
-From: "Hamza, Muhammad" <Muhammad_Hamza@mentor.com>
-To: Joshua Watt <jpewhacker@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [meta-mingw][kirkstone][PATCH] toolchain-scripts-mingw32.bbclass:
- Remove trailing slash in SDKROOT
-Thread-Topic: [meta-mingw][kirkstone][PATCH]
- toolchain-scripts-mingw32.bbclass: Remove trailing slash in SDKROOT
-Thread-Index: AQHY5243gVRYIIZn5UOFtMQJE89wbq4jusOw///7tACAABIoMA==
-Date: Fri, 28 Oct 2022 12:49:53 +0000
-Message-ID: <74bbaff535514898ae71fe2cb55fc5ef@mentor.com>
-References: <20221024060230.946830-1-muhammad_hamza@mentor.com>
- <426f6c96ddb74076a281a02249c6e125@mentor.com>
- <CAJdd5GaZ0x=SefGPAqPfOtF1G3rAHMSXBgemtEUe-v0rF_DM1A@mail.gmail.com>
-In-Reply-To: <CAJdd5GaZ0x=SefGPAqPfOtF1G3rAHMSXBgemtEUe-v0rF_DM1A@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.202.0.90]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D7D2ECAAA1
+	for <webhook@archiver.kernel.org>; Fri, 28 Oct 2022 16:59:37 +0000 (UTC)
+Subject: #kirkstone  #bitbake Suricata QA error directories not shipped
+To: yocto@lists.yoctoproject.org
+From: "Gary Huband" <gary@missionsecure.com>
+X-Originating-Location: Charlottesville, Virginia, US (216.197.64.240)
+X-Originating-Platform: Linux Firefox 106
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Fri, 28 Oct 2022 09:59:27 -0700
+Message-ID: <m3Mw.1666976367878724975.KRS1@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="uMUUh9STGgymPWNW96aW"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Oct 2022 12:50:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58432
+ <yocto@lists.yoctoproject.org>; Fri, 28 Oct 2022 16:59:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58433
 
-QWxsIHJpZ2h0LCB0aGFua3MuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBK
-b3NodWEgV2F0dCA8anBld2hhY2tlckBnbWFpbC5jb20+IA0KU2VudDogRnJpZGF5LCBPY3RvYmVy
-IDI4LCAyMDIyIDU6NDUgUE0NClRvOiBIYW16YSwgTXVoYW1tYWQgPE11aGFtbWFkX0hhbXphQG1l
-bnRvci5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6
-IFttZXRhLW1pbmd3XVtraXJrc3RvbmVdW1BBVENIXSB0b29sY2hhaW4tc2NyaXB0cy1taW5ndzMy
-LmJiY2xhc3M6IFJlbW92ZSB0cmFpbGluZyBzbGFzaCBpbiBTREtST09UDQoNCllhLCBJIHF1ZXVl
-ZCBpdCBpbiBtYXN0ZXItbmV4dC4gTGV0IG1lIHJ1biBpdCB0aHJvdWdoIHRoZSBBQiB0aGVuIHdl
-IGNhbiBtZXJnZSBpdA0KDQpPbiBGcmksIE9jdCAyOCwgMjAyMiBhdCA3OjAwIEFNIEhhbXphLCBN
-dWhhbW1hZCA8TXVoYW1tYWRfSGFtemFAbWVudG9yLmNvbT4gd3JvdGU6DQo+DQo+IEhpLA0KPiBB
-bnkgdXBkYXRlIG9uIHRoaXM/DQo+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
-b206IEhhbXphLCBNdWhhbW1hZCA8TXVoYW1tYWRfSGFtemFAbWVudG9yLmNvbT4NCj4gU2VudDog
-TW9uZGF5LCBPY3RvYmVyIDI0LCAyMDIyIDExOjAzIEFNDQo+IFRvOiB5b2N0b0BsaXN0cy55b2N0
-b3Byb2plY3Qub3JnDQo+IENjOiBqcGV3aGFja2VyQGdtYWlsLmNvbTsgSGFtemEsIE11aGFtbWFk
-IDxNdWhhbW1hZF9IYW16YUBtZW50b3IuY29tPg0KPiBTdWJqZWN0OiBbbWV0YS1taW5nd11ba2ly
-a3N0b25lXVtQQVRDSF0gDQo+IHRvb2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzczogUmVt
-b3ZlIHRyYWlsaW5nIHNsYXNoIGluIFNES1JPT1QNCj4NCj4gTW9kaWZ5IHRvb2xjaGFpbi1zY3Jp
-cHRzLW1pbmd3MzIuYmJjbGFzcyB0byBhZGQgYSBjaGVjayBpbiBlbnZpcm9ubWVudC1zZXR1cCBz
-Y3JpcHQgd2hpY2ggcmVtb3ZlcyB0cmFpbGluZyBzbGFzaCBpbiBwYXRoIG9mIFNES1JPT1QuDQo+
-IFRoaXMgaXMgbmVlZGVkIHRvIGF2b2lkIG11bHRpcGxlIGFkamFjZW50IHNsYXNoZXMgaW4gcGF0
-aHMgd2hpY2ggYXJlIHByb2R1Y2VkIGJ5IGFwcGVuZGluZyB0byBTREtST09ULg0KPiBJbiByZWZl
-cmVuY2UgdG8gDQo+IGh0dHBzOi8vbGVhcm4ubWljcm9zb2Z0LmNvbS9lbi11cy93aW5kb3dzL3dp
-bjMyL2ZpbGVpby9uYW1pbmctYS1maWxlP3INCj4gZWRpcmVjdGVkZnJvbT1NU0ROIG5hbWluZyBj
-b252ZW50aW9uIHVzZWQgZm9yIHBhdGhzIGFuZCBkaXNrIGRyaXZlcyBpbiANCj4gd2luZG93cyBz
-aG91bGQgdXNlIGEgc2luZ2xlIGJhY2tzbGFzaC4gRXZlbiB0aG91Z2ggaW4gc29tZSBjYXNlcyB3
-aW5kb3dzIGlnbm9yZXMgZG91YmxlIHNsYXNoZXMgaW4gcGF0aHMgYW5kIGl0IG1pZ2h0IHdvcmsg
-YnV0IGl0IGlzbid0IGRvY3VtZW50ZWQgYXMgYSByaWdodCBuYW1pbmcgY29udmVudGlvbiBhbmQg
-ZG9lcyBmYWlsIGluIHNvbWUgY2FzZXMgZWcuIGRpciBjb21tYW5kIGNhbm5vdCBpbnRlcnByZXQg
-ZG91YmxlIHNsYXNoZXMgYW5kIGZhaWxzLg0KPg0KPiBGb3IgZXhhbXBsZSBpZiBteSBTREsgaXMg
-bG9jYXRlZCBpbiBEOiBkcml2ZSwgdGhlIGVudmlyb25tZW50IHNldHVwIHNjcmlwdHMgc2V0cyAi
-U0RLUk9PVD1EOlwiIGFuZCBoZW5jZSBTREtUQVJHRVRTWVNST09UIGdldHMgc2V0IGFzICJTREtU
-QVJHRVRTWVNST09UPUQ6XFxzeXNyb290c1xhcm12OGEtb2UtbGludXgiDQo+IFRoZSBpbnRyb2R1
-Y2VkIGNoZWNrIHJlbW92ZXMgYWRkaXRpb25hbCBzbGFzaCBpbiBTREtST09UIHRvIHNldCBpdCBh
-cyAiU0RLUk9PVD1EOiIgc28gYWxsIG90aGVyIHZhcmlhYmxlcyB1c2luZyBTREtST09UIGdldCBz
-ZXQgd2l0aG91dCBhZGRpdGlvbmFsIHNsYXNoLg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBNdWhhbW1h
-ZCBIYW16YSA8bXVoYW1tYWRfaGFtemFAbWVudG9yLmNvbT4NCj4gLS0tDQo+ICBjbGFzc2VzL3Rv
-b2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzcyB8IDEgKw0KPiAgMSBmaWxlIGNoYW5nZWQs
-IDEgaW5zZXJ0aW9uKCspDQo+DQo+IGRpZmYgLS1naXQgYS9jbGFzc2VzL3Rvb2xjaGFpbi1zY3Jp
-cHRzLW1pbmd3MzIuYmJjbGFzcyANCj4gYi9jbGFzc2VzL3Rvb2xjaGFpbi1zY3JpcHRzLW1pbmd3
-MzIuYmJjbGFzcw0KPiBpbmRleCBkOTZjYjQwLi44Y2I0MjZhIDEwMDY0NA0KPiAtLS0gYS9jbGFz
-c2VzL3Rvb2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzcw0KPiArKysgYi9jbGFzc2VzL3Rv
-b2xjaGFpbi1zY3JpcHRzLW1pbmd3MzIuYmJjbGFzcw0KPiBAQCAtMTIsNiArMTIsNyBAQCB0b29s
-Y2hhaW5fY3JlYXRlX3Nka19lbnZfc2NyaXB0OnNka21pbmd3MzIgKCkgew0KPiAgICAgICAgIHRv
-dWNoICRzY3JpcHQNCj4gICAgICAgICAjIEJlIHN1cmUgdG8gdXNlIHRoZSAnc2hvcnQnIHBhdGgs
-IHNvIHdlIGNhbiBoYXZlIGRlZXBlciBkaXJlY3Rvcmllcy4NCj4gICAgICAgICBlY2hvICdzZXQg
-U0RLUk9PVD0lfnNkcDAlJyA+PiAkc2NyaXB0DQo+ICsgICAgICAgZWNobyAnSUYgJVNES1JPT1Q6
-fi0xJT09XCBzZXQgU0RLUk9PVD0lU0RLUk9PVDp+MCwtMSUnID4+IA0KPiArICRzY3JpcHQNCj4N
-Cj4gICAgICAgICAjIENvbnZlcnQgdG8gbWluZ3czMiBzdWJwYXRocw0KPiAgICAgICAgIHN5c3Jv
-b3Q9JyVTREtST09UJScke3N5c3Jvb3QjIyR7U0RLUEFUSH19DQo+IC0tDQo+IDIuMjUuMQ0KPg0K
+--uMUUh9STGgymPWNW96aW
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I'm getting a directories not shipped QA error when building Suricata on Ki=
+rkstone:
+
+ERROR: mc:x86-2021-minimal:suricata-6.0.4-r0 do_package: QA Issue: suricata=
+: Files/directories were installed but not shipped in any package:
+/usr/lib
+/usr/lib/python3.10
+/usr/lib/python3.10/site-packages
+/usr/lib/python3.10/site-packages/suricata-6.0.4-py3.10.egg-info
+/usr/lib/python3.10/site-packages/suricata
+/usr/lib/python3.10/site-packages/suricatasc
+/usr/lib/python3.10/site-packages/suricata/__init__.py
+/usr/lib/python3.10/site-packages/suricata/sc
+/usr/lib/python3.10/site-packages/suricata/ctl
+/usr/lib/python3.10/site-packages/suricata/__pycache__
+/usr/lib/python3.10/site-packages/suricata/config
+/usr/lib/python3.10/site-packages/suricata/sc/suricatasc.py
+/usr/lib/python3.10/site-packages/suricata/sc/__init__.py
+/usr/lib/python3.10/site-packages/suricata/sc/specs.py
+/usr/lib/python3.10/site-packages/suricata/sc/__pycache__
+/usr/lib/python3.10/site-packages/suricata/sc/__pycache__/specs.cpython-310=
+.pyc
+/usr/lib/python3.10/site-packages/suricata/sc/__pycache__/suricatasc.cpytho=
+n-310.pyc
+/usr/lib/python3.10/site-packages/suricata/sc/__pycache__/__init__.cpython-=
+310.pyc
+/usr/lib/python3.10/site-packages/suricata/ctl/main.py
+/usr/lib/python3.10/site-packages/suricata/ctl/loghandler.py
+/usr/lib/python3.10/site-packages/suricata/ctl/test_filestore.py
+/usr/lib/python3.10/site-packages/suricata/ctl/__init__.py
+/usr/lib/python3.10/site-packages/suricata/ctl/filestore.py
+/usr/lib/python3.10/site-packages/suricata/ctl/__pycache__
+/usr/lib/python3.10/site-packages/suricata/ctl/__pycache__/main.cpython-310=
+.pyc
+/usr/lib/python3.10/site-packages/suricata/ctl/__pycache__/test_filestore.c=
+python-310.pyc
+/usr/lib/python3.10/site-packages/suricata/ctl/__pycache__/loghandler.cpyth=
+on-310.pyc
+/usr/lib/python3.10/site-packages/suricata/ctl/__pycache__/filestore.cpytho=
+n-310.pyc
+/usr/lib/python3.10/site-packages/suricata/ctl/__pycache__/__init__.cpython=
+-310.pyc
+/usr/lib/python3.10/site-packages/suricata/__pycache__/__init__.cpython-310=
+.pyc
+/usr/lib/python3.10/site-packages/suricata/config/defaults.py
+/usr/lib/python3.10/site-packages/suricata/config/__init__.py
+/usr/lib/python3.10/site-packages/suricata/config/__pycache__
+/usr/lib/python3.10/site-packages/suricata/config/__pycache__/__init__.cpyt=
+hon-310.pyc
+/usr/lib/python3.10/site-packages/suricata/config/__pycache__/defaults.cpyt=
+hon-310.pyc
+/usr/lib/python3.10/site-packages/suricatasc/__init__.py
+/usr/lib/python3.10/site-packages/suricatasc/__pycache__
+/usr/lib/python3.10/site-packages/suricatasc/__pycache__/__init__.cpython-3=
+10.pyc
+Please set FILES such that these items are packaged. Alternatively if they =
+are unneeded, avoid installing them or delete them within do_install.
+suricata: 38 installed and not shipped files. [installed-vs-shipped]
+ERROR: mc:x86-2021-minimal:suricata-6.0.4-r0 do_package: Fatal QA errors we=
+re found, failing task.
+ERROR: Logfile of failure stored in: /data/kirkstone/yocto_intel/build/tmp-=
+x86-2021-minimal-glibc/work/corei7-64-ese-linux/suricata/6.0.4-r0/temp/log.=
+do_package.346985
+ERROR: Task (mc:x86-2021-minimal:/data/kirkstone/yocto_intel/build/../intel=
+-embedded-system-enabling/meta-security/recipes-ids/suricata/suricata_6.0.4=
+.bb:do_package) failed with exit code '1
+
+The Suricata recipe has
+
+FILES : ${ PN } - python =3D "${bindir}/suricatasc ${PYTHON_SITEPACKAGES_DI=
+R}"
+
+I have in my conf/local.conf
+PACKAGECONFIG:append:pn-suricata =3D " python"
+
+Any ideas on a fix?
+
+--uMUUh9STGgymPWNW96aW
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>I'm getting a directories not shipped QA error when building Suricata on=
+ Kirkstone:<br /><br />ERROR: mc:x86-2021-minimal:suricata-6.0.4-r0 do_pack=
+age: QA Issue: suricata: Files/directories were installed but not shipped i=
+n any package:<br />&nbsp; /usr/lib<br />&nbsp; /usr/lib/python3.10<br />&n=
+bsp; /usr/lib/python3.10/site-packages<br />&nbsp; /usr/lib/python3.10/site=
+-packages/suricata-6.0.4-py3.10.egg-info<br />&nbsp; /usr/lib/python3.10/si=
+te-packages/suricata<br />&nbsp; /usr/lib/python3.10/site-packages/suricata=
+sc<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/__init__.py<br />=
+&nbsp; /usr/lib/python3.10/site-packages/suricata/sc<br />&nbsp; /usr/lib/p=
+ython3.10/site-packages/suricata/ctl<br />&nbsp; /usr/lib/python3.10/site-p=
+ackages/suricata/__pycache__<br />&nbsp; /usr/lib/python3.10/site-packages/=
+suricata/config<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/sc/s=
+uricatasc.py<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/sc/__in=
+it__.py<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/sc/specs.py<=
+br />&nbsp; /usr/lib/python3.10/site-packages/suricata/sc/__pycache__<br />=
+&nbsp; /usr/lib/python3.10/site-packages/suricata/sc/__pycache__/specs.cpyt=
+hon-310.pyc<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/sc/__pyc=
+ache__/suricatasc.cpython-310.pyc<br />&nbsp; /usr/lib/python3.10/site-pack=
+ages/suricata/sc/__pycache__/__init__.cpython-310.pyc<br />&nbsp; /usr/lib/=
+python3.10/site-packages/suricata/ctl/main.py<br />&nbsp; /usr/lib/python3.=
+10/site-packages/suricata/ctl/loghandler.py<br />&nbsp; /usr/lib/python3.10=
+/site-packages/suricata/ctl/test_filestore.py<br />&nbsp; /usr/lib/python3.=
+10/site-packages/suricata/ctl/__init__.py<br />&nbsp; /usr/lib/python3.10/s=
+ite-packages/suricata/ctl/filestore.py<br />&nbsp; /usr/lib/python3.10/site=
+-packages/suricata/ctl/__pycache__<br />&nbsp; /usr/lib/python3.10/site-pac=
+kages/suricata/ctl/__pycache__/main.cpython-310.pyc<br />&nbsp; /usr/lib/py=
+thon3.10/site-packages/suricata/ctl/__pycache__/test_filestore.cpython-310.=
+pyc<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/ctl/__pycache__/=
+loghandler.cpython-310.pyc<br />&nbsp; /usr/lib/python3.10/site-packages/su=
+ricata/ctl/__pycache__/filestore.cpython-310.pyc<br />&nbsp; /usr/lib/pytho=
+n3.10/site-packages/suricata/ctl/__pycache__/__init__.cpython-310.pyc<br />=
+&nbsp; /usr/lib/python3.10/site-packages/suricata/__pycache__/__init__.cpyt=
+hon-310.pyc<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/config/d=
+efaults.py<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/config/__=
+init__.py<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/config/__p=
+ycache__<br />&nbsp; /usr/lib/python3.10/site-packages/suricata/config/__py=
+cache__/__init__.cpython-310.pyc<br />&nbsp; /usr/lib/python3.10/site-packa=
+ges/suricata/config/__pycache__/defaults.cpython-310.pyc<br />&nbsp; /usr/l=
+ib/python3.10/site-packages/suricatasc/__init__.py<br />&nbsp; /usr/lib/pyt=
+hon3.10/site-packages/suricatasc/__pycache__<br />&nbsp; /usr/lib/python3.1=
+0/site-packages/suricatasc/__pycache__/__init__.cpython-310.pyc<br />Please=
+ set FILES such that these items are packaged. Alternatively if they are un=
+needed, avoid installing them or delete them within do_install.<br />surica=
+ta: 38 installed and not shipped files. [installed-vs-shipped]<br />ERROR: =
+mc:x86-2021-minimal:suricata-6.0.4-r0 do_package: Fatal QA errors were foun=
+d, failing task.<br />ERROR: Logfile of failure stored in: /data/kirkstone/=
+yocto_intel/build/tmp-x86-2021-minimal-glibc/work/corei7-64-ese-linux/suric=
+ata/6.0.4-r0/temp/log.do_package.346985<br />ERROR: Task (mc:x86-2021-minim=
+al:/data/kirkstone/yocto_intel/build/../intel-embedded-system-enabling/meta=
+-security/recipes-ids/suricata/suricata_6.0.4.bb:do_package) failed with ex=
+it code '1<br /><br />The Suricata recipe has</p>
+<pre><code></code></pre>
+<pre><span class=3D"nv">FILES</span><span class=3D"p">:</span><span class=
+=3D"err">${</span><span class=3D"nv">PN</span><span class=3D"err">}</span><=
+span class=3D"o">-</span><span class=3D"nv">python</span> <span class=3D"o"=
+>=3D</span> <span class=3D"s2">"${bindir}/suricatasc ${PYTHON_SITEPACKAGES_=
+DIR}"</span></pre>
+<pre><code></code></pre>
+<p>I have in my conf/local.conf<br />PACKAGECONFIG:append:pn-suricata =3D "=
+ python"<br /><br />Any ideas on a fix?<br /><br /><br /></p>
+
+--uMUUh9STGgymPWNW96aW--
 
