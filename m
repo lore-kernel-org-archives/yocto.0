@@ -1,184 +1,256 @@
-Return-Path: <jason.m.bills@linux.intel.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 565B8C4332F
-	for <webhook@archiver.kernel.org>; Tue,  1 Nov 2022 22:02:54 +0000 (UTC)
-Subject: Re: EXTRA_IMAGECMD:squashfs-xz support
-To: yocto@lists.yoctoproject.org
-From: "Bills, Jason M" <jason.m.bills@linux.intel.com>
-X-Originating-Location: California, US (192.55.54.51)
-X-Originating-Platform: Windows Chrome 107
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7961EC433FE
+	for <webhook@archiver.kernel.org>; Tue,  1 Nov 2022 22:13:34 +0000 (UTC)
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+ by mx.groups.io with SMTP id smtpd.web11.721.1667340809037834790
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 01 Nov 2022 15:13:29 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=YdUibu0c;
+ spf=pass (domain: gmail.com, ip: 209.85.166.42, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-io1-f42.google.com with SMTP id d123so8844970iof.7
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 15:13:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bcagU5sI5osxyUa1YSFEpcjySKtqXoHYakZAgMkY1gc=;
+        b=YdUibu0crqwt9zk0EqTS4KX3cT9yRreBlCCdHQLrLujSLMKqRMuRuqFFR3Ihk/eWpz
+         pZvokE8B5pvHd+1X/JNUpp3+ItaA8W+skYqJMK24o+GbAT1/L7/mL4W+hQUbxC+GZgzO
+         bt1o18nY/XeMABp5tGKubj0SBCrSotredQ6D74guGhoUivm1y6EFG12JV3mm5h9LHkDb
+         8H1gb7fEDynZERWmFW3AKbmRKdNMFdfzyDOHE51zY0l68z/GF+aKqhZgcL7i3xWAiSJ5
+         j2MDwuxEzwinTEZH33NRg2qUz35Axh9qwz8UzwqxjmLpSLHJJxi/5rsySmKdxBp4abvC
+         sfug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bcagU5sI5osxyUa1YSFEpcjySKtqXoHYakZAgMkY1gc=;
+        b=L9GNYYpnnIDwgrg5RlR31rTTRDokvravZsooF+nWREBBrq4Xao1ug9bjayLoJJoLVD
+         MbabX/ZaB5Sz4YnRldw++uFedXlLq3JPogswnpHTReskho4+QKdoR4h7IMM1ooA6bQjb
+         4FO70XjhF/3ZLm0Qy3zmBc2ofPSQ9BEVPcohztxCMbLF3HyLn0JyUEJzVwpcxZEZjTEE
+         ZikCNnv1WvUYn2wu1waBTSNguGI2LgkaEGDultpwx3CDmNggHhnjLHSY2aoI2xQzQL2l
+         BUm9EzhIJeQwN32OmxQTdocM/TfVDyQxOM4Q3HS3PXJqpLNICkmGK35DosA6scMcN8B/
+         3uSA==
+X-Gm-Message-State: ACrzQf1J1WJubOeD8SxJFEstcVHA5sIxQY7mwdaslVP++YBa/5Z5dtDK
+	eJx/zeJPLZl3OMFL5Om6YHAmEC0HXPNaJKqW9ek=
+X-Google-Smtp-Source: AMsMyM697gupTNJuVJAjRblQhzMWNAjRb+2TSQB6iP1NGXwNeNdUI5iNOso78U4PMStNGoa1XRrAzJElTXG7IRfuypQ=
+X-Received: by 2002:a5d:9944:0:b0:6d2:7bfd:2dba with SMTP id
+ v4-20020a5d9944000000b006d27bfd2dbamr6614257ios.192.1667340808309; Tue, 01
+ Nov 2022 15:13:28 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 01 Nov 2022 15:02:54 -0700
-References: <496c829a-07b3-9105-a04c-f985b31a6e32@theobroma-systems.com>
-In-Reply-To: <496c829a-07b3-9105-a04c-f985b31a6e32@theobroma-systems.com>
-Message-ID: <2257.1667340174016649062@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="a6UsTcSVNb4Eo0tXji0x"
+References: <LsVs.1666893088601518070.INID@lists.yoctoproject.org>
+ <20221101125410.GD17701@gmail.com> <CY4PR05MB32865CAB7E20F81D92EEC2A0A4369@CY4PR05MB3286.namprd05.prod.outlook.com>
+In-Reply-To: <CY4PR05MB32865CAB7E20F81D92EEC2A0A4369@CY4PR05MB3286.namprd05.prod.outlook.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Tue, 1 Nov 2022 18:13:17 -0400
+Message-ID: <CADkTA4MxiX9az7kvqjS+E=Q5bGU54zd-m+u2OgG5-1MXt+LrQA@mail.gmail.com>
+Subject: Re: [yocto] Help with setting up a PREEMPT_RT image for BeagleBone
+ Black #yocto
+To: Michael T Pham <mpham20@gmu.edu>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000099500205ec700828"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 22:02:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58463
+ <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 22:13:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58464
 
---a6UsTcSVNb4Eo0tXji0x
-Content-Type: text/plain; charset="utf-8"
+--00000000000099500205ec700828
+Content-Type: text/plain; charset="UTF-8"
+
+On Tue, Nov 1, 2022 at 5:10 PM Michael T Pham <mpham20@gmu.edu> wrote:
+
+>
+> >To build a kernel recipe (not just linux-yocto), it must be marked
+> >as compatible with your machine. The messages you are seeing are
+> >telling you that, by indicating that the recipes were skipped (since
+> >they are not compatible) and once they are all skipped you get a failure
+> >as nothing provides virtual/kernel.
+> >
+> >For linux-yocto, you also need a BSP description that the tooling
+> >uses to create the kernel configuration.
+>
+> I am not sure what is meant by this. Sorry, I'm a complete newbie ':)
+>
+
+You can find the details in the yocto manuals, but I'm describing how
+the standard/tiny/preempt-rt reference kernels have their configurations
+constructed using the kernel-yocto tooling.
+
+For each kernel type, there's a matching config that has the MACHINE
++ kernel type in it. The tools find that description and use it to pull all
+the common configs, kernel type specifics and machine fragments into
+a final config.
+
+If one doesn't exist, you either need to have your own defconfig, or you
+can create one. In this case, you don't need to create one, as it
+exists.
+i.e.:
+https://git.yoctoproject.org/yocto-kernel-cache/tree/bsp/beaglebone/beaglebone-preempt-rt.scc?h=yocto-5.15
+
+
+>
+> >We haven't been testing the beaglebone-yocto reference against -rt,
+> >so it isn't marked as compatible by default. That being said, it
+> >can be easily made compatible via a bbappend. Look at the
+> >meta-yocto-bsp layer, and the bbappends in there. We are adding
+> >the reference boards as compatible with linux-yocto. A similar
+> >bbappend would work for linux-yocto-rt, and you'd solve that first
+> >issue of not having a compatible machine.
+>
+> I think I see what you're saying. So I would copy the contents of
+> /poky/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.19.bbappend
+> for linux-yocto-rt? Where is the location to place this?
+>
+
+You'd only need to have the beaglebone yocto bits in the new bbappend,
+and it would be placed in any layer, in the appropriate subdirectory. This
+bappend is no different than any other.
+
+I'm being intentionally terse there, since it is best to read the docs for
+this, as I won't do it justice.
+
+
+>
+> >For the BSP description, it does happen that we have one in the
+> >linux-yocto configuration meta-data, so one doesn't need to be
+> >created. The tools would find that description during the build
+> >and use it accordingly. The default KBRANCH should aslo be fine
+> >for the beaglebone-yocto, as we aren't carrying any extra patches
+> >for the board, so the linux-yocto-rt recipe's default values will
+> >get the right branch checked out and built.
+>
+> Forgive me for not understanding but at first it sounds like you are
+> saying I need to create something and then you are saying I don't
+> need to?
+>
+
+I was describing the general case, and then commenting on this specific
+one. I don't want someone to read this later and maybe think that any
+machine + linux-yocto-rt combination will "just work".
+
+Bruce
+
+
+
+>
+> Michael
+>
+
+
+-- 
+- Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end
+- "Use the force Harry" - Gandalf, Star Trek II
+
+--00000000000099500205ec700828
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Quentin,
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Tue, Nov 1, 2022 at 5:10 PM Michael T Pham &lt;<=
+a href=3D"mailto:mpham20@gmu.edu">mpham20@gmu.edu</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><br>
+&gt;To build a kernel recipe (not just linux-yocto), it must be marked<br>
+&gt;as compatible with your machine. The messages you are seeing are<br>
+&gt;telling you that, by indicating that the recipes were skipped (since<br=
+>
+&gt;they are not compatible) and once they are all skipped you get a failur=
+e<br>
+&gt;as nothing provides virtual/kernel.<br>
+&gt;<br>
+&gt;For linux-yocto, you also need a BSP description that the tooling<br>
+&gt;uses to create the kernel configuration.<br>
+<br>
+I am not sure what is meant by this. Sorry, I&#39;m a complete newbie &#39;=
+:)<br></blockquote><div><br></div><div><div class=3D"gmail_default" style=
+=3D"font-size:small">You can find the details in the yocto manuals, but I&#=
+39;m describing how</div><div class=3D"gmail_default" style=3D"font-size:sm=
+all">the standard/tiny/preempt-rt reference kernels have their configuratio=
+ns<br></div><div class=3D"gmail_default" style=3D"font-size:small">construc=
+ted using the kernel-yocto tooling.</div><div class=3D"gmail_default" style=
+=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-s=
+ize:small">For each kernel type, there&#39;s a matching config that has the=
+ MACHINE</div><div class=3D"gmail_default" style=3D"font-size:small">+ kern=
+el type in it. The tools find that description and use it to pull all<br></=
+div><div class=3D"gmail_default" style=3D"font-size:small">the common confi=
+gs, kernel type specifics and machine fragments into</div><div class=3D"gma=
+il_default" style=3D"font-size:small">a final config.=C2=A0</div><div class=
+=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gmail_=
+default" style=3D"font-size:small">If one doesn&#39;t exist, you either nee=
+d to have your own defconfig, or you</div><div class=3D"gmail_default" styl=
+e=3D"font-size:small">can create one. In this case, you don&#39;t need to c=
+reate one, as it</div><div class=3D"gmail_default" style=3D"font-size:small=
+">exists.</div><div class=3D"gmail_default" style=3D"font-size:small"></div=
+><div class=3D"gmail_default" style=3D"font-size:small">i.e.: <a href=3D"ht=
+tps://git.yoctoproject.org/yocto-kernel-cache/tree/bsp/beaglebone/beaglebon=
+e-preempt-rt.scc?h=3Dyocto-5.15">https://git.yoctoproject.org/yocto-kernel-=
+cache/tree/bsp/beaglebone/beaglebone-preempt-rt.scc?h=3Dyocto-5.15</a></div=
+></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+&gt;We haven&#39;t been testing the beaglebone-yocto reference against -rt,=
+<br>
+&gt;so it isn&#39;t marked as compatible by default. That being said, it<br=
+>
+&gt;can be easily made compatible via a bbappend. Look at the<br>
+&gt;meta-yocto-bsp layer, and the bbappends in there. We are adding<br>
+&gt;the reference boards as compatible with linux-yocto. A similar<br>
+&gt;bbappend would work for linux-yocto-rt, and you&#39;d solve that first<=
+br>
+&gt;issue of not having a compatible machine.<br>
+<br>
+I think I see what you&#39;re saying. So I would copy the contents of <br>
+/poky/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.19.bbappend<br>
+for linux-yocto-rt? Where is the location to place this?<br></blockquote><d=
+iv><br></div><div><div class=3D"gmail_default" style=3D"font-size:small">Yo=
+u&#39;d only need to have the beaglebone yocto bits in the new bbappend,</d=
+iv><div class=3D"gmail_default" style=3D"font-size:small">and it would be p=
+laced in any layer, in the appropriate subdirectory. This</div><div class=
+=3D"gmail_default" style=3D"font-size:small">bappend is no different than a=
+ny other.</div><div class=3D"gmail_default" style=3D"font-size:small"><br><=
+/div><div class=3D"gmail_default" style=3D"font-size:small">I&#39;m being i=
+ntentionally terse there, since it is best to read the docs for</div><div c=
+lass=3D"gmail_default" style=3D"font-size:small">this, as I won&#39;t do it=
+ justice.</div></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">
+<br>
+&gt;For the BSP description, it does happen that we have one in the<br>
+&gt;linux-yocto configuration meta-data, so one doesn&#39;t need to be<br>
+&gt;created. The tools would find that description during the build<br>
+&gt;and use it accordingly. The default KBRANCH should aslo be fine<br>
+&gt;for the beaglebone-yocto, as we aren&#39;t carrying any extra patches<b=
+r>
+&gt;for the board, so the linux-yocto-rt recipe&#39;s default values will<b=
+r>
+&gt;get the right branch checked out and built.<br>
+<br>
+Forgive me for not understanding but at first it sounds like you are<br>
+saying I need to create something and then you are saying I don&#39;t <br>
+need to?<br></blockquote><div><br></div><div><div class=3D"gmail_default" s=
+tyle=3D"font-size:small">I was describing the general case, and then commen=
+ting on this specific</div><div class=3D"gmail_default" style=3D"font-size:=
+small">one. I don&#39;t want someone to read this later and maybe think tha=
+t any</div><div class=3D"gmail_default" style=3D"font-size:small">machine=
+=C2=A0+ linux-yocto-rt combination will &quot;just work&quot;.</div><div cl=
+ass=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gma=
+il_default" style=3D"font-size:small">Bruce</div><br></div><div>=C2=A0</div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+Michael<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">- Thou shalt not follow the NULL pointer, for ch=
+aos and madness await thee at its end<br>- &quot;Use the force Harry&quot; =
+- Gandalf, Star Trek II<br><br></div></div>
 
-Thanks for the reply!=C2=A0 Sorry for my delay back. :)=C2=A0 I haven't bee=
-n able to fully reproduce this on poky, but I got a little more info.
-
-First, we are still seeing the issue with EXTRA_IMAGECMD:squashfs-xz:append=
- failing to apply. We are using Langdale and Kirkstone worked fine for us. =
-I think I narrowed it down to this change: https://github.com/yoctoproject/=
-poky/commit/924854accc46f254b6399fc3cf2613a6597410e3.
-
-Using just poky, I add ` EXTRA_IMAGECMD:squashfs-xz:append =3D "-processors=
- ${BB_NUMBER_THREADS} -b 262144 -Xdict-size 100%"` to my local.conf and run=
- `bitbake -e core-image-minimal` to check the environment.
-
-At the ` kirkstone-4.0.1` tag, I see
-# $EXTRA_IMAGECMD [8 operations] # set /home/jmbills/temp/poky/meta/classes=
-/image_types.bbclass:224 # "" # override[squashfs-xz]::append /home/jmbills=
-/temp/poky/build/conf/local.conf:41 # "-processors ${BB_NUMBER_THREADS} -b =
-262144 -Xdict-size 100%"
-So, the override is correctly set.
-
-And I see
-# $IMAGE_CMD:squashfs-xz # set /home/jmbills/temp/poky/meta/classes/image_t=
-ypes.bbclass:107 # "mksquashfs ${IMAGE_ROOTFS} ${IMGDEPLOYDIR}/${IMAGE_NAME=
-}${IMAGE_NAME_SUFFIX}.squashfs-xz ${EXTRA_IMAGECMD} -noappend -comp xz" IMA=
-GE_CMD:squashfs-xz=3D"mksquashfs /home/jmbills/temp/poky/build/tmp/work/qem=
-ux86_64-poky-linux/core-image-minimal/1.0-r0/rootfs /home/jmbills/temp/poky=
-/build/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/deploy-core=
--image-minimal-image-complete/core-image-minimal-qemux86-64-20221101211323.=
-rootfs.squashfs-xz -noappend -comp xz"
-
-In this case ` ${EXTRA_IMAGECMD}` appears to be empty.
-
-If I then change my local.conf to `EXTRA_IMAGECMD:append =3D "-processors $=
-{BB_NUMBER_THREADS} -b 262144 -Xdict-size 100%"` and run `bitbake -e core-i=
-mage-minimal`, I see nothing for the override and
-# $IMAGE_CMD:squashfs-xz # set /home/jmbills/temp/poky/meta/classes/image_t=
-ypes.bbclass:107 # "mksquashfs ${IMAGE_ROOTFS} ${IMGDEPLOYDIR}/${IMAGE_NAME=
-}${IMAGE_NAME_SUFFIX}.squashfs-xz ${EXTRA_IMAGECMD} -noappend -comp xz" IMA=
-GE_CMD:squashfs-xz=3D"mksquashfs /home/jmbills/temp/poky/build/tmp/work/qem=
-ux86_64-poky-linux/core-image-minimal/1.0-r0/rootfs /home/jmbills/temp/poky=
-/build/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/deploy-core=
--image-minimal-image-complete/core-image-minimal-qemux86-64-20221101211620.=
-rootfs.squashfs-xz -processors 64 -b 262144 -Xdict-size 100% -noappend -com=
-p xz"
-
-In this case ` ${EXTRA_IMAGECMD}` contained my parameters.
-
-If I check out `master`, change my local.conf to `EXTRA_IMAGECMD:squashfs-x=
-z:append =3D "-processors ${BB_NUMBER_THREADS} -b 262144 -Xdict-size 100%"`=
- to my local.conf and run `bitbake -e core-image-minimal`, I see the overri=
-de again
-# $EXTRA_IMAGECMD [8 operations] # set /home/jmbills/temp/poky/meta/classes=
--recipe/image_types.bbclass:245 # "" # override[squashfs-xz]::append /home/=
-jmbills/temp/poky/build/conf/local.conf:41 # "-processors ${BB_NUMBER_THREA=
-DS} -b 262144 -Xdict-size 100%"
-
-And for IMAGE_CMD, I see
-# $IMAGE_CMD:squashfs-xz # set /home/jmbills/temp/poky/meta/classes-recipe/=
-image_types.bbclass:121 # "oe_mksquashfs xz" IMAGE_CMD:squashfs-xz=3D"oe_mk=
-squashfs xz"
-
-I don't know how to confirm this with poky, but from this it appears that t=
-he override for squashfs-xz (which is correct in both versions) gets applie=
-d later during bitbake execution. I don't know how that override gets appli=
-ed, but if it gets appended to IMAGE_CMD:squashfs-xz, then with Kirkstone, =
-the parameters would be applied to the end of the mksquashfs command and wo=
-uld work correctly.
-
-But in master, if those parameters get appended, would they be passed to "o=
-e_mksquashfs"? Or could they be dropped during the override step since they=
- are applied onto "oe_mksquashfs" rather than mksquashfs directly?
-
-Thanks again for your help!
--Jason
-
---a6UsTcSVNb4Eo0tXji0x
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Quentin,<br /><br />Thanks for the reply!&nbsp; Sorry for my delay back.=
- :)&nbsp; I haven't been able to fully reproduce this on poky, but I got a =
-little more info.<br /><br />First, we are still seeing the issue with&nbsp=
-;<span style=3D"white-space: pre-wrap;">EXTRA_IMAGECMD:squashfs-xz:append f=
-ailing to apply. We are using Langdale and Kirkstone worked fine for us. I =
-think I narrowed it down to this change: </span><a style=3D"white-space: pr=
-e-wrap;" href=3D"https://github.com/yoctoproject/poky/commit/924854accc46f2=
-54b6399fc3cf2613a6597410e3" target=3D"_blank" rel=3D"noopener">https://gith=
-ub.com/yoctoproject/poky/commit/924854accc46f254b6399fc3cf2613a6597410e3</a=
-><span style=3D"white-space: pre-wrap;">.</span><br /><br /><span style=3D"=
-white-space: pre-wrap;">Using just poky, I add `</span><span style=3D"white=
--space: pre-wrap;">EXTRA_IMAGECMD:squashfs-xz:append =3D "-processors ${BB_=
-NUMBER_THREADS} -b 262144 -Xdict-size 100%"` to my local.conf and run `bitb=
-ake -e core-image-minimal` to check the environment.</span><br /><br /><spa=
-n style=3D"white-space: pre-wrap;">At the `</span><span style=3D"white-spac=
-e: pre-wrap;">kirkstone-4.0.1` tag, I see</span><br /><span style=3D"white-=
-space: pre-wrap;"># $EXTRA_IMAGECMD [8 operations] # set /home/jmbills/temp=
-/poky/meta/classes/image_types.bbclass:224 # "" # override[squashfs-xz]::ap=
-pend /home/jmbills/temp/poky/build/conf/local.conf:41 # "-processors ${BB_N=
-UMBER_THREADS} -b 262144 -Xdict-size 100%" </span>
-<div><span style=3D"white-space: pre-wrap;">So, the override is correctly s=
-et.</span><br /><br /><span style=3D"white-space: pre-wrap;">And I see</spa=
-n><br /><span style=3D"white-space: pre-wrap;"># $IMAGE_CMD:squashfs-xz # s=
-et /home/jmbills/temp/poky/meta/classes/image_types.bbclass:107 # "mksquash=
-fs ${IMAGE_ROOTFS} ${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.squash=
-fs-xz ${EXTRA_IMAGECMD} -noappend -comp xz" IMAGE_CMD:squashfs-xz=3D"mksqua=
-shfs /home/jmbills/temp/poky/build/tmp/work/qemux86_64-poky-linux/core-imag=
-e-minimal/1.0-r0/rootfs /home/jmbills/temp/poky/build/tmp/work/qemux86_64-p=
-oky-linux/core-image-minimal/1.0-r0/deploy-core-image-minimal-image-complet=
-e/core-image-minimal-qemux86-64-20221101211323.rootfs.squashfs-xz -noappend=
- -comp xz" </span></div>
-<div><span style=3D"white-space: pre-wrap;"><br />In this case `</span><spa=
-n style=3D"white-space: pre-wrap;">${EXTRA_IMAGECMD}` appears to be empty.<=
-br /><br />If I then change my local.conf to `EXTRA_IMAGECMD:append =3D "-p=
-rocessors ${BB_NUMBER_THREADS} -b 262144 -Xdict-size 100%"` </span><span st=
-yle=3D"white-space: pre-wrap;">and run `bitbake -e core-image-minimal`, I s=
-ee nothing for the override and</span><br /><span style=3D"white-space: pre=
--wrap;"># $IMAGE_CMD:squashfs-xz # set /home/jmbills/temp/poky/meta/classes=
-/image_types.bbclass:107 # "mksquashfs ${IMAGE_ROOTFS} ${IMGDEPLOYDIR}/${IM=
-AGE_NAME}${IMAGE_NAME_SUFFIX}.squashfs-xz ${EXTRA_IMAGECMD} -noappend -comp=
- xz" IMAGE_CMD:squashfs-xz=3D"mksquashfs /home/jmbills/temp/poky/build/tmp/=
-work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/rootfs /home/jmbills/t=
-emp/poky/build/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/dep=
-loy-core-image-minimal-image-complete/core-image-minimal-qemux86-64-2022110=
-1211620.rootfs.squashfs-xz -processors 64 -b 262144 -Xdict-size 100% -noapp=
-end -comp xz"</span><br /><br /><span style=3D"white-space: pre-wrap;">In t=
-his case `</span><span style=3D"white-space: pre-wrap;">${EXTRA_IMAGECMD}` =
-contained my parameters.<br /><br /><br /></span>If I check out `master`, c=
-hange my local.conf to&nbsp;<span style=3D"white-space: pre-wrap;">`EXTRA_I=
-MAGECMD:squashfs-xz:append =3D "-processors ${BB_NUMBER_THREADS} -b 262144 =
--Xdict-size 100%"` to my local.conf and run `bitbake -e core-image-minimal`=
-, I see the override again</span><br /><span style=3D"white-space: pre-wrap=
-;"># $EXTRA_IMAGECMD [8 operations] # set /home/jmbills/temp/poky/meta/clas=
-ses-recipe/image_types.bbclass:245 # "" # override[squashfs-xz]::append /ho=
-me/jmbills/temp/poky/build/conf/local.conf:41 # "-processors ${BB_NUMBER_TH=
-READS} -b 262144 -Xdict-size 100%" </span></div>
-<div><br /><span style=3D"white-space: pre-wrap;">And for IMAGE_CMD, I see<=
-/span><br /><span style=3D"white-space: pre-wrap;"># $IMAGE_CMD:squashfs-xz=
- # set /home/jmbills/temp/poky/meta/classes-recipe/image_types.bbclass:121 =
-# "oe_mksquashfs xz" IMAGE_CMD:squashfs-xz=3D"oe_mksquashfs xz" </span></di=
-v>
-<div><span style=3D"white-space: pre-wrap;"><br />I don't know how to confi=
-rm this with poky, but from this it appears that the override for squashfs-=
-xz (which is correct in both versions) gets applied later during bitbake ex=
-ecution. I don't know how that override gets applied, but if it gets append=
-ed to IMAGE_CMD:squashfs-xz, then with Kirkstone, the parameters would be a=
-pplied to the end of the </span><span style=3D"white-space: pre-wrap;">mksq=
-uashfs command and would work correctly.<br /><br />But in master, if those=
- parameters get appended, would they be passed to </span><span style=3D"whi=
-te-space: pre-wrap;">"oe_mksquashfs"? Or could they be dropped during the o=
-verride step since they are applied onto </span><span style=3D"white-space:=
- pre-wrap;">"oe_mksquashfs" rather than mksquashfs directly?<br /><br />Tha=
-nks again for your help!<br />-Jason</span></div>
-
---a6UsTcSVNb4Eo0tXji0x--
+--00000000000099500205ec700828--
 
