@@ -1,190 +1,111 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <arun@c3mdc.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B0E2C433FE
-	for <webhook@archiver.kernel.org>; Tue,  1 Nov 2022 12:54:20 +0000 (UTC)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
- by mx.groups.io with SMTP id smtpd.web08.5862.1667307253459297933
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E675BC4332F
+	for <webhook@archiver.kernel.org>; Tue,  1 Nov 2022 14:06:00 +0000 (UTC)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+ by mx.groups.io with SMTP id smtpd.web09.590.1667311559229907232
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Nov 2022 05:54:13 -0700
+ Tue, 01 Nov 2022 07:05:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Ap9TDjs1;
- spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qv1-f53.google.com with SMTP id t16so10167590qvm.9
-        for <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 05:54:13 -0700 (PDT)
+ dkim=pass header.i=@c3mdc-com.20210112.gappssmtp.com header.s=20210112 header.b=w/DcwNnW;
+ spf=neutral (domain: c3mdc.com, ip: 209.85.208.180, mailfrom: arun@c3mdc.com)
+Received: by mail-lj1-f180.google.com with SMTP id u11so21040021ljk.6
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 07:05:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=djr2wyJRNEKWHaLgH8Gn2a7dcoULkJ8Cltz5fENIaMo=;
-        b=Ap9TDjs1tELN7+GN1aIofh9oYt5xSmnnksVyjKAKIObQCwacM8mdhrfqw07m6Gdd86
-         cMrS2XPIJBy3zHx4p1OjwrozGO/sXKCZfa9uX7erLXss3mV27hNEkKbIBXvZwdWLJj/7
-         wIq/mQFYjD4OwzH1exdjjl3YhapfScyhiUetw8fnKIpjGkII5K4g4JpuQsAQ8RT2IcpC
-         aLxf47HnfOrS/V5YrZ7whCnUf6wIPAHlEJAD4U5BEtCaB2oqijFuBfEvGCHM0fG5+9LX
-         3MQm4C98ILdpmlgUYKH6b+QulXFghdh5Tv0t0X1bfVGeysxKMgeKZnrLrSI3fGG96k1w
-         2Xew==
+        d=c3mdc-com.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Jl8E5bFBioy06QYPdtj637Rorg+Q0d2UhtbBx17UPm4=;
+        b=w/DcwNnW83nmqjpJKz7OfrpeCJbzKZYoBbmjRurURRg1iQMZmczSij2wZ7zeRLf+ye
+         iA/YnKVQCSlCwyrI9T+Jfps5gUUc15Q+v8r8/158roInFZm6tC1tG8MinBHnaOmf27gO
+         ydBjdBMV/xQNRH29F09dJNrxkjxNnstKS5SmNLSx7XRsmj2UvePFuKSzNiJsmOxW2ia0
+         o223m0kepM6dNBuRw38H47MI14wWP8LraNQwECS/LsmWbY+E+1eUNyOqtKh44GQu6MkI
+         x17HgmPmwSyzoK1JeDt1+/LgEXuDzTjzRn+XeL8qlc9Anzgj3kpl9VjYu8f/7wiHwO71
+         F1og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=djr2wyJRNEKWHaLgH8Gn2a7dcoULkJ8Cltz5fENIaMo=;
-        b=Y1LgwcNjPlISGvPKT+vLZA4fcrIKD7YzaeYJpn1cWWs1dBcFVVhoyAkueo8Ts/s2BT
-         onGwr/jA1ulmqVifPtYZE92CpD2ORJO6GHhkkx/VCR8+YXVCpH+sXK71hKVWevM5IiS7
-         k2gfOO33ECLd/awefGQLAafRDUhe38cZsz4vIyLZOQGtwdF5J8/ANEqB2B4snm5zcwqD
-         s4Q0RUxSyICAMeo7lHODVHJWpZktVRMccblAzZy1rsZJ24yu8NVa9nr44aOHNZFVkXGG
-         yPlr9KjsWnH3q5I4eE5Em/yW1jzuxKhHgOlMOzZfws8jRNcEgq4dhEl2bOUSAkIt13SM
-         Y6Uw==
-X-Gm-Message-State: ACrzQf3EBRq0/m2IRvyZHPsZZgq6sAPGc+7oRYADw5Q4C6k5vwtLcdiq
-	WSoRdAg/cyN35FTBxxulzI8=
-X-Google-Smtp-Source: AMsMyM5ExfroO6YjXFZFnDZpvKniVt6SX6Hs17k0fr9BOkq9qPsaJA4HoY4IAeZkDA1LZF0Z63OvNA==
-X-Received: by 2002:a05:6214:c4f:b0:4bb:9343:b7b5 with SMTP id r15-20020a0562140c4f00b004bb9343b7b5mr15433254qvj.31.1667307252287;
-        Tue, 01 Nov 2022 05:54:12 -0700 (PDT)
-Received: from gmail.com (cpe7c9a54441c1f-cm7c9a54441c1d.cpe.net.cable.rogers.com. [173.34.238.88])
-        by smtp.gmail.com with ESMTPSA id y6-20020a05620a0e0600b006aedb35d8a1sm6354453qkm.74.2022.11.01.05.54.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Nov 2022 05:54:12 -0700 (PDT)
-Date: Tue, 1 Nov 2022 08:54:10 -0400
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: mpham20@gmu.edu
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Help with setting up a PREEMPT_RT image for BeagleBone
- Black #yocto
-Message-ID: <20221101125410.GD17701@gmail.com>
-References: <LsVs.1666893088601518070.INID@lists.yoctoproject.org>
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Jl8E5bFBioy06QYPdtj637Rorg+Q0d2UhtbBx17UPm4=;
+        b=g8uDf8gWm1kXmNrIa8eIeqzTM7LyI51QqRc+JH3KVTTuUWNRmxudOm7NcXc/bRZyKq
+         ET4z76vdTsjvFUqWkF1g+GupxjdwXkBWJ2xhXNDeJnTkGaRJDOSVQXyzVqlmIkutVFNA
+         YLKo9f93fFxVT8pZq4PapvW2AikzCmTJukbuxnShrgKddETksxQ4k1XSjoX0l4DcESTE
+         vmkbyOIRn0LJhIRuWIOv7Y9etr3lOt0H+0WKnMT/GSUcHNsjnxErP2KQQfcGFUomaboq
+         Mhsks7zFgUalz6jcsLcvNAvvYQQRZb4TbEUIslzBO5DvixgNvWXIV64YhvYH6YDF5GcV
+         MVSA==
+X-Gm-Message-State: ACrzQf3sx87kC+hKUlzf4+eDXN8i4a9E8mSFxC6aNIhwsaA8e4OOc0bf
+	JaTedFb+rjvUHOlWK78VbS9L2JuX21BjG55yO5GZiabMnV2dGqVl
+X-Google-Smtp-Source: AMsMyM7PaJOQa3dSprnIDFzDGUNRM91oWmHSK6dYEdsr+QclJbUj9jpku8y03I/4LaKNOvNdjc6uJ+guKSIEq9OjMJo=
+X-Received: by 2002:a2e:a211:0:b0:277:1888:e14b with SMTP id
+ h17-20020a2ea211000000b002771888e14bmr851827ljm.339.1667311556988; Tue, 01
+ Nov 2022 07:05:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <LsVs.1666893088601518070.INID@lists.yoctoproject.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+From: Arun C <arun@c3mdc.com>
+Date: Tue, 1 Nov 2022 19:35:45 +0530
+Message-ID: <CANKWXuZF2-+mpjHyd1CAgBXirdNnntZx9U_LBBE_SK7+=U+hYA@mail.gmail.com>
+Subject: [meta-security]Circular dependency issue when using dm-verity feature
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000015ab1105ec693986"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 12:54:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58457
+ <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 14:06:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58458
 
-In message: [yocto] Help with setting up a PREEMPT_RT image for BeagleBone Black #yocto
-on 27/10/2022 mpham20@gmu.edu wrote:
+--00000000000015ab1105ec693986
+Content-Type: text/plain; charset="UTF-8"
 
-> Hello all,
-> 
-> I am new to Yocto and would like to seek assistance for setting up a PREEMPT_RT
-> image for BeagleBone Black.
-> 
-> Here is what I have tried so far. First I followed the Yocto Project Quick
-> Build tutorial in the documentation.
-> 
-> 1)
-> sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential
-> chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils
-> iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm
-> python3-subunit mesa-common-dev zstd liblz4-tool
-> 
-> 2)
-> git clone git://git.yoctoproject.org/poky
-> 
-> 3)
-> cd poky
-> 
-> 4)
-> git checkout -t origin/langdale -b my-langdale
-> 
-> 5)
-> git pull
-> 
-> 6)
-> source oe-init-build-env
-> 
-> 7) Then I went to poky/build/conf and edited local.conf by uncommenting
-> MACHINE ?= "beaglebone-yocto"
-> and commenting out
-> #MACHINE ??= "qemux86-64"
-> Then I added these two lines at the bottom of the file:
-> PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-> COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
-> 
-> 8) Next I ran this command:
-> bitbake core-image-minimal
-> 
-> 9) Then I get errors at this point.
-> ERROR: Nothing PROVIDES 'virtual/kernel'
-> linux-yocto-upstream PROVIDES virtual/kernel but was skipped: Set
-> PREFERRED_PROVIDER_virtual/kernel to linux-yocto-upstream to enable it
-> linux-yocto PROVIDES virtual/kernel but was skipped: Set
-> PREFERRED_PROVIDER_virtual/kernel to linux-yocto to enable it
-> linux-yocto-rt PROVIDES virtual/kernel but was skipped: incompatible with
-> machine beaglebone-yocto (not in COMPATIBLE_MACHINE)
-> linux-yocto-dev PROVIDES virtual/kernel but was skipped: Set
-> PREFERRED_PROVIDER_virtual/kernel to linux-yocto-dev to enable it
-> linux-yocto-rt PROVIDES virtual/kernel but was skipped: incompatible with
-> machine beaglebone-yocto (not in COMPATIBLE_MACHINE)
-> linux-yocto-upstream PROVIDES virtual/kernel but was skipped: Set
-> PREFERRED_PROVIDER_virtual/kernel to linux-yocto-upstream to enable it
-> linux-yocto PROVIDES virtual/kernel but was skipped: Set
-> PREFERRED_PROVIDER_virtual/kernel to linux-yocto to enable it
-> linux-yocto-tiny PROVIDES virtual/kernel but was skipped: incompatible with
-> machine beaglebone-yocto (not in COMPATIBLE_MACHINE)
-> linux-dummy PROVIDES virtual/kernel but was skipped: PREFERRED_PROVIDER_virtual
-> /kernel set to linux-yocto-rt, not linux-dummy
-> linux-yocto-tiny PROVIDES virtual/kernel but was skipped: incompatible with
-> machine beaglebone-yocto (not in COMPATIBLE_MACHINE)
-> ERROR: Required build target 'core-image-minimal' has no buildable providers.
-> Missing or unbuildable dependency chain was: ['core-image-minimal', 'virtual/
-> kernel']
->  
-> Summary: There was 1 WARNING message.
-> Summary: There were 2 ERROR messages, returning a non-zero exit code.
-> 
-> I've tried a variety of ways and read lots of links but still no luck. Can
-> someone tell me the best way to accomplish my goal?
-> Thank you for any help.
+Hi,
 
-To build a kernel recipe (not just linux-yocto), it must be marked
-as compatible with your machine. The messages you are seeing are
-telling you that, by indicating that the recipes were skipped (since
-they are not compatible) and once they are all skipped you get a failure
-as nothing provides virtual/kernel.
+I was trying to build a linux image for the microchip SAMA7 board with the
+dm-verity feature of the meta-security layer. But using this layer for
+dm-verity causes a circular dependency error during build.
 
-For linux-yocto, you also need a BSP description that the tooling
-uses to create the kernel configuration.
-
-We haven't been testing the beaglebone-yocto reference against -rt,
-so it isn't marked as compatible by default. That being said, it
-can be easily made compatible via a bbappend. Look at the
-meta-yocto-bsp layer, and the bbappends in there. We are adding
-the reference boards as compatible with linux-yocto. A similar
-bbappend would work for linux-yocto-rt, and you'd solve that first
-issue of not having a compatible machine.
-
-For the BSP description, it does happen that we have one in the
-linux-yocto configuration meta-data, so one doesn't need to be
-created. The tools would find that description during the build
-and use it accordingly. The default KBRANCH should aslo be fine
-for the beaglebone-yocto, as we aren't carrying any extra patches
-for the board, so the linux-yocto-rt recipe's default values will
-get the right branch checked out and built.
-
-Whether it builds (it should), boots (it should) or gives you
-appropriate -rt performance (unknown) .. are other questions
-that are to be answered :)
-
-Bruce
+my *local.conf *changes:
 
 
-> 
-> Michael
 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58426): https://lists.yoctoproject.org/g/yocto/message/58426
-> Mute This Topic: https://lists.yoctoproject.org/mt/94609944/1050810
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
 
+
+
+*INITRAMFS_IMAGE_BUNDLE = "1"INITRAMFS_IMAGE =
+"dm-verity-image-initramfs"DM_VERITY_IMAGE =
+"custom-image-sama7"DM_VERITY_IMAGE_TYPE = "squashfs"IMAGE_CLASSES +=
+"dm-verity-img"*
+
+I have to comment out the line:
+*do_rootfs[depends] +=
+"${DM_VERITY_IMAGE}:do_image_${DM_VERITY_IMAGE_TYPE}"*
+in the dm-verity-image-initramfs.bb file to avoid this circular dependency.
+But then the .itb file in the new wic image is not updated with the new
+rootfs ROOT_HASH. So the dm-verity check during boot fails and the image
+won't boot.
+
+I'm using the dunfell branch. Is there any way to fix this issue and get a
+working wic image?
+
+--00000000000015ab1105ec693986
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><br>I was trying to build a linux image for the mic=
+rochip SAMA7 board with the dm-verity feature of the meta-security layer. B=
+ut using this layer for dm-verity causes a circular dependency error during=
+ build.<br><br>my=C2=A0<i>local.conf=C2=A0</i>changes:<br><br><i>INITRAMFS_=
+IMAGE_BUNDLE =3D &quot;1&quot;<br>INITRAMFS_IMAGE =3D &quot;dm-verity-image=
+-initramfs&quot;<br><br>DM_VERITY_IMAGE =3D &quot;custom-image-sama7&quot;<=
+br>DM_VERITY_IMAGE_TYPE =3D &quot;squashfs&quot;<br>IMAGE_CLASSES +=3D &quo=
+t;dm-verity-img&quot;</i><br><br>I have to comment out the line:<br><i>do_r=
+ootfs[depends] +=3D &quot;${DM_VERITY_IMAGE}:do_image_${DM_VERITY_IMAGE_TYP=
+E}&quot;</i><br>in the=C2=A0<a href=3D"http://dm-verity-image-initramfs.bb/=
+" target=3D"_blank">dm-verity-image-initramfs.bb</a>=C2=A0file to avoid thi=
+s circular dependency. But then the .itb file in the new wic image is not u=
+pdated with the new rootfs ROOT_HASH. So the dm-verity check during boot fa=
+ils and the image won&#39;t boot.<br><br>I&#39;m using the dunfell branch. =
+Is there any way to fix=C2=A0this issue and=C2=A0get=C2=A0a working wic ima=
+ge?<br></div>
+
+--00000000000015ab1105ec693986--
 
