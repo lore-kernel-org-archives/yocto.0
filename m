@@ -1,778 +1,221 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 94F0CFA3741
-	for <webhook@archiver.kernel.org>; Mon, 31 Oct 2022 21:24:50 +0000 (UTC)
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
- by mx.groups.io with SMTP id smtpd.web11.1664.1667251482101128956
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E75DFA3740
+	for <webhook@archiver.kernel.org>; Tue,  1 Nov 2022 03:00:47 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by mx.groups.io with SMTP id smtpd.web11.2076.1667271646264181505
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 Oct 2022 14:24:42 -0700
+ Mon, 31 Oct 2022 20:00:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=iotlQxqL;
- spf=pass (domain: gmail.com, ip: 209.85.215.182, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pg1-f182.google.com with SMTP id 78so11755064pgb.13
-        for <yocto@lists.yoctoproject.org>; Mon, 31 Oct 2022 14:24:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HHerX5O9OGLCvolxvlc/uwYSt3i3UW5PknhnhVzoqc8=;
-        b=iotlQxqLTNIJComQvM5bZQLxFtLfvySV3sKCIIV5gTez29nXV1Wj/thqP3StioO8bT
-         7ow1DXJ8Pt0p6pojZ5nqta0L7/l/lhEi8G3VCu2SCo2XTy52jHTZinldh2UwnfbpCpV2
-         Tclv5qAD6UFJfCTbrZ/eMeh/rnBTFrALJypOO1tXnawSiKhAmwL5wQWdATOJ1+uuvYxJ
-         D1CBma2D2P2L8jJezlnLHKqHwfdqKKVW+UVBMV9DLnVNM6BTELpv12J+faLG8QOa+Y3o
-         FsybS1pYHqwE4Qo7CPU0kHspm3AZhiHTtVIxJKGtcIMf3zObn/mo/7lxxxvEGerKUZjp
-         tWQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HHerX5O9OGLCvolxvlc/uwYSt3i3UW5PknhnhVzoqc8=;
-        b=nvNGdesJ/ZeryYlMkSWd2sWp+mZ3nmg7XY+Sb0fHVGQR36e9SM08auEjE3/gaz7MAB
-         J9P+U98QZq2t68o8gUEvh0gT7XSBTBcTfnObbhJNtdKruJSWKA3VbXuChanrgsq46RzE
-         Yf1ws7LXOgd5AMwT4q0JIEAE9MRLMv4yref63ToFg1GqThmb2tY7VL5s4zJpAQJdBuOs
-         /8GJ/YmwS1Jfv0H1YrhKkgeJaQ4b4dCAJGXG17H0F5CJQ/LAkBlJG8bGs7zvGs/z38To
-         KwPyBovHtfmbF6k2nGtSkawxGn7Umejpww0Uy8uhgda5f8RAz4e0AuHzu6mDvPr7Z4W+
-         ZXaA==
-X-Gm-Message-State: ACrzQf0CBWhKDKaBqHXQMJykSqnUU6B7SnvgOV4Co+tLb1fBK2sBg8fH
-	9usLsBJdnEG9DfnC59dlidE=
-X-Google-Smtp-Source: AMsMyM4dLtzP152hs2DXMnbOYA8Y8jHW+1pzeZvYsFJLTmbyLTNqt32jpcff3KCLytuViEPGywsOOA==
-X-Received: by 2002:aa7:8d12:0:b0:56d:5de0:100b with SMTP id j18-20020aa78d12000000b0056d5de0100bmr8712861pfe.18.1667251481354;
-        Mon, 31 Oct 2022 14:24:41 -0700 (PDT)
-Received: from skjolley ([2600:1011:a11b:4d68:293c:e2d4:1418:7020])
-        by smtp.gmail.com with ESMTPSA id j1-20020a170902c3c100b0017dd8c8009esm4883686plj.4.2022.10.31.14.24.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 31 Oct 2022 14:24:40 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW44
-Date: Mon, 31 Oct 2022 14:24:39 -0700
-Message-ID: <074301d8ed6f$2ff5cba0$8fe162e0$@gmail.com>
-MIME-Version: 1.0
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel header.b=elOAp69C;
+ spf=pass (domain: intel.com, ip: 192.55.52.136, mailfrom: naveen.kumar.saini@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1667271646; x=1698807646;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:mime-version;
+  bh=vALrwbcAT1weo12LeVuqm3F5zn2wfUwxhYdYtPN5mkY=;
+  b=elOAp69CndgCjmDKnUGry1MltbPN3ThLnQwtqypyAbM/YibEF5hFlBKa
+   YAiqTzvOEbGVREGAaIPAqxgp6taCwTYxTdfGbu2WOSj17DKIHQXKsT+1d
+   wsl/7wwLVtvq+owxwuQ7xy8Ya5QTIDshs6MVmaUzAaCd9cQGeyE0yNLXV
+   5YCl4HqqhjnH1qsYqd2nYEfS4XEJ2uxBtzBDgXbDM5oxnMogVBiGsVs0/
+   oaztu00TVPtI6+vNuFllrvbdHZkRRz9asWG7KonZ74A6ojXzubDfZ1qGM
+   /gmH3Z3DflK+Lbc0mds6KZRGtoyOaSqsY1v9MAHBJVKTo62n0tHbrWgVL
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="288766736"
+X-IronPort-AV: E=Sophos;i="5.95,229,1661842800"; 
+   d="scan'208,217";a="288766736"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2022 20:00:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="739185963"
+X-IronPort-AV: E=Sophos;i="5.95,229,1661842800"; 
+   d="scan'208,217";a="739185963"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+  by fmsmga002.fm.intel.com with ESMTP; 31 Oct 2022 20:00:38 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 31 Oct 2022 20:00:37 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 31 Oct 2022 20:00:36 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Mon, 31 Oct 2022 20:00:36 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Mon, 31 Oct 2022 20:00:36 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LutrRQSOcxTi1JHPe1ai+vHBmJVjF1ILhHzItLKX2TBQmW7frwk5l8LDGqUAGhDgQ+LqkQnO3Oqk0b9cNMhucdJnTtZ0ZykhfZQzJpRxW+8cxfS8k6cX8xTii39z33+88k4m+SXzxKXhgjhIEUxTINqOGjBJVrXQGggZtu8f83hcou07RNFR5do8pjNNsw9R4B9N0lrWsRj010ZM08ZyjWXfqFZXF1bP/M5dAvHjJgBxM/Bmlih0COJLRSYilR7P0lP7P27V6jv7dHcaABFS2jGcjSUaY/1nvO8QFesU6QzY53ZsvU3SGMNGUMOSzNEcvqtqZXc3zfGroC8otdZDiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XbTfHgjx65Vj4Km6HvIXH9U+xceLMjAxORCh04+FS3U=;
+ b=hOv0ivN7v+jYMtVxktg5SuP1Ro8Fd0qdX0mfSQgJG+lTtBr5EnihZ9K6fM3VtuuVjkDtMk0UlHuAvSsBZL2jAsVnxZ7ielnJBwZxipuvfIc/o+jwfiNRkE1Qqsjg0RuAa3GOwbxE3qRvvrnIcn3A7QTizHkttxcvwq5nYjN0+l/vTVwLutvz6M7xA5p5+CKhcbFZ1PHxtZnx5+Johrggty+U4Sm4gaWX1f4sUADyENJFUs/vZUfG2Z97lFD1ylJBywodPSHpWcQluvTIHwdZKE6rgT29yfd33rEdngNhCbLT2DZ9lkZm4tik1ihvoR7hfJt3GgdzlNzw9Pm539ZqWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
+ by CH0PR11MB5378.namprd11.prod.outlook.com (2603:10b6:610:b9::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19; Tue, 1 Nov
+ 2022 03:00:33 +0000
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::128b:b7cc:a237:50f9]) by CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::128b:b7cc:a237:50f9%9]) with mapi id 15.20.5769.019; Tue, 1 Nov 2022
+ 03:00:32 +0000
+From: "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>
+To: Jon Mason <Jon.Mason@arm.com>
+CC: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: RE: Langdale branch for meta-zephyr
+Thread-Topic: Langdale branch for meta-zephyr
+Thread-Index: AdjtOVKGowIP0UbZRJehIMs1VResHgAZGHTQ
+Date: Tue, 1 Nov 2022 03:00:32 +0000
+Message-ID: <CO1PR11MB5026178FAC96C620AF1ACEC8C4369@CO1PR11MB5026.namprd11.prod.outlook.com>
+References: <DBAPR08MB5798254CD368AE30D2B33713F0379@DBAPR08MB5798.eurprd08.prod.outlook.com>
+In-Reply-To: <DBAPR08MB5798254CD368AE30D2B33713F0379@DBAPR08MB5798.eurprd08.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CO1PR11MB5026:EE_|CH0PR11MB5378:EE_
+x-ms-office365-filtering-correlation-id: 6531f4d7-61c2-42b5-df97-08dabbb53dbf
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rMWCTqVPlENWvmacBdMhCi2pYFm/Gak3yCeqU7/BMFlqxlb6izbYO8+xoMO7UfxiLO81BfOYYrhKy3U7yTI5AsYPOxHwbIFlB+rIFOMwPTRSBWrfWHywqw6FgcPMml/MP/GfWgsJdWwlEmc8LGAInCXsmfsEnLJCjmTmbSOkNZRt6VuWbr1gjCt/JdwHxqCXY1Q3HmT5bVWqluLN/0sYlILt8QpUBBIUzrYoFR7rTt8v9VkOCH//TA4b5Prn6dqU6c0OwYoRvYI9mw3M1rDEXj5WQqtguwNLQmK/E8QDTg3BbMhVinoxuseMHUTIKH9nX33GuiStCvYKjmZoEIsl+4ANpexQjhO/iAORLTfHhRDu34qsWOSVnXv86gtBOQHwNS6hgvVUNvCADKfNE+to3XmEf6Vr2X8dHY6+twJUWLZzq23UhtX2wM++h1wW3P/iRtXnS4UXaPg7OzUpfHf+rZXgrxLiM1PNkBPkeoIb5gotk4KeqlhM2xJR8/MjZPAtYLTbnn7RRNvijhGUyo4JatidEBljBVCZ6rjS2bYkaasIhVMtu0J9kYJ4vlkuih8SFew05Ji6oBYWCqPKEo6mWrsVCMkdZAVBgy4Xh5l1ke5eLFuzDPDP3ZX4O0+IOzy1Cha9wRabfQrX8z7XSbQUCq+FCUfQmbnP7XXre1bjaTQP21BA6kQHHg/O7xzm+2j7tefehUfHwJ+w0tIMgjy0fKU+hV0obcQ0bdXxUM0whrDgVH1ejp/rjPOKaKqjTPp73SJG2dWuellZhCokyex5EoHZYjutoIChkiNRKHy+bVo=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(39860400002)(396003)(376002)(136003)(366004)(346002)(451199015)(186003)(166002)(38070700005)(316002)(8676002)(66476007)(76116006)(66446008)(64756008)(66946007)(66556008)(4326008)(55016003)(6916009)(52536014)(26005)(5660300002)(9686003)(4744005)(86362001)(53546011)(7696005)(6506007)(33656002)(41300700001)(966005)(9326002)(8936002)(83380400001)(478600001)(71200400001)(122000001)(38100700002)(2906002)(82960400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jcbWMhyy3X/j3VElTFKssK+et54hqK8PDzWB8+LQnGw/Pi0jWC4YtDVE9/By?=
+ =?us-ascii?Q?FZQuc6Kq9nBYmPJxjPL3UhnTQ9pmhHdqcNNp7ck3TsV5iFB8aWVWMhLOn7Oh?=
+ =?us-ascii?Q?+bqBsx5xgLjjyGVZLvFvYjuARsM5opZc0z9r260ZM3vdK4enosqSONPCeiKQ?=
+ =?us-ascii?Q?8LYC2lxjdsgcLF6V4oOq9gGFoH1LvOTGhiX7oMbxdf6yMs5c0O/yAOlei0EU?=
+ =?us-ascii?Q?10NK0e4hA+crHt9lJYKn1zA3Wp3rLAwBWRUJrRLtsQroLmebcwW/zxzMqlKI?=
+ =?us-ascii?Q?M6QO1B57lllE/Bms+EYenU4cB9vYhiftPuDY38wkyiA1MPeme+AucsWQH+jS?=
+ =?us-ascii?Q?nexYWTava4OIFNccn5yhUbeNws9/nQaN8CuTPyhZpSyCb1M3aY9NNXupqxqf?=
+ =?us-ascii?Q?OBZID6j9It/yl3uApKxGzhm8108FZGZFQGf2Ptx7qb1SUh0Mnkpna0oCYcUj?=
+ =?us-ascii?Q?JUxLBERqfILFlb0ONxMWr6ePnqgCJwWbnKVZbcFE7zcz/cXNH3gyh4ZC57e0?=
+ =?us-ascii?Q?UmpZl2x6ULPCpCJDeT2Zgk9ctW2qldFV8v3VnC9SjwYQSDIgbGvzzesN4frW?=
+ =?us-ascii?Q?qUR1f0RoZ9lbZvyb3I1IvqbNBKofjpvTVqomyYoDsunZI+mg1GabbmdmNF8r?=
+ =?us-ascii?Q?LH+L0Sw8Qrzgr5Uy7O19CeyJ/ZmB7FQhpd62NOfNtOEc2b2geYLq4wvq5rlr?=
+ =?us-ascii?Q?6vw12PhGD7K+N3tCOhsR+zefOL6WdrVv6e6j/9GHNik6ThFswFsUCCYRmsXx?=
+ =?us-ascii?Q?ZXfhy+DN2cR4neiV6/imLMDrkUWOb5eQOsgXhPM+z5pHJZGppVd0hTqWT0EA?=
+ =?us-ascii?Q?KQSnX6hdgoTzY2Ro6ta/r38ueQ0ztbdjVYE/ISnBPvLT61aEcR83KqxOwFnX?=
+ =?us-ascii?Q?XbJbbT/3eH3d8SP0LTeC/JBThq55BHnfcXWrHIBarVdBz23cTLqkSFAvoS7J?=
+ =?us-ascii?Q?7rIU6sPm3Z00VqZ93umIaODBU5AQ8aS5h4mR6SJtGbdw789vwcsBHRAxWNbV?=
+ =?us-ascii?Q?O7NnSMErKTzoCIMf0RbRYFvBCoVaZI5qqpcFPsxGByyiv9RU2dE2NgyoLJLg?=
+ =?us-ascii?Q?b1ryJkKAxHZTCeC99YNV4+kCTp0MQiIBmTK9Qp54cIaT9UvCWDBfNp9VCPZq?=
+ =?us-ascii?Q?iXs7WyDUAtokJ+ZEFqUnUQMZr41NDUi+4cP8E74tRHNlXLktD+wJWWcBP509?=
+ =?us-ascii?Q?u76rjqjLuuTNq62lh82LcD++pF91S/3/C4MWrGZk+Sub2V+6I9mXc4WM/Thx?=
+ =?us-ascii?Q?iUuEupTT5dhpim2mBJF74RpMeCY7FTdzN+x1u98Lbo95ZykEuRdfv2WfDI7A?=
+ =?us-ascii?Q?DjVAQT7+LgZmDQNq3Js49hOOgYWFjTGkjhMgAUNFO748QoLtxmM4JMhA8W9d?=
+ =?us-ascii?Q?EnGHvQ6n2du76tSK6uxhjUmOBdIgAiXp3m6ayTAZimZGYNoxo23C94B2ihsy?=
+ =?us-ascii?Q?sxI1ndo6RFlgXlu8OrVC3/LeJAjzZMvbFvr3wQjd/C3j9KFTS5Ms1PABtUCR?=
+ =?us-ascii?Q?emyrNvnBiK2AuQs3cnizH1HH7nnX8AwIBzoL6MX0eIqMBj0bbO6tHnUtQ6/o?=
+ =?us-ascii?Q?kul6A9ohVZ/Ra1cZnimdIz2YMrc81Kp8+fMspSOWVmG2vAAFAycSwmh+AYUZ?=
+ =?us-ascii?Q?Lw=3D=3D?=
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0744_01D8ED34.839BD5A0"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdjtbxmMr+mxD6EsSZqgFs3TF2vfzw==
-Content-Language: en-us
+	boundary="_000_CO1PR11MB5026178FAC96C620AF1ACEC8C4369CO1PR11MB5026namp_"
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6531f4d7-61c2-42b5-df97-08dabbb53dbf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Nov 2022 03:00:32.5649
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: SkZahayp1ZPLt2zpI+hD77JEXE8EL9l1zy2Z3zbl4JQqWdKBCy3KHFYTeEKbd7BNtHiZOd/qpk4oROXPs8XJCN4KuP5ep7OVT5zOhShX73g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5378
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 31 Oct 2022 21:24:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58450
+ <yocto@lists.yoctoproject.org>; Tue, 01 Nov 2022 03:00:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58451
 
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0744_01D8ED34.839BD5A0
-Content-Type: text/plain;
-	charset="utf-8"
+--_000_CO1PR11MB5026178FAC96C620AF1ACEC8C4369CO1PR11MB5026namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+Hi Jon,
 
-YP M+ or high bugs which moved to a new milestone in WW44 are listed =
-below:=20
+I have forked Langdale branch.
 
+Could you help to fix arm machines failures with zephyr 3.2.0 upgrade patch=
+es ?
+https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/677723187
 
-Priority
+Regards,
+Naveen
 
-Bug ID
+From: Jon Mason <Jon.Mason@arm.com>
+Sent: Monday, October 31, 2022 11:07 PM
+To: Saini, Naveen Kumar <naveen.kumar.saini@intel.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Langdale branch for meta-zephyr
 
-Short Description
+Hello Naveen,
+At least one team within Arm is planning on doing a product using meta-zeph=
+yr and basing it off of langdale, and would like a Langdale branch on meta-=
+zephyr for continuity with the other branches.
 
-Changer
+With the recent release of Langdale for Yocto, I was wondering if there are=
+ any plans to fork a branch for Langdale on meta-zephyr.  Doing so prior to=
+ updating the zephyr sources to the latest might be a good idea.
 
-Owner
+Thanks,
+Jon
 
-Was
 
-Became
-
-
-Medium+
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13424> 13424
-
-devupstream doesn't work with mutilib
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13599> 13599
-
-Enhancement: Detect variables that shouldn't be defined in image scope, =
-but in global (distro) scope
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13897> 13897
-
-POSTINST_INTERCEPTS_DIR broken by undocumented POSTINST_INTERCEPTS_PATHS =
-since thud
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13954> 13954
-
-Invalid layerindex data causing backtrace in `bitbake-layers =
-layerindex-fetch`
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14066> 14066
-
-bitbake core-image-base -c populate_sdk fails when image contains bash, =
-core-utils and package_deb is used
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14098> 14098
-
-absolute path in TEMPLATECONF should be rejected or warned, makes =
-ext-sdk uninstallable
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14127> 14127
-
-cve-check falsely indicates a vulnerabily to be patched
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14154> 14154
-
-yocto-check-layer fails incorrectly with kernel hash changes
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14155> 14155
-
-yocto-check-layer fails with hash changes if license added
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14156> 14156
-
-fetch/gitsm: submodules are fetched as mirrored and not working as =
-expected
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14201> 14201
-
-Bitbake server intermittent timeout
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14206> 14206
-
-oe-selftest perl errors on rpm based distros
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14263> 14263
-
-AB-INT PTEST: lttng-tools ptest intermittent failure
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14274> 14274
-
-dnf parselogs failed on qemux86-64 due to networking error
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14348> 14348
-
-Layer dependencies not updated
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M2
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14385> 14385
-
-mode of sstate files created under pseudo
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14386> 14386
-
-patchelf breaks go -native executables
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14430> 14430
-
-valgrind memcheck/tests/linux/stack_changes failure
-
-randy.macleod@windriver.com
-
-randy.macleod@windriver.com
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14443> 14443
-
-valgrind none/tests/amd64/fb_test_amd64 ptest intermittent failure
-
-randy.macleod@windriver.com
-
-randy.macleod@windriver.com
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14520> 14520
-
-A qemuboot.conf file isn't generated if the rootfs wasn't modified
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14584> 14584
-
-Allow to add reason on build cancellation
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14620> 14620
-
-QA error not seen when reusing SSTATE
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14677> 14677
-
-systemd.SystemdServiceTests.test_systemd_disable_enable intermittent =
-failure: no filesystem space on target
-
-randy.macleod@windriver.com
-
-randy.macleod@windriver.com
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14721> 14721
-
-Intermittent runqueue issue re-running populate_sysroot_setscene after =
-populate_sysroot
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14748> 14748
-
-runqemu can't pick bundled initramfs image
-
-randy.macleod@windriver.com
-
-aehs29@gmail.com
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14775> 14775
-
-AB-INT: SDK preparation failure: SState: cannot test file://[...] =
-TimeoutError('timed out')
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14786> 14786
-
-AB-INT: prservice.BitbakePrTests.test_pr_service_deb_arch_dep failure
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14789> 14789
-
-ltp controllers test failure
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14804> 14804
-
-busybox and dpkg versions of start-stop-daemon disagree on symlink =
-location
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14811> 14811
-
-Incorrect path matching in pseudo cause package failure in yocto
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14843> 14843
-
-Need better messages for reproducibility errors where the only =
-difference is in package filename
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14854> 14854
-
-AB-INT PTEST: lttng-tools ptest intermittent failure in =
-tools/clear/test_kernel_316
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14857> 14857
-
-AB-INT: Unable to connect to bitbake server, or start one
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14870> 14870
-
-Dangling bbappend behaviour can lead to unexpected surprises (error vs =
-warn)
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14869> 14869
-
-proper closedown of a variable (e.g. SRC_URI) is not properly terminated
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14876> 14876
-
-rust: Improve reproducibility patch
-
-randy.macleod@windriver.com
-
-sundeep.kokkonda@gmail.com
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14890> 14890
-
-create-spdx should parse license strings with and without spaces between =
-license terms
-
-randy.macleod@windriver.com
-
-sgw@bigsur.com
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14891> 14891
-
-AB-INT PTEST: util-linux ptest failures
-
-richard.purdie@linuxfoundation.org
-
-richard.purdie@linuxfoundation.org
-
-4.1 M4
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14904> 14904
-
-Make rust target identification better in crossbeam
-
-randy.macleod@windriver.com
-
-randy.macleod@windriver.com
-
-4.1 M4
-
-4.2 M1
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14911> 14911
-
-runqemu.RunqemuTests.test_boot_qemu_boot failure: libgcc_s.so.1 must be =
-installed for pthread_cancel to work
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-4.1 M4
-
-4.2 M2
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_0744_01D8ED34.839BD5A0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0106_01D8E7BA.B47F8920";
-	charset="utf-8"
+--_000_CO1PR11MB5026178FAC96C620AF1ACEC8C4369CO1PR11MB5026namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
 /* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
+	{margin:0cm;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#0563C1;
 	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
+span.EmailStyle19
+	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
 	font-size:10.0pt;}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
@@ -780,1628 +223,69 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
-new milestone in WW44 are listed below: <o:p></o:p></span></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D1403 =
-style=3D'width:1052.5pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D682 nowrap valign=3Dbottom style=3D'width:511.75pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D64 =
-nowrap valign=3Dbottom style=3D'width:47.8pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D54 =
-nowrap valign=3Dbottom style=3D'width:40.25pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13424" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13424</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>devupstream doesn't work with =
-mutilib<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13599" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13599</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Enhancement: Detect variables that shouldn't be =
-defined in image scope, but in global (distro) =
-scope<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13897" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13897</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>POSTINST_INTERCEPTS_DIR broken by undocumented =
-POSTINST_INTERCEPTS_PATHS since thud<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13954" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13954</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Invalid layerindex data causing backtrace in =
-`bitbake-layers layerindex-fetch`<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14066" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14066</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bitbake core-image-base -c populate_sdk fails when =
-image contains bash, core-utils and package_deb is =
-used<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14098" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14098</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>absolute path in TEMPLATECONF should be rejected =
-or warned, makes ext-sdk uninstallable<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14127" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14127</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>cve-check falsely indicates a vulnerabily to be =
-patched<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14154" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14154</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>yocto-check-layer fails incorrectly with kernel =
-hash changes<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14155" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14155</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>yocto-check-layer fails with hash changes if =
-license added<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14156" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14156</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>fetch/gitsm: submodules are fetched as mirrored =
-and not working as expected<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14201" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14201</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Bitbake server intermittent =
-timeout<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14206" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14206</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>oe-selftest perl errors on rpm based =
-distros<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14263" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14263</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>AB-INT PTEST: lttng-tools ptest intermittent =
-failure<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14274" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14274</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>dnf parselogs failed on qemux86-64 due to =
-networking error<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14348" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14348</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Layer dependencies not =
-updated<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M2<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14385" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14385</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>mode of sstate files created under =
-pseudo<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14386" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14386</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>patchelf breaks go -native =
-executables<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14430" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14430</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>valgrind memcheck/tests/linux/stack_changes =
-failure<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14443" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14443</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>valgrind none/tests/amd64/fb_test_amd64 ptest =
-intermittent failure<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14520" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14520</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>A qemuboot.conf file isn't generated if the rootfs =
-wasn't modified<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14584" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14584</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Allow to add reason on build =
-cancellation<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14620" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14620</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>QA error not seen when reusing =
-SSTATE<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14677" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14677</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>systemd.SystemdServiceTests.test_systemd_disable_en=
-able intermittent failure: no filesystem space on =
-target<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14721" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14721</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Intermittent runqueue issue re-running =
-populate_sysroot_setscene after =
-populate_sysroot<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14748" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14748</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>runqemu can't pick bundled initramfs =
-image<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>aehs29@gmail.com<o:p></o:p></span></p></td><td =
-width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14775" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14775</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>AB-INT: SDK preparation failure: SState: cannot =
-test file://[...] TimeoutError('timed =
-out')<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14786" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14786</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>AB-INT: =
-prservice.BitbakePrTests.test_pr_service_deb_arch_dep =
-failure<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14789" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14789</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>ltp controllers test =
-failure<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14804" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14804</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>busybox and dpkg versions of start-stop-daemon =
-disagree on symlink location<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14811" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14811</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Incorrect path matching in pseudo cause package =
-failure in yocto<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14843" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14843</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Need better messages for reproducibility errors =
-where the only difference is in package =
-filename<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14854" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14854</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>AB-INT PTEST: lttng-tools ptest intermittent =
-failure in tools/clear/test_kernel_316<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14857" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14857</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>AB-INT: Unable to connect to bitbake server, or =
-start one<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14870" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14870</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Dangling bbappend behaviour can lead to unexpected =
-surprises (error vs warn)<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14869" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14869</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>proper closedown of a variable (e.g. SRC_URI) is =
-not properly terminated<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14876" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14876</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>rust: Improve reproducibility =
-patch<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>sundeep.kokkonda@gmail.com<o:p></o:p></span></p></t=
-d><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14890" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14890</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>create-spdx should parse license strings with and =
-without spaces between license terms<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>sgw@bigsur.com<o:p></o:p></span></p></td><td =
-width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14891" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14891</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>AB-INT PTEST: util-linux ptest =
-failures<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14904" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14904</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Make rust target identification better in =
-crossbeam<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14911" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14911</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D682 nowrap valign=3Dbottom =
-style=3D'width:511.75pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>runqemu.RunqemuTests.test_boot_qemu_boot failure: =
-libgcc_s.so.1 must be installed for pthread_cancel to =
-work<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:47.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td><td width=3D54 =
-nowrap valign=3Dbottom =
-style=3D'width:40.25pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M2<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
-style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0744_01D8ED34.839BD5A0--
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Hi Jon,<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">I have fo=
+rked Langdale branch.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Could you=
+ help to fix arm machines failures with zephyr 3.2.0 upgrade patches ?<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><a href=
+=3D"https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/677723187">https:=
+//gitlab.com/jonmason00/meta-zephyr/-/pipelines/677723187</a><o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Regards,<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Naveen<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Jon Mason &lt;Jon.Mason@arm.com&gt;
+<br>
+<b>Sent:</b> Monday, October 31, 2022 11:07 PM<br>
+<b>To:</b> Saini, Naveen Kumar &lt;naveen.kumar.saini@intel.com&gt;<br>
+<b>Cc:</b> Yocto-mailing-list &lt;yocto@lists.yoctoproject.org&gt;<br>
+<b>Subject:</b> Langdale branch for meta-zephyr<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello Naveen,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">At least one team within Arm is=
+ planning on doing a product using meta-zephyr and basing it off of langdal=
+e, and would like a Langdale branch on meta-zephyr for continuity with the =
+other branches.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">With the recent release of Lang=
+dale for Yocto, I was wondering if there are any plans to fork a branch for=
+ Langdale on meta-zephyr.&nbsp; Doing so prior to updating the zephyr sourc=
+es to the latest might be a good idea.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Jon<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</div>
+</body>
+</html>
 
+--_000_CO1PR11MB5026178FAC96C620AF1ACEC8C4369CO1PR11MB5026namp_--
 
