@@ -2,108 +2,106 @@ Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1EF66C4332F
-	for <webhook@archiver.kernel.org>; Thu,  3 Nov 2022 21:29:06 +0000 (UTC)
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
- by mx.groups.io with SMTP id smtpd.web08.4093.1667510939870552071
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3409AC433FE
+	for <webhook@archiver.kernel.org>; Thu,  3 Nov 2022 21:45:06 +0000 (UTC)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web11.4391.1667511902190249400
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Nov 2022 14:29:00 -0700
+ Thu, 03 Nov 2022 14:45:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20210112.gappssmtp.com header.s=20210112 header.b=FQWsRljW;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.41, mailfrom: jester@theyoctojester.info)
-Received: by mail-ed1-f41.google.com with SMTP id i21so4973860edj.10
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Nov 2022 14:28:59 -0700 (PDT)
+ dkim=pass header.i=@theyoctojester-info.20210112.gappssmtp.com header.s=20210112 header.b=OkxiELJX;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.218.52, mailfrom: jester@theyoctojester.info)
+Received: by mail-ej1-f52.google.com with SMTP id y14so8783153ejd.9
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Nov 2022 14:45:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=theyoctojester-info.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rF5aTJbIX+oI/INYru4T2sEH1RF0TkdSC/f4MU2wSRQ=;
-        b=FQWsRljWbWOaM9L+Ad8DsCBmROYM4hgb21ssF0aCESU7PLlWMe/SnFZdQjclDTfVCm
-         yzM8lKvQFRI+UA4mqFKThp44AD1c8oQEmSiXtd7k1AFScOS4lBgY5fMHm/eyWOM+Dc3G
-         UKSmjgWlpmua4JzUo8/4BA5ahFLpRiiJpQJZWe5vB3ZqJJMiJzhhMUsTd+15WLyKbMx+
-         Eu/7EmVOh/sCFClAxnYDTdNIG2tlvHJEnRLttSURlqlAtTJKY3isLWyD8Q/3pprdX1Wz
-         lvghMs1xo2Cc0AQgPm/1RUumtdFTJwonP/XiG3NFQ/4wsTXxYSmfMfstKrPyxlpN+jcg
-         lFNw==
+        bh=VF5doPzZQrjtR7JcKFvFhQ9SjKjhe2/Y9EQ8ZNHmUrw=;
+        b=OkxiELJXMRa8n7dkYVAi8ClJcIUTYIaED51LvrpbZK1yDIRyu876rSPdBM17bVengE
+         IYuV6GUsJ4Kgd7F550DgLSS3PKaDj0PZ6flQ9MMeEE15ueqlCXgumuzldMk9UhkE276P
+         B8F1+BTNptZFoWOxNpTKtOknuc2jVVpW9H8mCzVRkryzbkWgsGQWieiTcXgZ9tiOlz8+
+         ojeHB4lepvhwqA9IVrLwn33g9id1o6bk6jRF3BCulwjxNhSa2UTs0yM3Y8hIPUoyFTRQ
+         LDKFiB4cznlwtVhpkWpVQ6qF2zO8fY0OToWEJrwIy/TXaGppwAp8kZNEnqv7sqF05bLC
+         FbJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rF5aTJbIX+oI/INYru4T2sEH1RF0TkdSC/f4MU2wSRQ=;
-        b=6yVQC13LgahReThT5UWOBxxRE2oHtlRS2CLI9nRo9U8BSUzMEwpOw0hmLosyjUR3FH
-         i9WP+YvzzoWCrIHr7yRcbv+J7i8+j+zFtZvG0XQxtLxecOJc2c1ieKjXpSB8BTGdfSKF
-         hWwaRt1aoJADTk5dLiMm7ZqhT4S4qCNu6aCznglOANSaHKRnlMaMHa8t8dUek2Xhct4J
-         FoWU+uF3nOT44hLKpqojsYXJ0RVITGnlApVOdw+Zg7yQPcruA/1ActlPmLc8xe1puq8S
-         UVdCaZo5yelFYaYThE58l71ngcTDAX9idLVqJ0iY9TIddtXoCwhCpo04IXmdH/89Mq+4
-         Dctg==
-X-Gm-Message-State: ACrzQf2FKNjGoDgaqwgafrgNT2rf9RBdc50UDln691j61kFzuVNqj2PU
-	c2DKqb6wOf5UYwF0opEFtDGHIQw6WwMeKwlnRLy3VA==
-X-Google-Smtp-Source: AMsMyM6RSWcpV7d7CJaqS4qvd6YoA9exmxquxu0lZS0iMp8x/f03e6RCIa0DKOykwzEu0ZL2rW3eSgjJshqD3adlMYw=
-X-Received: by 2002:a05:6402:3487:b0:463:9585:ae40 with SMTP id
- v7-20020a056402348700b004639585ae40mr19491533edc.31.1667510938119; Thu, 03
- Nov 2022 14:28:58 -0700 (PDT)
+        bh=VF5doPzZQrjtR7JcKFvFhQ9SjKjhe2/Y9EQ8ZNHmUrw=;
+        b=MoXX2H0KPl70L6TA++FyoBG5eT3/byq9sHMu4KQvOLczZd93LLIbf308sBA+8fRsPv
+         rfyQT1NTm1XmrT7QwQJupgOnOOeHU+N+mdAb1g+bwgqrKj/wHXKHygHmekh4d+Wyhtoh
+         YSByHnlqVabcsoVI9WmcpWhNI/1WAc042vkaGA8ZdWluydT8VAwZ4Nq47NFoMD9xXU12
+         L2h38QdVlsHA73r4DGa5+U6icossS535H2XMdd0oZmLEvWWsyRQdHj+tx32ZlVc5jgdQ
+         tIKprPzohEq/4GAVaBhWW7ZIEupyGrQgOiPztwE8UYMjVdzyTtBYD6iHgmExpZSr7UOf
+         BIzQ==
+X-Gm-Message-State: ACrzQf3mK/UMCk9zB54WtCJK1FChMtUgWRmJYDfwnioCQ0mz6lcv30fl
+	Q7wIU87mBNYseMIiFapuDMzWcim1wedKzL0rTgT6jw==
+X-Google-Smtp-Source: AMsMyM4PC3MIcNud+vDnMNCb4L0HeAOMRT1bKwIO4nht+mJ0t+CFQ6Q/VvnwxvBAwPAbNG25+erCAu8I8MdHzgyPb7A=
+X-Received: by 2002:a17:907:75f1:b0:78a:f935:647d with SMTP id
+ jz17-20020a17090775f100b0078af935647dmr30803562ejc.587.1667511900464; Thu, 03
+ Nov 2022 14:45:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEt6NwoaVDgwO5-5ins-RWUp7jkc61cdFrtGeCz03hKwK2Z6KA@mail.gmail.com>
- <17126.1667510678953305300@lists.yoctoproject.org>
-In-Reply-To: <17126.1667510678953305300@lists.yoctoproject.org>
+References: <CAEt6Nwqze1r8o=EfzMNEeXz67C3VdE4QToWFE4ksoyNwR9=Xnw@mail.gmail.com>
+ <22885.1667511608881895438@lists.yoctoproject.org>
+In-Reply-To: <22885.1667511608881895438@lists.yoctoproject.org>
 From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Thu, 3 Nov 2022 22:28:32 +0100
-Message-ID: <CAEt6Nwqze1r8o=EfzMNEeXz67C3VdE4QToWFE4ksoyNwR9=Xnw@mail.gmail.com>
-Subject: Re: Private: Re: [yocto] Scope of the build parameters #systemd
+Date: Thu, 3 Nov 2022 22:44:34 +0100
+Message-ID: <CAEt6Nwqt--ytadpG+JnRoG5ATLAL+bnsi=ObKQke_MUpz=_Q-w@mail.gmail.com>
+Subject: Re: Private: Re: [yocto] Private: Re: [yocto] Scope of the build
+ parameters #systemd
 To: Martin Leduc <martin.leduc@luminator.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000020451f05ec97a59f"
+Content-Type: multipart/alternative; boundary="0000000000007c7cb305ec97dece"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Nov 2022 21:29:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58479
+ <yocto@lists.yoctoproject.org>; Thu, 03 Nov 2022 21:45:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58480
 
---00000000000020451f05ec97a59f
+--0000000000007c7cb305ec97dece
 Content-Type: text/plain; charset="UTF-8"
 
-Re-adding list, as I think this is valid information for all Yocto users.
+Again re-adding list....
 
-On Thu, Nov 3, 2022 at 10:24 PM martin.leduc via lists.yoctoproject.org
+On Thu, Nov 3, 2022 at 10:40 PM martin.leduc via lists.yoctoproject.org
 <martin.leduc=luminator.com@lists.yoctoproject.org> wrote:
 
-> Ok, I get that.  If DISTRO_FEATURES is settable only into local.conf, what
-> are the other variables valid into the local.conf only?
+> Per example, in poky/meta... I found the core-image-minimal.bb (bitbake
+> core-image-minimal), pulling on the core-image.bbclass, pulling on
+> images.bbclass by using the inherit keyword.
+> Then, I will have a big IMAGE_INSTALL variable content to build and their
+> dependencies from local.conf + all the other image/bbclass recipes joined
+> by the inherit keyword is that correct?.
+>
 
-
-No, thats not how it works. Its like this:
-- if the variable is supposed to only have an effect within the very bb
-file that you are looking at then it can stay in the recipe
-- if the variable is supposed to affect something else, it needs to go into
-a configuration file.
-
-This is is not tied to specific variable names or such. It is purely about
-the visibility.
+I encourage you to look at and understand the evaluation for yourself by
+issuing "bitbake-getvar -r core-image-minimal IMAGE_INSTALL"
 
 Greetz,
 Josef
 
---00000000000020451f05ec97a59f
+--0000000000007c7cb305ec97dece
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Re-adding list, as I think this is valid =
-information for all Yocto users.</div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 3, 2022 at 10:24 PM martin.ledu=
-c via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> =
-&lt;martin.leduc=3D<a href=3D"mailto:luminator.com@lists.yoctoproject.org">=
-luminator.com@lists.yoctoproject.org</a>&gt; wrote:</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">Ok, I get that.=C2=A0 If DISTRO_FEATURES i=
-s settable only into local.conf, what are the other variables valid into th=
-e local.conf only?=C2=A0</blockquote><div><br></div><div>No, thats not how =
-it works. Its like this:</div><div>- if the variable is supposed to only ha=
-ve an effect within the very bb file that you are looking at then it can st=
-ay in the recipe</div><div>- if the variable is supposed to affect somethin=
-g else, it needs to go into a configuration file.</div><div><br></div><div>=
-This is is not tied to specific variable names or such. It is purely about =
-the visibility.</div><div><br></div><div>Greetz,</div><div>Josef=C2=A0</div=
-></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr">Again re-adding list....</div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 3, 20=
+22 at 10:40 PM martin.leduc via <a href=3D"http://lists.yoctoproject.org">l=
+ists.yoctoproject.org</a> &lt;martin.leduc=3D<a href=3D"mailto:luminator.co=
+m@lists.yoctoproject.org">luminator.com@lists.yoctoproject.org</a>&gt; wrot=
+e:</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">Per example, in p=
+oky/meta... I found the <a href=3D"http://core-image-minimal.bb" target=3D"=
+_blank">core-image-minimal.bb</a> (bitbake core-image-minimal), pulling on =
+the core-image.bbclass, pulling on images.bbclass by using the inherit keyw=
+ord.<br>Then, I will have a big IMAGE_INSTALL variable content to build and=
+ their dependencies from local.conf + all the other image/bbclass recipes j=
+oined by the inherit keyword is that correct?.<br></blockquote><div><br></d=
+iv><div>I encourage you to look at and understand the evaluation for yourse=
+lf by issuing &quot;bitbake-getvar -r core-image-minimal IMAGE_INSTALL&quot=
+;</div><div><br></div><div>Greetz,</div><div>Josef=C2=A0</div></div></div>
 
---00000000000020451f05ec97a59f--
+--0000000000007c7cb305ec97dece--
 
