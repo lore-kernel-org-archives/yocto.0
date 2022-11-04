@@ -1,116 +1,110 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 576A1C4332F
-	for <webhook@archiver.kernel.org>; Fri,  4 Nov 2022 01:41:07 +0000 (UTC)
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
- by mx.groups.io with SMTP id smtpd.web12.6538.1667526057676429060
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48E55C4332F
+	for <webhook@archiver.kernel.org>; Fri,  4 Nov 2022 08:05:29 +0000 (UTC)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+ by mx.groups.io with SMTP id smtpd.web09.8731.1667549124924480168
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Nov 2022 18:40:57 -0700
+ Fri, 04 Nov 2022 01:05:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=JJF7TK8w;
- spf=pass (domain: gmail.com, ip: 209.85.166.48, mailfrom: twoerner@gmail.com)
-Received: by mail-io1-f48.google.com with SMTP id z3so2826615iof.3
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Nov 2022 18:40:57 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=mNfPT+Y3;
+ spf=pass (domain: gmail.com, ip: 209.85.208.176, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f176.google.com with SMTP id h12so5243574ljg.9
+        for <yocto@lists.yoctoproject.org>; Fri, 04 Nov 2022 01:05:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tNL7Q+46d6jXjK8HAr7QqaORGNNU9fBFJgBmXQEruxQ=;
-        b=JJF7TK8wbHC9NYYDWaEIOtQHklC+eacfnOo27ueNSdrqKaZ5O2L3CTYmfYOA7/ijso
-         r36NV/zGc36Ulb2YnwdY8CE4zwwKESo5TiSJsLvk2a3iSZ4JULrT9gWczk9dJ5FA+z+O
-         +eaLPaMUbHuAPFpE6cYhGu1ygCQbj9Wv0XrleVkB4LHRhU6sI+sVun1kyxZeKld7GIhG
-         KSYbdnm9iSgJr9RZUknqPYZo9swXNx8BJ/WkwIzNJCsAv6nwYReI9P7QqNAiuXx2aD8G
-         u/MQk2bJ5FPz+xY+gFrDSs4LtkjUE2gpF5dc2owzu0460i415qgZesZNKRAbDCS4QiUx
-         NbbA==
+        bh=pr3XE/tdiNLoKfruQMKqKQz9RufBNhg6ey1vBJfgoNw=;
+        b=mNfPT+Y3gQzLKqlfym/pE9ciCfeCirRd6cMk88yNI4OByBaukgD5Zf1+if7Ps65Ssc
+         FAbOnGC2VNXLNWSTFiaHM3PuKs9QpSlDb0B0/0dHvMGefn/aM7PCqME1OCRO6QPPqM5Y
+         0L9SQDojmWxM9qTKUx7wYBGUa/6Ja3Ue7Dx6PzpiqMYnCd5vPaf0CzLvqqTMVu7DNtf/
+         F2OTb29Hmpfc5o8InbaXzOZVQkC5uaotcTvvm/2zhG7Hg2yoYNeO3gCsd2/3O6+7IlRK
+         RlKY/PTPCbJWa3jpnCRkJB3Ll7+roMs+SqqXjZTA+37gHtu1Syoo4QmFqyYbPVeWBXkq
+         +d5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tNL7Q+46d6jXjK8HAr7QqaORGNNU9fBFJgBmXQEruxQ=;
-        b=Yr4nePPP2XQ37sSHvx/GKOu1NG8nkKknATXPzhOznKnlVtzzWpulD7js3FYXiuqq7A
-         tFBdKgmSrwvecXVBFDQg/s2wVUru3QJ06xPlJCe+xcWeT2XShyX+o44iOkyn9b63eXDl
-         5sob8Gss3twE2N0JlmthyBLW3OKsCG2wDlGcdF/zOm20MXiphdcMEBjMxdhhs2epn4z4
-         l3v+x0P+G36XZDAnSzn+CNBxAVrqUHLFgqZO/eLBEBroRPrSfn9A2AfgiE0mIxysX4cf
-         J61oD9bMbZFwiC0njOVduXR96yhjqXBel90t86BN/9GcDYe8h2QimhgyoahC5JMejpgp
-         sD/g==
-X-Gm-Message-State: ACrzQf0SsAXlMlRBFdFkxD9PPo/JfABrRLEBETmhicvxBVfn6Vu4xwdz
-	XEeg+ObQ+6DCCZ0Q5CqNRtQqWJjyZ0gqCZL3V1c=
-X-Google-Smtp-Source: AMsMyM5sH2UckOZkiwfaid6+AtfdQHzNhmu3ucC/+CHPKyykZ3B93zTExmzFGleyL2R10UbWCFILqLTNWxuccqnMdfw=
-X-Received: by 2002:a05:6602:2f02:b0:6a4:5b5d:9dbb with SMTP id
- q2-20020a0566022f0200b006a45b5d9dbbmr20595733iow.32.1667526056969; Thu, 03
- Nov 2022 18:40:56 -0700 (PDT)
+        bh=pr3XE/tdiNLoKfruQMKqKQz9RufBNhg6ey1vBJfgoNw=;
+        b=A5tS0W+1FUPi8nzVZj1qBJqrsOMGCUlxywp8yeOk7picpLsIXo3Q+B8CvbvXBKYkld
+         M5qBOswfTDS9KkU80XJBlDHaWPpFAFKZm3gxsg/NT1qkb+goJ+Qd+VVGt6ja4JUkcgNi
+         Ys1cCs6Dx6JFydEZaErrWo4dLXAJ6a9VTD9rT+Wtdm6KrSMpY9EjoZWJeSzRuDBN2qV4
+         B5dj3YhMsrWKrTsEINCf7MkZ+kNeAVazhneksNF2EjZFpT5lmWWKH/bAPL6IE0ADnLsn
+         eVVOXlQAq+UOvTp5K3rVu4xn3BSkT4140tOP7chQKLHFXEJ4ySjoENGiX97eA+dnk3B3
+         gQSw==
+X-Gm-Message-State: ACrzQf1YR19TJ5BxPi0/h4wUu6x8OM0XxvXtFU0HMLIIEwrJ3HqELP1E
+	Fs0vFv8W7edacUn8u5YeLxCkYI7sBeQGjd7jHjs=
+X-Google-Smtp-Source: AMsMyM4G1q0oJnMe2qfowHWRJd8BivtXY/cMgDPeJa8rktI5A4Dr3y8gXASitBKfPE4WwOBFchCMltZHRrO1ykxoDk4=
+X-Received: by 2002:a2e:3011:0:b0:277:3a99:7a49 with SMTP id
+ w17-20020a2e3011000000b002773a997a49mr13158476ljw.217.1667549122812; Fri, 04
+ Nov 2022 01:05:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <CADW9r6MKrarTpFMGsXDm32YLM9zdWnroOFjsztd4kOzrCY3WPg@mail.gmail.com>
-In-Reply-To: <CADW9r6MKrarTpFMGsXDm32YLM9zdWnroOFjsztd4kOzrCY3WPg@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Thu, 3 Nov 2022 21:40:45 -0400
-Message-ID: <CAHUNapR=dmk9yVTAmOAd=QGf_F61PzurH5ap0rA6itB+1kRKMg@mail.gmail.com>
-Subject: Re: [meta-rockchip][PATCH] Enable wlan for tinker board (s)
-To: Oleh Kuzhylnyi <o.kuzhyl@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000004788f405ec9b2aca"
+References: <DM8PR13MB5111D68232CC40829F86E9E6FE389@DM8PR13MB5111.namprd13.prod.outlook.com>
+In-Reply-To: <DM8PR13MB5111D68232CC40829F86E9E6FE389@DM8PR13MB5111.namprd13.prod.outlook.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 4 Nov 2022 09:05:11 +0100
+Message-ID: <CANNYZj-AoOpNh114rQjK=N3z4+piBsfE-TJrR1AxKFK_9FxMDw@mail.gmail.com>
+Subject: Re: [yocto] Python3 project without setup.py
+To: John Klug <john.klug@multitech.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 04 Nov 2022 01:41:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58483
+ <yocto@lists.yoctoproject.org>; Fri, 04 Nov 2022 08:05:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58484
 
---0000000000004788f405ec9b2aca
-Content-Type: text/plain; charset="UTF-8"
+This is probably not available in dunfel, but in master there are
+bbclasses that handle this:
 
-On Sat, Oct 29, 2022 at 3:08 PM Oleh Kuzhylnyi <o.kuzhyl@gmail.com> wrote:
+inherit pypi python_setuptools_build_meta
 
-> Greetings,
+So try with master, and then consider your options.
+
+Alex
+
+On Fri, 4 Nov 2022 at 00:03, John Klug <john.klug@multitech.com> wrote:
 >
-> I have faced the issue of missing out-the-box WiFi driver for Tinker board
-> machines.
-> It would be great to have it.
-> Turns out, the open source WiFi driver works well.
-> So, my proposal, let's enable it for tinker board machine?
+> I am using Dunfell.
 >
-> Please, review my patch.
+> What should I do in a recipe if a python project has no setup.py?
 >
-
-Thank you for your interest in meta-rockchip. Patches should be sent
-in-line and not as attachments. The meta-rockchip top-level README has some
-hints on the best way to send a patch or you could take a look at:
-http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded#Sending_using_git-send-email
-
-Thanks!
-
-
-> Regards,
-> Oleh Kuzhylnyi
+> Specifically:
+> https://github.com/pyhys/minimalmodbus
 >
-
---0000000000004788f405ec9b2aca
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Sat, Oct 29, 2022 at 3:08 PM Oleh =
-Kuzhylnyi &lt;<a href=3D"mailto:o.kuzhyl@gmail.com">o.kuzhyl@gmail.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-dir=3D"ltr">Greetings,<div><br></div><div>I have faced the issue of missing=
- out-the-box WiFi driver for Tinker board machines.</div><div>It would be g=
-reat to have it.</div><div>Turns out, the open source WiFi driver works wel=
-l.</div><div>So, my proposal, let&#39;s enable it for tinker board machine?=
-</div><div><br></div><div>Please, review my patch.</div></div></blockquote>=
-<div><br></div><div></div><div>Thank you for your interest in meta-rockchip=
-. Patches should be sent in-line and not as attachments. The meta-rockchip =
-top-level README has some hints on the best way to send a patch or you coul=
-d take a look at:</div><div><a href=3D"http://www.openembedded.org/wiki/How=
-_to_submit_a_patch_to_OpenEmbedded#Sending_using_git-send-email">http://www=
-.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded#Sending_using_=
-git-send-email</a></div><div><br></div><div>Thanks!<br></div><div><br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><b=
-r></div><div>Regards,</div><div>Oleh Kuzhylnyi</div></div>
-</blockquote></div></div>
-
---0000000000004788f405ec9b2aca--
+> I tried adding a trivial setup.py:
+>
+> >from setuptools import setup
+> >if __name__ == '__main__':
+> >    setup()
+>
+> This results in the recipe failing while trying to "import serial" from the python code in the project:
+>
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | Traceback (most recent call last):
+> |   File "setup.py", line 4, in <module>
+> |     setup()
+>
+>    ...
+>
+> |   File "/home/jklug/mlinux/build/tmp/work/arm926ejste-mlinux-linux-gnueabi/python3-minimalmodbus/2.0.1-r0/git/minimalmodbus.py", line 38, in <module>
+> |     import serial
+> | ModuleNotFoundError: No module named 'serial'
+>
+>
+>
+> John Klug
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#58482): https://lists.yoctoproject.org/g/yocto/message/58482
+> Mute This Topic: https://lists.yoctoproject.org/mt/94795363/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
