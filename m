@@ -1,155 +1,116 @@
-Return-Path: <john.klug@multitech.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CDDAC4332F
-	for <webhook@archiver.kernel.org>; Thu,  3 Nov 2022 23:03:36 +0000 (UTC)
-Received: from mail2.multitech.com (mail2.multitech.com [65.126.90.11])
- by mx.groups.io with SMTP id smtpd.web11.5179.1667516609642525121
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 576A1C4332F
+	for <webhook@archiver.kernel.org>; Fri,  4 Nov 2022 01:41:07 +0000 (UTC)
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+ by mx.groups.io with SMTP id smtpd.web12.6538.1667526057676429060
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Nov 2022 16:03:30 -0700
+ Thu, 03 Nov 2022 18:40:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@multitechsystems.onmicrosoft.com header.s=selector1-multitechsystems-onmicrosoft-com header.b=UYSGNd8L;
- spf=pass (domain: multitech.com, ip: 65.126.90.11, mailfrom: john.klug@multitech.com)
-Received: from mail2.multitech.com (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id DE067586948_36448C0B
-	for <yocto@lists.yoctoproject.org>; Thu,  3 Nov 2022 23:03:28 +0000 (GMT)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2170.outbound.protection.outlook.com [104.47.55.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
-	by mail2.multitech.com (Sophos Email Appliance) with ESMTPS id 5EFCE586931_36448C0F
-	for <yocto@lists.yoctoproject.org>; Thu,  3 Nov 2022 23:03:28 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gi7iJt3JST6vTq3eGnXix/cwlsBhgg43t1kIMTGe/M4upfzBH0EGqZuMlktXRnAOyXYv58gIRXrKafS/aOiA6Hh4QUVa/uMZ605PfHQLbJ9YwU9u8SLTI3s60T+TVDLuUaz0Kax52VuxOYSHtfuCp0CsKSOCjFnYf0UF3o9av5JCyzH+AcRcEnONrOV/RNsqb05QzCxNzHTcWsppHQb52yWZZperMFuzpoeKi0h/eYaxN3f3RH4AZbJ/3Pr4uhXtW6asCDo3q9QzenO59bJY8FGahgJpjTOhHGD0k0eIkWMFL4rwY6hfem91QMBCLJWw8RF33yaLHt/foSM9uNGSBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IdUCtk9Hnd0wV3LesG5R1E5VMIX6/yGWXDPwVVrRINM=;
- b=A69718rJ6JUeS6eA21Uhl4ERU3Au6MwQUPX+ttY+e8ZsY7QbEUXwDkMfmbnA1SxTxBq+d/WJYWww7wRTvuqsUGj96wyB0FjelTFiPFWsF+ZDB9ZGIamksy667jB3yBOp7xZ5GU5PXX5bhhD2fbdgQONg7zW0q1pfY/mxG99BdSOFo5zE5YVBvHo6qxUWOvZ7Cvab/9YfGCGCh2xDmbb6eWLy7ehcCViptiOIjhfoh/P7hSYm/cVyt3w8tnAOHV6T+p5nnHMEyndIdqvGdFf+p2v23JQm6WAviSYwEEabUe8P3skYPKodqW9Mz5x7PTWgH2723/FwwlR7B2Xt7jF5FQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=multitech.com; dmarc=pass action=none
- header.from=multitech.com; dkim=pass header.d=multitech.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=JJF7TK8w;
+ spf=pass (domain: gmail.com, ip: 209.85.166.48, mailfrom: twoerner@gmail.com)
+Received: by mail-io1-f48.google.com with SMTP id z3so2826615iof.3
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Nov 2022 18:40:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=multitechsystems.onmicrosoft.com;
- s=selector1-multitechsystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IdUCtk9Hnd0wV3LesG5R1E5VMIX6/yGWXDPwVVrRINM=;
- b=UYSGNd8LRO1NyZG3kH7KSH9tDWvOSjLFACoAA48huRk6WpavlZJGQaKWjLMci1B1Ci+AnmO39MYf4zWGrQFdr1wKShHOrrGoUJkYdWgqrutLXH43SuC+vS0d1p1ribwFP3tBGYujTAaYV7EceD4/kweWz5pZHJFZf5mx7qO8ls0=
-Received: from DM8PR13MB5111.namprd13.prod.outlook.com (2603:10b6:8:10::21) by
- PH7PR13MB5620.namprd13.prod.outlook.com (2603:10b6:510:13a::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5791.22; Thu, 3 Nov 2022 23:03:21 +0000
-Received: from DM8PR13MB5111.namprd13.prod.outlook.com
- ([fe80::159b:bb02:ef3f:ff0e]) by DM8PR13MB5111.namprd13.prod.outlook.com
- ([fe80::159b:bb02:ef3f:ff0e%6]) with mapi id 15.20.5791.020; Thu, 3 Nov 2022
- 23:03:21 +0000
-From: John Klug <John.Klug@multitech.com>
-To: "\"yocto@lists.yoctoproject.org\"" <yocto@lists.yoctoproject.org>
-Subject: Python3 project without setup.py
-Thread-Topic: Python3 project without setup.py
-Thread-Index: AQHY79dxWbrwGSF0NEiFYKRZUioPAQ==
-Date: Thu, 3 Nov 2022 23:03:21 +0000
-Message-ID: 
- <DM8PR13MB5111D68232CC40829F86E9E6FE389@DM8PR13MB5111.namprd13.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=multitech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR13MB5111:EE_|PH7PR13MB5620:EE_
-x-ms-office365-filtering-correlation-id: 6b54275f-36cf-44a2-847d-08dabdef9a6a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- WsS14o0J9ktcsB9ELoGqcM1wxeLgG5OgWu6EQaFu7r9Lk7Z8nh5/jrrOHJkuZBvPxD5fq1R7kzRkTNDIZ3NdfndRx8UK4xAtnIt5SMPVioIeJEFiOILtlSjJLrW1KIGzBk8EZKPKDiSFOZjNhqjnprPXKbKAKoXWAC4zaNM3oPVkLrfGOod9kzZRDrKCto9fwTAYBS1ecYTEYUH5cZ94JjzfOxUfpViIGoJFdAbXLVf84DOfC3LkljKsdYj7cKK8zPiXwyfQjWQuSskHyCmeggrCFFS3XYPXQEhrV855cqwgMeav9CsYqb4l6587KvFzPjeeXbuENHeHtSbBFdJaXvTnBIEPx7nGKpIZ9cvGpysdKbNdPq5d0X/Yge33HcvoWvFQLlQa+OLI6Bl0bWbdAwOeWZ1W0E6AfPmgP7sjIQl3T+0loYJFSR4yvO0PlCImkFP76ztUWKkf6kQW1Q5XRoAsoFXS1DRw8wOElF23j8eAtaSH5snI0mso77av+V7gH+I85tBUdLSdauibUCbod2vkIhf3578vdpflxGS8UfySY4Zl1DeZDh8bK2+PG1yBhSDbDwpsTXZ9BRRJ3l2VPzmwDT59AhW3hf6PplaR817Gi1AKgSQHlb8QVSbSiSbmk/efvaj4LYOs9YUmmw2IwfAXaMHDeoT96e/oEPiY0W2sF138sIIUoj2UJLdXwTe0kJsqkgvy8av3IOCbey+ZmscFVYvYBjHs3Lr9MfhwG2sQj5WAD6A55MzJKT14o4CgvWX2yO4Z9gSSGtLUPEJTpuwprzX/PcEZZTV3riajE3X/9GfB2/KKoP77+Cy19Zxi
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR13MB5111.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(136003)(376002)(39850400004)(396003)(366004)(451199015)(9686003)(5660300002)(4744005)(41300700001)(8936002)(478600001)(26005)(186003)(966005)(52536014)(55016003)(66556008)(8676002)(71200400001)(66476007)(64756008)(66446008)(76116006)(66946007)(2906002)(7696005)(33656002)(122000001)(6506007)(38100700002)(316002)(38070700005)(6916009)(86362001)(491001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?meWx9o2BaZDvlg79OdBJbiSeYGk/Tw0a38hM84njp+xhybr+87n7aRCBVI?=
- =?iso-8859-1?Q?mGmmXmq7g0lWkOefUHIzshUXS7CpqJ/bK7bJDzm0IUrFZWenwSKjUocQpH?=
- =?iso-8859-1?Q?w8rSnGnHrYxu+o+vshroD8VX3IiRgwzzBOp+bR6PENGdo/iSI7SpK7NRUM?=
- =?iso-8859-1?Q?jKs8LnRMuSojoQgYriuDRs0XdQNKcHw5p/e2jf+Nxao/DlOFGWFmpS09Sj?=
- =?iso-8859-1?Q?Ac6FJmk55u/qSNEg9zQsLmtbxkS8912JTcjH2skGyKUunP1Z7f4J9tkoKV?=
- =?iso-8859-1?Q?FdvDa/vaO1JNWWow4SlQmbEXxJ/qolel/d6qwFFL5LlJ4G5X4a2RQA/2I+?=
- =?iso-8859-1?Q?A4eiBD+ZHJG/dBpR98cuI/5bics4H6s9W2u/RUYnwdiBXUtu/lm7h1QmqY?=
- =?iso-8859-1?Q?y4rIWCtOWQWTWYJ5NvZp63c2H3gyRu4dVZOie6j0vGYQn8pndO6B7SNVyP?=
- =?iso-8859-1?Q?2UF1jSZ4TrDfdINzMgv/BBDk+lPItsKizgRoYY8BtQkheOfNuirKiJ9Rxa?=
- =?iso-8859-1?Q?NZo/DJWFftYlvuVauier91HKTZPtLWiF1z5Yr2RVdqluMLJbrSgAVw+Yam?=
- =?iso-8859-1?Q?X7t8WT3SoW2ERRFwS+KhRTc4PzX8Ep6fqbuo9I6Izaw8dQcpWXhOU7mgvQ?=
- =?iso-8859-1?Q?v1bcPXMedcQtpjbjx1JHHdW97eU6yGp8BbHgU2NZMPTE6QhybNIsW+J0XB?=
- =?iso-8859-1?Q?9FoJkcfLamy0OX5MyBtsdveCXwX6G4kVtaMnTaimpPnhEhWx0vIAAkOyMg?=
- =?iso-8859-1?Q?p3+OfGF8ygrpA6//ebqYFzhUnKWioIrEQFYMl+gaHIU1Q3ftWQlvPuY3Dt?=
- =?iso-8859-1?Q?+qx0SqWeM1KEU4QC0puaxkgneP3HVsL1lx5AB8qDGHq4DU0aUWrwZNfrig?=
- =?iso-8859-1?Q?h4YP9iKRtdENdZwWDhG5c/7ohII59e2Ox6Aj+tjUwOuSHkFK96qnDs/2+J?=
- =?iso-8859-1?Q?L8Tx15iHO3SIyVljzDKSjD7mHBM5ks4IKtS/S/kbAbEZvVytvSUarX0tCg?=
- =?iso-8859-1?Q?/GurG+Bjj3aclgcoWWmVm3B5TO1FhxxMnyzFRwaEDlF888yw4ZDqKNLpx9?=
- =?iso-8859-1?Q?QYDPM+Qi17WSnTNCzKzntZzlOoWjlHO0ln5Ya499IhFbkWFUdPKOvE0Pre?=
- =?iso-8859-1?Q?fmzXMNqE+GEWfhuXTEkE83C9C1lrL9l14RAI+rCL+vINkiFBw0VNydHV4u?=
- =?iso-8859-1?Q?qTr54MBVMNCykdOOp/OVp0lhre5xVYJHDP6pziAd6xJqUqkdy2Nm6T88b1?=
- =?iso-8859-1?Q?K8uehyEO3/qWJ0fDqFdUWlqYvGfcxaPt5XZpngyWxC9gjXetPcOF+p0dkl?=
- =?iso-8859-1?Q?IurCMOQRL990eFppfdANJxoGF7cJTdbTSIqyPzG6dacJLBn81DeRbXVILC?=
- =?iso-8859-1?Q?gsIeM2Zd4YB2gFxZDHUH5W/C5r1BSRor+qAEccmzXXEGkh5uChqegrKQji?=
- =?iso-8859-1?Q?UcXaWI/SzrlNkLO2YbjW2Uv2u7l/aHvLoMSzkgNuD/icEUNIE6L7xANlZN?=
- =?iso-8859-1?Q?Mo5DF5Ahi3P9qdYwJZqcfcyuzlCiIccOjKvxhQByOatFMtSfsx2mjj6U6a?=
- =?iso-8859-1?Q?wTAwOY41GXRsDUYiGVBQhEwOFuZQslWSwSD1SFe1HReAM8n88S5Ndr6ujq?=
- =?iso-8859-1?Q?2ooo9bNnBp/sw=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tNL7Q+46d6jXjK8HAr7QqaORGNNU9fBFJgBmXQEruxQ=;
+        b=JJF7TK8wbHC9NYYDWaEIOtQHklC+eacfnOo27ueNSdrqKaZ5O2L3CTYmfYOA7/ijso
+         r36NV/zGc36Ulb2YnwdY8CE4zwwKESo5TiSJsLvk2a3iSZ4JULrT9gWczk9dJ5FA+z+O
+         +eaLPaMUbHuAPFpE6cYhGu1ygCQbj9Wv0XrleVkB4LHRhU6sI+sVun1kyxZeKld7GIhG
+         KSYbdnm9iSgJr9RZUknqPYZo9swXNx8BJ/WkwIzNJCsAv6nwYReI9P7QqNAiuXx2aD8G
+         u/MQk2bJ5FPz+xY+gFrDSs4LtkjUE2gpF5dc2owzu0460i415qgZesZNKRAbDCS4QiUx
+         NbbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tNL7Q+46d6jXjK8HAr7QqaORGNNU9fBFJgBmXQEruxQ=;
+        b=Yr4nePPP2XQ37sSHvx/GKOu1NG8nkKknATXPzhOznKnlVtzzWpulD7js3FYXiuqq7A
+         tFBdKgmSrwvecXVBFDQg/s2wVUru3QJ06xPlJCe+xcWeT2XShyX+o44iOkyn9b63eXDl
+         5sob8Gss3twE2N0JlmthyBLW3OKsCG2wDlGcdF/zOm20MXiphdcMEBjMxdhhs2epn4z4
+         l3v+x0P+G36XZDAnSzn+CNBxAVrqUHLFgqZO/eLBEBroRPrSfn9A2AfgiE0mIxysX4cf
+         J61oD9bMbZFwiC0njOVduXR96yhjqXBel90t86BN/9GcDYe8h2QimhgyoahC5JMejpgp
+         sD/g==
+X-Gm-Message-State: ACrzQf0SsAXlMlRBFdFkxD9PPo/JfABrRLEBETmhicvxBVfn6Vu4xwdz
+	XEeg+ObQ+6DCCZ0Q5CqNRtQqWJjyZ0gqCZL3V1c=
+X-Google-Smtp-Source: AMsMyM5sH2UckOZkiwfaid6+AtfdQHzNhmu3ucC/+CHPKyykZ3B93zTExmzFGleyL2R10UbWCFILqLTNWxuccqnMdfw=
+X-Received: by 2002:a05:6602:2f02:b0:6a4:5b5d:9dbb with SMTP id
+ q2-20020a0566022f0200b006a45b5d9dbbmr20595733iow.32.1667526056969; Thu, 03
+ Nov 2022 18:40:56 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: multitech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR13MB5111.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b54275f-36cf-44a2-847d-08dabdef9a6a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2022 23:03:21.1695
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f802e804-804f-4d1e-b625-870b4d57fd00
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: A/ni4/hJmbscLU54hdVRSPckrlO70cHt8G6utpdKV5OkH/DKWXStnnMsovay+P/1WwW7+446WFJlyD4eMqeptQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR13MB5620
-X-SASI-RCODE: 200
+References: <CADW9r6MKrarTpFMGsXDm32YLM9zdWnroOFjsztd4kOzrCY3WPg@mail.gmail.com>
+In-Reply-To: <CADW9r6MKrarTpFMGsXDm32YLM9zdWnroOFjsztd4kOzrCY3WPg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Thu, 3 Nov 2022 21:40:45 -0400
+Message-ID: <CAHUNapR=dmk9yVTAmOAd=QGf_F61PzurH5ap0rA6itB+1kRKMg@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH] Enable wlan for tinker board (s)
+To: Oleh Kuzhylnyi <o.kuzhyl@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000004788f405ec9b2aca"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Nov 2022 23:03:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58482
+ <yocto@lists.yoctoproject.org>; Fri, 04 Nov 2022 01:41:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58483
 
-I am using Dunfell.=0A=
-=0A=
-What should I do in a recipe if a python project has no setup.py?=0A=
-=0A=
-Specifically:=0A=
-https://github.com/pyhys/minimalmodbus=A0=A0 =0A=
-=0A=
-I tried adding a trivial setup.py:=0A=
-=0A=
->from setuptools import setup=0A=
->if __name__ =3D=3D '__main__':=0A=
->=A0 =A0 setup()=0A=
-=0A=
-This results in the recipe failing while trying to "import serial" from the=
- python code in the project:=0A=
-=0A=
-Log data follows:=0A=
-| DEBUG: Executing shell function do_compile=0A=
-| Traceback (most recent call last):=0A=
-| =A0 File "setup.py", line 4, in <module>=0A=
-| =A0 =A0 setup()=0A=
-=0A=
-=A0=A0 ...=0A=
-=0A=
-| =A0 File "/home/jklug/mlinux/build/tmp/work/arm926ejste-mlinux-linux-gnue=
-abi/python3-minimalmodbus/2.0.1-r0/git/minimalmodbus.py", line 38, in <modu=
-le>=0A=
-| =A0 =A0 import serial=0A=
-| ModuleNotFoundError: No module named 'serial'=0A=
-=0A=
-=0A=
-=0A=
-John Klug=
+--0000000000004788f405ec9b2aca
+Content-Type: text/plain; charset="UTF-8"
+
+On Sat, Oct 29, 2022 at 3:08 PM Oleh Kuzhylnyi <o.kuzhyl@gmail.com> wrote:
+
+> Greetings,
+>
+> I have faced the issue of missing out-the-box WiFi driver for Tinker board
+> machines.
+> It would be great to have it.
+> Turns out, the open source WiFi driver works well.
+> So, my proposal, let's enable it for tinker board machine?
+>
+> Please, review my patch.
+>
+
+Thank you for your interest in meta-rockchip. Patches should be sent
+in-line and not as attachments. The meta-rockchip top-level README has some
+hints on the best way to send a patch or you could take a look at:
+http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded#Sending_using_git-send-email
+
+Thanks!
+
+
+> Regards,
+> Oleh Kuzhylnyi
+>
+
+--0000000000004788f405ec9b2aca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Sat, Oct 29, 2022 at 3:08 PM Oleh =
+Kuzhylnyi &lt;<a href=3D"mailto:o.kuzhyl@gmail.com">o.kuzhyl@gmail.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr">Greetings,<div><br></div><div>I have faced the issue of missing=
+ out-the-box WiFi driver for Tinker board machines.</div><div>It would be g=
+reat to have it.</div><div>Turns out, the open source WiFi driver works wel=
+l.</div><div>So, my proposal, let&#39;s enable it for tinker board machine?=
+</div><div><br></div><div>Please, review my patch.</div></div></blockquote>=
+<div><br></div><div></div><div>Thank you for your interest in meta-rockchip=
+. Patches should be sent in-line and not as attachments. The meta-rockchip =
+top-level README has some hints on the best way to send a patch or you coul=
+d take a look at:</div><div><a href=3D"http://www.openembedded.org/wiki/How=
+_to_submit_a_patch_to_OpenEmbedded#Sending_using_git-send-email">http://www=
+.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded#Sending_using_=
+git-send-email</a></div><div><br></div><div>Thanks!<br></div><div><br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><b=
+r></div><div>Regards,</div><div>Oleh Kuzhylnyi</div></div>
+</blockquote></div></div>
+
+--0000000000004788f405ec9b2aca--
 
