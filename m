@@ -1,56 +1,81 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <Anders.Montonen@iki.fi>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A5E9C433FE
-	for <webhook@archiver.kernel.org>; Sun,  6 Nov 2022 08:40:30 +0000 (UTC)
-Received: from mailout05.t-online.de (mailout05.t-online.de [194.25.134.82])
- by mx.groups.io with SMTP id smtpd.web08.14463.1667724029050215224
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97ABFC4332F
+	for <webhook@archiver.kernel.org>; Sun,  6 Nov 2022 10:27:10 +0000 (UTC)
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+ by mx.groups.io with SMTP id smtpd.web11.15034.1667730421220573511
  for <yocto@lists.yoctoproject.org>;
- Sun, 06 Nov 2022 01:40:29 -0700
+ Sun, 06 Nov 2022 02:27:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.82, mailfrom: f_l_k@t-online.de)
-Received: from fwd73.dcpf.telekom.de (fwd73.aul.t-online.de [10.223.144.99])
-	by mailout05.t-online.de (Postfix) with SMTP id 7AD0C21C34;
-	Sun,  6 Nov 2022 09:40:26 +0100 (CET)
-Received: from [192.168.178.122] ([79.219.228.48]) by fwd73.t-online.de
-	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
-	esmtp id 1orbCZ-3Emj5M0; Sun, 6 Nov 2022 09:40:23 +0100
-Date: Sun, 06 Nov 2022 09:40:17 +0100
-From: Markus Volk <f_l_k@t-online.de>
+ dkim=pass header.i=@kapsi.fi header.s=20161220 header.b=sL/CQUqG;
+ spf=pass (domain: kapsi.fi, ip: 91.232.154.25, mailfrom: antime@kapsi.fi)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+	s=20161220; h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Content-Type:Sender:Reply-To:Content-ID
+	:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+	Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
+	:List-Post:List-Owner:List-Archive;
+	bh=99SmkK0sXG6JQfcrC3Uhjm9bpA9h/px4r4aS3SYbLxM=; b=sL/CQUqGAjMpSvcbTPCSmHgaya
+	ksM7X6IQ/1BwzfLqOQwKwYZRWq0AcCVMrCtF3if5heNVXxQl5kw7MUeBrBUxAckxGnxprhu3BaX8B
+	DdiZKEFvWygFOGUq/uMqpfvP0MWYmt4+hTphHwCLOyvE1br9L6jJYgNZanrw+0bLCEMw92RTZ76Wl
+	eFlGCBqAEAdkimmK6gONecTKfu8M49BS0/LZ3lX+KXEOSCvQeeRwK1Ezdii83KXshii9Cvf8O8yYR
+	2zLT7NxrXW8IVu8QwZRFoblhusCnnPeufsfNpe0BwYx2pETFJC20UrtJ0/fyxA4koU6Rlnz38oAwA
+	g3FzKIMw==;
+Received: from 89-27-79-167.bb.dnainternet.fi ([89.27.79.167] helo=[192.168.1.137])
+	by mail.kapsi.fi with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <Anders.Montonen@iki.fi>)
+	id 1orcri-004A1Q-3c; Sun, 06 Nov 2022 12:26:58 +0200
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
 Subject: Re: [yocto] undefined reference problem persists
-To: Mistyron <ron.eggler@mistywest.com>
-Cc: yocto@lists.yoctoproject.org
-Message-Id: <534XKR.CLOQ7V0FCACC3@t-online.de>
+From: Anders Montonen <Anders.Montonen@iki.fi>
 In-Reply-To: <49ac7ca4-2af5-43e9-d5f8-02bb98ac372a@mistywest.com>
+Date: Sun, 6 Nov 2022 12:26:56 +0200
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <68E37127-C80B-4A73-A4F1-AB3CA40A8A48@iki.fi>
 References: <49ac7ca4-2af5-43e9-d5f8-02bb98ac372a@mistywest.com>
-X-Mailer: geary/40.0
-MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="=-UCyiF8jbYr8cOCKnaOxu"
-X-TOI-EXPURGATEID: 150726::1667724023-2588998D-5F267114/0/0 CLEAN NORMAL
-X-TOI-MSGID: 8e9f76f1-32a2-45d8-8004-01f7c42799d3
+To: Mistyron <ron.eggler@mistywest.com>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-SA-Exim-Connect-IP: 89.27.79.167
+X-SA-Exim-Mail-From: Anders.Montonen@iki.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 06 Nov 2022 08:40:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58494
+ <yocto@lists.yoctoproject.org>; Sun, 06 Nov 2022 10:27:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58495
 
---=-UCyiF8jbYr8cOCKnaOxu
-Content-Type: text/plain; charset=us-ascii; format=flowed
+On 6 Nov 2022, at 9:45, Mistyron <ron.eggler@mistywest.com> wrote:
+>=20
+> Hi,
+>=20
+> I'm working with dunfell and want to compile and install the drivers =
+for the Laird LWB5+ module (available from =
+https://github.com/LairdCP/meta-laird-cp).
+> I have included the path to the layer in meta-laird-cp-pre-3.4 in my =
+`bblayers.conf` and since I need the networkmanager and with information =
+from their support team (don't trust the README apparently), I've added =
+`lrd-networkmanager-sterling` to the `IMAGE_INSTALL` list in =
+`sample-image-cp-lwb5plus.bb`. When I invoke `$ bitbake =
+sample-image-cp-lwb5plus`, I keep getting:
+>=20
+>     | =
+/usr/src/debug/lrd-networkmanager-sterling/10.4.0.10-r0/build/../lrd-netwo=
+rk-manager-10.4.0.10/src/nmcli/common.c:904: undefined reference to =
+`rl_echo_signal_char'
+>=20
+> even though I've added `readline` to the `DEPENDS` list. Why is this? =
+I expected the `rl_echo_signal_char` dependency to be resolved, any =
+hints?
 
-Am So, 6. Nov 2022 um 00:45:36 -0700 schrieb Mistyron 
-<ron.eggler@mistywest.com>:
->     | 
-> /usr/src/debug/lrd-networkmanager-sterling/10.4.0.10-r0/build/../lrd-network-manager-10.4.0.10/src/nmcli/common.c:904: 
-> undefined reference to `rl_echo_signal_char'
+Are you using meta-gplv2? That function doesn=E2=80=99t exist yet in the =
+version of readline provided by that layer.
 
-missing readline dependency ?
-
-
---=-UCyiF8jbYr8cOCKnaOxu
-Content-Type: text/html; charset=us-ascii
-
-<div id="geary-body" dir="auto">Am So, 6. Nov 2022 um 00:45:36 -0700 schrieb Mistyron &lt;ron.eggler@mistywest.com&gt;:<br><blockquote type="cite"><div class="plaintext" style="white-space: break-spaces;">&nbsp;&nbsp;&nbsp; | /usr/src/debug/lrd-networkmanager-sterling/10.4.0.10-r0/build/../lrd-network-manager-10.4.0.10/src/nmcli/common.c:904: undefined reference to `rl_echo_signal_char'</div></blockquote><div><br></div><div>missing readline dependency ?</div></div>
---=-UCyiF8jbYr8cOCKnaOxu--
-
+Regards,
+Anders=
 
