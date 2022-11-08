@@ -1,929 +1,1599 @@
-Return-Path: <amgadhs@codehill.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AC960C4332F
-	for <webhook@archiver.kernel.org>; Tue,  8 Nov 2022 08:21:58 +0000 (UTC)
-Subject: Installing python package using maturin #python
-To: yocto@lists.yoctoproject.org
-From: amgadhs@codehill.com
-X-Originating-Location: Dubai, AE (94.204.111.151)
-X-Originating-Platform: Mac Chrome 107
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13905C433FE
+	for <webhook@archiver.kernel.org>; Tue,  8 Nov 2022 15:43:01 +0000 (UTC)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web12.9428.1667922176757283993
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 08 Nov 2022 07:42:56 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=FRvJ4ik3;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id f63so13734933pgc.2
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Nov 2022 07:42:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dfyM/BLXZ3CDUfvMQWCxUkL6rz0Vp6T8JeSS28P/h9k=;
+        b=FRvJ4ik3WPUFYPdV1s1fvFpc6shC2wmuYEMprGUS3IfAzqnohmVzuB+Zkdjd/UEAYz
+         q304m0T5NtELdhDGxNLd1r5hPZVK1V2ZwMzenqOOmhei2D2EGlnOVXitSizXuijWhDyz
+         UfHcKoEt3XXaRt/vGAPEU3FKdlhriZWsZlhfL5NsM6jwaBacIN87TtiKmH2XTIuk75kb
+         4ycsV4xWqKTOjhLg66lXLWSCXYzgrdN7ywnOMgM7ZcfjIDWUtw9iTIvpu2hbwdxhb1yr
+         1uxOeVe+UDFNU0ilky0RfGw6kb3rOUiencvgna8IJ2DTjHZsp8w+dK4zK080exE2WVeH
+         hqUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dfyM/BLXZ3CDUfvMQWCxUkL6rz0Vp6T8JeSS28P/h9k=;
+        b=0nToG53QXjse5DpcoxeoNlgvXe7qT0njXkRe2e6qvPTrEupUYvtGQ6vEkWoMrhKRb3
+         ypAR+h2NT50hILu2f4fXtwmYvG0VB1e38Jx4EdqsiVQsIN/ObhCcDfBj9+hsGMXyGRD9
+         2drf2+lX4x3Or3CLMLARoNVGarZvc3VOhITW162JU+/t57uL+yt2sY5hGzpSYtNOszfF
+         4lTXtiNCNtKRdmQlivnEY8rPPNFZ96yBA5MEMSzcktp/FSsLS91c7jyGifhWhYeNLOmj
+         0hclBIZ6YxjD/DWDPmhFcW7hr2pRvuLUhmNcaJKt4leP+45W0COzG4L6hUe8Hhgs8bBp
+         qGrg==
+X-Gm-Message-State: ACrzQf2TjCNPN4htrXSV2A2JtK3LVRIt8naiIgCjNVlIF1rhEvKrpGgB
+	THBXiqF65s0TBVbMCW1JCIE=
+X-Google-Smtp-Source: AMsMyM4zJ2n34ONgMe9OvKSAj06tMBD9rN1VTEfg8uEkJwerQhUMEiyV4yvlgmiSiKinhpWPMg5xmw==
+X-Received: by 2002:a63:90c4:0:b0:46f:5a21:3b5d with SMTP id a187-20020a6390c4000000b0046f5a213b5dmr34035654pge.210.1667922175904;
+        Tue, 08 Nov 2022 07:42:55 -0800 (PST)
+Received: from skjolley ([2600:1011:a11b:4d68:293c:e2d4:1418:7020])
+        by smtp.gmail.com with ESMTPSA id u14-20020a170903124e00b0018693643504sm7114589plh.40.2022.11.08.07.42.54
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 08 Nov 2022 07:42:55 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Status 8 November 2022 (WW45)
+Date: Tue, 8 Nov 2022 08:42:54 -0700
+Message-ID: <1c1301d8f388$c51d6750$4f5835f0$@gmail.com>
 MIME-Version: 1.0
-Date: Tue, 08 Nov 2022 00:21:57 -0800
-Message-ID: <gh7O.1667895717521589522.790K@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="rreDdG5DXW3HoRdRqhWr"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_1C14_01D8F34E.18C06410"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdjziKPmCkIyf7/YSjyAAFI288s1Ww==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Nov 2022 08:21:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58524
+ <yocto@lists.yoctoproject.org>; Tue, 08 Nov 2022 15:43:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58525
 
---rreDdG5DXW3HoRdRqhWr
-Content-Type: text/plain; charset="utf-8"
+This is a multipart message in MIME format.
+
+------=_NextPart_000_1C14_01D8F34E.18C06410
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Current Dev Position: YP 4.2 M1
+
+Next Deadline: 5th December 2022 YP 4.2 Build
+
+ 
+
+Next Team Meetings:
+
+*	Bug Triage meeting Thursday November 10th 7:30 am PDT (
+<https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09>
+https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
+*	Weekly Project Engineering Sync Tuesday November 8th at 8 am PDT (
+<https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
+<https://zoom.us/j/990892712> )
+*	Twitch -  See  <https://www.twitch.tv/theyoctojester>
+https://www.twitch.tv/theyoctojester
+
+ 
+
+Key Status/Updates:
+
+*	YP 4.0.5 was released.
+*	There have been a number of important CVEs (e.g. the recent openssl
+one) which are merging to branches as they are ready, we suggest people keep
+an eye on the branches.
+*	Patches continue to flow steadily into master.
+*	The CVEs in master continue to fall and patches are flowing into the
+other stable branches.
+*	We are making some progress with patch submission upstream,
+including gcc. This does sometimes mean helping resolve other issues those
+patches then introduce which can be time consuming, thanks go to all helping
+work on this.
+*	The number of AB-INT issues continues to be of concern, we're
+working to try and resolve the most frequently occurring issues to enable
+cleaner test runs but could use help.
+*	We do have a growing number of bugs in bugzilla, for example a
+number of rust bugs were opened recently. We are probably at an all time low
+on numbers of people able to work on bugs too which is a worrying
+combination.
+*	If anyone is working on features for 4.2, please do let us know
+about them so we can plan accordingly. Even an idea of what is coming is
+helpful to plan.
+
+ 
+
+Ways to contribute:
+
+*	There are bugs identified as possible for newcomers to the project:
+<https://wiki.yoctoproject.org/wiki/Newcomers>
+https://wiki.yoctoproject.org/wiki/Newcomers
+*	There are bugs that are currently unassigned for YP 4.2. See:
+<https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.1_Unassigned_Enha
+ncements.2FBugs>
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.2_Unassigned_Enhan
+cements.2FBugs
+*	We'd welcome new maintainers for recipes in OE-Core. Please see the
+list at:
+<http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/mai
+ntainers.inc>
+http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/main
+tainers.inc and discuss with the existing maintainer, or ask on the OE-Core
+mailing list. We will likely move a chunk of these to "Unassigned" soon to
+help facilitate this.
+*	Help is very much welcome in trying to resolve our autobuilder
+intermittent issues. You can see the list of failures we're continuing to
+see by searching for the "AB-INT" tag in bugzilla:
+<https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT>
+https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT.
+*	Help us resolve CVE issues:
+<https://autobuilder.yocto.io/pub/non-release/patchmetrics/> CVE metrics 
+
+ 
+
+YP 4.2 Milestone Dates:
+
+*	YP 4.2 M1 build date 2022/12/05
+*	YP 4.2 M1 Release date 2022/12/16
+*	YP 4.2 M2 build date 2023/01/23
+*	YP 4.2 M2 Release date 2023/02/03
+*	YP 4.2 M3 build date 2023/02/20
+*	YP 4.2 M3 Release date 2023/03/03
+*	YP 4.2 M4 build date 2023/04/03
+*	YP 4.2 M4 Release date 2023/04/28
+
+ 
+
+Upcoming dot releases:
+
+*	YP 4.0.5 is released
+*	YP 4.1.1 build date 2022/11/14
+*	YP 4.1.1 Release date 2022/11/25
+*	YP 3.1.21 build date 2022/11/28
+*	YP 3.1.21 Release date 2022/12/09
+*	YP 4.0.6 build date 2022/12/12
+*	YP 4.0.6 Release date 2022/12/23
+*	YP 4.1.2 build date 2023/01/09
+*	YP 4.1.2 Release date 2023/01/20
+*	YP 3.1.22 build date 2023/01/16
+*	YP 3.1.22 Release date 2023/01/27
+*	YP 4.0.7 build date 2023/01/30
+*	YP 4.0.7 Release date 2023/02/10
+*	YP 3.1.23 build date 2023/02/13
+*	YP 3.1.23 Release date 2023/02/24
+*	YP 4.0.8 build date 2023/02/27
+*	YP 4.0.8 Release date 2023/03/10
+*	YP 4.1.3 build date 2023/03/06
+*	YP 4.1.3 Release date 2023/03/17
+*	YP 3.1.24 build date 2023/03/20
+*	YP 3.1.24 Release date 2023/03/31
+*	YP 4.0.9 build date 2023/04/10
+*	YP 4.0.9 Release date 2023/04/21
+*	YP 4.1.4 build date 2023/05/01
+*	YP 4.1.4 Release date 2023/05/13
+*	YP 3.1.25 build date 2023/05/08
+*	YP 3.1.25 Release date 2023/05/19
+*	YP 4.0.10 build date 2023/05/15
+*	YP 4.0.10 Release date 2023/05/26
+
+ 
+
+Tracking Metrics:
+
+*	WDD 2424 (last week 2412) (
+<https://wiki.yoctoproject.org/charts/combo.html>
+https://wiki.yoctoproject.org/charts/combo.html)
+*	OE-Core/Poky Patch Metrics
+
+*	Total patches found: 1201 (last week 1207)
+*	Patches in the Pending State: 296 (25%) [last week 309 (26%)]
+
+*	 <https://autobuilder.yocto.io/pub/non-release/patchmetrics/>
+https://autobuilder.yocto.io/pub/non-release/patchmetrics/
+
+ 
+
+The Yocto Project's technical governance is through its Technical Steering
+Committee, more information is available at:
+
+ <https://wiki.yoctoproject.org/wiki/TSC>
+https://wiki.yoctoproject.org/wiki/TSC
+
+ 
+
+The Status reports are now stored on the wiki at:
+<https://wiki.yoctoproject.org/wiki/Weekly_Status>
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+ 
+
+[If anyone has suggestions for other information you'd like to see on this
+weekly status update, let us know!]
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_1C14_01D8F34E.18C06410
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0A1A_01D8EDC6.0F065390";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:340819261;
+	mso-list-template-ids:-1491938120;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:486243632;
+	mso-list-template-ids:34869352;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:554853528;
+	mso-list-template-ids:-1059690256;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3
+	{mso-list-id:645624111;
+	mso-list-template-ids:-295133900;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:905147860;
+	mso-list-template-ids:469254534;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:960652180;
+	mso-list-template-ids:-535017736;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6
+	{mso-list-id:1049450049;
+	mso-list-template-ids:-1862501404;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l6:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7
+	{mso-list-id:1182013923;
+	mso-list-template-ids:-1095607088;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8
+	{mso-list-id:1214542617;
+	mso-list-template-ids:-1392239056;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l8:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l8:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9
+	{mso-list-id:1348560179;
+	mso-list-template-ids:1263729480;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10
+	{mso-list-id:1354918375;
+	mso-list-template-ids:552665046;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l10:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11
+	{mso-list-id:1457870596;
+	mso-list-template-ids:347532994;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l11:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Current Dev =
+Position: YP 4.2 M1</span><o:p></o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Deadline: 5th =
+December 2022 YP 4.2 Build</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Team =
+Meetings:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Bug Triage meeting Thursday =
+November 10th 7:30 am PDT (<a =
+href=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y=
+0bFd5aVpHVVZ6dz09</span></a>)<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Weekly Project Engineering Sync =
+Tuesday November 8th at 8 am PDT (<a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
+1bkcrYjRrcmJsUT09</span></a><a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l0 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Twitch -&nbsp; See <a =
+href=3D"https://www.twitch.tv/theyoctojester"><span =
+style=3D'color:#1155CC'>https://www.twitch.tv/theyoctojester</span></a><o=
+:p></o:p></span></li></ul><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Key =
+Status/Updates:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.5 was =
+released.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>There have been a number of =
+important CVEs (e.g. the recent openssl one) which are merging to =
+branches as they are ready, we suggest people keep an eye on the =
+branches.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Patches continue to flow =
+steadily into master.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>The CVEs in master continue to =
+fall and patches are flowing into the other stable =
+branches.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We are making some progress =
+with patch submission upstream, including gcc. This does sometimes mean =
+helping resolve other issues those patches then introduce which can be =
+time consuming, thanks go to all helping work on =
+this.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>The number of AB-INT issues =
+continues to be of concern, we&#8217;re working to try and resolve the =
+most frequently occurring issues to enable cleaner test runs but could =
+use help.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We do have a growing number of =
+bugs in bugzilla, for example a number of rust bugs were opened =
+recently. We are probably at an all time low on numbers of people able =
+to work on bugs too which is a worrying =
+combination.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>If anyone is working on =
+features for 4.2, please do let us know about them so we can plan =
+accordingly. Even an idea of what is coming is helpful to =
+plan.<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Ways to =
+contribute:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>There are bugs identified as =
+possible for newcomers to the project: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Newcomers"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Newcomers</spa=
+n></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>There are bugs that are =
+currently unassigned for YP 4.2. See: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.1_Unass=
+igned_Enhancements.2FBugs"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Bug_Triage#Med=
+ium.2B_4.2_Unassigned_Enhancements.2FBugs</span></a><o:p></o:p></span></l=
+i><li style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 =
+level1 lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We&#8217;d welcome new =
+maintainers for recipes in OE-Core. Please see the list at: <a =
+href=3D"http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/i=
+nclude/maintainers.inc"><span =
+style=3D'color:#1155CC'>http://git.yoctoproject.org/cgit.cgi/poky/tree/me=
+ta/conf/distro/include/maintainers.inc</span></a> and discuss with the =
+existing maintainer, or ask on the OE-Core mailing list. We will likely =
+move a chunk of these to &#8220;Unassigned&#8221; soon to help =
+facilitate this.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Help is very much welcome in =
+trying to resolve our autobuilder intermittent issues. You can see the =
+list of failures we&#8217;re continuing to see by searching for the =
+&#8220;AB-INT&#8221; tag in bugzilla: <a =
+href=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-IN=
+T"><span =
+style=3D'color:#1155CC'>https://bugzilla.yoctoproject.org/buglist.cgi?qui=
+cksearch=3DAB-INT</span></a>.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Help us resolve CVE issues: <a =
+href=3D"https://autobuilder.yocto.io/pub/non-release/patchmetrics/"><span=
+ style=3D'color:#1155CC'>CVE =
+metrics</span></a>&nbsp;<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>YP 4.2 Milestone =
+Dates:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M1 build date =
+2022/12/05<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M1 Release date =
+2022/12/16<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M2 build date =
+2023/01/23<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M2 Release date =
+2023/02/03<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M3 build date =
+2023/02/20<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M3 Release date =
+2023/03/03<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M4 build date =
+2023/04/03<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.2 M4 Release date =
+2023/04/28<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Upcoming dot =
+releases:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.5 is =
+released<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.1 build date =
+2022/11/14<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.1 Release date =
+2022/11/25<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.21 build date =
+2022/11/28<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.21 Release date =
+2022/12/09<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.6 build date =
+2022/12/12<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.6 Release date =
+2022/12/23<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.2 build date =
+2023/01/09<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.2 Release date =
+2023/01/20<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.22 build date =
+2023/01/16<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.22 Release date =
+2023/01/27<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.7 build date =
+2023/01/30<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.7 Release date =
+2023/02/10<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.23 build date =
+2023/02/13<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.23 Release date =
+2023/02/24<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.8 build date =
+2023/02/27<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.8 Release date =
+2023/03/10<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.3 build date =
+2023/03/06<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.3 Release date =
+2023/03/17<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.24 build date =
+2023/03/20<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.24 Release date =
+2023/03/31<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.9 build date =
+2023/04/10<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.9 Release date =
+2023/04/21<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.4 build date =
+2023/05/01<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.1.4 Release date =
+2023/05/13<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.25 build date =
+2023/05/08<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.25 Release date =
+2023/05/19<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.10 build date =
+2023/05/15<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 4.0.10 Release date =
+2023/05/26<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Tracking =
+Metrics:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level1 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>WDD 2424 (last week =
+2412)</span><span style=3D'font-family:Consolas'> (</span><span =
+style=3D'font-family:"Arial",sans-serif'><a =
+href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/charts/combo.html</=
+span></a></span><span style=3D'font-family:Consolas'>)</span><span =
+style=3D'font-family:"Arial",sans-serif'><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level1 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>OE-Core/Poky Patch =
+Metrics</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Dcircle><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level2 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Total patches found: 1201 (last =
+week 1207)<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level2 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Patches in the Pending State: =
+296 (25%) [last week 309 (26%)]</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li></ul><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level1 =
+lfo12;vertical-align:baseline'><span style=3D'font-family:Consolas'><a =
+href=3D"https://autobuilder.yocto.io/pub/non-release/patchmetrics/"><span=
+ =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://autobuilde=
+r.yocto.io/pub/non-release/patchmetrics/</span></a><o:p></o:p></span></li=
+></ul><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Yocto =
+Project&#8217;s technical governance is through its Technical Steering =
+Committee, more information is available at:</span><o:p></o:p></p><p =
+style=3D'margin:0in'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/TSC"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/TSC</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Status reports =
+are now stored on the wiki at: </span><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/Weekly_Status</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>[If anyone has =
+suggestions for other information you&#8217;d like to see on this weekly =
+status update, let us know!]</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_1C14_01D8F34E.18C06410--
 
-I would greatly appreciate any help fixing this issue. I need to install th=
-e Python package orjson from PyPI on our Kirkstone build. Since it requires=
- maturin to install I created a recipe for each one of them:
-
-This is maturin-native_0.13.7.bb:
-
-SUMMARY =3D "Build and publish crates with pyo3, rust-cpython and cffi bind=
-ings as well as rust binaries as python packages"
-DESCRIPTION =3D "Build and publish crates with pyo3, rust-cpython and cffi =
-bindings as=C2=A0well as rust binaries as python packages"
-
-LICENSE =3D "MIT | Apache-2.0"
-LIC_FILES_CHKSUM =3D "file://license-apache;md5=3D1836efb2eb779966696f473ee=
-8540542 \
-file://license-mit;md5=3D85fd3b67069cff784d98ebfc7d5c0797"
-
-SRC_URI[sha256sum] =3D "c0a77aa0c57f945649ca711c806203a1b6888ad49c2b8b85196=
-ffdcf0421db77"
-
-inherit cargo pypi native
-
-SRC_URI +=3D " \
-crate://crates.io/addr2line/0.17.0 \
-crate://crates.io/adler/1.0.2 \
-crate://crates.io/aes/0.7.5 \
-crate://crates.io/ahash/0.7.6 \
-crate://crates.io/aho-corasick/0.7.19 \
-crate://crates.io/anyhow/1.0.65 \
-crate://crates.io/async-io/1.10.0 \
-crate://crates.io/async-lock/2.6.0 \
-crate://crates.io/atty/0.2.14 \
-crate://crates.io/autocfg/1.1.0 \
-crate://crates.io/backtrace/0.3.66 \
-crate://crates.io/base64/0.13.1 \
-crate://crates.io/bitflags/1.3.2 \
-crate://crates.io/block-buffer/0.10.3 \
-crate://crates.io/block-buffer/0.9.0 \
-crate://crates.io/block-modes/0.8.1 \
-crate://crates.io/block-padding/0.2.1 \
-crate://crates.io/bstr/0.2.17 \
-crate://crates.io/bumpalo/3.11.0 \
-crate://crates.io/byteorder/1.4.3 \
-crate://crates.io/bytes/1.2.1 \
-crate://crates.io/bytesize/1.1.0 \
-crate://crates.io/bzip2-sys/0.1.11+1.0.8 \
-crate://crates.io/bzip2/0.4.3 \
-crate://crates.io/cab/0.4.1 \
-crate://crates.io/cache-padded/1.2.0 \
-crate://crates.io/camino/1.1.1 \
-crate://crates.io/cargo-options/0.3.1 \
-crate://crates.io/cargo-platform/0.1.2 \
-crate://crates.io/cargo-xwin/0.10.2 \
-crate://crates.io/cargo-zigbuild/0.12.3 \
-crate://crates.io/cargo_metadata/0.15.0 \
-crate://crates.io/cbindgen/0.24.3 \
-crate://crates.io/cc/1.0.73 \
-crate://crates.io/cfb/0.7.3 \
-crate://crates.io/cfg-if/1.0.0 \
-crate://crates.io/charset/0.1.3 \
-crate://crates.io/chunked_transfer/1.4.0 \
-crate://crates.io/cipher/0.3.0 \
-crate://crates.io/clap/3.2.23 \
-crate://crates.io/clap_complete/3.2.5 \
-crate://crates.io/clap_complete_fig/3.2.4 \
-crate://crates.io/clap_derive/3.2.18 \
-crate://crates.io/clap_lex/0.2.4 \
-crate://crates.io/cli-table/0.4.7 \
-crate://crates.io/combine/4.6.6 \
-crate://crates.io/concurrent-queue/1.2.4 \
-crate://crates.io/configparser/3.0.2 \
-crate://crates.io/console/0.15.2 \
-crate://crates.io/core-foundation-sys/0.8.3 \
-crate://crates.io/core-foundation/0.9.3 \
-crate://crates.io/cpufeatures/0.2.5 \
-crate://crates.io/crc32fast/1.3.2 \
-crate://crates.io/crossbeam-channel/0.5.6 \
-crate://crates.io/crossbeam-deque/0.8.2 \
-crate://crates.io/crossbeam-epoch/0.9.11 \
-crate://crates.io/crossbeam-utils/0.8.12 \
-crate://crates.io/crypto-common/0.1.6 \
-crate://crates.io/crypto-mac/0.11.1 \
-crate://crates.io/ctor/0.1.23 \
-crate://crates.io/data-encoding/2.3.2 \
-crate://crates.io/derivative/2.2.0 \
-crate://crates.io/dialoguer/0.10.2 \
-crate://crates.io/diff/0.1.13 \
-crate://crates.io/digest/0.10.5 \
-crate://crates.io/digest/0.9.0 \
-crate://crates.io/dirs-sys/0.3.7 \
-crate://crates.io/dirs/4.0.0 \
-crate://crates.io/dunce/1.0.3 \
-crate://crates.io/either/1.8.0 \
-crate://crates.io/encode_unicode/0.3.6 \
-crate://crates.io/encoding-index-japanese/1.20141219.5 \
-crate://crates.io/encoding-index-korean/1.20141219.5 \
-crate://crates.io/encoding-index-simpchinese/1.20141219.5 \
-crate://crates.io/encoding-index-singlebyte/1.20141219.5 \
-crate://crates.io/encoding-index-tradchinese/1.20141219.5 \
-crate://crates.io/encoding/0.2.33 \
-crate://crates.io/encoding_index_tests/0.1.4 \
-crate://crates.io/encoding_rs/0.8.31 \
-crate://crates.io/enumflags2/0.6.4 \
-crate://crates.io/enumflags2_derive/0.6.4 \
-crate://crates.io/errno-dragonfly/0.1.2 \
-crate://crates.io/errno/0.2.8 \
-crate://crates.io/event-listener/2.5.3 \
-crate://crates.io/fastrand/1.8.0 \
-crate://crates.io/fat-macho/0.4.5 \
-crate://crates.io/filetime/0.2.17 \
-crate://crates.io/flate2/1.0.24 \
-crate://crates.io/fnv/1.0.7 \
-crate://crates.io/foreign-types-shared/0.1.1 \
-crate://crates.io/foreign-types/0.3.2 \
-crate://crates.io/form_urlencoded/1.1.0 \
-crate://crates.io/fs-err/2.8.1 \
-crate://crates.io/futures-channel/0.3.25 \
-crate://crates.io/futures-core/0.3.25 \
-crate://crates.io/futures-executor/0.3.25 \
-crate://crates.io/futures-io/0.3.25 \
-crate://crates.io/futures-lite/1.12.0 \
-crate://crates.io/futures-macro/0.3.25 \
-crate://crates.io/futures-sink/0.3.25 \
-crate://crates.io/futures-task/0.3.25 \
-crate://crates.io/futures-util/0.3.25 \
-crate://crates.io/futures/0.3.25 \
-crate://crates.io/generic-array/0.14.6 \
-crate://crates.io/getrandom/0.2.8 \
-crate://crates.io/gimli/0.26.2 \
-crate://crates.io/glob/0.3.0 \
-crate://crates.io/globset/0.4.9 \
-crate://crates.io/goblin/0.5.4 \
-crate://crates.io/hashbrown/0.12.3 \
-crate://crates.io/heck/0.4.0 \
-crate://crates.io/hermit-abi/0.1.19 \
-crate://crates.io/hkdf/0.11.0 \
-crate://crates.io/hmac/0.11.0 \
-crate://crates.io/human-panic/1.0.3 \
-crate://crates.io/idna/0.3.0 \
-crate://crates.io/ignore/0.4.18 \
-crate://crates.io/indexmap/1.9.1 \
-crate://crates.io/indicatif/0.17.0-rc.6 \
-crate://crates.io/indoc/1.0.7 \
-crate://crates.io/instant/0.1.12 \
-crate://crates.io/io-lifetimes/0.7.4 \
-crate://crates.io/itertools/0.10.5 \
-crate://crates.io/itoa/1.0.4 \
-crate://crates.io/js-sys/0.3.60 \
-crate://crates.io/keyring/1.2.0 \
-crate://crates.io/lazy_static/1.4.0 \
-crate://crates.io/lddtree/0.3.1 \
-crate://crates.io/libc/0.2.137 \
-crate://crates.io/linux-raw-sys/0.0.46 \
-crate://crates.io/lock_api/0.4.9 \
-crate://crates.io/log/0.4.17 \
-crate://crates.io/lzxd/0.1.4 \
-crate://crates.io/mailparse/0.13.8 \
-crate://crates.io/matchers/0.1.0 \
-crate://crates.io/memchr/2.5.0 \
-crate://crates.io/memoffset/0.6.5 \
-crate://crates.io/mime/0.3.16 \
-crate://crates.io/mime_guess/2.0.4 \
-crate://crates.io/minijinja/0.20.0 \
-crate://crates.io/miniz_oxide/0.5.4 \
-crate://crates.io/msi/0.5.0 \
-crate://crates.io/multipart/0.18.0 \
-crate://crates.io/native-tls/0.2.10 \
-crate://crates.io/nb-connect/1.2.0 \
-crate://crates.io/nix/0.22.3 \
-crate://crates.io/nu-ansi-term/0.46.0 \
-crate://crates.io/num-bigint/0.4.3 \
-crate://crates.io/num-complex/0.4.2 \
-crate://crates.io/num-integer/0.1.45 \
-crate://crates.io/num-iter/0.1.43 \
-crate://crates.io/num-rational/0.4.1 \
-crate://crates.io/num-traits/0.2.15 \
-crate://crates.io/num/0.4.0 \
-crate://crates.io/num_cpus/1.13.1 \
-crate://crates.io/num_threads/0.1.6 \
-crate://crates.io/number_prefix/0.4.0 \
-crate://crates.io/object/0.29.0 \
-crate://crates.io/once_cell/1.15.0 \
-crate://crates.io/opaque-debug/0.3.0 \
-crate://crates.io/openssl-macros/0.1.0 \
-crate://crates.io/openssl-probe/0.1.5 \
-crate://crates.io/openssl-src/111.22.0+1.1.1q \
-crate://crates.io/openssl-sys/0.9.77 \
-crate://crates.io/openssl/0.10.42 \
-crate://crates.io/os_str_bytes/6.3.1 \
-crate://crates.io/os_type/2.6.0 \
-crate://crates.io/output_vt100/0.1.3 \
-crate://crates.io/overload/0.1.1 \
-crate://crates.io/parking/2.0.0 \
-crate://crates.io/parking_lot/0.12.1 \
-crate://crates.io/parking_lot_core/0.9.3 \
-crate://crates.io/path-slash/0.2.1 \
-crate://crates.io/pep440/0.2.0 \
-crate://crates.io/percent-encoding/2.2.0 \
-crate://crates.io/pin-project-lite/0.2.9 \
-crate://crates.io/pin-utils/0.1.0 \
-crate://crates.io/pkg-config/0.3.25 \
-crate://crates.io/plain/0.2.3 \
-crate://crates.io/platform-info/1.0.0 \
-crate://crates.io/polling/2.3.0 \
-crate://crates.io/ppv-lite86/0.2.16 \
-crate://crates.io/pretty_assertions/1.3.0 \
-crate://crates.io/proc-macro-crate/0.1.5 \
-crate://crates.io/proc-macro-crate/1.2.1 \
-crate://crates.io/proc-macro-error-attr/1.0.4 \
-crate://crates.io/proc-macro-error/1.0.4 \
-crate://crates.io/proc-macro2/1.0.47 \
-crate://crates.io/pyproject-toml/0.3.1 \
-crate://crates.io/python-pkginfo/0.5.4 \
-crate://crates.io/quote/1.0.21 \
-crate://crates.io/quoted_printable/0.4.5 \
-crate://crates.io/rand/0.8.5 \
-crate://crates.io/rand_chacha/0.3.1 \
-crate://crates.io/rand_core/0.6.4 \
-crate://crates.io/rayon-core/1.9.3 \
-crate://crates.io/rayon/1.5.3 \
-crate://crates.io/redox_syscall/0.2.16 \
-crate://crates.io/redox_users/0.4.3 \
-crate://crates.io/regex-automata/0.1.10 \
-crate://crates.io/regex-syntax/0.6.27 \
-crate://crates.io/regex/1.6.0 \
-crate://crates.io/remove_dir_all/0.5.3 \
-crate://crates.io/rfc2047-decoder/0.1.2 \
-crate://crates.io/ring/0.16.20 \
-crate://crates.io/rpassword/6.0.1 \
-crate://crates.io/rustc-demangle/0.1.21 \
-crate://crates.io/rustc_version/0.4.0 \
-crate://crates.io/rustix/0.35.12 \
-crate://crates.io/rustls/0.20.7 \
-crate://crates.io/rustversion/1.0.9 \
-crate://crates.io/ryu/1.0.11 \
-crate://crates.io/same-file/1.0.6 \
-crate://crates.io/schannel/0.1.20 \
-crate://crates.io/scoped-tls/1.0.0 \
-crate://crates.io/scopeguard/1.1.0 \
-crate://crates.io/scroll/0.11.0 \
-crate://crates.io/scroll_derive/0.11.0 \
-crate://crates.io/sct/0.7.0 \
-crate://crates.io/secret-service/2.0.2 \
-crate://crates.io/security-framework-sys/2.6.1 \
-crate://crates.io/security-framework/2.7.0 \
-crate://crates.io/semver/1.0.14 \
-crate://crates.io/serde/1.0.147 \
-crate://crates.io/serde_derive/1.0.147 \
-crate://crates.io/serde_json/1.0.87 \
-crate://crates.io/serde_repr/0.1.9 \
-crate://crates.io/sha2/0.10.6 \
-crate://crates.io/sha2/0.9.9 \
-crate://crates.io/sharded-slab/0.1.4 \
-crate://crates.io/slab/0.4.7 \
-crate://crates.io/smallvec/1.10.0 \
-crate://crates.io/smawk/0.3.1 \
-crate://crates.io/socket2/0.4.7 \
-crate://crates.io/socks/0.3.4 \
-crate://crates.io/spin/0.5.2 \
-crate://crates.io/static_assertions/1.1.0 \
-crate://crates.io/strsim/0.10.0 \
-crate://crates.io/subtle/2.4.1 \
-crate://crates.io/syn/1.0.103 \
-crate://crates.io/tar/0.4.38 \
-crate://crates.io/target-lexicon/0.12.4 \
-crate://crates.io/tempfile/3.3.0 \
-crate://crates.io/termcolor/1.1.3 \
-crate://crates.io/terminal_size/0.1.17 \
-crate://crates.io/terminal_size/0.2.1 \
-crate://crates.io/textwrap/0.15.1 \
-crate://crates.io/textwrap/0.16.0 \
-crate://crates.io/thiserror-impl/1.0.37 \
-crate://crates.io/thiserror/1.0.37 \
-crate://crates.io/thread_local/1.1.4 \
-crate://crates.io/time-macros/0.2.4 \
-crate://crates.io/time/0.3.15 \
-crate://crates.io/tinyvec/1.6.0 \
-crate://crates.io/tinyvec_macros/0.1.0 \
-crate://crates.io/toml/0.5.9 \
-crate://crates.io/toml_edit/0.14.4 \
-crate://crates.io/tracing-attributes/0.1.23 \
-crate://crates.io/tracing-core/0.1.30 \
-crate://crates.io/tracing-log/0.1.3 \
-crate://crates.io/tracing-serde/0.1.3 \
-crate://crates.io/tracing-subscriber/0.3.16 \
-crate://crates.io/tracing/0.1.37 \
-crate://crates.io/twox-hash/1.6.3 \
-crate://crates.io/typenum/1.15.0 \
-crate://crates.io/unicase/2.6.0 \
-crate://crates.io/unicode-bidi/0.3.8 \
-crate://crates.io/unicode-ident/1.0.5 \
-crate://crates.io/unicode-linebreak/0.1.4 \
-crate://crates.io/unicode-normalization/0.1.22 \
-crate://crates.io/unicode-width/0.1.10 \
-crate://crates.io/untrusted/0.7.1 \
-crate://crates.io/ureq/2.5.0 \
-crate://crates.io/url/2.3.1 \
-crate://crates.io/uuid/0.8.2 \
-crate://crates.io/uuid/1.2.1 \
-crate://crates.io/valuable/0.1.0 \
-crate://crates.io/vcpkg/0.2.15 \
-crate://crates.io/version_check/0.9.4 \
-crate://crates.io/waker-fn/1.1.0 \
-crate://crates.io/walkdir/2.3.2 \
-crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1 \
-crate://crates.io/wasm-bindgen-backend/0.2.83 \
-crate://crates.io/wasm-bindgen-macro-support/0.2.83 \
-crate://crates.io/wasm-bindgen-macro/0.2.83 \
-crate://crates.io/wasm-bindgen-shared/0.2.83 \
-crate://crates.io/wasm-bindgen/0.2.83 \
-crate://crates.io/web-sys/0.3.60 \
-crate://crates.io/webpki-roots/0.22.5 \
-crate://crates.io/webpki/0.22.0 \
-crate://crates.io/wepoll-ffi/0.1.2 \
-crate://crates.io/which/4.3.0 \
-crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
-crate://crates.io/winapi-util/0.1.5 \
-crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
-crate://crates.io/winapi/0.3.9 \
-crate://crates.io/windows-sys/0.36.1 \
-crate://crates.io/windows_aarch64_msvc/0.36.1 \
-crate://crates.io/windows_i686_gnu/0.36.1 \
-crate://crates.io/windows_i686_msvc/0.36.1 \
-crate://crates.io/windows_x86_64_gnu/0.36.1 \
-crate://crates.io/windows_x86_64_msvc/0.36.1 \
-crate://crates.io/xattr/0.2.3 \
-crate://crates.io/xwin/0.2.5 \
-crate://crates.io/yansi/0.5.1 \
-crate://crates.io/zbus/1.9.3 \
-crate://crates.io/zbus_macros/1.9.3 \
-crate://crates.io/zip/0.6.2 \
-crate://crates.io/zvariant/2.10.0 \
-crate://crates.io/zvariant_derive/2.10.0 \
-"
-
-And this is python3-orjson_3.8.0.bb:
-
-SUMMARY =3D "Fast, correct Python JSON library supporting dataclasses, date=
-times, and numpy"
-HOMEPAGE =3D "https://github.com/ijl/orjson"
-LICENSE =3D "Apache-2.0 | MIT"
-LIC_FILES_CHKSUM =3D "file://LICENSE-MIT;md5=3Db377b220f43d747efdec40d69fca=
-a69d"
-
-inherit pypi python_setuptools_build_meta python_pyo3 cargo
-
-SRC_URI +=3D " \
-crate://crates.io/ahash/0.8.0 \
-crate://crates.io/arrayvec/0.7.2 \
-crate://crates.io/associative-cache/1.0.1 \
-crate://crates.io/autocfg/1.1.0 \
-crate://crates.io/beef/0.5.2 \
-crate://crates.io/bytecount/0.6.3 \
-crate://crates.io/castaway/0.2.2 \
-crate://crates.io/cc/1.0.73 \
-crate://crates.io/cfg-if/1.0.0 \
-crate://crates.io/chrono/0.4.19 \
-crate://crates.io/compact_str/0.6.1 \
-crate://crates.io/encoding_rs/0.8.31 \
-crate://crates.io/itoa/1.0.4 \
-crate://crates.io/libc/0.2.132 \
-crate://crates.io/libm/0.1.4 \
-crate://crates.io/num-integer/0.1.45 \
-crate://crates.io/num-traits/0.2.15 \
-crate://crates.io/once_cell/1.13.1 \
-crate://crates.io/packed_simd_2/0.3.8 \
-crate://crates.io/pyo3-build-config/0.17.0 \
-crate://crates.io/pyo3-ffi/0.17.0 \
-crate://crates.io/rustversion/1.0.9 \
-crate://crates.io/ryu/1.0.11 \
-crate://crates.io/serde/1.0.144 \
-crate://crates.io/simdutf8/0.1.4 \
-crate://crates.io/smallvec/1.9.0 \
-crate://crates.io/target-lexicon/0.12.4 \
-crate://crates.io/version_check/0.9.4 \
-"
-
-PYPI_PACKAGE =3D "orjson"
-SRC_URI[md5sum] =3D "d460b188ddaafa36a767abaed541cd10"
-SRC_URI[sha256sum] =3D "fb42f7cf57d5804a9daa6b624e3490ec9e2631e042415f3aebe=
-9f35a8492ba6c"
-
-DEPENDS +=3D "maturin-native"
-
-However, my solution did not work and I got this error:
-
-ERROR: python3-orjson-3.8.0-r0 do_compile: ExecutionError('/home/amgedr/os/=
-build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/python3-orjson/3.=
-8.0-r0/temp/run.do_compile.451732', 101, None, None)
-ERROR: Logfile of failure stored in: /home/amgedr/os/build/tmp/work/cortexa=
-7t2hf-neon-vfpv4-poky-linux-gnueabi/python3-orjson/3.8.0-r0/temp/log.do_com=
-pile.451732
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| NOTE: pkg-config:
-| NOTE: cargo =3D /home/amgedr/os/build/tmp/work/cortexa7t2hf-neon-vfpv4-po=
-ky-linux-gnueabi/python3-orjson/3.8.0-r0/recipe-sysroot-native/usr/bin/carg=
-o
-| NOTE: rustc =3D
-| NOTE: cargo build -v --target arm-poky-linux-gnueabi --release --manifest=
--path=3D/home/amgedr/os/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-g=
-nueabi/python3-orjson/3.8.0-r0/orjson-3.8.0//Cargo.toml
-|=C2=A0 =C2=A0 =C2=A0Updating crates.io index
-| warning: spurious network error (2 tries remaining): failed to resolve ad=
-dress for github.com: Name or service not known; class=3DNet (12)
-| warning: spurious network error (1 tries remaining): failed to resolve ad=
-dress for github.com: Name or service not known; class=3DNet (12)
-| error: failed to get `ahash` as a dependency of package `orjson v3.8.0 (/=
-home/amgedr/os/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/py=
-thon3-orjson/3.8.0-r0/orjson-3.8.0)`
-|
-| Caused by:
-|=C2=A0 =C2=A0failed to load source for dependency `ahash`
-|
-| Caused by:
-|=C2=A0 =C2=A0Unable to update registry `crates-io`
-|
-| Caused by:
-|=C2=A0 =C2=A0failed to fetch `https://github.com/rust-lang/crates.io-index=
-`
-|
-| Caused by:
-|=C2=A0 =C2=A0network failure seems to have happened
-|=C2=A0 =C2=A0if a proxy or similar is necessary `net.git-fetch-with-cli` m=
-ay help here
-|=C2=A0 =C2=A0https://doc.rust-lang.org/cargo/reference/config.html#netgit-=
-fetch-with-cli
-|
-| Caused by:
-|=C2=A0 =C2=A0failed to resolve address for github.com: Name or service not=
- known; class=3DNet (12)
-| WARNING: exit code 101 from a shell command.
-ERROR: Task (/home/amgedr/os/build/meta-hub/recipes-requirements/python3-or=
-json_3.8.0.bb:do_compile) failed with exit code '1'
-
-What should I do to get it building python3-orjson?
-
-Thanks in advance,
-Amged
-
---rreDdG5DXW3HoRdRqhWr
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hello,</div>
-<div>&nbsp;</div>
-<div>I would greatly appreciate any help fixing this issue. I need to insta=
-ll the Python package orjson from PyPI on our Kirkstone build. Since it req=
-uires maturin to install I created a recipe for each one of them:</div>
-<div>&nbsp;</div>
-<div>This is maturin-native_0.13.7.bb:</div>
-<div>&nbsp;</div>
-<div>SUMMARY =3D "Build and publish crates with pyo3, rust-cpython and cffi=
- bindings as well as rust binaries as python packages"</div>
-<div>DESCRIPTION =3D "Build and publish crates with pyo3, rust-cpython and =
-cffi bindings as&nbsp;well as rust binaries as python packages"</div>
-<div>&nbsp;</div>
-<div>LICENSE =3D "MIT | Apache-2.0"</div>
-<div>LIC_FILES_CHKSUM =3D "file://license-apache;md5=3D1836efb2eb779966696f=
-473ee8540542 \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-file://license-mit;md5=3D85fd3b67069cff784d98ebfc7d5c0797"</div>
-<div>&nbsp;</div>
-<div>SRC_URI[sha256sum] =3D "c0a77aa0c57f945649ca711c806203a1b6888ad49c2b8b=
-85196ffdcf0421db77"</div>
-<div>&nbsp;</div>
-<div>inherit cargo pypi native</div>
-<div>&nbsp;</div>
-<div>SRC_URI +=3D " \</div>
-<div>&nbsp; &nbsp; crate://crates.io/addr2line/0.17.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/adler/1.0.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/aes/0.7.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ahash/0.7.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/aho-corasick/0.7.19 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/anyhow/1.0.65 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/async-io/1.10.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/async-lock/2.6.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/atty/0.2.14 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/autocfg/1.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/backtrace/0.3.66 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/base64/0.13.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bitflags/1.3.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/block-buffer/0.10.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/block-buffer/0.9.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/block-modes/0.8.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/block-padding/0.2.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bstr/0.2.17 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bumpalo/3.11.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/byteorder/1.4.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bytes/1.2.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bytesize/1.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bzip2-sys/0.1.11+1.0.8 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bzip2/0.4.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cab/0.4.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cache-padded/1.2.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/camino/1.1.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cargo-options/0.3.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cargo-platform/0.1.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cargo-xwin/0.10.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cargo-zigbuild/0.12.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cargo_metadata/0.15.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cbindgen/0.24.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cc/1.0.73 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cfb/0.7.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cfg-if/1.0.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/charset/0.1.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/chunked_transfer/1.4.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cipher/0.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/clap/3.2.23 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/clap_complete/3.2.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/clap_complete_fig/3.2.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/clap_derive/3.2.18 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/clap_lex/0.2.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cli-table/0.4.7 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/combine/4.6.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/concurrent-queue/1.2.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/configparser/3.0.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/console/0.15.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/core-foundation-sys/0.8.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/core-foundation/0.9.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cpufeatures/0.2.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/crc32fast/1.3.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/crossbeam-channel/0.5.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/crossbeam-deque/0.8.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/crossbeam-epoch/0.9.11 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/crossbeam-utils/0.8.12 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/crypto-common/0.1.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/crypto-mac/0.11.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ctor/0.1.23 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/data-encoding/2.3.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/derivative/2.2.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/dialoguer/0.10.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/diff/0.1.13 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/digest/0.10.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/digest/0.9.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/dirs-sys/0.3.7 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/dirs/4.0.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/dunce/1.0.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/either/1.8.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encode_unicode/0.3.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding-index-japanese/1.20141219.5 \=
-</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding-index-korean/1.20141219.5 \</=
-div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding-index-simpchinese/1.20141219.=
-5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding-index-singlebyte/1.20141219.5=
- \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding-index-tradchinese/1.20141219.=
-5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding/0.2.33 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding_index_tests/0.1.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding_rs/0.8.31 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/enumflags2/0.6.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/enumflags2_derive/0.6.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/errno-dragonfly/0.1.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/errno/0.2.8 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/event-listener/2.5.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/fastrand/1.8.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/fat-macho/0.4.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/filetime/0.2.17 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/flate2/1.0.24 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/fnv/1.0.7 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/foreign-types-shared/0.1.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/foreign-types/0.3.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/form_urlencoded/1.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/fs-err/2.8.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-channel/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-core/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-executor/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-io/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-lite/1.12.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-macro/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-sink/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-task/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures-util/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/futures/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/generic-array/0.14.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/getrandom/0.2.8 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/gimli/0.26.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/glob/0.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/globset/0.4.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/goblin/0.5.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/hashbrown/0.12.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/heck/0.4.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/hermit-abi/0.1.19 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/hkdf/0.11.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/hmac/0.11.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/human-panic/1.0.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/idna/0.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ignore/0.4.18 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/indexmap/1.9.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/indicatif/0.17.0-rc.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/indoc/1.0.7 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/instant/0.1.12 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/io-lifetimes/0.7.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/itertools/0.10.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/itoa/1.0.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/js-sys/0.3.60 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/keyring/1.2.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/lazy_static/1.4.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/lddtree/0.3.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/libc/0.2.137 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/linux-raw-sys/0.0.46 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/lock_api/0.4.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/log/0.4.17 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/lzxd/0.1.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/mailparse/0.13.8 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/matchers/0.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/memchr/2.5.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/memoffset/0.6.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/mime/0.3.16 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/mime_guess/2.0.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/minijinja/0.20.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/miniz_oxide/0.5.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/msi/0.5.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/multipart/0.18.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/native-tls/0.2.10 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/nb-connect/1.2.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/nix/0.22.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/nu-ansi-term/0.46.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-bigint/0.4.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-complex/0.4.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-integer/0.1.45 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-iter/0.1.43 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-rational/0.4.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-traits/0.2.15 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num/0.4.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num_cpus/1.13.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num_threads/0.1.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/number_prefix/0.4.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/object/0.29.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/once_cell/1.15.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/opaque-debug/0.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/openssl-macros/0.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/openssl-probe/0.1.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/openssl-src/111.22.0+1.1.1q \</div>
-<div>&nbsp; &nbsp; crate://crates.io/openssl-sys/0.9.77 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/openssl/0.10.42 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/os_str_bytes/6.3.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/os_type/2.6.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/output_vt100/0.1.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/overload/0.1.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/parking/2.0.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/parking_lot/0.12.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/parking_lot_core/0.9.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/path-slash/0.2.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pep440/0.2.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/percent-encoding/2.2.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pin-project-lite/0.2.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pin-utils/0.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pkg-config/0.3.25 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/plain/0.2.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/platform-info/1.0.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/polling/2.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ppv-lite86/0.2.16 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pretty_assertions/1.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/proc-macro-crate/0.1.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/proc-macro-crate/1.2.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/proc-macro-error-attr/1.0.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/proc-macro-error/1.0.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/proc-macro2/1.0.47 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pyproject-toml/0.3.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/python-pkginfo/0.5.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/quote/1.0.21 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/quoted_printable/0.4.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rand/0.8.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rand_chacha/0.3.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rand_core/0.6.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rayon-core/1.9.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rayon/1.5.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/redox_syscall/0.2.16 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/redox_users/0.4.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/regex-automata/0.1.10 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/regex-syntax/0.6.27 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/regex/1.6.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/remove_dir_all/0.5.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rfc2047-decoder/0.1.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ring/0.16.20 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rpassword/6.0.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rustc-demangle/0.1.21 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rustc_version/0.4.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rustix/0.35.12 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rustls/0.20.7 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rustversion/1.0.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ryu/1.0.11 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/same-file/1.0.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/schannel/0.1.20 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/scoped-tls/1.0.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/scopeguard/1.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/scroll/0.11.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/scroll_derive/0.11.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/sct/0.7.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/secret-service/2.0.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/security-framework-sys/2.6.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/security-framework/2.7.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/semver/1.0.14 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/serde/1.0.147 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/serde_derive/1.0.147 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/serde_json/1.0.87 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/serde_repr/0.1.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/sha2/0.10.6 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/sha2/0.9.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/sharded-slab/0.1.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/slab/0.4.7 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/smallvec/1.10.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/smawk/0.3.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/socket2/0.4.7 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/socks/0.3.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/spin/0.5.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/static_assertions/1.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/strsim/0.10.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/subtle/2.4.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/syn/1.0.103 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tar/0.4.38 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/target-lexicon/0.12.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tempfile/3.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/termcolor/1.1.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/terminal_size/0.1.17 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/terminal_size/0.2.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/textwrap/0.15.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/textwrap/0.16.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/thiserror-impl/1.0.37 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/thiserror/1.0.37 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/thread_local/1.1.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/time-macros/0.2.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/time/0.3.15 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tinyvec/1.6.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tinyvec_macros/0.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/toml/0.5.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/toml_edit/0.14.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tracing-attributes/0.1.23 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tracing-core/0.1.30 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tracing-log/0.1.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tracing-serde/0.1.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tracing-subscriber/0.3.16 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/tracing/0.1.37 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/twox-hash/1.6.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/typenum/1.15.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/unicase/2.6.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/unicode-bidi/0.3.8 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/unicode-ident/1.0.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/unicode-linebreak/0.1.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/unicode-normalization/0.1.22 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/unicode-width/0.1.10 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/untrusted/0.7.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ureq/2.5.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/url/2.3.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/uuid/0.8.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/uuid/1.2.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/valuable/0.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/vcpkg/0.2.15 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/version_check/0.9.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/waker-fn/1.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/walkdir/2.3.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1 \</=
-div>
-<div>&nbsp; &nbsp; crate://crates.io/wasm-bindgen-backend/0.2.83 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/wasm-bindgen-macro-support/0.2.83 \</d=
-iv>
-<div>&nbsp; &nbsp; crate://crates.io/wasm-bindgen-macro/0.2.83 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/wasm-bindgen-shared/0.2.83 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/wasm-bindgen/0.2.83 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/web-sys/0.3.60 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/webpki-roots/0.22.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/webpki/0.22.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/wepoll-ffi/0.1.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/which/4.3.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \</di=
-v>
-<div>&nbsp; &nbsp; crate://crates.io/winapi-util/0.1.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \</=
-div>
-<div>&nbsp; &nbsp; crate://crates.io/winapi/0.3.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/windows-sys/0.36.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/windows_aarch64_msvc/0.36.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/windows_i686_gnu/0.36.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/windows_i686_msvc/0.36.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/windows_x86_64_gnu/0.36.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/windows_x86_64_msvc/0.36.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/xattr/0.2.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/xwin/0.2.5 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/yansi/0.5.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/zbus/1.9.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/zbus_macros/1.9.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/zip/0.6.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/zvariant/2.10.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/zvariant_derive/2.10.0 \</div>
-<div>"</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>And this is python3-orjson_3.8.0.bb:</div>
-<div>&nbsp;</div>
-<div>SUMMARY =3D "Fast, correct Python JSON library supporting dataclasses,=
- datetimes, and numpy"</div>
-<div>HOMEPAGE =3D "https://github.com/ijl/orjson"</div>
-<div>LICENSE =3D "Apache-2.0 | MIT"</div>
-<div>LIC_FILES_CHKSUM =3D "file://LICENSE-MIT;md5=3Db377b220f43d747efdec40d=
-69fcaa69d"</div>
-<div>&nbsp;</div>
-<div>inherit pypi python_setuptools_build_meta python_pyo3 cargo</div>
-<div>&nbsp;</div>
-<div>SRC_URI +=3D " \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ahash/0.8.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/arrayvec/0.7.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/associative-cache/1.0.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/autocfg/1.1.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/beef/0.5.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/bytecount/0.6.3 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/castaway/0.2.2 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cc/1.0.73 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/cfg-if/1.0.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/chrono/0.4.19 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/compact_str/0.6.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/encoding_rs/0.8.31 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/itoa/1.0.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/libc/0.2.132 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/libm/0.1.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-integer/0.1.45 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/num-traits/0.2.15 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/once_cell/1.13.1 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/packed_simd_2/0.3.8 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pyo3-build-config/0.17.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/pyo3-ffi/0.17.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/rustversion/1.0.9 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/ryu/1.0.11 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/serde/1.0.144 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/simdutf8/0.1.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/smallvec/1.9.0 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/target-lexicon/0.12.4 \</div>
-<div>&nbsp; &nbsp; crate://crates.io/version_check/0.9.4 \</div>
-<div>"</div>
-<div>&nbsp;</div>
-<div>PYPI_PACKAGE =3D "orjson"</div>
-<div>SRC_URI[md5sum] =3D "d460b188ddaafa36a767abaed541cd10"</div>
-<div>SRC_URI[sha256sum] =3D "fb42f7cf57d5804a9daa6b624e3490ec9e2631e042415f=
-3aebe9f35a8492ba6c"</div>
-<div>&nbsp;</div>
-<div>DEPENDS +=3D "maturin-native"</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>However, my solution did not work and I got this error:</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>ERROR: python3-orjson-3.8.0-r0 do_compile: ExecutionError('/home/amged=
-r/os/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/python3-orjs=
-on/3.8.0-r0/temp/run.do_compile.451732', 101, None, None)</div>
-<div>ERROR: Logfile of failure stored in: /home/amgedr/os/build/tmp/work/co=
-rtexa7t2hf-neon-vfpv4-poky-linux-gnueabi/python3-orjson/3.8.0-r0/temp/log.d=
-o_compile.451732</div>
-<div>Log data follows:</div>
-<div>| DEBUG: Executing shell function do_compile</div>
-<div>| NOTE: pkg-config:</div>
-<div>| NOTE: cargo =3D /home/amgedr/os/build/tmp/work/cortexa7t2hf-neon-vfp=
-v4-poky-linux-gnueabi/python3-orjson/3.8.0-r0/recipe-sysroot-native/usr/bin=
-/cargo</div>
-<div>| NOTE: rustc =3D</div>
-<div>| NOTE: cargo build -v --target arm-poky-linux-gnueabi --release --man=
-ifest-path=3D/home/amgedr/os/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-li=
-nux-gnueabi/python3-orjson/3.8.0-r0/orjson-3.8.0//Cargo.toml</div>
-<div>|&nbsp; &nbsp; &nbsp;Updating crates.io index</div>
-<div>| warning: spurious network error (2 tries remaining): failed to resol=
-ve address for github.com: Name or service not known; class=3DNet (12)</div=
->
-<div>| warning: spurious network error (1 tries remaining): failed to resol=
-ve address for github.com: Name or service not known; class=3DNet (12)</div=
->
-<div>| error: failed to get `ahash` as a dependency of package `orjson v3.8=
-.0 (/home/amgedr/os/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnuea=
-bi/python3-orjson/3.8.0-r0/orjson-3.8.0)`</div>
-<div>|</div>
-<div>| Caused by:</div>
-<div>|&nbsp; &nbsp;failed to load source for dependency `ahash`</div>
-<div>|</div>
-<div>| Caused by:</div>
-<div>|&nbsp; &nbsp;Unable to update registry `crates-io`</div>
-<div>|</div>
-<div>| Caused by:</div>
-<div>|&nbsp; &nbsp;failed to fetch `https://github.com/rust-lang/crates.io-=
-index`</div>
-<div>|</div>
-<div>| Caused by:</div>
-<div>|&nbsp; &nbsp;network failure seems to have happened</div>
-<div>|&nbsp; &nbsp;if a proxy or similar is necessary `net.git-fetch-with-c=
-li` may help here</div>
-<div>|&nbsp; &nbsp;https://doc.rust-lang.org/cargo/reference/config.html#ne=
-tgit-fetch-with-cli</div>
-<div>|</div>
-<div>| Caused by:</div>
-<div>|&nbsp; &nbsp;failed to resolve address for github.com: Name or servic=
-e not known; class=3DNet (12)</div>
-<div>| WARNING: exit code 101 from a shell command.</div>
-<div>ERROR: Task (/home/amgedr/os/build/meta-hub/recipes-requirements/pytho=
-n3-orjson_3.8.0.bb:do_compile) failed with exit code '1'</div>
-<div>&nbsp;</div>
-<div>What should I do to get it building python3-orjson?<br /><br />Thanks =
-in advance,</div>
-<div>Amged</div>
-<div>&nbsp;</div>
-
---rreDdG5DXW3HoRdRqhWr--
 
