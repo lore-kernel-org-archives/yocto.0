@@ -1,89 +1,178 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <ron.eggler@mistywest.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A08FBC4332F
-	for <webhook@archiver.kernel.org>; Thu, 10 Nov 2022 17:28:02 +0000 (UTC)
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
- by mx.groups.io with SMTP id smtpd.web10.10378.1668101272524254894
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B49DBC4332F
+	for <webhook@archiver.kernel.org>; Fri, 11 Nov 2022 06:30:01 +0000 (UTC)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+ by mx.groups.io with SMTP id smtpd.web11.2673.1668148192664414052
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Nov 2022 09:27:52 -0800
+ Thu, 10 Nov 2022 22:29:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112 header.b=d1i2h98h;
- spf=softfail (domain: sakoman.com, ip: 209.85.216.41, mailfrom: steve@sakoman.com)
-Received: by mail-pj1-f41.google.com with SMTP id b11so2131400pjp.2
-        for <yocto@lists.yoctoproject.org>; Thu, 10 Nov 2022 09:27:52 -0800 (PST)
+ dkim=pass header.i=@mistywest-com.20210112.gappssmtp.com header.s=20210112 header.b=plYypn1t;
+ spf=pass (domain: mistywest.com, ip: 209.85.214.175, mailfrom: ron.eggler@mistywest.com)
+Received: by mail-pl1-f175.google.com with SMTP id u6so3483793plq.12
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Nov 2022 22:29:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kr7kNFTD6d1A6oDZhIj4HE654QldyKUHpuC73PsRRJY=;
-        b=d1i2h98hiUMpRn5NCGvW/uEzu9/sqcR+HJI90Cam8Lo3/vrUIc4i24xuaDfPD/t2jX
-         54f0mj4X5RCgfb7JFDxpE/nFNAqmaP5r/bftPNDK0sJYajO1AbKoEgwkyYaxJr/q9Ezs
-         Q7H4C2aaTVXAiMFI//dR3d9A2EKgYfUIveXgKbJp4Y9iRAxFvfONJ7U4Pq4nNei4ZzPG
-         9NVM5/5Lkrd4gfHG8UjyRTpsCZl4hQvLtP4MafjqnlOCwaABxahiIcbSrQW4aTvocmGh
-         RJmCqCoyfDK/fKB8vszj/zRCECvFgGgUshxsauANVlxTA9+12XqdGtuBFK89uTJDSbTg
-         0KfA==
+        d=mistywest-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:from:content-language:to:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TXxsdSl6sIrbmv0RV/gcVwYOvVwk/hPbtjV2jw0X0X0=;
+        b=plYypn1tFuab19tHZNadGplT4EGlvZOpdk+5vmIB+bgg0EFSpqMHd6cHTXHYQMsPLz
+         avdcJWypA4TL2lgfucC0bCPBYpFOLYKXJczJEInIM8uHP81tCVO+ZDKuOOGkC40yUs4Q
+         5Q5+uBHY6J8bD5pK0LFs5LURaEkS7Im/L4fHMQbq93Fvy8xNuoEoGZGlLqZJAxxx8HKE
+         bSWlw27Pq6wTBOiO8wdR85okBuRQVpuI4SOrD9tCpRD8VldEi/PKglMWoK0YqvFe+CBS
+         YJcqmgf3zvS3lz94qdLlw6Dd+F0Jbl49jd4mg4XF6HWUc8B44oKN3ckX8y6RsLEoHjM7
+         DN1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kr7kNFTD6d1A6oDZhIj4HE654QldyKUHpuC73PsRRJY=;
-        b=5Y6uNKMpj3u+XqNgHl51Ho98rOQ1GOlIkragcna1AA1mWzMiIv4wsUJXtAxc4rSBd5
-         ze8qfAalMCXkJCxyGQmLxcj68jvEc53vVUan04/B7+nljcBMpzfU0u9PdT1HeThyPEEr
-         PxjAdcZns0I5cOU7dBikrbHf8m33cvNDLvooubXh0ynUt3puVPWUZ/2F42Nkk7VjTIj+
-         5okStwBnJPVKopTLizv5QAOp3oNcQS9fhojeesQsRF0J4BsJdzy8/eEYlN2EKsITr2lH
-         4LmONnNbUq6fktgUjR3iZ8fWlkL60mG3IgYCSiRieMhEE43o6pSg25rRN+8aGJIa9tjn
-         5L4g==
-X-Gm-Message-State: ACrzQf1PIstQoz5MwSuTumTcgxVc08EU+PtHDREBoQuZu2zWEWrYeaTC
-	Z3v/G/Z/q5YshdN/CvX3rsMsDBW7mDkFfrAG
-X-Google-Smtp-Source: AMsMyM4iC20nfC0/LaxXj7MtDM04pT1N+4l56hib7ZGonTmicN6fN/HrgxshnRQK2jZQxEmmi0cThg==
-X-Received: by 2002:a17:90a:4745:b0:214:100a:65c8 with SMTP id y5-20020a17090a474500b00214100a65c8mr49589664pjg.105.1668101271387;
-        Thu, 10 Nov 2022 09:27:51 -0800 (PST)
-Received: from hexa.router0800d9.com (dhcp-72-253-6-214.hawaiiantel.net. [72.253.6.214])
-        by smtp.gmail.com with ESMTPSA id pa5-20020a17090b264500b002001c9bf22esm87002pjb.8.2022.11.10.09.27.50
+        h=subject:from:content-language:to:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TXxsdSl6sIrbmv0RV/gcVwYOvVwk/hPbtjV2jw0X0X0=;
+        b=RMeMGFv9kCJrCNFPtiIvBtS5kxAAVy6IYtQrxf4sOZTXZ3VelzNMvD6qoEzk36SXm5
+         ifnkohNGSTxAB+pKOy/Fhvqk+XHNY1OQT34AmJMUAbXZcgPZzNHre8dtTEm+dzNLeQee
+         7PX8IYml/cSZ3C7Zv+9lfixEGnzS+hwRBzEqIVY7MmZmq606X/VO1ID7glk8pJKDQkQB
+         JeArU98dZIPr2bdUGo0Qc80XuntkOGjlx1UbtjMRsy/CTGJB3mKNE/nAo3k4Ak2zYrlW
+         caT8ObrVO2Pg6kx7FacVL1JzNwz7G5ED5NXxO8Nre2EIKrUsQpmFb3QqsjMWV3EY9gHl
+         l00g==
+X-Gm-Message-State: ANoB5pkpNPwSwZTPuTJjoeu5CgI1ItjG5isSJKI/SLcw7227yLY5sdN/
+	lRcnpdJqnogi9CyttBmPHxappGYMCUVtJQ+K5Gg=
+X-Google-Smtp-Source: AA0mqf6ou0/L4moEnuwK/MQZ3iphSvWEHkHuAqzHyhvgo4IQV8+u8vqE4alJMNbVyMiMUHbtr9Ubxw==
+X-Received: by 2002:a17:90a:9746:b0:214:2920:4675 with SMTP id i6-20020a17090a974600b0021429204675mr484180pjw.0.1668148191408;
+        Thu, 10 Nov 2022 22:29:51 -0800 (PST)
+Received: from [192.168.1.222] (S01067898e84c4253.vc.shawcable.net. [24.87.53.111])
+        by smtp.gmail.com with ESMTPSA id e127-20020a621e85000000b0056bb06ce1cfsm770584pfe.97.2022.11.10.22.29.50
         for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 09:27:50 -0800 (PST)
-From: Steve Sakoman <steve@sakoman.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][kirkstone] config.json: use meta-agl master branch rather than next branch
-Date: Thu, 10 Nov 2022 07:27:43 -1000
-Message-Id: <88b03863363a683e411c3cb2700c735c46bc92c6.1668101195.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1668101195.git.steve@sakoman.com>
-References: <cover.1668101195.git.steve@sakoman.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 22:29:50 -0800 (PST)
+Content-Type: multipart/alternative;
+ boundary="------------Oy5ZnlWH5M3HXsTRDoBLfBSt"
+Message-ID: <e0b47be3-0b36-ef78-de3b-ba6c0f82d080@mistywest.com>
+Date: Thu, 10 Nov 2022 22:29:48 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Language: en-US
+From: Ron Eggler <ron.eggler@mistywest.com>
+Subject: failing postinstall scriptlet
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 10 Nov 2022 17:28:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58539
+ <yocto@lists.yoctoproject.org>; Fri, 11 Nov 2022 06:30:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58540
 
-kirkstone is no longer supported on the next branch
+This is a multi-part message in MIME format.
+--------------Oy5ZnlWH5M3HXsTRDoBLfBSt
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- config.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi,
 
-diff --git a/config.json b/config.json
-index 673b904..c709e6e 100644
---- a/config.json
-+++ b/config.json
-@@ -1202,7 +1202,7 @@
-         },
-         "meta-agl": {
-             "url" : "https://git.automotivelinux.org/AGL/meta-agl",
--            "branch" : "next",
-+            "branch" : "master",
-             "revision" : "HEAD",
-             "no-layer-add" : true
-         },
+I'm wondering how to resolve the following error:
+
+ERROR: sample-image-cp-lwb5plus-1.0-r0 do_rootfs: Postinstall scriptlets 
+of ['lrd-networkmanager-sterling'] have failed. If the intention is to 
+defer them to first boot,
+then please place them into pkg_postinst_ontarget_${PN} ().
+Deferring to first boot via 'exit 1' is no longer supported.
+Details of the failure are in 
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.
+ERROR: Logfile of failure stored in: 
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.430788
+ERROR: Task 
+(/home/yocto/rzv_vlp_v3.0.0/build/../meta-mistylwb5p/meta-laird-cp-pre-3.4/recipes-packages/images/sample-image-cp-lwb5plus.bb:do_rootfs) 
+failed with exit code '1'
+
+the log file 
+~/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.430788 
+contains the following on the bottom:
+
+...
+   wayland-1.18.0-r0.aarch64
+
+Complete!
+
+ERROR: Postinstall scriptlets of ['lrd-networkmanager-sterling'] have 
+failed. If the intention is to defer them to first boot,
+then please place them into pkg_postinst_ontarget_${PN} ().
+Deferring to first boot via 'exit 1' is no longer supported.
+Details of the failure are in 
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.
+DEBUG: Python function do_rootfs finished
+
+and the same does 
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs
+
+Not very helpful, is it? How can I resolve this?
+Ron
 -- 
-2.25.1
+RON EGGLER Firmware Engineer (he/him/his) www.mistywest.com
+--------------Oy5ZnlWH5M3HXsTRDoBLfBSt
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><font size="2">Hi,</font></p>
+    <p><font size="2">I'm wondering how to resolve the following error:</font></p>
+    <p><font face="monospace">ERROR: sample-image-cp-lwb5plus-1.0-r0
+        do_rootfs: Postinstall scriptlets of
+        ['lrd-networkmanager-sterling'] have failed. If the intention is
+        to defer them to first boot,<br>
+        then please place them into pkg_postinst_ontarget_${PN} ().<br>
+        Deferring to first boot via 'exit 1' is no longer supported.<br>
+        Details of the failure are in
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.<br>
+        ERROR: Logfile of failure stored in:
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.430788<br>
+        ERROR: Task
+(/home/yocto/rzv_vlp_v3.0.0/build/../meta-mistylwb5p/meta-laird-cp-pre-3.4/recipes-packages/images/sample-image-cp-lwb5plus.bb:do_rootfs)
+        failed with exit code '1'</font><br>
+    </p>
+    <div class="moz-signature"><font size="1"><font size="2">the log
+          file
+~/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.430788
+          contains the following on the bottom:</font></font></div>
+    <div class="moz-signature"><font size="1"><br>
+      </font></div>
+    <div class="moz-signature">   <font face="monospace">...<br>
+          wayland-1.18.0-r0.aarch64<br>
+        <br>
+        Complete!<br>
+        <br>
+        ERROR: Postinstall scriptlets of ['lrd-networkmanager-sterling']
+        have failed. If the intention is to defer them to first boot,<br>
+        then please place them into pkg_postinst_ontarget_${PN} ().<br>
+        Deferring to first boot via 'exit 1' is no longer supported.<br>
+        Details of the failure are in
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs.<br>
+        DEBUG: Python function do_rootfs finished<br>
+      </font></div>
+    <div class="moz-signature"><br>
+    </div>
+    <div class="moz-signature"><font face="monospace">and the same does
+/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/sample-image-cp-lwb5plus/1.0-r0/temp/log.do_rootfs</font></div>
+    <div class="moz-signature"><font size="2" face="monospace"><br>
+      </font></div>
+    <div class="moz-signature"><font size="2">Not very helpful, is it?
+        How can I resolve this?<br>
+      </font></div>
+    <div class="moz-signature"><font size="2">Ron</font><font
+        face="monospace"><br>
+      </font></div>
+    <div class="moz-signature">-- <br>
+      RON EGGLER
+      Firmware Engineer
+      (he/him/his)
+      <a class="moz-txt-link-abbreviated" href="http://www.mistywest.com">www.mistywest.com</a></div>
+  </body>
+</html>
+
+--------------Oy5ZnlWH5M3HXsTRDoBLfBSt--
 
