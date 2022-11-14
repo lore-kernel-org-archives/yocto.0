@@ -1,202 +1,290 @@
-Return-Path: <quaresma.jose@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA183C4332F
-	for <webhook@archiver.kernel.org>; Mon, 14 Nov 2022 16:47:40 +0000 (UTC)
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
- by mx.groups.io with SMTP id smtpd.web12.8137.1668444453148922828
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A28B5C433FE
+	for <webhook@archiver.kernel.org>; Mon, 14 Nov 2022 20:16:57 +0000 (UTC)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web08.30.1668457014172097974
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Nov 2022 08:47:33 -0800
+ Mon, 14 Nov 2022 12:16:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Hc4J5WW1;
- spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-lf1-f45.google.com with SMTP id p8so20214278lfu.11;
-        Mon, 14 Nov 2022 08:47:32 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=papWRcMV;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id q71so11206437pgq.8
+        for <yocto@lists.yoctoproject.org>; Mon, 14 Nov 2022 12:16:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QbP/t7kgxLpLeYhxyrzoh7dljXmXm6gD1nzpRKiupzU=;
-        b=Hc4J5WW1wsCEB+hm/NkscA5WiRQvdTQLIy4vrKk3luGAmblGhQvaM7gtW8zPMtB30m
-         6h+w8uYRK5f/RhcOWB5cNFaVrbzUuYYQngRIlzt4K89Zy4JnB2rkZLWjzc0VUWCbiDfh
-         mQDizvCnbo5SN/K7PCkIkycvOXywnZ6/ieHyVL7WCl/ap4hWrPu/BBp331GV9pFSt6QK
-         vZrJXtLmKrJXF0YO4CjWbAF4KysSnxTCB3YPOX58yyWsKbFQIvojg1PDo1s0tG338bcO
-         eKG835cGV6lzChblkZ7cb5gJD8vWiZD2zdN0yNniSgHDikEIuHLFQRw9IeJdDmMhwIA/
-         Z5AQ==
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c2uEs0rPm1pDYiTSWroxdaDFHEofvPXlU8l+cutddQI=;
+        b=papWRcMVD7MDfEIzaba1jFzTy4X2rOR1b9whb+OMcXeugiBtjWNMTWvLhz/rLgGJl7
+         FSkA8x9MwIG/34O3i1aqIqA117uMMgU1/gNNZ/aFhICueW9nbuUV7YMldd6gFT/jU3R1
+         6dwOFyLG4hxWp53VqIqcdfdptbxmr7fxMj+j3lmH1PYrEWF9VNAvCqICZxdjvGcNIO96
+         ZPwTnlmooFdMKCyrJCrG4/S+m+j17SpEYB3/DYCG9hUvXznh6rrAljSHLCBA+pqI3fPI
+         5YdfsBnAcgTLcedQgktt0N0uGT4APpVTvVQbmhn2cfTMWAuQ5pgRxkhNxY5ScIeD41NZ
+         S/kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QbP/t7kgxLpLeYhxyrzoh7dljXmXm6gD1nzpRKiupzU=;
-        b=S2vCjlr2agWplcOTZa2vNku0TafBtLZDPStXp+J3S2UPKpzqoVnKFlLVAOq07thO8M
-         0L8B9cZVTMTKjMCDODL8qXJNXDRkt9Q1InYjfNaFOHjbSnsV9ifOT3SjB7HCJSsAr9oH
-         wfJZwp/fq3t4frxT2yCXu+W5hlVnszRmhUencmYiyNR4H+zhnti/VYpU3bjGAEFxoQ8M
-         DfHHmuqXPhAmdtTUlhtmURTSCGC0YHA0FbRxV3EG7O/igyQmMtPIaJZgG+UTW02eI8Q1
-         uqaWqhzm/5rPGyCUqwichwck7bxSllgM98BZUWPYPbomRfwljYFGUWci0DDb0s/63lds
-         PjNQ==
-X-Gm-Message-State: ANoB5pldbRHnfcAbu6528vT50sqyv/2Qrb+P1jAkYOPd5NnEUT4JM2JU
-	dJ+ZgekH7kxbGTKFAFH+WFymY5Io4/9yUXVxXc0=
-X-Google-Smtp-Source: AA0mqf5WwuquMPMgxErHn6xKHJ6YgJmSPYDvrxolPFRlmPrYQLNCkg38neYg/bIDNFklk3Rvo6MEcbykITzB8xc5gcY=
-X-Received: by 2002:a05:6512:b82:b0:4a2:2af6:98e5 with SMTP id
- b2-20020a0565120b8200b004a22af698e5mr4302571lfv.5.1668444451002; Mon, 14 Nov
- 2022 08:47:31 -0800 (PST)
+        bh=c2uEs0rPm1pDYiTSWroxdaDFHEofvPXlU8l+cutddQI=;
+        b=CTY5wgXic7sStylAKDCkmsKmnPRCRqwBe+D7C0erLamVxrhOm9XvbLM3N4MWxGj2ci
+         yocrF7fTV/gWqaeZk9/yqH4JhvzgICifgIN6vPSE/RFGUuJS6+NJsWwU+f94g30YLjlj
+         z37DNJRDucRT7BlGLwcsCYxdDTgseq8NPVIF+X0K/IqnsGGnA1VLWjRe2OYRWuAlqM0z
+         uBK1MhlOTQVi2vAJxSoOhm2ouE2cvIollOaNQHDwTlNmjri/7DB9UnHB5KoKJ9BFMX8z
+         98G1u33XWsWVHokegSDNokH68Xrjxx9/AZGhiWscHaTZGC5fKDPpP0TmAEJG8gzYOAej
+         2YBw==
+X-Gm-Message-State: ANoB5pl8HrwzCEN+98mldv8bo8D79cEKEe2zOXnGbRrgQ1IgskH2BgVl
+	774UcLtfMgRGviQvu36wn5U=
+X-Google-Smtp-Source: AA0mqf7+hmLBL0b8nfZ5eGao8oEQ3wZjqbHLEVX5tEOjzJX6xjEK8q8BqYDzZjPAlJPt5Dv7WD0RmQ==
+X-Received: by 2002:a63:224b:0:b0:45c:562f:b2b9 with SMTP id t11-20020a63224b000000b0045c562fb2b9mr12850223pgm.245.1668457013446;
+        Mon, 14 Nov 2022 12:16:53 -0800 (PST)
+Received: from skjolley ([2600:1011:a11b:4d68:292a:a642:77f4:eb98])
+        by smtp.gmail.com with ESMTPSA id v8-20020a170902b7c800b0017d97d13b18sm7915786plz.65.2022.11.14.12.16.52
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Nov 2022 12:16:52 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 14 Nov 2022 13:16:52 -0700
+Message-ID: <0b9901d8f866$09a06990$1ce13cb0$@gmail.com>
 MIME-Version: 1.0
-References: <CAOuPNLh1+LhxH8yuQprUntwjibAP_iuwF7tXnHjfhAZhLCCG-A@mail.gmail.com>
- <CAOuPNLgEs7Obni8kOqgznv_mLW8JQ4cF0CUS8jaV6AXEhw6aOg@mail.gmail.com>
-In-Reply-To: <CAOuPNLgEs7Obni8kOqgznv_mLW8JQ4cF0CUS8jaV6AXEhw6aOg@mail.gmail.com>
-From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Mon, 14 Nov 2022 16:47:19 +0000
-Message-ID: <CANPvuR=RT3YBSBmRHNtoeCMST2DJ3Wqq7fzh6jj2C1oxUxR0EA@mail.gmail.com>
-Subject: Re: [linux-yocto] Removing DISTRO_FEATURES from a specific machine type
-To: Pintu Agarwal <pintu.ping@gmail.com>
-Cc: yocto@lists.yoctoproject.org, linux-yocto@lists.yoctoproject.org, 
-	poky@lists.yoctoproject.org, bitbake-devel@lists.openembedded.org
-Content-Type: multipart/alternative; boundary="000000000000d45f1d05ed70fe75"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0B9A_01D8F82B.5D440290"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQG1eWZwm+qDxo6kkcdDK2x9wyhbCg==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Nov 2022 16:47:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58558
+ <yocto@lists.yoctoproject.org>; Mon, 14 Nov 2022 20:16:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58559
 
---000000000000d45f1d05ed70fe75
-Content-Type: text/plain; charset="UTF-8"
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0B9A_01D8F82B.5D440290
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 413
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.2", "4.3", "4.99" and "Future", the more pressing/urgent
+issues being in "4.2" and then "4.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0B9A_01D8F82B.5D440290
+Content-Type: text/html;
+	boundary="----=_NextPart_000_185A_01D8F2CF.BB083920";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Pintu,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 413 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.2&#8221;, =
+&#8220;4.3&#8221;, &quot;4.99&quot; and &quot;Future&quot;, the more =
+pressing/urgent issues being in &quot;4.2&quot; and then =
+&#8220;4.3&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Please review this link and if a bug is =
+something you would be able to help with either take ownership of the =
+bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0B9A_01D8F82B.5D440290--
 
-Pintu Agarwal <pintu.ping@gmail.com> escreveu no dia segunda, 14/11/2022
-=C3=A0(s) 16:35:
-
-> Hi,
->
-> This question is related to Yocto Dunfell specifically.
->
-> I have certain distro features defined (by default) in our distro
-> include/conf file.
-> These distro features are required for certain machines and should not
-> be enabled for only one machine.
->
-
-For such cases Yocto have the COMBINED_FEATURES that can be more apropriate
-https://docs.yoctoproject.org/3.1.20/ref-manual/ref-variables.html#term-COM=
-BINED_FEATURES
-
-But if the future is only used in some machine maybe the MACHINE_FEATURES
-is more apropriate
-https://docs.yoctoproject.org/3.1.20/ref-manual/ref-variables.html#term-MAC=
-HINE_FEATURES
-
-In a perfect world the the DISTRO_FEATURES should be independent of the
-bsp/machine used
-https://docs.yoctoproject.org/3.1.20/ref-manual/ref-variables.html#term-DIS=
-TRO_FEATURES
-
-Jose
-
-For example, we have a distro feature such as "nand-squashfs".
-> So, in our distro.inc file we are including like this:
-> DISTRO_FEATURES_append =3D " nand-squashfs"
->
-> Since this distro.inc file is shared across 2-3 machines, this feature
-> will be available to all.
-> But we don't want to include it in the "xyz" machine.
->
-> So, can I do like this:
-> DISTRO_FEATURES_append =3D " nand-squashfs"
-> DISTRO_FEATURES_remove_xyz =3D " nand-squashfs"
->
-> If there is some other better way please suggest.
->
-> Thanks,
-> Pintu
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#11882):
-> https://lists.yoctoproject.org/g/linux-yocto/message/11882
-> Mute This Topic: https://lists.yoctoproject.org/mt/95020630/5052612
-> Group Owner: linux-yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/linux-yocto/unsub [
-> quaresma.jose@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---000000000000d45f1d05ed70fe75
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Pintu,</div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">Pintu Agarwal &lt;<a href=
-=3D"mailto:pintu.ping@gmail.com">pintu.ping@gmail.com</a>&gt; escreveu no d=
-ia segunda, 14/11/2022 =C3=A0(s) 16:35:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">Hi,<br>
-<br>
-This question is related to Yocto Dunfell specifically.<br>
-<br>
-I have certain distro features defined (by default) in our distro<br>
-include/conf file.<br>
-These distro features are required for certain machines and should not<br>
-be enabled for only one machine.<br></blockquote><div><br>For such cases Yo=
-cto have the COMBINED_FEATURES that can be more apropriate<br><a href=3D"ht=
-tps://docs.yoctoproject.org/3.1.20/ref-manual/ref-variables.html#term-COMBI=
-NED_FEATURES">https://docs.yoctoproject.org/3.1.20/ref-manual/ref-variables=
-.html#term-COMBINED_FEATURES</a><br><br>But if the future is only used in s=
-ome machine maybe the=C2=A0MACHINE_FEATURES is more apropriate<br><a href=
-=3D"https://docs.yoctoproject.org/3.1.20/ref-manual/ref-variables.html#term=
--MACHINE_FEATURES">https://docs.yoctoproject.org/3.1.20/ref-manual/ref-vari=
-ables.html#term-MACHINE_FEATURES</a><br><br>In a perfect world the the DIST=
-RO_FEATURES=C2=A0should be independent of the bsp/machine used<br><a href=
-=3D"https://docs.yoctoproject.org/3.1.20/ref-manual/ref-variables.html#term=
--DISTRO_FEATURES">https://docs.yoctoproject.org/3.1.20/ref-manual/ref-varia=
-bles.html#term-DISTRO_FEATURES</a><br><br>Jose</div><div><br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex">
-For example, we have a distro feature such as &quot;nand-squashfs&quot;.<br=
->
-So, in our distro.inc file we are including like this:<br>
-DISTRO_FEATURES_append =3D &quot; nand-squashfs&quot;<br>
-<br>
-Since this distro.inc file is shared across 2-3 machines, this feature<br>
-will be available to all.<br>
-But we don&#39;t want to include it in the &quot;xyz&quot; machine.<br>
-<br>
-So, can I do like this:<br>
-DISTRO_FEATURES_append =3D &quot; nand-squashfs&quot;<br>
-DISTRO_FEATURES_remove_xyz =3D &quot; nand-squashfs&quot;<br>
-<br>
-If there is some other better way please suggest.<br>
-<br>
-Thanks,<br>
-Pintu<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#11882): <a href=3D"https://lists.yoctoproject.org/g/lin=
-ux-yocto/message/11882" rel=3D"noreferrer" target=3D"_blank">https://lists.=
-yoctoproject.org/g/linux-yocto/message/11882</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/95020630/5052=
-612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/95020630/5052612</a><br>
-Group Owner: <a href=3D"mailto:linux-yocto%2Bowner@lists.yoctoproject.org" =
-target=3D"_blank">linux-yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/linux-yocto/unsub"=
- rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/linu=
-x-yocto/unsub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_bl=
-ank">quaresma.jose@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Best regards,<div><br>Jos=C3=A9=
- Quaresma</div></div></div></div>
-
---000000000000d45f1d05ed70fe75--
 
