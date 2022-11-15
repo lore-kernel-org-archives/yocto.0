@@ -1,134 +1,123 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5BC16C4332F
-	for <webhook@archiver.kernel.org>; Tue, 15 Nov 2022 18:03:16 +0000 (UTC)
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
- by mx.groups.io with SMTP id smtpd.web08.1564.1668535388296786732
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E27FCC4332F
+	for <webhook@archiver.kernel.org>; Tue, 15 Nov 2022 20:06:06 +0000 (UTC)
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+ by mx.groups.io with SMTP id smtpd.web12.5838.1668542765772218599
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Nov 2022 10:03:08 -0800
+ Tue, 15 Nov 2022 12:06:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=o1/leBP3;
- spf=pass (domain: gmail.com, ip: 209.85.160.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so17134548fac.1
-        for <yocto@lists.yoctoproject.org>; Tue, 15 Nov 2022 10:03:08 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jDDBtjy4;
+ spf=pass (domain: gmail.com, ip: 209.85.218.54, mailfrom: ticotimo@gmail.com)
+Received: by mail-ej1-f54.google.com with SMTP id kt23so38856385ejc.7
+        for <yocto@lists.yoctoproject.org>; Tue, 15 Nov 2022 12:06:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mTXlQOmKgo4Pukuo/xI60YBmR6kEsm2U8MlOrzCgSmk=;
-        b=o1/leBP3U6NFHoT6r3I6zBlS6xfmpAZFfiTesln9WRfOKOyGssggX68ivBJtGvOkyv
-         AWdtO5wJ10oOjHdahZdaTiXCZMlvjsf1YtVpD2/mbSZxg3SiXUXMfJM/LJsYjK8c9RZN
-         nDLB9wvNi58eR85D74CuqdFhdj3wTAHG5sYkttfV+eeAMvtharRP6aRxF0s56P0ZyiGL
-         gl73P30VMtkCMQC/UDikrEk6CZ3LMMwtuGC+oUALrrkIxJpOaSH76xcv60t/8ijGXBNp
-         l5GqxgAbS9xEGyv9qD7N/Wzg971ykoDJVfy0vpFD0+w6O+3IKTVFMXnzmih9uHVbOWm2
-         qDlA==
+        bh=L3xNyNiOUzUEtDdro8y0MoLMlM2QvCLihNdWgTSnTc0=;
+        b=jDDBtjy4o3BG7bPg87zb71Ahhjl7fn9FhpScDD8skCaLo3TN+vf9FD60WrAgGA+fsj
+         8EJi5ycUWPXPp6qucULwezvDi1iYKDGFkG66PdfZwEIyQ0vV0kUpU2+0z0zLdPyXAzI4
+         s1KDwsYVjQEJMvRdr9wdr8XCsm6ZkROTBRhGRNKuP7l48Wc6Dvlwkw82NlY/ccfXvEjQ
+         hXYpCtRYKAR0IUxWIzcOzQv9ya4/5I8cPk0j9x6gk9Em+Epp/GTrJUJyyix41pGcBPy8
+         vqDoU1iNXzFZXtjAfBcAr562Ei0HXCg0Kv8kWMEGKPM9PPcFNy+mpuArnPZwBaFBmHJ2
+         O66A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mTXlQOmKgo4Pukuo/xI60YBmR6kEsm2U8MlOrzCgSmk=;
-        b=D0dgIU/4Xby8/fpeMl1e6ClDrXXYr1lz3tqjbT4ozyenOCKE6SRLWcGLveB7dxGSpf
-         KDgwb1plcs9f63sFj3iv8KsxeMcoOfGn/DHt/bW1PAv0O0MERYJKr9Qgen4LaHFA3eZG
-         v2XxslW7lV3wdNFm5aCA5pVQCgFmZfpXPzsXH7JbcQ5q3TW+L9j8omcfJ02KUV7ReNUm
-         tzCqb/BCXLGIXJ+OAuzZ3kDTBUyleicG6JYTEP2pkProveuz5MWSCP60ZFZpBu8KdHD3
-         RRzPXU4JzUFshhfwCZ0haVnmO3waXOM5RXL5xt7DCHa3vrk2yLds5MsRAa2l56slgsWK
-         nLfw==
-X-Gm-Message-State: ANoB5pnswuojCIq1mAaSxGrJaxjbrtPsWKN99OTt2KqN0VEwreKnmcVt
-	WG7rL6Fic1An3JNFSkbTopw28Yt1SXI0qsltMn4=
-X-Google-Smtp-Source: AA0mqf4XHsDk4CyfDbJWSx3DfS/8TO5pyqN7sv+v3eBUqMeij7C0K2LXn0Rml9oACejuqHgV99IHdo2BAEeapHDxPpc=
-X-Received: by 2002:a05:6870:d6a4:b0:13b:1e05:a73d with SMTP id
- z36-20020a056870d6a400b0013b1e05a73dmr1065995oap.55.1668535387275; Tue, 15
- Nov 2022 10:03:07 -0800 (PST)
+        bh=L3xNyNiOUzUEtDdro8y0MoLMlM2QvCLihNdWgTSnTc0=;
+        b=hHXTijSZ53vgmSw+QIKX4oppJfWP6sIntbQsgakrTaIvS2AyRoIMr0+T0J6h1zupsG
+         45OFtMk6rddDSVhXfGSvIM/mCgepE52FbN3eL5QBCyiO9ksjEOogRmU8TH2XXaiiVkPJ
+         bPN2eZ13JlEqtM/h+PIzwrvcTWT6VGqtfRV9ljnskh9srzN5CLXG8np1qYXuldjvszw0
+         lzoS+128tRsRpZ8OfMXHcTEEkraXW1liSqjFJLcvbntVxTka7aoIl6sO7mGaxMJ4qu4W
+         vh5Uxu6pEaLCtFz8H7q3sapQZHjOG5OXniNnTfUYESf5di2heJVik/RPj1jZa+TB8+LT
+         luNw==
+X-Gm-Message-State: ANoB5pmZ82IR5bG7SUdqJiSSWXYXbYr/a88ljMS4DMPcWFnQx2dhNh4S
+	Xk9Q1Tn/VhC+GkVXreKz6sDbcacGYfKc4PPqst4=
+X-Google-Smtp-Source: AA0mqf7J32MGnag4UVoGdIFqW8dUUCugSBe5V6+RzNj025DcXMWl3c5+9QYc87RU/mApsJ19jbVifOn1E8Gf6zDvOOs=
+X-Received: by 2002:a17:906:4ed8:b0:7ae:d58b:30f8 with SMTP id
+ i24-20020a1709064ed800b007aed58b30f8mr13694684ejv.564.1668542763977; Tue, 15
+ Nov 2022 12:06:03 -0800 (PST)
 MIME-Version: 1.0
-References: <6JjZ.1668491198225465936.lWRF@lists.yoctoproject.org>
-In-Reply-To: <6JjZ.1668491198225465936.lWRF@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 15 Nov 2022 10:02:56 -0800
-Message-ID: <CAMKF1sqPWRfXN-BZtdH_64qKDSS1w5sROrn35qnn3B=8PROzQA@mail.gmail.com>
-Subject: Re: [yocto] Error while bitbake #dunfell
-To: Shruti gandotra <shruti10gandotra@gmail.com>
+References: <CA+cAkepRDYN9y-mbsvn87XPKEgnFhBD6T5f62yR_tkYGS1tCeQ@mail.gmail.com>
+ <31404.1668533068136647845@lists.yoctoproject.org>
+In-Reply-To: <31404.1668533068136647845@lists.yoctoproject.org>
+From: Tim Orling <ticotimo@gmail.com>
+Date: Tue, 15 Nov 2022 12:05:52 -0800
+Message-ID: <CANx9H-D0TLuDvHEvFwe=SL780=_szpk_rO9B9hhV8+7zTBiD_g@mail.gmail.com>
+Subject: Re: [yocto] Ownership issue during do_image
+To: Frederic Martinsons <frederic.martinsons@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000000de40e05ed862b12"
+Content-Type: multipart/alternative; boundary="000000000000bd4eba05ed87e297"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 15 Nov 2022 18:03:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58573
+ <yocto@lists.yoctoproject.org>; Tue, 15 Nov 2022 20:06:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58574
 
---0000000000000de40e05ed862b12
+--000000000000bd4eba05ed87e297
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Nov 14, 2022 at 9:46 PM Shruti gandotra <shruti10gandotra@gmail.com>
-wrote:
+Are you building with a docker/podman container?
 
-> I am trying to build rcar-image-minimal for RCar S4, while bitbake I'm
-> getting do_rootfs: The postinstall intercept hook 'update_pixbuf_cache'
-> failed error. I tried using cleanall and cleansstate but I'm still getting
-> the same error.
-> Can anyone help me with issue?
+On Tue, Nov 15, 2022 at 9:24 AM Frederic Martinsons <
+frederic.martinsons@gmail.com> wrote:
 
-
-Look into the logs in the rootfs build area and it might reveal the
-underlying problem perhaps some missing library or qemu user mode crash
-could be the reason
-
+> Hello list,
+>
+> Doesn't ring a bell to anybody ? Even the slightest clue will help me to
+> continue to track down this weird behavior , nobody have ever problem of
+> files/directories rights during image generation ?
 >
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#58565):
-> https://lists.yoctoproject.org/g/yocto/message/58565
-> Mute This Topic: https://lists.yoctoproject.org/mt/95037905/1997914
-> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
+> View/Reply Online (#58572):
+> https://lists.yoctoproject.org/g/yocto/message/58572
+> Mute This Topic: https://lists.yoctoproject.org/mt/94706311/924729
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> raj.khem@gmail.com]
+> ticotimo@gmail.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
 >
 >
 
---0000000000000de40e05ed862b12
+--000000000000bd4eba05ed87e297
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Mon, Nov 14, 2022 at 9:46 PM Shruti gandotra &lt;<a href=
-=3D"mailto:shruti10gandotra@gmail.com">shruti10gandotra@gmail.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex">I am trying to build rcar-ima=
-ge-minimal for RCar S4, while bitbake I&#39;m getting do_rootfs: The postin=
-stall intercept hook &#39;update_pixbuf_cache&#39; failed error. I tried us=
-ing cleanall and cleansstate but I&#39;m still getting the same error.=C2=
-=A0<br>Can anyone help me with issue?
-</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Look into the lo=
-gs in the rootfs build area and it might reveal the underlying problem perh=
-aps some missing library or qemu user mode crash could be the reason=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex" dir=3D"auto"><br>
+<div dir=3D"ltr"><div dir=3D"ltr">Are you building with a docker/podman con=
+tainer?</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Tue, Nov 15, 2022 at 9:24 AM Frederic Martinsons &lt;<a href=3D"m=
+ailto:frederic.martinsons@gmail.com">frederic.martinsons@gmail.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hello =
+list,</p>
+
+<p>Doesn&#39;t ring a bell to anybody ? Even the slightest clue will help m=
+e to continue to track down this weird behavior , nobody have ever problem =
+of files/directories rights during image generation ?</p>
+<br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#58565): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/58565" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/58565</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/95037905/1997=
-914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/95037905/1997914</a><br>
-Mute #dunfell:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag=
-/dunfell" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
-rg/g/yocto/mutehashtag/dunfell</a><br>
+View/Reply Online (#58572): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/58572" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/58572</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/94706311/9247=
+29" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt/=
+94706311/924729</a><br>
 Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
 =3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
 Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
 =3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+sub</a> [<a href=3D"mailto:ticotimo@gmail.com" target=3D"_blank">ticotimo@g=
 mail.com</a>]<br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 <br>
 </blockquote></div></div>
 
---0000000000000de40e05ed862b12--
+--000000000000bd4eba05ed87e297--
 
