@@ -2,80 +2,96 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B843AC433FE
-	for <webhook@archiver.kernel.org>; Mon, 21 Nov 2022 16:45:58 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.44058.1669049151420910919
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5C6EC43217
+	for <webhook@archiver.kernel.org>; Mon, 21 Nov 2022 16:48:48 +0000 (UTC)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web10.44033.1669049323982360703
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Nov 2022 08:45:51 -0800
+ Mon, 21 Nov 2022 08:48:44 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ZBMihlKM;
- spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f181.google.com with SMTP id s24so15097539ljs.11
-        for <yocto@lists.yoctoproject.org>; Mon, 21 Nov 2022 08:45:51 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=BWoPRRQP;
+ spf=pass (domain: gmail.com, ip: 209.85.208.175, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f175.google.com with SMTP id t10so15208202ljj.0
+        for <yocto@lists.yoctoproject.org>; Mon, 21 Nov 2022 08:48:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhRLc6fiwOv7sAJWwXdSfcBlhCUQv3ZLnERtCkUTs4k=;
-        b=ZBMihlKM8yhJqATPF3qlC4KvTPy4AXsqBgBYjdlpmP0kS90fhENT8irIYJvIyuOvkI
-         ydNGJhiJ+MQf69PgFt6fGeXBwsPJGAjnV55XTA+fA5chWVGKOvTi+DL+2x3Y7CEGbPWu
-         ASOTGHFIckmPArJKJ1cf7Ez4it4FOJCPAFYD9bitToapYFTmUbYeZ8ULERByl9NEF1D3
-         JQTAdDTWFHlEgfIu1Lm/7RdF6aY2Zi+JGm1QO3UAIH6HOR9kDpn9H5jo9W0sZ3x7HX14
-         Ubb8QtTy3A+eqCoy851Tt7ifFktAl5BzGKKk3TLsvAxFgxaR181UNLpk/05//aLgQQ68
-         UpEw==
+        bh=SbXr3PBouHvH4fFCUci9PjNx9YbwKyvkVBI+h87vn8E=;
+        b=BWoPRRQPKaZCY/WA/ROfRUS7sJNw67qx4hbwUiq76d4uyGsX0yly4rSwx/mvFcZV09
+         oRAmtJJYO8JGgKNwM+RwWyQTwJV8MyWqzv9R4jh8+FawBEo9ftMOOGo4gVB4ubo2BKpa
+         lL7vhkY4mmGuxW+IeCaq92TtAiwCDtYj+RWe39YY0SYg6VtD6dYMq5tD9mNOHiu7omXI
+         XleXaIWbm8vWWrSjkO5fCwzyDEIUE0LOFJ9glHHcuSSUxc8MRAPmCgL+4owVc0o5r2n1
+         bt/tQAy8PBKBvjpIaMsnRu2cO9VIMbGF7B19uOxpJsW8lSBeiraAa66jZYn6SLQolgHY
+         oAsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZhRLc6fiwOv7sAJWwXdSfcBlhCUQv3ZLnERtCkUTs4k=;
-        b=FMrswg6jcwPVuwcS7vQ+jPdy7KhEaScaxveJzYl+vvDml+6lwNqFMBHpZyTpNeWrHP
-         GMPb8lQ79bxeoHvZgVOiPPsPzr2M6biR9g7tKggdvAZOUQDxnW/Z/d3XVx/HobDIHYEE
-         gdTx3Gsb/bB68XR49jqrV/N4SdGcdTJcCOxfP7jP4MWryvVh28B2tyECt9spHSKbywPP
-         3BQWRsKxhLO1F+wRC3POFRZWtS1ZmEQh4BfqzXCFGWip/Qn/FT4AaAU263hmEjWZoqlv
-         IbtYKBNCxXAPsyirUYHiSdtQlAwMSYgiYre75IZDOzocrYfVbmYj9SOVRLA+TXt5pgnq
-         DpGA==
-X-Gm-Message-State: ANoB5pnOCYQS74FcnvYu8sDxWxV0xc8cT1Jxxe0hW7ieSLwK/KvZrsgD
-	HSM2dnGaFB+zN7WF3k4Qmcr3+L1d1toDYO3B8+w=
-X-Google-Smtp-Source: AA0mqf7P+GRe1wfeAPFd5WEmrEtjMZaRH2UHzc6Y79ch4H5o5ogcG3L5R/CFHsIHmrHJBnKiGumYETY4sjw1oFgEe2s=
-X-Received: by 2002:a05:651c:c8f:b0:26d:d196:d04 with SMTP id
- bz15-20020a05651c0c8f00b0026dd1960d04mr6420263ljb.403.1669049149023; Mon, 21
- Nov 2022 08:45:49 -0800 (PST)
+        bh=SbXr3PBouHvH4fFCUci9PjNx9YbwKyvkVBI+h87vn8E=;
+        b=qFelKyDCgiAtl9srV/nuV3oACSFW3L6ersm8eJ2gmNTBeEtAmsRe8A+/C1dc69KqGW
+         Gnbw09mXemC3cI6TAyZZMap+vNDUaCNC5YnEnOzTNDjsrMRlXUKERmaaT0BLzGsMHosp
+         T00nXROJUOSQ4Y4ET7wvgF+Tm2s6EeIFIn6quYvimXDEts16C14JoznlzwAAXEFmau6b
+         hGL/prgAkcJ1i1Os0EkxqHeNO+xIJdNrdQGnAvb+YHnWd5kLeDtZJRKfVq/ewHDVTP3n
+         mhRO/FvedLtccRLisOLNEAkOohjxF3cDV5tt57qZz1vu1bVB4B71hzy8IoZRMJEFHhcr
+         40Jw==
+X-Gm-Message-State: ANoB5pnnZfYHN2CqqYpb6uImJhV/aeyGcpdPLh2/ab5eJNd+h+pqa0Zr
+	NDAWtDnT/nRuD49Ec15bwV3Pz/drsmc0oR955Pw=
+X-Google-Smtp-Source: AA0mqf53jcwPWdR4eZKJaKMVdo3P3Z3Wyb/2PZgp+1n89MwSBLAyOM+D1hO4Dzej4b0Lw9SQuoZ2l+1mGiYxadWf2I8=
+X-Received: by 2002:a2e:be8a:0:b0:26f:c081:9aed with SMTP id
+ a10-20020a2ebe8a000000b0026fc0819aedmr5997729ljr.222.1669049322053; Mon, 21
+ Nov 2022 08:48:42 -0800 (PST)
 MIME-Version: 1.0
-References: <4cca945b-8514-0524-aeb1-33a7606a60ae@gmail.com> <26677.1669046870894552681@lists.yoctoproject.org>
-In-Reply-To: <26677.1669046870894552681@lists.yoctoproject.org>
+References: <CANNYZj_4dYa5=-svn-gHioAPfzTxGTE3wJAw+XUueFxVOrHAOA@mail.gmail.com>
+ <24762.1669045082837771574@lists.yoctoproject.org>
+In-Reply-To: <24762.1669045082837771574@lists.yoctoproject.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 21 Nov 2022 17:45:38 +0100
-Message-ID: <CANNYZj86L6OzctJFVUABRXauP8BcuFK9QxnL0pbC5D46vFB2EQ@mail.gmail.com>
-Subject: Re: [yocto] Reproducible builds not working with musl?
-To: Kenth Eriksson <kenth.eriksson@infinera.com>
+Date: Mon, 21 Nov 2022 17:48:31 +0100
+Message-ID: <CANNYZj_Nn0vA+sOQV+Faj-r5AQZT=Qsduh1y=oyJw0Su7ayHmA@mail.gmail.com>
+Subject: Re: [yocto] Apply Patching #dunfell #patch #yocto #raspberrypi #linux
+To: Nikita Gupta <nikitagupta2509@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a400aa05edfdc9a0"
+Content-Type: multipart/alternative; boundary="000000000000f4229d05edfdd302"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Nov 2022 16:45:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58605
+ <yocto@lists.yoctoproject.org>; Mon, 21 Nov 2022 16:48:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58606
 
---000000000000a400aa05edfdc9a0
+--000000000000f4229d05edfdd302
 Content-Type: text/plain; charset="UTF-8"
 
-You have to find them yourself with gut bisect I would say. Too many things
-have changed.
+In this case I have no idea unfortunately. Does a regular kernel work?
 
 Alex
 
-On Mon 21. Nov 2022 at 17.07, Kenth Eriksson <kenth.eriksson@infinera.com>
+On Mon 21. Nov 2022 at 16.38, Nikita Gupta <nikitagupta2509@gmail.com>
 wrote:
 
-> I see. Any particular fixes you can point me to that may be relevant also
-> for musl?
+> Hello Alex,
+> Sorry for late reply. Actually i madert- image by setting the preferred
+> virtual/kernel type.
+> PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi-rt"
+>
+> and bake the recipe for following target.
+> bitbake core-image-base
+>
+> I got my image successfully and it is booting up, but it is not taking
+> user input from my keyboard. Why is it happening?
+>
+> Thanks in Advance
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#58604):
-> https://lists.yoctoproject.org/g/yocto/message/58604
-> Mute This Topic: https://lists.yoctoproject.org/mt/95172718/1686489
+> View/Reply Online (#58603):
+> https://lists.yoctoproject.org/g/yocto/message/58603
+> Mute This Topic: https://lists.yoctoproject.org/mt/94645313/1686489
+> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
+> Mute #patch:https://lists.yoctoproject.org/g/yocto/mutehashtag/patch
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
+> Mute #raspberrypi:
+> https://lists.yoctoproject.org/g/yocto/mutehashtag/raspberrypi
+> Mute #linux:https://lists.yoctoproject.org/g/yocto/mutehashtag/linux
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
 > alex.kanavin@gmail.com]
@@ -83,28 +99,47 @@ wrote:
 >
 >
 
---000000000000a400aa05edfdc9a0
+--000000000000f4229d05edfdd302
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">You have to find them yourself with gut bisect I would sa=
-y. Too many things have changed.</div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
-ass=3D"gmail_attr">On Mon 21. Nov 2022 at 17.07, Kenth Eriksson &lt;<a href=
-=3D"mailto:kenth.eriksson@infinera.com">kenth.eriksson@infinera.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;bo=
-rder-left-color:rgb(204,204,204)">I see. Any particular fixes you can point=
- me to that may be relevant also for musl?
+<div dir=3D"auto">In this case I have no idea unfortunately. Does a regular=
+ kernel work?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alex</div>=
+<div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Mon 21. Nov 2022 at 16.38, Nikita Gupta &lt;<a href=3D"mailto:nikitagupta=
+2509@gmail.com">nikitagupta2509@gmail.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-widt=
+h:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,20=
+4,204)">Hello Alex,=C2=A0<br>Sorry for late reply. Actually i madert- image=
+ by setting the preferred virtual/kernel type.=C2=A0<br>PREFERRED_PROVIDER_=
+virtual/kernel =3D &quot;linux-raspberrypi-rt&quot;<br>=C2=A0<br>and bake t=
+he recipe for following target.<br>bitbake core-image-base=C2=A0<br><br>I g=
+ot my image successfully and it is booting up, but it is not taking user in=
+put from my keyboard. Why is it happening?<br><br>Thanks in Advance
 <br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 Links: You receive all messages sent to this group.<br>
-View/Reply Online (#58604): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/58604" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/58604</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/95172718/1686=
+View/Reply Online (#58603): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/58603" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/58603</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/94645313/1686=
 489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/95172718/1686489</a><br>
+/94645313/1686489</a><br>
+Mute #dunfell:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag=
+/dunfell" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
+rg/g/yocto/mutehashtag/dunfell</a><br>
+Mute #patch:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/p=
+atch" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g=
+/yocto/mutehashtag/patch</a><br>
+Mute #yocto:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/y=
+octo" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g=
+/yocto/mutehashtag/yocto</a><br>
+Mute #raspberrypi:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehas=
+htag/raspberrypi" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/mutehashtag/raspberrypi</a><br>
+Mute #linux:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/l=
+inux" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g=
+/yocto/mutehashtag/linux</a><br>
 Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
 =3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
 Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
@@ -115,5 +150,5 @@ anavin@gmail.com</a>]<br>
 <br>
 </blockquote></div></div>
 
---000000000000a400aa05edfdc9a0--
+--000000000000f4229d05edfdd302--
 
