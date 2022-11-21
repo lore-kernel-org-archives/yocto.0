@@ -1,168 +1,64 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <kenth.eriksson@infinera.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56D0EC433FE
-	for <webhook@archiver.kernel.org>; Mon, 21 Nov 2022 12:37:07 +0000 (UTC)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
- by mx.groups.io with SMTP id smtpd.web10.37165.1669034225335163044
- for <yocto@lists.yoctoproject.org>;
- Mon, 21 Nov 2022 04:37:05 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=RAnE6yv8;
- spf=pass (domain: gmail.com, ip: 209.85.167.49, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f49.google.com with SMTP id j4so18680552lfk.0
-        for <yocto@lists.yoctoproject.org>; Mon, 21 Nov 2022 04:37:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MXtPUaq1rHlwVJL1PT5X5io7StMmGhbjYPI8/ykVMSM=;
-        b=RAnE6yv8VY84s/cJqbDR2KxMCvEITqVt1KVbEYajgMCGcd6dggULRqOIVVyXYqUjta
-         f1ouSCpXuFva88rH8zKv3kxUs7Y1x7eqUI5qp5DKW5FX5Ku41dwUUHetQyQjpUEe2O8F
-         jB2ay+VNEzXKGlUf0ftriZqzI57qqyJ2QwXrTg3AURRUKwU2/dtTOCkNzKJfv0MCzRZ7
-         ircmRtpGvLjmxPXMaUBEIjb7bU1fYXFFWXXotBZlltUUGH11C63plI8qd9cEkHl1ixao
-         PCYwFrmmkDcofhRXC9kCUvtaK4hcvxDqe6/pTpPh0tsTyJQ07+Ck+bwumy9AseTfKhyx
-         gC8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MXtPUaq1rHlwVJL1PT5X5io7StMmGhbjYPI8/ykVMSM=;
-        b=ErhOFOxvK3c/iNwZipb8I2Qr3xofq0mEitmkLYpZhAfp26LknTRTlPDIh2GlsEjRU7
-         iTzyMDMM3bIIPcX1smrM2cEGDH9c37b4R83o+V617lH59d0gFvlpFDfDZMc7lVxZABWR
-         hR/VWaN43dw8xntTZjasvYW/OcGr3VibzgWQA/zfyph1W30CD6vw6Jq7d1oKP+xasPV7
-         UkHP/d5hEQ5MERGTFyWWvD9JFxJdCdct2E4InGQjFreMoRbJzeKn2IhkBaZZWGOWpLqw
-         sxIvKmeMJJgBQPnhSljg0VXkuHGb00Lfbc4+QPLFy8gvlLCXQiU06qSNFEFtDtasVWLW
-         SIdA==
-X-Gm-Message-State: ANoB5plANquxTHgrnR9XdmmlduDiFhL87xdYZWBi1UozkbNQ3z6E1x2a
-	cDnL4D9N7bjIaCs/QZCnJ7cWzJlkkru2OEaAQadgONT1
-X-Google-Smtp-Source: AA0mqf48Ql4QKGr+r41jRjp+mODjXx7WAKM8Zd3j/Z9HNJQEbNZuMy4bgiV7yGSmNzNjAx5VAJtQTch5z9B/3hs1voI=
-X-Received: by 2002:a05:6512:25ab:b0:4b4:d443:6550 with SMTP id
- bf43-20020a05651225ab00b004b4d4436550mr751209lfb.393.1669034223200; Mon, 21
- Nov 2022 04:37:03 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4A5BC4332F
+	for <webhook@archiver.kernel.org>; Mon, 21 Nov 2022 14:31:57 +0000 (UTC)
+Subject: Reproducible builds not working with musl?
+To: yocto@lists.yoctoproject.org
+From: "Kenth Eriksson" <kenth.eriksson@infinera.com>
+X-Originating-Location: Huddinge, Stockholm County, SE (217.208.192.91)
+X-Originating-Platform: Windows Firefox 102
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAAfyv364TTZFj8Z4FWCjFrcFhf4eWqnz9PW0QTW-y4NtrE3bfw@mail.gmail.com>
- <CAAfyv35O=kOjD1T3cBenxFEpV=uX16sAFciRcYv+PcEFZ1h0sA@mail.gmail.com>
-In-Reply-To: <CAAfyv35O=kOjD1T3cBenxFEpV=uX16sAFciRcYv+PcEFZ1h0sA@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 21 Nov 2022 13:36:51 +0100
-Message-ID: <CANNYZj9TcKBRZ5fjv=jidipQn=6Q6JY6ADEu7gJKtvg3Z5Y9KQ@mail.gmail.com>
-Subject: Re: [yocto] rust issue for armv6 in mainline poky
-To: Marek Belisko <marek.belisko@gmail.com>
-Cc: Yocto <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 21 Nov 2022 06:31:53 -0800
+Message-ID: <d1OW.1669041113310591951.07DB@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="CuwzLBSGAdLTjsmAGDUg"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Nov 2022 12:37:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58599
+ <yocto@lists.yoctoproject.org>; Mon, 21 Nov 2022 14:31:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58600
 
-Can you try the tip of master please?
+--CuwzLBSGAdLTjsmAGDUg
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Alex
+Having trouble with reproducible builds in yocto on dunfell release with mu=
+sl as libc. E.g. I can see that the build path for musl crti assembler file=
+ is leaking through and becomes visible when I do strings on libraries and =
+binaries.
 
-On Mon, 21 Nov 2022 at 13:32, Marek Belisko <marek.belisko@gmail.com> wrote:
->
-> Hi,
->
-> on kirkstone branch when trying to build rust for raspberrypi machine
-> I'm getting:
->
-> ERROR: rust-cross-arm1176jzfshf-vfp-glibc-1.59.0-r0
-> do_rust_gen_targets: Error executing a python function in
-> exec_func_python() autogenerated:
->
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:do_rust_gen_targets(d)
->      0003:
-> File: '/data/projects/test-build/.build-rpi/../sources/poky/meta/recipes-devtools/rust/rust-cross.inc',
-> lineno: 19, function: do_rust_gen_targets
->      0015:            if arch == "arm" and target_is_armv7(d):
->      0016:                arch = 'armv7'
->      0017:            features = d.getVar('TARGET_LLVM_FEATURES') or ""
->      0018:            cpu = d.getVar('TARGET_LLVM_CPU')
->  *** 0019:        rust_gen_target(d, thing, wd, features, cpu, arch, abi)
->      0020:}
->      0021:
->      0022:# Otherwise we'll depend on what we provide
->      0023:INHIBIT_DEFAULT_RUST_DEPS = "1"
-> File: '/data/projects/test-build/.build-rpi/../sources/poky/meta/recipes-devtools/rust/rust-common.inc',
-> lineno: 314, function: rust_gen_target
->      0310:    # build tspec
->      0311:    tspec = {}
->      0312:    tspec['llvm-target'] = d.getVar('RUST_TARGET_SYS', arch_abi)
->      0313:    tspec['data-layout'] = d.getVarFlag('DATA_LAYOUT', arch_abi)
->  *** 0314:    tspec['max-atomic-width'] =
-> int(d.getVarFlag('MAX_ATOMIC_WIDTH', arch_abi))
->      0315:    tspec['target-pointer-width'] =
-> d.getVarFlag('TARGET_POINTER_WIDTH', arch_abi)
->      0316:    tspec['target-c-int-width'] =
-> d.getVarFlag('TARGET_C_INT_WIDTH', arch_abi)
->      0317:    tspec['target-endian'] = d.getVarFlag('TARGET_ENDIAN', arch_abi)
->      0318:    tspec['arch'] = arch_to_rust_target_arch(rust_arch)
-> Exception: TypeError: int() argument must be a string, a bytes-like
-> object or a number, not 'NoneType'
->
-> by adding below it seems to fix an issue (copied from meta-rust):
-> diff --git a/meta/recipes-devtools/rust/rust-common.inc
-> b/meta/recipes-devtools/rust/rust-common.inc
-> index ef70c48d0f..389c75d2f7 100644
-> --- a/meta/recipes-devtools/rust/rust-common.inc
-> +++ b/meta/recipes-devtools/rust/rust-common.inc
-> @@ -118,6 +118,15 @@ def llvm_features(d):
->                      llvm_features_from_target_fpu(d))
->
->
-> +
-> +DATA_LAYOUT[arm-eabi] = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
-> +LLVM_TARGET[arm-eabi] = "${RUST_TARGET_SYS}"
-> +TARGET_ENDIAN[arm-eabi] = "little"
-> +TARGET_POINTER_WIDTH[arm-eabi] = "32"
-> +TARGET_C_INT_WIDTH[arm-eabi] = "32"
-> +MAX_ATOMIC_WIDTH[arm-eabi] = "64"
-> +FEATURES[arm-eabi] = "+v6,+vfp2"
-> +
->  ## arm-unknown-linux-gnueabihf
->
-> Thanks and BR,
->
-> marek
->
-> --
-> as simple and primitive as possible
-> -------------------------------------------------
-> Marek Belisko - OPEN-NANDRA
-> Freelance Developer
->
-> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> Tel: +421 915 052 184
-> skype: marekwhite
-> twitter: #opennandra
-> web: http://open-nandra.com
->
->
-> --
-> as simple and primitive as possible
-> -------------------------------------------------
-> Marek Belisko - OPEN-NANDRA
-> Freelance Developer
->
-> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> Tel: +421 915 052 184
-> skype: marekwhite
-> twitter: #opennandra
-> web: http://open-nandra.com
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58598): https://lists.yoctoproject.org/g/yocto/message/58598
-> Mute This Topic: https://lists.yoctoproject.org/mt/95170677/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+$ strings /opt/infn-xr/1.0/sysroots/aarch64-xr-linux-musl/usr/lib64/.debug/=
+libcrypto.so.1.1 | grep crt[a-z]\.o
+/data/jenkins/workspace/XR_yocto-xr_master/build/build/infn-xr/gmcu/tmp/wor=
+k/aarch64-xr-linux-musl/openssl/1.1.1l-r0/recipe-sysroot/usr/lib64/crti.o
+/data/jenkins/workspace/XR_yocto-xr_master/build/build/infn-xr/gmcu/tmp/wor=
+k/aarch64-xr-linux-musl/openssl/1.1.1l-r0/recipe-sysroot/usr/lib64/crtn.o
+$
+
+Is this a known issue? Yocto passes -fmacro-prefix-map and -fdebug-prefix-m=
+ap as part of DEBUG_PREFIX_MAP to eliminate paths to WORKDIR. But it looks =
+as that fails for the musl assembler file?
+
+--CuwzLBSGAdLTjsmAGDUg
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p class=3D"MsoPlainText">Having trouble with reproducible builds in yocto =
+on dunfell release with musl as libc. E.g. I can see that the build path fo=
+r musl crti assembler file is leaking through and becomes visible when I do=
+ strings on libraries and binaries.<br /><br />$ strings /opt/infn-xr/1.0/s=
+ysroots/aarch64-xr-linux-musl/usr/lib64/.debug/libcrypto.so.1.1 | grep crt[=
+a-z]\.o <br />/data/jenkins/workspace/XR_yocto-xr_master/build/build/infn-x=
+r/gmcu/tmp/work/aarch64-xr-linux-musl/openssl/1.1.1l-r0/recipe-sysroot/usr/=
+lib64/crti.o<br />/data/jenkins/workspace/XR_yocto-xr_master/build/build/in=
+fn-xr/gmcu/tmp/work/aarch64-xr-linux-musl/openssl/1.1.1l-r0/recipe-sysroot/=
+usr/lib64/crtn.o <br />$<br /><br />Is this a known issue? Yocto passes -fm=
+acro-prefix-map and -fdebug-prefix-map as part of DEBUG_PREFIX_MAP to elimi=
+nate paths to WORKDIR. But it looks as that fails for the musl assembler fi=
+le?</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+
+--CuwzLBSGAdLTjsmAGDUg--
 
