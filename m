@@ -1,278 +1,247 @@
-Return-Path: <dspore@parraid.com>
+Return-Path: <Heinz.Wrobel@nxp.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DC2EBC4332F
-	for <webhook@archiver.kernel.org>; Tue, 22 Nov 2022 18:28:55 +0000 (UTC)
-Subject: Multilib for core-image-minimal #kirkstone
-To: yocto@lists.yoctoproject.org
-From: dspore@parraid.com
-X-Originating-Location: Lexington Park, Maryland, US (146.168.63.66)
-X-Originating-Platform: Windows Chrome 107
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3224CC433FE
+	for <webhook@archiver.kernel.org>; Wed, 23 Nov 2022 07:29:43 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.46])
+ by mx.groups.io with SMTP id smtpd.web11.14743.1669188579623188990
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 22 Nov 2022 23:29:40 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@nxp.com header.s=selector2 header.b=jIkJByJa;
+ spf=pass (domain: nxp.com, ip: 40.107.21.46, mailfrom: heinz.wrobel@nxp.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O9cHqk32NwkvOae6Q+dEQu3/3C0toX4V3ain1OFBLmbnsPtif25fzURBOI2FV3tMJiO2bC6w7+xGY2UMOnVYz5W0iaU5Rj2bN6vIf3tDlv3SMfecxZvGqtD36Va4OK/QyH+17sdTj1QYGxEG6EAsBBDmNvs0RIfF233kpTNl+ntyzqBobBjjD0CUrR5YIt/CImeF3AxByhQQSazaWonp9aBgJ02OBC6UneZoK9hgXRZDRQxOdzyjsYN8dNsLJq9RG6ZybuOKVAOyTGW6wGRXfGhUkWCMgHhApYNUPi0nNWX6MpZIauX1f78+jn55JAf7Kvyi7YS4YKDWgUZVWPblGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MhhyNqV7T8Qzx5QTBHQVPXhCqhtyBI5/4amyROswEmQ=;
+ b=B7xNcwMtNIuyXLbJW3wCDwoWSLnqjgfHbY/RfGSe4bMoHQFtEnWfa8BBahbYhuredbA3ywYn2339JOFGy1n3KA/g98dpNOzD1ECwHerR1hEvDo7LAS64grL4s/RgzNzcAsNFAmqf2inAMv7ElSj+3SBnXQV+8bmVSsRZyRuHqqjxyWZx6PhIXGyQbfz7CdkBhSRdXeO2xC5apUpOdVo78tpsw0ln64vUzk9KR1UYYwTm8BvekMhMVqzVKJfkTiabbgSRrYLkjT8He/rcr9SQ3FzxY+SoGVuhsLDT0AnyRcC2qb2js+jOd1iHKvyaWTWU8PSngKehp7xc5vp8+Iu+ZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MhhyNqV7T8Qzx5QTBHQVPXhCqhtyBI5/4amyROswEmQ=;
+ b=jIkJByJaYTEr8lhRy+FabqdYoHBJVc+fDJyNo7zCFR7W/R5q+IRK2SB1XLoWNqFon7SEWlOOeW+UXsZlTtBiv+H22cV97yDftfMMm05b6OcMgxSRpA4fNy0PVVwKi6miZDQcLPPtqdIHysFh3LIoa6VOrk7/njRoocj8QhT8MiE=
+Received: from GV1PR04MB9149.eurprd04.prod.outlook.com (2603:10a6:150:24::5)
+ by AM7PR04MB6902.eurprd04.prod.outlook.com (2603:10a6:20b:107::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9; Wed, 23 Nov
+ 2022 07:29:36 +0000
+Received: from GV1PR04MB9149.eurprd04.prod.outlook.com
+ ([fe80::d461:de5:fd24:f9fc]) by GV1PR04MB9149.eurprd04.prod.outlook.com
+ ([fe80::d461:de5:fd24:f9fc%4]) with mapi id 15.20.5834.015; Wed, 23 Nov 2022
+ 07:29:35 +0000
+From: Heinz Wrobel <heinz.wrobel@nxp.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Fixing package dependencies across recipe versions?
+Thread-Topic: Fixing package dependencies across recipe versions?
+Thread-Index: Adj/DQOBml7nE9kcSqiXF7/TTz/7xQ==
+Date: Wed, 23 Nov 2022 07:29:35 +0000
+Message-ID: 
+ <GV1PR04MB9149717F3BCEDB8BC97EAA928C0C9@GV1PR04MB9149.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GV1PR04MB9149:EE_|AM7PR04MB6902:EE_
+x-ms-office365-filtering-correlation-id: 9162200c-4c14-4aa8-d674-08dacd2478b4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ +e4VGFsVF5j+d3ICGHSrQGZCpOsswgXrCJ1m+T5W4SR0cnjmMwTY9/kzvS98liopLhpMDE51LIW0zCMwsXDjaNQBPG8yFhrGHiNwIDXXfYbljYnoV5NRyQKneEq2Obcdk40lG/VUMTYh47OnXAQGygInYUmuZa7EsACnz2Xq5XXvBQL4vpFn6KKDqAU375QoEEIgoVRevGBlROhKHKjNEOtg6lmQPr2vHVNID9HN0ZzPRNZ5ABOp/Rds7P2XfFEtG4t6Zrb7+0pSEGM0c3YDB2DhrRxEkShuXpzOZsZIqMJKsJO7UMo52afkaPtTUko8UULVNH2cFGIm80USXeyfhEOXeTZv1cB4/jeGgrEdmp8IX2ohz/lcz++VPRAn3ldypJITs+ECT9BUHXxJdtbUivXDK+g0wIoihZ16qLpaqNFFs1wsb5lgTsLO2FbbA3MAKe5VSxhzSvx7SUZIvSFFtcb9vjNKfQRHSDCGtyg0BzmlmI6xvNcLwOK75UEUOLPWo3VTzsABiRYq+ee+k3MaaMdILnXRhw833huwjj2kxhjf4zzAubEpqD1B6TcKrWng2uQzJcuzcIS7UVBSuVrf1sBdD/YlC6ryBXxf73FiXq5HIkwE+1p3rZHVOy8A9QPRaknundK01ZH7g/Y9Sut3tIojgP7+pDLzYUXA7srncvCfnt1P4I3i9MCG3eB0CUcuSZDVgEsrU7f3+dgb7c1ckQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9149.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(346002)(376002)(39860400002)(136003)(396003)(451199015)(83380400001)(33656002)(5660300002)(9326002)(8936002)(55016003)(38100700002)(86362001)(122000001)(478600001)(9686003)(26005)(38070700005)(41300700001)(52536014)(71200400001)(44832011)(2906002)(66476007)(186003)(8676002)(6506007)(6916009)(316002)(66556008)(76116006)(66446008)(66946007)(64756008)(7696005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?uwtarlAdj5DThncc2asvnw2TYvh4QEuYufHYeYXuP3hAsNL+p/ww+owzKcx8?=
+ =?us-ascii?Q?5J9i6K8RrW+/FCOPtORZ7lw8PS6skCy9A8jqmeKEFNZtMdKXCGS8LmVrlANr?=
+ =?us-ascii?Q?fXoTYAoWiZUgntVV6/BpJXLgikkHebfpzPXXi25JDhnM6ist+H5BsQdmBDKO?=
+ =?us-ascii?Q?rQ5QSlVqdKYgO0dkuOdHZwvR+q8mJhRGEpEazxnpZ02AJOJ/jRdVettybnqh?=
+ =?us-ascii?Q?FDaRTswlKcY/QmA0txv8smZecSZ/p8G6MGRIu0L0Oi49p0BvpmqMmXRdspP6?=
+ =?us-ascii?Q?OlVyHh5TvpngbVv8N45gKTpf0DY4yEIR2H415+21ZjCNNhqCu0gVWDrvugEE?=
+ =?us-ascii?Q?ZdWEGCpK3aVBe+tNuHHOg6NbRDRyMmp+mnInFs6EC50i/qbiM8bXJOnz/2CY?=
+ =?us-ascii?Q?IS5XDyKmC8L0m3c7noTFdOgu72a26Jy0ny/xCEF8Cs+p1K0vFtNFf1XBE4Cb?=
+ =?us-ascii?Q?XUewPBGjFOsNIa3A4zTJdE4zlYLO5Jmnurk9b6aL2auKW2f3QLM76TjbFwn3?=
+ =?us-ascii?Q?4QDU0Z6bw7ZPAXth5ExzBk7rE6wEgxeQaxxInutPHynNJxOSb6iCZWn3hic9?=
+ =?us-ascii?Q?ZVru6KwPXze3ZU7jep3eadyB4CGEw47JJG4vnU43MTdxyXFSuaWS8Awil4DS?=
+ =?us-ascii?Q?4Z8GwvSEywGUILOA7Zq/CPBPhE4tsoOs7cV1xWdmY06aGwTn9zrIjIFh/ef0?=
+ =?us-ascii?Q?0bSHy3UB8Sj7PzQMilXZWkc7X58jmw22G6qb9AxdO8Jvj0LKt4tc9CIUxWjr?=
+ =?us-ascii?Q?yqHaxhtpySlKbUXiNDcYoronUZ0EpQLhCruhwjDIURD7NZHHY/PSW4aHJAtQ?=
+ =?us-ascii?Q?ktqGWxhcUwGVJqHNx0OUYHYQGYKkI8fS7ujNQ6RCyAgI4WMZUHO1pnyGjKQY?=
+ =?us-ascii?Q?sUp4ITHmzpwP9BxxyZaIjThoy56v6zNR7t9ye5Ewd+V96aK3K3GEiCK3fE8M?=
+ =?us-ascii?Q?1xORbvcEI0UuehynsGLC4shECTsQG7QdOisVYhC2bKUjg5eiXfymzhlpCeFh?=
+ =?us-ascii?Q?vbpddIhXT8b9p5FoNngs6568WyAoAw193x27+tJ4nhw45XxByyHC39eGITM0?=
+ =?us-ascii?Q?QWqFz3/riJ88ApOaKS1tRhCo/oFY4vZp7HJknKQqfNIjHD5FOxY5Fsl/WfTo?=
+ =?us-ascii?Q?kGEZu+V7to5ypbfpE/rd5ppIE9LkG83N+ZlTVmH5yQkPa0Mk0JA0g1OWDK3E?=
+ =?us-ascii?Q?1P0o/nIeiKRPkpVk42TwbQPtV1ypAgLNFAluyAjRvX56L83IBVYbe9/fM83n?=
+ =?us-ascii?Q?gyhjM33TtSgcmvY1JHJaKuvHAjv29w/SQizAO5t3626BSUEGJnrPlyq55HEU?=
+ =?us-ascii?Q?C0jnwiLybQYYlmq4sp8ydlaoqRiFSkpiTQFocc4fEiJ7IhoqVuCgGLZGRCsC?=
+ =?us-ascii?Q?JPxeF2Bi0PZUi3IUXbizHJPoDwzMqEipS7Ajk5dLE8qiqKrFvIxUn6r6zfVm?=
+ =?us-ascii?Q?OdtEGuMm91pR4Tfwg3PEqbWktjHYGANQmwGjyyV3Cd66wZMTGDVhF8dkhJ/v?=
+ =?us-ascii?Q?Icijb5hex1aM+BXS3n7JVuhJGnYA3a4mwOuRfSEZqz5cGtLT7pteVB7JOBYt?=
+ =?us-ascii?Q?6M//8qRQnzWcEpQVKIKmk7yYpqCJgI3xl5n9wQHE?=
+Content-Type: multipart/alternative;
+	boundary="_000_GV1PR04MB9149717F3BCEDB8BC97EAA928C0C9GV1PR04MB9149eurp_"
 MIME-Version: 1.0
-Date: Tue, 22 Nov 2022 10:28:49 -0800
-Message-ID: <Xwdc.1669141729717943832.hPOP@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="svaznXVEcdnqqnWXpnPk"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9149.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9162200c-4c14-4aa8-d674-08dacd2478b4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2022 07:29:35.3823
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ABkXIOpsc3jFekzlfDQcYIBJkgKHuJmDba56gqxAvJiCL7iaPRLHfU/+SSEIj7qqIWN5lzKIgCrVR4fV+nWhZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6902
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 22 Nov 2022 18:28:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58620
+ <yocto@lists.yoctoproject.org>; Wed, 23 Nov 2022 07:29:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58621
 
---svaznXVEcdnqqnWXpnPk
-Content-Type: multipart/alternative; boundary="51N2I3TBmiRXMiPeAAOq"
-
---51N2I3TBmiRXMiPeAAOq
-Content-Type: text/plain; charset="utf-8"
+--_000_GV1PR04MB9149717F3BCEDB8BC97EAA928C0C9GV1PR04MB9149eurp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I am new to Yocto, and am trying to build core-image-minimal with multilib =
-using the latest Kirkstone release.=C2=A0 The image builds ok without the m=
-ultilib config entries, but adding the entries (local.conf attached) genera=
-tes this error:
+Hi,
 
-ERROR: core-image-minimal-1.0-r0 do_prepare_recipe_sysroot: Manifest /home/=
-project/var-fsl-yocto/build_xwayland/tmp/sstate-control/manifest-x86_64_x86=
-_64-nativesdk-lib32-qemuwrapper-cross.populate_sysroot not found in imx8mp_=
-var_dart armv7at2-neon-mx8mp armv7a-neon-mx8mp armv7at2-vfp-mx8mp armv7a-vf=
-p-mx8mp armv7a-mx8mp armv6t-vfp-mx8mp armv6-vfp-mx8mp armv6t-mx8mp armv6-mx=
-8mp armv5te-vfp-mx8mp armv5e-vfp-mx8mp armv5te-mx8mp armv5e-mx8mp armv5t-vf=
-p-mx8mp armv5-vfp-mx8mp armv5t-mx8mp armv5-mx8mp armv4t-mx8mp armv4-mx8mp a=
-rm-mx8mp armv8a-mx8mp armv8a-crc-crypto armv8a-crypto armv8a-crc armv8a aar=
-ch64 allarch x86_64_x86_64-nativesdk (variant 'lib32')?
-ERROR: Logfile of failure stored in: /home/project/var-fsl-yocto/build_xway=
-land/tmp/work/imx8mp_var_dart-fslc-linux/core-image-minimal/1.0-r0/temp/log=
-.do_prepare_recipe_sysroot.2763591
-ERROR: Task (/home/project/var-fsl-yocto/sources/poky/meta/recipes-core/ima=
-ges/core-image-minimal.bb:do_prepare_recipe_sysroot) failed with exit code =
-'1'
+In my layer I have two older versions of glibc in addition to the 2.35 prov=
+ided by kirkstone, and a the global conf for the build directory sets GLIBC=
+VERSION to select which one to use.
 
-The bitbake output:
-Loading cache: 100% |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0| ETA:=C2=A0 --:--:--
-Loaded 0 entries from dependency cache.
-Parsing recipes: 100% |##########################################| Time: 0:=
-04:58
-Parsing of 3134 .bb files complete (0 cached, 3134 parsed). 7763 targets, 5=
-89 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
+The problem is that they don't all provide exactly the same thing and that =
+older version appear to influence newer versions, causing warnings.
+2.27 and 2.31 build libsegfault, but 2.35 doesn't anymore. If I prefer 2.35=
+, then I get warnings like:
 
-Build Configuration:
-BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "2.0.0"
-BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "x86_64-linux"
-NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D "universal"
-TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "aarch64-fslc-linux"
-MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "imx8mp-var-dar=
-t"
-DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "fslc-xway=
-land"
-DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "4.0"
-TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "aarch64 armv8a crc crypto"
-TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D ""
-meta
-meta-poky=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "HEAD:24a3f7b3648185=
-e33133f5d96b184a6cb6524f3d"
-meta-oe
-meta-multimedia
-meta-python
-meta-filesystems
-meta-gnome
-meta-networking
-meta-webserver=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "HEAD:744a4b6eda88b9a9ca1cf0df=
-6e18be384d9054e3"
-meta-freescale=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "HEAD:3747641f1e71d8e4edd5b587=
-b49d09dc2d243942"
-meta-freescale-3rdparty =3D "HEAD:6d8213fc5ec192c33f963b8095d1f01af1574eea"
-meta-freescale-distro =3D "HEAD:d5bbb487b2816dfc74984a78b67f7361ce404253"
-meta-freescale-ml=C2=A0 =C2=A0 =3D "HEAD:08dcb7c67072907348cd235d9e110d4ba9=
-1e8235"
-meta-qt5=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "HEAD:44d449332=
-00287f7d17cf6981af4b4a0961c308d"
-meta-swupdate=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "HEAD:fabbcc623d41794fbfa97c38=
-b9da941ed2cdcdcc"
-meta-virtualization=C2=A0 =3D "HEAD:5be54854139acb4796000478394afd66de0792c=
-1"
-meta-variscite-bsp=C2=A0 =C2=A0=3D "HEAD:a4dbd2cfe48a80d4362c9de0523500de05=
-f15898"
-meta-variscite-sdk=C2=A0 =C2=A0=3D "HEAD:5664513a0cf0f43afb60f92e63e60a86f3=
-e53bd0"
-meta-variscite-hab=C2=A0 =C2=A0=3D "HEAD:4acacfdbc4b89ace606b5d640e768b7561=
-435324"
+WARNING: preferred version 2.35 of glibc not available (for item libsegfaul=
+t)
+WARNING: versions of glibc available: 2.27 2.31+gitAUTOINC+1094741224
+WARNING: preferred version 2.35 of nativesdk-glibc not available (for item =
+nativesdk-libsegfault)
+WARNING: versions of nativesdk-glibc available: 2.27 2.31+gitAUTOINC+109474=
+1224
 
-Initialising tasks: 100% |#######################################| Time: 0:=
-00:13
-Sstate summary: Wanted 469 Local 236 Mirrors 0 Missed 233 Current 1581 (50%=
- match, 88% complete)
-Removing 110 stale sstate objects for arch armv8a: 100% |########| Time: 0:=
-00:00
-Removing 12 stale sstate objects for arch imx8mp_var_dart: 100% || Time: 0:=
-00:00
-NOTE: Executing Tasks
+It seems that the unused/older recipe versions are still considered for dep=
+endencies somehow, just because they exist in the layer.
+I understand that the old glibc versions provide libsegfault and that it ca=
+n't be found in the preferred version, but I really don't care about the ot=
+her versions as I have not selected them.
+I could completely remove the packages from the old versions, but that seem=
+s like a brute force hack affecting what the recipes could provide when I s=
+elect them.
 
-I don't know what to do about the manifest file it is complaining about.=C2=
-=A0 =C2=A0I've done a lot of searching for answers but haven't found a clea=
-r solution.=C2=A0 The ultimate goal is to be able to run modules which have=
- the format shown below on my Variscite=C2=A0imx8mp board.
+Is there a clean way to modify/bbappend the recipes to best fix, or at leas=
+t suppress such warnings when the recipe versions causing them are not sele=
+cted?
+Is there a way to do version based dependency declarations to be recipe ver=
+sion rather than recipe name specific?
 
-ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linke=
-d, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=3D6e=
-f3beb0dd7bd4432efc062e181069bf1f5382d7, stripped
+Thanks,
 
-Thanks!
+Heinz
 
-David
-
---51N2I3TBmiRXMiPeAAOq
-Content-Type: text/html; charset="utf-8"
+--_000_GV1PR04MB9149717F3BCEDB8BC97EAA928C0C9GV1PR04MB9149eurp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I am new to Yocto, and am trying to build core-image-minimal with multilib =
-using the latest Kirkstone release.&nbsp; The image builds ok without the m=
-ultilib config entries, but adding the entries (local.conf attached) genera=
-tes this error:<br /><br />
-<div style=3D"line-height: 1.42857;">
-<div style=3D"line-height: 1.42857;">ERROR: core-image-minimal-1.0-r0 do_pr=
-epare_recipe_sysroot: Manifest /home/project/var-fsl-yocto/build_xwayland/t=
-mp/sstate-control/manifest-x86_64_x86_64-nativesdk-lib32-qemuwrapper-cross.=
-populate_sysroot not found in imx8mp_var_dart armv7at2-neon-mx8mp armv7a-ne=
-on-mx8mp armv7at2-vfp-mx8mp armv7a-vfp-mx8mp armv7a-mx8mp armv6t-vfp-mx8mp =
-armv6-vfp-mx8mp armv6t-mx8mp armv6-mx8mp armv5te-vfp-mx8mp armv5e-vfp-mx8mp=
- armv5te-mx8mp armv5e-mx8mp armv5t-vfp-mx8mp armv5-vfp-mx8mp armv5t-mx8mp a=
-rmv5-mx8mp armv4t-mx8mp armv4-mx8mp arm-mx8mp armv8a-mx8mp armv8a-crc-crypt=
-o armv8a-crypto armv8a-crc armv8a aarch64 allarch x86_64_x86_64-nativesdk (=
-variant 'lib32')?</div>
-<div style=3D"line-height: 1.42857;">ERROR: Logfile of failure stored in: /=
-home/project/var-fsl-yocto/build_xwayland/tmp/work/imx8mp_var_dart-fslc-lin=
-ux/core-image-minimal/1.0-r0/temp/log.do_prepare_recipe_sysroot.2763591</di=
-v>
-<div style=3D"line-height: 1.42857;">ERROR: Task (/home/project/var-fsl-yoc=
-to/sources/poky/meta/recipes-core/images/core-image-minimal.bb:do_prepare_r=
-ecipe_sysroot) failed with exit code '1'</div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">In my layer I have two older versions of glibc in ad=
+dition to the 2.35 provided by kirkstone, and a the global conf for the bui=
+ld directory sets GLIBCVERSION to select which one to use.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The problem is that they don&#8217;t all provide exa=
+ctly the same thing and that older version appear to influence newer versio=
+ns, causing warnings.<o:p></o:p></p>
+<p class=3D"MsoNormal">2.27 and 2.31 build libsegfault, but 2.35 doesn&#821=
+7;t anymore. If I prefer 2.35, then I get warnings like:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">WARNING: preferred version 2.35 of glibc not availab=
+le (for item libsegfault)<o:p></o:p></p>
+<p class=3D"MsoNormal">WARNING: versions of glibc available: 2.27 2.31+gitA=
+UTOINC+1094741224
+<o:p></o:p></p>
+<p class=3D"MsoNormal">WARNING: preferred version 2.35 of nativesdk-glibc n=
+ot available (for item nativesdk-libsegfault)<o:p></o:p></p>
+<p class=3D"MsoNormal">WARNING: versions of nativesdk-glibc available: 2.27=
+ 2.31+gitAUTOINC+1094741224<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">It seems that the unused/older recipe versions are s=
+till considered for dependencies somehow, just because they exist in the la=
+yer.<o:p></o:p></p>
+<p class=3D"MsoNormal">I understand that the old glibc versions provide lib=
+segfault and that it can&#8217;t be found in the preferred version, but I r=
+eally don&#8217;t care about the other versions as I have not selected them=
+.<o:p></o:p></p>
+<p class=3D"MsoNormal">I could completely remove the packages from the old =
+versions, but that seems like a brute force hack affecting what the recipes=
+ could provide when I select them.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is there a clean way to modify/bbappend the recipes =
+to best fix, or at least suppress such warnings when the recipe versions ca=
+using them are not selected?<o:p></o:p></p>
+<p class=3D"MsoNormal">Is there a way to do version based dependency declar=
+ations to be recipe version rather than recipe name specific?<o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Heinz<o:p></o:p></p>
 </div>
-<div style=3D"line-height: 1.42857;"><br />The bitbake output:<br />
-<div style=3D"line-height: 1.42857;">Loading cache: 100% |&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| ETA:&nbsp; -=
--:--:--</div>
-<div style=3D"line-height: 1.42857;">Loaded 0 entries from dependency cache=
-.</div>
-<div style=3D"line-height: 1.42857;">Parsing recipes: 100% |###############=
-###########################| Time: 0:04:58</div>
-<div style=3D"line-height: 1.42857;">Parsing of 3134 .bb files complete (0 =
-cached, 3134 parsed). 7763 targets, 589 skipped, 0 masked, 0 errors.</div>
-<div style=3D"line-height: 1.42857;">NOTE: Resolving any missing task queue=
- dependencies</div>
-<div style=3D"line-height: 1.42857;">&nbsp;</div>
-<div style=3D"line-height: 1.42857;">Build Configuration:</div>
-<div style=3D"line-height: 1.42857;">BB_VERSION&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp;=3D "2.0.0"</div>
-<div style=3D"line-height: 1.42857;">BUILD_SYS&nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; =3D "x86_64-linux"</div>
-<div style=3D"line-height: 1.42857;">NATIVELSBSTRING&nbsp; &nbsp; &nbsp; =
-=3D "universal"</div>
-<div style=3D"line-height: 1.42857;">TARGET_SYS&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp;=3D "aarch64-fslc-linux"</div>
-<div style=3D"line-height: 1.42857;">MACHINE&nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; =3D "imx8mp-var-dart"</div>
-<div style=3D"line-height: 1.42857;">DISTRO&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;=3D "fslc-xwayland"</div>
-<div style=3D"line-height: 1.42857;">DISTRO_VERSION&nbsp; &nbsp; &nbsp; &nb=
-sp;=3D "4.0"</div>
-<div style=3D"line-height: 1.42857;">TUNE_FEATURES&nbsp; &nbsp; &nbsp; &nbs=
-p; =3D "aarch64 armv8a crc crypto"</div>
-<div style=3D"line-height: 1.42857;">TARGET_FPU&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp;=3D ""</div>
-<div style=3D"line-height: 1.42857;">meta&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp;</div>
-<div style=3D"line-height: 1.42857;">meta-poky&nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; =3D "HEAD:24a3f7b3648185e33133f5d96b184a6cb6524f3d"</div>
-<div style=3D"line-height: 1.42857;">meta-oe&nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp;&nbsp;</div>
-<div style=3D"line-height: 1.42857;">meta-multimedia&nbsp; &nbsp; &nbsp;&nb=
-sp;</div>
-<div style=3D"line-height: 1.42857;">meta-python&nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;&nbsp;</div>
-<div style=3D"line-height: 1.42857;">meta-filesystems&nbsp; &nbsp; &nbsp;</=
-div>
-<div style=3D"line-height: 1.42857;">meta-gnome&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp;</div>
-<div style=3D"line-height: 1.42857;">meta-networking&nbsp; &nbsp; &nbsp;&nb=
-sp;</div>
-<div style=3D"line-height: 1.42857;">meta-webserver&nbsp; &nbsp; &nbsp; &nb=
-sp;=3D "HEAD:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3"</div>
-<div style=3D"line-height: 1.42857;">meta-freescale&nbsp; &nbsp; &nbsp; &nb=
-sp;=3D "HEAD:3747641f1e71d8e4edd5b587b49d09dc2d243942"</div>
-<div style=3D"line-height: 1.42857;">meta-freescale-3rdparty =3D "HEAD:6d82=
-13fc5ec192c33f963b8095d1f01af1574eea"</div>
-<div style=3D"line-height: 1.42857;">meta-freescale-distro =3D "HEAD:d5bbb4=
-87b2816dfc74984a78b67f7361ce404253"</div>
-<div style=3D"line-height: 1.42857;">meta-freescale-ml&nbsp; &nbsp; =3D "HE=
-AD:08dcb7c67072907348cd235d9e110d4ba91e8235"</div>
-<div style=3D"line-height: 1.42857;">meta-qt5&nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp;=3D "HEAD:44d44933200287f7d17cf6981af4b4a0961c308d"</div>
-<div style=3D"line-height: 1.42857;">meta-swupdate&nbsp; &nbsp; &nbsp; &nbs=
-p; =3D "HEAD:fabbcc623d41794fbfa97c38b9da941ed2cdcdcc"</div>
-<div style=3D"line-height: 1.42857;">meta-virtualization&nbsp; =3D "HEAD:5b=
-e54854139acb4796000478394afd66de0792c1"</div>
-<div style=3D"line-height: 1.42857;">meta-variscite-bsp&nbsp; &nbsp;=3D "HE=
-AD:a4dbd2cfe48a80d4362c9de0523500de05f15898"</div>
-<div style=3D"line-height: 1.42857;">meta-variscite-sdk&nbsp; &nbsp;=3D "HE=
-AD:5664513a0cf0f43afb60f92e63e60a86f3e53bd0"</div>
-<div style=3D"line-height: 1.42857;">meta-variscite-hab&nbsp; &nbsp;=3D "HE=
-AD:4acacfdbc4b89ace606b5d640e768b7561435324"</div>
-<div style=3D"line-height: 1.42857;">&nbsp;</div>
-<div style=3D"line-height: 1.42857;">Initialising tasks: 100% |############=
-###########################| Time: 0:00:13</div>
-<div style=3D"line-height: 1.42857;">Sstate summary: Wanted 469 Local 236 M=
-irrors 0 Missed 233 Current 1581 (50% match, 88% complete)</div>
-<div style=3D"line-height: 1.42857;">Removing 110 stale sstate objects for =
-arch armv8a: 100% |########| Time: 0:00:00</div>
-<div style=3D"line-height: 1.42857;">Removing 12 stale sstate objects for a=
-rch imx8mp_var_dart: 100% || Time: 0:00:00</div>
-<div style=3D"line-height: 1.42857;">NOTE: Executing Tasks</div>
-<div>&nbsp;</div>
-<br />I don't know what to do about the manifest file it is complaining abo=
-ut.&nbsp; &nbsp;I've done a lot of searching for answers but haven't found =
-a clear solution.&nbsp; The ultimate goal is to be able to run modules whic=
-h have the format shown below on my Variscite&nbsp;imx8mp board.&nbsp;&nbsp=
-;<br /><br />ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dyna=
-mically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.24, Build=
-ID[sha1]=3D6ef3beb0dd7bd4432efc062e181069bf1f5382d7, stripped<br /><br />Th=
-anks!<br /><br />David<br /><br /></div>
+</body>
+</html>
 
---51N2I3TBmiRXMiPeAAOq--
-
---svaznXVEcdnqqnWXpnPk
-Content-Type: application/octet-stream; name="local.conf"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="local.conf"
-
-TUFDSElORSA/Pz0gJ2lteDhtcC12YXItZGFydCcKRElTVFJPID89ICdmc2xjLXh3YXlsYW5kJwoj
-RVhUUkFfSU1BR0VfRkVBVFVSRVMgPz0gImRlYnVnLXR3ZWFrcyIKI1BBQ0tBR0VfQ0xBU1NFUyA9
-ICJwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiBwYWNrYWdlX2lwayIKI1BBQ0tBR0VfQ0xBU1NFUyA9
-ICJwYWNrYWdlX3JwbSIKVVNFUl9DTEFTU0VTID89ICJidWlsZHN0YXRzIgpQQVRDSFJFU09MVkUg
-PSAibm9vcCIKUk9PVF9IT01FID0gIi9yb290IgpCQl9ESVNLTU9OX0RJUlMgPz89ICJcCiAgICBT
-VE9QVEFTS1MsJHtUTVBESVJ9LDFHLDEwMEsgXAogICAgU1RPUFRBU0tTLCR7RExfRElSfSwxRywx
-MDBLIFwKICAgIFNUT1BUQVNLUywke1NTVEFURV9ESVJ9LDFHLDEwMEsgXAogICAgU1RPUFRBU0tT
-LC90bXAsMTAwTSwxMDBLIFwKICAgIEhBTFQsJHtUTVBESVJ9LDEwME0sMUsgXAogICAgSEFMVCwk
-e0RMX0RJUn0sMTAwTSwxSyBcCiAgICBIQUxULCR7U1NUQVRFX0RJUn0sMTAwTSwxSyBcCiAgICBI
-QUxULC90bXAsMTBNLDFLIgpQQUNLQUdFQ09ORklHOmFwcGVuZDpwbi1xZW11LXN5c3RlbS1uYXRp
-dmUgPSAiIHNkbCIKQ09ORl9WRVJTSU9OID0gIjIiClJNX09MRF9JTUFHRSA9ICIxIgpESVNUUk9f
-RkVBVFVSRVM6YXBwZW5kID0gIiBzeXN0ZW1kIgpESVNUUk9fRkVBVFVSRVM6YXBwZW5kID0gIiB2
-aXJ0dWFsaXphdGlvbiIKRElTVFJPX0ZFQVRVUkVTOmFwcGVuZCA9ICIgc2VjdXJpdHkiCkRJU1RS
-T19GRUFUVVJFUzphcHBlbmQgPSAiIGFwcGFybW9yIgpWSVJUVUFMLVJVTlRJTUVfaW5pdF9tYW5h
-Z2VyID0gInN5c3RlbWQiCkRJU1RST19GRUFUVVJFU19CQUNLRklMTF9DT05TSURFUkVEID0gInN5
-c3Zpbml0IgpWSVJUVUFMLVJVTlRJTUVfaW5pdHNjcmlwdHMgPSAiIgpyZXF1aXJlIGNvbmYvbXVs
-dGlsaWIuY29uZgpNVUxUSUxJQlMgPSAibXVsdGlsaWI6bGliMzIiCkRFRkFVTFRUVU5FOnZpcnRj
-bGFzcy1tdWx0aWxpYi1saWIzMiA9ICJhcm12N2F0LW5lb24iCklOSEVSSVQgKz0gInJtX3dvcmsi
-ClJNX1dPUktfRVhDTFVERSArPSAic25hcGQiCkRMX0RJUiA/PSAiJHtCU1BESVJ9L2Rvd25sb2Fk
-cy8iCkFDQ0VQVF9GU0xfRVVMQSA9ICIxIgojSU1BR0VfSU5TVEFMTDphcHBlbmQgPSAiIGFwYWNo
-ZTIiCiNJTUFHRV9JTlNUQUxMOmFwcGVuZCA9ICIgcGFja2FnZWdyb3VwLXNuYXBkIgojSU1BR0Vf
-SU5TVEFMTDphcHBlbmQgPSAiIG1hcHNlcnZlciIKI0lNQUdFX0lOU1RBTEw6YXBwZW5kID0gIiBz
-bmFwZCIKSU1BR0VfSU5TVEFMTDphcHBlbmQgPSAiIGxpYjMyLWdsaWJjIGxpYjMyLWxpYmdjYyBs
-aWIzMi1saWJzdGRjKysgbGliMzItYmFzaCIK
-
---svaznXVEcdnqqnWXpnPk--
+--_000_GV1PR04MB9149717F3BCEDB8BC97EAA928C0C9GV1PR04MB9149eurp_--
 
