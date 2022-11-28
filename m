@@ -1,67 +1,75 @@
-Return-Path: <philip@balister.org>
+Return-Path: <mingli.yu@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0CEAC4321E
-	for <webhook@archiver.kernel.org>; Sat, 26 Nov 2022 15:38:56 +0000 (UTC)
-Received: from smtp6.emailarray.com (smtp6.emailarray.com [65.39.216.46])
- by mx.groups.io with SMTP id smtpd.web11.72452.1669477131388715539
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CAEECC352A1
+	for <webhook@archiver.kernel.org>; Mon, 28 Nov 2022 01:54:56 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web11.107535.1669600496033954069
  for <yocto@lists.yoctoproject.org>;
- Sat, 26 Nov 2022 07:38:51 -0800
+ Sun, 27 Nov 2022 17:54:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: balister.org, ip: 65.39.216.46, mailfrom: philip@balister.org)
-Received: (qmail 65619 invoked by uid 89); 26 Nov 2022 15:38:49 -0000
-Received: from unknown (HELO ?192.168.11.139?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0A3NS43NS45Ni4y) (POLARISLOCAL)  
-  by smtp6.emailarray.com with SMTP; 26 Nov 2022 15:38:49 -0000
-Message-ID: <5797f8c8-05b4-5d61-a44d-497cd250f3ce@balister.org>
-Date: Sat, 26 Nov 2022 10:38:49 -0500
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=83312b5adc=mingli.yu@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AS1osbA014546
+	for <yocto@lists.yoctoproject.org>; Mon, 28 Nov 2022 01:54:55 GMT
+Received: from ala-exchng01.corp.ad.wrs.com (unknown-82-252.windriver.com [147.11.82.252])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3m381315m4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Mon, 28 Nov 2022 01:54:55 +0000
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Sun, 27 Nov 2022 17:54:53 -0800
+Received: from pek-lpg-core2.wrs.com (128.224.153.41) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2242.12 via Frontend Transport; Sun, 27 Nov 2022 17:54:53 -0800
+From: <mingli.yu@eng.windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-selinux][PATCH 2/5] iproute2: move PACKAGECONFIG to oe-core
+Date: Mon, 28 Nov 2022 09:54:48 +0800
+Message-ID: <20221128015451.2307473-2-mingli.yu@eng.windriver.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221128015451.2307473-1-mingli.yu@eng.windriver.com>
+References: <20221128015451.2307473-1-mingli.yu@eng.windriver.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [yocto] Thud/Zeus support of Linux "memtester"
-Content-Language: en-US
-To: steven.monsees@baesystems.com,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <MADEUP.172AF745CB91807D.14835@lists.yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-In-Reply-To: <MADEUP.172AF745CB91807D.14835@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: T0uVUZK_h0S1zkooTzMVUXet3qf9TsNn
+X-Proofpoint-ORIG-GUID: T0uVUZK_h0S1zkooTzMVUXet3qf9TsNn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-28_02,2022-11-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ phishscore=0 spamscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 impostorscore=0 adultscore=0
+ malwarescore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211280013
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 26 Nov 2022 15:38:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58638
+ <yocto@lists.yoctoproject.org>; Mon, 28 Nov 2022 01:54:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58640
 
-On 11/25/22 18:20, Monsees, Steven C (US) via lists.yoctoproject.org wrote:
-> Does Yocto thud/zeus support the linux “memtester”, to find memory 
-> subsystem  faults ?
+From: Mingli Yu <mingli.yu@windriver.com>
 
-A recipe is here:
+Move PACKAGECONFIG setting to oe-core [1] to conform to yocto compliance.
 
-https://layers.openembedded.org/layerindex/recipe/863/
+[1] https://git.openembedded.org/openembedded-core/commit/?id=067ce90494bc370fc7a271c6a036c414358f0f38
 
-and I found this in thud:
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+---
+ recipes-connectivity/iproute2/iproute2_%.bbappend | 1 -
+ 1 file changed, 1 deletion(-)
 
-https://layers.openembedded.org/layerindex/recipe/91592/
+diff --git a/recipes-connectivity/iproute2/iproute2_%.bbappend b/recipes-connectivity/iproute2/iproute2_%.bbappend
+index 8cb2a5b..74e22b3 100644
+--- a/recipes-connectivity/iproute2/iproute2_%.bbappend
++++ b/recipes-connectivity/iproute2/iproute2_%.bbappend
+@@ -1,2 +1 @@
+ inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-selinux', '', d)}
+-PACKAGECONFIG[selinux] = ",,libselinux"
+-- 
+2.25.1
 
-Philip
-
-> 
-> Whay packages would need to be included to support this utility ?
-> 
-> Thanks,
-> 
-> Steve
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58636): https://lists.yoctoproject.org/g/yocto/message/58636
-> Mute This Topic: https://lists.yoctoproject.org/mt/95264132/384425
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [philip@balister.org]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
 
