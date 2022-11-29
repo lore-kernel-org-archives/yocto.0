@@ -1,142 +1,290 @@
-Return-Path: <fknorr@neuroloop.de>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA4E5C43217
-	for <webhook@archiver.kernel.org>; Mon, 28 Nov 2022 14:41:50 +0000 (UTC)
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.118])
- by mx.groups.io with SMTP id smtpd.web10.119419.1669646503056664761
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AB23C433FE
+	for <webhook@archiver.kernel.org>; Tue, 29 Nov 2022 05:02:45 +0000 (UTC)
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+ by mx.groups.io with SMTP id smtpd.web11.141738.1669698156277636959
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Nov 2022 06:41:43 -0800
+ Mon, 28 Nov 2022 21:02:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@neuroloop.onmicrosoft.com header.s=selector2-neuroloop-onmicrosoft-com header.b=btJFIA8N;
- spf=pass (domain: neuroloop.de, ip: 40.107.7.118, mailfrom: fknorr@neuroloop.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DzvYPm9iZPWCCOuL3UrUQKpdAk6Vtsxzkxtt9FdS6dXOWOXoNhlaaTYMxvV9MavmgbLKtjv26/YwJAk3HooaavDghYNKKZ53yEI8SwfsQDS3z582GfvmCvL7bRKLpoOc7MQ2xfWO3c390Yp1QKk6vAre4LQlyfr6CLcOLj39xh8Shtx4LP/BEwNtDiRgSIoFeDdGpZe5L63nd6eg/nVJLlogJ/dE2qQr7MR7peVyu4zPJbY2aZeA0ny0w2PE7vPpvxwOgOXPc/5beOTa7KQ1fpP7WIKDqva+cElwPKZdJ1TO1QONWjHYEqjAvRDH5wtm4hAPkV9UCGXuQCovrQD52A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Badk+zIQSOo2hU53sfs7M8TAt33Ns6j4VKcVSrNdSjU=;
- b=Kv7X5xkfRFyT2y/oTjcq1+TcKA67XtfqqzZvglV62Fyb+rKZJNxI96IQ6hR2KGHWa46nDRn9rFRqcbdUjY4qjpMgQMqGLUpmV/EanSXz6QXBwADBbC41BKvwmtD7Ct4mNfRB0MU+2lDxHpyHnwUeJQjMkQ/At/jJYcb38xRQOSB9xjCojrsHu4AEl7my8B//uWGXcr38lqE5TrmFymTeFASHZ3CHk1IUZFm5rZD5DnkAlTkKlBN+tCvCeLN+jF6fJVbK6UNQ5lOR2YhAoMZMG7Q4uUal0Rcm9v333JtrA/gi/7r94GoJ880SwkbSQvD44bEEF0qXMzAlG8wtZCOr4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 213.164.76.146) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=neuroloop.de; dmarc=bestguesspass action=none
- header.from=neuroloop.de; dkim=none (message not signed); arc=none
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=W0cQROtG;
+ spf=pass (domain: gmail.com, ip: 209.85.210.181, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pf1-f181.google.com with SMTP id 130so12586050pfu.8
+        for <yocto@lists.yoctoproject.org>; Mon, 28 Nov 2022 21:02:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=neuroloop.onmicrosoft.com; s=selector2-neuroloop-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Badk+zIQSOo2hU53sfs7M8TAt33Ns6j4VKcVSrNdSjU=;
- b=btJFIA8N2xAFEjizzYSO2kFFjJAGyZcO2LB1DIrD5UWV7079hFX0HQSqctzZY1GlVG2cYNhyHqe+GLSJ0tFYYxZEVdOVPoncblWk1Tqe18rwo2EaM9ZUlpKDBz/m80+F0JIKSoefEbvDiIFKYiFEOAOCO1U+jzMaHlxe++aKxhk=
-Received: from ZR0P278CA0057.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:21::8) by
- PR3PR04MB7369.eurprd04.prod.outlook.com (2603:10a6:102:89::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5857.19; Mon, 28 Nov 2022 14:41:39 +0000
-Received: from VI1EUR02FT032.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:910:21:cafe::3a) by ZR0P278CA0057.outlook.office365.com
- (2603:10a6:910:21::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23 via Frontend
- Transport; Mon, 28 Nov 2022 14:41:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 213.164.76.146)
- smtp.mailfrom=neuroloop.de; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=neuroloop.de;
-Received-SPF: Pass (protection.outlook.com: domain of neuroloop.de designates
- 213.164.76.146 as permitted sender) receiver=protection.outlook.com;
- client-ip=213.164.76.146; helo=mail.neuroloop.de; pr=C
-Received: from mail.neuroloop.de (213.164.76.146) by
- VI1EUR02FT032.mail.protection.outlook.com (10.13.61.53) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5857.20 via Frontend Transport; Mon, 28 Nov 2022 14:41:39 +0000
-Received: from srvexc1.neuroloop.local (10.136.17.20) by
- srvexc1.neuroloop.local (10.136.17.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.12; Mon, 28 Nov 2022 15:41:37 +0100
-Received: from srvexc1.neuroloop.local ([fe80::10ec:631:7447:2833]) by
- srvexc1.neuroloop.local ([fe80::10ec:631:7447:2833%10]) with mapi id
- 15.02.1118.012; Mon, 28 Nov 2022 15:41:37 +0100
-From: Felix Knorr <FKnorr@neuroloop.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Systemd-logind HandlePowerKeyLongPress does'nt trigger
-Thread-Topic: Systemd-logind HandlePowerKeyLongPress does'nt trigger
-Thread-Index: AQHZAzeFL0iK141yl0ueZLQVEUvjmg==
-Date: Mon, 28 Nov 2022 14:41:37 +0000
-Message-ID: <811ce2d3-9248-954a-95a0-22f42992d546@neuroloop.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [213.164.93.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DAD19737F9521F4E82F2101750477FE3@neuroloop.local>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qvGAErPyYoa8BGFOA7VHzeKeRIx5bt+3gUjQKr40+xw=;
+        b=W0cQROtG0/ruhDcu35Q3OUWhwUVJFLYEZBBzD7rMBbTuv4zuDm9U66Duaao+jTTXEh
+         foj2/WaaNHqH7CqevVsTD5LfsPF5ns5hnWYgopgQ10Hr1jeRoU49JawploDjoISmTSqV
+         lOVZIIj1axN/lT+pVEnJkPZ6lpyEIuHNRiff7avjbUYYQHEW5wUL9iZF4+58hQ1Rb9te
+         ck8gPOcbOjWwL1hkedKIytDalqFkfKfquJ0hoXPg3Utter/vgfa5dNXTlxw9tbxutOoi
+         oTLPo+i1kSHQnxbv8CbP1dCYY2FwjAnx1thNXpJFdypeJd48Ogq/Fm12sRElb9KSp81m
+         m/Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qvGAErPyYoa8BGFOA7VHzeKeRIx5bt+3gUjQKr40+xw=;
+        b=lp/3cIXh2/nBHzrSUFYnQHTbYQcdniL6ocb/Phl32gdjQtwRwuyYRWZqtVZK84GoBw
+         vCVJ3g08Obzi2YMLXXE0rEV4ea70it/jIO4CReoQzBIVXYMDpc9Wo4h7YrctGc2T72IL
+         ehhojL4KFJRjD42Ce6SzXFEEw+nHVZzya6zTZlgJ7FvjE74jMP9s4oth3xVkpiu6wBQj
+         /GIC/Qw3Lqbsevz2FAF7U+LZdfspK07tSOwYRiVe/9lHlwZ5zUjmheJJREbpHZx1RbOO
+         0l0SWP49cLAgBNbQayytSEmLT3ROD4VZLvbABvfkCnj8E1mJ9cV/HxAGYMGBU61DzSvn
+         ivVA==
+X-Gm-Message-State: ANoB5pkNaj3NBf1DWt6/xL1XVbW/PfRT1JH58vbYviSYhBywTuz5QMfe
+	8xzPAlk8xXdzlERsJ1hQBNs=
+X-Google-Smtp-Source: AA0mqf5TY2emgYSW7AxkKcgiz1cYUZ6mXmlFSdfnfdI/X1EniiEsC9iPxBfgpbkXpLBE83ojOirFYg==
+X-Received: by 2002:a63:1302:0:b0:439:e030:3fa8 with SMTP id i2-20020a631302000000b00439e0303fa8mr31039579pgl.554.1669698155416;
+        Mon, 28 Nov 2022 21:02:35 -0800 (PST)
+Received: from skjolley ([2600:1011:a11b:4d68:b0f:13fd:906e:7366])
+        by smtp.gmail.com with ESMTPSA id f26-20020aa79d9a000000b00575448ab0fdsm2322350pfq.114.2022.11.28.21.02.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 28 Nov 2022 21:02:34 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 28 Nov 2022 22:02:34 -0700
+Message-ID: <0b1101d903af$cb810250$628306f0$@gmail.com>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1EUR02FT032:EE_|PR3PR04MB7369:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2c352dd-0f60-4a68-f523-08dad14ea87d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	3Av1npzOqadJfuzVxbc7wxwUp7sSaXBTu6KCG3KlEHh9NscP38YLddoOBrH/Z7cN+pUhslg1DK4NKIOHB2SeRk2o+yYgdX5Ykabg3Re8w+7whLjMWSam0eSGzhrgXPQV2HaA7SHTXX3eNLWMshAGc7UVubyaGN+aNK/cBKQ6mRB/bqx67iXrt40lyQ+5Uu5ImRGpkHsaK383Rt6G8LTteTx8Xwm1Y4GeVDxi4bO3nj67JrXLCe4kMD7LP9tHr3inUl0aid1T0ebdx01IzaK4zAOxJYNS5k69q1HofWK2TTSJ2WC7Xtx+93af8FHcpZM+bpurLm+lkFq9PuAfKdSxyRRFVmt09H5uxc+0FqYg3BrcV2nX+kFI9q61jUUItiYKPl/sRm83CV4zvvHNcQXxk7FxmavrVBC0WIz07evjnVwUACLgf66+VXlBdUgrCBMEZpZyWIobeQOC6pRaX+r+bCTan7cmw9fAbPEG1oDprkaFQPsnrF1l0jGdBno/h1sOfjSGA27ry2kFWNsOMunfxkzdDgjyQbZvTtoknpj+u06uiK9yr+UaR81zJ+h9rgooiECklrLm3Ak3ldnY/cFq5ireSl4CNHfmDKPQ9da+8WH9ehXV0MINXH09+RLTuXBtEjFbQn/40MNKmOTgHiJOaTdfsulMNRjE2Wj01axJrzqywQCJO1Sde+niDzSwbkWqPCZMkfhJuHcevyHpC1OZA21/XzO98OE2mp7/Jz5LcE+zcNwZfMx0/WXW0vEAPZAT
-X-Forefront-Antispam-Report: 
-	CIP:213.164.76.146;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.neuroloop.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(39840400004)(346002)(376002)(396003)(136003)(451199015)(46966006)(36840700001)(478600001)(70206006)(70586007)(36756003)(8676002)(6916009)(316002)(36860700001)(83380400001)(356005)(81166007)(82310400005)(40480700001)(26005)(31696002)(86362001)(47076005)(66574015)(3480700007)(336012)(2616005)(186003)(41300700001)(8936002)(2906002)(5660300002)(31686004)(213903007)(36900700001);DIR:OUT;SFP:1102;
-X-OriginatorOrg: neuroloop.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2022 14:41:39.0359
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2c352dd-0f60-4a68-f523-08dad14ea87d
-X-MS-Exchange-CrossTenant-Id: 7ccfa2e6-da67-443f-b0dd-3ff5292e0ffa
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=7ccfa2e6-da67-443f-b0dd-3ff5292e0ffa;Ip=[213.164.76.146];Helo=[mail.neuroloop.de]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	VI1EUR02FT032.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7369
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0B12_01D90375.1F242620"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFm7e+mMQzYnW3QjWyETR16tVtXLg==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 28 Nov 2022 14:41:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58645
+ <yocto@lists.yoctoproject.org>; Tue, 29 Nov 2022 05:02:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58646
 
-SGV5LA0KDQpJJ20gdHJ5aW5nIHRvIGNvbmZpZ3VyZSBteSB5b2N0byBpbWFnZSB0aGF0IHJ1bnMg
-b24gYW4gTVMgU3VyZmFjZSBHbyAyDQp0byBzdXNwZW5kIHdoZW4gcHJlc3NpbmcgdGhlIHBvd2Vy
-IGtleSBzaG9ydGx5LCBhbmQgdG8gcG93ZXJvZmYgaWYgdGhlDQprZXkgaXMgaGVsZCBsb25nZXIu
-DQoNClN5c3RlbWQgdGhlb3JldGljYWxseSBzdXBwb3J0cyB0aGF0IGJ5IGNyZWF0aW5nIHRoZSBm
-b2xsb3dpbmcgZmlsZToNCg0KICAgICBjYXQgPiAke0R9L2V0Yy9zeXN0ZW1kL2xvZ2luZC5jb25m
-LmQvNTAtaWdub3JlLXBvd2VyYnV0dG9uLmNvbmYNCjw8LSdFT0YnDQogICAgICAgICBbTG9naW5d
-DQogICAgICAgICBIYW5kbGVQb3dlcktleT1zdXNwZW5kDQogICAgICAgICBIYW5kbGVQb3dlcktl
-eUxvbmdQcmVzcz1wb3dlcm9mZg0KICAgICBFT0YNCg0KSG93ZXZlciwgd2hpbGUgdGhlIHN1c3Bl
-bmQgd29ya3MsIHRoZSBwb3dlcm9mZiBkb2VzIG5vdC4gRm9yIHRlc3RpbmcgSQ0KYWx3YXlzIHNl
-dCBIYW5kbGVQb3dlcktleSB0byBpZ25vcmUsDQoNCnN5c3RlbWN0bCBzdGF0dXMgc3lzdGVtZC1s
-b2dpbmQNCg0Kc2hvd3MgdGhhdCB0aGUgc2hvcnQgcHJlc3NlcyBhcmUgcmVnaXN0ZXJlZCwgYnV0
-IHRoZSBsb25nIG9uZXMgYXJlIG5vdC4NClRoZSBldmVudCBmaWxlIHdoaWNoIGNvcnJlc3BvbmRz
-IHRvIHRoZSBwb3dlciBidXR0b24gKGluIC9kZXYvaW5wdXQvKQ0Kc2hvdyBjcnlwdGljIGJ5dGUg
-c2VxdWVuY2VzIG9uIGJ1dHRvbiBkb3duLCBidXQgbm90aGluZyBvbiBidXR0b24gdXAuDQpUaGUg
-b3V0cHV0IGlzIG5vdCBhbHdheXMgdGhlIHNhbWUsIGFuZCB0aGUgbnVtYmVyIG9mIHRoZSBldmVu
-dCBmaWxlIGFsc28NCmNoYW5nZXMgKEknbSBub3QgZW50aXJlbHkgc3VyZSBpZiBpdCBjaGFuZ2Vz
-IGJldHdlZW4gcmVib290cyBvciBvbmx5DQpiZXR3ZWVuIHJlaW5zdGFsbHMpDQoNCkkgbm90aWNl
-ZCB0aGF0IHRoZSBidXR0b24gbW9kdWxlIHdhcyBub3QgaW5jbHVkZWQsIHNvIEkgYWRkZWQNCkNP
-TkZJR19BQ1BJX0JVVFRPTj1tIHRvIHRoZSBrZXJuZWwgY29uZmlnLCBidXQgdGhhdCBkaWRuJ3Qg
-aGVscCBlaXRoZXIuDQpUbyBtYWtlIHRoZSBwb3dlciBidXR0b24gd29yayBhdCBhbGwgSSBoYWQg
-dG8gaW5jbHVkZSB0aGUga2VybmVsIGNvbmZpZzoNCkNPTkZJR19JTlRFTF9ISURfRVZFTlQ9bSwg
-SSBhbHNvIGhhdmUgQ09ORklHX1NVUkZBQ0VfQUNQSV9OT1RJRlk9bSBhbmQNCkNPTkZJR19JMkNf
-SElEX0FDUEk9eS4NCg0KSSBzdXNwZWN0IHRoYXQgSSdtIG1pc3Npbmcgc29tZSBjb25maWcsIGJ1
-dCBJJ20gbm90IHN1cmUgd2hhdCBleGFjdGx5Lg0KRG9lcyBhbnlvbmUgaGF2ZSBhbiBpZGVhPw0K
-DQotLQ0KRmVsaXggS25vcnIsIERpcGwuIEluZi4gU29mdHdhcmUgRW5naW5lZXINCg0KDQpuZXVy
-b2xvb3AgR21iSA0KQnJlaXNhY2hlciBTdHJhw59lIDg2LCA3OTExMCBGcmVpYnVyZywgR2VybWFu
-eQ0KDQpIYW5kZWxzcmVnaXN0ZXIgSSBSZWdpc3RlcmVkIHBsYWNlIG9mIGJ1c2luZXNzOiBGcmVp
-YnVyZy9HZXJtYW55OyBIUkIgNzEzOTM1DQpHZXNjaMOkZnRzZsO8aHJlciBJIE1hbmFnaW5nIGRp
-cmVjdG9yOiBNaWNoYWVsIExhdWsNCg0KSW5mb3JtYXRpb25lbiB6dXIgRVUtRGF0ZW5zY2h1dHpn
-cnVuZHZlcm9yZG51bmcgZmluZGVuIFNpZSB1bnRlcjogbmV1cm9sb29wLmRlL2RhdGVuc2NodXR6
-LTIvPGh0dHBzOi8vbmV1cm9sb29wLmRlL2RhdGVuc2NodXR6LTIvPg0KDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXw0KVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlzIGNv
-bW11bmljYXRpb24gaXMgY29uZmlkZW50aWFsLCBtYXkgYmUgYXR0b3JuZXktY2xpZW50IHByaXZp
-bGVnZWQsIG1heSBjb25zdGl0dXRlIGluc2lkZSBpbmZvcm1hdGlvbiwgYW5kIGlzIGludGVuZGVk
-IG9ubHkgZm9yIHRoZSB1c2Ugb2YgdGhlIGFkZHJlc3NlZS4gSXQgaXMgdGhlIHByb3BlcnR5IG9m
-IHRoZSBjb21wYW55IG9mIHRoZSBzZW5kZXIgb2YgdGhpcyBlLW1haWwuIFVuYXV0aG9yaXplZCB1
-c2UsIGRpc2Nsb3N1cmUsIG9yIGNvcHlpbmcgb2YgdGhpcyBjb21tdW5pY2F0aW9uIG9yIGFueSBw
-YXJ0IHRoZXJlb2YgaXMgc3RyaWN0bHkgcHJvaGliaXRlZCBhbmQgbWF5IGJlIHVubGF3ZnVsLiBJ
-ZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGNvbW11bmljYXRpb24gaW4gZXJyb3IsIHBsZWFzZSBu
-b3RpZnkgdXMgaW1tZWRpYXRlbHkgYnkgcmV0dXJuIGUtbWFpbCBhbmQgZGVzdHJveSB0aGlzIGNv
-bW11bmljYXRpb24gYW5kIGFsbCBjb3BpZXMgdGhlcmVvZiwgaW5jbHVkaW5nIGFsbCBhdHRhY2ht
-ZW50cy4NCg==
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0B12_01D90375.1F242620
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 415
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.2", "4.3", "4.99" and "Future", the more pressing/urgent
+issues being in "4.2" and then "4.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0B12_01D90375.1F242620
+Content-Type: text/html;
+	boundary="----=_NextPart_000_117E_01D8FDBE.EC5F1EE0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 415 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.2&#8221;, =
+&#8220;4.3&#8221;, &quot;4.99&quot; and &quot;Future&quot;, the more =
+pressing/urgent issues being in &quot;4.2&quot; and then =
+&#8220;4.3&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Please review this link and if a bug is =
+something you would be able to help with either take ownership of the =
+bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0B12_01D90375.1F242620--
+
 
