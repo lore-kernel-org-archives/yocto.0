@@ -1,150 +1,104 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 58858C4167B
-	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 02:07:49 +0000 (UTC)
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
- by mx.groups.io with SMTP id smtpd.web11.368.1669774059621995331
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C1DEC4708A
+	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 08:08:12 +0000 (UTC)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+ by mx.groups.io with SMTP id smtpd.web11.5844.1669795684201745012
  for <yocto@lists.yoctoproject.org>;
- Tue, 29 Nov 2022 18:07:39 -0800
+ Wed, 30 Nov 2022 00:08:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=PJdmluR7;
- spf=pass (domain: gmail.com, ip: 209.85.160.52, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-14286d5ebc3so19422602fac.3
-        for <yocto@lists.yoctoproject.org>; Tue, 29 Nov 2022 18:07:39 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=cRIPGgLx;
+ spf=pass (domain: gmail.com, ip: 209.85.167.42, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f42.google.com with SMTP id f13so25710007lfa.6
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 00:08:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LKo82M3ga+wl+UQeW2lgTNjwRQkyAFnLvvjA3TNqhPs=;
-        b=PJdmluR72en6OhbzL37RJ5EqA5qJLDxM3P3jFqAYC0Vhhf6eCIsNBcCMSwkf6IFns1
-         AQLDSrhNNqzopQCBtNzWMtPmZaO0c+XPg7nKQGCwOwZVIlCYMaPFs76XKUe6u8HnEvrz
-         Z07o8pkmRICN48TUm7VGo8X6iQ48lvJz3Czx0wNFpnjmwGKw2VsrNo2gh+kY/tUVh171
-         A7l5KywiKS/M+cNCmGmkp4+dSAHbtOqqmvI6mQlbory21BuP33ewHy4vaKg08bG+JNTJ
-         RLkW3nqTlBb5fF8O3hDS1qIbL263+xeK3iB1uRllz/LtfXN1JoJv+gyQesDPwXx30Dqq
-         02+A==
+        bh=Z5lgvrySrjL/NeC6s8ts67Y8hSIXzUcJ9XlZuoYmxpw=;
+        b=cRIPGgLxHYZ+wiAKvexSN4vHsE9fFRfPNre3Fq62cd986/JD2ziHbjayl3/VXGlOL5
+         n5/y4McV585o8cycwAYt9nIuBv5zdwQmm16nj1TMZWFuvToKFU4T7VGEM/rSFqnRkqCt
+         LSa4i4WsIShMoN3UzhiOHlkY8MBb9ZNHyz9ROS3T+0zZKYO4ABToA+Rvc2O4f67cKvJk
+         MRsKZzOEIXU9LTF/L+aHoEFblP2nYi/qzYMBNdWGOhbCmtNo6pQ2kQhipAPuWfY+VeKc
+         NTwhxbs/cEjXVallVOjHd2yAnpZh3Xx08wJ7b4vGsBaPkCZuF0orrFdkHFYCW2wRVrcN
+         3QhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LKo82M3ga+wl+UQeW2lgTNjwRQkyAFnLvvjA3TNqhPs=;
-        b=BY5OA3ri0xYWM35vuoJMBi7Ob2bQZxTIXDFnUyaZS0c++Al/51DExoqpGhAvRNjfsq
-         21eS+BlJLNrM7bx+BuF+meJUHhv3tvUjmc/zbE5g5if41f5Vx1/JGbkuYmcuXEm1lKnN
-         +sLMr1AW4Lr5wYJEIGUJbIP725aqc6Ti21wlfTBhe83O3y3JU15Q9UvGRmKZg1Gz+NA4
-         0xqLvaDe6ZZvn6mhE9WGJH8luGhUcQUfeBFMBOa8UaY42WkCqHW683K0lG3VOyHKeZrB
-         GGexQmXm5JYU8oQ9YU6GmktuGYUhK6X8MECH1AmZIaI6rJDYat7vWLl7iv9tfRlK7mmj
-         IDvA==
-X-Gm-Message-State: ANoB5pl3eBWaNGCIrWVjD3PDDEzr1IzHzRlchMCMqY8pP4j/C8EYNEHG
-	oV+S//jOiX8d6qniRxjeUkZiqMW7nGTXxFKEZJI=
-X-Google-Smtp-Source: AA0mqf6T5FJRfPb4KGf9rUsgDr5owN9IsGZLBHZ1Nv6XG+klSBpjJf3Oumg15ZKrqexacjHxKSxyx27X2VNqZBXfMkc=
-X-Received: by 2002:a05:6871:4199:b0:142:d126:dc55 with SMTP id
- lc25-20020a056871419900b00142d126dc55mr23020973oab.262.1669774058893; Tue, 29
- Nov 2022 18:07:38 -0800 (PST)
+        bh=Z5lgvrySrjL/NeC6s8ts67Y8hSIXzUcJ9XlZuoYmxpw=;
+        b=63+l9PzHma7iFACqUnykveHhPS/Hcwdcv9uQdhpeV0+jIPHimXvQ6XpK+kJ/T8Vvyy
+         dtp/Fut9+Mbs4ns2Bit4s1/1zcZbyzXB3ncg+vaVQcliuU9Ai13H3XtyGGEG5nLMOnOu
+         MNep++ZjFiboXW4wM9wWi2/hfovbwmzMS0qtew2asKzZm4B3N54aTMPYyKSgpxAoCMW4
+         AWhGmovNtQ4K8dn3pG9UOnwIls4D9mS/mSX5d494FcUqlDq6cWd/k2zPLoYOOSpY1lQH
+         T0TI4vI4aHrNo2rnuHH9KHtPn26jw2o29n0Y2PxuyDuZioQxJnGGW/sitcNOoXAGAwC9
+         JVdw==
+X-Gm-Message-State: ANoB5pnrv2NE4PMu6NBpMvURty8pXIabn6GG+WW+ldhS7IW3oxVznWJu
+	NFk2wVZiMNeZROnAukBuoqZMnb4st1+dv2dN0Ys=
+X-Google-Smtp-Source: AA0mqf6RU5xICeKXKlsiOkka7NXUyFr4Pl6WKqFW9po0f1IO4uILRgzdt7qxkboCatzbjRNPXcuod2ythwu7Fyg0VPI=
+X-Received: by 2002:a05:6512:25ab:b0:4b4:d443:6550 with SMTP id
+ bf43-20020a05651225ab00b004b4d4436550mr16205019lfb.393.1669795681948; Wed, 30
+ Nov 2022 00:08:01 -0800 (PST)
 MIME-Version: 1.0
-References: <GV1PR04MB9149717F3BCEDB8BC97EAA928C0C9@GV1PR04MB9149.eurprd04.prod.outlook.com>
-In-Reply-To: <GV1PR04MB9149717F3BCEDB8BC97EAA928C0C9@GV1PR04MB9149.eurprd04.prod.outlook.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 29 Nov 2022 18:07:13 -0800
-Message-ID: <CAMKF1sq6ONVTM-Rm9RSj_kbisJc7vaXFoWtq_BWVKB4rB52h_A@mail.gmail.com>
-Subject: Re: [yocto] Fixing package dependencies across recipe versions?
-To: Heinz Wrobel <Heinz.Wrobel@nxp.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <0b6801d90409$885d6860$99183920$@gmail.com>
+In-Reply-To: <0b6801d90409$885d6860$99183920$@gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 30 Nov 2022 09:07:50 +0100
+Message-ID: <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
+Subject: Y2038 proposal
+To: openembedded-architecture <openembedded-architecture@lists.openembedded.org>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	OE-core <openembedded-core@lists.openembedded.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 02:07:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58662
+ <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 08:08:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58663
 
-On Tue, Nov 22, 2022 at 11:29 PM Heinz Wrobel <Heinz.Wrobel@nxp.com> wrote:
->
-> Hi,
->
->
->
-> In my layer I have two older versions of glibc in addition to the 2.35 pr=
-ovided by kirkstone, and a the global conf for the build directory sets GLI=
-BCVERSION to select which one to use.
->
->
->
-> The problem is that they don=E2=80=99t all provide exactly the same thing=
- and that older version appear to influence newer versions, causing warning=
-s.
->
-> 2.27 and 2.31 build libsegfault, but 2.35 doesn=E2=80=99t anymore. If I p=
-refer 2.35, then I get warnings like:
->
->
->
-> WARNING: preferred version 2.35 of glibc not available (for item libsegfa=
-ult)
->
-> WARNING: versions of glibc available: 2.27 2.31+gitAUTOINC+1094741224
->
-> WARNING: preferred version 2.35 of nativesdk-glibc not available (for ite=
-m nativesdk-libsegfault)
->
-> WARNING: versions of nativesdk-glibc available: 2.27 2.31+gitAUTOINC+1094=
-741224
->
->
->
-> It seems that the unused/older recipe versions are still considered for d=
-ependencies somehow, just because they exist in the layer.
+On Tue, 29 Nov 2022 at 16:45, Stephen Jolley <sjolley.yp.pm@gmail.com> wrot=
+e:
+> We=E2=80=99d welcome a proposal/series on how to move forward with the Y2=
+038 work for 32 bit platforms.
 
-This is true and it happens because they all provide something
-commonly, perhaps virtual/libc or somesuch. However, each one of them
-does not replace exact providers
-so they must match for one to overrride other. So you might consider
-adding addtional needed PROVIDES in respective version of recipe via
-bbappends or maybe main recipe itself.
+I have the following proposal:
 
->
-> I understand that the old glibc versions provide libsegfault and that it =
-can=E2=80=99t be found in the preferred version, but I really don=E2=80=99t=
- care about the other versions as I have not selected them.
->
-> I could completely remove the packages from the old versions, but that se=
-ems like a brute force hack affecting what the recipes could provide when I=
- select them.
->
->
->
-> Is there a clean way to modify/bbappend the recipes to best fix, or at le=
-ast suppress such warnings when the recipe versions causing them are not se=
-lected?
->
-> Is there a way to do version based dependency declarations to be recipe v=
-ersion rather than recipe name specific?
->
+1. A branch is made where:
+a. "-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64" is enabled globally.
+b. qemu is always started with "-rtc base=3D2040-01-01", simulating
+Y2038 actually occurring.
+c. an additional runtime test verifies that both RTC clock and system
+clock report 2040.
 
-glibc is runtime dependency so you can only have one copy systemwide.
-so having multiple recipes is only beneficial if you are building
-different distributions from same workspace with different version of
-glibc.
->
->
-> Thanks,
->
->
->
-> Heinz
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#58621): https://lists.yoctoproject.org/g/yocto/messag=
-e/58621
-> Mute This Topic: https://lists.yoctoproject.org/mt/95213713/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+2. This branch is run through a-full on the autobuilder. Any uncovered
+issues are filed as bugs.
+
+3. Once *all* of the bugs are addressed, repeat point 2.
+
+4. Once there are no more open bugs, 1a is merged into master.
+
+Any fatal flaws in the plan?
+
+It's not hard to see that Y2038 problem is real and serious, e.g. on
+qemux86 core-image-full-cmdline built from master:
+
+root@qemux86:~# ls /
+bin  boot  dev    etc  home  lib    lost+found  media  mnt    proc
+run  sbin  sys  tmp  usr    var
+root@qemux86:~# date -s "2040-01-01"
+Sun Jan  1 00:00:00 UTC 2040
+root@qemux86:~# ls /
+bin  boot  dev    etc  home  lib    lost+found  media  mnt    proc
+run  sbin  sys  tmp  usr    var
+root@qemux86:~# ls /
+-sh: ls: command not found
+
+On qemux86_64 the same sequence works as expected, of course.
+
+Alex
 
