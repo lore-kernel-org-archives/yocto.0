@@ -1,175 +1,158 @@
-Return-Path: <lukma@denx.de>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20A44C4332F
-	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 13:36:24 +0000 (UTC)
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
- by mx.groups.io with SMTP id smtpd.web11.11156.1669815374533097175
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F17FC433FE
+	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 14:20:24 +0000 (UTC)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+ by mx.groups.io with SMTP id smtpd.web11.12261.1669818014875431347
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Nov 2022 05:36:15 -0800
+ Wed, 30 Nov 2022 06:20:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@denx.de header.s=phobos-20191101 header.b=WzZp/GCF;
- spf=pass (domain: denx.de, ip: 85.214.62.61, mailfrom: lukma@denx.de)
-Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 55174851CB;
-	Wed, 30 Nov 2022 14:36:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1669815371;
-	bh=87MUHMJdCjr6lNwURLUMtYxvkmOQXo4RmCOPPr7bcxs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WzZp/GCFATWsfN2UAhj9vRIjCvmdLqf0eqTR6MDx/7Y+m+qL3fGlL/0q2aSfuW+Q3
-	 RCRBKvGYuKByPBRzy+FyCWENski4grKZYDWlResDcUJ4fiH01/EReQp7ufBtgPMKvL
-	 zqtff1/iAssHHSEMcis+DoLfcow9REIL6InWLLNDzcLTx3ZWPw5ooPw1XAryiCBcwz
-	 szypLsxkihQtpBOQLvfSnclrmDz9Vu/hTBixlvbss0zZLVi0N3zvOIsFzXPN2CKa/T
-	 zBsQczGUWYuA6uH+CLruZyZK/PDgQWJ+vEz7FTXCM407Kb648Cci73MFdpS512w+Cc
-	 f2AslveQb0rrw==
-Date: Wed, 30 Nov 2022 14:36:04 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>, openembedded-architecture 
- <openembedded-architecture@lists.openembedded.org>, Yocto-mailing-list
- <yocto@lists.yoctoproject.org>, OE-core 
- <openembedded-core@lists.openembedded.org>
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Zb3zMNhN;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.46, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f46.google.com with SMTP id m19so4138477wms.5
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 06:20:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dTMEsDUN3lLt5gzTaADH47TCxSvVT335Js2+ydlF/aA=;
+        b=Zb3zMNhNhPhvvBirBgfz05IMNgyQintYEK/4gwNE2q1XcgLUaY+tq4JgZzlMlb9CcR
+         vXGfnG0JP+g6vFEDF/Sw21QsljJL6IPEZbY3SdIibhoUeP4KtETlFH9LGWxvLLfAXfI2
+         VhmUHUaMSiNtQB39ldDt8odE9wzptg5n5UmFg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dTMEsDUN3lLt5gzTaADH47TCxSvVT335Js2+ydlF/aA=;
+        b=hmNUCcGVwrgY+KTHD/HjaE63r99e+sNkM92oxjjhEz7mk0lzMoEopxQSmO31q2NRQl
+         INgIcntTz7sgzCFxn0fbulgRpoe3cQihp25C1YzK6gSzfCHbLze6UM2CMNbAnuNJb4Nx
+         IlL6vxEeMB02qF7yNN+ZUYFTFEw+n6YZsJkYKQ7lhTpG7Wl8Bgv0wXSAyg2z0hbVlfde
+         1m1KaWvntUWgXiFK1CpCFQAGw2YKr+5qnofg0EnKVFop81YMz8n6p992KIyC/U66DXW0
+         ffw8q9+/shH242xEF/G5HDWZYXDgQZFdhjMidLqmr3j9595IYac6rmJSFx7rcMVvEWeP
+         L/Yw==
+X-Gm-Message-State: ANoB5pn/++POJd9e9vmJXGZUnZe9yiwaGsLezkRNOH7v/NYBKk/RkgpV
+	5OhkaiIhE0Z9eE0Fp+KiD5//iw==
+X-Google-Smtp-Source: AA0mqf6+l2Tk0NStGy4gezGXnSY5Pj00QN2d1qxi3wM2396qLH3KHIPcdAkfQoXoudSwga5Z2Au5XA==
+X-Received: by 2002:a05:600c:2212:b0:3cf:8aa0:cbec with SMTP id z18-20020a05600c221200b003cf8aa0cbecmr33816939wml.161.1669818013117;
+        Wed, 30 Nov 2022 06:20:13 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:d673:1517:32d1:98? ([2001:8b0:aba:5f3c:d673:1517:32d1:98])
+        by smtp.gmail.com with ESMTPSA id i1-20020adfaac1000000b002238ea5750csm2146039wrc.72.2022.11.30.06.20.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 06:20:12 -0800 (PST)
+Message-ID: <ad2adc6af5026edc201cd3ab3a7b1f129cfdbd57.camel@linuxfoundation.org>
 Subject: Re: [OE-core] [Openembedded-architecture] Y2038 proposal
-Message-ID: <20221130143604.5a6659dc@wsk>
-In-Reply-To: <bda7b996024942763ae9d03ea0b958c3a38b04c8.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>, openembedded-architecture
+	 <openembedded-architecture@lists.openembedded.org>, Yocto-mailing-list
+	 <yocto@lists.yoctoproject.org>, OE-core
+	 <openembedded-core@lists.openembedded.org>
+Date: Wed, 30 Nov 2022 14:20:11 +0000
+In-Reply-To: <20221130143604.5a6659dc@wsk>
 References: <0b6801d90409$885d6860$99183920$@gmail.com>
-	<CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
-	<bda7b996024942763ae9d03ea0b958c3a38b04c8.camel@linuxfoundation.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	 <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
+	 <bda7b996024942763ae9d03ea0b958c3a38b04c8.camel@linuxfoundation.org>
+	 <20221130143604.5a6659dc@wsk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/5uLdDqz8XK.ZgJ80UD.TmrP";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 13:36:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58678
+ <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 14:20:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58679
 
---Sig_/5uLdDqz8XK.ZgJ80UD.TmrP
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi Richard,
-
-> On Wed, 2022-11-30 at 09:07 +0100, Alexander Kanavin wrote:
-> > On Tue, 29 Nov 2022 at 16:45, Stephen Jolley
-> > <sjolley.yp.pm@gmail.com> wrote: =20
-> > > We=E2=80=99d welcome a proposal/series on how to move forward with the
-> > > Y2038 work for 32 bit platforms. =20
+On Wed, 2022-11-30 at 14:36 +0100, Lukasz Majewski wrote:
+> > On Wed, 2022-11-30 at 09:07 +0100, Alexander Kanavin wrote:
+> > > On Tue, 29 Nov 2022 at 16:45, Stephen Jolley
+> > > <sjolley.yp.pm@gmail.com> wrote: =20
+> > > > We=E2=80=99d welcome a proposal/series on how to move forward with =
+the
+> > > > Y2038 work for 32 bit platforms. =20
+> > >=20
+> > > I have the following proposal:
+> > >=20
+> > > 1. A branch is made where:
+> > > a. "-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64" is enabled globally.
+> > > b. qemu is always started with "-rtc base=3D2040-01-01", simulating
+> > > Y2038 actually occurring.
+> > > c. an additional runtime test verifies that both RTC clock and
+> > > system clock report 2040.
+> > >=20
+> > > 2. This branch is run through a-full on the autobuilder. Any
+> > > uncovered issues are filed as bugs.
+> > >=20
+> > > 3. Once *all* of the bugs are addressed, repeat point 2.
+> > >=20
+> > > 4. Once there are no more open bugs, 1a is merged into master.
+> > >=20
+> > > Any fatal flaws in the plan? =20
 > >=20
-> > I have the following proposal:
+> > Others have made some good comments. My thoughts:
 > >=20
-> > 1. A branch is made where:
-> > a. "-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64" is enabled globally.
-> > b. qemu is always started with "-rtc base=3D2040-01-01", simulating
-> > Y2038 actually occurring.
-> > c. an additional runtime test verifies that both RTC clock and
-> > system clock report 2040.
+> > * We need to add some runtime tests to oeqa for this (in addition to
+> > the ptests)
 > >=20
-> > 2. This branch is run through a-full on the autobuilder. Any
-> > uncovered issues are filed as bugs.
-> >=20
-> > 3. Once *all* of the bugs are addressed, repeat point 2.
-> >=20
-> > 4. Once there are no more open bugs, 1a is merged into master.
-> >=20
-> > Any fatal flaws in the plan? =20
+> > * We need to have a 32 bit ptest run on the autobuilder (qemux86
+> > should work, not sure we can make qemuarm fast). Whether this is
+> > manually triggered, not sure. We could have a smaller set of ptests
+> > to run for it?
 >=20
-> Others have made some good comments. My thoughts:
+> Y2038 ptests maybe?
 >=20
-> * We need to add some runtime tests to oeqa for this (in addition to
-> the ptests)
+> Here is the list of integrated tests to ptests:
+> https://github.com/lmajewski/y2038-tests
+
+Perhaps, yes.
+
+> > * Could we optionally disable some of the glibc 32 bit function calls
+> > to ensure they're not being used?=20
 >=20
-> * We need to have a 32 bit ptest run on the autobuilder (qemux86
-> should work, not sure we can make qemuarm fast). Whether this is
-> manually triggered, not sure. We could have a smaller set of ptests
-> to run for it?
+> Could you be more specific here? Would you like to disable some
+> syscalls?
 
-Y2038 ptests maybe?
+I'm meaning=C2=A0disabling the 32 bit glibc time functions.
 
-Here is the list of integrated tests to ptests:
-https://github.com/lmajewski/y2038-tests
-
+> > We don't really want to diverge from
+> > upstream glibc much though.
 >=20
-> * Could we optionally disable some of the glibc 32 bit function calls
-> to ensure they're not being used?=20
+> Could you be more specific here? The glibc now supports the whole set
+> of syscalls as of 2.34 version?
+>=20
+> To enable them one needs to pass -D_TIME_BITS=3D64 flag when compiling
+> programs.
+>=20
+> This is now the official glibc ABI.
 
-Could you be more specific here? Would you like to disable some
-syscalls?
-
-> We don't really want to diverge from
-> upstream glibc much though.
-
-Could you be more specific here? The glibc now supports the whole set
-of syscalls as of 2.34 version?
-
-To enable them one needs to pass -D_TIME_BITS=3D64 flag when compiling
-programs.
-
-This is now the official glibc ABI.
+Right, but the 32 bit time functions/symbols are still available for
+older binaries. My point is that anything using those older functions
+is likely in need of attention so for Yocto Project/OE usage,
+identifying those would be helpful. If we were to disable them, that
+would make such usage very obvious.
 
 >=20
-> * We need to work out how to communicate this change happened and have
-> people "buy in" to it.
-
-Ok.
-
-> The reason for that is that if someone has
-> existing binaries, there could be problems using them after the
-> change.
-
-The binary shall work without issues on glibc 2.34+ and 5.10+ kernel
-without issues.
-
-The only problem happens when new binaries with 64 bit time support are
-run on glibc or kernel not supporting 64 bit time.=20
-
-> We therefore need to be sure they are aware of it.
+> > The reason for that is that if someone has
+> > existing binaries, there could be problems using them after the
+> > change.
 >=20
-> Cheers,
->=20
-> Richard
->=20
->=20
->=20
->=20
+> The binary shall work without issues on glibc 2.34+ and 5.10+ kernel
+> without issues.
 
+Not necessarily. If it were a binary library, compiled with 32 bit
+time_t, new binaries using it would use a different sized field.
 
+> The only problem happens when new binaries with 64 bit time support are
+> run on glibc or kernel not supporting 64 bit time.=20
 
+That is definitely not the only problem. Some of the problems are
+unlikely but we do need to consider them.
 
-Best regards,
+Cheers,
 
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/5uLdDqz8XK.ZgJ80UD.TmrP
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmOHXEQACgkQAR8vZIA0
-zr0EeAf+LIxSEVihJW+djndVH+6K6hXwnp7X7/aASTQXQjdp0z5nFoJs5yFnx7YT
-7ogbQosDAiVcTrhpZBMnee9yE6IigYMhUZzQTAlVQE4Mhf9MXqttintGNZ4QpGor
-kswQ2pSGVM201cJ5NASTjnG9JLGTvi6P7jjPUTKIP0w1OCsVPiyG7WcdFes/oPEz
-MMMEIvdJm7PMFClVgKq2RCTEMPX4moKUqQy2B7Mh4hqKPzRX1FtkTjL+4VMPryja
-x29ejOa9xYBygbeTF8K3MsFSQHWOZQlmnjebq4UKY2hfdr8VB1bbf0aEW//hvoyr
-lByaatE8rTNGHV7GX0shR1QZWEpqJg==
-=577q
------END PGP SIGNATURE-----
-
---Sig_/5uLdDqz8XK.ZgJ80UD.TmrP--
+Richard
 
