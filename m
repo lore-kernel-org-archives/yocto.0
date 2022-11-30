@@ -1,88 +1,138 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <smooge@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED05CC4321E
-	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 09:48:52 +0000 (UTC)
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
- by mx.groups.io with SMTP id smtpd.web11.7287.1669801723309378626
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49FCFC352A1
+	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 10:52:23 +0000 (UTC)
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+ by mx.groups.io with SMTP id smtpd.web11.8127.1669805534932874994
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Nov 2022 01:48:43 -0800
+ Wed, 30 Nov 2022 02:52:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=DHxd/l/B;
- spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f50.google.com with SMTP id s8so26086820lfc.8
-        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 01:48:43 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=LbhdWl4N;
+ spf=pass (domain: gmail.com, ip: 209.85.216.53, mailfrom: smooge@gmail.com)
+Received: by mail-pj1-f53.google.com with SMTP id o12so7508329pjo.4
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 02:52:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=17NNrTsH0z5WWFBWW09rfre6nfK96+LcGm9agSlD+R0=;
-        b=DHxd/l/BezbrWti0u67rRZghF9rxvnUuvJVBHVfxpAG+B9ZlbSAlWr/EM3xTw6nr4O
-         HiG7+83o8I4ZNAuhUd2CUgry0aDui0i8RlyxoeBPFCG8QyuwozIjZ+Z6CqMKp+gBdEzg
-         pHYA/BTsGN+gN8StobscjV3PcYbcf1mM1SW9zOv+J4tBRX9T5OPhc29tUzfuIOKtZKUK
-         I+vu8/J4ccSnKy2TTVCzS2j4P+Ddyvm26QD2VLXE3XvEM0sMS66d6szThSkhFjcc4DSN
-         ytWVT7zXKU4KIXxCyA11kukLanEDQbcM1N0xWQ9seQnPPGnuqvdbaVzN20uUnhf+VHq8
-         byEA==
+        bh=nwA7Atp9Tn7yjq+rCrbokZWbzctCjS1T44NpuZE8pyA=;
+        b=LbhdWl4NFtyq569u9ltzaWWR5/ihC4/Hb+Ne1yJaTTd/XhJfC7EI5zJM9TRtskydwu
+         g6NLGSblfg1BhPG3b7grFU0cScprgR2Nd3fI11CETZe+J1vwntIQ/L3FF2Ht3oA1Y8TY
+         lVY5LxUJpfVxlDAm2PKwmhgCwQ2bgkieuWY0/NOYKzrUaG2aF7ABaqs/3f0oLki7PAhp
+         hdvHm9X92C8vqcyjH9e4rFD3h9sCfFLfU8TNRd/UspMUcbiSE9Su84jlkUoXm+OrFdzj
+         E13nH4HsRYqlyVNKjhUGTG96G8eYhfi/59v3mgr7zJudbZts99gMvslistPopK2OrdnA
+         EXkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=17NNrTsH0z5WWFBWW09rfre6nfK96+LcGm9agSlD+R0=;
-        b=Y3s9nue079DWHidKc0o+hOD348WTWHxqae6H6wDTwne39JPovtNqEzD2jXOE+U1xWV
-         7YB6N08wv6E7WzG2B1N7y0w+25D/Y1qxO3nv+c2SQg3oBsEFSmTF20jFli/VSAREjqKQ
-         Yi6VEmNwXUzMVJ5FLwlyiM4J96mUVzTLH9DOjGlXghjDBnWNwgyYw2ZkrY+CciTc0cqX
-         zX964DEJlsCrrbM1akOZ1tU55lFBTf/n3Vuzz8OWVaDMwWACFd0e46zafv1kAabwEqVJ
-         h4YvW896UV6zDWCytPkqyay5rcExhiavX8NnsJiElSDkd7V1cA05tgh0ascQVR+DgUJh
-         VAFQ==
-X-Gm-Message-State: ANoB5pmi8ut6SWRtRPYFNW+kv0Y+J4+Ba9LHpBYlyvSVuGgJ91HvN/55
-	epA/pul3e7AdJy5RJd2jJ5DXZhPn0bVxUh/OA0o=
-X-Google-Smtp-Source: AA0mqf4WaWK868UR477y/BxrVy0FiIghhN/ty1dE8GnxuHp4ttPwh9MKoE9yrQ9iOaSMHTm1ooB9jnHroKk1DRI1dGY=
-X-Received: by 2002:a05:6512:3445:b0:4a9:39f4:5793 with SMTP id
- j5-20020a056512344500b004a939f45793mr17261977lfr.131.1669801721273; Wed, 30
- Nov 2022 01:48:41 -0800 (PST)
+        bh=nwA7Atp9Tn7yjq+rCrbokZWbzctCjS1T44NpuZE8pyA=;
+        b=joGU7GEVl99G2B+jQbDgjjttNES6JsGVmbS8Y4hiXqokleruDfJ9BehC5LboHpuyO0
+         USqVXES/fMpbCnME1Iv7s3mpv8L5tilDepS3ZMfzi26K8d8HBPsu32+sx1DgTLzDTuZG
+         t2HkhOdIPsfHa84C/Hp/5VkA8lfMO2Bj8In5KXH/WJetnJAMDmMR0SsfGBq4bzDIu9s8
+         M5WvUJLl1OwtJZ4+r33mYyruBSHM2gEgTzsCMfmqZ6htfVS89ve2k5hlDWCXb4SDQ2jW
+         zpfm1MDESdOTUnJo+UAe2lUQABkGIqFW3yxCW/hKzMZHn7Q4NUUM2x4cKmeoNU1N49v5
+         RDIQ==
+X-Gm-Message-State: ANoB5plss1+y4yuhNpcQzo7QOraVEkmhagdLdnEluk2acDW9MZtzM89o
+	Drt3xhrl4UIRNmLxTUOgAKSd+e33pAggE5Susjc=
+X-Google-Smtp-Source: AA0mqf58x86EHhD85fBtgpxFSpz14vBELpZTSgjjkNaPZh3YCs3pNJus28IjV8hMbcqLoWDL3TD2rv2xQGcSiU0suO0=
+X-Received: by 2002:a17:902:848d:b0:185:378d:7c18 with SMTP id
+ c13-20020a170902848d00b00185378d7c18mr51959517plo.21.1669805534326; Wed, 30
+ Nov 2022 02:52:14 -0800 (PST)
 MIME-Version: 1.0
 References: <0b6801d90409$885d6860$99183920$@gmail.com> <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
- <20221130092832.62067104@wsk> <CANNYZj-31p1n_f_oh3+Le4O4vYrRLquvYxzdAk4uY+EOeS_V0A@mail.gmail.com>
- <20221130104006.526c0c71@wsk>
-In-Reply-To: <20221130104006.526c0c71@wsk>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 30 Nov 2022 10:48:29 +0100
-Message-ID: <CANNYZj-5DhQiDzt7uOMuPskmf1es9n1TN8gskOGpfBFvGFtRog@mail.gmail.com>
+In-Reply-To: <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
+From: Stephen John Smoogen <smooge@gmail.com>
+Date: Wed, 30 Nov 2022 05:52:03 -0500
+Message-ID: <CANnLRdi+naMb9Ga+7AtZaQrTh-FjapUa_0qTdDYHUbHKvakbag@mail.gmail.com>
 Subject: Re: [yocto] Y2038 proposal
-To: Lukasz Majewski <lukma@denx.de>
-Cc: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	OE-core <openembedded-core@lists.openembedded.org>, 
-	Stephen Jolley <sjolley.yp.pm@gmail.com>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000b7b2bd05eeade5bc"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 09:48:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58667
+ <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 10:52:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58668
 
-On Wed, 30 Nov 2022 at 10:40, Lukasz Majewski <lukma@denx.de> wrote:
+--000000000000b7b2bd05eeade5bc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> It would be even better if the meta-y2038 could be dropped and _all_
-> its functionality could be merged to poky.
+On Wed, 30 Nov 2022 at 03:08, Alexander Kanavin <alex.kanavin@gmail.com>
+wrote:
+
+> On Tue, 29 Nov 2022 at 16:45, Stephen Jolley <sjolley.yp.pm@gmail.com>
+> wrote:
+> > We=E2=80=99d welcome a proposal/series on how to move forward with the =
+Y2038
+> work for 32 bit platforms.
 >
-> That would be _awesome_.
+> I have the following proposal:
 >
-> Please just be aware that this meta layer has some fixes for some
-> packages (for Y2038 ready glibc).
+> 1. A branch is made where:
+> a. "-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64" is enabled globally.
+> b. qemu is always started with "-rtc base=3D2040-01-01", simulating
+> Y2038 actually occurring.
+> c. an additional runtime test verifies that both RTC clock and system
+> clock report 2040.
+>
+>
+Going from various problems I saw with systems with smaller time wraps,
+setting a time after wrap occurs misses most of the problems which wall
+occur. Many systems will work fine with either 'negative' or 'smaller
+dates' but crash, burn, etc when running when the counter wraps around. I
+would suggest setting the test date to -N minutes before wrap over to run a
+first set of tests, and then N minutes after the wrap to run a second set
+of tests. This would hopefully catch programs which are worse off.
 
-Little by little. As long as we have a well-defined test plan, a
-well-known list of issues, and follow a strict 'upstream first' policy
-in addressing them (e.g. no fixes in layers that are 'forever
-pending', un-upstreamable or have been rejected by upstreams), we'll
-eventually get there.
+--=20
+Stephen J Smoogen.
+Let us be kind to one another, for most of us are fighting a hard battle.
+-- Ian MacClaren
 
-And absolutely no promise to make this available anywhere except
-master. If someone is using ancient yocto releases, they should run a
-retro computing museum rather than critical infrastructure.
+--000000000000b7b2bd05eeade5bc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Alex
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, 30 Nov 2022 at 03:08, Alexand=
+er Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex">On Tue, 29 Nov 2022 at 16:45, Stephen Jolley &lt;<a href=3D"mailto:sjol=
+ley.yp.pm@gmail.com" target=3D"_blank">sjolley.yp.pm@gmail.com</a>&gt; wrot=
+e:<br>
+&gt; We=E2=80=99d welcome a proposal/series on how to move forward with the=
+ Y2038 work for 32 bit platforms.<br>
+<br>
+I have the following proposal:<br>
+<br>
+1. A branch is made where:<br>
+a. &quot;-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64&quot; is enabled global=
+ly.<br>
+b. qemu is always started with &quot;-rtc base=3D2040-01-01&quot;, simulati=
+ng<br>
+Y2038 actually occurring.<br>
+c. an additional runtime test verifies that both RTC clock and system<br>
+clock report 2040.<br clear=3D"all"><br></blockquote></div><div><br></div><=
+div>Going from various problems I saw with systems with smaller time wraps,=
+ setting a time after wrap occurs misses most of the problems which wall oc=
+cur. Many systems will work fine with either &#39;negative&#39; or &#39;sma=
+ller dates&#39; but crash, burn, etc when running when the counter wraps ar=
+ound. I would suggest setting the test date to -N minutes before wrap over =
+to run a first set of tests, and then N minutes after the wrap to run a sec=
+ond set of tests. This would hopefully catch programs which are worse off.<=
+br></div><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature"><=
+div dir=3D"ltr">Stephen J Smoogen.<br><span style=3D"color:rgb(32,33,36);fo=
+nt-family:Arial,Helvetica,sans-serif;font-size:small;font-style:normal;font=
+-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
+nsform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,25=
+5,255);display:inline;float:none">Let us be kind to one another, for most o=
+f us are fighting a hard battle. -- Ian MacClaren</span></div></div></div>
+
+--000000000000b7b2bd05eeade5bc--
 
