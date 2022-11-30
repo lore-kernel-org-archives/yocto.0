@@ -1,61 +1,131 @@
-Return-Path: <sven@svenschwermer.de>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D33DC4332F
-	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 14:56:04 +0000 (UTC)
-Subject: Add user to group that's created in other recipe
-To: yocto@lists.yoctoproject.org
-From: "Sven" <sven@svenschwermer.de>
-X-Originating-Location: Oslo, Oslo County, NO (95.130.220.46)
-X-Originating-Platform: Linux Chrome 107
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BD08C46467
+	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 16:39:25 +0000 (UTC)
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+ by mx.groups.io with SMTP id smtpd.web11.16446.1669826359668754558
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 30 Nov 2022 08:39:19 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Vnzyl5Kx;
+ spf=pass (domain: gmail.com, ip: 209.85.210.48, mailfrom: raj.khem@gmail.com)
+Received: by mail-ot1-f48.google.com with SMTP id p24-20020a0568301d5800b0066e6dc09be5so962438oth.8
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 08:39:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NhLQ2+AFBKYvd49hjnpbxAfRbq33zxkIhZB5jg0/T3k=;
+        b=Vnzyl5KxhrFX4sxvT1Zw4jEg+eAFnsL2ZSUZethz5dDhvpZDwdGfCYrBNupJny7Zmw
+         r10FNAdpBf2xZRvbkh6hbrUKcuXQXr3wiNp7+xWStXsbm/yHeoJf6x45GYnQ4Vun85GX
+         rLOWLArgFZhn3VdV5Fvzkv9YLFyhcTmZ5ujkfKvh71MKjzfUSD4ejhwOZFWUfXkcOMmg
+         ANLQoN1w5jQrb5FSxU7cJCD42mun5MvX/VH6dUNFf6/6AUK1+TnEaJ2i6EcE/O7k7tsk
+         Q/KyLo1PBhPN7U9q4N9Oc79cnl2Ouml/atMUpeg8LctW56Z3Eprc455mp2tKUTHTPutI
+         jGvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NhLQ2+AFBKYvd49hjnpbxAfRbq33zxkIhZB5jg0/T3k=;
+        b=bZNi9lrwjTcviPaeXzcIinp706nW1kHg4G/oRWXA4EhqkcD0mLjtFdb1m04ox0HT45
+         9SaWbfn39avzOHKY5p6eDU7bYG1abD+oWXWkNsmXbsYt9VWEkmZDoQxsWEAnWl5oozPw
+         LF4npTR0WgIz1PnvMuhP9GD1vOn3Llo9yM/pHpoGMVlskh3Aivdz+CBnY5FnNK76OWid
+         nKjQBp4gHElfCENcxegarArmZsLwpZDAbZlvL5YL5fZjqq9AF3dxQknz+BmGXi8jWjXA
+         rHvRQ/M9NWTTN4Ql5DdikOxDWj6h0xMWNE0j+uNkPp5jGRpn9ZC3R6IcmvnqYWNFHSoi
+         n1RQ==
+X-Gm-Message-State: ANoB5plNVElrzH+QVKO/+UelVLvIy5chdcFVsLjnQYLuRf3ej1o3Aok2
+	fxe6mRcT/MTFQo/VKyad7qycZe5z1AZPxm+1Cyk=
+X-Google-Smtp-Source: AA0mqf71OIdPxFzES4vlNVJOhTykEJFZoaulr3FqFMyCcbYVWBCeN3/hfzIPJQkBszVx3OTqtudk5EtfT6jOoFcwmFg=
+X-Received: by 2002:a9d:6486:0:b0:66d:ca7a:8b1a with SMTP id
+ g6-20020a9d6486000000b0066dca7a8b1amr21987424otl.55.1669826358840; Wed, 30
+ Nov 2022 08:39:18 -0800 (PST)
 MIME-Version: 1.0
-Date: Wed, 30 Nov 2022 06:55:59 -0800
-Message-ID: <dF0b.1669820159069031281.m3lb@lists.yoctoproject.org>
-Content-Type: text/plain; charset="utf-8"
+References: <0b6801d90409$885d6860$99183920$@gmail.com> <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
+In-Reply-To: <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 30 Nov 2022 08:38:52 -0800
+Message-ID: <CAMKF1spWtZTUwAqweKYPQaP9wh=-pHHt0v5c6yNYXD1bu==onw@mail.gmail.com>
+Subject: Re: [Openembedded-architecture] Y2038 proposal
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	OE-core <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 14:56:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58680
+ <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 16:39:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58681
 
-Hi,
+On Wed, Nov 30, 2022 at 12:08 AM Alexander Kanavin
+<alex.kanavin@gmail.com> wrote:
+>
+> On Tue, 29 Nov 2022 at 16:45, Stephen Jolley <sjolley.yp.pm@gmail.com> wr=
+ote:
+> > We=E2=80=99d welcome a proposal/series on how to move forward with the =
+Y2038 work for 32 bit platforms.
+>
+> I have the following proposal:
+>
+> 1. A branch is made where:
+> a. "-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64" is enabled globally.
 
-I have intermittent problems with a recipe that creates a user that is memb=
-er of groups that are created by a different recipe. This is the recipe tha=
-t creates the groups:
+I have something like this on yoe/mut branch on contrib repo ( due to
+musl removing the LFS hacks).
+However there are packages which need to be fixed at build time.
 
-# recipe-a.bb
-inherit useradd
-USERADD_PACKAGES =3D "${PN}"
-GROUPADD_PARAM:${PN} =3D "--system gpio;--system i2c"
+> b. qemu is always started with "-rtc base=3D2040-01-01", simulating
+> Y2038 actually occurring.
 
-This is the recipe that creates the user:
+this is a good time machine :)
 
-# recipe-b.bb
-inherit useradd
-USERADD_PACKAGES =3D "${PN}"
-GROUPADD_PARAM:${PN} =3D "--system mygroup"
-GROUPS =3D "dialout,mygroup,gpio,i2c"
-USERADD_PARAM:${PN} =3D "--system --no-create-home --shell /bin/false --no-=
-user-group --groups ${GROUPS} myuser"
-DEPENDS =3D "recipe-a"
+> c. an additional runtime test verifies that both RTC clock and system
+> clock report 2040.
+>
+> 2. This branch is run through a-full on the autobuilder. Any uncovered
+> issues are filed as bugs.
+>
+> 3. Once *all* of the bugs are addressed, repeat point 2.
+>
+> 4. Once there are no more open bugs, 1a is merged into master.
+>
+> Any fatal flaws in the plan?
+>
 
-I guess it's also worth pointing out, that I use useradd-static:
-USERADDEXTENSION =3D "useradd-staticids"
-USERADD_ERROR_DYNAMIC =3D "error"
-USERADD_UID_TABLES =3D "files/passwd"
-USERADD_GID_TABLES =3D "files/group"
+Not much issues except that package fixes may need to be carried
+locally for a while.
 
-Every now and then I get and error in recipe_b's do_package_setscene task w=
-here useradd complains that one of the groups provided by recipe_a does not=
- exist. This appears to be a race condition since most of the times, this w=
-orks OK. I was under the impression that specifying DEPENDS=3D"recipe-a" in=
- recipe_b.bb would be enough to declare this dependency. What am I doing wr=
-ong?
-
-Best regards,
-Sven
+> It's not hard to see that Y2038 problem is real and serious, e.g. on
+> qemux86 core-image-full-cmdline built from master:
+>
+> root@qemux86:~# ls /
+> bin  boot  dev    etc  home  lib    lost+found  media  mnt    proc
+> run  sbin  sys  tmp  usr    var
+> root@qemux86:~# date -s "2040-01-01"
+> Sun Jan  1 00:00:00 UTC 2040
+> root@qemux86:~# ls /
+> bin  boot  dev    etc  home  lib    lost+found  media  mnt    proc
+> run  sbin  sys  tmp  usr    var
+> root@qemux86:~# ls /
+> -sh: ls: command not found
+>
+> On qemux86_64 the same sequence works as expected, of course.
+>
+> Alex
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#1663): https://lists.openembedded.org/g/openembedded-=
+architecture/message/1663
+> Mute This Topic: https://lists.openembedded.org/mt/95354042/1997914
+> Group Owner: openembedded-architecture+owner@lists.openembedded.org
+> Unsubscribe: https://lists.openembedded.org/g/openembedded-architecture/u=
+nsub [raj.khem@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
