@@ -1,62 +1,117 @@
-Return-Path: <hrsourabh011@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFDB9C433FE
-	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 12:20:53 +0000 (UTC)
-Subject: Re: How to enabled systemd unit files automatically using recipe?
-To: yocto@lists.yoctoproject.org
-From: "Sourabh Hegde" <hrsourabh011@gmail.com>
-X-Originating-Location: Mysore, Karnataka, IN (150.129.88.138)
-X-Originating-Platform: Windows Chrome 107
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05226C4332F
+	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 13:15:44 +0000 (UTC)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+ by mx.groups.io with SMTP id smtpd.web10.10593.1669814141018282303
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 30 Nov 2022 05:15:41 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=LU2DEHyW;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f42.google.com with SMTP id m19so4009004wms.5
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 05:15:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=wcbvI7EjvrKG2uXFllOCsuA8zi1xKHxAP8ULPAfKL2c=;
+        b=LU2DEHyWI32NILzPAeFF+Qx50+mb35bM9iBsScJSIjmD49s80FThhNGxh+PgwRpY6M
+         5D40xARzLmmCBcgD1qj0fig9pB3WCa1YW+MXrLusoI+ld6epe+dJbEPss7w4jReBZkSZ
+         vMh2zIuTtUuVpxRY4qI4si/oJLdN4t88izR2s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wcbvI7EjvrKG2uXFllOCsuA8zi1xKHxAP8ULPAfKL2c=;
+        b=IqUeBGEbmxmpbmH7LNl2vfthY/3eApc679rLVXmYjtOFuhF4jGpIJrtctX1o9rlY9m
+         cqzApppQpx6v9qyz3oC8aF65K9C8ZUh63479FmbgrX+aF7Xv/wwh8lCe3i8P+NTI0OTN
+         qVms+Av2jvRaKz68+yhGbZfhckMzPemP9bSO+KKmaIgGttRBVeoozpthgH7FP+XNVzjU
+         UuM2ZG7EjvQEl3hL2wrUGjaoG5qFsjMaE4lEm2qOROJN2qy758kiwsC6y+XPMcZR4hSy
+         RcJ3ZekAL/gPM96tImlSz+UTbKxk0xch1HiJLd2v7RaZgDKFdc3Dk8Ypgtexv83GTeWt
+         zneQ==
+X-Gm-Message-State: ANoB5pmupOAhnh4NFqEgOf1tb0RZWtjGop2QTzshr77psf3n8BnZmLkj
+	PLRwm5wHG4LOfQlGaUkhvf+XXA==
+X-Google-Smtp-Source: AA0mqf7BkOGgDNUAVAj72ypCrlkG/mHNwi0RHtfjYo9jj2rWkOvoddqHBFawJGtPlR6TwrirhUYWFg==
+X-Received: by 2002:a05:600c:4f45:b0:3cf:9be3:8d26 with SMTP id m5-20020a05600c4f4500b003cf9be38d26mr37397943wmq.185.1669814139303;
+        Wed, 30 Nov 2022 05:15:39 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:d673:1517:32d1:98? ([2001:8b0:aba:5f3c:d673:1517:32d1:98])
+        by smtp.gmail.com with ESMTPSA id h130-20020a1c2188000000b003b4fdbb6319sm5588275wmh.21.2022.11.30.05.15.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 05:15:38 -0800 (PST)
+Message-ID: <bda7b996024942763ae9d03ea0b958c3a38b04c8.camel@linuxfoundation.org>
+Subject: Re: [Openembedded-architecture] Y2038 proposal
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, openembedded-architecture
+	 <openembedded-architecture@lists.openembedded.org>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, OE-core
+	 <openembedded-core@lists.openembedded.org>
+Date: Wed, 30 Nov 2022 13:15:36 +0000
+In-Reply-To: <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
+References: <0b6801d90409$885d6860$99183920$@gmail.com>
+	 <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu1 
 MIME-Version: 1.0
-Date: Wed, 30 Nov 2022 04:20:46 -0800
-References: <13529.1666683596254084698@lists.yoctoproject.org>
-In-Reply-To: <13529.1666683596254084698@lists.yoctoproject.org>
-Message-ID: <8531.1669810846597231294@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="J0D5w67VU85ofO8KIK2X"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 12:20:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58676
+ <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 13:15:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58677
 
---J0D5w67VU85ofO8KIK2X
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 2022-11-30 at 09:07 +0100, Alexander Kanavin wrote:
+> On Tue, 29 Nov 2022 at 16:45, Stephen Jolley <sjolley.yp.pm@gmail.com> wr=
+ote:
+> > We=E2=80=99d welcome a proposal/series on how to move forward with the =
+Y2038 work for 32 bit platforms.
+>=20
+> I have the following proposal:
+>=20
+> 1. A branch is made where:
+> a. "-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64" is enabled globally.
+> b. qemu is always started with "-rtc base=3D2040-01-01", simulating
+> Y2038 actually occurring.
+> c. an additional runtime test verifies that both RTC clock and system
+> clock report 2040.
+>=20
+> 2. This branch is run through a-full on the autobuilder. Any uncovered
+> issues are filed as bugs.
+>=20
+> 3. Once *all* of the bugs are addressed, repeat point 2.
+>=20
+> 4. Once there are no more open bugs, 1a is merged into master.
+>=20
+> Any fatal flaws in the plan?
 
-I have a question here:
+Others have made some good comments. My thoughts:
 
-If I something like below in my recipe
+* We need to add some runtime tests to oeqa for this (in addition to
+the ptests)
 
-SYSTEMD_SERVICE:${PN} =3D "${@bb.utils.contains('DISTRO_FEATURES', 'systemd=
-', 'one.service', '', d)}"
+* We need to have a 32 bit ptest run on the autobuilder (qemux86 should
+work, not sure we can make qemuarm fast). Whether this is manually
+triggered, not sure. We could have a smaller set of ptests to run for
+it?
 
-Then, can I add multiple files with:
+* Could we optionally disable some of the glibc 32 bit function calls
+to ensure they're not being used? We don't really want to diverge from
+upstream glibc much though.
 
-SYSTEMD_SERVICE:${PN} =3D "${@bb.utils.contains('DISTRO_FEATURES', 'systemd=
-', 'one.service one.path two.service two.path', '', d)}"
+* We need to work out how to communicate this change happened and have
+people "buy in" to it. The reason for that is that if someone has
+existing binaries, there could be problems using them after the change.
+We therefore need to be sure they are aware of it.
 
-?
+Cheers,
 
-Is this valid? Or should I use only SYSTEMD_SERVICE:${PN} =3D "one.service =
-two.service one.path two.path" ?
+Richard
 
-Thanks in advance
 
---J0D5w67VU85ofO8KIK2X
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-I have a question here:<br /><br />If I something like below in my recipe<b=
-r /><br />SYSTEMD_SERVICE:${PN} =3D "${@bb.utils.contains('DISTRO_FEATURES'=
-, 'systemd', 'one.service', '', d)}"<br /><br />Then, can I add multiple fi=
-les with:<br /><br />SYSTEMD_SERVICE:${PN} =3D "${@bb.utils.contains('DISTR=
-O_FEATURES', 'systemd', 'one.service one.path two.service two.path', '', d)=
-}"<br /><br />?<br /><br />Is this valid? Or should I use only&nbsp;<span s=
-tyle=3D"white-space: pre-wrap;">SYSTEMD_SERVICE:${PN} =3D "one.service two.=
-service one.path two.path" ?<br /><br />Thanks in advance</span>
 
---J0D5w67VU85ofO8KIK2X--
 
