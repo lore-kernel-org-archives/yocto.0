@@ -2,141 +2,98 @@ Return-Path: <zoran.stojsavljevic@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 05434C43217
-	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 12:38:22 +0000 (UTC)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web11.41901.1669898295605622478
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DBF0EC43217
+	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 12:46:21 +0000 (UTC)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+ by mx.groups.io with SMTP id smtpd.web10.41980.1669898778677650389
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Dec 2022 04:38:15 -0800
+ Thu, 01 Dec 2022 04:46:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=NU7YMoh1;
- spf=pass (domain: gmail.com, ip: 209.85.221.44, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-wr1-f44.google.com with SMTP id h12so2466471wrv.10
-        for <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 04:38:15 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Wlt2Ea8c;
+ spf=pass (domain: gmail.com, ip: 209.85.221.43, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-wr1-f43.google.com with SMTP id m14so2512038wrh.7
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 04:46:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qPzTPxCTZMn6CHxfxJOaB8ANbZkzoXry8w2l0PWqFjQ=;
-        b=NU7YMoh1ee792O4rXFUO0eZ9XE4le1pRF+fabLLtcOE2PG1CLWPzKoVODjjbX492Id
-         Lw68Tu8iu3Iw4yDOkOX+KOX1mJI8U7HPD5RxbkX1ld1zCh04oX0O/KYOogghEgMAaL3V
-         ajJKrBe9SASYE+kufdmkD0cnIeZ/46Hmsr4ZQkiwhlBruCPGyrNEOv2E2oiV9I9iziQO
-         2aFyh5Kd2SsuH7/TZZ5sOeu/0gxKmMPuge2y6oWyIIJysZn5Wf7Omrm3LkV8/Hq2qGEE
-         FUQpivIhHRLYoyaIBdVR7j7LRv2kAatfjoCHVRw9nMOrpViDXEKmvyFbVMBKjkhm9nqa
-         8BZA==
+        bh=eBKPkJt4MMcG/ytrNfBiuyez4ieVXOOeZbV2WOQIc0o=;
+        b=Wlt2Ea8cAPoKXi2ArjTdUK0C7hPwdNLxNSxsWk75JVgK2JirX1iXPoHyNQ4NPZBN6+
+         9Cf48O6xYmHcwJN6mt8hRnz8zw9vN1f2cBqacqW52IHZwtmNOXdMRUgQngge9qn92rFv
+         c853ThH6Z0EnOkWHx7v2wE+cztlst7v/a5V5Uv4h5IAV7EYixz7FmsbOTX7F10xZsjDy
+         JGs7BvAs4QeQ3jz4+gsXHnFRP+BHlnYqIsCpaLaK+g1IAQ4AtynUZJ9Z2BX8fo+hPPnh
+         ql+7Kh8RTmQGDM6iZc2Fz8AJhPjDc2eZx84Ne3gmqH6VRYTk0quwboAXnU78lTzWRWia
+         HsHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qPzTPxCTZMn6CHxfxJOaB8ANbZkzoXry8w2l0PWqFjQ=;
-        b=svRhupi1e5AxjdGYvMt4pjRHPSokrOLLNr435tRin0JMCrYO3C5Zifa9khCA4bbnye
-         eXIDKe+wTIHau9CbbiMr2+sHlcX1j/8yWDLbonReJtPMsivrAay2i3BNJGfm4+XYQegL
-         uRkyMfYzE5M8v9Wwz4zKKyhxEWlX9lNojcO606hPkOEF0j94kou8Skh0Lf7Y35Nh9eZZ
-         laeDy9z1v5p0Br/weQOo1/UlVcPW5CPZr1WSvJCM5W3Vy8AQ5aaj5bBvbpHJD5L4XW4A
-         3Lmb4RVe6rcSy+TuJs5+TOjzcOr06KVwy3/MQyRqKy75dl7CpssvZEJtMrPTA1xVJXtl
-         Aj6Q==
-X-Gm-Message-State: ANoB5pkN9M5eRfXYOeSbhveoef80/4sp3DZ32iMD+PmW0cU2Pi3qrrEQ
-	kN/8zaF7zIDHg7mwPlj4G7Og5N0yFLam0/feRMY=
-X-Google-Smtp-Source: AA0mqf624UJQSmZx/jVXnoZSuvJ4dLpssGWnjJ9ASPeq++TTCGPnw8sekqjvEKatfZJh3kE6YT2/22cikyFIoRoazSQ=
-X-Received: by 2002:a05:6000:114f:b0:241:c80c:5f54 with SMTP id
- d15-20020a056000114f00b00241c80c5f54mr36601110wrx.15.1669898293793; Thu, 01
- Dec 2022 04:38:13 -0800 (PST)
+        bh=eBKPkJt4MMcG/ytrNfBiuyez4ieVXOOeZbV2WOQIc0o=;
+        b=JW0mhwUAKwouEekk5fwTI9K6OX1ItcT9Ln9GfYBGyevu6gKCvL5frMpSuln+IWsmih
+         3azFeUeqzJCVb+7o5J+n2CZkgVTgAjArfdaI0LC5Q7SF99eSVIMgcaf219RQpVX0PylV
+         Si9bRK/hQy5nKHYWnsNs3VAsCfnnuDDo5wabWol43P+lXwCxc/Se0rsC0E9BaIw20/Cm
+         RumYUY/tFdt4uFCVZSuAqtc3aJPRCTpHmZb6oi8XX1wyVDzJ7HpxPJj63TjyTN/5sBij
+         Ir87vGeG7GK3i8eUjVwkdNVXoEvq/VWd+1kOckv+7EblONNOrksm8fxT+xSjCVwnHk5a
+         3Bvg==
+X-Gm-Message-State: ANoB5pmBtcXtlS76huUqmYrgntABlb92qssJgBEptren+ya0ypmIqXIA
+	hqx2lX5GcXIZIfV1ZsvT+qr/LEzvMs2Xg6tlkI4=
+X-Google-Smtp-Source: AA0mqf4Bc/MlmQSZRfJ2BQYazA101mz6IhbPpAm4p48FTbf5CTsd/wUwiq6kDQad6I7uGDQ7/eXw3fQFtm285rVqaZk=
+X-Received: by 2002:a5d:6b0c:0:b0:241:c595:9f05 with SMTP id
+ v12-20020a5d6b0c000000b00241c5959f05mr37851194wrw.439.1669898776978; Thu, 01
+ Dec 2022 04:46:16 -0800 (PST)
 MIME-Version: 1.0
 References: <CAGAf8LyT_nRAAK8WHPQwGDRjiQfaHHNUKPCfW=PJJ83FuWK1=w@mail.gmail.com>
- <9D944DA0-C890-4E71-A82A-3E30892E8684@arm.com>
-In-Reply-To: <9D944DA0-C890-4E71-A82A-3E30892E8684@arm.com>
+ <9D944DA0-C890-4E71-A82A-3E30892E8684@arm.com> <CA+chaQcbVjpF79hRgQYE=RSBCr4-4=+2XYv+TviUdZuOMbkTxw@mail.gmail.com>
+In-Reply-To: <CA+chaQcbVjpF79hRgQYE=RSBCr4-4=+2XYv+TviUdZuOMbkTxw@mail.gmail.com>
 From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 1 Dec 2022 13:38:02 +0100
-Message-ID: <CAGAf8Lxz2V7CnnVubZ3UUCKRhwJ7QmcMC4sc79Nq_fay_-MDFQ@mail.gmail.com>
+Date: Thu, 1 Dec 2022 13:46:05 +0100
+Message-ID: <CAGAf8LzJbxMrZQWjjqD3zhrTD4xgcHc2v_eMxaqe-G711KHEUA@mail.gmail.com>
 Subject: Re: [yocto] LAYERSERIES_COMPAT_ variable in the layer's recipe
-To: Ross Burton <Ross.Burton@arm.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: Ross Burton <ross.burton@arm.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 12:38:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58701
+ <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 12:46:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58702
 
-Ross,
+Martin, U R too fast. Speedy Gonzales. ;-)
 
-It is now broken even in hardknott. I tried it, just as I tried it
-before (it worked before).
+I do agree that this is the bad practice to change licences for the
+known recipes. For the can-utils and socketcand. I'll revert this back
+to GPLv2.
 
-I have no idea what the ERROR is:
+But, could you, please, allow me to have my own original cannelloni
+recipe (yes, I developed it with some help from this community) on my
+own terms? I DID not copy it from anywhere. It is an ORIGINAL.
 
-zoran.s@NBK0005U:~/projects2/yocto/bbb-yocto/build$ bitbake -k
-core-image-minimal
-Loading cache: 100% |
-                                                                | ETA:
- --:--:--
-Loaded 0 entries from dependency cache.
-Parsing recipes: 100%
-|#################################################################################################################|
-Time: 0:00:23
-Parsing of 814 .bb files complete (0 cached, 814 parsed). 1438
-targets, 41 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
-ERROR: Nothing RPROVIDES 'cannelloni' (but
-/home/zoran.s/projects2/yocto/bbb-yocto/poky/meta/recipes-core/images/core-image-minimal.bb
-RDEPENDS on or otherwise requires it)
-NOTE: Runtime target 'cannelloni' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['cannelloni']
-ERROR: Nothing RPROVIDES 'can-utils' (but
-/home/zoran.s/projects2/yocto/bbb-yocto/poky/meta/recipes-core/images/core-image-minimal.bb
-RDEPENDS on or otherwise requires it)
-NOTE: Runtime target 'can-utils' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['can-utils']
-ERROR: Nothing RPROVIDES 'socketcand' (but
-/home/zoran.s/projects2/yocto/bbb-yocto/poky/meta/recipes-core/images/core-image-minimal.bb
-RDEPENDS on or otherwise requires it)
-NOTE: Runtime target 'socketcand' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['socketcand']
-ERROR: Nothing RPROVIDES 'core-image-minimal'
-No eligible RPROVIDERs exist for 'core-image-minimal'
-NOTE: Runtime target 'core-image-minimal' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['core-image-minimal']
+Please, check. Do NOT overspeed. Please.
 
-
-And my /home/zoran.s/projects2/yocto/bbb-yocto/poky/meta/recipes-core/images/core-image-minimal.bb
-is:
-
-SUMMARY = "A small image just capable of allowing a device to boot."
-
-IMAGE_INSTALL = "packagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL}"
-
-IMAGE_LINGUAS = " "
-
-LICENSE = "MIT"
-
-nano meta/recipes-core/images/core-image-minimal.bb
-
-## IMAGE_INSTALL_append = " kernel-modules"
-IMAGE_INSTALL_append = " \
-    kernel-modules \
-    cannelloni \
-    can-utils \
-    socketcand \
-    "
-
-IMAGE_ROOTFS_SIZE ?= "8192"
-IMAGE_ROOTFS_EXTRA_SPACE_append =
-"${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", ""
-,d)}"
+Thank you for your advice.
 
 Zee
-________
+_______
 
-On Thu, Dec 1, 2022 at 12:09 PM Ross Burton <Ross.Burton@arm.com> wrote:
+On Thu, Dec 1, 2022 at 12:18 PM Martin Jansa <martin.jansa@gmail.com> wrote:
 >
-> On 1 Dec 2022, at 04:27, Zoran via lists.yoctoproject.org <zoran.stojsavljevic=gmail.com@lists.yoctoproject.org> wrote:
-> > I do not understand why we need to explicitly name releases for such
-> > simple generic layers?!
+> On Thu, Dec 1, 2022 at 12:09 PM Ross Burton <ross.burton@arm.com> wrote:
+>>
+>> On 1 Dec 2022, at 04:27, Zoran via lists.yoctoproject.org <zoran.stojsavljevic=gmail.com@lists.yoctoproject.org> wrote:
+>> > I do not understand why we need to explicitly name releases for such
+>> > simple generic layers?!
+>>
+>> The compatibility is because over time things change: override syntax has changed, classes get added or removed, functionality may appear in bitbake.  Sometimes the breakage is subtle, and a layer may parse and appear to build fine, but be broken.
+>>
+>> Your meta-socketcan layer is broken in honister onwards despite claiming compatibility, for example.
 >
-> The compatibility is because over time things change: override syntax has changed, classes get added or removed, functionality may appear in bitbake.  Sometimes the breakage is subtle, and a layer may parse and appear to build fine, but be broken.
 >
-> Your meta-socketcan layer is broken in honister onwards despite claiming compatibility, for example.
+> And here is another example why nobody should be using meta-socketcan:
+> https://github.com/ZoranStojsavljevic/meta-socketcan/commit/cefd86cd1def9ad2e63be527f8ce36a076d7e17c#
 >
-> Ross
+> You cannot change the declared LICENSE of the components, just because you wish them to use the same license as the layer metadata, especially when those components clearly declare different LICENSE in the source code, e.g.:
+> https://github.com/linux-can/socketcand/commit/a7ab9878d11ac187b92dcf48b6331c228f4f4b92
+>
+> Using COMMON_LICENSE_DIR in LIC_FILES_CHKSUM is another anti-pattern which just disables whole purpose of LIC_FILES_CHKSUM and this is acceptable only for "pure-metadata" recipes like packagegroups or image recipes.
 
