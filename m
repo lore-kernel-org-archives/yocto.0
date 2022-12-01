@@ -1,101 +1,89 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D83EBC4321E
-	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 18:32:45 +0000 (UTC)
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
- by mx.groups.io with SMTP id smtpd.web11.52616.1669919564103069766
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 386C2C4332F
+	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 22:33:07 +0000 (UTC)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+ by mx.groups.io with SMTP id smtpd.web11.59911.1669933979241294877
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Dec 2022 10:32:44 -0800
+ Thu, 01 Dec 2022 14:32:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Du0guHIZ;
- spf=pass (domain: gmail.com, ip: 209.85.221.54, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-wr1-f54.google.com with SMTP id u12so3218645wrr.11
-        for <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 10:32:43 -0800 (PST)
+ dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112 header.b=YGQc3wHv;
+ spf=softfail (domain: sakoman.com, ip: 209.85.214.171, mailfrom: steve@sakoman.com)
+Received: by mail-pl1-f171.google.com with SMTP id k7so3009304pll.6
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 14:32:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yDQYB+BqZp2cI6ejAAU1gy4mBrG6MT+liMp+PiIO6cE=;
-        b=Du0guHIZx+jZ8q5OMsnCkVvrEi6Tn8v+SpajNLh2vcIL3PTwAyL7cXsCzaxgndk952
-         YGnJtkNkCaU6+tGdTkWIRRbMzHcpd66/rHpL9nWZLoKzL0UhK1qSAv7uszSwid59XaPX
-         AtlrQ5uk3grOQzgaXL/HlE3cXh+BaeTG2iYGCcdoPg3lprGp8qPgBJU4gm/nKHNjQCKy
-         AUqVGabzcYLBFfvlFw4Y7rnkMQTxSuDeox1jAKFa3PnAErzDvNBdkWXygeqv+5gFUaLU
-         ymgfsPJxkRi38dMcv16ko2XG5t4urrsfm1U/UJ111C3JNzFsqaT9B+rN7QhK8iyBIOm3
-         8SdQ==
+        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ugNdsAhUwRnMxZqSusXwdR1Gt+dQV9fijKVJNfF+ig8=;
+        b=YGQc3wHvItuGK60SY2xgkmraxriBLuS09TKIfzsFLghhKTd1N/HNSgw05UkQl5iX2d
+         X5vrmTphlx1f6+/SP6DCeAVm+Oko9tay8x+N+HAX3NFQ8ooGQmwiVSWxAcuhJfGV/oyJ
+         TOGYJzN3j5hn0f7KvBnIjhPH8Tm8HTC9hXs+dP8qhLvhH5X+QNcpTkkMoH8DfE2sHHZQ
+         Z9aPw9wqScJDG139luoMqOlJ/Ppkdb2P8E5taDH5n67iavJtQJzYVzK1+WCoCY008Uxg
+         KfvTuv447v2pH3R7hOLtoAtenJg8ZvJZK0/bNla4BGMvYn7O44RFl0d+HdyK+oQ7A2xC
+         trKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yDQYB+BqZp2cI6ejAAU1gy4mBrG6MT+liMp+PiIO6cE=;
-        b=e7sc1BaHAjdGTUXXqXs3kV5ygvROjDXkbISoAmciN2vE8uybx6NslFgo/Y32cghdyK
-         sJg4ID87Al8YbCWjbNN8QkP4YvLiVo1bd7jAIRO71aYnbl+ayC8Jmo4fySzqOk83kdn4
-         ovqLO59s0dCPQQxMghDRbvxs/Y+pR5OfbX4hCJoRGL/ODC79VuKec0HRlzQWunEOqQLb
-         cugs3e1yqHadt+NIbFmRnBqcKjAARrCvIBWrrmioTBfG/mbw6MyBLrXztE2XR3/KzG1U
-         s5K8bCurX8n3PJ6NItQqnUck97O/wcii390c369O5Bz0l2vd9vMgBKwr6PDoT+yo5R1y
-         M5mA==
-X-Gm-Message-State: ANoB5pmjxWJkzHdYm61EZPK+FU1o04QZL4L0uPUCFdSqesBh2kRFpUDR
-	unfY3zBixz7oMmX+cLiFSFcWc9KhIxpGalhbixc=
-X-Google-Smtp-Source: AA0mqf5JaKK9REQmCUyGXyhCzcMKK9dIqaekaWKcejXTFJevV7HM8sIUzgqkMaLESbKdBftMCWJSeGxqYgWEWhPRVwo=
-X-Received: by 2002:a5d:474c:0:b0:234:d495:d3ae with SMTP id
- o12-20020a5d474c000000b00234d495d3aemr34564298wrs.448.1669919562317; Thu, 01
- Dec 2022 10:32:42 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ugNdsAhUwRnMxZqSusXwdR1Gt+dQV9fijKVJNfF+ig8=;
+        b=nuF5pqb2feemHCyb+YPUNv6d/dSy78gmQKv1Hr6sYP9bpls0OkL/72Zpvutbk3aTjO
+         FOXU0argkaP92UlA8gi2j+v4zhqr2Zz/EI+BbmfybayeI67irMEK/PtlEXzjV38funw6
+         X7l1bcOzKC2cE1xRL7M4GBWOW3Wfwt2vfwALvIas5faSmWvUejNHANklVj51TUtwQ8vG
+         iLMqo169N07LQ7QAE5mzDxg9CtX7f9odcqXff0laTvMWwlu7Uu/IlbAth5KGUKHZSS44
+         Dx537MG2ycGrXPkv6nIfZb1OxMe2V/vYoL9CuHz073s7Zm0AM0VvXblA96G658t+WsQM
+         P/qg==
+X-Gm-Message-State: ANoB5pl1bEipnVhg2Btqo8kIa+Z70t4qq5oXKt/akZMVtZQMORH9Y/RG
+	Vler3rDZriN0RtmkNyipcT5zWdu7VRXZy89CC8c=
+X-Google-Smtp-Source: AA0mqf6JNVT3bI+k89vHlJHmdjNqspW0DmxcssqQQrs6nKoOdyFTcdwlu7F2AgBU6IyK20ufYpGUYQ==
+X-Received: by 2002:a17:90b:4a48:b0:213:a9e6:dadf with SMTP id lb8-20020a17090b4a4800b00213a9e6dadfmr72476690pjb.108.1669933978032;
+        Thu, 01 Dec 2022 14:32:58 -0800 (PST)
+Received: from hexa.router0800d9.com (dhcp-72-253-6-214.hawaiiantel.net. [72.253.6.214])
+        by smtp.gmail.com with ESMTPSA id h15-20020a056a00000f00b00574d38f4d37sm3750351pfk.45.2022.12.01.14.32.56
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 14:32:57 -0800 (PST)
+From: Steve Sakoman <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder2] config.py: add fedora36 to workers_prev_releases for kirkstone
+Date: Thu,  1 Dec 2022 12:32:48 -1000
+Message-Id: <1045417bd149734da4decf719be2104348feff0b.1669933890.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1669933890.git.steve@sakoman.com>
+References: <cover.1669933890.git.steve@sakoman.com>
 MIME-Version: 1.0
-References: <CAGAf8LyT_nRAAK8WHPQwGDRjiQfaHHNUKPCfW=PJJ83FuWK1=w@mail.gmail.com>
- <CAPxNcnfmGrJU9X5xBy034Ndz-zS4cgzwxWaVmmv4Dq4WCYFyjA@mail.gmail.com>
- <CA+chaQcphLsdya8v9SD=+XAb2bNWQ1bWxCdCRWOVpjwyiZePQg@mail.gmail.com>
- <4f4a8c61-be1c-27e2-950e-4266d1c358b2@ibeeto.com> <CANNYZj8DSp=j+gdn2x+dUb1=efg0-BL2RXKp1kNHx2-2a0BRrA@mail.gmail.com>
-In-Reply-To: <CANNYZj8DSp=j+gdn2x+dUb1=efg0-BL2RXKp1kNHx2-2a0BRrA@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 1 Dec 2022 19:32:30 +0100
-Message-ID: <CAGAf8LwLOCbje++RdXieYFc78Zcr2fxnR1x5ivP7bcoW5koCMw@mail.gmail.com>
-Subject: Re: [yocto] LAYERSERIES_COMPAT_ variable in the layer's recipe
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Rudolf J Streif <rudolf.streif@ibeeto.com>, Martin Jansa <martin.jansa@gmail.com>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 18:32:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58711
+ <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 22:33:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58712
 
-Do not bother... This is a war between me and the entire YOCTO
-community of founders... It has been going for a while. Lot of INTEL
-guys and former INTEL guys against former INTEL guy. Me.
+also remove obsolete fedora releases for kirkstone
 
-But, I came here with Peace. It seems some people could not overcome their EGOs.
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ config.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I am trying to ask for a brainstorming. Now, I am trying to
-understand, why the backpors took place from kirkstone... Once my
-scripts were working for hardknott...
+diff --git a/config.py b/config.py
+index de9356a..082c853 100644
+--- a/config.py
++++ b/config.py
+@@ -153,7 +153,7 @@ all_workers = workers + workers_bringup + workers_buildperf + workers_arm
+ # Worker filtering for older releases
+ workers_prev_releases = {
+     "langdale" : ("alma8", "alma9", "debian10", "debian11", "fedora35", "fedora36", "opensuse153", "opensuse154", "ubuntu1804", "ubuntu2004","ubuntu2204", "perf-"),
+-    "kirkstone" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "ubuntu2110", "ubuntu2204", "perf-"),
++    "kirkstone" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora35", "fedora36", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "ubuntu2110", "ubuntu2204", "perf-"),
+     "honister" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "ubuntu2110", "ubuntu2204", "perf-"),
+     "hardknott" : ("centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora31", "fedora32", "fedora33", "fedora34", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
+     "gatesgarth" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
+-- 
+2.25.1
 
-But they do not work anymore.
-
-Well...
-
-Not my fault. Just trying to push forward.
-
-Zee
-_______
-
-On Thu, Dec 1, 2022 at 6:01 PM Alexander Kanavin <alex.kanavin@gmail.com> wrote:
->
-> On Thu, 1 Dec 2022 at 17:41, Rudolf J Streif <rudolf.streif@ibeeto.com> wrote:
-> >
-> >
-> > > Recently I've also seen this:
-> > > LAYERSERIES_COMPAT_phytec = "${LAYERSERIES_COMPAT_core}"
-> > >
-> > Oh no, now the entire Yocto Project world knows about this hack. Now we
-> > need a sanity checker for this in the insane class. :)
->
-> It's a slippery slope. We can also for example make bitbake forcibly
-> not expand any variables in it, and write out an angry rant when
-> someone tries, and then I'm sure determined people will find a way
-> around that too.
->
-> Alex
 
