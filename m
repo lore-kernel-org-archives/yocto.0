@@ -2,61 +2,62 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D2E2C47088
-	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 10:36:51 +0000 (UTC)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web10.39698.1669891006518116198
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C3B6C43217
+	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 10:41:51 +0000 (UTC)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+ by mx.groups.io with SMTP id smtpd.web11.39812.1669891307335618663
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Dec 2022 02:36:47 -0800
+ Thu, 01 Dec 2022 02:41:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=OqZXSaPO;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.50, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f50.google.com with SMTP id j5-20020a05600c410500b003cfa9c0ea76so1146590wmi.3
-        for <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 02:36:46 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=UbSwrqJF;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.46, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f46.google.com with SMTP id m7-20020a05600c090700b003cf8a105d9eso1154254wmp.5
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 02:41:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=F/phmiWmgR+A1BFqw6I/ckenzMTdxTt8BSNP6w77aKo=;
-        b=OqZXSaPOSvkbZ53Ne1fEm07en97luoA6vkoQJqm/AKnSKHmWJFqbIQh/WJXxxxOXrn
-         jJnJcMgO2FQAv6im3359MhftqIqlSBDsjptIVlZJR06wue8/q8bfzl4k6WEFR7yJ7vIk
-         TyhJmWUNMmCp2/16buw2jkuAEX1qks17txWco=
+        bh=mJ/8NZcigIg9UrpJfc8Y/eps3E3uOp3Dsl2afTvUEwM=;
+        b=UbSwrqJFHNjvo9ysumq2/JaYmELaBx+TofvptRNOlBHXHlKboQXDwaQl83XmQjlHFr
+         3H/nJCVCzM1U1KNVuTL8laHEwEM/LHoOmpDaBL9XWY6LfS9aCWEYYU8S/l6AxTp20U8C
+         CSptyx0GT/Q+bbdjKItkE8/JwJCZ73O3+mSVY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F/phmiWmgR+A1BFqw6I/ckenzMTdxTt8BSNP6w77aKo=;
-        b=h3xMYwrNRD5IFFRKgHzgFRz2hrcFfjXX+Ru3cJwGs/TfRzevzvMC2RikowtMkhQEyw
-         AZUWTVrH144ZA1h+Bm3tKW5NiBYPY7xCaqsyV3z8SrZbZGyY5OyMvTCVSNkP5gesnARr
-         aSQgg0gTDTdgJypZNqEKa+W4jOnGB01FrJ2OLtuWkUC6jXFe8/xC5EfWGM2S3bg57yxY
-         mCJl3uzWs63ZkBaqyozx8vxX6R7uW1x5WQ5o+G62b/sWvqqBJt3NPqZTRMFKO1Mkp6rx
-         I91IhhueAhm6mUY6nzSCYfsCzZ9AG4R0dvKmwfhJfmxJk6NytpIB4KitUA6culDfx/NK
-         QYpw==
-X-Gm-Message-State: ANoB5pk5nIE7TRa039hpwiEn+Sg58sV48RAbckmoVeJSdm3PxItgRtDw
-	pQVjcCIpl8BUx/9e49spombqAg==
-X-Google-Smtp-Source: AA0mqf6pMhft2SZ91fRjnVEghs5DzC1UGNkqLwTMb9vFq06Bd8IzJDyNIRhh4A5Es5wy5/I+vRzKFA==
-X-Received: by 2002:a1c:4b0f:0:b0:3cf:735c:9d5a with SMTP id y15-20020a1c4b0f000000b003cf735c9d5amr41394258wma.113.1669891004593;
-        Thu, 01 Dec 2022 02:36:44 -0800 (PST)
+        bh=mJ/8NZcigIg9UrpJfc8Y/eps3E3uOp3Dsl2afTvUEwM=;
+        b=N3NqoSu1lbRiDR4vPA9IV00es0EDH3w0b6Y3RNFELZ3T5vWAHFc6y2NvaEUcuoA6Sn
+         xkuvm8Bnm34Oip/MdPKWLzeOufgtevBEFSr8hkx0z4tVPCJblIcrfy7tMZ2KmpsXOXdC
+         8f2z6DGdIuFTqfyYqw0QvvowgyZMBlph8ba3bsDLvAkc/b7JRlxOF4iIVDh49KOBpW8I
+         T/zx/yBkwDZGBjObyn4fd1+7pJEomhwc0WJMK3pYGVtuL9cFjd/CDicDN/hDHA55WHtU
+         OCMRvZG0zJjJMHdYse/PinUa8kcnc7wzCQtcveUn1GWRIzCkRF67QBO+5HQOfUcuR6CI
+         D8oA==
+X-Gm-Message-State: ANoB5pmXLl5x6OoVkptuH0GJcC/DmheR8XZsX7RTt9//Jya9E8VF3u/Z
+	Y+vtaTByPUj7zzW0R+RD9JXnOg==
+X-Google-Smtp-Source: AA0mqf5kjvkbRCGujFSlcfnWmoxgFfVJ+ErXwVD2TXLV0iyb/xyNXeA8FxHSkmVaLt7p+6QaOH5RPA==
+X-Received: by 2002:a05:600c:3543:b0:3cf:74bb:feb1 with SMTP id i3-20020a05600c354300b003cf74bbfeb1mr46803081wmq.102.1669891305272;
+        Thu, 01 Dec 2022 02:41:45 -0800 (PST)
 Received: from ?IPv6:2001:8b0:aba:5f3c:3f4c:de93:c029:9984? ([2001:8b0:aba:5f3c:3f4c:de93:c029:9984])
-        by smtp.gmail.com with ESMTPSA id k10-20020a056000004a00b002365730eae8sm4058578wrx.55.2022.12.01.02.36.43
+        by smtp.gmail.com with ESMTPSA id m21-20020a05600c4f5500b003b4fe03c881sm9556237wmq.48.2022.12.01.02.41.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 02:36:43 -0800 (PST)
-Message-ID: <7789406fab498cac64fd21a9bbbd74c9023dd68b.camel@linuxfoundation.org>
-Subject: Re: [Openembedded-architecture] Y2038 proposal
+        Thu, 01 Dec 2022 02:41:44 -0800 (PST)
+Message-ID: <7fb32274d35f9948a4962e9723f7eae684304c92.camel@linuxfoundation.org>
+Subject: Re: [yocto] LAYERSERIES_COMPAT_ variable in the layer's recipe
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: openembedded-architecture
-	 <openembedded-architecture@lists.openembedded.org>, Yocto-mailing-list
-	 <yocto@lists.yoctoproject.org>, OE-core
-	 <openembedded-core@lists.openembedded.org>
-Date: Thu, 01 Dec 2022 10:36:41 +0000
-In-Reply-To: <CANNYZj8dhdVTJVDeq6gxt7y4OUz1yJtrCKQ3TDTKhe9-BqFZWQ@mail.gmail.com>
-References: <0b6801d90409$885d6860$99183920$@gmail.com>
-	 <CANNYZj8Y37+s6Jzo1XvX0uCYNFc=NqOH8PWrFSL9_=TOS2ja7Q@mail.gmail.com>
-	 <bda7b996024942763ae9d03ea0b958c3a38b04c8.camel@linuxfoundation.org>
-	 <CANNYZj8dhdVTJVDeq6gxt7y4OUz1yJtrCKQ3TDTKhe9-BqFZWQ@mail.gmail.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, Martin Jansa
+	 <Martin.Jansa@gmail.com>, s.mueller-klieser@phytec.de, n.wesp@phytec.de
+Cc: Rudolf J Streif <rudolf.streif@ibeeto.com>, Zoran
+	 <zoran.stojsavljevic@gmail.com>, Yocto-mailing-list
+	 <yocto@lists.yoctoproject.org>
+Date: Thu, 01 Dec 2022 10:41:42 +0000
+In-Reply-To: <CANNYZj8uXJ189UckEVktdEuRgLpAcn+driQqnxj0KLaGYSU=wQ@mail.gmail.com>
+References: 
+	<CAGAf8LyT_nRAAK8WHPQwGDRjiQfaHHNUKPCfW=PJJ83FuWK1=w@mail.gmail.com>
+	 <CAPxNcnfmGrJU9X5xBy034Ndz-zS4cgzwxWaVmmv4Dq4WCYFyjA@mail.gmail.com>
+	 <CA+chaQcphLsdya8v9SD=+XAb2bNWQ1bWxCdCRWOVpjwyiZePQg@mail.gmail.com>
+	 <CANNYZj8uXJ189UckEVktdEuRgLpAcn+driQqnxj0KLaGYSU=wQ@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.44.4-0ubuntu1 
@@ -64,57 +65,27 @@ MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 10:36:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58697
+ <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 10:41:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58698
 
-On Thu, 2022-12-01 at 11:27 +0100, Alexander Kanavin wrote:
-> On Wed, 30 Nov 2022 at 14:15, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> > * We need to have a 32 bit ptest run on the autobuilder (qemux86 should
-> > work, not sure we can make qemuarm fast). Whether this is manually
-> > triggered, not sure. We could have a smaller set of ptests to run for
-> > it?
+On Thu, 2022-12-01 at 11:09 +0100, Alexander Kanavin wrote:
+> And this is the commit that did this:
+> https://git.phytec.de/meta-phytec/commit/conf/layer.conf?id=3D8261e896d2b=
+43211e7377feb38e919336d47c39f
 >=20
-> I just ran qemux86 full ptest locally. It took 4h:10m (same as
-> qemuarm64 ptest on an arm worker). The fails were:
->=20
-> {'python3': ['test_deterministic_sets'],
->  'valgrind': ['gdbserver_tests/hgtls',
->               'gdbserver_tests/mcblocklistsearch',
->               'gdbserver_tests/mcbreak',
->               'gdbserver_tests/mcclean_after_fork',
->               'gdbserver_tests/mchelp',
->               'gdbserver_tests/mcinfcallRU',
->               'gdbserver_tests/mcinfcallWSRU',
->               'gdbserver_tests/mcinvokeRU',
->               'gdbserver_tests/mcinvokeWS',
->               'gdbserver_tests/mcleak',
->               'gdbserver_tests/mcmain_pic',
->               'gdbserver_tests/mcsignopass',
->               'gdbserver_tests/mcsigpass',
->               'gdbserver_tests/mcvabits',
->               'gdbserver_tests/mcwatchpoints',
->               'gdbserver_tests/mssnapshot',
->               'gdbserver_tests/nlcontrolc',
->               'gdbserver_tests/nlgone_abrt',
->               'gdbserver_tests/nlgone_exit',
->               'gdbserver_tests/nlgone_return',
->               'gdbserver_tests/nlpasssigalrm',
->               'gdbserver_tests/nlsigvgdb',
->               'gdbserver_tests/nlvgdbsigqueue',
->               'memcheck/tests/linux/memfd_create',
->               'memcheck/tests/linux/timerfd-syscall',
->               'memcheck/tests/origin5-bz2',
->               'massif/tests/mmapunmap']}
->=20
-> So I think we could as well fix these, and add full qemux86 ptest to
-> a-full? It is not heavy on the builder machine (mostly just runs a
-> single qemu thread), it's just long.
+> Shame on you, phytec. Shame on you. What you do in your layers perhaps
+> doesn't matter so much, but you also give everyone a bad example to
+> follow.
 
-I think we should fix those and we should add the target to the
-autobuilder but I'm reluctant to add a long test to a-full. The fact it
-is relatively clean suggests it doesn't regress that often. We could do
-something like a once a month trigger for it?
+That commit really is not in the spirit of things and I'm not happy
+people are doing that. I'd not be surprised if that stopped working
+soon.
+
+We had a huge problem with unmaintained layers where it was unclear
+which releases a master branch worked or had been tested with. An
+actively maintained layer should have no problem with updating this a
+couple of times a year. If that is an issue, it isn't actively
+maintained and it makes that clear.
 
 Cheers,
 
