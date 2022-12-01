@@ -2,268 +2,177 @@ Return-Path: <Martin.Jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48B3BC43217
-	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 07:47:20 +0000 (UTC)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
- by mx.groups.io with SMTP id smtpd.web10.37321.1669880832228342809
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C6CEC43217
+	for <webhook@archiver.kernel.org>; Thu,  1 Dec 2022 07:51:10 +0000 (UTC)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+ by mx.groups.io with SMTP id smtpd.web11.37404.1669881066389601971
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Nov 2022 23:47:12 -0800
+ Wed, 30 Nov 2022 23:51:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=fZ/fLD1a;
- spf=pass (domain: gmail.com, ip: 209.85.221.51, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f51.google.com with SMTP id z4so1330497wrr.3
-        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 23:47:11 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=iXWXVss4;
+ spf=pass (domain: gmail.com, ip: 209.85.128.44, mailfrom: martin.jansa@gmail.com)
+Received: by mail-wm1-f44.google.com with SMTP id m19so548360wms.5
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Nov 2022 23:51:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xn8R/XcRqUgHmbMbNVXT3hUmnxfgTEa5vXx/UYIF8M=;
-        b=fZ/fLD1aDxYZCnr6PzmNmLaY5bLQW09vmlDBIiyyPOT5zAGVSg7N9oHy+A25hipEe8
-         G5lZbNRQd9t77hE2ka++NfvyIhLHas6DleSmieNxStsGRRW0JSdEcZoNFVBXWEVVnw6X
-         bCe09cZuNbNF8YDPoPhezOMQ7rmb4gscX7QLkeq1n03NHGX9qk905uarjrPPiNgT3xWr
-         QkFY5DVdGCD4slxcp6CH9xDXz0868sl3NcWPsCUqzGSFEXSCVsUC4qWynwMuLZtm7zdI
-         ejcrTlZINyNfjF5oDrDCMiIfR/NVcUZ2Lh3Ndh/AYL3Z0BHXrCOsjTVrmhw9jYysxVb/
-         T5wQ==
+        bh=ECTaCIH+OZEXcQVnfEtTs3yNmUSyH7zAVNZ13/jKonc=;
+        b=iXWXVss4Pq4KeZjqd5yGJxNfKK6SsArnHInGuuQ54MB3CYFudj8KcZZv71IuxHZKi4
+         CYpLMRbSNS+1Qf4O3pcc5jKHq+BbaQqR2Ch0qTI90XBNb4MIYO1aYwAu1vNm30nlpoMT
+         JL7pr5FvGRZT3+MVzKAYaScsWqQCVc+IZgVTaRRurGKlDrBEUeuf/DrMX2q6zmWwo8TH
+         JG9ry+HP5lvsilQefbuXhAkNvm0UHTwYt0vGcYGZWMfDhosvO+szW0W7iEQHWba77f9V
+         Q1iaNpEGnFWdIJQ7Vd0taYT4Iv8iGns6xtQuuKHut8vWAmqR0WmFQBP0EIMENZ70s8OL
+         DBgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8xn8R/XcRqUgHmbMbNVXT3hUmnxfgTEa5vXx/UYIF8M=;
-        b=xl7iu0sWzY6Xq3mN06Iz51cMA80i3Z9IneeNRZ1OA5t42pDuOCZC/4GMf8P5EBlLUu
-         JA8aTfa0ZSXChH6Z1syPGkv3ytXz7eGWdTHOa4ghTs/qyGkVZlNJjWhlTZVdzzabtuK6
-         5TmtvLFEEP098hyvG4u7Pdtdw4I8oFyGozVMSSHBbbZl3jjR92G5SnS0TKqnc+mNSN5m
-         32zcFsz2vflVQZUgIAuNwScg7ifzZ8LS3Xj20Sp4WT+mE+P1zWgQzAKfPG+3KmObTfXu
-         D+q5XjAUpb3PdSNYGH0Je05ZerfJ5A3tRdT3LzzFSOu4/A15vXUuCSDRfvAM0OtwwTbX
-         HEfg==
-X-Gm-Message-State: ANoB5plDzKsYfXS3OLLm5ik8YiD1bXmzSgsahrQzOEey/nHwbMfUDbsz
-	EqpJyTMWTJjqaD0ch97AzE0Z5xZbZiQYfJsj6nA=
-X-Google-Smtp-Source: AA0mqf4XiVe+b+ZJpBZ0u8dPanP0TNwzrNwAtkOOH2cnLDNjyp3g6Pm0b3ZExQ8J103764V6k8cPc27hjqgtHy5deS0=
-X-Received: by 2002:a5d:430e:0:b0:241:bfb6:c6da with SMTP id
- h14-20020a5d430e000000b00241bfb6c6damr29057187wrq.204.1669880830482; Wed, 30
- Nov 2022 23:47:10 -0800 (PST)
+        bh=ECTaCIH+OZEXcQVnfEtTs3yNmUSyH7zAVNZ13/jKonc=;
+        b=GzapckhVirsTvnpAPjSsya7Cec6P9t68xjd3ykEKY8Q5b8/Sl5V2+V7YWTeEw23jNG
+         3iUcpP24+8qaSsxcJ5BQkVS327XeJedTVFdhgN+DJg9bZsiPikmJPDTRG1Duq5y1hHop
+         MKh2CgxuNXzO6r7yLWtGTts/hocqgz3nYpjCQLnCigwYm8twDzv7YvS7Xs5e4hFw0/Xv
+         jfbFaOU2JGixO27+JYU9VU41k3YqWvTVD9tn+IIFeoljjzr6XqnGVk9lkwUNiMOjpHTf
+         WM5fHFxs4li+kbx1aKFo0bwjjD+mk9tAM1+jg8wJVC1CfJJ/wLWWBulXbqMq7RvmerGM
+         0xpg==
+X-Gm-Message-State: ANoB5pmyWkX63iuerLmSrtxFlvcOOWHSo6BdhDTNPq2V5wRrB6xDN2Wz
+	3pJyK0VbI3lV9GAPWZNiXcaV1MVtgZdVCwG2gSMvzHVUoBk=
+X-Google-Smtp-Source: AA0mqf45EeKF5XMhhO3Ns6RG01IHXT5y8ahk7GNbsffHPI6NqJCVQaZIQOWudhHSiNe5v3Mg/7vLd3Y2mX2oCDNXN1U=
+X-Received: by 2002:a7b:c3c9:0:b0:3cf:5442:bbe with SMTP id
+ t9-20020a7bc3c9000000b003cf54420bbemr51799164wmj.2.1669881064751; Wed, 30 Nov
+ 2022 23:51:04 -0800 (PST)
 MIME-Version: 1.0
-References: <CAGAf8LyT_nRAAK8WHPQwGDRjiQfaHHNUKPCfW=PJJ83FuWK1=w@mail.gmail.com>
- <CAPxNcnfmGrJU9X5xBy034Ndz-zS4cgzwxWaVmmv4Dq4WCYFyjA@mail.gmail.com>
-In-Reply-To: <CAPxNcnfmGrJU9X5xBy034Ndz-zS4cgzwxWaVmmv4Dq4WCYFyjA@mail.gmail.com>
+References: <dF0b.1669820159069031281.m3lb@lists.yoctoproject.org> <d30a843420db43b18c2def6557dc454b3ac25a20.camel@linuxfoundation.org>
+In-Reply-To: <d30a843420db43b18c2def6557dc454b3ac25a20.camel@linuxfoundation.org>
 From: Martin Jansa <martin.jansa@gmail.com>
-Date: Thu, 1 Dec 2022 08:46:58 +0100
-Message-ID: <CA+chaQcphLsdya8v9SD=+XAb2bNWQ1bWxCdCRWOVpjwyiZePQg@mail.gmail.com>
-Subject: Re: [yocto] LAYERSERIES_COMPAT_ variable in the layer's recipe
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Cc: Zoran <zoran.stojsavljevic@gmail.com>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000b7dc8905eebf6d3a"
+Date: Thu, 1 Dec 2022 08:50:53 +0100
+Message-ID: <CA+chaQeadc9REq+p+qdn5ZKz5LO9H7iDe7nWDUGRW6zEzG0R-g@mail.gmail.com>
+Subject: Re: [yocto] Add user to group that's created in other recipe
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: sven@svenschwermer.de, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000ae87ad05eebf7b86"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 07:47:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58691
+ <yocto@lists.yoctoproject.org>; Thu, 01 Dec 2022 07:51:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58692
 
---000000000000b7dc8905eebf6d3a
+--000000000000ae87ad05eebf7b86
 Content-Type: text/plain; charset="UTF-8"
 
-Agreed with Rudolf.
+On Thu, Dec 1, 2022 at 12:05 AM Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
 
-If the layer maintainer didn't bother to do at least do one build with new
-release and adjust LAYERSERIES_COMPAT, then I don't consider that layer
-well maintained (it could be someone else who uses the layer, tests it with
-new release and sends PR to adjust LAYERSERIES_COMPAT).
-
-Recently I've also seen this:
-LAYERSERIES_COMPAT_phytec = "${LAYERSERIES_COMPAT_core}"
-
-which is also bad as it completely disables the check (seen in
-https://git.phytec.de/meta-phytec/tree/conf/layer.conf#n14).
-
-On Thu, Dec 1, 2022 at 7:06 AM Rudolf J Streif <rudolf.streif@ibeeto.com>
-wrote:
-
+> On Wed, 2022-11-30 at 06:55 -0800, Sven via lists.yoctoproject.org
+> wrote:
+> > I have intermittent problems with a recipe that creates a user that
+> > is member of groups that are created by a different recipe. This is
+> > the recipe that creates the groups:
+> >
+> > # recipe-a.bb
+> > inherit useradd
+> > USERADD_PACKAGES = "${PN}"
+> > GROUPADD_PARAM:${PN} = "--system gpio;--system i2c"
+> >
+> > This is the recipe that creates the user:
+> >
+> > # recipe-b.bb
+> > inherit useradd
+> > USERADD_PACKAGES = "${PN}"
+> > GROUPADD_PARAM:${PN} = "--system mygroup"
+> > GROUPS = "dialout,mygroup,gpio,i2c"
+> > USERADD_PARAM:${PN} = "--system --no-create-home --shell /bin/false -
+> > -no-user-group --groups ${GROUPS} myuser"
+> > DEPENDS = "recipe-a"
+> >
+> > I guess it's also worth pointing out, that I use useradd-static:
+> > USERADDEXTENSION = "useradd-staticids"
+> > USERADD_ERROR_DYNAMIC = "error"
+> > USERADD_UID_TABLES = "files/passwd"
+> > USERADD_GID_TABLES = "files/group"
+> >
+> > Every now and then I get and error in recipe_b's do_package_setscene
+> > task where useradd complains that one of the groups provided by
+> > recipe_a does not exist. This appears to be a race condition since
+> > most of the times, this works OK. I was under the impression that
+> > specifying DEPENDS="recipe-a" in recipe_b.bb would be enough to
+> > declare this dependency. What am I doing wrong?
 >
+> Just to confirm, this is with master?
 >
-> On Wed, Nov 30, 2022, 20:27 Zoran <zoran.stojsavljevic@gmail.com> wrote:
->
->> Hello to Yocto community,
->>
->> As I am much more passive yocto wise these few years ( working on
->> Android build systems and around, this is also a nightmare, I should
->> say ;-) ), I have one Yocto question which I never really understood.
->>
->> I will ask it by example. I have one layer for the CAN tools and apps
->> which I have created 4 years ago:
->> https://github.com/ZoranStojsavljevic/meta-socketcan
->>
->> In there, in conf/layer.conf:
->>
->> https://github.com/ZoranStojsavljevic/meta-socketcan/blob/master/conf/layer.conf
->>
->> I have the following line (layers' compatibility):
->> LAYERSERIES_COMPAT_meta-socketcan = "sumo thud warrior zeus dunfell
->> gatesgarth hardknott honister kirkstone"
->>
->> I do not understand why we need to explicitly name releases for such
->> simple generic layers?!
->>
->
-> To me this indicates that the maintainer of the layer has tested the
-> compatibility of his layer with all of these releases of the Yocto Project.
->
-> A maintainer of a layer should make a deliberate decision of adding a
-> release or dropping one from the compatibility list. It should be an
-> attestation that the layer's compatibility with the releases in the list is
-> actually maintained and tested.
->
-> There have been changes to the syntax to conditional variables. Your layer
-> might well be compatible with all of the releases and it's great if you
-> tested it. But it's not a given.
->
->>
->> Instead, for a virtual example:
->> LAYERSERIES_COMPAT_meta-socketcan = "${AUTOLAYER x}"
->>
->> So all the layers might be included (or for at least lets say x = 4
->> latest releases, where x = 0 would be include all)? I do understand
->> that complex layers could NOT have such a definition (because of the
->> dependencies), but for the generic layers (as such presented), this
->> would be beneficial.
->>
->
-> I never cared for ${AUTOREV}, which is similar, in the first place for the
-> very reason that it creates inconsistent behavior. This would do the same
-> thing. What would the last 4 releases even mean? What is the reference and
-> where is it obtained from?
->
->>
->> Thank you for the answers,
->> Zee
->
-> _______
->>
->
-> Best,
-> :rjs
->
->>
->>
->>
->>
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58690):
-> https://lists.yoctoproject.org/g/yocto/message/58690
-> Mute This Topic: https://lists.yoctoproject.org/mt/95375670/3617156
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> Martin.Jansa@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+> I think there are some open bugs for useradd issues like this. It is
+> supposed to work but sounds like there are races. If there isn't a bug
+> open for it, there probably should be.
 >
 
---000000000000b7dc8905eebf6d3a
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=13904 is one of the bugs
+I think.
+
+--000000000000ae87ad05eebf7b86
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Agreed with Rudolf.<div><br></div><div>If the layer mainta=
-iner didn&#39;t bother to do at least do one build with new release and adj=
-ust=C2=A0LAYERSERIES_COMPAT, then I don&#39;t consider that layer well main=
-tained (it could be someone else who uses the layer, tests it with new rele=
-ase and sends PR to adjust LAYERSERIES_COMPAT).</div><div><br></div><div>Re=
-cently I&#39;ve also seen this:</div><div>LAYERSERIES_COMPAT_phytec =3D &qu=
-ot;${LAYERSERIES_COMPAT_core}&quot;<br></div><div><br></div><div>which is a=
-lso bad as it completely disables the check (seen in <a href=3D"https://git=
-.phytec.de/meta-phytec/tree/conf/layer.conf#n14">https://git.phytec.de/meta=
--phytec/tree/conf/layer.conf#n14</a>).</div></div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 1, 2022 at 7:06 AM =
-Rudolf J Streif &lt;<a href=3D"mailto:rudolf.streif@ibeeto.com">rudolf.stre=
-if@ibeeto.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 30, 2022, 20:27 Zoran &lt;<a =
-href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojs=
-avljevic@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">Hello to Yocto community,<br>
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 1, 2022 at 12:05 AM Richa=
+rd Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard=
+.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">On Wed, 2022-11-30 at 06:55 -0800, Sven via <a h=
+ref=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">=
+lists.yoctoproject.org</a><br>
+wrote:<br>
+&gt; I have intermittent problems with a recipe that creates a user that<br=
+>
+&gt; is member of groups that are created by a different recipe. This is<br=
+>
+&gt; the recipe that creates the groups:<br>
+&gt; <br>
+&gt; # <a href=3D"http://recipe-a.bb" rel=3D"noreferrer" target=3D"_blank">=
+recipe-a.bb</a><br>
+&gt; inherit useradd<br>
+&gt; USERADD_PACKAGES =3D &quot;${PN}&quot;<br>
+&gt; GROUPADD_PARAM:${PN} =3D &quot;--system gpio;--system i2c&quot;<br>
+&gt; <br>
+&gt; This is the recipe that creates the user:<br>
+&gt; <br>
+&gt; # <a href=3D"http://recipe-b.bb" rel=3D"noreferrer" target=3D"_blank">=
+recipe-b.bb</a><br>
+&gt; inherit useradd<br>
+&gt; USERADD_PACKAGES =3D &quot;${PN}&quot;<br>
+&gt; GROUPADD_PARAM:${PN} =3D &quot;--system mygroup&quot;<br>
+&gt; GROUPS =3D &quot;dialout,mygroup,gpio,i2c&quot;<br>
+&gt; USERADD_PARAM:${PN} =3D &quot;--system --no-create-home --shell /bin/f=
+alse -<br>
+&gt; -no-user-group --groups ${GROUPS} myuser&quot;<br>
+&gt; DEPENDS =3D &quot;recipe-a&quot;<br>
+&gt; <br>
+&gt; I guess it&#39;s also worth pointing out, that I use useradd-static:<b=
+r>
+&gt; USERADDEXTENSION =3D &quot;useradd-staticids&quot;<br>
+&gt; USERADD_ERROR_DYNAMIC =3D &quot;error&quot;<br>
+&gt; USERADD_UID_TABLES =3D &quot;files/passwd&quot;<br>
+&gt; USERADD_GID_TABLES =3D &quot;files/group&quot;<br>
+&gt; <br>
+&gt; Every now and then I get and error in recipe_b&#39;s do_package_setsce=
+ne<br>
+&gt; task where useradd complains that one of the groups provided by<br>
+&gt; recipe_a does not exist. This appears to be a race condition since<br>
+&gt; most of the times, this works OK. I was under the impression that<br>
+&gt; specifying DEPENDS=3D&quot;recipe-a&quot; in <a href=3D"http://recipe_=
+b.bb" rel=3D"noreferrer" target=3D"_blank">recipe_b.bb</a> would be enough =
+to<br>
+&gt; declare this dependency. What am I doing wrong?<br>
 <br>
-As I am much more passive yocto wise these few years ( working on<br>
-Android build systems and around, this is also a nightmare, I should<br>
-say ;-) ), I have one Yocto question which I never really understood.<br>
+Just to confirm, this is with master?<br>
 <br>
-I will ask it by example. I have one layer for the CAN tools and apps<br>
-which I have created 4 years ago:<br>
-<a href=3D"https://github.com/ZoranStojsavljevic/meta-socketcan" rel=3D"nor=
-eferrer noreferrer" target=3D"_blank">https://github.com/ZoranStojsavljevic=
-/meta-socketcan</a><br>
-<br>
-In there, in conf/layer.conf:<br>
-<a href=3D"https://github.com/ZoranStojsavljevic/meta-socketcan/blob/master=
-/conf/layer.conf" rel=3D"noreferrer noreferrer" target=3D"_blank">https://g=
-ithub.com/ZoranStojsavljevic/meta-socketcan/blob/master/conf/layer.conf</a>=
-<br>
-<br>
-I have the following line (layers&#39; compatibility):<br>
-LAYERSERIES_COMPAT_meta-socketcan =3D &quot;sumo thud warrior zeus dunfell<=
+I think there are some open bugs for useradd issues like this. It is<br>
+supposed to work but sounds like there are races. If there isn&#39;t a bug<=
 br>
-gatesgarth hardknott honister kirkstone&quot;<br>
-<br>
-I do not understand why we need to explicitly name releases for such<br>
-simple generic layers?!<br></blockquote></div></div><div dir=3D"auto"><br><=
-/div><div dir=3D"auto">To me this indicates that the maintainer of the laye=
-r has tested the compatibility of his layer with all of these releases of t=
-he Yocto Project.</div><div dir=3D"auto"><br></div><div dir=3D"auto">A main=
-tainer of a layer should make a deliberate decision of adding a release or =
-dropping one from the compatibility list. It should be an attestation that =
-the layer&#39;s compatibility with the releases in the list is actually mai=
-ntained and tested.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Ther=
-e have been changes to the syntax to conditional variables. Your layer migh=
-t well be compatible with all of the releases and it&#39;s great if you tes=
-ted it. But it&#39;s not a given.</div><div dir=3D"auto"><div class=3D"gmai=
-l_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-Instead, for a virtual example:<br>
-LAYERSERIES_COMPAT_meta-socketcan =3D &quot;${AUTOLAYER x}&quot;<br>
-<br>
-So all the layers might be included (or for at least lets say x =3D 4<br>
-latest releases, where x =3D 0 would be include all)? I do understand<br>
-that complex layers could NOT have such a definition (because of the<br>
-dependencies), but for the generic layers (as such presented), this<br>
-would be beneficial.<br></blockquote></div></div><div dir=3D"auto"><br></di=
-v><div dir=3D"auto">I never cared for ${AUTOREV}, which is similar, in the =
-first place for the very reason that it creates inconsistent behavior. This=
- would do the same thing. What would the last 4 releases even mean? What is=
- the reference and where is it obtained from?</div><div dir=3D"auto"><div c=
-lass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-Thank you for the answers,<br>
-Zee</blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-_______<br></blockquote></div></div><div dir=3D"auto"><br></div><div dir=3D=
-"auto">Best,</div><div dir=3D"auto">:rjs</div><div dir=3D"auto"><div class=
-=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-<br>
-<br>
-</blockquote></div></div></div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#58690): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/58690" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/58690</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/95375670/3617=
-156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/95375670/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin=
-.Jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
+open for it, there probably should be.<br></blockquote><div><br></div><div>=
+<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13904">https=
+://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13904</a> is one of the bugs=
+ I think.=C2=A0</div></div></div>
 
---000000000000b7dc8905eebf6d3a--
+--000000000000ae87ad05eebf7b86--
 
