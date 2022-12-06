@@ -1,59 +1,290 @@
-Return-Path: <hrsourabh011@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54D71C352A1
-	for <webhook@archiver.kernel.org>; Tue,  6 Dec 2022 06:42:10 +0000 (UTC)
-Subject: Re: How to maintain meta layer with different versions of recipes?
-To: yocto@lists.yoctoproject.org
-From: "Sourabh Hegde" <hrsourabh011@gmail.com>
-X-Originating-Location: Mysore, Karnataka, IN (150.129.88.138)
-X-Originating-Platform: Windows Chrome 107
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 717BBC3A5A7
+	for <webhook@archiver.kernel.org>; Tue,  6 Dec 2022 06:52:50 +0000 (UTC)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+ by mx.groups.io with SMTP id smtpd.web11.41425.1670309564213023635
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 05 Dec 2022 22:52:44 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=XOM9j2h1;
+ spf=pass (domain: gmail.com, ip: 209.85.210.178, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pf1-f178.google.com with SMTP id g1so5651269pfk.2
+        for <yocto@lists.yoctoproject.org>; Mon, 05 Dec 2022 22:52:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OlRQDB362vyGJlGsQ4kU3HDkSBVZgl74xTIBD3u9rE8=;
+        b=XOM9j2h1NR7bBgLWNavP6pqZ0fhRkvAA7+uro2xDqSl81/jX2Qv52TClLL9YsoKt1P
+         P3E8rWSpf8QqYKcKKJkAou9vkijF5pkcyjEr/DOeOl+NcKhylffu/xzATuN+GuTAuNY9
+         TISOqy30rYRYMggxENhL2yrrcfDMCfkrWJsfv+N5ByzcpagiH5AnPyNxtJZEELCXqncp
+         rbsiZfmJ2Lo3dqVPAIkOFqvR75TFgGUN+eSko9i5F1QsLjkZ5cojnjTz7DOHLQ/Ev0i/
+         qNyJ0Oz6E+5HVUeCLNscN16npp8X4o8JM5By/qToi2oZczd6lIeKEpNLBx8E6eUCJm8R
+         h6Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OlRQDB362vyGJlGsQ4kU3HDkSBVZgl74xTIBD3u9rE8=;
+        b=Alj3a9PVDY0HdPIIlfB4Xp/2ol0xjg1Xgf8p4z4JSCHPR8bTLa8TtjkW/t4PimartU
+         nCJzdnlVUXOLGbchafdrXuMFw3PuSafusiELp1ri/1G9mPDnOfOh6tY4At+Um0HG4BXx
+         QxbdBKeR0zyOzUk/yAEXzAJlyyAnebYC4/G8ZW9YXzLho4TkmHN60L4RpYwUcx7ER65F
+         0zgw0DAanyE7tFYzjeHgv7mavW54oXUR1ktxU6+DApOZPk9nHyaMxIHuVUVBM/VaZz2M
+         rwncy3h/9kgYjIvQ4Tt4d3+BujxfSYFw3Y4b6XnrwZZW/Z4roFcTDkyy3RLSkB/j/ZmA
+         72sw==
+X-Gm-Message-State: ANoB5pnZMI8K5LHtffou6+Ak1WW4PwTtK+Sy+fq4qAOtKf56RlqZRkGg
+	7thjVCtmcY47Qm2ypaAfZRY=
+X-Google-Smtp-Source: AA0mqf7GBUGhI3D025RQiLfelTYaXNBLjfzI01V9Z/7Kb7YeQwcfXXvU8OpcYPxFBiBV9C2hG7an2Q==
+X-Received: by 2002:a05:6a00:10cd:b0:572:5c03:f7ad with SMTP id d13-20020a056a0010cd00b005725c03f7admr88619412pfu.17.1670309563464;
+        Mon, 05 Dec 2022 22:52:43 -0800 (PST)
+Received: from skjolley ([2600:1011:a11b:4d68:a0fe:5f39:3da3:80c7])
+        by smtp.gmail.com with ESMTPSA id c14-20020a62f84e000000b0056bc30e618dsm10913270pfm.38.2022.12.05.22.52.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Dec 2022 22:52:42 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 5 Dec 2022 23:52:41 -0700
+Message-ID: <0b6a01d9093f$56e3ce60$04ab6b20$@gmail.com>
 MIME-Version: 1.0
-Date: Mon, 05 Dec 2022 22:42:03 -0800
-References: <CAMKF1sokC=LNUhDyCsgVZ=aaGBGVQiUUU+dO4x85BNZVGKuubg@mail.gmail.com>
-In-Reply-To: <CAMKF1sokC=LNUhDyCsgVZ=aaGBGVQiUUU+dO4x85BNZVGKuubg@mail.gmail.com>
-Message-ID: <8343.1670308923532231609@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="cm5nWMrLcRElqnieOErd"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0B6B_01D90904.AA85E0C0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKVc+6Vx8an2INuq/KBFVqqzq1gdw==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 06 Dec 2022 06:42:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58732
+ <yocto@lists.yoctoproject.org>; Tue, 06 Dec 2022 06:52:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58733
 
---cm5nWMrLcRElqnieOErd
-Content-Type: text/plain; charset="utf-8"
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0B6B_01D90904.AA85E0C0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 418
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.2", "4.3", "4.99" and "Future", the more pressing/urgent
+issues being in "4.2" and then "4.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0B6B_01D90904.AA85E0C0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0B12_01D90375.1F242620";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Khem Raj,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 418 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.2&#8221;, =
+&#8220;4.3&#8221;, &quot;4.99&quot; and &quot;Future&quot;, the more =
+pressing/urgent issues being in &quot;4.2&quot; and then =
+&#8220;4.3&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Please review this link and if a bug is =
+something you would be able to help with either take ownership of the =
+bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0B6B_01D90904.AA85E0C0--
 
-Thank you for the response.
->=20
-> Second, way would be to have test.service copies installed under
-> files/<customer-override>/ directory next to recipe
-> and then define customer distro specific overrides
-
-This seems to be a better solution for my use case. But, I didn't understan=
-d it completely. Could you please provide an example or any link to documen=
-tation? Is it also needed to create a custom distribution? This layer will =
-be used by different customers in bblayers.conf
-
---cm5nWMrLcRElqnieOErd
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Khem Raj,<br /><br />Thank you for the response.
-<blockquote><span style=3D"white-space: pre-wrap;">Second, way would be to =
-have test.service copies installed under</span><br style=3D"white-space: pr=
-e-wrap;" /><span style=3D"white-space: pre-wrap;">files/&lt;customer-overri=
-de&gt;/ directory next to recipe</span><br style=3D"white-space: pre-wrap;"=
- /><span style=3D"white-space: pre-wrap;">and then define customer distro s=
-pecific overrides</span></blockquote>
-This seems to be a better solution for my use case. But, I didn't understan=
-d it completely. Could you please provide an example or any link to documen=
-tation? Is it also needed to create a custom distribution? This layer will =
-be used by different customers in bblayers.conf
-
---cm5nWMrLcRElqnieOErd--
 
