@@ -1,386 +1,210 @@
-Return-Path: <michael@amarulasolutions.com>
+Return-Path: <sakib.sajal@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CFE36C63708
-	for <webhook@archiver.kernel.org>; Thu,  8 Dec 2022 16:20:17 +0000 (UTC)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
- by mx.groups.io with SMTP id smtpd.web11.18799.1670516415751052516
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03398C3DA6A
+	for <webhook@archiver.kernel.org>; Thu,  8 Dec 2022 16:45:28 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web11.19584.1670517923607390258
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Dec 2022 08:20:16 -0800
+ Thu, 08 Dec 2022 08:45:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@amarulasolutions.com header.s=google header.b=ZoCMR6xD;
- spf=pass (domain: amarulasolutions.com, ip: 209.85.218.47, mailfrom: michael@amarulasolutions.com)
-Received: by mail-ej1-f47.google.com with SMTP id x22so5199635ejs.11
-        for <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 08:20:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QlJqweZydMrv5CUBaZpQtGVqQFhmbtg/CIOihBb/YIA=;
-        b=ZoCMR6xDXd0FbaOXRd+Fwcqfs3xIsNJ3BQmY3RNBRsD4cyyu7QhXR/PySEYgASAWG6
-         PwZiKcO2V6o6KwH7F2za5fB7GZXJmXIlHoq0RroI4rIkrkGiY1V1xCLz6qF0xUt8stm5
-         mL4xNdlZNK+AN4jBzKHRPCrLnGS++Jmi7nwVc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QlJqweZydMrv5CUBaZpQtGVqQFhmbtg/CIOihBb/YIA=;
-        b=fV+oOJSug1HTOp7FM6df8b0u4WVAWJyt5AsbDVjGEYnf3WWnytMBhlI94e5tQzEm7g
-         xUbW8t/Cd+Pl6vWDLwWEIetx5NKCH7LMc/lfKuMtS0OO/u0ak+oGTpCBFsVTaNnmBgYk
-         J88dABKrPxdBa8Jo0gIn1WcvtqqIuz7BtZnKHIxBXPg46DoAfkNTkToDK3RNnP9pWxX7
-         zOSFS+8L3UuCRsF6IdgMGAAwGJVuQBxD8bpcxY1Jj90jfgscVAO7ZeyyFXdBd0zcPCmq
-         bByjq8d+mauxlJqsLD+59L4aOZS5laeKsqQOyVkGpZC5e73ZLa20Nu1Urq/goQukYccB
-         ac4g==
-X-Gm-Message-State: ANoB5pkbD053YC/UaWk58LnztpjYGYmjzhM5LVqn/oPNtMALpnCj14O+
-	CsJvd2zMxCi59Blvlo9daTs+971lesuxT3Pci7K34Z0WO9gssPL1
-X-Google-Smtp-Source: AA0mqf7dvjTfNGuhWPUoPe1QDoJ58tgt5fzk2OAkCXfhm8mgX5LPIZOx6ZLM8dplC+J7xj9ydTXNxH2+55DKECm2iF8=
-X-Received: by 2002:a17:906:8383:b0:7c1:19ea:dda with SMTP id
- p3-20020a170906838300b007c119ea0ddamr6123086ejx.31.1670516414047; Thu, 08 Dec
- 2022 08:20:14 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@windriver.com header.s=pps06212021 header.b=V109AJn5;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=9341da79c5=sakib.sajal@windriver.com)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B8Cw3FN013147;
+	Thu, 8 Dec 2022 08:45:07 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=content-type :
+ message-id : date : from : subject : to : cc : mime-version;
+ s=PPS06212021; bh=PMoYpGEzzEJ16wi2eW4V/GMU7fC2o0A0Fnd9cnO/Vxc=;
+ b=V109AJn56sTLk52pBmuWsK04zHhvCkFoEa/+heWGslTzlIYQsbHHpaoWe1kMidLiCFtb
+ iZ14HlGtvvo3ldvkP1FLtGxafXsIbCFG/UuZ1KEy0Vh0I6iwokJFlHpV4iin32fji9IH
+ pTyzuXbm5nn7NFUBRv/9bPh+PsJ3ivlz11oqBU1B3FDfkrH/xUinWOKXZ6AkQSTfOWMX
+ b2FWvEETmD4ZQhptBadpEMS5syKt18MqAGflIs/QrhWaFW67j27OLZLjAqipn8S6uRUj
+ AnuTjzRv0RFR/6obsEBOuwrxiDF5gxlrbA0ksO48DknBReBZO8R6wz39Px9/PCPqZ25g zA== 
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2170.outbound.protection.outlook.com [104.47.57.170])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3m82m6vhe2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 Dec 2022 08:45:06 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CfproSqflChQKDcAyaRt7tzj9g7agI2ckil+YmAhMmvveH3rY+Maav7dt46l/XReO8uYGHOU69hi/ccJ4OgX6a13h0h4HYXpPlhtrj5y0dUKyvug6aD8k+eNybT+9df7AcWgSzDEEoafoPPEUt9eGPb8+FZcB5CTi87RwY/x4p9XVDsXLq4rzd4RqHidVxFXnnN5siIj350lCAYzeveeJC6XbEQ9g7E54uQr4eb13N1qM1kXShiSXXeAg00rJXSCaWm/kTScKc+6aDYup+y1d3J/JC/w7jbLp32x1gGdWIABtnT/Fv0m6BQGHcIXwvfKKw9NXiH+pa4W8g+G1k8+5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PMoYpGEzzEJ16wi2eW4V/GMU7fC2o0A0Fnd9cnO/Vxc=;
+ b=Ua8lOKs/fSZaKMkMWMfBCe8Xy2SFKZnxjtFtifLxbEouERwK8e926UHJhv9h3AVEXu7nEFAWPFQuFQBe59BfcPCD0w/LopdumuLsPpXML0EwGzueDABj0m1IE6JucKisF83QBWozcBCWjk/VYxM2+L3ztBCRCMYyaCg90paF4hP4d6HSGrD9tOIBHfQZYH7jW1t3oOPUR/Lpm7LRjAkvB58yFjx5zepixQ2zb9Y3GhRSGOG6GUUB/HKyyAbz8kCY3d7wg1TLZ2+S9bGX1IeIX9ZQ9kINcaUoVzv/dHJa4s0PGdZPBP4MQDEL+uOkly93WyAuF4N9WZEYBq8olZUbIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com (2603:10b6:5:be::20) by
+ DM4PR11MB6477.namprd11.prod.outlook.com (2603:10b6:8:88::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5880.16; Thu, 8 Dec 2022 16:45:05 +0000
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::3ec4:f05a:8bf3:59e0]) by DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::3ec4:f05a:8bf3:59e0%7]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
+ 16:45:05 +0000
+Content-Type: multipart/alternative;
+ boundary="------------9IaJwWb5yBSFYFKoHDHU0m2G"
+Message-ID: <210ab3a5-6b08-3588-4d42-e13cb729d1bf@windriver.com>
+Date: Thu, 8 Dec 2022 11:45:01 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From: Sakib Sajal <sakib.sajal@windriver.com>
+Subject: [yocto] Minutes: Yocto Project Weekly Triage Meeting 12/08/2022
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: alexandre.belloni@bootlin.com, Bruce Ashfield <bruce.ashfield@gmail.com>,
+        daiane.angolini@foundries.io,
+        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
+        luca.ceresoli@bootlin.com, Pavel Zhukov <pavel.zhukov@huawei.com>,
+        Randy MacLeod <randy.macleod@windriver.com>,
+        Richard Purdie <richard.purdie@linuxfoundation.org>,
+        Khem Raj <raj.khem@gmail.com>, ross@burtonini.com,
+        Saul Wold <Saul.Wold@windriver.com>,
+        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+        Steve Sakoman <steve@sakoman.com>, tim.orling@konsulko.com,
+        sakib.sajal@windriver.com, akuster808 <akuster808@gmail.com>,
+        valery.chernous@gmail.com, Zheng Qiu <zheng.qiu@windriver.com>,
+        pavel@zhukoff.net
+Content-Language: en-US
+X-ClientProxiedBy: YQBPR0101CA0216.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:67::27) To DM6PR11MB2538.namprd11.prod.outlook.com
+ (2603:10b6:5:be::20)
 MIME-Version: 1.0
-References: <CAOf5uwmnnryGOSEDqkgA8g0ocn7aPPbv_bnXjBjOCE3FJpGTOw@mail.gmail.com>
- <CAOf5uwmOQPv0rWF2zwwMdi2Tkvi6syzU9TtmbxPL7Cqo5OEtEg@mail.gmail.com>
- <CAOf5uwkcLyXxRZ1gN7xQONkHHOLsikyfnOM3wA1Rg8OqmJMLUQ@mail.gmail.com> <CAM6O0ZgVUhm4AMjT6wb4o_hh3Synt4Yn7zezUmnU1ZB=TFEj3A@mail.gmail.com>
-In-Reply-To: <CAM6O0ZgVUhm4AMjT6wb4o_hh3Synt4Yn7zezUmnU1ZB=TFEj3A@mail.gmail.com>
-From: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date: Thu, 8 Dec 2022 17:20:02 +0100
-Message-ID: <CAOf5uw=CCzq3_bKs2tJXH4AGY6UnVFE28DHQ3WVVGFWONVn6vA@mail.gmail.com>
-Subject: Re: [yocto] open ssh dunfell unable to login
-To: Federico Pellegrin <fede@evolware.org>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2538:EE_|DM4PR11MB6477:EE_
+X-MS-Office365-Filtering-Correlation-Id: d00396d0-a772-49f4-b93e-08dad93b8eef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	8RLIR38gQQ18cXyI9JCRSRfwfnR4MjueOhltP7cKEvtNJhpN/petdC2NVJWvRZKLp3bD49hqrkoRc3fVEFeMBbdvZ6t2eX8y7F5a7Qru195Pnuq+m38u12lRvBds7MqqFQpEdZhcz28WUTqFn8UaEZ5dedAl1SJQ3k+f71VDSG9CWCT7F3SmxdmUExi/aDuiX7h7W/DQUYWVtDvhZHBv/U9zRwTy/QWDsc2F9Zr+WK6pxCYvN7B4gmpcSuw9zixz7Y/CXIBkxBYx9oiXPDKylEjpeKC0mGwGOU/g/cOzptoMKOr4uHLMa6K5swBMqm/NOkYzttGNPXbHuDtYKM9aUU3I28CMEzqhTiT0wDF+4GkiwmNC+uhsSLFneZpcCDgCulojqFNoWXBT8tFeCRxPHmo2vsoliQg9ahnsnTre13K9kXMzK+ES6fXUI8PgL/7MROdbuGs8f63fblmlKzQZc7enfSH8GOr/S6MycVufp25/1l1xlH3ZwbEwNM/8qyXVqmpFMNG5tbw3v5s4bwCbzlf/ZYTvmshrJ+RvH6l+eJUDcnzqbcTxeJPRPgCkp/wzcHWBh5f/Reg0vvZ0PqrooyyCyqjE8XwP9X6dqESg2oES13eugR14zt72jn3e2BItXZlx5vetGMc7kP1GF1+YmxZMiMQfp1d9KflTsOlpsYqXOmqBsZKAGw76C5DhUqtRwVfdgJ4ZQe9sygAPWbnYNqUSR3D8eGjnqcgEJpSt6cAbwXRtTWV/DPele1zlE2iH
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2538.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39850400004)(366004)(136003)(376002)(396003)(346002)(451199015)(6666004)(38100700002)(31686004)(2906002)(44832011)(26005)(54906003)(36756003)(8936002)(31696002)(316002)(6512007)(6916009)(6506007)(478600001)(7416002)(5660300002)(166002)(186003)(2616005)(33964004)(86362001)(4326008)(41300700001)(6486002)(966005)(66556008)(8676002)(66476007)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?SklvNXU3MllaaXRadWZVa2tBeFc3blFPdm45Rzh3Z0htOVFZM210WFlxMVNZ?=
+ =?utf-8?B?Z21VSE5Qci9YM1diaEVPM2hxM3FualgrWVV1RWROMXE0d2NKeEU1R2s4VWE3?=
+ =?utf-8?B?YzR0ZWdXR1k3MUpaay81RXZTcVV2bS9LQkVWcHFReVJvN3NQUG94MTdZWTE2?=
+ =?utf-8?B?b2dxUWd1RnVtN3hKcmtLdFo0VGl1NmNYVWlVZTY0YkZseU9rRk5LaXZpeHJG?=
+ =?utf-8?B?TU5td1ltb3pLVDFHV1NDa1M0YXFZbitCRmJYY1RxQWxRWVovMy82c3ppTGhr?=
+ =?utf-8?B?V2hJdE9taEROb1dBakoyZnRsK3RVeW40c1h3dElqMW00ajlUTVQrR1ZoUHBk?=
+ =?utf-8?B?TDBIazdiNjlMNXRFUjBSUUNOcW9zdy84WDhNKzNKRkFQdVVoVk1mMkhVeXdk?=
+ =?utf-8?B?cTB6Rk82YjExZ2ZtVzM4M3RKZUR5MG8zbDc4QWhRc1JsMkVtMjdDZUtnRHhN?=
+ =?utf-8?B?cEFCVUtRUVZ0MEl0YzNucGVMMGZTY21TZTQ1SHJGWW1jRW10UDJ3R08wVkZt?=
+ =?utf-8?B?L3hPQWRodzNlcFdscllVSU0vK2c5U2pub2RwS2YwMk82SHdNa09DTFU0VDlF?=
+ =?utf-8?B?T2JtY0JoTjAvbUNiY25GYUUwUndBeGNpY2g1VGI1bmVndDdrb1h3T1dNWWlz?=
+ =?utf-8?B?MHowaVhtbG8yODdTLzdMd3Q0cVhIRlNrWlRHSCtlc2lRNTUzb3Fjcm9ZWjhr?=
+ =?utf-8?B?c0lpRk1mdXFKR0wzT2YvOHY5NkVZYlFPR09TVjJpRDVEZzUrQVBqa2RtT2hD?=
+ =?utf-8?B?ZlVyUVZtUEpSdElTbXJvQ0VPWXU1bjRZWllXdDhuZUtIeVpZKzk1QmJsTEZN?=
+ =?utf-8?B?a2UwRFRML0ZrUHh2b21ML3BnRk1WNU5GQVhkNzdCczUwbUNnL3VvS2g4M1ND?=
+ =?utf-8?B?bVQyNG1qS0liUFdqYWNBZ1pOQlowZ01IODNaUWdNeEFpb1dSWkJDcnpCRjBP?=
+ =?utf-8?B?MzF6WGxrMFVMZmlOdVNzL0JEeEZ2d0hUQ2d3RjNpZURrWWJIdlZJRmN0Y3Q3?=
+ =?utf-8?B?bEMxeDBCRS9ZNGVxQXlDTkNNbTJ5WFFaMHc3d0tUakFzcWEwMThsTUo0cjJU?=
+ =?utf-8?B?TXlTRjBGU2VuS3ZYdTZibzJpbzdqc3pLOEtLc0pHdE5raG1NM2ZSa0I5VGp0?=
+ =?utf-8?B?VVhVQXZjbTZKNkhwS1ZpSWRwT3ErSTZJZWlxTnZodSs0OU91RHJKSTllczVE?=
+ =?utf-8?B?Q1MrMUpQckhCQUxRZFQ0cW05bG1ENFpDbWZPbm10NVYybEw2dEV0NFp3Q0lR?=
+ =?utf-8?B?a2syOGpwMlpCNSt0YjVVUm1JY2FrcERUUC8zTzFMWnJqQkkxdFNvOUVFd2Q4?=
+ =?utf-8?B?UmJtZVpuME1CNWg2NXo3eDFqT0Qvc0dtRVpqRkxIcFNZV3YwOSt1cXJmSU04?=
+ =?utf-8?B?SUV2dGRycUlKOTFkT1BmTFBLSDR1OTMrNGthS0ttU3ArMzd2VS9NK0ZvM25V?=
+ =?utf-8?B?OUhpRTJhQVVpSjI5NFc0QTgrK21TT3RJSXFXcjIwRHY4Vm1HZ0IwYTN0Vy9M?=
+ =?utf-8?B?TVBESHJMUCtYKzRXcUpjclBrb0pqRlRTUTF3Q295UWp1dkVpYUI3MmNoL0Jv?=
+ =?utf-8?B?T1Ywc0h2MzZZM044NkcrNnRWcmFpZXBrT1dIakZrTzZCaC9McnFOZzU0c0hD?=
+ =?utf-8?B?Z1JxdWRjR2N0aWJwU1YrWHgySmUvZUpOZ3A1S2tNSDh1U1FCYU1UVUszdzJs?=
+ =?utf-8?B?TWU4NEM0RkV3VFBPL04xYUlaUTdFcHYrczdDZ3I0MkY2N1JCZmdvTWJCQ1R3?=
+ =?utf-8?B?U1dnZVAvenJlV0pEcHBHUU10YkVzVkk2NUhucDVCeURmRUJsQnNBY0MzejFH?=
+ =?utf-8?B?bjFjRWNHMitoVUk3Vjd2c2p3aGlmUS92ajN2cS95T2h3cVBrbStCTFYzMjUz?=
+ =?utf-8?B?UTV1SWhRaGNwYjFnUG9YUEp3ekVsL3M2NUtqRUtySHl1R0tyNDVUZkR4Rk5l?=
+ =?utf-8?B?eVNFa29wNjNzQ09xYi9WNHdXdXBTOUpWOUF1czEvcXFhb3puSVpZWlpyaDV2?=
+ =?utf-8?B?UER5NVVhYVRMbzhPL1ZFZ01MNnZuNCtxUXRRdVB4WFFYWitrU0psaDhKMTd5?=
+ =?utf-8?B?UUlwNmZNN3RVa1FCOTM1dzQ0bTc4WkY1MjgrNmZpaGtFcVhSNTAwNmFESjQw?=
+ =?utf-8?B?UHpmY0RseVloR1k1ZlBlTzhGYk0vMC9vWWdmMmU2TSsxVlZLdVZvTWJJaDRv?=
+ =?utf-8?B?NkE9PQ==?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d00396d0-a772-49f4-b93e-08dad93b8eef
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2538.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2022 16:45:05.2906
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4cEE8t+kPkwkrEKVieZiPpc3T3vhdeiHp6EBc7646DzcYDGgq6QtA6fJ+LGuSIbF2NxIjAl+W5BjPpe+a0YJ05gmcImv4Wglty4feNr6z3o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6477
+X-Proofpoint-ORIG-GUID: tksYdVbXz6BEtVEwjWmHEmp_-mHh0MDk
+X-Proofpoint-GUID: tksYdVbXz6BEtVEwjWmHEmp_-mHh0MDk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-08_10,2022-12-08_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 suspectscore=0 adultscore=0
+ phishscore=0 clxscore=1011 malwarescore=0 priorityscore=1501 mlxscore=0
+ bulkscore=0 mlxlogscore=871 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2210170000 definitions=main-2212080139
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 16:20:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58761
+ <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 16:45:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58762
 
-Hi Federico
+--------------9IaJwWb5yBSFYFKoHDHU0m2G
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 2B8Cw3FN013147
 
-On Thu, Dec 8, 2022 at 5:18 PM Federico Pellegrin <fede@evolware.org> wrote=
-:
->
->
-> Hi Michael,
-> Sorry for the maybe obvious remark (and cannot find the original post if =
-maybe you gave more details) but: did you enable in openssh daemon configur=
-ation to allow for root login?
->
-> By default that is not permitted, in /etc/ssh/sshd_config you have:
->
-> #PermitRootLogin prohibit-password
->
-> (it is usually commented, but shows the default)
-> Which you should in case replace with:
->
-> PermitRootLogin yes
->
-> This can be also managed on yocto level with the feature "debug-tweaks" o=
-r "allow-root-login".
->
+*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-I know, I poked around a bit but was not connected to that one. What I
-can add that root was having a password set
+*Attendees: *Richard Purdie, Steve Sakoman, Stephen Jolley, Randy=20
+Macleod, Joshua Watt, Ross Burton, Alexandre Belloni,=C2=A0 Tim Orling,=20
+Michael Opdenacker, Bruce Ashfield, Pavel Zhukov, Ryan Eatmon
 
-Michael
+*ARs:
+*
 
-> Cheers,
-> Federico
->
->
-> Il giorno gio 8 dic 2022 alle ore 15:21 Michael Nazzareno Trimarchi <mich=
-ael@amarulasolutions.com> ha scritto:
->>
->> Hi
->>
->> On Mon, Nov 14, 2022 at 5:47 PM Michael Nazzareno Trimarchi
->> <michael@amarulasolutions.com> wrote:
->> >
->> > Hi all
->> >
->> > testing the openssh-server and I set root password but I'm enable to l=
-ogin
->> >
->> > server side
->> > /usr/sbin/sshd -d -D
->> >
->>
->> I basically solve it with dropbear instead of openssh. Has anybody
->> found the same problem on dunfell?
->>
->> Michael
->>
->> > debug1: sshd version OpenSSH_8.2, OpenSSL 1.1.1q 5 Jul 2022
->> > debug1: private host key #0: ssh-rsa
->> > SHA256:1endrZLJnyyoE2x+MfLB3JIpEqgzCrORriOhvSSN2HM
->> > debug1: private host key #1: ecdsa-sha2-nistp256
->> > SHA256:1Ivo0c/GWF22iwwEAc0D+E79qSH/0eTxDH0pldsfuk4
->> > debug1: private host key #2: ssh-ed25519
->> > SHA256:CEHX4ATsgGL4De/rJlyNmwqqCk0Ewf1r4jU4spHTP88
->> > debug1: rexec_argv[0]=3D'/usr/sbin/sshd'
->> > debug1: rexec_argv[1]=3D'-d'
->> > debug1: rexec_argv[2]=3D'-D'
->> > debug1: Set /proc/self/oom_score_adj from 0 to -1000
->> > debug1: Bind to port 22 on 0.0.0.0.
->> > Server listening on 0.0.0.0 port 22.
->> > debug1: Bind to port 22 on ::.
->> > Server listening on :: port 22.
->> > debug1: Server will not fork when running in debugging mode.
->> > debug1: rexec start in 5 out 5 newsock 5 pipe -1 sock 8
->> > debug1: sshd version OpenSSH_8.2, OpenSSL 1.1.1q 5 Jul 2022
->> > debug1: private host key #0: ssh-rsa
->> > SHA256:1endrZLJnyyoE2x+MfLB3JIpEqgzCrORriOhvSSN2HM
->> > debug1: private host key #1: ecdsa-sha2-nistp256
->> > SHA256:1Ivo0c/GWF22iwwEAc0D+E79qSH/0eTxDH0pldsfuk4
->> > debug1: private host key #2: ssh-ed25519
->> > SHA256:CEHX4ATsgGL4De/rJlyNmwqqCk0Ewf1r4jU4spHTP88
->> > debug1: inetd sockets after dupping: 3, 3
->> > Connection from 192.168.1.8 port 59662 on 192.168.1.3 port 22 rdomain =
-""
->> > debug1: Local version string SSH-2.0-OpenSSH_8.2
->> > debug1: Remote protocol version 2.0, remote software version
->> > OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
->> > debug1: match: OpenSSH_8.2p1 Ubuntu-4ubuntu0.5 pat OpenSSH* compat 0x0=
-4000000
->> > debug1: permanently_set_uid: 997/997 [preauth]
->> > debug1: list_hostkey_types:
->> > rsa-sha2-512,rsa-sha2-256,ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519
->> > [preauth]
->> > debug1: SSH2_MSG_KEXINIT sent [preauth]
->> > debug1: SSH2_MSG_KEXINIT received [preauth]
->> > debug1: kex: algorithm: curve25519-sha256 [preauth]
->> > debug1: kex: host key algorithm: ecdsa-sha2-nistp256 [preauth]
->> > debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC:
->> > <implicit> compression: none [preauth]
->> > debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC:
->> > <implicit> compression: none [preauth]
->> > debug1: expecting SSH2_MSG_KEX_ECDH_INIT [preauth]
->> > debug1: rekey out after 134217728 blocks [preauth]
->> > debug1: SSH2_MSG_NEWKEYS sent [preauth]
->> > debug1: Sending SSH2_MSG_EXT_INFO [preauth]
->> > debug1: expecting SSH2_MSG_NEWKEYS [preauth]
->> > debug1: SSH2_MSG_NEWKEYS received [preauth]
->> > debug1: rekey in after 134217728 blocks [preauth]
->> > debug1: KEX done [preauth]
->> > debug1: userauth-request for user root service ssh-connection method
->> > none [preauth]
->> > debug1: attempt 0 failures 0 [preauth]
->> > debug1: monitor_read_log: child log fd closed
->> > debug1: do_cleanup
->> > debug1: Killing privsep child 873
->> >
->> > Client side
->> > ssh -vvv -o PreferredAuthentications=3Dpassword root@192.168.1.3
->> >
->> > OpenSSH_8.2p1 Ubuntu-4ubuntu0.5, OpenSSL 1.1.1f 31 Mar 2020
->> > debug1: Reading configuration data /home/suniel/.ssh/config
->> > debug1: Reading configuration data /etc/ssh/ssh_config
->> > debug1: /etc/ssh/ssh_config line 19: include
->> > /etc/ssh/ssh_config.d/*.conf matched no files
->> > debug1: /etc/ssh/ssh_config line 21: Applying options for *
->> > debug2: resolve_canonicalize: hostname 192.168.1.3 is address
->> > debug2: ssh_connect_direct
->> > debug1: Connecting to 192.168.1.3 [192.168.1.3] port 22.
->> > debug1: Connection established.
->> > debug1: identity file /home/suniel/.ssh/id_rsa type 0
->> > debug1: identity file /home/suniel/.ssh/id_rsa-cert type -1
->> > debug1: identity file /home/suniel/.ssh/id_dsa type -1
->> > debug1: identity file /home/suniel/.ssh/id_dsa-cert type -1
->> > debug1: identity file /home/suniel/.ssh/id_ecdsa type -1
->> > debug1: identity file /home/suniel/.ssh/id_ecdsa-cert type -1
->> > debug1: identity file /home/suniel/.ssh/id_ecdsa_sk type -1
->> > debug1: identity file /home/suniel/.ssh/id_ecdsa_sk-cert type -1
->> > debug1: identity file /home/suniel/.ssh/id_ed25519 type -1
->> > debug1: identity file /home/suniel/.ssh/id_ed25519-cert type -1
->> > debug1: identity file /home/suniel/.ssh/id_ed25519_sk type -1
->> > debug1: identity file /home/suniel/.ssh/id_ed25519_sk-cert type -1
->> > debug1: identity file /home/suniel/.ssh/id_xmss type -1
->> > debug1: identity file /home/suniel/.ssh/id_xmss-cert type -1
->> > debug1: Local version string SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
->> > debug1: Remote protocol version 2.0, remote software version OpenSSH_8=
-.2
->> > debug1: match: OpenSSH_8.2 pat OpenSSH* compat 0x04000000
->> > debug2: fd 3 setting O_NONBLOCK
->> > debug1: Authenticating to 192.168.1.3:22 as 'root'
->> > debug3: hostkeys_foreach: reading file "/home/suniel/.ssh/known_hosts"
->> > debug3: record_hostkey: found key type ECDSA in file
->> > /home/suniel/.ssh/known_hosts:23
->> > debug3: load_hostkeys: loaded 1 keys from 192.168.1.3
->> > debug3: order_hostkeyalgs: prefer hostkeyalgs:
->> > ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@=
-openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ec=
-dsa-sha2-nistp384,ecdsa-sha2-nistp521
->> > debug3: send packet: type 20
->> > debug1: SSH2_MSG_KEXINIT sent
->> > debug3: receive packet: type 20
->> > debug1: SSH2_MSG_KEXINIT received
->> > debug2: local client KEXINIT proposal
->> > debug2: KEX algorithms:
->> > curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh=
--sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diff=
-ie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-grou=
-p14-sha256,ext-info-c
->> > debug2: host key algorithms:
->> > ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@=
-openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ec=
-dsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256-cert-v01@opens=
-sh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com=
-,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rs=
-a-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,sk-ss=
-h-ed25519@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa
->> > debug2: ciphers ctos:
->> > chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-=
-gcm@openssh.com,aes256-gcm@openssh.com
->> > debug2: ciphers stoc:
->> > chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-=
-gcm@openssh.com,aes256-gcm@openssh.com
->> > debug2: MACs ctos:
->> > umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@ope=
-nssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@op=
-enssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
->> > debug2: MACs stoc:
->> > umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@ope=
-nssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@op=
-enssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
->> > debug2: compression ctos: none,zlib@openssh.com,zlib
->> > debug2: compression stoc: none,zlib@openssh.com,zlib
->> > debug2: languages ctos:
->> > debug2: languages stoc:
->> > debug2: first_kex_follows 0
->> > debug2: reserved 0
->> > debug2: peer server KEXINIT proposal
->> > debug2: KEX algorithms:
->> > curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh=
--sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diff=
-ie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-grou=
-p14-sha256
->> > debug2: host key algorithms:
->> > rsa-sha2-512,rsa-sha2-256,ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519
->> > debug2: ciphers ctos:
->> > chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-=
-gcm@openssh.com,aes256-gcm@openssh.com
->> > debug2: ciphers stoc:
->> > chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-=
-gcm@openssh.com,aes256-gcm@openssh.com
->> > debug2: MACs ctos:
->> > umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@ope=
-nssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@op=
-enssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
->> > debug2: MACs stoc:
->> > umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@ope=
-nssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@op=
-enssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
->> > debug2: compression ctos: none
->> > debug2: compression stoc: none
->> > debug2: languages ctos:
->> > debug2: languages stoc:
->> > debug2: first_kex_follows 0
->> > debug2: reserved 0
->> > debug1: kex: algorithm: curve25519-sha256
->> > debug1: kex: host key algorithm: ecdsa-sha2-nistp256
->> > debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC:
->> > <implicit> compression: none
->> > debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC:
->> > <implicit> compression: none
->> > debug3: send packet: type 30
->> > debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
->> > debug3: receive packet: type 31
->> > debug1: Server host key: ecdsa-sha2-nistp256
->> > SHA256:1Ivo0c/GWF22iwwEAc0D+E79qSH/0eTxDH0pldsfuk4
->> > debug3: hostkeys_foreach: reading file "/home/suniel/.ssh/known_hosts"
->> > debug3: record_hostkey: found key type ECDSA in file
->> > /home/suniel/.ssh/known_hosts:23
->> > debug3: load_hostkeys: loaded 1 keys from 192.168.1.3
->> > debug1: Host '192.168.1.3' is known and matches the ECDSA host key.
->> > debug1: Found key in /home/suniel/.ssh/known_hosts:23
->> > debug3: send packet: type 21
->> > debug2: set_newkeys: mode 1
->> > debug1: rekey out after 134217728 blocks
->> > debug1: SSH2_MSG_NEWKEYS sent
->> > debug1: expecting SSH2_MSG_NEWKEYS
->> > debug3: receive packet: type 21
->> > debug1: SSH2_MSG_NEWKEYS received
->> > debug2: set_newkeys: mode 0
->> > debug1: rekey in after 134217728 blocks
->> > debug1: Will attempt key: /home/suniel/.ssh/id_rsa RSA
->> > SHA256:p5HL5mkh62PMNf21jyap6L5b1Epud52b6EaNvAFOFlc agent
->> > debug1: Will attempt key: /home/suniel/.ssh/id_dsa
->> > debug1: Will attempt key: /home/suniel/.ssh/id_ecdsa
->> > debug1: Will attempt key: /home/suniel/.ssh/id_ecdsa_sk
->> > debug1: Will attempt key: /home/suniel/.ssh/id_ed25519
->> > debug1: Will attempt key: /home/suniel/.ssh/id_ed25519_sk
->> > debug1: Will attempt key: /home/suniel/.ssh/id_xmss
->> > debug2: pubkey_prepare: done
->> > debug3: send packet: type 5
->> > debug3: receive packet: type 7
->> > debug1: SSH2_MSG_EXT_INFO received
->> > debug1: kex_input_ext_info:
->> > server-sig-algs=3D<ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-=
-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa=
--sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com>
->> > debug3: receive packet: type 6
->> > debug2: service_accept: ssh-userauth
->> > debug1: SSH2_MSG_SERVICE_ACCEPT received
->> > debug3: send packet: type 50
->> > Connection closed by 192.168.1.3 port 22
->> >
->> > Michael
->>
->>
->>
->> --
->> Michael Nazzareno Trimarchi
->> Co-Founder & Chief Executive Officer
->> M. +39 347 913 2170
->> michael@amarulasolutions.com
->> __________________________________
->>
->> Amarula Solutions BV
->> Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
->> T. +31 (0)85 111 9172
->> info@amarulasolutions.com
->> www.amarulasolutions.com
->>
->>
->> --
->> Michael Nazzareno Trimarchi
->> Co-Founder & Chief Executive Officer
->> M. +39 347 913 2170
->> michael@amarulasolutions.com
->> __________________________________
->>
->> Amarula Solutions BV
->> Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
->> T. +31 (0)85 111 9172
->> info@amarulasolutions.com
->> www.amarulasolutions.com
->>
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#58758): https://lists.yoctoproject.org/g/yocto/messa=
-ge/58758
->> Mute This Topic: https://lists.yoctoproject.org/mt/95538639/5117409
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [fede@evolware=
-.org]
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>
+*Notes:
+*
+*
+*
 
+*Medium+ 4.2 Unassigned Enhancements/Bugs: *70 (Last week 69)
 
---=20
-Michael Nazzareno Trimarchi
-Co-Founder & Chief Executive Officer
-M. +39 347 913 2170
-michael@amarulasolutions.com
-__________________________________
+*Medium+ 4.99 Unassigned Enhancements/Bugs: *44**(Last week 45)
 
-Amarula Solutions BV
-Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
-T. +31 (0)85 111 9172
-info@amarulasolutions.com
-www.amarulasolutions.com
+*AB Bugs: *58 (Last week 61)
+--------------9IaJwWb5yBSFYFKoHDHU0m2G
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://urldefense.com/v3/__https://wiki.yoctoproject.org/wiki/Bug_Triage__;!!AjveYdw8EvQ!cAjVArCgL_RlaRXuscB-7FXNeNbEpNLXV5wf6cuuQ5AJ_finBsyqaqIWAMBAw_THa9F-SJpSJTfbDp4zK8Q6ydo_qduobM6c$" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
+      <p><b>Attendees: </b>Richard Purdie, Steve Sakoman, Stephen
+        Jolley, Randy Macleod, Joshua Watt, Ross Burton, Alexandre
+        Belloni,&nbsp; Tim Orling, Michael Opdenacker, Bruce Ashfield, Pavel
+        Zhukov, Ryan Eatmon<br>
+      </p>
+      <p><b>ARs: <br>
+        </b></p>
+    </div>
+    <span class="moz-txt-link-freetext"></span>
+    <div class="moz-text-html" lang="x-unicode"><b>Notes: <br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode"><b><br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Medium+ 4.2 Unassigned Enhancements/Bugs: </b>70 (Last week
+        69) </p>
+      <b>Medium+ 4.99 Unassigned Enhancements/Bugs: </b>44<b> </b>(Last
+      week 45)<br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <b>AB Bugs: </b>58 (Last week 61)
+  </body>
+</html>
+
+--------------9IaJwWb5yBSFYFKoHDHU0m2G--
 
