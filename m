@@ -1,202 +1,166 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <anuj.mittal@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E73DC4708E
-	for <webhook@archiver.kernel.org>; Thu,  8 Dec 2022 02:54:21 +0000 (UTC)
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
- by mx.groups.io with SMTP id smtpd.web11.3973.1670468058476129184
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7EC38C4708E
+	for <webhook@archiver.kernel.org>; Thu,  8 Dec 2022 03:05:41 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by mx.groups.io with SMTP id smtpd.web10.4198.1670468734303197971
  for <yocto@lists.yoctoproject.org>;
- Wed, 07 Dec 2022 18:54:18 -0800
+ Wed, 07 Dec 2022 19:05:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=gbkrZAcA;
- spf=pass (domain: gmail.com, ip: 209.85.216.46, mailfrom: raj.khem@gmail.com)
-Received: by mail-pj1-f46.google.com with SMTP id o12so335034pjo.4
-        for <yocto@lists.yoctoproject.org>; Wed, 07 Dec 2022 18:54:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:autocrypt:from:references:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GbUqedrUIaeO2tuQfqqbh3ztUsR91YdH3Yb7lzpjVsQ=;
-        b=gbkrZAcAcBltHNahZzzefvZMGYQdfTzUalk/GsJVy5Le+Y3bEwO/LhD5D/brhH3yMT
-         k4QxXm5xlzISrCkwKGtTlp30O9DbznAJgUy+uIFOGpPcMmUv870SYpZYZ+HUbtA+Lvek
-         WtjGk5GgEedlXD1rYU+Lai9y6BDARKIOtT76R3KhdIDYKXnNbo4aFghh3gCXTgKWLFwM
-         3vMmS3OR3vvGWsx8dMKghztjh2ZwBSpVg4Upi2ZN5n8ONuIembHOB412FullhRqTSj/6
-         r0JxndOrWIrPb7Q4rep7rTOZ7zGzDEhyPxLfaKYFSGQlhXn/NxAvmvZJ+Z7Ew4qnxQDd
-         kM7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:autocrypt:from:references:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GbUqedrUIaeO2tuQfqqbh3ztUsR91YdH3Yb7lzpjVsQ=;
-        b=AqaaFXsKd6fM9sW1zd+8twVmsgCmlF0x9FGPEiTxgxvXaFzXO751t6LjSVVXMN5l8J
-         OFnIw460te7QHfdFs2LmSfOtBfwHLxb+tYWhM5R3mmHFtVrGqFEnZzWD+GcIXit7+I8z
-         cD72lgR7s1QKVbJxpY6lA2dFIba4qkCeFme+Jc7trpvY5zKKkqMe7k1UZJ7wD5iFDA49
-         rwW+MDf79eDVW/WHKx/WgiVJdZHDDK9nPwoiJJ+9P9WEq2WW2KwhlNIyJLW5XJ9ZybrX
-         Hu2MF7Tc2KFERARQW75AaD9hG+dTP7QqcMdPJXWuYilri3jLlkS2t6BLBrrM1pW/pY2b
-         JyMA==
-X-Gm-Message-State: ANoB5pm7UTHM9SyDjHsam9kI3Y9d/hLJbZhm8H0RJLk+2CZovxSkE2PQ
-	raqgcajzPyNfVoegfo+i/PD7YoxPam8=
-X-Google-Smtp-Source: AA0mqf5ZKTcU1V0Rfth3la1i7TovrFqzbw9ZoDIGmdF2krMB7JbkzYjny5SkvxZN78B39xY9KqXX2w==
-X-Received: by 2002:a17:902:8215:b0:185:441e:2342 with SMTP id x21-20020a170902821500b00185441e2342mr1293551pln.56.1670468057452;
-        Wed, 07 Dec 2022 18:54:17 -0800 (PST)
-Received: from ?IPV6:2601:646:9181:1cf0:8c2e:bc6:b045:b9ce? ([2601:646:9181:1cf0:8c2e:bc6:b045:b9ce])
-        by smtp.gmail.com with ESMTPSA id ix19-20020a170902f81300b00189c536c72asm9471901plb.148.2022.12.07.18.54.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 18:54:16 -0800 (PST)
-Message-ID: <d71b3349-a560-9c0e-550c-d0c93ca2fd6d@gmail.com>
-Date: Wed, 7 Dec 2022 18:54:15 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.5.1
-Subject: Re: [yocto] Missing stropts.h header file - Dunfell
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel header.b=nrpX4EyN;
+ spf=pass (domain: intel.com, ip: 134.134.136.31, mailfrom: anuj.mittal@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1670468734; x=1702004734;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-id:content-transfer-encoding:mime-version;
+  bh=Ub6TRFUWkWaGIC2mHe4j9/GLnq+CSfKpBqmA76bkzPc=;
+  b=nrpX4EyNBrAW3JN1/6TiRrr3nqygSVtTKy03vNn3whPm3E9S9pmJ5urr
+   aqs5P3DhTGgcAgWUmtOj61ZB+xCEC6QdRIH9O6AjNmMTbd3whUJpsLaca
+   74VHqr+jrM9UyUby27XHsa9W3DbxGW0/NeLIbtiFim4RCGmN4bo6hKZA3
+   W5DGZ+E+dkSMi0sUj9mbgmA+7Tp87n5j2Uk6qzu0CITzVKK6L/O5oO/95
+   8ViWewaS/jPiO6YkqINDvQxIO2hkV59LDUXw9Sehglvkf7xhzMDnrKVkP
+   CAN4TwF4FUrTupbieE5/rexfHwOLE+i+F/qnJLZNr1LgRhgcZtFiSbr8+
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="379226583"
+X-IronPort-AV: E=Sophos;i="5.96,226,1665471600"; 
+   d="scan'208";a="379226583"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2022 19:05:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="597189812"
+X-IronPort-AV: E=Sophos;i="5.96,226,1665471600"; 
+   d="scan'208";a="597189812"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by orsmga003.jf.intel.com with ESMTP; 07 Dec 2022 19:05:33 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 7 Dec 2022 19:05:33 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 7 Dec 2022 19:05:33 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Wed, 7 Dec 2022 19:05:32 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n7lq2Rlgoh/Y6z5SMWJa+ljsf9AbnPMC78Eb5hczkt+YV4yRmDaOHCB0L3d1JHo8Y8TTFXmZiBv9CGJnfG0QLzvrUBtWO9vwFpIBiYXWNm29NXINYRSzNwz4796mWgM0hC9acU1N11eIupt/vsvIzTPQTuNW6TpbXUyCF4eJuFRPsIVLPgGV5DiH8Y1OOQeYLytMxWp+k3ac+0/hFPnr2S6vlFI9e8CqGm62NnmjLgL5u7hgWMff8bS+7s9ihdfeAGyfdsMpWoLQYzLmvkc4gi6Y/kdJJ/njsbPUGsX3SWiXz1Xy8jurAnqACkEQVL8bWpj2KZi2oB8REhnQHkC8lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ub6TRFUWkWaGIC2mHe4j9/GLnq+CSfKpBqmA76bkzPc=;
+ b=JVWhIHWdIBNn4uFQiIL1ddCErNrtAI/yR0XM5/VDB84qH+zfkuXe5S/dJsCIGQyNhpQGuaoEpLRTNQl0YglhpxX7qrpFG2zLtroceyi4SFiP3rXcKqjaUmGwd3McOmb1QJGvaYAUTrIsqnDM1gVZPEocD3BnTMxr7hS9ABYgoq59ZdYbfZRRJC5GxIY/eRMKzmpooMG1QJgbNtJFMsu6jgnfVk1ubYjPJ1NP5y+y5pM+Hyny1S7s98Yr944aq3d/s6IpjsZwodnQsSseRrWVPHThQDKRW6M1iFMSdJSL9BufB+7h3hQplvel1Sf1q/xLXMMAu5Ze9qbSql4tDygDOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com (2603:10b6:208:3aa::18)
+ by PH8PR11MB6926.namprd11.prod.outlook.com (2603:10b6:510:226::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Thu, 8 Dec
+ 2022 03:05:30 +0000
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::e4f7:a82d:dd09:a55d]) by IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::e4f7:a82d:dd09:a55d%4]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
+ 03:05:30 +0000
+From: "Mittal, Anuj" <anuj.mittal@intel.com>
+To: "gary@missionsecure.com" <gary@missionsecure.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] #kirkstone #systemd
+Thread-Topic: [yocto] #kirkstone #systemd
+Thread-Index: AQHZCo1RP07JWRsicEe5ZtsnNeB7d65jTruA
+Date: Thu, 8 Dec 2022 03:05:29 +0000
+Message-ID: <38ac59d79f2562488b098071bbcf0f3e11d8cd8a.camel@intel.com>
+References: <NqFY.1670452987971380409.tdnO@lists.yoctoproject.org>
+In-Reply-To: <NqFY.1670452987971380409.tdnO@lists.yoctoproject.org>
+Accept-Language: en-US
 Content-Language: en-US
-To: Sethu Madhav <sethu.m@calixto.co.in>, yocto@lists.yoctoproject.org
-References: <CAFjAHzH-Jow3hfTBuBF_B5C+HV+AJoAo85_tmv7AmAKG6_VNjw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Autocrypt: addr=raj.khem@gmail.com; keydata=
- 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
-In-Reply-To: <CAFjAHzH-Jow3hfTBuBF_B5C+HV+AJoAo85_tmv7AmAKG6_VNjw@mail.gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------OqT0FLrucLtxa6T2uEgMc0o7"
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6418:EE_|PH8PR11MB6926:EE_
+x-ms-office365-filtering-correlation-id: de64991b-a212-476f-5eca-08dad8c91020
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YQc7YCEgF5n2kYDDBSMHjN49lfhPPeEyWI7hJOOgBoDSz/yUTVYkfh3d+LF2MzlyPzQcKJ6cvc2qd6RR9HvZPjeZyynBRmHrzo8vBgHBzc5X9ZULu4hNvVePe2w3RhqJ4poOKNoAYRNymsI8zGN3gwPDHZZlTQMXUV60ddJ/VOWlPvmXpyYDpXUXxxPcplGZkDMJMRCMs9pYKyvMWlnLyUfMGCh2dQcVPUMjBzTn/74agWXCMPh1sf5B7AQ5iNO1fPSR2y6TIgwxPRCusslyZQ5ICSNNBnKc8OzMmafotc7tvWRwL66capE4fLV/Q1HXx9FyLgtbTYdd/X/a7Vu2mVk5X6akRjzlOsM7+Et2kacQ4SGjn0vPtH84VfRAvAyVyy4HluY/xWMuXGvEHjh8d4xz5hGKklqsV4P4iivQE6J5fLSXCnb+3gkcymkc8KgQ5JVI9PSFEqo1tQFAW8QhOcP7ZfW3TWSZOqcSKMwjSvGcrQjVw/wxygDyP8/WOaShd/Ql4VapkKQqEJlWpEKdSuIukDgFS/V91+aOEPq4ahdt4GV2DPApCxK82No0mFmwuyq7qqDLPN9RBlFqDpkFooGORU7pax1faLLEJk5ION4+McvYIo2WMWvvqmliZR2nPPofaTvrn9sMR3+jXEx8sgKhCHGjIVh8Ey1PriDlhsbLQmxZMKUtEnK1KGOH3JyZJEFiCbn7SCKoQTBbRIs4HA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB6418.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(366004)(396003)(376002)(136003)(39860400002)(451199015)(66946007)(76116006)(66476007)(66556008)(91956017)(66446008)(8676002)(5660300002)(4744005)(2906002)(41300700001)(64756008)(8936002)(316002)(122000001)(71200400001)(110136005)(478600001)(6512007)(6486002)(36756003)(26005)(6506007)(186003)(2616005)(38070700005)(38100700002)(86362001)(82960400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eUF5QnNJM3RGcHNvRUJ4Q0xNK015QVd6U2xNNlVuQXNjNXVWMTBEYm51YW1F?=
+ =?utf-8?B?ZXRKTzcwaXJNMjJwazlrbkgzR2VuMmRFdUt2RG9vbjVMcUUyNjF3SEJPUFoz?=
+ =?utf-8?B?bnZsNXJkUUhTZ3Q5SG5JTldVblY4UVBGaDRRNUJGd3VpTlFzbWxZdHZ0a1Zn?=
+ =?utf-8?B?VWZMUjNHWGU4Mlh4anhURVFkOGtvOTVMQWlpOTJRdTZZSTQ1S2tydzdZbFN6?=
+ =?utf-8?B?MVloaEFZNi8rek5FbGZRN3FJOEZQSWc1ZFpFUlhrcUNnbnpENEdUUzltbDha?=
+ =?utf-8?B?RmZiV01EbnFNRjFtMm01MnEybHRIdVBueUdqRVd1enFuVys1dTY2Tnk5WG01?=
+ =?utf-8?B?ckpsVTRGUXA0dU04b0ErSFExdlpzMzVob3FSTDUvVTh2Ym1pNmlVcERtS2dY?=
+ =?utf-8?B?ZFJUVDFUNmhGeXlrU1o0NzFvczdQMVY5WU9TRzFOU1plMlpscUx6OVJnRGVz?=
+ =?utf-8?B?M0EybXd6N1VtME90dnpUd2lOOFJKQ29TVVZoU08zMkFaYjd6VVNtUWdJellW?=
+ =?utf-8?B?OE5odlJnQTNyajFzZkdQZFhscXY5c2lsUGdpNWRucmVldFZWNHVhSTVVdURR?=
+ =?utf-8?B?S2kwWmV0eExtMEZOaThuR01iZXZLYyt2bDlvQS9QeWhvRmVPMGZMcjQvS1No?=
+ =?utf-8?B?c21ENEpIRGRsMVREUzY3akJUWTFHSjFBTS96c3loTkI2RXJ2enZvWVBBUWtL?=
+ =?utf-8?B?SVI5Ny9zdFkrbm8rUi8xdGdUbldjUjJoWjhQWmNvSWdqOGFPeTd2STBLb0xK?=
+ =?utf-8?B?K3RxcjNOR0RSWFJqQW93NEI0K2grM2srSUprQlo5WmRLdHhnZk5oYVkwV3Zh?=
+ =?utf-8?B?TThtT3BKSjgwcU5kWC9ULzhYRU9nVXpzUkxJajA2ZHE2Q1lSTWJteEVIT2Z2?=
+ =?utf-8?B?REE3aXQ0RGRYakNJd0ZWaW5JUGVKY3I2WHkvZ0xYSldONldsVzd4NU5rNUNP?=
+ =?utf-8?B?VzlHM3Q5ZTMrV2ZSb2dyOEZpSHVGOG9LeThqZE11ZnNvL0VrOFI1cE1ScFZJ?=
+ =?utf-8?B?akxGd1NUdzRQcE1FSUZMMUpHZlVWeTEybGo5TjRhR0lFZWFtT1o0dVcva2ta?=
+ =?utf-8?B?bWt0STZDN2hadDQwUXRqOXlMUzZOZ1R6TGZOYXVKMzBWYkF3M3U0WHdPZURa?=
+ =?utf-8?B?VGlNNEoycDV4ZVp0KzFsZUdiVFNJVmZIMXZ0b0pXK2IxcW5wS0hqV0RJeGds?=
+ =?utf-8?B?MUN6S0VhQ25seUNyY3NVREd1bEt6OXVjMmFwZy82d25Qd3BIWmdmRzRqbktJ?=
+ =?utf-8?B?dUMxcktDNm1xSXVpL2IyMUxOSUFsbmlnT1k4OFFUNEwvMVZFUmE2N3JWdHky?=
+ =?utf-8?B?NjMvYUdHemVFY294bFFOTGRGMlQyR3d1YmQzVitLTC82d2VFeDdXUFY2OERT?=
+ =?utf-8?B?Mk9aZW16NEtzSTlaeEJtSkRNMHNXRElRU2VFWUVIZFFJRjRTUHRIZ0djaVRI?=
+ =?utf-8?B?eGF1ZGJ4WDNDQXFGMUIxc3VhWm9HeDdHdUl3RlZMODFCMG9Nc0diWm1UdUxi?=
+ =?utf-8?B?V1JKR2hvdmtPN0JDZXlWc3FhcndScDN2Q1lPMFAyQTVza1FIcU9qVi80U0R1?=
+ =?utf-8?B?TXM3NjJZSlpwQTJIdUd3UFU5NkxENS9OV1ZJcE1QVjJiTzAyMVBWcUdZbUhC?=
+ =?utf-8?B?VW1qVTV2V1NUVjFwa25NanZ0aEJid3V2NVlReGtyQjdZWk9UbUQzNDVJTC9u?=
+ =?utf-8?B?cUVjVHc1QjNVKzVhUzZGYVo5eERmbDg0dmkzcDRqSEIyTzRNK0hBenRZYk5a?=
+ =?utf-8?B?NGUxUUdJakM5R0s5K0R1ZFRnT0pxZEQ1clk2RDNhYnp2TE1CcnZROGI3ZTl0?=
+ =?utf-8?B?UVBUcEJoUXNCT3pNV0NtOHFJODdWMDFVNDRNZlZxaFUrM3Q3U2NUdkJOSCs2?=
+ =?utf-8?B?VHI0NzFmSlJCYWcrVDU5TFBoQzJBY1Z0ZmlzM3NMbTE0b1llNSt6aGJGM0lR?=
+ =?utf-8?B?c2RBRXlMRTVPSkxLNjcrNTVVSlBHMnlURE9KWUJQZWhIM3NrMEoySlUxOWht?=
+ =?utf-8?B?eFpLdm1FNWdGSGdZektqQ0QveXpaNXdzUDlCMEMzcjZPSnM2dC9jUVZBQ0px?=
+ =?utf-8?B?a1FXbFNWc2dMYWsyb0lxbGVBek9YQWJUU21KaDNzc2VoaWcvcllzejFIZTFl?=
+ =?utf-8?B?UkVCckZkUzFBUzhqalBqejNYZy9IZm11MjZnWXAxRW9SeGU1czFxR25wb2h2?=
+ =?utf-8?B?QXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9D832B394E5ED3458EAB8B47C5CAEAF4@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6418.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: de64991b-a212-476f-5eca-08dad8c91020
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Dec 2022 03:05:29.6767
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /rc05HB6Sm7nBDGcyJ/MfuM8m9mfbQUc6Xsp3lYFxmMoimudJkXmnRxfz0U9Vj0khr6tTSZaqYtqeBXrdc/Z8Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6926
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 02:54:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58752
+ <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 03:05:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58753
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------OqT0FLrucLtxa6T2uEgMc0o7
-Content-Type: multipart/mixed; boundary="------------aYStWqVGJK17meu0z740OAJ6";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: Sethu Madhav <sethu.m@calixto.co.in>, yocto@lists.yoctoproject.org
-Message-ID: <d71b3349-a560-9c0e-550c-d0c93ca2fd6d@gmail.com>
-Subject: Re: [yocto] Missing stropts.h header file - Dunfell
-References: <CAFjAHzH-Jow3hfTBuBF_B5C+HV+AJoAo85_tmv7AmAKG6_VNjw@mail.gmail.com>
-In-Reply-To: <CAFjAHzH-Jow3hfTBuBF_B5C+HV+AJoAo85_tmv7AmAKG6_VNjw@mail.gmail.com>
-
---------------aYStWqVGJK17meu0z740OAJ6
-Content-Type: multipart/mixed; boundary="------------xNKCxfAlK3ovYyrDoSIxagOP"
-
---------------xNKCxfAlK3ovYyrDoSIxagOP
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-
-T24gMTIvNy8yMiA1OjMyIEFNLCBTZXRodSBNYWRoYXYgd3JvdGU6DQo+IEhpICwNCj4gIMKg
-Q2FuIGFueW9uZSBoZWxwIHRvIGluY2x1ZGUgdGhlICpzdHJvcHRzLmgqIGhlYWRlciBmaWxl
-IHRvIHRoZSBkdW5mZWxsIA0KPiAuIEkgdHJpZWQgYWRkaW5nIHRoZSBnbGliYyB0byB0aGUg
-aW1hZ2UgYnV0IG5vIGx1Y2suIEhvdyB0byBpbmNsdWRlIA0KPiBzdHJvcHRzLmggaW4gZHVu
-ZmVsbCB2ZXJzaW9uLg0KPiANCg0KaXQgc2hvdWxkIGJlIHBhcnQgb2YgZ2xpYmMtZGV2ZWwg
-cGFja2FnZSBidWlsZCBmcm9tIGdsaWJjIHJlY2lwZS4NCmNhbiB5b3UgZGVzY3JpYmUgeW91
-ciB1c2VjYXNlIHdoZXJlIHlvdSBuZWVkIGl0ID8NCg0KPiANCj4gLT0tPS09LT0tPS09LT0t
-PS09LT0tPS0NCj4gTGlua3M6IFlvdSByZWNlaXZlIGFsbCBtZXNzYWdlcyBzZW50IHRvIHRo
-aXMgZ3JvdXAuDQo+IFlvdSBhdXRvbWF0aWNhbGx5IGZvbGxvdyBhbnkgdG9waWNzIHlvdSBz
-dGFydCBvciByZXBseSB0by4NCj4gVmlldy9SZXBseSBPbmxpbmUgKCM1ODc0NSk6IGh0dHBz
-Oi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL21lc3NhZ2UvNTg3NDUNCj4gTXV0
-ZSBUaGlzIFRvcGljOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvOTU1MTUx
-NTkvMTk5NzkxNA0KPiBHcm91cCBPd25lcjogeW9jdG8rb3duZXJAbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZw0KPiBVbnN1YnNjcmliZTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
-L2cveW9jdG8vdW5zdWIgW3Jhai5raGVtQGdtYWlsLmNvbV0NCj4gLT0tPS09LT0tPS09LT0t
-PS09LT0tPS0NCj4gDQo=
---------------xNKCxfAlK3ovYyrDoSIxagOP
-Content-Type: application/pgp-keys; name="OpenPGP_0xBB053355919D3314.asc"
-Content-Disposition: attachment; filename="OpenPGP_0xBB053355919D3314.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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
-//VuX4EDPW3CZmbPy6U=3D
-=3D+jUt
------END PGP PUBLIC KEY BLOCK-----
-
---------------xNKCxfAlK3ovYyrDoSIxagOP--
-
---------------aYStWqVGJK17meu0z740OAJ6--
-
---------------OqT0FLrucLtxa6T2uEgMc0o7
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wmMEABEIACMWIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCY5FR1wUDAAAAAAAKCRC7BTNVkZ0zFBYA
-AJsH9MSvk1QT3hw5a0fZ0sYa1CPyZACeOIHtEmtSugfYvkQnhpcJuY9pkCg=
-=FuiC
------END PGP SIGNATURE-----
-
---------------OqT0FLrucLtxa6T2uEgMc0o7--
+T24gV2VkLCAyMDIyLTEyLTA3IGF0IDE0OjQzIC0wODAwLCBHYXJ5IEh1YmFuZCB2aWENCmxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcgd3JvdGU6DQo+IEknbSBidWlsZGluZyBhbiBpbnRlbC1jb3JlaTct
+NjQgaW1hZ2UgdXNpbmcgbWV0YS1pbnRlbCB3aXRoIHN5c3RlbWQuwqANCj4gSSBuZWVkIHRvIG1v
+ZGlmeSAvYm9vdC9sb2FkZXIvbG9hZGVyLmNvbmYgYW5kDQo+IC9ib290L2xvYWRlci9lbnRyaWVz
+L2Jvb3QuY29uZi7CoCBJJ3ZlIHRyaWVkIHVzaW5nIGRldnRvb2wgbW9kaWZ5IGZvcg0KPiBzeXN0
+ZW1kLCBzeXN0ZW1kLWNvbmYsIHN5c3RlbWQtYm9vdCwgYW5kIHN5c3RlbWQtYm9vdGNvbmYsIGJ1
+dCB0aGUNCj4gZmlsZXMgd2VyZSBub3QgaW4gdGhvc2UgcmVjaXBlcy7CoCBXaGF0IHJlY2lwZSBk
+byBJIG1vZGlmeSB0byBjaGFuZ2UNCj4gbG9hZGVyLmNvbmYgYW5kIGJvb3QuY29uZj8NCj4gDQoN
+CklmIHlvdSBhcmUgdXNpbmcgd2ljLCB5b3Ugd2lsbCBuZWVkIHRvIG1vZGlmeSB5b3VyIC53a3Mg
+ZmlsZSB0byBzdXBwbHkNCmFkZGl0aW9uYWwgcGFyYW1ldGVycyBhcyB0aGUgZmlsZXMgYXJlIGdl
+bmVyYXRlZCBieSBib290aW1nLWVmaSBwbHVnaW4NCmluIHdpYy4gVGhlIGJvb3RpbWctZWZpIHBs
+dWdpbiBhbHNvIGFsbG93cyBzdXBwbHlpbmcgYSBjdXN0b20gYm9vdCBjZmcNCmZpbGUgYXMgd2Vs
+bC4NCg0KVGhhbmtzLA0KDQpBbnVqDQo=
 
