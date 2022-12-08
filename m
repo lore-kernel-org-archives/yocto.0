@@ -1,292 +1,321 @@
-Return-Path: <gary@missionsecure.com>
+Return-Path: <michael@amarulasolutions.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F02A9C4332F
-	for <webhook@archiver.kernel.org>; Thu,  8 Dec 2022 14:17:06 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (NAM11-CO1-obe.outbound.protection.outlook.com [40.107.220.88])
- by mx.groups.io with SMTP id smtpd.web11.14917.1670509018184288384
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F246DC63703
+	for <webhook@archiver.kernel.org>; Thu,  8 Dec 2022 14:21:56 +0000 (UTC)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+ by mx.groups.io with SMTP id smtpd.web10.15027.1670509311965430124
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Dec 2022 06:16:58 -0800
+ Thu, 08 Dec 2022 06:21:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@missionsecure.com header.s=selector2 header.b=sk7U4oIc;
- spf=pass (domain: missionsecure.com, ip: 40.107.220.88, mailfrom: gary@missionsecure.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n0MvFmG1KT1rQaRsaFi83+nCFRoXOhbfQA/f6VAv4zcjv5A3K8gWV8/smlMQIXtbdx03g/PssBktuCa+XVX2bElUUTW2SFKe38Zq8nGeUEzhIwIfVMGP4RsZx0Z31ije5y3G+PBWEq7fgktWWI2tViEHaap9hrgSxIqVvDk5PnEHquPYi8iEEntooCdp8ys4jmhVxpn8gkUWeT5KnkGKf124LVHVYETUAIss+u0EbyYB+S0BeOoaalb3DjLUrjoN/PFFMf8FnKdUgCF0wRp7qSTXWE2wfLgQtmndabIBgP7i6UokfHz7XrmSF9OJZ3+KaJsAhAF0Oy6CyhSgrT0ccg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mu6wXFYy2e7KxcSbYvVECMi2TAgajW3JN7+9Q8K7OtI=;
- b=BsGKBNMuoT7pPQVPEfbsYdjab9Rw6DJWKvMminHkSX/3FgGT7t4+78OqaITGWnuk9wiSbP5F6r18KdObuNmEds7//CI3FTX53JBfS0qOL35RD8RJWOBcHh3i5GzkoqzJZXntUQINLgkC9YHQaQ4/K9uUoLC/b7JnyrzsZYXxvVAnkT32GT85NMGBiSpzy73qqq1gC6Sj8hhO+sxVArPJTP8nCmKoWFB8HS2PGJj0XFjTKec8fk8/hgxDGGkNuytSEfD7QON8tGOaxw2mGagSaQs/Tpt+3HpMi6j/Mk7zZIfNoikorVuVNJrgQMWnJkxytzbRTVrOk9Qk5qfThkNZ1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=missionsecure.com; dmarc=pass action=none
- header.from=missionsecure.com; dkim=pass header.d=missionsecure.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=MissionSecure.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mu6wXFYy2e7KxcSbYvVECMi2TAgajW3JN7+9Q8K7OtI=;
- b=sk7U4oIclK3VJHFEu+xFm24j9temwkImJjCsTUsuMb1t2K5nOJN7RHU9HW6grRCI5O28WuCEKF+9qgNomKuKsaVv8RTctQRDtzw7mifN3Y/vdV20GXXAJ8cn518Q4NQFzlPJy1J9QeMOE0LVTNYWyckHb3PF5WvmPzKvWRa1/UM=
-Received: from MN2PR17MB3903.namprd17.prod.outlook.com (2603:10b6:208:20f::14)
- by SJ0PR17MB4599.namprd17.prod.outlook.com (2603:10b6:a03:370::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.10; Thu, 8 Dec
- 2022 14:16:54 +0000
-Received: from MN2PR17MB3903.namprd17.prod.outlook.com
- ([fe80::b5de:f0fd:4bed:b75]) by MN2PR17MB3903.namprd17.prod.outlook.com
- ([fe80::b5de:f0fd:4bed:b75%9]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
- 14:16:54 +0000
-From: Gary Huband <Gary@MissionSecure.com>
-To: "Mittal, Anuj" <anuj.mittal@intel.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] #kirkstone #systemd
-Thread-Topic: [yocto] #kirkstone #systemd
-Thread-Index: AQHZCo1J92gf13noW0yEuGOdJfFY1K5jTr+AgAC7eTM=
-Date: Thu, 8 Dec 2022 14:16:54 +0000
-Message-ID: 
- <MN2PR17MB3903B7C0F328FA372E867211C31D9@MN2PR17MB3903.namprd17.prod.outlook.com>
-References: <NqFY.1670452987971380409.tdnO@lists.yoctoproject.org>
- <38ac59d79f2562488b098071bbcf0f3e11d8cd8a.camel@intel.com>
-In-Reply-To: <38ac59d79f2562488b098071bbcf0f3e11d8cd8a.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=MissionSecure.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN2PR17MB3903:EE_|SJ0PR17MB4599:EE_
-x-ms-office365-filtering-correlation-id: 7cf06124-923e-4e58-c2a2-08dad926db8c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- V13eyDRzw/O0Ieu216il1GobFlcjrQ7AL5GYyhq3OBQDwNKRWrRV4icoFflnHXFm0VpHTjktwcyExa7Ghi6QeDRMEnLJbJ38JXAupKbTmmv8yP3n0fg+VpvWSxDWWRd2NK8EMjufviXqXHK81UPzTKnKusZ1tWk/Vu9TdA7hWs7EW2utEF6Nbhq+IkX6nbn7FiBjAPFRMdA6q7b692PPcO7SQ+/nMGFDqYCi15MK26k0m1FooI7KfXI6EcJLbOf8B+qmW/FUFJYiuF1ffG+byaT12LkorDemiJXsyZaoamFndGblgEbY6wqnRfQmmGbERl3rajf45HQP/Z/vZ4H8CRCx0BzfF/ClIIg6WndHAzxPj0XjIHPPizhrucJoBfo/Ov7/AobtitYZJxTnq2Re3G1WL2h3yY8zcJLdiaCfSThvBxThhmfaTbf8EumdsMWAPHQihIgRLRFmaQGr40xGzCkQ09SNMQuZDUGrYUeKLtwY1TB7zbNG+vWpeHBWjRNXqRZnSdgsPOPTWxtjG6uqUlUodaGOvtjpv9h0vy6BThNIRhJj5BX0deWzxmhJ6c9JqY6a3hO9+4LuO/MTKdXEYbCFC8KHbttj/ZUgdEGlLq6+KDkSwaiv1AykCF0d4sSm70Un0iIelFxWZfrUH5mntiwxLqsHvdA+6G3cHKCu2x/D8R1tWw/dSXZ4naDtK5IrI0v5yuiTdrDXQGixt6dXZlFKxSLOso/+xST7jghTDkY=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR17MB3903.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(39830400003)(136003)(366004)(396003)(451199015)(1690799008)(38070700005)(55016003)(166002)(86362001)(6506007)(33656002)(478600001)(53546011)(71200400001)(45080400002)(7696005)(8676002)(26005)(8936002)(9686003)(52536014)(41300700001)(76116006)(316002)(66446008)(2906002)(64756008)(110136005)(5660300002)(66946007)(66556008)(66476007)(186003)(38100700002)(40140700001)(122000001)(83380400001)(19627405001)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?NrVTeIvL2NmKvN9PRma+aU1qKmcE5CL4iIYoamNQREayBeyqJK+ZEa9v44SD?=
- =?us-ascii?Q?KMEVMeaW7BTdf2rKLFQBxxWK7fDfRJWPZbH+hYXsT+y/c9yPRnsMDULAj9cC?=
- =?us-ascii?Q?4rZI4CbIppJAhV8/lVkPbkQbEwNF4xQLuFTheSbk7f0ACRVEEphxjr7ylUb4?=
- =?us-ascii?Q?N+gRUSCPWeTz6YN3beJziFsX4bNut33rHdCTzZFutvK+SUuQl7IygMVQPaq/?=
- =?us-ascii?Q?RWdKZIC5KTubhZiCqhaC5spG6XzTxlaa2j2W/kzK2vx68fik1qdpPhPIypg2?=
- =?us-ascii?Q?x2M/4OA+ThADE3XFQyp1YNAqSmpa4sFm+eVfwc2L0q8CnUuhTQJ6wUyId7i7?=
- =?us-ascii?Q?ngiHkNfh4K/nT98Lf/EnUI3KeQuavStOgitDrgNiqW+hz0th7JLjS7u53nkK?=
- =?us-ascii?Q?xJ2GeHUTuvhoSRcvcZlckTWS7POR5lbESsbk/fmqzok7j5vctX+vA17FlAda?=
- =?us-ascii?Q?B74/TNzwtJ7mdeUDlUPgI4/8Q3YM9vvIobs+nWb/KF+sGM1oyTlk+NNtI2PJ?=
- =?us-ascii?Q?0oE3jNbpYmgYzkQNmz8angxnVuhYwX/XK/w8OKWL7oDAjuYepkIJhFkl38mf?=
- =?us-ascii?Q?sWiFaGnLpDSktgsAyUzT1btboveF/w0OKk5agiEVR0sahNTc/JfhV6UDQhFk?=
- =?us-ascii?Q?+J0H4Es2KWPEEONLub+UM8ItsZuZM5l5yckYDUaJStKpSGCyty7go5/jO8kU?=
- =?us-ascii?Q?9pSb9vgGtm/qSfUgdv1y8bDQsl59sz8LyW9D7xRa4fqGb8CrMRSJROh6QU8K?=
- =?us-ascii?Q?51VUZmsYgXH8+320HEKRIvku+zDicbAXDy4YAVhHIgngZeLoZyRkKc/Y8IPa?=
- =?us-ascii?Q?/5MKdr2SjR29BOMrDpWTfWS+Teitlbn/7iCfre5RoTXsCBvG20xD7aJarKo2?=
- =?us-ascii?Q?ALbnHC3Ba/tGNhtI/CXaAt+hxr0OAs2C28g41VlAbo298/+//SPR8o2GvOPD?=
- =?us-ascii?Q?IhVi/fJcEc6Bg6LF1MtxDLf1z/zJ+7iOM6NCMJxJ9NE7a4lmTsDbnsCHQocH?=
- =?us-ascii?Q?1y3Nd0IyDqAWIRscqr3Koi5pzfzb5sQ2fUL90g8cws50CbQ6DG2rODgHKOmo?=
- =?us-ascii?Q?PE9jVo2WCIPc7i8H+6K2DvAexbz6cQBomMd9oagKrHzLex+L/41fb/n2UDtG?=
- =?us-ascii?Q?h9sBY/G0bhorYop5f6Y+IULZqT0QqgiTZH2R7b9hO8SSocM7k3DHYCyBlhZf?=
- =?us-ascii?Q?9I1x3zbVn8DV45m4yKD3AEywPFaxem4+5KjZb5ggs+N2UL2Jw6GECCXctzED?=
- =?us-ascii?Q?AzVa4YjkgsP6D2uoMo137TNhz8LwDmRqRDsHlF6C8LTST4zEQU57ienAHDad?=
- =?us-ascii?Q?apFQYRIky/cpNtrtkU8q9oS3MxcU9jscQfklqb/RHXuc6pbdjrN+HLhjxkQ1?=
- =?us-ascii?Q?MxYmX6545dgTTYnr77WbTSiijX9MLiyGaBLVp6cVDFaf40Sx66Ou8mNxCyTO?=
- =?us-ascii?Q?Gc2i5naROUbL5UIJXo0S2O+LxRUgzUOaoZ4j/nnwGG5BQRP4P3tz1KN66Qnl?=
- =?us-ascii?Q?oeFzztDL5EvhRnohj4pXwPqG5pcRiB4ifA8419GaB7Qkd/76WWFEwgGdEPhc?=
- =?us-ascii?Q?9SXmMuy6B5ir7uOuBVmlG31m4VBlwr0i8ZyVedrd?=
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR17MB3903B7C0F328FA372E867211C31D9MN2PR17MB3903namp_"
+ dkim=pass header.i=@amarulasolutions.com header.s=google header.b=AtZyD7jA;
+ spf=pass (domain: amarulasolutions.com, ip: 209.85.218.49, mailfrom: michael@amarulasolutions.com)
+Received: by mail-ej1-f49.google.com with SMTP id m18so4405269eji.5
+        for <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 06:21:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Yq+fZZspWEzTVkVg4YtTek8fDQQ7FujC7ivwy0rfYck=;
+        b=AtZyD7jAKHjUxpAvdhjVwMFvR1kMrZ3TPNIKaa6IIjix3+IDdUoSLPYX9VXrxf73dr
+         uAJLU+gSAmYOK7BXz4l6KaLfOLugdqDGxkdLnIiHHW1n8cm/FGPZpf45TX3fPwQjTFmW
+         GDmGEVK7SOuyitcO2eHgfoQ4G0BkCMpaZw1mw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Yq+fZZspWEzTVkVg4YtTek8fDQQ7FujC7ivwy0rfYck=;
+        b=GTXfb46HaC7orlnEash7PBcg8JejZLNGNtXfrRqgXtK0t/FvMqMzgO4LUxbd4XBNcX
+         1Yu9FeYBmaqp2bFw0jVJMp5X8DW+Hgd70rHiCBZsK9+1TVuvBn9dPpyGpUJGsV0l2T7H
+         u20ocWRfydHD2G2/G27Sz8JladHe7AsdRpM0uAByJZvzx9gR0HAv0nk8fB+khxaJJaYM
+         T7S6Jcpuva0iOuHhx/YDF1ZNCf64ElXhb5L8awzBoT5XIuYpfeixIx8u4AdMuEVovwCT
+         0t1qb7p/lUUfWO8RWIlomG4nR2VUqQ9dnx7uspXl7yNfiS5BVHT0alo32DJw3cTDcJES
+         y7gw==
+X-Gm-Message-State: ANoB5pmhOh1T9LkzCVK8e5HA58fMDkukhbWTHWFBGgKIEgNCh0EBiqb4
+	8UYZbrrmjC++5RFVL2xvaZTT5gbgNiEmEbWIfpHBtfopSPMwAKsF
+X-Google-Smtp-Source: AA0mqf7fKwgub7fWVWrB7gdj1IlAwEHatl2V0emfQYD/p2hR7ziyOagACcfSm/s9KcXpUVT/08c0RTDt0Muw2hX7gds=
+X-Received: by 2002:a17:907:8c81:b0:7bf:5cc5:67c5 with SMTP id
+ td1-20020a1709078c8100b007bf5cc567c5mr41301734ejc.488.1670509309578; Thu, 08
+ Dec 2022 06:21:49 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: MissionSecure.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR17MB3903.namprd17.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7cf06124-923e-4e58-c2a2-08dad926db8c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Dec 2022 14:16:54.1297
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f0ca9611-f13f-4dc9-8e1b-119172b8ec5d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pYfICdpbhAAAsEeA9oPxoiwLwnvn/1dTOTmR9VOEZqX65kqdybMRP4uJwd33YLhol7s6HgtN8QTg+mj3UkX+QA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR17MB4599
+References: <CAOf5uwmnnryGOSEDqkgA8g0ocn7aPPbv_bnXjBjOCE3FJpGTOw@mail.gmail.com>
+ <CAOf5uwmOQPv0rWF2zwwMdi2Tkvi6syzU9TtmbxPL7Cqo5OEtEg@mail.gmail.com>
+In-Reply-To: <CAOf5uwmOQPv0rWF2zwwMdi2Tkvi6syzU9TtmbxPL7Cqo5OEtEg@mail.gmail.com>
+From: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date: Thu, 8 Dec 2022 15:21:38 +0100
+Message-ID: <CAOf5uwkcLyXxRZ1gN7xQONkHHOLsikyfnOM3wA1Rg8OqmJMLUQ@mail.gmail.com>
+Subject: Fwd: open ssh dunfell unable to login
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 14:17:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58757
+ <yocto@lists.yoctoproject.org>; Thu, 08 Dec 2022 14:21:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58758
 
---_000_MN2PR17MB3903B7C0F328FA372E867211C31D9MN2PR17MB3903namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi
 
-Is there documentation for the bootimg-efi plugin?
-
-Thanks
-
-Gary
-________________________________
-From: Mittal, Anuj <anuj.mittal@intel.com>
-Sent: Wednesday, December 7, 2022 10:05 PM
-To: Gary Huband <Gary@MissionSecure.com>; yocto@lists.yoctoproject.org <yoc=
-to@lists.yoctoproject.org>
-Subject: Re: [yocto] #kirkstone #systemd
-
-On Wed, 2022-12-07 at 14:43 -0800, Gary Huband via
-lists.yoctoproject.org wrote:
-> I'm building an intel-corei7-64 image using meta-intel with systemd.
-> I need to modify /boot/loader/loader.conf and
-> /boot/loader/entries/boot.conf.  I've tried using devtool modify for
-> systemd, systemd-conf, systemd-boot, and systemd-bootconf, but the
-> files were not in those recipes.  What recipe do I modify to change
-> loader.conf and boot.conf?
+On Mon, Nov 14, 2022 at 5:47 PM Michael Nazzareno Trimarchi
+<michael@amarulasolutions.com> wrote:
+>
+> Hi all
+>
+> testing the openssh-server and I set root password but I'm enable to logi=
+n
+>
+> server side
+> /usr/sbin/sshd -d -D
 >
 
-If you are using wic, you will need to modify your .wks file to supply
-additional parameters as the files are generated by bootimg-efi plugin
-in wic. The bootimg-efi plugin also allows supplying a custom boot cfg
-file as well.
+I basically solve it with dropbear instead of openssh. Has anybody
+found the same problem on dunfell?
 
-Thanks,
+Michael
 
-Anuj
-
-Gary Huband
-Sr. Software and Systems Engineer
-
-Office: 434.284.8071 x720
-Direct: 434.260.4995
-Gary@MissionSecure.com
-
-Follow Us!
-LinkedIn<https://www.linkedin.com/company/mission-secure-inc->  |  Blog<htt=
-ps://www.missionsecure.com/blog?utm_source=3Demail-signature&utm_medium=3De=
-mail&utm_campaign=3Dblog-email-sig>  |  Website<https://www.missionsecure.c=
-om/?utm_source=3Demail-signature&utm_medium=3Demail&utm_campaign=3Dweb-emai=
-l-sig>
-
-: : : : : : : : : : : : : : : : : : : : : : : : : : :
-
-[MSi]
-
-This email and any files transmitted with it are confidential and proprieta=
-ry and intended solely for the use of the individual or entity to whom they=
- are addressed. Any dissemination, distribution or copying of this communic=
-ation is strictly prohibited without our prior permission. If you received =
-this in error, please contact the sender and delete the material from any c=
-omputer.
-
-
---_000_MN2PR17MB3903B7C0F328FA372E867211C31D9MN2PR17MB3903namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> debug1: sshd version OpenSSH_8.2, OpenSSL 1.1.1q 5 Jul 2022
+> debug1: private host key #0: ssh-rsa
+> SHA256:1endrZLJnyyoE2x+MfLB3JIpEqgzCrORriOhvSSN2HM
+> debug1: private host key #1: ecdsa-sha2-nistp256
+> SHA256:1Ivo0c/GWF22iwwEAc0D+E79qSH/0eTxDH0pldsfuk4
+> debug1: private host key #2: ssh-ed25519
+> SHA256:CEHX4ATsgGL4De/rJlyNmwqqCk0Ewf1r4jU4spHTP88
+> debug1: rexec_argv[0]=3D'/usr/sbin/sshd'
+> debug1: rexec_argv[1]=3D'-d'
+> debug1: rexec_argv[2]=3D'-D'
+> debug1: Set /proc/self/oom_score_adj from 0 to -1000
+> debug1: Bind to port 22 on 0.0.0.0.
+> Server listening on 0.0.0.0 port 22.
+> debug1: Bind to port 22 on ::.
+> Server listening on :: port 22.
+> debug1: Server will not fork when running in debugging mode.
+> debug1: rexec start in 5 out 5 newsock 5 pipe -1 sock 8
+> debug1: sshd version OpenSSH_8.2, OpenSSL 1.1.1q 5 Jul 2022
+> debug1: private host key #0: ssh-rsa
+> SHA256:1endrZLJnyyoE2x+MfLB3JIpEqgzCrORriOhvSSN2HM
+> debug1: private host key #1: ecdsa-sha2-nistp256
+> SHA256:1Ivo0c/GWF22iwwEAc0D+E79qSH/0eTxDH0pldsfuk4
+> debug1: private host key #2: ssh-ed25519
+> SHA256:CEHX4ATsgGL4De/rJlyNmwqqCk0Ewf1r4jU4spHTP88
+> debug1: inetd sockets after dupping: 3, 3
+> Connection from 192.168.1.8 port 59662 on 192.168.1.3 port 22 rdomain ""
+> debug1: Local version string SSH-2.0-OpenSSH_8.2
+> debug1: Remote protocol version 2.0, remote software version
+> OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+> debug1: match: OpenSSH_8.2p1 Ubuntu-4ubuntu0.5 pat OpenSSH* compat 0x0400=
+0000
+> debug1: permanently_set_uid: 997/997 [preauth]
+> debug1: list_hostkey_types:
+> rsa-sha2-512,rsa-sha2-256,ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519
+> [preauth]
+> debug1: SSH2_MSG_KEXINIT sent [preauth]
+> debug1: SSH2_MSG_KEXINIT received [preauth]
+> debug1: kex: algorithm: curve25519-sha256 [preauth]
+> debug1: kex: host key algorithm: ecdsa-sha2-nistp256 [preauth]
+> debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC:
+> <implicit> compression: none [preauth]
+> debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC:
+> <implicit> compression: none [preauth]
+> debug1: expecting SSH2_MSG_KEX_ECDH_INIT [preauth]
+> debug1: rekey out after 134217728 blocks [preauth]
+> debug1: SSH2_MSG_NEWKEYS sent [preauth]
+> debug1: Sending SSH2_MSG_EXT_INFO [preauth]
+> debug1: expecting SSH2_MSG_NEWKEYS [preauth]
+> debug1: SSH2_MSG_NEWKEYS received [preauth]
+> debug1: rekey in after 134217728 blocks [preauth]
+> debug1: KEX done [preauth]
+> debug1: userauth-request for user root service ssh-connection method
+> none [preauth]
+> debug1: attempt 0 failures 0 [preauth]
+> debug1: monitor_read_log: child log fd closed
+> debug1: do_cleanup
+> debug1: Killing privsep child 873
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
-elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
-r: rgb(255, 255, 255);">Is there documentation for the bootimg-efi plugin?<=
-/span></div>
-<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
-elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
-r: rgb(255, 255, 255);"><br>
-</span></div>
-<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
-elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
-r: rgb(255, 255, 255);">Thanks</span></div>
-<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
-elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
-r: rgb(255, 255, 255);"><br>
-</span></div>
-<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
-elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
-r: rgb(255, 255, 255);">Gary<br>
-</span></div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Mittal, Anuj &lt;anuj=
-.mittal@intel.com&gt;<br>
-<b>Sent:</b> Wednesday, December 7, 2022 10:05 PM<br>
-<b>To:</b> Gary Huband &lt;Gary@MissionSecure.com&gt;; yocto@lists.yoctopro=
-ject.org &lt;yocto@lists.yoctoproject.org&gt;<br>
-<b>Subject:</b> Re: [yocto] #kirkstone #systemd</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">On Wed, 2022-12-07 at 14:43 -0800, Gary Huband via=
-<br>
-lists.yoctoproject.org wrote:<br>
-&gt; I'm building an intel-corei7-64 image using meta-intel with systemd.&n=
-bsp;<br>
-&gt; I need to modify /boot/loader/loader.conf and<br>
-&gt; /boot/loader/entries/boot.conf.&nbsp; I've tried using devtool modify =
-for<br>
-&gt; systemd, systemd-conf, systemd-boot, and systemd-bootconf, but the<br>
-&gt; files were not in those recipes.&nbsp; What recipe do I modify to chan=
-ge<br>
-&gt; loader.conf and boot.conf?<br>
-&gt; <br>
-<br>
-If you are using wic, you will need to modify your .wks file to supply<br>
-additional parameters as the files are generated by bootimg-efi plugin<br>
-in wic. The bootimg-efi plugin also allows supplying a custom boot cfg<br>
-file as well.<br>
-<br>
-Thanks,<br>
-<br>
-Anuj<br>
-</div>
-</span></font></div>
-<br>
-<div style=3D"font-family: Arial; font-size: 12px; font-style: normal; text=
--transform: uppercase;">
-<font color=3D"#595458"><b>Gary Huband</b></font></div>
-<div style=3D"font-family: Arial; font-size: 11px; font-style: normal;"><fo=
-nt color=3D"#595458"><i>Sr. Software and Systems Engineer</i><br>
-<br>
-Office: 434.284.8071 x720 <br>
-Direct: 434.260.4995 <br>
-Gary@MissionSecure.com<br>
-</font></div>
-<br>
-<div style=3D"font-family: Arial; font-size: 12px; font-style: normal;"><fo=
-nt color=3D"#595458"><b>Follow Us!</b>
-<br>
-<a href=3D"https://www.linkedin.com/company/mission-secure-inc-">LinkedIn</=
-a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=3D"https://www.missionsecure.com/blog?ut=
-m_source=3Demail-signature&amp;utm_medium=3Demail&amp;utm_campaign=3Dblog-e=
-mail-sig">Blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=3D"https://www.missionse=
-cure.com/?utm_source=3Demail-signature&amp;utm_medium=3Demail&amp;utm_campa=
-ign=3Dweb-email-sig">Website</a>
-</font></div>
-<br>
-<div style=3D"color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px;=
- font-style: normal; font-variant: normal; font-weight: normal; letter-spac=
-ing: normal; line-height: normal; orphans: auto; text-align: start; text-in=
-dent: 0px; text-transform: none; white-space: normal; widows: auto; word-sp=
-acing: 0px; -webkit-text-stroke-width: 0px;" class=3D"">
-: : : : : : : : : : : : : : : : : : : : : : : : : : : <br>
-</div>
-<br>
-<div><img height=3D"44" width=3D"115" alt=3D"MSi" src=3D"http://www.mission=
-secure.com/images/MSi_Logo_email.png"></div>
-<br>
-<div style=3D"font-family: Arial; font-size: 11px; font-style: normal;"><fo=
-nt color=3D"#595458">This email and any files transmitted with it are confi=
-dential and proprietary and intended solely for the use of the individual o=
-r entity to whom they are addressed.
- Any dissemination, distribution or copying of this communication is strict=
-ly prohibited without our prior permission. If you received this in error, =
-please contact the sender and delete the material from any computer.</font>=
-</div>
-<br>
-</body>
-</html>
+> Client side
+> ssh -vvv -o PreferredAuthentications=3Dpassword root@192.168.1.3
+>
+> OpenSSH_8.2p1 Ubuntu-4ubuntu0.5, OpenSSL 1.1.1f 31 Mar 2020
+> debug1: Reading configuration data /home/suniel/.ssh/config
+> debug1: Reading configuration data /etc/ssh/ssh_config
+> debug1: /etc/ssh/ssh_config line 19: include
+> /etc/ssh/ssh_config.d/*.conf matched no files
+> debug1: /etc/ssh/ssh_config line 21: Applying options for *
+> debug2: resolve_canonicalize: hostname 192.168.1.3 is address
+> debug2: ssh_connect_direct
+> debug1: Connecting to 192.168.1.3 [192.168.1.3] port 22.
+> debug1: Connection established.
+> debug1: identity file /home/suniel/.ssh/id_rsa type 0
+> debug1: identity file /home/suniel/.ssh/id_rsa-cert type -1
+> debug1: identity file /home/suniel/.ssh/id_dsa type -1
+> debug1: identity file /home/suniel/.ssh/id_dsa-cert type -1
+> debug1: identity file /home/suniel/.ssh/id_ecdsa type -1
+> debug1: identity file /home/suniel/.ssh/id_ecdsa-cert type -1
+> debug1: identity file /home/suniel/.ssh/id_ecdsa_sk type -1
+> debug1: identity file /home/suniel/.ssh/id_ecdsa_sk-cert type -1
+> debug1: identity file /home/suniel/.ssh/id_ed25519 type -1
+> debug1: identity file /home/suniel/.ssh/id_ed25519-cert type -1
+> debug1: identity file /home/suniel/.ssh/id_ed25519_sk type -1
+> debug1: identity file /home/suniel/.ssh/id_ed25519_sk-cert type -1
+> debug1: identity file /home/suniel/.ssh/id_xmss type -1
+> debug1: identity file /home/suniel/.ssh/id_xmss-cert type -1
+> debug1: Local version string SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+> debug1: Remote protocol version 2.0, remote software version OpenSSH_8.2
+> debug1: match: OpenSSH_8.2 pat OpenSSH* compat 0x04000000
+> debug2: fd 3 setting O_NONBLOCK
+> debug1: Authenticating to 192.168.1.3:22 as 'root'
+> debug3: hostkeys_foreach: reading file "/home/suniel/.ssh/known_hosts"
+> debug3: record_hostkey: found key type ECDSA in file
+> /home/suniel/.ssh/known_hosts:23
+> debug3: load_hostkeys: loaded 1 keys from 192.168.1.3
+> debug3: order_hostkeyalgs: prefer hostkeyalgs:
+> ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@ope=
+nssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa=
+-sha2-nistp384,ecdsa-sha2-nistp521
+> debug3: send packet: type 20
+> debug1: SSH2_MSG_KEXINIT sent
+> debug3: receive packet: type 20
+> debug1: SSH2_MSG_KEXINIT received
+> debug2: local client KEXINIT proposal
+> debug2: KEX algorithms:
+> curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sh=
+a2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-=
+hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14=
+-sha256,ext-info-c
+> debug2: host key algorithms:
+> ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@ope=
+nssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa=
+-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256-cert-v01@openssh.=
+com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,rs=
+a-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-c=
+ert-v01@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,sk-ssh-e=
+d25519@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+> debug2: ciphers ctos:
+> chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm=
+@openssh.com,aes256-gcm@openssh.com
+> debug2: ciphers stoc:
+> chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm=
+@openssh.com,aes256-gcm@openssh.com
+> debug2: MACs ctos:
+> umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openss=
+h.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@opens=
+sh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+> debug2: MACs stoc:
+> umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openss=
+h.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@opens=
+sh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+> debug2: compression ctos: none,zlib@openssh.com,zlib
+> debug2: compression stoc: none,zlib@openssh.com,zlib
+> debug2: languages ctos:
+> debug2: languages stoc:
+> debug2: first_kex_follows 0
+> debug2: reserved 0
+> debug2: peer server KEXINIT proposal
+> debug2: KEX algorithms:
+> curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sh=
+a2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-=
+hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14=
+-sha256
+> debug2: host key algorithms:
+> rsa-sha2-512,rsa-sha2-256,ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519
+> debug2: ciphers ctos:
+> chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm=
+@openssh.com,aes256-gcm@openssh.com
+> debug2: ciphers stoc:
+> chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm=
+@openssh.com,aes256-gcm@openssh.com
+> debug2: MACs ctos:
+> umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openss=
+h.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@opens=
+sh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+> debug2: MACs stoc:
+> umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openss=
+h.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@opens=
+sh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+> debug2: compression ctos: none
+> debug2: compression stoc: none
+> debug2: languages ctos:
+> debug2: languages stoc:
+> debug2: first_kex_follows 0
+> debug2: reserved 0
+> debug1: kex: algorithm: curve25519-sha256
+> debug1: kex: host key algorithm: ecdsa-sha2-nistp256
+> debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC:
+> <implicit> compression: none
+> debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC:
+> <implicit> compression: none
+> debug3: send packet: type 30
+> debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+> debug3: receive packet: type 31
+> debug1: Server host key: ecdsa-sha2-nistp256
+> SHA256:1Ivo0c/GWF22iwwEAc0D+E79qSH/0eTxDH0pldsfuk4
+> debug3: hostkeys_foreach: reading file "/home/suniel/.ssh/known_hosts"
+> debug3: record_hostkey: found key type ECDSA in file
+> /home/suniel/.ssh/known_hosts:23
+> debug3: load_hostkeys: loaded 1 keys from 192.168.1.3
+> debug1: Host '192.168.1.3' is known and matches the ECDSA host key.
+> debug1: Found key in /home/suniel/.ssh/known_hosts:23
+> debug3: send packet: type 21
+> debug2: set_newkeys: mode 1
+> debug1: rekey out after 134217728 blocks
+> debug1: SSH2_MSG_NEWKEYS sent
+> debug1: expecting SSH2_MSG_NEWKEYS
+> debug3: receive packet: type 21
+> debug1: SSH2_MSG_NEWKEYS received
+> debug2: set_newkeys: mode 0
+> debug1: rekey in after 134217728 blocks
+> debug1: Will attempt key: /home/suniel/.ssh/id_rsa RSA
+> SHA256:p5HL5mkh62PMNf21jyap6L5b1Epud52b6EaNvAFOFlc agent
+> debug1: Will attempt key: /home/suniel/.ssh/id_dsa
+> debug1: Will attempt key: /home/suniel/.ssh/id_ecdsa
+> debug1: Will attempt key: /home/suniel/.ssh/id_ecdsa_sk
+> debug1: Will attempt key: /home/suniel/.ssh/id_ed25519
+> debug1: Will attempt key: /home/suniel/.ssh/id_ed25519_sk
+> debug1: Will attempt key: /home/suniel/.ssh/id_xmss
+> debug2: pubkey_prepare: done
+> debug3: send packet: type 5
+> debug3: receive packet: type 7
+> debug1: SSH2_MSG_EXT_INFO received
+> debug1: kex_input_ext_info:
+> server-sig-algs=3D<ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha=
+2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sh=
+a2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com>
+> debug3: receive packet: type 6
+> debug2: service_accept: ssh-userauth
+> debug1: SSH2_MSG_SERVICE_ACCEPT received
+> debug3: send packet: type 50
+> Connection closed by 192.168.1.3 port 22
+>
+> Michael
 
---_000_MN2PR17MB3903B7C0F328FA372E867211C31D9MN2PR17MB3903namp_--
+
+
+--
+Michael Nazzareno Trimarchi
+Co-Founder & Chief Executive Officer
+M. +39 347 913 2170
+michael@amarulasolutions.com
+__________________________________
+
+Amarula Solutions BV
+Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+T. +31 (0)85 111 9172
+info@amarulasolutions.com
+www.amarulasolutions.com
+
+
+--=20
+Michael Nazzareno Trimarchi
+Co-Founder & Chief Executive Officer
+M. +39 347 913 2170
+michael@amarulasolutions.com
+__________________________________
+
+Amarula Solutions BV
+Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+T. +31 (0)85 111 9172
+info@amarulasolutions.com
+www.amarulasolutions.com
 
