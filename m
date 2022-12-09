@@ -1,161 +1,130 @@
-Return-Path: <S.Mueller-Klieser@phytec.de>
+Return-Path: <dspore@parraid.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE1A4C4332F
-	for <webhook@archiver.kernel.org>; Fri,  9 Dec 2022 11:20:48 +0000 (UTC)
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
- by mx.groups.io with SMTP id smtpd.web10.10836.1670584844321324027
- for <yocto@lists.yoctoproject.org>;
- Fri, 09 Dec 2022 03:20:44 -0800
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@phytec.de header.s=a4 header.b=mtJuxHZz;
- spf=pass (domain: phytec.de, ip: 91.26.50.163, mailfrom: s.mueller-klieser@phytec.de)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1670584841; x=1673176841;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=g2rc/JKKI4oIAP5gx4IuFWgXOju+Q6ATW9WYYaFP6o8=;
-	b=mtJuxHZzqk0nhypSPR8xxtfzj+KUEA3Z007NDNzDabAULcL6+61rYO5Et/puowVH
-	6C4PCexVwLtNBeRr05oyeGcxcPUxA9qtz1fbJOZC6ioI6n15y6u23dTRTQwgCkAN
-	NxlYVWIUUs7+b/2+keqY1ttTMXnAO3EKG0bP7Ga5Krw=;
-X-AuditID: ac14000a-83bf370000003940-65-63931a0958c2
-Received: from Diagnostix.phytec.de (Diagnostix.phytec.de [172.25.0.14])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id EA.00.14656.90A13936; Fri,  9 Dec 2022 12:20:41 +0100 (CET)
-Received: from Berlix.phytec.de (172.25.0.12) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 9 Dec
- 2022 12:20:41 +0100
-Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
- Fri, 9 Dec 2022 12:20:41 +0100
-From: =?utf-8?B?U3RlZmFuIE3DvGxsZXItS2xpZXNlcg==?=
-	<S.Mueller-Klieser@phytec.de>
-To: "alex.kanavin@gmail.com" <alex.kanavin@gmail.com>,
-	"Martin.Jansa@gmail.com" <Martin.Jansa@gmail.com>, Norbert Wesp
-	<N.Wesp@phytec.de>
-CC: "zoran.stojsavljevic@gmail.com" <zoran.stojsavljevic@gmail.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"rudolf.streif@ibeeto.com" <rudolf.streif@ibeeto.com>
-Subject: Re: [yocto] LAYERSERIES_COMPAT_ variable in the layer's recipe
-Thread-Topic: [yocto] LAYERSERIES_COMPAT_ variable in the layer's recipe
-Thread-Index: AQHZBT09eXapi5PNtUmF7y3gQUQDZq5YetQAgAAcGwCAACfjgIAMpkAA
-Date: Fri, 9 Dec 2022 11:20:41 +0000
-Message-ID: <571292feb40df504c063dc41269579aa454baaf1.camel@phytec.de>
-References: <CAGAf8LyT_nRAAK8WHPQwGDRjiQfaHHNUKPCfW=PJJ83FuWK1=w@mail.gmail.com>
-	 <CAPxNcnfmGrJU9X5xBy034Ndz-zS4cgzwxWaVmmv4Dq4WCYFyjA@mail.gmail.com>
-	 <CA+chaQcphLsdya8v9SD=+XAb2bNWQ1bWxCdCRWOVpjwyiZePQg@mail.gmail.com>
-	 <CANNYZj8uXJ189UckEVktdEuRgLpAcn+driQqnxj0KLaGYSU=wQ@mail.gmail.com>
-In-Reply-To: <CANNYZj8uXJ189UckEVktdEuRgLpAcn+driQqnxj0KLaGYSU=wQ@mail.gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.0.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6B35F2631559BE49960C3CE828D3EF02@phytec.de>
-Content-Transfer-Encoding: base64
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 546DCC4332F
+	for <webhook@archiver.kernel.org>; Fri,  9 Dec 2022 15:29:54 +0000 (UTC)
+Subject: Re: Recipe to install third-party RPM #bitbake
+To: yocto@lists.yoctoproject.org
+From: dspore@parraid.com
+X-Originating-Location: US (66.52.56.54)
+X-Originating-Platform: Windows Chrome 108
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrKIsWRmVeSWpSXmKPExsWyRpKBT5dTanKywc+9ohbbvmxmsfj1dwqz
-	xdUJ/5gsNna8Y7RYeLmH2YHVY+esu+weq152MXvMPPWIOYA5issmJTUnsyy1SN8ugStj96dn
-	7AVbDCpW3Wxnb2Ccot/FyMkhIWAiMW3hRZYuRi4OIYG1TBKb3u9kh3AeM0osnHaQFcLZwCjx
-	v3MCUBkHB5tAkMSm78IgcRGBXkaJhz+mMYI4zAJ7GSVONn9iAZkrLOAucX32CzYQW0TAQ2LB
-	xu2sELabxL+l98BqWARUJM7NvwZm8wLFzxzdC7V6BZPEroZtjCAJToFAie9n17KD2IwCshIb
-	NpxnBrGZBcQlNj37zgrxhIDEkj0QcQkBUYmXj/9BxeUlTtyaxgRyNbOApsT6XfoQrRYS838c
-	ZYewFSWmdD9kh7hBUOLkzCcsExjFZyHZMAuhexaS7llIumch6V7AyLqKUSg3Mzk7tSgzW68g
-	o7IkNVkvJXUTIygqRRi4djD2zfE4xMjEwXiIUYKDWUmEd9myiclCvCmJlVWpRfnxRaU5qcWH
-	GKU5WJTEee/3MCUKCaQnlqRmp6YWpBbBZJk4OKUaGFPKdeoLHSet6us2v1JWdtiv1e+NgEq1
-	SK5UT8MbvnM3Ujc+vfhA+I9m4+p5q3SmyLVcURQqbk6J2BX6kLlz4TY/7zkbdjqeuLJW4nbT
-	r97Gev1sVeGdTncmKIRufKBe7vUwUSrb+ZOV1Fn++ZzHrZmvzjv+ZofJoqBkzaXNlb+DUvJ0
-	+H+qKbEUZyQaajEXFScCAPIj2Vq4AgAA
+Date: Fri, 09 Dec 2022 07:29:47 -0800
+References: <CAM6O0ZimX8=tH9hOYM9zV2NVL5zStD4MdqMiOojJrpU3ajyUbw@mail.gmail.com>
+In-Reply-To: <CAM6O0ZimX8=tH9hOYM9zV2NVL5zStD4MdqMiOojJrpU3ajyUbw@mail.gmail.com>
+Message-ID: <12367.1670599787971354647@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="oyHXU7YWxhEuatOAANpV"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 09 Dec 2022 11:20:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58772
+ <yocto@lists.yoctoproject.org>; Fri, 09 Dec 2022 15:29:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58773
 
-QW0gRG9ubmVyc3RhZywgZGVtIDAxLjEyLjIwMjIgdW0gMTE6MDkgKzAxMDAgc2NocmllYiBBbGV4
-YW5kZXIgS2FuYXZpbjoNCj4gQW5kIHRoaXMgaXMgdGhlIGNvbW1pdCB0aGF0IGRpZCB0aGlzOg0K
-PiBodHRwczovL2dpdC5waHl0ZWMuZGUvbWV0YS1waHl0ZWMvY29tbWl0L2NvbmYvbGF5ZXIuY29u
-Zj9pZD04MjYxZTg5NmQyYjQzMjExZTczNzdmZWIzOGU5MTkzMzZkNDdjMzlmDQo+IA0KPiBTaGFt
-ZSBvbiB5b3UsIHBoeXRlYy4gU2hhbWUgb24geW91LiBXaGF0IHlvdSBkbyBpbiB5b3VyIGxheWVy
-cyBwZXJoYXBzDQo+IGRvZXNuJ3QgbWF0dGVyIHNvIG11Y2gsIGJ1dCB5b3UgYWxzbyBnaXZlIGV2
-ZXJ5b25lIGEgYmFkIGV4YW1wbGUgdG8NCj4gZm9sbG93Lg0KDQpIaSBBbGV4YW5kZXIsDQoNCmlu
-c3RlYWQgb2YgcHV0dGluZyBzaGFtZSBvbiBwZW9wbGUsIEkgd291bGQgcHJvcG9zZSwgZm9yIGEg
-cHJvc3BlcmluZw0KY29tbXVuaXR5LCB0byBzZW5kIG91dCBoaW50cyB0byBtYWludGFpbmVycywg
-d2hlbiBhbiBlbmZvcmNlZCBtZWNoYW5pc20NCmlzIGJlaW5nIGRpc2FibGVkLiBJIHdvdWxkIGhh
-dmUganVzdCBpZ25vcmVkIHlvdXIgZW1haWwgaWYgUmljaGFyZCBkaWQNCm5vdCBjbGVhcmVkIHRo
-aW5ncyB1cCB3aXRoIGhpcyBwYXRjaC4gVGhhbmtzLg0KDQpSZWdhcmRzLCBTdGVmYW4NCg0KPiAN
-Cj4gQWxleA0KPiANCj4gT24gVGh1LCAxIERlYyAyMDIyIGF0IDA4OjQ3LCBNYXJ0aW4gSmFuc2Eg
-PE1hcnRpbi5KYW5zYUBnbWFpbC5jb20+IHdyb3RlOg0KPiA+IA0KPiA+IEFncmVlZCB3aXRoIFJ1
-ZG9sZi4NCj4gPiANCj4gPiBJZiB0aGUgbGF5ZXIgbWFpbnRhaW5lciBkaWRuJ3QgYm90aGVyIHRv
-IGRvIGF0IGxlYXN0IGRvIG9uZSBidWlsZCB3aXRoIG5ldyByZWxlYXNlIGFuZCBhZGp1c3QNCj4g
-PiBMQVlFUlNFUklFU19DT01QQVQsIHRoZW4gSSBkb24ndCBjb25zaWRlciB0aGF0IGxheWVyIHdl
-bGwgbWFpbnRhaW5lZCAoaXQgY291bGQgYmUgc29tZW9uZSBlbHNlIHdobyB1c2VzDQo+ID4gdGhl
-IGxheWVyLCB0ZXN0cyBpdCB3aXRoIG5ldyByZWxlYXNlIGFuZCBzZW5kcyBQUiB0byBhZGp1c3Qg
-TEFZRVJTRVJJRVNfQ09NUEFUKS4NCj4gPiANCj4gPiBSZWNlbnRseSBJJ3ZlIGFsc28gc2VlbiB0
-aGlzOg0KPiA+IExBWUVSU0VSSUVTX0NPTVBBVF9waHl0ZWMgPSAiJHtMQVlFUlNFUklFU19DT01Q
-QVRfY29yZX0iDQo+ID4gDQo+ID4gd2hpY2ggaXMgYWxzbyBiYWQgYXMgaXQgY29tcGxldGVseSBk
-aXNhYmxlcyB0aGUgY2hlY2sgKHNlZW4gaW4NCj4gPiBodHRwczovL2dpdC5waHl0ZWMuZGUvbWV0
-YS1waHl0ZWMvdHJlZS9jb25mL2xheWVyLmNvbmYjbjE0KS4NCj4gPiANCj4gPiBPbiBUaHUsIERl
-YyAxLCAyMDIyIGF0IDc6MDYgQU0gUnVkb2xmIEogU3RyZWlmIDxydWRvbGYuc3RyZWlmQGliZWV0
-by5jb20+IHdyb3RlOg0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gT24gV2VkLCBOb3Yg
-MzAsIDIwMjIsIDIwOjI3IFpvcmFuIDx6b3Jhbi5zdG9qc2F2bGpldmljQGdtYWlsLmNvbT4gd3Jv
-dGU6DQo+ID4gPiA+IA0KPiA+ID4gPiBIZWxsbyB0byBZb2N0byBjb21tdW5pdHksDQo+ID4gPiA+
-IA0KPiA+ID4gPiBBcyBJIGFtIG11Y2ggbW9yZSBwYXNzaXZlIHlvY3RvIHdpc2UgdGhlc2UgZmV3
-IHllYXJzICggd29ya2luZyBvbg0KPiA+ID4gPiBBbmRyb2lkIGJ1aWxkIHN5c3RlbXMgYW5kIGFy
-b3VuZCwgdGhpcyBpcyBhbHNvIGEgbmlnaHRtYXJlLCBJIHNob3VsZA0KPiA+ID4gPiBzYXkgOy0p
-ICksIEkgaGF2ZSBvbmUgWW9jdG8gcXVlc3Rpb24gd2hpY2ggSSBuZXZlciByZWFsbHkgdW5kZXJz
-dG9vZC4NCj4gPiA+ID4gDQo+ID4gPiA+IEkgd2lsbCBhc2sgaXQgYnkgZXhhbXBsZS4gSSBoYXZl
-IG9uZSBsYXllciBmb3IgdGhlIENBTiB0b29scyBhbmQgYXBwcw0KPiA+ID4gPiB3aGljaCBJIGhh
-dmUgY3JlYXRlZCA0IHllYXJzIGFnbzoNCj4gPiA+ID4gaHR0cHM6Ly9naXRodWIuY29tL1pvcmFu
-U3RvanNhdmxqZXZpYy9tZXRhLXNvY2tldGNhbg0KPiA+ID4gPiANCj4gPiA+ID4gSW4gdGhlcmUs
-IGluIGNvbmYvbGF5ZXIuY29uZjoNCj4gPiA+ID4gaHR0cHM6Ly9naXRodWIuY29tL1pvcmFuU3Rv
-anNhdmxqZXZpYy9tZXRhLXNvY2tldGNhbi9ibG9iL21hc3Rlci9jb25mL2xheWVyLmNvbmYNCj4g
-PiA+ID4gDQo+ID4gPiA+IEkgaGF2ZSB0aGUgZm9sbG93aW5nIGxpbmUgKGxheWVycycgY29tcGF0
-aWJpbGl0eSk6DQo+ID4gPiA+IExBWUVSU0VSSUVTX0NPTVBBVF9tZXRhLXNvY2tldGNhbiA9ICJz
-dW1vIHRodWQgd2FycmlvciB6ZXVzIGR1bmZlbGwNCj4gPiA+ID4gZ2F0ZXNnYXJ0aCBoYXJka25v
-dHQgaG9uaXN0ZXIga2lya3N0b25lIg0KPiA+ID4gPiANCj4gPiA+ID4gSSBkbyBub3QgdW5kZXJz
-dGFuZCB3aHkgd2UgbmVlZCB0byBleHBsaWNpdGx5IG5hbWUgcmVsZWFzZXMgZm9yIHN1Y2gNCj4g
-PiA+ID4gc2ltcGxlIGdlbmVyaWMgbGF5ZXJzPyENCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiBUbyBt
-ZSB0aGlzIGluZGljYXRlcyB0aGF0IHRoZSBtYWludGFpbmVyIG9mIHRoZSBsYXllciBoYXMgdGVz
-dGVkIHRoZSBjb21wYXRpYmlsaXR5IG9mIGhpcyBsYXllciB3aXRoIGFsbA0KPiA+ID4gb2YgdGhl
-c2UgcmVsZWFzZXMgb2YgdGhlIFlvY3RvIFByb2plY3QuDQo+ID4gPiANCj4gPiA+IEEgbWFpbnRh
-aW5lciBvZiBhIGxheWVyIHNob3VsZCBtYWtlIGEgZGVsaWJlcmF0ZSBkZWNpc2lvbiBvZiBhZGRp
-bmcgYSByZWxlYXNlIG9yIGRyb3BwaW5nIG9uZSBmcm9tIHRoZQ0KPiA+ID4gY29tcGF0aWJpbGl0
-eSBsaXN0LiBJdCBzaG91bGQgYmUgYW4gYXR0ZXN0YXRpb24gdGhhdCB0aGUgbGF5ZXIncyBjb21w
-YXRpYmlsaXR5IHdpdGggdGhlIHJlbGVhc2VzIGluIHRoZQ0KPiA+ID4gbGlzdCBpcyBhY3R1YWxs
-eSBtYWludGFpbmVkIGFuZCB0ZXN0ZWQuDQo+ID4gPiANCj4gPiA+IFRoZXJlIGhhdmUgYmVlbiBj
-aGFuZ2VzIHRvIHRoZSBzeW50YXggdG8gY29uZGl0aW9uYWwgdmFyaWFibGVzLiBZb3VyIGxheWVy
-IG1pZ2h0IHdlbGwgYmUgY29tcGF0aWJsZSB3aXRoDQo+ID4gPiBhbGwgb2YgdGhlIHJlbGVhc2Vz
-IGFuZCBpdCdzIGdyZWF0IGlmIHlvdSB0ZXN0ZWQgaXQuIEJ1dCBpdCdzIG5vdCBhIGdpdmVuLg0K
-PiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IEluc3RlYWQsIGZvciBhIHZpcnR1YWwgZXhhbXBs
-ZToNCj4gPiA+ID4gTEFZRVJTRVJJRVNfQ09NUEFUX21ldGEtc29ja2V0Y2FuID0gIiR7QVVUT0xB
-WUVSIHh9Ig0KPiA+ID4gPiANCj4gPiA+ID4gU28gYWxsIHRoZSBsYXllcnMgbWlnaHQgYmUgaW5j
-bHVkZWQgKG9yIGZvciBhdCBsZWFzdCBsZXRzIHNheSB4ID0gNA0KPiA+ID4gPiBsYXRlc3QgcmVs
-ZWFzZXMsIHdoZXJlIHggPSAwIHdvdWxkIGJlIGluY2x1ZGUgYWxsKT8gSSBkbyB1bmRlcnN0YW5k
-DQo+ID4gPiA+IHRoYXQgY29tcGxleCBsYXllcnMgY291bGQgTk9UIGhhdmUgc3VjaCBhIGRlZmlu
-aXRpb24gKGJlY2F1c2Ugb2YgdGhlDQo+ID4gPiA+IGRlcGVuZGVuY2llcyksIGJ1dCBmb3IgdGhl
-IGdlbmVyaWMgbGF5ZXJzIChhcyBzdWNoIHByZXNlbnRlZCksIHRoaXMNCj4gPiA+ID4gd291bGQg
-YmUgYmVuZWZpY2lhbC4NCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiBJIG5ldmVyIGNhcmVkIGZvciAk
-e0FVVE9SRVZ9LCB3aGljaCBpcyBzaW1pbGFyLCBpbiB0aGUgZmlyc3QgcGxhY2UgZm9yIHRoZSB2
-ZXJ5IHJlYXNvbiB0aGF0IGl0IGNyZWF0ZXMNCj4gPiA+IGluY29uc2lzdGVudCBiZWhhdmlvci4g
-VGhpcyB3b3VsZCBkbyB0aGUgc2FtZSB0aGluZy4gV2hhdCB3b3VsZCB0aGUgbGFzdCA0IHJlbGVh
-c2VzIGV2ZW4gbWVhbj8gV2hhdCBpcw0KPiA+ID4gdGhlIHJlZmVyZW5jZSBhbmQgd2hlcmUgaXMg
-aXQgb2J0YWluZWQgZnJvbT8NCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiBUaGFuayB5b3Ug
-Zm9yIHRoZSBhbnN3ZXJzLA0KPiA+ID4gPiBaZWUNCj4gPiA+ID4gDQo+ID4gPiA+IF9fX19fX18N
-Cj4gPiA+IA0KPiA+ID4gDQo+ID4gPiBCZXN0LA0KPiA+ID4gOnJqcw0KPiA+ID4gPiANCj4gPiA+
-ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiANCj4g
-PiAtPS09LT0tPS09LT0tPS09LT0tPS09LQ0KPiA+IExpbmtzOiBZb3UgcmVjZWl2ZSBhbGwgbWVz
-c2FnZXMgc2VudCB0byB0aGlzIGdyb3VwLg0KPiA+IFZpZXcvUmVwbHkgT25saW5lICgjNTg2OTEp
-OiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdlLzU4NjkxDQo+
-ID4gTXV0ZSBUaGlzIFRvcGljOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvOTUz
-NzU2NzAvMTY4NjQ4OQ0KPiA+IEdyb3VwIE93bmVyOiB5b2N0bytvd25lckBsaXN0cy55b2N0b3By
-b2plY3Qub3JnDQo+ID4gVW5zdWJzY3JpYmU6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9y
-Zy9nL3lvY3RvL3Vuc3ViwqBbYWxleC5rYW5hdmluQGdtYWlsLmNvbV0NCj4gPiAtPS09LT0tPS09
-LT0tPS09LT0tPS09LQ0KPiA+IA0KDQo=
+--oyHXU7YWxhEuatOAANpV
+Content-Type: multipart/alternative; boundary="sbz9Aed6HjHmGwmfOEdS"
+
+--sbz9Aed6HjHmGwmfOEdS
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Federico,
+
+Thanks for your reply.=C2=A0 I did build a recipe for a tar.gz source archi=
+ve previously, which worked.=C2=A0 But for the RPM I felt like I was missin=
+g something.=C2=A0 Meanwhile, my multilib build for core-image-base is fail=
+ing with the error below.=C2=A0 This is without any custom recipes.=C2=A0 I=
+ am not sure what to about this missing manifest file.=C2=A0 I thought perh=
+aps it was SDK related so I tried running *bitbake core-image-base -c popul=
+ate_sdk*... but got a similar error.=C2=A0 =C2=A0If I knew the root cause o=
+f this error, I might be able to fix it.=C2=A0 But it seems that unless I'v=
+e setup local.conf incorrectly, doing multilib should just work out of the =
+box.=C2=A0 Note that I successfully built *core-image-base* WITHOUT multili=
+b configured in my local.conf.=C2=A0 Simply adding the multilib config entr=
+ies causes this error (local.conf attached).
+
+ERROR: core-image-base-1.0-r0 do_prepare_recipe_sysroot: Manifest /home/par=
+raid/var-fsl-yocto/build_xwayland/tmp/sstate-control/manifest-x86_64_x86_64=
+-nativesdk-lib32-qemuwrapper-cross.populate_sysroot not found in imx8mp_var=
+_dart armv7at2hf-neon-mx8mp armv7ahf-neon-mx8mp armv7at2hf-vfp-mx8mp armv7a=
+hf-vfp-mx8mp armv6thf-vfp-mx8mp armv6hf-vfp-mx8mp armv5tehf-vfp-mx8mp armv5=
+ehf-vfp-mx8mp armv5thf-vfp-mx8mp armv5hf-vfp-mx8mp armv8a-mx8mp armv8a-crc-=
+crypto armv8a-crypto armv8a-crc armv8a aarch64 allarch x86_64_x86_64-native=
+sdk (variant 'lib32')?
+ERROR: Logfile of failure stored in: /home/parraid/var-fsl-yocto/build_xway=
+land/tmp/work/imx8mp_var_dart-fslc-linux/core-image-base/1.0-r0/temp/log.do=
+_prepare_recipe_sysroot.2763965
+ERROR: Task (/home/parraid/var-fsl-yocto/sources/poky/meta/recipes-core/ima=
+ges/core-image-base.bb:do_prepare_recipe_sysroot) failed with exit code '1'
+
+I feel if I can get this error resolved, it would be tremendous progress.
+
+Thanks again!
+
+David
+
+--sbz9Aed6HjHmGwmfOEdS
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Federico,<br /><br />Thanks for your reply.&nbsp; I did build a recipe for =
+a tar.gz source archive previously, which worked.&nbsp; But for the RPM I f=
+elt like I was missing something.&nbsp; Meanwhile, my multilib build for co=
+re-image-base is failing with the error below.&nbsp; This is without any cu=
+stom recipes.&nbsp; I am not sure what to about this missing manifest file.=
+&nbsp; I thought perhaps it was SDK related so I tried running <strong>bitb=
+ake core-image-base -c populate_sdk</strong>... but got a similar error.&nb=
+sp; &nbsp;If I knew the root cause of this error, I might be able to fix it=
+.&nbsp; But it seems that unless I've setup local.conf incorrectly, doing m=
+ultilib should just work out of the box.&nbsp; Note that I successfully bui=
+lt<strong> core-image-base</strong> WITHOUT multilib configured in my local=
+.conf.&nbsp; Simply adding the multilib config entries causes this error (l=
+ocal.conf attached).<br /><br />
+<div>ERROR: core-image-base-1.0-r0 do_prepare_recipe_sysroot: Manifest /hom=
+e/parraid/var-fsl-yocto/build_xwayland/tmp/sstate-control/manifest-x86_64_x=
+86_64-nativesdk-lib32-qemuwrapper-cross.populate_sysroot not found in imx8m=
+p_var_dart armv7at2hf-neon-mx8mp armv7ahf-neon-mx8mp armv7at2hf-vfp-mx8mp a=
+rmv7ahf-vfp-mx8mp armv6thf-vfp-mx8mp armv6hf-vfp-mx8mp armv5tehf-vfp-mx8mp =
+armv5ehf-vfp-mx8mp armv5thf-vfp-mx8mp armv5hf-vfp-mx8mp armv8a-mx8mp armv8a=
+-crc-crypto armv8a-crypto armv8a-crc armv8a aarch64 allarch x86_64_x86_64-n=
+ativesdk (variant 'lib32')?</div>
+<div>ERROR: Logfile of failure stored in: /home/parraid/var-fsl-yocto/build=
+_xwayland/tmp/work/imx8mp_var_dart-fslc-linux/core-image-base/1.0-r0/temp/l=
+og.do_prepare_recipe_sysroot.2763965</div>
+<div>ERROR: Task (/home/parraid/var-fsl-yocto/sources/poky/meta/recipes-cor=
+e/images/core-image-base.bb:do_prepare_recipe_sysroot) failed with exit cod=
+e '1'</div>
+<div><br />I feel if I can get this error resolved, it would be tremendous =
+progress.&nbsp;<br /><br />Thanks again!<br /><br />David<br /><br /></div>
+
+--sbz9Aed6HjHmGwmfOEdS--
+
+--oyHXU7YWxhEuatOAANpV
+Content-Type: application/octet-stream; name="local.conf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="local.conf"
+
+TUFDSElORSA/Pz0gJ2lteDhtcC12YXItZGFydCcKRElTVFJPID89ICdmc2xjLXh3YXlsYW5kJwpV
+U0VSX0NMQVNTRVMgPz0gImJ1aWxkc3RhdHMiClBBVENIUkVTT0xWRSA9ICJub29wIgpST09UX0hP
+TUUgPSAiL3Jvb3QiCkJCX0RJU0tNT05fRElSUyA/Pz0gIlwKICAgIFNUT1BUQVNLUywke1RNUERJ
+Un0sMUcsMTAwSyBcCiAgICBTVE9QVEFTS1MsJHtETF9ESVJ9LDFHLDEwMEsgXAogICAgU1RPUFRB
+U0tTLCR7U1NUQVRFX0RJUn0sMUcsMTAwSyBcCiAgICBTVE9QVEFTS1MsL3RtcCwxMDBNLDEwMEsg
+XAogICAgSEFMVCwke1RNUERJUn0sMTAwTSwxSyBcCiAgICBIQUxULCR7RExfRElSfSwxMDBNLDFL
+IFwKICAgIEhBTFQsJHtTU1RBVEVfRElSfSwxMDBNLDFLIFwKICAgIEhBTFQsL3RtcCwxME0sMUsi
+ClBBQ0tBR0VDT05GSUc6YXBwZW5kOnBuLXFlbXUtc3lzdGVtLW5hdGl2ZSA9ICIgc2RsIgpDT05G
+X1ZFUlNJT04gPSAiMiIKUk1fT0xEX0lNQUdFID0gIjEiCkRJU1RST19GRUFUVVJFUzphcHBlbmQg
+PSAiIHN5c3RlbWQiCkRJU1RST19GRUFUVVJFUzphcHBlbmQgPSAiIHZpcnR1YWxpemF0aW9uIgpE
+SVNUUk9fRkVBVFVSRVM6YXBwZW5kID0gIiBzZWN1cml0eSIKRElTVFJPX0ZFQVRVUkVTOmFwcGVu
+ZCA9ICIgYXBwYXJtb3IiClZJUlRVQUwtUlVOVElNRV9pbml0X21hbmFnZXIgPSAic3lzdGVtZCIK
+RElTVFJPX0ZFQVRVUkVTX0JBQ0tGSUxMX0NPTlNJREVSRUQgPSAic3lzdmluaXQiClZJUlRVQUwt
+UlVOVElNRV9pbml0c2NyaXB0cyA9ICIiCnJlcXVpcmUgY29uZi9tdWx0aWxpYi5jb25mCk1VTFRJ
+TElCUyA9ICJtdWx0aWxpYjpsaWIzMiIKREVGQVVMVFRVTkU6dmlydGNsYXNzLW11bHRpbGliLWxp
+YjMyID0gImFybXY3YXRoZi1uZW9uIgpJTkhFUklUICs9ICJybV93b3JrIgpSTV9XT1JLX0VYQ0xV
+REUgKz0gInNuYXBkIgpETF9ESVIgPz0gIiR7QlNQRElSfS9kb3dubG9hZHMvIgpBQ0NFUFRfRlNM
+X0VVTEEgPSAiMSIKSU5IRVJJVCArPSAiZXh0cmF1c2VycyIKRVhUUkFfVVNFUlNfUEFSQU1TID0g
+InVzZXJtb2QgLXAgJycgcm9vdDsgIgpJTUFHRV9JTlNUQUxMOmFwcGVuZCA9ICIgbGliMzItZ2xp
+YmMgbGliMzItbGliZ2NjIGxpYjMyLWxpYnN0ZGMrKyBsaWIzMi1iYXNoIgo=
+
+--oyHXU7YWxhEuatOAANpV--
 
