@@ -2,66 +2,82 @@ Return-Path: <peter.hoyes@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4854CC4167B
-	for <webhook@archiver.kernel.org>; Fri, 16 Dec 2022 15:37:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63CF0C4167B
+	for <webhook@archiver.kernel.org>; Fri, 16 Dec 2022 15:41:05 +0000 (UTC)
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web10.15927.1671205018795997329
+ by mx.groups.io with SMTP id smtpd.web11.16281.1671205260809969324
  for <yocto@lists.yoctoproject.org>;
- Fri, 16 Dec 2022 07:36:58 -0800
+ Fri, 16 Dec 2022 07:41:00 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7D2A81042;
-	Fri, 16 Dec 2022 07:37:38 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4336F1042;
+	Fri, 16 Dec 2022 07:41:41 -0800 (PST)
 Received: from e125920.arm.com (unknown [10.57.88.145])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ACD823F5A1;
-	Fri, 16 Dec 2022 07:36:56 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C07A33F5A1;
+	Fri, 16 Dec 2022 07:40:59 -0800 (PST)
 From: Peter Hoyes <peter.hoyes@arm.com>
 To: yocto@lists.yoctoproject.org
-Cc: Peter Hoyes <Peter.Hoyes@arm.com>
-Subject: [meta-zephyr][PATCH 5/5] zephyr-core: Add addpylib declaration
-Date: Fri, 16 Dec 2022 15:37:23 +0000
-Message-Id: <20221216153723.1522131-5-peter.hoyes@arm.com>
+Cc: Peter Hoyes <Peter.Hoyes@arm.com>,
+	Ross Burton <ross.burton@arm.com>,
+	Jon Mason <jon.mason@arm.com>
+Subject: [meta-zephyr][PATCH 2/5][langdale] CI: add tags to all jobs
+Date: Fri, 16 Dec 2022 15:41:44 +0000
+Message-Id: <20221216154147.1524548-2-peter.hoyes@arm.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221216153723.1522131-1-peter.hoyes@arm.com>
-References: <20221216153723.1522131-1-peter.hoyes@arm.com>
+In-Reply-To: <20221216154147.1524548-1-peter.hoyes@arm.com>
+References: <20221216154147.1524548-1-peter.hoyes@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 16 Dec 2022 15:37:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58815
+ <yocto@lists.yoctoproject.org>; Fri, 16 Dec 2022 15:41:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58817
 
 From: Peter Hoyes <Peter.Hoyes@arm.com>
 
-OE-core 4901c9d471cab99d52876842980222ce271b66e4 "base: Switch to use
-addpylib directive and BB_GLOBAL_PYMODULES" means that ${LAYERDIR}/lib
-is no longer searched by default when loading test controllers.
+Tag all jobs with the DEFAULT_TAG variable so each instance can control
+what tags the jobs have.
 
-meta-zephyr-core defines some custom test controllers for testing FVPs,
-so add an addpylib directive to meta-zephyr-core/conf/layer.conf to fix
-testimage.
-
+Signed-off-by: Ross Burton <ross.burton@arm.com>
+Signed-off-by: Jon Mason <jon.mason@arm.com>
 Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
 ---
- meta-zephyr-core/conf/layer.conf | 2 ++
- 1 file changed, 2 insertions(+)
+ .gitlab-ci.yml | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/meta-zephyr-core/conf/layer.conf b/meta-zephyr-core/conf/lay=
-er.conf
-index 3d1e57b..2b1c821 100644
---- a/meta-zephyr-core/conf/layer.conf
-+++ b/meta-zephyr-core/conf/layer.conf
-@@ -20,3 +20,5 @@ LAYERSERIES_COMPAT_zephyrcore =3D "dunfell gatesgarth h=
-ardknott honister kirkstone
- X86_TUNE_DIR =3D "${@bb.utils.contains_any('LAYERSERIES_CORENAMES', 'hon=
-ister kirkstone langdale', 'include/x86', 'include', d)}"
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 616626a..7ec0bd0 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -2,6 +2,7 @@ image: ghcr.io/siemens/kas/kas:latest-release
 =20
- PYTHON3_NATIVE_SITEPACKAGES_DIR =3D "${libdir_native}/${PYTHON3_DIR}/sit=
-e-packages"
-+
-+addpylib ${LAYERDIR}/lib oeqa
+ variables:
+   CPU_REQUEST: ""
++  DEFAULT_TAG: ""
+   # These are needed as the k8s executor doesn't respect the container
+   # entrypoint by default
+   FF_USE_LEGACY_KUBERNETES_EXECUTION_STRATEGY: 0
+@@ -13,6 +14,8 @@ stages:
+=20
+ # Common job fragment to get a worker ready
+ .setup:
++  tags:
++    - $DEFAULT_TAG
+   stage: build
+   interruptible: true
+   variables:
+@@ -65,7 +68,8 @@ machine-coverage:
+   script:
+     - ./ci/check-machine-coverage
+   coverage: '/Coverage: \d+/'
+-
++  tags:
++    - $DEFAULT_TAG
+=20
+ #
+ # Build stage, the actual build jobs
 --=20
 2.25.1
 
