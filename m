@@ -1,106 +1,85 @@
-Return-Path: <frederic.martinsons@gmail.com>
+Return-Path: <peter.hoyes@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32445C4332F
-	for <webhook@archiver.kernel.org>; Fri, 16 Dec 2022 07:57:53 +0000 (UTC)
-Subject: Re: Ownership issue during do_image
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F764C4332F
+	for <webhook@archiver.kernel.org>; Fri, 16 Dec 2022 15:36:45 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by mx.groups.io with SMTP id smtpd.web10.15918.1671205004808346805
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 16 Dec 2022 07:36:44 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A6771042;
+	Fri, 16 Dec 2022 07:37:25 -0800 (PST)
+Received: from e125920.arm.com (unknown [10.57.88.145])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6674E3F5A1;
+	Fri, 16 Dec 2022 07:36:43 -0800 (PST)
+From: Peter Hoyes <peter.hoyes@arm.com>
 To: yocto@lists.yoctoproject.org
-From: "Frederic Martinsons" <frederic.martinsons@gmail.com>
-X-Originating-Location: Cugnaux, Occitanie, FR (88.163.88.103)
-X-Originating-Platform: Linux Chrome 108
-User-Agent: GROUPS.IO Web Poster
+Cc: Peter Hoyes <Peter.Hoyes@arm.com>,
+	Ross Burton <ross.burton@arm.com>,
+	Jon Mason <jon.mason@arm.com>
+Subject: [meta-zephyr][PATCH 1/5] CI: Add variables needed for k8s runners
+Date: Fri, 16 Dec 2022 15:37:19 +0000
+Message-Id: <20221216153723.1522131-1-peter.hoyes@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date: Thu, 15 Dec 2022 23:57:50 -0800
-References: <5009.1668597641945474046@lists.yoctoproject.org>
-In-Reply-To: <5009.1668597641945474046@lists.yoctoproject.org>
-Message-ID: <28940.1671177470292511205@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="W8M0vpDkM2sGLZlURCzR"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 16 Dec 2022 07:57:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58810
+ <yocto@lists.yoctoproject.org>; Fri, 16 Dec 2022 15:36:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58811
 
---W8M0vpDkM2sGLZlURCzR
-Content-Type: text/plain; charset="utf-8"; markup=markdown
-Content-Transfer-Encoding: quoted-printable
+From: Peter Hoyes <Peter.Hoyes@arm.com>
 
-Hello, some news about this issue.
+The Kas container needs to use the entrypoint as that is where the user
+changes from root to a normal user.
 
-Tim pointed me to the docker and the reason why crops container have some U=
-ID:GID manipulation: [see there](https://github.com/crops/extsdk-container/=
-blob/master/usersetup.py).
+Also set the KUBERNETES_CPU_REQUEST to the variable CPU_REQUEST as this
+needs to be tuned per-deployment.
 
-I used an ubuntu 20.04 VM to setup a build without docker and I fall into t=
-he exact same problem.
+CPU_REQUEST has no value outside of Arm Corp.  Gitlab CI allows for
+variables to be overridden by default.  So, we can give it a default
+value of NULL/empty and have everything work internally and externally
+by default.
 
-But finally, I found that a workaround by creating and using another workin=
-g directory inside my image creation command (though I clearly don't know w=
-hy this work and the former way don't, despite it worked with yocto warrior=
-)
+Signed-off-by: Ross Burton <ross.burton@arm.com>
+Signed-off-by: Jon Mason <jon.mason@arm.com>
+Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
+---
+ .gitlab-ci.yml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Before that, I have a working directory that was created in the bbclass :
-```
-SQSHDIR =3D "${S}/sqshimg/${MACHINE}"
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 3f0e319..616626a 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -1,5 +1,12 @@
+ image: ghcr.io/siemens/kas/kas:latest-release
+=20
++variables:
++  CPU_REQUEST: ""
++  # These are needed as the k8s executor doesn't respect the container
++  # entrypoint by default
++  FF_USE_LEGACY_KUBERNETES_EXECUTION_STRATEGY: 0
++  FF_KUBERNETES_HONOR_ENTRYPOINT: 1
++
+ stages:
+   - prep
+   - build
+@@ -24,6 +31,8 @@ stages:
+ # Generalised fragment to do a Kas build
+ .build:
+   extends: .setup
++  variables:
++    KUBERNETES_CPU_REQUEST: $CPU_REQUEST
+   script:
+     - KASFILES=3D$(./ci/jobs-to-kas "$CI_JOB_NAME")
+     - kas shell --update --force-checkout $KASFILES -c 'cat conf/*.conf'
+--=20
+2.25.1
 
-do_image_tapos_sqshimg[dirs] +=3D "${SQSHDIR}"
-do_image_tapos_sqshimg[cleandirs] +=3D "${SQSHDIR}"
-do_image_tapos_sqshimg[recrdeptask] +=3D "do_deploy"
-
-IMAGE_CMD_tapos-sqshimg() {
-
-	install -d ${SQSHDIR}
-```
-
-I simply replaced the creation command by:
-```
-IMAGE_CMD_tapos-sqshimg() {
-
-     SQSHDIR_WORKDIR=3D$(mktemp -d)
-```
-
-and voil=C3=A0 !
-
-
---W8M0vpDkM2sGLZlURCzR
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello, some news about this issue.</p>
-
-<p>Tim pointed me to the docker and the reason why crops container have som=
-e UID:GID manipulation: <a href=3D"https://github.com/crops/extsdk-containe=
-r/blob/master/usersetup.py" target=3D"_blank">see there</a>.</p>
-
-<p>I used an ubuntu 20.04 VM to setup a build without docker and I fall int=
-o the exact same problem.</p>
-
-<p>But finally, I found that a workaround by creating and using another wor=
-king directory inside my image creation command (though I clearly don't kno=
-w why this work and the former way don't, despite it worked with yocto warr=
-ior)</p>
-
-<p>Before that, I have a working directory that was created in the bbclass =
-:</p>
-<pre class=3D"prettyprint"><code class=3D"language-unknown">SQSHDIR =3D &#3=
-4;${S}/sqshimg/${MACHINE}&#34;
-
-do_image_tapos_sqshimg[dirs] +=3D &#34;${SQSHDIR}&#34;
-do_image_tapos_sqshimg[cleandirs] +=3D &#34;${SQSHDIR}&#34;
-do_image_tapos_sqshimg[recrdeptask] +=3D &#34;do_deploy&#34;
-
-IMAGE_CMD_tapos-sqshimg() {
-
-	install -d ${SQSHDIR}
-</code></pre>
-<p>I simply replaced the creation command by:</p>
-<pre class=3D"prettyprint"><code class=3D"language-unknown">IMAGE_CMD_tapos=
--sqshimg() {
-
-     SQSHDIR_WORKDIR=3D$(mktemp -d)
-</code></pre>
-<p>and voil=C3=A0 !</p>
-
---W8M0vpDkM2sGLZlURCzR--
 
