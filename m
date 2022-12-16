@@ -2,83 +2,65 @@ Return-Path: <peter.hoyes@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 652ABC46467
-	for <webhook@archiver.kernel.org>; Fri, 16 Dec 2022 15:41:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49FEDC001B2
+	for <webhook@archiver.kernel.org>; Fri, 16 Dec 2022 15:41:15 +0000 (UTC)
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web10.16037.1671205255567792656
+ by mx.groups.io with SMTP id smtpd.web10.16048.1671205271005723043
  for <yocto@lists.yoctoproject.org>;
- Fri, 16 Dec 2022 07:40:55 -0800
+ Fri, 16 Dec 2022 07:41:11 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EB4DB1042;
-	Fri, 16 Dec 2022 07:41:35 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B6291042;
+	Fri, 16 Dec 2022 07:41:51 -0800 (PST)
 Received: from e125920.arm.com (unknown [10.57.88.145])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7BB753F5A1;
-	Fri, 16 Dec 2022 07:40:54 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 35C143F5A1;
+	Fri, 16 Dec 2022 07:41:10 -0800 (PST)
 From: Peter Hoyes <peter.hoyes@arm.com>
 To: yocto@lists.yoctoproject.org
-Cc: Peter Hoyes <Peter.Hoyes@arm.com>,
-	Ross Burton <ross.burton@arm.com>,
-	Jon Mason <jon.mason@arm.com>
-Subject: [meta-zephyr][PATCH 1/5][langdale] CI: Add variables needed for k8s runners
-Date: Fri, 16 Dec 2022 15:41:43 +0000
-Message-Id: <20221216154147.1524548-1-peter.hoyes@arm.com>
+Cc: Peter Hoyes <Peter.Hoyes@arm.com>
+Subject: [meta-zephyr][PATCH 5/5][langdale] zephyr-core/zephyr-kernel: Inhibit packaging steps with the Zephyr SDK
+Date: Fri, 16 Dec 2022 15:41:47 +0000
+Message-Id: <20221216154147.1524548-5-peter.hoyes@arm.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221216154147.1524548-1-peter.hoyes@arm.com>
+References: <20221216154147.1524548-1-peter.hoyes@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 16 Dec 2022 15:41:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58816
+ <yocto@lists.yoctoproject.org>; Fri, 16 Dec 2022 15:41:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58820
 
 From: Peter Hoyes <Peter.Hoyes@arm.com>
 
-The Kas container needs to use the entrypoint as that is where the user
-changes from root to a normal user.
+The packaging step includes post-processing of elf files using objcopy
+and strip from the Yocto toolchain. When using the Zephyr SDK, the Yocto
+toolchain is explicitly not built so it is not possible to run these
+steps. Therefore, inhibit them in zephyr-toolchain-zephyr.inc
 
-Also set the KUBERNETES_CPU_REQUEST to the variable CPU_REQUEST as this
-needs to be tuned per-deployment.
-
-CPU_REQUEST has no value outside of Arm Corp.  Gitlab CI allows for
-variables to be overridden by default.  So, we can give it a default
-value of NULL/empty and have everything work internally and externally
-by default.
-
-Signed-off-by: Ross Burton <ross.burton@arm.com>
-Signed-off-by: Jon Mason <jon.mason@arm.com>
 Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
 ---
- .gitlab-ci.yml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../recipes-kernel/zephyr-kernel/zephyr-toolchain-zephyr.inc  | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-index 3f0e319..616626a 100644
---- a/.gitlab-ci.yml
-+++ b/.gitlab-ci.yml
-@@ -1,5 +1,12 @@
- image: ghcr.io/siemens/kas/kas:latest-release
-=20
-+variables:
-+  CPU_REQUEST: ""
-+  # These are needed as the k8s executor doesn't respect the container
-+  # entrypoint by default
-+  FF_USE_LEGACY_KUBERNETES_EXECUTION_STRATEGY: 0
-+  FF_KUBERNETES_HONOR_ENTRYPOINT: 1
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-toolcha=
+in-zephyr.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-tool=
+chain-zephyr.inc
+index 9987e3c..a193314 100644
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-toolchain-zeph=
+yr.inc
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-toolchain-zeph=
+yr.inc
+@@ -13,3 +13,7 @@ deltask generate_toolchain_file
+ # Provide a suitable location to store the toolchain capabilites cache
+ ZEPHYR_USER_CACHE_DIR =3D "${B}/.cache"
+ EXTRA_OECMAKE:append =3D " -DUSER_CACHE_DIR=3D${ZEPHYR_USER_CACHE_DIR}"
 +
- stages:
-   - prep
-   - build
-@@ -24,6 +31,8 @@ stages:
- # Generalised fragment to do a Kas build
- .build:
-   extends: .setup
-+  variables:
-+    KUBERNETES_CPU_REQUEST: $CPU_REQUEST
-   script:
-     - KASFILES=3D$(./ci/jobs-to-kas "$CI_JOB_NAME")
-     - kas shell --update --force-checkout $KASFILES -c 'cat conf/*.conf'
++# Inhibit packaging steps that require the Yocto toolchain
++INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
++INHIBIT_PACKAGE_STRIP =3D "1"
 --=20
 2.25.1
 
