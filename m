@@ -1,112 +1,119 @@
-Return-Path: <konstantin.kletschke@inside-m2m.de>
+Return-Path: <ron.eggler@mistywest.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72062C4332F
-	for <webhook@archiver.kernel.org>; Wed, 21 Dec 2022 21:13:16 +0000 (UTC)
-Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
- by mx.groups.io with SMTP id smtpd.web10.30855.1671657191834515951
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B78EAC4332F
+	for <webhook@archiver.kernel.org>; Sat, 24 Dec 2022 05:28:13 +0000 (UTC)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web11.91220.1671859687640054707
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Dec 2022 13:13:13 -0800
+ Fri, 23 Dec 2022 21:28:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@inside-m2m.de header.s=dkim header.b=RRHcfKww;
- spf=pass (domain: inside-m2m.de, ip: 188.68.57.244, mailfrom: konstantin.kletschke@inside-m2m.de)
-Received: from Hephaistos.local (unknown [94.31.106.219])
-	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
-	by mail.inside-m2m.de (Postfix) with ESMTPSA id BDF4A40010
-	for <yocto@lists.yoctoproject.org>; Wed, 21 Dec 2022 22:13:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inside-m2m.de;
-	s=dkim; t=1671657187;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=CM2+DSs3U+SfjZ3Wo/kmkZGXC5AtiBv6akhPe6IwvF0=;
-	b=RRHcfKwwRsCOrCAYk0LjLZJEWuF/kbrjWXFqypSOonDd9nTuIFO/yDT5CNhK7CUyOaCBN8
-	1IYoxgLpRUdswuINs/NAVjMAMoLjk5awpRFLVG2LIluGLEJ8K9Q6fmBL1ZqC+a/w5MNZRP
-	8SFOxtgHf0jiqdm5DhJOJPP+Xhpf0Ko=
-Date: Wed, 21 Dec 2022 22:13:01 +0100
-From: Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>
-To: yocto@lists.yoctoproject.org
-Subject: Remove kernel image and modules from rootfs
-Message-ID: <Y6N23Z8n++QpwfFI@Hephaistos.local>
+ dkim=pass header.i=@mistywest-com.20210112.gappssmtp.com header.s=20210112 header.b=tLZE6/kr;
+ spf=pass (domain: mistywest.com, ip: 209.85.216.49, mailfrom: ron.eggler@mistywest.com)
+Received: by mail-pj1-f49.google.com with SMTP id p4so6612296pjk.2
+        for <yocto@lists.yoctoproject.org>; Fri, 23 Dec 2022 21:28:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistywest-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:from:content-language:to:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jtl6Nl8FwB5a2NaGlG6SlIWTdujtS80bQCPe4ize1HI=;
+        b=tLZE6/krklyO2EFke484Oya2hhd3wQ3z9wkFhtKNL1W0E2XBs9uBDPHaUIprlSDf4D
+         7ECu2l7Z2RI6naYSwJmnd/WFoS5UyK2gvEPgq1boaRdSfZ+HZS2IfokeQQ6B6+iZpqjO
+         haMtOFyWz7/hstQ35f0DNJMLb/z8OhxpOiLY+tB3b1Q59PsAKfqbb9SfhuCSs/GQ9h/H
+         NM9wFYjFxz6Wuxl/R0wJt0XERvzve5b0AcrLayy9DcE4hOa4Kf/BN/pE+5S6rBeIEB4S
+         /zkPllakWDUD6AID/X9+YpBQOb536KUMxbVApFQANYyvzpLrWgzLncmaSHsXS8Pc+tDV
+         v2Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=subject:from:content-language:to:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jtl6Nl8FwB5a2NaGlG6SlIWTdujtS80bQCPe4ize1HI=;
+        b=Hlq/4aXwMZhQL8WvLBNXzR6Nn0Fhf5zQDTSWCd1+7Gb7o3mYsOi6cTTWuKVqzvSxCp
+         qvMdm3jZyXAhLCwxZKhGsLVtjmPrf7rxGy2XENfggKQiBC6CTVKmicNSAt7kvOe/pPNm
+         Ct7C8zAIxz+atxj/w0cQOwabx/AIQV9PpXwyYLXYSVOhRK/rvbZzLvdWp0NXbXU3sopS
+         KLo3C+k4s4dCuBqkbZE+KqM3NhpCylZOurX2M2JUPi8jjktugSEYe8677ZETSSK8qtBB
+         IbOV1k9paKz4F02GVTcqCW3O2m47EeMOeatAUJthHS06YDtLsQkc0yViveGspUDzaE1n
+         urJA==
+X-Gm-Message-State: AFqh2kr/1vCHX0IeMLhesMubxA1RlLHYLm1CWi8Q0v6UJ+uhes4XKNhp
+	KlGuUZ9MYLMpSsfOgxJqiApJpuAVTgXQGv8A3Zo=
+X-Google-Smtp-Source: AMrXdXsowLhaX/mBtg0MKxUz3rDZI72x9cCYdTzcOgmKM0ue1Tniz+yrzGipEsiLwXtUqtk9O9AUiw==
+X-Received: by 2002:a17:902:ec89:b0:185:441e:2314 with SMTP id x9-20020a170902ec8900b00185441e2314mr17172537plg.10.1671859686627;
+        Fri, 23 Dec 2022 21:28:06 -0800 (PST)
+Received: from [192.168.99.1] ([209.52.149.8])
+        by smtp.gmail.com with ESMTPSA id m12-20020a170902d18c00b00186bc66d2cbsm3273735plb.73.2022.12.23.21.28.05
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Dec 2022 21:28:06 -0800 (PST)
+Content-Type: multipart/alternative;
+ boundary="------------X0NveHyB09hyAwZTFFAhpTyJ"
+Message-ID: <350433e2-a9a5-f7f4-3b7c-ed04700907c2@mistywest.com>
+Date: Fri, 23 Dec 2022 21:28:04 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+To: yocto@lists.yoctoproject.org
+Content-Language: en-US
+From: Ron Eggler <ron.eggler@mistywest.com>
+Subject: lsusb
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Dec 2022 21:13:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58856
+ <yocto@lists.yoctoproject.org>; Sat, 24 Dec 2022 05:28:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58857
+
+This is a multi-part message in MIME format.
+--------------X0NveHyB09hyAwZTFFAhpTyJ
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-I am creating a rootfs/bootloader/kernel to run on a beaglebone black
-usually and it works great.
+I want to inlude "lsusb" to investigate the connected usb devices to my 
+system.
+I found that adding
 
-So I have in conf/local.conf
+IMAGE_INSTALL_append = " usbutils"
 
-MACHINE ?=3D "beaglebone-yocto"
+to my configuration should solve the issue. I've added this to my 
+local.conf and invoked a rebuild of my packages but still, after the 
+rebuild, my package.manifest file still does not list lsusb.
 
-and an own layer meta-insidem2m which defines some image settings in
-recipes-core/images/insidem2m-s.bb among other recipes for packages and
-package modification.
+How can I get lsusb included in my image?
 
-Now I wan't to create a rootfs without the kernel image and the kernel
-modules to make it as small as possible to use it as a basis to run as a
-docker image.
+-- 
+RON EGGLER Firmware Engineer (he/him/his) www.mistywest.com
+--------------X0NveHyB09hyAwZTFFAhpTyJ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Now I wonder how to instruct bitbake to not put the kernel image (and
-modules) into the rootfs.
+<html>
+  <head>
 
-I read this was done by=20
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><font size="2">Hi,</font></p>
+    <p><font size="2">I want to inlude "lsusb" to investigate the
+        connected usb devices to my system.<br>
+        I found that adding <br>
+      </font></p>
+    <p><font size="2">IMAGE_INSTALL_append = " usbutils"</font></p>
+    <p><font size="2">to my configuration should solve the issue. I've
+        added this to my local.conf and invoked a rebuild of my packages
+        but still, after the rebuild, my package.manifest file still
+        does not list lsusb. <br>
+      </font></p>
+    <p><font size="2">How can I get lsusb included in my image?</font><br>
+    </p>
+    <div class="moz-signature">-- <br>
+      RON EGGLER
+      Firmware Engineer
+      (he/him/his)
+      <a class="moz-txt-link-abbreviated" href="http://www.mistywest.com">www.mistywest.com</a></div>
+  </body>
+</html>
 
-RDEPENDS_${KERNEL_PACKAGE_NAME}-base =3D ""=20
-
-but this is now deprecated for kirkstone and should be done this way:
-
-RRECOMMENDS:${KERNEL_PACKAGE_NAME}-base =3D ""
-
-But rootfs always still is equipped with kernel and modules.
-I tried all permutations of
-
-#RDEPENDS_kernel-base =3D ""
-#MACHINE_ESSENTIAL_EXTRA_RDEPENDS =3D ""
-#RDEPENDS_kernel-base =3D ""
-#PREFERRED_PROVIDER_virtual/kernel =3D "linux-dummy"
-# Don't include kernels in standard images
-##RDEPENDS:kernel-base =3D ""
-#RRECOMMENDS:${KERNEL_PACKAGE_NAME}-base =3D ""
-#MACHINE_EXTRA_RRECOMMENDS =3D ""
-#RDEPENDS_${KERNEL_PACKAGE_NAME}-base =3D ""
-
-in my conf/local.conf but no avail...
-
-How is this done correctly?
-Are there any variables to check I might have (being) set preventing me
-to do this? Or is it necessary to split out a new MACHINE, i.e. can this
-only be done in an own created machine which has to be split out?
-
-I thought setting such at the bottom of conf/local.conf always "wins".
-
-Kind Regards
-Konstantin
-
---=20
-INSIDE M2M GmbH
-Konstantin Kletschke
-Berenbosteler Stra=DFe 76 B
-30823 Garbsen
-
-Telefon: +49 (0) 5137 90950136
-Mobil: +49 (0) 151 15256238
-Fax: +49 (0) 5137 9095010
-
-konstantin.kletschke@inside-m2m.de
-http://www.inside-m2m.de=20
-
-Gesch=E4ftsf=FChrung: Michael Emmert, Ingo Haase, Dr. Fred K=F6nemann, De=
-rek Uhlig
-HRB: 111204, AG Hannover
-
+--------------X0NveHyB09hyAwZTFFAhpTyJ--
 
