@@ -1,63 +1,153 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <fntoth@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0944BC4332F
-	for <webhook@archiver.kernel.org>; Sat, 24 Dec 2022 16:39:07 +0000 (UTC)
-Received: from mailout04.t-online.de (mailout04.t-online.de [194.25.134.18])
- by mx.groups.io with SMTP id smtpd.web11.100623.1671899946248107641
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5541C4332F
+	for <webhook@archiver.kernel.org>; Sat, 24 Dec 2022 18:58:27 +0000 (UTC)
+Received: from ciao.gmane.io (ciao.gmane.io [116.202.254.214])
+ by mx.groups.io with SMTP id smtpd.web10.103213.1671908305072104543
  for <yocto@lists.yoctoproject.org>;
- Sat, 24 Dec 2022 08:39:06 -0800
+ Sat, 24 Dec 2022 10:58:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.18, mailfrom: f_l_k@t-online.de)
-Received: from fwd81.dcpf.telekom.de (fwd81.aul.t-online.de [10.223.144.107])
-	by mailout04.t-online.de (Postfix) with SMTP id 365091709C;
-	Sat, 24 Dec 2022 17:39:04 +0100 (CET)
-Received: from [192.168.178.83] ([79.219.224.233]) by fwd81.t-online.de
-	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
-	esmtp id 1p97Y6-3nQc6K0; Sat, 24 Dec 2022 17:39:03 +0100
-Date: Sat, 24 Dec 2022 17:38:57 +0100
-From: Markus Volk <f_l_k@t-online.de>
-Subject: Re: [yocto] lsusb
-To: Mistyron <ron.eggler@mistywest.com>
-Cc: Khem Raj <raj.khem@gmail.com>, yocto@lists.yoctoproject.org
-Message-Id: <X8MENR.4MKC85CKXZNY@t-online.de>
-In-Reply-To: <ebad1d85-062c-9e89-12ef-4cab2b58b1ec@mistywest.com>
-References: <350433e2-a9a5-f7f4-3b7c-ed04700907c2@mistywest.com>
-	<CAMKF1sqUTzOykipWXr7OGyu5TeEueif57_1z8EBUX-MDEetiSA@mail.gmail.com>
-	<ebad1d85-062c-9e89-12ef-4cab2b58b1ec@mistywest.com>
-X-Mailer: geary/40.0
-MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="=-SmwfxNBh3JjAjmGknMaF"
-X-TOI-EXPURGATEID: 150726::1671899943-EDFED7E2-895DAEAC/0/0 CLEAN NORMAL
-X-TOI-MSGID: 2a4d2843-f772-4640-898a-244c06ab205f
+ dkim=missing; spf=pass (domain: m.gmane-mx.org, ip: 116.202.254.214, mailfrom: gley-yocto@m.gmane-mx.org)
+Received: from list by ciao.gmane.io with local (Exim 4.92)
+	(envelope-from <gley-yocto@m.gmane-mx.org>)
+	id 1p99iv-0005FU-NA
+	for yocto@lists.yoctoproject.org; Sat, 24 Dec 2022 19:58:21 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@lists.yoctoproject.org
+From: Ferry Toth <fntoth@gmail.com>
+Subject: Re: bitbake controlling memory use
+Date: Sat, 24 Dec 2022 19:58:13 +0100
+Message-ID: <dc01104b-ac65-8a50-b876-b6dd13fcf238@gmail.com>
+References: <s4v495$bak$1@ciao.gmane.io>
+ <CANNYZj_CsY0YL_bjtgf6O3A16FXe38-hLke4wEQR6mMz58SMVg@mail.gmail.com>
+ <d8ab0231-717d-69e4-e6f9-739b9a08bd29@gmail.com>
+ <CANNYZj_K-zpP-iTQMh5YA58dhBV88wLP-PouXS5KrHjybfsy-g@mail.gmail.com>
+ <14207c27-7f5e-9a13-d8e8-28dbb0e7ea7b@gmail.com>
+ <CANNYZj8MtLM5KdUqMsqhiVMHTnmj4VMoSf3XnCLvSns8grpmmA@mail.gmail.com>
+ <0c8c0d85-c3e0-41d5-1a0b-2d121302439a@windriver.com>
+ <2f23e846365f9736f925351e8d553c54a9d2782c.camel@linuxfoundation.org>
+ <34dccddb-c5c2-16e0-d571-f86f2c6f004b@gmail.com>
+ <c26ff0ee8f9cc81d0c52cda17381226fc11166c8.camel@linuxfoundation.org>
+ <16770AD5E94DEAE5.1089@lists.yoctoproject.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Cc: yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X-XMD5yJDbdMReXY1tMh2IBg-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org
+Content-Language: en-US
+In-Reply-To: <16770AD5E94DEAE5.1089@lists.yoctoproject.org>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 24 Dec 2022 16:39:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58860
+ <yocto@lists.yoctoproject.org>; Sat, 24 Dec 2022 18:58:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58861
 
---=-SmwfxNBh3JjAjmGknMaF
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Op 18-04-2021 om 21:34 schreef Gmane Admin:
+> Hi,
+> Op 18-04-2021 om 11:59 schreef Richard Purdie:
+>> On Sun, 2021-04-18 at 00:17 +0200, Gmane Admin wrote:
+>>> Hi,
+>>> Op 14-04-2021 om 06:59 schreef Richard Purdie:
+>>>> On Tue, 2021-04-13 at 21:14 -0400, Randy MacLeod wrote:
+>>>>> On 2021-04-11 12:19 p.m., Alexander Kanavin wrote:
+>>>>>> make already has -l option for limiting new instances if load 
+>>>>>> average is
+>>>>>> too high, so it's only natural to add a RAM limiter too.
+>>>>>>
+>>>>>>      -l [N], --load-average[=N], --max-load[=N]
+>>>>>>                                  Don't start multiple jobs unless 
+>>>>>> load is
+>>>>>> below N.
+>>>>>>
+>>>>>> In any case, patches welcome :)
+>>>>>
+>>>>> During today's Yocto technical call (1),
+>>>>> we talked about approaches to limiting the system load and avoiding
+>>>>> swap and/or OOM events. Here's what (little!) i recall from the
+>>>>> discussion, 9 busy hours later.
+>>>>>
+>>>>> In the short run, instead of independently maintaining changes to
+>>>>> configurations to limit parallelism or xz memory usage, etc, we
+>>>>> could develop an optional common include file where such limits
+>>>>> are shared across the community.
+>>>
+>>> I tried PARALLEL_MAKE_nodejs = "-j 1" from local.conf but that didn't 
+>>> work.
+>>
+>> It would need to be:
+>>
+>> PARALLEL_MAKE_pn-nodejs = "-j 1"
+>>
+>>> So I watched it run for a while. It compiles with g++ and as at about
+>>> 0.5GB per thread, which is OK. In the end it does ld taking 4GB and it
+>>> tries to do 4 in parallel. And then swapping becomes so heavy the
+>>> desktop becomes unresponsive. Like I mentioned before ssh from another
+>>> machine allows me to STOP one of them, allowing the remaining to
+>>> complete. And then CONT the last one.
+>>>
+>>> I worked around it now, by creating a bbappend for nodejs with only
+>>> PARALLEL_MAKE = "-j 2"
+>>>>
+>>
+>> If that works, the override above should also work. You do need the "pn-"
+>> prefix to the recipe name though.
+> 
+> And indeed it does, thanks so much for the tip.
 
-Am Sa, 24. Dez 2022 um 08:34:49 -0800 schrieb Mistyron 
-<ron.eggler@mistywest.com>:
-> $ grep usb path/to/package.manifest
->   libusb-1.0-0
->   usbutils
->   usbutils-python
+This discussion is very old, but I just wanted to share an update. With 
+my image (meta-intel-edison) building nodejs is the dominant time 
+consumer. With "-j 2" the nodejs build takes multiple hours (I have 8 
+core + HT), all the rest is then long completed. Without "-j 2" building 
+  nodejs_16.14.2 linking in the final stage 5 processes are started, 
+each 4 - 5GB RAM. With my meager 16GB disk thrashing starts and it still 
+would take hours to complete.
 
-lsusb is part of usbutils, so it is not explicitly listed, but should 
-be included in your image
+While I still believe we need bitbake to SIGSTOP processes that trigger 
+thrashing, for nodejs I found a solution at the recipe level:
 
+The yocto recipe already has:
 
---=-SmwfxNBh3JjAjmGknMaF
-Content-Type: text/html; charset=us-ascii
+EXTRA_OEMAKE = "\
+     CC.host='${CC}' \
+     CFLAGS.host='${CPPFLAGS} ${CFLAGS}' \
+     CXX.host='${CXX}' \
+     CXXFLAGS.host='${CPPFLAGS} ${CXXFLAGS}' \
+     LDFLAGS.host='${LDFLAGS}' \
+     AR.host='${AR}' \
+     \
+     builddir_name=./ \
+"
 
-<div id="geary-body" dir="auto">Am Sa, 24. Dez 2022 um 08:34:49 -0800 schrieb Mistyron &lt;ron.eggler@mistywest.com&gt;:<br><blockquote type="cite"><div class="plaintext" style="white-space: break-spaces;">$ grep usb path/to/package.manifest
-&nbsp; libusb-1.0-0
-&nbsp; usbutils
-&nbsp; usbutils-python</div></blockquote><div><br></div><div>lsusb is part of usbutils, so it is not explicitly listed, but should be included in your image</div></div>
---=-SmwfxNBh3JjAjmGknMaF--
+I inserted `    LINK.host='flock /tmp ${CXX}' \` as that seemed most 
+logical, but that didn't help a bit (the 4 calls in my log to flock were 
+never simultaneous). However after changing it to `    LINK='flock /tmp 
+${CXX}' \` the linker is serialized.
+
+This makes an enormous difference in my Yocto image build time (nodejs 
+was the dominant factor). Now compile stage ~25min + 5min for link.
+
+> Ferry
+> 
+>> Cheers,
+>>
+>> Richard
+>>
+>>
+> 
+> 
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#53161): https://lists.yoctoproject.org/g/yocto/message/53161
+> Mute This Topic: https://lists.yoctoproject.org/mt/82015730/4382963
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [gley-yocto@m.gmane-mx.org]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
+
 
 
