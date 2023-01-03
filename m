@@ -1,86 +1,78 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4BB53C3DA7D
-	for <webhook@archiver.kernel.org>; Tue,  3 Jan 2023 19:15:38 +0000 (UTC)
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
- by mx.groups.io with SMTP id smtpd.web11.2570.1672773336651249969
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27B03C3DA7D
+	for <webhook@archiver.kernel.org>; Tue,  3 Jan 2023 19:16:38 +0000 (UTC)
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+ by mx.groups.io with SMTP id smtpd.web11.2604.1672773388156014739
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Jan 2023 11:15:36 -0800
+ Tue, 03 Jan 2023 11:16:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=fEl2Fl+G;
- spf=pass (domain: gmail.com, ip: 209.85.160.42, mailfrom: twoerner@gmail.com)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-150debe2b7cso2133191fac.0
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 11:15:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=ID2IAFUh;
+ spf=pass (domain: gmail.com, ip: 209.85.160.49, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-14ffd3c5b15so26367658fac.3
+        for <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 11:16:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MtLtKt/K6bjl1adzWKMZNimIq9FToWMBFg271czSkhY=;
-        b=fEl2Fl+GWCfbfnWhD/1LbECy+1U7Jch5TcIhfgCV6eE8lm6ErnkuemtmnBVd+CMPzu
-         U9VU5En9O5xOk5dggCBySMGiEh5YUBhi1slhjqDsPZPpuVwsN7onCIgza4Tli+dMJ+dB
-         bKYMwlD5dsfJDGEfUsUPemQ98SCZabb06Q881ji/NpbwQIcTz+VIFTnRVPMZKOOGnqOb
-         dd81P7B3lpnNwLeyOIYkxO3LMbnxMggVJx+6AXtN5DDIM+N8ws+mPlrN8D1cX3FnSBsA
-         56+FJCJyu1LT9PMixnoZzQpZkLEYiGbjOZ8rQBJIbEAhGk9c4uAL38KDCsbiDDIiFI5B
-         cRzg==
+        bh=bT7Yyi++EyFlfRzYmxj+hblOIPmZNaZbyExsxjBM2UQ=;
+        b=ID2IAFUhYecskpVx/GwglnZIK8JUEvsy5l6ZBTlc1ve6jaMc5I/A/5YLRZ1sGHX6Go
+         5MSODpOPETO/zj8qxqrIrVQqW68qrDC++h+4jRDMDViZxSm0lDGqLbry+OAruoNm4/t5
+         7vMt6p/8z9GQl4p0ZH2/3WTheC4KtRMBQcrnzC7tXLbIlaWl/inpKnUSkYSqJfSOkREW
+         upuAKB291wfXE2mXJpnzZy2edIZkfD5QCpaPUkL1w+0VGe1GDUUR9tS4kRfrR/9LOMe5
+         MtxVRjn8EA2CEwIIY0kyLOjVoxhCBpQ8nWf5M5/2reY668c+vkp+jarGZGxVFC8iGpD5
+         T0DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MtLtKt/K6bjl1adzWKMZNimIq9FToWMBFg271czSkhY=;
-        b=n+jvHF6PvxphWpMdhNPntXF9YHPogX6EXvePuGQePNyK3hYU35k5mHxo1+RpvNAGG2
-         RYdISyeD1H3f3DR7wDkJZdYSK8RNeYim/xSqv2HTd/We9xFh6G+IkolDlSbS32wuYszG
-         LdiQ/gRphZ+RewnXxrPJuOFYxKSIsKsyUE6FIprXQl+C+CYo4JvXp7V66q+RBrazxahP
-         DdxZJS3xMUiZlYdAPR0L5XiulKthjx+8UJQFbLJ25ATfd8BD57T0nxzdqP/d0EY1OmfE
-         lFTwz+Hi7W5nkxkbzImD44Lz9XqaieEOBGNltE8WS8x6hc0ypmf3F71Y245wgo2w//ib
-         +5QA==
-X-Gm-Message-State: AFqh2kqF1RRGE3DCjSp5NX8DE6ICedONnMDEIxF72dw21IyDQ4HNSK/C
-	NOmc/RdyEDu3v9i8ZQY7UVfRZaWM3D3YBRkA0uw=
-X-Google-Smtp-Source: AMrXdXtYu3p7egroBcqb8jvxhyBVQNCOwC4neTNIVjm0pe1ekg7EiLKTUaZiYC4jQM9j6Q9zjeAoXbZoOxPTVvgzvfM=
-X-Received: by 2002:a05:6870:728:b0:148:a6a:e616 with SMTP id
- ea40-20020a056870072800b001480a6ae616mr3034676oab.63.1672773335909; Tue, 03
- Jan 2023 11:15:35 -0800 (PST)
+        bh=bT7Yyi++EyFlfRzYmxj+hblOIPmZNaZbyExsxjBM2UQ=;
+        b=jregrNWkJ6wQJ0CKTnb+ctllCO34pPWuefUxYCE7Y56UtjKPilIes0c85FZ3m5ky2D
+         D7OPnxDKAYEKHG002O0GZ+abTd5bv+065wp9Ct/KMsuDI9T2bslBYRGxxxQVDEUyJwC5
+         sthh7xT0KCIV98+u6nU5m9HbIMJcLAjYmorGNFWZ5SesEYKjs6Lv2gw6lQ72I5X0v5tJ
+         P8Sxwa6F26HDcubsnPb53/YqljbTCC0SQnup/CveseKfnMW5h0YwZVShtVaW0VaPVM3S
+         SZDPgsfK6c7KYxZnuTqqmGdqUiVdZ8wDmbAsVxBr7XhWw2kKucJGHUBuI8XeMNfE30sK
+         Nzkg==
+X-Gm-Message-State: AFqh2kpZ5EPt7iduMtFAxybZRXYgbT0615EV5kBolz5A+YCTkAVeQw4Q
+	mdTWPuLVl1d/EGH0NxsIODT9eEFhqkmBJEe/3sMy7QNL
+X-Google-Smtp-Source: AMrXdXvwa7Dn+I2ORp5q68hRwLyxvmJikHVCX4Kykum7gM/a7WAWXxVygVQt19MHeArKd+0piFBfx3umBBmnQdPttUk=
+X-Received: by 2002:a05:6871:4049:b0:150:ab7d:7012 with SMTP id
+ ky9-20020a056871404900b00150ab7d7012mr476526oab.55.1672773387375; Tue, 03 Jan
+ 2023 11:16:27 -0800 (PST)
 MIME-Version: 1.0
 References: <20230103183343.959016-1-raj.khem@gmail.com> <CA+chaQe583zWdN35R6d04DGYv34gOK+gDpGHRP=-omghWZ=C+g@mail.gmail.com>
 In-Reply-To: <CA+chaQe583zWdN35R6d04DGYv34gOK+gDpGHRP=-omghWZ=C+g@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Tue, 3 Jan 2023 14:15:24 -0500
-Message-ID: <CAHUNapQ60Dy94Xh=AMQ-JAE7XTzMe7KeWBw=Oj7+NS5zHnqa9Q@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 3 Jan 2023 11:16:01 -0800
+Message-ID: <CAMKF1spSy_Jr_wVEZgJEp0g5e4TYPiQ_AQBmtBvDuDsY7Lf+Qg@mail.gmail.com>
 Subject: Re: [yocto] [meta-rockchip][PATCH] layer.conf: Update
  LAYERSERIES_COMPAT for mickledore
 To: Martin Jansa <martin.jansa@gmail.com>
-Cc: Khem Raj <raj.khem@gmail.com>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000007a094e05f160e4dc"
+Cc: yocto@lists.yoctoproject.org, twoerner@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 19:15:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58918
+ <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 19:16:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58919
 
---0000000000007a094e05f160e4dc
-Content-Type: text/plain; charset="UTF-8"
-
-On Tue, Jan 3, 2023 at 2:13 PM Martin Jansa <martin.jansa@gmail.com> wrote:
-
-> Trevor already won this race (I was second, you're third) :)
+On Tue, Jan 3, 2023 at 11:13 AM Martin Jansa <martin.jansa@gmail.com> wrote:
 >
+> Trevor already won this race (I was second, you're third) :)
+
+LOL :). Depends whose CI was noticed first.
+
 >
 > https://patchwork.yoctoproject.org/project/yocto/list/?series=&submitter=&state=&q=mickledore&archive=&delegate=
 >
-
-It's nice knowing someone other than me is using this layer :-)
-
-
->
->
 > On Tue, Jan 3, 2023 at 7:33 PM Khem Raj <raj.khem@gmail.com> wrote:
->
+>>
 >> oe-core switched to mickedore [1]
 >>
->> [1]
->> https://git.openembedded.org/openembedded-core/commit/?id=57239d66b933c4313cf331d35d13ec2d0661c38f
+>> [1] https://git.openembedded.org/openembedded-core/commit/?id=57239d66b933c4313cf331d35d13ec2d0661c38f
 >>
 >> Signed-off-by: Khem Raj <raj.khem@gmail.com>
 >> ---
@@ -106,88 +98,10 @@ It's nice knowing someone other than me is using this layer :-)
 >>
 >> -=-=-=-=-=-=-=-=-=-=-=-
 >> Links: You receive all messages sent to this group.
->> View/Reply Online (#58916):
->> https://lists.yoctoproject.org/g/yocto/message/58916
+>> View/Reply Online (#58916): https://lists.yoctoproject.org/g/yocto/message/58916
 >> Mute This Topic: https://lists.yoctoproject.org/mt/96034217/3617156
 >> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->> Martin.Jansa@gmail.com]
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [Martin.Jansa@gmail.com]
 >> -=-=-=-=-=-=-=-=-=-=-=-
 >>
->>
-
---0000000000007a094e05f160e4dc
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, Jan 3, 2023 at 2:13 PM Martin Jansa &lt;<a href=3D"mailto:ma=
-rtin.jansa@gmail.com">martin.jansa@gmail.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Trevor already=
- won this race (I was second, you&#39;re third) :)<div><br><div><a href=3D"=
-https://patchwork.yoctoproject.org/project/yocto/list/?series=3D&amp;submit=
-ter=3D&amp;state=3D&amp;q=3Dmickledore&amp;archive=3D&amp;delegate=3D" targ=
-et=3D"_blank">https://patchwork.yoctoproject.org/project/yocto/list/?series=
-=3D&amp;submitter=3D&amp;state=3D&amp;q=3Dmickledore&amp;archive=3D&amp;del=
-egate=3D</a></div></div></div></blockquote><div><br></div><div>It&#39;s nic=
-e knowing someone other than me is using this layer :-)<br></div><div>=C2=
-=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
-><div><div><br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Tue, Jan 3, 2023 at 7:33 PM Khem Raj &lt;<a h=
-ref=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">oe-co=
-re switched to mickedore [1]<br>
-<br>
-[1] <a href=3D"https://git.openembedded.org/openembedded-core/commit/?id=3D=
-57239d66b933c4313cf331d35d13ec2d0661c38f" rel=3D"noreferrer" target=3D"_bla=
-nk">https://git.openembedded.org/openembedded-core/commit/?id=3D57239d66b93=
-3c4313cf331d35d13ec2d0661c38f</a><br>
-<br>
-Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D=
-"_blank">raj.khem@gmail.com</a>&gt;<br>
----<br>
-=C2=A0conf/layer.conf | 2 +-<br>
-=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
-<br>
-diff --git a/conf/layer.conf b/conf/layer.conf<br>
-index 9197c3b..e8c50f8 100644<br>
---- a/conf/layer.conf<br>
-+++ b/conf/layer.conf<br>
-@@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip =3D &quot;1&quot;<br>
-=C2=A0# This should only be incremented on significant changes that will<br=
->
-=C2=A0# cause compatibility issues with other layers<br>
-=C2=A0LAYERVERSION_rockchip =3D &quot;1&quot;<br>
--LAYERSERIES_COMPAT_rockchip =3D &quot;langdale&quot;<br>
-+LAYERSERIES_COMPAT_rockchip =3D &quot;mickledore&quot;<br>
-=C2=A0LAYERDEPENDS_rockchip =3D &quot;core meta-arm&quot;<br>
-<br>
-=C2=A0BBFILES_DYNAMIC +=3D &quot; \<br>
--- <br>
-2.39.0<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#58916): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/58916" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/58916</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/96034217/3617=
-156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/96034217/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin=
-.Jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-</blockquote></div></div>
-
---0000000000007a094e05f160e4dc--
 
