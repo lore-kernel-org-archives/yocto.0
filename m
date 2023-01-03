@@ -1,150 +1,89 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D317DC3DA7D
-	for <webhook@archiver.kernel.org>; Tue,  3 Jan 2023 17:53:27 +0000 (UTC)
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
- by mx.groups.io with SMTP id smtpd.web11.248.1672768407184023661
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FF48C3DA7D
+	for <webhook@archiver.kernel.org>; Tue,  3 Jan 2023 18:33:58 +0000 (UTC)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web10.1389.1672770828403520909
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Jan 2023 09:53:27 -0800
+ Tue, 03 Jan 2023 10:33:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Y7AUQba2;
- spf=pass (domain: gmail.com, ip: 209.85.160.180, mailfrom: akuster808@gmail.com)
-Received: by mail-qt1-f180.google.com with SMTP id x11so25085134qtv.13
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 09:53:27 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=pPOhFzH5;
+ spf=pass (domain: gmail.com, ip: 209.85.216.48, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f48.google.com with SMTP id o21so3619465pjw.0
+        for <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 10:33:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cboMRUvoisNKa6PnNdyZBhjQ224R6H8brXIWYyIMBtc=;
-        b=Y7AUQba2EmNb4+cAvrObIazwlQFrI0Xqm69iHsczjnhlKP84YUTWGT1obxtSs6XMff
-         O0l6pk3CydA8DtlZuFJJtyd84yXa8YHW/JyCNLvBof1Oaklh+XrTWQzPN/2qp4O4wkRl
-         J8hV3UU8KGY1zOwHk0hlheuTHe8M3YGWoPmyu69bNLAEcqRQnWizIt1zwa1LfrWOMkF7
-         08nkLPi04zjauONYcVXrGqh9LlX6ZMwrWANOPifPbrJTow1+1iz/vq0jSDMqF4ugf7vH
-         6219DjezPHyRHX8DPguClx6xEJZBJH5QEM/nYXDpwcytuLoeuXiHMCWSPpIPcbofsyv9
-         1w7A==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X80wKTugNUYpUIvAR2BdbhhOewj3Id8Apn5xFUzo2LA=;
+        b=pPOhFzH5WKAA/mimirp3H6Cm1kN0uT72DZnS/x9bA/Q6+orRnVzqkJhR9AdvmzMYrR
+         8hxj+jo5NvuW+Ca0JZbt4xyTxy4oJQ8dfjb3mWLCeusFC0TV0Wnqxp99ySoY9oEuuL1F
+         V0rLIGTDU6w3fdHjrqh2cfgxM5CQDQcoRMOXiEetCUvb2AnpnnGM3hQu0xTYDsUgZ/TQ
+         4VnaDwahZaq07MlT4e/sdvDI1i869ti0tG/kWIlqc3Cr9htH/BdcRPgXXKKZlxD8G9wQ
+         z6xbKQ1AOqwkuqENLkMzZraSzSfZfL7X4Kf0GEsqKdmgfR08ZtXOdBhkbet50I7SRPIw
+         bcYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cboMRUvoisNKa6PnNdyZBhjQ224R6H8brXIWYyIMBtc=;
-        b=IsG8HieptzPjPCVqibM12uWB9ouCf+F0Z5KSHGYrinY/H7l4WCReao7C6evdyxrpTZ
-         vNb1GtD1rDvVbBr6zBfwt7EKQB/KzZWkHvl5LFOUd9jQR5IKT6FniNa5ga7qFqNAGhWP
-         8g+14AIknPTjn8otFBmmfyK/Mku+LlxW9ndF9AaslOKwpQsUKogoyieVS7bKd70Yg3W5
-         3COkPJSQLbBIaf1CYc5J3JDwvdzdvF8rRrl0diQdTcSHa6SlhKyIdU5UU2JFwjTgoA3i
-         v0FzKSQh/2HXqrY5GDR8CEeU2ABWSSuqNZR6hXB11aXsPs4pqeZtH5Ot+mPYeclDANi5
-         OeuA==
-X-Gm-Message-State: AFqh2kpd4N92yv0UzCdIdV9fcLEJ8bV11r+1VD4PqtdEpBaJ2Z2OV3tU
-	vZ+rfgrQ0ye92Xyb4TGk63+IbtgGn9Y=
-X-Google-Smtp-Source: AMrXdXulnlXgnZKp84q65VlOAmFZZehIYP7rM79jOzuN0wKSj3qeQRjshDpjQQYj83eAAqgsHV/Mlg==
-X-Received: by 2002:ac8:5185:0:b0:3a7:e548:5e89 with SMTP id c5-20020ac85185000000b003a7e5485e89mr61222876qtn.49.1672768405932;
-        Tue, 03 Jan 2023 09:53:25 -0800 (PST)
-Received: from keaua.attlocal.net ([2600:1700:9190:ba10:fa65:7834:d13:d2ac])
-        by smtp.gmail.com with ESMTPSA id y15-20020a05620a0e0f00b007025753c4a5sm22161102qkm.6.2023.01.03.09.53.23
-        for <yocto@lists.yoctoproject.org>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X80wKTugNUYpUIvAR2BdbhhOewj3Id8Apn5xFUzo2LA=;
+        b=IrgHGHntPF+V1X8u1Y8i6+587IDZt8quan7weZ/HEqXmeAsYOR4ETukEREX6kGSnys
+         u+imVa0W+4N+jQuUYr4qPR8jSDZ94CH1V8sADRoCuKeBfxX6yZziIqsMHR3BKeSI4OR8
+         XEePzwMiQlCE8iinuWrDgj4Hf+1FfMOPykYgMTFZXqwaWOd1NEHqggy+LyrocrAgBuez
+         M4f0J+KTdC0Pv7uG8hVwov3uTD0UZl3gX/2Gfr1SZHkf6x3vMOKlYCruwvO0dbbXrJoA
+         gdZ/jcrgnJB1oCgOi4jImFT2B7vwPInnsE/I2B46iHXRJ3N3GvhOBihatq1XB61Fw5Ms
+         L9nQ==
+X-Gm-Message-State: AFqh2krF2UoE+R7pD1t3TXqKi8w6g7laCjsAgN8OoviQVhFrJzyWmqmG
+	aOI6UWtKo9K4oCq/7RPo804x6clvJ6Q=
+X-Google-Smtp-Source: AMrXdXuab3J/CnAM/Ih6WG0FT9xDSVEJlIErcxVble+L/eSwMI6py5AXG+wJPTm3SLqU9U53PwPalw==
+X-Received: by 2002:a17:90a:930f:b0:225:be98:f5b5 with SMTP id p15-20020a17090a930f00b00225be98f5b5mr41780892pjo.23.1672770827425;
+        Tue, 03 Jan 2023 10:33:47 -0800 (PST)
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9181:1cf0::bccc])
+        by smtp.gmail.com with ESMTPSA id s5-20020a17090a760500b0022630ba1c80sm8899132pjk.42.2023.01.03.10.33.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 09:53:25 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
+        Tue, 03 Jan 2023 10:33:46 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] layer.conf: Mark master as compatible with mickledore
-Date: Tue,  3 Jan 2023 12:53:22 -0500
-Message-Id: <20230103175322.60034-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+Cc: twoerner@gmail.com,
+	Khem Raj <raj.khem@gmail.com>
+Subject: [meta-rockchip][PATCH] layer.conf: Update LAYERSERIES_COMPAT for mickledore
+Date: Tue,  3 Jan 2023 10:33:43 -0800
+Message-Id: <20230103183343.959016-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 17:53:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58915
+ <yocto@lists.yoctoproject.org>; Tue, 03 Jan 2023 18:33:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58916
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+oe-core switched to mickedore [1]
+
+[1] https://git.openembedded.org/openembedded-core/commit/?id=57239d66b933c4313cf331d35d13ec2d0661c38f
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- conf/layer.conf                          | 2 +-
- meta-integrity/conf/layer.conf           | 2 +-
- meta-parsec/conf/layer.conf              | 2 +-
- meta-security-compliance/conf/layer.conf | 2 +-
- meta-security-isafw/conf/layer.conf      | 2 +-
- meta-tpm/conf/layer.conf                 | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/conf/layer.conf b/conf/layer.conf
-index 470c7f6..b5a74f1 100644
+index 9197c3b..e8c50f8 100644
 --- a/conf/layer.conf
 +++ b/conf/layer.conf
-@@ -9,7 +9,7 @@ BBFILE_COLLECTIONS += "security"
- BBFILE_PATTERN_security = "^${LAYERDIR}/"
- BBFILE_PRIORITY_security = "8"
+@@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip = "1"
+ # This should only be incremented on significant changes that will
+ # cause compatibility issues with other layers
+ LAYERVERSION_rockchip = "1"
+-LAYERSERIES_COMPAT_rockchip = "langdale"
++LAYERSERIES_COMPAT_rockchip = "mickledore"
+ LAYERDEPENDS_rockchip = "core meta-arm"
  
--LAYERSERIES_COMPAT_security = "kirkstone langdale"
-+LAYERSERIES_COMPAT_security = "mickledore"
- 
- LAYERDEPENDS_security = "core openembedded-layer"
- 
-diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-index 1fcf33c..b273b5b 100644
---- a/meta-integrity/conf/layer.conf
-+++ b/meta-integrity/conf/layer.conf
-@@ -20,7 +20,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
- # interactive shell is enough.
- OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
- 
--LAYERSERIES_COMPAT_integrity = "kirkstone langdale"
-+LAYERSERIES_COMPAT_integrity = "mickledore"
- # ima-evm-utils depends on keyutils from meta-oe
- LAYERDEPENDS_integrity = "core openembedded-layer"
- 
-diff --git a/meta-parsec/conf/layer.conf b/meta-parsec/conf/layer.conf
-index a748d77..0a71694 100644
---- a/meta-parsec/conf/layer.conf
-+++ b/meta-parsec/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "parsec-layer"
- BBFILE_PATTERN_parsec-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_parsec-layer = "5"
- 
--LAYERSERIES_COMPAT_parsec-layer = "kirkstone langdale"
-+LAYERSERIES_COMPAT_parsec-layer = "mickledore"
- 
- LAYERDEPENDS_parsec-layer = "core clang-layer"
- BBLAYERS_LAYERINDEX_NAME_parsec-layer = "meta-parsec"
-diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
-index ec57541..f07532c 100644
---- a/meta-security-compliance/conf/layer.conf
-+++ b/meta-security-compliance/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
- BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_scanners-layer = "10"
- 
--LAYERSERIES_COMPAT_scanners-layer = "kirkstone langdale"
-+LAYERSERIES_COMPAT_scanners-layer = "mickledore"
- 
- LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
- 
-diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
-index 724742d..550cced 100644
---- a/meta-security-isafw/conf/layer.conf
-+++ b/meta-security-isafw/conf/layer.conf
-@@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
- 
- LAYERDEPENDS_security-isafw = "core"
- 
--LAYERSERIES_COMPAT_security-isafw = "kirkstone langdale"
-+LAYERSERIES_COMPAT_security-isafw = "mickledore"
-diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
-index 1fd2e4c..81690ca 100644
---- a/meta-tpm/conf/layer.conf
-+++ b/meta-tpm/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
- BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_tpm-layer = "10"
- 
--LAYERSERIES_COMPAT_tpm-layer = "kirkstone langdale"
-+LAYERSERIES_COMPAT_tpm-layer = "mickledore"
- 
- LAYERDEPENDS_tpm-layer = " \
-     core \
+ BBFILES_DYNAMIC += " \
 -- 
-2.25.1
+2.39.0
 
 
