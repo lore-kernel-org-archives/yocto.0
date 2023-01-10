@@ -1,77 +1,71 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <alexandre.belloni@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2EDD9C46467
-	for <webhook@archiver.kernel.org>; Tue, 10 Jan 2023 14:55:16 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
- by mx.groups.io with SMTP id smtpd.web10.105528.1673362508596074447
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25A32C54EBC
+	for <webhook@archiver.kernel.org>; Tue, 10 Jan 2023 15:02:56 +0000 (UTC)
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+ by mx.groups.io with SMTP id smtpd.web10.105754.1673362965717623336
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Jan 2023 06:55:08 -0800
+ Tue, 10 Jan 2023 07:02:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=OBBQuv+M;
- spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f44.google.com with SMTP id bf43so18845889lfb.6
-        for <yocto@lists.yoctoproject.org>; Tue, 10 Jan 2023 06:55:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jaHlrXEwZeCv7bYdJaNHA7hicN0m7NuHhgFMLpcnBck=;
-        b=OBBQuv+MF1x/v9N6f1O+JYNkRo9TUafM4nSEj1a93nJiz8Za5A3u5OyuLxsy6iBlnY
-         aAvKQTRIQ4sEppzaovDdDCjs8WRR1Q9UuAnl7Izu0KfpzKK7iA0EbTD1ev1RkeYihjF+
-         EgMl5r/kgYAEe8ruaBiCQGj653VC7OTINA00Y10G1udI9Rw/AtEuCrDOe+p40HHfReAx
-         IrdcXOzFD5ysIDJORlJAy0zY3htw/M9BjaMxJFZRKR1n6AXe87WzUMV/eBXoMXNrKxJO
-         vuuqlRSgvbYg1UU0ymd5OCRgSfWWuiEmGQg2IreB+cPypt/icN346ADlAktqR1G3gfcG
-         qp0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jaHlrXEwZeCv7bYdJaNHA7hicN0m7NuHhgFMLpcnBck=;
-        b=PV/ls3DHz4ea4dPGsqX6rpW4ALI4/zk5wrfbFlwjAaBnSTZ1Hk7vz3vnIP87BllZJ7
-         sP9NrpUuQivTmf6SX6MoCUniwz4nHkJyp4+rlN3hGLKBUDBLVwHGviBZpd9LMUf8Tzax
-         Dx6rD0+WbpZvKeOFUeTUHq1p/abdjMeoWTmNrFB+h8VDNV1dbIWtfc0IEijANQzJ6gNd
-         VrUjR1Aui5QgoEoPv+8XTIfaCXEn+foQY7SWZNk4bkIEoEtU0r/8xxs3EsDSFmKcQaer
-         xgIJpEF47F4gvJW2kw8n41uLsGUK/BZ8sOsBAVoHtD1x6GlZ+urdHML/zcZvzwv+CV4D
-         OcYg==
-X-Gm-Message-State: AFqh2kozNKGjYzRTC7ZuXrlj3tw+j30u/Gw5BXJvOXwJBV4OCaORztI5
-	KYja6kBzBE5l6/tvhGxUpPpkq6DXh/JL6IdSoak=
-X-Google-Smtp-Source: AMrXdXv5J/6FO4rWyCg4usEla2XZ9cUCB/H+v/OGhzZBtRuZ8lT6/ow5lIPy7RTJrrKWrCF2Q14OzPnr54kDV9KGe5I=
-X-Received: by 2002:ac2:568e:0:b0:4cb:4404:1bc3 with SMTP id
- 14-20020ac2568e000000b004cb44041bc3mr1056734lfr.263.1673362506716; Tue, 10
- Jan 2023 06:55:06 -0800 (PST)
-MIME-Version: 1.0
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=f4ogHOjR;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.193, mailfrom: alexandre.belloni@bootlin.com)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 57C70240011;
+	Tue, 10 Jan 2023 15:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1673362964;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+XLh7Zx269J+kZBfyT4ol+qc21SA6ZVUj6cidXg7g0Y=;
+	b=f4ogHOjR2T2eMvYY4wi7bV4OH6yHtgZxhXob9QSLFkL+2D7j1R8zPUZRL+jOkDbxeRkd8P
+	ZaaiCBMe+1l50yq8MwUCw6ljbbRYa3RxuRNYHla0j93jMwrakbE8p6w245D5ILMLf7UR50
+	9zaOV7+Z2zzEeCPQFInmze7KKdKFupikp8y5xri6vh5dqTxOaR7lmfqiq7CkQeI3TsTK/j
+	1OR4rsFQv6TTtm5NlrZSXYZcrp28onYQIz/gtd4o3bLz+4hlfW8/4hkdQ3tc082RjsVyen
+	kqCoc/JR55FZQ5VdgL2nSbIt3kX49Q9is7BhvgKmwKpneG11GoTOgkMwTp2v3w==
+Date: Tue, 10 Jan 2023 16:02:43 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yoann Congal <yoann.congal@smile.fr>,
+	Yocto Mailing list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Git repo setup for Yocto upstream contribution
+Message-ID: <Y71+E2AWNBKuDQbf@mail.local>
 References: <0942e45b-2973-f095-61f4-3aa8b90f4080@smile.fr>
  <CANNYZj_ctBSuQG-_rjD8STSmcVCK__DJF-Rg4ngyrNmYgN5N5w@mail.gmail.com>
- <Y7xboMQghF3h1WVT@mail.local> <CANNYZj9tCki_0s_popFbTmfN57zBZgvL7_RowkYMpog9UBWJUA@mail.gmail.com>
+ <Y7xboMQghF3h1WVT@mail.local>
+ <CANNYZj9tCki_0s_popFbTmfN57zBZgvL7_RowkYMpog9UBWJUA@mail.gmail.com>
  <Y7xoGKdX4ytgVxDp@mail.local>
-In-Reply-To: <Y7xoGKdX4ytgVxDp@mail.local>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 10 Jan 2023 15:54:55 +0100
-Message-ID: <CANNYZj_o1q4txLxo9EchoDcGcDntmSvo8bHy0=Tw1LkX426HGw@mail.gmail.com>
-Subject: Re: [yocto] Git repo setup for Yocto upstream contribution
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Yoann Congal <yoann.congal@smile.fr>, 
-	Yocto Mailing list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ <CANNYZj_o1q4txLxo9EchoDcGcDntmSvo8bHy0=Tw1LkX426HGw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CANNYZj_o1q4txLxo9EchoDcGcDntmSvo8bHy0=Tw1LkX426HGw@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 10 Jan 2023 14:55:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58956
+ <yocto@lists.yoctoproject.org>; Tue, 10 Jan 2023 15:02:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58957
 
-On Mon, 9 Jan 2023 at 20:16, Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
-> Just try to apply your patch on a bitbake repository, it will reproduce.
+On 10/01/2023 15:54:55+0100, Alexander Kanavin wrote:
+> On Mon, 9 Jan 2023 at 20:16, Alexandre Belloni
+> <alexandre.belloni@bootlin.com> wrote:
+> > Just try to apply your patch on a bitbake repository, it will reproduce.
+> 
+> I tried. This happens only if a 3-way merge is enabled: for existing
+> files git will strip the leading directory as needed, but for newly
+> introduced files it will place them where the patch specifies.
+> 
+> Otherwise, the patch is fully rejected (by default) or fully correctly
+> accepted (with -p2).
 
-I tried. This happens only if a 3-way merge is enabled: for existing
-files git will strip the leading directory as needed, but for newly
-introduced files it will place them where the patch specifies.
+Either way, this is a pain for the maintainer, you should send patches
+that apply cleanly.
 
-Otherwise, the patch is fully rejected (by default) or fully correctly
-accepted (with -p2).
 
-Alex
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
