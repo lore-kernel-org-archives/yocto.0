@@ -1,87 +1,108 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <onea.alex@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1A89C54EBC
-	for <webhook@archiver.kernel.org>; Tue, 10 Jan 2023 21:40:25 +0000 (UTC)
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
- by mx.groups.io with SMTP id smtpd.web10.6745.1673386821089346107
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ED9BBC5479D
+	for <webhook@archiver.kernel.org>; Wed, 11 Jan 2023 11:48:39 +0000 (UTC)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+ by mx.groups.io with SMTP id smtpd.web11.21712.1673437711912320968
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Jan 2023 13:40:21 -0800
+ Wed, 11 Jan 2023 03:48:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112 header.b=D6qmXmln;
- spf=softfail (domain: sakoman.com, ip: 209.85.216.54, mailfrom: steve@sakoman.com)
-Received: by mail-pj1-f54.google.com with SMTP id dw9so12382789pjb.5
-        for <yocto@lists.yoctoproject.org>; Tue, 10 Jan 2023 13:40:20 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=asM90rlb;
+ spf=pass (domain: gmail.com, ip: 209.85.208.177, mailfrom: onea.alex@gmail.com)
+Received: by mail-lj1-f177.google.com with SMTP id p25so9553602ljn.12
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Jan 2023 03:48:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/mym/0/1OeCLB43HN+yXHMv81Je8NgXllzG54GI2gjI=;
-        b=D6qmXmlnklWoL1gukgmpYuQ5usZEZSmdjuMuDCF+ehRU86clZc3lG7zLCBp4Z2kIKa
-         Lq9kaRqWpmz5rOpy6igHo6OzhjVfsSHJesuMnywnbGOlDwEvseg6E13pMmOTA+jbVhR7
-         1O2Wf/3Q5lfoP3+w8+NrXv9XIX/QKz+bUYmB/QFwj67kctdXd412usV9outlcIZEMFsd
-         6MmDJ1j7FVyVpwCLjmtu9MFPe0WyjgiRlyLwalx9zAqTw3AXFTF1uoyhHmgsRWnwVp/s
-         wOD6tmGXUwPFLE8u+0lIVgxZbw9ty7mqQ/hjS6P+QivbctQNK48Alwcg+jS3AuDQFZUo
-         mnCA==
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=qa3S8tzd8P2vweWD88foiFAilc9ceasuiaMBhGqBsXA=;
+        b=asM90rlbGEqfDDQLavjSvDj7dtMuVZCch6G2189UIMbmifV6pJ71Pjkd8V/dsEalII
+         tEH7F/psstOmZrZ1rf4VTYIPkcUL2KntXqrUSZc5lynzBv42Fw5qwdtMNQ3FML9dYfsE
+         SkGPyEfcOxZgh9oXw4zhy+tCrmVtkDVuPqNOccZ9TOT9vKmwB9uQH0+kneLLwzP8j4aE
+         KlJLd2/isfeVrJ552LHN4bF+Y7y62kzEDBaCZ4ku11u2mRH2AgbIuLE4cKaGa6xvoBgq
+         DI+ja3/7JlU1QNqyJetP219TVm7ys3nwga+RI8TSn8VFTgZXPGgm+AGD2ZRhrbI5GCrq
+         egKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/mym/0/1OeCLB43HN+yXHMv81Je8NgXllzG54GI2gjI=;
-        b=wlC9gbJZQtwVahZ2i9QBmcmpFth164pCZrOK/RL8rE1BhGg86vyxkNGyqodhvbxDvp
-         nwumhXfiPybh5Va7OvJ7TX8wnliw8+xt2SsvK5JxEck9c/kD1R0dn9mUn24GtAAG2Vu0
-         d7gR81fPBm28pBM2kEzWZHJLmRGIoItCVhK+3030PaWcC2CwXRLs51kUF/73jtKVKqkp
-         JskCqpmessDHJVlFSt1bYn7e6RkB1lqSBc9d1vBrRMfWzXrvIQCcuuC7HFquJg7rvvMV
-         VHiE7GXQaHXZvScCxRm+L0BnO90DQHcAH0x3dwyrT4B9fTB4A67R6DACeqwv473QLE/w
-         +biQ==
-X-Gm-Message-State: AFqh2kq2xWxOQCOLGN5uNof8wK2rL/y3/xIOnXlnicRaNkk3u7qwGMyC
-	j54UKKLXqy7U1H/aADFdf2Psl9MxiU0AnPVEd3E=
-X-Google-Smtp-Source: AMrXdXtGgLrBuucqfNKMgHAcx9RFjER/3B0HSAjmBV+oNEWivGSSSLuJZ5/o9UtUXGlpJdbz7Dcshg==
-X-Received: by 2002:a05:6a21:1509:b0:af:d295:e2f0 with SMTP id nq9-20020a056a21150900b000afd295e2f0mr128143pzb.27.1673386819741;
-        Tue, 10 Jan 2023 13:40:19 -0800 (PST)
-Received: from hexa.router0800d9.com (dhcp-72-253-5-74.hawaiiantel.net. [72.253.5.74])
-        by smtp.gmail.com with ESMTPSA id a8-20020aa78e88000000b0056bb36c047asm11980pfr.105.2023.01.10.13.40.18
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 13:40:19 -0800 (PST)
-From: Steve Sakoman <steve@sakoman.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2][dunfell] config.py: add fedora36 to workers_prev_releases for dunfell
-Date: Tue, 10 Jan 2023 11:40:08 -1000
-Message-Id: <78e51c9158b78fbf70d7d9ddc871aa1d16fe123e.1673386745.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1673386745.git.steve@sakoman.com>
-References: <cover.1673386745.git.steve@sakoman.com>
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qa3S8tzd8P2vweWD88foiFAilc9ceasuiaMBhGqBsXA=;
+        b=7xyIBEojGXcr0M0qEEOLr8DW/NSXqy844RYoxq2NbTIMXac6D3tcIq2t6NwRpvuZ4n
+         63uBVJbHukHee+HqjyQ/U5jpAlrqpuF40sdjt6dq5KqUwqJ5m+aq6FEGX3yjA2EmWvB4
+         LBOIyVzL9Tg5ajPqzLePzDBPkLH9ZBY8s/w89bYRTpiTkMsVLgiaqZXnJAwoyBYML+ZX
+         gqoggNJpyKP4XlAKQKvH4KK42GdKPChUygEfS4uw9ALieUf7VoBrVRKlAzJOrajmfigK
+         8c5mepGFQ7baMkJAwB1r9iyF1+nfxssZkjarXBbheFsYjN0Xh4boAzCEnUs8Zq6EtaFz
+         MdkQ==
+X-Gm-Message-State: AFqh2kpxP6h6ajrxGSPh8govGhjimTlh+vGPRbK1b+vQiUAXdMXLR5Vt
+	umfIfRxns7mTjbD3vrNSaYkvZ8mtBMdphwfO2CpaT4lVVJtmuQ==
+X-Google-Smtp-Source: AMrXdXsRKVL/+z1NWUjt/TAkRa7klnOerqPj9fYbcXbNFRtbkaCWLGvcA8VBY09C7Vk0Uj5JbuaHrvFldmnCgqooS9w=
+X-Received: by 2002:a2e:934c:0:b0:27f:b476:76a0 with SMTP id
+ m12-20020a2e934c000000b0027fb47676a0mr2336733ljh.497.1673437709466; Wed, 11
+ Jan 2023 03:48:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Alexandru Onea <onea.alex@gmail.com>
+Date: Wed, 11 Jan 2023 13:48:18 +0200
+Message-ID: <CAJgSc4xpQuuwzJ8BDtngtrH=a3-+OXVrEW1mf7RZwLE=H4R4mg@mail.gmail.com>
+Subject: distutils.bbclass: why is --install-data=${datadir} passed?
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000003a00a705f1fb9401"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 10 Jan 2023 21:40:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58963
+ <yocto@lists.yoctoproject.org>; Wed, 11 Jan 2023 11:48:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58964
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- config.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--0000000000003a00a705f1fb9401
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/config.py b/config.py
-index 7d5005a..f6dde69 100644
---- a/config.py
-+++ b/config.py
-@@ -159,7 +159,7 @@ workers_prev_releases = {
-     "honister" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "ubuntu2110", "ubuntu2204", "perf-"),
-     "hardknott" : ("centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora31", "fedora32", "fedora33", "fedora34", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
-     "gatesgarth" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
--    "dunfell" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-+    "dunfell" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "fedora36", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-     "zeus" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-     "warrior" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-     "thud" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
--- 
-2.25.1
+Hello, community!
 
+While writing some python-based recipes using setuptools3 I have noticed
+that ${datadir} is always installed in the staging area even though there
+is no content under it. This causes QA issues. I found out that the
+distutils bbclass contains the following line which causes this behavior:
+
+DISTUTILS_INSTALL_ARGS ?= "--root=${D} \
+    --prefix=${prefix} \
+    --install-lib=${PYTHON_SITEPACKAGES_DIR} \
+    *--install-data=${datadir}*"
+
+Is there a reason for installing ${datadir} always, regardless of what the
+build system specifies either in setup.py or in do_install[_append]?
+
+So far my workaround is to remove this flag from DISTUTILS_INSTALL_ARGS. I
+did it first on a per-recipe basis and now I am thinking of doing it
+globally by overriding the distuitls bbclass with my own version that
+requires the original and then removes the flag. Are there any concerns
+that I should be aware of?
+
+Best regards,
+Alexandru N. Onea
+
+--0000000000003a00a705f1fb9401
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello, community!</div><div><br></div>While writing s=
+ome python-based recipes using setuptools3 I have noticed that ${datadir} i=
+s always installed in the staging area even though there is no content unde=
+r it. This causes QA issues. I found out that the distutils bbclass contain=
+s the following line which causes this behavior:<div><br></div><div></div><=
+div><font face=3D"monospace">DISTUTILS_INSTALL_ARGS ?=3D &quot;--root=3D${D=
+} \<br>=C2=A0 =C2=A0 --prefix=3D${prefix} \<br>=C2=A0 =C2=A0 --install-lib=
+=3D${PYTHON_SITEPACKAGES_DIR} \<br>=C2=A0 =C2=A0 <b>--install-data=3D${data=
+dir}</b>&quot;</font></div><div><br clear=3D"all"><div><div dir=3D"ltr" dat=
+a-smartmail=3D"gmail_signature"><div>Is there a reason for installing ${dat=
+adir} always, regardless of what the build system specifies either in setup=
+.py or in do_install[_append]?</div><div><br></div><div>So far my workaroun=
+d is to remove this flag from DISTUTILS_INSTALL_ARGS. I did it first on a p=
+er-recipe basis and now I am thinking of doing it globally by overriding th=
+e distuitls=C2=A0bbclass with my own version that requires the original and=
+ then removes the flag. Are there any concerns that I should=C2=A0be aware =
+of?</div><div dir=3D"ltr"><br></div><div>Best regards,</div><div dir=3D"ltr=
+">Alexandru N. Onea</div></div></div></div></div>
+
+--0000000000003a00a705f1fb9401--
 
