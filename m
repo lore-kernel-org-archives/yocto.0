@@ -1,164 +1,77 @@
-Return-Path: <jovanbosic95@gmail.com>
+Return-Path: <cbing@cybernetics.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6623C54EBD
-	for <webhook@archiver.kernel.org>; Fri, 13 Jan 2023 07:43:23 +0000 (UTC)
-Subject: Re: gn native do compile fails
-To: yocto@lists.yoctoproject.org
-From: jovanbosic95@gmail.com
-X-Originating-Location: Novi Sad, Vojvodina, RS (46.163.59.26)
-X-Originating-Platform: Linux Chrome 109
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5E7EC54EBE
+	for <webhook@archiver.kernel.org>; Fri, 13 Jan 2023 14:26:05 +0000 (UTC)
+Received: from mail.cybernetics.com (mail.cybernetics.com [72.215.153.18])
+ by mx.groups.io with SMTP id smtpd.web11.87975.1673619959966250370
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 13 Jan 2023 06:26:00 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@cybernetics.com header.s=mail header.b=WKef+q/F;
+ spf=pass (domain: cybernetics.com, ip: 72.215.153.18, mailfrom: btv1==377bec7b149==cbing@cybernetics.com)
+X-ASG-Debug-ID: 1673619958-1cf43916c2430cd0001-O4Qx4w
+Received: from cybernetics.com ([10.10.4.126]) by mail.cybernetics.com with ESMTP id JpmAhSFxDdAbnIlv for <yocto@lists.yoctoproject.org>; Fri, 13 Jan 2023 09:25:58 -0500 (EST)
+X-Barracuda-Envelope-From: cbing@cybernetics.com
+X-ASG-Whitelist: Client
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=cybernetics.com; s=mail;
+	bh=/G0JmB5yiDK9jnlpkPdOj0n7HJK3hYkyv45smvqRzvM=;
+	h=Content-Transfer-Encoding:Content-Type:Subject:From:To:Content-Language:
+	MIME-Version:Date:Message-ID; b=WKef+q/F5chKPSPH+lbq9CDRBz458aWACA3TpaJguW0I5
+	ZdAmXCluUCPoNqvFrfSG2Q1RUS54npl4pRMiqJ4hC8cHdnRx76GCBhtvPR/7IXcyFCmRthSpq45nM
+	leamTYRG04v860/cUCIaIHTZSVsm/s0rI+twxerjlZjY+SCRI=
+Received: from [10.157.1.18] (HELO [192.168.184.100])
+  by cybernetics.com (CommuniGate Pro SMTP 7.1.1)
+  with ESMTPS id 12414449 for yocto@lists.yoctoproject.org; Fri, 13 Jan 2023 09:25:58 -0500
+Message-ID: <a91c44ce-038e-f36a-d831-59c659008b35@cybernetics.com>
+Date: Fri, 13 Jan 2023 09:25:58 -0500
 MIME-Version: 1.0
-Date: Thu, 12 Jan 2023 23:43:14 -0800
-References: <CAMKF1spzfc8f1_T9BT6cpzhUUXLAqoqpVG38RO3-fwcx-NOLfQ@mail.gmail.com>
-In-Reply-To: <CAMKF1spzfc8f1_T9BT6cpzhUUXLAqoqpVG38RO3-fwcx-NOLfQ@mail.gmail.com>
-Message-ID: <2751.1673595794834528629@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="zmQSXsMX6X3MY5oI2SAZ"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: yocto@lists.yoctoproject.org
+From: Claude Bing <cbing@cybernetics.com>
+Subject: [yocto][langdale] dropbear recipe fails to parse without pam in
+ DISTRO_FEATURES
+Content-Type: text/plain; charset=UTF-8
+X-ASG-Orig-Subj: [yocto][langdale] dropbear recipe fails to parse without pam in
+ DISTRO_FEATURES
+Content-Transfer-Encoding: 7bit
+X-Barracuda-Connect: UNKNOWN[10.10.4.126]
+X-Barracuda-Start-Time: 1673619958
+X-Barracuda-URL: https://10.10.4.122:443/cgi-mod/mark.cgi
+X-Barracuda-BRTS-Status: 1
+X-Virus-Scanned: by bsmtpd at cybernetics.com
+X-Barracuda-Scan-Msg-Size: 791
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 13 Jan 2023 07:43:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58973
+ <yocto@lists.yoctoproject.org>; Fri, 13 Jan 2023 14:26:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58974
 
---zmQSXsMX6X3MY5oI2SAZ
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Good day everyone.
 
-This is my gn-native_106.0.5.249.119.bb:
+We are in the process of upgrading to langdale, and I ran across a small
+problem when building dropbear. The order of external assets in SRC_URI
+seems to cause an issue when PAM is not available in DISTRO_FEATURES.
 
-# gn-native contains the GN binary used to configure Chromium.
-# It is not released separately, and each Chromium release is only expected=
- to
-# work with the GN version provided with it.
+ERROR:
+/home/****/yocto/poky-next/build-cyber-v/../meta/recipes-core/dropbear/dropbear_2022.82.bb:
+Unable to get checksum for dropbear SRC_URI entry
+0007-Fix-X11-build-failure-use-DROPBEAR_PRIO_LOWDELAY.patchfile: file
+could not be found
 
-require chromium.inc
+When we move the following entry to the bottom of SRC_URI in
+meta/recipes-core/dropbear/dropbear_2022.82.bb, the recipe parses
+successfully:
 
-inherit native
+${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${PAM_SRC_URI}', '', d)}
 
-S =3D "${WORKDIR}/chromium-${PV}"
+Is this a good fix? Am I missing a larger issue?
 
-# bootstrap.py --no_clean hardcodes the build location to out_bootstrap.
-# Omitting --no_clean causes the script to create a temporary directory wit=
-h a
-# random name outside the build directory, so we choose the lesser of the t=
-wo
-# evils.
-B =3D "${S}/out_bootstrap"
+-- 
+Regards,
 
-SRC_URI +=3D " \
-file://0001-Pass-no-static-libstdc-to-gen.py.patch \
-"
-
-# The build system expects the linker to be invoked via the compiler. If we=
- use
-# the default value for BUILD_LD, it will fail because it does not recogniz=
-e
-# some of the arguments passed to it.
-BUILD_LD =3D "${CXX}"
-
-# Use LLVM's ar rather than binutils'. Depending on the optimizations enabl=
-ed
-# in the build ar(1) may not be enough.
-BUILD_AR =3D "llvm-ar"
-
-DEPENDS =3D "clang-native ninja-native libcxx-native"
-DEPENDS:append:runtime-llvm =3D " compiler-rt-native libcxx-native"
-# Use libcxx headers for native parts
-CXXFLAGS:append:runtime-llvm =3D " -isysroot=3D${STAGING_DIR_NATIVE} -stdli=
-b=3Dlibc++"
-# Use libgcc for native parts
-LDFLAGS:append:runtime-llvm =3D " -rtlib=3Dlibgcc -unwindlib=3Dlibgcc -stdl=
-ib=3Dlibc++ -lc++abi -rpath ${STAGING_LIBDIR_NATIVE}"
-
-do_configure[noexec] =3D "1"
-
-do_compile() {
-python3 ${S}/tools/gn/bootstrap/bootstrap.py --skip-generate-buildfiles
-}
-
-do_install() {
-install -d ${D}${bindir}
-install -m 0755 ${S}/out/Release/gn ${D}${bindir}/gn
-}
-
-INSANE_SKIP:${PN} +=3D "already-stripped"
-
-I have libcxx-native in dependencies and I have installed C++ runtime but I=
- am seeing the same error.
-
---zmQSXsMX6X3MY5oI2SAZ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-This is my gn-native_106.0.5.249.119.bb:<br /><br />
-<div># gn-native contains the GN binary used to configure Chromium.</div>
-<div># It is not released separately, and each Chromium release is only exp=
-ected to</div>
-<div># work with the GN version provided with it.</div>
-<div>&nbsp;</div>
-<div>require chromium.inc</div>
-<div>&nbsp;</div>
-<div>inherit native</div>
-<div>&nbsp;</div>
-<div>S =3D "${WORKDIR}/chromium-${PV}"</div>
-<div>&nbsp;</div>
-<div># bootstrap.py --no_clean hardcodes the build location to out_bootstra=
-p.</div>
-<div># Omitting --no_clean causes the script to create a temporary director=
-y with a</div>
-<div># random name outside the build directory, so we choose the lesser of =
-the two</div>
-<div># evils.</div>
-<div>B =3D "${S}/out_bootstrap"</div>
-<div>&nbsp;</div>
-<div>SRC_URI +=3D " \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; file://0001-Pass-no-static-libstdc-to-gen.=
-py.patch \</div>
-<div>"</div>
-<div>&nbsp;</div>
-<div># The build system expects the linker to be invoked via the compiler. =
-If we use</div>
-<div># the default value for BUILD_LD, it will fail because it does not rec=
-ognize</div>
-<div># some of the arguments passed to it.</div>
-<div>BUILD_LD =3D "${CXX}"</div>
-<div>&nbsp;</div>
-<div># Use LLVM's ar rather than binutils'. Depending on the optimizations =
-enabled</div>
-<div># in the build ar(1) may not be enough.</div>
-<div>BUILD_AR =3D "llvm-ar"</div>
-<div>&nbsp;</div>
-<div>DEPENDS =3D "clang-native ninja-native libcxx-native"</div>
-<div>DEPENDS:append:runtime-llvm =3D " compiler-rt-native libcxx-native"</d=
-iv>
-<div># Use libcxx headers for native parts</div>
-<div>CXXFLAGS:append:runtime-llvm =3D " -isysroot=3D${STAGING_DIR_NATIVE} -=
-stdlib=3Dlibc++"</div>
-<div># Use libgcc for native parts</div>
-<div>LDFLAGS:append:runtime-llvm =3D " -rtlib=3Dlibgcc -unwindlib=3Dlibgcc =
--stdlib=3Dlibc++ -lc++abi -rpath ${STAGING_LIBDIR_NATIVE}"</div>
-<div>&nbsp;</div>
-<div>do_configure[noexec] =3D "1"</div>
-<div>&nbsp;</div>
-<div>do_compile() {</div>
-<div><span style=3D"white-space: pre;"> </span>python3 ${S}/tools/gn/bootst=
-rap/bootstrap.py --skip-generate-buildfiles</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>do_install() {</div>
-<div><span style=3D"white-space: pre;"> </span>install -d ${D}${bindir}</di=
-v>
-<div><span style=3D"white-space: pre;"> </span>install -m 0755 ${S}/out/Rel=
-ease/gn ${D}${bindir}/gn</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>INSANE_SKIP:${PN} +=3D "already-stripped"<br /><br />I have&nbsp;<span=
- style=3D"white-space: pre-wrap;">libcxx-native in </span><span style=3D"wh=
-ite-space: pre-wrap;">dependencies and I have installed </span><span style=
-=3D"white-space: pre-wrap;">C++ runtime but I am seeing the same error.</sp=
-an></div>
-
---zmQSXsMX6X3MY5oI2SAZ--
+Claude Bing
 
