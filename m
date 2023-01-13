@@ -1,114 +1,120 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E0DE5C3DA78
-	for <webhook@archiver.kernel.org>; Fri, 13 Jan 2023 17:12:16 +0000 (UTC)
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
- by mx.groups.io with SMTP id smtpd.web11.93805.1673629929580894471
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 20E5BC3DA78
+	for <webhook@archiver.kernel.org>; Fri, 13 Jan 2023 17:46:57 +0000 (UTC)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+ by mx.groups.io with SMTP id smtpd.web10.94900.1673632012030941856
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Jan 2023 09:12:09 -0800
+ Fri, 13 Jan 2023 09:46:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Ykdd5YtY;
- spf=pass (domain: gmail.com, ip: 209.85.167.171, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f171.google.com with SMTP id h185so18182664oif.5
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Jan 2023 09:12:09 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=KMay1/TR;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f50.google.com with SMTP id k8so7261885wrc.9
+        for <yocto@lists.yoctoproject.org>; Fri, 13 Jan 2023 09:46:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yhKGKaSoVeg7GolmX6cjSqqKO8hEHagz5oCiKBJ0ohc=;
-        b=Ykdd5YtYHFbgW4Lutxh8uJVqHwW/byAuUUAiVUrQSd8PbHxVdno5QlFbENcZj+sERc
-         jP0tnRTcwKlGg56xevyJ0jIlNXfrK81k6RdwyrG3b1YQQSqiqrjgi3hF4ZxmE8cN6Xdg
-         4KzVCRUbc1/vMHtk7z7BnAWfJbwoqvLE3kjJS+I4IBrxJq/rvVFEaziKIwiVgplDAOe0
-         xfKThGU+ZHFEcWBGsM1S5h+ALJuI5Ue11tPt7PbftuTNhsVzufZxa6M+rm4wOtbtFrpA
-         ItvxJvRSyGj0A+OcybeLemBVZdTRTkdwBOeY1Kv0pzzyMVSVN82ut/yak/bLeCStasGp
-         6dmQ==
+        d=linuxfoundation.org; s=google;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=f8xbMTIHONOw2eDh9ARc9ACpu8pomMrALjN7JqVYKi4=;
+        b=KMay1/TRSuhnXA0qh9LlYscF6QcMNzZbJzm/g+wJcORtlpbqE/sn8CV1Wkp/FlmVlF
+         c7qVAUtSRadJ0ut42h4X2Cm/GTFVY2hZ940qk+PVo3Hds+RM3uZFuJQob+wCLQjaS22b
+         IYPNZQf0Le+ERGgnDABjES9tVKA4ic46wlh+o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yhKGKaSoVeg7GolmX6cjSqqKO8hEHagz5oCiKBJ0ohc=;
-        b=JNzlByP8XKf1tYDHw6x74T10TsLAGimb8jnP6Jz9Fr4cODU0nadnp8S9tk7TZEJiGl
-         eb0lfqWk1oR5tPQkby3je/7L2gQc9CnYeLgK72FlasUnD3Xu7RXWn3frRrvrQvZVxh5+
-         XuW7RDaSSa/QgGLCF2Xpb+rC/b/fLAaijyupjVcNpRpHw2FwmeWyiDN8BdWKDFr4O3Pk
-         IVEFx/qSevDGS7HedubaqES7APGLrTUmEHdG9uV8o096EfrgWBKJuY9nXg+7nxuR50Q+
-         zfecghx7HDpvy9Ha1wcymo97ECV6e2cyfw9M1D9b74aTr0SlC40VloICght2C5tLfnRu
-         ikUA==
-X-Gm-Message-State: AFqh2kpvsAjFkfoG8WO85Gx3RXeIi6lwHc26BcoXi0bGa7LYe+lamxfm
-	ZftlmmsYRpa/+6lRwBQt4EE7YYO1r0PsvnkO/yg=
-X-Google-Smtp-Source: AMrXdXsIfFfzWS1PV8UdGxh/ZYEWOFQdukTTEn1cdfxhh6nr678NCu5Ya2LFILbfCt+ldMlUA61cdciBzDeiutjeljE=
-X-Received: by 2002:a05:6808:7c1:b0:364:bd84:ca34 with SMTP id
- f1-20020a05680807c100b00364bd84ca34mr95033oij.262.1673629928669; Fri, 13 Jan
- 2023 09:12:08 -0800 (PST)
-MIME-Version: 1.0
-References: <a91c44ce-038e-f36a-d831-59c659008b35@cybernetics.com>
-In-Reply-To: <a91c44ce-038e-f36a-d831-59c659008b35@cybernetics.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 13 Jan 2023 09:11:42 -0800
-Message-ID: <CAMKF1socccTJ4p+vn9CUfw5PNkb6d3dXO8pOMHsRt2+pomz8xQ@mail.gmail.com>
-Subject: Re: [yocto][langdale] dropbear recipe fails to parse without pam in DISTRO_FEATURES
-To: Claude Bing <cbing@cybernetics.com>
-Cc: yocto@lists.yoctoproject.org
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f8xbMTIHONOw2eDh9ARc9ACpu8pomMrALjN7JqVYKi4=;
+        b=LCp8lQ7ZmpZDGSYXSj8wxtWSNI/KsnaIdj3N/jjAckV6fjQcp6ZLe1JZg8WP5dz/qJ
+         2w88L3VYf3RCHzm+t6BDwb4zLNsszOvVZkm83joZPgbSXyOMWg6F4qBIWOGVRfapPVw0
+         YKe2yaR8zHdJ9IQmn+6oyGB7+sqb1A8KxsWKrBK4wn/CoSiQj575stMWcRmZi29mr03e
+         8T7cjbIXi8J10mODl8bTnAvhVM65fRxDoMUhYFcmg8x+/5oKU5/K2cHmvl/G4VMxh3uH
+         KYRlZNytdMPiRRsm+BEX1kaEr51My845EANB3k6i9fn7hKkZWQ7a/2oN/N84xBue+gVS
+         A+OQ==
+X-Gm-Message-State: AFqh2kpyET//Gefn3n0nk/yrOfSurjDFORQ9p25n8Nh6N/I5B9Guej3R
+	nO1rKBJsyP59u5QUyNbO22RWDQ==
+X-Google-Smtp-Source: AMrXdXs4B4yqKABfj40BHRka7gMPZ8m7M+qUkGJDb9dosM84pO5tzFtyPhG2nDL1t9BLZJHDdGbJQg==
+X-Received: by 2002:adf:ecca:0:b0:2bd:e592:5460 with SMTP id s10-20020adfecca000000b002bde5925460mr1444161wro.39.1673632010270;
+        Fri, 13 Jan 2023 09:46:50 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:615d:b1e6:6cd2:7fd3? ([2001:8b0:aba:5f3c:615d:b1e6:6cd2:7fd3])
+        by smtp.gmail.com with ESMTPSA id f8-20020a0560001b0800b002423edd7e50sm19303745wrz.32.2023.01.13.09.46.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jan 2023 09:46:49 -0800 (PST)
+Message-ID: <728c14677b5087c81da2436102724094f16f6fec.camel@linuxfoundation.org>
+Subject: Re: [yocto] [autobuilder][PATCH 1/2] scripts/send-qa-email : clone
+ older history to allow comparing against older releases
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: alexis.lothore@bootlin.com, yocto@lists.yoctoproject.org
+Cc: alexandre.belloni@bootlin.com
+Date: Fri, 13 Jan 2023 17:46:49 +0000
+In-Reply-To: <20230113150646.44144-2-alexis.lothore@bootlin.com>
+References: <20230113150646.44144-1-alexis.lothore@bootlin.com>
+	 <20230113150646.44144-2-alexis.lothore@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 13 Jan 2023 17:12:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58980
+ <yocto@lists.yoctoproject.org>; Fri, 13 Jan 2023 17:46:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58981
 
-On Fri, Jan 13, 2023 at 6:26 AM Claude Bing <cbing@cybernetics.com> wrote:
->
-> Good day everyone.
->
-> We are in the process of upgrading to langdale, and I ran across a small
-> problem when building dropbear. The order of external assets in SRC_URI
-> seems to cause an issue when PAM is not available in DISTRO_FEATURES.
->
-> ERROR:
-> /home/****/yocto/poky-next/build-cyber-v/../meta/recipes-core/dropbear/dropbear_2022.82.bb:
-> Unable to get checksum for dropbear SRC_URI entry
-> 0007-Fix-X11-build-failure-use-DROPBEAR_PRIO_LOWDELAY.patchfile: file
-> could not be found
->
-> When we move the following entry to the bottom of SRC_URI in
-> meta/recipes-core/dropbear/dropbear_2022.82.bb, the recipe parses
-> successfully:
->
-> ${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${PAM_SRC_URI}', '', d)}
->
-> Is this a good fix? Am I missing a larger issue?
+On Fri, 2023-01-13 at 16:06 +0100, Alexis Lothor=C3=A9 via
+lists.yoctoproject.org wrote:
+> In order to generate relevant regression reports, we need to use resultto=
+ol
+> against taggued releases, which can be way older than the last five previ=
+ous
+> commits
+>=20
+> Signed-off-by: Alexis Lothor=C3=A9 <alexis.lothore@bootlin.com>
+> ---
+>  scripts/send-qa-email | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/scripts/send-qa-email b/scripts/send-qa-email
+> index d2f63dc..c2c5a4b 100755
+> --- a/scripts/send-qa-email
+> +++ b/scripts/send-qa-email
+> @@ -78,10 +78,10 @@ if 'poky' in repos and os.path.exists(resulttool) and=
+ args.results_dir:
+>          elif basebranch:
+>              cloneopts =3D ["--branch", basebranch]
+>          try:
+> -            subprocess.check_call(["git", "clone", "git@push.yoctoprojec=
+t.org:yocto-testresults", tempdir, "--depth", "5"] + cloneopts)
+> +            subprocess.check_call(["git", "clone", "git@push.yoctoprojec=
+t.org:yocto-testresults", tempdir] + cloneopts)
+>          except subprocess.CalledProcessError:
+>              print("No comparision branch found, falling back to master")
+> -            subprocess.check_call(["git", "clone", "git@push.yoctoprojec=
+t.org:yocto-testresults", tempdir, "--depth", "5"])
+> +            subprocess.check_call(["git", "clone", "git@push.yoctoprojec=
+t.org:yocto-testresults", tempdir])
+> =20
+>          # If the base comparision branch isn't present regression compar=
+ision won't work
+>          # at least until we can tell the tool to ignore internal branch =
+information
 
-try something like below it will remove the positional requirement.
+That is a somewhat "easy" option but it might not be practical.
 
---- a/meta/recipes-core/dropbear/dropbear_2022.83.bb
-+++ b/meta/recipes-core/dropbear/dropbear_2022.83.bb
-@@ -27,7 +27,8 @@ SRC_URI[sha256sum] =
-"bc5a121ffbc94b5171ad5ebe01be42746d50aa797c9549a4639894a167
+The yocto-testresults repo is large. I tried a clone here and it is
+taking rather a while, it starts ok but then starts taking a long time
+with a lot of data transfer (over a GB so far) :(.
 
- PAM_SRC_URI = "file://0005-dropbear-enable-pam.patch \
-                file://0006-dropbear-configuration-file.patch \
--               file://dropbear"
-+               file://dropbear \
-+               "
+Can we check the tags with something like ls-remote and then only fetch
+what we need to compare against?
 
- PAM_PLUGINS = "libpam-runtime \
-    pam-plugin-deny \
+Cheers,
 
->
-> --
-> Regards,
->
-> Claude Bing
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#58974): https://lists.yoctoproject.org/g/yocto/message/58974
-> Mute This Topic: https://lists.yoctoproject.org/mt/96246470/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Richard
+
+
+
+
 
