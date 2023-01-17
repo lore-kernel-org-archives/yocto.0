@@ -1,350 +1,454 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <jovanbosic95@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7103C6379F
-	for <webhook@archiver.kernel.org>; Tue, 17 Jan 2023 03:18:31 +0000 (UTC)
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
- by mx.groups.io with SMTP id smtpd.web10.188088.1673925502817693106
- for <yocto@lists.yoctoproject.org>;
- Mon, 16 Jan 2023 19:18:22 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=BYpKFtg4;
- spf=pass (domain: gmail.com, ip: 209.85.214.179, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pl1-f179.google.com with SMTP id d3so32168363plr.10
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Jan 2023 19:18:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PjH+TT/UgefwLQ5T7ePeYb86I+qWKHFDe6HkrQ/OHX8=;
-        b=BYpKFtg4mZ1+aYWrmkPco53M+CqGy8eNWU1mBE/RqhXer9f+CM9VYnw2s7P3bLP0eO
-         chH9SQ4zmjAOPw2T29SSh79QTW1lehKK7eG6HwjGS4T960yuZxkXvncyIAQBDjE4o/2r
-         u0mXLmV3whIyupXUipmgbGEwwyJh5DlRr9M1BU5BQaaLG6Gp94ehoiM9xMt6Ur7giFog
-         8te7l3ty1HhOkHE0mus+0BmZUnc660N6qaBjFkjoXWxei3WYtWWzTbGMelmh9yvn7XhF
-         VvmEWsQE/6xG3YAI20mBAN+xqhk+1fkxfCptdzxFoD4u+MC3Cb3kHEdGRuSg62rKslv3
-         /WFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PjH+TT/UgefwLQ5T7ePeYb86I+qWKHFDe6HkrQ/OHX8=;
-        b=QJiGmTIHTx9f+6j/1t6KqsUQKCk7n8ReN0bRx8f8tfiOrW/A/gv/FO82mfQNwjauup
-         Zl7MnAhgPVtwZNk/XsMOIdQo9GORbyVSdC3HY4zx3k5ekxSpzk92+gBnU9o472W5XAfr
-         YJNWyuA16o+ylPxUC1zuE503O+2NlQvDYKyIKCDZMyx0whz5COoFv+LDMLHUyaRBMMXq
-         OGSsHFQ9ZuJ602iwy3A9IWAKBo57W4518iKpRghxGrFLoLABFIGk7omD5Lri+u80rUI4
-         aIE1zxtmvjyAkZrvKAWIb8E4sW1EaFbm4OlEeZ63Q+AN6vKqMc+uHvBjsmymEsTw+gjJ
-         XkBg==
-X-Gm-Message-State: AFqh2kqdpXGGm1aaFvi9AFjuJt5XFJ5Y9yTvtAvMFaMu8ULE/cs9v7OK
-	0/IA/pNEnNZgualGAcAwCWNbiTYE1EA=
-X-Google-Smtp-Source: AMrXdXv41Bo8vmGBR1qdA10fgCRApZb4yoPp0/Pi955ZhLOsjeV3cpNtpJJIvpZCLKUBrOV25YfCQA==
-X-Received: by 2002:a17:902:ea0a:b0:193:389d:ecc5 with SMTP id s10-20020a170902ea0a00b00193389decc5mr2941921plg.47.1673925502341;
-        Mon, 16 Jan 2023 19:18:22 -0800 (PST)
-Received: from skjolley ([2600:1011:a102:bdcb:7217:7162:14b2:5b0])
-        by smtp.gmail.com with ESMTPSA id y23-20020a17090264d700b00192820d00d0sm19947275pli.120.2023.01.16.19.18.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 16 Jan 2023 19:18:21 -0800 (PST)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW02
-Date: Mon, 16 Jan 2023 20:18:21 -0700
-Message-ID: <0ad201d92a22$5a860ed0$0f922c70$@gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E30DEC6379F
+	for <webhook@archiver.kernel.org>; Tue, 17 Jan 2023 07:20:12 +0000 (UTC)
+Subject: gn-native_106.0.5249.119.bb:do_compile failed with exit code '1'
+To: yocto@lists.yoctoproject.org
+From: jovanbosic95@gmail.com
+X-Originating-Location: Novi Sad, Vojvodina, RS (46.163.59.26)
+X-Originating-Platform: Linux Chrome 109
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0AD3_01D929E7.AE29A7D0"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdkqIj03wrIaA/c8SuyF3ajKVguaaQ==
-Content-Language: en-us
+Date: Mon, 16 Jan 2023 23:20:11 -0800
+Message-ID: <q6fH.1673940011394321308.ehBq@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="xSIX5QPzBU9H1aNYKKpg"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Jan 2023 03:18:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59002
+ <yocto@lists.yoctoproject.org>; Tue, 17 Jan 2023 07:20:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59003
 
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0AD3_01D929E7.AE29A7D0
-Content-Type: text/plain;
-	charset="UTF-8"
+--xSIX5QPzBU9H1aNYKKpg
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+Can someone help me with this problem? I want to install chromium on dunfel=
+l, and I am receiving this problem.
 
-YP M+ or high bugs which moved to a new milestone in WW02 are listed =
-below:=20
+jovanbosic@administrator-ThinkPad-L470:~/Yocto/build$ bitbake core-image-fu=
+ll-cmdline
+WARNING: Host distribution "ubuntu-22.04" has not been validated with this =
+version of the build system; you may possibly experience unexpected failure=
+s. It is recommended that you use a tested distribution.
+Loading cache: 100% |############################################| Time: 0:=
+00:00
+Loaded 3726 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
 
+Build Configuration:
+BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "1.46.0"
+BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "x86_64-linux"
+NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D "universal"
+TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "x86_64-poky-linux"
+MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "qemux86-64"
+DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "poky"
+DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "3.1.22"
+TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "m64 core2"
+TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D ""
+meta
+meta-poky
+meta-yocto-bsp
+meta-selftest
+meta-skeleton=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "dunfell:6b8a307b7843af23d189d=
+7ffcecf32c05afac850"
+meta-chromium=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "master:068b693ffcf0273ec23d0a=
+b1eeb8f4b97eb143a1"
+meta-clang=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "dunfell-clang12:8a6=
+558fe1cedb3eb817333369a3cc2512364f1a6"
+meta-filesystems
+meta-gnome
+meta-initramfs
+meta-multimedia
+meta-networking
+meta-oe
+meta-perl
+meta-python
+meta-webserver
+meta-xfce=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "dunfell:7952135f650=
+b4a754e2255f5aa03973a32344123"
 
-Priority
+Initialising tasks: 100% |#######################################| Time: 0:=
+00:05
+Sstate summary: Wanted 21 Found 0 Missed 21 Current 2963 (0% match, 99% com=
+plete)
+NOTE: Executing Tasks
+ERROR: gn-native-106.0.5249.119-r0 do_compile: Execution of '/home/jovanbos=
+ic/Yocto/build/tmp/work/x86_64-linux/gn-native/106.0.5249.119-r0/temp/run.d=
+o_compile.4042233' failed with exit code 1
+ERROR: Logfile of failure stored in: /home/jovanbosic/Yocto/build/tmp/work/=
+x86_64-linux/gn-native/106.0.5249.119-r0/temp/log.do_compile.4042233
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| ninja: Entering directory `/home/jovanbosic/Yocto/build/tmp/work/x86_64-l=
+inux/gn-native/106.0.5249.119-r0/chromium-106.0.5249.119/out/Release/gn_bui=
+ld'
+| [1/195] CXX src/base/files/file_path_constants.o
+| FAILED: src/base/files/file_path_constants.o
+| clang++ -target x86_64-linux=C2=A0 -MMD -MF src/base/files/file_path_cons=
+tants.o.d -I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/=
+tmp/work/x86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr=
+/include -O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-lin=
+ux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe =
+-D_LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sectio=
+ns -ffunction-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_M=
+ACROS -D__STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdia=
+gnostics-color -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -st=
+d=3Dc++17 -c ../../../tools/gn/src/base/files/file_path_constants.cc -o src=
+/base/files/file_path_constants.o
+| ../../../tools/gn/src/base/files/file_path_constants.cc:7:10: fatal error=
+: 'iterator' file not found
+| #include <iterator>
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~~~
+| 1 error generated.
+| [2/195] CXX src/base/files/file_path.o
+| FAILED: src/base/files/file_path.o
+| clang++ -target x86_64-linux=C2=A0 -MMD -MF src/base/files/file_path.o.d =
+-I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/work/x=
+86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -=
+O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-nati=
+ve/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LIBCPP_=
+HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -ffunct=
+ion-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS -D__=
+STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnostics-c=
+olor -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc++17 =
+-c ../../../tools/gn/src/base/files/file_path.cc -o src/base/files/file_pat=
+h.o
+| In file included from ../../../tools/gn/src/base/files/file_path.cc:5:
+| ../../../tools/gn/src/base/files/file_path.h:107:10: fatal error: 'iosfwd=
+' file not found
+| #include <iosfwd>
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~
+| 1 error generated.
+| [3/195] CXX src/base/files/file.o
+| FAILED: src/base/files/file.o
+| clang++ -target x86_64-linux=C2=A0 -MMD -MF src/base/files/file.o.d -I../=
+../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64=
+-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -p=
+ipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-native/10=
+6.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LIBCPP_HAS_N=
+O_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -ffunction-s=
+ections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS -D__STDC_=
+FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnostics-color =
+-Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc++17 -c ..=
+/../../tools/gn/src/base/files/file.cc -o src/base/files/file.o
+| In file included from ../../../tools/gn/src/base/files/file.cc:5:
+| ../../../tools/gn/src/base/files/file.h:10:10: fatal error: 'string' file=
+ not found
+| #include <string>
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~
+| 1 error generated.
+| [4/195] CXX src/base/command_line.o
+| FAILED: src/base/command_line.o
+| clang++ -target x86_64-linux=C2=A0 -MMD -MF src/base/command_line.o.d -I.=
+./../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_=
+64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 =
+-pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-native/=
+106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LIBCPP_HAS=
+_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -ffunction=
+-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS -D__STD=
+C_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnostics-colo=
+r -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc++17 -c =
+../../../tools/gn/src/base/command_line.cc -o src/base/command_line.o
+| In file included from ../../../tools/gn/src/base/command_line.cc:5:
+| ../../../tools/gn/src/base/command_line.h:19:10: fatal error: 'map' file =
+not found
+| #include <map>
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~
+| 1 error generated.
+| [5/195] CXX src/base/environment.o
+| FAILED: src/base/environment.o
+| clang++ -target x86_64-linux=C2=A0 -MMD -MF src/base/environment.o.d -I..=
+/../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_6=
+4-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -=
+pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-native/1=
+06.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LIBCPP_HAS_=
+NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -ffunction-=
+sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS -D__STDC=
+_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnostics-color=
+ -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc++17 -c .=
+./../../tools/gn/src/base/environment.cc -o src/base/environment.o
+| In file included from ../../../tools/gn/src/base/environment.cc:5:
+| ../../../tools/gn/src/base/environment.h:8:10: fatal error: 'map' file no=
+t found
+| #include <map>
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~
+| 1 error generated.
+| [6/195] CXX src/base/files/file_enumerator.o
+| FAILED: src/base/files/file_enumerator.o
+| clang++ -target x86_64-linux=C2=A0 -MMD -MF src/base/files/file_enumerato=
+r.o.d -I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/=
+work/x86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/inc=
+lude -O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/g=
+n-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_L=
+IBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -=
+ffunction-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACRO=
+S -D__STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnos=
+tics-color -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3D=
+c++17 -c ../../../tools/gn/src/base/files/file_enumerator.cc -o src/base/fi=
+les/file_enumerator.o
+| In file included from ../../../tools/gn/src/base/files/file_enumerator.cc=
+:5:
+| ../../../tools/gn/src/base/files/file_enumerator.h:11:10: fatal error: 'v=
+ector' file not found
+| #include <vector>
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~
+| 1 error generated.
+| ninja: build stopped: subcommand failed.
+| Traceback (most recent call last):
+|=C2=A0 =C2=A0File "/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-n=
+ative/106.0.5249.119-r0/chromium-106.0.5249.119/tools/gn/bootstrap/bootstra=
+p.py", line 141, in <module>
+|=C2=A0 =C2=A0 =C2=A0sys.exit(main(sys.argv[1:]))
+|=C2=A0 =C2=A0File "/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-n=
+ative/106.0.5249.119-r0/chromium-106.0.5249.119/tools/gn/bootstrap/bootstra=
+p.py", line 126, in main
+|=C2=A0 =C2=A0 =C2=A0subprocess.check_call(
+|=C2=A0 =C2=A0File "/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-n=
+ative/106.0.5249.119-r0/recipe-sysroot-native/usr/lib/python3.8/subprocess.=
+py", line 364, in check_call
+|=C2=A0 =C2=A0 =C2=A0raise CalledProcessError(retcode, cmd)
+| subprocess.CalledProcessError: Command '['ninja', '-C', '/home/jovanbosic=
+/Yocto/build/tmp/work/x86_64-linux/gn-native/106.0.5249.119-r0/chromium-106=
+.0.5249.119/out/Release/gn_build', '-w', 'dupbuild=3Derr', 'gn']' returned =
+non-zero exit status 1.
+| WARNING: exit code 1 from a shell command.
+| ERROR: Execution of '/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/g=
+n-native/106.0.5249.119-r0/temp/run.do_compile.4042233' failed with exit co=
+de 1
+ERROR: Task (/home/jovanbosic/Yocto/meta-browser/meta-chromium/recipes-brow=
+ser/chromium/gn-native_106.0.5249.119.bb:do_compile) failed with exit code =
+'1'
+NOTE: Tasks Summary: Attempted 4710 tasks of which 4706 didn't need to be r=
+erun and 1 failed.
 
-Bug ID
+Summary: 1 task failed:
+/home/jovanbosic/Yocto/meta-browser/meta-chromium/recipes-browser/chromium/=
+gn-native_106.0.5249.119.bb:do_compile
+Summary: There was 1 WARNING message shown.
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
-
-
-Medium+
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14960> 14960
-
-valgrind ptest fails 12 tests for arm64 targets
-
-randy.macleod@windriver.com
-
-randy.macleod@windriver.com
-
-4.2 M2
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14995> 14995
-
-do_populate_sdk: target-sdk-provides-dummy fails to provide perl for =
-postgresql
-
-randy.macleod@windriver.com
-
-tim.orling@konsulko.com
-
-4.2 M2
-
-4.2 M3
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_0AD3_01D929E7.AE29A7D0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0844_01D91944.C54934C0";
-	charset="UTF-8"
+--xSIX5QPzBU9H1aNYKKpg
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle21
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
-new milestone in WW02 are listed below: <o:p></o:p></span></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D1265 =
-style=3D'width:948.75pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D544 nowrap valign=3Dbottom style=3D'width:408.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D64 =
-nowrap valign=3Dbottom style=3D'width:48.05pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D53 =
-nowrap valign=3Dbottom style=3D'width:40.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14960" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14960</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D544 nowrap valign=3Dbottom =
-style=3D'width:408.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>valgrind ptest fails 12 tests for arm64 =
-targets<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:48.05pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M2<o:p></o:p></span></p></td><td width=3D53 =
-nowrap valign=3Dbottom =
-style=3D'width:40.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14995" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14995</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D544 nowrap valign=3Dbottom =
-style=3D'width:408.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>do_populate_sdk: target-sdk-provides-dummy fails =
-to provide perl for postgresql<o:p></o:p></span></p></td><td width=3D236 =
-nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>tim.orling@konsulko.com<o:p></o:p></span></p></td><=
-td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:48.05pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M2<o:p></o:p></span></p></td><td width=3D53 =
-nowrap valign=3Dbottom =
-style=3D'width:40.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
-style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0AD3_01D929E7.AE29A7D0--
+<div>Can someone help me with this problem? I want to install chromium on d=
+unfell, and I am receiving this problem.&nbsp;<br /><br />jovanbosic@admini=
+strator-ThinkPad-L470:~/Yocto/build$ bitbake core-image-full-cmdline</div>
+<div>WARNING: Host distribution "ubuntu-22.04" has not been validated with =
+this version of the build system; you may possibly experience unexpected fa=
+ilures. It is recommended that you use a tested distribution.</div>
+<div>Loading cache: 100% |############################################| Tim=
+e: 0:00:00</div>
+<div>Loaded 3726 entries from dependency cache.</div>
+<div>NOTE: Resolving any missing task queue dependencies</div>
+<div>&nbsp;</div>
+<div>Build Configuration:</div>
+<div>BB_VERSION&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "1.46.0"</div>
+<div>BUILD_SYS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "x86_64-linux"<=
+/div>
+<div>NATIVELSBSTRING&nbsp; &nbsp; &nbsp; =3D "universal"</div>
+<div>TARGET_SYS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "x86_64-poky-li=
+nux"</div>
+<div>MACHINE&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "qemux86-6=
+4"</div>
+<div>DISTRO&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "poky=
+"</div>
+<div>DISTRO_VERSION&nbsp; &nbsp; &nbsp; &nbsp;=3D "3.1.22"</div>
+<div>TUNE_FEATURES&nbsp; &nbsp; &nbsp; &nbsp; =3D "m64 core2"</div>
+<div>TARGET_FPU&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D ""</div>
+<div>meta&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</di=
+v>
+<div>meta-poky&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>meta-yocto-bsp&nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div>meta-selftest&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>meta-skeleton&nbsp; &nbsp; &nbsp; &nbsp; =3D "dunfell:6b8a307b7843af23=
+d189d7ffcecf32c05afac850"</div>
+<div>meta-chromium&nbsp; &nbsp; &nbsp; &nbsp; =3D "master:068b693ffcf0273ec=
+23d0ab1eeb8f4b97eb143a1"</div>
+<div>meta-clang&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "dunfell-clang1=
+2:8a6558fe1cedb3eb817333369a3cc2512364f1a6"</div>
+<div>meta-filesystems&nbsp; &nbsp; &nbsp;</div>
+<div>meta-gnome&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div>meta-initramfs&nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div>meta-multimedia&nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>meta-networking&nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>meta-oe&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>meta-perl&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>meta-python&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>meta-webserver&nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div>meta-xfce&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "dunfell:795213=
+5f650b4a754e2255f5aa03973a32344123"</div>
+<div>&nbsp;</div>
+<div>Initialising tasks: 100% |#######################################| Tim=
+e: 0:00:05</div>
+<div>Sstate summary: Wanted 21 Found 0 Missed 21 Current 2963 (0% match, 99=
+% complete)</div>
+<div>NOTE: Executing Tasks</div>
+<div>ERROR: gn-native-106.0.5249.119-r0 do_compile: Execution of '/home/jov=
+anbosic/Yocto/build/tmp/work/x86_64-linux/gn-native/106.0.5249.119-r0/temp/=
+run.do_compile.4042233' failed with exit code 1</div>
+<div>ERROR: Logfile of failure stored in: /home/jovanbosic/Yocto/build/tmp/=
+work/x86_64-linux/gn-native/106.0.5249.119-r0/temp/log.do_compile.4042233</=
+div>
+<div>Log data follows:</div>
+<div>| DEBUG: Executing shell function do_compile</div>
+<div>| ninja: Entering directory `/home/jovanbosic/Yocto/build/tmp/work/x86=
+_64-linux/gn-native/106.0.5249.119-r0/chromium-106.0.5249.119/out/Release/g=
+n_build'</div>
+<div>| [1/195] CXX src/base/files/file_path_constants.o</div>
+<div>| FAILED: src/base/files/file_path_constants.o</div>
+<div>| clang++ -target x86_64-linux&nbsp; -MMD -MF src/base/files/file_path=
+_constants.o.d -I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/b=
+uild/tmp/work/x86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-nativ=
+e/usr/include -O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_6=
+4-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -=
+pipe -D_LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-s=
+ections -ffunction-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONST=
+ANT_MACROS -D__STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti =
+-fdiagnostics-color -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wunde=
+f -std=3Dc++17 -c ../../../tools/gn/src/base/files/file_path_constants.cc -=
+o src/base/files/file_path_constants.o</div>
+<div>| ../../../tools/gn/src/base/files/file_path_constants.cc:7:10: fatal =
+error: 'iterator' file not found</div>
+<div>| #include &lt;iterator&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~~~</div>
+<div>| 1 error generated.</div>
+<div>| [2/195] CXX src/base/files/file_path.o</div>
+<div>| FAILED: src/base/files/file_path.o</div>
+<div>| clang++ -target x86_64-linux&nbsp; -MMD -MF src/base/files/file_path=
+.o.d -I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/w=
+ork/x86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/incl=
+ude -O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn=
+-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LI=
+BCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -f=
+function-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS=
+ -D__STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnost=
+ics-color -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc=
+++17 -c ../../../tools/gn/src/base/files/file_path.cc -o src/base/files/fil=
+e_path.o</div>
+<div>| In file included from ../../../tools/gn/src/base/files/file_path.cc:=
+5:</div>
+<div>| ../../../tools/gn/src/base/files/file_path.h:107:10: fatal error: 'i=
+osfwd' file not found</div>
+<div>| #include &lt;iosfwd&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~</div>
+<div>| 1 error generated.</div>
+<div>| [3/195] CXX src/base/files/file.o</div>
+<div>| FAILED: src/base/files/file.o</div>
+<div>| clang++ -target x86_64-linux&nbsp; -MMD -MF src/base/files/file.o.d =
+-I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/work/x=
+86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -=
+O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-nati=
+ve/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LIBCPP_=
+HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -ffunct=
+ion-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS -D__=
+STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnostics-c=
+olor -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc++17 =
+-c ../../../tools/gn/src/base/files/file.cc -o src/base/files/file.o</div>
+<div>| In file included from ../../../tools/gn/src/base/files/file.cc:5:</d=
+iv>
+<div>| ../../../tools/gn/src/base/files/file.h:10:10: fatal error: 'string'=
+ file not found</div>
+<div>| #include &lt;string&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~</div>
+<div>| 1 error generated.</div>
+<div>| [4/195] CXX src/base/command_line.o</div>
+<div>| FAILED: src/base/command_line.o</div>
+<div>| clang++ -target x86_64-linux&nbsp; -MMD -MF src/base/command_line.o.=
+d -I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/work=
+/x86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include=
+ -O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-na=
+tive/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LIBCP=
+P_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -ffun=
+ction-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS -D=
+__STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnostics=
+-color -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc++1=
+7 -c ../../../tools/gn/src/base/command_line.cc -o src/base/command_line.o<=
+/div>
+<div>| In file included from ../../../tools/gn/src/base/command_line.cc:5:<=
+/div>
+<div>| ../../../tools/gn/src/base/command_line.h:19:10: fatal error: 'map' =
+file not found</div>
+<div>| #include &lt;map&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~</div>
+<div>| 1 error generated.</div>
+<div>| [5/195] CXX src/base/environment.o</div>
+<div>| FAILED: src/base/environment.o</div>
+<div>| clang++ -target x86_64-linux&nbsp; -MMD -MF src/base/environment.o.d=
+ -I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build/tmp/work/=
+x86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include =
+-O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux/gn-nat=
+ive/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_LIBCPP=
+_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-sections -ffunc=
+tion-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_MACROS -D_=
+_STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdiagnostics-=
+color -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -std=3Dc++17=
+ -c ../../../tools/gn/src/base/environment.cc -o src/base/environment.o</di=
+v>
+<div>| In file included from ../../../tools/gn/src/base/environment.cc:5:</=
+div>
+<div>| ../../../tools/gn/src/base/environment.h:8:10: fatal error: 'map' fi=
+le not found</div>
+<div>| #include &lt;map&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~</div>
+<div>| 1 error generated.</div>
+<div>| [6/195] CXX src/base/files/file_enumerator.o</div>
+<div>| FAILED: src/base/files/file_enumerator.o</div>
+<div>| clang++ -target x86_64-linux&nbsp; -MMD -MF src/base/files/file_enum=
+erator.o.d -I../../../tools/gn/src -I. -isystem/home/jovanbosic/Yocto/build=
+/tmp/work/x86_64-linux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/us=
+r/include -O2 -pipe -isystem/home/jovanbosic/Yocto/build/tmp/work/x86_64-li=
+nux/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/include -O2 -pipe=
+ -D_LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -DNDEBUG -O3 -fdata-secti=
+ons -ffunction-sections -Werror -D_FILE_OFFSET_BITS=3D64 -D__STDC_CONSTANT_=
+MACROS -D__STDC_FORMAT_MACROS -pthread -pipe -fno-exceptions -fno-rtti -fdi=
+agnostics-color -Wall -Wextra -Wno-unused-parameter -Wextra-semi -Wundef -s=
+td=3Dc++17 -c ../../../tools/gn/src/base/files/file_enumerator.cc -o src/ba=
+se/files/file_enumerator.o</div>
+<div>| In file included from ../../../tools/gn/src/base/files/file_enumerat=
+or.cc:5:</div>
+<div>| ../../../tools/gn/src/base/files/file_enumerator.h:11:10: fatal erro=
+r: 'vector' file not found</div>
+<div>| #include &lt;vector&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^~~~~~~~</div>
+<div>| 1 error generated.</div>
+<div>| ninja: build stopped: subcommand failed.</div>
+<div>| Traceback (most recent call last):</div>
+<div>|&nbsp; &nbsp;File "/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux=
+/gn-native/106.0.5249.119-r0/chromium-106.0.5249.119/tools/gn/bootstrap/boo=
+tstrap.py", line 141, in &lt;module&gt;</div>
+<div>|&nbsp; &nbsp; &nbsp;sys.exit(main(sys.argv[1:]))</div>
+<div>|&nbsp; &nbsp;File "/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux=
+/gn-native/106.0.5249.119-r0/chromium-106.0.5249.119/tools/gn/bootstrap/boo=
+tstrap.py", line 126, in main</div>
+<div>|&nbsp; &nbsp; &nbsp;subprocess.check_call(</div>
+<div>|&nbsp; &nbsp;File "/home/jovanbosic/Yocto/build/tmp/work/x86_64-linux=
+/gn-native/106.0.5249.119-r0/recipe-sysroot-native/usr/lib/python3.8/subpro=
+cess.py", line 364, in check_call</div>
+<div>|&nbsp; &nbsp; &nbsp;raise CalledProcessError(retcode, cmd)</div>
+<div>| subprocess.CalledProcessError: Command '['ninja', '-C', '/home/jovan=
+bosic/Yocto/build/tmp/work/x86_64-linux/gn-native/106.0.5249.119-r0/chromiu=
+m-106.0.5249.119/out/Release/gn_build', '-w', 'dupbuild=3Derr', 'gn']' retu=
+rned non-zero exit status 1.</div>
+<div>| WARNING: exit code 1 from a shell command.</div>
+<div>| ERROR: Execution of '/home/jovanbosic/Yocto/build/tmp/work/x86_64-li=
+nux/gn-native/106.0.5249.119-r0/temp/run.do_compile.4042233' failed with ex=
+it code 1</div>
+<div>ERROR: Task (/home/jovanbosic/Yocto/meta-browser/meta-chromium/recipes=
+-browser/chromium/gn-native_106.0.5249.119.bb:do_compile) failed with exit =
+code '1'</div>
+<div>NOTE: Tasks Summary: Attempted 4710 tasks of which 4706 didn't need to=
+ be rerun and 1 failed.</div>
+<div>&nbsp;</div>
+<div>Summary: 1 task failed:</div>
+<div>&nbsp; /home/jovanbosic/Yocto/meta-browser/meta-chromium/recipes-brows=
+er/chromium/gn-native_106.0.5249.119.bb:do_compile</div>
+<div>Summary: There was 1 WARNING message shown.</div>
+<div>Summary: There was 1 ERROR message shown, returning a non-zero exit co=
+de.</div>
+<div>&nbsp;</div>
 
+--xSIX5QPzBU9H1aNYKKpg--
 
