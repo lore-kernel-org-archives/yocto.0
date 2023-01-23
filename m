@@ -1,97 +1,125 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <alexis.lothore@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14B30C25B50
-	for <webhook@archiver.kernel.org>; Mon, 23 Jan 2023 10:48:19 +0000 (UTC)
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
- by mx.groups.io with SMTP id smtpd.web11.39854.1674470892642367973
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A214C05027
+	for <webhook@archiver.kernel.org>; Mon, 23 Jan 2023 12:31:09 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+ by mx.groups.io with SMTP id smtpd.web11.41224.1674477064789435491
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Jan 2023 02:48:13 -0800
+ Mon, 23 Jan 2023 04:31:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=c8OO0Pud;
- spf=pass (domain: gmail.com, ip: 209.85.208.169, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f169.google.com with SMTP id g14so12649824ljh.10
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Jan 2023 02:48:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PThbTsUlPkz5dSF48et249v11s+ZglYh8ZDAyOm1CuQ=;
-        b=c8OO0PudNSVQtwPwpK7drczuFqWMtptfYSePEWKEuq4rY+aOstLIMqvxlM38NjtDB+
-         pQ1UQF28ma55nqKGIrcn9Gg6Nbk3w9M4x3W72KFfYqqD1SEZ27GZlT9VOCyA/JwHlRKL
-         BLuQCweiSNRMPSW2mjmDasXXYWS6eWYqfanfkiprslobDx3LnpqOVBBftN2ukUwBvj8Z
-         ZsEl2AS2i2vh2v2Whq9oMfFw6MG/ZiLgeIy+NXp54Nz2nnWdKJAl91HHBM35CBc9JcoO
-         j1xfJorCr4IYoB3GWrdefYZa8Jx0bTVJQohhkw3K9uBx8G7Dnl/L5DNaP6RbD8rk5IU4
-         pHqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PThbTsUlPkz5dSF48et249v11s+ZglYh8ZDAyOm1CuQ=;
-        b=OnKX9PtehW75rbfh0U0f3eZFia3SRHUiYT43+6n015/0eyls1KrxgtCg7jDGTdZ0wN
-         EkKCmaFWVkEFNg9FHxOXiV9pmt0qDH3NUARMEAe7GBI7yZs5cQCpBMcFo5le1hijZWV2
-         un0mkahsQcZOvMJ2czc0Jsa16J48Q4HTeMxEiamyWpZwTbEF13sZEe0rqjd9gtr2vPwu
-         1dq54AceyQKb3VNZKcsadX7pFrB6uiTPdXzkWWvvg27LCwXv0m37He+WBkLolF/lYq5Z
-         bveK+1yIlRw9Yq+lffGQdDmlZ6mYWQ6XhC+mLqiuCcM925ivFjxvr0wXgeqj7GQaD1kr
-         6rMQ==
-X-Gm-Message-State: AFqh2kpw9z4Ar8PW1aly5nGnHv+wWYraAxze9HK2PdzrgwOIA1bPThgd
-	uR0xhhaQJSyPtU+v/Saxt+jEpeipAOUVETEGIt4=
-X-Google-Smtp-Source: AMrXdXsKP46ezzaEDN9ZVIn5wY8698yaei0LzBR0PXiqLUwzRUSS6lTtum3GFspNHThssONJAkOZvIF1LwbxmgbdNpk=
-X-Received: by 2002:a2e:908a:0:b0:28b:d177:dbee with SMTP id
- l10-20020a2e908a000000b0028bd177dbeemr670619ljg.217.1674470890599; Mon, 23
- Jan 2023 02:48:10 -0800 (PST)
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=Ahil5WWp;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.194, mailfrom: alexis.lothore@bootlin.com)
+Received: (Authenticated sender: alexis.lothore@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 2DADD40006;
+	Mon, 23 Jan 2023 12:31:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1674477063;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=znqHXZrPoWtTgMjzROb5MfXdxX7WmHxHkmIUTPkvkq8=;
+	b=Ahil5WWpIi8QJl81lRgn8dLm0XrqeiALwkGM/1A4pO8SV9MlAzPLUI8Mio6GtopHA1fvdH
+	ldRf/QHgbqtyS1yXLW60wu/NfdkLp2yScmBOesLxlVoB9UfordvV55aYZxYlnK/fMqT5Y2
+	qYSgX1xDnzTG6FR0ohIZqH2WY5NKX5+ztQvl/YhrcAiISpxdaUSNMPThwHjZWpVP86jnZ+
+	sUHZqgKnkWFZfPvJf8JaFlrAKG3cIitXskpW7a+PmXXnMlU0mH7dVjbzP1h/bPfYdME18G
+	J8qRZ/+tMBFBQaOT3BblqZO0IQxnZt0/WXUiVlCYKcv6rCaHLpPI7RegWAfeIw==
+From: =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+To: yocto@lists.yoctoproject.org
+Cc: alexandre.belloni@bootlin.com,
+	thomas.petazzoni@bootlin.com,
+	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+Subject: [autobuilder][PATCH v2 4/4] scripts/send_qa_email.py: add unit tests on previous version computation
+Date: Mon, 23 Jan 2023 13:31:11 +0100
+Message-Id: <20230123123111.37665-5-alexis.lothore@bootlin.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230123123111.37665-1-alexis.lothore@bootlin.com>
+References: <20230123123111.37665-1-alexis.lothore@bootlin.com>
 MIME-Version: 1.0
-References: <o9vf.1674467875781955712.h1Y2@lists.yoctoproject.org>
-In-Reply-To: <o9vf.1674467875781955712.h1Y2@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 23 Jan 2023 11:47:59 +0100
-Message-ID: <CANNYZj-yRKXP+eyEFavNthO6VmNfTnCbAbV3RnbwZq0iaT2siw@mail.gmail.com>
-Subject: Re: [yocto] [meta-raspberrypi] Is Preempt-rt still supported in
- master / latest releases? #raspberrypi
-To: Carles.SoleMendi@de.bosch.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 23 Jan 2023 10:48:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59029
+ <yocto@lists.yoctoproject.org>; Mon, 23 Jan 2023 12:31:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59034
 
-meta-raspberrypi kernel comes from
-https://github.com/raspberrypi/linux and they stopped providing -rt
-options some time ago.
+The "previous version" computation bring many edge cases depending on the
+version under release. Add a basic test suite to validate currently implemented
+computation strategy and to prevent mistakes when ediiting it in the future
 
-Your options are to apply the -rt patchset to regular rpi kernel and
-enable needed options via custom .bbappend, or take linux-yocto-rt and
-see how far you get.
+Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
+---
+ scripts/test_send_qa_email.py | 57 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+ create mode 100755 scripts/test_send_qa_email.py
 
-Alex
+diff --git a/scripts/test_send_qa_email.py b/scripts/test_send_qa_email.py
+new file mode 100755
+index 0000000..6822451
+--- /dev/null
++++ b/scripts/test_send_qa_email.py
+@@ -0,0 +1,57 @@
++#!/usr/bin/env python3
++"""
++Test suite for send_qa_email.py
++
++The suite needs a valid poky clone to run since it will
++fetch and return revisions from remote repository. To run the suite,
++set POKY_PATH environment variable accordingly:
++`POKY_PATH=~/src/poky ./scripts/test_send_qa_email.py`
++"""
++import os
++import sys
++import unittest
++import send_qa_email
++
++
++class TestVersion(unittest.TestCase):
++    test_data_get_version = [
++        {"input": {"version": "4.1.2"}, "expected": "yocto-4.1.1"},
++        {"input": {"version": "4.1"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1.1"}, "expected": "yocto-4.1"},
++        {"input": {"version": "4.1_M2"}, "expected": "4.1_M1"},
++        {"input": {"version": "4.1_M1"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1.1.rc1"}, "expected": "yocto-4.1"},
++        {"input": {"version": "4.1.2.rc1"}, "expected": "yocto-4.1.1"},
++        {"input": {"version": "4.1_M3.rc1"}, "expected": "4.1_M2"},
++        {"input": {"version": "4.1_M3.rc4"}, "expected": "4.1_M2"},
++        {"input": {"version": "4.1_M1.rc1"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1_M1.rc4"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1.rc4"}, "expected": "yocto-4.0"},
++        {"input": {"version": "20230120-3"}, "expected": "origin/master"},
++    ]
++
++    test_data_get_sha1 = [
++        {"input": "yocto-4.0", "expected": "00cfdde791a0176c134f31e5a09eff725e75b905"},
++        {"input": "4.1_M1", "expected": "95066dde6861ee08fdb505ab3e0422156cc24fae"},
++    ]
++
++    def test_versions(self):
++        for data in self.test_data_get_version:
++            test_name = data["input"]["version"]
++            with self.subTest(f"Test {test_name} previous tag"):
++                self.assertEqual(send_qa_email.get_previous_tag(os.environ.get(
++                    "POKY_PATH"), data["input"]["version"]), data["expected"])
++
++    def test_get_sha1(self):
++        for data in self.test_data_get_sha1:
++            test_name = data["input"]
++            with self.subTest(f"Test SHA1 from {test_name}"):
++                self.assertEqual(send_qa_email.get_sha1(os.environ.get(
++                    "POKY_PATH"), data["input"]), data["expected"])
++
++
++if __name__ == '__main__':
++    if os.environ.get("POKY_PATH") is None:
++        print("Please set POKY_PATH to proper poky clone location before running tests")
++        sys.exit(1)
++    unittest.main()
+-- 
+2.39.0
 
-On Mon, 23 Jan 2023 at 10:57, Carles Sole via lists.yoctoproject.org
-<Carles.SoleMendi=de.bosch.com@lists.yoctoproject.org> wrote:
->
-> Hello all,
->
-> I would like to understand if it is still possible to build an image for raspberrypi4-64 where the preempt-rt patch is applied to the kernel, e.g. by adding "PREFERRED_PROVIDER_virtual/kernel" to local.conf.
->
-> I could see that in older branches of [meta-raspberrypi] there was a specific recipe for the preempt-rt patch, e.g. linux-raspberrypi-rt_4.19.bb. This recipe was using the specific raspberrypi branch rpi-4.19.y-rt.
->
-> I see that in newer branches this rt branch disappeared but I was not able to understand the history and what is the current method to implement this patch, assuming is still supported.
->
-> Any hints on how to do this would be much appreciated.
->
-> Best Regards,
-> Carles
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59028): https://lists.yoctoproject.org/g/yocto/message/59028
-> Mute This Topic: https://lists.yoctoproject.org/mt/96470693/1686489
-> Mute #raspberrypi:https://lists.yoctoproject.org/g/yocto/mutehashtag/raspberrypi
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
