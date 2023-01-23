@@ -1,97 +1,83 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <andrei@gherzan.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2A6BC05027
-	for <webhook@archiver.kernel.org>; Mon, 23 Jan 2023 13:55:59 +0000 (UTC)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
- by mx.groups.io with SMTP id smtpd.web11.42941.1674482153304803352
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3439C05027
+	for <webhook@archiver.kernel.org>; Mon, 23 Jan 2023 16:04:10 +0000 (UTC)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+ by mx.groups.io with SMTP id smtpd.web10.45945.1674489841635569931
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Jan 2023 05:55:53 -0800
+ Mon, 23 Jan 2023 08:04:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=DNdITBBw;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.43, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f43.google.com with SMTP id n7so10888497wrx.5
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Jan 2023 05:55:52 -0800 (PST)
+ dkim=pass header.i=@gherzan.com header.s=google header.b=EhJLDQp2;
+ spf=pass (domain: gherzan.ro, ip: 209.85.221.54, mailfrom: andrei@gherzan.ro)
+Received: by mail-wr1-f54.google.com with SMTP id h12so7270729wrv.10
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Jan 2023 08:04:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=EUsp6RsCK//ydVpGdNAgQsc9zqYTxhffcLMcAQ4hyNA=;
-        b=DNdITBBwzPH4KDnsrVYdT00Po6y7eut1+SlmQ05tqkeyYA4y+6OwTCbZzfXY+tLh1r
-         4DpwsJWlF5/YNbJzK4nXxWx11LZxGDbJig3K2bT9YyfTPBb9nvu3L3wychGg5Jbkd6qk
-         TWVXRbiZ4Qt5FSAfgOExIGmyszoWnHmxYrQOg=
+        d=gherzan.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qB1WmSjVfUbse1HtPJYe5W8iqv0jBz8Y/U/iS28H/os=;
+        b=EhJLDQp2fc5yV69fFSSkviiFHEBr4T1or92y83qqkwlsrPvP8bvdqrWej46iyCKRZY
+         m+fMnBpFj2r58omWDb9meOwl8AUBL0lUKz6HJh0CyH/AzNEUA4g8yVgVIOTEXaNiTFnq
+         w30g0mfUlSSTQeX8vVUTjKKQ667lxaNQFBYcAcwl+mFJW3RSEM2T/6QcWgfvgzrLSiIU
+         3dfOpyscQfowCBpe4S60GdqsOEPNUU2VhAREC2eEtd0CT0k2ybc385UlfWqnugpdZJaA
+         rR/rAxS4XvOouCT53KwLI3zTgD1WC4gLKqPJyP4SwcxZJ4iQR66/8DMFYnltHP/D1GPE
+         rXUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EUsp6RsCK//ydVpGdNAgQsc9zqYTxhffcLMcAQ4hyNA=;
-        b=becdEc4R4oDqHwsIqAp2M/IoGVkXJuWXahLqYeqB/F+55b5dYAzXgceLZz7AWXPXw0
-         fzFYOOmnd2+qF6xZ8ztp8PLyKZUH1Oph+Jus4SOaQ637zaEiTLc/5PnAiSBBbqxDFZdZ
-         aEpp5x+CZSZzAfawJ6wRfXMIi+6R5rZKbI2zqfxNJk1ps8EW9H4Xl4WYpkoDIiSZRxfI
-         9AqyywJqzDw4Odxq+n3wuo4BCQnuxsIELWWiUHIrs31lk5YeU7vVoBAIiA8zqG+iYyp4
-         sHlPABRCEsSzjjqcf2llCZElZRuS24XDc0Ul8XopPIbai0L8wxC0ovr/ZFjif6kvh5is
-         lUvg==
-X-Gm-Message-State: AFqh2kp4x7Utrv3qC0ldlBt76TJsTljIS8HYCq/gbcst0VaSwICObi8q
-	RcGmJ7NSomvOXN/GiEz2Egn9nA==
-X-Google-Smtp-Source: AMrXdXvJhjgOklCw7zG4HUfXWCa+oz4pVDBZXTVf++eLXfxoYBMnePsLZaqJwDdJ0i2UzsLxJCoPUw==
-X-Received: by 2002:a05:6000:12cf:b0:2bb:4b40:2d1b with SMTP id l15-20020a05600012cf00b002bb4b402d1bmr19632365wrx.61.1674482151630;
-        Mon, 23 Jan 2023 05:55:51 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:9195:b014:a064:8114? ([2001:8b0:aba:5f3c:9195:b014:a064:8114])
-        by smtp.gmail.com with ESMTPSA id o15-20020a5d684f000000b002bddac15b3dsm26547838wrw.33.2023.01.23.05.55.51
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qB1WmSjVfUbse1HtPJYe5W8iqv0jBz8Y/U/iS28H/os=;
+        b=BqAivNfx0rzCkTAXTD2lNqo9mtQ0blvLGCQ5S7GGFAT2BnSsDTuSAjnhzTA6a5Bp5r
+         zHdwjpT9TQmoS/CiROyS/WKdsL97a1aSv9TOSyLqQ64Js0AxsnMEUyJo6EEXvqsR9auP
+         hlSpHVkYwvQZpQ+6UU4DmSVhUmWJNAe+QKHZ3BnLE6eQqdOS85VA41IePQIasBdLR3kq
+         ds0wo9nUa55XF1pVaS3nZTAl09AXmqhF6o0F+cf9+wYJocoYCK4LgY/LhLFGx6Njcvcg
+         1f9a51iNT7E91wTTL7Mdd39ztTB7ECchRjitQR+tbsjvXbBrwWLSpODaUpm1U9bAIEPE
+         oLdg==
+X-Gm-Message-State: AFqh2kos3+2fZjz/jCrWQ/Jr9JqBQAM/Dayj7AS8pB5WwAXB9Fu10yq0
+	rv9XtBvjTSrb1V63TUzvKPkt/Q==
+X-Google-Smtp-Source: AMrXdXuBkBUHr/W1yfzTSBGLltDbfgjx4TmjGCOzM2bU2wx/a2FI63rTbM45k4qxq5cBj++6O9eg3A==
+X-Received: by 2002:adf:ff90:0:b0:2bd:de40:3a45 with SMTP id j16-20020adfff90000000b002bdde403a45mr21004709wrr.51.1674489839456;
+        Mon, 23 Jan 2023 08:03:59 -0800 (PST)
+Received: from qwirkle ([2001:67c:1560:8007::aac:c4dd])
+        by smtp.gmail.com with ESMTPSA id k22-20020adfd236000000b002be2f18938csm6644766wrh.41.2023.01.23.08.03.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 05:55:51 -0800 (PST)
-Message-ID: <29c53647bc91b08a4956df40ab8857840058f77c.camel@linuxfoundation.org>
-Subject: Re: [yocto] [autobuilder][PATCH v2 1/1] builders: update
- send-qa-email name
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: alexis.lothore@bootlin.com, yocto@lists.yoctoproject.org
-Cc: alexandre.belloni@bootlin.com, thomas.petazzoni@bootlin.com
-Date: Mon, 23 Jan 2023 13:55:50 +0000
-In-Reply-To: <20230123123343.37841-2-alexis.lothore@bootlin.com>
-References: <20230123123343.37841-1-alexis.lothore@bootlin.com>
-	 <20230123123343.37841-2-alexis.lothore@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.1-0ubuntu1 
+        Mon, 23 Jan 2023 08:03:59 -0800 (PST)
+Date: Mon, 23 Jan 2023 16:03:57 +0000
+From: Andrei Gherzan <andrei@gherzan.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Carles.SoleMendi@de.bosch.com, yocto@lists.yoctoproject.org
+Subject: Re: [yocto] [meta-raspberrypi] Is Preempt-rt still supported in
+ master / latest releases? #raspberrypi
+Message-ID: <Y86v7Z+p68WpY13k@qwirkle>
+References: <o9vf.1674467875781955712.h1Y2@lists.yoctoproject.org>
+ <CANNYZj-yRKXP+eyEFavNthO6VmNfTnCbAbV3RnbwZq0iaT2siw@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CANNYZj-yRKXP+eyEFavNthO6VmNfTnCbAbV3RnbwZq0iaT2siw@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 23 Jan 2023 13:55:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59037
+ <yocto@lists.yoctoproject.org>; Mon, 23 Jan 2023 16:04:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59038
 
-On Mon, 2023-01-23 at 13:33 +0100, Alexis Lothor=C3=A9 via
-lists.yoctoproject.org wrote:
-> Signed-off-by: Alexis Lothor=C3=A9 <alexis.lothore@bootlin.com>
-> ---
->  builders.py | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/builders.py b/builders.py
-> index d942346..b052f71 100644
-> --- a/builders.py
-> +++ b/builders.py
-> @@ -322,7 +322,7 @@ def create_parent_builder_factory(buildername, waitna=
-me):
-> =20
->      factory.addStep(steps.ShellCommand(
->          command=3D[
-> -            util.Interpolate("%(prop:builddir)s/yocto-autobuilder-helper=
-/scripts/send-qa-email"),
-> +            util.Interpolate("%(prop:builddir)s/yocto-autobuilder-helper=
-/scripts/send_qa_email.py"),
->              util.Property("send_email"),
->              util.Interpolate("%(prop:builddir)s/layerinfo.json"),
->              util.Interpolate("%(prop:sharedrepolocation)s"),
+On Mon, Jan 23, 2023 at 11:47:59AM +0100, Alexander Kanavin wrote:
+> meta-raspberrypi kernel comes from
+> https://github.com/raspberrypi/linux and they stopped providing -rt
+> options some time ago.
+> 
+> Your options are to apply the -rt patchset to regular rpi kernel and
+> enable needed options via custom .bbappend, or take linux-yocto-rt and
+> see how far you get.
 
-This gets a little tricky. Changes to autobuilder-helper are easy but
-if we change autobuilder2, it has to match changes on all active
-autobuilder-helper branches.
+That would be correct. There is no support out of the box in the BSP layer and
+I am not aware of any layers providing that. If we find a person who wants to
+maintain a fork with the RT patches, I'm happy to bring it as an optional
+kernel provider in the layer.
 
-Cheers,
-
-Richard
+-- 
+Andrei Gherzan
 
