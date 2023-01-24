@@ -2,38 +2,38 @@ Return-Path: <alexis.lothore@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2B87C54E94
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E554FC61D97
 	for <webhook@archiver.kernel.org>; Tue, 24 Jan 2023 17:30:20 +0000 (UTC)
 Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
- by mx.groups.io with SMTP id smtpd.web10.21715.1674581411298237297
+ by mx.groups.io with SMTP id smtpd.web11.21810.1674581412848687431
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Jan 2023 09:30:11 -0800
+ Tue, 24 Jan 2023 09:30:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=EERe9Pdp;
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=JvUiWLH7;
  spf=pass (domain: bootlin.com, ip: 217.70.178.231, mailfrom: alexis.lothore@bootlin.com)
 Received: (Authenticated sender: alexis.lothore@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 158C610000C;
-	Tue, 24 Jan 2023 17:30:08 +0000 (UTC)
+	by mail.gandi.net (Postfix) with ESMTPSA id 18E8E100005;
+	Tue, 24 Jan 2023 17:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1674581410;
+	t=1674581411;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=K9chiPRL9QPiOLWmtVRfP8n3+tuQpfvuY9gwD6GQ6ls=;
-	b=EERe9Pdpo7uOqVykoesKLmwc8WTp23dRNJl25ka66u66Vf7Q60kVl+IdO88KHVFxg1tf6k
-	mKtAyZGGzoj91jE9nXN8Hdmbq4IOyPtzk/XVIhwy1aErLKWR+rn6bLFr62tRwtMWbc+m1h
-	Fdz4wEB90alKpmrKDL4ftnmobqmWyuFqLm9rzMTm0+Jx0rB8o8/h/Tssp/wSXOZMNnoE7E
-	m9FDFc15YZFHxgIIdsYzNg3QpJSB+NC/5BLYxutXfgY+PuhXv6I0YVekfkqsLA1Mv7MvaE
-	qLLBuRe/xxhT98n+AzXGwm7QeJFlC2tDSt6YGpaOTibwdhwIAPRKA5GeYxpJRA==
+	bh=O27gm8E4iexRV+sgKCmhhPoxhI1GxmAMVzkX6zlAsDg=;
+	b=JvUiWLH7CD44hz5wYOJCViNS+358oTIN5FGuuYDsl7wQ6ttUwCTlfbgOldBtED284NkA+R
+	y4v8HNXIzS5aPwyctPlU6fvB08E6d80ewHxIhg9oge6JdqLl5T6FilEqwz3MPZ2gi/ed/o
+	jOyZFmErzU00FclfCyelk/6aspXUaABPT6n0u2YJg9MEWOWpfGKazVHtUSfgQ7buTVzHd6
+	V2XOTVUWDMFQght392TSQjd9lO5fOjNODqPbrUAx1gL65DiI2mY1hx3eqlrCD5MVpEMjNf
+	3hV5u4otkYA8RLfP8RSOgAT1Vj5s1h0oaqMsVEISe6tDeorZyFYc/WZVF/bcaQ==
 From: =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
 To: yocto@lists.yoctoproject.org
 Cc: alexandre.belloni@bootlin.com,
 	thomas.petazzoni@bootlin.com,
 	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Subject: [autobuilder][PATCH v3 2/5] scripts/send_qa_email.py: Wrap send_qa_email.py content in function
-Date: Tue, 24 Jan 2023 18:30:14 +0100
-Message-Id: <20230124173017.134017-3-alexis.lothore@bootlin.com>
+Subject: [autobuilder][PATCH v3 4/5] scripts/send_qa_email.py: add unit tests on previous version computation
+Date: Tue, 24 Jan 2023 18:30:16 +0100
+Message-Id: <20230124173017.134017-5-alexis.lothore@bootlin.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230124173017.134017-1-alexis.lothore@bootlin.com>
 References: <20230124173017.134017-1-alexis.lothore@bootlin.com>
@@ -44,317 +44,80 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 24 Jan 2023 17:30:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59048
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59050
 
-This wrapping allows importing send_qa_email.py in another script without
-executing the QA emailing routine. This is useful for unit testing the script
-internal functions
+The "previous version" computation bring many edge cases depending on the
+version under release. Add a basic test suite to validate currently implemented
+computation strategy and to prevent mistakes when ediiting it in the future
 
 Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
 ---
- scripts/send_qa_email.py | 287 ++++++++++++++++++++-------------------
- 1 file changed, 145 insertions(+), 142 deletions(-)
+ scripts/test_send_qa_email.py | 56 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+ create mode 100755 scripts/test_send_qa_email.py
 
-diff --git a/scripts/send_qa_email.py b/scripts/send_qa_email.py
-index d2f63dc..4023918 100755
---- a/scripts/send_qa_email.py
-+++ b/scripts/send_qa_email.py
-@@ -15,150 +15,153 @@ import tempfile
- import utils
- 
- 
--parser = utils.ArgParser(description='Process test results and optionally send an email about the build to prompt QA to begin testing.')
--
--parser.add_argument('send',
--                    help="True to send email, otherwise the script will display a message and exit")
--parser.add_argument('repojson',
--                    help="The json file containing the repositories to use")
--parser.add_argument('sharedrepodir',
--                    help="The shared repos directory (to resolve the repo revision hashes)")
--parser.add_argument('-p', '--publish-dir',
--                    action='store',
--                    help="Where the artefacts were published")
--parser.add_argument('-R', '--results-dir',
--                    action='store',
--                    help="Where the test results were published")
--parser.add_argument('-r', '--release',
--                    action='store',
--                    help="The build/release 'name' for release purposes (optional)")
--
--args = parser.parse_args()
--
--scriptsdir = os.path.dirname(os.path.realpath(__file__))
--ourconfig = utils.loadconfig()
--
--with open(args.repojson) as f:
--    repos = json.load(f)
--
--resulttool = os.path.dirname(args.repojson) + "/build/scripts/resulttool"
--
--buildtoolsdir = os.path.dirname(args.repojson) + "/build/buildtools"
--if os.path.exists(buildtoolsdir):
--    utils.enable_buildtools_tarball(buildtoolsdir)
--
--repodir = os.path.dirname(args.repojson) + "/build/repos"
--
--if 'poky' in repos and os.path.exists(resulttool) and args.results_dir:
--    # Need the finalised revisions (not 'HEAD')
--    targetrepodir = "%s/poky" % (repodir)
--    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=targetrepodir).decode('utf-8').strip()
--    branch = repos['poky']['branch']
--    repo = repos['poky']['url']
--
--    extraopts = None
--    basebranch, comparebranch = utils.getcomparisonbranch(ourconfig, repo, branch)
--    if basebranch:
--        extraopts = " --branch %s --commit %s" % (branch, revision)
--    if comparebranch:
--        extraopts = extraopts + " --branch2 %s" % (comparebranch)
--    elif basebranch:
--        print("No comparision branch found, comparing to %s" % basebranch)
--        extraopts = extraopts + " --branch2 %s" % basebranch
--
--    report = subprocess.check_output([resulttool, "report", args.results_dir])
--    with open(args.results_dir + "/testresult-report.txt", "wb") as f:
--        f.write(report)
--
--    tempdir = tempfile.mkdtemp(prefix='sendqaemail.')
--    try:
--        cloneopts = []
-+def send_qa_email():
-+    parser = utils.ArgParser(description='Process test results and optionally send an email about the build to prompt QA to begin testing.')
+diff --git a/scripts/test_send_qa_email.py b/scripts/test_send_qa_email.py
+new file mode 100755
+index 0000000..41e895e
+--- /dev/null
++++ b/scripts/test_send_qa_email.py
+@@ -0,0 +1,56 @@
++#!/usr/bin/env python3
++"""
++Test suite for send_qa_email.py
 +
-+    parser.add_argument('send',
-+                        help="True to send email, otherwise the script will display a message and exit")
-+    parser.add_argument('repojson',
-+                        help="The json file containing the repositories to use")
-+    parser.add_argument('sharedrepodir',
-+                        help="The shared repos directory (to resolve the repo revision hashes)")
-+    parser.add_argument('-p', '--publish-dir',
-+                        action='store',
-+                        help="Where the artefacts were published")
-+    parser.add_argument('-R', '--results-dir',
-+                        action='store',
-+                        help="Where the test results were published")
-+    parser.add_argument('-r', '--release',
-+                        action='store',
-+                        help="The build/release 'name' for release purposes (optional)")
++The suite needs a valid poky clone to run since it will
++fetch and return revisions from remote repository. To run the suite,
++set POKY_PATH environment variable accordingly:
++`POKY_PATH=~/src/poky ./scripts/test_send_qa_email.py`
++"""
++import os
++import sys
++import unittest
++import send_qa_email
 +
-+    args = parser.parse_args()
 +
-+    scriptsdir = os.path.dirname(os.path.realpath(__file__))
-+    ourconfig = utils.loadconfig()
++class TestVersion(unittest.TestCase):
++    test_data_get_version = [
++        {"input": {"version": "4.1.2"}, "expected": "yocto-4.1.1"},
++        {"input": {"version": "4.1"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1.1"}, "expected": "yocto-4.1"},
++        {"input": {"version": "4.1_M2"}, "expected": "4.1_M1"},
++        {"input": {"version": "4.1_M1"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1.1.rc1"}, "expected": "yocto-4.1"},
++        {"input": {"version": "4.1.2.rc1"}, "expected": "yocto-4.1.1"},
++        {"input": {"version": "4.1_M3.rc1"}, "expected": "4.1_M2"},
++        {"input": {"version": "4.1_M3.rc4"}, "expected": "4.1_M2"},
++        {"input": {"version": "4.1_M1.rc1"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1_M1.rc4"}, "expected": "yocto-4.0"},
++        {"input": {"version": "4.1.rc4"}, "expected": "yocto-4.0"}
++    ]
 +
-+    with open(args.repojson) as f:
-+        repos = json.load(f)
++    test_data_get_sha1 = [
++        {"input": "yocto-4.0", "expected": "00cfdde791a0176c134f31e5a09eff725e75b905"},
++        {"input": "4.1_M1", "expected": "95066dde6861ee08fdb505ab3e0422156cc24fae"},
++    ]
 +
-+    resulttool = os.path.dirname(args.repojson) + "/build/scripts/resulttool"
++    def test_versions(self):
++        for data in self.test_data_get_version:
++            test_name = data["input"]["version"]
++            with self.subTest(f"Test {test_name} previous tag"):
++                self.assertEqual(send_qa_email.get_previous_tag(os.environ.get(
++                    "POKY_PATH"), data["input"]["version"]), data["expected"])
 +
-+    buildtoolsdir = os.path.dirname(args.repojson) + "/build/buildtools"
-+    if os.path.exists(buildtoolsdir):
-+        utils.enable_buildtools_tarball(buildtoolsdir)
++    def test_get_sha1(self):
++        for data in self.test_data_get_sha1:
++            test_name = data["input"]
++            with self.subTest(f"Test SHA1 from {test_name}"):
++                self.assertEqual(send_qa_email.get_sha1(os.environ.get(
++                    "POKY_PATH"), data["input"]), data["expected"])
 +
-+    repodir = os.path.dirname(args.repojson) + "/build/repos"
 +
-+    if 'poky' in repos and os.path.exists(resulttool) and args.results_dir:
-+        # Need the finalised revisions (not 'HEAD')
-+        targetrepodir = "%s/poky" % (repodir)
-+        revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=targetrepodir).decode('utf-8').strip()
-+        branch = repos['poky']['branch']
-+        repo = repos['poky']['url']
-+
-+        extraopts = None
-+        basebranch, comparebranch = utils.getcomparisonbranch(ourconfig, repo, branch)
-+        if basebranch:
-+            extraopts = " --branch %s --commit %s" % (branch, revision)
-         if comparebranch:
--            cloneopts = ["--branch", comparebranch]
-+            extraopts = extraopts + " --branch2 %s" % (comparebranch)
-         elif basebranch:
--            cloneopts = ["--branch", basebranch]
--        try:
--            subprocess.check_call(["git", "clone", "git@push.yoctoproject.org:yocto-testresults", tempdir, "--depth", "5"] + cloneopts)
--        except subprocess.CalledProcessError:
--            print("No comparision branch found, falling back to master")
--            subprocess.check_call(["git", "clone", "git@push.yoctoproject.org:yocto-testresults", tempdir, "--depth", "5"])
-+            print("No comparision branch found, comparing to %s" % basebranch)
-+            extraopts = extraopts + " --branch2 %s" % basebranch
- 
--        # If the base comparision branch isn't present regression comparision won't work
--        # at least until we can tell the tool to ignore internal branch information
--        if basebranch:
-+        report = subprocess.check_output([resulttool, "report", args.results_dir])
-+        with open(args.results_dir + "/testresult-report.txt", "wb") as f:
-+            f.write(report)
-+
-+        tempdir = tempfile.mkdtemp(prefix='sendqaemail.')
-+        try:
-+            cloneopts = []
-+            if comparebranch:
-+                cloneopts = ["--branch", comparebranch]
-+            elif basebranch:
-+                cloneopts = ["--branch", basebranch]
-             try:
--                subprocess.check_call(["git", "rev-parse", "--verify", basebranch], cwd=tempdir)
-+                subprocess.check_call(["git", "clone", "git@push.yoctoproject.org:yocto-testresults", tempdir, "--depth", "5"] + cloneopts)
-             except subprocess.CalledProcessError:
--                # Doesn't exist so base it off master
--                # some older hosts don't have git branch old new
--                subprocess.check_call(["git", "checkout", "master"], cwd=tempdir)
--                subprocess.check_call(["git", "branch", basebranch], cwd=tempdir)
--                subprocess.check_call(["git", "checkout", basebranch], cwd=tempdir)
--                extraopts = None
--
--        subprocess.check_call([resulttool, "store", args.results_dir, tempdir])
--        if comparebranch:
--            subprocess.check_call(["git", "push", "--all", "--force"], cwd=tempdir)
--            subprocess.check_call(["git", "push", "--tags", "--force"], cwd=tempdir)
--        elif basebranch:
--            subprocess.check_call(["git", "push", "--all"], cwd=tempdir)
--            subprocess.check_call(["git", "push", "--tags"], cwd=tempdir)
--
--        if extraopts:
--            regreport = subprocess.check_output([resulttool, "regression-git", tempdir] + extraopts.split())
--            with open(args.results_dir + "/testresult-regressions-report.txt", "wb") as f:
--                f.write(regreport)
--
--    finally:
--        subprocess.check_call(["rm", "-rf",  tempdir])
--        pass
--
--if args.send.lower() != 'true' or not args.publish_dir or not args.release:
--    utils.printheader("Not sending QA email")
--    sys.exit(0)
--
--buildhashes = ""
--for repo in sorted(repos.keys()):
--    # gplv2 is no longer built/tested in master
--    if repo == "meta-gplv2":
--        continue
--    # Need the finalised revisions (not 'HEAD')
--    targetrepodir = "%s/%s" % (repodir, repo)
--    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=targetrepodir).decode('utf-8').strip()
--    buildhashes += "%s: %s\n" % (repo, revision)
--
--web_root = utils.getconfig('WEBPUBLISH_DIR', ourconfig)
--web_url = utils.getconfig('WEBPUBLISH_URL', ourconfig)
--
--email = ""
--mailto = utils.getconfig("QAMAIL_TO", ourconfig)
--if mailto:
--    email += "To: " + mailto + "\n"
--mailcc = utils.getconfig("QAMAIL_CC", ourconfig)
--if mailcc:
--    email += "Cc: " + mailcc + "\n"
--mailbcc = utils.getconfig("QAMAIL_BCC", ourconfig)
--if mailbcc:
--    email += "Bcc: " + mailbcc + "\n"
--
--email += "Subject: " + "QA notification for completed autobuilder build (%s)\n" % args.release
--email += '''\n
--A build flagged for QA (%s) was completed on the autobuilder and is available at:\n\n
--    %s\n\n
--Build hash information: \n
--%s
--
--\nThis is an automated message from the Yocto Project Autobuilder\nGit: git://git.yoctoproject.org/yocto-autobuilder2\nEmail: richard.purdie@linuxfoundation.org\n
--
--''' % (args.release, args.publish_dir.replace(web_root, web_url), buildhashes)
--
--# Store a copy of the email in case it doesn't reach the lists
--with open(os.path.join(args.publish_dir, "qa-email"), "wb") as qa_email:
--    qa_email.write(email.encode('utf-8'))
--
--utils.printheader("Sending QA email")
--env = os.environ.copy()
--# Many distros have sendmail in */sbin
--env["PATH"] = env["PATH"] + ":/usr/sbin:/sbin"
--subprocess.check_call('echo "' + email +' " | sendmail -t', shell=True, env=env)
--
-+                print("No comparision branch found, falling back to master")
-+                subprocess.check_call(["git", "clone", "git@push.yoctoproject.org:yocto-testresults", tempdir, "--depth", "5"])
-+
-+            # If the base comparision branch isn't present regression comparision won't work
-+            # at least until we can tell the tool to ignore internal branch information
-+            if basebranch:
-+                try:
-+                    subprocess.check_call(["git", "rev-parse", "--verify", basebranch], cwd=tempdir)
-+                except subprocess.CalledProcessError:
-+                    # Doesn't exist so base it off master
-+                    # some older hosts don't have git branch old new
-+                    subprocess.check_call(["git", "checkout", "master"], cwd=tempdir)
-+                    subprocess.check_call(["git", "branch", basebranch], cwd=tempdir)
-+                    subprocess.check_call(["git", "checkout", basebranch], cwd=tempdir)
-+                    extraopts = None
-+
-+            subprocess.check_call([resulttool, "store", args.results_dir, tempdir])
-+            if comparebranch:
-+                subprocess.check_call(["git", "push", "--all", "--force"], cwd=tempdir)
-+                subprocess.check_call(["git", "push", "--tags", "--force"], cwd=tempdir)
-+            elif basebranch:
-+                subprocess.check_call(["git", "push", "--all"], cwd=tempdir)
-+                subprocess.check_call(["git", "push", "--tags"], cwd=tempdir)
-+
-+            if extraopts:
-+                regreport = subprocess.check_output([resulttool, "regression-git", tempdir] + extraopts.split())
-+                with open(args.results_dir + "/testresult-regressions-report.txt", "wb") as f:
-+                    f.write(regreport)
-+
-+        finally:
-+            subprocess.check_call(["rm", "-rf",  tempdir])
-+            pass
-+
-+    if args.send.lower() != 'true' or not args.publish_dir or not args.release:
-+        utils.printheader("Not sending QA email")
-+        sys.exit(0)
-+
-+    buildhashes = ""
-+    for repo in sorted(repos.keys()):
-+        # gplv2 is no longer built/tested in master
-+        if repo == "meta-gplv2":
-+            continue
-+        # Need the finalised revisions (not 'HEAD')
-+        targetrepodir = "%s/%s" % (repodir, repo)
-+        revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=targetrepodir).decode('utf-8').strip()
-+        buildhashes += "%s: %s\n" % (repo, revision)
-+
-+    web_root = utils.getconfig('WEBPUBLISH_DIR', ourconfig)
-+    web_url = utils.getconfig('WEBPUBLISH_URL', ourconfig)
-+
-+    email = ""
-+    mailto = utils.getconfig("QAMAIL_TO", ourconfig)
-+    if mailto:
-+        email += "To: " + mailto + "\n"
-+    mailcc = utils.getconfig("QAMAIL_CC", ourconfig)
-+    if mailcc:
-+        email += "Cc: " + mailcc + "\n"
-+    mailbcc = utils.getconfig("QAMAIL_BCC", ourconfig)
-+    if mailbcc:
-+        email += "Bcc: " + mailbcc + "\n"
-+
-+    email += "Subject: " + "QA notification for completed autobuilder build (%s)\n" % args.release
-+    email += '''\n
-+    A build flagged for QA (%s) was completed on the autobuilder and is available at:\n\n
-+        %s\n\n
-+    Build hash information: \n
-+    %s
-+
-+    \nThis is an automated message from the Yocto Project Autobuilder\nGit: git://git.yoctoproject.org/yocto-autobuilder2\nEmail: richard.purdie@linuxfoundation.org\n
-+
-+    ''' % (args.release, args.publish_dir.replace(web_root, web_url), buildhashes)
-+
-+    # Store a copy of the email in case it doesn't reach the lists
-+    with open(os.path.join(args.publish_dir, "qa-email"), "wb") as qa_email:
-+        qa_email.write(email.encode('utf-8'))
-+
-+    utils.printheader("Sending QA email")
-+    env = os.environ.copy()
-+    # Many distros have sendmail in */sbin
-+    env["PATH"] = env["PATH"] + ":/usr/sbin:/sbin"
-+    subprocess.check_call('echo "' + email +' " | sendmail -t', shell=True, env=env)
-+
-+if __name__ == "__main__":
-+    send_qa_email()
++if __name__ == '__main__':
++    if os.environ.get("POKY_PATH") is None:
++        print("Please set POKY_PATH to proper poky clone location before running tests")
++        sys.exit(1)
++    unittest.main()
 -- 
 2.39.0
 
