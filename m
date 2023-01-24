@@ -2,56 +2,56 @@ Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BCF9C54E94
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 325E9C61D9D
 	for <webhook@archiver.kernel.org>; Tue, 24 Jan 2023 22:02:12 +0000 (UTC)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
- by mx.groups.io with SMTP id smtpd.web10.29703.1674597731006689841
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+ by mx.groups.io with SMTP id smtpd.web11.29711.1674597730220856680
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Jan 2023 14:02:11 -0800
+ Tue, 24 Jan 2023 14:02:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=YxLASzPR;
- spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-oi1-f176.google.com with SMTP id s66so14654431oib.7
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=RQ086mEt;
+ spf=pass (domain: gmail.com, ip: 209.85.160.182, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-qt1-f182.google.com with SMTP id j9so14451049qtv.4
         for <yocto@lists.yoctoproject.org>; Tue, 24 Jan 2023 14:02:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=77Ykg+mywRy4+UjcvCtXbpQMVXGT+LXEQFpWMI2BxhA=;
-        b=YxLASzPRlWpjGe/U8SEVG2go8o2R+MpPSW1op9wHwbdFeNFWpBe1FvcisvOCbOzbQx
-         F1CE8Lv3cO4Pj4aOA2dUJYcScKGvzvtB9a2dzxB5y+GIObcll8T3Fy5xRYZUi9p7B4dL
-         zs5t2ZESoqHQAgjObb6cR6vOyWOA/z7F3PK2hUbRmguWwBpiU+fwiA2Epb9TDTKxvrEH
-         V1tDRWicyBk55bkIcD73lmu0pVYbO0SuEknBmWVQn8Gk848646746E/2nP5S62rXBhO5
-         gRdzlXtehag9hsf1EMhG50qjqmxPMmLB71MbO/002UkvCFQIxcR+EzQrkWue/vq7oAeW
-         ZTKA==
+        bh=b8+ARwlvh509gkDTI44CpA1gsOfAcfwkCT6l9u/XEsU=;
+        b=RQ086mEtKTirNSWlL5x5cNRMvlm4szMSqNM5qOSbZiA/MN36oeYVtL9v5CjuL2Q0Ee
+         r0+lpydLMrsNSENdPuJZWEpFA35d9cwWnQg/fic49gUMKGrvsSCv5kcDGoBhNUvVVAUZ
+         N6ZWkszxPP9vOE42Rn5kjHgKFDBpTH62ROMc3GF/jfQsUURxXdBqBOgG68OEo+fHNZHw
+         r6zlcBm5tzNcgLNfBFNeLTmQuT8zOdYX9m81gF1y9Ql5nFgS8+PcvVgMrxv3D9FFKiQ8
+         XgYk1MgOVwtw4WVx6gj374BBo0+U3IJAAOfUqKb8lzwr+bY/gq1ZB8iPez83qMcGW+Cl
+         pdxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=77Ykg+mywRy4+UjcvCtXbpQMVXGT+LXEQFpWMI2BxhA=;
-        b=mi8Vy9rLDQ1sW2VNjQO/M1gh/7dLXc1jhPEUcfz1j+GzEJyelGF1K0tXTwSDfwSQG/
-         QXKnAHDt9dKAFarFUApOG4chzasA5E5H3bmDRqjPXUaErFTajQlyywiBW6UnURUs+W0D
-         wsr3LgeXNyM07ihMQvlXYI58v6/FeEqG0M7aUqgF2pI3oe6B3T2B3VE2dPgJCamzNx+T
-         5qTnPa8vCcg3+vbG4Nyqs+SbgRPvhgQppqsCAgcuDTIgWi1I4IfIXvcTGI7AGTdHFol2
-         OtWHdR7TYVgBsCcsQl5kEQ+Jk9gkV4xf6UpMXWIEBvo7PONJ63NJS4AI6lFH9urXatv+
-         /smw==
-X-Gm-Message-State: AFqh2kqiKrq+nNcrGV4ocal6fHsdH9kYRpTnNNpF7kunl6R5SXbS4e+V
-	rCfIzSl2idD2K0BiJ4xavQE=
-X-Google-Smtp-Source: AMrXdXuIfl6Ua08L2C/je8kvNZfLYCk/4jZpPq8hNG520k0tHjxgvCJGsIZQEjFQljEQe6RnvYq9FA==
-X-Received: by 2002:a05:6808:187:b0:364:6fd1:92d6 with SMTP id w7-20020a056808018700b003646fd192d6mr8041338oic.25.1674597730091;
-        Tue, 24 Jan 2023 14:02:10 -0800 (PST)
-Received: from build.lan (cpe7c9a54441c1f-cm7c9a54441c1d.cpe.net.cable.rogers.com. [173.34.238.88])
-        by smtp.gmail.com with ESMTPSA id c38-20020a05620a26a600b006ea7f9d8644sm2196923qkp.96.2023.01.24.14.02.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=b8+ARwlvh509gkDTI44CpA1gsOfAcfwkCT6l9u/XEsU=;
+        b=s925ZfPRFYEGq4eq/y5wRlaZ6pJKZ25ttkeLu7aY156THMzbbOJze1qyyR7IXTqc8N
+         tCqJ5pVqPy/kwWGlqr4L6bKPTzuj/qfeWO65/dD7mT+ec8AOVDpVRb32MG6OvIgS28tT
+         6UpPxBDR7rPx8ode2pVRVJ68vaOuFeerFmredze7hq7BAvAKDtuzdr4543S5sAUDpbfq
+         D17vdSQgoQ5vS7d3Y+Zv39v0j6vZ6JJVaQ2ef+s5uIrjeYM8WhSHL3MwA+W1xSTSHCUF
+         8PBcVJCHrMf/VxkxUfIV+CQJbnOg3g/JLhg8v8wcBFUl8MBbHU1ZsLqgfhmsI+m81gxP
+         fNpw==
+X-Gm-Message-State: AO0yUKWLCJhWu9yLpjHKNWYGAnItE6qYR9TBKEvGnk2czOeDXBsLjnBf
+	70zsx8TkrCAV/fanfzfYTug=
+X-Google-Smtp-Source: AK7set+t9ADGtGfJkV8Jmsd60UZ+BX45l4ORN9gesFTQ8PGxyMpw31p1AgkTehpM9+iakEh9nD/LAA==
+X-Received: by 2002:a05:622a:1aa2:b0:3a9:80bf:83c0 with SMTP id s34-20020a05622a1aa200b003a980bf83c0mr107316qtc.2.1674597729262;
         Tue, 24 Jan 2023 14:02:09 -0800 (PST)
+Received: from build.lan (cpe7c9a54441c1f-cm7c9a54441c1d.cpe.net.cable.rogers.com. [173.34.238.88])
+        by smtp.gmail.com with ESMTPSA id c38-20020a05620a26a600b006ea7f9d8644sm2196923qkp.96.2023.01.24.14.02.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jan 2023 14:02:08 -0800 (PST)
 From: bruce.ashfield@gmail.com
 To: richard.purdie@linuxfoundation.org
 Cc: yocto@lists.yoctoproject.org
-Subject: [PATCH 2/2] yocto-bsps: remove 5.19 bbappend
-Date: Tue, 24 Jan 2023 17:02:07 -0500
-Message-Id: <c8076b237b17c2dd2f94b3b3ee44ae3d502cd8c5.1674597613.git.bruce.ashfield@gmail.com>
+Subject: [PATCH 1/2] poky/poky-tiny: bump preferred version to 6.1
+Date: Tue, 24 Jan 2023 17:02:06 -0500
+Message-Id: <092093dd500c7326b79b4123732707d4e3e13c30.1674597613.git.bruce.ashfield@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1674597613.git.bruce.ashfield@gmail.com>
 References: <cover.1674597613.git.bruce.ashfield@gmail.com>
@@ -61,47 +61,47 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 24 Jan 2023 22:02:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59055
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59054
 
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
 
-5.19 has been dropped from oe-core, so we drop our bbappend to match.
+5.19 will be removed shortly, bumping the preferred versions for
+poky/poky-tiny to 6.1. The -alt config remains on 5.15.
 
 Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
 ---
- .../linux/linux-yocto_5.19.bbappend           | 23 -------------------
- 1 file changed, 23 deletions(-)
- delete mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.19.bbappend
+ meta-poky/conf/distro/poky-tiny.conf | 2 +-
+ meta-poky/conf/distro/poky.conf      | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.19.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.19.bbappend
-deleted file mode 100644
-index 5794657cfe..0000000000
---- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.19.bbappend
-+++ /dev/null
-@@ -1,23 +0,0 @@
--KBRANCH:genericx86  = "v5.19/standard/base"
--KBRANCH:genericx86-64  = "v5.19/standard/base"
--KBRANCH:edgerouter = "v5.19/standard/edgerouter"
--KBRANCH:beaglebone-yocto = "v5.19/standard/beaglebone"
--
--KMACHINE:genericx86 ?= "common-pc"
--KMACHINE:genericx86-64 ?= "common-pc-64"
--KMACHINE:beaglebone-yocto ?= "beaglebone"
--
--SRCREV_machine:genericx86 ?= "aaf4490d1807c49e3e0ceab1372533937ef2c82b"
--SRCREV_machine:genericx86-64 ?= "aaf4490d1807c49e3e0ceab1372533937ef2c82b"
--SRCREV_machine:edgerouter ?= "43e6ab6ed043f4bc8e7cffbb08af86af0bdb5e12"
--SRCREV_machine:beaglebone-yocto ?= "43e6ab6ed043f4bc8e7cffbb08af86af0bdb5e12"
--
--COMPATIBLE_MACHINE:genericx86 = "genericx86"
--COMPATIBLE_MACHINE:genericx86-64 = "genericx86-64"
--COMPATIBLE_MACHINE:edgerouter = "edgerouter"
--COMPATIBLE_MACHINE:beaglebone-yocto = "beaglebone-yocto"
--
--LINUX_VERSION:genericx86 = "5.19.17"
--LINUX_VERSION:genericx86-64 = "5.19.17"
--LINUX_VERSION:edgerouter = "5.19"
--LINUX_VERSION:beaglebone-yocto = "5.19"
+diff --git a/meta-poky/conf/distro/poky-tiny.conf b/meta-poky/conf/distro/poky-tiny.conf
+index ce466e30b7..188bd6c8c0 100644
+--- a/meta-poky/conf/distro/poky-tiny.conf
++++ b/meta-poky/conf/distro/poky-tiny.conf
+@@ -44,7 +44,7 @@ FULL_OPTIMIZATION="-Os -pipe ${DEBUG_FLAGS}"
+ # Distro config is evaluated after the machine config, so we have to explicitly
+ # set the kernel provider to override a machine config.
+ PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-tiny"
+-PREFERRED_VERSION_linux-yocto-tiny ?= "5.19%"
++PREFERRED_VERSION_linux-yocto-tiny ?= "6.1%"
+ 
+ # We can use packagegroup-core-boot, but in the future we may need a new packagegroup-core-tiny
+ #POKY_DEFAULT_EXTRA_RDEPENDS += "packagegroup-core-boot"
+diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
+index dc0e8e76ab..1d086b9213 100644
+--- a/meta-poky/conf/distro/poky.conf
++++ b/meta-poky/conf/distro/poky.conf
+@@ -20,8 +20,8 @@ POKY_DEFAULT_EXTRA_RRECOMMENDS = "kernel-module-af-packet"
+ 
+ DISTRO_FEATURES ?= "${DISTRO_FEATURES_DEFAULT} ${POKY_DEFAULT_DISTRO_FEATURES}"
+ 
+-PREFERRED_VERSION_linux-yocto ?= "5.19%"
+-PREFERRED_VERSION_linux-yocto-rt ?= "5.19%"
++PREFERRED_VERSION_linux-yocto ?= "6.1%"
++PREFERRED_VERSION_linux-yocto-rt ?= "6.1%"
+ 
+ SDK_NAME = "${DISTRO}-${TCLIBC}-${SDKMACHINE}-${IMAGE_BASENAME}-${TUNE_PKGARCH}-${MACHINE}"
+ SDKPATHINSTALL = "/opt/${DISTRO}/${SDK_VERSION}"
 -- 
 2.34.1
 
