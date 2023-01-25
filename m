@@ -1,962 +1,221 @@
-Return-Path: <peter.hoyes@arm.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 035E3C27C76
-	for <webhook@archiver.kernel.org>; Wed, 25 Jan 2023 17:06:38 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web11.50971.1674666392549203941
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0EDFDC27C76
+	for <webhook@archiver.kernel.org>; Wed, 25 Jan 2023 17:21:48 +0000 (UTC)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web11.51438.1674667307562994375
  for <yocto@lists.yoctoproject.org>;
- Wed, 25 Jan 2023 09:06:32 -0800
+ Wed, 25 Jan 2023 09:21:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D96214B3;
-	Wed, 25 Jan 2023 09:07:13 -0800 (PST)
-Received: from e125920.cambridge.arm.com (unknown [10.1.199.64])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 64B393F5A1;
-	Wed, 25 Jan 2023 09:06:31 -0800 (PST)
-From: Peter Hoyes <peter.hoyes@arm.com>
-To: yocto@lists.yoctoproject.org
-Cc: Peter Hoyes <Peter.Hoyes@arm.com>
-Subject: [meta-zephyr][PATCH] zephyr-core/zephyr-kernel: Add ZEPHYR namespace to SRC_URI variables
-Date: Wed, 25 Jan 2023 17:06:16 +0000
-Message-Id: <20230125170616.773742-1-peter.hoyes@arm.com>
-X-Mailer: git-send-email 2.34.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=PD5e7Jp3;
+ spf=pass (domain: gmail.com, ip: 209.85.216.48, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f48.google.com with SMTP id b24-20020a17090a551800b0022beefa7a23so2725876pji.5
+        for <yocto@lists.yoctoproject.org>; Wed, 25 Jan 2023 09:21:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:autocrypt:from:content-language:references:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sVooFDU5GagKiqO6STP7fhL0zizTxqgrWLf8Kb/784E=;
+        b=PD5e7Jp3gjka6bVmCK+iJy0hBj4e83BcfJ/OjmHOwKGQ+THv0X3giCC0dqzYfXrilN
+         Jp6paCI/vQuk+Hc4NwCtaqXnWS7zbUDsNEjA4G8QELlYG4oUp7wd5tUgbY2I/xoARhCh
+         88272NcXGAP0kwOnfiPkhMvqcv3eKX27p4i76ntHA707QKqHWbW8t2GA57S6PmQnH+7x
+         +n89QGwLMxqWFdJPy1wrFFB/eHR9WWKHRwVK1PWpq2v/13/M46KzD1UhiZINCCpU6/fB
+         uJyhz0DjBlvxzCPSXOPZLDW+30xklfeiL08Ms4/yHTO/I8OBArDEBLwEZ9JYMwT5ZGGq
+         A2ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:autocrypt:from:content-language:references:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=sVooFDU5GagKiqO6STP7fhL0zizTxqgrWLf8Kb/784E=;
+        b=ufI1TR6wkXwCJIp3zLfxENUzfRRyYvVWn7LbBczyWiWOMVzN0Fh2aUT6Pnob3oEFUH
+         zYGNvAFPoAAo6mbDjRsAxUkU5qUOkhTak+NLKy5CfSkS1vSG4Mw/k08ixBvvhQDGh+rg
+         dd9unggwTqEZYUhFRkTqsF5dKRajYJesIrDtd0BiY2nI41HdvqQVPcMlLc4OmIVC1UHg
+         lEDWtLZEXPO3M0hBinzwOYksEdtv3DQSJJMtdmUEmZCCHNqCLm+gS9a+M8MuC/Q3FTK9
+         8XzVv3hRx9YK4iLSVPtCnql+wiGG8CJgP9qtLPAa1xkNrfmMVb4MlqjVhGDVEqBsiXLa
+         FLcQ==
+X-Gm-Message-State: AFqh2kqvRqGxHanqRVuMyiHY7gzQw8Dz2fnL/TbFS0zxEzjMJZyy0xBA
+	CJrEy8MfgRzTZkBqNpkPfBo=
+X-Google-Smtp-Source: AMrXdXtk/5q52Yo4MHqceYEIoQQRhcB/bmcuymA3WnHyVsML9uzPjBEWow/t21cq2yj8HXZ1C+H+LQ==
+X-Received: by 2002:a17:902:f708:b0:189:c4a9:c5e8 with SMTP id h8-20020a170902f70800b00189c4a9c5e8mr35543887plo.45.1674667306673;
+        Wed, 25 Jan 2023 09:21:46 -0800 (PST)
+Received: from ?IPV6:2601:646:9181:1cf0:6d2b:c3c7:c498:d136? ([2601:646:9181:1cf0:6d2b:c3c7:c498:d136])
+        by smtp.gmail.com with ESMTPSA id c18-20020a170902849200b001754fa42065sm3889417plo.143.2023.01.25.09.21.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Jan 2023 09:21:46 -0800 (PST)
+Message-ID: <a189ac7d-e8bd-5a11-7a61-26428ca043ef@gmail.com>
+Date: Wed, 25 Jan 2023 09:21:44 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.7.0
+Subject: Re: [yocto] Error while adding " libimxvpuapi2" and "gstreamer" pkgs
+ in my local.conf for imx8mplus
+To: Nikita Gupta <nikitagupta2509@gmail.com>,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
+Content-Language: en-US
+From: Khem Raj <raj.khem@gmail.com>
+Autocrypt: addr=raj.khem@gmail.com; keydata=
+ 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
+In-Reply-To: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------M9Q5Kx4SeVbx0vZPfyhRznqn"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 25 Jan 2023 17:06:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59060
+ <yocto@lists.yoctoproject.org>; Wed, 25 Jan 2023 17:21:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59061
 
-From: Peter Hoyes <Peter.Hoyes@arm.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------M9Q5Kx4SeVbx0vZPfyhRznqn
+Content-Type: multipart/mixed; boundary="------------OgxlvchlGCk786HLH5PWDqGh";
+ protected-headers="v1"
+From: Khem Raj <raj.khem@gmail.com>
+To: Nikita Gupta <nikitagupta2509@gmail.com>,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Message-ID: <a189ac7d-e8bd-5a11-7a61-26428ca043ef@gmail.com>
+Subject: Re: [yocto] Error while adding " libimxvpuapi2" and "gstreamer" pkgs
+ in my local.conf for imx8mplus
+References: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
+In-Reply-To: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
 
-Certain SRC_URI_* variables may collide with other recipes, e.g.
-SRC_URI_TRUSTED_FIRMWARE_A. Namespace these variables under
-SRC_URI_ZEPHYR so that the SRC_URIs of Zephyr modules can be
-independently tweaked from local.conf or the environment.
+--------------OgxlvchlGCk786HLH5PWDqGh
+Content-Type: multipart/mixed; boundary="------------lGJ8ENzlH2q6bST0PdeyRRiX"
 
-Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
----
- .../zephyr-kernel/zephyr-kernel-src-3.1.0.inc | 200 ++++++++--------
- .../zephyr-kernel/zephyr-kernel-src-3.2.0.inc | 216 +++++++++---------
- .../scripts/zephyr-kernel-src.inc.jinja       |   4 +-
- 3 files changed, 210 insertions(+), 210 deletions(-)
+--------------lGJ8ENzlH2q6bST0PdeyRRiX
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
-src-3.1.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kern=
-el-src-3.1.0.inc
-index b3feb6a..9b3a105 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1=
-.0.inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1=
-.0.inc
-@@ -55,56 +55,56 @@ SRCREV_zcbor =3D "882c489a7d9fdfff31d27666914a78a9eb6=
-976d7"
- SRCREV_zscilib =3D "fc979a8dcb74169c69b02835927bff8f070d6325"
-=20
- SRC_URI_ZEPHYR ?=3D "git://github.com/zephyrproject-rtos/zephyr.git;prot=
-ocol=3Dhttps"
--SRC_URI_CANOPENNODE ?=3D "git://github.com/zephyrproject-rtos/canopennod=
-e;protocol=3Dhttps"
--SRC_URI_CHRE ?=3D "git://github.com/zephyrproject-rtos/chre;protocol=3Dh=
-ttps"
--SRC_URI_CIVETWEB ?=3D "git://github.com/zephyrproject-rtos/civetweb;prot=
-ocol=3Dhttps"
--SRC_URI_CMSIS ?=3D "git://github.com/zephyrproject-rtos/cmsis;protocol=3D=
-https"
--SRC_URI_EDTT ?=3D "git://github.com/zephyrproject-rtos/edtt;protocol=3Dh=
-ttps"
--SRC_URI_FATFS ?=3D "git://github.com/zephyrproject-rtos/fatfs;protocol=3D=
-https"
--SRC_URI_FFF ?=3D "git://github.com/zephyrproject-rtos/fff;protocol=3Dhtt=
-ps"
--SRC_URI_HAL_ALTERA ?=3D "git://github.com/zephyrproject-rtos/hal_altera;=
-protocol=3Dhttps"
--SRC_URI_HAL_ATMEL ?=3D "git://github.com/zephyrproject-rtos/hal_atmel;pr=
-otocol=3Dhttps"
--SRC_URI_HAL_ESPRESSIF ?=3D "git://github.com/zephyrproject-rtos/hal_espr=
-essif;protocol=3Dhttps"
--SRC_URI_HAL_GIGADEVICE ?=3D "git://github.com/zephyrproject-rtos/hal_gig=
-adevice;protocol=3Dhttps"
--SRC_URI_HAL_INFINEON ?=3D "git://github.com/zephyrproject-rtos/hal_infin=
-eon;protocol=3Dhttps"
--SRC_URI_HAL_MICROCHIP ?=3D "git://github.com/zephyrproject-rtos/hal_micr=
-ochip;protocol=3Dhttps"
--SRC_URI_HAL_NORDIC ?=3D "git://github.com/zephyrproject-rtos/hal_nordic;=
-protocol=3Dhttps"
--SRC_URI_HAL_NUVOTON ?=3D "git://github.com/zephyrproject-rtos/hal_nuvoto=
-n;protocol=3Dhttps"
--SRC_URI_HAL_NXP ?=3D "git://github.com/zephyrproject-rtos/hal_nxp;protoc=
-ol=3Dhttps"
--SRC_URI_HAL_OPENISA ?=3D "git://github.com/zephyrproject-rtos/hal_openis=
-a;protocol=3Dhttps"
--SRC_URI_HAL_QUICKLOGIC ?=3D "git://github.com/zephyrproject-rtos/hal_qui=
-cklogic;protocol=3Dhttps"
--SRC_URI_HAL_RPI_PICO ?=3D "git://github.com/zephyrproject-rtos/hal_rpi_p=
-ico;protocol=3Dhttps"
--SRC_URI_HAL_SILABS ?=3D "git://github.com/zephyrproject-rtos/hal_silabs;=
-protocol=3Dhttps"
--SRC_URI_HAL_ST ?=3D "git://github.com/zephyrproject-rtos/hal_st;protocol=
-=3Dhttps"
--SRC_URI_HAL_STM32 ?=3D "git://github.com/zephyrproject-rtos/hal_stm32;pr=
-otocol=3Dhttps"
--SRC_URI_HAL_TELINK ?=3D "git://github.com/zephyrproject-rtos/hal_telink;=
-protocol=3Dhttps"
--SRC_URI_HAL_TI ?=3D "git://github.com/zephyrproject-rtos/hal_ti;protocol=
-=3Dhttps"
--SRC_URI_HAL_XTENSA ?=3D "git://github.com/zephyrproject-rtos/hal_xtensa;=
-protocol=3Dhttps"
--SRC_URI_LIBMETAL ?=3D "git://github.com/zephyrproject-rtos/libmetal;prot=
-ocol=3Dhttps"
--SRC_URI_LIBLC3CODEC ?=3D "git://github.com/zephyrproject-rtos/liblc3code=
-c;protocol=3Dhttps"
--SRC_URI_LITTLEFS ?=3D "git://github.com/zephyrproject-rtos/littlefs;prot=
-ocol=3Dhttps"
--SRC_URI_LORAMAC_NODE ?=3D "git://github.com/zephyrproject-rtos/loramac-n=
-ode;protocol=3Dhttps"
--SRC_URI_LVGL ?=3D "git://github.com/zephyrproject-rtos/lvgl;protocol=3Dh=
-ttps"
--SRC_URI_LZ4 ?=3D "git://github.com/zephyrproject-rtos/lz4;protocol=3Dhtt=
-ps"
--SRC_URI_MBEDTLS ?=3D "git://github.com/zephyrproject-rtos/mbedtls;protoc=
-ol=3Dhttps"
--SRC_URI_MCUBOOT ?=3D "git://github.com/zephyrproject-rtos/mcuboot;protoc=
-ol=3Dhttps"
--SRC_URI_MIPI_SYS_T ?=3D "git://github.com/zephyrproject-rtos/mipi-sys-t;=
-protocol=3Dhttps"
--SRC_URI_NANOPB ?=3D "git://github.com/zephyrproject-rtos/nanopb;protocol=
-=3Dhttps"
--SRC_URI_NET_TOOLS ?=3D "git://github.com/zephyrproject-rtos/net-tools;pr=
-otocol=3Dhttps"
--SRC_URI_NRF_HW_MODELS ?=3D "git://github.com/zephyrproject-rtos/nrf_hw_m=
-odels;protocol=3Dhttps"
--SRC_URI_OPEN_AMP ?=3D "git://github.com/zephyrproject-rtos/open-amp;prot=
-ocol=3Dhttps"
--SRC_URI_OPENTHREAD ?=3D "git://github.com/zephyrproject-rtos/openthread;=
-protocol=3Dhttps"
--SRC_URI_SEGGER ?=3D "git://github.com/zephyrproject-rtos/segger;protocol=
-=3Dhttps"
--SRC_URI_SOF ?=3D "git://github.com/zephyrproject-rtos/sof;protocol=3Dhtt=
-ps"
--SRC_URI_TFLITE_MICRO ?=3D "git://github.com/zephyrproject-rtos/tflite-mi=
-cro;protocol=3Dhttps"
--SRC_URI_TINYCBOR ?=3D "git://github.com/zephyrproject-rtos/tinycbor;prot=
-ocol=3Dhttps"
--SRC_URI_TINYCRYPT ?=3D "git://github.com/zephyrproject-rtos/tinycrypt;pr=
-otocol=3Dhttps"
--SRC_URI_TRACERECORDERSOURCE ?=3D "git://github.com/zephyrproject-rtos/Tr=
-aceRecorderSource;protocol=3Dhttps"
--SRC_URI_TRUSTED_FIRMWARE_M ?=3D "git://github.com/zephyrproject-rtos/tru=
-sted-firmware-m;protocol=3Dhttps"
--SRC_URI_TF_M_TESTS ?=3D "git://github.com/zephyrproject-rtos/tf-m-tests;=
-protocol=3Dhttps"
--SRC_URI_PSA_ARCH_TESTS ?=3D "git://github.com/zephyrproject-rtos/psa-arc=
-h-tests;protocol=3Dhttps"
--SRC_URI_ZCBOR ?=3D "git://github.com/zephyrproject-rtos/zcbor;protocol=3D=
-https"
--SRC_URI_ZSCILIB ?=3D "git://github.com/zephyrproject-rtos/zscilib;protoc=
-ol=3Dhttps"
-+SRC_URI_ZEPHYR_CANOPENNODE ?=3D "git://github.com/zephyrproject-rtos/can=
-opennode;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_CHRE ?=3D "git://github.com/zephyrproject-rtos/chre;proto=
-col=3Dhttps"
-+SRC_URI_ZEPHYR_CIVETWEB ?=3D "git://github.com/zephyrproject-rtos/civetw=
-eb;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_CMSIS ?=3D "git://github.com/zephyrproject-rtos/cmsis;pro=
-tocol=3Dhttps"
-+SRC_URI_ZEPHYR_EDTT ?=3D "git://github.com/zephyrproject-rtos/edtt;proto=
-col=3Dhttps"
-+SRC_URI_ZEPHYR_FATFS ?=3D "git://github.com/zephyrproject-rtos/fatfs;pro=
-tocol=3Dhttps"
-+SRC_URI_ZEPHYR_FFF ?=3D "git://github.com/zephyrproject-rtos/fff;protoco=
-l=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ALTERA ?=3D "git://github.com/zephyrproject-rtos/hal_=
-altera;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ATMEL ?=3D "git://github.com/zephyrproject-rtos/hal_a=
-tmel;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ESPRESSIF ?=3D "git://github.com/zephyrproject-rtos/h=
-al_espressif;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_GIGADEVICE ?=3D "git://github.com/zephyrproject-rtos/=
-hal_gigadevice;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_INFINEON ?=3D "git://github.com/zephyrproject-rtos/ha=
-l_infineon;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_MICROCHIP ?=3D "git://github.com/zephyrproject-rtos/h=
-al_microchip;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_NORDIC ?=3D "git://github.com/zephyrproject-rtos/hal_=
-nordic;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_NUVOTON ?=3D "git://github.com/zephyrproject-rtos/hal=
-_nuvoton;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_NXP ?=3D "git://github.com/zephyrproject-rtos/hal_nxp=
-;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_OPENISA ?=3D "git://github.com/zephyrproject-rtos/hal=
-_openisa;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_QUICKLOGIC ?=3D "git://github.com/zephyrproject-rtos/=
-hal_quicklogic;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_RPI_PICO ?=3D "git://github.com/zephyrproject-rtos/ha=
-l_rpi_pico;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_SILABS ?=3D "git://github.com/zephyrproject-rtos/hal_=
-silabs;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ST ?=3D "git://github.com/zephyrproject-rtos/hal_st;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_STM32 ?=3D "git://github.com/zephyrproject-rtos/hal_s=
-tm32;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_TELINK ?=3D "git://github.com/zephyrproject-rtos/hal_=
-telink;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_TI ?=3D "git://github.com/zephyrproject-rtos/hal_ti;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_XTENSA ?=3D "git://github.com/zephyrproject-rtos/hal_=
-xtensa;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LIBMETAL ?=3D "git://github.com/zephyrproject-rtos/libmet=
-al;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LIBLC3CODEC ?=3D "git://github.com/zephyrproject-rtos/lib=
-lc3codec;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LITTLEFS ?=3D "git://github.com/zephyrproject-rtos/little=
-fs;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LORAMAC_NODE ?=3D "git://github.com/zephyrproject-rtos/lo=
-ramac-node;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LVGL ?=3D "git://github.com/zephyrproject-rtos/lvgl;proto=
-col=3Dhttps"
-+SRC_URI_ZEPHYR_LZ4 ?=3D "git://github.com/zephyrproject-rtos/lz4;protoco=
-l=3Dhttps"
-+SRC_URI_ZEPHYR_MBEDTLS ?=3D "git://github.com/zephyrproject-rtos/mbedtls=
-;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_MCUBOOT ?=3D "git://github.com/zephyrproject-rtos/mcuboot=
-;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_MIPI_SYS_T ?=3D "git://github.com/zephyrproject-rtos/mipi=
--sys-t;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_NANOPB ?=3D "git://github.com/zephyrproject-rtos/nanopb;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_NET_TOOLS ?=3D "git://github.com/zephyrproject-rtos/net-t=
-ools;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_NRF_HW_MODELS ?=3D "git://github.com/zephyrproject-rtos/n=
-rf_hw_models;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_OPEN_AMP ?=3D "git://github.com/zephyrproject-rtos/open-a=
-mp;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_OPENTHREAD ?=3D "git://github.com/zephyrproject-rtos/open=
-thread;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_SEGGER ?=3D "git://github.com/zephyrproject-rtos/segger;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_SOF ?=3D "git://github.com/zephyrproject-rtos/sof;protoco=
-l=3Dhttps"
-+SRC_URI_ZEPHYR_TFLITE_MICRO ?=3D "git://github.com/zephyrproject-rtos/tf=
-lite-micro;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TINYCBOR ?=3D "git://github.com/zephyrproject-rtos/tinycb=
-or;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TINYCRYPT ?=3D "git://github.com/zephyrproject-rtos/tinyc=
-rypt;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TRACERECORDERSOURCE ?=3D "git://github.com/zephyrproject-=
-rtos/TraceRecorderSource;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_M ?=3D "git://github.com/zephyrproject-r=
-tos/trusted-firmware-m;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TF_M_TESTS ?=3D "git://github.com/zephyrproject-rtos/tf-m=
--tests;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_PSA_ARCH_TESTS ?=3D "git://github.com/zephyrproject-rtos/=
-psa-arch-tests;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_ZCBOR ?=3D "git://github.com/zephyrproject-rtos/zcbor;pro=
-tocol=3Dhttps"
-+SRC_URI_ZEPHYR_ZSCILIB ?=3D "git://github.com/zephyrproject-rtos/zscilib=
-;protocol=3Dhttps"
-=20
- SRC_URI_PATCHES ?=3D "\
-     file://0001-3.1-cmake-add-yocto-toolchain.patch;patchdir=3Dzephyr \
-@@ -114,56 +114,56 @@ SRC_URI_PATCHES ?=3D "\
-=20
- SRC_URI =3D "\
-     ${SRC_URI_ZEPHYR};branch=3D${ZEPHYR_BRANCH};name=3Ddefault;destsuffi=
-x=3Dgit/zephyr \
--    ${SRC_URI_CANOPENNODE};name=3Dcanopennode;nobranch=3D1;destsuffix=3D=
-git/modules/lib/canopennode \
--    ${SRC_URI_CHRE};name=3Dchre;nobranch=3D1;destsuffix=3Dgit/modules/li=
-b/chre \
--    ${SRC_URI_CIVETWEB};name=3Dcivetweb;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/lib/civetweb \
--    ${SRC_URI_CMSIS};name=3Dcmsis;nobranch=3D1;destsuffix=3Dgit/modules/=
-hal/cmsis \
--    ${SRC_URI_EDTT};name=3Dedtt;nobranch=3D1;destsuffix=3Dgit/tools/edtt=
- \
--    ${SRC_URI_FATFS};name=3Dfatfs;nobranch=3D1;destsuffix=3Dgit/modules/=
-fs/fatfs \
--    ${SRC_URI_FFF};name=3Dfff;nobranch=3D1;destsuffix=3Dgit/modules/lib/=
-fff \
--    ${SRC_URI_HAL_ALTERA};name=3Dhal_altera;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/altera \
--    ${SRC_URI_HAL_ATMEL};name=3Dhal_atmel;nobranch=3D1;destsuffix=3Dgit/=
-modules/hal/atmel \
--    ${SRC_URI_HAL_ESPRESSIF};name=3Dhal_espressif;nobranch=3D1;destsuffi=
-x=3Dgit/modules/hal/espressif \
--    ${SRC_URI_HAL_GIGADEVICE};name=3Dhal_gigadevice;nobranch=3D1;destsuf=
-fix=3Dgit/modules/hal/gigadevice \
--    ${SRC_URI_HAL_INFINEON};name=3Dhal_infineon;nobranch=3D1;destsuffix=3D=
-git/modules/hal/infineon \
--    ${SRC_URI_HAL_MICROCHIP};name=3Dhal_microchip;nobranch=3D1;destsuffi=
-x=3Dgit/modules/hal/microchip \
--    ${SRC_URI_HAL_NORDIC};name=3Dhal_nordic;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/nordic \
--    ${SRC_URI_HAL_NUVOTON};name=3Dhal_nuvoton;nobranch=3D1;destsuffix=3D=
-git/modules/hal/nuvoton \
--    ${SRC_URI_HAL_NXP};name=3Dhal_nxp;nobranch=3D1;destsuffix=3Dgit/modu=
-les/hal/nxp \
--    ${SRC_URI_HAL_OPENISA};name=3Dhal_openisa;nobranch=3D1;destsuffix=3D=
-git/modules/hal/openisa \
--    ${SRC_URI_HAL_QUICKLOGIC};name=3Dhal_quicklogic;nobranch=3D1;destsuf=
-fix=3Dgit/modules/hal/quicklogic \
--    ${SRC_URI_HAL_RPI_PICO};name=3Dhal_rpi_pico;nobranch=3D1;destsuffix=3D=
-git/modules/hal/rpi_pico \
--    ${SRC_URI_HAL_SILABS};name=3Dhal_silabs;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/silabs \
--    ${SRC_URI_HAL_ST};name=3Dhal_st;nobranch=3D1;destsuffix=3Dgit/module=
-s/hal/st \
--    ${SRC_URI_HAL_STM32};name=3Dhal_stm32;nobranch=3D1;destsuffix=3Dgit/=
-modules/hal/stm32 \
--    ${SRC_URI_HAL_TELINK};name=3Dhal_telink;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/telink \
--    ${SRC_URI_HAL_TI};name=3Dhal_ti;nobranch=3D1;destsuffix=3Dgit/module=
-s/hal/ti \
--    ${SRC_URI_HAL_XTENSA};name=3Dhal_xtensa;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/xtensa \
--    ${SRC_URI_LIBMETAL};name=3Dlibmetal;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/hal/libmetal \
--    ${SRC_URI_LIBLC3CODEC};name=3Dliblc3codec;nobranch=3D1;destsuffix=3D=
-git/modules/lib/liblc3codec \
--    ${SRC_URI_LITTLEFS};name=3Dlittlefs;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/fs/littlefs \
--    ${SRC_URI_LORAMAC_NODE};name=3Dloramac-node;nobranch=3D1;destsuffix=3D=
-git/modules/lib/loramac-node \
--    ${SRC_URI_LVGL};name=3Dlvgl;nobranch=3D1;destsuffix=3Dgit/modules/li=
-b/gui/lvgl \
--    ${SRC_URI_LZ4};name=3Dlz4;nobranch=3D1;destsuffix=3Dgit/modules/lib/=
-lz4 \
--    ${SRC_URI_MBEDTLS};name=3Dmbedtls;nobranch=3D1;destsuffix=3Dgit/modu=
-les/crypto/mbedtls \
--    ${SRC_URI_MCUBOOT};name=3Dmcuboot;nobranch=3D1;destsuffix=3Dgit/boot=
-loader/mcuboot \
--    ${SRC_URI_MIPI_SYS_T};name=3Dmipi-sys-t;nobranch=3D1;destsuffix=3Dgi=
-t/modules/debug/mipi-sys-t \
--    ${SRC_URI_NANOPB};name=3Dnanopb;nobranch=3D1;destsuffix=3Dgit/module=
-s/lib/nanopb \
--    ${SRC_URI_NET_TOOLS};name=3Dnet-tools;nobranch=3D1;destsuffix=3Dgit/=
-tools/net-tools \
--    ${SRC_URI_NRF_HW_MODELS};name=3Dnrf_hw_models;nobranch=3D1;destsuffi=
-x=3Dgit/modules/bsim_hw_models/nrf_hw_models \
--    ${SRC_URI_OPEN_AMP};name=3Dopen-amp;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/lib/open-amp \
--    ${SRC_URI_OPENTHREAD};name=3Dopenthread;nobranch=3D1;destsuffix=3Dgi=
-t/modules/lib/openthread \
--    ${SRC_URI_SEGGER};name=3Dsegger;nobranch=3D1;destsuffix=3Dgit/module=
-s/debug/segger \
--    ${SRC_URI_SOF};name=3Dsof;nobranch=3D1;destsuffix=3Dgit/modules/audi=
-o/sof \
--    ${SRC_URI_TFLITE_MICRO};name=3Dtflite-micro;nobranch=3D1;destsuffix=3D=
-git/modules/lib/tflite-micro \
--    ${SRC_URI_TINYCBOR};name=3Dtinycbor;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/lib/tinycbor \
--    ${SRC_URI_TINYCRYPT};name=3Dtinycrypt;nobranch=3D1;destsuffix=3Dgit/=
-modules/crypto/tinycrypt \
--    ${SRC_URI_TRACERECORDERSOURCE};name=3DTraceRecorderSource;nobranch=3D=
-1;destsuffix=3Dgit/modules/debug/TraceRecorder \
--    ${SRC_URI_TRUSTED_FIRMWARE_M};name=3Dtrusted-firmware-m;nobranch=3D1=
-;destsuffix=3Dgit/modules/tee/tf-m/trusted-firmware-m \
--    ${SRC_URI_TF_M_TESTS};name=3Dtf-m-tests;nobranch=3D1;destsuffix=3Dgi=
-t/modules/tee/tf-m/tf-m-tests \
--    ${SRC_URI_PSA_ARCH_TESTS};name=3Dpsa-arch-tests;nobranch=3D1;destsuf=
-fix=3Dgit/modules/tee/tf-m/psa-arch-tests \
--    ${SRC_URI_ZCBOR};name=3Dzcbor;nobranch=3D1;destsuffix=3Dgit/modules/=
-lib/zcbor \
--    ${SRC_URI_ZSCILIB};name=3Dzscilib;nobranch=3D1;destsuffix=3Dgit/modu=
-les/lib/zscilib \
-+    ${SRC_URI_ZEPHYR_CANOPENNODE};name=3Dcanopennode;nobranch=3D1;destsu=
-ffix=3Dgit/modules/lib/canopennode \
-+    ${SRC_URI_ZEPHYR_CHRE};name=3Dchre;nobranch=3D1;destsuffix=3Dgit/mod=
-ules/lib/chre \
-+    ${SRC_URI_ZEPHYR_CIVETWEB};name=3Dcivetweb;nobranch=3D1;destsuffix=3D=
-git/modules/lib/civetweb \
-+    ${SRC_URI_ZEPHYR_CMSIS};name=3Dcmsis;nobranch=3D1;destsuffix=3Dgit/m=
-odules/hal/cmsis \
-+    ${SRC_URI_ZEPHYR_EDTT};name=3Dedtt;nobranch=3D1;destsuffix=3Dgit/too=
-ls/edtt \
-+    ${SRC_URI_ZEPHYR_FATFS};name=3Dfatfs;nobranch=3D1;destsuffix=3Dgit/m=
-odules/fs/fatfs \
-+    ${SRC_URI_ZEPHYR_FFF};name=3Dfff;nobranch=3D1;destsuffix=3Dgit/modul=
-es/lib/fff \
-+    ${SRC_URI_ZEPHYR_HAL_ALTERA};name=3Dhal_altera;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/altera \
-+    ${SRC_URI_ZEPHYR_HAL_ATMEL};name=3Dhal_atmel;nobranch=3D1;destsuffix=
-=3Dgit/modules/hal/atmel \
-+    ${SRC_URI_ZEPHYR_HAL_ESPRESSIF};name=3Dhal_espressif;nobranch=3D1;de=
-stsuffix=3Dgit/modules/hal/espressif \
-+    ${SRC_URI_ZEPHYR_HAL_GIGADEVICE};name=3Dhal_gigadevice;nobranch=3D1;=
-destsuffix=3Dgit/modules/hal/gigadevice \
-+    ${SRC_URI_ZEPHYR_HAL_INFINEON};name=3Dhal_infineon;nobranch=3D1;dest=
-suffix=3Dgit/modules/hal/infineon \
-+    ${SRC_URI_ZEPHYR_HAL_MICROCHIP};name=3Dhal_microchip;nobranch=3D1;de=
-stsuffix=3Dgit/modules/hal/microchip \
-+    ${SRC_URI_ZEPHYR_HAL_NORDIC};name=3Dhal_nordic;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/nordic \
-+    ${SRC_URI_ZEPHYR_HAL_NUVOTON};name=3Dhal_nuvoton;nobranch=3D1;destsu=
-ffix=3Dgit/modules/hal/nuvoton \
-+    ${SRC_URI_ZEPHYR_HAL_NXP};name=3Dhal_nxp;nobranch=3D1;destsuffix=3Dg=
-it/modules/hal/nxp \
-+    ${SRC_URI_ZEPHYR_HAL_OPENISA};name=3Dhal_openisa;nobranch=3D1;destsu=
-ffix=3Dgit/modules/hal/openisa \
-+    ${SRC_URI_ZEPHYR_HAL_QUICKLOGIC};name=3Dhal_quicklogic;nobranch=3D1;=
-destsuffix=3Dgit/modules/hal/quicklogic \
-+    ${SRC_URI_ZEPHYR_HAL_RPI_PICO};name=3Dhal_rpi_pico;nobranch=3D1;dest=
-suffix=3Dgit/modules/hal/rpi_pico \
-+    ${SRC_URI_ZEPHYR_HAL_SILABS};name=3Dhal_silabs;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/silabs \
-+    ${SRC_URI_ZEPHYR_HAL_ST};name=3Dhal_st;nobranch=3D1;destsuffix=3Dgit=
-/modules/hal/st \
-+    ${SRC_URI_ZEPHYR_HAL_STM32};name=3Dhal_stm32;nobranch=3D1;destsuffix=
-=3Dgit/modules/hal/stm32 \
-+    ${SRC_URI_ZEPHYR_HAL_TELINK};name=3Dhal_telink;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/telink \
-+    ${SRC_URI_ZEPHYR_HAL_TI};name=3Dhal_ti;nobranch=3D1;destsuffix=3Dgit=
-/modules/hal/ti \
-+    ${SRC_URI_ZEPHYR_HAL_XTENSA};name=3Dhal_xtensa;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/xtensa \
-+    ${SRC_URI_ZEPHYR_LIBMETAL};name=3Dlibmetal;nobranch=3D1;destsuffix=3D=
-git/modules/hal/libmetal \
-+    ${SRC_URI_ZEPHYR_LIBLC3CODEC};name=3Dliblc3codec;nobranch=3D1;destsu=
-ffix=3Dgit/modules/lib/liblc3codec \
-+    ${SRC_URI_ZEPHYR_LITTLEFS};name=3Dlittlefs;nobranch=3D1;destsuffix=3D=
-git/modules/fs/littlefs \
-+    ${SRC_URI_ZEPHYR_LORAMAC_NODE};name=3Dloramac-node;nobranch=3D1;dest=
-suffix=3Dgit/modules/lib/loramac-node \
-+    ${SRC_URI_ZEPHYR_LVGL};name=3Dlvgl;nobranch=3D1;destsuffix=3Dgit/mod=
-ules/lib/gui/lvgl \
-+    ${SRC_URI_ZEPHYR_LZ4};name=3Dlz4;nobranch=3D1;destsuffix=3Dgit/modul=
-es/lib/lz4 \
-+    ${SRC_URI_ZEPHYR_MBEDTLS};name=3Dmbedtls;nobranch=3D1;destsuffix=3Dg=
-it/modules/crypto/mbedtls \
-+    ${SRC_URI_ZEPHYR_MCUBOOT};name=3Dmcuboot;nobranch=3D1;destsuffix=3Dg=
-it/bootloader/mcuboot \
-+    ${SRC_URI_ZEPHYR_MIPI_SYS_T};name=3Dmipi-sys-t;nobranch=3D1;destsuff=
-ix=3Dgit/modules/debug/mipi-sys-t \
-+    ${SRC_URI_ZEPHYR_NANOPB};name=3Dnanopb;nobranch=3D1;destsuffix=3Dgit=
-/modules/lib/nanopb \
-+    ${SRC_URI_ZEPHYR_NET_TOOLS};name=3Dnet-tools;nobranch=3D1;destsuffix=
-=3Dgit/tools/net-tools \
-+    ${SRC_URI_ZEPHYR_NRF_HW_MODELS};name=3Dnrf_hw_models;nobranch=3D1;de=
-stsuffix=3Dgit/modules/bsim_hw_models/nrf_hw_models \
-+    ${SRC_URI_ZEPHYR_OPEN_AMP};name=3Dopen-amp;nobranch=3D1;destsuffix=3D=
-git/modules/lib/open-amp \
-+    ${SRC_URI_ZEPHYR_OPENTHREAD};name=3Dopenthread;nobranch=3D1;destsuff=
-ix=3Dgit/modules/lib/openthread \
-+    ${SRC_URI_ZEPHYR_SEGGER};name=3Dsegger;nobranch=3D1;destsuffix=3Dgit=
-/modules/debug/segger \
-+    ${SRC_URI_ZEPHYR_SOF};name=3Dsof;nobranch=3D1;destsuffix=3Dgit/modul=
-es/audio/sof \
-+    ${SRC_URI_ZEPHYR_TFLITE_MICRO};name=3Dtflite-micro;nobranch=3D1;dest=
-suffix=3Dgit/modules/lib/tflite-micro \
-+    ${SRC_URI_ZEPHYR_TINYCBOR};name=3Dtinycbor;nobranch=3D1;destsuffix=3D=
-git/modules/lib/tinycbor \
-+    ${SRC_URI_ZEPHYR_TINYCRYPT};name=3Dtinycrypt;nobranch=3D1;destsuffix=
-=3Dgit/modules/crypto/tinycrypt \
-+    ${SRC_URI_ZEPHYR_TRACERECORDERSOURCE};name=3DTraceRecorderSource;nob=
-ranch=3D1;destsuffix=3Dgit/modules/debug/TraceRecorder \
-+    ${SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_M};name=3Dtrusted-firmware-m;nobra=
-nch=3D1;destsuffix=3Dgit/modules/tee/tf-m/trusted-firmware-m \
-+    ${SRC_URI_ZEPHYR_TF_M_TESTS};name=3Dtf-m-tests;nobranch=3D1;destsuff=
-ix=3Dgit/modules/tee/tf-m/tf-m-tests \
-+    ${SRC_URI_ZEPHYR_PSA_ARCH_TESTS};name=3Dpsa-arch-tests;nobranch=3D1;=
-destsuffix=3Dgit/modules/tee/tf-m/psa-arch-tests \
-+    ${SRC_URI_ZEPHYR_ZCBOR};name=3Dzcbor;nobranch=3D1;destsuffix=3Dgit/m=
-odules/lib/zcbor \
-+    ${SRC_URI_ZEPHYR_ZSCILIB};name=3Dzscilib;nobranch=3D1;destsuffix=3Dg=
-it/modules/lib/zscilib \
-     ${SRC_URI_PATCHES} \
- "
-=20
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
-src-3.2.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kern=
-el-src-3.2.0.inc
-index 5d8ddfa..8df6885 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.2=
-.0.inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.2=
-.0.inc
-@@ -59,60 +59,60 @@ SRCREV_zcbor =3D "a0d6981f14d4001d6f0d608d1a427f9bc6b=
-b6d02"
- SRCREV_zscilib =3D "ca070ddabdaf67175a2da901d0bd62e8899371c5"
-=20
- SRC_URI_ZEPHYR ?=3D "git://github.com/zephyrproject-rtos/zephyr.git;prot=
-ocol=3Dhttps"
--SRC_URI_CANOPENNODE ?=3D "git://github.com/zephyrproject-rtos/canopennod=
-e;protocol=3Dhttps"
--SRC_URI_CHRE ?=3D "git://github.com/zephyrproject-rtos/chre;protocol=3Dh=
-ttps"
--SRC_URI_CMSIS ?=3D "git://github.com/zephyrproject-rtos/cmsis;protocol=3D=
-https"
--SRC_URI_EDTT ?=3D "git://github.com/zephyrproject-rtos/edtt;protocol=3Dh=
-ttps"
--SRC_URI_FATFS ?=3D "git://github.com/zephyrproject-rtos/fatfs;protocol=3D=
-https"
--SRC_URI_FFF ?=3D "git://github.com/zephyrproject-rtos/fff;protocol=3Dhtt=
-ps"
--SRC_URI_HAL_ALTERA ?=3D "git://github.com/zephyrproject-rtos/hal_altera;=
-protocol=3Dhttps"
--SRC_URI_HAL_ATMEL ?=3D "git://github.com/zephyrproject-rtos/hal_atmel;pr=
-otocol=3Dhttps"
--SRC_URI_HAL_ESPRESSIF ?=3D "git://github.com/zephyrproject-rtos/hal_espr=
-essif;protocol=3Dhttps"
--SRC_URI_HAL_GIGADEVICE ?=3D "git://github.com/zephyrproject-rtos/hal_gig=
-adevice;protocol=3Dhttps"
--SRC_URI_HAL_INFINEON ?=3D "git://github.com/zephyrproject-rtos/hal_infin=
-eon;protocol=3Dhttps"
--SRC_URI_HAL_MICROCHIP ?=3D "git://github.com/zephyrproject-rtos/hal_micr=
-ochip;protocol=3Dhttps"
--SRC_URI_HAL_NORDIC ?=3D "git://github.com/zephyrproject-rtos/hal_nordic;=
-protocol=3Dhttps"
--SRC_URI_HAL_NUVOTON ?=3D "git://github.com/zephyrproject-rtos/hal_nuvoto=
-n;protocol=3Dhttps"
--SRC_URI_HAL_NXP ?=3D "git://github.com/zephyrproject-rtos/hal_nxp;protoc=
-ol=3Dhttps"
--SRC_URI_HAL_OPENISA ?=3D "git://github.com/zephyrproject-rtos/hal_openis=
-a;protocol=3Dhttps"
--SRC_URI_HAL_QUICKLOGIC ?=3D "git://github.com/zephyrproject-rtos/hal_qui=
-cklogic;protocol=3Dhttps"
--SRC_URI_HAL_RENESAS ?=3D "git://github.com/zephyrproject-rtos/hal_renesa=
-s;protocol=3Dhttps"
--SRC_URI_HAL_RPI_PICO ?=3D "git://github.com/zephyrproject-rtos/hal_rpi_p=
-ico;protocol=3Dhttps"
--SRC_URI_HAL_SILABS ?=3D "git://github.com/zephyrproject-rtos/hal_silabs;=
-protocol=3Dhttps"
--SRC_URI_HAL_ST ?=3D "git://github.com/zephyrproject-rtos/hal_st;protocol=
-=3Dhttps"
--SRC_URI_HAL_STM32 ?=3D "git://github.com/zephyrproject-rtos/hal_stm32;pr=
-otocol=3Dhttps"
--SRC_URI_HAL_TELINK ?=3D "git://github.com/zephyrproject-rtos/hal_telink;=
-protocol=3Dhttps"
--SRC_URI_HAL_TI ?=3D "git://github.com/zephyrproject-rtos/hal_ti;protocol=
-=3Dhttps"
--SRC_URI_HAL_WURTHELEKTRONIK ?=3D "git://github.com/zephyrproject-rtos/ha=
-l_wurthelektronik;protocol=3Dhttps"
--SRC_URI_HAL_XTENSA ?=3D "git://github.com/zephyrproject-rtos/hal_xtensa;=
-protocol=3Dhttps"
--SRC_URI_LIBMETAL ?=3D "git://github.com/zephyrproject-rtos/libmetal;prot=
-ocol=3Dhttps"
--SRC_URI_LIBLC3 ?=3D "git://github.com/zephyrproject-rtos/liblc3;protocol=
-=3Dhttps"
--SRC_URI_LITTLEFS ?=3D "git://github.com/zephyrproject-rtos/littlefs;prot=
-ocol=3Dhttps"
--SRC_URI_LORAMAC_NODE ?=3D "git://github.com/zephyrproject-rtos/loramac-n=
-ode;protocol=3Dhttps"
--SRC_URI_LVGL ?=3D "git://github.com/zephyrproject-rtos/lvgl;protocol=3Dh=
-ttps"
--SRC_URI_LZ4 ?=3D "git://github.com/zephyrproject-rtos/lz4;protocol=3Dhtt=
-ps"
--SRC_URI_MBEDTLS ?=3D "git://github.com/zephyrproject-rtos/mbedtls;protoc=
-ol=3Dhttps"
--SRC_URI_MCUBOOT ?=3D "git://github.com/zephyrproject-rtos/mcuboot;protoc=
-ol=3Dhttps"
--SRC_URI_MIPI_SYS_T ?=3D "git://github.com/zephyrproject-rtos/mipi-sys-t;=
-protocol=3Dhttps"
--SRC_URI_NANOPB ?=3D "git://github.com/zephyrproject-rtos/nanopb;protocol=
-=3Dhttps"
--SRC_URI_NET_TOOLS ?=3D "git://github.com/zephyrproject-rtos/net-tools;pr=
-otocol=3Dhttps"
--SRC_URI_NRF_HW_MODELS ?=3D "git://github.com/zephyrproject-rtos/nrf_hw_m=
-odels;protocol=3Dhttps"
--SRC_URI_OPEN_AMP ?=3D "git://github.com/zephyrproject-rtos/open-amp;prot=
-ocol=3Dhttps"
--SRC_URI_OPENTHREAD ?=3D "git://github.com/zephyrproject-rtos/openthread;=
-protocol=3Dhttps"
--SRC_URI_PICOLIBC ?=3D "git://github.com/zephyrproject-rtos/picolibc;prot=
-ocol=3Dhttps"
--SRC_URI_SEGGER ?=3D "git://github.com/zephyrproject-rtos/segger;protocol=
-=3Dhttps"
--SRC_URI_SOF ?=3D "git://github.com/zephyrproject-rtos/sof;protocol=3Dhtt=
-ps"
--SRC_URI_TFLITE_MICRO ?=3D "git://github.com/zephyrproject-rtos/tflite-mi=
-cro;protocol=3Dhttps"
--SRC_URI_TINYCBOR ?=3D "git://github.com/zephyrproject-rtos/tinycbor;prot=
-ocol=3Dhttps"
--SRC_URI_TINYCRYPT ?=3D "git://github.com/zephyrproject-rtos/tinycrypt;pr=
-otocol=3Dhttps"
--SRC_URI_TRACERECORDERSOURCE ?=3D "git://github.com/zephyrproject-rtos/Tr=
-aceRecorderSource;protocol=3Dhttps"
--SRC_URI_TRUSTED_FIRMWARE_M ?=3D "git://github.com/zephyrproject-rtos/tru=
-sted-firmware-m;protocol=3Dhttps"
--SRC_URI_TRUSTED_FIRMWARE_A ?=3D "git://github.com/zephyrproject-rtos/tru=
-sted-firmware-a;protocol=3Dhttps"
--SRC_URI_TF_M_TESTS ?=3D "git://github.com/zephyrproject-rtos/tf-m-tests;=
-protocol=3Dhttps"
--SRC_URI_PSA_ARCH_TESTS ?=3D "git://github.com/zephyrproject-rtos/psa-arc=
-h-tests;protocol=3Dhttps"
--SRC_URI_UOSCORE_UEDHOC ?=3D "git://github.com/zephyrproject-rtos/uoscore=
--uedhoc;protocol=3Dhttps"
--SRC_URI_ZCBOR ?=3D "git://github.com/zephyrproject-rtos/zcbor;protocol=3D=
-https"
--SRC_URI_ZSCILIB ?=3D "git://github.com/zephyrproject-rtos/zscilib;protoc=
-ol=3Dhttps"
-+SRC_URI_ZEPHYR_CANOPENNODE ?=3D "git://github.com/zephyrproject-rtos/can=
-opennode;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_CHRE ?=3D "git://github.com/zephyrproject-rtos/chre;proto=
-col=3Dhttps"
-+SRC_URI_ZEPHYR_CMSIS ?=3D "git://github.com/zephyrproject-rtos/cmsis;pro=
-tocol=3Dhttps"
-+SRC_URI_ZEPHYR_EDTT ?=3D "git://github.com/zephyrproject-rtos/edtt;proto=
-col=3Dhttps"
-+SRC_URI_ZEPHYR_FATFS ?=3D "git://github.com/zephyrproject-rtos/fatfs;pro=
-tocol=3Dhttps"
-+SRC_URI_ZEPHYR_FFF ?=3D "git://github.com/zephyrproject-rtos/fff;protoco=
-l=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ALTERA ?=3D "git://github.com/zephyrproject-rtos/hal_=
-altera;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ATMEL ?=3D "git://github.com/zephyrproject-rtos/hal_a=
-tmel;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ESPRESSIF ?=3D "git://github.com/zephyrproject-rtos/h=
-al_espressif;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_GIGADEVICE ?=3D "git://github.com/zephyrproject-rtos/=
-hal_gigadevice;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_INFINEON ?=3D "git://github.com/zephyrproject-rtos/ha=
-l_infineon;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_MICROCHIP ?=3D "git://github.com/zephyrproject-rtos/h=
-al_microchip;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_NORDIC ?=3D "git://github.com/zephyrproject-rtos/hal_=
-nordic;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_NUVOTON ?=3D "git://github.com/zephyrproject-rtos/hal=
-_nuvoton;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_NXP ?=3D "git://github.com/zephyrproject-rtos/hal_nxp=
-;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_OPENISA ?=3D "git://github.com/zephyrproject-rtos/hal=
-_openisa;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_QUICKLOGIC ?=3D "git://github.com/zephyrproject-rtos/=
-hal_quicklogic;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_RENESAS ?=3D "git://github.com/zephyrproject-rtos/hal=
-_renesas;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_RPI_PICO ?=3D "git://github.com/zephyrproject-rtos/ha=
-l_rpi_pico;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_SILABS ?=3D "git://github.com/zephyrproject-rtos/hal_=
-silabs;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_ST ?=3D "git://github.com/zephyrproject-rtos/hal_st;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_STM32 ?=3D "git://github.com/zephyrproject-rtos/hal_s=
-tm32;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_TELINK ?=3D "git://github.com/zephyrproject-rtos/hal_=
-telink;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_TI ?=3D "git://github.com/zephyrproject-rtos/hal_ti;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_WURTHELEKTRONIK ?=3D "git://github.com/zephyrproject-=
-rtos/hal_wurthelektronik;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_HAL_XTENSA ?=3D "git://github.com/zephyrproject-rtos/hal_=
-xtensa;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LIBMETAL ?=3D "git://github.com/zephyrproject-rtos/libmet=
-al;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LIBLC3 ?=3D "git://github.com/zephyrproject-rtos/liblc3;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_LITTLEFS ?=3D "git://github.com/zephyrproject-rtos/little=
-fs;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LORAMAC_NODE ?=3D "git://github.com/zephyrproject-rtos/lo=
-ramac-node;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_LVGL ?=3D "git://github.com/zephyrproject-rtos/lvgl;proto=
-col=3Dhttps"
-+SRC_URI_ZEPHYR_LZ4 ?=3D "git://github.com/zephyrproject-rtos/lz4;protoco=
-l=3Dhttps"
-+SRC_URI_ZEPHYR_MBEDTLS ?=3D "git://github.com/zephyrproject-rtos/mbedtls=
-;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_MCUBOOT ?=3D "git://github.com/zephyrproject-rtos/mcuboot=
-;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_MIPI_SYS_T ?=3D "git://github.com/zephyrproject-rtos/mipi=
--sys-t;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_NANOPB ?=3D "git://github.com/zephyrproject-rtos/nanopb;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_NET_TOOLS ?=3D "git://github.com/zephyrproject-rtos/net-t=
-ools;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_NRF_HW_MODELS ?=3D "git://github.com/zephyrproject-rtos/n=
-rf_hw_models;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_OPEN_AMP ?=3D "git://github.com/zephyrproject-rtos/open-a=
-mp;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_OPENTHREAD ?=3D "git://github.com/zephyrproject-rtos/open=
-thread;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_PICOLIBC ?=3D "git://github.com/zephyrproject-rtos/picoli=
-bc;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_SEGGER ?=3D "git://github.com/zephyrproject-rtos/segger;p=
-rotocol=3Dhttps"
-+SRC_URI_ZEPHYR_SOF ?=3D "git://github.com/zephyrproject-rtos/sof;protoco=
-l=3Dhttps"
-+SRC_URI_ZEPHYR_TFLITE_MICRO ?=3D "git://github.com/zephyrproject-rtos/tf=
-lite-micro;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TINYCBOR ?=3D "git://github.com/zephyrproject-rtos/tinycb=
-or;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TINYCRYPT ?=3D "git://github.com/zephyrproject-rtos/tinyc=
-rypt;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TRACERECORDERSOURCE ?=3D "git://github.com/zephyrproject-=
-rtos/TraceRecorderSource;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_M ?=3D "git://github.com/zephyrproject-r=
-tos/trusted-firmware-m;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_A ?=3D "git://github.com/zephyrproject-r=
-tos/trusted-firmware-a;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_TF_M_TESTS ?=3D "git://github.com/zephyrproject-rtos/tf-m=
--tests;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_PSA_ARCH_TESTS ?=3D "git://github.com/zephyrproject-rtos/=
-psa-arch-tests;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_UOSCORE_UEDHOC ?=3D "git://github.com/zephyrproject-rtos/=
-uoscore-uedhoc;protocol=3Dhttps"
-+SRC_URI_ZEPHYR_ZCBOR ?=3D "git://github.com/zephyrproject-rtos/zcbor;pro=
-tocol=3Dhttps"
-+SRC_URI_ZEPHYR_ZSCILIB ?=3D "git://github.com/zephyrproject-rtos/zscilib=
-;protocol=3Dhttps"
-=20
- SRC_URI_PATCHES ?=3D "\
-     file://0001-3.1-cmake-add-yocto-toolchain.patch;patchdir=3Dzephyr \
-@@ -121,60 +121,60 @@ SRC_URI_PATCHES ?=3D "\
-=20
- SRC_URI =3D "\
-     ${SRC_URI_ZEPHYR};branch=3D${ZEPHYR_BRANCH};name=3Ddefault;destsuffi=
-x=3Dgit/zephyr \
--    ${SRC_URI_CANOPENNODE};name=3Dcanopennode;nobranch=3D1;destsuffix=3D=
-git/modules/lib/canopennode \
--    ${SRC_URI_CHRE};name=3Dchre;nobranch=3D1;destsuffix=3Dgit/modules/li=
-b/chre \
--    ${SRC_URI_CMSIS};name=3Dcmsis;nobranch=3D1;destsuffix=3Dgit/modules/=
-hal/cmsis \
--    ${SRC_URI_EDTT};name=3Dedtt;nobranch=3D1;destsuffix=3Dgit/tools/edtt=
- \
--    ${SRC_URI_FATFS};name=3Dfatfs;nobranch=3D1;destsuffix=3Dgit/modules/=
-fs/fatfs \
--    ${SRC_URI_FFF};name=3Dfff;nobranch=3D1;destsuffix=3Dgit/modules/lib/=
-fff \
--    ${SRC_URI_HAL_ALTERA};name=3Dhal_altera;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/altera \
--    ${SRC_URI_HAL_ATMEL};name=3Dhal_atmel;nobranch=3D1;destsuffix=3Dgit/=
-modules/hal/atmel \
--    ${SRC_URI_HAL_ESPRESSIF};name=3Dhal_espressif;nobranch=3D1;destsuffi=
-x=3Dgit/modules/hal/espressif \
--    ${SRC_URI_HAL_GIGADEVICE};name=3Dhal_gigadevice;nobranch=3D1;destsuf=
-fix=3Dgit/modules/hal/gigadevice \
--    ${SRC_URI_HAL_INFINEON};name=3Dhal_infineon;nobranch=3D1;destsuffix=3D=
-git/modules/hal/infineon \
--    ${SRC_URI_HAL_MICROCHIP};name=3Dhal_microchip;nobranch=3D1;destsuffi=
-x=3Dgit/modules/hal/microchip \
--    ${SRC_URI_HAL_NORDIC};name=3Dhal_nordic;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/nordic \
--    ${SRC_URI_HAL_NUVOTON};name=3Dhal_nuvoton;nobranch=3D1;destsuffix=3D=
-git/modules/hal/nuvoton \
--    ${SRC_URI_HAL_NXP};name=3Dhal_nxp;nobranch=3D1;destsuffix=3Dgit/modu=
-les/hal/nxp \
--    ${SRC_URI_HAL_OPENISA};name=3Dhal_openisa;nobranch=3D1;destsuffix=3D=
-git/modules/hal/openisa \
--    ${SRC_URI_HAL_QUICKLOGIC};name=3Dhal_quicklogic;nobranch=3D1;destsuf=
-fix=3Dgit/modules/hal/quicklogic \
--    ${SRC_URI_HAL_RENESAS};name=3Dhal_renesas;nobranch=3D1;destsuffix=3D=
-git/modules/hal/renesas \
--    ${SRC_URI_HAL_RPI_PICO};name=3Dhal_rpi_pico;nobranch=3D1;destsuffix=3D=
-git/modules/hal/rpi_pico \
--    ${SRC_URI_HAL_SILABS};name=3Dhal_silabs;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/silabs \
--    ${SRC_URI_HAL_ST};name=3Dhal_st;nobranch=3D1;destsuffix=3Dgit/module=
-s/hal/st \
--    ${SRC_URI_HAL_STM32};name=3Dhal_stm32;nobranch=3D1;destsuffix=3Dgit/=
-modules/hal/stm32 \
--    ${SRC_URI_HAL_TELINK};name=3Dhal_telink;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/telink \
--    ${SRC_URI_HAL_TI};name=3Dhal_ti;nobranch=3D1;destsuffix=3Dgit/module=
-s/hal/ti \
--    ${SRC_URI_HAL_WURTHELEKTRONIK};name=3Dhal_wurthelektronik;nobranch=3D=
-1;destsuffix=3Dgit/modules/hal/wurthelektronik \
--    ${SRC_URI_HAL_XTENSA};name=3Dhal_xtensa;nobranch=3D1;destsuffix=3Dgi=
-t/modules/hal/xtensa \
--    ${SRC_URI_LIBMETAL};name=3Dlibmetal;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/hal/libmetal \
--    ${SRC_URI_LIBLC3};name=3Dliblc3;nobranch=3D1;destsuffix=3Dgit/module=
-s/lib/liblc3 \
--    ${SRC_URI_LITTLEFS};name=3Dlittlefs;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/fs/littlefs \
--    ${SRC_URI_LORAMAC_NODE};name=3Dloramac-node;nobranch=3D1;destsuffix=3D=
-git/modules/lib/loramac-node \
--    ${SRC_URI_LVGL};name=3Dlvgl;nobranch=3D1;destsuffix=3Dgit/modules/li=
-b/gui/lvgl \
--    ${SRC_URI_LZ4};name=3Dlz4;nobranch=3D1;destsuffix=3Dgit/modules/lib/=
-lz4 \
--    ${SRC_URI_MBEDTLS};name=3Dmbedtls;nobranch=3D1;destsuffix=3Dgit/modu=
-les/crypto/mbedtls \
--    ${SRC_URI_MCUBOOT};name=3Dmcuboot;nobranch=3D1;destsuffix=3Dgit/boot=
-loader/mcuboot \
--    ${SRC_URI_MIPI_SYS_T};name=3Dmipi-sys-t;nobranch=3D1;destsuffix=3Dgi=
-t/modules/debug/mipi-sys-t \
--    ${SRC_URI_NANOPB};name=3Dnanopb;nobranch=3D1;destsuffix=3Dgit/module=
-s/lib/nanopb \
--    ${SRC_URI_NET_TOOLS};name=3Dnet-tools;nobranch=3D1;destsuffix=3Dgit/=
-tools/net-tools \
--    ${SRC_URI_NRF_HW_MODELS};name=3Dnrf_hw_models;nobranch=3D1;destsuffi=
-x=3Dgit/modules/bsim_hw_models/nrf_hw_models \
--    ${SRC_URI_OPEN_AMP};name=3Dopen-amp;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/lib/open-amp \
--    ${SRC_URI_OPENTHREAD};name=3Dopenthread;nobranch=3D1;destsuffix=3Dgi=
-t/modules/lib/openthread \
--    ${SRC_URI_PICOLIBC};name=3Dpicolibc;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/lib/picolibc \
--    ${SRC_URI_SEGGER};name=3Dsegger;nobranch=3D1;destsuffix=3Dgit/module=
-s/debug/segger \
--    ${SRC_URI_SOF};name=3Dsof;nobranch=3D1;destsuffix=3Dgit/modules/audi=
-o/sof \
--    ${SRC_URI_TFLITE_MICRO};name=3Dtflite-micro;nobranch=3D1;destsuffix=3D=
-git/modules/lib/tflite-micro \
--    ${SRC_URI_TINYCBOR};name=3Dtinycbor;nobranch=3D1;destsuffix=3Dgit/mo=
-dules/lib/tinycbor \
--    ${SRC_URI_TINYCRYPT};name=3Dtinycrypt;nobranch=3D1;destsuffix=3Dgit/=
-modules/crypto/tinycrypt \
--    ${SRC_URI_TRACERECORDERSOURCE};name=3DTraceRecorderSource;nobranch=3D=
-1;destsuffix=3Dgit/modules/debug/TraceRecorder \
--    ${SRC_URI_TRUSTED_FIRMWARE_M};name=3Dtrusted-firmware-m;nobranch=3D1=
-;destsuffix=3Dgit/modules/tee/tf-m/trusted-firmware-m \
--    ${SRC_URI_TRUSTED_FIRMWARE_A};name=3Dtrusted-firmware-a;nobranch=3D1=
-;destsuffix=3Dgit/modules/tee/tf-a/trusted-firmware-a \
--    ${SRC_URI_TF_M_TESTS};name=3Dtf-m-tests;nobranch=3D1;destsuffix=3Dgi=
-t/modules/tee/tf-m/tf-m-tests \
--    ${SRC_URI_PSA_ARCH_TESTS};name=3Dpsa-arch-tests;nobranch=3D1;destsuf=
-fix=3Dgit/modules/tee/tf-m/psa-arch-tests \
--    ${SRC_URI_UOSCORE_UEDHOC};name=3Duoscore-uedhoc;nobranch=3D1;destsuf=
-fix=3Dgit/modules/lib/uoscore-uedhoc \
--    ${SRC_URI_ZCBOR};name=3Dzcbor;nobranch=3D1;destsuffix=3Dgit/modules/=
-lib/zcbor \
--    ${SRC_URI_ZSCILIB};name=3Dzscilib;nobranch=3D1;destsuffix=3Dgit/modu=
-les/lib/zscilib \
-+    ${SRC_URI_ZEPHYR_CANOPENNODE};name=3Dcanopennode;nobranch=3D1;destsu=
-ffix=3Dgit/modules/lib/canopennode \
-+    ${SRC_URI_ZEPHYR_CHRE};name=3Dchre;nobranch=3D1;destsuffix=3Dgit/mod=
-ules/lib/chre \
-+    ${SRC_URI_ZEPHYR_CMSIS};name=3Dcmsis;nobranch=3D1;destsuffix=3Dgit/m=
-odules/hal/cmsis \
-+    ${SRC_URI_ZEPHYR_EDTT};name=3Dedtt;nobranch=3D1;destsuffix=3Dgit/too=
-ls/edtt \
-+    ${SRC_URI_ZEPHYR_FATFS};name=3Dfatfs;nobranch=3D1;destsuffix=3Dgit/m=
-odules/fs/fatfs \
-+    ${SRC_URI_ZEPHYR_FFF};name=3Dfff;nobranch=3D1;destsuffix=3Dgit/modul=
-es/lib/fff \
-+    ${SRC_URI_ZEPHYR_HAL_ALTERA};name=3Dhal_altera;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/altera \
-+    ${SRC_URI_ZEPHYR_HAL_ATMEL};name=3Dhal_atmel;nobranch=3D1;destsuffix=
-=3Dgit/modules/hal/atmel \
-+    ${SRC_URI_ZEPHYR_HAL_ESPRESSIF};name=3Dhal_espressif;nobranch=3D1;de=
-stsuffix=3Dgit/modules/hal/espressif \
-+    ${SRC_URI_ZEPHYR_HAL_GIGADEVICE};name=3Dhal_gigadevice;nobranch=3D1;=
-destsuffix=3Dgit/modules/hal/gigadevice \
-+    ${SRC_URI_ZEPHYR_HAL_INFINEON};name=3Dhal_infineon;nobranch=3D1;dest=
-suffix=3Dgit/modules/hal/infineon \
-+    ${SRC_URI_ZEPHYR_HAL_MICROCHIP};name=3Dhal_microchip;nobranch=3D1;de=
-stsuffix=3Dgit/modules/hal/microchip \
-+    ${SRC_URI_ZEPHYR_HAL_NORDIC};name=3Dhal_nordic;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/nordic \
-+    ${SRC_URI_ZEPHYR_HAL_NUVOTON};name=3Dhal_nuvoton;nobranch=3D1;destsu=
-ffix=3Dgit/modules/hal/nuvoton \
-+    ${SRC_URI_ZEPHYR_HAL_NXP};name=3Dhal_nxp;nobranch=3D1;destsuffix=3Dg=
-it/modules/hal/nxp \
-+    ${SRC_URI_ZEPHYR_HAL_OPENISA};name=3Dhal_openisa;nobranch=3D1;destsu=
-ffix=3Dgit/modules/hal/openisa \
-+    ${SRC_URI_ZEPHYR_HAL_QUICKLOGIC};name=3Dhal_quicklogic;nobranch=3D1;=
-destsuffix=3Dgit/modules/hal/quicklogic \
-+    ${SRC_URI_ZEPHYR_HAL_RENESAS};name=3Dhal_renesas;nobranch=3D1;destsu=
-ffix=3Dgit/modules/hal/renesas \
-+    ${SRC_URI_ZEPHYR_HAL_RPI_PICO};name=3Dhal_rpi_pico;nobranch=3D1;dest=
-suffix=3Dgit/modules/hal/rpi_pico \
-+    ${SRC_URI_ZEPHYR_HAL_SILABS};name=3Dhal_silabs;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/silabs \
-+    ${SRC_URI_ZEPHYR_HAL_ST};name=3Dhal_st;nobranch=3D1;destsuffix=3Dgit=
-/modules/hal/st \
-+    ${SRC_URI_ZEPHYR_HAL_STM32};name=3Dhal_stm32;nobranch=3D1;destsuffix=
-=3Dgit/modules/hal/stm32 \
-+    ${SRC_URI_ZEPHYR_HAL_TELINK};name=3Dhal_telink;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/telink \
-+    ${SRC_URI_ZEPHYR_HAL_TI};name=3Dhal_ti;nobranch=3D1;destsuffix=3Dgit=
-/modules/hal/ti \
-+    ${SRC_URI_ZEPHYR_HAL_WURTHELEKTRONIK};name=3Dhal_wurthelektronik;nob=
-ranch=3D1;destsuffix=3Dgit/modules/hal/wurthelektronik \
-+    ${SRC_URI_ZEPHYR_HAL_XTENSA};name=3Dhal_xtensa;nobranch=3D1;destsuff=
-ix=3Dgit/modules/hal/xtensa \
-+    ${SRC_URI_ZEPHYR_LIBMETAL};name=3Dlibmetal;nobranch=3D1;destsuffix=3D=
-git/modules/hal/libmetal \
-+    ${SRC_URI_ZEPHYR_LIBLC3};name=3Dliblc3;nobranch=3D1;destsuffix=3Dgit=
-/modules/lib/liblc3 \
-+    ${SRC_URI_ZEPHYR_LITTLEFS};name=3Dlittlefs;nobranch=3D1;destsuffix=3D=
-git/modules/fs/littlefs \
-+    ${SRC_URI_ZEPHYR_LORAMAC_NODE};name=3Dloramac-node;nobranch=3D1;dest=
-suffix=3Dgit/modules/lib/loramac-node \
-+    ${SRC_URI_ZEPHYR_LVGL};name=3Dlvgl;nobranch=3D1;destsuffix=3Dgit/mod=
-ules/lib/gui/lvgl \
-+    ${SRC_URI_ZEPHYR_LZ4};name=3Dlz4;nobranch=3D1;destsuffix=3Dgit/modul=
-es/lib/lz4 \
-+    ${SRC_URI_ZEPHYR_MBEDTLS};name=3Dmbedtls;nobranch=3D1;destsuffix=3Dg=
-it/modules/crypto/mbedtls \
-+    ${SRC_URI_ZEPHYR_MCUBOOT};name=3Dmcuboot;nobranch=3D1;destsuffix=3Dg=
-it/bootloader/mcuboot \
-+    ${SRC_URI_ZEPHYR_MIPI_SYS_T};name=3Dmipi-sys-t;nobranch=3D1;destsuff=
-ix=3Dgit/modules/debug/mipi-sys-t \
-+    ${SRC_URI_ZEPHYR_NANOPB};name=3Dnanopb;nobranch=3D1;destsuffix=3Dgit=
-/modules/lib/nanopb \
-+    ${SRC_URI_ZEPHYR_NET_TOOLS};name=3Dnet-tools;nobranch=3D1;destsuffix=
-=3Dgit/tools/net-tools \
-+    ${SRC_URI_ZEPHYR_NRF_HW_MODELS};name=3Dnrf_hw_models;nobranch=3D1;de=
-stsuffix=3Dgit/modules/bsim_hw_models/nrf_hw_models \
-+    ${SRC_URI_ZEPHYR_OPEN_AMP};name=3Dopen-amp;nobranch=3D1;destsuffix=3D=
-git/modules/lib/open-amp \
-+    ${SRC_URI_ZEPHYR_OPENTHREAD};name=3Dopenthread;nobranch=3D1;destsuff=
-ix=3Dgit/modules/lib/openthread \
-+    ${SRC_URI_ZEPHYR_PICOLIBC};name=3Dpicolibc;nobranch=3D1;destsuffix=3D=
-git/modules/lib/picolibc \
-+    ${SRC_URI_ZEPHYR_SEGGER};name=3Dsegger;nobranch=3D1;destsuffix=3Dgit=
-/modules/debug/segger \
-+    ${SRC_URI_ZEPHYR_SOF};name=3Dsof;nobranch=3D1;destsuffix=3Dgit/modul=
-es/audio/sof \
-+    ${SRC_URI_ZEPHYR_TFLITE_MICRO};name=3Dtflite-micro;nobranch=3D1;dest=
-suffix=3Dgit/modules/lib/tflite-micro \
-+    ${SRC_URI_ZEPHYR_TINYCBOR};name=3Dtinycbor;nobranch=3D1;destsuffix=3D=
-git/modules/lib/tinycbor \
-+    ${SRC_URI_ZEPHYR_TINYCRYPT};name=3Dtinycrypt;nobranch=3D1;destsuffix=
-=3Dgit/modules/crypto/tinycrypt \
-+    ${SRC_URI_ZEPHYR_TRACERECORDERSOURCE};name=3DTraceRecorderSource;nob=
-ranch=3D1;destsuffix=3Dgit/modules/debug/TraceRecorder \
-+    ${SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_M};name=3Dtrusted-firmware-m;nobra=
-nch=3D1;destsuffix=3Dgit/modules/tee/tf-m/trusted-firmware-m \
-+    ${SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_A};name=3Dtrusted-firmware-a;nobra=
-nch=3D1;destsuffix=3Dgit/modules/tee/tf-a/trusted-firmware-a \
-+    ${SRC_URI_ZEPHYR_TF_M_TESTS};name=3Dtf-m-tests;nobranch=3D1;destsuff=
-ix=3Dgit/modules/tee/tf-m/tf-m-tests \
-+    ${SRC_URI_ZEPHYR_PSA_ARCH_TESTS};name=3Dpsa-arch-tests;nobranch=3D1;=
-destsuffix=3Dgit/modules/tee/tf-m/psa-arch-tests \
-+    ${SRC_URI_ZEPHYR_UOSCORE_UEDHOC};name=3Duoscore-uedhoc;nobranch=3D1;=
-destsuffix=3Dgit/modules/lib/uoscore-uedhoc \
-+    ${SRC_URI_ZEPHYR_ZCBOR};name=3Dzcbor;nobranch=3D1;destsuffix=3Dgit/m=
-odules/lib/zcbor \
-+    ${SRC_URI_ZEPHYR_ZSCILIB};name=3Dzscilib;nobranch=3D1;destsuffix=3Dg=
-it/modules/lib/zscilib \
-     ${SRC_URI_PATCHES} \
- "
-=20
-diff --git a/meta-zephyr-core/scripts/zephyr-kernel-src.inc.jinja b/meta-=
-zephyr-core/scripts/zephyr-kernel-src.inc.jinja
-index e7981ed..1723b88 100644
---- a/meta-zephyr-core/scripts/zephyr-kernel-src.inc.jinja
-+++ b/meta-zephyr-core/scripts/zephyr-kernel-src.inc.jinja
-@@ -9,7 +9,7 @@ SRCREV_{{ project.name }} =3D "{{ project.revision }}"
- {% endfor %}
- SRC_URI_ZEPHYR ?=3D "git://github.com/zephyrproject-rtos/zephyr.git;prot=
-ocol=3Dhttps"
- {%- for project in projects %}
--SRC_URI_{{ project.name | bitbake_var }} ?=3D "{{ project.url | git_url_=
-to_bitbake }}"
-+SRC_URI_ZEPHYR_{{ project.name | bitbake_var }} ?=3D "{{ project.url | g=
-it_url_to_bitbake }}"
- {%- endfor %}
-=20
- SRC_URI_PATCHES ?=3D "\
-@@ -20,7 +20,7 @@ SRC_URI_PATCHES ?=3D "\
- SRC_URI =3D "\
-     ${SRC_URI_ZEPHYR};branch=3D${ZEPHYR_BRANCH};name=3Ddefault;destsuffi=
-x=3Dgit/zephyr \
- {%- for project in projects %}
--    ${SRC_URI_{{ project.name | bitbake_var }}};name=3D{{ project.name }=
-};nobranch=3D1;destsuffix=3Dgit/{{ project.path }} \
-+    ${SRC_URI_ZEPHYR_{{ project.name | bitbake_var }}};name=3D{{ project=
-.name }};nobranch=3D1;destsuffix=3Dgit/{{ project.path }} \
- {%- endfor %}
-     ${SRC_URI_PATCHES} \
- "
---=20
-2.34.1
+T24gMS8yNS8yMyA0OjQ3IEFNLCBOaWtpdGEgR3VwdGEgd3JvdGU6DQo+IEhlbGxvIGxpc3Qs
+DQo+IA0KPiBJIHdhcyBqdXN0IG1ha2luZyBpbWFnZSBmb3IgaW14OG1wbHVzIGJ5IGFkZGlu
+ZyBmZXcgcGtncyBpbiBteSANCj4gbG9jYWwuY29uZiBidXQgZW5jb3VudGVyZWQgZmV3IGVy
+cm9ycyBzbyBpIGFtIGhlcmUgZm9yIHlvdXIgaGVscC4NCj4gSSBhZGRlZCBiZWxvdyBwa2dz
+IGluIG15IGxvY2FsLmNvbmYgZmlsZQ0KPiANCj4gSU1BR0VfSU5TVEFMTDphcHBlbmQgPSAi
+Z3N0cmVhbWVyMS4wIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWJhc2UgDQo+IGdzdHJlYW1lcjEu
+MC1wbHVnaW5zLWdvb2QgZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFkIA0KPiBnc3RyZWFtZXIx
+LjAtcGx1Z2lucy11Z2x5wqAgZ3N0cmVhbWVyMS4wLWxpYmF2IGlteC12cHV3cmFwIGlteC1n
+cHUtZzJkIA0KPiBpbXgtZ3B1LXZpdiBnc3RyZWFtZXIxLjAtcGx1Z2lucy1pbXggaW14LWdz
+dDEuMC1wbHVnaW4iDQo+IExJQ0VOU0VfRkxBR1NfV0hJVEVMSVNUID0gImNvbW1lcmNpYWwi
+DQo+IElNQUdFX0lOU1RBTEw6YXBwZW5kID0gImtlcm5lbC1kZXZzcmMiDQo+IElNQUdFX0lO
+U1RBTExfYXBwZW5kICs9ICJnc3RyZWFtZXIxLjAtcnRzcC1zZXJ2ZXIgZ3N0LXZhcmlhYmxl
+LXJ0c3Atc2VydmVyIg0KPiBJTUFHRV9JTlNUQUxMOmFwcGVuZCA9ICIgZ3RrKzMiDQo+IENP
+UkVfSU1BR0VfRVhUUkFfSU5TVEFMTCArPSAiIG9wZW5jdiBsaWJvcGVuY3YtY29yZS1kZXYg
+DQo+IGxpYm9wZW5jdi1oaWdoZ3VpLWRldiBsaWJvcGVuY3YtaW1ncHJvYy1kZXYgbGlib3Bl
+bmN2LW9iamRldGVjdC1kZXYgDQo+IGxpYm9wZW5jdi1tbC1kZXYiDQo+IElNQUdFX1JPT1RG
+U19FWFRSQV9TUEFDRSA9ICIxMDQ4NTc2ICINCj4gDQo+IFNvIG15IGxvY2FsLmNvbmYgZmls
+ZSBub3cgbG9va3MgbGlrZSB0aGlzDQo+IFNvIGkgYW0gZ2V0dGluZyBiZWxvdyBlcnJvciBh
+ZnRlciBiYWtpbmcgbXkgcmVjaXBlICggQXR0YWNoZWQgaW1hZ2UpLg0KPiANCj4gUGxlYXNl
+IHRlbGwgd2hhdCBzaG91bGQgSSBuZWVkIHRvIGRvIHRvIHJlc29sdmUgdGhpcy4NCj4gDQoN
+CkRvIHlvdSBoYXZlIEFDQ0VQVF9GU0xfRVVMQSA9ICIxIiBzZXQgaW4gY29uZmlnIG1ldGFk
+YXRhIGUuZy4gbG9jYWwuY29uZiANCm9yIHNpdGUuY29uZiA/DQoNCj4gVGhhbmtzIGluIGFk
+dmFuY2UNCj4gDQo+IA0KPiAtPS09LT0tPS09LT0tPS09LT0tPS09LQ0KPiBMaW5rczogWW91
+IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhpcyBncm91cC4NCj4gWW91IGF1dG9t
+YXRpY2FsbHkgZm9sbG93IGFueSB0b3BpY3MgeW91IHN0YXJ0IG9yIHJlcGx5IHRvLg0KPiBW
+aWV3L1JlcGx5IE9ubGluZSAoIzU5MDU2KTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qu
+b3JnL2cveW9jdG8vbWVzc2FnZS81OTA1Ng0KPiBNdXRlIFRoaXMgVG9waWM6IGh0dHBzOi8v
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC85NjUxOTMxMC8xOTk3OTE0DQo+IEdyb3VwIE93
+bmVyOiB5b2N0bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFVuc3Vic2NyaWJl
+OiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YiBbcmFqLmto
+ZW1AZ21haWwuY29tXQ0KPiAtPS09LT0tPS09LT0tPS09LT0tPS09LQ0KPiANCg==
+--------------lGJ8ENzlH2q6bST0PdeyRRiX
+Content-Type: application/pgp-keys; name="OpenPGP_0xBB053355919D3314.asc"
+Content-Disposition: attachment; filename="OpenPGP_0xBB053355919D3314.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+//VuX4EDPW3CZmbPy6U=3D
+=3D+jUt
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------lGJ8ENzlH2q6bST0PdeyRRiX--
+
+--------------OgxlvchlGCk786HLH5PWDqGh--
+
+--------------M9Q5Kx4SeVbx0vZPfyhRznqn
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wmMEABEIACMWIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCY9FlKAUDAAAAAAAKCRC7BTNVkZ0zFCod
+AJ4k84BeOkYmKKhirp2ugy4bleh5PgCdEkf22AJbDZob3GNcUwst3fBveis=
+=1aNR
+-----END PGP SIGNATURE-----
+
+--------------M9Q5Kx4SeVbx0vZPfyhRznqn--
 
