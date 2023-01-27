@@ -1,207 +1,155 @@
-Return-Path: <ito@lineo.co.jp>
+Return-Path: <max.oss.09@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4515CC54EAA
-	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 12:26:00 +0000 (UTC)
-Received: from mail.lineo.co.jp (mail.lineo.co.jp [203.141.200.203])
- by mx.groups.io with SMTP id smtpd.web11.100719.1674822351111917562
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FECDC61DA4
+	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 12:32:10 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+ by mx.groups.io with SMTP id smtpd.web11.100825.1674822726336802197
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Jan 2023 04:25:51 -0800
+ Fri, 27 Jan 2023 04:32:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: lineo.co.jp, ip: 203.141.200.203, mailfrom: ito@lineo.co.jp)
-Received: from [192.168.3.12] (softbank126088165209.bbtec.net [126.88.165.209])
-	by mail.lineo.co.jp (Postfix) with ESMTPSA id 7998C80312C4E;
-	Fri, 27 Jan 2023 21:25:48 +0900 (JST)
-Message-ID: <ba145544-a63e-9002-198d-5dd902bfcd1d@lineo.co.jp>
-Date: Fri, 27 Jan 2023 21:25:11 +0900
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=B4hpJNt4;
+ spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: max.oss.09@gmail.com)
+Received: by mail-ej1-f41.google.com with SMTP id gs13so2585062ejc.0
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 04:32:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jP7fJfm23rdrDIvbO51p4w/QlMU2PEGglRL39vp8J+s=;
+        b=B4hpJNt4cvkpOG1u3BH4hzZP1y1X+1XdY68NOoE32UgqebaWVE5WUWXr3oAYjVsuPN
+         tVAhqV4w9NvTw4hY+VdMg6kwSOEbof9jmgaQ5TyZCEATvayrIlGSkR+rPVJ3Z3hXprz0
+         Kk6WEptCcMqrFoK1Mq0wLjbTAJlJrGT3wGpP0Y29luVIMJjXVljlBBvYCJmyjS0waPch
+         Wt20WV4jOYcZhhBt/7Ne62ZaHRINs3YEJeSbQho+Z30ELtxbUSN8hiD+dZ3TE2FlioGO
+         hpu5oIjoh5khHKo5r1Z1DjJIkr857sXEK4RxtMI0fX+OzTd214+7BdRIm5csTxY5ki6F
+         PO4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jP7fJfm23rdrDIvbO51p4w/QlMU2PEGglRL39vp8J+s=;
+        b=J+ls+pRR2ZWucCTByhLLzmUWnQTQPDPPRGx5ke0bpl3//FETX1B5DF9p53M5Ni8DpM
+         /jIYyrph1wQTadODBKlkWgdIMPmdU17Vmstg4fwnb1SHlDhboXvYcj8X+3DH+PFeMX37
+         y8scchCe+dgfqgfpYS/7heRcCXJwRV74a7Gju2pfZi4N7fsNWcGX5797GZ6Vh8LJ44O9
+         wUfIqoio5X2IXoIAhBsRO15Io/b0zMNQO9jG5Hrnk/9ZG09ZJNHNhQ5VjcjRysIA5tgw
+         betyTIG4gv+SvtaB2NmMYEh8uDxgIzNFhfuj4MVvQ9RxKIRKvmUV94ntRNHoTMR5YQs0
+         Q4TQ==
+X-Gm-Message-State: AFqh2kpIY6w9/bSt3ObCLbo4VnenWmPpACv4oopd5eAYc9AAPIzfBhBf
+	FKF0za9G8YhI+ri3QlHg4d6hPQ5a7rE=
+X-Google-Smtp-Source: AMrXdXsvEwKU84JTTZVb75uYzun6X0mIFGKGhODS42rKvvRjr6hXHFsiEPdXidKc0E8FSGQmXRm8xw==
+X-Received: by 2002:a17:906:5283:b0:84d:4be4:aa2b with SMTP id c3-20020a170906528300b0084d4be4aa2bmr52775821ejm.68.1674822724488;
+        Fri, 27 Jan 2023 04:32:04 -0800 (PST)
+Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id e24-20020a17090681d800b0087bda70d3efsm656202ejx.118.2023.01.27.04.32.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 04:32:04 -0800 (PST)
+From: Max Krummenacher <max.oss.09@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Max Krummenacher <max.krummenacher@toradex.com>
+Subject: [PATCH] samhain: rework due to changed oe cache handling
+Date: Fri, 27 Jan 2023 13:30:46 +0100
+Message-Id: <20230127123047.207925-1-max.oss.09@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [yocto] Error while adding " libimxvpuapi2" and "gstreamer" pkgs
- in my local.conf for imx8mplus
-Content-Language: en-US
-To: Nikita Gupta <nikitagupta2509@gmail.com>,
- Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-References: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
- <CANNYZj976z0Xdk0Bt1uJkwbXBqkR0yXVz14ZaJ6s_muXXUtXWQ@mail.gmail.com>
- <CAGQ3h157uE84DWRVnXJJ6Oxbx=CORhX6Gp6PDs9re=V9E6EU6g@mail.gmail.com>
- <CANNYZj_MXwVHE7oA7peLKGQfi8GnM90N9d=1Kn8o0ZWGa83MVg@mail.gmail.com>
- <CAGQ3h14CC3LeP++cfs1k2u-4aeYNqyCJjusNUOWbz4d49k=TwQ@mail.gmail.com>
- <CAGQ3h1598A-7_uX9RsN_zrw2eyRSuPCdFhLT9zODBmxrYxVzDg@mail.gmail.com>
-From: Takayasu Ito <ito@lineo.co.jp>
-In-Reply-To: <CAGQ3h1598A-7_uX9RsN_zrw2eyRSuPCdFhLT9zODBmxrYxVzDg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 12:26:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59079
+ <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 12:32:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59080
 
-Hi Nikita
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
- > *IMAGE_INSTALL:append =3D "gstreamer1.0 gstreamer1.0-plugins-base gstr=
-eamer1.0-plugins-good gstreamer1.0-plugins-bad
+OE-Core changed the cache handling which made the use of ${BPN} fail.
 
-If you do not put a space after the double quotation marks, the package n=
-ames before and after will be attached to each other=20
-during the merge.
+| Parsing recipes...WARNING: .../samhain-standalone.bb: Exception during build_dependencies for do_configure
+| WARNING: .../samhain-standalone.bb: Error during finalise of .../samhain-standalone.bb
+| ERROR: ExpansionError during parsing .../samhain-standalone.bb
+| Traceback (most recent call last):
+|   File "Var <MODE_NAME>", line 1, in <module>
+| bb.data_smart.ExpansionError: Failure expanding variable MODE_NAME, expression was ${@d.getVar('BPN').split('-')[1]} which triggered exception IndexError: list index out of range
+| The variable dependency chain for the failure is: MODE_NAME -> SAMHAIN_MODE -> do_configure
 
-See=20
-https://docs.yoctoproject.org/bitbake/2.2/bitbake-user-manual/bitbake-use=
-r-manual-metadata.html#appending-and-prepending-override-style-syntax
+Simplify the setting of MODE_NAME and SAMHAIN_MODE by moving them from
+the inc file to the recipe files where we know their values.
 
-On 2023/01/27 20:48, Nikita Gupta wrote:
-> Hello List,
->=20
-> As i earlier mentioned that i want to do some customisation in local.co=
-nf by adding few pkgs (below).
-> *IMAGE_INSTALL:append =3D "gstreamer1.0 gstreamer1.0-plugins-base gstre=
-amer1.0-plugins-good gstreamer1.0-plugins-bad=20
-> gstreamer1.0-plugins-ugly =C2=A0gstreamer1.0-libav imx-vpuwrap imx-gpu-=
-g2d imx-gpu-viv gstreamer1.0-plugins-imx imx-gst1.0-plugin"
-> LICENSE_FLAGS_ACCEPTED =3D " commercial"
-> IMAGE_INSTALL:append =3D "kernel-devsrc"
-> IMAGE_INSTALL:append =3D "gstreamer1.0-rtsp-server gst-variable-rtsp-se=
-rver"
-> IMAGE_INSTALL:append =3D " gtk+3"
-> CORE_IMAGE_EXTRA_INSTALL +=3D " opencv libopencv-core-dev libopencv-hig=
-hgui-dev libopencv-imgproc-dev libopencv-objdetect-dev=20
-> libopencv-ml-dev"
-> #LICENSE_FLAGS_WHITELIST =3D " commercial"
-> IMAGE_ROOTFS_EXTRA_SPACE =3D "1048576 "*
->  =C2=A0and iafter=C2=A0bitbake m getting below errors.
->=20
-> nikita@nikita-HP-Laptop-15-bs0xx:~/Yocto/imx-yocto-bsp$ *bitbake imx-im=
-age-full*
-> Loading cache: 100% |##################################################=
-########################################################|=20
-> Time: 0:00:01
-> Loaded 4736 entries from dependency cache.
-> Parsing recipes: 100% |################################################=
-########################################################|=20
-> Time: 0:00:02
-> Parsing of 3190 .bb files complete (3188 cached, 2 parsed). 4738 target=
-s, 262 skipped, 3 masked, 0 errors.
-> NOTE: Resolving any missing task queue dependencies
-> ERROR: Nothing RPROVIDES 'imx-gst1.0-pluginkernel-devsrcgstreamer1.0-rt=
-sp-server' (but=20
-> /home/nikita/Yocto/imx-yocto-bsp/sources/meta-imx/meta-sdk/dynamic-laye=
-rs/qt6-layer/recipes-fsl/images/imx-image-full.bb=20
-> <http://imx-image-full.bb> RDEPENDS on or otherwise requires it)
-> NOTE: Runtime target 'imx-gst1.0-pluginkernel-devsrcgstreamer1.0-rtsp-s=
-erver' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['imx-gst1.0-pluginkernel-=
-devsrcgstreamer1.0-rtsp-server']
-> ERROR: Required build target 'imx-image-full' has no buildable provider=
-s.
-> Missing or unbuildable dependency chain was: ['imx-image-full', 'imx-gs=
-t1.0-pluginkernel-devsrcgstreamer1.0-rtsp-server']
->=20
-> Summary: There were 2 ERROR messages, returning a non-zero exit code.
->=20
-> These packages are needed i can not remove So please help me what can i=
- do in this.
->=20
-> Thanks in Advance.
->=20
-> On Fri, 27 Jan 2023 at 17:00, Nikita Gupta <nikitagupta2509@gmail.com <=
-mailto:nikitagupta2509@gmail.com>> wrote:
->=20
->     Hello Alex
->=20
->     When i run bitbake libimxvpuapi2 and it shows below error (images a=
-ttached).
->     Can you please tell me that is "libimxvpuapi2" compatible with imx8=
-mplus board?
->=20
->     Thanks in Advance
->=20
->     On Fri, 27 Jan 2023 at 14:35, Alexander Kanavin <alex.kanavin@gmail=
-.com <mailto:alex.kanavin@gmail.com>> wrote:
->=20
->         The screenshot indicates the problem originates in libimxvpuapi=
-2
->         recipe. So you should get more information by running 'bitbake
->         libimxvpuapi2'.
->=20
->         Alex
->=20
->         On Fri, 27 Jan 2023 at 07:46, Nikita Gupta <nikitagupta2509@gma=
-il.com <mailto:nikitagupta2509@gmail.com>> wrote:
->          >
->          > Hello Alexander
->          >
->          > I am not getting your query . Can u please explain your ques=
-tion?
->          >
->          > Regards
->          > Nikita Gupta
->          >
->          > On Wed, Jan 25, 2023, 18:35 Alexander Kanavin <alex.kanavin@=
-gmail.com <mailto:alex.kanavin@gmail.com>> wrote:
->          >>
->          >> What happens if you bitbake libimx=E2=80=A6 thingy directly=
-?
->          >>
->          >> Alex
->          >>
->          >> On Wed 25. Jan 2023 at 13.47, Nikita Gupta <nikitagupta2509=
-@gmail.com <mailto:nikitagupta2509@gmail.com>> wrote:
->          >>>
->          >>> Hello list,
->          >>>
->          >>> I was just making image for imx8mplus by adding few pkgs i=
-n my local.conf but encountered few errors so i am here
->         for your help.
->          >>> I added below pkgs in my local.conf file
->          >>>
->          >>> IMAGE_INSTALL:append =3D "gstreamer1.0 gstreamer1.0-plugin=
-s-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
->         gstreamer1.0-plugins-ugly=C2=A0 gstreamer1.0-libav imx-vpuwrap =
-imx-gpu-g2d imx-gpu-viv gstreamer1.0-plugins-imx
->         imx-gst1.0-plugin"
->          >>> LICENSE_FLAGS_WHITELIST =3D "commercial"
->          >>> IMAGE_INSTALL:append =3D "kernel-devsrc"
->          >>> IMAGE_INSTALL_append +=3D "gstreamer1.0-rtsp-server gst-va=
-riable-rtsp-server"
->          >>> IMAGE_INSTALL:append =3D " gtk+3"
->          >>> CORE_IMAGE_EXTRA_INSTALL +=3D " opencv libopencv-core-dev =
-libopencv-highgui-dev libopencv-imgproc-dev
->         libopencv-objdetect-dev libopencv-ml-dev"
->          >>> IMAGE_ROOTFS_EXTRA_SPACE =3D "1048576 "
->          >>>
->          >>> So my local.conf file now looks like this
->          >>> So i am getting below error after baking my recipe ( Attac=
-hed image).
->          >>>
->          >>> Please tell what should I need to do to resolve this.
->          >>>
->          >>> Thanks in advance
->          >>>
->          >>>
->          >>>
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59078): https://lists.yoctoproject.org/g/yocto/mess=
-age/59078
-> Mute This Topic: https://lists.yoctoproject.org/mt/96519310/3617373
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [ito@lineo.co=
-.jp]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+Relevant commits to produce the error:
+bitbake:
+ee89ade5 cache/codeparser: Switch to a new BB_CACHEDIR variable for cache location
+oe-core:
+7c15e03dd3 bitbake.conf: Add BB_HASH_CODEPARSER_VALS
 
---=20
-Takayasu Ito
-Solution Department, Lineo Solutions, Inc.
-https://www.lineo.co.jp/english/
-Email: ito@lineo.co.jp
-Yocto Project Ambassador
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+---
+ recipes-ids/samhain/samhain-client.bb     | 3 +++
+ recipes-ids/samhain/samhain-server.bb     | 3 +++
+ recipes-ids/samhain/samhain-standalone.bb | 3 +++
+ recipes-ids/samhain/samhain.inc           | 8 --------
+ 4 files changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/recipes-ids/samhain/samhain-client.bb b/recipes-ids/samhain/samhain-client.bb
+index 2b99e20..0de9c34 100644
+--- a/recipes-ids/samhain/samhain-client.bb
++++ b/recipes-ids/samhain/samhain-client.bb
+@@ -8,5 +8,8 @@ EXTRA_OECONF += " \
+         --with-port=${SAMHAIN_PORT} \
+         "
+ 
++MODE_NAME = "client"
++SAMHAIN_MODE = "client"
++
+ RDEPENDS:${PN} = "acl zlib attr bash"
+ RCONFLICTS:${PN} = "samhain-standalone"
+diff --git a/recipes-ids/samhain/samhain-server.bb b/recipes-ids/samhain/samhain-server.bb
+index 51bce07..8bae2d2 100644
+--- a/recipes-ids/samhain/samhain-server.bb
++++ b/recipes-ids/samhain/samhain-server.bb
+@@ -8,6 +8,9 @@ SRC_URI += "file://samhain-server-volatiles \
+             file://samhain-server-volatiles.conf \
+            "
+ 
++MODE_NAME = "server"
++SAMHAIN_MODE = "server"
++
+ TARGET_CC_ARCH += "${LDFLAGS}"
+ 
+ do_install:append() {
+diff --git a/recipes-ids/samhain/samhain-standalone.bb b/recipes-ids/samhain/samhain-standalone.bb
+index b832dc8..ae9ed2b 100644
+--- a/recipes-ids/samhain/samhain-standalone.bb
++++ b/recipes-ids/samhain/samhain-standalone.bb
+@@ -7,6 +7,9 @@ SRC_URI += "file://samhain-not-run-ptest-on-host.patch \
+ 
+ PROVIDES += "samhain"
+ 
++MODE_NAME = "standalone"
++SAMHAIN_MODE = "no"
++
+ SYSTEMD_SERVICE:${PN} = "samhain.service"
+ 
+ inherit ptest
+diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
+index eb8592d..8967d72 100644
+--- a/recipes-ids/samhain/samhain.inc
++++ b/recipes-ids/samhain/samhain.inc
+@@ -40,14 +40,6 @@ SYSTEMD_PACKAGES = "${PN}"
+ SYSTEMD_SERVICE:${PN} = "${INITSCRIPT_NAME}.service"
+ SYSTEMD_AUTO_ENABLE = "disable"
+ 
+-# mode mapping:
+-# BPN                MODE_NAME   SAMHAIN_MODE
+-# samhain-standalone standalone  no
+-# samhain-client     client      client
+-# samhain-server     server      server
+-MODE_NAME = "${@d.getVar('BPN').split('-')[1]}"
+-SAMHAIN_MODE = "${@oe.utils.ifelse(d.getVar('MODE_NAME') == 'standalone', 'no', '${MODE_NAME}')}"
+-
+ # supports mysql|postgresql|oracle|odbc but postgresql is the only one available
+ 
+ PACKAGECONFIG ??= "postgresql ps \
+-- 
+2.35.3
 
 
