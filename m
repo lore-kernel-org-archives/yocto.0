@@ -1,157 +1,154 @@
-Return-Path: <max.oss.09@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FE81C54EAA
-	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 12:32:10 +0000 (UTC)
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
- by mx.groups.io with SMTP id smtpd.web10.100782.1674822727008192196
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B8D1C38142
+	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 12:32:40 +0000 (UTC)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+ by mx.groups.io with SMTP id smtpd.web11.100835.1674822752361079666
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Jan 2023 04:32:07 -0800
+ Fri, 27 Jan 2023 04:32:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=bIArfK9X;
- spf=pass (domain: gmail.com, ip: 209.85.218.52, mailfrom: max.oss.09@gmail.com)
-Received: by mail-ej1-f52.google.com with SMTP id mg12so13315219ejc.5
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 04:32:06 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=BbtWZNcM;
+ spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f50.google.com with SMTP id bp15so7866628lfb.13
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 04:32:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/vQgK11mcljGT66VOaN9NQqdUprCptDjj1fhGxLSjxw=;
-        b=bIArfK9X0QEzXk9q6Jq1n97OG5i/+qD5di3cJd8G5LP2Pl130YG34yb1eXGuXCv9uk
-         0knpYQDLLsh/pO2WcGQ6eWg8OlMvKZtE2k5JGiN6LXs0KSozAl4EtqNEm2NpSV5p633Y
-         lhupwX6Sp4YZF3C0WUG4+Ox+G0y3ka9aZeJz5FtOHWckHSzxlGUyMEqG0nx7bXyOy6zE
-         z8qeM8Rrg+s5gYa+xI0A8DRGuQGA7aSINC3uKtpRKIHRLo+6tndo+urKFnSYm36bM+Us
-         dv+qt3TO93veMzKHauFyD+TvcnUn47PZYFcLRG7QSOwYlgRd9BXDFEgqibY/OTLUQ5hZ
-         Lxcw==
+        bh=zJ9K4xecthiA4oTuhLUCOegNMPW3lggQ0sfHucNM86M=;
+        b=BbtWZNcMKJPJ+kNBmsSKZtZPQ7mRHUbCrtoerHWoDjqip5vl98mG4z4dJVMK63RcAL
+         Sm7dxC/cmf3auNpzAXE+rYLNpxiBqWN6vVJMIrlM/5oWh125taBZhFEkbhP86juGHy9U
+         V4lKwI7I1ObCjkDLb+zKAJToPX4fx8YTn4Zi3B4OJOcP8HRCJPRyD3/YWAnSI2U5K5YT
+         znpmUhSTJ/K17Rj4Skng/C79NZ6UXGuTCWFOI6/xmjmAT/+8CdjrS74x0YWHjG275G3f
+         MN3sdXpGZ3ZJvSPSzUS1JwKWCOuvSMvsWJ8XlnGZmS6vaiC57GZGftyxEH8TE9QL9GaD
+         rPeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/vQgK11mcljGT66VOaN9NQqdUprCptDjj1fhGxLSjxw=;
-        b=dD3+D/4MRNgD16AdEqsHZKluSE0HybnF2AQAClRs2ok7P2w9Otf8m10blOuoXNjKkt
-         arC33+1gJS37fw/Ljcs0w8N3lCsMYgQnznzk6dKAZXFo9nAIQEw07fQxYE2rKhv+jvRz
-         1nUB9n8YRhyJFCn9iWkkOtB5NH/wMHjfYRc+i3JgBSqawGtqNVherPkpU6ctkqVRqTzB
-         e6Depxw1GpyE1CeMppWfojuFzIKRvP4RFe/Otvv6GtYcmWKEXCej3ema2julGHBKDHnb
-         bF/WnYxi6Qcj6yklclUz/CMHBinQhEexZF5G3ohFYrnNKtQrYPSrIbXeWgf9fQlG8W5k
-         VtSg==
-X-Gm-Message-State: AO0yUKWPpl+faxR1/pTdnxijBiEgrXQ62rmxdVw5V2g1oB+YWfWwELET
-	ThYOl38v4OJN8jsv70iL55QBzzZ87dE=
-X-Google-Smtp-Source: AK7set8yaEP1CYLhxgwPhwWiKWnYJiwLjxqovqGQgxfkOcx0If7M7eFgA2nUKsYDDKMfZK78fyX7wg==
-X-Received: by 2002:a17:906:eca1:b0:87e:a34b:9e2b with SMTP id qh1-20020a170906eca100b0087ea34b9e2bmr789ejb.28.1674822725289;
-        Fri, 27 Jan 2023 04:32:05 -0800 (PST)
-Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id e24-20020a17090681d800b0087bda70d3efsm656202ejx.118.2023.01.27.04.32.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 04:32:04 -0800 (PST)
-From: Max Krummenacher <max.oss.09@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Max Krummenacher <max.krummenacher@toradex.com>
-Subject: [meta-security][PATCH] samhain: rework due to changed cache handling
-Date: Fri, 27 Jan 2023 13:30:47 +0100
-Message-Id: <20230127123047.207925-2-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20230127123047.207925-1-max.oss.09@gmail.com>
-References: <20230127123047.207925-1-max.oss.09@gmail.com>
+        bh=zJ9K4xecthiA4oTuhLUCOegNMPW3lggQ0sfHucNM86M=;
+        b=2Ql0cAwfbNdVCYHCEFUW21vDV5FpjxkXiYMU6s4JnfVuB1PZ0eN1w52Cmp2gNYhKD6
+         YiPmMb3A5KPs0w98wESKpW+v+fGXwYny7CkJ3oIZfGS0cZf841Krh5Lr8ZHowaRBvfEB
+         k5zDsd8Amjs/qcWzqDh/cQilY7oUsDwvQNPy6jlwjj+Sy7LC7Oii+uHTaLPUWzyxC+lg
+         StSrbKUgETMz93At22P+8SmbGnZgWCpSxnR0Esf2rhlSzEtqi3gzaIr6CYfmPbKGwRMO
+         VgTRFAeTlEK61/TzLWcKfphHEJomlpHS85AgG+85Xkx5mykh5PZzYKMUdqpmJAjyE82f
+         DaCw==
+X-Gm-Message-State: AFqh2kriPYz2s+qe3s2BC2j5CIhnjZyG4tfKZznPZV3EnTXuo5uCZ6ya
+	SJWycS84lYPNmWmX/eD0Vz6zwmnM6lTy3uk62l8=
+X-Google-Smtp-Source: AMrXdXsureFfQxComLrxaqrtl4pVCH5oifIwyS+RDvUbpDOhaBpUL7NPV+Unv6S2JLoCTLf6O6V8+bhxs6yM/hBCkVQ=
+X-Received: by 2002:ac2:548a:0:b0:4cb:6bcb:de45 with SMTP id
+ t10-20020ac2548a000000b004cb6bcbde45mr4800064lfk.272.1674822750255; Fri, 27
+ Jan 2023 04:32:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
+ <CANNYZj976z0Xdk0Bt1uJkwbXBqkR0yXVz14ZaJ6s_muXXUtXWQ@mail.gmail.com>
+ <CAGQ3h157uE84DWRVnXJJ6Oxbx=CORhX6Gp6PDs9re=V9E6EU6g@mail.gmail.com>
+ <CANNYZj_MXwVHE7oA7peLKGQfi8GnM90N9d=1Kn8o0ZWGa83MVg@mail.gmail.com> <CAGQ3h14CC3LeP++cfs1k2u-4aeYNqyCJjusNUOWbz4d49k=TwQ@mail.gmail.com>
+In-Reply-To: <CAGQ3h14CC3LeP++cfs1k2u-4aeYNqyCJjusNUOWbz4d49k=TwQ@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 27 Jan 2023 13:32:18 +0100
+Message-ID: <CANNYZj9DAg_Zy1hXjkVtaLjqde9hir74q9DeSnYZrzK-P6JVOg@mail.gmail.com>
+Subject: Re: [yocto] Error while adding " libimxvpuapi2" and "gstreamer" pkgs
+ in my local.conf for imx8mplus
+To: Nikita Gupta <nikitagupta2509@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 12:32:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59081
+ <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 12:32:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59082
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+This is different to the previous error. Yocto itself does not prevent
+the recipe from building, but something inside the component is
+producing an error during configuration. One of the screenshots
+mentions that 'hantro_h1' is not found, so you need to investigate why
+is it being searched for and why it's not where it should be. There's
+also a message about 'complete log' that you can check.
 
-OE-Core changed the cache handling which made the use of ${BPN} no fail.
+Alex
 
-| Parsing recipes...WARNING: .../samhain-standalone.bb: Exception during build_dependencies for do_configure
-| WARNING: .../samhain-standalone.bb: Error during finalise of .../samhain-standalone.bb
-| ERROR: ExpansionError during parsing .../samhain-standalone.bb
-| Traceback (most recent call last):
-|   File "Var <MODE_NAME>", line 1, in <module>
-| bb.data_smart.ExpansionError: Failure expanding variable MODE_NAME, expression was ${@d.getVar('BPN').split('-')[1]} which triggered exception IndexError: list index out of range
-| The variable dependency chain for the failure is: MODE_NAME -> SAMHAIN_MODE -> do_configure
-
-Simplify the setting of MODE_NAME and SAMHAIN_MODE by setting them
-in the recipe files where we know their values.
-
-bitbake:
-ee89ade5 cache/codeparser: Switch to a new BB_CACHEDIR variable for cache location
-oe-core:
-7c15e03dd3 bitbake.conf: Add BB_HASH_CODEPARSER_VALS
-
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
----
- recipes-ids/samhain/samhain-client.bb     | 3 +++
- recipes-ids/samhain/samhain-server.bb     | 3 +++
- recipes-ids/samhain/samhain-standalone.bb | 3 +++
- recipes-ids/samhain/samhain.inc           | 8 --------
- 4 files changed, 9 insertions(+), 8 deletions(-)
-
-diff --git a/recipes-ids/samhain/samhain-client.bb b/recipes-ids/samhain/samhain-client.bb
-index 2b99e20..0de9c34 100644
---- a/recipes-ids/samhain/samhain-client.bb
-+++ b/recipes-ids/samhain/samhain-client.bb
-@@ -8,5 +8,8 @@ EXTRA_OECONF += " \
-         --with-port=${SAMHAIN_PORT} \
-         "
- 
-+MODE_NAME = "client"
-+SAMHAIN_MODE = "client"
-+
- RDEPENDS:${PN} = "acl zlib attr bash"
- RCONFLICTS:${PN} = "samhain-standalone"
-diff --git a/recipes-ids/samhain/samhain-server.bb b/recipes-ids/samhain/samhain-server.bb
-index 51bce07..8bae2d2 100644
---- a/recipes-ids/samhain/samhain-server.bb
-+++ b/recipes-ids/samhain/samhain-server.bb
-@@ -8,6 +8,9 @@ SRC_URI += "file://samhain-server-volatiles \
-             file://samhain-server-volatiles.conf \
-            "
- 
-+MODE_NAME = "server"
-+SAMHAIN_MODE = "server"
-+
- TARGET_CC_ARCH += "${LDFLAGS}"
- 
- do_install:append() {
-diff --git a/recipes-ids/samhain/samhain-standalone.bb b/recipes-ids/samhain/samhain-standalone.bb
-index b832dc8..ae9ed2b 100644
---- a/recipes-ids/samhain/samhain-standalone.bb
-+++ b/recipes-ids/samhain/samhain-standalone.bb
-@@ -7,6 +7,9 @@ SRC_URI += "file://samhain-not-run-ptest-on-host.patch \
- 
- PROVIDES += "samhain"
- 
-+MODE_NAME = "standalone"
-+SAMHAIN_MODE = "no"
-+
- SYSTEMD_SERVICE:${PN} = "samhain.service"
- 
- inherit ptest
-diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
-index eb8592d..8967d72 100644
---- a/recipes-ids/samhain/samhain.inc
-+++ b/recipes-ids/samhain/samhain.inc
-@@ -40,14 +40,6 @@ SYSTEMD_PACKAGES = "${PN}"
- SYSTEMD_SERVICE:${PN} = "${INITSCRIPT_NAME}.service"
- SYSTEMD_AUTO_ENABLE = "disable"
- 
--# mode mapping:
--# BPN                MODE_NAME   SAMHAIN_MODE
--# samhain-standalone standalone  no
--# samhain-client     client      client
--# samhain-server     server      server
--MODE_NAME = "${@d.getVar('BPN').split('-')[1]}"
--SAMHAIN_MODE = "${@oe.utils.ifelse(d.getVar('MODE_NAME') == 'standalone', 'no', '${MODE_NAME}')}"
--
- # supports mysql|postgresql|oracle|odbc but postgresql is the only one available
- 
- PACKAGECONFIG ??= "postgresql ps \
--- 
-2.35.3
-
+On Fri, 27 Jan 2023 at 12:30, Nikita Gupta <nikitagupta2509@gmail.com> wrot=
+e:
+>
+> Hello Alex
+>
+> When i run bitbake libimxvpuapi2 and it shows below error (images attache=
+d).
+> Can you please tell me that is "libimxvpuapi2" compatible with imx8mplus =
+board?
+>
+> Thanks in Advance
+>
+> On Fri, 27 Jan 2023 at 14:35, Alexander Kanavin <alex.kanavin@gmail.com> =
+wrote:
+>>
+>> The screenshot indicates the problem originates in libimxvpuapi2
+>> recipe. So you should get more information by running 'bitbake
+>> libimxvpuapi2'.
+>>
+>> Alex
+>>
+>> On Fri, 27 Jan 2023 at 07:46, Nikita Gupta <nikitagupta2509@gmail.com> w=
+rote:
+>> >
+>> > Hello Alexander
+>> >
+>> > I am not getting your query . Can u please explain your question?
+>> >
+>> > Regards
+>> > Nikita Gupta
+>> >
+>> > On Wed, Jan 25, 2023, 18:35 Alexander Kanavin <alex.kanavin@gmail.com>=
+ wrote:
+>> >>
+>> >> What happens if you bitbake libimx=E2=80=A6 thingy directly?
+>> >>
+>> >> Alex
+>> >>
+>> >> On Wed 25. Jan 2023 at 13.47, Nikita Gupta <nikitagupta2509@gmail.com=
+> wrote:
+>> >>>
+>> >>> Hello list,
+>> >>>
+>> >>> I was just making image for imx8mplus by adding few pkgs in my local=
+.conf but encountered few errors so i am here for your help.
+>> >>> I added below pkgs in my local.conf file
+>> >>>
+>> >>> IMAGE_INSTALL:append =3D "gstreamer1.0 gstreamer1.0-plugins-base gst=
+reamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly  =
+gstreamer1.0-libav imx-vpuwrap imx-gpu-g2d imx-gpu-viv gstreamer1.0-plugins=
+-imx imx-gst1.0-plugin"
+>> >>> LICENSE_FLAGS_WHITELIST =3D "commercial"
+>> >>> IMAGE_INSTALL:append =3D "kernel-devsrc"
+>> >>> IMAGE_INSTALL_append +=3D "gstreamer1.0-rtsp-server gst-variable-rts=
+p-server"
+>> >>> IMAGE_INSTALL:append =3D " gtk+3"
+>> >>> CORE_IMAGE_EXTRA_INSTALL +=3D " opencv libopencv-core-dev libopencv-=
+highgui-dev libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev"
+>> >>> IMAGE_ROOTFS_EXTRA_SPACE =3D "1048576 "
+>> >>>
+>> >>> So my local.conf file now looks like this
+>> >>> So i am getting below error after baking my recipe ( Attached image)=
+.
+>> >>>
+>> >>> Please tell what should I need to do to resolve this.
+>> >>>
+>> >>> Thanks in advance
+>> >>>
+>> >>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>> >>> Links: You receive all messages sent to this group.
+>> >>> View/Reply Online (#59056): https://lists.yoctoproject.org/g/yocto/m=
+essage/59056
+>> >>> Mute This Topic: https://lists.yoctoproject.org/mt/96519310/1686489
+>> >>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> >>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kana=
+vin@gmail.com]
+>> >>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>> >>>
 
