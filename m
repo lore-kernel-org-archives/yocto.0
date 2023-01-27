@@ -1,127 +1,115 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B8F1C54EAA
-	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 09:05:29 +0000 (UTC)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
- by mx.groups.io with SMTP id smtpd.web10.98192.1674810328010799024
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FE49C54EAA
+	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 09:51:19 +0000 (UTC)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web11.98835.1674813073925701016
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Jan 2023 01:05:28 -0800
+ Fri, 27 Jan 2023 01:51:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=HgiL2Rp5;
- spf=pass (domain: gmail.com, ip: 209.85.208.170, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f170.google.com with SMTP id g14so4822533ljh.10
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 01:05:27 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=BGwu1eM6;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f52.google.com with SMTP id m7so4432711wru.8
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 01:51:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9Q8qCmFsoPzJ9mb19Y80GhKwHl3+eJnNfqdzWrU3j6Q=;
-        b=HgiL2Rp5Bk8mqpG9QACqyi5fzagRJnX0taLoMVmVMzScc2k5Lf1WeXB7PGCiWryyX9
-         AMTKrVH9xZDsOKKCv9xDqNY2HjrkCVsRpRoI9Qttp9vBEElt3mo8uZBj3wEo/4z0Iw1i
-         cA5HBB7UrW49uydwiXGbOhyxrS3ujpkwTn/ztJ+eP8GKQphgqeH3gU1NVsbX5CPzwL5N
-         2DEUGjeCOEvpmGHDivRq3FhqBdoQDqbyJ0scgf7PcZIKk5FSWjDRA6DBtqRaZtjzURTC
-         8xCI9YG0ynVioxYyAegnt9iV3WrlE8Vs897dttYwI9UaE92zsyOGZbT9bS7v2K1Bp53F
-         cYkg==
+        d=linuxfoundation.org; s=google;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8LSPp7Ve2f+9dRE0t3fyYWuNCuV5VinY7OP7GEQzA6Q=;
+        b=BGwu1eM6tlFaSDFPlxg7BBKFF/34zVuS6o0v07UrB7MMxW2OBbF9LhnNqepizP0Y4y
+         wezFJZCfz5lqiIJk25dZZMiy7k1Lq2qLH4jMZSNmUNEpmzrx60c/RU1Vd6ZAbMk4gAOG
+         +qcnSkUr/UyNWolYEKJ4Q0PkrQS8IMIZ9h3AY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9Q8qCmFsoPzJ9mb19Y80GhKwHl3+eJnNfqdzWrU3j6Q=;
-        b=X3m2q+RdH+rVNIU28lhEBgRYWSgv7dLTI2VKFr/urYEKXzBhLVR5njHcr+Jlj4Ke0j
-         uCJXCRqPgH9sRBnO3/RAS1JdBiJzklrUTskVNV8knQwzXNHljYo+gmj6A6HzmH3zBsri
-         o0w6cENa0yV/zvRfPK1njCJdhhUaOy/XelpaEUkl+kO23bVVQt44naE+gyy00O8Vw//B
-         LBsRFfebhHj4S61vukBKNG+qxkdTbPi9ML1GmmDF0PQx/Ri1Semo65jYh9zBhUyqPbxS
-         lFXZKVjO/BIdbsDATXjbAr5vvp+36d4QSXzqKB21aZ0EhSqEiFLZ3f/tCnloxuYKbeV9
-         r08Q==
-X-Gm-Message-State: AFqh2koP0F3sP2XIJt1MG+9H37Igrpp1xBgredcnOTTZI3p1np+LCg7L
-	xnIAEGfEo4ftyfBAQKw2hS/i9Z4LGR2OIPAxmC8=
-X-Google-Smtp-Source: AMrXdXs26i+93//+7coDxvxEK69EJU2VGUG5CSBVwCdWIUCMX9myIXwW6bg1MEVITPkVRV1eGxwPPFyCjb4NDO8zTzI=
-X-Received: by 2002:a2e:8ecb:0:b0:27f:b765:d0c1 with SMTP id
- e11-20020a2e8ecb000000b0027fb765d0c1mr1991805ljl.169.1674810325859; Fri, 27
- Jan 2023 01:05:25 -0800 (PST)
-MIME-Version: 1.0
-References: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
- <CANNYZj976z0Xdk0Bt1uJkwbXBqkR0yXVz14ZaJ6s_muXXUtXWQ@mail.gmail.com> <CAGQ3h157uE84DWRVnXJJ6Oxbx=CORhX6Gp6PDs9re=V9E6EU6g@mail.gmail.com>
-In-Reply-To: <CAGQ3h157uE84DWRVnXJJ6Oxbx=CORhX6Gp6PDs9re=V9E6EU6g@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 27 Jan 2023 10:05:14 +0100
-Message-ID: <CANNYZj_MXwVHE7oA7peLKGQfi8GnM90N9d=1Kn8o0ZWGa83MVg@mail.gmail.com>
-Subject: Re: [yocto] Error while adding " libimxvpuapi2" and "gstreamer" pkgs
- in my local.conf for imx8mplus
-To: Nikita Gupta <nikitagupta2509@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8LSPp7Ve2f+9dRE0t3fyYWuNCuV5VinY7OP7GEQzA6Q=;
+        b=Avx4pWUM5O1DbeakeWsKueRghbC8J54EY2TQwkfnWhzUi4X1clGx7PDnBHl5wrfPx6
+         KJAX2K2n/xE+BmEQ4m2e9r+d3MUryOcz8MkWdRCMhOg0WpouaghUJe0rJYzahDmNykTr
+         GA5mdkvzCev1GPY29hX0/zUIbLfJfEp6RFrluYlbZ2ga9pKqKITpgSejcW1nLi3eXTnD
+         mHU9nwQe4LzzEkRn4Oq9fSZ/xv27hjcy+ALEfaKx69Bzhq5phK94rb9Df0x7RESBHyLJ
+         BvLLHgWBQHDZcmhGdcrgRCOMuSIzAbF2FxmuiPJRuFxHsAPjykioYbZDaEBB4uofMq8R
+         AFBg==
+X-Gm-Message-State: AO0yUKWpOOBVhZOB4gfM/Dx0gZS6akHHd53PBKCgCZEpHoA1AsKtkSre
+	3kwt4K+nPeTBuaIlcH37bWBs1g==
+X-Google-Smtp-Source: AK7set+yW4wfZATtk1KuGpfa+iAY4YItvYnzbz8ogeseZTVZfwig9q5uO2rsknaSQ8o01nB+Uk6U5A==
+X-Received: by 2002:a05:6000:128d:b0:2bf:b839:c47c with SMTP id f13-20020a056000128d00b002bfb839c47cmr8456464wrx.64.1674813072113;
+        Fri, 27 Jan 2023 01:51:12 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:3876:ca46:43a6:4b49? ([2001:8b0:aba:5f3c:3876:ca46:43a6:4b49])
+        by smtp.gmail.com with ESMTPSA id a4-20020a056000100400b00286ad197346sm3460236wrx.70.2023.01.27.01.51.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 01:51:11 -0800 (PST)
+Message-ID: <8f1a59823f6c4b29d6638f79fe778c2480984784.camel@linuxfoundation.org>
+Subject: Re: [yocto] [autobuilder][PATCH v3 0/5] generate regression reports
+ against proper releases
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Alexis =?ISO-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>, 
+	yocto@lists.yoctoproject.org
+Cc: alexandre.belloni@bootlin.com, thomas.petazzoni@bootlin.com
+Date: Fri, 27 Jan 2023 09:51:11 +0000
+In-Reply-To: <c24f0f04-93d5-07db-1aa3-809a0f3e972f@bootlin.com>
+References: <20230124173017.134017-1-alexis.lothore@bootlin.com>
+	 <6c9f63bbb86f39e3f2a24bbecd89499006edf7f9.camel@linuxfoundation.org>
+	 <c24f0f04-93d5-07db-1aa3-809a0f3e972f@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 09:05:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59074
+ <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 09:51:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59075
 
-The screenshot indicates the problem originates in libimxvpuapi2
-recipe. So you should get more information by running 'bitbake
-libimxvpuapi2'.
+On Fri, 2023-01-27 at 09:26 +0100, Alexis Lothor=C3=A9 wrote:
+> On 1/26/23 23:42, Richard Purdie wrote:
+> > On Tue, 2023-01-24 at 18:30 +0100, Alexis Lothor=C3=A9 via
+> > lists.yoctoproject.org wrote:
+> > >=20
+> > Thanks. Since I like living dangerously, I've put these on the master
+> > branch for the M2 release build. I wanted to see how this does in a
+> > real world test.
+>=20
+> Thanks. Please feel free to reach back if you observe any unwanted side e=
+ffect,
+> since most of my knowledge is based on scripts reading and autobuilder bu=
+ilds
+> history. I have tried to test it as much as possible on my machine, but a=
+s I was
+> discussing with Alexandre Belloni, the many stubs and fake data used do n=
+ot make
+> the tests as accurate as the real world case.
 
-Alex
+The result of the M2 build is here, specifically the regression report:
 
-On Fri, 27 Jan 2023 at 07:46, Nikita Gupta <nikitagupta2509@gmail.com> wrot=
-e:
->
-> Hello Alexander
->
-> I am not getting your query . Can u please explain your question?
->
-> Regards
-> Nikita Gupta
->
-> On Wed, Jan 25, 2023, 18:35 Alexander Kanavin <alex.kanavin@gmail.com> wr=
-ote:
->>
->> What happens if you bitbake libimx=E2=80=A6 thingy directly?
->>
->> Alex
->>
->> On Wed 25. Jan 2023 at 13.47, Nikita Gupta <nikitagupta2509@gmail.com> w=
-rote:
->>>
->>> Hello list,
->>>
->>> I was just making image for imx8mplus by adding few pkgs in my local.co=
-nf but encountered few errors so i am here for your help.
->>> I added below pkgs in my local.conf file
->>>
->>> IMAGE_INSTALL:append =3D "gstreamer1.0 gstreamer1.0-plugins-base gstrea=
-mer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly  gst=
-reamer1.0-libav imx-vpuwrap imx-gpu-g2d imx-gpu-viv gstreamer1.0-plugins-im=
-x imx-gst1.0-plugin"
->>> LICENSE_FLAGS_WHITELIST =3D "commercial"
->>> IMAGE_INSTALL:append =3D "kernel-devsrc"
->>> IMAGE_INSTALL_append +=3D "gstreamer1.0-rtsp-server gst-variable-rtsp-s=
-erver"
->>> IMAGE_INSTALL:append =3D " gtk+3"
->>> CORE_IMAGE_EXTRA_INSTALL +=3D " opencv libopencv-core-dev libopencv-hig=
-hgui-dev libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev"
->>> IMAGE_ROOTFS_EXTRA_SPACE =3D "1048576 "
->>>
->>> So my local.conf file now looks like this
->>> So i am getting below error after baking my recipe ( Attached image).
->>>
->>> Please tell what should I need to do to resolve this.
->>>
->>> Thanks in advance
->>>
->>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>> Links: You receive all messages sent to this group.
->>> View/Reply Online (#59056): https://lists.yoctoproject.org/g/yocto/mess=
-age/59056
->>> Mute This Topic: https://lists.yoctoproject.org/mt/96519310/1686489
->>> Group Owner: yocto+owner@lists.yoctoproject.org
->>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin=
-@gmail.com]
->>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>>
+https://autobuilder.yocto.io/pub/releases/yocto-4.2_M2.rc2/testresults/test=
+result-regressions-report.txt
+
+(warning, it is a 13MB file, which may hint at some problems)
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/4844/step=
+s/29/logs/stdio
+
+was the log from running the script. It also suggests there may be a
+few issues.
+
+I think we need some improvements to the report. Firstly it should
+state at the top which revisions are being compared and any tags they
+correspond to.=C2=A0
+
+Next, we need to understand why the large chunk of tests "disappeared".
+it may be related to the "Failed to retrieved" messages?
+
+I also happen to know the reproducibility tests failed in this build,
+yet the regression report has no mention of that.
+
+So the patches are a start but there is much more to do.
+
+Cheers,
+
+Richard
 
