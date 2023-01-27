@@ -2,59 +2,59 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FE49C54EAA
-	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 09:51:19 +0000 (UTC)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
- by mx.groups.io with SMTP id smtpd.web11.98835.1674813073925701016
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CEFABC38142
+	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 10:55:19 +0000 (UTC)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web11.99502.1674816918694309763
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Jan 2023 01:51:14 -0800
+ Fri, 27 Jan 2023 02:55:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=BGwu1eM6;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f52.google.com with SMTP id m7so4432711wru.8
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 01:51:13 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=OnebyNSg;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.48, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f48.google.com with SMTP id m14so4143266wrg.13
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 02:55:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=8LSPp7Ve2f+9dRE0t3fyYWuNCuV5VinY7OP7GEQzA6Q=;
-        b=BGwu1eM6tlFaSDFPlxg7BBKFF/34zVuS6o0v07UrB7MMxW2OBbF9LhnNqepizP0Y4y
-         wezFJZCfz5lqiIJk25dZZMiy7k1Lq2qLH4jMZSNmUNEpmzrx60c/RU1Vd6ZAbMk4gAOG
-         +qcnSkUr/UyNWolYEKJ4Q0PkrQS8IMIZ9h3AY=
+        bh=st5ecM3cTQ5MP/zDszCZVLpl89QIsumxjQmeYuEx4vI=;
+        b=OnebyNSg+W+HXpzYef40c7RrFslHrLYsM3kK70SYi2k9RHA2YHiQYAaKNS+AhCVtpt
+         TsDZnBAOgrm6MAr74HY0R15aocN27kMuXHqujeSz00ZxOMy4+bbKgLmWPypn62/TINA0
+         XNLfW1rjsxoejp15lbS95XbRiLgnJKFl4SEmY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8LSPp7Ve2f+9dRE0t3fyYWuNCuV5VinY7OP7GEQzA6Q=;
-        b=Avx4pWUM5O1DbeakeWsKueRghbC8J54EY2TQwkfnWhzUi4X1clGx7PDnBHl5wrfPx6
-         KJAX2K2n/xE+BmEQ4m2e9r+d3MUryOcz8MkWdRCMhOg0WpouaghUJe0rJYzahDmNykTr
-         GA5mdkvzCev1GPY29hX0/zUIbLfJfEp6RFrluYlbZ2ga9pKqKITpgSejcW1nLi3eXTnD
-         mHU9nwQe4LzzEkRn4Oq9fSZ/xv27hjcy+ALEfaKx69Bzhq5phK94rb9Df0x7RESBHyLJ
-         BvLLHgWBQHDZcmhGdcrgRCOMuSIzAbF2FxmuiPJRuFxHsAPjykioYbZDaEBB4uofMq8R
-         AFBg==
-X-Gm-Message-State: AO0yUKWpOOBVhZOB4gfM/Dx0gZS6akHHd53PBKCgCZEpHoA1AsKtkSre
-	3kwt4K+nPeTBuaIlcH37bWBs1g==
-X-Google-Smtp-Source: AK7set+yW4wfZATtk1KuGpfa+iAY4YItvYnzbz8ogeseZTVZfwig9q5uO2rsknaSQ8o01nB+Uk6U5A==
-X-Received: by 2002:a05:6000:128d:b0:2bf:b839:c47c with SMTP id f13-20020a056000128d00b002bfb839c47cmr8456464wrx.64.1674813072113;
-        Fri, 27 Jan 2023 01:51:12 -0800 (PST)
+        bh=st5ecM3cTQ5MP/zDszCZVLpl89QIsumxjQmeYuEx4vI=;
+        b=dJGRpddk73y4lDPqr3DNscTe8BuomUh+AHju9LCRBXOq0RSYlmsSf92C2rubvwiDDw
+         XTn7UxC2FpnlGSVYIpqVvdsLAMrLK7i2E8AFWwhMXqKYRFoaQKuKuOSwBhfILLQrv9o1
+         d/psezxu5YM0zk/TR9CvPC8wFoOmNXWnZmw5SHQEWbre3Ybl34+JxUjcDob6W21u22Aa
+         gqOCzTuYmuVC/UebmGNiZ2s7a6O6ZnFDpYI6LCB5aGYYAS385M95mt6ud/y7Hs5rIXCn
+         Z6At7A5N/MsGkY8fDbP9q0jqoJf1i/+11sJW2fs7wPSGUi/bpA1mqAvw7Zu49ALqH4a+
+         kMxQ==
+X-Gm-Message-State: AO0yUKUKHSL8CrAvEfj7riBof6aCkBsq54wlnflOfVYytfwO4XuUlogg
+	3L9LyHbrx2GTmgs0E6yI09vUyw==
+X-Google-Smtp-Source: AK7set+cmWJXqEqtepw+WoTbEnserzKncFRXvaAsRwDN3aTgUiF3InTze7dae2NWVbL8mMNHlaFCHw==
+X-Received: by 2002:adf:f705:0:b0:2bf:bb0a:e486 with SMTP id r5-20020adff705000000b002bfbb0ae486mr8226545wrp.30.1674816916728;
+        Fri, 27 Jan 2023 02:55:16 -0800 (PST)
 Received: from ?IPv6:2001:8b0:aba:5f3c:3876:ca46:43a6:4b49? ([2001:8b0:aba:5f3c:3876:ca46:43a6:4b49])
-        by smtp.gmail.com with ESMTPSA id a4-20020a056000100400b00286ad197346sm3460236wrx.70.2023.01.27.01.51.11
+        by smtp.gmail.com with ESMTPSA id m3-20020a056000180300b002755e301eeasm3819290wrh.100.2023.01.27.02.55.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jan 2023 01:51:11 -0800 (PST)
-Message-ID: <8f1a59823f6c4b29d6638f79fe778c2480984784.camel@linuxfoundation.org>
-Subject: Re: [yocto] [autobuilder][PATCH v3 0/5] generate regression reports
- against proper releases
+        Fri, 27 Jan 2023 02:55:16 -0800 (PST)
+Message-ID: <b00a89e26884b619d48780dcba2cf4de2fa68af3.camel@linuxfoundation.org>
+Subject: Re: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-4.2_M2.rc2)
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexis =?ISO-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>, 
+To: qa-build-notification@lists.yoctoproject.org, 
 	yocto@lists.yoctoproject.org
-Cc: alexandre.belloni@bootlin.com, thomas.petazzoni@bootlin.com
-Date: Fri, 27 Jan 2023 09:51:11 +0000
-In-Reply-To: <c24f0f04-93d5-07db-1aa3-809a0f3e972f@bootlin.com>
-References: <20230124173017.134017-1-alexis.lothore@bootlin.com>
-	 <6c9f63bbb86f39e3f2a24bbecd89499006edf7f9.camel@linuxfoundation.org>
-	 <c24f0f04-93d5-07db-1aa3-809a0f3e972f@bootlin.com>
+Cc: Yocto TSC <tsc@lists.yoctoproject.org>, Bruce Ashfield
+	 <bruce.ashfield@gmail.com>
+Date: Fri, 27 Jan 2023 10:55:15 +0000
+In-Reply-To: <01010185f1a4b508-6e5da1df-b525-4798-ad94-58ea11a96b76-000000@us-west-2.amazonses.com>
+References: 
+	<01010185f1a4b508-6e5da1df-b525-4798-ad94-58ea11a96b76-000000@us-west-2.amazonses.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.1-0ubuntu1 
@@ -62,52 +62,43 @@ MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 09:51:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59075
+ <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 10:55:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59076
 
-On Fri, 2023-01-27 at 09:26 +0100, Alexis Lothor=C3=A9 wrote:
-> On 1/26/23 23:42, Richard Purdie wrote:
-> > On Tue, 2023-01-24 at 18:30 +0100, Alexis Lothor=C3=A9 via
-> > lists.yoctoproject.org wrote:
-> > >=20
-> > Thanks. Since I like living dangerously, I've put these on the master
-> > branch for the M2 release build. I wanted to see how this does in a
-> > real world test.
+On Fri, 2023-01-27 at 05:13 +0000, Pokybuild User wrote:
+>     A build flagged for QA (yocto-4.2_M2.rc2) was completed on the autobu=
+ilder and is available at:
 >=20
-> Thanks. Please feel free to reach back if you observe any unwanted side e=
-ffect,
-> since most of my knowledge is based on scripts reading and autobuilder bu=
-ilds
-> history. I have tried to test it as much as possible on my machine, but a=
-s I was
-> discussing with Alexandre Belloni, the many stubs and fake data used do n=
-ot make
-> the tests as accurate as the real world case.
+>=20
+>         https://autobuilder.yocto.io/pub/releases/yocto-4.2_M2.rc2
+>=20
+>=20
+>     Build hash information:=20
+>=20
+>     bitbake: c19035e8e71c419c5688a86bfc9c946c96f638e8
+> meta-agl: 09135164a21a216c6e3e75d7decce896b92962f0
+> meta-arm: d8383c11f3f8220d2b989ec73604e5faff988299
+> meta-aws: 7b4f54b3e1f675e2033f6a589ac519e44e62b58b
+> meta-intel: b3c7d3ee44e4ab71df44b5be3c48d2f47d89d8a0
+> meta-mingw: 250617ffa524c082b848487359b9d045703d59c2
+> meta-openembedded: ceceffcb1e3ef4f9ba7708f77c27e30a7aea61e5
+> meta-virtualization: 31954471605ae3b41627a0ab7b0dcfe8c5851bd7
+> oecore: 493f2d163718d78560a2b3ad5d3c0fb34caae8c0
+> poky: 5e249ec855517765f4b99e8039cb888ffa09c211
+>=20
+>=20
+>    =20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
 
-The result of the M2 build is here, specifically the regression report:
+A reproducibility issue did occur in this release build in kernel-
+devsrc and perf.=C2=A0
 
-https://autobuilder.yocto.io/pub/releases/yocto-4.2_M2.rc2/testresults/test=
-result-regressions-report.txt
-
-(warning, it is a 13MB file, which may hint at some problems)
-
-https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/4844/step=
-s/29/logs/stdio
-
-was the log from running the script. It also suggests there may be a
-few issues.
-
-I think we need some improvements to the report. Firstly it should
-state at the top which revisions are being compared and any tags they
-correspond to.=C2=A0
-
-Next, we need to understand why the large chunk of tests "disappeared".
-it may be related to the "Failed to retrieved" messages?
-
-I also happen to know the reproducibility tests failed in this build,
-yet the regression report has no mention of that.
-
-So the patches are a start but there is much more to do.
+I think we should put this through QA and release note the issue. There
+is a patch which I think should fix it but I don't want to rush it in.
+We will fix the issue before final release of 4.2.
 
 Cheers,
 
