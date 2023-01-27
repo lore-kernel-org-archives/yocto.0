@@ -1,111 +1,107 @@
-Return-Path: <alexis.lothore@bootlin.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FF94C38142
-	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 14:17:00 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
- by mx.groups.io with SMTP id smtpd.web11.102894.1674829017355156408
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 477D4C54EAA
+	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 16:14:21 +0000 (UTC)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.web11.106085.1674836051467974817
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Jan 2023 06:16:57 -0800
+ Fri, 27 Jan 2023 08:14:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=DKZ2IHiY;
- spf=pass (domain: bootlin.com, ip: 217.70.183.193, mailfrom: alexis.lothore@bootlin.com)
-Received: (Authenticated sender: alexis.lothore@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 23634240004;
-	Fri, 27 Jan 2023 14:16:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1674829015;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZzruYFi5bCdesWg6HA1+hpasEWK/ezi4RwH/NqcRxuo=;
-	b=DKZ2IHiYvE7vzV2rHbcmgvEef+UOMGlw7LXPuYqOl+n82kc1sqsDiOlANL16DJsMoXfdl2
-	VTWlthintyKo7SisD6IGsIg4v3DtSj9bz/o2JjSdRXEh576sKoVFfT07u0Y/e15WO1ykYm
-	d9rd4vcJHX085u0psi04FUZ0ewi99ocDeGbq0iRFGHMmG9zmFdqGGlGHB6i+/3WuUOAyc0
-	QE85dxE156iytWDL7gp9ZJ8huBThtCboDchINXOZGEub2aBq6+VhiTrMbi+AnSn6JZHEMS
-	g1+75r/ozEzTLaoa54n7iWs5dVOwbGIdfTPii1oSmcXj6yy36lbJxrzdCpTZUg==
-Message-ID: <cec9ad75-bd4e-335f-10f1-32108556853e@bootlin.com>
-Date: Fri, 27 Jan 2023 15:17:04 +0100
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=hIPycf6t;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.49, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f49.google.com with SMTP id h16so5381051wrz.12
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 08:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=nx9mF1dXu0w3PIFFN830aywQ+zky4s/rlXpj8W6cR9M=;
+        b=hIPycf6t6JMNu9WQbKD3UdNO+FH1QkeGO5jrgL2mm2dbXfoYACgS4TnVXbwf2Sf/8v
+         aOzijKomOEd91TPSEbAYF+hSOoV8Jvll8lpY0ENCVrFlhNYCO+Gg3xGeP56keI2Y47ns
+         R8l3AdSKz/hCeumvMTmqaVGIzaXhMK3z2O/uQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nx9mF1dXu0w3PIFFN830aywQ+zky4s/rlXpj8W6cR9M=;
+        b=vuZ7Xamim4QkTtCciugiOA3wuVtjWavrJxbM5LvkBU8pkBTUUE72hWK0jcVddUxzRt
+         Ans8mDhzeeBc/V64uSsdOCTgb/UJDwULESFimWtf4A9ByxAXUs8vWlui1m5TmDN/XaJb
+         wf8I+0IviKIszu3B+a1pkLB971NHeRGOcp668JYLrFAHGw+AZk/RAhkd+RXtHtvg3E0z
+         tK7B+a66QiPYkhszpm1b2+B2xrUllKGyi7boIM/k3GqeO5GbdeNPZITiGwySx2cm8LMm
+         dcLKMseYvieboeN9Za/Ky2zZBWlLcSPrNTBPG4cSlQL0naxYeTZLL2CMOZnomRo5b3oX
+         wfJg==
+X-Gm-Message-State: AO0yUKW8gZhE/XQ39ylf6Aj5CIpDB3h9mWeTNc425CrzLEo3H6EZhSPa
+	YgFGpq7fMu13OwdRWRt/e4iemg==
+X-Google-Smtp-Source: AK7set87il1SXe/dtjEQgHvuJ/P/Hd0FJYul8+cIM19rytorwQovPBnTXoT5JN/FY+UFclzmbFUhIw==
+X-Received: by 2002:a5d:60c4:0:b0:2bf:bb44:2d27 with SMTP id x4-20020a5d60c4000000b002bfbb442d27mr8539867wrt.4.1674836049775;
+        Fri, 27 Jan 2023 08:14:09 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:3876:ca46:43a6:4b49? ([2001:8b0:aba:5f3c:3876:ca46:43a6:4b49])
+        by smtp.gmail.com with ESMTPSA id z12-20020adff74c000000b00291f1a5ced6sm4436065wrp.53.2023.01.27.08.14.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Jan 2023 08:14:09 -0800 (PST)
+Message-ID: <6b728be4c46a8cf1c757bf766732ce18683f5ce7.camel@linuxfoundation.org>
+Subject: Re: [yocto] [PATCH] samhain: rework due to changed oe cache handling
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Max Krummenacher <max.oss.09@gmail.com>, yocto@lists.yoctoproject.org
+Cc: Max Krummenacher <max.krummenacher@toradex.com>, Martin Jansa
+	 <martin.jansa@gmail.com>
+Date: Fri, 27 Jan 2023 16:14:08 +0000
+In-Reply-To: <20230127123047.207925-1-max.oss.09@gmail.com>
+References: <20230127123047.207925-1-max.oss.09@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.1-0ubuntu1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [yocto] [autobuilder][PATCH v3 0/5] generate regression reports
- against proper releases
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
- yocto@lists.yoctoproject.org
-Cc: alexandre.belloni@bootlin.com, thomas.petazzoni@bootlin.com
-References: <20230124173017.134017-1-alexis.lothore@bootlin.com>
- <6c9f63bbb86f39e3f2a24bbecd89499006edf7f9.camel@linuxfoundation.org>
- <c24f0f04-93d5-07db-1aa3-809a0f3e972f@bootlin.com>
- <8f1a59823f6c4b29d6638f79fe778c2480984784.camel@linuxfoundation.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Alexis_Lothor=c3=a9?= <alexis.lothore@bootlin.com>
-In-Reply-To: <8f1a59823f6c4b29d6638f79fe778c2480984784.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 14:17:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59084
+ <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 16:14:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59085
 
-On 1/27/23 10:51, Richard Purdie wrote:
-> On Fri, 2023-01-27 at 09:26 +0100, Alexis Lothoré wrote:
->> On 1/26/23 23:42, Richard Purdie wrote:
->>> On Tue, 2023-01-24 at 18:30 +0100, Alexis Lothoré via
->>> lists.yoctoproject.org wrote:
->>>>
->>> Thanks. Since I like living dangerously, I've put these on the master
->>> branch for the M2 release build. I wanted to see how this does in a
->>> real world test.
->>
->> Thanks. Please feel free to reach back if you observe any unwanted side effect,
->> since most of my knowledge is based on scripts reading and autobuilder builds
->> history. I have tried to test it as much as possible on my machine, but as I was
->> discussing with Alexandre Belloni, the many stubs and fake data used do not make
->> the tests as accurate as the real world case.
-> 
-> The result of the M2 build is here, specifically the regression report:
-> 
-> https://autobuilder.yocto.io/pub/releases/yocto-4.2_M2.rc2/testresults/testresult-regressions-report.txt
-> 
-> (warning, it is a 13MB file, which may hint at some problems)
-> 
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/4844/steps/29/logs/stdio
-> 
-> was the log from running the script. It also suggests there may be a
-> few issues.
-> 
-> I think we need some improvements to the report. Firstly it should
-> state at the top which revisions are being compared and any tags they
-> correspond to. 
+On Fri, 2023-01-27 at 13:30 +0100, Max Krummenacher wrote:
+> From: Max Krummenacher <max.krummenacher@toradex.com>
+>=20
+> OE-Core changed the cache handling which made the use of ${BPN} fail.
+>=20
+> > Parsing recipes...WARNING: .../samhain-standalone.bb: Exception during =
+build_dependencies for do_configure
+> > WARNING: .../samhain-standalone.bb: Error during finalise of .../samhai=
+n-standalone.bb
+> > ERROR: ExpansionError during parsing .../samhain-standalone.bb
+> > Traceback (most recent call last):
+> >   File "Var <MODE_NAME>", line 1, in <module>
+> > bb.data_smart.ExpansionError: Failure expanding variable MODE_NAME, exp=
+ression was ${@d.getVar('BPN').split('-')[1]} which triggered exception Ind=
+exError: list index out of range
+> > The variable dependency chain for the failure is: MODE_NAME -> SAMHAIN_=
+MODE -> do_configure
+>=20
+> Simplify the setting of MODE_NAME and SAMHAIN_MODE by moving them from
+> the inc file to the recipe files where we know their values.
+>=20
+> Relevant commits to produce the error:
+> bitbake:
+> ee89ade5 cache/codeparser: Switch to a new BB_CACHEDIR variable for cache=
+ location
+> oe-core:
+> 7c15e03dd3 bitbake.conf: Add BB_HASH_CODEPARSER_VALS
+>=20
+> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> ---
+>  recipes-ids/samhain/samhain-client.bb     | 3 +++
+>  recipes-ids/samhain/samhain-server.bb     | 3 +++
+>  recipes-ids/samhain/samhain-standalone.bb | 3 +++
+>  recipes-ids/samhain/samhain.inc           | 8 --------
+>  4 files changed, 9 insertions(+), 8 deletions(-)
 
-Yes, I was thinking about this while tweaking send-qa-email. Another point I
-need to understand is how the regression report is managed if resulttool finds
-multiple tags in results dir concerning the same yocto revision. I feel that the
-result is not the same if it finds one tag or multiple tags for the same
-revision. Does it really make sense to check regression against multiple tags
-referencing the same yocto revision ? If so, indeed we should make the tag name
-appear. If not, how to distinguish which tag is appropriate ? This question is
-more linked to resulttool internals than to send-qa-email.
-> 
-> Next, we need to understand why the large chunk of tests "disappeared".
-> it may be related to the "Failed to retrieved" messages?
-> 
-> I also happen to know the reproducibility tests failed in this build,
-> yet the regression report has no mention of that.
+This is the second report I've seen of this. I'm wondering about
+changing the default PN dummy value in bitbake.conf to include a "-"...
 
-ACK, I will take a look.
-> 
-> So the patches are a start but there is much more to do.
+Cheers,
 
-Regards,
-
--- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Richard
 
