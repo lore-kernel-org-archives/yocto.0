@@ -2,67 +2,70 @@ Return-Path: <max.oss.09@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FECDC61DA4
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FE81C54EAA
 	for <webhook@archiver.kernel.org>; Fri, 27 Jan 2023 12:32:10 +0000 (UTC)
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
- by mx.groups.io with SMTP id smtpd.web11.100825.1674822726336802197
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web10.100782.1674822727008192196
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Jan 2023 04:32:06 -0800
+ Fri, 27 Jan 2023 04:32:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=B4hpJNt4;
- spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: max.oss.09@gmail.com)
-Received: by mail-ej1-f41.google.com with SMTP id gs13so2585062ejc.0
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=bIArfK9X;
+ spf=pass (domain: gmail.com, ip: 209.85.218.52, mailfrom: max.oss.09@gmail.com)
+Received: by mail-ej1-f52.google.com with SMTP id mg12so13315219ejc.5
         for <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 04:32:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jP7fJfm23rdrDIvbO51p4w/QlMU2PEGglRL39vp8J+s=;
-        b=B4hpJNt4cvkpOG1u3BH4hzZP1y1X+1XdY68NOoE32UgqebaWVE5WUWXr3oAYjVsuPN
-         tVAhqV4w9NvTw4hY+VdMg6kwSOEbof9jmgaQ5TyZCEATvayrIlGSkR+rPVJ3Z3hXprz0
-         Kk6WEptCcMqrFoK1Mq0wLjbTAJlJrGT3wGpP0Y29luVIMJjXVljlBBvYCJmyjS0waPch
-         Wt20WV4jOYcZhhBt/7Ne62ZaHRINs3YEJeSbQho+Z30ELtxbUSN8hiD+dZ3TE2FlioGO
-         hpu5oIjoh5khHKo5r1Z1DjJIkr857sXEK4RxtMI0fX+OzTd214+7BdRIm5csTxY5ki6F
-         PO4w==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/vQgK11mcljGT66VOaN9NQqdUprCptDjj1fhGxLSjxw=;
+        b=bIArfK9X0QEzXk9q6Jq1n97OG5i/+qD5di3cJd8G5LP2Pl130YG34yb1eXGuXCv9uk
+         0knpYQDLLsh/pO2WcGQ6eWg8OlMvKZtE2k5JGiN6LXs0KSozAl4EtqNEm2NpSV5p633Y
+         lhupwX6Sp4YZF3C0WUG4+Ox+G0y3ka9aZeJz5FtOHWckHSzxlGUyMEqG0nx7bXyOy6zE
+         z8qeM8Rrg+s5gYa+xI0A8DRGuQGA7aSINC3uKtpRKIHRLo+6tndo+urKFnSYm36bM+Us
+         dv+qt3TO93veMzKHauFyD+TvcnUn47PZYFcLRG7QSOwYlgRd9BXDFEgqibY/OTLUQ5hZ
+         Lxcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jP7fJfm23rdrDIvbO51p4w/QlMU2PEGglRL39vp8J+s=;
-        b=J+ls+pRR2ZWucCTByhLLzmUWnQTQPDPPRGx5ke0bpl3//FETX1B5DF9p53M5Ni8DpM
-         /jIYyrph1wQTadODBKlkWgdIMPmdU17Vmstg4fwnb1SHlDhboXvYcj8X+3DH+PFeMX37
-         y8scchCe+dgfqgfpYS/7heRcCXJwRV74a7Gju2pfZi4N7fsNWcGX5797GZ6Vh8LJ44O9
-         wUfIqoio5X2IXoIAhBsRO15Io/b0zMNQO9jG5Hrnk/9ZG09ZJNHNhQ5VjcjRysIA5tgw
-         betyTIG4gv+SvtaB2NmMYEh8uDxgIzNFhfuj4MVvQ9RxKIRKvmUV94ntRNHoTMR5YQs0
-         Q4TQ==
-X-Gm-Message-State: AFqh2kpIY6w9/bSt3ObCLbo4VnenWmPpACv4oopd5eAYc9AAPIzfBhBf
-	FKF0za9G8YhI+ri3QlHg4d6hPQ5a7rE=
-X-Google-Smtp-Source: AMrXdXsvEwKU84JTTZVb75uYzun6X0mIFGKGhODS42rKvvRjr6hXHFsiEPdXidKc0E8FSGQmXRm8xw==
-X-Received: by 2002:a17:906:5283:b0:84d:4be4:aa2b with SMTP id c3-20020a170906528300b0084d4be4aa2bmr52775821ejm.68.1674822724488;
-        Fri, 27 Jan 2023 04:32:04 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/vQgK11mcljGT66VOaN9NQqdUprCptDjj1fhGxLSjxw=;
+        b=dD3+D/4MRNgD16AdEqsHZKluSE0HybnF2AQAClRs2ok7P2w9Otf8m10blOuoXNjKkt
+         arC33+1gJS37fw/Ljcs0w8N3lCsMYgQnznzk6dKAZXFo9nAIQEw07fQxYE2rKhv+jvRz
+         1nUB9n8YRhyJFCn9iWkkOtB5NH/wMHjfYRc+i3JgBSqawGtqNVherPkpU6ctkqVRqTzB
+         e6Depxw1GpyE1CeMppWfojuFzIKRvP4RFe/Otvv6GtYcmWKEXCej3ema2julGHBKDHnb
+         bF/WnYxi6Qcj6yklclUz/CMHBinQhEexZF5G3ohFYrnNKtQrYPSrIbXeWgf9fQlG8W5k
+         VtSg==
+X-Gm-Message-State: AO0yUKWPpl+faxR1/pTdnxijBiEgrXQ62rmxdVw5V2g1oB+YWfWwELET
+	ThYOl38v4OJN8jsv70iL55QBzzZ87dE=
+X-Google-Smtp-Source: AK7set8yaEP1CYLhxgwPhwWiKWnYJiwLjxqovqGQgxfkOcx0If7M7eFgA2nUKsYDDKMfZK78fyX7wg==
+X-Received: by 2002:a17:906:eca1:b0:87e:a34b:9e2b with SMTP id qh1-20020a170906eca100b0087ea34b9e2bmr789ejb.28.1674822725289;
+        Fri, 27 Jan 2023 04:32:05 -0800 (PST)
 Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id e24-20020a17090681d800b0087bda70d3efsm656202ejx.118.2023.01.27.04.32.03
+        by smtp.gmail.com with ESMTPSA id e24-20020a17090681d800b0087bda70d3efsm656202ejx.118.2023.01.27.04.32.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 27 Jan 2023 04:32:04 -0800 (PST)
 From: Max Krummenacher <max.oss.09@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Max Krummenacher <max.krummenacher@toradex.com>
-Subject: [PATCH] samhain: rework due to changed oe cache handling
-Date: Fri, 27 Jan 2023 13:30:46 +0100
-Message-Id: <20230127123047.207925-1-max.oss.09@gmail.com>
+Subject: [meta-security][PATCH] samhain: rework due to changed cache handling
+Date: Fri, 27 Jan 2023 13:30:47 +0100
+Message-Id: <20230127123047.207925-2-max.oss.09@gmail.com>
 X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20230127123047.207925-1-max.oss.09@gmail.com>
+References: <20230127123047.207925-1-max.oss.09@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Fri, 27 Jan 2023 12:32:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59080
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59081
 
 From: Max Krummenacher <max.krummenacher@toradex.com>
 
-OE-Core changed the cache handling which made the use of ${BPN} fail.
+OE-Core changed the cache handling which made the use of ${BPN} no fail.
 
 | Parsing recipes...WARNING: .../samhain-standalone.bb: Exception during build_dependencies for do_configure
 | WARNING: .../samhain-standalone.bb: Error during finalise of .../samhain-standalone.bb
@@ -72,10 +75,9 @@ OE-Core changed the cache handling which made the use of ${BPN} fail.
 | bb.data_smart.ExpansionError: Failure expanding variable MODE_NAME, expression was ${@d.getVar('BPN').split('-')[1]} which triggered exception IndexError: list index out of range
 | The variable dependency chain for the failure is: MODE_NAME -> SAMHAIN_MODE -> do_configure
 
-Simplify the setting of MODE_NAME and SAMHAIN_MODE by moving them from
-the inc file to the recipe files where we know their values.
+Simplify the setting of MODE_NAME and SAMHAIN_MODE by setting them
+in the recipe files where we know their values.
 
-Relevant commits to produce the error:
 bitbake:
 ee89ade5 cache/codeparser: Switch to a new BB_CACHEDIR variable for cache location
 oe-core:
