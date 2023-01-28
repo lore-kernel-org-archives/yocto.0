@@ -2,73 +2,77 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F835C61D97
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4DB02C27C76
 	for <webhook@archiver.kernel.org>; Sat, 28 Jan 2023 15:18:46 +0000 (UTC)
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
- by mx.groups.io with SMTP id smtpd.web11.15096.1674919119228240643
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+ by mx.groups.io with SMTP id smtpd.web11.15097.1674919119729436475
  for <yocto@lists.yoctoproject.org>;
  Sat, 28 Jan 2023 07:18:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=OaZ3wlsq;
- spf=pass (domain: gmail.com, ip: 209.85.160.181, mailfrom: akuster808@gmail.com)
-Received: by mail-qt1-f181.google.com with SMTP id z9so6510085qtv.5
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=mtaOXlux;
+ spf=pass (domain: gmail.com, ip: 209.85.160.175, mailfrom: akuster808@gmail.com)
+Received: by mail-qt1-f175.google.com with SMTP id o5so6480176qtr.11
         for <yocto@lists.yoctoproject.org>; Sat, 28 Jan 2023 07:18:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KVo3NBLwKetzpxEreyNLxYOA2HTLtxj6zfd6cenXxsQ=;
-        b=OaZ3wlsqNN1lAf29pIJVao5/Jt6mPqobo9RyBTi11S3lp4TlGwaoRKDfln6HqFsalB
-         EvJmUokWePbHwSuZXJWs44i9GAtpQd6qcpNI2mjvWrnALYspcUwqXGu2mOE/KtoGKgAj
-         sHleCR12iQMpkgq7hdiFUybfNBp8ffSxtlj3GZlCwGSK1YPuzDCkwaGCkrvBAwtKSYgn
-         XF71Y2uhCSDvDo1sE/RcqyAPfCLH1KoomfnLuA+akYPra2pzjFcTSL6AVcKTtxjah3Nk
-         sBskD9T8ZhqT7IGTf8065RNuiQvinH50vKMNobgH8fsiA6i0CiQTQpYKWV492/2G+IsC
-         dXJw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ru/kXjNwbXhcLX971NJ5vVQgTwq8uNf5vK1dHuGWFCs=;
+        b=mtaOXluxqDIwhRwsiOThs2auNhj9emeMFWlls7cVXzj+bXoEuWyDXs/X0CXRY6HzyB
+         aiRz+uv6UElqU/zTZ7AFNeCaPG26EC4fgpA7Oh/O6TDs8Kk1zQMsFc4xZoWih5+PFhjM
+         dfhqwM1MQPkRn2PNtZq06c3Bf9io36oPfaPlNWA3kLZbiaruK3GZEGa0oL+OXtCNqnxg
+         xUBWZ6oV4ajrXmJxTHMLhAjSJ+jYtkbQeCWTGGvKQ5MK/zslDuxFpPE09xt49ju+NrPr
+         4fmu+3mo4NKCd0rtj0lM45KtKEs1ELdHXtcNKeY2Bv6v0by4WGRJWGlBEsLb3MczSeC4
+         7l1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KVo3NBLwKetzpxEreyNLxYOA2HTLtxj6zfd6cenXxsQ=;
-        b=B3XbHAkLpRaDv3h6bZ7i4CZSXJTdYmdjxMQ+Hjt2VmFQ3ZM3208W/T3OO11SXgNQfg
-         gB0BJNjgswbxFBtcRJPLR7appCWvRtITyKYWpNKNW+0969JkGnqw4XarJE/2UFHootzv
-         yMlGe4au/K/ly/5f1FiTS3kDeSMF3MjVStBiYAtHXQPEPUPqz0N+wzdtliTnMZAVRN32
-         gI8Ar/IzA2zt4Bxgemx4ToB7MZ+hO+ekvIXLYQKKlevYG3ziBc1kFhCoyoxUhBF1jnNM
-         6oULm1uGUn+WEYE+1bNoxLUAenXATdtXlXTutRAkHiK98g2k7lQXs4+z+5t5Nvie1fdJ
-         ud/A==
-X-Gm-Message-State: AFqh2krzNZ6A1EU/996J5lsJqhIFzrkL4sy+6vHtcOohuZ71U68X5Qmb
-	ER73Adbi+qbvupsFs4Yrr+Hz/i/1hjU=
-X-Google-Smtp-Source: AMrXdXsCoZtQxDcsq4qiyI0oZ6Lf/NregNIkNP114e/8i4AmICPI0M7SaArBx9VL0Lzazs6rsDSFew==
-X-Received: by 2002:ac8:7205:0:b0:3b6:30f9:131c with SMTP id a5-20020ac87205000000b003b630f9131cmr58410085qtp.4.1674919117950;
-        Sat, 28 Jan 2023 07:18:37 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ru/kXjNwbXhcLX971NJ5vVQgTwq8uNf5vK1dHuGWFCs=;
+        b=1weT5Ch8gnjxYNv736DML+vTmYfu4UNyLDMnOrHLr7t8PM1a71IZiR3USzSpHlRge8
+         NWPVLyKfXBMPOJeCidKT6JmAK3Z9Sn/EcYP9bu/2og+B/G12I90ZdZ10zDLQeFpO/iRl
+         +/nsXmVN2UFU9i8tB85hGc3huNSezWEztZrFUMXAqvW+QFbO2tliBWT6qGI/B/GQiEUU
+         alxa6OC9ByhF+unuYhtMuVhTs5PZGMukNNoUBUgTWFqppDCeUL0IhpvJPyZvCfqaqzbY
+         Vq4Usf+bCw3RW+1V4nhr5+KzZ1ZPFylbTI794ggSAn/IJx+ZjxaXZTyRD9g/kNWR+Lss
+         05HA==
+X-Gm-Message-State: AFqh2kpjT0r2Jry3XGqJF7i091QBYye34mXAaYyeHefiaXWx9BGP91fb
+	YD5vcBd1dHETJULleNabwGVaymtqnjY=
+X-Google-Smtp-Source: AMrXdXsv/vap/mmuxBHFCc2CvjXXGb6mKk9hLPTa7DkB3tv8gqcP5Hu8H3pX+jBhvPDO4k6VuNFX9g==
+X-Received: by 2002:ac8:6053:0:b0:3b6:9b37:e03c with SMTP id k19-20020ac86053000000b003b69b37e03cmr38945702qtm.7.1674919118703;
+        Sat, 28 Jan 2023 07:18:38 -0800 (PST)
 Received: from keaua.attlocal.net ([2600:1700:9190:ba10:f329:fc42:2781:4396])
-        by smtp.gmail.com with ESMTPSA id i2-20020ac87642000000b003b6a17e1996sm4687532qtr.83.2023.01.28.07.18.37
+        by smtp.gmail.com with ESMTPSA id i2-20020ac87642000000b003b6a17e1996sm4687532qtr.83.2023.01.28.07.18.38
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Jan 2023 07:18:37 -0800 (PST)
+        Sat, 28 Jan 2023 07:18:38 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] linux-yocto.bbappend: bump to kernel version 6.x
-Date: Sat, 28 Jan 2023 10:18:36 -0500
-Message-Id: <20230128151837.376291-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] meta-tpm: bump linux-yocto to 6.x kernel
+Date: Sat, 28 Jan 2023 10:18:37 -0500
+Message-Id: <20230128151837.376291-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230128151837.376291-1-akuster808@gmail.com>
+References: <20230128151837.376291-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Sat, 28 Jan 2023 15:18:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59089
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59090
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
  .../linux/{linux-yocto_5.%.bbappend => linux-yocto_6.%.bbappend}  | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
- rename recipes-kernel/linux/{linux-yocto_5.%.bbappend => linux-yocto_6.%.bbappend} (100%)
+ rename meta-tpm/recipes-kernel/linux/{linux-yocto_5.%.bbappend => linux-yocto_6.%.bbappend} (100%)
 
-diff --git a/recipes-kernel/linux/linux-yocto_5.%.bbappend b/recipes-kernel/linux/linux-yocto_6.%.bbappend
+diff --git a/meta-tpm/recipes-kernel/linux/linux-yocto_5.%.bbappend b/meta-tpm/recipes-kernel/linux/linux-yocto_6.%.bbappend
 similarity index 100%
-rename from recipes-kernel/linux/linux-yocto_5.%.bbappend
-rename to recipes-kernel/linux/linux-yocto_6.%.bbappend
+rename from meta-tpm/recipes-kernel/linux/linux-yocto_5.%.bbappend
+rename to meta-tpm/recipes-kernel/linux/linux-yocto_6.%.bbappend
 -- 
 2.25.1
 
