@@ -1,137 +1,103 @@
-Return-Path: <lukma@denx.de>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACC71C63797
-	for <webhook@archiver.kernel.org>; Mon, 30 Jan 2023 22:59:37 +0000 (UTC)
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
- by mx.groups.io with SMTP id smtpd.web10.755.1675119572194328654
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A825C54EAA
+	for <webhook@archiver.kernel.org>; Mon, 30 Jan 2023 23:00:27 +0000 (UTC)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+ by mx.groups.io with SMTP id smtpd.web10.784.1675119620716447399
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Jan 2023 14:59:33 -0800
+ Mon, 30 Jan 2023 15:00:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@denx.de header.s=phobos-20191101 header.b=k6C4zp95;
- spf=pass (domain: denx.de, ip: 85.214.62.61, mailfrom: lukma@denx.de)
-Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id CC7EC8579E;
-	Mon, 30 Jan 2023 23:59:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1675119570;
-	bh=wp/r/K4KmJjfrWG9O0DMvQsD7sduRPpg8tRGvKNzCC4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=k6C4zp95R8OHd9aw/jw4fl5nMduYgvd2o9EeK0tcuvzrcY57PUao5aqcir6tckEpV
-	 IEZusJeBGQr2HGzRXNkU+seiW78Q5tPG33tTy73SkBew/R8Js9oIX8TGfkrwA/NjoD
-	 YTDwNh8PbRIKS4WM5QbiVn48icN0MBe18GRc2PgH6rgRsi2kzb9VrpXeryRs1QS4g/
-	 wLXK3PzUId57tBn9MzRPR14t6YPdfk7mvcmEpFn6vPIEW1mu3GgkSVLaUeQy4OC1NS
-	 dFdDfaOtsn8Ab/9akBexRrOGTt0ga5+oC5Wxhgxml1+HiRdg3unZzqIIcthXXXc8ad
-	 7SiGB9UXStBGA==
-Date: Mon, 30 Jan 2023 23:59:23 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: "Carles Sole via lists.yoctoproject.org"
- <Carles.SoleMendi=de.bosch.com@lists.yoctoproject.org>
-Cc: Carles.SoleMendi@de.bosch.com, yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-raspberrypi] Is Preempt-rt still supported in
- master / latest releases?
-Message-ID: <20230130235923.4264ca0b@wsk>
-In-Reply-To: <20057.1674650953536874663@lists.yoctoproject.org>
-References: <Y86v7Z+p68WpY13k@qwirkle>
-	<20057.1674650953536874663@lists.yoctoproject.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=gVDIHoyO;
+ spf=pass (domain: gmail.com, ip: 209.85.219.180, mailfrom: twoerner@gmail.com)
+Received: by mail-yb1-f180.google.com with SMTP id t16so16051752ybk.2
+        for <yocto@lists.yoctoproject.org>; Mon, 30 Jan 2023 15:00:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rv3rrTp98QXjA/Iqk65JLuErV6wH/RTcx5UGqcFA1y0=;
+        b=gVDIHoyOlpMPr0vQVFgf9G4Q1nDUcKuT/4IBcVNXTMynAEoHK4sYLtGY7c7QXKyFM4
+         GAZQV4OLUl9N1FdGzFYVgcNpq9qdQsFUc/do5XIDfItPKamFplakheIOx/nO/sE/1ijK
+         TzKAGJA9aPTG4M0qmqDnlNDtwAYC/6SFGYBSj7V0R+w1InQT9/nTl7G1BR1bT6HWsBKN
+         e2kK1OmAc7r2GDY8rC+NCihNTRd6U6Sb88PSFexTlomJIwss6H9xjS2OYY5nEXBVztWA
+         eIGSdJlHorPvrtFDLUUzxbXJVVTCvT0Uoshvv4yBIK09x/JqKOhcdClZ1T7pfRNKCpOm
+         hJoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rv3rrTp98QXjA/Iqk65JLuErV6wH/RTcx5UGqcFA1y0=;
+        b=5pQJJVQpnSICvYhjW0xGhZLqWbClLJiOCiLuQldemzpk8V8nIOmMTGE1lECXhbcGRF
+         cqGi53HZY5ShCbJ5MNaHuT9nPrWt3JdTLHVoWn3P4eL13v3n5dp8WvSDHFUUAfLTnkw0
+         JvUXgOvfKeFqzu5hT8LKkOfKEKjPAjadPvUfUxxDHh1Ej/ftX6Wfgt7nashh6FyQCDc6
+         imSEzA50ncSPN7/wQcSCN9QFY3y3qjsFValvHXapM9nYNgCcNN/dC4IhFEpueI3CxTmt
+         X2d6gsvu5GoYQD9bnDNk1/iWza2EkuntOAsRzp+AxsnJwzWp4pLbYBZ5xf+5sLWXNF73
+         U5aA==
+X-Gm-Message-State: AFqh2kqbu8Ym3gvCpmqWfwXpWQLJwc1XnnBeLdW3w+EALDpO/mgTX+4/
+	LHbqp9syi0ZYEdWY0qPJzgm7vYnzaLnyWz2qanVvu9sJ
+X-Google-Smtp-Source: AMrXdXs+LxI6LgD8pJtKM5yhE1J1VL+adEuAHKfF7gPtyEK3eDlzZjfMi2WaRkt31X+g6G8vOe3hJXvci4CYTlpB4cE=
+X-Received: by 2002:a5b:ca:0:b0:7fb:feb3:380e with SMTP id d10-20020a5b00ca000000b007fbfeb3380emr3800243ybp.587.1675119619447;
+ Mon, 30 Jan 2023 15:00:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/SvwaZ7aZ/+quYZE7hHquWSS";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
+References: <173E9D7E4E096CC3.27165@lists.yoctoproject.org>
+In-Reply-To: <173E9D7E4E096CC3.27165@lists.yoctoproject.org>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Mon, 30 Jan 2023 18:00:07 -0500
+Message-ID: <CAHUNapQBBLFTra2npqjm6Y2V9-TCp66rftBP0FNSmY2jh_CN7Q@mail.gmail.com>
+Subject: Re: [yocto] [meta-rockchip][PATCH] U-Boot: add DEPENDS for rock-pi-4[abc]
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000dfa01f05f3832dc1"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 30 Jan 2023 22:59:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59105
+ <yocto@lists.yoctoproject.org>; Mon, 30 Jan 2023 23:00:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59106
 
---Sig_/SvwaZ7aZ/+quYZE7hHquWSS
-Content-Type: text/plain; charset=US-ASCII
+--000000000000dfa01f05f3832dc1
+Content-Type: text/plain; charset="UTF-8"
+
+On Sat, Jan 28, 2023 at 6:41 PM Trevor Woerner via lists.yoctoproject.org
+<twoerner=gmail.com@lists.yoctoproject.org> wrote:
+
+> The U-Boot build for rock-pi-4[abc] was recently changed to add information
+> for UEFI. The build now DEPENDS on gnutls-native.
+>
+> U-Boot: e86c789ca372 ("rockpi4: board: Add firmware image information for
+> capsule updates")
+>
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+>  recipes-bsp/u-boot/u-boot%.bbappend | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+
+Applied to meta-rockchip, master branch.
+
+--000000000000dfa01f05f3832dc1
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Carles
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Sat, Jan 28, 2023 at 6:41 PM Trevor Woerner via <a href=3D"http:/=
+/lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;twoerner=3D<a href=
+=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.com@lists.yoctoproject.o=
+rg</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">The U-Boot build for rock-pi-4[abc] was recently changed to add informati=
+on<br>
+for UEFI. The build now DEPENDS on gnutls-native.<br>
+<br>
+U-Boot: e86c789ca372 (&quot;rockpi4: board: Add firmware image information =
+for capsule updates&quot;)<br>
+<br>
+Signed-off-by: Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com" tar=
+get=3D"_blank">twoerner@gmail.com</a>&gt;<br>
+---<br>
+=C2=A0recipes-bsp/u-boot/u-boot%.bbappend | 2 ++<br>
+=C2=A01 file changed, 2 insertions(+)<br></blockquote><div><br></div><div>A=
+pplied to meta-rockchip, master branch. <br></div></div></div>
 
-> Hi Alex, Andrei,
->=20
-> thanks for your reply. Based on your feedback I've tried the
-> following:
-> - I have downloaded the patch patch-5.15.86-rt56.patch from
-> https://cdn.kernel.org/pub/linux/kernel/projects/rt/5.15/ and stored
-> in ./meta-raspberrypi/recipes-kernel/linux/files
-> - I have created a file linux-raspberrypi_%.bbappend in
-> ./meta-raspberrypi/recipes-kernel/linux
-> - I have created a .cfg file with CONFIG_PREEMPT_RT_FULL =3D y in
-> ./meta-raspberrypi/recipes-kernel/linux/files
-> - I have added both patch and cfg file in bbappend using
-> SRC_URI:append:rpi.
->=20
-> I can observe the following:
-> - patch and cfg files are available in
-> ./build/tmp/work/raspberrypi4_64-agl-linux/linux-raspberrypi/1_5.15.34+gi=
-tAUTOINC+e1b976ee4f_0086da6acd-r0
-> - new folder linux-raspberrypi4_64-preempt-rt-build is available
-> inside the folder above. But the problem seems to be that
-> CONFIG_PREEMPT_RT =3D y is not applied to the .config file. So it seems
-> the preempt-rt kernel is built but without the full preempt-rt
-> support.
-> - When I do bitbake linux-raspberrypi -c menuconfig I cannot select
-> the full real time preempt kernel, only preemptible option available
-> is --> Preemptible Kernel (Low-Latency Desktop). Fully Preemptible
-> Kernel (Real-Time) is not available.
-> - When I flash the image in the Rpi4 and run uname -r I see that the
-> rt kernel has been built --> 5.15.34.rt56.v8
-> - but only with PREEMPT option but without RT when I do uname -v -->
-> #1 SMP PREEMPT Tue Aug 9 21:20:00 UTC 2022 (without RT).
->=20
-> I have tried building linux-yocto-rt for qemu and there I see that
-> CONFIG_PREEMP_RT =3D y is available in the .config file. Also if I open
-> menuconfig I have the option to select in General setup -->
-> Preemption Model --> Fully Preemptible Kernel (Real-Time)
->=20
-> If you can provide any hints on what am I missing it would be highly
-> appreciated.
->=20
-
-Have you managed to go any further with your investigation regarding
-PREEMPT-RT on RPi4-64?
-
-> Best Regards,
-> Carles
-
-
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/SvwaZ7aZ/+quYZE7hHquWSS
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmPYS8sACgkQAR8vZIA0
-zr2+BAgArEnmsohZmvLHDVn4V5ErKL3TSfUhunKPun6A6R5NeVcTAfcdPuJOzb+Y
-o0FAWq/j31CdpxEfAsI78oJePbJXjX1rS6Vz74ODmeqH1OM42tuOWBe7+AbBdmrw
-QY+q+yy6eZzEeEsJoZBy99XPupFwudBv30D7AdRXjfurQJS2sCmvP5F0dJ2Yx2aK
-ZM8TDVkQpeUy0yi2WPCaK3Jsk/+JVKtEm8SykdAiQRoDUwOhWylE/0aJR6XvTPsS
-Fn4YUMz0/4XeM+TUY7pNITMDFFdadptd1k8KlboXsrASqExpq4clXAwKwO5gXgzs
-5S81oSQ7MMFtc3oXVug2YPwn8JfFlg==
-=VGEW
------END PGP SIGNATURE-----
-
---Sig_/SvwaZ7aZ/+quYZE7hHquWSS--
+--000000000000dfa01f05f3832dc1--
 
