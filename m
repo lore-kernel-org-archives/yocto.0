@@ -1,403 +1,302 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <ito@lineo.co.jp>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ED74C54EAA
-	for <webhook@archiver.kernel.org>; Tue, 31 Jan 2023 01:01:30 +0000 (UTC)
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
- by mx.groups.io with SMTP id smtpd.web11.1663.1675126887409177060
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 12E89C61DA4
+	for <webhook@archiver.kernel.org>; Tue, 31 Jan 2023 02:34:21 +0000 (UTC)
+Received: from mail.lineo.co.jp (mail.lineo.co.jp [203.141.200.203])
+ by mx.groups.io with SMTP id smtpd.web10.3550.1675132459770680376
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Jan 2023 17:01:27 -0800
+ Mon, 30 Jan 2023 18:34:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=gdzlqNK4;
- spf=pass (domain: gmail.com, ip: 209.85.210.178, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pf1-f178.google.com with SMTP id n2so9130116pfo.3
-        for <yocto@lists.yoctoproject.org>; Mon, 30 Jan 2023 17:01:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/fxBc5HNfFceSNaqLFDixD1KdqNRtsyUIO5fldE8D6k=;
-        b=gdzlqNK4W51a9sZxZG1LZrfgv67cHj27atYJxvv1Z/x2yGuGfWYAOooUnNZsjB0Vds
-         m/e42lwbgMhk3iPrc4sqKs2b5RdsKe+mXx8unUtmDKUY+mPTx02A68wQ2aN0Q8yhxWkx
-         OG8PhHQ+QNF4txjVTn9l3JDIGZ7AxGUZEzVOexy9gT+4C14ZLkGEVFY2JqEsixoO3i1P
-         m6pPbfZHjfmWmER8De0zoLILTwkK1W79AdCU2UPymVlZ2Zz7S+UuH91oVlZWRbSia2Q6
-         zX1DpEmvrOQbcNyf6rEYsIZJl/q9Whe6/AkZYcsUH6+MoEkwYhFhBbEUNxft2oyu80mD
-         o/BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/fxBc5HNfFceSNaqLFDixD1KdqNRtsyUIO5fldE8D6k=;
-        b=Asf1MTcC/vWLDtZSdnxkSS8CSHwNqMNHIYsfFK4k/fHQ6PJToPXoN2tnijKIjAHXzM
-         2Poy/bTZrmtaNkn2TVcczraOHZnSPdlo90U3FTFAZ4HY0KdOlMQLfy1sY68y1+2lqXvh
-         gjVDhr7YxXo0k/Qy+lRc8Z8Xr9lp9bDLMaVQyJa2LmwT3K0OMXfU+2JxlU4uRnYMolyb
-         D0d70Gm+BdwabRMmQLz86ZX40BJEZEM0wUpZSnBIaLG3d0R1IZilWkWyukgPUxQAzumO
-         NfmvgO224+IVvtwdhZNurYIYPvS9nFMTLDWmA21oasuBuztXlOc+JoLSeKGSDf735RaQ
-         dE0Q==
-X-Gm-Message-State: AO0yUKXx2e7sulKgKBDq3X3E0BIdGPPadm+1WrgzeqFGhwzjPyYeI2AZ
-	DgB4RbzM/2k5aU8LAcs/3w0Pnqsv2Io=
-X-Google-Smtp-Source: AK7set8kzORRtJgDJWaqeAF7sy21ctDWLNoRQwZjvuK2y4JgM7ZmR3NLtAKHPBrGDxbTBMJf4fbSxg==
-X-Received: by 2002:a62:1851:0:b0:592:51ea:968a with SMTP id 78-20020a621851000000b0059251ea968amr16832527pfy.14.1675126886685;
-        Mon, 30 Jan 2023 17:01:26 -0800 (PST)
-Received: from skjolley ([2600:1011:a124:5236:606b:2688:2663:dccd])
-        by smtp.gmail.com with ESMTPSA id z12-20020aa7990c000000b0059252afc069sm7601635pff.64.2023.01.30.17.01.25
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 30 Jan 2023 17:01:26 -0800 (PST)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW04
-Date: Mon, 30 Jan 2023 18:01:25 -0700
-Message-ID: <0b5d01d9350f$8bc62320$a3526960$@gmail.com>
+ dkim=missing; spf=pass (domain: lineo.co.jp, ip: 203.141.200.203, mailfrom: ito@lineo.co.jp)
+Received: from [172.31.28.27] (vpn1.lineo.co.jp [203.141.200.204])
+	by mail.lineo.co.jp (Postfix) with ESMTPSA id 473FD802D343A;
+	Tue, 31 Jan 2023 11:34:17 +0900 (JST)
+Message-ID: <9a1053bd-d55b-9705-989d-36ad9f733ef5@lineo.co.jp>
+Date: Tue, 31 Jan 2023 11:34:16 +0900
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0B5E_01D934D4.DF6D1780"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: Adk1D3x1odJ5J2+CSXWcGXabCMwtSg==
-Content-Language: en-us
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [yocto] Error while adding " libimxvpuapi2" and "gstreamer" pkgs
+ in my local.conf for imx8mplus
+To: Nikita Gupta <nikitagupta2509@gmail.com>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <CAGQ3h144Hp00zHw+F2Px2+dFYtXti6aoBDYs7qe9j0tEZFbiyg@mail.gmail.com>
+ <CANNYZj976z0Xdk0Bt1uJkwbXBqkR0yXVz14ZaJ6s_muXXUtXWQ@mail.gmail.com>
+ <CAGQ3h157uE84DWRVnXJJ6Oxbx=CORhX6Gp6PDs9re=V9E6EU6g@mail.gmail.com>
+ <CANNYZj_MXwVHE7oA7peLKGQfi8GnM90N9d=1Kn8o0ZWGa83MVg@mail.gmail.com>
+ <CAGQ3h14CC3LeP++cfs1k2u-4aeYNqyCJjusNUOWbz4d49k=TwQ@mail.gmail.com>
+ <CAGQ3h1598A-7_uX9RsN_zrw2eyRSuPCdFhLT9zODBmxrYxVzDg@mail.gmail.com>
+ <ba145544-a63e-9002-198d-5dd902bfcd1d@lineo.co.jp>
+ <CAGQ3h16F1N_sM3sQs6c+bJFdCmpqWUkSPfDeMGP1mQhqJHQ+_w@mail.gmail.com>
+Content-Language: en-US
+From: Takayasu Ito <ito@lineo.co.jp>
+In-Reply-To: <CAGQ3h16F1N_sM3sQs6c+bJFdCmpqWUkSPfDeMGP1mQhqJHQ+_w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 31 Jan 2023 01:01:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59111
+ <yocto@lists.yoctoproject.org>; Tue, 31 Jan 2023 02:34:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59112
 
-This is a multipart message in MIME format.
+Hi  Nikita
 
-------=_NextPart_000_0B5E_01D934D4.DF6D1780
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+The problem is that in the imx-vpu-hantro recipe, the encoder library,=20
+libhantro_h1.so, is not installed for mx8mp, but is installed for mx8mm.
 
-All,
+In the libimxvpuapi2 recipe, imx8mp specifies imx8mm in IMX_PLATFORM.
+Therefore, the _encoder variable used in the waf wsctipt file is set to=20
+true, so a check is made for the presence of hantro_h1, resulting in an=20
+error.
+At this time, libimxvpuapi2 support for imx8m is imx8m and imx8mm, so by=20
+changing the setting to one for imx8m, which does not use a hardware=20
+encoder, the build for imx8mp will pass.
 
-YP M+ or high bugs which moved to a new milestone in WW04 are listed =
-below:=20
-
-
-Priority
-
-Bug ID
-
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
+Create the libimxvpuapi2_%.bbappen file and add
+IMX_PLATFOEM:mx8mp-nxp-bsp =3D "imx8m"
 
 
-High
 
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14065> 14065
+Translated with www.DeepL.com/Translator (free version)
+On 2023/01/30 20:19, Nikita Gupta wrote:
+> Hello Takayasu
+> Thanks for your suggestion,=C2=A0 but after implementing i am facing sa=
+me=20
+> thing (see attached image).
+>=20
+> Regards
+> Nikita Gupta
+>=20
+> On Fri, 27 Jan 2023 at 17:55, Takayasu Ito <ito@lineo.co.jp=20
+> <mailto:ito@lineo.co.jp>> wrote:
+>=20
+>     Hi Nikita
+>=20
+>      =C2=A0> *IMAGE_INSTALL:append =3D "gstreamer1.0 gstreamer1.0-plugi=
+ns-base
+>     gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
+>=20
+>     If you do not put a space after the double quotation marks, the
+>     package names before and after will be attached to each other
+>     during the merge.
+>=20
+>     See
+>     https://docs.yoctoproject.org/bitbake/2.2/bitbake-user-manual/bitba=
+ke-user-manual-metadata.html#appending-and-prepending-override-style-synt=
+ax <https://docs.yoctoproject.org/bitbake/2.2/bitbake-user-manual/bitbake=
+-user-manual-metadata.html#appending-and-prepending-override-style-syntax=
+>
+>=20
+>     On 2023/01/27 20:48, Nikita Gupta wrote:
+>      > Hello List,
+>      >
+>      > As i earlier mentioned that i want to do some customisation in
+>     local.conf by adding few pkgs (below).
+>      > *IMAGE_INSTALL:append =3D "gstreamer1.0 gstreamer1.0-plugins-bas=
+e
+>     gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
+>      > gstreamer1.0-plugins-ugly =C2=A0gstreamer1.0-libav imx-vpuwrap
+>     imx-gpu-g2d imx-gpu-viv gstreamer1.0-plugins-imx imx-gst1.0-plugin"
+>      > LICENSE_FLAGS_ACCEPTED =3D " commercial"
+>      > IMAGE_INSTALL:append =3D "kernel-devsrc"
+>      > IMAGE_INSTALL:append =3D "gstreamer1.0-rtsp-server
+>     gst-variable-rtsp-server"
+>      > IMAGE_INSTALL:append =3D " gtk+3"
+>      > CORE_IMAGE_EXTRA_INSTALL +=3D " opencv libopencv-core-dev
+>     libopencv-highgui-dev libopencv-imgproc-dev libopencv-objdetect-dev
+>      > libopencv-ml-dev"
+>      > #LICENSE_FLAGS_WHITELIST =3D " commercial"
+>      > IMAGE_ROOTFS_EXTRA_SPACE =3D "1048576 "*
+>      >=C2=A0 =C2=A0and iafter=C2=A0bitbake m getting below errors.
+>      >
+>      > nikita@nikita-HP-Laptop-15-bs0xx:~/Yocto/imx-yocto-bsp$ *bitbake
+>     imx-image-full*
+>      > Loading cache: 100%
+>     |##################################################################=
+########################################|
+>      > Time: 0:00:01
+>      > Loaded 4736 entries from dependency cache.
+>      > Parsing recipes: 100%
+>     |##################################################################=
+######################################|
+>      > Time: 0:00:02
+>      > Parsing of 3190 .bb files complete (3188 cached, 2 parsed). 4738
+>     targets, 262 skipped, 3 masked, 0 errors.
+>      > NOTE: Resolving any missing task queue dependencies
+>      > ERROR: Nothing RPROVIDES
+>     'imx-gst1.0-pluginkernel-devsrcgstreamer1.0-rtsp-server' (but
+>      >
+>     /home/nikita/Yocto/imx-yocto-bsp/sources/meta-imx/meta-sdk/dynamic-=
+layers/qt6-layer/recipes-fsl/images/imx-image-full.bb <http://imx-image-f=
+ull.bb>
+>      > <http://imx-image-full.bb <http://imx-image-full.bb>> RDEPENDS o=
+n
+>     or otherwise requires it)
+>      > NOTE: Runtime target
+>     'imx-gst1.0-pluginkernel-devsrcgstreamer1.0-rtsp-server' is
+>     unbuildable, removing...
+>      > Missing or unbuildable dependency chain was:
+>     ['imx-gst1.0-pluginkernel-devsrcgstreamer1.0-rtsp-server']
+>      > ERROR: Required build target 'imx-image-full' has no buildable
+>     providers.
+>      > Missing or unbuildable dependency chain was: ['imx-image-full',
+>     'imx-gst1.0-pluginkernel-devsrcgstreamer1.0-rtsp-server']
+>      >
+>      > Summary: There were 2 ERROR messages, returning a non-zero exit =
+code.
+>      >
+>      > These packages are needed i can not remove So please help me wha=
+t
+>     can i do in this.
+>      >
+>      > Thanks in Advance.
+>      >
+>      > On Fri, 27 Jan 2023 at 17:00, Nikita Gupta
+>     <nikitagupta2509@gmail.com <mailto:nikitagupta2509@gmail.com>
+>     <mailto:nikitagupta2509@gmail.com
+>     <mailto:nikitagupta2509@gmail.com>>> wrote:
+>      >
+>      >=C2=A0 =C2=A0 =C2=A0Hello Alex
+>      >
+>      >=C2=A0 =C2=A0 =C2=A0When i run bitbake libimxvpuapi2 and it shows=
+ below error
+>     (images attached).
+>      >=C2=A0 =C2=A0 =C2=A0Can you please tell me that is "libimxvpuapi2=
+" compatible
+>     with imx8mplus board?
+>      >
+>      >=C2=A0 =C2=A0 =C2=A0Thanks in Advance
+>      >
+>      >=C2=A0 =C2=A0 =C2=A0On Fri, 27 Jan 2023 at 14:35, Alexander Kanav=
+in
+>     <alex.kanavin@gmail.com <mailto:alex.kanavin@gmail.com>
+>     <mailto:alex.kanavin@gmail.com <mailto:alex.kanavin@gmail.com>>> wr=
+ote:
+>      >
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0The screenshot indicates the pr=
+oblem originates in
+>     libimxvpuapi2
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0recipe. So you should get more =
+information by running
+>     'bitbake
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libimxvpuapi2'.
+>      >
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Alex
+>      >
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0On Fri, 27 Jan 2023 at 07:46, N=
+ikita Gupta
+>     <nikitagupta2509@gmail.com <mailto:nikitagupta2509@gmail.com>
+>     <mailto:nikitagupta2509@gmail.com
+>     <mailto:nikitagupta2509@gmail.com>>> wrote:
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 > Hello Alexander
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 > I am not getting your query =
+. Can u please explain
+>     your question?
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 > Regards
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 > Nikita Gupta
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 > On Wed, Jan 25, 2023, 18:35 =
+Alexander Kanavin
+>     <alex.kanavin@gmail.com <mailto:alex.kanavin@gmail.com>
+>     <mailto:alex.kanavin@gmail.com <mailto:alex.kanavin@gmail.com>>> wr=
+ote:
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >> What happens if you bitbake=
+ libimx=E2=80=A6 thingy directly?
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >> Alex
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >> On Wed 25. Jan 2023 at 13.4=
+7, Nikita Gupta
+>     <nikitagupta2509@gmail.com <mailto:nikitagupta2509@gmail.com>
+>     <mailto:nikitagupta2509@gmail.com
+>     <mailto:nikitagupta2509@gmail.com>>> wrote:
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> Hello list,
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> I was just making image fo=
+r imx8mplus by adding few
+>     pkgs in my local.conf but encountered few errors so i am here
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for your help.
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> I added below pkgs in my l=
+ocal.conf file
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> IMAGE_INSTALL:append =3D "=
+gstreamer1.0
+>     gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+>     gstreamer1.0-plugins-bad
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gstreamer1.0-plugins-ugly=C2=A0=
+ gstreamer1.0-libav imx-vpuwrap
+>     imx-gpu-g2d imx-gpu-viv gstreamer1.0-plugins-imx
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0imx-gst1.0-plugin"
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> LICENSE_FLAGS_WHITELIST =3D=
+ "commercial"
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> IMAGE_INSTALL:append =3D "=
+kernel-devsrc"
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> IMAGE_INSTALL_append +=3D =
+"gstreamer1.0-rtsp-server
+>     gst-variable-rtsp-server"
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> IMAGE_INSTALL:append =3D "=
+ gtk+3"
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> CORE_IMAGE_EXTRA_INSTALL +=
+=3D " opencv
+>     libopencv-core-dev libopencv-highgui-dev libopencv-imgproc-dev
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libopencv-objdetect-dev libopen=
+cv-ml-dev"
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> IMAGE_ROOTFS_EXTRA_SPACE =3D=
+ "1048576 "
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> So my local.conf file now =
+looks like this
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> So i am getting below erro=
+r after baking my recipe (
+>     Attached image).
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> Please tell what should I =
+need to do to resolve this.
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>> Thanks in advance
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 >>>
+>      >
+>      >
+>      >
+>      > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>      > Links: You receive all messages sent to this group.
+>      > View/Reply Online (#59078):
+>     https://lists.yoctoproject.org/g/yocto/message/59078
+>     <https://lists.yoctoproject.org/g/yocto/message/59078>
+>      > Mute This Topic:
+>     https://lists.yoctoproject.org/mt/96519310/3617373
+>     <https://lists.yoctoproject.org/mt/96519310/3617373>
+>      > Group Owner: yocto+owner@lists.yoctoproject.org
+>     <mailto:yocto%2Bowner@lists.yoctoproject.org>
+>      > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+>     <https://lists.yoctoproject.org/g/yocto/unsub> [ito@lineo.co.jp
+>     <mailto:ito@lineo.co.jp>]
+>      > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>      >
+>=20
+>     --=20
+>     Takayasu Ito
+>     Solution Department, Lineo Solutions, Inc.
+>     https://www.lineo.co.jp/english/ <https://www.lineo.co.jp/english/>
+>     Email: ito@lineo.co.jp <mailto:ito@lineo.co.jp>
+>     Yocto Project Ambassador
+>=20
 
-Automated ptest regression testing
-
-randy.macleod@windriver.com
-
-alexis.lothore@bootlin.com
-
-4.2 M2
-
-4.2 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14901> 14901
-
-lttng: collect TAP output
-
-randy.macleod@windriver.com
-
-alexis.lothore@bootlin.com
-
-4.2 M2
-
-4.2 M3
-
-
-Medium+
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13933> 13933
-
-Devtool does not work with multiconfig
-
-randy.macleod@windriver.com
-
-unassigned@yoctoproject.org
-
-Future
-
-4.99
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_0B5E_01D934D4.DF6D1780
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0CC1_01D92F56.6B68BF20";
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
-new milestone in WW04 are listed below: <o:p></o:p></span></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D1265 =
-style=3D'width:948.75pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D544 nowrap valign=3Dbottom style=3D'width:408.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D64 =
-nowrap valign=3Dbottom style=3D'width:48.05pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D53 =
-nowrap valign=3Dbottom style=3D'width:40.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>High<o:p></o:p></span></b></p></td><td width=3D52 =
-nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14065" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14065</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D544 nowrap valign=3Dbottom =
-style=3D'width:408.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Automated ptest regression =
-testing<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>alexis.lothore@bootlin.com<o:p></o:p></span></p></t=
-d><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:48.05pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M2<o:p></o:p></span></p></td><td width=3D53 =
-nowrap valign=3Dbottom =
-style=3D'width:40.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14901" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14901</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D544 nowrap valign=3Dbottom =
-style=3D'width:408.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>lttng: collect TAP =
-output<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>alexis.lothore@bootlin.com<o:p></o:p></span></p></t=
-d><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:48.05pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M2<o:p></o:p></span></p></td><td width=3D53 =
-nowrap valign=3Dbottom =
-style=3D'width:40.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.2 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13933" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13933</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D544 nowrap valign=3Dbottom =
-style=3D'width:408.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Devtool does not work with =
-multiconfig<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
-td><td width=3D64 nowrap valign=3Dbottom =
-style=3D'width:48.05pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Future<o:p></o:p></span></p></td><td width=3D53 =
-nowrap valign=3Dbottom =
-style=3D'width:40.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>4.99<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
-style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0B5E_01D934D4.DF6D1780--
+--=20
+Takayasu Ito
+Yocto Project Ambassador
+Solution Department Lineo Solutions, Inc.
+https://www.lineo.co.jp/english/
+Email: ito@lineo.co.jp
 
 
