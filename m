@@ -1,115 +1,82 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <joel.winarske@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5BAB4C636CD
-	for <webhook@archiver.kernel.org>; Wed,  1 Feb 2023 13:26:22 +0000 (UTC)
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
- by mx.groups.io with SMTP id smtpd.web11.23031.1675257977943523387
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 361D8C05027
+	for <webhook@archiver.kernel.org>; Wed,  1 Feb 2023 13:26:42 +0000 (UTC)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+ by mx.groups.io with SMTP id smtpd.web11.23039.1675257999903109826
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Feb 2023 05:26:18 -0800
+ Wed, 01 Feb 2023 05:26:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=WHmHUUI8;
- spf=pass (domain: gmail.com, ip: 209.85.161.52, mailfrom: akuster808@gmail.com)
-Received: by mail-oo1-f52.google.com with SMTP id b10-20020a4a9fca000000b004e6f734c6b4so1925421oom.9
-        for <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 05:26:17 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=aXKb0yTO;
+ spf=pass (domain: gmail.com, ip: 209.85.217.47, mailfrom: joel.winarske@gmail.com)
+Received: by mail-vs1-f47.google.com with SMTP id a24so17532229vsl.2
+        for <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 05:26:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+Jx2gZ21DkSCWU5o4PEnoVvMWuS70GByy1Hqs2SRuoQ=;
-        b=WHmHUUI8pMj4qAzoZx5pyOZKiVYaGMpsoFGkjc9oShFy1XvrmZ3m0xUpvvpgoCBstD
-         i+5bnbL5PdZaGZIWzHyKtvaGYn7Kj1KIeZ+Dom7erqEHIGZOcu4q6QOh9gFFqReXf2Eg
-         lSaXoZdlVoOylJ0RKroZkbcfjCkZA8qyEvJmflnibU6FbDoxUhUF8mW3JR5TM5BYZYG4
-         LTZm7NbSYoMTx5br/b1O3vzJamcx/YFnp3cat3x8f/JEAIJciTNZQqgbrpKfSWfZU5Ie
-         4LYVxG9szVm6tIKnvPA9f57B8KemhJL+FhBG/QMSOmvPiXuggVjXO8kHsqJA1X/2wfho
-         JylA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zjvj3HA93zJml2ScKB60CPIhkCuPGOCIDdqvEslWRhs=;
+        b=aXKb0yTOeNXsMEYUifhNT1TZMhQNaUmqLCpoqOg2UWdXGOVZixCzFEANFXTaBvvlTi
+         DMQzintb6feK/V6qHMLks+3gqPRdhzU3uRlBj+PTmRaAIpKFHvo1Lu6k/UulIAX6vtCm
+         h2wE/F3ufxZzwrSvxdEzdR4+BK69V3d1uHxQtmJkjuYUD0fJWde/gIu3W8jH7+ucpFUy
+         ZwcUSZvF6mKRwP7WOTLV+rSF79DsbklOpZAIqnDGIi+cnFEZiEQY8tpKOPpOIMssCmSx
+         VGDQLbi0MYJnn9YCl1fZSYWP73hkuIjJfDc31KwtF0TMPjbpNcjYgfJsZLNuyKwyEuqI
+         DULQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+Jx2gZ21DkSCWU5o4PEnoVvMWuS70GByy1Hqs2SRuoQ=;
-        b=RYhHkg3qKoDOfzU+38aGHJRpToTipPcWpR+1gTxJLdL02XLhzsCSdcWY7m7n9tuJHW
-         dIf9BeKTdhjV0AKmpNe8OAhUwTcTDwW/+uePOEi67bU/9IrjqXJM+Kh2UjlKjigwLSyE
-         A5pAEEgsu8IOqBTvPkj6FqqwJ8MZVOuGZ7BiKS6ArMJ+3DstStRszrZmo7+n+qCyDuqR
-         Zt6lyrSZmcd1+xAy+DTOxd7VpV0jqSrHsN2RcUp5WvdsCIYk3PFwC0p/CEyg8wL4TDRs
-         6apbpa6dc6ytkbGYUuPoE/t30gqxBefebxYh9u/9cPdugJ1FIExm/yqZVti09HKZtYuA
-         cEiA==
-X-Gm-Message-State: AO0yUKUQHTqMmVM3hNxii4lZLpsYtT/+Zgk3A0ooOF+IDIPe7Gg0Vn9v
-	2DzNVljrMulCH/rYwy6hGGmRYo2UR/A=
-X-Google-Smtp-Source: AK7set/889TmL8aAdIfV0d/Wpoym+kRmLrOgdm+LBLtvIFuvBqBhC0kY+0VcxzjTsEJxBqbBK5VTOw==
-X-Received: by 2002:a4a:dc55:0:b0:517:67ba:586 with SMTP id q21-20020a4adc55000000b0051767ba0586mr995647oov.3.1675257977134;
-        Wed, 01 Feb 2023 05:26:17 -0800 (PST)
-Received: from mvwork.attlocal.net ([2600:1700:9190:ba10::32])
-        by smtp.gmail.com with ESMTPSA id y15-20020a4acb8f000000b0049fd5c02d25sm5010622ooq.12.2023.02.01.05.26.16
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Feb 2023 05:26:16 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [kirkstone][meta-tpm][PATCH 3/3] oeqa: meta-tpm shut swtpm down before and after testing
-Date: Wed,  1 Feb 2023 08:26:14 -0500
-Message-Id: <20230201132614.2840970-3-akuster808@gmail.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20230201132614.2840970-1-akuster808@gmail.com>
-References: <20230201132614.2840970-1-akuster808@gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zjvj3HA93zJml2ScKB60CPIhkCuPGOCIDdqvEslWRhs=;
+        b=IQa3ul4dDQrJU9QgnuF/iOACFmQxm81s63UYV2IG307AxDE+KAIry7VZ3ZhVo7AHHi
+         ZIVU2xIcFhvrCXG9ZOCdelt2Q+BkhwR/YzxGulyxRUGOoTVD7TU4uNADRUfLvLUH40xA
+         vay95XJWDBWvLPFj5Rxkx70am0iYZp1fMIDBDZNdrwGfVDctKLTkk3lo6oGXBI4wqTOn
+         lyY/VbFF0lFY0IsxDw3ZGxVJRwqhXeGLdMHYukL1OvRM6quDdGLfwubcEH/L9kEaxMCH
+         H8EUoNUJKgJBQ2p85tUSbNv2gDZmlsnxzAUvo1LCs+Yi5m+v9/hLGDVOrsIys6OY3jML
+         YrlA==
+X-Gm-Message-State: AO0yUKVmyyGqvm9Jg8aNGcSy60m51HuC6zey81vx55QRN4LYRZZENR5t
+	0Nj1QqariatF0v9x58ZKz5bMxLWRDu46LJBzKTk=
+X-Google-Smtp-Source: AK7set8pEozPRuAR0pl4MQy+xphS7pCyN+ILFupMF72PwELn93ROG9UaJs9wgjx35BqH1U6k9j01I31bNS6YbnVb1ow=
+X-Received: by 2002:a05:6102:386:b0:3ee:4302:b6b with SMTP id
+ m6-20020a056102038600b003ee43020b6bmr451854vsq.46.1675257998870; Wed, 01 Feb
+ 2023 05:26:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <4851.1675148248347125864@lists.yoctoproject.org> <17935.1675197791519218036@lists.yoctoproject.org>
+In-Reply-To: <17935.1675197791519218036@lists.yoctoproject.org>
+From: Joel Winarske <joel.winarske@gmail.com>
+Date: Wed, 1 Feb 2023 05:26:27 -0800
+Message-ID: <CABKMkPLAZQBE7kZfxxLX0RLdtv6kd2fYMXkE2XH_n8fz3o_onQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-raspberrypi] Is Preempt-rt still supported in
+ master / latest releases?
+To: Carles.SoleMendi@de.bosch.com
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ee10c405f3a365d2"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 13:26:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59131
+ <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 13:26:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59132
 
-fixes:
-swtpm: Could not open TCP socket: Address already in use
+--000000000000ee10c405f3a365d2
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
-(cherry picked from commit b5642c519b90f83ab6ec1507db9b3b36db43c548)
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-tpm/lib/oeqa/runtime/cases/swtpm.py | 2 ++
- meta-tpm/lib/oeqa/runtime/cases/tpm2.py  | 2 ++
- 2 files changed, 4 insertions(+)
+In kirkstone for example, you build preempt-rt variant by adding to
+local.conf:
 
-diff --git a/meta-tpm/lib/oeqa/runtime/cases/swtpm.py b/meta-tpm/lib/oeqa/runtime/cases/swtpm.py
-index df47b35..0be5c59 100644
---- a/meta-tpm/lib/oeqa/runtime/cases/swtpm.py
-+++ b/meta-tpm/lib/oeqa/runtime/cases/swtpm.py
-@@ -8,11 +8,13 @@ from oeqa.core.decorator.data import skipIfNotFeature
- class SwTpmTest(OERuntimeTestCase):
-     @classmethod
-     def setUpClass(cls):
-+        cls.tc.target.run('swtpm_ioctl -s --tcp :2322')
-         cls.tc.target.run('mkdir /tmp/myvtpm2')
-         cls.tc.target.run('chown tss:root /tmp/myvtpm2')
- 
-     @classmethod
-     def tearDownClass(cls):
-+        cls.tc.target.run('swtpm_ioctl -s --tcp :2322')
-         cls.tc.target.run('rm -fr /tmp/myvtpm2')
- 
-     @skipIfNotFeature('tpm2','Test tpm2_swtpm_socket requires tpm2 to be in DISTRO_FEATURES')
-diff --git a/meta-tpm/lib/oeqa/runtime/cases/tpm2.py b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
-index e64d19d..8e90dc9 100644
---- a/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
-+++ b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
-@@ -8,10 +8,12 @@ from oeqa.core.decorator.data import skipIfNotFeature
- class Tpm2Test(OERuntimeTestCase):
-     @classmethod
-     def setUpClass(cls):
-+        cls.tc.target.run('swtpm_ioctl -s --tcp :2322')
-         cls.tc.target.run('mkdir /tmp/myvtpm2')
- 
-     @classmethod
-     def tearDownClass(cls):
-+        cls.tc.target.run('swtpm_ioctl -s --tcp :2322')
-         cls.tc.target.run('rm -fr /tmp/myvtpm2')
- 
-     def check_endlines(self, results,  expected_endlines): 
--- 
-2.37.3
+LINUX_KERNEL_TYPE = "preempt-rt"
 
+Does this no longer work?
+
+--000000000000ee10c405f3a365d2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div dir=3D"auto"></div>In kirkstone for example, you bui=
+ld preempt-rt variant by adding to local.conf:<div dir=3D"auto"><br></div><=
+div dir=3D"auto">LINUX_KERNEL_TYPE =3D &quot;preempt-rt&quot;</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Does this no longer work?</div></div>
+
+--000000000000ee10c405f3a365d2--
 
