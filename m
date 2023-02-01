@@ -1,82 +1,91 @@
-Return-Path: <joel.winarske@gmail.com>
+Return-Path: <maciek@thing.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 361D8C05027
-	for <webhook@archiver.kernel.org>; Wed,  1 Feb 2023 13:26:42 +0000 (UTC)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
- by mx.groups.io with SMTP id smtpd.web11.23039.1675257999903109826
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FFB0C05027
+	for <webhook@archiver.kernel.org>; Wed,  1 Feb 2023 14:18:02 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web10.24187.1675261075080445280
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Feb 2023 05:26:40 -0800
+ Wed, 01 Feb 2023 06:17:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=aXKb0yTO;
- spf=pass (domain: gmail.com, ip: 209.85.217.47, mailfrom: joel.winarske@gmail.com)
-Received: by mail-vs1-f47.google.com with SMTP id a24so17532229vsl.2
-        for <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 05:26:39 -0800 (PST)
+ dkim=pass header.i=@thing-com.20210112.gappssmtp.com header.s=20210112 header.b=0ntLxOvn;
+ spf=pass (domain: thing.com, ip: 209.85.128.41, mailfrom: maciek@thing.com)
+Received: by mail-wm1-f41.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so1582438wmq.0
+        for <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 06:17:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zjvj3HA93zJml2ScKB60CPIhkCuPGOCIDdqvEslWRhs=;
-        b=aXKb0yTOeNXsMEYUifhNT1TZMhQNaUmqLCpoqOg2UWdXGOVZixCzFEANFXTaBvvlTi
-         DMQzintb6feK/V6qHMLks+3gqPRdhzU3uRlBj+PTmRaAIpKFHvo1Lu6k/UulIAX6vtCm
-         h2wE/F3ufxZzwrSvxdEzdR4+BK69V3d1uHxQtmJkjuYUD0fJWde/gIu3W8jH7+ucpFUy
-         ZwcUSZvF6mKRwP7WOTLV+rSF79DsbklOpZAIqnDGIi+cnFEZiEQY8tpKOPpOIMssCmSx
-         VGDQLbi0MYJnn9YCl1fZSYWP73hkuIjJfDc31KwtF0TMPjbpNcjYgfJsZLNuyKwyEuqI
-         DULQ==
+        d=thing-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mDJuTrHzpxI44Gz6yZXCTJShu3algFAf0E/Zftilc+w=;
+        b=0ntLxOvnZgQLvSHRJmuaCSaOf8jQYjG2ZZtzzz5pxWE9XwYdOT82sHYG4b9MijLYU6
+         j+BpJ6M/6iS0RXPFM913FN46GCivJw+GrpxQ0GlhBgO8B3z0k8xgvKi4ITF5pYbzo2Nr
+         5jygq4xodywpNQfdsLQiR5MvZjBx8alIChcrG99wwEmLqq2+RueOccPHzPOpAGLJZjvx
+         OuptqZjo67RmC0FFYhs/MXgR/ZxhEE4er71fSKmNFBcSjLZRayqIz95j993cT8uJK5lR
+         Lp46C2TKgIcIK9X01fsUVbe3o0R2pOmPIo7LboX0KQAgaBnyzhz8BmfUzlzf8ke87qAH
+         UBpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zjvj3HA93zJml2ScKB60CPIhkCuPGOCIDdqvEslWRhs=;
-        b=IQa3ul4dDQrJU9QgnuF/iOACFmQxm81s63UYV2IG307AxDE+KAIry7VZ3ZhVo7AHHi
-         ZIVU2xIcFhvrCXG9ZOCdelt2Q+BkhwR/YzxGulyxRUGOoTVD7TU4uNADRUfLvLUH40xA
-         vay95XJWDBWvLPFj5Rxkx70am0iYZp1fMIDBDZNdrwGfVDctKLTkk3lo6oGXBI4wqTOn
-         lyY/VbFF0lFY0IsxDw3ZGxVJRwqhXeGLdMHYukL1OvRM6quDdGLfwubcEH/L9kEaxMCH
-         H8EUoNUJKgJBQ2p85tUSbNv2gDZmlsnxzAUvo1LCs+Yi5m+v9/hLGDVOrsIys6OY3jML
-         YrlA==
-X-Gm-Message-State: AO0yUKVmyyGqvm9Jg8aNGcSy60m51HuC6zey81vx55QRN4LYRZZENR5t
-	0Nj1QqariatF0v9x58ZKz5bMxLWRDu46LJBzKTk=
-X-Google-Smtp-Source: AK7set8pEozPRuAR0pl4MQy+xphS7pCyN+ILFupMF72PwELn93ROG9UaJs9wgjx35BqH1U6k9j01I31bNS6YbnVb1ow=
-X-Received: by 2002:a05:6102:386:b0:3ee:4302:b6b with SMTP id
- m6-20020a056102038600b003ee43020b6bmr451854vsq.46.1675257998870; Wed, 01 Feb
- 2023 05:26:38 -0800 (PST)
+        bh=mDJuTrHzpxI44Gz6yZXCTJShu3algFAf0E/Zftilc+w=;
+        b=hdDD7JJQa5V52pR3uZZnNdfwM63Dm34CkaXmgq6/hZQCPRyENXUhngbigmCOVGAgro
+         8BBAA9Kp3teNXfpp4ceTnLdWH5lDBTH67zbm+WKlJGh+LYNAhkdig5a3tn1MaRXDTW5p
+         gNPKGLui3bZ6lDOayG22bWieFoZIerICXZUVXIDHOUiSz54vC7MeGXLu7Y4zJe88SNeB
+         8df7fb9/nfScxza1ajPDrSx7IUAKHyG8HRh/TMUNDFFtFLtOFSiPnzck6QXVunliX+0o
+         OoGa2PhD/Z5+4c9qiwRZqsUF52/C7MPpfiEy/l6n/CThvBlF9sAJsiOFgZ90P+5VBurz
+         /RwQ==
+X-Gm-Message-State: AO0yUKVbYCowtQ4DXDzuzvD34nM8O3yFI3FMzsuOEX//OmbcNFT8wkEc
+	eIYiy95PPKHEmfRk0XJwwaaylCwMjrPmdeAk
+X-Google-Smtp-Source: AK7set8eENsGrpJeJcAU410//7ZOlvcuSPUQVv8J9DEspwppeigHT5o6F51KQFQ1qHvXZOd9SmrlSw==
+X-Received: by 2002:a05:600c:601b:b0:3dc:443e:4212 with SMTP id az27-20020a05600c601b00b003dc443e4212mr2413706wmb.1.1675261072959;
+        Wed, 01 Feb 2023 06:17:52 -0800 (PST)
+Received: from localhost.localdomain (178-36-27-238.adsl.inetia.pl. [178.36.27.238])
+        by smtp.gmail.com with ESMTPSA id r17-20020a05600c459100b003dee8c5d814sm1642574wmo.24.2023.02.01.06.17.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 06:17:52 -0800 (PST)
+From: Maciek Borzecki <maciek@thing.com>
+To: yocto@lists.yoctoproject.org
+Cc: Maciek Borzecki <maciek@thing.com>
+Subject: [meta-security][PATCH] dm-verity-img.bbclass: add squashfs images
+Date: Wed,  1 Feb 2023 15:17:19 +0100
+Message-Id: <d6c7ddefe6a490ce9b73c8ab42e389dc246a932f.1675261039.git.maciek@thing.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-References: <4851.1675148248347125864@lists.yoctoproject.org> <17935.1675197791519218036@lists.yoctoproject.org>
-In-Reply-To: <17935.1675197791519218036@lists.yoctoproject.org>
-From: Joel Winarske <joel.winarske@gmail.com>
-Date: Wed, 1 Feb 2023 05:26:27 -0800
-Message-ID: <CABKMkPLAZQBE7kZfxxLX0RLdtv6kd2fYMXkE2XH_n8fz3o_onQ@mail.gmail.com>
-Subject: Re: [yocto] [meta-raspberrypi] Is Preempt-rt still supported in
- master / latest releases?
-To: Carles.SoleMendi@de.bosch.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000ee10c405f3a365d2"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 13:26:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59132
+ <yocto@lists.yoctoproject.org>; Wed, 01 Feb 2023 14:18:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59133
 
---000000000000ee10c405f3a365d2
-Content-Type: text/plain; charset="UTF-8"
+Add squashfs to images supported by verity.
 
-In kirkstone for example, you build preempt-rt variant by adding to
-local.conf:
+Signed-off-by: Maciek Borzecki <maciek@thing.com>
+---
+ classes/dm-verity-img.bbclass | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-LINUX_KERNEL_TYPE = "preempt-rt"
+diff --git a/classes/dm-verity-img.bbclass b/classes/dm-verity-img.bbclass
+index dd447e6..e5946bc 100644
+--- a/classes/dm-verity-img.bbclass
++++ b/classes/dm-verity-img.bbclass
+@@ -63,7 +63,12 @@ verity_setup() {
+     veritysetup --data-block-size=${DM_VERITY_IMAGE_DATA_BLOCK_SIZE} --hash-offset=$SIZE format $OUTPUT $OUTPUT | tail -n +2 | process_verity
+ }
+ 
+-VERITY_TYPES = "ext2.verity ext3.verity ext4.verity btrfs.verity erofs.verity erofs-lz4.verity erofs-lz4hc.verity"
++VERITY_TYPES = " \
++    ext2.verity ext3.verity ext4.verity \
++    btrfs.verity \
++    erofs.verity erofs-lz4.verity erofs-lz4hc.verity \
++    squashfs.verity squashfs-xz.verity squashfs-lzo.verity squashfs-lz4.verity squashfs-zst.verity \
++"
+ IMAGE_TYPES += "${VERITY_TYPES}"
+ CONVERSIONTYPES += "verity"
+ CONVERSION_CMD:verity = "verity_setup ${type}"
+-- 
+2.39.1
 
-Does this no longer work?
-
---000000000000ee10c405f3a365d2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><div dir=3D"auto"></div>In kirkstone for example, you bui=
-ld preempt-rt variant by adding to local.conf:<div dir=3D"auto"><br></div><=
-div dir=3D"auto">LINUX_KERNEL_TYPE =3D &quot;preempt-rt&quot;</div><div dir=
-=3D"auto"><br></div><div dir=3D"auto">Does this no longer work?</div></div>
-
---000000000000ee10c405f3a365d2--
 
