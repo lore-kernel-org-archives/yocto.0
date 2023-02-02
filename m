@@ -1,68 +1,66 @@
-Return-Path: <dev@g0hl1n.net>
+Return-Path: <nikitagupta2509@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71690C05027
-	for <webhook@archiver.kernel.org>; Thu,  2 Feb 2023 07:19:04 +0000 (UTC)
-Received: from out-115.mta0.migadu.com (out-115.mta0.migadu.com [91.218.175.115])
- by mx.groups.io with SMTP id smtpd.web11.9400.1675322337893754650
- for <yocto@lists.yoctoproject.org>;
- Wed, 01 Feb 2023 23:18:58 -0800
-Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@g0hl1n.net header.s=key1 header.b=o2Ao9Use;
- spf=pass (domain: g0hl1n.net, ip: 91.218.175.115, mailfrom: dev@g0hl1n.net)
-Date: Thu, 2 Feb 2023 08:18:45 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=g0hl1n.net; s=key1;
-	t=1675322335;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xWsQlu+XJO6JVVC0Wf6yEsAiM9iaP1kibOvq/+V7vqY=;
-	b=o2Ao9User6EShdFp+iISXsfCk3z02oDK+EKWI1yBhu8ZQ4st6NnGbzW8NjcWhOMlYs2jnp
-	W6bhwCu2pwKvyfsoJjgIx+46roQ+SRsosR07VnoWHxRzydZp1B+uOSrFdxYYWI4+SoIeL4
-	+y+QX4uB9JNj7dA5CShI4eidt3qX/B8=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Richard Leitner <dev@g0hl1n.net>
-To: Robert Joslyn <robert.joslyn@redrectangle.org>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"dspore@parraid.com" <dspore@parraid.com>
-Subject: Re: [yocto] Adding openjdk-11 to Yocto
-Message-ID: <Y9thAUU9hME+hrBh@g0hl1n.net>
-References: <TNB7.1675098856905334898.dmEm@lists.yoctoproject.org>
- <GV0P278MB02110F36ACEAFD3C29936CBCF0D39@GV0P278MB0211.CHEP278.PROD.OUTLOOK.COM>
- <5FFCF910-A57E-4369-9D88-12FCC585E778@redrectangle.org>
- <Y9o+Za7X8j20qRIS@g0hl1n.net>
- <909273E4-7D7B-47B2-9E79-9FB5431C82CF@redrectangle.org>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9991C05027
+	for <webhook@archiver.kernel.org>; Thu,  2 Feb 2023 08:51:14 +0000 (UTC)
+Subject: Include Driver in my imx-image #sdk #yocto #imx8 #kirkstone  #kernel #patch
+To: yocto@lists.yoctoproject.org
+From: "Nikita Gupta" <nikitagupta2509@gmail.com>
+X-Originating-Location: Pune, Maharashtra, IN (103.174.140.188)
+X-Originating-Platform: Linux Chrome 109
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <909273E4-7D7B-47B2-9E79-9FB5431C82CF@redrectangle.org>
-X-Migadu-Flow: FLOW_OUT
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 02 Feb 2023 00:51:13 -0800
+Message-ID: <6qL9.1675327873124959941.pUOu@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="pRG3oTfnXDBPlNtYZkOL"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 02 Feb 2023 07:19:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59140
+ <yocto@lists.yoctoproject.org>; Thu, 02 Feb 2023 08:51:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59141
 
-On Wed, Feb 01, 2023 at 07:32:00PM -0800, Robert Joslyn wrote:
+--pRG3oTfnXDBPlNtYZkOL
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-...
+Hello List,
 
-> Sure, I can expand the recipe for additional architectures. A quick loo=
-k at the other downloads shows they have builds for x86, x86-64, arm, aar=
-ch64, ppc64, sparcv9 and s390x. I don=E2=80=99t think Yocto supports spar=
-c or s390, but accommodating the others should be straightforward. I shou=
-ld be able to get the time to put a patch together later this week.
+I am making kernel yocto image for imx8mplus. But according to my project r=
+equirement i need different audio driver rather then default which comes wi=
+th this linux image. I am able to see many drivers in following path:
 
-Sounds great! Looking forward to your patches.
+*i* mx-yocto-bsp/build-xwayland/tmp/work-shared/imx8mp-lpddr4-evk/kernel-so=
+urces/sound/soc/codecs
 
-Please ensure this mail address <dev@g0hl1n.net> in on Cc. Thanks!
+C code of desired driver is present in this. So i want to integrate this dr=
+iver in my kernel image so what is the procedure or how can i know that thi=
+s particular driver has added in my upcoming yocto image before baking filn=
+al image through bitbake.
+I also want to know that how can we know that which drivers are included be=
+fore bitbake.
 
-regards;rl
+Question:=C2=A0 How can i integrate desired driver in imx8-image?
 
->=20
-> Thanks,
-> Robert
+Thanks in advance
+Nikita Gupta
+
+--pRG3oTfnXDBPlNtYZkOL
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello List,&nbsp;<br /><br />I am making kernel yocto image for imx8mplus. =
+But according to my project requirement i need different audio driver rathe=
+r then default which comes with this linux image. I am able to see many dri=
+vers in following path:<br /><br /><em><strong>i</strong>mx-yocto-bsp/build=
+-xwayland/tmp/work-shared/imx8mp-lpddr4-evk/kernel-sources/sound/soc/codecs=
+<br /><br /></em>C code of desired driver is present in this. So i want to =
+integrate this driver in my kernel image so what is the procedure or how ca=
+n i know that this particular driver has added in my upcoming yocto image b=
+efore baking filnal image through bitbake.<em><br />I also want to know tha=
+t how can we know that which drivers are included before bitbake.<br /><br =
+/></em>Question:&nbsp; How can i integrate desired driver in imx8-image?&nb=
+sp;<br /><br />Thanks in advance<br />Nikita Gupta
+
+--pRG3oTfnXDBPlNtYZkOL--
 
