@@ -1,173 +1,203 @@
-Return-Path: <joel.winarske@gmail.com>
+Return-Path: <jing.hui.tham@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85D73C6379F
-	for <webhook@archiver.kernel.org>; Fri,  3 Feb 2023 00:00:46 +0000 (UTC)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
- by mx.groups.io with SMTP id smtpd.web11.8205.1675382439375680695
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28453C636CC
+	for <webhook@archiver.kernel.org>; Fri,  3 Feb 2023 06:17:08 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by mx.groups.io with SMTP id smtpd.web11.5150.1675405018920871016
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Feb 2023 16:00:39 -0800
+ Thu, 02 Feb 2023 22:16:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=CFIjmF/K;
- spf=pass (domain: gmail.com, ip: 209.85.217.53, mailfrom: joel.winarske@gmail.com)
-Received: by mail-vs1-f53.google.com with SMTP id m1so1838567vst.7
-        for <yocto@lists.yoctoproject.org>; Thu, 02 Feb 2023 16:00:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5LHAaCK84xjj49KMw88R5CdVI9tPl4ps/rAygxcZWUs=;
-        b=CFIjmF/KDiE09gWDQX53QfCXWNBBY4aCZuzMX1Y7s+OMGPbAgkkKNQCpANCMVpriXa
-         RskfsHvivugP0+KgQwAXfgoE89jq62OCIpy4QFDF8TANSbIS+HgsNdw+DsSr0zT7T14l
-         2kMCkC/bcjWsIVc42M1GbfkvZjzqjIN8Ozkre+xhktvY/OdW7UxBfRWMCtR+hVcL9Cll
-         lGANoVMVkgT1i0fBV2hGP2dao4HYzW3W+F4+Kwlt0FE3fnTLM7igCUSz5mhlCgz21nMg
-         A/2zaYy7REfSwvmvJuyeefYXG3QqvKu0Ca991bnwmy/MVA65gIDdbtvxpR0cE4aCbk2T
-         Yvhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5LHAaCK84xjj49KMw88R5CdVI9tPl4ps/rAygxcZWUs=;
-        b=NPhNj8auYpGSi4OoGoVcXpIGvuRClkJaEN2CHDJ3EBAH0OiUr6+6j0efA25ycw3k20
-         /ojcUmSTc7y4NcPOyU7R0KPGgu2HKWaiPXqFYDLXDP050wyilrngi3FTckD/9RnYMyan
-         AO72jSoVpnaCkqFxhxkkwSAY9gtJ0wewEhIuAftqviU7WsXar/JGvQZBrXL45OmA5cYw
-         p+6VSg4j90pqltqN8Q/+rMaCbcZYeeXsYMrRfFeqIH20DSR3LgN76yDM68iSepiLjmFS
-         Y/HCNfu3v4Ob9Unhm/S/8LEeL9Z9Hn+yDM84hdO5R6vb76e7O22ahsoUlfJBCkgCz+5A
-         H4IA==
-X-Gm-Message-State: AO0yUKX05NcVrK/IWVW8iKjXXEke9MR7/81h89TNlufi/efISFhwDVJf
-	fiak7tAuiM5YPW/0ZQSE18AyFkpCS58hs0hzG2M=
-X-Google-Smtp-Source: AK7set/D7rXdoTAz9zmRhGeYO+WXn4wfVoLynzFPs9UBHlmg69L0r+D8s8FMpnyWlegeFR2ByfPceWCUrjnb1qyRIkU=
-X-Received: by 2002:a67:ce18:0:b0:3e8:de1b:53f1 with SMTP id
- s24-20020a67ce18000000b003e8de1b53f1mr1234298vsl.60.1675382438302; Thu, 02
- Feb 2023 16:00:38 -0800 (PST)
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel header.b=SXo7DuSQ;
+ spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: jing.hui.tham@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1675405018; x=1706941018;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=hootVrRVNO8Ynz1fW5/6W9W8W3Cup0omNW9v5wktayA=;
+  b=SXo7DuSQITqFDCsVyVvI/HGl5g0cQzhaj15Vw3N04wW4VCakI/pDbiS0
+   GNVFhl/E9Ltm8suV4fljNjKVWVGjoNJswMdJPHV11GRJ9xpbdaGuyVe5B
+   o2gfV3lm5T2PlBjOZ0W0U7pf+kC86EEJaknxm58MMFThxOjooD3/GxN1u
+   Morncg9pF9ef5nOnPv1nag8w9oyc+DCiJPxA/PpM0B8OTcLTxN55nUnf5
+   pjihBQqSf8gRtyqskyKm4FpO/6XNIKfRzW9SyJnkc0GLdA4dkiHPuJVEV
+   /m0qrl/NaitRxWRT9dG1aVdAUyqgMBB3geLnoO3a8yxu6nhdPahw0IQR5
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="326364307"
+X-IronPort-AV: E=Sophos;i="5.97,269,1669104000"; 
+   d="scan'208";a="326364307"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2023 22:16:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="615594679"
+X-IronPort-AV: E=Sophos;i="5.97,269,1669104000"; 
+   d="scan'208";a="615594679"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+  by orsmga003.jf.intel.com with ESMTP; 02 Feb 2023 22:16:58 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 2 Feb 2023 22:16:57 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Thu, 2 Feb 2023 22:16:57 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Thu, 2 Feb 2023 22:16:56 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B6e/hTPdokSt4PRmNSuJ+cz4/u572qn1xXZlhO7hzCU+5EuhkbF0Hg5gfED5m7NLu/LULDLGcRMvUbhn+lkPLixRkYntPTLQbROdjl6aVRS+xqO20G2b9avxXmKU8J9K1UdHQL+wMKVLZDwwdQy0VkdQav7VO7xu9hfvWmbKe5TvqPcA8kiR003RF1nGHXwUAysJvhATzrSFtUpVUuIu/E5TPgR1toQIuvmoRrr8nMsFdzCHLmD0wAl7UCW2llTRIwoVQ3o7rmw+RxKZbDuu194m8QqzZYZzBLrCCKQQtKhr0gu6aUOmRH/1lmauLigkKAw7Q9CrINKCvVbdI6Sm4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DY2Lx8Jo0knyfV8TPHcFHL7jJ8lzmQ/QffZym4qn0g0=;
+ b=C+6ihWltJ6Up3S8OzR8ZESs2yBfUfs5PVpYUS5g23VKjjZdSWCLceKEKqUuApqs7NyuD9ocnO3zaMhz8y6LhIe2a0ktVfquzOcacYjfLg4fTjlKsh+o6D2mHB+N/terjwGG4MxI/ZwjN5teYhtlJsAqCHRDRlJtkzY5E9codKISnDfW5445BxGm+tSH7tufw0lYsq1J19ehEV26cZChDzYOB24oSyPLTYHtRgXfwp5gCv75HTGv/Lr1anwKvVas3UqJrxIr6V8oqb2UMk5FwoaF72k3WPr8gpMtIVhZcIqpHc1dqQzhnsHFb+OKtxL6HnBmscLEgCZ0CrRv1WQ0KNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BY5PR11MB4152.namprd11.prod.outlook.com (2603:10b6:a03:191::11)
+ by CO1PR11MB4930.namprd11.prod.outlook.com (2603:10b6:303:9b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.25; Fri, 3 Feb
+ 2023 06:16:50 +0000
+Received: from BY5PR11MB4152.namprd11.prod.outlook.com
+ ([fe80::9e48:366c:b777:950f]) by BY5PR11MB4152.namprd11.prod.outlook.com
+ ([fe80::9e48:366c:b777:950f%5]) with mapi id 15.20.6064.027; Fri, 3 Feb 2023
+ 06:16:49 +0000
+From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
+To: Pokybuild User <pokybuild@yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: RE: [yocto] QA notification for completed autobuilder build
+ (yocto-4.0.7.rc1)
+Thread-Topic: [yocto] QA notification for completed autobuilder build
+ (yocto-4.0.7.rc1)
+Thread-Index: AQHZMqRhkr5w/Y9sC0yvL6TSIsPCWq68yHHA
+Date: Fri, 3 Feb 2023 06:16:49 +0000
+Message-ID: <BY5PR11MB4152D448571F77611FEE9845A1D79@BY5PR11MB4152.namprd11.prod.outlook.com>
+References: <01010185f57dccf8-29734aad-b7ca-410f-9a47-21affbf045d6-000000@us-west-2.amazonses.com>
+In-Reply-To: <01010185f57dccf8-29734aad-b7ca-410f-9a47-21affbf045d6-000000@us-west-2.amazonses.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY5PR11MB4152:EE_|CO1PR11MB4930:EE_
+x-ms-office365-filtering-correlation-id: 40586729-872e-4926-55ab-08db05ae3c4d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: L4urbkqVZTfau5VUvLk6KxjkJmr0VClaxw+ZHAVKh2Sv3LRZ7SDLFvF89uBBBKqjFQLehsoIsKVV+UliGnD7vjv2zRitD1xycvkq4XB6mR8RpXGpqLxGegqkK9D2rpaCbJYAmxDwMWGgFQzbyCC0yomSY1+ZxSH3+VtfkpqhUYGaRnZT5dhYuwe6ZZAvmHJfDztBjxnEVgKG/1smudFbQ6NDxpjgzOGp7blxlP5WL1uLHyOgY6wb/aUzrUEdtgXYKSGtDIPIot7QShcYHZ23Mh+S3Qg0ML/XFMp0WFNIRaiHOetNlJiREdIPsoF0TXgZ8QDcFReWMxmRTwx3CXvrPqCM7tFUii5GuJnJygIOJhmgcR0YSJPhju7bl4tJK9t137Bx+gCFWdqdbrQ9K3Q1ec18NDTEAKiCG+IiSdkb+ZLM400kSGnkSDMuEP0+vrPQK7wispCh7WZ+o02r/J+3puu26nQHb42gzdS/jTAOQjr5ZOlca21+AHqdQ3PNWpiij0zmmnnJCToIFIrQS6Sg8MmE864dHM1lRK2wi95hZ9fXfLljThY9Ift8/+i92EB464lR196U73MO5WEpKOpxY2l1wMC596QuofCYzcGpbWgPJjZyt62LQbhokYs/Y/uiSfgMub8H5Vt2cExpfrv18BnBeUVvh+NaLGW6nD9+Vwl5RsrkfzlzfRpNeC0FCagvoBFia/tIctIhfVNTtrV5mtxdKYGc0WLWEwh+L8Cf8oMJ5s6UtkCx3T+FxFXaNvzFeX31SJF3189JbfqLA33QDw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4152.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(39860400002)(346002)(396003)(376002)(136003)(366004)(451199018)(55016003)(38070700005)(122000001)(38100700002)(66946007)(82960400001)(7696005)(2906002)(8676002)(41300700001)(15650500001)(76116006)(110136005)(316002)(8936002)(5660300002)(52536014)(71200400001)(86362001)(26005)(53546011)(64756008)(478600001)(186003)(66476007)(66556008)(6506007)(9686003)(33656002)(66446008)(83380400001)(966005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?X7fhwM2Ft3GRV7LpuAer7yBpZjGxZB3MVAXsbQUruzXloQvgcqHLGwX3QGme?=
+ =?us-ascii?Q?TG5850QcNe4zIv+C5nq+L5a8WTAeAmnWMyPUipkDtBHj670z5Kt1CUqjev+P?=
+ =?us-ascii?Q?b0p29aJZ/9PGv8U6QeK+8xfgsNVQ7ErAVtrSB2ji0KYh2tttnkrMn0Z+vYMg?=
+ =?us-ascii?Q?FhtzKmj2en+5VO4exus7EoFgayXoagZ66nB3E1iFr/VUBo4QYMcNCswRPqJE?=
+ =?us-ascii?Q?+DesrY0kC5GhX7NK/rwR0uuciO3KTSJzqMGYas7bbVbc1AfiXuEWldRwROsg?=
+ =?us-ascii?Q?j2GKw4/qAXLDtwYmTbXkvIajLngSxvmVXgHO7GsSRDqXWEclwLjLChv/zxpb?=
+ =?us-ascii?Q?sV96YZ5lmT0WwSjF5YGE3tHD9bIdsw2+IyYuKFALoEy6HvmLdCqbZf/Cf40v?=
+ =?us-ascii?Q?icjqGOF7E098wi9R24DGJXy3zZXtS7cXH2ZVtoQ+u4GDeY53raMY5CVXtUHv?=
+ =?us-ascii?Q?PcqK2vnXaH8Sra7an6wKFTgN++cGzUZff+sJ5t3DFGhPiBmh4UBL1Hrw5Az4?=
+ =?us-ascii?Q?uGOKEKLQgpqxfZP9B/8CwSJEywTRrnR6Cfp03AtPwqgCyAl2/4w/d1lEspFg?=
+ =?us-ascii?Q?ng/jVLp/gCxYeA/G2t6OuvxLN9W2erPQto3BB9amYi3PW1vM16K3MLi/lWpO?=
+ =?us-ascii?Q?j6+pCVo3KuVRqi4cxmR+UWpOtUtu07WNaCKcJVu6dGLgyD2jH6uw5YgXdJ5B?=
+ =?us-ascii?Q?dU5Kel2MuyQRSTzueg+ebMDVSXmA+EvZIgkoOwfDGmRXQVRok4S+4yyC/TnB?=
+ =?us-ascii?Q?Tl+YkjPiWQqDStdBo8m/FEWGwbOkJqXCL7gVUz1xhbolabn9G/m/ekLa/6PR?=
+ =?us-ascii?Q?JDeM4s641uZiyGLKmBLl4jn1A0K5LK8N6V7PcrSU+KCy1GHi4C8MCUBDFhDz?=
+ =?us-ascii?Q?rsZTTNiMvpZrRmmB4JU6SnJPArqflNQVGQhN+bKBBgCF0uq+C2yXcZpvQkWC?=
+ =?us-ascii?Q?E1hzoVk7x4O8PFAxPaVbv75Hm2+sLdyVuk4MLwAuzdUyAQYl+dbCTDPsESYW?=
+ =?us-ascii?Q?QUXVTPWp2zbjcSVRoO/eWJsgceD2py2NMCQ0W5qVla9OwTZ4kLkCIXtZbTux?=
+ =?us-ascii?Q?Dtt16B9ozwTPl43DC6bNOgEtAEzI2YR4V4UaTG7bbWXWXR2BrBncdtwSqXJD?=
+ =?us-ascii?Q?9qceSTV8P6OXJlKlAv3IpHEd3hj9uw1mGM2CLXYn+1PBD6XgH+1+xQkZrSLA?=
+ =?us-ascii?Q?kj+o1M04RinJ0Tx3/JWWHZhW8zlhJUYFF0bUBEzOu24ZufFnG5jv2HUBBQIt?=
+ =?us-ascii?Q?Pz8PyE3W+S6OfEEgvEXIaEoMQKVXEPoDVrOIVUMzsR6v5iboRxhNMYO4Kk5K?=
+ =?us-ascii?Q?+Q2pbrI9heahr4TeZpoiEHIQPwOTtCQ4QFdy5bqG+cnEgZn2UIa9MLP5xZHx?=
+ =?us-ascii?Q?DRKZFSpAAEvNeiFkb1ZT1/UhSMqOkrvffjM+NWWYQzgySlskT2Xm4K9V+IsT?=
+ =?us-ascii?Q?fcA/yeJj8uQBLXFz37DgRmevS2IBX9dRGLPrqa+9JxMgqC33ECEucIWNqPua?=
+ =?us-ascii?Q?TSsAL0xY3HRniawA+ljFOceErge5yQfhfl3AMCv5Uc7YtTjWmpRr6TWcB3qy?=
+ =?us-ascii?Q?NL7unwaIrZLlZG2RnjZUhm0K1MJcscAv5q1jn8q3?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <CABKMkPLAZQBE7kZfxxLX0RLdtv6kd2fYMXkE2XH_n8fz3o_onQ@mail.gmail.com>
- <1601.1675333465508890012@lists.yoctoproject.org>
-In-Reply-To: <1601.1675333465508890012@lists.yoctoproject.org>
-From: Joel Winarske <joel.winarske@gmail.com>
-Date: Thu, 2 Feb 2023 16:00:27 -0800
-Message-ID: <CABKMkPKaoqM8U0CShdQxRk+a6iYWNqqd-ADuP9_z==x9ZW31_Q@mail.gmail.com>
-Subject: Re: [yocto] [meta-raspberrypi] Is Preempt-rt still supported in
- master / latest releases?
-To: Carles.SoleMendi@de.bosch.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000001918dd05f3c05fb0"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4152.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40586729-872e-4926-55ab-08db05ae3c4d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2023 06:16:49.6737
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /ABVDXmiEuGe+KF9R3Q/kVjpmfJLesusaO5HH2XZ3WifNIb0aumCyONd8X+OLF5BngxnvektE2wl4jEA/qQHHA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4930
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 03 Feb 2023 00:00:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59152
+ <yocto@lists.yoctoproject.org>; Fri, 03 Feb 2023 06:17:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59153
 
---0000000000001918dd05f3c05fb0
-Content-Type: text/plain; charset="UTF-8"
+Hi All,
+=20
+QA for yocto-4.0.7.rc1 is completed. This is the full report for this relea=
+se: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
+=20
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects.
+=20
+No new issue found.=20
+=20
+Thanks,
+Jing Hui
 
-In the case of kirkstone, this is what I get using `LINUX_KERNEL_TYPE =
-"preempt-rt"`:
 
-    Linux raspberrypi4-64 5.15.34-v8 #1 SMP PREEMPT Tue Apr 19 19:21:26 UTC
-2022 aarch64 aarch64 aarch64 GNU/Linux
 
-I've experienced KERNEL_FEATURE conflicts using meta-virtualization with
-DISTRO_FEATURES += "virtualization kvm" with meta-raspberrypi.  Where the
-fragment applied is not compatible with Aarch64, and it just disables the
-linux-raspberrypi default config.  It's quite possible you are also
-experiencing something similar.  I would check the kernel build logs and
-see what fragments are being applied, and if there are any complaints with
-any of them.  The error may be a single line in a log file, and not
-entirely descriptive.  More context here:
-https://github.com/agherzan/meta-raspberrypi/pull/1141
-
-Working CI job:
-https://github.com/meta-flutter/meta-flutter/blob/kirkstone/.github/workflows/kirkstone-rpi4-64-vulkan.yml
-
-On Thu, Feb 2, 2023 at 2:24 AM Carles Sole via lists.yoctoproject.org
-<Carles.SoleMendi=de.bosch.com@lists.yoctoproject.org> wrote:
-
-> Hello Joel,
->
-> thanks for your reply. I was not aware about this possibility. I have
-> tried it and the preemptive rt kernel is built instead of standard
-> ("linux-raspberrypi4_64-preempt-rt-build" is available in
-> build/work/linux-raspberrypi/...) but still the configuration file does not
-> set the CONFIG_PREEMPT_RT=y for raspberrypi4-64, even if a .cfg is added
-> using a .bbappend file. So in the end the RT option is not enabled.
->
-> Any idea why it works for raspberrypi4 but not for raspberrypi4-64?
->
-> Best Regards,
-> Carles
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59145):
-> https://lists.yoctoproject.org/g/yocto/message/59145
-> Mute This Topic: https://lists.yoctoproject.org/mt/96470693/2167248
-> Mute #raspberrypi:
-> https://lists.yoctoproject.org/g/yocto/mutehashtag/raspberrypi
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> joel.winarske@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---0000000000001918dd05f3c05fb0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">In the case of kirkstone, this is what I get using <span c=
-lass=3D"gmail-im">`LINUX_KERNEL_TYPE =3D &quot;preempt-rt&quot;</span>`:<br=
-><br><div>=C2=A0=C2=A0=C2=A0 Linux raspberrypi4-64 5.15.34-v8 #1 SMP PREEMP=
-T Tue Apr 19 19:21:26 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux</div><div>=
-<br></div><div>I&#39;ve experienced KERNEL_FEATURE conflicts using meta-vir=
-tualization with DISTRO_FEATURES +=3D &quot;virtualization kvm&quot; with m=
-eta-raspberrypi.=C2=A0 Where the fragment applied is not compatible with Aa=
-rch64, and it just disables the linux-raspberrypi default config.=C2=A0 It&=
-#39;s quite possible you are also experiencing something similar.=C2=A0 I w=
-ould check the kernel build logs and see what fragments are being applied, =
-and if there are any complaints with any of them.=C2=A0 The error may be a =
-single line in a log file, and not entirely descriptive.=C2=A0 More context=
- here:=C2=A0 <a href=3D"https://github.com/agherzan/meta-raspberrypi/pull/1=
-141">https://github.com/agherzan/meta-raspberrypi/pull/1141</a><br><br></di=
-v><div>Working CI job:=C2=A0 <a href=3D"https://github.com/meta-flutter/met=
-a-flutter/blob/kirkstone/.github/workflows/kirkstone-rpi4-64-vulkan.yml">ht=
-tps://github.com/meta-flutter/meta-flutter/blob/kirkstone/.github/workflows=
-/kirkstone-rpi4-64-vulkan.yml</a></div></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 2, 2023 at 2:24 AM Carle=
-s Sole via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org=
-</a> &lt;Carles.SoleMendi=3D<a href=3D"mailto:de.bosch.com@lists.yoctoproje=
-ct.org">de.bosch.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex">Hello Joel,<br><br>thanks for yo=
-ur reply. I was not aware about this possibility. I have tried it and the p=
-reemptive rt kernel is built instead of standard (&quot;linux-raspberrypi4_=
-64-preempt-rt-build&quot; is available in build/work/linux-raspberrypi/...)=
- but still the configuration file does not set the CONFIG_PREEMPT_RT=3Dy fo=
-r raspberrypi4-64, even if a .cfg is added using a .bbappend file. So in th=
-e end the RT option is not enabled.<br><br>Any idea why it works for raspbe=
-rrypi4 but not for raspberrypi4-64?<br><br>Best Regards,<br>Carles
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#59145): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59145" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/59145</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/96470693/2167=
-248" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/96470693/2167248</a><br>
-Mute #raspberrypi:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehas=
-htag/raspberrypi" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/mutehashtag/raspberrypi</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:joel.winarske@gmail.com" target=3D"_blank">joel.=
-winarske@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---0000000000001918dd05f3c05fb0--
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> Behalf Of Pokybuild User
+> Sent: Saturday, 28 January, 2023 7:09 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [yocto] QA notification for completed autobuilder build (yocto-
+> 4.0.7.rc1)
+>=20
+>=20
+> A build flagged for QA (yocto-4.0.7.rc1) was completed on the autobuilder
+> and is available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-4.0.7.rc1
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 7e268c107bb0240d583d2c34e24a71e373382509
+> meta-agl: b9d4796f44a56c6a9c8233d82e46c251a82f6020
+> meta-arm: ce41be0a7fe7c6f5fd2155866980388d3c83389f
+> meta-aws: 9d9400b03c22839398756f505491718392907266
+> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+> meta-intel: f529e0594a784546926e89ce8e78385e00d0b0a9
+> meta-mingw: a90614a6498c3345704e9611f2842eb933dc51c1
+> meta-openembedded: 1f31570d0795da90083d1dbf28127c90908e30ee
+> meta-virtualization: 9a94fa2ad76990b0eca40837a98aaf4cd83a7248
+> oecore: a8c82902384f7430519a31732a4bb631f21693ac
+> poky: 65dafea22018052fe7b2e17e6e4d7eb754224d38
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
 
