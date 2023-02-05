@@ -1,65 +1,76 @@
-Return-Path: <simonkbaby@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 251ECC63797
-	for <webhook@archiver.kernel.org>; Sun,  5 Feb 2023 04:15:25 +0000 (UTC)
-Subject: Re: error when try to use sudo command in recipe
-To: yocto@lists.yoctoproject.org
-From: "SIMON BABY" <simonkbaby@gmail.com>
-X-Originating-Location: Los Angeles, California, US (108.184.2.131)
-X-Originating-Platform: Windows Chrome 109
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29866C636CC
+	for <webhook@archiver.kernel.org>; Sun,  5 Feb 2023 07:38:26 +0000 (UTC)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web10.24917.1675582703413093913
+ for <yocto@lists.yoctoproject.org>;
+ Sat, 04 Feb 2023 23:38:23 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=TdUYd7Jf;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id u12so13680629lfq.0
+        for <yocto@lists.yoctoproject.org>; Sat, 04 Feb 2023 23:38:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8fupz0lB1Pv4Fs3TtRfBnhOKQpO1wpxaPi60qcPNNuA=;
+        b=TdUYd7JfpHhE6HvcZs2XREzC8UE9u4guo3kv82hwPzHvuutnVlqvJAoMeTDNqHPmtB
+         reUDbDdSRO0aW/4uxOqVtR5Lump9h/v9qKOU6uXKH+J/VG1td9TONp5suU9RFfd8bqU8
+         CQpoI1OCBEEvhC0r1E+nFkFoi212CuJ4OtY9vRWV4tzOT7wVt40LV0vsdkOIG8QsqwPc
+         BkSpKnoTzewj0Y7zwnhKjNKwitn8uHwHUCXRUDG+B/ZEVkI/i5K97DDiVoDeC220lIDl
+         t3hAYEs02pjEIJktG4RBUGRwsQr1JzBU4IR0+MyO7xOYrJ/a5ZJj4uomwdgadC5JL9a3
+         F0qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8fupz0lB1Pv4Fs3TtRfBnhOKQpO1wpxaPi60qcPNNuA=;
+        b=hDdeusp9FXgWXxhbAG9rSeA1sHB9eOkXjnbMlIgyFDSqJKsPscQh6nFQmfR06SEvXR
+         JERrSmd/oMJRAA4ySMgzjZO6NBbiF4q7OLGH09yPHBY5qmK9iT9AbfWyH9sM0K+Mz1nd
+         g8ZeWkzkWIgTOZEw/HIkgcHC6sxYmr5XZGR/j7/3072vBuKiDzHWFmRd5lkhSCCpv8LA
+         rwns0FfdYD9Ng70xi2wJJ7LcGxNW/jlr/JQIdge01/ZJlebe+gTCBU7m3vdtM8q6MuX7
+         A7Z6j2G6v97jppO81GwJC/bPbhkt0HV5dTnsGsL5XYfIaRaOHpEIvxwo72mPoZ8XYb0+
+         BUiA==
+X-Gm-Message-State: AO0yUKXxpmoS5cdJPTEDWO8pRNZqtEoDnXGX51YAIjgVpTruKCKYr5Vt
+	fBl/X8ikmqzNJqMCVtS2biCVsrX0ikqncU5K9yw=
+X-Google-Smtp-Source: AK7set9T2dVmmlRmLSz0VH0FN4i2T4mU8pjbaAq6FLArPq3wVzZaNlFnh7pw6Ij58Ca2vtMjF+3ck4TCUO7CFOCvtKo=
+X-Received: by 2002:a19:4f54:0:b0:4d5:a652:e2b2 with SMTP id
+ a20-20020a194f54000000b004d5a652e2b2mr2382042lfk.154.1675582701482; Sat, 04
+ Feb 2023 23:38:21 -0800 (PST)
 MIME-Version: 1.0
-Date: Sat, 04 Feb 2023 20:15:18 -0800
 References: <3db8e6a5ee0f9dd0afecef56bba62bee283885b7.camel@linuxfoundation.org>
-In-Reply-To: <3db8e6a5ee0f9dd0afecef56bba62bee283885b7.camel@linuxfoundation.org>
-Message-ID: <32073.1675570518496655471@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="gHfEQV7ED32xi8Kqdjef"
+ <32073.1675570518496655471@lists.yoctoproject.org>
+In-Reply-To: <32073.1675570518496655471@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Sun, 5 Feb 2023 08:38:10 +0100
+Message-ID: <CANNYZj86Ozk=LBcKQtkVHRb5g+EAwdmPHTCNLCyX-GJKfWjaGg@mail.gmail.com>
+Subject: Re: [yocto] error when try to use sudo command in recipe
+To: SIMON BABY <simonkbaby@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 05 Feb 2023 04:15:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59165
+ <yocto@lists.yoctoproject.org>; Sun, 05 Feb 2023 07:38:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59166
 
---gHfEQV7ED32xi8Kqdjef
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Sun, 5 Feb 2023 at 05:15, SIMON BABY <simonkbaby@gmail.com> wrote:
+> Thank you for the reply.
+>  I was trying to add the layer https://github.com/savoirfairelinux/meta-embedded-containers in my yocto build. Below recipe uses sudo commands.
+>
+> https://github.com/savoirfairelinux/meta-embedded-containers/blob/b131baa90291c159d3a725b8d66786c85964556c/recipes-support/container-image/container-image.bb
+>
+> while building it fails at sudo command and getting the error below.
+>
+> sudo: /usr/bin/sudo must be owned by uid 0 and have the setuid bit set
 
-Hi Richard,
-Thank you for the reply.
-I was trying to add the layer https://github.com/savoirfairelinux/meta-embe=
-dded-containers in my yocto build. Below recipe uses sudo commands.
+That layer is not maintained and you should not be using it. If you
+want to use containers, meta-virtualization is the supported way.
 
-https://github.com/savoirfairelinux/meta-embedded-containers/blob/b131baa90=
-291c159d3a725b8d66786c85964556c/recipes-support/container-image/container-i=
-mage.bb
-
-while building it fails at sudo command and getting the error below.
-
-sudo: /usr/bin/sudo must be owned by uid 0 and have the setuid bit set
-
-Regards
-Simon
-
---gHfEQV7ED32xi8Kqdjef
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Richard,<br />Thank you for the reply.<br />&nbsp;I was trying to add th=
-e layer&nbsp;<a href=3D"https://github.com/savoirfairelinux/meta-embedded-c=
-ontainers" target=3D"_blank" rel=3D"noopener">https://github.com/savoirfair=
-elinux/meta-embedded-containers</a>&nbsp;in my yocto build. Below recipe us=
-es sudo commands.&nbsp;<br /><br /><a href=3D"https://github.com/savoirfair=
-elinux/meta-embedded-containers/blob/b131baa90291c159d3a725b8d66786c8596455=
-6c/recipes-support/container-image/container-image.bb" target=3D"_blank" re=
-l=3D"noopener">https://github.com/savoirfairelinux/meta-embedded-containers=
-/blob/b131baa90291c159d3a725b8d66786c85964556c/recipes-support/container-im=
-age/container-image.bb</a><br /><br />while building it fails at sudo comma=
-nd and getting the error below.<br /><br /><span style=3D"white-space: pre-=
-wrap;">sudo: /usr/bin/sudo must be owned by uid 0 and have the setuid bit <=
-/span><span style=3D"white-space: pre-wrap;">set<br /><br /></span>Regards<=
-br />Simon
-
---gHfEQV7ED32xi8Kqdjef--
+Alex
 
