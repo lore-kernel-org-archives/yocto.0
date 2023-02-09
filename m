@@ -1,98 +1,92 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <electronicconsult1@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 722DEC61DA4
-	for <webhook@archiver.kernel.org>; Thu,  9 Feb 2023 11:00:41 +0000 (UTC)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
- by mx.groups.io with SMTP id smtpd.web11.11714.1675940433013998834
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B823BC61DA4
+	for <webhook@archiver.kernel.org>; Thu,  9 Feb 2023 12:40:57 +0000 (UTC)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+ by mx.groups.io with SMTP id smtpd.web10.13372.1675946451896760188
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Feb 2023 03:00:33 -0800
+ Thu, 09 Feb 2023 04:40:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=JQANbd6V;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.41, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f41.google.com with SMTP id by3so41228wrb.10
-        for <yocto@lists.yoctoproject.org>; Thu, 09 Feb 2023 03:00:32 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=F8YZ+Z96;
+ spf=pass (domain: gmail.com, ip: 209.85.128.180, mailfrom: electronicconsult1@gmail.com)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-52eb7a5275aso12937997b3.2
+        for <yocto@lists.yoctoproject.org>; Thu, 09 Feb 2023 04:40:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ijh4grAnKQB+vZsVw/RoWcbacR+7oXXB8GD2uDRpjyQ=;
-        b=JQANbd6Vru+jfRDfdFSCRVofIOKahc3g329HAXWP6Mtp2P+BGsSM26f6QL7R7QftBR
-         b4LofvPZkj0DgrFN2D7zNFLDal1s42ipK8u2cdOIimxu0k+Iq61o//ajDfeIMntTw58D
-         FAQ03dH8JVSHrAq3Ai5cAbJAPI5wvFkjMRFqM=
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AYaWKcZWfo9ZpCsjvnfaTurmfLNza1gOU3S6W/ps1mk=;
+        b=F8YZ+Z96aSBcGhnaf+zCK+w6PjbC+jJWDhLlvi2WP6LyU0bNS0FxhZrOQ5lCxdVYTB
+         pUKIFd8IjovjwN4Du8LhQUi3X6p9TMx+MxXP1H8TIsRHWrdjTVvxnKwos6ZGPVctLVSD
+         rSf0Yu9WyXhHyzOV8NMpXy6KmNxLKJX5Y8ot+mffOyaJYbkRQJKA9f4TuXDNSFmu9Sfa
+         X5N0plkU2LvOw94aZ/Z6zvLh2/P71khREWD+oIhaSqu9SKKEeaci5UydJ5mNzNnyQ3Gs
+         irZJMKyLnV07dYWKgHyDTr4lMC/zPAGb+g+RAdjZqntlO3ZQTXAXleGmlzpGNYkvfadT
+         PqjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ijh4grAnKQB+vZsVw/RoWcbacR+7oXXB8GD2uDRpjyQ=;
-        b=NtCOTEVpD5kxG+zwFv1g2gim4AOx35dkDK5CDqJBKcikOUaJp0Ovskhoz3YqJUBh+M
-         z04IxdPZmHwDnSnyh8hYuIpWwWtT7R26mKcgb21/qhrHUoSpr4q/97dlZ9CVcrIyY6S7
-         HY/WH2hTWrZc55HZdeVeN4Fg+lwuPzwKUZWHAueIC485dgNp5Q0j1sLgxwzEx75ltnoa
-         aEURYYdwu8SW/c+WEa2+vyy4ebX/VTCvjSiMoCoFwG5H8iaO1dOOC+iaFJ1R1bluhzlX
-         ehrNleK7R95vGjg+vFfKZCOAmarc/H4FhUM06XIeagLUs+S1RSNozlydGt5j+5r5EiH+
-         Ux2w==
-X-Gm-Message-State: AO0yUKXsBn0hgNj1Qvp/PdL7G8ecjNejeiMV1AfyVu6/3iLwNbH5C4Bq
-	WgTccXKJDNvfESQvylwx9f6/dg==
-X-Google-Smtp-Source: AK7set/4zP9KwpEzk0P9MJv+PPo/aWVvurI5EYb9GRhiJacf32IpBz4bdmbUMo+XzUBYGVZerj/8+Q==
-X-Received: by 2002:a5d:4107:0:b0:2c4:9b2:b4e2 with SMTP id l7-20020a5d4107000000b002c409b2b4e2mr1927795wrp.19.1675940431389;
-        Thu, 09 Feb 2023 03:00:31 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:29cf:6f5:fc42:8eb4? ([2001:8b0:aba:5f3c:29cf:6f5:fc42:8eb4])
-        by smtp.gmail.com with ESMTPSA id d15-20020a5d6dcf000000b002c3f9404c45sm978107wrz.7.2023.02.09.03.00.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 03:00:30 -0800 (PST)
-Message-ID: <d368d084803c72f68105dd1cefed730bafd40330.camel@linuxfoundation.org>
-Subject: Re: [yocto] [meta-oe][dunfell]nativesdk-postgresql - causing chown:
- invalid user: 'postgres:postgres'
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: alexander.rodatos@brose.com, yocto@lists.yoctoproject.org
-Cc: Steve Sakoman <steve@sakoman.com>
-Date: Thu, 09 Feb 2023 11:00:30 +0000
-In-Reply-To: <YVtP.1675929919976550265.0bXA@lists.yoctoproject.org>
-References: <YVtP.1675929919976550265.0bXA@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.1-0ubuntu1 
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AYaWKcZWfo9ZpCsjvnfaTurmfLNza1gOU3S6W/ps1mk=;
+        b=29na4OaDA/iMVaZEAmdY1k3qe4NtjXfKKK+ksfMEPjztJJmZeKHMbZHvG0n6mBjiqR
+         4+4TQT5k9sMKl9Kv9wTEDLztI/Xm7QvTmRy2ELY7sMDWRWn8NH1YtPfXddXCmTo24gvd
+         RdFSSdTZUkx60wxd22pQnr6ggotqQ1fqQAir5deH5cLsOw8Z5DPGvQRwhbxVPF4+1OE7
+         hLJdawINmcXkBvspoUOkeXkUF31BN8eK3z1Xcd4lHwyDU6DUkrKxOaOZsaDE1BDE9pQ8
+         cvin5s9T/4DmP3X6mUpjwtsiIxsV+3jFCT/IgnicseU72abbL9ztN6twD0dYF+oBjRfd
+         Hilg==
+X-Gm-Message-State: AO0yUKWu3m+2/+cSYybAX581yjrDDIlfiebhKEItlfkVcXiIZ+tU3LJA
+	lY9Q89j6pOJiddqPVnmGxpdD9oXVPBKLND4YmM0mlbbXGJY=
+X-Google-Smtp-Source: AK7set+Qd1nHn/N6UbdBxFdR+N5kqzdhONofx4BaUdXaU8MuZzOUI8SoWtJHEkLqqPOj1bKKuuCahUEz02fCiD6Rfbo=
+X-Received: by 2002:a81:6ec2:0:b0:527:bd74:994c with SMTP id
+ j185-20020a816ec2000000b00527bd74994cmr1455945ywc.60.1675946451109; Thu, 09
+ Feb 2023 04:40:51 -0800 (PST)
 MIME-Version: 1.0
+References: <CAGUWaEEpyN=u5-S68jNmduhKcv7nCvmCD0VYHXCJkfYcnUqfmg@mail.gmail.com>
+In-Reply-To: <CAGUWaEEpyN=u5-S68jNmduhKcv7nCvmCD0VYHXCJkfYcnUqfmg@mail.gmail.com>
+From: Electronic Consult <electronicconsult1@gmail.com>
+Date: Thu, 9 Feb 2023 12:40:40 +0000
+Message-ID: <CAGUWaEE7vOziQSdg1bb8QgHq1mgd9JiOsQvhdtgOXybscz6NAA@mail.gmail.com>
+Subject: AWS S3 bucket access from a C++ application?
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000e18b5805f443b05d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 09 Feb 2023 11:00:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59202
+ <yocto@lists.yoctoproject.org>; Thu, 09 Feb 2023 12:40:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59203
 
-On Thu, 2023-02-09 at 00:05 -0800, alexander.rodatos@brose.com wrote:
-> Hello,
->=20
-> i am trying to install the PostgreSQL and the development package
-> (postgresql-server-dev) as part of the SDK.=C2=A0
->=20
-> I added via bbappend BBCLASSEXTED_append =3D "nativesdk" to the
-> postgresql_12.9.bb.=C2=A0
->=20
-> I can build an image for a raspberry 4 pi.=C2=A0
-> However when i try to populate the sdk it stops with an error during
-> the do_install() for PostgreSQL:
-> | chown: invalid user: =E2=80=98postgres:postgres=E2=80=99
-> | WARNING: exit code 1 from a shell command.
->=20
-> This happens when the owner for pgsql libs is changed to the user
-> postgres.=C2=A0
-> I did create a the user manually on the host system but this didn't
-> help with the problem.=C2=A0
->=20
-> If i build the image itself it works flawlessly.=C2=A0
-> =C2=A0
-> Any ideas what I'm doing wrong?
+--000000000000e18b5805f443b05d
+Content-Type: text/plain; charset="UTF-8"
 
-I suspect this was solved with=C2=A0
+Hello all,
 
-https://git.yoctoproject.org/poky/commit/?id=3D8dd0a45c858290288e1a1fef046b=
-5cfcf7ff6257
+I have a device on which the main application is a C++ based GUI. I'm
+working on implementing an A/B update strategy using swupdate with the
+firmware being hosted on a AWS S3 bucket. The user needs to be able to use
+the GUI to check for updates & if available apply them (I can implement
+this by passing the filename to the swupdate client).
 
-Cheers,
+I see AWS have their own layer but can anyone point to a strategy/ resource
+on how to query files in an S3 bucket from a C++ application?
 
-Richard
+Many thanks,
 
+--000000000000e18b5805f443b05d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" =
+class=3D"gmail_attr">Hello all,<br></div><div dir=3D"ltr"><div><br></div><d=
+iv>I have a device on which the main application is a C++ based GUI. I&#39;=
+m working on implementing an A/B update strategy using swupdate with the fi=
+rmware being hosted on a AWS S3 bucket. The user needs to be able to use th=
+e GUI to check for updates &amp; if available apply them (I can implement t=
+his by passing the filename to the swupdate client). <br></div><div><br></d=
+iv><div>I see AWS have their own layer but can anyone point to a strategy/ =
+resource on how to query files in an S3 bucket from a C++ application?</div=
+><div><br></div><div>Many thanks,<br></div></div>
+</div></div>
+
+--000000000000e18b5805f443b05d--
 
