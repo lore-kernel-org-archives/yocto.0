@@ -1,170 +1,87 @@
-Return-Path: <leon@sidebranch.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2B59C64ED8
-	for <webhook@archiver.kernel.org>; Fri, 17 Feb 2023 15:41:24 +0000 (UTC)
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
- by mx.groups.io with SMTP id smtpd.web10.9577.1676648481291452754
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0EBBEC636D6
+	for <webhook@archiver.kernel.org>; Fri, 17 Feb 2023 16:12:55 +0000 (UTC)
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+ by mx.groups.io with SMTP id smtpd.web10.10437.1676650367682860142
  for <yocto@lists.yoctoproject.org>;
- Fri, 17 Feb 2023 07:41:22 -0800
+ Fri, 17 Feb 2023 08:12:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20210112.gappssmtp.com header.s=20210112 header.b=yueJlEkx;
- spf=softfail (domain: sidebranch.com, ip: 209.85.208.50, mailfrom: leon@sidebranch.com)
-Received: by mail-ed1-f50.google.com with SMTP id cz7so2384341edb.12
-        for <yocto@lists.yoctoproject.org>; Fri, 17 Feb 2023 07:41:20 -0800 (PST)
+ dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112 header.b=mNApcpCf;
+ spf=softfail (domain: sakoman.com, ip: 209.85.216.41, mailfrom: steve@sakoman.com)
+Received: by mail-pj1-f41.google.com with SMTP id q5-20020a17090a1b0500b00229ca6a4636so1974172pjq.0
+        for <yocto@lists.yoctoproject.org>; Fri, 17 Feb 2023 08:12:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PSsvyOAJ/EXuvB0k9+vdE32GGa+uIWx2Tf48kxeVsTc=;
-        b=yueJlEkxcuggEONycmtNyFGGH/rFiyQ2Rk0CYnIxEfwcL4fiPCeT0nlcc5t7DphWzL
-         PyeSYSkxhT67uLWwHONGGDqB4bgpsMof9xlxQDJJpo41MUXwCMFNs1KZZtyKQPOhSUQR
-         KXZ+DJGsWJF+YZMV1L3WG045Neg76j6vDaYjn25rGb5ueZ4EzwvqSecqOlkGYIa3rvUo
-         vCayCx0mLTkTJ2cGe97jrxEqlwpSUA5oaDSZvfLQRy+YJyym8Y7XPDu0Zs0n73rAY0cg
-         xZ3JtibzouZZMzLSSy/EtboN+DUmbSwWKs3gvaWpzWRm61+gT2E6S4Q3XB3Stfp3UkbK
-         mIVg==
+        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hFDQnA8g4TKpdTuBjKVYBmd+io9iWZm/qPBKXXKMCLw=;
+        b=mNApcpCfM917YmWLs+3Txhi1J2VaQIxqNLcgYYzRaGvJaTcZ8rM7Irdh3JptRp5uf0
+         U5tMJzfb3qfw5VZtW7k9qr/15htnC1UUrNLhRa3c1LKWevlF75gpzuuA0UOd7juXAZW6
+         lqY5cOHnX9afVU4k3ryYwPzTFKzpPfXqxCCW4jBMqIKJqIINvBBBbFl2lifSEzqt7Jeq
+         0Y05rPhtf0ed0QQLIgWxXWZxtZpN9o3rzpevPMdL9w0vDgeNlHlblRZxAbRNayT5GGg5
+         Zwwgh7XkADEzJvrdxEy3dj+Bg7loOIglAfOtKlLoo84GSsq1LwDIThvthSx/R/plC6jN
+         pnog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PSsvyOAJ/EXuvB0k9+vdE32GGa+uIWx2Tf48kxeVsTc=;
-        b=f8D0neTND+BxqbJcFJQcrBl3abjaZ4edvW9Wou9x8+jmJy8xIwkOHXw+BKetNqHA81
-         Y+Spfuqg/jSzQE3sLVkZx7CJn3iZ04DE5TgWYcOhC4VeYX64OpTMutEax7m264mttWQG
-         JmW3WKmp6LTcVAl0GlDW3yipuP6UyVZpyQPsm2uWQ0jk8jKL1szvM9C3KaYmPnSfFto9
-         qwDUjSyaYSj4+Tlrs3496nbqsD84fQoaSwI9Ur+bt9YxJ1cgwiHQlt07Owvg/JbzDlSM
-         c7tYlUb8BkgKmS3GYuPNA0Do5zhhvNI3fhJ2joQAG4OQ7VZsWjtJe240Ql/dSXLx1h8/
-         TJhg==
-X-Gm-Message-State: AO0yUKXOcloV0B0j2c0HL8tOZZBoqr6XAm7Kq89Mqjvg2p/YXs8dnA1J
-	oR9oUq7B4JXnxEmciZBTYHWK6Yly9aB/D17Im6n7wg==
-X-Google-Smtp-Source: AK7set/56aS1BY9+QqJs/SbLtgl30IiJ9fZdt0M2TiPT6JADxRuGyU46wwu9wzx613oRvvw7QGs75nvEFvSjoD/fgMM=
-X-Received: by 2002:a05:6402:1f12:b0:4ab:4bce:1a1f with SMTP id
- b18-20020a0564021f1200b004ab4bce1a1fmr4297204edb.3.1676648479471; Fri, 17 Feb
- 2023 07:41:19 -0800 (PST)
+        bh=hFDQnA8g4TKpdTuBjKVYBmd+io9iWZm/qPBKXXKMCLw=;
+        b=LpAgK+IKxNCAGvW2QZu16fMUUgNvpheR8w+wqMMXyQxIzzkJ40+FCGbwJbTjkBleaR
+         JVCsl5w2ZNtj03Vd2RIQ/LW9bw8lixcM525AuIkMqNj3Iyv4ez4Os8xOsm4akREA42zs
+         NzzzobJKiW9bZ87RGtWZQYNWb8xkS5WT2rkDxcCXRgdzaOdfS4hjynKtx1NgWOtWTeUN
+         aBrTwE85JVsHDun+yER1ycxdW/GFwCGTPVh+QOTt6mgyoOJLdUo5MeE2FOg2YTsrq7Se
+         rtZR0/6Z+d12MGkFzWh6m4fawms9VVHnmHXSvbPFHPWlEAktVsBCIdwmVrQAfk0eh22o
+         YKCQ==
+X-Gm-Message-State: AO0yUKXadsbxll2W4TuhK7UIH+QAwRzbENqe9wOU5wdAugqKGZcVlxcg
+	OnQE9sLr00CjzT0VU0c1zVM9cQJCHI+1cSHAIWk=
+X-Google-Smtp-Source: AK7set/gKGZN0zy/uUc5NnzIWZzTb4vWZ0j/1zhj861dHh411AkQYDXPGQIZ7gIUhKqGV0QO5gFtQA==
+X-Received: by 2002:a05:6a20:1441:b0:c6:cef3:eb99 with SMTP id a1-20020a056a20144100b000c6cef3eb99mr1051167pzi.10.1676650366330;
+        Fri, 17 Feb 2023 08:12:46 -0800 (PST)
+Received: from hexa.router0800d9.com (dhcp-72-253-4-112.hawaiiantel.net. [72.253.4.112])
+        by smtp.gmail.com with ESMTPSA id c2-20020aa78802000000b005a817973a81sm3252876pfo.43.2023.02.17.08.12.45
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Feb 2023 08:12:45 -0800 (PST)
+From: Steve Sakoman <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder2][dunfell] config.py: add ubuntu2204 to workers_prev_releases for dunfell
+Date: Fri, 17 Feb 2023 06:12:39 -1000
+Message-Id: <35ddb3a81268a89a0e34fdb7b33a3e3b9f162090.1676650289.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1676650289.git.steve@sakoman.com>
+References: <cover.1676650289.git.steve@sakoman.com>
 MIME-Version: 1.0
-References: <D36X.1676610504336239737.JLfk@lists.yoctoproject.org>
- <CAMSfU+6Vi+ff0sog4EvyTYZQEAaGnUXMDdoe5+ns=T30N-a1iQ@mail.gmail.com>
- <CANNYZj_gGvuJQhPD26C=v9ywja6UwYDa6O=b5CJkdHkJh_bKMQ@mail.gmail.com> <Y++L0sgJGNkyElAq@mail.local>
-In-Reply-To: <Y++L0sgJGNkyElAq@mail.local>
-From: Leon Woestenberg <leon@sidebranch.com>
-Date: Fri, 17 Feb 2023 16:41:08 +0100
-Message-ID: <CAMjhiJin+QBUOFRdBLpKOAfFbR-CMUUhtEkD5jkKPmR5qVQOWQ@mail.gmail.com>
-Subject: Re: [yocto] Importance of ECC RAM on the build computer
-To: alexandre.belloni@bootlin.com
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>, Yoann Congal <yoann.congal@smile.fr>, 
-	davidskeck@fastmail.com, yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 17 Feb 2023 15:41:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59242
+ <yocto@lists.yoctoproject.org>; Fri, 17 Feb 2023 16:12:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59243
 
-Hello,
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ config.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Interesting question, and I especially would like to hear on the MTBF
-*measured* through the ECC detection algorithm. It can usually detect
-more errors than it can correct, and I wonder if the systems admin are
-notified when bitflips where detected.
+diff --git a/config.py b/config.py
+index f6dde69..6ff6bb4 100644
+--- a/config.py
++++ b/config.py
+@@ -159,7 +159,7 @@ workers_prev_releases = {
+     "honister" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "ubuntu2110", "ubuntu2204", "perf-"),
+     "hardknott" : ("centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora31", "fedora32", "fedora33", "fedora34", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
+     "gatesgarth" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
+-    "dunfell" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "fedora36", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
++    "dunfell" : ("alma8", "centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "fedora35", "fedora36", "opensuse150", "opensuse151", "opensuse152", "opensuse153", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "ubuntu2204", "perf-"),
+     "zeus" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+     "warrior" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+     "thud" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+-- 
+2.34.1
 
-
-Regards,
-
-Leon.
-
---=20
-Leon Woestenberg
-leon@sidebranch.com
-T: +31 40 711 42 76
-M: +31 6 472 30 372
-
-Sidebranch Embedded Systems
-Eindhoven, The Netherlands
-http://www.sidebranch.com
-
-
-
-On Fri, Feb 17, 2023 at 3:14 PM Alexandre Belloni via
-lists.yoctoproject.org
-<alexandre.belloni=3Dbootlin.com@lists.yoctoproject.org> wrote:
->
-> On 17/02/2023 10:41:37+0100, Alexander Kanavin wrote:
-> > On the other hand, I'm yet to hear an actual case of a broken build
-> > due to non-ECC. It's not impossible, but it seems exceedingly rare.
-> > You're far more likely to spend 100x as much time on logical errors or
-> > out-of-resources problems.
->
-> It actually happened in one of our build, were we had a bitflip in the
-> final binary which was then not working as expected.
->
-> We also had multiple cases of headers/source file corruption after the
-> tarball is extracted but usually those are either caught by the compiler
-> or don't matter at all.
->
-> >
-> > Alex
-> >
-> > On Fri, 17 Feb 2023 at 09:31, Yoann Congal <yoann.congal@smile.fr> wrot=
-e:
-> > >
-> > > Hi!
-> > >
-> > > Le ven. 17 f=C3=A9vr. 2023 =C3=A0 06:08, <davidskeck@fastmail.com> a =
-=C3=A9crit :
-> > >>
-> > >> Is there generally suggested advice regarding the importance of ECC =
-on the build computer? I'm very new to Yocto so I'm not sure if there is a =
-chance the final build image could experience some corruption due to flippe=
-d bits in RAM or if I'm totally overthinking this.
-> > >
-> > >
-> > > Last time I checked. The ECC vs non-ECC price difference was not wort=
-h the time you may spend in case of a RAM bitflip.
-> > > Here, we put ECC RAM in our build systems and I guess it's quite the =
-industry standard.
-> > >
-> > >> It is also possible that Yocto does some kind of CRC checking of its=
- own that makes this a non-issue. Any guidance would be appreciated. Thank =
-you!
-> > >
-> > >
-> > > Yocto does source integrity checks (the stuff it downloads from the i=
-nternet) but it can't do much more after that.
-> > >
-> > > I've yet to debug a RAM bitflip but I guess it may trigger any kind o=
-f weird behavior which may be hard to debug and time consuming.
-> > >
-> > > My advice is : keep your time and sanity, use ECC RAM.
-> > >
-> > > Regards,
-> > > --
-> > > Yoann Congal
-> > > Smile ECS - Expert technique
-> > >
-> > >
-> > >
->
-> >
-> >
-> >
->
->
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59241): https://lists.yoctoproject.org/g/yocto/messag=
-e/59241
-> Mute This Topic: https://lists.yoctoproject.org/mt/97022997/1051774
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [leon@sidebranc=
-h.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
 
