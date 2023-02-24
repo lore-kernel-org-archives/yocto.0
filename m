@@ -1,100 +1,117 @@
-Return-Path: <electronicconsult1@gmail.com>
+Return-Path: <pavel@zhukoff.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DF4FC61DA4
-	for <webhook@archiver.kernel.org>; Fri, 24 Feb 2023 15:49:41 +0000 (UTC)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
- by mx.groups.io with SMTP id smtpd.web11.20983.1677253779763860081
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11505C61DA3
+	for <webhook@archiver.kernel.org>; Fri, 24 Feb 2023 15:58:01 +0000 (UTC)
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+ by mx.groups.io with SMTP id smtpd.web11.21227.1677254275741935268
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Feb 2023 07:49:39 -0800
+ Fri, 24 Feb 2023 07:57:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Q6GZFcdS;
- spf=pass (domain: gmail.com, ip: 209.85.128.182, mailfrom: electronicconsult1@gmail.com)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5384ff97993so162475937b3.2
-        for <yocto@lists.yoctoproject.org>; Fri, 24 Feb 2023 07:49:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677253779;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JAQopAZHgy2NTdcoMErik08S9k9MV7UxKx8mam4bqTU=;
-        b=Q6GZFcdSJKfwb/JcFO5SUbaPCkfHhtRmngrmrqG3pGnSFYJHpHCxaeZPkpvUdFKpMm
-         kPKTG+JmTWb0s5FKp9Du6IYSxLM8pVAUKWN1x7m+uw5esMNQeuywrW1KMX5xrgdjTOlB
-         jk1aM2Xq51vau1dEHVj2qC9upmCbOrkcz990zIKMt+LqrXO6HNHa1gmyLcv9hIw4kBXz
-         ehVPM6yITBk/ymEmdSRyqCUMMqxDVbkNHqI5Q+qmhHi5PCYpcPBq6siWdEX7SUZrWwj6
-         Hkz5OFJ1EBRE87ZZ9cf48dLj7lwT6LXqtN+QtSXjFhYyoAZ4m/V2ErwKFNdD+i998RmV
-         i+QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677253779;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JAQopAZHgy2NTdcoMErik08S9k9MV7UxKx8mam4bqTU=;
-        b=vbt1c/Cu9Go/yciXfRbDs+SKIcwyDC9+T9dJhAzDRp80Vn2Up0rHqioMokoWs16T5y
-         3Ha8pCMiTELTpexsS0NX503lAYxuXv3cUqShZO9zNyc7Y7OsDVcj+T1RbZd5a9gcHBgm
-         cYAhhWkQnTmyH/OR4jcLBSaOKE8hBytHwOv7vg7SphJSSAh5S8P3shUctkeWXffcokBE
-         58fbvbhx70ro5Fc58gBXKomZB7g7NIt9x6HKNqq30dARP8kOuERjYLs5ghMjwdfXH/Yx
-         u9WXMl5HT6lksrvZC7a7/B8YjhcEkWdeoo9/lcYcToP1xjQbTP5fCqKLIDYFtagKTTi+
-         2ImQ==
-X-Gm-Message-State: AO0yUKXpTQvH/TX6qNiRPH3fOV+B+2PW9T2zuC4/l7GkL12OF0pTQbgZ
-	IohDcj1oP80WxbLOh47NVcdL1KOQn3NOoBAVFdcd8XhzEJlS9A==
-X-Google-Smtp-Source: AK7set/LWJqf1uLnt5+0rXadiMG3xp+UYwc7hxciBBu2C/Pvb7jX8w0WoxU3S7arixJEbXBVtFAvxD+mH2kOWJykdxc=
-X-Received: by 2002:a25:e812:0:b0:a43:52fe:c36f with SMTP id
- k18-20020a25e812000000b00a4352fec36fmr1655973ybd.7.1677253778814; Fri, 24 Feb
- 2023 07:49:38 -0800 (PST)
+ dkim=fail reason="signature has expired" header.i=@zhukoff.net header.s=fm1 header.b=mXLqNZry;
+ spf=pass (domain: zhukoff.net, ip: 66.111.4.29, mailfrom: pavel@zhukoff.net)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 9B3805C00E0;
+	Fri, 24 Feb 2023 10:57:54 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Fri, 24 Feb 2023 10:57:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zhukoff.net; h=
+	cc:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:reply-to:sender
+	:subject:subject:to:to; s=fm1; t=1677254274; x=1677340674; bh=3R
+	uQc6E6Qsa5TzfZmGiZPHdzR8w6LuldB2yAk4hEHk8=; b=mXLqNZry24IFExIBDb
+	SWUpeOgg3LzBAObiQnT0Y3SnQ9Z87QjBMNeFzqD8A99CiK74JUZPZGp+vHMUBrgn
+	PdUPZx+h3T8alCoz6gDZWaEck/R7qeCdEWApaHlIvZ2w5SwQsXaf/4CK4kca5sKM
+	siKh9pf5m9eae6ylH1rG/Ui4Qzcke41oVXgMI0Z2E5gaSTjiqKRQsy0DOhhtyu5p
+	T0Jz4uYrkxfx3a+3I7EwDIkIESTQ1ZRBY+tz4WpsUNOgZByb+v9PtJTxGaAVa/TG
+	5Ux1wY6D8DfRPskOVNSKZ9YDK55IwwSZriNd46DlRrMVkOSnV3j3nJUJAQtJ1iTP
+	z91Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+	:feedback-id:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1677254274; x=1677340674; bh=3RuQc6E6Qsa5T
+	zfZmGiZPHdzR8w6LuldB2yAk4hEHk8=; b=OyrCafk27cSFX3q3QrGRz0QHZvfGp
+	q13L1SheQYS+LxfqioKb5loRopcjx3c0H+H1ukHam0jgByE4I+3+fA8B0WtyKB//
+	vZINHyfJl2R3hcAk/fbQJE3NonvwFRMAajUBRXbEFtSdy1Gs7i8Jlns2g5OgYyJT
+	NqTGTuxTKji1zOe7xOoIne6JoxdhO1azyZ3iY6YqNgpfQ3+D7kh0F8jNiMkBff+S
+	9+mikHgWr0+vJp2G+PufdByYQ+ZEnoEw9dXy4C+JX452ihu62IbrPeYogQnQvwtY
+	zMj5OEtRbeAD3GJ4vBoxQUnu3QAJIE1fHe5y5Q9WnVBzqStO5cJgoFeqQ==
+X-ME-Sender: <xms:gt74Y3P83S60wHHptfxLS3uno7b6sLpcJW3oohMxplVjVcfJxYH2_g>
+    <xme:gt74Yx_rTSGIXYHMaLGIkxNgrwJoLoVM59xXsDUGBgjTXu4veUP__kTrfAL9lS8v1
+    pyFOhXU3V2_s5QNKVM>
+X-ME-Received: <xmr:gt74Y2ROX8nLE4GbocEn7HCMvHt-jE-M2jbQC7UTO4zUHdxT8JIE66-Y6fHbKljy2R1iPM_eSfkIIspS6lZw6z9x>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudekfedgjeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfhgfhffvvefuffhorhgjkfggtgesthdtredttdertdenucfhrhhomheprfgr
+    vhgvlhcukghhuhhkohhvuceophgrvhgvlhesiihhuhhkohhffhdrnhgvtheqnecuggftrf
+    grthhtvghrnhephefhteejveffgfehtedvteeitdduffevudffledvueehfeeutddukeev
+    tefhteegnecuffhomhgrihhnpeihohgtthhophhrohhjvggtthdrohhrghenucevlhhush
+    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehprghvvghlseiihhhu
+    khhofhhfrdhnvght
+X-ME-Proxy: <xmx:gt74Y7ukFZ8tnSXQv56-Yk6-7aAwGYKLNLdTkvDOlXp6mReinffnKQ>
+    <xmx:gt74Y_fp3nAa_a8CEV-9pd-T5pr251pih7cHGZY6P0pqwxmtptWeYQ>
+    <xmx:gt74Y30kuLcXU6d2u2GN2arodK4rd_Wk63bddEXHBs7W75XiDTi_Yg>
+    <xmx:gt74Y_lTur8eZ66eyc6x6I82bsMGqM5P2VG8C1_Qe9MNqnCKdNEeLQ>
+Feedback-ID: ib94946c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 24 Feb 2023 10:57:53 -0500 (EST)
+References: <CAGUWaEFoZ0bNxu3RKM+pNfkSF43xdQkxp-ttLOwaMERa5Krhdg@mail.gmail.com>
+User-agent: mu4e 1.8.13; emacs 28.2
+From: Pavel Zhukov <pavel@zhukoff.net>
+To: Electronic Consult <electronicconsult1@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] No SSH access after removing debug_tweaks
+Date: Fri, 24 Feb 2023 16:55:41 +0100
+Organization: Linux Private Site
+Reply-To: pavel@zhukoff.net
+In-reply-to: <CAGUWaEFoZ0bNxu3RKM+pNfkSF43xdQkxp-ttLOwaMERa5Krhdg@mail.gmail.com>
+Message-ID: <87a613xdhc.fsf@desktop.zhukoff.net>
 MIME-Version: 1.0
-From: Electronic Consult <electronicconsult1@gmail.com>
-Date: Fri, 24 Feb 2023 15:49:27 +0000
-Message-ID: <CAGUWaEFoZ0bNxu3RKM+pNfkSF43xdQkxp-ttLOwaMERa5Krhdg@mail.gmail.com>
-Subject: No SSH access after removing debug_tweaks
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000af3ba105f57413a0"
+Content-Type: text/plain
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Feb 2023 15:49:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59299
+ <yocto@lists.yoctoproject.org>; Fri, 24 Feb 2023 15:58:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59300
 
---000000000000af3ba105f57413a0
-Content-Type: text/plain; charset="UTF-8"
 
-Hello all,
+"Electronic Consult" <electronicconsult1@gmail.com> writes:
 
-I'm trying to add a root password to add some security to ssh access. I
-plan also to enable/ disable the ssh via GUI.
+> Hello all,
+>
+> I'm trying to add a root password to add some security to ssh access. I plan also to enable/ disable the ssh via GUI.
+>
+> I'm using meta-atmel on a dunfell build. I've added:
+>
+> INHERIT += "extrausers"
+> EXTRA_USERS_PARAMS = "usermod -p $(openssl passwd mypassword) root"
+>
+> And commented out:
+>
+> EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
+>
+> When I try to SSH in I'm now getting:
+>
+> Connection closed by 192.168.178.13 port 22
+>
+> Do I need to set a password for ssh also?
+root login is disabled by default in modern ssh servers.
+Either enable add allow-root-login to EXTRA_IMAGE_FEATURES or add
+another user for this purpose.
+>
+> Thanks
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#59299): https://lists.yoctoproject.org/g/yocto/message/59299
+> Mute This Topic: https://lists.yoctoproject.org/mt/97208307/6390638
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [pavel@zhukoff.net]
+> -=-=-=-=-=-=-=-=-=-=-=-
 
-I'm using meta-atmel on a dunfell build. I've added:
-
-INHERIT += "extrausers"
-EXTRA_USERS_PARAMS = "usermod -p $(openssl passwd mypassword) root"
-
-And commented out:
-
-EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
-
-When I try to SSH in I'm now getting:
-
-Connection closed by 192.168.178.13 port 22
-
-Do I need to set a password for ssh also?
-
-Thanks
-
---000000000000af3ba105f57413a0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello all,</div><div><br></div><div>I&#39;m trying to=
- add a root password to add some security to ssh access. I plan also to ena=
-ble/ disable the ssh via GUI.</div><div><br></div><div>I&#39;m using meta-a=
-tmel on a dunfell build. I&#39;ve added:</div><div><br></div><div>INHERIT +=
-=3D &quot;extrausers&quot;<br>EXTRA_USERS_PARAMS =3D &quot;usermod -p $(ope=
-nssl passwd mypassword) root&quot;</div><div><br></div><div>And commented o=
-ut:</div><div><br></div><div>EXTRA_IMAGE_FEATURES ?=3D &quot;debug-tweaks&q=
-uot;</div><div><br></div><div>When I try to SSH in I&#39;m now getting:</di=
-v><div><br></div><div>Connection closed by 192.168.178.13 port 22</div><div=
-><br></div><div>Do I need to set a password for ssh also?</div><div><br></d=
-iv><div>Thanks<br></div><div dir=3D"auto"></div>
-</div>
-
---000000000000af3ba105f57413a0--
 
