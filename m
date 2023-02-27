@@ -1,84 +1,211 @@
-Return-Path: <konstantin.kletschke@inside-m2m.de>
+Return-Path: <danny@sizethreestudios.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15B75C64ED8
-	for <webhook@archiver.kernel.org>; Mon, 27 Feb 2023 13:47:03 +0000 (UTC)
-Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
- by mx.groups.io with SMTP id smtpd.web11.90258.1677505621294787505
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 04FB9C64ED6
+	for <webhook@archiver.kernel.org>; Mon, 27 Feb 2023 16:45:34 +0000 (UTC)
+Received: from a11-32.smtp-out.amazonses.com (a11-32.smtp-out.amazonses.com [54.240.11.32])
+ by mx.groups.io with SMTP id smtpd.web11.95339.1677516325773916792
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Feb 2023 05:47:01 -0800
+ Mon, 27 Feb 2023 08:45:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@inside-m2m.de header.s=dkim header.b=OHVDCH09;
- spf=pass (domain: inside-m2m.de, ip: 188.68.57.244, mailfrom: konstantin.kletschke@inside-m2m.de)
-Received: from Hephaistos.inside-m2m.de (business-90-187-159-109.pool2.vodafone-ip.de [90.187.159.109])
-	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
-	by mail.inside-m2m.de (Postfix) with ESMTPSA id E8D424002F;
-	Mon, 27 Feb 2023 14:46:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inside-m2m.de;
-	s=dkim; t=1677505619;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ggw2Ogr77nbM6GiIvI9ZpE0MbZJO43Te9kq1JKvQ5ZI=;
-	b=OHVDCH099Unza0qhQGElJkbAUYQiB4Hy1V2w2PndPq02z/8nmY1VPQ9vAo62VyPDptKa/n
-	V+0i65Rj7VhtHxBB+Yb42BJ/iBito4VkrxbYMHdIxjl8CQYUwC3uIqIn5hdVzvSwb2CkD8
-	oisLAb6KlqVhcjIMLMDog19V4azkd7o=
-Date: Mon, 27 Feb 2023 14:46:57 +0100
-From: Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>
-To: Anders Montonen <Anders.Montonen@iki.fi>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Setup no IP address for eth0 - systemd
-Message-ID: <Y/y0Ub9VVkMOl2zr@Hephaistos.inside-m2m.de>
-References: <Y/yDMBt1f8l8GSDF@Hephaistos.inside-m2m.de>
- <F93A50B5-6585-4E17-BF5F-CF27620AA29F@iki.fi>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <F93A50B5-6585-4E17-BF5F-CF27620AA29F@iki.fi>
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@sizethreestudios.com header.s=hncifp7bcoz4v46j3w6bdwu2f6yqecfu header.b=huF+Etsq;
+ spf=pass (domain: amazonses.com, ip: 54.240.11.32, mailfrom: 0100018693c3bf2d-41ceabc7-ef97-4442-80e9-9d9092ab0edd-000000@amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hncifp7bcoz4v46j3w6bdwu2f6yqecfu; d=sizethreestudios.com;
+	t=1677516324;
+	h=Subject:From:To:Date:Mime-Version:Content-Type:References:Message-Id;
+	bh=XFYMeI+8UpGjFbnlyiUsNMVabKI8AorB3xvnZGBDYJ0=;
+	b=huF+EtsqqqesScAFybrbUP++GRjF3au3t4eg0GuPQqPuKi/lRkBFvvza6BH7VBP1
+	pES7px4i4XshffhOEh9HWYSw1oGjVb/qmdNjrLTB9Vwg3+WWGLLmnQOO/VxsVWFsBjR
+	oPcJI8vrzupEvadF3U1KR8E5d1mDaXqje+UItbuiosKengeSF5Uo6TM9LLgrLVhRVsH
+	XRkjk+LT8JMkFA/A2PnVn959GOom4evici0iT66bzWb8YnBNnzKBuZlACmr4DJwDfSa
+	fNYNVlOsECQgBMIqBpBv/NmLr5xVnbkPRadzeZvYm2EdtByEdzE7JGYGF/c/POEJwqu
+	ucKT5R3TaQ==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1677516324;
+	h=Subject:From:To:Date:Mime-Version:Content-Type:References:Message-Id:Feedback-ID;
+	bh=XFYMeI+8UpGjFbnlyiUsNMVabKI8AorB3xvnZGBDYJ0=;
+	b=XafyYI/e5Sry1vFlaxFkv3oz6Wb0oLxbLuWKohkKlK6bJ3sxbeWWSCjQbaGrxjd7
+	WfYQNafOWa7YWP6EJUhmdhRosPgahE99L9Zbig2JU0GnhoHIv8PZvJl4ZmnVoGNUwLr
+	jeUHhIfbNtkL0X2FnIq778xvZ3oy5ukesy++3WsA=
+Subject: [kirkstone] `rustc` executable missing from sdk 
+From: danny@sizethreestudios.com
+To: =?UTF-8?Q?yocto=40lists=2Eyoctoproject=2Eorg?=
+  <yocto@lists.yoctoproject.org>
+Date: Mon, 27 Feb 2023 16:45:24 +0000
+Mime-Version: 1.0
+Content-Type: multipart/alternative; 
+ boundary="=_zUd+KEUm28dPe5UXyvy4Lp6-F5g3+hVRqTxlTctMx+r48P4j"
+References: <mail.63fcde23.64c0.25550c0e0edee261@storage.wm.amazon.com>
+X-Priority: 3 (Normal)
+X-Mailer: Amazon WorkMail
+Thread-Index: AQHZSskdmatSsOixTsKQwbQNQd7+wQ==
+Thread-Topic: [kirkstone] `rustc` executable missing from sdk 
+X-Wm-Sent-Timestamp: 1677516323
+Message-ID: <0100018693c3bf2d-41ceabc7-ef97-4442-80e9-9d9092ab0edd-000000@email.amazonses.com>
+Feedback-ID: 1.us-east-1.LF00NED762KFuBsfzrtoqw+Brn/qlF9OYdxWukAhsl8=:AmazonSES
+X-SES-Outgoing: 2023.02.27-54.240.11.32
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 Feb 2023 13:47:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59309
+ <yocto@lists.yoctoproject.org>; Mon, 27 Feb 2023 16:45:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59310
 
-On Mon, Feb 27, 2023 at 01:54:53PM +0200, Anders Montonen wrote:
+This is a multi-part message in MIME format. Your mail reader does not
+understand MIME message format.
+--=_zUd+KEUm28dPe5UXyvy4Lp6-F5g3+hVRqTxlTctMx+r48P4j
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-> Check if you also have Networkmanager in your image.
+Hello all! I am working on integrating my application CI pipeline with th=
+e SDK generated by our yocto CI pipeline. So far, I have been able to bui=
+ld an SDK with cargo included by adding the following `TOOLCHAIN_HOST_TAS=
+K` assignment to our local.conf:
 
-My other, rather similair mail was answered with a solution which works
-fine here in this use case, too:
+```
 
-Renaming the file having an additional prefix like "10-" works like a cha=
-rme.
-I suspect the number has to be lower than the 80 found in many files in
-/lib/systemd/network...
+TOOLCHAIN_HOST_TASK:append =3D " nativesdk-cargo"
+
+```
+
+=C2=A0
+and building the SDK via=C2=A0
+
+```
+
+bitbake -k -c populate_sdk <our image name>
+
+```
+
+=C2=A0
+However, when our application CI picks up the SDK, it looks like it is mi=
+ssing the underlying `rustc` executable; a `cargo build` command fails wi=
+th:
+
+=C2=A0
+```
+
+error: could not execute process `rustc -vV` (never executed)
+
+```
+
+=C2=A0
+I've manually sourced the SDK environment in a shell and confirmed that `=
+which` does pick up cargo but not `rustc`:
+
+=C2=A0
+```
+
+$ which cargo
+
+/<SDK installation path>/.sdk/sysroots/x86_64-pokysdk-linux/usr/bin/cargo=
+
+$ which rustc
+
+$=C2=A0
+
+```
+
+=C2=A0
+Has anyone been able to populate the SDK on kirkstone with a working rust=
+c/cargo toolchain=3F
+
+I've also tried comparing langdale and kirkstone; it looks like on langda=
+le some work was done to add `nativesdk` support to the rust recipe itsel=
+f (via BBCLASSEXTEND=C2=A0in rust-target.inc). I've been trying to mirror=
+ those changes via `.bbappend` files but haven't quite figured out what s=
+trings to pull.=C2=A0
+
+I'd be happy to provide any additional information that'd help triage.
+
+=C2=A0
+=C2=A0
+Thanks!
+
+- Danny
 
 
-Kind Regards
-Konstantin
+--=_zUd+KEUm28dPe5UXyvy4Lp6-F5g3+hVRqTxlTctMx+r48P4j
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+<!DOCTYPE HTML><html>
+<head>
+<meta name=3D"Generator" content=3D"Amazon WorkMail v3.1.1463.0">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">=
 
-
->=20
-> -a
-
---=20
-INSIDE M2M GmbH
-Konstantin Kletschke
-Berenbosteler Stra=DFe 76 B
-30823 Garbsen
-
-Telefon: +49 (0) 5137 90950136
-Mobil: +49 (0) 151 15256238
-Fax: +49 (0) 5137 9095010
-
-konstantin.kletschke@inside-m2m.de
-http://www.inside-m2m.de=20
-
-Gesch=E4ftsf=FChrung: Michael Emmert, Derek Uhlig
-HRB: 111204, AG Hannover
-
+<title>[kirkstone] `rustc` executable missing from sdk </title>
+</head>
+<body>
+<html><head></head><body><p style=3D"margin: 0px; font-family: Arial, Tah=
+oma, Helvetica, sans-serif; font-size: small;">Hello all! I am working on=
+ integrating my application CI pipeline with the SDK generated by our yoc=
+to CI pipeline. So far, I have been able to build an SDK with cargo inclu=
+ded by adding the following `TOOLCHAIN_HOST_TASK` assignment to our <font=
+ face=3D"Courier New, Courier, monospace">local.conf:</font><br><br>```</=
+p><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvetica, sans-se=
+rif; font-size: small;"><font face=3D"Courier New, Courier, monospace">TO=
+OLCHAIN_HOST_TASK:append =3D " nativesdk-cargo"</font></p><p style=3D"mar=
+gin: 0px; font-family: Arial, Tahoma, Helvetica, sans-serif; font-size: s=
+mall;">```</p><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvet=
+ica, sans-serif; font-size: small;">&nbsp;</p><p style=3D"margin: 0px; fo=
+nt-family: Arial, Tahoma, Helvetica, sans-serif; font-size: small;">and b=
+uilding the SDK via&nbsp;<br><br>```</p><p style=3D"margin: 0px; font-fam=
+ily: Arial, Tahoma, Helvetica, sans-serif; font-size: small;"><font face=3D=
+"Courier New, Courier, monospace">bitbake -k -c populate_sdk &lt;our imag=
+e name&gt;</font></p><p style=3D"margin: 0px; font-family: Arial, Tahoma,=
+ Helvetica, sans-serif; font-size: small;">```</p><p style=3D"margin: 0px=
+; font-family: Arial, Tahoma, Helvetica, sans-serif; font-size: small;">&=
+nbsp;</p><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvetica, =
+sans-serif; font-size: small;">However, when our application CI picks up =
+the SDK, it looks like it is missing the underlying `<font face=3D"Courie=
+r New, Courier, monospace">rustc</font>` executable; a `<font face=3D"Cou=
+rier New, Courier, monospace">cargo build</font>` command fails with:</p>=
+<p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvetica, sans-seri=
+f; font-size: small;">&nbsp;</p><p style=3D"margin: 0px; font-family: Ari=
+al, Tahoma, Helvetica, sans-serif; font-size: small;">```</p><p style=3D"=
+margin: 0px; font-family: Arial, Tahoma, Helvetica, sans-serif; font-size=
+: small;"><font face=3D"Courier New, Courier, monospace">error: could not=
+ execute process `rustc -vV` (never executed)</font></p><p style=3D"margi=
+n: 0px; font-family: Arial, Tahoma, Helvetica, sans-serif; font-size: sma=
+ll;">```</p><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvetic=
+a, sans-serif; font-size: small;">&nbsp;</p><p style=3D"margin: 0px; font=
+-family: Arial, Tahoma, Helvetica, sans-serif; font-size: small;">I've ma=
+nually sourced the SDK environment in a shell and confirmed that `<font f=
+ace=3D"Courier New, Courier, monospace">which</font>` does pick up cargo =
+but not `<font face=3D"Courier New, Courier, monospace">rustc</font>`:</p=
+><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvetica, sans-ser=
+if; font-size: small;">&nbsp;</p><p style=3D"margin: 0px; font-family: Ar=
+ial, Tahoma, Helvetica, sans-serif; font-size: small;">```</p><p style=3D=
+"margin: 0px; font-family: Arial, Tahoma, Helvetica, sans-serif; font-siz=
+e: small;"><font face=3D"Courier New, Courier, monospace">$ which cargo</=
+font></p><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvetica, =
+sans-serif; font-size: small;"><font face=3D"Courier New, Courier, monosp=
+ace">/&lt;SDK installation path&gt;/.sdk/sysroots/x86_64-pokysdk-linux/us=
+r/bin/cargo<br>$ which rustc</font></p><p style=3D"margin: 0px; font-fami=
+ly: Arial, Tahoma, Helvetica, sans-serif; font-size: small;"><font face=3D=
+"Courier New, Courier, monospace">$&nbsp;</font></p><p style=3D"margin: 0=
+px; font-family: Arial, Tahoma, Helvetica, sans-serif; font-size: small;"=
+>```</p><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helvetica, s=
+ans-serif; font-size: small;">&nbsp;</p><p style=3D"margin: 0px; font-fam=
+ily: Arial, Tahoma, Helvetica, sans-serif; font-size: small;">Has anyone =
+been able to populate the SDK on kirkstone with a working rustc/cargo too=
+lchain=3F<br><br>I've also tried comparing langdale and kirkstone; it loo=
+ks like on langdale some work was done to add `<font face=3D"Courier New,=
+ Courier, monospace">nativesdk</font>` support to the rust recipe itself =
+(via <font face=3D"Courier New, Courier, monospace">BBCLASSEXTEND</font>&=
+nbsp;in <font face=3D"Courier New, Courier, monospace">rust-target.inc</f=
+ont>). I've been trying to mirror those changes via `.bbappend` files but=
+ haven't quite figured out what strings to pull.&nbsp;<br><br>I'd be happ=
+y to provide any additional information that'd help triage.</p><p style=3D=
+"margin: 0px; font-family: Arial, Tahoma, Helvetica, sans-serif; font-siz=
+e: small;">&nbsp;</p><p style=3D"margin: 0px; font-family: Arial, Tahoma,=
+ Helvetica, sans-serif; font-size: small;">&nbsp;</p><p style=3D"margin: =
+0px; font-family: Arial, Tahoma, Helvetica, sans-serif; font-size: small;=
+">Thanks!</p><p style=3D"margin: 0px; font-family: Arial, Tahoma, Helveti=
+ca, sans-serif; font-size: small;">- Danny</p></body></html>
+</body>
+</html>
+--=_zUd+KEUm28dPe5UXyvy4Lp6-F5g3+hVRqTxlTctMx+r48P4j--
 
