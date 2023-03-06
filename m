@@ -2,58 +2,58 @@ Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23ED0C6FA99
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24ABEC6FD19
 	for <webhook@archiver.kernel.org>; Mon,  6 Mar 2023 17:55:58 +0000 (UTC)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web10.2091.1678125354656643113
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web10.2092.1678125355416271639
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Mar 2023 09:55:54 -0800
+ Mon, 06 Mar 2023 09:55:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=TuI9nCOK;
- spf=pass (domain: gmail.com, ip: 209.85.221.44, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-wr1-f44.google.com with SMTP id h14so9735282wru.4
-        for <yocto@lists.yoctoproject.org>; Mon, 06 Mar 2023 09:55:54 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=k4YdeHBj;
+ spf=pass (domain: gmail.com, ip: 209.85.221.52, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-wr1-f52.google.com with SMTP id f11so9718661wrv.8
+        for <yocto@lists.yoctoproject.org>; Mon, 06 Mar 2023 09:55:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112; t=1678125353;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PpBJ9JRRltC2XyjfmniI/dDxhMcCUypWO75+IRnHsx0=;
-        b=TuI9nCOKlvkFsE5SS/EUGZBqbaORaW2cS5TIao5HhR4v9RypVA8tMwfMrcNWfPn8Hl
-         kpUWsQAjJIYwDNs13Xak9vQ+39Q2O10Dtw9H61KcW35kHQ3lXr6RzWNHkM82g0tdTqI6
-         20m3h2En3kntPEkmIiTLXfA5DJ2oarjGAJ4J54DoegSLKW485X3WUvBxFOjVSlR8D/91
-         uwtSsKKpJrQNV21LcFeZ0cqK6p+hgx7r6+ruG49yXthDB054kiZJTfRZAH/ul9WffkHN
-         uk7UwdNcv9+FQ/h5fXAikXfCXnaUgWoCbkLbOEih/QH/sVpaE8349Gs56eeo4eDDEDJq
-         B4OQ==
+        bh=IDVdqVWw9cOqmNcV/tSk9MG5OXszU0M9IQnjS7Vo4XE=;
+        b=k4YdeHBjz6+kMdbPcluZwFv9u29I4rfM6vyrlsLWrnRW6GJsLe60wOYzT+Hg0c+cc7
+         i/BeTN10WPIvnI/FporKsdrbXP59HZMqMYzDcwgMaMe1Bl5791IOUrq/WKRDt2r+/lm+
+         UeV9o/qPg6lRyW9ZFSWL5S0zB7gwjHBNCTS4lYLuDYLO8ybvbWepeKccMB3oAsmRJvHQ
+         ZNqP1YadVd+hFrNslzorSLN1pUEPi8I6vWGvZv9urwcTL7U2xHIzh9D+zG5laNACZV/m
+         eSSpV+PsPfC9jrw9ycj1Np3kdPygv4V/e/X3L0an0ARaxwnFysb1fMOHhf8LY8ODIs+u
+         w5yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112; t=1678125353;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PpBJ9JRRltC2XyjfmniI/dDxhMcCUypWO75+IRnHsx0=;
-        b=Z9L1xIfwV4WAlbnEoe/dH2v4OKWbDS0FJsiLKGBQnc1pLkkUVCBuZncLyLI5hGV5wm
-         LYpoHuqjli7/SkEQTxRmmAYh8J5PqgNCHw1vJydJja1jy2epkWoe2B7QqkVjAGxyna5D
-         hJF0Qppmjm3VDL/0aNj41wO+Fi+tiTc4Z/n40/Q8fkBoftuwYOXro6nZu63QyeWle/bk
-         h2IoTKi4JtP4SLrhI9jGJEdnL6RhRc0unwz6YnlMPewCnsyLJ6v4edc8NDgT0fhVFFJB
-         It8hD+JnXATXdbH2Web7Eliv/jrL93klc6zllzpgCzn9oSdk2jrBGmfhyUATEauo5Wkj
-         1PDg==
-X-Gm-Message-State: AO0yUKUrzjvE45lD8++lSjccEf5HgogMH38zeE85fqIMrNbiod9IAPyQ
-	5rkWS1cRtDXuHT+aRH/dWwiUAOh/9Kg=
-X-Google-Smtp-Source: AK7set+u8Q7cgWLnRrMBqaPJk8B+O6Qw6sp4ohDe+91DawVf56qisi9HHRPIWW2dujCxiq+SPJSwSw==
-X-Received: by 2002:adf:f006:0:b0:2c5:98f2:5b16 with SMTP id j6-20020adff006000000b002c598f25b16mr7730473wro.1.1678125352884;
-        Mon, 06 Mar 2023 09:55:52 -0800 (PST)
+        bh=IDVdqVWw9cOqmNcV/tSk9MG5OXszU0M9IQnjS7Vo4XE=;
+        b=tuYPKUZ37dXyrRQr0Af5FAA0DAUiEjPzwcxh8hNFzWkSYyzb2nSlUca7sn9F4PZBNw
+         EXwjaM4NtqabwFdzFbUBKeoiCugOuTPaPkpK9GdJSe7my/mC9EN5U8yiToH+hEuNWkPz
+         yO4IH74UfHkYXL69vMY/90ZgkIVL2yNjAO1wZ6L2+UDF65KaZfTleBzVDIvishrgNy+9
+         arZK47WzcoWKJYtUFb7SaC6fq2667xjmvyUOnBwJWMmu6x+FVyu00xHPVIZU01/dI7RE
+         +8juliqFj++lzF7pf0Dp/5y9FqCc8YAz+zhPq1Wz3YWrDTeZhlYUrsJahx685rejL6xp
+         Q2nA==
+X-Gm-Message-State: AO0yUKUeJtbQs8ZZP9Kg1go0Mftu43fbr386zwMSRY/e1ORm41L9KWIG
+	nfSOioWc56sqdPwBgzxR0FNjuu9/spqIxA==
+X-Google-Smtp-Source: AK7set9UqNiV9uYBC6eRBZRnUGnpFMClPQyP5I1cmvHKN6QIREPBJUCtp0RqLksXpBDw7sxvZC9mIw==
+X-Received: by 2002:adf:cc8f:0:b0:2c9:23c4:8f93 with SMTP id p15-20020adfcc8f000000b002c923c48f93mr6978682wrj.57.1678125353673;
+        Mon, 06 Mar 2023 09:55:53 -0800 (PST)
 Received: from og-worker-dev-01.infra.foundries.io.net (51-159-19-113.rev.poneytelecom.eu. [51.159.19.113])
         by smtp.gmail.com with ESMTPSA id j29-20020a5d6e5d000000b002c59f18674asm10424685wrz.22.2023.03.06.09.55.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 09:55:52 -0800 (PST)
+        Mon, 06 Mar 2023 09:55:53 -0800 (PST)
 From: Jose Quaresma <quaresma.jose@gmail.com>
 X-Google-Original-From: Jose Quaresma <jose.quaresma@foundries.io>
 To: yocto@lists.yoctoproject.org
 Cc: ricardo@foundries.io,
 	Jose Quaresma <jose.quaresma@foundries.io>
-Subject: [meta-security][PATCH 2/3] meta-security-compliance/layer: lower the priority from 10 to 6
-Date: Mon,  6 Mar 2023 17:55:27 +0000
-Message-Id: <20230306175528.395007-2-jose.quaresma@foundries.io>
+Subject: [meta-security][PATCH 3/3] meta-tpm/layer: lower the priority from 10 to 6
+Date: Mon,  6 Mar 2023 17:55:28 +0000
+Message-Id: <20230306175528.395007-3-jose.quaresma@foundries.io>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230306175528.395007-1-jose.quaresma@foundries.io>
 References: <20230306175528.395007-1-jose.quaresma@foundries.io>
@@ -63,7 +63,7 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 06 Mar 2023 17:55:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59349
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59350
 
 The priority change on sumo version without any description.
 Since then is very hard to add in other layers a new version
@@ -72,21 +72,21 @@ reverts the priority back to 6.
 
 Signed-off-by: Jose Quaresma <jose.quaresma@foundries.io>
 ---
- meta-security-compliance/conf/layer.conf | 2 +-
+ meta-tpm/conf/layer.conf | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
-index f07532c..82409a6 100644
---- a/meta-security-compliance/conf/layer.conf
-+++ b/meta-security-compliance/conf/layer.conf
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index 81690ca..12bd6b7 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
 @@ -6,7 +6,7 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
  
- BBFILE_COLLECTIONS += "scanners-layer"
- BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
--BBFILE_PRIORITY_scanners-layer = "10"
-+BBFILE_PRIORITY_scanners-layer = "6"
+ BBFILE_COLLECTIONS += "tpm-layer"
+ BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
+-BBFILE_PRIORITY_tpm-layer = "10"
++BBFILE_PRIORITY_tpm-layer = "6"
  
- LAYERSERIES_COMPAT_scanners-layer = "mickledore"
+ LAYERSERIES_COMPAT_tpm-layer = "mickledore"
  
 -- 
 2.34.1
