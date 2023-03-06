@@ -1,112 +1,77 @@
-Return-Path: <yudai.yamashita@soft-service.co.jp>
+Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F2A2C678D4
-	for <webhook@archiver.kernel.org>; Mon,  6 Mar 2023 07:17:12 +0000 (UTC)
-Subject: Re: Reggarding POSIX
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCCE0C678D4
+	for <webhook@archiver.kernel.org>; Mon,  6 Mar 2023 08:24:12 +0000 (UTC)
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+ by mx.groups.io with SMTP id smtpd.web11.28702.1678091046716790682
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 06 Mar 2023 00:24:07 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: lakka.kapsi.fi, ip: 91.232.154.25, mailfrom: mcfrisk@lakka.kapsi.fi)
+Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
+	by mail.kapsi.fi with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1pZ68Y-00GuxI-3s; Mon, 06 Mar 2023 10:24:02 +0200
+Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1pZ68X-001xGc-Qu; Mon, 06 Mar 2023 10:24:01 +0200
+From: Mikko Rapeli <mikko.rapeli@linaro.org>
 To: yocto@lists.yoctoproject.org
-From: yudai.yamashita@soft-service.co.jp
-X-Originating-Location: Fukuoka, JP (114.160.244.96)
-X-Originating-Platform: Windows Chrome 110
-User-Agent: GROUPS.IO Web Poster
+Cc: Mikko Rapeli <mikko.rapeli@linaro.org>
+Subject: [meta-selinux][PATCH] linux-yocto: remove version from bbappend
+Date: Mon,  6 Mar 2023 10:23:51 +0200
+Message-Id: <20230306082351.464519-1-mikko.rapeli@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Date: Sun, 05 Mar 2023 23:17:07 -0800
-References: <5b2e0987-8bb2-1c2a-de72-b972e770432c@bootlin.com>
-In-Reply-To: <5b2e0987-8bb2-1c2a-de72-b972e770432c@bootlin.com>
-Message-ID: <11490.1678087027155072801@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="d38zjbekrWKrVfDO09MD"
+Content-Transfer-Encoding: 8bit
+X-Rspam-Score: -1.4 (-)
+X-Rspam-Report: Action: no action
+ Symbol: ARC_NA(0.00)
+ Symbol: DMARC_POLICY_SOFTFAIL(0.10)
+ Symbol: FROM_HAS_DN(0.00)
+ Symbol: TO_DN_SOME(0.00)
+ Symbol: R_MISSING_CHARSET(0.50)
+ Symbol: R_SPF_ALLOW(-0.20)
+ Symbol: MIME_GOOD(-0.10)
+ Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
+ Symbol: RCVD_TLS_LAST(0.00)
+ Symbol: RCPT_COUNT_TWO(0.00)
+ Symbol: MID_CONTAINS_FROM(1.00)
+ Symbol: NEURAL_HAM(-0.00)
+ Symbol: FORGED_SENDER(0.30)
+ Symbol: R_DKIM_NA(0.00)
+ Symbol: MIME_TRACE(0.00)
+ Symbol: ASN(0.00)
+ Symbol: FROM_NEQ_ENVFROM(0.00)
+ Symbol: BAYES_HAM(-3.00)
+ Symbol: RCVD_COUNT_TWO(0.00)
+ Message-ID: 20230306082351.464519-1-mikko.rapeli@linaro.org
+X-SA-Exim-Connect-IP: 2001:67c:1be8::11
+X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 06 Mar 2023 07:17:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59345
+ <yocto@lists.yoctoproject.org>; Mon, 06 Mar 2023 08:24:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59346
 
---d38zjbekrWKrVfDO09MD
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+There are multiple kernel versions now and the changes apply to
+all of them, e.g. 5.15 and 6.1.
 
-On Fri, Mar 3, 2023 at 07:20 PM, Michael Opdenacker wrote:
+Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
+---
+ .../linux/{linux-yocto_5.%.bbappend => linux-yocto_%.bbappend}    | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename recipes-kernel/linux/{linux-yocto_5.%.bbappend => linux-yocto_%.bbappend} (100%)
 
->=20
-> Hi Yudai,
->=20
-> On 03.03.23 at 10:37, yudai.yamashita@soft-service.co.jp wrote:
->=20
->> On Fri, Mar 3, 2023 at 04:23 PM, Alexander Kanavin wrote:
->>=20
->> Yocto first builds its own toolchain, then uses the toolchain to build
->> the actual software stack for the target. So the host environment can
->> be any Linux distribution.
->>=20
->> If you can say what the other OS is, we can discuss specifically if
->> it's going to work.
->>=20
->> Alex
->>=20
->> On Fri, 3 Mar 2023 at 08:17, <yudai.yamashita@soft-service.co.jp>
->> wrote:
->>=20
->>=20
->> Hi All
->>=20
->> I am trying to build an application using POSIX on Ubuntu
->> (Yocto 4.1.2).
->> Even if the development host environment required for the
->> build has been changed to an OS other than Ubuntu, is it
->> possible to build by only changing the Yocto configuration
->> file without changing the application source?
->>=20
->> Thanks
->> Yudai
->>=20
->>=20
->> Thanks for reply
->> Will it work if I use Fedora, CentOS, AlmaLinux, Debian, OpenSUSE?
->=20
->=20
-> We support most of them, yes. See
-> https://docs.yoctoproject.org/ref-manual/system-requirements.html
-> Cheers,
-> Michael.
->=20
-> --
-> Michael Opdenacker, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+diff --git a/recipes-kernel/linux/linux-yocto_5.%.bbappend b/recipes-kernel/linux/linux-yocto_%.bbappend
+similarity index 100%
+rename from recipes-kernel/linux/linux-yocto_5.%.bbappend
+rename to recipes-kernel/linux/linux-yocto_%.bbappend
+-- 
+2.34.1
 
-Appreciate it.
-thanks!
-
---d38zjbekrWKrVfDO09MD
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Mar 3, 2023 at 07:20 PM, Michael Opdenacker wrote:<br />
-<blockquote>Hi Yudai,<br /><br />On 03.03.23 at 10:37, yudai.yamashita@soft=
--service.co.jp wrote:<br />
-<blockquote>On Fri, Mar 3, 2023 at 04:23 PM, Alexander Kanavin wrote:<br />=
-<br />Yocto first builds its own toolchain, then uses the toolchain to buil=
-d<br />the actual software stack for the target. So the host environment ca=
-n<br />be any Linux distribution.<br /><br />If you can say what the other =
-OS is, we can discuss specifically if<br />it's going to work.<br /><br />A=
-lex<br /><br />On Fri, 3 Mar 2023 at 08:17, &lt;yudai.yamashita@soft-servic=
-e.co.jp&gt;<br />wrote:<br /><br /><br />Hi All<br /><br />I am trying to b=
-uild an application using POSIX on Ubuntu<br />(Yocto 4.1.2).<br />Even if =
-the development host environment required for the<br />build has been chang=
-ed to an OS other than Ubuntu, is it<br />possible to build by only changin=
-g the Yocto configuration<br />file without changing the application source=
-?<br /><br />Thanks<br />Yudai<br /><br /><br />Thanks for reply<br />Will =
-it work if I use Fedora, CentOS, AlmaLinux, Debian, OpenSUSE?</blockquote>
-<br />We support most of them, yes. See <br /><a href=3D"https://docs.yocto=
-project.org/ref-manual/system-requirements.html" target=3D"_blank" rel=3D"n=
-oopener">https://docs.yoctoproject.org/ref-manual/system-requirements.html<=
-/a><br />Cheers,<br />Michael.<br /><br />-- <br />Michael Opdenacker, Boot=
-lin<br />Embedded Linux and Kernel engineering<br /><a href=3D"https://boot=
-lin.com" target=3D"_blank" rel=3D"noopener">https://bootlin.com</a></blockq=
-uote>
-<p><span style=3D"white-space: pre-wrap;">Appreciate it.<br /></span><span =
-style=3D"white-space: pre-wrap;">thanks!</span></p>
-
---d38zjbekrWKrVfDO09MD--
 
