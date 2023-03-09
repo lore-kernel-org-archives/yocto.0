@@ -1,81 +1,89 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <mauro@faresoftware.it>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A9C9FC678D5
-	for <webhook@archiver.kernel.org>; Wed,  8 Mar 2023 18:35:28 +0000 (UTC)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web11.1024.1678300519211629914
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C8CEC64EC4
+	for <webhook@archiver.kernel.org>; Thu,  9 Mar 2023 07:11:39 +0000 (UTC)
+Received: from 15.mo581.mail-out.ovh.net (15.mo581.mail-out.ovh.net [87.98.180.21])
+ by mx.groups.io with SMTP id smtpd.web10.7720.1678345893678033129
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 Mar 2023 10:35:19 -0800
+ Wed, 08 Mar 2023 23:11:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=p2WP4GvY;
- spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id s20so22518529lfb.11
-        for <yocto@lists.yoctoproject.org>; Wed, 08 Mar 2023 10:35:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678300517;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cQsv1ecGZUCAAcF5HXk9PkrE32biOW7MOfBIKTKB01I=;
-        b=p2WP4GvY2tij/kl0vdVnQu08TCCvWUTk/d3gZRSMD9qQH+X72D3iox3/3ocRAwnqPW
-         vdZyRTPK7fWF74aWKaEJws8zCtUXe3LXB6qIoyzSMLLG+diptcmP7sh26V5wtGHLH+Yh
-         QACTZfiFiWMyL6l+BQrhkL//qbqLhfyMcmnf3MIyEbqZusZNi2A1xktkFNuUnt0p0o0G
-         9lPfcIF8F2rxzdUZTO2XrIciml81oyTZZFLNstPJDz4mmlDeROur0DJ/Z+sk7+IO8dE4
-         2ERdPVfnR6EASyLHO56NyK8fopBZPM8L/xO5wt5YdmLWiVbibA86DOh3IJSlEDWYKS1t
-         bY5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678300517;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cQsv1ecGZUCAAcF5HXk9PkrE32biOW7MOfBIKTKB01I=;
-        b=cuIRGmgtZnP8Csd2NVtgtyA/5pb7sjTFU6QaO+Sc4LnFj4VAc+jlKrPAC2s7dH0nVQ
-         1YIWD3Jim+Aod1xH/Ro5T+mh1q6vTdIihbXChpT969Y6SdXmbNDYQwXzpxzkutn+5GkZ
-         7xtj4tFo7NAm2odVotIS5F8/hj7fYKtdaCdQuTpuTLn4TtRC747DRfhq3Hq6rAJVgcys
-         gePoiBCozj6rHhmNbhb0rOOvAAcSM/GgaanKb8qCinZsCUE0QjeTF0wZxLydOqyi6ZoT
-         F8DpXV0BAUGva4wJfAfYLvxYQ0xqZZkZuGgw5bAqy76es9ijJq9A2SKfXjD5FrMdX29N
-         QHrw==
-X-Gm-Message-State: AO0yUKWU0Ps/Ssl/8lEUunJqxjN9RdA0u63dwuw6wQKX0v4ASf0iUAZJ
-	ZbrKRdzqyG9koEd22exZgntc2mASBL293lyZrbY=
-X-Google-Smtp-Source: AK7set9XbZzvOEehPCtvXHLZi4rNwktLjaMhltMSZc7rXHWbAZYSD3FMd6Crtd1TxWH/yhXxldncEOi9GSU3y8Ouss0=
-X-Received: by 2002:a05:6512:24f:b0:4dd:fd4e:5a21 with SMTP id
- b15-20020a056512024f00b004ddfd4e5a21mr5908131lfo.11.1678300516935; Wed, 08
- Mar 2023 10:35:16 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@faresoftware.it header.s=20210817 header.b=eLM6nvq0;
+ spf=permerror, err=too many SPF records (domain: faresoftware.it, ip: 87.98.180.21, mailfrom: mauro@faresoftware.it)
+Received: from director6.ghost.mail-out.ovh.net (unknown [10.108.16.216])
+	by mo581.mail-out.ovh.net (Postfix) with ESMTP id 85C1C26A93
+	for <yocto@lists.yoctoproject.org>; Thu,  9 Mar 2023 07:11:31 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-5r9ft (unknown [10.109.156.85])
+	by director6.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 1ED311FD2B
+	for <yocto@lists.yoctoproject.org>; Thu,  9 Mar 2023 07:11:30 +0000 (UTC)
+Received: from faresoftware.it ([37.59.142.108])
+	by ghost-submission-6684bf9d7b-5r9ft with ESMTPSA
+	id ZTaXNKKGCWTAbwAAEEZu/g
+	(envelope-from <mauro@faresoftware.it>)
+	for <yocto@lists.yoctoproject.org>; Thu, 09 Mar 2023 07:11:30 +0000
+Authentication-Results: garm.ovh; auth=pass (GARM-108S002a66687e4-b0b5-452e-8c42-0b18e6875a43,
+                    0E53A497C57039DF61863BEBDD6AEA6D602B5260) smtp.auth=relay@faresoftware.it
+X-OVh-ClientIp: 93.38.119.136
+Message-ID: <206017df-f3ed-2806-7381-80e0c24ef140@faresoftware.it>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=faresoftware.it;
+	s=20210817; t=1678345885;
+	bh=BIf5DMargCXRYJoNts9iWrlZCsXIoAjNF4jjBtzF1xA=;
+	h=Date:To:From:Subject;
+	b=eLM6nvq0WYe3FyVR6YLkqCDs4QGBb12JJ8tvfJRgAqrpejZnU3VoH6816G7ap+xoX
+	 ckBLPjzq92i9VY7Z6MUynkkZ3YZo71QjlIvSO86PqF3p6I6wFWmaqIYUyDv2GYwYSh
+	 79UW7jgReZNW/jizN7rybUa+sh2d7j4YL9pMAHxg=
+Date: Thu, 9 Mar 2023 08:11:26 +0100
 MIME-Version: 1.0
-References: <26451.1678292286573455950@lists.yoctoproject.org> <5682.1678293289751585846@lists.yoctoproject.org>
-In-Reply-To: <5682.1678293289751585846@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 8 Mar 2023 19:35:05 +0100
-Message-ID: <CANNYZj-Y_mC7ZDejg4fO88V3JKuJ2wKR6ervo6GWq5Hfd9MQJg@mail.gmail.com>
-Subject: Re: [yocto] How to install files to custom partition?
-To: Sourabh Hegde <hrsourabh011@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+To: yocto@lists.yoctoproject.org
+Content-Language: en-US
+From: Mauro Ziliani <mauro@faresoftware.it>
+Subject: Skipping recipes depending on MACHINE
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Synology-Spam-Flag: no
+X-Synology-Virus-Status: no
+X-Synology-Spam-Status: score=-3.101, required 8, autolearn=ham, ARC_NA 0, BAYES_HAM -3, FROM_HAS_DN 0, TO_MATCH_ENVRCPT_ALL 0, MIME_GOOD -0.1, TO_DN_NONE 0, RCPT_COUNT_ONE 0, RCVD_COUNT_ZERO 0, FROM_EQ_ENVFROM 0, MIME_TRACE 0, __NOT_SPOOFED 0, __BODY_URI_ONLY 0, MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001
+X-Ovh-Tracer-Id: 9701598025548694569
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrvdduhedgtdehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefkffggvffhufgtgfesthekredttddtjeenucfhrhhomhepofgruhhrohcukghilhhirghnihcuoehmrghurhhosehfrghrvghsohhfthifrghrvgdrihhtqeenucggtffrrghtthgvrhhnpeefiedvgfeuueeujeeiheeivdeltddtkedtudevgfeiteeufeetvdevteevteffteenucfkphepuddvjedrtddrtddruddpfeejrdehledrudegvddruddtkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehmrghurhhosehfrghrvghsohhfthifrghrvgdrihhtqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeihohgtthhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrghdpoffvtefjohhsthepmhhoheekuddpmhhouggvpehsmhhtphhouhht
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 08 Mar 2023 18:35:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59370
+ <yocto@lists.yoctoproject.org>; Thu, 09 Mar 2023 07:11:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59371
 
-On Wed, 8 Mar 2023 at 17:34, Sourabh Hegde <hrsourabh011@gmail.com> wrote:
-> Update: Tried below approach
->
-> do_install() {
->     install -d ${D}${custom}/
->     install -m 0755 ${S}/sample.sh ${D}${custom}/sample.sh
-> }
->
-> FILES_${PN} = " \
->     ${custom}/sample.sh \
-> "
->
-> But, getting the error "Files/directories were installed but not shipped in any package"
+Good morning.
 
-This is not enough information. To be able to help, I need to see the
-complete recipe, the command you are issuing, and the complete error
-message that happens. You can simply publish your work in public git
-somewhere as well.
+I made a project for IMX6 platform.
 
-Alex
+Now I ported it to x86.
+
+I made a layer for IMX6, but some recipe.bb cannot be compiled fo x86,=20
+or some recipe.bbappend has not a mother, so the bibtake stops.
+
+I to adapt the layer to x86 architecture I put some BBMASK +=3D "" in my=20
+conf/bblayers.conf for x86 build environment and I excluded every=20
+unneeeded file for x86.
+
+Can I put the BBMASK in some conf file inside the layer to do the same,=20
+dependig on MACHINE, using OVERRIDE?
+
+The first idea was put BBMASK in layer.conf, like this
+
+BBMASK_intel-corei7-64 =3D " \
+.... \
+"
+
+I'd like to became my layer "auto-configurable" about MACHINE value
+
+
+Any idea?
+
+
+Best regards,
+
+ =C2=A0 MZ
+
 
