@@ -1,110 +1,106 @@
-Return-Path: <jandryuk@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95CCDC6FD1F
-	for <webhook@archiver.kernel.org>; Fri, 10 Mar 2023 17:15:50 +0000 (UTC)
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
- by mx.groups.io with SMTP id smtpd.web11.25293.1678468547233842176
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2AA09C74A4B
+	for <webhook@archiver.kernel.org>; Fri, 10 Mar 2023 23:15:52 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web11.26862.1678471885397702489
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Mar 2023 09:15:47 -0800
+ Fri, 10 Mar 2023 10:11:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=mUk48Jt+;
- spf=pass (domain: gmail.com, ip: 209.85.208.41, mailfrom: jandryuk@gmail.com)
-Received: by mail-ed1-f41.google.com with SMTP id cy23so23180118edb.12
-        for <yocto@lists.yoctoproject.org>; Fri, 10 Mar 2023 09:15:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678468545;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mh/oGTis7G0XjfXh5Jd/N/hOfUqWVsUiSCGaFeWlFcc=;
-        b=mUk48Jt+GyFX+ASRV1bU01DobTp/2NFGRuWzlP082KhMdN5S6+UuT8ZiE1V1Qe38rc
-         7YXuc0jABihgKyX6yIbVNzR4U/vGmivuW4vCsB2f4FN3psvfZDSarpcUm1R0TVfRkp17
-         IWwOltyumJFHZkO9fR1+Eo7OysREN313u1Xl2KYAcDB2IRsgJeopB6L35wxLl/A0xbYA
-         1uTDSg/zd0b8bj+1PbhCLzHkaohfFMsQiTlxMchv6f2mWy6NqlIj1q8L2F3g8t33Qf+5
-         QY18F3XGx6hhGT7tGVIPz/NmQPlIlEg82QbyNpx8SmBGkT9R8dSzU3jKbZG7gx6CV3YS
-         uksw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678468545;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Mh/oGTis7G0XjfXh5Jd/N/hOfUqWVsUiSCGaFeWlFcc=;
-        b=iBGMCIPEiwLSjZRI9teQV2/JSMYs0ejKGEvfUWSqNUfZU88hbyOZ8pQid4MvfRXqvF
-         M4FiVug6AYRphLGxa7/O+b3wVzwCx6PLOKu1nxyg7GC1Elyjr3TxhAmc82jQpEya6M+s
-         Z1/aewZCWBt2/O3H0k6BeVwUSQETO9Ur+GftcsmzcpeJj0rMX96Ril7yXU47yO8fcm7R
-         dVDxEZp1DlttHfYzqaI/GqtDyDQZ20Xwyx7Oc7aMS/5c1AiVZD2P184MVtNx3HTY/SLu
-         AhlGPKYD5WAzj2NAG0sxgS+6g0lINvcihm+x+NM1rrT1CuEJdGKIMp0sGnAULwkiT/jy
-         PeDg==
-X-Gm-Message-State: AO0yUKVgTOxQcoxKwekHGs/18A0GwROC3f8t5j7rQJJ3AjPoGHo0B2GD
-	o8Zlo3vAZt/moztsIdhGb8BN0gDaxL3JnnHO19U=
-X-Google-Smtp-Source: AK7set+CzyzOc+GJdIx1FYGCuDhugqoQhxMxRPMMRqpVhgI4+NeIA9wyUeV1uxigFrwLp1cnGEEpY9U+bSXZCg02PU8=
-X-Received: by 2002:a17:906:50c:b0:8af:43c6:10bb with SMTP id
- j12-20020a170906050c00b008af43c610bbmr13427252eja.14.1678468545373; Fri, 10
- Mar 2023 09:15:45 -0800 (PST)
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=UgDJNm2j;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=24337a7e31=paul.gortmaker@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32AD8PmD022339;
+	Fri, 10 Mar 2023 18:11:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PPS06212021;
+ bh=6lzBPWiE58cEZu7T+E9UGLZ90/fpQvYbNy9ujTMzotw=;
+ b=UgDJNm2jZWetzf3m/Hxmt+qqcf/KxHEWl4MKytdxyaayhF+/UM6ou2GmxLLN3jcWSCp1
+ 4MSoP2oMX8IwyGXqMiG5tunuBnrExwHz/nDTieLN0Ss4Vpd5LNy6HN58RG80vTg7BOJf
+ lhYr+jeFWCQUSgkn3wMMLo/6KtkxSHkTVw5MElCyyXiZLiM26A1KcnatOvBK++NQ4Vo7
+ kb+h4iNc2KFgjQD54jJe9yM6eM2qzytViOY2icZfBAZ22wJlbQWF+zbNqB0E3CAAHSgc
+ 9ie3wat5ghSUXwPFf+9RibbtDiTcR9D8IXCVXs0KuA9tAyEAq8K4RYOwvos9JQ36RjeF mA== 
+Received: from ala-exchng01.corp.ad.wrs.com (unknown-82-252.windriver.com [147.11.82.252])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3p76amsy89-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Fri, 10 Mar 2023 18:11:19 +0000
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Fri, 10 Mar 2023 10:11:18 -0800
+Received: from yow-lpggp3.wrs.com (128.224.137.13) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2507.17 via Frontend Transport; Fri, 10 Mar 2023 10:11:17 -0800
+From: "Paul Gortmaker" <paul.gortmaker@windriver.com>
+To: Armin Kuster <akuster808@gmail.com>
+CC: <yocto@lists.yoctoproject.org>, Niko Mauno <niko.mauno@vaisala.com>,
+        Naveen Saini <naveen.kumar.saini@intel.com>,
+        Christer Fletcher
+	<christer.fletcher@inter.ikea.com>,
+        Paulo Neves <paulo.neves1@inter.ikea.com>
+Subject: [meta-security][PATCH RFC 0/2] initial dm-verity documentation
+Date: Fri, 10 Mar 2023 13:11:15 -0500
+Message-ID: <20230310181117.3344359-1-paul.gortmaker@windriver.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <22051.1678106002246388737@lists.yoctoproject.org> <21997.1678353554952504620@lists.yoctoproject.org>
-In-Reply-To: <21997.1678353554952504620@lists.yoctoproject.org>
-From: Jason Andryuk <jandryuk@gmail.com>
-Date: Fri, 10 Mar 2023 12:15:33 -0500
-Message-ID: <CAKf6xpvfZrXDLPakp_XhSfmakNi4sQBEnufLkaHsSrBa-aPTcA@mail.gmail.com>
-Subject: Re: [yocto] Question about psuedo abort errors
-To: Tamis <tamtamis@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: Qa_8mPNepDA7zvqaEy1KMX9UwDxfiTHt
+X-Proofpoint-ORIG-GUID: Qa_8mPNepDA7zvqaEy1KMX9UwDxfiTHt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-10_08,2023-03-10_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ mlxlogscore=861 clxscore=1011 lowpriorityscore=0 malwarescore=0
+ adultscore=0 phishscore=0 impostorscore=0 spamscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303100143
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Mar 2023 17:15:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59378
+ <yocto@lists.yoctoproject.org>; Fri, 10 Mar 2023 23:15:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59380
 
-On Thu, Mar 9, 2023 at 4:19=E2=80=AFAM Tamis <tamtamis@gmail.com> wrote:
->
-> Hello all,
->
-> I believe that we resolved the issue.
-> The issue was reproduced again during latest nightly build. And then was =
-also reproducible manually.
-> So, I modified the recipe and spitted S and B variables.
-> So I set:
->
-> S =3D "${WORKDIR}/git"
-> B =3D "${S}/v2"
->
-> Fixed the paths into do_install.
-> Now both B and S are into the PSEUDO_IGNORE_PATHS automatically and now i=
-f we install files from S those are now ignored.
->
-> After next invocation of the recipe the error was not reproducible. So I =
-believe that issue was resolved.
->
-> Thanks a lot Richard for your input and Qi for your hint.
+As time marches on, it seems that more attention is given to the various
+security features out there.  We have the framework to incorporate dm-verity
+into our builds, but it seems we have a rather steep learning curve for
+people to overcome in order to use it, and accordingly only two sample
+conflgs for people to reference.
 
-Wow, I think I've been seeing a similar issue.  Thank you so much for
-the investigation!
+This changeset attempts to rectify that by capturing the Yocto specific
+settings relating to dm-verity -- in two categories ; global/generic
+settings and board specific settings.
 
-We have some recipes building Qt libraries & binaries with qmake -
-https://gitlab.com/vglass/ivc.
+Credit to Niko Mauno who laid out a lot of information in a 0/N
+series preamble[1] some time ago - hopefully this puts the information
+a bit closer to where people can easily find it.
 
-The QT classes use a split build dir, and we have:
+This series only documents the beaglebone-black ; I'm hoping to do some
+testing with systemd-bootdisk-dmverity.wks.in and get us some documentation
+for other use cases involving that.  In the meantime, I figured I'd see
+if there was any special doc requirements/layout/format etc. that I
+might have overlooked -- or if there is any interest in this at all.
 
-S=3D"${WORKDIR}/git/src/usivc/ivclib"
-B=3D"${SEPB}"
-SEPB=3D"${WORKDIR}/${B}"
+Paul.
 
-However, the QT .pro files are full of references to parent directories lik=
-e:
-SOURCES +=3D ../syslog.cpp
-SOURCES +=3D ../../data-structures/ringbuffer.c
+[1] https://lists.yoctoproject.org/g/yocto/message/50621
 
-Would it be okay to PSEUDO_IGNORE_PATHS .=3D ",${WORKDIR}/git" to work
-around the issue?  It's still specified within the source directory -
-just at a higher level.  I don't know the QT build system, but ${S}
-being set down in the subdirectory with the .pro file seems needed for
-QT.
+---
 
-Regards,
-Jason
+Paul Gortmaker (2):
+  dm-verity: add basic non-arch/non-BSP yocto specific settings
+  dm-verity: document board specifics for Beaglebone Black
+
+ docs/dm-verity-beaglebone.txt |  37 +++++++++++
+ docs/dm-verity.txt            | 114 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 151 insertions(+)
+ create mode 100644 docs/dm-verity-beaglebone.txt
+ create mode 100644 docs/dm-verity.txt
+
+-- 
+2.33.0
+
 
