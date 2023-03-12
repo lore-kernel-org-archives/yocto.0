@@ -1,172 +1,134 @@
-Return-Path: <ron.eggler@mistywest.com>
+Return-Path: <chiefsleepyeye@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6127C6FD1C
-	for <webhook@archiver.kernel.org>; Sun, 12 Mar 2023 08:11:21 +0000 (UTC)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web10.62908.1678608671540065904
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B931C6FA99
+	for <webhook@archiver.kernel.org>; Sun, 12 Mar 2023 10:24:02 +0000 (UTC)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+ by mx.groups.io with SMTP id smtpd.web11.63992.1678616641575741159
  for <yocto@lists.yoctoproject.org>;
- Sun, 12 Mar 2023 00:11:11 -0800
+ Sun, 12 Mar 2023 03:24:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistywest-com.20210112.gappssmtp.com header.s=20210112 header.b=4aInjQt/;
- spf=pass (domain: mistywest.com, ip: 209.85.214.182, mailfrom: ron.eggler@mistywest.com)
-Received: by mail-pl1-f182.google.com with SMTP id i3so9866777plg.6
-        for <yocto@lists.yoctoproject.org>; Sun, 12 Mar 2023 00:11:11 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=m/bC02vC;
+ spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: chiefsleepyeye@gmail.com)
+Received: by mail-lf1-f45.google.com with SMTP id i28so12207722lfv.0
+        for <yocto@lists.yoctoproject.org>; Sun, 12 Mar 2023 03:24:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistywest-com.20210112.gappssmtp.com; s=20210112; t=1678608671;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=spDB86FksTF1/P3zMTxGUhG9bAj7B7/YrmF4joQLWFQ=;
-        b=4aInjQt/bas5neeZEjZmJ03vXKJ1WdUA9mME4KU2cJzjjEoI+VQLKnIdJvlN9GSC6M
-         geofODw3aCC76pydmCnwY/xqrHcfTozzgqVIq3vIchAe9jvejvAHQQ4+EgG0z9V6ktMd
-         6HUnfeG/p1oWHBq5oCk+Ei9yLsdumKYnBPiysickn5fyN03xIPvQt9gKG6+yjz/seJuF
-         5UfmV01nsaj1MxeMMdtgsBAQ+m1U2J+O1lJOdbVxdSlsjqqCHRKewXFSL7dt7eJ6yjHZ
-         IRMf8xNX8vOTic4pjMT5fAaPbzUGY5sN7/9Z1hYLGvV+D5ekqEZc7StyfwCk/CJKobIb
-         MrSw==
+        d=gmail.com; s=20210112; t=1678616639;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=X0FyYmEiUgieRokwTTDZ/m4CM7NkusZ3ouHBrgMYrOg=;
+        b=m/bC02vCdSgdS1VkG7yIIrAnf5J7cQtJxZYlC7wH4GJnbQltGhFJnt1sjZbIC2EBi/
+         /CYzPuWDnnmiCTUTlyyB0WCM2h01P0Cb4/J116i9mp+3sKutnYC4ef1HyPeo0zTgA/8k
+         FikYO9tqde0izU33dwg8tMOB+E5EXvfq74hNno4TfjD+CD82ZXSxSPv2mEtvSfdyOOvl
+         2k8MVayRIUPaj6PhH5oOsagxWeI5vxW8/EWMbwVhvDs+nhxGGhLjvGE3tL47v+5HQeIF
+         q0ubk+qtxaNOC4AZ8hoA0yDoc0OncA4zChM3d3DsFGjOBy70Bn0DYo902kgGsNWJGTm1
+         4PfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678608671;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=spDB86FksTF1/P3zMTxGUhG9bAj7B7/YrmF4joQLWFQ=;
-        b=fJGQi9dhUycMS/LDqjCBOqV1iPuwmj/J7X/vl+y9bmuzT31l0foLo4ZYEPHNeK4i9D
-         IyZWYoqOGhTAk/1UM0mqU8ECZ3+Bs86hdggZB2rPLmf9awN++Sj3DyCyv8Jw8hTBMK5D
-         aeXQnya4YtCcNL1oIQlT5yqdhvU7N0jV/BWDgpxVbubrr95rA50ACUxrC3AfOYQ8Ef9H
-         7+VcDMzyRbFmoRkSvn9k6WjWEhDbw0KLTsu2memh5bEmjxZnS4bCxg1SR7ieMgdpGilF
-         adk2zEwGTdEuIc5tMaFVGBTN/SAnUgKpBAU4j1VODrFmkoBifqPlKRTVBsifVA/sAMfi
-         Q4Yg==
-X-Gm-Message-State: AO0yUKX/SQK5jAsBucARHzPWMpSXoCXHxkqftKi6qgbxZDbYK074KTX8
-	JKzzRpQwpHUDP1yiVlvXbHTrt9I2D2+wh0bzsac1ww==
-X-Google-Smtp-Source: AK7set+yXLQ/0Lo36yGkY3YIV7hQFddd21wm5xnKCTz4WX3tFRial/idEZPE/8vB3r6Zs930YZP8/w==
-X-Received: by 2002:a17:902:ce89:b0:19e:6cb9:4c8f with SMTP id f9-20020a170902ce8900b0019e6cb94c8fmr38656636plg.41.1678608670341;
-        Sun, 12 Mar 2023 00:11:10 -0800 (PST)
-Received: from [192.168.1.223] (S01067898e84c4253.vc.shawcable.net. [24.87.53.111])
-        by smtp.gmail.com with ESMTPSA id ku3-20020a170903288300b0019aaab3f9d7sm2495169plb.113.2023.03.12.00.11.09
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 00:11:10 -0800 (PST)
-Content-Type: multipart/alternative;
- boundary="------------itaHZ07iNwXIN0mcLCIOEJa7"
-Message-ID: <92722b8d-ae42-62ec-1c67-f802c0c379e5@mistywest.com>
-Date: Sun, 12 Mar 2023 00:11:08 -0800
+        d=1e100.net; s=20210112; t=1678616639;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X0FyYmEiUgieRokwTTDZ/m4CM7NkusZ3ouHBrgMYrOg=;
+        b=J1mmQBfH9jQKZV7H+5usHGm3qhQWVabzHbQ9MSF9LGEfN+Yi0xmaQNVpeM/BKjPlXk
+         qL+pbIvmZUrZoEJYPwLIE+Ws0bhEnPzGFR+bQl+cAi5NfQg1kz4GPj2tF/PW7GyNvCVo
+         O29aZ2gNPqTfrBCdQqc/mOcQutxsYx7nYutYMknJSnj+iOsa2ItUJWIRcCPnfxL7ZG0O
+         TtlYrJiQEuP3n83TcNAhmPLyyCmXIoyk2/3q8H6XUQPovM7E8bSeCnvbr+SIZRiQt5lo
+         29swMnp5on0FcXySSiA6EydtkW6Bc+yakbq1cyNfqfyZVq59RpEL1E8FY4gZtG86lfYS
+         C9aw==
+X-Gm-Message-State: AO0yUKUycB2YiY9lid0YpUfZsS591EaZ+uMoH8LP4XJBMmJivWftDA/i
+	nepyjD6YRre9Xilbm3BwWM3aEeV3Mt23uheh4xA=
+X-Google-Smtp-Source: AK7set9Rj7HVe09RkgJToCNUxpT1XaurVgnHtVYmBWljKtXBLYU8caGEp76kLIOaekAf+7lKhSJPFp7QdBS91kkNcjA=
+X-Received: by 2002:a05:6512:68:b0:4d5:ca32:9bd7 with SMTP id
+ i8-20020a056512006800b004d5ca329bd7mr9725745lfo.3.1678616639176; Sun, 12 Mar
+ 2023 03:23:59 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [yocto] setup in Ubuntu on VMWare #ubuntu
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org
 References: <itaD.1678596723864035619.vjmt@lists.yoctoproject.org>
-From: Ron Eggler <ron.eggler@mistywest.com>
 In-Reply-To: <itaD.1678596723864035619.vjmt@lists.yoctoproject.org>
+From: Mike Lynch <chiefsleepyeye@gmail.com>
+Date: Sun, 12 Mar 2023 05:23:47 -0500
+Message-ID: <CAMbeKuAy_hqpTZw5xEALdNrfsh7mzZ4h6aOsAABPnnG5o5tiKg@mail.gmail.com>
+Subject: Re: [yocto] setup in Ubuntu on VMWare #ubuntu
+To: Crane <crane2018@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000007e04b805f6b1644e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 12 Mar 2023 08:11:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59404
+ <yocto@lists.yoctoproject.org>; Sun, 12 Mar 2023 10:24:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59405
 
-This is a multi-part message in MIME format.
---------------itaHZ07iNwXIN0mcLCIOEJa7
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000007e04b805f6b1644e
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Crane
+I've done this in the past.  Build time in that environment is painfully
+slow (an entire day using a decent machine).
 
-On 2023-03-11 20:52, Crane wrote:
+On Sat, Mar 11, 2023, 10:52 PM Crane <crane2018@gmail.com> wrote:
+
 > Hello,
 >
-> I want to run Yocto project build on Ubuntu 22.04 running on VMWare. 
-> In the documentation at this link 
-> <https://docs.yoctoproject.org/current/dev-manual/start.html#setting-up-to-use-cross-platforms-crops>, 
-> there are three cases, but none of them is for Linux running on 
-> virtual machine.
-To install Ubuntu on a VMware virtual machine, you can follow a guide 
-like this one e.g.: 
-https://www.thecoderworld.com/how-to-install-ubuntu-on-vmware-workstation-player/
-> I wonder if it belongs to the category of "Native Linux Host". If not, 
-> how to set up Ubuntu 22.04 on VMWare.
-
-Once you've got Ubuntu installed on a virtual machine, you should be 
-able to follow the instructions as if it was a native host, however, 
-your performance (i.e. build time) will likely be significantly worse 
-than if it was run directly on the host (w/o virtualization).
-
-Ron
-
+> I want to run Yocto project build on Ubuntu 22.04 running on VMWare. In
+> the documentation at this link
+> <https://docs.yoctoproject.org/current/dev-manual/start.html#setting-up-to-use-cross-platforms-crops>,
+> there are three cases, but none of them is for Linux running on virtual
+> machine.
+> I wonder if it belongs to the category of "Native Linux Host". If not, how
+> to set up Ubuntu 22.04 on VMWare.
 >
 > Thanks!
 > Crane
->
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#59403):https://lists.yoctoproject.org/g/yocto/message/59403
-> Mute This Topic:https://lists.yoctoproject.org/mt/97554667/7254380
+> View/Reply Online (#59403):
+> https://lists.yoctoproject.org/g/yocto/message/59403
+> Mute This Topic: https://lists.yoctoproject.org/mt/97554667/6323106
 > Mute #ubuntu:https://lists.yoctoproject.org/g/yocto/mutehashtag/ubuntu
-> Group Owner:yocto+owner@lists.yoctoproject.org
-> Unsubscribe:https://lists.yoctoproject.org/g/yocto/unsub  [ron.eggler@mistywest.com]
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> chiefsleepyeye@gmail.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
 >
---------------itaHZ07iNwXIN0mcLCIOEJa7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+>
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi Crane<br>
-    </p>
-    <div class="moz-cite-prefix">On 2023-03-11 20:52, Crane wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:itaD.1678596723864035619.vjmt@lists.yoctoproject.org">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      Hello,<br>
-      <br>
-      I want to run Yocto project build on Ubuntu 22.04 running on
-      VMWare. In the documentation at <a
-href="https://docs.yoctoproject.org/current/dev-manual/start.html#setting-up-to-use-cross-platforms-crops"
-        target="_blank" rel="noopener" moz-do-not-send="true">this link</a>,
-      there are three cases, but none of them is for Linux running on
-      virtual machine. <br>
-    </blockquote>
-    To install Ubuntu on a VMware virtual machine, you can follow a
-    guide like this one e.g.:
-<a class="moz-txt-link-freetext" href="https://www.thecoderworld.com/how-to-install-ubuntu-on-vmware-workstation-player/">https://www.thecoderworld.com/how-to-install-ubuntu-on-vmware-workstation-player/</a><br>
-    <blockquote type="cite"
-      cite="mid:itaD.1678596723864035619.vjmt@lists.yoctoproject.org">I
-      wonder if it belongs to the category of "Native Linux Host". If
-      not, how to set up Ubuntu 22.04 on VMWare.<br>
-    </blockquote>
-    <p>Once you've got Ubuntu installed on a virtual machine, you should
-      be able to follow the instructions as if it was a native host,
-      however, your performance (i.e. build time) will likely be
-      significantly worse than if it was run directly on the host (w/o
-      virtualization).</p>
-    <p>Ron<br>
-    </p>
-    <blockquote type="cite"
-      cite="mid:itaD.1678596723864035619.vjmt@lists.yoctoproject.org"><br>
-      Thanks!<br>
-      Crane
-      <br>
-      <fieldset class="moz-mime-attachment-header"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
--=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
-View/Reply Online (#59403): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/59403">https://lists.yoctoproject.org/g/yocto/message/59403</a>
-Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/97554667/7254380">https://lists.yoctoproject.org/mt/97554667/7254380</a>
-Mute #<a class="moz-txt-link-freetext" href="ubuntu:https://lists.yoctoproject.org/g/yocto/mutehashtag/ubuntu">ubuntu:https://lists.yoctoproject.org/g/yocto/mutehashtag/ubuntu</a>
-Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a class="moz-txt-link-abbreviated" href="mailto:ron.eggler@mistywest.com">ron.eggler@mistywest.com</a>]
--=-=-=-=-=-=-=-=-=-=-=-
+--0000000000007e04b805f6b1644e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-</pre>
-    </blockquote>
-  </body>
-</html>
+<div dir=3D"auto">I&#39;ve done this in the past.=C2=A0 Build time in that =
+environment is painfully slow (an entire day using a decent machine).</div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat=
+, Mar 11, 2023, 10:52 PM Crane &lt;<a href=3D"mailto:crane2018@gmail.com">c=
+rane2018@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">H=
+ello,<br><br>I want to run Yocto project build on Ubuntu 22.04 running on V=
+MWare. In the documentation at <a href=3D"https://docs.yoctoproject.org/cur=
+rent/dev-manual/start.html#setting-up-to-use-cross-platforms-crops" rel=3D"=
+noopener noreferrer" target=3D"_blank">this link</a>, there are three cases=
+, but none of them is for Linux running on virtual machine.=C2=A0<br>I wond=
+er if it belongs to the category of &quot;Native Linux Host&quot;. If not, =
+how to set up Ubuntu 22.04 on VMWare.<br><br>Thanks!<br>Crane
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#59403): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/59403" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/59403</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/97554667/6323=
+106" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
+ject.org/mt/97554667/6323106</a><br>
+Mute #ubuntu:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/=
+ubuntu" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yocto=
+project.org/g/yocto/mutehashtag/ubuntu</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a> [<a href=3D"mailto:chiefsleepyeye@gmail.com" target=3D"_=
+blank" rel=3D"noreferrer">chiefsleepyeye@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
---------------itaHZ07iNwXIN0mcLCIOEJa7--
+--0000000000007e04b805f6b1644e--
 
