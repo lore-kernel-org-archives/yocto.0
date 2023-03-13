@@ -1,134 +1,228 @@
-Return-Path: <chiefsleepyeye@gmail.com>
+Return-Path: <janne.kiiskila@izumanetworks.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B931C6FA99
-	for <webhook@archiver.kernel.org>; Sun, 12 Mar 2023 10:24:02 +0000 (UTC)
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
- by mx.groups.io with SMTP id smtpd.web11.63992.1678616641575741159
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10728C6FD19
+	for <webhook@archiver.kernel.org>; Mon, 13 Mar 2023 07:53:03 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (NAM11-BN8-obe.outbound.protection.outlook.com [40.107.236.41])
+ by mx.groups.io with SMTP id smtpd.web11.14661.1678693978559347567
  for <yocto@lists.yoctoproject.org>;
- Sun, 12 Mar 2023 03:24:01 -0700
+ Mon, 13 Mar 2023 00:52:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=m/bC02vC;
- spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: chiefsleepyeye@gmail.com)
-Received: by mail-lf1-f45.google.com with SMTP id i28so12207722lfv.0
-        for <yocto@lists.yoctoproject.org>; Sun, 12 Mar 2023 03:24:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678616639;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=X0FyYmEiUgieRokwTTDZ/m4CM7NkusZ3ouHBrgMYrOg=;
-        b=m/bC02vCdSgdS1VkG7yIIrAnf5J7cQtJxZYlC7wH4GJnbQltGhFJnt1sjZbIC2EBi/
-         /CYzPuWDnnmiCTUTlyyB0WCM2h01P0Cb4/J116i9mp+3sKutnYC4ef1HyPeo0zTgA/8k
-         FikYO9tqde0izU33dwg8tMOB+E5EXvfq74hNno4TfjD+CD82ZXSxSPv2mEtvSfdyOOvl
-         2k8MVayRIUPaj6PhH5oOsagxWeI5vxW8/EWMbwVhvDs+nhxGGhLjvGE3tL47v+5HQeIF
-         q0ubk+qtxaNOC4AZ8hoA0yDoc0OncA4zChM3d3DsFGjOBy70Bn0DYo902kgGsNWJGTm1
-         4PfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678616639;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X0FyYmEiUgieRokwTTDZ/m4CM7NkusZ3ouHBrgMYrOg=;
-        b=J1mmQBfH9jQKZV7H+5usHGm3qhQWVabzHbQ9MSF9LGEfN+Yi0xmaQNVpeM/BKjPlXk
-         qL+pbIvmZUrZoEJYPwLIE+Ws0bhEnPzGFR+bQl+cAi5NfQg1kz4GPj2tF/PW7GyNvCVo
-         O29aZ2gNPqTfrBCdQqc/mOcQutxsYx7nYutYMknJSnj+iOsa2ItUJWIRcCPnfxL7ZG0O
-         TtlYrJiQEuP3n83TcNAhmPLyyCmXIoyk2/3q8H6XUQPovM7E8bSeCnvbr+SIZRiQt5lo
-         29swMnp5on0FcXySSiA6EydtkW6Bc+yakbq1cyNfqfyZVq59RpEL1E8FY4gZtG86lfYS
-         C9aw==
-X-Gm-Message-State: AO0yUKUycB2YiY9lid0YpUfZsS591EaZ+uMoH8LP4XJBMmJivWftDA/i
-	nepyjD6YRre9Xilbm3BwWM3aEeV3Mt23uheh4xA=
-X-Google-Smtp-Source: AK7set9Rj7HVe09RkgJToCNUxpT1XaurVgnHtVYmBWljKtXBLYU8caGEp76kLIOaekAf+7lKhSJPFp7QdBS91kkNcjA=
-X-Received: by 2002:a05:6512:68:b0:4d5:ca32:9bd7 with SMTP id
- i8-20020a056512006800b004d5ca329bd7mr9725745lfo.3.1678616639176; Sun, 12 Mar
- 2023 03:23:59 -0700 (PDT)
-MIME-Version: 1.0
+ dkim=missing; spf=pass (domain: izumanetworks.com, ip: 40.107.236.41, mailfrom: janne.kiiskila@izumanetworks.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hObm7v9aHULaxPssAt605O1ZXlc1LGih6T8lgnnYdwQIxCjSFo7lAsf/QlfoWYAA0zlzOFEZNagtUvYT+uZ5AHYm9k9qQLALx1qMNbncPHgJtrrX7jupGndw0fSaqEFOuf07e7salm/5VNSz8UbdKfEY8FxRk/jyMAX88HLJys7t776rEfxvdCaahEMiQ2cG7y6zSjEX0v1df92v5QhmiltfbWUef67tP2eqCxCOXAXNXvlYW5FviPj+6CK9Z1tBCe/CK5JYzdE3BnGHqDTD/CEZt6iF7MBvcgZygl8BRUPBsp6vy5tnKOh5uJh7DuMw+mohqWhs8qBeMQX+u0TtaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dJiPTQCYIAoJcDpdsuuG1tnhVX+iRLpZrXuiUUxtnc0=;
+ b=hnhf9kd9r4K/SqLsGmTu2VZsYWsXZlTdwEQrHtBOiRSp9q6JnnkVKLuHn723aYuWIbIKOP5/KIeIiMin9WZIWcQCnyMwyTS6C/W9mxCZnzONGdYQx1jg9Octnk02GgglyFroOeVAL/9iGXGIBXCBf7oVUkO7sPSBwM653Lh85FD2thyGTQszhglPWm8e1TQAVdvgwNuGUYew4fDl8nhaDWtWObqZqvQNJyMlECRuJ1rCXe6mpjCS8oyCupfHzMj+sbKyf2y7q7QxkMrfQBvW8CcVoz/7xeFkdF2BCAUYVMAlMHCG1mpXMRGUQCsFx2pq6ywMpToaRmbgonSUihoaUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=izumanetworks.com; dmarc=pass action=none
+ header.from=izumanetworks.com; dkim=pass header.d=izumanetworks.com; arc=none
+Received: from BN7PR14MB2420.namprd14.prod.outlook.com (2603:10b6:406:c2::28)
+ by DM4PR14MB5718.namprd14.prod.outlook.com (2603:10b6:8:8f::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.24; Mon, 13 Mar 2023 07:52:54 +0000
+Received: from BN7PR14MB2420.namprd14.prod.outlook.com
+ ([fe80::cfdf:685c:7882:7f42]) by BN7PR14MB2420.namprd14.prod.outlook.com
+ ([fe80::cfdf:685c:7882:7f42%5]) with mapi id 15.20.6178.024; Mon, 13 Mar 2023
+ 07:52:53 +0000
+From: Janne Kiiskila <janne.kiiskila@izumanetworks.com>
+To: "chiefsleepyeye@gmail.com" <chiefsleepyeye@gmail.com>, Crane
+	<crane2018@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] setup in Ubuntu on VMWare #ubuntu
+Thread-Topic: [yocto] setup in Ubuntu on VMWare #ubuntu
+Thread-Index: AQHZVJ5o2LUa4Bz0Qk+4Od76pS2XEK728DmAgAFn/DA=
+Date: Mon, 13 Mar 2023 07:52:53 +0000
+Message-ID: 
+ <BN7PR14MB242097A1A78D96E4B0E07C8A85B99@BN7PR14MB2420.namprd14.prod.outlook.com>
 References: <itaD.1678596723864035619.vjmt@lists.yoctoproject.org>
-In-Reply-To: <itaD.1678596723864035619.vjmt@lists.yoctoproject.org>
-From: Mike Lynch <chiefsleepyeye@gmail.com>
-Date: Sun, 12 Mar 2023 05:23:47 -0500
-Message-ID: <CAMbeKuAy_hqpTZw5xEALdNrfsh7mzZ4h6aOsAABPnnG5o5tiKg@mail.gmail.com>
-Subject: Re: [yocto] setup in Ubuntu on VMWare #ubuntu
-To: Crane <crane2018@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000007e04b805f6b1644e"
+ <CAMbeKuAy_hqpTZw5xEALdNrfsh7mzZ4h6aOsAABPnnG5o5tiKg@mail.gmail.com>
+In-Reply-To: 
+ <CAMbeKuAy_hqpTZw5xEALdNrfsh7mzZ4h6aOsAABPnnG5o5tiKg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=izumanetworks.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN7PR14MB2420:EE_|DM4PR14MB5718:EE_
+x-ms-office365-filtering-correlation-id: 1c5f5bfc-8ada-4cd1-ca8a-08db2397f3af
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ bIQz1BslPpK3bPvIukDaP5PVkuSvmgizxfhySB8bC369Udhn+Ls3Sc+v4Sk9KJZNN0pFU2qU7zRgQy3kImQXRMbL0fXqubLaPmfELz7VWoQBvRK38PEw8nQka4Fr3SXLkbqgNEVqU3JBvd1etK2kJURTEhNUn3xedkQGIlg5WorHMFwzthE9mpHtiCGTK4GjhmkUEvJDpMMVayI4/hfyX6626V3lF5iTID45FFUUWcJCbW3Ec3y1+n5XZI+omkr1N9ik6PFUN/Yh+/Qvg+2K/LJSBZ6oU6dDINoxlsVJ6zMb0GAPSDguSTEfxXWcV3UsQj8H/Duou5RrOxqQsiwGB4f1EMcce7fPM63rIaEKyca/gEJi1wT7+cuT4wL0Irxm9CnbSGqD319srb1VhZLHJDLSw8wuTgNeg6yuUDBEjSw7lypIdS3++IULHR3NEVWjntQqNNuDWbzh8f7mBjN2O1T+8CBMHjo5PumLWkTmQ6Jn21IsJpuYBiz41oTOdfqk8BS/OUC5wNweX22wyA+fdUrdvszX5TJVVcCm4qyiMIUq3YWyaIEoXLERiPEARYLbj7yuskeFIDpVA8D1pNhNQQU2kY6d9HFBLwsEWL5UqXPZeQjSrVrvxHiJQaDB5yTsNuh2Alt77tLUS1kgcA1XKO1pSaNKCrtgYmsMorsX9+lTveQ9cBOEK1sim9EKcQ1U
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR14MB2420.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39830400003)(366004)(136003)(396003)(376002)(346002)(451199018)(41300700001)(66556008)(64756008)(8676002)(66946007)(66446008)(66476007)(4326008)(5660300002)(44832011)(4744005)(52536014)(76116006)(186003)(9686003)(8936002)(71200400001)(6506007)(110136005)(7696005)(478600001)(316002)(33656002)(55016003)(38070700005)(86362001)(2906002)(38100700002)(166002)(122000001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?OUxzMGJGbS9qQWQ2RitSODd1MUZQR1Y2Wlh1UXBPSURKUENBOVJjOTBTSVc4?=
+ =?utf-8?B?dUo3MklJaE9sazV0SkR5dm5UWkVCcTFSRW9FLzZ1czBCT2lsc01LOFF4VXVE?=
+ =?utf-8?B?MEtFZkdiMXRWVEJldkxLdXFrSWY2YWllcnBzS0hlaGRpM3k2NzZWdjA5MERW?=
+ =?utf-8?B?WGRUTCt6ZXRidkdPcGw5c2JhZWtweUZBVXJtZ0prOGQyQlpUeWgySHpGRFp4?=
+ =?utf-8?B?NFA5NFhtMDlLUEhxOUlRdXhUMHJwbjZpRlI3emFMNEtYYjRBY0s4eHI5MVI3?=
+ =?utf-8?B?cyt0SWxBY0JsUW5hU0ZNeGxldGl5cTlvNFN0anBWb1dwNnJPOSt5UUEzSmk5?=
+ =?utf-8?B?TUF0eXI4QU1ld1EycU1hQnJKN1hacEFjN0tpTHhHTjI1eVFwUzVJc2xSUStV?=
+ =?utf-8?B?ay9pWExGck1jbnNmUFVLaW80NzV4SGJuSzdzd2xLSDJJa2J5RGU4R29vSTdF?=
+ =?utf-8?B?Rml2d2txdW9UR3JxVWk0RE5TNS9HQ2Vyb0twSTk3b2YrRTIvdGxzOEtydzFX?=
+ =?utf-8?B?NUQzNzF3S3BTYklGZGlOT2dhMlAwemIxSEl2ekk1b0FxOXJpbnJPZ3ZTbTQz?=
+ =?utf-8?B?dkRrM3c1eFVDcVg0ZDJNdFkyd2s0Zlh3K3NPNDVlMVBRWEpTUURMUUtTMnNo?=
+ =?utf-8?B?ZE5kZGdKeTJ2VS9sWjl2elNFWVVxOW1ueVJHd3I5cU9mUkE5RUJCOVlLWmFh?=
+ =?utf-8?B?cjB4L0FhZmZBam1MWWpVYlQzRmRHOVNwWWhRbkU1OU9NaXppMFEvbmlWNHBq?=
+ =?utf-8?B?aVNsaWs4ZHNEQkhITHI2Qko4cUtQdVo5QklCV0R1TTJ5VS9EWWN4UThNeVJn?=
+ =?utf-8?B?VFVMS2Erc2MzdVhJZDg1anVKNnlZL3RvKzZCdUhWZUxaK041ZTloK3JlWXFz?=
+ =?utf-8?B?UjJHSjB0TEFSWUpGbFpNbjVjNk1NTkl5aEROTC8zRXJTQXFTU0J4V2xPL2JW?=
+ =?utf-8?B?c1F3UnIxMTVwRVczcHN6bUtrM2FYTXZKWkpUczBGeTIycE8rQmdWUEhEcEJZ?=
+ =?utf-8?B?eHcxM3M3Z0IzZytTd2pvUGUxa3pNbndSL2ZwYmJHOEVDblNhM2tqeDJGT2kr?=
+ =?utf-8?B?b3JsQm1iNTh4UDJUVXlnUWxRUk1ncDRXQWxNdnVlUEFJYTk2RlFzSkdBQ3Nh?=
+ =?utf-8?B?Q29pZFdFVlVvaTBqTmdlVytjMEpJSzZVa0t3VFAyZE5jMXE5VmRORm1vWWZz?=
+ =?utf-8?B?QzIvSHZwN1dVME1UaGFXcDRkakpJVzJ5alNBYUlIQVJCK0VWSDdIb3YwTHdi?=
+ =?utf-8?B?TUJVZXQzNU9RdTFNdnM4aS9nTnBWV1BXeStsdnVNNksrRW5DYTZ5ZkR6WUJP?=
+ =?utf-8?B?V2tPTzB1a2wxc1RaV3M3VUNKTWxYK0tPd0NwckIvcS9mMldtMlVsUzMvZzZm?=
+ =?utf-8?B?UW15WnA4djRjcHllcE5lNUFOYTNFK2ZWd1JsUXdoQ1g3UjdLU293SUd3L1ky?=
+ =?utf-8?B?WThNQVlyelRyRjZyY09yb0hhaSs4OFJEVXhoS3VielJqTENCb2RwL04rS2dm?=
+ =?utf-8?B?UFZYd2Y5NCt6eWdUbmdDKzB2OEp3NktqaTJhcEEwbjhDVjZzT2s3ajRVN2Vr?=
+ =?utf-8?B?MGpqQlk1Mjdtd3pqY2hVOHZrT09xWG53a3oxV3VzVFdENUlCQVpFNlE0WHMy?=
+ =?utf-8?B?QiszdUhmM0RKb0xQNkRqT3d5WkZoVGVXOTJUTlRRbSsvVVZKQ0lHMk9JejNP?=
+ =?utf-8?B?anh6NlBsejVKaHF0UDZIMm82YmE5MnNmZ0pmbFI2MlRHb1QwUStmMlNuRDdK?=
+ =?utf-8?B?UjlrNGtQYlhzZHAyT0NwS0J4OC9Kd1lQVmRuQUwvTm4yamQ3WFNzZzIyTDEx?=
+ =?utf-8?B?dXprQi96QTJKQTdMKzIxZXFNcU9LYmN6eUk3b1ZiaVNCWThNbW5hbkcyeU5q?=
+ =?utf-8?B?SENXa2FBMWpqK2hKMUNqNW5MQzhOcXUwY29SNHVlV2Y3cCtjRHRjUVJ4TzNT?=
+ =?utf-8?B?bUpvMEhHYXdCalV0V1U1anI3QUNLRGtxY0JEUFg4d1VyeEpUVWJLR2ROSFM4?=
+ =?utf-8?B?dm9sMTl2VjF4TWlUOUV3UUZTeEhtVURaMW5Nb3lWbUxvQlIyNXJBcjFFSVJw?=
+ =?utf-8?B?V2J2VFh1K1Q4MTZEUVNtZWxqSTJySmM2NVRqZ1VPUmZGSjVUUk96RGc1MFlz?=
+ =?utf-8?B?THBOZGdpS1RRM0dzelkrWm41V1phWlhxS0tNVktUaW1jVTBUN2Q0VEU4UlhQ?=
+ =?utf-8?B?M1pncXBKVFJOejdXdjJiZkYyU1gxV0NqNUV0RHJsbC9HL1ZielMyenFsa3Zs?=
+ =?utf-8?Q?ILJKn562qOokr0mcl5ZpsLJ1Hl7gviBZ3r+rmK/gzQ=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_BN7PR14MB242097A1A78D96E4B0E07C8A85B99BN7PR14MB2420namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: izumanetworks.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR14MB2420.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c5f5bfc-8ada-4cd1-ca8a-08db2397f3af
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2023 07:52:53.8318
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b75ac1ab-4ecf-4491-a62d-9087b0c0cf30
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: B64aORq+KH4QkGX9Y7ZK9AOqxjzKwLPgmZYa7JPTLuTO1BYBEsgZXaR7LeC43RK87UYPa41+3CFAfHrHDk+leJQH9ho7S8rNC0tSsVcbCMx3pjuCFg0ShsGIkIa6qPVY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR14MB5718
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 12 Mar 2023 10:24:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59405
+ <yocto@lists.yoctoproject.org>; Mon, 13 Mar 2023 07:53:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59406
 
---0000000000007e04b805f6b1644e
-Content-Type: text/plain; charset="UTF-8"
+--_000_BN7PR14MB242097A1A78D96E4B0E07C8A85B99BN7PR14MB2420namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I've done this in the past.  Build time in that environment is painfully
-slow (an entire day using a decent machine).
+SGVpLA0KDQpJbmRlZWQg4oCTIHNhbWUgYXMgbmF0aXZlbHkuIEhvd2V2ZXIsIHRoZSBWTVdhcmUg
+c2xvd2VkIGl0IGRvd24gYnkgc29tZSA1MCUgdnMuIHJ1bm5pbmcgdGhlIHNhbWUgYnVpbGQgb24g
+dGhlIHNhbWUgbWFjaGluZSBuYXRpdmVseSAoaW4gbXkgY2FzZSBVYnVudHUgMjAuMDQpLg0KDQpC
+ZXN0IFJlZ2FyZHMsDQoNCg0KSmFubmUgS2lpc2tpbMOkDQoNCkZyb206IHlvY3RvQGxpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcgPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBP
+ZiBNaWtlIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTZW50OiBzdW5udW50YWkgMTIuIG1h
+YWxpc2t1dXRhIDIwMjMgMTIuMjQNClRvOiBDcmFuZSA8Y3JhbmUyMDE4QGdtYWlsLmNvbT4NCkNj
+OiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBzZXR1
+cCBpbiBVYnVudHUgb24gVk1XYXJlICN1YnVudHUNCg0KSSd2ZSBkb25lIHRoaXMgaW4gdGhlIHBh
+c3QuICBCdWlsZCB0aW1lIGluIHRoYXQgZW52aXJvbm1lbnQgaXMgcGFpbmZ1bGx5IHNsb3cgKGFu
+IGVudGlyZSBkYXkgdXNpbmcgYSBkZWNlbnQgbWFjaGluZSkuDQoNCk9uIFNhdCwgTWFyIDExLCAy
+MDIzLCAxMDo1MiBQTSBDcmFuZSA8Y3JhbmUyMDE4QGdtYWlsLmNvbTxtYWlsdG86Y3JhbmUyMDE4
+QGdtYWlsLmNvbT4+IHdyb3RlOg0KSGVsbG8sDQoNCkkgd2FudCB0byBydW4gWW9jdG8gcHJvamVj
+dCBidWlsZCBvbiBVYnVudHUgMjIuMDQgcnVubmluZyBvbiBWTVdhcmUuIEluIHRoZSBkb2N1bWVu
+dGF0aW9uIGF0IHRoaXMgbGluazxodHRwczovL2RvY3MueW9jdG9wcm9qZWN0Lm9yZy9jdXJyZW50
+L2Rldi1tYW51YWwvc3RhcnQuaHRtbCNzZXR0aW5nLXVwLXRvLXVzZS1jcm9zcy1wbGF0Zm9ybXMt
+Y3JvcHM+LCB0aGVyZSBhcmUgdGhyZWUgY2FzZXMsIGJ1dCBub25lIG9mIHRoZW0gaXMgZm9yIExp
+bnV4IHJ1bm5pbmcgb24gdmlydHVhbCBtYWNoaW5lLg0KSSB3b25kZXIgaWYgaXQgYmVsb25ncyB0
+byB0aGUgY2F0ZWdvcnkgb2YgIk5hdGl2ZSBMaW51eCBIb3N0Ii4gSWYgbm90LCBob3cgdG8gc2V0
+IHVwIFVidW50dSAyMi4wNCBvbiBWTVdhcmUuDQoNClRoYW5rcyENCkNyYW5lDQoNCg==
 
-On Sat, Mar 11, 2023, 10:52 PM Crane <crane2018@gmail.com> wrote:
+--_000_BN7PR14MB242097A1A78D96E4B0E07C8A85B99BN7PR14MB2420namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> Hello,
->
-> I want to run Yocto project build on Ubuntu 22.04 running on VMWare. In
-> the documentation at this link
-> <https://docs.yoctoproject.org/current/dev-manual/start.html#setting-up-to-use-cross-platforms-crops>,
-> there are three cases, but none of them is for Linux running on virtual
-> machine.
-> I wonder if it belongs to the category of "Native Linux Host". If not, how
-> to set up Ubuntu 22.04 on VMWare.
->
-> Thanks!
-> Crane
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59403):
-> https://lists.yoctoproject.org/g/yocto/message/59403
-> Mute This Topic: https://lists.yoctoproject.org/mt/97554667/6323106
-> Mute #ubuntu:https://lists.yoctoproject.org/g/yocto/mutehashtag/ubuntu
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> chiefsleepyeye@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
+OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
+bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
+b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdl
+OkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCglt
+YXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7
+cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
+CjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48
+IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0
+PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5
+b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGluaz0iYmx1ZSIgdmxpbms9
+InB1cnBsZSIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRT
+ZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5IZWksPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFz
+dC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1VUyI+SW5kZWVkIOKAkyBzYW1lIGFzIG5hdGl2ZWx5LiBIb3dldmVyLCB0aGUgVk1XYXJl
+IHNsb3dlZCBpdCBkb3duIGJ5IHNvbWUgNTAlIHZzLiBydW5uaW5nIHRoZSBzYW1lIGJ1aWxkIG9u
+IHRoZSBzYW1lIG1hY2hpbmUgbmF0aXZlbHkgKGluIG15IGNhc2UgVWJ1bnR1IDIwLjA0KS48bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5CZXN0IFJlZ2FyZHMsPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJt
+c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFz
+dC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1VUyI+SmFubmUgS2lpc2tpbMOkPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXIt
+dG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+RnJvbTo8L3NwYW4+PC9iPjxz
+cGFuIGxhbmc9IkVOLVVTIj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7eW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDsNCjxiPk9uIEJlaGFsZiBPZiA8L2I+TWlrZSB2aWEg
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlNlbnQ6PC9iPiBzdW5udW50YWkgMTIuIG1h
+YWxpc2t1dXRhIDIwMjMgMTIuMjQ8YnI+DQo8Yj5Ubzo8L2I+IENyYW5lICZsdDtjcmFuZTIwMThA
+Z21haWwuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
+Zzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBzZXR1cCBpbiBVYnVudHUgb24gVk1X
+YXJlICN1YnVudHU8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PkkndmUgZG9uZSB0aGlzIGluIHRoZSBwYXN0LiZuYnNwOyBCdWlsZCB0aW1lIGluIHRoYXQgZW52
+aXJvbm1lbnQgaXMgcGFpbmZ1bGx5IHNsb3cgKGFuIGVudGlyZSBkYXkgdXNpbmcgYSBkZWNlbnQg
+bWFjaGluZSkuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5P
+biBTYXQsIE1hciAxMSwgMjAyMywgMTA6NTIgUE0gQ3JhbmUgJmx0OzxhIGhyZWY9Im1haWx0bzpj
+cmFuZTIwMThAZ21haWwuY29tIj5jcmFuZTIwMThAZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
+ZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFy
+Z2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkhlbGxvLDxicj4NCjxicj4NCkkgd2FudCB0byBy
+dW4gWW9jdG8gcHJvamVjdCBidWlsZCBvbiBVYnVudHUgMjIuMDQgcnVubmluZyBvbiBWTVdhcmUu
+IEluIHRoZSBkb2N1bWVudGF0aW9uIGF0DQo8YSBocmVmPSJodHRwczovL2RvY3MueW9jdG9wcm9q
+ZWN0Lm9yZy9jdXJyZW50L2Rldi1tYW51YWwvc3RhcnQuaHRtbCNzZXR0aW5nLXVwLXRvLXVzZS1j
+cm9zcy1wbGF0Zm9ybXMtY3JvcHMiIHRhcmdldD0iX2JsYW5rIj4NCnRoaXMgbGluazwvYT4sIHRo
+ZXJlIGFyZSB0aHJlZSBjYXNlcywgYnV0IG5vbmUgb2YgdGhlbSBpcyBmb3IgTGludXggcnVubmlu
+ZyBvbiB2aXJ0dWFsIG1hY2hpbmUuJm5ic3A7PGJyPg0KSSB3b25kZXIgaWYgaXQgYmVsb25ncyB0
+byB0aGUgY2F0ZWdvcnkgb2YgJnF1b3Q7TmF0aXZlIExpbnV4IEhvc3QmcXVvdDsuIElmIG5vdCwg
+aG93IHRvIHNldCB1cCBVYnVudHUgMjIuMDQgb24gVk1XYXJlLjxicj4NCjxicj4NClRoYW5rcyE8
+YnI+DQpDcmFuZSA8YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---0000000000007e04b805f6b1644e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">I&#39;ve done this in the past.=C2=A0 Build time in that =
-environment is painfully slow (an entire day using a decent machine).</div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat=
-, Mar 11, 2023, 10:52 PM Crane &lt;<a href=3D"mailto:crane2018@gmail.com">c=
-rane2018@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">H=
-ello,<br><br>I want to run Yocto project build on Ubuntu 22.04 running on V=
-MWare. In the documentation at <a href=3D"https://docs.yoctoproject.org/cur=
-rent/dev-manual/start.html#setting-up-to-use-cross-platforms-crops" rel=3D"=
-noopener noreferrer" target=3D"_blank">this link</a>, there are three cases=
-, but none of them is for Linux running on virtual machine.=C2=A0<br>I wond=
-er if it belongs to the category of &quot;Native Linux Host&quot;. If not, =
-how to set up Ubuntu 22.04 on VMWare.<br><br>Thanks!<br>Crane
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#59403): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59403" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
-ists.yoctoproject.org/g/yocto/message/59403</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/97554667/6323=
-106" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
-ject.org/mt/97554667/6323106</a><br>
-Mute #ubuntu:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/=
-ubuntu" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yocto=
-project.org/g/yocto/mutehashtag/ubuntu</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
-/g/yocto/unsub</a> [<a href=3D"mailto:chiefsleepyeye@gmail.com" target=3D"_=
-blank" rel=3D"noreferrer">chiefsleepyeye@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---0000000000007e04b805f6b1644e--
+--_000_BN7PR14MB242097A1A78D96E4B0E07C8A85B99BN7PR14MB2420namp_--
 
