@@ -1,280 +1,289 @@
-Return-Path: <Martin.Jansa@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1C6FC61DA4
-	for <webhook@archiver.kernel.org>; Mon, 13 Mar 2023 18:00:21 +0000 (UTC)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
- by mx.groups.io with SMTP id smtpd.web10.1074.1678730413058786750
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27603C61DA4
+	for <webhook@archiver.kernel.org>; Mon, 13 Mar 2023 22:32:43 +0000 (UTC)
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+ by mx.groups.io with SMTP id smtpd.web11.8365.1678746760151560010
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Mar 2023 11:00:13 -0700
+ Mon, 13 Mar 2023 15:32:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=XcjPcPpF;
- spf=pass (domain: gmail.com, ip: 209.85.128.52, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wm1-f52.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso11554869wmb.0
-        for <yocto@lists.yoctoproject.org>; Mon, 13 Mar 2023 11:00:12 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jEFO1fEs;
+ spf=pass (domain: gmail.com, ip: 209.85.215.181, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f181.google.com with SMTP id d8so7854011pgm.3
+        for <yocto@lists.yoctoproject.org>; Mon, 13 Mar 2023 15:32:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678730411;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zB8UsrWaJmPpM58+Oezh8YJir/iFzBEpHhFR69eGH1k=;
-        b=XcjPcPpFW09u5vUYdfDpcJZMBk5QJMPUR+kh2YPpm0QfYcHjO8M2Gc1DvALqNqIahY
-         qUnW436T2V6NiX/oOJtwhW2lPaZp4WZuEATp19WFXzv2VAvRZGRNDZenHr8khvjkEJDh
-         Gua7fhry3wByPaalCeD1zwlINdO/wJXm94aSF8R7s2r9EUS0j+yF4Ld/sKgZCOySBoEX
-         ynGKX3Z+CFI14a+mndXyld7Z6e3F8A9Azbx9T/NOrieDZQz/3u8aEC8UZXjHNsJB+xQJ
-         /y41zg7pLNqH2Sw25K3nqHB4UzsYpMUHIw3Xt2HdweDILC/ogaZ5WzEfQhwJvFDu1pWa
-         fCkA==
+        d=gmail.com; s=20210112; t=1678746759;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HlwrHQwvQmCuzHKCCoD0fxHJ19UmJKCllLl/8lGF+DU=;
+        b=jEFO1fEsCk3w1N+09SIfd5reejLBoKO3m+ytKdZKTRs/S+kuCgBvNLEJXhqizaP4HZ
+         1s1BfSfKkrhdBhtg+2vYoRDOX6/Hqv8Km9MTFvDGG73+SZD1hx8Fa280R4o1XytT9k4k
+         Tcfum6Nd+4al3a5RVIkC0MUottunTVJ82CLv1RwIldOZdHR1bqmg21ukR9u6KENn2zgP
+         GCRw4C5DbBVmtqZKvsFZoNl7f5bCEVRsRuOo08XoqP+kxTuDr50ZlWu3VLY/eSHYSXWR
+         8x5G+JYwVcjEj+uZlnHseqGaj5Ys2bPes6p7HcFYWyDihHvCWvw48KyRDGyj5jEOxDC/
+         BkaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678730411;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1678746759;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zB8UsrWaJmPpM58+Oezh8YJir/iFzBEpHhFR69eGH1k=;
-        b=yfjVYsu57zw0ZWqRCYQfFPn5LSSSv/ONVg2jcVUFkut8O9LFw7jo1wv+1JYQmup/aC
-         M6Q4UurbO2ym4rp02RkZ0kSd+UFo5nCFFXDOz4iO1tbYmiWVY5uR5LdpaXOTwi/StXTE
-         BY1Mxspt1NnkkA3zFdBTEu9VeyDAgRMn01NMqLcy3Oy/V1AGqK48lWTtUC1vI1pOL7X1
-         5WmE4D+Zdkyf5rD37Q3BLVrHwWe2qvaesV4NGV4W7xxHbQBMVWfOnQ3pVEkT0gIVVTXo
-         9S4EcHkc2ikKYypBggUUKACayv+oGjarR3fVcLejsbi5dltkvQEJisPcGxXowHXU4Ct+
-         WkDQ==
-X-Gm-Message-State: AO0yUKV56yCBx4c7NSAcWj/y2Rd6SZ6EU2OyznYneYlLVPASR0KzZ6L0
-	LQlrn/s73kW+rnXcqtqT+G+zn1EWRENk9WIPfA0=
-X-Google-Smtp-Source: AK7set+6LEmdYS8iWP5WrM8lZxp9oWcWcSv03Qc5/4ToiuJXopAk0yjXlg4ZOx3y2bstYDTviAgbrmrOCqTCqDJVdRs=
-X-Received: by 2002:a05:600c:a3a1:b0:3ed:253b:1044 with SMTP id
- hn33-20020a05600ca3a100b003ed253b1044mr955520wmb.3.1678730411337; Mon, 13 Mar
- 2023 11:00:11 -0700 (PDT)
+        bh=HlwrHQwvQmCuzHKCCoD0fxHJ19UmJKCllLl/8lGF+DU=;
+        b=JiZftpJ32efgnNXO1NuhxborP9S4QwRj/122B3Xc0xQFQfxeUrucZQDc48NI3fGNuQ
+         PLZu/zNGl8yHGex5RgyRrfCUIH2C5gEc4IQ9WOfb4y0Ut0nkAbPzUFI0VG40ns8VrszQ
+         aaoH9xTtClFYNUId+fNW8cPnI8EDxijlkxpEsq8IfklX2+X1HzWgowqXadNkSbucKnQ5
+         US3cJ/RnUonW7V0cZ9B/Qzr0KPORgJjJFl59vd7YvbnJQ9XTRT7cgkdX3c7XwiIGHkjf
+         cDaqV4p15jcDWjtMkhrKUFibz4Js/rjzOsacm1IhLFRVV2YY1pJZTEqClFnHdKtvuRf2
+         864A==
+X-Gm-Message-State: AO0yUKUgB8HFuHh3rdxcHkwS95lpUUyDtJH6U1m8n73IfWe8v158sX5P
+	H3/KCdv4L75LvyBQs+HnxFM=
+X-Google-Smtp-Source: AK7set8F+ICo1M89GgO9I0qR6MW+L87pcSGZhlercgxNGpZY0ngPbKesgjIuB2o75N57Kh+8z1YRuA==
+X-Received: by 2002:a62:524b:0:b0:623:cf8f:3902 with SMTP id g72-20020a62524b000000b00623cf8f3902mr4796164pfb.7.1678746759430;
+        Mon, 13 Mar 2023 15:32:39 -0700 (PDT)
+Received: from skjolley ([2600:1011:a124:5236:fab7:c3f3:b8a7:82b5])
+        by smtp.gmail.com with ESMTPSA id q23-20020a62ae17000000b006254367756bsm207144pff.108.2023.03.13.15.32.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 Mar 2023 15:32:38 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 13 Mar 2023 15:32:38 -0700
+Message-ID: <0b6101d955fb$b84dd0c0$28e97240$@gmail.com>
 MIME-Version: 1.0
-References: <c607b08fa41a4dfeb70aad68f70f961a@vivavis.com> <CANNYZj8rJ5dUFpQ2Pa1NkfHFDHaYn8vbBvo5hQYVNbBbH6OzYA@mail.gmail.com>
-In-Reply-To: <CANNYZj8rJ5dUFpQ2Pa1NkfHFDHaYn8vbBvo5hQYVNbBbH6OzYA@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Mon, 13 Mar 2023 18:59:54 +0100
-Message-ID: <CA+chaQd-RmQXHMG-_k-897H2X+Wu28uZjywvrZ3s5rHv=oYSyQ@mail.gmail.com>
-Subject: Re: [yocto] State of Yocto styleguide and oe-stylize.py script
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: embedded@vivavis.com, 
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000d76d3b05f6cbe108"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0B62_01D955C1.0BEFBC10"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGAfGcK7G7uNUnpCyTn1OqFBVr+Ag==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Mar 2023 18:00:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59420
+ <yocto@lists.yoctoproject.org>; Mon, 13 Mar 2023 22:32:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59421
 
---000000000000d76d3b05f6cbe108
-Content-Type: text/plain; charset="UTF-8"
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0B62_01D955C1.0BEFBC10
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 424
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.2", "4.3", "4.99" and "Future", the more pressing/urgent
+issues being in "4.2" and then "4.3".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0B62_01D955C1.0BEFBC10
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0D37_01D9505F.9FD48300";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 13, 2023 at 6:34=E2=80=AFPM Alexander Kanavin <alex.kanavin@gma=
-il.com>
-wrote:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 424 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.2&#8221;, =
+&#8220;4.3&#8221;, &quot;4.99&quot; and &quot;Future&quot;, the more =
+pressing/urgent issues being in &quot;4.2&quot; and then =
+&#8220;4.3&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Please review this link and if a bug is =
+something you would be able to help with either take ownership of the =
+bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0B62_01D955C1.0BEFBC10--
 
-> There is not a lot of interest in maintaining style guides, and
-> associated tooling. My personal feeling is that they don't really help
-> with the truly problematic things in recipes that need a human eye (or
-> chatgpt level intelligence :) - by and large people do follow
-> reasonable order of entries for example, and nitpicking on an exact
-> order would just be wasting precious maintainer time.
->
-
-I agree that there are other more important things, but I also like style
-(only in code - human looks are overrated :)).
-
-If the tool is executed locally before sending the contribution (and
-Carsten does seem interested in doing just that - not asking Khem to run it
-on incoming patches) then I believe it can save maintainers time by sending
-better patches on first try not waste it and our styleguide really needs
-some TLC as Carsten found out.
-
-The same does apply to e.g. scripts/contrib/patchreview.py.
-
-If the missing/malformed Upstream-Status is reported to the original
-contributor before he/she/it sends the patch, by some at least well
-documented work flow how to submit patches, then it saves more maintainer
-time, than asking for it during e-mail review or worse after the change is
-merged or built by maintainer and QA check reports it's missing or
-malformed.
-
-If someone is willing to help with the tooling, we should endorse that, not
-discourage them even when there are bigger-greater goals
-like yocto-check-layer script you mentioned.
-
-Cheers,
-
-If you want to ensure good quality, making your layer pass the yocto
-> compatibility script, and ensuring there are no warnings of any kind
-> from bitbake when built with latest master revisions of everything is
-> a better first step in my opinion.
->
-> Alex
->
-> On Mon, 13 Mar 2023 at 15:20, VIVAVIS AG via lists.yoctoproject.org
-> <embedded=3Dvivavis.com@lists.yoctoproject.org> wrote:
-> >
-> > Hi,
-> >
-> > I'm wondering whether the styleguide
-> www.openembedded.org/wiki/Styleguide,
-> > meta-openembedded/contrib/oe-stylize.py or none of them is the source o=
-f
-> > truth for writing a good recipe.
-> >
-> > E.g., if you run oe-stylize.py, the SRCREV variable is placed above
-> SRC_URI,
-> > or RDEPENDS is placed above FILES, which is not what the Wiki documents=
-.
-> > And there are more discrepancies of this type.
-> >
-> > Furthermore, the script doesn't know the FILESEXTRAPATHS variable in
-> bbappend files
-> > and moves it to the end of my recipe. Well, this is not decribed in the
-> Wiki, but a look
-> > into append files in meta-openembedded shows, that it is common pactice
-> to put
-> > FILESEXTRAPATHS in the first line of the recipe.
-> >
-> > The Wiki has an interesting note and the end: "You can run
-> contrib/oe-stylize.py from
-> > meta-oe on your recipes before submitting them; however it is not
-> necessarily up-to-date
-> > with all current style conventions. This page should be considered the
-> canonical reference."
-> >
-> > Furthermore, there's github.com/openembedded/meta-openembedded/pull/465
-> > providing another ruleset for the new linter.
-> >
-> > So, my question to the Yocto maintainers is, what is the current state
-> of the styleguide
-> > and oe-stylize.py? Are there plans to synchronize them?
-> >
-> > Thanks for clarification.
-> >
-> > Carsten Stelling
-> >
-> >
-> >
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59419):
-> https://lists.yoctoproject.org/g/yocto/message/59419
-> Mute This Topic: https://lists.yoctoproject.org/mt/97581374/3617156
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> Martin.Jansa@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000d76d3b05f6cbe108
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Mon, Mar 13, 2023 at 6:34=E2=80=AFPM A=
-lexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin=
-@gmail.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex">There is not a lot of interest in main=
-taining style guides, and<br>
-associated tooling. My personal feeling is that they don&#39;t really help<=
-br>
-with the truly problematic things in recipes that need a human eye (or<br>
-chatgpt level intelligence :) - by and large people do follow<br>
-reasonable order of entries for example, and nitpicking on an exact<br>
-order would just be wasting precious maintainer time.<br></blockquote><div>=
-<br></div><div>I agree that there are other more important things, but I al=
-so like style (only in code - human looks are overrated :)).</div><div><br>=
-</div><div>If the tool is executed locally before sending the contribution =
-(and Carsten does seem interested in doing just that - not asking Khem to r=
-un it on incoming patches) then I believe it can save maintainers time by s=
-ending better patches on first try not waste it and our styleguide really n=
-eeds some TLC as Carsten found out.</div><div><br></div><div>The same does =
-apply to e.g.=C2=A0scripts/contrib/patchreview.py.</div><div><br></div><div=
->If the missing/malformed Upstream-Status is reported to the original contr=
-ibutor before he/she/it sends the patch, by some at least well documented w=
-ork flow how to submit patches, then it saves more maintainer time, than as=
-king for it during e-mail review or worse after the change is merged or bui=
-lt by maintainer and QA check reports it&#39;s missing or malformed.</div><=
-div><br></div><div>If someone is willing to help with the tooling, we shoul=
-d endorse that, not discourage them even when there are bigger-greater goal=
-s like=C2=A0yocto-check-layer script you mentioned.</div><div><br></div><di=
-v>Cheers,</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">
-If you want to ensure good quality, making your layer pass the yocto<br>
-compatibility script, and ensuring there are no warnings of any kind<br>
-from bitbake when built with latest master revisions of everything is<br>
-a better first step in my opinion.<br>
-<br>
-Alex<br>
-<br>
-On Mon, 13 Mar 2023 at 15:20, VIVAVIS AG via <a href=3D"http://lists.yoctop=
-roject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a>=
-<br>
-&lt;embedded=3D<a href=3D"mailto:vivavis.com@lists.yoctoproject.org" target=
-=3D"_blank">vivavis.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I&#39;m wondering whether the styleguide <a href=3D"http://www.openemb=
-edded.org/wiki/Styleguide" rel=3D"noreferrer" target=3D"_blank">www.openemb=
-edded.org/wiki/Styleguide</a>,<br>
-&gt; meta-openembedded/contrib/oe-stylize.py or none of them is the source =
-of<br>
-&gt; truth for writing a good recipe.<br>
-&gt;<br>
-&gt; E.g., if you run oe-stylize.py, the SRCREV variable is placed above SR=
-C_URI,<br>
-&gt; or RDEPENDS is placed above FILES, which is not what the Wiki document=
-s.<br>
-&gt; And there are more discrepancies of this type.<br>
-&gt;<br>
-&gt; Furthermore, the script doesn&#39;t know the FILESEXTRAPATHS variable =
-in bbappend files<br>
-&gt; and moves it to the end of my recipe. Well, this is not decribed in th=
-e Wiki, but a look<br>
-&gt; into append files in meta-openembedded shows, that it is common pactic=
-e to put<br>
-&gt; FILESEXTRAPATHS in the first line of the recipe.<br>
-&gt;<br>
-&gt; The Wiki has an interesting note and the end: &quot;You can run contri=
-b/oe-stylize.py from<br>
-&gt; meta-oe on your recipes before submitting them; however it is not nece=
-ssarily up-to-date<br>
-&gt; with all current style conventions. This page should be considered the=
- canonical reference.&quot;<br>
-&gt;<br>
-&gt; Furthermore, there&#39;s <a href=3D"http://github.com/openembedded/met=
-a-openembedded/pull/465" rel=3D"noreferrer" target=3D"_blank">github.com/op=
-enembedded/meta-openembedded/pull/465</a><br>
-&gt; providing another ruleset for the new linter.<br>
-&gt;<br>
-&gt; So, my question to the Yocto maintainers is, what is the current state=
- of the styleguide<br>
-&gt; and oe-stylize.py? Are there plans to synchronize them?<br>
-&gt;<br>
-&gt; Thanks for clarification.<br>
-&gt;<br>
-&gt; Carsten Stelling<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#59419): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59419" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/59419</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/97581374/3617=
-156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/97581374/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin=
-.Jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-
---000000000000d76d3b05f6cbe108--
 
