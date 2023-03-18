@@ -2,45 +2,45 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C8832C7618E
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7E19C761AF
 	for <webhook@archiver.kernel.org>; Sat, 18 Mar 2023 20:00:06 +0000 (UTC)
 Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
- by mx.groups.io with SMTP id smtpd.web11.3805.1679169595864355298
+ by mx.groups.io with SMTP id smtpd.web10.3963.1679169597620882144
  for <yocto@lists.yoctoproject.org>;
  Sat, 18 Mar 2023 12:59:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=XIpxeLah;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=lhyqKZ39;
  spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: akuster808@gmail.com)
-Received: by mail-qv1-f47.google.com with SMTP id p93so5357680qvp.1
+Received: by mail-qv1-f47.google.com with SMTP id x8so5513028qvr.9
         for <yocto@lists.yoctoproject.org>; Sat, 18 Mar 2023 12:59:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679169597;
+        d=gmail.com; s=20210112; t=1679169596;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zGOnB+kTMBVQ7JNCcmuHnkiw+wpUKPvBTbqOdDL7Qzk=;
-        b=XIpxeLahVbEGZqatSNwMiIHMdSNZBHTiDyRs85aY57KlfYAG90sCdiam3zP9rMPij5
-         bBTkOUTyj0H/+t9qQKXQQsTvkPs07gmHCMG99SFSmYXMH/6jfIkzenGGw7Uv736gI4lo
-         UEYoTr3S+e8OQLLQxjJ67cMQxAgb30RdgNrtEbg3udqcHfYMgMo3Usfw6uycTkCqSqTt
-         S6IK8M3GhtwVnj8f2elKUFGv1bB5cQCmGh01obc89s4MagWxcNLI1PoptJKQfhu6P6rj
-         K9JpqHGJvCK62fS5fgg6Fly3s+Q0h2hCsyeAt/1nvqJsmTT0uc3xO26vMUL9Gvdp4MBu
-         /SZw==
+        bh=uXG3iW7Lj7MlKNIS4wCTtELFpqDgWbe9I/1hkmpgO1w=;
+        b=lhyqKZ398O/zNxmH2nPSrkltXxRffjLQDTn/+8zUshRu/nCd7W5AQgQ8IHjZmMBrjR
+         //+YXzC2BDRq/Tm219FoUXwe+ZhKNRvdBCjKQIS4EBdMUhUOSiPwCPv5hHUmKDkCTqQk
+         y9mlkLJyQAwQamPp3SFpat3u8/7OGxQZ0wWHE4mpwIx+X1jZl48Y8gE+lQX0Cv1oCW9p
+         /dbnJ/N9Z8PJ/PHwQcsfIVjWrzejKcDqR48P9U4ydS8QRxem7BV/h4fx7wK52DRiMAZA
+         XJQ9v+metKGf+gwI7i5tqjl9KdhxsRFeiXioi7yakrXGzelLHaOer6ZgIA0coEaQC2GG
+         ahuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679169597;
+        d=1e100.net; s=20210112; t=1679169596;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zGOnB+kTMBVQ7JNCcmuHnkiw+wpUKPvBTbqOdDL7Qzk=;
-        b=Ezp9BuIe82PW/DfWvcCnezfN01GuaQOdJIh0SLuQrJ8ttrsX6A5qPtbskg2v6zyt+H
-         Ox1ee87JM5dgikWbg3PdGtcg196TlrJm4qgDMNPISoof6F9sDKzTAA+YoewepyIWaK/s
-         qFssjJWl3tmpbhVuBSkRTTJIGbwe7S64sgyOtdulfCl1UhcGcMHE9kbRFC7BC96MTBRi
-         W30nIZ/s57HnCp2WR41RrhMH0Ron/HlaBZzi5Uhn4PbbfZLXjCoI72ZggOQ0WoNFoTyE
-         7o2O1bG5mkQXUcUonASHK9GoawtUUd1ZezDRVU4B7cclDol2IvthBEz0eZ9r3v5r1hNz
-         ZCnw==
-X-Gm-Message-State: AO0yUKUMCJfBx7Q93o0nFZhyAYtGhPRv64MLNNc460tQDT4vjrpfh/96
-	vy5hYImNl8in5jMy9EETUzQNMt7LZTw=
-X-Google-Smtp-Source: AK7set8teIR7qc57q/6kwRrHqfgaeB8HlLQnx3xQeEdi9wppqxh+E7pzRPR82Gdh1IFf3WzwU7VtNw==
-X-Received: by 2002:a05:6214:5005:b0:571:f87:a665 with SMTP id jo5-20020a056214500500b005710f87a665mr47358270qvb.35.1679169596941;
+        bh=uXG3iW7Lj7MlKNIS4wCTtELFpqDgWbe9I/1hkmpgO1w=;
+        b=dI6c+g0e4djbOoWqfPZv1vZzNteTsuDIXaIZgP6GEYdqbAzM1TtakJcPEHMEYk9tF6
+         Z8ORV94IVWCZxJXe4aEof3NF1uzvM9AaIFhGgKzNDAEr0l8H3B2gAcWoC97WcIPuc45B
+         1CBtoyCbRGLD5NqGjDpbsdOkeoksSn44PFPDEWYuQlB5PepIGIC7d8yTwlK9IIGhg5Bh
+         rFJbDi1OYll8yXEfRTBfgh/us0qxo7YmC+5DzGrMmkY7pPpe4uKvsk8v7slWnKHqml6Y
+         66LDHqPoA2ollX+IrXV16zvSx2aP6tn+DANoDsKXTugm47RX6uWQq2ZkFVbCBBmoh04Y
+         foeg==
+X-Gm-Message-State: AO0yUKX73HxsGmi4vhS/CnlW21gwWxO2Hmc8b7LgJGMZzIdGRLwpX6sq
+	DDgqse9Wnv2kdmmx9z3gwNJg0IFLDdE=
+X-Google-Smtp-Source: AK7set/4shDWBtv04x6lSzeYHD9WOsbBPxz2SNH+gRNOflyoXzXvxs1z9C6lNQqZN/Ty/UlYpvuFfg==
+X-Received: by 2002:ad4:5c6f:0:b0:577:522d:5d11 with SMTP id i15-20020ad45c6f000000b00577522d5d11mr47637957qvh.8.1679169596589;
         Sat, 18 Mar 2023 12:59:56 -0700 (PDT)
 Received: from keaua.attlocal.net ([2600:1700:9190:ba10:18:2153:2b6:e915])
         by smtp.gmail.com with ESMTPSA id r80-20020a374453000000b007465ee178a3sm2765473qka.96.2023.03.18.12.59.56
@@ -49,9 +49,9 @@ Received: from keaua.attlocal.net ([2600:1700:9190:ba10:18:2153:2b6:e915])
         Sat, 18 Mar 2023 12:59:56 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 7/9] fscrypt: update to 1.1.0
-Date: Sat, 18 Mar 2023 15:59:50 -0400
-Message-Id: <20230318195952.538375-7-akuster808@gmail.com>
+Subject: [meta-security][PATCH 6/9] chipsec: update to 1.10.3
+Date: Sat, 18 Mar 2023 15:59:49 -0400
+Message-Id: <20230318195952.538375-6-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230318195952.538375-1-akuster808@gmail.com>
 References: <20230318195952.538375-1-akuster808@gmail.com>
@@ -61,30 +61,30 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Sat, 18 Mar 2023 20:00:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59458
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59459
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/fscrypt/{fscrypt_1.0.0.bb => fscrypt_1.1.0.bb} | 2 +-
+ .../chipsec/{chipsec_1.9.1.bb => chipsec_1.10.3.bb}             | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-security/fscrypt/{fscrypt_1.0.0.bb => fscrypt_1.1.0.bb} (96%)
+ rename recipes-security/chipsec/{chipsec_1.9.1.bb => chipsec_1.10.3.bb} (94%)
 
-diff --git a/recipes-security/fscrypt/fscrypt_1.0.0.bb b/recipes-security/fscrypt/fscrypt_1.1.0.bb
-similarity index 96%
-rename from recipes-security/fscrypt/fscrypt_1.0.0.bb
-rename to recipes-security/fscrypt/fscrypt_1.1.0.bb
-index 8147fe6..ea9593b 100644
---- a/recipes-security/fscrypt/fscrypt_1.0.0.bb
-+++ b/recipes-security/fscrypt/fscrypt_1.1.0.bb
-@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=3b83ef96387f14655fc854dd
- # fscrypt depends on go and libpam
- DEPENDS += "go-native libpam"
+diff --git a/recipes-security/chipsec/chipsec_1.9.1.bb b/recipes-security/chipsec/chipsec_1.10.3.bb
+similarity index 94%
+rename from recipes-security/chipsec/chipsec_1.9.1.bb
+rename to recipes-security/chipsec/chipsec_1.10.3.bb
+index 9fbdaa7..b6dc944 100644
+--- a/recipes-security/chipsec/chipsec_1.9.1.bb
++++ b/recipes-security/chipsec/chipsec_1.10.3.bb
+@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=bc2d1f9b427be5fb63f6af9da56f7c5d"
+ DEPENDS = "virtual/kernel nasm-native"
  
--SRCREV = "92b1e9a8670ccd3916a7d24a06cab1e4c9815bc4"
-+SRCREV = "7c80c73c084ce9ea49a03b814dac7a82fd7b4c23"
- SRC_URI = "git://github.com/google/fscrypt.git;branch=master;protocol=https"
+ SRC_URI = "git://github.com/chipsec/chipsec.git;branch=main;protocol=https"
+-SRCREV = "d8c2a606bf440c32196c6289a7a458f3ae3107cc"
++SRCREV = "094ce48082844788789e05b5f4e840ebec0e661d"
  
- GO_IMPORT = "import"
+ S = "${WORKDIR}/git"
+ 
 -- 
 2.25.1
 
