@@ -2,56 +2,56 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4199EC74A5B
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43385C7619A
 	for <webhook@archiver.kernel.org>; Sun, 19 Mar 2023 00:40:58 +0000 (UTC)
 Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web10.9189.1679186449223434264
+ by mx.groups.io with SMTP id smtpd.web10.9188.1679186448891114536
  for <yocto@lists.yoctoproject.org>;
  Sat, 18 Mar 2023 17:40:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=iSY8tceI;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=XOoxlHTA;
  spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: akuster808@gmail.com)
-Received: by mail-qv1-f45.google.com with SMTP id 97so5730661qvb.6
+Received: by mail-qv1-f45.google.com with SMTP id t13so5744353qvn.2
         for <yocto@lists.yoctoproject.org>; Sat, 18 Mar 2023 17:40:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679186448;
+        d=gmail.com; s=20210112; t=1679186449;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=i6uLUSYb97ZVTkKlBFeJF4ZdOQ145B/wLXVop/weCuo=;
-        b=iSY8tceIdkrIDMTKjK44uRFjZwT+Y8ne7419G+NuaOPLIZQQTqbX7RFlPzi3ir9Dxi
-         zPfP2Un831AZ7KT+VoDc1XKBdAWkVDWjQ+z1UmXNoYP8fxu+f10mlKKRCwBsc0SFaBJl
-         QipkjhuQlkgBgD4T335RoxB80OHeUBA01wX0iwQFHHoPBSJxhTQrkqvdZAFFoHHEz/q4
-         8KHSq7bNaR+NDjrcQq+VelPbnH7iTFc3pr2+YvECsuEk07c1kOf5+n1bvDGWjpOaWO+M
-         arzoaJhPRBrmI0ztk94/zxoiuTFcjg8mWsSjpjlvfwJgx0mghiLDJ8fWrOaa/eawm4Fb
-         0xEQ==
+        bh=wi1vEFFnYFsgbr9JlW4XKgl9zdKWnIOiI9RN30jZgvA=;
+        b=XOoxlHTArlc4q9U6keGeTIQv32pG1ISCNQqEA4RB0lfaXGR2ltv5A+0dURBGetR94a
+         Dr3VCnYaxCKD+o7cXRF6Fu8P5AAuYZ5NFPITzp4m8r68CS+N7tAD38mdy/qwhrxnSN7H
+         DAx65UONOnXD3rYoY5Z8JGEYNQfZQQd9q0TdbxpAawGAdjg6z/992KNB1FBfu4k/6Q+A
+         d3LwsCXQ8loa96g10TYlFx0/Q4EGrRHKy8JA63sL97qxcu3mLTjyJeRB2Ogxv5ddePVi
+         hpkG5Zi7hZPFx5P1gWmCCZ8AzKImarr+iCGrY+pR9TtNNaSfgJ1iHqbsMOTGz5YerMsv
+         W+DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679186448;
+        d=1e100.net; s=20210112; t=1679186449;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=i6uLUSYb97ZVTkKlBFeJF4ZdOQ145B/wLXVop/weCuo=;
-        b=b7LG2LelIOYI6Js8P0ooAnF7hVyAN5xHcFVQlit9bjzn38h35Jt7+2dPMs+Jx479aI
-         Y3UA2sM2Bna5hkd6rFqR7BwkMrzOr1bjiSDIk9R/3mSlGqriyiC3Z+0zRKFbANIWxDTt
-         KIrJ6MZuChBsHMksGu6neVetjLK8VujH5Vv7K4kpIv8arNQgFsujQjJTElNjLzQ1vDJl
-         zANXKH9ZkknOqn99m8VeHR0pT1QftrL+Kq/7nYYIvxSnASuoxV+YAoANsCqhbRinm2IF
-         j2GYdSGmRP1KMw0Y/gzsks7LqSseOwo5/OXTKqFa23tSgp9BPAG4DZGxTCqDZdjWlb5j
-         KcRQ==
-X-Gm-Message-State: AO0yUKWi7rQ+8FXAG+oeMs+GnsN41a2wqH+V5g+HruhSEwBFVb+fqNcF
-	Kj73g5TTbCF41GyzADx7v2qONHECjE4=
-X-Google-Smtp-Source: AK7set+ZPEVYU0ZXpzBT3+FdYXXuDo+G5TUUr/m7Oe451WQS7bR8tT+eB/cKJl2+JOmvsCTZ81wXpg==
-X-Received: by 2002:a05:6214:c88:b0:5a9:c758:ba0e with SMTP id r8-20020a0562140c8800b005a9c758ba0emr38183496qvr.16.1679186448101;
+        bh=wi1vEFFnYFsgbr9JlW4XKgl9zdKWnIOiI9RN30jZgvA=;
+        b=ypucaSRinsNJ726+ZCkD3FYCsSugheyGwUlxVK6h2GlK4fck8ZdBB5oNcTpMedB7bF
+         xwA0MHW6EdYtBgC3sCBdASgFS1CImnaAwppHPjHFN9Pd/Xn910xjLhkZQQgvjIBZGElO
+         yql0zBxdjzO9hnmQCQlTKoGryjZSdm47jOAmsRDkj4WreHOOPwDRNJr+he82mppdSEFO
+         eC2cmFfNXeRjWHr3Cq/tsD65OF8N143ZzWFQoQOb4OwYpyUEL3P8A21Ia90hHUxVbIj1
+         +BrScGUd1atEZQd+mgtHs2muivps0IoAItS2Vr/NJhVk2dkYNnUsA3WmGcvWA6E7nJV6
+         cRvg==
+X-Gm-Message-State: AO0yUKU5KdiKHGGqTW1oyKt+akbXxUwLQsvnNE708zC8K34NYy7a1xRe
+	DoizBfgveEjy9QrFoQYW14JWGF8evsc=
+X-Google-Smtp-Source: AK7set83AcGNJXV2SiNNLP89c+DHofepvce5uATvWA+hi7CeAKPXtLkacbzJDIPFMzczi5enQSaELg==
+X-Received: by 2002:ad4:5bc4:0:b0:5be:9011:4145 with SMTP id t4-20020ad45bc4000000b005be90114145mr9401408qvt.37.1679186448865;
         Sat, 18 Mar 2023 17:40:48 -0700 (PDT)
 Received: from keaua.attlocal.net ([2600:1700:9190:ba10:18:2153:2b6:e915])
-        by smtp.gmail.com with ESMTPSA id s10-20020a05620a16aa00b0074341cb30d0sm4454600qkj.62.2023.03.18.17.40.47
+        by smtp.gmail.com with ESMTPSA id s10-20020a05620a16aa00b0074341cb30d0sm4454600qkj.62.2023.03.18.17.40.48
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Mar 2023 17:40:47 -0700 (PDT)
+        Sat, 18 Mar 2023 17:40:48 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/4] apparmor: update to 3.1.3
-Date: Sat, 18 Mar 2023 20:40:44 -0400
-Message-Id: <20230319004046.620053-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/4] cryptmout: update to 6.2.0
+Date: Sat, 18 Mar 2023 20:40:46 -0400
+Message-Id: <20230319004046.620053-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230319004046.620053-1-akuster808@gmail.com>
 References: <20230319004046.620053-1-akuster808@gmail.com>
@@ -61,115 +61,39 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Sun, 19 Mar 2023 00:40:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59464
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59465
 
-drop debian patch as the file was dropped upstream.
+Change LIC_FILES_CHKSUM to use COPYING
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../{apparmor_3.0.7.bb => apparmor_3.1.3.bb}  |  7 +--
- ...pparmor.debian-add-missing-functions.patch | 57 -------------------
- 2 files changed, 3 insertions(+), 61 deletions(-)
- rename recipes-mac/AppArmor/{apparmor_3.0.7.bb => apparmor_3.1.3.bb} (96%)
- delete mode 100644 recipes-mac/AppArmor/files/0001-rc.apparmor.debian-add-missing-functions.patch
+ .../cryptmount/{cryptmount_6.0.bb => cryptmount_6.2.0.bb} | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+ rename recipes-security/cryptmount/{cryptmount_6.0.bb => cryptmount_6.2.0.bb} (83%)
 
-diff --git a/recipes-mac/AppArmor/apparmor_3.0.7.bb b/recipes-mac/AppArmor/apparmor_3.1.3.bb
-similarity index 96%
-rename from recipes-mac/AppArmor/apparmor_3.0.7.bb
-rename to recipes-mac/AppArmor/apparmor_3.1.3.bb
-index e7d677e..fd649e4 100644
---- a/recipes-mac/AppArmor/apparmor_3.0.7.bb
-+++ b/recipes-mac/AppArmor/apparmor_3.1.3.bb
-@@ -14,15 +14,14 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fd57a4b0bc782d7b80fd431f10bbf9d0"
- DEPENDS = "bison-native apr gettext-native coreutils-native swig-native"
+diff --git a/recipes-security/cryptmount/cryptmount_6.0.bb b/recipes-security/cryptmount/cryptmount_6.2.0.bb
+similarity index 83%
+rename from recipes-security/cryptmount/cryptmount_6.0.bb
+rename to recipes-security/cryptmount/cryptmount_6.2.0.bb
+index d712a61..d815e1d 100644
+--- a/recipes-security/cryptmount/cryptmount_6.0.bb
++++ b/recipes-security/cryptmount/cryptmount_6.2.0.bb
+@@ -1,12 +1,10 @@
+ SUMMARY = "Linux encrypted filesystem management tool"
+ HOMEPAGE = "http://cryptmount.sourceforge.net/"
+-LIC_FILES_CHKSUM = "file://README;beginline=3;endline=4;md5=dae0772f0ff46fd927e7fdb08af51b71"
++LIC_FILES_CHKSUM = "file://COPYING;beginline=1;endline=4;md5=6e69c425bf32ecf9b1e11d29d146d03d"
+ LICENSE = "GPL-2.0-only"
++SRC_URI = "https://sourceforge.net/projects/cryptmount/files/${BPN}/${BPN}-6.2/${BPN}-${PV}.tar.gz"
  
- SRC_URI = " \
--    git://gitlab.com/apparmor/apparmor.git;protocol=https;branch=apparmor-3.0 \
-+    git://gitlab.com/apparmor/apparmor.git;protocol=https;branch=apparmor-3.1 \
-     file://run-ptest \
-     file://crosscompile_perl_bindings.patch \
-     file://0001-Makefile.am-suppress-perllocal.pod.patch \
-     file://0001-Makefile-fix-hardcoded-installation-directories.patch \
--    file://0001-rc.apparmor.debian-add-missing-functions.patch \
-     "
+-SRC_URI = "https://sourceforge.net/projects/cryptmount/files/${BPN}/${BPN}-${PV}/${BPN}-${PV}.tar.gz \
+-           "
+-
+-SRC_URI[sha256sum] = "86528a9175e1eb53f60613e3c3ea6ae6d69dbfe5ac2b53b2f58ba0f768371e7e"
++SRC_URI[sha256sum] = "90cc49fd598d636929c70479b1305f12b011edadf4a54578ace6c0fca8cb5ed2"
  
--SRCREV = "0ead606d9e608801f45e13a34358036135470729"
-+SRCREV = "e69cb5047946818e6a9df326851483bb075a5cfe"
- S = "${WORKDIR}/git"
+ inherit autotools-brokensep gettext pkgconfig systemd
  
- PARALLEL_MAKE = ""
-@@ -95,7 +94,7 @@ do_install () {
- 
-     if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
-         install -d ${D}${sysconfdir}/init.d
--        install -m 755 ${B}/parser/rc.apparmor.debian ${D}${sysconfdir}/init.d/apparmor
-+        install -m 755 ${B}/parser/rc.apparmor.functions ${D}${sysconfdir}/init.d/apparmor
-     fi
- 
-     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-diff --git a/recipes-mac/AppArmor/files/0001-rc.apparmor.debian-add-missing-functions.patch b/recipes-mac/AppArmor/files/0001-rc.apparmor.debian-add-missing-functions.patch
-deleted file mode 100644
-index 53bdde8..0000000
---- a/recipes-mac/AppArmor/files/0001-rc.apparmor.debian-add-missing-functions.patch
-+++ /dev/null
-@@ -1,57 +0,0 @@
--From a737c95ac0f887c365fe8f16583ea95da79de1e9 Mon Sep 17 00:00:00 2001
--From: Yi Zhao <yi.zhao@windriver.com>
--Date: Mon, 21 Jun 2021 16:53:39 +0800
--Subject: [PATCH] rc.apparmor.debian: add missing functions
--
--Add missing functions:
--  aa_log_action_start
--  aa_log_action_end
--  aa_log_daemon_msg
--  aa_log_end_msg
--
--Fixes:
--$ /etc/init.d/apparmor start
--/lib/apparmor/rc.apparmor.functions: line 294: aa_log_daemon_msg: command not found
--/lib/apparmor/rc.apparmor.functions: line 214: aa_log_action_start: command not found
--
--Upstream-Status: Pending
--
--Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-----
-- parser/rc.apparmor.debian | 20 ++++++++++++++++++++
-- 1 file changed, 20 insertions(+)
--
--diff --git a/parser/rc.apparmor.debian b/parser/rc.apparmor.debian
--index 8efd4400..f35124e8 100644
----- a/parser/rc.apparmor.debian
--+++ b/parser/rc.apparmor.debian
--@@ -70,6 +70,26 @@ aa_log_skipped_msg() {
--         echo ": Skipped."
-- }
-- 
--+aa_log_action_start()
--+{
--+    echo "$@"
--+}
--+
--+aa_log_action_end()
--+{
--+    printf ""
--+}
--+
--+aa_log_daemon_msg()
--+{
--+    echo "$@"
--+}
--+
--+aa_log_end_msg()
--+{
--+    printf ""
--+}
--+
-- usage() {
--     echo "Usage: $0 {start|stop|restart|try-restart|reload|force-reload|status|kill}"
-- }
---- 
--2.17.1
--
 -- 
 2.25.1
 
