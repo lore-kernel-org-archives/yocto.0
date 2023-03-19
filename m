@@ -1,494 +1,399 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F3FEC7618A
-	for <webhook@archiver.kernel.org>; Sun, 19 Mar 2023 00:40:58 +0000 (UTC)
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
- by mx.groups.io with SMTP id smtpd.web10.9190.1679186449849127081
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BDB9FC7618A
+	for <webhook@archiver.kernel.org>; Sun, 19 Mar 2023 02:20:38 +0000 (UTC)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+ by mx.groups.io with SMTP id smtpd.web11.10199.1679192434465742527
  for <yocto@lists.yoctoproject.org>;
- Sat, 18 Mar 2023 17:40:50 -0700
+ Sat, 18 Mar 2023 19:20:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=b5IKVANb;
- spf=pass (domain: gmail.com, ip: 209.85.160.171, mailfrom: akuster808@gmail.com)
-Received: by mail-qt1-f171.google.com with SMTP id n2so9572196qtp.0
-        for <yocto@lists.yoctoproject.org>; Sat, 18 Mar 2023 17:40:49 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Qz6RjsaH;
+ spf=pass (domain: gmail.com, ip: 209.85.128.179, mailfrom: ticotimo@gmail.com)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-544f7c176easo21387007b3.9
+        for <yocto@lists.yoctoproject.org>; Sat, 18 Mar 2023 19:20:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679186449;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0/QbeEHDbdLoyp7809x6iLEkWT0PpBlbj9vU/f0tLJw=;
-        b=b5IKVANbT9V5fJGbJG9UoBxRafexAP+zdFnMqU81fC5uqnMMEK8/je1Za4lfyoM1hS
-         mqzffqJXaKMMozriRsoayKuEYgiPruH3TIXEekk1i9W4kAMVnMMC6fc3wrk0tQMUCBe6
-         DJWyEee13gsp9wRNXerpVe08OiOeU0XJI9fZoZJ4fV7y+Fskpg7WGpXKaH15lZdGuHUm
-         VbGR2Vy1EgMOVqh2vlv8TlDr/65tJExouyIZ/UheWeg3LYgOs36/R66KdfvhSD4QB5p+
-         SWr44ff7G5y4LdwwkhJIN6Fbg6uWjADhd4asRjiQ2q0tpjH39XMAVtYhW+k6XOIBpYez
-         fsIQ==
+        d=gmail.com; s=20210112; t=1679192433;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=208odeOSteX3VzmOE7zC6YCbAIPCeWVoq7jFtmX9PXY=;
+        b=Qz6RjsaHHQ2IdPWEQ7sNl0RnPqXjRkucNpeQVtxPAvIB3eklefQWSQZm+Sm20u4A6a
+         6UC6FXC1e7o2z3H75FNA+EzCvSuBYDsdp4WjNHWjIUo+jgC03JQA/pwDN8YpNJfPGJzY
+         Ix0SeYLY+w8HNh1rSD4hwAvavZJoCNaLgv/zSLq/V1EUBO5ap+TVjHMVjBxXYFbPZZp5
+         svNjLiFRkvPs3zjhjO1Ch0fmWCwSpdsDR9XD6AXnAbe2/Bec+P1K2AXwY+VEsp1XIdmV
+         EC3A5LPGp3m4PVDqSFPWrI7d+5AzpkIiGjqNF6saBkxNK7kUnpi6uF7KRudkEd4Z9B26
+         SPOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679186449;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0/QbeEHDbdLoyp7809x6iLEkWT0PpBlbj9vU/f0tLJw=;
-        b=oVw9adLf5yans7lQGDkyt6ObrKlQ5gB1oAR3axDB96yXCwQxH7LRKVMd29X/U7re6X
-         HCJexvlTNLCbC1NEktouyq4Jg4bkZHu2CRvQwL6TfmTqkTxEjD/f+B0+So5Sc22s7R3f
-         n712wMpPifR0zP4LR5K/eIBO+nmhdIGhDm/968vN86CprPsQElkLGX5GrDiIy0IwdstV
-         tbAcYaHg/9L7B+Vd9MSFB4E5LXrcCLZf6r7NCNzKdEGurz7pKYZAfv4HIol5gwhkaJTt
-         A9pmtpCk0uzoC/VN5SPiuOyuPTZytsXUQHc0QvB0nFnLj0GSE654Lo7FPjVapG9EF8Mx
-         EgjQ==
-X-Gm-Message-State: AO0yUKUyEXP+AbA57dKchTf+1QOpYEjSA5jeftnt2j0aHr682WzK9pMx
-	a6FCB4CKxZVJpzG2P+eMVmAR6M6C/Po=
-X-Google-Smtp-Source: AK7set8PxMSg3USLQOX8oHCB1MtYh4a+AHB5elQe+vZSe+gmYVo7xftI+6TBWvsGNWejhHjDx4v6cQ==
-X-Received: by 2002:ac8:5e4b:0:b0:3bf:ca4f:9c5d with SMTP id i11-20020ac85e4b000000b003bfca4f9c5dmr19808292qtx.49.1679186448514;
-        Sat, 18 Mar 2023 17:40:48 -0700 (PDT)
-Received: from keaua.attlocal.net ([2600:1700:9190:ba10:18:2153:2b6:e915])
-        by smtp.gmail.com with ESMTPSA id s10-20020a05620a16aa00b0074341cb30d0sm4454600qkj.62.2023.03.18.17.40.48
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Mar 2023 17:40:48 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/4] krill: update 0.12.3
-Date: Sat, 18 Mar 2023 20:40:45 -0400
-Message-Id: <20230319004046.620053-3-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230319004046.620053-1-akuster808@gmail.com>
-References: <20230319004046.620053-1-akuster808@gmail.com>
+        d=1e100.net; s=20210112; t=1679192433;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=208odeOSteX3VzmOE7zC6YCbAIPCeWVoq7jFtmX9PXY=;
+        b=bfCyxHDx2FFfs8AmXulXBHzzFmyiMzLilWarFwIxseKlpzanO+QY/sVLLNCoX0BYBD
+         lL7m69QAd2EwmhyUfOxJo6Ii29+iTkIZWpvCo2aRkTRI92mMVNWpN1MspGXpwYr2nbwR
+         DKpRzAL0r9It0FEBgCWzQKZtg8fpTKwZdxawaGodsU2wbUOwZUbvcWeXoVWT1tf+j23u
+         rFTJBHNlXwaxUjKdgXZH6u3vQg5+HiEteOEZ/BTlrF4OoRFO7oYSKXgJ9NIasQq6dLal
+         zRvP6qnG5OSfHCdW0/ybr5sr2ONIdpp6nv2qvLVkmHeuN0A5zRk2M+ER4ZgCn4NY/PYb
+         kUDg==
+X-Gm-Message-State: AO0yUKVe5BA1bW6IsWWDlLUEDuxpDjBwO0AFSdqUzzwHyzUbe0hvnKbp
+	DAwAcrg+gKD+gE+6h0F42pXE1cCh8Z3I8igeXtI=
+X-Google-Smtp-Source: AK7set9YrD2+fjiADDVKSRIB7dzHy+tB/CQ2RaKiFPQVvL0VfnuvzR/LjuSAeQtqNX4hQAk+cilo9CpJ12BnhXDwZSM=
+X-Received: by 2002:a81:c749:0:b0:541:753d:32f9 with SMTP id
+ i9-20020a81c749000000b00541753d32f9mr7874348ywl.9.1679192433089; Sat, 18 Mar
+ 2023 19:20:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <zWH9.1679170327378061263.UEdY@lists.yoctoproject.org>
+In-Reply-To: <zWH9.1679170327378061263.UEdY@lists.yoctoproject.org>
+From: Tim Orling <ticotimo@gmail.com>
+Date: Sat, 18 Mar 2023 19:20:21 -0700
+Message-ID: <CANx9H-BRmsPKE3cBAJprukuLr3QZRxfmjABXTz9nR1uV+dwOKg@mail.gmail.com>
+Subject: Re: [yocto] Failed to load regulatory.db file and error whitlist
+ initialise SD CARD #yocto #linux #bitbake #imx8 #imx6 #kirkstone
+To: Nikita Gupta <nikitagupta2509@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000007be2ac05f73774e4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 19 Mar 2023 00:40:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59466
+ <yocto@lists.yoctoproject.org>; Sun, 19 Mar 2023 02:20:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59467
 
-refresh patch
+--0000000000007be2ac05f73774e4
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../krill/files/panic_workaround.patch        |   4 +-
- recipes-security/krill/krill.inc              | 247 ++++++++++--------
- .../krill/{krill_0.9.6.bb => krill_0.12.3.bb} |   2 +-
- 3 files changed, 146 insertions(+), 107 deletions(-)
- rename recipes-security/krill/{krill_0.9.6.bb => krill_0.12.3.bb} (95%)
+On Sat, Mar 18, 2023 at 1:12 PM Nikita Gupta <nikitagupta2509@gmail.com>
+wrote:
 
-diff --git a/recipes-security/krill/files/panic_workaround.patch b/recipes-security/krill/files/panic_workaround.patch
-index 9b08cb5..dc26416 100644
---- a/recipes-security/krill/files/panic_workaround.patch
-+++ b/recipes-security/krill/files/panic_workaround.patch
-@@ -5,7 +5,7 @@ Index: git/Cargo.toml
- ===================================================================
- --- git.orig/Cargo.toml
- +++ git/Cargo.toml
--@@ -71,7 +71,7 @@ static-openssl = [ "openssl/vendored" ]
-+@@ -91,7 +91,7 @@ hsm-tests-pkcs11 = [ "hsm" ]
-  # Make sure that Krill crashes on panics, rather than losing threads and
-  # limping on in a bad state.
-  [profile.release]
-@@ -13,4 +13,4 @@ Index: git/Cargo.toml
- +#panic = "abort"
-  
-  [dev-dependencies]
-- # for user management
-+ regex     = "1.5.5"
-diff --git a/recipes-security/krill/krill.inc b/recipes-security/krill/krill.inc
-index bb40f57..22fe269 100644
---- a/recipes-security/krill/krill.inc
-+++ b/recipes-security/krill/krill.inc
-@@ -1,3 +1,6 @@
-+# Auto-Generated by cargo-bitbake 0.3.16
-+#
-+
- # please note if you have entries that do not begin with crate://
- # you must change them to how that package can be fetched
- SRC_URI += " \
-@@ -5,46 +8,61 @@ SRC_URI += " \
-     crate://crates.io/adler/1.0.2 \
-     crate://crates.io/adler32/1.2.0 \
-     crate://crates.io/aho-corasick/0.7.18 \
-+    crate://crates.io/android_system_properties/0.1.5 \
-     crate://crates.io/ansi_term/0.12.1 \
-     crate://crates.io/ascii-canvas/3.0.0 \
-     crate://crates.io/ascii/1.0.0 \
-     crate://crates.io/atty/0.2.14 \
-     crate://crates.io/autocfg/1.1.0 \
--    crate://crates.io/backtrace/0.3.64 \
-+    crate://crates.io/backoff/0.3.0 \
-+    crate://crates.io/backtrace/0.3.66 \
-     crate://crates.io/base64/0.13.0 \
-     crate://crates.io/basic-cookies/0.1.4 \
--    crate://crates.io/bcder/0.6.1 \
-+    crate://crates.io/bcder/0.7.0 \
-     crate://crates.io/bit-set/0.5.2 \
-     crate://crates.io/bit-vec/0.6.3 \
-     crate://crates.io/bitflags/1.3.2 \
-+    crate://crates.io/block-buffer/0.10.2 \
-     crate://crates.io/block-buffer/0.9.0 \
--    crate://crates.io/bumpalo/3.9.1 \
-+    crate://crates.io/bumpalo/3.10.0 \
-     crate://crates.io/bytes/1.1.0 \
-     crate://crates.io/cc/1.0.73 \
-     crate://crates.io/cfg-if/1.0.0 \
--    crate://crates.io/chrono/0.4.19 \
-+    crate://crates.io/chrono/0.4.22 \
-     crate://crates.io/chunked_transfer/1.4.0 \
-     crate://crates.io/cipher/0.2.5 \
-     crate://crates.io/clap/2.34.0 \
-+    crate://crates.io/codespan-reporting/0.11.1 \
-     crate://crates.io/core-foundation-sys/0.8.3 \
-     crate://crates.io/core-foundation/0.9.3 \
--    crate://crates.io/cpufeatures/0.2.1 \
-+    crate://crates.io/cpufeatures/0.2.2 \
-     crate://crates.io/crc32fast/1.3.2 \
-     crate://crates.io/crunchy/0.2.2 \
-+    crate://crates.io/crypto-common/0.1.6 \
-     crate://crates.io/crypto-mac/0.10.1 \
--    crate://crates.io/ctrlc/3.2.1 \
-+    crate://crates.io/cryptoki-sys/0.1.4 \
-+    crate://crates.io/cryptoki/0.3.0 \
-+    crate://crates.io/ctrlc/3.2.2 \
-+    crate://crates.io/cxx-build/1.0.79 \
-+    crate://crates.io/cxx/1.0.79 \
-+    crate://crates.io/cxxbridge-flags/1.0.79 \
-+    crate://crates.io/cxxbridge-macro/1.0.79 \
-+    crate://crates.io/derivative/2.2.0 \
-     crate://crates.io/deunicode/0.4.3 \
--    crate://crates.io/diff/0.1.12 \
-+    crate://crates.io/diff/0.1.13 \
-+    crate://crates.io/digest/0.10.3 \
-     crate://crates.io/digest/0.9.0 \
-     crate://crates.io/dirs-next/2.0.0 \
-     crate://crates.io/dirs-sys-next/0.1.2 \
--    crate://crates.io/either/1.6.1 \
-+    crate://crates.io/either/1.7.0 \
-     crate://crates.io/ena/0.14.0 \
--    crate://crates.io/encoding_rs/0.8.30 \
-+    crate://crates.io/encoding_rs/0.8.31 \
-+    crate://crates.io/enum-display-derive/0.1.1 \
-+    crate://crates.io/enum-flags/0.1.8 \
-     crate://crates.io/error-chain/0.11.0 \
-     crate://crates.io/fastrand/1.7.0 \
-     crate://crates.io/fern/0.5.9 \
--    crate://crates.io/fixedbitset/0.2.0 \
-+    crate://crates.io/fixedbitset/0.4.2 \
-     crate://crates.io/fnv/1.0.7 \
-     crate://crates.io/foreign-types-shared/0.1.1 \
-     crate://crates.io/foreign-types/0.3.2 \
-@@ -60,181 +78,202 @@ SRC_URI += " \
-     crate://crates.io/futures-util/0.3.21 \
-     crate://crates.io/futures/0.3.21 \
-     crate://crates.io/generic-array/0.14.5 \
--    crate://crates.io/getrandom/0.2.4 \
--    crate://crates.io/gimli/0.26.1 \
--    crate://crates.io/h2/0.3.11 \
--    crate://crates.io/hashbrown/0.11.2 \
-+    crate://crates.io/getrandom/0.2.7 \
-+    crate://crates.io/gimli/0.26.2 \
-+    crate://crates.io/h2/0.3.13 \
-+    crate://crates.io/hashbrown/0.12.3 \
-     crate://crates.io/hermit-abi/0.1.19 \
-     crate://crates.io/hex/0.4.3 \
-     crate://crates.io/hmac/0.10.1 \
--    crate://crates.io/http-body/0.4.4 \
--    crate://crates.io/http/0.2.6 \
--    crate://crates.io/httparse/1.6.0 \
-+    crate://crates.io/http-body/0.4.5 \
-+    crate://crates.io/http/0.2.8 \
-+    crate://crates.io/httparse/1.7.1 \
-     crate://crates.io/httpdate/1.0.2 \
-     crate://crates.io/hyper-tls/0.5.0 \
--    crate://crates.io/hyper/0.14.17 \
-+    crate://crates.io/hyper/0.14.20 \
-+    crate://crates.io/iana-time-zone-haiku/0.1.1 \
-+    crate://crates.io/iana-time-zone/0.1.51 \
-     crate://crates.io/idna/0.2.3 \
-     crate://crates.io/impl-trait-for-tuples/0.2.2 \
--    crate://crates.io/indexmap/1.8.0 \
-+    crate://crates.io/indexmap/1.9.1 \
-     crate://crates.io/instant/0.1.12 \
-     crate://crates.io/intervaltree/0.2.7 \
--    crate://crates.io/ipnet/2.3.1 \
-+    crate://crates.io/ipnet/2.5.0 \
-     crate://crates.io/itertools/0.10.3 \
--    crate://crates.io/itertools/0.9.0 \
--    crate://crates.io/itoa/1.0.1 \
-+    crate://crates.io/itoa/1.0.2 \
-     crate://crates.io/jmespatch/0.3.0 \
--    crate://crates.io/js-sys/0.3.56 \
--    crate://crates.io/lalrpop-util/0.19.7 \
--    crate://crates.io/lalrpop/0.19.7 \
-+    crate://crates.io/js-sys/0.3.58 \
-+    crate://crates.io/kmip-protocol/0.4.2 \
-+    crate://crates.io/kmip-ttlv/0.3.3 \
-+    crate://crates.io/lalrpop-util/0.19.8 \
-+    crate://crates.io/lalrpop/0.19.8 \
-     crate://crates.io/lazy_static/1.4.0 \
--    crate://crates.io/libc/0.2.119 \
--    crate://crates.io/libflate/1.1.2 \
-+    crate://crates.io/libc/0.2.126 \
-+    crate://crates.io/libflate/1.2.0 \
-     crate://crates.io/libflate_lz77/1.1.0 \
--    crate://crates.io/lock_api/0.4.6 \
--    crate://crates.io/log/0.4.14 \
-+    crate://crates.io/libloading/0.7.3 \
-+    crate://crates.io/link-cplusplus/1.0.7 \
-+    crate://crates.io/lock_api/0.4.7 \
-+    crate://crates.io/log/0.4.17 \
-     crate://crates.io/maplit/1.0.2 \
-     crate://crates.io/matchers/0.0.1 \
-     crate://crates.io/matches/0.1.9 \
--    crate://crates.io/memchr/2.4.1 \
--    crate://crates.io/memoffset/0.6.5 \
-+    crate://crates.io/maybe-async/0.2.6 \
-+    crate://crates.io/memchr/2.5.0 \
-     crate://crates.io/mime/0.3.16 \
--    crate://crates.io/miniz_oxide/0.4.4 \
--    crate://crates.io/mio/0.8.0 \
--    crate://crates.io/miow/0.3.7 \
--    crate://crates.io/native-tls/0.2.8 \
-+    crate://crates.io/miniz_oxide/0.5.3 \
-+    crate://crates.io/mio/0.8.4 \
-+    crate://crates.io/native-tls/0.2.10 \
-     crate://crates.io/new_debug_unreachable/1.0.4 \
--    crate://crates.io/nix/0.23.1 \
--    crate://crates.io/ntapi/0.3.7 \
-+    crate://crates.io/nix/0.24.2 \
-     crate://crates.io/num-bigint/0.4.3 \
--    crate://crates.io/num-integer/0.1.44 \
--    crate://crates.io/num-traits/0.2.14 \
-+    crate://crates.io/num-integer/0.1.45 \
-+    crate://crates.io/num-traits/0.2.15 \
-     crate://crates.io/num_cpus/1.13.1 \
--    crate://crates.io/oauth2/4.1.0 \
--    crate://crates.io/object/0.27.1 \
--    crate://crates.io/once_cell/1.9.0 \
-+    crate://crates.io/oauth2/4.2.3 \
-+    crate://crates.io/object/0.29.0 \
-+    crate://crates.io/once_cell/1.13.0 \
-     crate://crates.io/opaque-debug/0.3.0 \
--    crate://crates.io/openidconnect/2.2.0 \
-+    crate://crates.io/openidconnect/2.3.2 \
-+    crate://crates.io/openssl-macros/0.1.0 \
-     crate://crates.io/openssl-probe/0.1.5 \
--    crate://crates.io/openssl-src/111.17.0+1.1.1m \
--    crate://crates.io/openssl-sys/0.9.72 \
--    crate://crates.io/openssl/0.10.38 \
--    crate://crates.io/ordered-float/1.1.1 \
-+    crate://crates.io/openssl-src/111.25.0+1.1.1t \
-+    crate://crates.io/openssl-sys/0.9.75 \
-+    crate://crates.io/openssl/0.10.41 \
-+    crate://crates.io/ordered-float/2.10.0 \
-     crate://crates.io/oso/0.12.4 \
--    crate://crates.io/parking_lot/0.11.2 \
--    crate://crates.io/parking_lot_core/0.8.5 \
-+    crate://crates.io/parking_lot/0.12.1 \
-+    crate://crates.io/parking_lot_core/0.9.3 \
-     crate://crates.io/pbkdf2/0.7.5 \
-     crate://crates.io/percent-encoding/2.1.0 \
--    crate://crates.io/petgraph/0.5.1 \
-+    crate://crates.io/petgraph/0.6.2 \
-     crate://crates.io/phf_shared/0.10.0 \
-     crate://crates.io/pico-args/0.4.2 \
--    crate://crates.io/pin-project-lite/0.2.8 \
-+    crate://crates.io/pin-project-lite/0.2.9 \
-     crate://crates.io/pin-utils/0.1.0 \
--    crate://crates.io/pkg-config/0.3.24 \
-+    crate://crates.io/pkg-config/0.3.25 \
-     crate://crates.io/polar-core/0.12.4 \
-     crate://crates.io/ppv-lite86/0.2.16 \
-     crate://crates.io/precomputed-hash/0.1.1 \
--    crate://crates.io/priority-queue/1.2.1 \
--    crate://crates.io/proc-macro2/1.0.36 \
--    crate://crates.io/quick-xml/0.22.0 \
--    crate://crates.io/quote/1.0.15 \
-+    crate://crates.io/priority-queue/1.2.2 \
-+    crate://crates.io/proc-macro2/1.0.40 \
-+    crate://crates.io/quick-xml/0.23.0 \
-+    crate://crates.io/quote/1.0.20 \
-+    crate://crates.io/r2d2/0.8.10 \
-     crate://crates.io/rand/0.8.5 \
-     crate://crates.io/rand_chacha/0.3.1 \
-     crate://crates.io/rand_core/0.6.3 \
--    crate://crates.io/redox_syscall/0.2.10 \
--    crate://crates.io/redox_users/0.4.0 \
-+    crate://crates.io/redox_syscall/0.2.13 \
-+    crate://crates.io/redox_users/0.4.3 \
-     crate://crates.io/regex-automata/0.1.10 \
--    crate://crates.io/regex-syntax/0.6.25 \
--    crate://crates.io/regex/1.5.5 \
-+    crate://crates.io/regex-syntax/0.6.27 \
-+    crate://crates.io/regex/1.6.0 \
-     crate://crates.io/remove_dir_all/0.5.3 \
--    crate://crates.io/reqwest/0.11.9 \
-+    crate://crates.io/reqwest/0.11.11 \
-     crate://crates.io/ring/0.16.20 \
-     crate://crates.io/rle-decode-fast/1.0.3 \
-+    crate://crates.io/routecore/0.2.0 \
-     crate://crates.io/rpassword/5.0.1 \
--    crate://crates.io/rpki/0.13.2 \
-+    crate://crates.io/rpki/0.15.8 \
-     crate://crates.io/rustc-demangle/0.1.21 \
--    crate://crates.io/rustc_version/0.2.3 \
-+    crate://crates.io/rustc_version/0.4.0 \
-     crate://crates.io/rustls/0.19.1 \
--    crate://crates.io/rustversion/1.0.6 \
--    crate://crates.io/ryu/1.0.9 \
-+    crate://crates.io/rustversion/1.0.8 \
-+    crate://crates.io/ryu/1.0.10 \
-     crate://crates.io/salsa20/0.7.2 \
--    crate://crates.io/schannel/0.1.19 \
-+    crate://crates.io/schannel/0.1.20 \
-+    crate://crates.io/scheduled-thread-pool/0.2.6 \
-     crate://crates.io/scopeguard/1.1.0 \
-+    crate://crates.io/scratch/1.0.2 \
-     crate://crates.io/scrypt/0.6.5 \
-     crate://crates.io/sct/0.6.1 \
-     crate://crates.io/security-framework-sys/2.6.1 \
-     crate://crates.io/security-framework/2.6.1 \
--    crate://crates.io/semver-parser/0.7.0 \
--    crate://crates.io/semver/0.9.0 \
--    crate://crates.io/serde-value/0.6.0 \
--    crate://crates.io/serde/1.0.136 \
--    crate://crates.io/serde_derive/1.0.136 \
--    crate://crates.io/serde_json/1.0.79 \
-+    crate://crates.io/semver/1.0.12 \
-+    crate://crates.io/serde-value/0.7.0 \
-+    crate://crates.io/serde/1.0.139 \
-+    crate://crates.io/serde_bytes/0.11.6 \
-+    crate://crates.io/serde_derive/1.0.139 \
-+    crate://crates.io/serde_json/1.0.82 \
-     crate://crates.io/serde_path_to_error/0.1.7 \
-     crate://crates.io/serde_urlencoded/0.7.1 \
-+    crate://crates.io/sha2/0.10.2 \
-     crate://crates.io/sha2/0.9.9 \
-     crate://crates.io/sharded-slab/0.1.4 \
--    crate://crates.io/siphasher/0.3.9 \
--    crate://crates.io/slab/0.4.5 \
-+    crate://crates.io/signal-hook-registry/1.4.0 \
-+    crate://crates.io/siphasher/0.3.10 \
-+    crate://crates.io/slab/0.4.6 \
-     crate://crates.io/slug/0.1.4 \
--    crate://crates.io/smallvec/1.8.0 \
-+    crate://crates.io/smallvec/1.9.0 \
-     crate://crates.io/socket2/0.4.4 \
-     crate://crates.io/spin/0.5.2 \
--    crate://crates.io/string_cache/0.8.3 \
-+    crate://crates.io/string_cache/0.8.4 \
-     crate://crates.io/strsim/0.8.0 \
-     crate://crates.io/subtle/2.4.1 \
--    crate://crates.io/syn/1.0.86 \
-+    crate://crates.io/syn/1.0.98 \
-     crate://crates.io/syslog/4.0.1 \
-+    crate://crates.io/target-lexicon/0.12.4 \
-     crate://crates.io/tempfile/3.3.0 \
-     crate://crates.io/term/0.7.0 \
-+    crate://crates.io/termcolor/1.1.3 \
-     crate://crates.io/textwrap/0.11.0 \
--    crate://crates.io/thiserror-impl/1.0.30 \
--    crate://crates.io/thiserror/1.0.30 \
-+    crate://crates.io/thiserror-impl/1.0.31 \
-+    crate://crates.io/thiserror/1.0.31 \
-     crate://crates.io/thread_local/1.1.4 \
--    crate://crates.io/time/0.1.43 \
-+    crate://crates.io/time/0.1.44 \
-     crate://crates.io/tiny-keccak/2.0.2 \
-     crate://crates.io/tiny_http/0.8.2 \
--    crate://crates.io/tinyvec/1.5.1 \
-+    crate://crates.io/tinyvec/1.6.0 \
-     crate://crates.io/tinyvec_macros/0.1.0 \
--    crate://crates.io/tokio-macros/1.7.0 \
-+    crate://crates.io/tokio-macros/1.8.0 \
-     crate://crates.io/tokio-native-tls/0.3.0 \
-     crate://crates.io/tokio-rustls/0.22.0 \
--    crate://crates.io/tokio-util/0.6.9 \
--    crate://crates.io/tokio/1.17.0 \
--    crate://crates.io/toml/0.5.8 \
--    crate://crates.io/tower-service/0.3.1 \
--    crate://crates.io/tracing-attributes/0.1.19 \
--    crate://crates.io/tracing-core/0.1.22 \
--    crate://crates.io/tracing-log/0.1.2 \
-+    crate://crates.io/tokio-util/0.7.3 \
-+    crate://crates.io/tokio/1.20.4 \
-+    crate://crates.io/toml/0.5.9 \
-+    crate://crates.io/tower-service/0.3.2 \
-+    crate://crates.io/tracing-attributes/0.1.22 \
-+    crate://crates.io/tracing-core/0.1.28 \
-+    crate://crates.io/tracing-log/0.1.3 \
-     crate://crates.io/tracing-serde/0.1.3 \
-     crate://crates.io/tracing-subscriber/0.2.25 \
--    crate://crates.io/tracing/0.1.31 \
-+    crate://crates.io/tracing/0.1.35 \
-+    crate://crates.io/trait-set/0.2.0 \
-     crate://crates.io/try-lock/0.2.3 \
-     crate://crates.io/typenum/1.15.0 \
--    crate://crates.io/unicode-bidi/0.3.7 \
--    crate://crates.io/unicode-normalization/0.1.19 \
-+    crate://crates.io/unicode-bidi/0.3.8 \
-+    crate://crates.io/unicode-ident/1.0.2 \
-+    crate://crates.io/unicode-normalization/0.1.21 \
-     crate://crates.io/unicode-width/0.1.9 \
--    crate://crates.io/unicode-xid/0.2.2 \
-+    crate://crates.io/unicode-xid/0.2.3 \
-     crate://crates.io/untrusted/0.7.1 \
-     crate://crates.io/url/2.2.2 \
-     crate://crates.io/urlparse/0.7.3 \
--    crate://crates.io/uuid/0.8.2 \
-+    crate://crates.io/uuid/1.1.2 \
-     crate://crates.io/valuable/0.1.0 \
-     crate://crates.io/vcpkg/0.2.15 \
-     crate://crates.io/vec_map/0.8.2 \
-     crate://crates.io/version_check/0.9.4 \
-     crate://crates.io/want/0.3.0 \
--    crate://crates.io/wasi/0.10.2+wasi-snapshot-preview1 \
--    crate://crates.io/wasm-bindgen-backend/0.2.79 \
--    crate://crates.io/wasm-bindgen-futures/0.4.29 \
--    crate://crates.io/wasm-bindgen-macro-support/0.2.79 \
--    crate://crates.io/wasm-bindgen-macro/0.2.79 \
--    crate://crates.io/wasm-bindgen-shared/0.2.79 \
--    crate://crates.io/wasm-bindgen/0.2.79 \
--    crate://crates.io/web-sys/0.3.56 \
-+    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
-+    crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1 \
-+    crate://crates.io/wasm-bindgen-backend/0.2.81 \
-+    crate://crates.io/wasm-bindgen-futures/0.4.31 \
-+    crate://crates.io/wasm-bindgen-macro-support/0.2.81 \
-+    crate://crates.io/wasm-bindgen-macro/0.2.81 \
-+    crate://crates.io/wasm-bindgen-shared/0.2.81 \
-+    crate://crates.io/wasm-bindgen/0.2.81 \
-+    crate://crates.io/web-sys/0.3.58 \
-     crate://crates.io/webpki/0.21.4 \
-     crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
-+    crate://crates.io/winapi-util/0.1.5 \
-     crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
-     crate://crates.io/winapi/0.3.9 \
--    crate://crates.io/winreg/0.7.0 \
--    crate://crates.io/xml-rs/0.8.4 \
-+    crate://crates.io/windows-sys/0.36.1 \
-+    crate://crates.io/windows_aarch64_msvc/0.36.1 \
-+    crate://crates.io/windows_i686_gnu/0.36.1 \
-+    crate://crates.io/windows_i686_msvc/0.36.1 \
-+    crate://crates.io/windows_x86_64_gnu/0.36.1 \
-+    crate://crates.io/windows_x86_64_msvc/0.36.1 \
-+    crate://crates.io/winreg/0.10.1 \
- "
-diff --git a/recipes-security/krill/krill_0.9.6.bb b/recipes-security/krill/krill_0.12.3.bb
-similarity index 95%
-rename from recipes-security/krill/krill_0.9.6.bb
-rename to recipes-security/krill/krill_0.12.3.bb
-index fd86c4b..a943c52 100644
---- a/recipes-security/krill/krill_0.9.6.bb
-+++ b/recipes-security/krill/krill_0.12.3.bb
-@@ -7,7 +7,7 @@ DEPENDS = "openssl"
- 
- # SRC_URI += "crate://crates.io/krill/0.9.1"
- SRC_URI = "git://github.com/NLnetLabs/krill.git;protocol=https;branch=main"
--SRCREV = "95e6681d5b4024cac7a1892d47fb76abc68f34fb"
-+SRCREV = "e92098419c7ad82939e0483bc76df21eff705b80"
- SRC_URI += "file://panic_workaround.patch"
- 
- include krill.inc
--- 
-2.25.1
+> Hello all,
+>
+> I have made linux image for IMX8MPLUS with the help of Yocto and flash the
+> image on a custom board which is using IMX8MPLUS processor (Image made for
+> IMX8MPLUS will be required for that board) when i flash that image on
+> IMX8MPLUS-evk Board then it works fine but when i flash that image on that
+> custom board it does'nt boot properly and showing below  errors .  It is
+> not reaching till user prompt as in evk board appears and showing failed to
+> load regualtory.db file.
+>
+> I am putting logs here only of errors and complete file of log i am
+> attaching in attachment.
+>
+> [*]-Video Link 0adv7535_mipi2hdmi adv7535@3d: Can't find cec device
+> id=0x3c
+> fail to probe panel device adv7535@3d
+> fail to get display timings
+> probe video device failed, ret -19
+>
+> [0] lcd-controller@32e80000, video
+> [1] mipi_dsi@32e60000, video_bridge
+> [2] adv7535@3d, panel
+> adv7535_mipi2hdmi adv7535@3d: Can't find cec device id=0x3c
+> fail to probe panel device adv7535@3d
+> fail to get display timings
+> probe video device failed, ret -19
+> In:    serial
+> Out:   serial
+> Err:   serial
+> SEC0:  RNG instantiated
+>
+>  BuildInfo:
+>   - ATF 3c1583b
+>
+> MMC: no card present
+> flash target is MMC:1
+> MMC: no card present
+> MMC card init failed!
+> MMC: no card present
+> ** Block device MMC 1 not supported
+> Net:
+> Warning: ethernet@30bf0000 (eth1) using random MAC address -
+> 2a:99:bd:59:06:d1
+>
+> Warning: ethernet@30be0000 (eth0) using random MAC address -
+> 62:30:24:eb:30:15
+> eth0: ethernet@30be0000, eth1: ethernet@30bf0000 [PRIME]
+> Fastboot: Normal
+> Normal Boot
+>
+> [    0.204629] imx-sdma 30bd0000.dma-controller: Direct firmware load for
+> imx/sdma/sdma-imx7d.bin failed with error -2
+> [    0.204651] imx-sdma 30bd0000.dma-controller: Falling back to sysfs
+> fallback for: imx/sdma/sdma-imx7d.bin
+> [    0.206434] mxs-dma 33000000.dma-apbh: initialized
+> [    0.208257] SoC: i.MX8MP revision 1.1
+> [    0.208875] Bus freq driver module loaded
+>
+> [    2.995746] imx-drm display-subsystem: bound 32c00000.bus:ldb@32ec005c
+> (ops imx8mp_ldb_ops)
+> [    3.004136] imx-drm display-subsystem: bound 32fd8000.hdmi (ops
+> dw_hdmi_imx_ops)
+> [    3.012410] [drm] Initialized imx-drm 1.0.0 20120507 for
+> display-subsystem on minor 1
+> [    3.091503] mmc1: error -123 whilst initialising SD card
+> [    3.211495] mmc1: error -123 whilst initialising SD card
+> [    3.345894] mmc1: error -123 whilst initialising SD card
+> [    3.355608] Console: switching to colour frame buffer device 100x37
+> [    3.383493] imx-drm display-subsystem: [drm] fb0: imx-drmdrmfb frame
+> buffer device
+> [    3.397807] isi-m2m 32e00000.isi:m2m_device: Register m2m success for
+> ISI.0
+> [    3.404971] cfg80211: Loading compiled-in X.509 certificates for
+> regulatory database
+> [    3.415122] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+> [    3.421745] platform regulatory.0: Direct firmware load for
+> regulatory.db failed with error -2
+>
 
+This is provided by wireless-regdb
+https://git.yoctoproject.org/poky/tree/meta/recipes-kernel/wireless-regdb/wireless-regdb_2023.02.13.bb
+
+[    3.430369] platform regulatory.0: Falling back to sysfs fallback for:
+> regulatory.db
+> [    3.445673] ALSA device list:
+> [    3.448665]   No soundcards found.
+> [    3.685990] imx6q-pcie 33800000.pcie: Phy link never came up
+> [    3.691704] imx6q-pcie: probe of 33800000.pcie failed with error -110
+> [    3.699563] Waiting for root device /dev/mmcblk1p2...
+> [   60.412469] imx-sdma 30e10000.dma-controller: Direct firmware load for
+> imx/sdma/sdma-imx7d.bin failed with error -2
+>
+
+This is provided by linux-firmware-imx-sdma-imx7
+https://git.yoctoproject.org/poky/tree/meta/recipes-kernel/linux-firmware/linux-firmware_20230210.bb
+
+
+FILES:${PN}-imx-sdma-imx7d =
+"${nonarch_base_libdir}/firmware/imx/sdma/sdma-imx7d.bin"
+
+
+[   60.422936] imx-sdma 30e10000.dma-controller: Falling back to sysfs
+> fallback for: imx/sdma/sdma-imx7d.bin
+> [   64.480489] cfg80211: failed to load regulatory.db
+> [   78.272425] random: crng init done
+> [  121.824795] imx-sdma 30e10000.dma-controller: external firmware not
+> found, using ROM firmware
+> [  121.825045] imx-sdma 30bd0000.dma-controller: external firmware not
+> found, using ROM firmware
+>
+> What i tried to resolve this . I enablea DMA Support and SDMA Driver in
+> kernel configuration by "bitbake linux-imx -c menuconfig". But getting same
+> error. Please help me into this.
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#59462):
+> https://lists.yoctoproject.org/g/yocto/message/59462
+> Mute This Topic: https://lists.yoctoproject.org/mt/97700065/924729
+> Mute #imx6:https://lists.yoctoproject.org/g/yocto/mutehashtag/imx6
+> Mute #kirkstone:
+> https://lists.yoctoproject.org/g/yocto/mutehashtag/kirkstone
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
+> Mute #linux:https://lists.yoctoproject.org/g/yocto/mutehashtag/linux
+> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
+> Mute #imx8:https://lists.yoctoproject.org/g/yocto/mutehashtag/imx8
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> ticotimo@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--0000000000007be2ac05f73774e4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Sat, Mar 18, 2023 at 1:12 PM Nikita Gupta &lt;<a href=3D=
+"mailto:nikitagupta2509@gmail.com">nikitagupta2509@gmail.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-le=
+ft-color:rgb(204,204,204)"><div>Hello all,=C2=A0</div>
+<div>=C2=A0</div>
+<div>I have made linux image for IMX8MPLUS with the help of Yocto and flash=
+ the image on a custom board which is using IMX8MPLUS processor (Image made=
+ for IMX8MPLUS will be required for that board) when i flash that image on =
+IMX8MPLUS-evk Board then it works fine but when i flash that image on that =
+custom board it does&#39;nt boot properly and showing below=C2=A0 errors .=
+=C2=A0 It is not reaching till user prompt as in evk board appears and show=
+ing failed to load regualtory.db file.=C2=A0<br><br>I am putting logs here =
+only of errors and complete file of log i am attaching in attachment.=C2=A0=
+<br><br>
+<div>[*]-Video Link 0adv7535_mipi2hdmi adv7535@3d: Can&#39;t find cec devic=
+e id=3D0x3c</div>
+<div>fail to probe panel device adv7535@3d</div>
+<div>fail to get display timings</div>
+<div>probe video device failed, ret -19</div>
+<div>=C2=A0</div>
+<div><span style=3D"white-space:pre-wrap"> </span>[0] lcd-controller@32e800=
+00, video</div>
+<div><span style=3D"white-space:pre-wrap"> </span>[1] mipi_dsi@32e60000, vi=
+deo_bridge</div>
+<div><span style=3D"white-space:pre-wrap"> </span>[2] adv7535@3d, panel</di=
+v>
+<div>adv7535_mipi2hdmi adv7535@3d: Can&#39;t find cec device id=3D0x3c</div=
+>
+<div>fail to probe panel device adv7535@3d</div>
+<div>fail to get display timings</div>
+<div>probe video device failed, ret -19</div>
+<div>In:=C2=A0 =C2=A0 serial</div>
+<div>Out:=C2=A0 =C2=A0serial</div>
+<div>Err:=C2=A0 =C2=A0serial</div>
+<div>SEC0:=C2=A0 RNG instantiated</div>
+<div>=C2=A0</div>
+<div>=C2=A0BuildInfo:</div>
+<div>=C2=A0 - ATF 3c1583b</div>
+<div>=C2=A0</div>
+<div>MMC: no card present</div>
+<div>flash target is MMC:1</div>
+<div>MMC: no card present</div>
+<div>MMC card init failed!</div>
+<div>MMC: no card present</div>
+<div>** Block device MMC 1 not supported</div>
+<div>Net:=C2=A0 =C2=A0</div>
+<div>Warning: ethernet@30bf0000 (eth1) using random MAC address - 2a:99:bd:=
+59:06:d1</div>
+<div>=C2=A0</div>
+<div>Warning: ethernet@30be0000 (eth0) using random MAC address - 62:30:24:=
+eb:30:15</div>
+<div>eth0: ethernet@30be0000, eth1: ethernet@30bf0000 [PRIME]</div>
+<div>Fastboot: Normal</div>
+<div>Normal Boot<br><br>
+<div>[=C2=A0 =C2=A0 0.204629] imx-sdma 30bd0000.dma-controller: Direct firm=
+ware load for imx/sdma/sdma-imx7d.bin failed with error -2</div>
+<div>[=C2=A0 =C2=A0 0.204651] imx-sdma 30bd0000.dma-controller: Falling bac=
+k to sysfs fallback for: imx/sdma/sdma-imx7d.bin</div>
+<div>[=C2=A0 =C2=A0 0.206434] mxs-dma 33000000.dma-apbh: initialized</div>
+<div>[=C2=A0 =C2=A0 0.208257] SoC: i.MX8MP revision 1.1</div>
+<div>[=C2=A0 =C2=A0 0.208875] Bus freq driver module loaded<br><br>
+<div>[=C2=A0 =C2=A0 2.995746] imx-drm display-subsystem: bound 32c00000.bus=
+:ldb@32ec005c (ops imx8mp_ldb_ops)</div>
+<div>[=C2=A0 =C2=A0 3.004136] imx-drm display-subsystem: bound 32fd8000.hdm=
+i (ops dw_hdmi_imx_ops)</div>
+<div>[=C2=A0 =C2=A0 3.012410] [drm] Initialized imx-drm 1.0.0 20120507 for =
+display-subsystem on minor 1</div>
+<div>[=C2=A0 =C2=A0 3.091503] mmc1: error -123 whilst initialising SD card<=
+/div>
+<div>[=C2=A0 =C2=A0 3.211495] mmc1: error -123 whilst initialising SD card<=
+/div>
+<div>[=C2=A0 =C2=A0 3.345894] mmc1: error -123 whilst initialising SD card<=
+/div>
+<div>[=C2=A0 =C2=A0 3.355608] Console: switching to colour frame buffer dev=
+ice 100x37</div>
+<div>[=C2=A0 =C2=A0 3.383493] imx-drm display-subsystem: [drm] fb0: imx-drm=
+drmfb frame buffer device</div>
+<div>[=C2=A0 =C2=A0 3.397807] isi-m2m 32e00000.isi:m2m_device: Register m2m=
+ success for ISI.0</div>
+<div>[=C2=A0 =C2=A0 3.404971] cfg80211: Loading compiled-in X.509 certifica=
+tes for regulatory database</div>
+<div>[=C2=A0 =C2=A0 3.415122] cfg80211: Loaded X.509 cert &#39;sforshee: 00=
+b28ddf47aef9cea7&#39;</div>
+<div>[=C2=A0 =C2=A0 3.421745] platform regulatory.0: Direct firmware load f=
+or regulatory.db failed with error -2</div></div></div></div></blockquote><=
+div dir=3D"auto"><br></div><div dir=3D"auto">This is provided by wireless-r=
+egdb=C2=A0</div><div dir=3D"auto"><div><a href=3D"https://git.yoctoproject.=
+org/poky/tree/meta/recipes-kernel/wireless-regdb/wireless-regdb_2023.02.13.=
+bb">https://git.yoctoproject.org/poky/tree/meta/recipes-kernel/wireless-reg=
+db/wireless-regdb_2023.02.13.bb</a></div><br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-le=
+ft-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"><div><d=
+iv><div><div dir=3D"auto"></div>
+<div>[=C2=A0 =C2=A0 3.430369] platform regulatory.0: Falling back to sysfs =
+fallback for: regulatory.db</div>
+<div>[=C2=A0 =C2=A0 3.445673] ALSA device list:</div>
+<div>[=C2=A0 =C2=A0 3.448665]=C2=A0 =C2=A0No soundcards found.</div>
+<div>[=C2=A0 =C2=A0 3.685990] imx6q-pcie 33800000.pcie: Phy link never came=
+ up</div>
+<div>[=C2=A0 =C2=A0 3.691704] imx6q-pcie: probe of 33800000.pcie failed wit=
+h error -110</div>
+<div>[=C2=A0 =C2=A0 3.699563] Waiting for root device /dev/mmcblk1p2...</di=
+v>
+<div>[=C2=A0 =C2=A060.412469] imx-sdma 30e10000.dma-controller: Direct firm=
+ware load for imx/sdma/sdma-imx7d.bin failed with error -2</div></div></div=
+></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">This is p=
+rovided by linux-firmware-imx-sdma-imx7</div><div dir=3D"auto"><div><a href=
+=3D"https://git.yoctoproject.org/poky/tree/meta/recipes-kernel/linux-firmwa=
+re/linux-firmware_20230210.bb">https://git.yoctoproject.org/poky/tree/meta/=
+recipes-kernel/linux-firmware/linux-firmware_20230210.bb</a></div><br></div=
+><div dir=3D"auto"><pre style=3D"padding:0px;margin-top:0px;margin-bottom:0=
+px;font-size:13.333333px;font-family:monospace"><span class=3D"nv" style=3D=
+"font-family:monospace;color:rgb(51,102,153)"><br></span></pre><pre style=
+=3D"padding:0px;margin-top:0px;margin-bottom:0px;font-size:13.333333px;font=
+-family:monospace"><span class=3D"nv" style=3D"font-family:monospace;color:=
+rgb(51,102,153)">FILES</span><span class=3D"p" style=3D"font-family:monospa=
+ce">:</span><span class=3D"err" style=3D"font-family:monospace;background-c=
+olor:rgb(227,210,210);color:rgb(166,23,23)">${</span><span class=3D"nv" sty=
+le=3D"font-family:monospace;color:rgb(51,102,153)">PN</span><span class=3D"=
+err" style=3D"font-family:monospace;background-color:rgb(227,210,210);color=
+:rgb(166,23,23)">}</span><span class=3D"o" style=3D"font-family:monospace">=
+-</span><span class=3D"nv" style=3D"font-family:monospace;color:rgb(51,102,=
+153)">imx</span><span class=3D"o" style=3D"font-family:monospace">-</span><=
+span class=3D"nv" style=3D"font-family:monospace;color:rgb(51,102,153)">sdm=
+a</span><span class=3D"o" style=3D"font-family:monospace">-</span><span cla=
+ss=3D"nv" style=3D"font-family:monospace;color:rgb(51,102,153)">imx7d</span=
+> <span class=3D"o" style=3D"font-family:monospace">=3D</span> <span class=
+=3D"s2" style=3D"font-family:monospace;background-color:rgb(255,240,240);co=
+lor:rgb(221,34,0)">&quot;${nonarch_base_libdir}/firmware/imx/sdma/sdma-imx7=
+d.bin&quot;</span></pre><pre style=3D"padding:0px;margin-top:0px;margin-bot=
+tom:0px;font-size:13.333333px;font-family:monospace"><span class=3D"s2" sty=
+le=3D"font-family:monospace;background-color:rgb(255,240,240);color:rgb(221=
+,34,0)"><br></span></pre></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;paddi=
+ng-left:1ex;border-left-color:rgb(204,204,204)"><div><div><div><div dir=3D"=
+auto"></div>
+<div>[=C2=A0 =C2=A060.422936] imx-sdma 30e10000.dma-controller: Falling bac=
+k to sysfs fallback for: imx/sdma/sdma-imx7d.bin</div>
+<div>[=C2=A0 =C2=A064.480489] cfg80211: failed to load regulatory.db</div>
+<div>[=C2=A0 =C2=A078.272425] random: crng init done</div>
+<div>[=C2=A0 121.824795] imx-sdma 30e10000.dma-controller: external firmwar=
+e not found, using ROM firmware</div>
+<div>[=C2=A0 121.825045] imx-sdma 30bd0000.dma-controller: external firmwar=
+e not found, using ROM firmware</div>
+</div>
+</div>
+</div>
+<div><br>
+<div>What i tried to resolve this . I enablea DMA Support and SDMA Driver i=
+n kernel configuration by &quot;bitbake linux-imx -c menuconfig&quot;. But =
+getting same error. Please help me into this.</div>
+<div>=C2=A0</div>
+</div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#59462): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/59462" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/59462</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/97700065/9247=
+29" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt/=
+97700065/924729</a><br>
+Mute #imx6:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/im=
+x6" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/y=
+octo/mutehashtag/imx6</a><br>
+Mute #kirkstone:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehasht=
+ag/kirkstone" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproje=
+ct.org/g/yocto/mutehashtag/kirkstone</a><br>
+Mute #yocto:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/y=
+octo" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g=
+/yocto/mutehashtag/yocto</a><br>
+Mute #linux:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/l=
+inux" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g=
+/yocto/mutehashtag/linux</a><br>
+Mute #bitbake:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag=
+/bitbake" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
+rg/g/yocto/mutehashtag/bitbake</a><br>
+Mute #imx8:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/im=
+x8" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/y=
+octo/mutehashtag/imx8</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:ticotimo@gmail.com" target=3D"_blank">ticotimo@g=
+mail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div>
+
+--0000000000007be2ac05f73774e4--
 
