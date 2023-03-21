@@ -1,84 +1,82 @@
-Return-Path: <mikko.rapeli@linaro.org>
+Return-Path: <alexis.lothore@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12323C74A5B
-	for <webhook@archiver.kernel.org>; Tue, 21 Mar 2023 06:34:25 +0000 (UTC)
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by mx.groups.io with SMTP id smtpd.web11.6797.1679380460513594346
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C8C9C74A5B
+	for <webhook@archiver.kernel.org>; Tue, 21 Mar 2023 09:04:25 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+ by mx.groups.io with SMTP id smtpd.web10.8456.1679389458369127633
  for <yocto@lists.yoctoproject.org>;
- Mon, 20 Mar 2023 23:34:21 -0700
+ Tue, 21 Mar 2023 02:04:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: lakka.kapsi.fi, ip: 91.232.154.25, mailfrom: mcfrisk@lakka.kapsi.fi)
-Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
-	by mail.kapsi.fi with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1peVZZ-00CJdZ-2T; Tue, 21 Mar 2023 08:34:17 +0200
-Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.94.2)
-	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1peVZY-00GxtR-Q8; Tue, 21 Mar 2023 08:34:16 +0200
-From: Mikko Rapeli <mikko.rapeli@linaro.org>
-To: yocto@lists.yoctoproject.org
-Cc: Mikko Rapeli <mikko.rapeli@linaro.org>
-Subject: [meta-security][PATCH] ima-evm-utils: disable documentation from build
-Date: Tue, 21 Mar 2023 08:34:09 +0200
-Message-Id: <20230321063409.4037458-1-mikko.rapeli@linaro.org>
-X-Mailer: git-send-email 2.30.2
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=hZQTFCWf;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.196, mailfrom: alexis.lothore@bootlin.com)
+Received: (Authenticated sender: alexis.lothore@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 2221CE000B;
+	Tue, 21 Mar 2023 09:04:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1679389456;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=/vgqzxhWO9FSZGkjqoSRPAkssEEXcW/pdn6G60qhVJc=;
+	b=hZQTFCWf8y7LnkOxwoSXWwoqoEHPbl4wLA8598sp7yth4FjvVUupcLEnJmiabhFoSHsELL
+	Hz70qGwe/RqMNttdlqbK8yPZOJzSRn3qQGgyCCcUPkwrOYZSxlWjZ12BeCIk115uxGT0Nt
+	lCPnwCO2YqPYjU4H43myHnmZlTG28vUTdh0xgNHYnIsWot5tph8KxJSTDeCcX3mZOuTkf/
+	orNFnazHkX6x8uAdj/g4pgpLpH1a7SHc5EJQh5NS2d6RrUjzBf3TfEoRUbcyVdJeXFbSuH
+	OyFPNIIkrVuU1zYElfG46auuNZSHyQ4fdO0eNAFPIAccsHHN3WzF4lBI7l1nZw==
+From: alexis.lothore@bootlin.com
+To: yocto@lists.yoctoproject.org,
+	alexandre.belloni@bootlin.com
+Cc: thomas.petazzoni@bootlin.com
+Subject: [yocto-autobuilder-helper][PATCH 1/1] config.json: fix A. Belloni configuration for regression reporting
+Date: Tue, 21 Mar 2023 10:04:05 +0100
+Message-Id: <20230321090405.7785-1-alexis.lothore@bootlin.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Rspam-Score: -1.4 (-)
-X-Rspam-Report: Action: no action
- Symbol: ARC_NA(0.00)
- Symbol: DMARC_POLICY_SOFTFAIL(0.10)
- Symbol: FROM_HAS_DN(0.00)
- Symbol: TO_DN_SOME(0.00)
- Symbol: R_MISSING_CHARSET(0.50)
- Symbol: R_SPF_ALLOW(-0.20)
- Symbol: MIME_GOOD(-0.10)
- Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
- Symbol: RCVD_TLS_LAST(0.00)
- Symbol: RCPT_COUNT_TWO(0.00)
- Symbol: MID_CONTAINS_FROM(1.00)
- Symbol: NEURAL_HAM(-0.00)
- Symbol: FORGED_SENDER(0.30)
- Symbol: R_DKIM_NA(0.00)
- Symbol: MIME_TRACE(0.00)
- Symbol: ASN(0.00)
- Symbol: FROM_NEQ_ENVFROM(0.00)
- Symbol: BAYES_HAM(-3.00)
- Symbol: RCVD_COUNT_TWO(0.00)
- Message-ID: 20230321063409.4037458-1-mikko.rapeli@linaro.org
-X-SA-Exim-Connect-IP: 2001:67c:1be8::11
-X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 21 Mar 2023 06:34:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59479
+ <yocto@lists.yoctoproject.org>; Tue, 21 Mar 2023 09:04:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59480
 
-Building documentation fails due to missing asciidoc, xsltproc etc
-so it's better to just disable building them by default.
+From: Alexis Lothoré <alexis.lothore@bootlin.com>
 
-Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
+There is a typo in BUILD_HISTORY_FORKPUSH, leading to failures on Autobuilder
+when trying to generate regression reports:
+
+Traceback (most recent call last):
+  File "/home/pokybuild/yocto-worker/a-full/yocto-autobuilder-helper/scripts/send-qa-email", line 213, in <module>
+    send_qa_email()
+  File "/home/pokybuild/yocto-worker/a-full/yocto-autobuilder-helper/scripts/send-qa-email", line 117, in send_qa_email
+    basebranch, comparebranch = utils.getcomparisonbranch(ourconfig, repo, branch)
+  File "/home/pokybuild/yocto-worker/a-full/yocto-autobuilder-helper/scripts/utils.py", line 392, in getcomparisonbranch
+    comparerepo, comparebranch = base.split(":")
+ValueError: not enough values to unpack (expected 2, got 1)
+
+Observed on build a-full/5070
+
+Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
 ---
- .../recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb          | 1 +
- 1 file changed, 1 insertion(+)
+ config.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
-index 4f1d1a3..873aeeb 100644
---- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
-+++ b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
-@@ -14,6 +14,7 @@ inherit pkgconfig autotools features_check
- REQUIRED_DISTRO_FEATURES = "ima"
- REQUIRED_DISTRO_FEATURES:class-native = ""
+diff --git a/config.json b/config.json
+index fcd0588..51c95e1 100644
+--- a/config.json
++++ b/config.json
+@@ -6,7 +6,7 @@
+     "BUILD_HISTORY_DIR" : "buildhistory",
+     "BUILD_HISTORY_REPO" : "ssh://git@push.yoctoproject.org/poky-buildhistory",
+     "BUILD_HISTORY_DIRECTPUSH" : ["poky:morty", "poky:pyro", "poky:rocko", "poky:sumo", "poky:thud", "poky:warrior", "poky:zeus", "poky:dunfell", "poky:gatesgarth", "poky:hardknott", "poky:honister", "poky:kirkstone", "poky:langdale", "poky:master"],
+-    "BUILD_HISTORY_FORKPUSH" : {"poky-contrib:ross/mut" : "poky:master", "poky-contrib:abelloni/master-next": "poky/master", "poky:master-next" : "poky:master"},
++    "BUILD_HISTORY_FORKPUSH" : {"poky-contrib:ross/mut" : "poky:master", "poky-contrib:abelloni/master-next": "poky:master", "poky:master-next" : "poky:master"},
  
-+EXTRA_OECONF += "MANPAGE_DOCBOOK_XSL=0"
- EXTRA_OECONF:append:class-target = " --with-kernel-headers=${STAGING_KERNEL_BUILDDIR}"
- 
- # blkid is called by evmctl when creating evm checksums.
+     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yocto.io/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
+     "BUILDTOOLS_URL_TEMPLOCAL2" : "https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
 -- 
-2.34.1
+2.40.0
 
 
