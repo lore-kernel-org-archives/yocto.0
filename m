@@ -1,297 +1,162 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <ovidiu.panait@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CBCE5C6FD1D
-	for <webhook@archiver.kernel.org>; Tue, 21 Mar 2023 16:01:27 +0000 (UTC)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
- by mx.groups.io with SMTP id smtpd.web11.17232.1679414479224705251
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8932C761A6
+	for <webhook@archiver.kernel.org>; Tue, 21 Mar 2023 19:21:38 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web11.23269.1679426495831316737
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Mar 2023 09:01:19 -0700
+ Tue, 21 Mar 2023 12:21:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ptSLaeoC;
- spf=pass (domain: gmail.com, ip: 209.85.219.171, mailfrom: ticotimo@gmail.com)
-Received: by mail-yb1-f171.google.com with SMTP id z83so17734514ybb.2
-        for <yocto@lists.yoctoproject.org>; Tue, 21 Mar 2023 09:01:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679414478;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PGwt/x6ZlgShG6UqQ9KqXHokT40cX8Chvk6D53SV7Ns=;
-        b=ptSLaeoCASkxznBgZ82vkfWMRTSOjAHBPeG5OEY4wN4Ql9icwlR+4IENUo4/85kxHT
-         iXWcdkJwkdAlyjebAoEMG0x7O23CUDt7vPdSfAIZUotRURkPz+DumPHHPST7VZLo/hZH
-         mKfsPjsz3G3D273le87eWNeihUDkKfBOoo1E/elwYmHITmnT8uE6wltmPKpHxa9mjrEw
-         iXO3f5OVt+1Pgi2a40YGubeiZSGzFpCuQZKuZAy/hNACdSEYpmw/wEUor2jhwTQ79GeH
-         rG3+erEH8tz+TFcjNvCmCnITBCqQewXX2uEB5I1KlItV381L4R6yCj4cgoTyXdaWqV4R
-         YO+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679414478;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PGwt/x6ZlgShG6UqQ9KqXHokT40cX8Chvk6D53SV7Ns=;
-        b=0qLuCpcUdtscpxo7780l+l9ihyPWZQGAYgKp892LR55S0OIhgIBaC+Z1C4Xd78CRgy
-         mnf5tDR5Abe+TQoB0Ox2sW6tihdSSPV+2WfuE/xhf0baDmENfmzOsX/bProQDfYOtEnN
-         FUYxou/pT92KjcUVmPr+8m+BqbsRRsnlE44vivcekblzL7BB79X9EGtn6gXkaNf6ksBB
-         TiW5+Ip4TD6wd9TEv9VYH410L3mkX6Jc0PPEkHAuMkpjewWe4jNUhQiKe+OSkpGX34Zy
-         GOL4r+VAPhajCaMs2qU4XGa48jGMEC/UXFzy8941NDbxim9WitN84SjUWB9/Ry3vYw+d
-         /JNg==
-X-Gm-Message-State: AAQBX9cSo+ixKPmpklFqWrdBg9u1H66uNf14Vkjc40i2Sg52FI0MCoPk
-	NbNNPHrm7YYCpxv+dVbZJ/XGoK7zJc3CRDTtM6Q=
-X-Google-Smtp-Source: AKy350YJzT+FVg9/alR9MoQcGD3PqoqJKnlOxScNem6xw3xOw5tbf0YxEaN7IgGb5/Adfc2OdC/gYiSpOpbLd0L4q+Y=
-X-Received: by 2002:a05:6902:150b:b0:b1d:d57:fbef with SMTP id
- q11-20020a056902150b00b00b1d0d57fbefmr1815384ybu.11.1679414477983; Tue, 21
- Mar 2023 09:01:17 -0700 (PDT)
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=S/Ywm0fF;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=24442424f2=ovidiu.panait@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32LBUGmY015052;
+	Tue, 21 Mar 2023 12:21:35 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references :
+ content-transfer-encoding : content-type : mime-version; s=PPS06212021;
+ bh=+tgMpFDj/wH19D6Z/cQmTzGsDwcPrF3UH6NoBBWhGUk=;
+ b=S/Ywm0fFEqglMxNI/Swfl4CgtaRzbDZkIyubxMS5kpMnzjtS7nw6R6xie95dtnpE+V6C
+ Ar4ceEMjeYzE9svj6JMvY2MbEauOEZAzm7jK9e0PHw8Y3ASNrD0VRB3T80IJ/08sEO72
+ ClS4n1zGWUYHNVKa6S6L9sKFAStVO0Nm/XorgLI6Nn7umbzZizK2Cxjd8qngZWN8FkAX
+ x9ObYT6zGNbBmXELcJIFsv6BDC8Yl0f2tJwNGGcZ0ULYIYs9ttYiwJcgxhiBchj8W4uB
+ u+ENxYYpUh7BGmKg9xXh+WBKY8EQtI2DO22RWkI0sXc6z04UmkI1f3pPsIGaV9w2JI3s zg== 
+Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam04lp2042.outbound.protection.outlook.com [104.47.74.42])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3pdctmk4u0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Mar 2023 12:21:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SKNn64i4dIxzTQarET/IcYBsvCQF6itgizQhzABh5FjlUd0U0DcLVC+xUrd7CEY5hnED6lDfWYmA7UdWcZ0Dv18EwmSnQ0x0RT+T77WG3TmKsZn8ugjIPrd7A+VWm3gm7dYPvC17cI5mdA0DcESaCKTDpbFsV3xlqB1Fgg6T97wrRbuH8/SS7RNASyyoCLV1bULgrnkrcd9Pr2FBM5qI4xZZoCrALdoKp5lNYpwswT1RboGX0q75MgUnvgvnO4B2khD3rKycnpQVQDMtwwqONcWlfI/mNmyDz++YadBN1p12ULdsxASAciH2ahOQnWvV+rO7QIdQLb/OuAzKHxPAUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+tgMpFDj/wH19D6Z/cQmTzGsDwcPrF3UH6NoBBWhGUk=;
+ b=WR0C4rB4ky2ZlCrznpxocTSe3dGC2r/vEL/Ky7WbOzBtmIjf+LTYCyiIDlvYxZfLR7pPdL5jp+zFNvO0AAh598/UUWW+CLr072R2gIwT6Ay37d5l31GcH+v80bkJhurLAVwbtRlbOjGSxnVPTkFDQOY5boPSwFowXISJxPQFiptLm2vEUOYlGnT0KWx+Yidl0wFUR7Rbs6UAmmvypNknNmrugjgQ4GqhCHQbj3hPT/YpfsHON6bvoBLruJacU0E0e3Kv0zv/sfOV8ikU8O+DIXnjcjUrltqVBSj31p/JFhk6q6/D5+HYLwIsOM02O1QWepNKEuckd/ujHfjSoO1V9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from DM4PR11MB5327.namprd11.prod.outlook.com (2603:10b6:5:392::22)
+ by CH0PR11MB5297.namprd11.prod.outlook.com (2603:10b6:610:bc::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Tue, 21 Mar
+ 2023 19:21:32 +0000
+Received: from DM4PR11MB5327.namprd11.prod.outlook.com
+ ([fe80::9f42:14ae:2b0a:d1fb]) by DM4PR11MB5327.namprd11.prod.outlook.com
+ ([fe80::9f42:14ae:2b0a:d1fb%3]) with mapi id 15.20.6178.037; Tue, 21 Mar 2023
+ 19:21:32 +0000
+From: Ovidiu Panait <ovidiu.panait@windriver.com>
+To: yocto@lists.yoctoproject.org
+Cc: anibal.limon@linaro.org
+Subject: [ptest-runner][PATCH 2/2] utils.c: make the pty file readable by all users
+Date: Tue, 21 Mar 2023 21:21:11 +0200
+Message-Id: <20230321192111.197351-2-ovidiu.panait@windriver.com>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230321192111.197351-1-ovidiu.panait@windriver.com>
+References: <20230321192111.197351-1-ovidiu.panait@windriver.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: VI1PR0102CA0091.eurprd01.prod.exchangelabs.com
+ (2603:10a6:803:15::32) To DM4PR11MB5327.namprd11.prod.outlook.com
+ (2603:10b6:5:392::22)
 MIME-Version: 1.0
-References: <aIxj.1679413910808259942.dAzU@lists.yoctoproject.org>
-In-Reply-To: <aIxj.1679413910808259942.dAzU@lists.yoctoproject.org>
-From: Tim Orling <ticotimo@gmail.com>
-Date: Tue, 21 Mar 2023 09:01:06 -0700
-Message-ID: <CANx9H-DHJsP1dAngSZ_wveBGvBYwKFAELQr-R0Oj1C-=Zdcxig@mail.gmail.com>
-Subject: Re: [yocto] #bitbake
-To: elshoud <elshoud@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000641e4705f76b27a0"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5327:EE_|CH0PR11MB5297:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20a807a8-c09a-4b67-9909-08db2a417aba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	BM57AGI6bIWVBs+E6M2bk1xm3qiduzBhSChVglcOBd0EhlBBrRSx2NGkkRa3OYg+Y5bLoNcINtH/cm3mnJo2ZaJdCeskSmYsVTAmiOp39hRXwrHGbylKaCBzE7cxPDvxD3+3k0p+QNa2n9kval2UXMcVUbBiKnfRvhn+p/yY09Yb3xRBxJ4pHEE9lex2vrHBwRrYhwCKDDxf/eOODZw8yz1Qu05DSXL8NlnD79jdI+RqCqcmKhR723KKc1dQzYUkBWuXldho/GcFb6aYuPahPNxBHJ+06gFviNl8eEkkP+zDogztdVi2PaaNNanvBgtRuwy3LM/6NdKS27C5Hh9eTQfah+wB9hacfSpzcF20UiDwxtXR7bUFUGsGF9QKOEVKOBx0k6I4+oqcF1x/DUZNb9gtMvIFb+7SjE7VEyJziZQHRI6b5kS/7qNR5Wa+yZlM4W12/uko7otzbrcIK9u05oxnWGdT6kCAaAfU7Yx9XyYVGFvS4fnYNPhYWUqZV7KrYRh57Yp4csrSGG1zQ9SX+jvoJYfaXdSnv8jaOI5gcal7e3MHQM1ijGWtDQ8JfgiuEB2DCNafqPUD3dviJ4lrG0M6fx3IP69MXpkX1xTfPFhUoYZJ6uoNENov+/EU2kxLArWyrj3FCrgnHxrUwV3Y7DVvSRVSDFwO5eEOuAeE8e5TE4Qs5Pk+rTFyKNGnBKN2kzHInVXNTNTjc3BJgQIjQjx+T/0y47rj0IuLHAYNMQ7qV6o1mTrYbJM84Y/3Q/mS
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB5327.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(376002)(39850400004)(396003)(366004)(346002)(451199018)(52116002)(2616005)(186003)(6486002)(4326008)(83380400001)(6666004)(478600001)(1076003)(66476007)(316002)(6916009)(8676002)(66946007)(66556008)(6512007)(6506007)(26005)(41300700001)(8936002)(5660300002)(4744005)(44832011)(38350700002)(38100700002)(2906002)(86362001)(36756003)(26730200005)(19860200003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?J/o8PoPU8yXtFi75yYteSyPqrhcKyPxTyzB9yKLXQ+mlyS8oeYoVMQZGjYZi?=
+ =?us-ascii?Q?4yVLg5rR+IrBIaK1Okj2VvPGUiRxP0mBXeYMx+Mb0RiE4yjCCNzRM9b0aSL0?=
+ =?us-ascii?Q?1h3gLDJxMgZ3TrPFvcCUljYmCyrCV00kdlqOz85sucCZFvD/SSNURLxiPKp5?=
+ =?us-ascii?Q?6/TEy293N1QQYcXU7c/tGxk0tjXVo5ATOJGhmR2/BuYL9qN3CgMMsIWqVFxR?=
+ =?us-ascii?Q?qlYKS2K7UVN6OV5uZ8Q6EUAI3PHkMEQrymf7KOKVR1mFGzinVhIbOHaAVnMc?=
+ =?us-ascii?Q?DIUMOVlfysTnS6baVcxWh978Rr14oiAEZo6p9Cu7TgMuh/0SEbRNPgcEmES3?=
+ =?us-ascii?Q?0dABr6OFVthbI3046dB1hL2dXdWHHgPcEUKlpgSkYNIg8ahnVICYBGZ07ztk?=
+ =?us-ascii?Q?UKHIYaIhmG8dCOc2riP7vKx1iqWjUUFLys4ekaqlImVviP8pySPZjp9dxnLP?=
+ =?us-ascii?Q?9u++QrIQXuK0abrBrG/zB/pK0XV6hZFJZyJUp/RwC8a+ssRNCEb5U+swPy/1?=
+ =?us-ascii?Q?1frcIKtG78YMEWLAPqc5cL+TfLRV1hejQVExhQB+gGfNcgsMZm8C5d2vwUgJ?=
+ =?us-ascii?Q?DDcWIsQM31xkj42pL3FHnD+T6Qg/rrMn+C/QVnVJSZSGDOWAfTLo+0WEzjlW?=
+ =?us-ascii?Q?u4hvYNrwXAFhs/wGZK8KXM9x4z70TYXZBGZRFIUnr1fa3+9G+QoZhQ88yzHF?=
+ =?us-ascii?Q?QtHrRQ+S8j11goldnifnhjWjpC/7ZMTJOEGD1wjjf55TDyG3gcWTMETAysKS?=
+ =?us-ascii?Q?pjijAJLCj3w2cyepEmUZFyMXOv2qPxDtUg7rI4V0NQBlQ2fnH8RGsivzl7cH?=
+ =?us-ascii?Q?6Hvq6Ja21GG9OzNft5QjYmb4q5+IPNi8Ee6FZgJUjPUlfOwsvlj9Dcf2DCh9?=
+ =?us-ascii?Q?j4XtrGwy/w+qNWjktiFZiaKlQeKGggixNVKoBXFAcvexeF3uG9jATKxXnn6I?=
+ =?us-ascii?Q?LBQlAwcP2/4snOOJLo3Cjnsuibe4Ch6YdwKAzmpoaUIaWtH1mx+1VzzjhyeG?=
+ =?us-ascii?Q?uqmw2p+O9ZJRbTYnrSUI+bA10k8vdP/eVLXccVnK119XE59KpLxxwOKQKGjV?=
+ =?us-ascii?Q?+ss39m0gfLJNu87+gsWfL05OzsSqm1B0FxsY7/D5QPXygZv3SMefjUdXWvzG?=
+ =?us-ascii?Q?Ir9owo0Lm6BkxR7lvtuhvFS1ZRV1XTOFYGkLH0nvnGUl65wP1CSgibNx/j9j?=
+ =?us-ascii?Q?K2EDw8jE7blue1VOPbyT/F/tQ90N3VF7tLTwjm8DKjuhIS1Ka6ZwWEIqHGGO?=
+ =?us-ascii?Q?weNB9suyJ7coUBndkc0JxGJ4lh3kmlo0J/NmfP/lDye0MEfoscrYOVwNSb5v?=
+ =?us-ascii?Q?WH6ZiEQbiqravIr8a/ph7UuoS5sC7E1TgVpE1Y/0m8nm62Qw2iprGNun+jWC?=
+ =?us-ascii?Q?pIHNluWv5xyxVHdflz3YVJuID55tOw50aGz5i+5p9wflKz96qvRz9L6UGzRq?=
+ =?us-ascii?Q?YUA9R+opE17vih4VhYfCYUysGrU82SNk0vFOtJ2HYWls6Io0G33aagEZqu8U?=
+ =?us-ascii?Q?PdVsPcoqFzXw1scDF4g+MKn6PBQ/pQ7QJ4iZsNaIk+qm1geoPTS6rVGcu2Az?=
+ =?us-ascii?Q?7OAhVX2m+YJOH1SZgbqnsN0atVhXbUCY2T4XbUaXK4NforOGT64vKXXqY1XK?=
+ =?us-ascii?Q?Aw=3D=3D?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20a807a8-c09a-4b67-9909-08db2a417aba
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5327.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2023 19:21:32.6940
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8zDZqU+cpAPxff3dfPojt7SG6f+Iy9uJwrHU8NfM1K849UlWil5bALkNOr/Ezf0d3GnGFvV+tMnGFOKZmowzUFZWAoALb8GOR21kXS4iWaY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5297
+X-Proofpoint-GUID: AQ40nY1kaOoJTiEQckYqZGlkCJox2r_o
+X-Proofpoint-ORIG-GUID: AQ40nY1kaOoJTiEQckYqZGlkCJox2r_o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-21_11,2023-03-21_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 spamscore=0 suspectscore=0
+ impostorscore=0 mlxscore=0 bulkscore=0 phishscore=0 clxscore=1011
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303150002 definitions=main-2303210153
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 21 Mar 2023 16:01:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59483
+ <yocto@lists.yoctoproject.org>; Tue, 21 Mar 2023 19:21:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59484
 
---000000000000641e4705f76b27a0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The "run-test" bash ptest expects read permissions for /dev/stdin:
+test -r /dev/fd/0
+test -r /dev/stdin
 
-On Tue, Mar 21, 2023 at 8:51=E2=80=AFAM elshoud <elshoud@gmail.com> wrote:
+The test currently fails because:
+- bash-ptest is run as a regular user
+- the underlying device for /dev/stdin is a pty, which is owned by root
 
-> Hi,
->
-> I am new to the mailing list and hope that this is the right place to dro=
-p
-> my question.
-> For my project I want to make use of the uvicorn package. Because I did
-> not find any yocto recipe for the latest version I started making one but=
- I
-> am stumbling on the fact that there is no setup.py in the release.
-> There is a setup.cfg and a pyproject.toml in the tar.gz.
->
+Make the pty file readable by all users to fix this ptest.
 
-Since uvicorn has a proper pyproject.toml, you will want to use the new
-"PEP-517" classes available since 'kirkstone' Yocto Project release.
-You want to look at the pyproject.toml "build-backend" line:
-https://github.com/encode/uvicorn/blob/master/pyproject.toml#L3
-build-backend =3D "hatchling.build"
+Signed-off-by: Ovidiu Panait <ovidiu.panait@windriver.com>
+---
+ utils.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This tells you which of the "PEP-517" classes to use.
+diff --git a/utils.c b/utils.c
+index 87ac20e..643693a 100644
+--- a/utils.c
++++ b/utils.c
+@@ -406,7 +406,7 @@ setup_slave_pty(FILE *fp, char *pty_name) {
+ 	}
+ 
+ 	/* Makes the slave read/writeable for the user. */
+-	if (chmod(pty_name, S_IRUSR|S_IWUSR) != 0) {
++	if (chmod(pty_name, S_IRUSR|S_IWUSR|S_IROTH) != 0) {
+ 		fprintf(fp, "ERROR: chmod() failed with: %s.\n", strerror(errno));
+ 	}
+ 
+-- 
+2.39.1
 
-
->
-> Current version at https://pypi.org/project/uvicorn/ is 0.21.1.
->
-> With the following bb file:
->
->
->     SUMMARY =3D "To be completed"
->
->     LICENSE =3D "BSD-3-Clause"
->     LIC_FILES_CHKSUM =3D
-> "file://LICENSE;md5=3D5c778842f66a649636561c423c0eec2e"
->
->     SRC_URI[sha256sum] =3D
-> "9b00c0105f8ad968ac8be1cac44056bb1dc7d37dafb42ea1a4dc787e3ccc6b86"
->
->     inherit pypi setuptools3
->
-> Since the build-backend is "hatching.build" , you want to replace
-"setuptools3" with "python_hatchling"
-https://git.yoctoproject.org/poky/tree/meta/classes-recipe/python_hatchling=
-.bbclass
-This class was introduced in the 'langdale' Yocto Project release.
-
->
->
-> When building, I get an error because there is no setup.py:
->
->
-> ERROR: python3-uvicorn-0.21.1-r0 do_compile: 'python3 setup.py bdist_whee=
-l
-> ' execution failed.
-> ERROR: python3-uvicorn-0.21.1-r0 do_compile:
-> ExecutionError(/tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uv=
-icorn/0.21.1-r0/temp/run.do_compile.2246273',
-> 1, None, None)
-> ERROR: Logfile of failure stored in:
-> /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0=
-/temp/log.do_compile.2246273
-> Log data follows:
-> | DEBUG: Executing shell function do_compile
-> |
-> /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0=
-/recipe-sysroot-native/usr/bin/python3-native/python3:
-> can't open file
-> '/tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r=
-0/uvicorn-0.21.1/setup.py':
-> [Errno 2] No such file or directory
-> | ERROR: 'python3 setup.py bdist_wheel ' execution failed.
-> | WARNING:
-> /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0=
-/temp/run.do_compile.2246273:180
-> exit 1 from 'exit 1'
-> | WARNING: Backtrace (BB generated script):
-> | #1: bbfatal_log,
-> /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0=
-/temp/run.do_compile.2246273,
-> line 180
-> | #2: setuptools3_do_compile,
-> /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0=
-/temp/run.do_compile.2246273,
-> line 170
-> | #3: do_compile,
-> /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0=
-/temp/run.do_compile.2246273,
-> line 152
-> | #4: main,
-> /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0=
-/temp/run.do_compile.2246273,
-> line 184
->
->
-> What is the best way forward to get the package baked? Is it possible to
-> create the setup.py from the pyproject.toml?
->
-> Many thanks in advance,
-> Edwin Elshoud
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59482):
-> https://lists.yoctoproject.org/g/yocto/message/59482
-> Mute This Topic: https://lists.yoctoproject.org/mt/97757830/924729
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> ticotimo@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000641e4705f76b27a0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 21, 2023 at 8:51=E2=80=AF=
-AM elshoud &lt;<a href=3D"mailto:elshoud@gmail.com">elshoud@gmail.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>H=
-i,</div>
-<div>=C2=A0</div>
-<div>I am new to the mailing list and hope that this is the right place to =
-drop my question.<br>For my project I want to make use of the uvicorn packa=
-ge. Because I did not find any yocto recipe for the latest version I starte=
-d making one but I am=C2=A0stumbling on the fact that there is no setup.py =
-in the release.</div>
-<div>There is a setup.cfg and a pyproject.toml in the tar.gz.</div></blockq=
-uote><div><br></div><div>Since uvicorn=C2=A0has a proper pyproject.toml, yo=
-u will want to use the new &quot;PEP-517&quot; classes available since &#39=
-;kirkstone&#39; Yocto Project release.</div><div>You want to look at the py=
-project.toml &quot;build-backend&quot; line:</div><div><a href=3D"https://g=
-ithub.com/encode/uvicorn/blob/master/pyproject.toml#L3">https://github.com/=
-encode/uvicorn/blob/master/pyproject.toml#L3</a></div><div>build-backend =
-=3D &quot;hatchling.build&quot;<br></div><div><br></div><div>This tells you=
- which of the &quot;PEP-517&quot; classes to use.</div><div>=C2=A0</div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">
-<div>=C2=A0</div>
-<div>Current version at <a href=3D"https://pypi.org/project/uvicorn/" targe=
-t=3D"_blank">https://pypi.org/project/uvicorn/</a> is 0.21.1.=C2=A0</div>
-<div>=C2=A0</div>
-<div>With the following bb file:</div>
-<div>=C2=A0</div>
-<blockquote>
-<div>=C2=A0 =C2=A0 SUMMARY =3D &quot;To be completed&quot;</div>
-<div>=C2=A0</div>
-<div>=C2=A0 =C2=A0 LICENSE =3D &quot;BSD-3-Clause&quot;</div>
-<div>=C2=A0 =C2=A0 LIC_FILES_CHKSUM =3D &quot;file://LICENSE;md5=3D5c778842=
-f66a649636561c423c0eec2e&quot;</div>
-<div>=C2=A0</div>
-<div>=C2=A0 =C2=A0 SRC_URI[sha256sum] =3D &quot;9b00c0105f8ad968ac8be1cac44=
-056bb1dc7d37dafb42ea1a4dc787e3ccc6b86&quot;=C2=A0</div>
-<div>=C2=A0</div>
-<div>=C2=A0 =C2=A0 inherit pypi setuptools3</div></blockquote></blockquote>=
-<div>Since the build-backend is &quot;hatching.build&quot; , you want to re=
-place &quot;setuptools3&quot; with &quot;python_hatchling&quot;</div><div><=
-a href=3D"https://git.yoctoproject.org/poky/tree/meta/classes-recipe/python=
-_hatchling.bbclass">https://git.yoctoproject.org/poky/tree/meta/classes-rec=
-ipe/python_hatchling.bbclass</a><br></div><div>This class was introduced in=
- the &#39;langdale&#39; Yocto Project release.</div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><blockquote>
-<div>=C2=A0</div>
-</blockquote>
-<div>When building, I get an error because there is no setup.py:</div>
-<div>=C2=A0</div>
-<blockquote>
-<div>ERROR: python3-uvicorn-0.21.1-r0 do_compile: &#39;python3 setup.py bdi=
-st_wheel &#39; execution failed.</div>
-<div>ERROR: python3-uvicorn-0.21.1-r0 do_compile: ExecutionError(/tmp/work/=
-cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0/temp/run.do=
-_compile.2246273&#39;, 1, None, None)</div>
-<div>ERROR: Logfile of failure stored in: /tmp/work/cortexa9t2hf-neon-puppy=
--linux-gnueabi/python3-uvicorn/0.21.1-r0/temp/log.do_compile.2246273</div>
-<div>
-<div>Log data follows:</div>
-<div>| DEBUG: Executing shell function do_compile</div>
-<div>| /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21=
-.1-r0/recipe-sysroot-native/usr/bin/python3-native/python3: can&#39;t open =
-file &#39;/tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0=
-.21.1-r0/uvicorn-0.21.1/setup.py&#39;: [Errno 2] No such file or directory<=
-/div>
-<div>| ERROR: &#39;python3 setup.py bdist_wheel &#39; execution failed.</di=
-v>
-<div>| WARNING: /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvi=
-corn/0.21.1-r0/temp/run.do_compile.2246273:180 exit 1 from &#39;exit 1&#39;=
-</div>
-<div>| WARNING: Backtrace (BB generated script):</div>
-<div>| <span style=3D"white-space:pre-wrap"> </span>#1: bbfatal_log, /tmp/w=
-ork/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0/temp/ru=
-n.do_compile.2246273, line 180</div>
-<div>| <span style=3D"white-space:pre-wrap"> </span>#2: setuptools3_do_comp=
-ile, /tmp/work/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1=
--r0/temp/run.do_compile.2246273, line 170</div>
-<div>| <span style=3D"white-space:pre-wrap"> </span>#3: do_compile, /tmp/wo=
-rk/cortexa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0/temp/run=
-.do_compile.2246273, line 152</div>
-<div>| <span style=3D"white-space:pre-wrap"> </span>#4: main, /tmp/work/cor=
-texa9t2hf-neon-puppy-linux-gnueabi/python3-uvicorn/0.21.1-r0/temp/run.do_co=
-mpile.2246273, line 184</div>
-</div>
-<div>=C2=A0</div>
-</blockquote>
-<div>What is the best way forward to get the package baked? Is it possible =
-to create the setup.py from the pyproject.toml?<br><br>Many thanks in advan=
-ce,<br>Edwin Elshoud</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#59482): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59482" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/59482</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/97757830/9247=
-29" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt/=
-97757830/924729</a><br>
-Mute #bitbake:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag=
-/bitbake" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
-rg/g/yocto/mutehashtag/bitbake</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:ticotimo@gmail.com" target=3D"_blank">ticotimo@g=
-mail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-
---000000000000641e4705f76b27a0--
 
