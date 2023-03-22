@@ -1,171 +1,256 @@
-Return-Path: <quaresma.jose@gmail.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30C9EC6FD1F
-	for <webhook@archiver.kernel.org>; Wed, 22 Mar 2023 17:56:55 +0000 (UTC)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
- by mx.groups.io with SMTP id smtpd.web11.50611.1679507812780548628
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37E48C6FD1C
+	for <webhook@archiver.kernel.org>; Wed, 22 Mar 2023 18:00:25 +0000 (UTC)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+ by mx.groups.io with SMTP id smtpd.web11.50727.1679508017340547918
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Mar 2023 10:56:52 -0700
+ Wed, 22 Mar 2023 11:00:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=OqaDa5E7;
- spf=pass (domain: gmail.com, ip: 209.85.222.52, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-ua1-f52.google.com with SMTP id 89so13278342uao.0
-        for <yocto@lists.yoctoproject.org>; Wed, 22 Mar 2023 10:56:52 -0700 (PDT)
+ dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112 header.b=VQtIM8eZ;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.216.46, mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pj1-f46.google.com with SMTP id mp3-20020a17090b190300b0023fcc8ce113so9396454pjb.4
+        for <yocto@lists.yoctoproject.org>; Wed, 22 Mar 2023 11:00:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679507812;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LbagaTK/Bd7x2XukCR+wZWHGQhU5XTJBT+5XLO3A+vw=;
-        b=OqaDa5E7zS6F8tB+0eFMVM7lnCoTs/yoQgS5lMDnDawNx8IoIjGzJYpPXQg2ncTC+M
-         pjfD5aQe3RGV47jTdzO1isFF6BLUD09o2h7h65pjhNHpZB+TtZugp3MZ19QE2s97UB9+
-         Z42DDdHfkxWmjbwHRCCrQ2sz68HcnG6Od+FtkdEIsLGyaWl+LkEmTSbUB803WBRaPakm
-         qHd4kEVvj3khu+2wjQrJMwcVwB+PoOws2wAnULUlGkpkduZKhIm5ZW+7WhyAe03zH98B
-         L0gaaFiZe8Q8AuRBeuuHU3ucK/9AvrwjtsbBZZ0NtdHK64d0LPKxAuF1K1y1dKlAR+D7
-         UaYw==
+        d=ibeeto-com.20210112.gappssmtp.com; s=20210112; t=1679508016;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kVSc7mNQIHgJvpwC7g8g5aOnoAwvK+9Agu+smFvrty4=;
+        b=VQtIM8eZNR96tfzEIMkc5y0gq//j3M3em8Musg/ZthmLGh4cooIexzLnGbOlV7Sn9j
+         OAhE5vmwHy2eZpuSiboMxlV3bTsIkVXT9oX/nmvE0EXzgn8Ai25uX4FY9SgOKFPrk/Kk
+         WNOO6gsrQlZqM5PceYY5vdXfStBVJBXW5qyiQDWo9KVAxEdaIpS5hgpxSZpDJGvW6Bvq
+         Mh22uEqN1Wzlby2vFobHaKlmalaGSuO9WcdoMIEAaxdsHR5P1V5LbHwHSdQfv5jjKUed
+         K9Vcl2EPXm/3nzqdJymH5IlPNpkzpf3ncmP4z0ohCnU2cUbzkgNu5nG2xYs6Kl4qDLWN
+         M0QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679507812;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LbagaTK/Bd7x2XukCR+wZWHGQhU5XTJBT+5XLO3A+vw=;
-        b=0W1jVkIVyZpCN0AGBuipO+vBGazXnTF7gNufT2sKLQJyY+ZjuFdGO1vozQ86//wjSt
-         7E8Ed1Lb2zgJoPixRxi0pCYoDojQWTtoStdPH8FIv+w7N+OkCGU0f/d8cOEAJJn+9UE5
-         6PFB9fGf2t+wBUsXytpSp1/Qg53xrmbWpUfsiTb6CroA5jiTIsLEn9mvd+Gb8ZXF89F0
-         R+4WSC456fpCXCPiPLq6o+7qt3I2wfPaCc7vbI8G3y+lcHW472Tn8KNi6fmuZTTAgecV
-         1WW43dd+dnCck760sAeujzpPwCGj8T/obS70RkhVG9blZ5e/ZFqfUwStV75AY1wbYgpa
-         wGMA==
-X-Gm-Message-State: AAQBX9etzmPo9JOLTBxtKyURh4js3akPWHMvn6c1s0f8j8IfACDWK4Jl
-	c8+UOpVK05NjxmMLJB37EJ8Rwq35jDiRFFNjgGdzYa6kHguDcg==
-X-Google-Smtp-Source: AKy350ZhPUmvnTKxQLrTAFw8pRpUmRbrIll7HIDE7aQ4Zqtp9wcl6Fi2V84BYYoqcjXanWl7bsP0Gtbcb00yxce5H0I=
-X-Received: by 2002:ab0:3d10:0:b0:68a:702a:2494 with SMTP id
- f16-20020ab03d10000000b0068a702a2494mr4417532uax.0.1679507811104; Wed, 22 Mar
- 2023 10:56:51 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679508016;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=kVSc7mNQIHgJvpwC7g8g5aOnoAwvK+9Agu+smFvrty4=;
+        b=kSsnYfGopuS7VHQHMJ2CFqWKYo4mSnWlrSOGA8I+fVsa0bfA/Q1rDy3fTuNelRK3X2
+         U242ZM1KUU93kbQwbGKQi7on+093a9Z6b6Vfe7ZnbTB4xTGRph1NBNvac/90ECtosjxo
+         xnXBdvSheXJkOthWarEgOK4WK0l+c4dTkD0STRWV0JwuhQb8/EVYIhE25ifUjmyH5tmz
+         WdRMgrMaEVQov4nDa4Dy4fZKg0oVX9+nNXT/sw2SwmOgxUBUzk9IA8R5phVXr1upVHgT
+         lllGDjhdG8o7mg9Zn6LNywULqlzxOV27wPIXF06rb4l4BLXdVDbLhnF20EYS43orWc9c
+         lfyw==
+X-Gm-Message-State: AO0yUKXPUe9HUFI12GVcA+r1+XLKRVLwWKXs3457M5azZogRdQkHQxZP
+	DuclnbFIOFzcFTl7Z2TsnMSgUg==
+X-Google-Smtp-Source: AK7set+qAEXnxoK8LWeMlu/PFRG7mn6rUJq/0lTT/tVypwaAadcv14Z200MZ30CHLgYXsH0NgZZBPQ==
+X-Received: by 2002:a17:90b:3803:b0:234:e0c:caaa with SMTP id mq3-20020a17090b380300b002340e0ccaaamr5042200pjb.6.1679508016290;
+        Wed, 22 Mar 2023 11:00:16 -0700 (PDT)
+Received: from ?IPV6:2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89? ([2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89])
+        by smtp.gmail.com with ESMTPSA id c3-20020a17090aa60300b0023b29b464f9sm10018066pjq.27.2023.03.22.11.00.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Mar 2023 11:00:16 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------uJcAanlRKEoJaJVXH05IsAnf"
+Message-ID: <3d23bd0f-4c26-b49f-9593-bff9d1f2b652@ibeeto.com>
+Date: Wed, 22 Mar 2023 11:00:15 -0700
 MIME-Version: 1.0
-References: <2efc4ead-5dbb-1a47-3068-0fc388b296f7@ibeeto.com>
-In-Reply-To: <2efc4ead-5dbb-1a47-3068-0fc388b296f7@ibeeto.com>
-From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Wed, 22 Mar 2023 17:56:40 +0000
-Message-ID: <CANPvuRmH3b4aCYq6KfeTcukpuo3XWiY1MF+B0qj+_9Lutj5TwQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
 Subject: Re: [yocto] Network Isolation and CMake FetchContent
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Content-Language: en-US
+To: Jose Quaresma <quaresma.jose@gmail.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000007a7b4e05f780e2b9"
+References: <2efc4ead-5dbb-1a47-3068-0fc388b296f7@ibeeto.com>
+ <CANPvuRmH3b4aCYq6KfeTcukpuo3XWiY1MF+B0qj+_9Lutj5TwQ@mail.gmail.com>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+In-Reply-To: <CANPvuRmH3b4aCYq6KfeTcukpuo3XWiY1MF+B0qj+_9Lutj5TwQ@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 22 Mar 2023 17:56:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59493
+ <yocto@lists.yoctoproject.org>; Wed, 22 Mar 2023 18:00:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59494
 
---0000000000007a7b4e05f780e2b9
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------uJcAanlRKEoJaJVXH05IsAnf
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Rudolf,
 
-Rudolf J Streif <rudolf.streif@ibeeto.com> escreveu no dia quarta,
-22/03/2023 =C3=A0(s) 16:58:
-
-> I have a vendor project which uses CMake FetchContent.
+On 3/22/23 10:56, Jose Quaresma wrote:
+> Hi Rudolf,
 >
-> It's simple to override FETCHCONTENT_FULLY_DISCONNECTED=3DON which is set
-> in the cmake class. However, that does not fix the issue since network
-> isolation prevents the CMake from downloading the content.
+> Rudolf J Streif <rudolf.streif@ibeeto.com> escreveu no dia quarta, 
+> 22/03/2023 à(s) 16:58:
 >
-> I have not found a way to override the network isolation. Is there one?
+>     I have a vendor project which uses CMake FetchContent.
 >
-
-please try in a recipe bbappend with
-
-do_configure[network] =3D "1"
-
-Jose
-
-
+>     It's simple to override FETCHCONTENT_FULLY_DISCONNECTED=ON which
+>     is set
+>     in the cmake class. However, that does not fix the issue since
+>     network
+>     isolation prevents the CMake from downloading the content.
 >
-> Now this is not a discussion about whether FetchContent or not is a good
-> idea and any potential other issues that could arise from using it. For
-> me it's to quickly enable a functionality without jumping through hoops
-> of patching the vendor sources etc.
->
-> Cheers,
-> Rudi
+>     I have not found a way to override the network isolation. Is there
+>     one?
 >
 >
+> please try in a recipe bbappend with
 >
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59492):
-> https://lists.yoctoproject.org/g/yocto/message/59492
-> Mute This Topic: https://lists.yoctoproject.org/mt/97782979/5052612
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> quaresma.jose@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> do_configure[network] = "1"
+>
+Thank you. That did the trick. I should have known that. It's one of 
+these days...
+> Jose
 >
 >
-
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---0000000000007a7b4e05f780e2b9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Rudolf,</div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">Rudolf J Streif &lt;<a href=3D"mailto:rudol=
-f.streif@ibeeto.com" target=3D"_blank">rudolf.streif@ibeeto.com</a>&gt; esc=
-reveu no dia quarta, 22/03/2023 =C3=A0(s) 16:58:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">I have a vendor project which uses CMake F=
-etchContent.<br>
-<br>
-It&#39;s simple to override FETCHCONTENT_FULLY_DISCONNECTED=3DON which is s=
-et <br>
-in the cmake class. However, that does not fix the issue since network <br>
-isolation prevents the CMake from downloading the content.<br>
-<br>
-I have not found a way to override the network isolation. Is there one?<br>=
-</blockquote><div><br>please try in a recipe bbappend with=C2=A0<br><br>do_=
-configure[network] =3D &quot;1&quot;</div><div><br></div><div>Jose<br>=C2=
-=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-Now this is not a discussion about whether FetchContent or not is a good <b=
-r>
-idea and any potential other issues that could arise from using it. For <br=
+>     Now this is not a discussion about whether FetchContent or not is
+>     a good
+>     idea and any potential other issues that could arise from using
+>     it. For
+>     me it's to quickly enable a functionality without jumping through
+>     hoops
+>     of patching the vendor sources etc.
 >
-me it&#39;s to quickly enable a functionality without jumping through hoops=
- <br>
-of patching the vendor sources etc.<br>
-<br>
-Cheers,<br>
-Rudi<br>
-<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#59492): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59492" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/59492</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/97782979/5052=
-612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/97782979/5052612</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quare=
-sma.jose@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div><span>-- </span><br><di=
-v dir=3D"ltr"><div dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</di=
-v></div></div></div>
+>     Cheers,
+>     Rudi
+>
+>
+>
+>     -=-=-=-=-=-=-=-=-=-=-=-
+>     Links: You receive all messages sent to this group.
+>     View/Reply Online (#59492):
+>     https://lists.yoctoproject.org/g/yocto/message/59492
+>     Mute This Topic: https://lists.yoctoproject.org/mt/97782979/5052612
+>     Group Owner: yocto+owner@lists.yoctoproject.org
+>     <mailto:yocto%2Bowner@lists.yoctoproject.org>
+>     Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+>     [quaresma.jose@gmail.com]
+>     -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+>
+> -- 
+> Best regards,
+>
+> José Quaresma
 
---0000000000007a7b4e05f780e2b9--
+-- 
+Rudolf J Streif
+CEO/CTO
+1.855.442.3386
+
+--------------uJcAanlRKEoJaJVXH05IsAnf
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body vlink="#551A8B" text="#000000" link="#0B6CDA" bgcolor="#ffffff"
+    alink="#EE0000">
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 3/22/23 10:56, Jose Quaresma wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CANPvuRmH3b4aCYq6KfeTcukpuo3XWiY1MF+B0qj+_9Lutj5TwQ@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>Hi Rudolf,</div>
+        <br>
+        <div class="gmail_quote">
+          <div dir="ltr" class="gmail_attr">Rudolf J Streif &lt;<a
+              href="mailto:rudolf.streif@ibeeto.com" target="_blank"
+              moz-do-not-send="true" class="moz-txt-link-freetext">rudolf.streif@ibeeto.com</a>&gt;
+            escreveu no dia quarta, 22/03/2023 à(s) 16:58:<br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">I have a vendor project
+            which uses CMake FetchContent.<br>
+            <br>
+            It's simple to override FETCHCONTENT_FULLY_DISCONNECTED=ON
+            which is set <br>
+            in the cmake class. However, that does not fix the issue
+            since network <br>
+            isolation prevents the CMake from downloading the content.<br>
+            <br>
+            I have not found a way to override the network isolation. Is
+            there one?<br>
+          </blockquote>
+          <div><br>
+            please try in a recipe bbappend with <br>
+            <br>
+            do_configure[network] = "1"</div>
+          <div><br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    Thank you. That did the trick. I should have known that. It's one of
+    these days...<br>
+    <blockquote type="cite"
+cite="mid:CANPvuRmH3b4aCYq6KfeTcukpuo3XWiY1MF+B0qj+_9Lutj5TwQ@mail.gmail.com">
+      <div dir="ltr">
+        <div class="gmail_quote">
+          <div>Jose<br>
+             </div>
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">
+            <br>
+            Now this is not a discussion about whether FetchContent or
+            not is a good <br>
+            idea and any potential other issues that could arise from
+            using it. For <br>
+            me it's to quickly enable a functionality without jumping
+            through hoops <br>
+            of patching the vendor sources etc.<br>
+            <br>
+            Cheers,<br>
+            Rudi<br>
+            <br>
+            <br>
+            <br>
+            -=-=-=-=-=-=-=-=-=-=-=-<br>
+            Links: You receive all messages sent to this group.<br>
+            View/Reply Online (#59492): <a
+              href="https://lists.yoctoproject.org/g/yocto/message/59492"
+              rel="noreferrer" target="_blank" moz-do-not-send="true"
+              class="moz-txt-link-freetext">https://lists.yoctoproject.org/g/yocto/message/59492</a><br>
+            Mute This Topic: <a
+              href="https://lists.yoctoproject.org/mt/97782979/5052612"
+              rel="noreferrer" target="_blank" moz-do-not-send="true"
+              class="moz-txt-link-freetext">https://lists.yoctoproject.org/mt/97782979/5052612</a><br>
+            Group Owner: <a
+              href="mailto:yocto%2Bowner@lists.yoctoproject.org"
+              target="_blank" moz-do-not-send="true">yocto+owner@lists.yoctoproject.org</a><br>
+            Unsubscribe: <a
+              href="https://lists.yoctoproject.org/g/yocto/unsub"
+              rel="noreferrer" target="_blank" moz-do-not-send="true"
+              class="moz-txt-link-freetext">https://lists.yoctoproject.org/g/yocto/unsub</a>
+            [<a href="mailto:quaresma.jose@gmail.com" target="_blank"
+              moz-do-not-send="true" class="moz-txt-link-freetext">quaresma.jose@gmail.com</a>]<br>
+            -=-=-=-=-=-=-=-=-=-=-=-<br>
+            <br>
+          </blockquote>
+        </div>
+        <br clear="all">
+        <div><br>
+        </div>
+        <span>-- </span><br>
+        <div dir="ltr">
+          <div dir="ltr">Best regards,
+            <div><br>
+              José Quaresma</div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Rudolf J Streif
+CEO/CTO
+1.855.442.3386</pre>
+  </body>
+</html>
+
+--------------uJcAanlRKEoJaJVXH05IsAnf--
 
