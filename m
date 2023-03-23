@@ -2,1281 +2,872 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C060AC6FD1C
-	for <webhook@archiver.kernel.org>; Thu, 23 Mar 2023 10:35:39 +0000 (UTC)
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
- by mx.groups.io with SMTP id smtpd.web10.69286.1679567737957680076
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 091A1C6FD1C
+	for <webhook@archiver.kernel.org>; Thu, 23 Mar 2023 11:45:20 +0000 (UTC)
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+ by mx.groups.io with SMTP id smtpd.web10.70348.1679571915831627611
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Mar 2023 03:35:38 -0700
+ Thu, 23 Mar 2023 04:45:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20210112 header.b=auug20RE;
- spf=pass (domain: gmail.com, ip: 209.85.160.171, mailfrom: akuster808@gmail.com)
-Received: by mail-qt1-f171.google.com with SMTP id ga7so7150954qtb.2
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Mar 2023 03:35:37 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20210112 header.b=TT7qvk4Z;
+ spf=pass (domain: gmail.com, ip: 209.85.160.169, mailfrom: akuster808@gmail.com)
+Received: by mail-qt1-f169.google.com with SMTP id c19so26101747qtn.13
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Mar 2023 04:45:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679567737; x=1682159737;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=gmail.com; s=20210112; t=1679571915; x=1682163915;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2OY9SomD8oNY8wfdiVymTyyJkZKf0vMztWnQR5/2ZtY=;
-        b=auug20REEj5bQKDIAc/2zADNe9u84XF8RIpiECXguoTAYMWxdI39/FEuf94HtDZfi7
-         +4h8iDKFc54BknofEFHr0d3u+DgTgrtWXV7VRN/2H4Z757jwfOCdsfn42XLMheT2IL0Z
-         Ozh8f8IqbZa41gxA4knwm1FyotiliABGHB8bu2010gg3saXMQHPTCUb9xgwxsVi5VPeY
-         2zmO2hIsic+vX+zlUrBn9r15N40kigURTNWlHokqYmQ7XhDEDq1s5juBYFUONnHR/u7R
-         7LnJ+8KgsO/xb2lWXskzguQ7BLfYVwMooQoVt+QHOSuO/LWqB45ioxLUAtTaxxNHKhvm
-         APog==
+        bh=a6vmvrzGSNXPFvrjZeABDgryYObfv2CjDTzmikqSwKg=;
+        b=TT7qvk4ZkEYPhmonCUKKjbmu75uR2G5tHg0LaVQkO0+w0vXmq12HhisCWdsnlJe7dI
+         lO2+EZTBAWoq+phWsGVEWra5V3TfUlfNZNDGEPxFGi4fFjSVZkc+DC0xVfx5t6G37k5d
+         rPqBIQiDDT+22f1zO/InXoKv4MXN3UG6VnAhJijZL+sOyVmdvXf+6sYqCEWV3tCAxxih
+         QGNILguUfw0XZa/83xOV+FrOvKceEvrN0Ir9F73rDvPaheeLITYzgpcsXq6URdsgGrS5
+         o2Gzmkm8tnAYZrQMhLreSG34/BNxuaKICXMZlLTWqxbF0ykxeXTqe4uvvlyV0Cd9f4Df
+         eMMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679567737; x=1682159737;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1679571915; x=1682163915;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2OY9SomD8oNY8wfdiVymTyyJkZKf0vMztWnQR5/2ZtY=;
-        b=3KSOEVFZgLAro/FDXBiKR5PN7zyCRwrYbeLurx125KOT5Z7o6Zcz8JumEEoHKiwZ5j
-         SjOwqqIQGoZq/p/iQRad7r/DhJaaUJYpEQEkoFyALWckYag0Pf+FvHWykNiseS3jbGHR
-         wBvfqi0zsk5IoKAIzBPijsLaB8dEhTxd0C3YDzxB0EmEYN6fE5gBwVeuSA2vIV2ZKUKF
-         03Bez0OFnBt7umJlj09ExQQWgH7LDucnBDG6BfqM33+1gQhC31LF10ccvebf0Rl7CASR
-         FeMeJSw0LLgrEybeiDlToS/DGfqQ3Ym+eqUl28lJHdzxtSxqM9ZhVcLA5sfHbZ1xsAPo
-         GM1A==
-X-Gm-Message-State: AO0yUKVXxl8GY0PgCHN1m8RHEnRJiwn5zF8jN6BwsN8KkJxpbCp/AMim
-	afQ44wZ4rzaWCEjUkJqn8g0aev+A5IM+ag==
-X-Google-Smtp-Source: AK7set8PwNJ7KnOwifKsgoHCzmA28ixhS1bMwLL/ZCYygsV7H++wKKWzalPeJ2riyKwDfx3P4dyWKg==
-X-Received: by 2002:a05:622a:242:b0:3bf:da83:f8d6 with SMTP id c2-20020a05622a024200b003bfda83f8d6mr10637832qtx.28.1679567736352;
-        Thu, 23 Mar 2023 03:35:36 -0700 (PDT)
+        bh=a6vmvrzGSNXPFvrjZeABDgryYObfv2CjDTzmikqSwKg=;
+        b=kVPf7594E56knINyIGFajdvwhprC1TAHmrIFr3CbUWFY7NJTDjYPu8vwv03Drb6CkF
+         kQL4UPAvSAhaJ9UrbwvAbyuSdXovNqdDfZ94hRIy0yUBN+yCmR0Xiixr42uX7E0XSG6q
+         4aE1WWuB9HrFIODrGkDx1cB4okou37RgHx47v+wH6rdVOmhx2Et+yMpE9uHvAMaelKlw
+         SSQL5si4qow1oIjvRQKiTOSCUa26BLOr6cc0agvdN/E0AXaTpKpXCIXBakP79akZafbD
+         XvaBd+zgCje3FsI5MQkw8yaFo0XxZpoqWr3gNwi1mEETzimn9NKWoc1EyrQkgbmo660z
+         omhQ==
+X-Gm-Message-State: AO0yUKXvm79OLNaWRcxB4FTGwhkgwr9g3BtqM7OvjjZ5fUzA0N//pVVB
+	GQ2EGUwFkwIBYDNb7klCXFEWERwDunwCJw==
+X-Google-Smtp-Source: AK7set9oa6b22mDre52CuONFREM2ke8O/YaxvtA3GFUpxgn6xsvLS373xFznZFMR5GYBtyHKo2OAXQ==
+X-Received: by 2002:a05:622a:14cb:b0:3d5:6eaf:fe8f with SMTP id u11-20020a05622a14cb00b003d56eaffe8fmr9455445qtx.11.1679571914407;
+        Thu, 23 Mar 2023 04:45:14 -0700 (PDT)
 Received: from ?IPV6:2600:1700:9190:ba10:7406:9de8:9567:a400? ([2600:1700:9190:ba10:7406:9de8:9567:a400])
-        by smtp.gmail.com with ESMTPSA id d202-20020ae9efd3000000b007468db93fd8sm6874734qkg.84.2023.03.23.03.35.35
+        by smtp.gmail.com with ESMTPSA id q6-20020a374306000000b007424376ca4bsm7497043qka.18.2023.03.23.04.45.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Mar 2023 03:35:35 -0700 (PDT)
-Message-ID: <9dfd3417-cb69-1291-1287-ba6dd9dd2f5d@gmail.com>
-Date: Thu, 23 Mar 2023 06:35:35 -0400
+        Thu, 23 Mar 2023 04:45:14 -0700 (PDT)
+Message-ID: <3e087d67-e671-8829-6e00-776e7b3fc3ae@gmail.com>
+Date: Thu, 23 Mar 2023 07:45:13 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [meta-security][dunfell][PATCH] sssd: CVE-2022-4254
- libsss_certmap fails to sanitise certificate data used in LDAP filters
+Subject: Re: [yocto] [meta-security][PATCH] parsec-service: update from 1.1.0
+ to 1.2.0-rc1
 Content-Language: en-US
-To: Hitendra Prajapati <hprajapati@mvista.com>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>
-References: <20230224044106.6302-1-hprajapati@mvista.com>
+To: Anton Antonov <Anton.Antonov@arm.com>
+References: <20230323072457.639997-1-mikko.rapeli@linaro.org>
+Cc: Mikko Rapeli <mikko.rapeli@linaro.org>, yocto@lists.yoctoproject.org
 From: akuster808 <akuster808@gmail.com>
-In-Reply-To: <20230224044106.6302-1-hprajapati@mvista.com>
+In-Reply-To: <20230323072457.639997-1-mikko.rapeli@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Mar 2023 10:35:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59500
+ <yocto@lists.yoctoproject.org>; Thu, 23 Mar 2023 11:45:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59501
 
+Anton,
 
+On 3/23/23 3:24 AM, Mikko Rapeli wrote:
+> parsec-service 1.1.0 fails to compile with latest tpm2-tss update
+> in meta-security:
 
-On 2/23/23 11:41 PM, Hitendra Prajapati wrote:
-> Upstream-Status: Backport from https://github.com/SSSD/sssd/commit/1c40208aa1e0f9a17cc4f336c99bcaa6977592d3 & https://github.com/SSSD/sssd/commit/a2b9a84460429181f2a4fa7e2bb5ab49fd561274
+Can you Ack/Nack this patch?
 
-merged.
+-armin
 >
-> Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
+> | error: failed to run custom build command for `tss-esapi v7.1.0`
+> |
+> | Caused by:
+> |   process didn't exit successfully:
+> `/oe/build/tmp_trs-qemuarm64/work/cortexa57-trs-linux/parsec-service/1.1.0-r0/build/target/release/build/tss-esapi-5b5d9342bd16db73/build-script-build`
+> (exit status: 101)
+> |   --- stderr
+> |   thread 'main' panicked at 'Unsupported TSS version: 4',
+> /oe/build/tmp_trs-qemuarm64/work/cortexa57-trs-linux/parsec-service/1.1.0-r0/cargo_home/bitbake/tss-esapi-7.1.0/build.rs:9:22
+>
+> and also latest meta-clang changes break the build with:
+>
+> |   thread 'main' panicked at '"enum_(unnamed_at_/oe/build/tmp_trs-qemuarm64/work/cortexa57-trs-linux/parsec-service/1_1_0-r0/build/target/aarch64-trs-linux-gnu/release/build/psa-crypto-sys-b4f9ce2b7d8846b2/out/include/mbedtls/cipher_h_205_1)" is not a valid Ident', /oe/build/tmp_trs-qemuarm64/work/cortexa57-trs-linux/parsec-service/1.1.0-r0/cargo_home/bitbake/proc-macro2-1.0.43/src/fallback.rs:730:9
+> |   stack backtrace:
+> |      0: rust_begin_unwind
+> |      1: core::panicking::panic_fmt
+> |      2: proc_macro2::fallback::validate_ident
+> |      3: proc_macro2::fallback::Ident::_new
+> |      4: proc_macro2::fallback::Ident::new
+> |      5: proc_macro2::imp::Ident::new
+> |      6: proc_macro2::Ident::new
+> |      7: bindgen::ir::context::BindgenContext::rust_ident_raw
+> |      8: bindgen::ir::context::BindgenContext::rust_ident
+> |      9: <bindgen::ir::enum_ty::Enum as bindgen::codegen::CodeGenerator>::codegen
+> |     10: <bindgen::ir::ty::Type as bindgen::codegen::CodeGenerator>::codegen
+> |     11: <bindgen::ir::item::Item as bindgen::codegen::CodeGenerator>::codegen
+> |     12: <bindgen::ir::module::Module as bindgen::codegen::CodeGenerator>::codegen::{{closure}}
+> |     13: <bindgen::ir::module::Module as bindgen::codegen::CodeGenerator>::codegen
+> |     14: <bindgen::ir::item::Item as bindgen::codegen::CodeGenerator>::codegen
+> |     15: bindgen::codegen::codegen::{{closure}}
+> |     16: bindgen::ir::context::BindgenContext::gen
+> |     17: bindgen::codegen::codegen
+> |     18: bindgen::Bindings::generate
+> |     19: bindgen::Builder::generate
+> |     20: build_script_build::common::generate_mbed_crypto_bindings
+> |     21: build_script_build::operations::script_operations
+> |     22: build_script_build::main
+> |     23: core::ops::function::FnOnce::call_once
+> |   note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+>
+> In both cases fix is to update to the master branch or 1.2.0-rc1 pre-release.
+> Porting the individual patches did not work due to complex rust crate depencies.
+>
+> Added LICENSE file checksum. Using cargo-update-recipe-crates.bbclass from
+> poky to maintain list of crates in the .inc file. Tested on qemu that
+> parsec.service stars correctly and works with swtpm use cases.
+>
+> Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
 > ---
->   .../sssd/files/CVE-2022-4254-1.patch          | 515 ++++++++++++++
->   .../sssd/files/CVE-2022-4254-2.patch          | 655 ++++++++++++++++++
->   recipes-security/sssd/sssd_1.16.4.bb          |   2 +
->   3 files changed, 1172 insertions(+)
->   create mode 100644 recipes-security/sssd/files/CVE-2022-4254-1.patch
->   create mode 100644 recipes-security/sssd/files/CVE-2022-4254-2.patch
+>   .../parsec-service/parsec-service-crates.inc  | 449 ++++++++++++++++++
+>   .../parsec-service/parsec-service_1.1.0.inc   | 223 ---------
+>   ...e_1.1.0.bb => parsec-service_1.2.0-rc1.bb} |  14 +-
+>   3 files changed, 459 insertions(+), 227 deletions(-)
+>   create mode 100644 meta-parsec/recipes-parsec/parsec-service/parsec-service-crates.inc
+>   delete mode 100644 meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.inc
+>   rename meta-parsec/recipes-parsec/parsec-service/{parsec-service_1.1.0.bb => parsec-service_1.2.0-rc1.bb} (91%)
 >
-> diff --git a/recipes-security/sssd/files/CVE-2022-4254-1.patch b/recipes-security/sssd/files/CVE-2022-4254-1.patch
+> diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service-crates.inc b/meta-parsec/recipes-parsec/parsec-service/parsec-service-crates.inc
 > new file mode 100644
-> index 0000000..a52ce1a
+> index 0000000..af7cb8d
 > --- /dev/null
-> +++ b/recipes-security/sssd/files/CVE-2022-4254-1.patch
-> @@ -0,0 +1,515 @@
-> +From 1c40208aa1e0f9a17cc4f336c99bcaa6977592d3 Mon Sep 17 00:00:00 2001
-> +From: Sumit Bose <sbose@redhat.com>
-> +Date: Tue, 27 Nov 2018 16:40:01 +0100
-> +Subject: [PATCH] certmap: add sss_certmap_display_cert_content()
+> +++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service-crates.inc
+> @@ -0,0 +1,449 @@
+> +# Autogenerated with 'bitbake -c update_crates parsec-service'
 > +
-> +To make debugging and writing certificate mapping and matching rules
-> +more easy a new function is added to libsss_certmap to display the
-> +certificate content as seen by libsss_certmap. Please note that the
-> +actual output might change in future.
-> +
-> +Reviewed-by: Jakub Hrozek <jhrozek@redhat.com>
-> +
-> +CVE: CVE-2022-4254
-> +Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/1c40208aa1e0f9a17cc4f336c99bcaa6977592d3]
-> +Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
-> +---
-> + Makefile.am                              |   2 +-
-> + src/lib/certmap/sss_certmap.c            | 142 ++++++++++++++++++++++
-> + src/lib/certmap/sss_certmap.exports      |   5 +
-> + src/lib/certmap/sss_certmap.h            |  18 +++
-> + src/lib/certmap/sss_certmap_int.h        |  31 ++++-
-> + src/lib/certmap/sss_certmap_krb5_match.c | 145 +++++++++++------------
-> + 6 files changed, 261 insertions(+), 82 deletions(-)
-> +
-> +diff --git a/Makefile.am b/Makefile.am
-> +index 4475b3d..29cd93c 100644
-> +--- a/Makefile.am
-> ++++ b/Makefile.am
-> +@@ -1835,7 +1835,7 @@ libsss_certmap_la_LIBADD = \
-> +     $(NULL)
-> + libsss_certmap_la_LDFLAGS = \
-> +     -Wl,--version-script,$(srcdir)/src/lib/certmap/sss_certmap.exports \
-> +-    -version-info 0:0:0
-> ++    -version-info 1:0:1
-> +
-> + if HAVE_NSS
-> + libsss_certmap_la_SOURCES += \
-> +diff --git a/src/lib/certmap/sss_certmap.c b/src/lib/certmap/sss_certmap.c
-> +index f6f6f98..c60ac24 100644
-> +--- a/src/lib/certmap/sss_certmap.c
-> ++++ b/src/lib/certmap/sss_certmap.c
-> +@@ -914,3 +914,145 @@ void sss_certmap_free_filter_and_domains(char *filter, char **domains)
-> +     talloc_free(filter);
-> +     talloc_free(domains);
-> + }
-> ++
-> ++static const char *sss_eku_oid2name(const char *oid)
-> ++{
-> ++    size_t c;
-> ++
-> ++    for (c = 0; sss_ext_key_usage[c].name != NULL; c++) {
-> ++        if (strcmp(sss_ext_key_usage[c].oid, oid) == 0) {
-> ++            return sss_ext_key_usage[c].name;
-> ++        }
-> ++    }
-> ++
-> ++    return NULL;
-> ++}
-> ++
-> ++struct parsed_template san_parsed_template[] = {
-> ++    { NULL, NULL, NULL }, /* SAN_OTHER_NAME handled separately */
-> ++    { "subject_rfc822_name", NULL, NULL},
-> ++    { "subject_dns_name", NULL, NULL},
-> ++    { "subject_x400_address", NULL, NULL},
-> ++    { "subject_directory_name", NULL, NULL},
-> ++    { "subject_ediparty_name", NULL, NULL},
-> ++    { "subject_uri", NULL, NULL},
-> ++    { "subject_ip_address", NULL, NULL},
-> ++    { "subject_registered_id", NULL, NULL},
-> ++    { "subject_pkinit_principal", NULL, NULL},
-> ++    { "subject_nt_principal", NULL, NULL},
-> ++    { "subject_principal", NULL, NULL},
-> ++    { NULL, NULL, NULL }, /* SAN_STRING_OTHER_NAME handled separately */
-> ++    { NULL, NULL, NULL }  /* SAN_END */
-> ++};
-> ++
-> ++int sss_cert_dump_content(TALLOC_CTX *mem_ctx, struct sss_cert_content *c,
-> ++                          char **content_str)
-> ++{
-> ++    char *out = NULL;
-> ++    size_t o;
-> ++    struct san_list *s;
-> ++    struct sss_certmap_ctx *ctx = NULL;
-> ++    char *expanded = NULL;
-> ++    int ret;
-> ++    char *b64 = NULL;
-> ++    const char *eku_str = NULL;
-> ++
-> ++    ret = sss_certmap_init(mem_ctx, NULL, NULL, &ctx);
-> ++    if (ret != EOK) {
-> ++        return ret;
-> ++    }
-> ++
-> ++    out = talloc_strdup(mem_ctx, "sss cert content (format might change):\n");
-> ++    if (out == NULL) return ENOMEM;
-> ++
-> ++    out = talloc_asprintf_append(out, "Issuer: %s\n", c->issuer_str != NULL
-> ++                                                         ? c->issuer_str
-> ++                                                         : "- not available -");
-> ++    if (out == NULL) return ENOMEM;
-> ++    out = talloc_asprintf_append(out, "Subject: %s\n", c->subject_str != NULL
-> ++                                                         ? c->subject_str
-> ++                                                         : "- not available -");
-> ++    if (out == NULL) return ENOMEM;
-> ++
-> ++    out = talloc_asprintf_append(out, "Key Usage: %u(0x%04x)", c->key_usage,
-> ++                                                               c->key_usage);
-> ++    if (out == NULL) return ENOMEM;
-> ++
-> ++    if (c->key_usage != 0) {
-> ++        out = talloc_asprintf_append(out, " (");
-> ++        if (out == NULL) return ENOMEM;
-> ++        for (o = 0; sss_key_usage[o].name != NULL; o++) {
-> ++            if ((c->key_usage & sss_key_usage[o].flag) != 0) {
-> ++                out = talloc_asprintf_append(out, "%s%s",
-> ++                                             o == 0 ? "" : ",",
-> ++                                             sss_key_usage[o].name);
-> ++                if (out == NULL) return ENOMEM;
-> ++            }
-> ++        }
-> ++        out = talloc_asprintf_append(out, ")");
-> ++        if (out == NULL) return ENOMEM;
-> ++    }
-> ++    out = talloc_asprintf_append(out, "\n");
-> ++    if (out == NULL) return ENOMEM;
-> ++
-> ++    for (o = 0; c->extended_key_usage_oids[o] != NULL; o++) {
-> ++        eku_str = sss_eku_oid2name(c->extended_key_usage_oids[o]);
-> ++        out = talloc_asprintf_append(out, "Extended Key Usage #%zu: %s%s%s%s\n",
-> ++                                          o, c->extended_key_usage_oids[o],
-> ++                                          eku_str == NULL ? "" : " (",
-> ++                                          eku_str == NULL ? "" : eku_str,
-> ++                                          eku_str == NULL ? "" : ")");
-> ++        if (out == NULL) return ENOMEM;
-> ++    }
-> ++
-> ++    DLIST_FOR_EACH(s, c->san_list) {
-> ++        out = talloc_asprintf_append(out, "SAN type: %s\n",
-> ++                                     s->san_opt < SAN_END
-> ++                                                ? sss_san_names[s->san_opt].name
-> ++                                                : "- unsupported -");
-> ++        if (out == NULL) return ENOMEM;
-> ++
-> ++        if (san_parsed_template[s->san_opt].name != NULL) {
-> ++            ret = expand_san(ctx, &san_parsed_template[s->san_opt], c->san_list,
-> ++                             &expanded);
-> ++            if (ret != EOK) {
-> ++                return ret;
-> ++            }
-> ++            out = talloc_asprintf_append(out, " %s=%s\n\n",
-> ++                                         san_parsed_template[s->san_opt].name,
-> ++                                         expanded);
-> ++            talloc_free(expanded);
-> ++            if (out == NULL) return ENOMEM;
-> ++        } else if (s->san_opt == SAN_STRING_OTHER_NAME) {
-> ++            b64 = sss_base64_encode(mem_ctx, s->bin_val, s->bin_val_len);
-> ++            out = talloc_asprintf_append(out, " %s=%s\n\n", s->other_name_oid,
-> ++                                              b64 != NULL ? b64
-> ++                                                          : "- cannot encode -");
-> ++            talloc_free(b64);
-> ++        }
-> ++    }
-> ++
-> ++    *content_str = out;
-> ++
-> ++    return EOK;
-> ++}
-> ++
-> ++int sss_certmap_display_cert_content(TALLOC_CTX *mem_cxt,
-> ++                                     const uint8_t *der_cert, size_t der_size,
-> ++                                     char **desc)
-> ++{
-> ++    int ret;
-> ++    struct sss_cert_content *content;
-> ++
-> ++    ret = sss_cert_get_content(mem_cxt, der_cert, der_size, &content);
-> ++    if (ret != EOK) {
-> ++        return ret;
-> ++    }
-> ++
-> ++    ret = sss_cert_dump_content(mem_cxt, content, desc);
-> ++    if (ret != EOK) {
-> ++        return ret;
-> ++    }
-> ++
-> ++    return 0;
-> ++}
-> +diff --git a/src/lib/certmap/sss_certmap.exports b/src/lib/certmap/sss_certmap.exports
-> +index 8b5d536..a9e48d6 100644
-> +--- a/src/lib/certmap/sss_certmap.exports
-> ++++ b/src/lib/certmap/sss_certmap.exports
-> +@@ -11,3 +11,8 @@ SSS_CERTMAP_0.0 {
-> +     local:
-> +         *;
-> + };
-> ++
-> ++SSS_CERTMAP_0.1 {
-> ++    global:
-> ++        sss_certmap_display_cert_content;
-> ++} SSS_CERTMAP_0.0;
-> +diff --git a/src/lib/certmap/sss_certmap.h b/src/lib/certmap/sss_certmap.h
-> +index 646e0f3..7da2d1c 100644
-> +--- a/src/lib/certmap/sss_certmap.h
-> ++++ b/src/lib/certmap/sss_certmap.h
-> +@@ -146,6 +146,24 @@ int sss_certmap_get_search_filter(struct sss_certmap_ctx *ctx,
-> +  */
-> + void sss_certmap_free_filter_and_domains(char *filter, char **domains);
-> +
-> ++/**
-> ++ * @brief Get a string with the content of the certificate used by the library
-> ++ *
-> ++ * @param[in]  mem_ctx    Talloc memory context, may be NULL
-> ++ * @param[in]  der_cert   binary blog with the DER encoded certificate
-> ++ * @param[in]  der_size   size of the certificate blob
-> ++ * @param[out] desc       Multiline string showing the certificate content
-> ++ *                        which is used by libsss_certmap
-> ++ *
-> ++ * @return
-> ++ *  - 0:      success
-> ++ *  - EINVAL: certificate cannot be parsed
-> ++ *  - ENOMEM: memory allocation failure
-> ++ */
-> ++int sss_certmap_display_cert_content(TALLOC_CTX *mem_cxt,
-> ++                                     const uint8_t *der_cert, size_t der_size,
-> ++                                     char **desc);
-> ++
-> + /**
-> +  * @}
-> +  */
-> +diff --git a/src/lib/certmap/sss_certmap_int.h b/src/lib/certmap/sss_certmap_int.h
-> +index 479cc16..b1155e2 100644
-> +--- a/src/lib/certmap/sss_certmap_int.h
-> ++++ b/src/lib/certmap/sss_certmap_int.h
-> +@@ -101,9 +101,9 @@ enum comp_type {
-> + };
-> +
-> + struct parsed_template {
-> +-    char *name;
-> +-    char *attr_name;
-> +-    char *conversion;
-> ++    const char *name;
-> ++    const char *attr_name;
-> ++    const char *conversion;
-> + };
-> +
-> + struct ldap_mapping_rule_comp {
-> +@@ -166,6 +166,28 @@ struct san_list {
-> + #define SSS_KU_ENCIPHER_ONLY        0x0001
-> + #define SSS_KU_DECIPHER_ONLY        0x8000
-> +
-> ++struct sss_key_usage {
-> ++    const char *name;
-> ++    uint32_t flag;
-> ++};
-> ++
-> ++extern const struct sss_key_usage sss_key_usage[];
-> ++
-> ++struct sss_ext_key_usage {
-> ++    const char *name;
-> ++    const char *oid;
-> ++};
-> ++
-> ++extern const struct sss_ext_key_usage sss_ext_key_usage[];
-> ++
-> ++struct sss_san_name {
-> ++    const char *name;
-> ++    enum san_opt san_opt;
-> ++    bool is_string;
-> ++};
-> ++
-> ++extern const struct sss_san_name sss_san_names[];
-> ++
-> + struct sss_cert_content {
-> +     char *issuer_str;
-> +     const char **issuer_rdn_list;
-> +@@ -183,6 +205,9 @@ int sss_cert_get_content(TALLOC_CTX *mem_ctx,
-> +                          const uint8_t *der_blob, size_t der_size,
-> +                          struct sss_cert_content **content);
-> +
-> ++int sss_cert_dump_content(TALLOC_CTX *mem_ctx, struct sss_cert_content *c,
-> ++                          char **content_str);
-> ++
-> + char *check_ad_attr_name(TALLOC_CTX *mem_ctx, const char *rdn);
-> +
-> + char *openssl_2_nss_attr_name(const char *attr);
-> +diff --git a/src/lib/certmap/sss_certmap_krb5_match.c b/src/lib/certmap/sss_certmap_krb5_match.c
-> +index 125e925..398d3d2 100644
-> +--- a/src/lib/certmap/sss_certmap_krb5_match.c
-> ++++ b/src/lib/certmap/sss_certmap_krb5_match.c
-> +@@ -29,6 +29,59 @@
-> + #include "lib/certmap/sss_certmap.h"
-> + #include "lib/certmap/sss_certmap_int.h"
-> +
-> ++const struct sss_key_usage sss_key_usage[] = {
-> ++    {"digitalSignature" , SSS_KU_DIGITAL_SIGNATURE},
-> ++    {"nonRepudiation"   , SSS_KU_NON_REPUDIATION},
-> ++    {"keyEncipherment"  , SSS_KU_KEY_ENCIPHERMENT},
-> ++    {"dataEncipherment" , SSS_KU_DATA_ENCIPHERMENT},
-> ++    {"keyAgreement"     , SSS_KU_KEY_AGREEMENT},
-> ++    {"keyCertSign"      , SSS_KU_KEY_CERT_SIGN},
-> ++    {"cRLSign"          , SSS_KU_CRL_SIGN},
-> ++    {"encipherOnly"     , SSS_KU_ENCIPHER_ONLY},
-> ++    {"decipherOnly"     , SSS_KU_DECIPHER_ONLY},
-> ++    {NULL ,0}
-> ++};
-> ++
-> ++const struct sss_ext_key_usage sss_ext_key_usage[] = {
-> ++    /* RFC 3280 section 4.2.1.13 */
-> ++    {"serverAuth",      "1.3.6.1.5.5.7.3.1"},
-> ++    {"clientAuth",      "1.3.6.1.5.5.7.3.2"},
-> ++    {"codeSigning",     "1.3.6.1.5.5.7.3.3"},
-> ++    {"emailProtection", "1.3.6.1.5.5.7.3.4"},
-> ++    {"timeStamping",    "1.3.6.1.5.5.7.3.8"},
-> ++    {"OCSPSigning",     "1.3.6.1.5.5.7.3.9"},
-> ++
-> ++    /* RFC 4556 section 3.2.2 */
-> ++    {"KPClientAuth",    "1.3.6.1.5.2.3.4"},
-> ++    {"pkinit",          "1.3.6.1.5.2.3.4"},
-> ++
-> ++    /* https://support.microsoft.com/en-us/help/287547/object-ids-associated-with-microsoft-cryptography*/
-> ++    {"msScLogin",       "1.3.6.1.4.1.311.20.2.2"},
-> ++
-> ++    {NULL ,0}
-> ++};
-> ++
-> ++const struct sss_san_name sss_san_names[] = {
-> ++    /* https://www.ietf.org/rfc/rfc3280.txt section 4.2.1.7 */
-> ++    {"otherName", SAN_OTHER_NAME, false},
-> ++    {"rfc822Name", SAN_RFC822_NAME, true},
-> ++    {"dNSName", SAN_DNS_NAME, true},
-> ++    {"x400Address", SAN_X400_ADDRESS, false},
-> ++    {"directoryName", SAN_DIRECTORY_NAME, true},
-> ++    {"ediPartyName", SAN_EDIPART_NAME, false},
-> ++    {"uniformResourceIdentifier", SAN_URI, true},
-> ++    {"iPAddress", SAN_IP_ADDRESS, true},
-> ++    {"registeredID", SAN_REGISTERED_ID, true},
-> ++    /* https://www.ietf.org/rfc/rfc4556.txt section 3.2.2 */
-> ++    {"pkinitSAN", SAN_PKINIT, true},
-> ++    /* https://support.microsoft.com/en-us/help/287547/object-ids-associated-with-microsoft-cryptography */
-> ++    {"ntPrincipalName", SAN_NT, true},
-> ++    /* both previous principal types */
-> ++    {"Principal", SAN_PRINCIPAL, true},
-> ++    {"stringOtherName", SAN_STRING_OTHER_NAME, true},
-> ++    {NULL, SAN_END, false}
-> ++};
-> ++
-> + static bool is_dotted_decimal(const char *s, size_t len)
-> + {
-> +     size_t c = 0;
-> +@@ -145,28 +198,6 @@ static int parse_krb5_get_eku_value(TALLOC_CTX *mem_ctx,
-> +     size_t e = 0;
-> +     int eku_list_size;
-> +
-> +-    struct ext_key_usage {
-> +-        const char *name;
-> +-        const char *oid;
-> +-    } ext_key_usage[] = {
-> +-        /* RFC 3280 section 4.2.1.13 */
-> +-        {"serverAuth",      "1.3.6.1.5.5.7.3.1"},
-> +-        {"clientAuth",      "1.3.6.1.5.5.7.3.2"},
-> +-        {"codeSigning",     "1.3.6.1.5.5.7.3.3"},
-> +-        {"emailProtection", "1.3.6.1.5.5.7.3.4"},
-> +-        {"timeStamping",    "1.3.6.1.5.5.7.3.8"},
-> +-        {"OCSPSigning",     "1.3.6.1.5.5.7.3.9"},
-> +-
-> +-        /* RFC 4556 section 3.2.2 */
-> +-        {"KPClientAuth",    "1.3.6.1.5.2.3.4"},
-> +-        {"pkinit",          "1.3.6.1.5.2.3.4"},
-> +-
-> +-        /* https://support.microsoft.com/en-us/help/287547/object-ids-associated-with-microsoft-cryptography*/
-> +-        {"msScLogin",       "1.3.6.1.4.1.311.20.2.2"},
-> +-
-> +-        {NULL ,0}
-> +-    };
-> +-
-> +     ret = get_comp_value(mem_ctx, ctx, cur, &comp);
-> +     if (ret != 0) {
-> +         CM_DEBUG(ctx, "Failed to parse regexp.");
-> +@@ -188,11 +219,11 @@ static int parse_krb5_get_eku_value(TALLOC_CTX *mem_ctx,
-> +     }
-> +
-> +     for (c = 0; eku_list[c] != NULL; c++) {
-> +-        for (k = 0; ext_key_usage[k].name != NULL; k++) {
-> +-CM_DEBUG(ctx, "[%s][%s].", eku_list[c], ext_key_usage[k].name);
-> +-            if (strcasecmp(eku_list[c], ext_key_usage[k].name) == 0) {
-> ++        for (k = 0; sss_ext_key_usage[k].name != NULL; k++) {
-> ++CM_DEBUG(ctx, "[%s][%s].", eku_list[c], sss_ext_key_usage[k].name);
-> ++            if (strcasecmp(eku_list[c], sss_ext_key_usage[k].name) == 0) {
-> +                 comp->eku_oid_list[e] = talloc_strdup(comp->eku_oid_list,
-> +-                                                      ext_key_usage[k].oid);
-> ++                                                      sss_ext_key_usage[k].oid);
-> +                 if (comp->eku_oid_list[e] == NULL) {
-> +                     ret = ENOMEM;
-> +                     goto done;
-> +@@ -202,7 +233,7 @@ CM_DEBUG(ctx, "[%s][%s].", eku_list[c], ext_key_usage[k].name);
-> +             }
-> +         }
-> +
-> +-        if (ext_key_usage[k].name == NULL) {
-> ++        if (sss_ext_key_usage[k].name == NULL) {
-> +             /* check for an dotted-decimal OID */
-> +             if (*(eku_list[c]) != '.') {
-> +                 o = eku_list[c];
-> +@@ -252,23 +283,6 @@ static int parse_krb5_get_ku_value(TALLOC_CTX *mem_ctx,
-> +     size_t c;
-> +     size_t k;
-> +
-> +-    struct key_usage {
-> +-        const char *name;
-> +-        uint32_t flag;
-> +-    } key_usage[] = {
-> +-        {"digitalSignature" , SSS_KU_DIGITAL_SIGNATURE},
-> +-        {"nonRepudiation"   , SSS_KU_NON_REPUDIATION},
-> +-        {"keyEncipherment"  , SSS_KU_KEY_ENCIPHERMENT},
-> +-        {"dataEncipherment" , SSS_KU_DATA_ENCIPHERMENT},
-> +-        {"keyAgreement"     , SSS_KU_KEY_AGREEMENT},
-> +-        {"keyCertSign"      , SSS_KU_KEY_CERT_SIGN},
-> +-        {"cRLSign"          , SSS_KU_CRL_SIGN},
-> +-        {"encipherOnly"     , SSS_KU_ENCIPHER_ONLY},
-> +-        {"decipherOnly"     , SSS_KU_DECIPHER_ONLY},
-> +-        {NULL ,0}
-> +-    };
-> +-
-> +-
-> +     ret = get_comp_value(mem_ctx, ctx, cur, &comp);
-> +     if (ret != 0) {
-> +         CM_DEBUG(ctx, "Failed to get value.");
-> +@@ -283,14 +297,14 @@ static int parse_krb5_get_ku_value(TALLOC_CTX *mem_ctx,
-> +     }
-> +
-> +     for (c = 0; ku_list[c] != NULL; c++) {
-> +-        for (k = 0; key_usage[k].name != NULL; k++) {
-> +-            if (strcasecmp(ku_list[c], key_usage[k].name) == 0) {
-> +-                comp->ku |= key_usage[k].flag;
-> ++        for (k = 0; sss_key_usage[k].name != NULL; k++) {
-> ++            if (strcasecmp(ku_list[c], sss_key_usage[k].name) == 0) {
-> ++                comp->ku |= sss_key_usage[k].flag;
-> +                 break;
-> +             }
-> +         }
-> +
-> +-        if (key_usage[k].name == NULL) {
-> ++        if (sss_key_usage[k].name == NULL) {
-> +             /* FIXME: add check for numerical ku */
-> +             CM_DEBUG(ctx, "No matching key usage found.");
-> +             ret = EINVAL;
-> +@@ -342,31 +356,6 @@ done:
-> +     return ret;
-> + }
-> +
-> +-struct san_name {
-> +-    const char *name;
-> +-    enum san_opt san_opt;
-> +-    bool is_string;
-> +-} san_names[] = {
-> +-    /* https://www.ietf.org/rfc/rfc3280.txt section 4.2.1.7 */
-> +-    {"otherName", SAN_OTHER_NAME, false},
-> +-    {"rfc822Name", SAN_RFC822_NAME,true},
-> +-    {"dNSName", SAN_DNS_NAME, true},
-> +-    {"x400Address", SAN_X400_ADDRESS, false},
-> +-    {"directoryName", SAN_DIRECTORY_NAME, true},
-> +-    {"ediPartyName", SAN_EDIPART_NAME, false},
-> +-    {"uniformResourceIdentifier", SAN_URI, true},
-> +-    {"iPAddress", SAN_IP_ADDRESS, true},
-> +-    {"registeredID", SAN_REGISTERED_ID, true},
-> +-    /* https://www.ietf.org/rfc/rfc4556.txt section 3.2.2 */
-> +-    {"pkinitSAN", SAN_PKINIT, true},
-> +-    /* https://support.microsoft.com/en-us/help/287547/object-ids-associated-with-microsoft-cryptography */
-> +-    {"ntPrincipalName", SAN_NT, true},
-> +-    /* both previous principal types */
-> +-    {"Principal", SAN_PRINCIPAL, true},
-> +-    {"stringOtherName", SAN_STRING_OTHER_NAME, true},
-> +-    {NULL, SAN_END, false}
-> +-};
-> +-
-> + static int parse_krb5_get_san_option(TALLOC_CTX *mem_ctx,
-> +                                      struct sss_certmap_ctx *ctx,
-> +                                      const char **cur,
-> +@@ -388,12 +377,12 @@ static int parse_krb5_get_san_option(TALLOC_CTX *mem_ctx,
-> +     if (len == 0) {
-> +         c= SAN_PRINCIPAL;
-> +     } else {
-> +-        for (c = 0; san_names[c].name != NULL; c++) {
-> +-            if (strncasecmp(*cur, san_names[c].name, len) == 0) {
-> ++        for (c = 0; sss_san_names[c].name != NULL; c++) {
-> ++            if (strncasecmp(*cur, sss_san_names[c].name, len) == 0) {
-> +                 break;
-> +             }
-> +         }
-> +-        if (san_names[c].name == NULL) {
-> ++        if (sss_san_names[c].name == NULL) {
-> +             if (is_dotted_decimal(*cur, len)) {
-> +                 c = SAN_STRING_OTHER_NAME;
-> +                 *str_other_name_oid = talloc_strndup(mem_ctx, *cur, len);
-> +@@ -408,7 +397,7 @@ static int parse_krb5_get_san_option(TALLOC_CTX *mem_ctx,
-> +         }
-> +     }
-> +
-> +-    *option = san_names[c].san_opt;
-> ++    *option = sss_san_names[c].san_opt;
-> +     *cur = end + 1;
-> +
-> +     return 0;
-> +@@ -432,7 +421,7 @@ static int parse_krb5_get_san_value(TALLOC_CTX *mem_ctx,
-> +         }
-> +     }
-> +
-> +-    if (san_names[san_opt].is_string) {
-> ++    if (sss_san_names[san_opt].is_string) {
-> +         ret = parse_krb5_get_component_value(mem_ctx, ctx, cur, &comp);
-> +         if (ret != 0) {
-> +             goto done;
-> +--
-> +2.25.1
-> +
-> diff --git a/recipes-security/sssd/files/CVE-2022-4254-2.patch b/recipes-security/sssd/files/CVE-2022-4254-2.patch
-> new file mode 100644
-> index 0000000..018b95c
-> --- /dev/null
-> +++ b/recipes-security/sssd/files/CVE-2022-4254-2.patch
-> @@ -0,0 +1,655 @@
-> +From a2b9a84460429181f2a4fa7e2bb5ab49fd561274 Mon Sep 17 00:00:00 2001
-> +From: Sumit Bose <sbose@redhat.com>
-> +Date: Mon, 9 Dec 2019 11:31:14 +0100
-> +Subject: [PATCH] certmap: sanitize LDAP search filter
-> +
-> +The sss_certmap_get_search_filter() will now sanitize the values read
-> +from the certificates before adding them to a search filter. To be able
-> +to get the plain values as well sss_certmap_expand_mapping_rule() is
-> +added.
-> +
-> +Resolves:
-> +https://github.com/SSSD/sssd/issues/5135
-> +
-> +Reviewed-by: Alexey Tikhonov <atikhono@redhat.com>
-> +
-> +CVE: CVE-2022-4254
-> +Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/a2b9a84460429181f2a4fa7e2bb5ab49fd561274]
-> +Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
-> +---
-> + Makefile.am                         |  2 +-
-> + src/lib/certmap/sss_certmap.c       | 42 ++++++++++--
-> + src/lib/certmap/sss_certmap.exports |  5 ++
-> + src/lib/certmap/sss_certmap.h       | 35 ++++++++--
-> + src/responder/pam/pamsrv_p11.c      |  5 +-
-> + src/tests/cmocka/test_certmap.c     | 98 +++++++++++++++++++++++++++-
-> + src/util/util.c                     | 94 ---------------------------
-> + src/util/util_ext.c                 | 99 +++++++++++++++++++++++++++++
-> + 8 files changed, 272 insertions(+), 108 deletions(-)
-> +
-> +diff --git a/Makefile.am b/Makefile.am
-> +index 29cd93c..dd6add2 100644
-> +--- a/Makefile.am
-> ++++ b/Makefile.am
-> +@@ -1835,7 +1835,7 @@ libsss_certmap_la_LIBADD = \
-> +     $(NULL)
-> + libsss_certmap_la_LDFLAGS = \
-> +     -Wl,--version-script,$(srcdir)/src/lib/certmap/sss_certmap.exports \
-> +-    -version-info 1:0:1
-> ++    -version-info 2:0:2
-> +
-> + if HAVE_NSS
-> + libsss_certmap_la_SOURCES += \
-> +diff --git a/src/lib/certmap/sss_certmap.c b/src/lib/certmap/sss_certmap.c
-> +index c60ac24..d7bc992 100644
-> +--- a/src/lib/certmap/sss_certmap.c
-> ++++ b/src/lib/certmap/sss_certmap.c
-> +@@ -441,10 +441,12 @@ static int expand_san(struct sss_certmap_ctx *ctx,
-> + static int expand_template(struct sss_certmap_ctx *ctx,
-> +                            struct parsed_template *parsed_template,
-> +                            struct sss_cert_content *cert_content,
-> ++                           bool sanitize,
-> +                            char **expanded)
-> + {
-> +     int ret;
-> +     char *exp = NULL;
-> ++    char *exp_sanitized = NULL;
-> +
-> +     if (strcmp("issuer_dn", parsed_template->name) == 0) {
-> +         ret = rdn_list_2_dn_str(ctx, parsed_template->conversion,
-> +@@ -455,6 +457,8 @@ static int expand_template(struct sss_certmap_ctx *ctx,
-> +     } else if (strncmp("subject_", parsed_template->name, 8) == 0) {
-> +         ret = expand_san(ctx, parsed_template, cert_content->san_list, &exp);
-> +     } else if (strcmp("cert", parsed_template->name) == 0) {
-> ++        /* cert blob is already sanitized */
-> ++        sanitize = false;
-> +         ret = expand_cert(ctx, parsed_template, cert_content, &exp);
-> +     } else {
-> +         CM_DEBUG(ctx, "Unsupported template name.");
-> +@@ -471,6 +475,16 @@ static int expand_template(struct sss_certmap_ctx *ctx,
-> +         goto done;
-> +     }
-> +
-> ++    if (sanitize) {
-> ++        ret = sss_filter_sanitize(ctx, exp, &exp_sanitized);
-> ++        if (ret != EOK) {
-> ++            CM_DEBUG(ctx, "Failed to sanitize expanded template.");
-> ++            goto done;
-> ++        }
-> ++        talloc_free(exp);
-> ++        exp = exp_sanitized;
-> ++    }
-> ++
-> +     ret = 0;
-> +
-> + done:
-> +@@ -485,7 +499,7 @@ done:
-> +
-> + static int get_filter(struct sss_certmap_ctx *ctx,
-> +                       struct ldap_mapping_rule *parsed_mapping_rule,
-> +-                      struct sss_cert_content *cert_content,
-> ++                      struct sss_cert_content *cert_content, bool sanitize,
-> +                       char **filter)
-> + {
-> +     struct ldap_mapping_rule_comp *comp;
-> +@@ -503,7 +517,7 @@ static int get_filter(struct sss_certmap_ctx *ctx,
-> +             result = talloc_strdup_append(result, comp->val);
-> +         } else if (comp->type == comp_template) {
-> +             ret = expand_template(ctx, comp->parsed_template, cert_content,
-> +-                                  &expanded);
-> ++                                  sanitize, &expanded);
-> +             if (ret != 0) {
-> +                 CM_DEBUG(ctx, "Failed to expanded template.");
-> +                 goto done;
-> +@@ -791,8 +805,9 @@ done:
-> +     return ret;
-> + }
-> +
-> +-int sss_certmap_get_search_filter(struct sss_certmap_ctx *ctx,
-> ++static int expand_mapping_rule_ex(struct sss_certmap_ctx *ctx,
-> +                                   const uint8_t *der_cert, size_t der_size,
-> ++                                  bool sanitize,
-> +                                   char **_filter, char ***_domains)
-> + {
-> +     int ret;
-> +@@ -819,7 +834,8 @@ int sss_certmap_get_search_filter(struct sss_certmap_ctx *ctx,
-> +             return EINVAL;
-> +         }
-> +
-> +-        ret = get_filter(ctx, ctx->default_mapping_rule, cert_content, &filter);
-> ++        ret = get_filter(ctx, ctx->default_mapping_rule, cert_content, sanitize,
-> ++                         &filter);
-> +         goto done;
-> +     }
-> +
-> +@@ -829,7 +845,7 @@ int sss_certmap_get_search_filter(struct sss_certmap_ctx *ctx,
-> +             if (ret == 0) {
-> +                 /* match */
-> +                 ret = get_filter(ctx, r->parsed_mapping_rule, cert_content,
-> +-                                 &filter);
-> ++                                 sanitize, &filter);
-> +                 if (ret != 0) {
-> +                     CM_DEBUG(ctx, "Failed to get filter");
-> +                     goto done;
-> +@@ -873,6 +889,22 @@ done:
-> +     return ret;
-> + }
-> +
-> ++int sss_certmap_get_search_filter(struct sss_certmap_ctx *ctx,
-> ++                                  const uint8_t *der_cert, size_t der_size,
-> ++                                  char **_filter, char ***_domains)
-> ++{
-> ++    return expand_mapping_rule_ex(ctx, der_cert, der_size, true,
-> ++                                  _filter, _domains);
-> ++}
-> ++
-> ++int sss_certmap_expand_mapping_rule(struct sss_certmap_ctx *ctx,
-> ++                                    const uint8_t *der_cert, size_t der_size,
-> ++                                    char **_expanded, char ***_domains)
-> ++{
-> ++    return expand_mapping_rule_ex(ctx, der_cert, der_size, false,
-> ++                                  _expanded, _domains);
-> ++}
-> ++
-> + int sss_certmap_init(TALLOC_CTX *mem_ctx,
-> +                      sss_certmap_ext_debug *debug, void *debug_priv,
-> +                      struct sss_certmap_ctx **ctx)
-> +diff --git a/src/lib/certmap/sss_certmap.exports b/src/lib/certmap/sss_certmap.exports
-> +index a9e48d6..7d76677 100644
-> +--- a/src/lib/certmap/sss_certmap.exports
-> ++++ b/src/lib/certmap/sss_certmap.exports
-> +@@ -16,3 +16,8 @@ SSS_CERTMAP_0.1 {
-> +     global:
-> +         sss_certmap_display_cert_content;
-> + } SSS_CERTMAP_0.0;
-> ++
-> ++SSS_CERTMAP_0.2 {
-> ++    global:
-> ++        sss_certmap_expand_mapping_rule;
-> ++} SSS_CERTMAP_0.1;
-> +diff --git a/src/lib/certmap/sss_certmap.h b/src/lib/certmap/sss_certmap.h
-> +index 7da2d1c..058d4f9 100644
-> +--- a/src/lib/certmap/sss_certmap.h
-> ++++ b/src/lib/certmap/sss_certmap.h
-> +@@ -103,7 +103,7 @@ int sss_certmap_add_rule(struct sss_certmap_ctx *ctx,
-> +  *
-> +  * @param[in] ctx      certmap context previously initialized with
-> +  *                     @ref sss_certmap_init
-> +- * @param[in] der_cert binary blog with the DER encoded certificate
-> ++ * @param[in] der_cert binary blob with the DER encoded certificate
-> +  * @param[in] der_size size of the certificate blob
-> +  *
-> +  * @return
-> +@@ -119,10 +119,11 @@ int sss_certmap_match_cert(struct sss_certmap_ctx *ctx,
-> +  *
-> +  * @param[in] ctx      certmap context previously initialized with
-> +  *                     @ref sss_certmap_init
-> +- * @param[in] der_cert binary blog with the DER encoded certificate
-> ++ * @param[in] der_cert binary blob with the DER encoded certificate
-> +  * @param[in] der_size size of the certificate blob
-> +- * @param[out] filter  LDAP filter string, caller should free the data by
-> +- *                     calling sss_certmap_free_filter_and_domains
-> ++ * @param[out] filter  LDAP filter string, expanded templates are sanitized,
-> ++ *                     caller should free the data by calling
-> ++ *                     sss_certmap_free_filter_and_domains
-> +  * @param[out] domains NULL-terminated array of strings with the domains the
-> +  *                     rule applies, caller should free the data by calling
-> +  *                     sss_certmap_free_filter_and_domains
-> +@@ -136,8 +137,32 @@ int sss_certmap_get_search_filter(struct sss_certmap_ctx *ctx,
-> +                                   const uint8_t *der_cert, size_t der_size,
-> +                                   char **filter, char ***domains);
-> +
-> ++/**
-> ++ * @brief Expand the mapping rule by replacing the templates
-> ++ *
-> ++ * @param[in] ctx        certmap context previously initialized with
-> ++ *                       @ref sss_certmap_init
-> ++ * @param[in] der_cert   binary blob with the DER encoded certificate
-> ++ * @param[in] der_size   size of the certificate blob
-> ++ * @param[out] expanded  expanded mapping rule, templates are filled in
-> ++ *                       verbatim in contrast to sss_certmap_get_search_filter,
-> ++ *                       caller should free the data by
-> ++ *                       calling sss_certmap_free_filter_and_domains
-> ++ * @param[out] domains   NULL-terminated array of strings with the domains the
-> ++ *                       rule applies, caller should free the data by calling
-> ++ *                       sss_certmap_free_filter_and_domains
-> ++ *
-> ++ * @return
-> ++ *  - 0:      certificate matches a rule
-> ++ *  - ENOENT: certificate does not match
-> ++ *  - EINVAL: internal error
-> ++ */
-> ++int sss_certmap_expand_mapping_rule(struct sss_certmap_ctx *ctx,
-> ++                                    const uint8_t *der_cert, size_t der_size,
-> ++                                    char **_expanded, char ***_domains);
-> + /**
-> +  * @brief Free data returned by @ref sss_certmap_get_search_filter
-> ++ *        and @ref sss_certmap_expand_mapping_rule
-> +  *
-> +  * @param[in] filter  LDAP filter strings returned by
-> +  *                    sss_certmap_get_search_filter
-> +@@ -150,7 +175,7 @@ void sss_certmap_free_filter_and_domains(char *filter, char **domains);
-> +  * @brief Get a string with the content of the certificate used by the library
-> +  *
-> +  * @param[in]  mem_ctx    Talloc memory context, may be NULL
-> +- * @param[in]  der_cert   binary blog with the DER encoded certificate
-> ++ * @param[in]  der_cert   binary blob with the DER encoded certificate
-> +  * @param[in]  der_size   size of the certificate blob
-> +  * @param[out] desc       Multiline string showing the certificate content
-> +  *                        which is used by libsss_certmap
-> +diff --git a/src/responder/pam/pamsrv_p11.c b/src/responder/pam/pamsrv_p11.c
-> +index c7e57be..b9f6787 100644
-> +--- a/src/responder/pam/pamsrv_p11.c
-> ++++ b/src/responder/pam/pamsrv_p11.c
-> +@@ -1023,9 +1023,10 @@ static char *get_cert_prompt(TALLOC_CTX *mem_ctx,
-> +         goto done;
-> +     }
-> +
-> +-    ret = sss_certmap_get_search_filter(ctx, der, der_size, &filter, &domains);
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, der, der_size,
-> ++                                          &filter, &domains);
-> +     if (ret != 0) {
-> +-        DEBUG(SSSDBG_OP_FAILURE, "sss_certmap_get_search_filter failed.\n");
-> ++        DEBUG(SSSDBG_OP_FAILURE, "sss_certmap_expand_mapping_rule failed.\n");
-> +         goto done;
-> +     }
-> +
-> +diff --git a/src/tests/cmocka/test_certmap.c b/src/tests/cmocka/test_certmap.c
-> +index 3091e1a..abf1dba 100644
-> +--- a/src/tests/cmocka/test_certmap.c
-> ++++ b/src/tests/cmocka/test_certmap.c
-> +@@ -1387,6 +1387,15 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +                                         &filter, &domains);
-> +     assert_int_equal(ret, 0);
-> +     assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule100=<I>CN=Certificate\\20Authority,O=IPA.DEVEL"
-> ++                                "<S>CN=ipa-devel.ipa.devel,O=IPA.DEVEL");
-> ++    assert_null(domains);
-> ++
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert_der),
-> ++                                          sizeof(test_cert_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> +     assert_string_equal(filter, "rule100=<I>CN=Certificate Authority,O=IPA.DEVEL"
-> +                                 "<S>CN=ipa-devel.ipa.devel,O=IPA.DEVEL");
-> +     assert_null(domains);
-> +@@ -1401,6 +1410,17 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +                                         &filter, &domains);
-> +     assert_int_equal(ret, 0);
-> +     assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule99=<I>CN=Certificate\\20Authority,O=IPA.DEVEL"
-> ++                                "<S>CN=ipa-devel.ipa.devel,O=IPA.DEVEL");
-> ++    assert_non_null(domains);
-> ++    assert_string_equal(domains[0], "test.dom");
-> ++    assert_null(domains[1]);
-> ++
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert_der),
-> ++                                          sizeof(test_cert_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> +     assert_string_equal(filter, "rule99=<I>CN=Certificate Authority,O=IPA.DEVEL"
-> +                                 "<S>CN=ipa-devel.ipa.devel,O=IPA.DEVEL");
-> +     assert_non_null(domains);
-> +@@ -1422,6 +1442,16 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +     assert_string_equal(domains[0], "test.dom");
-> +     assert_null(domains[1]);
-> +
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert_der),
-> ++                                          sizeof(test_cert_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule98=userCertificate;binary=" TEST_CERT_BIN);
-> ++    assert_non_null(domains);
-> ++    assert_string_equal(domains[0], "test.dom");
-> ++    assert_null(domains[1]);
-> ++
-> +     ret = sss_certmap_add_rule(ctx, 97,
-> +                             "KRB5:<ISSUER>CN=Certificate Authority,O=IPA.DEVEL",
-> +                             "LDAP:rule97=<I>{issuer_dn!nss_x500}<S>{subject_dn}",
-> +@@ -1432,6 +1462,17 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +                                         &filter, &domains);
-> +     assert_int_equal(ret, 0);
-> +     assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule97=<I>O=IPA.DEVEL,CN=Certificate\\20Authority"
-> ++                                "<S>CN=ipa-devel.ipa.devel,O=IPA.DEVEL");
-> ++    assert_non_null(domains);
-> ++    assert_string_equal(domains[0], "test.dom");
-> ++    assert_null(domains[1]);
-> ++
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert_der),
-> ++                                          sizeof(test_cert_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> +     assert_string_equal(filter, "rule97=<I>O=IPA.DEVEL,CN=Certificate Authority"
-> +                                 "<S>CN=ipa-devel.ipa.devel,O=IPA.DEVEL");
-> +     assert_non_null(domains);
-> +@@ -1448,6 +1489,17 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +                                         &filter, &domains);
-> +     assert_int_equal(ret, 0);
-> +     assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule96=<I>O=IPA.DEVEL,CN=Certificate\\20Authority"
-> ++                                "<S>O=IPA.DEVEL,CN=ipa-devel.ipa.devel");
-> ++    assert_non_null(domains);
-> ++    assert_string_equal(domains[0], "test.dom");
-> ++    assert_null(domains[1]);
-> ++
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert_der),
-> ++                                          sizeof(test_cert_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> +     assert_string_equal(filter, "rule96=<I>O=IPA.DEVEL,CN=Certificate Authority"
-> +                                 "<S>O=IPA.DEVEL,CN=ipa-devel.ipa.devel");
-> +     assert_non_null(domains);
-> +@@ -1466,6 +1518,14 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +     assert_string_equal(filter, "(userCertificate;binary=" TEST_CERT_BIN ")");
-> +     assert_null(domains);
-> +
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert_der),
-> ++                                          sizeof(test_cert_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> ++    assert_string_equal(filter, "(userCertificate;binary=" TEST_CERT_BIN ")");
-> ++    assert_null(domains);
-> ++
-> +     ret = sss_certmap_add_rule(ctx, 94,
-> +                       "KRB5:<ISSUER>CN=Certificate Authority,O=IPA.DEVEL",
-> +                       "LDAP:rule94=<I>{issuer_dn!ad_x500}<S>{subject_dn!ad_x500}",
-> +@@ -1476,12 +1536,22 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +                                         &filter, &domains);
-> +     assert_int_equal(ret, 0);
-> +     assert_non_null(filter);
-> +-    assert_string_equal(filter, "rule94=<I>O=IPA.DEVEL,CN=Certificate Authority"
-> ++    assert_string_equal(filter, "rule94=<I>O=IPA.DEVEL,CN=Certificate\\20Authority"
-> +                                 "<S>O=IPA.DEVEL,CN=ipa-devel.ipa.devel");
-> +     assert_non_null(domains);
-> +     assert_string_equal(domains[0], "test.dom");
-> +     assert_null(domains[1]);
-> +
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert_der),
-> ++                                          sizeof(test_cert_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule94=<I>O=IPA.DEVEL,CN=Certificate Authority"
-> ++                                "<S>O=IPA.DEVEL,CN=ipa-devel.ipa.devel");
-> ++    assert_non_null(domains);
-> ++    assert_string_equal(domains[0], "test.dom");
-> ++    assert_null(domains[1]);
-> +
-> +     ret = sss_certmap_add_rule(ctx, 89, NULL,
-> +                             "(rule89={subject_nt_principal})",
-> +@@ -1495,6 +1565,14 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +     assert_string_equal(filter, "(rule89=tu1@ad.devel)");
-> +     assert_null(domains);
-> +
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert2_der),
-> ++                                          sizeof(test_cert2_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> ++    assert_string_equal(filter, "(rule89=tu1@ad.devel)");
-> ++    assert_null(domains);
-> ++
-> +     ret = sss_certmap_add_rule(ctx, 88, NULL,
-> +                             "(rule88={subject_nt_principal.short_name})",
-> +                             NULL);
-> +@@ -1516,6 +1594,15 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +                                         &filter, &domains);
-> +     assert_int_equal(ret, 0);
-> +     assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule87=<I>DC=devel,DC=ad,CN=ad-AD-SERVER-CA"
-> ++                  "<S>DC=devel,DC=ad,CN=Users,CN=t\\20u,E=test.user@email.domain");
-> ++    assert_null(domains);
-> ++
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert2_der),
-> ++                                          sizeof(test_cert2_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> +     assert_string_equal(filter, "rule87=<I>DC=devel,DC=ad,CN=ad-AD-SERVER-CA"
-> +                   "<S>DC=devel,DC=ad,CN=Users,CN=t u,E=test.user@email.domain");
-> +     assert_null(domains);
-> +@@ -1529,6 +1616,15 @@ static void test_sss_certmap_get_search_filter(void **state)
-> +                                         &filter, &domains);
-> +     assert_int_equal(ret, 0);
-> +     assert_non_null(filter);
-> ++    assert_string_equal(filter, "rule86=<I>DC=devel,DC=ad,CN=ad-AD-SERVER-CA"
-> ++                  "<S>DC=devel,DC=ad,CN=Users,CN=t\\20u,E=test.user@email.domain");
-> ++    assert_null(domains);
-> ++
-> ++    ret = sss_certmap_expand_mapping_rule(ctx, discard_const(test_cert2_der),
-> ++                                          sizeof(test_cert2_der),
-> ++                                          &filter, &domains);
-> ++    assert_int_equal(ret, 0);
-> ++    assert_non_null(filter);
-> +     assert_string_equal(filter, "rule86=<I>DC=devel,DC=ad,CN=ad-AD-SERVER-CA"
-> +                   "<S>DC=devel,DC=ad,CN=Users,CN=t u,E=test.user@email.domain");
-> +     assert_null(domains);
-> +diff --git a/src/util/util.c b/src/util/util.c
-> +index e3efa7f..0653638 100644
-> +--- a/src/util/util.c
-> ++++ b/src/util/util.c
-> +@@ -436,100 +436,6 @@ errno_t sss_hash_create(TALLOC_CTX *mem_ctx, unsigned long count,
-> +     return sss_hash_create_ex(mem_ctx, count, tbl, 0, 0, 0, 0, NULL, NULL);
-> + }
-> +
-> +-errno_t sss_filter_sanitize_ex(TALLOC_CTX *mem_ctx,
-> +-                               const char *input,
-> +-                               char **sanitized,
-> +-                               const char *ignore)
-> +-{
-> +-    char *output;
-> +-    size_t i = 0;
-> +-    size_t j = 0;
-> +-    char *allowed;
-> +-
-> +-    /* Assume the worst-case. We'll resize it later, once */
-> +-    output = talloc_array(mem_ctx, char, strlen(input) * 3 + 1);
-> +-    if (!output) {
-> +-        return ENOMEM;
-> +-    }
-> +-
-> +-    while (input[i]) {
-> +-        /* Even though this character might have a special meaning, if it's
-> +-         * expliticly allowed, just copy it and move on
-> +-         */
-> +-        if (ignore == NULL) {
-> +-            allowed = NULL;
-> +-        } else {
-> +-            allowed = strchr(ignore, input[i]);
-> +-        }
-> +-        if (allowed) {
-> +-            output[j++] = input[i++];
-> +-            continue;
-> +-        }
-> +-
-> +-        switch(input[i]) {
-> +-        case '\t':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '0';
-> +-            output[j++] = '9';
-> +-            break;
-> +-        case ' ':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '2';
-> +-            output[j++] = '0';
-> +-            break;
-> +-        case '*':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '2';
-> +-            output[j++] = 'a';
-> +-            break;
-> +-        case '(':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '2';
-> +-            output[j++] = '8';
-> +-            break;
-> +-        case ')':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '2';
-> +-            output[j++] = '9';
-> +-            break;
-> +-        case '\\':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '5';
-> +-            output[j++] = 'c';
-> +-            break;
-> +-        case '\r':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '0';
-> +-            output[j++] = 'd';
-> +-            break;
-> +-        case '\n':
-> +-            output[j++] = '\\';
-> +-            output[j++] = '0';
-> +-            output[j++] = 'a';
-> +-            break;
-> +-        default:
-> +-            output[j++] = input[i];
-> +-        }
-> +-
-> +-        i++;
-> +-    }
-> +-    output[j] = '\0';
-> +-    *sanitized = talloc_realloc(mem_ctx, output, char, j+1);
-> +-    if (!*sanitized) {
-> +-        talloc_free(output);
-> +-        return ENOMEM;
-> +-    }
-> +-
-> +-    return EOK;
-> +-}
-> +-
-> +-errno_t sss_filter_sanitize(TALLOC_CTX *mem_ctx,
-> +-                            const char *input,
-> +-                            char **sanitized)
-> +-{
-> +-    return sss_filter_sanitize_ex(mem_ctx, input, sanitized, NULL);
-> +-}
-> +-
-> + char *
-> + sss_escape_ip_address(TALLOC_CTX *mem_ctx, int family, const char *addr)
-> + {
-> +diff --git a/src/util/util_ext.c b/src/util/util_ext.c
-> +index 04dc02a..a89b60f 100644
-> +--- a/src/util/util_ext.c
-> ++++ b/src/util/util_ext.c
-> +@@ -29,6 +29,11 @@
-> +
-> + #define EOK 0
-> +
-> ++#ifndef HAVE_ERRNO_T
-> ++#define HAVE_ERRNO_T
-> ++typedef int errno_t;
-> ++#endif
-> ++
-> + int split_on_separator(TALLOC_CTX *mem_ctx, const char *str,
-> +                        const char sep, bool trim, bool skip_empty,
-> +                        char ***_list, int *size)
-> +@@ -141,3 +146,97 @@ bool string_in_list(const char *string, char **list, bool case_sensitive)
-> +
-> +     return false;
-> + }
-> ++
-> ++errno_t sss_filter_sanitize_ex(TALLOC_CTX *mem_ctx,
-> ++                               const char *input,
-> ++                               char **sanitized,
-> ++                               const char *ignore)
-> ++{
-> ++    char *output;
-> ++    size_t i = 0;
-> ++    size_t j = 0;
-> ++    char *allowed;
-> ++
-> ++    /* Assume the worst-case. We'll resize it later, once */
-> ++    output = talloc_array(mem_ctx, char, strlen(input) * 3 + 1);
-> ++    if (!output) {
-> ++        return ENOMEM;
-> ++    }
-> ++
-> ++    while (input[i]) {
-> ++        /* Even though this character might have a special meaning, if it's
-> ++         * explicitly allowed, just copy it and move on
-> ++         */
-> ++        if (ignore == NULL) {
-> ++            allowed = NULL;
-> ++        } else {
-> ++            allowed = strchr(ignore, input[i]);
-> ++        }
-> ++        if (allowed) {
-> ++            output[j++] = input[i++];
-> ++            continue;
-> ++        }
-> ++
-> ++        switch(input[i]) {
-> ++        case '\t':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '0';
-> ++            output[j++] = '9';
-> ++            break;
-> ++        case ' ':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '2';
-> ++            output[j++] = '0';
-> ++            break;
-> ++        case '*':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '2';
-> ++            output[j++] = 'a';
-> ++            break;
-> ++        case '(':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '2';
-> ++            output[j++] = '8';
-> ++            break;
-> ++        case ')':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '2';
-> ++            output[j++] = '9';
-> ++            break;
-> ++        case '\\':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '5';
-> ++            output[j++] = 'c';
-> ++            break;
-> ++        case '\r':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '0';
-> ++            output[j++] = 'd';
-> ++            break;
-> ++        case '\n':
-> ++            output[j++] = '\\';
-> ++            output[j++] = '0';
-> ++            output[j++] = 'a';
-> ++            break;
-> ++        default:
-> ++            output[j++] = input[i];
-> ++        }
-> ++
-> ++        i++;
-> ++    }
-> ++    output[j] = '\0';
-> ++    *sanitized = talloc_realloc(mem_ctx, output, char, j+1);
-> ++    if (!*sanitized) {
-> ++        talloc_free(output);
-> ++        return ENOMEM;
-> ++    }
-> ++
-> ++    return EOK;
-> ++}
-> ++
-> ++errno_t sss_filter_sanitize(TALLOC_CTX *mem_ctx,
-> ++                            const char *input,
-> ++                            char **sanitized)
-> ++{
-> ++    return sss_filter_sanitize_ex(mem_ctx, input, sanitized, NULL);
-> ++}
-> +--
-> +2.25.1
-> +
-> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
-> index 186c9e0..e512dbf 100644
-> --- a/recipes-security/sssd/sssd_1.16.4.bb
-> +++ b/recipes-security/sssd/sssd_1.16.4.bb
-> @@ -18,6 +18,8 @@ SRC_URI = "https://releases.pagure.org/SSSD/${BPN}/${BP}.tar.gz \
->              file://volatiles.99_sssd \
->              file://fix-ldblibdir.patch \
->              file://0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpages.patch \
-> +           file://CVE-2022-4254-1.patch \
-> +           file://CVE-2022-4254-2.patch \
->              "
+> +# from Cargo.lock
+> +SRC_URI += " \
+> +    crate://crates.io/ahash/0.7.6 \
+> +    crate://crates.io/aho-corasick/0.7.20 \
+> +    crate://crates.io/ansi_term/0.12.1 \
+> +    crate://crates.io/anyhow/1.0.69 \
+> +    crate://crates.io/asn1-rs/0.3.1 \
+> +    crate://crates.io/asn1-rs-derive/0.1.0 \
+> +    crate://crates.io/asn1-rs-impl/0.1.0 \
+> +    crate://crates.io/atty/0.2.14 \
+> +    crate://crates.io/autocfg/1.1.0 \
+> +    crate://crates.io/base64/0.13.1 \
+> +    crate://crates.io/bincode/1.3.3 \
+> +    crate://crates.io/bindgen/0.57.0 \
+> +    crate://crates.io/bindgen/0.63.0 \
+> +    crate://crates.io/bitfield/0.13.2 \
+> +    crate://crates.io/bitflags/1.3.2 \
+> +    crate://crates.io/bumpalo/3.12.0 \
+> +    crate://crates.io/bytes/1.4.0 \
+> +    crate://crates.io/cc/1.0.79 \
+> +    crate://crates.io/cexpr/0.4.0 \
+> +    crate://crates.io/cexpr/0.6.0 \
+> +    crate://crates.io/cfg-if/1.0.0 \
+> +    crate://crates.io/clang-sys/1.6.0 \
+> +    crate://crates.io/clap/2.34.0 \
+> +    crate://crates.io/cmake/0.1.45 \
+> +    crate://crates.io/const-oid/0.7.1 \
+> +    crate://crates.io/cryptoauthlib-sys/0.2.2 \
+> +    crate://crates.io/cryptoki/0.3.1 \
+> +    crate://crates.io/cryptoki-sys/0.1.5 \
+> +    crate://crates.io/data-encoding/2.3.3 \
+> +    crate://crates.io/der/0.5.1 \
+> +    crate://crates.io/der-parser/7.0.0 \
+> +    crate://crates.io/derivative/2.2.0 \
+> +    crate://crates.io/displaydoc/0.2.3 \
+> +    crate://crates.io/either/1.8.1 \
+> +    crate://crates.io/enumflags2/0.7.5 \
+> +    crate://crates.io/enumflags2_derive/0.7.4 \
+> +    crate://crates.io/env_logger/0.8.4 \
+> +    crate://crates.io/errno/0.2.8 \
+> +    crate://crates.io/errno-dragonfly/0.1.2 \
+> +    crate://crates.io/fallible-iterator/0.2.0 \
+> +    crate://crates.io/fallible-streaming-iterator/0.1.9 \
+> +    crate://crates.io/fastrand/1.9.0 \
+> +    crate://crates.io/fixedbitset/0.2.0 \
+> +    crate://crates.io/form_urlencoded/1.1.0 \
+> +    crate://crates.io/futures/0.3.27 \
+> +    crate://crates.io/futures-channel/0.3.27 \
+> +    crate://crates.io/futures-core/0.3.27 \
+> +    crate://crates.io/futures-executor/0.3.27 \
+> +    crate://crates.io/futures-io/0.3.27 \
+> +    crate://crates.io/futures-macro/0.3.27 \
+> +    crate://crates.io/futures-sink/0.3.27 \
+> +    crate://crates.io/futures-task/0.3.27 \
+> +    crate://crates.io/futures-util/0.3.27 \
+> +    crate://crates.io/generic-array/0.14.6 \
+> +    crate://crates.io/getrandom/0.2.8 \
+> +    crate://crates.io/glob/0.3.1 \
+> +    crate://crates.io/grpcio/0.9.1 \
+> +    crate://crates.io/grpcio-sys/0.9.1+1.38.0 \
+> +    crate://crates.io/hashbrown/0.12.3 \
+> +    crate://crates.io/hashlink/0.8.1 \
+> +    crate://crates.io/heck/0.3.3 \
+> +    crate://crates.io/hermit-abi/0.1.19 \
+> +    crate://crates.io/hermit-abi/0.2.6 \
+> +    crate://crates.io/hex/0.4.3 \
+> +    crate://crates.io/hostname-validator/1.1.1 \
+> +    crate://crates.io/humantime/2.1.0 \
+> +    crate://crates.io/idna/0.3.0 \
+> +    crate://crates.io/indexmap/1.9.2 \
+> +    crate://crates.io/instant/0.1.12 \
+> +    crate://crates.io/io-lifetimes/1.0.6 \
+> +    crate://crates.io/itertools/0.10.5 \
+> +    crate://crates.io/itoa/1.0.6 \
+> +    crate://crates.io/js-sys/0.3.61 \
+> +    crate://crates.io/jsonwebkey/0.3.5 \
+> +    crate://crates.io/jsonwebtoken/8.2.0 \
+> +    crate://crates.io/lazy_static/1.4.0 \
+> +    crate://crates.io/lazycell/1.3.0 \
+> +    crate://crates.io/libc/0.2.140 \
+> +    crate://crates.io/libloading/0.7.4 \
+> +    crate://crates.io/libsqlite3-sys/0.25.2 \
+> +    crate://crates.io/libz-sys/1.1.8 \
+> +    crate://crates.io/linux-raw-sys/0.1.4 \
+> +    crate://crates.io/lock_api/0.4.9 \
+> +    crate://crates.io/log/0.4.17 \
+> +    crate://crates.io/mbox/0.6.0 \
+> +    crate://crates.io/memchr/2.5.0 \
+> +    crate://crates.io/minimal-lexical/0.2.1 \
+> +    crate://crates.io/multimap/0.8.3 \
+> +    crate://crates.io/nom/5.1.2 \
+> +    crate://crates.io/nom/7.1.3 \
+> +    crate://crates.io/num/0.4.0 \
+> +    crate://crates.io/num-bigint/0.4.3 \
+> +    crate://crates.io/num-complex/0.4.3 \
+> +    crate://crates.io/num-derive/0.3.3 \
+> +    crate://crates.io/num-integer/0.1.45 \
+> +    crate://crates.io/num-iter/0.1.43 \
+> +    crate://crates.io/num-rational/0.4.1 \
+> +    crate://crates.io/num-traits/0.2.15 \
+> +    crate://crates.io/num_cpus/1.15.0 \
+> +    crate://crates.io/num_threads/0.1.6 \
+> +    crate://crates.io/oid/0.2.1 \
+> +    crate://crates.io/oid-registry/0.4.0 \
+> +    crate://crates.io/once_cell/1.17.1 \
+> +    crate://crates.io/parking_lot/0.11.2 \
+> +    crate://crates.io/parking_lot_core/0.8.6 \
+> +    crate://crates.io/parsec-interface/0.28.0 \
+> +    crate://crates.io/peeking_take_while/0.1.2 \
+> +    crate://crates.io/pem/1.1.1 \
+> +    crate://crates.io/percent-encoding/2.2.0 \
+> +    crate://crates.io/pest/2.5.6 \
+> +    crate://crates.io/petgraph/0.5.1 \
+> +    crate://crates.io/picky-asn1/0.3.3 \
+> +    crate://crates.io/picky-asn1-der/0.2.5 \
+> +    crate://crates.io/picky-asn1-x509/0.6.1 \
+> +    crate://crates.io/pin-project-lite/0.2.9 \
+> +    crate://crates.io/pin-utils/0.1.0 \
+> +    crate://crates.io/pkcs8/0.8.0 \
+> +    crate://crates.io/pkg-config/0.3.26 \
+> +    crate://crates.io/ppv-lite86/0.2.17 \
+> +    crate://crates.io/proc-macro-error/1.0.4 \
+> +    crate://crates.io/proc-macro-error-attr/1.0.4 \
+> +    crate://crates.io/proc-macro2/1.0.52 \
+> +    crate://crates.io/prost/0.8.0 \
+> +    crate://crates.io/prost-build/0.8.0 \
+> +    crate://crates.io/prost-derive/0.8.0 \
+> +    crate://crates.io/prost-types/0.8.0 \
+> +    crate://crates.io/protobuf/2.28.0 \
+> +    crate://crates.io/psa-crypto/0.10.0 \
+> +    crate://crates.io/psa-crypto-sys/0.10.0 \
+> +    crate://crates.io/quote/1.0.26 \
+> +    crate://crates.io/rand/0.8.5 \
+> +    crate://crates.io/rand_chacha/0.3.1 \
+> +    crate://crates.io/rand_core/0.6.4 \
+> +    crate://crates.io/redox_syscall/0.2.16 \
+> +    crate://crates.io/regex/1.7.1 \
+> +    crate://crates.io/regex-syntax/0.6.28 \
+> +    crate://crates.io/ring/0.16.20 \
+> +    crate://crates.io/rusqlite/0.28.0 \
+> +    crate://crates.io/rust-cryptoauthlib/0.4.5 \
+> +    crate://crates.io/rustc-hash/1.1.0 \
+> +    crate://crates.io/rustc_version/0.3.3 \
+> +    crate://crates.io/rusticata-macros/4.1.0 \
+> +    crate://crates.io/rustix/0.36.9 \
+> +    crate://crates.io/ryu/1.0.13 \
+> +    crate://crates.io/same-file/1.0.6 \
+> +    crate://crates.io/scopeguard/1.1.0 \
+> +    crate://crates.io/sd-notify/0.3.0 \
+> +    crate://crates.io/secrecy/0.7.0 \
+> +    crate://crates.io/semver/0.11.0 \
+> +    crate://crates.io/semver-parser/0.10.2 \
+> +    crate://crates.io/serde/1.0.156 \
+> +    crate://crates.io/serde_bytes/0.11.9 \
+> +    crate://crates.io/serde_derive/1.0.156 \
+> +    crate://crates.io/serde_json/1.0.94 \
+> +    crate://crates.io/shlex/0.1.1 \
+> +    crate://crates.io/shlex/1.1.0 \
+> +    crate://crates.io/signal-hook/0.3.15 \
+> +    crate://crates.io/signal-hook-registry/1.4.1 \
+> +    crate://crates.io/simple_asn1/0.6.2 \
+> +    crate://crates.io/slab/0.4.8 \
+> +    crate://crates.io/smallvec/1.10.0 \
+> +    crate://crates.io/spiffe/0.2.1 \
+> +    crate://crates.io/spin/0.5.2 \
+> +    crate://crates.io/spki/0.5.4 \
+> +    crate://crates.io/stable_deref_trait/1.2.0 \
+> +    crate://crates.io/strsim/0.8.0 \
+> +    crate://crates.io/structopt/0.3.26 \
+> +    crate://crates.io/structopt-derive/0.4.18 \
+> +    crate://crates.io/strum_macros/0.21.1 \
+> +    crate://crates.io/syn/1.0.109 \
+> +    crate://crates.io/synstructure/0.12.6 \
+> +    crate://crates.io/target-lexicon/0.12.6 \
+> +    crate://crates.io/tempfile/3.4.0 \
+> +    crate://crates.io/termcolor/1.2.0 \
+> +    crate://crates.io/textwrap/0.11.0 \
+> +    crate://crates.io/thiserror/1.0.39 \
+> +    crate://crates.io/thiserror-impl/1.0.39 \
+> +    crate://crates.io/threadpool/1.8.1 \
+> +    crate://crates.io/time/0.3.15 \
+> +    crate://crates.io/time-macros/0.2.4 \
+> +    crate://crates.io/tinyvec/1.6.0 \
+> +    crate://crates.io/tinyvec_macros/0.1.1 \
+> +    crate://crates.io/toml/0.5.11 \
+> +    crate://crates.io/tss-esapi/7.2.0 \
+> +    crate://crates.io/tss-esapi-sys/0.4.0 \
+> +    crate://crates.io/typenum/1.16.0 \
+> +    crate://crates.io/ucd-trie/0.1.5 \
+> +    crate://crates.io/unicode-bidi/0.3.11 \
+> +    crate://crates.io/unicode-ident/1.0.8 \
+> +    crate://crates.io/unicode-normalization/0.1.22 \
+> +    crate://crates.io/unicode-segmentation/1.10.1 \
+> +    crate://crates.io/unicode-width/0.1.10 \
+> +    crate://crates.io/unicode-xid/0.2.4 \
+> +    crate://crates.io/untrusted/0.7.1 \
+> +    crate://crates.io/url/2.3.1 \
+> +    crate://crates.io/users/0.11.0 \
+> +    crate://crates.io/uuid/0.8.2 \
+> +    crate://crates.io/vcpkg/0.2.15 \
+> +    crate://crates.io/vec_map/0.8.2 \
+> +    crate://crates.io/version_check/0.9.4 \
+> +    crate://crates.io/walkdir/2.3.2 \
+> +    crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1 \
+> +    crate://crates.io/wasm-bindgen/0.2.84 \
+> +    crate://crates.io/wasm-bindgen-backend/0.2.84 \
+> +    crate://crates.io/wasm-bindgen-macro/0.2.84 \
+> +    crate://crates.io/wasm-bindgen-macro-support/0.2.84 \
+> +    crate://crates.io/wasm-bindgen-shared/0.2.84 \
+> +    crate://crates.io/web-sys/0.3.61 \
+> +    crate://crates.io/which/4.4.0 \
+> +    crate://crates.io/winapi/0.3.9 \
+> +    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+> +    crate://crates.io/winapi-util/0.1.5 \
+> +    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+> +    crate://crates.io/windows-sys/0.42.0 \
+> +    crate://crates.io/windows-sys/0.45.0 \
+> +    crate://crates.io/windows-targets/0.42.2 \
+> +    crate://crates.io/windows_aarch64_gnullvm/0.42.2 \
+> +    crate://crates.io/windows_aarch64_msvc/0.42.2 \
+> +    crate://crates.io/windows_i686_gnu/0.42.2 \
+> +    crate://crates.io/windows_i686_msvc/0.42.2 \
+> +    crate://crates.io/windows_x86_64_gnu/0.42.2 \
+> +    crate://crates.io/windows_x86_64_gnullvm/0.42.2 \
+> +    crate://crates.io/windows_x86_64_msvc/0.42.2 \
+> +    crate://crates.io/x509-parser/0.13.2 \
+> +    crate://crates.io/yasna/0.4.0 \
+> +    crate://crates.io/zeroize/1.5.7 \
+> +    crate://crates.io/zeroize_derive/1.3.3 \
+> +"
+> +# from fuzz/Cargo.lock
+> +SRC_URI += " \
+> +    crate://crates.io/ahash/0.7.6 \
+> +    crate://crates.io/aho-corasick/0.7.19 \
+> +    crate://crates.io/android_system_properties/0.1.5 \
+> +    crate://crates.io/ansi_term/0.12.1 \
+> +    crate://crates.io/anyhow/1.0.64 \
+> +    crate://crates.io/arbitrary/0.4.7 \
+> +    crate://crates.io/asn1-rs/0.3.1 \
+> +    crate://crates.io/asn1-rs-derive/0.1.0 \
+> +    crate://crates.io/asn1-rs-impl/0.1.0 \
+> +    crate://crates.io/atty/0.2.14 \
+> +    crate://crates.io/autocfg/1.1.0 \
+> +    crate://crates.io/base64/0.13.0 \
+> +    crate://crates.io/bincode/1.3.3 \
+> +    crate://crates.io/bindgen/0.57.0 \
+> +    crate://crates.io/bindgen/0.63.0 \
+> +    crate://crates.io/bitfield/0.13.2 \
+> +    crate://crates.io/bitflags/1.3.2 \
+> +    crate://crates.io/bumpalo/3.11.0 \
+> +    crate://crates.io/bytes/1.2.1 \
+> +    crate://crates.io/cc/1.0.73 \
+> +    crate://crates.io/cexpr/0.4.0 \
+> +    crate://crates.io/cexpr/0.6.0 \
+> +    crate://crates.io/cfg-if/1.0.0 \
+> +    crate://crates.io/chrono/0.4.22 \
+> +    crate://crates.io/clang-sys/1.3.3 \
+> +    crate://crates.io/clap/2.34.0 \
+> +    crate://crates.io/cmake/0.1.48 \
+> +    crate://crates.io/const-oid/0.7.1 \
+> +    crate://crates.io/core-foundation-sys/0.8.3 \
+> +    crate://crates.io/cryptoki/0.3.1 \
+> +    crate://crates.io/cryptoki-sys/0.1.5 \
+> +    crate://crates.io/data-encoding/2.3.2 \
+> +    crate://crates.io/der/0.5.1 \
+> +    crate://crates.io/der-parser/7.0.0 \
+> +    crate://crates.io/derivative/2.2.0 \
+> +    crate://crates.io/derive_arbitrary/0.4.7 \
+> +    crate://crates.io/displaydoc/0.2.3 \
+> +    crate://crates.io/either/1.8.0 \
+> +    crate://crates.io/enumflags2/0.7.5 \
+> +    crate://crates.io/enumflags2_derive/0.7.4 \
+> +    crate://crates.io/env_logger/0.8.4 \
+> +    crate://crates.io/fallible-iterator/0.2.0 \
+> +    crate://crates.io/fallible-streaming-iterator/0.1.9 \
+> +    crate://crates.io/flexi_logger/0.14.8 \
+> +    crate://crates.io/form_urlencoded/1.0.1 \
+> +    crate://crates.io/futures/0.3.24 \
+> +    crate://crates.io/futures-channel/0.3.24 \
+> +    crate://crates.io/futures-core/0.3.24 \
+> +    crate://crates.io/futures-executor/0.3.24 \
+> +    crate://crates.io/futures-io/0.3.24 \
+> +    crate://crates.io/futures-macro/0.3.24 \
+> +    crate://crates.io/futures-sink/0.3.24 \
+> +    crate://crates.io/futures-task/0.3.24 \
+> +    crate://crates.io/futures-util/0.3.24 \
+> +    crate://crates.io/generic-array/0.14.6 \
+> +    crate://crates.io/getrandom/0.2.7 \
+> +    crate://crates.io/glob/0.3.0 \
+> +    crate://crates.io/grpcio/0.9.1 \
+> +    crate://crates.io/grpcio-sys/0.9.1+1.38.0 \
+> +    crate://crates.io/hashbrown/0.12.3 \
+> +    crate://crates.io/hashlink/0.8.1 \
+> +    crate://crates.io/heck/0.3.3 \
+> +    crate://crates.io/hermit-abi/0.1.19 \
+> +    crate://crates.io/hex/0.4.3 \
+> +    crate://crates.io/hostname-validator/1.1.1 \
+> +    crate://crates.io/humantime/2.1.0 \
+> +    crate://crates.io/iana-time-zone/0.1.47 \
+> +    crate://crates.io/idna/0.2.3 \
+> +    crate://crates.io/instant/0.1.12 \
+> +    crate://crates.io/itertools/0.10.3 \
+> +    crate://crates.io/itoa/1.0.3 \
+> +    crate://crates.io/js-sys/0.3.59 \
+> +    crate://crates.io/jsonwebkey/0.3.5 \
+> +    crate://crates.io/jsonwebtoken/8.1.1 \
+> +    crate://crates.io/lazy_static/1.4.0 \
+> +    crate://crates.io/lazycell/1.3.0 \
+> +    crate://crates.io/libc/0.2.132 \
+> +    crate://crates.io/libfuzzer-sys/0.3.5 \
+> +    crate://crates.io/libloading/0.7.3 \
+> +    crate://crates.io/libsqlite3-sys/0.25.2 \
+> +    crate://crates.io/libz-sys/1.1.8 \
+> +    crate://crates.io/lock_api/0.4.8 \
+> +    crate://crates.io/log/0.4.17 \
+> +    crate://crates.io/matches/0.1.9 \
+> +    crate://crates.io/mbox/0.6.0 \
+> +    crate://crates.io/memchr/2.5.0 \
+> +    crate://crates.io/minimal-lexical/0.2.1 \
+> +    crate://crates.io/nom/5.1.2 \
+> +    crate://crates.io/nom/7.1.1 \
+> +    crate://crates.io/num/0.4.0 \
+> +    crate://crates.io/num-bigint/0.4.3 \
+> +    crate://crates.io/num-complex/0.4.3 \
+> +    crate://crates.io/num-derive/0.3.3 \
+> +    crate://crates.io/num-integer/0.1.45 \
+> +    crate://crates.io/num-iter/0.1.43 \
+> +    crate://crates.io/num-rational/0.4.1 \
+> +    crate://crates.io/num-traits/0.2.15 \
+> +    crate://crates.io/num_cpus/1.13.1 \
+> +    crate://crates.io/num_threads/0.1.6 \
+> +    crate://crates.io/oid/0.2.1 \
+> +    crate://crates.io/oid-registry/0.4.0 \
+> +    crate://crates.io/once_cell/1.14.0 \
+> +    crate://crates.io/parking_lot/0.11.2 \
+> +    crate://crates.io/parking_lot_core/0.8.5 \
+> +    crate://crates.io/parsec-client/0.15.0 \
+> +    crate://crates.io/parsec-interface/0.28.0 \
+> +    crate://crates.io/peeking_take_while/0.1.2 \
+> +    crate://crates.io/pem/1.1.0 \
+> +    crate://crates.io/percent-encoding/2.1.0 \
+> +    crate://crates.io/pest/2.3.0 \
+> +    crate://crates.io/picky-asn1/0.3.3 \
+> +    crate://crates.io/picky-asn1-der/0.2.5 \
+> +    crate://crates.io/picky-asn1-x509/0.6.1 \
+> +    crate://crates.io/pin-project-lite/0.2.9 \
+> +    crate://crates.io/pin-utils/0.1.0 \
+> +    crate://crates.io/pkcs8/0.8.0 \
+> +    crate://crates.io/pkg-config/0.3.25 \
+> +    crate://crates.io/ppv-lite86/0.2.16 \
+> +    crate://crates.io/proc-macro-error/1.0.4 \
+> +    crate://crates.io/proc-macro-error-attr/1.0.4 \
+> +    crate://crates.io/proc-macro2/1.0.43 \
+> +    crate://crates.io/prost/0.8.0 \
+> +    crate://crates.io/prost-derive/0.8.0 \
+> +    crate://crates.io/protobuf/2.27.1 \
+> +    crate://crates.io/psa-crypto/0.10.0 \
+> +    crate://crates.io/psa-crypto-sys/0.10.0 \
+> +    crate://crates.io/quote/1.0.21 \
+> +    crate://crates.io/rand/0.8.5 \
+> +    crate://crates.io/rand_chacha/0.3.1 \
+> +    crate://crates.io/rand_core/0.6.3 \
+> +    crate://crates.io/redox_syscall/0.2.16 \
+> +    crate://crates.io/regex/1.6.0 \
+> +    crate://crates.io/regex-syntax/0.6.27 \
+> +    crate://crates.io/ring/0.16.20 \
+> +    crate://crates.io/rusqlite/0.28.0 \
+> +    crate://crates.io/rustc-hash/1.1.0 \
+> +    crate://crates.io/rustc_version/0.3.3 \
+> +    crate://crates.io/rusticata-macros/4.1.0 \
+> +    crate://crates.io/ryu/1.0.11 \
+> +    crate://crates.io/same-file/1.0.6 \
+> +    crate://crates.io/scopeguard/1.1.0 \
+> +    crate://crates.io/sd-notify/0.3.0 \
+> +    crate://crates.io/secrecy/0.7.0 \
+> +    crate://crates.io/semver/0.11.0 \
+> +    crate://crates.io/semver-parser/0.10.2 \
+> +    crate://crates.io/serde/1.0.144 \
+> +    crate://crates.io/serde_bytes/0.11.7 \
+> +    crate://crates.io/serde_derive/1.0.144 \
+> +    crate://crates.io/serde_json/1.0.85 \
+> +    crate://crates.io/shlex/0.1.1 \
+> +    crate://crates.io/shlex/1.1.0 \
+> +    crate://crates.io/signal-hook/0.3.14 \
+> +    crate://crates.io/signal-hook-registry/1.4.0 \
+> +    crate://crates.io/simple_asn1/0.6.2 \
+> +    crate://crates.io/slab/0.4.7 \
+> +    crate://crates.io/smallvec/1.9.0 \
+> +    crate://crates.io/spiffe/0.2.1 \
+> +    crate://crates.io/spin/0.5.2 \
+> +    crate://crates.io/spki/0.5.4 \
+> +    crate://crates.io/stable_deref_trait/1.2.0 \
+> +    crate://crates.io/strsim/0.8.0 \
+> +    crate://crates.io/structopt/0.3.26 \
+> +    crate://crates.io/structopt-derive/0.4.18 \
+> +    crate://crates.io/syn/1.0.99 \
+> +    crate://crates.io/synstructure/0.12.6 \
+> +    crate://crates.io/target-lexicon/0.12.4 \
+> +    crate://crates.io/termcolor/1.1.3 \
+> +    crate://crates.io/textwrap/0.11.0 \
+> +    crate://crates.io/thiserror/1.0.34 \
+> +    crate://crates.io/thiserror-impl/1.0.34 \
+> +    crate://crates.io/threadpool/1.8.1 \
+> +    crate://crates.io/time/0.1.44 \
+> +    crate://crates.io/time/0.3.14 \
+> +    crate://crates.io/time-macros/0.2.4 \
+> +    crate://crates.io/tinyvec/1.6.0 \
+> +    crate://crates.io/tinyvec_macros/0.1.0 \
+> +    crate://crates.io/toml/0.4.10 \
+> +    crate://crates.io/toml/0.5.9 \
+> +    crate://crates.io/tss-esapi/7.2.0 \
+> +    crate://crates.io/tss-esapi-sys/0.4.0 \
+> +    crate://crates.io/typenum/1.15.0 \
+> +    crate://crates.io/ucd-trie/0.1.5 \
+> +    crate://crates.io/unicode-bidi/0.3.8 \
+> +    crate://crates.io/unicode-ident/1.0.3 \
+> +    crate://crates.io/unicode-normalization/0.1.21 \
+> +    crate://crates.io/unicode-segmentation/1.9.0 \
+> +    crate://crates.io/unicode-width/0.1.9 \
+> +    crate://crates.io/unicode-xid/0.2.3 \
+> +    crate://crates.io/untrusted/0.7.1 \
+> +    crate://crates.io/url/2.2.2 \
+> +    crate://crates.io/users/0.11.0 \
+> +    crate://crates.io/uuid/0.8.2 \
+> +    crate://crates.io/vcpkg/0.2.15 \
+> +    crate://crates.io/vec_map/0.8.2 \
+> +    crate://crates.io/version_check/0.9.4 \
+> +    crate://crates.io/walkdir/2.3.2 \
+> +    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
+> +    crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1 \
+> +    crate://crates.io/wasm-bindgen/0.2.82 \
+> +    crate://crates.io/wasm-bindgen-backend/0.2.82 \
+> +    crate://crates.io/wasm-bindgen-macro/0.2.82 \
+> +    crate://crates.io/wasm-bindgen-macro-support/0.2.82 \
+> +    crate://crates.io/wasm-bindgen-shared/0.2.82 \
+> +    crate://crates.io/web-sys/0.3.59 \
+> +    crate://crates.io/which/4.3.0 \
+> +    crate://crates.io/winapi/0.3.9 \
+> +    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+> +    crate://crates.io/winapi-util/0.1.5 \
+> +    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+> +    crate://crates.io/x509-parser/0.13.2 \
+> +    crate://crates.io/yansi/0.5.1 \
+> +    crate://crates.io/yasna/0.4.0 \
+> +    crate://crates.io/zeroize/1.5.7 \
+> +    crate://crates.io/zeroize_derive/1.3.2 \
+> +"
+> diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.inc b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.inc
+> deleted file mode 100644
+> index c04bcbd..0000000
+> --- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.inc
+> +++ /dev/null
+> @@ -1,223 +0,0 @@
+> -# This file is created from parsec repository Cargo.lock using cargo-bitbake tool
+> -
+> -SRC_URI += " \
+> -    crate://crates.io/ahash/0.7.6 \
+> -    crate://crates.io/aho-corasick/0.7.19 \
+> -    crate://crates.io/ansi_term/0.12.1 \
+> -    crate://crates.io/anyhow/1.0.64 \
+> -    crate://crates.io/asn1-rs-derive/0.1.0 \
+> -    crate://crates.io/asn1-rs-impl/0.1.0 \
+> -    crate://crates.io/asn1-rs/0.3.1 \
+> -    crate://crates.io/atty/0.2.14 \
+> -    crate://crates.io/autocfg/1.1.0 \
+> -    crate://crates.io/base64/0.13.0 \
+> -    crate://crates.io/bincode/1.3.3 \
+> -    crate://crates.io/bindgen/0.57.0 \
+> -    crate://crates.io/bindgen/0.59.2 \
+> -    crate://crates.io/bitfield/0.13.2 \
+> -    crate://crates.io/bitflags/1.3.2 \
+> -    crate://crates.io/bumpalo/3.11.0 \
+> -    crate://crates.io/bytes/1.2.1 \
+> -    crate://crates.io/cc/1.0.73 \
+> -    crate://crates.io/cexpr/0.4.0 \
+> -    crate://crates.io/cexpr/0.6.0 \
+> -    crate://crates.io/cfg-if/1.0.0 \
+> -    crate://crates.io/clang-sys/1.3.3 \
+> -    crate://crates.io/clap/2.34.0 \
+> -    crate://crates.io/cmake/0.1.45 \
+> -    crate://crates.io/const-oid/0.7.1 \
+> -    crate://crates.io/cryptoauthlib-sys/0.2.2 \
+> -    crate://crates.io/cryptoki-sys/0.1.4 \
+> -    crate://crates.io/cryptoki/0.3.0 \
+> -    crate://crates.io/data-encoding/2.3.2 \
+> -    crate://crates.io/der-parser/7.0.0 \
+> -    crate://crates.io/der/0.5.1 \
+> -    crate://crates.io/derivative/2.2.0 \
+> -    crate://crates.io/displaydoc/0.2.3 \
+> -    crate://crates.io/either/1.8.0 \
+> -    crate://crates.io/enumflags2/0.7.5 \
+> -    crate://crates.io/enumflags2_derive/0.7.4 \
+> -    crate://crates.io/env_logger/0.8.4 \
+> -    crate://crates.io/env_logger/0.9.0 \
+> -    crate://crates.io/fallible-iterator/0.2.0 \
+> -    crate://crates.io/fallible-streaming-iterator/0.1.9 \
+> -    crate://crates.io/fastrand/1.8.0 \
+> -    crate://crates.io/fixedbitset/0.2.0 \
+> -    crate://crates.io/form_urlencoded/1.0.1 \
+> -    crate://crates.io/futures-channel/0.3.24 \
+> -    crate://crates.io/futures-core/0.3.24 \
+> -    crate://crates.io/futures-executor/0.3.24 \
+> -    crate://crates.io/futures-io/0.3.24 \
+> -    crate://crates.io/futures-macro/0.3.24 \
+> -    crate://crates.io/futures-sink/0.3.24 \
+> -    crate://crates.io/futures-task/0.3.24 \
+> -    crate://crates.io/futures-util/0.3.24 \
+> -    crate://crates.io/futures/0.3.24 \
+> -    crate://crates.io/generic-array/0.14.6 \
+> -    crate://crates.io/getrandom/0.2.7 \
+> -    crate://crates.io/glob/0.3.0 \
+> -    crate://crates.io/grpcio-sys/0.9.1+1.38.0 \
+> -    crate://crates.io/grpcio/0.9.1 \
+> -    crate://crates.io/hashbrown/0.11.2 \
+> -    crate://crates.io/hashlink/0.7.0 \
+> -    crate://crates.io/heck/0.3.3 \
+> -    crate://crates.io/hermit-abi/0.1.19 \
+> -    crate://crates.io/hex/0.4.3 \
+> -    crate://crates.io/hostname-validator/1.1.1 \
+> -    crate://crates.io/humantime/2.1.0 \
+> -    crate://crates.io/idna/0.2.3 \
+> -    crate://crates.io/indexmap/1.8.2 \
+> -    crate://crates.io/instant/0.1.12 \
+> -    crate://crates.io/itertools/0.10.3 \
+> -    crate://crates.io/itoa/1.0.3 \
+> -    crate://crates.io/js-sys/0.3.59 \
+> -    crate://crates.io/jsonwebkey/0.3.5 \
+> -    crate://crates.io/jsonwebtoken/8.1.1 \
+> -    crate://crates.io/lazy_static/1.4.0 \
+> -    crate://crates.io/lazycell/1.3.0 \
+> -    crate://crates.io/libc/0.2.132 \
+> -    crate://crates.io/libloading/0.7.3 \
+> -    crate://crates.io/libsqlite3-sys/0.23.2 \
+> -    crate://crates.io/libz-sys/1.1.8 \
+> -    crate://crates.io/lock_api/0.4.8 \
+> -    crate://crates.io/log/0.4.17 \
+> -    crate://crates.io/matches/0.1.9 \
+> -    crate://crates.io/mbox/0.6.0 \
+> -    crate://crates.io/memchr/2.5.0 \
+> -    crate://crates.io/minimal-lexical/0.2.1 \
+> -    crate://crates.io/multimap/0.8.3 \
+> -    crate://crates.io/nom/5.1.2 \
+> -    crate://crates.io/nom/7.1.1 \
+> -    crate://crates.io/num-bigint/0.4.3 \
+> -    crate://crates.io/num-complex/0.4.2 \
+> -    crate://crates.io/num-derive/0.3.3 \
+> -    crate://crates.io/num-integer/0.1.45 \
+> -    crate://crates.io/num-iter/0.1.43 \
+> -    crate://crates.io/num-rational/0.4.1 \
+> -    crate://crates.io/num-traits/0.2.15 \
+> -    crate://crates.io/num/0.4.0 \
+> -    crate://crates.io/num_cpus/1.13.1 \
+> -    crate://crates.io/num_threads/0.1.6 \
+> -    crate://crates.io/oid-registry/0.4.0 \
+> -    crate://crates.io/oid/0.2.1 \
+> -    crate://crates.io/once_cell/1.14.0 \
+> -    crate://crates.io/parking_lot/0.11.2 \
+> -    crate://crates.io/parking_lot_core/0.8.5 \
+> -    crate://crates.io/parsec-interface/0.27.0 \
+> -    crate://crates.io/peeking_take_while/0.1.2 \
+> -    crate://crates.io/pem/1.1.0 \
+> -    crate://crates.io/percent-encoding/2.1.0 \
+> -    crate://crates.io/pest/2.3.0 \
+> -    crate://crates.io/petgraph/0.5.1 \
+> -    crate://crates.io/picky-asn1-der/0.2.5 \
+> -    crate://crates.io/picky-asn1-x509/0.6.1 \
+> -    crate://crates.io/picky-asn1/0.3.3 \
+> -    crate://crates.io/pin-project-lite/0.2.9 \
+> -    crate://crates.io/pin-utils/0.1.0 \
+> -    crate://crates.io/pkcs8/0.8.0 \
+> -    crate://crates.io/pkg-config/0.3.25 \
+> -    crate://crates.io/ppv-lite86/0.2.16 \
+> -    crate://crates.io/proc-macro-error-attr/1.0.4 \
+> -    crate://crates.io/proc-macro-error/1.0.4 \
+> -    crate://crates.io/proc-macro2/1.0.43 \
+> -    crate://crates.io/prost-build/0.8.0 \
+> -    crate://crates.io/prost-derive/0.8.0 \
+> -    crate://crates.io/prost-types/0.8.0 \
+> -    crate://crates.io/prost/0.8.0 \
+> -    crate://crates.io/protobuf/2.27.1 \
+> -    crate://crates.io/psa-crypto-sys/0.9.3 \
+> -    crate://crates.io/psa-crypto/0.9.2 \
+> -    crate://crates.io/quote/1.0.21 \
+> -    crate://crates.io/rand/0.8.5 \
+> -    crate://crates.io/rand_chacha/0.3.1 \
+> -    crate://crates.io/rand_core/0.6.3 \
+> -    crate://crates.io/redox_syscall/0.2.16 \
+> -    crate://crates.io/regex-syntax/0.6.27 \
+> -    crate://crates.io/regex/1.6.0 \
+> -    crate://crates.io/remove_dir_all/0.5.3 \
+> -    crate://crates.io/ring/0.16.20 \
+> -    crate://crates.io/rusqlite/0.26.3 \
+> -    crate://crates.io/rust-cryptoauthlib/0.4.5 \
+> -    crate://crates.io/rustc-hash/1.1.0 \
+> -    crate://crates.io/rustc_version/0.3.3 \
+> -    crate://crates.io/rusticata-macros/4.1.0 \
+> -    crate://crates.io/ryu/1.0.11 \
+> -    crate://crates.io/same-file/1.0.6 \
+> -    crate://crates.io/scopeguard/1.1.0 \
+> -    crate://crates.io/sd-notify/0.2.0 \
+> -    crate://crates.io/secrecy/0.7.0 \
+> -    crate://crates.io/semver-parser/0.10.2 \
+> -    crate://crates.io/semver/0.11.0 \
+> -    crate://crates.io/serde/1.0.144 \
+> -    crate://crates.io/serde_bytes/0.11.7 \
+> -    crate://crates.io/serde_derive/1.0.144 \
+> -    crate://crates.io/serde_json/1.0.85 \
+> -    crate://crates.io/shlex/0.1.1 \
+> -    crate://crates.io/shlex/1.1.0 \
+> -    crate://crates.io/signal-hook-registry/1.4.0 \
+> -    crate://crates.io/signal-hook/0.3.14 \
+> -    crate://crates.io/simple_asn1/0.6.2 \
+> -    crate://crates.io/slab/0.4.7 \
+> -    crate://crates.io/smallvec/1.9.0 \
+> -    crate://crates.io/spiffe/0.2.1 \
+> -    crate://crates.io/spin/0.5.2 \
+> -    crate://crates.io/spki/0.5.4 \
+> -    crate://crates.io/stable_deref_trait/1.2.0 \
+> -    crate://crates.io/strsim/0.8.0 \
+> -    crate://crates.io/structopt-derive/0.4.18 \
+> -    crate://crates.io/structopt/0.3.26 \
+> -    crate://crates.io/strum_macros/0.21.1 \
+> -    crate://crates.io/syn/1.0.99 \
+> -    crate://crates.io/synstructure/0.12.6 \
+> -    crate://crates.io/target-lexicon/0.12.4 \
+> -    crate://crates.io/tempfile/3.3.0 \
+> -    crate://crates.io/termcolor/1.1.3 \
+> -    crate://crates.io/textwrap/0.11.0 \
+> -    crate://crates.io/thiserror-impl/1.0.33 \
+> -    crate://crates.io/thiserror/1.0.33 \
+> -    crate://crates.io/threadpool/1.8.1 \
+> -    crate://crates.io/time-macros/0.2.4 \
+> -    crate://crates.io/time/0.3.14 \
+> -    crate://crates.io/tinyvec/1.6.0 \
+> -    crate://crates.io/tinyvec_macros/0.1.0 \
+> -    crate://crates.io/toml/0.5.9 \
+> -    crate://crates.io/tss-esapi-sys/0.3.0 \
+> -    crate://crates.io/tss-esapi/7.1.0 \
+> -    crate://crates.io/typenum/1.15.0 \
+> -    crate://crates.io/ucd-trie/0.1.4 \
+> -    crate://crates.io/unicode-bidi/0.3.8 \
+> -    crate://crates.io/unicode-ident/1.0.3 \
+> -    crate://crates.io/unicode-normalization/0.1.21 \
+> -    crate://crates.io/unicode-segmentation/1.9.0 \
+> -    crate://crates.io/unicode-width/0.1.9 \
+> -    crate://crates.io/unicode-xid/0.2.3 \
+> -    crate://crates.io/untrusted/0.7.1 \
+> -    crate://crates.io/url/2.2.2 \
+> -    crate://crates.io/users/0.11.0 \
+> -    crate://crates.io/uuid/0.8.2 \
+> -    crate://crates.io/vcpkg/0.2.15 \
+> -    crate://crates.io/vec_map/0.8.2 \
+> -    crate://crates.io/version/3.0.0 \
+> -    crate://crates.io/version_check/0.9.4 \
+> -    crate://crates.io/walkdir/2.3.2 \
+> -    crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1 \
+> -    crate://crates.io/wasm-bindgen-backend/0.2.82 \
+> -    crate://crates.io/wasm-bindgen-macro-support/0.2.82 \
+> -    crate://crates.io/wasm-bindgen-macro/0.2.82 \
+> -    crate://crates.io/wasm-bindgen-shared/0.2.82 \
+> -    crate://crates.io/wasm-bindgen/0.2.82 \
+> -    crate://crates.io/web-sys/0.3.59 \
+> -    crate://crates.io/which/4.3.0 \
+> -    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+> -    crate://crates.io/winapi-util/0.1.5 \
+> -    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+> -    crate://crates.io/winapi/0.3.9 \
+> -    crate://crates.io/x509-parser/0.13.2 \
+> -    crate://crates.io/yasna/0.4.0 \
+> -    crate://crates.io/zeroize/1.5.7 \
+> -    crate://crates.io/zeroize_derive/1.3.2 \
+> -"
+> -
+> -LIC_FILES_CHKSUM = " \
+> -    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
+> -"
+> diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0-rc1.bb
+> similarity index 91%
+> rename from meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.bb
+> rename to meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0-rc1.bb
+> index 218b776..7dfd214 100644
+> --- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.bb
+> +++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0-rc1.bb
+> @@ -1,16 +1,22 @@
+>   SUMMARY = "Platform AbstRaction for SECurity Daemon"
+>   HOMEPAGE = "https://github.com/parallaxsecond/parsec"
+>   LICENSE = "Apache-2.0"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 >   
->   SRC_URI[md5sum] = "757bbb6f15409d8d075f4f06cb678d50"
+> -inherit cargo pkgconfig
+> -DEPENDS = "clang-native"
+> +inherit cargo pkgconfig cargo-update-recipe-crates
+>   
+> -SRC_URI += "crate://crates.io/parsec-service/${PV} \
+> +DEPENDS += "clang-native"
+> +
+> +SRC_URI += "git://github.com/parallaxsecond/parsec;protocol=https;branch=main \
+>               file://parsec_init \
+>               file://systemd.patch \
+>               file://parsec-tmpfiles.conf \
+>   "
+>   
+> +SRCREV = "f7eda9396eae530771b24b097b709d35d54e40c8"
+> +
+> +S = "${WORKDIR}/git"
+> +
+>   PACKAGECONFIG ??= "PKCS11 MBED-CRYPTO"
+>   have_TPM = "${@bb.utils.contains('DISTRO_FEATURES', 'tpm2', 'TPM', '', d)}"
+>   PACKAGECONFIG:append = " ${@bb.utils.contains('BBFILE_COLLECTIONS', 'tpm-layer', '${have_TPM}', '', d)}"
+> @@ -82,7 +88,7 @@ FILES:${PN} += " \
+>       ${sysconfdir}/init.d/parsec \
+>   "
+>   
+> -require parsec-service_${PV}.inc
+> +require parsec-service-crates.inc
+>   
+>   # The QA check has been temporarily disabled. An issue has been created
+>   # upstream to fix this.
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#59495): https://lists.yoctoproject.org/g/yocto/message/59495
+> Mute This Topic: https://lists.yoctoproject.org/mt/97796264/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 
