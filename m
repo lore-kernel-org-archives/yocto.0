@@ -1,67 +1,56 @@
-Return-Path: <anton.antonov@arm.com>
+Return-Path: <hrsourabh011@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED0B9C7619A
-	for <webhook@archiver.kernel.org>; Mon, 27 Mar 2023 13:51:09 +0000 (UTC)
-Subject: Re: [meta-security][PATCH v3] parsec-service: update from 1.1.0 to 1.2.0-rc1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC966C76195
+	for <webhook@archiver.kernel.org>; Mon, 27 Mar 2023 16:36:20 +0000 (UTC)
+Subject: How to add missing ca-certificates to truststore in older version of yocto?
 To: yocto@lists.yoctoproject.org
-From: "Anton Antonov" <anton.antonov@arm.com>
-X-Originating-Location: Cambridge, England, GB (86.26.33.70)
-X-Originating-Platform: Mac Firefox 111
+From: "Sourabh Hegde" <hrsourabh011@gmail.com>
+X-Originating-Location: Munich, Bavaria, DE (95.91.248.160)
+X-Originating-Platform: Windows Chrome 107
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 27 Mar 2023 06:51:08 -0700
-References: <20230327061607.517383-1-mikko.rapeli@linaro.org>
-In-Reply-To: <20230327061607.517383-1-mikko.rapeli@linaro.org>
-Message-ID: <32718.1679925068535675649@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="bdrupkRQ8NxWukAg3mVS"
+Date: Mon, 27 Mar 2023 09:36:13 -0700
+Message-ID: <MWCT.1679934973535004564.JPB2@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WVFmXbX7HPqZXNoT6Ejf"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 Mar 2023 13:51:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59528
+ <yocto@lists.yoctoproject.org>; Mon, 27 Mar 2023 16:36:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59529
 
---bdrupkRQ8NxWukAg3mVS
+--WVFmXbX7HPqZXNoT6Ejf
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 26, 2023 at 11:16 PM, Mikko Rapeli wrote:
+Hello,
 
->=20
-> ...ce_1.1.0.inc =3D> parsec-service-crates.inc} | 239 +++++++++---------
-> ...e_1.1.0.bb =3D> parsec-service_1.2.0-rc1.bb} | 14 +-
-> 2 files changed, 134 insertions(+), 119 deletions(-)
-> rename meta-parsec/recipes-parsec/parsec-service/{parsec-service_1.1.0.in=
-c
-> =3D> parsec-service-crates.inc} (50%)
-> rename meta-parsec/recipes-parsec/parsec-service/{parsec-service_1.1.0.bb
-> =3D> parsec-service_1.2.0-rc1.bb} (91%)
->=20
-> v3: change to gitsm fetcher
+i am working with "Morty" release of yocto. Due to organizational reasons w=
+e still have to use "Morty" but will be upgraded soon.
+But, there are some certificates missing in the OpenSSL truststore. Now, I =
+would like to add them to the image during build. Certificates are mainly f=
+or Amazon services (Amazon_Root_CAs). I beleive this can be done with ca-ce=
+rtificates_%.bbappend. I would like to know how will the .crt files be conv=
+erted to .pem format and also how will ca-certficates.crt file will be upda=
+ted in /etc/ssl/certs/ dir? The recipe is=C2=A0http://cgit.openembedded.org=
+/openembedded-core/tree/meta/recipes-support/ca-certificates/ca-certificate=
+s_20160104.bb?h=3Dmorty
 
-Ack, although this recipe will be replaced with 1.2.0 release version in a =
-week of two.
-
-Cheers,
-Anton
-
---bdrupkRQ8NxWukAg3mVS
+--WVFmXbX7HPqZXNoT6Ejf
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 26, 2023 at 11:16 PM, Mikko Rapeli wrote:<br />
-<blockquote>...ce_1.1.0.inc =3D&gt; parsec-service-crates.inc} | 239 ++++++=
-+++---------<br />...e_1.1.0.bb =3D&gt; parsec-service_1.2.0-rc1.bb} | 14 +=
--<br />2 files changed, 134 insertions(+), 119 deletions(-)<br />rename met=
-a-parsec/recipes-parsec/parsec-service/{parsec-service_1.1.0.inc =3D&gt; pa=
-rsec-service-crates.inc} (50%)<br />rename meta-parsec/recipes-parsec/parse=
-c-service/{parsec-service_1.1.0.bb =3D&gt; parsec-service_1.2.0-rc1.bb} (91=
-%)<br /><br />v3: change to gitsm fetcher</blockquote>
-<p>Ack, although this recipe will be replaced with 1.2.0 release version in=
- a week of two.</p>
-<p>&nbsp;</p>
-<p>Cheers,<br />Anton</p>
+Hello,<br /><br />i am working with "Morty" release of yocto. Due to organi=
+zational reasons we still have to use "Morty" but will be upgraded soon.<br=
+ />But, there are some certificates missing in the OpenSSL truststore. Now,=
+ I would like to add them to the image during build. Certificates are mainl=
+y for Amazon services (Amazon_Root_CAs). I beleive this can be done with ca=
+-certificates_%.bbappend. I would like to know how will the .crt files be c=
+onverted to .pem format and also how will ca-certficates.crt file will be u=
+pdated in /etc/ssl/certs/ dir? The recipe is&nbsp;http://cgit.openembedded.=
+org/openembedded-core/tree/meta/recipes-support/ca-certificates/ca-certific=
+ates_20160104.bb?h=3Dmorty
 
---bdrupkRQ8NxWukAg3mVS--
+--WVFmXbX7HPqZXNoT6Ejf--
 
