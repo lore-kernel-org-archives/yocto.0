@@ -1,222 +1,216 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <sakib.sajal@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62C39C6FD1D
-	for <webhook@archiver.kernel.org>; Thu, 30 Mar 2023 15:14:12 +0000 (UTC)
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
- by mx.groups.io with SMTP id smtpd.web11.28213.1680189249199770585
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 20920C6FD1D
+	for <webhook@archiver.kernel.org>; Thu, 30 Mar 2023 18:02:03 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web10.32931.1680199320366737827
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Mar 2023 08:14:09 -0700
+ Thu, 30 Mar 2023 11:02:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=HE9wOObG;
- spf=pass (domain: gmail.com, ip: 209.85.166.47, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-io1-f47.google.com with SMTP id x3so909496iov.3
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Mar 2023 08:14:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680189248;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=205KrjBPrwcIOWdQBaD8NOALeQgg2JMTSxfei7E781I=;
-        b=HE9wOObGcD5JRaBc/+ZX6sHHEmrGpJDORbeI/eLdQGT3KDuQnO7qI39ssNLebyXxvy
-         /73QTE8mUjF1oe5POfb6hbooIHbHB3sBnxJzISf3r8xmml+sZDtSxgQUW7SYcBsUqix/
-         clJZR8S4QUIAxdE+Sp0wXBNMeQY15y+D8/m76ntq7ZhoR/yyCxQAhLeSYeuc19BDEACe
-         rcxd/QqZj8uLLjkimsC01S3UdvkJjNt84uAXhTZSm8UGF1mM7V0C0o6mSrD2s8lx05m2
-         oP5M3J0WBbvB00G2tVbVJ+kHMQr57lAFlaz143GycDUw20VqTwsOHVgS+XRVWopJuLGC
-         LPNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680189248;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=205KrjBPrwcIOWdQBaD8NOALeQgg2JMTSxfei7E781I=;
-        b=FTZrvyH5jLNPBACsAD/JPI0wxOFZaaptxd1knuzYWCobMMC1YJnL14MZ4hffTCbV51
-         KvI6jwD0vPuBPivEwS8mSZF0yRI04JwOdB+ljZ8yI37rGCan8iaRyG9d91NWOpOeS+c6
-         cDM5AUShFndqWymcjPJiyCNSylxVvXpj6Z1mybWD/T210gSXyU51Zp8ndyo8/wfO9IBe
-         TNaK7SjcaJ1zS8X4juSt9vwbf+JjTPWwQioP4SC620zQYU3P1a7CFHqRcsK4M54M87/M
-         6Tib+HF/VtKDuFWe4/TQ8UeLkrcbMDUTKxP7akvOl8VKsPLHPFejaeiwEKZb/MuySZkE
-         RtVw==
-X-Gm-Message-State: AO0yUKWVLH8F15CTjpyCC0XH9mNJmAOY5PWzVsr8Ej0oECK/zZ2uWbEL
-	8/hs7eqVXz8nDlrtv9x85GpmGDNOsIceWavZYOQ=
-X-Google-Smtp-Source: AK7set9+sf0S+EVQ4iKTgnkDCe4p92PltrYLOPkxdzG7FKKngiy51W1i8G3B1ErGZavYyWwXKa4gm/GoK+ugIvJARB8=
-X-Received: by 2002:a5e:c810:0:b0:74c:bb62:6763 with SMTP id
- y16-20020a5ec810000000b0074cbb626763mr8879554iol.1.1680189248350; Thu, 30 Mar
- 2023 08:14:08 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@windriver.com header.s=pps06212021 header.b=dCKRQqgA;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=34532ef2cb=sakib.sajal@windriver.com)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32UHwd6w026379;
+	Thu, 30 Mar 2023 11:01:43 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=content-type :
+ message-id : date : from : subject : to : cc : mime-version;
+ s=PPS06212021; bh=EKU/UeTUCM2m2KdyPDa/pCtPE1MIDIkSUTF7TNo5LyM=;
+ b=dCKRQqgAYX+mmTQ8yZyLrLZit+6wTfVMRTdP1B9jq7068/lhWXh+FfiQOmjGBmuFygL1
+ uxo+0xtycHNwoQz+CSCcTkwW4j1mll8iEmWc0/XVQhXHcRL6HbUD9mepLlRqMJBqebRe
+ sJtJy/cCnOXV/y6vYBOH+/u7YsWLbmXEvrQlTEteJAOUS9xoGxMGHB4r6yJI/ONGugBB
+ 58Nd1ShVOSQ44sYbPtCqtZlLc+HwrsqCUP3n4TebUEZLyBT+QExAvw3nyt5Fakqysc87
+ M+tFJnAfq4orb3NntpdgAEbzVQ0q11cUKXQ95ImdHAe5snUtsU1GE+I6NKFT/kZ+xOeJ Zw== 
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2102.outbound.protection.outlook.com [104.47.55.102])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3phv85xhan-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Mar 2023 11:01:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FRCSao5NZ2YPxFmdInyRi23RCNye5fsJObUTJhP2EPFyVWyrwCQMqF/aUI3PFzsqagscIGTnRUz5i6atAUgvmasC4rAQGRiHrHjpmPHurreFDmSxvSMaJ8dy4yhAfthHtE43mTluLm92+m4zQW9neiOrHrx31BQccZtFWWaAaWtrzr0mUaxCaYYLcu9D/3ojv0QQvtatwlfTHmrs7uplRTCZGrLsV+9CnkIPOKH+5gqGHj7YbDEWtrtoMTuHPfHltcg0864nxlNNC4rFYCzQyYBANhd3akvJdxecWDYvEllKcGnw06kx3d7iAav1Vg8xFk5iyej/OT/8AcL2wNML7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EKU/UeTUCM2m2KdyPDa/pCtPE1MIDIkSUTF7TNo5LyM=;
+ b=i7MUfSBcWY/MnU69IHU04qtKbcce2MPqOwCCpFD77sGApt95zC065hxngXa+UKpC7HG/mgoGynJILywl7cj27K16ReZzNNmLlmKVxQZTnozznaxOnrOt/nxYINbhFcFtfqbkj+fI5/bu/XCM/Pfxyk7PUP3Oiwe83yIyu7ZdIAyGtnREkD81/0uBt1FCnbn7HS5VqJ2CnYvEh9sC4+OmPbeTO+b3N2iqjuzXPgJwWOoE8n3aTT0V0EsUJVDqfHWq7apjWTWrypGipOTZFtfzfXTPjPxzZmJQ/21awXKxqSF93AdzoZs5iWfK315m0Jdh4Cyq4ySMCh1wvrGwNYfykQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com (2603:10b6:5:be::20) by
+ PH0PR11MB7469.namprd11.prod.outlook.com (2603:10b6:510:286::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6222.33; Thu, 30 Mar 2023 18:01:40 +0000
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::4f46:b639:f638:d5f7]) by DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::4f46:b639:f638:d5f7%5]) with mapi id 15.20.6222.035; Thu, 30 Mar 2023
+ 18:01:40 +0000
+Content-Type: multipart/alternative;
+ boundary="------------Z841yAT9fiJznOHc5ImjVuFH"
+Message-ID: <a932c200-d5ad-ac7c-ff7d-9ef251354fc0@windriver.com>
+Date: Thu, 30 Mar 2023 14:01:35 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From: Sakib Sajal <sakib.sajal@windriver.com>
+Subject: [yocto] Minutes: Yocto Project Weekly Triage Meeting 23/03/2023
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: alexandre.belloni@bootlin.com, Bruce Ashfield <bruce.ashfield@gmail.com>,
+        daiane.angolini@foundries.io,
+        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
+        luca.ceresoli@bootlin.com, Pavel Zhukov <pavel.zhukov@huawei.com>,
+        Randy MacLeod <randy.macleod@windriver.com>,
+        Richard Purdie <richard.purdie@linuxfoundation.org>,
+        Khem Raj <raj.khem@gmail.com>, ross@burtonini.com,
+        Saul Wold <Saul.Wold@windriver.com>,
+        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+        Steve Sakoman <steve@sakoman.com>, tim.orling@konsulko.com,
+        sakib.sajal@windriver.com, akuster808 <akuster808@gmail.com>,
+        valery.chernous@gmail.com, Zheng Qiu <zheng.qiu@windriver.com>,
+        pavel@zhukoff.net
+Content-Language: en-US
+X-ClientProxiedBy: MN2PR06CA0011.namprd06.prod.outlook.com
+ (2603:10b6:208:23d::16) To DM6PR11MB2538.namprd11.prod.outlook.com
+ (2603:10b6:5:be::20)
 MIME-Version: 1.0
-References: <CANPvuRmPDaqPUDK+Qn-iMQ7i=gqz_Jgz6rMef4o0Yj4+0u518g@mail.gmail.com>
- <CANNYZj9VGZ+-m77Brq=1jCt_+LyyUbadx6+WopzyVa-ED4Ft7A@mail.gmail.com>
- <4275a1007b94c03891f304db0b9926620fe52457.camel@gmail.com>
- <CANNYZj-m6UdUunpRQES7jmMtTKat-uhuv7-gnAh_7UwKMf5eVQ@mail.gmail.com> <CANPvuRk7AFx9cOXkYjmaTop9Z=tintcnZ+Nwx5CMkFWf1HLE2Q@mail.gmail.com>
-In-Reply-To: <CANPvuRk7AFx9cOXkYjmaTop9Z=tintcnZ+Nwx5CMkFWf1HLE2Q@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Thu, 30 Mar 2023 11:14:26 -0400
-Message-ID: <CADkTA4NKawaY7GC7hbPy4K-1yTMt6bxtUq7MdYHdoEPpw5XJOQ@mail.gmail.com>
-Subject: Re: [RFC][yocto][meta-lts-mixins][kirkstone/go] Backport golang from
- master to kirkstone
-To: Jose Quaresma <quaresma.jose@gmail.com>
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>, adrian.freihofer@gmail.com, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, Jose Quaresma <jose.quaresma@foundries.io>, 
-	Ricardo Salveti <ricardo@foundries.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2538:EE_|PH0PR11MB7469:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1e238e20-34e6-4590-5594-08db3148cfb2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	S5bKRXPI4xyeaOCluVMES2hd6UZeetCBRitiI+HT9y+FV2Z6UqlrnI/eZsnHwELZ7i3KnEHsAm0dA8A8hTp9YxduEtr/c1io66s6XouUYDQSTRblvq6XD6SF6RuC1Dxu1IKA+1HbW70237IpZKRm2MsXdHezrefQ0UXqTmAEf50vbH76ijJlK9tTzTbeORx4+32TXvXfWai3Mo8uS479NuNVeSB+QdDOyFFSjKVsGIhtU7LJHPk9/IFN1JG0V5PqCWJERSfm686ThrW3z+FHfcpiFmXpmwm3clMqZGYwdDKskG3KNVKBwtMqa0TBIKJWZVNYZUZC/ElonjgzhNkhpXUhu30l7d0bOdzCrpwK36fK5bZLps0S58YM2zaplZ6L1IxLiBKDmbDcPCNVIt4+JvVoqOnK+spjvQjOL+3tpQ/U7451Cd0Di2oDNWYMrW120V5IDRTtKOdxDQKxJtnzvvvwUoUByjktwx15TBiUp4UzTcxsSkkHKgzCMxWLODCLiFF1kQu2S/gKsPtZ2r1K3e/yfmdKGF+GQrHP7AZFxD2lTw5ceEndgMNwgNwK4yrImu7mtll5sI08/pCG5CSqD1XtCWhwoJRVhD+YC1zbzIX1F7mgtjY4UcROQg5Sjg3wj7G6YnwYlcZalIFFL+39mA==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2538.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39850400004)(366004)(376002)(346002)(136003)(396003)(451199021)(44832011)(2906002)(38100700002)(4326008)(7416002)(31696002)(86362001)(36756003)(166002)(41300700001)(8936002)(5660300002)(6916009)(6512007)(31686004)(316002)(478600001)(54906003)(6486002)(6666004)(966005)(6506007)(26005)(66476007)(186003)(8676002)(33964004)(2616005)(66946007)(66556008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?M3QzeXFVTW1WU21QaE13SnZmZCtaUkExTDl1bjEzZ0lnL0FNNTI1ejM2d3I0?=
+ =?utf-8?B?MThGSkw0TnFDa2tsanQzbitPaWMwU0ozdkxRbHlIcGlNRnNtZTVJNnAzbUFG?=
+ =?utf-8?B?Y1JNTFI2aGE3YkFhUVNrM2l5MmcxUkxRVDhyZXJDMzdZa1hGT1ExTUdJbTh1?=
+ =?utf-8?B?aGJoeTN2MVh2Z1BHYU5XVHNXd3lZMjNqSUQ3QnBFUjdaeDFtRVlna2pFRzRu?=
+ =?utf-8?B?N0EreTA3RE04U2Z3ZmtiaVpJNWhRWGJrWnNhSjVKZ01lRlVSTXVHUWJHak1P?=
+ =?utf-8?B?cXFlMDdKNjZCSEd2MzRBbkUwSHZUbGFJUm9xNllaU3lVdEp5SkY5Z1RYVzRR?=
+ =?utf-8?B?OXErekNXQ3k3anNnMlBiYmtQVkR0czZiRHFIQ2RqTkd2dkErS3JYTTRsRUcv?=
+ =?utf-8?B?MGNweHhFK0Z2MnV0emNXQldpM1MwakZpOGI4UVoyZnRrcDNLSm9GWWcvanNi?=
+ =?utf-8?B?M1ZSN3JlbFpvem11QU0rcjRtYnh5VjhZb3RVZXkzdzhvc2xDbk9iQ3JjOGc5?=
+ =?utf-8?B?cms1eG5WaEdxNk5hR2R4QnBQcGRqQjY2ZXMvbUFSMHQ2Y2x6S1pPYjl4aFRz?=
+ =?utf-8?B?WW96d1lKV2VQdmZLVlhnc0w2aEZETSsrRGxjTFBwMll6aUVQVVRPRkQyYmRn?=
+ =?utf-8?B?dXFlcVZVTGlkQzFLQjlqK0FpZ3prSmcxUkJHWWJPMXJIbXYra0VlQmRFOUla?=
+ =?utf-8?B?REhya24xamFQaVVmaHBSK01kS2FnVXUybEdhckxUTVg2YWFHNm1jK1o5MG04?=
+ =?utf-8?B?ZFhWaFVOd0RsMitMSXZGZTNIWlNMTlFxRDJqMm5qV0NvYUQxLzF1UTFpczRi?=
+ =?utf-8?B?TEFjZFJuYU9UUDRZWmdKTjNoNFFRL1BlUW9CL2U2bzRpMHFwT3RCc2NvODlD?=
+ =?utf-8?B?N3NzZnQ0eDhrb2FWMWY5S2RJQys2SWx0RDRaVXRoUDQ4Z005TUlXOGsrUmFL?=
+ =?utf-8?B?VFBxVjNYYXFnMm5Mdld1bTdOUG5pU1phY0NCVjNRYVFRMUN1SkYwWUl6RFBR?=
+ =?utf-8?B?WEpkazVNOGQzT0twTTA3eGtMRWVGUk5NSXp1TnFjVW9CYmI4Rmh3NHBmSEp0?=
+ =?utf-8?B?clp5T0RrM0UyTzM1bElOaHNUc2tDYi9zL0J1bkRpVWdKaFhtM3pIUjZsclEx?=
+ =?utf-8?B?UjJkS0dzUGhGYWhQUUFqOVBjTm1oQ0hVQ3NYK3VCNjR2RjNQQVNsSEwwU0x1?=
+ =?utf-8?B?M1Zab3hMdUg4MjlpOU5icDJYaWlMN3FYeE1qQWpNVFpSdlFBSG9RMWtXR3Ey?=
+ =?utf-8?B?M3E0aVMvZUNQU2dYdzF5c2RDMUhUMU9uWS9CK2luRldmVzJ0Q2VWdzBYd2dv?=
+ =?utf-8?B?clBvQlRkVkxqTTM0Zk9GWDFLR093azd6MDZHZ1lzQ2pzSDgxTlMyaU0zTEZI?=
+ =?utf-8?B?TG9wd0Q2V2FBblFhb1lsYVcyRXoyM3RTa2gwd251Tmc2UENjTEtISEgvekpH?=
+ =?utf-8?B?a01QYVVmSXJvcDhKVmFuaCtCdU9tak1yNGRtSG5OMDNod1FiUE0wNkJ0RWxC?=
+ =?utf-8?B?ekVpNGRhSzlrcXQ1ek9OYU5aS0JwN0hWWEpod0c0WWMrL1BoZUY5L2MrUVFk?=
+ =?utf-8?B?THdRb2ZueFZMWDRtVE1aL29ndFp2TytlWTJ2SlBZTTRnNDlmZnRmWlZONGNR?=
+ =?utf-8?B?VkIrV2NnT2tVaVBRc3AwdUI0MHViYnVoSVA5ZTROa3JIOHVSWCtQUTBXeVNE?=
+ =?utf-8?B?S2NrYXNhUlJJdUdmMHF6SUJ0ejVjYUV1Smw0b2NLWUpWdHBYYS9nOWVyblBG?=
+ =?utf-8?B?VXc1bE92bzNIUEJJRzhzbnl2UVlhemJkOTZIRXhqeUJka3QrS0pGU3JvSHpJ?=
+ =?utf-8?B?VTREZEdURmNrVzA1T0Iyb2RtZXlCTkVtc2Y0NVJyK0xUYitiWFZWb05Kb1oz?=
+ =?utf-8?B?TU5EMTdMMHNQdVVsQnAvd00zbTh5aFlxMGNYU0RtNnErZVpseTRkUENPZ3Nv?=
+ =?utf-8?B?RS9CTGZucjRiTzlyditqanFZOERSdjg3OENGUmh5ZytQVWlVTkF1aVJNYnZz?=
+ =?utf-8?B?UTYyYjRoR0hPbTdHM3p4M2kydk1EQkVhWVFhSFhRTGVCR3lPWEdhSDFmNlkw?=
+ =?utf-8?B?bGRwa0lMMjVxQVFxaU80VjJWa1JnSFpqMGtYMVNDRzhRUGJpSkU3THhIVER4?=
+ =?utf-8?B?UGVIQlB5RFdFQXA1OWxxVjBYYVV5c0NEdzdTekNzS2RNQU9QYmdybHN6Z0Z2?=
+ =?utf-8?B?Unc9PQ==?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e238e20-34e6-4590-5594-08db3148cfb2
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2538.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 18:01:39.7417
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f5rfuHHRMmoxvy8rX+OcoROQaQtfGlEwj57uMMhhUQ0y3Q6+RZnTMZ61O7cvjVgrIh56sNFwDzGpjzTYxzUvjQT3vJghBR0emDQ92wIvAz8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7469
+X-Proofpoint-GUID: 2gyZ8RREwSURxQ9NcyA7HTWtgyMrVxYk
+X-Proofpoint-ORIG-GUID: 2gyZ8RREwSURxQ9NcyA7HTWtgyMrVxYk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-30_11,2023-03-30_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ adultscore=0 clxscore=1011 mlxlogscore=793 bulkscore=0 spamscore=0
+ impostorscore=0 phishscore=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2303300142
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 30 Mar 2023 15:14:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59552
+ <yocto@lists.yoctoproject.org>; Thu, 30 Mar 2023 18:02:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59553
 
-On Thu, Mar 30, 2023 at 10:41=E2=80=AFAM Jose Quaresma <quaresma.jose@gmail=
-.com> wrote:
->
-> Hi,
->
-> I already did some tests using the meta-virt master branch with
-> the oe-core kirkstone and this version of the meta-lts-mixins.
-> Our stack on meta-virt is not very big but what I tested looks good.
->
-> On meta-virt I only need to add kirk compatibility:
-> LAYERSERIES_COMPAT_virtualization-layer +=3D "kirkstone"
->
-> On meta-lts-mixins I need to change the meta-virt busybox oe-core tracked=
- version:
-> PV:pn-busybox-initrd =3D "1.35.0"
->
-> But maybe I need to test this with a large set of recipes in the meta-vir=
-t master branch.
-> I will add Bruce and I take the opportunity to ask him what he thinks of =
-this approach?
->
+--------------Z841yAT9fiJznOHc5ImjVuFH
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 32UHwd6w026379
 
-I'm not sure I follow which approach you are referring to ?
+*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-Tweaking the busybox-initrd and adding your own compatibility tag to
-the meta-virt branch you are matching (in this case master) ?
+*Attendees: *Richard Purdie, Steve Sakoman, Stephen Jolley, Randy=20
+Macleod, Joshua Watt, Ross Burton, Alexandre Belloni,=C2=A0 Tim Orling, B=
+ruce=20
+Ashfield, Michael Opdenacker, Michael Halstead
 
-If it works, I don't see any issues with it. I wouldn't carry such a
-layerseries_compat update in the layer itself, since additional layers
-are required to make it work.
+*ARs:**
+*
 
-I'm also still willing to carry multiple versions of recipes in
-maintained release branches (and set the preferred version to be the
-existing recipe), if we need to get a newer version of a recipe in a
-release branch to match both security and golang requirements.
+*Notes:
+*
+*
+*
 
-Bruce
+*Medium+ 4.2 Unassigned Enhancements/Bugs:* 59 (Last week 59)
 
-> Jose
->
->
-> Alexander Kanavin <alex.kanavin@gmail.com> escreveu no dia quinta, 30/03/=
-2023 =C3=A0(s) 14:42:
->>
->> That may require an unknown amount of fixing in the recipes and
->> classes. Existing code is not designed for co-existing with a
->> different version of itself, and so everything needs to be versioned
->> and cleanly separated. But in theory it's possible.
->>
->> Alex
->>
->> On Thu, 30 Mar 2023 at 15:15, <adrian.freihofer@gmail.com> wrote:
->> >
->> > Hi Alex, hi Jos=C3=A9
->> >
->> > The meta-lts-mixin layers for dunfell have a major disadvantage:
->> > Replacing the go tool-chain breaks more or less all recipes from meta-
->> > virtualization and potentially other layers.
->> >
->> > I think with go it should be possible to have a meta-lts-mixin layer
->> > which adds support for additional go versions instead of overriding th=
-e
->> > version provided by poky. That would potentially allow to use poky on
->> > the kirkstone branch and meta-virtualization on a newer branch on the
->> > long run.
->> >
->> > Would it be possible to add e.g. a copy of the go.bbclass as well as
->> > the go recipes from a recent poky version in a way it does not overrid=
-e
->> > the go stack provided by poky?
->> > As an example: Would it be possible to add a go1-19.bbclass to the
->> > meta-meta-lts-mixin layer? This would allow to add also a newer Docker
->> > recipe which inherits go1-19 instead of just go to the meta-lts-mixin
->> > layers without breaking anything from poky or meta-virtualization.
->> >
->> > I already tried to share my thoughts here:
->> > https://lists.openembedded.org/g/openembedded-core/message/178146?p=3D=
-%2C%2C%2C20%2C0%2C0%2C0%3A%3Acreated%2C0%2Cgolang%2C20%2C2%2C0%2C97444547
->> >
->> > Best regards,
->> > Adrian
->> >
->> >
->> > On Thu, 2023-03-30 at 12:08 +0200, Alexander Kanavin wrote:
->> > > I think I pushed the work directly to the respecitve branches in
->> > > meta-lts-mixins. I'd suggest you send the patches here, and we'll
->> > > sort
->> > > out the technicalities (I can publish the branch on
->> > > git.yoctoproject.org, or maybe you'll be able to push directly as
->> > > well, provided you also send the patches here). There's no
->> > > autobuilder
->> > > testing; for mixin items the contributors are trusted :)
->> > >
->> > > Alex
->> > >
->> > >
->> > > On Thu, 30 Mar 2023 at 11:20, Jose Quaresma <quaresma.jose@gmail.com=
->
->> > > wrote:
->> > > >
->> > > > Hi,
->> > > >
->> > > > The golang version in kirkstone is the 1.17 and because of this is
->> > > > not possible to use some recent version of other projects like
->> > > > docker that requires a more recent version of the language.
->> > > >
->> > > > I have a kirkstone branch [1] available at Foundries.io with the
->> > > > golang backported from the oe-core master that I liked to submit t=
-o
->> > > > the meta-lts-mixins [2].
->> > > > Alex is the maintainer of the dunfell golang backport and this
->> > > > kirkstone branch is based on that version.
->> > > >
->> > > > Would that be interesting for the project? How should I proceed?
->> > > >
->> > > > [1]
->> > > > https://github.com/foundriesio/meta-lts-mixins/tree/kirkstone/go
->> > > > [2] https://git.yoctoproject.org/meta-lts-mixins
->> > > >
->> > > > Jose
->> > > >
->> > > > --
->> > > > Best regards,
->> > > >
->> > > > Jos=C3=A9 Quaresma
->> > >
->> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> > > Links: You receive all messages sent to this group.
->> > > View/Reply Online (#59547):
->> > > https://lists.yoctoproject.org/g/yocto/message/59547
->> > > Mute This Topic: https://lists.yoctoproject.org/mt/97946990/4454582
->> > > Group Owner: yocto+owner@lists.yoctoproject.org
->> > > Unsubscribe:
->> > > https://lists.yoctoproject.org/g/yocto/unsub [adrian.freihofer@gmail=
-.com
->> > > ]
->> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> > >
->> >
->
->
->
-> --
-> Best regards,
->
-> Jos=C3=A9 Quaresma
+*Medium+ 4.3 Unassigned Enhancements/Bugs: *13 (Last week 11)
 
+*Medium+ 4.99 Unassigned Enhancements/Bugs: *44**(Last week 44)
 
+*AB Bugs: *71 (Last week 70)
+--------------Z841yAT9fiJznOHc5ImjVuFH
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://urldefense.com/v3/__https://wiki.yoctoproject.org/wiki/Bug_Triage__;!!AjveYdw8EvQ!cAjVArCgL_RlaRXuscB-7FXNeNbEpNLXV5wf6cuuQ5AJ_finBsyqaqIWAMBAw_THa9F-SJpSJTfbDp4zK8Q6ydo_qduobM6c$" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
+      <p><b>Attendees: </b>Richard Purdie, Steve Sakoman, Stephen
+        Jolley, Randy Macleod, Joshua Watt, Ross Burton, Alexandre
+        Belloni,&nbsp; Tim Orling, Bruce Ashfield, Michael Opdenacker,
+        Michael Halstead<br>
+      </p>
+      <p><b>ARs:</b><b><br>
+        </b></p>
+    </div>
+    <span class="moz-txt-link-freetext"></span>
+    <div class="moz-text-html" lang="x-unicode"><b>Notes: <br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode"><b><br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Medium+ 4.2 Unassigned Enhancements/Bugs:</b> 59 (Last week
+        59) <br>
+      </p>
+      <p><b>Medium+ 4.3 Unassigned Enhancements/Bugs: </b>13 (Last week
+        11) </p>
+      <b>Medium+ 4.99 Unassigned Enhancements/Bugs: </b>44<b> </b>(Last
+      week 44)<br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <b>AB Bugs: </b>71 (Last week 70)
+  </body>
+</html>
+
+--------------Z841yAT9fiJznOHc5ImjVuFH--
 
