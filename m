@@ -1,154 +1,109 @@
-Return-Path: <morten.bruun@apide.com>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 185F6C6FD18
-	for <webhook@archiver.kernel.org>; Wed, 29 Mar 2023 14:39:46 +0000 (UTC)
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
- by mx.groups.io with SMTP id smtpd.web11.26423.1680100781195624151
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CEC3BC761A6
+	for <webhook@archiver.kernel.org>; Thu, 30 Mar 2023 09:20:40 +0000 (UTC)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+ by mx.groups.io with SMTP id smtpd.web10.20821.1680168039446215154
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Mar 2023 07:39:41 -0700
+ Thu, 30 Mar 2023 02:20:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@apide.com header.s=google header.b=WIe75EPb;
- spf=pass (domain: apide.com, ip: 209.85.166.42, mailfrom: morten.bruun@apide.com)
-Received: by mail-io1-f42.google.com with SMTP id d14so6909949ion.9
-        for <yocto@lists.yoctoproject.org>; Wed, 29 Mar 2023 07:39:40 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20210112 header.b=VlKBCZIZ;
+ spf=pass (domain: gmail.com, ip: 209.85.217.45, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-vs1-f45.google.com with SMTP id h15so15734641vsh.0
+        for <yocto@lists.yoctoproject.org>; Thu, 30 Mar 2023 02:20:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=apide.com; s=google; t=1680100780; x=1682692780;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+        d=gmail.com; s=20210112; t=1680168038; x=1682760038;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=sl6xYQ4qvACc3W56UzYTuEeOw1tkZJD97dR99Vg5XuM=;
-        b=WIe75EPbwFzN/qHVfsmAo0GQadn1W0MBDQXa4OPOiASx3ZZ3jy5u7GvJYvqi0bVUh+
-         5ftV1Gau0rZsHwn97K45zeJWKnabDIrE1TkLnKciPwHrmRAUX9BRe6duEQdUOTSgvgsf
-         hJJj8bn/eITWQldLAi4NSFdCGMYCZD1qQiLPk=
+        bh=4s2z6h8g1pcjTG51I0ZMP7KEpYvZlttMRzoB8LZjaCs=;
+        b=VlKBCZIZiTxSZI4ynKa67icBGrk3zxfrTkC44bh58+GyJgMtGqa4dk+OigWVp9ou8M
+         cGYTLjfRBEvpnwF9OlPvTSsQCvvu050AZefPgpYJJT9rII5MAc/ynljXp7SydHnifVe/
+         gEpOdqekimAG2CteX8E2UO+mIWuAdxhA9S0mSIymLeHLCCmJeCBvTcJ+TJknKM/bRKq2
+         gXIYZX/UB3MhyQuv4stmwf/i0epkNdSIDicAwpyeOEB2BgvRUcGcgb2nHQIZA84uT+IQ
+         NNwcpTMvAOtB/XARnpphh9wX/wwtaEPu/1ZVh2/ZA3SVDclUL5HnDH++qp7GUNc3eXpS
+         L0/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680100780; x=1682692780;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=1e100.net; s=20210112; t=1680168038; x=1682760038;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sl6xYQ4qvACc3W56UzYTuEeOw1tkZJD97dR99Vg5XuM=;
-        b=DtO9YRHArza6lSYhPrs+esK5nyFy+7BazntxcFuxAziYDPVV+bxJN2nYAbsZDfgngQ
-         9/upTJQNLZA9y0X0ttmBYKZr7QVTObpAQJHSKgRUsX9mthmLSzqov2VuLtYR6scK31MH
-         T7lGe8oMvO2u0kwmX4PuJLlgfJAPQv6vfsqwP//V5ja4avNo2piVhCukg24qkcfKuK+l
-         1hyRp4l8nUmfrrba5SC6vhO3Jj2rbt4KpWP4CrCLbo99gZlwqqmaYj7Fxim/7RbT14KQ
-         22zUhQxyqqUKYObX0mFZ5RCDWFRZl/SEPR7ET7o0QyOiX2vPXnvKPuIENTAdS/iVEVn3
-         dRzQ==
-X-Gm-Message-State: AAQBX9fPbfnEh2wZ1tEJ4j/WTA8RqY/7pGqC7E3dICEiM36LJsa1oO7K
-	UumPGrNqPM8RnBbsxPDwhfiH6tRgfHH99/eRI9GhTbVfQ0mBZKCFiGTkhvhg
-X-Google-Smtp-Source: AKy350aoH3VPr8uy/RN1pop9ThYk+gPMW296Qx29s8TIiP1ffQ8axa9gAUz6lbaSwKUh1sHtTOj0GCvSY+F/JcwvqqA=
-X-Received: by 2002:a02:95c3:0:b0:3eb:3166:9da4 with SMTP id
- b61-20020a0295c3000000b003eb31669da4mr1136342jai.2.1680100779840; Wed, 29 Mar
- 2023 07:39:39 -0700 (PDT)
+        bh=4s2z6h8g1pcjTG51I0ZMP7KEpYvZlttMRzoB8LZjaCs=;
+        b=fW4ca4FRQTA9KOucFOaDOpK+x/VUHH3hRj0tp15rL+oexni5h1fZtxshWC+ou2Hx+a
+         wLXawrCCEHSNltur7KC8QldEIqay1Lk1NHPnBWLhXgP2y3Hysxo//sM/nrDlMhSm1q+W
+         sEODR7sRbEW4LCn9zU+hNMY8Bk9P6FvzUMpJO791dmW9Os13YZZpK8gDNbnUCbhhpqwF
+         fuYv+1g/D7DOtMnyf012ZQ1jx/XUdw89MpWU4pMPTqUL6G4ApgsxwhluSlnClMyYIEKM
+         WO37ETr2dlbEpOva78SfL3a3ATeSkfdByboWSY+juuG9Bsjw0faKDtjIB8PVNw/v3ZHk
+         YOcg==
+X-Gm-Message-State: AAQBX9e1UWQLgwzDObNeAxMyvUJieSgcsK++Hlon2SSLZ7kpAaExw++W
+	34tMdlqNTEED2Sqdfz9nhTmSikQxLLsoVJmQ0R8W//tKHxvbzg==
+X-Google-Smtp-Source: AKy350Yw6PtUVrup7T5IsWBzGbpLkvW5HhwhWV3Rp5gq8y+RYGCqzyq2mpVi+PFA1rIOK89mlYPvHvDyC+lVo5+bkpU=
+X-Received: by 2002:a67:ca87:0:b0:425:d255:dd38 with SMTP id
+ a7-20020a67ca87000000b00425d255dd38mr12328287vsl.1.1680168038336; Thu, 30 Mar
+ 2023 02:20:38 -0700 (PDT)
 MIME-Version: 1.0
-From: Morten Bruun <morten.bruun@apide.com>
-Date: Wed, 29 Mar 2023 16:39:29 +0200
-Message-ID: <CAMrUZLg8BRa8Wtrhb9TKR6FK03OsHv4i=5=JPM2fO0+VO2AXxg@mail.gmail.com>
-Subject: Conditionally starting the swupdate webserver
+From: Jose Quaresma <quaresma.jose@gmail.com>
+Date: Thu, 30 Mar 2023 10:20:27 +0100
+Message-ID: <CANPvuRmPDaqPUDK+Qn-iMQ7i=gqz_Jgz6rMef4o0Yj4+0u518g@mail.gmail.com>
+Subject: [RFC][yocto][meta-lts-mixins][kirkstone/go] Backport golang from
+ master to kirkstone
 To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000002b6e7405f80af274"
+Cc: Jose Quaresma <jose.quaresma@foundries.io>, Ricardo Salveti <ricardo@foundries.io>, 
+	Alexander Kanavin <alex.kanavin@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000168df705f81a9b78"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 29 Mar 2023 14:39:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59545
+ <yocto@lists.yoctoproject.org>; Thu, 30 Mar 2023 09:20:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59546
 
---0000000000002b6e7405f80af274
+--000000000000168df705f81a9b78
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Yocto experts!
+Hi,
 
-Background
-----------------
-I have a device that I build two different images for (test and prod). For
-the prod variant I do not want the swupdate service to start the webserver.
+The golang version in kirkstone is the 1.17 and because of this is not
+possible to use some recent version of other projects like docker that
+requires a more recent version of the language.
 
-Currently I have a swupdate.service that overwrites the default from
-swupdate.
+I have a kirkstone branch [1] available at Foundries.io with the golang
+backported from the oe-core master that I liked to submit to the
+meta-lts-mixins [2].
+Alex is the maintainer of the dunfell golang backport and this kirkstone
+branch is based on that version.
 
-I have been experimenting with an approach where I use OVERRIDES to control
-the inclusion of the systemd service.
+Would that be interesting for the project? How should I proceed?
 
-Is this a "good" (tm) way of doing this? Or is there a better way?
+[1] https://github.com/foundriesio/meta-lts-mixins/tree/kirkstone/go
+[2] https://git.yoctoproject.org/meta-lts-mixins
 
-my-test-image.bb
------------------------
+Jose
 
-DISTRO_VARIANT = "test"
+--
+Best regards,
 
+Jos=C3=A9 Quaresma
 
-my-prod-image.bb
------------------------
-
-DISTRO_VARIANT = "prod"
-
-
-swupdate_%.bbappend
--------------------------------
-
-OVERRIDES:append = ":${DISTRO_VARIANT}"
-
-do_install:test:append() {
-  install -d ${D}/${systemd_unitdir}/system
-  install -m 0644 ${WORKDIR}/hello-test.service ${D}/${systemd_unitdir}/system
-}
-
-do_install:prod:append() {
-  install -d ${D}/${systemd_unitdir}/system
-  install -m 0644 ${WORKDIR}/hello-prod.service ${D}/${systemd_unitdir}/system
-}
-
---0000000000002b6e7405f80af274
+--000000000000168df705f81a9b78
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div style=3D"font-family:arial,helvetica,sans-serif" clas=
-s=3D"gmail_default">Hi Yocto experts!</div><div style=3D"font-family:arial,=
-helvetica,sans-serif" class=3D"gmail_default"><br></div><div style=3D"font-=
-family:arial,helvetica,sans-serif" class=3D"gmail_default">Background</div>=
-<div style=3D"font-family:arial,helvetica,sans-serif" class=3D"gmail_defaul=
-t">----------------</div><div style=3D"font-family:arial,helvetica,sans-ser=
-if" class=3D"gmail_default">I have a device that I build two different imag=
-es for (test and prod). For the prod variant I do not want the swupdate ser=
-vice to start the webserver.<br></div><div style=3D"font-family:arial,helve=
-tica,sans-serif" class=3D"gmail_default"><br></div><div style=3D"font-famil=
-y:arial,helvetica,sans-serif" class=3D"gmail_default">Currently I have a sw=
-update.service that overwrites the default from swupdate.</div><div style=
-=3D"font-family:arial,helvetica,sans-serif" class=3D"gmail_default"><br></d=
-iv><div style=3D"font-family:arial,helvetica,sans-serif" class=3D"gmail_def=
-ault">I have been experimenting with an approach where I use OVERRIDES to c=
-ontrol the inclusion of the systemd service.</div><div style=3D"font-family=
-:arial,helvetica,sans-serif" class=3D"gmail_default"><br></div><div style=
-=3D"font-family:arial,helvetica,sans-serif" class=3D"gmail_default">Is this=
- a &quot;good&quot; (tm) way of doing this? Or is there a better way?</div>=
-<div style=3D"font-family:arial,helvetica,sans-serif" class=3D"gmail_defaul=
-t"><br></div><div style=3D"font-family:arial,helvetica,sans-serif" class=3D=
-"gmail_default"><a href=3D"http://my-test-image.bb">my-test-image.bb</a></d=
-iv><div style=3D"font-family:arial,helvetica,sans-serif" class=3D"gmail_def=
-ault">-----------------------</div><div style=3D"font-family:arial,helvetic=
-a,sans-serif" class=3D"gmail_default"><pre>DISTRO_VARIANT =3D &quot;test&qu=
-ot;</pre></div><div style=3D"font-family:arial,helvetica,sans-serif" class=
-=3D"gmail_default"><div style=3D"font-family:arial,helvetica,sans-serif" cl=
-ass=3D"gmail_default"><br></div><div style=3D"font-family:arial,helvetica,s=
-ans-serif" class=3D"gmail_default"><a href=3D"http://my-prod-image.bb">my-p=
-rod-image.bb</a></div><div style=3D"font-family:arial,helvetica,sans-serif"=
- class=3D"gmail_default">-----------------------</div><div style=3D"font-fa=
-mily:arial,helvetica,sans-serif" class=3D"gmail_default"><pre>DISTRO_VARIAN=
-T =3D &quot;prod&quot;</pre></div></div><div style=3D"font-family:arial,hel=
-vetica,sans-serif" class=3D"gmail_default"><br></div><div style=3D"font-fam=
-ily:arial,helvetica,sans-serif" class=3D"gmail_default">swupdate_%.bbappend=
-</div><div style=3D"font-family:arial,helvetica,sans-serif" class=3D"gmail_=
-default">-------------------------------</div><div style=3D"font-family:ari=
-al,helvetica,sans-serif" class=3D"gmail_default"><pre>OVERRIDES:append =3D =
-&quot;:${DISTRO_VARIANT}&quot;<br><br>do_install:test:append() {
-  install -d ${D}/${systemd_unitdir}/system
-  install -m 0644 ${WORKDIR}/hello-test.service ${D}/${systemd_unitdir}/sys=
-tem
-}</pre></div><div style=3D"font-family:arial,helvetica,sans-serif" class=3D=
-"gmail_default"><div style=3D"font-family:arial,helvetica,sans-serif" class=
-=3D"gmail_default"><pre>do_install:prod:append() {
-  install -d ${D}/${systemd_unitdir}/system
-  install -m 0644 ${WORKDIR}/hello-prod.service ${D}/${systemd_unitdir}/sys=
-tem
-}</pre></div></div><br></div>
+<div dir=3D"ltr">Hi,<br><br>The golang version in kirkstone is the 1.17 and=
+ because of this is not possible to use some recent version of other projec=
+ts like docker that requires a more recent version of the language.<div>=C2=
+=A0<br>I have a kirkstone branch [1] available at Foundries.io with the gol=
+ang backported from the oe-core master that I liked to submit to the meta-l=
+ts-mixins [2]. <br>Alex is the maintainer of the dunfell golang backport an=
+d this kirkstone branch is based on that version. <br><br>Would that be int=
+eresting for the project? How should I proceed?<br><br><div>[1] <a href=3D"=
+https://github.com/foundriesio/meta-lts-mixins/tree/kirkstone/go">https://g=
+ithub.com/foundriesio/meta-lts-mixins/tree/kirkstone/go</a><br>[2] <a href=
+=3D"https://git.yoctoproject.org/meta-lts-mixins">https://git.yoctoproject.=
+org/meta-lts-mixins</a><br><br>Jose<br class=3D"gmail-Apple-interchange-new=
+line"><div><br>--<br></div><div dir=3D"ltr" class=3D"gmail_signature" data-=
+smartmail=3D"gmail_signature"><div dir=3D"ltr">Best regards,<br><br><div>Jo=
+s=C3=A9 Quaresma</div></div></div></div></div></div>
 
---0000000000002b6e7405f80af274--
+--000000000000168df705f81a9b78--
 
