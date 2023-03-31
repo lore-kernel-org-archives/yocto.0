@@ -1,80 +1,88 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF541C6FD18
-	for <webhook@archiver.kernel.org>; Fri, 31 Mar 2023 07:25:26 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
- by mx.groups.io with SMTP id smtpd.web10.49127.1680247521069975731
- for <yocto@lists.yoctoproject.org>;
- Fri, 31 Mar 2023 00:25:22 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=IGrcj24h;
- spf=pass (domain: bootlin.com, ip: 217.70.183.201, mailfrom: michael.opdenacker@bootlin.com)
-Received: (Authenticated sender: michael.opdenacker@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 352151BF20A;
-	Fri, 31 Mar 2023 07:25:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1680247518;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gUUaDoQw7BTmN0/3p4D8mq0hrOsBrRWt0ALBl04Virg=;
-	b=IGrcj24hcrU/SVXGBISQWIuCZpQVXeqJof0RI6UvM4l2qDHQdVqiWYea86STqNNdscWois
-	F2hTgKqL0TjZezGnKc9UUAeJBddP+IB45JU0h7j6oP+z24VdpMamkPtqtBeUNidwOgWlAi
-	MaYXPLuXjJiblm/a1U/sDbhrqEqkCXPdZ7KHhj/egwwXYGUyyUz8uySzxEpQi1PvLKkIAy
-	Y2szAUmV3Y3ZJCNDB428ShOKD8tthkHv5D7AMunQYCHGjFu0QEMf4CQLPPLXaIstoIVQyg
-	xYz1UYZTUFYwHnhzgrCaPkjH6eQi00tqJQAweqgeMsDhJIUtH+LyUwmwzAImtg==
-Message-ID: <424f5aee-84b6-59a4-ea4c-10b2fa2d0cd9@bootlin.com>
-Date: Fri, 31 Mar 2023 09:25:17 +0200
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C78AEC6FD18
+	for <webhook@archiver.kernel.org>; Fri, 31 Mar 2023 07:36:26 +0000 (UTC)
+Subject: Re: How to compile binary executable files
+To: yocto@lists.yoctoproject.org
+From: "MOHAMMED HASSAN" <hassanchattarki@gmail.com>
+X-Originating-Location: Hyderabad, Telangana, IN (183.82.123.98)
+X-Originating-Platform: Linux Chrome 110
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [yocto] How to compile binary executable files
-To: MOHAMMED HASSAN <hassanchattarki@gmail.com>, yocto@lists.yoctoproject.org
-References: <CAPJWBniLt1kzG4zoDuHNZyQX1NFkneBTo=hoFBPH2AFJAhyv6g@mail.gmail.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <CAPJWBniLt1kzG4zoDuHNZyQX1NFkneBTo=hoFBPH2AFJAhyv6g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Fri, 31 Mar 2023 00:36:24 -0700
+References: <424f5aee-84b6-59a4-ea4c-10b2fa2d0cd9@bootlin.com>
+In-Reply-To: <424f5aee-84b6-59a4-ea4c-10b2fa2d0cd9@bootlin.com>
+Message-ID: <13330.1680248184001503498@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="a34BubkHktOPdC3gx2lb"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 31 Mar 2023 07:25:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59559
+ <yocto@lists.yoctoproject.org>; Fri, 31 Mar 2023 07:36:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59560
 
-Hi Hassan
+--a34BubkHktOPdC3gx2lb
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 31.03.23 at 06:34, MOHAMMED HASSAN wrote:
-> Hi guys,
-> I am new to yocto needed your help.
-> I have an executable binary file that is probably compiled using the 
-> gcc compiler. I am using yocto dunfell for my project my build_sys is 
-> "x86_64-linux" , my target_sys is "aarch64-poky-linux".
->
-> Can you please guide me as to what I need to load this binary 
-> executable file is my generated image file.
+>=20
+>=20
+>> Can you please guide me as to what I need to load this binary
+>> executable file is my generated image file.
+>=20
+>=20
+> Is this binary statically linked? Otherwise, you have no guarantee that
+> it will run on your root filesystem.
 
+It is statically linked file written using c language.
 
-Is this binary statically linked? Otherwise, you have no guarantee that 
-it will run on your root filesystem.
+>=20
+> If so, you could write a recipe to integrate the binary into your root
+> filesystem, as it's possible to do with pre-compiled libraries :
+> https://docs.yoctoproject.org/dev-manual/common-tasks.html#working-with-p=
+re-built-libraries
+> .
+> Caution, in this document, the new override syntax (with ":" instead of
+> "_") is shown, it doesn't apply to Dunfell.
+>=20
+> I hope this helps
+> Cheers
+> Michael.
+>=20
+> --
+> Michael Opdenacker, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
-If so, you could write a recipe to integrate the binary into your root 
-filesystem, as it's possible to do with pre-compiled libraries : 
-https://docs.yoctoproject.org/dev-manual/common-tasks.html#working-with-pre-built-libraries. 
-Caution, in this document, the new override syntax (with ":" instead of 
-"_") is shown, it doesn't apply to Dunfell.
+Will it be okay for me to refer the above link for my specific case?
 
-I hope this helps
-Cheers
-Michael.
+Thanks and regards,
+Hassan
 
--- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--a34BubkHktOPdC3gx2lb
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+<blockquote>
+<blockquote>Can you please guide me as to what I need to load this binary <=
+br />executable file is my generated image file.</blockquote>
+<br />Is this binary statically linked? Otherwise, you have no guarantee th=
+at <br />it will run on your root filesystem.</blockquote>
+It is statically linked file written using c language.<br />
+<blockquote>If so, you could write a recipe to integrate the binary into yo=
+ur root <br />filesystem, as it's possible to do with pre-compiled librarie=
+s : <br /><a href=3D"https://docs.yoctoproject.org/dev-manual/common-tasks.=
+html#working-with-pre-built-libraries" target=3D"_blank" rel=3D"noopener">h=
+ttps://docs.yoctoproject.org/dev-manual/common-tasks.html#working-with-pre-=
+built-libraries</a>. <br />Caution, in this document, the new override synt=
+ax (with ":" instead of <br />"_") is shown, it doesn't apply to Dunfell.<b=
+r /><br />I hope this helps<br />Cheers<br />Michael.<br /><br />-- <br />M=
+ichael Opdenacker, Bootlin<br />Embedded Linux and Kernel engineering<br />=
+<a href=3D"https://bootlin.com" target=3D"_blank" rel=3D"noopener">https://=
+bootlin.com</a></blockquote>
+<br />Will it be okay for me to refer the above link for my specific case?<=
+br /><br />Thanks and regards,<br />Hassan
+
+--a34BubkHktOPdC3gx2lb--
 
