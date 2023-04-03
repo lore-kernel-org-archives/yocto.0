@@ -1,342 +1,318 @@
-Return-Path: <adrian.dudau@keyfactor.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5DCBC76188
-	for <webhook@archiver.kernel.org>; Mon,  3 Apr 2023 15:42:35 +0000 (UTC)
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (EUR02-DB5-obe.outbound.protection.outlook.com [40.107.249.104])
- by mx.groups.io with SMTP id smtpd.web10.74552.1680536549561879021
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E902FC761A6
+	for <webhook@archiver.kernel.org>; Mon,  3 Apr 2023 15:59:25 +0000 (UTC)
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+ by mx.groups.io with SMTP id smtpd.web10.75117.1680537558090429626
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Apr 2023 08:42:30 -0700
+ Mon, 03 Apr 2023 08:59:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@keyfactorinc.onmicrosoft.com header.s=selector1-keyfactorinc-onmicrosoft-com header.b=Roda6Piz;
- spf=pass (domain: keyfactor.com, ip: 40.107.249.104, mailfrom: adrian.dudau@keyfactor.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mIfh/Ld4ilzIkPfd99w6Ge6c/MjoAQjxGg2oLVbgKvrjgi21/rgf5iuymjgmg7OeQ9iqm6y6uJ67S8Xn3a1YWA1+f7+6SEj7FxOcY2Ea8H1HS2CY+tzXklOPFjcQL1XUrRwdSFGmk/f306NJnq0bEYxuZszek57Q5O1zttv14UMFy/qEafMdAxP+mZ4jlgwfgETWOkPV3YZf3AzUHJozu28c9qkuRuhSPlfpMKQNfjgeC5Awwfcrn/EmdUFSSq8nDqbwK5G5xY6w8yeajnYuYzaa9kA1splBxk6QzVXTOxB47cQYa8DdHQhpR1ijmvmHH63GsRCz2qeAHhb0r1NR0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gagvtE80o3fgSsTMNz1kqnvH97hG0ivWrzB8MZntRWI=;
- b=Vqq2y0bP7/j294MCQnMTjYLMaB9kZRN7+pA244wHUp88/RxhzCIPRw8BS9HTYFxkrAXCp3Ceg2WFrgrg2SHNeEq2Ua/Y2WFkCBenEcsjl7viHN8SrnTIfN1QAJUGtRSRJBaqxBp9ce+HlVGGjh90gg7erV0nOPYgN9wJgYxuNQiw2l17aOAhTxwOQfv9l4aBiUHTOJRbpbUqDXqO00bJs/x2ZCIjLvW7AlWX0ctR0p1fPMGublwHTDVwKB0y10Ak1QSLKHxqHf1zUpTvLLdd+/iE3pvp3RZGtytmt1HvUP5Hj9xnKhauf5fbmxBsLQs0eyKJuwNVK/R0T9liG++9iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=keyfactor.com; dmarc=pass action=none
- header.from=keyfactor.com; dkim=pass header.d=keyfactor.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=omEp5MiD;
+ spf=pass (domain: gmail.com, ip: 209.85.166.54, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-io1-f54.google.com with SMTP id y85so13021220iof.13
+        for <yocto@lists.yoctoproject.org>; Mon, 03 Apr 2023 08:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=KeyfactorInc.onmicrosoft.com; s=selector1-KeyfactorInc-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gagvtE80o3fgSsTMNz1kqnvH97hG0ivWrzB8MZntRWI=;
- b=Roda6PizycvjDXQGEfiMTo53772W/2P17ir68axK7hMdW83UsPxnisZ1syBt8Ax5bXRZ+usmNwcGLD7WPSnZHtaBr/pGuTKqHFcV79Y4eK8eml6daK9ZaRfh4f6GX1gzlRjXgErRflORZc58VdKjLuyCwA3beIk6Ti1LFXYiXpjKAB9OQtWYCC9rPfsFdjpsJMM3wLkGBquf+REZ5c3e8F1zOiz1wl1yM4TP3RjVGrWvNnxAn3mjOgwytkY3IKisuWWAkb+5buhUgwmbedF30iTUvt6R3NEPASqpu/PC6Cnee9Bz+4akA3rYLQv2FISLJ5CsyapIsvSlVDVpVqgKRg==
-Received: from DB6PR03MB2901.eurprd03.prod.outlook.com (2603:10a6:6:33::29) by
- AS2PR03MB9877.eurprd03.prod.outlook.com (2603:10a6:20b:546::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.29; Mon, 3 Apr
- 2023 15:42:26 +0000
-Received: from DB6PR03MB2901.eurprd03.prod.outlook.com
- ([fe80::3da9:b3df:a6fa:5d2b]) by DB6PR03MB2901.eurprd03.prod.outlook.com
- ([fe80::3da9:b3df:a6fa:5d2b%5]) with mapi id 15.20.6254.029; Mon, 3 Apr 2023
- 15:42:26 +0000
-From: Adrian Dudau <Adrian.Dudau@keyfactor.com>
-To: Khem Raj <raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] error when try to use sudo command in recipe
-Thread-Topic: [yocto] error when try to use sudo command in recipe
-Thread-Index: AQHZZf1vdXNlsd89+kC6v+8nJSvsvq8ZrUeAgAADtHs=
-Date: Mon, 3 Apr 2023 15:42:26 +0000
-Message-ID: 
- <DB6PR03MB2901095F3F450ADC7E19061891929@DB6PR03MB2901.eurprd03.prod.outlook.com>
-References: 
- <2304c6f228db24096ac44b1e14132bb70981986b.camel@linuxfoundation.org>
- <6415.1680506699920545280@lists.yoctoproject.org>
- <CAMKF1sp1e0A88eGB3xVcamY16GB2H6dBwHet4tvYtUf2_GpS7A@mail.gmail.com>
-In-Reply-To: 
- <CAMKF1sp1e0A88eGB3xVcamY16GB2H6dBwHet4tvYtUf2_GpS7A@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=keyfactor.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB6PR03MB2901:EE_|AS2PR03MB9877:EE_
-x-ms-office365-filtering-correlation-id: b55501e3-23d4-4dbf-f20d-08db345a065f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- ZIDLJ4KjWZy8oJzeIwwoGWo/KppkZUywRrKh3Q2WiVbIXV6YlOfoqTWj9rFMKLDnIV3BZSSbD3QNng2h/65ws1ALMyBRPyKhgrmeCFZlQDPQFFbwdrEW0VD6xBWATTFTDNvXVzU8ZBn9WooD5D9/S013ce/hxzwePmhXmFrUY1O0yMFh7bWi6Egn6P6QgW7L/rGuUY9QqA1JPkDuXYtdc02YUzsap9+lcglmnZX/kAO3ztf/lBGWe7SDjfX50DFWCTDja3S4d7uzqs10SG7D9zhif4vpIKPMkmBzya8KywhIVJtuPfCbIorycERtH2snSd22CrDMWsWA7n6eSHG1FeHkAwVVjA9c6EYepFXF0iS4jiij5te/ew4Z7Rzm5Ewt0P8EI0uR2v0tryojW7xUXUebt9wWl+CufbjIhBEyAP+ePkBfYAgKjx1l5cWvcqqatiebRvf35uZGvaM/nf3jwbUQ08P+eco4PRNUjib2K6mzUSYSJIU6zZuSZlPaURlFNiKuypfqBoyQki9f+hPHWTTB3N489DfawSlm36laPPiwMN+SzwKxkqv65Ose/5JnqjSvM3+2rE1olz4PSjrubPmKHOKZIwQa7vNsXSnbuNo=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR03MB2901.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(376002)(136003)(39850400004)(396003)(451199021)(86362001)(38070700005)(2906002)(166002)(33656002)(66899021)(19627405001)(55016003)(7696005)(71200400001)(966005)(186003)(83380400001)(53546011)(6506007)(9686003)(91956017)(8676002)(478600001)(4326008)(66556008)(66946007)(66446008)(6916009)(66476007)(76116006)(64756008)(41300700001)(122000001)(52536014)(5660300002)(38100700002)(316002)(8936002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?krUsJSNGC17gVsrBnBOpfmDaYUqW1BvZ3NXj+dtyKA1jdF8JOHQKDEoXKZn5?=
- =?us-ascii?Q?l5nab6TVvnIyn3+c0BhRNc847rkPgayPgZDb2+9wX2qSlZ/stRWz90+kFVsc?=
- =?us-ascii?Q?bSh0KZuFwrePbHdY5cN9/hwJgTtQRQk2R6KTAM23+uoO93420s/xarY09Oxq?=
- =?us-ascii?Q?9j4M2b1TZPlsbTyBpUg6nGzqNhM43NYq0K9fp6u8axZtKwwyqD0qI+/DwZwO?=
- =?us-ascii?Q?CDrBQstqUXAfa8nL5DUgjY7raqD5Wetk5qmFD+LNXuZt1Efbob8j8JNP2uDK?=
- =?us-ascii?Q?a8FA1CxBJmdy1zAsge6tzw9zeBajTLqGBAEeGXkhlMQkSV3l2mWmB0EPQRY5?=
- =?us-ascii?Q?gqVOslW2fU2UyTqxPLv9ceSzgw43rQBL89V25bXytPmUeBT/MDoL8lOZqPdY?=
- =?us-ascii?Q?xAPR0O6uZfxrZWt5K/BgXxxRHoNYXYzF3yZiimAhkwaVxukLGdQTOfdKRT37?=
- =?us-ascii?Q?TrloDFOOzaRhvAbcNZ7WwgqIVGDpHd3NjajE6LxIG36pPnvCZdX3oQvQaeWH?=
- =?us-ascii?Q?Hq0pENkJ7kajCpdHbDw7T6qN/fvsrnic71TPYL/9cvu5Zddb9Y0KgRJGCIP5?=
- =?us-ascii?Q?BRaf343I8wIZrs46Zy3PqRpm4oxDYYRzJ12UkkbjBkuSZGTczN07LM9S8fj3?=
- =?us-ascii?Q?A2FUNAy4Q8kvmo9NSUlyCIzQ7g7cr4abu0vn/3dL8QLeIanozQAUsbSSbYpH?=
- =?us-ascii?Q?/KcNOoz3VD5GHmj8Y1PrEQbhFuaNkalhDrjm3b9odR41tYhrO2lyaD/ZBViM?=
- =?us-ascii?Q?LRY2BUFESfB8S/jcsTi+MMNuyeOa1ZDbEQ3Q3lVaZnkXVmpN4c9m61qgo84M?=
- =?us-ascii?Q?diSM+XU2NoKEn/QEYq9hUZSQ1bClt9yPFvfdSK6HsRgkxYkKSF4K/nq5LaFi?=
- =?us-ascii?Q?ASU5LNtj2jRF0bsvl3ztBFmUspN27vknrPGFc8xbXCoksuDtYskbAygM0ziP?=
- =?us-ascii?Q?CBpzUSMLS96Q+GOn1tJigwzOpP1SjTqF1e2laI8kAo5O0Fs9sBq4L82P4DJE?=
- =?us-ascii?Q?7Y1htopcJvGvg5xfgDmrv66TDgMycLrd2RlW5DtXpzK4w56ycBvme8gAxNdz?=
- =?us-ascii?Q?SjD6NO0hb/6eDp4AI7slWdWorYdeeA44N8Rl5OeEqOUgcXBAT9WrZk9e14KS?=
- =?us-ascii?Q?mRUzI/+aDFUOgGeBVMTEfCLyGzSc30xXS3d6xoQaS6Wgkr3GdedEpcfBDRjO?=
- =?us-ascii?Q?i9sHE30PPB7heEd8fB9LRDR0xyZuyvmRc+jMx6uQpMY7xGBjW5CgiydZbYWp?=
- =?us-ascii?Q?gW9a67NHI9he2b6G5KMvqmRbAUXqpIHm2dfxBQjlfIJ29yXHiq9I+Esyx9LS?=
- =?us-ascii?Q?nmmp/DKEv5lttC9RuVJcL/siuB0tCMV1f1MDtEEX0KJn8uoQgO9Ul1C9KjxE?=
- =?us-ascii?Q?+msru6/UGnWfyWY3ZTEj5slp4fDlPvvvOnBikc4Q/O9co8pmw8/d+3zEJJol?=
- =?us-ascii?Q?ThiQCZHDclA7F1BVtScE8csZtRNXA8t+8kS2xLlPC+CheziIHZKFar27GLWH?=
- =?us-ascii?Q?4J0oD3sCzINj/7S3+NJz4acmnYGkMUrxcHwfe58cghLEpiZfoav16ibMf8vk?=
- =?us-ascii?Q?CtVLA/tF2LIkBQor+SkzMNnQk2qB2qNGxewNWFW/rVr6F/aMnV3Y6SqjV//A?=
- =?us-ascii?Q?4kbxTIeCLoZWKlzZLEDUBFa3Fb1isJ+yb47GSVMwaJNF?=
-Content-Type: multipart/alternative;
-	boundary="_000_DB6PR03MB2901095F3F450ADC7E19061891929DB6PR03MB2901eurp_"
+        d=gmail.com; s=20210112; t=1680537557;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=m7ujYsBGTVVey/yxblb5yn/8R5O7SCg2Y3tk4qo5BXs=;
+        b=omEp5MiDrWGMY1Y1wzMCNob5n6JsNZT6qdtkuni/t2aQvsDsWIDW5+pPxq2bJp3p6C
+         wkMh4r4iMZWmuNnvLx01CLZjdelJprUaPcHQPlcO2k1CYWX3o/Li/1w7sANtG+FrfNV8
+         leQW3K5PNk9UBH9oEJTY+bXpWrG+KgdqBBmn0svJLhDOBJx5/RBoICZlHiBdX/Zld12P
+         YuHsaC/DklC/NVgv90rjJGy6YZ289+udS82oW/S/vRU7507iO8BSmysQXIi2vcqSkVoT
+         HuKuKdd0HC4qCGAsSyRs+kL/AlSEcgLgCP2q0SGhs6sXSoIKtydgrNCJYfFzPzRmAU8m
+         Yf5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680537557;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m7ujYsBGTVVey/yxblb5yn/8R5O7SCg2Y3tk4qo5BXs=;
+        b=7zJyPZGKi+XMMsvqgr3DURjO5Dj6EqrbRrpN4k5pUfmQ2pfOMmRrbS6WAlvzdkskds
+         G/x2bXbJOeFd7ZzpFzgXQR3Oy2dctPUF/k4Wzd72W+QE49heU3IymFeW1o+gkESFqRmo
+         GS1dQQ8e0CHni4cKQ24Pi76DRHWH3OCaNRG8IAxTEwEjH7TtSLYjJ7V8uvtWj3fM3ntz
+         fT+ZJDDTHbHNS4tnznqBP9XRIpYB476U989F6Fo6VTfQeNiRWYzxy8rmN5xdlrSy2X+1
+         2/tudfKHRQdUgOoWfX4oXb0orvupOXZ9lQdNFHwM/OTeV4PKwsdjBzN9eFv/mKy9KUFi
+         5i3Q==
+X-Gm-Message-State: AO0yUKX0A4PqWwxg62jju4dagHR/Cs6UGpHmU++5GuhuXTPhF5jASE+W
+	D180rO7vVnF3gVVNOEh4iTiglOe2B5raeAbx86M=
+X-Google-Smtp-Source: AK7set9daa/RT2si7J0giSb1uPgFF8GVIvvh+N5GBjF9XihAa93/SahimTOw7gBgwE8MmpSahAyexKJR6cNtFAimK9g=
+X-Received: by 2002:a02:9504:0:b0:406:346e:c86e with SMTP id
+ y4-20020a029504000000b00406346ec86emr14031438jah.5.1680537557084; Mon, 03 Apr
+ 2023 08:59:17 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: keyfactor.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR03MB2901.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b55501e3-23d4-4dbf-f20d-08db345a065f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2023 15:42:26.1094
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c9ed4b45-9f70-418a-aa58-f04c80848ca9
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WHL7aJib8/c0mDJjkEfSSxQxYaby2mCovFMbX4sdlO3VU4a7V6BChxDqLuLncT7Zj5iTKaHoMDHA96aQMVHcpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR03MB9877
+References: <2304c6f228db24096ac44b1e14132bb70981986b.camel@linuxfoundation.org>
+ <6415.1680506699920545280@lists.yoctoproject.org> <CAMKF1sp1e0A88eGB3xVcamY16GB2H6dBwHet4tvYtUf2_GpS7A@mail.gmail.com>
+ <DB6PR03MB2901095F3F450ADC7E19061891929@DB6PR03MB2901.eurprd03.prod.outlook.com>
+In-Reply-To: <DB6PR03MB2901095F3F450ADC7E19061891929@DB6PR03MB2901.eurprd03.prod.outlook.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Mon, 3 Apr 2023 11:59:47 -0400
+Message-ID: <CADkTA4NNLMXYSGjsd9w=JJ4z7f4jRh3r6e9cf8FKS-aLtPMGZw@mail.gmail.com>
+Subject: Re: [yocto] error when try to use sudo command in recipe
+To: Adrian Dudau <adrian.dudau@keyfactor.com>
+Cc: Khem Raj <raj.khem@gmail.com>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000001f2f3005f870a47f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Apr 2023 15:42:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59601
+ <yocto@lists.yoctoproject.org>; Mon, 03 Apr 2023 15:59:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59602
 
---_000_DB6PR03MB2901095F3F450ADC7E19061891929DB6PR03MB2901eurp_
-Content-Type: text/plain; charset="us-ascii"
+--0000000000001f2f3005f870a47f
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Khem,
+On Mon, Apr 3, 2023 at 11:42=E2=80=AFAM Adrian Dudau <adrian.dudau@keyfacto=
+r.com>
+wrote:
 
-Thanks for the reply, though I am not sure I fully understand the first par=
-t of your answer. I'm trying to do something similar to the thread creator,=
- i.e running "podman pull" at build time to populate an image store that I =
-can later install into the target rootfs.
-
-Still, I am failing to understand why /usr/bin/sudo doesn't show up as owne=
-d by the root user, even when running under pseudo. Also, why has this chan=
-ged between Dunfell and master and where exactly has the changed happened..
-
-Best regards,
---Adrian
-________________________________
-From: Khem Raj <raj.khem@gmail.com>
-Sent: Monday, April 3, 2023 4:57 PM
-To: Adrian Dudau <adrian.dudau@keyfactor.com>
-Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] error when try to use sudo command in recipe
-
-You don't often get email from raj.khem@gmail.com. Learn why this is import=
-ant<https://aka.ms/LearnAboutSenderIdentification>
-CAUTION: External Sender - Be cautious when clicking links or opening attac=
-hments. Please email InfoSec@keyfactor.com with any questions.
-
-
-
-On Mon, Apr 3, 2023 at 12:25 AM <adrian.dudau@keyfactor.com<mailto:adrian.d=
-udau@keyfactor.com>> wrote:
-On Mon, Feb 6, 2023 at 01:13 AM, Richard Purdie wrote:
-Hi Richard,
-
-Jumping on this thread to provide some clarifications as I hit the same bug=
-.
-I can confirm that this is not an environment issue. I could reproduce it b=
-y adding a sudo call in an empty recipe like this:
-
-SUMMARY =3D ""
-HOMEPAGE =3D ""
-LICENSE =3D ""
-SECTION =3D ""
-DEPENDS =3D ""
-
-SRC_URI =3D ""
-
-do_install() {
-    ls -l /usr/bin/sudo
-    sudo ls -l /usr/bin/sudo
-}
-
-Build already use a fake root environment using pseudo to intercept the cal=
-ls so this might not be out of line here. What is the original issue you ar=
-e running into ?
-
-
-
-Running bitbake barebone on my x86 machine produces this error:
-
-| -rwxr-xr-x 1 nobody 65534 232416 Mar  1 13:59 /usr/bin/sudo
-| sudo: /etc/sudo.conf is owned by uid 65534, should be 0
-| sudo: /etc/sudo.conf is owned by uid 65534, should be 0
-| sudo: error in /etc/sudo.conf, line 0 while loading plugin "sudoers_polic=
-y"
-| sudo: /usr/libexec/sudo/sudoers.so must be owned by uid 0
-| sudo: fatal error, unable to load plugins
-
-Indeed it seems that ownership is broken somehow in the bb environment. The=
- issue was introduced somewhere between dunfell and kirkstone. I know it's =
-a large timespan but it's a bit time consuming to narrow it down.
-
-Hoping to get some help on this. I would try to investigate further myself =
-but I have no idea where to start to be honest.
-
-Best regards,
---Adrian
-
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
-You automatically follow any topics you start or reply to.
-View/Reply Online (#59594): https://lists.yoctoproject.org/g/yocto/message/=
-59594<https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
-ists.yoctoproject.org%2Fg%2Fyocto%2Fmessage%2F59594&data=3D05%7C01%7Cadrian=
-.dudau%40keyfactor.com%7C285da1e1af0a403ddc9d08db3453cb12%7Cc9ed4b459f70418=
-aaa58f04c80848ca9%7C0%7C0%7C638161306759776144%7CUnknown%7CTWFpbGZsb3d8eyJW=
-IjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C=
-%7C&sdata=3DwCdVmKhuBSTGtomYax5nGJ%2FU%2BgDP77qJhiUeo%2FPvmfI%3D&reserved=
-=3D0>
-Mute This Topic: https://lists.yoctoproject.org/mt/96733939/1997914<https:/=
-/nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.yoctopro=
-ject.org%2Fmt%2F96733939%2F1997914&data=3D05%7C01%7Cadrian.dudau%40keyfacto=
-r.com%7C285da1e1af0a403ddc9d08db3453cb12%7Cc9ed4b459f70418aaa58f04c80848ca9=
-%7C0%7C0%7C638161306759776144%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiL=
-CJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DEoBSO=
-u9VHGL1%2BhwdtR6rildYMUnrcihKq3Oi1ifktng%3D&reserved=3D0>
-Group Owner: yocto+owner@lists.yoctoproject.org<mailto:yocto%2Bowner@lists.=
-yoctoproject.org>
-Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub<https://nam11.saf=
-elinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.yoctoproject.org%2=
-Fg%2Fyocto%2Funsub&data=3D05%7C01%7Cadrian.dudau%40keyfactor.com%7C285da1e1=
-af0a403ddc9d08db3453cb12%7Cc9ed4b459f70418aaa58f04c80848ca9%7C0%7C0%7C63816=
-1306759932359%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
-CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DoPMLP5%2BH1TpoImAATcc=
-CbMI%2B5vfKZQi2l4ls3CqQ8Yo%3D&reserved=3D0> [raj.khem@gmail.com<mailto:raj.=
-khem@gmail.com>]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-
-
---_000_DB6PR03MB2901095F3F450ADC7E19061891929DB6PR03MB2901eurp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hi Khem,
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
+> Thanks for the reply, though I am not sure I fully understand the first
+> part of your answer. I'm trying to do something similar to the thread
+> creator, i.e running "podman pull" at build time to populate an image sto=
+re
+> that I can later install into the target rootfs.
+>
+>
+FWIW. The above is something that I have almost working, but had to drop
+the completion of the support for the upcoming release (it was too late,
+and I had to get some kernel changes done). I'm hoping to have something
+usable in the next few months.
+
+If you are trying to generate containers (I don't recommend pulling them)
+and installing them into a container store that is part of the rootfs, then
+collaborating on the meta-virtualization mailing list is a good starting
+point.
+
+Bruce
+
+
+
+> Still, I am failing to understand why /usr/bin/sudo doesn't show up as
+> owned by the root user, even when running under pseudo. Also, why has thi=
+s
+> changed between Dunfell and master and where exactly has the changed
+> happened..
+>
+> Best regards,
+> --Adrian
+> ------------------------------
+> *From:* Khem Raj <raj.khem@gmail.com>
+> *Sent:* Monday, April 3, 2023 4:57 PM
+> *To:* Adrian Dudau <adrian.dudau@keyfactor.com>
+> *Cc:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+> *Subject:* Re: [yocto] error when try to use sudo command in recipe
+>
+> You don't often get email from raj.khem@gmail.com. Learn why this is
+> important <https://aka.ms/LearnAboutSenderIdentification>
+> CAUTION: External Sender - Be cautious when clicking links or opening
+> attachments. Please email InfoSec@keyfactor.com with any questions.
+>
+>
+>
+> On Mon, Apr 3, 2023 at 12:25 AM <adrian.dudau@keyfactor.com> wrote:
+>
+> On Mon, Feb 6, 2023 at 01:13 AM, Richard Purdie wrote:
+> Hi Richard,
+>
+> Jumping on this thread to provide some clarifications as I hit the same
+> bug.
+> I can confirm that this is not an environment issue. I could reproduce it
+> by adding a sudo call in an empty recipe like this:
+>
+> SUMMARY =3D ""
+> HOMEPAGE =3D ""
+> LICENSE =3D ""
+> SECTION =3D ""
+> DEPENDS =3D ""
+>
+> SRC_URI =3D ""
+>
+> do_install() {
+>     ls -l /usr/bin/sudo
+>     sudo ls -l /usr/bin/sudo
+> }
+>
+>
+> Build already use a fake root environment using pseudo to intercept the
+> calls so this might not be out of line here. What is the original issue y=
+ou
+> are running into ?
+>
+>
+>
+> Running bitbake barebone on my x86 machine produces this error:
+>
+> | -rwxr-xr-x 1 nobody 65534 232416 Mar  1 13:59 /usr/bin/sudo
+> | sudo: /etc/sudo.conf is owned by uid 65534, should be 0
+> | sudo: /etc/sudo.conf is owned by uid 65534, should be 0
+> | sudo: error in /etc/sudo.conf, line 0 while loading plugin
+> "sudoers_policy"
+> | sudo: /usr/libexec/sudo/sudoers.so must be owned by uid 0
+> | sudo: fatal error, unable to load plugins
+>
+> Indeed it seems that ownership is broken somehow in the bb environment.
+> The issue was introduced somewhere between dunfell and kirkstone. I know
+> it's a large timespan but it's a bit time consuming to narrow it down.
+>
+> Hoping to get some help on this. I would try to investigate further mysel=
+f
+> but I have no idea where to start to be honest.
+>
+> Best regards,
+> --Adrian
+>
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#59601):
+> https://lists.yoctoproject.org/g/yocto/message/59601
+> Mute This Topic: https://lists.yoctoproject.org/mt/96733939/1050810
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> bruce.ashfield@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--=20
+- Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end
+- "Use the force Harry" - Gandalf, Star Trek II
+
+--0000000000001f2f3005f870a47f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Mon, Apr 3, 2023 at 11:42=E2=80=AFAM Adrian Duda=
+u &lt;<a href=3D"mailto:adrian.dudau@keyfactor.com">adrian.dudau@keyfactor.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div class=3D"msg-3121859093955495881">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 Hi Khem,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 Thanks for the reply, though I am not sure I fully understand the first par=
-t of your answer. I'm trying&nbsp;to do something similar to the thread cre=
-ator, i.e running &quot;podman pull&quot; at build time to populate an imag=
-e store that I can later install into the target
+t of your answer. I&#39;m trying=C2=A0to do something similar to the thread=
+ creator, i.e running &quot;podman pull&quot; at build time to populate an =
+image store that I can later install into the target
  rootfs. <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-<br>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br></div></div></div></blockquote><div><br></div><div><div class=3D"gmail_=
+default" style=3D"font-size:small">FWIW. The above is something that I have=
+ almost working, but had to drop the completion of the support for the upco=
+ming release (it was too late, and I had to get some kernel changes done). =
+I&#39;m hoping to have something usable in the next few months.</div><div c=
+lass=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gm=
+ail_default" style=3D"font-size:small">If you are trying to generate contai=
+ners (I don&#39;t recommend pulling them) and installing them into a contai=
+ner store that is part of the rootfs, then collaborating on the meta-virtua=
+lization mailing list is a good starting point.</div><div class=3D"gmail_de=
+fault" style=3D"font-size:small"><br></div><div class=3D"gmail_default" sty=
+le=3D"font-size:small">Bruce</div><br></div><div>=C2=A0</div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div class=3D"msg-3121859093955495881">=
+<div dir=3D"ltr"><div style=3D"font-family:Calibri,Arial,Helvetica,sans-ser=
+if;font-size:12pt;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-Still, I am failing to understand why /usr/bin/sudo doesn't show up as owne=
-d by the root user, even when running under pseudo. Also, why has this chan=
-ged between Dunfell and master and where exactly has the changed happened..=
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+Still, I am failing to understand why /usr/bin/sudo doesn&#39;t show up as =
+owned by the root user, even when running under pseudo. Also, why has this =
+changed between Dunfell and master and where exactly has the changed happen=
+ed..</div>
+<div><br>
 </div>
-<div class=3D"elementToProof"><br>
-</div>
-<div class=3D"elementToProof">Best regards,</div>
-<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
-ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb=
-(255, 255, 255);">
+<div>Best regards,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 --Adrian<br>
 </div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Khem Raj &lt;raj.khem=
-@gmail.com&gt;<br>
+<div id=3D"m_-3121859093955495881appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_-3121859093955495881divRplyFwdMsg" dir=3D"ltr"><font face=3D"C=
+alibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b>=
+ Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.k=
+hem@gmail.com</a>&gt;<br>
 <b>Sent:</b> Monday, April 3, 2023 4:57 PM<br>
-<b>To:</b> Adrian Dudau &lt;adrian.dudau@keyfactor.com&gt;<br>
-<b>Cc:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
-;<br>
+<b>To:</b> Adrian Dudau &lt;<a href=3D"mailto:adrian.dudau@keyfactor.com" t=
+arget=3D"_blank">adrian.dudau@keyfactor.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
+">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctop=
+roject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;<br>
 <b>Subject:</b> Re: [yocto] error when try to use sudo command in recipe</f=
 ont>
-<div>&nbsp;</div>
+<div>=C2=A0</div>
 </div>
 <div>
 <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" alig=
-n=3D"left" style=3D"border:0; display:table; width:100%; table-layout:fixed=
-; border-collapse:seperate; float:none">
+n=3D"left" style=3D"border:0px;display:table;width:100%;table-layout:fixed;=
+float:none">
 <tbody style=3D"display:block">
 <tr>
 <td valign=3D"middle" width=3D"1px" bgcolor=3D"#A6A6A6" cellpadding=3D"7px =
-2px 7px 2px" style=3D"padding:7px 2px 7px 2px; background-color:#A6A6A6">
+2px 7px 2px" style=3D"padding:7px 2px;background-color:rgb(166,166,166)">
 </td>
 <td valign=3D"middle" width=3D"100%" bgcolor=3D"#EAEAEA" cellpadding=3D"7px=
- 5px 7px 15px" color=3D"#212121" style=3D"width:100%; background-color:#EAE=
-AEA; padding:7px 5px 7px 15px; font-family:wf_segoe-ui_normal,Segoe UI,Sego=
-e WP,Tahoma,Arial,sans-serif; font-size:12px; font-weight:normal; color:#21=
-2121; text-align:left; word-wrap:break-word">
-<div>You don't often get email from raj.khem@gmail.com. <a href=3D"https://=
-aka.ms/LearnAboutSenderIdentification">
+ 5px 7px 15px" color=3D"#212121" style=3D"width:100%;background-color:rgb(2=
+34,234,234);padding:7px 5px 7px 15px;font-family:wf_segoe-ui_normal,&quot;S=
+egoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif;font-size:12px;f=
+ont-weight:normal;color:rgb(33,33,33);text-align:left">
+<div>You don&#39;t often get email from <a href=3D"mailto:raj.khem@gmail.co=
+m" target=3D"_blank">raj.khem@gmail.com</a>. <a href=3D"https://aka.ms/Lear=
+nAboutSenderIdentification" target=3D"_blank">
 Learn why this is important</a></div>
 </td>
 <td valign=3D"middle" align=3D"left" width=3D"75px" bgcolor=3D"#EAEAEA" cel=
-lpadding=3D"7px 5px 7px 5px" color=3D"#212121" style=3D"width:75px; backgro=
-und-color:#EAEAEA; padding:7px 5px 7px 5px; font-family:wf_segoe-ui_normal,=
-Segoe UI,Segoe WP,Tahoma,Arial,sans-serif; font-size:12px; font-weight:norm=
-al; color:#212121; text-align:left; word-wrap:break-word">
+lpadding=3D"7px 5px 7px 5px" color=3D"#212121" style=3D"width:75px;backgrou=
+nd-color:rgb(234,234,234);padding:7px 5px;font-family:wf_segoe-ui_normal,&q=
+uot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif;font-size:1=
+2px;font-weight:normal;color:rgb(33,33,33);text-align:left">
 </td>
 </tr>
 </tbody>
 </table>
 <div>
-<div style=3D"background-color:#FFEB9C; width:100%; border-style:solid; bor=
-der-color:#9C6500; border-width:1pt; padding:2pt; font-size:10pt; line-heig=
-ht:12pt; font-family:'Calibri'; color:Black; text-align:left">
-<span style=3D"color:#9C6500; font-weight:bold">CAUTION:</span> External Se=
-nder - Be cautious when clicking links or opening attachments. Please email=
- InfoSec@keyfactor.com with any questions.</div>
+<div style=3D"background-color:rgb(255,235,156);width:100%;border-style:sol=
+id;border-color:rgb(156,101,0);border-width:1pt;padding:2pt;font-size:10pt;=
+line-height:12pt;font-family:Calibri;color:black;text-align:left">
+<span style=3D"color:rgb(156,101,0);font-weight:bold">CAUTION:</span> Exter=
+nal Sender - Be cautious when clicking links or opening attachments. Please=
+ email <a href=3D"mailto:InfoSec@keyfactor.com" target=3D"_blank">InfoSec@k=
+eyfactor.com</a> with any questions.</div>
 <br>
 <div>
 <div><br>
 </div>
 <div><br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Mon, Apr 3, 2023 at 12:25 AM &lt=
-;<a href=3D"mailto:adrian.dudau@keyfactor.com">adrian.dudau@keyfactor.com</=
-a>&gt; wrote:<br>
+<div>
+<div dir=3D"ltr">On Mon, Apr 3, 2023 at 12:25 AM &lt;<a href=3D"mailto:adri=
+an.dudau@keyfactor.com" target=3D"_blank">adrian.dudau@keyfactor.com</a>&gt=
+; wrote:<br>
 </div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0 0 0 .8ex; border-left=
-:1px #ccc solid; padding-left:1ex">
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
 On Mon, Feb 6, 2023 at 01:13 AM, Richard Purdie wrote:<br>
 Hi Richard,<br>
 <br>
@@ -354,8 +330,8 @@ DEPENDS =3D &quot;&quot;<br>
 SRC_URI =3D &quot;&quot;<br>
 <br>
 do_install() {<br>
-&nbsp;&nbsp;&nbsp; ls -l /usr/bin/sudo<br>
-&nbsp;&nbsp;&nbsp; sudo ls -l /usr/bin/sudo<br>
+=C2=A0=C2=A0=C2=A0 ls -l /usr/bin/sudo<br>
+=C2=A0=C2=A0=C2=A0 sudo ls -l /usr/bin/sudo<br>
 }<br>
 </blockquote>
 <div dir=3D"auto"><br>
@@ -365,13 +341,13 @@ do_install() {<br>
 ginal issue you are running into ?</div>
 <div dir=3D"auto"><br>
 </div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0 0 0 .8ex; border-left=
-:1px #ccc solid; padding-left:1ex">
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">
 <br>
 <br>
 Running bitbake barebone on my x86 machine produces this error:<br>
 <br>
-| -rwxr-xr-x 1 nobody 65534 232416 Mar&nbsp; 1 13:59 /usr/bin/sudo<br>
+| -rwxr-xr-x 1 nobody 65534 232416 Mar=C2=A0 1 13:59 /usr/bin/sudo<br>
 | sudo: /etc/sudo.conf is owned by uid 65534, should be 0<br>
 | sudo: /etc/sudo.conf is owned by uid 65534, should be 0<br>
 | sudo: error in /etc/sudo.conf, line 0 while loading plugin &quot;sudoers_=
@@ -380,8 +356,9 @@ policy&quot;<br>
 | sudo: fatal error, unable to load plugins<br>
 <br>
 Indeed it seems that ownership is broken somehow in the bb environment. The=
- issue was introduced somewhere between dunfell and kirkstone. I know it's =
-a large timespan but it's a bit time consuming to narrow it down.<br>
+ issue was introduced somewhere between dunfell and kirkstone. I know it&#3=
+9;s a large timespan but it&#39;s a bit time consuming to narrow it down.<b=
+r>
 <br>
 Hoping to get some help on this. I would try to investigate further myself =
 but I have no idea where to start to be honest.<br>
@@ -389,50 +366,7 @@ but I have no idea where to start to be honest.<br>
 Best regards,<br>
 --Adrian<br>
 <br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#59594): <a href=3D"https://nam11.safelinks.protection.o=
-utlook.com/?url=3Dhttps%3A%2F%2Flists.yoctoproject.org%2Fg%2Fyocto%2Fmessag=
-e%2F59594&amp;data=3D05%7C01%7Cadrian.dudau%40keyfactor.com%7C285da1e1af0a4=
-03ddc9d08db3453cb12%7Cc9ed4b459f70418aaa58f04c80848ca9%7C0%7C0%7C6381613067=
-59776144%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTi=
-I6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DwCdVmKhuBSTGtomYax5nGJ=
-%2FU%2BgDP77qJhiUeo%2FPvmfI%3D&amp;reserved=3D0" originalsrc=3D"https://lis=
-ts.yoctoproject.org/g/yocto/message/59594" shash=3D"vLhf34sxgpfOOmvz26BXUrj=
-gq+/x7j8+tICrJlGaGqZeyeaj2sgsyclsawZIPrY8t7y2Dlbl8uGQzrIaL2UubeRxBsYvDYq455=
-ZMdKiDHvdddvjrqOfjcVkrLAr6UjFsvtENjrcQlUAB4e9vPMbefGjyOfNRNt+SJlFK+LotZ1g=
-=3D" rel=3D"noreferrer" target=3D"_blank">
-https://lists.yoctoproject.org/g/yocto/message/59594</a><br>
-Mute This Topic: <a href=3D"https://nam11.safelinks.protection.outlook.com/=
-?url=3Dhttps%3A%2F%2Flists.yoctoproject.org%2Fmt%2F96733939%2F1997914&amp;d=
-ata=3D05%7C01%7Cadrian.dudau%40keyfactor.com%7C285da1e1af0a403ddc9d08db3453=
-cb12%7Cc9ed4b459f70418aaa58f04c80848ca9%7C0%7C0%7C638161306759776144%7CUnkn=
-own%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXV=
-CI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DEoBSOu9VHGL1%2BhwdtR6rildYMUnrcihKq3O=
-i1ifktng%3D&amp;reserved=3D0" originalsrc=3D"https://lists.yoctoproject.org=
-/mt/96733939/1997914" shash=3D"iLkthK5gg7kBf5tHKlfhgVAMmyA+mqQKNIccDzmp6vJG=
-IzJ6wbHV0o09+8NQy6Yy+mO3NcC3CUvPTBh/5f/lGjgMpiNx/n21QQy1R2JUD1vwox6uab1ayOw=
-do3b3zI7n8paj+ze2HwGzUU2SLa3d9g24mHeZkV/xujw7Fc4NQ9Q=3D" rel=3D"noreferrer"=
- target=3D"_blank">
-https://lists.yoctoproject.org/mt/96733939/1997914</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">
-yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://nam11.safelinks.protection.outlook.com/?url=
-=3Dhttps%3A%2F%2Flists.yoctoproject.org%2Fg%2Fyocto%2Funsub&amp;data=3D05%7=
-C01%7Cadrian.dudau%40keyfactor.com%7C285da1e1af0a403ddc9d08db3453cb12%7Cc9e=
-d4b459f70418aaa58f04c80848ca9%7C0%7C0%7C638161306759932359%7CUnknown%7CTWFp=
-bGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%=
-7C3000%7C%7C%7C&amp;sdata=3DoPMLP5%2BH1TpoImAATccCbMI%2B5vfKZQi2l4ls3CqQ8Yo=
-%3D&amp;reserved=3D0" originalsrc=3D"https://lists.yoctoproject.org/g/yocto=
-/unsub" shash=3D"Av9qgAxiJkZVaMIn6PbiOkYZ4aUwuuRmvPFxACj7uanNou+aJbpQ53uXT/=
-ZxeBliW2ntCdUmOidgu02X0dWQhWwTrjbSTJw22TPD8afF9BJ0hHnf77x+qVIuVKsRuczz1GmWI=
-CtvS6szUVrdbVQoIDEgOW92xaSpZv3zWNohJxo=3D" rel=3D"noreferrer" target=3D"_bl=
-ank">
-https://lists.yoctoproject.org/g/yocto/unsub</a> [<a href=3D"mailto:raj.khe=
-m@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
 <br>
 </blockquote>
 </div>
@@ -440,8 +374,30 @@ m@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>]<br>
 </div>
 </div>
 </div>
-</body>
-</html>
+</div>
 
---_000_DB6PR03MB2901095F3F450ADC7E19061891929DB6PR03MB2901eurp_--
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#59601): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/59601" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/59601</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/96733939/1050=
+810" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/96733939/1050810</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruc=
+e.ashfield@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</div></blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gm=
+ail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signatu=
+re">- Thou shalt not follow the NULL pointer, for chaos and madness await t=
+hee at its end<br>- &quot;Use the force Harry&quot; - Gandalf, Star Trek II=
+<br><br></div></div>
+
+--0000000000001f2f3005f870a47f--
 
