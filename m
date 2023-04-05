@@ -1,310 +1,108 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <patrick@stwcx.xyz>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A93AC77B60
-	for <webhook@archiver.kernel.org>; Wed,  5 Apr 2023 11:32:18 +0000 (UTC)
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
- by mx.groups.io with SMTP id smtpd.web10.127352.1680694335189932056
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16D47C7619A
+	for <webhook@archiver.kernel.org>; Wed,  5 Apr 2023 11:37:48 +0000 (UTC)
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+ by mx.groups.io with SMTP id smtpd.web10.127447.1680694659813671903
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Apr 2023 04:32:15 -0700
+ Wed, 05 Apr 2023 04:37:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@theyoctojester-info.20210112.gappssmtp.com header.s=20210112 header.b=lsNsyaUb;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.51, mailfrom: jester@theyoctojester.info)
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-500349a5139so1723037a12.1
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 04:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20210112.gappssmtp.com; s=20210112; t=1680694333; x=1683286333;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=svQOafBDhxY4el/v3Ibg4Pp8/ze4/3da2V1rd6JbB2o=;
-        b=lsNsyaUbrTt2IZfoPU+Egunjw8/9jiP8XsvOuR5zVsQ0NkJnjB0ZCe3oGrwIK5l9FW
-         uWlgccBJT5BFgrxIzDsLUQoItK5IA/xo0Zhxw2vZ1aQpreNAvwZAvU+Q8bh+P30wZ/I2
-         MSVwxVwOQXQlpJWp8pN5j0LJjl8CShkeX2ZKXNUhgYlIij7cy/KyFcyiwQXhrjCC6J6l
-         QpJwhc5R848PrjISI6moDRIYiihfMjQTwpPu9zsS12TGPYm5RCSI6ljgtdNoz4XkDIL6
-         RRJC7xhNPRSNf4d+rOofp9d65uBOqlLCJHMYuWxwnzVfl3pEr/g3F/xVISnqJEeC102p
-         mHIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680694333; x=1683286333;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=svQOafBDhxY4el/v3Ibg4Pp8/ze4/3da2V1rd6JbB2o=;
-        b=z8/nN2ZtdxmOA8Am3kucY94RJcKB2k6PjLPo6jz0S6GqgxGsuEPby4K4ZZrzp/BsUF
-         BZTE/jVOK3wlsYpatlNsf+d8CuAm9WFRktJxYstbJK8VdvV9xxWXboREngktmfrMLbGn
-         TfbubvnppToadZkjIiKChfIyanX6plmonRX0FYoThKLKlPn2sEbfNtGJltpLL2VQWy6p
-         r/RCfSoIB/IZkiseNue6hrg9aRCNG3w1rKIOZ1vip1IF3PpIG5TW1OEAum51nsowAT8T
-         KF8xdrOuqdB2G5+7xiTG05f70Wlm6ApVTOf+7Xs8xYoLHP+H33brMkDzUHYLUv5ffLFU
-         qX/A==
-X-Gm-Message-State: AAQBX9eIC+KargLUd9BE9DjXTU5J3uDftOBHTry5X1G2+lw5ji5O1YYR
-	/fkZmDi4usN9uzZNjETVh6vwViXwh5Gn0YM00CRxOg==
-X-Google-Smtp-Source: AKy350bO7amraSPH8OWGk4xnCFRpF2bDg0kRd7fctVJSwIAj/ZVOPWdXIpCWbomQzNHjIcCKVkiwgueaIO7vc6Yqe6U=
-X-Received: by 2002:a05:6402:28ca:b0:502:3e65:44f7 with SMTP id
- ef10-20020a05640228ca00b005023e6544f7mr1034549edb.3.1680694333319; Wed, 05
- Apr 2023 04:32:13 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@stwcx.xyz header.s=fm2 header.b=rgUE9NxE;
+ spf=pass (domain: stwcx.xyz, ip: 64.147.123.25, mailfrom: patrick@stwcx.xyz)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.west.internal (Postfix) with ESMTP id 086573200302;
+	Wed,  5 Apr 2023 07:37:38 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 05 Apr 2023 07:37:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-transfer-encoding:content-type:date:date:from:from
+	:in-reply-to:message-id:mime-version:reply-to:sender:subject
+	:subject:to:to; s=fm2; t=1680694658; x=1680781058; bh=fTZ5VEPnzO
+	YTg4LEjMsll+HcYY4o/eLCw+kxsQuNPXs=; b=rgUE9NxEbclu0oX9XtGHadmnJZ
+	BdKoG1kXBlwiYynT+DWFqUU+T7YqFm3m6WNlZFmhFT/ETvtoXpLQRX98dXylQ3PO
+	T4QfzLynPW6oFTA3OjrHRlm7vT8wU37S5jZFCAvqum5eykO2T4Q9+uCOv0LS56pz
+	e2Rd+ekL2WTqxa3RO2g6citwNYRNeZLPalEr65DOhQTxhndPXMaU90YrJP3f6AZO
+	A525cCoWG4M65n4suJ3+2J3KMqlxrc8DEGDajkUujfMUIZh9ApRnTvQ6qYA8uuEt
+	13MkxTNCC2JqpelnMt5zpSIL5dFFq0As899jx2I8WOhQ820Pk3zw9BRWRCpg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1680694658; x=1680781058; bh=fTZ5VEPnzOYTg
+	4LEjMsll+HcYY4o/eLCw+kxsQuNPXs=; b=KSN09w5ir6LOvSvkoChbSZSSk6vTP
+	Ku/LFm+RAvfReEqTBcN6o5CxIei0yyRE9Yf5aYSAkQkAe5/RNe3Cd4LuEXLmj5iw
+	BtqUIa4wHMdgz3lFVf5jhCtPenMauZ4jY85Vq0T/o87eF0cmM/uQeEG2alwDZqPz
+	eR0BL2RKMBMquP88ed3oI5WjhkaljvVMgdCS59CSKy0yW239PZAnwJEYmZSHtLRk
+	N8SN+rUcKcIpNYPS1A8vRdFu5YaFepVDm+ZO2xJN6xEWSDYheksSRofl6qAQh/8q
+	R9+1IquA7qu0RDum6IFtt62vXfrufiodniYB2Hh/Ut1KQtLvG/Y3P4fwQ==
+X-ME-Sender: <xms:gl0tZP2VA3XPgzpQ4bcVnjuOakvDnLbceZpOUJpqQOZwyInbj4aGhA>
+    <xme:gl0tZOFGev5ntB8zGc1CVjtf75EfbiXehMNR-wOJb0yhDbkQ_F4YhI48d__7AsZO0
+    MhJ76g5byc-BiVzcRg>
+X-ME-Received: <xmr:gl0tZP6riqKUFqy4sP5V9ZXW1RlHmt1xmN4e5Jky2YAKRHg3KA7IF90fcVJXF9rAwMFz71raj1kHIMTwFwFbDb7h4lI42k20TU0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdejuddggeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucgfrhhlucfvnfffucdlfeehmdenucfjughrpefhvf
+    evufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefrrghtrhhitghkucghihhllhhi
+    rghmshcuoehprghtrhhitghksehsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpe
+    fffeeujefgheetleduleegtefhgfejuddthfffffehueekiefhieeuheeghfdvtdenucff
+    ohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepphgrthhrihgtkhesshhtfigtgidrgiihii
+X-ME-Proxy: <xmx:gl0tZE3bnOJ62XHCUJFHpuiEY0DtFqHYsAgE1OHlA8Du0jCKu9_mWg>
+    <xmx:gl0tZCFSEJf7QeVm8dLBC5xiM76JteFv8ffbY_R63m5r8Lkwp90W9g>
+    <xmx:gl0tZF86D9GVGSF1fifwShsWWvOXyXPnIiW6j435F1whS7gXx4vyKg>
+    <xmx:gl0tZNMKttr7qcFV3Mfwikn4Tg1kCr_kCmf_AA_758mjIEVSGChf8A>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 5 Apr 2023 07:37:38 -0400 (EDT)
+From: Patrick Williams <patrick@stwcx.xyz>
+To: yocto@lists.yoctoproject.org
+Cc: Patrick Williams <patrick@stwcx.xyz>
+Subject: [meta-security][PATCH] libwhisker2-perl: adjust perl-version variable
+Date: Wed,  5 Apr 2023 06:37:26 -0500
+Message-Id: <20230405113726.469558-1-patrick@stwcx.xyz>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <GBPi.1680691583503538113.G0b9@lists.yoctoproject.org>
-In-Reply-To: <GBPi.1680691583503538113.G0b9@lists.yoctoproject.org>
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Wed, 5 Apr 2023 13:31:47 +0200
-Message-ID: <CAEt6Nwrrz=RSWih8tLMkHzaoHC7vfvhFVaeLZq0AP_jt7Xy+2w@mail.gmail.com>
-Subject: Re: [yocto] How to remove Rust (and other packages) from yocto build #bitbake
-To: Jesus.JimenezSanchez@verifone.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b6c76305f895241c"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 11:32:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59615
+ <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 11:37:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59616
 
---000000000000b6c76305f895241c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The PERLVERSION likely has the wrong value in the native context
+due to reasons discussed in openembedded-core[1].  The upstream
+suggestion was to avoid use of PERLVERSION and switch to the direct
+function.
 
-Randomly removing things just does not work (TM).
+1. https://lore.kernel.org/openembedded-core/20230405003850.384813-1-patrick@stwcx.xyz/T/#u
 
-Bitbake builds only what you tell it to anyways, so whatever you see in
-your build is directly (because it goes into the resulting image) or
-indirectly (because it is needed to build the resulting image) defined by
-your target. So the things you can do is:
-- looking at your image recipe, and remove things
-- looking at your machine and distro, if they add things, and remove there.
-Rust native is almost impossible to remove nowadays, because it is a build
-dependency of python3-cryptography.
+Signed-off-by: Patrick Williams <patrick@stwcx.xyz>
+---
+ recipes-perl/perl/libwhisker2-perl_2.5.bb | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-Greetz,
-Josef
+diff --git a/recipes-perl/perl/libwhisker2-perl_2.5.bb b/recipes-perl/perl/libwhisker2-perl_2.5.bb
+index 42c0b42..c58d883 100644
+--- a/recipes-perl/perl/libwhisker2-perl_2.5.bb
++++ b/recipes-perl/perl/libwhisker2-perl_2.5.bb
+@@ -19,9 +19,10 @@ PACKAGEGROUP ??=""
+ PACKAGEGROUP[ssl] = ", , libnet-ssleay-perl, libnet-ssleay-perl"
+ 
+ do_install() {
+-    install -d 755 ${D}${PERLLIBDIRS}/vendor_perl/${PERLVERSION}
+-    install -d 755 ${D}${datadir}/perl/${PERLVERSION}
+-    oe_runmake install DESTDIR=${D} INSTALLDIR=${PERLLIBDIRS}/vendor_perl/${PERLVERSION} MANDIR=${datadir}/perl/${PERLVERSION}
++    perl_version="${@get_perl_version(d)}"
++    install -d 755 ${D}${PERLLIBDIRS}/vendor_perl/${perl_version}
++    install -d 755 ${D}${datadir}/perl/${perl_version}
++    oe_runmake install DESTDIR=${D} INSTALLDIR=${PERLLIBDIRS}/vendor_perl/${perl_version} MANDIR=${datadir}/perl/${perl_version}
+ }
+ 
+ FILES:${PN} += "${datadir}/perl"
+-- 
+2.39.2
 
-On Wed, Apr 5, 2023 at 12:46=E2=80=AFPM Jesus.JimenezSanchez via
-lists.yoctoproject.org <Jesus.JimenezSanchez=3D
-verifone.com@lists.yoctoproject.org> wrote:
-
-> I'm trying to remove a series of packages from my yocto build but what
-> I've tried hasn't worked so far. This is what I have:
->
-> ```
-> PACKAGE_EXCLUDE +=3D "\
-> avahi \
-> apt \
-> apt-native \
-> cmake \
-> cmake-native \
-> cracklib \
-> crda \
-> cryptodev-linux \
-> dpkg \
-> dpkg-native \
-> elfutils \
-> elfutils-native \
-> fftw \
-> gawk \
-> gcc-runtime \
-> gnupg \
-> hdparm \
-> icu \
-> kbd \
-> libassuan \
-> libatomic-ops \
-> libavahi-client \
-> libavahi-common \
-> libavahi-core \
-> libcap-ng \
-> libdaemon \
-> libgcc \
-> libgcc-initial \
-> libgcrypt \
-> libgpg-error \
-> libical \
-> libidn2 \
-> libksba \
-> libmnl \
-> libogg \
-> libtirpc \
-> libtool \
-> libtool-cross \
-> libubootenv \
-> libunistring \
-> libxcrypt \
-> linux-libc-headers \
-> lz4 \
-> lzo \
-> npth \
-> pinentry \
-> pulseaudio \
-> qemuwrapper-cross \
-> resize-helper \
-> rust \
-> rust-llvm \
-> rust-llvm-native \
-> rust-native \
-> systemd \
-> systemd-compat-units \
-> systemd-conf \
-> systemd-mount-partitions \
-> tar \
-> vala \
-> xxhash \
-> zstd \
-> "
-> ```
->
-> The main one I want to remove is Rust, but I still see it building in the
-> log.
->
-> I have also tried using `IMAGE_INSTALL:remove` (in fact, I have both at
-> the same time at the moment in my `local.conf` file), but it doesn't seem
-> to work either. I have also tried both options in my `bbappend` file with
-> no success either.
->
-> What am I doing wrong here? Is removing Rust even possible?
->
-> Some other packages I'm trying to remove are also appearing in the build
-> log, like `dpkg-native` or `cmake`.
->
-> Thank you.
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#59614):
-> https://lists.yoctoproject.org/g/yocto/message/59614
-> Mute This Topic: https://lists.yoctoproject.org/mt/98079587/4689568
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> jester@theyoctojester.info]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000b6c76305f895241c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Randomly removing things just does not work (TM).<div><br>=
-</div><div>Bitbake builds only what you tell it to anyways, so whatever you=
- see in your build is directly (because it goes into the resulting image) o=
-r indirectly (because it is needed to build the resulting image) defined by=
- your target. So the things you can do is:</div><div>- looking at your imag=
-e recipe, and remove things</div><div>- looking at your machine and distro,=
- if they add things, and remove there.</div><div>Rust native is almost impo=
-ssible to remove nowadays, because it is a build dependency of python3-cryp=
-tography.</div><div><br></div><div>Greetz,</div><div>Josef</div></div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr=
- 5, 2023 at 12:46=E2=80=AFPM Jesus.JimenezSanchez via <a href=3D"http://lis=
-ts.yoctoproject.org">lists.yoctoproject.org</a> &lt;Jesus.JimenezSanchez=3D=
-<a href=3D"mailto:verifone.com@lists.yoctoproject.org">verifone.com@lists.y=
-octoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div>I&#39;m trying to remove a series of packages from my y=
-octo build but what I&#39;ve tried hasn&#39;t worked so far. This is what I=
- have:</div>
-<div>=C2=A0</div>
-<div>```</div>
-<div>PACKAGE_EXCLUDE +=3D &quot;\</div>
-<div><span style=3D"white-space:pre-wrap"> </span>avahi \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>apt \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>apt-native \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>cmake \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>cmake-native \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>cracklib \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>crda \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>cryptodev-linux \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>dpkg \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>dpkg-native \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>elfutils \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>elfutils-native \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>fftw \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>gawk \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>gcc-runtime \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>gnupg \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>hdparm \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>icu \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>kbd \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libassuan \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libatomic-ops \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libavahi-client \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libavahi-common \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libavahi-core \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libcap-ng \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libdaemon \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libgcc \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libgcc-initial \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libgcrypt \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libgpg-error \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libical \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libidn2 \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libksba \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libmnl \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libogg \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libtirpc \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libtool \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libtool-cross \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libubootenv \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libunistring \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>libxcrypt \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>linux-libc-headers \</div=
->
-<div><span style=3D"white-space:pre-wrap"> </span>lz4 \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>lzo \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>npth \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>pinentry \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>pulseaudio \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>qemuwrapper-cross \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>resize-helper \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>rust \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>rust-llvm \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>rust-llvm-native \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>rust-native \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>systemd \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>systemd-compat-units \</d=
-iv>
-<div><span style=3D"white-space:pre-wrap"> </span>systemd-conf \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>systemd-mount-partitions =
-\</div>
-<div><span style=3D"white-space:pre-wrap"> </span>tar \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>vala \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>xxhash \</div>
-<div><span style=3D"white-space:pre-wrap"> </span>zstd \</div>
-<div>&quot;</div>
-<div>```</div>
-<div>=C2=A0</div>
-<div>The main one I want to remove is Rust, but I still see it building in =
-the log.</div>
-<div>=C2=A0</div>
-<div>I have also tried using `IMAGE_INSTALL:remove` (in fact, I have both a=
-t the same time at the moment in my `local.conf` file), but it doesn&#39;t =
-seem to work either. I have also tried both options in my `bbappend` file w=
-ith no success either.</div>
-<div>=C2=A0</div>
-<div>What am I doing wrong here? Is removing Rust even possible?<br><br>Som=
-e other packages I&#39;m trying to remove are also appearing in the build l=
-og, like `dpkg-native` or `cmake`.</div>
-<div>=C2=A0</div>
-<div>Thank you.</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#59614): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59614" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/59614</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/98079587/4689=
-568" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/98079587/4689568</a><br>
-Mute #bitbake:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag=
-/bitbake" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
-rg/g/yocto/mutehashtag/bitbake</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">je=
-ster@theyoctojester.info</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000b6c76305f895241c--
 
