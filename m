@@ -1,916 +1,632 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65E39C7619A
-	for <webhook@archiver.kernel.org>; Wed,  5 Apr 2023 15:48:19 +0000 (UTC)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
- by mx.groups.io with SMTP id smtpd.web10.133855.1680709693696202331
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABA76C76188
+	for <webhook@archiver.kernel.org>; Wed,  5 Apr 2023 16:18:09 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web10.134799.1680711481886394920
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Apr 2023 08:48:13 -0700
+ Wed, 05 Apr 2023 09:18:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Sh9U2czB;
- spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: akuster808@gmail.com)
-Received: by mail-oi1-f176.google.com with SMTP id bi31so26942165oib.9
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 08:48:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680709693; x=1683301693;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=D7x5mz4feNndvFm1XB4BMd0q+a7KxlgZMKsMw0pUx98=;
-        b=Sh9U2czBBzXVw4SE8uUoXk+/8KosPAux8TVbbMK8SVowX7fIiVskESmaB29TfbILBc
-         CKcE8MFxYR+XWQ5stZm8KMgXlWU9xIc06c8IoGQ4TVfpykOWRX1qybV3SAcjVObMjmi/
-         UUUT6/ROuRrIKVcIfAslpI7LzZuDKWqWR7BC03pULav9sUKawXagIoVBybtVNPyDrSLp
-         j/aVpsvToGLM6hNnTzslK2ZO3knA7kRTnYD4vzccbn7asxlRny0Es2dMi9UHl/3fXV5w
-         GdLPpBJIE2D/4LFkwb1PSzsuis1bokfjZSOn+ruJ5DOnJv0KZnewMB4e8GgNOMnDrkEy
-         8LRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680709693; x=1683301693;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D7x5mz4feNndvFm1XB4BMd0q+a7KxlgZMKsMw0pUx98=;
-        b=kirYEJPQ4EhV5oHxabENPK0LVBcxmfK+ZuWuJt52G2P9ylXPiezbFjkxUbk+oP2iVJ
-         Vh2xZuK+Aw64iZRsqJbkUT4SV1ChC7lYad6WXsi13FhOM7Yb4tMbxDiX2BBgF6SfA8jE
-         lzN8rHWsj5jqGUcLPfS1tWLWmn8EZM9yFxwtxSG0lbYM4eXrpuOqTwEPHxb0LYx3vjRs
-         m8ENYjMeJStIGHHUkWwCc3xU1EZAB3F6kv813/i191YwK7HWBhgJth3A1yyZzcG63n3F
-         wcXXaIq2QjYaAfHIjEMTqd31Gf2Cz1RAOd+B/eKDDVfQ0zq5nZiFvZqRDYmSMb1BEYPY
-         y5Eg==
-X-Gm-Message-State: AAQBX9eHmJAk3fn8cE5uY2eyS8Asw1FZshboqPS5VkfeUhHKQhiKUicJ
-	Z0xAj8pborfUZ2Dn4lqUNMbnUz2hA3E9HA==
-X-Google-Smtp-Source: AKy350bQSZzl3ZIYaM1cAUkdSTwuTbQM5lC0PEcBrjtqfNXwRHsURi5rtATF2lvVY394uHoeyi7eog==
-X-Received: by 2002:a05:6808:2b0c:b0:387:266e:1624 with SMTP id fe12-20020a0568082b0c00b00387266e1624mr2741118oib.39.1680709691810;
-        Wed, 05 Apr 2023 08:48:11 -0700 (PDT)
-Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:36f6:c20d:238e:7162])
-        by smtp.gmail.com with ESMTPSA id o131-20020acaf089000000b0038afbe9db42sm5293649oih.44.2023.04.05.08.48.11
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 08:48:11 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] suricata: Fixup to work within the recent crate changes.
-Date: Wed,  5 Apr 2023 11:48:10 -0400
-Message-Id: <20230405154810.763878-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=j5nNoQkx;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=34599d6ab3=qi.chen@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 335EZREw027429;
+	Wed, 5 Apr 2023 16:17:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=PPS06212021;
+ bh=YUuLp+YCNx41M5TcMsXjAyOh3FAsX1Vj1MT3nifLmcY=;
+ b=j5nNoQkxSn0ObDPJoN4clUfwYnoYNR7k+hLIt+cWyqQL39Ze67sKzG/5qMdCYQRgM/Ee
+ IlsaGperPepOyFvXmKFvzWjfA2bJzZ2EL4UPuTm7s2tm4wtdu5PUj02IKUcPhxOFd4kr
+ A6Tk8Ku3Tr4yM8dtmQQCmzu+/WQQEFwZIGm3N/rJ6LVdxED9fqQJAw2GGedaPVKKQ3ao
+ Ta/Cwq4rXTPUH8WhdPwwAUZtz60lT5RWp1yqQauvkefGsjmOF4XIqkY/cViIPWI3udqn
+ tQ1Zm+U6FWO85VLeqH3+nemjYNiLPPrZy57Tc+3bb8chHVZJUhld3/ltMhHXO9xKFE1+ 8Q== 
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2107.outbound.protection.outlook.com [104.47.55.107])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3pp9u4mqsp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Apr 2023 16:17:57 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OOb4NdgRj+K7ka0eJpa45tHCxpjiCDAjX5gx4OS1UZeqKnqOltCtCJNZNVzMzqw68DFGi96mliaZJCY4m4/iVjnSGmuOlJjLAgOZU0UXT1nC/oOXkDplEa7cL8MW2dWszlUQj7s4w6ftFd84kE69hY9Rl1+YHLAygv2J6cXLva/8enbkFY1Ftuq3AdXoQ9PVnMw24Z66F9689cdtbWaSZ41WfgUMr7sU7kOco70fly/d30BQlqm4BOr9hK5kN8gxoNdpJA0e1iTk9m+N57kxd1JktQac/xh2QGiJ/ZUwuaVnPYg4m6DwHyt5hKjvw2z+9rek8AifkiFIFXTBc2aLeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YUuLp+YCNx41M5TcMsXjAyOh3FAsX1Vj1MT3nifLmcY=;
+ b=kTabI1Jez6CI2bKaGv02NSBGTqkucuAu+nlp/jhSzE4dGk/gQVeMKvs0lYRXOPry7CI1lx0ijY9C0CkNMVIH0Gf4cN6zedUMVHC9v5/SlLHl7etUwoNmGa/N5poQUnTfSaDCYFek50/4/r9Aru+lC8n21RzLDmCDKjl1sdFrKOGeFji2TVVplUw/YbIHWXyePYcraLy9MfFlBvzdUpmDFzPWNI/Q12wJiGb6g+sbiQf5JnWIkYNtJjA12NhT/28kLODgSxhSlCujnnAv0zAOKHY5/cvIAU6po+VvoTHVDTvfXE02zWktRvZylQzPnnPLYOIByS1kjrmh1409Il6dWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from CO6PR11MB5602.namprd11.prod.outlook.com (2603:10b6:303:13a::5)
+ by CY8PR11MB6940.namprd11.prod.outlook.com (2603:10b6:930:58::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.30; Wed, 5 Apr
+ 2023 16:17:53 +0000
+Received: from CO6PR11MB5602.namprd11.prod.outlook.com
+ ([fe80::ab37:4985:7b95:2b95]) by CO6PR11MB5602.namprd11.prod.outlook.com
+ ([fe80::ab37:4985:7b95:2b95%6]) with mapi id 15.20.6254.035; Wed, 5 Apr 2023
+ 16:17:53 +0000
+From: "Chen, Qi" <Qi.Chen@windriver.com>
+To: "Chen, Qi" <Qi.Chen@windriver.com>,
+        Adrian Dudau
+	<adrian.dudau@keyfactor.com>,
+        Bruce Ashfield <bruce.ashfield@gmail.com>
+CC: Khem Raj <raj.khem@gmail.com>,
+        "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] error when try to use sudo command in recipe
+Thread-Topic: [yocto] error when try to use sudo command in recipe
+Thread-Index: 
+ AQHZZf1u0PZ8Uzpex0GCGND7XXj0pq8ZrUeAgAAMhQCAAATZgIABDC+AgAAfT4CAAfzOMA==
+Date: Wed, 5 Apr 2023 16:17:53 +0000
+Message-ID: 
+ <CO6PR11MB5602031F06E757691A48C432ED909@CO6PR11MB5602.namprd11.prod.outlook.com>
+References: 
+ <2304c6f228db24096ac44b1e14132bb70981986b.camel@linuxfoundation.org>
+ <6415.1680506699920545280@lists.yoctoproject.org>
+ <CAMKF1sp1e0A88eGB3xVcamY16GB2H6dBwHet4tvYtUf2_GpS7A@mail.gmail.com>
+ <DB6PR03MB2901095F3F450ADC7E19061891929@DB6PR03MB2901.eurprd03.prod.outlook.com>
+ <CADkTA4NNLMXYSGjsd9w=JJ4z7f4jRh3r6e9cf8FKS-aLtPMGZw@mail.gmail.com>
+ <DB6PR03MB2901B6AE1504E3BB81CC954791939@DB6PR03MB2901.eurprd03.prod.outlook.com>
+ <1752B31EC9C28A4E.3578@lists.yoctoproject.org>
+In-Reply-To: <1752B31EC9C28A4E.3578@lists.yoctoproject.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CO6PR11MB5602:EE_|CY8PR11MB6940:EE_
+x-ms-office365-filtering-correlation-id: e9b55859-4fb2-489c-8c3f-08db35f14f43
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 3CWRmP6rFPrWOqUVPjQHMo349Prf4xeVowzt8GM+mN4B8O2Gx0dGxfQQQ1I+U0qWlQL1EceGN1SCXv/UqLL23cMeNXvGAEt52PwDhe4qFrAC9N2LrdxPXQC+AG5AQT+Undb2VAvJ7llA2tAJmRWTd8kbuj+IfYYzRvRNF3cRoBy6heVReuqY4POdnAaWqk4iRmO6iyxZUYP8Md0yfYFIm8EfuzzO/chD+KewKCoIKqkGGu31V4XTu5lDZ57MJoRit/Z5K3QRnbyooGlSec5XSRVDAeztkyoE5TAgE6X4wIMvVyLlp9klzi0I1+XKH9TtL5pb9pn2LQpeLPIsL9ldjzJnAuguvsm3aZ4ikCgHLrXqPC7agKgNJD7Y8lMXMAuNvrYE+IBfod1zwf768IYRnwJdfcjZdpy9u4qzgnqzCv1Yzrn5+PiN/xZOpo82kpIjGIITdpcWuvSC/NXu2rAa7JukXSpe5X93xz0ulv33WGUss03hwqX+QqNGn6/HKVPR2MPOSJ7sA6+AbVX6+SN143VqDchKgeE8fFY778ng43TYBK7cBdwkarZwRB+JR9slEvJjOsIuuMSuHNFPUo/k1I93wHqSN8vSM+cazMl+tdQ=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR11MB5602.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(136003)(346002)(366004)(39850400004)(376002)(451199021)(166002)(38070700005)(38100700002)(122000001)(7696005)(86362001)(33656002)(55016003)(71200400001)(186003)(9686003)(4326008)(2906002)(26005)(6506007)(76116006)(52536014)(5660300002)(66946007)(66446008)(478600001)(66556008)(316002)(8936002)(54906003)(110136005)(41300700001)(53546011)(64756008)(66476007)(8676002)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?V0M1T3NQckNPNE1lcXBNSTVlamFpaDk3bVRaYjlDU2kvNlBxdHlzcUVFYWpH?=
+ =?utf-8?B?MVdiM3NiRVVMRHNpN3V5WE5DMWtjSm1EbzRZMlo5bkY0dEZaV2grVjF2b2My?=
+ =?utf-8?B?OFhQQ2c0R0lkZHdFbEJ1bVJOeTNpV2N1Z2Zkc2RPdWJnSzlUVldwc0JwOVNl?=
+ =?utf-8?B?SFJKbGwya3p2K3B2Q25qWnFWQVNrczJxMVljbk4zYzVTTVRRUWp6N0RwdmtG?=
+ =?utf-8?B?SWp0U09mL1Q3Zzc3K0hCZklNSWN6NmJTd2MrV1d5UEtsclUrRUJGV1JYYUNo?=
+ =?utf-8?B?K05iOE1KYlJabkNQVUJRMEVrTW9Hdk9uTk1USHd6Q2tzb056SGtkUGdyTTVu?=
+ =?utf-8?B?aHl6QjFOYWFZZSt3QWJlZFhiVTN0SGdsNHd2NFFTdG5IT0pMRjdEQXludVo2?=
+ =?utf-8?B?anEvNytCcDNZbHJYQWdBN2JGYWxqWHdLMWRDVmJuNHVXM0RLeWtGT1VWRXcy?=
+ =?utf-8?B?NTh1NmIrdjhCemdMVjZobGg2WUl4bk15OUw4RHYxQXU2cHFLSFhQVnJvS2lE?=
+ =?utf-8?B?d0ZQWEtEQS9NQ0JQZHB1dnZ5ckpZb0t6T2xNaVZjeWt4bDNhRjMxWWM0dEpD?=
+ =?utf-8?B?NzNNZ1ovMUp6RndqaUlCZVZmT2RuVVMwbTk0NnVwUXZlSTlmV04xY0tnbUkr?=
+ =?utf-8?B?eDlHRCt5K05iYldDM1E4SDI0K0RpVzBlMnlTaHFFWWxoY2dnUE54dHdXMm1i?=
+ =?utf-8?B?MW50RHFYcGJKa3VuNlRSdzA3Q0JsaUJzOVdDT3plcS9mMUU3YVQxVWIzaC9r?=
+ =?utf-8?B?VmZYY0tFeVNPRE9DeU1YdkxldmpJK1lLUFNSbTRiWk5mZmZVOHFWeTV4cmsw?=
+ =?utf-8?B?Q3hDMHhIOVFNaGZpWFBTNmxBc25rVzFuSXdRRmlKWS9tZ05jZ2ZOaDJ1R3ly?=
+ =?utf-8?B?dndiMDRyNG1MWC9TU0h5Ymh0bW95RElzTjFyMmpxUjZkVFJBUU9ybHlRRmRE?=
+ =?utf-8?B?MEt6d3ZiNkg3Y0ZqV0NnMFJMN2lKZlJ6NVpQVzZsNHVwRXV0NUYvbG9aZGlr?=
+ =?utf-8?B?bnpVSDl5R2dIaFJ0U1NvQm55MUwyd2ZiMGtZY2dTajJac09GaGlWL0VUdDhr?=
+ =?utf-8?B?Y3ZZOEJ6dW1tMWF3dFh5VEROYW5CZTlXREM3UXc2dHNIVnNKNmg5RW5ubzIw?=
+ =?utf-8?B?K25vMHhsRWI1akdWMlkyS3JmSFJ2UVBvcDBNMXVrVkZJbnVDUWZrMzVFVEZu?=
+ =?utf-8?B?UW9Wd1B6UUVzaFBxci8ySzNVQ2V2NkRJeDRNOG9VNnVzMW9mN2g2MEhmK2xV?=
+ =?utf-8?B?d3VjeVVGeGNIZHQ1RVZzcm85NjVuZ1JLNTlUM2lkY3NmbXhzOHNiVGM4dzdC?=
+ =?utf-8?B?Ymd6RmJ3UnBnRTVldXhXUFhzZUZLWHliMnBEcjZ3aHhFbzNaVUhiREdOVzRC?=
+ =?utf-8?B?VnJJK3lHUmhMM3FLd0dXZXJ6Ky9wS21FeW9DWjl3QVFpSmQrTEI3OG4vUDhn?=
+ =?utf-8?B?dmh3ZjRDR1lseGtEZFcvcG1mSzEyMlNrSVhhWHhjTWo3bDFVKzRaeW1DYmRV?=
+ =?utf-8?B?VWRRajlvRkhYcHJLRHJiMzh2SUVoSVoxN0J0UElBZFdxaHJ1S2RwMnF0d1Fu?=
+ =?utf-8?B?blluU1dqQjJjSnMrMUdRMWtJNHFzVlV6TkVPcEZEdGhZT1F1QXVONmpUWVc4?=
+ =?utf-8?B?TmlkZXYweHh0eSttZlZpWFJEUGNBakJWWkZxcUdyOUtNdmNDTHREYVdqNWkz?=
+ =?utf-8?B?eEtTcWVzSnRIeWJkazd4WWRWZTlFcjZ3UHQ5MkovSzZLa1ZTeit6U0ZnMTYy?=
+ =?utf-8?B?Y3QwYVZzZkRsVUMvUUg1d21sR3p5b0tabW0zV3BRU2VQNXkrNnlHNjhmRlV1?=
+ =?utf-8?B?ejdTMFliNW9vWmJFMFdYR3JaQnJFcitkOTVBVWxDL1VnOVI4dG5iYTU4dmdw?=
+ =?utf-8?B?RTNzWlRNQ1l4UDdRclkvWjlqZktMZjB1bmVXaFNENUY5YjkvNXcvcDJMUjBK?=
+ =?utf-8?B?aVJ0SSs4djF2TCtsVEFJbHI0dkoxbHdNcDdCZW5QUmM5VHI1c3JxQ09Qd0p1?=
+ =?utf-8?B?QUpPMTlzU2RFK083RDZaMW4xRWlsMkxVT2loc2NSdzhZWWhwenNsN1dscDdI?=
+ =?utf-8?B?d2I2a0pUdlZBQ3RsOForZ3h1VW9zODNiamVINjFQQVRKZWErRUkvcnJ3eVJ6?=
+ =?utf-8?Q?w1p+OIOUPA/a72bcGbtSLUwa5?=
+Content-Type: multipart/alternative;
+	boundary="_000_CO6PR11MB5602031F06E757691A48C432ED909CO6PR11MB5602namp_"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5602.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9b55859-4fb2-489c-8c3f-08db35f14f43
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2023 16:17:53.5886
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 20Sgj059BSlmh56toPHjOD8p076nM3X6goPOcqNvkqoT6wG/Ew1IFKq8YPTHr9geS9eGfuXpEPL9F7UQaU/Qgg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6940
+X-Proofpoint-ORIG-GUID: VsZyAHUDRGpRt-PdhPP06f6SUILt-f7h
+X-Proofpoint-GUID: VsZyAHUDRGpRt-PdhPP06f6SUILt-f7h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-05_11,2023-04-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 impostorscore=0 adultscore=0 phishscore=0 spamscore=0
+ bulkscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304050147
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 15:48:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59620
+ <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 16:18:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59621
 
-Had to delete some wonky Cargo.toml files to get update_crates to work.
-Manually updated one crate to a newer version included by update_crates as it would not compile.
-Manually applied several crates missed by update_crates.
+--_000_CO6PR11MB5602031F06E757691A48C432ED909CO6PR11MB5602namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-ids/suricata/suricata-crates.inc | 722 +++++++++++++++++++++++
- recipes-ids/suricata/suricata_6.0.10.bb  |  93 +--
- 2 files changed, 725 insertions(+), 90 deletions(-)
- create mode 100644 recipes-ids/suricata/suricata-crates.inc
+VGhpcyBwcm9ibGVtIGp1c3QgYnVtcGVkIGludG8gbXkgaGVhZCBzbyBJIGRpZCBhIGxpdHRsZSBt
+b3JlIGludmVzdGlnYXRpb24uDQpUaGUgcm9vdCBjYXVzZSBpcyB0aGF0IGJpdGJha2Utd29ya2Vy
+IHVzZXMgYSBuZXcgdXNlciBuYW1lc3BhY2UgaWYgcG9zc2libGUuDQpUaGUgY29tbWl0IGluIGJp
+dGJha2UvcG9reSByZXBvIGlzIHRoZSBmb2xsb3dpbmcgb25lLg0K4oCc4oCd4oCdDQpiaXRiYWtl
+OiB1dGlsczogQWRkIGRpc2FibGVfbmV0d29yayBmdW5jdGlvbg0K4oCc4oCd4oCdDQpUaGUga2V5
+IGNvZGVzIGFyZTogbGliYy51bnNoYXJlKENMT05FX05FV05FVCB8IENMT05FX05FV1VTRVIpDQoN
+ClRvIG1ha2UgdGhpbmdzIHdvcmsgaW4geW91ciBjYXNlLCB0aGUgc2ltcGxlc3Qgd2F5IGlzIHRv
+IHNldDogZG9faW5zdGFsbFtuZXR3b3JrXSA9IOKAnDHigJ0sIHNvIHRoYXQgdGhlIGFib3ZlIGNv
+ZGVzIGFyZSBub3QgcnVuIGZvciB0aGlzIHRhc2suDQoNClJlZ2FyZHMsDQpRaQ0KDQpGcm9tOiB5
+b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3Jn
+PiBPbiBCZWhhbGYgT2YgQ2hlbiBRaSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU2VudDog
+VHVlc2RheSwgQXByaWwgNCwgMjAyMyA2OjAyIFBNDQpUbzogQWRyaWFuIER1ZGF1IDxhZHJpYW4u
+ZHVkYXVAa2V5ZmFjdG9yLmNvbT47IEJydWNlIEFzaGZpZWxkIDxicnVjZS5hc2hmaWVsZEBnbWFp
+bC5jb20+DQpDYzogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT47IHlvY3RvQGxpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIGVycm9yIHdoZW4gdHJ5IHRvIHVz
+ZSBzdWRvIGNvbW1hbmQgaW4gcmVjaXBlDQoNCkkgaGF2ZW7igJl0IGRvbmUgYW55IGZ1cnRoZXIg
+aW52ZXN0aWdhdGlvbiwgYnV0IEkgZG9u4oCZdCB0aGluayB0aGlzIHByb2JsZW0gaXMgcmVsYXRl
+ZCB0byBwc2V1ZG8uDQpPbiBvbmUgaGFuZCwgL3VzciBkaXJlY3RvcnkgaXMgaWdub3JlZCBhcyBp
+dOKAmXMgaW4gUFNFVURPX0lHTk9SRV9QQVRIUzsgb24gdGhlIG90aGVyIGhhbmQsIExEX1BSRUxP
+QUQgZG9lcyBub3QgaGF2ZSBlZmZlY3Qgb24gc2V0dWlkIHByb2dyYW1zIHN1Y2ggYXMgc3Vkby4N
+Cg0KVW5mb3J0dW5hdGVseSBJIGRvbuKAmXQgaGF2ZSBhbnkgY2x1ZS4gQW5vdGhlciB0cmljayBZ
+b2N0byBkb2VzIGlzIHVuaW5hdGl2ZS4gTm90IHN1cmUgaWYgaXTigJlzIHJlbGF0ZWQuDQoNClJl
+Z2FyZHMsDQpRaQ0KDQoNCkZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRv
+OnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
+b3JnPG1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPj4gT24gQmVoYWxmIE9mIEFk
+cmlhbiBEdWRhdQ0KU2VudDogVHVlc2RheSwgQXByaWwgNCwgMjAyMyA0OjAwIFBNDQpUbzogQnJ1
+Y2UgQXNoZmllbGQgPGJydWNlLmFzaGZpZWxkQGdtYWlsLmNvbTxtYWlsdG86YnJ1Y2UuYXNoZmll
+bGRAZ21haWwuY29tPj4NCkNjOiBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPG1haWx0bzpy
+YWoua2hlbUBnbWFpbC5jb20+PjsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86
+eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIGVycm9y
+IHdoZW4gdHJ5IHRvIHVzZSBzdWRvIGNvbW1hbmQgaW4gcmVjaXBlDQoNCkkgc2VudCBhbiBlbWFp
+bCB0byB0aGUgbWV0YS12aXJ0dWFsaXphdGlvbiBsaXN0IGRlc2NyaWJpbmcgd2hhdCBJJ20gdHJ5
+aW5nIHRvIGFjaGlldmUgYW5kIHNlZSBpZiBvdGhlcnMgaGF2ZSBmdXJ0aGVyIGlkZWFzLg0KDQpI
+b3dldmVyLCBJIHdvdWxkIHN0aWxsIGxpa2UgdG8gY29udGludWUgaW52ZXN0aWdhdGluZyB0aGlz
+IHN1ZG8gYnVnIGFzIGl0IGlzIHF1aXRlIGFubm95aW5nLg0KRXZlbiB3aGVuIHJ1bm5pbmcgdW5k
+ZXIgcHNldWRvLCBJIGRvbid0IHNlZSB3aHkgdGhlIGJpbmFyeSB3b3VsZCBzaG93IGFzIG5vdCBv
+d25lZCBieSB0aGUgcm9vdCB1c2VyLg0KRHJvcHBpbmcgZG93biB0byB0aGUgZGV2c2hlbGwsIHRo
+ZSBiaW5hcnkgc2VlbXMgdG8gaGF2ZSB0aGUgcmlnaHQgb3duZXI6DQoNCiBscyAtbCAvdXNyL2Jp
+bi9zdWRvDQotcndzci14ci14IDEgcm9vdCByb290IDIzMjQxNiBNYXIgIDEgMTM6NTkgL3Vzci9i
+aW4vc3Vkbw0KDQpTbyBhbnkgb3RoZXIgaW5wdXQgdG8gcHV0IG1lIG9uIHRoZSByaWdodCB0cmFj
+a3Mgd291bGQgYmUgYXBwcmVjaWF0ZWQuDQoNCi0tQWRyaWFuDQoNCg0KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18NCkZyb206IEJydWNlIEFzaGZpZWxkIDxicnVjZS5hc2hmaWVsZEBn
+bWFpbC5jb208bWFpbHRvOmJydWNlLmFzaGZpZWxkQGdtYWlsLmNvbT4+DQpTZW50OiBNb25kYXks
+IEFwcmlsIDMsIDIwMjMgNTo1OSBQTQ0KVG86IEFkcmlhbiBEdWRhdSA8YWRyaWFuLmR1ZGF1QGtl
+eWZhY3Rvci5jb208bWFpbHRvOmFkcmlhbi5kdWRhdUBrZXlmYWN0b3IuY29tPj4NCkNjOiBLaGVt
+IFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPG1haWx0bzpyYWoua2hlbUBnbWFpbC5jb20+PjsgeW9j
+dG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZz4gPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQGxpc3RzLnlv
+Y3RvcHJvamVjdC5vcmc+Pg0KU3ViamVjdDogUmU6IFt5b2N0b10gZXJyb3Igd2hlbiB0cnkgdG8g
+dXNlIHN1ZG8gY29tbWFuZCBpbiByZWNpcGUNCg0KWW91IGRvbid0IG9mdGVuIGdldCBlbWFpbCBm
+cm9tIGJydWNlLmFzaGZpZWxkQGdtYWlsLmNvbTxtYWlsdG86YnJ1Y2UuYXNoZmllbGRAZ21haWwu
+Y29tPi4gTGVhcm4gd2h5IHRoaXMgaXMgaW1wb3J0YW50PGh0dHBzOi8vdXJsZGVmZW5zZS5jb20v
+djMvX19odHRwczovYWthLm1zL0xlYXJuQWJvdXRTZW5kZXJJZGVudGlmaWNhdGlvbl9fOyEhQWp2
+ZVlkdzhFdlEhYkNWUnIxSFBMcEFyTGNMV0daOGd1ZXh1R0k2UC1tdFZpTGt2T2Fxb1RFZWM1MEh4
+aE5yNU1KVTVZeUVHb0Z6Nkg5S256Q09wcm1DUlR3THVOWVFmUF9FMGlaU2JKUSQ+DQpDQVVUSU9O
+OiBFeHRlcm5hbCBTZW5kZXIgLSBCZSBjYXV0aW91cyB3aGVuIGNsaWNraW5nIGxpbmtzIG9yIG9w
+ZW5pbmcgYXR0YWNobWVudHMuIFBsZWFzZSBlbWFpbCBJbmZvU2VjQGtleWZhY3Rvci5jb208bWFp
+bHRvOkluZm9TZWNAa2V5ZmFjdG9yLmNvbT4gd2l0aCBhbnkgcXVlc3Rpb25zLg0KDQoNCg0KT24g
+TW9uLCBBcHIgMywgMjAyMyBhdCAxMTo0MuKAr0FNIEFkcmlhbiBEdWRhdSA8YWRyaWFuLmR1ZGF1
+QGtleWZhY3Rvci5jb208bWFpbHRvOmFkcmlhbi5kdWRhdUBrZXlmYWN0b3IuY29tPj4gd3JvdGU6
+DQpIaSBLaGVtLA0KDQpUaGFua3MgZm9yIHRoZSByZXBseSwgdGhvdWdoIEkgYW0gbm90IHN1cmUg
+SSBmdWxseSB1bmRlcnN0YW5kIHRoZSBmaXJzdCBwYXJ0IG9mIHlvdXIgYW5zd2VyLiBJJ20gdHJ5
+aW5nIHRvIGRvIHNvbWV0aGluZyBzaW1pbGFyIHRvIHRoZSB0aHJlYWQgY3JlYXRvciwgaS5lIHJ1
+bm5pbmcgInBvZG1hbiBwdWxsIiBhdCBidWlsZCB0aW1lIHRvIHBvcHVsYXRlIGFuIGltYWdlIHN0
+b3JlIHRoYXQgSSBjYW4gbGF0ZXIgaW5zdGFsbCBpbnRvIHRoZSB0YXJnZXQgcm9vdGZzLg0KDQoN
+CkZXSVcuIFRoZSBhYm92ZSBpcyBzb21ldGhpbmcgdGhhdCBJIGhhdmUgYWxtb3N0IHdvcmtpbmcs
+IGJ1dCBoYWQgdG8gZHJvcCB0aGUgY29tcGxldGlvbiBvZiB0aGUgc3VwcG9ydCBmb3IgdGhlIHVw
+Y29taW5nIHJlbGVhc2UgKGl0IHdhcyB0b28gbGF0ZSwgYW5kIEkgaGFkIHRvIGdldCBzb21lIGtl
+cm5lbCBjaGFuZ2VzIGRvbmUpLiBJJ20gaG9waW5nIHRvIGhhdmUgc29tZXRoaW5nIHVzYWJsZSBp
+biB0aGUgbmV4dCBmZXcgbW9udGhzLg0KDQpJZiB5b3UgYXJlIHRyeWluZyB0byBnZW5lcmF0ZSBj
+b250YWluZXJzIChJIGRvbid0IHJlY29tbWVuZCBwdWxsaW5nIHRoZW0pIGFuZCBpbnN0YWxsaW5n
+IHRoZW0gaW50byBhIGNvbnRhaW5lciBzdG9yZSB0aGF0IGlzIHBhcnQgb2YgdGhlIHJvb3Rmcywg
+dGhlbiBjb2xsYWJvcmF0aW5nIG9uIHRoZSBtZXRhLXZpcnR1YWxpemF0aW9uIG1haWxpbmcgbGlz
+dCBpcyBhIGdvb2Qgc3RhcnRpbmcgcG9pbnQuDQoNCkJydWNlDQoNCg0KU3RpbGwsIEkgYW0gZmFp
+bGluZyB0byB1bmRlcnN0YW5kIHdoeSAvdXNyL2Jpbi9zdWRvIGRvZXNuJ3Qgc2hvdyB1cCBhcyBv
+d25lZCBieSB0aGUgcm9vdCB1c2VyLCBldmVuIHdoZW4gcnVubmluZyB1bmRlciBwc2V1ZG8uIEFs
+c28sIHdoeSBoYXMgdGhpcyBjaGFuZ2VkIGJldHdlZW4gRHVuZmVsbCBhbmQgbWFzdGVyIGFuZCB3
+aGVyZSBleGFjdGx5IGhhcyB0aGUgY2hhbmdlZCBoYXBwZW5lZC4uDQoNCkJlc3QgcmVnYXJkcywN
+Ci0tQWRyaWFuDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogS2hlbSBS
+YWogPHJhai5raGVtQGdtYWlsLmNvbTxtYWlsdG86cmFqLmtoZW1AZ21haWwuY29tPj4NClNlbnQ6
+IE1vbmRheSwgQXByaWwgMywgMjAyMyA0OjU3IFBNDQpUbzogQWRyaWFuIER1ZGF1IDxhZHJpYW4u
+ZHVkYXVAa2V5ZmFjdG9yLmNvbTxtYWlsdG86YWRyaWFuLmR1ZGF1QGtleWZhY3Rvci5jb20+Pg0K
+Q2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmc+IDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0Bs
+aXN0cy55b2N0b3Byb2plY3Qub3JnPj4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIGVycm9yIHdoZW4g
+dHJ5IHRvIHVzZSBzdWRvIGNvbW1hbmQgaW4gcmVjaXBlDQoNCllvdSBkb24ndCBvZnRlbiBnZXQg
+ZW1haWwgZnJvbSByYWoua2hlbUBnbWFpbC5jb208bWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbT4u
+IExlYXJuIHdoeSB0aGlzIGlzIGltcG9ydGFudDxodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19f
+aHR0cHM6L2FrYS5tcy9MZWFybkFib3V0U2VuZGVySWRlbnRpZmljYXRpb25fXzshIUFqdmVZZHc4
+RXZRIWJDVlJyMUhQTHBBckxjTFdHWjhndWV4dUdJNlAtbXRWaUxrdk9hcW9URWVjNTBIeGhOcjVN
+SlU1WXlFR29GejZIOUtuekNPcHJtQ1JUd0x1TllRZlBfRTBpWlNiSlEkPg0KQ0FVVElPTjogRXh0
+ZXJuYWwgU2VuZGVyIC0gQmUgY2F1dGlvdXMgd2hlbiBjbGlja2luZyBsaW5rcyBvciBvcGVuaW5n
+IGF0dGFjaG1lbnRzLiBQbGVhc2UgZW1haWwgSW5mb1NlY0BrZXlmYWN0b3IuY29tPG1haWx0bzpJ
+bmZvU2VjQGtleWZhY3Rvci5jb20+IHdpdGggYW55IHF1ZXN0aW9ucy4NCg0KDQoNCk9uIE1vbiwg
+QXByIDMsIDIwMjMgYXQgMTI6MjUgQU0gPGFkcmlhbi5kdWRhdUBrZXlmYWN0b3IuY29tPG1haWx0
+bzphZHJpYW4uZHVkYXVAa2V5ZmFjdG9yLmNvbT4+IHdyb3RlOg0KT24gTW9uLCBGZWIgNiwgMjAy
+MyBhdCAwMToxMyBBTSwgUmljaGFyZCBQdXJkaWUgd3JvdGU6DQpIaSBSaWNoYXJkLA0KDQpKdW1w
+aW5nIG9uIHRoaXMgdGhyZWFkIHRvIHByb3ZpZGUgc29tZSBjbGFyaWZpY2F0aW9ucyBhcyBJIGhp
+dCB0aGUgc2FtZSBidWcuDQpJIGNhbiBjb25maXJtIHRoYXQgdGhpcyBpcyBub3QgYW4gZW52aXJv
+bm1lbnQgaXNzdWUuIEkgY291bGQgcmVwcm9kdWNlIGl0IGJ5IGFkZGluZyBhIHN1ZG8gY2FsbCBp
+biBhbiBlbXB0eSByZWNpcGUgbGlrZSB0aGlzOg0KDQpTVU1NQVJZID0gIiINCkhPTUVQQUdFID0g
+IiINCkxJQ0VOU0UgPSAiIg0KU0VDVElPTiA9ICIiDQpERVBFTkRTID0gIiINCg0KU1JDX1VSSSA9
+ICIiDQoNCmRvX2luc3RhbGwoKSB7DQogICAgbHMgLWwgL3Vzci9iaW4vc3Vkbw0KICAgIHN1ZG8g
+bHMgLWwgL3Vzci9iaW4vc3Vkbw0KfQ0KDQpCdWlsZCBhbHJlYWR5IHVzZSBhIGZha2Ugcm9vdCBl
+bnZpcm9ubWVudCB1c2luZyBwc2V1ZG8gdG8gaW50ZXJjZXB0IHRoZSBjYWxscyBzbyB0aGlzIG1p
+Z2h0IG5vdCBiZSBvdXQgb2YgbGluZSBoZXJlLiBXaGF0IGlzIHRoZSBvcmlnaW5hbCBpc3N1ZSB5
+b3UgYXJlIHJ1bm5pbmcgaW50byA/DQoNCg0KDQpSdW5uaW5nIGJpdGJha2UgYmFyZWJvbmUgb24g
+bXkgeDg2IG1hY2hpbmUgcHJvZHVjZXMgdGhpcyBlcnJvcjoNCg0KfCAtcnd4ci14ci14IDEgbm9i
+b2R5IDY1NTM0IDIzMjQxNiBNYXIgIDEgMTM6NTkgL3Vzci9iaW4vc3Vkbw0KfCBzdWRvOiAvZXRj
+L3N1ZG8uY29uZiBpcyBvd25lZCBieSB1aWQgNjU1MzQsIHNob3VsZCBiZSAwDQp8IHN1ZG86IC9l
+dGMvc3Vkby5jb25mIGlzIG93bmVkIGJ5IHVpZCA2NTUzNCwgc2hvdWxkIGJlIDANCnwgc3Vkbzog
+ZXJyb3IgaW4gL2V0Yy9zdWRvLmNvbmYsIGxpbmUgMCB3aGlsZSBsb2FkaW5nIHBsdWdpbiAic3Vk
+b2Vyc19wb2xpY3kiDQp8IHN1ZG86IC91c3IvbGliZXhlYy9zdWRvL3N1ZG9lcnMuc288aHR0cHM6
+Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHA6L3N1ZG9lcnMuc29fXzshIUFqdmVZZHc4RXZRIWJD
+VlJyMUhQTHBBckxjTFdHWjhndWV4dUdJNlAtbXRWaUxrdk9hcW9URWVjNTBIeGhOcjVNSlU1WXlF
+R29GejZIOUtuekNPcHJtQ1JUd0x1TllRZlBfSHZ2aVpKSkEkPiBtdXN0IGJlIG93bmVkIGJ5IHVp
+ZCAwDQp8IHN1ZG86IGZhdGFsIGVycm9yLCB1bmFibGUgdG8gbG9hZCBwbHVnaW5zDQoNCkluZGVl
+ZCBpdCBzZWVtcyB0aGF0IG93bmVyc2hpcCBpcyBicm9rZW4gc29tZWhvdyBpbiB0aGUgYmIgZW52
+aXJvbm1lbnQuIFRoZSBpc3N1ZSB3YXMgaW50cm9kdWNlZCBzb21ld2hlcmUgYmV0d2VlbiBkdW5m
+ZWxsIGFuZCBraXJrc3RvbmUuIEkga25vdyBpdCdzIGEgbGFyZ2UgdGltZXNwYW4gYnV0IGl0J3Mg
+YSBiaXQgdGltZSBjb25zdW1pbmcgdG8gbmFycm93IGl0IGRvd24uDQoNCkhvcGluZyB0byBnZXQg
+c29tZSBoZWxwIG9uIHRoaXMuIEkgd291bGQgdHJ5IHRvIGludmVzdGlnYXRlIGZ1cnRoZXIgbXlz
+ZWxmIGJ1dCBJIGhhdmUgbm8gaWRlYSB3aGVyZSB0byBzdGFydCB0byBiZSBob25lc3QuDQoNCkJl
+c3QgcmVnYXJkcywNCi0tQWRyaWFuDQoNCg0KDQoNCi0tDQotIFRob3Ugc2hhbHQgbm90IGZvbGxv
+dyB0aGUgTlVMTCBwb2ludGVyLCBmb3IgY2hhb3MgYW5kIG1hZG5lc3MgYXdhaXQgdGhlZSBhdCBp
+dHMgZW5kDQotICJVc2UgdGhlIGZvcmNlIEhhcnJ5IiAtIEdhbmRhbGYsIFN0YXIgVHJlayBJSQ0K
 
-diff --git a/recipes-ids/suricata/suricata-crates.inc b/recipes-ids/suricata/suricata-crates.inc
-new file mode 100644
-index 0000000..0265aa8
---- /dev/null
-+++ b/recipes-ids/suricata/suricata-crates.inc
-@@ -0,0 +1,722 @@
-+# ak did manually
-+SRC_URI += " \
-+    crate://crates.io/autocfg/1.0.1;name=autocfg-1.0.1 \
-+    crate://crates.io/brotli/3.3.0;name=brotli-3.0.3 \
-+    crate://crates.io/crc/1.8.1;name=crc-1.8.1 \
-+    crate://crates.io/der-parser/0.5.0;name=der-parser-0.5.0 \
-+    crate://crates.io/der-parser/4.1.0;name=der-parser-4.1.0 \
-+    crate://crates.io/der-parser/3.0.4;name=der-parser-3.0.4 \
-+    crate://crates.io/flate2/1.0.20;name=flate2-1.0.20 \
-+    crate://crates.io/ipsec-parser/0.5.0;name=ipsec-parser-0.5.0 \
-+    crate://crates.io/kerberos-parser/0.5.0;name=kerberos-parser-0.5.0 \
-+    crate://crates.io/md5/0.7.0;name=md5-0.7.0 \
-+    crate://crates.io/memchr/2.3.4;name=memchr-2.3.4 \
-+    crate://crates.io/nom/5.1.1;name=nom-5.1.1 \
-+    crate://crates.io/ntp-parser/0.4.0;name=ntp-parser-0.5.0 \
-+    crate://crates.io/num/0.2.1;name=num-0.2.1 \
-+    crate://crates.io/num-derive/0.2.5;name=num-derive-0.2.5 \
-+    crate://crates.io/snmp-parser/0.6.0;name=snmp-parser-0.6.0 \
-+    crate://crates.io/tls-parser/0.9.4;name=tls-parser-0.9.4 \
-+    crate://crates.io/uuid/0.8.2;name=uuid-0.8.2 \
-+    crate://crates.io/widestring/0.4.3;name=widestring-0.4.3 \
-+    crate://crates.io/x509-parser/0.6.5;name=x509-parser-0.6.5 \
-+    crate://crates.io/build_const/0.2.1;name=build_const-0.2.1 \
-+    crate://crates.io/der-oid-macro/0.2.0;name=der-oid-macro-0.2.0 \
-+    crate://crates.io/proc-macro-hack/0.5.19;name=proc-macro-hack-0.5.19 \
-+    crate://crates.io/rusticata-macros/2.1.0;name=rusticata-macros-2.1.0 \
-+    crate://crates.io/miniz_oxide/0.4.4;name=miniz_oxide-0.4.4 \
-+    crate://crates.io/num-bigint/0.2.6;name=num-bigint-0.2.6 \
-+    crate://crates.io/num-complex/0.2.4;name=num-complex-0.2.4 \
-+    crate://crates.io/num-integer/0.1.44;name=num-integer-0.1.44 \
-+    crate://crates.io/num-iter/0.1.42;name=num-iter-0.1.42 \
-+    crate://crates.io/num-rational/0.2.4;name=num-rational-0.2.4 \
-+    crate://crates.io/num-traits/0.2.14;name=num-traits-0.2.14 \
-+    crate://crates.io/num-traits/0.1.43;name=num-traits-0.1.43 \
-+    crate://crates.io/enum_primitive/0.1.1;name=enum_primitive-0.1.1 \
-+    crate://crates.io/phf/0.8.0;name=phf-0.8.0 \
-+    crate://crates.io/phf_codegen/0.8.0;name=phf_codegen-0.8.0 \
-+    crate://crates.io/phf_generator/0.8.0;name=phf_generator-0.8.0 \
-+    crate://crates.io/base64/0.11.0;name=base64-0.11.0 \
-+    crate://crates.io/time/0.1.44;name=time-0.1.44 \
-+    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1;name=wasi-0.10.0+wasi-snapshot-preview1 \
-+    crate://crates.io/lexical-core/0.6.8;name=lexical-core-0.6.8 \
-+"
-+
-+# test case support
-+SRC_URI += " \
-+    crate://crates.io/test-case/1.0.1;name=test-case-1.0.1 \
-+"
-+
-+# Autogenerated with 'bitbake -c update_crates suricata'
-+# from vendor/base64/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/arrayvec/0.4.11;name=arrayvec-0.4.11 \
-+    crate://crates.io/atty/0.2.12;name=atty-0.2.12 \
-+    crate://crates.io/autocfg/0.1.4;name=autocfg-0.1.4 \
-+    crate://crates.io/bitflags/1.1.0;name=bitflags-1.1.0 \
-+    crate://crates.io/bstr/0.2.1;name=bstr-0.2.1 \
-+    crate://crates.io/byteorder/1.3.2;name=byteorder-1.3.2 \
-+    crate://crates.io/cast/0.2.2;name=cast-0.2.2 \
-+    crate://crates.io/cfg-if/0.1.9;name=cfg-if-0.1.9 \
-+    crate://crates.io/clap/2.33.0;name=clap-2.33.0 \
-+    crate://crates.io/cloudabi/0.0.3;name=cloudabi-0.0.3 \
-+    crate://crates.io/criterion/0.3.0;name=criterion-0.3.0 \
-+    crate://crates.io/criterion-plot/0.4.0;name=criterion-plot-0.4.0 \
-+    crate://crates.io/crossbeam-deque/0.6.3;name=crossbeam-deque-0.6.3 \
-+    crate://crates.io/crossbeam-epoch/0.7.1;name=crossbeam-epoch-0.7.1 \
-+    crate://crates.io/crossbeam-queue/0.1.2;name=crossbeam-queue-0.1.2 \
-+    crate://crates.io/crossbeam-utils/0.6.5;name=crossbeam-utils-0.6.5 \
-+    crate://crates.io/csv/1.1.1;name=csv-1.1.1 \
-+    crate://crates.io/csv-core/0.1.6;name=csv-core-0.1.6 \
-+    crate://crates.io/doc-comment/0.3.1;name=doc-comment-0.3.1 \
-+    crate://crates.io/either/1.5.2;name=either-1.5.2 \
-+    crate://crates.io/fuchsia-cprng/0.1.1;name=fuchsia-cprng-0.1.1 \
-+    crate://crates.io/getrandom/0.1.13;name=getrandom-0.1.13 \
-+    crate://crates.io/itertools/0.8.0;name=itertools-0.8.0 \
-+    crate://crates.io/itoa/0.4.4;name=itoa-0.4.4 \
-+    crate://crates.io/lazy_static/1.3.0;name=lazy_static-1.3.0 \
-+    crate://crates.io/libc/0.2.65;name=libc-0.2.65 \
-+    crate://crates.io/memchr/2.2.1;name=memchr-2.2.1 \
-+    crate://crates.io/memoffset/0.2.1;name=memoffset-0.2.1 \
-+    crate://crates.io/nodrop/0.1.13;name=nodrop-0.1.13 \
-+    crate://crates.io/num-traits/0.2.8;name=num-traits-0.2.8 \
-+    crate://crates.io/num_cpus/1.10.1;name=num_cpus-1.10.1 \
-+    crate://crates.io/proc-macro2/0.4.30;name=proc-macro2-0.4.30 \
-+    crate://crates.io/quote/0.6.13;name=quote-0.6.13 \
-+    crate://crates.io/rand/0.6.5;name=rand-0.6.5 \
-+    crate://crates.io/rand_chacha/0.1.1;name=rand_chacha-0.1.1 \
-+    crate://crates.io/rand_core/0.3.1;name=rand_core-0.3.1 \
-+    crate://crates.io/rand_core/0.4.0;name=rand_core-0.4.0 \
-+    crate://crates.io/rand_core/0.5.1;name=rand_core-0.5.1 \
-+    crate://crates.io/rand_hc/0.1.0;name=rand_hc-0.1.0 \
-+    crate://crates.io/rand_isaac/0.1.1;name=rand_isaac-0.1.1 \
-+    crate://crates.io/rand_jitter/0.1.4;name=rand_jitter-0.1.4 \
-+    crate://crates.io/rand_os/0.1.3;name=rand_os-0.1.3 \
-+    crate://crates.io/rand_os/0.2.2;name=rand_os-0.2.2 \
-+    crate://crates.io/rand_pcg/0.1.2;name=rand_pcg-0.1.2 \
-+    crate://crates.io/rand_xorshift/0.1.1;name=rand_xorshift-0.1.1 \
-+    crate://crates.io/rand_xoshiro/0.3.1;name=rand_xoshiro-0.3.1 \
-+    crate://crates.io/rayon/1.1.0;name=rayon-1.1.0 \
-+    crate://crates.io/rayon-core/1.5.0;name=rayon-core-1.5.0 \
-+    crate://crates.io/rdrand/0.4.0;name=rdrand-0.4.0 \
-+    crate://crates.io/regex-automata/0.1.7;name=regex-automata-0.1.7 \
-+    crate://crates.io/ryu/1.0.0;name=ryu-1.0.0 \
-+    crate://crates.io/same-file/1.0.4;name=same-file-1.0.4 \
-+    crate://crates.io/scopeguard/0.3.3;name=scopeguard-0.3.3 \
-+    crate://crates.io/serde/1.0.94;name=serde-1.0.94 \
-+    crate://crates.io/serde_derive/1.0.94;name=serde_derive-1.0.94 \
-+    crate://crates.io/serde_json/1.0.40;name=serde_json-1.0.40 \
-+    crate://crates.io/syn/0.15.39;name=syn-0.15.39 \
-+    crate://crates.io/textwrap/0.11.0;name=textwrap-0.11.0 \
-+    crate://crates.io/tinytemplate/1.0.2;name=tinytemplate-1.0.2 \
-+    crate://crates.io/unicode-width/0.1.5;name=unicode-width-0.1.5 \
-+    crate://crates.io/unicode-xid/0.1.0;name=unicode-xid-0.1.0 \
-+    crate://crates.io/walkdir/2.2.8;name=walkdir-2.2.8 \
-+    crate://crates.io/wasi/0.7.0;name=wasi-0.7.0 \
-+    crate://crates.io/winapi/0.3.7;name=winapi-0.3.7 \
-+    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0;name=winapi-i686-pc-windows-gnu-0.4.0 \
-+    crate://crates.io/winapi-util/0.1.2;name=winapi-util-0.1.2 \
-+    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0;name=winapi-x86_64-pc-windows-gnu-0.4.0 \
-+"
-+
-+# from vendor/ryu/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/cfg-if/1.0.0;name=cfg-if-1.0.0 \
-+    crate://crates.io/getrandom/0.2.7;name=getrandom-0.2.7 \
-+    crate://crates.io/hermit-abi/0.1.19;name=hermit-abi-0.1.19 \
-+    crate://crates.io/libc/0.2.134;name=libc-0.2.134 \
-+    crate://crates.io/no-panic/0.1.16;name=no-panic-0.1.16 \
-+    crate://crates.io/num_cpus/1.13.1;name=num_cpus-1.13.1 \
-+    crate://crates.io/ppv-lite86/0.2.16;name=ppv-lite86-0.2.16 \
-+    crate://crates.io/proc-macro2/1.0.46;name=proc-macro2-1.0.46 \
-+    crate://crates.io/quote/1.0.21;name=quote-1.0.21 \
-+    crate://crates.io/rand/0.8.5;name=rand-0.8.5 \
-+    crate://crates.io/rand_chacha/0.3.1;name=rand_chacha-0.3.1 \
-+    crate://crates.io/rand_core/0.6.4;name=rand_core-0.6.4 \
-+    crate://crates.io/rand_xorshift/0.3.0;name=rand_xorshift-0.3.0 \
-+    crate://crates.io/syn/1.0.102;name=syn-1.0.102 \
-+    crate://crates.io/unicode-ident/1.0.4;name=unicode-ident-1.0.4 \
-+    crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1;name=wasi-0.11.0+wasi-snapshot-preview1 \
-+"
-+
-+SRC_URI[cfg-if-1.0.0.sha256sum] = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
-+SRC_URI[getrandom-0.2.7.sha256sum] = "4eb1a864a501629691edf6c15a593b7a51eebaa1e8468e9ddc623de7c9b58ec6"
-+SRC_URI[hermit-abi-0.1.19.sha256sum] = "62b467343b94ba476dcb2500d242dadbb39557df889310ac77c5d99100aaac33"
-+SRC_URI[libc-0.2.134.sha256sum] = "329c933548736bc49fd575ee68c89e8be4d260064184389a5b77517cddd99ffb"
-+SRC_URI[no-panic-0.1.16.sha256sum] = "12f10d4b6dcf2138f0fc171f4cc8f49517cc71ac57e29aa061c61aa57ec2dffc"
-+SRC_URI[num_cpus-1.13.1.sha256sum] = "19e64526ebdee182341572e50e9ad03965aa510cd94427a4549448f285e957a1"
-+SRC_URI[ppv-lite86-0.2.16.sha256sum] = "eb9f9e6e233e5c4a35559a617bf40a4ec447db2e84c20b55a6f83167b7e57872"
-+SRC_URI[proc-macro2-1.0.46.sha256sum] = "94e2ef8dbfc347b10c094890f778ee2e36ca9bb4262e86dc99cd217e35f3470b"
-+SRC_URI[quote-1.0.21.sha256sum] = "bbe448f377a7d6961e30f5955f9b8d106c3f5e449d493ee1b125c1d43c2b5179"
-+SRC_URI[rand-0.8.5.sha256sum] = "34af8d1a0e25924bc5b7c43c079c942339d8f0a8b57c39049bef581b46327404"
-+SRC_URI[rand_chacha-0.3.1.sha256sum] = "e6c10a63a0fa32252be49d21e7709d4d4baf8d231c2dbce1eaa8141b9b127d88"
-+SRC_URI[rand_core-0.6.4.sha256sum] = "ec0be4795e2f6a28069bec0b5ff3e2ac9bafc99e6a9a7dc3547996c5c816922c"
-+SRC_URI[rand_xorshift-0.3.0.sha256sum] = "d25bf25ec5ae4a3f1b92f929810509a2f53d7dca2f50b794ff57e3face536c8f"
-+SRC_URI[syn-1.0.102.sha256sum] = "3fcd952facd492f9be3ef0d0b7032a6e442ee9b361d4acc2b1d0c4aaa5f613a1"
-+SRC_URI[unicode-ident-1.0.4.sha256sum] = "dcc811dc4066ac62f84f11307873c4850cb653bfa9b1719cee2bd2204a4bc5dd"
-+SRC_URI[wasi-0.11.0+wasi-snapshot-preview1.sha256sum] = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
-+# from vendor/flate2/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/adler/1.0.2;name=adler-1.0.2 \
-+    crate://crates.io/cc/1.0.77;name=cc-1.0.77 \
-+    crate://crates.io/cfg-if/1.0.0;name=cfg-if-1.0.0 \
-+    crate://crates.io/cloudflare-zlib-sys/0.3.0;name=cloudflare-zlib-sys-0.3.0 \
-+    crate://crates.io/cmake/0.1.49;name=cmake-0.1.49 \
-+    crate://crates.io/crc32fast/1.3.2;name=crc32fast-1.3.2 \
-+    crate://crates.io/getrandom/0.2.8;name=getrandom-0.2.8 \
-+    crate://crates.io/libc/0.2.137;name=libc-0.2.137 \
-+    crate://crates.io/libz-ng-sys/1.1.8;name=libz-ng-sys-1.1.8 \
-+    crate://crates.io/libz-sys/1.1.8;name=libz-sys-1.1.8 \
-+    crate://crates.io/miniz_oxide/0.6.2;name=miniz_oxide-0.6.2 \
-+    crate://crates.io/pkg-config/0.3.26;name=pkg-config-0.3.26 \
-+    crate://crates.io/ppv-lite86/0.2.17;name=ppv-lite86-0.2.17 \
-+    crate://crates.io/quickcheck/1.0.3;name=quickcheck-1.0.3 \
-+    crate://crates.io/rand/0.8.5;name=rand-0.8.5 \
-+    crate://crates.io/rand_chacha/0.3.1;name=rand_chacha-0.3.1 \
-+    crate://crates.io/rand_core/0.6.4;name=rand_core-0.6.4 \
-+    crate://crates.io/vcpkg/0.2.15;name=vcpkg-0.2.15 \
-+    crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1;name=wasi-0.11.0+wasi-snapshot-preview1 \
-+"
-+
-+SRC_URI[adler-1.0.2.sha256sum] = "f26201604c87b1e01bd3d98f8d5d9a8fcbb815e8cedb41ffccbeb4bf593a35fe"
-+SRC_URI[cc-1.0.77.sha256sum] = "e9f73505338f7d905b19d18738976aae232eb46b8efc15554ffc56deb5d9ebe4"
-+SRC_URI[cfg-if-1.0.0.sha256sum] = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
-+SRC_URI[cloudflare-zlib-sys-0.3.0.sha256sum] = "2040b6d1edfee6d75f172d81e2d2a7807534f3f294ce18184c70e7bb0105cd6f"
-+SRC_URI[cmake-0.1.49.sha256sum] = "db34956e100b30725f2eb215f90d4871051239535632f84fea3bc92722c66b7c"
-+SRC_URI[crc32fast-1.3.2.sha256sum] = "b540bd8bc810d3885c6ea91e2018302f68baba2129ab3e88f32389ee9370880d"
-+SRC_URI[getrandom-0.2.8.sha256sum] = "c05aeb6a22b8f62540c194aac980f2115af067bfe15a0734d7277a768d396b31"
-+SRC_URI[libc-0.2.137.sha256sum] = "fc7fcc620a3bff7cdd7a365be3376c97191aeaccc2a603e600951e452615bf89"
-+SRC_URI[libz-ng-sys-1.1.8.sha256sum] = "4399ae96a9966bf581e726de86969f803a81b7ce795fcd5480e640589457e0f2"
-+SRC_URI[libz-sys-1.1.8.sha256sum] = "9702761c3935f8cc2f101793272e202c72b99da8f4224a19ddcf1279a6450bbf"
-+SRC_URI[miniz_oxide-0.6.2.sha256sum] = "b275950c28b37e794e8c55d88aeb5e139d0ce23fdbbeda68f8d7174abdf9e8fa"
-+SRC_URI[pkg-config-0.3.26.sha256sum] = "6ac9a59f73473f1b8d852421e59e64809f025994837ef743615c6d0c5b305160"
-+SRC_URI[ppv-lite86-0.2.17.sha256sum] = "5b40af805b3121feab8a3c29f04d8ad262fa8e0561883e7653e024ae4479e6de"
-+SRC_URI[quickcheck-1.0.3.sha256sum] = "588f6378e4dd99458b60ec275b4477add41ce4fa9f64dcba6f15adccb19b50d6"
-+SRC_URI[rand-0.8.5.sha256sum] = "34af8d1a0e25924bc5b7c43c079c942339d8f0a8b57c39049bef581b46327404"
-+SRC_URI[rand_chacha-0.3.1.sha256sum] = "e6c10a63a0fa32252be49d21e7709d4d4baf8d231c2dbce1eaa8141b9b127d88"
-+SRC_URI[rand_core-0.6.4.sha256sum] = "ec0be4795e2f6a28069bec0b5ff3e2ac9bafc99e6a9a7dc3547996c5c816922c"
-+SRC_URI[vcpkg-0.2.15.sha256sum] = "accd4ea62f7bb7a82fe23066fb0957d48ef677f6eeb8215f372f52e48bb32426"
-+SRC_URI[wasi-0.11.0+wasi-snapshot-preview1.sha256sum] = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
-+# from vendor/nom/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/aho-corasick/0.7.6;name=aho-corasick-0.7.6 \
-+    crate://crates.io/arrayvec/0.4.11;name=arrayvec-0.4.11 \
-+    crate://crates.io/atty/0.2.13;name=atty-0.2.13 \
-+    crate://crates.io/autocfg/0.1.6;name=autocfg-0.1.6 \
-+    crate://crates.io/bitflags/1.2.1;name=bitflags-1.2.1 \
-+    crate://crates.io/bstr/0.2.7;name=bstr-0.2.7 \
-+    crate://crates.io/byteorder/1.3.2;name=byteorder-1.3.2 \
-+    crate://crates.io/cast/0.2.2;name=cast-0.2.2 \
-+    crate://crates.io/cc/1.0.40;name=cc-1.0.40 \
-+    crate://crates.io/cfg-if/0.1.9;name=cfg-if-0.1.9 \
-+    crate://crates.io/clap/2.33.0;name=clap-2.33.0 \
-+    crate://crates.io/cloudabi/0.0.3;name=cloudabi-0.0.3 \
-+    crate://crates.io/criterion/0.2.11;name=criterion-0.2.11 \
-+    crate://crates.io/criterion-plot/0.3.1;name=criterion-plot-0.3.1 \
-+    crate://crates.io/crossbeam-deque/0.6.3;name=crossbeam-deque-0.6.3 \
-+    crate://crates.io/crossbeam-epoch/0.7.2;name=crossbeam-epoch-0.7.2 \
-+    crate://crates.io/crossbeam-queue/0.1.2;name=crossbeam-queue-0.1.2 \
-+    crate://crates.io/crossbeam-utils/0.6.6;name=crossbeam-utils-0.6.6 \
-+    crate://crates.io/csv/1.1.1;name=csv-1.1.1 \
-+    crate://crates.io/csv-core/0.1.6;name=csv-core-0.1.6 \
-+    crate://crates.io/doc-comment/0.3.1;name=doc-comment-0.3.1 \
-+    crate://crates.io/either/1.5.2;name=either-1.5.2 \
-+    crate://crates.io/fs_extra/1.1.0;name=fs_extra-1.1.0 \
-+    crate://crates.io/fuchsia-cprng/0.1.1;name=fuchsia-cprng-0.1.1 \
-+    crate://crates.io/itertools/0.8.0;name=itertools-0.8.0 \
-+    crate://crates.io/itoa/0.4.4;name=itoa-0.4.4 \
-+    crate://crates.io/jemalloc-sys/0.1.8;name=jemalloc-sys-0.1.8 \
-+    crate://crates.io/jemallocator/0.1.9;name=jemallocator-0.1.9 \
-+    crate://crates.io/lazy_static/1.3.0;name=lazy_static-1.3.0 \
-+    crate://crates.io/lexical-core/0.6.7;name=lexical-core-0.6.7 \
-+    crate://crates.io/libc/0.2.62;name=libc-0.2.62 \
-+    crate://crates.io/memchr/2.2.1;name=memchr-2.2.1 \
-+    crate://crates.io/memoffset/0.5.1;name=memoffset-0.5.1 \
-+    crate://crates.io/nodrop/0.1.13;name=nodrop-0.1.13 \
-+    crate://crates.io/num-traits/0.2.8;name=num-traits-0.2.8 \
-+    crate://crates.io/num_cpus/1.10.1;name=num_cpus-1.10.1 \
-+    crate://crates.io/proc-macro2/1.0.1;name=proc-macro2-1.0.1 \
-+    crate://crates.io/quote/1.0.2;name=quote-1.0.2 \
-+    crate://crates.io/rand_core/0.3.1;name=rand_core-0.3.1 \
-+    crate://crates.io/rand_core/0.4.2;name=rand_core-0.4.2 \
-+    crate://crates.io/rand_os/0.1.3;name=rand_os-0.1.3 \
-+    crate://crates.io/rand_xoshiro/0.1.0;name=rand_xoshiro-0.1.0 \
-+    crate://crates.io/rayon/1.1.0;name=rayon-1.1.0 \
-+    crate://crates.io/rayon-core/1.5.0;name=rayon-core-1.5.0 \
-+    crate://crates.io/rdrand/0.4.0;name=rdrand-0.4.0 \
-+    crate://crates.io/regex/1.2.1;name=regex-1.2.1 \
-+    crate://crates.io/regex-automata/0.1.8;name=regex-automata-0.1.8 \
-+    crate://crates.io/regex-syntax/0.6.11;name=regex-syntax-0.6.11 \
-+    crate://crates.io/rustc_version/0.2.3;name=rustc_version-0.2.3 \
-+    crate://crates.io/ryu/1.0.0;name=ryu-1.0.0 \
-+    crate://crates.io/same-file/1.0.5;name=same-file-1.0.5 \
-+    crate://crates.io/scopeguard/1.0.0;name=scopeguard-1.0.0 \
-+    crate://crates.io/semver/0.9.0;name=semver-0.9.0 \
-+    crate://crates.io/semver-parser/0.7.0;name=semver-parser-0.7.0 \
-+    crate://crates.io/serde/1.0.99;name=serde-1.0.99 \
-+    crate://crates.io/serde_derive/1.0.99;name=serde_derive-1.0.99 \
-+    crate://crates.io/serde_json/1.0.40;name=serde_json-1.0.40 \
-+    crate://crates.io/static_assertions/0.3.4;name=static_assertions-0.3.4 \
-+    crate://crates.io/syn/1.0.3;name=syn-1.0.3 \
-+    crate://crates.io/textwrap/0.11.0;name=textwrap-0.11.0 \
-+    crate://crates.io/thread_local/0.3.6;name=thread_local-0.3.6 \
-+    crate://crates.io/tinytemplate/1.0.2;name=tinytemplate-1.0.2 \
-+    crate://crates.io/unicode-width/0.1.6;name=unicode-width-0.1.6 \
-+    crate://crates.io/unicode-xid/0.2.0;name=unicode-xid-0.2.0 \
-+    crate://crates.io/version_check/0.9.1;name=version_check-0.9.1 \
-+    crate://crates.io/walkdir/2.2.9;name=walkdir-2.2.9 \
-+    crate://crates.io/winapi/0.3.7;name=winapi-0.3.7 \
-+    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0;name=winapi-i686-pc-windows-gnu-0.4.0 \
-+    crate://crates.io/winapi-util/0.1.2;name=winapi-util-0.1.2 \
-+    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0;name=winapi-x86_64-pc-windows-gnu-0.4.0 \
-+"
-+
-+# from vendor/brotli/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/alloc-no-stdlib/2.0.3;name=alloc-no-stdlib-2.0.3 \
-+    crate://crates.io/alloc-stdlib/0.2.1;name=alloc-stdlib-0.2.1 \
-+    crate://crates.io/block-buffer/0.7.3;name=block-buffer-0.7.3 \
-+    crate://crates.io/block-padding/0.1.5;name=block-padding-0.1.5 \
-+    crate://crates.io/brotli-decompressor/2.3.2;name=brotli-decompressor-2.3.2 \
-+    crate://crates.io/byte-tools/0.3.1;name=byte-tools-0.3.1 \
-+    crate://crates.io/byteorder/1.4.3;name=byteorder-1.4.3 \
-+    crate://crates.io/cfg-if/1.0.0;name=cfg-if-1.0.0 \
-+    crate://crates.io/digest/0.8.1;name=digest-0.8.1 \
-+    crate://crates.io/fake-simd/0.1.2;name=fake-simd-0.1.2 \
-+    crate://crates.io/generic-array/0.12.4;name=generic-array-0.12.4 \
-+    crate://crates.io/libm/0.1.4;name=libm-0.1.4 \
-+    crate://crates.io/opaque-debug/0.2.3;name=opaque-debug-0.2.3 \
-+    crate://crates.io/packed_simd_2/0.3.7;name=packed_simd_2-0.3.7 \
-+    crate://crates.io/sha2/0.8.2;name=sha2-0.8.2 \
-+    crate://crates.io/typenum/1.15.0;name=typenum-1.15.0 \
-+"
-+
-+SRC_URI[alloc-no-stdlib-2.0.3.sha256sum] = "35ef4730490ad1c4eae5c4325b2a95f521d023e5c885853ff7aca0a6a1631db3"
-+SRC_URI[alloc-stdlib-0.2.1.sha256sum] = "697ed7edc0f1711de49ce108c541623a0af97c6c60b2f6e2b65229847ac843c2"
-+SRC_URI[block-buffer-0.7.3.sha256sum] = "c0940dc441f31689269e10ac70eb1002a3a1d3ad1390e030043662eb7fe4688b"
-+SRC_URI[block-padding-0.1.5.sha256sum] = "fa79dedbb091f449f1f39e53edf88d5dbe95f895dae6135a8d7b881fb5af73f5"
-+SRC_URI[brotli-decompressor-2.3.2.sha256sum] = "59ad2d4653bf5ca36ae797b1f4bb4dbddb60ce49ca4aed8a2ce4829f60425b80"
-+SRC_URI[byte-tools-0.3.1.sha256sum] = "e3b5ca7a04898ad4bcd41c90c5285445ff5b791899bb1b0abdd2a2aa791211d7"
-+SRC_URI[byteorder-1.4.3.sha256sum] = "14c189c53d098945499cdfa7ecc63567cf3886b3332b312a5b4585d8d3a6a610"
-+SRC_URI[cfg-if-1.0.0.sha256sum] = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
-+SRC_URI[digest-0.8.1.sha256sum] = "f3d0c8c8752312f9713efd397ff63acb9f85585afbf179282e720e7704954dd5"
-+SRC_URI[fake-simd-0.1.2.sha256sum] = "e88a8acf291dafb59c2d96e8f59828f3838bb1a70398823ade51a84de6a6deed"
-+SRC_URI[generic-array-0.12.4.sha256sum] = "ffdf9f34f1447443d37393cc6c2b8313aebddcd96906caf34e54c68d8e57d7bd"
-+SRC_URI[libm-0.1.4.sha256sum] = "7fc7aa29613bd6a620df431842069224d8bc9011086b1db4c0e0cd47fa03ec9a"
-+SRC_URI[opaque-debug-0.2.3.sha256sum] = "2839e79665f131bdb5782e51f2c6c9599c133c6098982a54c794358bf432529c"
-+SRC_URI[packed_simd_2-0.3.7.sha256sum] = "defdcfef86dcc44ad208f71d9ff4ce28df6537a4e0d6b0e8e845cb8ca10059a6"
-+SRC_URI[sha2-0.8.2.sha256sum] = "a256f46ea78a0c0d9ff00077504903ac881a1dafdc20da66545699e7776b3e69"
-+SRC_URI[typenum-1.15.0.sha256sum] = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
-+# from vendor/alloc-stdlib/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/alloc-no-stdlib/2.0.4;name=alloc-no-stdlib-2.0.4 \
-+"
-+
-+SRC_URI[alloc-no-stdlib-2.0.4.sha256sum] = "cc7bb162ec39d46ab1ca8c77bf72e890535becd1751bb45f64c597edb4c8c6b3"
-+# from vendor/brotli-decompressor/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/alloc-no-stdlib/2.0.4;name=alloc-no-stdlib-2.0.4 \
-+    crate://crates.io/alloc-stdlib/0.2.2;name=alloc-stdlib-0.2.2 \
-+"
-+
-+SRC_URI[alloc-no-stdlib-2.0.4.sha256sum] = "cc7bb162ec39d46ab1ca8c77bf72e890535becd1751bb45f64c597edb4c8c6b3"
-+SRC_URI[alloc-stdlib-0.2.2.sha256sum] = "94fb8275041c72129eb51b7d0322c29b8387a0386127718b096429201a5d6ece"
-+# from vendor/phf_generator/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/arrayvec/0.4.12;name=arrayvec-0.4.12 \
-+    crate://crates.io/atty/0.2.13;name=atty-0.2.13 \
-+    crate://crates.io/autocfg/0.1.6;name=autocfg-0.1.6 \
-+    crate://crates.io/bitflags/1.2.1;name=bitflags-1.2.1 \
-+    crate://crates.io/bstr/0.2.8;name=bstr-0.2.8 \
-+    crate://crates.io/byteorder/1.3.2;name=byteorder-1.3.2 \
-+    crate://crates.io/c2-chacha/0.2.2;name=c2-chacha-0.2.2 \
-+    crate://crates.io/cast/0.2.2;name=cast-0.2.2 \
-+    crate://crates.io/cfg-if/0.1.10;name=cfg-if-0.1.10 \
-+    crate://crates.io/clap/2.33.0;name=clap-2.33.0 \
-+    crate://crates.io/criterion/0.3.0;name=criterion-0.3.0 \
-+    crate://crates.io/criterion-plot/0.4.0;name=criterion-plot-0.4.0 \
-+    crate://crates.io/crossbeam-deque/0.7.1;name=crossbeam-deque-0.7.1 \
-+    crate://crates.io/crossbeam-epoch/0.7.2;name=crossbeam-epoch-0.7.2 \
-+    crate://crates.io/crossbeam-queue/0.1.2;name=crossbeam-queue-0.1.2 \
-+    crate://crates.io/crossbeam-utils/0.6.6;name=crossbeam-utils-0.6.6 \
-+    crate://crates.io/csv/1.1.1;name=csv-1.1.1 \
-+    crate://crates.io/csv-core/0.1.6;name=csv-core-0.1.6 \
-+    crate://crates.io/either/1.5.3;name=either-1.5.3 \
-+    crate://crates.io/getrandom/0.1.12;name=getrandom-0.1.12 \
-+    crate://crates.io/itertools/0.8.0;name=itertools-0.8.0 \
-+    crate://crates.io/itoa/0.4.4;name=itoa-0.4.4 \
-+    crate://crates.io/lazy_static/1.4.0;name=lazy_static-1.4.0 \
-+    crate://crates.io/libc/0.2.64;name=libc-0.2.64 \
-+    crate://crates.io/memchr/2.2.1;name=memchr-2.2.1 \
-+    crate://crates.io/memoffset/0.5.1;name=memoffset-0.5.1 \
-+    crate://crates.io/nodrop/0.1.14;name=nodrop-0.1.14 \
-+    crate://crates.io/num-traits/0.2.8;name=num-traits-0.2.8 \
-+    crate://crates.io/num_cpus/1.10.1;name=num_cpus-1.10.1 \
-+    crate://crates.io/phf_shared/0.8.0;name=phf_shared-0.8.0 \
-+    crate://crates.io/ppv-lite86/0.2.5;name=ppv-lite86-0.2.5 \
-+    crate://crates.io/proc-macro2/1.0.5;name=proc-macro2-1.0.5 \
-+    crate://crates.io/quote/1.0.2;name=quote-1.0.2 \
-+    crate://crates.io/rand/0.7.2;name=rand-0.7.2 \
-+    crate://crates.io/rand_chacha/0.2.1;name=rand_chacha-0.2.1 \
-+    crate://crates.io/rand_core/0.5.1;name=rand_core-0.5.1 \
-+    crate://crates.io/rand_hc/0.2.0;name=rand_hc-0.2.0 \
-+    crate://crates.io/rand_os/0.2.2;name=rand_os-0.2.2 \
-+    crate://crates.io/rand_pcg/0.2.0;name=rand_pcg-0.2.0 \
-+    crate://crates.io/rand_xoshiro/0.3.1;name=rand_xoshiro-0.3.1 \
-+    crate://crates.io/rayon/1.2.0;name=rayon-1.2.0 \
-+    crate://crates.io/rayon-core/1.6.0;name=rayon-core-1.6.0 \
-+    crate://crates.io/regex-automata/0.1.8;name=regex-automata-0.1.8 \
-+    crate://crates.io/rustc_version/0.2.3;name=rustc_version-0.2.3 \
-+    crate://crates.io/ryu/1.0.2;name=ryu-1.0.2 \
-+    crate://crates.io/same-file/1.0.5;name=same-file-1.0.5 \
-+    crate://crates.io/scopeguard/1.0.0;name=scopeguard-1.0.0 \
-+    crate://crates.io/semver/0.9.0;name=semver-0.9.0 \
-+    crate://crates.io/semver-parser/0.7.0;name=semver-parser-0.7.0 \
-+    crate://crates.io/serde/1.0.101;name=serde-1.0.101 \
-+    crate://crates.io/serde_derive/1.0.101;name=serde_derive-1.0.101 \
-+    crate://crates.io/serde_json/1.0.41;name=serde_json-1.0.41 \
-+    crate://crates.io/siphasher/0.3.1;name=siphasher-0.3.1 \
-+    crate://crates.io/syn/1.0.5;name=syn-1.0.5 \
-+    crate://crates.io/textwrap/0.11.0;name=textwrap-0.11.0 \
-+    crate://crates.io/tinytemplate/1.0.2;name=tinytemplate-1.0.2 \
-+    crate://crates.io/unicode-width/0.1.6;name=unicode-width-0.1.6 \
-+    crate://crates.io/unicode-xid/0.2.0;name=unicode-xid-0.2.0 \
-+    crate://crates.io/walkdir/2.2.9;name=walkdir-2.2.9 \
-+    crate://crates.io/wasi/0.7.0;name=wasi-0.7.0 \
-+    crate://crates.io/winapi/0.3.8;name=winapi-0.3.8 \
-+    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0;name=winapi-i686-pc-windows-gnu-0.4.0 \
-+    crate://crates.io/winapi-util/0.1.2;name=winapi-util-0.1.2 \
-+    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0;name=winapi-x86_64-pc-windows-gnu-0.4.0 \
-+"
-+
-+# from vendor/rand/Cargo.lock
-+SRC_URI += " \
-+    crate://crates.io/base-x/0.2.5;name=base-x-0.2.5 \
-+    crate://crates.io/bumpalo/2.6.0;name=bumpalo-2.6.0 \
-+    crate://crates.io/c2-chacha/0.2.2;name=c2-chacha-0.2.2 \
-+    crate://crates.io/cfg-if/0.1.9;name=cfg-if-0.1.9 \
-+    crate://crates.io/discard/1.0.4;name=discard-1.0.4 \
-+    crate://crates.io/getrandom/0.1.12;name=getrandom-0.1.12 \
-+    crate://crates.io/itoa/0.4.4;name=itoa-0.4.4 \
-+    crate://crates.io/lazy_static/1.4.0;name=lazy_static-1.4.0 \
-+    crate://crates.io/libc/0.2.62;name=libc-0.2.62 \
-+    crate://crates.io/log/0.4.8;name=log-0.4.8 \
-+    crate://crates.io/packed_simd/0.3.3;name=packed_simd-0.3.3 \
-+    crate://crates.io/ppv-lite86/0.2.5;name=ppv-lite86-0.2.5 \
-+    crate://crates.io/proc-macro2/0.4.30;name=proc-macro2-0.4.30 \
-+    crate://crates.io/proc-macro2/1.0.3;name=proc-macro2-1.0.3 \
-+    crate://crates.io/quote/0.6.13;name=quote-0.6.13 \
-+    crate://crates.io/quote/1.0.2;name=quote-1.0.2 \
-+    crate://crates.io/rand_chacha/0.2.1;name=rand_chacha-0.2.1 \
-+    crate://crates.io/rand_core/0.5.1;name=rand_core-0.5.1 \
-+    crate://crates.io/rand_hc/0.2.0;name=rand_hc-0.2.0 \
-+    crate://crates.io/rand_pcg/0.2.1;name=rand_pcg-0.2.1 \
-+    crate://crates.io/rustc_version/0.2.3;name=rustc_version-0.2.3 \
-+    crate://crates.io/ryu/1.0.0;name=ryu-1.0.0 \
-+    crate://crates.io/semver/0.9.0;name=semver-0.9.0 \
-+    crate://crates.io/semver-parser/0.7.0;name=semver-parser-0.7.0 \
-+    crate://crates.io/serde/1.0.100;name=serde-1.0.100 \
-+    crate://crates.io/serde_derive/1.0.100;name=serde_derive-1.0.100 \
-+    crate://crates.io/serde_json/1.0.40;name=serde_json-1.0.40 \
-+    crate://crates.io/sha1/0.6.0;name=sha1-0.6.0 \
-+    crate://crates.io/stdweb/0.4.18;name=stdweb-0.4.18 \
-+    crate://crates.io/stdweb-derive/0.5.1;name=stdweb-derive-0.5.1 \
-+    crate://crates.io/stdweb-internal-macros/0.2.7;name=stdweb-internal-macros-0.2.7 \
-+    crate://crates.io/stdweb-internal-runtime/0.1.4;name=stdweb-internal-runtime-0.1.4 \
-+    crate://crates.io/syn/0.15.44;name=syn-0.15.44 \
-+    crate://crates.io/syn/1.0.5;name=syn-1.0.5 \
-+    crate://crates.io/unicode-xid/0.1.0;name=unicode-xid-0.1.0 \
-+    crate://crates.io/unicode-xid/0.2.0;name=unicode-xid-0.2.0 \
-+    crate://crates.io/wasi/0.7.0;name=wasi-0.7.0 \
-+    crate://crates.io/wasm-bindgen/0.2.50;name=wasm-bindgen-0.2.50 \
-+    crate://crates.io/wasm-bindgen-backend/0.2.50;name=wasm-bindgen-backend-0.2.50 \
-+    crate://crates.io/wasm-bindgen-macro/0.2.50;name=wasm-bindgen-macro-0.2.50 \
-+    crate://crates.io/wasm-bindgen-macro-support/0.2.50;name=wasm-bindgen-macro-support-0.2.50 \
-+    crate://crates.io/wasm-bindgen-shared/0.2.50;name=wasm-bindgen-shared-0.2.50 \
-+"
-+
-+SRC_URI[arrayvec-0.4.11.sha256sum] = "b8d73f9beda665eaa98ab9e4f7442bd4e7de6652587de55b2525e52e29c1b0ba"
-+SRC_URI[atty-0.2.12.sha256sum] = "ecaaea69f52b3b18633611ec0007d188517d0366f47ff703d400fa6879d6f8d5"
-+SRC_URI[autocfg-0.1.4.sha256sum] = "0e49efa51329a5fd37e7c79db4621af617cd4e3e5bc224939808d076077077bf"
-+SRC_URI[bitflags-1.1.0.sha256sum] = "3d155346769a6855b86399e9bc3814ab343cd3d62c7e985113d46a0ec3c281fd"
-+SRC_URI[bstr-0.2.1.sha256sum] = "6cc0572e02f76cb335f309b19e0a0d585b4f62788f7d26de2a13a836a637385f"
-+SRC_URI[byteorder-1.3.2.sha256sum] = "a7c3dd8985a7111efc5c80b44e23ecdd8c007de8ade3b96595387e812b957cf5"
-+SRC_URI[cast-0.2.2.sha256sum] = "926013f2860c46252efceabb19f4a6b308197505082c609025aa6706c011d427"
-+SRC_URI[cfg-if-0.1.9.sha256sum] = "b486ce3ccf7ffd79fdeb678eac06a9e6c09fc88d33836340becb8fffe87c5e33"
-+SRC_URI[clap-2.33.0.sha256sum] = "5067f5bb2d80ef5d68b4c87db81601f0b75bca627bc2ef76b141d7b846a3c6d9"
-+SRC_URI[cloudabi-0.0.3.sha256sum] = "ddfc5b9aa5d4507acaf872de71051dfd0e309860e88966e1051e462a077aac4f"
-+SRC_URI[criterion-0.3.0.sha256sum] = "938703e165481c8d612ea3479ac8342e5615185db37765162e762ec3523e2fc6"
-+SRC_URI[criterion-plot-0.4.0.sha256sum] = "eccdc6ce8bbe352ca89025bee672aa6d24f4eb8c53e3a8b5d1bc58011da072a2"
-+SRC_URI[crossbeam-deque-0.6.3.sha256sum] = "05e44b8cf3e1a625844d1750e1f7820da46044ff6d28f4d43e455ba3e5bb2c13"
-+SRC_URI[crossbeam-epoch-0.7.1.sha256sum] = "04c9e3102cc2d69cd681412141b390abd55a362afc1540965dad0ad4d34280b4"
-+SRC_URI[crossbeam-queue-0.1.2.sha256sum] = "7c979cd6cfe72335896575c6b5688da489e420d36a27a0b9eb0c73db574b4a4b"
-+SRC_URI[crossbeam-utils-0.6.5.sha256sum] = "f8306fcef4a7b563b76b7dd949ca48f52bc1141aa067d2ea09565f3e2652aa5c"
-+SRC_URI[csv-1.1.1.sha256sum] = "37519ccdfd73a75821cac9319d4fce15a81b9fcf75f951df5b9988aa3a0af87d"
-+SRC_URI[csv-core-0.1.6.sha256sum] = "9b5cadb6b25c77aeff80ba701712494213f4a8418fcda2ee11b6560c3ad0bf4c"
-+SRC_URI[doc-comment-0.3.1.sha256sum] = "923dea538cea0aa3025e8685b20d6ee21ef99c4f77e954a30febbaac5ec73a97"
-+SRC_URI[either-1.5.2.sha256sum] = "5527cfe0d098f36e3f8839852688e63c8fff1c90b2b405aef730615f9a7bcf7b"
-+SRC_URI[fuchsia-cprng-0.1.1.sha256sum] = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
-+SRC_URI[getrandom-0.1.13.sha256sum] = "e7db7ca94ed4cd01190ceee0d8a8052f08a247aa1b469a7f68c6a3b71afcf407"
-+SRC_URI[itertools-0.8.0.sha256sum] = "5b8467d9c1cebe26feb08c640139247fac215782d35371ade9a2136ed6085358"
-+SRC_URI[itoa-0.4.4.sha256sum] = "501266b7edd0174f8530248f87f99c88fbe60ca4ef3dd486835b8d8d53136f7f"
-+SRC_URI[lazy_static-1.3.0.sha256sum] = "bc5729f27f159ddd61f4df6228e827e86643d4d3e7c32183cb30a1c08f604a14"
-+SRC_URI[libc-0.2.65.sha256sum] = "1a31a0627fdf1f6a39ec0dd577e101440b7db22672c0901fe00a9a6fbb5c24e8"
-+SRC_URI[memchr-2.2.1.sha256sum] = "88579771288728879b57485cc7d6b07d648c9f0141eb955f8ab7f9d45394468e"
-+SRC_URI[memoffset-0.2.1.sha256sum] = "0f9dc261e2b62d7a622bf416ea3c5245cdd5d9a7fcc428c0d06804dfce1775b3"
-+SRC_URI[nodrop-0.1.13.sha256sum] = "2f9667ddcc6cc8a43afc9b7917599d7216aa09c463919ea32c59ed6cac8bc945"
-+SRC_URI[num-traits-0.2.8.sha256sum] = "6ba9a427cfca2be13aa6f6403b0b7e7368fe982bfa16fccc450ce74c46cd9b32"
-+SRC_URI[num_cpus-1.10.1.sha256sum] = "bcef43580c035376c0705c42792c294b66974abbfd2789b511784023f71f3273"
-+SRC_URI[proc-macro2-0.4.30.sha256sum] = "cf3d2011ab5c909338f7887f4fc896d35932e29146c12c8d01da6b22a80ba759"
-+SRC_URI[quote-0.6.13.sha256sum] = "6ce23b6b870e8f94f81fb0a363d65d86675884b34a09043c81e5562f11c1f8e1"
-+SRC_URI[rand-0.6.5.sha256sum] = "6d71dacdc3c88c1fde3885a3be3fbab9f35724e6ce99467f7d9c5026132184ca"
-+SRC_URI[rand_chacha-0.1.1.sha256sum] = "556d3a1ca6600bfcbab7c7c91ccb085ac7fbbcd70e008a98742e7847f4f7bcef"
-+SRC_URI[rand_core-0.3.1.sha256sum] = "7a6fdeb83b075e8266dcc8762c22776f6877a63111121f5f8c7411e5be7eed4b"
-+SRC_URI[rand_core-0.4.0.sha256sum] = "d0e7a549d590831370895ab7ba4ea0c1b6b011d106b5ff2da6eee112615e6dc0"
-+SRC_URI[rand_core-0.5.1.sha256sum] = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
-+SRC_URI[rand_hc-0.1.0.sha256sum] = "7b40677c7be09ae76218dc623efbf7b18e34bced3f38883af07bb75630a21bc4"
-+SRC_URI[rand_isaac-0.1.1.sha256sum] = "ded997c9d5f13925be2a6fd7e66bf1872597f759fd9dd93513dd7e92e5a5ee08"
-+SRC_URI[rand_jitter-0.1.4.sha256sum] = "1166d5c91dc97b88d1decc3285bb0a99ed84b05cfd0bc2341bdf2d43fc41e39b"
-+SRC_URI[rand_os-0.1.3.sha256sum] = "7b75f676a1e053fc562eafbb47838d67c84801e38fc1ba459e8f180deabd5071"
-+SRC_URI[rand_os-0.2.2.sha256sum] = "a788ae3edb696cfcba1c19bfd388cc4b8c21f8a408432b199c072825084da58a"
-+SRC_URI[rand_pcg-0.1.2.sha256sum] = "abf9b09b01790cfe0364f52bf32995ea3c39f4d2dd011eac241d2914146d0b44"
-+SRC_URI[rand_xorshift-0.1.1.sha256sum] = "cbf7e9e623549b0e21f6e97cf8ecf247c1a8fd2e8a992ae265314300b2455d5c"
-+SRC_URI[rand_xoshiro-0.3.1.sha256sum] = "0e18c91676f670f6f0312764c759405f13afb98d5d73819840cf72a518487bff"
-+SRC_URI[rayon-1.1.0.sha256sum] = "a4b0186e22767d5b9738a05eab7c6ac90b15db17e5b5f9bd87976dd7d89a10a4"
-+SRC_URI[rayon-core-1.5.0.sha256sum] = "ebbe0df8435ac0c397d467b6cad6d25543d06e8a019ef3f6af3c384597515bd2"
-+SRC_URI[rdrand-0.4.0.sha256sum] = "678054eb77286b51581ba43620cc911abf02758c91f93f479767aed0f90458b2"
-+SRC_URI[regex-automata-0.1.7.sha256sum] = "3ed09217220c272b29ef237a974ad58515bde75f194e3ffa7e6d0bf0f3b01f86"
-+SRC_URI[ryu-1.0.0.sha256sum] = "c92464b447c0ee8c4fb3824ecc8383b81717b9f1e74ba2e72540aef7b9f82997"
-+SRC_URI[same-file-1.0.4.sha256sum] = "8f20c4be53a8a1ff4c1f1b2bd14570d2f634628709752f0702ecdd2b3f9a5267"
-+SRC_URI[scopeguard-0.3.3.sha256sum] = "94258f53601af11e6a49f722422f6e3425c52b06245a5cf9bc09908b174f5e27"
-+SRC_URI[serde-1.0.94.sha256sum] = "076a696fdea89c19d3baed462576b8f6d663064414b5c793642da8dfeb99475b"
-+SRC_URI[serde_derive-1.0.94.sha256sum] = "ef45eb79d6463b22f5f9e16d283798b7c0175ba6050bc25c1a946c122727fe7b"
-+SRC_URI[serde_json-1.0.40.sha256sum] = "051c49229f282f7c6f3813f8286cc1e3323e8051823fce42c7ea80fe13521704"
-+SRC_URI[syn-0.15.39.sha256sum] = "b4d960b829a55e56db167e861ddb43602c003c7be0bee1d345021703fac2fb7c"
-+SRC_URI[textwrap-0.11.0.sha256sum] = "d326610f408c7a4eb6f51c37c330e496b08506c9457c9d34287ecc38809fb060"
-+SRC_URI[tinytemplate-1.0.2.sha256sum] = "4574b75faccaacddb9b284faecdf0b544b80b6b294f3d062d325c5726a209c20"
-+SRC_URI[unicode-width-0.1.5.sha256sum] = "882386231c45df4700b275c7ff55b6f3698780a650026380e72dabe76fa46526"
-+SRC_URI[unicode-xid-0.1.0.sha256sum] = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
-+SRC_URI[walkdir-2.2.8.sha256sum] = "c7904a7e2bb3cdf0cf5e783f44204a85a37a93151738fa349f06680f59a98b45"
-+SRC_URI[wasi-0.7.0.sha256sum] = "b89c3ce4ce14bdc6fb6beaf9ec7928ca331de5df7e5ea278375642a2f478570d"
-+SRC_URI[winapi-0.3.7.sha256sum] = "f10e386af2b13e47c89e7236a7a14a086791a2b88ebad6df9bf42040195cf770"
-+SRC_URI[winapi-i686-pc-windows-gnu-0.4.0.sha256sum] = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
-+SRC_URI[winapi-util-0.1.2.sha256sum] = "7168bab6e1daee33b4557efd0e95d5ca70a03706d39fa5f3fe7a236f584b03c9"
-+SRC_URI[winapi-x86_64-pc-windows-gnu-0.4.0.sha256sum] = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
-+SRC_URI[aho-corasick-0.7.6.sha256sum] = "58fb5e95d83b38284460a5fda7d6470aa0b8844d283a0b614b8535e880800d2d"
-+SRC_URI[arrayvec-0.4.11.sha256sum] = "b8d73f9beda665eaa98ab9e4f7442bd4e7de6652587de55b2525e52e29c1b0ba"
-+SRC_URI[atty-0.2.13.sha256sum] = "1803c647a3ec87095e7ae7acfca019e98de5ec9a7d01343f611cf3152ed71a90"
-+SRC_URI[autocfg-0.1.6.sha256sum] = "b671c8fb71b457dd4ae18c4ba1e59aa81793daacc361d82fcd410cef0d491875"
-+SRC_URI[bitflags-1.2.1.sha256sum] = "cf1de2fe8c75bc145a2f577add951f8134889b4795d47466a54a5c846d691693"
-+SRC_URI[bstr-0.2.7.sha256sum] = "94cdf78eb7e94c566c1f5dbe2abf8fc70a548fc902942a48c4b3a98b48ca9ade"
-+SRC_URI[byteorder-1.3.2.sha256sum] = "a7c3dd8985a7111efc5c80b44e23ecdd8c007de8ade3b96595387e812b957cf5"
-+SRC_URI[cast-0.2.2.sha256sum] = "926013f2860c46252efceabb19f4a6b308197505082c609025aa6706c011d427"
-+SRC_URI[cc-1.0.40.sha256sum] = "b548a4ee81fccb95919d4e22cfea83c7693ebfd78f0495493178db20b3139da7"
-+SRC_URI[cfg-if-0.1.9.sha256sum] = "b486ce3ccf7ffd79fdeb678eac06a9e6c09fc88d33836340becb8fffe87c5e33"
-+SRC_URI[clap-2.33.0.sha256sum] = "5067f5bb2d80ef5d68b4c87db81601f0b75bca627bc2ef76b141d7b846a3c6d9"
-+SRC_URI[cloudabi-0.0.3.sha256sum] = "ddfc5b9aa5d4507acaf872de71051dfd0e309860e88966e1051e462a077aac4f"
-+SRC_URI[criterion-0.2.11.sha256sum] = "0363053954f3e679645fc443321ca128b7b950a6fe288cf5f9335cc22ee58394"
-+SRC_URI[criterion-plot-0.3.1.sha256sum] = "76f9212ddf2f4a9eb2d401635190600656a1f88a932ef53d06e7fa4c7e02fb8e"
-+SRC_URI[crossbeam-deque-0.6.3.sha256sum] = "05e44b8cf3e1a625844d1750e1f7820da46044ff6d28f4d43e455ba3e5bb2c13"
-+SRC_URI[crossbeam-epoch-0.7.2.sha256sum] = "fedcd6772e37f3da2a9af9bf12ebe046c0dfe657992377b4df982a2b54cd37a9"
-+SRC_URI[crossbeam-queue-0.1.2.sha256sum] = "7c979cd6cfe72335896575c6b5688da489e420d36a27a0b9eb0c73db574b4a4b"
-+SRC_URI[crossbeam-utils-0.6.6.sha256sum] = "04973fa96e96579258a5091af6003abde64af786b860f18622b82e026cca60e6"
-+SRC_URI[csv-1.1.1.sha256sum] = "37519ccdfd73a75821cac9319d4fce15a81b9fcf75f951df5b9988aa3a0af87d"
-+SRC_URI[csv-core-0.1.6.sha256sum] = "9b5cadb6b25c77aeff80ba701712494213f4a8418fcda2ee11b6560c3ad0bf4c"
-+SRC_URI[doc-comment-0.3.1.sha256sum] = "923dea538cea0aa3025e8685b20d6ee21ef99c4f77e954a30febbaac5ec73a97"
-+SRC_URI[either-1.5.2.sha256sum] = "5527cfe0d098f36e3f8839852688e63c8fff1c90b2b405aef730615f9a7bcf7b"
-+SRC_URI[fs_extra-1.1.0.sha256sum] = "5f2a4a2034423744d2cc7ca2068453168dcdb82c438419e639a26bd87839c674"
-+SRC_URI[fuchsia-cprng-0.1.1.sha256sum] = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
-+SRC_URI[itertools-0.8.0.sha256sum] = "5b8467d9c1cebe26feb08c640139247fac215782d35371ade9a2136ed6085358"
-+SRC_URI[itoa-0.4.4.sha256sum] = "501266b7edd0174f8530248f87f99c88fbe60ca4ef3dd486835b8d8d53136f7f"
-+SRC_URI[jemalloc-sys-0.1.8.sha256sum] = "bfc62c8e50e381768ce8ee0428ee53741929f7ebd73e4d83f669bcf7693e00ae"
-+SRC_URI[jemallocator-0.1.9.sha256sum] = "9f0cd42ac65f758063fea55126b0148b1ce0a6354ff78e07a4d6806bc65c4ab3"
-+SRC_URI[lazy_static-1.3.0.sha256sum] = "bc5729f27f159ddd61f4df6228e827e86643d4d3e7c32183cb30a1c08f604a14"
-+SRC_URI[lexical-core-0.6.7.sha256sum] = "f86d66d380c9c5a685aaac7a11818bdfa1f733198dfd9ec09c70b762cd12ad6f"
-+SRC_URI[libc-0.2.62.sha256sum] = "34fcd2c08d2f832f376f4173a231990fa5aef4e99fb569867318a227ef4c06ba"
-+SRC_URI[memchr-2.2.1.sha256sum] = "88579771288728879b57485cc7d6b07d648c9f0141eb955f8ab7f9d45394468e"
-+SRC_URI[memoffset-0.5.1.sha256sum] = "ce6075db033bbbb7ee5a0bbd3a3186bbae616f57fb001c485c7ff77955f8177f"
-+SRC_URI[nodrop-0.1.13.sha256sum] = "2f9667ddcc6cc8a43afc9b7917599d7216aa09c463919ea32c59ed6cac8bc945"
-+SRC_URI[num-traits-0.2.8.sha256sum] = "6ba9a427cfca2be13aa6f6403b0b7e7368fe982bfa16fccc450ce74c46cd9b32"
-+SRC_URI[num_cpus-1.10.1.sha256sum] = "bcef43580c035376c0705c42792c294b66974abbfd2789b511784023f71f3273"
-+SRC_URI[proc-macro2-1.0.1.sha256sum] = "4c5c2380ae88876faae57698be9e9775e3544decad214599c3a6266cca6ac802"
-+SRC_URI[quote-1.0.2.sha256sum] = "053a8c8bcc71fcce321828dc897a98ab9760bef03a4fc36693c231e5b3216cfe"
-+SRC_URI[rand_core-0.3.1.sha256sum] = "7a6fdeb83b075e8266dcc8762c22776f6877a63111121f5f8c7411e5be7eed4b"
-+SRC_URI[rand_core-0.4.2.sha256sum] = "9c33a3c44ca05fa6f1807d8e6743f3824e8509beca625669633be0acbdf509dc"
-+SRC_URI[rand_os-0.1.3.sha256sum] = "7b75f676a1e053fc562eafbb47838d67c84801e38fc1ba459e8f180deabd5071"
-+SRC_URI[rand_xoshiro-0.1.0.sha256sum] = "03b418169fb9c46533f326efd6eed2576699c44ca92d3052a066214a8d828929"
-+SRC_URI[rayon-1.1.0.sha256sum] = "a4b0186e22767d5b9738a05eab7c6ac90b15db17e5b5f9bd87976dd7d89a10a4"
-+SRC_URI[rayon-core-1.5.0.sha256sum] = "ebbe0df8435ac0c397d467b6cad6d25543d06e8a019ef3f6af3c384597515bd2"
-+SRC_URI[rdrand-0.4.0.sha256sum] = "678054eb77286b51581ba43620cc911abf02758c91f93f479767aed0f90458b2"
-+SRC_URI[regex-1.2.1.sha256sum] = "88c3d9193984285d544df4a30c23a4e62ead42edf70a4452ceb76dac1ce05c26"
-+SRC_URI[regex-automata-0.1.8.sha256sum] = "92b73c2a1770c255c240eaa4ee600df1704a38dc3feaa6e949e7fcd4f8dc09f9"
-+SRC_URI[regex-syntax-0.6.11.sha256sum] = "b143cceb2ca5e56d5671988ef8b15615733e7ee16cd348e064333b251b89343f"
-+SRC_URI[rustc_version-0.2.3.sha256sum] = "138e3e0acb6c9fb258b19b67cb8abd63c00679d2851805ea151465464fe9030a"
-+SRC_URI[ryu-1.0.0.sha256sum] = "c92464b447c0ee8c4fb3824ecc8383b81717b9f1e74ba2e72540aef7b9f82997"
-+SRC_URI[same-file-1.0.5.sha256sum] = "585e8ddcedc187886a30fa705c47985c3fa88d06624095856b36ca0b82ff4421"
-+SRC_URI[scopeguard-1.0.0.sha256sum] = "b42e15e59b18a828bbf5c58ea01debb36b9b096346de35d941dcb89009f24a0d"
-+SRC_URI[semver-0.9.0.sha256sum] = "1d7eb9ef2c18661902cc47e535f9bc51b78acd254da71d375c2f6720d9a40403"
-+SRC_URI[semver-parser-0.7.0.sha256sum] = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
-+SRC_URI[serde-1.0.99.sha256sum] = "fec2851eb56d010dc9a21b89ca53ee75e6528bab60c11e89d38390904982da9f"
-+SRC_URI[serde_derive-1.0.99.sha256sum] = "cb4dc18c61206b08dc98216c98faa0232f4337e1e1b8574551d5bad29ea1b425"
-+SRC_URI[serde_json-1.0.40.sha256sum] = "051c49229f282f7c6f3813f8286cc1e3323e8051823fce42c7ea80fe13521704"
-+SRC_URI[static_assertions-0.3.4.sha256sum] = "7f3eb36b47e512f8f1c9e3d10c2c1965bc992bd9cdb024fa581e2194501c83d3"
-+SRC_URI[syn-1.0.3.sha256sum] = "158521e6f544e7e3dcfc370ac180794aa38cb34a1b1e07609376d4adcf429b93"
-+SRC_URI[textwrap-0.11.0.sha256sum] = "d326610f408c7a4eb6f51c37c330e496b08506c9457c9d34287ecc38809fb060"
-+SRC_URI[thread_local-0.3.6.sha256sum] = "c6b53e329000edc2b34dbe8545fd20e55a333362d0a321909685a19bd28c3f1b"
-+SRC_URI[tinytemplate-1.0.2.sha256sum] = "4574b75faccaacddb9b284faecdf0b544b80b6b294f3d062d325c5726a209c20"
-+SRC_URI[unicode-width-0.1.6.sha256sum] = "7007dbd421b92cc6e28410fe7362e2e0a2503394908f417b68ec8d1c364c4e20"
-+SRC_URI[unicode-xid-0.2.0.sha256sum] = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
-+SRC_URI[version_check-0.9.1.sha256sum] = "078775d0255232fb988e6fccf26ddc9d1ac274299aaedcedce21c6f72cc533ce"
-+SRC_URI[walkdir-2.2.9.sha256sum] = "9658c94fa8b940eab2250bd5a457f9c48b748420d71293b165c8cdbe2f55f71e"
-+SRC_URI[winapi-0.3.7.sha256sum] = "f10e386af2b13e47c89e7236a7a14a086791a2b88ebad6df9bf42040195cf770"
-+SRC_URI[winapi-i686-pc-windows-gnu-0.4.0.sha256sum] = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
-+SRC_URI[winapi-util-0.1.2.sha256sum] = "7168bab6e1daee33b4557efd0e95d5ca70a03706d39fa5f3fe7a236f584b03c9"
-+SRC_URI[winapi-x86_64-pc-windows-gnu-0.4.0.sha256sum] = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
-+SRC_URI[arrayvec-0.4.12.sha256sum] = "cd9fd44efafa8690358b7408d253adf110036b88f55672a933f01d616ad9b1b9"
-+SRC_URI[atty-0.2.13.sha256sum] = "1803c647a3ec87095e7ae7acfca019e98de5ec9a7d01343f611cf3152ed71a90"
-+SRC_URI[autocfg-0.1.6.sha256sum] = "b671c8fb71b457dd4ae18c4ba1e59aa81793daacc361d82fcd410cef0d491875"
-+SRC_URI[bitflags-1.2.1.sha256sum] = "cf1de2fe8c75bc145a2f577add951f8134889b4795d47466a54a5c846d691693"
-+SRC_URI[bstr-0.2.8.sha256sum] = "8d6c2c5b58ab920a4f5aeaaca34b4488074e8cc7596af94e6f8c6ff247c60245"
-+SRC_URI[byteorder-1.3.2.sha256sum] = "a7c3dd8985a7111efc5c80b44e23ecdd8c007de8ade3b96595387e812b957cf5"
-+SRC_URI[c2-chacha-0.2.2.sha256sum] = "7d64d04786e0f528460fc884753cf8dddcc466be308f6026f8e355c41a0e4101"
-+SRC_URI[cast-0.2.2.sha256sum] = "926013f2860c46252efceabb19f4a6b308197505082c609025aa6706c011d427"
-+SRC_URI[cfg-if-0.1.10.sha256sum] = "4785bdd1c96b2a846b2bd7cc02e86b6b3dbf14e7e53446c4f54c92a361040822"
-+SRC_URI[clap-2.33.0.sha256sum] = "5067f5bb2d80ef5d68b4c87db81601f0b75bca627bc2ef76b141d7b846a3c6d9"
-+SRC_URI[criterion-0.3.0.sha256sum] = "938703e165481c8d612ea3479ac8342e5615185db37765162e762ec3523e2fc6"
-+SRC_URI[criterion-plot-0.4.0.sha256sum] = "eccdc6ce8bbe352ca89025bee672aa6d24f4eb8c53e3a8b5d1bc58011da072a2"
-+SRC_URI[crossbeam-deque-0.7.1.sha256sum] = "b18cd2e169ad86297e6bc0ad9aa679aee9daa4f19e8163860faf7c164e4f5a71"
-+SRC_URI[crossbeam-epoch-0.7.2.sha256sum] = "fedcd6772e37f3da2a9af9bf12ebe046c0dfe657992377b4df982a2b54cd37a9"
-+SRC_URI[crossbeam-queue-0.1.2.sha256sum] = "7c979cd6cfe72335896575c6b5688da489e420d36a27a0b9eb0c73db574b4a4b"
-+SRC_URI[crossbeam-utils-0.6.6.sha256sum] = "04973fa96e96579258a5091af6003abde64af786b860f18622b82e026cca60e6"
-+SRC_URI[csv-1.1.1.sha256sum] = "37519ccdfd73a75821cac9319d4fce15a81b9fcf75f951df5b9988aa3a0af87d"
-+SRC_URI[csv-core-0.1.6.sha256sum] = "9b5cadb6b25c77aeff80ba701712494213f4a8418fcda2ee11b6560c3ad0bf4c"
-+SRC_URI[either-1.5.3.sha256sum] = "bb1f6b1ce1c140482ea30ddd3335fc0024ac7ee112895426e0a629a6c20adfe3"
-+SRC_URI[getrandom-0.1.12.sha256sum] = "473a1265acc8ff1e808cd0a1af8cee3c2ee5200916058a2ca113c29f2d903571"
-+SRC_URI[itertools-0.8.0.sha256sum] = "5b8467d9c1cebe26feb08c640139247fac215782d35371ade9a2136ed6085358"
-+SRC_URI[itoa-0.4.4.sha256sum] = "501266b7edd0174f8530248f87f99c88fbe60ca4ef3dd486835b8d8d53136f7f"
-+SRC_URI[lazy_static-1.4.0.sha256sum] = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
-+SRC_URI[libc-0.2.64.sha256sum] = "74dfca3d9957906e8d1e6a0b641dc9a59848e793f1da2165889fd4f62d10d79c"
-+SRC_URI[memchr-2.2.1.sha256sum] = "88579771288728879b57485cc7d6b07d648c9f0141eb955f8ab7f9d45394468e"
-+SRC_URI[memoffset-0.5.1.sha256sum] = "ce6075db033bbbb7ee5a0bbd3a3186bbae616f57fb001c485c7ff77955f8177f"
-+SRC_URI[nodrop-0.1.14.sha256sum] = "72ef4a56884ca558e5ddb05a1d1e7e1bfd9a68d9ed024c21704cc98872dae1bb"
-+SRC_URI[num-traits-0.2.8.sha256sum] = "6ba9a427cfca2be13aa6f6403b0b7e7368fe982bfa16fccc450ce74c46cd9b32"
-+SRC_URI[num_cpus-1.10.1.sha256sum] = "bcef43580c035376c0705c42792c294b66974abbfd2789b511784023f71f3273"
-+SRC_URI[phf_shared-0.8.0.sha256sum] = "c00cf8b9eafe68dde5e9eaa2cef8ee84a9336a47d566ec55ca16589633b65af7"
-+SRC_URI[ppv-lite86-0.2.5.sha256sum] = "e3cbf9f658cdb5000fcf6f362b8ea2ba154b9f146a61c7a20d647034c6b6561b"
-+SRC_URI[proc-macro2-1.0.5.sha256sum] = "90cf5f418035b98e655e9cdb225047638296b862b42411c4e45bb88d700f7fc0"
-+SRC_URI[quote-1.0.2.sha256sum] = "053a8c8bcc71fcce321828dc897a98ab9760bef03a4fc36693c231e5b3216cfe"
-+SRC_URI[rand-0.7.2.sha256sum] = "3ae1b169243eaf61759b8475a998f0a385e42042370f3a7dbaf35246eacc8412"
-+SRC_URI[rand_chacha-0.2.1.sha256sum] = "03a2a90da8c7523f554344f921aa97283eadf6ac484a6d2a7d0212fa7f8d6853"
-+SRC_URI[rand_core-0.5.1.sha256sum] = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
-+SRC_URI[rand_hc-0.2.0.sha256sum] = "ca3129af7b92a17112d59ad498c6f81eaf463253766b90396d39ea7a39d6613c"
-+SRC_URI[rand_os-0.2.2.sha256sum] = "a788ae3edb696cfcba1c19bfd388cc4b8c21f8a408432b199c072825084da58a"
-+SRC_URI[rand_pcg-0.2.0.sha256sum] = "3e196346cbbc5c70c77e7b4926147ee8e383a38ee4d15d58a08098b169e492b6"
-+SRC_URI[rand_xoshiro-0.3.1.sha256sum] = "0e18c91676f670f6f0312764c759405f13afb98d5d73819840cf72a518487bff"
-+SRC_URI[rayon-1.2.0.sha256sum] = "83a27732a533a1be0a0035a111fe76db89ad312f6f0347004c220c57f209a123"
-+SRC_URI[rayon-core-1.6.0.sha256sum] = "98dcf634205083b17d0861252431eb2acbfb698ab7478a2d20de07954f47ec7b"
-+SRC_URI[regex-automata-0.1.8.sha256sum] = "92b73c2a1770c255c240eaa4ee600df1704a38dc3feaa6e949e7fcd4f8dc09f9"
-+SRC_URI[rustc_version-0.2.3.sha256sum] = "138e3e0acb6c9fb258b19b67cb8abd63c00679d2851805ea151465464fe9030a"
-+SRC_URI[ryu-1.0.2.sha256sum] = "bfa8506c1de11c9c4e4c38863ccbe02a305c8188e85a05a784c9e11e1c3910c8"
-+SRC_URI[same-file-1.0.5.sha256sum] = "585e8ddcedc187886a30fa705c47985c3fa88d06624095856b36ca0b82ff4421"
-+SRC_URI[scopeguard-1.0.0.sha256sum] = "b42e15e59b18a828bbf5c58ea01debb36b9b096346de35d941dcb89009f24a0d"
-+SRC_URI[semver-0.9.0.sha256sum] = "1d7eb9ef2c18661902cc47e535f9bc51b78acd254da71d375c2f6720d9a40403"
-+SRC_URI[semver-parser-0.7.0.sha256sum] = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
-+SRC_URI[serde-1.0.101.sha256sum] = "9796c9b7ba2ffe7a9ce53c2287dfc48080f4b2b362fcc245a259b3a7201119dd"
-+SRC_URI[serde_derive-1.0.101.sha256sum] = "4b133a43a1ecd55d4086bd5b4dc6c1751c68b1bfbeba7a5040442022c7e7c02e"
-+SRC_URI[serde_json-1.0.41.sha256sum] = "2f72eb2a68a7dc3f9a691bfda9305a1c017a6215e5a4545c258500d2099a37c2"
-+SRC_URI[siphasher-0.3.1.sha256sum] = "83da420ee8d1a89e640d0948c646c1c088758d3a3c538f943bfa97bdac17929d"
-+SRC_URI[syn-1.0.5.sha256sum] = "66850e97125af79138385e9b88339cbcd037e3f28ceab8c5ad98e64f0f1f80bf"
-+SRC_URI[textwrap-0.11.0.sha256sum] = "d326610f408c7a4eb6f51c37c330e496b08506c9457c9d34287ecc38809fb060"
-+SRC_URI[tinytemplate-1.0.2.sha256sum] = "4574b75faccaacddb9b284faecdf0b544b80b6b294f3d062d325c5726a209c20"
-+SRC_URI[unicode-width-0.1.6.sha256sum] = "7007dbd421b92cc6e28410fe7362e2e0a2503394908f417b68ec8d1c364c4e20"
-+SRC_URI[unicode-xid-0.2.0.sha256sum] = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
-+SRC_URI[walkdir-2.2.9.sha256sum] = "9658c94fa8b940eab2250bd5a457f9c48b748420d71293b165c8cdbe2f55f71e"
-+SRC_URI[wasi-0.7.0.sha256sum] = "b89c3ce4ce14bdc6fb6beaf9ec7928ca331de5df7e5ea278375642a2f478570d"
-+SRC_URI[winapi-0.3.8.sha256sum] = "8093091eeb260906a183e6ae1abdba2ef5ef2257a21801128899c3fc699229c6"
-+SRC_URI[winapi-i686-pc-windows-gnu-0.4.0.sha256sum] = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
-+SRC_URI[winapi-util-0.1.2.sha256sum] = "7168bab6e1daee33b4557efd0e95d5ca70a03706d39fa5f3fe7a236f584b03c9"
-+SRC_URI[winapi-x86_64-pc-windows-gnu-0.4.0.sha256sum] = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
-+SRC_URI[base-x-0.2.5.sha256sum] = "76f4eae81729e69bb1819a26c6caac956cc429238388091f98cb6cd858f16443"
-+SRC_URI[bumpalo-2.6.0.sha256sum] = "ad807f2fc2bf185eeb98ff3a901bd46dc5ad58163d0fa4577ba0d25674d71708"
-+SRC_URI[c2-chacha-0.2.2.sha256sum] = "7d64d04786e0f528460fc884753cf8dddcc466be308f6026f8e355c41a0e4101"
-+SRC_URI[cfg-if-0.1.9.sha256sum] = "b486ce3ccf7ffd79fdeb678eac06a9e6c09fc88d33836340becb8fffe87c5e33"
-+SRC_URI[discard-1.0.4.sha256sum] = "212d0f5754cb6769937f4501cc0e67f4f4483c8d2c3e1e922ee9edbe4ab4c7c0"
-+SRC_URI[getrandom-0.1.12.sha256sum] = "473a1265acc8ff1e808cd0a1af8cee3c2ee5200916058a2ca113c29f2d903571"
-+SRC_URI[itoa-0.4.4.sha256sum] = "501266b7edd0174f8530248f87f99c88fbe60ca4ef3dd486835b8d8d53136f7f"
-+SRC_URI[lazy_static-1.4.0.sha256sum] = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
-+SRC_URI[libc-0.2.62.sha256sum] = "34fcd2c08d2f832f376f4173a231990fa5aef4e99fb569867318a227ef4c06ba"
-+SRC_URI[log-0.4.8.sha256sum] = "14b6052be84e6b71ab17edffc2eeabf5c2c3ae1fdb464aae35ac50c67a44e1f7"
-+SRC_URI[packed_simd-0.3.3.sha256sum] = "a85ea9fc0d4ac0deb6fe7911d38786b32fc11119afd9e9d38b84ff691ce64220"
-+SRC_URI[ppv-lite86-0.2.5.sha256sum] = "e3cbf9f658cdb5000fcf6f362b8ea2ba154b9f146a61c7a20d647034c6b6561b"
-+SRC_URI[proc-macro2-0.4.30.sha256sum] = "cf3d2011ab5c909338f7887f4fc896d35932e29146c12c8d01da6b22a80ba759"
-+SRC_URI[proc-macro2-1.0.3.sha256sum] = "e98a83a9f9b331f54b924e68a66acb1bb35cb01fb0a23645139967abefb697e8"
-+SRC_URI[quote-0.6.13.sha256sum] = "6ce23b6b870e8f94f81fb0a363d65d86675884b34a09043c81e5562f11c1f8e1"
-+SRC_URI[quote-1.0.2.sha256sum] = "053a8c8bcc71fcce321828dc897a98ab9760bef03a4fc36693c231e5b3216cfe"
-+SRC_URI[rand_chacha-0.2.1.sha256sum] = "03a2a90da8c7523f554344f921aa97283eadf6ac484a6d2a7d0212fa7f8d6853"
-+SRC_URI[rand_core-0.5.1.sha256sum] = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
-+SRC_URI[rand_hc-0.2.0.sha256sum] = "ca3129af7b92a17112d59ad498c6f81eaf463253766b90396d39ea7a39d6613c"
-+SRC_URI[rand_pcg-0.2.1.sha256sum] = "16abd0c1b639e9eb4d7c50c0b8100b0d0f849be2349829c740fe8e6eb4816429"
-+SRC_URI[rustc_version-0.2.3.sha256sum] = "138e3e0acb6c9fb258b19b67cb8abd63c00679d2851805ea151465464fe9030a"
-+SRC_URI[ryu-1.0.0.sha256sum] = "c92464b447c0ee8c4fb3824ecc8383b81717b9f1e74ba2e72540aef7b9f82997"
-+SRC_URI[semver-0.9.0.sha256sum] = "1d7eb9ef2c18661902cc47e535f9bc51b78acd254da71d375c2f6720d9a40403"
-+SRC_URI[semver-parser-0.7.0.sha256sum] = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
-+SRC_URI[serde-1.0.100.sha256sum] = "f4473e8506b213730ff2061073b48fa51dcc66349219e2e7c5608f0296a1d95a"
-+SRC_URI[serde_derive-1.0.100.sha256sum] = "11e410fde43e157d789fc290d26bc940778ad0fdd47836426fbac36573710dbb"
-+SRC_URI[serde_json-1.0.40.sha256sum] = "051c49229f282f7c6f3813f8286cc1e3323e8051823fce42c7ea80fe13521704"
-+SRC_URI[sha1-0.6.0.sha256sum] = "2579985fda508104f7587689507983eadd6a6e84dd35d6d115361f530916fa0d"
-+SRC_URI[stdweb-0.4.18.sha256sum] = "a68c0ce28cf7400ed022e18da3c4591e14e1df02c70e93573cc59921b3923aeb"
-+SRC_URI[stdweb-derive-0.5.1.sha256sum] = "0e21ebd9179de08f2300a65454268a17ea3de204627458588c84319c4def3930"
-+SRC_URI[stdweb-internal-macros-0.2.7.sha256sum] = "e68f7d08b76979a43e93fe043b66d2626e35d41d68b0b85519202c6dd8ac59fa"
-+SRC_URI[stdweb-internal-runtime-0.1.4.sha256sum] = "d52317523542cc0af5b7e31017ad0f7d1e78da50455e38d5657cd17754f617da"
-+SRC_URI[syn-0.15.44.sha256sum] = "9ca4b3b69a77cbe1ffc9e198781b7acb0c7365a883670e8f1c1bc66fba79a5c5"
-+SRC_URI[syn-1.0.5.sha256sum] = "66850e97125af79138385e9b88339cbcd037e3f28ceab8c5ad98e64f0f1f80bf"
-+SRC_URI[unicode-xid-0.1.0.sha256sum] = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
-+SRC_URI[unicode-xid-0.2.0.sha256sum] = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
-+SRC_URI[wasi-0.7.0.sha256sum] = "b89c3ce4ce14bdc6fb6beaf9ec7928ca331de5df7e5ea278375642a2f478570d"
-+SRC_URI[wasm-bindgen-0.2.50.sha256sum] = "dcddca308b16cd93c2b67b126c688e5467e4ef2e28200dc7dfe4ae284f2faefc"
-+SRC_URI[wasm-bindgen-backend-0.2.50.sha256sum] = "f805d9328b5fc7e5c6399960fd1889271b9b58ae17bdb2417472156cc9fafdd0"
-+SRC_URI[wasm-bindgen-macro-0.2.50.sha256sum] = "3ff88201a482abfc63921621f6cb18eb1efd74f136b05e5841e7f8ca434539e9"
-+SRC_URI[wasm-bindgen-macro-support-0.2.50.sha256sum] = "6a433d89ecdb9f77d46fcf00c8cf9f3467b7de9954d8710c175f61e2e245bb0e"
-+SRC_URI[wasm-bindgen-shared-0.2.50.sha256sum] = "d41fc1bc3570cdf8d108c15e014045fd45a95bb5eb36605f96a90461fc34027d"
-+SRC_URI[autocfg-1.0.1.sha256sum] = "cdb031dd78e28731d87d56cc8ffef4a8f36ca26c38fe2de700543e627f8a464a"
-+SRC_URI[brotli-3.0.3.sha256sum] = "7f29919120f08613aadcd4383764e00526fc9f18b6c0895814faeed0dd78613e"
-+SRC_URI[crc-1.8.1.sha256sum] = "d663548de7f5cca343f1e0a48d14dcfb0e9eb4e079ec58883b7251539fa10aeb"
-+SRC_URI[der-parser-0.5.0.sha256sum] = "0a235b98e742e0687137c26dc4e63fe2a3953a8362dc38527e89e54d1513d548"
-+SRC_URI[der-parser-4.1.0.sha256sum] = "caca07c50eaae94d43e21f4d14eca5543b6f5f5ce64715e9b7665ac5f5185b4e"
-+SRC_URI[flate2-1.0.20.sha256sum] = "cd3aec53de10fe96d7d8c565eb17f2c687bb5518a2ec453b5b1252964526abe0"
-+SRC_URI[ipsec-parser-0.5.0.sha256sum] = "4fa09785b1d327afc9178772b0c8f43b428cbf30d532366fd8e150b98e4fe90a"
-+SRC_URI[kerberos-parser-0.5.0.sha256sum] = "58904d6ec6bf7a602f335a9825e96abac9963e27316a6e4681fd10ce15bfcd40"
-+SRC_URI[md5-0.7.0.sha256sum] = "490cc448043f947bae3cbee9c203358d62dbee0db12107a74be5c30ccfd09771"
-+SRC_URI[memchr-2.3.4.sha256sum] = "0ee1c47aaa256ecabcaea351eae4a9b01ef39ed810004e298d2511ed284b1525"
-+SRC_URI[nom-5.1.1.sha256sum] = "0b471253da97532da4b61552249c521e01e736071f71c1a4f7ebbfbf0a06aad6"
-+SRC_URI[ntp-parser-0.5.0.sha256sum] = "b4dcbdbccb49a50f69ea3c98155e6e7678b600a3c097f6aac1e7b32d0ba8ffd6"
-+SRC_URI[num-0.2.1.sha256sum] = "b8536030f9fea7127f841b45bb6243b27255787fb4eb83958aa1ef9d2fdc0c36"
-+SRC_URI[num-derive-0.2.5.sha256sum] = "eafd0b45c5537c3ba526f79d3e75120036502bebacbb3f3220914067ce39dbf2"
-+SRC_URI[snmp-parser-0.6.0.sha256sum] = "ce1062255da4ec2ea2f0d985aecf85864a989d6de97883ec4ccca915d8c86a05"
-+SRC_URI[tls-parser-0.9.4.sha256sum] = "579c8a8cdde06a13c7209eb7d5c752d1913489ecdb162264503a39ad9053587f"
-+SRC_URI[uuid-0.8.2.sha256sum] = "bc5cf98d8186244414c848017f0e2676b3fcb46807f6668a97dfe67359a3c4b7"
-+SRC_URI[widestring-0.4.3.sha256sum] = "c168940144dd21fd8046987c16a46a33d5fc84eec29ef9dcddc2ac9e31526b7c"
-+SRC_URI[x509-parser-0.6.5.sha256sum] = "99bbe736dd2b422d66e4830f4a06f34387c9814c027efcbda5c2f86463e8e5b0"
-+SRC_URI[test-case-1.0.1.sha256sum] = "e8b114c45b5a342ec701e8775ec130bfee537c9d0fedc747594f51d85e7b6988"
-+SRC_URI[build_const-0.2.1.sha256sum] = "39092a32794787acd8525ee150305ff051b0aa6cc2abaf193924f5ab05425f39"
-+SRC_URI[der-oid-macro-0.2.0.sha256sum] = "e66558629d772c3be040566b7be07be8c8f5aecee95e4a092dfe2efc313277ad"
-+SRC_URI[proc-macro-hack-0.5.19.sha256sum] = "dbf0c48bc1d91375ae5c3cd81e3722dff1abcf81a30960240640d223f59fe0e5"
-+SRC_URI[rusticata-macros-2.1.0.sha256sum] = "f8a9050636e8a1b487ba1fbe99114021cd7594dde3ce6ed95bfc1691e5b5367b"
-+SRC_URI[miniz_oxide-0.4.4.sha256sum] = "a92518e98c078586bc6c934028adcca4c92a53d6a958196de835170a01d84e4b"
-+SRC_URI[num-bigint-0.2.6.sha256sum] = "090c7f9998ee0ff65aa5b723e4009f7b217707f1fb5ea551329cc4d6231fb304"
-+SRC_URI[num-complex-0.2.4.sha256sum] = "b6b19411a9719e753aff12e5187b74d60d3dc449ec3f4dc21e3989c3f554bc95"
-+SRC_URI[num-integer-0.1.44.sha256sum] = "d2cc698a63b549a70bc047073d2949cce27cd1c7b0a4a862d08a8031bc2801db"
-+SRC_URI[num-iter-0.1.42.sha256sum] = "b2021c8337a54d21aca0d59a92577a029af9431cb59b909b03252b9c164fad59"
-+SRC_URI[num-rational-0.2.4.sha256sum] = "5c000134b5dbf44adc5cb772486d335293351644b801551abe8f75c84cfa4aef"
-+SRC_URI[num-traits-0.2.14.sha256sum] = "9a64b1ec5cda2586e284722486d802acf1f7dbdc623e2bfc57e65ca1cd099290"
-+SRC_URI[enum_primitive-0.1.1.sha256sum] = "be4551092f4d519593039259a9ed8daedf0da12e5109c5280338073eaeb81180"
-+SRC_URI[phf-0.8.0.sha256sum] = "3dfb61232e34fcb633f43d12c58f83c1df82962dcdfa565a4e866ffc17dafe12"
-+SRC_URI[phf_codegen-0.8.0.sha256sum] = "cbffee61585b0411840d3ece935cce9cb6321f01c45477d30066498cd5e1a815"
-+SRC_URI[phf_generator-0.8.0.sha256sum] = "17367f0cc86f2d25802b2c26ee58a7b23faeccf78a396094c13dced0d0182526"
-+SRC_URI[base64-0.11.0.sha256sum] = "b41b7ea54a0c9d92199de89e20e58d49f02f8e699814ef3fdf266f6f748d15c7"
-+SRC_URI[der-parser-3.0.4.sha256sum] = "f51f64dcdf1cdc550d21d73dc959726c7dbeeab4a01481d08084a7736956464e"
-+SRC_URI[time-0.1.44.sha256sum] = "6db9e6914ab8b1ae1c260a4ae7a49b6c5611b40328a735b21862567685e73255"
-+SRC_URI[num-traits-0.1.43.sha256sum] = "92e5113e9fd4cc14ded8e499429f396a20f98c772a47cc8622a736e1ec843c31"
-+SRC_URI[wasi-0.10.0+wasi-snapshot-preview1.sha256sum] = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
-+SRC_URI[lexical-core-0.6.8.sha256sum] = "233853dfa6b87c7c00eb46a205802069263ab27e16b6bdd1b08ddf91a855e30c"
-+
-diff --git a/recipes-ids/suricata/suricata_6.0.10.bb b/recipes-ids/suricata/suricata_6.0.10.bb
-index 0422ead..9d53356 100644
---- a/recipes-ids/suricata/suricata_6.0.10.bb
-+++ b/recipes-ids/suricata/suricata_6.0.10.bb
-@@ -18,97 +18,9 @@ SRC_URI += " \
-     file://fixup.patch \
-     "
- 
--SRC_URI += " \
--    crate://crates.io/autocfg/1.0.1 \
--    crate://crates.io/semver-parser/0.7.0 \
--    crate://crates.io/arrayvec/0.4.12 \
--    crate://crates.io/ryu/1.0.5 \
--    crate://crates.io/libc/0.2.86 \
--    crate://crates.io/bitflags/1.2.1 \
--    crate://crates.io/version_check/0.9.2 \
--    crate://crates.io/memchr/2.3.4 \
--    crate://crates.io/nodrop/0.1.14 \
--    crate://crates.io/cfg-if/0.1.9 \
--    crate://crates.io/static_assertions/0.3.4 \
--    crate://crates.io/getrandom/0.1.16 \
--    crate://crates.io/cfg-if/1.0.0 \
--    crate://crates.io/siphasher/0.3.3 \
--    crate://crates.io/ppv-lite86/0.2.10 \
--    crate://crates.io/proc-macro-hack/0.5.19 \
--    crate://crates.io/proc-macro2/0.4.30 \
--    crate://crates.io/unicode-xid/0.1.0 \
--    crate://crates.io/syn/0.15.44 \
--    crate://crates.io/build_const/0.2.1 \
--    crate://crates.io/num-derive/0.2.5 \
--    crate://crates.io/base64/0.11.0 \
--    crate://crates.io/widestring/0.4.3 \
--    crate://crates.io/md5/0.7.0 \
--    crate://crates.io/uuid/0.8.2 \
--    crate://crates.io/byteorder/1.4.2 \
--    crate://crates.io/semver/0.9.0 \
--    crate://crates.io/nom/5.1.1 \
--    crate://crates.io/num-traits/0.2.14 \
--    crate://crates.io/num-integer/0.1.44 \
--    crate://crates.io/num-bigint/0.2.6 \
--    crate://crates.io/num-bigint/0.3.1 \
--    crate://crates.io/num-rational/0.2.4 \
--    crate://crates.io/num-complex/0.2.4 \
--    crate://crates.io/num-iter/0.1.42 \
--    crate://crates.io/phf_shared/0.8.0 \
--    crate://crates.io/crc/1.8.1 \
--    crate://crates.io/rustc_version/0.2.3 \
--    crate://crates.io/phf/0.8.0 \
--    crate://crates.io/lexical-core/0.6.8 \
--    crate://crates.io/time/0.1.44 \
--    crate://crates.io/quote/0.6.13 \
--    crate://crates.io/rand_core/0.5.1 \
--    crate://crates.io/rand_chacha/0.2.2 \
--    crate://crates.io/rand_pcg/0.2.1 \
--    crate://crates.io/num-traits/0.1.43 \
--    crate://crates.io/rand/0.7.3 \
--    crate://crates.io/enum_primitive/0.1.1 \
--    crate://crates.io/phf_generator/0.8.0 \
--    crate://crates.io/phf_codegen/0.8.0 \
--    crate://crates.io/tls-parser/0.9.4 \
--    crate://crates.io/num/0.2.1 \
--    crate://crates.io/rusticata-macros/2.1.0 \
--    crate://crates.io/ntp-parser/0.4.0 \
--    crate://crates.io/der-oid-macro/0.2.0 \
--    crate://crates.io/der-parser/3.0.4 \
--    crate://crates.io/ipsec-parser/0.5.0 \
--    crate://crates.io/x509-parser/0.6.5 \
--    crate://crates.io/der-parser/4.1.0 \
--    crate://crates.io/snmp-parser/0.6.0 \
--    crate://crates.io/kerberos-parser/0.5.0 \
--    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
--    crate://crates.io/winapi/0.3.9 \
--    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
--    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
--    crate://crates.io/log/0.4.0 \
--    crate://crates.io/rand_hc/0.2.0 \
--    crate://crates.io/wasi/0.9.0+wasi-snapshot-preview1 \
--    crate://crates.io/sawp/0.5.0 \
--    crate://crates.io/sawp-modbus/0.5.0 \
--    crate://crates.io/brotli/3.3.0 \
--    crate://crates.io/flate2/1.0.20 \
--    crate://crates.io/alloc-no-stdlib/2.0.1 \
--    crate://crates.io/alloc-stdlib/0.2.1 \
--    crate://crates.io/brotli-decompressor/2.3.1 \
--    crate://crates.io/crc32fast/1.2.1 \
--    crate://crates.io/miniz_oxide/0.4.4 \
--    crate://crates.io/adler/1.0.2 \
--    "
--
--# test case support
--SRC_URI += " \
--    crate://crates.io/test-case/1.0.1 \
--    crate://crates.io/proc-macro2/1.0.1 \
--    crate://crates.io/quote/1.0.1 \
--    crate://crates.io/syn/1.0.1 \
--    crate://crates.io/unicode-xid/0.2.0 \
--    "
-+inherit autotools pkgconfig python3native systemd ptest cargo cargo-update-recipe-crates
- 
--inherit autotools pkgconfig python3native systemd ptest cargo
-+require  ${BPN}-crates.inc
- 
- EXTRA_OECONF += " --disable-debug \
-     --disable-gccmarch-native \
-@@ -118,6 +30,7 @@ EXTRA_OECONF += " --disable-debug \
-     "
- 
- CARGO_SRC_DIR = "rust"
-+#CARGO_LOCK_SRC_DIR = "${S}/rust"
- 
- B = "${S}"
- 
--- 
-2.25.1
+--_000_CO6PR11MB5602031F06E757691A48C432ED909CO6PR11MB5602namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
+ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
+YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
+I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
+W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
+DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
+MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTrnrYnnur87DQoJcGFub3NlLTE6MiAx
+IDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJ
+cGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
+eToiXEDnrYnnur8iOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiU2Vnb2UgVUkiOw0KCXBhbm9zZS0xOjIgMTEgNSAyIDQgMiA0IDIg
+MiAzO30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFs
+LCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250
+LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5r
+DQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlv
+bjp1bmRlcmxpbmU7fQ0Kc3Bhbi54Z21haWxzaWduYXR1cmVwcmVmaXgNCgl7bXNvLXN0eWxlLW5h
+bWU6eF9nbWFpbF9zaWduYXR1cmVfcHJlZml4O30NCnNwYW4uRW1haWxTdHlsZTIxDQoJe21zby1z
+dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
+cmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5
+cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
+Cgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMjVpbiAxLjBpbiAxLjI1aW47
+fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwh
+LS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3Bp
+ZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1s
+Pg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRh
+dGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8
+Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQt
+d3JhcDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj5UaGlzIHByb2JsZW0ganVzdCBidW1wZWQgaW50byBteSBoZWFkIHNvIEkgZGlk
+IGEgbGl0dGxlIG1vcmUgaW52ZXN0aWdhdGlvbi48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPlRoZSByb290IGNhdXNlIGlzIHRoYXQgYml0YmFrZS13b3JrZXIgdXNlcyBhIG5l
+dyB1c2VyIG5hbWVzcGFjZSBpZiBwb3NzaWJsZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPlRoZSBjb21taXQgaW4gYml0YmFrZS9wb2t5IHJlcG8gaXMgdGhlIGZvbGxvd2lu
+ZyBvbmUuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj7igJzigJ3igJ08bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmJpdGJha2U6IHV0aWxzOiBBZGQgZGlz
+YWJsZV9uZXR3b3JrIGZ1bmN0aW9uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij7igJzigJ3igJ08bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBrZXkg
+Y29kZXMgYXJlOiBsaWJjLnVuc2hhcmUoQ0xPTkVfTkVXTkVUIHwgQ0xPTkVfTkVXVVNFUik8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+VG8gbWFrZSB0aGluZ3Mgd29yayBpbiB5b3VyIGNhc2UsIHRo
+ZSBzaW1wbGVzdCB3YXkgaXMgdG8gc2V0OiBkb19pbnN0YWxsW25ldHdvcmtdID0g4oCcMeKAnSwg
+c28gdGhhdCB0aGUgYWJvdmUgY29kZXMgYXJlIG5vdCBydW4gZm9yIHRoaXMgdGFzay48bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+UmVnYXJkcyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPlFpPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
+OzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNv
+bGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48Yj5Gcm9tOjwvYj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7
+eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDsNCjxiPk9uIEJlaGFsZiBPZiA8L2I+Q2hl
+biBRaSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5
+LCBBcHJpbCA0LCAyMDIzIDY6MDIgUE08YnI+DQo8Yj5Ubzo8L2I+IEFkcmlhbiBEdWRhdSAmbHQ7
+YWRyaWFuLmR1ZGF1QGtleWZhY3Rvci5jb20mZ3Q7OyBCcnVjZSBBc2hmaWVsZCAmbHQ7YnJ1Y2Uu
+YXNoZmllbGRAZ21haWwuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gS2hlbSBSYWogJmx0O3Jhai5r
+aGVtQGdtYWlsLmNvbSZndDs7IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5T
+dWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gZXJyb3Igd2hlbiB0cnkgdG8gdXNlIHN1ZG8gY29tbWFu
+ZCBpbiByZWNpcGU8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgaGF2
+ZW7igJl0IGRvbmUgYW55IGZ1cnRoZXIgaW52ZXN0aWdhdGlvbiwgYnV0IEkgZG9u4oCZdCB0aGlu
+ayB0aGlzIHByb2JsZW0gaXMgcmVsYXRlZCB0byBwc2V1ZG8uPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5PbiBvbmUgaGFuZCwgL3VzciBkaXJlY3RvcnkgaXMgaWdub3JlZCBh
+cyBpdOKAmXMgaW4gUFNFVURPX0lHTk9SRV9QQVRIUzsgb24gdGhlIG90aGVyIGhhbmQsIExEX1BS
+RUxPQUQgZG9lcyBub3QgaGF2ZSBlZmZlY3Qgb24gc2V0dWlkIHByb2dyYW1zIHN1Y2ggYXMgc3Vk
+by48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VW5mb3J0dW5hdGVseSBJIGRvbuKAmXQgaGF2ZSBh
+bnkgY2x1ZS4gQW5vdGhlciB0cmljayBZb2N0byBkb2VzIGlzIHVuaW5hdGl2ZS4gTm90IHN1cmUg
+aWYgaXTigJlzIHJlbGF0ZWQuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlJlZ2FyZHMsPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5RaTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTti
+b3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9tOjwvYj4gPGEgaHJlZj0ibWFpbHRvOnlvY3Rv
+QGxpc3RzLnlvY3RvcHJvamVjdC5vcmciPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+
+ICZsdDs8YSBocmVmPSJtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyI+eW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkFkcmlh
+biBEdWRhdTxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5LCBBcHJpbCA0LCAyMDIzIDQ6MDAgUE08
+YnI+DQo8Yj5Ubzo8L2I+IEJydWNlIEFzaGZpZWxkICZsdDs8YSBocmVmPSJtYWlsdG86YnJ1Y2Uu
+YXNoZmllbGRAZ21haWwuY29tIj5icnVjZS5hc2hmaWVsZEBnbWFpbC5jb208L2E+Jmd0Ozxicj4N
+CjxiPkNjOjwvYj4gS2hlbSBSYWogJmx0OzxhIGhyZWY9Im1haWx0bzpyYWoua2hlbUBnbWFpbC5j
+b20iPnJhai5raGVtQGdtYWlsLmNvbTwvYT4mZ3Q7Ow0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmciPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+PGJy
+Pg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIGVycm9yIHdoZW4gdHJ5IHRvIHVzZSBzdWRv
+IGNvbW1hbmQgaW4gcmVjaXBlPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTIuMHB0O2NvbG9yOmJsYWNrIj5JIHNlbnQgYW4gZW1haWwgdG8gdGhlIG1ldGEtdmlydHVhbGl6
+YXRpb24gbGlzdCBkZXNjcmliaW5nIHdoYXQgSSdtIHRyeWluZyB0byBhY2hpZXZlIGFuZCBzZWUg
+aWYgb3RoZXJzIGhhdmUgZnVydGhlciBpZGVhcy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpi
+bGFjayI+SG93ZXZlciwgSSB3b3VsZCBzdGlsbCBsaWtlIHRvIGNvbnRpbnVlIGludmVzdGlnYXRp
+bmcgdGhpcyBzdWRvIGJ1ZyBhcyBpdCBpcyBxdWl0ZSBhbm5veWluZy4NCjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJiYWNr
+Z3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFjayI+
+RXZlbiB3aGVuIHJ1bm5pbmcgdW5kZXIgcHNldWRvLCBJIGRvbid0IHNlZSB3aHkgdGhlIGJpbmFy
+eSB3b3VsZCBzaG93IGFzIG5vdCBvd25lZCBieSB0aGUgcm9vdCB1c2VyLg0KPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJh
+Y2tncm91bmQ6d2hpdGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNr
+Ij5Ecm9wcGluZyBkb3duIHRvIHRoZSBkZXZzaGVsbCwgdGhlIGJpbmFyeSBzZWVtcyB0byBoYXZl
+IHRoZSByaWdodCBvd25lcjo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJiYWNrZ3JvdW5k
+OndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFjayI+Jm5ic3A7
+bHMgLWwgL3Vzci9iaW4vc3Vkbzxicj4NCi1yd3NyLXhyLXggMSByb290IHJvb3QgMjMyNDE2IE1h
+ciAmbmJzcDsxIDEzOjU5IC91c3IvYmluL3N1ZG88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpi
+bGFjayI+U28gYW55IG90aGVyIGlucHV0IHRvIHB1dCBtZSBvbiB0aGUgcmlnaHQgdHJhY2tzIHdv
+dWxkIGJlIGFwcHJlY2lhdGVkLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91
+bmQ6d2hpdGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj4tLUFk
+cmlhbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEy
+LjBwdDtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImNlbnRlciIg
+c3R5bGU9InRleHQtYWxpZ246Y2VudGVyIj4NCjxociBzaXplPSIxIiB3aWR0aD0iOTglIiBhbGln
+bj0iY2VudGVyIj4NCjwvZGl2Pg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyI+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPkZyb206PC9zcGFuPjwvYj48
+c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPiBCcnVjZSBBc2hmaWVsZCAmbHQ7PGEgaHJlZj0ibWFp
+bHRvOmJydWNlLmFzaGZpZWxkQGdtYWlsLmNvbSI+YnJ1Y2UuYXNoZmllbGRAZ21haWwuY29tPC9h
+PiZndDs8YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBBcHJpbCAzLCAyMDIzIDU6NTkgUE08YnI+
+DQo8Yj5Ubzo8L2I+IEFkcmlhbiBEdWRhdSAmbHQ7PGEgaHJlZj0ibWFpbHRvOmFkcmlhbi5kdWRh
+dUBrZXlmYWN0b3IuY29tIj5hZHJpYW4uZHVkYXVAa2V5ZmFjdG9yLmNvbTwvYT4mZ3Q7PGJyPg0K
+PGI+Q2M6PC9iPiBLaGVtIFJhaiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnJhai5raGVtQGdtYWlsLmNv
+bSI+cmFqLmtoZW1AZ21haWwuY29tPC9hPiZndDs7DQo8YSBocmVmPSJtYWlsdG86eW9jdG9AbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZyI+eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4gJmx0
+OzxhIGhyZWY9Im1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIj55b2N0b0BsaXN0
+cy55b2N0b3Byb2plY3Qub3JnPC9hPiZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0
+b10gZXJyb3Igd2hlbiB0cnkgdG8gdXNlIHN1ZG8gY29tbWFuZCBpbiByZWNpcGU8L3NwYW4+IDxv
+OnA+DQo8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjx0YWJsZSBjbGFzcz0iTXNvTm9ybWFs
+VGFibGUiIGJvcmRlcj0iMCIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIwIiBhbGlnbj0i
+bGVmdCIgd2lkdGg9IjEwMCUiIHN0eWxlPSJ3aWR0aDoxMDAuMCU7ZGlzcGxheTp0YWJsZTtib3Jk
+ZXItY29sbGFwc2U6c2VwZXJhdGU7ZmxvYXQ6bm9uZSI+DQo8dGJvZHk+DQo8dHI+DQo8dGQgc3R5
+bGU9ImJhY2tncm91bmQ6I0E2QTZBNjtwYWRkaW5nOjUuMjVwdCAxLjVwdCA1LjI1cHQgMS41cHQi
+PjwvdGQ+DQo8dGQgd2lkdGg9IjEwMCUiIHN0eWxlPSJ3aWR0aDoxMDAuMCU7YmFja2dyb3VuZDoj
+RUFFQUVBO3BhZGRpbmc6NS4yNXB0IDMuNzVwdCA1LjI1cHQgMTEuMjVwdCI+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1lbGVtZW50OmZyYW1lO21zby1lbGVtZW50LWZy
+YW1lLWhzcGFjZToyLjI1cHQ7bXNvLWVsZW1lbnQtd3JhcDphcm91bmQ7bXNvLWVsZW1lbnQtYW5j
+aG9yLXZlcnRpY2FsOnBhcmFncmFwaDttc28tZWxlbWVudC1hbmNob3ItaG9yaXpvbnRhbDpjb2x1
+bW47bXNvLWhlaWdodC1ydWxlOmV4YWN0bHkiPg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBw
+dDtmb250LWZhbWlseTomcXVvdDtTZWdvZSBVSSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMyMTIx
+MjEiPllvdSBkb24ndCBvZnRlbiBnZXQgZW1haWwgZnJvbQ0KPGEgaHJlZj0ibWFpbHRvOmJydWNl
+LmFzaGZpZWxkQGdtYWlsLmNvbSI+YnJ1Y2UuYXNoZmllbGRAZ21haWwuY29tPC9hPi4gPGEgaHJl
+Zj0iaHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHBzOi9ha2EubXMvTGVhcm5BYm91dFNl
+bmRlcklkZW50aWZpY2F0aW9uX187ISFBanZlWWR3OEV2USFiQ1ZScjFIUExwQXJMY0xXR1o4Z3Vl
+eHVHSTZQLW10VmlMa3ZPYXFvVEVlYzUwSHhoTnI1TUpVNVl5RUdvRno2SDlLbnpDT3BybUNSVHdM
+dU5ZUWZQX0UwaVpTYkpRJCI+DQpMZWFybiB3aHkgdGhpcyBpcyBpbXBvcnRhbnQ8L2E+PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L3RkPg0KPHRkIHdpZHRoPSI3NSIgc3R5bGU9Indp
+ZHRoOjU2LjI1cHQ7YmFja2dyb3VuZDojRUFFQUVBO3BhZGRpbmc6NS4yNXB0IDMuNzVwdCA1LjI1
+cHQgMy43NXB0Ij4NCjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8ZGl2Pg0KPGRp
+diBzdHlsZT0iYm9yZGVyOnNvbGlkICM5QzY1MDAgMS4wcHQ7cGFkZGluZzoyLjBwdCAyLjBwdCAy
+LjBwdCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibGluZS1oZWlnaHQ6MTIu
+MHB0O2JhY2tncm91bmQ6I0ZGRUI5QyI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
+Y29sb3I6IzlDNjUwMCI+Q0FVVElPTjo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTAuMHB0O2NvbG9yOmJsYWNrIj4gRXh0ZXJuYWwgU2VuZGVyIC0gQmUgY2F1dGlvdXMgd2hlbiBj
+bGlja2luZyBsaW5rcyBvciBvcGVuaW5nIGF0dGFjaG1lbnRzLiBQbGVhc2UNCiBlbWFpbCA8YSBo
+cmVmPSJtYWlsdG86SW5mb1NlY0BrZXlmYWN0b3IuY29tIj5JbmZvU2VjQGtleWZhY3Rvci5jb208
+L2E+IHdpdGggYW55IHF1ZXN0aW9ucy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPk9uIE1vbiwgQXByIDMsIDIwMjMgYXQgMTE6NDLigK9BTSBBZHJp
+YW4gRHVkYXUgJmx0OzxhIGhyZWY9Im1haWx0bzphZHJpYW4uZHVkYXVAa2V5ZmFjdG9yLmNvbSI+
+YWRyaWFuLmR1ZGF1QGtleWZhY3Rvci5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlk
+ICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0Ljhw
+dDttYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1yaWdodDowaW47bWFyZ2luLWJvdHRvbTo1LjBwdCI+
+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dy
+b3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPkhp
+IEtoZW0sPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTIuMHB0O2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPlRoYW5rcyBmb3IgdGhlIHJl
+cGx5LCB0aG91Z2ggSSBhbSBub3Qgc3VyZSBJIGZ1bGx5IHVuZGVyc3RhbmQgdGhlIGZpcnN0IHBh
+cnQgb2YgeW91ciBhbnN3ZXIuIEknbSB0cnlpbmcmbmJzcDt0byBkbyBzb21ldGhpbmcgc2ltaWxh
+ciB0byB0aGUgdGhyZWFkIGNyZWF0b3IsIGkuZSBydW5uaW5nICZxdW90O3BvZG1hbg0KIHB1bGwm
+cXVvdDsgYXQgYnVpbGQgdGltZSB0byBwb3B1bGF0ZSBhbiBpbWFnZSBzdG9yZSB0aGF0IEkgY2Fu
+IGxhdGVyIGluc3RhbGwgaW50byB0aGUgdGFyZ2V0IHJvb3Rmcy4NCjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJiYWNrZ3Jv
+dW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFjayI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9j
+a3F1b3RlPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTIuMHB0Ij5GV0lXLiBUaGUgYWJvdmUgaXMgc29tZXRoaW5nIHRoYXQgSSBo
+YXZlIGFsbW9zdCB3b3JraW5nLCBidXQgaGFkIHRvIGRyb3AgdGhlIGNvbXBsZXRpb24gb2YgdGhl
+IHN1cHBvcnQgZm9yIHRoZSB1cGNvbWluZyByZWxlYXNlIChpdCB3YXMgdG9vIGxhdGUsIGFuZCBJ
+IGhhZCB0byBnZXQgc29tZSBrZXJuZWwgY2hhbmdlcyBkb25lKS4gSSdtIGhvcGluZyB0byBoYXZl
+DQogc29tZXRoaW5nIHVzYWJsZSBpbiB0aGUgbmV4dCBmZXcgbW9udGhzLjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBw
+dCI+SWYgeW91IGFyZSB0cnlpbmcgdG8gZ2VuZXJhdGUgY29udGFpbmVycyAoSSBkb24ndCByZWNv
+bW1lbmQgcHVsbGluZyB0aGVtKSBhbmQgaW5zdGFsbGluZyB0aGVtIGludG8gYSBjb250YWluZXIg
+c3RvcmUgdGhhdCBpcyBwYXJ0IG9mIHRoZSByb290ZnMsIHRoZW4gY29sbGFib3JhdGluZyBvbiB0
+aGUgbWV0YS12aXJ0dWFsaXphdGlvbiBtYWlsaW5nIGxpc3QgaXMNCiBhIGdvb2Qgc3RhcnRpbmcg
+cG9pbnQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTIuMHB0Ij5CcnVjZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0Mg
+MS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4t
+dG9wOjUuMHB0O21hcmdpbi1yaWdodDowaW47bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0K
+PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0
+ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPlN0aWxsLCBJIGFt
+IGZhaWxpbmcgdG8gdW5kZXJzdGFuZCB3aHkgL3Vzci9iaW4vc3VkbyBkb2Vzbid0IHNob3cgdXAg
+YXMgb3duZWQgYnkgdGhlIHJvb3QgdXNlciwgZXZlbiB3aGVuIHJ1bm5pbmcgdW5kZXIgcHNldWRv
+LiBBbHNvLCB3aHkgaGFzIHRoaXMgY2hhbmdlZCBiZXR3ZWVuIER1bmZlbGwNCiBhbmQgbWFzdGVy
+IGFuZCB3aGVyZSBleGFjdGx5IGhhcyB0aGUgY2hhbmdlZCBoYXBwZW5lZC4uPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5CZXN0IHJl
+Z2FyZHMsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7
+Y29sb3I6YmxhY2siPi0tQWRyaWFuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2
+IGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJ0ZXh0LWFsaWduOmNlbnRl
+ciI+DQo8aHIgc2l6ZT0iMSIgd2lkdGg9Ijk4JSIgYWxpZ249ImNlbnRlciI+DQo8L2Rpdj4NCjxk
+aXYgaWQ9InhfbV8tMzEyMTg1OTA5Mzk1NTQ5NTg4MWRpdlJwbHlGd2RNc2ciPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5Gcm9tOjwvc3Bhbj48L2I+
+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj4gS2hlbSBSYWogJmx0OzxhIGhyZWY9Im1haWx0bzpy
+YWoua2hlbUBnbWFpbC5jb20iIHRhcmdldD0iX2JsYW5rIj5yYWoua2hlbUBnbWFpbC5jb208L2E+
+Jmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIEFwcmlsIDMsIDIwMjMgNDo1NyBQTTxicj4N
+CjxiPlRvOjwvYj4gQWRyaWFuIER1ZGF1ICZsdDs8YSBocmVmPSJtYWlsdG86YWRyaWFuLmR1ZGF1
+QGtleWZhY3Rvci5jb20iIHRhcmdldD0iX2JsYW5rIj5hZHJpYW4uZHVkYXVAa2V5ZmFjdG9yLmNv
+bTwvYT4mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiA8YSBocmVmPSJtYWlsdG86eW9jdG9AbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZyIgdGFyZ2V0PSJfYmxhbmsiPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5v
+cmc8L2E+ICZsdDs8YSBocmVmPSJtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyIg
+dGFyZ2V0PSJfYmxhbmsiPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+Jmd0Ozxicj4N
+CjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBlcnJvciB3aGVuIHRyeSB0byB1c2Ugc3VkbyBj
+b21tYW5kIGluIHJlY2lwZTwvc3Bhbj4gPG86cD4NCjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2
+Pg0KPHRhYmxlIGNsYXNzPSJNc29Ob3JtYWxUYWJsZSIgYm9yZGVyPSIwIiBjZWxsc3BhY2luZz0i
+MCIgY2VsbHBhZGRpbmc9IjAiIGFsaWduPSJsZWZ0IiB3aWR0aD0iMTAwJSIgc3R5bGU9IndpZHRo
+OjEwMC4wJTtkaXNwbGF5OnRhYmxlO2Zsb2F0Om5vbmUiPg0KPHRib2R5Pg0KPHRyPg0KPHRkIHN0
+eWxlPSJiYWNrZ3JvdW5kOiNBNkE2QTY7cGFkZGluZzo1LjI1cHQgMS41cHQgNS4yNXB0IDEuNXB0
+Ij48L3RkPg0KPHRkIHdpZHRoPSIxMDAlIiBzdHlsZT0id2lkdGg6MTAwLjAlO2JhY2tncm91bmQ6
+I0VBRUFFQTtwYWRkaW5nOjUuMjVwdCAzLjc1cHQgNS4yNXB0IDExLjI1cHQiPg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tZWxlbWVudDpmcmFtZTttc28tZWxlbWVudC1m
+cmFtZS1oc3BhY2U6Mi4yNXB0O21zby1lbGVtZW50LXdyYXA6YXJvdW5kO21zby1lbGVtZW50LWFu
+Y2hvci12ZXJ0aWNhbDpwYXJhZ3JhcGg7bXNvLWVsZW1lbnQtYW5jaG9yLWhvcml6b250YWw6Y29s
+dW1uO21zby1oZWlnaHQtcnVsZTpleGFjdGx5Ij4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7U2Vnb2UgVUkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMjEy
+MTIxIj5Zb3UgZG9uJ3Qgb2Z0ZW4gZ2V0IGVtYWlsIGZyb20NCjxhIGhyZWY9Im1haWx0bzpyYWou
+a2hlbUBnbWFpbC5jb20iIHRhcmdldD0iX2JsYW5rIj5yYWoua2hlbUBnbWFpbC5jb208L2E+LiA8
+YSBocmVmPSJodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6L2FrYS5tcy9MZWFybkFi
+b3V0U2VuZGVySWRlbnRpZmljYXRpb25fXzshIUFqdmVZZHc4RXZRIWJDVlJyMUhQTHBBckxjTFdH
+WjhndWV4dUdJNlAtbXRWaUxrdk9hcW9URWVjNTBIeGhOcjVNSlU1WXlFR29GejZIOUtuekNPcHJt
+Q1JUd0x1TllRZlBfRTBpWlNiSlEkIiB0YXJnZXQ9Il9ibGFuayI+DQpMZWFybiB3aHkgdGhpcyBp
+cyBpbXBvcnRhbnQ8L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L3RkPg0KPHRk
+IHdpZHRoPSI3NSIgc3R5bGU9IndpZHRoOjU2LjI1cHQ7YmFja2dyb3VuZDojRUFFQUVBO3BhZGRp
+bmc6NS4yNXB0IDMuNzVwdCA1LjI1cHQgMy43NXB0Ij4NCjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4N
+CjwvdGFibGU+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOnNvbGlkICM5QzY1MDAgMS4wcHQ7
+cGFkZGluZzoyLjBwdCAyLjBwdCAyLjBwdCAyLjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibGluZS1oZWlnaHQ6MTIuMHB0O2JhY2tncm91bmQ6I0ZGRUI5QyI+PGI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Y29sb3I6IzlDNjUwMCI+Q0FVVElPTjo8L3NwYW4+PC9iPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2NvbG9yOmJsYWNrIj4gRXh0ZXJuYWwgU2VuZGVy
+IC0gQmUgY2F1dGlvdXMgd2hlbiBjbGlja2luZyBsaW5rcyBvciBvcGVuaW5nIGF0dGFjaG1lbnRz
+LiBQbGVhc2UNCiBlbWFpbCA8YSBocmVmPSJtYWlsdG86SW5mb1NlY0BrZXlmYWN0b3IuY29tIiB0
+YXJnZXQ9Il9ibGFuayI+SW5mb1NlY0BrZXlmYWN0b3IuY29tPC9hPiB3aXRoIGFueSBxdWVzdGlv
+bnMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+T24gTW9uLCBBcHIgMywgMjAyMyBhdCAxMjoyNSBBTSAmbHQ7PGEgaHJlZj0ibWFpbHRvOmFk
+cmlhbi5kdWRhdUBrZXlmYWN0b3IuY29tIiB0YXJnZXQ9Il9ibGFuayI+YWRyaWFuLmR1ZGF1QGtl
+eWZhY3Rvci5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2Nr
+cXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7
+cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tdG9wOjUu
+MHB0O21hcmdpbi1yaWdodDowaW47bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5PbiBNb24sIEZlYiA2LCAyMDIzIGF0IDAxOjEzIEFNLCBSaWNoYXJkIFB1cmRpZSB3
+cm90ZTo8YnI+DQpIaSBSaWNoYXJkLDxicj4NCjxicj4NCkp1bXBpbmcgb24gdGhpcyB0aHJlYWQg
+dG8gcHJvdmlkZSBzb21lIGNsYXJpZmljYXRpb25zIGFzIEkgaGl0IHRoZSBzYW1lIGJ1Zy48YnI+
+DQpJIGNhbiBjb25maXJtIHRoYXQgdGhpcyBpcyBub3QgYW4gZW52aXJvbm1lbnQgaXNzdWUuIEkg
+Y291bGQgcmVwcm9kdWNlIGl0IGJ5IGFkZGluZyBhIHN1ZG8gY2FsbCBpbiBhbiBlbXB0eSByZWNp
+cGUgbGlrZSB0aGlzOjxicj4NCjxicj4NClNVTU1BUlkgPSAmcXVvdDsmcXVvdDs8YnI+DQpIT01F
+UEFHRSA9ICZxdW90OyZxdW90Ozxicj4NCkxJQ0VOU0UgPSAmcXVvdDsmcXVvdDs8YnI+DQpTRUNU
+SU9OID0gJnF1b3Q7JnF1b3Q7PGJyPg0KREVQRU5EUyA9ICZxdW90OyZxdW90Ozxicj4NCjxicj4N
+ClNSQ19VUkkgPSAmcXVvdDsmcXVvdDs8YnI+DQo8YnI+DQpkb19pbnN0YWxsKCkgezxicj4NCiZu
+YnNwOyZuYnNwOyZuYnNwOyBscyAtbCAvdXNyL2Jpbi9zdWRvPGJyPg0KJm5ic3A7Jm5ic3A7Jm5i
+c3A7IHN1ZG8gbHMgLWwgL3Vzci9iaW4vc3Vkbzxicj4NCn08bzpwPjwvbzpwPjwvcD4NCjwvYmxv
+Y2txdW90ZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJ1aWxkIGFscmVhZHkgdXNl
+IGEgZmFrZSByb290IGVudmlyb25tZW50IHVzaW5nIHBzZXVkbyB0byBpbnRlcmNlcHQgdGhlIGNh
+bGxzIHNvIHRoaXMgbWlnaHQgbm90IGJlIG91dCBvZiBsaW5lIGhlcmUuIFdoYXQgaXMgdGhlIG9y
+aWdpbmFsIGlzc3VlIHlvdSBhcmUgcnVubmluZyBpbnRvID88bzpwPjwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
+aXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0ND
+Q0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21h
+cmdpbi10b3A6NS4wcHQ7bWFyZ2luLXJpZ2h0OjBpbjttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PGJyPg0KPGJy
+Pg0KUnVubmluZyBiaXRiYWtlIGJhcmVib25lIG9uIG15IHg4NiBtYWNoaW5lIHByb2R1Y2VzIHRo
+aXMgZXJyb3I6PGJyPg0KPGJyPg0KfCAtcnd4ci14ci14IDEgbm9ib2R5IDY1NTM0IDIzMjQxNiBN
+YXImbmJzcDsgMSAxMzo1OSAvdXNyL2Jpbi9zdWRvPGJyPg0KfCBzdWRvOiAvZXRjL3N1ZG8uY29u
+ZiBpcyBvd25lZCBieSB1aWQgNjU1MzQsIHNob3VsZCBiZSAwPGJyPg0KfCBzdWRvOiAvZXRjL3N1
+ZG8uY29uZiBpcyBvd25lZCBieSB1aWQgNjU1MzQsIHNob3VsZCBiZSAwPGJyPg0KfCBzdWRvOiBl
+cnJvciBpbiAvZXRjL3N1ZG8uY29uZiwgbGluZSAwIHdoaWxlIGxvYWRpbmcgcGx1Z2luICZxdW90
+O3N1ZG9lcnNfcG9saWN5JnF1b3Q7PGJyPg0KfCBzdWRvOiAvdXNyL2xpYmV4ZWMvc3Vkby88YSBo
+cmVmPSJodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cDovc3Vkb2Vycy5zb19fOyEhQWp2
+ZVlkdzhFdlEhYkNWUnIxSFBMcEFyTGNMV0daOGd1ZXh1R0k2UC1tdFZpTGt2T2Fxb1RFZWM1MEh4
+aE5yNU1KVTVZeUVHb0Z6Nkg5S256Q09wcm1DUlR3THVOWVFmUF9IdnZpWkpKQSQiPnN1ZG9lcnMu
+c288L2E+IG11c3QgYmUgb3duZWQgYnkgdWlkIDA8YnI+DQp8IHN1ZG86IGZhdGFsIGVycm9yLCB1
+bmFibGUgdG8gbG9hZCBwbHVnaW5zPGJyPg0KPGJyPg0KSW5kZWVkIGl0IHNlZW1zIHRoYXQgb3du
+ZXJzaGlwIGlzIGJyb2tlbiBzb21laG93IGluIHRoZSBiYiBlbnZpcm9ubWVudC4gVGhlIGlzc3Vl
+IHdhcyBpbnRyb2R1Y2VkIHNvbWV3aGVyZSBiZXR3ZWVuIGR1bmZlbGwgYW5kIGtpcmtzdG9uZS4g
+SSBrbm93IGl0J3MgYSBsYXJnZSB0aW1lc3BhbiBidXQgaXQncyBhIGJpdCB0aW1lIGNvbnN1bWlu
+ZyB0byBuYXJyb3cgaXQgZG93bi48YnI+DQo8YnI+DQpIb3BpbmcgdG8gZ2V0IHNvbWUgaGVscCBv
+biB0aGlzLiBJIHdvdWxkIHRyeSB0byBpbnZlc3RpZ2F0ZSBmdXJ0aGVyIG15c2VsZiBidXQgSSBo
+YXZlIG5vIGlkZWEgd2hlcmUgdG8gc3RhcnQgdG8gYmUgaG9uZXN0Ljxicj4NCjxicj4NCkJlc3Qg
+cmVnYXJkcyw8YnI+DQotLUFkcmlhbjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9j
+a3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48YnIgY2xlYXI9ImFsbCI+DQo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gY2xhc3M9InhnbWFpbHNpZ25hdHVyZXByZWZpeCI+LS0gPC9zcGFu
+PjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
+aW4tYm90dG9tOjEyLjBwdCI+LSBUaG91IHNoYWx0IG5vdCBmb2xsb3cgdGhlIE5VTEwgcG9pbnRl
+ciwgZm9yIGNoYW9zIGFuZCBtYWRuZXNzIGF3YWl0IHRoZWUgYXQgaXRzIGVuZDxicj4NCi0gJnF1
+b3Q7VXNlIHRoZSBmb3JjZSBIYXJyeSZxdW90OyAtIEdhbmRhbGYsIFN0YXIgVHJlayBJSTxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+
+--_000_CO6PR11MB5602031F06E757691A48C432ED909CO6PR11MB5602namp_--
 
