@@ -1,88 +1,152 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C784DC76188
-	for <webhook@archiver.kernel.org>; Wed,  5 Apr 2023 20:42:10 +0000 (UTC)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
- by mx.groups.io with SMTP id smtpd.web11.142148.1680727329073544513
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 36765C76196
+	for <webhook@archiver.kernel.org>; Thu,  6 Apr 2023 05:06:53 +0000 (UTC)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+ by mx.groups.io with SMTP id smtpd.web10.151213.1680757604242729160
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Apr 2023 13:42:09 -0700
+ Wed, 05 Apr 2023 22:06:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20210112 header.b=HKhEihfh;
- spf=pass (domain: gmail.com, ip: 209.85.128.182, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-54bfa5e698eso34129947b3.13
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 13:42:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=WEdVHHVL;
+ spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: hassanchattarki@gmail.com)
+Received: by mail-ed1-f47.google.com with SMTP id cn12so146443349edb.4
+        for <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 22:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680727328; x=1683319328;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ux9h5emj+6vvomK63liawqAPKbjcXdWtYkfAqAPpRIw=;
-        b=HKhEihfhzkEJGT3xRWKE3BMp3wAXur4yVc2tAwdBinqwHH15899fW++cmRwI3nL+8/
-         j30n2OAtP1FrfrSq5GteHW8+UI4aG0+qu5mSjPhyyf5k5Mc9PzJDqqBlbBRASfo89g5e
-         9GjhCdQ9kPgwzoUAHr8W2mHTw2pN2Z3ns+R53uUQ3OXA1uDbq7uA04DUlBRROhWuCpm+
-         av9lb+Me6mmLfqK+mF2ga32W8RysNZE2r6lH/j2ZCKz3Ee0kg4EDOKx/tjfadU9m+0zD
-         /zuysBaB7PTGcXPXmIbbYRJ5Ih5n9K9K8pEywzX4M5fHUzrs3mHRMLKfHuJcstVIcGAv
-         M2OA==
+        d=gmail.com; s=20210112; t=1680757602;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Z/7K3aE6al1mkfgieXMnbaoCxPBHcRQOXUhd+wRq9H0=;
+        b=WEdVHHVLSgTtQ32YupBhr7R9+lvjowyG95xf7JMPzIEXGec7yVAytw9R3pnhxhJCX7
+         oI5gUyAM0+VwzqtwO5GU0yGlIyv6ZqqnRO8HFFqE6P2CUnEKBrAx5H74gMkvoiR2lPAk
+         XfLqsbAOBGDhrDmewRXAMim9Da95uT24fE6yaNIG99vDw2iRyc+sATeEWW5zHVfrTKjO
+         1X7zu9s1mChV615DfFa1RN1/4pejnzQ5iAXxkFmVMxMHuNHbW7S7XQ617XdvBor4RyVP
+         uQUScRZ7g8FOQSPP+CIMXFwOInatZ4I2kTisd9kcPOANgid+z1UkqPEWU58VdhapR2kE
+         c+aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680727328; x=1683319328;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ux9h5emj+6vvomK63liawqAPKbjcXdWtYkfAqAPpRIw=;
-        b=gclcu7mYtcUCawDR4bM4RRsaR+gpvlO6R/5fUQPXulG+RggwbbdQuDHIIiK7ba3e2y
-         rS8ozTW4w0bqC/ljxMMFZFyw06n3npTbxhIZqdlfEK6YqSOnhNbcsbWXL0DpnHu5XbFL
-         6sPElLZtR968EEdLe7aHAedi7bcdyC6vnPswbgn0E2UbC43wAVtKWA+2tF7PqHvwewld
-         TuErxksO49DGAmxag/xrfIVTjmK4IJymWZWj+S6pNEC0ogoKp1P7erDgG28lJf3y6Iq9
-         6iTEE5ZuVMZ8I7o1IBGO1snASUy4S3RdEdTYe//yvZ+Cs+cUlsHGVJKB/8LS0Jb+I20n
-         mzdQ==
-X-Gm-Message-State: AAQBX9d5fv4iKqgXWBcBb+1XhFwj1OL0v1qVPOBN8Xf04CF8IohnOHYD
-	u2YEq9vScB7/yb09F7/AgvcVIhabUVeCSQ==
-X-Google-Smtp-Source: AKy350aHGNDSSG3Ew+7qJxu164WLNrOwIq0GvFVJhavnFHqEiharuXcn4PNPj9cPXgIk8wPbEP1Faw==
-X-Received: by 2002:a81:85c6:0:b0:54c:657:1f19 with SMTP id v189-20020a8185c6000000b0054c06571f19mr851254ywf.9.1680727327818;
-        Wed, 05 Apr 2023 13:42:07 -0700 (PDT)
-Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:3249:c5b2:756:1575])
-        by smtp.gmail.com with ESMTPSA id 85-20020a810658000000b005460412e2fcsm4155908ywg.70.2023.04.05.13.42.07
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Apr 2023 13:42:07 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] suricata: Missed on crate depends
-Date: Wed,  5 Apr 2023 16:42:07 -0400
-Message-Id: <20230405204207.2279291-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20210112; t=1680757602;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z/7K3aE6al1mkfgieXMnbaoCxPBHcRQOXUhd+wRq9H0=;
+        b=RbBxiJOpE/tUuBMo/XTfJXaz0Tzq04YozC8Lm65BgQvdJ2Jk0SsY7BVM0qR1NeRhvz
+         D4gcDiS1ncV+YDOpyL2S3ePkCbigARCCPWYycFFLgHH+C3o+yei8isFDLAzaLo7LMpRh
+         /hIEONYrfUAyuG7pQhqVeuHTwUHQmEx3HSolUfVJjkxk2ZufYy8P4/N8UVUQOFdn3Q0V
+         ypTHp4p6jK3pDzwISFACGXOwjwlbuhlp8k+0qcCY0GsU7fgIZSJepjDa9MsgbNNuW6LL
+         tCoPEHIxHNnGK0SbIzr4oKL8FINeTLTv/jzTi32XOk2AJF8nhCFgRr9/pseFcfJRoVLW
+         qPug==
+X-Gm-Message-State: AAQBX9cIeL5YQinpMTDHM7RcUgdmND8uszfdZVsYE7Isirk6HG14Pnzr
+	vzQ3ngBcNLH8nsmZdeEgfnlV7jqsjMDKc8ypncoPJuASh50=
+X-Google-Smtp-Source: AKy350bJ9FYgjbONb4hbp5VG71FurKjKdO7NUmo15hcv/8fDN3r08XPC6aZekXHQ6R1bWapkdz+rYFOVQCUBo4RT3KM=
+X-Received: by 2002:a17:906:cd28:b0:947:9f2a:8ca4 with SMTP id
+ oz40-20020a170906cd2800b009479f2a8ca4mr2718363ejb.9.1680757601998; Wed, 05
+ Apr 2023 22:06:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Date: Thu, 6 Apr 2023 10:36:30 +0530
+Message-ID: <CAPJWBnhgf-Lu1ArA7=xDYhN2zD8uCQ149HLBLo+Nyb+6sPgS_A@mail.gmail.com>
+Subject: Unable to solve the initramfs issues
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/mixed; boundary="000000000000d24c9b05f8a3dfe0"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 05 Apr 2023 20:42:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59622
+ <yocto@lists.yoctoproject.org>; Thu, 06 Apr 2023 05:06:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59623
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-ids/suricata/suricata-crates.inc | 2 ++
- 1 file changed, 2 insertions(+)
+--000000000000d24c9b05f8a3dfe0
+Content-Type: multipart/alternative; boundary="000000000000d24c9a05f8a3dfde"
 
-diff --git a/recipes-ids/suricata/suricata-crates.inc b/recipes-ids/suricata/suricata-crates.inc
-index 0265aa8..535f53c 100644
---- a/recipes-ids/suricata/suricata-crates.inc
-+++ b/recipes-ids/suricata/suricata-crates.inc
-@@ -26,6 +26,7 @@ SRC_URI += " \
-     crate://crates.io/rusticata-macros/2.1.0;name=rusticata-macros-2.1.0 \
-     crate://crates.io/miniz_oxide/0.4.4;name=miniz_oxide-0.4.4 \
-     crate://crates.io/num-bigint/0.2.6;name=num-bigint-0.2.6 \
-+    crate://crates.io/num-bigint/0.3.1;name=num-bigint-0.3.1 \
-     crate://crates.io/num-complex/0.2.4;name=num-complex-0.2.4 \
-     crate://crates.io/num-integer/0.1.44;name=num-integer-0.1.44 \
-     crate://crates.io/num-iter/0.1.42;name=num-iter-0.1.42 \
-@@ -719,4 +720,5 @@ SRC_URI[time-0.1.44.sha256sum] = "6db9e6914ab8b1ae1c260a4ae7a49b6c5611b40328a735
- SRC_URI[num-traits-0.1.43.sha256sum] = "92e5113e9fd4cc14ded8e499429f396a20f98c772a47cc8622a736e1ec843c31"
- SRC_URI[wasi-0.10.0+wasi-snapshot-preview1.sha256sum] = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
- SRC_URI[lexical-core-0.6.8.sha256sum] = "233853dfa6b87c7c00eb46a205802069263ab27e16b6bdd1b08ddf91a855e30c"
-+SRC_URI[num-bigint-0.3.1.sha256sum] = "5e9a41747ae4633fce5adffb4d2e81ffc5e89593cb19917f8fb2cc5ff76507bf"
- 
--- 
-2.25.1
+--000000000000d24c9a05f8a3dfde
+Content-Type: text/plain; charset="UTF-8"
 
+Hi guys,
+I really need your help in solving this issue.
+I want to add nodejs to my image and added the line *IMAGE_INSTALL_append
++= " nodejs "*
+to my *local.conf* file, but got the error message
+
+
+
+
+
+
+*ERROR: core-image-minimal-1.0-r0 do_image_cpio: The initramfs size
+171613(K) exceeds INITRAMFS_MAXSIZE: 131072(K)ERROR:
+core-image-minimal-1.0-r0 do_image_cpio: You can set INITRAMFS_MAXSIZE a
+larger value. Usually, it shouldERROR: core-image-minimal-1.0-r0
+do_image_cpio: be less than 1/2 of ram size, or you may fail to boot
+it.ERROR: Logfile of failure stored in:
+/home/mohan/amlogic/build/tmp/work/mesons4_lib32_ap222-poky-linux/core-image-minimal/1.0-r0/temp/log.do_image_cpio.211614ERROR:
+Task
+(/home/mohan/amlogic/poky/meta/recipes-core/images/core-image-minimal.bb:do_image_cpio)
+failed with exit code '1'*
+
+I tried to solve this by adding the line
+*INITRAMFS_MAXSIZE = "524288000"  *to my local.conf file and it compiled
+successfully. But the OS flashing failed.
+I have been stuck with this issue for a very long time and need your
+support in this issue. I have attached all the log files or necessary files
+for you to refer.
+
+Thanks and regards,
+Hassan
+
+--000000000000d24c9a05f8a3dfde
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi guys,<br><div>I really need your help in solving=C2=A0t=
+his issue.</div><div>I want to add nodejs to my image and added the line <b=
+>IMAGE_INSTALL_append +=3D &quot; nodejs &quot;</b></div>to my <b>local.con=
+f</b> file, but got the error message=C2=A0<div><b>ERROR: core-image-minima=
+l-1.0-r0 do_image_cpio: The initramfs size 171613(K) exceeds INITRAMFS_MAXS=
+IZE: 131072(K)<br>ERROR: core-image-minimal-1.0-r0 do_image_cpio: You can s=
+et INITRAMFS_MAXSIZE a larger value. Usually, it should<br>ERROR: core-imag=
+e-minimal-1.0-r0 do_image_cpio: be less than 1/2 of ram size, or you may fa=
+il to boot it.<br><br>ERROR: Logfile of failure stored in: /home/mohan/amlo=
+gic/build/tmp/work/mesons4_lib32_ap222-poky-linux/core-image-minimal/1.0-r0=
+/temp/log.do_image_cpio.211614<br>ERROR: Task (/home/mohan/amlogic/poky/met=
+a/recipes-core/images/core-image-minimal.bb:do_image_cpio) failed with exit=
+ code &#39;1&#39;<br></b></div><div><br></div><div>I tried to solve this by=
+ adding the line=C2=A0</div><div><b>INITRAMFS_MAXSIZE =3D &quot;524288000&q=
+uot;=C2=A0 </b>to my local.conf file and it compiled successfully. But the =
+OS flashing failed.=C2=A0</div><div>I have been stuck with this issue for a=
+ very long time and need your support in this issue. I have attached all th=
+e log files or necessary files for you to refer.</div><div><br></div><div>T=
+hanks and regards,</div><div>Hassan</div><div><br></div><div><br></div><br>=
+</div>
+
+--000000000000d24c9a05f8a3dfde--
+
+--000000000000d24c9b05f8a3dfe0
+Content-Type: application/octet-stream; name=log_do_compile
+Content-Disposition: attachment; filename=log_do_compile
+Content-Transfer-Encoding: base64
+Content-ID: <f_lg4nl62v0>
+X-Attachment-Id: f_lg4nl62v0
+
+REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc2V0X2ltYWdlX3NpemUKREVCVUc6IDE2
+MzQyMC40MDAwMDAgPSAxMjU3MDggKiAxLjMwMDAwMApERUJVRzogMTcxNjEyLjQwMDAwMCA9IG1h
+eCgxNjM0MjAuNDAwMDAwLCA4MTkyKVsxNjM0MjAuNDAwMDAwXSArIDgxOTIKREVCVUc6IDE3MTYx
+My4wMDAwMDAgPSBpbnQoMTcxNjEyLjQwMDAwMCkKREVCVUc6IDE3MTYxMyA9IGFsaWduZWQoMTcx
+NjEzKQpFUlJPUjogVGhlIGluaXRyYW1mcyBzaXplIDE3MTYxMyhLKSBleGNlZWRzIElOSVRSQU1G
+U19NQVhTSVpFOiAxMzEwNzIoSykKRVJST1I6IFlvdSBjYW4gc2V0IElOSVRSQU1GU19NQVhTSVpF
+IGEgbGFyZ2VyIHZhbHVlLiBVc3VhbGx5LCBpdCBzaG91bGQKRVJST1I6IGJlIGxlc3MgdGhhbiAx
+LzIgb2YgcmFtIHNpemUsIG9yIHlvdSBtYXkgZmFpbCB0byBib290IGl0LgoKREVCVUc6IFB5dGhv
+biBmdW5jdGlvbiBzZXRfaW1hZ2Vfc2l6ZSBmaW5pc2hlZAo=
+--000000000000d24c9b05f8a3dfe0
+Content-Type: application/octet-stream; name="core-image-minimal.bb"
+Content-Disposition: attachment; filename="core-image-minimal.bb"
+Content-Transfer-Encoding: base64
+Content-ID: <f_lg4nmcqv1>
+X-Attachment-Id: f_lg4nmcqv1
+
+U1VNTUFSWSA9ICJBIHNtYWxsIGltYWdlIGp1c3QgY2FwYWJsZSBvZiBhbGxvd2luZyBhIGRldmlj
+ZSB0byBib290LiIKCklNQUdFX0lOU1RBTEwgPSAicGFja2FnZWdyb3VwLWNvcmUtYm9vdCAke0NP
+UkVfSU1BR0VfRVhUUkFfSU5TVEFMTH0iCgpJTUFHRV9MSU5HVUFTID0gIiAiCgpMSUNFTlNFID0g
+Ik1JVCIKCmluaGVyaXQgY29yZS1pbWFnZQoKSU1BR0VfUk9PVEZTX1NJWkUgPz0gIjgxOTIiCklN
+QUdFX1JPT1RGU19FWFRSQV9TUEFDRV9hcHBlbmQgPSAiJHtAYmIudXRpbHMuY29udGFpbnMoIkRJ
+U1RST19GRUFUVVJFUyIsICJzeXN0ZW1kIiwgIiArIDQwOTYiLCAiIiAsZCl9Igo=
+--000000000000d24c9b05f8a3dfe0--
 
