@@ -2,46 +2,44 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F7EEC77B6E
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71C43C77B6F
 	for <webhook@archiver.kernel.org>; Sun,  9 Apr 2023 16:16:24 +0000 (UTC)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
- by mx.groups.io with SMTP id smtpd.web11.22764.1681056982194428186
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+ by mx.groups.io with SMTP id smtpd.web10.23459.1681056981946969010
  for <yocto@lists.yoctoproject.org>;
  Sun, 09 Apr 2023 09:16:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20210112 header.b=Vd7YOSpq;
- spf=pass (domain: gmail.com, ip: 209.85.128.175, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-54c12009c30so170127707b3.9
-        for <yocto@lists.yoctoproject.org>; Sun, 09 Apr 2023 09:16:22 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20210112 header.b=YIrjnw3Q;
+ spf=pass (domain: gmail.com, ip: 209.85.128.172, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-54c12009c30so170127627b3.9
+        for <yocto@lists.yoctoproject.org>; Sun, 09 Apr 2023 09:16:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112; t=1681056981; x=1683648981;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oubNqfQPvbvjxygiKItqxmfbMSiXXhd1ohXhG67/uhU=;
-        b=Vd7YOSpq5C++YoEO+unwMsiRYV7WnK3WZK2pIuW+Bfw79sNUzvl1BR4bzF5bF4LfGE
-         RMWMqDUZbEoSCxJwIJ5hBjemmiAYPFd+TbQOTe7EgBx2/xt82owIEg952muUzxwjWwBk
-         2TGaTOGL4mzx+yxNhk7DlqCp2yfGakbMY0VTcIDG1h3T1ws90B1RF6YLR21b7a57+tv2
-         3MJMuAgbVLXCzCzz0vcdli7dUQ/9Ddi8v+RVgdXW2xbL/oUa3fn+QSs/FDutEm/GOL8M
-         hDZ//5vICRXYTOIyQfL4oKSK5Et5wt0dCD7QAZ3sUaNeZDEmP7+Ys1dipJSEIOneGNh5
-         meRg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gzYHsbyMVL5oFNcEraF1yt7J2TJ1epmq9zMjpbJ5Mug=;
+        b=YIrjnw3Q/C2XLSf64fcaxwF/iqcg9Pn//22duQ5kaiF32lAWiE7z6RKs4XkFBW0RLH
+         eZfDNJ3qXDn9O2rBPtw+2AQi5zy1vxBFR7++QV0okC/AVrInO97Eq/OnZyAZBXyRL5xL
+         ooGchC8R/MfbCwPXKh1ClKHLaRCld24iTJoNLVwGfhHqRL37A6MiXkLpO9+wswRtTLbT
+         sG7bhRBtLxs0Jd8gi0wBOT73RUKqBPpWGF8ahC0phoisRWJn1nr6/iR7YmlP8YsjAVYp
+         M8AUHsL0z49zf/ldlVrvYWgW7ykRTU+IO1bjSD5p7H+e70QG6I9mNi42K2aSeggspQhi
+         Y2Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112; t=1681056981; x=1683648981;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oubNqfQPvbvjxygiKItqxmfbMSiXXhd1ohXhG67/uhU=;
-        b=R29gmb1bcCcvlF3DGbdYK5Fgm8CG4DpQHmASS3evQR3FgHAOBDefjaI1vR9oWG0xNu
-         yQK2QpsiAh9icwTPBEkUgfIdVDCF83jUVxSYgMCHsfEHKEq67jVrPXOQTczEAEjjw7q6
-         riiqqfULieZ740XPZkHGx4Wz1yZIx605PmSX9PW+EDiRaOKO5oO51ffs7AGuBO+wC7JI
-         uvBbK0I+Ot+xkbuxhcpbHoSCprrvXvMVbF0Ai5kKG74wtUl9eSQcqeRuxwjnHuqz4avl
-         KmW6g/eM8nHvZGuy0pbhh7QQhnSMzZT5saVlNxaSrAVXOxhncqlfJzHA0Bn0Y/ovws+t
-         5CLg==
-X-Gm-Message-State: AAQBX9eZe07GBwAAhT2wA+YEcNZKVGjs2gOHPZo6yT2ihjUHvGXqXl08
-	RDiuAoqpl63iXIidp5jZKShvUe3A2QWemA==
-X-Google-Smtp-Source: AKy350amV4u2v5KCx1Z0yXVSO4vNX7JzSOu5wfiVj98U0vWCV0lDU9dWp0k5CexTpB5BgtZWS+vfxg==
-X-Received: by 2002:a0d:d40e:0:b0:541:a34d:a6de with SMTP id w14-20020a0dd40e000000b00541a34da6demr6018243ywd.47.1681056981091;
-        Sun, 09 Apr 2023 09:16:21 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gzYHsbyMVL5oFNcEraF1yt7J2TJ1epmq9zMjpbJ5Mug=;
+        b=w72QhGzikeHsrLdNYbXbZXn+0f1z7aZCpaSGWAKqlro57JAXBHS8S9+XBsTuWHbYlz
+         MjyaKKfKyPpEL3i8w62hmSZho+8tVYZ/O6/8hVzdIM3CRsyqA5qruhl30B5Y7U/CfhL5
+         qbzFrPHg1FoC3FUXOIqQBBIZeVzBafVrIpZ07Ys2o08eoMRjhUx3Hcl2l8ENIYmITh4z
+         vwh/ya6DcSBTbO8vuDTBE0b9kLPHNW2QV6h+gMjUbmyZTugiYOZH3h6FARWaPp1hIbk+
+         9Azf+QESK8S+TUNNUHRYEFxdtgDTy1b4nMx7X0FTkCjZ6NM62EDiXa+433HK46hUfAbS
+         nRMA==
+X-Gm-Message-State: AAQBX9eQDxPTgMcexYmzA2kxyBUUJJgRle+zsxPB3lRn8o+vNivdJtBB
+	TQNKJXnCBkOEMItwic0Qq/DblPGnhtLxRg==
+X-Google-Smtp-Source: AKy350b2CgoY8YAIPHus4OPZLA1vDIsNYCBDLv/zcC2z1eaEQ8HsNZsskRaK1w9gMMxRPF+jCEganA==
+X-Received: by 2002:a0d:d54f:0:b0:541:7193:e136 with SMTP id x76-20020a0dd54f000000b005417193e136mr5724090ywd.23.1681056980655;
+        Sun, 09 Apr 2023 09:16:20 -0700 (PDT)
 Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:47d6:87b6:cfbc:dcc5])
         by smtp.gmail.com with ESMTPSA id j135-20020a81558d000000b0054f2d0a7008sm46894ywb.2.2023.04.09.09.16.20
         for <yocto@lists.yoctoproject.org>
@@ -49,42 +47,62 @@ Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:47d6:87b6:cfbc:dcc5
         Sun, 09 Apr 2023 09:16:20 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-parsec][PATCH 2/2] parsec-service: fix SRC_URI hash
-Date: Sun,  9 Apr 2023 12:16:19 -0400
-Message-Id: <20230409161619.120499-2-akuster808@gmail.com>
+Subject: [meta-parsec][PATCH 1/2] parsec-tool: update SRC_URI hash
+Date: Sun,  9 Apr 2023 12:16:18 -0400
+Message-Id: <20230409161619.120499-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230409161619.120499-1-akuster808@gmail.com>
-References: <20230409161619.120499-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Sun, 09 Apr 2023 16:16:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59647
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59646
+
+FIxes:
+
+ERROR: Missing SRC_URI checksum, please add those to the recipe:
+SRC_URI[parsec-tool-0.6.0.sha256sum] = "f51d5d7f0caca1c335324b52482fa5edbf6c9cfd2e6865e5cb22716d52dcb367"
+
+Needed to have the package version included in the name.
 
 Fixes:
-ERROR: Missing SRC_URI checksum, please add those to the recipe:
-SRC_URI[parsec-service-1.2.0.sha256sum] = "f58e7ba859c22cc1904dc8298b1a7d94ee1ba3b4d4808f28e4cc0c96ddb149c9"
+ERROR: parsec-tool-0.6.0-r0 do_populate_lic: QA Issue: parsec-tool: LIC_FILES_CHKSUM points to an invalid file:
+and
+error: manifest path `/home/akuster/oss/clean/poky/build/tmp/work/cortexa53-poky-linux/parsec-tool/0.6.0-r0/parsec-tool-0.6.0//Cargo.toml` does not exist
+
+Set S to CARGO_VENDORING_DIRECTORY/BP to fix the LIC_FILES_CHKSUM and compile errors.
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-parsec/parsec-service/parsec-service_1.2.0.bb       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
-index 5f4ad5b..bb78f78 100644
---- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
-+++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
-@@ -12,7 +12,7 @@ SRC_URI += "crate://crates.io/parsec-service/${PV} \
-             file://systemd.patch \
-             file://parsec-tmpfiles.conf \
- "
--SRC_URI[parsec-service.sha256sum] = "f58e7ba859c22cc1904dc8298b1a7d94ee1ba3b4d4808f28e4cc0c96ddb149c9"
-+SRC_URI[parsec-service-1.2.0.sha256sum] = "f58e7ba859c22cc1904dc8298b1a7d94ee1ba3b4d4808f28e4cc0c96ddb149c9"
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb
+index c729406..6095ae1 100644
+--- a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb
++++ b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb
+@@ -7,9 +7,9 @@ inherit cargo cargo-update-recipe-crates
  
- PACKAGECONFIG ??= "PKCS11 MBED-CRYPTO"
- have_TPM = "${@bb.utils.contains('DISTRO_FEATURES', 'tpm2', 'TPM', '', d)}"
+ SRC_URI += "crate://crates.io/parsec-tool/${PV} \
+ "
+-SRC_URI[parsec-tool.sha256sum] = "f51d5d7f0caca1c335324b52482fa5edbf6c9cfd2e6865e5cb22716d52dcb367"
++SRC_URI[parsec-tool-0.6.0.sha256sum] = "f51d5d7f0caca1c335324b52482fa5edbf6c9cfd2e6865e5cb22716d52dcb367"
+ 
+-RDEPENDS:${PN} = "openssl-bin"
++S = "${CARGO_VENDORING_DIRECTORY}/${BP}"
+ 
+ do_install() {
+   install -d ${D}/${bindir}
+@@ -19,6 +19,8 @@ do_install() {
+ 
+ require parsec-tool-crates.inc
+ 
++RDEPENDS:${PN} = "openssl-bin"
++
+ # The QA check has been temporarily disabled. An issue has been created
+ # upstream to fix this.
+ # https://github.com/parallaxsecond/parsec-tool/issues/94
 -- 
 2.25.1
 
