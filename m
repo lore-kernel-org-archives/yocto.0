@@ -2,76 +2,66 @@ Return-Path: <anton.antonov@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75C54C76196
-	for <webhook@archiver.kernel.org>; Mon, 10 Apr 2023 18:22:31 +0000 (UTC)
-Subject: Re: [meta-security][PATCH v3] parsec-service: update from 1.1.0 to 1.2.0-rc1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8302CC76196
+	for <webhook@archiver.kernel.org>; Mon, 10 Apr 2023 18:34:11 +0000 (UTC)
+Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com [217.140.106.54])
+ by mx.groups.io with SMTP id smtpd.web11.52332.1681151643822905297
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 10 Apr 2023 11:34:04 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: arm.com, ip: 217.140.106.54, mailfrom: anton.antonov@arm.com)
+Received: from atg-devlab-kelpie.cambridge.arm.com (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
+	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 33AIY0cH017154;
+	Mon, 10 Apr 2023 19:34:01 +0100
+From: Anton Antonov <Anton.Antonov@arm.com>
 To: yocto@lists.yoctoproject.org
-From: "Anton Antonov" <anton.antonov@arm.com>
-X-Originating-Location: Cambridge, England, GB (217.140.99.251)
-X-Originating-Platform: Mac Firefox 111
-User-Agent: GROUPS.IO Web Poster
+Cc: Anton.Antonov@arm.com
+Subject: [meta-parsec][PATCH] Fix PACKAGECONFIG check in Parsec OEQA tests
+Date: Mon, 10 Apr 2023 19:33:55 +0100
+Message-Id: <20230410183355.1880224-1-Anton.Antonov@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date: Mon, 10 Apr 2023 11:22:26 -0700
-References: <5e3ecec5-14f4-564a-39b4-ebe934be8951@gmail.com>
-In-Reply-To: <5e3ecec5-14f4-564a-39b4-ebe934be8951@gmail.com>
-Message-ID: <27573.1681150946145803290@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="U6684pvEDJl6RqXZbNfm"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 10 Apr 2023 18:22:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59657
+ <yocto@lists.yoctoproject.org>; Mon, 10 Apr 2023 18:34:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59658
 
---U6684pvEDJl6RqXZbNfm
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+If PACKAGECONFIG is not defined in local.conf then
+its default value is not included in cls.tc.td map.
 
-On Mon, Apr 10, 2023 at 04:17 AM, Armin Kuster wrote:
+Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+---
+ meta-parsec/lib/oeqa/runtime/cases/parsec.py | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
->=20
-> Something in latest master may have introduced another issue, this time
-> the runtime testing.=C2=A0 I am see this new error:
->=20
-> self.check_packageconfig("TS")
-> File
-> "/home/akuster/oss/maint/meta-security/meta-parsec/lib/oeqa/runtime/cases=
-/parsec.py",
-> line 64, in check_packageconfig
-> if prov not in self.tc.td['PACKAGECONFIG:pn-parsec-service']:
-> KeyError: 'PACKAGECONFIG:pn-parsec-service'
->=20
-> Any ideas on how to fix or what might be causing this? I thought I had a
-> fix but the test hangs.
+diff --git a/meta-parsec/lib/oeqa/runtime/cases/parsec.py b/meta-parsec/lib/oeqa/runtime/cases/parsec.py
+index 71061db..66932ed 100644
+--- a/meta-parsec/lib/oeqa/runtime/cases/parsec.py
++++ b/meta-parsec/lib/oeqa/runtime/cases/parsec.py
+@@ -61,9 +61,18 @@ class ParsecTest(OERuntimeTestCase):
+ 
+     def check_packageconfig(self, prov):
+         """ Check that the require provider is included in Parsec """
+-        if prov not in self.tc.td['PACKAGECONFIG:pn-parsec-service']:
++
++        if 'PACKAGECONFIG:pn-parsec-service' in self.tc.td.keys():
++            providers = self.tc.td['PACKAGECONFIG:pn-parsec-service']
++        else:
++            # PACKAGECONFIG is not defined in local.conf
++            # Let's use the default value
++            providers = "PKCS11 MBED-CRYPTO"
++            if 'tpm2' in self.tc.td['DISTRO_FEATURES']:
++                providers += " TPM"
++        if prov not in providers:
+             self.skipTest('%s provider is not included in Parsec. Parsec PACKAGECONFIG: "%s"' % \
+-                          (prov, self.tc.td['PACKAGECONFIG:pn-parsec-service']))
++                          (prov, providers))
+ 
+     def check_packages(self, prov, packages):
+         """ Check for the required packages for Parsec providers software backends """
+-- 
+2.25.1
 
-The default value of PACKAGECONFIG is not included into tc.td if it's not d=
-efined in local.conf for whatever reason.
-
-I will send a fix soon.
-
-Cheers,
-
-Anton
-
---U6684pvEDJl6RqXZbNfm
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Apr 10, 2023 at 04:17 AM, Armin Kuster wrote:<br />
-<blockquote>Something in latest master may have introduced another issue, t=
-his time the runtime testing.&nbsp; I am see this new error:<br /><br />&nb=
-sp;self.check_packageconfig("TS")<br />&nbsp; File "/home/akuster/oss/maint=
-/meta-security/meta-parsec/lib/oeqa/runtime/cases/parsec.py", line 64, in c=
-heck_packageconfig<br />&nbsp;&nbsp;&nbsp; if prov not in self.tc.td['PACKA=
-GECONFIG:pn-parsec-service']:<br />KeyError: 'PACKAGECONFIG:pn-parsec-servi=
-ce'<br /><br />Any ideas on how to fix or what might be causing this? I tho=
-ught I had a fix but the test hangs.</blockquote>
-<p>The default value of PACKAGECONFIG is not included into tc.td if it's no=
-t defined in local.conf for whatever reason.</p>
-<p>I will send a fix soon.</p>
-<p>&nbsp;</p>
-<p>Cheers,</p>
-<p>Anton</p>
-<p>&nbsp;</p>
-
---U6684pvEDJl6RqXZbNfm--
 
