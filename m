@@ -1,293 +1,186 @@
-Return-Path: <ovidiu.panait@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D25AC76196
-	for <webhook@archiver.kernel.org>; Tue, 11 Apr 2023 05:45:20 +0000 (UTC)
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web10.7023.1681191912777417239
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D0EE5C7619A
+	for <webhook@archiver.kernel.org>; Tue, 11 Apr 2023 05:45:49 +0000 (UTC)
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+ by mx.groups.io with SMTP id smtpd.web11.7134.1681191943387910969
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Apr 2023 22:45:12 -0700
+ Mon, 10 Apr 2023 22:45:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=p+iKRe5j;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=34653fc2fb=ovidiu.panait@windriver.com)
-Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33B5Zw7T003982;
-	Mon, 10 Apr 2023 22:45:11 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=message-id : date
- : subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=PPS06212021;
- bh=oymjYMsHKZgslp+N2/8czhcElgxnOaQ6FLXu1D4S6eU=;
- b=p+iKRe5jH6CF8Ul+JqSqWV67tElqO2AVP5rBqg+Ta1N9+B5dCA7Us1hI85gk+01eWRdV
- v1UHPMpNL6DibWTIpxH6pDkYdMN8lHbWZFw9W1/eR6p/f+Uv5kCXEATw4TKv/9ns7SUL
- 1G/HC6i8B46s41lcT7BEGQpp1uFGlJxIxaDMQEQ/vzHf8v25ATVgi8bsWXaTwJ5QDjfs
- YdY2Opk9lSY+PqpGibv5fN9TufEvwsC9gM9L19HWh40fTh7uWux7boA6oRv4nElqCvQV
- +Z9aWOjnZoeK037UfU7XI2qEnxbCn3T+ag/gQ60LDV5BIGa0PA4ooRgBFrySV4zjrofZ hw== 
-Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2173.outbound.protection.outlook.com [104.47.59.173])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3pu7snje99-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Apr 2023 22:45:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P4s7WVmQfCrIKV+f2zjTyl5PsITYlYG3pGTHYgff0GmSe6FahcoW21zVE9zCK9x/F21g7y/76UyDAmJGYWvDV/hVj27Fq1Vl4f/bXy/54/DJ7/AZjgr79S7F0KcVsPUyT/LV8QF/Mri+MHjONh5c7msscOrn1ScH4gIjy/C5WXQYUWSRtNrQkfCncnvja7sR++qFovCpNwZ7hBWxhb8ZVmcKzm/RhAmPTYjZr0bbz0JazUhe7B9qedtBWyV2hC5CObc0+m8OYxA13LdH/KCdQfqYgrXAE6H0yQAfv91+2wrHoRJy6dZ1uLWG4DebeJ4iNXCsVozeEVW0OQsk+zNXnw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oymjYMsHKZgslp+N2/8czhcElgxnOaQ6FLXu1D4S6eU=;
- b=V0K0l1IuYz5Hj8KwQ2rrPopki5Z5PZd5xpEPKigrBrV7YX1lM1bx2iNJyL6zfaBKelX9Ka+EemoH/sKW0Qc+5EkkoxMlYePtDJNz731taKSSH9dzhjYgLjcSPcsEBX879PuyWiRPkliMYc8K1HSRq3gNhzUMeUtNrbj9jiTTxnxNfPdeK2TlyNjV3GdlZ5zRAEAiSkI4+Ci4oZ9Z+Jk7DkjFj4ohwIpWZtvGFThHixsSIYRC1nxgi6ntOBmxW8MwTFgD3dTCOmYuBH7mpCHpdINoMN9qrFdQRRRK1Z1m4EVZ1gI9Nrrd+JSPlxPhNGJGS1XNkuTZldpxqCewR+3Atw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from DM4PR11MB5327.namprd11.prod.outlook.com (2603:10b6:5:392::22)
- by DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.38; Tue, 11 Apr
- 2023 05:45:09 +0000
-Received: from DM4PR11MB5327.namprd11.prod.outlook.com
- ([fe80::60b2:e8cd:1927:54f3]) by DM4PR11MB5327.namprd11.prod.outlook.com
- ([fe80::60b2:e8cd:1927:54f3%9]) with mapi id 15.20.6277.038; Tue, 11 Apr 2023
- 05:45:09 +0000
-Message-ID: <a904c926-2df1-a084-28c3-2d7d336c2f08@windriver.com>
-Date: Tue, 11 Apr 2023 08:45:02 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [yocto] [ptest-runner][PATCH 1/2] utils.c: rework pty setup
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org
-Cc: anibal.limon@linaro.org, limon.anibal@gmail.com
-References: <174E85801C847E62.22739@lists.yoctoproject.org>
-From: Ovidiu Panait <ovidiu.panait@windriver.com>
-In-Reply-To: <174E85801C847E62.22739@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR08CA0152.eurprd08.prod.outlook.com
- (2603:10a6:800:d5::30) To DM4PR11MB5327.namprd11.prod.outlook.com
- (2603:10b6:5:392::22)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=FMwKzjys;
+ spf=pass (domain: gmail.com, ip: 209.85.160.49, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-184549428acso4428468fac.8
+        for <yocto@lists.yoctoproject.org>; Mon, 10 Apr 2023 22:45:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1681191942;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LIMkbzU95ctaN2WQb+tBtGuxmftmh6ghwTXLlC7rro0=;
+        b=FMwKzjysuxetrPQMh3HgfJzfuVUkgpouV5ul1IjWusmtsjTitFjnBeVAJm0oHF40el
+         kmTBx06rWmOmaE9Sy3tmJL4+Z3sT+/LHz0c2w6kDAM2DdFHnbrbB84L56puXjXGdUlhV
+         KQwX5ZwFPc+F3ej0yh/FoB+gIJMK86QdSj/CnLw3HR46G258SGOIn7te6QbbVopYOFeP
+         SD2knCsgW+djMtY7HBUR/zQgTUN3+OlH1GZYB2HlUkVKeQAPo9ybm0bymkzWpcY9dbn2
+         PWRiMYCKqG1EQNaxB0XNT+z+pnQkTfVwpolSjk2Q1/I8WT7XS+ZU/vf29xLt/xEIPznI
+         a6nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681191942;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LIMkbzU95ctaN2WQb+tBtGuxmftmh6ghwTXLlC7rro0=;
+        b=IvFaVNfO/5gMkY5JjCYO6asFfjpG9LjySKlbAkdF18IwJsWk1kgG/WUCs+/2r7CFUH
+         6IyMeQv9v2w/4nTdcG9Rk0C66P7g1OnKt/QJI7RlbhOuii+YRhmBV4mqUVUGdo41PxI1
+         wnShyJI5wTOotGPD+j2RjuBtofXIJsj6zIWM8Nzd9L7dhdD81RRIz9swwHnBVRYJy59B
+         o3L2g+zamRSBdJyxZTdESlpqlMmhg/y9whveg5vcsL5rb+jb9AabUmGYPFC0W0fdgV3V
+         N3358j8qJ6ORCIamKo26+RIi4YJcGKC9dorR/uV2XohyXkQb3yN0T7GaJPlKhyntxFWA
+         Disw==
+X-Gm-Message-State: AAQBX9cDyNZm2k3fSd8XLXtXKfyuUOcCWULeaHTcARn42wRh7wMD3w6h
+	sFQn1i5zP7i2HB0F+G0u9E57cC8y5RxCGuhXQow=
+X-Google-Smtp-Source: AKy350ZDYifrMAJdbaz3cDG5jAlM4HY6S8IVEGIK7KvphR1F3H+bH2apQcchXnccflfQaQs7J9Mo4pwc3Ub2BTsdbrw=
+X-Received: by 2002:a05:6870:24a2:b0:177:ca1c:2cd5 with SMTP id
+ s34-20020a05687024a200b00177ca1c2cd5mr4437017oaq.4.1681191942551; Mon, 10 Apr
+ 2023 22:45:42 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5327:EE_|DM4PR11MB6360:EE_
-X-MS-Office365-Filtering-Correlation-Id: 986087e5-f092-4dd9-79ab-08db3a4fe8df
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	lG3Df3tkQXX1/YVgFGcNZd+gJGtRRV2ai6JsEsDoWmICxx7SgP8vd+o15iC06/20s8YYkLI3ovEIcd16/8IUkI3jlZkWSCPCxllHvT91MCIVBVtWV90X90S238OI8sbnlk0rGoM5r4GJq4ppnzjjl+ao90Kvdx5ZnhfCWfusSf6xy6HNa914d5+bbr1cIodFA3tRYnX2nNYYuloraMZziUOvFtOMG4KK2oTLvH5kXYjCB38KP5CaAbUZ8gi5RpFx62Y3ylBV95gqXno57HKWc3PbG6xjHJfFut+jKT3vwnovC1XqPU3Ff/nZ9BxDg0O/pss5C0AEBjGgbhIXUyeWZpi+iGCryzV/nabmQuC/E8jpnh1UCF8TQGcgXWTAklexpN0HHwiN5zg1xEQaDoY34fxoKsRWWcFuSwHy+jrOlWaCTL3MiU8GMq/dHdzI/xmYRZM0qSgSb1NvxsxYeVrBzcb0xKcgcQ/PxbPQUKxWeDfjXs175UZtCv408MTV9YWX7i7KZ3JA0zSYRgTK3wQq4Ps9za8tZP4z+aza7q7aXEeNy2nmQLI1dtJfcJTzJM6ofS6+2AkRsV7eFuw+IPxcxNDbfYEanyq17mOyf0AqSupY6KdvpRr1GHFcIfIGskbyZGm37fx+vsGepFghipoiGp8uRqUNU9aDvQLUCaLnS8c=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB5327.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(366004)(39850400004)(136003)(396003)(451199021)(86362001)(4326008)(2906002)(6916009)(8676002)(38100700002)(186003)(66899021)(66476007)(66556008)(66946007)(53546011)(31696002)(6506007)(6512007)(8936002)(478600001)(44832011)(316002)(5660300002)(36756003)(83380400001)(41300700001)(31686004)(2616005)(6666004)(6486002)(966005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Q3huTS9uWnpVRnRlYVZGSEgxRVJCK2Rnd2ZYcUlta3BJTUhsZUVnVUxYQnNw?=
- =?utf-8?B?TGNVRkx3bHBWcWFiQTg0MmJxaFlkMjlqL3dCVUU2TWl1ajlpY2hTMmljRjk0?=
- =?utf-8?B?TnpSSXlWN09ta0t1NHZxV1pxNS8wZjdkWEYwUXBJZk91aTZ4aHFrQ05wczUy?=
- =?utf-8?B?VUVoaTRuWnB1RjVBbmU0UC8rVkRmNEtIcHhNeEVoN2tQc296aGZWU3V5SCt2?=
- =?utf-8?B?UGpSVzJ5cjVlTXlzOCtHb2FJdGxkTnJ4b09Sb2xtVzRWWHh6TmFPR1VlTFRu?=
- =?utf-8?B?TmlOdGJXN0JmU1E4WFhIZnFUOTViR3RrS0l4NEVmSS9UYytoNXNsNy9DdUZu?=
- =?utf-8?B?LzVjRklLc2h6ZU5jVFhjZll1SENoL2FNQUZnMGIzdlBISDBCcUpDR1M4bGJR?=
- =?utf-8?B?QzJvQS8rK1VPWWxrelB3czZRR3h6MzQwUnFhcytIck05YThEUlZkdFFHY2hh?=
- =?utf-8?B?MEFiYXQrMkl4VGRzN2gvKzhCcE9mU1ZZRTA1YzFsVERqRlhaN2NJbGdKODZM?=
- =?utf-8?B?RDEwM25PMWZIcm14bC9pdlpoUXFVRnFnSVlURlNwMlF6N1lMbDVhQURpdmh0?=
- =?utf-8?B?eEIrQVNXcWJWQUx0VkZ4MC9QK3g1cnprTlBkU0JhVlMwTXdlZkYrVXVvLzEv?=
- =?utf-8?B?dXFTR0JsYWw3RjRLcm9lSXdDVzFSU1RtaWlnbm40RmRVOEJXNkY4NlE0MW14?=
- =?utf-8?B?OWQxeXZVSi9xbFJDdlVLeG1QRmhqbVhoOE1STk53ampoU2Z4WDBrY1BsamxY?=
- =?utf-8?B?dGdJRE90dFBIN1pVUXQ0ZkdTc1RyVmp5U0FVaHJYTjNJaVJZT01nTDVaQ3Fo?=
- =?utf-8?B?V3NJRDNMRTVLY0QvckRSNkFHMjBPdXZXMEQzYzYvRExpYkRYT3MyWGMyK0sy?=
- =?utf-8?B?ZS9xcFQ1dXg1Vlh3aCtQcDBtUnNvKzlwUWVOSlc2TTlLRmdhSE9CU0dVdGhm?=
- =?utf-8?B?a1VuakJFUVBPVjlGV2J3NU9WbHBmSDF4S1pycXVnNmZ4SXdSMnZiNzF2MnMy?=
- =?utf-8?B?djVTTE1tSXdvckhDcmsycFlybnc2czY5WHdzMW53QjJzanFUTElCUC9JR0xF?=
- =?utf-8?B?U3pQNTVBVUpVTFBsaGlKQkdGd0pXL2Zmem5pcThnQUlnNW5nc3czVG94Q0Zt?=
- =?utf-8?B?cVVuN09wd1Ereld5RkdsdGFHVkhsT2FYcWxCdTU0TG1zTnpQWWF0eFUzc0Nq?=
- =?utf-8?B?cHZkcFdXRkZDbmlaeEc5cGxxNGdhaDZqT1RQdXBDcmtaZGJTbjVIN0ErYXF5?=
- =?utf-8?B?MzM3Ukh0WW1qeDhLQlB5by9LVDRyc2w0Wk1WQmhkNTRDNVRmNHYrcWpodHZq?=
- =?utf-8?B?U254Ty9LQ0E1Z1U1MVhXWEhHM21kNEpWdk0yYzlLTzdxYUdic2U1b3NzT2k0?=
- =?utf-8?B?a1FqL2FZMStEZk9Ea0tHV3F5MlFCdzE1Q0MzMU9HYnU3SkdEckhwOTJqMHZz?=
- =?utf-8?B?V0YyKzZXTHlZS0FJbGVOYmsyWmQyR2hUeE03Ris1b2ptQnVxU3l3cHJNOFc0?=
- =?utf-8?B?TXdoVFlsZkR4SWNndHFvUHR5YmM3MkVaVjZKK2VUMUtndk93UnZGcVVPNS8v?=
- =?utf-8?B?U0xUTmtpWVlLNnZUVEFLR3Frd1hPYXlRZ0MwendXejFyTlpXb3FpeE50eTJW?=
- =?utf-8?B?bWcrOXNKak51NnJBN2ZoS2tjMm9la1Jwb1lLdi9YakZKSGFWUU1NK2FuM0Nq?=
- =?utf-8?B?Y0RXcmxqK0Zzdmd4ZFVwNnNObDBPMURVN0tqZ3dqYnBQRU9najA1NFVvOHlt?=
- =?utf-8?B?QU1hUm5YOVNlc0t3bEpseEdsaWI5eldPQUkxWUp2TGxnUlJoYitYbWlrNlc1?=
- =?utf-8?B?QkZzdVpiSE5CY0lyYk9JRFRTOVJoUWd5dHRPMFNCSEI4QjVNV2FVVUllcmdE?=
- =?utf-8?B?NUdJSG1aUkl0MEFzQnpjZjNwMVBrRENvYzQzZEZYT2VCZWNnd01OQVZsbEE0?=
- =?utf-8?B?WkZxalVxZ0Z4bkZ4eUdiNDYxVDVqQ3V0dVBDdXZ3Y3FIY3B1WktaVU1tVGNL?=
- =?utf-8?B?WERFWG45WkJFcUUzV0NMUC9tWmRTV21NeGsyRytMelduYzRDTUFSVEl1TDcx?=
- =?utf-8?B?aTRDNEhoaU5nM003SVZ6bmhPR3Uxd1NhQXlpUi9sYWFLdklJMjhXZ2ZHeHVl?=
- =?utf-8?B?WXFKVFg3RmtNcGJDcXJVYUZGcjJsbHBSTWM0ZWdteUJFZDBFT0Zydllkb3oy?=
- =?utf-8?B?N3paSUE3REUwYWZJbmJQelRkeHh2YTFhQlNrb0k5NitSaEdqYjNURFF5Q2V4?=
- =?utf-8?B?ZENWVkZnM25rd2ZucHhra1B5cXVBPT0=?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 986087e5-f092-4dd9-79ab-08db3a4fe8df
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5327.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2023 05:45:08.9192
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zPjLvOyNchFWAcV8aV/m3L043M57J1RfMiZ4ITbYlegWll8lWOVDYvuzS7J3IznAIzKLAU8DL4/sVh81cMy0NI+EOaFw32zRyc88QkOYiBE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6360
-X-Proofpoint-GUID: kUickaFpQpckJUUM6Rke1TazlODmc9it
-X-Proofpoint-ORIG-GUID: kUickaFpQpckJUUM6Rke1TazlODmc9it
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-11_02,2023-04-06_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- suspectscore=0 mlxlogscore=999 adultscore=0 impostorscore=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 phishscore=0 bulkscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304110052
+References: <CAMKF1sp+Y8ka1afMoBf-pfN1ZJMjMAo=MUetRasfV_ojd-WfdQ@mail.gmail.com>
+ <10320.1681191588371382114@lists.yoctoproject.org>
+In-Reply-To: <10320.1681191588371382114@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 10 Apr 2023 22:45:16 -0700
+Message-ID: <CAMKF1sr=+-0UOVSm+xgXKEbJgUS6HGF-yTB0YbExjThQ0nNAKg@mail.gmail.com>
+Subject: Re: [yocto] Missing .o files.
+To: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 11 Apr 2023 05:45:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59668
+ <yocto@lists.yoctoproject.org>; Tue, 11 Apr 2023 05:45:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59669
 
-+cc Anibal's gmail account, the Linaro one seems not valid anymore.
+you need to add
 
-On 3/21/23 21:21, Ovidiu Panait via lists.yoctoproject.org wrote:
-> The run-read bash ptest fails when it's being run by ptest-runner, but
-> it is successful when run manually:
->   0 0 0
->   0
->   0
-> -0
-> +1
->   timeout 1: ok
->   unset or null 1
-> -1
-> +timeout 2: ok
->   unset or null 2
->   timeout 3: ok
->   unset or null 3
-> FAIL: run-read
+DEPENDS +=3D "readline ncurses"
+
+to your recipe.
+
+On Mon, Apr 10, 2023 at 10:39=E2=80=AFPM MOHAMMED HASSAN
+<hassanchattarki@gmail.com> wrote:
 >
-> The actual testcase that is failing is:
-> tests/read6.sub:
-> read -t 0
-> echo $?
+> Hi Khem,
+> Thanks for your reply.
+> I tried the changes you wanted me to make and this is the error I got.
 >
-> This failure seems to be related to how the pty setup is handled:
-> openpty() is called in the child process and the master/slave file
-> descriptors are left dangling.
+> ERROR: zigbee-0.1-r0 do_compile: oe_runmake failed
+> ERROR: zigbee-0.1-r0 do_compile: Execution of '/home/mohan/amlogic/build/=
+tmp/work/aarch64-poky-linux/zigbee/0.1-r0/temp/run.do_compile.171358' faile=
+d with exit code 1
+> ERROR: Logfile of failure stored in: /home/mohan/amlogic/build/tmp/work/a=
+arch64-poky-linux/zigbee/0.1-r0/temp/log.do_compile.171358
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | NOTE: make -j 4 CC=3Daarch64-poky-linux-gcc  -march=3Darmv8-a+crc -fsta=
+ck-protector-strong  -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werr=
+or=3Dformat-security --sysroot=3D/home/mohan/amlogic/build/tmp/work/aarch64=
+-poky-linux/zigbee/0.1-r0/recipe-sysroot RANLIB=3Daarch64-poky-linux-gcc-ra=
+nlib AR=3Daarch64-poky-linux-gcc-ar CFLAGS=3D -O2 -pipe -g -feliminate-unus=
+ed-debug-types -fdebug-prefix-map=3D/home/mohan/amlogic/build/tmp/work/aarc=
+h64-poky-linux/zigbee/0.1-r0=3D/usr/src/debug/zigbee/0.1-r0                =
+     -fdebug-prefix-map=3D/home/mohan/amlogic/build/tmp/work/aarch64-poky-l=
+inux/zigbee/0.1-r0/recipe-sysroot=3D                     -fdebug-prefix-map=
+=3D/home/mohan/amlogic/build/tmp/work/aarch64-poky-linux/zigbee/0.1-r0/reci=
+pe-sysroot-native=3D                      -I/home/mohan/amlogic/build/tmp/w=
+ork/aarch64-poky-linux/zigbee/0.1-r0 BUILDDIR=3D/home/mohan/amlogic/build/t=
+mp/work/aarch64-poky-linux/zigbee/0.1-r0 all
+> | aarch64-poky-linux-gcc  -march=3Darmv8-a+crc -fstack-protector-strong  =
+-D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dformat-security =
+--sysroot=3D/home/mohan/amlogic/build/tmp/work/aarch64-poky-linux/zigbee/0.=
+1-r0/recipe-sysroot build/znet-bookkeeping.o build/call-command-handler.o b=
+uild/callback-stub.o build/stack-handler-stub.o build/znet-cli.o build/host=
+forEdge3_callbacks.o build/library.o build/command-interpreter2.o build/zig=
+bee-device-common.o build/zigbee-device-host.o build/event-control.o build/=
+led-stub.o build/mem-util.o build/antenna-stub.o build/buzzer-stub.o build/=
+address-table.o build/address-table-cli.o build/basic.o build/color-control=
+-server.o build/concentrator-support.o build/concentrator-support-cli.o bui=
+ld/counters-cli.o build/counters-ota-host.o build/counters-host.o build/ez-=
+mode.o build/ez-mode-cli.o build/ezsp-callbacks.o build/ezsp-enum-decode.o =
+build/ezsp-frame-utilities.o build/ezsp.o build/ezsp-host-io.o build/ezsp-h=
+ost-queues.o build/ezsp-host-ui.o build/serial-interface-uart.o build/ash-h=
+ost-ui.o build/ash-host.o build/ash-common.o build/file-descriptor-dispatch=
+.o build/gateway-support.o build/backchannel-support.o build/gateway-suppor=
+t-cli.o build/green-power-client.o build/green-power-client-cli.o build/gre=
+en-power-common.o build/gp-util.o build/heartbeat.o build/ias-zone-client.o=
+ build/ias-zone-client-cli.o build/identify.o build/identify-cli.o build/id=
+entify-feedback.o build/level-control.o build/linked-list.o build/aes.o bui=
+ld/asn1parse.o build/asn1write.o build/base64.o build/bignum.o build/ccm.o =
+build/chacha20.o build/chachapoly.o build/cipher.o build/cipher_wrap.o buil=
+d/cmac.o build/ctr_drbg.o build/des.o build/ecdh.o build/ecdsa.o build/ecjp=
+ake.o build/ecp.o build/ecp_curves.o build/entropy.o build/error.o build/gc=
+m.o build/md.o build/md5.o build/oid.o build/pem.o build/pk.o build/pk_wrap=
+.o build/pkparse.o build/platform_util.o build/poly1305.o build/psa_crypto.=
+o build/psa_crypto_cipher.o build/psa_crypto_client.o build/psa_crypto_driv=
+er_wrappers.o build/psa_crypto_ecp.o build/psa_crypto_hash.o build/psa_cryp=
+to_mac.o build/psa_crypto_slot_management.o build/psa_crypto_storage.o buil=
+d/rsa.o build/rsa_internal.o build/sha1.o build/sha256.o build/sha512.o bui=
+ld/ssl_cache.o build/ssl_ciphersuites.o build/ssl_cli.o build/ssl_cookie.o =
+build/ssl_msg.o build/ssl_srv.o build/ssl_ticket.o build/ssl_tls.o build/th=
+reading.o build/x509.o build/x509_create.o build/x509_crl.o build/x509_crt.=
+o build/x509_csr.o build/x509write_crt.o build/x509write_csr.o build/ncp-co=
+nfiguration.o build/network-creator.o build/network-creator-cli.o build/net=
+work-creator-security.o build/network-creator-security-cli.o build/network-=
+steering.o build/network-steering-cli.o build/network-steering-v2.o build/n=
+etwork-steering-host.o build/on-off.o build/ota-common.o build/ota-server.o=
+ build/ota-server-page-request.o build/ota-server-cli.o build/ota-server-dy=
+namic-block-period.o build/ota-server-policy.o build/ota-storage-common.o b=
+uild/ota-storage-common-cli.o build/ota-storage-linux.o build/poll-control-=
+client.o build/poll-control-client-cli.o build/reporting.o build/reporting-=
+cli.o build/reporting-default-configuration.o build/scan-dispatch.o build/s=
+ecure-ezsp-stub.o build/simple-main.o build/simple-metering-client.o build/=
+simple-metering-client-cli.o build/stack-diagnostics.o build/test-harness.o=
+ build/read-write-attributes.o build/test-harness-host.o build/time-server.=
+o build/trust-center-nwk-key-update-broadcast.o build/trust-center-nwk-key-=
+update-periodic.o build/trust-center-nwk-key-update-unicast.o build/crc.o b=
+uild/endian.o build/random.o build/system-timer.o build/micro.o build/token=
+-def-unix.o build/token.o build/ember-printf-convert.o build/linux-serial.o=
+ build/update-tc-link-key.o build/update-tc-link-key-cli.o build/core-cli.o=
+ build/network-cli.o build/option-cli.o build/plugin-cli.o build/security-c=
+li.o build/zcl-cli.o build/zdo-cli.o build/af-node.o build/af-security-comm=
+on.o build/af-trust-center.o build/crypto-state.o build/af-event.o build/af=
+-main-common.o build/attribute-size.o build/attribute-storage.o build/attri=
+bute-table.o build/client-api.o build/message.o build/multi-network.o build=
+/print.o build/print-formatter.o build/process-cluster-message.o build/proc=
+ess-global-message.o build/service-discovery-common.o build/time-util.o bui=
+ld/util.o build/af-main-host.o build/service-discovery-host.o  -lreadline -=
+lncurses  -lm -lpthread -o ./build/exe/hostforEdge3
+> | /home/mohan/amlogic/build/tmp/work/aarch64-poky-linux/zigbee/0.1-r0/rec=
+ipe-sysroot-native/usr/bin/aarch64-poky-linux/../../libexec/aarch64-poky-li=
+nux/gcc/aarch64-poky-linux/9.3.0/ld: cannot find -lreadline
+> | /home/mohan/amlogic/build/tmp/work/aarch64-poky-linux/zigbee/0.1-r0/rec=
+ipe-sysroot-native/usr/bin/aarch64-poky-linux/../../libexec/aarch64-poky-li=
+nux/gcc/aarch64-poky-linux/9.3.0/ld: cannot find -lncurses
+> | collect2: error: ld returned 1 exit status
+> | make: *** [Makefile:413: build/exe/hostforEdge3] Error 1
+> | ERROR: oe_runmake failed
+> | WARNING: exit code 1 from a shell command.
 >
-> To fix this:
-> - move the openpty() call in the parent process, before fork()-ing
-> - assign the slave end of the pty as the stdin for the child process
-> - adjust the TIOCSCTTY ioctl call to use the file descriptor of the pty file
+> Please support
+> Thanks
+> Hassan
 >
-> Fixes: 59381a643e1f ("utils: ensure child can be session leader")
-> Signed-off-by: Ovidiu Panait <ovidiu.panait@windriver.com>
-> ---
->   utils.c | 45 +++++++++++++++++++++++++--------------------
->   1 file changed, 25 insertions(+), 20 deletions(-)
 >
-> diff --git a/utils.c b/utils.c
-> index a67ac11..87ac20e 100644
-> --- a/utils.c
-> +++ b/utils.c
-> @@ -385,18 +385,9 @@ wait_child(pid_t pid)
->    * fp should be writable, likely stdout/err.
->    */
->   static int
-> -setup_slave_pty(FILE *fp) {
-> -	int pty_master = -1;
-> -	int pty_slave = -1;
-> -	char pty_name[256];
-> +setup_slave_pty(FILE *fp, char *pty_name) {
->   	struct group *gptr;
->   	gid_t gid;
-> -	int slave = -1;
-> -
-> -	if (openpty(&pty_master, &pty_slave, pty_name, NULL, NULL) < 0) {
-> -		fprintf(fp, "ERROR: openpty() failed with: %s.\n", strerror(errno));
-> -		return -1;
-> -	}
->   
->   	if ((gptr = getgrnam(pty_name)) != 0) {
->   		gid = gptr->gr_gid;
-> @@ -419,10 +410,7 @@ setup_slave_pty(FILE *fp) {
->   		fprintf(fp, "ERROR: chmod() failed with: %s.\n", strerror(errno));
->   	}
->   
-> -	if ((slave = open(pty_name, O_RDWR)) == -1) {
-> -		fprintf(fp, "ERROR: open() failed with: %s.\n", strerror(errno));
-> -	}
-> -	return (slave);
-> +	return 0;
->   }
->   
->   
-> @@ -441,10 +429,14 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   	int pipefd_stderr[2];
->   	time_t sttime, entime;
->   	time_t duration;
-> -	int slave;
->   	int pgid = -1;
->   	pthread_t tid;
->   
-> +	int pty_master = -1;
-> +	int pty_slave = -1;
-> +	char pty_name[256];
-> +	int fd = -1;
-> +
->   	if (opts.xml_filename) {
->   		xh = xml_create(ptest_list_length(head), opts.xml_filename);
->   		if (!xh)
-> @@ -493,15 +485,22 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   				fprintf(fp, "ERROR: getpgid() failed, %s\n", strerror(errno));
->   			}
->   
-> +			if (openpty(&pty_master, &pty_slave, pty_name, NULL, NULL) < 0) {
-> +				fprintf(fp, "ERROR: openpty() failed with: %s.\n", strerror(errno));
-> +				return -1;
-> +			}
-> +
->   			child = fork();
->   			if (child == -1) {
->   				fprintf(fp, "ERROR: Fork %s\n", strerror(errno));
->   				rc = -1;
->   				break;
->   			} else if (child == 0) {
-> -				close(0);
-> -				if ((slave = setup_slave_pty(fp)) < 0) {
-> -					fprintf(fp, "ERROR: could not setup pty (%d).", slave);
-> +				close(pty_master);
-> +				dup2(pty_slave, STDIN_FILENO);
-> +
-> +				if ((rc = setup_slave_pty(fp, pty_name)) < 0) {
-> +					fprintf(fp, "ERROR: could not setup pty (%d).", rc);
->   				}
->   				if (setpgid(0,pgid) == -1) {
->   					fprintf(fp, "ERROR: setpgid() failed, %s\n", strerror(errno));
-> @@ -511,8 +510,12 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   					fprintf(fp, "ERROR: setsid() failed, %s\n", strerror(errno));
->   				}
->   
-> -				if (ioctl(0, TIOCSCTTY, NULL) == -1) {
-> -					fprintf(fp, "ERROR: Unable to attach to controlling tty, %s\n", strerror(errno));
-> +				if ((fd = open(pty_name, O_RDWR)) >= 0) {
-> +					if (ioctl(fd, TIOCSCTTY, NULL) == -1) {
-> +						fprintf(fp, "ERROR: Unable to attach to controlling tty, %s\n", strerror(errno));
-> +					}
-> +
-> +					close(fd);
->   				}
->   
->   				run_child(p->run_ptest, pipefd_stdout[1], pipefd_stderr[1]);
-> @@ -549,6 +552,8 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   				fprintf(fp, "END: %s\n", ptest_dir);
->   				fprintf(fp, "%s\n", get_stime(stime, GET_STIME_BUF_SIZE, entime));
->   			}
-> +			close(pty_master);
-> +			close(pty_slave);
->   			free(ptest_dir);
->   		PTEST_LIST_ITERATE_END
->   		fprintf(fp, "STOP: %s\n", progname);
 >
-> -=-=-=-=-=-=-=-=-=-=-=-
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#59485): https://lists.yoctoproject.org/g/yocto/message/59485
-> Mute This Topic: https://lists.yoctoproject.org/mt/97762755/3616968
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#59667): https://lists.yoctoproject.org/g/yocto/messag=
+e/59667
+> Unfollow This Topic: https://lists.yoctoproject.org/unft/98191767/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [ovidiu.panait@windriver.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 
