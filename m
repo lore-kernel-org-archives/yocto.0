@@ -1,226 +1,263 @@
-Return-Path: <electronicconsult1@gmail.com>
+Return-Path: <logan.grosz@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FF3EC77B61
-	for <webhook@archiver.kernel.org>; Thu, 13 Apr 2023 15:04:03 +0000 (UTC)
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
- by mx.groups.io with SMTP id smtpd.web10.15867.1681398234353949830
- for <yocto@lists.yoctoproject.org>;
- Thu, 13 Apr 2023 08:03:54 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=Yaj8eLcb;
- spf=pass (domain: gmail.com, ip: 209.85.218.46, mailfrom: electronicconsult1@gmail.com)
-Received: by mail-ej1-f46.google.com with SMTP id dm2so38314124ejc.8
-        for <yocto@lists.yoctoproject.org>; Thu, 13 Apr 2023 08:03:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681398233; x=1683990233;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=cVPVQ5TLnwBouQAyKPOO45+9wclH1DFFNsEJEVxCStI=;
-        b=Yaj8eLcbQmvQja//yXvN+ueSJ635N8vAA7aQufVWWWabyaI1D9+Mg3y5Wnk7bQ/XjN
-         kJV0YfpIQY/5hNAGcCv0/GXT1IjVFRCM/5BSZimku055tJi5JCQeXnqJgokRbbVphwnL
-         KBdFYEC3BZspv42EJketsfSABNTBPBWQT2DTX0Ky6FR26Cey+VTkuBUYMfqgJ4tgTjek
-         o+nM5cpRaAE/+NsB6iOsBW3ZAVOy3uSHrocug+ewU8APLkWgh9hrbC+KViMc6gVoLH0i
-         aYV3tPaJDYl+htpAh8T8Lg2L2QMbcyAQTuEzEM3Wrjyjfe5ZurbFhkv0E05vQccNrLRT
-         pd6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681398233; x=1683990233;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cVPVQ5TLnwBouQAyKPOO45+9wclH1DFFNsEJEVxCStI=;
-        b=cp5wQMEjtn7Ei8l74z2BzwhMSBLdIz6UbmYCOirS3eZ6CcX2CFXeeQByHwp9FbU3VG
-         lbFf9hBvn0xqYMMg7QYdMErMS6tn1S/TdUpuS4MvqDTmSokBO/LkM8v7BaPV2rsBK3D7
-         tzNMwfUSsqz7AsemAWj1p4WYqUnMdpxAHiaiu8y4BKH4maGuZgM6mZc5x5HsG5Upiqqz
-         hUfhp+h86a9Rzew438UZS1qecwwtVrfY2ZJHdqzJ42cdabrW/Uz2cTVzYcUwz+oxEdWi
-         8UFsiVSL6MgEbXnNycbDdOUXpAbO3KdEf4NThGq0vFwSiycD2mrnZObH6r0t4tERjgmv
-         9mMw==
-X-Gm-Message-State: AAQBX9fP6Zs/18BYgydq3wO4FbhrfQdTJE170LERv1n3+Y0rojLZcyng
-	IudAJA5xSf4Yg3SpGHM/UAfB0ElQWBz3TbZscvWDHp4/maTN1A==
-X-Google-Smtp-Source: AKy350YXV9pWroScpFHYXJTTp6Tf6BCyQ6IZxuK7Mbtg5fG54hiC1DDr12Qfnfo3AlTNkCIboETOiDcd3HYP92ALXDE=
-X-Received: by 2002:a17:906:ad8f:b0:933:f6e8:26d9 with SMTP id
- la15-20020a170906ad8f00b00933f6e826d9mr1411879ejb.15.1681398232640; Thu, 13
- Apr 2023 08:03:52 -0700 (PDT)
-MIME-Version: 1.0
-From: Electronic Consult <electronicconsult1@gmail.com>
-Date: Thu, 13 Apr 2023 16:03:41 +0100
-Message-ID: <CAGUWaEHR=xLzTNfyJGAD7Psg0S4k_eQd3dO+sL2-wZpjqxR8vw@mail.gmail.com>
-Subject: Correct build folder location
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4278C77B6E
+	for <webhook@archiver.kernel.org>; Thu, 13 Apr 2023 15:49:43 +0000 (UTC)
+Subject: Adding avr-gcc to an SDK #bitbake #avr #gcc #sdk
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000061f5dc05f93908b3"
+From: logan.grosz@gmail.com
+X-Originating-Location: Rapid City, South Dakota, US (208.117.101.126)
+X-Originating-Platform: Windows Firefox 111
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Thu, 13 Apr 2023 08:49:39 -0700
+Message-ID: <LBMA.1681400979666749347.cU24@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="T0rNtx6mF6KzG9bfrTQ3"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Apr 2023 15:04:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59704
+ <yocto@lists.yoctoproject.org>; Thu, 13 Apr 2023 15:49:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59705
 
---00000000000061f5dc05f93908b3
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+--T0rNtx6mF6KzG9bfrTQ3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGVsbG8gYWxsLA0KDQpJJ20gdXNpbmcgRHVuZmVsbCAmIHVwIHRvIGtub3cgSSd2ZSBiZWluZyB1
-c2luZyBtZXRhLWF0bWVsIHRvIGJ1aWxkIGltYWdlcy4NCkknZCBsaWtlIHRvIG5vdyBhZGQgdGhl
-IGNhcGFiaWxpdHkgdG8gYnVpbGQgaW1hZ2VzIHVzaW5nIG1ldGEtcmFzcGJlcnJ5cGkNCmJ1dCBJ
-J20gaGF2aW5nIGlzc3VlcyB3aXRoIHRoZSBzb3VyY2Ugb2UtaW5pdC1idWlsZC1lbnYgc3RlcCwg
-aXQga2VlcHMNCnB1bGxpbmcgaW4gdGhlIG1ldGEtYXRtZWwgc2hlbGwgZW52aXJvbm1lbnQuIE15
-IGZvbGRlciBsYXlvdXQgaXMgYmVsb3cuIEFzDQpwZXIgbWV0YS1hdG1lbCBpbnN0cnVjdGlvbnMg
-PGh0dHBzOi8vZ2l0aHViLmNvbS9saW51eDRzYW0vbWV0YS1hdG1lbD4gSSBwdXQNCmJ1aWxkLW1p
-Y3JvY2hpcCBpbiB0aGUgcG9reSBkaXJlY3RvcnksIGFzIHBlciBtZXRhLXJhc3BiZXJyeXBpIEkg
-cHV0DQpycGktYnVpbGQgZGlyZWN0b3J5IGluIHBhcmFsbGVsIHdpdGggdGhlIHBva3kgZGlyZWN0
-b3J5Lg0KDQpXaGljaCBpcyBjb3JyZWN0Pw0KQ291bGQgdGhpcyBiZSBjYXVzaW5nIHRoZSBpc3N1
-ZT8NCg0KVGhhbmtzLA0KDQpPd2VuDQoNCmBgYA0KLg0K4pSc4pSA4pSAIENoYW5nZUxvZw0K4pSc
-4pSA4pSAIGxvY2FsQ2FjaGUNCuKUgiAgIOKUnOKUgOKUgCBkb3dubG9hZHMNCuKUgiAgIOKUnOKU
-gOKUgCBzZXR1cC50eHQNCuKUgiAgIOKUlOKUgOKUgCBzc3RhdGUtY2FjaGUNCuKUnOKUgOKUgCBt
-ZXRhLWF0bWVsDQrilIIgICDilJzilIDilIAgY29uZg0K4pSCICAg4pSc4pSA4pSAIENPUFlJTkcu
-TUlUDQrilIIgICDilJzilIDilIAgZHluYW1pYy1sYXllcnMNCuKUgiAgIOKUnOKUgOKUgCBmbGFz
-aGluZy50eHQNCuKUgiAgIOKUnOKUgOKUgCBsaWNlbnNlcw0K4pSCICAg4pSc4pSA4pSAIFJFQURN
-RQ0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtYXRtZWwNCuKUgiAgIOKUnOKUgOKUgCByZWNpcGVz
-LWJzcA0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtY29ubmVjdGl2aXR5DQrilIIgICDilJzilIDi
-lIAgcmVjaXBlcy1jb3JlDQrilIIgICDilJzilIDilIAgcmVjaXBlcy1kZXZ0b29scw0K4pSCICAg
-4pSc4pSA4pSAIHJlY2lwZXMtZWd0DQrilIIgICDilJzilIDilIAgcmVjaXBlcy1ncmFwaGljcw0K
-4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMta2VybmVsDQrilIIgICDilJzilIDilIAgcmVjaXBlcy1t
-dWx0aW1lZGlhDQrilIIgICDilJzilIDilIAgcmVjaXBlcy1zZWN1cml0eQ0K4pSCICAg4pSc4pSA
-4pSAIHJlY2lwZXMtc3VwcG9ydA0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtdXRpbHMNCuKUgiAg
-IOKUlOKUgOKUgCBzY3JpcHRzDQrilJzilIDilIAgbWV0YS1hd3MNCuKUgiAgIOKUnOKUgOKUgCBD
-T0RFX09GX0NPTkRVQ1QubWQNCuKUgiAgIOKUnOKUgOKUgCBjb25mDQrilIIgICDilJzilIDilIAg
-Q09OVFJJQlVUSU5HLm1kDQrilIIgICDilJzilIDilIAgaW1hZ2VzDQrilIIgICDilJzilIDilIAg
-TElDRU5TRQ0K4pSCICAg4pSc4pSA4pSAIHFhDQrilIIgICDilJzilIDilIAgUkVBRE1FLm1kDQri
-lIIgICDilJzilIDilIAgcmVjaXBlcy1jbG91ZA0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtZGV2
-dG9vbHMNCuKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLWV4dGVybmFsDQrilIIgICDilJzilIDilIAg
-cmVjaXBlcy1pb3QNCuKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLW11bHRpbWVkaWENCuKUgiAgIOKU
-nOKUgOKUgCByZWNpcGVzLW5lby1haQ0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtc2RrDQrilIIg
-ICDilJTilIDilIAgcmVjaXBlcy1zdXBwb3J0DQrilJzilIDilIAgbWV0YS1vcGVuZW1iZWRkZWQN
-CuKUgiAgIOKUnOKUgOKUgCBjb250cmliDQrilIIgICDilJzilIDilIAgQ09QWUlORy5NSVQNCuKU
-giAgIOKUnOKUgOKUgCBtZXRhLWZpbGVzeXN0ZW1zDQrilIIgICDilJzilIDilIAgbWV0YS1nbm9t
-ZQ0K4pSCICAg4pSc4pSA4pSAIG1ldGEtaW5pdHJhbWZzDQrilIIgICDilJzilIDilIAgbWV0YS1t
-dWx0aW1lZGlhDQrilIIgICDilJzilIDilIAgbWV0YS1uZXR3b3JraW5nDQrilIIgICDilJzilIDi
-lIAgbWV0YS1vZQ0K4pSCICAg4pSc4pSA4pSAIG1ldGEtcGVybA0K4pSCICAg4pSc4pSA4pSAIG1l
-dGEtcHl0aG9uDQrilIIgICDilJzilIDilIAgbWV0YS13ZWJzZXJ2ZXINCuKUgiAgIOKUnOKUgOKU
-gCBtZXRhLXhmY2UNCuKUgiAgIOKUlOKUgOKUgCBSRUFETUUNCuKUnOKUgOKUgCBtZXRhLXF0Ng0K
-4pSCICAg4pSc4pSA4pSAIGNsYXNzZXMNCuKUgiAgIOKUnOKUgOKUgCBjb2luDQrilIIgICDilJzi
-lIDilIAgY29uZg0K4pSCICAg4pSc4pSA4pSAIENPUFlJTkcuTUlUDQrilIIgICDilJzilIDilIAg
-bGljZW5zZXMNCuKUgiAgIOKUnOKUgOKUgCBSRUFETUUubWQNCuKUgiAgIOKUnOKUgOKUgCByZWNp
-cGVzLWNvcmUNCuKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLWRldnRvb2xzDQrilIIgICDilJTilIDi
-lIAgcmVjaXBlcy1xdA0K4pSc4pSA4pSAIG1ldGEtcmFzcGJlcnJ5cGkNCuKUgiAgIOKUnOKUgOKU
-gCBjbGFzc2VzDQrilIIgICDilJzilIDilIAgY29uZg0K4pSCICAg4pSc4pSA4pSAIENPUFlJTkcu
-TUlUDQrilIIgICDilJzilIDilIAgZG9jcw0K4pSCICAg4pSc4pSA4pSAIGR5bmFtaWMtbGF5ZXJz
-DQrilIIgICDilJzilIDilIAgZmlsZXMNCuKUgiAgIOKUnOKUgOKUgCBrYXMtcG9reS1ycGkueW1s
-DQrilIIgICDilJzilIDilIAgbGliDQrilIIgICDilJzilIDilIAgUkVBRE1FLm1kDQrilIIgICDi
-lJzilIDilIAgcmVjaXBlcy1ic3ANCuKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLWNvbm5lY3Rpdml0
-eQ0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtY29yZQ0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMt
-ZGV2dG9vbHMNCuKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLWdyYXBoaWNzDQrilIIgICDilJzilIDi
-lIAgcmVjaXBlcy1rZXJuZWwNCuKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLW11bHRpbWVkaWENCuKU
-giAgIOKUlOKUgOKUgCB3aWMNCuKUnOKUgOKUgCBtZXRhLXN3dXBkYXRlDQrilIIgICDilJzilIDi
-lIAgY2xhc3Nlcw0K4pSCICAg4pSc4pSA4pSAIGNvbmYNCuKUgiAgIOKUnOKUgOKUgCBDT1BZSU5H
-Lk1JVA0K4pSCICAg4pSc4pSA4pSAIFJFQURNRQ0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtY29y
-ZQ0K4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtZGV2dG9vbHMNCuKUgiAgIOKUnOKUgOKUgCByZWNp
-cGVzLWV4dGVuZGVkDQrilIIgICDilJzilIDilIAgcmVjaXBlcy1sdWENCuKUgiAgIOKUlOKUgOKU
-gCByZWNpcGVzLXN1cHBvcnQNCuKUnOKUgOKUgCBwb2t5DQrilIIgICDilJzilIDilIAgYml0YmFr
-ZQ0K4pSCICAg4pSc4pSA4pSAIGJ1aWxkLW1pY3JvY2hpcC1iYWNrdXANCuKUgiAgIOKUnOKUgOKU
-gCBjb250cmliDQrilIIgICDilJzilIDilIAgZG9jdW1lbnRhdGlvbg0K4pSCICAg4pSc4pSA4pSA
-IExJQ0VOU0UNCuKUgiAgIOKUnOKUgOKUgCBMSUNFTlNFLkdQTC0yLjAtb25seQ0K4pSCICAg4pSc
-4pSA4pSAIExJQ0VOU0UuTUlUDQrilIIgICDilJzilIDilIAgTUVNT1JJQU0NCuKUgiAgIOKUnOKU
-gOKUgCBtZXRhDQrilIIgICDilJzilIDilIAgbWV0YS1wb2t5DQrilIIgICDilJzilIDilIAgbWV0
-YS1zZWxmdGVzdA0K4pSCICAg4pSc4pSA4pSAIG1ldGEtc2tlbGV0b24NCuKUgiAgIOKUnOKUgOKU
-gCBtZXRhLXlvY3RvLWJzcA0K4pSCICAg4pSc4pSA4pSAIG9lLWluaXQtYnVpbGQtZW52DQrilIIg
-ICDilJzilIDilIAgcG4tYnVpbGRsaXN0DQrilIIgICDilJzilIDilIAgUkVBRE1FLmhhcmR3YXJl
-IC0+IG1ldGEteW9jdG8tYnNwL1JFQURNRS5oYXJkd2FyZQ0K4pSCICAg4pSc4pSA4pSAIFJFQURN
-RS5PRS1Db3JlDQrilIIgICDilJzilIDilIAgUkVBRE1FLnBva3kgLT4gbWV0YS1wb2t5L1JFQURN
-RS5wb2t5DQrilIIgICDilJzilIDilIAgUkVBRE1FLnFlbXUNCuKUgiAgIOKUnOKUgOKUgCBycGkt
-YnVpbGQNCuKUgiAgIOKUnOKUgOKUgCBzY3JpcHRzDQrilIIgICDilJTilIDilIAgdGFzay1kZXBl
-bmRzLmRvdA0K4pSc4pSA4pSAIHJwaS1idWlsZA0K4pSCICAg4pSc4pSA4pSAIGJpdGJha2UtY29v
-a2VyZGFlbW9uLmxvZw0K4pSCICAg4pSc4pSA4pSAIGNhY2hlDQrilIIgICDilJzilIDilIAgY29u
-Zg0K4pSCICAg4pSc4pSA4pSAIHNzdGF0ZS1jYWNoZQ0K4pSCICAg4pSU4pSA4pSAIHRtcA0KDQpg
-YGANCg==
---00000000000061f5dc05f93908b3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Hi,
 
-PGRpdiBkaXI9Imx0ciI+PGRpdj5IZWxsbyBhbGwsPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5J
-JiMzOTttIHVzaW5nIER1bmZlbGwgJmFtcDsgdXAgdG8ga25vdyBJJiMzOTt2ZSBiZWluZyB1c2lu
-ZyBtZXRhLWF0bWVsIHRvIGJ1aWxkIGltYWdlcy4gSSYjMzk7ZCBsaWtlIHRvIG5vdyBhZGQgdGhl
-IGNhcGFiaWxpdHkgdG8gYnVpbGQgaW1hZ2VzIHVzaW5nIG1ldGEtcmFzcGJlcnJ5cGkgYnV0IEkm
-IzM5O20gaGF2aW5nIGlzc3VlcyB3aXRoIHRoZSBzb3VyY2Ugb2UtaW5pdC1idWlsZC1lbnYgc3Rl
-cCwgaXQga2VlcHMgcHVsbGluZyBpbiB0aGUgbWV0YS1hdG1lbCBzaGVsbCBlbnZpcm9ubWVudC4g
-TXkgZm9sZGVyIGxheW91dCBpcyBiZWxvdy4gQXMgcGVyIG1ldGEtYXRtZWwgPGEgaHJlZj0iaHR0
-cHM6Ly9naXRodWIuY29tL2xpbnV4NHNhbS9tZXRhLWF0bWVsIj5pbnN0cnVjdGlvbnM8L2E+IEkg
-cHV0IGJ1aWxkLW1pY3JvY2hpcCBpbiB0aGUgcG9reSBkaXJlY3RvcnksIGFzIHBlciBtZXRhLXJh
-c3BiZXJyeXBpIEkgcHV0IHJwaS1idWlsZCBkaXJlY3RvcnkgaW4gcGFyYWxsZWwgd2l0aCB0aGUg
-cG9reSBkaXJlY3RvcnkuIDxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PldoaWNoIGlzIGNv
-cnJlY3Q/IDxicj48L2Rpdj48ZGl2PkNvdWxkIHRoaXMgYmUgY2F1c2luZyB0aGUgaXNzdWU/PGJy
-PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+VGhhbmtzLDwvZGl2PjxkaXY+PGJyPjwvZGl2Pjxk
-aXY+T3dlbjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PmBgYDxicj48L2Rpdj48ZGl2Pi48
-YnI+4pSc4pSA4pSAIENoYW5nZUxvZzxicj7ilJzilIDilIAgbG9jYWxDYWNoZTxicj7ilILCoMKg
-IOKUnOKUgOKUgCBkb3dubG9hZHM8YnI+4pSCwqDCoCDilJzilIDilIAgc2V0dXAudHh0PGJyPuKU
-gsKgwqAg4pSU4pSA4pSAIHNzdGF0ZS1jYWNoZTxicj7ilJzilIDilIAgbWV0YS1hdG1lbDxicj7i
-lILCoMKgIOKUnOKUgOKUgCBjb25mPGJyPuKUgsKgwqAg4pSc4pSA4pSAIENPUFlJTkcuTUlUPGJy
-PuKUgsKgwqAg4pSc4pSA4pSAIGR5bmFtaWMtbGF5ZXJzPGJyPuKUgsKgwqAg4pSc4pSA4pSAIGZs
-YXNoaW5nLnR4dDxicj7ilILCoMKgIOKUnOKUgOKUgCBsaWNlbnNlczxicj7ilILCoMKgIOKUnOKU
-gOKUgCBSRUFETUU8YnI+4pSCwqDCoCDilJzilIDilIAgcmVjaXBlcy1hdG1lbDxicj7ilILCoMKg
-IOKUnOKUgOKUgCByZWNpcGVzLWJzcDxicj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLWNvbm5l
-Y3Rpdml0eTxicj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLWNvcmU8YnI+4pSCwqDCoCDilJzi
-lIDilIAgcmVjaXBlcy1kZXZ0b29sczxicj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLWVndDxi
-cj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLWdyYXBoaWNzPGJyPuKUgsKgwqAg4pSc4pSA4pSA
-IHJlY2lwZXMta2VybmVsPGJyPuKUgsKgwqAg4pSc4pSA4pSAIHJlY2lwZXMtbXVsdGltZWRpYTxi
-cj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLXNlY3VyaXR5PGJyPuKUgsKgwqAg4pSc4pSA4pSA
-IHJlY2lwZXMtc3VwcG9ydDxicj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLXV0aWxzPGJyPuKU
-gsKgwqAg4pSU4pSA4pSAIHNjcmlwdHM8YnI+4pSc4pSA4pSAIG1ldGEtYXdzPGJyPuKUgsKgwqAg
-4pSc4pSA4pSAIENPREVfT0ZfQ09ORFVDVC5tZDxicj7ilILCoMKgIOKUnOKUgOKUgCBjb25mPGJy
-PuKUgsKgwqAg4pSc4pSA4pSAIENPTlRSSUJVVElORy5tZDxicj7ilILCoMKgIOKUnOKUgOKUgCBp
-bWFnZXM8YnI+4pSCwqDCoCDilJzilIDilIAgTElDRU5TRTxicj7ilILCoMKgIOKUnOKUgOKUgCBx
-YTxicj7ilILCoMKgIOKUnOKUgOKUgCBSRUFETUUubWQ8YnI+4pSCwqDCoCDilJzilIDilIAgcmVj
-aXBlcy1jbG91ZDxicj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLWRldnRvb2xzPGJyPuKUgsKg
-wqAg4pSc4pSA4pSAIHJlY2lwZXMtZXh0ZXJuYWw8YnI+4pSCwqDCoCDilJzilIDilIAgcmVjaXBl
-cy1pb3Q8YnI+4pSCwqDCoCDilJzilIDilIAgcmVjaXBlcy1tdWx0aW1lZGlhPGJyPuKUgsKgwqAg
-4pSc4pSA4pSAIHJlY2lwZXMtbmVvLWFpPGJyPuKUgsKgwqAg4pSc4pSA4pSAIHJlY2lwZXMtc2Rr
-PGJyPuKUgsKgwqAg4pSU4pSA4pSAIHJlY2lwZXMtc3VwcG9ydDxicj7ilJzilIDilIAgbWV0YS1v
-cGVuZW1iZWRkZWQ8YnI+4pSCwqDCoCDilJzilIDilIAgY29udHJpYjxicj7ilILCoMKgIOKUnOKU
-gOKUgCBDT1BZSU5HLk1JVDxicj7ilILCoMKgIOKUnOKUgOKUgCBtZXRhLWZpbGVzeXN0ZW1zPGJy
-PuKUgsKgwqAg4pSc4pSA4pSAIG1ldGEtZ25vbWU8YnI+4pSCwqDCoCDilJzilIDilIAgbWV0YS1p
-bml0cmFtZnM8YnI+4pSCwqDCoCDilJzilIDilIAgbWV0YS1tdWx0aW1lZGlhPGJyPuKUgsKgwqAg
-4pSc4pSA4pSAIG1ldGEtbmV0d29ya2luZzxicj7ilILCoMKgIOKUnOKUgOKUgCBtZXRhLW9lPGJy
-PuKUgsKgwqAg4pSc4pSA4pSAIG1ldGEtcGVybDxicj7ilILCoMKgIOKUnOKUgOKUgCBtZXRhLXB5
-dGhvbjxicj7ilILCoMKgIOKUnOKUgOKUgCBtZXRhLXdlYnNlcnZlcjxicj7ilILCoMKgIOKUnOKU
-gOKUgCBtZXRhLXhmY2U8YnI+4pSCwqDCoCDilJTilIDilIAgUkVBRE1FPGJyPuKUnOKUgOKUgCBt
-ZXRhLXF0Njxicj7ilILCoMKgIOKUnOKUgOKUgCBjbGFzc2VzPGJyPuKUgsKgwqAg4pSc4pSA4pSA
-IGNvaW48YnI+4pSCwqDCoCDilJzilIDilIAgY29uZjxicj7ilILCoMKgIOKUnOKUgOKUgCBDT1BZ
-SU5HLk1JVDxicj7ilILCoMKgIOKUnOKUgOKUgCBsaWNlbnNlczxicj7ilILCoMKgIOKUnOKUgOKU
-gCBSRUFETUUubWQ8YnI+4pSCwqDCoCDilJzilIDilIAgcmVjaXBlcy1jb3JlPGJyPuKUgsKgwqAg
-4pSc4pSA4pSAIHJlY2lwZXMtZGV2dG9vbHM8YnI+4pSCwqDCoCDilJTilIDilIAgcmVjaXBlcy1x
-dDxicj7ilJzilIDilIAgbWV0YS1yYXNwYmVycnlwaTxicj7ilILCoMKgIOKUnOKUgOKUgCBjbGFz
-c2VzPGJyPuKUgsKgwqAg4pSc4pSA4pSAIGNvbmY8YnI+4pSCwqDCoCDilJzilIDilIAgQ09QWUlO
-Ry5NSVQ8YnI+4pSCwqDCoCDilJzilIDilIAgZG9jczxicj7ilILCoMKgIOKUnOKUgOKUgCBkeW5h
-bWljLWxheWVyczxicj7ilILCoMKgIOKUnOKUgOKUgCBmaWxlczxicj7ilILCoMKgIOKUnOKUgOKU
-gCBrYXMtcG9reS1ycGkueW1sPGJyPuKUgsKgwqAg4pSc4pSA4pSAIGxpYjxicj7ilILCoMKgIOKU
-nOKUgOKUgCBSRUFETUUubWQ8YnI+4pSCwqDCoCDilJzilIDilIAgcmVjaXBlcy1ic3A8YnI+4pSC
-wqDCoCDilJzilIDilIAgcmVjaXBlcy1jb25uZWN0aXZpdHk8YnI+4pSCwqDCoCDilJzilIDilIAg
-cmVjaXBlcy1jb3JlPGJyPuKUgsKgwqAg4pSc4pSA4pSAIHJlY2lwZXMtZGV2dG9vbHM8YnI+4pSC
-wqDCoCDilJzilIDilIAgcmVjaXBlcy1ncmFwaGljczxicj7ilILCoMKgIOKUnOKUgOKUgCByZWNp
-cGVzLWtlcm5lbDxicj7ilILCoMKgIOKUnOKUgOKUgCByZWNpcGVzLW11bHRpbWVkaWE8YnI+4pSC
-wqDCoCDilJTilIDilIAgd2ljPGJyPuKUnOKUgOKUgCBtZXRhLXN3dXBkYXRlPGJyPuKUgsKgwqAg
-4pSc4pSA4pSAIGNsYXNzZXM8YnI+4pSCwqDCoCDilJzilIDilIAgY29uZjxicj7ilILCoMKgIOKU
-nOKUgOKUgCBDT1BZSU5HLk1JVDxicj7ilILCoMKgIOKUnOKUgOKUgCBSRUFETUU8YnI+4pSCwqDC
-oCDilJzilIDilIAgcmVjaXBlcy1jb3JlPGJyPuKUgsKgwqAg4pSc4pSA4pSAIHJlY2lwZXMtZGV2
-dG9vbHM8YnI+4pSCwqDCoCDilJzilIDilIAgcmVjaXBlcy1leHRlbmRlZDxicj7ilILCoMKgIOKU
-nOKUgOKUgCByZWNpcGVzLWx1YTxicj7ilILCoMKgIOKUlOKUgOKUgCByZWNpcGVzLXN1cHBvcnQ8
-YnI+4pSc4pSA4pSAIHBva3k8YnI+4pSCwqDCoCDilJzilIDilIAgYml0YmFrZTxicj7ilILCoMKg
-IOKUnOKUgOKUgCBidWlsZC1taWNyb2NoaXAtYmFja3VwPGJyPuKUgsKgwqAg4pSc4pSA4pSAIGNv
-bnRyaWI8YnI+4pSCwqDCoCDilJzilIDilIAgZG9jdW1lbnRhdGlvbjxicj7ilILCoMKgIOKUnOKU
-gOKUgCBMSUNFTlNFPGJyPuKUgsKgwqAg4pSc4pSA4pSAIExJQ0VOU0UuR1BMLTIuMC1vbmx5PGJy
-PuKUgsKgwqAg4pSc4pSA4pSAIExJQ0VOU0UuTUlUPGJyPuKUgsKgwqAg4pSc4pSA4pSAIE1FTU9S
-SUFNPGJyPuKUgsKgwqAg4pSc4pSA4pSAIG1ldGE8YnI+4pSCwqDCoCDilJzilIDilIAgbWV0YS1w
-b2t5PGJyPuKUgsKgwqAg4pSc4pSA4pSAIG1ldGEtc2VsZnRlc3Q8YnI+4pSCwqDCoCDilJzilIDi
-lIAgbWV0YS1za2VsZXRvbjxicj7ilILCoMKgIOKUnOKUgOKUgCBtZXRhLXlvY3RvLWJzcDxicj7i
-lILCoMKgIOKUnOKUgOKUgCBvZS1pbml0LWJ1aWxkLWVudjxicj7ilILCoMKgIOKUnOKUgOKUgCBw
-bi1idWlsZGxpc3Q8YnI+4pSCwqDCoCDilJzilIDilIAgUkVBRE1FLmhhcmR3YXJlIC0mZ3Q7IG1l
-dGEteW9jdG8tYnNwL1JFQURNRS5oYXJkd2FyZTxicj7ilILCoMKgIOKUnOKUgOKUgCBSRUFETUUu
-T0UtQ29yZTxicj7ilILCoMKgIOKUnOKUgOKUgCBSRUFETUUucG9reSAtJmd0OyBtZXRhLXBva3kv
-UkVBRE1FLnBva3k8YnI+4pSCwqDCoCDilJzilIDilIAgUkVBRE1FLnFlbXU8YnI+4pSCwqDCoCDi
-lJzilIDilIAgcnBpLWJ1aWxkPGJyPuKUgsKgwqAg4pSc4pSA4pSAIHNjcmlwdHM8YnI+4pSCwqDC
-oCDilJTilIDilIAgdGFzay1kZXBlbmRzLmRvdDxicj7ilJzilIDilIAgcnBpLWJ1aWxkPGJyPuKU
-gsKgwqAg4pSc4pSA4pSAIGJpdGJha2UtY29va2VyZGFlbW9uLmxvZzxicj7ilILCoMKgIOKUnOKU
-gOKUgCBjYWNoZTxicj7ilILCoMKgIOKUnOKUgOKUgCBjb25mPGJyPuKUgsKgwqAg4pSc4pSA4pSA
-IHNzdGF0ZS1jYWNoZTxicj7ilILCoMKgIOKUlOKUgOKUgCB0bXA8YnI+PC9kaXY+PGRpdj48YnI+
-PC9kaXY+PGRpdj5gYGA8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PC9kaXY+DQo=
---00000000000061f5dc05f93908b3--
+I am using meta-microcontroller ( https://github.com/schnitzeltony/meta-mic=
+rocontroller ) to build an AVR image at build-time. The target device will =
+then image the microcontroller at runtime. I want to put the avr utilities =
+into the produce yocto sdk to I can do development for the microcontroller =
+with the same tools its final build will be made with. The meta layer alrea=
+dy provides `-native` variants of the necessary recipes. I am attempting to=
+ create `nativesdk-` variants for the necessary recipes.
+
+I was successfully able to make `nativesdk-avr-binutils` by adding the foll=
+owing line to the recipe:
+
+```
+BBCLASSEXTEND =3D+ "nativesdk"
+```
+
+I do the same to the `avr-gcc` recipe, but I get the following compile erro=
+r when I `bitbake nativesdk-avr-gcc`:
+
+```
+g++: error: unrecognized command line option =E2=80=98-fmacro-prefix-map=3D=
+...
+```
+
+`avr-binutils` builds just fine with the same command line options accordin=
+g to `run.do_compile`, so I feel like the issue has to reside in the `avr-g=
+cc` recipe.
+
+```meta-microcontroller/recipes-avr/avr-gcc/avr-gcc_8.4.0.bb
+SUMMARY =3D "GNU compiler for Microchip (formerly Atmel) AVR microcontrolle=
+rs"
+HOMEPAGE =3D "http://www.gnu.org/software/gcc/"
+SECTION =3D "devel"
+LICENSE =3D "GPLv2+"
+
+LIC_FILES_CHKSUM =3D "\
+file://COPYING;md5=3D59530bdf33659b29e73d4adb9f9f6552 \
+file://COPYING3;md5=3Dd32239bcb673463ab874e80d47fae504 \
+file://COPYING3.LIB;md5=3D6a6a8e020838b23406c81b19c1d46df6 \
+file://COPYING.LIB;md5=3D2d5025d4aa3495befef8f17206a5b0a1 \
+file://COPYING.RUNTIME;md5=3Dfe60d87048567d4fe8c8a0ed2448bcc8 \
+"
+
+inherit autotools gettext texinfo
+
+BBCLASSEXTEND =3D "native nativesdk"
+
+DEPENDS =3D " \
+avr-binutils \
+zlib \
+gawk \
+gmp \
+mpfr \
+libmpc \
+flex \
+"
+DEPENDS_append_class-target =3D " ${BPN}-native"
+
+PE =3D "1"
+
+SRC_URI =3D "https://ftp.gnu.org/gnu/gcc/gcc-${PV}/gcc-${PV}.tar.xz"
+SRC_URI[md5sum] =3D "bb815a8e3b7be43c4a26fa89dbbd9795"
+SRC_URI[sha256sum] =3D "e30a6e52d10e1f27ed55104ad233c30bd1e99cfb5ff98ab022d=
+c941edd1b2dd4"
+
+S =3D "${WORKDIR}/gcc-${PV}"
+
+EXTRA_OECONF =3D " \
+--target=3Davr \
+--program-prefix=3Davr- \
+--enable-languages=3Dc,c++ \
+--enable-c99 \
+--enable-long-long \
+--disable-bootstrap \
+--disable-libmudflap \
+--with-system-zlib \
+--with-build-sysroot=3D${STAGING_DIR_TARGET} \
+"
+
+EXTRA_OECONF_append_class-target =3D " \
+--with-gnu-as \
+--with-gnu-ld \
+--with-as=3D${STAGING_BINDIR_NATIVE}/avr-as \
+--with-ld=3D${STAGING_BINDIR_NATIVE}/avr-ld \
+"
+
+export AR_FOR_TARGET =3D "avr-ar"
+export AS_FOR_TARGET =3D "avr-as"
+export DLLTOOL_FOR_TARGET =3D "avr-dlltool"
+export CC_FOR_TARGET =3D "avr-gcc"
+export CXX_FOR_TARGET =3D "avr-g++"
+export GCC_FOR_TARGET =3D "avr-gcc"
+export LD_FOR_TARGET =3D "avr-ld"
+export LIPO_FOR_TARGET =3D "avr-lipo"
+export NM_FOR_TARGET =3D "avr-nm"
+export OBJDUMP_FOR_TARGET =3D "avr-objdump"
+export RANLIB_FOR_TARGET =3D "avr-ranlib"
+export STRIP_FOR_TARGET =3D "avr-strip"
+export WINDRES_FOR_TARGET =3D "avr-windres"
+
+do_configure_preend_class-target() {
+# broken libtool here - stolen from oe-core gcc-source.inc
+#sed -i -e 's/hardcode_into_libs=3Dyes/hardcode_into_libs=3Dno/' ${S}/libcc=
+1/configure
+}
+
+do_configure() {
+(cd ${S} && gnu-configize)
+
+oe_runconf
+}
+
+do_install_append() {
+# fix some host contamination - TBD: fix properly
+for file in `find ${D}/${libdir}/gcc/avr/${PV}/include`; do
+chown root:root $file
+done
+for file in `find ${D}/${libdir}/gcc/avr/${PV}/include-fixed`; do
+chown root:root $file
+done
+
+# remove some files conflicting with target utils
+rm -rf ${D}/${datadir}/locale
+rm -rf ${D}/${datadir}/info
+rm -rf ${D}/${datadir}/man/man7
+}
+
+FILES_${PN} +=3D "${libdir}/gcc/avr"
+
+FILES_${PN}-staticdev +=3D " \
+${libdir}/gcc/avr/${PV}/*.a \
+${libdir}/gcc/avr/${PV}/*/*.a \
+${libdir}/gcc/avr/${PV}/*/*/*.a \
+"
+
+# as long as there is no other libc we can pin avr-libc
+RDEPENDS_${PN}_class-target +=3D " \
+${PN}-staticdev \
+avr-libc \
+"
+
+INSANE_SKIP_${PN} =3D "dev-so"
+```
+
+I feel like there's some funny-business in the dependencies that may be mes=
+sing thing up, but I am not familiar enough with `-native`, and `nativesdk-=
+` variants to say what's wrong.
+
+Thank you,
+Logan
+
+--T0rNtx6mF6KzG9bfrTQ3
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br /><br />I am using <a href=3D"https://github.com/schnitzeltony/meta-=
+microcontroller" target=3D"_blank" rel=3D"noopener">meta-microcontroller</a=
+> to build an AVR image at build-time. The target device will then image th=
+e microcontroller at runtime. I want to put the avr utilities into the prod=
+uce yocto sdk to I can do development for the microcontroller with the same=
+ tools its final build will be made with. The meta layer already provides `=
+-native` variants of the necessary recipes. I am attempting to create `nati=
+vesdk-` variants for the necessary recipes.<br /><br />I was successfully a=
+ble to make `nativesdk-avr-binutils` by adding the following line to the re=
+cipe:<br /><br />```<br />BBCLASSEXTEND =3D+ "nativesdk"<br />```<br /><br =
+/>I do the same to the `avr-gcc` recipe, but I get the following compile er=
+ror when I `bitbake nativesdk-avr-gcc`:<br /><br />```<br />g++: error: unr=
+ecognized command line option &lsquo;-fmacro-prefix-map=3D...<br />```<br /=
+><br />`avr-binutils` builds just fine with the same command line options a=
+ccording to `run.do_compile`, so I feel like the issue has to reside in the=
+ `avr-gcc` recipe.<br /><br />```meta-microcontroller/recipes-avr/avr-gcc/a=
+vr-gcc_8.4.0.bb<br />SUMMARY =3D "GNU compiler for Microchip (formerly Atme=
+l) AVR microcontrollers"<br />HOMEPAGE =3D "http://www.gnu.org/software/gcc=
+/"<br />SECTION =3D "devel"<br />LICENSE =3D "GPLv2+"<br /><br />LIC_FILES_=
+CHKSUM =3D "\<br />&nbsp;&nbsp;&nbsp; file://COPYING;md5=3D59530bdf33659b29=
+e73d4adb9f9f6552 \<br />&nbsp;&nbsp;&nbsp; file://COPYING3;md5=3Dd32239bcb6=
+73463ab874e80d47fae504 \<br />&nbsp;&nbsp;&nbsp; file://COPYING3.LIB;md5=3D=
+6a6a8e020838b23406c81b19c1d46df6 \<br />&nbsp;&nbsp;&nbsp; file://COPYING.L=
+IB;md5=3D2d5025d4aa3495befef8f17206a5b0a1 \<br />&nbsp;&nbsp;&nbsp; file://=
+COPYING.RUNTIME;md5=3Dfe60d87048567d4fe8c8a0ed2448bcc8 \<br />"<br /><br />=
+inherit autotools gettext texinfo<br /><br />BBCLASSEXTEND =3D "native nati=
+vesdk"<br /><br />DEPENDS =3D " \<br />&nbsp;&nbsp;&nbsp; avr-binutils \<br=
+ />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zlib \<br />&nbsp;&nbsp;&nbsp=
+; gawk \<br />&nbsp;&nbsp;&nbsp; gmp \<br />&nbsp;&nbsp;&nbsp; mpfr \<br />=
+&nbsp;&nbsp;&nbsp; libmpc \<br />&nbsp;&nbsp;&nbsp; flex \<br />"<br />DEPE=
+NDS_append_class-target =3D " ${BPN}-native"<br /><br />PE =3D "1"<br /><br=
+ />SRC_URI =3D "https://ftp.gnu.org/gnu/gcc/gcc-${PV}/gcc-${PV}.tar.xz"<br =
+/>SRC_URI[md5sum] =3D "bb815a8e3b7be43c4a26fa89dbbd9795"<br />SRC_URI[sha25=
+6sum] =3D "e30a6e52d10e1f27ed55104ad233c30bd1e99cfb5ff98ab022dc941edd1b2dd4=
+"<br /><br />S =3D "${WORKDIR}/gcc-${PV}"<br /><br />EXTRA_OECONF =3D " \<b=
+r />&nbsp;&nbsp;&nbsp; --target=3Davr \<br />&nbsp;&nbsp;&nbsp; --program-p=
+refix=3Davr- \<br />&nbsp;&nbsp;&nbsp; --enable-languages=3Dc,c++ \<br />&n=
+bsp;&nbsp;&nbsp; --enable-c99 \<br />&nbsp;&nbsp;&nbsp; --enable-long-long =
+\<br />&nbsp;&nbsp;&nbsp; --disable-bootstrap \<br />&nbsp;&nbsp;&nbsp; --d=
+isable-libmudflap \<br />&nbsp;&nbsp;&nbsp; --with-system-zlib \<br />&nbsp=
+;&nbsp;&nbsp; --with-build-sysroot=3D${STAGING_DIR_TARGET} \<br />"<br /><b=
+r />EXTRA_OECONF_append_class-target =3D " \<br />&nbsp;&nbsp;&nbsp; --with=
+-gnu-as \<br />&nbsp;&nbsp;&nbsp; --with-gnu-ld \<br />&nbsp;&nbsp;&nbsp; -=
+-with-as=3D${STAGING_BINDIR_NATIVE}/avr-as \<br />&nbsp;&nbsp;&nbsp; --with=
+-ld=3D${STAGING_BINDIR_NATIVE}/avr-ld \<br />"<br /><br />export AR_FOR_TAR=
+GET =3D "avr-ar"<br />export AS_FOR_TARGET =3D "avr-as"<br />export DLLTOOL=
+_FOR_TARGET =3D "avr-dlltool"<br />export CC_FOR_TARGET =3D "avr-gcc"<br />=
+export CXX_FOR_TARGET =3D "avr-g++"<br />export GCC_FOR_TARGET =3D "avr-gcc=
+"<br />export LD_FOR_TARGET =3D "avr-ld"<br />export LIPO_FOR_TARGET =3D "a=
+vr-lipo"<br />export NM_FOR_TARGET =3D "avr-nm"<br />export OBJDUMP_FOR_TAR=
+GET =3D "avr-objdump"<br />export RANLIB_FOR_TARGET =3D "avr-ranlib"<br />e=
+xport STRIP_FOR_TARGET =3D "avr-strip"<br />export WINDRES_FOR_TARGET =3D "=
+avr-windres"<br /><br />do_configure_preend_class-target() {<br />&nbsp;&nb=
+sp;&nbsp; # broken libtool here - stolen from oe-core gcc-source.inc<br />&=
+nbsp;&nbsp;&nbsp; #sed -i -e 's/hardcode_into_libs=3Dyes/hardcode_into_libs=
+=3Dno/' ${S}/libcc1/configure<br />}<br /><br />do_configure() {<br />&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (cd ${S} &amp;&amp; gnu-configize)<br=
+ /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oe_runconf<br />}<br />=
+<br />do_install_append() {<br />&nbsp;&nbsp;&nbsp; # fix some host contami=
+nation - TBD: fix properly<br />&nbsp;&nbsp;&nbsp; for file in `find ${D}/$=
+{libdir}/gcc/avr/${PV}/include`; do<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; chown root:root $file<br />&nbsp;&nbsp;&nbsp; done<br />&nbsp;&nbs=
+p;&nbsp; for file in `find ${D}/${libdir}/gcc/avr/${PV}/include-fixed`; do<=
+br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; chown root:root $file<br />=
+&nbsp;&nbsp;&nbsp; done<br /><br />&nbsp;&nbsp;&nbsp; # remove some files c=
+onflicting with target utils<br />&nbsp;&nbsp;&nbsp; rm -rf ${D}/${datadir}=
+/locale<br />&nbsp;&nbsp;&nbsp; rm -rf ${D}/${datadir}/info<br />&nbsp;&nbs=
+p;&nbsp; rm -rf ${D}/${datadir}/man/man7<br />}<br /><br />FILES_${PN} +=3D=
+ "${libdir}/gcc/avr"<br /><br />FILES_${PN}-staticdev +=3D " \<br />&nbsp;&=
+nbsp;&nbsp; ${libdir}/gcc/avr/${PV}/*.a \<br />&nbsp;&nbsp;&nbsp; ${libdir}=
+/gcc/avr/${PV}/*/*.a \<br />&nbsp;&nbsp;&nbsp; ${libdir}/gcc/avr/${PV}/*/*/=
+*.a \<br />"<br /><br /># as long as there is no other libc we can pin avr-=
+libc<br />RDEPENDS_${PN}_class-target +=3D " \<br />&nbsp;&nbsp;&nbsp; ${PN=
+}-staticdev \<br />&nbsp;&nbsp;&nbsp; avr-libc \<br />"<br /><br />INSANE_S=
+KIP_${PN} =3D "dev-so"<br />```<br /><br />I feel like there's some funny-b=
+usiness in the dependencies that may be messing thing up, but I am not fami=
+liar enough with `-native`, and `nativesdk-` variants to say what's wrong.<=
+br /><br />Thank you,<br />Logan
+
+--T0rNtx6mF6KzG9bfrTQ3--
 
