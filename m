@@ -1,77 +1,81 @@
-Return-Path: <luca.ceresoli@bootlin.com>
+Return-Path: <marek.belisko@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70FCAC77B76
-	for <webhook@archiver.kernel.org>; Fri, 14 Apr 2023 09:52:10 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
- by mx.groups.io with SMTP id smtpd.web10.5358.1681465925294419559
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E470C7619A
+	for <webhook@archiver.kernel.org>; Sat, 15 Apr 2023 06:00:35 +0000 (UTC)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web11.2253.1681538431571837930
  for <yocto@lists.yoctoproject.org>;
- Fri, 14 Apr 2023 02:52:05 -0700
+ Fri, 14 Apr 2023 23:00:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=IwnULa/r;
- spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: luca.ceresoli@bootlin.com)
-Received: from booty (unknown [77.244.183.192])
-	(Authenticated sender: luca.ceresoli@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id C55F6FF810;
-	Fri, 14 Apr 2023 09:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1681465923;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=F8mu+uitaglktmAWBHP8kih6Vfv4qzd1ZFzIiteUDv0=;
-	b=IwnULa/rUCgqGdVHEERxCSKqZMbuZYyd2+1tmSUtuwX9cPt14SkXIWAXFeOcHcqJjfrMys
-	OsXlIoWsnl/zIOH42A6XwoSm3qL9kFZ3qDcQL9jBtwGYjQuvUHgTWUFJ1UioDyXADkdUQ8
-	AR3mh70KX0NaSU2cXPWdiESdGqv63y6p8f7Qe1jj62nC4Ht8GvcM5JpIaG3mfG9qxaBMT+
-	JdC9rFcQ3sBRHfmxtp8JJmMxpdNEN9xdzaHgXLXDnXn3CfzrEcVrw0sf1kBzr8rwOSyzAu
-	+fOvRtFAUoTEzBmH8Vgkc43bRnCO1BIbi4oWptK/MOwG0S8ywvet+irT6PD9Mw==
-Date: Fri, 14 Apr 2023 11:52:01 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: "Electronic Consult" <electronicconsult1@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Correct build folder location
-Message-ID: <20230414115201.287b9368@booty>
-In-Reply-To: <16939.1681415548979400315@lists.yoctoproject.org>
-References: <CAGUWaEHR=xLzTNfyJGAD7Psg0S4k_eQd3dO+sL2-wZpjqxR8vw@mail.gmail.com>
-	<16939.1681415548979400315@lists.yoctoproject.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=MXXR8fXI;
+ spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: marek.belisko@gmail.com)
+Received: by mail-lj1-f172.google.com with SMTP id n22so19449352ljq.8
+        for <yocto@lists.yoctoproject.org>; Fri, 14 Apr 2023 23:00:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681538429; x=1684130429;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=f/rN6LioSWkXRdSStMn0Q+m7mbf0Gn2JCNEjWCk3udU=;
+        b=MXXR8fXIZxyG7VTY/71bRs9gf2F5oAjYzjU/FXM5cf7RHAbS0ta4WxuM+Hp4i7Cvf1
+         xXVHWCqhKtK4QLtmsW+5lOAQGbGSciY9fpcGtzygt3NTBYpK1pgp88oTEEUmSApJGnQ/
+         F8ObxVFA55WnOQNoDSeBvrFULYB9GYEYKInWGT9LWg0/Gf0K8Uz5H1jRCQ0cbrNoEZWO
+         V4Vj/eorA/appbWIsQJw9r/JZ9ngyJNM0wx1vy7KPOcUMo5ZfFPDOMtHeqhLYy4ekORk
+         qVyZKvgkfeZJmDKc+judKuCH5IsMeakmv2Uc9EDtsSIGLbl12UU6NBJ/IB6Ww0Of6bCO
+         06iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681538429; x=1684130429;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f/rN6LioSWkXRdSStMn0Q+m7mbf0Gn2JCNEjWCk3udU=;
+        b=lhHxYMKAz35GIHtxtwGvZ45WrEnVldB3QTuUpBKntO2xkb7nEQiUNyjj3MKx/hxlSd
+         DtEXgo4yugNZJiazSsAhNPY0gArtoyK0iTg0JlAvxOoV/HR3crMsXNUVFoqN1p2c22D3
+         Y617RhrjoKUdTUu/qcUfNtdMzRGGKhRqRi7wVemuYqlwc59MlCtRzgosDoEzQFO4CJXX
+         AqE8EB6Q2p35e5g0S30e957wtU1gpBFOAh89aebvpjqfqBa0lo/LpzF1ejHFZHrhETyO
+         7B/z5aZUMToWpqP9LSpumP0NrJ/lju02dkCXwRQZyiTOwkmvkMT3MZwke9E3WJvNUjbW
+         NJFg==
+X-Gm-Message-State: AAQBX9cVngQQHmO13EqrFjBkhG8KFiJG12ZgvnsYyOh2TeU3Vf8iWWMI
+	l4RAWLx5ocWf17t+of4TCpsribq+zjlokPS9GKWEGybU
+X-Google-Smtp-Source: AKy350YH3PvH42B/Eii6dULtfxdK+TH7bKteJlGHIzjEGyxDba43OJhWdA3JZBnwyQQsjMPFg5oZYk0hOdYjENTQs58=
+X-Received: by 2002:a2e:8ec9:0:b0:2a7:73d8:d681 with SMTP id
+ e9-20020a2e8ec9000000b002a773d8d681mr2666396ljl.2.1681538429120; Fri, 14 Apr
+ 2023 23:00:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Sat, 15 Apr 2023 08:00:17 +0200
+Message-ID: <CAAfyv36rRHEQL+UQziYFtgkUW5tQGn6X3J8_As=77V5oKFHGFQ@mail.gmail.com>
+Subject: meta-rockchip: rock-pi-e kirkstone no audio card
+To: Yocto <yocto@lists.yoctoproject.org>
+Cc: Trevor Woerner <twoerner@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 14 Apr 2023 09:52:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59715
+ <yocto@lists.yoctoproject.org>; Sat, 15 Apr 2023 06:00:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59716
 
-Hello,
+Hi,
 
-On Thu, 13 Apr 2023 12:52:28 -0700
-"Electronic Consult" <electronicconsult1@gmail.com> wrote:
+I'm building a yocto for a rock-pi-e machine using kirkstone release.
+Board boots fine but there is no audio card when checked with aplay
+command. I've dug into kernel config and there was missing codec
+driver but after adding there is still no audio. Any other ideas
+before I dig into kernel hacking?
 
-> As an update for anyone looking at this..
-> 
-> I managed to get the raspberry pi build going. It seems after running
-> 
-> source oe-init-build-env rpi-build
-> the local.conf from meta-atmel was copied into the rpi-build folder.
+Thanks and BR,
 
-The selection of the sample local.conf depends on the TEMPLATECONF
-variable. You likely followed the meta-atmel instructions
-(https://github.com/linux4sam/meta-atmel/blob/kirkstone/README) which,
-at step 6, ask you to set TEMPLATECONF to point to the meta-atmel
-sample files.
-
-Just skip step 6.
-
-Best regards,
-Luca
+marek
 
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
