@@ -1,669 +1,1073 @@
-Return-Path: <hassanchattarki@gmail.com>
+Return-Path: <ncaidin@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3921DC6FD18
-	for <webhook@archiver.kernel.org>; Tue, 18 Apr 2023 11:38:13 +0000 (UTC)
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
- by mx.groups.io with SMTP id smtpd.web11.6140.1681817884413686109
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 222EEC77B75
+	for <webhook@archiver.kernel.org>; Tue, 18 Apr 2023 14:58:44 +0000 (UTC)
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+ by mx.groups.io with SMTP id smtpd.web10.11262.1681829919841189105
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Apr 2023 04:38:04 -0700
+ Tue, 18 Apr 2023 07:58:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=UFhv0uVw;
- spf=pass (domain: gmail.com, ip: 209.85.218.45, mailfrom: hassanchattarki@gmail.com)
-Received: by mail-ej1-f45.google.com with SMTP id c9so33488287ejz.1
-        for <yocto@lists.yoctoproject.org>; Tue, 18 Apr 2023 04:38:04 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=UJ8k7udU;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.166.169, mailfrom: ncaidin@linuxfoundation.org)
+Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-32a7770f7d1so34058225ab.1
+        for <yocto@lists.yoctoproject.org>; Tue, 18 Apr 2023 07:58:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681817882; x=1684409882;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+        d=linuxfoundation.org; s=google; t=1681829919; x=1684421919;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=DN9yix1DStAuYnua2HDZGjK6WVV3OYqPjMsg54mg2b8=;
-        b=UFhv0uVwIZATGtiuvDIN8eJivxAZFTrakFAZG0LwdM3Jn53ufkiC7Jg2LZ5ZKsHHZH
-         sWQCWY1OBEbKYbA1O2SrA9JrGV+0JpwHTAmpcnIR93Go3444CWWJFAVMSE0WAGiGWDzb
-         TpJfsco1I7kfcN481zrV8P3LuFyOB4cxKIR7v8PRUGuRI6xJutnGkFrdVCR54PyPvtEd
-         zePnOdl9xCBYdfv0Wo0fLJM9J7BTvacjxVceARAdm5XUlgrK4rbAeuc5Mw4FXf0Qc95A
-         BtJbtt/I5UuVlCA+1tZeRg7M3lQd6NgYggEgQCnQVOY9JtB5uYvJiO8zyOnJzQXFihK8
-         BGWg==
+        bh=wejgYGgQJwQVQ4b9pVj379nA12sgqXmFj+G/tZhNkAk=;
+        b=UJ8k7udUWtJXvcdDrSgeMmFG1KmU0nvwNwSAXFcpWlSuMXFON4rOms9MzwMtxpTsPv
+         tjoI/qUD72Ngt7En/MaLUrZefISN/Lx+Wnuy6344il4ojjZ1+bCfmUELgcYtTe4ha5J3
+         /XfjKZjIzWIKGoykO5M4sO7KwIpRIZapS4blY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681817882; x=1684409882;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=1e100.net; s=20221208; t=1681829919; x=1684421919;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DN9yix1DStAuYnua2HDZGjK6WVV3OYqPjMsg54mg2b8=;
-        b=QxXxT055AamCbc67FsFZuJMOOzRAYRmY/NDaDSoKiyJBuMOs0ZX8BVBOn+X7/OYXCM
-         AmcYzOuZNxnuJX973TKw+d/OV+96SXK8yhhe43kplcZvb3UCAPn0PfZTqq+KU/hCHJ6y
-         A83uFFFzTJWeSWjuIG4mCWHo9XyN4b3dE5/m94mbMjPfYjU87aYJ+H1vRmlb3x3nqsk2
-         7DF9U6OUBp3yDIDoJQHLY9J9ztKddslueekEJLxWMxHvHxMs8hNXmLuLwcGagl/CiM4e
-         6urLRA9zi27zrPEwEtk77JqIUBoHiBY57aYWfM4BpyP7xSur8/2WrT3i8g5RN8AEsfT8
-         pGtw==
-X-Gm-Message-State: AAQBX9c1B1RvL693cUsONYV4YiHgDP+elMbjmUZ+eRRgkL5f8l67n/J3
-	uy8Sf6Tksuw6kzgOhKCuVZKTIcktdrlzZPYbkWJ2OfkKJvI=
-X-Google-Smtp-Source: AKy350YFWXpzNJ38Q1xpuuPg+L7JUhdQs0K+8uQXSzEM9Pr3mF5ZQZF/78mVe0BpR847c8/jg9ITuJJb3jQi6Lb0jd8=
-X-Received: by 2002:a17:906:7693:b0:94f:bb76:f4aa with SMTP id
- o19-20020a170906769300b0094fbb76f4aamr3373744ejm.9.1681817882185; Tue, 18 Apr
- 2023 04:38:02 -0700 (PDT)
+        bh=wejgYGgQJwQVQ4b9pVj379nA12sgqXmFj+G/tZhNkAk=;
+        b=Jn5YLQwPPQO6vx5sODZVBTXhU96xrvvWDZWElnWUQKHOC0stjwcZ8G+xoMCWfjlD56
+         YpBXaXSTaj5cFiupAAAGm5/B5OSYfkpI/IA9Pg/Pnyg+92VJPoZWw3nYrSd2ovnQHccU
+         2mAErNjAMMriEbvbumJ81gSUDzqQ6qntr52ECgwhfitFKUK+z8H7arQ/+7rcun3dC+IK
+         xj4xcGOm9rToLdfk9U0wWDic4ptGiLd8u23ACBdnX7iA8ncCZpajPF/34dz73cd0w1dQ
+         hQ7QYItMYDqE2z/E2c5psYpgnjYDAbKXioHp/ckmaNY7lSerFReXt6XlnVEnziYfjHq/
+         oY/w==
+X-Gm-Message-State: AAQBX9dKWYWwZPq4gish6+qLUEZhdboPQbEBACPHTmA2v4KlRQcVFuEO
+	3kQGNF2Oo6ZPHRHUN5TCw/JU3nd213y3AfCdQdOkPU5QQ7s+mHd5+fhDzg==
+X-Google-Smtp-Source: AKy350Yih9K7YQMjWGlL310c5cSq8xKezQZYlCgzOlumB8GCgrhoo0B/hT8HQ4M/wfg/q3pVogFoj35vhgWay0TAqVY=
+X-Received: by 2002:a02:a1c1:0:b0:40f:9ab9:c43e with SMTP id
+ o1-20020a02a1c1000000b0040f9ab9c43emr1624939jah.3.1681829918798; Tue, 18 Apr
+ 2023 07:58:38 -0700 (PDT)
 MIME-Version: 1.0
-From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Date: Tue, 18 Apr 2023 17:07:50 +0530
-Message-ID: <CAPJWBniMmKSvgEpAR9EBgu921ojQ0nvSq=fWiPVya3vseAOy1w@mail.gmail.com>
-Subject: error adding symbols: DSO missing from command line
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/mixed; boundary="00000000000072098b05f99abd18"
+From: Neal Caidin <ncaidin@linuxfoundation.org>
+Date: Tue, 18 Apr 2023 10:58:20 -0400
+Message-ID: <CAODMxs+YXXumsOJBg=A4Mj7y9TJoJ2nGPaTKoJA-R8auKXR5Ng@mail.gmail.com>
+Subject: Yocto Project Status 18 April 2023 (WW16)
+To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org
+Cc: Stephen Jolley <sjolley.yp.pm@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000e2122905f99d8a09"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 18 Apr 2023 11:38:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59721
+ <yocto@lists.yoctoproject.org>; Tue, 18 Apr 2023 14:58:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59722
 
---00000000000072098b05f99abd18
-Content-Type: multipart/alternative; boundary="00000000000072098905f99abd16"
-
---00000000000072098905f99abd16
+--000000000000e2122905f99d8a09
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi guys,
-I am trying to build a custom application for my build but facing the
-following error,
-vice-discovery-host.o  -lreadline -lncurses  -lm -lpthread -o
-./build/exe/hostforEdge3
-|
+Current Dev Position: YP 4.3 M1
 
+Next Deadline: 28th April 2023 YP 4.2 Release
 
+Next Team Meetings:
 
+   -
 
+   Bug Triage meeting Thursday April 20th 7:30 am PDT (
+   https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
+   -
 
-* aarch64-poky-linux-ld: build/backchannel-support.o: undefined reference
-to symbol 'socket@@GLIBC_2.17'| aarch64-poky-linux-ld:
-/home/mohan/amlogic/build/tmp/work/aarch64-poky-linux/zigbee/0.1-r0/recipe-sysroot/lib64/libc.so.6:
-error adding symbols: DSO missing from command line| make: ***
-[Makefile:415: build/exe/hostforEdge3] Error 1| ERROR: oe_runmake failed|
-WARNING: exit code 1 from a shell command.| ERROR: Execution of
-'/home/mohan/amlogic/build/tmp/work/aarch64-poky-linux/zigbee/0.1-r0/temp/run.do_compile.211997'
-failed with exit code 1ERROR: Task
-(/home/mohan/amlogic/meta-c/recipes-example/zigbee/zigbee_0.1.bb:do_compile)
-failed with exit code '1'*
-I checked for the missing lib.so.6 file using *ldconfig -p | grep libc.so.6
-*command and this is what I got,
+   Weekly Project Engineering Sync Tuesday April 18th at 8 am PDT (
+   https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09)
+   <https://zoom.us/j/990892712>
+   -
+
+   Twitch -  See https://www.twitch.tv/theyoctojester
 
 
+Key Status/Updates:
 
-*libc.so.6 (libc6,x32, OS ABI: Linux 3.4.0) => /libx32/libc.so.6 libc.so.6
-(libc6,x86-64, OS ABI: Linux 3.2.0) => /lib/x86_64-linux-gnu/libc.so.6
-libc.so.6 (libc6, OS ABI: Linux 3.2.0) => /lib/i386-linux-gnu/libc.so.6
-libc.so.6 (libc6, OS ABI: Linux 3.2.0) => /lib32/libc.so.6*
+   -
 
-I am not sure how to add this library to my linker. Can you guys help me
-with this.
+   YP 4.2 rc2 has passed QA and is likely to be released once we have TSC
+   approval and the release notes and migration guide are ready.
+   -
 
-Thanks and regards,
-Hassan
+   YP 4.0.9 passed QA and is also due to be released imminently.
+   -
 
---00000000000072098905f99abd16
+   Patches have started to land in master for 4.3 and the branch is open
+   for development
+   -
+
+   The OE TSC has been discussing some focused work on improving the patch
+   submission and new user documentation. There are currently multiple out =
+of
+   date documents in various wikis and READMEs which contain good informati=
+on
+   but also things which are obsolete. The aim is to identify the documents
+   which should be merged and turn them into one comprehensive document,
+   likely in the Yocto Project documentation set. This new document would a=
+lso
+   address some of the changes in developer background we=E2=80=99re seeing=
+, such as
+   being unfamiliar with mailing lists.
+   -
+
+   We have a growing number of bugs in bugzilla, any help with them is
+   appreciated.
+
+
+Ways to contribute:
+
+   -
+
+   As people are likely aware, the project has a number of components which
+   are either unmaintained, or have people with little to no time trying to
+   keep them alive. These components include: patchtest, layerindex, devtoo=
+l,
+   toaster, wic, oeqa, autobuilder, CROPs containers, pseudo and more. Many
+   have open bugs. Help is welcome in trying to better look after these
+   components!
+   -
+
+   There are bugs identified as possible for newcomers to the project:
+   https://wiki.yoctoproject.org/wiki/Newcomers
+   -
+
+   There are bugs that are currently unassigned for YP 4.2. See:
+   https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.2_Unassigned_E=
+nhancements.2FBugs
+   <https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.1_Unassigned_=
+Enhancements.2FBugs>
+   -
+
+   We=E2=80=99d welcome new maintainers for recipes in OE-Core. Please see =
+the list
+   at:
+   http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/=
+maintainers.inc
+   and discuss with the existing maintainer, or ask on the OE-Core mailing
+   list. We will likely move a chunk of these to =E2=80=9CUnassigned=E2=80=
+=9D soon to help
+   facilitate this.
+   -
+
+   Help is very much welcome in trying to resolve our autobuilder
+   intermittent issues. You can see the list of failures we=E2=80=99re cont=
+inuing to
+   see by searching for the =E2=80=9CAB-INT=E2=80=9D tag in bugzilla:
+   https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-INT.
+   -
+
+   Help us resolve CVE issues: CVE metrics
+   <https://autobuilder.yocto.io/pub/non-release/patchmetrics/>
+
+
+YP 4.2 Milestone Dates:
+
+   -
+
+   P 4.2 M4 Release date 2023/04/28
+
+
+YP 4.3 Milestone Dates:
+
+   -
+
+   YP 4.2 M4 build date 2023/04/03
+   -
+
+   YP 4.2 M4 Release date 2023/04/28
+   -
+
+   YP 4.3 M1 build date  2023/06/05
+   -
+
+   YP 4.3 M1 Release date 2023/06/16
+   -
+
+   YP 4.3 M2 build date  2023/07/17
+   -
+
+   YP 4.3 M2 Release date 2023/07/28
+   -
+
+   YP 4.3 M3 build date  2023/08/28
+   -
+
+   YP 4.3 M3 Release date 2023/09/08
+   -
+
+   YP 4.3 M4 build date  2023/10/02
+   -
+
+   YP 4.3 M4 Release date 2023/10/27
+
+
+Upcoming dot releases:
+
+   -
+
+   YP 4.0.9 building
+   -
+
+   YP 4.0.9 Release date 2023/04/21
+   -
+
+   YP 4.1.4 build date 2023/05/01
+   -
+
+   YP 4.1.4 Release date 2023/05/13
+   -
+
+   YP 3.1.25 build date 2023/05/08
+   -
+
+   YP 3.1.25 Release date 2023/05/19
+   -
+
+   YP 4.0.10 build date 2023/05/15
+   -
+
+   YP 4.0.10 Release date 2023/05/26
+   -
+
+   YP 4.2.1 build date 2023/05/22
+   -
+
+   YP 4.2.1 Release date 2023/06/02
+   -
+
+   YP 3.1.26 build date 2023/06/19
+   -
+
+   YP 3.1.26 Release date 2023/06/30
+   -
+
+   YP 4.0.11 build date 2023/06/26
+   -
+
+   YP 4.0.11 Release date 2023/07/07
+   -
+
+   YP 4.2.2 build date 2023/07/10
+   -
+
+   YP 4.2.2 Release date 2023/07/21
+   -
+
+   YP 3.1.27 build date 2023/07/31
+   -
+
+   YP 3.1.27 Release date 2023/08/11
+   -
+
+   YP 4.0.12 build date 2023/08/07
+   -
+
+   YP 4.0.12 Release date 2023/08/18
+   -
+
+   YP 4.2.3 build date 2023/08/28
+   -
+
+   YP 4.2.3 Release date 2023/09/08
+   -
+
+   YP 3.1.28 build date 2023/09/18
+   -
+
+   YP 3.1.28 Release date 2023/09/29
+   -
+
+   YP 4.0.13 build date 2023/09/25
+   -
+
+   YP 4.0.13 Release date 2023/10/06
+   -
+
+   YP 3.1.29 build date 2023/10/30
+   -
+
+   YP 3.1.29 Release date 2023/11/10
+   -
+
+   YP 4.0.14 build date 2023/11/06
+   -
+
+   YP 4.0.14 Release date 2023/11/17
+   -
+
+   YP 4.2.4 build date 2023/11/13
+   -
+
+   YP 4.2.4 Release date 2023/11/24
+   -
+
+   YP 3.1.30 build date 2023/12/11
+   -
+
+   YP 3.1.30 Release date 2023/12/22
+   -
+
+   YP 4.0.15 build date 2023/12/18
+   -
+
+   YP 4.0.15 Release date 2023/12/29
+
+
+Tracking Metrics:
+
+   -
+
+   WDD 2551 (last week 2531) (
+   https://wiki.yoctoproject.org/charts/combo.html)
+   -
+
+   OE-Core/Poky Patch Metrics
+   -
+
+      Total patches found: 1200 (last week 1200)
+      -
+
+      Patches in the Pending State: 278 (23%) [last week 278 (23%)]
+      -
+
+   https://autobuilder.yocto.io/pub/non-release/patchmetrics/
+
+
+The Yocto Project=E2=80=99s technical governance is through its Technical S=
+teering
+Committee, more information is available at:
+
+https://wiki.yoctoproject.org/wiki/TSC
+
+The Status reports are now stored on the wiki at:
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+[If anyone has suggestions for other information you=E2=80=99d like to see =
+on this
+weekly status update, let us know!]
+
+
+*Neal Caidin*
+Program Manager
+The Linux Foundation
+Durham, NC, U.S.A. - Eastern time zone
++1 (919) 238-9104 (w/h)
++1 (919) 949-1861 (m)
+ncaidin@linuxfoundation.org
+
+--000000000000e2122905f99d8a09
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi=C2=A0guys,<div>I am trying to build a custom applicatio=
-n for my build but facing the following=C2=A0error,</div><div>vice-discover=
-y-host.o =C2=A0-lreadline -lncurses =C2=A0-lm -lpthread -o ./build/exe/host=
-forEdge3<br>|<b> aarch64-poky-linux-ld: build/backchannel-support.o: undefi=
-ned reference to symbol &#39;socket@@GLIBC_2.17&#39;<br>| aarch64-poky-linu=
-x-ld: /home/mohan/amlogic/build/tmp/work/aarch64-poky-linux/zigbee/0.1-r0/r=
-ecipe-sysroot/lib64/libc.so.6: error adding symbols: DSO missing from comma=
-nd line<br>| make: *** [Makefile:415: build/exe/hostforEdge3] Error 1<br>| =
-ERROR: oe_runmake failed<br>| WARNING: exit code 1 from a shell command.<br=
->| ERROR: Execution of &#39;/home/mohan/amlogic/build/tmp/work/aarch64-poky=
--linux/zigbee/0.1-r0/temp/run.do_compile.211997&#39; failed with exit code =
-1<br>ERROR: Task (/home/mohan/amlogic/meta-c/recipes-example/zigbee/zigbee_=
-0.1.bb:do_compile) failed with exit code &#39;1&#39;</b><br></div><div>I ch=
-ecked for the missing lib.so.6 file using=C2=A0<b>ldconfig -p | grep libc.s=
-o.6 </b>command and this is what I got,</div><div><b>libc.so.6 (libc6,x32, =
-OS ABI: Linux 3.4.0) =3D&gt; /libx32/libc.so.6<br>	libc.so.6 (libc6,x86-64,=
- OS ABI: Linux 3.2.0) =3D&gt; /lib/x86_64-linux-gnu/libc.so.6<br>	libc.so.6=
- (libc6, OS ABI: Linux 3.2.0) =3D&gt; /lib/i386-linux-gnu/libc.so.6<br>	lib=
-c.so.6 (libc6, OS ABI: Linux 3.2.0) =3D&gt; /lib32/libc.so.6</b><br></div><=
-div><b><br></b></div><div>I am not sure how to add this library to my linke=
-r. Can you guys help me with this.</div><div><br></div><div>Thanks and rega=
-rds,</div><div>Hassan</div><div><br></div></div>
+<div dir=3D"ltr"><span id=3D"gmail-docs-internal-guid-404bcae3-7fff-6b82-fe=
+c8-5642d2a61434"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(=
+0,0,0);background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline;=
+white-space:pre-wrap">Current Dev Position: YP 4.3 M1</span></p><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-var=
+iant-alternates:normal;vertical-align:baseline;white-space:pre-wrap">Next D=
+eadline: 28th April 2023 YP 4.2 Release</span></p><br><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
+size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alte=
+rnates:normal;vertical-align:baseline;white-space:pre-wrap">Next Team Meeti=
+ngs:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"lt=
+r" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb=
+(0,0,0);background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline=
+;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backg=
+round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-variant-alternates:normal;vertical-align:baseline;white-space:=
+pre-wrap">Bug Triage meeting Thursday April 20th 7:30 am PDT (</span><a hre=
+f=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09" st=
+yle=3D"text-decoration-line:none"><span style=3D"font-size:11pt;background-=
+color:transparent;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;font-variant-alternates:normal;text-decoration-line:underline;vertical-al=
+ign:baseline;white-space:pre-wrap">https://zoom.us/j/454367603?pwd=3DZGxoa2=
+ZXL3FkM3Y0bFd5aVpHVVZ6dz09</span></a><span style=3D"font-size:11pt;backgrou=
+nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;font-variant-alternates:normal;vertical-align:baseline;white-space:pre=
+-wrap">)</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-=
+size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alte=
+rnates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline;white-space:pre-wrap">Weekly Project Engineering S=
+ync Tuesday April 18th at 8 am PDT (</span><a href=3D"https://zoom.us/j/990=
+892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09" style=3D"text-decoration-lin=
+e:none"><span style=3D"font-size:11pt;background-color:transparent;font-var=
+iant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:=
+normal;text-decoration-line:underline;vertical-align:baseline;white-space:p=
+re-wrap">https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09=
+</span></a><a href=3D"https://zoom.us/j/990892712" style=3D"text-decoration=
+-line:none"><span style=3D"font-size:11pt;background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alterna=
+tes:normal;text-decoration-line:underline;vertical-align:baseline;white-spa=
+ce:pre-wrap">)</span></a></p></li><li dir=3D"ltr" style=3D"list-style-type:=
+disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tra=
+nsparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-va=
+riant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pr=
+esentation"><span style=3D"font-size:11pt;background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alterna=
+tes:normal;vertical-align:baseline;white-space:pre-wrap">Twitch -=C2=A0 See=
+ </span><a href=3D"https://www.twitch.tv/theyoctojester" style=3D"text-deco=
+ration-line:none"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;text-decoration-line:underline;vertical-align:baseline;whi=
+te-space:pre-wrap">https://www.twitch.tv/theyoctojester</span></a></p></li>=
+</ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bot=
+tom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);b=
+ackground-color:transparent;font-variant-numeric:normal;font-variant-east-a=
+sian:normal;font-variant-alternates:normal;vertical-align:baseline;white-sp=
+ace:pre-wrap">Key Status/Updates:</span></p><ul style=3D"margin-top:0px;mar=
+gin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11p=
+t;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-vari=
+ant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:n=
+ormal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline;white-space:pre-wrap">YP 4.2 rc2 has passed QA and is like=
+ly to be released once we have TSC approval and the release notes and migra=
+tion guide are ready.</span></p></li><li dir=3D"ltr" style=3D"list-style-ty=
+pe:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:=
+transparent;font-variant-numeric:normal;font-variant-east-asian:normal;font=
+-variant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.9 pas=
+sed QA and is also due to be released imminently.</span></p></li><li dir=3D=
+"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:=
+rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;font-variant-alternates:normal;vertical-align:basel=
+ine;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;font-variant-alternates:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap">Patches have started to land in master for 4.3 and the branch =
+is open for development</span></p></li><li dir=3D"ltr" style=3D"list-style-=
+type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-colo=
+r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fo=
+nt-variant-alternates:normal;vertical-align:baseline;white-space:pre"><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre-wrap">The OE TSC h=
+as been discussing some focused work on improving the patch submission and =
+new user documentation. There are currently multiple out of date documents =
+in various wikis and READMEs which contain good information but also things=
+ which are obsolete. The aim is to identify the documents which should be m=
+erged and turn them into one comprehensive document, likely in the Yocto Pr=
+oject documentation set. This new document would also address some of the c=
+hanges in developer background we=E2=80=99re seeing, such as being unfamili=
+ar with mailing lists.</span></p></li><li dir=3D"ltr" style=3D"list-style-t=
+ype:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color=
+:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre-wrap">We have a gr=
+owing number of bugs in bugzilla, any help with them is appreciated.</span>=
+</p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb=
+(0,0,0);background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline=
+;white-space:pre-wrap">Ways to contribute:</span></p><ul style=3D"margin-to=
+p:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font=
+-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;=
+font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alt=
+ernates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;white-space:pre-wrap">As people are likely aware,=
+ the project has a number of components which are either unmaintained, or h=
+ave people with little to no time trying to keep them alive. These componen=
+ts include: patchtest, layerindex, devtool, toaster, wic, oeqa, autobuilder=
+, CROPs containers, pseudo and more. Many have open bugs. Help is welcome i=
+n trying to better look after these components!</span></p></li><li dir=3D"l=
+tr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rg=
+b(0,0,0);background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-variant-alternates:normal;vertical-align:baselin=
+e;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;back=
+ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
+n:normal;font-variant-alternates:normal;vertical-align:baseline;white-space=
+:pre-wrap">There are bugs identified as possible for newcomers to the proje=
+ct: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Newcomers" style=
+=3D"text-decoration-line:none"><span style=3D"font-size:11pt;background-col=
+or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;f=
+ont-variant-alternates:normal;text-decoration-line:underline;vertical-align=
+:baseline;white-space:pre-wrap">https://wiki.yoctoproject.org/wiki/Newcomer=
+s</span></a></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-siz=
+e:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alterna=
+tes:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D=
+"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><=
+span style=3D"font-size:11pt;background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ve=
+rtical-align:baseline;white-space:pre-wrap">There are bugs that are current=
+ly unassigned for YP 4.2. See: </span><a href=3D"https://wiki.yoctoproject.=
+org/wiki/Bug_Triage#Medium.2B_4.1_Unassigned_Enhancements.2FBugs" style=3D"=
+text-decoration-line:none"><span style=3D"font-size:11pt;background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-=
+variant-alternates:normal;text-decoration-line:underline;vertical-align:bas=
+eline;white-space:pre-wrap">https://wiki.yoctoproject.org/wiki/Bug_Triage#M=
+edium.2B_4.2_Unassigned_Enhancements.2FBugs</span></a></p></li><li dir=3D"l=
+tr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rg=
+b(0,0,0);background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-variant-alternates:normal;vertical-align:baselin=
+e;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;back=
+ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
+n:normal;font-variant-alternates:normal;vertical-align:baseline;white-space=
+:pre-wrap">We=E2=80=99d welcome new maintainers for recipes in OE-Core. Ple=
+ase see the list at: </span><a href=3D"http://git.yoctoproject.org/cgit.cgi=
+/poky/tree/meta/conf/distro/include/maintainers.inc" style=3D"text-decorati=
+on-line:none"><span style=3D"font-size:11pt;background-color:transparent;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alter=
+nates:normal;text-decoration-line:underline;vertical-align:baseline;white-s=
+pace:pre-wrap">http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/dis=
+tro/include/maintainers.inc</span></a><span style=3D"font-size:11pt;backgro=
+und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;font-variant-alternates:normal;vertical-align:baseline;white-space:pr=
+e-wrap"> and discuss with the existing maintainer, or ask on the OE-Core ma=
+iling list. We will likely move a chunk of these to =E2=80=9CUnassigned=E2=
+=80=9D soon to help facilitate this.</span></p></li><li dir=3D"ltr" style=
+=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);=
+background-color:transparent;font-variant-numeric:normal;font-variant-east-=
+asian:normal;font-variant-alternates:normal;vertical-align:baseline;white-s=
+pace:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bo=
+ttom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-co=
+lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap=
+">Help is very much welcome in trying to resolve our autobuilder intermitte=
+nt issues. You can see the list of failures we=E2=80=99re continuing to see=
+ by searching for the =E2=80=9CAB-INT=E2=80=9D tag in bugzilla: </span><a h=
+ref=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-INT" =
+style=3D"text-decoration-line:none"><span style=3D"font-size:11pt;backgroun=
+d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
+mal;font-variant-alternates:normal;text-decoration-line:underline;vertical-=
+align:baseline;white-space:pre-wrap">https://bugzilla.yoctoproject.org/bugl=
+ist.cgi?quicksearch=3DAB-INT</span></a><span style=3D"font-size:11pt;backgr=
+ound-color:transparent;font-variant-numeric:normal;font-variant-east-asian:=
+normal;font-variant-alternates:normal;vertical-align:baseline;white-space:p=
+re-wrap">.</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;fon=
+t-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent=
+;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-al=
+ternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentati=
+on"><span style=3D"font-size:11pt;background-color:transparent;font-variant=
+-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norm=
+al;vertical-align:baseline;white-space:pre-wrap">Help us resolve CVE issues=
+: </span><a href=3D"https://autobuilder.yocto.io/pub/non-release/patchmetri=
+cs/" style=3D"text-decoration-line:none"><span style=3D"font-size:11pt;back=
+ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
+n:normal;font-variant-alternates:normal;text-decoration-line:underline;vert=
+ical-align:baseline;white-space:pre-wrap">CVE metrics</span></a><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">=C2=A0</span></p></li></ul><br><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span styl=
+e=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tra=
+nsparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-va=
+riant-alternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.=
+2 Milestone Dates:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"=
+><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:A=
+rial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:nor=
+mal;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-=
+align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
+ize:11pt;background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-variant-alternates:normal;vertical-align:baselin=
+e;white-space:pre-wrap">P 4.2 M4 Release date 2023/04/28</span></p></li></u=
+l><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);back=
+ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
+n:normal;font-variant-alternates:normal;vertical-align:baseline;white-space=
+:pre-wrap">YP 4.3 Milestone Dates:</span></p><ul style=3D"margin-top:0px;ma=
+rgin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11=
+pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-var=
+iant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:=
+normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"lin=
+e-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span=
+ style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;font-variant-alternates:normal;vertic=
+al-align:baseline;white-space:pre-wrap">YP 4.2 M4 build date 2023/04/03</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span styl=
+e=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">YP 4.2 M4 Release date 2023/04/28</span>=
+</p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-=
+family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-num=
+eric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;v=
+ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">YP 4.3 M1 build date=C2=A0 2023/06/05</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span styl=
+e=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">YP 4.3 M1 Release date 2023/06/16</span>=
+</p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-=
+family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-num=
+eric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;v=
+ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">YP 4.3 M2 build date=C2=A0 2023/07/17</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span styl=
+e=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">YP 4.3 M2 Release date 2023/07/28</span>=
+</p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-=
+family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-num=
+eric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;v=
+ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">YP 4.3 M3 build date=C2=A0 2023/08/28</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span styl=
+e=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">YP 4.3 M3 Release date 2023/09/08</span>=
+</p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-=
+family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-num=
+eric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;v=
+ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">YP 4.3 M4 build date=C2=A0 2023/10/02</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span styl=
+e=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">YP 4.3 M4 Release date 2023/10/27</span>=
+</p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb=
+(0,0,0);background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline=
+;white-space:pre-wrap">Upcoming dot releases:</span></p><ul style=3D"margin=
+-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;f=
+ont-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presenta=
+tion"><span style=3D"font-size:11pt;background-color:transparent;font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:no=
+rmal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.9 building</span>=
+</p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-=
+family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-num=
+eric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;v=
+ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">YP 4.0.9 Release date 2023/04/21</span></=
+p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fa=
+mily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numer=
+ic:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ver=
+tical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"=
+font-size:11pt;background-color:transparent;font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;white-space:pre-wrap">YP 4.1.4 build date 2023/05/01</span></p></li=
+><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:A=
+rial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:nor=
+mal;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-=
+align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
+ize:11pt;background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-variant-alternates:normal;vertical-align:baselin=
+e;white-space:pre-wrap">YP 4.1.4 Release date 2023/05/13</span></p></li><li=
+ dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial=
+;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;=
+font-variant-east-asian:normal;font-variant-alternates:normal;vertical-alig=
+n:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin=
+-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:=
+11pt;background-color:transparent;font-variant-numeric:normal;font-variant-=
+east-asian:normal;font-variant-alternates:normal;vertical-align:baseline;wh=
+ite-space:pre-wrap">YP 3.1.25 build date 2023/05/08</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;col=
+or:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font=
+-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:ba=
+seline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt=
+;background-color:transparent;font-variant-numeric:normal;font-variant-east=
+-asian:normal;font-variant-alternates:normal;vertical-align:baseline;white-=
+space:pre-wrap">YP 3.1.25 Release date 2023/05/19</span></p></li><li dir=3D=
+"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:=
+rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;font-variant-alternates:normal;vertical-align:basel=
+ine;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;font-variant-alternates:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap">YP 4.0.10 build date 2023/05/15</span></p></li><li dir=3D"ltr"=
+ style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0=
+,0,0);background-color:transparent;font-variant-numeric:normal;font-variant=
+-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline;w=
+hite-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgro=
+und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;font-variant-alternates:normal;vertical-align:baseline;white-space:pr=
+e-wrap">YP 4.0.10 Release date 2023/05/26</span></p></li><li dir=3D"ltr" st=
+yle=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,=
+0);background-color:transparent;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;font-variant-alternates:normal;vertical-align:baseline;whit=
+e-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background=
+-color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
+al;font-variant-alternates:normal;vertical-align:baseline;white-space:pre-w=
+rap">YP 4.2.1 build date 2023/05/22</span></p></li><li dir=3D"ltr" style=3D=
+"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);bac=
+kground-color:transparent;font-variant-numeric:normal;font-variant-east-asi=
+an:normal;font-variant-alternates:normal;vertical-align:baseline;white-spac=
+e:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-botto=
+m:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-color=
+:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap">Y=
+P 4.2.1 Release date 2023/06/02</span></p></li><li dir=3D"ltr" style=3D"lis=
+t-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgro=
+und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;font-variant-alternates:normal;vertical-align:baseline;white-space:pr=
+e"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t" role=3D"presentation"><span style=3D"font-size:11pt;background-color:tra=
+nsparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-va=
+riant-alternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 3.=
+1.26 build date 2023/06/19</span></p></li><li dir=3D"ltr" style=3D"list-sty=
+le-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-c=
+olor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal=
+;font-variant-alternates:normal;vertical-align:baseline;white-space:pre"><p=
+ dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" ro=
+le=3D"presentation"><span style=3D"font-size:11pt;background-color:transpar=
+ent;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant=
+-alternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 3.1.26 =
+Release date 2023/06/30</span></p></li><li dir=3D"ltr" style=3D"list-style-=
+type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-colo=
+r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fo=
+nt-variant-alternates:normal;vertical-align:baseline;white-space:pre"><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.11 bu=
+ild date 2023/06/26</span></p></li><li dir=3D"ltr" style=3D"list-style-type=
+:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tr=
+ansparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-v=
+ariant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D=
+"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"p=
+resentation"><span style=3D"font-size:11pt;background-color:transparent;fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;font-variant-altern=
+ates:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.11 Release=
+ date 2023/07/07</span></p></li><li dir=3D"ltr" style=3D"list-style-type:di=
+sc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:trans=
+parent;font-variant-numeric:normal;font-variant-east-asian:normal;font-vari=
+ant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:11pt;background-color:transparent;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;font-variant-alternate=
+s:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.2.2 build date =
+2023/07/10</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;fon=
+t-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent=
+;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-al=
+ternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentati=
+on"><span style=3D"font-size:11pt;background-color:transparent;font-variant=
+-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norm=
+al;vertical-align:baseline;white-space:pre-wrap">YP 4.2.2 Release date 2023=
+/07/21=C2=A0</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;f=
+ont-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presenta=
+tion"><span style=3D"font-size:11pt;background-color:transparent;font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:no=
+rmal;vertical-align:baseline;white-space:pre-wrap">YP 3.1.27 build date 202=
+3/07/31</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-s=
+ize:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alter=
+nates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline;white-space:pre-wrap">YP 3.1.27 Release date 2023/=
+08/11</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-siz=
+e:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alterna=
+tes:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D=
+"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><=
+span style=3D"font-size:11pt;background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ve=
+rtical-align:baseline;white-space:pre-wrap">YP 4.0.12 build date 2023/08/07=
+</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11p=
+t;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-vari=
+ant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:n=
+ormal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline;white-space:pre-wrap">YP 4.0.12 Release date 2023/08/18</s=
+pan></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;f=
+ont-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant=
+-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norm=
+al;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span sty=
+le=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-a=
+lign:baseline;white-space:pre-wrap">YP 4.2.3 build date 2023/08/28</span></=
+p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fa=
+mily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numer=
+ic:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ver=
+tical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"=
+font-size:11pt;background-color:transparent;font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;white-space:pre-wrap">YP 4.2.3 Release date 2023/09/08</span></p></=
+li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family=
+:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font=
+-size:11pt;background-color:transparent;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;font-variant-alternates:normal;vertical-align:basel=
+ine;white-space:pre-wrap">YP 3.1.28 build date 2023/09/18</span></p></li><l=
+i dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Aria=
+l;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size=
+:11pt;background-color:transparent;font-variant-numeric:normal;font-variant=
+-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline;w=
+hite-space:pre-wrap">YP 3.1.28 Release date 2023/09/29</span></p></li><li d=
+ir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;c=
+olor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fo=
+nt-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:=
+baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11=
+pt;background-color:transparent;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;font-variant-alternates:normal;vertical-align:baseline;whit=
+e-space:pre-wrap">YP 4.0.13 build date 2023/09/25</span></p></li><li dir=3D=
+"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:=
+rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;font-variant-alternates:normal;vertical-align:basel=
+ine;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;font-variant-alternates:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap">YP 4.0.13 Release date 2023/10/06</span></p></li><li dir=3D"lt=
+r" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb=
+(0,0,0);background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline=
+;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backg=
+round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-variant-alternates:normal;vertical-align:baseline;white-space:=
+pre-wrap">YP 3.1.29 build date 2023/10/30</span></p></li><li dir=3D"ltr" st=
+yle=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,=
+0);background-color:transparent;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;font-variant-alternates:normal;vertical-align:baseline;whit=
+e-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background=
+-color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
+al;font-variant-alternates:normal;vertical-align:baseline;white-space:pre-w=
+rap">YP 3.1.29 Release date 2023/11/10</span></p></li><li dir=3D"ltr" style=
+=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);=
+background-color:transparent;font-variant-numeric:normal;font-variant-east-=
+asian:normal;font-variant-alternates:normal;vertical-align:baseline;white-s=
+pace:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bo=
+ttom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-co=
+lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap=
+">YP 4.0.14 build date 2023/11/06</span></p></li><li dir=3D"ltr" style=3D"l=
+ist-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backg=
+round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-variant-alternates:normal;vertical-align:baseline;white-space:=
+pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-=
+variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap">YP =
+4.0.14 Release date 2023/11/17</span></p></li><li dir=3D"ltr" style=3D"list=
+-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgrou=
+nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;font-variant-alternates:normal;vertical-align:baseline;white-space:pre=
+"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
+" role=3D"presentation"><span style=3D"font-size:11pt;background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-var=
+iant-alternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.2=
+.4 build date 2023/11/13</span></p></li><li dir=3D"ltr" style=3D"list-style=
+-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
+or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;f=
+ont-variant-alternates:normal;vertical-align:baseline;white-space:pre"><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.2.4 Rel=
+ease date 2023/11/24</span></p></li><li dir=3D"ltr" style=3D"list-style-typ=
+e:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-=
+variant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre-wrap">YP 3.1.30 bu=
+ild date 2023/12/11</span></p></li><li dir=3D"ltr" style=3D"list-style-type=
+:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tr=
+ansparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-v=
+ariant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D=
+"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"p=
+resentation"><span style=3D"font-size:11pt;background-color:transparent;fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;font-variant-altern=
+ates:normal;vertical-align:baseline;white-space:pre-wrap">YP 3.1.30 Release=
+ date 2023/12/22</span></p></li><li dir=3D"ltr" style=3D"list-style-type:di=
+sc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:trans=
+parent;font-variant-numeric:normal;font-variant-east-asian:normal;font-vari=
+ant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:11pt;background-color:transparent;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;font-variant-alternate=
+s:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.15 build date=
+ 2023/12/18</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;fo=
+nt-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" st=
+yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentat=
+ion"><span style=3D"font-size:11pt;background-color:transparent;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:nor=
+mal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.15 Release date 20=
+23/12/29</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:=
+Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:no=
+rmal;font-variant-east-asian:normal;font-variant-alternates:normal;vertical=
+-align:baseline;white-space:pre-wrap">Tracking Metrics:</span></p><ul style=
+=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-t=
+ype:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color=
+:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-alternates:normal;vertical-align:baseline;white-space:pre"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline;white-space:pre-wrap">WDD 2551 (la=
+st week 2531)</span><span style=3D"font-size:11pt;font-family:Consolas,sans=
+-serif;background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline;=
+white-space:pre-wrap"> (</span><a href=3D"https://wiki.yoctoproject.org/cha=
+rts/combo.html" style=3D"text-decoration-line:none"><span style=3D"font-siz=
+e:11pt;background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;font-variant-alternates:normal;text-decoration-line:und=
+erline;vertical-align:baseline;white-space:pre-wrap">https://wiki.yoctoproj=
+ect.org/charts/combo.html</span></a><span style=3D"font-size:11pt;font-fami=
+ly:Consolas,sans-serif;background-color:transparent;font-variant-numeric:no=
+rmal;font-variant-east-asian:normal;font-variant-alternates:normal;vertical=
+-align:baseline;white-space:pre-wrap">)</span></p></li><li dir=3D"ltr" styl=
+e=3D"list-style-type:disc;font-size:11pt;font-family:Consolas,sans-serif;co=
+lor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
+p:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11p=
+t;font-family:Arial;background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">OE-Core/Poky Patch Metrics</span></p></l=
+i><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"l=
+ist-style-type:circle;font-size:11pt;font-family:Arial;color:rgb(0,0,0);bac=
+kground-color:transparent;font-variant-numeric:normal;font-variant-east-asi=
+an:normal;font-variant-alternates:normal;vertical-align:baseline;white-spac=
+e:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-botto=
+m:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-color=
+:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap">T=
+otal patches found: 1200 (last week 1200)</span></p></li><li dir=3D"ltr" st=
+yle=3D"list-style-type:circle;font-size:11pt;font-family:Consolas,sans-seri=
+f;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size=
+:11pt;font-family:Arial;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline;white-space:pre-wrap">Patches in the Pending State: 278 (2=
+3%) [last week 278 (23%)]</span></p></li></ul><li dir=3D"ltr" style=3D"list=
+-style-type:disc;font-size:11pt;font-family:Consolas,sans-serif;color:rgb(0=
+,0,0);background-color:transparent;font-variant-numeric:normal;font-variant=
+-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline;w=
+hite-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt" role=3D"presentation"><a href=3D"https://autobuilder.yocto.=
+io/pub/non-release/patchmetrics/" style=3D"text-decoration-line:none"><span=
+ style=3D"font-size:11pt;font-family:Arial;background-color:transparent;fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;font-variant-altern=
+ates:normal;text-decoration-line:underline;vertical-align:baseline;white-sp=
+ace:pre-wrap">https://autobuilder.yocto.io/pub/non-release/patchmetrics/</s=
+pan></a></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;c=
+olor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fo=
+nt-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:=
+baseline;white-space:pre-wrap">The Yocto Project=E2=80=99s technical govern=
+ance is through its Technical Steering Committee, more information is avail=
+able at:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt"><a href=3D"https://wiki.yoctoproject.org/wiki/TSC" style=
+=3D"text-decoration-line:none"><span style=3D"font-size:11pt;font-family:Ar=
+ial;background-color:transparent;font-variant-numeric:normal;font-variant-e=
+ast-asian:normal;font-variant-alternates:normal;text-decoration-line:underl=
+ine;vertical-align:baseline;white-space:pre-wrap">https://wiki.yoctoproject=
+.org/wiki/TSC</span></a></p><br><p dir=3D"ltr" style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:A=
+rial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:nor=
+mal;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-=
+align:baseline;white-space:pre-wrap">The Status reports are now stored on t=
+he wiki at: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Sta=
+tus" style=3D"text-decoration-line:none"><span style=3D"font-size:11pt;font=
+-family:Arial;background-color:transparent;font-variant-numeric:normal;font=
+-variant-east-asian:normal;font-variant-alternates:normal;text-decoration-l=
+ine:underline;vertical-align:baseline;white-space:pre-wrap">https://wiki.yo=
+ctoproject.org/wiki/Weekly_Status</span></a></p><br><p dir=3D"ltr" style=3D=
+"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-siz=
+e:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alterna=
+tes:normal;vertical-align:baseline;white-space:pre-wrap">[If anyone has sug=
+gestions for other information you=E2=80=99d like to see on this weekly sta=
+tus update, let us know!]</span></p></span><br class=3D"gmail-Apple-interch=
+ange-newline"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmai=
+l=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span><font co=
+lor=3D"#888888"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><di=
+v><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><b st=
+yle=3D"color:rgb(136,136,136)"><font color=3D"#666666"><font color=3D"#8888=
+88"><br></font></font></b></div><div dir=3D"ltr"><b style=3D"color:rgb(136,=
+136,136)"><font color=3D"#666666"><font color=3D"#888888">Neal Caidin</font=
+></font></b><br><div style=3D"color:rgb(136,136,136)"><span style=3D"border=
+-collapse:collapse"><div><font color=3D"#666666"><font>Program Manager=C2=
+=A0</font></font></div><div><font color=3D"#666666"><font>The Linux Foundat=
+ion</font></font></div><div><font color=3D"#666666"><font>Durham, NC, U.S.A=
+. - Eastern time zone</font></font></div><div><font color=3D"#666666">+1 (9=
+19) 238-9104 (w/h)<br>+1 (919) 949-1861 (m)</font></div><div><font color=3D=
+"#666666"><a href=3D"mailto:ncaidin@linuxfoundation.org" target=3D"_blank">=
+ncaidin@linuxfoundation.org</a></font></div><div><br></div><div><br></div><=
+/span></div></div></div></div></div></div></div></div></div></div></font></=
+span></div></div></div></div></div></div>
 
---00000000000072098905f99abd16--
-
---00000000000072098b05f99abd18
-Content-Type: application/octet-stream; name=makefile
-Content-Disposition: attachment; filename=makefile
-Content-Transfer-Encoding: base64
-Content-ID: <f_lgm6stvv0>
-X-Attachment-Id: f_lgm6stvv0
-
-IyBUaGlzIGZpbGUgd2FzIGdlbmVyYXRlZCBieSBTaW1wbGljaXR5IFN0dWRpbyBmcm9tIHRoZSBm
-b2xsb3dpbmcgdGVtcGxhdGU6CiMgICBwcm90b2NvbC96aWdiZWUvdG9vbC9hcHBidWlsZGVyL2hv
-c3QtdW5peC1NYWtlZmlsZS1hZnYyCiMgUGxlYXNlIGRvIG5vdCBlZGl0IGl0IGRpcmVjdGx5LgoK
-IyBUaGlzIE1ha2VmaWxlIGRlZmluZXMgaG93IHRvIGJ1aWxkIGEgdW5peCBob3N0IGFwcGxpY2F0
-aW9uIGNvbm5lY3RlZCB0byBhbgojIEVtYmVyIE5DUCBFWlNQIGRldmljZS4gIFRoaXMgYWxzbyB3
-b3JrcyBmb3IgV2luZG93cyBtYWNoaW5lcyBydW5uaW5nCiMgQ3lnd2luLgoKIyBWYXJpYWJsZXMK
-CiMgSWYgdXNpbmcgYSBkaWZmZXJlbnQgY29tcGlsZXIgdGhhbiBHQ0MsIHlvdSBjYW4gY3JlYXRl
-IGEgbWFrZWZpbGUKIyB0aGF0IG92ZXJyaWRlcyB0aGUgZm9sbG93aW5nIHZhcmlhYmxlcy4gIAoj
-ICAgQ09NUElMRVIgLSBDb21waWxlciBiaW5hcnkgcGF0aAojICAgTElOS0VSIC0gTGlua2VyIGJp
-bmFyeSBwYXRoCiMgICBBUkNISVZFIC0gT3B0aW9uYWwgYXJjaGl2ZSB0b29sLCBvbmx5IG5lY2Vz
-c2FyeSBmb3IgYnVpbGRpbmcgYSBsaWJyYXJ5LgojICAgICBNdXN0IGFsc28gc2V0IEdFTkVSQVRF
-X0xJQlJBUlkgOj0gMSBpbiB5b3VyIG1ha2VmaWxlLgojICAgQ09NUElMRVJfSU5DTFVERVMgLSBB
-bnkgYWRkaXRpb25hbCBjb21waWxlciBpbmNsdWRlcyBlYWNoIHByZWZpeGVkIHdpdGggLUkKIyAg
-IENPTVBJTEVSX0RFRklORVMgLSBBbnkgYWRkaXRpb25hbCBjb21waWxlciBkZWZpbmVzIGVhY2gg
-cHJlZml4ZWQgd2l0aCAtRAojICAgQ09NUElMRVJfRkxBR1MgLSBUaGUgc2V0IG9mIGNvbXBpbGVy
-IGZsYWdzIChub3QgaW5jbHVkaW5nIGRlcGVuZGVuY2llcykKIyAgIExJTktFUl9GTEFHUyAtIFRo
-ZSBzZXQgb2YgbGlua2VyIGZsYWdzCiMgICBBUkNISVZFX0ZMQUdTIC0gVGhlIHNldCBvZiBhcmNo
-aXZlIHRvb2wgZmxhZ3MuCiMgICBERVBFTkRFTkNZX0ZMQUdTIC0gVGhlIHNldCBvZiBkZXBlbmRl
-bmN5IGdlbmVyYXRpb24gZmxhZ3MgdXNlZCB0byBnZW5lcmF0ZQojICAgICBkZXBlbmRlbmNpZXMg
-YXQgdGhlIHNhbWUgdGltZSBjb21waWxhdGlvbiBpcyBleGVjdXRlZC4KIyAgIERFUEVOREVOQ1lf
-UE9TVF9QUk9DRVNTIC0gQW4gb3B0aW9uYWwgcG9zdCBwcm9jZXNzaW5nIHN0ZXAgZm9yIG1hc3Nh
-Z2luZwojICAgICBnZW5lcmF0ZWQgZGVwZW5kZW5jaWVzLiAgT25seSBuZWNlc3Nhcnkgd2hlbiB1
-c2luZyBhIGNvbXBpbGVyIG9uIHRoZSAKIyAgICAgbm9uLW5hdGl2ZSBwbGF0Zm9ybSAoZS5nLiBX
-aW5kb3dzIGNvbXBpbGVyIG9uIExpbnV4KQojICAgUExBVEZPUk1fSEVBREVSX0ZJTEUgLSBUaGUg
-aGVhZGVyIGZpbGUgZGVmaW5pbmcgdGhlIGJhc2ljIGludDh1LCBpbnQzMnUsCiMgICAgIGFuZCBv
-dGhlciB0eXBlZGVmcyBhbmQgcGxhdGZvcm0gZWxlbWVudHMuCiMgICBBUkNISVZFX0VYVEVOU0lP
-TiAtIFRoZSBmaWxlIGV4dGVuc2lvbiBmb3IgYXJjaGl2ZXMgaWYgbm90IHVzaW5nIHRoZSBzdGFu
-ZGFyZAojICAgICAuYSBmaWxlIGV4dGVuc2lvbi4KIwojIFRoZW4gcGFzcyB0aGUgbWFrZWZpbGUg
-dG8gdGhpcyBvbmUgb24gdGhlIGNvbW1hbmQgbGluZSB3aXRoOgojICAgIm1ha2UgLUMgYXBwL2J1
-aWxkZXIvaG9zdGZvckVkZ2UzIElOQ0xVREVfTUFLRUZJTEU9bXktY3VzdG9tLm1hayIKIyAgIG9y
-IAojICAgImNkIGFwcC9idWlsZGVyL2hvc3Rmb3JFZGdlMzsgbWFrZSBJTkNMVURFX01BS0VGSUxF
-PW15LWN1c3RvbS5tYWsiCiMKCiNpZmRlZiBJTkNMVURFX01BS0VGSUxFCiMgIGluY2x1ZGUgJChJ
-TkNMVURFX01BS0VGSUxFKQojZW5kaWYgIAojQ0ZMQUdTID0gLWcgLVdhbGwKIy5TVUZGSVhFUzoK
-I0NPTVBJTEVSPWFybS1wb2t5bWxsaWIzMi1saW51eC1nbnVlYWJpLWdjYwojTElOS0VSPWFybS1w
-b2t5bWxsaWIzMi1saW51eC1nbnVlYWJpLWxkCiNDT01QSUxFUiA/PSBnY2MKI0xJTktFUiAgID89
-IGdjYwojQVJDSElWRSAgPz0gYXIKI0NPTVBJTEVSID0gJChDQykKI0NPTVBJTEVSID89IGFhcmNo
-NjQtcG9reS1saW51eC1nY2MKI0xJTktFUiA/PSBhYXJjaDY0LXBva3ktbGludXgtZ2NjCiNBUkNI
-SVZFICA/PSBhYXJjaDY0LXBva3ktbGludXgtZ2NjLWFyCiNMSU5LRVIgPSAkKENDKQojQVJDSElW
-RSAgPSAkKEFSKQoKU1REICAgICAgPz0gZ251OTkKCkFSQ0hJVkVfRVhURU5TSU9OID89IC5hCgoj
-Q0MgPSAkKENPTVBJTEVSKQojTEQgPSAkKExJTktFUikKU0hFTEwgPSAvYmluL3NoCnJlbW92ZVNw
-YWNlcyA9ICQoc3Vic3QgXCAsK1NMNUMyMCssJDEpCnJlc3RvcmVTcGFjZXMgPSAkKHN1YnN0ICtT
-TDVDMjArLFwgLCQxKQoKaWZuZXEgKCQoQ1VSRElSKSwkKHNoZWxsIGRpcm5hbWUgJyQoYWJzcGF0
-aCAkKGxhc3R3b3JkICQoTUFLRUZJTEVfTElTVCkpKScpKQokKGVycm9yIFRoaXMgbWFrZWZpbGUg
-c2hvdWxkIG9ubHkgYmUgaW52b2tlZCB1bmRlciBpdHMgY3VycmVudCBkaXJlY3RvcnkgKCQoc2hl
-bGwgZGlybmFtZSAnJChhYnNwYXRoICQobGFzdHdvcmQgJChNQUtFRklMRV9MSVNUKSkpJykpKQpl
-bmRpZgoKQ09NUElMRVJfSU5DTFVERVMgPz0gCgpJTkNMVURFUz0gLUkuLyBcCiAgJChDT01QSUxF
-Ul9JTkNMVURFUykgXAogIC1JLi8uLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMiBcCiAg
-LUkuLy4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAv
-ZnJhbWV3b3JrIFwKICAtSS4vLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9j
-b2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvLi4vLi4gXAogIC1JLi8uLi8uLi8uLi8uLi9nZWNrb19z
-ZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay8uLi8uLi9zdGFjayBc
-CiAgLUkuLy4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9h
-cHAvZnJhbWV3b3JrLy4uL3V0aWwgXAogIC1JLi8uLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUv
-djMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay8uLi91dGlsL2NvbW1vbiBcCiAgLUku
-Ly4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJh
-bWV3b3JrLy4uL3V0aWwvZXpzcCBcCiAgLUkuLy4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92
-My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrLy4uL3V0aWwvc2VyaWFsIFwKICAtSS4v
-Li4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFt
-ZXdvcmsvLi4vdXRpbC96aWdiZWUtZnJhbWV3b3JrIFwKICAtSS4vLi4vLi4vLi4vLi4vZ2Vja29f
-c2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvY2xpIFwKICAtSS4v
-Li4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFt
-ZXdvcmsvaW5jbHVkZSBcCiAgLUkuLy4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3By
-b3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3NlY3VyaXR5IFwKICAtSS4vLi4vLi4vLi4vLi4v
-Z2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvdXRpbCBc
-CiAgLUkuL2hvc3Rmb3JFZGdlMyBcCiAgLUkuLy4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92
-My4yL3BsYXRmb3JtL2Jhc2UvaGFsIFwKICAtSS4vLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRl
-L3YzLjIvcGxhdGZvcm0vYmFzZS9oYWwvcGx1Z2luIFwKICAtSS4vLi4vLi4vLi4vLi4vZ2Vja29f
-c2RrX3N1aXRlL3YzLjIvcGxhdGZvcm0vYmFzZS9oYWwvLi4gXAogIC1JLi8uLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hhbC9taWNyby9nZW5lcmljIFwKICAt
-SS4vLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcGxhdGZvcm0vYmFzZS9oYWwvbWlj
-cm8vdW5peC9ob3N0IFwKICAtSS4vLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcGxh
-dGZvcm0vYmFzZS9oYWwvLi4vLi4vLi4vcGxhdGZvcm0vY29tbW9uL2luYy8gXAogIC1JLi8uLi8u
-Li8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hhbC8uLi8uLi8uLi9w
-bGF0Zm9ybS9yYWRpby9tYWMvIFwKICAtSS4vLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3Yz
-LjIvcGxhdGZvcm0vYmFzZS9oYWwvLi4vLi4vLi4vdXRpbC9zaWxpY29uX2xhYnMvc2lsYWJzX2Nv
-cmUvIFwKICAtSS4vLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcGxhdGZvcm0vYmFz
-ZS9oYWwvLi4vLi4vLi4vdXRpbC9zaWxpY29uX2xhYnMvc2lsYWJzX2NvcmUvYnVmZmVyX21hbmFn
-ZXIgXAogIC1JLi8uLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNl
-L2hhbC8uLi8uLi8uLi91dGlsL3NpbGljb25fbGFicy9zaWxhYnNfY29yZS9ldmVudF9jb250cm9s
-IFwKICAtSS4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3BsYXRmb3JtL2Jhc2UvaGFs
-L21pY3JvL3VuaXgvaG9zdC9ib2FyZCBcCiAgLUkuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUv
-djMuMi91dGlsL3NpbGljb25fbGFicy9zaWxhYnNfY29yZSBcCiAgLUkuLi8uLi8uLi8uLi9nZWNr
-b19zZGtfc3VpdGUvdjMuMi91dGlsL3BsdWdpbi9wbHVnaW4tY29tbW9uL21iZWR0bHMgXAogIC1J
-Li4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8v
-bWJlZHRscyBcCiAgLUkuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJk
-X3BhcnR5L2NyeXB0by9tYmVkdGxzL2luY2x1ZGUgXAogIC1JLi4vLi4vLi4vLi4vZ2Vja29fc2Rr
-X3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9pbmNsdWRlL21iZWR0
-bHMgXAogIC1JLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0
-eS9jcnlwdG8vbWJlZHRscy9pbmNsdWRlL3BzYSBcCiAgLUkuLi8uLi8uLi8uLi9nZWNrb19zZGtf
-c3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkgXAogXAoK
-QVBQX0JVSUxERVJfT1VUUFVUX0RJUkVDVE9SWT0uCkFQUF9CVUlMREVSX0NPTkZJR19IRUFERVI9
-JChBUFBfQlVJTERFUl9PVVRQVVRfRElSRUNUT1JZKS9ob3N0Zm9yRWRnZTMuaApBUFBfQlVJTERF
-Ul9TVE9SQUdFX0ZJTEU9JChBUFBfQlVJTERFUl9PVVRQVVRfRElSRUNUT1JZKS9ob3N0Zm9yRWRn
-ZTNfZW5kcG9pbnRfY29uZmlnLmgKClBMQVRGT1JNX0hFQURFUl9GSUxFID89IFwiLi4vLi4vLi4v
-Li4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcGxhdGZvcm0vYmFzZS9oYWwvbWljcm8vdW5peC9jb21w
-aWxlci9nY2MuaFwiCgpERUZJTkVTID0gXAogICQoQ09NUElMRVJfREVGSU5FUykgXAogIC1EVU5J
-WCBcCiAgLURVTklYX0hPU1QgXAogIC1EUEhZX05VTEwgXAogIC1EQ09ORklHVVJBVElPTl9IRUFE
-RVI9XCIuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBw
-L2ZyYW1ld29yay91dGlsL2NvbmZpZy5oXCIgXAogIC1ERVpTUF9IT1NUIFwKICAtREdBVEVXQVlf
-QVBQIFwKICAtRFpBX0dFTkVSQVRFRF9IRUFERVI9XCIkKEFQUF9CVUlMREVSX0NPTkZJR19IRUFE
-RVIpXCIgXAogIC1EQVRUUklCVVRFX1NUT1JBR0VfQ09ORklHVVJBVElPTj1cIiQoQVBQX0JVSUxE
-RVJfU1RPUkFHRV9GSUxFKVwiIFwKICAtRFBMQVRGT1JNX0hFQURFUj0kKFBMQVRGT1JNX0hFQURF
-Ul9GSUxFKSBcCiAgICAtREJPQVJEX0hPU1QgXAogIC1EQk9BUkRfSEVBREVSPVwiaG9zdGZvckVk
-Z2UzX2JvYXJkLmhcIiBcCiAgLURFTV9BRl9URVNUX0hBUk5FU1NfQ09ERSBcCiAgLURFTV9BRl9M
-SU5LX00gXAogIC1ERU1fQUZfTElOS19QVEhSRUFEIFwKICAtREVNQkVSX0FGX0FQSV9FTUJFUl9U
-WVBFUz1cInN0YWNrL2luY2x1ZGUvZW1iZXItdHlwZXMuaFwiIFwKICAtREVNQkVSX0FGX0FQSV9E
-RUJVR19QUklOVD1cImFwcC9mcmFtZXdvcmsvdXRpbC9wcmludC5oXCIgXAogIC1ERU1CRVJfQUZf
-QVBJX0FGX0hFQURFUj1cImFwcC9mcmFtZXdvcmsvaW5jbHVkZS9hZi5oXCIgXAogIC1ERU1CRVJf
-QUZfQVBJX0FGX1NFQ1VSSVRZX0hFQURFUj1cImFwcC9mcmFtZXdvcmsvc2VjdXJpdHkvYWYtc2Vj
-dXJpdHkuaFwiIFwKICAtREVNQkVSX0FGX0FQSV9ORUlHSEJPUl9IRUFERVI9XCJzdGFjay9pbmNs
-dWRlL3N0YWNrLWluZm8uaFwiIFwKICAtREVNQkVSX1NUQUNLX1pJR0JFRSBcCiAgLURFWlNQX0FT
-SCBcCiAgLURNQkVEVExTX0NPTkZJR19GSUxFPVwibWJlZHRscy1jb25maWctZ2VuZXJhdGVkLmhc
-IiBcCgoKCkNPTVBJTEVSX0ZMQUdTID89IFwKICAtV2FsbCBcCiAgLWdnZGIgXAogIC1PMCAgIFwK
-ICAtc3RkPSQoU1REKQoKQVBQTElDQVRJT05fRklMRVM9IFwKICAuL3puZXQtYm9va2tlZXBpbmcu
-YyBcCiAgLi9jYWxsLWNvbW1hbmQtaGFuZGxlci5jIFwKICAuL2NhbGxiYWNrLXN0dWIuYyBcCiAg
-Li9zdGFjay1oYW5kbGVyLXN0dWIuYyBcCiAgLi96bmV0LWNsaS5jIFwKICAuL2hvc3Rmb3JFZGdl
-M19jYWxsYmFja3MuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9j
-b2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvLi4vdXRpbC9jb21tb24vbGlicmFyeS5jIFwKICAuLi8u
-Li8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29y
-ay8uLi91dGlsL3NlcmlhbC9jb21tYW5kLWludGVycHJldGVyMi5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay8uLi91dGls
-L3ppZ2JlZS1mcmFtZXdvcmsvemlnYmVlLWRldmljZS1jb21tb24uYyBcCiAgLi4vLi4vLi4vLi4v
-Z2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvLi4vdXRp
-bC96aWdiZWUtZnJhbWV3b3JrL3ppZ2JlZS1kZXZpY2UtaG9zdC5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay8uLi8uLi8u
-Li8uLi91dGlsL3NpbGljb25fbGFicy9zaWxhYnNfY29yZS9ldmVudF9jb250cm9sL2V2ZW50LWNv
-bnRyb2wuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcGxhdGZvcm0vYmFz
-ZS9oYWwvbWljcm8vZ2VuZXJpYy9sZWQtc3R1Yi5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtf
-c3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hhbC9taWNyby9nZW5lcmljL21lbS11dGlsLmMgXAog
-IC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3BsYXRmb3JtL2Jhc2UvaGFsL3BsdWdp
-bi9hbnRlbm5hLXN0dWIvYW50ZW5uYS1zdHViLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19z
-dWl0ZS92My4yL3BsYXRmb3JtL2Jhc2UvaGFsL3BsdWdpbi9idXp6ZXItc3R1Yi9idXp6ZXItc3R1
-Yi5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUv
-YXBwL2ZyYW1ld29yay9wbHVnaW4vYWRkcmVzcy10YWJsZS9hZGRyZXNzLXRhYmxlLmMgXAogIC4u
-Ly4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3
-b3JrL3BsdWdpbi9hZGRyZXNzLXRhYmxlL2FkZHJlc3MtdGFibGUtY2xpLmMgXAogIC4uLy4uLy4u
-Ly4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3Bs
-dWdpbi9iYXNpYy9iYXNpYy5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9w
-cm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vY29sb3ItY29udHJvbC1zZXJ2ZXIv
-Y29sb3ItY29udHJvbC1zZXJ2ZXIuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3Yz
-LjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL2NvbmNlbnRyYXRvci9jb25j
-ZW50cmF0b3Itc3VwcG9ydC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9w
-cm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vY29uY2VudHJhdG9yL2NvbmNlbnRy
-YXRvci1zdXBwb3J0LWNsaS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9w
-cm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vY291bnRlcnMvY291bnRlcnMtY2xp
-LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9h
-cHAvZnJhbWV3b3JrL3BsdWdpbi9jb3VudGVycy9jb3VudGVycy1vdGEtaG9zdC5jIFwKICAuLi8u
-Li8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29y
-ay9wbHVnaW4vY291bnRlcnMvY291bnRlcnMtaG9zdC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19z
-ZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vZXptb2Rl
-LWNvbW1pc3Npb25pbmcvZXotbW9kZS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUv
-djMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vZXptb2RlLWNvbW1pc3Np
-b25pbmcvZXotbW9kZS1jbGkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIv
-cHJvdG9jb2wvemlnYmVlL2FwcC91dGlsL2V6c3AvZXpzcC1jYWxsYmFja3MuYyBcCiAgLi4vLi4v
-Li4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC91dGlsL2V6c3Av
-ZXpzcC1lbnVtLWRlY29kZS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9w
-cm90b2NvbC96aWdiZWUvYXBwL3V0aWwvZXpzcC9lenNwLWZyYW1lLXV0aWxpdGllcy5jIFwKICAu
-Li8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL3V0aWwv
-ZXpzcC9lenNwLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29s
-L3ppZ2JlZS9hcHAvZXpzcC1ob3N0L2V6c3AtaG9zdC1pby5jIFwKICAuLi8uLi8uLi8uLi9nZWNr
-b19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2V6c3AtaG9zdC9lenNwLWhvc3Qt
-cXVldWVzLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3pp
-Z2JlZS9hcHAvZXpzcC1ob3N0L2V6c3AtaG9zdC11aS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19z
-ZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL3V0aWwvZXpzcC9zZXJpYWwtaW50ZXJm
-YWNlLXVhcnQuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wv
-emlnYmVlL2FwcC9lenNwLWhvc3QvYXNoL2FzaC1ob3N0LXVpLmMgXAogIC4uLy4uLy4uLy4uL2dl
-Y2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZXpzcC1ob3N0L2FzaC9hc2gt
-aG9zdC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNl
-L2hhbC9taWNyby9nZW5lcmljL2FzaC1jb21tb24uYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2Rr
-X3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luLWhvc3QvZmls
-ZS1kZXNjcmlwdG9yLWRpc3BhdGNoL2ZpbGUtZGVzY3JpcHRvci1kaXNwYXRjaC5jIFwKICAuLi8u
-Li8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29y
-ay9wbHVnaW4taG9zdC9nYXRld2F5L2dhdGV3YXktc3VwcG9ydC5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4t
-aG9zdC9nYXRld2F5L2JhY2tjaGFubmVsLXN1cHBvcnQuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29f
-c2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luLWhvc3Qv
-Z2F0ZXdheS9nYXRld2F5LXN1cHBvcnQtY2xpLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19z
-dWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9ncmVlbi1wb3dl
-ci1jbGllbnQvZ3JlZW4tcG93ZXItY2xpZW50LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19z
-dWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9ncmVlbi1wb3dl
-ci1jbGllbnQvZ3JlZW4tcG93ZXItY2xpZW50LWNsaS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19z
-ZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vZ3JlZW4t
-cG93ZXItY29tbW9uL2dyZWVuLXBvd2VyLWNvbW1vbi5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19z
-ZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvc3RhY2svZ3AvZ3AtdXRpbC5jIFwKICAuLi8u
-Li8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29y
-ay9wbHVnaW4vaGVhcnRiZWF0L2hlYXJ0YmVhdC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtf
-c3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vaWFzLXpvbmUt
-Y2xpZW50L2lhcy16b25lLWNsaWVudC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUv
-djMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vaWFzLXpvbmUtY2xpZW50
-L2lhcy16b25lLWNsaWVudC1jbGkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3Yz
-LjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL2lkZW50aWZ5L2lkZW50aWZ5
-LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9h
-cHAvZnJhbWV3b3JrL3BsdWdpbi9pZGVudGlmeS9pZGVudGlmeS1jbGkuYyBcCiAgLi4vLi4vLi4v
-Li4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1
-Z2luL2lkZW50aWZ5LWZlZWRiYWNrL2lkZW50aWZ5LWZlZWRiYWNrLmMgXAogIC4uLy4uLy4uLy4u
-L2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdp
-bi9sZXZlbC1jb250cm9sL2xldmVsLWNvbnRyb2wuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2Rr
-X3N1aXRlL3YzLjIvdXRpbC9wbHVnaW4vcGx1Z2luLWNvbW1vbi9saW5rZWQtbGlzdC9saW5rZWQt
-bGlzdC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3Bh
-cnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvYWVzLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nk
-a19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9hc24x
-cGFyc2UuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9w
-YXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L2FzbjF3cml0ZS5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJh
-cnkvYmFzZTY0LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhp
-cmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9iaWdudW0uYyBcCiAgLi4vLi4vLi4vLi4v
-Z2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJy
-YXJ5L2NjbS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJk
-X3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvY2hhY2hhMjAuYyBcCiAgLi4vLi4vLi4vLi4v
-Z2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJy
-YXJ5L2NoYWNoYXBvbHkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRp
-bC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L2NpcGhlci5jIFwKICAuLi8uLi8u
-Li8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxz
-L2xpYnJhcnkvY2lwaGVyX3dyYXAuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3Yz
-LjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L2NtYWMuYyBcCiAgLi4v
-Li4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJl
-ZHRscy9saWJyYXJ5L2N0cl9kcmJnLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92
-My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9kZXMuYyBcCiAgLi4v
-Li4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJl
-ZHRscy9saWJyYXJ5L2VjZGguYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIv
-dXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L2VjZHNhLmMgXAogIC4uLy4u
-Ly4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0
-bHMvbGlicmFyeS9lY2pwYWtlLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4y
-L3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9lY3AuYyBcCiAgLi4vLi4v
-Li4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRs
-cy9saWJyYXJ5L2VjcF9jdXJ2ZXMuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3Yz
-LjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L2VudHJvcHkuYyBcCiAg
-Li4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8v
-bWJlZHRscy9saWJyYXJ5L2Vycm9yLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92
-My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9nY20uYyBcCiAgLi4v
-Li4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJl
-ZHRscy9saWJyYXJ5L21kLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3V0
-aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9tZDUuYyBcCiAgLi4vLi4vLi4v
-Li4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9s
-aWJyYXJ5L29pZC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3Ro
-aXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvcGVtLmMgXAogIC4uLy4uLy4uLy4uL2dl
-Y2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFy
-eS9way5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3Bh
-cnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvcGtfd3JhcC5jIFwKICAuLi8uLi8uLi8uLi9nZWNr
-b19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkv
-cGtwYXJzZS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJk
-X3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvcGxhdGZvcm1fdXRpbC5jIFwKICAuLi8uLi8u
-Li8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxz
-L2xpYnJhcnkvcG9seTEzMDUuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIv
-dXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L3BzYV9jcnlwdG8uYyBcCiAg
-Li4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8v
-bWJlZHRscy9saWJyYXJ5L3BzYV9jcnlwdG9fY2lwaGVyLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tv
-X3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9w
-c2FfY3J5cHRvX2NsaWVudC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91
-dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvcHNhX2NyeXB0b19kcml2ZXJf
-d3JhcHBlcnMuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGly
-ZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L3BzYV9jcnlwdG9fZWNwLmMgXAogIC4uLy4u
-Ly4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0
-bHMvbGlicmFyeS9wc2FfY3J5cHRvX2hhc2guYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1
-aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L3BzYV9jcnlw
-dG9fbWFjLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRf
-cGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS9wc2FfY3J5cHRvX3Nsb3RfbWFuYWdlbWVudC5j
-IFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2Ny
-eXB0by9tYmVkdGxzL2xpYnJhcnkvcHNhX2NyeXB0b19zdG9yYWdlLmMgXAogIC4uLy4uLy4uLy4u
-L2dlY2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGli
-cmFyeS9yc2EuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGly
-ZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L3JzYV9pbnRlcm5hbC5jIFwKICAuLi8uLi8u
-Li8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxz
-L2xpYnJhcnkvc2hhMS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGls
-L3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvc2hhMjU2LmMgXAogIC4uLy4uLy4u
-Ly4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMv
-bGlicmFyeS9zaGE1MTIuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRp
-bC90aGlyZF9wYXJ0eS9jcnlwdG8vbWJlZHRscy9saWJyYXJ5L3NzbF9jYWNoZS5jIFwKICAuLi8u
-Li8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVk
-dGxzL2xpYnJhcnkvc3NsX2NpcGhlcnN1aXRlcy5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtf
-c3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvc3NsX2Ns
-aS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5
-L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvc3NsX2Nvb2tpZS5jIFwKICAuLi8uLi8uLi8uLi9nZWNr
-b19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkv
-c3NsX21zZy5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJk
-X3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvc3NsX3Nydi5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJh
-cnkvc3NsX3RpY2tldC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGls
-L3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkvc3NsX3Rscy5jIFwKICAuLi8uLi8u
-Li8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxz
-L2xpYnJhcnkvdGhyZWFkaW5nLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4y
-L3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS94NTA5LmMgXAogIC4uLy4u
-Ly4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0
-bHMvbGlicmFyeS94NTA5X2NyZWF0ZS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUv
-djMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkveDUwOV9jcmwuYyBc
-CiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvdXRpbC90aGlyZF9wYXJ0eS9jcnlw
-dG8vbWJlZHRscy9saWJyYXJ5L3g1MDlfY3J0LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19z
-dWl0ZS92My4yL3V0aWwvdGhpcmRfcGFydHkvY3J5cHRvL21iZWR0bHMvbGlicmFyeS94NTA5X2Nz
-ci5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5
-L2NyeXB0by9tYmVkdGxzL2xpYnJhcnkveDUwOXdyaXRlX2NydC5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi91dGlsL3RoaXJkX3BhcnR5L2NyeXB0by9tYmVkdGxzL2xpYnJh
-cnkveDUwOXdyaXRlX2Nzci5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9w
-cm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4taG9zdC9uY3AtY29uZmlndXJhdGlv
-bi9uY3AtY29uZmlndXJhdGlvbi5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMu
-Mi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vbmV0d29yay1jcmVhdG9yL25l
-dHdvcmstY3JlYXRvci5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90
-b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vbmV0d29yay1jcmVhdG9yL25ldHdvcmst
-Y3JlYXRvci1jbGkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9j
-b2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL25ldHdvcmstY3JlYXRvci1zZWN1cml0eS9u
-ZXR3b3JrLWNyZWF0b3Itc2VjdXJpdHkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRl
-L3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL25ldHdvcmstY3JlYXRv
-ci1zZWN1cml0eS9uZXR3b3JrLWNyZWF0b3Itc2VjdXJpdHktY2xpLmMgXAogIC4uLy4uLy4uLy4u
-L2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdp
-bi9uZXR3b3JrLXN0ZWVyaW5nL25ldHdvcmstc3RlZXJpbmcuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vj
-a29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL25l
-dHdvcmstc3RlZXJpbmcvbmV0d29yay1zdGVlcmluZy1jbGkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vj
-a29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL25l
-dHdvcmstc3RlZXJpbmcvbmV0d29yay1zdGVlcmluZy12Mi5jIFwKICAuLi8uLi8uLi8uLi9nZWNr
-b19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vbmV0
-d29yay1zdGVlcmluZy9uZXR3b3JrLXN0ZWVyaW5nLWhvc3QuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vj
-a29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL29u
-LW9mZi9vbi1vZmYuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9j
-b2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL290YS1jb21tb24vb3RhLWNvbW1vbi5jIFwK
-ICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2Zy
-YW1ld29yay9wbHVnaW4vb3RhLXNlcnZlci9vdGEtc2VydmVyLmMgXAogIC4uLy4uLy4uLy4uL2dl
-Y2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9v
-dGEtc2VydmVyL290YS1zZXJ2ZXItcGFnZS1yZXF1ZXN0LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tv
-X3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9vdGEt
-c2VydmVyL290YS1zZXJ2ZXItY2xpLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92
-My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9vdGEtc2VydmVyL290YS1z
-ZXJ2ZXItZHluYW1pYy1ibG9jay1wZXJpb2QuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1
-aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL290YS1zZXJ2ZXIt
-cG9saWN5L290YS1zZXJ2ZXItcG9saWN5LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0
-ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9vdGEtc3RvcmFnZS1j
-b21tb24vb3RhLXN0b3JhZ2UtY29tbW9uLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0
-ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9vdGEtc3RvcmFnZS1j
-b21tb24vb3RhLXN0b3JhZ2UtY29tbW9uLWNsaS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtf
-c3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vb3RhLXN0b3Jh
-Z2UtcG9zaXgtZmlsZXN5c3RlbS9vdGEtc3RvcmFnZS1saW51eC5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4v
-cG9sbC1jb250cm9sLWNsaWVudC9wb2xsLWNvbnRyb2wtY2xpZW50LmMgXAogIC4uLy4uLy4uLy4u
-L2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdp
-bi9wb2xsLWNvbnRyb2wtY2xpZW50L3BvbGwtY29udHJvbC1jbGllbnQtY2xpLmMgXAogIC4uLy4u
-Ly4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3Jr
-L3BsdWdpbi9yZXBvcnRpbmcvcmVwb3J0aW5nLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19z
-dWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9yZXBvcnRpbmcv
-cmVwb3J0aW5nLWNsaS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90
-b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vcmVwb3J0aW5nL3JlcG9ydGluZy1kZWZh
-dWx0LWNvbmZpZ3VyYXRpb24uYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIv
-cHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvcGx1Z2luL3NjYW4tZGlzcGF0Y2gvc2Nhbi1k
-aXNwYXRjaC5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96
-aWdiZWUvYXBwL3V0aWwvZXpzcC9zZWN1cmUtZXpzcC1zdHViLmMgXAogIC4uLy4uLy4uLy4uL2dl
-Y2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9z
-aW1wbGUtbWFpbi9zaW1wbGUtbWFpbi5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUv
-djMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vc2ltcGxlLW1ldGVyaW5n
-LWNsaWVudC9zaW1wbGUtbWV0ZXJpbmctY2xpZW50LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nk
-a19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi9zaW1wbGUt
-bWV0ZXJpbmctY2xpZW50L3NpbXBsZS1tZXRlcmluZy1jbGllbnQtY2xpLmMgXAogIC4uLy4uLy4u
-Ly4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3Bs
-dWdpbi9zdGFjay1kaWFnbm9zdGljcy9zdGFjay1kaWFnbm9zdGljcy5jIFwKICAuLi8uLi8uLi8u
-Li9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVn
-aW4vdGVzdC1oYXJuZXNzL3Rlc3QtaGFybmVzcy5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtf
-c3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vdGVzdC1oYXJu
-ZXNzL3JlYWQtd3JpdGUtYXR0cmlidXRlcy5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3Vp
-dGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vdGVzdC1oYXJuZXNz
-L3Rlc3QtaGFybmVzcy1ob3N0LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4y
-L3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi90aW1lLXNlcnZlci90aW1lLXNl
-cnZlci5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdi
-ZWUvYXBwL2ZyYW1ld29yay9wbHVnaW4vdHJ1c3QtY2VudGVyLW53ay1rZXktdXBkYXRlLWJyb2Fk
-Y2FzdC90cnVzdC1jZW50ZXItbndrLWtleS11cGRhdGUtYnJvYWRjYXN0LmMgXAogIC4uLy4uLy4u
-Ly4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3Bs
-dWdpbi90cnVzdC1jZW50ZXItbndrLWtleS11cGRhdGUtcGVyaW9kaWMvdHJ1c3QtY2VudGVyLW53
-ay1rZXktdXBkYXRlLXBlcmlvZGljLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92
-My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3BsdWdpbi90cnVzdC1jZW50ZXItbndr
-LWtleS11cGRhdGUtdW5pY2FzdC90cnVzdC1jZW50ZXItbndrLWtleS11cGRhdGUtdW5pY2FzdC5j
-IFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hhbC9t
-aWNyby9nZW5lcmljL2NyYy5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9w
-bGF0Zm9ybS9iYXNlL2hhbC9taWNyby9nZW5lcmljL2VuZGlhbi5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hhbC9taWNyby9nZW5lcmljL3JhbmRv
-bS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hh
-bC9taWNyby9nZW5lcmljL3N5c3RlbS10aW1lci5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtf
-c3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hhbC9taWNyby91bml4L2hvc3QvbWljcm8uYyBcCiAg
-Li4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcGxhdGZvcm0vYmFzZS9oYWwvbWljcm8v
-dW5peC9ob3N0L3Rva2VuLWRlZi11bml4LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0
-ZS92My4yL3BsYXRmb3JtL2Jhc2UvaGFsL21pY3JvL3VuaXgvaG9zdC90b2tlbi5jIFwKICAuLi8u
-Li8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wbGF0Zm9ybS9iYXNlL2hhbC9wbHVnaW4vc2Vy
-aWFsL2VtYmVyLXByaW50Zi1jb252ZXJ0LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0
-ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvdXRpbC9zZXJpYWwvbGludXgtc2VyaWFsLmMgXAog
-IC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJh
-bWV3b3JrL3BsdWdpbi91cGRhdGUtdGMtbGluay1rZXkvdXBkYXRlLXRjLWxpbmsta2V5LmMgXAog
-IC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJh
-bWV3b3JrL3BsdWdpbi91cGRhdGUtdGMtbGluay1rZXkvdXBkYXRlLXRjLWxpbmsta2V5LWNsaS5j
-IFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBw
-L2ZyYW1ld29yay9jbGkvY29yZS1jbGkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRl
-L3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvY2xpL25ldHdvcmstY2xpLmMgXAog
-IC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJh
-bWV3b3JrL2NsaS9vcHRpb24tY2xpLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92
-My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL2NsaS9wbHVnaW4tY2xpLmMgXAogIC4u
-Ly4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3
-b3JrL2NsaS9zZWN1cml0eS1jbGkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3Yz
-LjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvY2xpL3pjbC1jbGkuYyBcCiAgLi4vLi4v
-Li4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsv
-Y2xpL3pkby1jbGkuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9j
-b2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvc2VjdXJpdHkvYWYtbm9kZS5jIFwKICAuLi8uLi8uLi8u
-Li9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay9zZWN1
-cml0eS9hZi1zZWN1cml0eS1jb21tb24uYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRl
-L3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvc2VjdXJpdHkvYWYtdHJ1c3QtY2Vu
-dGVyLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2Jl
-ZS9hcHAvZnJhbWV3b3JrL3NlY3VyaXR5L2NyeXB0by1zdGF0ZS5jIFwKICAuLi8uLi8uLi8uLi9n
-ZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay91dGlsL2Fm
-LWV2ZW50LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3pp
-Z2JlZS9hcHAvZnJhbWV3b3JrL3V0aWwvYWYtbWFpbi1jb21tb24uYyBcCiAgLi4vLi4vLi4vLi4v
-Z2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvdXRpbC9h
-dHRyaWJ1dGUtc2l6ZS5jIFwKICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90
-b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay91dGlsL2F0dHJpYnV0ZS1zdG9yYWdlLmMgXAogIC4u
-Ly4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3
-b3JrL3V0aWwvYXR0cmlidXRlLXRhYmxlLmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0
-ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3V0aWwvY2xpZW50LWFwaS5jIFwK
-ICAuLi8uLi8uLi8uLi9nZWNrb19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2Zy
-YW1ld29yay91dGlsL21lc3NhZ2UuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3Yz
-LjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvdXRpbC9tdWx0aS1uZXR3b3JrLmMgXAog
-IC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJh
-bWV3b3JrL3V0aWwvcHJpbnQuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIv
-cHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvdXRpbC9wcmludC1mb3JtYXR0ZXIuYyBcCiAg
-Li4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFt
-ZXdvcmsvdXRpbC9wcm9jZXNzLWNsdXN0ZXItbWVzc2FnZS5jIFwKICAuLi8uLi8uLi8uLi9nZWNr
-b19zZGtfc3VpdGUvdjMuMi9wcm90b2NvbC96aWdiZWUvYXBwL2ZyYW1ld29yay91dGlsL3Byb2Nl
-c3MtZ2xvYmFsLW1lc3NhZ2UuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIv
-cHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvdXRpbC9zZXJ2aWNlLWRpc2NvdmVyeS1jb21t
-b24uYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVl
-L2FwcC9mcmFtZXdvcmsvdXRpbC90aW1lLXV0aWwuYyBcCiAgLi4vLi4vLi4vLi4vZ2Vja29fc2Rr
-X3N1aXRlL3YzLjIvcHJvdG9jb2wvemlnYmVlL2FwcC9mcmFtZXdvcmsvdXRpbC91dGlsLmMgXAog
-IC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJh
-bWV3b3JrL3V0aWwvYWYtbWFpbi1ob3N0LmMgXAogIC4uLy4uLy4uLy4uL2dlY2tvX3Nka19zdWl0
-ZS92My4yL3Byb3RvY29sL3ppZ2JlZS9hcHAvZnJhbWV3b3JrL3V0aWwvc2VydmljZS1kaXNjb3Zl
-cnktaG9zdC5jIFwKCgpBUFBMSUNBVElPTl9GSUxFUzo9JChjYWxsIHJlbW92ZVNwYWNlcywgJChB
-UFBMSUNBVElPTl9GSUxFUykpCgpMSUJSQVJJRVMgPSBcCiBcCgoKT1VUUFVUX0RJUj0kKEFQUF9C
-VUlMREVSX09VVFBVVF9ESVJFQ1RPUlkpL2J1aWxkCk9VVFBVVF9ESVJfQ1JFQVRFRD0gJChPVVRQ
-VVRfRElSKS9jcmVhdGVkCkVYRV9ESVI9JChPVVRQVVRfRElSKS9leGUKIyBCdWlsZCBhIGxpc3Qg
-b2Ygb2JqZWN0IGZpbGVzIGZyb20gdGhlIHNvdXJjZSBmaWxlIGxpc3QsIGJ1dCBhbGwgb2JqZWN0
-cwojIGxpdmUgaW4gdGhlICQoT1VUUFVUX0RJUikgYWJvdmUuICBUaGUgbGlzdCBvZiBvYmplY3Qg
-ZmlsZXMKIyBjcmVhdGVkIGFzc3VtZXMgdGhhdCB0aGUgZmlsZSBwYXJ0IG9mIHRoZSBmaWxlcGF0
-aCBpcyB1bmlxdWUKIyAoaS5lLiB0aGUgYmFyLmMgb2YgZm9vL2Jhci5jIGlzIHVuaXF1ZSBhY3Jv
-c3MgYWxsIHN1Yi1kaXJlY3RvcmllcyBpbmNsdWRlZCkuCkFQUExJQ0FUSU9OX09CSkVDVFM9ICQo
-YWRkcHJlZml4ICQoT1VUUFVUX0RJUikvLCAkKG5vdGRpciAkKEFQUExJQ0FUSU9OX0ZJTEVTOi5j
-PS5vKSkpCgppZmRlZiBHRU5FUkFURV9MSUJSQVJZClRBUkdFVF9GSUxFPSAkKEVYRV9ESVIpL2hv
-c3Rmb3JFZGdlMyQoQVJDSElWRV9FWFRFTlNJT04pCmVsc2UKVEFSR0VUX0ZJTEU9ICQoRVhFX0RJ
-UikvaG9zdGZvckVkZ2UzCmVuZGlmCgojIC1NTUQgYW5kIC1NRiBnZW5lcmF0ZXMgTWFrZWZpbGUg
-ZGVwZW5kZW5jaWVzIHdoaWxlIGF0IHRoZSBzYW1lIHRpbWUgY29tcGlsaW5nLgojIC1NUCBub3Rl
-cyB0byBhZGQgYSBkdW1teSAnYnVpbGQnIHJ1bGUgZm9yIGVhY2ggaGVhZGVyIGZpbGUuICBUaGlz
-IAojIHByZXZlbnQgYSBwcm9ibGVtIHdoZXJlIGEgcmVtb3ZlZCBoZWFkZXIgZmlsZSB3aWxsIGdl
-bmVyYXRlIGFuIGVycm9yIGJlY2F1c2UgYQojIGRlcGVuZGVuY3kgcmVmZXJlbmNlcyBpdCBidXQg
-aXQgY2FuJ3QgYmUgZm91bmQgYW55bW9yZS4KREVQRU5ERU5DWV9GTEFHUyA/PSAtTU1EIC1NUCAt
-TUYgJChARCkvJChARjoubz0uZCkKCiMgRGVwZW5kZW5jeSBwb3N0IHByb2Nlc3MgaXMgYSB3YXkg
-dG8gbWFzc2FnZSBnZW5lcmF0ZWQgZGVwZW5kZW5jaWVzLgojIFRoaXMgaXMgbmVjZXNzYXJ5IGZv
-ciBleGFtcGxlIHdoZW4gdXNpbmcgTWFrZSB1bmRlciBDeWd3aW4gYnV0IGNvbXBpbGluZwojIHVz
-aW5nIGEgbmF0aXZlIFdpbmRvd3MgY29tcGlsZXIgdGhhdCBnZW5lcmF0ZXMgbmF0aXZlIFdpbmRv
-d3MgcGF0aHMKIyB0aGF0IEN5Z3dpbiB3aWxsIGNob2tlIG9uLiAgT3IgaWYgY29tcGlsaW5nIG9u
-IExpbnV4IHVzaW5nIFdpbmUgdG8gcnVuIGEgCiMgV2luZG93cyBjb21waWxlciwgYSBzaW1pbGFy
-IHByb2JsZW0gY2FuIG9jY3VyLiAgCkRFUEVOREVOQ1lfUE9TVF9QUk9DRVNTID89CgpDUFBGTEFH
-Uz0gJChJTkNMVURFUykgJChERUZJTkVTKSAkKENPTVBJTEVSX0ZMQUdTKSAkKERFUEVOREVOQ1lf
-RkxBR1MpCkxJTktFUl9GTEFHUyA/PQoKaWZkZWYgTk9fUkVBRExJTkUKICBDUFBGTEFHUyArPSAt
-RE5PX1JFQURMSU5FCmVsc2UKICBMSU5LRVJfRkxBR1MgKz0gIFwKICAgIC1scmVhZGxpbmUgXAog
-ICAgLWxuY3Vyc2VzIAplbmRpZgoKIyBDb25kaXRpb25hbGx5IGluY2x1ZGUgdGhlIG1hdGggbGli
-cmFyeSBpZiBFTV9BRl9MSU5LX00gaXMgZGVmaW5lZC4KaWZlcSAoJChmaW5kc3RyaW5nIC1ERU1f
-QUZfTElOS19NLCQoREVGSU5FUykpLC1ERU1fQUZfTElOS19NKQogIExJTktFUl9GTEFHUyArPSBc
-CiAgICAtbG0KZW5kaWYKCiMgQ29uZGl0aW9uYWxseSBpbmNsdWRlIHRoZSBQT1NJWCB0aHJlYWRz
-IGxpYnJhcnkgaWYgRU1fQUZfTElOS19QVEhSRUFEIGlzCiMgZGVmaW5lZC4KaWZlcSAoJChmaW5k
-c3RyaW5nIC1ERU1fQUZfTElOS19QVEhSRUFELCQoREVGSU5FUykpLC1ERU1fQUZfTElOS19QVEhS
-RUFEKQogIExJTktFUl9GTEFHUyArPSBcCiAgICAtbHB0aHJlYWQKZW5kaWYKCkFSQ0hJVkVfRkxB
-R1MgPz0gcnVzCgojIFJ1bGVzCgouUEhPTlk6IGFsbAphbGw6ICQoVEFSR0VUX0ZJTEUpCgppZm5l
-cSAoJChNQUtFQ01ER09BTFMpLGNsZWFuKQotaW5jbHVkZSAkKEFQUExJQ0FUSU9OX09CSkVDVFM6
-Lm89LmQpCmVuZGlmCgppZmRlZiBHRU5FUkFURV9MSUJSQVJZCiQoVEFSR0VUX0ZJTEUpOiAkKEFQ
-UExJQ0FUSU9OX09CSkVDVFMpICQoTElCUkFSSUVTKQoJJChBUkNISVZFKSAkKEFSQ0hJVkVfRkxB
-R1MpICQoVEFSR0VUX0ZJTEUpICReCglAZWNobyAtZSAnXG4kQCBidWlsZCBzdWNjZXNzJwplbHNl
-CiNlbHNlCiNhcHBsaWNhdGlvbiQoVEFSR0VUX0ZJTEUpOiAkKEFQUExJQ0FUSU9OX09CSkVDVFMp
-ICQoTElCUkFSSUVTKQokKFRBUkdFVF9GSUxFKTogJChBUFBMSUNBVElPTl9PQkpFQ1RTKSAkKExJ
-QlJBUklFUykKCSQoTEQpICReICQoTElOS0VSX0ZMQUdTKSAtbyAkKFRBUkdFVF9GSUxFKQoJQGVj
-aG8gLWUgJ1xuJEAgYnVpbGQgc3VjY2VzcycKZW5kaWYKCi5QSE9OWTogY2xlYW4KY2xlYW46Cgly
-bSAtcmYgJChPVVRQVVRfRElSKQoKJChPVVRQVVRfRElSX0NSRUFURUQpOgoJbWtkaXIgLXAgJChP
-VVRQVVRfRElSKQoJbWtkaXIgLXAgJChFWEVfRElSKQoJdG91Y2ggJChPVVRQVVRfRElSX0NSRUFU
-RUQpCgoKIyBUbyBmYWNpbGl0YXRlIGdlbmVyYXRpbmcgYWxsIG91dHB1dCBmaWxlcyBpbiBhIHNp
-bmdsZSBvdXRwdXQgZGlyZWN0b3J5LCB3ZQojIG11c3QgY3JlYXRlIHNlcGFyYXRlIC5vIGFuZCAu
-ZCBydWxlcyBmb3IgYWxsIHRoZSBkaWZmZXJlbnQgc3ViLWRpcmVjdG9yaWVzCiMgdXNlZCBieSB0
-aGUgc291cmNlIGZpbGVzLgojIElmIGFkZGl0aW9uYWwgZGlyZWN0b3JpZXMgYXJlIGFkZGVkIHRo
-YXQgYXJlIG5vdCBhbHJlYWR5IGluIHRoZQojICQoQVBQTElDQVRJT05fRklMRVMpIGFib3ZlLCBu
-ZXcgcnVsZXMgd2lsbCBoYXZlIHRvIGJlIGNyZWF0ZWQgYmVsb3cuCgojIE9iamVjdCBGaWxlIHJ1
-bGVzCgojIE5PVEU6ICBXZSBlc2NhcGUgdGhlIGNvbW1hbmRzIGluIHRoaXMgcnVsZSBiZWNhdXNl
-IHdlIGRvbid0IHdhbnQKIyB0aGVtIHRvIGJlIGludGVycHJldGVkIHdoZW4gdGhlIGZ1bmN0aW9u
-IGV4ZWN1dGVzLiAgV2UgZG9uJ3QgZXNjYXBlCiMgdGhlIGRlcGVuZGVuY3kgcnVsZSBpdHNlbGYg
-KDFzdCBsaW5lKSBiZWNhdXNlIHdlIHdhbnQgdGhpcyB0byBiZSAKIyBleHBsaWNpdCBmb3IgZWFj
-aCB0YXJnZXQuCmRlZmluZSBjcmVhdGUtYnVpbGQtcnVsZXMgCiQoT1VUUFVUX0RJUikvJChub3Rk
-aXIgJCgxOiUuYz0lLm8pKTogJChjYWxsIHJlc3RvcmVTcGFjZXMsICQxKSB8ICQoT1VUUFVUX0RJ
-Ul9DUkVBVEVEKSAKCSQkKENDKSAkJChDUFBGTEFHUykgLWMgIiQkPCIgLW8gJCRACgkkJChERVBF
-TkRFTkNZX1BPU1RfUFJPQ0VTUykKZW5kZWYgCgoKJChmb3JlYWNoIGQsICQoQVBQTElDQVRJT05f
-RklMRVMpLCAkKGV2YWwgJChjYWxsIGNyZWF0ZS1idWlsZC1ydWxlcywkZCkpKSAKIAoKIyBEZXBl
-bmRlbmN5IHJ1bGVzCiMgTm8gZXhwbGljaXQgcnVsZXMuICBEZXBlbmRlbmNpZXMgYXJlIGdlbmVy
-YXRlZCBhcyBwYXJ0IG9mIHRoZSBjb21waWxlIHN0ZXAuCg==
---00000000000072098b05f99abd18
-Content-Type: application/octet-stream; name="zigbee_0.1.bb"
-Content-Disposition: attachment; filename="zigbee_0.1.bb"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lgm6xdoy1>
-X-Attachment-Id: f_lgm6xdoy1
-
-REVTQ1JJUFRJT04gPSAgIlppZ2JlZSBNYWtlZmlsZSIKCkxJQ0VOU0UgPSAiTUlUIiAKTElDX0ZJ
-TEVTX0NIS1NVTSA9ICJmaWxlOi8vJHtDT01NT05fTElDRU5TRV9ESVJ9L01JVDttZDU9MDgzNWFk
-ZTY5OGUwYmNmODUwNmVjZGEyZjdiNGYzMDIiCkRFUEVORFMgKz0gInJlYWRsaW5lIG5jdXJzZXMi
-CgpTUkNfVVJJID0gImZpbGU6Ly9nZWNrb19zZGtfc3VpdGUvdjMuMi9idWlsZC9aM0dhdGV3YXlI
-b3N0bS9NYWtlZmlsZSBcCgkgICBmaWxlOi8vZ2Vja29fc2RrX3N1aXRlL3YzLjIvcHJvdG9jb2wv
-emlnYmVlL2FwcC9lenNwLWhvc3QvIgoKClMgPSAiJHtXT1JLRElSfSIKCkVYVFJBX09FTUFLRSA9
-ICInQ0M9JHtDQ30nICdSQU5MSUI9JHtSQU5MSUJ9JyAnQVI9JHtBUn0nICdDRkxBR1M9JHtDRkxB
-R1N9IC1JJHtTfScgJ0JVSUxERElSPSR7U30nIgojL2luY2x1ZGUgLURXSVRIT1VUX1hBVFRSCgoK
-ZG9fY29tcGlsZSgpIHsKCWNkIC9ob21lL21vaGFuL2FtbG9naWMvbWV0YS1jL3JlY2lwZXMtZXhh
-bXBsZS96aWdiZWUvZmlsZXMvZ2Vja29fc2RrX3N1aXRlL3YzLjIvYnVpbGQvWjNHYXRld2F5SG9z
-dG0vICYmIG9lX3J1bm1ha2UgYWxsCn0KCmRvX2luc3RhbGwoKSB7CglpbnN0YWxsIC1kICR7RH0k
-e2JpbmRpcn0KCWluc3RhbGwgLW0gMDc1NSAvaG9tZS9tb2hhbi9hbWxvZ2ljL21ldGEtYy9yZWNp
-cGVzLWV4YW1wbGUvemlnYmVlL2ZpbGVzL2dlY2tvX3Nka19zdWl0ZS92My4yL2J1aWxkL1ozR2F0
-ZXdheUhvc3RtL2J1aWxkL2V4ZS9ob3N0Zm9yRWRnZTMgJHtEfSR7YmluZGlyfQp9CgoKCgoKCgoj
-U1JDX1VSSSA9ICJmaWxlOi8vZ2Vja29fc2RrX3N1aXRlL3YzLjIvYnVpbGQvWjNHYXRld2F5SG9z
-dG0vIgojU1JDX1VSSSA9ICJmaWxlOi8vZ2Vja29fc2RrX3N1aXRlL3YzLjIvIFwKIyAgICAgICAg
-ICAgZmlsZTovLy4uLy4uLy4uLy4uL2J1aWxkL3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51eC96
-aWdiZWUvMC4xLXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvbGliL2FhcmNoNjQtcG9reS1s
-aW51eC9nY2MvYWFyY2g2NC1wb2t5LWxpbnV4LzkuMy4wL2luY2x1ZGUiCiNTUkNfVVJJID0gImZp
-bGU6Ly9jYWxsYmFjay1zdHViLmMgXAojCSAgIGZpbGU6Ly9NYWtlZmlsZSIKI2RvX2NvbXBpbGUo
-KSB7CiMJb2VfcnVubWFrZQojCWNkIC9ob21lL21vaGFuL2FtbG9naWMvbWV0YS1jL3JlY2lwZXMt
-ZXhhbXBsZS96aWdiZWUvZmlsZXMvZ2Vja29fc2RrX3N1aXRlL3YzLjIvYnVpbGQvWjNHYXRld2F5
-SG9zdG0vICYmIG1ha2UgYWxsCiMJJHtXT1JLRElSfS9maWxlcyAmJiBtYWtlIGFsbAojCW9lX3J1
-bm1ha2UgYWxsCiMJZ2NjIC1vIHozZ2F0ZXdheWhvc3QgZ2Vja29fc2RrX3N1aXRlL3YzLjIvYnVp
-bGQvWjNHYXRld2F5SG9zdG0vYnVpbGQvZXhlL2hvc3Rmb3JFZGdlMwojfQojZG9faW5zdGFsbCAo
-KSB7CiMgCWNkIC9ob21lL21vaGFuL2FtbG9naWMvbWV0YS1jL3JlY2lwZXMtZXhhbXBsZS96aWdi
-ZWUvZmlsZXMvZ2Vja29fc2RrX3N1aXRlL3YzLjIvYnVpbGQvWjNHYXRld2F5SG9zdG0vICYmIG9l
-X3J1bm1ha2UgYWxsIGluc3RhbGwgREVTVERJUj0ke0R9IFNCSU5ESVI9JHtzYmluZGlyfSBNQU5E
-SVI9JHttYW5kaXJ9IElOQ0xVREVESVI9JHtpbmNsdWRlZGlyfQojfQojZG9faW5zdGFsbCgpIHsK
-IwlpbnN0YWxsIC1tIDA3NTUgL2hvbWUvbW9oYW4vYW1sb2dpYy9tZXRhLWMvcmVjaXBlcy1leGFt
-cGxlL3ppZ2JlZS9maWxlcy9nZWNrb19zZGtfc3VpdGUvdjMuMi9idWlsZC9aM0dhdGV3YXlIb3N0
-bS9idWlsZC9leGUgJHtEfQojCWNobW9kIDA3NTUgL2hvbWUvbW9oYW4vYW1sb2dpYy9tZXRhLWMv
-cmVjaXBlcy1leGFtcGxlL3ppZ2JlZS9maWxlcy9nZWNrb19zZGtfc3VpdGUvdjMuMi9idWlsZC9a
-M0dhdGV3YXlIb3N0bS9idWlsZC9leGUvaG9zdGZvckVkZ2UzCiMJY3AgL2hvbWUvbW9oYW4vYW1s
-b2dpYy9tZXRhLWMvcmVjaXBlcy1leGFtcGxlL3ppZ2JlZS9maWxlcy9nZWNrb19zZGtfc3VpdGUv
-djMuMi9idWlsZC9aM0dhdGV3YXlIb3N0bS9idWlsZC9leGUvaG9zdGZvckVkZ2UzICR7RH0ke2Jp
-bmRpcn0KI30K
---00000000000072098b05f99abd18--
+--000000000000e2122905f99d8a09--
 
