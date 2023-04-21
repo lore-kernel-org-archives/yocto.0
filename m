@@ -1,144 +1,172 @@
-Return-Path: <petr.gotthard@advantech.cz>
+Return-Path: <peter.kjellerstedt@axis.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DF555C7618E
-	for <webhook@archiver.kernel.org>; Fri, 21 Apr 2023 18:18:13 +0000 (UTC)
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (APC01-SG2-obe.outbound.protection.outlook.com [40.107.215.50])
- by mx.groups.io with SMTP id smtpd.web10.20124.1682101085183061004
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3116AC77B76
+	for <webhook@archiver.kernel.org>; Fri, 21 Apr 2023 23:16:05 +0000 (UTC)
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+ by mx.groups.io with SMTP id smtpd.web10.27122.1682118959244224825
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Apr 2023 11:18:06 -0700
+ Fri, 21 Apr 2023 16:15:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@advantech.cz header.s=selector1 header.b=BmFlQBY9;
- spf=pass (domain: advantech.cz, ip: 40.107.215.50, mailfrom: petr.gotthard@advantech.cz)
+ dkim=fail reason="signature has expired" header.i=@axis.com header.s=axis-central1 header.b=Su4Y190V;
+ spf=pass (domain: axis.com, ip: 195.60.68.18, mailfrom: peter.kjellerstedt@axis.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1682118960;
+  x=1713654960;
+  h=from:to:cc:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=rrOa5n39eHjNgymiwxAZu2Zg6mjP8HaIFCEcqj9p36o=;
+  b=Su4Y190VWOMByhO/6EMjTcBmB2Dmc9tKUXvfTI97/AHZkGjgCMCyZj41
+   MG43/tsEQreKDmfVKBtnm2Y5yEjVIfxueh7+NHKTS291+GWR0Dq6lfLCf
+   Gjsirck9FELbGaGHfqay96WFkZL7NoqlGCVFm3TcI/xRvv9sTYSsitHni
+   ZH1JV1GjEwSJJpVUkvxpbJwdwhSZ87S6j2u8m/Qx8+ZX2nqNC3JVXY/l9
+   TZ6lIc9ewCDidOph1ztfDfvngPGXcQzsP4Th0fwV2Iq1TdMe9pPkcDeAV
+   c+lpJQZK7/I78tR+pDbpLOYxEWcaNAl8AmJxTd2IAVFn1nYi0mPd63dgx
+   g==;
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Vx6hKy9VdeyHztfIjNwCfEDY/5Yvsf8+yKoff2bazpQzskv/uZNuY9eCBeHEuOLeWM4xCiGVIXTV7MAJPMq7SMFbfs8WIHxpgk7HVI5hbrFgAXnnNardE2mdSX6OoceVqaIORPmqguIrGmvi2Pcst/+eqhB/80HVVoIPbbjLyNxuAiAXxSBN0L30uwAVoPsXWZBVDFe+ZRcokRFBpEpeOSmw2KVBNVF4XGOPnBoO5eZ1in047k3+HEpZmlHfEpLdSNiEMSm5CzixyNnqQAL+oOBMLVDWduxliHQRd0G5C22nztvNcptOFf2UFa2u1LvVBe+Mgih0V9ptM6JeX7yZ3g==
+ b=WnIomvyqpkJNrfytre2xNnHRh/ns6LFvIWarYUs6e1pVlSze0oLcRGNcX+GT9JIKrmtUCnmiMdTuDJVo+nutRd4IMSaY1VCgaSSSAqMaL5gLVBwUZk4N/xqFhpTKgNGxiM7SIsRmVJYdPd1nG/UoykpvMiYijrbLDHo4Ql3afE+9LgcRvXs6AudZlXwsmurRqDcZFl+pZb3G6ZdQeekP8D8T4YKYAfbE6Z6t/MQFYF2GsaSWFwHyJ2bruDpqQ17a6Gt6jZu8ZDNZC5+19F1o4WrsyOa4GKwZXutdif+KqTwmXCPsgXRcOQayxameJ5F7Ew3KEXioTHWVIa7UhODiIw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q8BUEwlCp3rP9MNPgIHYlsEg3zlyrLbge8pl581MJlA=;
- b=M5UDvBvdheRJgPaL8jg/4+Rf6vZWoIIBiQG8LlpBA12WY7VLWxEO82BfPFvxB5KbRKQ52T5SV0ImrbkggseLrOSif3Yzr2h9j2w1s73pxIlTMt19+h1UvZmr2gw1B6GSHLUA2rM+DawrXKRkR+q7jvhSz3pyW8wOF1qqdsXJrv2QQvRkCjjRYzEZ2DOmfeA0i8eji1qhQiY4Wy1CHL8fwVahbeCVo4z+GqezJnK2ROM+lFE/f3TezdVBvUyEte0HBVQ1JGu6L/tg0hP7lqr6/V2DYK+CMLSaNxFVIjFIELONjn7QiU9FGzKSKuPLv/qst8rjh6Op9axixxsXqr0Q2w==
+ bh=rrOa5n39eHjNgymiwxAZu2Zg6mjP8HaIFCEcqj9p36o=;
+ b=EM9C0j78jE5ljBUEvYOvNuWopcmuBQMkxdwCOdyEkgpuowxrhlBxvDEf7pfAAq7n0bZ6OjXqomDZ6tt9ScyPmmn26S/EbjCmAYC2kFaws/qwWx9j1c//oPwDgknA6CTVzhSAFMWT6IbmGcSi7u+mO+MiKwCriVQfOTUoyd2+590HILArtuKOTX7npVFvkYCGDfYNmcsDF/J6k5yHu3N7PgVEwsgyC6ZStNZGKis23UlOlna9F9lkMzN5ZvXdvo9EdlN2by+flpnbXvnE6kHYvmlUu9b61uaZF9ic30Gmy85SLx6Mx8bfLbUobvizJYJKw18w7xpElg7mudzlUDQs8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=advantech.cz; dmarc=pass action=none header.from=advantech.cz;
- dkim=pass header.d=advantech.cz; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=advantech.cz;
- s=selector1;
+ smtp.mailfrom=axis.com; dmarc=pass action=none header.from=axis.com;
+ dkim=pass header.d=axis.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=axis365.onmicrosoft.com; s=selector2-axis365-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q8BUEwlCp3rP9MNPgIHYlsEg3zlyrLbge8pl581MJlA=;
- b=BmFlQBY9UUa5XF2yEJRDGmEATaQsyxvAkFSiV0CxiqVnsipMnGuH6acWoGrJ6KAQCE50NNlCHJ6Kt767W1+VB/SwDtrTEpLXbpcO8uoKIbhhfUdw/iQrwGT2pU1wdAKOR/+Bqxf7VtmAW6Vp6FFMQQEY0V8tTnfrKVJXsNqXs2gHwXMebweSV9ZQlEe44lMU55keVCTHaMoQ75EWO55lsJj1LpJ97zKktrLISORx1PVqAE31jslKBi1xptQvmBbemuikZu1AZjHrMjs3Mp0RyFjJtWKcn3a12nkco7KOvS28EMabyGfqQrpvZ6eIekS9UB6ySfEIzQZbSEGQtM/sdA==
-Received: from TY2PR02MB3678.apcprd02.prod.outlook.com (2603:1096:404:b7::12)
- by TYZPR02MB5101.apcprd02.prod.outlook.com (2603:1096:400:8f::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.22; Fri, 21 Apr
- 2023 18:18:00 +0000
-Received: from TY2PR02MB3678.apcprd02.prod.outlook.com
- ([fe80::624d:2113:5376:e9b2]) by TY2PR02MB3678.apcprd02.prod.outlook.com
- ([fe80::624d:2113:5376:e9b2%7]) with mapi id 15.20.6319.022; Fri, 21 Apr 2023
- 18:18:00 +0000
-From: Petr Gotthard <petr.gotthard@advantech.cz>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [meta-security][PATCH] tpm2-tss: upgrade 3.2.0 -> 4.0.1
-Thread-Topic: [meta-security][PATCH] tpm2-tss: upgrade 3.2.0 -> 4.0.1
-Thread-Index: AdlDAe8E5qn+5u8KQEKhiKEZ3CNQbgxeDgUAAACh0IA=
-Date: Fri, 21 Apr 2023 18:17:59 +0000
-Message-ID: 
- <TY2PR02MB3678D0D1F780E67A2F7F254981609@TY2PR02MB3678.apcprd02.prod.outlook.com>
-References: 
- <TY2PR02MB36783697BB0D07ECA91365F581A19@TY2PR02MB3678.apcprd02.prod.outlook.com>
- <DB5PR02MB1021323D8BFB6E35FF6B5C2B8EF609@DB5PR02MB10213.eurprd02.prod.outlook.com>
-In-Reply-To: 
- <DB5PR02MB1021323D8BFB6E35FF6B5C2B8EF609@DB5PR02MB10213.eurprd02.prod.outlook.com>
+ bh=rrOa5n39eHjNgymiwxAZu2Zg6mjP8HaIFCEcqj9p36o=;
+ b=ct74/YYAVla6knf/4ofh9QpzMyvn7pXgzPygrPSe9DWirbwAUJKQ/A03ll973zguliK95dJeAPIM0m85+a/F3rrA5hXUTD/zHVkmUl0tNkAXruzHzKCEdiLbKsPnhII5c5R+qKG7rAs6JXRf4W7gf9aSjaFUy05Uij4N0MRnRgY=
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: Armin Kuster <akuster808@gmail.com>
+CC: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Subject: [meta-security] Unnecessary/optional dependencies in tpm2-tools
+Thread-Topic: [meta-security] Unnecessary/optional dependencies in tpm2-tools
+Thread-Index: Adl0oqXsYzE/YoRmR1KFMoxuzcw8jA==
+Date: Fri, 21 Apr 2023 23:15:52 +0000
+Message-ID: <DB5PR02MB102133E92A506FE021382BDF5EF609@DB5PR02MB10213.eurprd02.prod.outlook.com>
 Accept-Language: en-US
-Content-Language: cs-CZ
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=advantech.cz;
+ header.d=none;dmarc=none action=none header.from=axis.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY2PR02MB3678:EE_|TYZPR02MB5101:EE_
-x-ms-office365-filtering-correlation-id: 951dc300-bf35-4896-bcff-08db4294bd32
+x-ms-traffictypediagnostic: DB5PR02MB10213:EE_|DB9PR02MB9897:EE_
+x-ms-office365-filtering-correlation-id: ba57b0a5-bfb7-4faa-d9d0-08db42be59f3
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- o15vwTJn5321jCSSZBHrVhslDVfhaf+MiaMq2DjgSNbCENN3xlfDqCgHPEjQYXp1KBR58KF229mZ9Hl5RkwaFZpgR3DdUrRwWrHawe2r4OFIaGpEIe0MLRMQqxgJmcI5aJvs7lneRYTdgVXoAtgMGum/VJqCWidIhqAejYp6RgJo3GY3lnlI0fHdcelxdr2GFYlBxaP6illIdu3reV1Ah37zYZY+R1IXSG71mcDMuM16KkV1xxLkiQAZwtptWi+SDsdNgTf0RoqnOEyS1Nev+aurZjosTblN4pCxqFAev0e+BZjl/BQbIg7b8nSEL+Li9GbmpDH0kDRnT+QNOu/DXWFAO77EN0SSAbty52I3N3XEE5OyH0esrQFGOZRjKmf0IFdwOAS+IqeUILRyt82hDgjHGPcriLKyk3ZvqPS6UmgA5A/Y+P1VGKgw5H3dXBL/Um1awpLszqRhj2mp+YbELDlcjtICT7j5wKDBNwzXwWy+jHXgTrP/nRdWGDduppDdGZLKSj3O47ql7MCSh81H3SdYFWh1Vy7WxNFRXdWnYxiaIRsM+cZk8p9cE2p75yMWtym8Vg4SydwYWWSWD/cNjHE2t9O7Z2OCCPuBLcWWVwA=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR02MB3678.apcprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(136003)(39860400002)(346002)(376002)(396003)(451199021)(38100700002)(38070700005)(15650500001)(4744005)(8676002)(8936002)(2906002)(44832011)(5660300002)(52536014)(33656002)(86362001)(83380400001)(7696005)(55016003)(71200400001)(966005)(26005)(6506007)(9686003)(478600001)(66946007)(53546011)(186003)(76116006)(122000001)(316002)(41300700001)(4326008)(66556008)(6916009)(66446008)(64756008)(66476007);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: VokzesLBYLPzF/yBtr0t3cRCxuwITujEr/BOsmdkMqbY36ryhjrYvjfGBwf9AC5djFcVi3K6nWy02szrioB8wA29M8WbewYQ7fW6OvEQUSIbYGBIOV6ibDwyRc4bBgyjgSSqj4Tqj+HCoJc5njM9z5T0y/UFB0Rrnaz0qRPJkizKqISHM+gVZphXuslFMARC9u3URzidNolTiwEuGO1QgM/vjQKD0P66k45cfVsBK7aX31AXcN+ywP4m3iHuOC3OWn1+vgRtSuzNAzVYXTDUqfgHScbeGd5/Anrf2HHTiKWmyUVI4OXVu/gbHXhK21ROEOoLVoH3d3VP7VL/vRUQ+2YABSgkcdUHRFTq8voyIrjussviJf1Ouwbd66rdYTrWd4IFUTP2qNfJNsgTS9yWk6UuoQoYEE12J3pPXiz6aA/zPk4lCx7WSnFkiYhR1Ai09riZ5F9Td4ZEJJhU3NkjVBgyqOOcEx1ENXYErVeJ0CBBnZlkO/JbD7htpprdCmjlgVgc5qDQR+GYcd/wBrrYq/jFXcrUc9Q/h6QwB98/ktrfmc8PxJPxcKTywzWFW39ZnqigeotDLTzl/6k6IudSQ65opQ+ohnsxVmFmLqGkMtDRSjXtZVCEAZt5P4AhgRb7
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB5PR02MB10213.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(136003)(376002)(396003)(39860400002)(451199021)(33656002)(55016003)(478600001)(71200400001)(7696005)(83380400001)(8676002)(41300700001)(76116006)(38100700002)(122000001)(8936002)(66446008)(316002)(4326008)(6916009)(64756008)(66946007)(66556008)(66476007)(186003)(6506007)(26005)(9686003)(86362001)(5660300002)(15650500001)(38070700005)(2906002)(52536014)(44832011)(115813001);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?RHpiTFZZUFZRNHpkcjVyb29hTnk0MnZjVEVCSU5vYXA4QWhUTWU5VFZTOGFh?=
- =?utf-8?B?VTZUVW41ZVJicGI2bGh4VmswNi9kc0d0dzBEMUlqZkNNa0pJMExwSkRiYUFI?=
- =?utf-8?B?RlRWd2xVYnpXZWx5U2I0RllCZk5xbWl1dFRjVlVFNmZWWm9FeE1ERGQ3UzBy?=
- =?utf-8?B?SmZCSVJ6V001NFVHNlZZOFdYSStaUGprME1LcFkwQzQ4RHdabm54VkN2UVZD?=
- =?utf-8?B?Q1NSSjVUVXZDWTVaZnpBS1JUZVFMcTFqOG5rdVlON3BrVVAyQTJBOStXS3Vz?=
- =?utf-8?B?NDdIT1o2VXJocm9iMTJST0NEMTBEamxSMVVsM0Y1NllrVmZQeFUxVThPK2ZK?=
- =?utf-8?B?V0o3TXB1Tjc1TXJ6a29ST1orWVplL0FicVVHTU15YW5RNVZ1bVZGM1VSc051?=
- =?utf-8?B?clMzcE01S0ZYcis3NkNIb0hndy9FaFhXWHhZM3N3NkpZd09HV0tWQTNEOGZj?=
- =?utf-8?B?dmNieWdjUVc1bjZzS2VrcVNtMDVHWmxVRm9sM2lXSUc0STlEMkpaOVJPYWFQ?=
- =?utf-8?B?cFZKS1VwV3JaTWtWR2JIZm5uNEpIaWVlZjlxclVpSk01MUUwcUNUSzU0VkFW?=
- =?utf-8?B?UnA4ZTJhQmllc1llZXlyR3lrcHcwUlEwYU1MUFh2R2pueXlBSlZNTTNOMVJU?=
- =?utf-8?B?YVp0cGNRQzE4RTFEWUg3WUxKdXUvVC84em45RG0wLzhXQ3duMFM0Y1VNMU9U?=
- =?utf-8?B?cXI2bktOeE1BU1RqTWI5MDloNmxSdTRBR3NIa2EwUVdmalBwdXh3dDJKLytH?=
- =?utf-8?B?WkJFS2xnSEhrYVluWEUyT1lRUjJ4Ri9VeTBpcFVFemZpUFBTNEFqZHRnQkdC?=
- =?utf-8?B?S0FXRXk2cFF1d0RsRFp1dlAvUWU4b0Z6WUpyNjBTeWJUM2UyWkhYN3dRVmRR?=
- =?utf-8?B?eVF5dTdzaGxIVnlkRDJ3VW5XckU4OVg4RUY4S2ZzeVN5bHhYbWxjTHNidTFX?=
- =?utf-8?B?eFVRU0RkenJ6RVhoN0Q2WjRPSm1oZzJwTDNNNDJ1Zzk3RFYyazV2eG5VWEdC?=
- =?utf-8?B?LzRSekxhVzFpVmE2b2hlVlhnQk8wazlkcDNiMW9GZVB5dXA1aUJRZ2VLUTV4?=
- =?utf-8?B?TjNrTGJGMkdpWUI1ZFlUZit6WE9XUUpKZzZxVjl6YVpRRHl2UjlUaXdER3cw?=
- =?utf-8?B?dS9vNUhWT1BTZVA1U1FpV05tcitVT3pGTHRaYlhXTnZYN2JYYUNVOUpROUkw?=
- =?utf-8?B?NVBsczhzVE5xeDJLY0wvbWpid0szM1EyTmQ2MkxQYWRrVWVUSkJHT2FEbGxG?=
- =?utf-8?B?OUI0NEtzTUN3eWEyMUVZeis4eVgya1FudlRtNyt0T3BzVEZCa3o3RGhWdXd6?=
- =?utf-8?B?Q2VmUGF0RitHcVAwTlludzZRUG9vM1JWUlFzelo0REQ1cmVadkZObnNkNGhy?=
- =?utf-8?B?R1FMbVU3VlJPcURWYTFRdDBKbnBkcWhRQ2x4OGdIaWlaWkNnVmdBQjJ2bDJD?=
- =?utf-8?B?YnZCOFIzUkd1cEt4TGJySjl5Mm1kT1VqUWdtcldtYmFYSTkzSkdPKzk2Rk8x?=
- =?utf-8?B?cXVwbXNkYjdLOTRoUXNiempUcnVqZ0tQbWhQQVQrZU5hWEhSdkRLdkhybU40?=
- =?utf-8?B?bGlodDFqWUg0TWNBaHllb0VyRzNuN3ZoWHRZQkc4V1FXQk9QTFlCZ3I0TVUr?=
- =?utf-8?B?eHBXL2o3L2QwNG4vSU5xM3QrOERnNGE2RXRvLzBqUTJCOXcyWWtZS3VKUEFB?=
- =?utf-8?B?YjM2NzVqM2szbUJpRTVHTTVyak9OWC9vNXlTZ2t2TERBNG1FV05KcURMKzNa?=
- =?utf-8?B?R3NnamlHeDZvL1pPZzkxVFZhSHA5SkNxUmtJdllBMTl0bVBIbDhmK2pzQlBu?=
- =?utf-8?B?YSs5eTRLNnBabFBYV0JSOTlUNjE5TjUyamlnMXVBS08rY1g4NlNwb0tPTkNi?=
- =?utf-8?B?dWdiaGtXMEpCamlPTlp3RGR4R2NTb1hmRzk1VlJSdWNHYU9QMG56WURxcGtU?=
- =?utf-8?B?MitSdU9KS2ZqMCtSM3o5U1VDQ2lscDc1NFp2ZURlc2d2V3lMdUpnM1YyTitK?=
- =?utf-8?B?WmVHZDB3K0hpa0U1NmdZMzBHQzNCMzhMZU5tNU1qcXcwYjYxN0ptOGpPanow?=
- =?utf-8?B?bFNNQ3ZQM1V6N29jSWlpNE9xWWZydUVYYmptRDdKZTBiWFFaT0IxMkI0K0h2?=
- =?utf-8?B?ZjZtRE93S3ltMTZXWDZtVnNZYnd6QnJ1U2dtb0xIUmpSQ2d4SjNReGlGenZa?=
- =?utf-8?B?ZWc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zKSxevdK+jK1MiI7ctVVseia/NfhXcqLIvPLdrlkoerGFVg4B5KWeOsYswP6?=
+ =?us-ascii?Q?ZCh6MQ0nyOYjaP2QlLEi/1l4CwwwNyrqgZWwATHRAe1zu+5hbA8g5nbAEQ+y?=
+ =?us-ascii?Q?WFOwccHNQ/Wgtuvr+lH3BWumxwThk0C4oQjBPngSoPVkzj42tXSUjFdzHWpN?=
+ =?us-ascii?Q?wPyb26azoKeUUh8x+GD3cRSbe0LUOlo6P33rvUfc/ZMv7iGq9NYkAzqdnQQl?=
+ =?us-ascii?Q?0MiTnBxhPjhyi5YOnlJlZvgOECJzCFNiyB+oe1atCT61W0aFpEOGxN6avgP/?=
+ =?us-ascii?Q?NW0pY5KwpRkKQo5VB41CqjOv4CssKUC6NLEoMgCZJ101h+xldg3NoNX5maRy?=
+ =?us-ascii?Q?mSaIqOdwA8K4cWOxxKPEm4wjHu8R3QE1ZVyZLST/JoUf+lNGVmg4xBo7CYzF?=
+ =?us-ascii?Q?HrIsfvA/B2qxa4Tv0wRIEt5TTQ/+qNmpsDadLA9/0Na9K3O0HRCLvsZgsYKm?=
+ =?us-ascii?Q?57l5eRagl2aguwYgEP8F6myGdDF9lm4JdJEkRTtYmVEITCCTETsl4uLrces9?=
+ =?us-ascii?Q?d1bkx9Im9p3Ovyur/ddIfbOv9ihdmqftq6JsjN+C1vwybOHeQAeJoxDZKDX+?=
+ =?us-ascii?Q?aayufpP4qeGF0jrpc2pQhCz25hhi8AuN1UitXhp77w3WFUeahBxM5ijtVMof?=
+ =?us-ascii?Q?3iW4ZDARnBhlfsZue7NzWPHfBG0DqiAmtXVhKgIdiwOc2c2u/TPGN+pcEvpE?=
+ =?us-ascii?Q?KAcXxERoaTvTMRqcLUvScmWZaEnbLlEJUZNIJpCQTTQqyfy+FYfNWSuerr9c?=
+ =?us-ascii?Q?YvTUHIG4LR3WcewqY5tewx5C1a2ypxb1Z+igBZi62m9wciWF9fVaTnD+EpDX?=
+ =?us-ascii?Q?NGpcDFuZ1IkPPIU8xF4VfaZL2wof4Ov6A/nTaPiNFKmwwWCsv7ML4nDwudUA?=
+ =?us-ascii?Q?5G8ps+jVteE02PudqpjJdJbrFnohxK5lzVD9/uyTdV/6agBTVNxiKxBXn9DW?=
+ =?us-ascii?Q?WepBLXpxSTQPcxi6Zv4pYfU8HYSeX2s9/hDzmpY5is0zDbdA5/7EnNaD30aj?=
+ =?us-ascii?Q?eGMorpsiHROdUgGM1A92t3g72Ah/sftTviWHi+XPCK59h2zQ/f6Q8EgG+Zk1?=
+ =?us-ascii?Q?kffMmugvqVTHkQ4t2oSmEggFmjsZCsYvs05ZXZ0bmDTVRiw6CeMlK1r2H9a4?=
+ =?us-ascii?Q?lYeACvmRtvm9qNPjKwyI2FDSpeyU57Cqt866xVi2ieJPG1LsYRZiR0+sXOww?=
+ =?us-ascii?Q?KgcgILub9H1bsS91JhNo6uDOdRwEGHXfWxM7EugRLDbXOSodT5IYtCTT7KLX?=
+ =?us-ascii?Q?NEHAg2+jsV9IbHxbuT4I/0b27DY6ZX9ogafoQrTg89itM8IexDwTrj3P1w9D?=
+ =?us-ascii?Q?LqPZ4Y2LuH87XMnWYVENwL+3G5OYmEDotdFU4BI1r00pQhB6fpkicyIPxw+3?=
+ =?us-ascii?Q?/YONlEQxnUr7PaSPtRK6hH0keV4aOVQEALJKepwlvGqTUtpE5RYZekCxf4tr?=
+ =?us-ascii?Q?xmOVqQWEv1W4go7qjUeUPW4jsMeCbQfgIg+pWxTeMbziR0QFgzQo0n6N7P4+?=
+ =?us-ascii?Q?urLVGW9hgQtg6EFbM1Z1Y6Ztb4tHe8WrGQ1rrh1yJD4TuMFRuIhX5ZQ9DYPF?=
+ =?us-ascii?Q?9n+J1R8BJj0srFlcA8s=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: advantech.cz
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR02MB3678.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 951dc300-bf35-4896-bcff-08db4294bd32
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2023 18:17:59.9603
+X-MS-Exchange-CrossTenant-AuthSource: DB5PR02MB10213.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba57b0a5-bfb7-4faa-d9d0-08db42be59f3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2023 23:15:52.3086
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a77d40d9-dcba-4dda-b571-5f18e6da853f
+X-MS-Exchange-CrossTenant-id: 78703d3c-b907-432f-b066-88f7af9ca3af
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: b8hT/NBhNZ6zfJSS7lWAWo907/7u1lTrurgKhs08zCkgjvTz/EdgNi9H+2cdsm0q59TOYR3Yq7CwZ/SVsOUtWxCMuztfsnwWz6YSxTkQc7I=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR02MB5101
+X-MS-Exchange-CrossTenant-userprincipalname: ALmOxZWw9ckYL1rTn6/vdIVAUFgdx0+HFoNuwWzNLI6+YXRz9ju7Pgmp71xei7ad
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB9897
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 21 Apr 2023 18:18:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59757
+ <yocto@lists.yoctoproject.org>; Fri, 21 Apr 2023 23:16:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59758
 
-WWVhaCwgSSBhbSBzb3JyeSBmb3IgdGhhdC4gSXQgd2FzIGludGVudGlvbmFsLCBidXQgSSBkaXNj
-b3ZlcmVkIHRoZXJlIGlzIGEgYnVnIGluIHRoZSB1cHN0cmVhbSB0aGF0IHByZXZlbnRzIG1lIGZy
-b20gdXNpbmcgdGhpcyBmZWF0dXJlIHByb3Blcmx5Lg0KaHR0cHM6Ly9naXRodWIuY29tL3RwbTIt
-c29mdHdhcmUvdHBtMi10c3MvaXNzdWVzLzI1NzENCg0KSSB0aG91Z2h0IGl0IHdpbGwgYmUgZml4
-ZWQgcXVpY2tseSwgYnV0IGl0IHdhc24ndC4gTGV0IG1lIGZpeCB0aGlzLg0KDQotLS0tLU9yaWdp
-bmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogUGV0ZXIgS2plbGxlcnN0ZWR0IDxwZXRlci5ramVsbGVy
-c3RlZHRAYXhpcy5jb20+IA0KU2VudDogRnJpZGF5LCBBcHJpbCAyMSwgMjAyMyA4OjA3IFBNDQpU
-bzogUGV0ciBHb3R0aGFyZCA8cGV0ci5nb3R0aGFyZEBhZHZhbnRlY2guY3o+DQpDYzogeW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUkU6IFttZXRhLXNlY3VyaXR5XVtQQVRD
-SF0gdHBtMi10c3M6IHVwZ3JhZGUgMy4yLjAgLT4gNC4wLjENCg0KWW91IGludHJvZHVjZSBhIG5l
-dyBmZWF0dXJlICJwb2xpY3kiLCBidXQgdGhlbiB5b3Ugc2V0IHRoZSBkZWZhdWx0IGZvciBQQUNL
-QUdFQ09ORklHIHRvICJ2ZW5kb3IiLCB3aGljaCBkb2VzIG5vdCBleGlzdC4gV2FzIHRoaXMgaW50
-ZW50aW9uYWw/IElmIHNvIGl0IHNob3VsZCBoYXZlIGJlZW4gbWVudGlvbmVkIGluIHRoZSBjb21t
-aXQgbWVzc2FnZSBhcyBpdCBjYXVzZXMgYSB3YXJuaW5nIHVubGVzcyB5b3Ugb3ZlcnJpZGUgdGhl
-IGRlZmF1bHQgUEFDS0FHRUNPTkZJRzoNCg0KICBXQVJOSU5HOiB0cG0yLXRzcy00LjAuMS1yMCBk
-b19jb25maWd1cmU6IFFBIElzc3VlOiB0cG0yLXRzczogaW52YWxpZA0KICBQQUNLQUdFQ09ORklH
-OiB2ZW5kb3IgW2ludmFsaWQtcGFja2FnZWNvbmZpZ10NCg0KDQovL1BldGVyDQo=
+I have a team that is looking at starting to use some of the=20
+recipes from meta-security and I am currently reviewing their=20
+changes to our layers. In a bbappend for tpm2-tools they=20
+removed the build dependency on tpm2-abrmd, which got me=20
+wondering why it was there in the first place. After doing=20
+some experimentation, I came up with the following patch:
+
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.5.bb b/meta-tpm/=
+recipes-tpm2/tpm2-tools/tpm2-tools_5.5.bb
+index ef73238..8119bb1 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.5.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.5.bb
+@@ -4,7 +4,7 @@ LICENSE =3D "BSD-3-Clause"
+ LIC_FILES_CHKSUM =3D "file://docs/LICENSE;md5=3Da846608d090aa64494c45fc147=
+cc12e3"
+ SECTION =3D "tpm"
+
+-DEPENDS =3D "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
++DEPENDS =3D "tpm2-tss openssl curl"
+
+ SRC_URI =3D "https://github.com/tpm2-software/${BPN}/releases/download/${P=
+V}/${BPN}-${PV}.tar.gz"
+
+@@ -13,6 +13,3 @@ SRC_URI[sha256sum] =3D "1fdb49c730537bfdaed088884881a61e3=
+bfd121e957ec0bdceeec02612
+ UPSTREAM_CHECK_URI =3D "https://github.com/tpm2-software/${BPN}/releases"
+
+ inherit autotools pkgconfig bash-completion
+-
+-# need tss-esys
+-RDEPENDS:${PN} =3D "libtss2 tpm2-abrmd"
+
+Motivation for the proposed changes above:
+
+* The dependency on autoconf-archive is only needed when=20
+  building from the Git repository (and it should really be=20
+  autoconf-archive-native). This dependency can probably be=20
+  removed from more recipes that now build from tar balls=20
+  where they originally built from Git repositories.
+* Removing the build dependency on tpm2-abrmd does not change=20
+  the output in any way, i.e., nothing is used from it.
+* The runtime dependency on libtss2 is added automatically by=20
+  bitbake since /usr/bin/tpm2 is linked with libtss2-esys.so.0.
+* The runtime dependency on tpm2-abrmd is AFAICT optional. And=20
+  in my book such dependencies are better handled at a higher=20
+  level, e.g., by depending on packagegroup-security-tpm2. If=20
+  it is removed, the instructions in meta-parsec/README.md that=20
+  references tpm2-tools may need to be complemented by a=20
+  reference to tpm2-abrmd. Similar for the runtime dependencies=20
+  in tpm2-pkcs11. An alternative to removing the runtime=20
+  dependency would be to instead introduce a PACKAGECONFIG for=20
+  it, but I do not like PACKAGECONFIGs that only add runtime=20
+  dependencies.
+
+Bear in mind that I know nothing about tpm2. I am looking at=20
+this strictly from what is produced when building the recipe.
+
+Comments?
+
+//Peter
+
 
