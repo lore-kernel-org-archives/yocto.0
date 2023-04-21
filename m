@@ -2,54 +2,54 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92689C7618E
-	for <webhook@archiver.kernel.org>; Fri, 21 Apr 2023 04:01:19 +0000 (UTC)
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
- by mx.groups.io with SMTP id smtpd.web11.4266.1682049677743827604
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 77305C7618E
+	for <webhook@archiver.kernel.org>; Fri, 21 Apr 2023 04:02:19 +0000 (UTC)
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+ by mx.groups.io with SMTP id smtpd.web11.4292.1682049731728056291
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Apr 2023 21:01:17 -0700
+ Thu, 20 Apr 2023 21:02:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=JV9TVK4G;
- spf=pass (domain: gmail.com, ip: 209.85.160.50, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-187b70ab997so8898012fac.0
-        for <yocto@lists.yoctoproject.org>; Thu, 20 Apr 2023 21:01:17 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=Jv/gn3al;
+ spf=pass (domain: gmail.com, ip: 209.85.167.182, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-38dfa504391so1034484b6e.3
+        for <yocto@lists.yoctoproject.org>; Thu, 20 Apr 2023 21:02:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682049677; x=1684641677;
+        d=gmail.com; s=20221208; t=1682049731; x=1684641731;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PCa4lzc8DDuOXEZJlwaoDp+LZrNfe/lo7Txzm0TPQoE=;
-        b=JV9TVK4GlUOnxDTAwKtMi75cAQGQDu8TUtCIFcWYqgwkdQeEdqrfEv5r9k1fmXC8Cm
-         NPvgLjoU6J5CyZIi8cZelb1IRfuccslh4zny50/3XtJjkCxwLcKoButmZIZuxu7GxogT
-         Pr1qIsKlCvdqWlGtIeom8P0Vxaasg5QRa1n6Nvwc9uCnJLEsd5DuE8xuY8AmSBZXFwOe
-         7aoxldyJ0H0kJTMBCjm2tperVYOjtxhZz6dOQK/U/hCv9WizjQRh+VhLmTn5AJorR4Ho
-         EMrkG+gasTm+fYx20im6sQtWIL7n+jt5EuTLy1TUyIqUI8SRHoWHnEOfT0vLGXPPTSHd
-         jT+Q==
+        bh=fBNgBGwKhJfCEl7rzEcjxTxSFVNPfVsipIZMCbZ4OSM=;
+        b=Jv/gn3alyeRlDG9/s9stlpdZs+how/lt3DcEj8N1dbn0ZCPkf78pmUF1cYWB+tA2re
+         6eOHb30HREs+dUlBSW1f5PBrBPbUlQaZ1AvPSWL3s4XFVrsGEgthJBKoInxS8JDfYOU2
+         c1fFcTsdXDl3IDgfykQG0P2HlxuuIsQ1M4tChy1m49tytv2UyeX2HYI+kovHHIoQyGol
+         Erm7Z/icoR8IbnXaLSObzOuGj1/AjY2Bb0XkkFmGzaIoOIQ1Q6UBoqHi3s4NEpIJw+42
+         DQBI1VyASqsh/DjrujKVOjDIegtuJcFJFphHABskXUXodz9dZxy0mDChbbxL5lZ7DZUM
+         Qbtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682049677; x=1684641677;
+        d=1e100.net; s=20221208; t=1682049731; x=1684641731;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PCa4lzc8DDuOXEZJlwaoDp+LZrNfe/lo7Txzm0TPQoE=;
-        b=GhBWn1TnnBNJ1S8WKH394Ze2OIrT4I/Md7Lnj9uqg+gTgPnihPuD0F+ZUTdrybrr9B
-         IdTCiTVnOX0GO0NoIVI9mU32SkVFRsBdTnnckMi1+4mRW1l3fdSBnW2C2wCQjOKm6goi
-         OBy7+uCfJrOrgvQoxLdO4JCkNcbezKW3gCpX6byUVr59vtMS6Hcn9Tt6BSLfs64coYJi
-         tohekQHHcNY4fSkUsCX4C46Oib+JvgIfSInA5JFsAJHUUBCbDlkqvBPLEQiXF1JNcLd9
-         Z5Pwb6YF9bl4PhmRINcfoMuq7YIwalkQp8JGNypkFMR+x4aoBgPEeHVtR785rz28OsYJ
-         Bi1g==
-X-Gm-Message-State: AAQBX9dRFc0O/ISsdrIe+Q7MIdWGFRgv3OWg52Ra9M5mXyxGei7xLKcd
-	HMbYuwsc8RDM+oj1dWOUsF/KMsR76pSH3Xk+ri4=
-X-Google-Smtp-Source: AKy350Zmc6yLKqxKTfR2QEu5L0T8jWHPP2I5+HM+NUw7U9jhVVmY7u4laUjKjkMzcbmtSn8MVgzrxRwUiVj5P/kOl5Y=
-X-Received: by 2002:a05:6820:1997:b0:546:dd28:c5d0 with SMTP id
- bp23-20020a056820199700b00546dd28c5d0mr747613oob.1.1682049676732; Thu, 20 Apr
- 2023 21:01:16 -0700 (PDT)
+        bh=fBNgBGwKhJfCEl7rzEcjxTxSFVNPfVsipIZMCbZ4OSM=;
+        b=LXFlbn/kJSKKYh6NbDpnDQDzwa/WZePr/N5my4/Ybes9/vhrumjd5b8zmoiQV1x7/D
+         +GoCloWDry4Jmmmb3Y2R2tD1YFNemxrwPMK+GEGp4omgmTtLLNyYfi+jsqS/zbwbxxtD
+         Pb6Ec8b7etW8Kilk7y7o7rwdWHflba0eXoRVG0j8eZrkANjTJBYr52pHBGOUdivTltez
+         BRS+H9TTRSEjxp3p7JrJ2f/3SOHEF/iG4u7yGJGnLOpNRgkJdrAHFFF19KoglvvrhrfR
+         8bhcQBhHcuRqH/mlwdCWCX1pG7OksuMC2pIq7Tze9iUSeuWjx1Saqcebov1Fe2KpvgBK
+         kbAw==
+X-Gm-Message-State: AAQBX9dtHpqFZdthLij965RQEfHS4Bulvel1g+XWAWT3YwwOMRxvkM/p
+	ZsDB1zElGNhxiyczIQTge6NJhNBiC1QeRXjV5y8=
+X-Google-Smtp-Source: AKy350bHY/bn2EvlZphHPWddDo32JwVP4Y7xEc9Y4/h1lxpK/GCzaMAAGJYRXNygg6k4nclq8rlmbtx+526bc+8HOx8=
+X-Received: by 2002:a05:6808:1907:b0:38d:61e9:12cd with SMTP id
+ bf7-20020a056808190700b0038d61e912cdmr2481470oib.21.1682049730895; Thu, 20
+ Apr 2023 21:02:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAPJWBngCF34ht+RdS3cNb1ZPLSzobqJXu_pVF_WO+X54pwC7_A@mail.gmail.com>
-In-Reply-To: <CAPJWBngCF34ht+RdS3cNb1ZPLSzobqJXu_pVF_WO+X54pwC7_A@mail.gmail.com>
+References: <CAPJWBni6M5ssUgSEyTEC5Vd8=XahXfEP+71N=AUmU9FyefDMRg@mail.gmail.com>
+In-Reply-To: <CAPJWBni6M5ssUgSEyTEC5Vd8=XahXfEP+71N=AUmU9FyefDMRg@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 20 Apr 2023 21:00:50 -0700
-Message-ID: <CAMKF1sqnqLLmC4Xpu_TeWTA4ZAESf0JcyS+uSg1GWVFM-=5Y9g@mail.gmail.com>
-Subject: Re: [yocto] OTA updates for Application Software
+Date: Thu, 20 Apr 2023 21:01:44 -0700
+Message-ID: <CAMKF1speLkL-HRXkHDNcyr+GKOnZ=NvLSFrtcCiSo49jJRt23Q@mail.gmail.com>
+Subject: Re: [yocto] NPM package management
 To: MOHAMMED HASSAN <hassanchattarki@gmail.com>
 Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
@@ -57,36 +57,23 @@ Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 21 Apr 2023 04:01:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59746
+ <yocto@lists.yoctoproject.org>; Fri, 21 Apr 2023 04:02:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59747
 
-there are several options that can be used for OTA with yocto project.
+look at https://docs.yoctoproject.org/dev-manual/common-tasks.html?highligh=
+t=3Dnpm#creating-node-package-manager-npm-packages
 
-swupdate
-https://sbabic.github.io/swupdate/swupdate.html
-https://github.com/sbabic/meta-swupdate
-
-RAUC
-https://rauc.io/
-https://github.com/rauc/meta-rauc
-
-mender
-https://mender.io/
-https://github.com/mendersoftware/meta-mender
-
-a detailed list is here - https://wiki.yoctoproject.org/wiki/System_Update
-
-
-On Thu, Apr 20, 2023 at 8:53=E2=80=AFPM MOHAMMED HASSAN
+On Thu, Apr 20, 2023 at 8:58=E2=80=AFPM MOHAMMED HASSAN
 <hassanchattarki@gmail.com> wrote:
 >
 > Hi guys,
-> I wanted to know if it is possible to update your application through OTA=
- updates.
-> If yes, then please share some documentation or some steps in achieving i=
-t.
-> If not, then what other alternatives do we have to update the application=
- in our hardware deployed at some remote location.
+> I am writing a nodejs application for my board running on yocto dunfell. =
+I had a doubt regarding the npm packages. Since my application would use a =
+lot of node js packages, how do I load all those packages? I didn't underst=
+and much about the npm registry tool and how it can help for custom complex=
+ applications.
+> If you guys have any ideas or suggestions please let me know.
+>
 >
 > Thanks
 > Hassan
@@ -94,9 +81,9 @@ t.
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#59744): https://lists.yoctoproject.org/g/yocto/messag=
-e/59744
-> Mute This Topic: https://lists.yoctoproject.org/mt/98403981/1997914
+> View/Reply Online (#59745): https://lists.yoctoproject.org/g/yocto/messag=
+e/59745
+> Mute This Topic: https://lists.yoctoproject.org/mt/98404043/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
 .com]
