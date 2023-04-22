@@ -1,86 +1,70 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46E56C6FD18
-	for <webhook@archiver.kernel.org>; Sat, 22 Apr 2023 10:21:48 +0000 (UTC)
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web10.4821.1682158905387951172
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1ECE5C6FD18
+	for <webhook@archiver.kernel.org>; Sat, 22 Apr 2023 17:26:00 +0000 (UTC)
+Received: from a27-29.smtp-out.us-west-2.amazonses.com (a27-29.smtp-out.us-west-2.amazonses.com [54.240.27.29])
+ by mx.groups.io with SMTP id smtpd.web11.12167.1682184352532034130
  for <yocto@lists.yoctoproject.org>;
- Sat, 22 Apr 2023 03:21:45 -0700
+ Sat, 22 Apr 2023 10:25:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=TfWhypsr;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-3f09b4a1584so17955495e9.2
-        for <yocto@lists.yoctoproject.org>; Sat, 22 Apr 2023 03:21:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1682158904; x=1684750904;
-        h=mime-version:user-agent:content-transfer-encoding:date:to:from
-         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=xqUvwrMDROifndAEQ1e90yMnCfsQC0d+Zw+2rFIb9yU=;
-        b=TfWhypsr34AppfcJHR0b2dgnmKzcyM2xXq1MdeWbOoLNNsQu1jDAn9js8sQlxmkkzN
-         Q6RNKwCjoBu2/AIgsWi9Q0hNvJSrGFNaDJOVjJJl3ot3N8EcrYuWTiATziXjm3QjPN83
-         /3hRieFQ6ubN/Ng8YfSbnVhfQXSZn4/PXY1Tk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682158904; x=1684750904;
-        h=mime-version:user-agent:content-transfer-encoding:date:to:from
-         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xqUvwrMDROifndAEQ1e90yMnCfsQC0d+Zw+2rFIb9yU=;
-        b=Ejt2QzProKEg1c/G6Uh+Tfgn9WqfZ+xqPQ60QXvPbSItQMNfPz1SOIgRkt6dTmyB0L
-         m/eM5TtutWtLTsdcGhC3XTwfc260nFJNBr3IyxTUx0hcZi5uzwDSZUlSwBeYMMsik9xl
-         j8qqsn9j3I5TYrbmUNDK33koLF/gdy8CRg2qOLtJApr6ONczClmoQJOd+jWCnmTRsobd
-         l+N9lgwqUtID7OlnUe9irPwHalC7PpgZuet6DZkg/j63wF130DwuGazi5rRpv3YTrvIv
-         KWtj3YHNsQ2ALTb/+Iw+mkgGiUbA4FNSE1rGhnw+HehRHPj0RP1+7ZFoVhIk/hLt9+2Y
-         uk+w==
-X-Gm-Message-State: AAQBX9fV+BgWOKuxfHje3yrxkCcc1tx/8/lh+bEb8SqCqGsh9i2xqhJY
-	Es8wdcEqhwLJLi+LvIYlkrojmw==
-X-Google-Smtp-Source: AKy350ZpJcy142aUz5lzTGFj+JR0WqxPOLqUjfJ45G2wxWsQ2BCRULRuQDByEZ4KXXHoG84wn0W2Jw==
-X-Received: by 2002:adf:dd85:0:b0:2d1:9c50:5746 with SMTP id x5-20020adfdd85000000b002d19c505746mr5822625wrl.12.1682158903846;
-        Sat, 22 Apr 2023 03:21:43 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:5f22:3f4c:8346:a897? ([2001:8b0:aba:5f3c:5f22:3f4c:8346:a897])
-        by smtp.gmail.com with ESMTPSA id b9-20020adfee89000000b002f777345d21sm6224340wro.95.2023.04.22.03.21.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Apr 2023 03:21:43 -0700 (PDT)
-Message-ID: <d378f74aafb16b2b1bac2bcc6369a98a71c43241.camel@linuxfoundation.org>
-Subject: 4.2 release going to rc3
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Lee Chee Yang <chee.yang.lee@intel.com>,
- "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, Jing Hui
- Tham <jing.hui.tham@intel.com>,  Zhao Yi <yi.zhao@windriver.com>
-Date: Sat, 22 Apr 2023 11:21:42 +0100
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.47.3-1 
-MIME-Version: 1.0
+ dkim=pass header.i=@yoctoproject.org header.s=j46ser6a2yusdzubpv7m7ewqgesde2ie header.b=LcPS2x0w;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.29, mailfrom: 01010187aa002f65-f0534f17-03ad-4a95-8eaf-8222db417800-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=j46ser6a2yusdzubpv7m7ewqgesde2ie; d=yoctoproject.org;
+	t=1682184351; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=cJ1oge8x66hUJjoG2Sh6Dy9C19FRqfIOPNI75o9s7TQ=;
+	b=LcPS2x0wZZEauC+jGFo6TbMI5FoVWnCDEwnY8gcKVlFxZx449ODeJVBx6MWtcUvk
+	mGWxJ6TGO8pB/yZQKPlfnkBMWqssGsjvPabJigum9gIMvfl1pvHPGqjSYcK4IXhMgm/
+	eD0rnYmWClgKjhJ/bLNZJiiPilAJ5u4+Ks/uIpJo=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1682184351;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=cJ1oge8x66hUJjoG2Sh6Dy9C19FRqfIOPNI75o9s7TQ=;
+	b=CCXjPApp1TNBf3pyrd1nOnoKU2T6lYUyxALiRkOaQvS0VyWOOxRAnXJQMnmppkJH
+	ckYFcbhaDYLF5IdlAi40JLJjkw0p5hSX05Gp7GeaJol3Sxu/dw/kX6G1HNlgZHsEs8W
+	yfIdbQwMeKKutI+NSu8GIzUdCx5c8AAwhv2ZXQaU=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.2.rc3)
+Message-ID: <01010187aa002f65-f0534f17-03ad-4a95-8eaf-8222db417800-000000@us-west-2.amazonses.com>
+Date: Sat, 22 Apr 2023 17:25:51 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.04.22-54.240.27.29
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 22 Apr 2023 10:21:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59760
-
-Hi,
-
-Whilst we had a green QA report and were thinking rc2 would release, we
-did get a user report of problems with graphics on qemu and sato was
-inoperable (bug 15100).
-
-Sadly our QA automation doesn't catch an issue like this and it mustn't
-have shown on real hardware.
-
-Due to the nature of the bug and the fact we have a fix (kernel upgrade
-from 6.1.21 to 6.1.24), we're going to build an rc3. I was able to
-include many of the migration guide and release note changes too.
-
-It is build on the autobuilder at the moment. I have chosen to include
-some CVE fixes and fairly critical bitbake fixes too since we are
-rebuilding and they were available.
-
-Cheers,
-
-Richard
+ <yocto@lists.yoctoproject.org>; Sat, 22 Apr 2023 17:26:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59761
 
 
+    A build flagged for QA (yocto-4.2.rc3) was completed on the autobuilder and is available at:
 
 
+        https://autobuilder.yocto.io/pub/releases/yocto-4.2.rc3
+
+
+    Build hash information: 
+
+    bitbake: d97d62e2cbe4bae17f0886f3b4759e8f9ba6d38c
+meta-agl: 09135164a21a216c6e3e75d7decce896b92962f0
+meta-arm: ea407ce849f7f181f5b43a2495436a720a32cbef
+meta-aws: cad4b8aabc9d2cde9fb3009ae902faa32bc8f1db
+meta-intel: 48ddf2b0e6fa5450e63878e1fc31dfc91cf3fd94
+meta-mingw: 250617ffa524c082b848487359b9d045703d59c2
+meta-openembedded: afbc2234898088311c38d78997f63992e38aa08a
+meta-virtualization: 50ceb5ad53ac721a25bbbce22eb1d881cc947764
+oecore: c57d1a561db563ed2f521bbac5fc12d4ac8e11a7
+poky: 21790e71d55f417f27cd51fae9dd47549758d4a0
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
