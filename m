@@ -1,90 +1,88 @@
-Return-Path: <soumya.sambu@windriver.com>
+Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBFA0C77B60
-	for <webhook@archiver.kernel.org>; Mon, 24 Apr 2023 02:27:18 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web11.42084.1682303229356884818
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 87D54C7618E
+	for <webhook@archiver.kernel.org>; Mon, 24 Apr 2023 08:05:20 +0000 (UTC)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+ by mx.groups.io with SMTP id smtpd.web11.45438.1682323510297085115
  for <yocto@lists.yoctoproject.org>;
- Sun, 23 Apr 2023 19:27:09 -0700
+ Mon, 24 Apr 2023 01:05:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=WHbZrsS/;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=3478c2501c=soumya.sambu@windriver.com)
-Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33O2LoJ0011926
-	for <yocto@lists.yoctoproject.org>; Mon, 24 Apr 2023 02:27:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=PPS06212021;
- bh=j41UO8BIFau3gr8W+iTHQK1wqbHD40sg9u8YflOLA3c=;
- b=WHbZrsS/wIj1BJfyne3qYzNQOJyoBaTh5k3qyFRrLAaJux2EMn/Z2Q3H7y3Yo91FyC30
- h+iUsqbl9rNnLqWZ/fH9Y29LzA0rOYSOT/LfyvcWcWOyRkp+Et2Uphjz8lOFW87wD/vu
- cRzLaC/gHlDSZtfm9/ejyCBcTbqwTwP1UdLuATLmCNTWLUv5Yr1GA5Cy4wR8vNGPB7KS
- Y1WHHJETGEztwSbe454imFy9odjNYrJS4a7hpJsn7x0ZZwApWFp8NX3IERfFBRvalLes
- F74d+jMdVDVhDA3QiyfHZfa3luiu2bG/DODtH+osYMmRW5d3lu/q+tjQXCJ4NOiE0GFC 9g== 
-Received: from ala-exchng02.corp.ad.wrs.com (unknown-82-254.windriver.com [147.11.82.254])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3q44t3sxye-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Mon, 24 Apr 2023 02:27:08 +0000
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Sun, 23 Apr 2023 19:27:06 -0700
-Received: from blr-linux-engg1.wrs.com (147.11.136.210) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2507.23 via Frontend Transport; Sun, 23 Apr 2023 19:27:05 -0700
-From: Soumya <soumya.sambu@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-CC: Soumya <soumya.sambu@windriver.com>
-Subject: [meta-cgl][kirkstone][PATCH 1/1] pacemaker: Remove build host path
-Date: Mon, 24 Apr 2023 02:27:01 +0000
-Message-ID: <20230424022701.2574063-1-soumya.sambu@windriver.com>
-X-Mailer: git-send-email 2.40.0
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=f2EFWD13;
+ spf=pass (domain: gmail.com, ip: 209.85.208.54, mailfrom: hassanchattarki@gmail.com)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-504eb1155d3so30569318a12.1
+        for <yocto@lists.yoctoproject.org>; Mon, 24 Apr 2023 01:05:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682323508; x=1684915508;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pzmpIR00VwsG5xZwR2HiiuCAUvJeae4dfrwEdsjopk0=;
+        b=f2EFWD13vN0fpOpw9Xquzhbwi0+81ncwhD8bZfGlPcdDarAyZuyxwam6Ktu+avaQbq
+         bbURdli8kyr3xGf4VIzBwk2Z3ugkvYhAtWjGioKLYP4BsrS/n34pfRUSkSlYhdNLJbwO
+         N+tER6IsY0htUZ2+QCDATYmfs6uvrvdFQL/SQGkf9XNrOe+gSihQRecJhBA+ILv4l8oh
+         qmGmd7e/DL8I8QvEe9ZR8CZ43zoPblfy2JS6x5GEyFcl9Qab3jR4q4pZkyW3NzGUWIGn
+         no2H1/2gag5/1uZjIfoRV0n8PpZz/JI8kGHmvYtx7Bh0errdG8h1cqRLeQHmYzE+MaW8
+         tmqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682323508; x=1684915508;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pzmpIR00VwsG5xZwR2HiiuCAUvJeae4dfrwEdsjopk0=;
+        b=QPny9W9likvPupbNdcl3rZGO1qLD5WwrkboVjsa3HTGsNwMP2HnqfJdLdIKRZca5lA
+         NjxK3RhNWLWDYU5+ZOZGptT/ZHKxAuRds2aNMXJGvFfDHutXB94XCRUwNbrKw+YtgZ4n
+         oKck2LDsMQuJsylKEfs1Xt0m8YFzXUQd0N2s+wY/PARKROq+hve1xmCEWf+df4rfJcdP
+         Hv+up5U9+oXNWtE8DPVCreq0kagp8rHrjFvojTnimlifYFsH9RYyljEksBg35acOMWp5
+         nldOwDSFIc1ktLYQsNs/sdk4t73kPTzNYRcLlwSH1b3Rq3hBvAGAVfhbDKoKDlcTkcpG
+         yOmQ==
+X-Gm-Message-State: AAQBX9f5KMvUl6Qd4+bB5KiOMHoL14hYWEnAqHw6+j6pQ1W8ilrWa18V
+	MTkAaOypgIpQ3npbff1Wc07uXqzIxYB9QaazSaKx3+tB
+X-Google-Smtp-Source: AKy350ZTJWvyfrB/ReBiKuk1yXxjfYEIAHqkFe24QpAmDuUzlGpZciz15HqfDZwagHgoorO5/Gbk2ltCVdX6oXPCaR4=
+X-Received: by 2002:a17:906:7e42:b0:94a:8771:fb60 with SMTP id
+ z2-20020a1709067e4200b0094a8771fb60mr8213207ejr.37.1682323508032; Mon, 24 Apr
+ 2023 01:05:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: EYL8XV696tJSlrs1HtGyzU9n483RNHxl
-X-Proofpoint-ORIG-GUID: EYL8XV696tJSlrs1HtGyzU9n483RNHxl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-23_16,2023-04-21_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 adultscore=0 clxscore=1011 impostorscore=0 suspectscore=0
- bulkscore=0 mlxlogscore=848 lowpriorityscore=0 phishscore=0 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304240021
+From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Date: Mon, 24 Apr 2023 13:34:56 +0530
+Message-ID: <CAPJWBnjcY9uCQ3_mShv6w0bzpAYOcsJc9pG9jkfL5E+cVn282A@mail.gmail.com>
+Subject: Integrating npm packages in yocto build
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000017faae05fa107730"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 24 Apr 2023 02:27:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59764
+ <yocto@lists.yoctoproject.org>; Mon, 24 Apr 2023 08:05:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59765
 
-File installed by pacemaker-cli-utils contains path of build host.
+--00000000000017faae05fa107730
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Soumya <soumya.sambu@windriver.com>
----
- meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb | 6 ++++++
- 1 file changed, 6 insertions(+)
+Hi guys,
+If I want to add a nodejs application, how can I add  its necessary npm
+packages. Do I have to create a folder containing all the packages source
+files and install or build them with the application.
+I have gone through the documentation and read about devtool but
+didn't understand much about it.
+It would be better if you can share some real time examples you've worked
+on.
+If you want to share your insights feel free to connect with me.
 
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
-index 2b4f96d..c3fdff3 100644
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
-@@ -84,6 +84,12 @@ do_install:append() {
-     do
-         sed -i "s:${RECIPE_SYSROOT_NATIVE}::g" $temdir
-     done
-+
-+    hostdir=$(grep -Rn ${HOSTTOOLS_DIR} ${D}/* | awk -F: '{print $1}' | uniq)
-+    for tmpdir in $hostdir
-+   do
-+        sed -i "s:${HOSTTOOLS_DIR}::g" $tmpdir
-+    done
- }
- 
- PACKAGES:prepend = "${PN}-cli-utils ${PN}-libs ${PN}-cluster-libs ${PN}-remote "
--- 
-2.40.0
+Thanks and Regards,
+Hassan
 
+--00000000000017faae05fa107730
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi guys,<br><div>If I want to add a nodejs application, ho=
+w can I add=C2=A0 its necessary npm packages. Do I have to create a folder =
+containing all the packages source files and install or build them with the=
+ application.=C2=A0</div><div>I have gone through the documentation and rea=
+d about devtool but didn&#39;t=C2=A0understand much about it.</div><div>It =
+would be better if you can share some real time examples you&#39;ve worked =
+on.</div><div>If you want to share your insights feel free to connect with =
+me.</div><div><br></div><div>Thanks and Regards,</div><div>Hassan</div></di=
+v>
+
+--00000000000017faae05fa107730--
 
