@@ -1,107 +1,83 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <sebastien.raillet@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92197C77B61
-	for <webhook@archiver.kernel.org>; Mon, 24 Apr 2023 23:30:24 +0000 (UTC)
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
- by mx.groups.io with SMTP id smtpd.web10.67612.1682379020502983975
- for <yocto@lists.yoctoproject.org>;
- Mon, 24 Apr 2023 16:30:20 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=Q/PsP+qZ;
- spf=pass (domain: mvista.com, ip: 209.85.214.178, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1a98ac97d47so2333435ad.3
-        for <yocto@lists.yoctoproject.org>; Mon, 24 Apr 2023 16:30:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1682379020; x=1684971020;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wi9yYI1ko98xRZUtZKaFsESJhBa7WWqiedz3oOsMyQQ=;
-        b=Q/PsP+qZY0OIg0tABQkWHq0Wms6mfKKnfF6bgj2vZ3gdAOO566vy7zabCEBfJnkTBR
-         ZBnTAyzlAT0Z76TKUOgz5Ii0T1mCPumi18O6wcZXM1AqQTUsCjIeZ3UUWgj3OJDNUZ4r
-         JMY6Ufle48kDgVcUe3LcaryNj9Vy4B1hyCih8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682379020; x=1684971020;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wi9yYI1ko98xRZUtZKaFsESJhBa7WWqiedz3oOsMyQQ=;
-        b=ewT4xg71ORDdDtqH7eWXwVmz6yyID8Ge20dXnsGvWEhh7W/pSME20PpN3M9IqSL6aF
-         eCwQ1JOyTpF95oQLqfMJ2tb2LDxZiRtFln42t3/GEkVwSlwLfqbi2pJLEgv4fTSIS8o+
-         C/KDdqfRQHN4Ipmh89xsvynIzeVCmXYtQrwKWBBu0B2MiApPZfWV+Bt3PyMFsQkZM8kb
-         E0/Zo4IPNK6E2jHg/t2xZbvLLLQsAwo+TTi/p7Lvs72dHeoibiDjY14wZI3uIJ+1NaSm
-         lALMgBr7oExo0x/cCUthYKtwaDrlV94vVdsfBv4EzzPnNpyp+5H2c2fNbTJEKOWlonzz
-         yNaA==
-X-Gm-Message-State: AC+VfDx+GmHYPH814dFD3sqw4tdXbqWLECNvLFIogX/5bF4W2VqqQxDp
-	mA1Q6aT3VlVpMtGcJnCn2VdQtA==
-X-Google-Smtp-Source: ACHHUZ5gfO77Zh8ycBcTZ85rI6oWu293Rhsq6TnCYw1q8eBWWpnx8egW7c8S+gmfkLXxv+PLWYo+wg==
-X-Received: by 2002:a17:902:ec8b:b0:1a9:7f45:8721 with SMTP id x11-20020a170902ec8b00b001a97f458721mr3109377plg.48.1682379019889;
-        Mon, 24 Apr 2023 16:30:19 -0700 (PDT)
-Received: from [192.168.1.9] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id l4-20020a170902eb0400b001960706141fsm7031440plb.149.2023.04.24.16.30.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Apr 2023 16:30:17 -0700 (PDT)
-Message-ID: <eb95137b-933f-5db3-66ab-1d737cd992c1@mvista.com>
-Date: Mon, 24 Apr 2023 16:30:15 -0700
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BA0EC6FD18
+	for <webhook@archiver.kernel.org>; Tue, 25 Apr 2023 08:45:27 +0000 (UTC)
+Subject: Re: Ownership issue during do_image
+To: yocto@lists.yoctoproject.org
+From: sebastien.raillet@gmail.com
+X-Originating-Location: CH (147.161.182.251)
+X-Originating-Platform: Windows Chrome 112
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [yocto] [meta-cgl][kirkstone][PATCH 1/1] pacemaker: Remove build
- host path
-Content-Language: en-US
-To: soumya.sambu@windriver.com, yocto@lists.yoctoproject.org
-References: <20230424022701.2574063-1-soumya.sambu@windriver.com>
-From: Jeremy Puhlman <jpuhlman@mvista.com>
-In-Reply-To: <20230424022701.2574063-1-soumya.sambu@windriver.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date: Tue, 25 Apr 2023 01:45:26 -0700
+References: <28940.1671177470292511205@lists.yoctoproject.org>
+In-Reply-To: <28940.1671177470292511205@lists.yoctoproject.org>
+Message-ID: <8648.1682412326518905593@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="gkxkgI2g3Q4f1UZh6MOR"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 24 Apr 2023 23:30:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59773
+ <yocto@lists.yoctoproject.org>; Tue, 25 Apr 2023 08:45:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59774
 
-Meregd, thanks.
+--gkxkgI2g3Q4f1UZh6MOR
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/23/2023 7:27 PM, Soumya via lists.yoctoproject.org wrote:
-> File installed by pacemaker-cli-utils contains path of build host.
->
-> Signed-off-by: Soumya <soumya.sambu@windriver.com>
-> ---
->   meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb | 6 ++++++
->   1 file changed, 6 insertions(+)
->
-> diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
-> index 2b4f96d..c3fdff3 100644
-> --- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
-> +++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
-> @@ -84,6 +84,12 @@ do_install:append() {
->       do
->           sed -i "s:${RECIPE_SYSROOT_NATIVE}::g" $temdir
->       done
-> +
-> +    hostdir=$(grep -Rn ${HOSTTOOLS_DIR} ${D}/* | awk -F: '{print $1}' | uniq)
-> +    for tmpdir in $hostdir
-> +   do
-> +        sed -i "s:${HOSTTOOLS_DIR}::g" $tmpdir
-> +    done
->   }
->   
->   PACKAGES:prepend = "${PN}-cli-utils ${PN}-libs ${PN}-cluster-libs ${PN}-remote "
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59764): https://lists.yoctoproject.org/g/yocto/message/59764
-> Mute This Topic: https://lists.yoctoproject.org/mt/98462814/2167262
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jpuhlman@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Hello,
 
--- 
-Jeremy Puhlman
-jpuhlman@mvista.com
+I was facing a similar issue some days ago and I've found your post.
 
+We are using also a custom image generation to split the final rootfs in ma=
+ny partitions. After upgrading our distro to dunfell, we encountered simila=
+r issue to the one you had. We were using temporary folders like this : IMA=
+GE_ROOTFS_COPY=3D"${DEPLOY_DIR_IMA GE}/rootfs-copy/"
+MM_SPLITDIR=3D"${DEPLOY_DIR_IMAGE}/partitions/" Trying to dig into the issu=
+e, I've discovered the introduction of this commit ( https://github.com/yoc=
+toproject/poky/commit/4e7c21160b74d0e63d90cae535ff73579cc4fa8b ) (integrate=
+d into Dunfell 3.1.6 and above). The goal is to make pseudo / fakeroot mech=
+anism ignoring many paths to be stored inside its database.
+
+Sadly, ${DEPLOY_DIR_IMAGE} as well as ${S} you used are now part of these e=
+xcluded paths. The fix I've made on my side is to use ${WORKDIR} instead of=
+ ${DEPLOY_DIR_IMAGE}.
+
+My assumption is that if one of the path you are using isn't tracked by pse=
+udo / fakeroot mechanism, it will refuse to make the copy preserving the pe=
+rmissions as it isn't able to retrieve them inside the database.
+
+Hope it can help to better understand what happens if others people are fac=
+ing similar issue :)
+
+--gkxkgI2g3Q4f1UZh6MOR
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<br /><br />I was facing a similar issue some days ago and I've found=
+ your post.<br /><br />We are using also a custom image generation to split=
+ the final rootfs in many partitions. After upgrading our distro to dunfell=
+, we encountered similar issue to the one you had. We were using temporary =
+folders like this :&nbsp;
+<pre class=3D"prettyprint prettyprinted" style=3D"padding: 2px; line-height=
+: 1.42857; border-color: #888888;"><code class=3D"language-unknown"><span c=
+lass=3D"pun" style=3D"color: #666600;">IMAGE_ROOTFS_COPY=3D"${DEPLOY_DIR_IM=
+A</span><span class=3D"pun">GE}/rootfs-copy/"</span><span class=3D"pun" sty=
+le=3D"color: #666600;">
+MM_SPLITDIR=3D"${DEPLOY_DIR_IMAGE}/partitions/"</span></code></pre>
+Trying to dig into the issue, I've discovered the introduction of <a href=
+=3D"https://github.com/yoctoproject/poky/commit/4e7c21160b74d0e63d90cae535f=
+f73579cc4fa8b" target=3D"_blank" rel=3D"noopener">this commit</a>&nbsp;(int=
+egrated into Dunfell 3.1.6 and above). The goal is to make pseudo / fakeroo=
+t mechanism ignoring many paths to be stored inside its database.<br /><br =
+/>Sadly, ${DEPLOY_DIR_IMAGE} as well as ${S} you used are now part of these=
+ excluded paths. The fix I've made on my side is to use ${WORKDIR} instead =
+of ${DEPLOY_DIR_IMAGE}.<br /><br />My assumption is that if one of the path=
+ you are using isn't tracked by pseudo / fakeroot mechanism, it will refuse=
+ to make the copy preserving the permissions as it isn't able to retrieve t=
+hem inside the database.<br /><br />Hope it can help to better understand w=
+hat happens if others people are facing similar issue :)
+
+--gkxkgI2g3Q4f1UZh6MOR--
 
