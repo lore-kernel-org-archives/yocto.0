@@ -2,56 +2,56 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C7D4C77B7F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 499DCC7EE25
 	for <webhook@archiver.kernel.org>; Wed, 26 Apr 2023 14:18:49 +0000 (UTC)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
- by mx.groups.io with SMTP id smtpd.web11.9247.1682518725454589292
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+ by mx.groups.io with SMTP id smtpd.web10.9212.1682518726562541000
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Apr 2023 07:18:45 -0700
+ Wed, 26 Apr 2023 07:18:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=op1+jwbu;
- spf=pass (domain: gmail.com, ip: 209.85.128.179, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5529f3b8623so54804237b3.2
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Apr 2023 07:18:45 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=AOJUuycf;
+ spf=pass (domain: gmail.com, ip: 209.85.219.171, mailfrom: akuster808@gmail.com)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-b95c3b869dcso25629332276.1
+        for <yocto@lists.yoctoproject.org>; Wed, 26 Apr 2023 07:18:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682518724; x=1685110724;
+        d=gmail.com; s=20221208; t=1682518725; x=1685110725;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GWZOnQE+pvTCZ1wXQEA87Cwj+fuCwS4uA85oES97VR0=;
-        b=op1+jwbuuoditUO/C0+L14DXwaNp1v/0CXx0aeRZU0VSfoP+GglSWo6w38n1l0z/kI
-         spCPTsuh4gMJauKtSOzUS9OFEJq28z1OzQiR6pLsri5t0rSbZEkLH0uFVO01AKrPXU/l
-         vQ309gODH0PSD4aLsT0bK35X5dtlasmzwWp/R8Yr5KQAsChkBB1YySXY/KckJNxsHB0M
-         Z51dGex0UqmZ7MN+W4Z5jcmZOQl4e36ta7kDyhJ/AbLyAiMUac1abWlo3d07ZfNgPqE3
-         jM9bUIJsNkFHHaxXJExo3bAQm0VaS35QyYVspiN6Kp1NM9nOtOSy3lXd/54Zs/Q+eLz3
-         eKNA==
+        bh=h5x7kpWM7TGatN275XtDrHIEF7xd+dN8mgPAaNVVsoc=;
+        b=AOJUuycf92fAx5GkxPsQ7KhKk3LpnLMBr2u61EB38i2TQaTdUky5ldwugeyLmL7DtH
+         7lZUUYK80mvEt3EMbmTPZQWETlS+z1xhzuLfzY8D1oO0vnv3gSPO18zMA1m4xJ7fuMMB
+         t9H+WC7ZdPgmsrJ6SJXRwb6OLRc8nlhT2aMVzbFhx6oYNsqvSxubefvWhVDY7O4q/fv+
+         SzS9TkDPTRLnin7fzO7+Q/XTw996PamRQ5Di2CUhkbBaWXalhFyXGOsk3T5Qg9tO602N
+         zfuixabgf7AuwdHGdmP+UFx6NDKewQGOw9Fn9t2C9qIRlCDvMAB+ljBlEmFl9hwdWBKd
+         a4GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682518724; x=1685110724;
+        d=1e100.net; s=20221208; t=1682518725; x=1685110725;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GWZOnQE+pvTCZ1wXQEA87Cwj+fuCwS4uA85oES97VR0=;
-        b=jtFVivnFYosz09UefCMU0np6Riz8g3MEgDWIDlT1a1zzqUYmSsBLw7HPuYyZkIrGlf
-         JJc2zeBarukfuxIFWmVgmYmyEO7JwIrX6DF3mRO+YVho8WasrhBaH7zv83+T14sVuBVT
-         dOvK1ZZTyG1pBM6xQLqWGnYg8pvGB8oqrtPNzpcmbLuyGwgDw72O31G8sbi39UL8ciUr
-         CF35Bo3KGzoMEu5WkWGL9GRwReFx4Ff3ASjWeWadYAktTaLvkmcAbOx/AHJLhADXUmVt
-         ZrGLBLpXMzKqNsnhgzQslH3MT0Pj5IilTor5i41EAcf3MlWWG3xqPftvNCx1kKieVHZr
-         sfwg==
-X-Gm-Message-State: AAQBX9eE7Vfc3hQT7U3adZ/XFS+I+PD60x68hi6jiuDKR1BRxJ4mJdA9
-	BwAVWecJHt/z//YqZgEQI89yhxfgBho=
-X-Google-Smtp-Source: AKy350agV72vTw1ocwpRYzRGDCdnwz+KCyn137mwkcE0LvQbx7kQuje/szWMx9iuBo9U/mKyY/lQqg==
-X-Received: by 2002:a81:5291:0:b0:54f:e0e7:c6fb with SMTP id g139-20020a815291000000b0054fe0e7c6fbmr14378812ywb.8.1682518724281;
-        Wed, 26 Apr 2023 07:18:44 -0700 (PDT)
+        bh=h5x7kpWM7TGatN275XtDrHIEF7xd+dN8mgPAaNVVsoc=;
+        b=TjgDbb4ot6RJJAlVkfURNboyR0vbV/I341YzYj5KRe2x8vtkSFjEhOtJ/Vxdn1Ocjx
+         x1uWeNrEX9LdKhV89htcR3EWvylSNSW1+dKQoEyK4g6EtsjhNFVsABEoM2fUu9bwCcMG
+         vST1mbUKZVKu9d9Cg8jSwntN+lojSPFdcHa8ykivoiRinu10O7KGo8JxkFWxzAzZyb22
+         hUZ6ZBST0LFi2U77VDAbT2KIBeltUkILXBDFKMTjigc7I0cz5zBAGd5DKQGOpa2rvQJr
+         PIIp4a3qALKGu7sX7hGl540x3F1drPpzIBb+ZTj37yiALFZesgcbzcyuG+NHgDZiXg2x
+         Xlmg==
+X-Gm-Message-State: AC+VfDwJqzts1FjKKTijU230qOiFEFgX0S4Mngb9DB3GYV6NXFIeA+KX
+	OmNdVEXodATOYfncp8HZv9wBOkVo6+E=
+X-Google-Smtp-Source: ACHHUZ7xmMkHTYWTbLLsl1PvBJeFRmXAiVoQJZqaFHcExIktjml5TncW+JK5QVFvpNVG2HnhRIF8bw==
+X-Received: by 2002:a25:5183:0:b0:b3d:5a52:5c6b with SMTP id f125-20020a255183000000b00b3d5a525c6bmr1864672ybb.21.1682518725239;
+        Wed, 26 Apr 2023 07:18:45 -0700 (PDT)
 Received: from keaua.attlocal.net ([2600:1700:9190:ba10:dca5:ab45:75c1:b60d])
-        by smtp.gmail.com with ESMTPSA id p71-20020a0de64a000000b00545b9498c1asm4214462ywe.12.2023.04.26.07.18.43
+        by smtp.gmail.com with ESMTPSA id p71-20020a0de64a000000b00545b9498c1asm4214462ywe.12.2023.04.26.07.18.44
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Apr 2023 07:18:43 -0700 (PDT)
+        Wed, 26 Apr 2023 07:18:44 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/4] recipes-tpm: use this for common tpm recipes
-Date: Wed, 26 Apr 2023 10:18:38 -0400
-Message-Id: <20230426141840.764144-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 3/4] swtpm: update to 0.8.0
+Date: Wed, 26 Apr 2023 10:18:39 -0400
+Message-Id: <20230426141840.764144-3-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230426141840.764144-1-akuster808@gmail.com>
 References: <20230426141840.764144-1-akuster808@gmail.com>
@@ -61,62 +61,34 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Wed, 26 Apr 2023 14:18:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59785
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59786
 
-a bit of re-org
+includes CVE-2022-23645
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../libtpm/files/Convert-another-vdprintf-to-dprintf.patch        | 0
- .../libtpm/files/Use-format-s-for-call-to-dprintf.patch           | 0
- .../libtpm/files/fix_signed_issue.patch                           | 0
- meta-tpm/{recipes-tpm1 => recipes-tpm}/libtpm/libtpm_0.9.5.bb     | 0
- .../{recipes-tpm1 => recipes-tpm}/swtpm/files/fix_fcntl_h.patch   | 0
- .../swtpm/files/fix_lib_search_path.patch                         | 0
- .../{recipes-tpm1 => recipes-tpm}/swtpm/swtpm-wrappers-native.bb  | 0
- meta-tpm/{recipes-tpm1 => recipes-tpm}/swtpm/swtpm_0.7.3.bb       | 0
- 8 files changed, 0 insertions(+), 0 deletions(-)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/libtpm/files/Convert-another-vdprintf-to-dprintf.patch (100%)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/libtpm/files/Use-format-s-for-call-to-dprintf.patch (100%)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/libtpm/files/fix_signed_issue.patch (100%)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/libtpm/libtpm_0.9.5.bb (100%)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/swtpm/files/fix_fcntl_h.patch (100%)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/swtpm/files/fix_lib_search_path.patch (100%)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/swtpm/swtpm-wrappers-native.bb (100%)
- rename meta-tpm/{recipes-tpm1 => recipes-tpm}/swtpm/swtpm_0.7.3.bb (100%)
+ meta-tpm/recipes-tpm/swtpm/{swtpm_0.7.3.bb => swtpm_0.8.0.bb} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-tpm/recipes-tpm/swtpm/{swtpm_0.7.3.bb => swtpm_0.8.0.bb} (92%)
 
-diff --git a/meta-tpm/recipes-tpm1/libtpm/files/Convert-another-vdprintf-to-dprintf.patch b/meta-tpm/recipes-tpm/libtpm/files/Convert-another-vdprintf-to-dprintf.patch
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/libtpm/files/Convert-another-vdprintf-to-dprintf.patch
-rename to meta-tpm/recipes-tpm/libtpm/files/Convert-another-vdprintf-to-dprintf.patch
-diff --git a/meta-tpm/recipes-tpm1/libtpm/files/Use-format-s-for-call-to-dprintf.patch b/meta-tpm/recipes-tpm/libtpm/files/Use-format-s-for-call-to-dprintf.patch
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/libtpm/files/Use-format-s-for-call-to-dprintf.patch
-rename to meta-tpm/recipes-tpm/libtpm/files/Use-format-s-for-call-to-dprintf.patch
-diff --git a/meta-tpm/recipes-tpm1/libtpm/files/fix_signed_issue.patch b/meta-tpm/recipes-tpm/libtpm/files/fix_signed_issue.patch
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/libtpm/files/fix_signed_issue.patch
-rename to meta-tpm/recipes-tpm/libtpm/files/fix_signed_issue.patch
-diff --git a/meta-tpm/recipes-tpm1/libtpm/libtpm_0.9.5.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_0.9.5.bb
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/libtpm/libtpm_0.9.5.bb
-rename to meta-tpm/recipes-tpm/libtpm/libtpm_0.9.5.bb
-diff --git a/meta-tpm/recipes-tpm1/swtpm/files/fix_fcntl_h.patch b/meta-tpm/recipes-tpm/swtpm/files/fix_fcntl_h.patch
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/swtpm/files/fix_fcntl_h.patch
-rename to meta-tpm/recipes-tpm/swtpm/files/fix_fcntl_h.patch
-diff --git a/meta-tpm/recipes-tpm1/swtpm/files/fix_lib_search_path.patch b/meta-tpm/recipes-tpm/swtpm/files/fix_lib_search_path.patch
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/swtpm/files/fix_lib_search_path.patch
-rename to meta-tpm/recipes-tpm/swtpm/files/fix_lib_search_path.patch
-diff --git a/meta-tpm/recipes-tpm1/swtpm/swtpm-wrappers-native.bb b/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/swtpm/swtpm-wrappers-native.bb
-rename to meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
-diff --git a/meta-tpm/recipes-tpm1/swtpm/swtpm_0.7.3.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.7.3.bb
-similarity index 100%
-rename from meta-tpm/recipes-tpm1/swtpm/swtpm_0.7.3.bb
-rename to meta-tpm/recipes-tpm/swtpm/swtpm_0.7.3.bb
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.7.3.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.8.0.bb
+similarity index 92%
+rename from meta-tpm/recipes-tpm/swtpm/swtpm_0.7.3.bb
+rename to meta-tpm/recipes-tpm/swtpm/swtpm_0.8.0.bb
+index 55d83f9..614b07f 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.7.3.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.8.0.bb
+@@ -6,8 +6,8 @@ SECTION = "apps"
+ # expect-native, socat-native, coreutils-native and net-tools-native are reportedly only required for the tests
+ DEPENDS = "libtasn1 coreutils-native expect-native socat-native glib-2.0 net-tools-native libtpm json-glib"
+ 
+-SRCREV = "f2268eebb0d1adf89bad83fa4cf91e37b4e3fa53"
+-SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.7-next;protocol=https \
++SRCREV = "2ae7b019370760e17f4f2675195a91ca53950eda"
++SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=master;protocol=https \
+            "
+ PE = "1"
+ 
 -- 
 2.25.1
 
