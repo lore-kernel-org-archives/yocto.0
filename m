@@ -2,56 +2,56 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 041D0C77B7C
-	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 10:34:08 +0000 (UTC)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
- by mx.groups.io with SMTP id smtpd.web10.16131.1682678046641901110
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CF3CCC77B61
+	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 10:34:17 +0000 (UTC)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+ by mx.groups.io with SMTP id smtpd.web10.16132.1682678051496104091
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Apr 2023 03:34:06 -0700
+ Fri, 28 Apr 2023 03:34:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=sCSIR1Lq;
- spf=pass (domain: gmail.com, ip: 209.85.219.179, mailfrom: akuster808@gmail.com)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-b99f0a0052fso7220130276.3
-        for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 03:34:06 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=rR3fSQad;
+ spf=pass (domain: gmail.com, ip: 209.85.128.178, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-54fb8a8a597so116657977b3.0
+        for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 03:34:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682678045; x=1685270045;
+        d=gmail.com; s=20221208; t=1682678050; x=1685270050;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=T/6WNz/7YgfHsLb/OxtHMJMwTTGi2R0ts/tPkhz0+Kk=;
-        b=sCSIR1LqDTWc9TLFMhcOHOFch+cEb916GUGbu721LwnNcDmCnprVHk/Yu8KUIWYpyd
-         tC7Ua+97xFluuqrUBC/V4McrNh2m7+cYifvl8Wm4fanvbwJxPP0sSsnPH4du+PW7nl+/
-         qeq4nZ+YgfgMdbQfFiQaltwV65lpkz4H+vzygM6AqVCaxQYMzodGHlxC2bkW0M4sRkqy
-         tzF2N6RTuxHsU8ArJ9wYzdNPMsLgxSHvCt4juEwOfbMsbT3ontUtFY6rWt62DxZ6cl8t
-         sp2rY81ORcfNLJUyif/b1FKfx41sLlVGsLygvlJ/v2dMPEULOJsC3bFP/Meo6T8IcLpd
-         LJOQ==
+        bh=hyLRXG2dPd/Lx2WykQDUhg7q/iJ4DISe6D3v0/mdpT0=;
+        b=rR3fSQadKgPcgMnWzOk60IVjVZhypQVf8tY4iDnNmwLaIsLUA4AlW2B+A8+4ZuNK4b
+         OWi95I3JQxldq0/HGikVBOMOPQpD1O6Ji71mirc3Ai1MFHl+c8lNYC1xtuc6iNbPYzte
+         VLpEz08rL9GOTk5iNPF49pxQumktDRCCAKie/PfHQIsn8qJWhE79FNvMkcZyhb4q3FaP
+         5mVDMqUpkKIvRlM8Bqd8xeFM5xwdCZuV3TZkODmVhB/GAWnWqMhZUPP9DWqwtTNqovXk
+         EQDPQ3oZHngAx2L9YuCLZuyX+0RMNMbaDoqCTS5eUZ3VwLHhbROXpiSVqYR1XAw9ww5R
+         lSLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682678045; x=1685270045;
+        d=1e100.net; s=20221208; t=1682678050; x=1685270050;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=T/6WNz/7YgfHsLb/OxtHMJMwTTGi2R0ts/tPkhz0+Kk=;
-        b=eL7p+O6/7A6Rjyd9qGggKyu5sqIla6I3MCUB/QcKBKiW8/Veh/Rbsb/pij85VN/ptI
-         r0j2qIiDEi2/v4QOhuW0K0sQKic/eigWzaGzrm09Iircp0tCAuBPDcVrG8+SXmmLcqhl
-         bbFlnTnrfbNxEUKz3tuLqkQl/FVNWUL2F2L+/zc+39uKOz/J8JkLXzxyii4bb3lTBwEU
-         fC/k2kJe0nd5gDMHyHiYqZOoH/kgGWiFimAxvOMLnP6pzoZnNXQOzyR9XdDrouTC8AHV
-         Vaxh98uUcAUvidJvIKFlRQmajKTpo+Gz/Gs621f7pHryXKUuP5AuB1yLs/wD2uCRrkvQ
-         HkWg==
-X-Gm-Message-State: AC+VfDx9WhKbAqpGBz5t4SQnNQO6bDyMRihCVCQ1Wnoqv4/wR2GFzctO
-	ucTJQoUgOvUz49pDF3dAUr0jh4zcOoQ=
-X-Google-Smtp-Source: ACHHUZ5RGEzRVTXZ22xd3UcJG4rIhgfXNpg0VRj8HKFz0thgwdK/xA8VnPc2+99KFt22VDLZ3AsMIg==
-X-Received: by 2002:a25:ad03:0:b0:b9a:6c5c:82f7 with SMTP id y3-20020a25ad03000000b00b9a6c5c82f7mr3890375ybi.18.1682678045614;
-        Fri, 28 Apr 2023 03:34:05 -0700 (PDT)
+        bh=hyLRXG2dPd/Lx2WykQDUhg7q/iJ4DISe6D3v0/mdpT0=;
+        b=KI5279nL4x3ruz0Bl6867IDHhr1+ibaIQOkMRMP9D1US726cHZf0YgaAe5V2oqhdVA
+         Q5N2nP+qIqI7VxC+9IC510B9l2aVyxDmIQqYo9ErTyjSLzBSlkS42d2XlGP2BS38k1AI
+         7HVmIy5/pv+hv5BMB2sTL8R0pKLSdlJWZ511ve1YUhYvVGSPNfEE9uJs5ukWXZPd7z9J
+         3gG9zxR1Z6shqhFJOeBIVSXJ9A3Cnva2PRBEGzBR5YXQWTDYHwXkMj1VfSZV25tfdTjh
+         BlPKjU+CRu8xBEGOBXZGWiLPL3ViL4s0/8UCyTTfPc9AaqtQW84c0D998NlMPGgexg/8
+         4ILA==
+X-Gm-Message-State: AC+VfDwlla6gqz/W+qdYA3V6/Sf4rVnLKArr4eDIeRgUsb0pJa6v/avu
+	ewyOXff4DJdXojvrgW4ktYkxL8+TGR8=
+X-Google-Smtp-Source: ACHHUZ4aBC7KY+C4rIoIutv562IAG7gAlbXDYWqXlTyldfWBOrPTjaadK02OdvDmf/dbt12bee2nyQ==
+X-Received: by 2002:a81:6c44:0:b0:54f:bb39:792b with SMTP id h65-20020a816c44000000b0054fbb39792bmr3665702ywc.26.1682678048913;
+        Fri, 28 Apr 2023 03:34:08 -0700 (PDT)
 Received: from keaua.attlocal.net ([2600:1700:9190:ba10:8746:fc43:c0f0:c757])
-        by smtp.gmail.com with ESMTPSA id b124-20020a0dd982000000b0054f6f2d291dsm5414129ywe.34.2023.04.28.03.34.04
+        by smtp.gmail.com with ESMTPSA id b124-20020a0dd982000000b0054f6f2d291dsm5414129ywe.34.2023.04.28.03.34.07
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Apr 2023 03:34:04 -0700 (PDT)
+        Fri, 28 Apr 2023 03:34:07 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/4] libhtp: update to 0.5.43
-Date: Fri, 28 Apr 2023 06:34:00 -0400
-Message-Id: <20230428103402.1022697-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/4] fscryptctl: update to 1.0.1
+Date: Fri, 28 Apr 2023 06:34:02 -0400
+Message-Id: <20230428103402.1022697-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230428103402.1022697-1-akuster808@gmail.com>
 References: <20230428103402.1022697-1-akuster808@gmail.com>
@@ -60,31 +60,42 @@ Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 10:34:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59792
+ <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 10:34:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59794
+
+Don't build man as it needs pandoc
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-ids/suricata/{libhtp_0.5.42.bb => libhtp_0.5.43.bb} | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-ids/suricata/{libhtp_0.5.42.bb => libhtp_0.5.43.bb} (91%)
+ .../{fscryptctl_1.0.0.bb => fscryptctl_1.1.0.bb}           | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+ rename recipes-security/fscryptctl/{fscryptctl_1.0.0.bb => fscryptctl_1.1.0.bb} (84%)
 
-diff --git a/recipes-ids/suricata/libhtp_0.5.42.bb b/recipes-ids/suricata/libhtp_0.5.43.bb
-similarity index 91%
-rename from recipes-ids/suricata/libhtp_0.5.42.bb
-rename to recipes-ids/suricata/libhtp_0.5.43.bb
-index e2866c8..5825419 100644
---- a/recipes-ids/suricata/libhtp_0.5.42.bb
-+++ b/recipes-ids/suricata/libhtp_0.5.43.bb
-@@ -5,7 +5,7 @@ require suricata.inc
- LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=596ab7963a1a0e5198e5a1c4aa621843"
+diff --git a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb b/recipes-security/fscryptctl/fscryptctl_1.1.0.bb
+similarity index 84%
+rename from recipes-security/fscryptctl/fscryptctl_1.0.0.bb
+rename to recipes-security/fscryptctl/fscryptctl_1.1.0.bb
+index d319e48..3de2bfa 100644
+--- a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
++++ b/recipes-security/fscryptctl/fscryptctl_1.1.0.bb
+@@ -9,11 +9,16 @@ SECTION = "base"
+ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
  
- SRC_URI = "git://github.com/OISF/libhtp.git;protocol=https;branch=0.5.x"
--SRCREV = "b14f81bfddbc7206ea713177fcf1e1090257dcd2"
-+SRCREV = "be0063a6138f795fc1af76cc5340bcb11d3b0b87"
+-SRCREV = "56b898c896240328adef7407090215abbe9ee03d"
++SRCREV = "7c80c73c084ce9ea49a03b814dac7a82fd7b4c23"
+ SRC_URI = "git://github.com/google/fscryptctl.git;branch=master;protocol=https"
  
- DEPENDS = "zlib"
+ S = "${WORKDIR}/git"
  
++do_compile:prepend() {
++    sed -i 's/fscryptctl\.1//g' ${S}/Makefile
++    sed -i 's/install-man//g' ${S}/Makefile
++}
++
+ do_install() {
+     oe_runmake DESTDIR=${D} PREFIX=/usr install
+ }
 -- 
 2.25.1
 
