@@ -1,201 +1,252 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <electronicconsult1@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76094C77B60
-	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 14:24:29 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by mx.groups.io with SMTP id smtpd.web10.21311.1682691861460079495
- for <yocto@lists.yoctoproject.org>;
- Fri, 28 Apr 2023 07:24:21 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel header.b=e3Gh23g+;
- spf=pass (domain: intel.com, ip: 192.55.52.136, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1682691861; x=1714227861;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=bTMqT3O39YOfNITYRXD8xZINCd4Xf8H9pInycR70u+0=;
-  b=e3Gh23g+5JdbePz1GuBirFSQRQPfVj8ZvZRyRMNY9hBaTsIeNLWIsEWK
-   hEYkl7qaGeEVKMKUyFng54alDiW49oVIrHp7rVIyaXeEWbGApLIGLpk4K
-   NwEjb5+RjPJbzshyMfFnNtHqk6eCb+2UaC3oWNcLInAukCBMTiFPySTWg
-   Vg+klfTbBaZPaONchHMbwaTkL4dTZsmjUJAimq2+oAJdSyqv6b2KssKmG
-   2I9bCknjuzjqPwIUlh09k4dhq5Yn4lCNR/vyhP8Flu/QljGCiFZg0BONY
-   s8SC0pByp2cU2Z74FuSwhTkQLFETR7njQzQlZeIdlz+wIHe1wvVGajAga
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="327383570"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; 
-   d="scan'208";a="327383570"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Apr 2023 07:24:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="869213937"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; 
-   d="scan'208";a="869213937"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by orsmga005.jf.intel.com with ESMTP; 28 Apr 2023 07:24:20 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 28 Apr 2023 07:24:20 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 28 Apr 2023 07:24:20 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 28 Apr 2023 07:24:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BbXJTTq1BT4mK67oi8usNbXssexTAezgbv2UueuzEXhhRTJDzShIQjRzdq9soxpijKN4foyOtWlnbkOatHBvDMDsrfiY3ptkeOYGhZ4S4FkelEMoMubX01nwLOKh0w8iiXk/UijYSF6kt/EKZR/GZexfwlEPaKkZGKY/zVb2zDQV/waVPnfWerDWLLYsX7QkN7xJtHS/dhCoJ/hlur85qjGFEcCaaYBXsSaNd1nQZDvzhdAvhR5M7DUKRUI0GfFINCtO8opMSVpM+4Ll2Pa0BsLRSzWX2m/STAWI9ARuP/dY7lJwy9QP2qqjv0S66QjV7mJBWgmu1VJaMv4aGYz4Uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v32qdRC+eMVLuTHz59DCcqFMH804RBl7XFIzO30Fg0U=;
- b=nZkzkgRnElt2SXJim9IsYzZc/7daKlnfErWI8YSaS4Im1kjNX9x+anT63+S789xuybdhpll02sm6v9ZCXqIFM0gqdwwiGoIwgbC6eSlv1ziOZms+cJFbDBN84Y39a9c7uZnPyft4PL4apBnaNsKxKhTYFSTUMijKCEfV6MxvIUhjdmMNpYj2kKoSKBpNdrKzAEhA3O50DCBk5YpDhwEuGaVZPu1UpbzGprd3HQSh+YQmDsgLeo/0jmJWgQaHAtZ2zx3AisJ9um8AhgwN0fHZbzJHvYjVT3vzB/eXkKEzuf6+vi3ZOwGrJ9ML/+PNg+xbwUSVFnIpq/+hDwpnFWY4QA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com (2603:10b6:a03:191::11)
- by CY8PR11MB6937.namprd11.prod.outlook.com (2603:10b6:930:5b::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.22; Fri, 28 Apr
- 2023 14:24:13 +0000
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::cd9a:3c52:72e3:bcd4]) by BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::cd9a:3c52:72e3:bcd4%3]) with mapi id 15.20.6340.024; Fri, 28 Apr 2023
- 14:24:13 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [yocto] QA notification for completed autobuilder build
- (yocto-4.2.rc3)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-4.2.rc3)
-Thread-Index: AQHZdT+DRJMyzdAcpUG4EwcENOj9ZK9Az28Q
-Date: Fri, 28 Apr 2023 14:24:13 +0000
-Message-ID: <BY5PR11MB41527D68601E56DBC43FBD20A16B9@BY5PR11MB4152.namprd11.prod.outlook.com>
-References: <01010187aa002f65-f0534f17-03ad-4a95-8eaf-8222db417800-000000@us-west-2.amazonses.com>
-In-Reply-To: <01010187aa002f65-f0534f17-03ad-4a95-8eaf-8222db417800-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR11MB4152:EE_|CY8PR11MB6937:EE_
-x-ms-office365-filtering-correlation-id: 3569839e-bbf6-43f9-0bb7-08db47f43da6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fisA+a+x0F37koyZPPOamcmX1GWK4eEgDMSbeab6zR+aZ6P2gdjwBg5kU/vErh2j1vfUaXImGfa8gQLrs4SUxCZDMRpZ9Raxwb4ZGYFpiLgQtWn2Gcv7eKqmuneey1CyusMdwesVVibMnxq7bn95OSEs2TCbcs1H2/k9h+rg4QyvVyMZBL2L3H1O6DWoeY3rOOamfa5GizM+MwqyyPj7ojtAydDE2ySAaMQQc/JA2iQc+vAwdTTUNXgHGfDoiFxx8r3LPiBlXyy44WzZ2KFVFFCMn6a1srPGPEGGf1sWmib40mVwsiq+wz/52e1hWfrIgntlven0rTLTm7v4t/DKBRd6i+D4Kuu+2vmAHsAYPKc3A8RbK1AlsfEw5lH/ZGhhTPttHrM1gWsS6mjv+euLFnlEUC/XuzsTX8OZDjT6Xq6JuxN8M7Q1AZUHB6ASARkqdyPQj9UBX0958L56OJEbm0z6eT+tMgxu83OPAMNGqPgxlh6G87guSIicK8Fvt5WI2Cgss1F3/Zt3oP7tTV6ODhViAubDvGFtfGTXpLMhHGTL7bEbgseexBJGM5i2U5Nj/zSu2w4ACoR+AKkCfUedXZuJcnitegk3CEUGo6i7smc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4152.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(366004)(376002)(346002)(136003)(396003)(39860400002)(451199021)(38100700002)(71200400001)(82960400001)(83380400001)(478600001)(110136005)(186003)(7696005)(66946007)(76116006)(66556008)(64756008)(66476007)(316002)(66446008)(41300700001)(26005)(6506007)(9686003)(86362001)(53546011)(38070700005)(8936002)(8676002)(33656002)(122000001)(55016003)(2906002)(966005)(52536014)(5660300002)(15650500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?14GsZYNW9bMOjDhfKG21dCeN247nkR1eol7F+Q3BMGzHzfp5F+oy+OXEi4Z/?=
- =?us-ascii?Q?HY8R+vDq9QWE4yIBXdwpdLzofM4n6S65ZrzcMYdoxovJ53DRVZAZ8VWCRLNo?=
- =?us-ascii?Q?BODbla5WNcC86em23KedHABgbzgqQGgHOyHEtyjI2dqbvNE9dJDUdSWC6euT?=
- =?us-ascii?Q?UGvmX0Fl4i7fzR4wIqSsAhqgiuJg/Tbdf2PQwuOjM8dZWou47K0j+uLDJNeo?=
- =?us-ascii?Q?DYsN/eGphmX9x+eNm5Vcl5Ae0uzZiSxMV0UEO/y6KZelEs1Bk4qz2o2h7M6N?=
- =?us-ascii?Q?kjzwAwP8mjvDwmtvzIvwenaKRt6Y69R0U9u5ht1gKWRuVdeCEap4lXYf6wD2?=
- =?us-ascii?Q?yDycHE3BHkQdCZVsiiht+Wb8AwH0dnlq+VgqX/4G6+eQDu/1NVzW3nfBgsIg?=
- =?us-ascii?Q?tqxA3cSGydR53D7QjSaVb0zmSbh7CMUutipv/cBrMubb/0G7VpW1eU5Sg7ON?=
- =?us-ascii?Q?7mQMnzyiMRjZ3PmXbtgFzqp6wppDnkxq+s+OJk3K5f3nsrT4n8pYU3HqnEsJ?=
- =?us-ascii?Q?Q5RFrr2WCSTvNUxLvOgI7s+mnjCDVPVtvfLtcSb2KrK6RtvFF/2aqVJVMscx?=
- =?us-ascii?Q?+Aeud7i5Pa+eeElGAOodx8PKR2UwxJyet6sJk6IWxbLwk9iIKk2ce5c2UCmF?=
- =?us-ascii?Q?ZdnnIu83HXPhkNjfaDSCehpXx5HLlBL5v4tuIxWvluzRzERatfqsm+MLWGQV?=
- =?us-ascii?Q?3IIG3yK98STSEVAcDuBLj/d4y8VC3b1bHpf7yNNVFdRv54EYrrqTYI2z6Fca?=
- =?us-ascii?Q?rG9624op+N5zd2MbaOX4lqp9oPaPa69EKilaMz25K9kmw3MGSrtLQ46MR5Mo?=
- =?us-ascii?Q?mKCy7F9KQPuVwBK7g+59UaF7n4CstwpKFrzPVWKOLtkU4swX1qlvS0y1HE9o?=
- =?us-ascii?Q?fPglBNoUvI8OUb6ucJ4jnN5NV+D+kZ3nxpA0l2bdjVjZQ5nGkRtqk4KbW1jr?=
- =?us-ascii?Q?cZ9aYhwPRSM8GtmqdTnlrcRo7T/s4VyJ94zIXM9K/BjAZFoWNBoO6H2T86bm?=
- =?us-ascii?Q?dqRf+DxJXQL7cWZG0pmAXRfoK6krgzES+3ejJqkeR2C/TEjZnMwOaoXmqLny?=
- =?us-ascii?Q?Fl7AZnoxBSlmd0oyHVr0bKtZ9a8VvocIEH+wLmYEe3IwHk+HHn6uI7f9zjDY?=
- =?us-ascii?Q?TdueDrikE0U/qSIuC8i0hTSk/WpUlL+07g59KTTwOlXSdvkPtSWhHkWH9rxU?=
- =?us-ascii?Q?uDW9AO+eNEGCXrXYltS7R5SyVb3hcFn8BkN67oUFBR6ZUrfsCnt9+22wGXtp?=
- =?us-ascii?Q?d+6pCmzaHVLYm6zKQl4OnisgUuWQerikxObcpkw1I5dBB2kt+YemBNF+BEBd?=
- =?us-ascii?Q?Kx15UoCq1KrHP1uhlQj+ZFJF/bGNjKZ6PvX2f7S396t31YjcOCJPrzvCJiGa?=
- =?us-ascii?Q?qq6ewGZF2fq84WDt8oxIKwmvqOqU1M3VsHQiDVhxFbeJsv4Vn+M9sncCiE9n?=
- =?us-ascii?Q?QhyG3r3SE7FBS9ieIxmc+3gfApWQL8TP0VCeSgADLxa+PIKO7OCdEoRPgfEO?=
- =?us-ascii?Q?YPBraND4qnaPvmd+Y1S39fzTu39BYrvR98M6FXrrKicmJRLizDPNvHzIivrs?=
- =?us-ascii?Q?z2a2NXsT8M9IB4p+bzgN0K2K2yqIluQB5G13+bW4?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BAB42C77B61
+	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 15:07:59 +0000 (UTC)
+Subject: Autotools build failure #kirkstone #autotools
+To: yocto@lists.yoctoproject.org
+From: "Electronic Consult" <electronicconsult1@gmail.com>
+X-Originating-Location: Dublin, Leinster, IE (188.141.96.236)
+X-Originating-Platform: Linux Firefox 112
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4152.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3569839e-bbf6-43f9-0bb7-08db47f43da6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2023 14:24:13.4414
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SUoGPMpQzjclLic7K7zAJlnJjtcbKzvwoae1nuBrwMqt3O4JNjTpSYq1B1hTWsLI9px2umjQyhwoudWRKvmjnQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6937
-X-OriginatorOrg: intel.com
+Date: Fri, 28 Apr 2023 08:07:50 -0700
+Message-ID: <U9j3.1682694470277605351.STUE@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="LASS7i3gXWNl6uSrG8AC"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 14:24:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59816
+ <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 15:07:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59817
 
-Hi All,
-=20
-QA for yocto-4.2.rc3 is completed. This is the full report for this release=
-: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-=20
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-=20
-No new issue found.=20
-=20
-Thanks,
-Jing Hui
+--LASS7i3gXWNl6uSrG8AC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hello all,
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> Behalf Of Pokybuild User
-> Sent: Sunday, April 23, 2023 1:26 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [yocto] QA notification for completed autobuilder build (yocto-
-> 4.2.rc3)
->=20
->=20
->     A build flagged for QA (yocto-4.2.rc3) was completed on the autobuild=
-er
-> and is available at:
->=20
->=20
->         https://autobuilder.yocto.io/pub/releases/yocto-4.2.rc3
->=20
->=20
->     Build hash information:
->=20
->     bitbake: d97d62e2cbe4bae17f0886f3b4759e8f9ba6d38c
-> meta-agl: 09135164a21a216c6e3e75d7decce896b92962f0
-> meta-arm: ea407ce849f7f181f5b43a2495436a720a32cbef
-> meta-aws: cad4b8aabc9d2cde9fb3009ae902faa32bc8f1db
-> meta-intel: 48ddf2b0e6fa5450e63878e1fc31dfc91cf3fd94
-> meta-mingw: 250617ffa524c082b848487359b9d045703d59c2
-> meta-openembedded: afbc2234898088311c38d78997f63992e38aa08a
-> meta-virtualization: 50ceb5ad53ac721a25bbbce22eb1d881cc947764
-> oecore: c57d1a561db563ed2f521bbac5fc12d4ac8e11a7
-> poky: 21790e71d55f417f27cd51fae9dd47549758d4a0
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
+I'm moving my build from Dunfell to Kirkstone & an issue with gstreamer1.0-=
+plugins-hantro ( https://github.com/linux4sam/meta-atmel/tree/kirkstone/rec=
+ipes-multimedia/gstreamer1.0-plugins ) has cropped up. This recipe inherits=
+ autotools-brokensep.
+
+During the build I initially got:
+
+autoreconf: running: aclocal --system-acdir=3D/media/owen/yocto/meritechYoc=
+to/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi=
+/gstreamer1.0-plugins-hantro/1.8-r0/recipe-sysroot/usr/share/aclocal/ --aut=
+omake-acdir=3D/media/owen/yocto/meritechYocto/poky/build-microchip/tmp/work=
+/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.8=
+-r0/recipe-sysroot-native/usr/share/aclocal-1.16 -I /media/owen/yocto/merit=
+echYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-g=
+nueabi/gstreamer1.0-plugins-hantro/1.8-r0/git/m4/ -I /media/owen/yocto/meri=
+techYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-=
+gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/recipe-sysroot-native/usr/share/=
+aclocal/ --force -I m4 -I common/m4
+NOTE: elfutils-0.186-r0 do_package_write_ipk: libc6-dbg rprovides glibc-dbg=
+, not replacing the latter
+NOTE: elfutils-0.186-r0 do_package_write_ipk: libgcc-s-dbg rprovides libgcc=
+-dbg, not replacing the latter
+NOTE: elfutils-0.186-r0 do_package_write_ipk: libz-dbg rprovides zlib-dbg, =
+not replacing the latter
+*aclocal: error: couldn't open directory 'common/m4': No such file or direc=
+tory*
+autoreconf: error: aclocal failed with exit status: 1
+ERROR: gstreamer1.0-plugins-hantro-1.8-r0 do_configure: autoreconf executio=
+n failed.
+WARNING: exit code 1 from a shell command.
+
+I added the directory common/m4 & on the next run I get:
+
+autoreconf: running: /media/owen/yocto/meritechYocto/poky/build-microchip/t=
+mp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-han=
+tro/1.8-r0/recipe-sysroot-native/usr/bin/autoconf --include=3D/media/owen/y=
+octo/meritechYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-po=
+ky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/git/m4/ --include=3D/me=
+dia/owen/yocto/meritechYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neo=
+n-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/recipe-sysroo=
+t-native/usr/share/aclocal/ --force
+configure.ac:16: error: possibly undefined macro: AS_VERSION
+If this token and others are legitimate, please use m4_pattern_allow.
+See the Autoconf documentation.
+configure.ac:19: error: possibly undefined macro: AS_NANO
+configure.ac:46: error: possibly undefined macro: AS_LIBTOOL
+configure.ac:55: error: possibly undefined macro: AS_AUTOTOOLS_ALTERNATE
+configure.ac:127: error: possibly undefined macro: AS_PATH_PYTHON
+configure.ac:154: error: possibly undefined macro: PKG_CHECK_MODULES
+autoreconf: error: /media/owen/yocto/meritechYocto/poky/build-microchip/tmp=
+/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-hantr=
+o/1.8-r0/recipe-sysroot-native/usr/bin/autoconf failed with exit status: 1
+ERROR: gstreamer1.0-plugins-hantro-1.8-r0 do_configure: autoreconf executio=
+n failed.
+WARNING: exit code 1 from a shell command.
++ die autoreconf execution failed.
++ bbfatal_log autoreconf execution failed.
++ [ -p /media/owen/yocto/meritechYocto/poky/build-microchip/tmp/work/cortex=
+a5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/tem=
+p/fifo.20217 ]
++ printf %b\0 bbfatal_log autoreconf execution failed.
++ exit 1
++ bb_sh_exit_handler
++ ret=3D1
++ [ 1 !=3D 0 ]
++ echo WARNING: exit code 1 from a shell command.
++ exit 1
+ERROR: gstreamer1.0-plugins-hantro-1.8-r0 do_configure: ExecutionError('/me=
+dia/owen/yocto/meritechYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neo=
+n-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/temp/run.do_c=
+onfigure.20217', 1, None, None)
+ERROR: Logfile of failure stored in: /media/owen/yocto/meritechYocto/poky/b=
+uild-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreame=
+r1.0-plugins-hantro/1.8-r0/temp/log.do_configure.20217
+ERROR: Task (/media/owen/yocto/meritechYocto/poky/../meta-atmel/recipes-mul=
+timedia/gstreamer1.0-plugins/gstreamer1.0-plugins-hantro_1.8.bb:do_configur=
+e) failed with exit code '1'
+
+I suspect there is something not properly configured in autotools & some ch=
+ange has occured from Dunfell -> Kirkstone. Can anyone provide any pointers=
+ please?
+
+My build configuration is below.
+
+Regards,
+
+Owen
+
+Build Configuration:
+BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+"2.0.0"
+BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D "x86_64-linux"
+NATIVELSBSTRING=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "universal"
+TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+"arm-poky-linux-gnueabi"
+MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 =3D "sama5d4-trinity-sd"
+DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 =3D "poky-atmel"
+DISTRO_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "4.0.9"
+TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm vfp cortex=
+a5 neon vfpv4 thumb callconvention-hard"
+TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+"hard"
+meta
+meta-poky
+meta-yocto-bsp=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "kirkstone:4cc0e9438=
+b450b43749730e128b6b9adb30f9663"
+meta-oe
+meta-networking
+meta-webserver
+meta-python
+meta-initramfs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "kirkstone:571e36e20=
+e9d1f27af0eb4545291beeb64f280e2"
+meta-atmel=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+"kirkstone:cf920cc40b4ff61dfc33410605bc8f94ab9b88dd"
+meta-multimedia=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "kirkstone:571e36e20e9d1f=
+27af0eb4545291beeb64f280e2"
+meta-arm
+meta-arm-toolchain=C2=A0=C2=A0 =3D "kirkstone:96aad3b29aa7a5ee4df5cf617a633=
+6e5218fa9bd"
+meta-swupdate=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "master:4b99b93=
+b4225723cf9ff3a29abb4bd7811ce071c"
+
+--LASS7i3gXWNl6uSrG8AC
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello all,<br /><br />I'm moving my build from Dunfell to Kirkstone &amp; a=
+n issue with <a href=3D"https://github.com/linux4sam/meta-atmel/tree/kirkst=
+one/recipes-multimedia/gstreamer1.0-plugins" target=3D"_blank" rel=3D"noope=
+ner">gstreamer1.0-plugins-hantro</a> has cropped up. This recipe inherits a=
+utotools-brokensep.<br /><br />During the build I initially got:<br /><br /=
+>autoreconf: running: aclocal --system-acdir=3D/media/owen/yocto/meritechYo=
+cto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueab=
+i/gstreamer1.0-plugins-hantro/1.8-r0/recipe-sysroot/usr/share/aclocal/ --au=
+tomake-acdir=3D/media/owen/yocto/meritechYocto/poky/build-microchip/tmp/wor=
+k/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.=
+8-r0/recipe-sysroot-native/usr/share/aclocal-1.16 -I /media/owen/yocto/meri=
+techYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-=
+gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/git/m4/ -I /media/owen/yocto/mer=
+itechYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux=
+-gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/recipe-sysroot-native/usr/share=
+/aclocal/ --force -I m4 -I common/m4<br />NOTE: elfutils-0.186-r0 do_packag=
+e_write_ipk: libc6-dbg rprovides glibc-dbg, not replacing the latter<br />N=
+OTE: elfutils-0.186-r0 do_package_write_ipk: libgcc-s-dbg rprovides libgcc-=
+dbg, not replacing the latter<br />NOTE: elfutils-0.186-r0 do_package_write=
+_ipk: libz-dbg rprovides zlib-dbg, not replacing the latter<br /><strong>ac=
+local: error: couldn't open directory 'common/m4': No such file or director=
+y</strong><br />autoreconf: error: aclocal failed with exit status: 1<br />=
+ERROR: gstreamer1.0-plugins-hantro-1.8-r0 do_configure: autoreconf executio=
+n failed.<br />WARNING: exit code 1 from a shell command.<br /><br />I adde=
+d the directory common/m4 &amp; on the next run I get:<br /><br />autorecon=
+f: running: /media/owen/yocto/meritechYocto/poky/build-microchip/tmp/work/c=
+ortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.8-r=
+0/recipe-sysroot-native/usr/bin/autoconf --include=3D/media/owen/yocto/meri=
+techYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-=
+gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/git/m4/ --include=3D/media/owen/=
+yocto/meritechYocto/poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-p=
+oky-linux-gnueabi/gstreamer1.0-plugins-hantro/1.8-r0/recipe-sysroot-native/=
+usr/share/aclocal/ --force<br />configure.ac:16: error: possibly undefined =
+macro: AS_VERSION<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If this token and oth=
+ers are legitimate, please use m4_pattern_allow.<br />&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; See the Autoconf documentation.<br />configure.ac:19: error: poss=
+ibly undefined macro: AS_NANO<br />configure.ac:46: error: possibly undefin=
+ed macro: AS_LIBTOOL<br />configure.ac:55: error: possibly undefined macro:=
+ AS_AUTOTOOLS_ALTERNATE<br />configure.ac:127: error: possibly undefined ma=
+cro: AS_PATH_PYTHON<br />configure.ac:154: error: possibly undefined macro:=
+ PKG_CHECK_MODULES<br />autoreconf: error: /media/owen/yocto/meritechYocto/=
+poky/build-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gs=
+treamer1.0-plugins-hantro/1.8-r0/recipe-sysroot-native/usr/bin/autoconf fai=
+led with exit status: 1<br />ERROR: gstreamer1.0-plugins-hantro-1.8-r0 do_c=
+onfigure: autoreconf execution failed.<br />WARNING: exit code 1 from a she=
+ll command.<br />+ die autoreconf execution failed.<br />+ bbfatal_log auto=
+reconf execution failed.<br />+ [ -p /media/owen/yocto/meritechYocto/poky/b=
+uild-microchip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreame=
+r1.0-plugins-hantro/1.8-r0/temp/fifo.20217 ]<br />+ printf %b\0 bbfatal_log=
+ autoreconf execution failed.<br />+ exit 1<br />+ bb_sh_exit_handler<br />=
++ ret=3D1<br />+ [ 1 !=3D 0 ]<br />+ echo WARNING: exit code 1 from a shell=
+ command.<br />+ exit 1<br />ERROR: gstreamer1.0-plugins-hantro-1.8-r0 do_c=
+onfigure: ExecutionError('/media/owen/yocto/meritechYocto/poky/build-microc=
+hip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plugin=
+s-hantro/1.8-r0/temp/run.do_configure.20217', 1, None, None)<br />ERROR: Lo=
+gfile of failure stored in: /media/owen/yocto/meritechYocto/poky/build-micr=
+ochip/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/gstreamer1.0-plug=
+ins-hantro/1.8-r0/temp/log.do_configure.20217<br />ERROR: Task (/media/owen=
+/yocto/meritechYocto/poky/../meta-atmel/recipes-multimedia/gstreamer1.0-plu=
+gins/gstreamer1.0-plugins-hantro_1.8.bb:do_configure) failed with exit code=
+ '1'<br /><br />I suspect there is something not properly configured in aut=
+otools &amp; some change has occured from Dunfell -&gt; Kirkstone. Can anyo=
+ne provide any pointers please?<br /><br />My build configuration is below.=
+<br /><br />Regards,<br /><br />Owen<br /><br /><br />Build Configuration:<=
+br />BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D "2.0.0"<br />BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; =3D "x86_64-linux"<br />NATIVELSBSTRING&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; =3D "universal"<br />TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm-poky-linux-gnueabi"<br />MACHINE&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D "sama5d4-trinity-sd"<br />DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "poky-atmel"<br />DISTRO=
+_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "4.0.9"<br />TUNE_FEATURES=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm vfp cortexa5 neon vfpv4=
+ thumb callconvention-hard"<br />TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "hard"<br />meta&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br =
+/>meta-poky&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nb=
+sp;<br />meta-yocto-bsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "kirkstone:=
+4cc0e9438b450b43749730e128b6b9adb30f9663"<br />meta-oe&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />meta-networ=
+king&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />meta-webserver&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; &nbsp;<br />meta-python&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; &nbsp;<br />meta-initramfs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+"kirkstone:571e36e20e9d1f27af0eb4545291beeb64f280e2"<br />meta-atmel&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "kirkstone:cf920c=
+c40b4ff61dfc33410605bc8f94ab9b88dd"<br />meta-multimedia&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; =3D "kirkstone:571e36e20e9d1f27af0eb4545291beeb64f280e2"<br />m=
+eta-arm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &=
+nbsp;<br />meta-arm-toolchain&nbsp;&nbsp; =3D "kirkstone:96aad3b29aa7a5ee4d=
+f5cf617a6336e5218fa9bd"<br />meta-swupdate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; =3D "master:4b99b93b4225723cf9ff3a29abb4bd7811ce071c"
+
+--LASS7i3gXWNl6uSrG8AC--
 
