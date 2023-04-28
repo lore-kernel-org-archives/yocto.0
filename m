@@ -2,475 +2,316 @@ Return-Path: <stefanb@linux.ibm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6690C7EE25
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7D26C7EE26
 	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 12:23:28 +0000 (UTC)
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
- by mx.groups.io with SMTP id smtpd.web10.18039.1682684605790979896
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+ by mx.groups.io with SMTP id smtpd.web11.18021.1682684603540406317
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Apr 2023 05:23:25 -0700
+ Fri, 28 Apr 2023 05:23:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibm.com header.s=pp1 header.b=c9aDSZ9b;
- spf=pass (domain: linux.ibm.com, ip: 148.163.156.1, mailfrom: stefanb@linux.ibm.com)
-Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SCMbPT021876
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:25 GMT
+ dkim=pass header.i=@ibm.com header.s=pp1 header.b=GleLNtiO;
+ spf=pass (domain: linux.ibm.com, ip: 148.163.158.5, mailfrom: stefanb@linux.ibm.com)
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SC8O15017416
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
  : date : message-id : in-reply-to : references : content-transfer-encoding
- : mime-version; s=pp1; bh=SKFWpfqel9gdTtxKxnqDaLiQViKLapUgvC85Mwsfh/I=;
- b=c9aDSZ9bLf0T4jxFJURq7Clznxt8hwvaQEVWW8JCuti2/xBFE2yARAUQrp0DzsJyLdcZ
- QAbc8jhLV/7x2HK2wcGBOkCi2yRvOrvLeKkZvZ35SqIHN1LjrOt6d2nJXS9qAmCRrJ81
- jWxC0BTS1+GuxEYRfhVE0dhiEpCuKL7mVxmmFP8Eb0Cb3Djtc4Hl92SRFhoX8EU1/a+/
- Yplv4UzCp5g8r5SWeZiGLfb1R+a2NLFlY3bktRT/JFSjCmKnPUlSKGk7i9x+pH74lP/a
- NJN8fK2OTxTwQiQ2cyQg8y3xvLQD1bGbaRQI1m7liS4FCVs572n8y+QJ99/+ti3ho2et Bw== 
+ : mime-version; s=pp1; bh=elpPD1kM3GuO6qEbSsZnSVYHdgZDQLM/qQ7QmyuZONU=;
+ b=GleLNtiOjo5Lh24i5hhhpSxagiL+LHjzzzXd4MAygzxwewr/0mY7mEgeV2F8Ep5ujo+N
+ MWPXG2LiGZGUahzRumffjYPbOnE5Nt9wZtS6OlPioZYQxt0nR4MHQtF5kwqnJyysJXSN
+ N1nZrQmaBTt3s4s/E9U6ywRukIdSdfvJex+j0hzxHNmUg+AP7AIQXOIoLBRsd32p0Ho3
+ r08x9clfLvLv+siVJs/j93WLsuVBhpn6qg/MGk/prs2TIhqVUQ3aPOuShGjxuaPmSqYL
+ c2bdrTj/4qxnBn/HOSVJLT16kCj29LuJUxwFWDP+x2AtdJN9Dkyb0v2k04oIGWWLv3/T kw== 
 Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q89qnfxnm-1
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q8d9mhpm4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:25 +0000
-Received: from m0353726.ppops.net (m0353726.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 33SC9SjE027063
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:22 GMT
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q89qnfxn8-1
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:22 +0000
+Received: from m0356516.ppops.net (m0356516.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 33SCKRgO016712
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:21 GMT
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q8d9mhpkk-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Apr 2023 12:23:22 +0000
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-	by ppma01wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 33SA1JbW013008;
+	Fri, 28 Apr 2023 12:23:21 +0000
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+	by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 33SAF3Dx018373;
 	Fri, 28 Apr 2023 12:23:21 GMT
-Received: from smtprelay06.wdc07v.mail.ibm.com ([9.208.129.118])
-	by ppma01wdc.us.ibm.com (PPS) with ESMTPS id 3q4778fgps-1
+Received: from smtprelay05.wdc07v.mail.ibm.com ([9.208.129.117])
+	by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3q4778ycs7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Fri, 28 Apr 2023 12:23:21 +0000
 Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
-	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 33SCNJHV7995908
+	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 33SCNIWV26673828
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 28 Apr 2023 12:23:20 GMT
+	Fri, 28 Apr 2023 12:23:19 GMT
 Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id AB74058068;
-	Fri, 28 Apr 2023 12:23:19 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id D2BE958060;
+	Fri, 28 Apr 2023 12:23:18 +0000 (GMT)
 Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 5B4E95806E;
-	Fri, 28 Apr 2023 12:23:19 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 8EACA5803F;
+	Fri, 28 Apr 2023 12:23:18 +0000 (GMT)
 Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
 	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 28 Apr 2023 12:23:19 +0000 (GMT)
+	Fri, 28 Apr 2023 12:23:18 +0000 (GMT)
 From: Stefan Berger <stefanb@linux.ibm.com>
 To: yocto@lists.yoctoproject.org
 Cc: akuster808@gmail.com, Stefan Berger <stefanb@linux.ibm.com>
-Subject: [meta-security][PATCH 3/8] ima: Fix the IMA kernel feature
-Date: Fri, 28 Apr 2023 08:23:11 -0400
-Message-Id: <20230428122316.521800-4-stefanb@linux.ibm.com>
+Subject: [meta-security][PATCH 1/8] ima: Document and replace keys and adapt scripts for EC keys
+Date: Fri, 28 Apr 2023 08:23:09 -0400
+Message-Id: <20230428122316.521800-2-stefanb@linux.ibm.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230428122316.521800-1-stefanb@linux.ibm.com>
 References: <20230428122316.521800-1-stefanb@linux.ibm.com>
 X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: ahHGIfGQG_dFIs_YkgVO32ls7jpU5FVR
-X-Proofpoint-GUID: RGfftzQGVK-3l7at-j-fJIZqIosFOXKW
+X-Proofpoint-ORIG-GUID: oapEUriB6NfhgylyZtQRwGGKdzdFFqZZ
+X-Proofpoint-GUID: rYb_QAGUzjb_uYiQdi1rMMdI-ZdHsTHG
 Content-Transfer-Encoding: 8bit
 X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-04-28_04,2023-04-27_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 lowpriorityscore=0 malwarescore=0 phishscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 mlxscore=0 spamscore=0
- clxscore=1015 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ adultscore=0 impostorscore=0 lowpriorityscore=0 mlxlogscore=999
+ bulkscore=0 phishscore=0 spamscore=0 mlxscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2303200000 definitions=main-2304280098
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59804
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59798
 
-Fix the IMA kernel feature. Remove outdated patches and add ima.cfg holding
-kernel configuration options for IMA and EVM.
+For shorted file signatures use EC keys rather than RSA keys.
+Document the debug keys and their purpose.
+Adapt the scripts for creating these types of keys to now
+create EC keys.
 
 Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
 ---
- meta-integrity/classes/ima-evm-rootfs.bbclass |   5 +-
- .../0001-ima-fix-ima_inode_post_setattr.patch |  51 -------
- ...for-creating-files-using-the-mknodat.patch | 138 ------------------
- ...-file-hash-setting-by-user-to-fix-an.patch |  60 --------
- .../recipes-kernel/linux/linux/ima.cfg        |  46 ++++++
- .../recipes-kernel/linux/linux/ima.scc        |   4 +
- .../recipes-kernel/linux/linux_ima.inc        |  10 +-
- 7 files changed, 63 insertions(+), 251 deletions(-)
- delete mode 100644 meta-integrity/recipes-kernel/linux/linux/0001-ima-fix-ima_inode_post_setattr.patch
- delete mode 100644 meta-integrity/recipes-kernel/linux/linux/0002-ima-add-support-for-creating-files-using-the-mknodat.patch
- delete mode 100644 meta-integrity/recipes-kernel/linux/linux/Revert-ima-limit-file-hash-setting-by-user-to-fix-an.patch
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/ima.cfg
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/ima.scc
+ meta-integrity/data/debug-keys/README.md      |  17 ++++++++
+ .../data/debug-keys/ima-local-ca.pem          |  15 +++++++
+ .../data/debug-keys/ima-local-ca.priv         |   7 +++
+ .../data/debug-keys/privkey_ima.pem           |  17 ++------
+ meta-integrity/data/debug-keys/x509_ima.der   | Bin 707 -> 620 bytes
+ meta-integrity/scripts/ima-gen-CA-signed.sh   |   9 ++--
+ meta-integrity/scripts/ima-gen-local-ca.sh    |   6 +--
+ meta-integrity/scripts/ima-gen-self-signed.sh |  41 ------------------
+ 8 files changed, 50 insertions(+), 62 deletions(-)
+ create mode 100644 meta-integrity/data/debug-keys/README.md
+ create mode 100644 meta-integrity/data/debug-keys/ima-local-ca.pem
+ create mode 100644 meta-integrity/data/debug-keys/ima-local-ca.priv
+ delete mode 100755 meta-integrity/scripts/ima-gen-self-signed.sh
 
-diff --git a/meta-integrity/classes/ima-evm-rootfs.bbclass b/meta-integrity/classes/ima-evm-rootfs.bbclass
-index 57de2f6..3cb0d07 100644
---- a/meta-integrity/classes/ima-evm-rootfs.bbclass
-+++ b/meta-integrity/classes/ima-evm-rootfs.bbclass
-@@ -17,7 +17,7 @@ IMA_EVM_X509 ?= "${IMA_EVM_KEY_DIR}/x509_ima.der"
- # with a .x509 suffix. See linux-%.bbappend for details.
- #
- # ima-local-ca.x509 is what ima-gen-local-ca.sh creates.
--IMA_EVM_ROOT_CA ?= ""
-+IMA_EVM_ROOT_CA ?= "${IMA_EVM_KEY_DIR}/ima-local-ca.pem"
- 
- # Sign all regular files by default.
- IMA_EVM_ROOTFS_SIGNED ?= ". -type f"
-@@ -31,6 +31,9 @@ IMA_EVM_ROOTFS_IVERSION ?= ""
- # Avoid re-generating fstab when ima is enabled.
- WIC_CREATE_EXTRA_ARGS:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ima', ' --no-fstab-update', '', d)}"
- 
-+# Add necessary tools (e.g., keyctl) to image
-+IMAGE_INSTALL:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ima', ' ima-evm-utils', '', d)}"
-+
- ima_evm_sign_rootfs () {
-     cd ${IMAGE_ROOTFS}
- 
-diff --git a/meta-integrity/recipes-kernel/linux/linux/0001-ima-fix-ima_inode_post_setattr.patch b/meta-integrity/recipes-kernel/linux/linux/0001-ima-fix-ima_inode_post_setattr.patch
-deleted file mode 100644
-index 64016dd..0000000
---- a/meta-integrity/recipes-kernel/linux/linux/0001-ima-fix-ima_inode_post_setattr.patch
-+++ /dev/null
-@@ -1,51 +0,0 @@
--From 45ea681ebc0dd44aaec5d3cc4143b9722070d3ac Mon Sep 17 00:00:00 2001
--From: Mimi Zohar <zohar@linux.vnet.ibm.com>
--Date: Tue, 8 Mar 2016 16:43:55 -0500
--Subject: [PATCH] ima: fix ima_inode_post_setattr
--
--Changing file metadata (eg. uid, guid) could result in having to
--re-appraise a file's integrity, but does not change the "new file"
--status nor the security.ima xattr.  The IMA_PERMIT_DIRECTIO and
--IMA_DIGSIG_REQUIRED flags are policy rule specific.  This patch
--only resets these flags, not the IMA_NEW_FILE or IMA_DIGSIG flags.
--
--With this patch, changing the file timestamp will not remove the
--file signature on new files.
--
--Upstream-Status: Accepted [https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/security/integrity/ima/ima_appraise.c?id=42a4c603198f0d45b7aa936d3ac6ba1b8bd14a1b]
--
--Reported-by: Dmitry Rozhkov <dmitry.rozhkov@linux.intel.com>
--Signed-off-by: Mimi Zohar <zohar@linux.vnet.ibm.com>
-----
-- security/integrity/ima/ima_appraise.c | 2 +-
-- security/integrity/integrity.h        | 1 +
-- 2 files changed, 2 insertions(+), 1 deletion(-)
--
--diff --git a/security/integrity/ima/ima_appraise.c b/security/integrity/ima/ima_appraise.c
--index 4df493e..a384ba1 100644
----- a/security/integrity/ima/ima_appraise.c
--+++ b/security/integrity/ima/ima_appraise.c
--@@ -327,7 +327,7 @@ void ima_inode_post_setattr(struct dentry *dentry)
-- 	if (iint) {
-- 		iint->flags &= ~(IMA_APPRAISE | IMA_APPRAISED |
-- 				 IMA_APPRAISE_SUBMASK | IMA_APPRAISED_SUBMASK |
---				 IMA_ACTION_FLAGS);
--+				 IMA_ACTION_RULE_FLAGS);
-- 		if (must_appraise)
-- 			iint->flags |= IMA_APPRAISE;
-- 	}
--diff --git a/security/integrity/integrity.h b/security/integrity/integrity.h
--index 0fc9519..f9decae 100644
----- a/security/integrity/integrity.h
--+++ b/security/integrity/integrity.h
--@@ -28,6 +28,7 @@
-- 
-- /* iint cache flags */
-- #define IMA_ACTION_FLAGS	0xff000000
--+#define IMA_ACTION_RULE_FLAGS	0x06000000
-- #define IMA_DIGSIG		0x01000000
-- #define IMA_DIGSIG_REQUIRED	0x02000000
-- #define IMA_PERMIT_DIRECTIO	0x04000000
---- 
--2.5.0
--
-diff --git a/meta-integrity/recipes-kernel/linux/linux/0002-ima-add-support-for-creating-files-using-the-mknodat.patch b/meta-integrity/recipes-kernel/linux/linux/0002-ima-add-support-for-creating-files-using-the-mknodat.patch
-deleted file mode 100644
-index 6ab7ce2..0000000
---- a/meta-integrity/recipes-kernel/linux/linux/0002-ima-add-support-for-creating-files-using-the-mknodat.patch
-+++ /dev/null
-@@ -1,138 +0,0 @@
--From baaec960e9e7be0b526eaf831b079ddfe5c15124 Mon Sep 17 00:00:00 2001
--From: Mimi Zohar <zohar@linux.vnet.ibm.com>
--Date: Thu, 10 Mar 2016 18:19:20 +0200
--Subject: [PATCH] ima: add support for creating files using the mknodat
-- syscall
--
--Commit 3034a14 "ima: pass 'opened' flag to identify newly created files"
--stopped identifying empty files as new files.  However new empty files
--can be created using the mknodat syscall.  On systems with IMA-appraisal
--enabled, these empty files are not labeled with security.ima extended
--attributes properly, preventing them from subsequently being opened in
--order to write the file data contents.  This patch marks these empty
--files, created using mknodat, as new in order to allow the file data
--contents to be written.
--
--Files with security.ima xattrs containing a file signature are considered
--"immutable" and can not be modified.  The file contents need to be
--written, before signing the file.  This patch relaxes this requirement
--for new files, allowing the file signature to be written before the file
--contents.
--
--Upstream-Status: Accepted [https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/security/integrity/ima/ima_appraise.c?id=05d1a717ec0430c916a749b94eb90ab74bbfa356]
--
--Signed-off-by: Mimi Zohar <zohar@linux.vnet.ibm.com>
-----
-- fs/namei.c                            |  2 ++
-- include/linux/ima.h                   |  7 ++++++-
-- security/integrity/ima/ima_appraise.c |  3 +++
-- security/integrity/ima/ima_main.c     | 32 +++++++++++++++++++++++++++++++-
-- 4 files changed, 42 insertions(+), 2 deletions(-)
--
--diff --git a/fs/namei.c b/fs/namei.c
--index ccd7f98..19502da 100644
----- a/fs/namei.c
--+++ b/fs/namei.c
--@@ -3526,6 +3526,8 @@ retry:
-- 	switch (mode & S_IFMT) {
-- 		case 0: case S_IFREG:
-- 			error = vfs_create(path.dentry->d_inode,dentry,mode,true);
--+			if (!error)
--+				ima_post_path_mknod(dentry);
-- 			break;
-- 		case S_IFCHR: case S_IFBLK:
-- 			error = vfs_mknod(path.dentry->d_inode,dentry,mode,
--diff --git a/include/linux/ima.h b/include/linux/ima.h
--index 120ccc5..7f51971 100644
----- a/include/linux/ima.h
--+++ b/include/linux/ima.h
--@@ -20,7 +20,7 @@ extern void ima_file_free(struct file *file);
-- extern int ima_file_mmap(struct file *file, unsigned long prot);
-- extern int ima_module_check(struct file *file);
-- extern int ima_fw_from_file(struct file *file, char *buf, size_t size);
---
--+extern void ima_post_path_mknod(struct dentry *dentry);
-- #else
-- static inline int ima_bprm_check(struct linux_binprm *bprm)
-- {
--@@ -52,6 +52,11 @@ static inline int ima_fw_from_file(struct file *file, char *buf, size_t size)
-- 	return 0;
-- }
-- 
--+static inline void ima_post_path_mknod(struct dentry *dentry)
--+{
--+	return;
--+}
--+
-- #endif /* CONFIG_IMA */
-- 
-- #ifdef CONFIG_IMA_APPRAISE
--diff --git a/security/integrity/ima/ima_appraise.c b/security/integrity/ima/ima_appraise.c
--index 4df493e..20806ea 100644
----- a/security/integrity/ima/ima_appraise.c
--+++ b/security/integrity/ima/ima_appraise.c
--@@ -274,6 +274,11 @@ out:
-- 		     xattr_value->type != EVM_IMA_XATTR_DIGSIG)) {
-- 			if (!ima_fix_xattr(dentry, iint))
-- 				status = INTEGRITY_PASS;
--+		} else if ((inode->i_size == 0) &&
--+			   (iint->flags & IMA_NEW_FILE) &&
--+			   (xattr_value &&
--+			    xattr_value->type == EVM_IMA_XATTR_DIGSIG)) {
--+			status = INTEGRITY_PASS;
-- 		}
-- 		integrity_audit_msg(AUDIT_INTEGRITY_DATA, inode, filename,
-- 				    op, cause, rc, 0);
--diff --git a/security/integrity/ima/ima_main.c b/security/integrity/ima/ima_main.c
--index eeee00dc..705bf78 100644
----- a/security/integrity/ima/ima_main.c
--+++ b/security/integrity/ima/ima_main.c
--@@ -242,7 +242,8 @@ static int process_measurement(struct file *file, int mask, int function,
-- 		ima_audit_measurement(iint, pathname);
-- 
-- out_digsig:
---	if ((mask & MAY_WRITE) && (iint->flags & IMA_DIGSIG))
--+	if ((mask & MAY_WRITE) && (iint->flags & IMA_DIGSIG) &&
--+	     !(iint->flags & IMA_NEW_FILE))
-- 		rc = -EACCES;
-- 	kfree(xattr_value);
-- out_free:
--@@ -310,6 +311,35 @@ int ima_file_check(struct file *file, int mask, int opened)
-- EXPORT_SYMBOL_GPL(ima_file_check);
-- 
-- /**
--+ * ima_post_path_mknod - mark as a new inode
--+ * @dentry: newly created dentry
--+ *
--+ * Mark files created via the mknodat syscall as new, so that the
--+ * file data can be written later.
--+ */
--+void ima_post_path_mknod(struct dentry *dentry)
--+{
--+	struct integrity_iint_cache *iint;
--+	struct inode *inode;
--+	int must_appraise;
--+
--+	if (!dentry || !dentry->d_inode)
--+		return;
--+
--+	inode = dentry->d_inode;
--+	if (inode->i_size != 0)
--+		return;
--+
--+	must_appraise = ima_must_appraise(inode, MAY_ACCESS, FILE_CHECK);
--+	if (!must_appraise)
--+		return;
--+
--+	iint = integrity_inode_get(inode);
--+	if (iint)
--+		iint->flags |= IMA_NEW_FILE;
--+}
--+
--+/**
--  * ima_module_check - based on policy, collect/store/appraise measurement.
--  * @file: pointer to the file to be measured/appraised
--  *
---- 
--2.5.0
--
-diff --git a/meta-integrity/recipes-kernel/linux/linux/Revert-ima-limit-file-hash-setting-by-user-to-fix-an.patch b/meta-integrity/recipes-kernel/linux/linux/Revert-ima-limit-file-hash-setting-by-user-to-fix-an.patch
-deleted file mode 100644
-index 157c007..0000000
---- a/meta-integrity/recipes-kernel/linux/linux/Revert-ima-limit-file-hash-setting-by-user-to-fix-an.patch
-+++ /dev/null
-@@ -1,60 +0,0 @@
--From a34d61850b680c152e1dcc958ee83c3ab3261c3d Mon Sep 17 00:00:00 2001
--From: Patrick Ohly <patrick.ohly@intel.com>
--Date: Tue, 15 Nov 2016 10:10:23 +0100
--Subject: [PATCH] Revert "ima: limit file hash setting by user to fix and log
-- modes"
--
--This reverts commit c68ed80c97d9720f51ef31fe91560fdd1e121533.
--
--The original motivation was security hardening ("File hashes are
--automatically set and updated and should not be manually set.")
--
--However, that hardening ignores and breaks some valid use cases:
--- File hashes might not be set because the file is currently
--  outside of the policy and therefore have to be set by the
--  creator. Examples:
--  - Booting into an initramfs with an IMA-enabled kernel but
--    without setting an IMA policy, then installing
--    the OS onto the target partition by unpacking a rootfs archive
--    which has the file hashes pre-computed.
--  - Unpacking a file into a staging area with meta data (like owner)
--    that leaves the file outside of the current policy, then changing
--    the meta data such that it becomes part of the current policy.
--- "should not be set manually" implies that the creator is aware
--  of IMA semantic, the current system's configuration, and then
--  skips setting file hashes in security.ima if (and only if) the
--  kernel would prevent it. That's not the case for standard, unmodified
--  tools. Example: unpacking an archive with security.ima xattrs with
--  bsdtar or GNU tar.
--
--Upstream-Status: Submitted [https://sourceforge.net/p/linux-ima/mailman/message/35492824/]
--
--Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
-----
-- security/integrity/ima/ima_appraise.c | 8 ++------
-- 1 file changed, 2 insertions(+), 6 deletions(-)
--
--diff --git a/security/integrity/ima/ima_appraise.c b/security/integrity/ima/ima_appraise.c
--index 4b9b4a4..b8b2dd9 100644
----- a/security/integrity/ima/ima_appraise.c
--+++ b/security/integrity/ima/ima_appraise.c
--@@ -385,14 +385,10 @@ int ima_inode_setxattr(struct dentry *dentry, const char *xattr_name,
-- 	result = ima_protect_xattr(dentry, xattr_name, xattr_value,
-- 				   xattr_value_len);
-- 	if (result == 1) {
---		bool digsig;
---
-- 		if (!xattr_value_len || (xvalue->type >= IMA_XATTR_LAST))
-- 			return -EINVAL;
---		digsig = (xvalue->type == EVM_IMA_XATTR_DIGSIG);
---		if (!digsig && (ima_appraise & IMA_APPRAISE_ENFORCE))
---			return -EPERM;
---		ima_reset_appraise_flags(d_backing_inode(dentry), digsig);
--+		ima_reset_appraise_flags(d_backing_inode(dentry),
--+			 (xvalue->type == EVM_IMA_XATTR_DIGSIG) ? 1 : 0);
-- 		result = 0;
-- 	}
-- 	return result;
---- 
--2.1.4
--
-diff --git a/meta-integrity/recipes-kernel/linux/linux/ima.cfg b/meta-integrity/recipes-kernel/linux/linux/ima.cfg
+diff --git a/meta-integrity/data/debug-keys/README.md b/meta-integrity/data/debug-keys/README.md
 new file mode 100644
-index 0000000..86fb3aa
+index 0000000..e613968
 --- /dev/null
-+++ b/meta-integrity/recipes-kernel/linux/linux/ima.cfg
-@@ -0,0 +1,46 @@
-+CONFIG_SQUASHFS_XATTR=y
-+CONFIG_KEYS=y
-+CONFIG_ASYMMETRIC_KEY_TYPE=y
-+CONFIG_SYSTEM_TRUSTED_KEYRING=y
-+CONFIG_SYSTEM_TRUSTED_KEYS="${IMA_EVM_ROOT_CA}"
-+CONFIG_SECONDARY_TRUSTED_KEYRING=y
-+CONFIG_ASYMMETRIC_PUBLIC_KEY_SUBTYPE=y
-+CONFIG_X509_CERTIFICATE_PARSER=y
-+CONFIG_PKCS8_PRIVATE_KEY_PARSER=y
-+CONFIG_CRYPTO_ECDSA=y
-+CONFIG_SECURITY=y
-+CONFIG_SECURITYFS=y
-+CONFIG_INTEGRITY=y
-+CONFIG_INTEGRITY_SIGNATURE=y
-+CONFIG_INTEGRITY_ASYMMETRIC_KEYS=y
-+CONFIG_INTEGRITY_TRUSTED_KEYRING=y
-+CONFIG_IMA=y
-+CONFIG_IMA_MEASURE_PCR_IDX=10
-+CONFIG_IMA_LSM_RULES=y
-+# CONFIG_IMA_TEMPLATE is not set
-+# CONFIG_IMA_NG_TEMPLATE is not set
-+CONFIG_IMA_SIG_TEMPLATE=y
-+CONFIG_IMA_DEFAULT_TEMPLATE="ima-sig"
-+# CONFIG_IMA_DEFAULT_HASH_SHA1 is not set
-+CONFIG_IMA_DEFAULT_HASH_SHA256=y
-+# CONFIG_IMA_DEFAULT_HASH_SHA512 is not set
-+CONFIG_IMA_DEFAULT_HASH="sha256"
-+CONFIG_IMA_WRITE_POLICY=y
-+CONFIG_IMA_READ_POLICY=y
-+CONFIG_IMA_APPRAISE=y
-+CONFIG_IMA_ARCH_POLICY=y
-+CONFIG_IMA_APPRAISE_BUILD_POLICY=y
-+CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS=y
-+# CONFIG_IMA_APPRAISE_BOOTPARAM is not set
-+# CONFIG_IMA_APPRAISE_MODSIG is not set
-+CONFIG_IMA_TRUSTED_KEYRING=y
-+CONFIG_IMA_KEYRINGS_PERMIT_SIGNED_BY_BUILTIN_OR_SECONDARY=y
-+# CONFIG_IMA_BLACKLIST_KEYRING is not set
-+# CONFIG_IMA_LOAD_X509 is not set
-+CONFIG_IMA_APPRAISE_SIGNED_INIT=y
-+CONFIG_IMA_MEASURE_ASYMMETRIC_KEYS=y
-+CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=y
-+CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT=y
-+# CONFIG_IMA_DISABLE_HTABLE is not set
-+CONFIG_EVM=y
-+# CONFIG_EVM_LOAD_X509 is not set
-diff --git a/meta-integrity/recipes-kernel/linux/linux/ima.scc b/meta-integrity/recipes-kernel/linux/linux/ima.scc
++++ b/meta-integrity/data/debug-keys/README.md
+@@ -0,0 +1,17 @@
++# EVM & IMA keys
++
++The following IMA & EVM debug/test keys are in this directory
++
++- ima-local-ca.priv: The CA's private key (password: 1234)
++- ima-local-ca.pem: The CA's self-signed certificate
++- privkey_ima.pem: IMA & EVM private key used for signing files
++- x509_ima.der: Certificate containing public key (of privkey_ima.pem) to verify signatures
++
++The CA's (self-signed) certificate can be used to verify the validity of
++the x509_ima.der certificate. Since the CA certificate will be built into
++the Linux kernel, any key (x509_ima.der) loaded onto the .ima keyring must
++pass this test:
++
++```
++  openssl verify -CAfile ima-local-ca.pem x509_ima.der
++````
+diff --git a/meta-integrity/data/debug-keys/ima-local-ca.pem b/meta-integrity/data/debug-keys/ima-local-ca.pem
 new file mode 100644
-index 0000000..6eb84b0
+index 0000000..4b48be4
 --- /dev/null
-+++ b/meta-integrity/recipes-kernel/linux/linux/ima.scc
-@@ -0,0 +1,4 @@
-+define KFEATURE_DESCRIPTION "Enable IMA"
-+
-+kconf non-hardware ima.cfg
-+
-diff --git a/meta-integrity/recipes-kernel/linux/linux_ima.inc b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-index 3ab53e5..0b6f530 100644
---- a/meta-integrity/recipes-kernel/linux/linux_ima.inc
-+++ b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-@@ -1,4 +1,12 @@
--KERNEL_FEATURES:append = " ${@bb.utils.contains("DISTRO_FEATURES", "ima", " features/ima/ima.scc", "" ,d)}"
-+FILESEXTRAPATHS:append := "${THISDIR}/linux:"
-+
-+SRC_URI += " \
-+    ${@bb.utils.contains('DISTRO_FEATURES', 'ima', 'file://ima.scc', '', d)} \
-+"
-+
-+do_configure() {
-+    sed -i "s|^CONFIG_SYSTEM_TRUSTED_KEYS=.*|CONFIG_SYSTEM_TRUSTED_KEYS=\"${IMA_EVM_ROOT_CA}\"|" .config
-+}
++++ b/meta-integrity/data/debug-keys/ima-local-ca.pem
+@@ -0,0 +1,15 @@
++-----BEGIN CERTIFICATE-----
++MIICWzCCAgCgAwIBAgITYMKT7/z5qI+hLfNC6Jy6hhBCWDAKBggqhkjOPQQDAjB9
++MRQwEgYDVQQKDAtleGFtcGxlLmNvbTFAMD4GA1UEAww3bWV0YS1pbnRlbC1pb3Qt
++c2VjdXJpdHkgZXhhbXBsZSBjZXJ0aWZpY2F0ZSBzaWduaW5nIGtleTEjMCEGCSqG
++SIb3DQEJARYUam9obi5kb2VAZXhhbXBsZS5jb20wIBcNMjMwNDI2MTYyNjExWhgP
++MjEyMzA0MDIxNjI2MTFaMH0xFDASBgNVBAoMC2V4YW1wbGUuY29tMUAwPgYDVQQD
++DDdtZXRhLWludGVsLWlvdC1zZWN1cml0eSBleGFtcGxlIGNlcnRpZmljYXRlIHNp
++Z25pbmcga2V5MSMwIQYJKoZIhvcNAQkBFhRqb2huLmRvZUBleGFtcGxlLmNvbTBZ
++MBMGByqGSM49AgEGCCqGSM49AwEHA0IABCiC+YIbCoOhyLy63lOGbiK+DPkW7gMU
++rmfVLIb4oTmKxZS5/L8VE6hjKDcLa7OauyuW2nd4fnFAautFxpw/Q0yjXTBbMAwG
++A1UdEwQFMAMBAf8wHQYDVR0OBBYEFL/PiFFjjlzVtExXMb2uXOfIgeIEMB8GA1Ud
++IwQYMBaAFL/PiFFjjlzVtExXMb2uXOfIgeIEMAsGA1UdDwQEAwIBBjAKBggqhkjO
++PQQDAgNJADBGAiEA0HOxloLMr87yDoH3CljWDWb7M2zLA+BQFXLN511qDl0CIQDu
++clewWaJHw4Wq8IN3JsrNDDw2GfrN3sx4hfWUK/0SPw==
++-----END CERTIFICATE-----
+diff --git a/meta-integrity/data/debug-keys/ima-local-ca.priv b/meta-integrity/data/debug-keys/ima-local-ca.priv
+new file mode 100644
+index 0000000..e13de23
+--- /dev/null
++++ b/meta-integrity/data/debug-keys/ima-local-ca.priv
+@@ -0,0 +1,7 @@
++-----BEGIN ENCRYPTED PRIVATE KEY-----
++MIHjME4GCSqGSIb3DQEFDTBBMCkGCSqGSIb3DQEFDDAcBAhinM5KnV2x5wICCAAw
++DAYIKoZIhvcNAgkFADAUBggqhkiG9w0DBwQI4Xbw/W1pgH0EgZCiurgCTUEIDbiK
++x5kw3/Rg1/ZLwk5TEiMoIa9CmXEyuSRUla/Ta4o/rZEzKAp6vwkcupviirtWYems
++lZNfggfzITWNEWtkU6BrhZgJ7kaeZrIbuAO7YUJy6Z2MQfgaKI9BE2EEgKJ+X5gY
++LjkobSAtEqDjuheLgaXIMQ7/qT0MGmi6LmzwMEhu8ZXlNGg8udw=
++-----END ENCRYPTED PRIVATE KEY-----
+diff --git a/meta-integrity/data/debug-keys/privkey_ima.pem b/meta-integrity/data/debug-keys/privkey_ima.pem
+index 502a0b6..8362cfe 100644
+--- a/meta-integrity/data/debug-keys/privkey_ima.pem
++++ b/meta-integrity/data/debug-keys/privkey_ima.pem
+@@ -1,16 +1,5 @@
+ -----BEGIN PRIVATE KEY-----
+-MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJw2G3d0fM36rcQU
+-Bt8V/SapJe0lxWJ+CY+HcMx8AhWY9XQ66AXcqBsRHiUnYCaFGXFI35VKGC6d/Gs6
+-IWlHgI0tcTyzy5eul+BKRLy/3PNjkK2jJETlbetQy+gE6gUtg4RmPV5ALGksK74p
+-OrAfKnahoMi82NVIiBitwmRimms1AgMBAAECgYBTxciRFU1hAVBy2PKebKJoO0n1
+-lc329fSWnmHlp5NOlcr8XCLWEfGtIk7ySd2MitCMKjKNU0EIrv0RXAlS9l9/gBYW
+-HY+eEaa6l80sp8q4aPKImSi0pb3LVNqWKXJg8qr4AZ45/TEL/fzILFv5QcY8xDjV
+-aj6DOlEnNDjlBlBbQQJBAMyYDlKItes/Rnmtp9roXj3XUfiBDHTLY2HVgDBe87sA
+-TOSnbgIv+6urd1h9XvBmJlRYH7YKJmBSZWcSlfdC6XkCQQDDdfkUMxQZo9PC/Eue
+-WYzytx4xUm3ItWcuKILtFgcNh3c4s4dMx4X/WhQj5/H/nVOIWDioQ0mrW3ap/qcb
+-SBydAkAf/gb/UPFhf9t9W3JMANn7wZfHzCYufT9lJQWOisqCC2H6v1Osc+Rey8k1
+-xST7Yn3L4pvS03N8zGWe4IEi0QvBAkAWdTWbNos2rvYjzy05Enz5XkTf0eK/Tuh+
+-CzWP3BoPWeM+5pHDJqGkx0rNHVdW0VLJtak83A5Y2/d0bMfygISZAkBFGui4HW+Q
+-1BlpmDeslsE11wm5jSmm6Ti12a2dVKGFo9QLQcSj4bfgxtqU2dQaYRmajXtSBrGQ
+-3vVaxg2EfqB1
++MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgmbPxV5LYZ530IfGm
++SMpfPQFgoIkKPMRuNWLyVn+wiAOhRANCAAQ31W5ZQZdcwidgpyls2oO5rSsHLlqj
++cKYaDF2fveMN5L/wBwEi84ubzz2+MkM9q7RaOSC4TPYHnhVvYcH+SsFv
+ -----END PRIVATE KEY-----
+diff --git a/meta-integrity/data/debug-keys/x509_ima.der b/meta-integrity/data/debug-keys/x509_ima.der
+index 087ca6bea53c172e7eb9a269183a32b3ecbd3aaa..3f6f24e61373912cf39598a427fba09c75e74592 100644
+GIT binary patch
+delta 420
+zcmX@i`i8~Opou91h<O(<GchtTiD=rcII<&lhOg5x2csv6GWV}f4iz@wV&l+i^EhYA
+z!pvk)J8_>lmxF;F8*?ZNGmrVi`wCpisYNB3X_?81B@_P|D=3Kb8W|gy7?~NG8JU?_
+zL`m=)8G-~1j35FNcbC>j8VIwogN<ZjgqqFF$j<D<z+!$iFVb;(%pvuJ<(fISns=_%
+zX4i{aT(C@vCwBhc$GlJWe_&@+`rJMHyzM?CXWP|VqAV45_<UoZCz_vl@SoSg{KcgP
+z#Rfb;$H@vaGX7^_GGH*^2J!e=fR1NxFc1TA>QzB<JRpB*voW%=vNJOq$buyJSj1RF
+zZWqVLdDo{rj0+P#;Q6gwKHcEmUjuoNv@(l?fmnmc{_`Dy$$c?bxA=q`?p+u2{6ym;
+z7UVEu_GB<{V^U-|P`Rr*Zt2H)ZYL%h?fkphW$TAIuj+!<Jp8V8P$_X&W#na`nl+6t
+jyo(z`O1=2)rOw6#XzVCl=Wr*re40+_o3v9q-v<EzPIQdl
+
+delta 490
+zcmaFEa+p=!powWe5Nj-8W@2Pw;$&Ev_Kw}@@5(*{UN%mxHjlRNyo`*jtPB$`lqe{O
+z^BS5N7#bNGn44Odm_$kN8yOm!8X6f{Km;b9FRgE!kF1fAm4Ugjm%*U1lc}+hVUC$}
+zc}dOLUu%zuu-zB^tF}`0t?JRFI?n#~f-^NtqBFjhSiNAqvqD->PE|cYtyQwn<Nj1H
+z3B9?0vaJ*|-5Yv!3vD)^p1yAS12307`|o^Cp0IYYip$g7*8!(ru)Jc`ZEi`kt&eli
+z$<)!_r)jl8UaM^3f)jggT=nRXSbHcXX;!u=6Eh<N<KkF@XagQL=1^H-M#ldvOa=@F
+z+#nu53kx$7dxL>2h{MMs#v)Q%T$8e2$NAsBg}3FLd+H7cC8Z`C$b+PnStJa^8n7s+
+z2dY2~IA);7CE4|y8dgPru-Va-?r`+w*M{B4Qk8-~RJ~DstJG$5*M+C#eBA$qBA?IQ
+zi#XD!^?xaMa-hvFpF;7>h^4<)8&z1mFsnIzMy+W^{27zLSGM&o2WzB{WS3ukm~v04
+seSbc0i;m3fSIP33d0S_T-F&dflIgem)LYJa+g7k1Pdm)DaOK<z0Cl&yl>h($
+
+diff --git a/meta-integrity/scripts/ima-gen-CA-signed.sh b/meta-integrity/scripts/ima-gen-CA-signed.sh
+index 5f3a728..b10b1ba 100755
+--- a/meta-integrity/scripts/ima-gen-CA-signed.sh
++++ b/meta-integrity/scripts/ima-gen-CA-signed.sh
+@@ -20,7 +20,6 @@ CAKEY=${2:-ima-local-ca.priv}
  
- KERNEL_FEATURES:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', ' features/ima/modsign.scc', '', d)}"
+ cat << __EOF__ >$GENKEY
+ [ req ]
+-default_bits = 1024
+ distinguished_name = req_distinguished_name
+ prompt = no
+ string_mask = utf8only
+@@ -36,13 +35,15 @@ basicConstraints=critical,CA:FALSE
+ #basicConstraints=CA:FALSE
+ keyUsage=digitalSignature
+ #keyUsage = nonRepudiation, digitalSignature, keyEncipherment
++extendedKeyUsage=critical,codeSigning
+ subjectKeyIdentifier=hash
+ authorityKeyIdentifier=keyid
+ #authorityKeyIdentifier=keyid,issuer
+ __EOF__
  
+-openssl req -new -nodes -utf8 -sha1 -days 365 -batch -config $GENKEY \
+-        -out csr_ima.pem -keyout privkey_ima.pem
+-openssl x509 -req -in csr_ima.pem -days 365 -extfile $GENKEY -extensions v3_usr \
++openssl req -new -nodes -utf8 -sha256 -days 36500 -batch -config $GENKEY \
++        -out csr_ima.pem -keyout privkey_ima.pem \
++        -newkey ec -pkeyopt ec_paramgen_curve:prime256v1
++openssl x509 -req -in csr_ima.pem -days 36500 -extfile $GENKEY -extensions v3_usr \
+         -CA $CA -CAkey $CAKEY -CAcreateserial \
+         -outform DER -out x509_ima.der
+diff --git a/meta-integrity/scripts/ima-gen-local-ca.sh b/meta-integrity/scripts/ima-gen-local-ca.sh
+index b600761..339d3e3 100755
+--- a/meta-integrity/scripts/ima-gen-local-ca.sh
++++ b/meta-integrity/scripts/ima-gen-local-ca.sh
+@@ -18,7 +18,6 @@ GENKEY=ima-local-ca.genkey
+ 
+ cat << __EOF__ >$GENKEY
+ [ req ]
+-default_bits = 2048
+ distinguished_name = req_distinguished_name
+ prompt = no
+ string_mask = utf8only
+@@ -33,10 +32,11 @@ emailAddress = john.doe@example.com
+ basicConstraints=CA:TRUE
+ subjectKeyIdentifier=hash
+ authorityKeyIdentifier=keyid:always,issuer
+-# keyUsage = cRLSign, keyCertSign
++keyUsage = cRLSign, keyCertSign
+ __EOF__
+ 
+-openssl req -new -x509 -utf8 -sha1 -days 3650 -batch -config $GENKEY \
++openssl req -new -x509 -utf8 -sha256 -days 36500 -batch -config $GENKEY \
++        -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 \
+         -outform DER -out ima-local-ca.x509 -keyout ima-local-ca.priv
+ 
+ openssl x509 -inform DER -in ima-local-ca.x509 -out ima-local-ca.pem
+diff --git a/meta-integrity/scripts/ima-gen-self-signed.sh b/meta-integrity/scripts/ima-gen-self-signed.sh
+deleted file mode 100755
+index 5ee876c..0000000
+--- a/meta-integrity/scripts/ima-gen-self-signed.sh
++++ /dev/null
+@@ -1,41 +0,0 @@
+-#!/bin/sh
+-#
+-# Copied from ima-evm-utils.
+-#
+-# This program is free software; you can redistribute it and/or
+-# modify it under the terms of the GNU General Public License
+-# version 2 as published by the Free Software Foundation.
+-#
+-# This program is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-
+-GENKEY=ima.genkey
+-
+-cat << __EOF__ >$GENKEY
+-[ req ]
+-default_bits = 1024
+-distinguished_name = req_distinguished_name
+-prompt = no
+-string_mask = utf8only
+-x509_extensions = myexts
+-
+-[ req_distinguished_name ]
+-O = example.com
+-CN = meta-intel-iot-security example signing key
+-emailAddress = john.doe@example.com
+-
+-[ myexts ]
+-basicConstraints=critical,CA:FALSE
+-keyUsage=digitalSignature
+-subjectKeyIdentifier=hash
+-authorityKeyIdentifier=keyid
+-__EOF__
+-
+-openssl req -new -nodes -utf8 -sha1 -days 36500 -batch \
+-        -x509 -config $GENKEY \
+-	-outform DER -out x509_ima.der -keyout privkey_ima.pem
 -- 
 2.34.1
 
