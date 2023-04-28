@@ -2,69 +2,69 @@ Return-Path: <stefanb@linux.ibm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 823A7C77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97C4BC7EE22
 	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 12:23:28 +0000 (UTC)
 Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
- by mx.groups.io with SMTP id smtpd.web11.18022.1682684604584152779
+ by mx.groups.io with SMTP id smtpd.web10.18037.1682684605289151298
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Apr 2023 05:23:24 -0700
+ Fri, 28 Apr 2023 05:23:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibm.com header.s=pp1 header.b=KJUG4vR8;
+ dkim=pass header.i=@ibm.com header.s=pp1 header.b=N8Exrt3j;
  spf=pass (domain: linux.ibm.com, ip: 148.163.156.1, mailfrom: stefanb@linux.ibm.com)
 Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SCFaHN028817
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:24 GMT
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SCLfTB019318
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
  : date : message-id : in-reply-to : references : content-transfer-encoding
- : mime-version; s=pp1; bh=88122QIG8C9Qwn4xdL0q5rJxo6SwsY7+7zwanQE70rI=;
- b=KJUG4vR8VUE51+LcFKcu+/kTLwlrsDXlBOALZ6wOEKoWeg/E/sQCYk5zcpOBQ6IOWt6b
- 8e9n3RPItwSE35j/QrH+zfTy8PwofxFXuXG6VJWyE09u+GKHVWiIcMBQ2mLc+0miwA6Z
- pwpnV9Li8wR/1ihWogi/EfO9WxDguJXR2QFqBn2bNAEkY4DhR74OzZm3XRgqhKXG14wN
- q15yVig/OhCbgvafwj7c6C1T/wAB4lTIVRMmyFaWIGwDFEjI7KZGtBz7upTZNXdLUNLG
- ykKGPKM1L2a3nCcNFr1ALpxcec1nb0JYUeD9NdOJqrJf5RhsTF5/W/rP9UTRLdL76ImJ ig== 
+ : mime-version; s=pp1; bh=Ms6xe4vYkIsJhHIu4CP6qJMWXtqZ4Be6WNzGnQGOK1M=;
+ b=N8Exrt3jzGo57VzeTUBCE1vIkBEYtTY4kaOmUkRiFMGp0rNcxlWosDXZVLqSYZrIe198
+ yvIQiGTZz396KC3OFAd6tT4sKPi5Pfp+DuSKuhuTJM/HU6ywjDwqpD73HDmeXuNUEOE1
+ DpNv5ocs63mIE2jTjkPhRVD5RXV2EefLzxSgatTHMtRFqI0OedJepkCYp2LomF0stUnm
+ /keuB58xM9t3ZP+rIC8itrW40v8pbgAfsKrjIL8SIcb9KdSuj85BaDBlQPGWlAKIhVaS
+ 0/viJZ0OCf8KiBV4S+wzaAEuH9YE6yYQr4Mz/DeZatzk4T6GEOi08FrwZR24Tm1oZzLI pw== 
 Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q89qnfxnr-1
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q89qnfxp4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:23 +0000
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:24 +0000
 Received: from m0353726.ppops.net (m0353726.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 33SCLnvL019722
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:23 GMT
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q89qnfxnf-1
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 33SCLnvN019722
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:24 GMT
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q89qnfxng-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Apr 2023 12:23:23 +0000
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-	by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 33SAF3E0018373;
+	Fri, 28 Apr 2023 12:23:24 +0000
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+	by ppma04wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 33S9cgWr032079;
 	Fri, 28 Apr 2023 12:23:22 GMT
 Received: from smtprelay03.dal12v.mail.ibm.com ([9.208.130.98])
-	by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3q4778ycse-1
+	by ppma04wdc.us.ibm.com (PPS) with ESMTPS id 3q47787hkt-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Fri, 28 Apr 2023 12:23:22 +0000
 Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
-	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 33SCNLxn40042854
+	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 33SCNLDC42271048
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Fri, 28 Apr 2023 12:23:21 GMT
 Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3049E5805A;
+	by IMSVA (Postfix) with ESMTP id 8C92358060;
 	Fri, 28 Apr 2023 12:23:21 +0000 (GMT)
 Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E0D4658064;
-	Fri, 28 Apr 2023 12:23:20 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 4815F5803F;
+	Fri, 28 Apr 2023 12:23:21 +0000 (GMT)
 Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
 	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 28 Apr 2023 12:23:20 +0000 (GMT)
+	Fri, 28 Apr 2023 12:23:21 +0000 (GMT)
 From: Stefan Berger <stefanb@linux.ibm.com>
 To: yocto@lists.yoctoproject.org
 Cc: akuster808@gmail.com, Stefan Berger <stefanb@linux.ibm.com>
-Subject: [meta-security][PATCH 7/8] linux: overlayfs: Add kernel patch resolving a file change notification issue
-Date: Fri, 28 Apr 2023 08:23:15 -0400
-Message-Id: <20230428122316.521800-8-stefanb@linux.ibm.com>
+Subject: [meta-security][PATCH 8/8] ima-evm-utils: Update ima-evm-utils to v1.5 and add a patch
+Date: Fri, 28 Apr 2023 08:23:16 -0400
+Message-Id: <20230428122316.521800-9-stefanb@linux.ibm.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230428122316.521800-1-stefanb@linux.ibm.com>
 References: <20230428122316.521800-1-stefanb@linux.ibm.com>
 X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: HlxTxudb1R4hIE3NFj-AFlEYMzTvNLMO
-X-Proofpoint-GUID: dHckihoQIvCOkF4ZRNWlBxrtPS3vYslw
+X-Proofpoint-ORIG-GUID: iGLGAWRdX2o5EgCBa2faEI-6Yu1ua0T8
+X-Proofpoint-GUID: 7BjtY5JzojkFV24UbSh6QaixrizaqUC5
 Content-Transfer-Encoding: 8bit
 X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
@@ -80,83 +80,80 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59800
-
-Add a temporary patch that resolves a file change notification issue
-with overlayfs where IMA did not become aware of the file changes
-since the 'lower' inode's i_version had not changed. The issue will be
-resolved in later kernels with the following patch that builds on
-newly addd feature (support for STATX_CHANGE_COOKIE) in v6.3-rc1:
-
-https://lore.kernel.org/linux-integrity/20230418-engste-gastwirtschaft-601fb389bba5@brauner/T/#m3bf84296fe9e6499abb6e3191693948add2ff459
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59801
 
 Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
 ---
- ...Increment-iversion-upon-file-changes.patch | 42 +++++++++++++++++++
- .../recipes-kernel/linux/linux_ima.inc        |  1 +
- 2 files changed, 43 insertions(+)
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
+ ...ation-using-ioctl-when-evm_portable-.patch | 35 +++++++++++++++++++
+ ...-evm-utils_1.4.bb => ima-evm-utils_1.5.bb} |  9 +++--
+ 2 files changed, 42 insertions(+), 2 deletions(-)
+ create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-Do-not-get-generation-using-ioctl-when-evm_portable-.patch
+ rename meta-integrity/recipes-security/ima-evm-utils/{ima-evm-utils_1.4.bb => ima-evm-utils_1.5.bb} (71%)
 
-diff --git a/meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch b/meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
+diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-Do-not-get-generation-using-ioctl-when-evm_portable-.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-Do-not-get-generation-using-ioctl-when-evm_portable-.patch
 new file mode 100644
-index 0000000..d2b5c28
+index 0000000..3624576
 --- /dev/null
-+++ b/meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
-@@ -0,0 +1,42 @@
-+From e9ed62e8d1d3eee7ffe862d9812c5320d3b9bd88 Mon Sep 17 00:00:00 2001
++++ b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-Do-not-get-generation-using-ioctl-when-evm_portable-.patch
+@@ -0,0 +1,35 @@
++From 00ace817c5134d9844db387cadb9517ebad43808 Mon Sep 17 00:00:00 2001
 +From: Stefan Berger <stefanb@linux.ibm.com>
-+Date: Thu, 6 Apr 2023 11:27:29 -0400
-+Subject: [PATCH] ovl: Increment iversion upon file changes
++Date: Tue, 18 Apr 2023 11:43:55 -0400
++Subject: [PATCH] Do not get generation using ioctl when evm_portable is true
 +
-+This is a temporary patch for kernels that do not implement
-+STATX_CHANGE_COOKIE (<= 6.2). The successor patch will be this one:
++If a signatures is detected as being portable do not attempt to read the
++generation with the ioctl since in some cases this may not be supported
++by the filesystem and is also not needed for computing a portable
++signature.
 +
-+https://lore.kernel.org/linux-integrity/20230418-engste-gastwirtschaft-601fb389bba5@brauner/T/#m3bf84296fe9e6499abb6e3191693948add2ff459
-+
-+Increment the lower inode's iversion for IMA to be able to recognize
-+changes to the file.
++This avoids the current work-around of passing --generation 0 when the
++ioctl is not supported by the filesystem.
 +
 +Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
 +---
-+ fs/overlayfs/file.c | 3 +++
-+ 1 file changed, 3 insertions(+)
++ src/evmctl.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+diff --git a/fs/overlayfs/file.c b/fs/overlayfs/file.c
-+index 6011f955436b..1dfe5e7bfe1c 100644
-+--- a/fs/overlayfs/file.c
-++++ b/fs/overlayfs/file.c
-+@@ -13,6 +13,7 @@
-+ #include <linux/security.h>
-+ #include <linux/mm.h>
-+ #include <linux/fs.h>
-++#include <linux/iversion.h>
-+ #include "overlayfs.h"
++diff --git a/src/evmctl.c b/src/evmctl.c
++index 6d2bb67..c35a28c 100644
++--- a/src/evmctl.c
+++++ b/src/evmctl.c
++@@ -376,7 +376,7 @@ static int calc_evm_hash(const char *file, unsigned char *hash)
++ 	if (mode_str)
++ 		st.st_mode = strtoul(mode_str, NULL, 10);
 + 
-+ struct ovl_aio_req {
-+@@ -408,6 +409,8 @@ static ssize_t ovl_write_iter(struct kiocb *iocb, struct iov_iter *iter)
-+ 		if (ret != -EIOCBQUEUED)
-+ 			ovl_aio_cleanup_handler(aio_req);
-+ 	}
-++	if (ret > 0)
-++		inode_maybe_inc_iversion(inode, false);
-+ out:
-+ 	revert_creds(old_cred);
-+ out_fdput:
-+-- 
-+2.34.1
++-	if (!evm_immutable) {
+++	if (!evm_immutable && !evm_portable) {
++ 		if (S_ISREG(st.st_mode) && !generation_str) {
++ 			int fd = open(file, 0);
++ 
++---
++2.39.2
 +
-diff --git a/meta-integrity/recipes-kernel/linux/linux_ima.inc b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-index 0b6f530..9d48e5c 100644
---- a/meta-integrity/recipes-kernel/linux/linux_ima.inc
-+++ b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-@@ -2,6 +2,7 @@ FILESEXTRAPATHS:append := "${THISDIR}/linux:"
++
+diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.5.bb
+similarity index 71%
+rename from meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
+rename to meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.5.bb
+index 873aeeb..8ac080c 100644
+--- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
++++ b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.5.bb
+@@ -6,8 +6,13 @@ DEPENDS += "openssl attr keyutils"
  
- SRC_URI += " \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'ima', 'file://ima.scc', '', d)} \
-+    file://0001-ovl-Increment-iversion-upon-file-changes.patch \
- "
+ DEPENDS:class-native += "openssl-native keyutils-native"
  
- do_configure() {
+-SRC_URI = "https://sourceforge.net/projects/linux-ima/files/${BPN}/${BP}.tar.gz"
+-SRC_URI[sha256sum] = "fcf85b31d6292051b3679e5f17ffa7f89b6898957aad0f59aa4e9878884b27d1"
++FILESEXTRAPATHS:append := "${THISDIR}/${PN}:"
++
++SRC_URI = " \
++    https://github.com/mimizohar/ima-evm-utils/releases/download/v${PV}/${BP}.tar.gz \
++    file://0001-Do-not-get-generation-using-ioctl-when-evm_portable-.patch \
++"
++SRC_URI[sha256sum] = "45f1caa3ad59ec59a1d6a74ea5df38c413488cd952ab62d98cf893c15e6f246d"
+ 
+ inherit pkgconfig autotools features_check
+ 
 -- 
 2.34.1
 
