@@ -1,97 +1,135 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <stefanb@linux.ibm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34F99C77B61
-	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 11:55:58 +0000 (UTC)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
- by mx.groups.io with SMTP id smtpd.web10.17325.1682682949139411932
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93547C77B60
+	for <webhook@archiver.kernel.org>; Fri, 28 Apr 2023 12:23:28 +0000 (UTC)
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+ by mx.groups.io with SMTP id smtpd.web11.18023.1682684605310091152
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Apr 2023 04:55:49 -0700
+ Fri, 28 Apr 2023 05:23:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@theyoctojester-info.20221208.gappssmtp.com header.s=20221208 header.b=W6mc5UrF;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.218.47, mailfrom: jester@theyoctojester.info)
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-94f1a6e66c9so1823137466b.2
-        for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 04:55:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20221208.gappssmtp.com; s=20221208; t=1682682947; x=1685274947;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ze+49YydooJwBAz1t1fWejggOEe9XUd/Q8Kz0ToFC2c=;
-        b=W6mc5UrFLj/zzDdnmeAm/ku1qGVwLTKZfAepOZLDGeCnQsrSbcElgsw7hy9EWexfXv
-         Dr0qPb6nBLLfFikY8PDkb176kTF9+ySzcuzdccBLbDWKHOJxhCMnvE+RluiONbt/sMDp
-         pLeEFWihwgqJu7KPF2PSPdaCHinKOdPYN6yti38PJSARarSzcfQa9kEGvNOhWFD7MRdt
-         u1L9nHdWr2nmYCXQeThggPtgGxUybtjsql5lHSocCpHoAtZ+sgN3dNmIr/tpSOQBX5pB
-         4CB1/VhGk/sZeVFQWfe7uuZN62Md7FsJrKycYjmHUBJASDJRZwqcce/rGgfNjS+qwoJQ
-         PIWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682682947; x=1685274947;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ze+49YydooJwBAz1t1fWejggOEe9XUd/Q8Kz0ToFC2c=;
-        b=j8eF8Xj2deXHYUEVrR4Usbek6JeScejWh2HKEEWnw4T2fDcz5Ma9LIHz892chnvomb
-         HLUZ305IP+AmgIQo5BzFeSaPpD2XwukuwdRE+CThokzDbr1ctP5c24OPyG9goPX2y9+f
-         PlxvX/d+u7Ajae0cLqCWHfKX0PVNbf5NC0ZR58uO0jm3eB0znFczZ8YvXfG0gKsp0l4C
-         5TPnci7a0r5n7PWJbBGKqhjSPylcwuxGsVU9ukoA+gIc/dEkquMcQm43ddHgkFfUu5JM
-         hKzd41IZ46M7DWpAkL/lhxZV2kx0ULUKnAT8zeY92fxGaULKEPFEVE+Kn6IBVsVTUJ1c
-         RKXw==
-X-Gm-Message-State: AC+VfDxU0RiwEB8pE2o/YI4gkX9LbqFSg2vIs8beBtM5jNkceVgYz68v
-	Gxue0KK/VaKt5Vo/pQsadcXlpgSYZ8VLlaaZx6G+iF0Y0HAxSUuxG8Gksw==
-X-Google-Smtp-Source: ACHHUZ4b/YvmrKcxLYv5GDOa6wpeWCTRd8ksY+F+zNQiUWor8D9M1d7qLAS38jr22sZvaQ8lfCv+o6KdsL/3oabHCsE=
-X-Received: by 2002:a17:907:2cc3:b0:94f:bdda:b29 with SMTP id
- hg3-20020a1709072cc300b0094fbdda0b29mr5412353ejc.77.1682682947287; Fri, 28
- Apr 2023 04:55:47 -0700 (PDT)
+ dkim=pass header.i=@ibm.com header.s=pp1 header.b=j4mFLvD9;
+ spf=pass (domain: linux.ibm.com, ip: 148.163.156.1, mailfrom: stefanb@linux.ibm.com)
+Received: from pps.filterd (m0353727.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33SCHFgX007453
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding; s=pp1;
+ bh=h1SLIqgOGg2aXlfz6C2p6oVWCs387TjVc1bE9wYLQUw=;
+ b=j4mFLvD9j9PtnWiBBFcvFgOI7mh/uzdDKtldFnI0h7EkyXo7sElawmOtbVeuC4Hm6bHS
+ IeBy16ghmo4tA/N51pL1qa+UyRJRibU/7lSOh8btmLN1VD9XY08fXOQtTt1DiycTQLIP
+ 2ppAerpXevd4KOuNsUqH9nADzt5ZE25JPssfIw8O+Yx2Xjeq/kpgwY79NpnQYpxmdkk+
+ UaRkGtWKjSWnl/3w8eq+/t/Em7t8mzXC1XnAN84fvOOHaK6V1EKCWuwnpEQI5UkXttUZ
+ BDxBlaFjIQN8xeif6SkdJ9XIOQz3qsgc0CcBPbmIUAPMAGaIOtwwcv9Gr88L81NTeS9W IA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q8cde377t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:24 +0000
+Received: from m0353727.ppops.net (m0353727.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 33SCMgik028741
+	for <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:23 GMT
+Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3q8cde3779-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 28 Apr 2023 12:23:23 +0000
+Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
+	by ppma01wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 33SA0NQU012999;
+	Fri, 28 Apr 2023 12:23:22 GMT
+Received: from smtprelay07.wdc07v.mail.ibm.com ([9.208.129.116])
+	by ppma01wdc.us.ibm.com (PPS) with ESMTPS id 3q4778fgpu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 28 Apr 2023 12:23:22 +0000
+Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
+	by smtprelay07.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 33SCNKa816515594
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 28 Apr 2023 12:23:21 GMT
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6D5625805A;
+	Fri, 28 Apr 2023 12:23:20 +0000 (GMT)
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 29CC858056;
+	Fri, 28 Apr 2023 12:23:20 +0000 (GMT)
+Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
+	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 28 Apr 2023 12:23:20 +0000 (GMT)
+From: Stefan Berger <stefanb@linux.ibm.com>
+To: yocto@lists.yoctoproject.org
+Cc: akuster808@gmail.com, Stefan Berger <stefanb@linux.ibm.com>
+Subject: [meta-security][PATCH 5/8] ima: Sign all executables and the ima-policy in the root filesystem
+Date: Fri, 28 Apr 2023 08:23:13 -0400
+Message-Id: <20230428122316.521800-6-stefanb@linux.ibm.com>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230428122316.521800-1-stefanb@linux.ibm.com>
+References: <20230428122316.521800-1-stefanb@linux.ibm.com>
 MIME-Version: 1.0
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Fri, 28 Apr 2023 13:55:21 +0200
-Message-ID: <CAEt6NwpS78sCZjL8Taki-CqBQRHFJeVLzdMQi-pUM5gnhsb94w@mail.gmail.com>
-Subject: CFP for Yocto Dev Day - colocated with EOSS 2023, Prague
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000057cee105fa64272a"
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: 3Mwmvv07Fs8-eGGiLuVjF7XOAwivLCa7
+X-Proofpoint-GUID: _oz4muPmEIrjKbjy5zkUOYDl6cqzvVXr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-28_04,2023-04-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 impostorscore=0 bulkscore=0 spamscore=0 adultscore=0
+ clxscore=1015 mlxlogscore=999 suspectscore=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2304280098
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 11:55:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59796
+ <yocto@lists.yoctoproject.org>; Fri, 28 Apr 2023 12:23:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59802
 
---00000000000057cee105fa64272a
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
+---
+ meta-integrity/classes/ima-evm-rootfs.bbclass | 25 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
 
-Hi all!
+diff --git a/meta-integrity/classes/ima-evm-rootfs.bbclass b/meta-integrity/classes/ima-evm-rootfs.bbclass
+index 6902d69..98c4bc1 100644
+--- a/meta-integrity/classes/ima-evm-rootfs.bbclass
++++ b/meta-integrity/classes/ima-evm-rootfs.bbclass
+@@ -62,17 +62,32 @@ ima_evm_sign_rootfs () {
+        perl -pi -e 's;(\S+)(\s+)(${@"|".join((d.getVar("IMA_EVM_ROOTFS_IVERSION", True) or "no-such-mount-point").split())})(\s+)(\S+)(\s+)(\S+);\1\2\3\4\5\6\7,iversion;; s/(,iversion)+/,iversion/;' etc/fstab
+     fi
+ 
+-    # Sign file with private IMA key. EVM not supported at the moment.
+-    bbnote "IMA/EVM: signing files 'find ${IMA_EVM_ROOTFS_SIGNED}' with private key '${IMA_EVM_PRIVKEY}'"
+-    find ${IMA_EVM_ROOTFS_SIGNED} | xargs -d "\n" --no-run-if-empty --verbose evmctl ima_sign --key ${IMA_EVM_PRIVKEY}
+-    bbnote "IMA/EVM: hashing files 'find ${IMA_EVM_ROOTFS_HASHED}'"
+-    find ${IMA_EVM_ROOTFS_HASHED} | xargs -d "\n" --no-run-if-empty --verbose evmctl ima_hash
++    # Detect 32bit target to pass --m32 to evmctl by looking at libc
++    tmp="$(file "${IMAGE_ROOTFS}/lib/libc.so.6" | grep -o 'ELF .*-bit')"
++    if [ "${tmp}" = "ELF 32-bit" ]; then
++        evmctl_param="--m32"
++    elif [ "${tmp}" = "ELF 64-bit" ]; then
++        evmctl_param=""
++    else
++        bberror "Unknown target architecture bitness: '${tmp}'" >&2
++        exit 1
++    fi
++
++    bbnote "IMA/EVM: Signing root filesystem at ${IMAGE_ROOTFS} with key ${IMA_EVM_PRIVKEY}"
++    evmctl sign --imasig ${evmctl_param} --portable -a sha256 --key ${IMA_EVM_PRIVKEY} -r "${IMAGE_ROOTFS}"
++
++    # check signing key and signature verification key
++    evmctl ima_verify ${evmctl_param} --key "${IMA_EVM_X509}" "${IMAGE_ROOTFS}/lib/libc.so.6" || exit 1
++    evmctl verify     ${evmctl_param} --key "${IMA_EVM_X509}" "${IMAGE_ROOTFS}/lib/libc.so.6" || exit 1
+ 
+     # Optionally install custom policy for loading by systemd.
+     if [ "${IMA_EVM_POLICY}" ]; then
+         install -d ./${sysconfdir}/ima
+         rm -f ./${sysconfdir}/ima/ima-policy
+         install "${IMA_EVM_POLICY}" ./${sysconfdir}/ima/ima-policy
++
++        bbnote "IMA/EVM: Signing IMA policy with key ${IMA_EVM_PRIVKEY}"
++        evmctl sign --imasig ${evmctl_param} --portable -a sha256 --key "${IMA_EVM_PRIVKEY}" "${IMAGE_ROOTFS}/etc/ima/ima-policy"
+     fi
+ }
+ 
+-- 
+2.34.1
 
-We are happy to have an in-person Dev Day again, colocated with the EOSS in
-Prague. It will take place on Monday June 26th, and it... (wait for it)...
-needs YOU!
-
-Specifically, it needs your ideas, your experience, your stories. Shared
-them! The CFP is open now, use those cold and rainy days in spring to
-submit at https://summit.yoctoproject.org/devday-at-eoss-2023/cfp
-
-Or, even register along with EOSS:
-https://events.linuxfoundation.org/embedded-open-source-summit/features/co-located-events/#yocto-project-dev-day
-
-See you there!
-
-Josef,
-on behalf of the Dev Day committee
-
---00000000000057cee105fa64272a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all!<div><br></div><div>We are happy to have an in-pers=
-on Dev Day again, colocated with the EOSS in Prague. It will take place on =
-Monday June 26th, and it... (wait for it)... needs YOU!</div><div><br></div=
-><div>Specifically, it needs your ideas, your experience, your stories. Sha=
-red them! The CFP is open now, use those cold and rainy days in spring to s=
-ubmit at=C2=A0<a href=3D"https://summit.yoctoproject.org/devday-at-eoss-202=
-3/cfp">https://summit.yoctoproject.org/devday-at-eoss-2023/cfp</a></div><di=
-v><br></div><div>Or, even register along with EOSS:=C2=A0<a href=3D"https:/=
-/events.linuxfoundation.org/embedded-open-source-summit/features/co-located=
--events/#yocto-project-dev-day">https://events.linuxfoundation.org/embedded=
--open-source-summit/features/co-located-events/#yocto-project-dev-day</a></=
-div><div><br></div><div>See you there!</div><div><br></div><div>Josef,</div=
-><div>on behalf of the Dev Day committee</div></div>
-
---00000000000057cee105fa64272a--
 
