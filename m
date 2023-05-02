@@ -1,112 +1,94 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F38F1C77B78
-	for <webhook@archiver.kernel.org>; Tue,  2 May 2023 19:16:18 +0000 (UTC)
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
- by mx.groups.io with SMTP id smtpd.web11.109.1683054975800200657
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62A53C77B73
+	for <webhook@archiver.kernel.org>; Tue,  2 May 2023 19:43:55 +0000 (UTC)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+ by mx.groups.io with SMTP id smtpd.web10.225.1683056634650282831
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 May 2023 12:16:15 -0700
+ Tue, 02 May 2023 12:43:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=CYLU/Wnv;
- spf=pass (domain: gmail.com, ip: 209.85.166.172, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-331514f56a6so135225ab.2
-        for <yocto@lists.yoctoproject.org>; Tue, 02 May 2023 12:16:15 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=LD7Qldpp;
+ spf=pass (domain: gmail.com, ip: 209.85.128.169, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-55a6efe95c9so30359527b3.1
+        for <yocto@lists.yoctoproject.org>; Tue, 02 May 2023 12:43:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683054975; x=1685646975;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c/WRED1myHINAmjiPZlfXdnOIgeCEi3W88wsc+WfyxA=;
-        b=CYLU/WnvVQQVQcd791k9Jn/SxAqFkD4LxEAx91B0P/TILA/oS442XHGonM+9z4c9nL
-         /sQc9YFZ1/WIf3IQU9wpWVDpXVTImoD3SRHzsJxgeeIOvtIXXpef/wDhjI/u3CWUpc//
-         3JtHVpq8mqgpd0o70XeFL3trhrGRz6tVbmHLMr2636Mw0ePBsyLEv+IB6CF1u2qVO8Qt
-         /tWTKE86DXDRVrCOfiPBaCDk1Aqw1BLg9XO3FOfWWgscqMh759tSt62iMo8Gaac2dfKc
-         czBhlB2GyEVuDTwtJ1cxKFPmG10M8oebDM2jWqAaaMeP/7fVDSUhKSKFGecU8gM5txBi
-         0bdA==
+        d=gmail.com; s=20221208; t=1683056634; x=1685648634;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fqN4b1mmDrlLdStWG3YyDZvbvNRdBqklWICRkRDXspU=;
+        b=LD7QldppFwrKGH1JARzJVyjqEk1RHO+GypCf/d+/hINNNnBI76RwPz3pTkL4dsZ/Ad
+         fOEaRPAzprLVJhqKejiMroE/OeiEzQjqf4gyioEXRRDVz6xjSaHDGa/qoSdrbFKONQi6
+         fxebYgrjFjSr3p0czt3qtJAWglrTrGLpYdOxmkztl4K4QsxzEE+s2Dnu8hkHRZCeFpdU
+         fmE1aoVQzTV5xAz0yjbfY89xG0PBkl2fywqT0LqY6ZGcvcXXU6mgJE1esE4WVSD6VfI+
+         R0uuIZw0UbBgSppwip0IwYkua1+jWOk6Ng1oUly4Dxhj9EIbOhr5tBfjQncdeynraiVd
+         if6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683054975; x=1685646975;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c/WRED1myHINAmjiPZlfXdnOIgeCEi3W88wsc+WfyxA=;
-        b=IO20MkLAcpYdL7/v+LnREoqb8Cn2fLe5vXOaGLwbjXDXOfYddhWUAtYsqQZv+9gQAq
-         blXZmOQjJ3Vvlu5mfiF7sZy1nkF7eDGqhkwUXBczJLam0HQKOYObmWIw2iPM9hzAUP2a
-         hoL/e2YJf33l/gLPGAwBteZDWF95CrQx/iMskZO7PyaEBX2Wzu98ANdybe92tSrh78kv
-         wdP/WqWodb6pCqKfMP7UJtb6w1ZFp5GChvrE1Zs+Yg7KuUgDFXGegsvLfR3zqQNLvZR/
-         SbzotR837iGGYzCKkgST+33VYUcqzt8UNMBy374mI3MzJwKJ/oMUhwT3nuHMjwz8s6ZR
-         dY3Q==
-X-Gm-Message-State: AC+VfDwmhZTO9r1qMrfkWfBJhmOQdgRyTQmC3edeqJBdnVWmrJxQophd
-	+Wgskg4hp7jFOV68YlUAkCHl4P3hDHHOAcvGL4s=
-X-Google-Smtp-Source: ACHHUZ4nIk5nAspPrS4U2drNtIhHAK7NJZwrklKnWIJsjfPgG0P4qleIa/bW/XlC4PM9VaF0PuDVPzOAwstoleP6B1c=
-X-Received: by 2002:a92:c90e:0:b0:32a:fc58:7a4d with SMTP id
- t14-20020a92c90e000000b0032afc587a4dmr13026984ilp.2.1683054974932; Tue, 02
- May 2023 12:16:14 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683056634; x=1685648634;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fqN4b1mmDrlLdStWG3YyDZvbvNRdBqklWICRkRDXspU=;
+        b=Viiqj3wWxZUvwnxBvCTZCAXxv+GiwFrwm8rmuhhz2phvpJvEk+BoW7qVmNc+A/lP5A
+         p3knDFYmepNnaYAALlrgM2ohKOqIyY5Y2AFVnz+DERXskafTPCOyFRB3nzrph9ZbVOl7
+         Dmsdy/oB6uhdK4AD9RzSXFnTbjFbEAYsnhZVDlIjjQjPzpAfmf0fppHBeRMJS5TLIml3
+         d88HcXjy1LeP9kkfl3cRbEV0yCfZOd5kMNsO4kKyCES8dtvOxHRyGOqM92FvSYQOrDBJ
+         gCZWd92cYcL+eqmOsnqqfksFIuT+sQBjOM2Ui5XO0w2isJa3WKftsxfn5kuXbbWtj6yc
+         P6Kg==
+X-Gm-Message-State: AC+VfDxWPU7LX0GYyYyrfoKj9lZ6UqQtEeobwk8rLUdOMPo2w+mn52t4
+	CcpjddYsJ+hU1CmvmNZFDpo=
+X-Google-Smtp-Source: ACHHUZ59TbQWchrzHmnHkf6YOhmTEfZzhpSBnjAPGknhruTFHy7gssUlTxHtSIzY2c69VwSh0nnJyQ==
+X-Received: by 2002:a0d:d986:0:b0:55a:f428:e8ea with SMTP id b128-20020a0dd986000000b0055af428e8eamr781796ywe.41.1683056633755;
+        Tue, 02 May 2023 12:43:53 -0700 (PDT)
+Received: from ?IPV6:2600:1700:9190:ba10:6f7a:c057:293d:a9b7? ([2600:1700:9190:ba10:6f7a:c057:293d:a9b7])
+        by smtp.gmail.com with ESMTPSA id z20-20020a0dd714000000b0055a446a9e71sm1650489ywd.40.2023.05.02.12.43.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 May 2023 12:43:53 -0700 (PDT)
+Message-ID: <3e31bf6f-422e-ae96-3149-0627fa1622ef@gmail.com>
+Date: Tue, 2 May 2023 15:43:52 -0400
 MIME-Version: 1.0
-References: <CAHGyC84vaiQhpMAccbYDoLCVajUg8NpMUa-qoaWYca8UkW_s8w@mail.gmail.com>
-In-Reply-To: <CAHGyC84vaiQhpMAccbYDoLCVajUg8NpMUa-qoaWYca8UkW_s8w@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Tue, 2 May 2023 15:16:03 -0400
-Message-ID: <CADkTA4Pt1sN1jnDaj3hwMCk6ZRj94xXhaRtycLqtGjL=-Q+kLg@mail.gmail.com>
-Subject: Re: [yocto] build kernel libelf.h error
-To: abbas ali chezgi <chezgi@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [yocto] [meta-security][PATCH] libmhash: fix multilib header
+ conflict - mutils/mhash_config.h
+Content-Language: en-US
+To: adrian.zaharia@windriver.com, yocto@lists.yoctoproject.org
+References: <b852ee83-caeb-986f-76fd-e4f113f871ba@gmail.com>
+ <21049.1683030219377186174@lists.yoctoproject.org>
+From: akuster808 <akuster808@gmail.com>
+In-Reply-To: <21049.1683030219377186174@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 May 2023 19:16:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59843
+ <yocto@lists.yoctoproject.org>; Tue, 02 May 2023 19:43:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59844
 
-On Tue, May 2, 2023 at 3:01=E2=80=AFAM abbas ali chezgi <chezgi@gmail.com> =
-wrote:
->
-> hello everybody,
-> i want to compile kernel with `CONFIG_DEBUG_INFO_BTF=3Dy`
-> it has errors:
-> ```
-> | linker.c:17:10: fatal error: libelf.h: No such file or directory
-> |    17 | #include <libelf.h>
-> |       |          ^~~~~~~~~~
-> | compilation terminated.
-> | btf.c:18:10: fatal error: gelf.h: No such file or directory
-> |    18 | #include <gelf.h>
-> |       |          ^~~~~~~~
-> ```
->
-> i also added to linux_%.bbappend:
-> ```
-> DEPENDS =3D "elfutils elfutils-native"
-> ```
->
-> how can i solve this problem?
 
-I can at least confirm that linux-yocto builds with that option
-enabled. It has similar dependencies in the recipes for elfutils.
 
-What's your kernel provider ?
-
-Bruce
-
-> thanks
+On 5/2/23 8:23 AM, Adrian Zaharia via lists.yoctoproject.org wrote:
+> Hi Armin,
 >
+> Is there an ETA for when this patch will be merged?
+
+Oh, I had it queue up but must have blown it away.
+Thanks for the reminder.
+
+-armin
 >
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Thanks,
+> Adrian
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#59831): https://lists.yoctoproject.org/g/yocto/messag=
-e/59831
-> Mute This Topic: https://lists.yoctoproject.org/mt/98633780/1050810
+> View/Reply Online (#59840): https://lists.yoctoproject.org/g/yocto/message/59840
+> Mute This Topic: https://lists.yoctoproject.org/mt/97628630/3616698
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield=
-@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
 >
 
-
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
 
