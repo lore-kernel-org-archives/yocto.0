@@ -1,162 +1,251 @@
-Return-Path: <luiz.balloti@timpelmedical.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6915DC77B78
-	for <webhook@archiver.kernel.org>; Thu,  4 May 2023 15:15:37 +0000 (UTC)
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
- by mx.groups.io with SMTP id smtpd.web10.53049.1683213331785163912
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0438C7EE22
+	for <webhook@archiver.kernel.org>; Thu,  4 May 2023 16:23:17 +0000 (UTC)
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+ by mx.groups.io with SMTP id smtpd.web10.54966.1683217395084691642
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 May 2023 08:15:31 -0700
+ Thu, 04 May 2023 09:23:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@timpelmedical-com.20221208.gappssmtp.com header.s=20221208 header.b=JFXPayTE;
- spf=softfail (domain: timpelmedical.com, ip: 209.85.210.170, mailfrom: luiz.balloti@timpelmedical.com)
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-643990c5319so206708b3a.2
-        for <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 08:15:31 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@ibeeto-com.20221208.gappssmtp.com header.s=20221208 header.b=gmLlylgl;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.214.178, mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1aaf2ede38fso6421855ad.2
+        for <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 09:23:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=timpelmedical-com.20221208.gappssmtp.com; s=20221208; t=1683213331; x=1685805331;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S+JWq1U7AbfR9cbwXnyjrLstx87urbfLTEXS0sC88tU=;
-        b=JFXPayTECrPfU1s53+1ot23f9J7T83KG7QyA3gMh19wJOk3OkSKUqXS1Iav1Fam+aj
-         CggRvGPTxLLBnEOuDIKDZFngOCa6VkwjCgVjz+EvXGcB0EUU/hjKyPmu+MGCaAfm7NM4
-         +ZPZ586swkd6eGy1csa/vcJ1K7I0IepAkGK2YQxwXzMMrz7RKq+McKFl9OMa8HXbMuI8
-         KLCb+REcr1mjDw7cX8qsq8O+kwwaNpO/bl7rmp7DTupxOkYBYsqgDft87gHduCb6tWGz
-         8MG5ivb6zU1AN06U00UfIO4e/qLvxQOgQuh0iWBMPkzAKGwS3UuC/99FuwRHcCL6bIR3
-         XMZQ==
+        d=ibeeto-com.20221208.gappssmtp.com; s=20221208; t=1683217394; x=1685809394;
+        h=in-reply-to:subject:from:references:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Hm3nywPECtzsWyxIMJiosBkqHT53nwr1ZSe/G/bfOq0=;
+        b=gmLlylgl841zC/6EnQVWPQuNnOuIjr3Xj3ZCK6n3pEAl6BOHKdzy74mcfdgwdqVUf0
+         C5XHEepWcd7uSFwzGzlo1Ljb1xV/PP2c1l4wJ4iO+nYKtNanLEC/ljafj8zo0I1Y2TcB
+         akSFkvSG0TH7gLGoAMqhZJBqsGoAMwdnmb7WKaiBIRPUuwCDJpjDlmw25sDaPEUYe+tO
+         78u6YZTp1J3AblStCRG/xkG4hz/WE6FnxURLv0Nfbg+Nh5WX8jgMLesjX/OJEOy5aahg
+         XKtn3+5+kGVRRtWn8Nf4gcnTuk/VmZ0Hhh0NCxignu7nINT/bKmB6fU9bYr4TFPi7nzU
+         ijgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683213331; x=1685805331;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S+JWq1U7AbfR9cbwXnyjrLstx87urbfLTEXS0sC88tU=;
-        b=I/KRYIevToDZnT8RukoSwrKdWZP3Ot+OSANPfx+8J6kk6+YIEwA+ieq+nIw/Rm2CY/
-         //rC9J+A99IMy5zlCMByDxfgrObu9M+UOE3iTPAZ5wnSCa8Hv8EGSZ6Nx4Kvn+4OfBYh
-         4GLy049GApsHUqSYMsIiZBBq7cpiMv8YnFyfao64KccHnrYygUCqOQuuvUPHPqtzQqE+
-         frMPYb68jX3mYaSg6q2G5lGbuZmNUxvzwi/7NFPJraD6tOrWKQLPllZycYt7XNbm/t5j
-         nBhYcuOQpzIRooep4SeDQ9CDyDSNBbCogDzgJgQnbIxw9AlLAi5AM8PDcGklntcq0buN
-         fvmw==
-X-Gm-Message-State: AC+VfDxg+emkcX9oIJetRQo0fjUCZQF+jy1CdmOP7W2SMYisyTQS4iq9
-	Kmk2Jn5zopM3jVHIKKmYJ0kCsYCAJESiXPrRxIFUJk2csyFcBNU7
-X-Google-Smtp-Source: ACHHUZ61EdmnTpgVPNXiC22YsxgC5eX70BFG9ngqS9kIGF3U/P49W2mob6BWxOR7peUFb5oCjWNlwISKnpeR+U9a3kY=
-X-Received: by 2002:a05:6a00:990:b0:643:558d:9ce2 with SMTP id
- u16-20020a056a00099000b00643558d9ce2mr3069510pfg.21.1683213330752; Thu, 04
- May 2023 08:15:30 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683217394; x=1685809394;
+        h=in-reply-to:subject:from:references:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Hm3nywPECtzsWyxIMJiosBkqHT53nwr1ZSe/G/bfOq0=;
+        b=S2pDq4XLheZXwMmiJvdzU3/1MARHMmkVWxOHYO1F1ZNuWPMdpUF4D3QqqY6SaRZTck
+         P0J0rjO9zfAsPzRmL7J8aXZNE+5ISyR5Uml2qq63+wkXjfZ2cLvtV5u6SeIxnGar8yh9
+         3pbDSO+XKFRUF4W0nstYf1uHeC1ujAiA/odlC16Y/CeN/cKJKjTjwg2J8lqacAVzgU0i
+         nlFp2sYH5e/b1XNtz1A/dqHY5qKIB4ZruehUu2FLHSpABxyb5ZS2V2TfP3RcOi7mUY6Y
+         dhlOXB5VErmbNjkfTqkY+f9m6AZfLtNLCHLY6RmgkThcY7lJqYZOk0ATC9aeztcbcXJi
+         FEww==
+X-Gm-Message-State: AC+VfDyV0g9tCPD9x9SU+cBvpQYy7VyI8wevT9pAImI8GCqvJkCZ5iJZ
+	tbQQ/dUU6uWD6ZKNLGT6a99PVg==
+X-Google-Smtp-Source: ACHHUZ4Vw6T5eFkCK6Kjg/KgLHrYG8FCcDu2MI1kh16OkNyu/PUcxJsM3WYTYR32BB5zWKPv1JUpCg==
+X-Received: by 2002:a17:902:650f:b0:1a9:95fa:1fa8 with SMTP id b15-20020a170902650f00b001a995fa1fa8mr3772163plk.41.1683217394016;
+        Thu, 04 May 2023 09:23:14 -0700 (PDT)
+Received: from ?IPV6:2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89? ([2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89])
+        by smtp.gmail.com with ESMTPSA id p14-20020a170902b08e00b001aae909cfbbsm5200697plr.119.2023.05.04.09.23.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 May 2023 09:23:13 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------C27t2OCNjkUiJfu4CdbnPFsb"
+Message-ID: <edddd660-eb32-8ce8-adbf-fb02e6e2ecb4@ibeeto.com>
+Date: Thu, 4 May 2023 09:23:12 -0700
 MIME-Version: 1.0
-References: <VKUe.1682800714003679431.WCUu@lists.yoctoproject.org> <CAMKF1sptmfdbM89zgg0GSKiHU31CTj4YZHegXwEskgDmKbm+tg@mail.gmail.com>
-In-Reply-To: <CAMKF1sptmfdbM89zgg0GSKiHU31CTj4YZHegXwEskgDmKbm+tg@mail.gmail.com>
-From: Luiz Balloti <luiz.balloti@timpelmedical.com>
-Date: Thu, 4 May 2023 12:15:21 -0300
-Message-ID: <CAPtt3O9Dm9wYbEOZnv65xuHpTCnmiBv0EzKQ4-WffWR1T0Yqtg@mail.gmail.com>
-Subject: Re: [yocto] General bbappend for virtual/kernel recipe? #bitbake #yocto
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a93e9805fadfa450"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Josef Holzmayr <jester@theyoctojester.info>,
+ Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Nicolas Dechesne <ndec13@gmail.com>, yocto@lists.yoctoproject.org,
+ yocto-advocacy@lists.yoctoproject.org,
+ openembedded-core <openembedded-core@lists.openembedded.org>
+References: <CAOT3mi+DorC4uSqCwO7HmmFVuXX3BLFWJNp_o-NH4OmqP=6ZSg@mail.gmail.com>
+ <de0cbb7c94bb9af021f090b684eee4c6b5bb187e.camel@linuxfoundation.org>
+ <CAEt6NwpsS8omNHvWeQrLzuOAAaki7rt8oYrbgmyNCuG-k0qZyw@mail.gmail.com>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Subject: Re: [Yocto-Advocacy] Yocto Project Community Manager updates
+In-Reply-To: <CAEt6NwpsS8omNHvWeQrLzuOAAaki7rt8oYrbgmyNCuG-k0qZyw@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 15:15:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59874
+ <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 16:23:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59875
 
---000000000000a93e9805fadfa450
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------C27t2OCNjkUiJfu4CdbnPFsb
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Common functionality can be kept in a bbclass, so that the appends must
-simply make your recipe inherit the class.
+Let me chime in.
 
-Em qua., 3 de mai. de 2023 =C3=A0s 21:04, Khem Raj <raj.khem@gmail.com> esc=
-reveu:
+Nico, thank you so much for your leadership as the Yocto community 
+manager and beyond. You certainly made sure that the community remained 
+welcoming and supportive to new and current members. I very much 
+appreciate all the effort you dedicated to the project and its community.
 
-> On Wed, May 3, 2023 at 1:00=E2=80=AFAM Livius <egyszeregy@freemail.hu> wr=
-ote:
-> >
-> > Hi,
-> >
-> > Is it possible to make a .bbappend file/method for virtual/kernel of
-> general linux-kernel recipe? My goal is to make some same append script f=
-or
-> several BSP linux kernel recipe. For example i like to make an append for
-> linux-xlnx.bb and linux-fslc.bb and so on for all linux-*.bb recipes with
-> some further bash scripts/taskses in a general single bbappend. Is it
-> possible somehow in BitBake/Yocto?
+Welcome Josef, as the new community manager.
+
+Cheers,
+Rudi
+
+On 5/4/23 08:13, Josef Holzmayr wrote:
+> Thank you Nico for the five years in which we had the pleasure of 
+> working together for the growth and future of the Yocto Project and 
+> OpenEmbedded. Your contributions and insight will be missed - but 
+> hopefully not you as a person. We will meet again, over a drink, and 
+> talk of the olde times...
 >
-> This would require bappends for all kernel recipes you are wanting to
-> append.
+> And on the same note, thank you Andy, Richard, and all of the 
+> leadership working group for the trust placed in me. Let us make this 
+> a change that keeps the good and adds more of it.
 >
-> >
-> >
-> >
-> >
+> Greetz,
+> Josef
 >
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> On Thu, May 4, 2023 at 5:07 PM Richard Purdie 
+> <richard.purdie@linuxfoundation.org> wrote:
+>
+>     On Thu, 2023-05-04 at 16:40 +0200, Nicolas Dechesne wrote:
+>     > After five years, I have decided to resign from my position as the
+>     > Yocto Project Community Manager. I joined the OpenEmbedded community
+>     > around 2008. I have fond memories of my early days, and still
+>     > remember some of my first interactions on IRC and mailing lists!
+>     This
+>     > is a very welcoming community, always helping new people with
+>     > patience and kindness. Serving the project during the last five
+>     years
+>     > is something I am very proud of, and I will be forever grateful to
+>     > all of you for accepting me!
+>
+>     I know we've talked but I did want to publicly say thanks for
+>     everything you've done in the role!
+>
+>     We've had some good times and overcome some challenges in the last few
+>     years, the project has definitely benefited from your involvement and
+>     you'll be sorely missed.
+>
+>     Welcome to the role Josef, no pressure! :)
+>
+>     Cheers,
+>
+>     Richard
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#59861):
-> https://lists.yoctoproject.org/g/yocto/message/59861
-> Mute This Topic: https://lists.yoctoproject.org/mt/98657112/6464681
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> luiz.balloti@timpelmedical.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> View/Reply Online (#1800):https://lists.yoctoproject.org/g/yocto-advocacy/message/1800
+> Mute This Topic:https://lists.yoctoproject.org/mt/98685139/3617932
+> Group Owner:yocto-advocacy+owner@lists.yoctoproject.org
+> Unsubscribe:https://lists.yoctoproject.org/g/yocto-advocacy/unsub  [rudolf.streif@ibeeto.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
 >
->
+-- 
+Rudolf J Streif
+CEO/CTO
+1.855.442.3386
 
---000000000000a93e9805fadfa450
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------C27t2OCNjkUiJfu4CdbnPFsb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-<div dir=3D"ltr">Common functionality can be kept in a bbclass, so that the=
- appends must simply make your recipe inherit the class.</div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Em qua., 3 de mai. =
-de 2023 =C3=A0s 21:04, Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">r=
-aj.khem@gmail.com</a>&gt; escreveu:<br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">On Wed, May 3, 2023 at 1:00=E2=80=AFAM Livius &lt;<a hr=
-ef=3D"mailto:egyszeregy@freemail.hu" target=3D"_blank">egyszeregy@freemail.=
-hu</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; Is it possible to make a .bbappend file/method for virtual/kernel of g=
-eneral linux-kernel recipe? My goal is to make some same append script for =
-several BSP linux kernel recipe. For example i like to make an append for <=
-a href=3D"http://linux-xlnx.bb" rel=3D"noreferrer" target=3D"_blank">linux-=
-xlnx.bb</a> and <a href=3D"http://linux-fslc.bb" rel=3D"noreferrer" target=
-=3D"_blank">linux-fslc.bb</a> and so on for all linux-*.bb recipes with som=
-e further bash scripts/taskses in a general single bbappend. Is it possible=
- somehow in BitBake/Yocto?<br>
-<br>
-This would require bappends for all kernel recipes you are wanting to appen=
-d.<br>
-<br>
-&gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#59861): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59861" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/59861</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/98657112/6464=
-681" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/98657112/6464681</a><br>
-Mute #bitbake:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag=
-/bitbake" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
-rg/g/yocto/mutehashtag/bitbake</a><br>
-Mute #yocto:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/y=
-octo" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g=
-/yocto/mutehashtag/yocto</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:luiz.balloti@timpelmedical.com" target=3D"_blank=
-">luiz.balloti@timpelmedical.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Let me chime in.</p>
+    <p>Nico, thank you so much for your leadership as the Yocto
+      community manager and beyond. You certainly made sure that the
+      community remained welcoming and supportive to new and current
+      members. I very much appreciate all the effort you dedicated to
+      the project and its community.</p>
+    <p>Welcome Josef, as the new community manager. <br>
+    </p>
+    <p>Cheers,<br>
+      Rudi<br>
+    </p>
+    <div class="moz-cite-prefix">On 5/4/23 08:13, Josef Holzmayr wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAEt6NwpsS8omNHvWeQrLzuOAAaki7rt8oYrbgmyNCuG-k0qZyw@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">Thank you Nico for the five years in which we had
+        the pleasure of working together for the growth and future of
+        the Yocto Project and OpenEmbedded. Your contributions and
+        insight will be missed - but hopefully not you as a person. We
+        will meet again, over a drink, and talk of the olde times...
+        <div><br>
+        </div>
+        <div>And on the same note, thank you Andy, Richard, and all of
+          the leadership working group for the trust placed in me. Let
+          us make this a change that keeps the good and adds more of it.</div>
+        <div><br>
+        </div>
+        <div>Greetz,</div>
+        <div>Josef</div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Thu, May 4, 2023 at 5:07 PM
+          Richard Purdie &lt;<a
+            href="mailto:richard.purdie@linuxfoundation.org"
+            moz-do-not-send="true" class="moz-txt-link-freetext">richard.purdie@linuxfoundation.org</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
+          Thu, 2023-05-04 at 16:40 +0200, Nicolas Dechesne wrote:<br>
+          &gt; After five years, I have decided to resign from my
+          position as the<br>
+          &gt; Yocto Project Community Manager. I joined the
+          OpenEmbedded community<br>
+          &gt; around 2008. I have fond memories of my early days, and
+          still<br>
+          &gt; remember some of my first interactions on IRC and mailing
+          lists! This<br>
+          &gt; is a very welcoming community, always helping new people
+          with<br>
+          &gt; patience and kindness. Serving the project during the
+          last five years<br>
+          &gt; is something I am very proud of, and I will be forever
+          grateful to<br>
+          &gt; all of you for accepting me!<br>
+          <br>
+          I know we've talked but I did want to publicly say thanks for<br>
+          everything you've done in the role! <br>
+          <br>
+          We've had some good times and overcome some challenges in the
+          last few<br>
+          years, the project has definitely benefited from your
+          involvement and<br>
+          you'll be sorely missed.<br>
+          <br>
+          Welcome to the role Josef, no pressure! :)<br>
+          <br>
+          Cheers,<br>
+          <br>
+          Richard<br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="moz-mime-attachment-header"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+-=-=-=-=-=-=-=-=-=-=-=-
+Links: You receive all messages sent to this group.
+View/Reply Online (#1800): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto-advocacy/message/1800">https://lists.yoctoproject.org/g/yocto-advocacy/message/1800</a>
+Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/98685139/3617932">https://lists.yoctoproject.org/mt/98685139/3617932</a>
+Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto-advocacy+owner@lists.yoctoproject.org">yocto-advocacy+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto-advocacy/unsub">https://lists.yoctoproject.org/g/yocto-advocacy/unsub</a> [<a class="moz-txt-link-abbreviated" href="mailto:rudolf.streif@ibeeto.com">rudolf.streif@ibeeto.com</a>]
+-=-=-=-=-=-=-=-=-=-=-=-
 
---000000000000a93e9805fadfa450--
+</pre>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Rudolf J Streif
+CEO/CTO
+1.855.442.3386</pre>
+  </body>
+</html>
+
+--------------C27t2OCNjkUiJfu4CdbnPFsb--
 
