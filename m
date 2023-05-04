@@ -1,93 +1,114 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <antabboud@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4722EC77B7F
-	for <webhook@archiver.kernel.org>; Thu,  4 May 2023 00:04:33 +0000 (UTC)
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
- by mx.groups.io with SMTP id smtpd.web11.37838.1683158668180520284
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D555BC77B7F
+	for <webhook@archiver.kernel.org>; Thu,  4 May 2023 02:00:23 +0000 (UTC)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+ by mx.groups.io with SMTP id smtpd.web10.40220.1683165614341747562
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 May 2023 17:04:28 -0700
+ Wed, 03 May 2023 19:00:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=NBboSHMA;
- spf=pass (domain: gmail.com, ip: 209.85.161.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-549d9c295dfso3417041eaf.2
-        for <yocto@lists.yoctoproject.org>; Wed, 03 May 2023 17:04:28 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=Lim1mj9h;
+ spf=pass (domain: gmail.com, ip: 209.85.161.52, mailfrom: antabboud@gmail.com)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-54cb8d72c0bso1233325eaf.3
+        for <yocto@lists.yoctoproject.org>; Wed, 03 May 2023 19:00:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683158667; x=1685750667;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=98H7lgS//IuBXYgle0S2tzdb3X288qMrwkXfdFrHX/w=;
-        b=NBboSHMA/lWaM9uWcLHYSujJBWmmEMM5csKuPtnfSBolY3b0SexJV823YLwd5Zgpav
-         ahpt5reKYsp7LvRyo8inBjlqKSk0QaOHmSHZztREBnRbJzHNb+pwKjHwbvKU2ncVYoo+
-         fj4zjIvKlLqlFEpF7JZamC15xkb4NS9LTbevYQvRKeVcJIfpiXVs/Mqqlw7RU+7wLeNG
-         szWbEzCktad++RJHcLVbwFqQBEzffYv3S9SXcOugozLPh9BXM0W+8SyGqKLicP2xVHvw
-         BaZQiUv9oVc9wCqDl/sl/as01QQRgGkdmxUWHTubFlxJ3IJk4Djh+bf5zm1hXrBRoFgv
-         0whA==
+        d=gmail.com; s=20221208; t=1683165613; x=1685757613;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0r8BI/y3uoEc8GZ3u+H+Fq06kj2Sva2w9kMVexOSgm4=;
+        b=Lim1mj9hkc1afL4H7fdaZEw4jjVeaSnqA8cItHaStJSdHDVLXmXc421ulwa50vKjAu
+         GzpsaY6/F1I2m/u9KnyjCJnAR0UCdDVrW7bw42Ke/VSqN203BJixs76DTchnGkN1G382
+         LQZKsuu2jQSa/V07lEXfqCsoO+RhbeKubbFewN8+eL5nP8okxycc7m/nsy9ogfD9zLOr
+         4I4rkoYcficntgyNvIj4eA9EUCZLTcFFf6N+pWT6BdzXww45y6/cB7MgW1KWGHP5zU57
+         cHuCTtOa78EnYFJivPCR9+fDkw2d3bAide4Nc7NrlJiZskO2uLfM1zzC60US1hVH5yS0
+         qkcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683158667; x=1685750667;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=98H7lgS//IuBXYgle0S2tzdb3X288qMrwkXfdFrHX/w=;
-        b=mH7YYtOGV7RMfDK45xLD9Jz4lmXLkf0QZzGABL8A7tgjgoUkn5HZBrgLdnwTbvONLB
-         cL5gxACMU7W2dk58kkx8KYyiVW9WnhgyM+xlXtc4V0F+vy7QZJtXuZV+CBmhFpd6dPKC
-         AdpHW37XJ3lcfjLkL8zY3vUEoFybd+TmE82eaUI3NaZvZ6Map1chQz/fBUmUT5rxYwbf
-         z5MCIG4B1q2KFYv8DcUY5ZxV59q4SA2af8Vkik2szqFPIrnaZ7Eq6LIrA4WLJ+0mkGP6
-         9fzUwL3pWtOmhR4veLb923q/xkpWxGdktSBoZks/KqUBjxQZjxmLN1vcNtYYhvi9h3qC
-         7wZA==
-X-Gm-Message-State: AC+VfDwUEP9Wov7IyViW6rDvIISHUztEnKIF1rxJRmuJ3rNn0+Trrnx0
-	cNDIVc94c4niN7Ac+aKqsanuPVJdrWfTbrIVEH0=
-X-Google-Smtp-Source: ACHHUZ5BReR7ckHkqxSbsxqossLf91Je4lHJBEYvHO5ey562rDvYthkgBkBSogoRak/48GGSm9bfwjiWT3PlP1jjzA0=
-X-Received: by 2002:a4a:e5d8:0:b0:546:f42b:685b with SMTP id
- r24-20020a4ae5d8000000b00546f42b685bmr11068799oov.5.1683158667173; Wed, 03
- May 2023 17:04:27 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683165613; x=1685757613;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0r8BI/y3uoEc8GZ3u+H+Fq06kj2Sva2w9kMVexOSgm4=;
+        b=e3H8/LToPhYnYDAGgBxiHO2MbkqjR6FURQ/Q+q3vPsU36jC3m6ckyNdpLuWUKo+z5E
+         AsId+zsMjM5HzNjcpfaHpYxjDZGo9oimVejbFolktPIGHS2aEjXZXy5h0KFpD+1OMF37
+         b+Hif41g2D54RzAY6edu9DFn3PthqnxkIERfVIeDZtgTjn07O8ygK+kwFYINmB9lAiHG
+         /eLLMvTQK/nWq6qMtgm8hJBMTYRyygQEN/uGod1OIIFO7PvexoAIN6U//3rd1H8+dV9P
+         fZ9LI7r/blPvOub4MvW8CimKzYc7c4PgsphYxxQRQoGMu5nRv86rr7cieOWVgMYPPVwk
+         +J8Q==
+X-Gm-Message-State: AC+VfDyybZ33+eC/6o/s0Spt2DHTlT4cczzeS3QSHq4S5Bmsjsn7wPiE
+	J07bt6rKUhjbTGyMklA5n2x1vEi8zExCk4M1sd6sD3av
+X-Google-Smtp-Source: ACHHUZ4RIlUuePaNsjCr82yix7NINBZRaLpEWyr24QkBkBQAx3w/HMUzEz1Nwzifzi0LkPrcoZMKY2qeHtAF6dtp7Vs=
+X-Received: by 2002:a05:6808:2189:b0:38e:d1b:7e with SMTP id
+ be9-20020a056808218900b0038e0d1b007emr1094715oib.7.1683165613265; Wed, 03 May
+ 2023 19:00:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <VKUe.1682800714003679431.WCUu@lists.yoctoproject.org>
-In-Reply-To: <VKUe.1682800714003679431.WCUu@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 3 May 2023 17:04:01 -0700
-Message-ID: <CAMKF1sptmfdbM89zgg0GSKiHU31CTj4YZHegXwEskgDmKbm+tg@mail.gmail.com>
-Subject: Re: [yocto] General bbappend for virtual/kernel recipe? #bitbake #yocto
-To: Livius <egyszeregy@freemail.hu>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Anthony Abboud <antabboud@gmail.com>
+Date: Wed, 3 May 2023 22:00:02 -0400
+Message-ID: <CAEAv8SASgz=b8o6OzvDf5erRBTU6V7Hma62EHqayW9W4gtct+w@mail.gmail.com>
+Subject: How to Disable Command Line Output from HDMI Monitor?
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000007a178d05fad48833"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 00:04:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59861
+ <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 02:00:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59862
 
-On Wed, May 3, 2023 at 1:00=E2=80=AFAM Livius <egyszeregy@freemail.hu> wrot=
-e:
->
-> Hi,
->
-> Is it possible to make a .bbappend file/method for virtual/kernel of gene=
-ral linux-kernel recipe? My goal is to make some same append script for sev=
-eral BSP linux kernel recipe. For example i like to make an append for linu=
-x-xlnx.bb and linux-fslc.bb and so on for all linux-*.bb recipes with some =
-further bash scripts/taskses in a general single bbappend. Is it possible s=
-omehow in BitBake/Yocto?
+--0000000000007a178d05fad48833
+Content-Type: text/plain; charset="UTF-8"
 
-This would require bappends for all kernel recipes you are wanting to appen=
-d.
+Hi Yocto Community,
 
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#59849): https://lists.yoctoproject.org/g/yocto/messag=
-e/59849
-> Mute This Topic: https://lists.yoctoproject.org/mt/98657112/1997914
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+First time Yocto builder here..
+
+I am currently working with Yocto v3.1 and creating a custom image for
+an iMX6 processor from Toradex, and the single objective is to display a
+Qt5 application. It works great, and I managed to make the GUI autostart on
+boot.
+
+Now my only issue is that upon bootup, I will see the command line output
+also be redirected to the HDMI screen. Once the GUI displays, the CLI
+output, if any, will continue on top of the GUI.
+I'd like to only resort to the serial port to read the command line output
+(e.g. puTTY), and want to prevent it from displaying on the HDMI monitor.
+
+In U-Boot, I was able to manually remove it post-installation by modifying
+the following arguments from the "setup" env variable:
+- Remove console=tty1
+- Added vt.global_cursor_default=0
+
+But this way of editing the variable is only persistent on a single board
+and I want this to be pre-set on my Yocto image for production purposes.
+
+Since I'm new to this, I absolutely have no idea what to do or where to
+look. Any recommendations on how to disable CLI to display screen?
+
+Thanks in advance,
+Anthony
+
+--0000000000007a178d05fad48833
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Yocto Community,<div><br></div><div>First time Yocto bu=
+ilder here..</div><div><br></div><div>I am currently working with Yocto v3.=
+1 and creating a custom image for an=C2=A0iMX6 processor from Toradex, and =
+the single objective is to display a Qt5 application. It works great, and I=
+ managed to make the GUI autostart on boot.</div><div><br></div><div>Now my=
+ only issue is that upon bootup, I will see the command line output also be=
+ redirected to the HDMI screen. Once the GUI displays, the CLI output, if a=
+ny, will continue on top of the GUI.</div><div>I&#39;d like to only resort =
+to the serial port to read the command line output (e.g. puTTY), and want t=
+o prevent it from displaying on the HDMI monitor.</div><div><br></div><div>=
+In U-Boot, I was able to manually remove it post-installation by modifying =
+the following arguments from the &quot;setup&quot; env variable:</div><div>=
+- Remove console=3Dtty1</div><div>- Added vt.global_cursor_default=3D0</div=
+><div><br></div><div>But this way of editing the variable is only persisten=
+t on a single board and I want this to be pre-set on my Yocto image for pro=
+duction purposes.</div><div><br></div><div>Since I&#39;m new to this, I abs=
+olutely have no idea what to do or where to look. Any recommendations on ho=
+w to disable CLI to display screen?</div><div><br></div><div>Thanks in adva=
+nce,</div><div>Anthony</div><div><br></div></div>
+
+--0000000000007a178d05fad48833--
 
