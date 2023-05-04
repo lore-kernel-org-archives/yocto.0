@@ -1,155 +1,137 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <ndec13@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B6ECC77B7C
-	for <webhook@archiver.kernel.org>; Thu,  4 May 2023 14:23:47 +0000 (UTC)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
- by mx.groups.io with SMTP id smtpd.web10.51568.1683210225461145999
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D5DFC77B7C
+	for <webhook@archiver.kernel.org>; Thu,  4 May 2023 14:40:57 +0000 (UTC)
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+ by mx.groups.io with SMTP id smtpd.web11.51475.1683211252175114491
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 May 2023 07:23:46 -0700
+ Thu, 04 May 2023 07:40:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@smile-fr.20221208.gappssmtp.com header.s=20221208 header.b=mcJa4r6N;
- spf=pass (domain: smile.fr, ip: 209.85.128.52, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-3f19a80a330so4350425e9.2
-        for <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 07:23:44 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=Tswa5H2N;
+ spf=pass (domain: gmail.com, ip: 209.85.166.177, mailfrom: ndec13@gmail.com)
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3312db0e0cdso4308185ab.0;
+        Thu, 04 May 2023 07:40:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile-fr.20221208.gappssmtp.com; s=20221208; t=1683210223; x=1685802223;
-        h=content-transfer-encoding:in-reply-to:organization:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Hh4hvGde335Pc2FpU08e8WiWB2tr8uUbXWl/us7kTc=;
-        b=mcJa4r6NTQ2exdHgu00Wmc8/kIqLgvhvpcbzM4vljt7TK2dsp9uJZxTE3I6ExxUfPu
-         2HD2xZxp8S+3gcy/Q+t3DtCzwoaKsQiRwN8OmaN9SXTVcMxgDf2qdvw8R6wXvhunC1Dp
-         e/6q57mGCNGCYhlGPX/j9OqFWd4IWTpbmxo9+vwslxAdkGoQA90C3FqPUdfpGfy6zrjZ
-         TorfndYy+Ta2N4dBTWnO9RaT8eDIkFianrSCGmxMm1XsKWXkHYorBwOVzMsHAqpx/RzG
-         x7JzFheXTEBM96fAmhrVDarebQq6vxq9N8VwnayiuTHlK7PKnXo9cYt7d8btV+VkfXD8
-         vxOQ==
+        d=gmail.com; s=20221208; t=1683211251; x=1685803251;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=86v5+5Fomxwy7eIT4YQ5ppVZp2mha1x8IKQiMzrH4lo=;
+        b=Tswa5H2N49Hr2iINaATIPbcm7FMc/9ksIyVX/cUYqt2xFikTyIxvr99yCvT0ZQo41K
+         PEI9twjGx/fUcGVoHjgBnBuvt7XQhL72lClDt8ZLzzgyN2zIeXUPIhoJybhFgXYlZxwk
+         gNjMwPZBVZm3wSJMqdHbzOaIFg2ka1Mf33cTiyBoCpWiLftZHmLS2Hc8J2YgMe1zMus0
+         oI3OQunXWVnBmsUsec9d7Jnkr8YNOgIJhKixpsvWIBgbGNCUQwDo9xFwz1GdRwvK5nU/
+         NKpPKkVs3Ud/XpSk94uVekPPVTm1qT8xGIiQ794Pgu5VX4P+kAiZBb/5Hd0KHoo5Yd1H
+         chNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683210223; x=1685802223;
-        h=content-transfer-encoding:in-reply-to:organization:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6Hh4hvGde335Pc2FpU08e8WiWB2tr8uUbXWl/us7kTc=;
-        b=mFCxsl3KsETfmvnbh5ur39vLaBZcRRFKRVnGv8FZEOV/eUsZWQeEnU54G6zstPB5pp
-         v0ULmu3ixSfAiZmMl5IlCtwwH4V4ofDo1TcU2ZDCifRk3W/BhzXogd75BA7m/c59e405
-         h0/Rr6rDHuwR3MaGyry6u/sFUd5HDqM7lY0TlBZ3Eancowyiectzqk8zp5ronFytnu4t
-         HzOTwXHjwW0CyH+3IGK6w2DEcrxFaQXrRh+AADs/5ca0uJv3Fg+IFUeJeV1Rk6A4QgMb
-         7qCfG00pU+V0eo/4XTyiPLeIEZ1E7TjPMstI5G6gAupKg2z7ZSVSI5XomKvcTK7xL1q1
-         fT1w==
-X-Gm-Message-State: AC+VfDyNdoiO/oG8LUvlWv5cBs4c453yzXOQHDerhgeWpYMu+1zPQDbc
-	017eLv9Y5LFpGyFc4WRQKpoatkMQrQfbBRMh1kpt0w==
-X-Google-Smtp-Source: ACHHUZ5G7fqNmvMvZy6r+5r9Oue0mNQscmv9+rw57mOc5Imrb0tzPUSLkiP+mgMyrD6YA+QRbR+PEA==
-X-Received: by 2002:a1c:ed0e:0:b0:3f1:800f:cc61 with SMTP id l14-20020a1ced0e000000b003f1800fcc61mr17423648wmh.13.1683210223184;
-        Thu, 04 May 2023 07:23:43 -0700 (PDT)
-Received: from [192.168.0.21] (53.1.159.89.rev.sfr.net. [89.159.1.53])
-        by smtp.gmail.com with ESMTPSA id i17-20020a5d6311000000b00306ec04f060sm1958403wru.107.2023.05.04.07.23.42
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 May 2023 07:23:42 -0700 (PDT)
-Message-ID: <8bdf154f-a197-667b-a07f-eecc3e8c52f1@smile.fr>
-Date: Thu, 4 May 2023 16:23:42 +0200
+        d=1e100.net; s=20221208; t=1683211251; x=1685803251;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=86v5+5Fomxwy7eIT4YQ5ppVZp2mha1x8IKQiMzrH4lo=;
+        b=Ex+LWU8kpaJg5iKzeuAG4pjXhbuwD5BDz60LgKcLeBxMpbTP9vg71qS2/L0nAtg3Rm
+         T1AvMxpQeQTRUMgb0H1x3MlF5KyYPldy8q8OP7/jnDtArTlJKTWYeRLlpdMDKR9sH5Az
+         oESExTq1A8Neu7Kz4j47PtPUI7uok+rK0ViMDKyyvLHsPLsaLyeOhZWwohA0oETKxxhu
+         aml1uPVsQV3EdI4YCC/wM5DKpBIw5J932IQ/c4MV6WNtwCi3ydNlch1Fm86RCkKGkxUF
+         Yz/ah+JtJ4tfIXGj4TKOI4I1rOCTDo9U932ficQyUpYrIlMSfS4yFmoDiPIQV47WCXFX
+         YT2w==
+X-Gm-Message-State: AC+VfDyLeeq4U1Podz5dwRKKEBJ3AOfb6Ej8rCilEF9jNvi/+fRDMdyP
+	B/AWJ/TnsrIi+iafs23HCIBHxnbReD6905wNdlN647egPbY=
+X-Google-Smtp-Source: ACHHUZ4zvbajkC8niQjoCIyIb97GMrcWMHM8OWbSoSKjRRnWT3TqdR0F0kQ2orqSPbzIHqeB7RYrvjVtZe1QUmu9ITg=
+X-Received: by 2002:a92:c90e:0:b0:325:eb13:1045 with SMTP id
+ t14-20020a92c90e000000b00325eb131045mr150732ilp.2.1683211251159; Thu, 04 May
+ 2023 07:40:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] auh: publish output on
- https://autobuilder.yocto.io/pub/auh/
-To: yocto@lists.yoctoproject.org
-References: <20230428070139.450100-1-alex.kanavin@gmail.com>
-Content-Language: en-US
-From: Yoann Congal <yoann.congal@smile.fr>
-Organization: Smile ECS
-In-Reply-To: <20230428070139.450100-1-alex.kanavin@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Nicolas Dechesne <ndec13@gmail.com>
+Date: Thu, 4 May 2023 16:40:39 +0200
+Message-ID: <CAOT3mi+DorC4uSqCwO7HmmFVuXX3BLFWJNp_o-NH4OmqP=6ZSg@mail.gmail.com>
+Subject: Yocto Project Community Manager updates
+To: yocto@lists.yoctoproject.org, yocto-advocacy@lists.yoctoproject.org, 
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Cc: Josef Holzmayr <jester@theyoctojester.info>, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>
+Content-Type: multipart/alternative; boundary="000000000000b51a0f05fadf284f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 14:23:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59869
+ <yocto@lists.yoctoproject.org>; Thu, 04 May 2023 14:40:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59870
 
-On 4/28/23 09:01, Alexander Kanavin wrote:
-> AUH itself already has an option to include the link into
-> its email reports; the option just needs to be enabled.
-> 
-> [YOCTO #15103]
-> 
-> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+--000000000000b51a0f05fadf284f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Looks good to me!
+Dear all,
 
-Reviewed-by: Yoann Congal <yoann.congal@smile.fr>
+After five years, I have decided to resign from my position as the Yocto
+Project Community Manager. I joined the OpenEmbedded community around 2008.
+I have fond memories of my early days, and still remember some of my first
+interactions on IRC and mailing lists! This is a very welcoming community,
+always helping new people with patience and kindness. Serving the project
+during the last five years is something I am very proud of, and I will be
+forever grateful to all of you for accepting me!
 
-Thanks!
+During these years, we have gone through a lot together, the pandemic gave
+us an opportunity to rethink how our community should come together.
+Setting up our Virtual Summits has been a lot of work (and stress!) for a
+group of few people, but the never ending success of these events has been
+very rewarding! Our online presence in social media has dramatically
+improved, and allows us to reach out to and interact with our community
+faster than ever before!
 
-> ---
->  config.json                            | 2 +-
->  scripts/auh-config/upgrade-helper.conf | 2 +-
->  scripts/run-auh                        | 6 +++++-
->  3 files changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/config.json b/config.json
-> index 9da4d85..a2ba46e 100644
-> --- a/config.json
-> +++ b/config.json
-> @@ -1186,7 +1186,7 @@
->          },
->          "auh" : {
->              "EXTRAPLAINCMDS" : [
-> -                "${SCRIPTSDIR}/setup-auh ${HELPERBUILDDIR}; ${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR}"
-> +                "${SCRIPTSDIR}/setup-auh ${HELPERBUILDDIR}; ${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/"
->              ]
->          },
->          "a-quick" : {
-> diff --git a/scripts/auh-config/upgrade-helper.conf b/scripts/auh-config/upgrade-helper.conf
-> index 3a0aa6c..e0fed11 100644
-> --- a/scripts/auh-config/upgrade-helper.conf
-> +++ b/scripts/auh-config/upgrade-helper.conf
-> @@ -29,7 +29,7 @@ buildhistory=yes
->  #testimage_name=core-image-minimal
->  
->  #workdir=/home/auh/work/
-> -#publish_work_url=https://logs.yoctoproject.org/auh/
-> +publish_work_url=https://autobuilder.yocto.io/pub/auh
->  
->  commit_revert_policy=all
->  
-> diff --git a/scripts/run-auh b/scripts/run-auh
-> index 527ff96..0419dd1 100755
-> --- a/scripts/run-auh
-> +++ b/scripts/run-auh
-> @@ -7,7 +7,7 @@
->  # Called with $1 - the directory where the setup was created
->  
->  if [ -z $1 ]; then
-> -  echo "Use: $0 auh_setup_dir"
-> +  echo "Use: $0 auh_setup_dir [publish_dir]"
->    exit 1
->  fi
->  
-> @@ -27,4 +27,8 @@ git checkout -B tmp-auh-upgrades origin/master
->  source $poky_dir/oe-init-build-env $build_dir
->  $auh_dir/upgrade-helper.py -e all
->  
-> +if [ -n $2 ]; then
-> +  cp -rf $build_dir/upgrade-helper/* $2
-> +fi
-> +
->  popd
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59790): https://lists.yoctoproject.org/g/yocto/message/59790
-> Mute This Topic: https://lists.yoctoproject.org/mt/98553558/4316185
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [yoann.congal@smile.fr]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+On the side of all the technical changes, and releases, we have also
+established the Yocto LTS process which was a recurring request from the
+community and has become a strength of the project! We also revamped the
+project documentation to make it easier to maintain and contribute. The
+Yocto Project documentation is such a great resource for our community! I
+have spent so many hours on these PDFs in my early days!
 
--- 
-Yoann Congal
-Smile ECS - Tech Expert
+Anyway, let=E2=80=99s not focus on the past! The future looks bright and I =
+am
+really excited to announce that Josef Holzmayr has accepted to take over
+the Community Manager role. Josef needs no introduction, he has been a key
+member of this community for so many years. Thanks to Josef's relentless
+efforts, we have grown our social media presence on Youtube, Twitter,
+LinkedIn and Mastodon! His energy will be a great source of inspiration for
+this community! I wish Josef and Yocto the best for the years to come, and
+I am convinced this community is in good hands and that Josef will be a
+great community leader!
+
+Many thanks!
+Nico
+
+--000000000000b51a0f05fadf284f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Dear all,<br><br>After five years, I have decided to resig=
+n from my position as the Yocto Project Community Manager. I joined the Ope=
+nEmbedded community around 2008. I have fond memories of my early days, and=
+ still remember some of my first interactions on IRC and mailing lists! Thi=
+s is a very welcoming community, always helping new people with patience an=
+d kindness. Serving the project during the last five years is something I a=
+m very proud of, and I will be forever grateful to all of you for accepting=
+ me!<br><br>During these years, we have gone through a lot together, the pa=
+ndemic gave us an opportunity to rethink how our community should come toge=
+ther. Setting up our Virtual Summits has been a lot of work (and stress!) f=
+or a group of few people, but the never ending success of these events has =
+been very rewarding! Our online presence in social media has dramatically i=
+mproved, and allows us to reach out to and interact with our community fast=
+er than ever before!<br><br>On the side of all the technical changes, and r=
+eleases, we have also established the Yocto LTS process which was a recurri=
+ng request from the community and has become a strength of the project! We =
+also revamped the project documentation to make it easier to maintain and c=
+ontribute. The Yocto Project documentation is such a great resource for our=
+ community! I have spent so many hours on these PDFs in my early days!<br><=
+br>Anyway, let=E2=80=99s not focus on the past! The future looks bright and=
+ I am really excited to announce that Josef Holzmayr has accepted to take o=
+ver the Community Manager role. Josef needs no introduction, he has been a =
+key member of this community for so many years. Thanks to Josef&#39;s relen=
+tless efforts, we have grown our social media presence on Youtube, Twitter,=
+ LinkedIn and Mastodon! His energy will be a great source of inspiration fo=
+r this community! I wish Josef and Yocto the best for the years to come, an=
+d I am convinced this community is in good hands and that Josef will be a g=
+reat community leader!<br><br>Many thanks!<br>Nico<br></div>
+
+--000000000000b51a0f05fadf284f--
 
