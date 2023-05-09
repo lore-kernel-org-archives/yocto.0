@@ -1,165 +1,326 @@
-Return-Path: <stefanb@linux.ibm.com>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF438C77B75
-	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 18:43:34 +0000 (UTC)
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
- by mx.groups.io with SMTP id smtpd.web10.41229.1683657810338331267
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 863E2C77B7C
+	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 18:43:44 +0000 (UTC)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+ by mx.groups.io with SMTP id smtpd.web10.41234.1683657818451974661
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 May 2023 11:43:30 -0700
+ Tue, 09 May 2023 11:43:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@ibm.com header.s=pp1 header.b=UhN5Tas5;
- spf=pass (domain: linux.ibm.com, ip: 148.163.158.5, mailfrom: stefanb@linux.ibm.com)
-Received: from pps.filterd (m0353724.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349IfvnP030085
-	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 18:43:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : from : to : cc : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=vZbp5Pm+r+T8cVIqDOerhKgIUL1skL1jQusbGe09p3g=;
- b=UhN5Tas5S1TnL5RSHlD0UkaeNGnnlhaH6NF7kfTuxHnINdv7jXXtsN1cgve1nkcQZosw
- EzcZhDluQ8ycdn+gWf+8NWLPcCs/D6oH4eIg48hLZSXbrpY2PZX0QVlGjii6l+h5D6J8
- 2Pc87bCmD0Jon9bcPnjUSXKWpRTw2QjTs5U0WM6wnFgBeMYDLognxe529niHoZb2qXmL
- ABg54pv11K6HdQpitp2YqOnuvIcxDXbl0yr6Yv1Tdfm3nIKUwOmsB39rGREOy63ojc9w
- /QHTh5KWfmjs+1DrD+lf1uAcSRQpIacTB0T2gnUhUpCex4I0xmNiKNYagWrEe0nlOgHd yQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfup701ax-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 18:43:29 +0000
-Received: from m0353724.ppops.net (m0353724.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 349Ig8nO030404
-	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 18:43:29 GMT
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfup701am-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 May 2023 18:43:29 +0000
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-	by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 349Fspus032212;
-	Tue, 9 May 2023 18:43:28 GMT
-Received: from smtprelay04.dal12v.mail.ibm.com ([9.208.130.102])
-	by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3qf7s6p2y7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 May 2023 18:43:28 +0000
-Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
-	by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 349IhRiQ38666732
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 9 May 2023 18:43:27 GMT
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3E35958068;
-	Tue,  9 May 2023 18:43:27 +0000 (GMT)
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id F3FCA58056;
-	Tue,  9 May 2023 18:43:26 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-	by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Tue,  9 May 2023 18:43:26 +0000 (GMT)
-Message-ID: <1e9a97ce-ad24-0225-1026-a615b4b76421@linux.ibm.com>
-Date: Tue, 9 May 2023 14:43:26 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=qLkXb6E2;
+ spf=pass (domain: gmail.com, ip: 209.85.222.50, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-77d46c7dd10so32335231241.0
+        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 11:43:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683657817; x=1686249817;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MItLQqX/kJapJ/gmiPDutpRyjNJKVH+Ggz53psq53qM=;
+        b=qLkXb6E2PTO7zUznEvm28by8n1c3zRP9QzU4sFNqKIwtqZCPDm1nCf9xKgVJ8NIQmA
+         XHQS6H0UyW2zQrn1NxvnRtZVptLsQo5veKQmBVYg9/3lne3x5DKynKAh2CZWYQrHcjkb
+         4/1mWDSsdvwOhW696MaU54pNYTG3XnriuzbvVstjGwNmqkfpArVUixsHSJsAY04Av5zw
+         YgF41JmuaK7rdKCdoDDWQtWwpffLluwts5bYVd4kaPuoNIl5HR3s3Cf3tecP9FhHttHy
+         eyfA9KoXEnS3HTeL4S8ULFseT5VAmR66yiXd7yB0FJHIDILC29t5TQUXuZXihORhJmPF
+         vFVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683657817; x=1686249817;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MItLQqX/kJapJ/gmiPDutpRyjNJKVH+Ggz53psq53qM=;
+        b=H2m1wYtE8MdwK971/+gdhj2kjkryObD6bvTDlS2w6rSk4lqRCAT97HI5AsBmaMVlhD
+         iTrSpTgEfEDCqNPbhcA9aa1je726Tu5OI1yD15b5aceo5FHBE+c5sdKFG9GnY3xWtAJW
+         z/KGFb6zoU24IWFdRPlaBOjPsC0gkPzmwgUb3PVYwhw1gDVvApbzLbeKvxpL3k23L2z5
+         htnAY2yfX9CFPHPEZqze23Oaem80RR0d+r3yG3+CmxAi8etQnlX911ZTbL1N2Db7nV2t
+         uXlkGWGQFl9PyJYUMuuWPGevj4Jzrna5JmMGWX0bjxbUKTM7D0BFTiQ0gUnwbL3LmYng
+         8kWA==
+X-Gm-Message-State: AC+VfDxCwkBHui2IzLUoVGcnJZ0YfzpRVvi5eo6JNecZVXRGW4mhRA4i
+	r+I/SVHgOw+SASskhF0u0kZwGZhxu0UkcLNhi24=
+X-Google-Smtp-Source: ACHHUZ7zaYLp/OGCqx1fuAGRFZXQ8AJIp4/o6EQcKDqoKsVB03C6OGu4SNuQj21b+gikXG7RHQCEYbCjoJE1LG5/XHs=
+X-Received: by 2002:a67:f058:0:b0:42f:ee66:6a5 with SMTP id
+ q24-20020a67f058000000b0042fee6606a5mr3743180vsm.6.1683657817335; Tue, 09 May
+ 2023 11:43:37 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230509175457.1038298-1-stefanb@linux.ibm.com>
+ <CANPvuRnZzw0Tdr=i6VzNW3wNAPnDwo6kPGmh52M0nOWmOO7OWw@mail.gmail.com> <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com>
+In-Reply-To: <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com>
+From: Jose Quaresma <quaresma.jose@gmail.com>
+Date: Tue, 9 May 2023 19:43:26 +0100
+Message-ID: <CANPvuRk1=MGv-h-kNkiB9pG9E6XQ+3kx-ZKX6_+0LZ+stt-PAQ@mail.gmail.com>
 Subject: Re: [yocto] [meta-security][PATCH 0/2] Drop a kernel patch and a
  kernel config option
-Content-Language: en-US
-From: Stefan Berger <stefanb@linux.ibm.com>
-To: Jose Quaresma <quaresma.jose@gmail.com>
+To: Stefan Berger <stefanb@linux.ibm.com>
 Cc: yocto@lists.yoctoproject.org, akuster808@gmail.com
-References: <20230509175457.1038298-1-stefanb@linux.ibm.com>
- <CANPvuRnZzw0Tdr=i6VzNW3wNAPnDwo6kPGmh52M0nOWmOO7OWw@mail.gmail.com>
- <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com>
-In-Reply-To: <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: HBucCimtwei2obOxHIF4phuDvy_p9KqM
-X-Proofpoint-GUID: _pPsEn2nNNUYIM7L9PJYpY1_iWuLyZ3x
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
-MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-09_11,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=999 impostorscore=0 bulkscore=0 mlxscore=0
- adultscore=0 clxscore=1015 spamscore=0 priorityscore=1501 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305090150
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-001b2d01.pphosted.com id 349IfvnP030085
+Content-Type: multipart/alternative; boundary="000000000000202c0505fb4722bb"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 18:43:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59944
+ <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 18:43:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59945
 
+--000000000000202c0505fb4722bb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Stefan Berger <stefanb@linux.ibm.com> escreveu no dia ter=C3=A7a, 9/05/2023=
+ =C3=A0(s)
+19:19:
 
-On 5/9/23 14:19, Stefan Berger wrote:
->=20
->=20
+>
+>
 > On 5/9/23 14:11, Jose Quaresma wrote:
-
->> CONFIG_SYSTEM_TRUSTED_KEYS=3D
->> Unfortunately=C2=A0this is not enough=C2=A0because in the full patchse=
-t you are overriding the do_configure task
->> on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is =
-included in every recipe that follies=C2=A0the
->> pattern starting by linux- (recipes-kernel/linux/linux-%.bbappend).
->=20
+> > Hi Stefan, Stefan Berger <stefanb@ linux. ibm. com> escreveu no dia
+> ter=C3=A7a, 9/05/2023 =C3=A0(s) 18: 55: This PR removes a kernel patch re=
+lated to
+> overlayfs and IMA appraisal file change notifictions and a squashfs xattr
+> kernel config option.
+> > ZjQcmQRYFpfptBannerStart
+> > This Message Is From an External Sender
+> > This message came from outside your organization.
+> > ZjQcmQRYFpfptBannerEnd
+> > Hi Stefan,
+> >
+> > Stefan Berger <stefanb@linux.ibm.com <mailto:stefanb@linux.ibm.com>>
+> escreveu no dia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:55:
+> >
+> >     This PR removes a kernel patch related to overlayfs and IMA
+> appraisal file change
+> >     notifictions and a squashfs xattr kernel config option.
+> >
+> >         Stefan
+> >
+> >     Stefan Berger (2):
+> >        linux: overlayfs: Drop kernel patch resolving a file change
+> >          notification issue
+> >        ima: Drop kernel config option CONFIG_SQUASHFS_XATTR=3Dy from
+> ima.cfg
+> >
+> >       ...Increment-iversion-upon-file-changes.patch | 42
+> -------------------
+> >       .../recipes-kernel/linux/linux/ima.cfg        |  1 -
+> >       .../recipes-kernel/linux/linux_ima.inc        |  1 -
+> >
+> > CONFIG_SYSTEM_TRUSTED_KEYS=3D
+> > Unfortunately this is not enough because in the full patchset you are
+> overriding the do_configure task
+> > on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is
+> included in every recipe that follies the
+> > pattern starting by linux- (recipes-kernel/linux/linux-%.bbappend).
+>
 > You are referring tho this here?
->=20
+>
 > do_configure() {
->  =C2=A0=C2=A0=C2=A0 sed -i "s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CONFIG_S=
-YSTEM_TRUSTED_KEYS=3D\"${IMA_EVM_ROOT_CA}\"|" .config
+>      sed -i
+> "s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CONFIG_SYSTEM_TRUSTED_KEYS=3D\"${IMA_=
+EVM_ROOT_CA}\"|"
+> .config
 > }
->=20
-> You are saying that this deactivates some other do_configure's ? If thi=
-s is the case, what would be the right syntax to fix it?
->=20
+>
+> You are saying that this deactivates some other do_configure's ? If this
+> is the case, what would be the right syntax to fix it?
+>
 
-Jose, is the correct syntax to use do_configure:append () ? Can you try w=
-ith this syntax?
+Yes, this is the problem. The right fix IMHO is reverting because we can't
+assume that the .config it's always there
+on the bitbake build directory and this only happens when building the
+kernel.
 
-    Stefan
+Another no less significant side effect is that this change is also applied
+to a wide range of recipes,
+anyone starting with the name linux-*.bb.
 
->=20
-> It's a no-op on a .config that does not contain the CONFIG_SYSTEM_TRUST=
-ED_KEYS=3D option already.=3D
->=20
->  =C2=A0=C2=A0 Stefan
->=20
->>
->> This breaks=C2=A0many recipes like=C2=A0linux-firmware and maybe other=
-s.
->> The root cause of the issue is now on=C2=A0f4f7624d2e but because this=
- patch is too evasive, maybe everything has to be reversed.
->> I am now building with the full patchset=C2=A0revert and so far the bu=
-ild is looking good.
->=20
->=20
->>
->> Jose
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A03 files changed, 44 deletions(-)
->> =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0delete mode 100644 meta-integrity/recip=
-es-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
->>
->> =C2=A0=C2=A0=C2=A0 -- =C2=A0=C2=A0=C2=A0 2.34.1
->>
->>
->>
->> --=20
->> Best regards,
->>
->> Jos=C3=A9 Quaresma
->>
->>
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#59940): https://lists.yoctoproject.org/g/yocto/mes=
-sage/59940
->> Mute This Topic: https://lists.yoctoproject.org/mt/98789504/1792208
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [stefanb@lin=
-ux.ibm.com]
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>
+So the full patch set should be reverted in my opinion and be more tested
+locally, building for example
+some recipe that respects the pattern linux-*.bb and also other kernels and
+re-submitted again.
+
+Jose
+
+
+>
+> It's a no-op on a .config that does not contain the
+> CONFIG_SYSTEM_TRUSTED_KEYS=3D option already.=3D
+>
+>     Stefan
+>
+> >
+> > This breaks many recipes like linux-firmware and maybe others.
+> > The root cause of the issue is now on f4f7624d2e but because this patch
+> is too evasive, maybe everything has to be reversed.
+> > I am now building with the full patchset revert and so far the build is
+> looking good.
+>
+>
+> >
+> > Jose
+> >
+> >       3 files changed, 44 deletions(-)
+> >       delete mode 100644
+> meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upo=
+n-file-changes.patch
+> >
+> >     --
+> >     2.34.1
+> >
+> >
+> >
+> > --
+> > Best regards,
+> >
+> > Jos=C3=A9 Quaresma
+> >
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#59940):
+> https://lists.yoctoproject.org/g/yocto/message/59940
+> > Mute This Topic: https://lists.yoctoproject.org/mt/98789504/1792208
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> stefanb@linux.ibm.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
+>
+
+
+--=20
+Best regards,
+
+Jos=C3=A9 Quaresma
+
+--000000000000202c0505fb4722bb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">Stefan Berger &lt;<a href=3D"mailto:s=
+tefanb@linux.ibm.com">stefanb@linux.ibm.com</a>&gt; escreveu no dia ter=C3=
+=A7a, 9/05/2023 =C3=A0(s) 19:19:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><br>
+<br>
+On 5/9/23 14:11, Jose Quaresma wrote:<br>
+&gt; Hi Stefan, Stefan Berger &lt;stefanb@=E2=80=8Alinux.=E2=80=8Aibm.=E2=
+=80=8Acom&gt; escreveu no dia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:=E2=80=8A5=
+5: This PR removes a kernel patch related to overlayfs and IMA appraisal fi=
+le change notifictions and a squashfs xattr kernel config option.<br>
+&gt; ZjQcmQRYFpfptBannerStart<br>
+&gt; This Message Is From an External Sender<br>
+&gt; This message came from outside your organization.<br>
+&gt; ZjQcmQRYFpfptBannerEnd<br>
+&gt; Hi Stefan,<br>
+&gt; <br>
+&gt; Stefan Berger &lt;<a href=3D"mailto:stefanb@linux.ibm.com" target=3D"_=
+blank">stefanb@linux.ibm.com</a> &lt;mailto:<a href=3D"mailto:stefanb@linux=
+.ibm.com" target=3D"_blank">stefanb@linux.ibm.com</a>&gt;&gt; escreveu no d=
+ia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:55:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0This PR removes a kernel patch related to overlayfs=
+ and IMA appraisal file change<br>
+&gt;=C2=A0 =C2=A0 =C2=A0notifictions and a squashfs xattr kernel config opt=
+ion.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Stefan<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Stefan Berger (2):<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 linux: overlayfs: Drop kernel patch resolvi=
+ng a file change<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 notification issue<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 ima: Drop kernel config option CONFIG_SQUAS=
+HFS_XATTR=3Dy from ima.cfg<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0...Increment-iversion-upon-file-changes.patc=
+h | 42 -------------------<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.../recipes-kernel/linux/linux/ima.cfg=C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 -<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.../recipes-kernel/linux/linux_ima.inc=C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 -<br>
+&gt; <br>
+&gt; CONFIG_SYSTEM_TRUSTED_KEYS=3D<br>
+&gt; Unfortunately=C2=A0this is not enough=C2=A0because in the full patchse=
+t you are overriding the do_configure task<br>
+&gt; on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is =
+included in every recipe that follies=C2=A0the<br>
+&gt; pattern starting by linux- (recipes-kernel/linux/linux-%.bbappend).<br=
+>
+<br>
+You are referring tho this here?<br>
+<br>
+do_configure() {<br>
+=C2=A0 =C2=A0 =C2=A0sed -i &quot;s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CONFIG_=
+SYSTEM_TRUSTED_KEYS=3D\&quot;${IMA_EVM_ROOT_CA}\&quot;|&quot; .config<br>
+}<br>
+<br>
+You are saying that this deactivates some other do_configure&#39;s ? If thi=
+s is the case, what would be the right syntax to fix it?<br></blockquote><d=
+iv><br></div><div>Yes, this is the problem. The right fix IMHO is reverting=
+ because we can&#39;t assume that the .config=C2=A0it&#39;s always there</d=
+iv><div>on the bitbake build directory=C2=A0and this only happens when buil=
+ding=C2=A0the kernel.</div><div><br></div><div>Another no less significant =
+side effect is that this change is also applied to a wide range of recipes,=
+</div><div>anyone starting with the name linux-*.bb.</div><div><br></div><d=
+iv>So the full patch set should be reverted in my opinion and be more teste=
+d locally, building for example</div><div>some recipe that respects the pat=
+tern linux-*.bb and also other kernels and re-submitted=C2=A0again.</div><d=
+iv><br></div><div>Jose</div><div><br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">
+<br>
+<br>
+It&#39;s a no-op on a .config that does not contain the CONFIG_SYSTEM_TRUST=
+ED_KEYS=3D option already.=3D<br>
+<br>
+=C2=A0 =C2=A0 Stefan<br>
+<br>
+&gt; <br>
+&gt; This breaks=C2=A0many recipes like=C2=A0linux-firmware and maybe other=
+s.<br>
+&gt; The root cause of the issue is now on=C2=A0f4f7624d2e but because this=
+ patch is too evasive, maybe everything has to be reversed.<br>
+&gt; I am now building with the full patchset=C2=A0revert and so far the bu=
+ild is looking good.<br>
+<br>
+<br>
+&gt; <br>
+&gt; Jose<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A03 files changed, 44 deletions(-)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0delete mode 100644 meta-integrity/recipes-ke=
+rnel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0-- <br>
+&gt;=C2=A0 =C2=A0 =C2=A02.34.1<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; -- <br>
+&gt; Best regards,<br>
+&gt; <br>
+&gt; Jos=C3=A9 Quaresma<br>
+&gt; <br>
+&gt; <br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; View/Reply Online (#59940): <a href=3D"https://lists.yoctoproject.org/=
+g/yocto/message/59940" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
+octoproject.org/g/yocto/message/59940</a><br>
+&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/98789504=
+/1792208" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
+rg/mt/98789504/1792208</a><br>
+&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
+arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
+rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
+/unsub</a> [<a href=3D"mailto:stefanb@linux.ibm.com" target=3D"_blank">stef=
+anb@linux.ibm.com</a>]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; <br>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
+div>
+
+--000000000000202c0505fb4722bb--
 
