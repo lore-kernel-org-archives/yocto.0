@@ -1,137 +1,142 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <stefanb@linux.ibm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F3926C77B75
-	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 11:06:31 +0000 (UTC)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
- by mx.groups.io with SMTP id smtpd.web10.29033.1683630388945771786
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C931BC7EE22
+	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 13:31:12 +0000 (UTC)
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+ by mx.groups.io with SMTP id smtpd.web10.32531.1683639063378202131
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 May 2023 04:06:29 -0700
+ Tue, 09 May 2023 06:31:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=ePQLb/qZ;
- spf=pass (domain: gmail.com, ip: 209.85.128.181, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-55dc3431c64so30375587b3.2
-        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 04:06:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683630388; x=1686222388;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EkgZMtEgW8IkkkKFVkirT4GBRQjuH2L/ZRgFjE0pHb8=;
-        b=ePQLb/qZ4cUCaZmT8QqPvwf9PNTiudkzjV/X3GHC74wJ7HlHVqCxj/zqDjyZ6ETRlC
-         VgiOpDXubA2Q4sKBdhJEv+ucGs8smrQpBXSFUTORAnReaxxxR93mHTE2atMXTf9qTEov
-         0O3woOfQwerUgG5HDUthyNbSyVgWom4B/CDH6okDGOU4cPJnOtbHX96jM9kBDQROixVt
-         6U4VVlgp+Jf7HzljT6a+BLUQj1Fg98fKR4KITu2RXlcyIudLPhe5sZ+DkIt5FdOwm367
-         6lNXoT/D8IiTy/++EMaUnNRSUsVBsH72JPY0Po16K/kMRy49PZsUH9swWA7DIoB2SfDy
-         kkzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683630388; x=1686222388;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EkgZMtEgW8IkkkKFVkirT4GBRQjuH2L/ZRgFjE0pHb8=;
-        b=U/wgkzaPI+6yymeP2m2iId2HW5AQJwAikc2lrdXnQdErwAolvcOfcR0CgrcZHBPtFQ
-         YKJAIqReB4w2XRy69lHNUFRSijLG4wnfZfvlPOA2rw8CanFIMSyrxPq70vTIrYiZmcoN
-         HhUKGpwXV3hy/FLJ11agvfdrqmmpsiUS0QPdojUkxYgBZQMXfSq+5CRsVjWar6Lz7rPs
-         3rEejuyULckiwczpN9OppIeDizru9nH0ojoVPZTSQx8QTygmejk2zQr1ys2VXCar2rBJ
-         v+dsjTZyrohOHSnhUe1hPzibVq/pq7fDBOdajAmGGQe/ZWEQuP5bItzqtMBJcWkWJ/83
-         GpTQ==
-X-Gm-Message-State: AC+VfDzEI9Y2Mf7eZ30NZ9ie0Ab90urQOUHXjl+CDSL18OLvsaNh1GJ3
-	LYJqcwYZBg+cdXY2x9c3WJI=
-X-Google-Smtp-Source: ACHHUZ4K+zVNn3HdKmtAR6YZQcLWgnvcztvCV/+urViYLW7HQdUdKqtMlAQ2wT2OJWUlMFzkFB92rw==
-X-Received: by 2002:a0d:f901:0:b0:54f:752e:9b63 with SMTP id j1-20020a0df901000000b0054f752e9b63mr14515675ywf.15.1683630388074;
-        Tue, 09 May 2023 04:06:28 -0700 (PDT)
-Received: from ?IPV6:2600:1700:9190:ba10:183a:1604:2591:7a1e? ([2600:1700:9190:ba10:183a:1604:2591:7a1e])
-        by smtp.gmail.com with ESMTPSA id m19-20020a819e13000000b00556d4aac066sm3183323ywj.133.2023.05.09.04.06.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 04:06:27 -0700 (PDT)
-Message-ID: <48440cb3-879f-0d08-723b-bcc521f14453@gmail.com>
-Date: Tue, 9 May 2023 07:06:22 -0400
+ dkim=pass header.i=@ibm.com header.s=pp1 header.b=eBvYrucE;
+ spf=pass (domain: linux.ibm.com, ip: 148.163.156.1, mailfrom: stefanb@linux.ibm.com)
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349DIP6G032124
+	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 13:31:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=LXxU3QiOT+yHcK43Gu24eiMIi8ylLJMnUHSbvQW7wBg=;
+ b=eBvYrucEi9qJfVpv/43UaLC7OV5hekzG/zTIyI7t7y9JDfcyha6b4c2Wy0gM+UToyCTs
+ WZQYLFdT1f2plk5+7aNTIu3B6fbsB5o9eA6rLJtXks38Wk8C1cDfXp9Ff4X95l2pAk/y
+ XgXn4e2PnPBxce+TUdj1fde0sHmElIgP4EQARe/7xRyuIrNgIqov4G8Iva1H5hc6LUcp
+ 0jMYh+rPQfUVGHGmAQnRZHwe1A0g8C4B4iqZJUcOnz77kmkQUqs0Ey7gwy8nYZyUAvCy
+ /oehdk2VHNd/X/CNY+wDvi4H/vlcs2R5TnXjCGBZkilXgE3M3ru1b4MWf9RVHGqBKbs3 wA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfp3djkb4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 13:31:01 +0000
+Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 349D8Yvn003712
+	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 13:31:01 GMT
+Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfp3djka1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 May 2023 13:31:00 +0000
+Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
+	by ppma05wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 3499eqva002509;
+	Tue, 9 May 2023 13:30:59 GMT
+Received: from smtprelay01.wdc07v.mail.ibm.com ([9.208.129.119])
+	by ppma05wdc.us.ibm.com (PPS) with ESMTPS id 3qf88u3f73-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 May 2023 13:30:59 +0000
+Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
+	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 349DUvX232965306
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 9 May 2023 13:30:58 GMT
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id BBC6F58059;
+	Tue,  9 May 2023 13:30:57 +0000 (GMT)
+Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 7157C58062;
+	Tue,  9 May 2023 13:30:57 +0000 (GMT)
+Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
+	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Tue,  9 May 2023 13:30:57 +0000 (GMT)
+From: Stefan Berger <stefanb@linux.ibm.com>
+To: yocto@lists.yoctoproject.org
+Cc: akuster808@gmail.com, Stefan Berger <stefanb@linux.ibm.com>
+Subject: [meta-security][PATCH v2 0/8] Fix IMA and EVM support
+Date: Tue,  9 May 2023 09:30:45 -0400
+Message-Id: <20230509133053.1032476-1-stefanb@linux.ibm.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [yocto] [meta-parsec][master,mickledore][PATCH]
- meta-parsec/layer.conf: Insert addpylib declaration
-Content-Language: en-US
-To: Peter Hoyes <Peter.Hoyes@arm.com>
-Cc: yocto@lists.yoctoproject.org, Diego Sueiro <diego.sueiro@arm.com>
-References: <1759D2D1FA358DEB.32698@lists.yoctoproject.org>
- <175BA279740811C9.14539@lists.yoctoproject.org>
- <e88aa909-488e-cdc1-f9d5-8b7bd722b1dd@arm.com>
-From: akuster808 <akuster808@gmail.com>
-In-Reply-To: <e88aa909-488e-cdc1-f9d5-8b7bd722b1dd@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: WOfema2mD67xrYQtB2A39SyDtfqEQ6bq
+X-Proofpoint-GUID: Tu2TjLQU3ZaQNM7tCz0UFpE_hc0NVzJW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-09_08,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 bulkscore=0 phishscore=0
+ lowpriorityscore=0 mlxscore=0 mlxlogscore=921 spamscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305090106
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 11:06:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59917
+ <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 13:31:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59919
 
+This series of patches fixes the current support for IMA and EVM
+by removing outdated patches for example and adding kernel config
+options. I have tried out these patches with OpenBMC where the
+appraisal policy now enforces signed executables and libraries.
 
+   Stefan
 
-On 5/9/23 2:43 AM, Peter Hoyes wrote:
-> Hi again Armin,
->
-> On 03/05/2023 13:38, Peter Hoyes via lists.yoctoproject.org wrote:
->> Hi Armin,
->>
->> On 27/04/2023 16:01, Peter Hoyes via lists.yoctoproject.org wrote:
->>> From: Peter Hoyes <Peter.Hoyes@arm.com>
->>>
->>> Yocto mickledore introduced the addpylib directive for explicitly 
->>> adding
->>> layer paths to the PYTHONPATH.
->>>
->>> Standalone OEQA test suite discovery does not require this directive 
->>> but
->>> it is required to import test cases from other layers, e.g. to extend
->>> and modify the test cases.
->>>
->>> Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
->> Is it possible that this small patch missed your filters?
->>
->> Cheers, Peter
->
-> Thanks for merging this patch, but I've just spotted it in langdale 
-> too, which is breaking one of our internal builds as the addpylib 
-> directive is incompatible with langdale's Bitbake. Please could you 
-> revert this patch in langdale and apply to mickledore instead.
+v2:
+ - appended 'appraise_type=imasig' to IMA policy rules
+ - removed CONFIG_SQUASHFS_XATTR from ima.cfg
 
-Done. thanks for catching that.
+Stefan Berger (8):
+  ima: Document and replace keys and adapt scripts for EC keys
+  ima: Fix the ima_policy_appraise_all to appraise executables &
+    libraries
+  ima: Fix the IMA kernel feature
+  ima: Rename IMA_EVM_POLICY_SYSTEMD to IMA_EVM_POLICY
+  ima: Sign all executables and the ima-policy in the root filesystem
+  integrity: Update the README for IMA support
+  linux: overlayfs: Add kernel patch resolving a file change
+    notification issue
+  ima-evm-utils: Update ima-evm-utils to v1.5 and add a patch
 
-BR,
-Armin
->
-> Thanks,
->
-> Peter
->
->>
->>> ---
->>>   meta-parsec/conf/layer.conf | 2 ++
->>>   1 file changed, 2 insertions(+)
->>>
->>> diff --git a/meta-parsec/conf/layer.conf b/meta-parsec/conf/layer.conf
->>> index 0a71694..7d272a2 100644
->>> --- a/meta-parsec/conf/layer.conf
->>> +++ b/meta-parsec/conf/layer.conf
->>> @@ -12,3 +12,5 @@ LAYERSERIES_COMPAT_parsec-layer = "mickledore"
->>>     LAYERDEPENDS_parsec-layer = "core clang-layer"
->>>   BBLAYERS_LAYERINDEX_NAME_parsec-layer = "meta-parsec"
->>> +
->>> +addpylib ${LAYERDIR}/lib oeqa
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#59853): 
->> https://lists.yoctoproject.org/g/yocto/message/59853
->> Mute This Topic: https://lists.yoctoproject.org/mt/98538531/5715260
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub 
->> [peter.hoyes@arm.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
+ meta-integrity/README.md                      |  22 +--
+ meta-integrity/classes/ima-evm-rootfs.bbclass |  34 ++++-
+ meta-integrity/data/debug-keys/README.md      |  17 +++
+ .../data/debug-keys/ima-local-ca.pem          |  15 ++
+ .../data/debug-keys/ima-local-ca.priv         |   7 +
+ .../data/debug-keys/privkey_ima.pem           |  17 +--
+ meta-integrity/data/debug-keys/x509_ima.der   | Bin 707 -> 620 bytes
+ .../0001-ima-fix-ima_inode_post_setattr.patch |  51 -------
+ ...Increment-iversion-upon-file-changes.patch |  42 ++++++
+ ...for-creating-files-using-the-mknodat.patch | 138 ------------------
+ ...-file-hash-setting-by-user-to-fix-an.patch |  60 --------
+ .../recipes-kernel/linux/linux/ima.cfg        |  45 ++++++
+ .../recipes-kernel/linux/linux/ima.scc        |   4 +
+ .../recipes-kernel/linux/linux_ima.inc        |  11 +-
+ ...ation-using-ioctl-when-evm_portable-.patch |  35 +++++
+ ...-evm-utils_1.4.bb => ima-evm-utils_1.5.bb} |   9 +-
+ .../files/ima_policy_appraise_all             |   9 +-
+ meta-integrity/scripts/ima-gen-CA-signed.sh   |   9 +-
+ meta-integrity/scripts/ima-gen-local-ca.sh    |   6 +-
+ meta-integrity/scripts/ima-gen-self-signed.sh |  41 ------
+ 20 files changed, 239 insertions(+), 333 deletions(-)
+ create mode 100644 meta-integrity/data/debug-keys/README.md
+ create mode 100644 meta-integrity/data/debug-keys/ima-local-ca.pem
+ create mode 100644 meta-integrity/data/debug-keys/ima-local-ca.priv
+ delete mode 100644 meta-integrity/recipes-kernel/linux/linux/0001-ima-fix-ima_inode_post_setattr.patch
+ create mode 100644 meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
+ delete mode 100644 meta-integrity/recipes-kernel/linux/linux/0002-ima-add-support-for-creating-files-using-the-mknodat.patch
+ delete mode 100644 meta-integrity/recipes-kernel/linux/linux/Revert-ima-limit-file-hash-setting-by-user-to-fix-an.patch
+ create mode 100644 meta-integrity/recipes-kernel/linux/linux/ima.cfg
+ create mode 100644 meta-integrity/recipes-kernel/linux/linux/ima.scc
+ create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-Do-not-get-generation-using-ioctl-when-evm_portable-.patch
+ rename meta-integrity/recipes-security/ima-evm-utils/{ima-evm-utils_1.4.bb => ima-evm-utils_1.5.bb} (71%)
+ delete mode 100755 meta-integrity/scripts/ima-gen-self-signed.sh
+
+-- 
+2.34.1
 
 
