@@ -2,325 +2,142 @@ Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 863E2C77B7C
-	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 18:43:44 +0000 (UTC)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
- by mx.groups.io with SMTP id smtpd.web10.41234.1683657818451974661
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5E32C7EE23
+	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 18:57:24 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+ by mx.groups.io with SMTP id smtpd.web11.41727.1683658639732073950
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 May 2023 11:43:38 -0700
+ Tue, 09 May 2023 11:57:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=qLkXb6E2;
- spf=pass (domain: gmail.com, ip: 209.85.222.50, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-77d46c7dd10so32335231241.0
-        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 11:43:38 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=T9JKZl2N;
+ spf=pass (domain: gmail.com, ip: 209.85.128.48, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-3f41dceb9d1so37432005e9.1
+        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 11:57:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683657817; x=1686249817;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MItLQqX/kJapJ/gmiPDutpRyjNJKVH+Ggz53psq53qM=;
-        b=qLkXb6E2PTO7zUznEvm28by8n1c3zRP9QzU4sFNqKIwtqZCPDm1nCf9xKgVJ8NIQmA
-         XHQS6H0UyW2zQrn1NxvnRtZVptLsQo5veKQmBVYg9/3lne3x5DKynKAh2CZWYQrHcjkb
-         4/1mWDSsdvwOhW696MaU54pNYTG3XnriuzbvVstjGwNmqkfpArVUixsHSJsAY04Av5zw
-         YgF41JmuaK7rdKCdoDDWQtWwpffLluwts5bYVd4kaPuoNIl5HR3s3Cf3tecP9FhHttHy
-         eyfA9KoXEnS3HTeL4S8ULFseT5VAmR66yiXd7yB0FJHIDILC29t5TQUXuZXihORhJmPF
-         vFVQ==
+        d=gmail.com; s=20221208; t=1683658638; x=1686250638;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZPfuueeQjltOrGx5cz9ieHeqrfdTUxpxOPuvO86POjY=;
+        b=T9JKZl2NPJLWAryoYNvSrqlOYiV4PgHMMitjpf2n2CZFOSrvCxK6n+hKl8RrdNuhlu
+         528YJfd8Syx/yGXi0vqn+oFlRSwXEEKAADu788DYlOD5p0ZKVNUIJTdxtQeyLSGOoNjk
+         xmGJItBd7QRgURACaizEbD4MwMzD/Ithjmng8RHYlJ1isXAIRNi6ifPKoFQfSvzgeTLQ
+         aIAqopjbDlWPHw5f1vNvLa5JuV0enHe0dTH8owkiWpghgLdJINYKkjwXkpOAiASLQQMe
+         +JI9AAiiCdMhL2WcNcA6g/PLZVpUPTQ5petUqo9oedlszH+i09b8XOW5XHd8PzWe6SqL
+         upmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683657817; x=1686249817;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MItLQqX/kJapJ/gmiPDutpRyjNJKVH+Ggz53psq53qM=;
-        b=H2m1wYtE8MdwK971/+gdhj2kjkryObD6bvTDlS2w6rSk4lqRCAT97HI5AsBmaMVlhD
-         iTrSpTgEfEDCqNPbhcA9aa1je726Tu5OI1yD15b5aceo5FHBE+c5sdKFG9GnY3xWtAJW
-         z/KGFb6zoU24IWFdRPlaBOjPsC0gkPzmwgUb3PVYwhw1gDVvApbzLbeKvxpL3k23L2z5
-         htnAY2yfX9CFPHPEZqze23Oaem80RR0d+r3yG3+CmxAi8etQnlX911ZTbL1N2Db7nV2t
-         uXlkGWGQFl9PyJYUMuuWPGevj4Jzrna5JmMGWX0bjxbUKTM7D0BFTiQ0gUnwbL3LmYng
-         8kWA==
-X-Gm-Message-State: AC+VfDxCwkBHui2IzLUoVGcnJZ0YfzpRVvi5eo6JNecZVXRGW4mhRA4i
-	r+I/SVHgOw+SASskhF0u0kZwGZhxu0UkcLNhi24=
-X-Google-Smtp-Source: ACHHUZ7zaYLp/OGCqx1fuAGRFZXQ8AJIp4/o6EQcKDqoKsVB03C6OGu4SNuQj21b+gikXG7RHQCEYbCjoJE1LG5/XHs=
-X-Received: by 2002:a67:f058:0:b0:42f:ee66:6a5 with SMTP id
- q24-20020a67f058000000b0042fee6606a5mr3743180vsm.6.1683657817335; Tue, 09 May
- 2023 11:43:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230509175457.1038298-1-stefanb@linux.ibm.com>
- <CANPvuRnZzw0Tdr=i6VzNW3wNAPnDwo6kPGmh52M0nOWmOO7OWw@mail.gmail.com> <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com>
-In-Reply-To: <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com>
+        d=1e100.net; s=20221208; t=1683658638; x=1686250638;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZPfuueeQjltOrGx5cz9ieHeqrfdTUxpxOPuvO86POjY=;
+        b=YqPngJLobv6pIBtep19h5Al1W7jilpDNRRTIRoJL8F1LE9bf+7QCcP2QGChILGXmCK
+         f1ME4cb7jXo1kCERrTE0SP5iah69RcH5O/+dlqeB+1GCrtaqS//BJpetUk2EWFUqYKPw
+         bdZEEogjn9dGa8NxxygHPhsWtTQVbxzQL2BC2nOIq7NPloPMrcTKbJ1tVVBXC5dzmZGI
+         Cn3h6xNb5rSb41r5QIp3iD5/+MiK2AE8mTg+XfvT113FvWr5ICjoo4V183Mv/4JEqdBE
+         ThLBa2SHc4YJFVXkNQlTwZGdP6jGbFqPAgQ6h8jZKLHmL9oZp+Fu8nAFYS74kNRQAhDb
+         7jzQ==
+X-Gm-Message-State: AC+VfDx/qfqiNynHuhUQ58FxZ34E1iGbRsEAbGs0tCMeWkHqdvywAgKi
+	a8zxhttbudhPLPDFco296pOS2GISrWyQAuue
+X-Google-Smtp-Source: ACHHUZ4/7Gnx+vrTRGOem+axrDl8UUV+MXMaOUzpnZsGtCHSTKSLUEFwVD3K9kFHnLAUnPrMCG0plA==
+X-Received: by 2002:a5d:6e0c:0:b0:2fd:1a81:6b0e with SMTP id h12-20020a5d6e0c000000b002fd1a816b0emr10619267wrz.33.1683658638046;
+        Tue, 09 May 2023 11:57:18 -0700 (PDT)
+Received: from og-worker-dev-01.infra.foundries.io.net (51-159-19-113.rev.poneytelecom.eu. [51.159.19.113])
+        by smtp.gmail.com with ESMTPSA id k17-20020adfe3d1000000b00301a351a8d6sm15248310wrm.84.2023.05.09.11.57.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 May 2023 11:57:17 -0700 (PDT)
 From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Tue, 9 May 2023 19:43:26 +0100
-Message-ID: <CANPvuRk1=MGv-h-kNkiB9pG9E6XQ+3kx-ZKX6_+0LZ+stt-PAQ@mail.gmail.com>
-Subject: Re: [yocto] [meta-security][PATCH 0/2] Drop a kernel patch and a
- kernel config option
-To: Stefan Berger <stefanb@linux.ibm.com>
-Cc: yocto@lists.yoctoproject.org, akuster808@gmail.com
-Content-Type: multipart/alternative; boundary="000000000000202c0505fb4722bb"
+X-Google-Original-From: Jose Quaresma <jose.quaresma@foundries.io>
+To: yocto@lists.yoctoproject.org
+Cc: stefanb@linux.ibm.com,
+	Jose Quaresma <jose.quaresma@foundries.io>
+Subject: [meta-security][PATCH 3/8] Revert "integrity: Update the README for IMA support"
+Date: Tue,  9 May 2023 18:56:26 +0000
+Message-Id: <20230509185631.3182570-3-jose.quaresma@foundries.io>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230509185631.3182570-1-jose.quaresma@foundries.io>
+References: <20230509185631.3182570-1-jose.quaresma@foundries.io>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 18:43:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59945
+ <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 18:57:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59948
 
---000000000000202c0505fb4722bb
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This reverts commit b9abf0e09bfea8f08cc7f2d68998f014abba5b3b.
 
-Stefan Berger <stefanb@linux.ibm.com> escreveu no dia ter=C3=A7a, 9/05/2023=
- =C3=A0(s)
-19:19:
+The full patchset are overriding the do_configure task and also added a kernel patch
+on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is included
+in every recipe that follows the pattern pattern starting by linux- (recipes-kernel/linux/linux-%.bbappend).
+So the patch fails in some recipes and also do_configure task doesn't make sense.
+This breaks many recipes like linux-firmware and maybe others.
 
->
->
-> On 5/9/23 14:11, Jose Quaresma wrote:
-> > Hi Stefan, Stefan Berger <stefanb@ linux. ibm. com> escreveu no dia
-> ter=C3=A7a, 9/05/2023 =C3=A0(s) 18: 55: This PR removes a kernel patch re=
-lated to
-> overlayfs and IMA appraisal file change notifictions and a squashfs xattr
-> kernel config option.
-> > ZjQcmQRYFpfptBannerStart
-> > This Message Is From an External Sender
-> > This message came from outside your organization.
-> > ZjQcmQRYFpfptBannerEnd
-> > Hi Stefan,
-> >
-> > Stefan Berger <stefanb@linux.ibm.com <mailto:stefanb@linux.ibm.com>>
-> escreveu no dia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:55:
-> >
-> >     This PR removes a kernel patch related to overlayfs and IMA
-> appraisal file change
-> >     notifictions and a squashfs xattr kernel config option.
-> >
-> >         Stefan
-> >
-> >     Stefan Berger (2):
-> >        linux: overlayfs: Drop kernel patch resolving a file change
-> >          notification issue
-> >        ima: Drop kernel config option CONFIG_SQUASHFS_XATTR=3Dy from
-> ima.cfg
-> >
-> >       ...Increment-iversion-upon-file-changes.patch | 42
-> -------------------
-> >       .../recipes-kernel/linux/linux/ima.cfg        |  1 -
-> >       .../recipes-kernel/linux/linux_ima.inc        |  1 -
-> >
-> > CONFIG_SYSTEM_TRUSTED_KEYS=3D
-> > Unfortunately this is not enough because in the full patchset you are
-> overriding the do_configure task
-> > on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is
-> included in every recipe that follies the
-> > pattern starting by linux- (recipes-kernel/linux/linux-%.bbappend).
->
-> You are referring tho this here?
->
-> do_configure() {
->      sed -i
-> "s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CONFIG_SYSTEM_TRUSTED_KEYS=3D\"${IMA_=
-EVM_ROOT_CA}\"|"
-> .config
-> }
->
-> You are saying that this deactivates some other do_configure's ? If this
-> is the case, what would be the right syntax to fix it?
->
+Signed-off-by: Jose Quaresma <jose.quaresma@foundries.io>
+---
+ meta-integrity/README.md | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
 
-Yes, this is the problem. The right fix IMHO is reverting because we can't
-assume that the .config it's always there
-on the bitbake build directory and this only happens when building the
-kernel.
+diff --git a/meta-integrity/README.md b/meta-integrity/README.md
+index 1a37280..816b40d 100644
+--- a/meta-integrity/README.md
++++ b/meta-integrity/README.md
+@@ -76,7 +76,7 @@ other layers needed. e.g.:
+ 
+ It has some dependencies on a suitable BSP; in particular the kernel
+ must have a recent enough IMA/EVM subsystem. The layer was tested with
+-Linux 6.1 and uses some features (like loading X509 certificates
++Linux 3.19 and uses some features (like loading X509 certificates
+ directly from the kernel) which were added in that release. Your
+ mileage may vary with older kernels.
+ 
+@@ -89,17 +89,10 @@ Adding the layer only enables IMA (see below regarding EVM) during
+ compilation of the Linux kernel. To also activate it when building
+ the image, enable image signing in the local.conf like this:
+ 
+-    DISTRO_FEATURES:append = " integrity ima"
+-
+     IMAGE_CLASSES += "ima-evm-rootfs"
+-
+     IMA_EVM_KEY_DIR = "${INTEGRITY_BASE}/data/debug-keys"
+     IMA_EVM_PRIVKEY = "${IMA_EVM_KEY_DIR}/privkey_ima.pem"
+     IMA_EVM_X509 = "${IMA_EVM_KEY_DIR}/x509_ima.der"
+-    IMA_EVM_ROOT_CA = "${IMA_EVM_KEY_DIR}/ima-local-ca.pem"
+-
+-    # The following policy enforces IMA & EVM signatures
+-    IMA_EVM_POLICY = "${INTEGRITY_BASE}/recipes-security/ima_policy_appraise_all/files/ima_policy_appraise_all"
+ 
+ This uses the default keys provided in the "data" directory of the layer.
+ Because everyone has access to these private keys, such an image
+@@ -120,7 +113,10 @@ for that are included in the layer. This is also how the
+     cd $IMA_EVM_KEY_DIR
+     # In that shell, create the keys. Several options exist:
+ 
+-    # 1. Keys signed by a new CA.
++    # 1. Self-signed keys.
++    $INTEGRITY_BASE/scripts/ima-gen-self-signed.sh
++
++    # 2. Keys signed by a new CA.
+     # When asked for a PEM passphrase, that will be for the root CA.
+     # Signing images then will not require entering that passphrase,
+     # only creating new certificates does. Most likely the default
+@@ -129,11 +125,13 @@ for that are included in the layer. This is also how the
+     # $INTEGRITY_BASE/scripts/ima-gen-local-ca.sh
+     # $INTEGRITY_BASE/scripts/ima-gen-CA-signed.sh
+ 
+-    # 2. Keys signed by an existing CA.
++    # 3. Keys signed by an existing CA.
+     # $INTEGRITY_BASE/scripts/ima-gen-CA-signed.sh <CA.pem> <CA.priv>
+     exit
+ 
+-The ``ima-gen-local-ca.sh`` and ``ima-gen.sh`` scripts create a root CA
++When using ``ima-self-signed.sh`` as described above, self-signed keys
++are created. Alternatively, one can also use keys signed by a CA.  The
++``ima-gen-local-ca.sh`` and ``ima-gen.sh`` scripts create a root CA
+ and sign the signing keys with it. The ``ima-evm-rootfs.bbclass`` then
+ supports adding tha CA's public key to the kernel's system keyring by
+ compiling it directly into the kernel. Because it is unknown whether
+-- 
+2.34.1
 
-Another no less significant side effect is that this change is also applied
-to a wide range of recipes,
-anyone starting with the name linux-*.bb.
-
-So the full patch set should be reverted in my opinion and be more tested
-locally, building for example
-some recipe that respects the pattern linux-*.bb and also other kernels and
-re-submitted again.
-
-Jose
-
-
->
-> It's a no-op on a .config that does not contain the
-> CONFIG_SYSTEM_TRUSTED_KEYS=3D option already.=3D
->
->     Stefan
->
-> >
-> > This breaks many recipes like linux-firmware and maybe others.
-> > The root cause of the issue is now on f4f7624d2e but because this patch
-> is too evasive, maybe everything has to be reversed.
-> > I am now building with the full patchset revert and so far the build is
-> looking good.
->
->
-> >
-> > Jose
-> >
-> >       3 files changed, 44 deletions(-)
-> >       delete mode 100644
-> meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upo=
-n-file-changes.patch
-> >
-> >     --
-> >     2.34.1
-> >
-> >
-> >
-> > --
-> > Best regards,
-> >
-> > Jos=C3=A9 Quaresma
-> >
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#59940):
-> https://lists.yoctoproject.org/g/yocto/message/59940
-> > Mute This Topic: https://lists.yoctoproject.org/mt/98789504/1792208
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> stefanb@linux.ibm.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
->
-
-
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---000000000000202c0505fb4722bb
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">Stefan Berger &lt;<a href=3D"mailto:s=
-tefanb@linux.ibm.com">stefanb@linux.ibm.com</a>&gt; escreveu no dia ter=C3=
-=A7a, 9/05/2023 =C3=A0(s) 19:19:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><br>
-<br>
-On 5/9/23 14:11, Jose Quaresma wrote:<br>
-&gt; Hi Stefan, Stefan Berger &lt;stefanb@=E2=80=8Alinux.=E2=80=8Aibm.=E2=
-=80=8Acom&gt; escreveu no dia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:=E2=80=8A5=
-5: This PR removes a kernel patch related to overlayfs and IMA appraisal fi=
-le change notifictions and a squashfs xattr kernel config option.<br>
-&gt; ZjQcmQRYFpfptBannerStart<br>
-&gt; This Message Is From an External Sender<br>
-&gt; This message came from outside your organization.<br>
-&gt; ZjQcmQRYFpfptBannerEnd<br>
-&gt; Hi Stefan,<br>
-&gt; <br>
-&gt; Stefan Berger &lt;<a href=3D"mailto:stefanb@linux.ibm.com" target=3D"_=
-blank">stefanb@linux.ibm.com</a> &lt;mailto:<a href=3D"mailto:stefanb@linux=
-.ibm.com" target=3D"_blank">stefanb@linux.ibm.com</a>&gt;&gt; escreveu no d=
-ia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:55:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0This PR removes a kernel patch related to overlayfs=
- and IMA appraisal file change<br>
-&gt;=C2=A0 =C2=A0 =C2=A0notifictions and a squashfs xattr kernel config opt=
-ion.<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Stefan<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Stefan Berger (2):<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 linux: overlayfs: Drop kernel patch resolvi=
-ng a file change<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 notification issue<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 ima: Drop kernel config option CONFIG_SQUAS=
-HFS_XATTR=3Dy from ima.cfg<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0...Increment-iversion-upon-file-changes.patc=
-h | 42 -------------------<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.../recipes-kernel/linux/linux/ima.cfg=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 -<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.../recipes-kernel/linux/linux_ima.inc=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 -<br>
-&gt; <br>
-&gt; CONFIG_SYSTEM_TRUSTED_KEYS=3D<br>
-&gt; Unfortunately=C2=A0this is not enough=C2=A0because in the full patchse=
-t you are overriding the do_configure task<br>
-&gt; on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is =
-included in every recipe that follies=C2=A0the<br>
-&gt; pattern starting by linux- (recipes-kernel/linux/linux-%.bbappend).<br=
->
-<br>
-You are referring tho this here?<br>
-<br>
-do_configure() {<br>
-=C2=A0 =C2=A0 =C2=A0sed -i &quot;s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CONFIG_=
-SYSTEM_TRUSTED_KEYS=3D\&quot;${IMA_EVM_ROOT_CA}\&quot;|&quot; .config<br>
-}<br>
-<br>
-You are saying that this deactivates some other do_configure&#39;s ? If thi=
-s is the case, what would be the right syntax to fix it?<br></blockquote><d=
-iv><br></div><div>Yes, this is the problem. The right fix IMHO is reverting=
- because we can&#39;t assume that the .config=C2=A0it&#39;s always there</d=
-iv><div>on the bitbake build directory=C2=A0and this only happens when buil=
-ding=C2=A0the kernel.</div><div><br></div><div>Another no less significant =
-side effect is that this change is also applied to a wide range of recipes,=
-</div><div>anyone starting with the name linux-*.bb.</div><div><br></div><d=
-iv>So the full patch set should be reverted in my opinion and be more teste=
-d locally, building for example</div><div>some recipe that respects the pat=
-tern linux-*.bb and also other kernels and re-submitted=C2=A0again.</div><d=
-iv><br></div><div>Jose</div><div><br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">
-<br>
-<br>
-It&#39;s a no-op on a .config that does not contain the CONFIG_SYSTEM_TRUST=
-ED_KEYS=3D option already.=3D<br>
-<br>
-=C2=A0 =C2=A0 Stefan<br>
-<br>
-&gt; <br>
-&gt; This breaks=C2=A0many recipes like=C2=A0linux-firmware and maybe other=
-s.<br>
-&gt; The root cause of the issue is now on=C2=A0f4f7624d2e but because this=
- patch is too evasive, maybe everything has to be reversed.<br>
-&gt; I am now building with the full patchset=C2=A0revert and so far the bu=
-ild is looking good.<br>
-<br>
-<br>
-&gt; <br>
-&gt; Jose<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A03 files changed, 44 deletions(-)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0delete mode 100644 meta-integrity/recipes-ke=
-rnel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0-- <br>
-&gt;=C2=A0 =C2=A0 =C2=A02.34.1<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; -- <br>
-&gt; Best regards,<br>
-&gt; <br>
-&gt; Jos=C3=A9 Quaresma<br>
-&gt; <br>
-&gt; <br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#59940): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/59940" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/59940</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/98789504=
-/1792208" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
-rg/mt/98789504/1792208</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:stefanb@linux.ibm.com" target=3D"_blank">stef=
-anb@linux.ibm.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; <br>
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
-div>
-
---000000000000202c0505fb4722bb--
 
