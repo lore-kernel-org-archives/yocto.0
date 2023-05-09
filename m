@@ -2,161 +2,126 @@ Return-Path: <stefanb@linux.ibm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5581C7EE24
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E02ABC7EE26
 	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 13:31:12 +0000 (UTC)
 Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
- by mx.groups.io with SMTP id smtpd.web10.32533.1683639065578851115
+ by mx.groups.io with SMTP id smtpd.web10.32532.1683639063939284718
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 May 2023 06:31:05 -0700
+ Tue, 09 May 2023 06:31:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibm.com header.s=pp1 header.b=ElFln3HD;
+ dkim=pass header.i=@ibm.com header.s=pp1 header.b=RW2mAqd9;
  spf=pass (domain: linux.ibm.com, ip: 148.163.158.5, mailfrom: stefanb@linux.ibm.com)
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349DADxS017578
-	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 13:31:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : content-transfer-encoding
- : mime-version; s=pp1; bh=88122QIG8C9Qwn4xdL0q5rJxo6SwsY7+7zwanQE70rI=;
- b=ElFln3HDZQu+z6h6X86xVuBREcoDfRBhth0vUnzA2oLSEg3b3ZRnVWXC64nxNLOcxZ1N
- cHDGw27LuDXJgaxrFI2EhB7yziZ1DNY3qQlAAFlzu+p55XUuxgWPTBN7oUYIXrBZg69s
- LdqgpiSPyYHBVAuwRcjuzsa61MRQBEXxelWqvyfzjz4A+B5+4GS2xak6B2tu2A0CAxA5
- ZudDdn31A/c//5ZcEvhO5Fg0M7KjGRrM+qgoBJ4QhVVHdAzuwl5kxR9uiDDmxKHpI60e
- t5XwCMce1a33gbBrR1jmbRcF4K+2+dXEslNxbq23A1beNwAAyzcDePFc3ZOFMgis0sqA qg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfnn4k596-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 13:31:03 +0000
-Received: from m0353725.ppops.net (m0353725.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 349DKXaQ027240
+Received: from pps.filterd (m0353724.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349DHIDh003050
 	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 13:31:03 GMT
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfnn4k58b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 May 2023 13:31:03 +0000
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-	by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 349DClHh032601;
-	Tue, 9 May 2023 13:31:02 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([9.208.130.97])
-	by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3qf7s6mg41-1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding; s=pp1;
+ bh=fAeN74BRvp/a7hkOQyVdXqp+OG/BP1V/YJr3VX/5itc=;
+ b=RW2mAqd9Vlvu5s5OQqNuBsmnANnKVeWBTzqpehBnmyQUZRrFVwD0JI9SvBZkO4rTxymp
+ EZ0rJbWo4Eu4x/dOkqXFj/wrkfzWOFaJEICUAaJwGfDoOAP46U53UlLV2ILY5ly0fiZ7
+ /wqORYTehULgTDwvPzI23KjnD3i6ijQ1at/gkG5d+FCb9vvJI+dJQ3mnvIDK2hYv8lnL
+ /dVoJoalx2RK3f7hBzGH3WnFf7uj6uBsvg5a5hjbBCXneQUPEybf+0xtmbWX1LKvC812
+ FZKibNNax2RGXdur37SresdTE+AIj6xxMUe9sivGwvSU6pmrqIxU4mQJ2mOYezZ3D04R Sw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfpa62414-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 13:31:02 +0000
+Received: from m0353724.ppops.net (m0353724.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 349DNTbv029926
+	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 13:31:02 GMT
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfpa6240p-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Tue, 09 May 2023 13:31:02 +0000
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+	by ppma04wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 349CooC4031532;
+	Tue, 9 May 2023 13:31:01 GMT
+Received: from smtprelay03.wdc07v.mail.ibm.com ([9.208.129.113])
+	by ppma04wdc.us.ibm.com (PPS) with ESMTPS id 3qf7dkbntm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 May 2023 13:31:01 +0000
 Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 349DV0hP37356002
+	by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 349DUxPB62325236
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 9 May 2023 13:31:00 GMT
+	Tue, 9 May 2023 13:30:59 GMT
 Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id BCEB65805D;
-	Tue,  9 May 2023 13:31:00 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 7F3DE58064;
+	Tue,  9 May 2023 13:30:59 +0000 (GMT)
 Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 7193858058;
-	Tue,  9 May 2023 13:31:00 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 349B158061;
+	Tue,  9 May 2023 13:30:59 +0000 (GMT)
 Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
 	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Tue,  9 May 2023 13:31:00 +0000 (GMT)
+	Tue,  9 May 2023 13:30:59 +0000 (GMT)
 From: Stefan Berger <stefanb@linux.ibm.com>
 To: yocto@lists.yoctoproject.org
 Cc: akuster808@gmail.com, Stefan Berger <stefanb@linux.ibm.com>
-Subject: [meta-security][PATCH v2 7/8] linux: overlayfs: Add kernel patch resolving a file change notification issue
-Date: Tue,  9 May 2023 09:30:52 -0400
-Message-Id: <20230509133053.1032476-8-stefanb@linux.ibm.com>
+Subject: [meta-security][PATCH v2 4/8] ima: Rename IMA_EVM_POLICY_SYSTEMD to IMA_EVM_POLICY
+Date: Tue,  9 May 2023 09:30:49 -0400
+Message-Id: <20230509133053.1032476-5-stefanb@linux.ibm.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230509133053.1032476-1-stefanb@linux.ibm.com>
 References: <20230509133053.1032476-1-stefanb@linux.ibm.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 3UAElN8sxrvMh4yFwpqyMAqavtyEqufZ
-X-Proofpoint-ORIG-GUID: YZnLjleI2cSyMlXCigFPotjcinWFedbT
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: fs4dRI4A8EgNJrGK7c_tU9JVU24clN1w
+X-Proofpoint-ORIG-GUID: hGGHpZR-4ggSpiLGSScnxGQtl9199TTH
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-05-09_08,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- mlxlogscore=999 mlxscore=0 adultscore=0 priorityscore=1501 spamscore=0
- phishscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ clxscore=1015 malwarescore=0 bulkscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 mlxscore=0 impostorscore=0 spamscore=0
  classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
  definitions=main-2305090106
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 13:31:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59923
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59920
 
-Add a temporary patch that resolves a file change notification issue
-with overlayfs where IMA did not become aware of the file changes
-since the 'lower' inode's i_version had not changed. The issue will be
-resolved in later kernels with the following patch that builds on
-newly addd feature (support for STATX_CHANGE_COOKIE) in v6.3-rc1:
-
-https://lore.kernel.org/linux-integrity/20230418-engste-gastwirtschaft-601fb389bba5@brauner/T/#m3bf84296fe9e6499abb6e3191693948add2ff459
+The IMA policy will be specified using the IMA_EVM_POLICY variable since
+systemd will not be involved in loading the policy but the init script will
+load it.
 
 Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
 ---
- ...Increment-iversion-upon-file-changes.patch | 42 +++++++++++++++++++
- .../recipes-kernel/linux/linux_ima.inc        |  1 +
- 2 files changed, 43 insertions(+)
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
+ meta-integrity/README.md                      | 2 +-
+ meta-integrity/classes/ima-evm-rootfs.bbclass | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch b/meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
-new file mode 100644
-index 0000000..d2b5c28
---- /dev/null
-+++ b/meta-integrity/recipes-kernel/linux/linux/0001-ovl-Increment-iversion-upon-file-changes.patch
-@@ -0,0 +1,42 @@
-+From e9ed62e8d1d3eee7ffe862d9812c5320d3b9bd88 Mon Sep 17 00:00:00 2001
-+From: Stefan Berger <stefanb@linux.ibm.com>
-+Date: Thu, 6 Apr 2023 11:27:29 -0400
-+Subject: [PATCH] ovl: Increment iversion upon file changes
-+
-+This is a temporary patch for kernels that do not implement
-+STATX_CHANGE_COOKIE (<= 6.2). The successor patch will be this one:
-+
-+https://lore.kernel.org/linux-integrity/20230418-engste-gastwirtschaft-601fb389bba5@brauner/T/#m3bf84296fe9e6499abb6e3191693948add2ff459
-+
-+Increment the lower inode's iversion for IMA to be able to recognize
-+changes to the file.
-+
-+Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-+---
-+ fs/overlayfs/file.c | 3 +++
-+ 1 file changed, 3 insertions(+)
-+
-+diff --git a/fs/overlayfs/file.c b/fs/overlayfs/file.c
-+index 6011f955436b..1dfe5e7bfe1c 100644
-+--- a/fs/overlayfs/file.c
-++++ b/fs/overlayfs/file.c
-+@@ -13,6 +13,7 @@
-+ #include <linux/security.h>
-+ #include <linux/mm.h>
-+ #include <linux/fs.h>
-++#include <linux/iversion.h>
-+ #include "overlayfs.h"
-+ 
-+ struct ovl_aio_req {
-+@@ -408,6 +409,8 @@ static ssize_t ovl_write_iter(struct kiocb *iocb, struct iov_iter *iter)
-+ 		if (ret != -EIOCBQUEUED)
-+ 			ovl_aio_cleanup_handler(aio_req);
-+ 	}
-++	if (ret > 0)
-++		inode_maybe_inc_iversion(inode, false);
-+ out:
-+ 	revert_creds(old_cred);
-+ out_fdput:
-+-- 
-+2.34.1
-+
-diff --git a/meta-integrity/recipes-kernel/linux/linux_ima.inc b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-index 0b6f530..9d48e5c 100644
---- a/meta-integrity/recipes-kernel/linux/linux_ima.inc
-+++ b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-@@ -2,6 +2,7 @@ FILESEXTRAPATHS:append := "${THISDIR}/linux:"
+diff --git a/meta-integrity/README.md b/meta-integrity/README.md
+index eae1c57..816b40d 100644
+--- a/meta-integrity/README.md
++++ b/meta-integrity/README.md
+@@ -187,7 +187,7 @@ IMA policy loading became broken in systemd 2.18. The modified systemd
+ changes. To activate policy loading via systemd, place a policy file
+ in `/etc/ima/ima-policy`, for example with:
  
- SRC_URI += " \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'ima', 'file://ima.scc', '', d)} \
-+    file://0001-ovl-Increment-iversion-upon-file-changes.patch \
- "
+-    IMA_EVM_POLICY_SYSTEMD = "${INTEGRITY_BASE}/data/ima_policy_simple"
++    IMA_EVM_POLICY = "${INTEGRITY_BASE}/data/ima_policy_simple"
  
- do_configure() {
+ To check that measuring works, look at `/sys/kernel/security/ima/ascii_runtime_measurements`
+ 
+diff --git a/meta-integrity/classes/ima-evm-rootfs.bbclass b/meta-integrity/classes/ima-evm-rootfs.bbclass
+index 3cb0d07..6902d69 100644
+--- a/meta-integrity/classes/ima-evm-rootfs.bbclass
++++ b/meta-integrity/classes/ima-evm-rootfs.bbclass
+@@ -69,10 +69,10 @@ ima_evm_sign_rootfs () {
+     find ${IMA_EVM_ROOTFS_HASHED} | xargs -d "\n" --no-run-if-empty --verbose evmctl ima_hash
+ 
+     # Optionally install custom policy for loading by systemd.
+-    if [ "${IMA_EVM_POLICY_SYSTEMD}" ]; then
++    if [ "${IMA_EVM_POLICY}" ]; then
+         install -d ./${sysconfdir}/ima
+         rm -f ./${sysconfdir}/ima/ima-policy
+-        install "${IMA_EVM_POLICY_SYSTEMD}" ./${sysconfdir}/ima/ima-policy
++        install "${IMA_EVM_POLICY}" ./${sysconfdir}/ima/ima-policy
+     fi
+ }
+ 
 -- 
 2.34.1
 
