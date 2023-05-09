@@ -2,58 +2,58 @@ Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B5E32C7EE23
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4582C77B7C
 	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 18:57:24 +0000 (UTC)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
- by mx.groups.io with SMTP id smtpd.web11.41727.1683658639732073950
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.web10.41605.1683658640871461012
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 May 2023 11:57:20 -0700
+ Tue, 09 May 2023 11:57:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=T9JKZl2N;
- spf=pass (domain: gmail.com, ip: 209.85.128.48, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-3f41dceb9d1so37432005e9.1
-        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 11:57:19 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=bmitz81Q;
+ spf=pass (domain: gmail.com, ip: 209.85.221.49, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-2f27a9c7970so5939287f8f.2
+        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 11:57:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683658638; x=1686250638;
+        d=gmail.com; s=20221208; t=1683658639; x=1686250639;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZPfuueeQjltOrGx5cz9ieHeqrfdTUxpxOPuvO86POjY=;
-        b=T9JKZl2NPJLWAryoYNvSrqlOYiV4PgHMMitjpf2n2CZFOSrvCxK6n+hKl8RrdNuhlu
-         528YJfd8Syx/yGXi0vqn+oFlRSwXEEKAADu788DYlOD5p0ZKVNUIJTdxtQeyLSGOoNjk
-         xmGJItBd7QRgURACaizEbD4MwMzD/Ithjmng8RHYlJ1isXAIRNi6ifPKoFQfSvzgeTLQ
-         aIAqopjbDlWPHw5f1vNvLa5JuV0enHe0dTH8owkiWpghgLdJINYKkjwXkpOAiASLQQMe
-         +JI9AAiiCdMhL2WcNcA6g/PLZVpUPTQ5petUqo9oedlszH+i09b8XOW5XHd8PzWe6SqL
-         upmg==
+        bh=cmmLZG0R2O8LQf5Osq9NKhaw3PTPlKteoYCoXZRCc58=;
+        b=bmitz81QB0UmsGzZkTVOkSs4xtuVemmpOSofl4hOeiirCr9YF1/KRlopwA6Fb5jBb+
+         Y15R6dlxdd6kfK1reveqtk+V33zOeTwe2ZPxehJA1fj6YMSIbxvwkmlxPBaFV0O+rOWT
+         /zxEnvMRndqR6R3XRw0eaj6pJTmcdWl1rS4L2eDALxaZj6Rqg3dVzipwxB6rTNEKz3RF
+         hzf9gvR9DT5+iX41jOGA6BSgWxXlNtDnnzWXIwyujfJrv/46kDogSgjHuTzN4totZ1H6
+         XOOlzQVOEJHQqmvd7Ez+ayWMXVFrHRWY2+s/MpCDxsNXQjHLpp93U7LoLKYZItMpX7Gs
+         fq5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683658638; x=1686250638;
+        d=1e100.net; s=20221208; t=1683658639; x=1686250639;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZPfuueeQjltOrGx5cz9ieHeqrfdTUxpxOPuvO86POjY=;
-        b=YqPngJLobv6pIBtep19h5Al1W7jilpDNRRTIRoJL8F1LE9bf+7QCcP2QGChILGXmCK
-         f1ME4cb7jXo1kCERrTE0SP5iah69RcH5O/+dlqeB+1GCrtaqS//BJpetUk2EWFUqYKPw
-         bdZEEogjn9dGa8NxxygHPhsWtTQVbxzQL2BC2nOIq7NPloPMrcTKbJ1tVVBXC5dzmZGI
-         Cn3h6xNb5rSb41r5QIp3iD5/+MiK2AE8mTg+XfvT113FvWr5ICjoo4V183Mv/4JEqdBE
-         ThLBa2SHc4YJFVXkNQlTwZGdP6jGbFqPAgQ6h8jZKLHmL9oZp+Fu8nAFYS74kNRQAhDb
-         7jzQ==
-X-Gm-Message-State: AC+VfDx/qfqiNynHuhUQ58FxZ34E1iGbRsEAbGs0tCMeWkHqdvywAgKi
-	a8zxhttbudhPLPDFco296pOS2GISrWyQAuue
-X-Google-Smtp-Source: ACHHUZ4/7Gnx+vrTRGOem+axrDl8UUV+MXMaOUzpnZsGtCHSTKSLUEFwVD3K9kFHnLAUnPrMCG0plA==
-X-Received: by 2002:a5d:6e0c:0:b0:2fd:1a81:6b0e with SMTP id h12-20020a5d6e0c000000b002fd1a816b0emr10619267wrz.33.1683658638046;
+        bh=cmmLZG0R2O8LQf5Osq9NKhaw3PTPlKteoYCoXZRCc58=;
+        b=BFBiZ0pbLnHlKp0+VbzdSAZIJksTPAp8arKkEZE4p6qaEsHmhPdWop5UMcUzpJsIHu
+         Y7ljdbypi1IeHASi6SdV4Kd1XhpeyQ761tiBgQQ5JTe1vl5MUqbyZTWcTwqLVW9OjLdt
+         dHJVv1G1NetPJC03RNu1gmiHVHYGehS+AxW9/Brmne949tPSypWZVCEOUA2bhIAUWlS+
+         eokckKFl7dq6CyAjE3uePQJCyUMIpkTkY+FZKx23RW8u4W3+zmZRb/cKhQksRH4ry+4c
+         6dMRX8I1vzZclZuI4qNR7TZbz/mC6yynrKKlc0WnX4YJ2XmP4ZdRJC3HSX+lzWBLWZlP
+         /+Xg==
+X-Gm-Message-State: AC+VfDyGGEOlWNluGEER/isRMdndFGq9YkuMcbL8MLhE18pcCIgwNCXY
+	vYcBpFpyq1L9ewxzbnRTCi6sTnXhIb0WOzMp
+X-Google-Smtp-Source: ACHHUZ7QWR/Bx6LarN+h3HCxeOLXIiqt8bA75I2evTZAokrBJN8u8C6fCeUwGRp7rSk9I09lNArREQ==
+X-Received: by 2002:a5d:51c3:0:b0:2f9:4fe9:74bb with SMTP id n3-20020a5d51c3000000b002f94fe974bbmr9588380wrv.40.1683658638809;
         Tue, 09 May 2023 11:57:18 -0700 (PDT)
 Received: from og-worker-dev-01.infra.foundries.io.net (51-159-19-113.rev.poneytelecom.eu. [51.159.19.113])
-        by smtp.gmail.com with ESMTPSA id k17-20020adfe3d1000000b00301a351a8d6sm15248310wrm.84.2023.05.09.11.57.17
+        by smtp.gmail.com with ESMTPSA id k17-20020adfe3d1000000b00301a351a8d6sm15248310wrm.84.2023.05.09.11.57.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 May 2023 11:57:17 -0700 (PDT)
+        Tue, 09 May 2023 11:57:18 -0700 (PDT)
 From: Jose Quaresma <quaresma.jose@gmail.com>
 X-Google-Original-From: Jose Quaresma <jose.quaresma@foundries.io>
 To: yocto@lists.yoctoproject.org
 Cc: stefanb@linux.ibm.com,
 	Jose Quaresma <jose.quaresma@foundries.io>
-Subject: [meta-security][PATCH 3/8] Revert "integrity: Update the README for IMA support"
-Date: Tue,  9 May 2023 18:56:26 +0000
-Message-Id: <20230509185631.3182570-3-jose.quaresma@foundries.io>
+Subject: [meta-security][PATCH 4/8] Revert "ima: Sign all executables and the ima-policy in the root filesystem"
+Date: Tue,  9 May 2023 18:56:27 +0000
+Message-Id: <20230509185631.3182570-4-jose.quaresma@foundries.io>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230509185631.3182570-1-jose.quaresma@foundries.io>
 References: <20230509185631.3182570-1-jose.quaresma@foundries.io>
@@ -63,9 +63,9 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 18:57:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59948
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59949
 
-This reverts commit b9abf0e09bfea8f08cc7f2d68998f014abba5b3b.
+This reverts commit 76f1f539a678725211283294c8b6735186055694.
 
 The full patchset are overriding the do_configure task and also added a kernel patch
 on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is included
@@ -75,68 +75,51 @@ This breaks many recipes like linux-firmware and maybe others.
 
 Signed-off-by: Jose Quaresma <jose.quaresma@foundries.io>
 ---
- meta-integrity/README.md | 20 +++++++++-----------
- 1 file changed, 9 insertions(+), 11 deletions(-)
+ meta-integrity/classes/ima-evm-rootfs.bbclass | 25 ++++---------------
+ 1 file changed, 5 insertions(+), 20 deletions(-)
 
-diff --git a/meta-integrity/README.md b/meta-integrity/README.md
-index 1a37280..816b40d 100644
---- a/meta-integrity/README.md
-+++ b/meta-integrity/README.md
-@@ -76,7 +76,7 @@ other layers needed. e.g.:
+diff --git a/meta-integrity/classes/ima-evm-rootfs.bbclass b/meta-integrity/classes/ima-evm-rootfs.bbclass
+index 98c4bc1..6902d69 100644
+--- a/meta-integrity/classes/ima-evm-rootfs.bbclass
++++ b/meta-integrity/classes/ima-evm-rootfs.bbclass
+@@ -62,32 +62,17 @@ ima_evm_sign_rootfs () {
+        perl -pi -e 's;(\S+)(\s+)(${@"|".join((d.getVar("IMA_EVM_ROOTFS_IVERSION", True) or "no-such-mount-point").split())})(\s+)(\S+)(\s+)(\S+);\1\2\3\4\5\6\7,iversion;; s/(,iversion)+/,iversion/;' etc/fstab
+     fi
  
- It has some dependencies on a suitable BSP; in particular the kernel
- must have a recent enough IMA/EVM subsystem. The layer was tested with
--Linux 6.1 and uses some features (like loading X509 certificates
-+Linux 3.19 and uses some features (like loading X509 certificates
- directly from the kernel) which were added in that release. Your
- mileage may vary with older kernels.
- 
-@@ -89,17 +89,10 @@ Adding the layer only enables IMA (see below regarding EVM) during
- compilation of the Linux kernel. To also activate it when building
- the image, enable image signing in the local.conf like this:
- 
--    DISTRO_FEATURES:append = " integrity ima"
+-    # Detect 32bit target to pass --m32 to evmctl by looking at libc
+-    tmp="$(file "${IMAGE_ROOTFS}/lib/libc.so.6" | grep -o 'ELF .*-bit')"
+-    if [ "${tmp}" = "ELF 32-bit" ]; then
+-        evmctl_param="--m32"
+-    elif [ "${tmp}" = "ELF 64-bit" ]; then
+-        evmctl_param=""
+-    else
+-        bberror "Unknown target architecture bitness: '${tmp}'" >&2
+-        exit 1
+-    fi
 -
-     IMAGE_CLASSES += "ima-evm-rootfs"
+-    bbnote "IMA/EVM: Signing root filesystem at ${IMAGE_ROOTFS} with key ${IMA_EVM_PRIVKEY}"
+-    evmctl sign --imasig ${evmctl_param} --portable -a sha256 --key ${IMA_EVM_PRIVKEY} -r "${IMAGE_ROOTFS}"
 -
-     IMA_EVM_KEY_DIR = "${INTEGRITY_BASE}/data/debug-keys"
-     IMA_EVM_PRIVKEY = "${IMA_EVM_KEY_DIR}/privkey_ima.pem"
-     IMA_EVM_X509 = "${IMA_EVM_KEY_DIR}/x509_ima.der"
--    IMA_EVM_ROOT_CA = "${IMA_EVM_KEY_DIR}/ima-local-ca.pem"
+-    # check signing key and signature verification key
+-    evmctl ima_verify ${evmctl_param} --key "${IMA_EVM_X509}" "${IMAGE_ROOTFS}/lib/libc.so.6" || exit 1
+-    evmctl verify     ${evmctl_param} --key "${IMA_EVM_X509}" "${IMAGE_ROOTFS}/lib/libc.so.6" || exit 1
++    # Sign file with private IMA key. EVM not supported at the moment.
++    bbnote "IMA/EVM: signing files 'find ${IMA_EVM_ROOTFS_SIGNED}' with private key '${IMA_EVM_PRIVKEY}'"
++    find ${IMA_EVM_ROOTFS_SIGNED} | xargs -d "\n" --no-run-if-empty --verbose evmctl ima_sign --key ${IMA_EVM_PRIVKEY}
++    bbnote "IMA/EVM: hashing files 'find ${IMA_EVM_ROOTFS_HASHED}'"
++    find ${IMA_EVM_ROOTFS_HASHED} | xargs -d "\n" --no-run-if-empty --verbose evmctl ima_hash
+ 
+     # Optionally install custom policy for loading by systemd.
+     if [ "${IMA_EVM_POLICY}" ]; then
+         install -d ./${sysconfdir}/ima
+         rm -f ./${sysconfdir}/ima/ima-policy
+         install "${IMA_EVM_POLICY}" ./${sysconfdir}/ima/ima-policy
 -
--    # The following policy enforces IMA & EVM signatures
--    IMA_EVM_POLICY = "${INTEGRITY_BASE}/recipes-security/ima_policy_appraise_all/files/ima_policy_appraise_all"
+-        bbnote "IMA/EVM: Signing IMA policy with key ${IMA_EVM_PRIVKEY}"
+-        evmctl sign --imasig ${evmctl_param} --portable -a sha256 --key "${IMA_EVM_PRIVKEY}" "${IMAGE_ROOTFS}/etc/ima/ima-policy"
+     fi
+ }
  
- This uses the default keys provided in the "data" directory of the layer.
- Because everyone has access to these private keys, such an image
-@@ -120,7 +113,10 @@ for that are included in the layer. This is also how the
-     cd $IMA_EVM_KEY_DIR
-     # In that shell, create the keys. Several options exist:
- 
--    # 1. Keys signed by a new CA.
-+    # 1. Self-signed keys.
-+    $INTEGRITY_BASE/scripts/ima-gen-self-signed.sh
-+
-+    # 2. Keys signed by a new CA.
-     # When asked for a PEM passphrase, that will be for the root CA.
-     # Signing images then will not require entering that passphrase,
-     # only creating new certificates does. Most likely the default
-@@ -129,11 +125,13 @@ for that are included in the layer. This is also how the
-     # $INTEGRITY_BASE/scripts/ima-gen-local-ca.sh
-     # $INTEGRITY_BASE/scripts/ima-gen-CA-signed.sh
- 
--    # 2. Keys signed by an existing CA.
-+    # 3. Keys signed by an existing CA.
-     # $INTEGRITY_BASE/scripts/ima-gen-CA-signed.sh <CA.pem> <CA.priv>
-     exit
- 
--The ``ima-gen-local-ca.sh`` and ``ima-gen.sh`` scripts create a root CA
-+When using ``ima-self-signed.sh`` as described above, self-signed keys
-+are created. Alternatively, one can also use keys signed by a CA.  The
-+``ima-gen-local-ca.sh`` and ``ima-gen.sh`` scripts create a root CA
- and sign the signing keys with it. The ``ima-evm-rootfs.bbclass`` then
- supports adding tha CA's public key to the kernel's system keyring by
- compiling it directly into the kernel. Because it is unknown whether
 -- 
 2.34.1
 
