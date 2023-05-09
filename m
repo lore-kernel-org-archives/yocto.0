@@ -1,99 +1,84 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6152FC7EE22
-	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 08:52:21 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
- by mx.groups.io with SMTP id smtpd.web10.27150.1683622330856196319
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3399AC77B7C
+	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 11:05:42 +0000 (UTC)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+ by mx.groups.io with SMTP id smtpd.web10.29024.1683630336030858537
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 May 2023 01:52:11 -0700
+ Tue, 09 May 2023 04:05:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=Ts0OPiNd;
- spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: michael.opdenacker@bootlin.com)
-Received: (Authenticated sender: michael.opdenacker@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 63AACFF80A;
-	Tue,  9 May 2023 08:52:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1683622329;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fvgGYF58b1u0P5P+N9txQ5/WL486oKX6hPCwQBcgx3g=;
-	b=Ts0OPiNd82xFRJnFtUL7wz38t9WMcHXMnLLDyHZOAMV02fFQc7SqY+wuOo4O6LWi6DrTdf
-	IfvHDl+Z9U+zghQ4T676B06GVBdh3cvGom+os3AWa0zkXUyfK+2O1EhdOuh4NkAltXIMo4
-	qaZVSVY93SybmwJbOyiKsRseAX49WwB+ZYJUTxIx3ux7TWjiWYVIUaghiD7S8FMii0KmhY
-	xqxP32m4XsBkP0QkeQepcnaHcvHrxEG3NH7NQQZgnwNfc6350U7kOoXks12IQ2UG7mpO+c
-	nVK7Hwz85rZgjszmvjMrRECFCT/RQgxg/CYwuFXo/INRIuTJbFLGcfRZ28xcsQ==
-Message-ID: <694a6aa9-a847-7a09-977f-e9ab379909d4@bootlin.com>
-Date: Tue, 9 May 2023 10:52:07 +0200
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=AFD8B772;
+ spf=pass (domain: gmail.com, ip: 209.85.128.176, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-55a5a830238so52082007b3.3
+        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 04:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683630335; x=1686222335;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LcbNgn1hqVB7Me2CK2UO6xWwItLBRkpo6IEoQMXamsc=;
+        b=AFD8B772V68gQ/b9jd16cZC2RaUOW5mNF+SlQ3aQRyHQb1EDgEHNrTUr3Zt0pxCx7b
+         hKsGtVR0EgYgPhNlavdXt6uXigG70CQDvM1HClxfLpSB+szLJBoKGSI3rLgwumrjHsk9
+         Ww9ad042RLmpWUB1MXlMj7YJHjJIOSjJVT091vckTvAvzoLlkLbYMaRHSu+RZR6TkZ5C
+         pT2jdK4ZrhjM4lbY/ltn650rxxV2uc8rS4a+oRKi1kBl7Oq9YxbxsLlXpayuwT53pUdz
+         05FR7p2UDppt3LxYbDh81qSVWa6rNHhmrdTuE2sKcRHNLav7bb8yvSnpczlVz2NL9F7c
+         BErA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683630335; x=1686222335;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LcbNgn1hqVB7Me2CK2UO6xWwItLBRkpo6IEoQMXamsc=;
+        b=WIaBBohc3K3rITN48HvOktaAzG/1Rt7coROEnRksrKVNmKHexOb/8JR+3wD/0DeWbJ
+         6PI7qiwL4VtmmJteAXSmcKubAgCTN4xLPfhivDqUmUl6bOOFIWi2brtHIgQby3F8bvgK
+         mJWV/KJKR8VSZobtl+Ar0bXc+gchpoSkAwNA642x2s+eOVKBP+C1ZBGJ2Z9uPrLQR2jE
+         YDdpIsbOr2l0bYHwOQC2+JJF/4jPK/fldqPRYs8H3Rjui3+mXABWVFj0QupsYBsd7O66
+         muWd8QiiL4wvTWxIkbG/COLuvsXbPy4wLSy890RuC92pcmTYSbOCmKlpspJzSAViaEoE
+         dUhg==
+X-Gm-Message-State: AC+VfDzpSkD88Q7oBD0Jt2kWtTyElBJu4oOyIIFC5Gj8bDEv35EjKXTy
+	xpqdN1hm6lRfMQfbD94Z7RIepPvBh9g=
+X-Google-Smtp-Source: ACHHUZ78ZODX8SAx/Vkmb3hIyhQ3RIXT3Uxi7WleecAD/2Ar0klBqnZEw8sPSUhTpl8kDYUKNpsAAg==
+X-Received: by 2002:a0d:e856:0:b0:55a:6c4e:c8a1 with SMTP id r83-20020a0de856000000b0055a6c4ec8a1mr15341720ywe.39.1683630334800;
+        Tue, 09 May 2023 04:05:34 -0700 (PDT)
+Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:183a:1604:2591:7a1e])
+        by smtp.gmail.com with ESMTPSA id l4-20020a81d544000000b0055b46dac76esm3179563ywj.116.2023.05.09.04.05.34
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 May 2023 04:05:34 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][langdale][PATCH] Revert "meta-parsec/layer.conf: Insert addpylib declaration"
+Date: Tue,  9 May 2023 07:05:34 -0400
+Message-Id: <20230509110534.12652-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
- "Valek, Andrej" <andrej.valek@siemens.com>
-Subject: Re: [yocto] [meta-security][kirkstone][PATCH v2] tpm2-tss: upgrade to
- 3.2.2 to fix CVE-2023-22745
-Content-Language: en-US
-To: "Marko, Peter" <Peter.Marko@siemens.com>
-References: <20230508145044.429707-1-peter.marko@siemens.com>
- <e3dbc417-fb92-6e48-4e4b-c42498d0be28@bootlin.com>
- <AS1PR10MB5697A909F0CA07D532C2743DFD769@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <AS1PR10MB5697A909F0CA07D532C2743DFD769@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 08:52:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59915
+ <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 11:05:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59916
 
-Hi Peter,
+This reverts commit ffd9eb59c7d35c3f9acc29be661bdcd0c6332897.
 
-Thanks for your efforts.
+Applied to wrong branch.
 
-On 09.05.23 at 10:33, Marko, Peter wrote:
-> Hi Michael,
->
-> Unfortunately, my corporate email server does not support me in this.
-> I have sent you a test email after explicitly configuring this in git, but I think it won't do anything better.
-> Last patch to yocto mailing list had to be sent by my colleague as the server has bounced it.
-> https://lists.yoctoproject.org/g/yocto/message/59488
-> Now it seems to accepts it with wrong "From:" field, not sure what has changed meanwhile.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ meta-parsec/conf/layer.conf | 2 --
+ 1 file changed, 2 deletions(-)
 
-
-Oops, that's bad if your server refuses a custom "From:" field, because 
-that's the workaround we're using.
-
-The test message you sent to me didn't have an additional "From:" field 
-at the beginning of the body, which is what git can use to get a correct 
-"Author" field.
-
->
-> Very interesting is that I have sent dozens of patches to meta-oe or oe-core without issue, just the yocto mailing list is broken for me.
-
-
-I see this. Previously, your message didn't have "via 
-lists.yoctoproject.org". It could be that your corporate server turned 
-on DMARC recently.
-
-> I'm hoping you can accept the patch also like this, otherwise I can again ask Andrej to send it for me.
-
-
-Well, Andrej seems to have the same problem too :}
-I guess that's it's more important to let you send your own patches. 
-It's just that our busy maintainer will have to manually edit the author 
-field in your commits.
-
-Cheers
-Michael.
-
+diff --git a/meta-parsec/conf/layer.conf b/meta-parsec/conf/layer.conf
+index 5451351..a748d77 100644
+--- a/meta-parsec/conf/layer.conf
++++ b/meta-parsec/conf/layer.conf
+@@ -12,5 +12,3 @@ LAYERSERIES_COMPAT_parsec-layer = "kirkstone langdale"
+ 
+ LAYERDEPENDS_parsec-layer = "core clang-layer"
+ BBLAYERS_LAYERINDEX_NAME_parsec-layer = "meta-parsec"
+-
+-addpylib ${LAYERDIR}/lib oeqa
 -- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.25.1
 
 
