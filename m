@@ -1,213 +1,158 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <stefanb@linux.ibm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D76EC7EE22
-	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 19:40:35 +0000 (UTC)
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
- by mx.groups.io with SMTP id smtpd.web10.42753.1683661230455384383
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9270C77B75
+	for <webhook@archiver.kernel.org>; Tue,  9 May 2023 20:33:28 +0000 (UTC)
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+ by mx.groups.io with SMTP id smtpd.web10.327.1683664403988999571
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 May 2023 12:40:30 -0700
+ Tue, 09 May 2023 13:33:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=HYIaBnG4;
- spf=pass (domain: gmail.com, ip: 209.85.166.50, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-76c60c88d0cso57999039f.2
-        for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 12:40:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683661229; x=1686253229;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HFmihacMDAm68EcVv13O5iUwFdGeV/9K+SUYgI6UY68=;
-        b=HYIaBnG4aQXjVtKm4mF+wUO+7p06IH0bp0zmmtNcTpuVDz+0zljm4avOrN+Pt+IZQf
-         oEAnjdZqRpLnBTJefnBKGgJGnbNmhj0WEo/DQCNr4y3FT1iYvg2HYWxk4bVuilfVW5iw
-         J06qfuNIdJzjGT7OsWHPtS6K8Lwi27g2qTnSpD83DrntcuyRK4xoWFjZy8u8yvCxdw/S
-         V3CbnwT728Odlw0P6v11JQvUho56R+H3tZO5kq/413nrEiGvn+HdAdE0L4AvtZGYg5st
-         4fkVEHh2YJL4hO9zntRc3qxOi7/8f+c/05sIyUxDht8R5/N0aRN/inZToj6i/bKNt1iv
-         NxDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683661229; x=1686253229;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HFmihacMDAm68EcVv13O5iUwFdGeV/9K+SUYgI6UY68=;
-        b=Oe8AI2Z+fwJxAOCm3MTYKbENK60Jxt7AjAtm0JXQ6SFL4vN8se+kcKbWf048ZHaq5K
-         ONUtoNbSF5UxtURRfUPwYWwcfIhAFJY20y+diJsYBhxYZo2e3SOHOh+J8fpvcrvWsHyt
-         F1ER1n6uJpvawpd7/pGWo61f5sTeiyFz/d2OQIrph9o0FsOKXxUYRGMqtXG3/FsEY5mC
-         fgUD22y8MtW3loLFZIOknMbZ598pW9EYD9Jjcf5b7m7wjcQc98sTSWjRSC5ZxdMqAn2g
-         uDBZnXOkbsJVhZNnvh56sU3CgOgS3OGl+wHjUV+WSJXk8NGGj5ZjTET7x/4n1gWGferb
-         cBXQ==
-X-Gm-Message-State: AC+VfDyLFv39ThULdDAHHFBWUU45FduVQjzwndKXzsHNYcgh9lBEQhKE
-	FBKaM5yV6Xw6lbt+jSUl7rU2pSaoTRHqnM61aTA=
-X-Google-Smtp-Source: ACHHUZ6HyvlBpYwImwwddsi2tUG+Aw7PoIu4ba/1pQYho78zkyWTMmtTEFCH5rnlEfqGfOTRpdzxqDxSleJzHwj2TSg=
-X-Received: by 2002:a92:cd47:0:b0:331:7709:3ba with SMTP id
- v7-20020a92cd47000000b00331770903bamr9935754ilq.3.1683661229489; Tue, 09 May
- 2023 12:40:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230509175457.1038298-1-stefanb@linux.ibm.com>
- <CANPvuRnZzw0Tdr=i6VzNW3wNAPnDwo6kPGmh52M0nOWmOO7OWw@mail.gmail.com>
- <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com> <CANPvuRk1=MGv-h-kNkiB9pG9E6XQ+3kx-ZKX6_+0LZ+stt-PAQ@mail.gmail.com>
-In-Reply-To: <CANPvuRk1=MGv-h-kNkiB9pG9E6XQ+3kx-ZKX6_+0LZ+stt-PAQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Tue, 9 May 2023 15:40:21 -0400
-Message-ID: <CADkTA4OOWLtAcQzdBOhO70PA7ux3m6-WQ2U1JaVmH_Xy_eDCYw@mail.gmail.com>
+ dkim=fail reason="body hash did not verify" header.i=@ibm.com header.s=pp1 header.b=OC00S7RP;
+ spf=pass (domain: linux.ibm.com, ip: 148.163.156.1, mailfrom: stefanb@linux.ibm.com)
+Received: from pps.filterd (m0353727.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 349KJW6t005064
+	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 20:33:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=ENeTDClvM0/o+VohHcMB3LEqB9uTh1++x4qam4Jcrh8=;
+ b=OC00S7RPYSUUqO0m7FDtF3E9FCpjkBH3fKfz2S1CSKdPsyTuPdpIwhvaUxnGmWiNPxPs
+ hsVD7MUVWeELyTEXSuBpOVha6NsdMRe0lPyCwgz/d+hr6BsD4Z62WryiY1DOCso45LfK
+ UIrPZyRC+vk66pQtSENWXciuo0dNTkhxpqKk9x6/Fu/Ld0q1DardYK54sUu8BHrh/zIe
+ wTVKrgBWMwT/4n3qJmltC136CG++IDFAMmRP2DX2qtGTmpNFh1MWSOiETxvwwEaDKNqE
+ fz/hx1noSzCi9K5r1NmTpV9XtmadhHL7/RiuYhjXAs1UOM7aMxbN1oheCdDa4SuYtrab Bg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfuf73kvd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 20:33:23 +0000
+Received: from m0353727.ppops.net (m0353727.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 349KX0Vs017173
+	for <yocto@lists.yoctoproject.org>; Tue, 9 May 2023 20:33:22 GMT
+Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3qfuf73ktv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 May 2023 20:33:22 +0000
+Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
+	by ppma01wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 349KFUT7014973;
+	Tue, 9 May 2023 20:33:21 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([9.208.130.100])
+	by ppma01wdc.us.ibm.com (PPS) with ESMTPS id 3qf7ptnbkw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 May 2023 20:33:21 +0000
+Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
+	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 349KXKda1114858
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 9 May 2023 20:33:20 GMT
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 235A658055;
+	Tue,  9 May 2023 20:33:20 +0000 (GMT)
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A4B8F5804B;
+	Tue,  9 May 2023 20:33:19 +0000 (GMT)
+Received: from [9.47.158.152] (unknown [9.47.158.152])
+	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Tue,  9 May 2023 20:33:19 +0000 (GMT)
+Message-ID: <dc74bbd7-6a2b-989d-3212-9894648b9fe6@linux.ibm.com>
+Date: Tue, 9 May 2023 16:33:19 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
 Subject: Re: [yocto] [meta-security][PATCH 0/2] Drop a kernel patch and a
  kernel config option
+Content-Language: en-US
 To: Jose Quaresma <quaresma.jose@gmail.com>
-Cc: Stefan Berger <stefanb@linux.ibm.com>, yocto@lists.yoctoproject.org, 
-	akuster808@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Cc: yocto@lists.yoctoproject.org, akuster808@gmail.com
+References: <20230509175457.1038298-1-stefanb@linux.ibm.com>
+ <CANPvuRnZzw0Tdr=i6VzNW3wNAPnDwo6kPGmh52M0nOWmOO7OWw@mail.gmail.com>
+ <3688fa9f-bdb2-4a99-f7d0-56683313d82c@linux.ibm.com>
+ <CANPvuRk1=MGv-h-kNkiB9pG9E6XQ+3kx-ZKX6_+0LZ+stt-PAQ@mail.gmail.com>
+From: Stefan Berger <stefanb@linux.ibm.com>
+In-Reply-To: <CANPvuRk1=MGv-h-kNkiB9pG9E6XQ+3kx-ZKX6_+0LZ+stt-PAQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: o059Dfg56NCYJwLLPcysOwf1OItX9CuD
+X-Proofpoint-ORIG-GUID: OCnDv3yzaKHdmZ15nYKAq4ofVSM6EkxP
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-09_13,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ malwarescore=0 priorityscore=1501 spamscore=0 suspectscore=0 mlxscore=0
+ clxscore=1015 mlxlogscore=999 adultscore=0 bulkscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305090169
 Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-001b2d01.pphosted.com id 349KJW6t005064
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 19:40:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59954
+ <yocto@lists.yoctoproject.org>; Tue, 09 May 2023 20:33:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59955
 
-On Tue, May 9, 2023 at 2:43=E2=80=AFPM Jose Quaresma <quaresma.jose@gmail.c=
-om> wrote:
->
->
->
-> Stefan Berger <stefanb@linux.ibm.com> escreveu no dia ter=C3=A7a, 9/05/20=
-23 =C3=A0(s) 19:19:
->>
->>
->>
->> On 5/9/23 14:11, Jose Quaresma wrote:
->> > Hi Stefan, Stefan Berger <stefanb@=E2=80=8Alinux.=E2=80=8Aibm.=E2=80=
-=8Acom> escreveu no dia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:=E2=80=8A55: Thi=
-s PR removes a kernel patch related to overlayfs and IMA appraisal file cha=
-nge notifictions and a squashfs xattr kernel config option.
->> > ZjQcmQRYFpfptBannerStart
->> > This Message Is From an External Sender
->> > This message came from outside your organization.
->> > ZjQcmQRYFpfptBannerEnd
->> > Hi Stefan,
->> >
->> > Stefan Berger <stefanb@linux.ibm.com <mailto:stefanb@linux.ibm.com>> e=
-screveu no dia ter=C3=A7a, 9/05/2023 =C3=A0(s) 18:55:
->> >
->> >     This PR removes a kernel patch related to overlayfs and IMA apprai=
-sal file change
->> >     notifictions and a squashfs xattr kernel config option.
->> >
->> >         Stefan
->> >
->> >     Stefan Berger (2):
->> >        linux: overlayfs: Drop kernel patch resolving a file change
->> >          notification issue
->> >        ima: Drop kernel config option CONFIG_SQUASHFS_XATTR=3Dy from i=
-ma.cfg
->> >
->> >       ...Increment-iversion-upon-file-changes.patch | 42 -------------=
-------
->> >       .../recipes-kernel/linux/linux/ima.cfg        |  1 -
->> >       .../recipes-kernel/linux/linux_ima.inc        |  1 -
->> >
->> > CONFIG_SYSTEM_TRUSTED_KEYS=3D
->> > Unfortunately this is not enough because in the full patchset you are =
-overriding the do_configure task
->> > on meta-integrity/recipes-kernel/linux/linux_ima.inc and this file is =
-included in every recipe that follies the
->> > pattern starting by linux- (recipes-kernel/linux/linux-%.bbappend).
->>
->> You are referring tho this here?
->>
->> do_configure() {
->>      sed -i "s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CONFIG_SYSTEM_TRUSTED_KE=
-YS=3D\"${IMA_EVM_ROOT_CA}\"|" .config
->> }
->>
->> You are saying that this deactivates some other do_configure's ? If this=
- is the case, what would be the right syntax to fix it?
->
->
-> Yes, this is the problem. The right fix IMHO is reverting because we can'=
-t assume that the .config it's always there
-> on the bitbake build directory and this only happens when building the ke=
-rnel.
->
-> Another no less significant side effect is that this change is also appli=
-ed to a wide range of recipes,
+
+
+On 5/9/23 14:43, Jose Quaresma wrote:
+
+>=20
+>     You are referring tho this here?
+>=20
+>     do_configure() {
+>      =C2=A0 =C2=A0 =C2=A0sed -i "s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CON=
+FIG_SYSTEM_TRUSTED_KEYS=3D\"${IMA_EVM_ROOT_CA}\"|" .config
+>     }
+>=20
+>     You are saying that this deactivates some other do_configure's ? If=
+ this is the case, what would be the right syntax to fix it?
+>=20
+>=20
+> Yes, this is the problem. The right fix IMHO is reverting because we ca=
+n't assume that the .config=C2=A0it's always there
+> on the bitbake build directory=C2=A0and this only happens when building=
+=C2=A0the kernel.
+>=20
+> Another no less significant side effect is that this change is also app=
+lied to a wide range of recipes,
 > anyone starting with the name linux-*.bb.
->
-> So the full patch set should be reverted in my opinion and be more tested=
- locally, building for example
-> some recipe that respects the pattern linux-*.bb and also other kernels a=
-nd re-submitted again.
 
-I had to deal with the need for a similarly broad bbappend, and both
-distro / kernel version
-conditions in meta-virtualization.
+I suppose it only included linux_ima.inc since 'integrity' was set in DIS=
+TRO_FEATURES.
 
-This isn't exactly what Stefan is looking for, but it is a starting point:
-
-https://git.yoctoproject.org/meta-virtualization/tree/recipes-kernel/linux/=
-linux-%25.bbappend
-
-Bruce
-
->
-> Jose
->
->>
->>
->> It's a no-op on a .config that does not contain the CONFIG_SYSTEM_TRUSTE=
-D_KEYS=3D option already.=3D
->>
->>     Stefan
->>
->> >
->> > This breaks many recipes like linux-firmware and maybe others.
->> > The root cause of the issue is now on f4f7624d2e but because this patc=
-h is too evasive, maybe everything has to be reversed.
->> > I am now building with the full patchset revert and so far the build i=
-s looking good.
->>
->>
->> >
->> > Jose
->> >
->> >       3 files changed, 44 deletions(-)
->> >       delete mode 100644 meta-integrity/recipes-kernel/linux/linux/000=
-1-ovl-Increment-iversion-upon-file-changes.patch
->> >
->> >     --
->> >     2.34.1
->> >
->> >
->> >
->> > --
->> > Best regards,
->> >
->> > Jos=C3=A9 Quaresma
->> >
->> >
->> >
->> >
->
->
->
-> --
-> Best regards,
->
-> Jos=C3=A9 Quaresma
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#59945): https://lists.yoctoproject.org/g/yocto/messag=
-e/59945
-> Mute This Topic: https://lists.yoctoproject.org/mt/98789504/1050810
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield=
-@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+$ cat meta-security/meta-integrity/recipes-kernel/linux/linux-%.bbappend
+require ${@bb.utils.contains_any('DISTRO_FEATURES', 'integrity ', 'linux_=
+ima.inc', '', d)}
 
 
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+I modified the linux_ima.inc to look like this here now:
+
+
+$ cat meta-security/meta-integrity/recipes-kernel/linux/linux_ima.inc
+FILESEXTRAPATHS:append :=3D "${THISDIR}/linux:"
+
+SRC_URI +=3D " \
+     ${@bb.utils.contains('DISTRO_FEATURES', 'ima', 'file://ima.scc', '',=
+ d)} \
+"
+
+do_configure:append() {
+     if [ "${@bb.utils.contains('DISTRO_FEATURES', 'ima', 'yes', '', d)}"=
+ =3D "yes" ]; then
+         sed -i "s|^CONFIG_SYSTEM_TRUSTED_KEYS=3D.*|CONFIG_SYSTEM_TRUSTED=
+_KEYS=3D\"${IMA_EVM_ROOT_CA}\"|" .config
+     fi
+}
+
+KERNEL_FEATURES:append =3D " ${@bb.utils.contains('DISTRO_FEATURES', 'mod=
+sign', ' features/ima/modsign.scc', '', d)}"
+
+inherit ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', 'kernel-modsig=
+n', '', d)}
+-------------------------------------------------------------------------=
+---------------
+
+This now filters the inclusion of ima.scc and the configure only runs und=
+er that same condition.
+
+    Stefan
 
