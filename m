@@ -1,160 +1,127 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A44F5C77B7C
-	for <webhook@archiver.kernel.org>; Thu, 11 May 2023 15:15:06 +0000 (UTC)
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
- by mx.groups.io with SMTP id smtpd.web11.62183.1683818097615531285
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34558C77B7F
+	for <webhook@archiver.kernel.org>; Thu, 11 May 2023 16:19:17 +0000 (UTC)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+ by mx.groups.io with SMTP id smtpd.web10.881.1683821956314328575
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 May 2023 08:14:58 -0700
+ Thu, 11 May 2023 09:19:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@theyoctojester-info.20221208.gappssmtp.com header.s=20221208 header.b=dQrVmtn6;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.43, mailfrom: jester@theyoctojester.info)
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-50bc070c557so16519390a12.0
-        for <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 08:14:57 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=ldpx3QgJ;
+ spf=pass (domain: gmail.com, ip: 209.85.167.173, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-39420384cc4so1704248b6e.0
+        for <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 09:19:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20221208.gappssmtp.com; s=20221208; t=1683818096; x=1686410096;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=T0UYXR+0pIMPm+YKG8jR29xoA9WlhN5BGr4bTQrwi/Q=;
-        b=dQrVmtn6Qr0BeJmTCan6xQ0FIbb1PdNYaw1m+epmlvnMCCkWL1yzekoS/U44PzPGiZ
-         x8fbKJtZrZ3h8S+WrEiXLNJEzrECevaCLOFEhJjWq9ZE3UWEUyhNeiZaYJFu3VH9j+XN
-         P02z0rGwrCmN6wlhH9nhRFOybyqI8CEM3YZULaXSgykusW9vBXfTzKykXub2/84q9n7H
-         dXarkX9S6J02EmFeEm5E94Jdu+gVHgnJVd38gD2iWtpR1PJeQitwr+7n2dxhPiu219Cp
-         KxfzIrI3TQA6yS1/CM32QRw5VCupZG7EIwAa03PlfaB0Q2du59+5KASa551Bs2LD0/M7
-         8HwA==
+        d=gmail.com; s=20221208; t=1683821955; x=1686413955;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iNz95N14yJwmlf9qYmJRhamWkEHPwk/kBkLZsEdD8ZE=;
+        b=ldpx3QgJ8kaVO1w9nFli4pEnnyyBlc0P49PecV4KRQiBMjZZhVQ37VsbYf/Ye4RqEW
+         O3z2cJ5NMw505dY4cedf9f9bJu24ajAgGBtj56DSLEBVNfEExoURHHwyFSEIcPyoTyNt
+         cpQYi/hU158fIENz2MZhBAbM18B8AJEP1j4uI5hEyR9pCIy8rsungXbnVDHWB7W6UinA
+         jEdO66c2F1tqySt+pnf+ijoIT/7X7xlVCFB+zzAfq5ryQRnmo2K0qElqIkavl1RMAstB
+         I1IP9RJ+gu8guWKWk1Yzex9psz7C1vHbhwKu1A+vXr56IrZYIJ17aT0veuSLsv/jBUza
+         pvGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683818096; x=1686410096;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T0UYXR+0pIMPm+YKG8jR29xoA9WlhN5BGr4bTQrwi/Q=;
-        b=fbrU3Zhw1iullh8c/GEDNnMRCef95OgOhtT485QV7llvSKO77J/o0Ev/UY4Z/WTWkX
-         RYkAJE71PVH0HCFLF+64fz7OuxpKUq5Pg8PEOPb/QUPPnkKHWb88BYQIG21eeZ4e+mrp
-         u2Jfxwlp9A4dNDrAaFkXM9gyU0RAUbhGEXU3qon0Pek4HbSr9KiufigTKFBbQOBWvEIG
-         +OmRiWRt3kelOLWbH5QWd8T14N4eSRMCQJR/zp6htyR+oFR2AWZzat54u8sgwfTsfhAj
-         deMcXT2Pgk/9Sp0SLYx6hemgN1ld0Rlqje4S4/bUHd3HzLVL4aYvVxeZi4rsFODXgWuX
-         DVNw==
-X-Gm-Message-State: AC+VfDw/1aMgYZwkpMstifTEFa4/manZnD4utLIGmuf/UlQ3/oLFgfHc
-	prXYk5npWDHYXru/1+nSJW5L2eQBbOJ07oIAp+YEcA==
-X-Google-Smtp-Source: ACHHUZ4Pfijb/CE3gpUaPhtaojKIi7y2vgBiC5Im6metiootzIpvvNQIRe/PCGCkg/6I1aBkfvOBnJNUOe6m8mYhJBo=
-X-Received: by 2002:a17:907:940e:b0:950:e44:47ae with SMTP id
- dk14-20020a170907940e00b009500e4447aemr20914963ejc.40.1683818095754; Thu, 11
- May 2023 08:14:55 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1683821955; x=1686413955;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iNz95N14yJwmlf9qYmJRhamWkEHPwk/kBkLZsEdD8ZE=;
+        b=QptQc7J5FPYdk3xGOtUkx82+V02xj/3kxMgki0zX0jE1YuYa8byBqy17MOKzNPvR3+
+         qykvm4Sxujk0PNAnZEQJba/lyhgRK28uTS3gOYJBZwfrOAmlbodBU/aOgs6AMPFZSlU9
+         qnao9Xj8S2sddrHPE3Vp3IyO7LcGKoJVg4A7lEJuwLIvPUEQmFGcctdERKoO3kw4u+no
+         PaDa6jXN6pRf8CUZ10d4Igbu64msu4ppzhYcHuyMhbkmjKZdut4hq1wFw2f986dJ6O2u
+         KJrjvrAyuJPPeJBFXr8YoSkhwwK2Zg4f0LY7o1+7wmcBiJN1NQTm1rwjqNnxvXcnEZ7S
+         8Zpg==
+X-Gm-Message-State: AC+VfDyZ8EW8yindBQyR0NA+ZqYGhszML/5QRE5Lm90bV+wr7nF/a0Eq
+	3see3h8d6DFc9Zuya9il9TlH3p2ezTZvg7UHOI8=
+X-Google-Smtp-Source: ACHHUZ7Xo6KaFYb6d3bCp6dt6WIgTpGd2s6EhZrD54pT8gHRW0xftu6DJm6pMF9/q8yBDEmNkLPXF0EQk+Mo/gWz/t4=
+X-Received: by 2002:a4a:9297:0:b0:54f:5e31:31c5 with SMTP id
+ i23-20020a4a9297000000b0054f5e3131c5mr5060614ooh.2.1683821955337; Thu, 11 May
+ 2023 09:19:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAPJWBnhEbi90oZmT=Fpz0CJw8av1jpAbe9xxJ=m0wV_YRKzvYA@mail.gmail.com>
-In-Reply-To: <CAPJWBnhEbi90oZmT=Fpz0CJw8av1jpAbe9xxJ=m0wV_YRKzvYA@mail.gmail.com>
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Thu, 11 May 2023 17:14:29 +0200
-Message-ID: <CAEt6NwrLZVMH3J=v=dedxymNLDUD=t80y8wGSN1jHhjXDO_weg@mail.gmail.com>
-Subject: Re: [yocto] OTA Updates
-To: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000076d11905fb6c737c"
+References: <CA+-BmJaCpaKURf0zrWRwY2gUfNkJFSY2mwiBJMhWbqb8W4_Vxw@mail.gmail.com>
+ <C00CFD2F-FCE6-4E73-AF4C-D856176267A6@arm.com>
+In-Reply-To: <C00CFD2F-FCE6-4E73-AF4C-D856176267A6@arm.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 11 May 2023 09:18:49 -0700
+Message-ID: <CAMKF1soReGst1zJRN6_5CVicCK2BW4F_39Fth=yePQT2Y9NejA@mail.gmail.com>
+Subject: Re: [yocto] openssl/libffi build broken for musl/cortex-m7
+To: Ross Burton <ross.burton@arm.com>
+Cc: "ayoub.zaki@googlemail.com" <ayoub.zaki@googlemail.com>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 15:15:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59991
+ <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 16:19:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59992
 
---00000000000076d11905fb6c737c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+this is known - see https://github.com/libffi/libffi/issues/267
+someone needs to fix it for thumb-only mode.
 
-For Mender there is a pretty detailed guide on how to build and run a demo
-image at
-https://docs.mender.io/operating-system-updates-yocto-project/build-for-dem=
-o
-Various board integrations are maintained on
-https://github.com/mendersoftware/meta-mender-community, and/or documented
-on hub.mender.io.
-
-As the integrations and procedures vary quite a bit, there is no
-one-size-fits all tutorial.
-
-Greetz,
-Josef
-
-Full disclosure: I work for Mender.
-
-On Thu, May 11, 2023 at 4:33=E2=80=AFPM MOHAMMED HASSAN <hassanchattarki@gm=
-ail.com>
-wrote:
-
-> Hi all,
-> So I am referring this page for OTA updates
-> https://wiki.yoctoproject.org/wiki/System_Update
+On Thu, May 11, 2023 at 6:04=E2=80=AFAM Ross Burton <ross.burton@arm.com> w=
+rote:
 >
-> However are these all paid or free services. Any more info about these
-> services is welcomed.
-> Also are there any tutorials, YouTube videos on ota updates for yocto? I
-> couldn=E2=80=99t find any though.
+> On 11 May 2023, at 10:37, Ayoub Zaki via lists.yoctoproject.org <ayoub.za=
+ki=3Dgooglemail.com@lists.yoctoproject.org> wrote:
+> > I'm trying to build a simple yocto (Kirkstone) initramfs image containi=
+ng only busybox for a STM32Fx cortex M7 based MCU:
+> >
+> > https://www.st.com/en/microcontrollers-microprocessors/stm32f7-series.h=
+tml
+> >
+> > U-boot and Kernel are building and running fine so far.
+> >
+> > The initramfs image Build breaks at openssl/libffi package which I DIDN=
+'T enable and not required in my  image. Probably Build dependencies for so=
+me other packages:
+>
+> It is required, as it=E2=80=99s being built.  This may not be intentional=
+ so you should definitely have a look at what you=E2=80=99re putting into y=
+our initramfs, and if there are any optional dependencies you can remove.
+>
+> > Is this problem known ? Any suggestions on how to fix this?
+> > 2023-05-11 11:25:31 - INFO     - MACHINE              =3D "stm32f769-di=
+sco"
+>
+> Is this a custom machine?  Can you share it?
+>
+> > 2023-05-11 11:25:34 - INFO     - | ../libffi-3.4.4/src/arm/sysv.S:104: =
+Error: selected processor does not support ARM opcodes
+>
+> The M7 doesn=E2=80=99t support ARM opcodes, so if you need libffi then yo=
+u=E2=80=99ll need to port it.  Hopefully you don=E2=80=99t actually need li=
+bffi if you build less into your initramfs.
+>
+> > 2023-05-11 11:25:36 - INFO     - | /workspace/meta-stm32f7x/build/tmp/w=
+ork/cortexm7-poky-linux-musleabi/openssl/3.0.8-r0/recipe-sysroot-native/usr=
+/bin/arm-poky-linux-musleabi/../../libexec/arm-poky-linux-musleabi/gcc/arm-=
+poky-linux-musleabi/11.3.0/ld/workspace/meta-stm32f7x/build/tmp/work/cortex=
+m7-poky-linux-musleabi/openssl/3.0.8-r0/recipe-sysroot-native/usr/bin/arm-p=
+oky-linux-musleabi/../../libexec/arm-poky-linux-musleabi/gcc/arm-poky-linux=
+-musleabi/11.3.0/ld: error: libcrypto.a(libcrypto-lib-armv4-gf2m.o): confli=
+cting architecture profiles A/M
+>
+> For some reason openssl is trying to link A and M code together, which is=
+n=E2=80=99t right. Hopefully you can also remove OpenSSL from your image.
 >
 >
-> Regards,
-> Hassan
->
+> Ross
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#59989):
-> https://lists.yoctoproject.org/g/yocto/message/59989
-> Mute This Topic: https://lists.yoctoproject.org/mt/98828664/4689568
+> View/Reply Online (#59987): https://lists.yoctoproject.org/g/yocto/messag=
+e/59987
+> Mute This Topic: https://lists.yoctoproject.org/mt/98824124/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> jester@theyoctojester.info]
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/leave/6692173/1997914=
+/1837948400/xyzzy [raj.khem@gmail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
->
-
---00000000000076d11905fb6c737c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">For Mender there is a pretty detailed guide on how to buil=
-d and run a demo image at=C2=A0<a href=3D"https://docs.mender.io/operating-=
-system-updates-yocto-project/build-for-demo">https://docs.mender.io/operati=
-ng-system-updates-yocto-project/build-for-demo</a><div>Various board integr=
-ations are maintained on <a href=3D"https://github.com/mendersoftware/meta-=
-mender-community">https://github.com/mendersoftware/meta-mender-community</=
-a>, and/or documented on <a href=3D"http://hub.mender.io">hub.mender.io</a>=
-.</div><div><br></div><div>As the integrations and procedures vary quite a =
-bit, there is no one-size-fits all tutorial.</div><div><br></div><div>Greet=
-z,</div><div>Josef</div><div><br></div><div>Full disclosure: I work for Men=
-der.</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Thu, May 11, 2023 at 4:33=E2=80=AFPM MOHAMMED HASSAN &lt;<a hr=
-ef=3D"mailto:hassanchattarki@gmail.com">hassanchattarki@gmail.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi all,<di=
-v dir=3D"auto">So I am referring this page for OTA updates=C2=A0<div><a hre=
-f=3D"https://wiki.yoctoproject.org/wiki/System_Update" target=3D"_blank">ht=
-tps://wiki.yoctoproject.org/wiki/System_Update</a></div><div dir=3D"auto"><=
-br></div><div dir=3D"auto">However are these all paid or free services. Any=
- more info about these services is welcomed.=C2=A0</div><div dir=3D"auto">A=
-lso are there any tutorials, YouTube videos on ota updates for yocto? I cou=
-ldn=E2=80=99t find any though.</div><div dir=3D"auto"><br></div><div dir=3D=
-"auto"><br></div><div dir=3D"auto">Regards,</div><div dir=3D"auto">Hassan</=
-div></div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#59989): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/59989" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/59989</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/98828664/4689=
-568" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/98828664/4689568</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">je=
-ster@theyoctojester.info</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---00000000000076d11905fb6c737c--
 
