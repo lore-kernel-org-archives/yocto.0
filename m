@@ -2,60 +2,60 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67047C7EE24
-	for <webhook@archiver.kernel.org>; Thu, 11 May 2023 06:45:04 +0000 (UTC)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
- by mx.groups.io with SMTP id smtpd.web10.52932.1683787499277008166
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CA64C7EE24
+	for <webhook@archiver.kernel.org>; Thu, 11 May 2023 06:45:44 +0000 (UTC)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+ by mx.groups.io with SMTP id smtpd.web10.52942.1683787534447970474
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 May 2023 23:44:59 -0700
+ Wed, 10 May 2023 23:45:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=gSVGKDHW;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-30786c6082dso3871464f8f.2
-        for <yocto@lists.yoctoproject.org>; Wed, 10 May 2023 23:44:58 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=VfIlvxxv;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.54, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-306f2b42a86so5312546f8f.3
+        for <yocto@lists.yoctoproject.org>; Wed, 10 May 2023 23:45:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1683787497; x=1686379497;
+        d=linuxfoundation.org; s=google; t=1683787533; x=1686379533;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=soXk1ftjqks5ye8+sCoiyQMx5ySz5nFlFq3nQ2xHTm0=;
-        b=gSVGKDHWUW9Uf1z84I7mhgOxs0ACKqIkWroPhVbFtEvdqv8mSw81+f25e+f39LA0kN
-         sDl9ed0FQ5aFt8U2ugLsvvcg781HiMRS6ItRINIEBWNmUnPAa1KwNcSTQe+YL3dcM65z
-         P6C7ibibLYvWDTO1/mfRASZ3yJJWYw+qYxHIo=
+        bh=T0IV8oeINYGhiR9PzvkEfSFe7A0+3yy0ogkLfwIeYXY=;
+        b=VfIlvxxv0/fanWbqO8kSI31W1IMTKhUgh43ebWWoJYyCdrBrotuXInPqgf8CREq2Zz
+         lfg9kbMpKa3osULzx5vHQW59aLqu3ptGzzwDTbOswdK077HGDURlwscpOWJQf3e5+KMi
+         ea5fUIE9X8JDAvJcJPVF/oNUAwFgYarv2cTaY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683787497; x=1686379497;
+        d=1e100.net; s=20221208; t=1683787533; x=1686379533;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=soXk1ftjqks5ye8+sCoiyQMx5ySz5nFlFq3nQ2xHTm0=;
-        b=MFZhadcWcc5B0YgH0/LRgKmjd9V7/Ska5YcHmWOWZilq4UOaht5AMiuT2nEiBe2pp0
-         A7Td9fGrD5KMi57Wb5yrk4ejWY+hB207q6dC0Vs6LysTHbsU2xspI9UooK/1g5C455Ev
-         bV3wc87pxTTp0Ex4tNqYjR6An58QgynQUIA5JqkIQI0ZQpoeJNFAfKTpe6kpu7dF3IFX
-         93LcJ6RBdhzIpEtdjvUh4EEsFzmhnZgE9Ak3ZEaeM0KQgJhqMqEkW3zoB6ZvY3kaK9V+
-         n+ewpak4uL/G67QoDBsdaqTrlX9aK8qO7MYKDVIe76Zf45zeKgkcPe17SaWqHgPOWihh
-         MPKQ==
-X-Gm-Message-State: AC+VfDz1KCEWWrqYXxBGT49ftbjNUTADBciju8ueCFvYiLysxO1yv+Av
-	zEUxCCR+tjktok45F1YFa9YWsA==
-X-Google-Smtp-Source: ACHHUZ7YilfjZ+3DjOQMRcef6lbyujWOXdptUcG8bbQh1HHW4JlJAJnejqk2pHoeLApsrLFhU0drZg==
-X-Received: by 2002:a5d:460c:0:b0:2f2:9198:f0f with SMTP id t12-20020a5d460c000000b002f291980f0fmr14742879wrq.10.1683787497406;
-        Wed, 10 May 2023 23:44:57 -0700 (PDT)
+        bh=T0IV8oeINYGhiR9PzvkEfSFe7A0+3yy0ogkLfwIeYXY=;
+        b=gJ8aa0meqdkiYkkOlejyr3LQoFXZfu/vGylUhFfcbopsD2YOFwUkkmoLEonn3es4zH
+         3djbOU/I0WNUGstmY2ohfN2QkqzmEinCCtL9guCXNu9fqG3MjJVW0665/7ncgpRKq5vw
+         9lSVJMKFYs5DFtFvi9QPZATQuLATwGr44J5YsBBocgYSKf/8stXNa8XZ8iXsygNVeWXG
+         gkqtl/IR+GOiY/SF+xcaEKod2N6O9FZkZLPlmR667+Ih40dwPHitYi+NEQpSmdYdTqXO
+         oXMt0lmwSD5monAnFxPThk3X4X5ZRu/py+PnfQAwiwV3vUDMPH+ymctI/A+hP34UCUbv
+         vzZA==
+X-Gm-Message-State: AC+VfDyrd8fBChsHRdZnJqzH+vcbh3Ymf7zGF/V2A9giOr94aSlwX4dK
+	4ABNrVdXbdMukqXO6sGhxHoLeXzrfOC7xMHLCcA=
+X-Google-Smtp-Source: ACHHUZ7N6L+WDOEuWgc6auxle5Ct56QPcJ0EcjviGVUUC5kJHAc++rQ2n/s9QfuD0yC/Q4IV8x9y9g==
+X-Received: by 2002:a5d:6ac5:0:b0:306:3429:1833 with SMTP id u5-20020a5d6ac5000000b0030634291833mr13918960wrw.46.1683787532856;
+        Wed, 10 May 2023 23:45:32 -0700 (PDT)
 Received: from ?IPv6:2001:8b0:aba:5f3c:b4cd:cc57:565e:2ba8? ([2001:8b0:aba:5f3c:b4cd:cc57:565e:2ba8])
-        by smtp.gmail.com with ESMTPSA id f12-20020a7bcc0c000000b003f17848673fsm24825572wmh.27.2023.05.10.23.44.56
+        by smtp.gmail.com with ESMTPSA id q4-20020a5d61c4000000b003063772a55bsm19347892wrv.61.2023.05.10.23.45.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 May 2023 23:44:57 -0700 (PDT)
-Message-ID: <5a540e27ff798ce1de3b5798698b135273943eb1.camel@linuxfoundation.org>
+        Wed, 10 May 2023 23:45:32 -0700 (PDT)
+Message-ID: <6a8a10462e054202a15f61861971143ec087bd09.camel@linuxfoundation.org>
 Subject: Re: [qa-build-notification] [yocto] QA notification for completed
- autobuilder build (yocto-4.1.4.rc1)
+ autobuilder build (yocto-3.1.25.rc1)
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: qa-build-notification@lists.yoctoproject.org, 
 	"yocto@lists.yoctoproject.org"
 	 <yocto@lists.yoctoproject.org>, "openembedded-core@lists.openembedded.org"
 	 <openembedded-core@lists.openembedded.org>
-Date: Thu, 11 May 2023 07:44:56 +0100
-In-Reply-To: <BY5PR11MB4152D2BB7102679D32A5D638A1719@BY5PR11MB4152.namprd11.prod.outlook.com>
+Date: Thu, 11 May 2023 07:45:31 +0100
+In-Reply-To: <BY5PR11MB41521E38F41C12F81E3F65D9A1749@BY5PR11MB4152.namprd11.prod.outlook.com>
 References: 
-	<01010187ce7c37c5-f4e60d10-4dab-47e5-be4e-3e4e6d4cf058-000000@us-west-2.amazonses.com>
-	 <BY5PR11MB4152D2BB7102679D32A5D638A1719@BY5PR11MB4152.namprd11.prod.outlook.com>
+	<01010187f0684a61-a44a1bd4-eb39-4d58-87dc-002340211ee7-000000@us-west-2.amazonses.com>
+	 <BY5PR11MB41521E38F41C12F81E3F65D9A1749@BY5PR11MB4152.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.48.0-1 
@@ -63,14 +63,14 @@ MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 06:45:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59979
+ <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 06:45:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59980
 
-On Mon, 2023-05-08 at 02:55 +0000, Jing Hui Tham wrote:
+On Thu, 2023-05-11 at 03:38 +0000, Jing Hui Tham wrote:
 > Hi All,
 > =20
-> QA for yocto-4.1.4.rc1 is completed. This is the full report for this rel=
-ease: =20
+> QA for yocto-3.1.25.rc1 is completed. This is the full report for this re=
+lease: =20
 > https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree=
 /?h=3Dintel-yocto-testresults
 > =20
@@ -79,7 +79,8 @@ ease: =20
 > =20
 > No new issue found.=20
 
-Approved from the TSC, thanks!
+Since this was a green build with no issues found, I can approve this,
+thanks!
 
 Cheers,
 
