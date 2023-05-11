@@ -1,114 +1,123 @@
-Return-Path: <tomasz.dziendzielski@gmail.com>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 105BCC77B7F
-	for <webhook@archiver.kernel.org>; Thu, 11 May 2023 09:16:45 +0000 (UTC)
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
- by mx.groups.io with SMTP id smtpd.web10.54818.1683796595380667711
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 00085C77B7C
+	for <webhook@archiver.kernel.org>; Thu, 11 May 2023 09:28:54 +0000 (UTC)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+ by mx.groups.io with SMTP id smtpd.web11.54693.1683797329898900180
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 May 2023 02:16:35 -0700
+ Thu, 11 May 2023 02:28:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=HPIoVEaa;
- spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: tomasz.dziendzielski@gmail.com)
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-4f25d79f6bfso3297536e87.2
-        for <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 02:16:35 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=ciRz+Xxz;
+ spf=pass (domain: gmail.com, ip: 209.85.222.54, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-77d46c7dd10so40309047241.0
+        for <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 02:28:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683796593; x=1686388593;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7gSUNK0rabEjUtov4H1n90m87fD2emLpkcKu6afYDS8=;
-        b=HPIoVEaaiCwxMS8o0E7B4PgLQGOsVKShuBD2FTTEUC67TbWZqsVw+7Skl2g/EwvPqi
-         DBEJfK9oLVui1ntshIXwp8J0HO2vBSRRTqLqNZr1dBFMJCtcetaYw9laXuJKg8OJe3Wp
-         hoONs7xCTReYB1jklcUHdV+QS+ofWeY5fPvMJlKaZXcbwnp0TJ2RJBxeLcKJmToD6FWM
-         zcgk8xDyJVQamDGFsNi8T2JlC2jxc3YV3fqxtrcj+ghTyXAhZBy0TxEwX2ZlZtI+0i7u
-         O3Ke2a+CNXSSe9UfuRYumLXsVY5wLvixQfTAXnKycjt/q0N8fA1ZLnuHfi3RfLd+9lCG
-         GUfA==
+        d=gmail.com; s=20221208; t=1683797329; x=1686389329;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BLigVLvibUhJc87K/npZWAUuOZqXNkQVwqlAN6OvGS8=;
+        b=ciRz+XxzfPHRt/tr2Vz2SC/o6mNj13tJ7R+ntJN9+WbiHDif0l9w0+uxOWVUt5VwFH
+         00E7wCcKheH1ArXRmooL4ho7uoquRW5Ec3iLpFDMDzhaz8uyA2IYQEU3DlzOX0PBj6pe
+         554biHmN09Pp3IF+wKxYC40rlCUrGLo+IHfsIuEqjSOtq5ZgyzAvCuK+YIZECt5/R4B6
+         UVHJfff7YAK5dNM5TntRlX0cTqXeVkoCkHZoeNwbim24arWEgWaMcj2X+Fpg7LICERVW
+         S+H2kvEuXiFnNlwgBxnFL/ct2hOm5qAVs+P29pjnzEQHzC1X7+kLBqlMFFhbc0v+k0Oa
+         XJGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683796593; x=1686388593;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1683797329; x=1686389329;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7gSUNK0rabEjUtov4H1n90m87fD2emLpkcKu6afYDS8=;
-        b=jJG+fATuOue7FN0zosegkNy+vRivPccFLONDeZK023/EP8KrhyopUu+oObjMc7E/Fs
-         zLSB2F0Gq3DFeB++eDRhbe9WkcDSUNUbxJllK6aaGJSH1QDKC1logvALJ3qh5Qg2qvFZ
-         9NkD+QcMDxnqTQ5nuMLf+OOEfkESVkpHVMPN48j98jTkOG2fYMpfnmkugng6weOzlzVk
-         qnkFQQkP7CsiWUBoKmOt33vrBfyPwxvEn8gfPgecBlycV25rZhL3YI0RDIC8Yhdj1srp
-         1cCE5StbBnDxb0A3oiW8fwU6Bwz38t2sv5KPnbwPnObNG6Q/iTfUh16P7pTM0gTCbQx1
-         7RAg==
-X-Gm-Message-State: AC+VfDwaDlKHFG1nu3LNxWlNC27ZsqM8+Dy0QnoWS8nuSOV7LcEuhQUf
-	jSbu1wXvRNfUoe1z7yji8Sc1NPviGobQMdT7
-X-Google-Smtp-Source: ACHHUZ7YFBDPNvroLtBRe2f41+nhuXHHGp6s0/CAZyCswKVqYNCs+2hUxVcVlr+Qt0QTze7RVtHFkA==
-X-Received: by 2002:ac2:4d19:0:b0:4eb:1048:1285 with SMTP id r25-20020ac24d19000000b004eb10481285mr2344036lfi.47.1683796592860;
-        Thu, 11 May 2023 02:16:32 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:a319:a043:be80:9b4c:87c9:910e:7787])
-        by smtp.gmail.com with ESMTPSA id z4-20020ac25de4000000b004f24cabb8a8sm1038970lfq.120.2023.05.11.02.16.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 May 2023 02:16:32 -0700 (PDT)
-From: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>
-Subject: [meta-tensorflow][PATCH v2] bazel-native: Allow build from sstate-cache
-Date: Thu, 11 May 2023 11:16:24 +0200
-Message-Id: <20230511091624.5441-1-tomasz.dziendzielski@gmail.com>
-X-Mailer: git-send-email 2.40.1
+        bh=BLigVLvibUhJc87K/npZWAUuOZqXNkQVwqlAN6OvGS8=;
+        b=Uf5XetgrFUgxzDakODzqKz75pnqmAfhMrsHVO3R3MsTWrJTw5RBHz6hJlah+LjGwXg
+         BBzf8mok+dUC/F5OTzsBpTi3lHS5CR+F6ylDtoTV67NujwTYH/XeA3TXtiSr63YNwhVS
+         h6syTO+ZX+oRLWI6T8JadnDPcQapl0vaXK42L9TOEiqgPm+An2MOkHzmAkIzqVMYMZcv
+         YKxl5oZJkosTz3HWOFiG8nyClvMlsb0r673iwA8FZ9CgyJbqBkGFJZhZWYB2BAlmDFdr
+         U8MNr2mNajZNXKX71rIyhjr2Ve/pWoVDlCDkZGfIXcW7cLB88VoPd6eLZvplA7UOFkL6
+         +/KQ==
+X-Gm-Message-State: AC+VfDzQbSvVFPKXaHwcLnrnCw6RnLV5ifAFsrcUBrHSuBOGueRm5Nnc
+	oPwQW5TC9X4e3b3m31IMmYzWATbWSjuA2lGIM5g=
+X-Google-Smtp-Source: ACHHUZ6cUgmILJ/EjsGbgKy7gx0TEqSMwiOzFKCdo7YFW2pPMNR76mpsy5QV5vMAW/mE9/5faM4pme+fb4AmTAs0B3w=
+X-Received: by 2002:a1f:bf49:0:b0:44f:e32a:148 with SMTP id
+ p70-20020a1fbf49000000b0044fe32a0148mr6695466vkf.8.1683797328768; Thu, 11 May
+ 2023 02:28:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230511085319.4147-1-tomasz.dziendzielski@gmail.com>
+ <CANPvuRkzNbE+q6Tg4ope=8xGRMkenfe5LErqdZrTnRUBoKAhbA@mail.gmail.com> <CAJkqNs1qj06=COjTWMjgtNeO3LNR=cqQyy4LDnbV82Q7=o510A@mail.gmail.com>
+In-Reply-To: <CAJkqNs1qj06=COjTWMjgtNeO3LNR=cqQyy4LDnbV82Q7=o510A@mail.gmail.com>
+From: Jose Quaresma <quaresma.jose@gmail.com>
+Date: Thu, 11 May 2023 10:28:30 +0100
+Message-ID: <CANPvuRnpmHnyVBsTUrS5=SKj+S0_1rwBXT1z0vThy-oss+RMGQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-tensorflow][PATCH] bazel-native: Allow build from sstate-cache
+To: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000a7b68b05fb679d0e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 09:16:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59984
+ <yocto@lists.yoctoproject.org>; Thu, 11 May 2023 09:28:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/59985
 
-Using TOPDIR variable breaks the sstate-cache every time build directory
-changes totally breaking build from sstate-cache among different workspaces.
+--000000000000a7b68b05fb679d0e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Changing that to TMPDIR that is included in BB_HASHEXCLUDE_COMMON.
+Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com> escreveu no dia
+quinta, 11/05/2023 =C3=A0(s) 10:15:
 
-Another thing is disabling the UNINATIVE_LOADER, causing sstate-cache
-artifacts not working in different workspaces. On
-populate_sysroot_setscene patchelf-uninative --set-interpreter with
-empty argument is ran which does not change the interpreter path and
-then bazel binary ends up with path to the interpreter that might not
-exist, since the bazel was taken from sstate-cache.
+> Hi Jose,
+> >Why not use the something inside the bitbake TMPDIR, if it is temporary
+> the correct place will be in TMPDIR.
+> I wanted to keep the same directory as it was before, but you're right
+> TMPDIR/bazel will be better place. I'll send second patch.
+>
 
-Removing the UNINATIVE_LOADER = "" so that uninative.bbclass can
-correctly replace the interpreter path and make bazel binary usable.
-One could think that it will reintroduce the original issue behind
-disabling uninative, which was some java file corrupted (see commit
-dd7642b), but I think we don't have this problem anymore and also I
-don't think it was the correct solution - since the loader is anyway
-included in the binary, so it wasn't really disabling it, just disabling
-the yocto functionality around uninative. If the error re-occurs I think
-different solution should be found.
+The default bibtake config is TMPDIR ?=3D "${TOPDIR}/tmp" so in this case i=
+t
+will be the same directory
+but note that this is not always true and the TMPDIR can be changed in some
+distros configs, in this cases it will be stored somewhere else.
 
-Signed-off-by: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>
----
- recipes-devtools/bazel/bazel-native_5.3.2.bb | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Jose
 
-diff --git a/recipes-devtools/bazel/bazel-native_5.3.2.bb b/recipes-devtools/bazel/bazel-native_5.3.2.bb
-index da13a53..3be5546 100644
---- a/recipes-devtools/bazel/bazel-native_5.3.2.bb
-+++ b/recipes-devtools/bazel/bazel-native_5.3.2.bb
-@@ -38,7 +38,7 @@ EXTRA_BAZEL_ARGS = " \
- 
- do_compile[network] = "1"
- do_compile () {
--    TMPDIR="${TOPDIR}/bazel" \
-+    TMPDIR="${TMPDIR}/bazel" \
-     VERBOSE=yes \
-     EXTRA_BAZEL_ARGS="${EXTRA_BAZEL_ARGS}" \
-     ./compile.sh
-@@ -49,7 +49,4 @@ do_install () {
-     install -m 0755 ${S}/output/bazel ${D}${bindir}
- }
- 
--# Explicitly disable uninative
--UNINATIVE_LOADER = ""
--
- inherit native
--- 
-2.40.1
 
+> Best regards,
+> Tomasz Dziendzielski
+>
+
+
+--=20
+Best regards,
+
+Jos=C3=A9 Quaresma
+
+--000000000000a7b68b05fb679d0e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">Tomasz Dziendzielski &lt;<a href=3D"m=
+ailto:tomasz.dziendzielski@gmail.com">tomasz.dziendzielski@gmail.com</a>&gt=
+; escreveu no dia quinta, 11/05/2023 =C3=A0(s) 10:15:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi =
+Jose,<br><div>&gt;Why not use the something inside the bitbake TMPDIR, if i=
+t is temporary the correct place will be in TMPDIR.<br></div><div>I wanted =
+to keep the same directory as it was before, but you&#39;re right TMPDIR/ba=
+zel will be better place. I&#39;ll send second patch.</div></div></div></bl=
+ockquote><div><br>The default bibtake config is TMPDIR ?=3D &quot;${TOPDIR}=
+/tmp&quot; so in=C2=A0this case=C2=A0it will be the same directory</div><di=
+v>but note that this is not always=C2=A0true and the TMPDIR can be changed=
+=C2=A0in some distros configs, in this cases it will be stored=C2=A0somewhe=
+re else.</div><div><br></div><div>Jose</div><div><br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div><b=
+r></div><div>Best regards,</div><div>Tomasz Dziendzielski</div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
+div>
+
+--000000000000a7b68b05fb679d0e--
 
