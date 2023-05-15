@@ -1,149 +1,93 @@
-Return-Path: <Martin.Jansa@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4517EC77B75
-	for <webhook@archiver.kernel.org>; Mon, 15 May 2023 08:40:51 +0000 (UTC)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
- by mx.groups.io with SMTP id smtpd.web10.83924.1684140042470398992
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C893C77B7D
+	for <webhook@archiver.kernel.org>; Mon, 15 May 2023 08:44:31 +0000 (UTC)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+ by mx.groups.io with SMTP id smtpd.web11.83546.1684140264850008043
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 May 2023 01:40:42 -0700
+ Mon, 15 May 2023 01:44:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=ItIYHv40;
- spf=pass (domain: gmail.com, ip: 209.85.221.49, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-30786c87cdaso9645905f8f.2
-        for <yocto@lists.yoctoproject.org>; Mon, 15 May 2023 01:40:42 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=JQsx8+34;
+ spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-4eed764a10cso14133368e87.0
+        for <yocto@lists.yoctoproject.org>; Mon, 15 May 2023 01:44:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684140041; x=1686732041;
+        d=gmail.com; s=20221208; t=1684140263; x=1686732263;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=05h0kSLYAgm3BexTnnj43i7/KVRGwASjvoz+U2BkHgk=;
-        b=ItIYHv40xUuMFYij4qCY38nnU+lHiKf3oM5uO4JGpsJXNxz61nh0JWBfh1GFPQFi00
-         J6stm76athhADvwrrh2muTMduwyHBo9eQg+33QNWihdPMrUpQd7Cl0bwCt/gJ0aJypcK
-         tzLGDxjhvWiwHIbpJg2LP/beE5M9PjAomW/R4t9g0Mj9GJsd7ueMw6beYNfCE3c1UDo0
-         jzpiDRxxKUNZI/KtCHHHrdkZD45A0BggzVH0bJqh6f7vaLyCWGuvihMbgFRlAg+bTrMB
-         RuAwvSn8pyUIJY3qaTflcW3YfYZfr7ZaLMpcIa429DE6umwtnlIfWjHm5TzwlnVWG+g5
-         9Xdw==
+        bh=hlBrkVyYejSyXAkyn2zL1EPC2UPuHWRggD/+KYx4swE=;
+        b=JQsx8+34YPeNh42Y/zS8S5Fg56tvymRyeumqFxdunSUCOVEXVgf2qTShUzSam6ef01
+         RrGpEbm0LANyAgx9qejK9StGHqpD1/ahDR5utPkXkyYVmlocuvsWcOWFaZxzkFnM/s7M
+         rFxU44xZhvnboAp9A2PsbvVCbO+Zi8YGs16l/79476rbs8AR9MvE+uf6dZnRsxOFqdta
+         BH+60ul8n3xOKG9iALsM7niwX/dZxIwA6ix6+mc9KArmP/JZP1Uw7mYxX1lFwvCalMjQ
+         +IELtRbbgfpZfjA/Ac/FngkvAJ6y0rDr91NAxrCPIG8vk/b7nTlx+mptWdmGgw+UBRuG
+         OMdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684140041; x=1686732041;
+        d=1e100.net; s=20221208; t=1684140263; x=1686732263;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=05h0kSLYAgm3BexTnnj43i7/KVRGwASjvoz+U2BkHgk=;
-        b=hle9MdqO5kdmZsBKQYhuBUed0Ie8FceG0URV4i+YGzqNmla3l7lZdr1rCdA7yR8P6s
-         8i57eJi8P8dRgwyztMPbkZOPvL+bk5o0Ap5FMnSzJL19eze3WAL0IiVN5frC5guMYaw2
-         jAhApv1RdCyZltrLpR7WrfCTC7hXNEbclOwccsETm2MWW4irXkQuorLMIYp0nEa+4/iY
-         gdcCs6WndJJ8SHLN1fEYfmd5YoK9LFhP93gmRwD4E8NxMNGRIUvbrKCdKFsqKs1YtQZE
-         j6GoWu3iglcpHKCSMVxmL3EKtwFiV/fOKEJLGlJDBSb+GD2BeNqt4OhoM+4mPOqbgYXI
-         lUPA==
-X-Gm-Message-State: AC+VfDwf84LzDv5GLllq1tNtaMwv+4GsKMtbhlhJ1GUTpDpOzlSVOaMt
-	1ABNZet+ApSptt5iTw5fGNFYeC3d2mA2BlE5Rqw=
-X-Google-Smtp-Source: ACHHUZ6rS1becpLRAW/pX6O1vl8/8Tj1RnUDb7iHSq+3Z0tGMW38ZjYCUUK0sT/9YW8d8OfsX4uX3PdyDXmEhummcZo=
-X-Received: by 2002:adf:e943:0:b0:306:2cf5:79dc with SMTP id
- m3-20020adfe943000000b003062cf579dcmr29434181wrn.35.1684140040711; Mon, 15
- May 2023 01:40:40 -0700 (PDT)
+        bh=hlBrkVyYejSyXAkyn2zL1EPC2UPuHWRggD/+KYx4swE=;
+        b=jrt1wtK1o/obIrpKowClX5yyesIvoSPch6+Y8Bao9fvZLj5BhgHhdubhZJYHUNb/UE
+         rixkgq1/VjCRuY4RkHQbih1/+dX1PtZr/H2ZaB2ZflMj2Nn+/nOy01mRmJ6BAQGnxwaZ
+         n5JUR3rsoxqAGI7fWDmJITi6MBnDqc6RHvoJLNSES+3Jc3e++TfrPgv96eettfy6jOrh
+         UzeFzhiyvTxU4P1bn/bL4iFooEIBQMQvn7YsV4UKcRFkjwIPXvA4bEeR1/vk/058TeYt
+         rzWaAvuaAfkuqRQJZD1jHdHGLaVnTywQL3OCKfLifi6GEBCNw9YSSZ3JHe3SpuzUVKNN
+         HVtw==
+X-Gm-Message-State: AC+VfDxA9RuZUEj6OwkWEp6DGlQHLXcY2dTOWDXXKui7cd2zDBEwIYZG
+	j2+nT5zvHVaXRM5KrQGIWtQg1dQI9BiT7gB5k/1d5v8m
+X-Google-Smtp-Source: ACHHUZ52Wf87CiujoNKZWKhDP0mHY8u3EGc/NiWDp1ouHfgNhXA0mnvClyCcSr9SXZ78AgVnnfZqvOw/uxfA233/y48=
+X-Received: by 2002:ac2:5ddc:0:b0:4ee:5aeb:e2f2 with SMTP id
+ x28-20020ac25ddc000000b004ee5aebe2f2mr5871754lfq.38.1684140262799; Mon, 15
+ May 2023 01:44:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <CANzPQ-CGsofjwD8bg8_8XyOJ8FAiyazy+UjtzTQgQteoiioBXg@mail.gmail.com>
-In-Reply-To: <CANzPQ-CGsofjwD8bg8_8XyOJ8FAiyazy+UjtzTQgQteoiioBXg@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Mon, 15 May 2023 10:40:27 +0200
-Message-ID: <CA+chaQej4J96=EQ8OvpA9v0icv9rvcf0GMUYS0-ESQpBJma6_w@mail.gmail.com>
-Subject: Re: [yocto][meta-python2] Kirkstone EXTRANATIVEPATH is not in effect
-To: Jiliang Cai <tyrocjl@gmail.com>
+References: <CA+EiEZJrnJYYY7NMF521HemwaGKTFotkUdxC56w-qgYvm_j_Ng@mail.gmail.com>
+In-Reply-To: <CA+EiEZJrnJYYY7NMF521HemwaGKTFotkUdxC56w-qgYvm_j_Ng@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 15 May 2023 10:44:11 +0200
+Message-ID: <CANNYZj8LAkR1pmenJz20jrP0EL-Jac7vcSUx8xjQq6p79QxWBA@mail.gmail.com>
+Subject: Re: [yocto] LTS EOLs
+To: Tom Isaacson <tom.isaacson@teknique.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000e0f29d05fbb76886"
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 May 2023 08:40:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60019
+ <yocto@lists.yoctoproject.org>; Mon, 15 May 2023 08:44:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60020
 
---000000000000e0f29d05fbb76886
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Regardless of the current situation with EOL dates, the point of
+upgrading is not that, but one's ability to fulfil current and future
+business requirements and keep products secure. This is always easier
+with a more recent stack for the target and tooling on the build host.
 
-Did you add "inherit pythonnative" or DEPENDS +=3D "python-native"?
+Alex
 
-You need just the inherit line.
-
-On Mon, May 15, 2023 at 10:23=E2=80=AFAM Jiliang Cai <tyrocjl@gmail.com> wr=
-ote:
-
-> I have a bb file abc_1.0.bb:
-> DEPENDS +=3D "python3-native"
-> And EXTRANATIVEPATH contains "python3-native" as expected, so command
-> 'python3'
-> can be searched.
+On Mon, 15 May 2023 at 01:55, Tom Isaacson <tom.isaacson@teknique.com> wrote:
 >
-> Then I add DEPENDS +=3D "python-native", but EXTRANATIVEPATH doesn't cont=
-ains
-> "python-native", so command 'python' can not be searched.
+> I was just looking up the Yocto LTS and I found
+> https://endoflife.date/yocto. It says:
+> 3.1 'Dunfell' (LTS) Ends in 10 months (01 Apr 2024)
+> 4.0 'Kirkstone' (LTS) Ends in 11 months (27 Apr 2024)
 >
-> python3native.bbclass  has a line:
-> EXTRANATIVEPATH +=3D "python3-native"
-> So python3 can be searched when bitbake this recipe. I saw similar codes
-> in the
-> pythonnative.bbclass file, but why didn't it take effect?
+> Are these dates correct? If so, what's the point of the later LTS
+> going EOL the same month as the previous one? There's not much point
+> in upgrading.
 >
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Is a new LTS planned?
+>
+> Thanks.
+>
+> Tom Isaacson
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#60018):
-> https://lists.yoctoproject.org/g/yocto/message/60018
-> Mute This Topic: https://lists.yoctoproject.org/mt/98899140/3617156
+> View/Reply Online (#60011): https://lists.yoctoproject.org/g/yocto/message/60011
+> Mute This Topic: https://lists.yoctoproject.org/mt/98893130/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> Martin.Jansa@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
 >
->
-
---000000000000e0f29d05fbb76886
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Did you add &quot;inherit pythonnative&quot; or DEPENDS=C2=
-=A0<a class=3D"gmail_plusreply" id=3D"plusReplyChip-0">+=3D &quot;python-na=
-tive&quot;?</a><div><a class=3D"gmail_plusreply"><br></a></div><div>You nee=
-d just the inherit line.<a class=3D"gmail_plusreply"><br></a></div></div><b=
-r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, =
-May 15, 2023 at 10:23=E2=80=AFAM Jiliang Cai &lt;<a href=3D"mailto:tyrocjl@=
-gmail.com">tyrocjl@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">I have a bb file <a href=3D"http://abc_1.0.bb" =
-rel=3D"noreferrer" target=3D"_blank">abc_1.0.bb</a>:<br>
-DEPENDS +=3D &quot;python3-native&quot;<br>
-And EXTRANATIVEPATH contains &quot;python3-native&quot; as expected, so com=
-mand &#39;python3&#39;<br>
-can be searched.<br>
-<br>
-Then I add DEPENDS +=3D &quot;python-native&quot;, but EXTRANATIVEPATH does=
-n&#39;t contains<br>
-&quot;python-native&quot;, so command &#39;python&#39; can not be searched.=
-<br>
-<br>
-python3native.bbclass=C2=A0 has a line:<br>
-EXTRANATIVEPATH +=3D &quot;python3-native&quot;<br>
-So python3 can be searched when bitbake this recipe. I saw similar codes in=
- the<br>
-pythonnative.bbclass file, but why didn&#39;t it take effect?<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60018): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60018" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/60018</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/98899140/3617=
-156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/98899140/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin=
-.Jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000e0f29d05fbb76886--
 
