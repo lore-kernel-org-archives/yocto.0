@@ -2,56 +2,56 @@ Return-Path: <tgamblin@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB2A7C7EE2A
-	for <webhook@archiver.kernel.org>; Wed, 17 May 2023 20:22:51 +0000 (UTC)
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
- by mx.groups.io with SMTP id smtpd.web10.61604.1684354971068186146
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05A38C7EE2E
+	for <webhook@archiver.kernel.org>; Wed, 17 May 2023 20:22:52 +0000 (UTC)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+ by mx.groups.io with SMTP id smtpd.web11.61916.1684354967732268870
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 May 2023 13:22:51 -0700
+ Wed, 17 May 2023 13:22:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=iwKGkQ3d;
- spf=pass (domain: baylibre.com, ip: 209.85.160.173, mailfrom: tgamblin@baylibre.com)
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-3f41b73104eso7369421cf.3
-        for <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 13:22:50 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=3JGbt1lZ;
+ spf=pass (domain: baylibre.com, ip: 209.85.160.170, mailfrom: tgamblin@baylibre.com)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-3f610c11472so5460441cf.0
+        for <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 13:22:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684354970; x=1686946970;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684354966; x=1686946966;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=h8Tt7Vn+IUlKj3cow2zDaub/0zS4XKV4Aj6YqFtHW3M=;
-        b=iwKGkQ3dFgCHZbUld01Eb4SoAoq3n0kI1PDvpiIYLZDQYkOmJVCxxSfQGI0nKF1pdm
-         +/x5Bw/OWT900RvNHUWBI3enyz9BrKYtxfeJYD/QzzMtmvkBksZ0U5mIPM+6PdFwblSM
-         bk8LxAT3GO8nqFYeNE5xEgfAyS4Fvz9E0hNRy784ottr+QEZrMFqlYEtyTxw7ZOCvALR
-         D55e1zaRMjidBTSGYYJopu5d0opcB7KFmD7lv5ByLKIde5n+pPcaOcnEJwjBsXHw79Lc
-         hldWjoIJg+moq1KsH8paFWoBU0i8UtsSZOz8lt8DL4e/zmZFDDeVmJeZacytVhUqPac6
-         7Cpg==
+        bh=C1xIV1g99gcntQFhAAYt5qBk3WJikcFvpqqiLUj7z5Y=;
+        b=3JGbt1lZajz08GZVaUbqffvymfNsT1ncTx65yaDq9HMA5tYGbphBwYMPBteVLylhAd
+         GNw08dZDLCh2YJ/JPTkhLTFpX2tBy2DecAS2oRx9+pghhIuNP8EW451hqB+357QDAgOg
+         NXiA6Ps9tfjGMOHa0lmejBEOAeldM4+FJIY4NQ4S3Y0IKf+yoj+/Tu7p92kRT8ECa8lB
+         JaWxYqepihjv12w8399ptAHOkz7nSDrbk6M5Sxca2bJwooRSjUFLgqGtsaUye7j5mKJS
+         CZyeivL7cTjqweoa2wJKPJ/VQvp/fmMcSSu3PY+KrQW1YVikNhbepmZaRhAlNY5IKOr9
+         pCGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684354970; x=1686946970;
+        d=1e100.net; s=20221208; t=1684354966; x=1686946966;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h8Tt7Vn+IUlKj3cow2zDaub/0zS4XKV4Aj6YqFtHW3M=;
-        b=U6UOTqdbLlFo5LO7hifN7WKPNhRi4bNsxc8ZVgrZAS/wJvL5Yh7+hgIe8x+41H44ka
-         IiaIpnIjvbHkS9d0wE6aGJJmS6+zhq1I9lF8JPTCu7eIr3XYxw4deTz/AXK2F+xhY/li
-         P1QdXfwjZrN2drvdPmnRiUXAAkNraR3oAw+Dmr2M/IIXh66EDv2acfWJUi4iQS6k79MZ
-         yO23Tcyqh6Xq9VEif+JYSFf4OW32c7wSgj8olYhYDwvlh9cVUJsrGOCNELOe4Q7/yYdM
-         q9M0/kCFlOMinVt6IUF3Q+VIx/uOE2ySgVHppofAI9gqH4nEXaUzU0vcScevcHz+Gl7q
-         /acA==
-X-Gm-Message-State: AC+VfDy7hm11zOnbSmdzBZkBlhEZT0vfoqcpr0/GUwVYt25trrjOufme
-	if7HRRIKL+zfc/pQ0rKT82qID6b68mUgqTWjxPjVrw==
-X-Google-Smtp-Source: ACHHUZ4C8Gx7k0qi7TD4e2ekUv6h4Q/nsX7F0Zr1kfMYpuE3x8lpZ/AjkUxdir69oiEK49ouOCZdMQ==
-X-Received: by 2002:a05:622a:14cf:b0:3ef:62f7:899b with SMTP id u15-20020a05622a14cf00b003ef62f7899bmr1626773qtx.57.1684354970124;
-        Wed, 17 May 2023 13:22:50 -0700 (PDT)
+        bh=C1xIV1g99gcntQFhAAYt5qBk3WJikcFvpqqiLUj7z5Y=;
+        b=Qsu9Jvygb1mVU3ho4GtYaV7ZHWHMCq+jOEp2NTiMTOz8PEH+rsGlbbvECtvmwcFWBD
+         ZvbcVNcBV1+glaujvqGcfVo+U11suwcWagrPYorCoiQrnGns8FT3ZJS/agQ+cSNbjnFP
+         3mCtxtaRhwiqHy6zbberE0Q4a+4Z08Qv06w7+OkIGYhmbv8KoXi9q/tBEN4nA7MhEDWg
+         HkvARJzkSIBuSNHssREafgiENCUJ/VNhETKiZ+pxgg/I44wZXi2+UnuhnJmz7n8EVvhH
+         6som/aXtFf1Ah1IlF206Ga7HOFIZxFKe/nZr49NY3hVM4ofRkZ+onXRdRBU8H+HLMMTH
+         GrCA==
+X-Gm-Message-State: AC+VfDzTw3/O45Uunts+XKmNCjyBUQwocNK0ySg1+zfZACYewqZTBijr
+	WDI5MduIbmKYA7KTeTxYLK8Tm0ZvQBU4f0+fHpReNA==
+X-Google-Smtp-Source: ACHHUZ6uDK5MfrICfJENbelVcFObAgIodaVKEnh8Ag3tnnLez6p8Jpe0cCrv/ot+6Bmfl2Uv/PZp6A==
+X-Received: by 2002:a05:622a:180a:b0:3f3:958e:3587 with SMTP id t10-20020a05622a180a00b003f3958e3587mr1902810qtc.19.1684354966746;
+        Wed, 17 May 2023 13:22:46 -0700 (PDT)
 Received: from megalith.ht.home (cpe64777de11593-cm64777de11590.cpe.net.cable.rogers.com. [174.115.224.47])
-        by smtp.gmail.com with ESMTPSA id bv24-20020a05622a0a1800b003f3c9754e1dsm6790815qtb.17.2023.05.17.13.22.49
+        by smtp.gmail.com with ESMTPSA id bv24-20020a05622a0a1800b003f3c9754e1dsm6790815qtb.17.2023.05.17.13.22.46
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 13:22:49 -0700 (PDT)
+        Wed, 17 May 2023 13:22:46 -0700 (PDT)
 From: Trevor Gamblin <tgamblin@baylibre.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto][patchtest][PATCH 07/11] python3-wrapt: upgrade 1.10.10 -> 1.15.0
-Date: Wed, 17 May 2023 16:22:40 -0400
-Message-Id: <20230517202244.1612047-8-tgamblin@baylibre.com>
+Subject: [yocto][patchtest][PATCH 02/11] python3-isort: upgrade 4.2.15 -> 5.12.0
+Date: Wed, 17 May 2023 16:22:35 -0400
+Message-Id: <20230517202244.1612047-3-tgamblin@baylibre.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230517202244.1612047-1-tgamblin@baylibre.com>
 References: <20230517202244.1612047-1-tgamblin@baylibre.com>
@@ -60,63 +60,62 @@ Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 20:22:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60066
+ <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 20:22:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60061
 
 Copy the recipe from meta-python to handle the upgrade, so that
 patchtest can build it without requiring the layer.
 
 Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
 ---
- .../python/python3-wrapt_1.10.10.bb              | 15 ---------------
- .../python/python3-wrapt_1.15.0.bb               | 16 ++++++++++++++++
- 2 files changed, 16 insertions(+), 15 deletions(-)
- delete mode 100644 meta-patchtest/recipes-devtools/python/python3-wrapt_1.10.10.bb
- create mode 100644 meta-patchtest/recipes-devtools/python/python3-wrapt_1.15.0.bb
+ .../python/python3-isort_4.2.15.bb            | 10 ----------
+ .../python/python3-isort_5.12.0.bb            | 20 +++++++++++++++++++
+ 2 files changed, 20 insertions(+), 10 deletions(-)
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-isort_4.2.15.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-isort_5.12.0.bb
 
-diff --git a/meta-patchtest/recipes-devtools/python/python3-wrapt_1.10.10.bb b/meta-patchtest/recipes-devtools/python/python3-wrapt_1.10.10.bb
+diff --git a/meta-patchtest/recipes-devtools/python/python3-isort_4.2.15.bb b/meta-patchtest/recipes-devtools/python/python3-isort_4.2.15.bb
 deleted file mode 100644
-index cd987d3..0000000
---- a/meta-patchtest/recipes-devtools/python/python3-wrapt_1.10.10.bb
+index fc98e7c..0000000
+--- a/meta-patchtest/recipes-devtools/python/python3-isort_4.2.15.bb
 +++ /dev/null
-@@ -1,15 +0,0 @@
--SUMMARY = "A Python module for decorators, wrappers and monkey patching."
--HOMEPAGE = "http://wrapt.readthedocs.org/"
--LICENSE = "BSD"
+@@ -1,10 +0,0 @@
+-SUMMARY = "A Python utility / library to sort Python imports."
+-HOMEPAGE = "https://pypi.python.org/pypi/isort"
+-LICENSE = "MIT"
 -SECTION = "devel/python"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=82704725592991ea88b042d150a66303"
+-LIC_FILES_CHKSUM = "file://PKG-INFO;beginline=8;endline=8;md5=8227180126797a0148f94f483f3e1489"
 -
--SRC_URI[md5sum] = "97365e906afa8b431f266866ec4e2e18"
--SRC_URI[sha256sum] = "42160c91b77f1bc64a955890038e02f2f72986c01d462d53cb6cb039b995cdd9"
+-SRC_URI[md5sum] = "34915a2ce60e6fe3dbcbf5982deef9b4"
+-SRC_URI[sha256sum] = "79f46172d3a4e2e53e7016e663cc7a8b538bec525c36675fcfd2767df30b3983"
 -
 -inherit pypi setuptools3
--
--RDEPENDS_${PN}_class-target += "\
--    ${PYTHON_PN}-stringold \
--    ${PYTHON_PN}-threading \
--"
-diff --git a/meta-patchtest/recipes-devtools/python/python3-wrapt_1.15.0.bb b/meta-patchtest/recipes-devtools/python/python3-wrapt_1.15.0.bb
+diff --git a/meta-patchtest/recipes-devtools/python/python3-isort_5.12.0.bb b/meta-patchtest/recipes-devtools/python/python3-isort_5.12.0.bb
 new file mode 100644
-index 0000000..e35e1f7
+index 0000000..6d7b20f
 --- /dev/null
-+++ b/meta-patchtest/recipes-devtools/python/python3-wrapt_1.15.0.bb
-@@ -0,0 +1,16 @@
-+SUMMARY = "A Python module for decorators, wrappers and monkey patching."
-+HOMEPAGE = "http://wrapt.readthedocs.org/"
-+LICENSE = "BSD-2-Clause"
++++ b/meta-patchtest/recipes-devtools/python/python3-isort_5.12.0.bb
+@@ -0,0 +1,20 @@
++SUMMARY = "A Python utility / library to sort Python imports."
++HOMEPAGE = "https://pypi.python.org/pypi/isort"
++LICENSE = "MIT"
 +SECTION = "devel/python"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=dc34cbad60bc961452eb7ade801d25f7"
++LIC_FILES_CHKSUM = "file://PKG-INFO;beginline=6;endline=6;md5=8227180126797a0148f94f483f3e1489"
 +
-+SRC_URI[sha256sum] = "d06730c6aed78cee4126234cf2d071e01b44b915e725a6cb439a879ec9754a3a"
++SRC_URI[sha256sum] = "8bef7dde241278824a6d83f44a544709b065191b95b6e50894bdc722fcba0504"
 +
-+inherit pypi setuptools3 
++inherit pypi python_poetry_core
 +
-+RDEPENDS:${PN}:class-target += "\
-+    ${PYTHON_PN}-stringold \
-+    ${PYTHON_PN}-threading \
++RDEPENDS:${PN} += "\
++    ${PYTHON_PN}-datetime \
++    ${PYTHON_PN}-shell \
++    ${PYTHON_PN}-profile \
++    ${PYTHON_PN}-numbers \
++    ${PYTHON_PN}-pprint \
++    ${PYTHON_PN}-difflib \
 +"
 +
-+BBCLASSEXTEND = "native"
++BBCLASSEXTEND = "native nativesdk"
 -- 
 2.40.1
 
