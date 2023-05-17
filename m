@@ -1,99 +1,95 @@
-Return-Path: <ecordonnier@snap.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BE6D5C77B75
-	for <webhook@archiver.kernel.org>; Wed, 17 May 2023 06:16:47 +0000 (UTC)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
- by mx.groups.io with SMTP id smtpd.web10.43410.1684304201156816571
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D2F1C77B7A
+	for <webhook@archiver.kernel.org>; Wed, 17 May 2023 07:33:48 +0000 (UTC)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+ by mx.groups.io with SMTP id smtpd.web10.44096.1684308824321730580
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 May 2023 23:16:41 -0700
+ Wed, 17 May 2023 00:33:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@snap.com header.s=google header.b=bRH++ikk;
- spf=pass (domain: snapchat.com, ip: 209.85.221.53, mailfrom: ecordonnier@snapchat.com)
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-305f0491e62so299616f8f.3
-        for <yocto@lists.yoctoproject.org>; Tue, 16 May 2023 23:16:40 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=ZO++ZTGx;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.43, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-307a8386946so229665f8f.2
+        for <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 00:33:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snap.com; s=google; t=1684304199; x=1686896199;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linuxfoundation.org; s=google; t=1684308823; x=1686900823;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7pQujXCl4lgy1hHg+XA5jclB648HkIdD2VwPdmtZ7xc=;
-        b=bRH++ikkwKH7by8/RcYC+CctBuRHT4v55H0ybkkZTHttJB3kGXtslXB2O74hVd23Ul
-         YJJAsAu+XkZTR/SooZ4KVHss14WrFN5eS0pLJP908mcL/+bQoefnrgCQUnVpB3t3YUcD
-         4z51Mc4od5I5mRKn80BtdQbPZSkKlDBXpMO4w=
+        bh=XRGBoAu7dCuQWuMJc/Y+7tpdcBnKlIWmxenDNRv3O5o=;
+        b=ZO++ZTGxTkk90Pr9LlSzz8bzeuKM/1lsXDDC1W2NxY8l2IhlZ0KUsJ3Y+9VHEqmy8S
+         LR2mn2y298Gz0IgrhuMc/CJJ4P3x5XE1151Sg6kSemdDJbRH5v9MICqmiilPOF00IXSt
+         aoppV6yzt3KWfHIAOcnyKqIzYPjxr0IzqpFgE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684304199; x=1686896199;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7pQujXCl4lgy1hHg+XA5jclB648HkIdD2VwPdmtZ7xc=;
-        b=k+8J8dJkOMxaeXACJpHWUOF6TphxsA8kbDfLWKkuBLZVNaoUTDM0L3WYkyTC3XcF75
-         mCT53PPF63yKfMVlb9LPUJkVQiFUXS8FHP0a/SG0HZiESfXbVb/+mb7usD3kfhprd1I4
-         QA551pdFJhVRnbWyeZ7uzPsy+ZNPHSVmgpZwUSsiNtIH3NZyoAxyPpvyV8fBOtGfl5my
-         IrzkRrMGQiG4DHZ9zCWNjnQVX1cyTTCuCZP523sZq/RUTd0DZp5RUhnQgMTsPSffX+Ex
-         3eDijFO4ml+f90hdOGErhT+gEalxnUYZnZwrR2kHFO6J28hBi6HKmHrmFBBuq07ZPZL8
-         yreg==
-X-Gm-Message-State: AC+VfDwDlM3ROq1w4QXpQDq/+ZUlskuJUpNJHQTY6NJ9J5hn7sI895/2
-	zyEDFi21nLzso/MugissuUWYnvNcdndnfnOpJaA=
-X-Google-Smtp-Source: ACHHUZ5Qt5Yg9CiRK82QVcfwEMVlNwC7DL3wMkHq9/q/RBxHgV4uN1G0ErwJrz/TQ8T91qAw2etvVg==
-X-Received: by 2002:a5d:5946:0:b0:2f5:d3d7:7af4 with SMTP id e6-20020a5d5946000000b002f5d3d77af4mr26781637wri.63.1684304199277;
-        Tue, 16 May 2023 23:16:39 -0700 (PDT)
-Received: from lj8k2dq3.sc-core.net ([85.237.126.22])
-        by smtp.gmail.com with ESMTPSA id o14-20020a5d58ce000000b0030629536e64sm1573736wrf.30.2023.05.16.23.16.38
+        d=1e100.net; s=20221208; t=1684308823; x=1686900823;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=XRGBoAu7dCuQWuMJc/Y+7tpdcBnKlIWmxenDNRv3O5o=;
+        b=WamX1pNo+aplxX2bEiWs/uIW4DfmaRV15KDo9ztaHnamvIN5xXZvl4kcUOi5fMom4Z
+         NvQ+iE940/lVyth/Gz8LfMicqNlNEwlfIx/Up4EpusMv2Xb1bc4lDwGs+hpScEKF51sX
+         9QEz0L4SQNxPm7IEV/0EOkyHnGFyLUYOSvoPTs3rzEP4ly4z5i8dBsEKhcTzfthvpdAa
+         G78UtGb3+HgUznMcmrDF0dvxSFSun++oRRXsrvNdV7oth3l0EROexF3qVgq12lgTJ3Zm
+         izv/e3X73YYHEw8f0gttDQ/48cMca/ZLCavIANU/XImsmn+37Xrnnxt6KCG3hrW3xc22
+         kZOg==
+X-Gm-Message-State: AC+VfDwvWdGQZVu00wMWnV7B0aa+bM/DHCiZFBbsb+XPjxmOzrmNeQI1
+	gehxSuMeCsvvCR/nNVXQEhQ6gA==
+X-Google-Smtp-Source: ACHHUZ6sIuLgVHjWFABE9FTIMfz0/azZCxfchhRomFdOj3uJhSiOEcYtBWSkPobuho/lyd8vOvLIZw==
+X-Received: by 2002:a5d:51c4:0:b0:306:34f6:de8a with SMTP id n4-20020a5d51c4000000b0030634f6de8amr28913146wrv.71.1684308822685;
+        Wed, 17 May 2023 00:33:42 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:4728:4ae8:88ad:4efb? ([2001:8b0:aba:5f3c:4728:4ae8:88ad:4efb])
+        by smtp.gmail.com with ESMTPSA id r4-20020a056000014400b0030732d6e104sm1798116wrx.105.2023.05.17.00.33.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 23:16:39 -0700 (PDT)
-From: ecordonnier@snap.com
-To: yocto@lists.yoctoproject.org
-Cc: Etienne Cordonnier <ecordonnier@snap.com>
-Subject: [meta-darwin][PATCH 2/2] Improve README
-Date: Wed, 17 May 2023 08:15:26 +0200
-Message-Id: <20230517061526.3383173-2-ecordonnier@snap.com>
-X-Mailer: git-send-email 2.36.1.vfs.0.0
+        Wed, 17 May 2023 00:33:42 -0700 (PDT)
+Message-ID: <1809ae2d13e23a3d994c3fd4f167e3692a5cc91a.camel@linuxfoundation.org>
+Subject: Re: [yocto] [meta-darwin][PATCH 1/2] Add new maintainers
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: ecordonnier@snap.com, yocto@lists.yoctoproject.org
+Date: Wed, 17 May 2023 08:33:41 +0100
 In-Reply-To: <20230517061526.3383173-1-ecordonnier@snap.com>
 References: <20230517061526.3383173-1-ecordonnier@snap.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.0-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 06:16:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60039
+ <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 07:33:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60040
 
-From: Etienne Cordonnier <ecordonnier@snap.com>
+On Wed, 2023-05-17 at 08:15 +0200, Etienne Cordonnier via
+lists.yoctoproject.org wrote:
+> From: Etienne Cordonnier <ecordonnier@snap.com>
+>=20
+> Signed-off-by: Etienne Cordonnier <ecordonnier@snap.com>
+> ---
+>  README | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/README b/README
+> index a58ab39..e4ac9bc 100644
+> --- a/README
+> +++ b/README
+> @@ -48,7 +48,10 @@ This layer depends on:
+>   layers: meta-clang
+>   branch: kirkstone
+> =20
+> -Layer Maintainer: Richard Purdie <richard.purdie@linuxfoundation.org>
+> +Layer Maintainers: Richard Purdie <richard.purdie@linuxfoundation.org>
+> +                   Dominik Schnitzer <dominik@snap.com>
+> +                   Etienne Cordonnier <ecordonnier@snap.com>
+> +
+> =20
+>  Please send changes to the yocto mailing list with [meta-darwin] in the =
+subject line,
+>  cc'ing the maintainer.
 
-Signed-off-by: Etienne Cordonnier <ecordonnier@snap.com>
----
- README | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+Thanks, I've merged these. It is great to see the layer being used!
 
-diff --git a/README b/README
-index e4ac9bc..59ae032 100644
---- a/README
-+++ b/README
-@@ -5,7 +5,7 @@ OpenEmbedded meta layer for darwin based SDKs
- 
- Note: For now, only macOS SDK version 10.15 is supported.
- 
--You also need a OS-X sysroot tarball/zip file generated (copied) from a target OS-X
-+You also need a OS-X sysroot tarball/zip file generated (copied) from a target macOS
- system. This is placed in the osx-runtime files directory and is used to compile the SDK
- against it. It needs to contain the system libraries (/usr/lib) and include files 
- (/usr/include). This tarball is not part of this meta-darwin layer and must be
-@@ -52,6 +52,10 @@ Layer Maintainers: Richard Purdie <richard.purdie@linuxfoundation.org>
-                    Dominik Schnitzer <dominik@snap.com>
-                    Etienne Cordonnier <ecordonnier@snap.com>
- 
-+Please send changes to the yocto mailing list (yocto@lists.yoctoproject.org) with [meta-darwin]
-+in the subject line, cc'ing the maintainers. You need to subscribe to the mailing list at
-+https://lists.yoctoproject.org/g/yocto before being able to post.
-+
-+When sending single patches, please use something like:
-+'git send-email -M -1 --to yocto@lists.yoctoproject.org --subject-prefix="meta-darwin][PATCH"'
- 
--Please send changes to the yocto mailing list with [meta-darwin] in the subject line,
--cc'ing the maintainer.
--- 
-2.36.1.vfs.0.0
+Cheers,
 
+Richard
 
