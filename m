@@ -2,56 +2,56 @@ Return-Path: <tgamblin@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F09BAC7EE23
-	for <webhook@archiver.kernel.org>; Wed, 17 May 2023 20:22:51 +0000 (UTC)
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
- by mx.groups.io with SMTP id smtpd.web11.61914.1684354967207802850
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03A3BC7EE2C
+	for <webhook@archiver.kernel.org>; Wed, 17 May 2023 20:22:52 +0000 (UTC)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+ by mx.groups.io with SMTP id smtpd.web11.61917.1684354969092952167
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 May 2023 13:22:47 -0700
+ Wed, 17 May 2023 13:22:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=OhsNP2c3;
- spf=pass (domain: baylibre.com, ip: 209.85.219.46, mailfrom: tgamblin@baylibre.com)
-Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6238ce8d8f9so2636646d6.3
-        for <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 13:22:47 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=eY7pvPLa;
+ spf=pass (domain: baylibre.com, ip: 209.85.222.181, mailfrom: tgamblin@baylibre.com)
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-757942bd912so74222885a.2
+        for <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 13:22:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684354966; x=1686946966;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684354968; x=1686946968;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HQe6UiJQlP+zrI6Wq2SjmGQs18jetBcZpn27vQXciU4=;
-        b=OhsNP2c3kz16euVw/p07ZwCzM6sWo+qfGCuccmAa7i+6V8Ugk6bEcqEKQ/rETvuUI/
-         p54IHI2oXD/lRr/DJyeNRBbpTuJw4qJko3oCNMCY7bpqi4Fx8ovlgrvWV98Nsy+x7mvV
-         m9C3pr0P2Y2mFlyAQjKE0/8T6s1/Z+rYxFZKlt3X4PJ5woC7qahYDvUWV38pxNHpFuII
-         Jt5orD9a3oJtZT2u5liWGHUvJ8Wa5anN4CCu6tXv89dYyufOrtpcT2N2x3X3DDohabOH
-         H+DEDfrrj3kE504ya7ltIHvxFBpQ01eqsw8WfWT/7/2GAuBlwbTpwnzxH+plv9VqX9wq
-         9a/Q==
+        bh=sqhom4dc4Q+xIa2MqqsR76v3WNmNOx92lxjZjEC7U3U=;
+        b=eY7pvPLaLlbqV5u+8aDwuzkY/pe8ZG/uzXAcxXOiUM4UQoenj2sHOcIpWq3bt1nf0l
+         dyHOKV84TnuSd/+HLpszTSw8/UI6x6GitDA469haPz/RvP3XKE5/BGNR9yGYlYO2F5YB
+         gHley6GEAekmGxoJtAZoBVGe1QF7gyr6gTh09ZMwsbZ2KjQjV9suV7WeamSVV9n54UE3
+         GLKiAZBAp+EuJ/j/mqnPgqJmkNtnZAFSzbvSwW5TxqNxp8l+LX6IrrdKlmUdYB5YR10Y
+         ++cC0RxihXsLGmKY32ogm4v46sJ+HiMKjzdqYnrU6lF+7T9ujIHLfX6tkU57AH3spb3U
+         q55A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684354966; x=1686946966;
+        d=1e100.net; s=20221208; t=1684354968; x=1686946968;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HQe6UiJQlP+zrI6Wq2SjmGQs18jetBcZpn27vQXciU4=;
-        b=W9jTFp9NNatD9QAgmFHjtUTXwFxcrLuzxg0HnQf4Oh5L98Zq8hwp9vIMiVJMpbReI9
-         2Kc8l3xMNx6uaF3v/CLU1RoYdVdg6DVBSnJmB7iVeyQjkugOcXZQ4jB5EcYSNQesCS2x
-         /OTks8O3dAN1zLMZkaNka1SQUwmirX5QAcnd3c7w9XVUq/073J6mtcYM5cspc1TvStxz
-         ZsFWvj3rQ1l1Y5dgAl7PkpbRa1rVD4gsptfk+P3qI5LgTOGEiP47xKi6/gRDcxXauRj+
-         hTfO1TZnjujhYdfQLXBYSCVvHR1cdtPRSZH8SPWOli95mWH0GgaQ//MFJXcaFc4aG73s
-         7Tzw==
-X-Gm-Message-State: AC+VfDzFFkCj5xqjp1lvW4JdZidfjY0SZI7A3wrqDMRsGQMyYzTfugrz
-	k+51DiqvsKk/nua5+ZVGtcc+WeZndxtK9b0jAUiJDw==
-X-Google-Smtp-Source: ACHHUZ7u5f0G/gjnuP0yA0185aeJd1hdYaVSziPWt6YTNyhGcLhys6QfiKP92eWZ0NShSBmPRGkbDQ==
-X-Received: by 2002:ad4:5caf:0:b0:5c8:403a:22f8 with SMTP id q15-20020ad45caf000000b005c8403a22f8mr2020877qvh.5.1684354966171;
-        Wed, 17 May 2023 13:22:46 -0700 (PDT)
+        bh=sqhom4dc4Q+xIa2MqqsR76v3WNmNOx92lxjZjEC7U3U=;
+        b=BVh2ut3/tMYdfZde4hMtVcmmBJQvkvlQvDBLK1FO2Ao9EJxFKg6DJe9ZvEDuSRqsgc
+         bZoYh2TCBfnRNFrXZHun23UP5Wx9K8AeZQZMKRD2BJUufdRHXzayYBug78VDbaPHGKke
+         2apNUDjs0K6/IyffJBlb7UigjtkPF5Cs0E/JdO80dBkTkSNGzzucYGtO2Zn1IEggkTTY
+         kobDwqPjc8nIt8nx1wr0JKiyxVESyQhCpk4FP3Q3Ufw/iJqGZHTFwMoR7Ie4f7paoonm
+         QbWORGgOcDz/qU1zZeiZwgbIIWWA+dP9oqWdMoYt6N234g0cQXHJN6vFTik5nclQ0dID
+         qPsg==
+X-Gm-Message-State: AC+VfDwwpOzav4dNu/v/g+uaEdOxv0oYmw0pR5cNgLnZEZ0ZrOqt+oVp
+	DU4xKDbGbcsGcF8rq4rTHDHxIm8J4yUAKtfc63GoNQ==
+X-Google-Smtp-Source: ACHHUZ4dLbUneodPYRYI6a2RcT5Bp5A4t9HEha5ibg5XuNqbgg9UA09ig6My4r5pA1QzoUPJG9J/UQ==
+X-Received: by 2002:ad4:5fcb:0:b0:5ef:865f:e5c9 with SMTP id jq11-20020ad45fcb000000b005ef865fe5c9mr1749850qvb.29.1684354967274;
+        Wed, 17 May 2023 13:22:47 -0700 (PDT)
 Received: from megalith.ht.home (cpe64777de11593-cm64777de11590.cpe.net.cable.rogers.com. [174.115.224.47])
-        by smtp.gmail.com with ESMTPSA id bv24-20020a05622a0a1800b003f3c9754e1dsm6790815qtb.17.2023.05.17.13.22.45
+        by smtp.gmail.com with ESMTPSA id bv24-20020a05622a0a1800b003f3c9754e1dsm6790815qtb.17.2023.05.17.13.22.46
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 13:22:45 -0700 (PDT)
+        Wed, 17 May 2023 13:22:47 -0700 (PDT)
 From: Trevor Gamblin <tgamblin@baylibre.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto][patchtest][PATCH 01/11] python3-astroid: upgrade 1.5.3 -> 2.15.4
-Date: Wed, 17 May 2023 16:22:34 -0400
-Message-Id: <20230517202244.1612047-2-tgamblin@baylibre.com>
+Subject: [yocto][patchtest][PATCH 03/11] python3-lazy-object-proxy: upgrade 1.3.1 -> 1.9.0
+Date: Wed, 17 May 2023 16:22:36 -0400
+Message-Id: <20230517202244.1612047-4-tgamblin@baylibre.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230517202244.1612047-1-tgamblin@baylibre.com>
 References: <20230517202244.1612047-1-tgamblin@baylibre.com>
@@ -60,87 +60,53 @@ Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 20:22:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60060
+ <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 20:22:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60062
 
 Copy the recipe from meta-python to handle the upgrade, so that
-patchtest can build it without needing that layer.
+patchtest can build it without requiring the layer.
 
 Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
 ---
- .../python/python3-astroid_1.5.3.bb           | 20 -----------
- .../python/python3-astroid_2.15.4.bb          | 35 +++++++++++++++++++
- 2 files changed, 35 insertions(+), 20 deletions(-)
- delete mode 100644 meta-patchtest/recipes-devtools/python/python3-astroid_1.5.3.bb
- create mode 100644 meta-patchtest/recipes-devtools/python/python3-astroid_2.15.4.bb
+ .../python/python3-lazy-object-proxy_1.3.1.bb         | 10 ----------
+ .../python/python3-lazy-object-proxy_1.9.0.bb         | 11 +++++++++++
+ 2 files changed, 11 insertions(+), 10 deletions(-)
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb
 
-diff --git a/meta-patchtest/recipes-devtools/python/python3-astroid_1.5.3.bb b/meta-patchtest/recipes-devtools/python/python3-astroid_1.5.3.bb
+diff --git a/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb b/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb
 deleted file mode 100644
-index 104038a..0000000
---- a/meta-patchtest/recipes-devtools/python/python3-astroid_1.5.3.bb
+index a876fa7..0000000
+--- a/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb
 +++ /dev/null
-@@ -1,20 +0,0 @@
--SUMMARY = "An abstract syntax tree for Python with inference support."
--HOMEPAGE = "https://pypi.python.org/pypi/astroid"
+@@ -1,10 +0,0 @@
+-SUMMARY = "A fast and thorough lazy object proxy"
+-HOMEPAGE = "https://python-lazy-object-proxy.readthedocs.io/"
+-LICENSE = "BSD"
 -SECTION = "devel/python"
--LICENSE = "LGPL"
--LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=ec680df42d8ad56427a83308817658cc"
 -
--SRC_URI[md5sum] = "6f65e4ea8290ec032320460905afb828"
--SRC_URI[sha256sum] = "492c2a2044adbf6a84a671b7522e9295ad2f6a7c781b899014308db25312dd35"
+-SRC_URI[md5sum] = "e128152b76eb5b9ba759504936139fd0"
+-SRC_URI[sha256sum] = "eb91be369f945f10d3a49f5f9be8b3d0b93a4c2be8f8a5b83b0571b8123e0a7a"
 -
 -inherit pypi setuptools3
--
--RDEPENDS_${PN}_class-target += "\
--    ${PYTHON_PN}-distutils \
--    ${PYTHON_PN}-lazy-object-proxy \
--    ${PYTHON_PN}-six \
--    ${PYTHON_PN}-subprocess \
--    ${PYTHON_PN}-wrapt \
--    ${PYTHON_PN}-re \
--    ${PYTHON_PN}-setuptools \
--"
-diff --git a/meta-patchtest/recipes-devtools/python/python3-astroid_2.15.4.bb b/meta-patchtest/recipes-devtools/python/python3-astroid_2.15.4.bb
+diff --git a/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb b/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb
 new file mode 100644
-index 0000000..6053728
+index 0000000..74c5e9b
 --- /dev/null
-+++ b/meta-patchtest/recipes-devtools/python/python3-astroid_2.15.4.bb
-@@ -0,0 +1,35 @@
-+SUMMARY = "An abstract syntax tree for Python with inference support."
-+HOMEPAGE = "https://pypi.python.org/pypi/astroid"
++++ b/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb
+@@ -0,0 +1,11 @@
++SUMMARY = "A fast and thorough lazy object proxy"
++HOMEPAGE = "https://python-lazy-object-proxy.readthedocs.io/"
++LICENSE = "BSD-2-Clause"
 +SECTION = "devel/python"
-+LICENSE = "LGPL-2.1-only"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=a70cf540abf41acb644ac3b621b2fad1"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=d606e94f56c21c8e0cdde0b622dcdf57"
 +
-+SRC_URI[sha256sum] = "c81e1c7fbac615037744d067a9bb5f9aeb655edf59b63ee8b59585475d6f80d8"
++DEPENDS += "${PYTHON_PN}-setuptools-scm-native ${PYTHON_PN}-pip-native"
 +
-+inherit pypi python_setuptools_build_meta
++SRC_URI[sha256sum] = "659fb5809fa4629b8a1ac5106f669cfc7bef26fbb389dda53b3e010d1ac4ebae"
 +
-+DEPENDS += "\
-+    ${PYTHON_PN}-pytest-runner-native \
-+    ${PYTHON_PN}-wheel-native \
-+"
-+
-+PACKAGES =+ "${PN}-tests"
-+
-+FILES:${PN}-tests += " \
-+    ${PYTHON_SITEPACKAGES_DIR}/astroid/test* \
-+    ${PYTHON_SITEPACKAGES_DIR}/astroid/__pycache__/test* \
-+"
-+
-+RDEPENDS:${PN}:class-target += "\
-+    ${PYTHON_PN}-distutils \
-+    ${PYTHON_PN}-lazy-object-proxy \
-+    ${PYTHON_PN}-logging \
-+    ${PYTHON_PN}-six \
-+    ${PYTHON_PN}-wrapt \
-+    ${PYTHON_PN}-setuptools \
-+"
-+
-+RDEPENDS:${PN}-tests:class-target += "\
-+    ${PYTHON_PN}-unittest \
-+    ${PYTHON_PN}-xml \
-+"
++inherit pypi setuptools3
 -- 
 2.40.1
 
