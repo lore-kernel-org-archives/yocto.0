@@ -2,111 +2,127 @@ Return-Path: <tgamblin@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12582C7EE2A
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AEA2C7EE22
 	for <webhook@archiver.kernel.org>; Wed, 17 May 2023 20:15:02 +0000 (UTC)
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
- by mx.groups.io with SMTP id smtpd.web11.61668.1684354499919533780
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+ by mx.groups.io with SMTP id smtpd.web10.61355.1684354498734944764
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 May 2023 13:15:00 -0700
+ Wed, 17 May 2023 13:14:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=p7+ueWNH;
- spf=pass (domain: baylibre.com, ip: 209.85.222.181, mailfrom: tgamblin@baylibre.com)
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-75795493bceso75703085a.3
-        for <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 13:14:59 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=NlvuM+0o;
+ spf=pass (domain: baylibre.com, ip: 209.85.160.182, mailfrom: tgamblin@baylibre.com)
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-3f3faefc92cso11251331cf.3
+        for <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 13:14:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684354499; x=1686946499;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sqhom4dc4Q+xIa2MqqsR76v3WNmNOx92lxjZjEC7U3U=;
-        b=p7+ueWNH0OwAFivRJPI38fBDwjNWNKkui/zsV34TYh/+Cx0c6CSlLeKPqxshKkXEMm
-         C6dM9OkKJzEh8ohikLjDYtej5vujvG94wtb5tN4omNaz72xgrWhTI+RrSQ6SgqHz00ZA
-         NKSdRXTp0BzCdvgcX+JGUAxi1Ly8izkunaO/hnXVA/xMQnlym0BIJBmpabWDRNukECNC
-         /dyFlYTeP1pDumwa3iPPpSpY6myVyRtMEtHsy8pdsSSq/1XoOKSMIN9j7NZRquw7vt3w
-         H9jB2PzNod48U5pJRyuJC2TCmp7ERmGMwbs3Csk+a23AguEnNl/LFhql2cMNP7CZvQMf
-         Q5tg==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684354497; x=1686946497;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=25JMzv9c8MMTX4QiQ2GJfqRNET6JCKwvEhTtEummfc0=;
+        b=NlvuM+0oUtC0ug99WtInT/VcoT02YqNVGGWVeETKDFkOo9NxOL2hjtMm9kpECTl+X8
+         YjG2RV8p6+v9qHSVPE00ZooGzE76ujwEp6vKti33epMJ0A1LYVpH9XsQicDbhxRGAXXP
+         1tiMNgIMtc/fW2GqlbuHBWMGk1iJF0JltndYxTERWrGOjztaqE1iqD9lqVgn9uVTGvAl
+         4R6t+mQXjT5ZD5mB0/bERiCDkO/B5vwJtsUK/VP5wZGP4Z0km3f2OuC1GX7QaKD2WJJ/
+         PvTTYI3d2D+CDLlgCcnO3bwr7aDw1nQYJ55X9gdXGKLVlkPN5l6QFVEEE5Vk9UbCI2vO
+         JZtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684354499; x=1686946499;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sqhom4dc4Q+xIa2MqqsR76v3WNmNOx92lxjZjEC7U3U=;
-        b=F8dFO7ScDfvU6l6nbiG6R0k7KizRQZzt9YSye8e5gli3UQYhv3+j/0+uKtqM1uGi6L
-         uoQmFt5GCAgoa6yVWwAUVNI1sdgbGR0dgww1j9jxe1XZ5r1h3ytgC4x6Wr3xLiFDb5iy
-         FB/gvporzLftBbtR5z0KK7pVguHSQ+raajTvdu2VzwMYZ3WYZKOOjNh742TkRwhhGsa0
-         9P8ZuEavkRSl3yQ+Q0NEGGvhGlvq3JNwDNUeBaP73JeneIQ121YV6tD6Rx38devUOAPD
-         hnaNgI6gjl0jnvSbJMXNtQ1gsQzSEup0bUDFAh379zZwsgAQUgsgQJ3WKGX2s6PSyOLF
-         rkUw==
-X-Gm-Message-State: AC+VfDzTDutgQGNu7XrHasGvRnlr2THliWtq/xpHVfIJEy8t4D9sBEOY
-	SlZTN2hYlHsk/7XCHephxa60W82APqIlw3GN8aw+RQ==
-X-Google-Smtp-Source: ACHHUZ4O9XsS9qz/+cxoKGC1bG4ZNTJgN5pAPYxzHAI+SLgylbL0iKwK4u8rb4HKYrHnZgwMk0c/mw==
-X-Received: by 2002:a05:6214:1bcb:b0:5e0:7ecb:8ffb with SMTP id m11-20020a0562141bcb00b005e07ecb8ffbmr1638554qvc.8.1684354498903;
-        Wed, 17 May 2023 13:14:58 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684354497; x=1686946497;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=25JMzv9c8MMTX4QiQ2GJfqRNET6JCKwvEhTtEummfc0=;
+        b=hFtSs+xhu7b+/kf3p0TjnrV9W1NK3qLcZto4Cg8J7Gr52IL9U+9RmFGuG7JkMO3Cuv
+         kjflIQ1R70U339btN5QslvPElDZYDwjNrerN+7RWl8PfYW0daSJb/+HvSTabK9pPEhkG
+         nLeosZWe3vIPiE/NCW4xhzBg2d14OzVjTuBGUizELOrSsZQSn5i1jbg8JZxqYsnWmQZE
+         VtvU2j8o6Gm5cOmcCM7vC+7G1v/YPu9BbVf7B3nLebxVfTFaOj0E9av+jcq/CaLR25vG
+         3PgXu/GUpyevGP471mxYxCsV9hoaLxQMFb/2gg5S0UhudfQ9/OAuJ9YQKPzmJo9LACsD
+         9Djg==
+X-Gm-Message-State: AC+VfDzUoNbzF8TelMOW+GxLUKiIHCURB3Usn1fv2SHm/fDFWKA2ga+N
+	GM2PYQjLClsbSyNP1yDoL7m9bFIwIxZXbJNPMqh+7Q==
+X-Google-Smtp-Source: ACHHUZ5hG9BybIF/6BHJPZFWx67FRProWM1Reit/gRw7XXM7ky6jBiwjut1OxyhBVtwH2eQxsMKuSg==
+X-Received: by 2002:ac8:5a4f:0:b0:3bf:df2e:a494 with SMTP id o15-20020ac85a4f000000b003bfdf2ea494mr1888095qta.6.1684354497227;
+        Wed, 17 May 2023 13:14:57 -0700 (PDT)
 Received: from megalith.ht.home (cpe64777de11593-cm64777de11590.cpe.net.cable.rogers.com. [174.115.224.47])
-        by smtp.gmail.com with ESMTPSA id z10-20020a05620a100a00b007592547a822sm868084qkj.80.2023.05.17.13.14.58
+        by smtp.gmail.com with ESMTPSA id z10-20020a05620a100a00b007592547a822sm868084qkj.80.2023.05.17.13.14.56
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 13:14:58 -0700 (PDT)
+        Wed, 17 May 2023 13:14:56 -0700 (PDT)
 From: Trevor Gamblin <tgamblin@baylibre.com>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH 03/11] python3-lazy-object-proxy: upgrade 1.3.1 -> 1.9.0
-Date: Wed, 17 May 2023 16:14:48 -0400
-Message-Id: <20230517201456.1608917-4-tgamblin@baylibre.com>
+Subject: [yocto][patchtest][PATCH 00/11] patchtest: layer updates
+Date: Wed, 17 May 2023 16:14:45 -0400
+Message-Id: <20230517201456.1608917-1-tgamblin@baylibre.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230517201456.1608917-1-tgamblin@baylibre.com>
-References: <20230517201456.1608917-1-tgamblin@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Wed, 17 May 2023 20:15:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60050
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60047
 
-Copy the recipe from meta-python to handle the upgrade, so that
-patchtest can build it without requiring the layer.
+This series includes several changes to upgrade existing recipes, add
+those that the new upgrades depend on, and remove what's no longer
+necessary to have in the layer. The objective is to make patchtest
+usable with only oe-core and bitbake, so almost all changes have been
+copied over from the meta-python layer. python3-pyparsing is in oe-core,
+so it's no longer needed in patchtest.
 
-Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
----
- .../python/python3-lazy-object-proxy_1.3.1.bb         | 10 ----------
- .../python/python3-lazy-object-proxy_1.9.0.bb         | 11 +++++++++++
- 2 files changed, 11 insertions(+), 10 deletions(-)
+Trevor Gamblin (11):
+  python3-astroid: upgrade 1.5.3 -> 2.15.4
+  python3-isort: upgrade 4.2.15 -> 5.12.0
+  python3-lazy-object-proxy: upgrade 1.3.1 -> 1.9.0
+  python3-pylint: upgrade 1.6.5 -> 2.17.4
+  python3-pyparsing: remove recipe
+  python3-unidiff: upgrade 0.5.4 -> 0.7.5
+  python3-wrapt: upgrade 1.10.10 -> 1.15.0
+  python3-dill: add recipe
+  python3-mccabe: add recipe
+  python3-platformdirs: add recipe
+  python3-tomlkit: add recipe
+
+ .../python/python3-astroid_1.5.3.bb           | 20 --------
+ .../python/python3-astroid_2.15.4.bb          | 35 +++++++++++++
+ .../python/python3-dill_0.3.6.bb              | 17 +++++++
+ .../python/python3-isort_4.2.15.bb            | 10 ----
+ .../python/python3-isort_5.12.0.bb            | 20 ++++++++
+ .../python/python3-lazy-object-proxy_1.3.1.bb | 10 ----
+ .../python/python3-lazy-object-proxy_1.9.0.bb | 11 ++++
+ .../python/python3-mccabe_0.7.0.bb            | 11 ++++
+ .../python/python3-platformdirs/run-ptest     |  3 ++
+ .../python/python3-platformdirs_3.5.1.bb      | 35 +++++++++++++
+ .../python/python3-pylint/run-ptest           |  3 ++
+ .../python/python3-pylint_1.6.5.bb            | 33 ------------
+ .../python/python3-pylint_2.17.4.bb           | 51 +++++++++++++++++++
+ .../python/python3-pyparsing_2.2.0.bb         | 19 -------
+ .../python/python3-tomlkit/run-ptest          |  3 ++
+ .../python/python3-tomlkit_0.11.8.bb          | 23 +++++++++
+ .../python/python3-unidiff/run-ptest          |  3 ++
+ .../python/python3-unidiff_0.5.4.bb           |  9 ----
+ .../python/python3-unidiff_0.7.5.bb           | 26 ++++++++++
+ .../python/python3-wrapt_1.10.10.bb           | 15 ------
+ .../python/python3-wrapt_1.15.0.bb            | 16 ++++++
+ 21 files changed, 257 insertions(+), 116 deletions(-)
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-astroid_1.5.3.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-astroid_2.15.4.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-dill_0.3.6.bb
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-isort_4.2.15.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-isort_5.12.0.bb
  delete mode 100644 meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb
  create mode 100644 meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-mccabe_0.7.0.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-platformdirs/run-ptest
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-platformdirs_3.5.1.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-pylint/run-ptest
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-pylint_1.6.5.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-pylint_2.17.4.bb
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-pyparsing_2.2.0.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-tomlkit/run-ptest
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-tomlkit_0.11.8.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-unidiff/run-ptest
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-unidiff_0.5.4.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-unidiff_0.7.5.bb
+ delete mode 100644 meta-patchtest/recipes-devtools/python/python3-wrapt_1.10.10.bb
+ create mode 100644 meta-patchtest/recipes-devtools/python/python3-wrapt_1.15.0.bb
 
-diff --git a/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb b/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb
-deleted file mode 100644
-index a876fa7..0000000
---- a/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.3.1.bb
-+++ /dev/null
-@@ -1,10 +0,0 @@
--SUMMARY = "A fast and thorough lazy object proxy"
--HOMEPAGE = "https://python-lazy-object-proxy.readthedocs.io/"
--LICENSE = "BSD"
--SECTION = "devel/python"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=ec680df42d8ad56427a83308817658cc"
--
--SRC_URI[md5sum] = "e128152b76eb5b9ba759504936139fd0"
--SRC_URI[sha256sum] = "eb91be369f945f10d3a49f5f9be8b3d0b93a4c2be8f8a5b83b0571b8123e0a7a"
--
--inherit pypi setuptools3
-diff --git a/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb b/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb
-new file mode 100644
-index 0000000..74c5e9b
---- /dev/null
-+++ b/meta-patchtest/recipes-devtools/python/python3-lazy-object-proxy_1.9.0.bb
-@@ -0,0 +1,11 @@
-+SUMMARY = "A fast and thorough lazy object proxy"
-+HOMEPAGE = "https://python-lazy-object-proxy.readthedocs.io/"
-+LICENSE = "BSD-2-Clause"
-+SECTION = "devel/python"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=d606e94f56c21c8e0cdde0b622dcdf57"
-+
-+DEPENDS += "${PYTHON_PN}-setuptools-scm-native ${PYTHON_PN}-pip-native"
-+
-+SRC_URI[sha256sum] = "659fb5809fa4629b8a1ac5106f669cfc7bef26fbb389dda53b3e010d1ac4ebae"
-+
-+inherit pypi setuptools3
 -- 
 2.40.1
 
