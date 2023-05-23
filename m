@@ -1,103 +1,97 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B21E3C77B75
-	for <webhook@archiver.kernel.org>; Tue, 23 May 2023 11:53:29 +0000 (UTC)
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
- by mx.groups.io with SMTP id smtpd.web11.19975.1684842801654659805
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CA0F2C7EE26
+	for <webhook@archiver.kernel.org>; Tue, 23 May 2023 12:14:59 +0000 (UTC)
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+ by mx.groups.io with SMTP id smtpd.web11.20506.1684844098421666210
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 May 2023 04:53:22 -0700
+ Tue, 23 May 2023 05:14:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=Q7fwj716;
- spf=pass (domain: gmail.com, ip: 209.85.167.53, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-4f3b9755961so3327640e87.0
-        for <yocto@lists.yoctoproject.org>; Tue, 23 May 2023 04:53:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684842799; x=1687434799;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jYyrq3m0GyEEdYJiUvWlW3iHyH2A9Fwm/l3peU7ggek=;
-        b=Q7fwj716PBxhnlIA3d5Or5flY6zIMOqjd7gqWo63hxE23a4P6Sa55Jw8y6W18NGNYa
-         Uqd6nWgzl3dFcJXAMhzVdPklhcdy76cRk7yivtewTVRLsShyDuv2p3LiKEfle+tX10bV
-         U4nkAGAK/diZqF7Gq0GurRgFCHwenPuL+IE+aX1OkXu9vs7tDxOFp/E9+roxEGJ/KBRo
-         PA3txEC3r35zlSMdXQ1f4TE5AFE8k/ADeJoI4JnZDrtfogtQ5OCkdwYu2DTepym5b1Ug
-         YPFl3dDONQUqPTK468eaEUMrQFuMbK3JBPpLyfQ31WJJUhTWMXSlNVX4qIQhm/eo2Duh
-         gXVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684842799; x=1687434799;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jYyrq3m0GyEEdYJiUvWlW3iHyH2A9Fwm/l3peU7ggek=;
-        b=UtsclNa6t3HShnk/J0/H1T53YCYXacd1g9IaLdo19hfrsGOA0CpcLrskZd2hNIWUVW
-         5dYA62s8ECEshejux5Et5kBWQvseNuesDs5P8LzRaMn7n/VCXlQk0yXrUG/CR93n5/Kr
-         GvGZddf6SXAciF1BQ52Dag0lAaCf2rqHYwgM7sfrioj3nvNZz9Wgu0sW4lCZ5qQeI1Bp
-         AleW0IJI7NxzQ9nN4jEqP9RP/mPz3+SyXqJZA1ws5lTx6DI+FumNEAKIEWUyZKoA7o7S
-         jd/GCx8xf1n6fiE8d8RwQWowQOsMLQqC9xkyhxSYAfTFujk/J3A7wIQseEnm0TAdN8En
-         hDLQ==
-X-Gm-Message-State: AC+VfDx0z5xRWb4CJe2PIv6hfRDG9GqQlw9D9LcQmbBL47zbZuHFSSsm
-	mwK6qwtG3r8OGZbsF2G4ZZv/nheGKZ1DClNDhZs=
-X-Google-Smtp-Source: ACHHUZ7ZOnLHwy860wjtaxeFB1JDGzjvLdOHqQ5E93pgqc06QCs1CD1tFIZDivhjHxbk+Hd19CMdkZ58Yt9EvTzANrs=
-X-Received: by 2002:a2e:3213:0:b0:2af:1eee:84af with SMTP id
- y19-20020a2e3213000000b002af1eee84afmr5287330ljy.26.1684842799235; Tue, 23
- May 2023 04:53:19 -0700 (PDT)
+ dkim=missing; spf=pass (domain: lakka.kapsi.fi, ip: 91.232.154.25, mailfrom: mcfrisk@lakka.kapsi.fi)
+Received: from kapsi.fi ([91.232.154.11] helo=lakka.kapsi.fi)
+	by mail.kapsi.fi with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1q1Quk-00DvSw-3Z; Tue, 23 May 2023 15:14:54 +0300
+Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1q1Quj-003IF1-RN; Tue, 23 May 2023 15:14:53 +0300
+From: mikko.rapeli@linaro.org
+To: yocto@lists.yoctoproject.org
+Cc: Mikko Rapeli <mikko.rapeli@linaro.org>
+Subject: [meta-tpm][PATCH 1/2] linux-yocto: support tpm and tpm2 on all architectures
+Date: Tue, 23 May 2023 15:14:43 +0300
+Message-Id: <20230523121444.784305-1-mikko.rapeli@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <gwM8.1684841437492329746.Wdf3@lists.yoctoproject.org>
-In-Reply-To: <gwM8.1684841437492329746.Wdf3@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 23 May 2023 13:53:07 +0200
-Message-ID: <CANNYZj9UP1jY-rHExqjPpe0i+KTkFtjbPSzAbQhB1odkKdKhzg@mail.gmail.com>
-Subject: Re: [yocto] Inquiry Regarding License Compatibility in OpenEmbedded
- Meta-Security Layer #selinux #yocto #qt5 #kernel #hardknott #bitbake #dunfell
- #gplv3 #imx8 #linux
-To: cheerala.rohith@spacelabs.com
-Cc: yocto@lists.yoctoproject.org, Armin Kuster <akuster808@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Rspam-Score: -1.4 (-)
+X-Rspam-Report: Action: no action
+ Symbol: ARC_NA(0.00)
+ Symbol: DMARC_POLICY_SOFTFAIL(0.10)
+ Symbol: RCVD_TLS_LAST(0.00)
+ Symbol: TO_DN_SOME(0.00)
+ Symbol: R_MISSING_CHARSET(0.50)
+ Symbol: R_SPF_ALLOW(-0.20)
+ Symbol: MIME_GOOD(-0.10)
+ Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
+ Symbol: BLOCKLISTDE_FAIL(0.00)
+ Symbol: RCPT_COUNT_TWO(0.00)
+ Symbol: FROM_NO_DN(0.00)
+ Symbol: MID_CONTAINS_FROM(1.00)
+ Symbol: FORGED_SENDER(0.30)
+ Symbol: R_DKIM_NA(0.00)
+ Symbol: MIME_TRACE(0.00)
+ Symbol: ASN(0.00)
+ Symbol: FROM_NEQ_ENVFROM(0.00)
+ Symbol: BAYES_HAM(-3.00)
+ Symbol: RCVD_COUNT_TWO(0.00)
+ Message-ID: 20230523121444.784305-1-mikko.rapeli@linaro.org
+X-SA-Exim-Connect-IP: 91.232.154.11
+X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 23 May 2023 11:53:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60096
+ <yocto@lists.yoctoproject.org>; Tue, 23 May 2023 12:14:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60097
 
-On Tue, 23 May 2023 at 13:30, <cheerala.rohith@spacelabs.com> wrote:
->
-> I am reaching out to seek clarification regarding the license compatibili=
-ty within theOpenEmbedded Meta-Security layer, particularly in relation to =
-the presence of LGPL, GPL 2.0 and GPL 3.0 licenses and the ambiguity in the=
- license information of the ClamAV tool and other Security tools in meta-se=
-curity layer.
->
-> We have noticed that the meta-security layer within the OpenEmbedded proj=
-ect contains several components with LGPL, GPL 2.0 and GPL 3.0 licenses. Ad=
-ditionally, there is ambiguity regarding the license information for the Cl=
-amAV tool, as the OpenEmbedded recipe documentation indicates it is LGPL ( =
-https://layers.openembedded.org/layerindex/recipe/32867/ ), while the ClamA=
-V documentation specifies GPL 2.0 ( https://github.com/Cisco-Talos/clamav )=
-.
+From: Mikko Rapeli <mikko.rapeli@linaro.org>
 
-I believe this is incorrectly written in the openembedded recipe and
-the component is indeed GPL 2.0. CC Armin.
+arm, arm64 and other machines can also have tpm and tpm2 devices
+and the config snippets tpm.scc and tpm2.scc work there too.
 
-> 1. Please clarify on the ambiguity of license information for recipes and=
- whether these recipes can be integrated into commercial products that nece=
-ssitates strict adherence to licensing requirements.
-> 2. Which license will apply to the Image that is bitbaked with openembedd=
-ed recipes? will the license be MIT as Yocto project.
+Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
+---
+ meta-tpm/recipes-kernel/linux/linux-yocto_tpm.inc | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
 
-We do need to fix the clamav recipe to provide correct metadata (it
-seems like a simple mistake in an isolated recipe), but otherwise
-these are the questions for your company's legal department, not the
-open source community. The community does not offer legal advice, but
-we do know that a lot of successful products are shipped that are
-built using Yocto project, and presumbly companies are able to handle
-legal risks and requirements.
+diff --git a/meta-tpm/recipes-kernel/linux/linux-yocto_tpm.inc b/meta-tpm/recipes-kernel/linux/linux-yocto_tpm.inc
+index 909c42d..7a27683 100644
+--- a/meta-tpm/recipes-kernel/linux/linux-yocto_tpm.inc
++++ b/meta-tpm/recipes-kernel/linux/linux-yocto_tpm.inc
+@@ -1,17 +1,8 @@
+ FILESEXTRAPATHS:prepend := "${THISDIR}/linux-yocto:"
+ 
+-# Enable tpm in kernel 
+-SRC_URI:append:x86 = " \
+-    ${@bb.utils.contains('MACHINE_FEATURES', 'tpm', 'file://tpm.scc', '', d)} \
+-    ${@bb.utils.contains('MACHINE_FEATURES', 'tpm2', 'file://tpm2.scc', '', d)} \
+-    "
+-
+-SRC_URI:append:x86-64 = " \
++SRC_URI += " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'tpm', 'file://tpm.scc', '', d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'tpm2', 'file://tpm2.scc', '', d)} \
+-    "
+-
+-SRC_URI += " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'tpm_i2c', 'file://tpm_i2c.scc', '', d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'vtpm', 'file://vtpm.scc', '', d)} \
+     "
+-- 
+2.34.1
 
-The image will contain code under many different licenses coming from
-components such as clamav, and if you ship it in a product, you must
-fulfil the requirements of all those licenses.
-
-Alex
 
