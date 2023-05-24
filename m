@@ -1,113 +1,109 @@
-Return-Path: <geissonator@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 190DCC77B7C
-	for <webhook@archiver.kernel.org>; Wed, 24 May 2023 20:03:34 +0000 (UTC)
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
- by mx.groups.io with SMTP id smtpd.web11.4211.1684958613835361265
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5141AC77B7C
+	for <webhook@archiver.kernel.org>; Wed, 24 May 2023 20:12:14 +0000 (UTC)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+ by mx.groups.io with SMTP id smtpd.web10.4440.1684959131222576281
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 May 2023 13:03:33 -0700
+ Wed, 24 May 2023 13:12:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=CeYVZ/iM;
- spf=pass (domain: gmail.com, ip: 209.85.160.180, mailfrom: geissonator@gmail.com)
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-3f6c6020cfbso936251cf.2
-        for <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 13:03:33 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=WbR739Gn;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.50, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-3f60b3f32b4so11342805e9.1
+        for <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 13:12:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684958613; x=1687550613;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WF6PgPJmnEqyg8erLNoyfM9U3hHYiJNflj6ZkqmwJww=;
-        b=CeYVZ/iMrPC/UkEFBEJqxJr3IudqH54KWO6SMBj9/DPOUcPnuna68PCDkL4/L+nWvW
-         /C1v4fT5beS+ERQ4xuVS/lfRRVzkG8UME8q0Ynd3nyp0/1NrYIHXkkOVpof0ybDq+Qdl
-         SszQpuk3jlUwgh/SYM0bnOI9iibXcRVSTvQGH3c2Q3TsfsSmhbqT0hb7HwDjlhqTmJsc
-         +UBUf2FJAE6cbY0An8DNOnvj454CssFJC1CCMtWFDO/tWdVHh66mBOjC1Ky/nlAVAEf0
-         8RLAX5pLArbTP7NG40HKpNKF/WyBtw4I4PeU58S8cxgoefV6K55cgIFOwgS1AvfgfrDD
-         j7Ww==
+        d=linuxfoundation.org; s=google; t=1684959129; x=1687551129;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wXFGTG5rmnNRYQfdbmpsPnrPcqDQXhKTsTwCKYBCMk0=;
+        b=WbR739GnUY4hSbMLJ0FT+U7513V240Rhas50zeyFb9QQOg5mYN2zhZ+aW3e2VVp0i9
+         bvSvqaxj58+lgfGjTVCkByOv+ptRbzMRhtBZPT6vdU9dBEqoED0gGMTtlV2I8Z+Z6Cpf
+         j8rAyIh3j31pJItzGX1oiOYDz5OR63AoAOI0E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684958613; x=1687550613;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WF6PgPJmnEqyg8erLNoyfM9U3hHYiJNflj6ZkqmwJww=;
-        b=NAszCwndjd6jPKlIH4xGWwxUVRRa6/TVSvCay4RghqrGrfjWAisQ96WJnl6N2mvhBa
-         FK0fhTfaggPwfgu/53BjRq8ihKUaO51Lfz0EeewTRhEJwr3ronCUjFQLaJlmgImSVuF1
-         76W8VW4KHwpsNZO7hnvnOuL7e23DBCx/FLlw0Tv2vdwsUcPKvf/YkzsBx5fmnvSiHaFL
-         KTrweC60fgHapCXW9mTd2FVrMsNqdT5rhJ9oC+VpymZ2JSpUIfNMKxo2N1uv0ciBywKf
-         yNtOW/rimnJjqmXdwJ/u2umqkUi1LXLa7j6jNwO9qO18ukNS2jdYkj5xmRLyT5lMCUs+
-         Ub6A==
-X-Gm-Message-State: AC+VfDzQtehGo7Obv7xBF/c4xPcfR04+RSGlDdvoh/P3wCoreCzjhwIa
-	STdSYnArS8UbTTDpfEkM5JBJN42ZOtA=
-X-Google-Smtp-Source: ACHHUZ6FpDjTBGiIG5j2V/P1eGkubwjFDZFL2y5iuxyzvr+COymB4fQb7Jh0+/or7LkNO6ANSYE1fA==
-X-Received: by 2002:a05:622a:1d0:b0:3d2:7f3b:c691 with SMTP id t16-20020a05622a01d000b003d27f3bc691mr29421606qtw.47.1684958612767;
-        Wed, 24 May 2023 13:03:32 -0700 (PDT)
-Received: from localhost.localdomain (097-086-066-234.biz.spectrum.com. [97.86.66.234])
-        by smtp.gmail.com with ESMTPSA id z1-20020ac87ca1000000b003f517e1fed2sm2842667qtv.15.2023.05.24.13.03.31
+        d=1e100.net; s=20221208; t=1684959129; x=1687551129;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=wXFGTG5rmnNRYQfdbmpsPnrPcqDQXhKTsTwCKYBCMk0=;
+        b=TCYLWdVrYsdlVQmj1LPTr6fPdI3ew8WwmlJM98InYQwqSsXSo0fbYk2blX4grcG+TY
+         NYut+Eq2nqORNGwLeJtRuDwCZU/g46juydtZvsZtbhVyNCDqFESSPhUzozjWiqmqRbyY
+         8ybOR/i6BIY2iaj3rlvgYf0Nvv5BN538XSwFiymPCO+TVIDgMm8nY0TgF5xc5hIaXO0m
+         SNXgqV3w3N4fbry60uX3cvOsiTuS3M1VkvBDXkOdcvmcgRKA68FPm+KZyuwCMP3FCF4z
+         K9tymb7HXwwh5J9lJGh0quh6ljaKT1Vo03V2onRUcQVcBhkkfbRdxVyeQXPhPdHMbcoL
+         5QOA==
+X-Gm-Message-State: AC+VfDyLl8EbNmrYIM2eZG3tUrEq9EuYFEBR26+AP4AH7zdjo49ZNgo2
+	DvKQfBfljtEM+QzBuBST05qJKw==
+X-Google-Smtp-Source: ACHHUZ59dSf5q0ukIG29DOckK+vBCgWRYwopZpAVhYmel2UewbLODiccCh4BTHQsKlELr032D/56UA==
+X-Received: by 2002:a1c:7718:0:b0:3f4:f4d1:5c28 with SMTP id t24-20020a1c7718000000b003f4f4d15c28mr569740wmi.24.1684959129660;
+        Wed, 24 May 2023 13:12:09 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:4cab:7af6:3f6:b471? ([2001:8b0:aba:5f3c:4cab:7af6:3f6:b471])
+        by smtp.gmail.com with ESMTPSA id l22-20020a1c7916000000b003f607875e5csm3415673wme.24.2023.05.24.13.12.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 13:03:32 -0700 (PDT)
-From: Andrew Geissler <geissonator@gmail.com>
-X-Google-Original-From: Andrew Geissler <geissonator@yahoo.com>
-To: yocto@lists.yoctoproject.org
-Cc: Andrew Geissler <geissonator@yahoo.com>
-Subject: [meta-security][PATCH] ibmswtpm2: update to 164-2020-192.1
-Date: Wed, 24 May 2023 16:03:07 -0400
-Message-Id: <20230524200307.37451-1-geissonator@yahoo.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+        Wed, 24 May 2023 13:12:09 -0700 (PDT)
+Message-ID: <78d1f724267411f2456fe3108638bdcc841c6b5e.camel@linuxfoundation.org>
+Subject: Re: [yocto] libstdc++.so.6: version `GLIBCXX_3.4.30' not found
+ (required by bin/cmake) #hardknott
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Mahendra Sondagar <mahendrasondagar08@gmail.com>, 
+	yocto@lists.yoctoproject.org
+Date: Wed, 24 May 2023 21:12:07 +0100
+In-Reply-To: <FdMa.1684929870726192226.1anj@lists.yoctoproject.org>
+References: <FdMa.1684929870726192226.1anj@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.0-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 20:03:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60115
+ <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 20:12:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60116
 
-This version supports openssl 3.1
+On Wed, 2023-05-24 at 05:04 -0700, Mahendra Sondagar wrote:
+> Hi.. community=C2=A0
+> Hope all are doing well=C2=A0
+> =C2=A0
+> I'm dealing with the Yocto hardknott with my Ubuntu host=C2=A0
+> The Ubuntu version is=C2=A0Ubuntu 22.04.2 LTS
+> =C2=A0
+> During the building of the custom image, everything goes well until
+> the build process hits the below error message=C2=A0
+> =C2=A0
+> | make=C2=A0 -f CMakeFiles/Makefile2 preinstall
+> | make[1]: Entering directory '/home/aio/AIO_Systems_Yocto/var-fslc-
+> yocto/build_aio/tmp/work/x86_64-linux/cmake-native/3.19.5-r0/build'
+> | make[1]: Nothing to be done for 'preinstall'.
+> | make[1]: Leaving directory '/home/aio/AIO_Systems_Yocto/var-fslc-
+> yocto/build_aio/tmp/work/x86_64-linux/cmake-native/3.19.5-r0/build'
+> | ERROR: oe_runmake failed
+> | Install the project...
+> | bin/cmake -P cmake_install.cmake
+> | WARNING: exit code 1 from a shell command.
+> | bin/cmake: /home/aio/AIO_Systems_Yocto/var-fslc-
+> yocto/build_aio/tmp/sysroots-uninative/x86_64-
+> linux/usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.30' not found
+> (required by bin/cmake)
+> | make: *** [Makefile:162: install] Error 1
+> | ERROR: ExecutionError('/home/aio/AIO_Systems_Yocto/var-fslc-
+> yocto/build_aio/tmp/work/x86_64-linux/cmake-native/3.19.5-
+> r0/temp/run.do_install.194605', 1, None, None)
+> =C2=A0
+> for instance, I have also verified the installed version of the GLIBC
+> via the below command=C2=A0
+> strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
+> =C2=A0
+> From where I got to know that, it's already installed!
+> =C2=A0
+> Can anyone help me here to resolve the issue?
+> All comments and suggestions welcome=C2=A0=C2=A0
 
-The maintainer changed his tag versions hence the different looking
-version.
+Upgrading uninative to a version from master will probably help fix
+that. As Khem mentions, hardknott is know longer supported through.
 
-The maintainer also has stopped releasing tar files and asked we
-directly grab from git.
+Cheers,
 
-Signed-off-by: Andrew Geissler <geissonator@yahoo.com>
----
- ...ibmswtpm2_1682.bb => ibmswtpm2_164-2020-192.1.bb} | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
- rename meta-tpm/recipes-tpm2/ibmswtpm2/{ibmswtpm2_1682.bb => ibmswtpm2_164-2020-192.1.bb} (73%)
-
-diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1682.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_164-2020-192.1.bb
-similarity index 73%
-rename from meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1682.bb
-rename to meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_164-2020-192.1.bb
-index 85fc7e0..fbeb872 100644
---- a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1682.bb
-+++ b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_164-2020-192.1.bb
-@@ -11,18 +11,18 @@ Advantages of this approach: \
- HOMEPAGE = "http://ibmswtpm.sourceforge.net/ibmswtpm2.html"
- LICENSE = "BSD-2-Clause"
- SECTION = "securty/tpm"
--LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=c75e465155c42c14154bf6a2acb7347b"
- 
- DEPENDS = "openssl"
- 
--SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
-+SRC_URI = "git://git.code.sf.net/p/ibmswtpm2/tpm2;protocol=https;branch=master \
-            file://tune-makefile.patch \
--           "
--SRC_URI[sha256sum] = "3cb642f871a17b23d50b046e5f95f449c2287415fc1e7aeb4bdbb8920dbcb38f"
-+           ""
-+SRCREV = "5452af422edeff70fcae8ea99dd28a0922051d7b"
- 
--UPSTREAM_CHECK_URI = "https://sourceforge.net/projects/ibmswtpm2/files/"
-+UPSTREAM_CHECK_URI = "https://git.code.sf.net/p/ibmswtpm2/tpm2"
- 
--S = "${WORKDIR}/src"
-+S = "${WORKDIR}/git/src"
- 
- CFLAGS += "-Wno-error=maybe-uninitialized -DALG_CAMELLIA=ALG_NO"
- 
--- 
-2.37.1 (Apple Git-137.1)
-
+Richard
 
