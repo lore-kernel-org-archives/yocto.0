@@ -1,131 +1,95 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70F26C7EE23
-	for <webhook@archiver.kernel.org>; Tue, 23 May 2023 18:38:12 +0000 (UTC)
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
- by mx.groups.io with SMTP id smtpd.web10.10785.1684867086776116862
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D2F4C7EE29
+	for <webhook@archiver.kernel.org>; Wed, 24 May 2023 00:45:15 +0000 (UTC)
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+ by mx.groups.io with SMTP id smtpd.web10.1240.1684889112588972401
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 May 2023 11:38:07 -0700
+ Tue, 23 May 2023 17:45:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20221208.gappssmtp.com header.s=20221208 header.b=sTxu+AHH;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.174, mailfrom: steve@sakoman.com)
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-64d2da69fdfso130128b3a.0
-        for <yocto@lists.yoctoproject.org>; Tue, 23 May 2023 11:38:06 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=IxD3CbcC;
+ spf=pass (domain: gmail.com, ip: 209.85.215.171, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-53eee18a192so245433a12.3
+        for <yocto@lists.yoctoproject.org>; Tue, 23 May 2023 17:45:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20221208.gappssmtp.com; s=20221208; t=1684867086; x=1687459086;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A1b5EVh2bPAJpjvQEwu2aclNFhwstF01xFkDrrDiUSA=;
-        b=sTxu+AHHsXEJvxj34jHkfIwgPnuJJBqXH2mMqP3aq6ucsx9NdqQ8VGAi8PQKSSPKLR
-         1+d93POb7rR7I/R8wmdQUwdSV4jXOE7Pm00H/neKMn2ccJMgMNxp2HMwYFFnFIZ6PAoa
-         G4DXN+pHCMp36m3rTq451Rd0SprCqKiQudQURfyTUDmRYMkYayPkZwFBLbBoCKaHPjvA
-         C8C/De5sKkkTO1OWpq1NgQxRRgrrZdo6mn0aEak6V+lcZZ1R1g1HUkb4zPfLJ1PsAjUL
-         B1YbYrenjmXMi66QAuxSBiucLM/N5cVTZxxC92X8H7hzCYqFfS/xu3cx+/JLPmZSPn91
-         1ghQ==
+        d=gmail.com; s=20221208; t=1684889111; x=1687481111;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mKuUrSEsHs69MXKJv0Z0FUgFbFEFxt6MVIsCLHxOgk0=;
+        b=IxD3CbcCccRa0WmHgNoernrx077Rl5yZpn0sesDDWDvtjBayevFxWBSujcMeE2mA5K
+         vsXLbfZVl/svRd1EUAnm+1IsU3/r7+izI5UIV2t0+efF9igySoXR8iVzcLLZcI+OlBXF
+         krR5oYrGM3x5xsN7dDGCx/8vmBByqKACqUOgsOMmuiUVd7VE5Tv61UXkUwIs2Pj0LKTc
+         80XjIR7FX0M71byZ9SIZC7OgaRhZY7aIy4ACN0efupJ9i9fS9IlRGQQ4b1Nt3brCjkAf
+         PYK+nr0uQ3XGn67reHsQVu/plJaAYoQO95fUweRrrP9lOwYiXgFAKqyQsFcK8Di1ywer
+         a9Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684867086; x=1687459086;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A1b5EVh2bPAJpjvQEwu2aclNFhwstF01xFkDrrDiUSA=;
-        b=bUnJIMzS7CCl7AX7gkou6cx9d5lnQrc2dU3QCQKzaNHKzWiTnRqEda1zEEJsezWoIh
-         tS3l4cT7muz//J3tzNepCplJ2MMEdygVvkNrsUnh3HRvN96U7u5PrMCDl4n9dSIpm6Jm
-         z8hjhXfj/Vxi6PT8b7KTm1+Ks1ok01wTdN89Sglq1hK/A57qsyHEzJRfEo2t+SyqvYS3
-         Y8ItkfQ7qpe/3Hz4p9qCw/nJSfxpUIzTbe9RVcS04Tg2DZ3fAyUt6vrz/MoWYlWoEAgc
-         L53KFY8h3GjGFTWb+E4MtVVhWPHhYl0wJ0SMnPBltz1BlOx5JEOXhEZEn8TJKSr/72TE
-         tDJQ==
-X-Gm-Message-State: AC+VfDwfLGJl5iVTcTNAFeGpPLaNg9MMCEt1gHubwWpEdhZ/zgtaNLWi
-	wmAde2pNrH0MCKmXwDcv5++QjC3ggOB+ZEU0UJk=
-X-Google-Smtp-Source: ACHHUZ7XFTlCmWXC1r1Vw0ZlzMfUeE73okr56HmgwwKxRpOutOIFvF/LI0x8bp9+/BCzEo1l2TP60w==
-X-Received: by 2002:a05:6a00:2d1a:b0:64f:3fc8:5d16 with SMTP id fa26-20020a056a002d1a00b0064f3fc85d16mr13083pfb.8.1684867085472;
-        Tue, 23 May 2023 11:38:05 -0700 (PDT)
-Received: from hexa.router0800d9.com (dhcp-72-234-106-30.hawaiiantel.net. [72.234.106.30])
-        by smtp.gmail.com with ESMTPSA id d1-20020aa78681000000b0064ccfb73cb8sm6099010pfo.46.2023.05.23.11.38.04
-        for <yocto@lists.yoctoproject.org>
+        d=1e100.net; s=20221208; t=1684889112; x=1687481112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mKuUrSEsHs69MXKJv0Z0FUgFbFEFxt6MVIsCLHxOgk0=;
+        b=IibD8OQnW2keeCiuWwhGDwz+hy9kPq+egXbqkhszxCYb7gFCosNe43bezX+mph30zU
+         iLeTGEz0QYRX2SEm9QYvj1jjHy0UoC4uYFI5FnblxKafQz99cVsT509jguBC3yAjWgSU
+         QOexWc1ij7qbDIIFyqH2uAtK5C7qXDK1468H1EuVPA/kV2O3YsXn0M0HbHWvrgBP//S+
+         cL6jZun98UOVj0p/SiFiEBkCJXns9nL2Qj1uN+KuWs7PrQ+R4Vk8hn7Z1Pqw/neJaMTR
+         tJ8tfDOZmuGIAiUSfkPsSeeqVnUVyPN4tdhky4GFM9EWe3Aud8ubPJvED7Am0wWGIJmX
+         4G6w==
+X-Gm-Message-State: AC+VfDzEPQw51pEl7Y7ZtGCr4fXdx4QD0pXqyx6mp5a9qW8JrrfeGvbR
+	YxDvgALY3JPEuEB5WUkau9Mngqwft/4=
+X-Google-Smtp-Source: ACHHUZ6IjhGEoNpPS1lgmGNKdVNIGdKj82rwKjDEhmzvrFbdDGFxMik8cmtGr3wJ4UX1oRsgb6G0VQ==
+X-Received: by 2002:a17:902:d2c6:b0:1ad:cef8:f913 with SMTP id n6-20020a170902d2c600b001adcef8f913mr19597169plc.44.1684889111432;
+        Tue, 23 May 2023 17:45:11 -0700 (PDT)
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9181:d380::c675])
+        by smtp.gmail.com with ESMTPSA id z5-20020a170903018500b001ae5d21f760sm7386096plg.146.2023.05.23.17.45.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 May 2023 11:38:04 -0700 (PDT)
-From: Steve Sakoman <steve@sakoman.com>
+        Tue, 23 May 2023 17:45:11 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2] schedulers: update to add mickledore
-Date: Tue, 23 May 2023 08:38:00 -1000
-Message-Id: <f57cb8e05ff01c2bd2718b684198eeedd56a7737.1684866967.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1684866967.git.steve@sakoman.com>
-References: <cover.1684866967.git.steve@sakoman.com>
+Cc: jpewhacker@gmail.com,
+	Khem Raj <raj.khem@gmail.com>
+Subject: [meta-mingw] [PATCH] mingw32: Add WINDRES export for SDK
+Date: Tue, 23 May 2023 17:45:08 -0700
+Message-Id: <20230524004508.2423305-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 23 May 2023 18:38:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60102
+ <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 00:45:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60103
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
+GCC-13 has added code where windres is called on a rc file which
+includes winuser.h, this requires to call windres with -I option to
+point to right header directory duting gcc-candian-cross builds
+
+Fixes
+../../../../../../../work-shared/gcc-13.1.0-r0/gcc-13.1.0/gcc/config/i386/utf8-mingw32.rc:1:10: fatal error: winuser.h: No such file or directory
+|     1 | #include <winuser.h>
+|       |          ^~~~~~~~~~~
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- schedulers.py | 25 ++++++++++++++++++++-----
- 1 file changed, 20 insertions(+), 5 deletions(-)
+ conf/machine-sdk/include/mingw32-common.inc | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/schedulers.py b/schedulers.py
-index 24cbd70..2f7a8ab 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -60,6 +60,21 @@ branchdefaults = {
-         'branch_meta-openembedded': 'master',
-         'branch_oecore': 'master',
-     },
-+    'mickledore': {
-+        'branch': 'mickledore',
-+        'branch_poky': 'mickledore',
-+        'branch_bitbake': '2.4',
-+        'branch_meta-arm': 'mickledore',
-+        'branch_meta-agl': 'next',
-+        'branch_meta-aws': 'mickledore',
-+        'branch_meta-gplv2': 'master',
-+        'branch_meta-intel': 'mickledore',
-+        'branch_meta-mingw': 'master',
-+        'branch_meta-openembedded': 'mickledore',
-+        'branch_meta-ti': 'master',
-+        'branch_meta-virtualization': 'mickledore',
-+        'branch_oecore': 'mickledore',
-+    },
-     'langdale': {
-         'branch': 'langdale',
-         'branch_poky': 'langdale',
-@@ -377,7 +392,7 @@ def parent_scheduler(target):
-             name="branchselector",
-             default="master",
-             label="Release Shortcut Selector",
--            choices=["master", "master-next", "abelloni-next", "mut", "langdale", "kirkstone", "honister", "hardknott", "gatesgarth", "dunfell", "zeus", "warrior", "thud", "sumo", "rocko", "pyro", "morty"],
-+            choices=["master", "master-next", "abelloni-next", "mut", "mickledore", "langdale", "kirkstone", "honister", "hardknott", "gatesgarth", "dunfell", "zeus", "warrior", "thud", "sumo", "rocko", "pyro", "morty"],
-             selectors=branchdefaults),
-         util.BooleanParameter(
-             name="swat_monitor",
-@@ -443,9 +458,9 @@ schedulers.append(sched.Nightly(name='nightly-check-layer', branch='master', pro
- schedulers.append(sched.Nightly(name='nightly-metrics', branch='master', properties=parent_default_props('metrics'),
-                   builderNames=['metrics'], hour=7, minute=0))
+diff --git a/conf/machine-sdk/include/mingw32-common.inc b/conf/machine-sdk/include/mingw32-common.inc
+index af6bfc4..9ec6e07 100644
+--- a/conf/machine-sdk/include/mingw32-common.inc
++++ b/conf/machine-sdk/include/mingw32-common.inc
+@@ -38,6 +38,9 @@ TESTSDKEXT_CLASS_NAME = ""
+ WINDMC:mingw32 = "${HOST_PREFIX}windmc"
+ WINDRES:mingw32 = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
+ RC:mingw32 = "${WINDRES}"
++WINDMC:sdkmingw32 = "${HOST_PREFIX}windmc"
++WINDRES:sdkmingw32 = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
++RC:sdkmingw32 = "${WINDRES}"
  
--# Run check-layer-nightly twice a week for langdale
--schedulers.append(sched.Nightly(name='nightly-check-layer-langdale', properties=parent_default_props('check-layer-nightly', 'langdale'),
--                  builderNames=['check-layer-nightly'], dayOfWeek=[2, 5], hour=2, minute=0, codebases = {'' : {'branch' : 'langdale'}}))
-+# Run check-layer-nightly twice a week for mickledore
-+schedulers.append(sched.Nightly(name='nightly-check-layer-mickledore', properties=parent_default_props('check-layer-nightly', 'mickledore'),
-+                  builderNames=['check-layer-nightly'], dayOfWeek=[2, 5], hour=2, minute=0, codebases = {'' : {'branch' : 'mickledore'}}))
- 
- # Run check-layer-nightly twice a week for kirkstone
- schedulers.append(sched.Nightly(name='nightly-check-layer-kirkstone', properties=parent_default_props('check-layer-nightly', 'kirkstone'),
-@@ -467,7 +482,7 @@ schedulers.append(sched.Nightly(name='nightly-auh', branch='master', properties=
- 
- # If any of our sphinx docs branches change, trigger a build
- schedulers.append(sched.AnyBranchScheduler(name="yocto-docs-changed",
--            change_filter=util.ChangeFilter(project=["yocto-docs"], branch=[None, "master", "master-next", "langdale", "kirkstone", "honister", "hardknott", "gatesgarth", "dunfell", "transition"]),
-+            change_filter=util.ChangeFilter(project=["yocto-docs"], branch=[None, "master", "master-next", "mickledore", "langdale", "kirkstone", "honister", "hardknott", "gatesgarth", "dunfell", "transition"]),
-             codebases = ['', 'yocto-docs', 'bitbake'],
-             treeStableTimer=60,
-             builderNames=["docs"]))
+ export WINDMC
+ export WINDRES
 -- 
-2.34.1
+2.40.1
 
 
