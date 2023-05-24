@@ -2,151 +2,114 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60EBEC77B7C
-	for <webhook@archiver.kernel.org>; Wed, 24 May 2023 16:44:13 +0000 (UTC)
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
- by mx.groups.io with SMTP id smtpd.web10.2073.1684946651996694740
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 694B5C77B7C
+	for <webhook@archiver.kernel.org>; Wed, 24 May 2023 16:46:33 +0000 (UTC)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+ by mx.groups.io with SMTP id smtpd.web11.2155.1684946792733583996
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 May 2023 09:44:12 -0700
+ Wed, 24 May 2023 09:46:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=i1XdwkTO;
- spf=pass (domain: gmail.com, ip: 209.85.160.52, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-195ee1be418so407858fac.2
-        for <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 09:44:11 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=l82N/yri;
+ spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-39212bf4ff0so303071b6e.1
+        for <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 09:46:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684946651; x=1687538651;
+        d=gmail.com; s=20221208; t=1684946792; x=1687538792;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PS+Q8bXEWt6q1cPIOzEM5zVe+D416Rw50idzjra3Nl8=;
-        b=i1XdwkTOEledDpUeCk82x0lcDd8703sUeWrx2e65Hy2eWAezC40k4krDCdPRYbgRsn
-         LD78L5DHl7wGzWH1Tt4zOh0zKu1dM7ax9T+QRUM69EDWt943727SCdTritdeS6w5oOTq
-         aU/paCoj3UKP57W6Ixxl/2AWli/jwSwD5EdA25SO8TdWd0jYTVs9o6dOcyvDMKGNTj+S
-         PJSf5QfE4Pk8f3GtaFTRLjnpz+DwZMswv1v9rTMXnLNaO4Vt8PieDXp0E6rELOIXBBo1
-         ksKDnOAKOhyki1dZwTYu64YK08L41q2HFVpROsu0Q0kvpMN6CjVSiqt7Cc+QtGhc92rK
-         o7wg==
+        bh=y8h9HZBHXU1p3qZ0Lnjcvs2HdbHK9zaipl+c8Or3uM4=;
+        b=l82N/yriftHHvARg68YzMJgrUA3f/D2ZOa5AWmSaGBtD94W0t4XvqGvhou9tLzbuKw
+         +Re+HAehojM0MpbW0mVQFgXhW6BVMwJD8aAt1cwblXxVnZO6bw917F08BT8oi+0ge58W
+         uYd9BFcJ5JTEVFckuzCFtthsq3RhOYrz9iMcvagXA+A3B/+wLGASn7Cd/xcyQLZrFe0e
+         IHs3GMXnQG7ye81xFmUgxUW8w41gz6eW9i8gStpHwPhJveXYLOYG2aaUUxFl+uHhPVQJ
+         m3VZjEhVbFuPfQPj4cDPJnTBj2LwEbqZDb5HZDDITpK2sn1s+xLheM+ylefqAg2gXSVp
+         Fhng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684946651; x=1687538651;
+        d=1e100.net; s=20221208; t=1684946792; x=1687538792;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PS+Q8bXEWt6q1cPIOzEM5zVe+D416Rw50idzjra3Nl8=;
-        b=De+XZYdXq0VcIFZpxe5+0gTHv2nwh1OT4P1Mw0TPomHHAVH9v07qBAH0z5LJKj6Zuu
-         h/+z7QDlx65v+mDT+dyreWhsgE2piG5OBkHEp8rnanPOwFvUqA2+fBQfFc/+G+OB+9Je
-         5uvPVXNqIGPBjRiiJdvC/8Qz8aOuChldkx2/1wK3Uga7vOCjH47eCN4jbs/DHBNNyUnt
-         2BajhiM4iHsEUXXkQrXPq47kQtF1f8ppb1GjqGl/IeXH1X6aRZe1Y3RXBeYN4ksr59I4
-         zvTlHY0icb2Ai9PdMmMO5Hq2/Qed+PmbfVq7v2KhqxmNKfjwIXsxOONzbITjSjeLG2qy
-         eqZA==
-X-Gm-Message-State: AC+VfDxel4FPq3zzjxseoYnRHEJ032Oreg3HAqKaum0GjsMrp9fQBehF
-	EeV7ap1bnrmwgZTLY0Yt8T9g0cuES5WBoWyDReY=
-X-Google-Smtp-Source: ACHHUZ5VCFXO/Vg0fRwhr2he/8xCx+BKjEE3syMUZ7ttCHXWinpcsY5v2V47y2dQcvH9tPFo3BhJe04RbhjdvulovU0=
-X-Received: by 2002:a05:6871:4c4:b0:192:550f:9c6e with SMTP id
- n4-20020a05687104c400b00192550f9c6emr288006oai.0.1684946651029; Wed, 24 May
- 2023 09:44:11 -0700 (PDT)
+        bh=y8h9HZBHXU1p3qZ0Lnjcvs2HdbHK9zaipl+c8Or3uM4=;
+        b=kFNDLxY2VEY/jtvjKyOI+d3RsOjjJ5cj8FwV7udkNfFt8dUkDHB/hA1jXrsvHKL5il
+         4rThHl01VMoet5SBfcTavhhFscjHex9B/yPpTAnExSM/coui90UtXqx72zEPJKTgPEGM
+         2/VvPVMEMKCZoJfI3YGb0+gVFHdK5E+mEOnWQNT8Ns2n5HNYeP8e1m9Shp8gJ3Ugd496
+         qithAgQ1mtdr/zJnhQow0ck8rp0taSTuNK/SUw51pWHa0P5cgTpDTMCZpz2wRcldfE41
+         r1UZWreACZT+KROIA7qxX9d5SY6JKePveIWA/I2Ipaz69QSbJQJsMakU4RIJUyXfGrwT
+         k14Q==
+X-Gm-Message-State: AC+VfDwN3RrXNABM1BFk8ri4n9MsH3nOwFhW2wmVV1r1kniTvMRABk8F
+	TZPxE5OOKJnMt7qDiuEFie8YOzAAimvY1IVmtQI=
+X-Google-Smtp-Source: ACHHUZ5g0u1j99dz3pM45F5a+pdAQ5pmb29EhOH9sk5CT4+NGKS7bfbwbyjfERn2YZwFGpS32N++7JpqOsrAZrkW1Mg=
+X-Received: by 2002:aca:915:0:b0:395:7577:1533 with SMTP id
+ 21-20020aca0915000000b0039575771533mr9049756oij.37.1684946791879; Wed, 24 May
+ 2023 09:46:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <FdMa.1684929870726192226.1anj@lists.yoctoproject.org>
-In-Reply-To: <FdMa.1684929870726192226.1anj@lists.yoctoproject.org>
+References: <dc33b8e9-3c27-afc0-7595-9020ba69bbdd@bootlin.com>
+In-Reply-To: <dc33b8e9-3c27-afc0-7595-9020ba69bbdd@bootlin.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 24 May 2023 09:43:44 -0700
-Message-ID: <CAMKF1srvuTHg=FVcZC_-PkqJxPDn2NY50saQgyXTV9etiKadFQ@mail.gmail.com>
-Subject: Re: [yocto] libstdc++.so.6: version `GLIBCXX_3.4.30' not found
- (required by bin/cmake) #hardknott
-To: Mahendra Sondagar <mahendrasondagar08@gmail.com>
-Cc: yocto@lists.yoctoproject.org
+Date: Wed, 24 May 2023 09:46:06 -0700
+Message-ID: <CAMKF1sq5GkHkumFtS-CgDOPFR5Bydizk2dnMLvmzNECYTy=Q=w@mail.gmail.com>
+Subject: Re: [yocto] psplash: white stripes with custom splash image
+To: michael.opdenacker@bootlin.com
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 16:44:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60111
+ <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 16:46:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60112
 
-22.04 is too new for hardknott which was EOL'ed a year ago. Always
-check the tested distributions sections in manual for a given release.
-In your case
+On Wed, May 24, 2023 at 3:24=E2=80=AFAM Michael Opdenacker via
+lists.yoctoproject.org
+<michael.opdenacker=3Dbootlin.com@lists.yoctoproject.org> wrote:
+>
+> Greetings,
+>
+> I wanted to customize the boot splash image for an i.MX6 system.
+>
+> I'm using Kirkstone and created a psplash/psplash_%.bbappend file in a
+> custom layer:
+>
+> SPLASH_IMAGES =3D "file://krtek.png;outsuffix=3Ddefault"
+> FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
+>
+> The "files/krtek.png" file has a 800x480 resolution, which matches my
+> display's.
+>
+> However, the screen shows two white stripes at the bottom (see the
+> attached picture). Actually, the top stripe is added on top of the
+> original picture, and the bottom one corresponds to the picture being
+> translated upwards (see the attached original picture).
+>
+> I'm running a 4.19 Linux kernel. I couldn't reproduce this issue on a
+> qemux86-64 system (same picture, 5.15 kernel), though the QEMU display
+> has a greater resolution.
+>
+> Has anyone seen this before, or would anyone have an idea why this happen=
+s?
+> Thanks in advance
 
-https://github.com/yoctoproject/poky/blob/hardknott/documentation/ref-manua=
-l/system-requirements.rst#supported-linux-distributions
+It looks like the text box for messages is still painted. try with
+both sysvinit and systemd
+IIRC I saw something similar with systemd a year or so ago, it might
+have been different
+thing dont know.
 
-On Wed, May 24, 2023 at 5:04=E2=80=AFAM Mahendra Sondagar
-<mahendrasondagar08@gmail.com> wrote:
+> Cheers
+> Michael.
 >
-> Hi.. community
->
-> Hope all are doing well
->
->
->
-> I'm dealing with the Yocto hardknott with my Ubuntu host
->
-> The Ubuntu version is Ubuntu 22.04.2 LTS
->
->
->
-> During the building of the custom image, everything goes well until the b=
-uild process hits the below error message
->
->
->
-> | make  -f CMakeFiles/Makefile2 preinstall
->
-> | make[1]: Entering directory '/home/aio/AIO_Systems_Yocto/var-fslc-yocto=
-/build_aio/tmp/work/x86_64-linux/cmake-native/3.19.5-r0/build'
->
-> | make[1]: Nothing to be done for 'preinstall'.
->
-> | make[1]: Leaving directory '/home/aio/AIO_Systems_Yocto/var-fslc-yocto/=
-build_aio/tmp/work/x86_64-linux/cmake-native/3.19.5-r0/build'
->
-> | ERROR: oe_runmake failed
->
-> | Install the project...
->
-> | bin/cmake -P cmake_install.cmake
->
-> | WARNING: exit code 1 from a shell command.
->
-> | bin/cmake: /home/aio/AIO_Systems_Yocto/var-fslc-yocto/build_aio/tmp/sys=
-roots-uninative/x86_64-linux/usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.3=
-0' not found (required by bin/cmake)
->
-> | make: *** [Makefile:162: install] Error 1
->
-> | ERROR: ExecutionError('/home/aio/AIO_Systems_Yocto/var-fslc-yocto/build=
-_aio/tmp/work/x86_64-linux/cmake-native/3.19.5-r0/temp/run.do_install.19460=
-5', 1, None, None)
->
->
->
-> for instance, I have also verified the installed version of the GLIBC via=
- the below command
->
-> strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
->
->
->
-> From where I got to know that, it's already installed!
->
->
->
-> Can anyone help me here to resolve the issue?
->
-> All comments and suggestions welcome
->
->
->
-> Thanks
-> Mahendra
->
+> --
+> Michael Opdenacker, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#60109): https://lists.yoctoproject.org/g/yocto/messag=
-e/60109
-> Mute This Topic: https://lists.yoctoproject.org/mt/99106807/1997914
-> Mute #hardknott:https://lists.yoctoproject.org/g/yocto/mutehashtag/hardkn=
-ott
+> View/Reply Online (#60108): https://lists.yoctoproject.org/g/yocto/messag=
+e/60108
+> Mute This Topic: https://lists.yoctoproject.org/mt/99105545/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
 .com]
