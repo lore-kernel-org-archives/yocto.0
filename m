@@ -1,118 +1,91 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <tgamblin@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 694B5C77B7C
-	for <webhook@archiver.kernel.org>; Wed, 24 May 2023 16:46:33 +0000 (UTC)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
- by mx.groups.io with SMTP id smtpd.web11.2155.1684946792733583996
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47192C77B73
+	for <webhook@archiver.kernel.org>; Wed, 24 May 2023 19:44:14 +0000 (UTC)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+ by mx.groups.io with SMTP id smtpd.web11.3675.1684957447355872473
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 May 2023 09:46:32 -0700
+ Wed, 24 May 2023 12:44:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=l82N/yri;
- spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-39212bf4ff0so303071b6e.1
-        for <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 09:46:32 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=jvh0D1pd;
+ spf=pass (domain: baylibre.com, ip: 209.85.166.41, mailfrom: tgamblin@baylibre.com)
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-7748eb719abso114062139f.1
+        for <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 12:44:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684946792; x=1687538792;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y8h9HZBHXU1p3qZ0Lnjcvs2HdbHK9zaipl+c8Or3uM4=;
-        b=l82N/yriftHHvARg68YzMJgrUA3f/D2ZOa5AWmSaGBtD94W0t4XvqGvhou9tLzbuKw
-         +Re+HAehojM0MpbW0mVQFgXhW6BVMwJD8aAt1cwblXxVnZO6bw917F08BT8oi+0ge58W
-         uYd9BFcJ5JTEVFckuzCFtthsq3RhOYrz9iMcvagXA+A3B/+wLGASn7Cd/xcyQLZrFe0e
-         IHs3GMXnQG7ye81xFmUgxUW8w41gz6eW9i8gStpHwPhJveXYLOYG2aaUUxFl+uHhPVQJ
-         m3VZjEhVbFuPfQPj4cDPJnTBj2LwEbqZDb5HZDDITpK2sn1s+xLheM+ylefqAg2gXSVp
-         Fhng==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684957446; x=1687549446;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bHpmrJSe9vRGIYKOs3rFeMkFZeS3mfJslwejvm4pC1s=;
+        b=jvh0D1pdU2nIlGf2kT5h33JRHP/gyNOB8EF88IWZCHOZ9gyVH615Y83PHL15bvyArX
+         p2okz3dcLuQtKeYcSPNslAeMiistgsUJrO+g/VtcGzsY3EnLycvGV5ecdY5PguX5fjoE
+         eFDcb2hBigmrHoItwTPy+d/3Cb3GorGbEsJe7ljrEiNt/OIsLjbAY+FeNyF36JDTbOBi
+         1rgggn1WKLc8yNayEP0rAxhnx3zh0XXojmIg/q1FQk2UHt6tQsgzXTV434gErId/RHEv
+         xUVj7dNl2iNd5qCXYfkugy7X893EY8uBwcmTMamfAA6KPKYvVv+k4HKMsbdwYijZ3JRA
+         GCmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684946792; x=1687538792;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y8h9HZBHXU1p3qZ0Lnjcvs2HdbHK9zaipl+c8Or3uM4=;
-        b=kFNDLxY2VEY/jtvjKyOI+d3RsOjjJ5cj8FwV7udkNfFt8dUkDHB/hA1jXrsvHKL5il
-         4rThHl01VMoet5SBfcTavhhFscjHex9B/yPpTAnExSM/coui90UtXqx72zEPJKTgPEGM
-         2/VvPVMEMKCZoJfI3YGb0+gVFHdK5E+mEOnWQNT8Ns2n5HNYeP8e1m9Shp8gJ3Ugd496
-         qithAgQ1mtdr/zJnhQow0ck8rp0taSTuNK/SUw51pWHa0P5cgTpDTMCZpz2wRcldfE41
-         r1UZWreACZT+KROIA7qxX9d5SY6JKePveIWA/I2Ipaz69QSbJQJsMakU4RIJUyXfGrwT
-         k14Q==
-X-Gm-Message-State: AC+VfDwN3RrXNABM1BFk8ri4n9MsH3nOwFhW2wmVV1r1kniTvMRABk8F
-	TZPxE5OOKJnMt7qDiuEFie8YOzAAimvY1IVmtQI=
-X-Google-Smtp-Source: ACHHUZ5g0u1j99dz3pM45F5a+pdAQ5pmb29EhOH9sk5CT4+NGKS7bfbwbyjfERn2YZwFGpS32N++7JpqOsrAZrkW1Mg=
-X-Received: by 2002:aca:915:0:b0:395:7577:1533 with SMTP id
- 21-20020aca0915000000b0039575771533mr9049756oij.37.1684946791879; Wed, 24 May
- 2023 09:46:31 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684957446; x=1687549446;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bHpmrJSe9vRGIYKOs3rFeMkFZeS3mfJslwejvm4pC1s=;
+        b=X7UauwsPMQZlsEVZ0bj6KPyyMOWPBVtKQ6I8a8LZCjgISYP9IQKwHr37bZsM6XuNld
+         toYHYs6qBkPe3cwo8fgnpdmxEU2AHlmdojFwWN3zne2Ek6SW3YdETmqxdXTxVbLm4tXK
+         yyY3f18aIBxVjNhtXKMh9zUVrLtV+DxjNmRHCmfIJ+KC6g+bjxXKuAesT8oPTtn/Gwz0
+         XPSPuFvkp7ZFwXu1dIXbwCp3UIgPMunv7mQj1ra907hiIBtEK0UKBtKb5iaenmyc/wkJ
+         jE2PQ9sGavR3yYVqIT8E3AugxZdiWVKe83ZfEDUB+wpkj0mdZhD7/MVGPxpZ/g4ssH/0
+         XDmg==
+X-Gm-Message-State: AC+VfDxmQyBcDfQyEHIrzIR+WizjRaqMn+s086JgR0+8BOKpLttTlXIR
+	Jyv5Me9gK+atvR5yWzJ+BSHaUpLi1TssBXKpIto=
+X-Google-Smtp-Source: ACHHUZ5/DAIw17FT0wwT6wRiGieLr/jDwQsiaIfe8kmbv3h83qhnO1KEgTntEPkR0NtOBwYsxBUzdA==
+X-Received: by 2002:a6b:6504:0:b0:774:7cf6:d350 with SMTP id z4-20020a6b6504000000b007747cf6d350mr5700624iob.7.1684957446389;
+        Wed, 24 May 2023 12:44:06 -0700 (PDT)
+Received: from megalith.cgocable.net ([2001:1970:5b1f:ab00:4839:d997:f6ce:5f02])
+        by smtp.gmail.com with ESMTPSA id q22-20020a5d8516000000b0076c750dc780sm504099ion.29.2023.05.24.12.44.05
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 May 2023 12:44:06 -0700 (PDT)
+From: Trevor Gamblin <tgamblin@baylibre.com>
+To: yocto@lists.yoctoproject.org
+Subject: [patchtest][PATCH] core-image-patchtest: Add safe git directories
+Date: Wed, 24 May 2023 15:44:05 -0400
+Message-Id: <20230524194405.3345812-1-tgamblin@baylibre.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <dc33b8e9-3c27-afc0-7595-9020ba69bbdd@bootlin.com>
-In-Reply-To: <dc33b8e9-3c27-afc0-7595-9020ba69bbdd@bootlin.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 24 May 2023 09:46:06 -0700
-Message-ID: <CAMKF1sq5GkHkumFtS-CgDOPFR5Bydizk2dnMLvmzNECYTy=Q=w@mail.gmail.com>
-Subject: Re: [yocto] psplash: white stripes with custom splash image
-To: michael.opdenacker@bootlin.com
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 16:46:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60112
+ <yocto@lists.yoctoproject.org>; Wed, 24 May 2023 19:44:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60113
 
-On Wed, May 24, 2023 at 3:24=E2=80=AFAM Michael Opdenacker via
-lists.yoctoproject.org
-<michael.opdenacker=3Dbootlin.com@lists.yoctoproject.org> wrote:
->
-> Greetings,
->
-> I wanted to customize the boot splash image for an i.MX6 system.
->
-> I'm using Kirkstone and created a psplash/psplash_%.bbappend file in a
-> custom layer:
->
-> SPLASH_IMAGES =3D "file://krtek.png;outsuffix=3Ddefault"
-> FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
->
-> The "files/krtek.png" file has a 800x480 resolution, which matches my
-> display's.
->
-> However, the screen shows two white stripes at the bottom (see the
-> attached picture). Actually, the top stripe is added on top of the
-> original picture, and the bottom one corresponds to the picture being
-> translated upwards (see the attached original picture).
->
-> I'm running a 4.19 Linux kernel. I couldn't reproduce this issue on a
-> qemux86-64 system (same picture, 5.15 kernel), though the QEMU display
-> has a greater resolution.
->
-> Has anyone seen this before, or would anyone have an idea why this happen=
-s?
-> Thanks in advance
+patchtest's method of mounting a shared directory into the guest image
+means that the associated content may not be owned by the image's user.
+Add /home/patchtest/openembedded-core and
+/home/patchtest/openembedded-core/bitbake to the patchtest user's
+.gitconfig so that it can still run tests if the provided repo is owned
+by someone else.
 
-It looks like the text box for messages is still painted. try with
-both sysvinit and systemd
-IIRC I saw something similar with systemd a year or so ago, it might
-have been different
-thing dont know.
+Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+---
+ meta-patchtest/recipes-core/images/core-image-patchtest.bb | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> Cheers
-> Michael.
->
-> --
-> Michael Opdenacker, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#60108): https://lists.yoctoproject.org/g/yocto/messag=
-e/60108
-> Mute This Topic: https://lists.yoctoproject.org/mt/99105545/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+diff --git a/meta-patchtest/recipes-core/images/core-image-patchtest.bb b/meta-patchtest/recipes-core/images/core-image-patchtest.bb
+index 47e4041..4aa768c 100644
+--- a/meta-patchtest/recipes-core/images/core-image-patchtest.bb
++++ b/meta-patchtest/recipes-core/images/core-image-patchtest.bb
+@@ -43,6 +43,9 @@ EOF
+ [user]
+     name = patchtest
+     email = patchtest@patchtest.com
++[safe]
++    directory = /home/patchtest/openembedded-core
++    directory = /home/patchtest/openembedded-core/bitbake
+ EOF
+ 
+ }
+-- 
+2.40.1
+
 
