@@ -1,231 +1,401 @@
-Return-Path: <schitrod@cisco.com>
+Return-Path: <mahendrasondagar08@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34F5BC77B7A
-	for <webhook@archiver.kernel.org>; Sat, 27 May 2023 02:53:58 +0000 (UTC)
-Received: from alln-iport-4.cisco.com (alln-iport-4.cisco.com [173.37.142.91])
- by mx.groups.io with SMTP id smtpd.web11.4263.1685156035770063392
- for <yocto@lists.yoctoproject.org>;
- Fri, 26 May 2023 19:53:56 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@cisco.com header.s=iport header.b=fOw+Q4dF;
- spf=pass (domain: cisco.com, ip: 173.37.142.91, mailfrom: schitrod@cisco.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=1736; q=dns/txt; s=iport;
-  t=1685156035; x=1686365635;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=3drt/7AFw7qgn+IkJO8D6+PTDE8DFEM9uYbHkO0D174=;
-  b=fOw+Q4dFuAAw4zB8UG4TWLPGf8Q6X+1Uy8pIRv1bjaPxljuZFZuT+YIL
-   YoW/LkX9wbnrCqi/8YmUyXCITNsxCpLu66tSs2fS2zg/eO58obuOpnlN8
-   vWkPkxOFtHpL9SLvD5nMWgeJoPjBJmAJkN14OoJW8HTwpp6hW1SmDXGL+
-   U=;
-X-IPAS-Result: =?us-ascii?q?A0CDAQBOb3FkmIYNJK1aHgEBCxIMQCWBHwuBXVJzAlg9G?=
- =?us-ascii?q?i2IIItKgiQDnWeBJQNWDwEBAQ0BAS4PBwQBAYUGAoVcAiU0CQ4BAgICAQEBA?=
- =?us-ascii?q?QMCAwEBAQEBAQMBAQUBAQECAQcEFAEBAQEBAQEBHhkFDhAnhWgNhgQBAQEBA?=
- =?us-ascii?q?wERKAYBATgLBAIBCBEEAQEfECgKHQgCBAESCBqCXAGCXAMBEAagQwGBPwKKJ?=
- =?us-ascii?q?HiBNIEBgggBAQYEBZ8mCYFCjRaESCcbQIFNgVh5gW8+gmICAQEBF4FIMINig?=
- =?us-ascii?q?i6CHIw9g1iJXoEwcoEjgSiBAgIJAhFngQ4IZ4F0QAINVgsLZYEmVT6BTQICE?=
- =?us-ascii?q?T4VVX0SARMDBwQCgQgQLwcEMwkXCQYJGTEnBlYHLSQJExVEB4QEAwqBKSM3A?=
- =?us-ascii?q?0QdQAMLdT01Bg4fBQQkS4FYBC9CgRkCBEmcdgOCfwGBDRwOAQGBGANKR6IPo?=
- =?us-ascii?q?j4KJ4Nhi3uNGoggF4N/gVajey6XYCCCL4sLmi8CBAIEBQIOAQeBYzpIgRNwF?=
- =?us-ascii?q?UgMgk4JSRkPjiAZg1uBf4MVimVDMgI5AgcLAQEDCYtGAQE?=
-IronPort-PHdr: A9a23:yCzTghZxkLwqx9/p/iEQNGn/LTDhhN3EVzX9orIuj7ZIN6O78IunY
- ArU5O5mixnCWoCIo/5Hiu+Dq6n7QiRA+peOtnkebYZBHwEIk8QYngEsQYaFBET3IeSsbnkSF
- 8VZX1gj9Ha+YgBOAMirX1TJuTWp6CIKXBD2NA57POPwT5XZj8Wrzee+05bSeA5PwjG6ZOA6I
- BC/tw6ErsANmsMiMvMo1xLTq31UeuJbjW9pPgeVmBDxp4+8qZVi6C9X/fkm8qZ9
-IronPort-Data: A9a23:oYmcXKtveZSL3ih0fWYdwEP85ufnVFxeMUV32f8akzHdYApBsoF/q
- tZmKWvQOvqINGSgedF1a9+z/EsDu8DXm9c2QQtsrCwzQy8bgMeUXt7xwmUckM+xwmwvaGo9s
- q3yv/GZdJhcokf0/0vrav67xZVF/fngqoDUUIYoAQgvA1c8IMsdoUg7wbVh39Q22YPR7z6l4
- LseneWOYDdJ5BYsWo4kw/rrRMRH5amaVJsw5zTSVNgT1LPsvyB94KE3ecldG0DFrrx8RYZWc
- QpsIIaRpQs19z91Yj+sfy2SnkciGtY+NiDW4pZatjTLbhVq/kQPPqgH2PU0T2FypAyjse5L2
- dQUvr+xUBsrPqjCsbFIO/VYO3kW0axu8bvDJz20ttaeihScNXDt2P5pSkoxOOX0+M4uXjoIr
- qJecWtLN0vf7w616OrTpu1Enc8jLdXxO483sXB7xjafBvEjKXzGa/yTvIIEhm9g2aiiG97zX
- 5A2ZmQxcS7ZOThWa1JUI6w/teuR0yyXnzpw8QLJ+vVfD3Lo5B1226TqGN7UYcCRA9RSlVqfv
- njB/WnyHlcdLtP39Nae2nuogumKliThVcdLTvuz9+VhhxuYwWl75AAquUWTh9+cpXeUdexlO
- k1N8QkvtLQw9EmlZ4yoN/Gnm0KsshkZUttWNuQ17gCR16bZizp14EBZEFatj/R77KcLqSwWO
- kyhxIm5WGAz2FGBYTfMqOrF/Gva1T09cDdqWMMScecSDzAPSqkchwjLR9BveEJepoKoQW2rq
- 9xmQdRXuln+pccP06P+9lfdjnf1/N7CTxU+4UPcWWfNAuJFiGyNOdXABbvztKkowGOlor+p5
- ydsdy+2t7tmMH11vHbRKNjh5Znwjxp/DBXSgER0A74q/Cm39niocOh4uW8ueR4zb5ZfIWa0O
- Cc/XD+9ArcNZBNGiocqPeqM5zgClsAM6Py8DKmPN4oSCnSPXF7XoUmCmnJ8L0i0wBRzzsnTy
- L+QcN2nCj4BGL97wT+tL9rxIpd1rh3SMVj7HMihpzz+iOL2TCfMFd8tbgDUBshnt/zsnekg2
- 4sFXyd8408BALSWj+i+2dN7EG3m2lBgX8um9JYHL7fZSuekcUl4Y8LsLXoaU9UNt4xel/zD+
- Te2XUow9bY1rSSvxdmiApy7VI7SYA==
-IronPort-HdrOrdr: A9a23:VC2k86/aaJao96cWPrtuk+HJdb1zdoMgy1knxilNoENuH/Bwxv
- rFoB1E73TJYVEqKQodcLG7SdG9qBbnmaKdjrNhWotKMDOW3VdAT7sSlLcKoQeQYREWn9Q1vc
- gPAssOauEcFWIbsS+T2njELz9K+qjgzEnHv5a7855Yd3AXV0gs1XYPNu7deXcGNDVuNN4cLt
- 6x98BHrz2vdTA+adm6PGAMW6z5q9jChPvdEGw770pM0mizpALtzIS/PwmT3x8YXT8K66wl63
- L5nwvw4bjmm+2nyzfHvlWjoKh+qZ/E8J9uFcaMgs8aJnHHkQCzfrlsXLWEoXQcvPyv0lA3i9
- PByi1Qc/ib00mhMF1dnCGdkTUIkQxeoEMK8GXoyUcLdPaJCQ7TTKJ69PRkmhiw0TtSgDgz6t
- ML44ujjesnMfrxplWD2zH2bWAVqqOVmwtWrQdBtQ0qbWJZUs4ZkbAi
-X-Talos-CUID: 9a23:CWaAjmzUvZER+GVgwAafBgUyPOUKS1fz8k3BIhazKmdwVL+VTFG5rfY=
-X-Talos-MUID: 9a23:HmHangbGXX4hGeBTmge2qz48atpS+v6LEREI0r44uuCIDHkl
-X-IronPort-Anti-Spam-Filtered: true
-Received: from alln-core-12.cisco.com ([173.36.13.134])
-  by alln-iport-4.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 27 May 2023 02:53:54 +0000
-Received: from alln-opgw-4.cisco.com (alln-opgw-4.cisco.com [173.37.147.252])
-	by alln-core-12.cisco.com (8.15.2/8.15.2) with ESMTPS id 34R2rsiF014809
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
-	for <yocto@lists.yoctoproject.org>; Sat, 27 May 2023 02:53:54 GMT
-Authentication-Results: alln-opgw-4.cisco.com; dkim=pass (signature verified) header.i=@cisco.com; spf=Pass smtp.mailfrom=schitrod@cisco.com; dmarc=pass (p=quarantine dis=none) d=cisco.com
-X-IronPort-AV: E=Sophos;i="6.00,195,1681171200"; 
-   d="scan'";a="2028152"
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I/F7pr4Xj0k1uaTqeMp0uswwH3Mv42blo51cs66yNhVrZQklCGyS6RUhq/usrb5UZCvee4f+sGjSmuFjeVigHW7VohAZkJuhZ7I8OEls//y/qYvQjGPUENGPXAG8vEVrArtqwVbwuQSM1NKxQNccdcygIiCF43J0hx3ddBpnrBL8T5wAo+EeZw5asFqlnnkCaafcIF3ErwbE6XFS5RVOUv2Es3Ev5QranK+mIR3Ih46A2+u3vmBNTJKkyzBZ7k334JtsVBdcSbclLjhJPT1PrqBbNME8yGcGD+vJgnb4U0HY/42gqhOQBDnrw8TMGGzo72Ero1bnZWdJaM9ZKlwksA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dNserLVEMX3AMl5TJjepYDx5KJoRnNYqOifwgnF5IIs=;
- b=P3itAqxBdXr5vm7JQYe7kajL1wetrAHWD4ryZPyJpb9vfA8MsiTDiiwwFY7yASySm1rgM6ttqwLSybaAUfn5vH+ayKV0vzciE5AMdn7NygX3toMXQHdsLmkGTpBsHGpjvsZC0Adng7wklhg6oUUhG/AKLZd+maUpAn1kJZB3XYBPhbegfHv3+0vOsRn/y+9q+qx0UooCoji9uYKv1qOa6fKvvAM08kOpCPhXOaKba32U65Y5r+6sJhltrQZlCWFV4fs4UsrOnYzeLuWjWpR7YEpFVYH7Xy9IoxZg73c2n3RSShkKS7MLK1qbe7j+H21u6mG3hHn5mXDshFTqwG/FjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cisco.com; dmarc=pass action=none header.from=cisco.com;
- dkim=pass header.d=cisco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cisco.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dNserLVEMX3AMl5TJjepYDx5KJoRnNYqOifwgnF5IIs=;
- b=aKhMQy2Bh0frzg81fae75oprcPh7ifdhr81mhwuwGiqkE+q5rhyExOXWsbDDq4SaTd1ujFkNb5WP+Ez1RLDySmM+cWkvKO4ZjkfVBdahRJsfb86zo/k6wfgWh8PCecCnMphyYTQcbxVdcRb1YP/YuDolPPP6ht0MERpVEAirAGk=
-Received: from SJ0PR11MB6717.namprd11.prod.outlook.com (2603:10b6:a03:44f::9)
- by SA0PR11MB4750.namprd11.prod.outlook.com (2603:10b6:806:9d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.18; Sat, 27 May
- 2023 02:53:51 +0000
-Received: from SJ0PR11MB6717.namprd11.prod.outlook.com
- ([fe80::2ddb:3ab6:484a:673a]) by SJ0PR11MB6717.namprd11.prod.outlook.com
- ([fe80::2ddb:3ab6:484a:673a%6]) with mapi id 15.20.6411.028; Sat, 27 May 2023
- 02:53:50 +0000
-From: "Sanjaykumar kantibhai Chitroda -X (schitrod - E-INFO CHIPS INC at
- Cisco)" <schitrod@cisco.com>
-To: "Sanjaykumar kantibhai Chitroda -X (schitrod - E-INFO CHIPS INC at Cisco)"
-	<schitrod@cisco.com>,
-        "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: RE: [meta-selinux][PATCH] selinux: Set CVE_PRODUCT
-Thread-Topic: [meta-selinux][PATCH] selinux: Set CVE_PRODUCT
-Thread-Index: AQHZhNeGD1fGLlhZn0+MGMIwAwSiBK9tghgA
-Date: Sat, 27 May 2023 02:53:42 +0000
-Deferred-Delivery: Sat, 27 May 2023 02:53:15 +0000
-Message-ID: 
- <SJ0PR11MB671790FCD42E86EB72BBF256DC449@SJ0PR11MB6717.namprd11.prod.outlook.com>
-References: <20230512134151.2978644-1-schitrod@cisco.com>
-In-Reply-To: <20230512134151.2978644-1-schitrod@cisco.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR11MB6717:EE_|SA0PR11MB4750:EE_
-x-ms-office365-filtering-correlation-id: 524b251c-f5ac-4a4d-798a-08db5e5d9978
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- FGmyDKKZg9pfPrhKNwWcHzxla5Wvnvh7t7HnZNzv81jdethmkFhEwPshq/O4YrtSZfr4JwYaBMT4S7rXcM0LTU7ktipcyrWj2HGpFmESp5X4Jb/fW1gxP/PKoYk0e2Z/PqZodXHFtS1Z5Mzdu9c+cieF7JUrjHBSz93xhYKwx3Xh0js5vEZRMbceRZ5TBtJ5MQ6iJa7/Gm2alwxHWka0V9+VHQ51qlbs9XGEjiEQxVyWJggzyRIazVrpUBkO88fk5gS2WSWmUiUkKNep9sSxgOXsliJc5MDqM7ceHonhjroJC9kqGYXNVcaFJGwS7OsqhtPPJD/Zh1vJq9AA0gcf11FzVytqt+d9bRSI0V6aRPcZlquutWGYYxtV1XSDwq8UquMeVI9Tszj4CybZ40QFiDL6oEFrugV687kHQJ/duWHF3tEKzw6u/qVWztYH2b1t6JzZ3mL0z8osZn/+0fSNiHlqnc7MrnBO9tlnE9rIIf+UqqVd4ts441yAbm1VzNMqe9tWAyjFqlT1Z1lKmifsvR1h6NBWEE5vge7ypR0UXoTe9JrhZZDRCnVfexLJPXZ1nzCMmz/mU2UUA01a2uNPs6YAPmXBW14aJa1x2LzZFwg=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB6717.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(396003)(366004)(39860400002)(376002)(346002)(136003)(451199021)(41300700001)(6666004)(38100700002)(316002)(7696005)(8936002)(38070700005)(8676002)(53546011)(186003)(86362001)(33656002)(2906002)(83380400001)(5660300002)(52536014)(9686003)(966005)(6506007)(55016003)(478600001)(66476007)(66446008)(66556008)(64756008)(76116006)(66946007)(110136005)(122000001)(71200400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?YeARfpMYsdbxvMGHQn7/AzzgV9DH3OoG+wMV97LSuVBvXKsnkIzBew7ONIoD?=
- =?us-ascii?Q?fdpXCI9KvBUs5WCN6eCz2xtNEtAllMENqZPksYDKZclHPTyWwj8Ger3GX4aU?=
- =?us-ascii?Q?WNuYaGZ7yB+aDyunSqt8gQ6h8Pt5nHZPOmjpt9tTkxP03y7i2b7YGdW+f3e7?=
- =?us-ascii?Q?lVSe4h70IElnr7Jl2NWzTPJvXHK4G9gn+nlflzooT50KmuKpDTkInrfYnIvP?=
- =?us-ascii?Q?Te3KqOtLB5q7xqe6R0vHDX3fyoE9JgYSqnw2hKFTvmSJBsXt/qihmw61sASe?=
- =?us-ascii?Q?zOhqZyVAXozPFnClL16tGHX6IVCXvLbA9pge3ufqvbDuWziYfTHwhJx72tlX?=
- =?us-ascii?Q?YC/AOxcqI9NBv11mRH1+0ulvi45Z4xQ0r1wFgN1Pq/PpovREK+7STNQiYPwQ?=
- =?us-ascii?Q?0JypUjq6GKjZcB5GqxgoB5nDASuc5axdTYFMbuaRzJDhahfBXffMzV/x7h5y?=
- =?us-ascii?Q?9RCrmzaTNtiyQN3lLqHJ7brvHIZ5HYJosq3Knh4F5NUKV6rlHRfheCakK19i?=
- =?us-ascii?Q?fweHE0l7Wq8GD951u0G/Iw7BFRrwxH1M71dXci6Dx8slbZJ4KyXZ2zVI48Yn?=
- =?us-ascii?Q?w7L2J+LiIljd2eYZyBAKNkkKuioD9czeRx4o76uTPJS/U1MZWRyih3796gU3?=
- =?us-ascii?Q?Bpy7M/Bo7yj2QU69sifEP3knFjZWsBWPle23+t+j1cXz5+FvRuz40Wgxisil?=
- =?us-ascii?Q?dqtUTZM2+jVVH/bPRn95j1vHmBuvOyxESee0HXjh6ibdZq/+QiNCabYntu+p?=
- =?us-ascii?Q?oaTD0OOx6I0o89c/NS5GrpfLFcsEg31cGWVq5czIV7qfSaFVXNSlNm7OV1Rv?=
- =?us-ascii?Q?027fN+1u58J/LsThfheZFwlTrIxPnKyW6GCXaGq2jQD3tF3E+kwIPCRrk3uR?=
- =?us-ascii?Q?4NxiAvGUikMrz3mKppZ5BRkqBU6NJ4xhKmJXtAd95M3EJUSEd0DwEb49NGy4?=
- =?us-ascii?Q?DPIBUewKguSljTh071IiJ/9+IKvWy7wFzGkqX0Ech/H597AnvAmn8rInDHwf?=
- =?us-ascii?Q?iU0AmGI031hoBUzVh2271VjkNTvGHSRJfO8Cp5PBkWVOLXjnVmVP9KckJIUT?=
- =?us-ascii?Q?l8PXD1vggpi7Q7vA3TjHhvJjKvvUoe/tGUiBJpugLTYz6R+XrwB4VYgEQOus?=
- =?us-ascii?Q?m1eBvtRImxmFQ8ewUDJcMzS1tirhTdl4KzbVi2FtxMNIdRVYjsETY0x7T3v0?=
- =?us-ascii?Q?kOaNkalfvZcVmlzYbHFJuukLZKD8Nb3jh4KPAs+sbUoQmAhxWwMSJuWjVTB5?=
- =?us-ascii?Q?U7ywsXao63f03NgLjn34A1/8aED+CkXjJIhEMB+KUuijJbzTrbLTsGhdovlS?=
- =?us-ascii?Q?IqE4yETVoD6e5DUGb37avdRUNPDZ41yXHcC8onJrD3s1CNE9hTCSd63NGqdh?=
- =?us-ascii?Q?XAyUNVgEPHaG2UNMWBNwNQ1WeJx7pmFVQEFhnhWmHfKN92b2AJOV5cyuJhgb?=
- =?us-ascii?Q?Aovqamixl95nKg5DhqsPL2VNHGIpkpTAciCdgQH22EEwXTnpO8MutqNhh9tm?=
- =?us-ascii?Q?Ps3UZfU7AOvEnB7fV1F3xQ3IXJQYFGJyJakDUSr30Tyq3aqAmenBmTy8zi/M?=
- =?us-ascii?Q?/zi/h9glvIngEVHgXv+kVCzKpgK2ESHzRqpIRxUjfk64AyoGE03CRTDWm9Ao?=
- =?us-ascii?Q?PA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B57CAC77B7C
+	for <webhook@archiver.kernel.org>; Sat, 27 May 2023 12:00:10 +0000 (UTC)
+Subject: OSError: [Errno 40] too much recursions while resolving #hardknott
+To: yocto@lists.yoctoproject.org
+From: "Mahendra Sondagar" <mahendrasondagar08@gmail.com>
+X-Originating-Location: Surat, Gujarat, IN (103.238.13.196)
+X-Originating-Platform: Linux Firefox 113
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OriginatorOrg: cisco.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB6717.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 524b251c-f5ac-4a4d-798a-08db5e5d9978
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2023 02:53:50.2698
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5ae1af62-9505-4097-a69a-c1553ef7840e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: h3CP/xJAnI1dHMGtamt8TqCp/YSxf3eZ7pptAqWnleg2tWHxTkZsHcHOhHMc0cvHU7HfEb9GLJWN9Hn9yNAmDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4750
-X-Outbound-SMTP-Client: 173.37.147.252, alln-opgw-4.cisco.com
-X-Outbound-Node: alln-core-12.cisco.com
+Date: Sat, 27 May 2023 05:00:09 -0700
+Message-ID: <o7MV.1685188809783337186.RafB@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="eGSI8AhkBppXEV3qOLW4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 27 May 2023 02:53:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60131
+ <yocto@lists.yoctoproject.org>; Sat, 27 May 2023 12:00:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60132
 
-Hi all,
+--eGSI8AhkBppXEV3qOLW4
+Content-Type: multipart/alternative; boundary="rLg7YNtUUVoAqambEM80"
 
-Any update/comment ?
+--rLg7YNtUUVoAqambEM80
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Sanjay
+Hi.. there
 
------Original Message-----
-From: Sanjay Chitroda <schitrod@cisco.com>=20
-Sent: Friday, May 12, 2023 7:12 PM
-To: yocto@lists.yoctoproject.org
-Cc: Sanjaykumar kantibhai Chitroda -X (schitrod - E-INFO CHIPS INC at Cisco=
-) <schitrod@cisco.com>
-Subject: [meta-selinux][PATCH] selinux: Set CVE_PRODUCT
+Hope all are doing well
 
-The CVE product name for selinux-* package is (usually) the selinux (and no=
-t our recipe name), so use selinux as the default.
+I'm dealing with the Makefile based project, for which i have created the r=
+ecipe file
 
-See also:
-http://lists.openembedded.org/pipermail/openembedded-core/2017-July/139897.=
-html
+The file architecture of the recipes file is as follows,
 
-"Results from cve-check are not very good at the moment.
-One of the reasons for this is that component names used in CVE database di=
-ffer from yocto recipe names. This series fixes several of those name mappi=
-ng problems by setting the CVE_PRODUCT correctly in the recipes. To check t=
-his mapping with after a build, I'm exporting LICENSE and CVE_PRODUCT varia=
-bles to buildhistory for recipes and packages."
+|---modem-api
+=E2=94=9C=E2=94=80=E2=94=80 files
+=E2=94=82=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 GpioApi.c
+=E2=94=82=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 GpioApi.h
+=E2=94=82=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 main.c
+=E2=94=82=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 Makefile
+=E2=94=82=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 modem.c
+=E2=94=82=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 modem.h
+=E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 target_build
+=E2=94=82=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 M=
+akefile
+=E2=94=94=E2=94=80=E2=94=80 modem-api_1.0.bb
 
-Value added is based on:
-https://nvd.nist.gov/vuln/search/results?results_type=3Doverview&search_typ=
-e=3Dall&cpe_product=3Dcpe%3A%2F%3Akernel%3Aselinux
+- During the building the recipe modem-api, all files are fetched and compi=
+led with out any issue
+- The aim is to create the shared library called *libmodem.so* which need t=
+o install in */usr/lib* directory after the build
 
-Signed-off-by: Sanjay Chitroda <schitrod@cisco.com>
----
- recipes-security/selinux/selinux_common.inc | 2 ++
- 1 file changed, 2 insertions(+)
+*Problem statement
 
-diff --git a/recipes-security/selinux/selinux_common.inc b/recipes-security=
-/selinux/selinux_common.inc
-index 383f62d..cd51a86 100644
---- a/recipes-security/selinux/selinux_common.inc
-+++ b/recipes-security/selinux/selinux_common.inc
-@@ -15,3 +15,5 @@ do_install() {
-             SHLIBDIR=3D"${base_libdir}" \
-             SYSTEMDDIR=3D"${systemd_unitdir}"
- }
-+
-+CVE_PRODUCT ?=3D "kernel:selinux"
---
-2.35.6
+-* During the do_package, it's generating the error message as *OSError: [E=
+rrno 40] too much recursions while resolving*
 
+- For the instance, i have share the make file, recipe file and error logs =
+here
+
+- pl. can anyone help me here ?
+
+all comments and suggestions welcome
+
+Thanks
+
+Mahendra
+
+*Error logs*
+
+ERROR: modem-api-1.0-r0 do_package: Error executing a python function in ex=
+ec_python_func() autogenerated:
+
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+0001:
+*** 0002:split_and_strip_files(d)
+0003:
+File: '/home/mahi/Documents/AIO_System/var-fslc-yocto/sources/poky/meta/cla=
+sses/package.bbclass', lineno: 1157, function: split_and_strip_files
+1153:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 staticlibs.append(file)
+1154:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 continue
+1155:
+1156:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 try:
+*** 1157:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ltarget =3D cpath.realpath=
+(file, dvar, False)
+1158:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s =3D cpath.lstat(ltarget)
+1159:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 except OSError as e:
+1160:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (err, strerror) =3D e.args
+1161:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if err !=3D errno.ENOENT:
+File: '/home/mahi/Documents/AIO_System/var-fslc-yocto/sources/poky/meta/lib=
+/oe/cachedpath.py', lineno: 229, function: realpath
+0225:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if =
+e.errno =3D=3D errno.ELOOP:
+0226:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 # make ELOOP more readable; without catching it, ther=
+e will
+0227:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 # be printed a backtrace with 100s of OSError excepti=
+ons
+0228:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 # else
+*** 0229:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 raise OSError(errno.ELOOP,
+0230:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "too much recursions while resolving '%s'; l=
+oop in '%s'" %
+0231:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (file, e.strerror))
+0232:
+0233:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rai=
+se
+Exception: OSError: [Errno 40] too much recursions while resolving '/home/m=
+ahi/Documents/AIO_System/var-fslc-yocto/build_aio/tmp/work/cortexa7t2hf-neo=
+n-fslc-linux-gnueabi/modem-api/1.0-r0/package/usr/lib/libmodem.so'; loop in=
+ '/home/mahi/Documents/AIO_System/var-fslc-yocto/build_aio/tmp/work/cortexa=
+7t2hf-neon-fslc-linux-gnueabi/modem-api/1.0-r0/package/usr/lib/libmodem.so'
+
+--rLg7YNtUUVoAqambEM80
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi.. there</p>
+<p>Hope all are doing well</p>
+<p>&nbsp;</p>
+<p>I'm dealing with the Makefile based project, for which i have created th=
+e recipe file</p>
+<p>The file architecture of the recipes file is as follows,<br /><br />|---=
+modem-api<br />=E2=94=9C=E2=94=80=E2=94=80 files<br />=E2=94=82&nbsp;&nbsp;=
+ =E2=94=9C=E2=94=80=E2=94=80 GpioApi.c<br />=E2=94=82&nbsp;&nbsp; =E2=94=9C=
+=E2=94=80=E2=94=80 GpioApi.h<br />=E2=94=82&nbsp;&nbsp; =E2=94=9C=E2=94=80=
+=E2=94=80 main.c<br />=E2=94=82&nbsp;&nbsp; =E2=94=9C=E2=94=80=E2=94=80 Mak=
+efile<br />=E2=94=82&nbsp;&nbsp; =E2=94=9C=E2=94=80=E2=94=80 modem.c<br />=
+=E2=94=82&nbsp;&nbsp; =E2=94=9C=E2=94=80=E2=94=80 modem.h<br />=E2=94=82&nb=
+sp;&nbsp; =E2=94=94=E2=94=80=E2=94=80 target_build<br />=E2=94=82&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; =E2=94=94=E2=94=80=E2=94=80 Makefile<br />=E2=94=
+=94=E2=94=80=E2=94=80 modem-api_1.0.bb<br /><br /><br />- During the buildi=
+ng the recipe modem-api, all files are fetched and compiled with out any is=
+sue <br />- The aim is to create the shared library called <strong>libmodem=
+.so</strong> which need to install in <strong>/usr/lib</strong> directory a=
+fter the build</p>
+<p><br /><strong>Problem statement<br /><br />- </strong>During the do_pack=
+age, it's generating the error message as <strong>OSError: [Errno 40] too m=
+uch recursions while resolving</strong></p>
+<p>- For the instance, i have share the make file, recipe file and error lo=
+gs here</p>
+<p>- pl. can anyone help me here ?<br /><br />all comments and suggestions =
+welcome</p>
+<p>&nbsp;</p>
+<p>Thanks</p>
+<p>Mahendra</p>
+<p>&nbsp;</p>
+<p><strong>Error logs</strong> <br /><br />ERROR: modem-api-1.0-r0 do_packa=
+ge: Error executing a python function in exec_python_func() autogenerated:<=
+br /><br />The stack trace of python calls that resulted in this exception/=
+failure was:<br />File: 'exec_python_func() autogenerated', lineno: 2, func=
+tion: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0001:<br />&nbsp;*** 000=
+2:split_and_strip_files(d)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0003:<br />File: '=
+/home/mahi/Documents/AIO_System/var-fslc-yocto/sources/poky/meta/classes/pa=
+ckage.bbclass', lineno: 1157, function: split_and_strip_files<br />&nbsp;&n=
+bsp;&nbsp;&nbsp; 1153:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staticlibs.ap=
+pend(file)<br />&nbsp;&nbsp;&nbsp;&nbsp; 1154:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; continue<br />&nbsp;&nbsp;&nbsp;&nbsp; 1155:<br />&nbsp;&nbsp;&n=
+bsp;&nbsp; 1156:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<br />&nbsp;*** 1157:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; ltarget =3D cpath.realpath(file, dvar, False)<br />&n=
+bsp;&nbsp;&nbsp;&nbsp; 1158:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s =3D c=
+path.lstat(ltarget)<br />&nbsp;&nbsp;&nbsp;&nbsp; 1159:&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exce=
+pt OSError as e:<br />&nbsp;&nbsp;&nbsp;&nbsp; 1160:&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; (err, strerror) =3D e.args<br />&nbsp;&nbsp;&nbsp;&nbsp; 1=
+161:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if err !=3D errno.ENOENT:<br />=
+File: '/home/mahi/Documents/AIO_System/var-fslc-yocto/sources/poky/meta/lib=
+/oe/cachedpath.py', lineno: 229, function: realpath<br />&nbsp;&nbsp;&nbsp;=
+&nbsp; 0225:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; if e.errno =3D=3D errno.ELOOP:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0226:&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; # make ELOOP more readable; without catching it, there will<br /=
+>&nbsp;&nbsp;&nbsp;&nbsp; 0227:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # be printed a backtrace wit=
+h 100s of OSError exceptions<br />&nbsp;&nbsp;&nbsp;&nbsp; 0228:&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; # else<br />&nbsp;*** 0229:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise OSError(errno.ELOOP,<=
+br />&nbsp;&nbsp;&nbsp;&nbsp; 0230:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "too much recur=
+sions while resolving '%s'; loop in '%s'" %<br />&nbsp;&nbsp;&nbsp;&nbsp; 0=
+231:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; (file, e.strerror))<br />&nbsp;&nbsp;&nbsp;&nb=
+sp; 0232:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0233:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise<br />Exception: OSError: [Errno =
+40] too much recursions while resolving '/home/mahi/Documents/AIO_System/va=
+r-fslc-yocto/build_aio/tmp/work/cortexa7t2hf-neon-fslc-linux-gnueabi/modem-=
+api/1.0-r0/package/usr/lib/libmodem.so'; loop in '/home/mahi/Documents/AIO_=
+System/var-fslc-yocto/build_aio/tmp/work/cortexa7t2hf-neon-fslc-linux-gnuea=
+bi/modem-api/1.0-r0/package/usr/lib/libmodem.so'<br /><br /></p>
+<p>&nbsp;</p>
+
+--rLg7YNtUUVoAqambEM80--
+
+--eGSI8AhkBppXEV3qOLW4
+Content-Type: application/octet-stream; name="modem-api_1.0.bb"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="modem-api_1.0.bb"
+
+U1VNTUFSWSA9ICJNb2RlbSBBUEkiCkRFU0NSSVBUSU9OID0gIlJlY2lwZSBmb3IgTW9kZW0gQVBJ
+IgpMSUNFTlNFID0gIk1JVCIKTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8vJHtDT01NT05fTElD
+RU5TRV9ESVJ9L01JVDttZDU9MDgzNWFkZTY5OGUwYmNmODUwNmVjZGEyZjdiNGYzMDIiCgpTUkNf
+VVJJID0gImZpbGU6Ly9HcGlvQXBpLmMgXAogICAgICAgICAgIGZpbGU6Ly9HcGlvQXBpLmggXAog
+ICAgICAgICAgIGZpbGU6Ly9tYWluLmMgXAogICAgICAgICAgIGZpbGU6Ly9tb2RlbS5jIFwKICAg
+ICAgICAgICBmaWxlOi8vbW9kZW0uaCBcCiAgICAgICAgICAgZmlsZTovL01ha2VmaWxlIgoKUyA9
+ICIke1dPUktESVJ9IgoKaW5oZXJpdCBwa2djb25maWcKCmRvX2NvbXBpbGUoKSB7CiAgICBvZV9y
+dW5tYWtlCn0KCmRvX2luc3RhbGwoKSB7CiAgICBpbnN0YWxsIC1kICR7RH0ke2xpYmRpcn0KICAg
+IGluc3RhbGwgLW0gMDc1NSBsaWJtb2RlbS5zbyAke0R9JHtsaWJkaXJ9CgogICAgIyBDcmVhdGUg
+c3ltYm9saWMgbGluawogICAgbG4gLXNmIGxpYm1vZGVtLnNvICR7RH0ke2xpYmRpcn0vbGlibW9k
+ZW0uc28KCiAgICAjIEluc3RhbGwgZGV2ZWxvcG1lbnQgZmlsZXMKICAgIGluc3RhbGwgLWQgJHtE
+fSR7aW5jbHVkZWRpcn0KICAgIGluc3RhbGwgLW0gMDY0NCBHcGlvQXBpLmggbW9kZW0uaCAke0R9
+JHtpbmNsdWRlZGlyfQp9CgpGSUxFU18ke1BOfSArPSAiJHtsaWJkaXJ9L2xpYm1vZGVtLnNvIgpG
+SUxFU18ke1BOfS1kZXYgKz0gIiR7aW5jbHVkZWRpcn0vR3Bpb0FwaS5oICR7aW5jbHVkZWRpcn0v
+bW9kZW0uaCIKCiMgU2V0IHByb3BlciBSUEFUSCBhbmQgZW5hYmxlIEdOVV9IQVNICkxERkxBR1Nf
+YXBwZW5kID0gIiAtV2wsLXJwYXRoLWxpbmssJHtTVEFHSU5HX0xJQkRJUn0iCkxERkxBR1NfYXBw
+ZW5kID0gIiAtV2wsLS1oYXNoLXN0eWxlPWdudSIKVEFSR0VUX0xERkxBR1MgKz0gIiAtV2wsLS1o
+YXNoLXN0eWxlPWdudSIKCiMgRGlzYWJsZSBRQSBjaGVjayBmb3IgR05VX0hBU0gKSU5TQU5FX1NL
+SVBfJHtQTn0gPSAibGRmbGFncyIKCgo=
+
+--eGSI8AhkBppXEV3qOLW4
+Content-Type: application/octet-stream; name="Makefile"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Makefile"
+
+U0hFTEwgOj0gL2Jpbi9iYXNoCgpBUk1fVE9PTENIQUlOX0RJUiA6PSAvb3B0L2ZzbGMteDExLzMu
+MwpDQyA6PSAkKHNoZWxsIHNvdXJjZSAkKEFSTV9UT09MQ0hBSU5fRElSKS9lbnZpcm9ubWVudC1z
+ZXR1cC1jb3J0ZXhhN3QyaGYtbmVvbi1mc2xjLWxpbnV4LWdudWVhYmkgJiYgZWNobyAkJENDKQpD
+RkxBR1MgOj0gJChzaGVsbCBzb3VyY2UgJChBUk1fVE9PTENIQUlOX0RJUikvZW52aXJvbm1lbnQt
+c2V0dXAtY29ydGV4YTd0MmhmLW5lb24tZnNsYy1saW51eC1nbnVlYWJpICYmIGVjaG8gJCRDRkxB
+R1MpClBSRUZJWCA6PSAvdXNyL2xpYgoKLlBIT05ZOiBhbGwgY2xlYW4KCmFsbDogbGlibW9kZW0u
+c28KCm1vZGVtLm86IG1vZGVtLmggbW9kZW0uYwoJJChDQykgLWMgLWZwaWMgJChDRkxBR1MpIG1v
+ZGVtLmMKCkdwaW9BcGkubzogR3Bpb0FwaS5oIEdwaW9BcGkuYwoJJChDQykgLWMgLWZwaWMgJChD
+RkxBR1MpIEdwaW9BcGkuYwoKbGlibW9kZW0uc286IG1vZGVtLm8gR3Bpb0FwaS5vCgkkKENDKSAt
+c2hhcmVkIC1vICRAIEdwaW9BcGkubyBtb2RlbS5vCgp1dGVzdDogbGlibW9kZW0uc28gbWFpbi5j
+CgkkKENDKSAtbyAkQCBtYWluLmMgLUwuLyAtbG1vZGVtCgojdGFyZ2V0OgoJJChNQUtFKSAtQyB0
+YXJnZXRfYnVpbGQvCgojdGFyZ2V0X3V0ZXN0OgoJJChNQUtFKSAtQyB0YXJnZXRfYnVpbGQvIHV0
+ZXN0CgpjbGVhbjoKCXJtIC1mIG1vZGVtLm8gXAogICAgICAgIEdwaW9BcGkubyBcCiAgICAgICAg
+bGlibW9kZW0uc28gXAogICAgICAgIHV0ZXN0CgkkKE1BS0UpIC1DIC9ob21lL21haGkvRG9jdW1l
+bnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vbWV0YS1jdXN0b20tYWlvL3JlY2lwZXMtY29u
+bmVjdGl2aXR5L21vZGVtLWFwaS9maWxlcy90YXJnZXRfYnVpbGQvIGNsZWFuCgo=
+
+--eGSI8AhkBppXEV3qOLW4
+Content-Type: application/octet-stream; name="log.do_package.46495"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="log.do_package.46495"
+
+REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcHJlZnVuYwpERUJV
+RzogUHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3ByZWZ1bmMgZmluaXNoZWQKREVCVUc6IEV4
+ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZXh0ZW5kX3JlY2lwZV9zeXNyb290Ck5PVEU6IERpcmVj
+dCBkZXBlbmRlbmNpZXMgYXJlIFsndmlydHVhbDpuYXRpdmU6L2hvbWUvbWFoaS9Eb2N1bWVudHMv
+QUlPX1N5c3RlbS92YXItZnNsYy15b2N0by9zb3VyY2VzL3Bva3kvbWV0YS9yZWNpcGVzLWRldnRv
+b2xzL2R3YXJmc3JjZmlsZXMvZHdhcmZzcmNmaWxlcy5iYjpkb19wb3B1bGF0ZV9zeXNyb290Jywg
+J3ZpcnR1YWw6bmF0aXZlOi9ob21lL21haGkvRG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMt
+eW9jdG8vc291cmNlcy9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy9wa2djb25maWcvcGtnY29u
+ZmlnX2dpdC5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywgJy9ob21lL21haGkvRG9jdW1lbnRzL0FJ
+T19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vc291cmNlcy9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29s
+cy9nY2MvZ2NjLWNyb3NzXzEwLjMuYmI6ZG9fcG9wdWxhdGVfc3lzcm9vdCcsICcvaG9tZS9tYWhp
+L0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3RvL3NvdXJjZXMvcG9reS9tZXRhL3Jl
+Y2lwZXMtZGV2dG9vbHMvcXVpbHQvcXVpbHQtbmF0aXZlXzAuNjYuYmI6ZG9fcG9wdWxhdGVfc3lz
+cm9vdCcsICd2aXJ0dWFsOm5hdGl2ZTovaG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zh
+ci1mc2xjLXlvY3RvL3NvdXJjZXMvcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvcnBtL3JwbV80
+LjE2LjEuMy5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywgJy9ob21lL21haGkvRG9jdW1lbnRzL0FJ
+T19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vc291cmNlcy9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29s
+cy9nY2MvZ2NjLXJ1bnRpbWVfMTAuMy5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywgJ3ZpcnR1YWw6
+bmF0aXZlOi9ob21lL21haGkvRG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vc291
+cmNlcy9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy9wYXRjaC9wYXRjaF8yLjcuNi5iYjpkb19w
+b3B1bGF0ZV9zeXNyb290JywgJ3ZpcnR1YWw6bmF0aXZlOi9ob21lL21haGkvRG9jdW1lbnRzL0FJ
+T19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vc291cmNlcy9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29s
+cy9wc2V1ZG8vcHNldWRvX2dpdC5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywgJy9ob21lL21haGkv
+RG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vc291cmNlcy9wb2t5L21ldGEvcmVj
+aXBlcy1jb3JlL2dsaWJjL2dsaWJjXzIuMzMuYmI6ZG9fcG9wdWxhdGVfc3lzcm9vdCddCk5PVEU6
+IEluc3RhbGxlZCBpbnRvIHN5c3Jvb3Q6IFsnZHdhcmZzcmNmaWxlcy1uYXRpdmUnLCAncnBtLW5h
+dGl2ZScsICdlbGZ1dGlscy1uYXRpdmUnLCAnZGItbmF0aXZlJywgJ2xpYmdjcnlwdC1uYXRpdmUn
+LCAnYnppcDItbmF0aXZlJywgJ2ZpbGUtbmF0aXZlJywgJ3BvcHQtbmF0aXZlJywgJ3B5dGhvbjMt
+bmF0aXZlJywgJ2xpYmNhcC1uYXRpdmUnLCAnbGliZ3BnLWVycm9yLW5hdGl2ZScsICdzcWxpdGUz
+LW5hdGl2ZScsICdsaWJ0aXJwYy1uYXRpdmUnLCAnbGlibnNsMi1uYXRpdmUnLCAncmVhZGxpbmUt
+bmF0aXZlJywgJ29wZW5zc2wtbmF0aXZlJywgJ2xpYmZmaS1uYXRpdmUnLCAnZ2RibS1uYXRpdmUn
+LCAndXRpbC1saW51eC1uYXRpdmUnLCAnZ3BlcmYtbmF0aXZlJywgJ25jdXJzZXMtbmF0aXZlJywg
+J2xpYnBjcmUyLW5hdGl2ZScsICd1dGlsLWxpbnV4LWxpYnV1aWQtbmF0aXZlJywgJ2xpYmNhcC1u
+Zy1uYXRpdmUnXQpOT1RFOiBTa2lwcGluZyBhcyBhbHJlYWR5IGV4aXN0cyBpbiBzeXNyb290OiBb
+J3BrZ2NvbmZpZy1uYXRpdmUnLCAnZ2NjLWNyb3NzLWFybScsICdxdWlsdC1uYXRpdmUnLCAnZ2Nj
+LXJ1bnRpbWUnLCAncGF0Y2gtbmF0aXZlJywgJ3BzZXVkby1uYXRpdmUnLCAnZ2xpYmMnLCAneHot
+bmF0aXZlJywgJ2xpYnRvb2wtbmF0aXZlJywgJ2F1dG9tYWtlLW5hdGl2ZScsICdmbGV4LW5hdGl2
+ZScsICdhdXRvY29uZi1uYXRpdmUnLCAnbGlibXBjLW5hdGl2ZScsICd6bGliLW5hdGl2ZScsICdi
+aW51dGlscy1jcm9zcy1hcm0nLCAnbGludXgtbGliYy1oZWFkZXJzJywgJ3RleGluZm8tZHVtbXkt
+bmF0aXZlJywgJ2dudS1jb25maWctbmF0aXZlJywgJ2dtcC1uYXRpdmUnLCAnbXBmci1uYXRpdmUn
+LCAnZ2V0dGV4dC1taW5pbWFsLW5hdGl2ZScsICdsaWJnY2MnLCAnYXR0ci1uYXRpdmUnLCAnbTQt
+bmF0aXZlJ10KREVCVUc6IHNlZCAtZSAnczpeW14vXSovOi9ob21lL21haGkvRG9jdW1lbnRzL0FJ
+T19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vYnVpbGRfYWlvL3RtcC93b3JrL2NvcnRleGE3dDJoZi1u
+ZW9uLWZzbGMtbGludXgtZ251ZWFiaS9tb2RlbS1hcGkvMS4wLXIwL3JlY2lwZS1zeXNyb290LW5h
+dGl2ZS86ZycgL2hvbWUvbWFoaS9Eb2N1bWVudHMvQUlPX1N5c3RlbS92YXItZnNsYy15b2N0by9i
+dWlsZF9haW8vdG1wL3N5c3Jvb3RzLWNvbXBvbmVudHMveDg2XzY0L3JwbS1uYXRpdmUvZml4bWVw
+YXRoIC9ob21lL21haGkvRG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vYnVpbGRf
+YWlvL3RtcC9zeXNyb290cy1jb21wb25lbnRzL3g4Nl82NC9lbGZ1dGlscy1uYXRpdmUvZml4bWVw
+YXRoIC9ob21lL21haGkvRG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vYnVpbGRf
+YWlvL3RtcC9zeXNyb290cy1jb21wb25lbnRzL3g4Nl82NC9saWJnY3J5cHQtbmF0aXZlL2ZpeG1l
+cGF0aCAvaG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3RvL2J1aWxk
+X2Fpby90bXAvc3lzcm9vdHMtY29tcG9uZW50cy94ODZfNjQvcHl0aG9uMy1uYXRpdmUvZml4bWVw
+YXRoIC9ob21lL21haGkvRG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vYnVpbGRf
+YWlvL3RtcC9zeXNyb290cy1jb21wb25lbnRzL3g4Nl82NC9saWJncGctZXJyb3ItbmF0aXZlL2Zp
+eG1lcGF0aCAvaG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3RvL2J1
+aWxkX2Fpby90bXAvc3lzcm9vdHMtY29tcG9uZW50cy94ODZfNjQvb3BlbnNzbC1uYXRpdmUvZml4
+bWVwYXRoIC9ob21lL21haGkvRG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vYnVp
+bGRfYWlvL3RtcC9zeXNyb290cy1jb21wb25lbnRzL3g4Nl82NC9uY3Vyc2VzLW5hdGl2ZS9maXht
+ZXBhdGggL2hvbWUvbWFoaS9Eb2N1bWVudHMvQUlPX1N5c3RlbS92YXItZnNsYy15b2N0by9idWls
+ZF9haW8vdG1wL3N5c3Jvb3RzLWNvbXBvbmVudHMveDg2XzY0L2xpYnBjcmUyLW5hdGl2ZS9maXht
+ZXBhdGggfCB4YXJncyBzZWQgLWkgLWUgJ3M6RklYTUVTVEFHSU5HRElSVEFSR0VUOi9ob21lL21h
+aGkvRG9jdW1lbnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vYnVpbGRfYWlvL3RtcC93b3Jr
+L2NvcnRleGE3dDJoZi1uZW9uLWZzbGMtbGludXgtZ251ZWFiaS9tb2RlbS1hcGkvMS4wLXIwL3Jl
+Y2lwZS1zeXNyb290Omc7IHM6RklYTUVTVEFHSU5HRElSSE9TVDovaG9tZS9tYWhpL0RvY3VtZW50
+cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3RvL2J1aWxkX2Fpby90bXAvd29yay9jb3J0ZXhhN3Qy
+aGYtbmVvbi1mc2xjLWxpbnV4LWdudWVhYmkvbW9kZW0tYXBpLzEuMC1yMC9yZWNpcGUtc3lzcm9v
+dC1uYXRpdmU6ZycgLWUgJ3M6RklYTUVfUFNFVURPX1NZU1JPT1Q6L2hvbWUvbWFoaS9Eb2N1bWVu
+dHMvQUlPX1N5c3RlbS92YXItZnNsYy15b2N0by9idWlsZF9haW8vdG1wL3N5c3Jvb3RzLWNvbXBv
+bmVudHMveDg2XzY0L3BzZXVkby1uYXRpdmU6ZycgLWUgJ3M6RklYTUVfSE9TVFRPT0xTX0RJUjov
+aG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3RvL2J1aWxkX2Fpby90
+bXAvaG9zdHRvb2xzOmcnIC1lICdzOkZJWE1FX1BLR0RBVEFfRElSOi9ob21lL21haGkvRG9jdW1l
+bnRzL0FJT19TeXN0ZW0vdmFyLWZzbGMteW9jdG8vYnVpbGRfYWlvL3RtcC9wa2dkYXRhL2lteDZ1
+bC12YXItZGFydDpnJyAtZSAnczpGSVhNRV9QU0VVRE9fTE9DQUxTVEFURURJUjovaG9tZS9tYWhp
+L0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3RvL2J1aWxkX2Fpby90bXAvd29yay9j
+b3J0ZXhhN3QyaGYtbmVvbi1mc2xjLWxpbnV4LWdudWVhYmkvbW9kZW0tYXBpLzEuMC1yMC9wc2V1
+ZG8vOmcnIC1lICdzOkZJWE1FX0xPR0ZJRk86L2hvbWUvbWFoaS9Eb2N1bWVudHMvQUlPX1N5c3Rl
+bS92YXItZnNsYy15b2N0by9idWlsZF9haW8vdG1wL3dvcmsvY29ydGV4YTd0MmhmLW5lb24tZnNs
+Yy1saW51eC1nbnVlYWJpL21vZGVtLWFwaS8xLjAtcjAvdGVtcC9maWZvLjQ2NDk1OmcnCkRFQlVH
+OiBQeXRob24gZnVuY3Rpb24gZXh0ZW5kX3JlY2lwZV9zeXNyb290IGZpbmlzaGVkCkRFQlVHOiBF
+eGVjdXRpbmcgcHl0aG9uIGZ1bmN0aW9uIGRvX3BhY2thZ2UKREVCVUc6IEV4ZWN1dGluZyBweXRo
+b24gZnVuY3Rpb24gcGFja2FnZV9jb252ZXJ0X3ByX2F1dG9pbmMKREVCVUc6IFB5dGhvbiBmdW5j
+dGlvbiBwYWNrYWdlX2NvbnZlcnRfcHJfYXV0b2luYyBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5n
+IHB5dGhvbiBmdW5jdGlvbiBwYWNrYWdlX3ByZXBhcmVfcGtnZGF0YQpOT1RFOiBJbnN0YWxsZWQg
+aW50byBwa2dkYXRhLXN5c3Jvb3Q6IFsnZ2NjLXJ1bnRpbWUnLCAnZ2xpYmMnLCAnbGliZ2NjJywg
+J2xpbnV4LWxpYmMtaGVhZGVycyddCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gcGFja2FnZV9wcmVw
+YXJlX3BrZ2RhdGEgZmluaXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gcGVy
+Zm9ybV9wYWNrYWdlY29weQpERUJVRzogUHl0aG9uIGZ1bmN0aW9uIHBlcmZvcm1fcGFja2FnZWNv
+cHkgZmluaXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3BsaXRfYW5kX3N0
+cmlwX2ZpbGVzCkVSUk9SOiBFcnJvciBleGVjdXRpbmcgYSBweXRob24gZnVuY3Rpb24gaW4gZXhl
+Y19weXRob25fZnVuYygpIGF1dG9nZW5lcmF0ZWQ6CgpUaGUgc3RhY2sgdHJhY2Ugb2YgcHl0aG9u
+IGNhbGxzIHRoYXQgcmVzdWx0ZWQgaW4gdGhpcyBleGNlcHRpb24vZmFpbHVyZSB3YXM6CkZpbGU6
+ICdleGVjX3B5dGhvbl9mdW5jKCkgYXV0b2dlbmVyYXRlZCcsIGxpbmVubzogMiwgZnVuY3Rpb246
+IDxtb2R1bGU+CiAgICAgMDAwMToKICoqKiAwMDAyOnNwbGl0X2FuZF9zdHJpcF9maWxlcyhkKQog
+ICAgIDAwMDM6CkZpbGU6ICcvaG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xj
+LXlvY3RvL3NvdXJjZXMvcG9reS9tZXRhL2NsYXNzZXMvcGFja2FnZS5iYmNsYXNzJywgbGluZW5v
+OiAxMTU3LCBmdW5jdGlvbjogc3BsaXRfYW5kX3N0cmlwX2ZpbGVzCiAgICAgMTE1MzogICAgICAg
+ICAgICAgICAgICAgIHN0YXRpY2xpYnMuYXBwZW5kKGZpbGUpCiAgICAgMTE1NDogICAgICAgICAg
+ICAgICAgICAgIGNvbnRpbnVlCiAgICAgMTE1NToKICAgICAxMTU2OiAgICAgICAgICAgICAgICB0
+cnk6CiAqKiogMTE1NzogICAgICAgICAgICAgICAgICAgIGx0YXJnZXQgPSBjcGF0aC5yZWFscGF0
+aChmaWxlLCBkdmFyLCBGYWxzZSkKICAgICAxMTU4OiAgICAgICAgICAgICAgICAgICAgcyA9IGNw
+YXRoLmxzdGF0KGx0YXJnZXQpCiAgICAgMTE1OTogICAgICAgICAgICAgICAgZXhjZXB0IE9TRXJy
+b3IgYXMgZToKICAgICAxMTYwOiAgICAgICAgICAgICAgICAgICAgKGVyciwgc3RyZXJyb3IpID0g
+ZS5hcmdzCiAgICAgMTE2MTogICAgICAgICAgICAgICAgICAgIGlmIGVyciAhPSBlcnJuby5FTk9F
+TlQ6CkZpbGU6ICcvaG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3Rv
+L3NvdXJjZXMvcG9reS9tZXRhL2xpYi9vZS9jYWNoZWRwYXRoLnB5JywgbGluZW5vOiAyMjksIGZ1
+bmN0aW9uOiByZWFscGF0aAogICAgIDAyMjU6ICAgICAgICAgICAgaWYgZS5lcnJubyA9PSBlcnJu
+by5FTE9PUDoKICAgICAwMjI2OiAgICAgICAgICAgICAgICAjIG1ha2UgRUxPT1AgbW9yZSByZWFk
+YWJsZTsgd2l0aG91dCBjYXRjaGluZyBpdCwgdGhlcmUgd2lsbAogICAgIDAyMjc6ICAgICAgICAg
+ICAgICAgICMgYmUgcHJpbnRlZCBhIGJhY2t0cmFjZSB3aXRoIDEwMHMgb2YgT1NFcnJvciBleGNl
+cHRpb25zCiAgICAgMDIyODogICAgICAgICAgICAgICAgIyBlbHNlCiAqKiogMDIyOTogICAgICAg
+ICAgICAgICAgcmFpc2UgT1NFcnJvcihlcnJuby5FTE9PUCwKICAgICAwMjMwOiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICJ0b28gbXVjaCByZWN1cnNpb25zIHdoaWxlIHJlc29sdmluZyAn
+JXMnOyBsb29wIGluICclcyciICUKICAgICAwMjMxOiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIChmaWxlLCBlLnN0cmVycm9yKSkKICAgICAwMjMyOgogICAgIDAyMzM6ICAgICAgICAgICAg
+cmFpc2UKRXhjZXB0aW9uOiBPU0Vycm9yOiBbRXJybm8gNDBdIHRvbyBtdWNoIHJlY3Vyc2lvbnMg
+d2hpbGUgcmVzb2x2aW5nICcvaG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xj
+LXlvY3RvL2J1aWxkX2Fpby90bXAvd29yay9jb3J0ZXhhN3QyaGYtbmVvbi1mc2xjLWxpbnV4LWdu
+dWVhYmkvbW9kZW0tYXBpLzEuMC1yMC9wYWNrYWdlL3Vzci9saWIvbGlibW9kZW0uc28nOyBsb29w
+IGluICcvaG9tZS9tYWhpL0RvY3VtZW50cy9BSU9fU3lzdGVtL3Zhci1mc2xjLXlvY3RvL2J1aWxk
+X2Fpby90bXAvd29yay9jb3J0ZXhhN3QyaGYtbmVvbi1mc2xjLWxpbnV4LWdudWVhYmkvbW9kZW0t
+YXBpLzEuMC1yMC9wYWNrYWdlL3Vzci9saWIvbGlibW9kZW0uc28nCgpERUJVRzogUHl0aG9uIGZ1
+bmN0aW9uIHNwbGl0X2FuZF9zdHJpcF9maWxlcyBmaW5pc2hlZApERUJVRzogUHl0aG9uIGZ1bmN0
+aW9uIGRvX3BhY2thZ2UgZmluaXNoZWQK
+
+--eGSI8AhkBppXEV3qOLW4--
 
