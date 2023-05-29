@@ -1,96 +1,111 @@
-Return-Path: <wangmy@fujitsu.com>
+Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23B86C7EE29
-	for <webhook@archiver.kernel.org>; Mon, 29 May 2023 08:59:43 +0000 (UTC)
-Received: from esa9.hc1455-7.c3s2.iphmx.com (esa9.hc1455-7.c3s2.iphmx.com [139.138.36.223])
- by mx.groups.io with SMTP id smtpd.web11.45737.1685350776304064182
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9906DC77B7A
+	for <webhook@archiver.kernel.org>; Mon, 29 May 2023 14:51:24 +0000 (UTC)
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+ by mx.groups.io with SMTP id smtpd.web11.51202.1685371874742567178
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 May 2023 01:59:37 -0700
+ Mon, 29 May 2023 07:51:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: fujitsu.com, ip: 139.138.36.223, mailfrom: wangmy@fujitsu.com)
-X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="106885483"
-X-IronPort-AV: E=Sophos;i="6.00,200,1681138800"; 
-   d="scan'208";a="106885483"
-Received: from unknown (HELO yto-r4.gw.nic.fujitsu.com) ([218.44.52.220])
-  by esa9.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2023 17:59:33 +0900
-Received: from yto-m4.gw.nic.fujitsu.com (yto-nat-yto-m4.gw.nic.fujitsu.com [192.168.83.67])
-	by yto-r4.gw.nic.fujitsu.com (Postfix) with ESMTP id 554A7CD6C4
-	for <yocto@lists.yoctoproject.org>; Mon, 29 May 2023 17:59:31 +0900 (JST)
-Received: from kws-ab4.gw.nic.fujitsu.com (kws-ab4.gw.nic.fujitsu.com [192.51.206.22])
-	by yto-m4.gw.nic.fujitsu.com (Postfix) with ESMTP id 8C69ED3F0F
-	for <yocto@lists.yoctoproject.org>; Mon, 29 May 2023 17:59:30 +0900 (JST)
-Received: from localhost.localdomain (unknown [10.167.225.33])
-	by kws-ab4.gw.nic.fujitsu.com (Postfix) with ESMTP id DF33D6BD6F;
-	Mon, 29 May 2023 17:59:29 +0900 (JST)
-From: wangmy@fujitsu.com
+ dkim=missing; spf=pass (domain: lakka.kapsi.fi, ip: 91.232.154.25, mailfrom: mcfrisk@lakka.kapsi.fi)
+Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
+	by mail.kapsi.fi with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1q3eDG-00AFuR-D3; Mon, 29 May 2023 17:51:11 +0300
+Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1q3eDG-00464f-3W; Mon, 29 May 2023 17:51:10 +0300
+From: mikko.rapeli@linaro.org
 To: yocto@lists.yoctoproject.org
-Cc: Wang Mingyu <wangmy@fujitsu.com>
-Subject: [meta-java] [PATCH] xerces-j: update 2.11.0 -> 2.12.0
-Date: Mon, 29 May 2023 16:59:24 +0800
-Message-Id: <1685350764-3589-1-git-send-email-wangmy@fujitsu.com>
-X-Mailer: git-send-email 1.8.3.1
-X-TM-AS-GCONF: 00
-X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-27658.006
-X-TM-AS-User-Approved-Sender: Yes
-X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-27658.006
-X-TMASE-Result: 10--2.121800-10.000000
-X-TMASE-MatchedRID: Ll6vM9Ck4lDRhEyb9f1sjj9B1SHosSXQRzUPAqhCjtjAuQ0xDMaXkEQY
-	OtZEiuA4gZBEjCNOXeK0cdw+moQg3hFyIYZe6FcSsZaZ5UBQsoen7C0ZgG5FLhHfiujuTbedOGp
-	kA1WuQMLAOWIaLM3BBi5rYfHE0OO9rWL/xQJnm46eAiCmPx4NwGmRqNBHmBvejvEeq6gAkYbfaY
-	87m2dqxydET58jp62Slz8brEi6dZumJnTgXmW5tFSDk3tgU2qdnZaUrvH/5vJQj+Y3MT3yCEqBB
-	3hdA6TJr3BsmWmf5Fg1xCE2pX52+frM/lV5fHOmS7+RMq/2CK6rA4c7UV2fQpvi2PQO/FFQiz2u
-	jrPVx9yEIU1NtMkm0Q==
-X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+Cc: Mikko Rapeli <mikko.rapeli@linaro.org>
+Subject: [meta-parsec][PATCH] parsec-service: fix build error
+Date: Mon, 29 May 2023 17:51:03 +0300
+Message-Id: <20230529145103.975728-1-mikko.rapeli@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspam-Score: -1.4 (-)
+X-Rspam-Report: Action: no action
+ Symbol: ARC_NA(0.00)
+ Symbol: DMARC_POLICY_SOFTFAIL(0.10)
+ Symbol: RCVD_TLS_LAST(0.00)
+ Symbol: TO_DN_SOME(0.00)
+ Symbol: R_MISSING_CHARSET(0.50)
+ Symbol: R_SPF_ALLOW(-0.20)
+ Symbol: MIME_GOOD(-0.10)
+ Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
+ Symbol: RCPT_COUNT_TWO(0.00)
+ Symbol: FROM_NO_DN(0.00)
+ Symbol: MID_CONTAINS_FROM(1.00)
+ Symbol: FORGED_SENDER(0.30)
+ Symbol: R_DKIM_NA(0.00)
+ Symbol: MIME_TRACE(0.00)
+ Symbol: ASN(0.00)
+ Symbol: FROM_NEQ_ENVFROM(0.00)
+ Symbol: BAYES_HAM(-3.00)
+ Symbol: RCVD_COUNT_TWO(0.00)
+ Message-ID: 20230529145103.975728-1-mikko.rapeli@linaro.org
+X-SA-Exim-Connect-IP: 2001:67c:1be8::11
+X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 29 May 2023 08:59:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60136
+ <yocto@lists.yoctoproject.org>; Mon, 29 May 2023 14:51:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60137
 
-From: Wang Mingyu <wangmy@fujitsu.com>
+From: Mikko Rapeli <mikko.rapeli@linaro.org>
 
-Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
+After latest changes to ${S}, parsec-service fails to apply systemd.patch:
+
+ERROR: parsec-service-1.2.0-r0 do_patch: Applying patch 'systemd.patch' on target directory '/home/builder/build/tmp_trs-qemuarm64/work/cortexa57-trs-linux/parsec-service/1.2.0-r0/cargo_home/bitbake/parsec-service-1.2.0'
+CmdError('quilt --quiltrc /home/builder/build/tmp_qemuarm64/work/cortexa57-linux/parsec-service/1.2.0-r0/recipe-sysroot-native/etc/quiltrc push', 0, "stdout: Applying patch systemd.patch
+can't find file to patch at input line 11
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|
+|Run the Parsec service as parsec user in /var/lib/parsec/ working directory.
+|
+|Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+|Upstream-Status: Inappropriate [deployment configuration]
+|
+|diff --git a/systemd-daemon/parsec.service b/systemd-daemon/parsec.service
+|index c07c3b9..a6fe6a3 100644
+|--- a/systemd-daemon/parsec.service
+|+++ b/systemd-daemon/parsec.service
+--------------------------
+No file to patch.  Skipping patch.
+1 out of 1 hunk ignored
+Patch systemd.patch does not apply (enforce with -f)
+
+stderr: ")
+ERROR: Logfile of failure stored in: /home/builder/build/tmp_qemuarm64/work/cortexa57-linux/parsec-service/1.2.0-r0/temp/log.do_patch.218884
+
+Instead of changing S, it seems to be sufficient to switch build directory B
+to ${CARGO_VENDORING_DIRECTORY}/${BP}.
+
+Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
 ---
- .../xerces-j/{xerces-j_2.11.0.bb => xerces-j_2.12.0.bb}    | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
- rename recipes-core/xerces-j/{xerces-j_2.11.0.bb => xerces-j_2.12.0.bb} (88%)
+ .../recipes-parsec/parsec-service/parsec-service_1.2.0.bb       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-core/xerces-j/xerces-j_2.11.0.bb b/recipes-core/xerces-j/xerces-j_2.12.0.bb
-similarity index 88%
-rename from recipes-core/xerces-j/xerces-j_2.11.0.bb
-rename to recipes-core/xerces-j/xerces-j_2.12.0.bb
-index 159fc9c..fe1fa7c 100644
---- a/recipes-core/xerces-j/xerces-j_2.11.0.bb
-+++ b/recipes-core/xerces-j/xerces-j_2.12.0.bb
-@@ -6,7 +6,7 @@ PR = "r1"
+diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
+index 1d38dc5..b42b7b4 100644
+--- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
++++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
+@@ -14,7 +14,7 @@ SRC_URI += "crate://crates.io/parsec-service/${PV} \
+ "
+ SRC_URI[parsec-service-1.2.0.sha256sum] = "f58e7ba859c22cc1904dc8298b1a7d94ee1ba3b4d4808f28e4cc0c96ddb149c9"
  
- LIC_FILES_CHKSUM = " \
-                     file://LICENSE;md5=d273d63619c9aeaf15cdaf76422c4f87 \
--                    file://LICENSE.DOM-documentation.html;md5=77c27084ca92e9a8efe9314f284acc05 \
-+                    file://LICENSE.DOM-documentation.html;md5=f47d9caee3345b75b2d3117125dfa66b \
-                     file://LICENSE.DOM-software.html;md5=1f920675d8473fd5cbabf133a7e39e0d \
-                     file://LICENSE.resolver.txt;md5=d229da563da18fe5d58cd95a6467d584 \
-                     file://LICENSE.serializer.txt;md5=d229da563da18fe5d58cd95a6467d584 \
-@@ -20,7 +20,7 @@ SRC_URI = "http://archive.apache.org/dist/xerces/j/Xerces-J-src.${PV}.tar.gz"
- # https://bugzilla.redhat.com/show_bug.cgi?id=1567542
- CVE_CHECK_IGNORE += "CVE-2018-2799"
+-S = "${CARGO_VENDORING_DIRECTORY}/${BP}"
++B = "${CARGO_VENDORING_DIRECTORY}/${BP}"
  
--S = "${WORKDIR}/xerces-2_11_0"
-+S = "${WORKDIR}/xerces-2_12_0"
- 
- inherit java-library
- 
-@@ -63,7 +63,6 @@ do_compile() {
- 
- }
- 
--SRC_URI[md5sum] = "d01fc11eacbe43b45681cb85ac112ebf"
--SRC_URI[sha256sum] = "f59a5ef7b51bd883f2e9bda37a9360692e6c5e439b98d9b6ac1953e1f98b0680"
-+SRC_URI[sha256sum] = "c27b81e139ecfc219202bcad79e77529b082e9ed9797bc1a4c13e1bd8f8e31c9"
- 
- BBCLASSEXTEND = "native"
+ PACKAGECONFIG ??= "PKCS11 MBED-CRYPTO"
+ have_TPM = "${@bb.utils.contains('DISTRO_FEATURES', 'tpm2', 'TPM', '', d)}"
 -- 
 2.34.1
 
