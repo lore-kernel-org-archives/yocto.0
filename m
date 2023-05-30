@@ -1,116 +1,63 @@
-Return-Path: <mikko.rapeli@linaro.org>
+Return-Path: <me@captnemo.in>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 589A9C7EE2F
-	for <webhook@archiver.kernel.org>; Tue, 30 May 2023 06:55:00 +0000 (UTC)
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by mx.groups.io with SMTP id smtpd.web11.4224.1685429691246686332
- for <yocto@lists.yoctoproject.org>;
- Mon, 29 May 2023 23:54:52 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: lakka.kapsi.fi, ip: 91.232.154.25, mailfrom: mcfrisk@lakka.kapsi.fi)
-Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
-	by mail.kapsi.fi with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1q3tFn-00DPF9-6l; Tue, 30 May 2023 09:54:47 +0300
-Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.94.2)
-	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1q3tFm-008tQi-UG; Tue, 30 May 2023 09:54:46 +0300
-From: mikko.rapeli@linaro.org
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4006C7EE23
+	for <webhook@archiver.kernel.org>; Tue, 30 May 2023 08:59:10 +0000 (UTC)
+Subject: Re: LTS EOLs
 To: yocto@lists.yoctoproject.org
-Cc: Anton Antonov <Anton.Antonov@arm.com>,
-	Armin Kuster <akuster808@gmail.com>,
-	Mikko Rapeli <mikko.rapeli@linaro.org>
-Subject: [meta-parsec][PATCH 1/2] parsec-service: fix build error
-Date: Tue, 30 May 2023 09:54:37 +0300
-Message-Id: <20230530065438.2118899-1-mikko.rapeli@linaro.org>
-X-Mailer: git-send-email 2.30.2
+From: "Nemo" <me@captnemo.in>
+X-Originating-Location: Bengaluru, Karnataka, IN (49.207.192.181)
+X-Originating-Platform: Linux Firefox 113
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspam-Score: -1.4 (-)
-X-Rspam-Report: Action: no action
- Symbol: ARC_NA(0.00)
- Symbol: DMARC_POLICY_SOFTFAIL(0.10)
- Symbol: BAYES_HAM(-3.00)
- Symbol: RCPT_COUNT_THREE(0.00)
- Symbol: TO_DN_SOME(0.00)
- Symbol: R_MISSING_CHARSET(0.50)
- Symbol: FREEMAIL_ENVRCPT(0.00)
- Symbol: MIME_GOOD(-0.10)
- Symbol: R_SPF_ALLOW(-0.20)
- Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
- Symbol: RCVD_TLS_LAST(0.00)
- Symbol: FROM_NO_DN(0.00)
- Symbol: MID_CONTAINS_FROM(1.00)
- Symbol: FORGED_SENDER(0.30)
- Symbol: R_DKIM_NA(0.00)
- Symbol: MIME_TRACE(0.00)
- Symbol: ASN(0.00)
- Symbol: FREEMAIL_CC(0.00)
- Symbol: FROM_NEQ_ENVFROM(0.00)
- Symbol: RCVD_COUNT_TWO(0.00)
- Message-ID: 20230530065438.2118899-1-mikko.rapeli@linaro.org
-X-SA-Exim-Connect-IP: 2001:67c:1be8::11
-X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Date: Tue, 30 May 2023 01:59:03 -0700
+References: <0AEAD6FD-4839-4790-AAC7-339951A914B3@arm.com>
+In-Reply-To: <0AEAD6FD-4839-4790-AAC7-339951A914B3@arm.com>
+Message-ID: <27650.1685437143631158381@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="wn23wZLbKJjve1Ql1CjM"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 May 2023 06:55:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60142
+ <yocto@lists.yoctoproject.org>; Tue, 30 May 2023 08:59:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60144
 
-From: Mikko Rapeli <mikko.rapeli@linaro.org>
+--wn23wZLbKJjve1Ql1CjM
+Content-Type: text/plain; charset="utf-8"; markup=markdown
+Content-Transfer-Encoding: quoted-printable
 
-After latest changes to ${S}, parsec-service fails to apply systemd.patch:
+Thanks for pointing this, I've filed a PR to fix this [here](https://github=
+.com/endoflife-date/endoflife.date/pull/3044).
 
-ERROR: parsec-service-1.2.0-r0 do_patch: Applying patch 'systemd.patch' on target directory '/home/builder/build/tmp_trs-qemuarm64/work/cortexa57-trs-linux/parsec-service/1.2.0-r0/cargo_home/bitbake/parsec-service-1.2.0'
-CmdError('quilt --quiltrc /home/builder/build/tmp_qemuarm64/work/cortexa57-linux/parsec-service/1.2.0-r0/recipe-sysroot-native/etc/quiltrc push', 0, "stdout: Applying patch systemd.patch
-can't find file to patch at input line 11
-Perhaps you used the wrong -p or --strip option?
-The text leading up to this was:
---------------------------
-|
-|Run the Parsec service as parsec user in /var/lib/parsec/ working directory.
-|
-|Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
-|Upstream-Status: Inappropriate [deployment configuration]
-|
-|diff --git a/systemd-daemon/parsec.service b/systemd-daemon/parsec.service
-|index c07c3b9..a6fe6a3 100644
-|--- a/systemd-daemon/parsec.service
-|+++ b/systemd-daemon/parsec.service
---------------------------
-No file to patch.  Skipping patch.
-1 out of 1 hunk ignored
-Patch systemd.patch does not apply (enforce with -f)
+A preview is available at https://deploy-preview-3044--endoflife-date.netli=
+fy.app/yocto.=20
+Would appreciate a review from folks on this list.
 
-stderr: ")
-ERROR: Logfile of failure stored in: /home/builder/build/tmp_qemuarm64/work/cortexa57-linux/parsec-service/1.2.0-r0/temp/log.do_patch.218884
+Planning to setup our automation against https://git.yoctoproject.org/yocto=
+-docs/refs/ so we can notice new release much faster.
 
-Instead of changing S, it seems to be sufficient to switch build directory B
-to ${CARGO_VENDORING_DIRECTORY}/${BP}.
+-
+Nemo (on behalf of the endoflife.date project).
 
-Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
----
- .../recipes-parsec/parsec-service/parsec-service_1.2.0.bb       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--wn23wZLbKJjve1Ql1CjM
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
-index 1d38dc5..b42b7b4 100644
---- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
-+++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.2.0.bb
-@@ -14,7 +14,7 @@ SRC_URI += "crate://crates.io/parsec-service/${PV} \
- "
- SRC_URI[parsec-service-1.2.0.sha256sum] = "f58e7ba859c22cc1904dc8298b1a7d94ee1ba3b4d4808f28e4cc0c96ddb149c9"
- 
--S = "${CARGO_VENDORING_DIRECTORY}/${BP}"
-+B = "${CARGO_VENDORING_DIRECTORY}/${BP}"
- 
- PACKAGECONFIG ??= "PKCS11 MBED-CRYPTO"
- have_TPM = "${@bb.utils.contains('DISTRO_FEATURES', 'tpm2', 'TPM', '', d)}"
--- 
-2.34.1
+<p>Thanks for pointing this, I've filed a PR to fix this <a href=3D"https:/=
+/github.com/endoflife-date/endoflife.date/pull/3044" target=3D"_blank">here=
+</a>.</p>
 
+<p>A preview is available at <a href=3D"https://deploy-preview-3044--endofl=
+ife-date.netlify.app/yocto" target=3D"_blank">https://deploy-preview-3044--=
+endoflife-date.netlify.app/yocto</a>.
+Would appreciate a review from folks on this list.</p>
+
+<p>Planning to setup our automation against <a href=3D"https://git.yoctopro=
+ject.org/yocto-docs/refs/" target=3D"_blank">https://git.yoctoproject.org/y=
+octo-docs/refs/</a> so we can notice new release much faster.</p>
+
+<p>-
+Nemo (on behalf of the endoflife.date project).</p>
+
+--wn23wZLbKJjve1Ql1CjM--
 
