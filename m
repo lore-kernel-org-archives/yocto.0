@@ -1,434 +1,96 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CE7AC7EE23
-	for <webhook@archiver.kernel.org>; Tue, 30 May 2023 00:24:17 +0000 (UTC)
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
- by mx.groups.io with SMTP id smtpd.web11.63382.1685406251972780936
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 576A3C77B73
+	for <webhook@archiver.kernel.org>; Tue, 30 May 2023 06:55:00 +0000 (UTC)
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+ by mx.groups.io with SMTP id smtpd.web11.4225.1685429691717931227
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 May 2023 17:24:12 -0700
+ Mon, 29 May 2023 23:54:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=ih9hijv0;
- spf=pass (domain: gmail.com, ip: 209.85.215.178, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-5343c3daff0so2385550a12.0
-        for <yocto@lists.yoctoproject.org>; Mon, 29 May 2023 17:24:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685406251; x=1687998251;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pTc3aA7dhukJG0SbaVxeyUQrkCH6ewpkREvTPVIRNek=;
-        b=ih9hijv0i8znzPYiMic3Ep4jXr7T9Z50/OJRbEYVVYok+vkfHwExIRM4hHlZ8oo5Ni
-         VU6zNE5IpUkUpNHllXLmD5DUk4xxB+rPvXbxFtALVzue+gFFIXJMGcNRvhcVeln91AFw
-         duSUy/tFTLtvF7zfi2vdIrXOtmWt+ttQIF4qbchV3JzObkkA8+6iFuiXTu1Txg/4jvts
-         0TXJUW9CwazpQ9S99AfkFwGXdId+LFh08s6ojm5O8VKIoB1AI0gvqQZ3wFprAzFW1mvw
-         2c8AfjC3D/0fF6YvlEt4oojR/cIS0hyhBxbJ8SOH2pmbO6PXcZOUz53YVJ66u8tXoBtS
-         623w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685406251; x=1687998251;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pTc3aA7dhukJG0SbaVxeyUQrkCH6ewpkREvTPVIRNek=;
-        b=cq5+eEoH2YCkdxHO8CnF3C3Z7baF/+YTESQ0twoNeE2t3BICkqSbFjumslc4Upfnj1
-         PJNVwJZBLMRpBmmbPrD6oV7KtYrsUKZyQeuAdEPd8Dsg3UOBgAC7GIuikiuD9zHppX4B
-         3a7HDKXsfxS0C78L9yXXzm9JhkILsyFUygdYj9jK929nGH7ABDdgkZ3RuDSDUUFhx3V3
-         eF16AWtkDwEnn5GMR2HnX4xC4nkgZvjj7nzhEcpYqR8YlfeOOLbQBj145Zf0vDrz6bD7
-         WeqYml/ql8/E4kxWltnh8ixy97Jg//OzM/8cFLc2D8+ecVqJoqTjrLVESveuhqIermpa
-         pIfg==
-X-Gm-Message-State: AC+VfDwVLsBx9WZ3krkB66AZv3Ce3TzOwipQ0MW2GSHMaDluvXn4RIks
-	97eiABeTfI2ckDaIF1nZbuJ1F2bNQU8=
-X-Google-Smtp-Source: ACHHUZ5lq1MJ8so31vpzYzE7VVeatequV0t8vxELEuv3s4oQ95obzzipoLNJ8BzWlY/am0eR3ZzsQw==
-X-Received: by 2002:a17:902:db05:b0:1ab:f74:a111 with SMTP id m5-20020a170902db0500b001ab0f74a111mr730550plx.63.1685406251239;
-        Mon, 29 May 2023 17:24:11 -0700 (PDT)
-Received: from skjolley ([2600:1011:a110:fb5:3813:85e0:f5e9:8cd9])
-        by smtp.gmail.com with ESMTPSA id ik29-20020a170902ab1d00b001b0218651a6sm5707714plb.178.2023.05.29.17.24.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 May 2023 17:24:10 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW21
-Date: Mon, 29 May 2023 17:24:10 -0700
-Message-ID: <07ee01d9928d$0e5d2650$2b1772f0$@gmail.com>
+ dkim=missing; spf=pass (domain: lakka.kapsi.fi, ip: 91.232.154.25, mailfrom: mcfrisk@lakka.kapsi.fi)
+Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
+	by mail.kapsi.fi with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1q3tFp-00DPFk-Sq; Tue, 30 May 2023 09:54:49 +0300
+Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.94.2)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1q3tFp-008tZQ-K1; Tue, 30 May 2023 09:54:49 +0300
+From: mikko.rapeli@linaro.org
+To: yocto@lists.yoctoproject.org
+Cc: Anton Antonov <Anton.Antonov@arm.com>,
+	Armin Kuster <akuster808@gmail.com>,
+	Mikko Rapeli <mikko.rapeli@linaro.org>
+Subject: [meta-parsec][PATCH 2/2] parsec-tool: fix build error
+Date: Tue, 30 May 2023 09:54:38 +0300
+Message-Id: <20230530065438.2118899-2-mikko.rapeli@linaro.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230530065438.2118899-1-mikko.rapeli@linaro.org>
+References: <20230530065438.2118899-1-mikko.rapeli@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_07EF_01D99252.6203CC90"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdmSjO74LEsNql+0Q7uWm2DXB6qM+A==
-Content-Language: en-us
+Content-Transfer-Encoding: 8bit
+X-Rspam-Score: -1.4 (-)
+X-Rspam-Report: Action: no action
+ Symbol: ARC_NA(0.00)
+ Symbol: DMARC_POLICY_SOFTFAIL(0.10)
+ Symbol: BAYES_HAM(-3.00)
+ Symbol: RCPT_COUNT_THREE(0.00)
+ Symbol: TO_DN_SOME(0.00)
+ Symbol: R_MISSING_CHARSET(0.50)
+ Symbol: FREEMAIL_ENVRCPT(0.00)
+ Symbol: MIME_GOOD(-0.10)
+ Symbol: R_SPF_ALLOW(-0.20)
+ Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
+ Symbol: RCVD_TLS_LAST(0.00)
+ Symbol: FROM_NO_DN(0.00)
+ Symbol: MID_CONTAINS_FROM(1.00)
+ Symbol: FORGED_SENDER(0.30)
+ Symbol: R_DKIM_NA(0.00)
+ Symbol: MIME_TRACE(0.00)
+ Symbol: ASN(0.00)
+ Symbol: FREEMAIL_CC(0.00)
+ Symbol: FROM_NEQ_ENVFROM(0.00)
+ Symbol: RCVD_COUNT_TWO(0.00)
+ Message-ID: 20230530065438.2118899-2-mikko.rapeli@linaro.org
+X-SA-Exim-Connect-IP: 2001:67c:1be8::11
+X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 May 2023 00:24:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60141
+ <yocto@lists.yoctoproject.org>; Tue, 30 May 2023 06:55:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60143
 
-This is a multipart message in MIME format.
+From: Mikko Rapeli <mikko.rapeli@linaro.org>
 
-------=_NextPart_000_07EF_01D99252.6203CC90
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Currently build fails with:
 
-All,
+| error: manifest path `/home/builder/build/tmp_qemuarm64/work/cortexa57-linux/parsec-tool/0.6.0-r0/cargo_home/bitbake/parsec-tool-0.6.0//Cargo.toml` does not exist
 
-YP M+ or high bugs which moved to a new milestone in WW21
+Normal source directory has Cargo.toml so only set ${B} to the
+new path.
 
+Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
+---
+ meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Priority
-
-Bug ID
-
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
-
-
-High
-
-15124 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15124>=20
-
-cmake-native fails to prepend c++ compiler after pulling the newest =
-kirkstone/master with gcc13 on host
-
-randy.macleod@windriver.com
-
-richard.purdie@linuxfoundation.org
-
-0.0.0
-
-4.3 M1
-
-
-Medium+
-
-14907 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14907>=20
-
-packaging debugsrc breaks for recipes with externalsrc and =
-debug-with-srcpkg
-
-randy.macleod@windriver.com
-
-pavel@zhukoff.net
-
-4.0.10
-
-4.0.11
-
-=09
-14909 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14909>=20
-
-file_5.41.bb:do_configure error with GCC 11.3.0 from SDK 4.0.3
-
-randy.macleod@windriver.com
-
-pavel@zhukoff.net
-
-4.0.10
-
-4.0.12
-
-=09
-15123 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15123>=20
-
-AB-INT: gcc 12.3.1 segfault while building ccache
-
-randy.macleod@windriver.com
-
-Yash.Shinde@windriver.com
-
-0.0.0
-
-4.3 M2
-
-are listed below:=20
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_07EF_01D99252.6203CC90
-Content-Type: text/html;
-	boundary="----=_NextPart_000_1239_01D98747.4E944D30";
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal>All,<br><br>YP M+ or high bugs =
-which moved to a new milestone in WW21<o:p></o:p></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D0 style=3D'border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td valign=3Dbottom style=3D'border:solid black =
-1.0pt;background:#DBE5F1;padding:0in 2.25pt 0in 2.25pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority</span></b><b><o:p></o:p></b></p></td><td =
-valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-left:none;background:#DBE5F1;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID</span><o:p></o:p></b></p></td><td =
-valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-left:none;background:#DBE5F1;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description</span><o:p></o:p></b></p></td><td valign=3Dbottom =
-style=3D'border:solid black =
-1.0pt;border-left:none;background:#DBE5F1;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer</span><o:p></o:p></b></p></td><td =
-valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-left:none;background:#DBE5F1;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner</span><o:p></o:p></b></p></td><td =
-valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-left:none;background:#DBE5F1;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was</span><o:p></o:p></b></p></td><td =
-valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-left:none;background:#DBE5F1;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became</span><o:p></o:p></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-top:none;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal><b>High<o:p></o:p></b></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><u><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15124" =
-target=3D"_blank">15124</a><o:p></o:p></u></b></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal>cmake-native =
-fails to prepend c++ compiler after pulling the newest kirkstone/master =
-with gcc13 on host<o:p></o:p></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>randy.macleod@windriver.com<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>richard.purdie@linuxfoundation.org<o:p></o:p></p></td><=
-td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>0.0.0<o:p></o:p></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal>4.3 =
-M1<o:p></o:p></p></td></tr><tr style=3D'height:15.0pt'><td =
-valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-top:none;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal><b>Medium+<o:p></o:p></b></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><u><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14907" =
-target=3D"_blank">14907</a><o:p></o:p></u></b></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal>packaging =
-debugsrc breaks for recipes with externalsrc and =
-debug-with-srcpkg<o:p></o:p></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>randy.macleod@windriver.com<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>pavel@zhukoff.net<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>4.0.10<o:p></o:p></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>4.0.11<o:p></o:p></p></td></tr><tr =
-style=3D'height:15.0pt'><td valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-top:none;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><u><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14909" =
-target=3D"_blank">14909</a><o:p></o:p></u></b></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>file_5.41.bb:do_configure error with GCC 11.3.0 from =
-SDK 4.0.3<o:p></o:p></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>randy.macleod@windriver.com<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>pavel@zhukoff.net<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>4.0.10<o:p></o:p></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>4.0.12<o:p></o:p></p></td></tr><tr =
-style=3D'height:15.0pt'><td valign=3Dbottom style=3D'border:solid black =
-1.0pt;border-top:none;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><u><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15123" =
-target=3D"_blank">15123</a><o:p></o:p></u></b></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal>AB-INT: gcc =
-12.3.1 segfault while building ccache<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>randy.macleod@windriver.com<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>Yash.Shinde@windriver.com<o:p></o:p></p></td><td =
-valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p =
-class=3DMsoNormal>0.0.0<o:p></o:p></p></td><td valign=3Dbottom =
-style=3D'border-top:none;border-left:none;border-bottom:solid black =
-1.0pt;border-right:solid black 1.0pt;padding:0in 2.25pt 0in =
-2.25pt;height:15.0pt;overflow:hidden'><p class=3DMsoNormal>4.3 =
-M2<o:p></o:p></p></td></tr></table><p class=3DMsoNormal> are listed =
-below: <o:p></o:p></p><p class=3DMsoNormal><span =
-style=3D'color:black'>Thanks,</span><span style=3D'color:white'> =
-<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_07EF_01D99252.6203CC90--
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb
+index 6095ae1..f3f7486 100644
+--- a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb
++++ b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.6.0.bb
+@@ -9,7 +9,7 @@ SRC_URI += "crate://crates.io/parsec-tool/${PV} \
+ "
+ SRC_URI[parsec-tool-0.6.0.sha256sum] = "f51d5d7f0caca1c335324b52482fa5edbf6c9cfd2e6865e5cb22716d52dcb367"
+ 
+-S = "${CARGO_VENDORING_DIRECTORY}/${BP}"
++B = "${CARGO_VENDORING_DIRECTORY}/${BP}"
+ 
+ do_install() {
+   install -d ${D}/${bindir}
+-- 
+2.34.1
 
 
