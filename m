@@ -1,131 +1,83 @@
-Return-Path: <sbabic@denx.de>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E55B8C7EE24
-	for <webhook@archiver.kernel.org>; Sat,  3 Jun 2023 12:07:54 +0000 (UTC)
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
- by mx.groups.io with SMTP id smtpd.web10.10426.1685794065735140773
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E1D8C77B7A
+	for <webhook@archiver.kernel.org>; Sat,  3 Jun 2023 13:26:15 +0000 (UTC)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+ by mx.groups.io with SMTP id smtpd.web10.11783.1685798773018093190
  for <yocto@lists.yoctoproject.org>;
- Sat, 03 Jun 2023 05:07:47 -0700
+ Sat, 03 Jun 2023 06:26:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@denx.de header.s=phobos-20191101 header.b=pfEb5K6p;
- spf=pass (domain: denx.de, ip: 85.214.62.61, mailfrom: sbabic@denx.de)
-Received: from [IPV6:2001:a61:6143:6401:cf4:f861:5606:6f80] (unknown [IPv6:2001:a61:6143:6401:cf4:f861:5606:6f80])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: sbabic@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 0D6E78466A;
-	Sat,  3 Jun 2023 14:07:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1685794063;
-	bh=os13fbOu9KpMiNLjg2vn6K78c4Axr54Uhprfx6vz3nU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=pfEb5K6pZ8cw95aUZBlkODoKc5LN7ThuuPIS8X4vyukFlgWECxS8xPTFjyc1hAqRE
-	 jwZ6JQmdjR0EKrckl9jZzexCZpR8RjWtLap338NNcqn5k8SA5MkgcqYD/Z2STQwAPc
-	 iJRim+A1/ruvvMfXMzOK6PlazzWj6o7nOgkdGMxfoLo3Sc0AyOnO4rhQtGXrbs6Gxr
-	 n47cdvdwMq6nZyWkTxmHscbpjgMANnFZ357+dVTuaypqED+z4yMLaIZxIuIAPkbTGe
-	 JIdf38/VdoEGuXEDAOGF4rFIpsfZpHHcYxsYgupisg880WRSeDXZeMwfPVxN9I2mmQ
-	 PJ2bTt3qskEVA==
-Message-ID: <96baaa8f-b031-c9be-acad-ac3939884e7e@denx.de>
-Date: Sat, 3 Jun 2023 14:07:42 +0200
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=Z5AnlY45;
+ spf=pass (domain: gmail.com, ip: 209.85.208.179, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2b1bf74e080so2810431fa.1
+        for <yocto@lists.yoctoproject.org>; Sat, 03 Jun 2023 06:26:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685798771; x=1688390771;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AeIIo7I50Dgocwu8Xb7AmqAJl18bmEk1b8l9DwIQF94=;
+        b=Z5AnlY45GXhqOUjxN3UPgoPSPMuvK1yHsF8kLsCozSWOIemuVytLdKQOwdJDuVPMhc
+         kpJYaHaQmDetLOsdeKICwBOB/Df//qTUe8XLIhvHGvgogt6h0U4wcU/4N+PDQpYaht6L
+         4Qh7dlUyYLYG3lwTz5oroHoZku4qWuBCwbWpoWToc6wwX0CAX+og5pcFOJXWHxHlhrm4
+         LwTw6AznxgsiIjGufMPwpjXI+lwCcHOLN4vQO/Rmd3sj7oAk7CWGPf9bgpf5U8cCI88k
+         RoE23vE4VkC7jP2BrbY4gh30Ex6ywiHcmwnvZvZXvAeeK/GjHqvA3qNmLOkfgFhuO0bn
+         aLSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685798771; x=1688390771;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AeIIo7I50Dgocwu8Xb7AmqAJl18bmEk1b8l9DwIQF94=;
+        b=j/fnIiX3WpEMCI8oHUGz7FG9RhYo4Xrdu7ZfXpD61sQGMJcyJTq/KWAy0kHA/m9ZCW
+         pscFbKZipjcZAIdLn2QMg2oos7SjFipp7HC8zvFLhnRPtg3bGuYiAXtdTSbCXf5bow4z
+         Y8papaX7sW/3UOQS6jylzou2PjDGK6hLRSmIjT+z+9sMUM1bpFXbufZFPY8zrP5mPG26
+         ZYJBORFd/q47Qsc8c2Chw0lcKHlVpkI7FV5kkq7+g4js030tcXl6CP5UlaDoDQu2Zp4+
+         i6PsSlxi4NwxqvVgny+tTMaEeZGjuGRx2pdM63Ip5GafC85C1XAOZL3lbXuCa5BN7Mgl
+         jfQw==
+X-Gm-Message-State: AC+VfDx96CPxwz26c3PFHXHP7UAGLqAIt78xdkJ54tEfhgmMTVbcqMoO
+	nZwCEm6D8HXF54zBo68lVK4meDADwlJ8HmORkTA=
+X-Google-Smtp-Source: ACHHUZ5LBJv1c18UhuaCjRB5/DgKO7wRlqs9u+JRe7sM9zsrP64dsaIbKsV7ooMnh1pAFxziA5QiewFd+tCDLE6bwcQ=
+X-Received: by 2002:a2e:90d0:0:b0:2aa:e7cd:69f8 with SMTP id
+ o16-20020a2e90d0000000b002aae7cd69f8mr777782ljg.9.1685798770964; Sat, 03 Jun
+ 2023 06:26:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [yocto] libubootenv setup
-To: Vipin Vijayan <vipin.v@calixto.co.in>, yocto@lists.yoctoproject.org
-References: <CAPDLeY0fo=4OQYXRnmK1rcqO_QMEWhLEEx6_exUHnRMH7mjsTg@mail.gmail.com>
-Content-Language: en-US
-From: Stefano Babic <sbabic@denx.de>
-In-Reply-To: <CAPDLeY0fo=4OQYXRnmK1rcqO_QMEWhLEEx6_exUHnRMH7mjsTg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-Content-Transfer-Encoding: quoted-printable
+References: <CANx9H-DsS9GObR2+KAuM2pnecvsfpaUVQ2sc3h2Qzb9MWtDeYw@mail.gmail.com>
+In-Reply-To: <CANx9H-DsS9GObR2+KAuM2pnecvsfpaUVQ2sc3h2Qzb9MWtDeYw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Sat, 3 Jun 2023 15:25:59 +0200
+Message-ID: <CANNYZj9JUKG4dfYPrg6DZuGduCnwmwLMXx8+C32wFvMKvK5Zvw@mail.gmail.com>
+Subject: Re: [auto-upgrade-helper] Should AUH send patches in-line instead of
+ as attachments?
+To: Tim Orling <ticotimo@gmail.com>
+Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 03 Jun 2023 12:07:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60169
+ <yocto@lists.yoctoproject.org>; Sat, 03 Jun 2023 13:26:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60170
 
-Hi Vipin,
+AUH attaches not just the patch (if it was possible to produce), but
+also buildhistory and build failure logs (if something failed). It
+also provides a bit of explanation/context/apply-resend instructions
+in the email text. We can certainly consider options, I'm just not
+sure how to arrange all that if patches are sent directly as emails.
 
-On 03.06.23 12:29, Vipin Vijayan wrote:
-> Hi,
-> I am working on our custom board with dunfell version and we are using =
-a=20
-> custom u-boot for the board. But when i try to use fw_printenv and=20
-> fw_setenv iam not being able to access those functionalities. Iam using=
-=20
-> libubootenv=C2=A0for those specific functionalities .
->=20
-> iam adding libubootenv-bin in image_install and iam getting the=20
-> fw_printenv and fw_setenv in the /usr/bin folder
->=20
-> But when i use fw_printenv and fw_setenv iam getting an error,
-> Can't read from default
-> Can't read from file.
->=20
-> We are storing the environment=C2=A0variables in the spi flash /dev/mtd=
-3
->=20
-> When i try hexdump i can find the variables present
-> But iam not being able to access it with fw_printenv and fw_setenv any=20
-> variable using fw_setenv
->=20
-> I should mention that fw_env.config is perfect and does not have any=20
-> error in it, because when we try to access those variables using anothe=
-r=20
-> fw_printenv,
+Note that the whole patchset is also attached as a tarball to overall
+AUH status email, and both the tarballs and their content are also
+available online:
+https://autobuilder.yocto.io/pub/auh/
 
-This is not a valid proof. Old tools have linked-in environment, and=20
-fw_printenv prints variables even if fw_env.config is not correct. If=20
-libuboot does not report the variables, the main reason is that your=20
-fw_env.config does not match the configuration in U-Boot.
+Alex
 
-To check this, you can set with old tool some variables, reboot your=20
-board and check if the variable can be read by U-Boot. If not, your=20
-fw_env.config is far away to be perfect.
-
-> which we got from executing make in the git source , we are=20
-> getting the variables printed.
->=20
-> Also during build of the u-boot we are using a patch file which we got=20
-> from internet for its build succession, I dont=C2=A0know whether that p=
-atch=20
-> interferes with anything that hinders its function.
-
-Patch was merged into U-Boot some years ago and you do not need it if=20
-your u-boot is not too old. You need to install u-boot-initial-env as=20
-well (this replaces the linked-in environment from old tool), it is part=20
-of u-boot-env package.
-
->=20
-> Iam attaching my fw_env.config
-
-Only you can check if fw_env.config is correct.
-
-> and also the patch file i used for u-boot=20
-> along with this
-
-Patch was merged and part of U-Boot since 2019.07
-
->=20
-> As iam a beginner in this field, Iam not much aware of these=20
-> functionalities in detail. Please look in to the issue and any helps ar=
-e=20
-> appreciated.
-Best regards,
-Stefano Babic
-
---=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-DENX Software Engineering GmbH,        Managing Director: Erika Unter
-HRB 165235 Munich,   Office: Kirchenstr.5, 82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+On Sat, 3 Jun 2023 at 01:49, Tim Orling <ticotimo@gmail.com> wrote:
+>
+> In the `b4 shazaam` workflow, you cannot consume patches from AUH emails because they are sent as attachments. This means a maintainer must first download the patch from an email or wget it from a lore.kernel.org copied url.
+>
+> Before I go implementing something that might be unwanted, is there a downside to sending AUH generated emails with the patches in the normal `git send-email` type approach?
+>
+> Regards
+> --Tim
 
