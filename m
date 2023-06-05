@@ -1,94 +1,142 @@
-Return-Path: <tamas.nagy.001@gmail.com>
+Return-Path: <mahendrasondagar08@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CCD7C7EE23
-	for <webhook@archiver.kernel.org>; Mon,  5 Jun 2023 12:49:03 +0000 (UTC)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
- by mx.groups.io with SMTP id smtpd.web10.6632.1685969342596711203
- for <yocto@lists.yoctoproject.org>;
- Mon, 05 Jun 2023 05:49:02 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=fSY6fn40;
- spf=pass (domain: gmail.com, ip: 209.85.128.177, mailfrom: tamas.nagy.001@gmail.com)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-568bb833462so54744997b3.1
-        for <yocto@lists.yoctoproject.org>; Mon, 05 Jun 2023 05:49:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685969341; x=1688561341;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zAWywGGcd5AI+PGmnuJN5bL2DUtFPFaOlVMohVSYAzM=;
-        b=fSY6fn40jZYTctdRYXxUcrkYNNwqnK0aujYGZnGh7sjjkCl9qGpZdXG/KYrRZCbZbM
-         Ksm//Qbk1ONiNPXYQmIiCsm7KNu3i5CmgYqm1mnKVKk3dY7mZV1S06tfZEAGpps84xL7
-         L8ZKu1UVevrbX+pIYuCgNU9QeLWDyugPtUIO/Ii2SbS+Tkq4hx2kcC5whdUkMZqQCM7+
-         /zlgGV6lJ9FjwGXlh1xC3T2qBFnHT6r6OsjjZ++zG7C8Ka7HkwNAUk+FVb7wv8WmwALr
-         ILnDReZ+vA4sv/2xoFegBdHAiHtOZAbG5jYrKbs0RevA+9ClGMUTYCALv034nNrol2UF
-         dJ2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685969341; x=1688561341;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zAWywGGcd5AI+PGmnuJN5bL2DUtFPFaOlVMohVSYAzM=;
-        b=eJVildSJGsNnGphUCU+ahbFQ0xCJITJdDv+0/is/npPSANeEBvdYBUV66VJlX46gCf
-         BW0sQuZxIjfwsTom63E+x83k6nQ1Dzz+SuAMhJJ7UcNyzk9oNXJ2M2v7ZpgHQQ3E/U5N
-         Ityf2XBBd7sKgbmhInBUOZPJAShAW165ndJJ3tZRVc1Y4m2xsXeL1VuQ5LPSnXDZFVkL
-         Q0SSEZ6BE7brbiB7dfpxviy9+vlHK0vLH6TlcyrwYrC2tIjfXrz3EkyLbvV6A5FJdi0G
-         sRzQ5WxQJA8kMgVzjiV4dLQ4VbWCQ3XzpkPfC6dVOYqWtLl5pxSuow5m2HnoGuKpYD52
-         HW3A==
-X-Gm-Message-State: AC+VfDzvw8bPlveaRvU0XI8tOcCDZ924XIy2yK5g2ZQQEsO1a1Go1S09
-	3ZJ1k66CrYMlF+TVUM/5rH/fQ9CqveuJGHPqZqA1ZjPCCAo=
-X-Google-Smtp-Source: ACHHUZ79m4YLpwqvu3nVRbUMQoo0jeY2iD/+eeuMHWy1wAk1Mgw0aDO7fm0MrdfdxMHc7AWr/nnjOneRtX0502X1VPs=
-X-Received: by 2002:a0d:e2cb:0:b0:55a:c89c:69c0 with SMTP id
- l194-20020a0de2cb000000b0055ac89c69c0mr9962821ywe.12.1685969341541; Mon, 05
- Jun 2023 05:49:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAL+GPkVCWbYw93GaLsiAGVxjARer=GD4TxnRrqGou2Ff-wtXEw@mail.gmail.com>
-In-Reply-To: <CAL+GPkVCWbYw93GaLsiAGVxjARer=GD4TxnRrqGou2Ff-wtXEw@mail.gmail.com>
-From: =?UTF-8?Q?Tam=C3=A1s_Nagy?= <tamas.nagy.001@gmail.com>
-Date: Mon, 5 Jun 2023 14:48:50 +0200
-Message-ID: <CAL+GPkXNGONMcnqwkF91VtMvCyS_LPTGrSLb0Myv6ZiDz873=A@mail.gmail.com>
-Subject: Copying a logo.pnm doesn't work at all from a dir to another dir.
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 644A5C7EE23
+	for <webhook@archiver.kernel.org>; Mon,  5 Jun 2023 17:47:14 +0000 (UTC)
+Subject: new recipe file to extract the tar.gz  in to root directory  #hardknott
 To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+From: "Mahendra Sondagar" <mahendrasondagar08@gmail.com>
+X-Originating-Location: Surat, Gujarat, IN (103.240.78.191)
+X-Originating-Platform: Linux Firefox 113
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Mon, 05 Jun 2023 10:47:09 -0700
+Message-ID: <rC1u.1685987229179457557.GJiP@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="D6tQ35QZOzpUJb9Hc4QF"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 05 Jun 2023 12:49:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60181
+ <yocto@lists.yoctoproject.org>; Mon, 05 Jun 2023 17:47:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60182
 
-Hi,
+--D6tQ35QZOzpUJb9Hc4QF
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I would like to copy a file (logo.pnm) from the
-yocto/uboot/sources/meta-fsos-jetson/recipes-kernel/linux/linux-tegra/
-  using the linux-tegra_%.bbappend to the
+Hello geeks
 
-yocto/uboot/build-jetson/tmp/work-shared/jetson-nano-emmc/kernel-source/drivers/video/logo
+Hope all are well
 
-It is necessary that the file is copied every time if the build is
-rerun with the . yoctoWF.sh && compile_kernel. It resets the
-directories to default before every rerun.
+I need to create the Yocto recipe to extract the local tra.gz based project=
+ files in to root directory
 
-Contents of the linux-tegra_%.bbappend:
+here is my recipe contents
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI_append = " \
-                                    file://logo.pnm
-                                    file://logo_custom.patch" \
-                                   .... \"
-do_unpack_append() {
-     os.system("/bin/cp -rf logo.pnm" ${S}/drivers/video/logo")
+###############################################################
+
+SUMMARY =3D "Eyesite Application"
+LICENSE =3D "MIT"
+
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+
+LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0bc=
+f8506ecda2f7b4f302"
+
+FILES_${PN} +=3D "/eyesite"
+
+SRC_URI =3D "file://eyesite.tar.gz"
+
+S =3D "${WORKDIR}"
+
+do_unpack() {
+# Extract the tar.gz file
+tar -xf ${WORKDIR}/eyesite.tar.gz -C ${WORKDIR}
 }
 
-do_install_append() {
-     install -m 644 {B}/logo.pnm ${D}/drivers/video/logo/
+do_install() {
+# Create the eyesite directory in the root
+install -d ${D}/eyesite
+
+# Install the extracted application
+cp -r ${WORKDIR}/eyesite ${D}/eyesite
 }
 
-The problem is that it doesn't work, it copies nothing there and there
-are also no error messages. I tried to include logging, but the
-standard .bb doesn't include it and that is
-why I can't use it in the .bbappend. As I know I can use some kind of
-${WORKDIR}, but
-I don't know how.
+#################################################################
 
-Tamas
+The file structure is as follows under the *recipe-app* file
+
+=E2=94=9C=E2=94=80=E2=94=80 eyesite
+=E2=94=82=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 eyesite_1.0.bb
+=E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 files
+=E2=94=82=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 e=
+yesite.tar.gz
+
+I'm getting below Yocto error during the building
+########################################################
+
+Log data follows:
+| DEBUG: Executing shell function do_unpack
+| tar: /home/mahi/Documents/AIO_System/var-fslc-yocto/build_aio/tmp/work/co=
+rtexa7t2hf-neon-fslc-linux-gnueabi/eyesite/1.0-r0/eyesite.tar.gz: Cannot op=
+en: No such file or directory
+| tar: Error is not recoverable: exiting now
+| WARNING: exit code 2 from a shell command.
+| ERROR: ExecutionError('/home/mahi/Documents/AIO_System/var-fslc-yocto/bui=
+ld_aio/tmp/work/cortexa7t2hf-neon-fslc-linux-gnueabi/eyesite/1.0-r0/temp/ru=
+n.do_unpack.82783', 2, None, None)
+
+########################################################
+
+Can anyone help me here ?
+
+Thanks
+
+--D6tQ35QZOzpUJb9Hc4QF
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello geeks</p>
+<p>Hope all are well</p>
+<p>&nbsp;</p>
+<p>I need to create the Yocto recipe to extract the local tra.gz based proj=
+ect files in to root directory</p>
+<p>&nbsp;</p>
+<p>here is my recipe contents</p>
+<p>###############################################################</p>
+<p>SUMMARY =3D "Eyesite Application"<br />LICENSE =3D "MIT"<br /><br />FILE=
+SEXTRAPATHS_prepend :=3D "${THISDIR}/files:"<br /><br />LIC_FILES_CHKSUM =
+=3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0bcf8506ecda2f7b4f30=
+2"<br /><br />FILES_${PN} +=3D "/eyesite"<br /><br />SRC_URI =3D "file://ey=
+esite.tar.gz"<br /><br />S =3D "${WORKDIR}"<br /><br />do_unpack() {<br />&=
+nbsp;&nbsp;&nbsp; # Extract the tar.gz file<br />&nbsp;&nbsp;&nbsp; tar -xf=
+ ${WORKDIR}/eyesite.tar.gz -C ${WORKDIR}<br />}<br /><br />do_install() {<b=
+r />&nbsp;&nbsp;&nbsp; # Create the eyesite directory in the root<br />&nbs=
+p;&nbsp;&nbsp; install -d ${D}/eyesite<br /><br />&nbsp;&nbsp;&nbsp; # Inst=
+all the extracted application<br />&nbsp;&nbsp;&nbsp; cp -r ${WORKDIR}/eyes=
+ite ${D}/eyesite<br />}<br /><br />########################################=
+#########################</p>
+<p>&nbsp;</p>
+<p>The file structure is as follows under the <strong>recipe-app</strong> f=
+ile</p>
+<p>=E2=94=9C=E2=94=80=E2=94=80 eyesite<br />=E2=94=82&nbsp;&nbsp; =E2=94=9C=
+=E2=94=80=E2=94=80 eyesite_1.0.bb<br />=E2=94=82&nbsp;&nbsp; =E2=94=94=E2=
+=94=80=E2=94=80 files<br />=E2=94=82&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=E2=94=94=E2=94=80=E2=94=80 eyesite.tar.gz</p>
+<p>I'm getting below Yocto error during the building <br />################=
+########################################</p>
+<p>Log data follows:<br />| DEBUG: Executing shell function do_unpack<br />=
+| tar: /home/mahi/Documents/AIO_System/var-fslc-yocto/build_aio/tmp/work/co=
+rtexa7t2hf-neon-fslc-linux-gnueabi/eyesite/1.0-r0/eyesite.tar.gz: Cannot op=
+en: No such file or directory<br />| tar: Error is not recoverable: exiting=
+ now<br />| WARNING: exit code 2 from a shell command.<br />| ERROR: Execut=
+ionError('/home/mahi/Documents/AIO_System/var-fslc-yocto/build_aio/tmp/work=
+/cortexa7t2hf-neon-fslc-linux-gnueabi/eyesite/1.0-r0/temp/run.do_unpack.827=
+83', 2, None, None)<br /><br />############################################=
+############</p>
+<p>&nbsp;</p>
+<p>Can anyone help me here ?</p>
+<p>Thanks</p>
+
+--D6tQ35QZOzpUJb9Hc4QF--
 
