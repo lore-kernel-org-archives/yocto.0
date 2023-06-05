@@ -1,88 +1,94 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <tamas.nagy.001@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D50BC7EE24
-	for <webhook@archiver.kernel.org>; Mon,  5 Jun 2023 11:27:52 +0000 (UTC)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
- by mx.groups.io with SMTP id smtpd.web11.4606.1685962539217661883
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CCD7C7EE23
+	for <webhook@archiver.kernel.org>; Mon,  5 Jun 2023 12:49:03 +0000 (UTC)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+ by mx.groups.io with SMTP id smtpd.web10.6632.1685969342596711203
  for <yocto@lists.yoctoproject.org>;
- Mon, 05 Jun 2023 03:55:39 -0700
+ Mon, 05 Jun 2023 05:49:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@thaumatec-com.20221208.gappssmtp.com header.s=20221208 header.b=nA+V50Y6;
- spf=pass (domain: thaumatec.com, ip: 209.85.208.54, mailfrom: witold.lipieta@thaumatec.com)
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-51480d3e161so6846385a12.3
-        for <yocto@lists.yoctoproject.org>; Mon, 05 Jun 2023 03:55:38 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=fSY6fn40;
+ spf=pass (domain: gmail.com, ip: 209.85.128.177, mailfrom: tamas.nagy.001@gmail.com)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-568bb833462so54744997b3.1
+        for <yocto@lists.yoctoproject.org>; Mon, 05 Jun 2023 05:49:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thaumatec-com.20221208.gappssmtp.com; s=20221208; t=1685962537; x=1688554537;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aoRCh8v9n/dv4c3vY0yrNkzCOBteC7NTBD3bj2v3dYs=;
-        b=nA+V50Y6jfCAvX6kapq/iTS21lhILbPpyDYSLDRWuJ86WgcO7vxo1CYb3RkN0etnMr
-         wIdiY1adbNDWo2DLPBSsrk2n0chajLqEqEBQkSPyEUK9OkaNBaqIJrnrHeEi6uLAVOwh
-         16KuY/ZJm7O6Y3YyaF4KupO0M5O+s4stcA7s+gaggetkUi9XCtVS7WmBBoDSsrb6MvYW
-         AuSTQwqjfNzYc0eyLH3nkccAdNotbZNA3JAAufPhF4Po4AQfPO++yMJ+YgHV9UOMRc0T
-         NLyLp+2oJlgir8wLSAVOt+M4l+I8+JNWSGD1KA5Yj5wyuvq70orMsSkWWslyO54POnVc
-         9OOg==
+        d=gmail.com; s=20221208; t=1685969341; x=1688561341;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zAWywGGcd5AI+PGmnuJN5bL2DUtFPFaOlVMohVSYAzM=;
+        b=fSY6fn40jZYTctdRYXxUcrkYNNwqnK0aujYGZnGh7sjjkCl9qGpZdXG/KYrRZCbZbM
+         Ksm//Qbk1ONiNPXYQmIiCsm7KNu3i5CmgYqm1mnKVKk3dY7mZV1S06tfZEAGpps84xL7
+         L8ZKu1UVevrbX+pIYuCgNU9QeLWDyugPtUIO/Ii2SbS+Tkq4hx2kcC5whdUkMZqQCM7+
+         /zlgGV6lJ9FjwGXlh1xC3T2qBFnHT6r6OsjjZ++zG7C8Ka7HkwNAUk+FVb7wv8WmwALr
+         ILnDReZ+vA4sv/2xoFegBdHAiHtOZAbG5jYrKbs0RevA+9ClGMUTYCALv034nNrol2UF
+         dJ2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685962537; x=1688554537;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aoRCh8v9n/dv4c3vY0yrNkzCOBteC7NTBD3bj2v3dYs=;
-        b=OQw43b9uTux0weHElzUgFilwYqbZtvq+A6jOi3oGljlc8XKshXFrU7wXq3Z+9yfmYb
-         UWm6oE0klEu/OGBTLTzW5ISkyP8+Owdq6tYPEnpyeaCb92DmD70wDPStFhiEMj0ZKvnt
-         JlgOGMARjhZEQaXdTfwnAofUmFk7U+STXqi3/73igZOmH+ClNPpKvaXGriLQKHnBEAtN
-         5XbBLC0EEcYUnDBeaFKyPOwt6gksQ+65xVPCC9aDaPhlZovJkFFB+661ctTOp/9hRlOi
-         83n1T00GFjfXwde6zUnyS5FvlAZRFlH/4Qrd/tJFuqBHE/KjWSIGtTytLtbaAAAAbm4G
-         DK8g==
-X-Gm-Message-State: AC+VfDwm84NY/bECWqxr45XyifLdLbRm5iPPZvZsUSrOIDHQJMzGLX6V
-	X0VylCpIn5v8bpF8vrA3DL5rACoPyxorWPqK0lU=
-X-Google-Smtp-Source: ACHHUZ5lcl7dQ+JCpVmahhDF/zp0nVJXlpLaSjtia9er0p7jr059OvHy1vCIwJQKsP7nJSAWpf3yRw==
-X-Received: by 2002:a05:6402:1219:b0:514:994c:2982 with SMTP id c25-20020a056402121900b00514994c2982mr6756734edw.40.1685962537286;
-        Mon, 05 Jun 2023 03:55:37 -0700 (PDT)
-Received: from localhost.localdomain ([91.90.166.178])
-        by smtp.gmail.com with ESMTPSA id l2-20020a056402124200b005148e981bd3sm3723140edw.12.2023.06.05.03.55.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jun 2023 03:55:36 -0700 (PDT)
-From: witold.lipieta@thaumatec.com
-To: yocto@lists.yoctoproject.org
-Cc: twoerner@gmail.com,
-	Witold Lipieta <witold.lipieta@thaumatec.com>
-Subject: [meta-rockchip] [PATCH] mesa: Enable Panfrost for PX30
-Date: Mon,  5 Jun 2023 12:55:26 +0200
-Message-Id: <20230605105526.11027-1-witold.lipieta@thaumatec.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20221208; t=1685969341; x=1688561341;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zAWywGGcd5AI+PGmnuJN5bL2DUtFPFaOlVMohVSYAzM=;
+        b=eJVildSJGsNnGphUCU+ahbFQ0xCJITJdDv+0/is/npPSANeEBvdYBUV66VJlX46gCf
+         BW0sQuZxIjfwsTom63E+x83k6nQ1Dzz+SuAMhJJ7UcNyzk9oNXJ2M2v7ZpgHQQ3E/U5N
+         Ityf2XBBd7sKgbmhInBUOZPJAShAW165ndJJ3tZRVc1Y4m2xsXeL1VuQ5LPSnXDZFVkL
+         Q0SSEZ6BE7brbiB7dfpxviy9+vlHK0vLH6TlcyrwYrC2tIjfXrz3EkyLbvV6A5FJdi0G
+         sRzQ5WxQJA8kMgVzjiV4dLQ4VbWCQ3XzpkPfC6dVOYqWtLl5pxSuow5m2HnoGuKpYD52
+         HW3A==
+X-Gm-Message-State: AC+VfDzvw8bPlveaRvU0XI8tOcCDZ924XIy2yK5g2ZQQEsO1a1Go1S09
+	3ZJ1k66CrYMlF+TVUM/5rH/fQ9CqveuJGHPqZqA1ZjPCCAo=
+X-Google-Smtp-Source: ACHHUZ79m4YLpwqvu3nVRbUMQoo0jeY2iD/+eeuMHWy1wAk1Mgw0aDO7fm0MrdfdxMHc7AWr/nnjOneRtX0502X1VPs=
+X-Received: by 2002:a0d:e2cb:0:b0:55a:c89c:69c0 with SMTP id
+ l194-20020a0de2cb000000b0055ac89c69c0mr9962821ywe.12.1685969341541; Mon, 05
+ Jun 2023 05:49:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAL+GPkVCWbYw93GaLsiAGVxjARer=GD4TxnRrqGou2Ff-wtXEw@mail.gmail.com>
+In-Reply-To: <CAL+GPkVCWbYw93GaLsiAGVxjARer=GD4TxnRrqGou2Ff-wtXEw@mail.gmail.com>
+From: =?UTF-8?Q?Tam=C3=A1s_Nagy?= <tamas.nagy.001@gmail.com>
+Date: Mon, 5 Jun 2023 14:48:50 +0200
+Message-ID: <CAL+GPkXNGONMcnqwkF91VtMvCyS_LPTGrSLb0Myv6ZiDz873=A@mail.gmail.com>
+Subject: Copying a logo.pnm doesn't work at all from a dir to another dir.
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 05 Jun 2023 11:27:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60180
+ <yocto@lists.yoctoproject.org>; Mon, 05 Jun 2023 12:49:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60181
 
-PX30 has Mali G31 GPU and needs Mesa Panfrost for graphic acceleration.
+Hi,
 
-Signed-off-by: Witold Lipieta <witold.lipieta@thaumatec.com>
----
+I would like to copy a file (logo.pnm) from the
+yocto/uboot/sources/meta-fsos-jetson/recipes-kernel/linux/linux-tegra/
+  using the linux-tegra_%.bbappend to the
 
-This patch supplements https://git.yoctoproject.org/meta-rockchip/commit/?id=f2b4e6efde0e2e8ed9a15694d716add3eb4d14dc
-and should be also backported to kirkstone branch.
+yocto/uboot/build-jetson/tmp/work-shared/jetson-nano-emmc/kernel-source/drivers/video/logo
 
----
- recipes-graphics/mesa/mesa_%.bbappend | 1 +
- 1 file changed, 1 insertion(+)
+It is necessary that the file is copied every time if the build is
+rerun with the . yoctoWF.sh && compile_kernel. It resets the
+directories to default before every rerun.
 
-diff --git a/recipes-graphics/mesa/mesa_%.bbappend b/recipes-graphics/mesa/mesa_%.bbappend
-index 87f4bce..58c25e7 100644
---- a/recipes-graphics/mesa/mesa_%.bbappend
-+++ b/recipes-graphics/mesa/mesa_%.bbappend
-@@ -1,3 +1,4 @@
- PACKAGECONFIG:append:rk3288 = " kmsro panfrost"
- PACKAGECONFIG:append:rk3399 = " kmsro panfrost"
- PACKAGECONFIG:append:rock64 = " kmsro lima"
-+PACKAGECONFIG:append:px30 = " kmsro panfrost"
--- 
-2.34.1
+Contents of the linux-tegra_%.bbappend:
 
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+SRC_URI_append = " \
+                                    file://logo.pnm
+                                    file://logo_custom.patch" \
+                                   .... \"
+do_unpack_append() {
+     os.system("/bin/cp -rf logo.pnm" ${S}/drivers/video/logo")
+}
+
+do_install_append() {
+     install -m 644 {B}/logo.pnm ${D}/drivers/video/logo/
+}
+
+The problem is that it doesn't work, it copies nothing there and there
+are also no error messages. I tried to include logging, but the
+standard .bb doesn't include it and that is
+why I can't use it in the .bbappend. As I know I can use some kind of
+${WORKDIR}, but
+I don't know how.
+
+Tamas
 
