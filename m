@@ -2,642 +2,223 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D74DC7EE2A
-	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 14:58:10 +0000 (UTC)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
- by mx.groups.io with SMTP id smtpd.web10.832.1686063484545781042
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11B0FC7EE24
+	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 18:09:57 +0000 (UTC)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+ by mx.groups.io with SMTP id smtpd.web10.3939.1686074993557431518
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Jun 2023 07:58:05 -0700
+ Tue, 06 Jun 2023 11:09:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=Gz2woS7B;
- spf=pass (domain: gmail.com, ip: 209.85.167.51, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-4f62722d661so3250136e87.2
-        for <yocto@lists.yoctoproject.org>; Tue, 06 Jun 2023 07:58:04 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=RVfmNzIY;
+ spf=pass (domain: gmail.com, ip: 209.85.167.49, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-4f63ea7bfb6so360697e87.3
+        for <yocto@lists.yoctoproject.org>; Tue, 06 Jun 2023 11:09:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686063483; x=1688655483;
+        d=gmail.com; s=20221208; t=1686074992; x=1688666992;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LEvZp0BSyyeSw1n6wBflX0VGgMolyNg+TGPpDmEyRco=;
-        b=Gz2woS7B9bjm32w6i0KkbuMxVTTRRk8vtWNsRCBDImXv9p3jFoSR0GlZT2ly8s/I/2
-         nERRPs5Zevr0sSxIE+0+NXoxxvITgJ4pVXUyeG4rElcv0TjxXYqBcumi35CxU5QeTFmC
-         TEGhMuFCCON77hbaMTBlCoyJTDf2CyPgFJrc38mPe2cBzloPOlAWT3BYDIhSOccvipba
-         X5rfG+nlMMExmZ5bUprSOoquAxY/JhPXBnyf28IPxpW5LRi/KbG/wX0eL0AQ7j0cFk9P
-         A34G4m5wbGPETjPcCyffPgSv+LE3S+VmwGCTKF38o7ZK7bucmFFfLHBKwi1s4NRMQZJW
-         AdVg==
+        bh=xP/NCP6Zd6ilWcWCB7W+gG1taemLu4lp03grvs+Cvpo=;
+        b=RVfmNzIYIguVIoBr7bAsVL5WVM262ZGMJbD22BOeTf7HdjoxFDUu/eM34EL/3fHro6
+         WZnoDqcIDfCWtJSoQmC1cJswNf+nivZX2HYqfA0StayjwIJqMykikp/3zQDa6XMCZGuS
+         9v/8MCwm/UWONv/KZs8cw6VntspnKaLarMqxdurYcz6Gpn11u+rAeS/QpezDcGQoIJYv
+         SKFTPssD79/ZHTMo3hiGWE6lMAg5dBXbJmq/DOjID7wpWobwxpSb4XiDQnf/E26dNo8S
+         Asf05WyaKXdCYsdZqiCCjKGn5MUDxCbrW3PIsob3bNd6WIp1tkqyDjwe/6Wya30nLGwH
+         1FTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686063483; x=1688655483;
+        d=1e100.net; s=20221208; t=1686074992; x=1688666992;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=LEvZp0BSyyeSw1n6wBflX0VGgMolyNg+TGPpDmEyRco=;
-        b=K0szjeEZpvhKx13GK7XnkymW5amy67oEiXP4OqEzeqCO5CJ9KSJrD+KdsYigiRM5Ao
-         QT2kwPDZigYFZJIrjbzx5if6nZ+BlQW2IiLppbC/DhRbMfW39gCdHS21LwMrpvmPcGn1
-         e3SOLiADzsXvp5TkhJSJ2XyKrv+IEf8D7WB7eCDZj9wyECDyploHSYB76QkD5hq+axho
-         pAQUGEFisQGAXO6kUayLr6OyjzpEl4YqklDGNKpyIIQ1qc168vPVo3C2J4ADHuqdGH6K
-         Mt7Npsi0cvtHonYIF9rftHzW4zZxmPkYwCYdNHoxrq7W58MTIBcaC7VyCs+2gANxydqF
-         VAeQ==
-X-Gm-Message-State: AC+VfDwnj5uIeI008XOMsx24EJ7/zOGP3kRnLL1Tn7aygNaV94MkVL+z
-	+u/lHkl4EqscuDehPPcoTqyY8sCbfdrqwmiYPDQ=
-X-Google-Smtp-Source: ACHHUZ4J771IxzfHGIwnyx732drjdIBp0bal3BmYmfuJzRJiWsJINx3c2+oof/CnSggk8qx9pAbNl2yywvOObheTGfg=
-X-Received: by 2002:ac2:5ec7:0:b0:4f4:c289:596b with SMTP id
- d7-20020ac25ec7000000b004f4c289596bmr924859lfq.67.1686063482265; Tue, 06 Jun
- 2023 07:58:02 -0700 (PDT)
+        bh=xP/NCP6Zd6ilWcWCB7W+gG1taemLu4lp03grvs+Cvpo=;
+        b=il42IDyF+hMFW4UtFx1LIeIX6YDRnGH81ja0RyvPI0HIHRsWcNfX45ICfkmiv2a5Sq
+         9Az4fF9t0gBdAm/dMX2/Ig0NukpIKIWZT5xTHiO//Q7ln+DAfU0UcZdEqkKJcK7frxwX
+         7PB2tN1dYYfK73SqS3jBj1oQi68R8C0y+3QRZcTQb+nFX6/3TytjydQMcqWVTNhAjfvI
+         AcBGqMjLs1UOLwK7RvWbfw5VkH1KvUGiiXjB0b1h1eAkOAivxgt0Go+jSMgF9BaSP/Ny
+         BI4wCakOXXKuFs+UgmY8VbRb2FburbZCpv+mhvHz4lvwNSIqtdDCotsvOF8io00N9hbE
+         XlvA==
+X-Gm-Message-State: AC+VfDzHYNwnCCOyctyD6O6q/LxOTaT611w+N/tOsLj0XqbkpSjT31PS
+	Ho8vFDtWr351v5dBA9gB2RlO9iEb4bqqWp/ot88=
+X-Google-Smtp-Source: ACHHUZ5jbbKP8U6bddj6JUbWfOOjk/Urcdno3baCotm7MVL/2NTk7WTPDtLqIz5V9zbTnQWmKlrmOT3DTXeFTlwsINA=
+X-Received: by 2002:ac2:43d8:0:b0:4f5:1ca1:30ce with SMTP id
+ u24-20020ac243d8000000b004f51ca130cemr1194506lfl.47.1686074991537; Tue, 06
+ Jun 2023 11:09:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <080901d99885$496ef0e0$dc4cd2a0$@gmail.com>
-In-Reply-To: <080901d99885$496ef0e0$dc4cd2a0$@gmail.com>
+References: <CANx9H-DsS9GObR2+KAuM2pnecvsfpaUVQ2sc3h2Qzb9MWtDeYw@mail.gmail.com>
+ <CANNYZj9JUKG4dfYPrg6DZuGduCnwmwLMXx8+C32wFvMKvK5Zvw@mail.gmail.com> <20230605-musty-chamber-0dd3ae@meerkat>
+In-Reply-To: <20230605-musty-chamber-0dd3ae@meerkat>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 6 Jun 2023 16:57:51 +0200
-Message-ID: <CANNYZj9oBA_L2zNjexkmhdaey7NwXgab_CN6YRjexsZtGydY2Q@mail.gmail.com>
-Subject: Re: [yocto] Yocto Project Status 6 June 2023 (WW23)
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Stephen Jolley <sjolley.yp.pm@gmail.com>
-Cc: openembedded-core@lists.openembedded.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ede30f05fd773e71"
+Date: Tue, 6 Jun 2023 20:09:40 +0200
+Message-ID: <CANNYZj_dOyNUZTkpzZ26xHDyR7eHqPZNRAd_XfdnToFypD59xg@mail.gmail.com>
+Subject: Re: [auto-upgrade-helper] Should AUH send patches in-line instead of
+ as attachments?
+To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Cc: Tim Orling <ticotimo@gmail.com>, 
+	"Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ef730305fd79ec62"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 06 Jun 2023 14:58:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60190
+ <yocto@lists.yoctoproject.org>; Tue, 06 Jun 2023 18:09:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60191
 
---000000000000ede30f05fd773e71
+--000000000000ef730305fd79ec62
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-I=E2=80=99m on holiday this week so my ability to help is limited but pleas=
-e drop
-the SQLite bump. It=E2=80=99s been problematic in my builds especially arou=
-nd dnf
-and do_rootfs, and things massively improved then.
+On Mon 5. Jun 2023 at 23.46, Konstantin Ryabitsev <
+konstantin@linuxfoundation.org> wrote:
 
+> On Sat, Jun 03, 2023 at 03:25:59PM +0200, Alexander Kanavin wrote:
+> > AUH attaches not just the patch (if it was possible to produce), but
+> > also buildhistory and build failure logs (if something failed). It
+> > also provides a bit of explanation/context/apply-resend instructions
+> > in the email text. We can certainly consider options, I'm just not
+> > sure how to arrange all that if patches are sent directly as emails.
+>
+> It's actually pretty straightforward. Instead of attaching the patch to the
+> message, place it under the scissors line "-- >8 --".
+>
+> E.g. if we take this message:
+>
+>
+> https://lore.kernel.org/openembedded-core/010101887b289125-ddc413a5-24e2-4458-a329-e719e936d0e6-000000@us-west-2.amazonses.com/
+>
+> Make the body of the message as follows:
+>
+>         ... (skipped) ...
+>         Please review the attached files for further information and
+> build/update failures.
+>         Any problem please file a bug at
+> https://bugzilla.yoctoproject.org/enter_bug.cgi?product=Automated%20Update%20Handler
+>
+>         Regards,
+>         The Upgrade Helper
+>
+>         -- >8 --
+>         From e302d4d1d5eb9f8377ddcfac58e46b0d787f1e88 Mon Sep 17 00:00:00
+> 2001
+>         From: Upgrade Helper <auh@yoctoproject.org>
+>         Date: Fri, 2 Jun 2023 05:09:50 +0000
+>         Subject: [PATCH] at-spi2-core: upgrade 2.48.0 -> 2.48.3
+>
+>         ---
+>          .../atk/{at-spi2-core_2.48.0.bb => at-spi2-core_2.48.3.bb}
+> | 2 +-
+>          1 file changed, 1 insertion(+), 1 deletion(-)
+>          rename meta/recipes-support/atk/{at-spi2-core_2.48.0.bb =>
+> at-spi2-core_2.48.3.bb} (95%)
+>
+>         diff --git a/meta/recipes-support/atk/at-spi2-core_2.48.0.bb
+> b/meta/recipes-support/atk/at-spi2-core_2.48.3.bb
+>         ... (skipped) ...
+>
+> This should make it possible for someone to use this patch directly without
+> having to first save the attachment.
+>
+> Here's more info about the scissors line:
+>
+> https://git-scm.com/docs/git-mailinfo#Documentation/git-mailinfo.txt---scissors
+>
+> Hope this helps.
+
+
+Thanks, that seems reasonable, but is then it still ok to attach additional
+build artifacts (logs etc) to the message? Will the tools first discard the
+attachments, take the message body, then apply the scissors to get the
+patch out?
+
+>
 Alex
 
-On Tue 6. Jun 2023 at 16.43, Stephen Jolley <sjolley.yp.pm@gmail.com> wrote=
-:
-
-> Current Dev Position: YP 4.3 M1
->
-> Next Deadline: 5th June 2023 YP 4.3 M1 build date
->
->
->
-> Next Team Meetings:
->
->    - Bug Triage meeting Thursday June 8th 7:30 am PDT (
->    https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
->    - Weekly Project Engineering Sync Tuesday June 6th at 8 am PDT (
->    https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09)
->    <https://zoom.us/j/990892712>
->    - Twitch -  See https://www.twitch.tv/theyoctojester
->
->
->
-> Key Status/Updates:
->
->    - YP 4.3 M1 is due to build this week
->    - The remaining issue with SPDX manifest generation on the autobuilder
->    should have been identified and fixed so we plan to enable the create_=
-spdx
->    class by default in poky assuming a successful test build.
->    - The recent 6.1 kernel stable updates appear to be causing a couple
->    of different intermittent autobuilder issues. We=E2=80=99re working to=
- try and get
->    to the bottom of that, we=E2=80=99re hoping further updates to the 6.1=
- series may
->    pull in fixes for the regressions.
->    - Patch merging has been slow this week as we struggled to bisect
->    failures down to the problematic commits (potentially the sqlite versi=
-on
->    bump).
->    - We continue to see problematic intermittent failures on the
->    autobuilder. We=E2=80=99re struggling to make progress against these a=
-nd they are
->    feeling overwhelming. We=E2=80=99re open to ideas on how we might try =
-and address
->    them. Experience shows that if left unresolved/ignored, people do end =
-up
->    hitting them in real world usage or during testing of their own produc=
-ts.
->
->
->    - There are a number of patches still queued in master-next as it is
->    unclear whether they=E2=80=99re ready for various reasons. For bandwid=
-th reasons
->    these will likely be deferred to M2, people are just stretched too thi=
-nly
->    to do otherwise, frustrating as it is.
->    - Big thanks to Ross for helping look at the high number of CVE issues
->    open against master.
->
->
->
-> Ways to contribute:
->
->    - As people are likely aware, the project has a number of components
->    which are either unmaintained, or have people with little to no time t=
-rying
->    to keep them alive. These components include: patchtest, layerindex,
->    devtool, toaster, wic, oeqa, autobuilder, CROPs containers, pseudo and
->    more. Many have open bugs. Help is welcome in trying to better look af=
-ter
->    these components!
->    - There are bugs identified as possible for newcomers to the project:
->    https://wiki.yoctoproject.org/wiki/Newcomers
->    - There are bugs that are currently unassigned for YP 4.3. See:
->    https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.3_Unassigned=
-_Enhancements.2FBugs
->    - We=E2=80=99d welcome new maintainers for recipes in OE-Core. Please =
-see the
->    list at:
->    http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/includ=
-e/maintainers.inc
->    and discuss with the existing maintainer, or ask on the OE-Core mailin=
-g
->    list. We will likely move a chunk of these to =E2=80=9CUnassigned=E2=
-=80=9D soon to help
->    facilitate this.
->    - Help is very much welcome in trying to resolve our autobuilder
->    intermittent issues. You can see the list of failures we=E2=80=99re co=
-ntinuing to
->    see by searching for the =E2=80=9CAB-INT=E2=80=9D tag in bugzilla:
->    https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-INT.
->    - Help us resolve CVE issues: CVE metrics
->    <https://autobuilder.yocto.io/pub/non-release/patchmetrics/>
->    - We have a growing number of bugs in bugzilla, any help with them is
->    appreciated.
->
->
->
-> YP 4.3 Milestone Dates:
->
->    - YP 4.3 M1 build date  2023/06/05
->    - YP 4.3 M1 Release date 2023/06/16
->    - YP 4.3 M2 build date  2023/07/17
->    - YP 4.3 M2 Release date 2023/07/28
->    - YP 4.3 M3 build date  2023/08/28
->    - YP 4.3 M3 Release date 2023/09/08
->    - YP 4.3 M4 build date  2023/10/02
->    - YP 4.3 M4 Release date 2023/10/27
->
->
->
-> Upcoming dot releases:
->
->    - YP 3.1.26 build date 2023/06/19
->    - YP 3.1.26 Release date 2023/06/30
->    - YP 4.0.11 build date 2023/06/26
->    - YP 4.0.11 Release date 2023/07/07
->    - YP 4.2.2 build date 2023/07/10
->    - YP 4.2.2 Release date 2023/07/21
->    - YP 3.1.27 build date 2023/07/31
->    - YP 3.1.27 Release date 2023/08/11
->    - YP 4.0.12 build date 2023/08/07
->    - YP 4.0.12 Release date 2023/08/18
->    - YP 4.2.3 build date 2023/08/28
->    - YP 4.2.3 Release date 2023/09/08
->    - YP 3.1.28 build date 2023/09/18
->    - YP 3.1.28 Release date 2023/09/29
->    - YP 4.0.13 build date 2023/09/25
->    - YP 4.0.13 Release date 2023/10/06
->    - YP 3.1.29 build date 2023/10/30
->    - YP 3.1.29 Release date 2023/11/10
->    - YP 4.0.14 build date 2023/11/06
->    - YP 4.0.14 Release date 2023/11/17
->    - YP 4.2.4 build date 2023/11/13
->    - YP 4.2.4 Release date 2023/11/24
->    - YP 3.1.30 build date 2023/12/11
->    - YP 3.1.30 Release date 2023/12/22
->    - YP 4.0.15 build date 2023/12/18
->    - YP 4.0.15 Release date 2023/12/29
->
->
->
-> Tracking Metrics:
->
->    - WDD 2527 (last week 2522) (
->    https://wiki.yoctoproject.org/charts/combo.html)
->    - OE-Core/Poky Patch Metrics
->       - Total patches found: 1162 (last week 1160)
->       - Patches in the Pending State: 271 (23%) [last week 272 (23%)]
->    - https://autobuilder.yocto.io/pub/non-release/patchmetrics/
->
->
->
-> The Yocto Project=E2=80=99s technical governance is through its Technical=
- Steering
-> Committee, more information is available at:
->
-> https://wiki.yoctoproject.org/wiki/TSC
->
->
->
-> The Status reports are now stored on the wiki at:
-> https://wiki.yoctoproject.org/wiki/Weekly_Status
->
->
->
-> [If anyone has suggestions for other information you=E2=80=99d like to se=
-e on this
-> weekly status update, let us know!]
->
->
->
-> Thanks,
->
->
->
-> *Stephen K. Jolley*
->
-> *Yocto Project Program Manager*
->
-> (    *Cell*:                (208) 244-4460
->
-> * *Email*:              *sjolley.yp.pm@gmail.com
-> <sjolley.yp.pm@gmail.com>*
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60189):
-> https://lists.yoctoproject.org/g/yocto/message/60189
-> Mute This Topic: https://lists.yoctoproject.org/mt/99364585/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000ede30f05fd773e71
+--000000000000ef730305fd79ec62
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">I=E2=80=99m on holiday this week so my ability to help is=
- limited but please drop the SQLite bump. It=E2=80=99s been problematic in =
-my builds especially around dnf and do_rootfs, and things massively improve=
-d then.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alex</div><div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue =
-6. Jun 2023 at 16.43, Stephen Jolley &lt;<a href=3D"mailto:sjolley.yp.pm@gm=
-ail.com">sjolley.yp.pm@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;bo=
-rder-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">=
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"overflow-wr=
-ap: break-word;"><div><p style=3D"margin:0in"><span style=3D"font-family:Ar=
-ial,sans-serif;color:black">Current Dev Position: YP 4.3 M1</span><u></u><u=
-></u></p><p style=3D"margin:0in"><span style=3D"font-family:Arial,sans-seri=
-f;color:black">Next Deadline: 5th June 2023 YP 4.3 M1 build date</span><u><=
-/u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"ma=
-rgin:0in"><span style=3D"font-family:Arial,sans-serif;color:black">Next Tea=
-m Meetings:</span><u></u><u></u></p><ul style=3D"margin-top:0in" type=3D"di=
-sc"><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;c=
-olor:black"><span style=3D"font-family:Arial,sans-serif">Bug Triage meeting=
- Thursday June 8th 7:30 am PDT (<a href=3D"https://zoom.us/j/454367603?pwd=
-=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09" target=3D"_blank" style=3D"font-family=
-:Arial,sans-serif"><span style=3D"font-family:Arial,sans-serif;color:rgb(17=
-,85,204)">https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz0=
-9</span></a>)<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font=
--family:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margi=
-n-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-famil=
-y:Arial,sans-serif">Weekly Project Engineering Sync Tuesday June 6th at 8 a=
-m PDT (<a href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjR=
-rcmJsUT09" target=3D"_blank" style=3D"font-family:Arial,sans-serif"><span s=
-tyle=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">https://zoom.us/=
-j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</span></a><a href=3D"htt=
-ps://zoom.us/j/990892712" target=3D"_blank" style=3D"font-family:Arial,sans=
--serif"><span style=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">)=
-</span></a><u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-f=
-amily:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-=
-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-family:=
-Arial,sans-serif">Twitch -=C2=A0 See <a href=3D"https://www.twitch.tv/theyo=
-ctojester" target=3D"_blank" style=3D"font-family:Arial,sans-serif"><span s=
-tyle=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">https://www.twit=
-ch.tv/theyoctojester</span></a><u style=3D"font-family:Arial,sans-serif"></=
-u><u style=3D"font-family:Arial,sans-serif"></u></span></li></ul><p class=
-=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in"><span style=
-=3D"font-family:Arial,sans-serif;color:black">Key Status/Updates:</span><u>=
-</u><u></u></p><ul style=3D"margin-top:0in" type=3D"disc"><li style=3D"marg=
-in-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span sty=
-le=3D"font-family:Arial,sans-serif">YP 4.3 M1 is due to build this week<u s=
-tyle=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,san=
-s-serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vert=
-ical-align:baseline;color:black"><span style=3D"font-family:Arial,sans-seri=
-f">The remaining issue with SPDX manifest generation on the autobuilder sho=
-uld have been identified and fixed so we plan to enable the create_spdx cla=
-ss by default in poky assuming a successful test build.<u style=3D"font-fam=
-ily:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></s=
-pan></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:basel=
-ine;color:black"><span style=3D"font-family:Arial,sans-serif">The recent 6.=
-1 kernel stable updates appear to be causing a couple of different intermit=
-tent autobuilder issues. We=E2=80=99re working to try and get to the bottom=
- of that, we=E2=80=99re hoping further updates to the 6.1 series may pull i=
-n fixes for the regressions.<u style=3D"font-family:Arial,sans-serif"></u><=
-u style=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margi=
-n-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span styl=
-e=3D"font-family:Arial,sans-serif">Patch merging has been slow this week as=
- we struggled to bisect failures down to the problematic commits (potential=
-ly the sqlite version bump).<u style=3D"font-family:Arial,sans-serif"></u><=
-u style=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margi=
-n-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span styl=
-e=3D"font-family:Arial,sans-serif">We continue to see problematic intermitt=
-ent failures on the autobuilder. We=E2=80=99re struggling to make progress =
-against these and they are feeling overwhelming. We=E2=80=99re open to idea=
-s on how we might try and address them. Experience shows that if left unres=
-olved/ignored, people do end up hitting them in real world usage or during =
-testing of their own products.<u style=3D"font-family:Arial,sans-serif"></u=
-><u style=3D"font-family:Arial,sans-serif"></u></span></li></ul><ul style=
-=3D"margin-top:0in" type=3D"disc"><li style=3D"margin-top:0in;margin-bottom=
-:0in;vertical-align:baseline;color:black"><span style=3D"font-family:Arial,=
-sans-serif">There are a number of patches still queued in master-next as it=
- is unclear whether they=E2=80=99re ready for various reasons. For bandwidt=
-h reasons these will likely be deferred to M2, people are just stretched to=
-o thinly to do otherwise, frustrating as it is.<u style=3D"font-family:Aria=
-l,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li=
-><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;colo=
-r:black"><span style=3D"font-family:Arial,sans-serif">Big thanks to Ross fo=
-r helping look at the high number of CVE issues open against master.<u styl=
-e=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-s=
-erif"></u></span></li></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><=
-p style=3D"margin:0in"><span style=3D"font-family:Arial,sans-serif;color:bl=
-ack">Ways to contribute:</span><u></u><u></u></p><ul style=3D"margin-top:0i=
-n" type=3D"disc"><li style=3D"margin-top:0in;margin-bottom:0in;vertical-ali=
-gn:baseline;color:black"><span style=3D"font-family:Arial,sans-serif">As pe=
-ople are likely aware, the project has a number of components which are eit=
-her unmaintained, or have people with little to no time trying to keep them=
- alive. These components include: patchtest, layerindex, devtool, toaster, =
-wic, oeqa, autobuilder, CROPs containers, pseudo and more. Many have open b=
-ugs. Help is welcome in trying to better look after these components!<u sty=
-le=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-=
-serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertic=
-al-align:baseline;color:black"><span style=3D"font-family:Arial,sans-serif"=
->There are bugs identified as possible for newcomers to the project: <a hre=
-f=3D"https://wiki.yoctoproject.org/wiki/Newcomers" target=3D"_blank" style=
-=3D"font-family:Arial,sans-serif"><span style=3D"font-family:Arial,sans-ser=
-if;color:rgb(17,85,204)">https://wiki.yoctoproject.org/wiki/Newcomers</span=
-></a><u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:=
-Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom=
-:0in;vertical-align:baseline;color:black"><span style=3D"font-family:Arial,=
-sans-serif">There are bugs that are currently unassigned for YP 4.3. See: <=
-a href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.3_Unass=
-igned_Enhancements.2FBugs" target=3D"_blank" style=3D"font-family:Arial,san=
-s-serif"><span style=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">=
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.3_Unassigned_Enha=
-ncements.2FBugs</span></a><u style=3D"font-family:Arial,sans-serif"></u><u =
-style=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-=
-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span style=
-=3D"font-family:Arial,sans-serif">We=E2=80=99d welcome new maintainers for =
-recipes in OE-Core. Please see the list at: <a href=3D"http://git.yoctoproj=
-ect.org/cgit.cgi/poky/tree/meta/conf/distro/include/maintainers.inc" target=
-=3D"_blank" style=3D"font-family:Arial,sans-serif"><span style=3D"font-fami=
-ly:Arial,sans-serif;color:rgb(17,85,204)">http://git.yoctoproject.org/cgit.=
-cgi/poky/tree/meta/conf/distro/include/maintainers.inc</span></a> and discu=
-ss with the existing maintainer, or ask on the OE-Core mailing list. We wil=
-l likely move a chunk of these to =E2=80=9CUnassigned=E2=80=9D soon to help=
- facilitate this.<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"=
-font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;m=
-argin-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-f=
-amily:Arial,sans-serif">Help is very much welcome in trying to resolve our =
-autobuilder intermittent issues. You can see the list of failures we=E2=80=
-=99re continuing to see by searching for the =E2=80=9CAB-INT=E2=80=9D tag i=
-n bugzilla: <a href=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quicks=
-earch=3DAB-INT" target=3D"_blank" style=3D"font-family:Arial,sans-serif"><s=
-pan style=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">https://bug=
-zilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-INT</span></a>.<u style=
-=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-se=
-rif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical=
--align:baseline;color:black"><span style=3D"font-family:Arial,sans-serif">H=
-elp us resolve CVE issues: <a href=3D"https://autobuilder.yocto.io/pub/non-=
-release/patchmetrics/" target=3D"_blank" style=3D"font-family:Arial,sans-se=
-rif"><span style=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">CVE =
-metrics</span></a>=C2=A0<u style=3D"font-family:Arial,sans-serif"></u><u st=
-yle=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-to=
-p:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span style=3D=
-"font-family:Arial,sans-serif">We have a growing number of bugs in bugzilla=
-, any help with them is appreciated.<u style=3D"font-family:Arial,sans-seri=
-f"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li></ul><p cl=
-ass=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in"><span sty=
-le=3D"font-family:Arial,sans-serif;color:black">YP 4.3 Milestone Dates:</sp=
-an><u></u><u></u></p><ul style=3D"margin-top:0in" type=3D"disc"><li style=
-=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><=
-span style=3D"font-family:Arial,sans-serif">YP 4.3 M1 build date=C2=A0 2023=
-/06/05<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family=
-:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-botto=
-m:0in;vertical-align:baseline;color:black"><span style=3D"font-family:Arial=
-,sans-serif">YP 4.3 M1 Release date 2023/06/16<u style=3D"font-family:Arial=
-,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li>=
-<li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color=
-:black"><span style=3D"font-family:Arial,sans-serif">YP 4.3 M2 build date=
-=C2=A0 2023/07/17<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"=
-font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;m=
-argin-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-f=
-amily:Arial,sans-serif">YP 4.3 M2 Release date 2023/07/28<u style=3D"font-f=
-amily:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u><=
-/span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:bas=
-eline;color:black"><span style=3D"font-family:Arial,sans-serif">YP 4.3 M3 b=
-uild date=C2=A0 2023/08/28<u style=3D"font-family:Arial,sans-serif"></u><u =
-style=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-=
-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span style=
-=3D"font-family:Arial,sans-serif">YP 4.3 M3 Release date 2023/09/08<u style=
-=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-se=
-rif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical=
--align:baseline;color:black"><span style=3D"font-family:Arial,sans-serif">Y=
-P 4.3 M4 build date=C2=A0 2023/10/02<u style=3D"font-family:Arial,sans-seri=
-f"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li style=
-=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><=
-span style=3D"font-family:Arial,sans-serif">YP 4.3 M4 Release date 2023/10/=
-27<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Ari=
-al,sans-serif"></u></span></li></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u>=
-</u></p><p style=3D"margin:0in"><span style=3D"font-family:Arial,sans-serif=
-;color:black">Upcoming dot releases:</span><u></u><u></u></p><ul style=3D"m=
-argin-top:0in" type=3D"disc"><li style=3D"margin-top:0in;margin-bottom:0in;=
-vertical-align:baseline;color:black"><span style=3D"font-family:Arial,sans-=
-serif">YP 3.1.26 build date 2023/06/19<u style=3D"font-family:Arial,sans-se=
-rif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li styl=
-e=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:black">=
-<span style=3D"font-family:Arial,sans-serif">YP 3.1.26 Release date 2023/06=
-/30<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Ar=
-ial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0=
-in;vertical-align:baseline;color:black"><span style=3D"font-family:Arial,sa=
-ns-serif">YP 4.0.11 build date 2023/06/26<u style=3D"font-family:Arial,sans=
--serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li s=
-tyle=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:blac=
-k"><span style=3D"font-family:Arial,sans-serif">YP 4.0.11 Release date 2023=
-/07/07<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family=
-:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-botto=
-m:0in;vertical-align:baseline;color:black"><span style=3D"font-family:Arial=
-,sans-serif">YP 4.2.2 build date 2023/07/10<u style=3D"font-family:Arial,sa=
-ns-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li=
- style=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:bl=
-ack"><span style=3D"font-family:Arial,sans-serif">YP 4.2.2 Release date 202=
-3/07/21=C2=A0<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font=
--family:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margi=
-n-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-famil=
-y:Arial,sans-serif">YP 3.1.27 build date 2023/07/31<u style=3D"font-family:=
-Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span>=
-</li><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;=
-color:black"><span style=3D"font-family:Arial,sans-serif">YP 3.1.27 Release=
- date 2023/08/11<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"f=
-ont-family:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;ma=
-rgin-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-fa=
-mily:Arial,sans-serif">YP 4.0.12 build date 2023/08/07<u style=3D"font-fami=
-ly:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></sp=
-an></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseli=
-ne;color:black"><span style=3D"font-family:Arial,sans-serif">YP 4.0.12 Rele=
-ase date 2023/08/18<u style=3D"font-family:Arial,sans-serif"></u><u style=
-=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0=
-in;margin-bottom:0in;vertical-align:baseline;color:black"><span style=3D"fo=
-nt-family:Arial,sans-serif">YP 4.2.3 build date 2023/08/28<u style=3D"font-=
-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u>=
-</span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:ba=
-seline;color:black"><span style=3D"font-family:Arial,sans-serif">YP 4.2.3 R=
-elease date 2023/09/08<u style=3D"font-family:Arial,sans-serif"></u><u styl=
-e=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-top:=
-0in;margin-bottom:0in;vertical-align:baseline;color:black"><span style=3D"f=
-ont-family:Arial,sans-serif">YP 3.1.28 build date 2023/09/18<u style=3D"fon=
-t-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></=
-u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:=
-baseline;color:black"><span style=3D"font-family:Arial,sans-serif">YP 3.1.2=
-8 Release date 2023/09/29<u style=3D"font-family:Arial,sans-serif"></u><u s=
-tyle=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"margin-t=
-op:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span style=
-=3D"font-family:Arial,sans-serif">YP 4.0.13 build date 2023/09/25<u style=
-=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-se=
-rif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical=
--align:baseline;color:black"><span style=3D"font-family:Arial,sans-serif">Y=
-P 4.0.13 Release date 2023/10/06<u style=3D"font-family:Arial,sans-serif"><=
-/u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li style=3D"m=
-argin-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><span =
-style=3D"font-family:Arial,sans-serif">YP 3.1.29 build date 2023/10/30<u st=
-yle=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans=
--serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;verti=
-cal-align:baseline;color:black"><span style=3D"font-family:Arial,sans-serif=
-">YP 3.1.29 Release date 2023/11/10<u style=3D"font-family:Arial,sans-serif=
-"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li style=
-=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:black"><=
-span style=3D"font-family:Arial,sans-serif">YP 4.0.14 build date 2023/11/06=
-<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial=
-,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;=
-vertical-align:baseline;color:black"><span style=3D"font-family:Arial,sans-=
-serif">YP 4.0.14 Release date 2023/11/17<u style=3D"font-family:Arial,sans-=
-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li st=
-yle=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:black=
-"><span style=3D"font-family:Arial,sans-serif">YP 4.2.4 build date 2023/11/=
-13<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Ari=
-al,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0i=
-n;vertical-align:baseline;color:black"><span style=3D"font-family:Arial,san=
-s-serif">YP 4.2.4 Release date 2023/11/24<u style=3D"font-family:Arial,sans=
--serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><li s=
-tyle=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:blac=
-k"><span style=3D"font-family:Arial,sans-serif">YP 3.1.30 build date 2023/1=
-2/11<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:A=
-rial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:=
-0in;vertical-align:baseline;color:black"><span style=3D"font-family:Arial,s=
-ans-serif">YP 3.1.30 Release date 2023/12/22<u style=3D"font-family:Arial,s=
-ans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li><l=
-i style=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:b=
-lack"><span style=3D"font-family:Arial,sans-serif">YP 4.0.15 build date 202=
-3/12/18<u style=3D"font-family:Arial,sans-serif"></u><u style=3D"font-famil=
-y:Arial,sans-serif"></u></span></li><li style=3D"margin-top:0in;margin-bott=
-om:0in;vertical-align:baseline;color:black"><span style=3D"font-family:Aria=
-l,sans-serif">YP 4.0.15 Release date 2023/12/29<u style=3D"font-family:Aria=
-l,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></li=
-></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in=
-"><span style=3D"font-family:Arial,sans-serif;color:black">Tracking Metrics=
-:</span><u></u><u></u></p><ul style=3D"margin-top:0in" type=3D"disc"><li st=
-yle=3D"margin-top:0in;margin-bottom:0in;vertical-align:baseline;color:black=
-"><span style=3D"font-family:Arial,sans-serif">WDD 2527 (last week 2522)</s=
-pan><span style=3D"font-family:Consolas"> (</span><span style=3D"font-famil=
-y:Arial,sans-serif"><a href=3D"https://wiki.yoctoproject.org/charts/combo.h=
-tml" target=3D"_blank" style=3D"font-family:Arial,sans-serif"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">https://wiki.yoctopr=
-oject.org/charts/combo.html</span></a></span><span style=3D"font-family:Con=
-solas">)</span><span style=3D"font-family:Arial,sans-serif"><u style=3D"fon=
-t-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></=
-u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical-align:=
-baseline;color:black"><span style=3D"font-family:Arial,sans-serif">OE-Core/=
-Poky Patch Metrics</span><span style=3D"font-family:Consolas"><u style=3D"f=
-ont-family:Consolas"></u><u style=3D"font-family:Consolas"></u></span></li>=
-<ul style=3D"margin-top:0in" type=3D"circle"><li style=3D"margin-top:0in;ma=
-rgin-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-fa=
-mily:Arial,sans-serif">Total patches found: 1162 (last week 1160)<u style=
-=3D"font-family:Arial,sans-serif"></u><u style=3D"font-family:Arial,sans-se=
-rif"></u></span></li><li style=3D"margin-top:0in;margin-bottom:0in;vertical=
--align:baseline;color:black"><span style=3D"font-family:Arial,sans-serif">P=
-atches in the Pending State: 271 (23%) [last week 272 (23%)]</span><span st=
-yle=3D"font-family:Consolas"><u style=3D"font-family:Consolas"></u><u style=
-=3D"font-family:Consolas"></u></span></li></ul><li style=3D"margin-top:0in;=
-margin-bottom:0in;vertical-align:baseline;color:black"><span style=3D"font-=
-family:Consolas"><a href=3D"https://autobuilder.yocto.io/pub/non-release/pa=
-tchmetrics/" target=3D"_blank" style=3D"font-family:Consolas"><span style=
-=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">https://autobuilder.=
-yocto.io/pub/non-release/patchmetrics/</span></a><u style=3D"font-family:Co=
-nsolas"></u><u style=3D"font-family:Consolas"></u></span></li></ul><p class=
-=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in"><span style=
-=3D"font-family:Arial,sans-serif;color:black">The Yocto Project=E2=80=99s t=
-echnical governance is through its Technical Steering Committee, more infor=
-mation is available at:</span><u></u><u></u></p><p style=3D"margin:0in"><a =
-href=3D"https://wiki.yoctoproject.org/wiki/TSC" target=3D"_blank"><span sty=
-le=3D"font-family:Arial,sans-serif;color:rgb(17,85,204)">https://wiki.yocto=
-project.org/wiki/TSC</span></a><u></u><u></u></p><p class=3D"MsoNormal"><u>=
-</u>=C2=A0<u></u></p><p style=3D"margin:0in"><span style=3D"font-family:Ari=
-al,sans-serif;color:black">The Status reports are now stored on the wiki at=
-: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status" targe=
-t=3D"_blank"><span style=3D"font-family:Arial,sans-serif;color:rgb(17,85,20=
-4)">https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a><u></u><u></=
-u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in=
-"><span style=3D"font-family:Arial,sans-serif;color:black">[If anyone has s=
-uggestions for other information you=E2=80=99d like to see on this weekly s=
-tatus update, let us know!]</span><u></u><u></u></p><p class=3D"MsoNormal">=
-<u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Thanks,<u></u><u></u></p><p =
-class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D=
-"break-after:avoid"><b><i><span style=3D"font-size:16pt;font-family:&quot;T=
-imes New Roman&quot;,serif;color:purple">Stephen K. Jolley</span></i></b><b=
-><i><span style=3D"font-size:16pt;font-family:Tahoma,sans-serif;color:purpl=
-e"><u style=3D"font-family:Tahoma,sans-serif"></u><u style=3D"font-family:T=
-ahoma,sans-serif"></u></span></i></b></p><p class=3D"MsoNormal"><b><span st=
-yle=3D"font-size:8pt;font-family:&quot;Courier New&quot;;color:blue">Yocto =
-Project Program Manager<u style=3D"font-family:&quot;Courier New&quot;"></u=
-><u style=3D"font-family:&quot;Courier New&quot;"></u></span></b></p><p cla=
-ss=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:Wingdings;color:b=
-lack">(</span><span style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&=
-quot;;color:teal">=C2=A0=C2=A0=C2=A0 </span><b><span style=3D"font-size:8pt=
-;font-family:&quot;Comic Sans MS&quot;;color:teal">Cell</span></b><span sty=
-le=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 </span><span style=3D"font-size:9pt;font-family:&quot;MS Sans =
-Serif&quot;">(208) 244-4460<span style=3D"font-family:&quot;MS Sans Serif&q=
-uot;;color:black"><u style=3D"font-family:&quot;MS Sans Serif&quot;"></u><u=
- style=3D"font-family:&quot;MS Sans Serif&quot;"></u></span></span></p><p c=
-lass=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:Wingdings">* </=
-span><b><span lang=3D"FR" style=3D"font-size:8pt;font-family:&quot;Comic Sa=
-ns MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-siz=
-e:9pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0<u style=3D"font-family:&quot;MS Sans Serif&quot;"><span style=3D"fon=
-t-family:&quot;MS Sans Serif&quot;;color:blue"><a href=3D"mailto:sjolley.yp=
-.pm@gmail.com" target=3D"_blank" style=3D"font-family:&quot;MS Sans Serif&q=
-uot;">sjolley.yp.pm@gmail.com</a></span></u></span><span lang=3D"FR" style=
-=3D"font-size:12pt;font-family:Arial,sans-serif"><u style=3D"font-family:Ar=
-ial,sans-serif"></u><u style=3D"font-family:Arial,sans-serif"></u></span></=
-p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div></div>
+<div>On Mon 5. Jun 2023 at 23.46, Konstantin Ryabitsev &lt;<a href=3D"mailt=
+o:konstantin@linuxfoundation.org">konstantin@linuxfoundation.org</a>&gt; wr=
+ote:<br></div><div><div class=3D"gmail_quote"><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-st=
+yle:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">On Sat, Jun =
+03, 2023 at 03:25:59PM +0200, Alexander Kanavin wrote:<br>
+&gt; AUH attaches not just the patch (if it was possible to produce), but<b=
+r>
+&gt; also buildhistory and build failure logs (if something failed). It<br>
+&gt; also provides a bit of explanation/context/apply-resend instructions<b=
+r>
+&gt; in the email text. We can certainly consider options, I&#39;m just not=
 <br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60189): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60189" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/60189</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/99364585/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/99364585/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; sure how to arrange all that if patches are sent directly as emails.<b=
+r>
 <br>
-</blockquote></div></div>
+It&#39;s actually pretty straightforward. Instead of attaching the patch to=
+ the<br>
+message, place it under the scissors line &quot;-- &gt;8 --&quot;.<br>
+<br>
+E.g. if we take this message:<br>
+<br>
+<a href=3D"https://lore.kernel.org/openembedded-core/010101887b289125-ddc41=
+3a5-24e2-4458-a329-e719e936d0e6-000000@us-west-2.amazonses.com/" rel=3D"nor=
+eferrer" target=3D"_blank">https://lore.kernel.org/openembedded-core/010101=
+887b289125-ddc413a5-24e2-4458-a329-e719e936d0e6-000000@us-west-2.amazonses.=
+com/</a><br>
+<br>
+Make the body of the message as follows:<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ... (skipped) ...<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Please review the attached files for further in=
+formation and build/update failures.<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Any problem please file a bug at <a href=3D"htt=
+ps://bugzilla.yoctoproject.org/enter_bug.cgi?product=3DAutomated%20Update%2=
+0Handler" rel=3D"noreferrer" target=3D"_blank">https://bugzilla.yoctoprojec=
+t.org/enter_bug.cgi?product=3DAutomated%20Update%20Handler</a><br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Regards,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 The Upgrade Helper<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 -- &gt;8 --<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 From e302d4d1d5eb9f8377ddcfac58e46b0d787f1e88 M=
+on Sep 17 00:00:00 2001<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 From: Upgrade Helper &lt;<a href=3D"mailto:auh@=
+yoctoproject.org" target=3D"_blank">auh@yoctoproject.org</a>&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Date: Fri, 2 Jun 2023 05:09:50 +0000<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Subject: [PATCH] at-spi2-core: upgrade 2.48.0 -=
+&gt; 2.48.3<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ---<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.../atk/{<a href=3D"http://at-spi2-core_2=
+.48.0.bb" rel=3D"noreferrer" target=3D"_blank">at-spi2-core_2.48.0.bb</a> =
+=3D&gt; <a href=3D"http://at-spi2-core_2.48.3.bb" rel=3D"noreferrer" target=
+=3D"_blank">at-spi2-core_2.48.3.bb</a>}=C2=A0 =C2=A0 =C2=A0 | 2 +-<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01 file changed, 1 insertion(+), 1 deletio=
+n(-)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rename meta/recipes-support/atk/{<a href=
+=3D"http://at-spi2-core_2.48.0.bb" rel=3D"noreferrer" target=3D"_blank">at-=
+spi2-core_2.48.0.bb</a> =3D&gt; <a href=3D"http://at-spi2-core_2.48.3.bb" r=
+el=3D"noreferrer" target=3D"_blank">at-spi2-core_2.48.3.bb</a>} (95%)<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 diff --git a/meta/recipes-support/atk/<a href=
+=3D"http://at-spi2-core_2.48.0.bb" rel=3D"noreferrer" target=3D"_blank">at-=
+spi2-core_2.48.0.bb</a> b/meta/recipes-support/atk/<a href=3D"http://at-spi=
+2-core_2.48.3.bb" rel=3D"noreferrer" target=3D"_blank">at-spi2-core_2.48.3.=
+bb</a><br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ... (skipped) ...<br>
+<br>
+This should make it possible for someone to use this patch directly without=
+<br>
+having to first save the attachment.<br>
+<br>
+Here&#39;s more info about the scissors line:<br>
+<a href=3D"https://git-scm.com/docs/git-mailinfo#Documentation/git-mailinfo=
+.txt---scissors" rel=3D"noreferrer" target=3D"_blank">https://git-scm.com/d=
+ocs/git-mailinfo#Documentation/git-mailinfo.txt---scissors</a><br>
+<br>
+Hope this helps.</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">=
+Thanks, that seems reasonable, but is then it still ok to attach additional=
+ build artifacts (logs etc) to the message? Will the tools first discard th=
+e attachments, take the message body, then apply the scissors to get the pa=
+tch out?</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;borde=
+r-left-color:rgb(204,204,204)" dir=3D"auto"></blockquote></div></div><div><=
+br></div><div dir=3D"auto">Alex</div>
 
---000000000000ede30f05fd773e71--
+--000000000000ef730305fd79ec62--
 
