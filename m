@@ -1,88 +1,79 @@
-Return-Path: <skulkarni@mvista.com>
+Return-Path: <ecordonnier@snap.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E151CC77B7A
-	for <webhook@archiver.kernel.org>; Wed,  7 Jun 2023 07:27:25 +0000 (UTC)
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
- by mx.groups.io with SMTP id smtpd.web10.2945.1686122844373553487
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CAEFC7EE29
+	for <webhook@archiver.kernel.org>; Wed,  7 Jun 2023 09:26:56 +0000 (UTC)
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+ by mx.groups.io with SMTP id smtpd.web11.4250.1686130011671151471
  for <yocto@lists.yoctoproject.org>;
- Wed, 07 Jun 2023 00:27:24 -0700
+ Wed, 07 Jun 2023 02:26:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@mvista.com header.s=google header.b=XFkyKRKg;
- spf=pass (domain: mvista.com, ip: 209.85.167.178, mailfrom: skulkarni@mvista.com)
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-39c503bc770so1225101b6e.0
-        for <yocto@lists.yoctoproject.org>; Wed, 07 Jun 2023 00:27:24 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@snap.com header.s=google header.b=SmA7PD1b;
+ spf=pass (domain: snapchat.com, ip: 209.85.218.54, mailfrom: ecordonnier@snapchat.com)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-97458c97333so947098466b.2
+        for <yocto@lists.yoctoproject.org>; Wed, 07 Jun 2023 02:26:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1686122843; x=1688714843;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T1QrCpDhP6rFf1aE/WTHW75nPQQH+bS3XhcWFoGFXVc=;
-        b=XFkyKRKgstiJwqAdiJpn05ZfUFN8DycMTK0m5tmJelDTR5D4bqfpUi6QDkpWNGPfSp
-         kT8RONyzOv1lUyjB1gukhTiZ4qq0ICQEy7XaJwyVNQsRrKQlY9aIyzFByLBVJ+ghrg5u
-         YHuCQJZMyt92/dW+G/kWzz42cQAwIZx1Mo+o8=
+        d=snap.com; s=google; t=1686130010; x=1688722010;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FJ2jwuRo++hT1bQPNevOWvbXo60Pz+5k+x6UecBnChM=;
+        b=SmA7PD1bZiaq300SFnRldWmXA3Lz8IKnmYsd7r3cijO+g1V96JUJ/ZloDozarU0tgI
+         AR0O6axYAvFKDqnChM3jWRLl3w8OKXNgYJO/6SRQSAgkRnUgdNiIJfPFba2WIfaIqwIP
+         pKkHwadZbk7q4YtQIuZFjz5GgGFImOOYuX+/g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686122843; x=1688714843;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T1QrCpDhP6rFf1aE/WTHW75nPQQH+bS3XhcWFoGFXVc=;
-        b=kF1EjfYkWUsJW++J6VyMxHQJemgP0nf7cdnod1jOfp17UGj9QGJ/o1sSsGvQKmDeAE
-         WCjaI+WHn9ozphQxB59gNQZgB7LCi2qMn8tuyoWRP5iC7m4ASynwooUWhWkE8UeVPgyS
-         Ay4RbYOLm30wjS6pBPbZNL4byXj/yowEG0l/XQZsHVEtQcOKhO7F3HJM7s9c2C4HmsAO
-         ZAbLB7zLA0f91jqk6br+b2cm2xH9qPCiKGa+l1bopTh1+PM/mPo2lHUKu0oB1yNEnt6h
-         fHJvwOVv76SHR1BWWi1oTvIoNN3p1b/J0VPdZSYdzeAjNWuMe0ph5z8/qN+ON40wgcD9
-         NMHg==
-X-Gm-Message-State: AC+VfDwjnbSyM0J4+Ip1SzstJ8+FaM2wYsrrwuCm29Wb/iUMqNrZEA2F
-	g2YHghpWBw0K36IDapM4lTzVhsjJYjj5RgPGtLK6fg==
-X-Google-Smtp-Source: ACHHUZ5IjI+tqSeaXYV7thrbNSqaYMFSt8w7ElBAdUdVaLx7f1EeLvEtutb2ohjcXVeDjLVc7Tk5AQ==
-X-Received: by 2002:a05:6808:917:b0:39a:c41d:fb30 with SMTP id w23-20020a056808091700b0039ac41dfb30mr4657037oih.39.1686122843334;
-        Wed, 07 Jun 2023 00:27:23 -0700 (PDT)
-Received: from kite.mvista.com ([182.74.28.237])
-        by smtp.gmail.com with ESMTPSA id u10-20020a170902e80a00b001aadd0d7364sm9710579plg.83.2023.06.07.00.27.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 07 Jun 2023 00:27:22 -0700 (PDT)
-From: skulkarni@mvista.com
-To: yocto@lists.yoctoproject.org,
-	jpuhlman@mvista.com,
-	skappen@mvista.com
-Cc: Shubham Kulkarni <skulkarni@mvista.com>
-Subject: [meta-selinux][dunfell][PATCH] audit: Add https protocol for clonning repository
-Date: Wed,  7 Jun 2023 12:56:55 +0530
-Message-Id: <20230607072655.21804-1-skulkarni@mvista.com>
-X-Mailer: git-send-email 2.24.4
+        d=1e100.net; s=20221208; t=1686130010; x=1688722010;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FJ2jwuRo++hT1bQPNevOWvbXo60Pz+5k+x6UecBnChM=;
+        b=iDvmv1tB7yE06g2kGD2trwCLHZVHbwPN/GUlGFyXNblnQFyLpwI1Lqcjwe/xMbZcHV
+         ugnjUjQ7TIZRSicB/Tl92mhblFVZk8tnDF1yoU6gzWHKQpEnJFZAPuHrMpAPQmJb1rbE
+         j16ZIOPeIkmx663nbmzdEbKz1vxrh2C6xx81oaSgvtZPvZeLP1zVgbSZOxOvVVgVdtuQ
+         BvMNY6jOGgs2UB4U8Ea6RF0hsZw29v/u1LBYG0X7Lm4wBOP8lzVeVfhiNQou9Bs1H2KK
+         XcpP72MVYHq2Qw1wKR96hmKow6o7+5xdPwZqTQwUjHiI5vWGjQaiEx2AYEYVMQgCCRWA
+         OwUg==
+X-Gm-Message-State: AC+VfDy3EaeEbbe4gIiQd4Yz/1UkI4IfzD4u87pacr69P4CcUhbbKH+i
+	oRTcnRe/wwgnlSKyQTOk/6BgG88XPb3CPVAzljIXXCPpowPICTRH4UM=
+X-Google-Smtp-Source: ACHHUZ6b2i0HsVOycOB13yw9vXRCH/kmv+5DKy0MxrkTJj7Lh1yB44sfU4sMH5XXi82lT3KJiH8/NDSug+spr7Zq3cg=
+X-Received: by 2002:a17:907:7243:b0:96a:246b:c65d with SMTP id
+ ds3-20020a170907724300b0096a246bc65dmr5545565ejc.12.1686130009371; Wed, 07
+ Jun 2023 02:26:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Etienne Cordonnier <ecordonnier@snap.com>
+Date: Wed, 7 Jun 2023 11:26:38 +0200
+Message-ID: <CAHUKmYbWvf9LoEkk31rNg+dzqFnw_zxyYuwNBr1HkUmjVUGe7w@mail.gmail.com>
+Subject: How to scroll in the yocto devshell?
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000041bb6705fd86bc26"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 07 Jun 2023 07:27:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60197
+ <yocto@lists.yoctoproject.org>; Wed, 07 Jun 2023 09:26:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60198
 
-From: Shubham Kulkarni <skulkarni@mvista.com>
+--00000000000041bb6705fd86bc26
+Content-Type: text/plain; charset="UTF-8"
 
- audit repository clone failing with git protocol as
- github.com requires the https protocol to be used
+Hi,
+how to scroll up/down in the yocto devshell (started with bitbake -c
+devshell my-recipe)?
 
-Signed-off-by: Shubham Kulkarni <skulkarni@mvista.com>
----
- recipes-security/audit/audit_2.8.5.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Scrolling with the mouse is scrolling through the command history instead
+of through the terminal. Using shift + page up simply prints "~2". Using
+"reset" doesn't fix it.
 
-diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
-index af36ed5..e372f66 100644
---- a/recipes-security/audit/audit_2.8.5.bb
-+++ b/recipes-security/audit/audit_2.8.5.bb
-@@ -7,7 +7,7 @@ SECTION = "base"
- LICENSE = "GPLv2+ & LGPLv2+"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- 
--SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintenance \
-+SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintenance;protocol=https \
-            file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
-            file://Fixed-swig-host-contamination-issue.patch \
-            file://0001-lib-i386_table.h-add-new-syscall.patch \
--- 
-2.24.4
+Environment: Ubuntu 22.04 with default terminal.
 
+--00000000000041bb6705fd86bc26
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br>how to scroll up/down in the yocto devshell (starte=
+d with bitbake -c devshell my-recipe)?<br><br>Scrolling with the mouse is s=
+crolling through the command history instead of through the terminal. Using=
+ shift + page up simply prints &quot;~2&quot;. Using &quot;reset&quot; does=
+n&#39;t fix it.<br><br>Environment: Ubuntu 22.04 with default terminal.</di=
+v>
+
+--00000000000041bb6705fd86bc26--
 
