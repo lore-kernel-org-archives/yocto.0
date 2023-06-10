@@ -1,77 +1,73 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <kimoto@ohnolab.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D7E8C7EE29
-	for <webhook@archiver.kernel.org>; Fri,  9 Jun 2023 16:43:11 +0000 (UTC)
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
- by mx.groups.io with SMTP id smtpd.web10.223.1686328982881029784
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B7A4C7EE2E
+	for <webhook@archiver.kernel.org>; Sat, 10 Jun 2023 08:23:48 +0000 (UTC)
+Received: from tk2-229-24410.vs.sakura.ne.jp (tk2-229-24410.vs.sakura.ne.jp [160.16.107.164])
+ by mx.groups.io with SMTP id smtpd.web10.14088.1686385427420231661
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Jun 2023 09:43:02 -0700
+ Sat, 10 Jun 2023 01:23:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=jatrOumg;
- spf=pass (domain: gmail.com, ip: 209.85.161.45, mailfrom: twoerner@gmail.com)
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-55b5472ab85so512771eaf.0
-        for <yocto@lists.yoctoproject.org>; Fri, 09 Jun 2023 09:43:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686328982; x=1688920982;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UvkdnaGELFAFgUIuFqQKUL7va1RoGjjrBB4bD2UTXbE=;
-        b=jatrOumgTRbaY4uqPN/jB2wv7aUoVn508wDNtAUANqHM8d/QHGvFbEMOFBOVo5T40l
-         bC49iCzqv6F1q+UeUawGFOXjH1ktRHl5mNtlXwjBYLBiE7LUkIEfgvxjiyfV4gkagvgN
-         zbV4qrT1BvEwwWlJ/CVRjYBlMihjtEROa4kJm4cmGg880VzaZqHYLimsc2fbAuBb0yHK
-         /C95VEpdkVxLgWgBpjBUHIG5eqN09youw/quKiVL2SbJhG2Dnhgytl1/rHRMRjKbIt9O
-         vno0C993QyHEqbXycGUOQEj4A+A34kvbfewXi2qepUa7bR/KfTSJpP+w44yOfXVoqOvu
-         7Lzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686328982; x=1688920982;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UvkdnaGELFAFgUIuFqQKUL7va1RoGjjrBB4bD2UTXbE=;
-        b=YmNX9JH1FfCWv5BBQsWYwDfcrnaAF/SW2AAVSKXSc9RYAKxHMsJFa1+kmyDP0Fi/x+
-         tq/gMAfEVUOkj/+iBzA9yYAVUKj2Fod5LZYM0mJpsBjPv7eI2LxchFFsXj5yTARqm0Jw
-         zpxplV8x+dtUZcjfuCsVr+8pi2MpTUfEUiNZpyhp0fJQ2pOO0KgQmmrYLn6jrQTSqM3I
-         /5kMUJUlZSgb3sqgl+U0jDS5q0KraZVkmRbBXnmDdaEmMpBhROhl2sVHXkA1L6wGnS7u
-         y5oFqTpqjlgmXcOwdFRwMUGjEh9FWmKjanukqXVcVG3tkDUgSjuhOq8A4NW6T6joU0bB
-         8vZQ==
-X-Gm-Message-State: AC+VfDwXYh+KU0u9tTjE2qGQwGhyHaJwXXCzP8sonzoFxOAEA3EHJR0K
-	bx25NTZ9aaSuf09d17tF5o4=
-X-Google-Smtp-Source: ACHHUZ6qiq0rc8CK36aXwHja+Bi6aFBTcVUS2NnDc8aCTZ8z7boUHHcONj1iTfvG4VJd0KlGRLHcmQ==
-X-Received: by 2002:a05:6808:dc2:b0:398:2323:c6fa with SMTP id g2-20020a0568080dc200b003982323c6famr1911671oic.38.1686328981901;
-        Fri, 09 Jun 2023 09:43:01 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id t15-20020a05620a004f00b0075b2809ee8csm1109418qkt.136.2023.06.09.09.43.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jun 2023 09:43:01 -0700 (PDT)
-Date: Fri, 9 Jun 2023 12:42:59 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: Witold Lipieta <witold.lipieta@thaumatec.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip] [PATCH] mesa: Enable Panfrost for PX30
-Message-ID: <20230609164259.GA30064@localhost>
-References: <20230605103639.10555-1-witold.lipieta@thaumatec.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230605103639.10555-1-witold.lipieta@thaumatec.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+ dkim=missing; spf=permerror, err=syntax error for token:  (domain: ohnolab.org, ip: 160.16.107.164, mailfrom: kimoto@ohnolab.org)
+Received: from localhost (115.91.30.125.dy.iij4u.or.jp [125.30.91.115])
+	by tk2-229-24410.vs.sakura.ne.jp (Postfix) with ESMTPA id 9A953181D9
+	for <yocto@lists.yoctoproject.org>; Sat, 10 Jun 2023 17:23:45 +0900 (JST)
+Date: Sat, 10 Jun 2023 17:23:41 +0900 (JST)
+Message-Id: <20230610.172341.1672673222928870000.kimoto@ohnolab.org>
+To: yocto@lists.yoctoproject.org
+Subject: xwayland needs dependency to libtirpc on kirkstone and master
+ branch.
+From: Masahiko KIMOTO <kimoto@ohnolab.org>
+X-fingerprint: DA 63 E3 AD 3F 30 98 05  EB CF 3C 06 2D FF 07 7F
+X-PGP-Public-Key: http://www.ohnolab.org/~kimoto/kimoto.pubkey.asc
+X-URL: http://www.ohnolab.org/~kimoto/
+X-Mailer: Mew version 6.9 on Emacs 28.2
+Mime-Version: 1.0
+Content-Type: Multipart/Mixed;
+ boundary="--Next_Part(Sat_Jun_10_17_23_41_2023_934)--"
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 09 Jun 2023 16:43:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60241
+ <yocto@lists.yoctoproject.org>; Sat, 10 Jun 2023 08:23:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60242
 
-On Mon 2023-06-05 @ 12:36:39 PM, Witold Lipieta wrote:
-> PX30 has Mali G31 GPU and needs Mesa Panfrost for graphic acceleration.
-> 
-> Signed-off-by: Witold Lipieta <witold.lipieta@thaumatec.com>
-> ---
->  recipes-graphics/mesa/mesa_%.bbappend | 1 +
->  1 file changed, 1 insertion(+)
+----Next_Part(Sat_Jun_10_17_23_41_2023_934)--
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-Applied to meta-rockchip's master and kirkstone branches.
-Thanks!
+Hello all,
+
+On Kirkstone and Master branch of poky, xwayland needs DEPENDS to libtirpc.
+
+A small patch for kirkstone branch is attached.
+
+Regards,
+
+----------------------------------------------------------------------
+Masahiko Kimoto, Ph.D.
+E-mail: kimoto@ohnolab.org        URL: http://www.ohnolab.org/~kimoto
+
+
+----Next_Part(Sat_Jun_10_17_23_41_2023_934)--
+Content-Type: Text/X-Patch; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline; filename="kirkstone.xwayland.patch"
+
+diff --git a/meta/recipes-graphics/xwayland/xwayland_22.1.8.bb b/meta/recipes-graphics/xwayland/xwayland_22.1.8.bb
+index 6919ba421b..dac0ae1fa2 100644
+--- a/meta/recipes-graphics/xwayland/xwayland_22.1.8.bb
++++ b/meta/recipes-graphics/xwayland/xwayland_22.1.8.bb
+@@ -17,7 +17,7 @@ UPSTREAM_CHECK_REGEX = "xwayland-(?P<pver>\d+(\.(?!90\d)\d+)+)\.tar"
+ inherit meson features_check pkgconfig
+ REQUIRED_DISTRO_FEATURES = "x11 opengl"
+ 
+-DEPENDS += "xorgproto xtrans pixman libxkbfile libxfont2 wayland wayland-native wayland-protocols libdrm libepoxy libxcvt"
++DEPENDS += "xorgproto xtrans pixman libxkbfile libxfont2 wayland wayland-native wayland-protocols libdrm libepoxy libxcvt libtirpc"
+ 
+ OPENGL_PKGCONFIGS = "glx glamor dri3"
+ PACKAGECONFIG ??= "${XORG_CRYPTO} \
+
+----Next_Part(Sat_Jun_10_17_23_41_2023_934)----
 
