@@ -1,484 +1,459 @@
-Return-Path: <gleb.rostanin@zf.com>
+Return-Path: <tgamblin@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D49DEC7EE25
-	for <webhook@archiver.kernel.org>; Mon, 12 Jun 2023 11:34:42 +0000 (UTC)
-Received: from de-smtp-delivery-114.mimecast.com (de-smtp-delivery-114.mimecast.com [194.104.109.114])
- by mx.groups.io with SMTP id smtpd.web11.56041.1686569675288674514
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D454C7EE23
+	for <webhook@archiver.kernel.org>; Mon, 12 Jun 2023 13:21:13 +0000 (UTC)
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+ by mx.groups.io with SMTP id smtpd.web11.58386.1686576065697495604
  for <yocto@lists.yoctoproject.org>;
- Mon, 12 Jun 2023 04:34:35 -0700
+ Mon, 12 Jun 2023 06:21:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@zf.com header.s=mczfcom20220728 header.b=anuC2Viq;
- spf=pass (domain: zf.com, ip: 194.104.109.114, mailfrom: gleb.rostanin@zf.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zf.com; s=mczfcom20220728;
-	t=1686569673;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7QmAWn4cUy3z4rmavJiM7PXRqS4ZMLKEzG66m6uJFX0=;
-	b=anuC2ViqDpeC6g4gr7L5MeuOrb2u0hcYD1BZNIsqZ7Zkhwinyzi3mdpFaZ+D6tKl1EFGNY
-	zt0GM1VUVdQsZGrCULzmEcRzqicriMG+Eju/qXHhtWncmcpl4X0uxK8UIEWOTvqyIspE8r
-	Yz6IqOCydJj8fQc7Em4YFSDTDXa5Ds0=
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com
- (mail-ve1eur01lp2058.outbound.protection.outlook.com [104.47.1.58]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-9-H8gn_cOkPraDwBw2ZfMCXw-1; Mon, 12 Jun 2023 13:33:59 +0200
-X-MC-Unique: H8gn_cOkPraDwBw2ZfMCXw-1
-Received: from DB6PR0801MB1784.eurprd08.prod.outlook.com (2603:10a6:4:39::17)
- by AS2PR08MB8454.eurprd08.prod.outlook.com (2603:10a6:20b:55a::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.39; Mon, 12 Jun
- 2023 11:33:57 +0000
-Received: from DB6PR0801MB1784.eurprd08.prod.outlook.com
- ([fe80::e6a1:d15f:1b70:9d0a]) by DB6PR0801MB1784.eurprd08.prod.outlook.com
- ([fe80::e6a1:d15f:1b70:9d0a%11]) with mapi id 15.20.6455.039; Mon, 12 Jun
- 2023 11:33:57 +0000
-From: Rostanin Gleb SBR DIRCS <Gleb.Rostanin@zf.com>
-To: Trevor Gamblin <tgamblin@baylibre.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: AW: [yocto] Snort 2.9 into Snort 3 recipe
-Thread-Topic: [yocto] Snort 2.9 into Snort 3 recipe
-Thread-Index: Adma22E7thbSMr9OTvO4DpckFt4EBgAE4wsAAIt5fgA=
-Date: Mon, 12 Jun 2023 11:33:57 +0000
-Message-ID: <DB6PR0801MB1784F72924A0EFBF9006D1989954A@DB6PR0801MB1784.eurprd08.prod.outlook.com>
+ dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=zTFmma+H;
+ spf=pass (domain: baylibre.com, ip: 209.85.222.176, mailfrom: tgamblin@baylibre.com)
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-75e4497597cso365636585a.2
+        for <yocto@lists.yoctoproject.org>; Mon, 12 Jun 2023 06:21:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686576064; x=1689168064;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t5Gdkl86Zap0yHdlqBmbWbqZYkpv1pvEH0w0bpkQWPM=;
+        b=zTFmma+HJWcShFC50jmliQ/WpbL5rTfmxsl+cyH8Q00q0VAdbZuxS4MGYPobNnUHL7
+         XlPeIzLxxxuMv0hSiL2LnIsNsI0JqEakfZ6gq5Kbvb6p3jrxXB+51/04svqQno5fyGj7
+         5mzysJbdmXXrWobCCTV+HlD3Q25NmLTlH+MRFxOM4mQ3N6I2pBT5IY8ICj18WDOyjYlz
+         mZ7PoH2xwKx8cd9Aw1gXikqmJjAayVyD22x5mXanvbllMA9c25F8rkSq6OAi6sW/ESUN
+         MdAaueDmv6EeZVb3OM3bVV4ClLQgN1IDC0gb/syXSR0qD16t96/++tnP4hFKOTRUBsiC
+         ALTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686576064; x=1689168064;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=t5Gdkl86Zap0yHdlqBmbWbqZYkpv1pvEH0w0bpkQWPM=;
+        b=inVsOtnpaeYu7k/X98GKHcJLkMBUSzxhJWkLNeNvAMW/vwA/HMKeeAC2z+LHM8QVtb
+         iz6Ju2WveSxLePVfFSJdW053hneNoFuv5CxqRCAx+SeRzZeE5Cmyu69eMpQ4lkEfsLqd
+         VtU4EzPo8ZvaWG9ZH9cpYKDJBKNmZrZ3SGpsm80eybG4pOej+cZ8+R0TCzmEOeBOD9vn
+         pEuVWv66sSoxyvqExexkNGIlfXBfRLEs5cEYmefZNCEWPlqcwr6KiR5WOTHVFVGSatuU
+         gdmi3MFam7Z/fZk3vLw9mbEq/rrFQHnNkGqWfCG+cW86AbROqN0oLxdrcGh0D+pnqE7/
+         UkCQ==
+X-Gm-Message-State: AC+VfDzBTLGcyERDWJcjIxxfDmsDvh3+bhCkAvW+JPw+mN96gV0mm7Ag
+	pDLwB8p5qFo9loe51RROYEVw8A==
+X-Google-Smtp-Source: ACHHUZ5favrBiwtQcKoSF/9iT7QfmcrY+C4fvP7SyYK7qEW9RQUg1UTlgbBxmuvjNUMIn0MubohCAw==
+X-Received: by 2002:a05:6214:ccc:b0:628:2d00:5301 with SMTP id 12-20020a0562140ccc00b006282d005301mr11493736qvx.39.1686576064370;
+        Mon, 12 Jun 2023 06:21:04 -0700 (PDT)
+Received: from ?IPV6:2001:1970:5b1f:ab00:d875:6297:4e81:e577? ([2001:1970:5b1f:ab00:d875:6297:4e81:e577])
+        by smtp.gmail.com with ESMTPSA id h2-20020a0cf442000000b00623927281c2sm3192489qvm.40.2023.06.12.06.21.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jun 2023 06:21:03 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------VMMHswEP824gvXzATtEXb7Xt"
+Message-ID: <d01aa6a4-41ef-dbae-e009-1bf427a1e0f9@baylibre.com>
+Date: Mon, 12 Jun 2023 09:21:02 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: AW: [yocto] Snort 2.9 into Snort 3 recipe
+Content-Language: en-US
+To: Rostanin Gleb SBR DIRCS <Gleb.Rostanin@zf.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 References: <DB6PR0801MB178439F9D29338400F8910349951A@DB6PR0801MB1784.eurprd08.prod.outlook.com>
  <3e376dc9-eba2-349e-79ae-f364b7acdcc9@baylibre.com>
-In-Reply-To: <3e376dc9-eba2-349e-79ae-f364b7acdcc9@baylibre.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_7294a1c8-9899-41e7-8f6e-8b1b3c79592a_Enabled=true;
- MSIP_Label_7294a1c8-9899-41e7-8f6e-8b1b3c79592a_SetDate=2023-06-12T11:33:53Z;
- MSIP_Label_7294a1c8-9899-41e7-8f6e-8b1b3c79592a_Method=Privileged;
- MSIP_Label_7294a1c8-9899-41e7-8f6e-8b1b3c79592a_Name=Internal sub2 (no
- marking);
- MSIP_Label_7294a1c8-9899-41e7-8f6e-8b1b3c79592a_SiteId=eb70b763-b6d7-4486-8555-8831709a784e;
- MSIP_Label_7294a1c8-9899-41e7-8f6e-8b1b3c79592a_ActionId=cfdd0741-e795-4d1a-bf69-e675bea85ebe;
- MSIP_Label_7294a1c8-9899-41e7-8f6e-8b1b3c79592a_ContentBits=0
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB6PR0801MB1784:EE_|AS2PR08MB8454:EE_
-x-ms-office365-filtering-correlation-id: e9d700bc-2213-421d-2430-08db6b38e8d2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: NzFzeJrAkMzjRGkjk51ppqs33P6c+nt+iS4WZozh4dJdZGHwsegjq3+szzcGl7DZLWordrgWZa1zIbUUqossqos0PlZGcxG7hDldDcFlCq9rvVkrJyOhuyGtjNsBQ21vcb8vlTqz5ip5AiTAZV+JUhS9E4+3BiqVTM37cm09JvC6AwretDFdPBVkZxz1gBvdMbyWsXdzAUziYbPtMNLnDGhSbPrEtBNh4Br2qbjm6MHCHOVMh86SDWEJfoMKQW6BshJZBw/5WrgrbVHCSM/CEDPUNOif/t7uQtFjvIiTxNrmz9uMexy2XvjtXicPO4TbWk93lh0sRDNwTJZVF55Hz553q8e23J/XSPjQK8KxQoYdeBPpNDJ+x0gFVn5YM3UTTtoMekkFjmEN49NmicRBtQqyRPYk7mqkDv6cXeDlnVG2hnRgxX86QUgt5HT77mevcwvVH1/2hpVGvOVhtAtLNnJgB5ZOiN1Rou4BwmcWblwkCg+bde25Lq90GMEOtalq03dbbdB3vxmUZcrh4W11yAZUoEYSslup5WZB/aQVwhY2dOxaHHiE6JYxn0THQbzKC7xsZoHmwZukCBkODBpHa1K39Y5yzXe1nPxUMhhIax7JVpzCfqnWhbmoWBTjzpT9W81H2eoyb5VmcI9qB7Ajsg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0801MB1784.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(376002)(346002)(396003)(136003)(39860400002)(451199021)(66899021)(66556008)(66446008)(66476007)(66946007)(64756008)(76116006)(316002)(71200400001)(966005)(19627235002)(110136005)(478600001)(38070700005)(166002)(33656002)(86362001)(9686003)(6506007)(26005)(53546011)(186003)(83380400001)(41300700001)(8936002)(8676002)(52536014)(5660300002)(2906002)(7696005)(55016003)(82960400001)(38100700002)(122000001);DIR:OUT;SFP:1102
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eThVUVlucVM1czdVclNXMmJCdE5WYjJrL2dGT3IxRlJLT3pkM1dPai9HeW1R?=
- =?utf-8?B?Mm9oU0JDUU80M2ZsWEV5YkY1WGZuRllmSkdIMlR0VFpuR0tYQitqOTh0Ymky?=
- =?utf-8?B?Uk9wMDI4NU44SDNSbDN6L1N5dVp3Zml3blU4NExlRDNlS2k2T1IvOGJ5djk5?=
- =?utf-8?B?Q3dRb1B0VHNvMi9xZVJodlBPeS9XeUdwdnZUUlREcXhkWklnTEZEdG5OcnZQ?=
- =?utf-8?B?Mk9KNWZ0Z1RpbW16U01UR3FITTJUcFBZcm80bGJoK041QkwrTVMwMTg3TEtC?=
- =?utf-8?B?enAxZTRKRStPblljbXFvTzJObUU0Ny9OYWYxTWh4L2hMNHJxNVRXbVVTK1Mr?=
- =?utf-8?B?QlhuM0NvdU5PcEIzeU1WNS9GYWJzMGFNbkZMbkdEU2hkZXQzdTJmQkpYbEdX?=
- =?utf-8?B?L25LTy9VcytTTVNuMEJjcFlLamhKSHZ5ZWF5QXJhR21KQVRDTWo1eThLKzFv?=
- =?utf-8?B?QmZKaFcydUlJYVVIQW8wbnhMUE1ra25vbVFqUXhJNmIxZ2tVeTQ1WEExdW80?=
- =?utf-8?B?VGsvejIzU0VzOXYxMkRuYWNmdVdTNWZac1Q3UysxNDUxeEpqYWF4OEhEejhU?=
- =?utf-8?B?ejhrbWluY3RTRDlJMUlTT2hpa3Nyc0E2RXVtNnlrbG9nWnVvMXdQOEI0eThW?=
- =?utf-8?B?bS8zTk40TTV5MXMwcDVBUEptMFVXV0E2c3dxQ1dXeElyUFpNWFlRb3FkbHZi?=
- =?utf-8?B?elZ4NHMrdDlTZ2dRNDhoMUhBeWdNREtyN3hPMHZnUS9XUnVZMWYxWVNWWXB2?=
- =?utf-8?B?cHN3ZmsxWmpOaWUxUTZUUHNJZnl1Vng2dlpBOGorTHpjT1RnR1FEcHk2RWZu?=
- =?utf-8?B?QUVPV2FUN29VK3MwVGlJTUs0VzJNWEliYm1qa1BaMDNCcXQ1bnVIQU5XZ2JM?=
- =?utf-8?B?ZGYyMk1BaHd3MjBYV0RlZzNYaHNydjVLUVFCbGFhcVMvZE5LaG5DSDhWQysz?=
- =?utf-8?B?M3RGdEp2UEk5Z1dBcFN1Qmx3UWF6QXlNQldDQUFqclRQK1gxMnp5MDROdmhw?=
- =?utf-8?B?OXVtSlNxbVpYZ1NRMHhOWWl3aGVQRVlJay9Fa2NSWkZkc3V6UXJMNXBWZlNJ?=
- =?utf-8?B?eXMxY2crSWh0NG80RGpqVVZwUVlETFNQM1psQjBXd09FOVFSdmQwU0dURGdp?=
- =?utf-8?B?QVV0UktQYUVPSFBMWG55QmloQ0M2TEVYWjUwZWhKTVMrdHVNZURnYlFTbVQ5?=
- =?utf-8?B?VjJEeWpMZC9ZTTNUZ2FjN2d4NTJ2YWxsbC83TlRzU0lyMU1SQ09BRzNIeEsw?=
- =?utf-8?B?cGJ3Nk9IRjcvM3R3Uk80cGlnU0Y3UlBxSTRLM1Q1a1F3Q0FNUDYxbFdUVCtt?=
- =?utf-8?B?NHU5aXB6TmE2bmV0d2k5bVFBNzJIMExlL1lYekhoWG1hTWdjVlVVYTBrMmtx?=
- =?utf-8?B?L1JzUUdrckRKUFptNjA2RkxQMkZPY2xzdUJ4ME1wZ01qSGs4QmxTY1prV2pw?=
- =?utf-8?B?N2ZxYmZZbE8yUXZoY0VxT0VxMzFuL2NJRnRjT2d0dmJ6K1luRVB6OGp0QS9L?=
- =?utf-8?B?ZUIvNVUrd1ViQzJxMS9lUVdydTlDZmJIazdVbUFxRUZIOUFGNDV4d3FaVmdQ?=
- =?utf-8?B?bGhnU0RtNlgyQklZQVgrY0F5KzRrakp6bFZnNDNSRDRrRzhTbWpTMlNDeW1T?=
- =?utf-8?B?WnJzOWVyWTVkaUpNVHdycTkwY3FIRnFRM1JJWHJoNDYyWXZwSnRWNzk2dVRQ?=
- =?utf-8?B?UWJRVnJ2T2FZdFA5ckRXWUNGL3ZRT1BWbU5GUXYwdVNpQ1JVc01IMHp6WWMw?=
- =?utf-8?B?MVZvU20rcGpXVnppeHBVRmtrSjdJN0lDbHNKN2Fvd0tMTDluM1c5NktrdEQ5?=
- =?utf-8?B?cE1aVmU0M04yQWpPM0kyRWluV01hUUpiK21HbXM4QlcxSmQwazA5dENvSnVS?=
- =?utf-8?B?bVluclp2cGNzeFFtY2VqQndySlNEb2dhQlNzMW9LME1BN003ckFRL2R2VTR5?=
- =?utf-8?B?Z0c1KzdqbTk3S3IxbVNGdEpTMlF0Ym8vS3hNUk5xQlhPZ0VZOS9vY1RnU1dn?=
- =?utf-8?B?NC9wMUlxQllkVWtwOTA4a1FjeWIxVVkydXRFeFJ4WXlGZUVTK2h4OVB3WENa?=
- =?utf-8?B?NS82M3NVYk05eWk3ZEFiOXNMTnZTWURtdGJ5WUpoeU9vQTN6YTVhUVliaGli?=
- =?utf-8?Q?GIx08Sk+f0BWeaYgyu8Pqm8Wa?=
-MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: PDJkx+LIM04dAguIVQpTFzesoOB2eXoNrKQ8RDqxvE0qVxyMyMMdgGPC6YheyLNP7HXgnGNg4/9bVKgF6jZtNbLL+rfMJ/L0GCKPPQ3CJO6b8RFPJ7hQL/LZLTCWil5DlCGADFSv/0XmAth1vzgqSIX6QhMZUz3tzHO6JwXlf0G7rbR5JbPFTZcH5ZX3ugQ3cdff2KKa8nqvTsngK+52iKdo3u77i66MAMuS5PZkxhnHV1JD2kAlq7tkVsN99H3izl2RkiBjFRFkr8lKsF48tLCdYIpQMXVoCYWFuOf8WezUI2xwybOWago128IIfzq6LvG82K/eNUz7VPuweqhzsKePhME31pfqXBwIxgic8ElhO8na9YoxoTlsAhlF4bu28jaybc/c7QePud4GFsaESOOp/dYRnA/SYAy3CnZt2BXjlVdKlIjU74q4zeehqEyXFiUPa8ex71vEWhZkarAZ/GZWtzHDJ/m+ZOItUbwtRpISAjkXH1P8YPuLPV42QPJWoMpaP8mjg/+RJOWT0V/o/v+SrhbP3/njjXghJDuzVxAzdK2u/VJTC1sLyiNGrHDFUH6u40h7mK2G1BBzSeUwM8Wgae7ayCZGVd2T96fP3+52ysFigHaVSbaDv8hLNBjf4mp3vD6eyORgT238YcYFCtf1fJ8H/kor1nnj4rAfwmPPRpQ6VFSCdUMN9cZyf7A1TnGaeOJznYwWpKaotV5GQtOw+Glnj4fyhk+fGwXdUuxglV5bRVphZVptt/yfOrOlboZHvy5oXU69mhMbQXlZi4zB5Lc4hPbVcn4YlbQsew/nyim53Iy2ReMe59Vv0PdT
-X-OriginatorOrg: zf.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0801MB1784.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9d700bc-2213-421d-2430-08db6b38e8d2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2023 11:33:57.1157
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eb70b763-b6d7-4486-8555-8831709a784e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nn/f7jUN0qegh5EHQD9I1+MFCjEIojmMT0rQS/R4TAKjtEtZCtF9logorsHMDiBKFOB2n/wAjoKHNlq4QTfo9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB8454
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: zf.com
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_DB6PR0801MB1784F72924A0EFBF9006D1989954ADB6PR0801MB1784_"
+ <DB6PR0801MB1784F72924A0EFBF9006D1989954A@DB6PR0801MB1784.eurprd08.prod.outlook.com>
+From: Trevor Gamblin <tgamblin@baylibre.com>
+In-Reply-To: <DB6PR0801MB1784F72924A0EFBF9006D1989954A@DB6PR0801MB1784.eurprd08.prod.outlook.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 12 Jun 2023 11:34:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60257
+ <yocto@lists.yoctoproject.org>; Mon, 12 Jun 2023 13:21:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60258
 
---_000_DB6PR0801MB1784F72924A0EFBF9006D1989954ADB6PR0801MB1784_
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------VMMHswEP824gvXzATtEXb7Xt
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-SGVsbG8sDQoNCkkgZGlkIHRoZSBmb2xsb3dpbmcgc3RlcHM6DQoNCiAgKiAgIFJlbmFtZSByZWNp
-cGUgZmlsZSBuYW1lIHRvIHNub3J0XzMuMS42Mi4wLmJiDQogICogICBDaGFuZ2VkIGxpbmUgOSDi
-gJxTUkNfVVJJID0g4oCc4oCmL3Nub3J0LyR7QlB9LnRhci5neuKAneKAnSB0byBodHRwczovL3d3
-dy5zbm9ydC5vcmcvZG93bmxvYWRzL3Nub3J0cGx1cy9zbm9ydDMtMy4xLjYyLjAudGFyLmd6DQog
-ICogICBBZGRlZCBjb3JyZWN0IHNub3J0MyBzaGEyNTZzdW0gaW4gbGluZSAxNw0KICAqICAgQWRk
-ZWQgY29ycmVjdCBNRDUgY2hlY2tzdW0gb2YgdGhlIHNub3J0IHRhciBiYWxsIGluIGxpbmUgNQ0K
-VGhlIGZvbGxvd2luZyBlcnJvciBvY2N1cnMgaW4g4oCcMDAwMS1saWJwY2FwIOKApiBoZWFkZXJz
-LnBhdGNo4oCdIGZpbGU6DQpFUlJPUjogQXBwbHlpbmcgcGF0Y2ggJzAwMDEtbGlicGNhcC1zZWFy
-Y2gtc3lzcm9vdC1mb3ItaGVhZGVycy5wYXRjaCcgb24gdGFyZ2V0IGRpcmVjdG9yeSAnL2hvbWUv
-dXNlci9mc2wtYXV0by15b2N0by1ic3AvYnVpbGRfczMyZzI3NGFyZGIyL3RtcC93b3JrL2NvcnRl
-eGE1My1jcnlwdG8tZnNsLWxpbnV4L3Nub3J0LzMuMS42Mi4wLXIwL3Nub3J0LTMuMS42Mi4wJw0K
-Q21kRXJyb3IoJ3F1aWx0IC0tcXVpbHRyYyAvaG9tZS91c2VyL2ZzbC1hdXRvLXlvY3RvLWJzcC9i
-dWlsZF9zMzJnMjc0YXJkYjIvdG1wL3dvcmsvY29ydGV4YTUzLWNyeXB0by1mc2wtbGludXgvc25v
-cnQvMy4xLjYyLjAtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL2V0Yy9xdWlsdHJjIHB1c2gnLCAw
-LCAic3Rkb3V0OiBBcHBseWluZyBwYXRjaCAwMDAxLWxpYnBjYXAtc2VhcmNoLXN5c3Jvb3QtZm9y
-LWhlYWRlcnMucGF0Y2gNCmNhbid0IGZpbmQgZmlsZSB0byBwYXRjaCBhdCBpbnB1dCBsaW5lIDIx
-DQpQZXJoYXBzIHlvdSB1c2VkIHRoZSB3cm9uZyAtcCBvciAtLXN0cmlwIG9wdGlvbj8NCg0KQXMg
-dGhlIHBhdGNoZXMgYXJlIG5vdCB3cml0dGVuIGZvciBzbm9ydCAzIEkgdHJpZWQgYWdhaW4gYnV0
-IGRlbGV0ZWQgdGhlIHBhdGNoZXMgZnJvbSB0aGUg4oCcLmJi4oCdIGZpbGUuIE5vdyB0aGUgZm9s
-bG93aW5nIGVycm9yIG9jY3VyczoNCkRFQlVHOiBFeGVjdXRpbmcgcHl0aG9uIGZ1bmN0aW9uIGF1
-dG90b29sc19hY2xvY2Fscw0KREVCVUc6IFNJVEUgZmlsZXMgWydlbmRpYW4tbGl0dGxlJywgJ2Jp
-dC02NCcsICdhcm0tY29tbW9uJywgJ2FybS02NCcsICdjb21tb24tbGludXgnLCAnY29tbW9uLWds
-aWJjJywgJ2FhcmNoNjQtbGludXgnLCAnY29tbW9uJ10NCkRFQlVHOiBQeXRob24gZnVuY3Rpb24g
-YXV0b3Rvb2xzX2FjbG9jYWxzIGZpbmlzaGVkDQpERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1bmN0
-aW9uIGRvX2NvbXBpbGUNCk5PVEU6IG1ha2UgLWogNg0KbWFrZTogKioqIE5vIHRhcmdldHMgc3Bl
-Y2lmaWVkIGFuZCBubyBtYWtlZmlsZSBmb3VuZC4gIFN0b3AuDQpFUlJPUjogb2VfcnVubWFrZSBm
-YWlsZWQNCldBUk5JTkc6IGV4aXQgY29kZSAxIGZyb20gYSBzaGVsbCBjb21tYW5kLg0KDQpOb3cg
-SSBhbSBub3Qgc3VyZSB3aGVyZSBhbmQgYXQgd2hpY2ggcG9pbnQgdGhlIG1ha2UgZmlsZSBzaG91
-bGQgYmUgY3JlYXRlZCBhbmQgd2h5IGl0IGlzIG1pc3NpbmcuIENvdWxkIHlvdSBnaXZlIHNvbWUg
-dGlwcyBvbiBob3cgdG8gdHJhbnNmZXIgdGhpcyByZWNpcGUgdG8gYW4gc25vcnQgMyByZWNpcGU/
-DQoNClRoYW5rIHlvdSBmb3IgcmVhZGluZw0KDQpHLiBSb3N0YW5pbg0KDQpWb246IFRyZXZvciBH
-YW1ibGluIDx0Z2FtYmxpbkBiYXlsaWJyZS5jb20+DQpHZXNlbmRldDogRnJlaXRhZywgOS4gSnVu
-aSAyMDIzIDE4OjI1DQpBbjogUm9zdGFuaW4gR2xlYiBTQlIgRElSQ1MgPEdsZWIuUm9zdGFuaW5A
-emYuY29tPjsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KQmV0cmVmZjogUmU6IFt5b2N0
-b10gU25vcnQgMi45IGludG8gU25vcnQgMyByZWNpcGUNCg0KDQoNCk9uIDIwMjMtMDYtMDkgMTA6
-MDUsIFJvc3RhbmluIEdsZWIgU0JSIERJUkNTIHdyb3RlOg0KSGVsbG8gT3BlbkVtYmVkZGVkIENv
-bW11bml0eSwNCg0KY3VycmVudGx5IEkgYW0gd29ya2luZyBvbiBpbXBsZW1lbnRpbmcgdGhlIFNu
-b3J0IElEUyBvbiBhbiBlbWJlZGRlZCBzeXN0ZW0gd2l0aCB0aGUgWW9jdG8gTGludXggT1MuIEFz
-IE9wZW5FbWJlZGRlZCBhbHJlYWR5IHByb3ZpZGVzIGEgcmVjaXBlIGZvciBTbm9ydCAyLjkgaXQg
-aXMgZWFzeSB0byBpbnN0YWxsIHNub3J0IGludG8gdGhlIE9TLiBVbmZvcnR1bmF0ZWx5LCBpdCBp
-cyBub3QgZWFzeSB0byBjaGFuZ2UgdGhlIHJlY2lwZSBzbyB0aGF0IHRoZSBuZXcgU25vcnQgMyB2
-ZXJzaW9uIGlzIGluc3RhbGxlZC4gSSB0cmllZCB0byBjaGFuZ2UgdGhlIGdpdCByZXBvIGxpbmsg
-YW5kIHRoZSBjaGVja3N1bSAoYXMgYSBzaW1wbGUgc29sdXRpb24gdHJ5KSwgYnV0IHVuZm9ydHVu
-YXRlbHksIEkgcmFuIGludG8gbXVsdGlwbGUgZXJyb3JzLCBhbmQgSSBhbSBub3Qgc3VyZSBhdCB3
-aGljaCBwb2ludCBJIG5lZWQgdG8gbWFrZSBmdXJ0aGVyIGNoYW5nZXMuIEFzIEkgY291bGQgdW5k
-ZXJzdGFuZCwgYWxzbyBhIGZldyBjaGFuZ2VzIHRvIHRoZSBzb3VyY2UgY29kZSBvZiBTbm9ydCBt
-dXN0IGJlIGRvbmUgdG8gbWFrZSBpdCB3b3JrIG9uIHRoZSBZb2N0byBPUy4NCldhcyBzb21lb25l
-IGFscmVhZHkgc3VjY2Vzc2Z1bCBpbiBpbXBsZW1lbnRpbmcgYSByZWNpcGUgdG8gaW5zdGFsbCB0
-aGUgbmV3ZXIgU25vcnQgMyB2ZXJzaW9uIGRpcmVjdGx5IG9uIFlvY3RvPyBXaGF0IGRvIEkgaGF2
-ZSB0byBjaGFuZ2UgaW4gdGhlIFNub3J0IDIuOSByZWNpcGUgdG8gaW5zdGFsbCB0aGUgU25vcnQg
-MyB2ZXJzaW9uPw0KDQpUaGUgZXJyb3JzIHlvdSdyZSBzZWVpbmcgd2hlbiB5b3UgdHJ5IHRvIGJ1
-aWxkIFNub3J0IDMgc2hvdWxkIHByb3ZpZGUgYSBjbHVlLiBJZiB5b3UgcG9zdCB0aG9zZSwgc29t
-ZW9uZSBtYXkgYmUgYWJsZSB0byBwcm92aWRlIGZ1cnRoZXIgc3VnZ2VzdGlvbnMuDQoNClRyZXZv
-cg0KT2YgY291cnNlLCBhbm90aGVyIHNvbHV0aW9uIGNvdWxkIGJlIGNyb3NzIGNvbXBpbGluZyBT
-bm9ydCBmb3IgdGhlIGVtYmVkZGVkIHN5c3RlbSwgYnV0IG1heWJlIHRoZXJlIGlzIGFscmVhZHkg
-YSBzb2x1dGlvbiBmb3IgdGhpcy4NCkkgaGFwcHkgYWJvdXQgYW55IGhlbHAgb3IgY29tbWVudCBv
-biB0aGlzIHRvcGljIQ0KDQpLaW5kIHJlZ2FyZHMNCg0KRy4gUm9zdGFuaW4NCg0KDQoNCg0KDQot
-PS09LT0tPS09LT0tPS09LT0tPS09LQ0KDQpMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2Vz
-IHNlbnQgdG8gdGhpcyBncm91cC4NCg0KVmlldy9SZXBseSBPbmxpbmUgKCM2MDIzOSk6IGh0dHBz
-Oi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL21lc3NhZ2UvNjAyMzk8aHR0cHM6Ly9s
-aXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS82MDIzOT4NCg0KTXV0ZSBUaGlz
-IFRvcGljOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvOTk0Mjg5MTQvNzYxMTY3
-OTxodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvOTk0Mjg5MTQvNzYxMTY3OT4NCg0K
-R3JvdXAgT3duZXI6IHlvY3RvK293bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlv
-Y3RvK293bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+DQoNClVuc3Vic2NyaWJlOiBodHRwczov
-L2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YjxodHRwczovL2xpc3RzLnlvY3Rv
-cHJvamVjdC5vcmcvZy95b2N0by91bnN1Yj4gW3RnYW1ibGluQGJheWxpYnJlLmNvbTxtYWlsdG86
-dGdhbWJsaW5AYmF5bGlicmUuY29tPl0NCg0KLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCg0KDQo=
 
---_000_DB6PR0801MB1784F72924A0EFBF9006D1989954ADB6PR0801MB1784_
+On 2023-06-12 07:33, Rostanin Gleb SBR DIRCS wrote:
+>
+> Hello,
+>
+> I did the following steps:
+>
+>   * Rename recipe file name to snort_3.1.62.0.bb
+>   * Changed line 9 “SRC_URI = “…/snort/${BP}.tar.gz”” to
+>     https://www.snort.org/downloads/snortplus/snort3-3.1.62.0.tar.gz
+>   * Added correct snort3 sha256sum in line 17
+>   * Added correct MD5 checksum of the snort tar ball in line 5
+>
+> The following error occurs in “0001-libpcap … headers.patch” file:
+>
+> /ERROR: Applying patch '0001-libpcap-search-sysroot-for-headers.patch' 
+> on target directory 
+> '/home/user/fsl-auto-yocto-bsp/build_s32g274ardb2/tmp/work/cortexa53-crypto-fsl-linux/snort/3.1.62.0-r0/snort-3.1.62.0'/
+>
+> /CmdError('quilt --quiltrc 
+> /home/user/fsl-auto-yocto-bsp/build_s32g274ardb2/tmp/work/cortexa53-crypto-fsl-linux/snort/3.1.62.0-r0/recipe-sysroot-native/etc/quiltrc 
+> push', 0, "stdout: Applying patch 
+> 0001-libpcap-search-sysroot-for-headers.patch/
+>
+> /can't find file to patch at input line 21/
+>
+> /Perhaps you used the wrong -p or --strip option?/
+>
+> //
+>
+> As the patches are not written for snort 3 I tried again but deleted 
+> the patches from the “.bb” file. Now the following error occurs:
+>
+> /DEBUG: Executing python function autotools_aclocals
+> DEBUG: SITE files ['endian-little', 'bit-64', 'arm-common', 'arm-64', 
+> 'common-linux', 'common-glibc', 'aarch64-linux', 'common']
+> DEBUG: Python function autotools_aclocals finished
+> DEBUG: Executing shell function do_compile
+> NOTE: make -j 6
+> make: *** No targets specified and no makefile found. Stop.
+> ERROR: oe_runmake failed
+> WARNING: exit code 1 from a shell command.///
+>
+> Now I am not sure where and at which point the make file should be 
+> created and why it is missing. Could you give some tips on how to 
+> transfer this recipe to an snort 3 recipe?
+>
+It looks like snort 2.x uses Autotools for setup, while 3.x uses CMake 
+instead. You would have to adjust the recipe so that it uses the latter 
+and passes the correct build flags for the "default" snort configuration 
+(I'm not sure what those would be). You may also need to spend some time 
+making sure that the changes provided by those deleted patches aren't 
+still required somewhere in the new source files.
+
+If you do 'grep -r "inherit cmake"' on openembedded-core/meta, you can 
+find many examples of other recipes that use CMake for building that you 
+could use as references.
+
+> Thank you for reading
+>
+> G. Rostanin
+>
+> *Von:*Trevor Gamblin <tgamblin@baylibre.com>
+> *Gesendet:* Freitag, 9. Juni 2023 18:25
+> *An:* Rostanin Gleb SBR DIRCS <Gleb.Rostanin@zf.com>; 
+> yocto@lists.yoctoproject.org
+> *Betreff:* Re: [yocto] Snort 2.9 into Snort 3 recipe
+>
+> On 2023-06-09 10:05, Rostanin Gleb SBR DIRCS wrote:
+>
+>     Hello OpenEmbedded Community,
+>
+>     currently I am working on implementing the Snort IDS on an
+>     embedded system with the Yocto Linux OS. As OpenEmbedded already
+>     provides a recipe for Snort 2.9 it is easy to install snort into
+>     the OS. Unfortunately, it is not easy to change the recipe so that
+>     the new Snort 3 version is installed. I tried to change the git
+>     repo link and the checksum (as a simple solution try), but
+>     unfortunately, I ran into multiple errors, and I am not sure at
+>     which point I need to make further changes. As I could understand,
+>     also a few changes to the source code of Snort must be done to
+>     make it work on the Yocto OS.
+>
+>     Was someone already successful in implementing a recipe to install
+>     the newer Snort 3 version directly on Yocto? What do I have to
+>     change in the Snort 2.9 recipe to install the Snort 3 version?
+>
+> The errors you're seeing when you try to build Snort 3 should provide 
+> a clue. If you post those, someone may be able to provide further 
+> suggestions.
+>
+> Trevor
+>
+>     Of course, another solution could be cross compiling Snort for the
+>     embedded system, but maybe there is already a solution for this.
+>
+>     I happy about any help or comment on this topic!
+>
+>     Kind regards
+>
+>     G. Rostanin
+>
+>
+>
+>     -=-=-=-=-=-=-=-=-=-=-=-
+>
+>     Links: You receive all messages sent to this group.
+>
+>     View/Reply Online (#60239):
+>     https://lists.yoctoproject.org/g/yocto/message/60239  <https://lists.yoctoproject.org/g/yocto/message/60239>
+>
+>     Mute This Topic: https://lists.yoctoproject.org/mt/99428914/7611679  <https://lists.yoctoproject.org/mt/99428914/7611679>
+>
+>     Group Owner: yocto+owner@lists.yoctoproject.org  <mailto:yocto+owner@lists.yoctoproject.org>
+>
+>     Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  <https://lists.yoctoproject.org/g/yocto/unsub>[tgamblin@baylibre.com  <mailto:tgamblin@baylibre.com>]
+>
+>     -=-=-=-=-=-=-=-=-=-=-=-
+>
+--------------VMMHswEP824gvXzATtEXb7Xt
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
-MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
-IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglw
-YW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5
-OkNvbnNvbGFzOw0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERl
-ZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJ
-e21hcmdpbi10b3A6MGNtOw0KCW1hcmdpbi1yaWdodDowY207DQoJbWFyZ2luLWJvdHRvbTo2LjBw
-dDsNCgltYXJnaW4tbGVmdDowY207DQoJZm9udC1zaXplOjEwLjVwdDsNCglmb250LWZhbWlseToi
-VGFob21hIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCmE6bGlu
-aywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJs
-dWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwcmUNCgl7bXNvLXN0eWxlLXByaW9y
-aXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFZvcmZvcm1hdGllcnQgWmNobiI7DQoJbWFy
-Z2luOjBjbTsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7
-fQ0KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNvTGlzdFBh
-cmFncmFwaA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowY207DQoJbWFy
-Z2luLXJpZ2h0OjBjbTsNCgltYXJnaW4tYm90dG9tOjYuMHB0Ow0KCW1hcmdpbi1sZWZ0OjM2LjBw
-dDsNCglmb250LXNpemU6MTAuNXB0Ow0KCWZvbnQtZmFtaWx5OiJUYWhvbWEiLHNhbnMtc2VyaWY7
-DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0Kc3Bhbi5IVE1MVm9yZm9ybWF0aWVydFpj
-aG4NCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgVm9yZm9ybWF0aWVydCBaY2huIjsNCgltc28tc3R5
-bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgVm9yZm9ybWF0aWVydCI7DQoJ
-Zm9udC1mYW1pbHk6Q29uc29sYXM7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0Kc3Bh
-bi5FLU1haWxGb3JtYXR2b3JsYWdlMjINCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7
-DQoJZm9udC1mYW1pbHk6IlRhaG9tYSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
-Ci5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6
-ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0K
-CW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4wY20gNzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24x
-DQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGww
-DQoJe21zby1saXN0LWlkOjEwOTk5ODMzMzY7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOjIwNjgz
-MTY3Mzg7fQ0KQGxpc3QgbDA6bGV2ZWwxDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxl
-dDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjM2LjBwdDsNCglt
-c28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglt
-c28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBs
-MDpsZXZlbDINCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10
-ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6NzIuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXIt
-cG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6
-ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsMw0KCXttc28t
-bGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1s
-ZXZlbC10YWItc3RvcDoxMDguMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsN
-Cgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9u
-dC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsNA0KCXttc28tbGV2ZWwtbnVtYmVyLWZv
-cm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDox
-NDQuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDot
-MTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9s
-O30NCkBsaXN0IGwwOmxldmVsNQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJ
-bXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoxODAuMHB0Ow0KCW1zby1s
-ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1h
-bnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxl
-dmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6
-74K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoyMTYuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9z
-aXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZTox
-MC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2
-ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZl
-bC10YWItc3RvcDoyNTIuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0
-ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1m
-YW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1h
-dDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoyODgu
-MHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTgu
-MHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30N
-CkBsaXN0IGwwOmxldmVsOQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNv
-LWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDozMjQuMHB0Ow0KCW1zby1sZXZl
-bC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNp
-LWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwxDQoJe21z
-by1saXN0LWlkOjE2MTgyOTYwMzI7DQoJbXNvLWxpc3QtdHlwZTpoeWJyaWQ7DQoJbXNvLWxpc3Qt
-dGVtcGxhdGUtaWRzOjEzODE4MjU3NDggNjc1Njc2MTcgNjc1Njc2MTkgNjc1Njc2MjEgNjc1Njc2
-MTcgNjc1Njc2MTkgNjc1Njc2MjEgNjc1Njc2MTcgNjc1Njc2MTkgNjc1Njc2MjE7fQ0KQGxpc3Qg
-bDE6bGV2ZWwxDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
-dGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1w
-b3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9s
-O30NCkBsaXN0IGwxOmxldmVsMg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJ
-bXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwt
-bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWls
-eToiQ291cmllciBOZXciO30NCkBsaXN0IGwxOmxldmVsMw0KCXttc28tbGV2ZWwtbnVtYmVyLWZv
-cm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpu
-b25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTgu
-MHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMTpsZXZlbDQNCgl7bXNvLWxl
-dmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2
-ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4
-dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw1
-DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0K
-CW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVm
-dDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0K
-QGxpc3QgbDE6bGV2ZWw2DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28t
-bGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51
-bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJZm9udC1mYW1pbHk6
-V2luZ2RpbmdzO30NCkBsaXN0IGwxOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpi
-dWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0K
-CW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0K
-CWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMTpsZXZlbDgNCgl7bXNvLWxldmVsLW51bWJl
-ci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVsLXRhYi1zdG9w
-Om5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0x
-OC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpAbGlzdCBsMTpsZXZlbDkNCgl7
-bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCglt
-c28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
-DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0Kb2wNCgl7
-bWFyZ2luLWJvdHRvbTowY207fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowY207fQ0KLS0+PC9zdHls
-ZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQi
-IHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0
-IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFk
-Pg0KPGJvZHkgbGFuZz0iREUiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiIHN0eWxlPSJ3b3Jk
-LXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5I
-ZWxsbyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
-YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdCI+SSBkaWQgdGhlIGZvbGxvd2luZyBzdGVwczo8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8dWwgc3R5bGU9Im1hcmdpbi10b3A6MGNtIiB0eXBlPSJkaXNjIj4NCjxsaSBj
-bGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdpbi1sZWZ0OjBjbTttc28tbGlzdDps
-MSBsZXZlbDEgbGZvMyI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-Ij5SZW5hbWUgcmVjaXBlIGZpbGUgbmFtZSB0byBzbm9ydF8zLjEuNjIuMC5iYjxvOnA+PC9vOnA+
-PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxl
-ZnQ6MGNtO21zby1saXN0OmwxIGxldmVsMSBsZm8zIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQiPkNoYW5nZWQgbGluZSA5IOKAnFNSQ19VUkkgPSDigJzigKYvc25v
-cnQvJHtCUH0udGFyLmd64oCd4oCdIHRvDQo8YSBocmVmPSJodHRwczovL3d3dy5zbm9ydC5vcmcv
-ZG93bmxvYWRzL3Nub3J0cGx1cy9zbm9ydDMtMy4xLjYyLjAudGFyLmd6Ij5odHRwczovL3d3dy5z
-bm9ydC5vcmcvZG93bmxvYWRzL3Nub3J0cGx1cy9zbm9ydDMtMy4xLjYyLjAudGFyLmd6PC9hPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0i
-bWFyZ2luLWxlZnQ6MGNtO21zby1saXN0OmwxIGxldmVsMSBsZm8zIj48c3BhbiBsYW5nPSJFTi1V
-UyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPkFkZGVkIGNvcnJlY3Qgc25vcnQzIHNoYTI1NnN1
-bSBpbiBsaW5lIDE3DQo8bzpwPjwvbzpwPjwvc3Bhbj48L2xpPjxsaSBjbGFzcz0iTXNvTGlzdFBh
-cmFncmFwaCIgc3R5bGU9Im1hcmdpbi1sZWZ0OjBjbTttc28tbGlzdDpsMSBsZXZlbDEgbGZvMyI+
-PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5BZGRlZCBjb3JyZWN0
-IE1ENSBjaGVja3N1bSBvZiB0aGUgc25vcnQgdGFyIGJhbGwgaW4gbGluZSA1PG86cD48L286cD48
-L3NwYW4+PC9saT48L3VsPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5UaGUgZm9sbG93aW5nIGVycm9yIG9jY3VycyBpbiDi
-gJwwMDAxLWxpYnBjYXAg4oCmIGhlYWRlcnMucGF0Y2jigJ0gZmlsZTo8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48aT48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQiPkVSUk9SOiBBcHBseWluZyBwYXRjaCAnMDAwMS1saWJwY2FwLXNl
-YXJjaC1zeXNyb290LWZvci1oZWFkZXJzLnBhdGNoJyBvbiB0YXJnZXQgZGlyZWN0b3J5ICcvaG9t
-ZS91c2VyL2ZzbC1hdXRvLXlvY3RvLWJzcC9idWlsZF9zMzJnMjc0YXJkYjIvdG1wL3dvcmsvY29y
-dGV4YTUzLWNyeXB0by1mc2wtbGludXgvc25vcnQvMy4xLjYyLjAtcjAvc25vcnQtMy4xLjYyLjAn
-PG86cD48L286cD48L3NwYW4+PC9pPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxpPjxzcGFu
-IGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Q21kRXJyb3IoJ3F1aWx0IC0t
-cXVpbHRyYyAvaG9tZS91c2VyL2ZzbC1hdXRvLXlvY3RvLWJzcC9idWlsZF9zMzJnMjc0YXJkYjIv
-dG1wL3dvcmsvY29ydGV4YTUzLWNyeXB0by1mc2wtbGludXgvc25vcnQvMy4xLjYyLjAtcjAvcmVj
-aXBlLXN5c3Jvb3QtbmF0aXZlL2V0Yy9xdWlsdHJjIHB1c2gnLCAwLCAmcXVvdDtzdGRvdXQ6IEFw
-cGx5aW5nDQogcGF0Y2ggMDAwMS1saWJwY2FwLXNlYXJjaC1zeXNyb290LWZvci1oZWFkZXJzLnBh
-dGNoPG86cD48L286cD48L3NwYW4+PC9pPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxpPjxz
-cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Y2FuJ3QgZmluZCBmaWxl
-IHRvIHBhdGNoIGF0IGlucHV0IGxpbmUgMjE8bzpwPjwvbzpwPjwvc3Bhbj48L2k+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PGk+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0Ij5QZXJoYXBzIHlvdSB1c2VkIHRoZSB3cm9uZyAtcCBvciAtLXN0cmlwIG9wdGlvbj88
-bzpwPjwvbzpwPjwvc3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGk+PHNwYW4g
-bGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0Ij5BcyB0aGUgcGF0Y2hlcyBhcmUgbm90IHdyaXR0ZW4gZm9y
-IHNub3J0IDMgSSB0cmllZCBhZ2FpbiBidXQgZGVsZXRlZCB0aGUgcGF0Y2hlcyBmcm9tIHRoZSDi
-gJwuYmLigJ0gZmlsZS4gTm93IHRoZSBmb2xsb3dpbmcgZXJyb3Igb2NjdXJzOjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxpPjxzcGFuIGxhbmc9IkVOLVVTIj5E
-RUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBhdXRvdG9vbHNfYWNsb2NhbHM8YnI+DQpE
-RUJVRzogU0lURSBmaWxlcyBbJ2VuZGlhbi1saXR0bGUnLCAnYml0LTY0JywgJ2FybS1jb21tb24n
-LCAnYXJtLTY0JywgJ2NvbW1vbi1saW51eCcsICdjb21tb24tZ2xpYmMnLCAnYWFyY2g2NC1saW51
-eCcsICdjb21tb24nXTxicj4NCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gYXV0b3Rvb2xzX2FjbG9j
-YWxzIGZpbmlzaGVkPGJyPg0KREVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBkb19jb21w
-aWxlPGJyPg0KTk9URTogbWFrZSAtaiA2PGJyPg0KbWFrZTogKioqIE5vIHRhcmdldHMgc3BlY2lm
-aWVkIGFuZCBubyBtYWtlZmlsZSBmb3VuZC4mbmJzcDsgU3RvcC48YnI+DQpFUlJPUjogb2VfcnVu
-bWFrZSBmYWlsZWQ8YnI+DQpXQVJOSU5HOiBleGl0IGNvZGUgMSBmcm9tIGEgc2hlbGwgY29tbWFu
-ZC48L3NwYW4+PC9pPjxpPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDttc28tZmFyZWFzdC1sYW5ndWFnZTpERSI+PG86cD48L286cD48L3NwYW4+PC9pPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpERSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj5Ob3cgSSBhbSBub3Qgc3VyZSB3aGVy
-ZSBhbmQgYXQgd2hpY2ggcG9pbnQgdGhlIG1ha2UgZmlsZSBzaG91bGQgYmUgY3JlYXRlZCBhbmQg
-d2h5IGl0IGlzIG1pc3NpbmcuIENvdWxkIHlvdSBnaXZlIHNvbWUgdGlwcyBvbiBob3cgdG8gdHJh
-bnNmZXIgdGhpcyByZWNpcGUgdG8gYW4gc25vcnQgMw0KIHJlY2lwZT8gPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQiPlRoYW5rIHlvdSBmb3IgcmVhZGluZzxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5H
-LiBSb3N0YW5pbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286
-cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6
-c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjBjbSI+PGI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj5Wb246PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
-bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6REUiPiBUcmV2b3IgR2FtYmxpbg0KICZsdDt0Z2FtYmxpbkBi
-YXlsaWJyZS5jb20mZ3Q7IDxicj4NCjxiPkdlc2VuZGV0OjwvYj4gRnJlaXRhZywgOS4gPC9zcGFu
-PjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6REUiPkp1
-bmkgMjAyMyAxODoyNTxicj4NCjxiPkFuOjwvYj4gUm9zdGFuaW4gR2xlYiBTQlIgRElSQ1MgJmx0
-O0dsZWIuUm9zdGFuaW5AemYuY29tJmd0OzsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxi
-cj4NCjxiPkJldHJlZmY6PC9iPiBSZTogW3lvY3RvXSBTbm9ydCAyLjkgaW50byBTbm9ydCAzIHJl
-Y2lwZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHA+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+T24gMjAyMy0wNi0wOSAx
-MDowNSwgUm9zdGFuaW4gR2xlYiBTQlIgRElSQ1Mgd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90
-dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdCI+SGVsbG8gT3BlbkVtYmVkZGVkIENvbW11bml0eSw8L3NwYW4+
-PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7
-PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
-PmN1cnJlbnRseSBJIGFtIHdvcmtpbmcgb24gaW1wbGVtZW50aW5nIHRoZSBTbm9ydCBJRFMgb24g
-YW4gZW1iZWRkZWQgc3lzdGVtIHdpdGggdGhlIFlvY3RvIExpbnV4IE9TLiBBcyBPcGVuRW1iZWRk
-ZWQgYWxyZWFkeSBwcm92aWRlcyBhIHJlY2lwZSBmb3IgU25vcnQgMi45IGl0IGlzIGVhc3kgdG8g
-aW5zdGFsbCBzbm9ydCBpbnRvIHRoZQ0KIE9TLiBVbmZvcnR1bmF0ZWx5LCBpdCBpcyBub3QgZWFz
-eSB0byBjaGFuZ2UgdGhlIHJlY2lwZSBzbyB0aGF0IHRoZSBuZXcgU25vcnQgMyB2ZXJzaW9uIGlz
-IGluc3RhbGxlZC4gSSB0cmllZCB0byBjaGFuZ2UgdGhlIGdpdCByZXBvIGxpbmsgYW5kIHRoZSBj
-aGVja3N1bSAoYXMgYSBzaW1wbGUgc29sdXRpb24gdHJ5KSwgYnV0IHVuZm9ydHVuYXRlbHksIEkg
-cmFuIGludG8gbXVsdGlwbGUgZXJyb3JzLCBhbmQgSSBhbSBub3Qgc3VyZSBhdCB3aGljaA0KIHBv
-aW50IEkgbmVlZCB0byBtYWtlIGZ1cnRoZXIgY2hhbmdlcy4gQXMgSSBjb3VsZCB1bmRlcnN0YW5k
-LCBhbHNvIGEgZmV3IGNoYW5nZXMgdG8gdGhlIHNvdXJjZSBjb2RlIG9mIFNub3J0IG11c3QgYmUg
-ZG9uZSB0byBtYWtlIGl0IHdvcmsgb24gdGhlIFlvY3RvIE9TLg0KPC9zcGFuPjxzcGFuIGxhbmc9
-IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPldhcyBzb21lb25lIGFscmVh
-ZHkgc3VjY2Vzc2Z1bCBpbiBpbXBsZW1lbnRpbmcgYSByZWNpcGUgdG8gaW5zdGFsbCB0aGUgbmV3
-ZXIgU25vcnQgMyB2ZXJzaW9uIGRpcmVjdGx5IG9uIFlvY3RvPyBXaGF0IGRvIEkgaGF2ZSB0byBj
-aGFuZ2UgaW4gdGhlIFNub3J0IDIuOSByZWNpcGUgdG8gaW5zdGFsbCB0aGUgU25vcnQgMyB2ZXJz
-aW9uPzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9i
-bG9ja3F1b3RlPg0KPHA+PHNwYW4gbGFuZz0iRU4tVVMiPlRoZSBlcnJvcnMgeW91J3JlIHNlZWlu
-ZyB3aGVuIHlvdSB0cnkgdG8gYnVpbGQgU25vcnQgMyBzaG91bGQgcHJvdmlkZSBhIGNsdWUuIElm
-IHlvdSBwb3N0IHRob3NlLCBzb21lb25lIG1heSBiZSBhYmxlIHRvIHByb3ZpZGUgZnVydGhlciBz
-dWdnZXN0aW9ucy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cD48c3BhbiBsYW5nPSJFTi1VUyI+
-VHJldm9yPG86cD48L286cD48L3NwYW4+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10
-b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPk9mIGNvdXJzZSwgYW5vdGhl
-ciBzb2x1dGlvbiBjb3VsZCBiZSBjcm9zcyBjb21waWxpbmcgU25vcnQgZm9yIHRoZSBlbWJlZGRl
-ZCBzeXN0ZW0sIGJ1dCBtYXliZSB0aGVyZSBpcyBhbHJlYWR5IGEgc29sdXRpb24gZm9yIHRoaXMu
-PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
-PkkgaGFwcHkgYWJvdXQgYW55IGhlbHAgb3IgY29tbWVudCBvbiB0aGlzIHRvcGljITwvc3Bhbj48
-c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij4mbmJzcDs8
-L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+
-S2luZCByZWdhcmRzPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQiPiZuYnNwOzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0Ij5HLiBSb3N0YW5pbjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdp
-bi1ib3R0b206MGNtIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxh
-bmd1YWdlOkRFIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cHJlPjxzcGFu
-IGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4g
-bGFuZz0iRU4tVVMiPi09LT0tPS09LT0tPS09LT0tPS09LT0tPG86cD48L286cD48L3NwYW4+PC9w
-cmU+DQo8cHJlPjxzcGFuIGxhbmc9IkVOLVVTIj5MaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3Nh
-Z2VzIHNlbnQgdG8gdGhpcyBncm91cC48bzpwPjwvbzpwPjwvc3Bhbj48L3ByZT4NCjxwcmU+PHNw
-YW4gbGFuZz0iRU4tVVMiPlZpZXcvUmVwbHkgT25saW5lICgjNjAyMzkpOiA8L3NwYW4+PGEgaHJl
-Zj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS82MDIzOSI+
-PHNwYW4gbGFuZz0iRU4tVVMiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3Rv
-L21lc3NhZ2UvNjAyMzk8L3NwYW4+PC9hPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwv
-c3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPk11dGUgVGhpcyBUb3BpYzogPC9z
-cGFuPjxhIGhyZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC85OTQyODkxNC83
-NjExNjc5Ij48c3BhbiBsYW5nPSJFTi1VUyI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
-L210Lzk5NDI4OTE0Lzc2MTE2Nzk8L3NwYW4+PC9hPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwv
-bzpwPjwvc3Bhbj48L3ByZT4NCjxwcmU+PHNwYW4gbGFuZz0iRU4tVVMiPkdyb3VwIE93bmVyOiA8
-L3NwYW4+PGEgaHJlZj0ibWFpbHRvOnlvY3RvK293bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmci
-PjxzcGFuIGxhbmc9IkVOLVVTIj55b2N0bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qub3JnPC9z
-cGFuPjwvYT48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wcmU+DQo8cHJl
-PjxzcGFuIGxhbmc9IkVOLVVTIj5VbnN1YnNjcmliZTogPC9zcGFuPjxhIGhyZWY9Imh0dHBzOi8v
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL3Vuc3ViIj48c3BhbiBsYW5nPSJFTi1VUyI+
-aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vdW5zdWI8L3NwYW4+PC9hPjxz
-cGFuIGxhbmc9IkVOLVVTIj4gWzwvc3Bhbj48YSBocmVmPSJtYWlsdG86dGdhbWJsaW5AYmF5bGli
-cmUuY29tIj48c3BhbiBsYW5nPSJFTi1VUyI+dGdhbWJsaW5AYmF5bGlicmUuY29tPC9zcGFuPjwv
-YT48c3BhbiBsYW5nPSJFTi1VUyI+XTxvOnA+PC9vOnA+PC9zcGFuPjwvcHJlPg0KPHByZT4tPS09
-LT0tPS09LT0tPS09LT0tPS09LTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
---_000_DB6PR0801MB1784F72924A0EFBF9006D1989954ADB6PR0801MB1784_--
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 2023-06-12 07:33, Rostanin Gleb SBR
+      DIRCS wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:DB6PR0801MB1784F72924A0EFBF9006D1989954A@DB6PR0801MB1784.eurprd08.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:10.5pt;
+	font-family:"Tahoma",sans-serif;
+	mso-fareast-language:EN-US;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Vorformatiert Zchn";
+	margin:0cm;
+	font-size:10.0pt;
+	font-family:"Courier New";}p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:36.0pt;
+	font-size:10.5pt;
+	font-family:"Tahoma",sans-serif;
+	mso-fareast-language:EN-US;}span.HTMLVorformatiertZchn
+	{mso-style-name:"HTML Vorformatiert Zchn";
+	mso-style-priority:99;
+	mso-style-link:"HTML Vorformatiert";
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}span.E-MailFormatvorlage22
+	{mso-style-type:personal-reply;
+	font-family:"Tahoma",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}ol
+	{margin-bottom:0cm;}ul
+	{margin-bottom:0cm;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US">Hello,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US">I
+            did the following steps:<o:p></o:p></span></p>
+        <ul style="margin-top:0cm" type="disc">
+          <li class="MsoListParagraph"
+            style="margin-left:0cm;mso-list:l1 level1 lfo3"><span
+              style="font-size:11.0pt" lang="EN-US">Rename recipe file
+              name to snort_3.1.62.0.bb<o:p></o:p></span></li>
+          <li class="MsoListParagraph"
+            style="margin-left:0cm;mso-list:l1 level1 lfo3"><span
+              style="font-size:11.0pt" lang="EN-US">Changed line 9
+              “SRC_URI = “…/snort/${BP}.tar.gz”” to
+              <a
+                href="https://www.snort.org/downloads/snortplus/snort3-3.1.62.0.tar.gz"
+                moz-do-not-send="true" class="moz-txt-link-freetext">https://www.snort.org/downloads/snortplus/snort3-3.1.62.0.tar.gz</a><o:p></o:p></span></li>
+          <li class="MsoListParagraph"
+            style="margin-left:0cm;mso-list:l1 level1 lfo3"><span
+              style="font-size:11.0pt" lang="EN-US">Added correct snort3
+              sha256sum in line 17
+              <o:p></o:p></span></li>
+          <li class="MsoListParagraph"
+            style="margin-left:0cm;mso-list:l1 level1 lfo3"><span
+              style="font-size:11.0pt" lang="EN-US">Added correct MD5
+              checksum of the snort tar ball in line 5<o:p></o:p></span></li>
+        </ul>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US">The
+            following error occurs in “0001-libpcap … headers.patch”
+            file:<o:p></o:p></span></p>
+        <p class="MsoNormal"><i><span style="font-size:11.0pt"
+              lang="EN-US">ERROR: Applying patch
+              '0001-libpcap-search-sysroot-for-headers.patch' on target
+              directory
+'/home/user/fsl-auto-yocto-bsp/build_s32g274ardb2/tmp/work/cortexa53-crypto-fsl-linux/snort/3.1.62.0-r0/snort-3.1.62.0'<o:p></o:p></span></i></p>
+        <p class="MsoNormal"><i><span style="font-size:11.0pt"
+              lang="EN-US">CmdError('quilt --quiltrc
+/home/user/fsl-auto-yocto-bsp/build_s32g274ardb2/tmp/work/cortexa53-crypto-fsl-linux/snort/3.1.62.0-r0/recipe-sysroot-native/etc/quiltrc
+              push', 0, "stdout: Applying patch
+              0001-libpcap-search-sysroot-for-headers.patch<o:p></o:p></span></i></p>
+        <p class="MsoNormal"><i><span style="font-size:11.0pt"
+              lang="EN-US">can't find file to patch at input line 21<o:p></o:p></span></i></p>
+        <p class="MsoNormal"><i><span style="font-size:11.0pt"
+              lang="EN-US">Perhaps you used the wrong -p or --strip
+              option?<o:p></o:p></span></i></p>
+        <p class="MsoNormal"><i><span style="font-size:11.0pt"
+              lang="EN-US"><o:p> </o:p></span></i></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US">As
+            the patches are not written for snort 3 I tried again but
+            deleted the patches from the “.bb” file. Now the following
+            error occurs:<o:p></o:p></span></p>
+        <p class="MsoNormal"><i><span lang="EN-US">DEBUG: Executing
+              python function autotools_aclocals<br>
+              DEBUG: SITE files ['endian-little', 'bit-64',
+              'arm-common', 'arm-64', 'common-linux', 'common-glibc',
+              'aarch64-linux', 'common']<br>
+              DEBUG: Python function autotools_aclocals finished<br>
+              DEBUG: Executing shell function do_compile<br>
+              NOTE: make -j 6<br>
+              make: *** No targets specified and no makefile found. 
+              Stop.<br>
+              ERROR: oe_runmake failed<br>
+              WARNING: exit code 1 from a shell command.</span></i><i><span
+              style="font-size:11.0pt;mso-fareast-language:DE"
+              lang="EN-US"><o:p></o:p></span></i></p>
+        <p class="MsoNormal"><span
+            style="font-size:11.0pt;mso-fareast-language:DE"
+            lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:11.0pt;mso-fareast-language:DE"
+            lang="EN-US">Now I am not sure where and at which point the
+            make file should be created and why it is missing. Could you
+            give some tips on how to transfer this recipe to an snort 3
+            recipe? </span></p>
+      </div>
+    </blockquote>
+    <p>It looks like snort 2.x uses Autotools for setup, while 3.x uses
+      CMake instead. You would have to adjust the recipe so that it uses
+      the latter and passes the correct build flags for the "default"
+      snort configuration (I'm not sure what those would be). You may
+      also need to spend some time making sure that the changes provided
+      by those deleted patches aren't still required somewhere in the
+      new source files. <br>
+    </p>
+    <p>If you do 'grep -r "inherit cmake"' on openembedded-core/meta,
+      you can find many examples of other recipes that use CMake for
+      building that you could use as references.<br>
+    </p>
+    <blockquote type="cite"
+cite="mid:DB6PR0801MB1784F72924A0EFBF9006D1989954A@DB6PR0801MB1784.eurprd08.prod.outlook.com">
+      <div class="WordSection1">
+        <p class="MsoNormal"><span
+            style="font-size:11.0pt;mso-fareast-language:DE"
+            lang="EN-US"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:11.0pt;mso-fareast-language:DE"
+            lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US">Thank
+            you for reading<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US">G.
+            Rostanin<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:11.0pt" lang="EN-US"><o:p> </o:p></span></p>
+        <div>
+          <div style="border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0cm 0cm 0cm">
+            <p class="MsoNormal" style="margin-bottom:0cm"><b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:DE">Von:</span></b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:DE">
+                Trevor Gamblin <a class="moz-txt-link-rfc2396E" href="mailto:tgamblin@baylibre.com">&lt;tgamblin@baylibre.com&gt;</a> <br>
+                <b>Gesendet:</b> Freitag, 9. </span><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:DE"
+                lang="EN-US">Juni 2023 18:25<br>
+                <b>An:</b> Rostanin Gleb SBR DIRCS
+                <a class="moz-txt-link-rfc2396E" href="mailto:Gleb.Rostanin@zf.com">&lt;Gleb.Rostanin@zf.com&gt;</a>;
+                <a class="moz-txt-link-abbreviated" href="mailto:yocto@lists.yoctoproject.org">yocto@lists.yoctoproject.org</a><br>
+                <b>Betreff:</b> Re: [yocto] Snort 2.9 into Snort 3
+                recipe<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p><span lang="EN-US"><o:p> </o:p></span></p>
+        <div>
+          <p class="MsoNormal"><span lang="EN-US">On 2023-06-09 10:05,
+              Rostanin Gleb SBR DIRCS wrote:<o:p></o:p></span></p>
+        </div>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US">Hello OpenEmbedded Community,</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US"> </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US">currently I am working on implementing the
+              Snort IDS on an embedded system with the Yocto Linux OS.
+              As OpenEmbedded already provides a recipe for Snort 2.9 it
+              is easy to install snort into the OS. Unfortunately, it is
+              not easy to change the recipe so that the new Snort 3
+              version is installed. I tried to change the git repo link
+              and the checksum (as a simple solution try), but
+              unfortunately, I ran into multiple errors, and I am not
+              sure at which point I need to make further changes. As I
+              could understand, also a few changes to the source code of
+              Snort must be done to make it work on the Yocto OS.
+            </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US">Was someone already successful in
+              implementing a recipe to install the newer Snort 3 version
+              directly on Yocto? What do I have to change in the Snort
+              2.9 recipe to install the Snort 3 version?</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+        </blockquote>
+        <p><span lang="EN-US">The errors you're seeing when you try to
+            build Snort 3 should provide a clue. If you post those,
+            someone may be able to provide further suggestions.<o:p></o:p></span></p>
+        <p><span lang="EN-US">Trevor<o:p></o:p></span></p>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US">Of course, another solution could be cross
+              compiling Snort for the embedded system, but maybe there
+              is already a solution for this.</span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US">I happy about any help or comment on this
+              topic!</span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US"> </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US">Kind regards</span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US"> </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="font-size:11.0pt"
+              lang="EN-US">G. Rostanin</span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal" style="margin-bottom:0cm"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:DE"
+              lang="EN-US"><br>
+              <br>
+              <o:p></o:p></span></p>
+          <pre><span lang="EN-US"><o:p> </o:p></span></pre>
+          <pre><span lang="EN-US">-=-=-=-=-=-=-=-=-=-=-=-<o:p></o:p></span></pre>
+          <pre><span lang="EN-US">Links: You receive all messages sent to this group.<o:p></o:p></span></pre>
+          <pre><span lang="EN-US">View/Reply Online (#60239): </span><a href="https://lists.yoctoproject.org/g/yocto/message/60239" moz-do-not-send="true"><span lang="EN-US">https://lists.yoctoproject.org/g/yocto/message/60239</span></a><span lang="EN-US"><o:p></o:p></span></pre>
+          <pre><span lang="EN-US">Mute This Topic: </span><a href="https://lists.yoctoproject.org/mt/99428914/7611679" moz-do-not-send="true"><span lang="EN-US">https://lists.yoctoproject.org/mt/99428914/7611679</span></a><span lang="EN-US"><o:p></o:p></span></pre>
+          <pre><span lang="EN-US">Group Owner: </span><a href="mailto:yocto+owner@lists.yoctoproject.org" moz-do-not-send="true"><span lang="EN-US">yocto+owner@lists.yoctoproject.org</span></a><span lang="EN-US"><o:p></o:p></span></pre>
+          <pre><span lang="EN-US">Unsubscribe: </span><a href="https://lists.yoctoproject.org/g/yocto/unsub" moz-do-not-send="true"><span lang="EN-US">https://lists.yoctoproject.org/g/yocto/unsub</span></a><span lang="EN-US"> [</span><a href="mailto:tgamblin@baylibre.com" moz-do-not-send="true"><span lang="EN-US">tgamblin@baylibre.com</span></a><span lang="EN-US">]<o:p></o:p></span></pre>
+          <pre>-=-=-=-=-=-=-=-=-=-=-=-<o:p></o:p></pre>
+          <pre><o:p> </o:p></pre>
+        </blockquote>
+      </div>
+    </blockquote>
+  </body>
+</html>
 
+--------------VMMHswEP824gvXzATtEXb7Xt--
 
