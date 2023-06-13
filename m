@@ -1,158 +1,130 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F4A1EB64D0
-	for <webhook@archiver.kernel.org>; Tue, 13 Jun 2023 19:13:01 +0000 (UTC)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
- by mx.groups.io with SMTP id smtpd.web11.29.1686683571263541643
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 961A3EB64D7
+	for <webhook@archiver.kernel.org>; Tue, 13 Jun 2023 20:56:41 +0000 (UTC)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+ by mx.groups.io with SMTP id smtpd.web11.2151.1686689799538492798
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Jun 2023 12:12:51 -0700
+ Tue, 13 Jun 2023 13:56:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=qMM5JUoV;
- spf=pass (domain: gmail.com, ip: 209.85.128.180, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-56ce53c0040so44023227b3.2
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Jun 2023 12:12:51 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=d9KTBZ3P;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.46, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-3f8c5d0b19dso15262935e9.1
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Jun 2023 13:56:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686683570; x=1689275570;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xdXKOkQ/zQ9fzA9OvM9ROjslrdJI2mW6eQ1IL6mpDkA=;
-        b=qMM5JUoVPX3Zq32957RW2jtP5ZQu1TtWVG0+59WozoLeNZAMWrdfGPOgIvjz0lRqND
-         1jHnOMf1zrgI7aezMd7PREz9ASdz/vlkH/2AuhZWxBSnETpk+BB+kCKpYoeluPyRCHdG
-         RYspa4WnNxVzF6tDaZJ+i1+V7ajzQS3bsYff0pkg037ZPO2luSpxvyGEAJ1hhNpM24CV
-         buigNFf56hXSinUJwG3692UYZ9TphfHBtHFxdOwD0BIikgLdwRaUBad7IRWC91Va8Z9E
-         yjGkXdg7o+74MLUoGPJkGHob3hfUpxfSazzcam+4nX99ir1Psm/ertsxN7K1+5IObx4e
-         N24A==
+        d=linuxfoundation.org; s=google; t=1686689798; x=1689281798;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Uq//R1le2sZPV8tkNPayhRAFa0uCnF6hGJoj5bmT0O8=;
+        b=d9KTBZ3P2r7D8nu/ypmXxMyxSjaOG0pzD4qQRfYwM4nHIWmSOPChr2YFHhl8lcII5W
+         Ze4z3aEDb4mHtyPIR3PBmOSAWzg0f8SeeekwLJ8kk62D+79qjo4ogc0EN75uwWrepjKk
+         e90b0gcLGQ8WLu3ZVnErLSmONi9z8QYtg1Qlk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686683570; x=1689275570;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xdXKOkQ/zQ9fzA9OvM9ROjslrdJI2mW6eQ1IL6mpDkA=;
-        b=Q8FTT7Rs7eh07TZqRF1shd/rR0BKF3G9t1a7YVwewq/ogcctL6mM8ZZlrbRcU/5Xc4
-         FHXVR90Czc7vTGq58m/jEV+/7eIkf+Hn6hVu2x3wpQ6/hEIR0P5h66k4sKgTkkyQ0bo2
-         2w2TVTL6mIntLwsNO6/QWmY9dV9obaKHBRNb3Awsf52YHs+vEfE+PIG3qySR6uOrBcDu
-         TKqAwgzJQk0pSNCC2bo7QviwHANxO9utjeapTwzFsW6KQZAINZAhO1koyF8N2NRHAZbW
-         nR/LIaWlQyk3jP9SSDYxl1/dUyXDGYNH6phbNxvoNP43+uYjFBO/Nz+9hSQh8NDWnO75
-         JXSg==
-X-Gm-Message-State: AC+VfDwkjp4YvqV4nkShhCjphWe+ziTptcJ693AKRR6jhA+egoMUfcbI
-	j/NyaO30tEop0uZLlnR7KwwC8Y8/a/I=
-X-Google-Smtp-Source: ACHHUZ71MU6UbBQ/0zDEqNDYpFBZlGL08hXnrcsAM/zPbCdOD6f7BRz377ZLejFsU5ZiM/zcTbUHjQ==
-X-Received: by 2002:a0d:eb4b:0:b0:56d:7c4:8be8 with SMTP id u72-20020a0deb4b000000b0056d07c48be8mr2796677ywe.16.1686683570202;
-        Tue, 13 Jun 2023 12:12:50 -0700 (PDT)
-Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:be62:56a:860e:4129])
-        by smtp.gmail.com with ESMTPSA id q133-20020a815c8b000000b005569567aac1sm1971786ywb.106.2023.06.13.12.12.49
-        for <yocto@lists.yoctoproject.org>
+        d=1e100.net; s=20221208; t=1686689798; x=1689281798;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Uq//R1le2sZPV8tkNPayhRAFa0uCnF6hGJoj5bmT0O8=;
+        b=XUwT2pLYK0GxVU6u7TO/VGRhEOxyuH1zBD6qjHS5Ae0LLYzVv7VDz+FNYLzvNr+pLS
+         nDyPNMOjXhBNH8qcLqVHohDuFaDRF9eu9VCfBzsLXKqTai8RGUFPJaH9QGSTxWv9wrOE
+         r4w9pl4hSgODcQGR+Y5CvIQjxII7qjuU9tiSoaoYFszZbfDdddy8AVUIoBToJTx32emj
+         KH2gszWQ6m+L23hKRxp2hrwcuLEyHxxLS+28jhY9UTxX6bduoD9WG/0LIwbdicEjXbBc
+         Ndk2ny0jp7ctW09on+WFb/5yIAZFj3E3FO6eLLoAu+mqTxWS3PHeJpcH23aBDL+7JFYl
+         NRFA==
+X-Gm-Message-State: AC+VfDzBMhkCxWKR4SYcPivpRy+FsUmIsaH3Jih90e5oC5iYdPBBvgY0
+	gjRDwj0NhsPmYaTfRgd6LFr/FA==
+X-Google-Smtp-Source: ACHHUZ5gH1QodXY6b+qp7RV3y+hOi4PUhqmVaOd8SWzizSwABLe2Dfn3Qq1sX/dPeRnMFaw+es2t3g==
+X-Received: by 2002:a7b:c4c7:0:b0:3f7:f398:e1cc with SMTP id g7-20020a7bc4c7000000b003f7f398e1ccmr10856797wmk.36.1686689797786;
+        Tue, 13 Jun 2023 13:56:37 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:5d56:2e19:9720:bd3b? ([2001:8b0:aba:5f3c:5d56:2e19:9720:bd3b])
+        by smtp.gmail.com with ESMTPSA id t11-20020a7bc3cb000000b003f7ed463954sm15363146wmj.25.2023.06.13.13.56.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 12:12:49 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 4/7] openscap: Drop OE specific recipe
-Date: Tue, 13 Jun 2023 15:12:44 -0400
-Message-Id: <20230613191247.18732-4-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230613191247.18732-1-akuster808@gmail.com>
-References: <20230613191247.18732-1-akuster808@gmail.com>
+        Tue, 13 Jun 2023 13:56:37 -0700 (PDT)
+Message-ID: <0da6a246265769516bff8190afd79dea1fa1946d.camel@linuxfoundation.org>
+Subject: Re: [yocto] #fakeroot #pseudo-native #xattr #attr-native #yocto
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: jbarnesweb@yahoo.com, yocto@lists.yoctoproject.org
+Date: Tue, 13 Jun 2023 21:56:36 +0100
+In-Reply-To: <VGuf.1686678934669499865.B7Pb@lists.yoctoproject.org>
+References: <VGuf.1686678934669499865.B7Pb@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 13 Jun 2023 19:13:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60277
+ <yocto@lists.yoctoproject.org>; Tue, 13 Jun 2023 20:56:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60282
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../recipes-openscap/openscap/openscap.inc    | 55 -------------------
- .../recipes-openscap/openscap/openscap_git.bb | 14 -----
- 2 files changed, 69 deletions(-)
- delete mode 100644 meta-security-compliance/recipes-openscap/openscap/openscap.inc
- delete mode 100644 meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
+On Tue, 2023-06-13 at 10:55 -0700, jbarnesweb via lists.yoctoproject.org wr=
+ote:
+> I'm trying to understand why I get an Operation not permitted error (errn=
+o EPERM) with a fakeroot function that calls setfattr.
+> Using yocto packages pseudo-native/attr-native
+> =C2=A0
+> In my recipe, this function is called
+> =C2=A0
+> fakeroot label_sign_verity() {
+> ...
+> =C2=A0 =C2=A0 ls -l=C2=A0 ${FITIMAGE_PATH} >>${WORKDIR}/socosupdate_sign_=
+and_package.txt
+> #prints -rw-r--r-- 2 1000 1000 55097242 Jun 12 20:35 tmp/deploy/images/fi=
+tImage-initramfs-nested-rootfs-overlake-overlake
+> #1000 is the $USER uid
+> =C2=A0
+> =C2=A0 =C2=A0 ${DUMPIMAGE} -T flat_dt -p 0 -o ${SOCOS_IMAGEDIR}/Image ${F=
+ITIMAGE_PATH}
+> =C2=A0
+> ...
+> =C2=A0
+> =C2=A0 =C2=A0 echo $(ls -l ${SOCOS_IMAGEDIR}/Image) >>${WORKDIR}/socosupd=
+ate_sign_and_package.txt
+> #prints -rw-r--r-- 2 1000 1000 55097242 Jun 12 20:35 tmp/deploy/images/Im=
+age
+> =C2=A0
+> echo PSEUDO_PREFIX=3D${PSEUDO_PREFIX} PSEUDO_LOCALSTATEDIR=3D${PSEUDO_LOC=
+ALSTATEDIR} ${FAKEROOTCMD} ${SETFATTR} -n security.ima -v ${IMA_HEADER}${HA=
+SH_ALGO}${KEY_ID}${SIG_LENGTH}${IMAGE_SIG} ${SOCOS_IMAGEDIR}/Image >>${WORK=
+DIR}/socosupdate_sign_and_package.txt
+> =C2=A0
+> #prints=C2=A0
+> PSEUDO_PREFIX=3D/datadisk/LSG/main/LSG-linux-yocto/tmp/sysroots-component=
+s/x86_64/pseudo-native/usr PSEUDO_LOCALSTATEDIR=3D/datadisk/LSG/main/LSG-li=
+nux-yocto/tmp/work/aarch64-msft-linux/socosupdate/1.0-r0/pseudo/ /datadisk/=
+LSG/main/LSG-linux-yocto/tmp/sysroots-components/x86_64/pseudo-native/usr/b=
+in/pseudo /datadisk/LSG/main/LSG-linux-yocto/tmp/sysroots-components/x86_64=
+/attr-native/usr/bin/setfattr -n security.ima -v 03020462ff80020100077DC6A2=
+B32D1313FE072B1A44C10CC94C5FDE507A1B8A16ED5836E49A95EB4C1AC53D7A2E2D5E74F2C=
+972B033F83FD405A5AD68DF6B8954EBB8803AF7A774D4573283A1AA0694B38379E8BF94E0B4=
+378EF865E6606BB3E9534A0B916813F6C64DE53AB2B1B7CE579B54ADBA702BA7CF3F60B1776=
+9318642804950EADB2E6417F24FFA88F8684B5F319D9731AC07B9B3BD82A52BFDFAD4D6212C=
+5E5D9BA3F4249385F3DC67E21DEA99B00FDECE224B99142FCB81840D93A6AE007F799484B70=
+B1399A674378C4001D03F7529A69F851E642374118E53AC24F1E8849ECD1BC69E75A120E540=
+8E3B73C26D47C658DEA3A3BC1EF7B7738AB75B94B3B6DC06155EEF /datadisk/LSG/main/L=
+SG-linux-y
+> octo/tmp/work/aarch64-msft-linux/socosupdate/1.0-r0/deploy-socosupdate/so=
+cosupdate1908//squashfs-root/opt/msft/ap/app/SocOsUpdate/images/Image
+> #If I run the above in the same shell that I ran bitbake, it succeeds.
+> =C2=A0
+> ${SETFATTR} -n security.ima -v ${IMA_HEADER}${HASH_ALGO}${KEY_ID}${SIG_LE=
+NGTH}${INITRD_SIG} ${SOCOS_IMAGEDIR}/Image=20
+> # above fails with Operation not permitted, with or without fakeroot deco=
+ration in function signature.
+> =C2=A0
+> I've also tried running the command with the pseudo preamble directly
+> inside the recipe with and without the fakeroot decoration in the
+> function signature. Fails the same way. When I echo $(whoami), it
+> says root when fakeroot is used and $USER when not.
 
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap.inc b/meta-security-compliance/recipes-openscap/openscap/openscap.inc
-deleted file mode 100644
-index e875227..0000000
---- a/meta-security-compliance/recipes-openscap/openscap/openscap.inc
-+++ /dev/null
-@@ -1,55 +0,0 @@
--# Copyright (C) 2017 Armin Kuster  <akuster808@gmail.com>
--# Released under the MIT license (see COPYING.MIT for the terms)
--
--SUMARRY = "NIST Certified SCAP 1.2 toolkit"
--HOME_URL = "https://www.open-scap.org/tools/openscap-base/"
--LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
--LICENSE = "LGPL-2.1-only"
--
--DEPENDS = "dbus acl bzip2 pkgconfig gconf procps curl libxml2 libxslt libcap swig libpcre"
--DEPENDS:class-native = "pkgconfig-native swig-native curl-native libxml2-native libxslt-native libcap-native libpcre-native"
--
--S = "${WORKDIR}/git"
--
--inherit cmake pkgconfig python3native python3targetconfig perlnative
--
--PACKAGECONFIG ?= "python3 rpm perl gcrypt ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
--PACKAGECONFIG[python3] = "-DENABLE_PYTHON3=ON, ,python3, python3"
--PACKAGECONFIG[perl] = "-DENABLE_PERL=ON, ,perl, perl"
--PACKAGECONFIG[rpm] = "-DENABLE_OSCAP_UTIL_AS_RPM=ON, ,rpm, rpm"
--PACKAGECONFIG[gcrypt] = "-DWITH_CRYPTO=gcrypt, ,libgcrypt"
--PACKAGECONFIG[nss3] = "-DWITH_CRYPTO=nss3, ,nss"
--PACKAGECONFIG[selinux] = ", ,libselinux"
--
--EXTRA_OECMAKE += "-DENABLE_PROBES_LINUX=ON -DENABLE_PROBES_UNIX=ON \
--                  -DENABLE_PROBES_SOLARIS=OFF -DENABLE_PROBES_INDEPENDENT=ON \
--                  -DENABLE_OSCAP_UTIL=ON -DENABLE_OSCAP_UTIL_SSH=ON \
--                  -DENABLE_OSCAP_UTIL_DOCKER=OFF -DENABLE_OSCAP_UTIL_CHROOT=OFF \
--                  -DENABLE_OSCAP_UTIL_PODMAN=OFF -DENABLE_OSCAP_UTIL_VM=OFF \
--                  -DENABLE_PROBES_WINDOWS=OFF -DENABLE_VALGRIND=OFF \
--                  -DENABLE_SCE=ON -DENABLE_MITRE=OFF -DENABLE_TESTS=OFF \
--                  -DCMAKE_SKIP_INSTALL_RPATH=ON -DCMAKE_SKIP_RPATH=ON \
--                 "
--
--STAGING_OSCAP_DIR = "${TMPDIR}/work-shared/${MACHINE}/oscap-source"
--STAGING_OSCAP_BUILDDIR = "${TMPDIR}/work-shared/openscap/oscap-build-artifacts"
--
--do_configure:append:class-native () {
--    sed -i 's:OSCAP_DEFAULT_CPE_PATH.*$:OSCAP_DEFAULT_CPE_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe":' ${B}/config.h
--    sed -i 's:OSCAP_DEFAULT_SCHEMA_PATH.*$:OSCAP_DEFAULT_SCHEMA_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas":' ${B}/config.h
--    sed -i 's:OSCAP_DEFAULT_XSLT_PATH.*$:OSCAP_DEFAULT_XSLT_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl":' ${B}/config.h
--}
--
--do_install:class-native[cleandirs] += " ${STAGING_OSCAP_BUILDDIR}"
--do_install:append:class-native () {
--    oscapdir=${STAGING_OSCAP_BUILDDIR}/${datadir_native}
--    install -d $oscapdir
--    cp -a ${D}/${STAGING_DATADIR_NATIVE}/openscap $oscapdir
--}
--
--
--FILES:${PN} += "${PYTHON_SITEPACKAGES_DIR}"
--
--RDEPENDS:${PN} += "libxml2 python3-core libgcc bash"
--
--BBCLASSEXTEND = "native"
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-deleted file mode 100644
-index 3543e11..0000000
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-+++ /dev/null
-@@ -1,14 +0,0 @@
--# Copyright (C) 2017 Armin Kuster  <akuster808@gmail.com>
--# Released under the MIT license (see COPYING.MIT for the terms)
--
--SUMARRY = "NIST Certified SCAP 1.2 toolkit with OE changes"
--
--include openscap.inc
--
--SRCREV = "a85943eee400fdbe59234d1c4a02d8cf710c4625"
--SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3;protocol=https \
--"
--
--PV = "1.3.3+git${SRCPV}"
--
--DEFAULT_PREFERENCE = "-1"
--- 
-2.34.1
+fakeroot context is a task level operation, not a function specific
+one. Have you tried running the task calling this function under
+fakeroot?
 
+Cheers,
+
+Richard
 
