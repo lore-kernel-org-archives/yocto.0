@@ -1,140 +1,96 @@
-Return-Path: <alexis.lothore@bootlin.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 985F2EB64DA
-	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 12:15:35 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
- by mx.groups.io with SMTP id smtpd.web11.10074.1686744932927090031
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C6321EB64D8
+	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 13:17:05 +0000 (UTC)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+ by mx.groups.io with SMTP id smtpd.web10.11416.1686748619628932426
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Jun 2023 05:15:33 -0700
+ Wed, 14 Jun 2023 06:16:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=jBvDdg7F;
- spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: alexis.lothore@bootlin.com)
-X-GND-Sasl: alexis.lothore@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1686744931;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pxCtdxFxPzXeswFXwXfxl/55IVvVbZvH0gT01NY5to0=;
-	b=jBvDdg7FGx5kN6n+j/+DorCiqx46WKQ6Td9VtSUTl2F5RCb7OPymK7tImFcVEbTChQjA+9
-	IiLWwhfFDuNEKpmCuujq6bvnt2jPI2oFiAJB2bYSAN8H9HLIeG5i1mBFVV5kkB+Ox0n3eX
-	haa4eRMcGKFDzYOy6VBE5KX/M0l+UN/3es07CVHb8l/suzodLzcVhRTb96MTabZyi+pDhu
-	BQjknKDc/hgH6Mug14dIJYtzSz31D2f+I6uEwW9vK/8KrFnvymwcdVv7V0g9eIO2RM8sZw
-	4mU5aeBctyw56ray1GX+7JMiG5W6qaCEo88WoG8IzFkZPaeP/1I1DSRc5g/05w==
-X-GND-Sasl: alexis.lothore@bootlin.com
-X-GND-Sasl: alexis.lothore@bootlin.com
-X-GND-Sasl: alexis.lothore@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 53AA9FF806;
-	Wed, 14 Jun 2023 12:15:30 +0000 (UTC)
-Message-ID: <122697e4-887c-7262-a359-e046914d80db@bootlin.com>
-Date: Wed, 14 Jun 2023 14:15:54 +0200
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=FOHczBkp;
+ spf=pass (domain: gmail.com, ip: 209.85.219.171, mailfrom: akuster808@gmail.com)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-bad0c4f6f50so966613276.1
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Jun 2023 06:16:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686748618; x=1689340618;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xy0ORobhWYrOwTUtHcForcq+KADeMrEncv9mtEuPDlk=;
+        b=FOHczBkpIOqcnnfJbporuwvXgXXTyYNj6GSaSX2W8S0drzFZWa7nDYsTta5HeOl/op
+         NXGphhX1q4wteGXyiJlQmm6Us5PebS15AyDOsM/QmXDsoo5jVAIfRpTAoTCmcj/inSfA
+         X+G13lUcaBASmsIVaeH7Aa6rBY+URwEBOeOsgiGdKRQHHVzGUr4fuuhsOlIc6OTKhujL
+         8mMPbm6AZ5wyoZ8STlo0CkpXChImC0yAcigeQaCaPygClwMct82cIGM6AVSfn59F07XP
+         hBklmqXs/9qnY01iSrTNDGacgrNb6pHEF7juPJLHVVWvRb67rSXtzo/wPwy2jP+EORqh
+         Qayg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686748618; x=1689340618;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xy0ORobhWYrOwTUtHcForcq+KADeMrEncv9mtEuPDlk=;
+        b=iPdA2WzP7vTDvxuDpCM7+ekSq0Zb+WqG03kcycYUAPHbXGK7nsa4741oiNOYZomRj1
+         cusoxlcxF8Giajiraa5nS9LG9SrrQtAbBO8OhjNZ7zOOUU27U+fhUhtFI/Kna/v95bK/
+         eIkhjlcViMZ2g91Tws0Ypur2zYzB3OqvBPoEyVLfwhLRwmME3CmDepVvwDjVhl3re9tD
+         TnQquE0uS7lA8b4YKOfl0zpQDsjoxjNBdffsrsYTbv9eHdw/Smf45YWQseQhGwEd7UEd
+         G7Inyetoi8IHCUWtjDThrhMAM9vdxza9IuxCrYckC4s1dAl/RjG1PaOfedl6mFlKYeLo
+         1AmQ==
+X-Gm-Message-State: AC+VfDwQkLyGXCTbbQ18dM2nrgg+DnSDIvuLeKlVix4Y5I/o1mxZJJ39
+	tuEJqb4XvbaiqjTllHihjwbTFNr+H14=
+X-Google-Smtp-Source: ACHHUZ5RLS9aCNRc5ni5VCZeVCXrYBGYsENiPEw21FZjZQ00IPSis9UbE4oApIGY8SrgD5fkpUCk2w==
+X-Received: by 2002:a25:e6c7:0:b0:ba8:4406:dd0b with SMTP id d190-20020a25e6c7000000b00ba84406dd0bmr1819146ybh.30.1686748618466;
+        Wed, 14 Jun 2023 06:16:58 -0700 (PDT)
+Received: from keaua.attlocal.net ([2600:1700:9190:ba10:5ba9:9ead:a276:1e7c])
+        by smtp.gmail.com with ESMTPSA id 193-20020a2513ca000000b00bb0a8342723sm3597931ybt.50.2023.06.14.06.16.57
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jun 2023 06:16:57 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] packagegroup-core-security: add compliance pkg group
+Date: Wed, 14 Jun 2023 09:16:57 -0400
+Message-Id: <20230614131657.283768-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH 0/3] fix test results
- storage for mickledore
-Content-Language: en-US
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
- yocto@lists.yoctoproject.org
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-References: <20230614085614.27951-1-alexis.lothore@bootlin.com>
- <895aca2cd720d61c4a1f5a5eabaf606c00117546.camel@linuxfoundation.org>
-From: =?UTF-8?Q?Alexis_Lothor=c3=a9?= <alexis.lothore@bootlin.com>
-In-Reply-To: <895aca2cd720d61c4a1f5a5eabaf606c00117546.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 Jun 2023 12:15:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60300
+ <yocto@lists.yoctoproject.org>; Wed, 14 Jun 2023 13:17:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60301
 
-On 6/14/23 12:31, Richard Purdie wrote:
-> On Wed, 2023-06-14 at 10:56 +0200, Alexis Lothoré via
-> lists.yoctoproject.org wrote:
->> From: Alexis Lothoré <alexis.lothore@bootlin.com>
->>
->> This series is a follow-up for the 4.3_M1.rc1 regression report issue.
->>
->> It has been observed that the report is empty. This issue is linked to
->> configuration description in yocto-autobuilder-helper, and has been
->> identified through the following steps:
->> - empty report is supposed to be a comparison between yocto-4.2 (4.2.rc3)
->>   and 4.3_M1.rc1
->> - yocto-4.2 results are almost empty: we only find test results from Intel
->>   QA (pushed _after_ the AB build) and not the AB test results
->> - tests results are managed by send-qa-email.send-qa-email uses resulttool
->>   to systematically gather and store test results in local git directory
->> - however, it looks for basebranch/comparebranch to know if those results
->>   can be pushed onto git server, and those variables depend on config.json
->>   content
->> - yocto-4.2 (4.2.rc3) has been built on release branch mickledore
->>   (https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/5212)
->> - since mickledore is not yet described in config.json, send-qa-email
->>   considers it as a "work" branch (contrary to a "release" branch) and does
->>   not push test results
->>
->> As a consequence:
->> - first commit brings in python logger
->> - second commit adds a warning when such case happen, since we are able to
->>   detect it
->> - third fix actually adds mickledore as a release branch to properly store
->>   again test results
->>
->> There must be a more robust rework to do (because the issue will likely
->> happen on each major delivery), but I aimed for the quick and small fix to
->> quickly bring back tests results storage without breaking other things in
->> the process
->>
->> Alexis Lothoré (3):
->>   scripts/send-qa-email: use logger instead of raw prints
->>   scripts/send-qa-email: print warning when test results are not stored
->>   config.json: add mickledore as direct push branch for test results
-> 
-> Thanks for the analysis. I agree we need to somehow fix this properly.
-> One solution might be to always push for poky if the branch name
-> doesn't end with -next?
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-core/packagegroup/packagegroup-core-security.bb | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-That might work indeed. If we are sure enough that no custom/feature branch will
-be used in poky with send-qa-email (ie, only in poky-contrib), I can do the fix
-this way
-> 
-> Since we have the release artefacts for the release, could we add the
-> test results after the fact now?>
-> Id' be interested to see the 4.3 M1 to 4.2 comparison rerun with that
-> added.
-
-I am not sure about where to find those artifacts for yocto-4.2 ? If you are
-referring to https://autobuilder.yocto.io/pub/, yocto-4.2 has already been
-removed from there. And if you are referring to the archived release on main
-site
-(https://downloads.yoctoproject.org/releases/yocto/yocto-4.2/poky-21790e71d55f417f27cd51fae9dd47549758d4a0.tar.bz2),
-it does contain a single, 40 line testresults.json, so that's definitely not the
-full AB tests results.
-
-> 
-> Cheers,
-> 
-> Richard
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60297): https://lists.yoctoproject.org/g/yocto/message/60297
-> Mute This Topic: https://lists.yoctoproject.org/mt/99523809/7394887
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/leave/12378809/7394887/1227806781/xyzzy [alexis.lothore@bootlin.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
-
+diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
+index b009a4d..39f60f2 100644
+--- a/recipes-core/packagegroup/packagegroup-core-security.bb
++++ b/recipes-core/packagegroup/packagegroup-core-security.bb
+@@ -12,6 +12,7 @@ PACKAGES = "\
+     packagegroup-security-audit \
+     packagegroup-security-ids  \
+     packagegroup-security-mac  \
++    packagegroup-security-compliance  \
+     ${@bb.utils.contains("DISTRO_FEATURES", "ptest", "packagegroup-meta-security-ptest-packages", "", d)} \
+     "
+ 
+@@ -91,6 +92,13 @@ RDEPENDS:packagegroup-security-mac = " \
+ 
+ RDEPENDS:packagegroup-security-mac:remove:mipsarch = "apparmor"
+ 
++SUMMARY:packagegroup-security-compliance = "Security Compliance applications"
++RDEPENDS:packagegroup-security-compliance = " \
++    lynis \
++    opnscap
++    scan-security-guide \
++    "
++
+ RDEPENDS:packagegroup-meta-security-ptest-packages = "\
+     ptest-runner \
+     samhain-standalone-ptest \
 -- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
 
 
