@@ -1,213 +1,198 @@
-Return-Path: <Martin.Jansa@gmail.com>
+Return-Path: <lavkhush2208@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F03ADEB64D8
-	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 05:48:42 +0000 (UTC)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
- by mx.groups.io with SMTP id smtpd.web11.5053.1686721714324372327
- for <yocto@lists.yoctoproject.org>;
- Tue, 13 Jun 2023 22:48:34 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=GcKT4GM6;
- spf=pass (domain: gmail.com, ip: 209.85.221.46, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-30e3caa6aa7so6260586f8f.1
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Jun 2023 22:48:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686721713; x=1689313713;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rN5TafFdifMWKTIUyONXIqCaggV/J834g14SJ5gOAqE=;
-        b=GcKT4GM61mBx8PS6vSWHhQjuD97Hx2dB8cN51Y61TzFvivdNggjcZoN10SJmHI3r5b
-         CCkqMQyYXs0C+3LvE+US9gUN22/tdZvWyqCW4cXO1z0mbE1kRF36O7zt3n1nG47Rt1z9
-         +RglYu8f3Xw4m4cxJ07S6K7ExvxogZ2zuce0lSf1o597uhbBYR4CpjCYrNmr2PD9lu0I
-         GWmbFNHu6obXmeKDtlLUzUszlGxqt3wH3ikdaMyMqdf0g6V7YbcTYCJ6wUmKRF00O8T4
-         x4SI+hRJa5amtgvmajna2YP/S8+oX/kY3wQ7jt7xenqiszG2GYpB2UglbQvNSJK0rD9g
-         1Jug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686721713; x=1689313713;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rN5TafFdifMWKTIUyONXIqCaggV/J834g14SJ5gOAqE=;
-        b=lZcDigL8TXxONt177p820MdwBAsgamln9rzXX52mICqRGKBtsFjNywOn182R1f8GS7
-         c0IaoKqk7T7RcxOzwXIP1ggE+dwQYZSaWHoJ4uiBXdTlmK/8xQCRghFPOiwIOVRQdion
-         Qgzo2ICc8Sbe+/UTFlCMydqwlQrjgstaMJdMjI03kSu89ZSspuY0/LTuVuY9nSQznCC/
-         gZroQsWZeUe4mqWpavFNXY5+yTY4pPfMPgAF3l/8QS5KA2GipStT7EueJt0Hw1Vi/4Cm
-         8rFHmy3dEqij6yfBKMglMYRsNxQ6gO2bgwcnakQt9LdmBblw5C2Zj7R4Sn09uIcnECQv
-         Xe5g==
-X-Gm-Message-State: AC+VfDyB6buTm/sNtapvFaoBCXuwTqDVaGLoxvSi2TTArYcWgkQaQ7Ih
-	sMFVAHLeMBBhb1i73FPH51YXzUGkIkaVHuoTBFs=
-X-Google-Smtp-Source: ACHHUZ7i1kzP5YZ8UdVYJpFBtWWk76TNVi23RXyD29KKVMHGKbmbtv5agKRN/iEP/jaS59B/82EbcoyeCilfqfJFSMo=
-X-Received: by 2002:adf:ea02:0:b0:30f:c801:aa73 with SMTP id
- q2-20020adfea02000000b0030fc801aa73mr4710086wrm.20.1686721712306; Tue, 13 Jun
- 2023 22:48:32 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 292B0EB64D8
+	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 06:50:03 +0000 (UTC)
+Subject: Error while testing "core-image-base" through "bitbake core-image-base -c testimage -v" #bitbake #dunfell
+To: yocto@lists.yoctoproject.org
+From: lavkhush2208@gmail.com
+X-Originating-Location: IN (49.249.95.238)
+X-Originating-Platform: Linux Chrome 110
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <hGgt.1686719577548533695.bGn9@lists.yoctoproject.org>
-In-Reply-To: <hGgt.1686719577548533695.bGn9@lists.yoctoproject.org>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Wed, 14 Jun 2023 07:48:19 +0200
-Message-ID: <CA+chaQc8Y2G27dq+6aV+bGmqWG060TFG4sxv0iQbTy9VE8J_=g@mail.gmail.com>
-Subject: Re: [yocto] Can't access https://www.yoctoproject.org/connectivity.html
- in China mainland.
-To: mwen@ambarella.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000007f41d505fe10809f"
+Date: Tue, 13 Jun 2023 23:50:01 -0700
+Message-ID: <VzRS.1686725401480264621.3IB6@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="SKjqiZhn4n6WOWz64qon"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 Jun 2023 05:48:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60284
+ <yocto@lists.yoctoproject.org>; Wed, 14 Jun 2023 06:50:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60285
 
---0000000000007f41d505fe10809f
-Content-Type: text/plain; charset="UTF-8"
+--SKjqiZhn4n6WOWz64qon
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-The error message says what you should do:
-CONNECTIVITY_CHECK_URIS =3D "https://www.example.com/"
-in local.conf (or any other URL which is accessible in China mainland).
+Hi all,
 
-On Wed, Jun 14, 2023 at 7:12=E2=80=AFAM <mwen@ambarella.com> wrote:
+I was testing my *core-image-base -c testimage* with test-suit and getting =
+error:-
 
-> Hi,
->
-> Since yesterday, we can't access
-> https://www.yoctoproject.org/connectivity.html in China mainland. As a
-> result, we can't build Yocto successfully with below Sanity check error.
-> It will be appreciated if you have any idea about this. Thanks~~
->
-> *ERROR:  OE-core's config sanity checker detected a potential
-> misconfiguration.*
->
-> *    Either fix the cause of this error or at your own risk disable the
-> checker (see sanity.conf).*
->
-> *    Following is the list of potential problems / advisories:*
->
->
->
-> *    Fetcher failure for URL: 'https://yoctoproject.org/connectivity.html
-> <https://yoctoproject.org/connectivity.html>'. URL *
-> *https://yoctoproject.org/connectivity.html*
-> <https://yoctoproject.org/connectivity.html>* doesn't work.*
->
-> *    Please ensure your host's network is configured correctly.*
->
-> *    Please ensure CONNECTIVITY_CHECK_URIS is correct and specified URIs
-> are available.*
->
-> *    If your ISP or network is blocking the above URL,*
->
-> *    try with another domain name, for example by setting:*
->
-> *    CONNECTIVITY_CHECK_URIS =3D "**https://www.example.com/*
-> <https://www.example.com/>*"    You could also set BB_NO_NETWORK =3D "1" =
-to
-> disable network*
->
-> *    access if all required sources are on local disk.*
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60283):
-> https://lists.yoctoproject.org/g/yocto/message/60283
-> Mute This Topic: https://lists.yoctoproject.org/mt/99522071/3617156
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> Martin.Jansa@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+*ERROR: core-image-base-1.0-r0 do_testimage: Output from runqemu:*
+*runqemu - WARNING - /home/kush/khu/sources/build/tmp-glibc/deploy/images/b=
+oard/core-image-base-board.qemuboot.conf doesn't exist*
+*ls: cannot access '/home/kush/khu/sources/build/tmp-glibc/deploy/images/bo=
+ard/*.qemuboot.conf': No such file or directory*
+*runqemu - ERROR - Command 'ls -t /home/kush/khu/sources/build/tmp-glibc/de=
+ploy/images/board/*.qemuboot.conf' returned non-zero exit status 2.*
+*runqemu - INFO - Cleaning up*
 
---0000000000007f41d505fe10809f
-Content-Type: text/html; charset="UTF-8"
+WARNING: core-image-base-1.0-r0 do_testimage: Qemu ended unexpectedly, dump=
+ data from host is in /home/integration-team/kush/khu/sources/build/tmp-gli=
+bc/log/runtime-hostdump/202306141146_qemu
+ERROR: core-image-base-1.0-r0 do_testimage: Error executing a python functi=
+on in exec_python_func() autogenerated:
+
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+0001:
+*** 0002:do_testimage(d)
+0003:
+File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/class=
+es/testimage.bbclass', lineno: 129, function: do_testimage
+0125:=C2=A0 =C2=A0 netstat -an
+0126:}
+0127:
+0128:python do_testimage() {
+*** 0129:=C2=A0 =C2=A0 testimage_main(d)
+0130:}
+0131:
+0132:addtask testimage
+0133:do_testimage[nostamp] =3D "1"
+File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/class=
+es/testimage.bbclass', lineno: 371, function: testimage_main
+0367:=C2=A0 =C2=A0 orig_sigterm_handler =3D signal.signal(signal.SIGTERM, s=
+igterm_exception)
+0368:=C2=A0 =C2=A0 try:
+0369:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # We need to check if runqemu ends unexpec=
+tedly
+0370:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # or if the worker send us a SIGTERM
+*** 0371:=C2=A0 =C2=A0 =C2=A0 =C2=A0 tc.target.start(params=3Dd.getVar("TES=
+T_QEMUPARAMS"), runqemuparams=3Dd.getVar("TEST_RUNQEMUPARAMS"))
+0372:=C2=A0 =C2=A0 =C2=A0 =C2=A0 import threading
+0373:=C2=A0 =C2=A0 =C2=A0 =C2=A0 try:
+0374:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 threading.Timer(int(d.getVar=
+("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (int(d.getVar("TEST_OVERALL=
+_TIMEOUT")),)).start()
+0375:=C2=A0 =C2=A0 =C2=A0 =C2=A0 except ValueError:
+File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/lib/o=
+eqa/core/target/qemu.py', lineno: 67, function: start
+0063:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.runner.server_ip:
+0064:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.server_ip=
+ =3D self.runner.server_ip
+0065:=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
+0066:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.stop()
+*** 0067:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise RuntimeError("FAIL=
+ED to start qemu - check the task log and the boot log")
+0068:
+0069:=C2=A0 =C2=A0 def stop(self):
+0070:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.runner.stop()
+Exception: RuntimeError: FAILED to start qemu - check the task log and the =
+boot log
+
+ERROR: Logfile of failure stored in: /home/kush/khu/sources/build/tmp-glibc=
+/work/board-oe-linux/core-image-base/1.0-r0/temp/log.do_testimage.17255
+ERROR: Task (/home/kush/khu/sources/meta-exaleap/recipes-images/images/core=
+-image-base.bb:do_testimage) failed with exit code '1'
+
+Can anyone help me in this, where i am doing wrong.
+
+T&R
+luvkhush
+
+--SKjqiZhn4n6WOWz64qon
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>The error message says what you should do:</div><div>=
-CONNECTIVITY_CHECK_URIS =3D &quot;<a href=3D"https://www.example.com/">http=
-s://www.example.com/</a>&quot;<br></div><div>in local.conf (or any other UR=
-L which is accessible in China mainland).</div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 14, 2023 at 7:12=E2=80=
-=AFAM &lt;<a href=3D"mailto:mwen@ambarella.com">mwen@ambarella.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br><b=
-r>Since yesterday, we can&#39;t access=C2=A0<a href=3D"https://www.yoctopro=
-ject.org/connectivity.html" target=3D"_blank">https://www.yoctoproject.org/=
-connectivity.html</a> in China mainland. As a result, we can&#39;t build Yo=
-cto successfully with below Sanity check error.<br>It will be appreciated i=
-f you have any idea about this. Thanks~~<br><br>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">ERROR:=C2=A0=
- OE-core&#39;s config sanity checker detected a potential misconfiguration.=
-</span></strong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 Either fix the cause of this error or at your own risk disable the c=
-hecker (see sanity.conf).</span></strong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 Following is the list of potential problems / advisories:</span></st=
-rong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0</span=
-></strong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 Fetcher failure for URL: &#39;<a href=3D"https://yoctoproject.org/co=
-nnectivity.html" target=3D"_blank">https://yoctoproject.org/connectivity.ht=
-ml</a>&#39;. URL </span></strong><a href=3D"https://yoctoproject.org/connec=
-tivity.html" target=3D"_blank"><strong><span style=3D"font-size:10pt;font-f=
-amily:&quot;Times New Roman&quot;,serif">https://yoctoproject.org/connectiv=
-ity.html</span></strong></a><strong><span style=3D"font-size:10pt;font-fami=
-ly:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)"> doesn&#39;t wor=
-k.</span></strong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 Please ensure your host&#39;s network is configured correctly.</span=
-></strong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 Please ensure CONNECTIVITY_CHECK_URIS is correct and specified URIs =
-are available.</span></strong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 If your ISP or network is blocking the above URL,</span></strong></p=
->
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 try with another domain name, for example by setting:</span></strong=
-></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 CONNECTIVITY_CHECK_URIS =3D &quot;</span></strong><a href=3D"https:/=
-/www.example.com/" target=3D"_blank"><strong><span style=3D"font-size:10pt;=
-font-family:&quot;Times New Roman&quot;,serif">https://www.example.com/</sp=
-an></strong></a><strong><span style=3D"font-size:10pt;font-family:&quot;Tim=
-es New Roman&quot;,serif;color:rgb(0,112,192)">&quot;=C2=A0=C2=A0=C2=A0 You=
- could also set BB_NO_NETWORK =3D &quot;1&quot; to disable network</span></=
-strong></p>
-<p style=3D"text-indent:11.4pt"><strong><span style=3D"font-size:10pt;font-=
-family:&quot;Times New Roman&quot;,serif;color:rgb(0,112,192)">=C2=A0=C2=A0=
-=C2=A0 access if all required sources are on local disk.</span></strong></p=
->
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60283): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60283" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/60283</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/99522071/3617=
-156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/99522071/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin=
-.Jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
+<div>Hi all,&nbsp;</div>
+<div>&nbsp;</div>
+<div>I was testing my <strong>core-image-base -c testimage</strong> with te=
+st-suit and getting error:-</div>
+<div>&nbsp;</div>
+<div><strong>ERROR: core-image-base-1.0-r0 do_testimage: Output from runqem=
+u:</strong></div>
+<div><strong>runqemu - WARNING - /home/kush/khu/sources/build/tmp-glibc/dep=
+loy/images/board/core-image-base-board.qemuboot.conf doesn't exist</strong>=
+</div>
+<div><strong>ls: cannot access '/home/kush/khu/sources/build/tmp-glibc/depl=
+oy/images/board/*.qemuboot.conf': No such file or directory</strong></div>
+<div><strong>runqemu - ERROR - Command 'ls -t /home/kush/khu/sources/build/=
+tmp-glibc/deploy/images/board/*.qemuboot.conf' returned non-zero exit statu=
+s 2.</strong></div>
+<div><strong>runqemu - INFO - Cleaning up</strong></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>WARNING: core-image-base-1.0-r0 do_testimage: Qemu ended unexpectedly,=
+ dump data from host is in /home/integration-team/kush/khu/sources/build/tm=
+p-glibc/log/runtime-hostdump/202306141146_qemu</div>
+<div>ERROR: core-image-base-1.0-r0 do_testimage: Error executing a python f=
+unction in exec_python_func() autogenerated:</div>
+<div>&nbsp;</div>
+<div>The stack trace of python calls that resulted in this exception/failur=
+e was:</div>
+<div>File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;mod=
+ule&gt;</div>
+<div>&nbsp; &nbsp; &nbsp;0001:</div>
+<div>&nbsp;*** 0002:do_testimage(d)</div>
+<div>&nbsp; &nbsp; &nbsp;0003:</div>
+<div>File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/=
+classes/testimage.bbclass', lineno: 129, function: do_testimage</div>
+<div>&nbsp; &nbsp; &nbsp;0125:&nbsp; &nbsp; netstat -an</div>
+<div>&nbsp; &nbsp; &nbsp;0126:}</div>
+<div>&nbsp; &nbsp; &nbsp;0127:</div>
+<div>&nbsp; &nbsp; &nbsp;0128:python do_testimage() {</div>
+<div>&nbsp;*** 0129:&nbsp; &nbsp; testimage_main(d)</div>
+<div>&nbsp; &nbsp; &nbsp;0130:}</div>
+<div>&nbsp; &nbsp; &nbsp;0131:</div>
+<div>&nbsp; &nbsp; &nbsp;0132:addtask testimage</div>
+<div>&nbsp; &nbsp; &nbsp;0133:do_testimage[nostamp] =3D "1"</div>
+<div>File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/=
+classes/testimage.bbclass', lineno: 371, function: testimage_main</div>
+<div>&nbsp; &nbsp; &nbsp;0367:&nbsp; &nbsp; orig_sigterm_handler =3D signal=
+.signal(signal.SIGTERM, sigterm_exception)</div>
+<div>&nbsp; &nbsp; &nbsp;0368:&nbsp; &nbsp; try:</div>
+<div>&nbsp; &nbsp; &nbsp;0369:&nbsp; &nbsp; &nbsp; &nbsp; # We need to chec=
+k if runqemu ends unexpectedly</div>
+<div>&nbsp; &nbsp; &nbsp;0370:&nbsp; &nbsp; &nbsp; &nbsp; # or if the worke=
+r send us a SIGTERM</div>
+<div>&nbsp;*** 0371:&nbsp; &nbsp; &nbsp; &nbsp; tc.target.start(params=3Dd.=
+getVar("TEST_QEMUPARAMS"), runqemuparams=3Dd.getVar("TEST_RUNQEMUPARAMS"))<=
+/div>
+<div>&nbsp; &nbsp; &nbsp;0372:&nbsp; &nbsp; &nbsp; &nbsp; import threading<=
+/div>
+<div>&nbsp; &nbsp; &nbsp;0373:&nbsp; &nbsp; &nbsp; &nbsp; try:</div>
+<div>&nbsp; &nbsp; &nbsp;0374:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; thr=
+eading.Timer(int(d.getVar("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (i=
+nt(d.getVar("TEST_OVERALL_TIMEOUT")),)).start()</div>
+<div>&nbsp; &nbsp; &nbsp;0375:&nbsp; &nbsp; &nbsp; &nbsp; except ValueError=
+:</div>
+<div>File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/=
+lib/oeqa/core/target/qemu.py', lineno: 67, function: start</div>
+<div>&nbsp; &nbsp; &nbsp;0063:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if =
+self.runner.server_ip:</div>
+<div>&nbsp; &nbsp; &nbsp;0064:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; self.server_ip =3D self.runner.server_ip</div>
+<div>&nbsp; &nbsp; &nbsp;0065:&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
+<div>&nbsp; &nbsp; &nbsp;0066:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
+f.stop()</div>
+<div>&nbsp;*** 0067:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; raise Runtime=
+Error("FAILED to start qemu - check the task log and the boot log")</div>
+<div>&nbsp; &nbsp; &nbsp;0068:</div>
+<div>&nbsp; &nbsp; &nbsp;0069:&nbsp; &nbsp; def stop(self):</div>
+<div>&nbsp; &nbsp; &nbsp;0070:&nbsp; &nbsp; &nbsp; &nbsp; self.runner.stop(=
+)</div>
+<div>Exception: RuntimeError: FAILED to start qemu - check the task log and=
+ the boot log</div>
+<div>&nbsp;</div>
+<div>ERROR: Logfile of failure stored in: /home/kush/khu/sources/build/tmp-=
+glibc/work/board-oe-linux/core-image-base/1.0-r0/temp/log.do_testimage.1725=
+5</div>
+<div>ERROR: Task (/home/kush/khu/sources/meta-exaleap/recipes-images/images=
+/core-image-base.bb:do_testimage) failed with exit code '1'<br /><br />Can =
+anyone help me in this, where i am doing wrong.&nbsp;<br /><br />T&amp;R<br=
+ />luvkhush</div>
 
---0000000000007f41d505fe10809f--
+--SKjqiZhn4n6WOWz64qon--
 
