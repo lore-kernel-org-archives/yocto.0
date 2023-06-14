@@ -1,198 +1,84 @@
-Return-Path: <lavkhush2208@gmail.com>
+Return-Path: <alexis.lothore@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFB41EB64D9
-	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 08:49:53 +0000 (UTC)
-Subject: Error while testing "bitbake core-image-base -c testimage -v" #bitbake #dunfell
-To: yocto@lists.yoctoproject.org
-From: lavkhush2208@gmail.com
-X-Originating-Location: IN (49.249.95.238)
-X-Originating-Platform: Linux Chrome 110
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3975EB64DC
+	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 08:56:13 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+ by mx.groups.io with SMTP id smtpd.web10.6781.1686732965304981169
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 14 Jun 2023 01:56:05 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=JixyPNJH;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.195, mailfrom: alexis.lothore@bootlin.com)
+X-GND-Sasl: alexis.lothore@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1686732963;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=349/iuiS4WmQg9TZWQKg6HXWyB0fmBwccOzakvbrEzc=;
+	b=JixyPNJH3GeszCYNOv/VoSA/y7OUjekmgJula1cz30dMpIRQzx+Vqp+utlr0oy7vY9MDsX
+	LpkFDbOKAakZXb0NoE/yTYfGkUrl1DQ1lJVwo9Z8PkRmZV33u53MY7F3Nhc+dcCvaxLojM
+	2sOCESDnBDYLXiQq3nuOaSRK2xWSqTdxdtPvafjhlTJdNaxIPPVeZhhcbfcX4lqgWd74xa
+	vDdfEa7RdcxYcc2mBK3a2H4M+3Dn+OJqoHdbcEmbTglZkZ36gcFtBnfOvqULm+vMszbntY
+	eMfFKx1FChR6Uz8iqdACAfEUIYxt1NKy3kZO0BGm2EK9slZuY2UxK1b7FGlLFw==
+X-GND-Sasl: alexis.lothore@bootlin.com
+X-GND-Sasl: alexis.lothore@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id ADC266000B;
+	Wed, 14 Jun 2023 08:56:03 +0000 (UTC)
+From: alexis.lothore@bootlin.com
+To: <yocto@lists.yoctoproject.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [yocto-autobuilder-helper][PATCH 3/3] config.json: add mickledore as direct push branch for test results
+Date: Wed, 14 Jun 2023 10:56:14 +0200
+Message-ID: <20230614085614.27951-4-alexis.lothore@bootlin.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230614085614.27951-1-alexis.lothore@bootlin.com>
+References: <20230614085614.27951-1-alexis.lothore@bootlin.com>
 MIME-Version: 1.0
-Date: Wed, 14 Jun 2023 01:49:47 -0700
-Message-ID: <mkpv.1686732587244371536.088u@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="BAqZBO4RJ9tFZcGhYV5h"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 Jun 2023 08:49:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60287
+ <yocto@lists.yoctoproject.org>; Wed, 14 Jun 2023 08:56:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60291
 
---BAqZBO4RJ9tFZcGhYV5h
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+From: Alexis Lothoré <alexis.lothore@bootlin.com>
 
-Hi all,
+Now that mickledore is released, builds are executed on mickeldore release
+branch. If not properly described in config.json, it will be considered a
+"work" branch, and as a consequence test results will not be pushed onto
+test results git repository
+Add mickeldore entry in config.json to fix test results storage
 
-I was testing my *core-image-base -c testimage* with test-suit and getting =
-error:-
+Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
+---
+Example of such failure is AB build 5212
+(https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/5212/steps/29/logs/stdio)
+for yocto-4.2 (mickledore release), which lead to empty regression report
+for 4.3_M1.rc1 since it was compared to 4.2
+---
+ config.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-*ERROR: core-image-base-1.0-r0 do_testimage: Output from runqemu:*
-*runqemu - WARNING - /home/kush/khu/sources/build/tmp-glibc/deploy/images/b=
-oard/core-image-base-board.qemuboot.conf doesn't exist*
-*ls: cannot access '/home/kush/khu/sources/build/tmp-glibc/deploy/images/bo=
-ard/*.qemuboot.conf': No such file or directory*
-*runqemu - ERROR - Command 'ls -t /home/kush/khu/sources/build/tmp-glibc/de=
-ploy/images/board/*.qemuboot.conf' returned non-zero exit status 2.*
-*runqemu - INFO - Cleaning up*
+diff --git a/config.json b/config.json
+index 7fe2baea3428..e7f308d0a3f6 100644
+--- a/config.json
++++ b/config.json
+@@ -5,7 +5,7 @@
+ 
+     "BUILD_HISTORY_DIR" : "buildhistory",
+     "BUILD_HISTORY_REPO" : "ssh://git@push.yoctoproject.org/poky-buildhistory",
+-    "BUILD_HISTORY_DIRECTPUSH" : ["poky:morty", "poky:pyro", "poky:rocko", "poky:sumo", "poky:thud", "poky:warrior", "poky:zeus", "poky:dunfell", "poky:gatesgarth", "poky:hardknott", "poky:honister", "poky:kirkstone", "poky:langdale", "poky:master"],
++    "BUILD_HISTORY_DIRECTPUSH" : ["poky:morty", "poky:pyro", "poky:rocko", "poky:sumo", "poky:thud", "poky:warrior", "poky:zeus", "poky:dunfell", "poky:gatesgarth", "poky:hardknott", "poky:honister", "poky:kirkstone", "poky:langdale", "poky:mickledore", "poky:master"],
+     "BUILD_HISTORY_FORKPUSH" : {"poky-contrib:ross/mut" : "poky:master", "poky-contrib:abelloni/master-next": "poky:master", "poky:master-next" : "poky:master"},
+ 
+     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yocto.io/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
+-- 
+2.41.0
 
-WARNING: core-image-base-1.0-r0 do_testimage: Qemu ended unexpectedly, dump=
- data from host is in /home/integration-team/kush/khu/sources/build/tmp-gli=
-bc/log/runtime-hostdump/202306141146_qemu
-ERROR: core-image-base-1.0-r0 do_testimage: Error executing a python functi=
-on in exec_python_func() autogenerated:
-
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:do_testimage(d)
-0003:
-File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/class=
-es/testimage.bbclass', lineno: 129, function: do_testimage
-0125:=C2=A0 =C2=A0 netstat -an
-0126:}
-0127:
-0128:python do_testimage() {
-*** 0129:=C2=A0 =C2=A0 testimage_main(d)
-0130:}
-0131:
-0132:addtask testimage
-0133:do_testimage[nostamp] =3D "1"
-File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/class=
-es/testimage.bbclass', lineno: 371, function: testimage_main
-0367:=C2=A0 =C2=A0 orig_sigterm_handler =3D signal.signal(signal.SIGTERM, s=
-igterm_exception)
-0368:=C2=A0 =C2=A0 try:
-0369:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # We need to check if runqemu ends unexpec=
-tedly
-0370:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # or if the worker send us a SIGTERM
-*** 0371:=C2=A0 =C2=A0 =C2=A0 =C2=A0 tc.target.start(params=3Dd.getVar("TES=
-T_QEMUPARAMS"), runqemuparams=3Dd.getVar("TEST_RUNQEMUPARAMS"))
-0372:=C2=A0 =C2=A0 =C2=A0 =C2=A0 import threading
-0373:=C2=A0 =C2=A0 =C2=A0 =C2=A0 try:
-0374:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 threading.Timer(int(d.getVar=
-("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (int(d.getVar("TEST_OVERALL=
-_TIMEOUT")),)).start()
-0375:=C2=A0 =C2=A0 =C2=A0 =C2=A0 except ValueError:
-File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/lib/o=
-eqa/core/target/qemu.py', lineno: 67, function: start
-0063:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.runner.server_ip:
-0064:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.server_ip=
- =3D self.runner.server_ip
-0065:=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
-0066:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.stop()
-*** 0067:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise RuntimeError("FAIL=
-ED to start qemu - check the task log and the boot log")
-0068:
-0069:=C2=A0 =C2=A0 def stop(self):
-0070:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.runner.stop()
-Exception: RuntimeError: FAILED to start qemu - check the task log and the =
-boot log
-
-ERROR: Logfile of failure stored in: /home/kush/khu/sources/build/tmp-glibc=
-/work/board-oe-linux/core-image-base/1.0-r0/temp/log.do_testimage.17255
-ERROR: Task (/home/kush/khu/sources/meta-exaleap/recipes-images/images/core=
--image-base.bb:do_testimage) failed with exit code '1'
-
-Can anyone help me in this, where i am doing wrong.
-
-T&R
-luvkhush
-
---BAqZBO4RJ9tFZcGhYV5h
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hi all,&nbsp;</div>
-<div>&nbsp;</div>
-<div>I was testing my <strong>core-image-base -c testimage</strong> with te=
-st-suit and getting error:-</div>
-<div>&nbsp;</div>
-<div><strong>ERROR: core-image-base-1.0-r0 do_testimage: Output from runqem=
-u:</strong></div>
-<div><strong>runqemu - WARNING - /home/kush/khu/sources/build/tmp-glibc/dep=
-loy/images/board/core-image-base-board.qemuboot.conf doesn't exist</strong>=
-</div>
-<div><strong>ls: cannot access '/home/kush/khu/sources/build/tmp-glibc/depl=
-oy/images/board/*.qemuboot.conf': No such file or directory</strong></div>
-<div><strong>runqemu - ERROR - Command 'ls -t /home/kush/khu/sources/build/=
-tmp-glibc/deploy/images/board/*.qemuboot.conf' returned non-zero exit statu=
-s 2.</strong></div>
-<div><strong>runqemu - INFO - Cleaning up</strong></div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>WARNING: core-image-base-1.0-r0 do_testimage: Qemu ended unexpectedly,=
- dump data from host is in /home/integration-team/kush/khu/sources/build/tm=
-p-glibc/log/runtime-hostdump/202306141146_qemu</div>
-<div>ERROR: core-image-base-1.0-r0 do_testimage: Error executing a python f=
-unction in exec_python_func() autogenerated:</div>
-<div>&nbsp;</div>
-<div>The stack trace of python calls that resulted in this exception/failur=
-e was:</div>
-<div>File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;mod=
-ule&gt;</div>
-<div>&nbsp; &nbsp; &nbsp;0001:</div>
-<div>&nbsp;*** 0002:do_testimage(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0003:</div>
-<div>File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/=
-classes/testimage.bbclass', lineno: 129, function: do_testimage</div>
-<div>&nbsp; &nbsp; &nbsp;0125:&nbsp; &nbsp; netstat -an</div>
-<div>&nbsp; &nbsp; &nbsp;0126:}</div>
-<div>&nbsp; &nbsp; &nbsp;0127:</div>
-<div>&nbsp; &nbsp; &nbsp;0128:python do_testimage() {</div>
-<div>&nbsp;*** 0129:&nbsp; &nbsp; testimage_main(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0130:}</div>
-<div>&nbsp; &nbsp; &nbsp;0131:</div>
-<div>&nbsp; &nbsp; &nbsp;0132:addtask testimage</div>
-<div>&nbsp; &nbsp; &nbsp;0133:do_testimage[nostamp] =3D "1"</div>
-<div>File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/=
-classes/testimage.bbclass', lineno: 371, function: testimage_main</div>
-<div>&nbsp; &nbsp; &nbsp;0367:&nbsp; &nbsp; orig_sigterm_handler =3D signal=
-.signal(signal.SIGTERM, sigterm_exception)</div>
-<div>&nbsp; &nbsp; &nbsp;0368:&nbsp; &nbsp; try:</div>
-<div>&nbsp; &nbsp; &nbsp;0369:&nbsp; &nbsp; &nbsp; &nbsp; # We need to chec=
-k if runqemu ends unexpectedly</div>
-<div>&nbsp; &nbsp; &nbsp;0370:&nbsp; &nbsp; &nbsp; &nbsp; # or if the worke=
-r send us a SIGTERM</div>
-<div>&nbsp;*** 0371:&nbsp; &nbsp; &nbsp; &nbsp; tc.target.start(params=3Dd.=
-getVar("TEST_QEMUPARAMS"), runqemuparams=3Dd.getVar("TEST_RUNQEMUPARAMS"))<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0372:&nbsp; &nbsp; &nbsp; &nbsp; import threading<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0373:&nbsp; &nbsp; &nbsp; &nbsp; try:</div>
-<div>&nbsp; &nbsp; &nbsp;0374:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; thr=
-eading.Timer(int(d.getVar("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (i=
-nt(d.getVar("TEST_OVERALL_TIMEOUT")),)).start()</div>
-<div>&nbsp; &nbsp; &nbsp;0375:&nbsp; &nbsp; &nbsp; &nbsp; except ValueError=
-:</div>
-<div>File: '/home/integration-team/kush/khu/sources/openembedded-core/meta/=
-lib/oeqa/core/target/qemu.py', lineno: 67, function: start</div>
-<div>&nbsp; &nbsp; &nbsp;0063:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if =
-self.runner.server_ip:</div>
-<div>&nbsp; &nbsp; &nbsp;0064:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; self.server_ip =3D self.runner.server_ip</div>
-<div>&nbsp; &nbsp; &nbsp;0065:&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>&nbsp; &nbsp; &nbsp;0066:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
-f.stop()</div>
-<div>&nbsp;*** 0067:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; raise Runtime=
-Error("FAILED to start qemu - check the task log and the boot log")</div>
-<div>&nbsp; &nbsp; &nbsp;0068:</div>
-<div>&nbsp; &nbsp; &nbsp;0069:&nbsp; &nbsp; def stop(self):</div>
-<div>&nbsp; &nbsp; &nbsp;0070:&nbsp; &nbsp; &nbsp; &nbsp; self.runner.stop(=
-)</div>
-<div>Exception: RuntimeError: FAILED to start qemu - check the task log and=
- the boot log</div>
-<div>&nbsp;</div>
-<div>ERROR: Logfile of failure stored in: /home/kush/khu/sources/build/tmp-=
-glibc/work/board-oe-linux/core-image-base/1.0-r0/temp/log.do_testimage.1725=
-5</div>
-<div>ERROR: Task (/home/kush/khu/sources/meta-exaleap/recipes-images/images=
-/core-image-base.bb:do_testimage) failed with exit code '1'<br /><br />Can =
-anyone help me in this, where i am doing wrong.&nbsp;<br /><br />T&amp;R<br=
- />luvkhush</div>
-
---BAqZBO4RJ9tFZcGhYV5h--
 
