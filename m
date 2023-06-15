@@ -2,56 +2,56 @@ Return-Path: <pidge@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82E6DEB64DB
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60969EB64D9
 	for <webhook@archiver.kernel.org>; Thu, 15 Jun 2023 16:16:12 +0000 (UTC)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
- by mx.groups.io with SMTP id smtpd.web11.22988.1686845768795287228
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web11.22989.1686845769565630273
  for <yocto@lists.yoctoproject.org>;
  Thu, 15 Jun 2023 09:16:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=SHQlsjy/;
- spf=pass (domain: baylibre.com, ip: 209.85.221.53, mailfrom: pidge@baylibre.com)
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3110ab7110aso1867115f8f.3
-        for <yocto@lists.yoctoproject.org>; Thu, 15 Jun 2023 09:16:08 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=hHWAM1ry;
+ spf=pass (domain: baylibre.com, ip: 209.85.221.42, mailfrom: pidge@baylibre.com)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-30fca48b473so3687114f8f.3
+        for <yocto@lists.yoctoproject.org>; Thu, 15 Jun 2023 09:16:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686845767; x=1689437767;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686845768; x=1689437768;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Sq54Ns1sBD1HoPxWH54MbgS4hW3oh4QYXcyRVcckrVw=;
-        b=SHQlsjy/hY55EdZIUxift939GK8nQMLJnF4YchWuPSobFz8zOORo1izIg9FT7TNhOa
-         3vMPQCFaebzphmS/z8j0rtBJjR1wbieiZ4Ti6Rg19JeT1FSvwAFCQnmrjZwKvBVE+h+r
-         jdxZCaF3ffhvdGyOgGFuhQ3GQtLqV8TYEBIRCOOovdSPcDXton0FmkgyzbEj1RVJy0iC
-         BY/P4Z2JdPCxPy/L1qMdkJe3VcS6QGqSOi1ZWem+bdp5HQRUXTZqeZovTStbOUGWpkFJ
-         39KbvMJIC0NFpZzZf45ot6BMHDfaGy1NaiB9o9NI/iM7WyQqhNlVNzYxzrN/lviNPBkD
-         2eEA==
+        bh=XYI37Ye5Q+SfaHAyPB6pIRZPSIDBYuN7b6dqMBbfGvM=;
+        b=hHWAM1ryXnRZuG7c6auFqRH3dSB06RKahJK7W0XdVHTPXN8ik/xbbhCoTyb7LiEqdf
+         UrJVQiLdjNrrTHTmYDcJ0mN7qXncvAeaHJFkKR1CFhH/hLLP7yG1n97K3F5YuAKMFiQb
+         1HiODn4CnMiq3dT3vEEat15pC0zuozBsaWHm6O13eWrD0lZVDQ5xFQ8LTVPvRxhRtf/D
+         UWA3hmdCW33u6uWvOuq//ubl9NIwziXXkiSTgdZCjXxcgT0Vg/91dvSTrJdla6AGIItJ
+         K3zkjcaZbHqB/v1b5nZydrA67Xx4uE/hpkICWLqdf1tnry1Hgmrwhc9j13ZknSGKIn8j
+         f2Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686845767; x=1689437767;
+        d=1e100.net; s=20221208; t=1686845768; x=1689437768;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Sq54Ns1sBD1HoPxWH54MbgS4hW3oh4QYXcyRVcckrVw=;
-        b=b7NID+QeX0tgdGMAl+ZsjrpEmrPjq+MAdps54g3q1LyYgFADYjmo0dfUR1MqgOeThR
-         EVSoM2zBTl2R04K2TICKNjYMfdQrSYfChtQDcagFeSlw7OlDZkATRajhl4/GgHRpGnhB
-         tQM3fOHB2QT4rW31+oqU3utz8fRp7IRoX3HONBnqhdtvp0QfmIAttgY8gFBtLbrRCCo7
-         klUeeur64sA4fQTOdmS1/CnWgt84WHyXpQ1I40gsCcCV+5ffvr8GmPITk2uGDU3UcbBg
-         9kb+S2qO+aigm3zpWI7agZ/Up7eQLt3Ur/N7sF7R8MY5wccpyDWudZ5GXFe4Se/UC/Ei
-         agaA==
-X-Gm-Message-State: AC+VfDz/bXmibF4mvY+zw+rHcxJ4iErj2JTK089kZH+YZM/d/OT0ZfsW
-	dwmIaEhgoZu+HRE7RixHWAZ73GveE2p8Xe0zlxs=
-X-Google-Smtp-Source: ACHHUZ5vbQXTWFSIlR/KOc5zOfWsuTwgazmjAeZvaQAl+DN5jgn7AkW0B+m2AIBdLJh4nlrm5kRdcA==
-X-Received: by 2002:a5d:5946:0:b0:307:92e8:ec60 with SMTP id e6-20020a5d5946000000b0030792e8ec60mr12164163wri.39.1686845767005;
-        Thu, 15 Jun 2023 09:16:07 -0700 (PDT)
+        bh=XYI37Ye5Q+SfaHAyPB6pIRZPSIDBYuN7b6dqMBbfGvM=;
+        b=eOma97VJr+fY8sKtg9Yn97zbqCB/FsAWMMlnhcwZxYgW4utasCxqzWRvIG2ls6CqDl
+         CBu8qXF/dbVDzYfn5Byp4qWAUyYg7hx40F3yXb6lvT+BBV+TJ/+dGnt/zjWMqPGXWO/d
+         wPT1ftSywgSCg0SeQ87eHU7fm5KMU0XJSy4cLE81nojGTgA6WOageRcQqnR4TxgWczAk
+         Gs7Zl+paZyUyp2LPz7u6EXVo91p1AnsGtIe/fXZx/vLsWU9MKDn5iZzc1XUO5yWRLJbs
+         lucyC4nbsR35fc6se3sCaylMRVco8tdp0/lx0o0xuEz04DFJwTDMSlFU0hY0Z2TjA3q6
+         Uz2A==
+X-Gm-Message-State: AC+VfDwjlMlqpy/8DggQzlKJT26Ad/DJ1eHwpEGP3qkKMt95vu/yzp+D
+	R1R2p7DAss2OztlESo5D6nCGt0ZwJsYs7hb9KFA=
+X-Google-Smtp-Source: ACHHUZ6dZWBVKYH5Kxn/Hd3UuCqtiI8wRWhE4Re4GOQ/UIS7e1+5xXS2jjl0s58OxciqxkP5z5JzIQ==
+X-Received: by 2002:a5d:4903:0:b0:309:54b6:33b0 with SMTP id x3-20020a5d4903000000b0030954b633b0mr12034701wrq.44.1686845768094;
+        Thu, 15 Jun 2023 09:16:08 -0700 (PDT)
 Received: from tapa.fritz.box ([194.110.145.180])
-        by smtp.gmail.com with ESMTPSA id q3-20020adff503000000b0030fa3567541sm18308709wro.48.2023.06.15.09.16.06
+        by smtp.gmail.com with ESMTPSA id q3-20020adff503000000b0030fa3567541sm18308709wro.48.2023.06.15.09.16.07
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 09:16:06 -0700 (PDT)
+        Thu, 15 Jun 2023 09:16:07 -0700 (PDT)
 From: =?UTF-8?q?Eil=C3=ADs=20=27pidge=27=20N=C3=AD=20Fhlannag=C3=A1in?= <pidge@baylibre.com>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH 2/3] weston: Upgrade 11.0.1 -> 12.0.1
-Date: Thu, 15 Jun 2023 17:16:00 +0100
-Message-Id: <b1b687c7e564e890b40229c6e4781d5ec23989b6.1686845688.git.pidge@baylibre.com>
+Subject: [PATCH 3/3] xwayland: Upgrade 23.1.1 -> 23.1.2
+Date: Thu, 15 Jun 2023 17:16:01 +0100
+Message-Id: <04aaa6db375ee4aae7ef7379d1c49addebc3a63d.1686845688.git.pidge@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1686845688.git.pidge@baylibre.com>
 References: <cover.1686845688.git.pidge@baylibre.com>
@@ -62,61 +62,30 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Thu, 15 Jun 2023 16:16:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60314
-
-Tracking https://gitlab.freedesktop.org/wayland/weston/-/issues/488
-we're keeping -Ddeprecated-launcher-logind but plans should be made to
-remove this/work around.
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60315
 
 Signed-off-by: Eilís 'pidge' Ní Fhlannagáin <pidge@baylibre.com>
 ---
- .../wayland/{weston_11.0.1.bb => weston_12.0.1.bb}     | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
- rename meta/recipes-graphics/wayland/{weston_11.0.1.bb => weston_12.0.1.bb} (92%)
+ .../xwayland/{xwayland_23.1.1.bb => xwayland_23.1.2.bb}         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename meta/recipes-graphics/xwayland/{xwayland_23.1.1.bb => xwayland_23.1.2.bb} (95%)
 
-diff --git a/meta/recipes-graphics/wayland/weston_11.0.1.bb b/meta/recipes-graphics/wayland/weston_12.0.1.bb
-similarity index 92%
-rename from meta/recipes-graphics/wayland/weston_11.0.1.bb
-rename to meta/recipes-graphics/wayland/weston_12.0.1.bb
-index 4f6ce19915..be9dae6289 100644
---- a/meta/recipes-graphics/wayland/weston_11.0.1.bb
-+++ b/meta/recipes-graphics/wayland/weston_12.0.1.bb
-@@ -6,14 +6,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d79ee9e66bb0f95d3386a7acae780b70 \
-                     file://libweston/compositor.c;endline=27;md5=eb6d5297798cabe2ddc65e2af519bcf0 \
-                     "
+diff --git a/meta/recipes-graphics/xwayland/xwayland_23.1.1.bb b/meta/recipes-graphics/xwayland/xwayland_23.1.2.bb
+similarity index 95%
+rename from meta/recipes-graphics/xwayland/xwayland_23.1.1.bb
+rename to meta/recipes-graphics/xwayland/xwayland_23.1.2.bb
+index a065e92f01..de516536d1 100644
+--- a/meta/recipes-graphics/xwayland/xwayland_23.1.1.bb
++++ b/meta/recipes-graphics/xwayland/xwayland_23.1.2.bb
+@@ -10,7 +10,7 @@ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=5df87950af51ac2c5822094553ea1880"
  
--SRC_URI = "https://gitlab.freedesktop.org/wayland/weston/uploads/f5648c818fba5432edc3ea63c4db4813/${BPN}-${PV}.tar.xz \
-+SRC_URI = "https://gitlab.freedesktop.org/wayland/weston/-/releases/12.0.1/downloads/${BPN}-${PV}.tar.xz \
-            file://weston.png \
-            file://weston.desktop \
-            file://xwayland.weston-start \
-            file://systemd-notify.weston-start \
-            "
+ SRC_URI = "https://www.x.org/archive/individual/xserver/xwayland-${PV}.tar.xz"
+-SRC_URI[sha256sum] = "fb9461f5cb9fea5e07e91882311b0c88b43e8843b017ebac05eb5af69aa34c15"
++SRC_URI[sha256sum] = "bd25d8498ee4d77874fda125127e2db37fc332531febc966231ea06fae8cf77f"
  
--SRC_URI[sha256sum] = "a413f68c252957fc3191c3650823ec356ae8c124ccc0cb440da5cdc4e2cb9e57"
-+SRC_URI[sha256sum] = "b18591eab278bc191720f6c09158040b795e7118af1d5ddca6acd9a8e2039535"
+ UPSTREAM_CHECK_REGEX = "xwayland-(?P<pver>\d+(\.(?!90\d)\d+)+)\.tar"
  
- UPSTREAM_CHECK_URI = "https://wayland.freedesktop.org/releases.html"
- UPSTREAM_CHECK_REGEX = "weston-(?P<pver>\d+\.\d+\.(?!9\d+)\d+)"
-@@ -71,13 +71,17 @@ PACKAGECONFIG[lcms] = "-Dcolor-management-lcms=true,-Dcolor-management-lcms=fals
- # Weston with webp support
- PACKAGECONFIG[webp] = "-Dimage-webp=true,-Dimage-webp=false,libwebp"
- # Weston with systemd-login support
--PACKAGECONFIG[systemd] = "-Dsystemd=true -Dlauncher-logind=true,-Dsystemd=false -Dlauncher-logind=false,systemd dbus"
-+PACKAGECONFIG[systemd] = "-Dsystemd=true -Ddeprecated-launcher-logind=true,-Dsystemd=false -Ddeprecated-launcher-logind=false,systemd dbus"
- # Weston with Xwayland support (requires X11 and Wayland)
- PACKAGECONFIG[xwayland] = "-Dxwayland=true,-Dxwayland=false,xwayland"
- # colord CMS support
- PACKAGECONFIG[colord] = "-Ddeprecated-color-management-colord=true,-Ddeprecated-color-management-colord=false,colord"
- # Clients support
- PACKAGECONFIG[clients] = "-Dsimple-clients=${SIMPLECLIENTS} -Ddemo-clients=true,-Dsimple-clients= -Ddemo-clients=false"
-+# Pipewire support
-+PACKAGECONFIG[pipewire] = "-Dbackend-pipewire=true,-Dbackend-pipewire=false, pipewire"
-+# neatvnc support
-+PACKAGECONFIG[neatvnc] = "-Dbackend-vnc=true,-Dbackend-vnc=false, neatvnc"
- # Virtual remote output with GStreamer on DRM backend
- PACKAGECONFIG[remoting] = "-Dremoting=true,-Dremoting=false,gstreamer1.0 gstreamer1.0-plugins-base"
- # Weston with screen-share support
 -- 
 2.34.1
 
