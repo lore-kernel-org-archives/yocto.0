@@ -1,92 +1,106 @@
-Return-Path: <pidge@baylibre.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60969EB64D9
-	for <webhook@archiver.kernel.org>; Thu, 15 Jun 2023 16:16:12 +0000 (UTC)
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
- by mx.groups.io with SMTP id smtpd.web11.22989.1686845769565630273
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D1EDEB64D9
+	for <webhook@archiver.kernel.org>; Thu, 15 Jun 2023 16:33:52 +0000 (UTC)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+ by mx.groups.io with SMTP id smtpd.web11.23492.1686846831586234523
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Jun 2023 09:16:09 -0700
+ Thu, 15 Jun 2023 09:33:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baylibre-com.20221208.gappssmtp.com header.s=20221208 header.b=hHWAM1ry;
- spf=pass (domain: baylibre.com, ip: 209.85.221.42, mailfrom: pidge@baylibre.com)
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-30fca48b473so3687114f8f.3
-        for <yocto@lists.yoctoproject.org>; Thu, 15 Jun 2023 09:16:09 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=CkLQbXek;
+ spf=pass (domain: gmail.com, ip: 209.85.161.41, mailfrom: raj.khem@gmail.com)
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-55b3d77c9deso1664613eaf.0
+        for <yocto@lists.yoctoproject.org>; Thu, 15 Jun 2023 09:33:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1686845768; x=1689437768;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XYI37Ye5Q+SfaHAyPB6pIRZPSIDBYuN7b6dqMBbfGvM=;
-        b=hHWAM1ryXnRZuG7c6auFqRH3dSB06RKahJK7W0XdVHTPXN8ik/xbbhCoTyb7LiEqdf
-         UrJVQiLdjNrrTHTmYDcJ0mN7qXncvAeaHJFkKR1CFhH/hLLP7yG1n97K3F5YuAKMFiQb
-         1HiODn4CnMiq3dT3vEEat15pC0zuozBsaWHm6O13eWrD0lZVDQ5xFQ8LTVPvRxhRtf/D
-         UWA3hmdCW33u6uWvOuq//ubl9NIwziXXkiSTgdZCjXxcgT0Vg/91dvSTrJdla6AGIItJ
-         K3zkjcaZbHqB/v1b5nZydrA67Xx4uE/hpkICWLqdf1tnry1Hgmrwhc9j13ZknSGKIn8j
-         f2Rg==
+        d=gmail.com; s=20221208; t=1686846831; x=1689438831;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=958qA2nBKldu+mU2O5OKvdTrvwRmhCwDGT+VSwz/5Mg=;
+        b=CkLQbXekOMiITQ25wXi1lGwKyn6jc/N0V0CSNSm27hj41kpMySKt6Ot4RdsIVdrqZn
+         9X4hsgXTMU4A2urDjuVvQ1QL0Qxpj+oGbwDgT5wGwtDuWgD1+deDSvkfC/My/Gc6Dgig
+         OfNwdB5ruKL+0HMGNo3WNs3WUrqgLiJReeKfEd9iCgonNHg06B0Oy60Hd6CZamcdkebj
+         feM/A5wpl8CQ15VtwFcu63XBW2RI16PNU9aEjXVgh9IgGc6kWo33yyZ5s69NhKS0si7m
+         WY8VhHq8UnO0sKH/EmrC+I5TydHgng9M6SHwvREx9LLN3WqdinHAvjLYHZIxtGuN/fNY
+         +J+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686845768; x=1689437768;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1686846831; x=1689438831;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XYI37Ye5Q+SfaHAyPB6pIRZPSIDBYuN7b6dqMBbfGvM=;
-        b=eOma97VJr+fY8sKtg9Yn97zbqCB/FsAWMMlnhcwZxYgW4utasCxqzWRvIG2ls6CqDl
-         CBu8qXF/dbVDzYfn5Byp4qWAUyYg7hx40F3yXb6lvT+BBV+TJ/+dGnt/zjWMqPGXWO/d
-         wPT1ftSywgSCg0SeQ87eHU7fm5KMU0XJSy4cLE81nojGTgA6WOageRcQqnR4TxgWczAk
-         Gs7Zl+paZyUyp2LPz7u6EXVo91p1AnsGtIe/fXZx/vLsWU9MKDn5iZzc1XUO5yWRLJbs
-         lucyC4nbsR35fc6se3sCaylMRVco8tdp0/lx0o0xuEz04DFJwTDMSlFU0hY0Z2TjA3q6
-         Uz2A==
-X-Gm-Message-State: AC+VfDwjlMlqpy/8DggQzlKJT26Ad/DJ1eHwpEGP3qkKMt95vu/yzp+D
-	R1R2p7DAss2OztlESo5D6nCGt0ZwJsYs7hb9KFA=
-X-Google-Smtp-Source: ACHHUZ6dZWBVKYH5Kxn/Hd3UuCqtiI8wRWhE4Re4GOQ/UIS7e1+5xXS2jjl0s58OxciqxkP5z5JzIQ==
-X-Received: by 2002:a5d:4903:0:b0:309:54b6:33b0 with SMTP id x3-20020a5d4903000000b0030954b633b0mr12034701wrq.44.1686845768094;
-        Thu, 15 Jun 2023 09:16:08 -0700 (PDT)
-Received: from tapa.fritz.box ([194.110.145.180])
-        by smtp.gmail.com with ESMTPSA id q3-20020adff503000000b0030fa3567541sm18308709wro.48.2023.06.15.09.16.07
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jun 2023 09:16:07 -0700 (PDT)
-From: =?UTF-8?q?Eil=C3=ADs=20=27pidge=27=20N=C3=AD=20Fhlannag=C3=A1in?= <pidge@baylibre.com>
-To: yocto@lists.yoctoproject.org
-Subject: [PATCH 3/3] xwayland: Upgrade 23.1.1 -> 23.1.2
-Date: Thu, 15 Jun 2023 17:16:01 +0100
-Message-Id: <04aaa6db375ee4aae7ef7379d1c49addebc3a63d.1686845688.git.pidge@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1686845688.git.pidge@baylibre.com>
-References: <cover.1686845688.git.pidge@baylibre.com>
+        bh=958qA2nBKldu+mU2O5OKvdTrvwRmhCwDGT+VSwz/5Mg=;
+        b=Jf6dIMsM1QrcJyOLtM/b1Coat+TaEIJAtQxrnBVNbwiyP0cJmujl+n+X/aE8XKqZW1
+         J5YkjmhkxeNptbhADxAmiHgKHoRSGOUuEK+Ml9bLZ6vfQOoo6pMF0f/yLpsXoa05I1Kd
+         fgJBAqnHdFtOha5G0YyD9rx4t4yFFPOKovfn19QHZFit6rZrcktUznnYPbhw2ItePV/v
+         JV7bjcIBz4Nd+MLVV6KE24Is2yV1q7HQAg2+szktZwLoCxn3fpA/Z6Wt7jDWSZPYHPlz
+         ZpC2Cz+kArCWUqAJMfVzcjLzTP0NU6GKcW16ak0WjuvWtz+Sbbm88VGHuqWnVLx4faYh
+         b+Kg==
+X-Gm-Message-State: AC+VfDyQr1npYPTZGnRb7eVuRMIc7tN3kTAwjnFob4oO6cxeQ63Gliv3
+	MdjKEqgqR2gHtxRJJ6H3Sn0AMNDSHk/6c3hd3FU=
+X-Google-Smtp-Source: ACHHUZ7n9ugJ4qJsw7RfmPwxE0eBhTLsM2EWduA6q17jbl7l2PrMNVxODoLCD28KknqRcsiOSdZ4yvgGZOfDko0WwF4=
+X-Received: by 2002:a4a:de42:0:b0:55b:85b9:68f5 with SMTP id
+ z2-20020a4ade42000000b0055b85b968f5mr8582593oot.3.1686846830568; Thu, 15 Jun
+ 2023 09:33:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <cover.1686845688.git.pidge@baylibre.com>
+In-Reply-To: <cover.1686845688.git.pidge@baylibre.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 15 Jun 2023 09:33:24 -0700
+Message-ID: <CAMKF1sqQeRMSDxRkx0cPCTThmC9uxp1M-wWwZxZ_b5PBLBx6Cg@mail.gmail.com>
+Subject: Re: [yocto] [PATCH 0/3] wayland/weston upgrades
+To: =?UTF-8?B?RWlsw61zICdwaWRnZScgTsOtIEZobGFubmFnw6Fpbg==?= <pidge@baylibre.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 15 Jun 2023 16:16:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60315
+ <yocto@lists.yoctoproject.org>; Thu, 15 Jun 2023 16:33:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60316
 
-Signed-off-by: Eilís 'pidge' Ní Fhlannagáin <pidge@baylibre.com>
----
- .../xwayland/{xwayland_23.1.1.bb => xwayland_23.1.2.bb}         | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename meta/recipes-graphics/xwayland/{xwayland_23.1.1.bb => xwayland_23.1.2.bb} (95%)
+Thanks for patches, however yocto ml is not right place for them. they
+should be sent to openembedded-core mailing list
 
-diff --git a/meta/recipes-graphics/xwayland/xwayland_23.1.1.bb b/meta/recipes-graphics/xwayland/xwayland_23.1.2.bb
-similarity index 95%
-rename from meta/recipes-graphics/xwayland/xwayland_23.1.1.bb
-rename to meta/recipes-graphics/xwayland/xwayland_23.1.2.bb
-index a065e92f01..de516536d1 100644
---- a/meta/recipes-graphics/xwayland/xwayland_23.1.1.bb
-+++ b/meta/recipes-graphics/xwayland/xwayland_23.1.2.bb
-@@ -10,7 +10,7 @@ LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://COPYING;md5=5df87950af51ac2c5822094553ea1880"
- 
- SRC_URI = "https://www.x.org/archive/individual/xserver/xwayland-${PV}.tar.xz"
--SRC_URI[sha256sum] = "fb9461f5cb9fea5e07e91882311b0c88b43e8843b017ebac05eb5af69aa34c15"
-+SRC_URI[sha256sum] = "bd25d8498ee4d77874fda125127e2db37fc332531febc966231ea06fae8cf77f"
- 
- UPSTREAM_CHECK_REGEX = "xwayland-(?P<pver>\d+(\.(?!90\d)\d+)+)\.tar"
- 
--- 
-2.34.1
-
+On Thu, Jun 15, 2023 at 9:16=E2=80=AFAM Eil=C3=ADs 'pidge' N=C3=AD Fhlannag=
+=C3=A1in
+<pidge@baylibre.com> wrote:
+>
+> Nothing really surprising here, except we should note that launcher-login=
+d is
+> being depreciated so some thought on how that is dealt with will need to =
+occur.
+>
+> Eil=C3=ADs 'pidge' N=C3=AD Fhlannag=C3=A1in (3):
+>   wayland-utils: upgrade 1.1.0 -> 1.2.0
+>   weston: Upgrade 11.0.1 -> 12.0.1
+>   xwayland: Upgrade 23.1.1 -> 23.1.2
+>
+>  .../{wayland-utils_1.1.0.bb =3D> wayland-utils_1.2.0.bb} |  3 +--
+>  .../wayland/{weston_11.0.1.bb =3D> weston_12.0.1.bb}     | 10 +++++++---
+>  .../{xwayland_23.1.1.bb =3D> xwayland_23.1.2.bb}         |  2 +-
+>  3 files changed, 9 insertions(+), 6 deletions(-)
+>  rename meta/recipes-graphics/wayland/{wayland-utils_1.1.0.bb =3D> waylan=
+d-utils_1.2.0.bb} (82%)
+>  rename meta/recipes-graphics/wayland/{weston_11.0.1.bb =3D> weston_12.0.=
+1.bb} (92%)
+>  rename meta/recipes-graphics/xwayland/{xwayland_23.1.1.bb =3D> xwayland_=
+23.1.2.bb} (95%)
+>
+> --
+> 2.34.1
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#60312): https://lists.yoctoproject.org/g/yocto/messag=
+e/60312
+> Mute This Topic: https://lists.yoctoproject.org/mt/99552499/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
