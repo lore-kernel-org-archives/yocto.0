@@ -1,104 +1,181 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 489D0EB64D7
-	for <webhook@archiver.kernel.org>; Sun, 18 Jun 2023 09:08:19 +0000 (UTC)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web10.2683.1687079291739098389
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B231EB64D7
+	for <webhook@archiver.kernel.org>; Sun, 18 Jun 2023 13:36:20 +0000 (UTC)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+ by mx.groups.io with SMTP id smtpd.web11.5765.1687095376597306929
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Jun 2023 02:08:12 -0700
+ Sun, 18 Jun 2023 06:36:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=YrjWpMEx;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.45, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-311153ec442so1613358f8f.1
-        for <yocto@lists.yoctoproject.org>; Sun, 18 Jun 2023 02:08:11 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@sakoman-com.20221208.gappssmtp.com header.s=20221208 header.b=zgVmw4z6;
+ spf=softfail (domain: sakoman.com, ip: 209.85.218.46, mailfrom: steve@sakoman.com)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-987accb4349so218875266b.0
+        for <yocto@lists.yoctoproject.org>; Sun, 18 Jun 2023 06:36:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1687079290; x=1689671290;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=f9CTmcd5IsFVW2MAv6UiXyT2a5xoJZ+7gBx33X36Ink=;
-        b=YrjWpMEx/vAlWEGPxUgLQQEwnm16kLoKqKjaa6b/4sp+yXtCDdVxZm5nXB6vAO16CB
-         UimHkkIqTLrzX1cTmvUx13iAYXbn16v+/qVbdSx0gPKPZz3LfBmTcvSpy72u5sBJTPec
-         zOlVCNAC1OXwMcqncX9sGZbNBFdU5gOMSgQDY=
+        d=sakoman-com.20221208.gappssmtp.com; s=20221208; t=1687095375; x=1689687375;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=eS0yKIEYuoIy3K5ql1Z+Yr3s3UVNzZiQ3Q1nS5DtzlA=;
+        b=zgVmw4z60Jw9GQChluPaiRSOVPcRIUrtTbfVkw3lgkvSn8TtGCf0S8jCh9dUsHenyY
+         u1668pHyhAhWHSNmtSSWXO+5hDOtszERqWSh/UHQnMGV/M7s3X9hzL7Xvwwd5feMSdde
+         dHBDPcpEYuVncfCuLALC9oEsvskmdgbgpmluSXBiefK7OZIbnUXZA5AyJ1cHgIRZGtWx
+         IOLLBsWugk7CtK6OJ9lwr+CLiUB8KadOY4jl27YmZE164qGLPqfx6fsKcBd7Fjdq0vmE
+         UETxsY9TqSgHNbA9rGz5oEvhWQNFH6uMfAitOE5ih2yqBjhlYyC1K1b+Upl7d3kebASj
+         BR0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687079290; x=1689671290;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f9CTmcd5IsFVW2MAv6UiXyT2a5xoJZ+7gBx33X36Ink=;
-        b=Xst+YdD3zxFEEDTI9qX8nkVSzi/NULzGjkqg6xUu/goDa7Z+FMVAOJRHba1s8cE2Py
-         6ne2x9OeafNr5vYmVV+BGkgvFT4s9NtPeqetqNxxU36hulMghWtbt0RcPKtFH4+Djdx6
-         T42nkIHEUjHsyWpeG+zW5HJ6B3pNwbMEQpQA1tWmzzZrPPIUQKOUoPAqfufxRwzGnAd4
-         04JeAvnU4g4q8ABgzNeo9fCs9K550tJCsuJbhbCMd0+CKpCglNsoOWFsrhieISit+Lne
-         Cp/ND27xAyfkQDrMDOpd61G4jX1B+AR/LWwDkaBF+4re5nedWZnwQKDOQ5HGXUVo8r6h
-         Ls/Q==
-X-Gm-Message-State: AC+VfDw+GJI4f5jpx3Mp4jbQ2SyIKCXjLJG5Z7O8WgwHOQAnElDDTuhv
-	pQmLTDIcoJlcvpNsN8yWR+Bca7u4MmT4eoTpIfc=
-X-Google-Smtp-Source: ACHHUZ6goSRh5rbQDL2knSQwde0Ju0BW6KWn3pqXCbb98jx9tZvpnOlHTtA0v0/ssSebVI1i7qoNgg==
-X-Received: by 2002:a5d:6610:0:b0:30f:c1fa:7901 with SMTP id n16-20020a5d6610000000b0030fc1fa7901mr5364353wru.5.1687079289698;
-        Sun, 18 Jun 2023 02:08:09 -0700 (PDT)
-Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:6795:a107:916c:13d0])
-        by smtp.gmail.com with ESMTPSA id c17-20020adffb51000000b00307bc4e39e5sm28154176wrs.117.2023.06.18.02.08.08
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jun 2023 02:08:09 -0700 (PDT)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Subject: [ptest-runner2] [PATCH] utils: Ensure buffers are flushed after child exits
-Date: Sun, 18 Jun 2023 10:08:08 +0100
-Message-Id: <20230618090808.2477845-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20221208; t=1687095375; x=1689687375;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eS0yKIEYuoIy3K5ql1Z+Yr3s3UVNzZiQ3Q1nS5DtzlA=;
+        b=SjO0/QCvFBADby5zgQ4RpzHzCixDx29l65L5O6Oq0cbbiQGhzH/x9ociImyog+lXq2
+         CKeV10Ftq79YOmZz0GVyKl3EN0aSZpb+Zun1ckszr2L+COBh/NPeBeZjFZcYBNm72V99
+         1/fRf8gScMU9U7P69CZpZGNHXnA+ToxgOyxR2ZoxOqcWWetRWYJyq7tF3t6LaTYfvg2O
+         sEvhuIUgu1oNmTyb166pJHMV6YWQxXWVuXuTNtxnHyGpjjNj2eqgdUUAuGvTfbUWDwsQ
+         J3faE90R7p17tTUTwfyukGpIsFwwjyYWGF01weBCOT0gsk4itOnmajpScJNsjJEGfV6Q
+         JWKA==
+X-Gm-Message-State: AC+VfDzbFrd8HyubOOr2Dbo+b1h43H0sxB/cHJyT+YHjNToqN8n/1Q0B
+	dakflqRyeY37YGmFjrSERs4YxRF2lppgVmdpNSYEZg==
+X-Google-Smtp-Source: ACHHUZ6Xzy1H8iXuafOex66vDC4gU3g9L8GKa0NBF0isZokS360ny7L83BwGMcBkW1T/r+dDqUsHH4rR5zOm3iThTfs=
+X-Received: by 2002:a17:907:968c:b0:988:a779:cc6e with SMTP id
+ hd12-20020a170907968c00b00988a779cc6emr211696ejc.51.1687095374748; Sun, 18
+ Jun 2023 06:36:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <01010188cc6d541c-bbdb003b-8479-4651-878f-37eeb1e96948-000000@us-west-2.amazonses.com>
+In-Reply-To: <01010188cc6d541c-bbdb003b-8479-4651-878f-37eeb1e96948-000000@us-west-2.amazonses.com>
+From: Steve Sakoman <steve@sakoman.com>
+Date: Sun, 18 Jun 2023 03:36:04 -1000
+Message-ID: <CAOSpxdaG-zvqWgsagdsQjWgYjZoJBrcbznjK1VCPyZAF5q9htQ@mail.gmail.com>
+Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-2.1.26.rc1)
+To: Pokybuild User <pokybuild@yoctoproject.org>
+Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>, 
+	qa-build-notification@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000083ae0105fe6780db"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 18 Jun 2023 09:08:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60333
+ <yocto@lists.yoctoproject.org>; Sun, 18 Jun 2023 13:36:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60334
 
-We currently wait for the child to exit but we don't flush the buffers.
-This can mean the output ends up out of sync and the END: line isn't at
-the end of the logs.
+--00000000000083ae0105fe6780db
+Content-Type: text/plain; charset="UTF-8"
 
-We've recently seen a lot of issues related to this on the autobuilder.
-Add in a flush call for all fds to ensure buffers are in sync. This
-does appear to improve warnings on the autobuilder now we started detecting
-the issue.
+Sigh,  my fat fingers intents to type 3.1.26! I'll build an rc2 so things
+are named properly.
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- README.md | 2 +-
- utils.c   | 3 +++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+Steve
 
-diff --git a/README.md b/README.md
-index 85ef58a..e6f548e 100644
---- a/README.md
-+++ b/README.md
-@@ -49,7 +49,7 @@ $ mtrace ./ptest-runner $MALLOC_TRACE
- ## Contributions
- 
- For contribute please send a patch with subject prefix "[ptest-runner]" to 
--yocto@yoctoproject.org.
-+yocto@lists.yoctoproject.org.
- 
- ## Links
- 
-diff --git a/utils.c b/utils.c
-index a67ac11..ec57fa4 100644
---- a/utils.c
-+++ b/utils.c
-@@ -535,6 +535,9 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 				entime = time(NULL);
- 				duration = entime - sttime;
- 
-+				/* Now the child has exited, ensure buffers are in sync before writing */
-+				fflush(NULL);
-+
- 				if (status) {
- 					fprintf(fp, "\nERROR: Exit status is %d\n", status);
- 					rc += 1;
--- 
-2.39.2
+On Sat, Jun 17, 2023, 4:55 PM Pokybuild User <pokybuild@yoctoproject.org>
+wrote:
 
+>
+> A build flagged for QA (yocto-2.1.26.rc1) was completed on the autobuilder
+> and is available at:
+>
+>
+>     https://autobuilder.yocto.io/pub/releases/yocto-2.1.26.rc1
+>
+>
+> Build hash information:
+>
+> bitbake: e16a9ca7e9286790ac37a067fdc8fde3a35a1c44
+> meta-agl: 009153010c138d1a5edd2e30bd3d76c95de636d9
+> meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882
+> meta-aws: 6fea710d1b3c8a5ad93e7811e75d8f4cf5962bb2
+> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+> meta-intel: 488af577a3f21f038c551612bb0af077fa2b743d
+> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+> meta-openembedded: 116bfe8d5e5851e7fc5424f40da8691a19c5b5ee
+> meta-virtualization: 521459bf588435e847d981657485bae8d6f003b5
+> oecore: 77f6fbfa18b4ad77c3756cfdc45d441a20210781
+> poky: bab87089ad998afc980adb45c11ae356bc35a460
+>
+>
+>
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>
+>
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60332):
+> https://lists.yoctoproject.org/g/yocto/message/60332
+> Mute This Topic: https://lists.yoctoproject.org/mt/99599259/3620601
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> steve@sakoman.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--00000000000083ae0105fe6780db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Sigh,=C2=A0 my fat fingers intents to type 3.1.26! I&#39;=
+ll build an rc2 so things are named properly.=C2=A0<div dir=3D"auto"><br></=
+div><div dir=3D"auto">Steve</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Sat, Jun 17, 2023, 4:55 PM Pokybuild Us=
+er &lt;<a href=3D"mailto:pokybuild@yoctoproject.org">pokybuild@yoctoproject=
+.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
+A build flagged for QA (yocto-2.1.26.rc1) was completed on the autobuilder =
+and is available at:<br>
+<br>
+<br>
+=C2=A0 =C2=A0 <a href=3D"https://autobuilder.yocto.io/pub/releases/yocto-2.=
+1.26.rc1" rel=3D"noreferrer noreferrer" target=3D"_blank">https://autobuild=
+er.yocto.io/pub/releases/yocto-2.1.26.rc1</a><br>
+<br>
+<br>
+Build hash information: <br>
+<br>
+bitbake: e16a9ca7e9286790ac37a067fdc8fde3a35a1c44<br>
+meta-agl: 009153010c138d1a5edd2e30bd3d76c95de636d9<br>
+meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882<br>
+meta-aws: 6fea710d1b3c8a5ad93e7811e75d8f4cf5962bb2<br>
+meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac<br>
+meta-intel: 488af577a3f21f038c551612bb0af077fa2b743d<br>
+meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7<br>
+meta-openembedded: 116bfe8d5e5851e7fc5424f40da8691a19c5b5ee<br>
+meta-virtualization: 521459bf588435e847d981657485bae8d6f003b5<br>
+oecore: 77f6fbfa18b4ad77c3756cfdc45d441a20210781<br>
+poky: bab87089ad998afc980adb45c11ae356bc35a460<br>
+<br>
+<br>
+<br>
+This is an automated message from the Yocto Project Autobuilder<br>
+Git: git://<a href=3D"http://git.yoctoproject.org/yocto-autobuilder2" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">git.yoctoproject.org/yocto-aut=
+obuilder2</a><br>
+Email: <a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_bla=
+nk" rel=3D"noreferrer">richard.purdie@linuxfoundation.org</a><br>
+<br>
+<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#60332): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/60332" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/60332</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/99599259/3620=
+601" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
+ject.org/mt/99599259/3620601</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a> [<a href=3D"mailto:steve@sakoman.com" target=3D"_blank" =
+rel=3D"noreferrer">steve@sakoman.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
+
+--00000000000083ae0105fe6780db--
 
