@@ -2,106 +2,174 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C40DEEB64DA
-	for <webhook@archiver.kernel.org>; Mon, 19 Jun 2023 10:20:42 +0000 (UTC)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
- by mx.groups.io with SMTP id smtpd.web10.4425.1687170034482991507
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C43CCEB64D9
+	for <webhook@archiver.kernel.org>; Mon, 19 Jun 2023 15:09:04 +0000 (UTC)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web11.9873.1687187334928905774
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Jun 2023 03:20:34 -0700
+ Mon, 19 Jun 2023 08:08:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=PhWjyPJ3;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.46, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3112902f785so1588476f8f.0
-        for <yocto@lists.yoctoproject.org>; Mon, 19 Jun 2023 03:20:34 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=AAaPxlVF;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.48, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3111cb3dda1so4141548f8f.0
+        for <yocto@lists.yoctoproject.org>; Mon, 19 Jun 2023 08:08:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1687170033; x=1689762033;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GHPxCNWG58pD/A3SYMQUNDS/1UkS5BCjUluP1DKEx0Y=;
-        b=PhWjyPJ33xLkrQaI6Xyvy9bCYti1jqrAufUx9hpZ22GVFCrndbC4jXBkYDWR6KUClb
-         dRK+GdT3d1GyU10STJuh2LLabZNEv2wNMlSVhjO5rcubqlvNsMbtwtBnirDPbjd5G1p/
-         uutDIokmx0dHpIv+SAQZzQ3zcL7xLQGZV8spg=
+        d=linuxfoundation.org; s=google; t=1687187333; x=1689779333;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1MyLhK2t5XrfQhxiRnyqqjrv1IdsJ4AW32bl43geRKI=;
+        b=AAaPxlVFUqnjkJ4UNtT91b/38aUVft59eXnpGR/vP/m5xAbUlFvGEEqX2eE67f9fCI
+         l3/JXhaHjFHfPB23Mr7T6N1FJsN2iuIla866la++TOn782NOzbtraltWEAo864NJg44N
+         7dlWSMkdxqAGR7FYd5gEmUvTW0GV0R4nMhe/M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687170033; x=1689762033;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GHPxCNWG58pD/A3SYMQUNDS/1UkS5BCjUluP1DKEx0Y=;
-        b=STKl2ZoZrw7fAb/va0s/ZPH62A2CvfSHY5xio2Q49jvjTPUj2O1FMWnLT4gEpNmXiZ
-         2QBDPdvIle6rye0pBZflz9Ux5KQoObnIKK3kR5V4Qaowauo6qsB/zEFEA+1SAl+HihR4
-         piv1c5dOblU4G0b2+9E6V6PK6mbwyxH+27nviD4ER8fhLHI5ikcvgmIAHKZc513XcCPZ
-         Mb7UDY30M7Z+XhIn4pgLb2EJwTmtcepmRh9iISnKUchYb+kIA7w0HY6fBpXxZKGI0LWm
-         ajpgaB1Y/29kCQqOUWQ+X29vi9EH2NXkDos6ABAB2N+G/EVm782jJGv0VG0jI/GsvjT7
-         aEng==
-X-Gm-Message-State: AC+VfDwkzKKC/1Qw620gSVwztv+t+LYPDbWVTdYCllePvr7rFKVAS4GM
-	LYbx6rUIDJdfIri9zVBcJ9VPsQ==
-X-Google-Smtp-Source: ACHHUZ6laXVi3N3B613ZLtQrwWorlSTS/4gQJ6b6Mk5Drqjf4xAwaqh5a53XTd0lvnpgRmLceMS/eQ==
-X-Received: by 2002:a5d:5005:0:b0:30f:cb3a:2c46 with SMTP id e5-20020a5d5005000000b0030fcb3a2c46mr12638633wrt.20.1687170032891;
-        Mon, 19 Jun 2023 03:20:32 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:a584:d6f1:d866:e41? ([2001:8b0:aba:5f3c:a584:d6f1:d866:e41])
-        by smtp.gmail.com with ESMTPSA id l15-20020a7bc44f000000b003f90846d8a7sm6290480wmi.6.2023.06.19.03.20.32
+        d=1e100.net; s=20221208; t=1687187333; x=1689779333;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1MyLhK2t5XrfQhxiRnyqqjrv1IdsJ4AW32bl43geRKI=;
+        b=BUGLCvgoF9cICIvuszx1GCZbB4QpPEM75Vv6CQyPwdZQZFLKEMBujCsJiCtKfe8zSt
+         t/7K3+aFWzOymVJ7cPIXdPshXcWIQkt40LevewqSHIaegiBLcYrCK3RZRR1oObw9hWwA
+         z3vfjZ2HDucVu570F8qSVo68ppLJ+HHhkcZenGZKHj/Pkxx6lRhI8L6ej7v6R8OOxixY
+         Tn6VyN0hj5GD73fPwyAVg3MSVBRP/zBz2EZW6N7MfJGzfcZA+EM/AbGaYtz3ohiC1gDM
+         91LNAspM4fM0GBq1O4EZcEoe6IRHC9kRBVAL97tdofQMMeXIGzIt2E8Xa7gmzvUKke6o
+         eiBA==
+X-Gm-Message-State: AC+VfDwmO+GtsznI5RlbSxOYgW2OlPNrzUd0HtGNOMKWRKSNvoB9Ci4Y
+	PLmu4uwRUVsRw8y2SSUGVEzkttLSOaj+hTr35Oc=
+X-Google-Smtp-Source: ACHHUZ5U3eHGEdU3bn6X+DF20QwgiLZmsxn4QBDkN3SdizHc9mhb9SFdeJ23Dtx0EL8jC0wZ3zlkAQ==
+X-Received: by 2002:a05:6000:1286:b0:30a:e6d4:f2b8 with SMTP id f6-20020a056000128600b0030ae6d4f2b8mr8433819wrx.25.1687187332813;
+        Mon, 19 Jun 2023 08:08:52 -0700 (PDT)
+Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:f105:ba55:87cc:dc34])
+        by smtp.gmail.com with ESMTPSA id k17-20020a5d4291000000b003047ea78b42sm31830951wrq.43.2023.06.19.08.08.52
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jun 2023 03:20:32 -0700 (PDT)
-Message-ID: <ad0022f44dab4aa6bd077c1541f76bd2761d3ce2.camel@linuxfoundation.org>
-Subject: Re: [yocto] Going on supporting Ubuntu 18.04?
+        Mon, 19 Jun 2023 08:08:52 -0700 (PDT)
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Ross Burton <Ross.Burton@arm.com>, "alex.kiernan@gmail.com"
-	 <alex.kiernan@gmail.com>
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>, Michael Opdenacker
-	 <michael.opdenacker@bootlin.com>, "yocto@lists.yoctoproject.org"
-	 <yocto@lists.yoctoproject.org>
-Date: Mon, 19 Jun 2023 11:20:31 +0100
-In-Reply-To: <94252681-15F0-4C7C-AB6A-A4476A2C2A8D@arm.com>
-References: <19697e87-997f-46ff-7017-804e1f344550@bootlin.com>
-	 <CANNYZj_j57XUfRbALdWSvH5wGOop9ytSk-_niEH24Go0qDCKwg@mail.gmail.com>
-	 <9942c50b161b8791a3d9b3352f6988e0aab9bf17.camel@linuxfoundation.org>
-	 <457A2135-C389-4FFC-8876-91DD1F3E9FB9@arm.com>
-	 <CAO5Uq5RYQ47LGrfvguMTKOhjvWxXe4HXSov_8knPieVxT4Rvaw@mail.gmail.com>
-	 <94252681-15F0-4C7C-AB6A-A4476A2C2A8D@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+To: yocto@lists.yoctoproject.org
+Subject: [ptest-runner2] [PATCH] utils: Ensure data is only written with a mutex held
+Date: Mon, 19 Jun 2023 16:08:51 +0100
+Message-Id: <20230619150851.2675823-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 19 Jun 2023 10:20:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60346
+ <yocto@lists.yoctoproject.org>; Mon, 19 Jun 2023 15:09:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60347
 
-On Mon, 2023-06-19 at 09:53 +0000, Ross Burton wrote:
-> On 19 Jun 2023, at 10:48, Alex Kiernan via lists.yoctoproject.org <alex.k=
-iernan=3Dgmail.com@lists.yoctoproject.org> wrote:
-> > FWIW we swapped out our x86_64 build machines for Aarch64 build
-> > machines (both 20.04) in AWS with pretty much zero pain - it went way
-> > better than I was expecting. That said we don't run ptests, or qemu,
-> > or =E2=80=A6
->=20
-> Sure, our meta-arm CI is 90% running on graviton3, this isn=E2=80=99t an =
-=E2=80=9Carm
-> is inherently unstable=E2=80=9D thing but rather that some of the current
-> physical arm workers were unstable: reporting core temperatures of
-> several hundred degrees celsius and shutting down, etc. Halstead
-> resolved the problems in the end but it wasn=E2=80=99t trivial.
->=20
-> The worker running 1804 is the oldest and by far the slowest, but
-> it=E2=80=99s also been - so far - the most reliable.
+Currently the code can race as there is a read/write thread handling the stdio but
+there is no guarantee that when the process exits, the thread has handled all the
+data. This results in output where "END:" isn't actually at the end of the logs
+but somewhere in the middle of the output.
 
-To be clear I'm not saying there is any problem in general with ARM
-machines! We just know that particular hardware, we had a lot of issues
-when we first set it up. Since we got the config right it has behaved a
-lot more reliably than the others. Changing the OS introduces risk and
-my question was whether we wanted to rush into that, particularly as it
-risks the machine being written off if things go badly, I was already
-under pressure about that as it is getting old. Things have got better
-since and nobody is interested on support on that particular older
-system.
+Synchronisation is hard. The easiest way I can see to fix this is to have a mutex
+for the output and then in the main thread, after the child exits, read any remaining
+data. This avoids concurrent writes corrupting the output and ensures END: is
+actually at the end of the test data.
 
-Cheers,
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ utils.c | 25 +++++++++++++++++++++----
+ 1 file changed, 21 insertions(+), 4 deletions(-)
 
-Richard
-
-
-
+diff --git a/utils.c b/utils.c
+index ec57fa4..65b1df3 100644
+--- a/utils.c
++++ b/utils.c
+@@ -63,6 +63,7 @@ static struct {
+ 	int timeouted;
+ 	pid_t pid;
+ 	int padding1;
++	pthread_mutex_t fd_lock;
+ } _child_reader;
+ 
+ static inline char *
+@@ -317,12 +318,13 @@ read_child(void *arg)
+ 
+ 	do {
+ 		r = poll(pfds, 2, _child_reader.timeout*1000);
++		pthread_mutex_lock(&_child_reader.fd_lock);
+ 		if (r > 0) {
+ 			char buf[WAIT_CHILD_BUF_MAX_SIZE];
+ 			ssize_t n;
+ 
+ 			if (pfds[0].revents != 0) {
+-				n = read(_child_reader.fds[0], buf, WAIT_CHILD_BUF_MAX_SIZE);
++ 				n = read(_child_reader.fds[0], buf, WAIT_CHILD_BUF_MAX_SIZE);
+ 				if (n > 0)
+ 					fwrite(buf, (size_t)n, 1, _child_reader.fps[0]);
+ 			}
+@@ -338,11 +340,13 @@ read_child(void *arg)
+ 			// as much data from the system as possible and kill the test
+ 			collect_system_state(_child_reader.fps[0]);
+ 			_child_reader.timeouted = 1;
++			pthread_mutex_unlock(&_child_reader.fd_lock);
+ 			kill(-_child_reader.pid, SIGKILL);
+                 }
+ 
+ 		fflush(_child_reader.fps[0]);
+ 		fflush(_child_reader.fps[1]);
++		pthread_mutex_unlock(&_child_reader.fd_lock);
+ 	} while (1);
+ 
+ 	return NULL;
+@@ -444,6 +448,8 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 	int slave;
+ 	int pgid = -1;
+ 	pthread_t tid;
++	ssize_t n;
++	char buf[WAIT_CHILD_BUF_MAX_SIZE];
+ 
+ 	if (opts.xml_filename) {
+ 		xh = xml_create(ptest_list_length(head), opts.xml_filename);
+@@ -453,10 +459,10 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 
+ 	do
+ 	{
+-		if ((rc = pipe(pipefd_stdout)) == -1)
++		if ((rc = pipe2(pipefd_stdout, O_NONBLOCK)) == -1)
+ 			break;
+ 
+-		if ((rc = pipe(pipefd_stderr)) == -1) {
++		if ((rc = pipe2(pipefd_stderr, O_NONBLOCK)) == -1) {
+ 			close(pipefd_stdout[0]);
+ 			close(pipefd_stdout[1]);
+ 			break;
+@@ -466,6 +472,11 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 			fprintf(fp, "ERROR: Unable to detach from controlling tty, %s\n", strerror(errno));
+ 		}
+ 
++ 		if (pthread_mutex_init(&_child_reader.fd_lock, NULL) != 0) {
++			printf("Failed to init mutex\n");
++			exit(EXIT_FAILURE);
++		}
++
+ 		_child_reader.fds[0] = pipefd_stdout[0];
+ 		_child_reader.fds[1] = pipefd_stderr[0];
+ 		_child_reader.fps[0] = fp;
+@@ -535,8 +546,13 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 				entime = time(NULL);
+ 				duration = entime - sttime;
+ 
+-				/* Now the child has exited, ensure buffers are in sync before writing */
++				pthread_mutex_lock(&_child_reader.fd_lock);
++				while ((n = read(_child_reader.fds[0], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
++					fwrite(buf, (size_t)n, 1, _child_reader.fps[0]);
++				while ((n = read(_child_reader.fds[1], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
++					fwrite(buf, (size_t)n, 1, _child_reader.fps[1]);
+ 				fflush(NULL);
++				pthread_mutex_unlock(&_child_reader.fd_lock);
+ 
+ 				if (status) {
+ 					fprintf(fp, "\nERROR: Exit status is %d\n", status);
+@@ -558,6 +574,7 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 
+ 		pthread_cancel(tid);
+ 		pthread_join(tid, NULL);
++		pthread_mutex_destroy(&_child_reader.fd_lock);
+ 
+ 		close(pipefd_stdout[0]); close(pipefd_stdout[1]);
+ 		close(pipefd_stderr[0]); close(pipefd_stderr[1]);
+-- 
+2.39.2
 
 
