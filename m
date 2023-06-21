@@ -2,348 +2,168 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC2BBEB64D7
-	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 22:50:12 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
- by mx.groups.io with SMTP id smtpd.web11.1196.1687387802640560656
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D666BEB64D7
+	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 23:04:32 +0000 (UTC)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+ by mx.groups.io with SMTP id smtpd.web11.1586.1687388663969345762
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Jun 2023 15:50:02 -0700
+ Wed, 21 Jun 2023 16:04:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=CPI1eKAm;
- spf=pass (domain: gmail.com, ip: 209.85.128.170, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5702415be17so57677407b3.2
-        for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 15:50:02 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=WkmAtciI;
+ spf=pass (domain: gmail.com, ip: 209.85.221.182, mailfrom: akuster808@gmail.com)
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-4717089ae5bso1877454e0c.0
+        for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 16:04:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687387801; x=1689979801;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=02CtSfA2n4cbHr86I82pG065mKgShXcSCI1qDxTA35g=;
-        b=CPI1eKAmjo3XrKEBL8KZRVkr+LWLDsm8kSmGFR5EtRQA9cL83NOA+6Y28aZA4ohjqf
-         pLvCvnndS+KaeHvBx8g72bPv8IWg8YQdD+8tfOE3CaKKcVRI3BW1XXLBrnA6PvQAX9Uz
-         E7YTNbfzgjTtzAWTdZ9qRRm3/7mFK4R2IBPMa5keAEa2msSoy9kCxVglRpqmGmVBcANs
-         SIZPYboL96uBZXrOr8qLXYsvrQcTrYnnJm5zifMcw4Yovdds3zNnrkSrx+8QIBRaEN7H
-         qtECsPz0mr6AohubL4z0Y43vENs2FFbIeHh8mM34laPmBWBhlLi6id9x4ElX5x/SeX3L
-         etLg==
+        d=gmail.com; s=20221208; t=1687388663; x=1689980663;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ME6Pb4+SgRq8s8P2VJKLQ9THYM5t4w0F4TWu9pNryOQ=;
+        b=WkmAtciIPmen6eOdJnQHLkhqcxyHdHkV02HFk54ewfUmOXo/KDCOwVOGM7/VfyL0n9
+         ngzlxcybjO7ZYujykXGvR2Ow69+0XkxQyoyT1DmkvMYhYrS7zDy+MKgtWSxhH2H/+1rG
+         AJFBOw2UV0EU3DBseeADnkbEiDtXsk8Ya0n8E1rZVMG2V6PamLQacyhf3Ai7SYjJ70a+
+         Ahr2bk1lF4IFaN0XWoGguq3UZp3sgeFtQpR61OLB0oktKFoYtYTHQUV9oGWN2pFX+Hsc
+         qrwG4TpgmghrhjZPufWCiNLPGd11aZUSMKhcrI7rdReX8x4J9JXCgS+KFAMO6lBOjffs
+         3maw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687387801; x=1689979801;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=02CtSfA2n4cbHr86I82pG065mKgShXcSCI1qDxTA35g=;
-        b=baiDxscUYsEsA84DHcgW/80XQc5k/G6v2lz8Vc0s/PVHWVCzxK6Pnnla0cNCI1hj/h
-         9SR4fY2rGciWbjFJZxU2oKZkKZLWm4Xeu5NdOTadh61XfSb/Gp6vdhcqwK4V08CB7nwA
-         8qmKivoC2zecU6K8W2IYb92tzSoLP3toeBWyFd6WaFqUZe0NC/cA6Ywj/Jxw6A2feJze
-         sImqB7k5pKUhttDKjIH8QMBLBfI6E67zdg4pJ0+9KHy6aQ7vGHUXSgqGDoaWigNii3h8
-         z4MQgaOGRZ3TxX/Se31VoQg5XoyaWOam7/tWKZqttcY64PYKIt8uqLpS1uNsxhz1lAqM
-         /vYQ==
-X-Gm-Message-State: AC+VfDyPQY27NAe2RZFhohAz0aXrZs5SmxSFrgEYeRk9xuuvvJKljZzQ
-	d0JZlHw6QZOZtPsEz/q1aCcqHJ1B9RE=
-X-Google-Smtp-Source: ACHHUZ4HrUSfod/FCUfU2dB6Vdspwif2yF2NsP/CD9hH0XgkMcNEtkQN9at6MCCngZKx2jTE1EdKCA==
-X-Received: by 2002:a0d:cad1:0:b0:56d:325c:442 with SMTP id m200-20020a0dcad1000000b0056d325c0442mr13525182ywd.31.1687387801270;
-        Wed, 21 Jun 2023 15:50:01 -0700 (PDT)
-Received: from keaua.attlocal.net ([2600:1700:9190:ba10:dc27:e982:11fd:2a21])
-        by smtp.gmail.com with ESMTPSA id y65-20020a817d44000000b00545a08184e0sm1430501ywc.112.2023.06.21.15.50.00
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 15:50:00 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] scap-security-guide: bump the number of test that pass
-Date: Wed, 21 Jun 2023 18:49:58 -0400
-Message-Id: <20230621224958.474722-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20221208; t=1687388663; x=1689980663;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ME6Pb4+SgRq8s8P2VJKLQ9THYM5t4w0F4TWu9pNryOQ=;
+        b=Oa/brytNB2PMBRNa1ZoOoe3+qv34zPVShGp7c1/E0q/3TwB4/X78QlWma2rKwTrNRi
+         ju8F+vLqPqlszbT3Cele2epB3aXQn02mmS51uZ/Sd54UO4GOU4nvsVyhPr+I+O1SUxB7
+         37CFtgHU6kZkPECe+5vydB2W7gBpjXNQE41BbiANFQVBq1m4c++HPP4aCSnfX0+J+Ddu
+         t9Z9Rfo+GzYsjK1fngGGUGEwYUcx3Rd0/mhUOAWJJPfRW/AtXSvxoiFu8FiovNCTmFW7
+         uZvt+XlSyxjPwI3GgirGFiCM7N7cvzommsbNSRp4T+DFrQRaYcMGYJfw+CE4I7nmVM3W
+         0m5Q==
+X-Gm-Message-State: AC+VfDyQ7i2JBjHaqrnzbzgmDOSTXJ3z8zbAWr9r0P/VzgBJjOcRORYl
+	8uFw4WB9TUT9pBzDn8+NXtTErUjqb3g=
+X-Google-Smtp-Source: ACHHUZ7LaljFF42wUhJiNblA17uYCGgrx4xozDc11cFY0Guty+XELkRdEOpXj0BN5pTVzTPssuPX6Q==
+X-Received: by 2002:a1f:3fc8:0:b0:471:8ad2:78e6 with SMTP id m191-20020a1f3fc8000000b004718ad278e6mr6703830vka.15.1687388662833;
+        Wed, 21 Jun 2023 16:04:22 -0700 (PDT)
+Received: from ?IPV6:2600:1700:9190:ba10:dc27:e982:11fd:2a21? ([2600:1700:9190:ba10:dc27:e982:11fd:2a21])
+        by smtp.gmail.com with ESMTPSA id x2-20020a0dd502000000b00559fb950d9fsm1441595ywd.45.2023.06.21.16.04.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jun 2023 16:04:22 -0700 (PDT)
+Message-ID: <f4967f90-5fa9-3841-1459-f0bf0e79bd96@gmail.com>
+Date: Wed, 21 Jun 2023 19:04:21 -0400
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [yocto] [meta-security][PATCH] openscap: fix buildpaths issue
+Content-Language: en-US
+To: Kai Kang <kai.kang@eng.windriver.com>, yocto@lists.yoctoproject.org
+References: <20230621035540.4014488-1-kai.kang@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+In-Reply-To: <20230621035540.4014488-1-kai.kang@windriver.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 22:50:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60386
+ <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 23:04:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60387
 
-Add a eval script.
-Lets see how many checks pass out of the box
+Hello Kai,
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../0001-standard.profile-expand-checks.patch | 228 ++++++++++++++++++
- .../scap-security-guide/files/run_eval.sh     |   3 +
- .../scap-security-guide_0.1.67.bb             |  12 +-
- 3 files changed, 241 insertions(+), 2 deletions(-)
- create mode 100644 recipes-compliance/scap-security-guide/files/0001-standard.profile-expand-checks.patch
- create mode 100644 recipes-compliance/scap-security-guide/files/run_eval.sh
+Can you rebase  this to the latest master. There was a layer reorg 
+landed during the posting of this patch.
 
-diff --git a/recipes-compliance/scap-security-guide/files/0001-standard.profile-expand-checks.patch b/recipes-compliance/scap-security-guide/files/0001-standard.profile-expand-checks.patch
-new file mode 100644
-index 0000000..0621360
---- /dev/null
-+++ b/recipes-compliance/scap-security-guide/files/0001-standard.profile-expand-checks.patch
-@@ -0,0 +1,228 @@
-+From 7af2da3bbe1d5b4cba89c6dae9ea267717b865ea Mon Sep 17 00:00:00 2001
-+From: Armin Kuster <akuster808@gmail.com>
-+Date: Wed, 21 Jun 2023 07:46:38 -0400
-+Subject: [PATCH] standard.profile: expand checks
-+
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+---
-+ .../openembedded/profiles/standard.profile    | 206 ++++++++++++++++++
-+ 1 file changed, 206 insertions(+)
-+
-+diff --git a/products/openembedded/profiles/standard.profile b/products/openembedded/profiles/standard.profile
-+index 44339d716c..877d1a3971 100644
-+--- a/products/openembedded/profiles/standard.profile
-++++ b/products/openembedded/profiles/standard.profile
-+@@ -9,4 +9,210 @@ description: |-
-+ selections:
-+     - file_owner_etc_passwd
-+     - file_groupowner_etc_passwd
-++    - service_crond_enabled
-++    - file_groupowner_crontab
-++    - file_owner_crontab
-++    - file_permissions_crontab
-++    - file_groupowner_cron_hourly
-++    - file_owner_cron_hourly
-++    - file_permissions_cron_hourly
-++    - file_groupowner_cron_daily
-++    - file_owner_cron_daily
-++    - file_permissions_cron_daily
-++    - file_groupowner_cron_weekly
-++    - file_owner_cron_weekly
-++    - file_permissions_cron_weekly
-++    - file_groupowner_cron_monthly
-++    - file_owner_cron_monthly
-++    - file_permissions_cron_monthly
-++    - file_groupowner_cron_d
-++    - file_owner_cron_d
-++    - file_permissions_cron_d
-++    - file_groupowner_cron_allow
-++    - file_owner_cron_allow
-++    - file_cron_deny_not_exist
-++    - file_groupowner_at_allow
-++    - file_owner_at_allow
-++    - file_at_deny_not_exist
-++    - file_permissions_at_allow
-++    - file_permissions_cron_allow
-++    - file_groupowner_sshd_config
-++    - file_owner_sshd_config
-++    - file_permissions_sshd_config
-++    - file_permissions_sshd_private_key
-++    - file_permissions_sshd_pub_key
-++    - sshd_set_loglevel_verbose
-++    - sshd_set_loglevel_info
-++    - sshd_max_auth_tries_value=4
-++    - sshd_set_max_auth_tries
-++    - sshd_disable_rhosts
-++    - disable_host_auth
-++    - sshd_disable_root_login
-++    - sshd_disable_empty_passwords
-++    - sshd_do_not_permit_user_env
-++    - sshd_idle_timeout_value=15_minutes
-++    - sshd_set_idle_timeout
-++    - sshd_set_keepalive
-++    - var_sshd_set_keepalive=0
-++    - sshd_set_login_grace_time
-++    - var_sshd_set_login_grace_time=60
-++    - sshd_enable_warning_banner
-++    - sshd_enable_pam
-++    - sshd_set_maxstartups
-++    - var_sshd_set_maxstartups=10:30:60
-++    - sshd_set_max_sessions
-++    - var_sshd_max_sessions=10
-++    - accounts_password_pam_minclass
-++    - accounts_password_pam_minlen
-++    - accounts_password_pam_retry
-++    - var_password_pam_minclass=4
-++    - var_password_pam_minlen=14
-++    - locking_out_password_attempts
-++    - accounts_password_pam_pwhistory_remember_password_auth
-++    - accounts_password_pam_pwhistory_remember_system_auth
-++    - var_password_pam_remember_control_flag=required
-++    - var_password_pam_remember=5
-++    - set_password_hashing_algorithm_systemauth
-++    - accounts_maximum_age_login_defs
-++    - var_accounts_maximum_age_login_defs=365
-++    - accounts_password_set_max_life_existing
-++    - accounts_minimum_age_login_defs
-++    - var_accounts_minimum_age_login_defs=7
-++    - accounts_password_set_min_life_existing
-++    - accounts_password_warn_age_login_defs
-++    - var_accounts_password_warn_age_login_defs=7
-++    - account_disable_post_pw_expiration
-++    - var_account_disable_post_pw_expiration=30
-++    - no_shelllogin_for_systemaccounts
-++    - accounts_tmout
-++    - var_accounts_tmout=15_min
-++    - accounts_root_gid_zero
-++    - accounts_umask_etc_bashrc
-++    - accounts_umask_etc_login_defs
-++    - use_pam_wheel_for_su
-++    - sshd_allow_only_protocol2
-++    - journald_forward_to_syslog
-++    - journald_compress
-++    - journald_storage
-++    - service_auditd_enabled
-++    - service_httpd_disabled
-++    - service_vsftpd_disabled
-++    - service_named_disabled
-++    - service_nfs_disabled
-++    - service_rpcbind_disabled
-++    - service_slapd_disabled
-++    - service_dhcpd_disabled
-++    - service_cups_disabled
-++    - service_ypserv_disabled
-++    - service_rsyncd_disabled
-++    - service_avahi-daemon_disabled
-++    - service_snmpd_disabled
-++    - service_squid_disabled
-++    - service_smb_disabled
-++    - service_dovecot_disabled
-++    - banner_etc_motd
-++    - login_banner_text=cis_banners
-++    - banner_etc_issue
-++    - login_banner_text=cis_banners
-++    - file_groupowner_etc_motd
-++    - file_owner_etc_motd
-++    - file_permissions_etc_motd
-++    - file_groupowner_etc_issue
-++    - file_owner_etc_issue
-++    - file_permissions_etc_issue
-++    - ensure_gpgcheck_globally_activated
-++    - package_aide_installed
-++    - aide_periodic_cron_checking
-++    - grub2_password
-++    - file_groupowner_grub2_cfg
-++    - file_owner_grub2_cfg
-++    - file_permissions_grub2_cfg
-++    - require_singleuser_auth
-++    - require_emergency_target_auth
-++    - disable_users_coredumps
-++    - coredump_disable_backtraces
-++    - coredump_disable_storage
-++    - configure_crypto_policy
-++    - var_system_crypto_policy=default_policy
-++    - dir_perms_world_writable_sticky_bits
-+     - file_permissions_etc_passwd
-++    - file_owner_etc_shadow
-++    - file_groupowner_etc_shadow
-++    - file_groupowner_etc_group
-++    - file_owner_etc_group
-++    - file_permissions_etc_group
-++    - file_groupowner_etc_gshadow
-++    - file_owner_etc_gshadow
-++    - file_groupowner_backup_etc_passwd
-++    - file_owner_backup_etc_passwd
-++    - file_permissions_backup_etc_passwd
-++    - file_groupowner_backup_etc_shadow
-++    - file_owner_backup_etc_shadow
-++    - file_permissions_backup_etc_shadow
-++    - file_groupowner_backup_etc_group
-++    - file_owner_backup_etc_group
-++    - file_permissions_backup_etc_group
-++    - file_groupowner_backup_etc_gshadow
-++    - file_owner_backup_etc_gshadow
-++    - file_permissions_backup_etc_gshadow
-++    - file_permissions_unauthorized_world_writable
-++    - file_permissions_ungroupowned
-++    - accounts_root_path_dirs_no_write
-++    - root_path_no_dot
-++    - accounts_no_uid_except_zero
-++    - file_ownership_home_directories
-++    - file_groupownership_home_directories
-++    - no_netrc_files
-++    - no_rsh_trust_files
-++    - account_unique_id
-++    - group_unique_id
-++    - group_unique_name
-++    - kernel_module_sctp_disabled
-++    - kernel_module_dccp_disabled
-++    - wireless_disable_interfaces
-++    - sysctl_net_ipv4_ip_forward
-++    - sysctl_net_ipv6_conf_all_forwarding
-++    - sysctl_net_ipv6_conf_all_forwarding_value=disabled
-++    - sysctl_net_ipv4_conf_all_send_redirects
-++    - sysctl_net_ipv4_conf_default_send_redirects
-++    - sysctl_net_ipv4_conf_all_accept_source_route
-++    - sysctl_net_ipv4_conf_all_accept_source_route_value=disabled
-++    - sysctl_net_ipv4_conf_default_accept_source_route
-++    - sysctl_net_ipv4_conf_default_accept_source_route_value=disabled
-++    - sysctl_net_ipv6_conf_all_accept_source_route
-++    - sysctl_net_ipv6_conf_all_accept_source_route_value=disabled
-++    - sysctl_net_ipv6_conf_default_accept_source_route
-++    - sysctl_net_ipv6_conf_default_accept_source_route_value=disabled
-++    - sysctl_net_ipv4_conf_all_accept_redirects
-++    - sysctl_net_ipv4_conf_all_accept_redirects_value=disabled
-++    - sysctl_net_ipv4_conf_default_accept_redirects
-++    - sysctl_net_ipv4_conf_default_accept_redirects_value=disabled
-++    - sysctl_net_ipv6_conf_all_accept_redirects
-++    - sysctl_net_ipv6_conf_all_accept_redirects_value=disabled
-++    - sysctl_net_ipv6_conf_default_accept_redirects
-++    - sysctl_net_ipv6_conf_default_accept_redirects_value=disabled
-++    - sysctl_net_ipv4_conf_all_secure_redirects
-++    - sysctl_net_ipv4_conf_all_secure_redirects_value=disabled
-++    - sysctl_net_ipv4_conf_default_secure_redirects
-++    - sysctl_net_ipv4_conf_default_secure_redirects_value=disabled
-++    - sysctl_net_ipv4_conf_all_log_martians
-++    - sysctl_net_ipv4_conf_all_log_martians_value=enabled
-++    - sysctl_net_ipv4_conf_default_log_martians
-++    - sysctl_net_ipv4_conf_default_log_martians_value=enabled
-++    - sysctl_net_ipv4_icmp_echo_ignore_broadcasts
-++    - sysctl_net_ipv4_icmp_echo_ignore_broadcasts_value=enabled
-++    - sysctl_net_ipv4_icmp_ignore_bogus_error_responses
-++    - sysctl_net_ipv4_icmp_ignore_bogus_error_responses_value=enabled
-++    - sysctl_net_ipv4_conf_all_rp_filter
-++    - sysctl_net_ipv4_conf_all_rp_filter_value=enabled
-++    - sysctl_net_ipv4_conf_default_rp_filter
-++    - sysctl_net_ipv4_conf_default_rp_filter_value=enabled
-++    - sysctl_net_ipv4_tcp_syncookies
-++    - sysctl_net_ipv4_tcp_syncookies_value=enabled
-++    - sysctl_net_ipv6_conf_all_accept_ra
-++    - sysctl_net_ipv6_conf_all_accept_ra_value=disabled
-++    - sysctl_net_ipv6_conf_default_accept_ra
-++    - sysctl_net_ipv6_conf_default_accept_ra_value=disabled
-++    - package_firewalld_installed
-++    - service_firewalld_enabled
-++    - package_iptables_installed
-+-- 
-+2.34.1
-+
-diff --git a/recipes-compliance/scap-security-guide/files/run_eval.sh b/recipes-compliance/scap-security-guide/files/run_eval.sh
-new file mode 100644
-index 0000000..cc79bac
---- /dev/null
-+++ b/recipes-compliance/scap-security-guide/files/run_eval.sh
-@@ -0,0 +1,3 @@
-+#!/bin/sh
-+
-+oscap xccdf eval --results results.xml --report report.html --profile xccdf_org.ssgproject.content_profile_standard /usr/share/xml/scap/ssg/content/ssg-openembedded-ds.xml
-diff --git a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.67.bb b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.67.bb
-index 420a6d8..a9023ec 100644
---- a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.67.bb
-+++ b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.67.bb
-@@ -8,7 +8,10 @@ LICENSE = "BSD-3-Clause"
- 
- SRCREV = "dad85502ce8da722a6afc391346c41cee61e90a9"
- SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=master;protocol=https \
--           file://0001-scap-security-guide-add-openembedded.patch "
-+           file://0001-scap-security-guide-add-openembedded.patch \
-+           file://0001-standard.profile-expand-checks.patch \
-+           file://run_eval.sh \
-+           "
- 
- 
- DEPENDS = "openscap-native python3-pyyaml-native python3-jinja2-native libxml2-native expat-native coreutils-native"
-@@ -29,6 +32,11 @@ do_configure:prepend () {
-     sed -i -e 's:NAMES\ grep:NAMES\ ${HOSTTOOLS_DIR}/grep:g' ${S}/CMakeLists.txt
- }
- 
--FILES:${PN} += "${datadir}/xml"
-+do_install:append() {
-+    install -d ${D}${datadir}/openscap
-+    install  ${WORKDIR}/run_eval.sh ${D}${datadir}/openscap/.
-+}
-+
-+FILES:${PN} += "${datadir}/xml ${datadir}/openscap"
- 
- RDEPENDS:${PN} = "openscap"
--- 
-2.34.1
+BR,
+Armin
+
+On 6/20/23 11:55 PM, Kai Kang wrote:
+> From: Kai Kang <kai.kang@windriver.com>
+>
+> Variables PREFERRED_PYTHON_PATH and PYTHON3_PATH are set with
+> ${PYTHON_EXECUTABLE}. For cross compile, ${PYTHON_EXECUTABLE} may point
+> to other path rather than standard dir such as /usr/bin. Then the
+> generated library file contains such path which should NOT. Update to
+> make variables PREFERRED_PYTHON_PATH and PYTHON3_PATH configurable to
+> fix buildpaths issue:
+>
+> | WARNING: openscap-1.3.7-r0 do_package_qa: QA Issue: File
+> | /usr/lib/libopenscap.so.25.5.1 in package openscap contains reference
+> | to TMPDIR [buildpaths]
+>
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> ---
+>   ...ts.txt-make-2-variables-configurable.patch | 37 +++++++++++++++++++
+>   .../openscap/openscap_1.3.7.bb                |  8 +++-
+>   2 files changed, 44 insertions(+), 1 deletion(-)
+>   create mode 100644 meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch
+>
+> diff --git a/meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch b/meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch
+> new file mode 100644
+> index 0000000..953b0d9
+> --- /dev/null
+> +++ b/meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch
+> @@ -0,0 +1,37 @@
+> +From f99c3f1f516a84d33794f8e3da59adea1a12ef54 Mon Sep 17 00:00:00 2001
+> +From: Kai Kang <kai.kang@windriver.com>
+> +Date: Tue, 20 Jun 2023 22:42:51 +0800
+> +Subject: [PATCH] CMakeLists.txt: make 2 variables configurable
+> +
+> +Variables PREFERRED_PYTHON_PATH and PYTHON3_PATH are set with
+> +${PYTHON_EXECUTABLE}. For cross compile, ${PYTHON_EXECUTABLE} may point
+> +to other path rather than standard dir such as /usr/bin. Then the
+> +generated library file contains such path which should NOT. Update to
+> +make variables PREFERRED_PYTHON_PATH and PYTHON3_PATH configurable to
+> +avoid such issue.
+> +
+> +Upstream-Status: Submitted [https://github.com/OpenSCAP/openscap/pull/1990]
+> +
+> +Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> +---
+> + CMakeLists.txt | 4 ++--
+> + 1 file changed, 2 insertions(+), 2 deletions(-)
+> +
+> +diff --git a/CMakeLists.txt b/CMakeLists.txt
+> +index 5db014e77..74628cdd4 100644
+> +--- a/CMakeLists.txt
+> ++++ b/CMakeLists.txt
+> +@@ -125,8 +125,8 @@ endif()
+> + find_package(PythonInterp 3)
+> + find_package(PythonLibs 3)
+> +
+> +-set(PREFERRED_PYTHON_PATH "${PYTHON_EXECUTABLE}")
+> +-set(PYTHON3_PATH "${PYTHON_EXECUTABLE}")
+> ++set(PREFERRED_PYTHON_PATH "${PYTHON_EXECUTABLE}" CACHE PATH "Path to preferred Python")
+> ++set(PYTHON3_PATH "${PYTHON_EXECUTABLE}" CACHE PATH "Path to Python3")
+> +
+> + find_package(RPM)
+> + if(RPM_FOUND)
+> +--
+> +2.34.1
+> +
+> diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb
+> index cfe93f0..5ad92d4 100644
+> --- a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb
+> +++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb
+> @@ -7,7 +7,13 @@ require openscap.inc
+>   inherit systemd
+>   
+>   SRCREV = "55efbfda0f617e05862ab6ed4862e10dbee52b03"
+> -SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https"
+> +SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https \
+> +           file://0001-CMakeLists.txt-make-2-variables-configurable.patch \
+> +           "
+> +
+> +EXTRA_OECMAKE += "-DPREFERRED_PYTHON_PATH=${bindir}/python3 \
+> +                  -DPYTHON3_PATH=${bindir}/python3 \
+> +                  "
+>   
+>   SYSTEMD_PACKAGES = "${PN}"
+>   SYSTEMD_SERVICE:${PN} = "oscap-remediate.service"
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60368): https://lists.yoctoproject.org/g/yocto/message/60368
+> Mute This Topic: https://lists.yoctoproject.org/mt/99670413/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 
