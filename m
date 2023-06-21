@@ -1,147 +1,202 @@
-Return-Path: <kai.kang@eng.windriver.com>
+Return-Path: <skulkarni@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 743AEEB64D7
-	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 03:56:24 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web10.3358.1687319776187311627
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61A53EB64D7
+	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 07:18:35 +0000 (UTC)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+ by mx.groups.io with SMTP id smtpd.web10.5468.1687331914355483608
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Jun 2023 20:56:16 -0700
+ Wed, 21 Jun 2023 00:18:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=WoGjqAbJ;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=55366c3c49=kai.kang@windriver.com)
-Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35L3ov2B018013
-	for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 03:56:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : to :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=PPS06212021;
- bh=25fSOcELI87FfWMlRFr/5KH/f2iohy560btSKc7/JKQ=;
- b=WoGjqAbJBiIUO49+VKnYqRZVlhywMYZocdxn6S1DNYgIvxQmwjRI7bM5bCjkotrWaRJr
- jHCcQnR/f4tp8jVO2tRrnZB6WSPCL0skRg7jcOpmFDdjoz8OAWUS+JmMEXGEYCwgBSbA
- Hmwgv0KRpKXo53LMuJnNpmUeboee53us/0rSa3zs3LTWmAjJasBeWi+bEwWt64UrrUrn
- jICF6U3bKD70lAmieZ6T41+AWb/B0FT/XE0EKk9z1zvSEKMuT40XxF5Bu9C1QiiR/6fP
- U5ve5vxDCFAlQnZASleoiskIORnfnm+ExC/Uu2mOofEGXw5xiNzvsMkscknxzc6e+zMK 5A== 
-Received: from ala-exchng02.corp.ad.wrs.com (ala-exchng02.wrs.com [147.11.82.254])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3r9220k9kp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 03:56:15 +0000
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 20 Jun 2023 20:56:03 -0700
-Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2507.23 via Frontend Transport; Tue, 20 Jun 2023 20:56:02 -0700
-From: <kai.kang@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [meta-security][PATCH] openscap: fix buildpaths issue
-Date: Wed, 21 Jun 2023 11:55:40 +0800
-Message-ID: <20230621035540.4014488-1-kai.kang@windriver.com>
-X-Mailer: git-send-email 2.34.1
+ dkim=fail reason="signature has expired" header.i=@mvista.com header.s=google header.b=JgVHCDmD;
+ spf=pass (domain: mvista.com, ip: 209.85.208.181, mailfrom: skulkarni@mvista.com)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b4826ba943so38087811fa.0
+        for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 00:18:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mvista.com; s=google; t=1687331912; x=1689923912;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=68RUJeHGeRP26N7GSxHNVS52STglgyzTYUEp8KxNJqc=;
+        b=JgVHCDmDCt9sNiLOtpSXHxEhVZwWEjS4sny+voEgu7b+NAOQcuFh70f8tjN0DT3bRN
+         Wx2sLXjHaj46awJ5J34EJkyFgk+nWsc4+mx627S+i97RgBW7mFv9tPKQqXyjs7YS3KIz
+         QqlIY5kAUkwIFepiIXwT+T0XbCyAQk+OkIGO4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687331912; x=1689923912;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=68RUJeHGeRP26N7GSxHNVS52STglgyzTYUEp8KxNJqc=;
+        b=irIDNl4b1d67swKMMTLsC6CGkwfDx2VMaNMPej/ARL3CoMeliItx53wd2CE+eC8oll
+         9pLYvKmKTh6cISgbpJs0e/gDAxiu0Ilbn0BDDBVz9vvCMlWO+APIM03ph+DC9VzfZX91
+         JjXqK33EY7ZmmiX2awj+UEddfhWTUu4/bJfwVg+nfZUgssDqJq403y411s7drm8TqAig
+         4+D3HLqiV5GX/+ha0B37NuOIW3MQj5TdNoA/TWfr6inY8WDFAisYEMz9BT6Yi1NH+vOu
+         wRlFGfrE0h0c5lzSq6OQWtmjcqIOa2BpUGlAyCd0gAIa+YifpC5c1V3GZY4Slo62/BQj
+         xxeg==
+X-Gm-Message-State: AC+VfDxQ0HuTX9GIRcr3iEpLLhDiO4Dr1U8jbNN4TpS0xbgNaGQnwF69
+	fPiocUuOgttijH92L/xkgY9W6X43eX0exZ2nfqW2uPNTZyZz73MX
+X-Google-Smtp-Source: ACHHUZ5tVVRoomqCHu1O0k8Doucgm9M4il3SVqUAk51yAGs759l6CR19FqCT4lajhgR9WwegGr5Clnbawx8jVDSHR/o=
+X-Received: by 2002:a2e:9e07:0:b0:2b4:5fdd:f588 with SMTP id
+ e7-20020a2e9e07000000b002b45fddf588mr7385419ljk.43.1687331911961; Wed, 21 Jun
+ 2023 00:18:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: 3e0eNpnzmZrxpkdjwOPjAG0LGPlgotHw
-X-Proofpoint-ORIG-GUID: 3e0eNpnzmZrxpkdjwOPjAG0LGPlgotHw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-21_01,2023-06-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 impostorscore=0 mlxscore=0
- mlxlogscore=999 clxscore=1011 spamscore=0 adultscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306210033
+References: <17664FCB3AD7151E.27841@lists.yoctoproject.org>
+In-Reply-To: <17664FCB3AD7151E.27841@lists.yoctoproject.org>
+From: Shubham Kulkarni <skulkarni@mvista.com>
+Date: Wed, 21 Jun 2023 12:48:20 +0530
+Message-ID: <CAKzga+ya6z9Uerohpqs8nQoRROoRt5gkN7TuxfZwDBKK35LTxQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-selinux][dunfell][PATCH] audit: Add https protocol
+ for clonning repository
+To: yocto@lists.yoctoproject.org, Armin Kuster <akuster@mvista.com>
+Content-Type: multipart/alternative; boundary="0000000000003b25c405fe9e9365"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 03:56:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60368
+ <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 07:18:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60369
 
-From: Kai Kang <kai.kang@windriver.com>
+--0000000000003b25c405fe9e9365
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Variables PREFERRED_PYTHON_PATH and PYTHON3_PATH are set with
-${PYTHON_EXECUTABLE}. For cross compile, ${PYTHON_EXECUTABLE} may point
-to other path rather than standard dir such as /usr/bin. Then the
-generated library file contains such path which should NOT. Update to
-make variables PREFERRED_PYTHON_PATH and PYTHON3_PATH configurable to
-fix buildpaths issue:
+Hi Team,
 
-| WARNING: openscap-1.3.7-r0 do_package_qa: QA Issue: File
-| /usr/lib/libopenscap.so.25.5.1 in package openscap contains reference
-| to TMPDIR [buildpaths]
+Is there any update for this patch? Can you pIs let me know, if there's any
+issue with the patch.
 
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
----
- ...ts.txt-make-2-variables-configurable.patch | 37 +++++++++++++++++++
- .../openscap/openscap_1.3.7.bb                |  8 +++-
- 2 files changed, 44 insertions(+), 1 deletion(-)
- create mode 100644 meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch
+Thanks,
+Shubham
 
-diff --git a/meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch b/meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch
-new file mode 100644
-index 0000000..953b0d9
---- /dev/null
-+++ b/meta-security-compliance/recipes-openscap/openscap/files/0001-CMakeLists.txt-make-2-variables-configurable.patch
-@@ -0,0 +1,37 @@
-+From f99c3f1f516a84d33794f8e3da59adea1a12ef54 Mon Sep 17 00:00:00 2001
-+From: Kai Kang <kai.kang@windriver.com>
-+Date: Tue, 20 Jun 2023 22:42:51 +0800
-+Subject: [PATCH] CMakeLists.txt: make 2 variables configurable
-+
-+Variables PREFERRED_PYTHON_PATH and PYTHON3_PATH are set with
-+${PYTHON_EXECUTABLE}. For cross compile, ${PYTHON_EXECUTABLE} may point
-+to other path rather than standard dir such as /usr/bin. Then the
-+generated library file contains such path which should NOT. Update to
-+make variables PREFERRED_PYTHON_PATH and PYTHON3_PATH configurable to
-+avoid such issue.
-+
-+Upstream-Status: Submitted [https://github.com/OpenSCAP/openscap/pull/1990]
-+
-+Signed-off-by: Kai Kang <kai.kang@windriver.com>
-+---
-+ CMakeLists.txt | 4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/CMakeLists.txt b/CMakeLists.txt
-+index 5db014e77..74628cdd4 100644
-+--- a/CMakeLists.txt
-++++ b/CMakeLists.txt
-+@@ -125,8 +125,8 @@ endif()
-+ find_package(PythonInterp 3)
-+ find_package(PythonLibs 3)
-+ 
-+-set(PREFERRED_PYTHON_PATH "${PYTHON_EXECUTABLE}")
-+-set(PYTHON3_PATH "${PYTHON_EXECUTABLE}")
-++set(PREFERRED_PYTHON_PATH "${PYTHON_EXECUTABLE}" CACHE PATH "Path to preferred Python")
-++set(PYTHON3_PATH "${PYTHON_EXECUTABLE}" CACHE PATH "Path to Python3")
-+ 
-+ find_package(RPM)
-+ if(RPM_FOUND)
-+-- 
-+2.34.1
-+
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb
-index cfe93f0..5ad92d4 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.7.bb
-@@ -7,7 +7,13 @@ require openscap.inc
- inherit systemd
- 
- SRCREV = "55efbfda0f617e05862ab6ed4862e10dbee52b03"
--SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https"
-+SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https \
-+           file://0001-CMakeLists.txt-make-2-variables-configurable.patch \
-+           "
-+
-+EXTRA_OECMAKE += "-DPREFERRED_PYTHON_PATH=${bindir}/python3 \
-+                  -DPYTHON3_PATH=${bindir}/python3 \
-+                  "
- 
- SYSTEMD_PACKAGES = "${PN}"
- SYSTEMD_SERVICE:${PN} = "oscap-remediate.service"
--- 
-2.34.1
+On Wed, Jun 7, 2023 at 12:57=E2=80=AFPM Shubham Kulkarni via lists.yoctopro=
+ject.org
+<skulkarni=3Dmvista.com@lists.yoctoproject.org> wrote:
 
+> From: Shubham Kulkarni <skulkarni@mvista.com>
+>
+>  audit repository clone failing with git protocol as
+>  github.com requires the https protocol to be used
+>
+> Signed-off-by: Shubham Kulkarni <skulkarni@mvista.com>
+> ---
+>  recipes-security/audit/audit_2.8.5.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/recipes-security/audit/audit_2.8.5.bb
+> b/recipes-security/audit/audit_2.8.5.bb
+> index af36ed5..e372f66 100644
+> --- a/recipes-security/audit/audit_2.8.5.bb
+> +++ b/recipes-security/audit/audit_2.8.5.bb
+> @@ -7,7 +7,7 @@ SECTION =3D "base"
+>  LICENSE =3D "GPLv2+ & LGPLv2+"
+>  LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D94d55d512a9ba36caa9b7df079bae=
+19f"
+>
+> -SRC_URI =3D "git://
+> github.com/linux-audit/${BPN}-userspace.git;branch=3D2.8_maintenance
+> <http://github.com/linux-audit/$%7BBPN%7D-userspace.git;branch=3D2.8_main=
+tenance>
+> \
+> +SRC_URI =3D "git://
+> github.com/linux-audit/${BPN}-userspace.git;branch=3D2.8_maintenance;prot=
+ocol=3Dhttps
+> <http://github.com/linux-audit/$%7BBPN%7D-userspace.git;branch=3D2.8_main=
+tenance;protocol=3Dhttps>
+> \
+>             file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
+>             file://Fixed-swig-host-contamination-issue.patch \
+>             file://0001-lib-i386_table.h-add-new-syscall.patch \
+> --
+> 2.24.4
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60197):
+> https://lists.yoctoproject.org/g/yocto/message/60197
+> Mute This Topic: https://lists.yoctoproject.org/mt/99380030/7032091
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> skulkarni@mvista.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--0000000000003b25c405fe9e9365
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div dir=3D"ltr">Hi Team,<div><br></div><div>Is there any=
+ update for this patch? Can you pIs let me know, if there&#39;s any issue w=
+ith the patch.</div><div><br></div><div>Thanks,</div><div>Shubham</div></di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Wed, Jun 7, 2023 at 12:57=E2=80=AFPM Shubham Kulkarni via <a href=3D"h=
+ttp://lists.yoctoproject.org" target=3D"_blank" rel=3D"noreferrer">lists.yo=
+ctoproject.org</a> &lt;skulkarni=3D<a href=3D"mailto:mvista.com@lists.yocto=
+project.org" target=3D"_blank" rel=3D"noreferrer">mvista.com@lists.yoctopro=
+ject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex">From: Shubham Kulkarni &lt;<a href=3D"mailto:skulkarni@mvista.com" =
+target=3D"_blank" rel=3D"noreferrer">skulkarni@mvista.com</a>&gt;<br>
+<br>
+=C2=A0audit repository clone failing with git protocol as<br>
+=C2=A0<a href=3D"http://github.com" rel=3D"noreferrer noreferrer" target=3D=
+"_blank">github.com</a> requires the https protocol to be used<br>
+<br>
+Signed-off-by: Shubham Kulkarni &lt;<a href=3D"mailto:skulkarni@mvista.com"=
+ target=3D"_blank" rel=3D"noreferrer">skulkarni@mvista.com</a>&gt;<br>
+---<br>
+=C2=A0recipes-security/audit/<a href=3D"http://audit_2.8.5.bb" rel=3D"noref=
+errer noreferrer" target=3D"_blank">audit_2.8.5.bb</a> | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/recipes-security/audit/<a href=3D"http://audit_2.8.5.bb" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">audit_2.8.5.bb</a> b/recipes-s=
+ecurity/audit/<a href=3D"http://audit_2.8.5.bb" rel=3D"noreferrer noreferre=
+r" target=3D"_blank">audit_2.8.5.bb</a><br>
+index af36ed5..e372f66 100644<br>
+--- a/recipes-security/audit/<a href=3D"http://audit_2.8.5.bb" rel=3D"noref=
+errer noreferrer" target=3D"_blank">audit_2.8.5.bb</a><br>
++++ b/recipes-security/audit/<a href=3D"http://audit_2.8.5.bb" rel=3D"noref=
+errer noreferrer" target=3D"_blank">audit_2.8.5.bb</a><br>
+@@ -7,7 +7,7 @@ SECTION =3D &quot;base&quot;<br>
+=C2=A0LICENSE =3D &quot;GPLv2+ &amp; LGPLv2+&quot;<br>
+=C2=A0LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3D94d55d512a9ba36caa9b7=
+df079bae19f&quot;<br>
+<br>
+-SRC_URI =3D &quot;git://<a href=3D"http://github.com/linux-audit/$%7BBPN%7=
+D-userspace.git;branch=3D2.8_maintenance" rel=3D"noreferrer noreferrer" tar=
+get=3D"_blank">github.com/linux-audit/${BPN}-userspace.git;branch=3D2.8_mai=
+ntenance</a> \<br>
++SRC_URI =3D &quot;git://<a href=3D"http://github.com/linux-audit/$%7BBPN%7=
+D-userspace.git;branch=3D2.8_maintenance;protocol=3Dhttps" rel=3D"noreferre=
+r noreferrer" target=3D"_blank">github.com/linux-audit/${BPN}-userspace.git=
+;branch=3D2.8_maintenance;protocol=3Dhttps</a> \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://Add-substitue-functions-fo=
+r-strndupa-rawmemchr.patch \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://Fixed-swig-host-contaminat=
+ion-issue.patch \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://0001-lib-i386_table.h-add-=
+new-syscall.patch \<br>
+-- <br>
+2.24.4<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#60197): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/60197" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/60197</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/99380030/7032=
+091" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
+ject.org/mt/99380030/7032091</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a> [<a href=3D"mailto:skulkarni@mvista.com" target=3D"_blan=
+k" rel=3D"noreferrer">skulkarni@mvista.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
+
+--0000000000003b25c405fe9e9365--
 
