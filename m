@@ -2,120 +2,136 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CBB3EEB64DC
-	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 23:13:12 +0000 (UTC)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
- by mx.groups.io with SMTP id smtpd.web10.1799.1687389185166515999
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4288EB64D7
+	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 23:16:22 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+ by mx.groups.io with SMTP id smtpd.web10.1871.1687389376884643064
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Jun 2023 16:13:05 -0700
+ Wed, 21 Jun 2023 16:16:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=TzHLc0ok;
- spf=pass (domain: gmail.com, ip: 209.85.219.171, mailfrom: akuster808@gmail.com)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-bcd0226607bso83312276.1
-        for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 16:13:05 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=IGHwbwFj;
+ spf=pass (domain: gmail.com, ip: 209.85.128.181, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-57040e313c5so1053487b3.0
+        for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 16:16:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687389184; x=1689981184;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pbr0SsRV5xR5fmbGlfZWr2FtIqVgUu35GrdBLr4Nlkg=;
-        b=TzHLc0okb1aRTtp+ujq+15Zdv3ACCC2fAraylLkDGghPyvAy5kjyb78y84iI5ldOJX
-         4nTKXeHTTsRXiya6SQ/rkwzVxArqUqb5/e81QEX4Wcu040ZQJkckZVkJzNsDv/lhg48g
-         jYQL7ODHxxKR5e+W0qjumhFZ1SIwnT21SmIVr+vt9VgySnAJiFq6xKdvgIN/z6ljOEPx
-         aiV/H2luQ0DILV3MFxWmZhnKOtIU8Gayv5RgDUjoH39XKBqfVPcjLerbP7HaH5r9qcj9
-         Hq52N/PY+8ikruKUVEoWNyv71RNJVMu3RIJ+viVKCK6JuPVhTsv8/LSwgUZY3l6Ax8lJ
-         vltw==
+        d=gmail.com; s=20221208; t=1687389376; x=1689981376;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L7gQ9NLoGBvOSdYOx7dWgi6YMPTviEeUNGoQKUBb2mQ=;
+        b=IGHwbwFjwpGWXDM9g6d6/9gbpFWBOskU+WWQDlxxiqJAy3HHEEyyKucRCg5TTMtu4e
+         EIrhM8yaOCxQjdCIE2Z8dOseSjugTpnOVy0r/qeXwb7dWGshdXGxq2P3OJXmKhesrArz
+         NSDcYIxC40wHuGR+nzcCKEkX3JAUAJesUDar84lkqYW/5t1Ej0ZoXS5ROPnow7Fi6SvR
+         cSIcgdvAMqXOsnTPAncTkPiUxB+gxG0C+PmpjRpPzeDG8djMTOVyx9B9aRTSlEHzBHMh
+         pviiW/zL+pHlSEtMIlSp7uTduMDhJYHlZTDENqlLlxeD5RjG4YAdeSRs6sopaO9vJTMV
+         MfsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687389184; x=1689981184;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Pbr0SsRV5xR5fmbGlfZWr2FtIqVgUu35GrdBLr4Nlkg=;
-        b=H/hG20D9dvwpI4fCrFSglPCD9iZyD8WiTMVQ3bVg13HVQRBnkJUgZpYzHBeG8lVwFO
-         z05YxGP7xeYQc2Bb+K6Olu7khpWNHrARG+pZAAN9FlEFvGBK+x4Djb3RHDvuypcMQWj5
-         q3D9Vc+CjUKZFVL8eVKfHfiulVch+Yhzee7jwgc0taezeqKHLXWupUAzrAl5jgg2rn3n
-         QS8tjzfFvNxnbrpaJoqk4xywXznB7qH64gHYgZpWTf1WUM4tFScBwxKfdq3OWkwAp5+N
-         87DHFVHRZ9N4IWtqPXJ7Z9vsPZ8hEtD44imi85SAuagNnuUBN1PypTBJF6o90WhAMGjN
-         Guog==
-X-Gm-Message-State: AC+VfDwbjVIbfYjfyqTJeP8uHi8K6P7/tt++dn+l+ntGluSC0N/L+MBx
-	+44N5iLbV+y8cQ4T3LPNu0T8jU7G56U=
-X-Google-Smtp-Source: ACHHUZ6S9uH4QXb6q/fNqUIyV7FF9Agj9jISWS0+4YnLbDQjrHGaAxogRW9yKkzzJSmlkgLNdNfYng==
-X-Received: by 2002:a25:24d4:0:b0:c00:7285:f943 with SMTP id k203-20020a2524d4000000b00c007285f943mr2741265ybk.19.1687389184039;
-        Wed, 21 Jun 2023 16:13:04 -0700 (PDT)
-Received: from keaua.attlocal.net ([2600:1700:9190:ba10:dc27:e982:11fd:2a21])
-        by smtp.gmail.com with ESMTPSA id l1-20020a252501000000b00bccc2241e14sm1228067ybl.28.2023.06.21.16.13.03
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 16:13:03 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/2] isic: fine tune Upstream-Status
-Date: Wed, 21 Jun 2023 19:13:02 -0400
-Message-Id: <20230621231302.476147-2-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230621231302.476147-1-akuster808@gmail.com>
-References: <20230621231302.476147-1-akuster808@gmail.com>
+        d=1e100.net; s=20221208; t=1687389376; x=1689981376;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L7gQ9NLoGBvOSdYOx7dWgi6YMPTviEeUNGoQKUBb2mQ=;
+        b=P2AQi9QCTFyIi0apMxDyg0jeZXBkL2L7FhGPYizfC4ZHu22nYJ0cJ8R6msHR7y1UPN
+         xbasxsGVmBQmMZgPj2IZce0cAqF4m4pZbYYsMsCsw1lAoDp2/NViWTbkJk5fUZn8Rf8W
+         lfWX56Z1Zky/XPQLAl8jdtTFXZOl5HHSoYe46UDdwDcWEPAgQX6OV8A33bRcouFJVoZU
+         yPiJFjcE8/a+IGKTNQbjZAVPQZNhMdI5CJBKhit0Enx5jrTn7niTt00CzHuWomCss7Xv
+         liFaFWZDNgoDMaxm27K9L85t8mHzoXfpbqbai3IJiGe5Ipk5OcQ/ldktXgAFSR5Kn794
+         s1CA==
+X-Gm-Message-State: AC+VfDyeH6LV3s38eUETHpDGzVh7wBWg5nGKvw30anUMrM1RdOUEYvWU
+	fB4zXiWHwsNEH/RFLc9sJ5H/IGnL2w8=
+X-Google-Smtp-Source: ACHHUZ7xQ3k8XcBHXfLUyZ7iBdy85A+rN95LQu0kFSV/JypL89jDipYQJwFUYKaMal95j/LjcAsGRw==
+X-Received: by 2002:a81:914c:0:b0:56c:fbd2:edec with SMTP id i73-20020a81914c000000b0056cfbd2edecmr18087829ywg.6.1687389376054;
+        Wed, 21 Jun 2023 16:16:16 -0700 (PDT)
+Received: from ?IPV6:2600:1700:9190:ba10:dc27:e982:11fd:2a21? ([2600:1700:9190:ba10:dc27:e982:11fd:2a21])
+        by smtp.gmail.com with ESMTPSA id q204-20020a815cd5000000b0057048db0898sm1446415ywb.138.2023.06.21.16.16.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jun 2023 16:16:15 -0700 (PDT)
+Message-ID: <d59ec999-6dae-6135-b728-0d672b4d63fe@gmail.com>
+Date: Wed, 21 Jun 2023 19:16:14 -0400
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [yocto] [meta-security][PATCH] dm-verity-image-initramfs: Allow
+ compressed image types
+Content-Language: en-US
+To: Stephan Wurm <stephan.wurm@a-eberle.de>, yocto@lists.yoctoproject.org
+References: <20230619065728.189934-1-stephan.wurm@a-eberle.de>
+From: akuster808 <akuster808@gmail.com>
+In-Reply-To: <20230619065728.189934-1-stephan.wurm@a-eberle.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 23:13:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60389
+ <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 23:16:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60390
 
-These are changes I did so apply the appropriate label.
+this fails to build:
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/isic/files/configure_fix.patch     | 5 ++---
- recipes-security/isic/files/isic-0.07-make.patch    | 4 +---
- recipes-security/isic/files/isic-0.07-netinet.patch | 4 +---
- 3 files changed, 4 insertions(+), 9 deletions(-)
+The stack trace of python calls that resulted in this exception/failure was:
+File: '<code>', lineno: 24, function: <module>
+0020:__anon_70__home_akuster_oss_clean_poky_meta_classes_recipe_rootfs_postcommands_bbclass(d)
+0021:__anon_125__home_akuster_oss_clean_poky_meta_classes_recipe_image_bbclass(d)
+0022:__anon_181__home_akuster_oss_clean_poky_meta_classes_recipe_image_bbclass(d)
+0023:__anon_518__home_akuster_oss_clean_poky_meta_classes_recipe_image_bbclass(d)
+  *** 
+0024:__anon_28__home_akuster_oss_maint_meta_security_recipes_core_images_dm_verity_image_initramfs_bb(d)
+File: 
+'/home/akuster/oss/maint/meta-security/recipes-core/images/dm-verity-image-initramfs.bb', 
+lineno: 26, function: 
+__anon_28__home_akuster_oss_maint_meta_security_recipes_core_images_dm_verity_image_initramfs_bb
+      0022:python __anonymous() {
+      0023:    verity_image = d.getVar('DM_VERITY_IMAGE')
+      0024:    verity_type = d.getVar('DM_VERITY_IMAGE_TYPE')
+      0025:
+  *** 0026:    dep = ' %s:do_image_%s' % (verity_image, 
+verity_type.replace('-', '_'))
+      0027:    d.appendVarFlag('do_image', 'depends', dep)
+      0028:}
+      0029:
+      0030:# Ensure dm-verity.env is updated also when rebuilding 
+DM_VERITY_IMAGE
+Exception: AttributeError: 'NoneType' object has no attribute 'replace
 
-diff --git a/recipes-security/isic/files/configure_fix.patch b/recipes-security/isic/files/configure_fix.patch
-index 801fe0c..ed2bf7a 100644
---- a/recipes-security/isic/files/configure_fix.patch
-+++ b/recipes-security/isic/files/configure_fix.patch
-@@ -1,8 +1,7 @@
--Upstream-Status: Pending
--
- isic: add with-libnet remove libnet test
- 
--Inappropriate - builds fine on non-oe systems. We need to exlude
-+Upstream-Status: Inappropriate [embedded specific]
-+builds fine on non-oe systems. We need to exlude
- cross compile libnet test. Pass in the location for libnet.a. Path
- did not support mulitlib either.
- 
-diff --git a/recipes-security/isic/files/isic-0.07-make.patch b/recipes-security/isic/files/isic-0.07-make.patch
-index 838c873..94349ce 100644
---- a/recipes-security/isic/files/isic-0.07-make.patch
-+++ b/recipes-security/isic/files/isic-0.07-make.patch
-@@ -1,8 +1,6 @@
--Upstream-Status: Pending
--
- isic: Fixup makefile to support destination
- 
--Backport:
-+Upstream-Status: Backport
- http://pkgs.fedoraproject.org/cgit/isic.git/tree/isic-0.07-make.patch
- 
- Signed-off-by: Armin Kuster <akuser808@gmail.com>
-diff --git a/recipes-security/isic/files/isic-0.07-netinet.patch b/recipes-security/isic/files/isic-0.07-netinet.patch
-index 4b03880..448ba68 100644
---- a/recipes-security/isic/files/isic-0.07-netinet.patch
-+++ b/recipes-security/isic/files/isic-0.07-netinet.patch
-@@ -1,8 +1,6 @@
--Upstream-Status: Pending
--
- isic: add missing header file
- 
--Backport:
-+Upstream-Status: Backport
- http://pkgs.fedoraproject.org/cgit/isic.git/tree/isic-0.07-netinet.patch
- 
- Signed-off-by: Armin Kuster <akuster808@gmail.com>
--- 
-2.34.1
+
+On 6/19/23 2:57 AM, Stephan Wurm wrote:
+> Using <DM_VERITY_IMAGE_TYPE> in the depends variable does not work for
+> compressed image types like squashfs-zst, as the resulting task
+> dependency still contains the incompatible dash. Replacing the dash by
+> an underscore resolves this issue.
+>
+> Signed-off-by: Stephan Wurm <stephan.wurm@a-eberle.de>
+> ---
+>   recipes-core/images/dm-verity-image-initramfs.bb | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/recipes-core/images/dm-verity-image-initramfs.bb b/recipes-core/images/dm-verity-image-initramfs.bb
+> index 187aeae..fc12ba0 100644
+> --- a/recipes-core/images/dm-verity-image-initramfs.bb
+> +++ b/recipes-core/images/dm-verity-image-initramfs.bb
+> @@ -19,7 +19,13 @@ IMAGE_FEATURES = ""
+>   IMAGE_LINGUAS = ""
+>   
+>   # Can we somehow inspect reverse dependencies to avoid these variables?
+> -do_image[depends] += "${DM_VERITY_IMAGE}:do_image_${DM_VERITY_IMAGE_TYPE}"
+> +python __anonymous() {
+> +    verity_image = d.getVar('DM_VERITY_IMAGE')
+> +    verity_type = d.getVar('DM_VERITY_IMAGE_TYPE')
+> +
+> +    dep = ' %s:do_image_%s' % (verity_image, verity_type.replace('-', '_'))
+> +    d.appendVarFlag('do_image', 'depends', dep)
+> +}
+>   
+>   # Ensure dm-verity.env is updated also when rebuilding DM_VERITY_IMAGE
+>   do_image[nostamp] = "1"
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60337): https://lists.yoctoproject.org/g/yocto/message/60337
+> Mute This Topic: https://lists.yoctoproject.org/mt/99618767/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 
