@@ -1,131 +1,116 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F625EB64D7
-	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 11:21:46 +0000 (UTC)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
- by mx.groups.io with SMTP id smtpd.web11.8448.1687346498953140356
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1893BEB64D7
+	for <webhook@archiver.kernel.org>; Wed, 21 Jun 2023 13:15:37 +0000 (UTC)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+ by mx.groups.io with SMTP id smtpd.web10.10354.1687353328470564346
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Jun 2023 04:21:39 -0700
+ Wed, 21 Jun 2023 06:15:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=FgdeHB9p;
- spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-4f76a0a19d4so7916562e87.2
-        for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 04:21:38 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=dwfGA4cx;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.43, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3110a5f2832so5598728f8f.1
+        for <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 06:15:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687346497; x=1689938497;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linuxfoundation.org; s=google; t=1687353327; x=1689945327;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v8wF1bnLXnATd8wd6wNZIL4Cp6QQUaNGha4XrL5LX1k=;
-        b=FgdeHB9pPTdfMJ6UzFGD0LlCmvmkLLlhZnwK9iPYbLugHlZtxLcnvuxDeMgCQDMA9T
-         vBgZVi/Sr0FnUrM8UVA5xE0bushDhrlGSAGPt8HrdEC40LJzIctpFwrauZU1Aq/GZMBZ
-         3Lsh+CAIpLm9F3B+Y//UJ2Df35wBpF7nW9XHBxAGX9MEaOT4KAguEqu2MfGDh9fMmOfd
-         neAUgmt6M145N5uPwOwvUuGK4WdBcr5obuqEKtuo2Gze1aTg+JG/EpLqYy9UNujeIFV3
-         jNcorjAZvo0WELwQ7G8sqsF47YRwD9dnrX/dCo1pDFYiTGQSKaQ+l1o+oJHvhrI5+q3F
-         wnQQ==
+        bh=5kn4M2Txm4CgRQRNvoQFC2StEg3kqxLD5+EcgtawNAM=;
+        b=dwfGA4cxEOSc3fudt+BXjS7UF1t8gjAqXHVGTicQr+bH3vY4Kgbar0a5XT+YlFxQwt
+         zJhdLmtBOnfU5hMJ9khqOCxsHK48bdG5/jFXtJ+6coSqwqigC9aT65hcILFS5SKo2DS5
+         oV99fwxMlXalp7eJw93c6ZOGVY0e/SFhM+1Vc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687346497; x=1689938497;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v8wF1bnLXnATd8wd6wNZIL4Cp6QQUaNGha4XrL5LX1k=;
-        b=IcahW/frL7wS2I+WWQOpHglRTcF3uuBATzzS54N36g96buV6DMgh6TkzFwENkc2/CD
-         0wIndMbURMYcgIDybXSmQHhilrkvMySsGmDtCnLKRA8OOv+2wFy/Ih63+6tZtOjRFouM
-         k0nHZ8HqTDetXyQFflOUnk4+Opk5wadqluUPYv0CdLB3AS5qZhleqDIpLff6y4/XiGMC
-         mmNVsyQCp8q55FdLIc7LF1Ny/P7ep4Z8ffPdw2lerpTcIG3LH8jCbGkqd1AY8W9fj53J
-         QVtZJP1tz7JvztVgKaTTM0yTFkFlS1Pmo/bb4dCBivRTAOqWw9ELgzPYz4w9WHd2ZIhm
-         SAtQ==
-X-Gm-Message-State: AC+VfDxYNOfFFrr6eSEzVVaYqXb5k9vf4cxilT2z1xLeaZolSn+x1d0v
-	JzhwW2HWnzw2w7ryIyq6waJ3mzCLg4ZLESsZuHs=
-X-Google-Smtp-Source: ACHHUZ5s/X5Lu78qXSLbpxrIprvghpYD0ZabEPiXhQrALmCuWyFEqL0ZmASO9irDw08w8tqCh9ZChz1RHddwC7FxbK0=
-X-Received: by 2002:a19:4f0a:0:b0:4f4:aea9:2a2f with SMTP id
- d10-20020a194f0a000000b004f4aea92a2fmr8994152lfb.57.1687346496680; Wed, 21
- Jun 2023 04:21:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <rvOk.1687345847828201897.bXBi@lists.yoctoproject.org>
+        d=1e100.net; s=20221208; t=1687353327; x=1689945327;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5kn4M2Txm4CgRQRNvoQFC2StEg3kqxLD5+EcgtawNAM=;
+        b=UjLIKj3Xf7+b215xQ5rKzUy7UNra9AK9R91HmEgw51wVNxgYZt2Bt6/ofjGKiiGaU7
+         42x0Tm/jAVtbKzueFkG4uUp5z5sCGUv4m9npdJAFlfdTcfCqy7z8B4H6Z++XxLpTQ5Mz
+         47TLCREH8t8MVFvwLuI5dCrjv+Upkt2KF7IsekdTQMBiwa1rbQ52frEGL9daxuAVI0tv
+         VyEzGankOIb/RFDheGNEjlHFwZ0CAwgJr6nVw9iL4oWLXAQlIXmPO6aNgrMIo3M2eIh+
+         6jj9F5tCMyjxkPVFSfjOPPWVo5c2BZokuugrGiRlDUev90olj4c/SNVXA88ZblRZkyoW
+         0Wiw==
+X-Gm-Message-State: AC+VfDyKGlzZB0zLHXHBkaOJvOHvyVmnv/o6BmeKUSGbkaLo2+tgwEgN
+	6CHP9wwU9C/bbzxehpjlblGfCQ==
+X-Google-Smtp-Source: ACHHUZ5wLYIPbczgZPPVsR6ZKlfkg9W28H6g24kFlYIw7knhZomJVp+Sj6+OEEc2sZ4UCSxQKJcRcQ==
+X-Received: by 2002:a5d:6585:0:b0:311:281e:ad3c with SMTP id q5-20020a5d6585000000b00311281ead3cmr11212272wru.28.1687353326632;
+        Wed, 21 Jun 2023 06:15:26 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:5335:faf6:2a9e:df29? ([2001:8b0:aba:5f3c:5335:faf6:2a9e:df29])
+        by smtp.gmail.com with ESMTPSA id z11-20020a5d4c8b000000b0030c4d8930b1sm4427400wrs.91.2023.06.21.06.15.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 06:15:26 -0700 (PDT)
+Message-ID: <ed9ef499fc4b52b47b6d4d8a4863a8eb8d7d5e10.camel@linuxfoundation.org>
+Subject: Re: [yocto] python3-speechrecognition building using yocto recipe
+ #yocto
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: lavkhush2208@gmail.com, yocto@lists.yoctoproject.org
+Date: Wed, 21 Jun 2023 14:15:25 +0100
 In-Reply-To: <rvOk.1687345847828201897.bXBi@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 21 Jun 2023 13:21:25 +0200
-Message-ID: <CANNYZj_fBt2Ye_cZ=pQvRHxV-T7mmusKh_RquaFoqO=bJP+r_Q@mail.gmail.com>
-Subject: Re: [yocto] python3-speechrecognition building using yocto recipe #yocto
-To: lavkhush2208@gmail.com
-Cc: yocto@lists.yoctoproject.org
+References: <rvOk.1687345847828201897.bXBi@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 11:21:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60373
+ <yocto@lists.yoctoproject.org>; Wed, 21 Jun 2023 13:15:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60374
 
-That's not how it works. You need to write a recipe that cross-builds
-the needed package from source. Taking prebuilt binaries from
-elsewhere is asking for trouble, and not recommended even for
-experienced developers.
-
-Alex
-
-On Wed, 21 Jun 2023 at 13:10, <lavkhush2208@gmail.com> wrote:
->
-> Hi all,
->
-> I want to create .deb file of package python3-speechrecognition  , I  suc=
-cessfully builded natively on target board riscv platform and i copied bina=
-ry from target board and with using  recipe i am copying binary in path: /u=
-sr/lib/python3.8/site-packages and trying  to create .deb file from using y=
-octo environment.
->
+On Wed, 2023-06-21 at 04:10 -0700, lavkhush2208@gmail.com wrote:
+> Hi all,=C2=A0
+>=20
+> I want to create .deb file of package python3-speechrecognition=C2=A0 , I=
+=C2=A0
+> successfully builded natively on target board riscv platform and i
+> copied binary from target board and with using=C2=A0 recipe i am copying
+> binary in path: /usr/lib/python3.8/site-packages and trying=C2=A0 to
+> create .deb file from using yocto environment.
+>=20
 > speechrecognition recipe is-
->
-> DESCRIPTION =3D "speechrecognition Packages with dependencies library's "
->
+>=20
+> DESCRIPTION =3D "speechrecognition Packages with dependencies library's
+> "
+> =C2=A0
 > LICENSE =3D "CLOSED"
->
+> =C2=A0
 > SRC_URI +=3D "file://speechrecognition"
->
+> =C2=A0
 > S =3D "${WORKDIR}/speechrecognition"
->
+> =C2=A0
 > do_install() {
->         install -d  ${D}${libdir}/
->         cp -r ${S}/lib/* ${D}${libdir}/
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d=C2=A0 ${D}${libdir}/
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp -r ${S}/lib/* ${D}${libdir}/
 > }
->
+> =C2=A0
 > FILES_${PN} +=3D "${libdir}/*"
->
->
+>=20
+>=20
 > I am facing one issue here:-
->
+>=20
 > ERROR: speechrecognition-3.9.0-r0 do_populate_sysroot: Fatal errors occur=
 red in subprocesses:
 > Command '['riscv64-oe-linux-strip', '--remove-section=3D.comment', '--rem=
 ove-section=3D.note', '/home/kush/khu/sources/khu-build/tmp-glibc/work/risc=
 v64-oe-linux/speechrecognition/3.9.0-r0/sysroot-destdir/usr/lib/python3.8/s=
 ite-packages/flac-linux-x86']' returned non-zero exit status 1.
->
-> Subprocess output:riscv64-oe-linux-strip: Unable to recognise the format =
-of the input file `/home/integration-team/kush/khu/sources/khu-build/tmp-gl=
-ibc/work/riscv64-oe-linux/speechrecognition/3.9.0-r0/sysroot-destdir/usr/li=
-b/python3.8/site-packages/flac-linux-x86'
->
-> Can anyone help me in this, where i am wrong.
->
-> T&R
-> luvkhush
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60372): https://lists.yoctoproject.org/g/yocto/messag=
-e/60372
-> Mute This Topic: https://lists.yoctoproject.org/mt/99674007/1686489
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+> > Subprocess output:riscv64-oe-linux-strip: Unable to recognise the
+> > format of the input file `/home/integration-
+> > team/kush/khu/sources/khu-build/tmp-glibc/work/riscv64-oe-
+> > linux/speechrecognition/3.9.0-r0/sysroot-
+> > destdir/usr/lib/python3.8/site-packages/flac-linux-x86'
+
+
+I'll make a wild guess that the binary in "flac-linux-x86" is an x86
+one and the riscv strip doesn't like x86 binaries.
+
+I suspect your riscv target device doesn't like them much either.
+
+Cheers,
+
+Richard
 
