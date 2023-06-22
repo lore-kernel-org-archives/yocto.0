@@ -1,532 +1,654 @@
-Return-Path: <jdmason@kudzu.us>
+Return-Path: <Martin.Jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31C0FEB64DA
-	for <webhook@archiver.kernel.org>; Thu, 22 Jun 2023 17:43:39 +0000 (UTC)
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
- by mx.groups.io with SMTP id smtpd.web11.18126.1687455815780813622
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4849EB64D8
+	for <webhook@archiver.kernel.org>; Thu, 22 Jun 2023 18:32:09 +0000 (UTC)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+ by mx.groups.io with SMTP id smtpd.web10.19463.1687458725590612561
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Jun 2023 10:43:36 -0700
+ Thu, 22 Jun 2023 11:32:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@kudzu-us.20221208.gappssmtp.com header.s=20221208 header.b=MmGWLDnM;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.182, mailfrom: jdmason@kudzu.us)
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7624012c0b4so596670285a.1
-        for <yocto@lists.yoctoproject.org>; Thu, 22 Jun 2023 10:43:35 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=LQvEftAK;
+ spf=pass (domain: gmail.com, ip: 209.85.221.53, mailfrom: martin.jansa@gmail.com)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-312826ffedbso3292244f8f.0
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Jun 2023 11:32:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kudzu-us.20221208.gappssmtp.com; s=20221208; t=1687455815; x=1690047815;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vrN9i8itA7ahYPCE/C7Drk0wM4YSKgjXtL3i8GvKvgM=;
-        b=MmGWLDnMddlgUbKVN9qhJ8FWGXxw4+02RE60b3hJqt4KVnFW8MJloH8s71+zPUvDm6
-         PZIbpu/vJmE1NlG+GgY9Q4gzo/bMicosDHyLUnABMpPTFVOIFEpP3nJZ0WkdG7OxA0O8
-         7hxt9ytF0BS/1fAQGzICDD1k6vyeEfycv7hVVH/KPuJHSAk2iW5Ey0UH10Fodj3SoNvO
-         Q/RqGBQPbP6Rtf9+ricOkUZk4HT3xIYuNE5sn5RO2a6/NlsoEdP2prGcFik8Ul4pjzRh
-         Jt/HNF9880pUlPzeIBhJ/EKToD5bLH4v1z1sE0a37U9vxOtupp1l3F99QKpvPIkzH/H4
-         Hqcw==
+        d=gmail.com; s=20221208; t=1687458724; x=1690050724;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y4C+Ju68OJreGZUi2GE3Hrb+6tVVxjsRspB9lBLcIyQ=;
+        b=LQvEftAKDBm0XKkJ7Z7vB8GAfGkA0S5HemGwvLBFj+MDV5WoZUtoReT+WAPPmkv3vi
+         ylS8z4NOhemCx1bXdg0IXXLisayXNzdl3jIAdEDm+27xyUt0rSN+nooAUwYTSojU6TCt
+         1dJXb7mPOCWU3RSjGBWKDwhKIlGqapEtjSba4EcZ4JrKsjIgJDLHQDvJggHQYC/elG4l
+         ftLUa/a+diygZIFuoyYsM9/nje7SVzVaHV7ZAXWur5DQudwFRoHnFHLzZFDVnGxyW8sR
+         NMX4SZFeiiQSZ+LmKUSZS9f7VfXR2Iw1M6DCxUVg57+YEZYrYqGqjjsCgdu98iXfAmuW
+         64iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687455815; x=1690047815;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vrN9i8itA7ahYPCE/C7Drk0wM4YSKgjXtL3i8GvKvgM=;
-        b=M1tC9piP+e9Bdoz9sLLNgnV+lSmZ7NfHMIZyToSBvdbhEievsOgSDmW8nlS+X3Lxrp
-         CuXEL7mvdwDzrSZ8dAQMZgs5dieAtFLyaBq98JG/6AVmJ0SuPnY3CKO0TAhsPIKKrCNI
-         sP9RS9d40zbZFHiebQ0zuGwlhFLcGD3jHam4P6Ux/T19UIA8zkb5lHFOir11jEAPpm3t
-         Ffc+/9J9iveVGNNwobuzrufLfG4bl8c+E0QXc2wLmIBcGU1hKsN1cV4LAUWf8P2jCZYz
-         UjI3S37uKSriPPAIgFCAa7kaWCLWnhcNJ6xUUW1OHbXAE1F8lyvYl/DJiFQIvu/bQLdV
-         IWsg==
-X-Gm-Message-State: AC+VfDykYCa2/zCK9kDsOErD0aD79t+wJ6S5StZsNuugmIBOtRuLyNYj
-	tS4LiKnDFP86jXe91w0AuLDtabApiEClkszXieI=
-X-Google-Smtp-Source: ACHHUZ5IJjNhZ31tmfheMi95zGMmoqYkls1LXR43klRKAqkcpXkm0de7lDnyvcrFvfHpuJQ7Vx5YtA==
-X-Received: by 2002:a05:6214:508c:b0:625:aa1a:b6db with SMTP id kk12-20020a056214508c00b00625aa1ab6dbmr21725709qvb.61.1687455814534;
-        Thu, 22 Jun 2023 10:43:34 -0700 (PDT)
-Received: from kudzu.us ([2605:a601:a600:7900:8ac9:b3ff:febf:a2f8])
-        by smtp.gmail.com with ESMTPSA id o2-20020a0ccb02000000b0062febc332f0sm2358367qvk.130.2023.06.22.10.43.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 10:43:34 -0700 (PDT)
-Date: Thu, 22 Jun 2023 13:43:32 -0400
-From: Jon Mason <jdmason@kudzu.us>
-To: Naveen Saini <naveen.kumar.saini@intel.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-zephyr][PATCH 1/3] zephyr-kernel: Add support for v3.4.0
-Message-ID: <ZJSIRLMMl9Fz/fp2@kudzu.us>
-References: <20230622103939.2893308-1-naveen.kumar.saini@intel.com>
+        d=1e100.net; s=20221208; t=1687458724; x=1690050724;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y4C+Ju68OJreGZUi2GE3Hrb+6tVVxjsRspB9lBLcIyQ=;
+        b=h6Yomozphc47KzXED9eNIu3IXBOklGh5EvDOC9SBjcHelTCGE3xmykRA1OEFfraaAQ
+         lfGIxZgq5xkSmy98roZnV4YaaEStCirUXXzBrRSzQg0v4wn+HK2RKZZ+GM5FPm4u7pfA
+         xwMIcYjJzuQASfkbKcgxfAjP1Qb+WRZz1rwJ0M3JQAAlY6ESGeniqyJhwigMEPS6mzfB
+         /Ybx5/sXz+dt+5hDTknA2vs5OJGlF4XmD+U4gSxpT4Ml8U1YjxJSmZ12Z5vBjQZ92JPS
+         gH+EkhuaGIQ8jrYMgJGh9AIYNOu53CRDSA1xGvsTn9098RrcGKNHTuELBVPjsibx/oGV
+         5Q2Q==
+X-Gm-Message-State: AC+VfDwefzkQvGn2OQ92r/0Gr59ekpWgMuhhqJHgCbQVmwoSrCvbxKTu
+	/vOE0sxiQU/7LCyxFVH4BXUKU70zMMf2KTQPeao=
+X-Google-Smtp-Source: ACHHUZ5FsFwmvSyOCLjpZeaBESrdDbpl/Vd75UiDsTgM5w8y7pZcIlAwszHZoqETHlK9jYrrtqT2LLk0QBc9OmFqkZI=
+X-Received: by 2002:a5d:6386:0:b0:2f9:c2ab:e1de with SMTP id
+ p6-20020a5d6386000000b002f9c2abe1demr15077183wru.14.1687458723677; Thu, 22
+ Jun 2023 11:32:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230622103939.2893308-1-naveen.kumar.saini@intel.com>
+References: <20230622143551.3898797-1-Martin.Jansa@gmail.com> <339bb0b8-4334-f46b-0e79-21ab2de026f5@gmail.com>
+In-Reply-To: <339bb0b8-4334-f46b-0e79-21ab2de026f5@gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Thu, 22 Jun 2023 20:31:42 +0200
+Message-ID: <CA+chaQf38KdwEgfzr3sS0pvN7V_6VB4cYiAQzF4sLsWTaf_M0g@mail.gmail.com>
+Subject: Re: [yocto] [meta-security][master-next][PATCH] *.patch: fix
+ malformed Upstream-Status and SOB lines
+To: akuster808 <akuster808@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000cc49cf05febc1918"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 22 Jun 2023 17:43:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60413
+ <yocto@lists.yoctoproject.org>; Thu, 22 Jun 2023 18:32:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60414
 
-On Thu, Jun 22, 2023 at 06:39:37PM +0800, Naveen Saini wrote:
-> https://github.com/zephyrproject-rtos/zephyr/releases/tag/v3.4.0
-> 
-> Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+--000000000000cc49cf05febc1918
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I ran this through CI
-https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/908561493
+"sob" in czech language means reindeer, no crying and no son was involved
+while preparing the patch :)
 
-It matches the outcome of the previous run (seen
-https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/907938109)
+On Thu, Jun 22, 2023 at 7:03=E2=80=AFPM akuster808 <akuster808@gmail.com> w=
+rote:
 
-So, I'd say this is an acceptable update :)
+> Does SOB have the same meaning to you as it does in the US?  It does
+> seem like an appropriate usage.  ; )
+>
+>
+> - armin
+>
+>
+>
+> On 6/22/23 10:35 AM, Martin Jansa wrote:
+> > * as reported by openembedded-core/scripts/contrib/patchreview.py -v .
+> >
+> > Malformed Signed-off-by 'Signed-Off-By:'
+> (./recipes-mac/AppArmor/files/crosscompile_perl_bindings.patch)
+> > Malformed Signed-off-by 'Signed-Off-By:'
+> (./recipes-mac/AppArmor/files/disable_perl_h_check.patch)
+> >
+> > Missing Upstream-Status tag
+> (./recipes-compliance/scap-security-guide/files/0001-standard.profile-exp=
+and-checks.patch)
+> >
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-ids/samhain/files/samhain-pid-path.patch
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-ids/suricata/files/fixup.patch
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-scanners/clamav/files/fix2_libcurl_check.patch
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patc=
+h
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-security/isic/files/configure_fix.patch
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-security/krill/files/panic_workaround.patch
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-security/opendnssec/files/libdns_conf_fix.patch
+> > Malformed Upstream-Status 'Malformed Upstream-Status in patch
+> ./recipes-security/opendnssec/files/libxml2_conf.patch
+> >
+> > Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+> > ---
+> >   .../files/0001-standard.profile-expand-checks.patch  |  1 +
+> >   .../files/samhain-not-run-ptest-on-host.patch        |  2 +-
+> >   recipes-ids/samhain/files/samhain-pid-path.patch     | 12 ++++++-----=
+-
+> >   recipes-ids/suricata/files/fixup.patch               |  2 +-
+> >   .../AppArmor/files/crosscompile_perl_bindings.patch  |  2 +-
+> >   .../AppArmor/files/disable_perl_h_check.patch        |  2 +-
+> >   .../clamav/files/fix2_libcurl_check.patch            |  2 +-
+> >   .../files/ecryptfs-utils-CVE-2016-6224.patch         |  2 +-
+> >   recipes-security/isic/files/configure_fix.patch      |  2 +-
+> >   recipes-security/krill/files/panic_workaround.patch  |  2 +-
+> >   .../opendnssec/files/libdns_conf_fix.patch           |  2 +-
+> >   recipes-security/opendnssec/files/libxml2_conf.patch |  2 +-
+> >   12 files changed, 17 insertions(+), 16 deletions(-)
+> >
+> > diff --git
+> a/recipes-compliance/scap-security-guide/files/0001-standard.profile-expa=
+nd-checks.patch
+> b/recipes-compliance/scap-security-guide/files/0001-standard.profile-expa=
+nd-checks.patch
+> > index 0621360..43d550b 100644
+> > ---
+> a/recipes-compliance/scap-security-guide/files/0001-standard.profile-expa=
+nd-checks.patch
+> > +++
+> b/recipes-compliance/scap-security-guide/files/0001-standard.profile-expa=
+nd-checks.patch
+> > @@ -3,6 +3,7 @@ From: Armin Kuster <akuster808@gmail.com>
+> >   Date: Wed, 21 Jun 2023 07:46:38 -0400
+> >   Subject: [PATCH] standard.profile: expand checks
+> >
+> > +Upstream-Status: Pending
+> >   Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >   ---
+> >    .../openembedded/profiles/standard.profile    | 206 ++++++++++++++++=
+++
+> > diff --git
+> a/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch
+> b/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch
+> > index 5284313..e00fc2a 100644
+> > --- a/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch
+> > +++ b/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch
+> > @@ -1,6 +1,6 @@
+> >   not run test on host, since we are doing cross-compile
+> >
+> > -Upstream-status: Inappropriate [cross compile specific]
+> > +Upstream-Status: Inappropriate [cross compile specific]
+> >
+> >   Signed-off-by: Roy Li <rongqing.li@windriver.com>
+> >   ---
+> > diff --git a/recipes-ids/samhain/files/samhain-pid-path.patch
+> b/recipes-ids/samhain/files/samhain-pid-path.patch
+> > index 592bd16..8fdadd1 100644
+> > --- a/recipes-ids/samhain/files/samhain-pid-path.patch
+> > +++ b/recipes-ids/samhain/files/samhain-pid-path.patch
+> > @@ -2,15 +2,15 @@ commit a932b03b65edeb02ccad2fce06bfa68a8f2fbb04
+> >   Author: Aws Ismail <aws.ismail@windriver.com>
+> >   Date:   Thu Jan 10 16:29:05 2013 -0500
+> >
+> > -    Set the PID Lock path for samhain.pid
+> > +Set the PID Lock path for samhain.pid
+> >
+> > -    The explicit path for samhain.pid inorder
+> > -    for samhain to work properly after it initial
+> > -    database build.
+> > +The explicit path for samhain.pid inorder
+> > +for samhain to work properly after it initial
+> > +database build.
+> >
+> > -    Upstream-Status: Inappropriate [configuration]
+> > +Upstream-Status: Inappropriate [configuration]
+> >
+> > -    Signed-off-by: Aws Ismail <aws.ismail@windriver.com>
+> > +Signed-off-by: Aws Ismail <aws.ismail@windriver.com>
+> >
+> >   diff --git a/samhainrc.linux b/samhainrc.linux
+> >   index 10a8176..a7b06e6 100644
+> > diff --git a/recipes-ids/suricata/files/fixup.patch
+> b/recipes-ids/suricata/files/fixup.patch
+> > index fc44ce6..4646aa9 100644
+> > --- a/recipes-ids/suricata/files/fixup.patch
+> > +++ b/recipes-ids/suricata/files/fixup.patch
+> > @@ -1,6 +1,6 @@
+> >   Skip pkg Makefile from using its own rust steps
+> >
+> > -Upstream-Status: OE Specific
+> > +Upstream-Status: Inappropriate [OE Specific]
+> >
+> >   Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >
+> > diff --git a/recipes-mac/AppArmor/files/crosscompile_perl_bindings.patc=
+h
+> b/recipes-mac/AppArmor/files/crosscompile_perl_bindings.patch
+> > index ef55de7..585f306 100644
+> > --- a/recipes-mac/AppArmor/files/crosscompile_perl_bindings.patch
+> > +++ b/recipes-mac/AppArmor/files/crosscompile_perl_bindings.patch
+> > @@ -5,7 +5,7 @@ stuck in the generated Makefile with our cross tools.
+> In this case, linking is
+> >   done via the compiler rather than the linker directly so pass in CC
+> not LD
+> >   here.
+> >
+> > -Signed-Off-By: Tom Rini <trini@konsulko.com>
+> > +Signed-off-by: Tom Rini <trini@konsulko.com>
+> >
+> >   --- a/libraries/libapparmor/swig/perl/Makefile.am.orig      2017-06-1=
+3
+> 19:04:43.296676212 -0400
+> >   +++ b/libraries/libapparmor/swig/perl/Makefile.am   2017-06-13
+> 19:05:03.488676693 -0400
+> > diff --git a/recipes-mac/AppArmor/files/disable_perl_h_check.patch
+> b/recipes-mac/AppArmor/files/disable_perl_h_check.patch
+> > index cf2640f..7ffdf2f 100644
+> > --- a/recipes-mac/AppArmor/files/disable_perl_h_check.patch
+> > +++ b/recipes-mac/AppArmor/files/disable_perl_h_check.patch
+> > @@ -5,7 +5,7 @@ cross compilation.  Rather than try and get a compile
+> check to work here,
+> >   we know that we have what's required via our metadata so remove only
+> this
+> >   check.
+> >
+> > -Signed-Off-By: Tom Rini <trini@konsulko.com>
+> > +Signed-off-by: Tom Rini <trini@konsulko.com>
+> >
+> >   --- a/libraries/libapparmor/configure.ac.orig       2017-06-13
+> 16:41:38.668471495 -0400
+> >   +++ b/libraries/libapparmor/configure.ac    2017-06-13
+> 16:41:40.708471543 -0400
+> > diff --git a/recipes-scanners/clamav/files/fix2_libcurl_check.patch
+> b/recipes-scanners/clamav/files/fix2_libcurl_check.patch
+> > index 46406e9..8b500f3 100644
+> > --- a/recipes-scanners/clamav/files/fix2_libcurl_check.patch
+> > +++ b/recipes-scanners/clamav/files/fix2_libcurl_check.patch
+> > @@ -1,6 +1,6 @@
+> >   clamav .102.2 tries to find clamav using culf_config. Use EO
+> pkg_config instead
+> >
+> > -Upstream-Status: OE specific
+> > +Upstream-Status: Inappropriate [OE specific]
+> >   Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >
+> >   Index: git/configure
+> > diff --git
+> a/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patc=
+h
+> b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patc=
+h
+> > index 4252f97..a457d79 100644
+> > ---
+> a/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patc=
+h
+> > +++
+> b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patc=
+h
+> > @@ -14,7 +14,7 @@ the patch comes from:
+> >   https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2016-6224
+> >   https://bazaar.launchpad.net/~ecryptfs/ecryptfs/trunk/revision/882
+> >
+> > -Upstream-Status: backport
+> > +Upstream-Status: Backport
+> >
+> >   Signed-off-by: Li Zhou <li.zhou@windriver.com>
+> >   ---
+> > diff --git a/recipes-security/isic/files/configure_fix.patch
+> b/recipes-security/isic/files/configure_fix.patch
+> > index 7c3e033..ed2bf7a 100644
+> > --- a/recipes-security/isic/files/configure_fix.patch
+> > +++ b/recipes-security/isic/files/configure_fix.patch
+> > @@ -1,6 +1,6 @@
+> >   isic: add with-libnet remove libnet test
+> >
+> > -Upstream-Status: Inappropriate[embedded specific]
+> > +Upstream-Status: Inappropriate [embedded specific]
+> >   builds fine on non-oe systems. We need to exlude
+> >   cross compile libnet test. Pass in the location for libnet.a. Path
+> >   did not support mulitlib either.
+> > diff --git a/recipes-security/krill/files/panic_workaround.patch
+> b/recipes-security/krill/files/panic_workaround.patch
+> > index dc26416..f63169f 100644
+> > --- a/recipes-security/krill/files/panic_workaround.patch
+> > +++ b/recipes-security/krill/files/panic_workaround.patch
+> > @@ -1,4 +1,4 @@
+> > -Upstream-Status: OE specific
+> > +Upstream-Status: Inappropriate [OE specific]
+> >   Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >
+> >   Index: git/Cargo.toml
+> > diff --git a/recipes-security/opendnssec/files/libdns_conf_fix.patch
+> b/recipes-security/opendnssec/files/libdns_conf_fix.patch
+> > index 31d7252..220a2b8 100644
+> > --- a/recipes-security/opendnssec/files/libdns_conf_fix.patch
+> > +++ b/recipes-security/opendnssec/files/libdns_conf_fix.patch
+> > @@ -1,6 +1,6 @@
+> >   Configure does not work with OE pkg-config for the ldns option
+> >
+> > -Upstream-Status: OE specific
+> > +Upstream-Status: Inappropriate [OE specific]
+> >
+> >   Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >
+> > diff --git a/recipes-security/opendnssec/files/libxml2_conf.patch
+> b/recipes-security/opendnssec/files/libxml2_conf.patch
+> > index b4ed430..c20d5d2 100644
+> > --- a/recipes-security/opendnssec/files/libxml2_conf.patch
+> > +++ b/recipes-security/opendnssec/files/libxml2_conf.patch
+> > @@ -1,6 +1,6 @@
+> >   configure does not work with OE pkg-config for the libxml2 option
+> >
+> > -Upstream-Status: OE specific
+> > +Upstream-Status: Inappropriate [OE specific]
+> >
+> >   Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#60399):
+> https://lists.yoctoproject.org/g/yocto/message/60399
+> > Mute This Topic: https://lists.yoctoproject.org/mt/99698731/3616698
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> akuster808@gmail.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
+>
+>
 
-There are 3 outstanding issues with both, 
-mps2-an385 no longer passes the device test case
-qemu-cortex-a9 fails the poll test case with the yocto compiler (but
-not the zephyr one).
+--000000000000cc49cf05febc1918
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The a9 issue has been known about for some time, and I think someone
-was looking into it.
+<div dir=3D"ltr">&quot;sob&quot; in czech language means reindeer, no cryin=
+g and no son was involved while preparing the patch :)</div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 22, 2023=
+ at 7:03=E2=80=AFPM akuster808 &lt;<a href=3D"mailto:akuster808@gmail.com">=
+akuster808@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">Does SOB have the same meaning to you as it does in the=
+ US?=C2=A0 It does <br>
+seem like an appropriate usage.=C2=A0 ; )<br>
+<br>
+<br>
+- armin<br>
+<br>
+<br>
+<br>
+On 6/22/23 10:35 AM, Martin Jansa wrote:<br>
+&gt; * as reported by openembedded-core/scripts/contrib/patchreview.py -v .=
+<br>
+&gt;<br>
+&gt; Malformed Signed-off-by &#39;Signed-Off-By:&#39; (./recipes-mac/AppArm=
+or/files/crosscompile_perl_bindings.patch)<br>
+&gt; Malformed Signed-off-by &#39;Signed-Off-By:&#39; (./recipes-mac/AppArm=
+or/files/disable_perl_h_check.patch)<br>
+&gt;<br>
+&gt; Missing Upstream-Status tag (./recipes-compliance/scap-security-guide/=
+files/0001-standard.profile-expand-checks.patch)<br>
+&gt;<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-ids/samhain/files/samhain-pid-path.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-ids/suricata/files/fixup.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-scanners/clamav/files/fix2_libcurl_check.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-security/isic/files/configure_fix.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-security/krill/files/panic_workaround.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-security/opendnssec/files/libdns_conf_fix.patch<br>
+&gt; Malformed Upstream-Status &#39;Malformed Upstream-Status in patch ./re=
+cipes-security/opendnssec/files/libxml2_conf.patch<br>
+&gt;<br>
+&gt; Signed-off-by: Martin Jansa &lt;<a href=3D"mailto:Martin.Jansa@gmail.c=
+om" target=3D"_blank">Martin.Jansa@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0.../files/0001-standard.profile-expand-checks.patch=C2=A0 =
+|=C2=A0 1 +<br>
+&gt;=C2=A0 =C2=A0.../files/samhain-not-run-ptest-on-host.patch=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 |=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0recipes-ids/samhain/files/samhain-pid-path.patch=C2=A0 =C2=
+=A0 =C2=A0| 12 ++++++------<br>
+&gt;=C2=A0 =C2=A0recipes-ids/suricata/files/fixup.patch=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0.../AppArmor/files/crosscompile_perl_bindings.patch=C2=A0 =
+|=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0.../AppArmor/files/disable_perl_h_check.patch=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 |=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0.../clamav/files/fix2_libcurl_check.patch=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0.../files/ecryptfs-utils-CVE-2016-6224.patch=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0|=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0recipes-security/isic/files/configure_fix.patch=C2=A0 =C2=
+=A0 =C2=A0 |=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0recipes-security/krill/files/panic_workaround.patch=C2=A0 =
+|=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0.../opendnssec/files/libdns_conf_fix.patch=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 +-<br>
+&gt;=C2=A0 =C2=A0recipes-security/opendnssec/files/libxml2_conf.patch |=C2=
+=A0 2 +-<br>
+&gt;=C2=A0 =C2=A012 files changed, 17 insertions(+), 16 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/recipes-compliance/scap-security-guide/files/0001-standar=
+d.profile-expand-checks.patch b/recipes-compliance/scap-security-guide/file=
+s/0001-standard.profile-expand-checks.patch<br>
+&gt; index 0621360..43d550b 100644<br>
+&gt; --- a/recipes-compliance/scap-security-guide/files/0001-standard.profi=
+le-expand-checks.patch<br>
+&gt; +++ b/recipes-compliance/scap-security-guide/files/0001-standard.profi=
+le-expand-checks.patch<br>
+&gt; @@ -3,6 +3,7 @@ From: Armin Kuster &lt;<a href=3D"mailto:akuster808@gm=
+ail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0Date: Wed, 21 Jun 2023 07:46:38 -0400<br>
+&gt;=C2=A0 =C2=A0Subject: [PATCH] standard.profile: expand checks<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +Upstream-Status: Pending<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster8=
+08@gmail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0---<br>
+&gt;=C2=A0 =C2=A0 .../openembedded/profiles/standard.profile=C2=A0 =C2=A0 |=
+ 206 ++++++++++++++++++<br>
+&gt; diff --git a/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.p=
+atch b/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch<br>
+&gt; index 5284313..e00fc2a 100644<br>
+&gt; --- a/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch<br=
+>
+&gt; +++ b/recipes-ids/samhain/files/samhain-not-run-ptest-on-host.patch<br=
+>
+&gt; @@ -1,6 +1,6 @@<br>
+&gt;=C2=A0 =C2=A0not run test on host, since we are doing cross-compile<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Upstream-status: Inappropriate [cross compile specific]<br>
+&gt; +Upstream-Status: Inappropriate [cross compile specific]<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Roy Li &lt;<a href=3D"mailto:rongqing.li@wi=
+ndriver.com" target=3D"_blank">rongqing.li@windriver.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0---<br>
+&gt; diff --git a/recipes-ids/samhain/files/samhain-pid-path.patch b/recipe=
+s-ids/samhain/files/samhain-pid-path.patch<br>
+&gt; index 592bd16..8fdadd1 100644<br>
+&gt; --- a/recipes-ids/samhain/files/samhain-pid-path.patch<br>
+&gt; +++ b/recipes-ids/samhain/files/samhain-pid-path.patch<br>
+&gt; @@ -2,15 +2,15 @@ commit a932b03b65edeb02ccad2fce06bfa68a8f2fbb04<br>
+&gt;=C2=A0 =C2=A0Author: Aws Ismail &lt;<a href=3D"mailto:aws.ismail@windri=
+ver.com" target=3D"_blank">aws.ismail@windriver.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0Date:=C2=A0 =C2=A0Thu Jan 10 16:29:05 2013 -0500<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -=C2=A0 =C2=A0 Set the PID Lock path for samhain.pid<br>
+&gt; +Set the PID Lock path for samhain.pid<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; -=C2=A0 =C2=A0 The explicit path for samhain.pid inorder<br>
+&gt; -=C2=A0 =C2=A0 for samhain to work properly after it initial<br>
+&gt; -=C2=A0 =C2=A0 database build.<br>
+&gt; +The explicit path for samhain.pid inorder<br>
+&gt; +for samhain to work properly after it initial<br>
+&gt; +database build.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
+&gt; -=C2=A0 =C2=A0 Upstream-Status: Inappropriate [configuration]<br>
+&gt; +Upstream-Status: Inappropriate [configuration]<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -=C2=A0 =C2=A0 Signed-off-by: Aws Ismail &lt;<a href=3D"mailto:aws.ism=
+ail@windriver.com" target=3D"_blank">aws.ismail@windriver.com</a>&gt;<br>
+&gt; +Signed-off-by: Aws Ismail &lt;<a href=3D"mailto:aws.ismail@windriver.=
+com" target=3D"_blank">aws.ismail@windriver.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0diff --git a/samhainrc.linux b/samhainrc.linux<br>
+&gt;=C2=A0 =C2=A0index 10a8176..a7b06e6 100644<br>
+&gt; diff --git a/recipes-ids/suricata/files/fixup.patch b/recipes-ids/suri=
+cata/files/fixup.patch<br>
+&gt; index fc44ce6..4646aa9 100644<br>
+&gt; --- a/recipes-ids/suricata/files/fixup.patch<br>
+&gt; +++ b/recipes-ids/suricata/files/fixup.patch<br>
+&gt; @@ -1,6 +1,6 @@<br>
+&gt;=C2=A0 =C2=A0Skip pkg Makefile from using its own rust steps<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Upstream-Status: OE Specific<br>
+&gt; +Upstream-Status: Inappropriate [OE Specific]<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster8=
+08@gmail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; diff --git a/recipes-mac/AppArmor/files/crosscompile_perl_bindings.pat=
+ch b/recipes-mac/AppArmor/files/crosscompile_perl_bindings.patch<br>
+&gt; index ef55de7..585f306 100644<br>
+&gt; --- a/recipes-mac/AppArmor/files/crosscompile_perl_bindings.patch<br>
+&gt; +++ b/recipes-mac/AppArmor/files/crosscompile_perl_bindings.patch<br>
+&gt; @@ -5,7 +5,7 @@ stuck in the generated Makefile with our cross tools.=
+=C2=A0 In this case, linking is<br>
+&gt;=C2=A0 =C2=A0done via the compiler rather than the linker directly so p=
+ass in CC not LD<br>
+&gt;=C2=A0 =C2=A0here.<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Signed-Off-By: Tom Rini &lt;<a href=3D"mailto:trini@konsulko.com" tar=
+get=3D"_blank">trini@konsulko.com</a>&gt;<br>
+&gt; +Signed-off-by: Tom Rini &lt;<a href=3D"mailto:trini@konsulko.com" tar=
+get=3D"_blank">trini@konsulko.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0--- a/libraries/libapparmor/swig/perl/Makefile.am.orig=C2=
+=A0 =C2=A0 =C2=A0 2017-06-13 19:04:43.296676212 -0400<br>
+&gt;=C2=A0 =C2=A0+++ b/libraries/libapparmor/swig/perl/Makefile.am=C2=A0 =
+=C2=A02017-06-13 19:05:03.488676693 -0400<br>
+&gt; diff --git a/recipes-mac/AppArmor/files/disable_perl_h_check.patch b/r=
+ecipes-mac/AppArmor/files/disable_perl_h_check.patch<br>
+&gt; index cf2640f..7ffdf2f 100644<br>
+&gt; --- a/recipes-mac/AppArmor/files/disable_perl_h_check.patch<br>
+&gt; +++ b/recipes-mac/AppArmor/files/disable_perl_h_check.patch<br>
+&gt; @@ -5,7 +5,7 @@ cross compilation.=C2=A0 Rather than try and get a com=
+pile check to work here,<br>
+&gt;=C2=A0 =C2=A0we know that we have what&#39;s required via our metadata =
+so remove only this<br>
+&gt;=C2=A0 =C2=A0check.<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Signed-Off-By: Tom Rini &lt;<a href=3D"mailto:trini@konsulko.com" tar=
+get=3D"_blank">trini@konsulko.com</a>&gt;<br>
+&gt; +Signed-off-by: Tom Rini &lt;<a href=3D"mailto:trini@konsulko.com" tar=
+get=3D"_blank">trini@konsulko.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0--- a/libraries/libapparmor/configure.ac.orig=C2=A0 =C2=A0=
+ =C2=A0 =C2=A02017-06-13 16:41:38.668471495 -0400<br>
+&gt;=C2=A0 =C2=A0+++ b/libraries/libapparmor/<a href=3D"http://configure.ac=
+" rel=3D"noreferrer" target=3D"_blank">configure.ac</a>=C2=A0 =C2=A0 2017-0=
+6-13 16:41:40.708471543 -0400<br>
+&gt; diff --git a/recipes-scanners/clamav/files/fix2_libcurl_check.patch b/=
+recipes-scanners/clamav/files/fix2_libcurl_check.patch<br>
+&gt; index 46406e9..8b500f3 100644<br>
+&gt; --- a/recipes-scanners/clamav/files/fix2_libcurl_check.patch<br>
+&gt; +++ b/recipes-scanners/clamav/files/fix2_libcurl_check.patch<br>
+&gt; @@ -1,6 +1,6 @@<br>
+&gt;=C2=A0 =C2=A0clamav .102.2 tries to find clamav using culf_config. Use =
+EO pkg_config instead<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Upstream-Status: OE specific<br>
+&gt; +Upstream-Status: Inappropriate [OE specific]<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster8=
+08@gmail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Index: git/configure<br>
+&gt; diff --git a/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-=
+2016-6224.patch b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-=
+2016-6224.patch<br>
+&gt; index 4252f97..a457d79 100644<br>
+&gt; --- a/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-62=
+24.patch<br>
+&gt; +++ b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-62=
+24.patch<br>
+&gt; @@ -14,7 +14,7 @@ the patch comes from:<br>
+&gt;=C2=A0 =C2=A0<a href=3D"https://web.nvd.nist.gov/view/vuln/detail?vulnI=
+d=3DCVE-2016-6224" rel=3D"noreferrer" target=3D"_blank">https://web.nvd.nis=
+t.gov/view/vuln/detail?vulnId=3DCVE-2016-6224</a><br>
+&gt;=C2=A0 =C2=A0<a href=3D"https://bazaar.launchpad.net/~ecryptfs/ecryptfs=
+/trunk/revision/882" rel=3D"noreferrer" target=3D"_blank">https://bazaar.la=
+unchpad.net/~ecryptfs/ecryptfs/trunk/revision/882</a><br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Upstream-Status: backport<br>
+&gt; +Upstream-Status: Backport<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Li Zhou &lt;<a href=3D"mailto:li.zhou@windr=
+iver.com" target=3D"_blank">li.zhou@windriver.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0---<br>
+&gt; diff --git a/recipes-security/isic/files/configure_fix.patch b/recipes=
+-security/isic/files/configure_fix.patch<br>
+&gt; index 7c3e033..ed2bf7a 100644<br>
+&gt; --- a/recipes-security/isic/files/configure_fix.patch<br>
+&gt; +++ b/recipes-security/isic/files/configure_fix.patch<br>
+&gt; @@ -1,6 +1,6 @@<br>
+&gt;=C2=A0 =C2=A0isic: add with-libnet remove libnet test<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Upstream-Status: Inappropriate[embedded specific]<br>
+&gt; +Upstream-Status: Inappropriate [embedded specific]<br>
+&gt;=C2=A0 =C2=A0builds fine on non-oe systems. We need to exlude<br>
+&gt;=C2=A0 =C2=A0cross compile libnet test. Pass in the location for libnet=
+.a. Path<br>
+&gt;=C2=A0 =C2=A0did not support mulitlib either.<br>
+&gt; diff --git a/recipes-security/krill/files/panic_workaround.patch b/rec=
+ipes-security/krill/files/panic_workaround.patch<br>
+&gt; index dc26416..f63169f 100644<br>
+&gt; --- a/recipes-security/krill/files/panic_workaround.patch<br>
+&gt; +++ b/recipes-security/krill/files/panic_workaround.patch<br>
+&gt; @@ -1,4 +1,4 @@<br>
+&gt; -Upstream-Status: OE specific<br>
+&gt; +Upstream-Status: Inappropriate [OE specific]<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster8=
+08@gmail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Index: git/Cargo.toml<br>
+&gt; diff --git a/recipes-security/opendnssec/files/libdns_conf_fix.patch b=
+/recipes-security/opendnssec/files/libdns_conf_fix.patch<br>
+&gt; index 31d7252..220a2b8 100644<br>
+&gt; --- a/recipes-security/opendnssec/files/libdns_conf_fix.patch<br>
+&gt; +++ b/recipes-security/opendnssec/files/libdns_conf_fix.patch<br>
+&gt; @@ -1,6 +1,6 @@<br>
+&gt;=C2=A0 =C2=A0Configure does not work with OE pkg-config for the ldns op=
+tion<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Upstream-Status: OE specific<br>
+&gt; +Upstream-Status: Inappropriate [OE specific]<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster8=
+08@gmail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; diff --git a/recipes-security/opendnssec/files/libxml2_conf.patch b/re=
+cipes-security/opendnssec/files/libxml2_conf.patch<br>
+&gt; index b4ed430..c20d5d2 100644<br>
+&gt; --- a/recipes-security/opendnssec/files/libxml2_conf.patch<br>
+&gt; +++ b/recipes-security/opendnssec/files/libxml2_conf.patch<br>
+&gt; @@ -1,6 +1,6 @@<br>
+&gt;=C2=A0 =C2=A0configure does not work with OE pkg-config for the libxml2=
+ option<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Upstream-Status: OE specific<br>
+&gt; +Upstream-Status: Inappropriate [OE specific]<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster8=
+08@gmail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; View/Reply Online (#60399): <a href=3D"https://lists.yoctoproject.org/=
+g/yocto/message/60399" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
+octoproject.org/g/yocto/message/60399</a><br>
+&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/99698731=
+/3616698" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
+rg/mt/99698731/3616698</a><br>
+&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
+arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
+rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
+/unsub</a> [<a href=3D"mailto:akuster808@gmail.com" target=3D"_blank">akust=
+er808@gmail.com</a>]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt;<br>
+<br>
+</blockquote></div>
 
-However, the mps2-an385 issue is relatively new (~1month old).  I was
-able to track down the last passing/failing nightly run for this test
-case.
-
-FAILING: https://gitlab.com/jonmason00/meta-zephyr/-/jobs/4231476859
-PASSING: https://gitlab.com/jonmason00/meta-zephyr/-/jobs/4223831001
-
-The SHAs for meta-zephyr and meta-python are the same, but the poky
-SHAs are different.  There are only 13 commits between the two SHAs.
-They are:
-3a89e9a056a9 ref-manual: variables.rst: don't mention the INIT_MANAGER "none" option
-d9a7f947246f docs: add support for mickledore (4.2) release
-225abef15bb2 maintainers.inc: Move repo to unassigned
-b68a24bed5c2 uboot-sign: support 64bits address
-b6c9cc306af4 kernel-fitimage: support 64 bits address
-d5d0b3f78514 populate_sdk_ext.bbclass: redirect stderr to stdout so that both end in LOGFILE
-928609318f52 mpg123: Reset ac_cv_sys_file_offset_bits on musl
-621fdfb12652 gpgme: Reset ac_cv_sys_file_offset_bits on musl
-6722f406001c wic: add support for proper kernel name to bootimg-pcbios
-0f0bd5e2317b devicetree.bbclass: Allow selection of dts files to build
-b7574378e8d3 perl-version: remove PERL* assignments
-fb8d21e73fbe qemu: Upgrade 7.2.0 -> 8.0.0
-12e2d10541b0 qemu: Add fix for powerpc instruction fallback issue
-
-I'm not able to bisect the issue right now, but I'm guessing it's the
-QEMU upgrade.
-
-Thanks,
-Jon
-
-
-
-> ---
->  ...ry-generation-issue-in-cross-compila.patch |  93 ++++++
->  .../zephyr-kernel/zephyr-kernel-src-3.4.0.inc | 286 ++++++++++++++++++
->  .../zephyr-kernel/zephyr-kernel-src.inc       |   2 +-
->  3 files changed, 380 insertions(+), 1 deletion(-)
->  create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.4-x86-fix-efi-binary-generation-issue-in-cross-compila.patch
->  create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.4.0.inc
-> 
-> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.4-x86-fix-efi-binary-generation-issue-in-cross-compila.patch b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.4-x86-fix-efi-binary-generation-issue-in-cross-compila.patch
-> new file mode 100644
-> index 0000000..94449f5
-> --- /dev/null
-> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.4-x86-fix-efi-binary-generation-issue-in-cross-compila.patch
-> @@ -0,0 +1,93 @@
-> +From f314ca637eb2eb5ed1cda7320ab2448d6487aed8 Mon Sep 17 00:00:00 2001
-> +From: Naveen Saini <naveen.kumar.saini@intel.com>
-> +Date: Thu, 22 Jun 2023 16:21:50 +0800
-> +Subject: [PATCH] x86: fix efi binary generation issue in cross compilation env
-> +
-> +Set root directory for headers.
-> +
-> +Upstream-Status: Inappropriate [Cross-compilation specific]
-> +
-> +Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
-> +---
-> + arch/x86/zefi/zefi.py                | 5 ++++-
-> + boards/x86/ehl_crb/CMakeLists.txt    | 1 +
-> + boards/x86/qemu_x86/CMakeLists.txt   | 1 +
-> + boards/x86/rpl_crb/CMakeLists.txt    | 1 +
-> + boards/x86/up_squared/CMakeLists.txt | 1 +
-> + 5 files changed, 8 insertions(+), 1 deletion(-)
-> +
-> +diff --git a/arch/x86/zefi/zefi.py b/arch/x86/zefi/zefi.py
-> +index 99c188ecd0..1cd86a21cd 100755
-> +--- a/arch/x86/zefi/zefi.py
-> ++++ b/arch/x86/zefi/zefi.py
-> +@@ -109,8 +109,10 @@ def build_elf(elf_file, include_dirs):
-> +     includes = []
-> +     for include_dir in include_dirs:
-> +         includes.extend(["-I", include_dir])
-> ++    #  Pass --sysroot path for cross compilation
-> ++    sysrootarg = "--sysroot=" + args.sysroot
-> +     cmd = ([args.compiler, "-shared", "-Wall", "-Werror", "-I."] + includes +
-> +-           ["-fno-stack-protector", "-fpic", "-mno-red-zone", "-fshort-wchar",
-> ++           ["-fno-stack-protector", "-fpic", "-mno-red-zone", "-fshort-wchar", sysrootarg,
-> +             "-Wl,-nostdlib", "-T", ldscript, "-o", "zefi.elf", cfile])
-> +     verbose(" ".join(cmd))
-> +     subprocess.run(cmd, check = True)
-> +@@ -150,6 +152,7 @@ def parse_args():
-> +     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
-> +     parser.add_argument("-i", "--includes", required=True, nargs="+",
-> +                         help="Zephyr base include directories")
-> ++    parser.add_argument("-s", "--sysroot", required=True, help="Cross compilation --sysroot=path")
-> + 
-> +     return parser.parse_args()
-> + 
-> +diff --git a/boards/x86/ehl_crb/CMakeLists.txt b/boards/x86/ehl_crb/CMakeLists.txt
-> +index 06bbb2dce1..60aa1496e8 100644
-> +--- a/boards/x86/ehl_crb/CMakeLists.txt
-> ++++ b/boards/x86/ehl_crb/CMakeLists.txt
-> +@@ -6,6 +6,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
-> +   -o ${CMAKE_OBJCOPY}
-> +   -i ${ZEPHYR_BASE}/include
-> +   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
-> ++  -s ${SYSROOT_DIR}
-> +   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
-> +   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-> + )
-> +diff --git a/boards/x86/qemu_x86/CMakeLists.txt b/boards/x86/qemu_x86/CMakeLists.txt
-> +index de31c25a82..2910fa0192 100644
-> +--- a/boards/x86/qemu_x86/CMakeLists.txt
-> ++++ b/boards/x86/qemu_x86/CMakeLists.txt
-> +@@ -5,6 +5,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
-> +   -i ${ZEPHYR_BASE}/include
-> +   -o ${CMAKE_OBJCOPY}
-> +   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
-> ++  -s ${SYSROOT_DIR}
-> +   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
-> +   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-> + )
-> +diff --git a/boards/x86/rpl_crb/CMakeLists.txt b/boards/x86/rpl_crb/CMakeLists.txt
-> +index 7db36d8d7c..700f51bf01 100644
-> +--- a/boards/x86/rpl_crb/CMakeLists.txt
-> ++++ b/boards/x86/rpl_crb/CMakeLists.txt
-> +@@ -6,6 +6,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
-> +   -o ${CMAKE_OBJCOPY}
-> +   -i ${ZEPHYR_BASE}/include
-> +   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
-> ++  -s ${SYSROOT_DIR}
-> +   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
-> +   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-> + )
-> +diff --git a/boards/x86/up_squared/CMakeLists.txt b/boards/x86/up_squared/CMakeLists.txt
-> +index 57eef4eabe..ad90969fa9 100644
-> +--- a/boards/x86/up_squared/CMakeLists.txt
-> ++++ b/boards/x86/up_squared/CMakeLists.txt
-> +@@ -6,6 +6,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
-> +   -o ${CMAKE_OBJCOPY}
-> +   -i ${ZEPHYR_BASE}/include
-> +   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
-> ++  -s ${SYSROOT_DIR}
-> +   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
-> +   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-> + )
-> +-- 
-> +2.34.1
-> +
-> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.4.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.4.0.inc
-> new file mode 100644
-> index 0000000..b01145a
-> --- /dev/null
-> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.4.0.inc
-> @@ -0,0 +1,286 @@
-> +# Auto-generated from zephyr-kernel-src.inc.jinja
-> +
-> +SRCREV_FORMAT = "default"
-> +
-> +SRCREV_default = "356c8cbe63ae01b3ab438382639d25bb418a0213"
-> +SRCREV_bsim = "908ffde6298a937c6549dbfa843a62caab26bfc5"
-> +SRCREV_babblesim_base = "02838ca04c4562e68dc876196828d8121679e537"
-> +SRCREV_babblesim_ext_2G4_libPhyComv1 = "9018113a362fa6c9e8f4b9cab9e5a8f12cc46b94"
-> +SRCREV_babblesim_ext_2G4_phy_v1 = "cf2d86e736efac4f12fad5093ed2da2c5b406156"
-> +SRCREV_babblesim_ext_2G4_channel_NtNcable = "20a38c997f507b0aa53817aab3d73a462fff7af1"
-> +SRCREV_babblesim_ext_2G4_channel_multiatt = "e09bc2d14b1975f969ad19c6ed23eb20e5dc3d09"
-> +SRCREV_babblesim_ext_2G4_modem_magic = "cb70771794f0bf6f262aa474848611c68ae8f1ed"
-> +SRCREV_babblesim_ext_2G4_modem_BLE_simple = "ce975a3259fd0dd761d371b60435242d54794bad"
-> +SRCREV_babblesim_ext_2G4_device_burst_interferer = "5b5339351d6e6a2368c686c734dc8b2fc65698fc"
-> +SRCREV_babblesim_ext_2G4_device_WLAN_actmod = "9cb6d8e72695f6b785e57443f0629a18069d6ce4"
-> +SRCREV_babblesim_ext_2G4_device_playback = "85c645929cf1ce995d8537107d9dcbd12ed64036"
-> +SRCREV_babblesim_ext_libCryptov1 = "eed6d7038e839153e340bd333bc43541cb90ba64"
-> +SRCREV_canopennode = "dec12fa3f0d790cafa8414a4c2930ea71ab72ffd"
-> +SRCREV_chre = "b7955c27e50485b7dafdc3888d7d6afdc2ac6d96"
-> +SRCREV_cmsis = "74981bf893e8b10931464b9945e2143d99a3f0a3"
-> +SRCREV_edtt = "64e5105ad82390164fb73fc654be3f73a608209a"
-> +SRCREV_fatfs = "427159bf95ea49b7680facffaa29ad506b42709b"
-> +SRCREV_hal_altera = "0d225ddd314379b32355a00fb669eacf911e750d"
-> +SRCREV_hal_atmel = "5ab43007eda3f380c125f957f03638d2e8d1144d"
-> +SRCREV_hal_espressif = "abe299333411cb37a1cb1dd0aa2ea35c27382604"
-> +SRCREV_hal_ethos_u = "90ada2ea5681b2a2722a10d2898eac34c2510791"
-> +SRCREV_hal_gigadevice = "2994b7dde8b0b0fa9b9c0ccb13474b6a486cddc3"
-> +SRCREV_hal_infineon = "0bebc14d8bd1a249ee7fbc70b37db6f01f72544f"
-> +SRCREV_hal_microchip = "5d079f1683a00b801373bbbbf5d181d4e33b30d5"
-> +SRCREV_hal_nordic = "a1c3e0fbaafda091139b8744becd4853ada2f747"
-> +SRCREV_hal_nuvoton = "0a1f153c433f5f637a4490651bdda6d966de3b99"
-> +SRCREV_hal_nxp = "904830e8f684a9fd573751a1cdecde877ec49242"
-> +SRCREV_hal_openisa = "d1e61c0c654d8ca9e73d27fca3a7eb3b7881cb6a"
-> +SRCREV_hal_quicklogic = "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0"
-> +SRCREV_hal_renesas = "f2d791d28cd8fdbc5861652b863822632c91f690"
-> +SRCREV_hal_rpi_pico = "b7801e4db6a62ea2d37bbef7880c3d056530c9bf"
-> +SRCREV_hal_silabs = "a143f03e846eb1b7b3135f3c8192820ce1b6d9c4"
-> +SRCREV_hal_st = "5948f7b3304f1628a45ee928cd607619a7f53bbb"
-> +SRCREV_hal_stm32 = "c865374fc83d93416c0f380e6310368ff55d6ce2"
-> +SRCREV_hal_telink = "38573af589173259801ae6c2b34b7d4c9e626746"
-> +SRCREV_hal_ti = "ae1db23f32dde779cdfc4afaa9a60ea219310a64"
-> +SRCREV_hal_wurthelektronik = "24ca9873c3d608fad1fea0431836bc8f144c132e"
-> +SRCREV_hal_xtensa = "41a631d4aeeeaedc0daece21eecc338807296ad7"
-> +SRCREV_libmetal = "b91611a6f47dd29fb24c46e5621e797557f80ec6"
-> +SRCREV_liblc3 = "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
-> +SRCREV_littlefs = "ca583fd297ceb48bced3c2548600dc615d67af24"
-> +SRCREV_loramac-node = "ce57712f3e426bbbb13acaec97b45369f716f43a"
-> +SRCREV_lvgl = "7102083f626cda09e5792420ea60af0525cce9ae"
-> +SRCREV_lz4 = "8e303c264fc21c2116dc612658003a22e933124d"
-> +SRCREV_mbedtls = "6e7841e5a08eb5da3c82dbc8b6b6d82ae4b7d2a0"
-> +SRCREV_mcuboot = "74c4d1c52fd51d07904b27a7aa9b2303e896a4e3"
-> +SRCREV_mipi-sys-t = "0d521d8055f3b2b4842f728b0365d3f0ece9c37f"
-> +SRCREV_nanopb = "42fa8b211e946b90b9d968523fce7b1cfe27617e"
-> +SRCREV_net-tools = "e0828aa9629b533644dc96ff6d1295c939bd713c"
-> +SRCREV_nrf_hw_models = "c8d2ecd25d6976d2d77eccf66878420fdb8ef5a1"
-> +SRCREV_open-amp = "c904a01d4a882bcbb39987e0e2ce5308f49ac7ad"
-> +SRCREV_openthread = "d9abe3071c0131a4adb5d7e7451319b735e6d855"
-> +SRCREV_picolibc = "d07c38ff051386f8e09a143ea0a6c1d6d66dd1d8"
-> +SRCREV_segger = "4bfaf28a11c3e5ec29badac744fab6d2f342749e"
-> +SRCREV_sof = "ffbf9c2a6ea2930b0ac7e3a37c7cd7f5c417d090"
-> +SRCREV_tflite-micro = "9156d050927012da87079064db59d07f03b8baf6"
-> +SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
-> +SRCREV_TraceRecorderSource = "bc839bf94904bcdb91b33760e918afbef82e3ab4"
-> +SRCREV_trusted-firmware-m = "79a6115d3a8d0e04864ae8156c1dc8532b750f5a"
-> +SRCREV_trusted-firmware-a = "28f5e137837f1c1a7a7b2af2dd8bb778c0a27532"
-> +SRCREV_tf-m-tests = "0f80a65193ddbbe3f0ac38b33b07b26138c11fa7"
-> +SRCREV_psa-arch-tests = "6a17330e0dfb5f319730f974d5b05f7b7f04757b"
-> +SRCREV_uoscore-uedhoc = "e8920192b66db4f909eb9cd3f155d5245c1ae825"
-> +SRCREV_zcbor = "67fd8bb88d3136738661fa8bb5f9989103f4599e"
-> +SRCREV_zscilib = "34c3432e81085bb717e4871d21ca419ae0058ec5"
-> +SRCREV_thrift = "10023645a0e6cb7ce23fcd7fd3dbac9f18df6234"
-> +
-> +SRC_URI_ZEPHYR ?= "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https"
-> +SRC_URI_ZEPHYR_BSIM ?= "git://github.com/zephyrproject-rtos/babblesim-manifest;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_BASE ?= "git://github.com/BabbleSim/base.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_LIBPHYCOMV1 ?= "git://github.com/BabbleSim/ext_2G4_libPhyComv1.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_PHY_V1 ?= "git://github.com/BabbleSim/ext_2G4_phy_v1.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_CHANNEL_NTNCABLE ?= "git://github.com/BabbleSim/ext_2G4_channel_NtNcable.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_CHANNEL_MULTIATT ?= "git://github.com/BabbleSim/ext_2G4_channel_multiatt.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_MODEM_MAGIC ?= "git://github.com/BabbleSim/ext_2G4_modem_magic.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_MODEM_BLE_SIMPLE ?= "git://github.com/BabbleSim/ext_2G4_modem_BLE_simple.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_DEVICE_BURST_INTERFERER ?= "git://github.com/BabbleSim/ext_2G4_device_burst_interferer.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_DEVICE_WLAN_ACTMOD ?= "git://github.com/BabbleSim/ext_2G4_device_WLAN_actmod.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_DEVICE_PLAYBACK ?= "git://github.com/BabbleSim/ext_2G4_device_playback.git;protocol=https"
-> +SRC_URI_ZEPHYR_BABBLESIM_EXT_LIBCRYPTOV1 ?= "git://github.com/BabbleSim/ext_libCryptov1.git;protocol=https"
-> +SRC_URI_ZEPHYR_CANOPENNODE ?= "git://github.com/zephyrproject-rtos/canopennode;protocol=https"
-> +SRC_URI_ZEPHYR_CHRE ?= "git://github.com/zephyrproject-rtos/chre;protocol=https"
-> +SRC_URI_ZEPHYR_CMSIS ?= "git://github.com/zephyrproject-rtos/cmsis;protocol=https"
-> +SRC_URI_ZEPHYR_EDTT ?= "git://github.com/zephyrproject-rtos/edtt;protocol=https"
-> +SRC_URI_ZEPHYR_FATFS ?= "git://github.com/zephyrproject-rtos/fatfs;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_ALTERA ?= "git://github.com/zephyrproject-rtos/hal_altera;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_ATMEL ?= "git://github.com/zephyrproject-rtos/hal_atmel;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_ESPRESSIF ?= "git://github.com/zephyrproject-rtos/hal_espressif;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_ETHOS_U ?= "git://github.com/zephyrproject-rtos/hal_ethos_u;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_GIGADEVICE ?= "git://github.com/zephyrproject-rtos/hal_gigadevice;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_INFINEON ?= "git://github.com/zephyrproject-rtos/hal_infineon;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_MICROCHIP ?= "git://github.com/zephyrproject-rtos/hal_microchip;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_NORDIC ?= "git://github.com/zephyrproject-rtos/hal_nordic;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_NUVOTON ?= "git://github.com/zephyrproject-rtos/hal_nuvoton;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_NXP ?= "git://github.com/zephyrproject-rtos/hal_nxp;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_OPENISA ?= "git://github.com/zephyrproject-rtos/hal_openisa;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_QUICKLOGIC ?= "git://github.com/zephyrproject-rtos/hal_quicklogic;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_RENESAS ?= "git://github.com/zephyrproject-rtos/hal_renesas;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_RPI_PICO ?= "git://github.com/zephyrproject-rtos/hal_rpi_pico;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_SILABS ?= "git://github.com/zephyrproject-rtos/hal_silabs;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_ST ?= "git://github.com/zephyrproject-rtos/hal_st;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_STM32 ?= "git://github.com/zephyrproject-rtos/hal_stm32;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_TELINK ?= "git://github.com/zephyrproject-rtos/hal_telink;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_TI ?= "git://github.com/zephyrproject-rtos/hal_ti;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_WURTHELEKTRONIK ?= "git://github.com/zephyrproject-rtos/hal_wurthelektronik;protocol=https"
-> +SRC_URI_ZEPHYR_HAL_XTENSA ?= "git://github.com/zephyrproject-rtos/hal_xtensa;protocol=https"
-> +SRC_URI_ZEPHYR_LIBMETAL ?= "git://github.com/zephyrproject-rtos/libmetal;protocol=https"
-> +SRC_URI_ZEPHYR_LIBLC3 ?= "git://github.com/zephyrproject-rtos/liblc3;protocol=https"
-> +SRC_URI_ZEPHYR_LITTLEFS ?= "git://github.com/zephyrproject-rtos/littlefs;protocol=https"
-> +SRC_URI_ZEPHYR_LORAMAC_NODE ?= "git://github.com/zephyrproject-rtos/loramac-node;protocol=https"
-> +SRC_URI_ZEPHYR_LVGL ?= "git://github.com/zephyrproject-rtos/lvgl;protocol=https"
-> +SRC_URI_ZEPHYR_LZ4 ?= "git://github.com/zephyrproject-rtos/lz4;protocol=https"
-> +SRC_URI_ZEPHYR_MBEDTLS ?= "git://github.com/zephyrproject-rtos/mbedtls;protocol=https"
-> +SRC_URI_ZEPHYR_MCUBOOT ?= "git://github.com/zephyrproject-rtos/mcuboot;protocol=https"
-> +SRC_URI_ZEPHYR_MIPI_SYS_T ?= "git://github.com/zephyrproject-rtos/mipi-sys-t;protocol=https"
-> +SRC_URI_ZEPHYR_NANOPB ?= "git://github.com/zephyrproject-rtos/nanopb;protocol=https"
-> +SRC_URI_ZEPHYR_NET_TOOLS ?= "git://github.com/zephyrproject-rtos/net-tools;protocol=https"
-> +SRC_URI_ZEPHYR_NRF_HW_MODELS ?= "git://github.com/zephyrproject-rtos/nrf_hw_models;protocol=https"
-> +SRC_URI_ZEPHYR_OPEN_AMP ?= "git://github.com/zephyrproject-rtos/open-amp;protocol=https"
-> +SRC_URI_ZEPHYR_OPENTHREAD ?= "git://github.com/zephyrproject-rtos/openthread;protocol=https"
-> +SRC_URI_ZEPHYR_PICOLIBC ?= "git://github.com/zephyrproject-rtos/picolibc;protocol=https"
-> +SRC_URI_ZEPHYR_SEGGER ?= "git://github.com/zephyrproject-rtos/segger;protocol=https"
-> +SRC_URI_ZEPHYR_SOF ?= "git://github.com/zephyrproject-rtos/sof;protocol=https"
-> +SRC_URI_ZEPHYR_TFLITE_MICRO ?= "git://github.com/zephyrproject-rtos/tflite-micro;protocol=https"
-> +SRC_URI_ZEPHYR_TINYCRYPT ?= "git://github.com/zephyrproject-rtos/tinycrypt;protocol=https"
-> +SRC_URI_ZEPHYR_TRACERECORDERSOURCE ?= "git://github.com/zephyrproject-rtos/TraceRecorderSource;protocol=https"
-> +SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_M ?= "git://github.com/zephyrproject-rtos/trusted-firmware-m;protocol=https"
-> +SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_A ?= "git://github.com/zephyrproject-rtos/trusted-firmware-a;protocol=https"
-> +SRC_URI_ZEPHYR_TF_M_TESTS ?= "git://github.com/zephyrproject-rtos/tf-m-tests;protocol=https"
-> +SRC_URI_ZEPHYR_PSA_ARCH_TESTS ?= "git://github.com/zephyrproject-rtos/psa-arch-tests;protocol=https"
-> +SRC_URI_ZEPHYR_UOSCORE_UEDHOC ?= "git://github.com/zephyrproject-rtos/uoscore-uedhoc;protocol=https"
-> +SRC_URI_ZEPHYR_ZCBOR ?= "git://github.com/zephyrproject-rtos/zcbor;protocol=https"
-> +SRC_URI_ZEPHYR_ZSCILIB ?= "git://github.com/zephyrproject-rtos/zscilib;protocol=https"
-> +SRC_URI_ZEPHYR_THRIFT ?= "git://github.com/zephyrproject-rtos/thrift;protocol=https"
-> +
-> +SRC_URI_PATCHES ?= "\
-> +    file://0001-3.4-x86-fix-efi-binary-generation-issue-in-cross-compila.patch;patchdir=zephyr \
-> +"
-> +
-> +SRC_URI = "\
-> +    ${SRC_URI_ZEPHYR};branch=${ZEPHYR_BRANCH};name=default;destsuffix=git/zephyr \
-> +    ${SRC_URI_ZEPHYR_BSIM};name=bsim;nobranch=1;destsuffix=git/tools/bsim \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_BASE};name=babblesim_base;nobranch=1;destsuffix=git/tools/bsim/components \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_LIBPHYCOMV1};name=babblesim_ext_2G4_libPhyComv1;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_libPhyComv1 \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_PHY_V1};name=babblesim_ext_2G4_phy_v1;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_phy_v1 \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_CHANNEL_NTNCABLE};name=babblesim_ext_2G4_channel_NtNcable;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_channel_NtNcable \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_CHANNEL_MULTIATT};name=babblesim_ext_2G4_channel_multiatt;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_channel_multiatt \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_MODEM_MAGIC};name=babblesim_ext_2G4_modem_magic;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_modem_magic \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_MODEM_BLE_SIMPLE};name=babblesim_ext_2G4_modem_BLE_simple;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_modem_BLE_simple \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_DEVICE_BURST_INTERFERER};name=babblesim_ext_2G4_device_burst_interferer;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_device_burst_interferer \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_DEVICE_WLAN_ACTMOD};name=babblesim_ext_2G4_device_WLAN_actmod;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_device_WLAN_actmod \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_2G4_DEVICE_PLAYBACK};name=babblesim_ext_2G4_device_playback;nobranch=1;destsuffix=git/tools/bsim/components/ext_2G4_device_playback \
-> +    ${SRC_URI_ZEPHYR_BABBLESIM_EXT_LIBCRYPTOV1};name=babblesim_ext_libCryptov1;nobranch=1;destsuffix=git/tools/bsim/components/ext_libCryptov1 \
-> +    ${SRC_URI_ZEPHYR_CANOPENNODE};name=canopennode;nobranch=1;destsuffix=git/modules/lib/canopennode \
-> +    ${SRC_URI_ZEPHYR_CHRE};name=chre;nobranch=1;destsuffix=git/modules/lib/chre \
-> +    ${SRC_URI_ZEPHYR_CMSIS};name=cmsis;nobranch=1;destsuffix=git/modules/hal/cmsis \
-> +    ${SRC_URI_ZEPHYR_EDTT};name=edtt;nobranch=1;destsuffix=git/tools/edtt \
-> +    ${SRC_URI_ZEPHYR_FATFS};name=fatfs;nobranch=1;destsuffix=git/modules/fs/fatfs \
-> +    ${SRC_URI_ZEPHYR_HAL_ALTERA};name=hal_altera;nobranch=1;destsuffix=git/modules/hal/altera \
-> +    ${SRC_URI_ZEPHYR_HAL_ATMEL};name=hal_atmel;nobranch=1;destsuffix=git/modules/hal/atmel \
-> +    ${SRC_URI_ZEPHYR_HAL_ESPRESSIF};name=hal_espressif;nobranch=1;destsuffix=git/modules/hal/espressif \
-> +    ${SRC_URI_ZEPHYR_HAL_ETHOS_U};name=hal_ethos_u;nobranch=1;destsuffix=git/modules/hal/ethos_u \
-> +    ${SRC_URI_ZEPHYR_HAL_GIGADEVICE};name=hal_gigadevice;nobranch=1;destsuffix=git/modules/hal/gigadevice \
-> +    ${SRC_URI_ZEPHYR_HAL_INFINEON};name=hal_infineon;nobranch=1;destsuffix=git/modules/hal/infineon \
-> +    ${SRC_URI_ZEPHYR_HAL_MICROCHIP};name=hal_microchip;nobranch=1;destsuffix=git/modules/hal/microchip \
-> +    ${SRC_URI_ZEPHYR_HAL_NORDIC};name=hal_nordic;nobranch=1;destsuffix=git/modules/hal/nordic \
-> +    ${SRC_URI_ZEPHYR_HAL_NUVOTON};name=hal_nuvoton;nobranch=1;destsuffix=git/modules/hal/nuvoton \
-> +    ${SRC_URI_ZEPHYR_HAL_NXP};name=hal_nxp;nobranch=1;destsuffix=git/modules/hal/nxp \
-> +    ${SRC_URI_ZEPHYR_HAL_OPENISA};name=hal_openisa;nobranch=1;destsuffix=git/modules/hal/openisa \
-> +    ${SRC_URI_ZEPHYR_HAL_QUICKLOGIC};name=hal_quicklogic;nobranch=1;destsuffix=git/modules/hal/quicklogic \
-> +    ${SRC_URI_ZEPHYR_HAL_RENESAS};name=hal_renesas;nobranch=1;destsuffix=git/modules/hal/renesas \
-> +    ${SRC_URI_ZEPHYR_HAL_RPI_PICO};name=hal_rpi_pico;nobranch=1;destsuffix=git/modules/hal/rpi_pico \
-> +    ${SRC_URI_ZEPHYR_HAL_SILABS};name=hal_silabs;nobranch=1;destsuffix=git/modules/hal/silabs \
-> +    ${SRC_URI_ZEPHYR_HAL_ST};name=hal_st;nobranch=1;destsuffix=git/modules/hal/st \
-> +    ${SRC_URI_ZEPHYR_HAL_STM32};name=hal_stm32;nobranch=1;destsuffix=git/modules/hal/stm32 \
-> +    ${SRC_URI_ZEPHYR_HAL_TELINK};name=hal_telink;nobranch=1;destsuffix=git/modules/hal/telink \
-> +    ${SRC_URI_ZEPHYR_HAL_TI};name=hal_ti;nobranch=1;destsuffix=git/modules/hal/ti \
-> +    ${SRC_URI_ZEPHYR_HAL_WURTHELEKTRONIK};name=hal_wurthelektronik;nobranch=1;destsuffix=git/modules/hal/wurthelektronik \
-> +    ${SRC_URI_ZEPHYR_HAL_XTENSA};name=hal_xtensa;nobranch=1;destsuffix=git/modules/hal/xtensa \
-> +    ${SRC_URI_ZEPHYR_LIBMETAL};name=libmetal;nobranch=1;destsuffix=git/modules/hal/libmetal \
-> +    ${SRC_URI_ZEPHYR_LIBLC3};name=liblc3;nobranch=1;destsuffix=git/modules/lib/liblc3 \
-> +    ${SRC_URI_ZEPHYR_LITTLEFS};name=littlefs;nobranch=1;destsuffix=git/modules/fs/littlefs \
-> +    ${SRC_URI_ZEPHYR_LORAMAC_NODE};name=loramac-node;nobranch=1;destsuffix=git/modules/lib/loramac-node \
-> +    ${SRC_URI_ZEPHYR_LVGL};name=lvgl;nobranch=1;destsuffix=git/modules/lib/gui/lvgl \
-> +    ${SRC_URI_ZEPHYR_LZ4};name=lz4;nobranch=1;destsuffix=git/modules/lib/lz4 \
-> +    ${SRC_URI_ZEPHYR_MBEDTLS};name=mbedtls;nobranch=1;destsuffix=git/modules/crypto/mbedtls \
-> +    ${SRC_URI_ZEPHYR_MCUBOOT};name=mcuboot;nobranch=1;destsuffix=git/bootloader/mcuboot \
-> +    ${SRC_URI_ZEPHYR_MIPI_SYS_T};name=mipi-sys-t;nobranch=1;destsuffix=git/modules/debug/mipi-sys-t \
-> +    ${SRC_URI_ZEPHYR_NANOPB};name=nanopb;nobranch=1;destsuffix=git/modules/lib/nanopb \
-> +    ${SRC_URI_ZEPHYR_NET_TOOLS};name=net-tools;nobranch=1;destsuffix=git/tools/net-tools \
-> +    ${SRC_URI_ZEPHYR_NRF_HW_MODELS};name=nrf_hw_models;nobranch=1;destsuffix=git/modules/bsim_hw_models/nrf_hw_models \
-> +    ${SRC_URI_ZEPHYR_OPEN_AMP};name=open-amp;nobranch=1;destsuffix=git/modules/lib/open-amp \
-> +    ${SRC_URI_ZEPHYR_OPENTHREAD};name=openthread;nobranch=1;destsuffix=git/modules/lib/openthread \
-> +    ${SRC_URI_ZEPHYR_PICOLIBC};name=picolibc;nobranch=1;destsuffix=git/modules/lib/picolibc \
-> +    ${SRC_URI_ZEPHYR_SEGGER};name=segger;nobranch=1;destsuffix=git/modules/debug/segger \
-> +    ${SRC_URI_ZEPHYR_SOF};name=sof;nobranch=1;destsuffix=git/modules/audio/sof \
-> +    ${SRC_URI_ZEPHYR_TFLITE_MICRO};name=tflite-micro;nobranch=1;destsuffix=git/modules/lib/tflite-micro \
-> +    ${SRC_URI_ZEPHYR_TINYCRYPT};name=tinycrypt;nobranch=1;destsuffix=git/modules/crypto/tinycrypt \
-> +    ${SRC_URI_ZEPHYR_TRACERECORDERSOURCE};name=TraceRecorderSource;nobranch=1;destsuffix=git/modules/debug/TraceRecorder \
-> +    ${SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_M};name=trusted-firmware-m;nobranch=1;destsuffix=git/modules/tee/tf-m/trusted-firmware-m \
-> +    ${SRC_URI_ZEPHYR_TRUSTED_FIRMWARE_A};name=trusted-firmware-a;nobranch=1;destsuffix=git/modules/tee/tf-a/trusted-firmware-a \
-> +    ${SRC_URI_ZEPHYR_TF_M_TESTS};name=tf-m-tests;nobranch=1;destsuffix=git/modules/tee/tf-m/tf-m-tests \
-> +    ${SRC_URI_ZEPHYR_PSA_ARCH_TESTS};name=psa-arch-tests;nobranch=1;destsuffix=git/modules/tee/tf-m/psa-arch-tests \
-> +    ${SRC_URI_ZEPHYR_UOSCORE_UEDHOC};name=uoscore-uedhoc;nobranch=1;destsuffix=git/modules/lib/uoscore-uedhoc \
-> +    ${SRC_URI_ZEPHYR_ZCBOR};name=zcbor;nobranch=1;destsuffix=git/modules/lib/zcbor \
-> +    ${SRC_URI_ZEPHYR_ZSCILIB};name=zscilib;nobranch=1;destsuffix=git/modules/lib/zscilib \
-> +    ${SRC_URI_ZEPHYR_THRIFT};name=thrift;nobranch=1;destsuffix=git/modules/lib/thrift \
-> +    ${SRC_URI_PATCHES} \
-> +"
-> +
-> +ZEPHYR_MODULES = "\
-> +${S}/tools/bsim\;\
-> +${S}/tools/bsim/components\;\
-> +${S}/tools/bsim/components/ext_2G4_libPhyComv1\;\
-> +${S}/tools/bsim/components/ext_2G4_phy_v1\;\
-> +${S}/tools/bsim/components/ext_2G4_channel_NtNcable\;\
-> +${S}/tools/bsim/components/ext_2G4_channel_multiatt\;\
-> +${S}/tools/bsim/components/ext_2G4_modem_magic\;\
-> +${S}/tools/bsim/components/ext_2G4_modem_BLE_simple\;\
-> +${S}/tools/bsim/components/ext_2G4_device_burst_interferer\;\
-> +${S}/tools/bsim/components/ext_2G4_device_WLAN_actmod\;\
-> +${S}/tools/bsim/components/ext_2G4_device_playback\;\
-> +${S}/tools/bsim/components/ext_libCryptov1\;\
-> +${S}/modules/lib/canopennode\;\
-> +${S}/modules/lib/chre\;\
-> +${S}/modules/hal/cmsis\;\
-> +${S}/tools/edtt\;\
-> +${S}/modules/fs/fatfs\;\
-> +${S}/modules/hal/altera\;\
-> +${S}/modules/hal/atmel\;\
-> +${S}/modules/hal/espressif\;\
-> +${S}/modules/hal/ethos_u\;\
-> +${S}/modules/hal/gigadevice\;\
-> +${S}/modules/hal/infineon\;\
-> +${S}/modules/hal/microchip\;\
-> +${S}/modules/hal/nordic\;\
-> +${S}/modules/hal/nuvoton\;\
-> +${S}/modules/hal/nxp\;\
-> +${S}/modules/hal/openisa\;\
-> +${S}/modules/hal/quicklogic\;\
-> +${S}/modules/hal/renesas\;\
-> +${S}/modules/hal/rpi_pico\;\
-> +${S}/modules/hal/silabs\;\
-> +${S}/modules/hal/st\;\
-> +${S}/modules/hal/stm32\;\
-> +${S}/modules/hal/telink\;\
-> +${S}/modules/hal/ti\;\
-> +${S}/modules/hal/wurthelektronik\;\
-> +${S}/modules/hal/xtensa\;\
-> +${S}/modules/hal/libmetal\;\
-> +${S}/modules/lib/liblc3\;\
-> +${S}/modules/fs/littlefs\;\
-> +${S}/modules/lib/loramac-node\;\
-> +${S}/modules/lib/gui/lvgl\;\
-> +${S}/modules/lib/lz4\;\
-> +${S}/modules/crypto/mbedtls\;\
-> +${S}/bootloader/mcuboot\;\
-> +${S}/modules/debug/mipi-sys-t\;\
-> +${S}/modules/lib/nanopb\;\
-> +${S}/tools/net-tools\;\
-> +${S}/modules/bsim_hw_models/nrf_hw_models\;\
-> +${S}/modules/lib/open-amp\;\
-> +${S}/modules/lib/openthread\;\
-> +${S}/modules/lib/picolibc\;\
-> +${S}/modules/debug/segger\;\
-> +${S}/modules/audio/sof\;\
-> +${S}/modules/lib/tflite-micro\;\
-> +${S}/modules/crypto/tinycrypt\;\
-> +${S}/modules/debug/TraceRecorder\;\
-> +${S}/modules/tee/tf-m/trusted-firmware-m\;\
-> +${S}/modules/tee/tf-a/trusted-firmware-a\;\
-> +${S}/modules/tee/tf-m/tf-m-tests\;\
-> +${S}/modules/tee/tf-m/psa-arch-tests\;\
-> +${S}/modules/lib/uoscore-uedhoc\;\
-> +${S}/modules/lib/zcbor\;\
-> +${S}/modules/lib/zscilib\;\
-> +${S}/modules/lib/thrift\;\
-> +"
-> +
-> +ZEPHYR_BRANCH = "v3.4-branch"
-> +PV = "3.4.0+git${SRCPV}"
-> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-> index 0f25512..b6cd24c 100644
-> --- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-> @@ -12,5 +12,5 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
->  S = "${WORKDIR}/git"
->  
->  # Default to a stable version
-> -PREFERRED_VERSION_zephyr-kernel ??= "3.3.0"
-> +PREFERRED_VERSION_zephyr-kernel ??= "3.4.0"
->  require recipes-kernel/zephyr-kernel/zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
-> -- 
-> 2.34.1
-> 
-> 
+--000000000000cc49cf05febc1918--
 
