@@ -1,101 +1,71 @@
-Return-Path: <michael@amarulasolutions.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8B98EB64D7
-	for <webhook@archiver.kernel.org>; Fri, 23 Jun 2023 16:09:47 +0000 (UTC)
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
- by mx.groups.io with SMTP id smtpd.web10.2440.1687536578493695207
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EF6A4EB64D7
+	for <webhook@archiver.kernel.org>; Fri, 23 Jun 2023 19:08:28 +0000 (UTC)
+Received: from a27-29.smtp-out.us-west-2.amazonses.com (a27-29.smtp-out.us-west-2.amazonses.com [54.240.27.29])
+ by mx.groups.io with SMTP id smtpd.web10.6697.1687547305677221697
  for <yocto@lists.yoctoproject.org>;
- Fri, 23 Jun 2023 09:09:38 -0700
+ Fri, 23 Jun 2023 12:08:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@amarulasolutions.com header.s=google header.b=BUxgGtHJ;
- spf=pass (domain: amarulasolutions.com, ip: 209.85.167.50, mailfrom: michael@amarulasolutions.com)
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-4f955def3a5so1054899e87.0
-        for <yocto@lists.yoctoproject.org>; Fri, 23 Jun 2023 09:09:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1687536576; x=1690128576;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Oh3fJP0lo2U8KQ6UxGyQqGP/KbrF1tOWSzyIKHlIpYk=;
-        b=BUxgGtHJBFtqiQfuGuvU2eku3jsRGQGmgDUXpFeIf7wb7kGWTBXC/Ha2GiM6J5Ai5V
-         J7WvuTe3pwvK2E4uwLjE6IrhrenV+xF2WjFfqGz2aJ3WzDllyufUuWDhax5CX+G0m97Q
-         BMqYE52D0Gl8jo8w2jgai7ZcWFDN0NsODQHOg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687536576; x=1690128576;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Oh3fJP0lo2U8KQ6UxGyQqGP/KbrF1tOWSzyIKHlIpYk=;
-        b=Fh5dUn/rI65y/ZksYd264pPhIH7QKE8wYDH29umX6gKSJBeen1TvgU8wB0UQKIatsT
-         WfxnIL0Mdu7RRjo6HgiA6ywVuvFToEKIfg7BX/L+lxL0dTzHUzdKQXMia5Ml5+ONteX+
-         vmiTF2FgGY6Ff2ZH8Mv1qio0mfCp7lfWvkmmOMGShdjccEHQOYRSZuE3eYqp+VTVE5ek
-         U7INfYLtR56BsUR+/6B9uI8SF9SwrZ++faEh/zPIllabnUJGtavfKuQZdGeudLV4kwau
-         chrZoHLQdqPiu5FVg++YzV57VldvQffYMlo2DdvdKS7wwyTmORlcVkPGigvrKnK9+RCQ
-         ADFw==
-X-Gm-Message-State: AC+VfDxxZM40Ek2pXXiJ0Y8Tp0uDEBf8zt8Jt8iy57mlXgOYVRaAbn5b
-	UrS6rUQNgDrbUraBtiP14LshOawKMubqAdVm/+EZOA==
-X-Google-Smtp-Source: ACHHUZ7l8PfgZYliD8C0Mrk5cp8i1CMcj0UP7daDOCNrpaAVUIvVGYKsd/MaO5Ho/eDuzSuliiKiAnIvnv33thOwOXs=
-X-Received: by 2002:a05:6512:110a:b0:4f6:2b25:194e with SMTP id
- l10-20020a056512110a00b004f62b25194emr13429852lfg.58.1687536576557; Fri, 23
- Jun 2023 09:09:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <tEhD.1682021284572852771.sxZQ@lists.yoctoproject.org> <20366.1687536397589322732@lists.yoctoproject.org>
-In-Reply-To: <20366.1687536397589322732@lists.yoctoproject.org>
-From: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date: Fri, 23 Jun 2023 18:09:25 +0200
-Message-ID: <CAOf5uwnDKy=OQGBZqv8DVL-2fKKsO+VsoBFTQOovZZ73cnJQtg@mail.gmail.com>
-Subject: Re: [yocto] Multiple wifi access points when using Connman
-To: logan.grosz@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=DFrkWCFj;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.29, mailfrom: 01010188e9a85af3-ef64f2f8-a9ee-4dcf-8070-b9af7ad4da0d-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1687547304; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=HIAquhn5TgNbzlvx3xFs+qA5YKQAWwm+yHgC+5Jq1tQ=;
+	b=DFrkWCFjtK3mm/LDNx7ctvET1vqvMCpkzL3yBNpL4ozASzwPPHtw3Y5KODGL8Kaj
+	G3uxkzmv+CkofI8CSHZ1Qjtss2oLVw3/OcQCrJfSsGTwZAQm0m8yukLLmpaQnfW8xf/
+	P2Ypq5OSK2n/5shSWJBQrocDVacyQMp8Qg8nuaNg=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1687547304;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=HIAquhn5TgNbzlvx3xFs+qA5YKQAWwm+yHgC+5Jq1tQ=;
+	b=iOhwVW55s1kT94KGsldC90QfEnQoZwVgN8Ea/weIim2B9qSrm7htAevKEhEW+833
+	MhNs0WKVsREFJrnSMsMS/TvJwyThCt0QPbFZ6XutUVgvRaPgN+dnF3avyNAhmeK9n/T
+	C0b6R2rp/IyyOjCFwE50qQX1AZr1BSPatsdk/XHE=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.0.11.rc1)
+Message-ID: <01010188e9a85af3-ef64f2f8-a9ee-4dcf-8070-b9af7ad4da0d-000000@us-west-2.amazonses.com>
+Date: Fri, 23 Jun 2023 19:08:24 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.06.23-54.240.27.29
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 23 Jun 2023 16:09:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60418
-
-Hi
-
-You can blacklist the other interface
-
-Michael
-
-On Fri, Jun 23, 2023 at 6:06=E2=80=AFPM <logan.grosz@gmail.com> wrote:
->
-> To whom it may concern,
->
-> It appears some services are from the `wlan` interface while other are fr=
-om the `p2p` interface of the same physical Wi-Fi module. The addresses of =
-the devices are, `00:1f:7b:31:8f:32` and `02:1f:7b:b5:8f:32`, which result =
-in the 00 vs 02 phenomenon I noticed.
->
-> Thank you,
-> Logan
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60417): https://lists.yoctoproject.org/g/yocto/messag=
-e/60417
-> Mute This Topic: https://lists.yoctoproject.org/mt/98397236/1862104
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [michael@amarul=
-asolutions.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+ <yocto@lists.yoctoproject.org>; Fri, 23 Jun 2023 19:08:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60419
 
 
---=20
-Michael Nazzareno Trimarchi
-Co-Founder & Chief Executive Officer
-M. +39 347 913 2170
-michael@amarulasolutions.com
-__________________________________
+A build flagged for QA (yocto-4.0.11.rc1) was completed on the autobuilder and is available at:
 
-Amarula Solutions BV
-Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
-T. +31 (0)85 111 9172
-info@amarulasolutions.com
-www.amarulasolutions.com
+
+    https://autobuilder.yocto.io/pub/releases/yocto-4.0.11.rc1
+
+
+Build hash information: 
+
+bitbake: 0c6f86b60cfba67c20733516957c0a654eb2b44c
+meta-agl: 1b0cad77090b75fc040f9de5db06374203fe34c5
+meta-arm: 96aad3b29aa7a5ee4df5cf617a6336e5218fa9bd
+meta-aws: 7c498bc8f0d51b9c2546b8f7e3347cc6e61d74ec
+meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+meta-intel: 7fab6b8f1a3030bc6d2f1cf48789599af3dc3e78
+meta-mingw: a90614a6498c3345704e9611f2842eb933dc51c1
+meta-openembedded: a82d92c8a6525da01524bf8f4a60bf6b35dcbb3d
+meta-virtualization: b3b3dbc67504e8cd498d6db202ddcf5a9dd26a9d
+oecore: 7949e786cf8e50f716ff1f1c4797136637205e0c
+poky: fc697fe87412b9b179ae3a68d266ace85bb1fcc6
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
