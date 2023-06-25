@@ -1,143 +1,93 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <kai.kang@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E0665EB64DA
-	for <webhook@archiver.kernel.org>; Sun, 25 Jun 2023 00:47:41 +0000 (UTC)
-Received: from mailout08.t-online.de (mailout08.t-online.de [194.25.134.20])
- by mx.groups.io with SMTP id smtpd.web10.4003.1687654056772096718
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80D68EB64DA
+	for <webhook@archiver.kernel.org>; Sun, 25 Jun 2023 03:04:32 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web10.5673.1687662270058964939
  for <yocto@lists.yoctoproject.org>;
- Sat, 24 Jun 2023 17:47:37 -0700
+ Sat, 24 Jun 2023 20:04:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.20, mailfrom: f_l_k@t-online.de)
-Received: from fwd72.dcpf.telekom.de (fwd72.aul.t-online.de [10.223.144.98])
-	by mailout08.t-online.de (Postfix) with SMTP id 9078A22D7;
-	Sun, 25 Jun 2023 02:47:34 +0200 (CEST)
-Received: from [192.168.0.80] ([24.134.105.89]) by fwd72.t-online.de
-	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
-	esmtp id 1qDDuc-1LQPwm0; Sun, 25 Jun 2023 02:47:31 +0200
-Date: Sun, 25 Jun 2023 02:47:23 +0200
-From: f_l_k@t-online.de
-Subject: Re: [yocto] [meta-raspberrypi] vc4-fkms-v3d vs. vc4-kms-v3d
-To: Manuel Wagesreither <ManWag@FastMail.FM>
-Cc: Markus Volk <f_l_k@t-online.de>, Khem Raj <raj.khem@gmail.com>,
-	yocto@lists.yoctoproject.org
-Message-Id: <Z6ASWR.R5G5DV4V5AS73@t-online.de>
-In-Reply-To: <aeab709e-20fa-4ae1-9f98-b103c05570f8@app.fastmail.com>
-References: <d80d7dc4-d01e-49c1-b5b6-91140087fc7f@app.fastmail.com>
-	<CAMKF1srAV6j9DU=-6y_Qtv+bJY8Mqt1cbfX0v+EDzMvEGBGfpA@mail.gmail.com>
-	<4ea51f16-6c49-47c8-8750-1db4a4b3733c@app.fastmail.com>
-	<CAMKF1sonBWEduzrC5MmVD8_FcOEuekDLpBqJ0=47ED9W9dEReQ@mail.gmail.com>
-	<f387de3c-883e-4eaa-842d-d665968d021a@app.fastmail.com>
-	<S4PRWR.EOBJHV6AZG912@t-online.de>
-	<aeab709e-20fa-4ae1-9f98-b103c05570f8@app.fastmail.com>
-X-Mailer: geary/43.0
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=HldgjM1/;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=554073d143=kai.kang@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 35P2qmrD014315
+	for <yocto@lists.yoctoproject.org>; Sat, 24 Jun 2023 20:04:29 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PPS06212021; bh=+exCL
+	J7d82pQ/BT3LFcGbrFW4GFtWY6VrIsfhKRIRX4=; b=HldgjM1/tWNB7KdyPWj2X
+	YDVOQQmm+HkbGWGDPZcbRMwZ+xsiNLC5R4BudUWnDqieYlMFTUrIsG+WJSCWBpDt
+	jeM3Uyj+2soLVDbXQrstP9JIgUAa6pN48O/q+NcnV9mVHFgjmBMeNsrDsEJE8+Oj
+	NkwNBiIfusHt07R7zxekfOk4+/rp1LVHxBBde14AS3EqYmMaeEq1wXMvcwameNC1
+	+Xva0H8sz14FyyLj/F11mHYU9vwwVNfGpV+yYy5CAIiqdrQluXN3Lz5PoCoogmOd
+	RQdMtZSmV4FH5pV3e1UQf8SL9Miy/7pmPNMbOT/EDo+6kNWvSHPtlBo6xIwq0JWF
+	w==
+Received: from ala-exchng02.corp.ad.wrs.com (ala-exchng02.wrs.com [147.11.82.254])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3re00ege1d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Sat, 24 Jun 2023 20:04:29 -0700 (PDT)
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Sat, 24 Jun 2023 20:04:28 -0700
+Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2507.27 via Frontend Transport; Sat, 24 Jun 2023 20:04:27 -0700
+From: <kai.kang@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-mingw][PATCH] libiconv: update license with SPDX name
+Date: Sun, 25 Jun 2023 11:04:24 +0800
+Message-ID: <20230625030424.1158549-1-kai.kang@windriver.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="=-REEgfMHuZ6wOa1Mz0FsB"
-X-TOI-EXPURGATEID: 150726::1687654051-73FFC980-2DAA7AF6/0/0 CLEAN NORMAL
-X-TOI-MSGID: 9062da04-d62f-4f1e-9172-c7c57647fc22
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: d9wX7avHhSMQ-RsjcV8p-Cng0m1YM-6q
+X-Proofpoint-GUID: d9wX7avHhSMQ-RsjcV8p-Cng0m1YM-6q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-24_18,2023-06-22_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 phishscore=0 suspectscore=0 mlxscore=0 adultscore=0
+ bulkscore=0 mlxlogscore=914 malwarescore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2305260000 definitions=main-2306250027
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 25 Jun 2023 00:47:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60429
+ <yocto@lists.yoctoproject.org>; Sun, 25 Jun 2023 03:04:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60430
 
---=-REEgfMHuZ6wOa1Mz0FsB
-Content-Type: text/plain; charset=us-ascii; format=flowed
+From: Kai Kang <kai.kang@windriver.com>
 
-On Sun, Jun 25 2023 at 12:01:29 AM +0200, Manuel Wagesreither 
-<ManWag@FastMail.FM> wrote:
-> The HDMI port is unused on my raspi. I'm using the official Raspberry 
-> Pi 7" Touchscreen connected via DSI.
+License 'LGPLv3' is obsolete
 
-Have you also added ?
+  WARNING: nativesdk-libiconv-1.15-r1 do_package_qa: QA Issue: Recipe
+    LICENSE includes obsolete licenses LGPLv3 [obsolete-license]
 
-dtoverlay=vc4-kms-dsi-7inch
-dtoverlay=rpi-ft5406
+so replace it with the SPDX name 'LGPL-3.0-only'.
 
-I never dealt with the 7'' Display but i guess they are needed for kms
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+---
+ recipes-support/libiconv/libiconv_1.15.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-hdmi_force_hotplug=1
-
-may also be needed
-
-
---=-REEgfMHuZ6wOa1Mz0FsB
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<div id=3D"geary-body" dir=3D"auto">On Sun, Jun 25 2023 at 12:01:29 AM +020=
-0, Manuel Wagesreither &lt;ManWag@FastMail.FM&gt; wrote:<br><blockquote typ=
-e=3D"cite">The HDMI port is unused on my raspi. I'm using the official Rasp=
-berry Pi 7" Touchscreen connected via DSI.</blockquote><div><br></div><div>=
-Have you also added ?</div><div><br></div><div><span style=3D"color: rgb(85=
-, 85, 85); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 13=
-.585px; font-variant-ligatures: normal; orphans: 2; widows: 2; background-c=
-olor: rgba(0, 0, 0, 0.024); text-decoration-thickness: initial; text-decora=
-tion-style: initial; text-decoration-color: initial;">dtoverlay=3Dvc4-kms-d=
-si-7inch</span></div><div><span style=3D"color: rgb(85, 85, 85); font-famil=
-y: Roboto, Arial, Helvetica, sans-serif; font-size: 13.585px; font-variant-=
-ligatures: normal; orphans: 2; widows: 2; background-color: rgba(0, 0, 0, 0=
-.024); text-decoration-thickness: initial; text-decoration-style: initial; =
-text-decoration-color: initial;"><span style=3D"font-size: 13.585px; font-v=
-ariant-ligatures: normal; text-decoration-thickness: initial; text-decorati=
-on-style: initial; text-decoration-color: initial;">dtoverlay=3Drpi-ft5406<=
-/span><br style=3D"border: medium; box-sizing: border-box; margin: 0px; pad=
-ding: 0px; font-size: 13.585px; font-variant-ligatures: normal; text-decora=
-tion-thickness: initial; text-decoration-style: initial; text-decoration-co=
-lor: initial;"></span></div><div><span style=3D"color: rgb(85, 85, 85); fon=
-t-family: Roboto, Arial, Helvetica, sans-serif; font-size: 13.585px; font-v=
-ariant-ligatures: normal; orphans: 2; widows: 2; background-color: rgba(0, =
-0, 0, 0.024); text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial;"><span style=3D"font-size: 13.585px;=
- font-variant-ligatures: normal; text-decoration-thickness: initial; text-d=
-ecoration-style: initial; text-decoration-color: initial;"><br></span></spa=
-n></div><div><span style=3D"color: rgb(85, 85, 85); font-family: Roboto, Ar=
-ial, Helvetica, sans-serif; font-size: 13.585px; font-variant-ligatures: no=
-rmal; orphans: 2; widows: 2; background-color: rgba(0, 0, 0, 0.024); text-d=
-ecoration-thickness: initial; text-decoration-style: initial; text-decorati=
-on-color: initial;"><span style=3D"font-size: 13.585px; font-variant-ligatu=
-res: normal; text-decoration-thickness: initial; text-decoration-style: ini=
-tial; text-decoration-color: initial;">I never dealt with the 7'' Display b=
-ut i guess they are needed for kms</span></span></div><div><span style=3D"c=
-olor: rgb(85, 85, 85); font-family: Roboto, Arial, Helvetica, sans-serif; f=
-ont-size: 13.585px; font-variant-ligatures: normal; orphans: 2; widows: 2; =
-background-color: rgba(0, 0, 0, 0.024); text-decoration-thickness: initial;=
- text-decoration-style: initial; text-decoration-color: initial;"><span sty=
-le=3D"font-size: 13.585px; font-variant-ligatures: normal; text-decoration-=
-thickness: initial; text-decoration-style: initial; text-decoration-color: =
-initial;"><br></span></span></div><div><span style=3D"color: rgb(85, 85, 85=
-); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 13.585px; =
-font-variant-ligatures: normal; orphans: 2; widows: 2; background-color: rg=
-ba(0, 0, 0, 0.024); text-decoration-thickness: initial; text-decoration-sty=
-le: initial; text-decoration-color: initial;"><span style=3D"font-size: 13.=
-585px; font-variant-ligatures: normal; text-decoration-thickness: initial; =
-text-decoration-style: initial; text-decoration-color: initial;"><span styl=
-e=3D"font-size: 13.585px; font-variant-ligatures: normal; text-decoration-t=
-hickness: initial; text-decoration-style: initial; text-decoration-color: i=
-nitial;">hdmi_force_hotplug=3D1</span><br style=3D"border: medium; box-sizi=
-ng: border-box; margin: 0px; padding: 0px; font-size: 13.585px; font-varian=
-t-ligatures: normal; text-decoration-thickness: initial; text-decoration-st=
-yle: initial; text-decoration-color: initial;"></span></span></div><div><sp=
-an style=3D"color: rgb(85, 85, 85); font-family: Roboto, Arial, Helvetica, =
-sans-serif; font-size: 13.585px; font-variant-ligatures: normal; orphans: 2=
-; widows: 2; background-color: rgba(0, 0, 0, 0.024); text-decoration-thickn=
-ess: initial; text-decoration-style: initial; text-decoration-color: initia=
-l;"><span style=3D"font-size: 13.585px; font-variant-ligatures: normal; tex=
-t-decoration-thickness: initial; text-decoration-style: initial; text-decor=
-ation-color: initial;"><span style=3D"font-size: 13.585px; font-variant-lig=
-atures: normal; text-decoration-thickness: initial; text-decoration-style: =
-initial; text-decoration-color: initial;"><br></span></span></span></div><d=
-iv><span style=3D"color: rgb(85, 85, 85); font-family: Roboto, Arial, Helve=
-tica, sans-serif; font-size: 13.585px; font-variant-ligatures: normal; orph=
-ans: 2; widows: 2; background-color: rgba(0, 0, 0, 0.024); text-decoration-=
-thickness: initial; text-decoration-style: initial; text-decoration-color: =
-initial;"><span style=3D"font-size: 13.585px; font-variant-ligatures: norma=
-l; text-decoration-thickness: initial; text-decoration-style: initial; text=
--decoration-color: initial;"><span style=3D"font-size: 13.585px; font-varia=
-nt-ligatures: normal; text-decoration-thickness: initial; text-decoration-s=
-tyle: initial; text-decoration-color: initial;">may also be needed</span></=
-span></span></div></div>
---=-REEgfMHuZ6wOa1Mz0FsB--
+diff --git a/recipes-support/libiconv/libiconv_1.15.bb b/recipes-support/libiconv/libiconv_1.15.bb
+index 7b2252f..b58abb4 100644
+--- a/recipes-support/libiconv/libiconv_1.15.bb
++++ b/recipes-support/libiconv/libiconv_1.15.bb
+@@ -6,7 +6,7 @@ SECTION = "libs"
+ NOTES = "Needs to be stripped down to: ascii iso8859-1 eucjp iso-2022jp gb utf8"
+ PROVIDES = "virtual/libiconv"
+ PR = "r1"
+-LICENSE = "LGPLv3"
++LICENSE = "LGPL-3.0-only"
+ LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=9f604d8a4f8e74f4f5140845a21b6674 \
+                     file://libcharset/COPYING.LIB;md5=9f604d8a4f8e74f4f5140845a21b6674"
+ 
+-- 
+2.34.1
 
 
