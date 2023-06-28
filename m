@@ -1,108 +1,82 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43C17EB64D7
-	for <webhook@archiver.kernel.org>; Wed, 28 Jun 2023 11:37:37 +0000 (UTC)
-Subject: report one objcopy bug and fix
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A35D9EB64D7
+	for <webhook@archiver.kernel.org>; Wed, 28 Jun 2023 12:56:17 +0000 (UTC)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+ by mx.groups.io with SMTP id smtpd.web10.15420.1687956973135235883
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 28 Jun 2023 05:56:13 -0700
+Authentication-Results: mx.groups.io;
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=D3KknbyJ;
+ spf=pass (domain: gmail.com, ip: 209.85.128.177, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-57712d00cc1so3588687b3.3
+        for <yocto@lists.yoctoproject.org>; Wed, 28 Jun 2023 05:56:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687956972; x=1690548972;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qGMiUd9gRimwpHkdjBjqhTpNv23PfXNVoLQL31OVtSU=;
+        b=D3KknbyJHr4HbY66fBBgUdVk+1Jx7y2Y6n2fsfjSwvKSWsj8RlRmo2spHNdyYkXuXE
+         06Lff/NU12SruJmnvqWc3+Sa2O4QYr6436jQWLFmSUPwgM3FKEaU4k9qUbRpT/D+DbZQ
+         7pMU9aJprzVgVd7oOlaAnFG5KIl1OXbtr1l6/sR+gzLwN8yDedy4ed5nrsME6L+Oeyo8
+         yq8Ph+h0jg4Ub/jE8gkusRv7ra9HjACP0vI0UDTzP72sw/Ksw9MXWcHsAgDc/61H2/fF
+         yB1oJdkrLEyicd6iAwKSUhATW8u7bAZP/oNcbLZyRgNT7HKQEdZAwG/qlqp5pVBCJm1E
+         7pKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687956972; x=1690548972;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qGMiUd9gRimwpHkdjBjqhTpNv23PfXNVoLQL31OVtSU=;
+        b=ASg0wEc2kNscBS+eYGCESISSwMNo2W8he0KGxNjdpyDuiNcoZd1zD2BGDrATks9vVK
+         FoxfCQ7XINojjvRAI5UTXvn1OuTfHBnHm9Q/RwgFCevXnXD2+lRgA421d1C3oOczvJ0t
+         VNVULqcNdK4dyVJbxcMDoli6Q2UHUh2SCQuPy88yING1h8tXudtK56gKmbdHlpV0qsIv
+         dZ16WoaWxJ/W5f3BM+zpi8ESGfnn4whJnyELKaloY8exomFIICrhwVV/+lbMLhc+ceLC
+         +8NgXdPkJDNP/zDZqKOVAZ3I9EvVBUS4KLRSBtAGh5exUv7+WtpJaPLdiUoQYphzO/g+
+         Yzgg==
+X-Gm-Message-State: ABy/qLYV+KvBVaPHEUvbuvSwYn7wdtHMOfkxUnthZTOS909hgSj9LZVA
+	IvmSw01yuERx0SZ9Tt5yOEDMyYX9cQ8=
+X-Google-Smtp-Source: APBJJlGnPCPqDeP5kXA9oqV1djlN4RQ16hMUQBrJR0/FC1sj7UE2CpOe5oaagg26KgurP5KbAuPFzQ==
+X-Received: by 2002:a0d:cad2:0:b0:577:10cc:da96 with SMTP id m201-20020a0dcad2000000b0057710ccda96mr1353161ywd.41.1687956971969;
+        Wed, 28 Jun 2023 05:56:11 -0700 (PDT)
+Received: from keaua.attlocal.net ([2600:1700:9190:ba10:1313:e2a5:a596:c99])
+        by smtp.gmail.com with ESMTPSA id r143-20020a0de895000000b0055a382ae26fsm2334049ywe.49.2023.06.28.05.56.11
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jun 2023 05:56:11 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-From: cddiao@ambarella.com
-X-Originating-Location: London, England, GB (95.179.225.185)
-X-Originating-Platform: Windows Firefox 114
-User-Agent: GROUPS.IO Web Poster
+Subject: [meta-security][PATCH] layer: add more memory for Qemu machines
+Date: Wed, 28 Jun 2023 08:56:09 -0400
+Message-Id: <20230628125609.1327477-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Date: Wed, 28 Jun 2023 00:55:30 -0700
-Message-ID: <t7pW.1687938930579768136.YiLL@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="Zo5iPP7hhe45U4lNm0kd"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 28 Jun 2023 11:37:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60462
+ <yocto@lists.yoctoproject.org>; Wed, 28 Jun 2023 12:56:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60463
 
---Zo5iPP7hhe45U4lNm0kd
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ conf/layer.conf | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Hi,
-A bug is triggered when using docker + Ubuntu 20.04. 3 LTS. The bug message=
- is :
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 334a945..5f289cb 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -28,4 +28,7 @@ INHERIT += "sanity-meta-security"
+ 
+ QB_KERNEL_CMDLINE_APPEND = " ${@bb.utils.contains('DISTRO_FEATURES', 'apparmor', 'apparmor=1 security=apparmor', '', d)}"
+ 
++# We need more mem to run many apps in this layer
++QB_MEM="-m 2048"
++
+ addpylib ${LAYERDIR}/lib oeqa
+-- 
+2.34.1
 
-File: 'xxx/build/poky/meta/classes/kernel-module-split.bbclass', lineno: 68=
-, function: extract_modinfo
-0064:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 raise msg
-0065:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cmd=
- =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("HOST_PREFIX") or =
-"", tmpkofile, tmpfile)
-0066:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else:
-0067:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cmd=
- =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("HOST_PREFIX") or =
-"", file, tmpfile)
-*** 0068:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 subprocess.check_call(c=
-md, shell=3DTrue)
-Exception: subprocess.CalledProcessError: Command 'aarch64-poky-linux-objco=
-py -j .modinfo -O binary ../keymaps/rc-alink-dtu-m.ko=C2=A0=C2=A0 ../tmpwhs=
-5uwlt' returned non-zero exit status 1.
-
-The=C2=A0 " rc-alink-dtu-m.ko " file is damaged, and can't=C2=A0 analysis b=
-y file command :
-$ file -b rc-alink-dtu-m.ko
-data
-and the damaged is caused by=C2=A0 build/poky/meta/classes/package.bbclass=
-=C2=A0 perform_packagecopy()
-cmd =3D 'tar --exclude=3D./sysroot-only -cf - -C %s -p -S . | tar -xf - -C =
-%s' % (dest, dvar)
-
-remove the "-S " can fix the bug.
-notes: this bug only appears in Ubuntu 20.04. 3 LTS, and Ubuntu 20.04. 6 LT=
-S do not have the issue.
-
---Zo5iPP7hhe45U4lNm0kd
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br />&nbsp;&nbsp;&nbsp; A bug is triggered when using docker + Ubuntu 2=
-0.04.<span style=3D"color: #ff0000;">3</span> LTS. The bug message is :<br =
-/><br />
-<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">File: 'x=
-xx/build/poky/meta/classes/kernel-module-split.bbclass', lineno: 68, functi=
-on: extract_modinfo</span></div>
-<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
-bsp;&nbsp;&nbsp; 0064:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise msg</span></div>
-<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
-bsp;&nbsp;&nbsp; 0065:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; cmd =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("=
-HOST_PREFIX") or "", tmpkofile, tmpfile)</span></div>
-<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
-bsp;&nbsp;&nbsp; 0066:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else:</spa=
-n></div>
-<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
-bsp;&nbsp;&nbsp; 0067:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; cmd =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("=
-HOST_PREFIX") or "", file, tmpfile)</span></div>
-<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;**=
-* 0068:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subprocess.check_call(cmd=
-, shell=3DTrue)</span></div>
-<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;Ex=
-ception: subprocess.CalledProcessError: Command 'aarch64-poky-linux-objcopy=
- -j .modinfo -O binary ../keymaps/rc-alink-dtu-m.ko&nbsp;&nbsp; ../tmpwhs5u=
-wlt' returned non-zero exit status 1.</span></div>
-&nbsp;<br />&nbsp;&nbsp;&nbsp; The&nbsp; "<span lang=3D"EN-US">rc-alink-dtu=
--m.ko</span>" file is damaged, and can't&nbsp; analysis by file command :<b=
-r />&nbsp;&nbsp;<span style=3D"color: #808080;">&nbsp;&nbsp;&nbsp;&nbsp; $ =
-file -b rc-alink-dtu-m.ko</span><br /><span style=3D"color: #808080;">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data</span><br />&nbsp; &=
-nbsp; and the damaged is caused by&nbsp; build/poky/meta/classes/package.bb=
-class&nbsp; perform_packagecopy()<br />&nbsp;&nbsp; &nbsp; &nbsp;<span styl=
-e=3D"color: #808080;">&nbsp; cmd =3D 'tar --exclude=3D./sysroot-only -cf - =
--C %s -p -S . | tar -xf - -C %s' % (dest, dvar)</span><br /><br />&nbsp;&nb=
-sp;&nbsp; remove the "-S " can fix the bug.<br />&nbsp;&nbsp;&nbsp; notes: =
-this bug only appears in Ubuntu 20.04.<span style=3D"color: #ff0000;">3</sp=
-an> LTS, and Ubuntu 20.04.<span style=3D"color: #ff0000;">6</span> LTS do n=
-ot have the issue.<br /><br /><br /><br />&nbsp;<br />&nbsp; &nbsp; &nbsp; =
-<br /><br /><br /><br /><br /><br />&nbsp;<br />&nbsp;
-
---Zo5iPP7hhe45U4lNm0kd--
 
