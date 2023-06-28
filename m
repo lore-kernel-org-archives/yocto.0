@@ -1,151 +1,108 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCA41EB64D9
-	for <webhook@archiver.kernel.org>; Tue, 27 Jun 2023 16:46:43 +0000 (UTC)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web10.449.1687884394852435733
- for <yocto@lists.yoctoproject.org>;
- Tue, 27 Jun 2023 09:46:35 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=lmumuWcU;
- spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-4fb5bcb9a28so3996208e87.3
-        for <yocto@lists.yoctoproject.org>; Tue, 27 Jun 2023 09:46:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687884393; x=1690476393;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pp7vA7UdQ8hKuDFBPxLuvT89lcdLRk5IYAvMPKVriH0=;
-        b=lmumuWcU0wCRlqK+HWlnDJ9m5IrtvT2+Gmb9mKvT9QYZmdm8QUBsCqNohv7bj6E6NG
-         aRPZuajTlCm/TTY9FxktrzWofeqAVfqW2CJF6FFbBWkXC1ObG1kUA9ZnkynoRFhVJV4y
-         2HbXVG+p+6sV+jazzSbUST2AW9qOfhNE83mik7fq9cqZmKQreol1ZOR4apYGmRxLzeWw
-         5HHVrwpEOj4xwNDrrxv1iQTw5XaBr6EfnPqI8HhhRP7BG7B+l1COsqXDNAaS1U5co/df
-         ZSXnk0xAZzhJtL1KXP/s7aV4NG4bhr6XnzHKNmjyKbQXMabA0NVWz1iS+N/HBWDSvSHn
-         YGww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687884393; x=1690476393;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pp7vA7UdQ8hKuDFBPxLuvT89lcdLRk5IYAvMPKVriH0=;
-        b=ZqBYu+McVge4GL2YOLMuPIbpgeCJuNDanNiGAgqq+h3PnwPa2dtmKJO38aT44mztz1
-         bAx0Og7oI2pNrdrGJOawsFWpDbLM1hAwyxuyDdXTJFkwCugBvvdT8rveM67/usNEoqnh
-         SJtEgk+7VezjGT6Vrya7e/S5mB9tLlgFgHS8uKjBu1IN1Zld/v/Dv0o1BJOl6ys+8y/l
-         /B3ia7DT5q7QpCG5iUcjZZhI0slblA35cQMWeAwoVSyd0B1LnbMYTmwwcqG1ecD+oZwb
-         o/+kvpzheiv3fLi+YlnpndTLtQ3pGeOmo6PB3o/htcxwc4cxfJ/aynZV2WWfL8GMn6y0
-         YQww==
-X-Gm-Message-State: AC+VfDxNVvPNBOYheH2QMaEyygKWhzmi9zmc2sEdbuXpQ2uKMY6wI/3l
-	UgOm5fJrUJSa6iR1GmTmmxsrsTyH8K78yeqmWBc=
-X-Google-Smtp-Source: ACHHUZ5DhYsh0E/Q1CHeFu6B6dfdu1YBGvamslN9fQ1ugpue2nf6NJnaOIGErhojbea7MoPQDtNbn3kHbWbWM4B/Lbo=
-X-Received: by 2002:a19:6d02:0:b0:4f4:d2ed:410 with SMTP id
- i2-20020a196d02000000b004f4d2ed0410mr18444537lfc.41.1687884392730; Tue, 27
- Jun 2023 09:46:32 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43C17EB64D7
+	for <webhook@archiver.kernel.org>; Wed, 28 Jun 2023 11:37:37 +0000 (UTC)
+Subject: report one objcopy bug and fix
+To: yocto@lists.yoctoproject.org
+From: cddiao@ambarella.com
+X-Originating-Location: London, England, GB (95.179.225.185)
+X-Originating-Platform: Windows Firefox 114
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CANNYZj9-AOrddDK2VRrbrrDnWhgDOJ2tPbJRXO1bWrKpoOfzzg@mail.gmail.com>
- <25445.1687882175160054772@lists.yoctoproject.org>
-In-Reply-To: <25445.1687882175160054772@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 27 Jun 2023 18:46:21 +0200
-Message-ID: <CANNYZj9ceErJf27HmT9pKHcJh4Yoyy_iMVkkYK8-ucMwhJKZRQ@mail.gmail.com>
-Subject: Re: [yocto] File magic/sdk relocation
-To: ohnatiuk@cisco.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a6963b05ff1f35af"
+Date: Wed, 28 Jun 2023 00:55:30 -0700
+Message-ID: <t7pW.1687938930579768136.YiLL@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Zo5iPP7hhe45U4lNm0kd"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 27 Jun 2023 16:46:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60461
+ <yocto@lists.yoctoproject.org>; Wed, 28 Jun 2023 11:37:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60462
 
---000000000000a6963b05ff1f35af
-Content-Type: text/plain; charset="UTF-8"
+--Zo5iPP7hhe45U4lNm0kd
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Before we think of a solution, can you provide steps or a test case where
-the issue can be seen? It=E2=80=99s in one of the most important tasks, so =
-I=E2=80=99d like
-to know why it hasn=E2=80=99t been a problem and what is the scenario where=
- it is.
+Hi,
+A bug is triggered when using docker + Ubuntu 20.04. 3 LTS. The bug message=
+ is :
 
-Alex
+File: 'xxx/build/poky/meta/classes/kernel-module-split.bbclass', lineno: 68=
+, function: extract_modinfo
+0064:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 raise msg
+0065:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cmd=
+ =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("HOST_PREFIX") or =
+"", tmpkofile, tmpfile)
+0066:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else:
+0067:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cmd=
+ =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("HOST_PREFIX") or =
+"", file, tmpfile)
+*** 0068:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 subprocess.check_call(c=
+md, shell=3DTrue)
+Exception: subprocess.CalledProcessError: Command 'aarch64-poky-linux-objco=
+py -j .modinfo -O binary ../keymaps/rc-alink-dtu-m.ko=C2=A0=C2=A0 ../tmpwhs=
+5uwlt' returned non-zero exit status 1.
 
-On Tue 27. Jun 2023 at 18.09, Oleksandr Hnatiuk via lists.yoctoproject.org
-<ohnatiuk=3Dcisco.com@lists.yoctoproject.org> wrote:
+The=C2=A0 " rc-alink-dtu-m.ko " file is damaged, and can't=C2=A0 analysis b=
+y file command :
+$ file -b rc-alink-dtu-m.ko
+data
+and the damaged is caused by=C2=A0 build/poky/meta/classes/package.bbclass=
+=C2=A0 perform_packagecopy()
+cmd =3D 'tar --exclude=3D./sysroot-only -cf - -C %s -p -S . | tar -xf - -C =
+%s' % (dest, dvar)
 
-> Hi. After debugging this, I found there is another issue apart from the
-> way MAGIC is set in the recipe.
->
-> The do_populate_sysroot task doesn't use the value of MAGIC variable that
-> is available in tasks that build the code.
-> `file -b` is invoked from is_elf function in meta/lib/oe/package.py via
-> `subprocess.check_output`.
-> The environment of that subprocess call doesn't have the MAGIC variable
-> set so `file -b` fails.
-> (It uses `file` from $BUILDDIR/tmp/hosttools/file)
-> Verified this by providing a modified env with hardcoded MAGIC to
-> `subprocess.check_output` after which the error is gone.
->
-> What would the right solution for this look like?
->
-> Regards,
-> Oleksandr
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60460):
-> https://lists.yoctoproject.org/g/yocto/message/60460
-> Mute This Topic: https://lists.yoctoproject.org/mt/99626082/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+remove the "-S " can fix the bug.
+notes: this bug only appears in Ubuntu 20.04. 3 LTS, and Ubuntu 20.04. 6 LT=
+S do not have the issue.
 
---000000000000a6963b05ff1f35af
-Content-Type: text/html; charset="UTF-8"
+--Zo5iPP7hhe45U4lNm0kd
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Before we think of a solution, can you provide steps or a=
- test case where the issue can be seen? It=E2=80=99s in one of the most imp=
-ortant tasks, so I=E2=80=99d like to know why it hasn=E2=80=99t been a prob=
-lem and what is the scenario where it is.</div><div dir=3D"auto"><br></div>=
-<div dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Tue 27. Jun 2023 at 18.09, Oleksandr Hnatiuk =
-via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &l=
-t;ohnatiuk=3D<a href=3D"mailto:cisco.com@lists.yoctoproject.org">cisco.com@=
-lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-s=
-tyle:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">Hi. After d=
-ebugging this, I found there is another issue apart from the way MAGIC is s=
-et in the recipe.<br><br>The do_populate_sysroot task doesn&#39;t use the v=
-alue of MAGIC variable that is available in tasks that build the code.<br>`=
-file -b` is invoked from is_elf function in meta/lib/oe/package.py via `sub=
-process.check_output`.<br>The environment of that subprocess call doesn&#39=
-;t have the MAGIC variable set so `file -b` fails.<br>(It uses `file` from =
-$BUILDDIR/tmp/hosttools/file)<br>Verified this by providing a modified env =
-with hardcoded MAGIC to `subprocess.check_output` after which the error is =
-gone.<br><br>What would the right solution for this look like?<br><br>Regar=
-ds,<br>Oleksandr
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60460): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60460" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/60460</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/99626082/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/99626082/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
+Hi,<br />&nbsp;&nbsp;&nbsp; A bug is triggered when using docker + Ubuntu 2=
+0.04.<span style=3D"color: #ff0000;">3</span> LTS. The bug message is :<br =
+/><br />
+<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">File: 'x=
+xx/build/poky/meta/classes/kernel-module-split.bbclass', lineno: 68, functi=
+on: extract_modinfo</span></div>
+<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
+bsp;&nbsp;&nbsp; 0064:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise msg</span></div>
+<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
+bsp;&nbsp;&nbsp; 0065:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; cmd =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("=
+HOST_PREFIX") or "", tmpkofile, tmpfile)</span></div>
+<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
+bsp;&nbsp;&nbsp; 0066:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else:</spa=
+n></div>
+<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;&n=
+bsp;&nbsp;&nbsp; 0067:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; cmd =3D "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("=
+HOST_PREFIX") or "", file, tmpfile)</span></div>
+<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;**=
+* 0068:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subprocess.check_call(cmd=
+, shell=3DTrue)</span></div>
+<div style=3D"padding-left: 30px;"><span style=3D"color: #808080;">&nbsp;Ex=
+ception: subprocess.CalledProcessError: Command 'aarch64-poky-linux-objcopy=
+ -j .modinfo -O binary ../keymaps/rc-alink-dtu-m.ko&nbsp;&nbsp; ../tmpwhs5u=
+wlt' returned non-zero exit status 1.</span></div>
+&nbsp;<br />&nbsp;&nbsp;&nbsp; The&nbsp; "<span lang=3D"EN-US">rc-alink-dtu=
+-m.ko</span>" file is damaged, and can't&nbsp; analysis by file command :<b=
+r />&nbsp;&nbsp;<span style=3D"color: #808080;">&nbsp;&nbsp;&nbsp;&nbsp; $ =
+file -b rc-alink-dtu-m.ko</span><br /><span style=3D"color: #808080;">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data</span><br />&nbsp; &=
+nbsp; and the damaged is caused by&nbsp; build/poky/meta/classes/package.bb=
+class&nbsp; perform_packagecopy()<br />&nbsp;&nbsp; &nbsp; &nbsp;<span styl=
+e=3D"color: #808080;">&nbsp; cmd =3D 'tar --exclude=3D./sysroot-only -cf - =
+-C %s -p -S . | tar -xf - -C %s' % (dest, dvar)</span><br /><br />&nbsp;&nb=
+sp;&nbsp; remove the "-S " can fix the bug.<br />&nbsp;&nbsp;&nbsp; notes: =
+this bug only appears in Ubuntu 20.04.<span style=3D"color: #ff0000;">3</sp=
+an> LTS, and Ubuntu 20.04.<span style=3D"color: #ff0000;">6</span> LTS do n=
+ot have the issue.<br /><br /><br /><br />&nbsp;<br />&nbsp; &nbsp; &nbsp; =
+<br /><br /><br /><br /><br /><br />&nbsp;<br />&nbsp;
 
---000000000000a6963b05ff1f35af--
+--Zo5iPP7hhe45U4lNm0kd--
 
