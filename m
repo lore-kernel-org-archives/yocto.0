@@ -1,90 +1,87 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EF356EB64D7
-	for <webhook@archiver.kernel.org>; Fri, 30 Jun 2023 09:10:56 +0000 (UTC)
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
- by mx.groups.io with SMTP id smtpd.web10.8045.1688116251709702558
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1B82EB64DA
+	for <webhook@archiver.kernel.org>; Fri, 30 Jun 2023 11:17:07 +0000 (UTC)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+ by mx.groups.io with SMTP id smtpd.web11.9436.1688123824467666067
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Jun 2023 02:10:51 -0700
+ Fri, 30 Jun 2023 04:17:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=obsly33e;
- spf=pass (domain: gmail.com, ip: 209.85.161.48, mailfrom: raj.khem@gmail.com)
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-565a8d9d832so1123009eaf.1
-        for <yocto@lists.yoctoproject.org>; Fri, 30 Jun 2023 02:10:51 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=JggukIRM;
+ spf=pass (domain: gmail.com, ip: 209.85.128.177, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5768a7e3adbso25397307b3.0
+        for <yocto@lists.yoctoproject.org>; Fri, 30 Jun 2023 04:17:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688116251; x=1690708251;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h/xjsyRbe3A6JgGdr2Wq0CR2oxHThMZMtbva6CBB0vg=;
-        b=obsly33exucqTYroEEGAseAzgl0cWf4+I7a9F6feE9a3uWsBbhyHPvPtfPD1WQRBGV
-         eJNqNCw1a8izMYXF+Gy2AQeW2xgBUXvmWhdO8txqu0haIbwRlQc7+mAIkDdIDuDNJ41g
-         fPA6d8Y8zXLYJp2VXnwhD7YyM8WBpxcbzy1yU+SfQeNxGR/EyeKrY4gdywE0K5k3Baz8
-         nRyHqG3KJs4F51dXS4/LeG5/vfG4KbqcnGT726wFUYhznJcSi5DKafwwCcTp3PF4aTyN
-         hK293m24vsZlZ4155aYh8UeWwHgJXWSKycti+R9qZ3XqRKwQi5EMXXNFhaq7StI1GhQR
-         TIXQ==
+        d=gmail.com; s=20221208; t=1688123823; x=1690715823;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WYFHzjCo07+p6thoBMK1F9anNxJNV0Bk+521VOeudIs=;
+        b=JggukIRMDX/l6tBmhsMWX5MoDQ2rIb/C9USW2fmaxgswOwOtEExHnPF7Iv8UIBqHsx
+         ru6sREVeRK0TgCSdoLhubkDuLH25dhDyMRff58Nd76SMOS+2Xp7WY0WtMMf1Py4bfzLD
+         dsVjGC9VpHKD5BH86bBjdJEC6q4CT1k2GKULXVUa4lAP5J0hDrHLhxMMX24TR9M66FEJ
+         CvklaE+r0BCTkJhmn0tcZXfpj1SxjzsC5ChuhDayYMVz3rgDU+ZOmxqDTqTx2ckZpHj3
+         xw2V4pU2/8PiTouKNBEIQu1XHbDncw0vLZenBA9puOYrt3oafKS7XV69J2duMutgSrf2
+         9Z+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688116251; x=1690708251;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1688123823; x=1690715823;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h/xjsyRbe3A6JgGdr2Wq0CR2oxHThMZMtbva6CBB0vg=;
-        b=be2Dp0QDEo3chTgX68AQOwUalePszvpudD/F1N1AJwR6uWCj6Qzb8agcLHagA9as1a
-         qKzthaYCuDdmuh+teLyuJ6H1QdWFX7TcUvUpb7rIO+OGGaPK7+SX3Te8hKk0b9OWMKG5
-         K6SUadcpBdUR/tpiOsyV4eITNjC3oC9FtDmEGzxtFXMjqfN0K5OnWvc0slUbw93Drqhw
-         3/vw0olWg0ZD7iH+QaiU2ExM6OsoGQV4+l6MMQhXh+AfWrowFhunDAcrEHGCcEhrxRUX
-         HrgbsyIXjkSyVsicbUxLFIpH957XWjRGFyT9i6sWR/JRHw1RoH/7lbBMTjgrQ/nP1r+E
-         XFDw==
-X-Gm-Message-State: AC+VfDyRrKfaoF61h7kquLJlBp/9Mxm9HcMagIIgJsfUOKXcSB/Cm9Rx
-	CgDlqMZRkDhxYbt2ow2aVbsfQXPo33uog9KLqb4=
-X-Google-Smtp-Source: ACHHUZ6+HQGsh6B6qq04vc2jqp/B/X/ofZtQWrlRFYF/RNe0Z50SGLjZaFNBfpTN4+VqZBwrIObqKwUI+VwkwvMs7Ic=
-X-Received: by 2002:a4a:4f44:0:b0:565:ccb4:1b81 with SMTP id
- c65-20020a4a4f44000000b00565ccb41b81mr1810364oob.2.1688116250642; Fri, 30 Jun
- 2023 02:10:50 -0700 (PDT)
+        bh=WYFHzjCo07+p6thoBMK1F9anNxJNV0Bk+521VOeudIs=;
+        b=iYVjG+0XqzmZD1YdEpC3/qkCXhDW6k3PaZgJf91qBh+ndLAHJGox+uqWpUVI92nL07
+         BwwWXfYxBGb8FtZRW0nWA89qoDasGkzDcwkOwSaDINQFk6LtiteZxVxCAPCXhtVVqBoE
+         WFyjEZ6ay1yGiF0EgMxwA6BGqpC7RKpPKTNRy7La7W1C3Dqqq9geDz42RgAyW1yi5naa
+         73lLkJp1hJQ2sLot6tdq8LuQa/CtiyioRSUzAh42iwjtigtQyCzSDDH/6Twl2LFXWXtA
+         Ne0S/vaHqkdrEW3oIGDaCB2GXUJAisk90xqHrd/wQ0eSBJN819PBazxWnhcX/XeSmU42
+         Wnuw==
+X-Gm-Message-State: ABy/qLZ1OYaW3wmt37wRi4soCvjEXUdPgtFK/jz5cvByYXP2syMAyhaz
+	jvOaNpkBIO96d7GpHaCz62zn5e+eMQY=
+X-Google-Smtp-Source: APBJJlEse6TnxbDiIFtWuHTrYuS3IzddyvG+rWxQPmI5LlFSX4RV7hyf2hvHwlwJUFmsygVai5RxUQ==
+X-Received: by 2002:a0d:ea4e:0:b0:56d:a5a:3c00 with SMTP id t75-20020a0dea4e000000b0056d0a5a3c00mr2479276ywe.17.1688123823411;
+        Fri, 30 Jun 2023 04:17:03 -0700 (PDT)
+Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:44a4:faf8:9b66:580c])
+        by smtp.gmail.com with ESMTPSA id a63-20020a818a42000000b0056cd44f9f23sm3333121ywg.63.2023.06.30.04.17.02
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jun 2023 04:17:03 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 2/2] firejail: only allow x86-64 and arm64 to build
+Date: Fri, 30 Jun 2023 07:17:01 -0400
+Message-Id: <20230630111701.3095931-2-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230630111701.3095931-1-akuster808@gmail.com>
+References: <20230630111701.3095931-1-akuster808@gmail.com>
 MIME-Version: 1.0
-References: <c561ff89da6b3d966fef9a57c3b0dd8e732639e6.camel@linuxfoundation.org>
- <16989.1688092592478812912@lists.yoctoproject.org>
-In-Reply-To: <16989.1688092592478812912@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 30 Jun 2023 11:10:24 +0200
-Message-ID: <CAMKF1spFrVX50GoXh4oq7v3wf6XPO5+K+dN9bm1D1h5Q-u+CXg@mail.gmail.com>
-Subject: Re: [yocto] report one objcopy bug and fix
-To: cddiao@ambarella.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 30 Jun 2023 09:10:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60483
+ <yocto@lists.yoctoproject.org>; Fri, 30 Jun 2023 11:17:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60485
 
-On Fri, Jun 30, 2023 at 4:36=E2=80=AFAM <cddiao@ambarella.com> wrote:
->
-> Hi Richard,
->      How about to remove "-S" in the tar commands ?
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/Firejail/firejail_0.9.72.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-This would make the archives not use sparse optimization and increase
-the size of resulting archives. I think it will
-penalize all other hosts. I would just suggest calling out a
-workaround for a particular version of distro where it's problematic
-and move on. anyway 20.04 LTS is already at 20.04.6 at the moment.
+diff --git a/recipes-security/Firejail/firejail_0.9.72.bb b/recipes-security/Firejail/firejail_0.9.72.bb
+index 12a3105..5713f46 100644
+--- a/recipes-security/Firejail/firejail_0.9.72.bb
++++ b/recipes-security/Firejail/firejail_0.9.72.bb
+@@ -59,6 +59,7 @@ pkg_postinst_ontarget:${PN} () {
+     ${libdir}/${BPN}/fseccomp memory-deny-write-execute ${libdir}/${BPN}/seccomp.mdwx
+ }
+ 
+-COMPATIBLE_MACHINE:mips64 = "(!.*mips64).*"
++COMPATIBLE_MACHINE:x86_64 = "x86_64"
++COMPATIBLE_MACHINE:arm64 = "arch64"
+ 
+ RDEPENDS:${PN} = "bash"
+-- 
+2.34.1
 
->      I only tested 20.04.3 and 20.04.6. I didn't test the other distro, s=
-o I'm not sure if there's anything wrong with the other distro.
->     To be on the safe side, remove the "-S" can solve the problem fundame=
-ntally.
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#60482): https://lists.yoctoproject.org/g/yocto/messag=
-e/60482
-> Mute This Topic: https://lists.yoctoproject.org/mt/99828392/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
 
