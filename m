@@ -1,157 +1,123 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <schitrod@cisco.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59A6CEB64D7
-	for <webhook@archiver.kernel.org>; Fri, 30 Jun 2023 17:30:39 +0000 (UTC)
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
- by mx.groups.io with SMTP id smtpd.web11.20016.1688146232943368595
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC0FBEB64D9
+	for <webhook@archiver.kernel.org>; Sun,  2 Jul 2023 17:47:36 +0000 (UTC)
+Received: from rcdn-iport-6.cisco.com (rcdn-iport-6.cisco.com [173.37.86.77])
+ by mx.groups.io with SMTP id smtpd.web10.10518.1688320054208859896
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Jun 2023 10:30:33 -0700
+ Sun, 02 Jul 2023 10:47:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@sakoman-com.20221208.gappssmtp.com header.s=20221208 header.b=kaJyXMJy;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.178, mailfrom: steve@sakoman.com)
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-666e6ecb52dso1336213b3a.2
-        for <yocto@lists.yoctoproject.org>; Fri, 30 Jun 2023 10:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20221208.gappssmtp.com; s=20221208; t=1688146232; x=1690738232;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qEnE8hdr+Ck+ZgubqKdoyCqqB8RiA09jjAsGodACyGg=;
-        b=kaJyXMJyletssf3Q0rjX0BBQhW1TNxkyxiOiC9Lwru3/y8/I8H7Ic4RoN08izd4tn4
-         JWWFxgGjULNel94yzBTc3w0sv1C+jBLt/bC27vZJdiY9245VCnlM7w1looWaeciR5uwz
-         44A5r70kAihZcuTHgFmtH1iOXSHwCXwEzF/fsU4loPSLoCR+kZrT8wMEVJZt8UIuOcUO
-         /Sr//JRyRzLfKSuIU3em9yCc00NQp/0030COUiuvLG9zVHonU1DvvFFJXU7rcGu2WWkb
-         Ku5RfPJ97CVE2izuy0/GKXqtcXwQL6c65b0tLSes+eVXetyt1qfh2kYq+/Ra7gYM+6Z+
-         WtsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688146232; x=1690738232;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qEnE8hdr+Ck+ZgubqKdoyCqqB8RiA09jjAsGodACyGg=;
-        b=cxQt69UeCrVY2wrYDbldgtT6Tr1YQ4IUVGQZ6WYF2j10VudGp9ekLhw+gEPMyMWwA9
-         huKQrcWmoowrrx1pzFsjOqrMEpjUFy6Ppy/NXrQ/rDDkGHh0v9VspnXVigYWwQr6Mr4S
-         ZMKzT5MINYjeYw986DswM46Ah/23E/MtTEL6yPu4VWeZnhAYo7JToEMU3X0sprbRd8DG
-         EjfFYv7dZlErk585xL3CAA9I/SeM1RKPAjShop+Pg3nDTxcQaMFZ/NuUOsY7uflc+fzw
-         l6EwXZWgm4JMo8JWV5iKC/l0NKG9oFSmcJMGERg6PfFS9tKHQ3hYATdnqGpoLjfnaaPN
-         F/wQ==
-X-Gm-Message-State: ABy/qLaFLmemBe8+KarbYXzvJDo8LWiqDoeX2fZsWOLqa9SGgOanZtFs
-	zxjR19NhMLDqMNm6n/1lHfIRRB6QfweQP+Tmy7CC1g==
-X-Google-Smtp-Source: APBJJlEwSZOg/9L906GlF3Oe9dO3RSDUylwmtX4RvFPui6W9SZ13VG/q9jDw3gDEhjCxnaAneQXQCg==
-X-Received: by 2002:a05:6a00:b81:b0:662:f0d0:a77d with SMTP id g1-20020a056a000b8100b00662f0d0a77dmr3791171pfj.30.1688146231622;
-        Fri, 30 Jun 2023 10:30:31 -0700 (PDT)
-Received: from hexa.router0800d9.com (dhcp-72-234-106-30.hawaiiantel.net. [72.234.106.30])
-        by smtp.gmail.com with ESMTPSA id k125-20020a632483000000b0055b149a6db5sm5521233pgk.43.2023.06.30.10.30.30
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jun 2023 10:30:31 -0700 (PDT)
-From: Steve Sakoman <steve@sakoman.com>
+ dkim=missing; spf=pass (domain: cisco.com, ip: 173.37.86.77, mailfrom: schitrod@cisco.com)
+X-IPAS-Result: =?us-ascii?q?A0AjAABQt6FkmJBdJa1aFgcBAQEBCQESAQUFAYF7CAELA?=
+ =?us-ascii?q?YMnVUBHjG6MUZpggg0BAQENAQE5CwQBAYsRAiU0CQ4BAgQBAQEBAwIDAQEBA?=
+ =?us-ascii?q?QEBAwEBBQEBAQIBBwQUAQEBAgIfGQUOECeFaA2GPQEpHSYKUgIJRIJ+AYInA?=
+ =?us-ascii?q?QMxAxGuKQUCFoEBg1YFrgoKGSgNbROBUoFCAYRII4JyhEKDH4IvJxuCDYJRg?=
+ =?us-ascii?q?i2BBQGBGkIEGIIThXUEjhyFYAUCMoITiWUSPwYQCw4dAiA/KhcuOGY3ZgEqJ?=
+ =?us-ascii?q?AECKQIJAhEhHw8YLQENBkcIXQEMHisDGQ8cCQM6DxAuAg0MAgJECwtJGjpiK?=
+ =?us-ascii?q?mwBBoExAgIRCB0BFBQGIAsCAgEUBwIRAScmBxIECQ4DBwMXAg4FJTMBEAwCB?=
+ =?us-ascii?q?hsHBC8UEgYJBQICAg0RCxMlBhMBKxIHFwECEwEjCRMVEi8EXAICAgKBDwsBF?=
+ =?us-ascii?q?TYCD2QEFQofAloCAgICCg8wFQQCCBGBASaBMAkkAgIwBjYbDwICDyw5gXJAA?=
+ =?us-ascii?q?QgXEjRTNQFCAwMCIAMJAwcFSQIJAyMPAwsYDAE/DAcKLDUUFAcGJAcXAxIJD?=
+ =?us-ascii?q?QRFFhdjATUNgScEDAQCAQUYIAQEBaF+A4MngQ8rIIIMPJJMgxqOG58/cJAQj?=
+ =?us-ascii?q?xOFcRozhVekAZgijV+DdJE5WimEBgIEBgUCFjWBLjqBSQsHcIEBgjYJSRkPj?=
+ =?us-ascii?q?jeFXIJagQyKNCQxAjkCBwsBAQMJi0gBAQ?=
+IronPort-Data: A9a23:gUtVZKzt6sGAyD8iNBt6t+ctxirEfRIJ4+MujC+fZmUNrF6WrkUGx
+ 2dKWGGDPPiOMDD3c49waY+x9klSvMOBytVjQFBl+VhgHilAwSbn6Xt1DatR0we6dJCroJdPt
+ p1GAjX4BJloCCea/H9BC5C5xZVG/fngqoHUVqicY0ideSc+EH160U07wbZg6mJVqYHR7z2l6
+ IuaT/L3YDdJ6xYsWo7Dw/vewP/HlK2aVAIw5jTSV9gS1LPtvyV94KYkGE2EByCQrr+4sQKNb
+ 72rILmRpgs19vq2Yz+vuu6TnkYiGtY+MeUS45Zbc/DKv/RMmsA9+vkKaKAMc18MsSemxokg+
+ tZyn7aJEgh8a8UgmMxFO/VZOzt1MasD87jdLD3v98eS1EbBNXDrxp2CDmlvYtZeobkxUDoIr
+ KBEQNwORkjra+ae27m7S/V2gcgLJ8jwN4RZsXZlpd3cJaZ/G8iYGf6TjTNe9DRon+tOGfaFX
+ pAASSVlRj/FfjFJBkhCXfrSm8/x1iWgLFW0smm9tK08/2/7yA1qzKOrId3eZtuSX8JXk02E4
+ GXc8AzRGRgcNtWOxD+P/36gi+PUkAv0XYsTEPuz8fsCqHia3HASDls0XF2gqNG2j0e/X5RUL
+ El8x8Y1hbI5+EruRd7nUljo5nWFpRUbHdFXFoXW9T1h1IKL0lrDFnIcFQRTR4V/5f01ehYA7
+ wSGyoaB6SNUjJWZTneU97GxpDy0ODQIIWJqWcPiZVZZizUEiNxt5i8jXuqPA4bu0YKoQWCYL
+ ySi6Xlh1+9K3Kbnwo3ipQif6w9AsKQlWeLc2+k6dniu4gU8b4m/asn4r1Pa9v1Hao2eSzFtX
+ UToeeDAtIji7rnUxERhpdnh+pnytp5p1xWA2zZS82EJrWjFxpJaVdk4DMtCDEloKN0YXjTif
+ VXevwhcjLcKYiv6N/QpOd7pV5h1pUQFKTgDfq2FBjapSsYpHDJrAAk1DaJt9zm3yRN1wf1X1
+ WmzKJ/yUB729piLPBLvF7tCjtfHNwg1xHjYQtjg3g+73L+FDEN5up9bWGZimtsRtfveyC2Mq
+ o43H5LTl313DrakCgGJqtF7ELz/BSVhbXwAg5YJJrfrz8sPMDxJNsI9Npt6INA4wf0Ixr2Sl
+ px/M2cBoGfCabT8AV3iQhhehHnHBP6TcVpT0fQQAGuV
+IronPort-HdrOrdr: A9a23:ZPs/e65G/StDMKTZ9APXwMPXdLJyesId70hD6qm+c3Nom6uj5q
+ WTdZsgtCMc5Ax9ZJhCo6HjBED/exPhHPdOiOF7V4tKNzOJhILHFu1fBPPZsl7d8+mUzJ876U
+ +mGJIObOHNMQ==
+X-Talos-CUID: =?us-ascii?q?9a23=3AT3969Gg4dGFCHPwJ7r0iatCQOTJuLUyBlmfKOxS?=
+ =?us-ascii?q?CG0kwEeynSmC60po/nJ87?=
+X-Talos-MUID: 9a23:NUn9JQY0NiegEeBTtGf1rzFmNJxRub2OF0onupAbl8+4Knkl
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="6.01,176,1684800000"; 
+   d="scan'208";a="81203231"
+Received: from rcdn-core-8.cisco.com ([173.37.93.144])
+  by rcdn-iport-6.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 02 Jul 2023 17:47:33 +0000
+Received: from sjc-ads-7310.cisco.com (sjc-ads-7310.cisco.com [10.30.220.95])
+	by rcdn-core-8.cisco.com (8.15.2/8.15.2) with ESMTPS id 362HlW9d030283
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Sun, 2 Jul 2023 17:47:33 GMT
+Received: by sjc-ads-7310.cisco.com (Postfix, from userid 1812315)
+	id AE690CC1251; Sun,  2 Jul 2023 10:47:32 -0700 (PDT)
+From: sanjayembeddedse@gmail.com
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][mickledore] config.json: remove meta-agl-core tests
-Date: Fri, 30 Jun 2023 07:30:27 -1000
-Message-Id: <72b24952910ef588228a8edeb0d0bffac0480bca.1688146154.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1688146154.git.steve@sakoman.com>
-References: <cover.1688146154.git.steve@sakoman.com>
+Cc: Martin.Jansa@gmail.com, Sanjay Chitroda <sanjayembeddedse@gmail.com>
+Subject: [meta-security][PATCH] *.patch: fix CVE and Signed-off-by tag
+Date: Sun,  2 Jul 2023 10:47:04 -0700
+Message-Id: <20230702174704.58235-1-sanjayembeddedse@gmail.com>
+X-Mailer: git-send-email 2.35.6
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Outbound-SMTP-Client: 10.30.220.95, sjc-ads-7310.cisco.com
+X-Outbound-Node: rcdn-core-8.cisco.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 30 Jun 2023 17:30:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60488
+ <yocto@lists.yoctoproject.org>; Sun, 02 Jul 2023 17:47:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60489
 
-There is currently not a branch which is compatible with mickledore
+From: Sanjay Chitroda <sanjayembeddedse@gmail.com>
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
+* as reported by openembedded-core/scripts/contrib/patchreview.py -v .
+
+Missing Signed-off-by tag (./recipes-scanners/clamav/files/oe_cmake_fixup.patch)
+Missing CVE tag (./recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch)
+
+Signed-off-by: Sanjay Chitroda <sanjayembeddedse@gmail.com>
 ---
- config.json | 39 ++++++---------------------------------
- 1 file changed, 6 insertions(+), 33 deletions(-)
+ recipes-scanners/clamav/files/oe_cmake_fixup.patch            | 2 +-
+ .../ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch   | 4 +++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/config.json b/config.json
-index 087abf0..195b980 100644
---- a/config.json
-+++ b/config.json
-@@ -409,23 +409,6 @@
-                 "SANITYTARGETS" : "core-image-sato:do_testsdk"
-             }
-         },
--        "meta-agl-core" : {
--            "NEEDREPOS" : ["poky", "meta-agl"],
--            "ADDLAYER" : [
--                "${BUILDDIR}/../meta-agl/meta-agl-core"
--            ],
--            "DISTRO" : "poky-agl",
--            "BUILDINFO" : true,
--            "BUILDHISTORY" : true,
--            "PACKAGE_CLASSES" : "package_rpm",
--            "extravars" : [
--                "AGL_FEATURES = 'aglcore'"
--            ],
--            "step1" : {
--                "MACHINE": "qemux86-64",
--                "BBTARGETS": "agl-image-core-autobuilder"
--            }
--        },
-         "meta-aws" : {
-             "NEEDREPOS" : ["poky", "meta-openembedded", "meta-aws"],
-             "ADDLAYER" : [
-@@ -923,33 +906,29 @@
-             }
-         },
-         "check-layer-nightly" : {
--            "NEEDREPOS" : ["poky", "meta-agl", "meta-arm", "meta-aws", "meta-intel", "meta-ti", "meta-openembedded", "meta-virtualization"],
-+            "NEEDREPOS" : ["poky", "meta-arm", "meta-aws", "meta-intel", "meta-ti", "meta-openembedded", "meta-virtualization"],
-             "step1" : {
--                "shortname" : "Test meta-agl YP Compatibility",
--                "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-agl/meta-agl-core ../meta-agl/meta-netboot ../meta-agl/meta-pipewire --dependency ../meta-openembedded/meta-oe ../meta-openembedded/meta-networking ../meta-openembedded/meta-python --no-auto-dependency"]
--            },
--            "step2" : {
-                 "shortname" : "Test meta-arm YP Compatibility",
-                 "MACHINE" : "qemuarm64",
-                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-arm/meta-arm ../meta-arm/meta-arm-toolchain ../meta-arm/meta-arm-bsp ../meta-arm/meta-gem5 ../meta-arm/meta-arm-autonomy --dependency ../meta-openembedded/meta-oe ../meta-openembedded/meta-networking ../meta-openembedded/meta-python ../meta-poky ../meta-openembedded/meta-filesystems ../meta-virtualization --no-auto-dependency"]
-             },
--            "step3" : {
-+            "step2" : {
-                 "shortname" : "Test meta-aws YP Compatibility",
-                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-aws --dependency ../meta-openembedded/meta-oe ../meta-openembedded/meta-networking ../meta-openembedded/meta-multimedia ../meta-openembedded/meta-python -n --no-auto-dependency"]
-             },
--            "step4" : {
-+            "step3" : {
-                 "shortname" : "Test meta-intel YP Compatibility",
-                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-intel --no-auto-dependency"]
-             },
--            "step5" : {
-+            "step4" : {
-                 "shortname" : "Test meta-ti YP Compatibility",
-                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-ti/meta-ti-bsp ../meta-ti/meta-ti-extras --dependency ../meta-arm --no-auto-dependency"]
-             },
--            "step6" : {
-+            "step5" : {
-                 "shortname" : "Test meta-oe YP Compatibility",
-                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-openembedded --no-auto-dependency"]
-             },
--            "step7" : {
-+            "step6" : {
-                 "shortname" : "Test meta-virtualization YP Compatibility",
-                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-virtualization --dependency ../meta-openembedded/meta-oe ../meta-openembedded/meta-networking ../meta-openembedded/meta-python ../meta-openembedded/meta-filesystems --no-auto-dependency"]
-             }
-@@ -1272,12 +1251,6 @@
-             "revision" : "HEAD",
-             "no-layer-add" : true
-         },
--        "meta-agl": {
--            "url" : "https://git.automotivelinux.org/AGL/meta-agl",
--            "branch" : "next",
--            "revision" : "HEAD",
--            "no-layer-add" : true
--        },
-         "meta-aws": {
-             "url" : "https://github.com/aws/meta-aws.git",
-             "branch" : "master",
+diff --git a/recipes-scanners/clamav/files/oe_cmake_fixup.patch b/recipes-scanners/clamav/files/oe_cmake_fixup.patch
+index c9c88b9..692be72 100644
+--- a/recipes-scanners/clamav/files/oe_cmake_fixup.patch
++++ b/recipes-scanners/clamav/files/oe_cmake_fixup.patch
+@@ -3,7 +3,7 @@ Issue with rpath including /usr/lib and crosscompile checkes causing oe configur
+ Use oe's cmake rpath framework and exclude some of the cmake checks that fail in our env
+ 
+ Upstream-Status: Inappropriate [configuration]
+-Singed-off-by: Armin Kuster <akuster808@gmail.com>
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
+ 
+ Index: git/CMakeLists.txt
+ ===================================================================
+diff --git a/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch
+index a457d79..02105f5 100644
+--- a/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch
++++ b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch
+@@ -14,9 +14,11 @@ the patch comes from:
+ https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2016-6224
+ https://bazaar.launchpad.net/~ecryptfs/ecryptfs/trunk/revision/882
+ 
+-Upstream-Status: Backport
++CVE: CVE-2016-6224
++Upstream-Status: Backport [https://bazaar.launchpad.net/~ecryptfs/ecryptfs/trunk/revision/882]
+ 
+ Signed-off-by: Li Zhou <li.zhou@windriver.com>
++Signed-off-by: Sanjay Chitroda <sanjayembeddedse@gmail.com>
+ ---
+  ChangeLog                     |  9 +++++++++
+  src/utils/ecryptfs-setup-swap | 10 ++++++++--
 -- 
-2.34.1
+2.35.6
 
 
