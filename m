@@ -1,69 +1,245 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <janne.kiiskila@izumanetworks.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 45C95EB64DC
-	for <webhook@archiver.kernel.org>; Mon,  3 Jul 2023 13:43:32 +0000 (UTC)
-Received: from mailout09.t-online.de (mailout09.t-online.de [194.25.134.84])
- by mx.groups.io with SMTP id smtpd.web10.32944.1688391807348280620
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A6C5EB64DC
+	for <webhook@archiver.kernel.org>; Mon,  3 Jul 2023 14:05:52 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (NAM12-DM6-obe.outbound.protection.outlook.com [40.107.243.53])
+ by mx.groups.io with SMTP id smtpd.web10.33528.1688393151213388088
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Jul 2023 06:43:27 -0700
+ Mon, 03 Jul 2023 07:05:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.84, mailfrom: f_l_k@t-online.de)
-Received: from fwd80.dcpf.telekom.de (fwd80.aul.t-online.de [10.223.144.106])
-	by mailout09.t-online.de (Postfix) with SMTP id AFC292E0A2;
-	Mon,  3 Jul 2023 15:43:24 +0200 (CEST)
-Received: from [192.168.178.156] ([84.154.164.132]) by fwd80.t-online.de
-	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
-	esmtp id 1qGJpr-22S1Oi0; Mon, 3 Jul 2023 15:43:23 +0200
-Date: Mon, 03 Jul 2023 15:43:17 +0200
-From: f_l_k@t-online.de
-Subject: Re: [yocto] Building Tailscale with Yocto #golang
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: przemek.recha@gmail.com, yocto@lists.yoctoproject.org
-Message-Id: <5G38XR.TXXNOJQ8IM5Q@t-online.de>
-In-Reply-To: 
-	<CADkTA4MOWSbCOWtbzKhJ=X97u6GvQiRbBBBLyvK1pg4HjDv5Rw@mail.gmail.com>
+ dkim=missing; spf=pass (domain: izumanetworks.com, ip: 40.107.243.53, mailfrom: janne.kiiskila@izumanetworks.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TE7VYhh5jvW+iAjU0IbtwmRpBJ9rvhgMqWSXgTVy6H0UXOx1fLOzDYjATzpTffyxTtETgyl8XJXV1oCzzMqQT84kh5Nu+WI3MKFSZc4m8zAOgW7aBzuURmPba3wGlWC4Gn8M3+QJTub3QMAFTBUaOIfsgnUeqqMQq4xjeijagY66KOEH1etvCFa9SCGqJnOmvBd8hi6D0NI4A8RTqd5ucj5g2wia9QB4dcQfnEMkkcSUFUuqN9uO5e3h30sn2+APwydElnv6oD3WKX6dawt+wXSV4z1kBC+oMlG6UdQXjGsdjnvV1NJdoHFiwwpJk7BRESKtXiz1zn/YfKN1X9ojGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jLmOw21puEYHhtnFiW50IVbqtRlQBYs4Icgn9Rju2/0=;
+ b=BTS8NIjH3jqyjSg1U6TcHZLf1DOEacrYNGjeCXaNjUKmN8zHFpIssJEpiyQqI6ix5ChgwQP8i/FsEkaMB3EN1h1oCv44JhC93CmLy4qtWDD8UoTVhlb3pxDP/+C7GhR0xRhyrMGFpEFbSFS1XYYfD2r+LjHxN04gWY0yrpWr31XYBK1K52iA6UOw8mLZPU1V4XAZF4EwcHLnJ/C/ocJ0V1I/WyeBuze0gTiWIBHwxHyJQtMGF7Uf2U/GjXzTNOBha1Q2LgrqQEJ/PG/FjO1CuW4sqsGj9HiM02hsDqyS/d/QrveXXL9Sseb+JGja+eMtf1GyDueAo2m/H6xc+ng1uQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=izumanetworks.com; dmarc=pass action=none
+ header.from=izumanetworks.com; dkim=pass header.d=izumanetworks.com; arc=none
+Received: from BN7PR14MB2420.namprd14.prod.outlook.com (2603:10b6:406:c2::28)
+ by CO6PR14MB4307.namprd14.prod.outlook.com (2603:10b6:5:34a::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.24; Mon, 3 Jul
+ 2023 14:05:44 +0000
+Received: from BN7PR14MB2420.namprd14.prod.outlook.com
+ ([fe80::7fa1:1757:d9df:87ca]) by BN7PR14MB2420.namprd14.prod.outlook.com
+ ([fe80::7fa1:1757:d9df:87ca%7]) with mapi id 15.20.6544.024; Mon, 3 Jul 2023
+ 14:05:44 +0000
+From: Janne Kiiskila <janne.kiiskila@izumanetworks.com>
+To: "f_l_k@t-online.de" <f_l_k@t-online.de>, Bruce Ashfield
+	<bruce.ashfield@gmail.com>
+CC: "przemek.recha@gmail.com" <przemek.recha@gmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] Building Tailscale with Yocto #golang
+Thread-Topic: [yocto] Building Tailscale with Yocto #golang
+Thread-Index: AQHZrR3Rys7jtIYOP0iZ6+KklLwy0K+m7dmAgAEWeYCAAAoWgIAABfxQ
+Date: Mon, 3 Jul 2023 14:05:44 +0000
+Message-ID: 
+ <BN7PR14MB2420E244B854E63C1E6A49F38529A@BN7PR14MB2420.namprd14.prod.outlook.com>
 References: <4HqO.1688327140014497685.1oIK@lists.yoctoproject.org>
 	<TMR6XR.EE45UBD6649W1@t-online.de>
 	<CADkTA4MOWSbCOWtbzKhJ=X97u6GvQiRbBBBLyvK1pg4HjDv5Rw@mail.gmail.com>
-X-Mailer: geary/43.0
+ <5G38XR.TXXNOJQ8IM5Q@t-online.de>
+In-Reply-To: <5G38XR.TXXNOJQ8IM5Q@t-online.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=izumanetworks.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN7PR14MB2420:EE_|CO6PR14MB4307:EE_
+x-ms-office365-filtering-correlation-id: 36bd28b4-43dc-4357-0c88-08db7bce980c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ RJMuTgj32nTQTfHToR5c4fgzDpU06utVL8r7MBbeZrhkAHbNErAdRlNIX/uGREGuv0NUSxilQ+zuP42Smg+RRFI/K9Mxdbw/Sz5Zrbf6b/PTRHloqL6XGqFD9m2ry1U1dWHhPA8o1zUDDo1LgwENNud/nfPqML34gjPtQ36G6pI2YmBtuqkGRNOhVPHXjkBf9hlE9KdG3x3ZPEql/8OzDyk+FU7EuPNFMLHE1cjl1nOB2D4zbvSwH1Oz9dKEKkIRWNzR7i669AVPHSzKhU3ADeSHwGm9GOso94Rj7mN0UpdITqYb6AgV7GP6OYI3jECQjCGgXy05AFB4SyRZVe5iEeEDTBJBYEbE9Ao4PHd2ECNGA0EP/fIpWjey0ZQaF+kB+QKiBI4GurCD4Gn3q4ajy1TdGS62xG4sJ5cJzbRg1ZJsYgeHGvYa5c64DziEf+7VMgxaApDRWO+rXahvJCm+CwKdnH37SllaNUdhuHJlBKaS5c4AbqLEFkgPAop1Yk9TiKuHhnwqkQkj+jFPKp8iONse9d5U2EIoCAKKwCp1hfbt+CcdHRky0P7EtnOt6f2y5/gWhPhUPNdge9qyXz9+wQUvDMuYoierRC+FbywyIC5v2VFcSoZdmus4T63di9pr
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR14MB2420.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(376002)(39830400003)(136003)(346002)(451199021)(38070700005)(2906002)(41300700001)(8936002)(5660300002)(52536014)(8676002)(44832011)(33656002)(55016003)(86362001)(186003)(478600001)(6506007)(71200400001)(9686003)(7696005)(76116006)(122000001)(316002)(66446008)(66476007)(4326008)(66946007)(66556008)(64756008)(54906003)(38100700002)(66574015)(110136005)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?K1MwcXZOakNGcWthUTUyRXEzbUIvK3pjQjRxRTVQeGl2d2dBUVRDRGZ5d250?=
+ =?utf-8?B?ZXJ6eFZQTUNCVnFmYWRQM1pCZW50Y0d2WCtCSDdaM3FlN1ZjM2Y0dysvaFZp?=
+ =?utf-8?B?YnAvSDNMakI5Kzl1YkphSlRNRE80NU1seUc5a29CbnNPOFR2V3BxVGJRcUFC?=
+ =?utf-8?B?ZjV5VEtQMTVnM3lJWUV2Q0FpOWR0YVZYeE0rVHI4TGs4MW1ic20rbnBFdm9G?=
+ =?utf-8?B?bkZIcGZyRm1EMzRHemd3aEhUdUJkV1IvTGE0cUxXdFd5R2ovKzliRDJXTzFJ?=
+ =?utf-8?B?eFhPVU5NeUtNZXc3N2wvMkFKeEVHZndxZE0yVWFKbjQrenQ3VEI1S3BJdTlL?=
+ =?utf-8?B?MEJ5REtsc2g0d1FORHNLd3V5YmdIN2VodEJDTTJZZkprbFF3eWdQTTN1eEQ2?=
+ =?utf-8?B?UlcvdEw5aGdONVVaSXVCYm9ZMjV5VXBqWjg0ODZaYmVITzZCTDNaRDBteGg4?=
+ =?utf-8?B?ZVp2NCt6cEx0QnZhMWgrQkdmMW9sWGYyY05hUjZGRS83Ylh4NGdFaE5kTVEz?=
+ =?utf-8?B?djlvN0w4MnNIMTJHQkVieFNWbkRPYmJOeWJaSWFWZytTalk5enR1WnoweDdn?=
+ =?utf-8?B?ME9ZSTRNeXh5QkQ1cS9zOEF2UDNTVHkzK0owVE9aU1BqY2Q3UXpGaTYvTXA2?=
+ =?utf-8?B?bGZEdlJlb0VYQk1VNmpyeDhsV0h4NEhlUzRlMUFHN0lnNjlaY0RkTitEdlFr?=
+ =?utf-8?B?ekZhWWVlSUNLNWFWc0daN01QTzFEamN4RWI1TVBtOHdwT2J6eWcxRS9heGx5?=
+ =?utf-8?B?cmlqWXJpTEszMmo5ZlBDQmo5UGVuR3prQVluK1d5VHd1bEdmOHhHcVlTQzIw?=
+ =?utf-8?B?K1JpYzJFYUZ0VG13ZWk0KzFkM3N5TkRsWVd4clBhczBXejVDN3lGRTJtTDRj?=
+ =?utf-8?B?REdKQ0tXOFM1aURCMnlsWmd1Mko3YVJsSlZIbkdJZW4rc3VFNzRuQndDTUYy?=
+ =?utf-8?B?VkZzaUxPeCt3SXBpdExGck9ZOWRvUEpyc25wakw1Yld6d2x6QXVtdDRvMm40?=
+ =?utf-8?B?cjVodm11MUJKTVJKUnZ6SXozVEY2SlJyU2xnVk95aFdxeER3SENRNGpuMGVk?=
+ =?utf-8?B?RWVLZ093aC9RR0FJV0NLMmRQa0xvZXNXSW52WlA3RTFiOHBCZUR2RXB4dHph?=
+ =?utf-8?B?YUpLVUs3MHFyRnFBY2RLWlFOQURwRGpaQlBxZFhPK0JwSSsrMkJCNEh5cFMy?=
+ =?utf-8?B?ZVdwTUpDeEJBUjl0K3dhdVJpMVJaMWtYZkJyYVhpQ2ppTjd6VWlHS0IyaHZS?=
+ =?utf-8?B?MHd1UDdNMmJaVGZhYTdUanhzUnRrcTVCbENGRS9KbGxhMFNLNnY2cjZIN1Rl?=
+ =?utf-8?B?bkpCQmYxcXh3dGRuZ1N4TXZqeWh6NGJlbmtNNlM5U0JaN2ZDaU5rNTRkMmhp?=
+ =?utf-8?B?aGJKbW15bklPcXBqZld4bEtiajB0UjNkVkdGY1k0ekhJNGhuMnVjNnljdmxi?=
+ =?utf-8?B?REtWNVlBeUJLRGZQalE4Z3ZPNUJlY2VWUTVwZnNSWHB4OVNaWVBxOUtLMDgr?=
+ =?utf-8?B?WVdheUNvV3U0OUR2OTEvRi9uSjNwenAreGV3eTVoYTBwS3BPRzFzM3lTNGVk?=
+ =?utf-8?B?cDI2YTNWY2k2c1hDR2FqcVhzM0FKSkxYdVdUdHlsKzhlcWxmMUVTNjhITWdL?=
+ =?utf-8?B?Sk1KTm9LM0VaWDd3Mzc4NnhFbzZ5cU9hcFltSjRGdndvZ2RmSUZYeCs3Q2tu?=
+ =?utf-8?B?UlZ2L0tFenZSZ1dhM1JYaUp6Ny9qTmU0eTJodGI5aDNKV29xeEV1aEpkaHhx?=
+ =?utf-8?B?T213Uk9oUEdFQVhWdzRUSlFiUVpxM21UN0JSOG1jZXNmZWxOQ0VxZHRqRFdQ?=
+ =?utf-8?B?WXVyQ05WSnUyZzZNRG1KR20rbEZmbE5NeE9aSE93R0ZTMnR3Z05XWW1SY0xB?=
+ =?utf-8?B?bEs2UWJYRHNWSEFJbFZSd1Z2VCs3VU9qeGdNQVp1TXc3UWZyb2RhRmMxWTYr?=
+ =?utf-8?B?SDdORHdMUkxKcmVwNVhyWmFlYTIxOHlKQkk2L0ozdnRhMVVlYjY1eG5SL1I5?=
+ =?utf-8?B?YnRoNHkvNkd3cEgrUDBXMVBwaW5Ub2REUGVtZ084V29pcmNvTlUyVHB0eVJL?=
+ =?utf-8?B?TTQxM0dsNi9zUGtDYjBNVzJUL2gwNjNPUWZzTzdEYXY4SnFNVTlvSU9WNEdU?=
+ =?utf-8?B?a054WlR0cCtXMTFTR2toOE1OR1ZzSTJnc1JaOHM4RFdUZzd2SU1taGx4RktC?=
+ =?utf-8?B?MW9JUE5rUjk5SVdtcURkRHNWbGg5dGhrQW1oSzFudnZXQWxuWFZHYXFCSWZU?=
+ =?utf-8?B?RnBQa2I1aUtIWHMrSWF5bFZUQWhBPT0=?=
+Content-Type: multipart/alternative;
+	boundary="_000_BN7PR14MB2420E244B854E63C1E6A49F38529ABN7PR14MB2420namp_"
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="=-mrekeoc7QSYFsZWmn75+"
-X-TOI-EXPURGATEID: 150726::1688391803-9B6529C6-9A76F650/0/0 CLEAN NORMAL
-X-TOI-MSGID: 82624c5e-2777-44e7-9bd7-72fe2ed803f4
+X-OriginatorOrg: izumanetworks.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR14MB2420.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36bd28b4-43dc-4357-0c88-08db7bce980c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2023 14:05:44.7405
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b75ac1ab-4ecf-4491-a62d-9087b0c0cf30
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jHX/gVH9+ozjZ0TaNpqkhJNLfGIWLnd0cVPNoTc2RlPj6NWbd23gHZa5guCiep+5JReLBPwyB8TZzLGNa5KmuRUXX5oCa50No6x/t3MWJV+GD5XBMrcg56FmKPts2pk+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR14MB4307
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 13:43:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60497
+ <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 14:05:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60498
 
---=-mrekeoc7QSYFsZWmn75+
-Content-Type: text/plain; charset=us-ascii; format=flowed
+--_000_BN7PR14MB2420E244B854E63C1E6A49F38529ABN7PR14MB2420namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Mon, Jul 3 2023 at 09:07:11 AM -0400, Bruce Ashfield 
-<bruce.ashfield@gmail.com> wrote:
-> We really shouldn't suggest the above to a developer without also the
-> explanation as to why network access is disabled by default in tasks
-> such as compile.
+SGVpLA0KDQpHb2xhbmcgZG9lcyBoYXZlIHRoZSByZXF1aXJlZCBmZWF0dXJlcyB0byBzdXBwb3J0
+IHRoaXMsIGJ1dCBpdCBpcyBtb3JlIG9mIGEgY2hhbGxlbmdlIHRvIGNvbnZpbmNlIHRoZSByZXBv
+IG93bmVycyB0byBzdGFydCB1c2luZyB0aGlzLg0KWW91IGNhbiBkb3dubG9hZCBhbGwgb2YgdGhl
+IGRlcGVuZGVuY2llcyBpbiBnb2xhbmcgd2l0aCBnbyBtb2QgdmVuZG9yIGFuZCB0aGVuIHN0b3Jl
+IHRoZSB2ZW5kb3ItZm9sZGVyIHRvIHRoZSByZXBvIGFzIHdlbGwuDQpCdXQsIHRoZSByZXBvIHdp
+bGwgZ2V0IGEgbG90IGxhcmdlciB0aGF0IHdheS4gQnV0LCB0aGF0IGZ1bGZpbGxzIHRoZSBZb2N0
+byBkZW1hbmRzIGFzIGZhciBhcyBJIGtub3cuDQoNCkJlc3QgUmVnYXJkcywNCg0KDQpKYW5uZSBL
+aWlza2lsw6QNCg0KDQpGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0Bs
+aXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2YgTWFya3VzIFZvbGsgdmlhIGxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcNClNlbnQ6IG1hYW5hbnRhaSAzLiBoZWluw6RrdXV0YSAyMDIzIDE2
+LjQzDQpUbzogQnJ1Y2UgQXNoZmllbGQgPGJydWNlLmFzaGZpZWxkQGdtYWlsLmNvbT4NCkNjOiBw
+cnplbWVrLnJlY2hhQGdtYWlsLmNvbTsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3Vi
+amVjdDogUmU6IFt5b2N0b10gQnVpbGRpbmcgVGFpbHNjYWxlIHdpdGggWW9jdG8gI2dvbGFuZw0K
+DQpPbiBNb24sIEp1bCAzIDIwMjMgYXQgMDk6MDc6MTEgQU0gLTA0MDAsIEJydWNlIEFzaGZpZWxk
+IDxicnVjZS5hc2hmaWVsZEBnbWFpbC5jb208bWFpbHRvOmJydWNlLmFzaGZpZWxkQGdtYWlsLmNv
+bT4+IHdyb3RlOg0KDQpXZSByZWFsbHkgc2hvdWxkbid0IHN1Z2dlc3QgdGhlIGFib3ZlIHRvIGEg
+ZGV2ZWxvcGVyIHdpdGhvdXQgYWxzbyB0aGUgZXhwbGFuYXRpb24gYXMgdG8gd2h5IG5ldHdvcmsg
+YWNjZXNzIGlzIGRpc2FibGVkIGJ5IGRlZmF1bHQgaW4gdGFza3Mgc3VjaCBhcyBjb21waWxlLg0K
+DQpZb3UgYXJlIG9mIGNvdXJzZSByaWdodCB3aXRoIHlvdXIgb2JqZWN0aW9ucy4gSG93ZXZlciwg
+dGhpcyBpcyB0aGUgb25seSB3YXkgSSBrbm93IG9mIHRvIGdldCBhcm91bmQgdGhpcyBwcm9ibGVt
+LiBSZXByb2R1Y2liaWxpdHkgaXMgbm90IGEgbXVzdCBoYXZlIHJlcXVpcmVtZW50IGZvciBtZSwg
+YnV0IEkgdXNlIHNvbWUgZ3RrIGdvIHByb2dyYW1zIGFuZCB3b3VsZCBsb3ZlIHRvIGhhdmUgYSB3
+YXkgdG8gYnVpbGQgYXQgbGVhc3QgZ290azMgc2hhcmVkLCBzaW5jZSBpdCB0YWtlcyBxdWl0ZSBh
+IGxvbmcgdGltZSBhbmQgaGFzIHRvIGJlIHJlYnVpbHQgZm9yIGVhY2ggcHJvZ3JhbS4NCkkgaGFk
+IGV4cGVyaW1lbnRlZCB3aXRoIHRoaXMgc29tZSB0aW1lIGFnbywgYnV0IGl0IGxvb2tlZCB0byBt
+ZSBsaWtlIHRoZXJlIHdhcyBubyBlYXN5IHNvbHV0aW9uIHRvIHRoaXMgcHJvYmxlbS4gVGhpcyBp
+cyBzb21laG93IHF1aXRlIGEgY29uZmxpY3QgYmV0d2VlbiBkaWZmZXJlbnQgY29uY2VwdHMuDQo=
 
-You are of course right with your objections. However, this is the only 
-way I know of to get around this problem. Reproducibility is not a must 
-have requirement for me, but I use some gtk go programs and would love 
-to have a way to build at least gotk3 shared, since it takes quite a 
-long time and has to be rebuilt for each program.
-I had experimented with this some time ago, but it looked to me like 
-there was no easy solution to this problem. This is somehow quite a 
-conflict between different concepts.
+--_000_BN7PR14MB2420E244B854E63C1E6A49F38529ABN7PR14MB2420namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8q
+IEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEg
+TWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2Zv
+bnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyog
+U3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29O
+b3JtYWwNCgl7bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJD
+YWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0
+eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVy
+bGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBs
+eTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0
+O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
+O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46
+NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpX
+b3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
+YXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRp
+Zl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0
+Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0Pjwv
+eG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5
+NTRGNzIiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2Vj
+dGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJt
+c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SGVpLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0ibXNvLWZhcmVhc3Qt
+bGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6
+RU4tVVMiPkdvbGFuZyBkb2VzIGhhdmUgdGhlIHJlcXVpcmVkIGZlYXR1cmVzIHRvIHN1cHBvcnQg
+dGhpcywgYnV0IGl0IGlzIG1vcmUgb2YgYSBjaGFsbGVuZ2UgdG8gY29udmluY2UgdGhlIHJlcG8g
+b3duZXJzIHRvIHN0YXJ0IHVzaW5nIHRoaXMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5n
+dWFnZTpFTi1VUyI+WW91IGNhbiBkb3dubG9hZCBhbGwgb2YgdGhlIGRlcGVuZGVuY2llcyBpbiBn
+b2xhbmcgd2l0aCBnbyBtb2QgdmVuZG9yIGFuZCB0aGVuIHN0b3JlIHRoZSB2ZW5kb3ItZm9sZGVy
+IHRvIHRoZSByZXBvIGFzIHdlbGwuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpF
+Ti1VUyI+QnV0LCB0aGUgcmVwbyB3aWxsIGdldCBhIGxvdCBsYXJnZXIgdGhhdCB3YXkuIEJ1dCwg
+dGhhdCBmdWxmaWxscyB0aGUgWW9jdG8gZGVtYW5kcyBhcyBmYXIgYXMgSSBrbm93LjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
+dHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0ibXNv
+LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkJlc3QgUmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1m
+YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxh
+bmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj5KYW5uZSBLaWlza2lsw6Q8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0Ux
+RTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4t
+VVMiPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnICZsdDt5b2N0b0BsaXN0cy55b2N0b3By
+b2plY3Qub3JnJmd0Ow0KPGI+T24gQmVoYWxmIE9mIDwvYj5NYXJrdXMgVm9sayB2aWEgbGlzdHMu
+eW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlNlbnQ6PC9iPiBtYWFuYW50YWkgMy4gaGVpbsOka3V1
+dGEgMjAyMyAxNi40Mzxicj4NCjxiPlRvOjwvYj4gQnJ1Y2UgQXNoZmllbGQgJmx0O2JydWNlLmFz
+aGZpZWxkQGdtYWlsLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHByemVtZWsucmVjaGFAZ21haWwu
+Y29tOyB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJl
+OiBbeW9jdG9dIEJ1aWxkaW5nIFRhaWxzY2FsZSB3aXRoIFlvY3RvICNnb2xhbmc8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9wPg0KPGRpdiBpZD0iZ2VhcnktYm9keSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBN
+b24sIEp1bCAzIDIwMjMgYXQgMDk6MDc6MTEgQU0gLTA0MDAsIEJydWNlIEFzaGZpZWxkICZsdDs8
+YSBocmVmPSJtYWlsdG86YnJ1Y2UuYXNoZmllbGRAZ21haWwuY29tIj5icnVjZS5hc2hmaWVsZEBn
+bWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxibG9j
+a3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldlIHJlYWxseSBzaG91bGRuJ3Qgc3VnZ2VzdCB0aGUg
+YWJvdmUgdG8gYSBkZXZlbG9wZXIgd2l0aG91dCBhbHNvIHRoZSBleHBsYW5hdGlvbiBhcyB0byB3
+aHkgbmV0d29yayBhY2Nlc3MgaXMgZGlzYWJsZWQgYnkgZGVmYXVsdCBpbiB0YXNrcyBzdWNoIGFz
+IGNvbXBpbGUuDQo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPllvdSBhcmUgb2YgY291cnNlIHJpZ2h0IHdp
+dGggeW91ciBvYmplY3Rpb25zLiBIb3dldmVyLCB0aGlzIGlzIHRoZSBvbmx5IHdheSBJIGtub3cg
+b2YgdG8gZ2V0IGFyb3VuZCB0aGlzIHByb2JsZW0uIFJlcHJvZHVjaWJpbGl0eSBpcyBub3QgYSBt
+dXN0IGhhdmUgcmVxdWlyZW1lbnQgZm9yIG1lLCBidXQgSSB1c2Ugc29tZSBndGsgZ28gcHJvZ3Jh
+bXMgYW5kIHdvdWxkIGxvdmUgdG8gaGF2ZSBhIHdheSB0byBidWlsZA0KIGF0IGxlYXN0IGdvdGsz
+IHNoYXJlZCwgc2luY2UgaXQgdGFrZXMgcXVpdGUgYSBsb25nIHRpbWUgYW5kIGhhcyB0byBiZSBy
+ZWJ1aWx0IGZvciBlYWNoIHByb2dyYW0uPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGhhZCBleHBlcmltZW50ZWQgd2l0aCB0aGlzIHNvbWUgdGlt
+ZSBhZ28sIGJ1dCBpdCBsb29rZWQgdG8gbWUgbGlrZSB0aGVyZSB3YXMgbm8gZWFzeSBzb2x1dGlv
+biB0byB0aGlzIHByb2JsZW0uIFRoaXMgaXMgc29tZWhvdyBxdWl0ZSBhIGNvbmZsaWN0IGJldHdl
+ZW4gZGlmZmVyZW50IGNvbmNlcHRzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---=-mrekeoc7QSYFsZWmn75+
-Content-Type: text/html; charset=us-ascii
-
-<div id="geary-body" dir="auto">On Mon, Jul 3 2023 at 09:07:11 AM -0400, Bruce Ashfield &lt;bruce.ashfield@gmail.com&gt; wrote:<br><blockquote type="cite"><div class="plaintext" style="white-space: break-spaces;">We really shouldn't suggest the above to a developer without also the
-explanation as to why network access is disabled by default in tasks
-such as compile.
-</div></blockquote><div><br></div><div><div>You are of course right with your objections. However, this is the only way I know of to get around this problem. Reproducibility is not a must have requirement for me, but I use some gtk go programs and would love to have a way to build at least gotk3 shared, since it takes quite a long time and has to be rebuilt for each program.</div><div>I had experimented with this some time ago, but it looked to me like there was no easy solution to this problem. This is somehow quite a conflict between different concepts.</div></div></div>
---=-mrekeoc7QSYFsZWmn75+--
-
+--_000_BN7PR14MB2420E244B854E63C1E6A49F38529ABN7PR14MB2420namp_--
 
