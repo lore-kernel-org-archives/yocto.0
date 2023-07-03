@@ -1,84 +1,149 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BDC8FC0015E
-	for <webhook@archiver.kernel.org>; Mon,  3 Jul 2023 15:32:02 +0000 (UTC)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
- by mx.groups.io with SMTP id smtpd.web10.36178.1688398319154456916
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DEB2AEB64DC
+	for <webhook@archiver.kernel.org>; Mon,  3 Jul 2023 15:59:32 +0000 (UTC)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+ by mx.groups.io with SMTP id smtpd.web11.37089.1688399966309049579
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Jul 2023 08:31:59 -0700
+ Mon, 03 Jul 2023 08:59:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=eWWdXyUq;
- spf=pass (domain: gmail.com, ip: 209.85.128.175, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-57026f4bccaso55533137b3.2
-        for <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 08:31:59 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=am4mEpra;
+ spf=pass (domain: gmail.com, ip: 209.85.161.41, mailfrom: raj.khem@gmail.com)
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-565a8d74daeso2942768eaf.1
+        for <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 08:59:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688398318; x=1690990318;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YoJo0iMLq8wXdc2Aj712qF/EMn7wE43GNAS8TWoTRGA=;
-        b=eWWdXyUqAcTdVqmPt2N1JeFWImGuUJRFpsbzJQa9m3H+SLv4aKcJoDBu6OKwcKtNF5
-         8QP4xcXJEn93m1fTQb0wadUE39DG/1oQvnf8RCaQUDNdNCiH5hi7VL62ESlkOw6s957d
-         rsKf6XF1uzzcDP4igBQPeBgmoSQbTkBMNOa8HGN/l1cF+NzFO3t5MtGB/PVwvLfpoxvf
-         eb9jmWCGDZn6Ea8H6go0n1Y7gQQmcbM5/50xT0+aq+KFPYlgyC/EUFNbkkGBsMNaP/3g
-         5myOLvG53C15cC66zUMm3rtVCjDox5fQcvyMW4O09DtQGm/E3BAG2nzBE/s+JxkvpaRZ
-         5fIg==
+        d=gmail.com; s=20221208; t=1688399965; x=1690991965;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MDVE96L1mPwyHDqESwEsrvXK7jZG7P2zH+fx4dpFeVA=;
+        b=am4mEpraJwy9vnppA4C4MbQT0LFqUyPSdZe9zfRBZ07wQaNXZEVOZCgGWiq/WTBzdV
+         D0yS20CZgjH480eCYLPi+Kq0b2C2ZCAzjd0Mer2B4tFxYVv65W/6goyALq0+hJ55btx4
+         L/IfQIM/aYeGBqF35G792hcIAwo7DT9+bzEFpE17EPo3Sq74QH2aTYwCKe+PWE1MDid8
+         bjrD/yLJOdliPZtpSaOE1oCH0he2MK0lWo2muVmDphirKoj4Ih7HzAcUxTSBatPNjN45
+         pM45ekplyND2IkGZaLKNaoRj1SabX+4rkoEgILEF0otsP/xiuo/vwu7gU3vMndR1jTA4
+         7AHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688398318; x=1690990318;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1688399965; x=1690991965;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YoJo0iMLq8wXdc2Aj712qF/EMn7wE43GNAS8TWoTRGA=;
-        b=W8dA91mS3Z2uWKw6P0Cs4mPm/FkBtsCeq1aJj9K3pV59YS+SA1pMORqXVeAXY3A7aV
-         e7msWQ8NHgUdar/RaoEMO86F9B9Y2Gde6RKN+UKTZDc0zoujn7e5kXg3ufobHHgHaRJ/
-         pahkBIV3tUgGU5N+ISuMBjCDeN7AsH9Qd/rppcQiXmxdg1kEOu19Bu9WVAeTJynUoQ8X
-         j7D25e/U27dknG/fA46wCsRxeqAg5IbS/9Df0jZuzb4T+ZIMyyEqCEa1v9aMGqXkxEWi
-         j9cbbiJgHmkZjc9b+sIt3UoIurGQC+XLz+iBAO68aMqmZrIQ9Yfhpxyb44uGopvK4Bch
-         bf1g==
-X-Gm-Message-State: ABy/qLYqQRWaBCI7HbLkxZ7+qYBCmgCtuJ2qzeHn/iG767CjVIzCMzX3
-	kgUGKN/OW4j06Tx4VkZQ87X9KqRwtWo=
-X-Google-Smtp-Source: APBJJlERcyMLw2ADSVJCqDPB++vwjhFSx69ZczC9Iyx/s5oxF8E0iPRukICf4NWTEqPq4AUP56/aUA==
-X-Received: by 2002:a81:910a:0:b0:576:e4b7:35ed with SMTP id i10-20020a81910a000000b00576e4b735edmr11013674ywg.30.1688398318110;
-        Mon, 03 Jul 2023 08:31:58 -0700 (PDT)
-Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:d470:9cde:7b93:c2dc])
-        by smtp.gmail.com with ESMTPSA id v19-20020a814813000000b0054fba955474sm5138295ywa.17.2023.07.03.08.31.57
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jul 2023 08:31:57 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/2] packagegroup: add python3-tpm2-pytss
-Date: Mon,  3 Jul 2023 11:31:56 -0400
-Message-Id: <20230703153156.2256326-2-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230703153156.2256326-1-akuster808@gmail.com>
-References: <20230703153156.2256326-1-akuster808@gmail.com>
+        bh=MDVE96L1mPwyHDqESwEsrvXK7jZG7P2zH+fx4dpFeVA=;
+        b=kVw5F415ctR7Hv9QXTx+a3HKo+fOEKxSOf7D8AaBlrGa0g9jpBC2M9d1u/6wetgGt2
+         hNYHJdlE/wBE9XHC/zy+6C1kMiQHViaKtIElDu2Ccws1Uo16uiiLoO+zXR6q3CkwNTjp
+         If7mUH7ZnI/k7UOayW0zlB2ypAvw1Nm0c+aIhrBv/fJFcNM2KPwaD5u76fVXgePgrJdq
+         GRyMJGbVclSAkKeB9vz2NNG6WGlmMnEXDYpg1rOJynXYC9FfLoi0erY9BUIXPm6gqVYt
+         vGufBv0Z6qdGyjSgFB6cQssXqMBHzsiSWpfQ/CXGzVNsZjNA2fTnaW0BtJ/gpULfd92V
+         UorA==
+X-Gm-Message-State: AC+VfDx29do2N/oem0pHo/Zh6HD1LoKgrvmGMBnfSUZcJHxPPCUzm1Uq
+	PectbK17XCSuzbpKatgfe5RP0wYtSiGOKgENG9g=
+X-Google-Smtp-Source: ACHHUZ7sUN29jyPuUCV3jW10aXXcUCjm61YlgJRyOiTJdHiYsNk5nTSg+1zmyPDz13Zsh+p/qzR03E9gqQazcZbJQBk=
+X-Received: by 2002:a4a:dd1a:0:b0:563:16bf:4f9e with SMTP id
+ m26-20020a4add1a000000b0056316bf4f9emr8479665oou.3.1688399965486; Mon, 03 Jul
+ 2023 08:59:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <4HqO.1688327140014497685.1oIK@lists.yoctoproject.org>
+ <TMR6XR.EE45UBD6649W1@t-online.de> <CADkTA4MOWSbCOWtbzKhJ=X97u6GvQiRbBBBLyvK1pg4HjDv5Rw@mail.gmail.com>
+ <5G38XR.TXXNOJQ8IM5Q@t-online.de> <BN7PR14MB2420E244B854E63C1E6A49F38529A@BN7PR14MB2420.namprd14.prod.outlook.com>
+In-Reply-To: <BN7PR14MB2420E244B854E63C1E6A49F38529A@BN7PR14MB2420.namprd14.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 3 Jul 2023 08:58:59 -0700
+Message-ID: <CAMKF1so-6nFf-5_MJcpffj841WQCj4LO3NtgY=2XQ1Jm8YZg1Q@mail.gmail.com>
+Subject: Re: [yocto] Building Tailscale with Yocto #golang
+To: Janne Kiiskila <janne.kiiskila@izumanetworks.com>
+Cc: "f_l_k@t-online.de" <f_l_k@t-online.de>, Bruce Ashfield <bruce.ashfield@gmail.com>, 
+	"przemek.recha@gmail.com" <przemek.recha@gmail.com>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 15:32:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60503
+ <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 15:59:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60504
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, Jul 3, 2023 at 7:25=E2=80=AFAM Janne Kiiskila
+<janne.kiiskila@izumanetworks.com> wrote:
+>
+> Hei,
+>
+>
+>
+> Golang does have the required features to support this, but it is more of=
+ a challenge to convince the repo owners to start using this.
+>
+> You can download all of the dependencies in golang with go mod vendor and=
+ then store the vendor-folder to the repo as well.
+>
 
-diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-index fb0105e..8663b77 100644
---- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-+++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-@@ -20,4 +20,5 @@ RDEPENDS:packagegroup-security-tpm2 = " \
-     libtss2 \
-     tpm2-abrmd \
-     tpm2-pkcs11 \
-+    python3-tpm2-pytss \
-     "
--- 
-2.34.1
+yes go mod vendor is a way to get this working in a reasonable way.
+This also avoid go's module management coming in way of
+bitbake fetcher.
 
+> But, the repo will get a lot larger that way. But, that fulfills the Yoct=
+o demands as far as I know.
+
+As a distro, I think this should be even preferred even though size is
+bigger and several modules will be duplicated per recipe if
+there are other go packages in image. As a developer this might be not
+preferred however.
+
+>
+>
+>
+> Best Regards,
+>
+>
+>
+>
+>
+> Janne Kiiskil=C3=A4
+>
+>
+>
+>
+>
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
+lf Of Markus Volk via lists.yoctoproject.org
+> Sent: maanantai 3. hein=C3=A4kuuta 2023 16.43
+> To: Bruce Ashfield <bruce.ashfield@gmail.com>
+> Cc: przemek.recha@gmail.com; yocto@lists.yoctoproject.org
+> Subject: Re: [yocto] Building Tailscale with Yocto #golang
+>
+>
+>
+> On Mon, Jul 3 2023 at 09:07:11 AM -0400, Bruce Ashfield <bruce.ashfield@g=
+mail.com> wrote:
+>
+> We really shouldn't suggest the above to a developer without also the exp=
+lanation as to why network access is disabled by default in tasks such as c=
+ompile.
+>
+>
+>
+> You are of course right with your objections. However, this is the only w=
+ay I know of to get around this problem. Reproducibility is not a must have=
+ requirement for me, but I use some gtk go programs and would love to have =
+a way to build at least gotk3 shared, since it takes quite a long time and =
+has to be rebuilt for each program.
+>
+> I had experimented with this some time ago, but it looked to me like ther=
+e was no easy solution to this problem. This is somehow quite a conflict be=
+tween different concepts.
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#60498): https://lists.yoctoproject.org/g/yocto/messag=
+e/60498
+> Mute This Topic: https://lists.yoctoproject.org/mt/99915079/1997914
+> Mute #golang:https://lists.yoctoproject.org/g/yocto/mutehashtag/golang
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
