@@ -1,145 +1,132 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D45FC001B0
-	for <webhook@archiver.kernel.org>; Mon,  3 Jul 2023 17:22:43 +0000 (UTC)
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
- by mx.groups.io with SMTP id smtpd.web10.39440.1688404958041862105
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 046AEC001B3
+	for <webhook@archiver.kernel.org>; Mon,  3 Jul 2023 19:42:14 +0000 (UTC)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+ by mx.groups.io with SMTP id smtpd.web11.42311.1688413326144886889
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Jul 2023 10:22:38 -0700
+ Mon, 03 Jul 2023 12:42:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=o5NX6D3Q;
- spf=pass (domain: gmail.com, ip: 209.85.166.49, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-78363cc070aso238679939f.1
-        for <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 10:22:37 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=l2jn2Hm6;
+ spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so7837979e87.2
+        for <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 12:42:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688404957; x=1690996957;
+        d=gmail.com; s=20221208; t=1688413324; x=1691005324;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FJMYWJ3GXi0UaqbHlhkofTx5IPYh9rMOiBYD0rN/OwA=;
-        b=o5NX6D3Q+o4iRej8ZjvDVIHv4tuzXL6509ZnHVn0o7WNUMTIPStTzFwf7mNGVqI8Cf
-         b3ZDY8LEqiLqofk4GZ/xiWMURWYAJRzOGS08TOvtD9uZMGux5HAoilpuoTInEwrJFEhm
-         9r5RmelogVyv3RqzHbbQnekJFwcqRF8sohZm+l+HA08frYbPOHqni/f7UPzXtFI1FbY2
-         9e2xHa8RLkgcdGM6QcP8UWp/wzpLMT2MEIZDeXy8xKkCBf7ulusPFIjYxIEdc8+OkTSq
-         iMAWhWCwnFJL0ba1hGU/rvf/usocGu87McnYraWCXN0pjhCRteL/rpO5gZxIBR3sJqmK
-         /Fkg==
+        bh=Fzs45/PNqyHyX9497ng4eYVhTNk0jBw5796mRUJl254=;
+        b=l2jn2Hm6L1mmlZDQke1kgY7UREPeXbA8QymVMmzrFJ39oJ+hTNQdwReAKK5k49AiuN
+         afETDD6R783FPiIn+dGwN9rXsbswWZgjFgTfe019YQ9GyTFNKgGHTy9RC0DI3obqW98r
+         3Q4gMiirI1uG8qNBZV2uyuv1ZS4Iv6Ij0RDcS1crNwg/cmvZ1brg9q/OV4sEhfaG7oHO
+         rn38TV3jWBB9R0k26aNAq2C+dqFClQ/RR9lDeZ0kXzBVenpnWR5xsIwJYl2MIbqBBkX8
+         vbkXWM45mDoj0xnm+plZ91oj6Ni79JQFDA1Iio8XFYYJhmx7bu+VskEPVx2Fr0+G8rvp
+         G8dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688404957; x=1690996957;
+        d=1e100.net; s=20221208; t=1688413324; x=1691005324;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FJMYWJ3GXi0UaqbHlhkofTx5IPYh9rMOiBYD0rN/OwA=;
-        b=X6wMXk9phJZyFxGiiWboP1BqOATe650WpgNtfFyiU/92XQdmJi5N5p0apZUla+48YD
-         e1iflcYHdISN8TnRFgWkJ+lIZxFpdf8177tzJcGvHlEWveqJLto2fNrSJV80yUrlh8pP
-         AGUz6BbDcTm/ZOBOrHkVie+CWin5tbKtUrxmcF0cHLmsDlljkF486Ywp4KAA2Og3JEht
-         AtYnXFW2yGfQBLTp+Y8e6CA8GPKYeepv7AfuI1qFdsORsfnLnjkWKqJqjiNZ51DRmsjD
-         VjyaEog4qRZehwL1XOzPNvMb4SFKXYShtzAkyf2pPlKTwlVT3fPjrYEMiZFOqi+al4ub
-         bRGQ==
-X-Gm-Message-State: AC+VfDyKDT4AZX1afw/99+rBhc8bMQCqqmppAiPKIofNuytXbBdnxOYN
-	XG6uOfwVGzeveEvDCbl96BOFq0hjmJuxxvZPW+4=
-X-Google-Smtp-Source: ACHHUZ55+/nu+xzrLJYow11Qtf2nzPRMA8RE3r8PAoC5NKCQIr+QlzV34iAMqpxh/c/Fqk5QhFGgqwTWNdh7O45Nw7c=
-X-Received: by 2002:a5d:950d:0:b0:780:c38d:5397 with SMTP id
- d13-20020a5d950d000000b00780c38d5397mr11484421iom.1.1688404957253; Mon, 03
- Jul 2023 10:22:37 -0700 (PDT)
+        bh=Fzs45/PNqyHyX9497ng4eYVhTNk0jBw5796mRUJl254=;
+        b=N7UbuvyW7I1DFXCRhUFnUHDIcugIQrJwk0nKqTlNpiiS1+1cmSkEyCUCYD1wt4Txq2
+         nNeDKTeIll0RndK5/5naaJPlAnNjSpL049t4UgIoVsytqtujwihMEWO9++8a4F/HUQYU
+         h746mU9+ZESMGHncBb8w9ZVh5zl6Xi1qAQZwDOTuYOg6Y/fQcfMrI0kWcwcVE8N1lNTI
+         wGmx3I8UnKAug/BXq8djpYOM456OQK3xUUVkuE5G90KYBY7wN8w2C41y+j9B7Foi7sjh
+         x7YmBMTLGBO50c7bib4wQA6EJveTin81Ofude9SBecvxZ8r+tDd54WS8GGT0zuSO3vN+
+         pAWQ==
+X-Gm-Message-State: ABy/qLYmacdriGoTurVtw8sxqh8MMB/3vg+5zcsnWf64bf2NbqzTLpju
+	hzREyLEVWJSfDvoGHz75V9Smc5Li/Is/9tW2qHw=
+X-Google-Smtp-Source: APBJJlFpAi7QN8BHbeyU/wvVi4RiO0iscMp1meqy3pGGVQeI/GuwhefMs45TBS0i73gedRUo59qDGavCekNX6PaEDUw=
+X-Received: by 2002:ac2:5e29:0:b0:4fa:d194:36be with SMTP id
+ o9-20020ac25e29000000b004fad19436bemr6538744lfg.65.1688413324123; Mon, 03 Jul
+ 2023 12:42:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <4HqO.1688327140014497685.1oIK@lists.yoctoproject.org>
- <TMR6XR.EE45UBD6649W1@t-online.de> <CADkTA4MOWSbCOWtbzKhJ=X97u6GvQiRbBBBLyvK1pg4HjDv5Rw@mail.gmail.com>
- <5G38XR.TXXNOJQ8IM5Q@t-online.de> <BN7PR14MB2420E244B854E63C1E6A49F38529A@BN7PR14MB2420.namprd14.prod.outlook.com>
-In-Reply-To: <BN7PR14MB2420E244B854E63C1E6A49F38529A@BN7PR14MB2420.namprd14.prod.outlook.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Mon, 3 Jul 2023 13:22:26 -0400
-Message-ID: <CADkTA4M9dhXdbJ76DU6eKNbrmaCHZNANmhYe6Er_1fmk1ih8xA@mail.gmail.com>
-Subject: Re: [yocto] Building Tailscale with Yocto #golang
-To: Janne Kiiskila <janne.kiiskila@izumanetworks.com>
-Cc: "f_l_k@t-online.de" <f_l_k@t-online.de>, "przemek.recha@gmail.com" <przemek.recha@gmail.com>, 
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <CANNYZj9-AOrddDK2VRrbrrDnWhgDOJ2tPbJRXO1bWrKpoOfzzg@mail.gmail.com>
+ <25445.1687882175160054772@lists.yoctoproject.org> <CANNYZj9ceErJf27HmT9pKHcJh4Yoyy_iMVkkYK8-ucMwhJKZRQ@mail.gmail.com>
+ <SA1PR11MB5828870BACD7E2A9FB1F34D4CB29A@SA1PR11MB5828.namprd11.prod.outlook.com>
+In-Reply-To: <SA1PR11MB5828870BACD7E2A9FB1F34D4CB29A@SA1PR11MB5828.namprd11.prod.outlook.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 3 Jul 2023 21:41:52 +0200
+Message-ID: <CANNYZj_afvzRhqwtS5axmkffaBKRvaOZKYSdCgO76F6G8jKX1A@mail.gmail.com>
+Subject: Re: [yocto] File magic/sdk relocation
+To: "Oleksandr Hnatiuk -X (ohnatiuk - GLOBALLOGIC INC at Cisco)" <ohnatiuk@cisco.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 17:22:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60505
+ <yocto@lists.yoctoproject.org>; Mon, 03 Jul 2023 19:42:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60506
 
-On Mon, Jul 3, 2023 at 10:05=E2=80=AFAM Janne Kiiskila
-<janne.kiiskila@izumanetworks.com> wrote:
->
-> Hei,
->
->
->
-> Golang does have the required features to support this, but it is more of=
- a challenge to convince the repo owners to start using this.
->
-> You can download all of the dependencies in golang with go mod vendor and=
- then store the vendor-folder to the repo as well.
->
-> But, the repo will get a lot larger that way. But, that fulfills the Yoct=
-o demands as far as I know.
->
+I think you might want to use create_wrapper helper, similar to how
+createrepo_c recipe does it:
 
-Yes, again, if you read the mailing list discussions on this in the
-past, we are well aware of what golang does (and doesn't do) and the
-options to fully integrate into the core capabilities via a dedicated
-fetcher.
+do_install:append:class-nativesdk() {
+        create_wrapper ${D}/${bindir}/createrepo_c \
+                RPM_CONFIGDIR=3D${SDKPATHNATIVE}${libdir_nativesdk}/rpm \
+                MAGIC=3D${datadir}/misc/magic.mgc
+        create_wrapper ${D}/${bindir}/modifyrepo_c \
+                MAGIC=3D${datadir}/misc/magic.mgc
 
-But no one has stepped up to implement a fully integrated solution, so
-we have proposals only as this point.
+}
 
-I've gone a different way with meta-virtualization and am using large
-SRC_URIs with the dependencies fetched to allow full integration with
-the fetcher, and still build reproducible go binaries.
+I also just checked that MAGIC is relocated and exported correctly,
+e.g. running file from the buildtools tarball works fine on the
+'plain' command line after installing and setting up the tarball.
 
-Bruce
+Alex
 
+On Mon, 3 Jul 2023 at 14:53, Oleksandr Hnatiuk -X (ohnatiuk -
+GLOBALLOGIC INC at Cisco) <ohnatiuk@cisco.com> wrote:
+>
+> I think it hasn=E2=80=99t been noticed because openembedded-core doesn't =
+build `file` in buildtools-tarball.
+>
+> To reproduce the error, you need to do the following:
+> 1. Download openembedded-core and bitbake, source init script
+> 2. Add nativesdk-file to TOOLCHAIN_HOST_TASK, e.g. add the following line=
+ to conf/local.conf:
+> TOOLCHAIN_HOST_TASK:append =3D " nativesdk-file"
+> 3. Run `bitbake buildtools-tarball`
+> 4. Install buildtools: `tmp-glibc/deploy/sdk/x86_64-buildtools-nativesdk-=
+standalone-nodistro.0.sh -y -d $buildtools_install_dir`
+> 5. Same as (1) but in a different empty directory (first one built the bu=
+ildtools, this one will use them)
+> 6. Source the script provided by buildtools, e.g.: `source $buildtools_in=
+stall_dir/environment-setup-x86_64-oesdk-linux`
+> 7. Run `bitbake quilt-native`
+>
+> You should get the following error:
+>
+> ERROR: quilt-native-0.67-r0 do_populate_sysroot: Fatal errors occurred in=
+ subprocesses:
+> Command '['file', '-b', '/path/to/openembedded-core/build/tmp-glibc/work/=
+x86_64-linux/quilt-native/0.67-r0/sysroot-destdir/path/to/openembedded-core=
+/build/tmp-glibc/work/x86_64-linux/quilt-native/0.67-r0/recipe-sysroot-nati=
+ve/usr/bin/quilt']' returned non-zero exit status 1.
+>
+> The same error is repeated for each invocation of `file` in do_populate_s=
+ysroot
+>
+> Regards,
+> Oleksandr
 >
 >
-> Best Regards,
+> From: Alexander Kanavin <alex.kanavin@gmail.com>
+> Sent: Tuesday, June 27, 2023 7:46 PM
+> To: Oleksandr Hnatiuk -X (ohnatiuk - GLOBALLOGIC INC at Cisco) <ohnatiuk@=
+cisco.com>
+> Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+> Subject: Re: [yocto] File magic/sdk relocation
 >
+> Before we think of a solution, can you provide steps or a test case where=
+ the issue can be seen? It=E2=80=99s in one of the most important tasks, so=
+ I=E2=80=99d like to know why it hasn=E2=80=99t been a problem and what is =
+the scenario where it is.
 >
->
->
->
-> Janne Kiiskil=C3=A4
->
->
->
->
->
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
-lf Of Markus Volk via lists.yoctoproject.org
-> Sent: maanantai 3. hein=C3=A4kuuta 2023 16.43
-> To: Bruce Ashfield <bruce.ashfield@gmail.com>
-> Cc: przemek.recha@gmail.com; yocto@lists.yoctoproject.org
-> Subject: Re: [yocto] Building Tailscale with Yocto #golang
->
->
->
-> On Mon, Jul 3 2023 at 09:07:11 AM -0400, Bruce Ashfield <bruce.ashfield@g=
-mail.com> wrote:
->
-> We really shouldn't suggest the above to a developer without also the exp=
-lanation as to why network access is disabled by default in tasks such as c=
-ompile.
->
->
->
-> You are of course right with your objections. However, this is the only w=
-ay I know of to get around this problem. Reproducibility is not a must have=
- requirement for me, but I use some gtk go programs and would love to have =
-a way to build at least gotk3 shared, since it takes quite a long time and =
-has to be rebuilt for each program.
->
-> I had experimented with this some time ago, but it looked to me like ther=
-e was no easy solution to this problem. This is somehow quite a conflict be=
-tween different concepts.
-
-
-
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+> Alex
 
