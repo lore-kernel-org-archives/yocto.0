@@ -1,148 +1,83 @@
-Return-Path: <Martin.Jansa@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31979EB64DD
-	for <webhook@archiver.kernel.org>; Wed,  5 Jul 2023 12:26:46 +0000 (UTC)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
- by mx.groups.io with SMTP id smtpd.web10.15469.1688560000615183116
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 78C69EB64DA
+	for <webhook@archiver.kernel.org>; Wed,  5 Jul 2023 13:25:06 +0000 (UTC)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+ by mx.groups.io with SMTP id smtpd.web11.16858.1688563500722079730
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Jul 2023 05:26:40 -0700
+ Wed, 05 Jul 2023 06:25:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=hihn7YnR;
- spf=pass (domain: gmail.com, ip: 209.85.221.48, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-313fb7f0f80so7313156f8f.2
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Jul 2023 05:26:40 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=TeOzP8W7;
+ spf=pass (domain: gmail.com, ip: 209.85.128.170, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-570877f7838so80610407b3.0
+        for <yocto@lists.yoctoproject.org>; Wed, 05 Jul 2023 06:25:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688559999; x=1691151999;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=c541odfVpr+yOL4XnhEfeLDRVbr1L6uGnWLmYLCctUw=;
-        b=hihn7YnRszgGtiTgKG/vDVY71NkB11O769ON+OD/+zpeDAvpbz8M4AU0944Wq5oY3f
-         0qye2e+iQO8iif8tTqjc4r/WoCeXq/jWzRVun9gJ1CkA66/VdEVV8RcsybTSHjw38FVT
-         GlCddQFRlUkF2NMSKK3ig69myp3qqGtnB/edmsR0YFm3IT+5tuuAOFQJZ0MCgcvUs1a2
-         ULq6LT4q+P46dYveR49OendY4KiMvWT17QVZBM0AR128gQvUM6ETWrL90P5AKsVYWKlR
-         Jsd4bQ4OGi5fjmANCDDQy41jz/yHaUKwqfV+6IiBSBj15NEG7Q2c4LbKTUi2ZkRM01Wp
-         ydNg==
+        d=gmail.com; s=20221208; t=1688563500; x=1691155500;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wT5tf6QYtHkvADsEtweXn7u6l0RVLnoTAmRDYdoEGRU=;
+        b=TeOzP8W7fIKpreoZ5xUdAxhlxGFBRQuMxMpGtem4NXlyj8ICEC95ws1jEa79pQwrNh
+         pR9tfliZSBKlHcoE5fMpWpDYbpPssKsXLAhzegYlM9L32kWYD/viK91M8za5f7wZ62zH
+         Ixj/2osdB3B3HR/5WUELadlmuNEXfPi8cgWaNURpxJcDkLpl6pdGWX8mUVwNWV+ruXTb
+         Kyu9DN3f5R7EcuxcObkUhPBoyaBiMsEw0qTlPw7zJ5kidWW4AwMZVkxSG1RJMiy5+dHa
+         8Kh/RkrZGvuC/mGFkHgNCwwTBxu6vGpmMwjCofznAjn7FMe9xfUoUZ1l3e4o9Tpq2rUw
+         6NNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688559999; x=1691151999;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c541odfVpr+yOL4XnhEfeLDRVbr1L6uGnWLmYLCctUw=;
-        b=FZzFwJiT3WrzADPcgoXquqQgGqUpnq6yxIbWCOh5IDE4bl8Yjw3L8veftsKTZHhH2h
-         nb2QBBQ4lzTrU7dINj46ikbXSQlc9YHttJJJpmedxEvr6xx89QjmnRr8RQSpy6MGEawD
-         8LDFpa7m+SktTsGmTbi6bNmKP8B9RC9D4dqE9Xtq1yc27o4NvCuQJPt+8V32cjJnLg1N
-         t441CBdwofMIT9bmdm6OqsAp9BaVEeHBuUw7gD766addrXN7hnIpOuJHFoI3nXoKHdD1
-         DXFka7oCe/eRG+imZ1Umau0cuGo/UzMFlcJ8b01zc9l7373NunE3A/LJCfL20N5EUrWX
-         agPQ==
-X-Gm-Message-State: ABy/qLY6WBjbFG594wxd6wU9pIMRRLAuoon6vUCbSlTW+Wamu7XZCaq5
-	BUDTpBrvYBYnJwoPjuHhVz1At2y8xcgFuQCwJDU=
-X-Google-Smtp-Source: APBJJlEjSaeAKJeQnaSwCzr1zqBxwk891UwR8k+3rIDoW4c7WuMekGRyqibed16zp39RjVflJzm+AuThyTHpGmTsJU0=
-X-Received: by 2002:adf:fe02:0:b0:307:8c47:a266 with SMTP id
- n2-20020adffe02000000b003078c47a266mr10961015wrr.61.1688559998786; Wed, 05
- Jul 2023 05:26:38 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688563500; x=1691155500;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wT5tf6QYtHkvADsEtweXn7u6l0RVLnoTAmRDYdoEGRU=;
+        b=feogKyuFcLnwfaG+45bUKvVRkVEdBA8qWdaIDk1Qp/wK4Vsw02Ur86QtvXg1Yn4m/L
+         RV6oMDAzBIdWF7XNoinW0Rp4kyBxezvX7RpTCVgbAFMBkHMWGTGbPKT75I475XarNSxK
+         6fM93Zi5mVvlrWG1qGakn9fcbtdevZQWSW0vaINtUARKnZEhABkk/7quSsI9AxyRPTTa
+         I0F2q9VxuzIl7cehRn46Cy5PV64VRuQQxEy2fATxVo4HAMHh//S3Xe6BZZhtWqTxHXQQ
+         MOl9TNK36G1pdNbmcme3eUOkioPfdEIfkt4uHyBYmRYGOWOdzmhWItIM4YsaMAolsM0s
+         cEAQ==
+X-Gm-Message-State: ABy/qLaAqq68t+V5TIjEGuLHee8Bjc/WHTM5iccxOBJBmj2XLg/tzQir
+	2LPnsdN4QKIaMQ79YO7c4F6kXI7AjwE=
+X-Google-Smtp-Source: APBJJlHGR62EZU2R6WzPbwOvYvWxeaz6D7AQox2/EMWh0SanFU4XAmn2+IL0SBy+5Gi6Q3PV0MfxyQ==
+X-Received: by 2002:a25:4189:0:b0:c5f:5157:984f with SMTP id o131-20020a254189000000b00c5f5157984fmr3078736yba.50.1688563499582;
+        Wed, 05 Jul 2023 06:24:59 -0700 (PDT)
+Received: from keaua.attlocal.net ([2600:1700:9190:ba10:534c:e39e:6813:ee4e])
+        by smtp.gmail.com with ESMTPSA id b133-20020a25348b000000b00c4e93761e38sm1799715yba.64.2023.07.05.06.24.58
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 06:24:59 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] clamav: update SRC_URI
+Date: Wed,  5 Jul 2023 09:24:57 -0400
+Message-Id: <20230705132457.2324547-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <GHxO.1688541691010870295.8jtz@lists.yoctoproject.org>
-In-Reply-To: <GHxO.1688541691010870295.8jtz@lists.yoctoproject.org>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Wed, 5 Jul 2023 14:26:27 +0200
-Message-ID: <CA+chaQfN15dtssZFEv3hYiWzf2SF7aFY7Q9YcEk=r6fQHDuwmQ@mail.gmail.com>
-Subject: Re: [yocto] Getting segmentation fault while creating wic images
-To: mail2uvijay@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000e8e73805ffbc829a"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 05 Jul 2023 12:26:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60517
+ <yocto@lists.yoctoproject.org>; Wed, 05 Jul 2023 13:25:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60518
 
---000000000000e8e73805ffbc829a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-scanners/clamav/clamav_0.104.4.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-You need to apply
-https://patchwork.yoctoproject.org/project/oe-core/patch/20230623093323.405=
-8529-1-Martin.Jansa@gmail.com/
-in your build or wait for new patchelf and new uninative tarball including
-that.
+diff --git a/recipes-scanners/clamav/clamav_0.104.4.bb b/recipes-scanners/clamav/clamav_0.104.4.bb
+index 68a7d1f..102f267 100644
+--- a/recipes-scanners/clamav/clamav_0.104.4.bb
++++ b/recipes-scanners/clamav/clamav_0.104.4.bb
+@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b2
+ # July 30th, 2022
+ SRCREV = "563ba93052f3b7b46fb8725a65ee6299a9c332cf"
+ 
+-SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104;protocol=https \
++SRC_URI = "git://github.com/Cisco-Talos/clamav;branch=rel/0.104;protocol=https \
+     file://clamd.conf \
+     file://freshclam.conf \
+     file://volatiles.03_clamav \
+-- 
+2.34.1
 
-On Wed, Jul 5, 2023 at 9:21=E2=80=AFAM <mail2uvijay@gmail.com> wrote:
-
-> Hi,
->
-> I am trying re-build yocto for one of the custom board having ti processo=
-r.
-> using dunfell branch. While creating images getting "output: Segmentation
-> fault (core dumped)"
-> "
-> NOTE: recipe app-image-1.0-r0: task do_image_wic: Failed
-> ERROR: Task
-> (...................................////.//////////:do_image_wic) failed
-> with exit code '1'
-> NOTE: Tasks Summary: Attempted 5310 tasks of which 5306 didn't need to be
-> rerun and 1 failed.
-> "
-> Note: i have working build created on 19.06, this is building successfull=
-y.
->
->
-> Regards,
-> Vijay
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60516):
-> https://lists.yoctoproject.org/g/yocto/message/60516
-> Mute This Topic: https://lists.yoctoproject.org/mt/99960619/3617156
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> Martin.Jansa@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000e8e73805ffbc829a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">You need to apply=C2=A0<a href=3D"https://patchwork.yoctop=
-roject.org/project/oe-core/patch/20230623093323.4058529-1-Martin.Jansa@gmai=
-l.com/">https://patchwork.yoctoproject.org/project/oe-core/patch/2023062309=
-3323.4058529-1-Martin.Jansa@gmail.com/</a> in your build or wait for new pa=
-tchelf and new uninative tarball including that.</div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 5, 2023 at 9:21=
-=E2=80=AFAM &lt;<a href=3D"mailto:mail2uvijay@gmail.com">mail2uvijay@gmail.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x">Hi,<br><br>I am trying re-build yocto for one of the custom board having=
- ti processor.<br>using dunfell branch. While creating images getting &quot=
-;output: Segmentation fault (core dumped)&quot;<br>&quot;<br>
-<div>NOTE: recipe app-image-1.0-r0: task do_image_wic: Failed</div>
-<div>ERROR: Task (...................................////.//////////:do_ima=
-ge_wic) failed with exit code &#39;1&#39;</div>
-<div>NOTE: Tasks Summary: Attempted 5310 tasks of which 5306 didn&#39;t nee=
-d to be rerun and 1 failed.<br>&quot;<br>Note: i have working build created=
- on 19.06, this is building successfully.<br><br><br></div>
-Regards,<br>Vijay
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60516): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60516" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/60516</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/99960619/3617=
-156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/99960619/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin=
-.Jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000e8e73805ffbc829a--
 
