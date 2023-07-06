@@ -1,167 +1,151 @@
-Return-Path: <Anders.Montonen@iki.fi>
+Return-Path: <adrian.freihofer@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 912E3EB64D9
-	for <webhook@archiver.kernel.org>; Thu,  6 Jul 2023 10:13:09 +0000 (UTC)
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by mx.groups.io with SMTP id smtpd.web10.18616.1688638381079620894
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0657DEB64D9
+	for <webhook@archiver.kernel.org>; Thu,  6 Jul 2023 11:49:50 +0000 (UTC)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+ by mx.groups.io with SMTP id smtpd.web10.20096.1688644183214914776
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Jul 2023 03:13:02 -0700
+ Thu, 06 Jul 2023 04:49:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kapsi.fi header.s=20161220 header.b=E2XHWrdO;
- spf=pass (domain: kapsi.fi, ip: 91.232.154.25, mailfrom: antime@kapsi.fi)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-	s=20161220; h=References:To:Cc:In-Reply-To:Date:Subject:Mime-Version:
-	Content-Type:Message-Id:From:Sender:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=VIsfTgtw/L0Q1rxIhdV7GCINvIzvzcLrYq1jpaNHyHM=; b=E2XHWrdOMoX0LsI/nEerV00UMg
-	oLLFs2XI+amUVSgCe9MKXZDHCPafuV4bPHuiaTNO/IfeXLKhRDl/vQaZHvHtrukGL2pHCUjNLWX4B
-	Xdtm1dMG3+FOpB1wBtmyC8yNlyKxlJc4H/pm0FTUv6hDUapRV9zU/LUyvBvOUAuXk15ji3S2i5s5O
-	qwYN42CdZuEbzmSdClGYCwxHbKUoq7UEJ2QDiq4Y9h1Opp1uNav0io2Dy28hPv3w5XqQsqIjxe3L4
-	Xrg/jjSUp6t7Vp8ZvmqCnj/b65fB2B0KbQlEYpAEFk4y4tp/QjhRJDBKt2580IOtlQ0P22Cy2mao7
-	camTL05g==;
-Received: from 84-253-254-23.bb.dnainternet.fi ([84.253.254.23] helo=[192.168.1.137])
-	by mail.kapsi.fi with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <Anders.Montonen@iki.fi>)
-	id 1qHLyr-008CVV-PG; Thu, 06 Jul 2023 13:12:57 +0300
-From: Anders Montonen <Anders.Montonen@iki.fi>
-Message-Id: <B120A605-E6D6-44EF-AC6F-FEB9174570B2@iki.fi>
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_8F6C8E88-DF25-47C0-B0FD-43880C80319B"
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=DGHIB4t3;
+ spf=pass (domain: gmail.com, ip: 209.85.208.53, mailfrom: adrian.freihofer@gmail.com)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-51bece5d935so929400a12.1
+        for <yocto@lists.yoctoproject.org>; Thu, 06 Jul 2023 04:49:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688644181; x=1691236181;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=S9unBzF2nBVm5rkb4NL9qMrb1sVCIFgBDFrpGGgEbAE=;
+        b=DGHIB4t3F3maUyv5xSWs948Wla1+S2G6hOEQEdsAjEdG267APwiaWs1F3tTiB6ee66
+         kppexUj7Lq8Pt9Tw+IkNXchMQPAXzaqRWE4VvEefxoeuFRSye4Gq8W2sI+GSJy6jrQnB
+         s+5TCDJJ3jq7YbojeHptePjde3Z8rdOoa/YlZ7iBcjCsVuHV50bmy+0UvV1/f0eVTmOi
+         U/Lm3xmGIkeehxbw26PFgjHWCh+vHo02/aRNCfpkB2wMrN4D62ppDt4uc6X0kgrTlj6z
+         1dwqsj6BKgH2uxdJiRcQrJloMsufWOpryrT2EEu/no7bdvNQMTqjEpg7VEu+xJRl8Pha
+         mzBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688644181; x=1691236181;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S9unBzF2nBVm5rkb4NL9qMrb1sVCIFgBDFrpGGgEbAE=;
+        b=jB3C5AOU61y+xF1BAcRUYLu6E8n7aOlwozs94BEY9qGOgNhftHz0PjjI9eiG8h9ocT
+         cxd2wbiHjRlaeNODs5ak+XP+pEXmYCYFzNWALG4o64rNCl10CTScScQhLGhLkEanxtu4
+         38govNxpQEWiypCKq1eL0nBfHhRScV+iCiB63TR67ac++5HQMMMDMbtOSNhFut830oH0
+         Kr8s1+WbWcwYFrQN/CmLf3qGhufi5xbIu4vmGmc+J0n7Zqmo+s8pw50npn9Thmysi7NU
+         taLyP3EjqmY5euGvRxjeTL8EDDGLjFW4gjele4Xp0BWBt13wZ2HHR6JK9Z/vnuJ8c5wq
+         1qgQ==
+X-Gm-Message-State: ABy/qLbcSHmk9NuBNnQotK6iXi8nhQauHdlV3HhXhQYcpPztamDqPfvn
+	/dw2+c6oO6sJ2iPEvqKW37U=
+X-Google-Smtp-Source: APBJJlGukeQDf41THsA9OlspF8I1IcvXc+I6DaEANefiSMwZXtqx5Nx5v7tqI/RzIf1uMNEtOXJuxg==
+X-Received: by 2002:a17:906:74d7:b0:987:59b6:c9fa with SMTP id z23-20020a17090674d700b0098759b6c9famr1431719ejl.19.1688644181456;
+        Thu, 06 Jul 2023 04:49:41 -0700 (PDT)
+Received: from [100.64.0.1] ([165.225.94.221])
+        by smtp.gmail.com with ESMTPSA id lg7-20020a170906f88700b0098d93142ce1sm703481ejb.109.2023.07.06.04.49.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jul 2023 04:49:40 -0700 (PDT)
+Message-ID: <7f512a428ba58064a0f948df4c37af45ae6e9b4d.camel@gmail.com>
 Subject: Re: [yocto] do_configure error while adding networkmanager to image
-Date: Thu, 6 Jul 2023 13:12:56 +0300
-In-Reply-To: <17151.1688637320466205781@lists.yoctoproject.org>
+From: adrian.freihofer@gmail.com
+To: Anders.Montonen@iki.fi, MOHAMMED HASSAN <hassanchattarki@gmail.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-To: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Date: Thu, 06 Jul 2023 13:49:39 +0200
+In-Reply-To: <B120A605-E6D6-44EF-AC6F-FEB9174570B2@iki.fi>
 References: <8d25b1e3d7a401d493802117d0cc48c3f63e7544.camel@gmail.com>
- <17151.1688637320466205781@lists.yoctoproject.org>
-X-Mailer: Apple Mail (2.3445.104.21)
-X-SA-Exim-Connect-IP: 84.253.254.23
-X-SA-Exim-Mail-From: Anders.Montonen@iki.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+	 <17151.1688637320466205781@lists.yoctoproject.org>
+	 <B120A605-E6D6-44EF-AC6F-FEB9174570B2@iki.fi>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 06 Jul 2023 10:13:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60527
+ <yocto@lists.yoctoproject.org>; Thu, 06 Jul 2023 11:49:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60528
 
-
---Apple-Mail=_8F6C8E88-DF25-47C0-B0FD-43880C80319B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-
-
-> On 6 Jul 2023, at 12:55, MOHAMMED HASSAN <hassanchattarki@gmail.com> =
-wrote:
+On Thu, 2023-07-06 at 13:12 +0300, Anders Montonen wrote:
 >=20
-> On Thu, Jul 6, 2023 at 02:29 AM, Adrian Freihofer wrote:
-> Hi Hassan
 >=20
-> It's a bit hard to guess what you are really doing. The bb is a fork
-> from a quite old version when it was still using the autotools. Now we
-> use meson.
+> > On 6 Jul 2023, at 12:55, MOHAMMED HASSAN
+> > <hassanchattarki@gmail.com> wrote:
+> >=20
+> > On Thu, Jul 6, 2023 at 02:29 AM, Adrian Freihofer wrote:
+> > > Hi Hassan
+> > >=20
+> > > It's a bit hard to guess what you are really doing. The bb is a
+> > > fork
+> > > from a quite old version when it was still using the autotools.
+> > > Now we
+> > > use meson.
+> > >=20
+> > > The check for rl_echo_signal_char came into NetworkManager 8
+> > > years ago
+> > > https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit=
+/b69143b5085c58e51ab8077ee5cbe6fafe73e041
+> > > .
+> > > It's probably not a change on NetworkManager side which came in
+> > > recently with your update to 1.22.16.
+> > >=20
+> > > Compiling nmcli with readline works with the bb from meta-
+> > > openembedded
+> > > and the poky version with a similar age. That's the default.
+> > >=20
+> > > Some ideas:
+> > > - Try if the original recipe throws the same error
+> > > - Pass the readline parameter to autotools (what we do with newer
+> > > versions of the recipe and meson)
+> > > - Compile without nmcli and remove the readline dependency. Look
+> > > at the
+> > > commit history of the networkmanager.bb. There was an autotools
+> > > based
+> > > recipe which supported compiling without nmcli at some point in
+> > > time.
+> > Actually I want nmcli recipe in my yocto image file. I am still a
+> > beginner with this so i am facing these issues. Alternatively, I
+> > was looking at adding wireless-tools to my image file but i dont
+> > have its related recipe in my SDK. Do let me know if you have any
+> > suggestions.
 >=20
-> The check for rl_echo_signal_char came into NetworkManager 8 years ago
-> =
-https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/b691=
-43b5085c58e51ab8077ee5cbe6fafe73e041 =
-<https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/b69=
-143b5085c58e51ab8077ee5cbe6fafe73e041>.
-> It's probably not a change on NetworkManager side which came in
-> recently with your update to 1.22.16.
+> Are you using meta-gplv2? Its version of readline is too old for
+> NetworkManager.
+
+No, we don't use meta-gplv2.
+
+But we contributed the feature for compiling NetworkManager without
+readline to NetworkManager. Recent NetworkManager recipe versions 1.36+
+have a packageconfig flag to build it with libedit instead of
+libreadline.
+
+Here are all commits:
+https://github.com/openembedded/meta-openembedded/commits/master/meta-netwo=
+rking/recipes-connectivity/networkmanager
+
+That's the one which introduces the libedit feature:
+https://github.com/openembedded/meta-openembedded/commit/9632eca6d27f29dc22=
+9d7a4c6663f97fc036661e
+
+--> Updating at least NetworkManager would help you.
+
+Regards,
+Adrian
+
 >=20
-> Compiling nmcli with readline works with the bb from meta-openembedded
-> and the poky version with a similar age. That's the default.
+> -a
 >=20
-> Some ideas:
-> - Try if the original recipe throws the same error
-> - Pass the readline parameter to autotools (what we do with newer
-> versions of the recipe and meson)
-> - Compile without nmcli and remove the readline dependency. Look at =
-the
-> commit history of the networkmanager.bb. There was an autotools based
-> recipe which supported compiling without nmcli at some point in time.
-> Actually I want nmcli recipe in my yocto image file. I am still a =
-beginner with this so i am facing these issues. Alternatively, I was =
-looking at adding wireless-tools to my image file but i dont have its =
-related recipe in my SDK. Do let me know if you have any suggestions.
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60527):
+> https://lists.yoctoproject.org/g/yocto/message/60527
+> Mute This Topic: https://lists.yoctoproject.org/mt/99982001/4454582
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe:
+> https://lists.yoctoproject.org/g/yocto/unsub=C2=A0[adrian.freihofer@gmail=
+.com
+> ]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
-Are you using meta-gplv2? Its version of readline is too old for =
-NetworkManager.
-
--a=
-
---Apple-Mail=_8F6C8E88-DF25-47C0-B0FD-43880C80319B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
-class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On 6 Jul 2023, at 12:55, MOHAMMED HASSAN &lt;<a =
-href=3D"mailto:hassanchattarki@gmail.com" =
-class=3D"">hassanchattarki@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-14px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;" class=3D"">On Thu, Jul 6, 2023 at 02:29 AM, =
-Adrian Freihofer wrote:</span><br style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><blockquote style=3D"caret-color: =
-rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D"">Hi Hassan<br class=3D""><br =
-class=3D"">It's a bit hard to guess what you are really doing. The bb is =
-a fork<br class=3D"">from a quite old version when it was still using =
-the autotools. Now we<br class=3D"">use meson.<br class=3D""><br =
-class=3D"">The check for rl_echo_signal_char came into NetworkManager 8 =
-years ago<br class=3D""><a =
-href=3D"https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/com=
-mit/b69143b5085c58e51ab8077ee5cbe6fafe73e041" target=3D"_blank" =
-rel=3D"noopener" =
-class=3D"">https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/=
-commit/b69143b5085c58e51ab8077ee5cbe6fafe73e041</a>.<br class=3D"">It's =
-probably not a change on NetworkManager side which came in<br =
-class=3D"">recently with your update to 1.22.16.<br class=3D""><br =
-class=3D"">Compiling nmcli with readline works with the bb from =
-meta-openembedded<br class=3D"">and the poky version with a similar age. =
-That's the default.<br class=3D""><br class=3D"">Some ideas:<br =
-class=3D"">- Try if the original recipe throws the same error<br =
-class=3D"">- Pass the readline parameter to autotools (what we do with =
-newer<br class=3D"">versions of the recipe and meson)<br class=3D"">- =
-Compile without nmcli and remove the readline dependency. Look at the<br =
-class=3D"">commit history of the networkmanager.bb. There was an =
-autotools based<br class=3D"">recipe which supported compiling without =
-nmcli at some point in time.</blockquote><span style=3D"caret-color: =
-rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">Actually I want nmcli recipe in my yocto image file. I am =
-still a beginner with this so i am facing these issues. Alternatively, I =
-was looking at adding wireless-tools to my image file but i dont have =
-its related recipe in my SDK. Do let me know if you have any =
-suggestions.</span></div></blockquote><br class=3D""></div><div>Are you =
-using meta-gplv2? Its version of readline is too old for =
-NetworkManager.</div><div><br class=3D""></div><div>-a</div></body></html>=
-
---Apple-Mail=_8F6C8E88-DF25-47C0-B0FD-43880C80319B--
 
