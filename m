@@ -1,151 +1,3193 @@
-Return-Path: <adrian.freihofer@gmail.com>
+Return-Path: <oosman3@yahoo.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0657DEB64D9
-	for <webhook@archiver.kernel.org>; Thu,  6 Jul 2023 11:49:50 +0000 (UTC)
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
- by mx.groups.io with SMTP id smtpd.web10.20096.1688644183214914776
- for <yocto@lists.yoctoproject.org>;
- Thu, 06 Jul 2023 04:49:43 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=DGHIB4t3;
- spf=pass (domain: gmail.com, ip: 209.85.208.53, mailfrom: adrian.freihofer@gmail.com)
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-51bece5d935so929400a12.1
-        for <yocto@lists.yoctoproject.org>; Thu, 06 Jul 2023 04:49:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688644181; x=1691236181;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=S9unBzF2nBVm5rkb4NL9qMrb1sVCIFgBDFrpGGgEbAE=;
-        b=DGHIB4t3F3maUyv5xSWs948Wla1+S2G6hOEQEdsAjEdG267APwiaWs1F3tTiB6ee66
-         kppexUj7Lq8Pt9Tw+IkNXchMQPAXzaqRWE4VvEefxoeuFRSye4Gq8W2sI+GSJy6jrQnB
-         s+5TCDJJ3jq7YbojeHptePjde3Z8rdOoa/YlZ7iBcjCsVuHV50bmy+0UvV1/f0eVTmOi
-         U/Lm3xmGIkeehxbw26PFgjHWCh+vHo02/aRNCfpkB2wMrN4D62ppDt4uc6X0kgrTlj6z
-         1dwqsj6BKgH2uxdJiRcQrJloMsufWOpryrT2EEu/no7bdvNQMTqjEpg7VEu+xJRl8Pha
-         mzBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688644181; x=1691236181;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S9unBzF2nBVm5rkb4NL9qMrb1sVCIFgBDFrpGGgEbAE=;
-        b=jB3C5AOU61y+xF1BAcRUYLu6E8n7aOlwozs94BEY9qGOgNhftHz0PjjI9eiG8h9ocT
-         cxd2wbiHjRlaeNODs5ak+XP+pEXmYCYFzNWALG4o64rNCl10CTScScQhLGhLkEanxtu4
-         38govNxpQEWiypCKq1eL0nBfHhRScV+iCiB63TR67ac++5HQMMMDMbtOSNhFut830oH0
-         Kr8s1+WbWcwYFrQN/CmLf3qGhufi5xbIu4vmGmc+J0n7Zqmo+s8pw50npn9Thmysi7NU
-         taLyP3EjqmY5euGvRxjeTL8EDDGLjFW4gjele4Xp0BWBt13wZ2HHR6JK9Z/vnuJ8c5wq
-         1qgQ==
-X-Gm-Message-State: ABy/qLbcSHmk9NuBNnQotK6iXi8nhQauHdlV3HhXhQYcpPztamDqPfvn
-	/dw2+c6oO6sJ2iPEvqKW37U=
-X-Google-Smtp-Source: APBJJlGukeQDf41THsA9OlspF8I1IcvXc+I6DaEANefiSMwZXtqx5Nx5v7tqI/RzIf1uMNEtOXJuxg==
-X-Received: by 2002:a17:906:74d7:b0:987:59b6:c9fa with SMTP id z23-20020a17090674d700b0098759b6c9famr1431719ejl.19.1688644181456;
-        Thu, 06 Jul 2023 04:49:41 -0700 (PDT)
-Received: from [100.64.0.1] ([165.225.94.221])
-        by smtp.gmail.com with ESMTPSA id lg7-20020a170906f88700b0098d93142ce1sm703481ejb.109.2023.07.06.04.49.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 04:49:40 -0700 (PDT)
-Message-ID: <7f512a428ba58064a0f948df4c37af45ae6e9b4d.camel@gmail.com>
-Subject: Re: [yocto] do_configure error while adding networkmanager to image
-From: adrian.freihofer@gmail.com
-To: Anders.Montonen@iki.fi, MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Date: Thu, 06 Jul 2023 13:49:39 +0200
-In-Reply-To: <B120A605-E6D6-44EF-AC6F-FEB9174570B2@iki.fi>
-References: <8d25b1e3d7a401d493802117d0cc48c3f63e7544.camel@gmail.com>
-	 <17151.1688637320466205781@lists.yoctoproject.org>
-	 <B120A605-E6D6-44EF-AC6F-FEB9174570B2@iki.fi>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80BC1EB64D9
+	for <webhook@archiver.kernel.org>; Thu,  6 Jul 2023 13:26:00 +0000 (UTC)
+Subject: [meta-raspberrypi] wifi
+To: yocto@lists.yoctoproject.org
+From: oosman3@yahoo.com
+X-Originating-Location: Johnston, Iowa, US (217.180.228.214)
+X-Originating-Platform: Linux Firefox 113
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Thu, 06 Jul 2023 06:25:50 -0700
+Message-ID: <Jf7d.1688649950643635911.MtCW@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WjK7QRakeuJpRPvrMM1C"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 06 Jul 2023 11:49:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60528
+ <yocto@lists.yoctoproject.org>; Thu, 06 Jul 2023 13:26:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60529
 
-On Thu, 2023-07-06 at 13:12 +0300, Anders Montonen wrote:
->=20
->=20
-> > On 6 Jul 2023, at 12:55, MOHAMMED HASSAN
-> > <hassanchattarki@gmail.com> wrote:
-> >=20
-> > On Thu, Jul 6, 2023 at 02:29 AM, Adrian Freihofer wrote:
-> > > Hi Hassan
-> > >=20
-> > > It's a bit hard to guess what you are really doing. The bb is a
-> > > fork
-> > > from a quite old version when it was still using the autotools.
-> > > Now we
-> > > use meson.
-> > >=20
-> > > The check for rl_echo_signal_char came into NetworkManager 8
-> > > years ago
-> > > https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit=
-/b69143b5085c58e51ab8077ee5cbe6fafe73e041
-> > > .
-> > > It's probably not a change on NetworkManager side which came in
-> > > recently with your update to 1.22.16.
-> > >=20
-> > > Compiling nmcli with readline works with the bb from meta-
-> > > openembedded
-> > > and the poky version with a similar age. That's the default.
-> > >=20
-> > > Some ideas:
-> > > - Try if the original recipe throws the same error
-> > > - Pass the readline parameter to autotools (what we do with newer
-> > > versions of the recipe and meson)
-> > > - Compile without nmcli and remove the readline dependency. Look
-> > > at the
-> > > commit history of the networkmanager.bb. There was an autotools
-> > > based
-> > > recipe which supported compiling without nmcli at some point in
-> > > time.
-> > Actually I want nmcli recipe in my yocto image file. I am still a
-> > beginner with this so i am facing these issues. Alternatively, I
-> > was looking at adding wireless-tools to my image file but i dont
-> > have its related recipe in my SDK. Do let me know if you have any
-> > suggestions.
->=20
-> Are you using meta-gplv2? Its version of readline is too old for
-> NetworkManager.
+--WjK7QRakeuJpRPvrMM1C
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-No, we don't use meta-gplv2.
+I am building my raspberrypi wic image using the layer meta-raspberrypi.
 
-But we contributed the feature for compiling NetworkManager without
-readline to NetworkManager. Recent NetworkManager recipe versions 1.36+
-have a packageconfig flag to build it with libedit instead of
-libreadline.
+I am using a raspiberrypi compute module 4 with wifi chip.
 
-Here are all commits:
-https://github.com/openembedded/meta-openembedded/commits/master/meta-netwo=
-rking/recipes-connectivity/networkmanager
+I just can't seem to get the wlan0 device to appear when I type ifconfig.
 
-That's the one which introduces the libedit feature:
-https://github.com/openembedded/meta-openembedded/commit/9632eca6d27f29dc22=
-9d7a4c6663f97fc036661e
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+root@raspberrypi4-64:~# ifconfig
+eth0: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 1500
+inet 192.168.7.8=C2=A0 netmask 255.255.255.0=C2=A0 broadcast 192.168.7.255
+ether dc:a6:32:e3:eb:fe=C2=A0 txqueuelen 1000=C2=A0 (Ethernet)
+RX packets 407=C2=A0 bytes 62442 (60.9 KiB)
+RX errors 0=C2=A0 dropped 0=C2=A0 overruns 0=C2=A0 frame 0
+TX packets 567=C2=A0 bytes 94749 (92.5 KiB)
+TX errors 0=C2=A0 dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 collisions 0
 
---> Updating at least NetworkManager would help you.
+lo: flags=3D73<UP,LOOPBACK,RUNNING>=C2=A0 mtu 65536
+inet 127.0.0.1=C2=A0 netmask 255.0.0.0
+inet6 ::1=C2=A0 prefixlen 128=C2=A0 scopeid 0x10<host>
+loop=C2=A0 txqueuelen 1000=C2=A0 (Local Loopback)
+RX packets 4047=C2=A0 bytes 252037 (246.1 KiB)
+RX errors 0=C2=A0 dropped 0=C2=A0 overruns 0=C2=A0 frame 0
+TX packets 4047=C2=A0 bytes 252037 (246.1 KiB)
+TX errors 0=C2=A0 dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 collisions 0
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
 
-Regards,
-Adrian
+Here is a filtered output of my lsmod command
 
->=20
-> -a
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60527):
-> https://lists.yoctoproject.org/g/yocto/message/60527
-> Mute This Topic: https://lists.yoctoproject.org/mt/99982001/4454582
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe:
-> https://lists.yoctoproject.org/g/yocto/unsub=C2=A0[adrian.freihofer@gmail=
-.com
-> ]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+root@raspberrypi4-64:~# lsmod
+Module=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Size=C2=A0 Used by
+88XXau=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 2265088=C2=A0 0
+cmac=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 3
+algif_hash=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 16384=C2=A0 1
+aes_arm64=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 16384=C2=A0 3
+aes_generic=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 36864=C2=A0 1 aes_arm64
+algif_skcipher=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 =
+1
+af_alg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 28672=C2=A0 6 algif_hash,algif_skcipher
+bnep=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 24576=C2=A0 2
+8021q=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 32768=C2=A0 0
+garp=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 1 8021q
+stp=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 1 garp
+llc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 2 stp,garp
+imx219=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 24576=C2=A0 0
+mcp251x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 24576=C2=A0 0
+spidev=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 20480=C2=A0 0
+can_dev=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 40960=C2=A0 1 mcp251x
+hci_uart=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 45056=C2=A0 0
+btbcm=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 24576=C2=A0 1 hci_uart
+v3d=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 90112=C2=A0 1
+bluetooth=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 585728=C2=A0 26 hci_uart,btbcm,bnep
+i2c_mux_pinctrl=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 0
+gpu_sched=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 49152=C2=A0 1 v3d
+snd_soc_simple_card=C2=A0=C2=A0=C2=A0 20480=C2=A0 0
+snd_soc_simple_card_utils=C2=A0=C2=A0=C2=A0 28672=C2=A0 1 snd_soc_simple_ca=
+rd
+drm_shmem_helper=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 24576=C2=A0 1 v3d
+raspberrypi_hwmon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 0
+i2c_mux=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 1 i2c_mux_pinctrl
+i2c_brcmstb=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 16384=C2=A0 0
+bcm2835_unicam=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 53248=C2=A0 =
+0
+dwc2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 192512=C2=A0 0
+roles=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 20480=C2=A0 1 dwc2
+v4l2_dv_timings=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 40960=C2=A0 1 bcm=
+2835_unicam
+v4l2_fwnode=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 24576=C2=A0 2 imx219,bcm2835_unicam
+ecdh_generic=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16=
+384=C2=A0 2 bluetooth
+v4l2_async=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 24576=C2=A0 3 v4l2_fwnode,imx219,bcm2835_unicam
+ecc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 36864=C2=A0 1 ecdh_generic
+libaes=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 3 aes_arm64,bluetooth,aes_generic
+spi_bcm2835=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 20480=C2=A0 0
+snd_soc_bcm2835_i2s=C2=A0=C2=A0=C2=A0 20480=C2=A0 0
+bcm2835_codec=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 49152=
+=C2=A0 0
+rpivid_hevc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 49152=C2=A0 0
+bcm2835_v4l2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 45=
+056=C2=A0 0
+bcm2835_isp=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 28672=C2=A0 0
+bcm2835_mmal_vchiq=C2=A0=C2=A0=C2=A0=C2=A0 36864=C2=A0 3 bcm2835_codec,bcm2=
+835_v4l2,bcm2835_isp
+v4l2_mem2mem=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 40=
+960=C2=A0 2 bcm2835_codec,rpivid_hevc
+videobuf2_vmalloc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 1 bcm2835_v4l2
+videobuf2_dma_contig=C2=A0=C2=A0=C2=A0 20480=C2=A0 4 bcm2835_codec,bcm2835_=
+unicam,rpivid_hevc,bcm2835_isp
+videobuf2_memops=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 2 videobuf=
+2_vmalloc,videobuf2_dma_contig
+videobuf2_v4l2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 32768=C2=A0 =
+6 bcm2835_codec,bcm2835_unicam,bcm2835_v4l2,rpivid_hevc,v4l2_mem2mem,bcm283=
+5_isp
+videobuf2_common=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 69632=C2=A0 10 bcm2835=
+_codec,videobuf2_vmalloc,videobuf2_dma_contig,videobuf2_v4l2,bcm2835_unicam=
+,bcm2835_v4l2,rpivid_hevc,v4l2_mem2mem,videobuf2_memops,bcm2835_isp
+videodev=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 274432=C2=A0 10 v4l2_async,bcm2835_codec,imx219,videobuf2_v4l2=
+,bcm2835_unicam,bcm2835_v4l2,videobuf2_common,rpivid_hevc,v4l2_mem2mem,bcm2=
+835_isp
+vc_sm_cma=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 32768=C2=A0 2 bcm2835_mmal_vchiq,bcm2835_isp
+snd_bcm2835=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 28672=C2=A0 0
+mc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 61440=C2=A0 10 v4l2_async,=
+videodev,bcm2835_codec,imx219,videobuf2_v4l2,bcm2835_unicam,videobuf2_commo=
+n,rpivid_hevc,v4l2_mem2mem,bcm2835_isp
+uio_pdrv_genirq=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16384=C2=A0 0
+nvmem_rmem=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 16384=C2=A0 0
+uio=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 24576=C2=A0 1 uio_pdrv_genirq
+sch_fq_codel=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 20=
+480=C2=A0 6
+brcmutil=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 24576=C2=A0 0
+cfg80211=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 929792=C2=A0 1 88XXau
+rfkill=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 32768=C2=A0 4 bluetooth,cfg80211
+fuse=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 139264=C2=A0 1
+ipv6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 552960=C2=A0 28
 
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+And here is my /boot/config.txt
+
+root@raspberrypi4-64:~# cat /boot/config.txt
+###########################################################################=
+#####
+##=C2=A0 Raspberry Pi Configuration Settings
+##
+##=C2=A0 Revision 16, 2013/06/22
+##
+##=C2=A0 Details taken from the eLinux wiki
+##=C2=A0 For up-to-date information please refer to wiki page.
+##
+##=C2=A0 Wiki Location : http://elinux.org/RPiconfig
+##
+##
+##=C2=A0 Description:
+##=C2=A0=C2=A0=C2=A0 Details of each setting are described with each sectio=
+n that begins with
+##=C2=A0=C2=A0=C2=A0 a double hashed comment ('##')
+##=C2=A0=C2=A0=C2=A0 It is up to the user to remove the single hashed comme=
+nt ('#') from each
+##=C2=A0=C2=A0=C2=A0 option they want to enable, and to set the specific va=
+lue of that option.
+##
+##=C2=A0 Overclock settings will be disabled at runtime if the SoC reaches =
+temp_limit
+##
+###########################################################################=
+#####
+
+###########################################################################=
+#####
+##=C2=A0 Standard Definition Video Settings
+###########################################################################=
+#####
+
+## sdtv_mode
+##=C2=A0=C2=A0=C2=A0=C2=A0 defines the TV standard for composite output
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Norm=
+al NTSC (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Japa=
+nese version of NTSC - no pedestal
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Norm=
+al PAL
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Braz=
+ilian version of PAL - 525/60 rather than 625/50, different
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 subcarrier
+##
+#sdtv_mode=3D0
+
+## sdtv_aspect
+##=C2=A0=C2=A0=C2=A0=C2=A0 defines the aspect ratio for composite output
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 4:3 =
+(Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 14:9
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 16:9
+##
+#sdtv_aspect=3D1
+
+## sdtv_disable_colourburst
+##=C2=A0=C2=A0=C2=A0=C2=A0 Disables colour burst on composite output. The p=
+icture will be
+##=C2=A0=C2=A0=C2=A0=C2=A0 monochrome, but possibly sharper
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Colo=
+ur burst is enabled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Colo=
+ur burst is disabled
+##
+#sdtv_disable_colourburst=3D1
+
+###########################################################################=
+#####
+##=C2=A0 High Definition Video Settings
+###########################################################################=
+#####
+
+## hdmi_safe
+##=C2=A0=C2=A0=C2=A0=C2=A0 Use "safe mode" settings to try to boot with max=
+imum hdmi compatibility.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+bled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Enab=
+led (this does: hdmi_force_hotplug=3D1,
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 hdmi_ignore_edid=3D0xa5=
+000080,
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 config_hdmi_boost=3D4, =
+hdmi_group=3D2,
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 hdmi_mode=3D4, disable_=
+overscan=3D0,
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 overscan_left=3D24, ove=
+rscan_right=3D24,
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 overscan_top=3D24, over=
+scan_bottom=3D24)
+##
+#hdmi_safe=3D1
+
+## hdmi_force_hotplug
+##=C2=A0=C2=A0=C2=A0=C2=A0 Pretends HDMI hotplug signal is asserted so it a=
+ppears a HDMI display
+##=C2=A0=C2=A0=C2=A0=C2=A0 is attached
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+bled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+HDMI mode even if no HDMI monitor is detected
+##
+#hdmi_force_hotplug=3D1
+
+## hdmi_ignore_hotplug
+##=C2=A0=C2=A0=C2=A0=C2=A0 Pretends HDMI hotplug signal is not asserted so =
+it appears a HDMI
+##=C2=A0=C2=A0=C2=A0=C2=A0 display is not attached
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+bled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+composite mode even if HDMI monitor is detected
+##
+#hdmi_ignore_hotplug=3D1
+
+## hdmi_drive
+##=C2=A0=C2=A0=C2=A0=C2=A0 chooses between HDMI and DVI modes
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Norm=
+al DVI mode (No sound)
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Norm=
+al HDMI mode (Sound will be sent if supported and enabled)
+##
+#hdmi_drive=3D2
+
+## hdmi_ignore_edid
+##=C2=A0=C2=A0=C2=A0=C2=A0 Enables the ignoring of EDID/display data
+##
+#hdmi_ignore_edid=3D0xa5000080
+
+## hdmi_edid_file
+##=C2=A0=C2=A0=C2=A0=C2=A0 Read the EDID data from the edid.dat file instea=
+d of from the attached
+##=C2=A0=C2=A0=C2=A0=C2=A0 device
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Read=
+ EDID data from attached device (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Read=
+ EDID data from edid.txt file
+##
+#hdmi_edid_file=3D1
+
+## hdmi_ignore_edid_audio
+##=C2=A0=C2=A0=C2=A0=C2=A0 Pretends all audio formats are unsupported by di=
+splay. This means ALSA
+##=C2=A0=C2=A0=C2=A0=C2=A0 will default to analogue.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+EDID provided values (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Pret=
+end all audio formats are unsupported
+##
+#hdmi_ignore_edid_audio=3D1
+
+## hdmi_force_edid_audio
+##=C2=A0=C2=A0=C2=A0=C2=A0 Pretends all audio formats are supported by disp=
+lay, allowing
+##=C2=A0=C2=A0=C2=A0=C2=A0 passthrough of DTS/AC3 even when not reported as=
+ supported.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+EDID provided values (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Pret=
+end all audio formats are supported
+##
+#hdmi_force_edid_audio=3D1
+
+## hdmi_force_edid_3d
+##=C2=A0=C2=A0=C2=A0=C2=A0 Pretends all CEA modes support 3D even when edid=
+ doesn't indicate
+##=C2=A0=C2=A0=C2=A0=C2=A0 support for them.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+EDID provided values (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Pret=
+end 3D mode is supported
+##
+#hdmi_force_edid_3d=3D1
+
+## avoid_edid_fuzzy_match
+##=C2=A0=C2=A0=C2=A0=C2=A0 Avoid fuzzy matching of modes described in edid.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+fuzzy matching (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Avoi=
+d fuzzy matching
+##
+#avoid_edid_fuzzy_match=3D1
+
+## hdmi_pixel_encoding
+##=C2=A0=C2=A0=C2=A0=C2=A0 Force the pixel encoding mode.
+##=C2=A0=C2=A0=C2=A0=C2=A0 By default it will use the mode requested from e=
+did so shouldn't
+##=C2=A0=C2=A0=C2=A0=C2=A0 need changing.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+EDID provided values (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RGB =
+limited=C2=A0=C2=A0 (16-235)
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RGB =
+full=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ( 0-255)
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 YCbC=
+r limited (16-235)
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 YCbC=
+r limited ( 0-255)
+##
+#hdmi_pixel_encoding=3D1
+
+## hdmi_group
+##=C2=A0=C2=A0=C2=A0=C2=A0 Defines the HDMI type
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Use =
+the preferred group reported by the edid (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CEA
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DMT
+##
+#hdmi_group=3D1
+
+## hdmi_mode
+##=C2=A0=C2=A0=C2=A0=C2=A0 defines screen resolution in CEA or DMT format
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 H means 16:9 variant (of a normally 4:3 mode).
+##=C2=A0=C2=A0=C2=A0=C2=A0 2x means pixel doubled (i.e. higher clock rate, =
+with each pixel repeated
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 twice)
+##=C2=A0=C2=A0=C2=A0=C2=A0 4x means pixel quadrupled (i.e. higher clock rat=
+e, with each pixel
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 repea=
+ted four times)
+##=C2=A0=C2=A0=C2=A0=C2=A0 reduced blanking means fewer bytes are used for =
+blanking within the data
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 stream (i.e. lower c=
+lock rate, with fewer wasted bytes)
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 hdmi_group=3DCEA=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 hdmi_group=3DDMT
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 VGA=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 640x350=C2=A0=C2=A0 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=
+=C2=A0 60Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 640x400=C2=
+=A0=C2=A0 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=
+=C2=A0 60Hz=C2=A0 H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 720x400=C2=A0=C2=A0 =
+85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 720p=
+=C2=A0 60Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 640x480=C2=
+=A0=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080=
+i 60Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 640x480=C2=A0=C2=
+=A0 72Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=
+=C2=A0 60Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 640x480=C2=
+=A0=C2=A0 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=
+=C2=A0 60Hz=C2=A0 H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 640x480=C2=A0=C2=A0 =
+85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 240p=
+=C2=A0 60Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 800x600=C2=
+=A0=C2=A0 56Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 240p=
+=C2=A0 60Hz=C2=A0 H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 800x600=C2=A0=C2=A0 =
+60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 10=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=C2=
+=A0 60Hz=C2=A0 4x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 800x600=C2=A0=C2=A0 72Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 11=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=C2=
+=A0 60Hz=C2=A0 4x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 800x600=C2=A0=C2=A0 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 12=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 240p=C2=
+=A0 60Hz=C2=A0 4x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 800x600=C2=A0=C2=A0 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 13=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 240p=C2=
+=A0 60Hz=C2=A0 4x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 800x600=C2=A0=C2=A0 120Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 14=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 60Hz=C2=A0 2x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 848x480=C2=A0=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 15=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 60Hz=C2=A0 2x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1024x768=C2=A0 43Hz=C2=A0 DO NOT USE
+##=C2=A0=C2=A0=C2=A0=C2=A0 16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080p 60H=
+z=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1024x768=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 17=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 50Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1024x768=C2=A0=
+ 70Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 18=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 50Hz=C2=A0 H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1024x768=C2=A0 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 19=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 720p=C2=
+=A0 50Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1024x768=C2=A0=
+ 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 20=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080i 50H=
+z=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1024x768=C2=A0 120Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 21=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 50Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1152x864=C2=A0=
+ 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 22=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 50Hz=C2=A0 H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x768=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 23=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 288p=C2=
+=A0 50Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x768=C2=A0=
+ 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 24=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 288p=C2=
+=A0 50Hz=C2=A0 H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x768=C2=A0 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 25=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 50Hz=C2=A0 4x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x768=C2=A0 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 26=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 50Hz=C2=A0 4x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x768=C2=A0 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 27=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 288p=C2=
+=A0 50Hz=C2=A0 4x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x800=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 28=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 288p=C2=
+=A0 50Hz=C2=A0 4x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x800=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 29=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 50Hz=C2=A0 2x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x800=C2=A0 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 30=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 50Hz=C2=A0 2x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x800=C2=A0 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 31=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080p 50H=
+z=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x800=C2=A0 120Hz=
+ reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 32=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080p 24H=
+z=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x960=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 33=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080p 25H=
+z=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x960=C2=A0 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 34=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080p 30H=
+z=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x960=C2=A0 120Hz=
+ reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 35=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 60Hz=C2=A0 4x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x1024 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 36=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 60Hz=C2=A0 4x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x1024 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 37=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 50Hz=C2=A0 4x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x1024 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 38=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 50Hz=C2=A0 4x H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1280x1024 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 39=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080i 50H=
+z=C2=A0 reduced blanking=C2=A0=C2=A0=C2=A0 1360x768=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080i 100=
+Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1360x768=C2=A0 120Hz reduc=
+ed blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 41=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 720p=C2=
+=A0 100Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1400x1050=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 42=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 100Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1400x1050 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 43=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 100Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1400x1050 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 44=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 100Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1400x1050 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 45=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 100Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1400x1050 120Hz reduced blank=
+ing
+##=C2=A0=C2=A0=C2=A0=C2=A0 46=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080i 120=
+Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1440x900=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 47=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 720p=C2=
+=A0 120Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1440x900=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 48=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 120Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1440x900=C2=A0 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 49=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 120Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1440x900=C2=A0 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=C2=
+=A0 120Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1440x900=C2=A0 120Hz=
+ reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 51=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=C2=
+=A0 120Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1600x1200 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 52=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 200Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1600x1200 65Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 53=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576p=C2=
+=A0 200Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1600x1200 70Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 54=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 200Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1600x1200 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 55=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 576i=C2=
+=A0 200Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1600x1200 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 56=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 240Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1600x1200 120Hz redu=
+ced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 57=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480p=C2=
+=A0 240Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1680x1050=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 58=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=C2=
+=A0 240Hz=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1680x1050 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 59=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 480i=C2=
+=A0 240Hz H=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1680x1050 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 60=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1680x1050 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 61=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1680x1050 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 62=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1792x1344 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 63=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1792x1344 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 64=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1792x1344 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 65=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1856x1392 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 66=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1856x1392 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 67=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1856x1392 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 68=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1200=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 69=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1200 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 70=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1200 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 71=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1200 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 72=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1200 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 73=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1440 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 74=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1440 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 75=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1920x1440 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 76=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2560x1600=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 77=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2560x1600 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 78=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2560x1600 75Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 79=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2560x1600 85Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 80=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2560x1600 120Hz reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 81=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1366x768=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 82=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1080p=C2=A0=C2=A0=C2=A0=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 83=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1600x900=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 84=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2048x1152=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 reduced blanking
+##=C2=A0=C2=A0=C2=A0=C2=A0 85=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 720p=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 60Hz
+##=C2=A0=C2=A0=C2=A0=C2=A0 86=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1366x768=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 reduced blanking
+##
+#hdmi_mode=3D1
+
+## config_hdmi_boost
+##=C2=A0=C2=A0=C2=A0=C2=A0 configure the signal strength of the HDMI interf=
+ace.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (Def=
+ault)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1
+##=C2=A0=C2=A0=C2=A0=C2=A0 2
+##=C2=A0=C2=A0=C2=A0=C2=A0 3
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Try =
+if you have interference issues with HDMI
+##=C2=A0=C2=A0=C2=A0=C2=A0 5
+##=C2=A0=C2=A0=C2=A0=C2=A0 6
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Maxi=
+mum
+##
+#config_hdmi_boost=3D0
+
+## hdmi_ignore_cec_init
+##=C2=A0=C2=A0=C2=A0=C2=A0 Doesn't sent initial active source message.=C2=
+=A0 Avoids bringing
+##=C2=A0=C2=A0=C2=A0=C2=A0 (CEC enabled) TV out of standby and channel swit=
+ch when rebooting.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Norm=
+al behaviour (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Does=
+n't sent initial active source message
+##
+#hdmi_ignore_cec_init=3D1
+
+## hdmi_ignore_cec
+##=C2=A0=C2=A0=C2=A0=C2=A0 Pretends CEC is not supported at all by TV.
+##=C2=A0=C2=A0=C2=A0=C2=A0 No CEC functions will be supported.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Norm=
+al behaviour (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Pret=
+end CEC is not supported by TV
+##
+#hdmi_ignore_cec=3D1
+
+###########################################################################=
+#####
+##=C2=A0 Overscan Video Settings
+###########################################################################=
+#####
+
+## overscan_left
+##=C2=A0=C2=A0=C2=A0=C2=A0 Number of pixels to skip on left
+##
+#overscan_left=3D0
+
+## overscan_right
+##=C2=A0=C2=A0=C2=A0=C2=A0 Number of pixels to skip on right
+##
+#overscan_right=3D0
+
+## overscan_top
+##=C2=A0=C2=A0=C2=A0=C2=A0 Number of pixels to skip on top
+##
+#overscan_top=3D0
+
+## overscan_bottom
+##=C2=A0=C2=A0=C2=A0=C2=A0 Number of pixels to skip on bottom
+##
+#overscan_bottom=3D0
+
+## disable_overscan
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to 1 to disable overscan
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Over=
+scan Enabled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Over=
+scan Disabled
+##
+#disable_overscan=3D1
+
+###########################################################################=
+#####
+##=C2=A0 Framebuffer Video Settings
+###########################################################################=
+#####
+
+## framebuffer_width
+##=C2=A0=C2=A0=C2=A0=C2=A0 Console framebuffer width in pixels. Default is =
+display width minus
+##=C2=A0=C2=A0=C2=A0=C2=A0 overscan.
+##
+#framebuffer_width=3D0
+
+## framebuffer_height
+##=C2=A0=C2=A0=C2=A0=C2=A0 Console framebuffer height in pixels. Default is=
+ display height minus
+##=C2=A0=C2=A0=C2=A0=C2=A0 overscan.
+##
+#framebuffer_height=3D0
+
+## framebuffer_depth
+##=C2=A0=C2=A0=C2=A0=C2=A0 Console framebuffer depth in bits per pixel.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Vali=
+d, but default RGB palette makes an unreadable screen
+##=C2=A0=C2=A0=C2=A0=C2=A0 16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 24=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Looks bet=
+ter but has corruption issues as of 2012/06/15
+##=C2=A0=C2=A0=C2=A0=C2=A0 32=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Has no co=
+rruption issues but needs framebuffer_ignore_alpha=3D1
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 and shows the wrong colors as of 2012/06/15
+##
+#framebuffer_depth=3D16
+
+## framebuffer_ignore_alpha
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to 1 to disable alpha channel. Helps with 32=
+bit.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Enab=
+le Alpha Channel (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+ble Alpha Channel
+##
+#framebuffer_ignore_alpha=3D0
+
+###########################################################################=
+#####
+##=C2=A0 General Video Settings
+###########################################################################=
+#####
+
+## display_rotate
+##=C2=A0=C2=A0=C2=A0=C2=A0 Rotate the display clockwise or flip the display=
+.
+##=C2=A0=C2=A0=C2=A0=C2=A0 The 90 and 270 degrees rotation options require =
+additional memory on GPU,
+##=C2=A0=C2=A0=C2=A0=C2=A0 so won't work with the 16M GPU split.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 de=
+grees (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 90 d=
+egrees
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 180 =
+degrees
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 270 =
+degrees
+##=C2=A0=C2=A0=C2=A0=C2=A0 0x10000=C2=A0 Horizontal flip
+##=C2=A0=C2=A0=C2=A0=C2=A0 0x20000=C2=A0 Vertical flip
+##
+#display_rotate=3D0
+
+## dispmanx_offline
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "1" to enable offline compositing
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 0
+##
+#dispmanx_offline=3D0
+
+###########################################################################=
+#####
+##=C2=A0 Licensed Codecs
+##
+##=C2=A0 Hardware decoding of additional codecs can be enabled by purchasin=
+g a
+##=C2=A0 license that is locked to the CPU serial number of your Raspberry =
+Pi.
+##
+##=C2=A0 Up to 8 licenses per CODEC can be specified as a comma seperated l=
+ist.
+##
+###########################################################################=
+#####
+
+## decode_MPG2
+##=C2=A0=C2=A0=C2=A0=C2=A0 License key to allow hardware MPEG-2 decoding.
+##
+#decode_MPG2=3D0x12345678
+
+## decode_WVC1
+##=C2=A0=C2=A0=C2=A0=C2=A0 License key to allow hardware VC-1 decoding.
+##
+#decode_WVC1=3D0x12345678
+
+###########################################################################=
+#####
+##=C2=A0 Camera Settings
+###########################################################################=
+#####
+
+## start_x
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "1" to enable the camera module.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Enabling the camera requires gpu_mem option to b=
+e specified with a value
+##=C2=A0=C2=A0=C2=A0=C2=A0 of at least 128.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 0
+##
+start_x=3D1
+
+## disable_camera_led
+##=C2=A0=C2=A0=C2=A0=C2=A0 Turn off the red camera led when recording video=
+ or taking a still
+##=C2=A0=C2=A0=C2=A0=C2=A0 picture.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LED =
+enabled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LED =
+disabled
+##
+#disable_camera_led=3D1
+
+###########################################################################=
+#####
+##=C2=A0 Test Settings
+###########################################################################=
+#####
+
+## test_mode
+##=C2=A0=C2=A0=C2=A0=C2=A0 Enable test sound/image during boot for manufact=
+uring test.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+ble Test Mod (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Enab=
+le Test Mode
+##
+#test_mode=3D0
+
+###########################################################################=
+#####
+##=C2=A0 Memory Settings
+###########################################################################=
+#####
+
+## disable_l2cache
+##=C2=A0=C2=A0=C2=A0=C2=A0 Disable arm access to GPU's L2 cache. Needs corr=
+esponding L2 disabled
+##=C2=A0=C2=A0=C2=A0=C2=A0 kernel.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Enab=
+le L2 Cache (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+ble L2 cache
+##
+#disable_l2cache=3D0
+
+## gpu_mem
+##=C2=A0=C2=A0=C2=A0=C2=A0 GPU memory allocation in MB for all board revisi=
+ons.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 64
+##
+#gpu_mem=3D128
+
+## gpu_mem_256
+##=C2=A0=C2=A0=C2=A0=C2=A0 GPU memory allocation in MB for 256MB board revi=
+sion.
+##=C2=A0=C2=A0=C2=A0=C2=A0 This option overrides gpu_mem.
+##
+#gpu_mem_256=3D192
+
+## gpu_mem_512
+##=C2=A0=C2=A0=C2=A0=C2=A0 GPU memory allocation in MB for 512MB board revi=
+sion.
+##=C2=A0=C2=A0=C2=A0=C2=A0 This option overrides gpu_mem.
+##
+#gpu_mem_512=3D448
+
+## gpu_mem_1024
+##=C2=A0=C2=A0=C2=A0=C2=A0 GPU memory allocation in MB for 1024MB board rev=
+ision.
+##=C2=A0=C2=A0=C2=A0=C2=A0 This option overrides gpu_mem.
+##
+#gpu_mem_1024=3D944
+
+## disable_pvt
+##=C2=A0=C2=A0=C2=A0=C2=A0 Disable adjusting the refresh rate of RAM every =
+500ms
+##=C2=A0=C2=A0=C2=A0=C2=A0 (measuring RAM temparature).
+##
+#disable_pvt=3D1
+
+###########################################################################=
+#####
+##=C2=A0 CMA - Dynamic Memory Split
+##
+##=C2=A0 CMA enables dynamic management of the ARM and GPU memory split at =
+runtime.
+##
+##=C2=A0 The following options need to be in cmdline.txt for CMA to work:
+##=C2=A0=C2=A0=C2=A0 coherent_pool=3D6M smsc95xx.turbo_mode=3DN
+##
+###########################################################################=
+#####
+
+## cma_lwm
+##=C2=A0=C2=A0=C2=A0=C2=A0 When GPU has less than cma_lwm (low water mark) =
+memory available it
+##=C2=A0=C2=A0=C2=A0=C2=A0 will request some from ARM.
+##
+#cma_lwm=3D16
+
+## cma_hwm
+##=C2=A0=C2=A0=C2=A0=C2=A0 When GPU has more than cma_hwm (high water mark)=
+ memory available it
+##=C2=A0=C2=A0=C2=A0=C2=A0 will release some to ARM.
+##
+#cma_hwm=3D32
+
+###########################################################################=
+#####
+##=C2=A0 Boot Option Settings
+###########################################################################=
+#####
+
+## disable_commandline_tags
+##=C2=A0=C2=A0=C2=A0=C2=A0 Stop start.elf from filling in ATAGS (memory fro=
+m 0x100) before
+##=C2=A0=C2=A0=C2=A0=C2=A0 launching kernel
+##
+#disable_commandline_tags=3D0
+
+## cmdline (string)
+##=C2=A0=C2=A0=C2=A0=C2=A0 Command line parameters. Can be used instead of =
+cmdline.txt file
+##
+#cmdline=3D""
+
+## kernel (string)
+##=C2=A0=C2=A0=C2=A0=C2=A0 Alternative name to use when loading kernel.
+##
+#kernel=3D""
+
+## kernel_address
+##=C2=A0=C2=A0=C2=A0=C2=A0 Address to load kernel.img file at
+##
+#kernel_address=3D0x00000000
+
+## kernel_old
+##=C2=A0=C2=A0=C2=A0=C2=A0 Support loading old kernels
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+bled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Load=
+ kernel at address 0x00000000
+##
+#kernel_old=3D1
+
+## ramfsfile (string)
+##=C2=A0=C2=A0=C2=A0=C2=A0 ramfs file to load
+##
+#ramfsfile=3D""
+
+## ramfsaddr
+##=C2=A0=C2=A0=C2=A0=C2=A0 Address to load ramfs file at
+##
+#ramfsaddr=3D0x00000000
+
+## initramfs (string address)
+##=C2=A0=C2=A0=C2=A0=C2=A0 ramfs file and address to load it at (it's like =
+ramfsfile+ramfsaddr in
+##=C2=A0=C2=A0=C2=A0=C2=A0 one option).
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 NOTE: this option uses different syntax than all=
+ other options - you
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 should not u=
+se "=3D" character here.
+##
+#initramfs initramf.gz 0x00800000
+
+## device_tree_address
+##=C2=A0=C2=A0=C2=A0=C2=A0 Address to load device_tree at
+##
+#device_tree_address=3D0x00000000
+
+## init_uart_baud
+##=C2=A0=C2=A0=C2=A0=C2=A0 Initial uart baud rate.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 115200
+##
+#init_uart_baud=3D115200
+
+## init_uart_clock
+##=C2=A0=C2=A0=C2=A0=C2=A0 Initial uart clock.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 3000000 (3MHz)
+##
+#init_uart_clock=3D3000000
+
+## init_emmc_clock
+##=C2=A0=C2=A0=C2=A0=C2=A0 Initial emmc clock, increasing this can speedup =
+your SD-card.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 100000000 (100mhz)
+##
+#init_emmc_clock=3D100000000
+
+## boot_delay
+##=C2=A0=C2=A0=C2=A0=C2=A0 Wait for a given number of seconds in start.elf =
+before loading
+##=C2=A0=C2=A0=C2=A0=C2=A0 kernel.img.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 delay =3D (1000 * boot_delay) + boot_delay_ms
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 1
+##
+#boot_delay=3D0
+
+## boot_delay_ms
+##=C2=A0=C2=A0=C2=A0=C2=A0 Wait for a given number of milliseconds in start=
+.elf before loading
+##=C2=A0=C2=A0=C2=A0=C2=A0 kernel.img.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 delay =3D (1000 * boot_delay) + boot_delay_ms
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 0
+##
+#boot_delay_ms=3D0
+
+## avoid_safe_mode
+##=C2=A0=C2=A0=C2=A0=C2=A0 Adding a jumper between pins 5 & 6 of P1 enables=
+ a recovery Safe Mode.
+##=C2=A0=C2=A0=C2=A0=C2=A0 If pins 5 & 6 are used for connecting to externa=
+l devices (e.g. GPIO),
+##=C2=A0=C2=A0=C2=A0=C2=A0 then this setting can be used to ensure Safe Mod=
+e is not triggered.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Resp=
+ect Safe Mode input (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Igno=
+re Safe Mode input
+##
+#avoid_safe_mode=3D1
+
+## disable_splash
+##=C2=A0=C2=A0=C2=A0=C2=A0 Avoids the rainbow splash screen on boot.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Spla=
+sh screen enabled (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Spla=
+sh screen disabled
+##
+#disable_splash=3D1
+
+###########################################################################=
+#####
+##=C2=A0 Overclocking Settings
+##
+##=C2=A0 ARM, SDRAM and GPU each have their own PLLs and can have unrelated
+##=C2=A0 frequencies.
+##
+##=C2=A0 The GPU core, h264, v3d and isp share a PLL, so need to have relat=
+ed
+##=C2=A0 frequencies.
+##=C2=A0 pll_freq =3D floor(2400 / (2 * core_freq)) * (2 * core_freq)
+##=C2=A0 gpu_freq =3D pll_freq / [even number]
+##
+##=C2=A0 The effective gpu_freq is automatically rounded to nearest even in=
+teger, so
+##=C2=A0 asking for core_freq =3D 500 and gpu_freq =3D 300 will result in d=
+ivisor of
+##=C2=A0 2000/300 =3D 6.666 =3D> 6 and so 333.33MHz.
+##
+##
+##=C2=A0 Standard Profiles:
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 arm_freq=C2=A0=C2=A0=C2=A0 core_freq=C2=A0=
+=C2=A0=C2=A0 sdram_freq=C2=A0=C2=A0=C2=A0 over_voltage
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 None=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 700=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 250=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 400=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0
+##=C2=A0=C2=A0=C2=A0=C2=A0 Modest=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 800=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 300=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 400=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 0
+##=C2=A0=C2=A0=C2=A0=C2=A0 Medium=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 900=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 333=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 450=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 2
+##=C2=A0=C2=A0=C2=A0=C2=A0 High=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 950=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 450=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 450=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6
+##=C2=A0=C2=A0=C2=A0=C2=A0 Turbo=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+1000=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 500=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 500=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 6
+##
+###########################################################################=
+#####
+
+## force_turbo
+##=C2=A0=C2=A0=C2=A0=C2=A0 Control the kernel "ondemand" governor. It has n=
+o effect if no overclock
+##=C2=A0=C2=A0=C2=A0=C2=A0 settings are specified.
+##=C2=A0=C2=A0=C2=A0=C2=A0 May set warrany bit.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Enab=
+le dynamic clocks and voltage for the ARM core, GPU core and
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 SDRAM (Default).
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Overclocking of h264_freq, v3d_freq and isp_freq is ignored.
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Disa=
+ble dynamic clocks and voltage for the ARM core, GPU core
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 and SDRAM.
+##=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Overclocking of h264_freq, v3d_freq and isp_freq is allowed.
+##
+#force_turbo=3D0
+
+## initial_turbo
+##=C2=A0=C2=A0=C2=A0=C2=A0 Enables turbo mode from boot for the given value=
+ in seconds (up to 60)
+##=C2=A0=C2=A0=C2=A0=C2=A0 or until cpufreq sets a frequency. Can help with=
+ sdcard corruption if
+##=C2=A0=C2=A0=C2=A0=C2=A0 overclocked.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 0
+##
+#initial_turbo=3D0
+
+## temp_limit
+##=C2=A0=C2=A0=C2=A0=C2=A0 Overheat protection. Sets clocks and voltages to=
+ default when the SoC
+##=C2=A0=C2=A0=C2=A0=C2=A0 reaches this Celsius value.
+##=C2=A0=C2=A0=C2=A0=C2=A0 Setting this higher than default voids warranty.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 85
+##
+#temp_limit=3D85
+
+## arm_freq
+##=C2=A0=C2=A0=C2=A0=C2=A0 Frequency of ARM in MHz.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 700.
+##
+#arm_freq=3D700
+
+## arm_freq_min
+##=C2=A0=C2=A0=C2=A0=C2=A0 Minimum frequency of ARM in MHz (used for dynami=
+c clocking).
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 700.
+##
+#arm_freq_min=3D700
+
+## gpu_freq
+##=C2=A0=C2=A0=C2=A0=C2=A0 Sets core_freq, h264_freq, isp_freq, v3d_freq to=
+gether.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 250.
+##
+#gpu_freq=3D250
+
+## core_freq
+##=C2=A0=C2=A0=C2=A0=C2=A0 Frequency of GPU processor core in MHz. It has a=
+n impact on ARM
+##=C2=A0=C2=A0=C2=A0=C2=A0 performance since it drives L2 cache.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 250.
+##
+#core_freq=3D250
+
+## core_freq_min
+##=C2=A0=C2=A0=C2=A0=C2=A0 Minimum frequency of GPU processor core in MHz (=
+used for dynamic
+##=C2=A0=C2=A0=C2=A0=C2=A0 clocking). It has an impact on ARM performance s=
+ince it drives L2 cache.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 250.
+##
+#core_freq_min=3D250
+
+## h264_freq
+##=C2=A0=C2=A0=C2=A0=C2=A0 Frequency of hardware video block in MHz.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 250.
+##
+#h264_freq=3D250
+
+## isp_freq
+##=C2=A0=C2=A0=C2=A0=C2=A0 Frequency of image sensor pipeline block in MHz.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 250.
+##
+#isp_freq=3D250
+
+## v3d_freq
+##=C2=A0=C2=A0=C2=A0=C2=A0 Frequency of 3D block in MHz.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 250.
+##
+#v3d_freq=3D250
+
+## sdram_freq
+##=C2=A0=C2=A0=C2=A0=C2=A0 Frequency of SDRAM in MHz.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 400.
+##
+#sdram_freq=3D400
+
+## sdram_freq_min
+##=C2=A0=C2=A0=C2=A0=C2=A0 Minimum frequency of SDRAM in MHz (used for dyna=
+mic clocking).
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 400.
+##
+#sdram_freq_min=3D400
+
+## avoid_pwm_pll
+##=C2=A0=C2=A0=C2=A0=C2=A0 Don't dedicate a pll to PWM audio. This will red=
+uce analogue audio
+##=C2=A0=C2=A0=C2=A0=C2=A0 quality slightly. The spare PLL allows the core_=
+freq to be set
+##=C2=A0=C2=A0=C2=A0=C2=A0 independently from the rest of the gpu allowing =
+more control over
+##=C2=A0=C2=A0=C2=A0=C2=A0 overclocking.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link=
+ed core_freq (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Unli=
+nked core_freq
+##
+#avoid_pwm_pll=3D1
+
+###########################################################################=
+#####
+##=C2=A0 Voltage Settings
+###########################################################################=
+#####
+
+## current_limit_override
+##=C2=A0=C2=A0=C2=A0=C2=A0 Disables SMPS current limit protection. Can help=
+ if you are currently
+##=C2=A0=C2=A0=C2=A0=C2=A0 hitting a reboot failure when overclocking too h=
+igh.
+##=C2=A0=C2=A0=C2=A0=C2=A0 May set warrany bit.
+##
+#current_limit_override=3D0x5A000020
+
+## over_voltage
+##=C2=A0=C2=A0=C2=A0=C2=A0 ARM/GPU core voltage adjust.
+##=C2=A0=C2=A0=C2=A0=C2=A0 May set warrany bit.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 -16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.8=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -15=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.825 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -14=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.85=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -13=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.875 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -12=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.9=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -11=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.925 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -10=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.95=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.975 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.0=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.025 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.05=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.075 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.1=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.125 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.15=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.175 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.2=
+=C2=A0=C2=A0 V (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.22=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.25=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.27=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.3=
+=C2=A0=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.32=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.35=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.37=
+5 V (requires force_turbo=3D1 or current_limit_override)
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.4=
+=C2=A0=C2=A0 V (requires force_turbo=3D1 or current_limit_override)
+##
+#over_voltage=3D0
+
+## over_voltage_min
+##=C2=A0=C2=A0=C2=A0=C2=A0 Minimum ARM/GPU core voltage adjust (used for dy=
+namic clocking).
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 -16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.8=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -15=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.825 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -14=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.85=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -13=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.875 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -12=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.9=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -11=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.925 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -10=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.95=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.975 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.0=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.025 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.05=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.075 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.1=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.125 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.15=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.175 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.2=
+=C2=A0=C2=A0 V (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.22=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.25=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.27=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.3=
+=C2=A0=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.32=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.35=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.37=
+5 V (requires force_turbo=3D1)
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.4=
+=C2=A0=C2=A0 V (requires force_turbo=3D1)
+##
+#over_voltage_min=3D0
+
+## over_voltage_sdram
+##=C2=A0=C2=A0=C2=A0=C2=A0 Sets over_voltage_sdram_c, over_voltage_sdram_i,=
+ over_voltage_sdram_p
+##=C2=A0=C2=A0=C2=A0=C2=A0 together
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 -16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.8=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -15=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.825 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -14=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.85=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -13=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.875 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -12=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.9=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -11=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.925 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -10=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.95=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.975 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.0=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.025 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.05=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.075 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.1=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.125 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.15=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.175 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.2=
+=C2=A0=C2=A0 V (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.22=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.25=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.27=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.3=
+=C2=A0=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.32=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.35=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.37=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.4=
+=C2=A0=C2=A0 V
+##
+#over_voltage_sdram=3D0
+
+## over_voltage_sdram_c
+##=C2=A0=C2=A0=C2=A0=C2=A0 SDRAM controller voltage adjust.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 -16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.8=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -15=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.825 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -14=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.85=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -13=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.875 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -12=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.9=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -11=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.925 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -10=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.95=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.975 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.0=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.025 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.05=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.075 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.1=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.125 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.15=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.175 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.2=
+=C2=A0=C2=A0 V (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.22=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.25=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.27=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.3=
+=C2=A0=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.32=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.35=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.37=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.4=
+=C2=A0=C2=A0 V
+##
+#over_voltage_sdram_c=3D0
+
+## over_voltage_sdram_i
+##=C2=A0=C2=A0=C2=A0=C2=A0 SDRAM I/O voltage adjust.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 -16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.8=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -15=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.825 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -14=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.85=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -13=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.875 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -12=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.9=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -11=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.925 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -10=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.95=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.975 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.0=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.025 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.05=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.075 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.1=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.125 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.15=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.175 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.2=
+=C2=A0=C2=A0 V (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.22=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.25=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.27=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.3=
+=C2=A0=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.32=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.35=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.37=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.4=
+=C2=A0=C2=A0 V
+##
+#over_voltage_sdram_i=3D0
+
+## over_voltage_sdram_p
+##=C2=A0=C2=A0=C2=A0=C2=A0 SDRAM phy voltage adjust.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Value=C2=A0=C2=A0=C2=A0 Description
+##=C2=A0=C2=A0=C2=A0=C2=A0 ------------------------------------------------=
+-------------------------
+##=C2=A0=C2=A0=C2=A0=C2=A0 -16=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.8=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -15=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.825 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -14=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.85=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -13=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.875 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -12=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.9=C2=A0=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -11=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.925 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -10=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.95=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -9=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0.975 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.0=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.025 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.05=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.075 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.1=C2=A0=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.125 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.15=C2=
+=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 -1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.175 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.2=
+=C2=A0=C2=A0 V (Default)
+##=C2=A0=C2=A0=C2=A0=C2=A0 1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.22=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.25=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.27=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 4=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.3=
+=C2=A0=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 5=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.32=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 6=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.35=
+=C2=A0 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.37=
+5 V
+##=C2=A0=C2=A0=C2=A0=C2=A0 8=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1.4=
+=C2=A0=C2=A0 V
+##
+#over_voltage_sdram_p=3D0
+
+###########################################################################=
+#####
+##=C2=A0 USB Power
+###########################################################################=
+#####
+
+## max_usb_current
+##=C2=A0=C2=A0=C2=A0=C2=A0 When set to 1, change the output current limit (=
+for all 4 USB
+##=C2=A0=C2=A0=C2=A0=C2=A0 ports combined) from 600mA to double that, 1200m=
+A.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 This option is not available for Model A/B board=
+s.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 0.
+##
+#max_usb_current=3D0
+
+###########################################################################=
+#####
+##=C2=A0 Base Device Tree Parameters
+###########################################################################=
+#####
+
+## audio
+##=C2=A0=C2=A0=C2=A0=C2=A0 Enable the onboard ALSA audio
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Daudio=3Doff
+
+## i2c_arm
+##=C2=A0=C2=A0=C2=A0=C2=A0 Enable the ARM's i2c interface
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Di2c_arm=3Doff
+
+## i2c_vc
+##=C2=A0=C2=A0=C2=A0=C2=A0 Enable the i2c interface
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Usually reserved for the VideoCore processor
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Di2c_vc=3Doff
+
+## i2c_arm_baudrate
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set the baudrate of the ARM's i2c interface
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 100000.
+##
+#dtparam=3Di2c_arm_baudrate=3D100000
+
+## i2c_vc_baudrate
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set the baudrate of the VideoCore i2c interface
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 100000.
+##
+#dtparam=3Di2c_vc_baudrate=3D100000
+
+## i2s
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "on" to enable the i2s interface
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Di2s=3Doff
+
+## spi
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "on" to enable the spi interfaces
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Dspi=3Doff
+
+## random
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "on" to enable the hardware random
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Drandom=3Doff
+
+## uart0
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "off" to disable uart0
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default on.
+##
+#dtparam=3Duart0=3Don
+
+## watchdog
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "on" to enable the hardware watchdog
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Dwatchdog=3Doff
+
+## act_led_trigger
+##=C2=A0=C2=A0=C2=A0=C2=A0 Choose which activity the LED tracks.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Use "heartbeat" for a nice load indicator.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default mmc.
+##
+#dtparam=3Dact_led_trigger=3Dmmc
+
+## act_led_activelow
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "on" to invert the sense of the LED
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Dact_led_activelow=3Doff
+
+## act_led_gpio
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set which GPIO to use for the activity LED
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 In case you want to connect it to an external de=
+vice
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 16 on a non-Plus board, 47 on a Plus or =
+Pi 2.
+##
+#dtparam=3Dact_led_gpio=3D47
+
+## pwr_led_trigger
+##=C2=A0=C2=A0=C2=A0=C2=A0 Choose which activity the LED tracks.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Use "heartbeat" for a nice load indicator.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Not available on Model A/B boards.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default mmc.
+##
+#dtparam=3Dpwr_led_trigger=3Dmmc
+
+## pwr_led_activelow
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set to "on" to invert the sense of the LED
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Not available on Model A/B boards.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default off.
+##
+#dtparam=3Dpwr_led_activelow=3Doff
+
+## pwr_led_gpio
+##=C2=A0=C2=A0=C2=A0=C2=A0 Set which GPIO to use for the PWR LED
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 In case you want to connect it to an external de=
+vice
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Not available on Model A/B boards.
+##
+##=C2=A0=C2=A0=C2=A0=C2=A0 Default 35.
+##
+#dtparam=3Dpwr_led_gpio=3D35
+# Enable SPI bus
+dtparam=3Dspi=3Don
+# Enable UART
+enable_uart=3D1
+# Enable VC4 Graphics
+dtoverlay=3Dvc4-kms-v3d
+# Enable Sony RaspberryPi Camera(imx219)
+dtoverlay=3Dimx219
+# Enable USB host mode
+dtoverlay=3Ddwc2,dr_mode=3Dhost
+# Enable CAN
+dtoverlay=3Dmcp2515-can0,oscillator=3D16000000,interrupt=3D25
+
+# Enable WM8960
+dtoverlay=3Dwm8960-soundcard
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Any help will be appreciated!
+
+--WjK7QRakeuJpRPvrMM1C
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I am building my raspberrypi wic image using the layer met=
+a-raspberrypi.</div>
+<div dir=3D"ltr">&nbsp;</div>
+<div dir=3D"ltr">I am using a raspiberrypi compute module 4 with wifi chip.=
+</div>
+<div dir=3D"ltr">&nbsp;</div>
+<div dir=3D"ltr">I just can't seem to get the wlan0 device to appear when I=
+ type ifconfig.</div>
+<div dir=3D"ltr">&nbsp;</div>
+<div dir=3D"ltr">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
+<div dir=3D"ltr">
+<div>root@raspberrypi4-64:~# ifconfig<br />eth0: flags=3D4163&lt;UP,BROADCA=
+ST,RUNNING,MULTICAST&gt;&nbsp; mtu 1500<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; inet 192.168.7.8&nbsp; netmask 255.255.255.0&nbsp; broadcast 1=
+92.168.7.255<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether dc:a6:32=
+:e3:eb:fe&nbsp; txqueuelen 1000&nbsp; (Ethernet)<br />&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; RX packets 407&nbsp; bytes 62442 (60.9 KiB)<br />&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp; dropped 0&nbsp; ov=
+erruns 0&nbsp; frame 0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX p=
+ackets 567&nbsp; bytes 94749 (92.5 KiB)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; TX errors 0&nbsp; dropped 0 overruns 0&nbsp; carrier 0&nbsp; c=
+ollisions 0<br /><br />lo: flags=3D73&lt;UP,LOOPBACK,RUNNING&gt;&nbsp; mtu =
+65536<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet 127.0.0.1&nbsp; =
+netmask 255.0.0.0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet6 ::1=
+&nbsp; prefixlen 128&nbsp; scopeid 0x10&lt;host&gt;<br />&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; loop&nbsp; txqueuelen 1000&nbsp; (Local Loopback)<=
+br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets 4047&nbsp; bytes=
+ 252037 (246.1 KiB)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX erro=
+rs 0&nbsp; dropped 0&nbsp; overruns 0&nbsp; frame 0<br />&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; TX packets 4047&nbsp; bytes 252037 (246.1 KiB)<br =
+/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp; dropped 0 ov=
+erruns 0&nbsp; carrier 0&nbsp; collisions 0<br />=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br /><br /></div>
+<div>&nbsp;</div>
+</div>
+<div>&nbsp;</div>
+Here is a filtered output of my lsmod command<br /><br />
+<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D</div>
+<div>root@raspberrypi4-64:~# lsmod<br />Module&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S=
+ize&nbsp; Used by<br />88XXau&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2265088&nbsp; 0<br />cmac&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 3<br />algif_hash&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 1<br />aes_ar=
+m64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 16384&nbsp; 3<br />aes_generic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; 36864&nbsp; 1 aes_arm64<br />algif_skcipher&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 1<br />af_alg&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; 28672&nbsp; 6 algif_hash,algif_skcipher<br />bnep&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; 24576&nbsp; 2<br />8021q&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; 32768&nbsp; 0<br />garp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 1 8=
+021q<br />stp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 1 garp<br =
+/>llc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 2 stp,garp<br />im=
+x219&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; 24576&nbsp; 0<br />mcp251x&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24576&n=
+bsp; 0<br />spidev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20480&nbsp; 0<br />can_dev&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 40960&nbsp; 1 mcp251x<br />hci_uart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 45056&nbsp; 0<br />btbc=
+m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; 24576&nbsp; 1 hci_uart<br />v3d&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; 90112&nbsp; 1<br />bluetooth&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 585728&nbsp; 26 hci_uart=
+,btbcm,bnep<br />i2c_mux_pinctrl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+16384&nbsp; 0<br />gpu_sched&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 49152&nbsp; 1 v3d<br />snd_soc_simple_card&=
+nbsp;&nbsp;&nbsp; 20480&nbsp; 0<br />snd_soc_simple_card_utils&nbsp;&nbsp;&=
+nbsp; 28672&nbsp; 1 snd_soc_simple_card<br />drm_shmem_helper&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; 24576&nbsp; 1 v3d<br />raspberrypi_hwmon&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 16384&nbsp; 0<br />i2c_mux&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 1 =
+i2c_mux_pinctrl<br />i2c_brcmstb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 0<br />bcm2835_unicam&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 53248&nbsp; 0<br />dwc2&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 192512&nbsp; 0<br />roles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20480&nbsp; 1 d=
+wc2<br />v4l2_dv_timings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 40960&nb=
+sp; 1 bcm2835_unicam<br />v4l2_fwnode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; 24576&nbsp; 2 imx219,bcm2835_unicam<br />ecdh_=
+generic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&n=
+bsp; 2 bluetooth<br />v4l2_async&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24576&nbsp; 3 v4l2_fwnode,imx219,bcm2835_unic=
+am<br />ecc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36864&nbsp; 1 ecdh_gener=
+ic<br />libaes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 3 aes_arm64,bluetooth,aes_g=
+eneric<br />spi_bcm2835&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; 20480&nbsp; 0<br />snd_soc_bcm2835_i2s&nbsp;&nbsp;&nbsp; 204=
+80&nbsp; 0<br />bcm2835_codec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; 49152&nbsp; 0<br />rpivid_hevc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 49152&nbsp; 0<br />bcm2835_v4l2&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 45056&nbsp; 0<br />bcm2835_=
+isp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 28672=
+&nbsp; 0<br />bcm2835_mmal_vchiq&nbsp;&nbsp;&nbsp;&nbsp; 36864&nbsp; 3 bcm2=
+835_codec,bcm2835_v4l2,bcm2835_isp<br />v4l2_mem2mem&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 40960&nbsp; 2 bcm2835_codec,rpivid_he=
+vc<br />videobuf2_vmalloc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 1 bcm28=
+35_v4l2<br />videobuf2_dma_contig&nbsp;&nbsp;&nbsp; 20480&nbsp; 4 bcm2835_c=
+odec,bcm2835_unicam,rpivid_hevc,bcm2835_isp<br />videobuf2_memops&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nbsp; 2 videobuf2_vmalloc,videobuf2_dma_co=
+ntig<br />videobuf2_v4l2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32=
+768&nbsp; 6 bcm2835_codec,bcm2835_unicam,bcm2835_v4l2,rpivid_hevc,v4l2_mem2=
+mem,bcm2835_isp<br />videobuf2_common&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6=
+9632&nbsp; 10 bcm2835_codec,videobuf2_vmalloc,videobuf2_dma_contig,videobuf=
+2_v4l2,bcm2835_unicam,bcm2835_v4l2,rpivid_hevc,v4l2_mem2mem,videobuf2_memop=
+s,bcm2835_isp<br />videodev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 274432&nbsp; 10 v4l2_async,bcm2835_codec,imx=
+219,videobuf2_v4l2,bcm2835_unicam,bcm2835_v4l2,videobuf2_common,rpivid_hevc=
+,v4l2_mem2mem,bcm2835_isp<br />vc_sm_cma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32768&nbsp; 2 bcm2835_mmal_vchi=
+q,bcm2835_isp<br />snd_bcm2835&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; 28672&nbsp; 0<br />mc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; 61440&nbsp; 10 v4l2_async,videodev,bcm2835_codec,imx219,video=
+buf2_v4l2,bcm2835_unicam,videobuf2_common,rpivid_hevc,v4l2_mem2mem,bcm2835_=
+isp<br />uio_pdrv_genirq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384&nb=
+sp; 0<br />nvmem_rmem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 16384&nbsp; 0<br />uio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; 24576&nbsp; 1 uio_pdrv_genirq<br />sch_fq_codel&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20480&nbsp; 6<br />brcmutil&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ 24576&nbsp; 0<br />cfg80211&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 929792&nbsp; 1 88XXau<br />rfkill&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; 32768&nbsp; 4 bluetooth,cfg80211<br />fuse&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 139264&nbsp; 1<br />ipv6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 552960&nbsp; 28<=
+br /><br /></div>
+<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+</div>
+<div>&nbsp;</div>
+<div dir=3D"ltr">And here is my /boot/config.txt</div>
+<div dir=3D"ltr">&nbsp;</div>
+<div>root@raspberrypi4-64:~# cat /boot/config.txt<br />####################=
+############################################################<br />##&nbsp; =
+Raspberry Pi Configuration Settings<br />##<br />##&nbsp; Revision 16, 2013=
+/06/22<br />##<br />##&nbsp; Details taken from the eLinux wiki<br />##&nbs=
+p; For up-to-date information please refer to wiki page.<br />##<br />##&nb=
+sp; Wiki Location : http://elinux.org/RPiconfig<br />##<br />##<br />##&nbs=
+p; Description:<br />##&nbsp;&nbsp;&nbsp; Details of each setting are descr=
+ibed with each section that begins with<br />##&nbsp;&nbsp;&nbsp; a double =
+hashed comment ('##')<br />##&nbsp;&nbsp;&nbsp; It is up to the user to rem=
+ove the single hashed comment ('#') from each<br />##&nbsp;&nbsp;&nbsp; opt=
+ion they want to enable, and to set the specific value of that option.<br /=
+>##<br />##&nbsp; Overclock settings will be disabled at runtime if the SoC=
+ reaches temp_limit<br />##<br />##########################################=
+######################################<br /><br />#########################=
+#######################################################<br />##&nbsp; Stand=
+ard Definition Video Settings<br />########################################=
+########################################<br /><br />## sdtv_mode<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; defines the TV standard for composite output<br />##<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##=
+&nbsp;&nbsp;&nbsp;&nbsp; --------------------------------------------------=
+-----------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; Normal NTSC (Default)<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Japanese version of NTSC - =
+no pedestal<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; Normal PAL<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; Brazilian version of PAL - 525/60 rather than 625/=
+50, different<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; subcarrier<br />##<br />#sdtv_mode=3D0<br /><br />=
+## sdtv_aspect<br />##&nbsp;&nbsp;&nbsp;&nbsp; defines the aspect ratio for=
+ composite output<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;=
+&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ------------------------=
+-------------------------------------------------<br />##&nbsp;&nbsp;&nbsp;=
+&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4:3 (Default)<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 14:9<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16:=
+9<br />##<br />#sdtv_aspect=3D1<br /><br />## sdtv_disable_colourburst<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; Disables colour burst on composite output. The =
+picture will be<br />##&nbsp;&nbsp;&nbsp;&nbsp; monochrome, but possibly sh=
+arper<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Descr=
+iption<br />##&nbsp;&nbsp;&nbsp;&nbsp; ------------------------------------=
+-------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Colour burst is enabled (Default)<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C=
+olour burst is disabled<br />##<br />#sdtv_disable_colourburst=3D1<br /><br=
+ />########################################################################=
+########<br />##&nbsp; High Definition Video Settings<br />################=
+################################################################<br /><br /=
+>## hdmi_safe<br />##&nbsp;&nbsp;&nbsp;&nbsp; Use "safe mode" settings to t=
+ry to boot with maximum hdmi compatibility.<br />##<br />##&nbsp;&nbsp;&nbs=
+p;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp=
+; -------------------------------------------------------------------------=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; Disabled (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; Enabled (this does: hdmi_force_hotplug=3D1,<br />##&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hdmi_ignore_edid=3D0xa500008=
+0,<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; config_hdmi_boos=
+t=3D4, hdmi_group=3D2,<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; hdmi_mode=3D4, disable_overscan=3D0,<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; overscan_left=3D24, overscan_right=3D24,<br />##&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; overscan_top=3D24, overscan_bot=
+tom=3D24)<br />##<br />#hdmi_safe=3D1<br /><br />## hdmi_force_hotplug<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; Pretends HDMI hotplug signal is asserted so it =
+appears a HDMI display<br />##&nbsp;&nbsp;&nbsp;&nbsp; is attached<br />##<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##=
+&nbsp;&nbsp;&nbsp;&nbsp; --------------------------------------------------=
+-----------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; Disabled (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp;=
+ 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use HDMI mode even if no HDMI =
+monitor is detected<br />##<br />#hdmi_force_hotplug=3D1<br /><br />## hdmi=
+_ignore_hotplug<br />##&nbsp;&nbsp;&nbsp;&nbsp; Pretends HDMI hotplug signa=
+l is not asserted so it appears a HDMI<br />##&nbsp;&nbsp;&nbsp;&nbsp; disp=
+lay is not attached<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbs=
+p;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ----------------------=
+---------------------------------------------------<br />##&nbsp;&nbsp;&nbs=
+p;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disabled (Default)<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us=
+e composite mode even if HDMI monitor is detected<br />##<br />#hdmi_ignore=
+_hotplug=3D1<br /><br />## hdmi_drive<br />##&nbsp;&nbsp;&nbsp;&nbsp; choos=
+es between HDMI and DVI modes<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value=
+&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ------------=
+-------------------------------------------------------------<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Normal DVI m=
+ode (No sound)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; Normal HDMI mode (Sound will be sent if supported and enabl=
+ed)<br />##<br />#hdmi_drive=3D2<br /><br />## hdmi_ignore_edid<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; Enables the ignoring of EDID/display data<br />##<br /=
+>#hdmi_ignore_edid=3D0xa5000080<br /><br />## hdmi_edid_file<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; Read the EDID data from the edid.dat file instead of from=
+ the attached<br />##&nbsp;&nbsp;&nbsp;&nbsp; device<br />##<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; ----------------------------------------------------------------=
+---------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; Read EDID data from attached device (Default)<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Read EDID data fr=
+om edid.txt file<br />##<br />#hdmi_edid_file=3D1<br /><br />## hdmi_ignore=
+_edid_audio<br />##&nbsp;&nbsp;&nbsp;&nbsp; Pretends all audio formats are =
+unsupported by display. This means ALSA<br />##&nbsp;&nbsp;&nbsp;&nbsp; wil=
+l default to analogue.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&=
+nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; -------------------=
+------------------------------------------------------<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use EDID provided v=
+alues (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; Pretend all audio formats are unsupported<br />##<br />#hd=
+mi_ignore_edid_audio=3D1<br /><br />## hdmi_force_edid_audio<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; Pretends all audio formats are supported by display, allo=
+wing<br />##&nbsp;&nbsp;&nbsp;&nbsp; passthrough of DTS/AC3 even when not r=
+eported as supported.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&n=
+bsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; --------------------=
+-----------------------------------------------------<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use EDID provided va=
+lues (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; Pretend all audio formats are supported<br />##<br />#hdmi_=
+force_edid_audio=3D1<br /><br />## hdmi_force_edid_3d<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; Pretends all CEA modes support 3D even when edid doesn't indicat=
+e<br />##&nbsp;&nbsp;&nbsp;&nbsp; support for them.<br />##<br />##&nbsp;&n=
+bsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nb=
+sp;&nbsp; -----------------------------------------------------------------=
+--------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; Use EDID provided values (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp=
+; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pretend 3D mode is supported<=
+br />##<br />#hdmi_force_edid_3d=3D1<br /><br />## avoid_edid_fuzzy_match<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; Avoid fuzzy matching of modes described in e=
+did.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Descri=
+ption<br />##&nbsp;&nbsp;&nbsp;&nbsp; -------------------------------------=
+------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use fuzzy matching (Default)<br />##&=
+nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Avoid f=
+uzzy matching<br />##<br />#avoid_edid_fuzzy_match=3D1<br /><br />## hdmi_p=
+ixel_encoding<br />##&nbsp;&nbsp;&nbsp;&nbsp; Force the pixel encoding mode=
+.<br />##&nbsp;&nbsp;&nbsp;&nbsp; By default it will use the mode requested=
+ from edid so shouldn't<br />##&nbsp;&nbsp;&nbsp;&nbsp; need changing.<br /=
+>##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; ----------------------------------------------=
+---------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; Use EDID provided values (Default)<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RGB limite=
+d&nbsp;&nbsp; (16-235)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; RGB full&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( 0-255)<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; YC=
+bCr limited (16-235)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; YCbCr limited ( 0-255)<br />##<br />#hdmi_pixel_encod=
+ing=3D1<br /><br />## hdmi_group<br />##&nbsp;&nbsp;&nbsp;&nbsp; Defines th=
+e HDMI type<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp;=
+ Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ------------------------------=
+-------------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp;=
+ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use the preferred group report=
+ed by the edid (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; CEA<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DMT<br />##<br />#hdmi_group=3D1<br /><br />=
+## hdmi_mode<br />##&nbsp;&nbsp;&nbsp;&nbsp; defines screen resolution in C=
+EA or DMT format<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; H means 16:9 varia=
+nt (of a normally 4:3 mode).<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2x means pixel=
+ doubled (i.e. higher clock rate, with each pixel repeated<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; twice)<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; 4x means pixel quadrupled (i.e. higher clock rate, with each pixel<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; repea=
+ted four times)<br />##&nbsp;&nbsp;&nbsp;&nbsp; reduced blanking means fewe=
+r bytes are used for blanking within the data<br />##&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stream (i.e. lower clock rate, with fewer was=
+ted bytes)<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; =
+hdmi_group=3DCEA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hdmi_group=3DDMT<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; ---------------------------------------------------------=
+----------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; VGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 640x350&nbsp;&nbsp; 85Hz<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480p&nbsp=
+; 60Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 640x400&nbsp;&nbs=
+p; 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; 480p&nbsp; 60Hz&nbsp; H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 720x400&n=
+bsp;&nbsp; 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 720p&nbsp; 60Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; 640x480&nbsp;&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1080i 60Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; 640x480&nbsp;&nbsp; 72Hz<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480i&nbsp; 60Hz&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 640x480&nbsp;&nbsp; 75Hz<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480i&nbsp=
+; 60Hz&nbsp; H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 640x480&nbsp;&nbsp; 85Hz<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2=
+40p&nbsp; 60Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800x600&n=
+bsp;&nbsp; 56Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 240p&nbsp; 60Hz&nbsp; H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8=
+00x600&nbsp;&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; 480i&nbsp; 60Hz&nbsp; 4x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800=
+x600&nbsp;&nbsp; 72Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; 480i&nbsp; 60Hz&nbsp; 4x H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800x600&nbsp;&n=
+bsp; 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; 240p&nbsp; 60Hz&nbsp; 4x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800x600&nbsp;&nbs=
+p; 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; 240p&nbsp; 60Hz&nbsp; 4x H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800x600&nbsp;&nbsp; 120Hz<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480p&nb=
+sp; 60Hz&nbsp; 2x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 848x480&nbsp;&nbsp; 60Hz<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480p&nbsp=
+; 60Hz&nbsp; 2x H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1024x768&nbsp; 43Hz&nbsp; DO NOT USE<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1080p 60H=
+z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1024x768&nbsp; 60Hz<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; 17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576p&n=
+bsp; 50Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1024x768&nbsp;=
+ 70Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; 576p&nbsp; 50Hz&nbsp; H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1024x768&nbsp; 7=
+5Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+720p&nbsp; 50Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1024x768=
+&nbsp; 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; 1080i 50Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1024x=
+768&nbsp; 120Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 21&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; 576i&nbsp; 50Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; 1152x864&nbsp; 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; 576i&nbsp; 50Hz&nbsp; H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; 1280x768&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduced blanking<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; 23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 288p&nbsp=
+; 50Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x768&nbsp; 60=
+Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2=
+88p&nbsp; 50Hz&nbsp; H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x768&nbsp; 75Hz=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576=
+i&nbsp; 50Hz&nbsp; 4x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x768&nbsp; 85Hz<br />#=
+#&nbsp;&nbsp;&nbsp;&nbsp; 26&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576i&nbsp;=
+ 50Hz&nbsp; 4x H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x768&nbsp; 120Hz reduced blanking<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; 27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 288p&nbsp=
+; 50Hz&nbsp; 4x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x800&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 28&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 288p&nbsp; 50Hz&nbsp; 4x H&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1=
+280x800&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 29&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; 576p&nbsp; 50Hz&nbsp; 2x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x800=
+&nbsp; 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; 576p&nbsp; 50Hz&nbsp; 2x H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x800&nbsp; 85Hz<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; 31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1080p 50H=
+z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x800&nbsp; 120Hz r=
+educed blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; 1080p 24Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1=
+280x960&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 33&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; 1080p 25Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; 1280x960&nbsp; 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; 1080p 30Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 1280x960&nbsp; 120Hz reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; =
+35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480p&nbsp; 60Hz&nbsp; 4x&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; 1280x1024 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 36&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; 480p&nbsp; 60Hz&nbsp; 4x H&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x1=
+024 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 37&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 576p&nbsp; 50Hz&nbsp; 4x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x1024 85Hz<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; 38&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576p&nb=
+sp; 50Hz&nbsp; 4x H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1280x1024 120Hz reduced blanking<br />##=
+&nbsp;&nbsp;&nbsp;&nbsp; 39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1080i 50Hz&=
+nbsp; reduced blanking&nbsp;&nbsp;&nbsp; 1360x768&nbsp; 60Hz<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; 40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1080i 100Hz&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1360x768&nbsp; 120Hz reduced blankin=
+g<br />##&nbsp;&nbsp;&nbsp;&nbsp; 41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 72=
+0p&nbsp; 100Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1400x1050&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduced blanking<br />##&nbsp;&nbsp;&nbsp;&n=
+bsp; 42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576p&nbsp; 100Hz&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1400x1050 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbs=
+p; 43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576p&nbsp; 100Hz H&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 1400x1050 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 44&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576i&nbsp; 100Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 1400x1050 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 45&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 576i&nbsp; 100Hz H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 1400x1050 120Hz reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 46&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1080i 120Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; 1440x900&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduced =
+blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 47&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 720p&nbsp; 120Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1440x900=
+&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 48&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; 480p&nbsp; 120Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1440x=
+900&nbsp; 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 49&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 480p&nbsp; 120Hz H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1440x900&nbs=
+p; 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; 480i&nbsp; 120Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1440x900&=
+nbsp; 120Hz reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; 480i&nbsp; 120Hz H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; 1600x1200 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 52&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 576p&nbsp; 200Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+1600x1200 65Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 53&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 576p&nbsp; 200Hz H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1600x1200 70=
+Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5=
+76i&nbsp; 200Hz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1600x1200 75Hz=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; 55&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 576=
+i&nbsp; 200Hz H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1600x1200 85Hz<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480p&nbsp; 240H=
+z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1600x1200 120Hz reduced blan=
+king<br />##&nbsp;&nbsp;&nbsp;&nbsp; 57&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ 480p&nbsp; 240Hz H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1680x1050&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 58=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480i&nbsp; 240Hz&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; 1680x1050 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 59&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 480i&nbsp; 240Hz H&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; 1680x1050 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1680x1050 =
+85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 61&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1680x1050 120Hz reduced blanking=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; 62&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1792x1344 60Hz<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; 63&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 1792x1344 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 64&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1792x=
+1344 120Hz reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 65&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1856x1392=
+ 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 66&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1856x1392 75Hz<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; 67&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; 1856x1392 120Hz reduced blanking<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; 68&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; 1920x1200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduced bla=
+nking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 69&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1920x1200 60Hz<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; 70&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; 1920x1200 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 71&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+1920x1200 85Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 72&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1920x1200 120Hz reduce=
+d blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 73&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1920x1440 60Hz<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 74&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; 1920x1440 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7=
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 1920x1440 120Hz reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 76&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ 2560x1600&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduced blanking<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 77&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; 2560x1600 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7=
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 2560x1600 75Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 79&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2560x1600 85Hz<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; 80&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2560x1600 120Hz reduced blanking<br />#=
+#&nbsp;&nbsp;&nbsp;&nbsp; 81&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1366x768&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbs=
+p;&nbsp; 82&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; 1080p&nbsp;&nbsp;&nbsp;&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbsp;=
+&nbsp; 83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 1600x900&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduced bla=
+nking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 84&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2048x1152&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; reduced blanking<br />##&nbsp;&nbsp;&nbsp;&nbsp; 85&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 720p&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60Hz<br />##&nbsp;&nbsp;&nbsp;&nbsp; 86&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13=
+66x768&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduced blanking<br />##<b=
+r />#hdmi_mode=3D1<br /><br />## config_hdmi_boost<br />##&nbsp;&nbsp;&nbsp=
+;&nbsp; configure the signal strength of the HDMI interface.<br />##<br />#=
+#&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; --------------------------------------------------------=
+-----------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1<br />##&nbsp=
+;&nbsp;&nbsp;&nbsp; 2<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3<br />##&nbsp;&nbsp;=
+&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Try if you have in=
+terference issues with HDMI<br />##&nbsp;&nbsp;&nbsp;&nbsp; 5<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; 6<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; Maximum<br />##<br />#config_hdmi_boost=3D0<br /><br =
+/>## hdmi_ignore_cec_init<br />##&nbsp;&nbsp;&nbsp;&nbsp; Doesn't sent init=
+ial active source message.&nbsp; Avoids bringing<br />##&nbsp;&nbsp;&nbsp;&=
+nbsp; (CEC enabled) TV out of standby and channel switch when rebooting.<br=
+ />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; --------------------------------------------=
+-----------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Normal behaviour (Default)<br />##&nbsp;&nbs=
+p;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Doesn't sent ini=
+tial active source message<br />##<br />#hdmi_ignore_cec_init=3D1<br /><br =
+/>## hdmi_ignore_cec<br />##&nbsp;&nbsp;&nbsp;&nbsp; Pretends CEC is not su=
+pported at all by TV.<br />##&nbsp;&nbsp;&nbsp;&nbsp; No CEC functions will=
+ be supported.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nb=
+sp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ---------------------------=
+----------------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Normal behaviour (Default)<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ Pretend CEC is not supported by TV<br />##<br />#hdmi_ignore_cec=3D1<br />=
+<br />#####################################################################=
+###########<br />##&nbsp; Overscan Video Settings<br />####################=
+############################################################<br /><br />## =
+overscan_left<br />##&nbsp;&nbsp;&nbsp;&nbsp; Number of pixels to skip on l=
+eft<br />##<br />#overscan_left=3D0<br /><br />## overscan_right<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; Number of pixels to skip on right<br />##<br />#overs=
+can_right=3D0<br /><br />## overscan_top<br />##&nbsp;&nbsp;&nbsp;&nbsp; Nu=
+mber of pixels to skip on top<br />##<br />#overscan_top=3D0<br /><br />## =
+overscan_bottom<br />##&nbsp;&nbsp;&nbsp;&nbsp; Number of pixels to skip on=
+ bottom<br />##<br />#overscan_bottom=3D0<br /><br />## disable_overscan<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; Set to 1 to disable overscan<br />##<br />##&=
+nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&n=
+bsp;&nbsp;&nbsp; ----------------------------------------------------------=
+---------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; Overscan Enabled (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp;=
+ 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overscan Disabled<br />##<br /=
+>#disable_overscan=3D1<br /><br />#########################################=
+#######################################<br />##&nbsp; Framebuffer Video Set=
+tings<br />################################################################=
+################<br /><br />## framebuffer_width<br />##&nbsp;&nbsp;&nbsp;&=
+nbsp; Console framebuffer width in pixels. Default is display width minus<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; overscan.<br />##<br />#framebuffer_width=3D=
+0<br /><br />## framebuffer_height<br />##&nbsp;&nbsp;&nbsp;&nbsp; Console =
+framebuffer height in pixels. Default is display height minus<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; overscan.<br />##<br />#framebuffer_height=3D0<br /><br =
+/>## framebuffer_depth<br />##&nbsp;&nbsp;&nbsp;&nbsp; Console framebuffer =
+depth in bits per pixel.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp=
+;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; -----------------=
+--------------------------------------------------------<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Valid, but defaul=
+t RGB palette makes an unreadable screen<br />##&nbsp;&nbsp;&nbsp;&nbsp; 16=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Default)<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; 24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Looks better but has corruption =
+issues as of 2012/06/15<br />##&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; Has no corruption issues but needs framebuffer_ignore_a=
+lpha=3D1<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; and shows the wrong colors as of 2012/06/15<br />##<br =
+/>#framebuffer_depth=3D16<br /><br />## framebuffer_ignore_alpha<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; Set to 1 to disable alpha channel. Helps with 32bit.<=
+br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; ------------------------------------------=
+-------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Alpha Channel (Default)<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Al=
+pha Channel<br />##<br />#framebuffer_ignore_alpha=3D0<br /><br />#########=
+#######################################################################<br =
+/>##&nbsp; General Video Settings<br />####################################=
+############################################<br /><br />## display_rotate<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; Rotate the display clockwise or flip the dis=
+play.<br />##&nbsp;&nbsp;&nbsp;&nbsp; The 90 and 270 degrees rotation optio=
+ns require additional memory on GPU,<br />##&nbsp;&nbsp;&nbsp;&nbsp; so won=
+'t work with the 16M GPU split.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Val=
+ue&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ----------=
+---------------------------------------------------------------<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 degrees =
+(Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 90 degrees<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; 180 degrees<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 270 degrees<br />##&nbsp;&nbsp;&nbsp;&n=
+bsp; 0x10000&nbsp; Horizontal flip<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0x20000&=
+nbsp; Vertical flip<br />##<br />#display_rotate=3D0<br /><br />## dispmanx=
+_offline<br />##&nbsp;&nbsp;&nbsp;&nbsp; Set to "1" to enable offline compo=
+siting<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 0<br />##<br />#disp=
+manx_offline=3D0<br /><br />###############################################=
+#################################<br />##&nbsp; Licensed Codecs<br />##<br =
+/>##&nbsp; Hardware decoding of additional codecs can be enabled by purchas=
+ing a<br />##&nbsp; license that is locked to the CPU serial number of your=
+ Raspberry Pi.<br />##<br />##&nbsp; Up to 8 licenses per CODEC can be spec=
+ified as a comma seperated list.<br />##<br />#############################=
+###################################################<br /><br />## decode_MP=
+G2<br />##&nbsp;&nbsp;&nbsp;&nbsp; License key to allow hardware MPEG-2 dec=
+oding.<br />##<br />#decode_MPG2=3D0x12345678<br /><br />## decode_WVC1<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; License key to allow hardware VC-1 decoding.<b=
+r />##<br />#decode_WVC1=3D0x12345678<br /><br />##########################=
+######################################################<br />##&nbsp; Camera=
+ Settings<br />############################################################=
+####################<br /><br />## start_x<br />##&nbsp;&nbsp;&nbsp;&nbsp; =
+Set to "1" to enable the camera module.<br />##<br />##&nbsp;&nbsp;&nbsp;&n=
+bsp; Enabling the camera requires gpu_mem option to be specified with a val=
+ue<br />##&nbsp;&nbsp;&nbsp;&nbsp; of at least 128.<br />##<br />##&nbsp;&n=
+bsp;&nbsp;&nbsp; Default 0<br />##<br />start_x=3D1<br /><br />## disable_c=
+amera_led<br />##&nbsp;&nbsp;&nbsp;&nbsp; Turn off the red camera led when =
+recording video or taking a still<br />##&nbsp;&nbsp;&nbsp;&nbsp; picture.<=
+br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; ------------------------------------------=
+-------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LED enabled (Default)<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LED disabled<br />#=
+#<br />#disable_camera_led=3D1<br /><br />#################################=
+###############################################<br />##&nbsp; Test Settings=
+<br />#####################################################################=
+###########<br /><br />## test_mode<br />##&nbsp;&nbsp;&nbsp;&nbsp; Enable =
+test sound/image during boot for manufacturing test.<br />##<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; ----------------------------------------------------------------=
+---------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; Disable Test Mod (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Test Mode<br />##<br />#test_=
+mode=3D0<br /><br />#######################################################=
+#########################<br />##&nbsp; Memory Settings<br />##############=
+##################################################################<br /><br=
+ />## disable_l2cache<br />##&nbsp;&nbsp;&nbsp;&nbsp; Disable arm access to=
+ GPU's L2 cache. Needs corresponding L2 disabled<br />##&nbsp;&nbsp;&nbsp;&=
+nbsp; kernel.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbs=
+p; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ----------------------------=
+---------------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbs=
+p; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable L2 Cache (Default)<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D=
+isable L2 cache<br />##<br />#disable_l2cache=3D0<br /><br />## gpu_mem<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; GPU memory allocation in MB for all board revi=
+sions.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 64<br />##<br />#gpu=
+_mem=3D128<br /><br />## gpu_mem_256<br />##&nbsp;&nbsp;&nbsp;&nbsp; GPU me=
+mory allocation in MB for 256MB board revision.<br />##&nbsp;&nbsp;&nbsp;&n=
+bsp; This option overrides gpu_mem.<br />##<br />#gpu_mem_256=3D192<br /><b=
+r />## gpu_mem_512<br />##&nbsp;&nbsp;&nbsp;&nbsp; GPU memory allocation in=
+ MB for 512MB board revision.<br />##&nbsp;&nbsp;&nbsp;&nbsp; This option o=
+verrides gpu_mem.<br />##<br />#gpu_mem_512=3D448<br /><br />## gpu_mem_102=
+4<br />##&nbsp;&nbsp;&nbsp;&nbsp; GPU memory allocation in MB for 1024MB bo=
+ard revision.<br />##&nbsp;&nbsp;&nbsp;&nbsp; This option overrides gpu_mem=
+.<br />##<br />#gpu_mem_1024=3D944<br /><br />## disable_pvt<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; Disable adjusting the refresh rate of RAM every 500ms<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; (measuring RAM temparature).<br />##<br />#dis=
+able_pvt=3D1<br /><br />###################################################=
+#############################<br />##&nbsp; CMA - Dynamic Memory Split<br /=
+>##<br />##&nbsp; CMA enables dynamic management of the ARM and GPU memory =
+split at runtime.<br />##<br />##&nbsp; The following options need to be in=
+ cmdline.txt for CMA to work:<br />##&nbsp;&nbsp;&nbsp; coherent_pool=3D6M =
+smsc95xx.turbo_mode=3DN<br />##<br />######################################=
+##########################################<br /><br />## cma_lwm<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; When GPU has less than cma_lwm (low water mark) memor=
+y available it<br />##&nbsp;&nbsp;&nbsp;&nbsp; will request some from ARM.<=
+br />##<br />#cma_lwm=3D16<br /><br />## cma_hwm<br />##&nbsp;&nbsp;&nbsp;&=
+nbsp; When GPU has more than cma_hwm (high water mark) memory available it<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; will release some to ARM.<br />##<br />#cma=
+_hwm=3D32<br /><br />######################################################=
+##########################<br />##&nbsp; Boot Option Settings<br />########=
+########################################################################<br=
+ /><br />## disable_commandline_tags<br />##&nbsp;&nbsp;&nbsp;&nbsp; Stop s=
+tart.elf from filling in ATAGS (memory from 0x100) before<br />##&nbsp;&nbs=
+p;&nbsp;&nbsp; launching kernel<br />##<br />#disable_commandline_tags=3D0<=
+br /><br />## cmdline (string)<br />##&nbsp;&nbsp;&nbsp;&nbsp; Command line=
+ parameters. Can be used instead of cmdline.txt file<br />##<br />#cmdline=
+=3D""<br /><br />## kernel (string)<br />##&nbsp;&nbsp;&nbsp;&nbsp; Alterna=
+tive name to use when loading kernel.<br />##<br />#kernel=3D""<br /><br />=
+## kernel_address<br />##&nbsp;&nbsp;&nbsp;&nbsp; Address to load kernel.im=
+g file at<br />##<br />#kernel_address=3D0x00000000<br /><br />## kernel_ol=
+d<br />##&nbsp;&nbsp;&nbsp;&nbsp; Support loading old kernels<br />##<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp=
+;&nbsp;&nbsp;&nbsp; -------------------------------------------------------=
+------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; Disabled (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Load kernel at address 0x00000000<b=
+r />##<br />#kernel_old=3D1<br /><br />## ramfsfile (string)<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; ramfs file to load<br />##<br />#ramfsfile=3D""<br /><br =
+/>## ramfsaddr<br />##&nbsp;&nbsp;&nbsp;&nbsp; Address to load ramfs file a=
+t<br />##<br />#ramfsaddr=3D0x00000000<br /><br />## initramfs (string addr=
+ess)<br />##&nbsp;&nbsp;&nbsp;&nbsp; ramfs file and address to load it at (=
+it's like ramfsfile+ramfsaddr in<br />##&nbsp;&nbsp;&nbsp;&nbsp; one option=
+).<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; NOTE: this option uses different=
+ syntax than all other options - you<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; should not use "=3D" character here.<br />##<=
+br />#initramfs initramf.gz 0x00800000<br /><br />## device_tree_address<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; Address to load device_tree at<br />##<br />#=
+device_tree_address=3D0x00000000<br /><br />## init_uart_baud<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; Initial uart baud rate.<br />##<br />##&nbsp;&nbsp;&nbsp=
+;&nbsp; Default 115200<br />##<br />#init_uart_baud=3D115200<br /><br />## =
+init_uart_clock<br />##&nbsp;&nbsp;&nbsp;&nbsp; Initial uart clock.<br />##=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 3000000 (3MHz)<br />##<br />#init_=
+uart_clock=3D3000000<br /><br />## init_emmc_clock<br />##&nbsp;&nbsp;&nbsp=
+;&nbsp; Initial emmc clock, increasing this can speedup your SD-card.<br />=
+##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 100000000 (100mhz)<br />##<br />=
+#init_emmc_clock=3D100000000<br /><br />## boot_delay<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; Wait for a given number of seconds in start.elf before loading<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; kernel.img.<br />##<br />##&nbsp;&nbsp;&nbsp=
+;&nbsp; delay =3D (1000 * boot_delay) + boot_delay_ms<br />##<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; Default 1<br />##<br />#boot_delay=3D0<br /><br />## boo=
+t_delay_ms<br />##&nbsp;&nbsp;&nbsp;&nbsp; Wait for a given number of milli=
+seconds in start.elf before loading<br />##&nbsp;&nbsp;&nbsp;&nbsp; kernel.=
+img.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; delay =3D (1000 * boot_delay) =
++ boot_delay_ms<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 0<br />##<b=
+r />#boot_delay_ms=3D0<br /><br />## avoid_safe_mode<br />##&nbsp;&nbsp;&nb=
+sp;&nbsp; Adding a jumper between pins 5 &amp; 6 of P1 enables a recovery S=
+afe Mode.<br />##&nbsp;&nbsp;&nbsp;&nbsp; If pins 5 &amp; 6 are used for co=
+nnecting to external devices (e.g. GPIO),<br />##&nbsp;&nbsp;&nbsp;&nbsp; t=
+hen this setting can be used to ensure Safe Mode is not triggered.<br />##<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##=
+&nbsp;&nbsp;&nbsp;&nbsp; --------------------------------------------------=
+-----------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; Respect Safe Mode input (Default)<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ignore Safe Mod=
+e input<br />##<br />#avoid_safe_mode=3D1<br /><br />## disable_splash<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; Avoids the rainbow splash screen on boot.<br />=
+##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; -----------------------------------------------=
+--------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; Splash screen enabled (Default)<br />##&nbsp;&n=
+bsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Splash screen =
+disabled<br />##<br />#disable_splash=3D1<br /><br />######################=
+##########################################################<br />##&nbsp; Ov=
+erclocking Settings<br />##<br />##&nbsp; ARM, SDRAM and GPU each have thei=
+r own PLLs and can have unrelated<br />##&nbsp; frequencies.<br />##<br />#=
+#&nbsp; The GPU core, h264, v3d and isp share a PLL, so need to have relate=
+d<br />##&nbsp; frequencies.<br />##&nbsp; pll_freq =3D floor(2400 / (2 * c=
+ore_freq)) * (2 * core_freq)<br />##&nbsp; gpu_freq =3D pll_freq / [even nu=
+mber]<br />##<br />##&nbsp; The effective gpu_freq is automatically rounded=
+ to nearest even integer, so<br />##&nbsp; asking for core_freq =3D 500 and=
+ gpu_freq =3D 300 will result in divisor of<br />##&nbsp; 2000/300 =3D 6.66=
+6 =3D&gt; 6 and so 333.33MHz.<br />##<br />##<br />##&nbsp; Standard Profil=
+es:<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arm_freq&nbsp;&nbsp;&nbsp; core_freq=
+&nbsp;&nbsp;&nbsp; sdram_freq&nbsp;&nbsp;&nbsp; over_voltage<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; ---------------------------------------------------------=
+----------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; None&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; 700&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; 250&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br />##&nbsp;&nbsp;&nb=
+sp;&nbsp; Modest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 400&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; 0<br />##&nbsp;&nbsp;&nbsp;&nbsp; Medium&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; 900&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 333&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 450&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 2<br />##&nbsp;&nbsp;&nbsp;&nbsp; High&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 950&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 450&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+450&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6<br />##&n=
+bsp;&nbsp;&nbsp;&nbsp; Turbo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1000=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; 500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; 6<br />##<br />#############################################=
+###################################<br /><br />## force_turbo<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; Control the kernel "ondemand" governor. It has no effect=
+ if no overclock<br />##&nbsp;&nbsp;&nbsp;&nbsp; settings are specified.<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; May set warrany bit.<br />##<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbs=
+p;&nbsp; ------------------------------------------------------------------=
+-------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; Enable dynamic clocks and voltage for the ARM core, GPU core and<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; SDRAM (Default).<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overclocking of h264_freq, v3d_freq a=
+nd isp_freq is ignored.<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; Disable dynamic clocks and voltage for the ARM cor=
+e, GPU core<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; and SDRAM.<br />##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overclocking of h264_freq, v3d=
+_freq and isp_freq is allowed.<br />##<br />#force_turbo=3D0<br /><br />## =
+initial_turbo<br />##&nbsp;&nbsp;&nbsp;&nbsp; Enables turbo mode from boot =
+for the given value in seconds (up to 60)<br />##&nbsp;&nbsp;&nbsp;&nbsp; o=
+r until cpufreq sets a frequency. Can help with sdcard corruption if<br />#=
+#&nbsp;&nbsp;&nbsp;&nbsp; overclocked.<br />##<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; Default 0<br />##<br />#initial_turbo=3D0<br /><br />## temp_limit<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; Overheat protection. Sets clocks and voltages t=
+o default when the SoC<br />##&nbsp;&nbsp;&nbsp;&nbsp; reaches this Celsius=
+ value.<br />##&nbsp;&nbsp;&nbsp;&nbsp; Setting this higher than default vo=
+ids warranty.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 85<br />##<br=
+ />#temp_limit=3D85<br /><br />## arm_freq<br />##&nbsp;&nbsp;&nbsp;&nbsp; =
+Frequency of ARM in MHz.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 70=
+0.<br />##<br />#arm_freq=3D700<br /><br />## arm_freq_min<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; Minimum frequency of ARM in MHz (used for dynamic clocking)=
+.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 700.<br />##<br />#arm_fr=
+eq_min=3D700<br /><br />## gpu_freq<br />##&nbsp;&nbsp;&nbsp;&nbsp; Sets co=
+re_freq, h264_freq, isp_freq, v3d_freq together.<br />##<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; Default 250.<br />##<br />#gpu_freq=3D250<br /><br />## core_=
+freq<br />##&nbsp;&nbsp;&nbsp;&nbsp; Frequency of GPU processor core in MHz=
+. It has an impact on ARM<br />##&nbsp;&nbsp;&nbsp;&nbsp; performance since=
+ it drives L2 cache.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 250.<b=
+r />##<br />#core_freq=3D250<br /><br />## core_freq_min<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; Minimum frequency of GPU processor core in MHz (used for dyna=
+mic<br />##&nbsp;&nbsp;&nbsp;&nbsp; clocking). It has an impact on ARM perf=
+ormance since it drives L2 cache.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; D=
+efault 250.<br />##<br />#core_freq_min=3D250<br /><br />## h264_freq<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; Frequency of hardware video block in MHz.<br />#=
+#<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 250.<br />##<br />#h264_freq=3D25=
+0<br /><br />## isp_freq<br />##&nbsp;&nbsp;&nbsp;&nbsp; Frequency of image=
+ sensor pipeline block in MHz.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Defa=
+ult 250.<br />##<br />#isp_freq=3D250<br /><br />## v3d_freq<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; Frequency of 3D block in MHz.<br />##<br />##&nbsp;&nbsp;=
+&nbsp;&nbsp; Default 250.<br />##<br />#v3d_freq=3D250<br /><br />## sdram_=
+freq<br />##&nbsp;&nbsp;&nbsp;&nbsp; Frequency of SDRAM in MHz.<br />##<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; Default 400.<br />##<br />#sdram_freq=3D400<br=
+ /><br />## sdram_freq_min<br />##&nbsp;&nbsp;&nbsp;&nbsp; Minimum frequenc=
+y of SDRAM in MHz (used for dynamic clocking).<br />##<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; Default 400.<br />##<br />#sdram_freq_min=3D400<br /><br />## a=
+void_pwm_pll<br />##&nbsp;&nbsp;&nbsp;&nbsp; Don't dedicate a pll to PWM au=
+dio. This will reduce analogue audio<br />##&nbsp;&nbsp;&nbsp;&nbsp; qualit=
+y slightly. The spare PLL allows the core_freq to be set<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; independently from the rest of the gpu allowing more control =
+over<br />##&nbsp;&nbsp;&nbsp;&nbsp; overclocking.<br />##<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbs=
+p;&nbsp; ------------------------------------------------------------------=
+-------<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; Linked core_freq (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Unlinked core_freq<br />##<br />#avoid=
+_pwm_pll=3D1<br /><br />###################################################=
+#############################<br />##&nbsp; Voltage Settings<br />#########=
+#######################################################################<br =
+/><br />## current_limit_override<br />##&nbsp;&nbsp;&nbsp;&nbsp; Disables =
+SMPS current limit protection. Can help if you are currently<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; hitting a reboot failure when overclocking too high.<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; May set warrany bit.<br />##<br />#current_limi=
+t_override=3D0x5A000020<br /><br />## over_voltage<br />##&nbsp;&nbsp;&nbsp=
+;&nbsp; ARM/GPU core voltage adjust.<br />##&nbsp;&nbsp;&nbsp;&nbsp; May se=
+t warrany bit.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nb=
+sp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ---------------------------=
+----------------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; -16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.8&nbsp;&nbsp; V<br />##&nbsp;&nbsp;=
+&nbsp;&nbsp; -15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.825 V<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; -14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.85&nbsp; V<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; -13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.875 V<br />##&nbsp;&nbs=
+p;&nbsp;&nbsp; -12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9&nbsp;&nbsp; V<br />##&=
+nbsp;&nbsp;&nbsp;&nbsp; -11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.925 V<br />##&n=
+bsp;&nbsp;&nbsp;&nbsp; -10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.95&nbsp; V<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; -9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.975 V<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; -8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&n=
+bsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -7&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; 1.025 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -6&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 1.05&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -5&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; 1.075 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -4&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; 1.1&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp;=
+ -3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.125 V<br />##&nbsp;&nbsp;&nbsp;&n=
+bsp; -2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.15&nbsp; V<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; -1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.175 V<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.2&nbsp;&nbs=
+p; V (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; 1.225 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; 1.25&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.275 V<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3&nbsp;&nbsp; V<br />##&n=
+bsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.325 V<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ 1.35&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; 1.375 V (requires force_turbo=3D1 or current_limit_override)=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; 1.4&nbsp;&nbsp; V (requires force_turbo=3D1 or current_limit_override)<br=
+ />##<br />#over_voltage=3D0<br /><br />## over_voltage_min<br />##&nbsp;&n=
+bsp;&nbsp;&nbsp; Minimum ARM/GPU core voltage adjust (used for dynamic cloc=
+king).<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Desc=
+ription<br />##&nbsp;&nbsp;&nbsp;&nbsp; -----------------------------------=
+--------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; -16&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.8&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&n=
+bsp; -15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.825 V<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; -14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.85&nbsp; V<br />##&nbsp;&nbsp;&nbsp=
+;&nbsp; -13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.875 V<br />##&nbsp;&nbsp;&nbsp;=
+&nbsp; -12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9&nbsp;&nbsp; V<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; -11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.925 V<br />##&nbsp;&nbs=
+p;&nbsp;&nbsp; -10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.95&nbsp; V<br />##&nbsp;=
+&nbsp;&nbsp;&nbsp; -9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.975 V<br />##&n=
+bsp;&nbsp;&nbsp;&nbsp; -8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbs=
+p; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ 1.025 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 1.05&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -5&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; 1.075 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -4&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; 1.1&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -3&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.125 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -2&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.15&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&=
+nbsp; -1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.175 V<br />##&nbsp;&nbsp;&nb=
+sp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.2&nbsp;&nbsp; V (De=
+fault)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; 1.225 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 1.25&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.275 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 4&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3&nbsp;&nbsp; V<br />##&nbsp;&nbs=
+p;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.325 V<br />##&=
+nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.35&nb=
+sp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 1.375 V (requires force_turbo=3D1)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 8=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.4&nbsp;&nbsp; V (requires forc=
+e_turbo=3D1)<br />##<br />#over_voltage_min=3D0<br /><br />## over_voltage_=
+sdram<br />##&nbsp;&nbsp;&nbsp;&nbsp; Sets over_voltage_sdram_c, over_volta=
+ge_sdram_i, over_voltage_sdram_p<br />##&nbsp;&nbsp;&nbsp;&nbsp; together<b=
+r />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp; Description<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; -------------------------------------------=
+------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp; -16&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; 0.8&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -15=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.825 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -14&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.85&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; =
+-13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.875 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -=
+12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp=
+;&nbsp; -11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.925 V<br />##&nbsp;&nbsp;&nbsp;=
+&nbsp; -10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.95&nbsp; V<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; -9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.975 V<br />##&nbsp;&nbs=
+p;&nbsp;&nbsp; -8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp; V<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; -7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.025 V=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; -6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0=
+5&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; 1.075 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -4&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; 1.1&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -3&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; 1.125 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -2&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 1.15&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -1=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.175 V<br />##&nbsp;&nbsp;&nbsp;&nbsp=
+; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.2&nbsp;&nbsp; V (Default)<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+1.225 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; 1.25&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; 1.275 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;=
+&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.325 V<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.35&nbsp; V<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1=
+.375 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; 1.4&nbsp;&nbsp; V<br />##<br />#over_voltage_sdram=3D0<br /><br />#=
+# over_voltage_sdram_c<br />##&nbsp;&nbsp;&nbsp;&nbsp; SDRAM controller vol=
+tage adjust.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&nbsp;&nbsp=
+; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; -----------------------------=
+--------------------------------------------<br />##&nbsp;&nbsp;&nbsp;&nbsp=
+; -16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.8&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&n=
+bsp;&nbsp; -15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.825 V<br />##&nbsp;&nbsp;&nb=
+sp;&nbsp; -14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.85&nbsp; V<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; -13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.875 V<br />##&nbsp;&nbsp;=
+&nbsp;&nbsp; -12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9&nbsp;&nbsp; V<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; -11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.925 V<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; -10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.95&nbsp; V<br />##=
+&nbsp;&nbsp;&nbsp;&nbsp; -9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.975 V<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; -8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbs=
+p;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 1.025 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -6&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 1.05&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -5&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; 1.075 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -4&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; 1.1&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -=
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.125 V<br />##&nbsp;&nbsp;&nbsp;&nbs=
+p; -2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.15&nbsp; V<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; -1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.175 V<br />##&nbsp;&nb=
+sp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.2&nbsp;&nbsp;=
+ V (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; 1.225 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; 1.25&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.275 V<br />##&nbsp;&nbsp;&nbsp;&nbsp=
+; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3&nbsp;&nbsp; V<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.325 V<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1=
+.35&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 1.375 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; 1.4&nbsp;&nbsp; V<br />##<br />#over_voltage_sdram_c=
+=3D0<br /><br />## over_voltage_sdram_i<br />##&nbsp;&nbsp;&nbsp;&nbsp; SDR=
+AM I/O voltage adjust.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Value&nbsp;&=
+nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; -------------------=
+------------------------------------------------------<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; -16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.8&nbsp;&nbsp; V<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; -15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.825 V<br />##&nbsp=
+;&nbsp;&nbsp;&nbsp; -14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.85&nbsp; V<br />##&=
+nbsp;&nbsp;&nbsp;&nbsp; -13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.875 V<br />##&n=
+bsp;&nbsp;&nbsp;&nbsp; -12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9&nbsp;&nbsp; V<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; -11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.925 V<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; -10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.95&nbsp;=
+ V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0=
+.975 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; 1.0&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -7&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 1.025 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -6&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; 1.05&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -5&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.075 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -4&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbs=
+p;&nbsp; -3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.125 V<br />##&nbsp;&nbsp;=
+&nbsp;&nbsp; -2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.15&nbsp; V<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; -1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.175 V<br />#=
+#&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.2&n=
+bsp;&nbsp; V (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; 1.225 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.25&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbs=
+p; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.275 V<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3&nbsp;&nbsp; V<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+1.325 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; 1.35&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; 1.375 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.4&nbsp;&nbsp; V<br />##<br />#over_voltag=
+e_sdram_i=3D0<br /><br />## over_voltage_sdram_p<br />##&nbsp;&nbsp;&nbsp;&=
+nbsp; SDRAM phy voltage adjust.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Val=
+ue&nbsp;&nbsp;&nbsp; Description<br />##&nbsp;&nbsp;&nbsp;&nbsp; ----------=
+---------------------------------------------------------------<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; -16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.8&nbsp;&nbsp; V<br=
+ />##&nbsp;&nbsp;&nbsp;&nbsp; -15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.825 V<br =
+/>##&nbsp;&nbsp;&nbsp;&nbsp; -14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.85&nbsp; V=
+<br />##&nbsp;&nbsp;&nbsp;&nbsp; -13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.875 V<=
+br />##&nbsp;&nbsp;&nbsp;&nbsp; -12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9&nbsp;=
+&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+0.925 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0=
+.95&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; 0.975 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -8&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; 1.0&nbsp;&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -7&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; 1.025 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; -6&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.05&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; =
+-5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.075 V<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; -4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1&nbsp;&nbsp; V<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; -3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.125 V<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; -2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.15&nbsp; V<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; -1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.175=
+ V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; 1.2&nbsp;&nbsp; V (Default)<br />##&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.225 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 2&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.25&nbsp; V<br />##&nbsp;&nbsp;&=
+nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.275 V<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3&nbsp;&=
+nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; 1.325 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; 1.35&nbsp; V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.375 V<br />##&nbsp;&nbsp;&nbsp;&nbsp; 8&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.4&nbsp;&nbsp; V<br />##<br />#ov=
+er_voltage_sdram_p=3D0<br /><br />#########################################=
+#######################################<br />##&nbsp; USB Power<br />######=
+##########################################################################<=
+br /><br />## max_usb_current<br />##&nbsp;&nbsp;&nbsp;&nbsp; When set to 1=
+, change the output current limit (for all 4 USB<br />##&nbsp;&nbsp;&nbsp;&=
+nbsp; ports combined) from 600mA to double that, 1200mA.<br />##<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; This option is not available for Model A/B boards.<br=
+ />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 0.<br />##<br />#max_usb_curr=
+ent=3D0<br /><br />########################################################=
+########################<br />##&nbsp; Base Device Tree Parameters<br />###=
+###########################################################################=
+##<br /><br />## audio<br />##&nbsp;&nbsp;&nbsp;&nbsp; Enable the onboard A=
+LSA audio<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default off.<br />##<br /=
+>#dtparam=3Daudio=3Doff<br /><br />## i2c_arm<br />##&nbsp;&nbsp;&nbsp;&nbs=
+p; Enable the ARM's i2c interface<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; D=
+efault off.<br />##<br />#dtparam=3Di2c_arm=3Doff<br /><br />## i2c_vc<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; Enable the i2c interface<br />##<br />##&nbsp;&=
+nbsp;&nbsp;&nbsp; Usually reserved for the VideoCore processor<br />##<br /=
+>##&nbsp;&nbsp;&nbsp;&nbsp; Default off.<br />##<br />#dtparam=3Di2c_vc=3Do=
+ff<br /><br />## i2c_arm_baudrate<br />##&nbsp;&nbsp;&nbsp;&nbsp; Set the b=
+audrate of the ARM's i2c interface<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; =
+Default 100000.<br />##<br />#dtparam=3Di2c_arm_baudrate=3D100000<br /><br =
+/>## i2c_vc_baudrate<br />##&nbsp;&nbsp;&nbsp;&nbsp; Set the baudrate of th=
+e VideoCore i2c interface<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default 1=
+00000.<br />##<br />#dtparam=3Di2c_vc_baudrate=3D100000<br /><br />## i2s<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; Set to "on" to enable the i2s interface<br /=
+>##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default off.<br />##<br />#dtparam=3Di2=
+s=3Doff<br /><br />## spi<br />##&nbsp;&nbsp;&nbsp;&nbsp; Set to "on" to en=
+able the spi interfaces<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default off=
+.<br />##<br />#dtparam=3Dspi=3Doff<br /><br />## random<br />##&nbsp;&nbsp=
+;&nbsp;&nbsp; Set to "on" to enable the hardware random<br />##<br />##&nbs=
+p;&nbsp;&nbsp;&nbsp; Default off.<br />##<br />#dtparam=3Drandom=3Doff<br /=
+><br />## uart0<br />##&nbsp;&nbsp;&nbsp;&nbsp; Set to "off" to disable uar=
+t0<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default on.<br />##<br />#dtpara=
+m=3Duart0=3Don<br /><br />## watchdog<br />##&nbsp;&nbsp;&nbsp;&nbsp; Set t=
+o "on" to enable the hardware watchdog<br />##<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; Default off.<br />##<br />#dtparam=3Dwatchdog=3Doff<br /><br />## act_l=
+ed_trigger<br />##&nbsp;&nbsp;&nbsp;&nbsp; Choose which activity the LED tr=
+acks.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Use "heartbeat" for a nice lo=
+ad indicator.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default mmc.<br />##<=
+br />#dtparam=3Dact_led_trigger=3Dmmc<br /><br />## act_led_activelow<br />=
+##&nbsp;&nbsp;&nbsp;&nbsp; Set to "on" to invert the sense of the LED<br />=
+##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default off.<br />##<br />#dtparam=3Dact=
+_led_activelow=3Doff<br /><br />## act_led_gpio<br />##&nbsp;&nbsp;&nbsp;&n=
+bsp; Set which GPIO to use for the activity LED<br />##<br />##&nbsp;&nbsp;=
+&nbsp;&nbsp; In case you want to connect it to an external device<br />##<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; Default 16 on a non-Plus board, 47 on a Plus=
+ or Pi 2.<br />##<br />#dtparam=3Dact_led_gpio=3D47<br /><br />## pwr_led_t=
+rigger<br />##&nbsp;&nbsp;&nbsp;&nbsp; Choose which activity the LED tracks=
+.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Use "heartbeat" for a nice load i=
+ndicator.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Not available on Model A/=
+B boards.<br />##<br />##&nbsp;&nbsp;&nbsp;&nbsp; Default mmc.<br />##<br /=
+>#dtparam=3Dpwr_led_trigger=3Dmmc<br /><br />## pwr_led_activelow<br />##&n=
+bsp;&nbsp;&nbsp;&nbsp; Set to "on" to invert the sense of the LED<br />##<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; Not available on Model A/B boards.<br />##<b=
+r />##&nbsp;&nbsp;&nbsp;&nbsp; Default off.<br />##<br />#dtparam=3Dpwr_led=
+_activelow=3Doff<br /><br />## pwr_led_gpio<br />##&nbsp;&nbsp;&nbsp;&nbsp;=
+ Set which GPIO to use for the PWR LED<br />##<br />##&nbsp;&nbsp;&nbsp;&nb=
+sp; In case you want to connect it to an external device<br />##<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; Not available on Model A/B boards.<br />##<br />##&nb=
+sp;&nbsp;&nbsp;&nbsp; Default 35.<br />##<br />#dtparam=3Dpwr_led_gpio=3D35=
+<br /># Enable SPI bus<br />dtparam=3Dspi=3Don<br /># Enable UART<br />enab=
+le_uart=3D1<br /># Enable VC4 Graphics<br />dtoverlay=3Dvc4-kms-v3d<br /># =
+Enable Sony RaspberryPi Camera(imx219)<br />dtoverlay=3Dimx219<br /># Enabl=
+e USB host mode<br />dtoverlay=3Ddwc2,dr_mode=3Dhost<br /># Enable CAN<br /=
+>dtoverlay=3Dmcp2515-can0,oscillator=3D16000000,interrupt=3D25<br /><br />#=
+ Enable WM8960<br />dtoverlay=3Dwm8960-soundcard<br /><br /><br /></div>
+<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
+<div>&nbsp;</div>
+Any help will be appreciated!
+
+--WjK7QRakeuJpRPvrMM1C--
 
