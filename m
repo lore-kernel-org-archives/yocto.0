@@ -1,84 +1,84 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5C4EEB64DA
-	for <webhook@archiver.kernel.org>; Wed, 12 Jul 2023 14:49:32 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web11.9397.1689173367427546234
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35D26EB64DD
+	for <webhook@archiver.kernel.org>; Wed, 12 Jul 2023 17:04:05 +0000 (UTC)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+ by mx.groups.io with SMTP id smtpd.web11.1369.1689181436435269660
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 Jul 2023 07:49:27 -0700
+ Wed, 12 Jul 2023 10:03:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=ITXIg1VW;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-3fbc244d384so72354995e9.0
-        for <yocto@lists.yoctoproject.org>; Wed, 12 Jul 2023 07:49:27 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=cdZ8Is5F;
+ spf=pass (domain: gmail.com, ip: 209.85.208.170, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2b701e1c80fso113072651fa.2
+        for <yocto@lists.yoctoproject.org>; Wed, 12 Jul 2023 10:03:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1689173365; x=1691765365;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FyZq2T5ZOt6YQpp1klU3A/XZ71L0MuPTqGSq0ayT7G0=;
-        b=ITXIg1VWH5E4XyWJwZOWfeKs003Unbb/5qbNIoX+ETzT5njc4XhLhNm34BMDgVggva
-         vZ1ND8BTmeFoPBYPGE++ydYXAH+1L8vhbzq9m/DnuugwTCA/44Rlty9cRO/zz7rmRYbN
-         WDuyxhMVRStDF3t3rmg/EtgE6VjM5ePBi/yBs=
+        d=gmail.com; s=20221208; t=1689181434; x=1691773434;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Xrb3Xv8TNL5GLCEXP0ZekqNyJYaFsF5HJxi57kfKIs=;
+        b=cdZ8Is5F/GmXhDJitmz/opgBMRB3XgGsBD8dRFBqsUdZFL2EUfNAxYdSE+OUpZRZU1
+         oUP9+dmuwC7OOg21lwDrcqZ8ZBS7GgyjfLSCVNj2uOviQflrmQVyAhzOttLQBtyumzUD
+         dH0GAHMwIGMnDuDeaQuqGtv058Ude/7VQh96JtoKP76t0RJuddVCNhWE/0+LvGwu46io
+         7jYlSEii5i8nZrCHxh7sMraB4Eb68avwWeQNtTIY/utho9lhiKSRO3jkI9yT8by49pRj
+         kZrRsnwP2xsYmZgIDf8UjWZtuPdBsSoZZxgOjiOAMursFPJAwcqcml1ip7X7OTavvROJ
+         6+wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689173365; x=1691765365;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FyZq2T5ZOt6YQpp1klU3A/XZ71L0MuPTqGSq0ayT7G0=;
-        b=IvcwxaO5ItuaAA+78jIkJ4TVjfbrhXLzwlpUx9bB8tEjy0bC97Mok8upXl7ri6+IlL
-         DS+lbNsTHPVIQ18YtQo7C4EkBlxFAYQexEZkg9lGocnM4BjzkHm7ChpUgBh39nxcImmU
-         F5mV5FfX48/o/qnR0rLGt83PJHoyxV+KJpJGkd62t7XxAIDKw3iIFpLdZrlGUvdf4QAD
-         MvIgoQzNR6sR3ZufxaN8I5ceZ2rTNwxcAvIkIOW/QdQdKYWj5n5kH0kOJyF/q0TmVbG7
-         F0Rn/CKx8bLrqVwgPLdJFCj7OpKIqw/9VA6KmN43hLAiJoTaGKTEC6/kOpzNP1Ox+n7X
-         nI4A==
-X-Gm-Message-State: ABy/qLYRPGMueQWPCcibCOUPzBoWvV4/lBIepyS6XaO0yOCjhj5aF40P
-	8eSHwXJPI2pUCwvKP5x6SkwuByY5Dr2Gzb1fsNc=
-X-Google-Smtp-Source: APBJJlFpoWOapKikF8qBgnBE0FtREBDCTMyh44iE67HVQ1i0q12EHtv+5mJA1x5sDdgKz1t3dg0OjA==
-X-Received: by 2002:a7b:c394:0:b0:3fb:e356:b60d with SMTP id s20-20020a7bc394000000b003fbe356b60dmr17177280wmj.38.1689173365296;
-        Wed, 12 Jul 2023 07:49:25 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:339c:939c:6851:d3b0? ([2001:8b0:aba:5f3c:339c:939c:6851:d3b0])
-        by smtp.gmail.com with ESMTPSA id p19-20020a1c7413000000b003fba137857esm5295441wmc.14.2023.07.12.07.49.24
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 07:49:24 -0700 (PDT)
-Message-ID: <fa7853d50f03bf291f69d0482db808a6fdc89038.camel@linuxfoundation.org>
-Subject: Re: [yocto] Request for Quotations for development work
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Date: Wed, 12 Jul 2023 15:49:24 +0100
-In-Reply-To: <176A63496CF306FA.4070@lists.yoctoproject.org>
-References: <176A63496CF306FA.4070@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+        d=1e100.net; s=20221208; t=1689181434; x=1691773434;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Xrb3Xv8TNL5GLCEXP0ZekqNyJYaFsF5HJxi57kfKIs=;
+        b=VFsaEaoBfWjU6E13v0Esj4Uwb03N3L5AORspPsTTCv/t1Zh9NpPKbS3GIq/pIE+94c
+         s/i4GvVjUdbntbKfllxbHtfd1djQMFsfhwzfP+szaVk5KmfHJiHP0meL8fpUOrQho+Op
+         OHUbyfRqO6SU29jkZZP4TCvqOH1XzcvDQLPGzvWpPTbLyf55hkB4//+796nNKAkgcCw8
+         abnpF9Na57xR+G0N7Tdf2dy74d/qkjWUj4dA7/gGhxiFXQ+FSnIOQHqScTsMgg6Tw92o
+         UlEKF02K8Ggq+Cga4Cf0JpZ3M3IPNoVsXLtIwNYzBw+M7D5W9v/ciqyTq4lXi8Yl4pw1
+         FSag==
+X-Gm-Message-State: ABy/qLb883mv8FvPb4LfX1daEee3rD4C96rCYmgq4uTInSI6CmEUwSyC
+	+YRmAPR5AdswG3tT/utyypKxVg6VQggDXtxyUHs=
+X-Google-Smtp-Source: APBJJlE+BQ8Cgv909NDKjUJsKsCBSUoE71Uox7W4qYh8WJXg+HeXAUZUtKCs99GL15QM9NqeLblGVr7BSWgF6dqfiqg=
+X-Received: by 2002:a05:651c:120e:b0:2b6:effd:9a3b with SMTP id
+ i14-20020a05651c120e00b002b6effd9a3bmr16277669lja.24.1689181434137; Wed, 12
+ Jul 2023 10:03:54 -0700 (PDT)
 MIME-Version: 1.0
+References: <3684.1661546302833449840@lists.yoctoproject.org> <23208.1689112487284330296@lists.yoctoproject.org>
+In-Reply-To: <23208.1689112487284330296@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 12 Jul 2023 19:03:42 +0200
+Message-ID: <CANNYZj-Lp4rkFT1fBsPhEETtLcB5htumQRqgOPz5kMuuJoabnQ@mail.gmail.com>
+Subject: Re: [yocto] Devtool fails if SRCREV is set to ${AUTOREV} #kirkstone
+ #devtool #yocto
+To: Tom Isaacson <tom.isaacson@teknique.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 12 Jul 2023 14:49:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60554
+ <yocto@lists.yoctoproject.org>; Wed, 12 Jul 2023 17:04:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60555
 
-On Tue, 2023-06-20 at 15:09 +0100, Richard Purdie via
-lists.yoctoproject.org wrote:
-> The project has some exciting plans in progress and I'm happy to say
-> we're now in the fortunate position that we're able to seek quotations
-> for some development work.=C2=A0For more details please see this page on
-> website:
->=20
-> https://www.yoctoproject.org/community/yocto-project-engineering-request-=
-for-quotation/
->=20
-> Please feel free to reach out to me or the Yocto Project TSC if there
-> are any questions.
+Devtool does not have a maintainer. If you can look into the issue, it
+would be appreciated.
 
-We've added an update to the end of the above link with a deadline for
-quotations and some other answers to commonly asked questions.
+Alex
 
-Cheers,
-
-Richard
-
+On Tue, 11 Jul 2023 at 23:54, Tom Isaacson <tom.isaacson@teknique.com> wrote:
+>
+> Is there a fix for this yet? We just upgraded to Kirkstone and are running into the same problem.
+>
+> Thanks.
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60550): https://lists.yoctoproject.org/g/yocto/message/60550
+> Mute This Topic: https://lists.yoctoproject.org/mt/93100438/1686489
+> Mute #kirkstone:https://lists.yoctoproject.org/g/yocto/mutehashtag/kirkstone
+> Mute #devtool:https://lists.yoctoproject.org/g/yocto/mutehashtag/devtool
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
