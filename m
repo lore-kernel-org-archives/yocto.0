@@ -1,161 +1,110 @@
-Return-Path: <logan.grosz@gmail.com>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04512C001B0
-	for <webhook@archiver.kernel.org>; Thu, 13 Jul 2023 19:17:55 +0000 (UTC)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
- by mx.groups.io with SMTP id smtpd.web11.1498.1689275867614075165
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9F3CC001B0
+	for <webhook@archiver.kernel.org>; Thu, 13 Jul 2023 19:25:36 +0000 (UTC)
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+ by mx.groups.io with SMTP id smtpd.web10.34.1689276329807813896
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jul 2023 12:17:47 -0700
+ Thu, 13 Jul 2023 12:25:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=O+uXFvj4;
- spf=pass (domain: gmail.com, ip: 209.85.221.48, mailfrom: logan.grosz@gmail.com)
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-31441dfbf97so1281903f8f.1
-        for <yocto@lists.yoctoproject.org>; Thu, 13 Jul 2023 12:17:47 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=TJ76du7B;
+ spf=pass (domain: gmail.com, ip: 209.85.167.175, mailfrom: jpewhacker@gmail.com)
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3a38953c928so918804b6e.1
+        for <yocto@lists.yoctoproject.org>; Thu, 13 Jul 2023 12:25:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689275866; x=1691867866;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Wq3wvCuJ75pxDvRT4Xji57TIPmEjneLAkXZCCb6spo=;
-        b=O+uXFvj4qtXZ/5i5YkngsxZwe9BqEak8G2qu0Xbt6G+X9lTKWyNwTb/yka2R62WpP2
-         On3mtJ0PV1k+KFsiGoGZ+8RHrbiH/gKq1bfi4aYXm+YwT/6bTv865ys/yp85EBAzLseU
-         CRCz3vlmFtmsZMakhlbwg4qSi7j0ZJMN+xSyB3y3YXbT96QrfPQP1r4M59v16VljExV1
-         r3+HW22FJhdrPuYSwVFy3qRuqrqxLC81JVw8G6ME+qQIJ6F9zK+GiiqvB5PiUCkHz4jL
-         LnkTk9MU3c8vUjGHU60nPj8Qw1ns/AFdpd+uqtd4sD1h3s9HybMi37Z0nOT/khukPnrV
-         h2HQ==
+        d=gmail.com; s=20221208; t=1689276328; x=1691868328;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GfAgMOakajKYetIwIxLRd310jb4VfsTvlcvf4Knhscs=;
+        b=TJ76du7BmBeehcibh5gg53zlhD99X04xoRl7ZxzCT6KkF3NpfdRwP5VXnp1eFJESeC
+         I7/EAKi252M47/v5UdvucXW90iP+5ROJpWd1ZTpcnBMcnCMTxEnkRQQp/D6+43YP+fZa
+         oNl8lkm5Z00Qv5M7uH0BZ+Hwy/DoSxlQYOz0lc9WfLxv7YXVII547CSb20z5JCXjzd4p
+         UB1xX3VInX4BE6N7rcg4xxVRAQY2cTPk8iFfHkpvmeu+9tgb8LqCvpFTK2Pzk7f2fmSC
+         wssr6kYMZiHi9r/byI8aFF+srE43h2GJjbyrVmPN8P/bII3/YNCtkb3Hh8VkA3sgYbAo
+         x2ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689275866; x=1691867866;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1689276328; x=1691868328;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9Wq3wvCuJ75pxDvRT4Xji57TIPmEjneLAkXZCCb6spo=;
-        b=eY7duZyPtOFXu2WFwP5xxH44xIQ6RDgVNjO4IA4PfM86DZrmc54ZqL1uLLoGK29C/F
-         L9MvuuOdsk2tpN9+S+Em/2zpkdPsM/ny7Bc4EM/tj0D9EJSqo3FzfglMpvcCn3XnRjKs
-         WlZo+QJHB0rd/MfasrzXLvSv/T3uDNwzErRajPlGCy1cIxsbjvxAtikzaxc7K3FIgOwR
-         3bjxuqLK8ynnEFqTiQA2jCZcEGcMzdPGlpocVkga8sGIoqbLeK8Ze/+Ze1h/kzWpT08W
-         6zdlfRMyPt5VlpoPFIx1p5k742ySlniFPN2+3V+3MvLTAfmpgKBVYEFxKYQIKC/Rvju7
-         15/Q==
-X-Gm-Message-State: ABy/qLZ+pahy3ghJagTgDv8G6b6kKyJ5RrY2RMqTyZYcU7zxK0FK8kpw
-	7dlC5+QH+DxiCezytf4tQ1Ux6ENArqNlWBITrTg=
-X-Google-Smtp-Source: APBJJlGfiKZ53RNhTCElp2RWlYnbgahseqv0V5z5JKb4Dta1HFLXiIme8fRfkIE/6c0rkN9b7gQVN34EDjKKFm0nxqY=
-X-Received: by 2002:adf:fd4a:0:b0:313:e161:d013 with SMTP id
- h10-20020adffd4a000000b00313e161d013mr2469316wrs.15.1689275865505; Thu, 13
- Jul 2023 12:17:45 -0700 (PDT)
+        bh=GfAgMOakajKYetIwIxLRd310jb4VfsTvlcvf4Knhscs=;
+        b=kPi7EeLnEP+SHSjm24YKrT2wc7LHUF+y220b7/JlOEgijpuf/d1rFDdbb/C6YTQyj7
+         f7yCJoaTeARYsOtDjo1kiXoRacu7U0sNGWq1WIqfIoqG8pwNhbbgZgoLI1pvA8vSfk/J
+         krrORVEPreW3TC1noZrAMDO8TCsMGD3gDZev+SixEXgQ5jMbkSgK9/tvAE+9Rbt3nHHY
+         0ahUJxsGABFakKwqRhbsNGZMyPp35/Qstj0ylft+HAFoUBZU0uH/wyMEoM5FSx15xpHz
+         QP63ii3Su0QLBzyxhOr84IXOjTcSrrCJ3vSb+5Pmjw6aRXKBsoYoXsjFLtMOez8WgpUq
+         DSDA==
+X-Gm-Message-State: ABy/qLbKHmog3n7B2HbtRGlTSz3E7X/7rkUxng7m8yt3TPTmQzQTbye5
+	pC1+axeapG7JADvDNUGD+d0JKnyyHo8=
+X-Google-Smtp-Source: APBJJlEuC48r2vx13GqsrbjZjX0mx0YAVgy74iw5GQoWLxzxmGM9lWY9nLHT9ENnSufuN4wULr0jKg==
+X-Received: by 2002:a05:6808:f8d:b0:3a0:5ee3:ea67 with SMTP id o13-20020a0568080f8d00b003a05ee3ea67mr3311854oiw.16.1689276328411;
+        Thu, 13 Jul 2023 12:25:28 -0700 (PDT)
+Received: from localhost.localdomain ([2601:282:4300:19e0::1a8b])
+        by smtp.gmail.com with ESMTPSA id bp19-20020a056808239300b003a1dfa93903sm3197353oib.12.2023.07.13.12.25.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jul 2023 12:25:27 -0700 (PDT)
+From: Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Joshua Watt <JPEWhacker@gmail.com>
+Subject: [yocto][meta-mingw][PATCH] mingw32: Fix GCC override
+Date: Thu, 13 Jul 2023 13:25:21 -0600
+Message-Id: <20230713192521.4075964-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <CAAfyv36X38BbBj3KecvgcPzw2smFU-CQcLfBm2sLdX--iC4F4w@mail.gmail.com>
- <15873.1689240705555939886@lists.yoctoproject.org>
-In-Reply-To: <15873.1689240705555939886@lists.yoctoproject.org>
-From: Logan Grosz <logan.grosz@gmail.com>
-Date: Thu, 13 Jul 2023 13:17:33 -0600
-Message-ID: <CANn=KGhL7XzFQNXA7win-PgKnCf0RWGf-SAYVd7kCOT0xPzLUA@mail.gmail.com>
-Subject: Re: [yocto] wic cp doesn't work with ext4 partition
-To: Markus.Lehmann@duagon.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000e4240d0600632f9e"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Jul 2023 19:17:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60570
+ <yocto@lists.yoctoproject.org>; Thu, 13 Jul 2023 19:25:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60571
 
---000000000000e4240d0600632f9e
-Content-Type: text/plain; charset="UTF-8"
+6badeda ("mingw32: Add WINDRES export for SDK") attempted to fix the GCC
+13 Canadian cross compile for MinGW host, but used the broad sdkming32
+override, which made it apply to all target recipes. This caused build
+errors in other recipes. Move the variables so that they only apply when
+cross compiling GCC instead of globally.
 
-I am having a similar problem with `wic cp` and ext4. Though, my problem is
-a file cannot be copied to a specific path with `wic cp <src>
-<image>:<part><path>. No matter what I put, the file gets put at the root.
+[YOCTO #15158]
 
-```
-$ wic cp test ./my.wic:1/etc/
-$ wic ls test ./my.wic:1/etc/
-.
-..
-$ wic ls ./my.wic:1
-.
-..
-/etc
-test
-```
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ conf/machine-sdk/include/mingw32-common.inc        | 3 ---
+ recipes-devtools/gcc/gcc-cross-canadian_%.bbappend | 4 ++++
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-I am unsure if this is related, but I thought I'd mention it since I am
-experiencing issues with the same command.
+diff --git a/conf/machine-sdk/include/mingw32-common.inc b/conf/machine-sdk/include/mingw32-common.inc
+index 1007bd4..b993307 100644
+--- a/conf/machine-sdk/include/mingw32-common.inc
++++ b/conf/machine-sdk/include/mingw32-common.inc
+@@ -38,9 +38,6 @@ TESTSDKEXT_CLASS_NAME = ""
+ WINDMC:mingw32 = "${HOST_PREFIX}windmc"
+ WINDRES:mingw32 = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
+ RC:mingw32 = "${WINDRES}"
+-WINDMC:sdkmingw32 = "${HOST_PREFIX}windmc"
+-WINDRES:sdkmingw32 = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
+-RC:sdkmingw32 = "${WINDRES}"
+ 
+ export WINDMC
+ export WINDRES
+diff --git a/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend b/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
+index 13ea016..25a449f 100644
+--- a/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
++++ b/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
+@@ -5,6 +5,10 @@ EXEEXT:sdkmingw32 = ".exe"
+ ELFUTILS:sdkmingw32 = ""
+ DEPENDS:remove:sdkmingw32 = "nativesdk-gettext"
+ 
++WINDMC:sdkmingw32 = "${HOST_PREFIX}windmc"
++WINDRES:sdkmingw32 = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
++RC:sdkmingw32 = "${WINDRES}"
++
+ # With plugins enabled, it will output 'dll.a' files that are mistaken
+ # for ELF which can trigger a failure.  Simply avoid processing these
+ # to avoid the error condition.
+-- 
+2.33.0
 
-Logan
-
-On Thu, Jul 13, 2023, 3:51 AM Markus via lists.yoctoproject.org
-<Markus.Lehmann=duagon.com@lists.yoctoproject.org> wrote:
-
-> Hi Marek,
->
-> thx for your answer but partition 3 is completely empty, so nothing can be
-> deleted here ...
-> Is there a special option needed in the *.wks.in file to be able to copy
-> something with wic?
->
-> Cheers, Markus
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60567):
-> https://lists.yoctoproject.org/g/yocto/message/60567
-> Mute This Topic: https://lists.yoctoproject.org/mt/61339516/7581472
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> logan.grosz@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---000000000000e4240d0600632f9e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">I am having a similar problem with `wic cp` and ext4. Tho=
-ugh, my problem is a file cannot be copied to a specific path with `wic cp =
-&lt;src&gt; &lt;image&gt;:&lt;part&gt;&lt;path&gt;. No matter what I put, t=
-he file gets put at the root.<div dir=3D"auto"><br></div><div dir=3D"auto">=
-```</div><div dir=3D"auto">$ wic cp test ./my.wic:1/etc/</div><div dir=3D"a=
-uto">$ wic ls test ./my.wic:1/etc/</div><div dir=3D"auto">.</div><div dir=
-=3D"auto">..</div><div dir=3D"auto">$ wic ls ./my.wic:1</div><div dir=3D"au=
-to">.</div><div dir=3D"auto">..</div><div dir=3D"auto">/etc</div><div dir=
-=3D"auto">test</div><div dir=3D"auto">```</div><div dir=3D"auto"><br></div>=
-<div dir=3D"auto">I am unsure if this is related, but I thought I&#39;d men=
-tion it since I am experiencing issues with the same command.</div><div dir=
-=3D"auto"><br></div><div dir=3D"auto">Logan</div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 13, 2023, 3:51=
- AM Markus via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject=
-.org</a> &lt;Markus.Lehmann=3D<a href=3D"mailto:duagon.com@lists.yoctoproje=
-ct.org">duagon.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
-lid;padding-left:1ex"><p>Hi Marek,</p>
-
-<p>thx for your answer but partition 3 is completely empty, so nothing can =
-be deleted here ... <br>
-Is there a special option needed in the *.<a href=3D"http://wks.in" target=
-=3D"_blank" rel=3D"noreferrer">wks.in</a> file to be able to copy something=
- with <code>wic</code>?</p>
-
-<p>Cheers,
-Markus</p>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60567): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60567" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
-ists.yoctoproject.org/g/yocto/message/60567</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/61339516/7581=
-472" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
-ject.org/mt/61339516/7581472</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
-/g/yocto/unsub</a> [<a href=3D"mailto:logan.grosz@gmail.com" target=3D"_bla=
-nk" rel=3D"noreferrer">logan.grosz@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000e4240d0600632f9e--
 
