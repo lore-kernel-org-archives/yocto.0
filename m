@@ -1,104 +1,129 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <tom.isaacson@teknique.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 26CFBEB64DC
-	for <webhook@archiver.kernel.org>; Fri, 14 Jul 2023 19:29:17 +0000 (UTC)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
- by mx.groups.io with SMTP id smtpd.web10.4262.1689362947863276680
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4371CEB64DC
+	for <webhook@archiver.kernel.org>; Fri, 14 Jul 2023 20:08:47 +0000 (UTC)
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+ by mx.groups.io with SMTP id smtpd.web10.5481.1689365322116535659
  for <yocto@lists.yoctoproject.org>;
- Fri, 14 Jul 2023 12:29:08 -0700
+ Fri, 14 Jul 2023 13:08:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=DmZf1i0E;
- spf=pass (domain: gmail.com, ip: 209.85.208.176, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2b6f52e1c5cso35221561fa.1
-        for <yocto@lists.yoctoproject.org>; Fri, 14 Jul 2023 12:29:07 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@teknique-com.20221208.gappssmtp.com header.s=20221208 header.b=Q2Wcg2UA;
+ spf=none, err=SPF record not found (domain: teknique.com, ip: 209.85.219.50, mailfrom: tom.isaacson@teknique.com)
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-635e3ceb152so11341036d6.2
+        for <yocto@lists.yoctoproject.org>; Fri, 14 Jul 2023 13:08:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689362946; x=1691954946;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=V+6hVhgauLTsrL2FI8acW35iAay+VAGnst94UMKDC3E=;
-        b=DmZf1i0ExUJBbe7oaSUTrf5LwQOQ4F4VF+7zPyDVKJsjBra+6S/Mu4M7+eoCtETcmZ
-         0w65EGeU89irlMl1nx4n8iH8r433gn98my3TaVtdqd19aCK343Dv7W8SlT12msUSNpvI
-         BgcPNXVhvSJzBJD2Zkfqi8QsoizXMYKG9vCIWURbscnZGSXUwKEu/oWkWLkEa+dhiMB5
-         JneeFdftV8hYTTLxH7B2sYRWmW0zUm79/og3Q3rObN9SNegimvPgHcs2sALye55qtRNn
-         hrdk8wfz1sn3GrIxtZM+Zsgy25Ko8b1m8Xi5CKyhfy5V3JMN9wyxA8fgF2jqJNgzwSbe
-         OuGw==
+        d=teknique-com.20221208.gappssmtp.com; s=20221208; t=1689365321; x=1691957321;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v9/pjZzlSvbXZPa3OoUBKtxt9weiH6Ds8EJyhgr1r20=;
+        b=Q2Wcg2UAbupm1CkvoRvWXY5hvyS11V47ka4pODI+wdD+pz82j36v22+eWUdWoGbr9p
+         3c6IhP+RWiQwr78IOHV8lk6pNXs8ZUxYP/ya6IAxr4xzauyQjJ/nKihpVCgv+5iwuLeu
+         A7ZISIVXaZKjhTD0Tx+HJbYaAbJUXGgr6Rr6arIY+rvcjpSDMNZhmQxsUyjFlfGUvd+A
+         8VfZHOmJDE35/ZF5kYVN7TfcVifOuZcYAiaCX6EJNnjILk+BzbBuNzw1HQCHomzMZzyI
+         fe1rkQsiDyzyF8KV2teA21XZqJhHz7p9vUs27ZiooB6Ua/EoYJdGTFlYkBFwx0MH2mtM
+         3tjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689362946; x=1691954946;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V+6hVhgauLTsrL2FI8acW35iAay+VAGnst94UMKDC3E=;
-        b=YTqWPwYUrwqZig/ylQD0oKI+Et6EaYgq5uCoCBseb0KED1Bn09sM+vMBwmPoGOddVC
-         zb1MPOMWs+WR9tZu87H+umFiwM/XENtYQ3Okofg9NV9/4HymEpkIvshFpWJ1Fd+UnGVg
-         t0TU/hTTxEWArCBMHzpMo0JXSbm6kAPKa5Mc13iE03fkPWpHVWJLiPOzaEfd5HOo0WTw
-         8nAZz7al3MnC5UNpmME7CGvY0MnSrT/w+Zc2WBqg7itFXon4Q7uShU9XJrv2QzU+Le2g
-         a+s4nOPMM1u+BlrLU2g/o+1/1mHO63nESE/3TJM03V0zcC1s331WnYmnLIlXCIQc8F5v
-         fjRQ==
-X-Gm-Message-State: ABy/qLY2E4n3PbaMcAMSPJcKIx/xJ8mI8L2DYGeLdjKHR2MFlQSNmhea
-	tS0avCZHANa8HuPZ0FFHUjZZDR4M7+bphjvwFIc=
-X-Google-Smtp-Source: APBJJlF+QiFjhXWJTRytZ9YcWv/DNYfoQa0wWCTFeX0yYwKYpDTB1M/TEupK01IdDXgL5YUFnfFWt88Dbzdsl6mAXA8=
-X-Received: by 2002:a05:651c:8a:b0:2b4:6c76:332f with SMTP id
- 10-20020a05651c008a00b002b46c76332fmr5349699ljq.9.1689362945443; Fri, 14 Jul
- 2023 12:29:05 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689365321; x=1691957321;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=v9/pjZzlSvbXZPa3OoUBKtxt9weiH6Ds8EJyhgr1r20=;
+        b=cAfM4TnD3W9x4nn1O7j6pBRXhAj7DZfs4GKuAzvFkqVMMMUeLlNC1YtiB0o3IXeQmN
+         7pUmP7dEAFeVb6njBwSQODpdHGGzZHyRyoT1FwjVcma+t0fwuL/zKHDC9p0TfI5I5ZBG
+         fq1TMgEQUTPmPRgQvpp/t08x1mjHW6NG2jgTq9AtVQBdDo0ByBaBhJz5u+wdFXVrv66D
+         0aeV5gG4YkB5rMerguq/BrrtEDkpAJK7HiWhhWxUgH24zRyAppOzaDMcwRbMfVzgFcIJ
+         kbhG2R7qRPYYNJ1CX+ddyKDI4CoZp28GJf7jCeB1gfCPh7lm6Jcpv255fQwE47h9hiXW
+         HD2Q==
+X-Gm-Message-State: ABy/qLZ9s0JP0Pu9F7cpyfvDfi0BJ2OWMNIXB0jDsFsYxiMS5WMHM1SS
+	PQ5bNmkSLYiq5DGBJf22Je+nfm9Dv0zTE3qT5+aAlg==
+X-Google-Smtp-Source: APBJJlG0oI9/aM0Xzbzx+lJ5tX3DTIQUdqws8AClbj8Mhtr5lyNBkzE2pH+9F6hTVMPLbnHjmoscad+u10p0oj0y8hk=
+X-Received: by 2002:a0c:f588:0:b0:623:86a9:7696 with SMTP id
+ k8-20020a0cf588000000b0062386a97696mr4757238qvm.5.1689365321106; Fri, 14 Jul
+ 2023 13:08:41 -0700 (PDT)
 MIME-Version: 1.0
 References: <CA+EiEZLqLzBreVxigh9f2uM2L9bP3Z6RZ0UfEWhQcGBNaLoD1A@mail.gmail.com>
-In-Reply-To: <CA+EiEZLqLzBreVxigh9f2uM2L9bP3Z6RZ0UfEWhQcGBNaLoD1A@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 14 Jul 2023 21:28:59 +0200
-Message-ID: <CANNYZj-9eUXBpK3YV4ve=DFJS5Ej9g9PptAL94c83QR5BhhnPg@mail.gmail.com>
+ <CANNYZj-9eUXBpK3YV4ve=DFJS5Ej9g9PptAL94c83QR5BhhnPg@mail.gmail.com>
+In-Reply-To: <CANNYZj-9eUXBpK3YV4ve=DFJS5Ej9g9PptAL94c83QR5BhhnPg@mail.gmail.com>
+From: Tom Isaacson <tom.isaacson@teknique.com>
+Date: Sat, 15 Jul 2023 08:08:31 +1200
+Message-ID: <CA+EiEZ+e2SvgXjv8G+duoaVG_NF+uzqKDaTz3r2zGkC11xgK-Q@mail.gmail.com>
 Subject: Re: [yocto] How does SOURCEFORGE_MIRROR work?
-To: Tom Isaacson <tom.isaacson@teknique.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
 Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 14 Jul 2023 19:29:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60581
+ <yocto@lists.yoctoproject.org>; Fri, 14 Jul 2023 20:08:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60582
 
-You perhaps could check log.do_fetch to see precisely where the file
-is being downloaded from.
+Ah, I didn't realise there was a logfile for that.
 
-Alex
+For future reference, it uses
+https://github.com/yoctoproject/poky/blob/kirkstone/bitbake/lib/bb/fetch2/_=
+_init__.py#L1116
+to run through a list of atlernates, eventually settling on
+http://downloads.yoctoproject.org/mirror/sources/gsoap_2.8.106.zip
 
-On Fri, 14 Jul 2023 at 21:24, Tom Isaacson <tom.isaacson@teknique.com> wrote:
+Thanks.
+
+On Sat, Jul 15, 2023 at 7:29=E2=80=AFAM Alexander Kanavin
+<alex.kanavin@gmail.com> wrote:
 >
-> I'm looking at the Kirkstone recipe for gsoap
-> http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-support/gsoap/gsoap_2.8.106.bb?h=kirkstone
-> and it downloads from:
-> SRC_URI = "${SOURCEFORGE_MIRROR}/${BPN}2/${BPN}_${PV}.zip
+> You perhaps could check log.do_fetch to see precisely where the file
+> is being downloaded from.
 >
-> SOURCEFORGE_MIRROR is defined in poky/meta/conf/bitbake.conf:
-> SOURCEFORGE_MIRROR = "https://downloads.sourceforge.net"
-> BPN = "gsoap"
-> so the URL is:
-> https://downloads.sourceforge.net/gsoap2/gsoap_2.8.106.zip
+> Alex
 >
-> But this doesn't exist:
-> $ wget https://downloads.sourceforge.net/gsoap2/gsoap_2.8.106.zip
-> --2023-07-15 07:23:40--
-> https://downloads.sourceforge.net/gsoap2/gsoap_2.8.106.zip
-> Resolving downloads.sourceforge.net (downloads.sourceforge.net)...
-> 204.68.111.105
-> Connecting to downloads.sourceforge.net
-> (downloads.sourceforge.net)|204.68.111.105|:443... connected.
-> HTTP request sent, awaiting response... 404 Not Found
-> 2023-07-15 07:23:40 ERROR 404: Not Found.
->
-> So where is the build getting the file? Does SOURCEFORGE_MIRROR fall
-> back to a different location?
->
-> --
-> Tom Isaacson
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60580): https://lists.yoctoproject.org/g/yocto/message/60580
-> Mute This Topic: https://lists.yoctoproject.org/mt/100148132/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+> On Fri, 14 Jul 2023 at 21:24, Tom Isaacson <tom.isaacson@teknique.com> wr=
+ote:
+> >
+> > I'm looking at the Kirkstone recipe for gsoap
+> > http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-sup=
+port/gsoap/gsoap_2.8.106.bb?h=3Dkirkstone
+> > and it downloads from:
+> > SRC_URI =3D "${SOURCEFORGE_MIRROR}/${BPN}2/${BPN}_${PV}.zip
+> >
+> > SOURCEFORGE_MIRROR is defined in poky/meta/conf/bitbake.conf:
+> > SOURCEFORGE_MIRROR =3D "https://downloads.sourceforge.net"
+> > BPN =3D "gsoap"
+> > so the URL is:
+> > https://downloads.sourceforge.net/gsoap2/gsoap_2.8.106.zip
+> >
+> > But this doesn't exist:
+> > $ wget https://downloads.sourceforge.net/gsoap2/gsoap_2.8.106.zip
+> > --2023-07-15 07:23:40--
+> > https://downloads.sourceforge.net/gsoap2/gsoap_2.8.106.zip
+> > Resolving downloads.sourceforge.net (downloads.sourceforge.net)...
+> > 204.68.111.105
+> > Connecting to downloads.sourceforge.net
+> > (downloads.sourceforge.net)|204.68.111.105|:443... connected.
+> > HTTP request sent, awaiting response... 404 Not Found
+> > 2023-07-15 07:23:40 ERROR 404: Not Found.
+> >
+> > So where is the build getting the file? Does SOURCEFORGE_MIRROR fall
+> > back to a different location?
+> >
+> > --
+> > Tom Isaacson
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#60580): https://lists.yoctoproject.org/g/yocto/mess=
+age/60580
+> > Mute This Topic: https://lists.yoctoproject.org/mt/100148132/1686489
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin=
+@gmail.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
+
+
+
+--=20
+Tom Isaacson
 
