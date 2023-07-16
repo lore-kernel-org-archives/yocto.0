@@ -2,82 +2,86 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F29CC001DE
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A01C5C001E0
 	for <webhook@archiver.kernel.org>; Sun, 16 Jul 2023 19:08:35 +0000 (UTC)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
- by mx.groups.io with SMTP id smtpd.web11.4084.1689534505370381522
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+ by mx.groups.io with SMTP id smtpd.web10.4046.1689534506189487630
  for <yocto@lists.yoctoproject.org>;
- Sun, 16 Jul 2023 12:08:25 -0700
+ Sun, 16 Jul 2023 12:08:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=jXsNczDg;
- spf=pass (domain: gmail.com, ip: 209.85.219.179, mailfrom: akuster808@gmail.com)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-cae0ad435b6so4064330276.0
-        for <yocto@lists.yoctoproject.org>; Sun, 16 Jul 2023 12:08:25 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=WfrxaHNQ;
+ spf=pass (domain: gmail.com, ip: 209.85.128.172, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-579dd20b1c8so36428677b3.1
+        for <yocto@lists.yoctoproject.org>; Sun, 16 Jul 2023 12:08:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689534504; x=1692126504;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yxa5Nq6scYT2Z8FuQdjmIifdeFLE0g8bx1xmQPIFHHM=;
-        b=jXsNczDgxaDtiej4OuptvGKk+jAOAQgR1sK5PtERwl+peHM59SXw2ECsO9SOVWRTOJ
-         APOvRVDADrteUWLz9RkO1FVc7TLJLaDdGbKOh0oT42KU1ZRvG5cHSzC8RAMDV7aK99ld
-         b3VB/Ap1sNTyZuc9D/dhOHYP/MJnKU4IuTJBMFAlvbqNInqplVSU2LKv9BJxWd0kAMYv
-         ei7vl2VynVQV+QNK2Mo3eJfvank/KzX4Uuut4LFYVqnOd15VY1qc6pdK6qPiWpq2wnPG
-         LTkse3dF9/cnwo0uEIWG+45vFOiLbAUcN1NrUv2VeQ2AQxdKWMMB5eX42VdDbQXBn+ui
-         3gsg==
+        d=gmail.com; s=20221208; t=1689534505; x=1692126505;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vEZqT9r+MpjMJJTn15WEffsy5EMd8+NlMxiZgZwGFQI=;
+        b=WfrxaHNQ2TvUFa0ffBIpqzmxVRd13l+SG7PgIPu3gXsjn84cao3mydx4qnK4PPSx6b
+         grpFXu5B3THRKTTMtJFdNdvdbrNeCW7BoCGJCjmhqOAbZt1zpqPSCA4717JzawzNrfmI
+         y1BbVl0fSIBa9oIyAk3Kzx3vCChUQwizxrmYDEBE7Uc5ynWHqUVIL3fSizAKbbnK9+uc
+         xut22xhRuycb++9QSj3yq0ff1YkNcBxIq6BPVhI9WqrzeLTFmQk1nri6SVKS/WcqNCvx
+         rwZRr4By67rJm+xBDx3Q1JUdVstQ86NRjamplWwSmHpLnpanunq0FxgyL5bbm+M0Y/6p
+         nsYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689534504; x=1692126504;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yxa5Nq6scYT2Z8FuQdjmIifdeFLE0g8bx1xmQPIFHHM=;
-        b=bDTKdoKdw0hr1D95JQIodOX/Pu90Qd1jbuw/fmVv46jomvSQfrhqPI/vynkBAfHj6i
-         UyU+Enu64UR9KW/wutfiFhfKs+LEbgWfYkmTTL3660z93hSC+MVsZ8Mr89qLi13nkyqr
-         5xp2Vqw5ED76au/WSL1hU7on8Hg+1vRwO6EJnu03vCoG1FUxICFTrHdjVson1jk+XDjW
-         kkceRpgo4j5wd2ytVrmApw/ENCP2EdRqDuoAA3Le8dKFPssetZ2Ixgx3NtJRxuuXnVoW
-         7c24HCbOpHKUKn6N6ypikJM8HN8TYXtHaS/B2slHLqfOc3M45B8ZafA/aXBma0o+tryT
-         5LIw==
-X-Gm-Message-State: ABy/qLZnVTCSaPcQtgB1Qc6jYjeLMxryrdlNkf3iZNVJuzXsjmPTl6wv
-	1EL/htUcxNZMu8rlRKstyUYasknTVF0=
-X-Google-Smtp-Source: APBJJlHUwz6YrqqR1RX2Chvknnm7JqQjD6OYMVZpdI6mG1pHVN99a7XlVDHzTxpqSozc/THC/trCNg==
-X-Received: by 2002:a0d:eb4b:0:b0:577:150f:3efe with SMTP id u72-20020a0deb4b000000b00577150f3efemr10439489ywe.27.1689534504272;
-        Sun, 16 Jul 2023 12:08:24 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689534505; x=1692126505;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vEZqT9r+MpjMJJTn15WEffsy5EMd8+NlMxiZgZwGFQI=;
+        b=i+R3veyKXh0zNhv3NCMgvfH8KhQZIkpW3wv/2O5bqSnsbnK9cnQiLNb55dV38d8drC
+         fiisbsvI6MDUtU1THeBhyS3urY6EfZRed0VTV5rEpxRhJFevBjwUthZhaa2jDxty5Xy3
+         6qexdlg3OJUUePGlcgRjbD5SsY1+gkCXRkezexd/24LuV+JInu4s1Ai0L3EMHBYcxHaO
+         5WVMUqKsU3UVQq9x40IhY6Uaw80LS5xGBbGictLg39A6cJmvy09B2isLPZ9t9bovwWYP
+         QZ65yi7JYs1TvBcJXp0wx4pwhGXjfCOWePTE+FBMcq52hZzSAoFt4AMw1asj3StJnVL9
+         vXtg==
+X-Gm-Message-State: ABy/qLYQrPJtVdSJ68A7CfhXd0yqiA0zVU7qv0M24LgrCIJKb2lTkw2r
+	2Ev2Oci4jn/g6wm7yN/nEqmwwUSmW0s=
+X-Google-Smtp-Source: APBJJlFgh9iPEq1KgG46G7YLlOkxQ2sqTZF+l0GKurO62X8W0R8DX0dmIInEtav6eqPz8RLk+uvAsQ==
+X-Received: by 2002:a0d:cb48:0:b0:559:deed:f363 with SMTP id n69-20020a0dcb48000000b00559deedf363mr9309373ywd.2.1689534505204;
+        Sun, 16 Jul 2023 12:08:25 -0700 (PDT)
 Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:54fe:9eab:47f4:c789])
-        by smtp.gmail.com with ESMTPSA id n131-20020a817289000000b005732b228a83sm3412745ywc.140.2023.07.16.12.08.23
+        by smtp.gmail.com with ESMTPSA id n131-20020a817289000000b005732b228a83sm3412745ywc.140.2023.07.16.12.08.24
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Jul 2023 12:08:23 -0700 (PDT)
+        Sun, 16 Jul 2023 12:08:24 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/3] python3-yamlpath: Add new pkg
-Date: Sun, 16 Jul 2023 15:08:20 -0400
-Message-Id: <20230716190822.362553-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/3] python3-json2html: add new pkg
+Date: Sun, 16 Jul 2023 15:08:21 -0400
+Message-Id: <20230716190822.362553-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230716190822.362553-1-akuster808@gmail.com>
+References: <20230716190822.362553-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Sun, 16 Jul 2023 19:08:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60583
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60584
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-devtools/python/python3-yamlpath_3.8.0.bb    | 9 +++++++++
+ .../recipes-devtools/python/python3-xmldiff_2.6.3.bb     | 9 +++++++++
  1 file changed, 9 insertions(+)
- create mode 100644 dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.0.bb
+ create mode 100644 dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.6.3.bb
 
-diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.0.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.0.bb
+diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.6.3.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.6.3.bb
 new file mode 100644
-index 0000000..5d88951
+index 0000000..517ed87
 --- /dev/null
-+++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.0.bb
++++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.6.3.bb
 @@ -0,0 +1,9 @@
-+DESCRIPTION="YAML Path and Command-Line Tools"
-+LICENSE = "ISC"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=5abda174c5040dd12ed2b225e3a096f0"
++DESCRIPTION="Creates diffs of XML files"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=0d0e9e3949e163c3edd1e097b8b0ed62"
 +
-+SRC_URI[sha256sum] = "81d5b8baba60c255b519ccd31a691f9bc064223ff196709d41119bde81bba49e"
++SRC_URI[sha256sum] = "19b030b3fa37d1f0b5c5ad9ada9059884c3bf2c751c5dd8f1eb4ed49cfe3fc60"
 +
-+PYPI_PACKAGE = "yamlpath"
++PYPI_PACKAGE = "xmldiff"
 +
 +inherit pypi setuptools3
 -- 
