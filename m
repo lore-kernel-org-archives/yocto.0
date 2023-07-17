@@ -1,124 +1,132 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <tom.isaacson@teknique.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F1C8EB64DC
-	for <webhook@archiver.kernel.org>; Mon, 17 Jul 2023 21:08:22 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web11.6359.1689628092886761504
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DCBCEB64DC
+	for <webhook@archiver.kernel.org>; Mon, 17 Jul 2023 21:44:38 +0000 (UTC)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+ by mx.groups.io with SMTP id smtpd.web10.415.1689630275064692629
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Jul 2023 14:08:13 -0700
+ Mon, 17 Jul 2023 14:44:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=bMKdL9Tw;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-3fbc656873eso51736795e9.1
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 14:08:12 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@teknique-com.20221208.gappssmtp.com header.s=20221208 header.b=yGhoehCp;
+ spf=none, err=SPF record not found (domain: teknique.com, ip: 209.85.167.179, mailfrom: tom.isaacson@teknique.com)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3a3b7f992e7so3682766b6e.2
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 14:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1689628091; x=1692220091;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=eO7wo4QNBN0rvgjvXR3UHgt2sDIVQB5IM8maxoZ3AFI=;
-        b=bMKdL9TwWLami1PSSDEgChEZ447fRKOMrAr/lbNBJgRFk9tHF0eIqkuaI7yRdEkKke
-         T3qV3w6tvCC9PmkJAVZtfNNlSWQtfR9QZ/Tr+A+BEUCQn+Jm51kMwYMD4iHMiYVOURIP
-         RLXjaH/ARDPTvM/hSOQ1OnQ0N/hrLkbw1jq4M=
+        d=teknique-com.20221208.gappssmtp.com; s=20221208; t=1689630274; x=1692222274;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GVYmfoB2eDg2IF53xHNl8nCc05HbJTHw8WChJXeceT8=;
+        b=yGhoehCp9WVdEvSZ/cIcsh4FxuTF4JfltacBTn9QjdWo1O4iDdN7LmaPzRlUCZ0cXN
+         b4mI2gCI8tDqJ9s6I1WMIdQTc3Vrh/3Fed0OmE3FxZLeQ1n3QOZUp7eeuPVP7H3fsgO5
+         XkTe/bqG9rdh0nkLDTvvNraBUeJvZgBnuom4AlQTCi+FTZy9ud+2KR6U3x5oKmilwIFD
+         VzN1SEVJrCVDZ6X9IoJ+rm5bTbexiUmG5JDOPKNpcMoRvFeUlrCfVR9RGPzHHI/0u0+V
+         0rLfmMeTdRAdtnXbwMux39IegD/F7hWVhxTqDOeTrIIdZo4PLeCAfrvLfbbatxm9opBU
+         eVxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689628091; x=1692220091;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eO7wo4QNBN0rvgjvXR3UHgt2sDIVQB5IM8maxoZ3AFI=;
-        b=Jn+ZJqgz/rLQvUctPRh9eEcmttCmHl62H20kqD3qBLZpCPkB0QUAvK9mS8G5oYLmgp
-         j755QqQaoQxNUYl3jZyzVtXZRx1a3p1gH/3HYg76bBMGXYrzYu1qRGFFH/yX/pJQ0DKl
-         /bzbT2zyDbscLsP6A6Oe819PSCGRheuGGOhiHVkir42t20AlcMIEhVo8cKIPNhvXJ2fN
-         BzaIWPeoNgKYzAl4ivY6u/B7c93AHf3ON42ryDFqTW1ROT40IGAsSZqPwzqpd/lnBcQC
-         wRvZp981HcyL/ZLWWeZhNiA2wsgyhCAbX3l+7XiJTVtXmkthNlSEPfJ4W+55tnOhMazZ
-         3kzA==
-X-Gm-Message-State: ABy/qLaFtAZ0wo50A9BuK/PufIqhzcK9AbxTnRBk94Hdi3L5j3smm+c2
-	/dBVFFsCVsx9oN1xOA5qiUCGVg==
-X-Google-Smtp-Source: APBJJlFvf4t96Kj1HvFLFRNjw+7gA16DlHQKKtvGwPNxCWsuJuWsdQlEDq3cCMIolcZEtZ2h5fypPw==
-X-Received: by 2002:adf:facc:0:b0:314:c7d:78aa with SMTP id a12-20020adffacc000000b003140c7d78aamr13589727wrs.62.1689628091136;
-        Mon, 17 Jul 2023 14:08:11 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:363c:9ce3:3c57:ed22? ([2001:8b0:aba:5f3c:363c:9ce3:3c57:ed22])
-        by smtp.gmail.com with ESMTPSA id n10-20020a5d51ca000000b00314398e4dd4sm431936wrv.54.2023.07.17.14.08.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jul 2023 14:08:10 -0700 (PDT)
-Message-ID: <f223eb9fa2c757969d466b5f88dfa0f285373895.camel@linuxfoundation.org>
-Subject: Re: [yocto] Request for Quotations for development work
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Tom Isaacson <tom.isaacson@teknique.com>
-Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Date: Mon, 17 Jul 2023 22:08:10 +0100
-In-Reply-To: <CA+EiEZ+6M-Jjw_-WzFJvRNVjzz5sN=9QGCxAx94MKJDTjsh7YQ@mail.gmail.com>
-References: <176A63496CF306FA.4070@lists.yoctoproject.org>
-	 <fa7853d50f03bf291f69d0482db808a6fdc89038.camel@linuxfoundation.org>
-	 <CA+EiEZ+6M-Jjw_-WzFJvRNVjzz5sN=9QGCxAx94MKJDTjsh7YQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+        d=1e100.net; s=20221208; t=1689630274; x=1692222274;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GVYmfoB2eDg2IF53xHNl8nCc05HbJTHw8WChJXeceT8=;
+        b=jlrsC0CHe9e5z1Ymo+UVJrZ1k7boG8cTtmoWCYK0X8sW2EzVgVRyJr4qNwkhKYp16z
+         LYAfesvrMEXOeTr0VvAIOQBVNcZR+hXoQKcxUyXOpHQQzpcQXvQOx69Hh5H00k3ZA4QZ
+         VmEWSvJO3n65vIYn7EZdCOvC58qZg+irLohzi2KU+3ozAZPovtMCpYkEAqndbD+4TFjO
+         zN8bG8J7CEtcicqZEpQS+MeAgLWOXXBg1ucgJiFX9voWpqn2TH83xQ9hAcYBAfHyzVpX
+         E0mXCjd8tiP3AkPgHLc7veU9DYzcTh8bO0ZSXVujpVmXxtVXnun6iuCCZxK2jwEuXP3O
+         +o+w==
+X-Gm-Message-State: ABy/qLbZyW62J6MqGUMYBfhmDzeVW+cosQq7UVECIMUUXrm0+YOlPjC5
+	HSqTX8qyD5zGRaxPV1e4zhpCrmtHJnZjh9jkbyQFuA==
+X-Google-Smtp-Source: APBJJlFhPs5KyE30B+s0V3+C1iII3RIgp11RQZy++siS3ElQwkFey4Rqux1boogSeSTodieoT/AO3f+3H4msjcqQyUE=
+X-Received: by 2002:aca:642:0:b0:3a0:4faf:accd with SMTP id
+ 63-20020aca0642000000b003a04fafaccdmr13356278oig.32.1689630274000; Mon, 17
+ Jul 2023 14:44:34 -0700 (PDT)
 MIME-Version: 1.0
+References: <CA+EiEZLqLzBreVxigh9f2uM2L9bP3Z6RZ0UfEWhQcGBNaLoD1A@mail.gmail.com>
+ <CANNYZj-9eUXBpK3YV4ve=DFJS5Ej9g9PptAL94c83QR5BhhnPg@mail.gmail.com>
+ <CA+EiEZ+e2SvgXjv8G+duoaVG_NF+uzqKDaTz3r2zGkC11xgK-Q@mail.gmail.com> <D59BCC8B-0DA5-4334-A211-F7784B008B4C@arm.com>
+In-Reply-To: <D59BCC8B-0DA5-4334-A211-F7784B008B4C@arm.com>
+From: Tom Isaacson <tom.isaacson@teknique.com>
+Date: Tue, 18 Jul 2023 09:44:23 +1200
+Message-ID: <CA+EiEZKHMtJNoJjw64iT31bxESqtWyDG5Fou_n5P5MzR-aDMBQ@mail.gmail.com>
+Subject: Re: [yocto] How does SOURCEFORGE_MIRROR work?
+To: Ross Burton <Ross.Burton@arm.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000048ae130600b5b437"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 21:08:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60596
+ <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 21:44:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60597
 
-On Tue, 2023-07-18 at 09:00 +1200, Tom Isaacson wrote:
-> I read this and the linked articles and one piece in
-> https://www.linux.com/audience/maintainer-confidential-opportunities-and-=
-challenges-of-the-ubiquitous-but-under-resourced-yocto-project/
->   caught my eye:
-> > One question that comes up a lot is the project=E2=80=99s development
-> > model. We=E2=80=99re an =E2=80=9Cold school=E2=80=9D patch on a mailing=
- list, similar to
-> > the kernel. New developers complain that we should have GitHub
-> > workflows so they can make point-and-click patch submissions. I
-> > have made submissions to other projects that way, and I can see the
-> > attraction of it. Equally, it does depend a lot on your review
-> > requirements. We want many people to see our patches, not just one
-> > person, and we greatly benefit from that comprehensive peer review.
->=20
-> I'm an old=C2=A0school engineer but I've never used the "patch to mailing
-> list" model so I find it quite difficult. It seemed like someone must
-> have solved this problem already so I've been looking around and
-> found=C2=A0https://gitgitgadget.github.io/ This is what the git mailing
-> list use - you create a PR in Github and it sends the patch to the
-> mailing list. You then respond to comments and update the PR. Finally
-> someone merges your patch.
-> It seems like this could be implemented alongside the existing
-> Patchwork solution relatively easily and provide an alternate route
-> to those of us who prefer the modern tooling.
->=20
-> For a complete solution you could add the same functionality to
-> Patchwork (I assume you
-> use=C2=A0https://github.com/getpatchwork/patchwork) to make it bi-
-> directional - patches from the mailing list are created as PRs in
-> Github, and PRs in Github have their patches emailed to the mailing
-> list. This then solves your Patchtest problem - the tests could
-> instead be implemented as CI builds in Github Actions (which is more
-> maintainable) and the results fed back to the mailing list.
-> Alternatives to Github are of course available.
+--00000000000048ae130600b5b437
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I think it probably could be done, I've wondered about this myself. The
-challenge is that even getting patchwork working reliably and then
-having patchtest on top of that back and operational has been a
-challenge. The next step is to get our testing back and see if we can
-keep that going this time. We still don't have great automation about
-updating patchwork patch status for example either.
-
-If patchtest is successful, there are things we may be able to build on
-top of that. I suspect the challenge will be "permissions" both on the
-mailing list side and on the github/whatever side and whether it can
-show/link the "real" users or not.
-
-> Is the Patchtest source code available anywhere?
-
-https://git.yoctoproject.org/patchtest/
-https://git.yoctoproject.org/patchtest-oe/
-
-Cheers,
-
-Richard
+For gSOAP?
 
 
+On Mon, Jul 17, 2023 at 8:21=E2=80=AFPM Ross Burton <Ross.Burton@arm.com> w=
+rote:
+
+> On 14 Jul 2023, at 21:08, Tom Isaacson via lists.yoctoproject.org
+> <tom.isaacson=3Dteknique.com@lists.yoctoproject.org> wrote:
+> >
+> > Ah, I didn't realise there was a logfile for that.
+> >
+> > For future reference, it uses
+> >
+> https://github.com/yoctoproject/poky/blob/kirkstone/bitbake/lib/bb/fetch2=
+/__init__.py#L1116
+> > to run through a list of atlernates, eventually settling on
+> > http://downloads.yoctoproject.org/mirror/sources/gsoap_2.8.106.zip
+>
+>
+> A patch to set a working URL would be much appreciated.
+>
+> Thanks,
+> Ross
+
+
+
+--=20
+Tom Isaacson
+
+--00000000000048ae130600b5b437
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">For gSOAP?<div><br></div></div><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jul 17, 2023 at 8:21=E2=
+=80=AFPM Ross Burton &lt;<a href=3D"mailto:Ross.Burton@arm.com">Ross.Burton=
+@arm.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex">On 14 Jul 2023, at 21:08, Tom Isaacson via <a href=3D"http://lists.=
+yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.o=
+rg</a> &lt;tom.isaacson=3D<a href=3D"mailto:teknique.com@lists.yoctoproject=
+.org" target=3D"_blank">teknique.com@lists.yoctoproject.org</a>&gt; wrote:<=
+br>
+&gt; <br>
+&gt; Ah, I didn&#39;t realise there was a logfile for that.<br>
+&gt; <br>
+&gt; For future reference, it uses<br>
+&gt; <a href=3D"https://github.com/yoctoproject/poky/blob/kirkstone/bitbake=
+/lib/bb/fetch2/__init__.py#L1116" rel=3D"noreferrer" target=3D"_blank">http=
+s://github.com/yoctoproject/poky/blob/kirkstone/bitbake/lib/bb/fetch2/__ini=
+t__.py#L1116</a><br>
+&gt; to run through a list of atlernates, eventually settling on<br>
+&gt; <a href=3D"http://downloads.yoctoproject.org/mirror/sources/gsoap_2.8.=
+106.zip" rel=3D"noreferrer" target=3D"_blank">http://downloads.yoctoproject=
+.org/mirror/sources/gsoap_2.8.106.zip</a><br>
+<br>
+<br>
+A patch to set a working URL would be much appreciated.<br>
+<br>
+Thanks,<br>
+Ross</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmai=
+l_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature=
+"><div dir=3D"ltr">Tom Isaacson<div><br></div></div></div>
+
+--00000000000048ae130600b5b437--
 
