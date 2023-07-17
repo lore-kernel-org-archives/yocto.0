@@ -1,95 +1,88 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 42988C0015E
-	for <webhook@archiver.kernel.org>; Mon, 17 Jul 2023 13:38:17 +0000 (UTC)
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
- by mx.groups.io with SMTP id smtpd.web11.8373.1689601087722598942
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AC83EB64DC
+	for <webhook@archiver.kernel.org>; Mon, 17 Jul 2023 14:28:37 +0000 (UTC)
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+ by mx.groups.io with SMTP id smtpd.web10.9655.1689604116702264635
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Jul 2023 06:38:07 -0700
+ Mon, 17 Jul 2023 07:28:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=cDkpgYb/;
- spf=pass (domain: gmail.com, ip: 209.85.210.44, mailfrom: mtownsend1973@gmail.com)
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6b9d68a7abaso580905a34.3
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 06:38:07 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=sl8Ijr9W;
+ spf=pass (domain: gmail.com, ip: 209.85.160.45, mailfrom: jpewhacker@gmail.com)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1b0138963ffso3585578fac.0
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 07:28:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689601086; x=1692193086;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=TyKrYKsGfm9VS3Yd4vRLyc0Eux8Pu4NpVw0+b6V6+7c=;
-        b=cDkpgYb/SzS5cbYT1LNzsFyb8wyU/oQnUG4tDNRMX0z+yWV2QUFGniKICIpiqkVD8t
-         +DgnBCm4LoVw47wkMN19fXoMJ8LgO6ktF9f8es6rXdRU9sXTd45GVv549AvfNUgOcz5o
-         suic78jY7fjYUlLOxN0RVP6uAk7CGjzMMF/h3Cx14UT6A/Zg1dsKaHisSZP8QgGmmt6a
-         7UpePQStoyZOjSsr2PraYTde/jRC2RUF6g7Q0r2oc1tlzPIKR9Mhol+oXuPLEzSmi0A2
-         qvu4X4lSclEiX3MoEcXNGHOgd9CemcmIej/+RKxrkcyjDqGF77QrzR+jf1MZHflBwpGK
-         cXLg==
+        d=gmail.com; s=20221208; t=1689604115; x=1692196115;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SD42IOAAuPpCx7/WS3V5GgfhA/aMQl7gF7RYpUuHXU0=;
+        b=sl8Ijr9WXRVrg4XpL54/yOHR3MaeoqvsdSBb5rtNRPUxS8+E8XGv5grcPMm1DZWgwR
+         SkgVV86a3glhaq6bUFj+6GJsHHjmDDIk0C5/YmwURMNCLoH9H3fT/+AxuYq4Ln468JJx
+         Z1AsBBKMb5wpeBzZfAPbYuAmGmpKZscDLpFGPOIZ7gIlLZNqlmCx0eqE4Ee+v7vRKFI6
+         rkNf63kaSZqEg7LDrW6SWQq5K+oUEw58x1580LIQ18Cf5PM/557Gz+bVYzdBryPCJHTM
+         6VpPKnKLHL/0Bjgdd+YrfihBaFOluhvyPOU/ENavehTkMCi0dphx8Fdzs7dgufWU+dAh
+         Vdiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689601086; x=1692193086;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TyKrYKsGfm9VS3Yd4vRLyc0Eux8Pu4NpVw0+b6V6+7c=;
-        b=kbfxnBsKVHjPf9FtLs4jTro42IOq3iIDjB6x0uVslAlXRmqIYk5V5SgiD7U7iydeOR
-         vqVKDhY22V//zvawhWd6mTN+ox3empUjdOwvHOZDcu+0NCV0Gqk50QEIjJnGn80D1MEi
-         ttiJpWRV3+MFc53uPde604Xadc03eak6RSImrmdjblJBXlcRZHb20/CPZywarvmnCGzm
-         UgPcpZfnEOTNIpx+EZ3aCWfcCQql9d/REDum1BaRjpUg6mFbn5GjNybxGsj5ylkWcQHB
-         awro/HIbHcZdhl8zg/L94cnCl+oWG8DMsyCTda5F4BdlAiDeBafHUPPDnd6xTqeoUOOR
-         u/og==
-X-Gm-Message-State: ABy/qLai/n3QwxALtYKbi0LlICgoxKWBL1ZI8cHEeXF+39xPyHSBQgl/
-	Xqlvj/YwQ6V4gmejFSGUN2fnUzA+f2ru5ECvfzLXXtEm
-X-Google-Smtp-Source: APBJJlEeqS5CmHEiTzoEC3p9yNvLUStUAWvPcSM7p20CtYJTXGy2DWR6w9EtGVHnaK0+IOtMVMWEUCYRW6E6MFPkZAU=
-X-Received: by 2002:a05:6358:7189:b0:133:b3b:ceb8 with SMTP id
- t9-20020a056358718900b001330b3bceb8mr8773189rwt.20.1689601086552; Mon, 17 Jul
- 2023 06:38:06 -0700 (PDT)
-MIME-Version: 1.0
-From: Martin Townsend <mtownsend1973@gmail.com>
-Date: Mon, 17 Jul 2023 14:37:55 +0100
-Message-ID: <CABatt_zAugR2unmSVA=L7HmPxe9W11r0LEDkCPs7+drMtOApDA@mail.gmail.com>
-Subject: libgcc dependency
+        d=1e100.net; s=20221208; t=1689604115; x=1692196115;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SD42IOAAuPpCx7/WS3V5GgfhA/aMQl7gF7RYpUuHXU0=;
+        b=I6Uiiv+V1BBwUulG0rkrVZesJMn2dHngT5zr0Hoc/DlyXrvXxaXON+mk8KEL6W3K7F
+         txoS5RUzr2Yb7Wb/j/+grE7yR5eGbrNoc/TYq5qbQPt7acaDpkaCuGFgWcTPiUeZKW0P
+         yEAD/m99d4iMnD83FzG+H3cij+JKJ7O15kPOTyEG2blRxNBa8bk3HwYSfY31kKZp+n2c
+         osuSj1i5TCS6AfxguxQMSVHb5uCbGNxAauAiRnIWqXNuPblQB2moLWZWYbNbtS9qa5v+
+         /I/r4QLoDTROHQwc7HVDVOXrigwc4yJ3kMSCi+Kttg4AJA8sgknSjFy7Jn/fiCsiFe1e
+         FHjg==
+X-Gm-Message-State: ABy/qLbDcjA2f1dRmnrNI/ZEuLbgk0lo1Vvw/aistXAfnIFAYoPUA4yC
+	yrhlY+OEUHUQlUTsDfkIcDA0LOG7sTw=
+X-Google-Smtp-Source: APBJJlFXqpj2l1all0v2dAIQNJNmUxfPnP4v9CQ0oXLl62jcaEgo8kiYMY4CTJfe1Q23r8dhkyGb4w==
+X-Received: by 2002:a05:6870:9a02:b0:1a9:8bce:9c59 with SMTP id fo2-20020a0568709a0200b001a98bce9c59mr13104681oab.13.1689604115275;
+        Mon, 17 Jul 2023 07:28:35 -0700 (PDT)
+Received: from localhost.localdomain ([2601:282:4300:19e0::ad83])
+        by smtp.gmail.com with ESMTPSA id x6-20020a056870740600b001b04434d934sm7205967oam.34.2023.07.17.07.28.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jul 2023 07:28:34 -0700 (PDT)
+From: Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Cc: Joshua Watt <JPEWhacker@gmail.com>
+Subject: [ptest-runner][PATCH 0/4] Stop running ptests in parallel
+Date: Mon, 17 Jul 2023 08:28:27 -0600
+Message-Id: <20230717142831.1634172-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 13:38:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60587
+ <yocto@lists.yoctoproject.org>; Mon, 17 Jul 2023 14:28:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60588
 
-Hi,
+07d8a67 ("runner: Correctly handle running parallel tests") made an
+incorrect assumption that it was OK to run ptests in parallel and
+interleave the output. This is not correct since OE selftest expects all
+text between a BEGIN and END block to be for a single ptest. Revert the
+commit to run in parallel and add the correct fix for the bug with
+running multiple ptests in a single invocation, as well as a few other
+fixes
 
-I am trying to remove all GPLv3 packages from my image.  The clang
-toolchain is used where possible and currently there are no
-dependencies on libstdc++ and as far as I can see none on libgcc but
-this library is installed in the rootfs.  I've created a script to
-parse all elf binaries to see which one dynamically links against
-libgcc but none do.  I think it's being installed due to libgcc being
-in the BASEDEPENDS but I can't see what is adding libgcc to this
-variable.  I'm using the dunfell version of yocto and base.bbclass has
+Joshua Watt (4):
+  Revert "runner: Correctly handle running parallel tests"
+  Recreate pipe for each test
+  Report if child dies from a signal
+  Change test timeout to be total elapsed time
 
-def base_dep_prepend(d):
-    if d.getVar('INHIBIT_DEFAULT_DEPS', False):
-        return ""
-    return "${BASE_DEFAULT_DEPS}"
+ tests/data/hang/ptest/run-ptest   |   1 +
+ tests/data/signal/ptest/run-ptest |  10 ++
+ tests/utils.c                     |   4 +-
+ utils.c                           | 290 +++++++++++++-----------------
+ 4 files changed, 140 insertions(+), 165 deletions(-)
+ create mode 100755 tests/data/signal/ptest/run-ptest
 
-BASE_DEFAULT_DEPS = "virtual/${TARGET_PREFIX}gcc
-virtual/${TARGET_PREFIX}compilerlibs virtual/libc"
+-- 
+2.33.0
 
-BASEDEPENDS = ""
-BASEDEPENDS_class-target = "${@base_dep_prepend(d)}"
-BASEDEPENDS_class-nativesdk = "${@base_dep_prepend(d)}"
-
-but when I check the BASEDEPENDS for various recipes I get
-
-BASEDEPENDS=" clang-cross-aarch64 virtual/libc  libgcc
-virtual/aarch64-poky-linux-compilerlibs  gettext-native"
-BASEDEPENDS_class-nativesdk=" clang-cross-aarch64 virtual/libc  libgcc
- virtual/aarch64-poky-linux-compilerlibs "
-BASEDEPENDS_class-target=" clang-cross-aarch64 virtual/libc  libgcc
-virtual/aarch64-poky-linux-compilerlibs "
-
-Is it possible to remove libgcc from the BASEDEPENDS somehow?
-Although we are using Dunfell I'm happy to move to another release if
-it's easier to achieve this.
-
-Best Regards,
-Martin.
 
