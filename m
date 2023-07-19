@@ -1,96 +1,58 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A98BDC001DE
-	for <webhook@archiver.kernel.org>; Wed, 19 Jul 2023 13:01:06 +0000 (UTC)
-Subject: Re: wic cp doesn't work with ext4 partition
-To: yocto@lists.yoctoproject.org
-From: "Markus" <Markus.Lehmann@duagon.com>
-X-Originating-Location: Erlangen, Bavaria, DE (80.255.6.130)
-X-Originating-Platform: Windows Firefox 115
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD9C7C001E0
+	for <webhook@archiver.kernel.org>; Wed, 19 Jul 2023 22:07:14 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.2781.1689804429888183976
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 19 Jul 2023 15:07:10 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6FDAD40C79;
+	Wed, 19 Jul 2023 22:07:08 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Bkb4icCtU39c; Wed, 19 Jul 2023 22:07:08 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3DD6C40BA8;
+	Wed, 19 Jul 2023 22:07:05 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 60068163C0F; Wed, 19 Jul 2023 18:07:04 -0400 (EDT)
+Date: Wed, 19 Jul 2023 18:07:04 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	Yocto Project <yocto@lists.yoctoproject.org>,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour July 26 5pm/1700 UTC
+Message-ID: <20230719220704.GN1518@denix.org>
 MIME-Version: 1.0
-Date: Wed, 19 Jul 2023 05:52:11 -0700
-References: <25008.1689316808406713055@lists.yoctoproject.org>
-In-Reply-To: <25008.1689316808406713055@lists.yoctoproject.org>
-Message-ID: <13915.1689771131121393972@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="zxAcKdkbGF9XOFvBKN9g"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 19 Jul 2023 13:01:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60615
+ <yocto@lists.yoctoproject.org>; Wed, 19 Jul 2023 22:07:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60616
 
---zxAcKdkbGF9XOFvBKN9g
-Content-Type: text/plain; charset="utf-8"; markup=markdown
-Content-Transfer-Encoding: quoted-printable
+All,
 
-Hi,
+A friendly reminder - our regular monthly OpenEmbedded Happy Hour is 1 week 
+away, on July 26 for Europe/Americas timezones @ 1700/5pm UTC (1pm ET/10am PT)
 
-now it is clear why it doesn't work.
-`wic` uses `debugfs` to write things to ext? partitions.
-But `debugfs` (1.45.4 (23-Sep-2019)) can only write to the current working =
-directory and it cannot copy complete directory trees (like mtools's `mcopy=
-` can do for FAT like file systems).
+https://www.openembedded.org/wiki/Calendar
+https://www.openembedded.org/wiki/Happy_Hours
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+July+26&iso=20230726T17
 
-So the only way I see to achieve this is to write a command list which is g=
-iven to `debugfs` via `-f`parameter.
-Such a command list may look like this for command `debugfs -w single_parti=
-tion_file -f command_list` :
-```=20
-cd "/dirX"
-rm "file1"
-cd "/"
-rmdir "dirX"
-cd "/"
-mkdir "dirX"
-cd "/dirX"
-write "/home/myuser/my_local_file1" "file1"
-```
-
-The remove is done because `debugfs`cannot overwrite files!
-
-I hope this helps others with same problem ... :-)
-
-Cheers,
-Markus
-
-
---zxAcKdkbGF9XOFvBKN9g
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi,</p>
-
-<p>now it is clear why it doesn't work.
-<code>wic</code> uses <code>debugfs</code> to write things to ext? partitio=
-ns.
-But <code>debugfs</code> (1.45.4 (23-Sep-2019)) can only write to the curre=
-nt working directory and it cannot copy complete directory trees (like mtoo=
-ls's <code>mcopy</code> can do for FAT like file systems).</p>
-
-<p>So the only way I see to achieve this is to write a command list which i=
-s given to <code>debugfs</code> via <code>-f</code>parameter.
-Such a command list may look like this for command <code>debugfs -w single_=
-partition_file -f command_list</code> :</p>
-<pre class=3D"prettyprint"><code class=3D"language-unknown">cd &#34;/dirX&#=
-34;
-rm &#34;file1&#34;
-cd &#34;/&#34;
-rmdir &#34;dirX&#34;
-cd &#34;/&#34;
-mkdir &#34;dirX&#34;
-cd &#34;/dirX&#34;
-write &#34;/home/myuser/my_local_file1&#34; &#34;file1&#34;
-</code></pre>
-<p>The remove is done because <code>debugfs</code>cannot overwrite files!</=
-p>
-
-<p>I hope this helps others with same problem ... :-)</p>
-
-<p>Cheers,
-Markus</p>
-
---zxAcKdkbGF9XOFvBKN9g--
+-- 
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
