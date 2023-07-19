@@ -1,102 +1,122 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <mingli.yu@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 297B3EB64DD
-	for <webhook@archiver.kernel.org>; Tue, 18 Jul 2023 17:26:35 +0000 (UTC)
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
- by mx.groups.io with SMTP id smtpd.web10.1924.1689701187767811699
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8649EB64DD
+	for <webhook@archiver.kernel.org>; Wed, 19 Jul 2023 02:08:23 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web11.5022.1689732494139971140
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Jul 2023 10:26:27 -0700
+ Tue, 18 Jul 2023 19:08:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=MjaONyVj;
- spf=pass (domain: gmail.com, ip: 209.85.161.41, mailfrom: jpewhacker@gmail.com)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-563439ea4a2so3762421eaf.0
-        for <yocto@lists.yoctoproject.org>; Tue, 18 Jul 2023 10:26:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689701186; x=1692293186;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aWbBbhHmUegupJ010srIZoJNpqjVp73X9lIWxTJhjKc=;
-        b=MjaONyVj8ypgkc+6yXciuxYYVtcesJ4Hlq+TbHbqignDt8vGV95TOGvdfDgRhkTJ2g
-         +pNlJ67OtmJwhfCvLtkCi++Etv8O7lWsIGbjy6zFI5N1ljmMc1lvplFQ0jcv2ISDHp0C
-         ZoxAMS0WXP35gptXDKBgQKy90suJ4VB/ug+g7D3PaEx5EaysHeN77LrMerp3ThTnidje
-         FkT1TzuFPPZIF2eKQLBCx7wqfgy5uFr52dHx1VkUKDqCp1CH3vTept/gd9yfhzOstezG
-         Q0FC93IldvXqhG+D6tWEj1VEQAuEK4ZeHIhKehBIyskPOka4d6Tj+HknOHJHasr2hJds
-         ihjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689701186; x=1692293186;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aWbBbhHmUegupJ010srIZoJNpqjVp73X9lIWxTJhjKc=;
-        b=mB0t648oxalIhVM+MGqURl4jwimvBY004ZT5Mg071yUYfu5RC7bHtA/7LZCyqTxgBU
-         sdWb9ohN4eiRWTNxa1htVpyA0imktKssYeQST16xATMf8oZUzuERu1SvgLpOeqq5YKS5
-         Cd3xPYJNhTH9DHp84W0yeLl0TUyXo0GmB2zbwoeQTRwwXU67Q1+8oJ8lV6GtZ7PqDcgD
-         lenG6AJSpReGcP3byzPwefN9j+PlhYr6doggAbbsbN4zgyZjvGeJfiOEAWgTxeTmXMNT
-         PovLahTJ+bs3alL5wdCRJ2BgijILdpl1hJVwvlsKS62iIuKUih0m5iLWvaUVWe3h5whl
-         c+XQ==
-X-Gm-Message-State: ABy/qLZxLtFd/kRHJM/vFHugNfb6yJmQ8zu2vdW75DA8HO3Hyjznma0v
-	Y0LdklSz57ELIj3goS4mkTPvoB1IPsw=
-X-Google-Smtp-Source: APBJJlFv/0Vus93+4XEHDoLP7PitiS+x5B59QL3yM700n/idaQT1TfItYvRsdds5a+u3dY4Y3n0/Dg==
-X-Received: by 2002:a4a:d295:0:b0:567:92:c45d with SMTP id h21-20020a4ad295000000b005670092c45dmr7338555oos.5.1689701186448;
-        Tue, 18 Jul 2023 10:26:26 -0700 (PDT)
-Received: from localhost.localdomain ([2601:282:4300:19e0::65c])
-        by smtp.gmail.com with ESMTPSA id 129-20020a4a0687000000b00565ebacf9cfsm1005120ooj.33.2023.07.18.10.26.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jul 2023 10:26:25 -0700 (PDT)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Joshua Watt <JPEWhacker@gmail.com>
-Subject: [ptest-runner][PATCH 5/5] Flush stdout and stderr after test
-Date: Tue, 18 Jul 2023 11:26:14 -0600
-Message-Id: <20230718172614.469304-6-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230718172614.469304-1-JPEWhacker@gmail.com>
-References: <20230718172614.469304-1-JPEWhacker@gmail.com>
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=6564ce24fe=mingli.yu@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 36J102J4030629
+	for <yocto@lists.yoctoproject.org>; Tue, 18 Jul 2023 19:08:13 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.wrs.com [147.11.82.252])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3rutyeu384-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Tue, 18 Jul 2023 19:08:13 -0700 (PDT)
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 18 Jul 2023 19:08:12 -0700
+Received: from pek-lpg-core2.wrs.com (128.224.153.41) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2507.27 via Frontend Transport; Tue, 18 Jul 2023 19:08:12 -0700
+From: <mingli.yu@eng.windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-freescale][kirkstone][PATCH] piglit: Remove portions which are now in main recipe
+Date: Wed, 19 Jul 2023 10:08:11 +0800
+Message-ID: <20230719020811.945116-1-mingli.yu@eng.windriver.com>
+X-Mailer: git-send-email 2.35.5
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: -eljlflT6_1qnrOcX3937ht2_-DMtZ2e
+X-Proofpoint-GUID: -eljlflT6_1qnrOcX3937ht2_-DMtZ2e
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-18_19,2023-07-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ bulkscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0 spamscore=0
+ priorityscore=1501 clxscore=1011 mlxlogscore=836 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2306200000
+ definitions=main-2307190018
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 18 Jul 2023 17:26:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60610
+ <yocto@lists.yoctoproject.org>; Wed, 19 Jul 2023 02:08:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60611
 
-After reporting test results, flush the output buffers to ensure the
-files are written out. Also flush again at the end of running all tests
+From: Khem Raj <raj.khem@gmail.com>
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+Some pieces have been moved to core in [1]
+[1] https://git.openembedded.org/openembedded-core/commit/?id=53c90930fca17cdaec2a5492320a286b6db6bdda
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+(cherry picked from commit f8dbb3a7722c9037d10a4d4372992b78aceb51aa)
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
 ---
- utils.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ ...n-t-enable-GLX-if-tests-are-disabled.patch | 32 -------------------
+ recipes-graphics/piglit/piglit_%.bbappend     |  6 ----
+ 2 files changed, 38 deletions(-)
+ delete mode 100644 recipes-graphics/piglit/piglit/0005-cmake-Don-t-enable-GLX-if-tests-are-disabled.patch
 
-diff --git a/utils.c b/utils.c
-index bd52544..59b8b77 100644
---- a/utils.c
-+++ b/utils.c
-@@ -601,6 +601,9 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 			do_close(&pipefd_stderr[PIPE_READ]);
- 			do_close(&pipefd_stderr[PIPE_WRITE]);
+diff --git a/recipes-graphics/piglit/piglit/0005-cmake-Don-t-enable-GLX-if-tests-are-disabled.patch b/recipes-graphics/piglit/piglit/0005-cmake-Don-t-enable-GLX-if-tests-are-disabled.patch
+deleted file mode 100644
+index ef6fda0f..00000000
+--- a/recipes-graphics/piglit/piglit/0005-cmake-Don-t-enable-GLX-if-tests-are-disabled.patch
++++ /dev/null
+@@ -1,32 +0,0 @@
+-From 13ff43fe760ac343b33d8e8c84b89886aac07116 Mon Sep 17 00:00:00 2001
+-From: Tom Hochstein <tom.hochstein@nxp.com>
+-Date: Fri, 3 Jun 2022 10:44:29 -0500
+-Subject: [PATCH] cmake: Don't enable GLX if tests are disabled
+-
+-Allow building for systems that don't support GLX.
+-
+-Upstream-Status: Submitted [https://gitlab.freedesktop.org/mesa/piglit/-/merge_requests/720]
+-Signed-off-by: Tom Hochstein <tom.hochstein@nxp.com>
+----
+- CMakeLists.txt | 5 +----
+- 1 file changed, 1 insertion(+), 4 deletions(-)
+-
+-diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index e1aeb5ddf..85e171aba 100644
+---- a/CMakeLists.txt
+-+++ b/CMakeLists.txt
+-@@ -134,10 +134,7 @@ if(PIGLIT_BUILD_CL_TESTS)
+- endif(PIGLIT_BUILD_CL_TESTS)
+- 
+- IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+--	if(X11_FOUND AND OPENGL_gl_LIBRARY)
+--		# Assume the system has GLX. In the future, systems may exist
+--		# with libGL and libX11 but no GLX, but that world hasn't
+--		# arrived yet.
+-+	if(X11_FOUND AND OPENGL_gl_LIBRARY AND PIGLIT_BUILD_GLX_TESTS)
+- 		set(PIGLIT_HAS_GLX True)
+- 		add_definitions(-DPIGLIT_HAS_GLX)
+- 	endif()
+--- 
+-2.17.1
+-
+diff --git a/recipes-graphics/piglit/piglit_%.bbappend b/recipes-graphics/piglit/piglit_%.bbappend
+index 6a1b9b98..72cf8eff 100644
+--- a/recipes-graphics/piglit/piglit_%.bbappend
++++ b/recipes-graphics/piglit/piglit_%.bbappend
+@@ -1,10 +1,4 @@
+ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
  
-+			fflush(fp);
-+			fflush(fp_stderr);
-+
- 		PTEST_LIST_ITERATE_END
- 		fprintf(fp, "STOP: %s\n", progname);
- 	} while (0);
-@@ -611,6 +614,9 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 	if (opts.xml_filename)
- 		xml_finish(xh);
- 
-+	fflush(fp);
-+	fflush(fp_stderr);
-+
- 	return rc;
- }
- 
+-SRC_URI += "file://0005-cmake-Don-t-enable-GLX-if-tests-are-disabled.patch"
+-
+-PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11 glx', '', d)}"
+ PACKAGECONFIG:remove:imxgpu = "glx"
+ PACKAGECONFIG:append:mx8-nxp-bsp = " opencl"
+-
+-PACKAGECONFIG[glx] = "-DPIGLIT_BUILD_GLX_TESTS=ON,-DPIGLIT_BUILD_GLX_TESTS=OFF"
+-PACKAGECONFIG[opencl] = "-DPIGLIT_BUILD_CL_TESTS=ON,-DPIGLIT_BUILD_CL_TESTS=OFF,opencl-icd-loader"
 -- 
-2.33.0
+2.35.5
 
 
