@@ -1,158 +1,106 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AA50EB64DA
-	for <webhook@archiver.kernel.org>; Thu, 20 Jul 2023 11:28:45 +0000 (UTC)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
- by mx.groups.io with SMTP id smtpd.web10.10674.1689852519089901903
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B2A51EB64DA
+	for <webhook@archiver.kernel.org>; Thu, 20 Jul 2023 11:40:25 +0000 (UTC)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+ by mx.groups.io with SMTP id smtpd.web11.10772.1689853216554473389
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Jul 2023 04:28:39 -0700
+ Thu, 20 Jul 2023 04:40:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=K1S3QUBW;
- spf=pass (domain: gmail.com, ip: 209.85.128.182, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5701810884aso8423917b3.0
-        for <yocto@lists.yoctoproject.org>; Thu, 20 Jul 2023 04:28:38 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@linuxfoundation.org header.s=google header.b=VCrchDW/;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-317009c0f9aso606008f8f.0
+        for <yocto@lists.yoctoproject.org>; Thu, 20 Jul 2023 04:40:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689852518; x=1690457318;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fZWkXmgHK1UKj/p7e7Jpk/Yh4la6FUx/h6FMfkjLbJo=;
-        b=K1S3QUBW7PxY7UHefOJgv031sUc2vpB0/VcfVZHozWcEiaMvaqSVc163TGiUxmbv6o
-         mn6RSynPP3bCV5GrrOOq6+GZy+utme/z2VobVzgrkc+tmeINL7eMRXCWPDp5B0XMJtsd
-         dG+sMUH/YERoZcaOF3xghQhppxqRiEkWaUQhyyBvLdZQNLQd859f8/ia6Pg6zynlWFP8
-         5Q4NfICSLCCy1iXTKKevfQWuSdjQNVqB/4qckxGe1lfcgU0UTKzUNcpFHkAb4ImqF1Yh
-         DsCTmVmojlPqpT8mdMb6xygfO+BpLbSJpzJ1N/Lhi3cXSHU7wvyVhJyfkojERFOBR6J1
-         lVLw==
+        d=linuxfoundation.org; s=google; t=1689853215; x=1690458015;
+        h=mime-version:user-agent:content-transfer-encoding:date:cc:to:from
+         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=8vNpPcBU4EcKEX3ZClshrpClGOz1sSffswON4z2Azsk=;
+        b=VCrchDW//RdgMAzNhI++H+ydr+6myZPoE7YHF7ukMK5AVnsC5tnfxhRYuCf1sK/R9c
+         VKSbKROou+axFbxUWqxDKJ55LAFsZmaTs4GN56sCvwBdPVu3cgXPAyWF+GWOQFYmKj1v
+         PXGUeH6I+4bP7epHyea89SCctFcr77mW5tXB0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689852518; x=1690457318;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fZWkXmgHK1UKj/p7e7Jpk/Yh4la6FUx/h6FMfkjLbJo=;
-        b=YY22eJjP5k3e5gd4jS42OZUGuF5Z77gQ7QDqBW4IQbfnHk2jHzmvPPeVhjtaA2/Tda
-         BLZ2O+eOG1s3u2q8MCCk5qPxUvwV2mki47dkm4S4+rLuYeQPUVh0Ayei+PEL0trvHpMC
-         WK/L+SjBEv53eWWhZxY/AMCTq5tdDwbirbQa8kw//ggytB2S0lSXdoXffI1CCDm/lFUl
-         odYlSmOa++vhdlbxdaaIZT9EaD8JW28hA0IR0DF13W7Ur6I6ILZk634PWhR97yWXy8ov
-         yAZP0YY5EEiLjQVN1/KAMCwKQI6q0KC4FmxeTzRg0a8lZyNCJ7sTn4agr5bOzmdnO0lf
-         OFHQ==
-X-Gm-Message-State: ABy/qLaYoilb5TWdnRIIqLoIfCMGp4OKpzDEsOGxrnI7PNd7VVWFaOz9
-	tfFsffsWmP65SuSVyZ8FCkF2hg972AQ=
-X-Google-Smtp-Source: APBJJlEeU3jj5UyO7tx2EvI6oK5s/KhRFM9CIaFyqgRwZtXwJKWl5qBNfJINLOizXthGmbxDN7GLYg==
-X-Received: by 2002:a81:4e48:0:b0:56d:34:893c with SMTP id c69-20020a814e48000000b0056d0034893cmr20601410ywb.4.1689852518009;
-        Thu, 20 Jul 2023 04:28:38 -0700 (PDT)
-Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:893b:3f39:cb88:10b7])
-        by smtp.gmail.com with ESMTPSA id n71-20020a0dcb4a000000b0057716dd93b7sm158068ywd.13.2023.07.20.04.28.37
-        for <yocto@lists.yoctoproject.org>
+        d=1e100.net; s=20221208; t=1689853215; x=1690458015;
+        h=mime-version:user-agent:content-transfer-encoding:date:cc:to:from
+         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8vNpPcBU4EcKEX3ZClshrpClGOz1sSffswON4z2Azsk=;
+        b=Hvv7z0nUlzGdVjYpNR53c27hwKrR7UV0c/UZv7zdySVEnvz187Rm9Z2XVXRraQXxan
+         Hyq3S6W9zw3hIgmgq6Zmd9KpFKUHtXwjK73QeKOkg8TL2TmYEiPWbCHXgGjBlkvqQVLs
+         47IjwzkT80tKMVRyqs9qrvxD57PotLtwFR0oL7jUqg8vBnpVFMP0nI0rZ4DGn9/MaNe5
+         oZ8vlRK2wRgAHRe2cr/CLsiDyQJbapQDPcDSh+pFK7GCbuFkhRKPhcWW+UMupqZdPvtp
+         qV2WLpwS9HCQ5RoUvfD0rp9OMZEhLWk3P9Sdn2+D41u8fnQYVcc57NtfoTrKZ68nfjps
+         WKFg==
+X-Gm-Message-State: ABy/qLaLnUVvxx4r6FZmCO+r9LT38VbPv4cK1Ur9uLMYNYXkYFRJJtBK
+	ifLJwCbX5Pe3CKyQI28ZWH3oU/BwnYP9ndws4iU=
+X-Google-Smtp-Source: APBJJlEF5PyG9cRaCKO3+sIfsYsa60Vz62b6mKOk8ZnLurJnGJCnQdb5AxCoYy2dPRsAbnFHgH0uFQ==
+X-Received: by 2002:a5d:480e:0:b0:314:1313:c3d6 with SMTP id l14-20020a5d480e000000b003141313c3d6mr1713759wrq.33.1689853214629;
+        Thu, 20 Jul 2023 04:40:14 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:ba5b:ff9f:e968:6d69? ([2001:8b0:aba:5f3c:ba5b:ff9f:e968:6d69])
+        by smtp.gmail.com with ESMTPSA id r1-20020adfce81000000b0031128382ed0sm1100900wrn.83.2023.07.20.04.40.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 04:28:37 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] meta-integrity: drop ima.cfg in favor of new k-cache
-Date: Thu, 20 Jul 2023 07:28:30 -0400
-Message-Id: <20230720112830.1565054-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Thu, 20 Jul 2023 04:40:14 -0700 (PDT)
+Message-ID: <e7e05ead7e1740041e7633d71943345460472964.camel@linuxfoundation.org>
+Subject: Test regression report for 4.2 M2
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, 
+	"alexis.lothore" <alexis.lothore@bootlin.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Lee Chee Yang
+ <chee.yang.lee@intel.com>, Jing Hui Tham <jing.hui.tham@intel.com>, Michael
+ Halstead <mhalstead@linuxfoundation.org>
+Date: Thu, 20 Jul 2023 12:40:13 +0100
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 20 Jul 2023 11:28:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60620
+ <yocto@lists.yoctoproject.org>; Thu, 20 Jul 2023 11:40:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60621
 
-The upstream ima.cfg kernel-cache has been updated.
-Use it instead.
+Hi,
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../recipes-kernel/linux/linux/ima.cfg        | 45 -------------------
- .../recipes-kernel/linux/linux/ima.scc        |  4 --
- .../recipes-kernel/linux/linux_ima.inc        |  6 +--
- 3 files changed, 1 insertion(+), 54 deletions(-)
- delete mode 100644 meta-integrity/recipes-kernel/linux/linux/ima.cfg
- delete mode 100644 meta-integrity/recipes-kernel/linux/linux/ima.scc
+We have the 4.3 M2 build so I was curious how the regression report
+looked this time:
 
-diff --git a/meta-integrity/recipes-kernel/linux/linux/ima.cfg b/meta-integrity/recipes-kernel/linux/linux/ima.cfg
-deleted file mode 100644
-index d7d80a6..0000000
---- a/meta-integrity/recipes-kernel/linux/linux/ima.cfg
-+++ /dev/null
-@@ -1,45 +0,0 @@
--CONFIG_KEYS=y
--CONFIG_ASYMMETRIC_KEY_TYPE=y
--CONFIG_SYSTEM_TRUSTED_KEYRING=y
--CONFIG_SYSTEM_TRUSTED_KEYS="${IMA_EVM_ROOT_CA}"
--CONFIG_SECONDARY_TRUSTED_KEYRING=y
--CONFIG_ASYMMETRIC_PUBLIC_KEY_SUBTYPE=y
--CONFIG_X509_CERTIFICATE_PARSER=y
--CONFIG_PKCS8_PRIVATE_KEY_PARSER=y
--CONFIG_CRYPTO_ECDSA=y
--CONFIG_SECURITY=y
--CONFIG_SECURITYFS=y
--CONFIG_INTEGRITY=y
--CONFIG_INTEGRITY_SIGNATURE=y
--CONFIG_INTEGRITY_ASYMMETRIC_KEYS=y
--CONFIG_INTEGRITY_TRUSTED_KEYRING=y
--CONFIG_IMA=y
--CONFIG_IMA_MEASURE_PCR_IDX=10
--CONFIG_IMA_LSM_RULES=y
--# CONFIG_IMA_TEMPLATE is not set
--# CONFIG_IMA_NG_TEMPLATE is not set
--CONFIG_IMA_SIG_TEMPLATE=y
--CONFIG_IMA_DEFAULT_TEMPLATE="ima-sig"
--# CONFIG_IMA_DEFAULT_HASH_SHA1 is not set
--CONFIG_IMA_DEFAULT_HASH_SHA256=y
--# CONFIG_IMA_DEFAULT_HASH_SHA512 is not set
--CONFIG_IMA_DEFAULT_HASH="sha256"
--CONFIG_IMA_WRITE_POLICY=y
--CONFIG_IMA_READ_POLICY=y
--CONFIG_IMA_APPRAISE=y
--CONFIG_IMA_ARCH_POLICY=y
--CONFIG_IMA_APPRAISE_BUILD_POLICY=y
--CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS=y
--# CONFIG_IMA_APPRAISE_BOOTPARAM is not set
--# CONFIG_IMA_APPRAISE_MODSIG is not set
--CONFIG_IMA_TRUSTED_KEYRING=y
--CONFIG_IMA_KEYRINGS_PERMIT_SIGNED_BY_BUILTIN_OR_SECONDARY=y
--# CONFIG_IMA_BLACKLIST_KEYRING is not set
--# CONFIG_IMA_LOAD_X509 is not set
--CONFIG_IMA_APPRAISE_SIGNED_INIT=y
--CONFIG_IMA_MEASURE_ASYMMETRIC_KEYS=y
--CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=y
--CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT=y
--# CONFIG_IMA_DISABLE_HTABLE is not set
--CONFIG_EVM=y
--# CONFIG_EVM_LOAD_X509 is not set
-diff --git a/meta-integrity/recipes-kernel/linux/linux/ima.scc b/meta-integrity/recipes-kernel/linux/linux/ima.scc
-deleted file mode 100644
-index 6eb84b0..0000000
---- a/meta-integrity/recipes-kernel/linux/linux/ima.scc
-+++ /dev/null
-@@ -1,4 +0,0 @@
--define KFEATURE_DESCRIPTION "Enable IMA"
--
--kconf non-hardware ima.cfg
--
-diff --git a/meta-integrity/recipes-kernel/linux/linux_ima.inc b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-index 7016800..415476a 100644
---- a/meta-integrity/recipes-kernel/linux/linux_ima.inc
-+++ b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-@@ -1,8 +1,3 @@
--FILESEXTRAPATHS:append := "${THISDIR}/linux:"
--
--SRC_URI += " \
--    ${@bb.utils.contains('DISTRO_FEATURES', 'ima', 'file://ima.scc', '', d)} \
--"
- 
- do_configure:append() {
-     if [ "${@bb.utils.contains('DISTRO_FEATURES', 'ima', 'yes', '', d)}" = "yes" ] && [ -f .config ] ; then
-@@ -11,5 +6,6 @@ do_configure:append() {
- }
- 
- KERNEL_FEATURES:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', ' features/ima/modsign.scc', '', d)}"
-+KERNEL_FEATURES:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'ima', ' features/ima/ima.scc', '', d)}"
- 
- inherit ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', 'kernel-modsign', '', d)}
--- 
-2.34.1
+https://autobuilder.yocto.io/pub/releases/yocto-4.3_M2.rc1/testresults/test=
+result-regressions-report.txt
+
+The good news is I think this is improving and we're getting there,
+this one does have useful data and the comparison looks much improved.
+I'm pleased we had the comparison data there, thanks Michael and
+Alexis.
+
+I think the biggest missing piece is I suspect when we show regressions
+with PASS -> None, we should also note a "Additionally there were X new
+test results" if that is the case as it would suggest tests were
+replaced. I suspect that may be the case here but I can't know for
+sure.
+
+In this build I happen to know that:
+
+* We added rust tests for many machines but there is no mention of this
+(it isn't a regression but it would be nice to highlight the change in
+summary)
+
+* We fixed ~125,000 gcc tests for qemuarm64
+
+* We fixed ~60,000 gcc tests for qemuppc
+
+so perhaps we need some kind of summary about improvements too?
+
+Ross is looking into some issues with flaky ltp test reporting. I do
+have a fix queued to improve the glibc test results too for the next
+milestone.
+
+It is nice to see things starting to work better!
+
+Cheers,
+
+Richard
+
 
 
