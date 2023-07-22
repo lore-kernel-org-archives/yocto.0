@@ -1,315 +1,175 @@
-Return-Path: <yong.9.wang@outlook.com>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F2AF9EB64DA
-	for <webhook@archiver.kernel.org>; Sat, 22 Jul 2023 05:06:15 +0000 (UTC)
-Subject: owner and group of sysroots changed to nobdoy #bitbake #kirkstone
-To: yocto@lists.yoctoproject.org
-From: yong.9.wang@outlook.com
-X-Originating-Location: FI (131.228.2.26)
-X-Originating-Platform: Windows Chrome 114
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFCA6EB64DA
+	for <webhook@archiver.kernel.org>; Sat, 22 Jul 2023 15:45:28 +0000 (UTC)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+ by mx.groups.io with SMTP id smtpd.web10.7961.1690040718623906198
+ for <yocto@lists.yoctoproject.org>;
+ Sat, 22 Jul 2023 08:45:19 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@theyoctojester-info.20221208.gappssmtp.com header.s=20221208 header.b=W9b63Pew;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.52, mailfrom: jester@theyoctojester.info)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5221c6a2d3dso721976a12.3
+        for <yocto@lists.yoctoproject.org>; Sat, 22 Jul 2023 08:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20221208.gappssmtp.com; s=20221208; t=1690040717; x=1690645517;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IASi/2PwDsCcNBw4hxd1bnSWOHLOdXAtSRpPBAcEzdI=;
+        b=W9b63PewJ8GwWBQGA3+jsXms5cBhsIT46wkRAUYZmTck+W6qvFRa9OMD8Yrf8smu/R
+         V/KCQfl2huFhgSF6PCXDKEwbIkbvqZpZ6HFJDfW5LEc2UKCl2CjrdRiprIglUJCp+i2y
+         QTKTyGlQTSx80SeSbVSv69gz5iTF4R5IEfoiEh2qbbR4ZaoiAXscWgBVdR+l0G73WCyo
+         X5TL9jISaHMAjD6fFmQOMe9nGIttP5i4FS5WjxjmbUjJxROX18oRUsBZjHQAH0qieQ6F
+         3N54+CcSpaqgyKym9nqhpjTxEecpbdG/Jag1Ue5sgrtEHQPphqFfcNcJcQ0YbqzZon1l
+         VwOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690040717; x=1690645517;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IASi/2PwDsCcNBw4hxd1bnSWOHLOdXAtSRpPBAcEzdI=;
+        b=Npgnr0BgHrGJTiCRsQY225yb1hxnSJBCg1R8qYWjyC597S35yuX5Mk9jxLPsNIIaBk
+         W2x7bKhvdrMVLwfIp6VyqbUjC0EEQSzgKJbAuinvxTSAvmW+dYssAMXPihtKRkIhDQzj
+         8NPuqg0F0R4tpS5Gp8IMvDycG510o3IsvPsRle+iS9RhHTe4sQ3nu6lV9zaLzi1TxYw5
+         TvN4zpsu0gdvbK5av/E2woju4g+hiJKd6iBiEfuwLIUDa93J4TEckGQ3DGsfB6GusjDg
+         HEL0dJViiuolW2Lae/BQaUsRASHZVKH0TuXiJ2ftbnzqM3wx1+wvSYTDTfw2tHdyujQ+
+         lsBg==
+X-Gm-Message-State: ABy/qLb330DWaxuAZDiYbETB+n3T1Zq9gNEL1OVmscxQOX86bZtU7piW
+	+QOj9kMVkaTu2A5PgZeov7ALkUYpwK66QrKLn88Usg==
+X-Google-Smtp-Source: APBJJlGMIx4PvAWzko4H/E7mTyggyVKhUb2nOeBAck66lhImBajAdTwn/ERF7EoS4/3DTiGY1Ph1oENxRkPDt5o2Da4=
+X-Received: by 2002:aa7:d4d2:0:b0:51e:cb4:2b40 with SMTP id
+ t18-20020aa7d4d2000000b0051e0cb42b40mr3902635edr.6.1690040716804; Sat, 22 Jul
+ 2023 08:45:16 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 21 Jul 2023 22:06:13 -0700
-Message-ID: <P4mt.1690002373731047850.DF58@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="8BzsiQViVkzcT03m5qbk"
+References: <P4mt.1690002373731047850.DF58@lists.yoctoproject.org>
+In-Reply-To: <P4mt.1690002373731047850.DF58@lists.yoctoproject.org>
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Sat, 22 Jul 2023 17:44:51 +0200
+Message-ID: <CAEt6NwrMaqzQJevVOq1Nvd_X54Ogtqaf8bUaRjotNJBpgRZNDg@mail.gmail.com>
+Subject: Re: [yocto] owner and group of sysroots changed to nobdoy #bitbake #kirkstone
+To: yong.9.wang@outlook.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 22 Jul 2023 05:06:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60631
+ <yocto@lists.yoctoproject.org>; Sat, 22 Jul 2023 15:45:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60632
 
---8BzsiQViVkzcT03m5qbk
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+See https://docs.yoctoproject.org/4.0.4/migration-guides/migration-4.0.html=
+#fetching-changes,
+last bullet.
 
-Hi,=C2=A0 experts
-
-I'm moving my bb recipe to kirkstone but met a problem which causing ssh op=
-eration in bb recipe failed.=C2=A0 after some investigation I found out tha=
-t the owner and group of the sysroots accessing in the bb recipes were all =
-changed to nobody.=C2=A0 below is the shell commands run in the bb recipes =
-and error log.=C2=A0 So I'm curious how this owner and group changed and ho=
-w to fix it=EF=BC=9F
-
->=20
->=20
->=20
+On Sat, Jul 22, 2023 at 7:06=E2=80=AFAM <yong.9.wang@outlook.com> wrote:
+>
+> Hi,  experts
+>
+> I'm moving my bb recipe to kirkstone but met a problem which causing ssh =
+operation in bb recipe failed.  after some investigation I found out that t=
+he owner and group of the sysroots accessing in the bb recipes were all cha=
+nged to nobody.  below is the shell commands run in the bb recipes and erro=
+r log.  So I'm curious how this owner and group changed and how to fix it=
+=EF=BC=9F
+>
 > check_gerrit_authentication() {
->=20
->=20
->=20
-> ls -ld /*
->=20
->=20
->=20
-> if ! ssh -o BatchMode=3Dyes -p 29418 gerrit-essl2.int.net.nokia.com gerri=
-t
-> version; then
->=20
->=20
->=20
-> bberror "SSH connection to Gerrit failed.\n\n\
->=20
->=20
->=20
-> Please check that your public key is installed and Gerrit host is in your
-> known_hosts file.\n\
->=20
->=20
->=20
-> To check the connection:\n\
->=20
->=20
->=20
-> $ ssh -p 29418 gerrit-essl2.int.net.nokia.com\n"
->=20
->=20
->=20
-> exit 1
->=20
->=20
->=20
-> fi
->=20
->=20
->=20
+>
+>     ls -ld /*
+>
+>     if ! ssh -o BatchMode=3Dyes -p 29418 gerrit-essl2.int.net.nokia.com g=
+errit version; then
+>
+>         bberror "SSH connection to Gerrit failed.\n\n\
+>
+>     Please check that your public key is installed and Gerrit host is in =
+your known_hosts file.\n\
+>
+>     To check the connection:\n\
+>
+>         $ ssh -p 29418 gerrit-essl2.int.net.nokia.com\n"
+>
+>         exit 1
+>
+>     fi
+>
 > }
->=20
->=20
-
-and the output :
-
->=20
->=20
->=20
+>
+> and the output :
+>
 > DEBUG: Executing shell function check_gerrit_authentication
->=20
->=20
->=20
-> lrwxrwxrwx=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A07 Jan 28=
-=C2=A0 2020 /bin -> usr/bin
->=20
->=20
->=20
-> dr-xr-xr-x=C2=A0 =C2=A02 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A06 Jan 28=
-=C2=A0 2020 /boot
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A05 nobody nobody=C2=A0 =C2=A0 =C2=A0360 Jul 21 07:4=
-4 /dev
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A01 *nobody nobody* 139 Jul 21 07:44 /etc
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 21 Jul 21 07:4=
-4 /home
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A04 nobody nobody=C2=A0 =C2=A0 =C2=A0 33 Jul 21 07:4=
-4 /host
->=20
->=20
->=20
-> lrwxrwxrwx=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A07 Jan 28=
-=C2=A0 2020 /lib -> usr/lib
->=20
->=20
->=20
-> lrwxrwxrwx=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A09 Jan 28=
-=C2=A0 2020 /lib64 -> usr/lib64
->=20
->=20
->=20
-> drwx------=C2=A0 =C2=A02 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A06 Apr 27=
-=C2=A0 2021 /lost+found
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 10 nobody nobody=C2=A0 =C2=A0 4096 Jun 11 01:56 /make-4.=
-3
->=20
->=20
->=20
-> -rw-r--r--=C2=A0 =C2=A01 nobody nobody 2317073 Jan 19=C2=A0 2020 /make-4.=
-3.tar.gz
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A02 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A06 Jan 28=
-=C2=A0 2020 /media
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A02 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A06 Jan 28=
-=C2=A0 2020 /mnt
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 22 Jun=C2=A0 1=
- 07:08 /opt
->=20
->=20
->=20
-> dr-xr-xr-x 314 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A00 Jul 21 07:44 /pr=
-oc
->=20
->=20
->=20
-> dr-xr-x---=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 58 Jun=C2=A0 1=
- 07:08 /root
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 22 Jun=C2=A0 1=
- 07:08 /run
->=20
->=20
->=20
-> lrwxrwxrwx=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A08 Jan 28=
-=C2=A0 2020 /sbin -> usr/sbin
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 27 Jun 11 01:5=
-6 /scripts
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A02 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A06 Jan 28=
-=C2=A0 2020 /srv
->=20
->=20
->=20
-> dr-xr-xr-x=C2=A0 12 nobody nobody=C2=A0 =C2=A0 =C2=A0 =C2=A00 Jul 21 08:1=
-8 /sys
->=20
->=20
->=20
-> drwxrwxrwt=C2=A0 =C2=A02 nobody nobody=C2=A0 =C2=A0 =C2=A0 40 Jul 21 07:4=
-4 /tmp
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 45 Apr 27=C2=
-=A0 2021 /usr
->=20
->=20
->=20
-> drwxr-xr-x=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 30 Jun 11 01:5=
-6 /var
->=20
->=20
->=20
-> -rw-r--r--=C2=A0 =C2=A01 nobody nobody=C2=A0 =C2=A0 =C2=A0 16 Jun 11 01:5=
-5 /VERSION
->=20
->=20
->=20
-> *Bad owner or permissions on /etc/ssh/ssh_config.d/50-redhat.conf^M*
->=20
->=20
->=20
+>
+> lrwxrwxrwx   1 nobody nobody       7 Jan 28  2020 /bin -> usr/bin
+>
+> dr-xr-xr-x   2 nobody nobody       6 Jan 28  2020 /boot
+>
+> drwxr-xr-x   5 nobody nobody     360 Jul 21 07:44 /dev
+>
+> drwxr-xr-x   1 nobody nobody     139 Jul 21 07:44 /etc
+>
+> drwxr-xr-x   1 nobody nobody      21 Jul 21 07:44 /home
+>
+> drwxr-xr-x   4 nobody nobody      33 Jul 21 07:44 /host
+>
+> lrwxrwxrwx   1 nobody nobody       7 Jan 28  2020 /lib -> usr/lib
+>
+> lrwxrwxrwx   1 nobody nobody       9 Jan 28  2020 /lib64 -> usr/lib64
+>
+> drwx------   2 nobody nobody       6 Apr 27  2021 /lost+found
+>
+> drwxr-xr-x  10 nobody nobody    4096 Jun 11 01:56 /make-4.3
+>
+> -rw-r--r--   1 nobody nobody 2317073 Jan 19  2020 /make-4.3.tar.gz
+>
+> drwxr-xr-x   2 nobody nobody       6 Jan 28  2020 /media
+>
+> drwxr-xr-x   2 nobody nobody       6 Jan 28  2020 /mnt
+>
+> drwxr-xr-x   1 nobody nobody      22 Jun  1 07:08 /opt
+>
+> dr-xr-xr-x 314 nobody nobody       0 Jul 21 07:44 /proc
+>
+> dr-xr-x---   1 nobody nobody      58 Jun  1 07:08 /root
+>
+> drwxr-xr-x   1 nobody nobody      22 Jun  1 07:08 /run
+>
+> lrwxrwxrwx   1 nobody nobody       8 Jan 28  2020 /sbin -> usr/sbin
+>
+> drwxr-xr-x   1 nobody nobody      27 Jun 11 01:56 /scripts
+>
+> drwxr-xr-x   2 nobody nobody       6 Jan 28  2020 /srv
+>
+> dr-xr-xr-x  12 nobody nobody       0 Jul 21 08:18 /sys
+>
+> drwxrwxrwt   2 nobody nobody      40 Jul 21 07:44 /tmp
+>
+> drwxr-xr-x   1 nobody nobody      45 Apr 27  2021 /usr
+>
+> drwxr-xr-x   1 nobody nobody      30 Jun 11 01:56 /var
+>
+> -rw-r--r--   1 nobody nobody      16 Jun 11 01:55 /VERSION
+>
+> Bad owner or permissions on /etc/ssh/ssh_config.d/50-redhat.conf^M
+>
 > ERROR: SSH connection to Gerrit failed.
->=20
->=20
->=20
->=20
-
-Best Regards
-Yong
-
---8BzsiQViVkzcT03m5qbk
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi,&nbsp; experts<br /><br />I'm moving my bb recipe to kirkstone but me=
-t a problem which causing ssh operation in bb recipe failed.&nbsp; after so=
-me investigation I found out that the owner and group of the sysroots acces=
-sing in the bb recipes were all changed to nobody.&nbsp; below is the shell=
- commands run in the bb recipes and error log.&nbsp; So I'm curious how thi=
-s owner and group changed and how to fix it=EF=BC=9F</p>
-<blockquote>
-<p>check_gerrit_authentication() {</p>
-<p>&nbsp; &nbsp; ls -ld /*</p>
-<p>&nbsp; &nbsp; if ! ssh -o BatchMode=3Dyes -p 29418 gerrit-essl2.int.net.=
-nokia.com gerrit version; then</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; bberror "SSH connection to Gerrit failed.\n\=
-n\</p>
-<p>&nbsp; &nbsp; Please check that your public key is installed and Gerrit =
-host is in your known_hosts file.\n\</p>
-<p>&nbsp; &nbsp; To check the connection:\n\</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; $ ssh -p 29418 gerrit-essl2.int.net.nokia.co=
-m\n"</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; exit 1</p>
-<p>&nbsp; &nbsp; fi</p>
-<p>}</p>
-</blockquote>
-<p>and the output :</p>
-<blockquote>
-<p>DEBUG: Executing shell function check_gerrit_authentication</p>
-<p>lrwxrwxrwx&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;7 Jan 2=
-8&nbsp; 2020 /bin -&gt; usr/bin</p>
-<p>dr-xr-xr-x&nbsp; &nbsp;2 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;6 Jan 2=
-8&nbsp; 2020 /boot</p>
-<p>drwxr-xr-x&nbsp; &nbsp;5 nobody nobody&nbsp; &nbsp; &nbsp;360 Jul 21 07:=
-44 /dev</p>
-<p>drwxr-xr-x&nbsp; &nbsp;1 <strong>nobody nobody</strong>&nbsp; &nbsp; &nb=
-sp;139 Jul 21 07:44 /etc</p>
-<p>drwxr-xr-x&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 21 Jul 21 07:=
-44 /home</p>
-<p>drwxr-xr-x&nbsp; &nbsp;4 nobody nobody&nbsp; &nbsp; &nbsp; 33 Jul 21 07:=
-44 /host</p>
-<p>lrwxrwxrwx&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;7 Jan 2=
-8&nbsp; 2020 /lib -&gt; usr/lib</p>
-<p>lrwxrwxrwx&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;9 Jan 2=
-8&nbsp; 2020 /lib64 -&gt; usr/lib64</p>
-<p>drwx------&nbsp; &nbsp;2 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;6 Apr 2=
-7&nbsp; 2021 /lost+found</p>
-<p>drwxr-xr-x&nbsp; 10 nobody nobody&nbsp; &nbsp; 4096 Jun 11 01:56 /make-4=
-.3</p>
-<p>-rw-r--r--&nbsp; &nbsp;1 nobody nobody 2317073 Jan 19&nbsp; 2020 /make-4=
-.3.tar.gz</p>
-<p>drwxr-xr-x&nbsp; &nbsp;2 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;6 Jan 2=
-8&nbsp; 2020 /media</p>
-<p>drwxr-xr-x&nbsp; &nbsp;2 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;6 Jan 2=
-8&nbsp; 2020 /mnt</p>
-<p>drwxr-xr-x&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 22 Jun&nbsp; =
-1 07:08 /opt</p>
-<p>dr-xr-xr-x 314 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;0 Jul 21 07:44 /p=
-roc</p>
-<p>dr-xr-x---&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 58 Jun&nbsp; =
-1 07:08 /root</p>
-<p>drwxr-xr-x&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 22 Jun&nbsp; =
-1 07:08 /run</p>
-<p>lrwxrwxrwx&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;8 Jan 2=
-8&nbsp; 2020 /sbin -&gt; usr/sbin</p>
-<p>drwxr-xr-x&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 27 Jun 11 01:=
-56 /scripts</p>
-<p>drwxr-xr-x&nbsp; &nbsp;2 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;6 Jan 2=
-8&nbsp; 2020 /srv</p>
-<p>dr-xr-xr-x&nbsp; 12 nobody nobody&nbsp; &nbsp; &nbsp; &nbsp;0 Jul 21 08:=
-18 /sys</p>
-<p>drwxrwxrwt&nbsp; &nbsp;2 nobody nobody&nbsp; &nbsp; &nbsp; 40 Jul 21 07:=
-44 /tmp</p>
-<p>drwxr-xr-x&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 45 Apr 27&nbs=
-p; 2021 /usr</p>
-<p>drwxr-xr-x&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 30 Jun 11 01:=
-56 /var</p>
-<p>-rw-r--r--&nbsp; &nbsp;1 nobody nobody&nbsp; &nbsp; &nbsp; 16 Jun 11 01:=
-55 /VERSION</p>
-<p><strong>Bad owner or permissions on /etc/ssh/ssh_config.d/50-redhat.conf=
-^M</strong></p>
-<p>ERROR: SSH connection to Gerrit failed.<br /><br /></p>
-</blockquote>
-<div>Best Regards</div>
-<div>Yong</div>
-
---8BzsiQViVkzcT03m5qbk--
+>
+> Best Regards
+> Yong
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#60631): https://lists.yoctoproject.org/g/yocto/messag=
+e/60631
+> Mute This Topic: https://lists.yoctoproject.org/mt/100291025/4689568
+> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
+> Mute #kirkstone:https://lists.yoctoproject.org/g/yocto/mutehashtag/kirkst=
+one
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jester@theyoct=
+ojester.info]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
