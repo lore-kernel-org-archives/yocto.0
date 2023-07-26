@@ -1,59 +1,92 @@
-Return-Path: <chris@2net.co.uk>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F3716C001B0
-	for <webhook@archiver.kernel.org>; Wed, 26 Jul 2023 12:08:09 +0000 (UTC)
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
- by mx.groups.io with SMTP id smtpd.web11.9315.1690373281650653593
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F3AAC0015E
+	for <webhook@archiver.kernel.org>; Wed, 26 Jul 2023 12:52:10 +0000 (UTC)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+ by mx.groups.io with SMTP id smtpd.web11.10167.1690375920783395724
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Jul 2023 05:08:02 -0700
+ Wed, 26 Jul 2023 05:52:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: 2net.co.uk, ip: 212.227.126.130, mailfrom: chris@2net.co.uk)
-Received: from [192.168.4.28] ([86.12.193.8]) by mrelayeu.kundenserver.de
- (mreue009 [212.227.15.163]) with ESMTPSA (Nemesis) id
- 1MAORn-1qZw7I1V75-00Bsor for <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023
- 14:07:59 +0200
-Message-ID: <19b5638d-f2f7-894c-2a09-84353772c921@2net.co.uk>
-Date: Wed, 26 Jul 2023 13:07:58 +0100
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=Qdo8HKcV;
+ spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b9bd59d465so2098641fa.3
+        for <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 05:52:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690375919; x=1690980719;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DsKKMK5doArumylo5Fu2bGNA5PBEnbQ+d/PEbmP6RfM=;
+        b=Qdo8HKcV5Miie6VhOxoyVAZiAJ+FZK3GuBfwFdpvqGKHzLcVbCiXREKfQqbhtw+/2C
+         eraJ1wkapfZZMP6CXPVbpyzTaoKzqLI4od7YoR4CFIj7V9JkcGBakXc+ht+kWN8TAMQ5
+         yqZXAx7Kwq8dq46apWGkvD/zv3TT+l6pcngns006dLNWU3gxzlfghBDW9juSL/0/gs99
+         AAPPbdiRIFBgLbuYnHrLmQvLZeRA/9F+DXLy+RFnDEqan4pFBTdXN58bXtj2U+Ar7zqy
+         bWxU/ELqX3yTLcdYcxYvXZvPMiFtWM3Kfy8SgnoOrqQBYxZC3BauBCT2bWUVKcqhwUAW
+         qQXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690375919; x=1690980719;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DsKKMK5doArumylo5Fu2bGNA5PBEnbQ+d/PEbmP6RfM=;
+        b=e0XNhoqTATp+eAT0Wsc+wboYqfk4BhDbhOxU2aWox9vatO+8Gv0MIwzREty2q1IXS7
+         IEQSb6/VqoNU7mVust3FAgVQ5JepObDaNihRho03fwN3BQ1E7zeBfqPUvCZ1a7Lfb6bS
+         U9poxA1wxT9LocZgwmdlXnJErkdvBNLPcAhcPTQoITUUN3sQA6eWLTs0YbcZ21YRnOpO
+         hlRRmVvnOYsy1F3U3+NV806H/AME2ZhsZPYd+AOqMTS6uJEgM+XbJVUdn7hByyIC5QEk
+         fDNE6e15/m9JZ42aeM7jko2+mymu0qQpwFYD65JYWtkidI24OTxO81kELZv4HRChGIvT
+         s/dQ==
+X-Gm-Message-State: ABy/qLYwsf0nQQ6IEr7lJwnSm30QAYXsKJ4bVD46/96uafDWXpw24/AC
+	sXcjv6LN98h+15IhEDsXYS7QZCAb7+F4cDmgI0k=
+X-Google-Smtp-Source: APBJJlFbnaYVu66b/SOLWUOPtsKK9rz1ORf1ERzZbrhNL/qHWrAYdxuYuXDx/Kk5srR41wYsewfxfdIBnAT4Vz0Mu58=
+X-Received: by 2002:a2e:a403:0:b0:2b6:f21a:3dae with SMTP id
+ p3-20020a2ea403000000b002b6f21a3daemr1420459ljn.44.1690375918598; Wed, 26 Jul
+ 2023 05:51:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: yocto@lists.yoctoproject.org
-Reply-To: chris@2net.co.uk
-Content-Language: en-US
-From: Chris Simmonds <chris@2net.co.uk>
-Subject: Install binary package, rpm or ipk
-Organization: 2net
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:z2DDMmXeeQ2MIPEZ/gmP6SW0J9pWoVOGRHSOYWb+hRveSEpshCf
- vOL6yXlZfEOlASEh7sNE/VqqOrG6LHQLPXaIeL911eye0Vpovd0gHHA8Ak82dlxvFusP8K9
- 2KfmWljRaVtxSO4vTsgG9Y7ffxQPrcj9YI4AuJAITtCgxgaelJDlAh/S/I2dHXpd2XBzTE9
- Jd8o00k6ZcPSmEyNmVlYA==
-UI-OutboundReport: notjunk:1;M01:P0:A7WCSq/nbMs=;VSIL4gj7Vdj7OVqvCxgh4KkB2WM
- oiwTpRBlt0NQBvi+faEic6fJxYBVqggVuLC3/VETlPMWw0Bssf5a8ZokyIdwG3exMJxE4xaL4
- 3an98JalFLC3ZoDBl6l8QHcS0afZTym7tjQ1WGlP582vjNh+WWToI8KnnyBQBW2l+5TFYb5za
- tBNnuNSZ+CnxaWN7NohgSBm7xabc6vj/lQdrEmeCS1x6TrZp/1J5sqHb1Q4NeuUGcreSXu0vS
- uQIZGWavt3bodQbJuxY7Q+mB7f+609GErldxfrjkKSxg4HlE10x7Twf9U8Li88x3m6ycqIj8c
- 3ys9MfDspEjMf6jasrpZE0tGjrKNIvIGwzfPSN3WD9doUG4LGPpJR7K9LlaWcq17W5bG/9aqA
- rXGy1FLbpabdsSORTZSgtYpr9RV3IxlSWd545MvtmrCobDlWRsdsMfIfZmKyyom3Oieh3INJ+
- eQ513Ebd+4AyEmy6nJDExJjl6xLkzNdCmpnLbExCMsAOj1YLzX9IDHCR3V4/HGViJWAjAC9t7
- Xymlln0BXbXG3kMCMCCia/FsPl4PXSzkp+vhYo6C8WurUYBh1NJuap1FR06K9hq/IpXl4Z4rC
- ywAJ04AmGQU0mzT0b0s55SR0Vq0bY12sYZiihI6E5EW+XMHB9nfjfTKWZwfB1m0eBKvasDoD1
- 0twpVVRtYT9C86+ZymLbn6wybkr76MjXoRqm1TEU8A==
+References: <19b5638d-f2f7-894c-2a09-84353772c921@2net.co.uk>
+In-Reply-To: <19b5638d-f2f7-894c-2a09-84353772c921@2net.co.uk>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 26 Jul 2023 14:51:47 +0200
+Message-ID: <CANNYZj9Oh12CoqNCNNd+A5y2t4Ey8n+G5D=g-+-bQjFRvnomoQ@mail.gmail.com>
+Subject: Re: [yocto] Install binary package, rpm or ipk
+To: chris@2net.co.uk
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 12:08:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60656
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 12:52:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60657
 
-Hi list,
+Yes: you need to write a recipe :)
 
-Random question: does anyone know of a (nice) way to install a package
-file, rpm or ipk, that is generated by a 3rd party yocto build, but for
-which we don't have the recipe?
+The key part is:
+SRC_URI = "path/to/package.rpm"
 
-Cheers,
-Chris
+oe-core has code that would unpack the rpm into ${WORKDIR} and then
+you can install and repackage the content as you please with standard
+recipe tasks. The usual warnings about using evil vendor blobs apply;
+I would have the senior management sign off on that ;)
+
+Alex
+
+On Wed, 26 Jul 2023 at 14:08, csimmonds <chris@2net.co.uk> wrote:
+>
+> Hi list,
+>
+> Random question: does anyone know of a (nice) way to install a package
+> file, rpm or ipk, that is generated by a 3rd party yocto build, but for
+> which we don't have the recipe?
+>
+> Cheers,
+> Chris
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60656): https://lists.yoctoproject.org/g/yocto/message/60656
+> Mute This Topic: https://lists.yoctoproject.org/mt/100368967/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
