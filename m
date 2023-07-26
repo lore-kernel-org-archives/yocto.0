@@ -1,92 +1,89 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <stefan.tauner@artech.at>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F3AAC0015E
-	for <webhook@archiver.kernel.org>; Wed, 26 Jul 2023 12:52:10 +0000 (UTC)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
- by mx.groups.io with SMTP id smtpd.web11.10167.1690375920783395724
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE57CC001B0
+	for <webhook@archiver.kernel.org>; Wed, 26 Jul 2023 14:29:20 +0000 (UTC)
+Received: from out07.mymailwall.com (out07.mymailwall.com [91.212.136.3])
+ by mx.groups.io with SMTP id smtpd.web10.12623.1690381754292808923
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Jul 2023 05:52:01 -0700
+ Wed, 26 Jul 2023 07:29:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=Qdo8HKcV;
- spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b9bd59d465so2098641fa.3
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 05:52:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690375919; x=1690980719;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DsKKMK5doArumylo5Fu2bGNA5PBEnbQ+d/PEbmP6RfM=;
-        b=Qdo8HKcV5Miie6VhOxoyVAZiAJ+FZK3GuBfwFdpvqGKHzLcVbCiXREKfQqbhtw+/2C
-         eraJ1wkapfZZMP6CXPVbpyzTaoKzqLI4od7YoR4CFIj7V9JkcGBakXc+ht+kWN8TAMQ5
-         yqZXAx7Kwq8dq46apWGkvD/zv3TT+l6pcngns006dLNWU3gxzlfghBDW9juSL/0/gs99
-         AAPPbdiRIFBgLbuYnHrLmQvLZeRA/9F+DXLy+RFnDEqan4pFBTdXN58bXtj2U+Ar7zqy
-         bWxU/ELqX3yTLcdYcxYvXZvPMiFtWM3Kfy8SgnoOrqQBYxZC3BauBCT2bWUVKcqhwUAW
-         qQXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690375919; x=1690980719;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DsKKMK5doArumylo5Fu2bGNA5PBEnbQ+d/PEbmP6RfM=;
-        b=e0XNhoqTATp+eAT0Wsc+wboYqfk4BhDbhOxU2aWox9vatO+8Gv0MIwzREty2q1IXS7
-         IEQSb6/VqoNU7mVust3FAgVQ5JepObDaNihRho03fwN3BQ1E7zeBfqPUvCZ1a7Lfb6bS
-         U9poxA1wxT9LocZgwmdlXnJErkdvBNLPcAhcPTQoITUUN3sQA6eWLTs0YbcZ21YRnOpO
-         hlRRmVvnOYsy1F3U3+NV806H/AME2ZhsZPYd+AOqMTS6uJEgM+XbJVUdn7hByyIC5QEk
-         fDNE6e15/m9JZ42aeM7jko2+mymu0qQpwFYD65JYWtkidI24OTxO81kELZv4HRChGIvT
-         s/dQ==
-X-Gm-Message-State: ABy/qLYwsf0nQQ6IEr7lJwnSm30QAYXsKJ4bVD46/96uafDWXpw24/AC
-	sXcjv6LN98h+15IhEDsXYS7QZCAb7+F4cDmgI0k=
-X-Google-Smtp-Source: APBJJlFbnaYVu66b/SOLWUOPtsKK9rz1ORf1ERzZbrhNL/qHWrAYdxuYuXDx/Kk5srR41wYsewfxfdIBnAT4Vz0Mu58=
-X-Received: by 2002:a2e:a403:0:b0:2b6:f21a:3dae with SMTP id
- p3-20020a2ea403000000b002b6f21a3daemr1420459ljn.44.1690375918598; Wed, 26 Jul
- 2023 05:51:58 -0700 (PDT)
+ dkim=none (message not signed); spf=pass (domain: artech.at, ip: 91.212.136.3, mailfrom: stefan.tauner@artech.at)
+X-MyMailWallStatus: Email scanned(2259088666)
+Received: from mail.artech.at (EHLO mail.artech.at) [91.112.220.99]
+	by relay.mymailwall.com with ESMTP TLS id 26521 2259088666; Wed, 26 Jul 2023 16:29:10 +0200
+Received: from tauner-t14s (192.168.0.251) by SRV09.ARTech.local
+ (192.168.0.89) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.23; Wed, 26 Jul
+ 2023 16:29:09 +0200
+Date: Wed, 26 Jul 2023 16:29:09 +0200
+From: Stefan Tauner <stefan.tauner@artech.at>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-security] Possible candidate for packaging: Wazuh
+Message-ID: <20230726162909.016f7371@tauner-t14s>
+Organization: A&R Tech
 MIME-Version: 1.0
-References: <19b5638d-f2f7-894c-2a09-84353772c921@2net.co.uk>
-In-Reply-To: <19b5638d-f2f7-894c-2a09-84353772c921@2net.co.uk>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 26 Jul 2023 14:51:47 +0200
-Message-ID: <CANNYZj9Oh12CoqNCNNd+A5y2t4Ey8n+G5D=g-+-bQjFRvnomoQ@mail.gmail.com>
-Subject: Re: [yocto] Install binary package, rpm or ipk
-To: chris@2net.co.uk
-Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [192.168.0.251]
+X-ClientProxiedBy: SRV09.ARTech.local (192.168.0.89) To SRV09.ARTech.local
+ (192.168.0.89)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 12:52:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60657
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 14:29:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60658
 
-Yes: you need to write a recipe :)
+Hi,
 
-The key part is:
-SRC_URI = "path/to/package.rpm"
+Wazuh forked in 2015 from ossec (which is included in meta-security
+since 2021, cf.
+https://git.yoctoproject.org/meta-security/log/recipes-ids/ossec).
+ - https://wazuh.com
+ - https://github.com/wazuh/wazuh
 
-oe-core has code that would unpack the rpm into ${WORKDIR} and then
-you can install and repackage the content as you please with standard
-recipe tasks. The usual warnings about using evil vendor blobs apply;
-I would have the senior management sign off on that ;)
+Many aspects (including file names and configuration variables etc.)
+have remained the same and from my very little experience with ossec
+(and specifically googling for documentation and help) it is quite
+obvious that Wazuh is widely used, more active and a worthy contender in
+the FOSS IDS market.
 
-Alex
+I do not intend to look further into writing a port at the moment
+(as ossec is fulfilling our requirements at this point) but I wanted to
+mention it here at least in the unlikely case anyone is looking for
+some work in the unfounded hope to get pleasantly surprised if I need
+Wazuh in the future ;)
+I assume a port can be based on the ossec recipe but the projects
+diverged quite a bit. For example, Wazuh comes with quite a bit of
+Python code and due to its "cloudiness" there might be dragons.
+--
+with kind regards/mit freundlichen Gr=C3=BC=C3=9Fen,
+Stefan Tauner
+A&R-Tech Kernel Penguins
 
-On Wed, 26 Jul 2023 at 14:08, csimmonds <chris@2net.co.uk> wrote:
->
-> Hi list,
->
-> Random question: does anyone know of a (nice) way to install a package
-> file, rpm or ipk, that is generated by a 3rd party yocto build, but for
-> which we don't have the recipe?
->
-> Cheers,
-> Chris
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60656): https://lists.yoctoproject.org/g/yocto/message/60656
-> Mute This Topic: https://lists.yoctoproject.org/mt/100368967/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+
+
+FN 181686 k. HG Wien, UID-Nr. ATU 47056901, zertifiziert nach ISO 9001:2015=
+ (Nr. AT-04036/0), ISO/TS 22163:2017 (IR-00009/0) und ISO 27001:2013 (Nr. I=
+-00619/0)
+Der Inhalt dieser E-Mail ist vertraulich und ausschlie=C3=9Flich f=C3=BCr d=
+en bezeichneten Adressaten bestimmt. Wenn Sie nicht der vorgesehene Adressa=
+t dieser E-Mail oder dessen Vertreter sein sollten, so beachten Sie bitte, =
+dass jede Form der Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltig=
+ung oder Weitergabe des Inhaltes dieser E-Mail unzul=C3=A4ssig ist. Wir bit=
+ten Sie, sich in diesem Fall mit dem Absender der E-Mail in Verbindung zu s=
+etzen und die E-Mail zu vernichten. F=C3=BCr =C3=9Cbermittlungsfehler oder =
+sonstige Irrt=C3=BCmer bei der =C3=9Cbermittlung besteht keine Haftung.
+This e-mail is intended solely for the person to whom it is addressed and m=
+ay contain confidential or legally privileged information. Access to this e=
+-mail by anyone else is unauthorized. If an addressing or transmission erro=
+r has misdirected this e-mail, please notify the author by replying to this=
+ e-mail and destroy this e-mail and any attachments. E-mail may be suscepti=
+ble to data corruption, interception, unauthorized amendment, viruses and d=
+elays or the consequences thereof. If you are not the intended recipient, b=
+e advised that you have received this e-mail in error and that any use, dis=
+semination, forwarding, printing or copying of this e-mail is strictly proh=
+ibited.
+
 
