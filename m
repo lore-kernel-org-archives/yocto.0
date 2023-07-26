@@ -1,91 +1,104 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F14EDC001DC
-	for <webhook@archiver.kernel.org>; Wed, 26 Jul 2023 07:56:38 +0000 (UTC)
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
- by mx.groups.io with SMTP id smtpd.web10.6305.1690358188812649679
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DF5D6C001DE
+	for <webhook@archiver.kernel.org>; Wed, 26 Jul 2023 08:14:18 +0000 (UTC)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+ by mx.groups.io with SMTP id smtpd.web11.6513.1690359256590500447
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Jul 2023 00:56:28 -0700
+ Wed, 26 Jul 2023 01:14:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=Y2n0WYqc;
- spf=pass (domain: gmail.com, ip: 209.85.160.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1bb73eb80e4so1949017fac.3
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 00:56:28 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=WtReMkqp;
+ spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b70404a5a0so95694551fa.2
+        for <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 01:14:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690358188; x=1690962988;
+        d=gmail.com; s=20221208; t=1690359255; x=1690964055;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eSanTv3YplOric8wCFmtjhblN/2vm73X+UZ1YV0AzWs=;
-        b=Y2n0WYqckKeKl/8pSZ5i95T/5hhp1T7v8c3px3r9pQwxHAY3o0pCXNEgMpXAV/HvTZ
-         ydDb3MLkxc97FvEIdbT6nCyTY0xI/g7ppBeIQW2z6VzBhoPIDo8ZBTpbFCkfLsB1sfEH
-         B71QcdIzpv5KEJf3g/2IMMk4nAEy20RoJsm+U5Q+mAomnLDE8h+c++qym4+Uh9vqGU+P
-         tvcMrZJmZgp7Szf+HSuS4f3eTxNQ3vmpnutnFsvNX5hc4AamTLGynofpVbZVkxWlQmYk
-         t7NdfzSt/5UFG8g156ZnjTP+e1kMalKqXo0sTX2ChhiIwX5gGMH1u0hc5ueZUZoKEFsH
-         tZ9A==
+        bh=ntj84chmnGINkW70wUh/uOQ7t1BfXQKfs8QLEFq4BRA=;
+        b=WtReMkqp1WbJ78UFMJ+Oa8ei8RtafpvhXmn985hwsVTWxPh/yBHEUgT5wsv+2+YQzO
+         lD7H09pyKALG9howCT3qa64F1gqXSjVF83Hvkf+EDmei0zD3ncVlVXgPZ6FWAWMyxuzf
+         H/zzmExf0vHmckHrMJsy1Ygk/KGl0ExZLjTOfjMYwBBw82ZRzaeLvw707+UFexyk6/ZR
+         8TTUzq2HX0uiRblza/GOWgw0i+qSgIeIR8L9267Mwz8TRbqHcm8SUNIWpkhJYOuAX2xK
+         PLF/aGj7YtBgzga+NwLZi0euirxUcEdAf5V7xglRyOtFEmhfydPaeBO4b/DiEurYBjPW
+         2HbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690358188; x=1690962988;
+        d=1e100.net; s=20221208; t=1690359255; x=1690964055;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eSanTv3YplOric8wCFmtjhblN/2vm73X+UZ1YV0AzWs=;
-        b=YB3/nCWf2740YYlZ0xSMuwQv8wXVmNA9g1OEWYDiXZUNc7QlSGmFAR65NcTElG5JPA
-         XWzTHodHS1kyuot6TlM/BQynHjcc6whU6Nj1IM1xTy6UehhoWztcAUOxgKyzw8Yh46IE
-         2KaWw1uSOeG1mNsjoN+eEz2jQQxFhxvoexFWbnN8Acm2WeyLcMqu4AeqEhl0eVqP1Hmn
-         JKbjn5sZ1yFufnxedjs4uYrCIqlHxxrW256j6tuS+vJSKPm+BwpbDR4NyR4317KxAm4X
-         QA3WAUORnswTwl0y4vmiAyrKrcHR+Ivt4OyDw4dNQjfRAO/a2gGJFBKidwd8wx2d4Frq
-         p9Lg==
-X-Gm-Message-State: ABy/qLarHROS5Qr31G4p7WaKprQ9ob3x4jkVtnGR0tR+QBqOthiCTrvA
-	RPTJY3AxpSacautBrWx/9AiKY0wpE5XMvyu9tCE=
-X-Google-Smtp-Source: APBJJlErLhB3DUoQseiOha43w+M/ymJ4XvU0uSqLiGzPr/TxdpTXcGUMO/lX7jyGL3238ysr2+qVmXRdh45Ni8nNYC0=
-X-Received: by 2002:a05:6870:1fd6:b0:1bb:2522:a07f with SMTP id
- gp22-20020a0568701fd600b001bb2522a07fmr1867669oac.0.1690358187764; Wed, 26
- Jul 2023 00:56:27 -0700 (PDT)
+        bh=ntj84chmnGINkW70wUh/uOQ7t1BfXQKfs8QLEFq4BRA=;
+        b=dpV729VQ+S0YS9zo9Xb338ERpLPIadWkd2QC0+nxEY1uGz3LH7jD3LvqqJJupJRwVj
+         2NIWyvdyZZgu0Sg1Ccl8KMIlu6VxZvsqvE6dFsDRMDqvejg5BooVWiALDTQxr/bzIvKQ
+         kaQEoK9s4Dj4xPqRuMkvlby/CmITud095HZbn1qprlH5KPqn15My/h4tK0dwxvIJscbR
+         gjFndnTkAdyH4ucGBZPIKI8A+uo6cAOIFE0+Ja+DbV8bqam9ls7+fIBJ51YEnLH8eN/e
+         1uY2zpN9xe/xHhjhUcAubOLOYWC3QCc5vzsWd04Sqt66tVGHT13Vxe5BWqr0dXRxpM4P
+         XVqg==
+X-Gm-Message-State: ABy/qLYSWCJqO5Lx1L8Z2jPVZu2Udh7fbiqPolfov+9G4qOGIsrAJFQj
+	K/qMSV/t435kDVd/0LE5LiDNLkL4urwBD+a5MK0=
+X-Google-Smtp-Source: APBJJlEvmMjWH95OMkcT99E8MYaWEU8BDY6J0+BTMFHMMsMlew6W02PprL2oEF7ogTfBNI8AuxwH/yt/V/SuATFEkwk=
+X-Received: by 2002:a2e:a40e:0:b0:2b5:1b80:263a with SMTP id
+ p14-20020a2ea40e000000b002b51b80263amr860647ljn.47.1690359254552; Wed, 26 Jul
+ 2023 01:14:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <5NtY.1690358038009111944.Elav@lists.yoctoproject.org>
-In-Reply-To: <5NtY.1690358038009111944.Elav@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 26 Jul 2023 00:56:01 -0700
-Message-ID: <CAMKF1srip0xMkO1qyxNnCtdgYqdp_2oeDLYqm6egsx2kBrM+Nw@mail.gmail.com>
+References: <5NtY.1690358038009111944.Elav@lists.yoctoproject.org> <CAMKF1srip0xMkO1qyxNnCtdgYqdp_2oeDLYqm6egsx2kBrM+Nw@mail.gmail.com>
+In-Reply-To: <CAMKF1srip0xMkO1qyxNnCtdgYqdp_2oeDLYqm6egsx2kBrM+Nw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 26 Jul 2023 10:14:03 +0200
+Message-ID: <CANNYZj_zs6iAmHh+2MpC2MBtYhaJuY=9W1=X+mVB+Z_TJX4K8A@mail.gmail.com>
 Subject: Re: [yocto] Add different PREFERRED_VERSION of recipe to different images
-To: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>, Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
 Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 07:56:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60653
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jul 2023 08:14:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60654
 
-On Wed, Jul 26, 2023 at 12:54=E2=80=AFAM Priyanshu Sharma
-<ms.priyanshu.sharma@gmail.com> wrote:
->
-> I have two images in same custom layer : A-image.bb & B-image.bb
->
-> I want to add readline_5.2.bb in A-image.bb & readline_8.2.bb in B-image.=
-bb. How can I achieve this?
+If you want readline 5.2 (which is very old and may cause security
+issues) because you can't ship gpl version 3 code in a product, then a
+much better option is to find out what requires readline, and disable
+that option, so it isn't installed into images. There are also non-gpl
+alternatives such as libedit.
 
-It can not be done at image scope but at config metadata e.g. distro
-or machine config.
+Alex
 
+On Wed, 26 Jul 2023 at 09:56, Khem Raj <raj.khem@gmail.com> wrote:
 >
-> Adding PREFERRED_VERSION in local.conf applies to both the image recipes.
+> On Wed, Jul 26, 2023 at 12:54=E2=80=AFAM Priyanshu Sharma
+> <ms.priyanshu.sharma@gmail.com> wrote:
+> >
+> > I have two images in same custom layer : A-image.bb & B-image.bb
+> >
+> > I want to add readline_5.2.bb in A-image.bb & readline_8.2.bb in B-imag=
+e.bb. How can I achieve this?
 >
-> Thanks,
+> It can not be done at image scope but at config metadata e.g. distro
+> or machine config.
 >
+> >
+> > Adding PREFERRED_VERSION in local.conf applies to both the image recipe=
+s.
+> >
+> > Thanks,
+> >
+> >
+> >
+> >
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#60652): https://lists.yoctoproject.org/g/yocto/messag=
-e/60652
-> Mute This Topic: https://lists.yoctoproject.org/mt/100366603/1997914
+> View/Reply Online (#60653): https://lists.yoctoproject.org/g/yocto/messag=
+e/60653
+> Mute This Topic: https://lists.yoctoproject.org/mt/100366603/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+mail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 
