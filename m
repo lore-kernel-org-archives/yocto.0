@@ -1,99 +1,73 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <tom.isaacson@teknique.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3DDCC001DF
-	for <webhook@archiver.kernel.org>; Fri, 28 Jul 2023 18:41:58 +0000 (UTC)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
- by mx.groups.io with SMTP id smtpd.web11.39845.1690569708584511020
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B698EC001DE
+	for <webhook@archiver.kernel.org>; Fri, 28 Jul 2023 21:54:59 +0000 (UTC)
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+ by mx.groups.io with SMTP id smtpd.web11.43856.1690581296797790893
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Jul 2023 11:41:49 -0700
+ Fri, 28 Jul 2023 14:54:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=gt3AUnaT;
- spf=pass (domain: bootlin.com, ip: 217.70.183.197, mailfrom: michael.opdenacker@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1609A1C0004;
-	Fri, 28 Jul 2023 18:41:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1690569706;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=bUs/unakyhlyFmvc7TRmEn36CTOCOpBQkNlnIEu/seQ=;
-	b=gt3AUnaTT2Aj9Og7b08vom0eU5swjsVgv6y9J1PXXkPxV/FQuDm9LQPMclq1LMlWq8Ohuq
-	FXTYxp6OcwnFLwg3KPcZzUNvdSGgRwAAxelO4DO+Y8qgn45tzRiaEZ42BZHcwlvyl4aEuU
-	jEr+belnvSNv+qV1B5aA/kCTtWtKT/E2E1Hgbto2kPR5WzF5jyuK0G9GjO00KTTc3++xon
-	xS0PG3bpfYXQYpbsb8n7qAqSVILoFr4fh1RYklAdGwj1yqqVIz7eiBqYxNnYrOtnMpMZz1
-	IE1Wpcj+b8Mr44q5ucDdSLZz/TNaF3da7T9L2+MIqcoBNRfTHismwjHjRrDH6A==
-Message-ID: <1fdd238e-b14b-6f85-db68-07eeea3e2726@bootlin.com>
-Date: Fri, 28 Jul 2023 20:41:45 +0200
+ dkim=pass header.i=@teknique-com.20221208.gappssmtp.com header.s=20221208 header.b=ckq0BGyp;
+ spf=none, err=SPF record not found (domain: teknique.com, ip: 209.85.214.177, mailfrom: tom.isaacson@teknique.com)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1bbf3da0ea9so4930725ad.2
+        for <yocto@lists.yoctoproject.org>; Fri, 28 Jul 2023 14:54:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=teknique-com.20221208.gappssmtp.com; s=20221208; t=1690581296; x=1691186096;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BcTw3q3gGQF65cgV3bTL6xuaSwkWhFHe5sl/OLiYuf0=;
+        b=ckq0BGypq13ZjpLYdLIm0dZCU+dYmKi8s6WX2h428vTpwkfUS7n2/n6qOzGrC6f4TG
+         1tvB+5j3VyAgOyIGUv2rhPcqfiX5CFI8MClqQUCQbqlO29zQm+oUVPKhg1pZjPebynVm
+         gdF8nAvhsLPmFw3S1DpYWe7iz1LCbU7GhbKUDH8iML8Veu750EGSEG8ByUHlqyrZwb4K
+         G0YI4591EsG/jHN4X1RUFhHnzIA6bWVt5D0YwksqcHlx1XlqzwT2FGX8lbiJYZRbeBzO
+         LhekwxASvzwUiONj9N4PqRI4ZwffyT61DliIv4ZQH7ippb+zx1PkbHgNnK8qHBmjimNV
+         4/nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690581296; x=1691186096;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BcTw3q3gGQF65cgV3bTL6xuaSwkWhFHe5sl/OLiYuf0=;
+        b=VHjr30Wvl65BYaQ8orJpxrBheQc3wm0kaxWtsU0f/u+9HzROcvTHY6jsQV35p9l1lk
+         uD3UyyTDwheAoEvOHHO410O3NmSZ33LlnoXzH+TmWiVT9qL4ful8rAp3knsqNqb4e/yM
+         +wkzm9bQiyAkYj2ZN9TnNpcEsUoTJs0gyM8Zq5KH5/OHI6REUc5A/gGZeRPqtb08Nyo8
+         4wUD6tnxSRfM7o9a+F55Lynje7oBajoH6pxVb+cxM3lHG1a5LSUVJoHuk5q5diDGi+I0
+         IQb/EMxLlX5oMxV7DF/bJmxuxE8kY/YUUDf1rMDqry7uinVWc99IQ7lAHiOvV4F3bcWS
+         KKUQ==
+X-Gm-Message-State: ABy/qLYr8nwWPIX4KZArV/+0uaNwU4WzsUGJBdOrUXS+SwgcrznJow5g
+	GMMMIZLsZ/uG/TABV4NEdBswbOT/7+h60a1iwa0=
+X-Google-Smtp-Source: APBJJlGRak2IR9Uh6V6N6f5juZukfz8HtD8vfWPCnV9+u5rtBzxM/IzRFQuwb1vNRuZJBP0qogoHBQ==
+X-Received: by 2002:a17:902:d2d1:b0:1bb:a55d:c6e7 with SMTP id n17-20020a170902d2d100b001bba55dc6e7mr3105839plc.55.1690581295990;
+        Fri, 28 Jul 2023 14:54:55 -0700 (PDT)
+Received: from localhost.localdomain ([14.1.36.195])
+        by smtp.gmail.com with ESMTPSA id ix14-20020a170902f80e00b001b8918da8d1sm4050773plb.80.2023.07.28.14.54.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jul 2023 14:54:55 -0700 (PDT)
+From: Tom Isaacson <tom.isaacson@teknique.com>
+To: yocto@lists.yoctoproject.org
+Cc: Tom Isaacson <tom.isaacson@teknique.com>
+Subject: [poky] [PATCH 0/1] Upgrade 9.3p1 to 9.3p2 for CVE-2023-38408
+Date: Sat, 29 Jul 2023 08:34:04 +1200
+Message-Id: <20230728203405.1565852-1-tom.isaacson@teknique.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Cc: YP docs mailing list <docs@lists.yoctoproject.org>
-Content-Language: en-US
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Subject: Updating the list of sanity tested distros?
-Organization: Bootlin
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: michael.opdenacker@bootlin.com
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Jul 2023 18:41:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60674
+ <yocto@lists.yoctoproject.org>; Fri, 28 Jul 2023 21:54:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60675
 
-Greetings,
+Tom Isaacson (1):
+  Upgrade 9.3p1 to 9.3p2 for CVE-2023-38408
 
-As far as I understand, the list of distros that the Yocto Project 
-supports (or should claim it supports) is the intersection of the list 
-of sanity tested distros (SANITY_TESTED_DISTROS in 
-meta-poky/conf/distro/poky.conf) and the distribution versions that are 
-still publicly supported by their vendors (as checked on Wikipedia). 
-There's no point in claiming to support a distribution for which package 
-updates are no longer available.
-
-Currently for master, this intersection is only:
-
-  * Ubuntu 20.04 (LTS)
-  * Ubuntu 22.04 (LTS)
-  * Fedora 37
-  * Debian GNU/Linux 11.x (Bullseye)
-  * OpenSUSE Leap 15.4
-
-Here are a few obvious absents here:
-
-  * AlmaLinux: version 8.7 and 9.1 are still in SANITY_TESTED_DISTROS
-    but they are obsolete. I see an AlmaLinux9 worker on
-    https://autobuilder.yoctoproject.org/typhoon/#/workers, but I don't
-    know whether it's 9.1 or 9.2 (not obsolete unlike 9.1).
-  * Fedora 38: important as Fedora 37 ends in November. I see a Fedora38
-    worker, but there are still failed jobs, even though the majority
-    are successful. When is a distro version ready to be added to
-    SANITY_TESTED_DISTROS?.
-  * Debian 12: we also have such a worker, with a mix of successful and
-    failed builds. Is this version eligible too?
-  * OpenSuse Leap 15.5, as OpenSuse Leap 15.4 expires in November too. I
-    see a worker, but with only failed builds.
-
-I'd say that the most urgent one is AlmaLinux 9.2 as otherwise we don't 
-support AlmaLinux any more. The next ones for the end of the year are 
-Fedora 38 and OpenSuse Leap 15.5.
-
-Would you have any thoughts?
-
-I was about to send a documentation update to declare that master (and 
-probably Mickledore and Kirkstone) only support 5 different distribution 
-versions, but a longer list would look better...
-
-Thanks in advance
-Cheers
-Michael.
+ .../openssh/{openssh_9.3p1.bb => openssh_9.3p2.bb}              | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename meta/recipes-connectivity/openssh/{openssh_9.3p1.bb => openssh_9.3p2.bb} (98%)
 
 -- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
 
 
