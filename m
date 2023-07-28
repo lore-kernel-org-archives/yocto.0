@@ -1,90 +1,143 @@
-Return-Path: <tom.isaacson@teknique.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 91E18EB64DD
-	for <webhook@archiver.kernel.org>; Fri, 28 Jul 2023 21:55:09 +0000 (UTC)
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
- by mx.groups.io with SMTP id smtpd.web11.43859.1690581300588823810
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D4FA3C41513
+	for <webhook@archiver.kernel.org>; Fri, 28 Jul 2023 22:29:09 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web10.43882.1690583339524048192
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Jul 2023 14:55:00 -0700
+ Fri, 28 Jul 2023 15:28:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@teknique-com.20221208.gappssmtp.com header.s=20221208 header.b=KAgip5or;
- spf=none, err=SPF record not found (domain: teknique.com, ip: 209.85.214.180, mailfrom: tom.isaacson@teknique.com)
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1bb8e45185bso16854615ad.1
-        for <yocto@lists.yoctoproject.org>; Fri, 28 Jul 2023 14:55:00 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=NerdjE4b;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-3fbc5d5742eso28685695e9.3
+        for <yocto@lists.yoctoproject.org>; Fri, 28 Jul 2023 15:28:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=teknique-com.20221208.gappssmtp.com; s=20221208; t=1690581300; x=1691186100;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EcFgzV7NypjZN2dH2rg87wKae6F6mQ3djKekE+S2nOM=;
-        b=KAgip5orCOg5gAcFOjhRiLcGPsfCWDiCubDv1vVbxqqaWLWhHhL31Ls8V1bNT8i0yM
-         dA9VK2SbYWJXHv3/VjHXn0XudhXJ2sezZ6qcvAjHTLSVhhhCSn8LOvZ8tv/XRHkLQLbu
-         3ZAGMWc9+pVB++35UDUPsDClCI7zsYFIaPncifTVHeKIH3RW9O2jkQRdPwtBiuUyRYuU
-         QCw+y2kUE/rlOtW1g1VCBDxzAXCzY1WW6dTrrjtEjcZIqrjGY8MJuAGKvqDd+ss37e49
-         2QGTHX6gNqo3CKpBp0lx58BxxldTJrpz6Q2R8eQ69NyVIvUimvh4jf7bU2giZbV6qqxQ
-         Qijg==
+        d=linuxfoundation.org; s=google; t=1690583338; x=1691188138;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=BSjiSQQLVG+USmW9Yf98S7H7rghWlG1xrG0xn8Tn57M=;
+        b=NerdjE4buavoDiW4uFXAr5D1RBBz1lNkfi2faULbljTIWn9UqlLmOOBb2oMvSpJ8Cf
+         GZVgTtoJJL6Ens/pfcKSuTytSQgTmbZzx2kYe6BR7TSEq2rJsG/e4iOyG2Dc7c3DwtAM
+         2ALWKnr040QHfeHw+TwBvDZXpLS+4MwXg77cw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690581300; x=1691186100;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EcFgzV7NypjZN2dH2rg87wKae6F6mQ3djKekE+S2nOM=;
-        b=NJewB/4Q75YW625YtF91cWcO0Zs3b/nG3s86nBWvgJ3FHH0ZgY9cgZ6m0nQnCRHDLh
-         6YoIChWNQUpECHCmwLCF5i75GzSommBA0A7YLVq5fjGPGlMl6Np5uJoofgtA9vXdKmr9
-         yzilYLDfHfgnR9uofibdZupE2nseFSWq8iZYmD88IHRCC1at5fCmZrs+EGreg4ODsPXF
-         piiAS4dK35yBDs3quR5C1DZPz9C6sRwnt94jSXk8HJlsj+7WGruiChQ57khx8xo7UwD/
-         F+Utts5TYkgykg6AHYLOA5E1oUlE4NOHBghaffA4z7/cGCgUD7nL5Swnn6wJlZW99DeC
-         MWHQ==
-X-Gm-Message-State: ABy/qLZ6Fbx9qAOCWJNFS01z8KP0vKhB/E51tG1+pvtxh5JDsSGPuHkU
-	OlEQZbSrCAco7dasOHQfpXauq0gEM4UhAARcZeQ=
-X-Google-Smtp-Source: APBJJlErA3CXcLpuy2vYoaa1nXV8QK0gvke/6E37qoQMegkrFVgJmUyWupCWM7fdlbpuX53SDo9v6Q==
-X-Received: by 2002:a17:902:ec90:b0:1bb:de7f:a4ad with SMTP id x16-20020a170902ec9000b001bbde7fa4admr2771729plg.49.1690581299870;
-        Fri, 28 Jul 2023 14:54:59 -0700 (PDT)
-Received: from localhost.localdomain ([14.1.36.195])
-        by smtp.gmail.com with ESMTPSA id ix14-20020a170902f80e00b001b8918da8d1sm4050773plb.80.2023.07.28.14.54.58
+        d=1e100.net; s=20221208; t=1690583338; x=1691188138;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BSjiSQQLVG+USmW9Yf98S7H7rghWlG1xrG0xn8Tn57M=;
+        b=Z+2MGW6vQJqdUwpv4oUy6/HxnOqnKbhp9YaXoohJeMICtOU3DUlxRluu1dxYEEaLLm
+         IYDtdrLL4U7ue+AHCZlwu5OG8MzTR/Q5ih4moWEDyK/+Cul1FsX4Gpd1v/FKjrgzGvrw
+         wDQtI+/HHxHFnKBKAnmkbTU5jTtOJRgvOmH9lE6Rpj7YBPHguC7I78z7JzVv8JFYlrRd
+         hugN/Ht8DHMVtAcBNrF49dIYEkKC7bFTkFuVnw9jpkmngYMz27vooTjgXxCN1LLf5HsM
+         2KfHx/BN+kZUu8kZFlOy0dJ2cafqfq99ylA5kBVx7i7Zr2uWaBXnTkjscBNCl8jdv2x/
+         2xMw==
+X-Gm-Message-State: ABy/qLYbSMpVfzVhOHGh0dIF0yBLbjz9jkhNzVAZ5FT0Ft8WH9O4rZ18
+	OGwJ0fEXEL22tf7p+g9s1c6/5g==
+X-Google-Smtp-Source: APBJJlFhSdeFaW0Q7ON+pKBS6uqtubGP5MZ66zp0BMlPZdhMZWctzH59VKcKxESuxxlKeYEmUgjcJw==
+X-Received: by 2002:a05:600c:210b:b0:3fb:fb88:974b with SMTP id u11-20020a05600c210b00b003fbfb88974bmr2789862wml.6.1690583337887;
+        Fri, 28 Jul 2023 15:28:57 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:f929:4921:3439:ee63? ([2001:8b0:aba:5f3c:f929:4921:3439:ee63])
+        by smtp.gmail.com with ESMTPSA id k3-20020a05600c0b4300b003fc015ae1e1sm5177418wmr.3.2023.07.28.15.28.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jul 2023 14:54:59 -0700 (PDT)
-From: Tom Isaacson <tom.isaacson@teknique.com>
-To: yocto@lists.yoctoproject.org
-Cc: Tom Isaacson <tom.isaacson@teknique.com>
-Subject: [PATCH 1/1] Upgrade 9.3p1 to 9.3p2 for CVE-2023-38408
-Date: Sat, 29 Jul 2023 08:34:05 +1200
-Message-Id: <20230728203405.1565852-2-tom.isaacson@teknique.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230728203405.1565852-1-tom.isaacson@teknique.com>
-References: <20230728203405.1565852-1-tom.isaacson@teknique.com>
+        Fri, 28 Jul 2023 15:28:57 -0700 (PDT)
+Message-ID: <d2220020c5bacc6086be6417c43f6555d7283749.camel@linuxfoundation.org>
+Subject: Re: [docs] Updating the list of sanity tested distros?
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: michael.opdenacker@bootlin.com, "yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Cc: YP docs mailing list <docs@lists.yoctoproject.org>
+Date: Fri, 28 Jul 2023 23:28:56 +0100
+In-Reply-To: <1fdd238e-b14b-6f85-db68-07eeea3e2726@bootlin.com>
+References: <1fdd238e-b14b-6f85-db68-07eeea3e2726@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Jul 2023 21:55:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60676
+ <yocto@lists.yoctoproject.org>; Fri, 28 Jul 2023 22:29:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60677
 
----
- .../openssh/{openssh_9.3p1.bb => openssh_9.3p2.bb}              | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename meta/recipes-connectivity/openssh/{openssh_9.3p1.bb => openssh_9.3p2.bb} (98%)
+On Fri, 2023-07-28 at 20:41 +0200, Michael Opdenacker via
+lists.yoctoproject.org wrote:
+> Greetings,
+>=20
+> As far as I understand, the list of distros that the Yocto Project=20
+> supports (or should claim it supports) is the intersection of the list=
+=20
+> of sanity tested distros (SANITY_TESTED_DISTROS in=20
+> meta-poky/conf/distro/poky.conf) and the distribution versions that are=
+=20
+> still publicly supported by their vendors (as checked on Wikipedia).=20
+> There's no point in claiming to support a distribution for which package=
+=20
+> updates are no longer available.
+>=20
+> Currently for master, this intersection is only:
+>=20
+>   * Ubuntu 20.04 (LTS)
+>   * Ubuntu 22.04 (LTS)
+>   * Fedora 37
+>   * Debian GNU/Linux 11.x (Bullseye)
+>   * OpenSUSE Leap 15.4
+>=20
+> Here are a few obvious absents here:
+>=20
+>   * AlmaLinux: version 8.7 and 9.1 are still in SANITY_TESTED_DISTROS
+>     but they are obsolete. I see an AlmaLinux9 worker on
+>     https://autobuilder.yoctoproject.org/typhoon/#/workers, but I don't
+>     know whether it's 9.1 or 9.2 (not obsolete unlike 9.1).
+>   * Fedora 38: important as Fedora 37 ends in November. I see a Fedora38
+>     worker, but there are still failed jobs, even though the majority
+>     are successful. When is a distro version ready to be added to
+>     SANITY_TESTED_DISTROS?.
+>   * Debian 12: we also have such a worker, with a mix of successful and
+>     failed builds. Is this version eligible too?
+>   * OpenSuse Leap 15.5, as OpenSuse Leap 15.4 expires in November too. I
+>     see a worker, but with only failed builds.
+>=20
+> I'd say that the most urgent one is AlmaLinux 9.2 as otherwise we don't=
+=20
+> support AlmaLinux any more. The next ones for the end of the year are=20
+> Fedora 38 and OpenSuse Leap 15.5.
+>=20
+> Would you have any thoughts?
+>=20
+> I was about to send a documentation update to declare that master (and=
+=20
+> probably Mickledore and Kirkstone) only support 5 different distribution=
+=20
+> versions, but a longer list would look better...
 
-diff --git a/meta/recipes-connectivity/openssh/openssh_9.3p1.bb b/meta/recipes-connectivity/openssh/openssh_9.3p2.bb
-similarity index 98%
-rename from meta/recipes-connectivity/openssh/openssh_9.3p1.bb
-rename to meta/recipes-connectivity/openssh/openssh_9.3p2.bb
-index 3edc123b9a..5fb2dccdfc 100644
---- a/meta/recipes-connectivity/openssh/openssh_9.3p1.bb
-+++ b/meta/recipes-connectivity/openssh/openssh_9.3p2.bb
-@@ -26,7 +26,7 @@ SRC_URI = "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${PV}.tar
-            file://add-test-support-for-busybox.patch \
-            file://7280401bdd77ca54be6867a154cc01e0d72612e0.patch \
-            "
--SRC_URI[sha256sum] = "e9baba7701a76a51f3d85a62c383a3c9dcd97fa900b859bc7db114c1868af8a8"
-+SRC_URI[sha256sum] = "200ebe147f6cb3f101fd0cdf9e02442af7ddca298dffd9f456878e7ccac676e8"
- 
- CVE_STATUS[CVE-2007-2768] = "not-applicable-config: This CVE is specific to OpenSSH with the pam opie which we don't build/use here."
- 
--- 
-2.34.1
+We keep seeming to discuss this but it is really quite simple, we
+document what we test on.
+
+We are currently testing on alma8 and alma9. I don't know which version
+of alma9 but I'd suspect the most recent one and we can check. We can
+list those until the workers are retired.
+
+With regard to the failed builds, the question is whether the failed
+builds are due to the patches under test or some underlying issue with
+those systems. They would not be in general use in the pool if they
+weren't able to build master so it is fine to document all of those
+there for master. I'm sure the failures are due to failures in patches
+under test at this point.
+
+The exclusion list for older releases can be and is different as some
+workers are not enabled for some releases. You can see the mappings
+here:
+
+https://git.yoctoproject.org/yocto-autobuilder2/tree/config.py#n160
+
+i.e. mickledore is matching master so far and kirkstone isn't using
+fedora38 yet (for example).
+
+Cheers,
+
+Richard
 
 
