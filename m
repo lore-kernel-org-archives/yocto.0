@@ -1,88 +1,69 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <oduconge@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75FBAC001DF
-	for <webhook@archiver.kernel.org>; Mon, 31 Jul 2023 10:28:46 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
- by mx.groups.io with SMTP id smtpd.web10.4272.1690799319377421520
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7402EC001DE
+	for <webhook@archiver.kernel.org>; Mon, 31 Jul 2023 13:57:27 +0000 (UTC)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+ by mx.groups.io with SMTP id smtpd.web10.8053.1690811846211892377
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 Jul 2023 03:28:39 -0700
+ Mon, 31 Jul 2023 06:57:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=SnoSG5ch;
- spf=pass (domain: gmail.com, ip: 209.85.128.170, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5841be7d15eso51115157b3.2
-        for <yocto@lists.yoctoproject.org>; Mon, 31 Jul 2023 03:28:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=bdaOWJxM;
+ spf=pass (domain: gmail.com, ip: 209.85.221.53, mailfrom: oduconge@gmail.com)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-317744867a6so4060665f8f.1
+        for <yocto@lists.yoctoproject.org>; Mon, 31 Jul 2023 06:57:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690799318; x=1691404118;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WfX7B9ybn1v2zY/enWNYKjO1rNwdPYQtkI+UrN6Cw5E=;
-        b=SnoSG5chOjfq8A5JG0rGGwC7Prka4Ao1LGKewmh5rMDLmL7Jttg/f5dmmomZ6BDnEZ
-         BK3EMfDz0E0BeHlZoKprZAkkR0WVyzwBKPhjF6HZtUSSP80ynGJV/Rv65K4VvL1vxhPX
-         BIZDT6o4y22lPgss1Y+Nk9dG0JnWHUVhw+ZgubDJJH0DZFROvBr5tTWpkv3VYg+zTmed
-         j4QoInsSN5CrCDiNXcZvtPTS3XGd7JMrd8Tc5sZlA42yzNKEDI/LWI8sy4HrwvBVq76I
-         4WIOqBWDK+fVshBpbspVUArD1u98Z+2J8FEGVbHngd/jR/oUrChJeFsbPa69orjX2rzc
-         mnYw==
+        d=gmail.com; s=20221208; t=1690811844; x=1691416644;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yq0NDKgxYQwboy+NVaQzyYm8xh2si6y5nPD3vyrW6WE=;
+        b=bdaOWJxMwZZnveNpKH/+QNR+7XTJy5cyguenxro90BxVXO9GFjYprxmk8P/rTUOG8e
+         fTqUdrjM/sA5Q2SKMu/BuR4R6Sm5ZbQMIExjc2uhCOE054jTCHzBce2106Mg30d7vFti
+         VJJq0s73rRxpcRwOLyjv5ERwSb0omPw9kJY4ZvrtkL2mENcoswQY0YzbzVl9u8iguDOa
+         wvJNlex1DpNmM6WCYFy+vzxk6ZxSJRYdcNr5e1MsNVRnJ61PXUNToTV1QwhqnPgXgmqm
+         vRCmNxSGWax2QIdazOYOLbh9bwl+SkkG27VDJNc6mD6b3lSo4wLwxqjljCTWvmTH2mRu
+         oh0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690799318; x=1691404118;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WfX7B9ybn1v2zY/enWNYKjO1rNwdPYQtkI+UrN6Cw5E=;
-        b=MKHVM2vfgYJKnROAZiV3ZW7bw0meWM++oDF1JtPnw7hgg8R53zYDyUsetEAbMf9TXQ
-         NCYPElro3dKT3GkyG1kHFA3FiI880OEgV+h/s38SubVFykENGd+EvvKldcrOHBobBtS4
-         1n637EyDY8zv2/UpOPweqday1EOrUFAuhrsPL9QhHSMjrLtshi+lYxxBsMJ6/PPkuZ3O
-         4QyG/TqCDT8EXyUtWhijANdSa3shncLkQ62u6VOhmxE3hb0HCqzNYTU0qw0R9SJh9Mf0
-         lQVhuJMjHXbkrXGywFkjumzHh8YsLP2s2U2aWN7RrdjG5yvxQZzQkmYTiqfqH2sejLwM
-         hL/A==
-X-Gm-Message-State: ABy/qLYO2ii2pcQU1/o+E/x50eVtTPoB39NXE1KIxuHo+RD7yY7mnG1l
-	N2SXV4V8qiwnAxm/GbfNUMi/d4qcvsQ=
-X-Google-Smtp-Source: APBJJlGakDr4SlmeKgBONTqau/fd1biBqKjXllAJVOzI+Y9OGxcVZjUfcbj1qGhm+3wDMq3DYFwO+Q==
-X-Received: by 2002:a81:844b:0:b0:576:98e0:32a6 with SMTP id u72-20020a81844b000000b0057698e032a6mr10628709ywf.14.1690799318107;
-        Mon, 31 Jul 2023 03:28:38 -0700 (PDT)
-Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:4bc3:732:c84f:6e7])
-        by smtp.gmail.com with ESMTPSA id b185-20020a0dd9c2000000b005837fe8dbe8sm2940577ywe.8.2023.07.31.03.28.37
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jul 2023 03:28:37 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] sshguard: Update to 2.4.3
-Date: Mon, 31 Jul 2023 06:28:36 -0400
-Message-Id: <20230731102836.122208-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20221208; t=1690811844; x=1691416644;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yq0NDKgxYQwboy+NVaQzyYm8xh2si6y5nPD3vyrW6WE=;
+        b=gi78830jliMAUBJ2BBBmb6aBaTDEVfg0LxtJDNuzZVhzvRzZtVzI9b2bjTpYdiZdNT
+         YvRmbl9szHvA/OC0BrXaX+8DV7QkFt3YzBgpvt1TR+aFTybkPQxJ6HlR0GFP8aMfSepK
+         FJogEaVinoE8ZLEzINrGrxq2jiDgEW5LkkyDS5NLo/YVre5Ul7fYj47SJxVxYrVBRSDb
+         f9QOxJm2hHhGPJaCNsIjFH31enjV4QkmZ+vUGzzvZT1bmu6HfSB9CF771beVZmw91ISA
+         Ir6A80mvjAZW/gmpyzn/OxQEE39pgCd9yxnAA/adELUZAGTLDyRFpSfsm/ILuYLQp6ch
+         1sFw==
+X-Gm-Message-State: ABy/qLar/a6GNmNAs1AcKW6ElcggOBUQucrnUUS4hxdXUENhN4sts4vm
+	lLir1kBwyzmVmscbZCg0xSeL99MBdAIa9nSJ7gHxNIjU
+X-Google-Smtp-Source: APBJJlFXU8LcZjJn5YiceqUtrS5yMbcOMHVAzbtDMPZ+QaO1JgfTXLAAmQF6M4zdKzSYEMq0o/b4wZEy2gBHMQFehQw=
+X-Received: by 2002:a05:6000:11:b0:314:1d7f:a69 with SMTP id
+ h17-20020a056000001100b003141d7f0a69mr6522440wrx.67.1690811843983; Mon, 31
+ Jul 2023 06:57:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Orlay Garcia Ducunge <oduconge@gmail.com>
+Date: Mon, 31 Jul 2023 09:58:36 -0400
+Message-ID: <CAD+JpYZdVinzxFaR++CNr9yJ5Vi_EKxSzQ97XWs-U2J=HAMrJg@mail.gmail.com>
+Subject: test
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000057bc930601c8cf0c"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 31 Jul 2023 10:28:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60689
+ <yocto@lists.yoctoproject.org>; Mon, 31 Jul 2023 13:57:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60690
 
-Changelog: https://bitbucket.org/sshguard/sshguard/src/master/CHANGELOG.rst
+--00000000000057bc930601c8cf0c
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../sshguard/{sshguard_2.4.2.bb => sshguard_2.4.3.bb}           | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-security/sshguard/{sshguard_2.4.2.bb => sshguard_2.4.3.bb} (79%)
+hello...
 
-diff --git a/recipes-security/sshguard/sshguard_2.4.2.bb b/recipes-security/sshguard/sshguard_2.4.3.bb
-similarity index 79%
-rename from recipes-security/sshguard/sshguard_2.4.2.bb
-rename to recipes-security/sshguard/sshguard_2.4.3.bb
-index bd7f979..37b414e 100644
---- a/recipes-security/sshguard/sshguard_2.4.2.bb
-+++ b/recipes-security/sshguard/sshguard_2.4.3.bb
-@@ -6,6 +6,6 @@ LICENSE = "BSD-1-Clause"
- 
- SRC_URI="https://sourceforge.net/projects/sshguard/files/sshguard/${PV}/sshguard-${PV}.tar.gz"
- 
--SRC_URI[sha256sum] = "2770b776e5ea70a9bedfec4fd84d57400afa927f0f7522870d2dcbbe1ace37e8"
-+SRC_URI[sha256sum] = "64029deff6de90fdeefb1f497d414f0e4045076693a91da1a70eb7595e97efeb"
- 
- inherit autotools-brokensep
--- 
-2.34.1
+--00000000000057bc930601c8cf0c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">hello...=C2=A0</div>
+
+--00000000000057bc930601c8cf0c--
 
