@@ -1,88 +1,294 @@
-Return-Path: <daniel.klauer@gin.de>
+Return-Path: <crane2018@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F2CEC001E0
-	for <webhook@archiver.kernel.org>; Wed,  2 Aug 2023 11:45:58 +0000 (UTC)
-Received: from good-out-13.clustermail.de (good-out-13.clustermail.de [212.223.36.17])
- by mx.groups.io with SMTP id smtpd.web11.12446.1690976756792815030
- for <yocto@lists.yoctoproject.org>;
- Wed, 02 Aug 2023 04:45:57 -0700
-Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: gin.de, ip: 212.223.36.17, mailfrom: daniel.klauer@gin.de)
-Received: from [10.0.0.15] (helo=frontend.clustermail.de)
-	by smtpout-03.clustermail.de with esmtp (Exim 4.96)
-	(envelope-from <Daniel.Klauer@gin.de>)
-	id 1qRAIb-0008Mz-1B;
-	Wed, 02 Aug 2023 13:45:54 +0200
-Received: from [217.6.33.237] (helo=Win2012-02.gin-domain.local)
-	by frontend.clustermail.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-	(Exim 4.96)
-	(envelope-from <Daniel.Klauer@gin.de>)
-	id 1qRAIc-0004tP-0z;
-	Wed, 02 Aug 2023 13:45:53 +0200
-Received: from [10.176.8.67] (10.176.8.67) by Win2012-02.gin-domain.local
- (10.160.128.12) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Wed, 2 Aug
- 2023 13:45:53 +0200
-Message-ID: <ce1a9177-d5cb-5399-0440-9e90a3908858@gin.de>
-Date: Wed, 2 Aug 2023 13:45:52 +0200
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 59DD9C001DF
+	for <webhook@archiver.kernel.org>; Thu,  3 Aug 2023 02:07:15 +0000 (UTC)
+Subject: Yocto on Raspberry Pi 3: Error when building image from a machine conf in a new layer
+To: yocto@lists.yoctoproject.org
+From: "Crane" <crane2018@gmail.com>
+X-Originating-Location: Mississauga, Ontario, CA (135.0.213.201)
+X-Originating-Platform: Windows Chrome 115
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [yocto] Sharing DL_DIR and SSTATE_DIR between parallel builds
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-References: <2443ec38-4628-db58-5aa3-faf6f0c6d95f@gin.de>
- <CANNYZj8tLtnF3TiddvN3mPfNujX8L3vT7uX=QPLRh17suW6tMA@mail.gmail.com>
-Content-Language: en-US
-CC: <yocto@lists.yoctoproject.org>
-From: Daniel Klauer <daniel.klauer@gin.de>
-In-Reply-To: <CANNYZj8tLtnF3TiddvN3mPfNujX8L3vT7uX=QPLRh17suW6tMA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.176.8.67]
-X-ClientProxiedBy: Win2012-02.gin-domain.local (10.160.128.12) To
- Win2012-02.gin-domain.local (10.160.128.12)
-X-EsetResult: clean, is OK
-X-EsetId: 37303A29342AAB59667D65
+Date: Wed, 02 Aug 2023 19:07:05 -0700
+Message-ID: <j9Ww.1691028425262426171.Vazg@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="W1Vi0UvUJTKtoVmhcYmK"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 02 Aug 2023 11:45:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60699
+ <yocto@lists.yoctoproject.org>; Thu, 03 Aug 2023 02:07:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60700
 
-On 01.08.23 15:40, Alexander Kanavin wrote:
-> In short, yes. Sstate files are first written into a random temporary
-> file, then renamed when writing is done.
-> DL_DIR items are guarded by lock files (look for lockfile in
-> bitbake/lib/bb/fetch2/__init__.py).
-> 
-> Clearing out old items from sstate and download caches must be done
-> when no builds are running.
+--W1Vi0UvUJTKtoVmhcYmK
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-OK, awesome, thanks. I'll give it a try then. Thanks for pointing me towards fetch2/__init__.py too, I was only looking at fetch2/git.py previously.
+Hello,
 
-> 
-> Alex
-> 
-> On Tue, 1 Aug 2023 at 15:26, Daniel Klauer <daniel.klauer@gin.de> wrote:
->>
->> Hi,
->>
->> Is it safe to share DL_DIR and SSTATE_DIR between multiple Yocto builds that are running in parallel? Are all the accesses done by bitbake/Yocto atomic or protected by locking? This came up because I'm wondering whether it would be possible to safely share a single downloads mirror and sstate cache between multiple build agents (and not just read-only over a HTTP server, but writing too).
->>
->> The documentation contains some sentences like "You can safely share this directory between multiple builds on the same development machine" and "You can reuse the directory for multiple builds", but this does not seem to clarify whether parallel builds are allowed. I have found an older message [1], which suggests that SSTATE_DIR is safe to share, but that still leaves me wondering about DL_DIR. Presumably bitbake uses plain rename()/mv for tarballs, as for sstate, making them thread-safe. But what about Git repos - it's clear that Git itself uses locking, but bitbake may do more than just git operations. Does anyone have any more information on this, besides digging into the bitbake and bbclass sources? Is it "thread-safe"? A potentially related question: How does bitbake handle multiple do_fetch tasks for the same repository running in parallel (if you have multiple recipes using the same repo)?
->>
->> Thanks & kind regards,
->> Daniel
->>
->> [1] https://www.yoctoproject.org/pipermail/yocto/2016-November/032873.html <https://www.yoctoproject.org/pipermail/yocto/2016-November/032873.html>
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#60695): https://lists.yoctoproject.org/g/yocto/message/60695 <https://lists.yoctoproject.org/g/yocto/message/60695>
->> Mute This Topic: https://lists.yoctoproject.org/mt/100483492/1686489 <https://lists.yoctoproject.org/mt/100483492/1686489>
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub <https://lists.yoctoproject.org/g/yocto/unsub> [alex.kanavin@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
+I am using Yocto to build a image for Raspberry Pi 3. I don't see a specifi=
+c group for RaspberryPi and hope to get help from here.
+
+I am using Kirkstone commit and didn't download meta-openembedded as it doe=
+sn't say it is needed in README. And it works to build a image.
+
+Now I would like to add a new machine in the my customized layer to make so=
+me changes based on the original machine configuration.
+So I copied raspberrypi3.conf from meta-raspberrypi to my new layer first.
+
+But bitbake displays errors as below:
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+crane@Ubuntu2204:~/yocto-pi/build$ bitbake -k farview-image-base
+
+Loading cache: 100% |######################################################=
+###############################| Time: 0:00:00
+
+Loaded 657 entries from dependency cache.
+
+WARNING: /home/crane/yocto-pi/sources/poky/meta/recipes-extended/images/cor=
+e-image-testcontroller.bb: Exception during build_dependencies for IMAGE_BO=
+OT_FILES
+
+WARNING: /home/crane/yocto-pi/sources/poky/meta/recipes-extended/images/cor=
+e-image-testcontroller.bb: Error during finalise of /home/crane/yocto-pi/so=
+urces/poky/meta/recipes-extended/images/core-image-testcontroller.bb
+
+ERROR: ExpansionError during parsing /home/crane/yocto-pi/sources/poky/meta=
+/recipes-extended/images/core-image-testcontroller.bb
+
+Traceback (most recent call last):
+
+File "Var <IMAGE_BOOT_FILES>", line 1, in <module>
+
+File "/home/crane/yocto-pi/sources/meta-raspberrypi/conf/machine/include/rp=
+i-base.inc", line 134, in make_dtb_boot_files(d=3D<bb.data_smart.DataSmart =
+object at 0x7f4952f3d9c0>):
+
+> return ' '.join([transform(dtb) for dtb in alldtbs.split(' ') if dtb])
+
+bb.data_smart.ExpansionError: Failure expanding variable IMAGE_BOOT_FILES, =
+expression was bootfiles/* ${@make_dtb_boot_files(d)} ${@bb.utils.contains(=
+'RPI_USE_U_BOOT', '1', 'zImage u-boot.bin;kernel7.img boot.scr', 'zImage;ke=
+rnel7.img', d)} which triggered exception TypeError: sequence item 61: expe=
+cted str instance, NoneType found
+
+The variable dependency chain for the failure is: IMAGE_BOOT_FILES
+
+ERROR: Parsing halted due to errors, see error messages above
+
+Summary: There were 2 WARNING messages.
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+crane@Ubuntu2204:~/yocto-pi/build$
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+
+I don't understand why it tries to parse core-image-testcontroller.bb, whic=
+h I don't intentionally use at all.
+I am afraid that the process to create a new machine is not correct.
+
+Does anyone can help with understanding what is missing here? Or it is not =
+the correct way to create a new machine for raspberrypi?
+
+Thanks!
+Crane
+
+--W1Vi0UvUJTKtoVmhcYmK
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<span style=3D"color: #555555; font-family: Roboto, Arial, Helvetica, sans-=
+serif; font-size: 14.3px;">Hello,</span><br style=3D"border: none; margin: =
+0px; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, s=
+ans-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; pa=
+dding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-ser=
+if; font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Robot=
+o, Arial, Helvetica, sans-serif; font-size: 14.3px;">I am using Yocto to bu=
+ild a image for Raspberry Pi 3. I don't see a specific group for RaspberryP=
+i and hope to get help from here.<br /></span><br style=3D"border: none; ma=
+rgin: 0px; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvet=
+ica, sans-serif; font-size: 14.3px;" /><span style=3D"color: #555555; font-=
+family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;">I am usin=
+g Kirkstone commit and didn't download meta-openembedded as it doesn't say =
+it is needed in README. And it works to build a image.</span><br style=3D"b=
+order: none; margin: 0px; padding: 0px; color: #555555; font-family: Roboto=
+, Arial, Helvetica, sans-serif; font-size: 14.3px;" /><br style=3D"border: =
+none; margin: 0px; padding: 0px; color: #555555; font-family: Roboto, Arial=
+, Helvetica, sans-serif; font-size: 14.3px;" /><span style=3D"color: #55555=
+5; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;">N=
+ow I would like to add a new machine in the my customized layer to make som=
+e changes based on the original machine configuration.</span><br style=3D"b=
+order: none; margin: 0px; padding: 0px; color: #555555; font-family: Roboto=
+, Arial, Helvetica, sans-serif; font-size: 14.3px;" /><span style=3D"color:=
+ #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.=
+3px;">So I copied raspberrypi3.conf from meta-raspberrypi to my new layer f=
+irst.</span><br style=3D"border: none; margin: 0px; padding: 0px; color: #5=
+55555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px=
+;" /><br style=3D"border: none; margin: 0px; padding: 0px; color: #555555; =
+font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;" /><s=
+pan style=3D"color: #555555; font-family: Roboto, Arial, Helvetica, sans-se=
+rif; font-size: 14.3px;">But bitbake displays errors as below:</span><br st=
+yle=3D"border: none; margin: 0px; padding: 0px; color: #555555; font-family=
+: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;" /><br style=3D"=
+border: none; margin: 0px; padding: 0px; color: #555555; font-family: Robot=
+o, Arial, Helvetica, sans-serif; font-size: 14.3px;" /><span style=3D"color=
+: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14=
+.3px;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D</span><br style=3D"border: none; margin: 0px; padding: 0=
+px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font=
+-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, Arial=
+, Helvetica, sans-serif; font-size: 14.3px;">crane@Ubuntu2204:~/yocto-pi/bu=
+ild$ bitbake -k farview-image-base</span><br style=3D"border: none; margin:=
+ 0px; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, =
+sans-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; p=
+adding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-se=
+rif; font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Robo=
+to, Arial, Helvetica, sans-serif; font-size: 14.3px;">Loading cache: 100% |=
+###########################################################################=
+##########| Time: 0:00:00</span><br style=3D"border: none; margin: 0px; pad=
+ding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-seri=
+f; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; padding: 0=
+px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font=
+-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, Arial=
+, Helvetica, sans-serif; font-size: 14.3px;">Loaded 657 entries from depend=
+ency cache.</span><br style=3D"border: none; margin: 0px; padding: 0px; col=
+or: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: =
+14.3px;" /><br style=3D"border: none; margin: 0px; padding: 0px; color: #55=
+5555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;=
+" /><span style=3D"color: #555555; font-family: Roboto, Arial, Helvetica, s=
+ans-serif; font-size: 14.3px;">WARNING: /home/crane/yocto-pi/sources/poky/m=
+eta/recipes-extended/images/core-image-testcontroller.bb: Exception during =
+build_dependencies for IMAGE_BOOT_FILES</span><br style=3D"border: none; ma=
+rgin: 0px; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvet=
+ica, sans-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0=
+px; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sa=
+ns-serif; font-size: 14.3px;" /><span style=3D"color: #555555; font-family:=
+ Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;">WARNING: /home/c=
+rane/yocto-pi/sources/poky/meta/recipes-extended/images/core-image-testcont=
+roller.bb: Error during finalise of /home/crane/yocto-pi/sources/poky/meta/=
+recipes-extended/images/core-image-testcontroller.bb</span><br style=3D"bor=
+der: none; margin: 0px; padding: 0px; color: #555555; font-family: Roboto, =
+Arial, Helvetica, sans-serif; font-size: 14.3px;" /><br style=3D"border: no=
+ne; margin: 0px; padding: 0px; color: #555555; font-family: Roboto, Arial, =
+Helvetica, sans-serif; font-size: 14.3px;" /><span style=3D"color: #555555;=
+ font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;">ERR=
+OR: ExpansionError during parsing /home/crane/yocto-pi/sources/poky/meta/re=
+cipes-extended/images/core-image-testcontroller.bb</span><br style=3D"borde=
+r: none; margin: 0px; padding: 0px; color: #555555; font-family: Roboto, Ar=
+ial, Helvetica, sans-serif; font-size: 14.3px;" /><br style=3D"border: none=
+; margin: 0px; padding: 0px; color: #555555; font-family: Roboto, Arial, He=
+lvetica, sans-serif; font-size: 14.3px;" /><span style=3D"color: #555555; f=
+ont-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;">Trace=
+back (most recent call last):</span><br style=3D"border: none; margin: 0px;=
+ padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-=
+serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; paddin=
+g: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; =
+font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, A=
+rial, Helvetica, sans-serif; font-size: 14.3px;">File "Var &lt;IMAGE_BOOT_F=
+ILES&gt;", line 1, in &lt;module&gt;</span><br style=3D"border: none; margi=
+n: 0px; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica=
+, sans-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px;=
+ padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-=
+serif; font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Ro=
+boto, Arial, Helvetica, sans-serif; font-size: 14.3px;">File "/home/crane/y=
+octo-pi/sources/meta-raspberrypi/conf/machine/include/rpi-base.inc", line 1=
+34, in make_dtb_boot_files(d=3D&lt;bb.data_smart.DataSmart object at 0x7f49=
+52f3d9c0&gt;):</span><br style=3D"border: none; margin: 0px; padding: 0px; =
+color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-siz=
+e: 14.3px;" /><br style=3D"border: none; margin: 0px; padding: 0px; color: =
+#555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3=
+px;" /><span style=3D"color: #555555; font-family: Roboto, Arial, Helvetica=
+, sans-serif; font-size: 14.3px;">&gt; return ' '.join([transform(dtb) for =
+dtb in alldtbs.split(' ') if dtb])</span><br style=3D"border: none; margin:=
+ 0px; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, =
+sans-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; p=
+adding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-se=
+rif; font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Robo=
+to, Arial, Helvetica, sans-serif; font-size: 14.3px;">bb.data_smart.Expansi=
+onError: Failure expanding variable IMAGE_BOOT_FILES, expression was bootfi=
+les/* ${@make_dtb_boot_files(d)} ${@bb.utils.contains('RPI_USE_U_BOOT', '1'=
+, 'zImage u-boot.bin;kernel7.img boot.scr', 'zImage;kernel7.img', d)} which=
+ triggered exception TypeError: sequence item 61: expected str instance, No=
+neType found</span><br style=3D"border: none; margin: 0px; padding: 0px; co=
+lor: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size:=
+ 14.3px;" /><br style=3D"border: none; margin: 0px; padding: 0px; color: #5=
+55555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px=
+;" /><span style=3D"color: #555555; font-family: Roboto, Arial, Helvetica, =
+sans-serif; font-size: 14.3px;">The variable dependency chain for the failu=
+re is: IMAGE_BOOT_FILES</span><br style=3D"border: none; margin: 0px; paddi=
+ng: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif;=
+ font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; padding: 0px=
+; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-s=
+ize: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, Arial, =
+Helvetica, sans-serif; font-size: 14.3px;">ERROR: Parsing halted due to err=
+ors, see error messages above</span><br style=3D"border: none; margin: 0px;=
+ padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-=
+serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; paddin=
+g: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; =
+font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, A=
+rial, Helvetica, sans-serif; font-size: 14.3px;">Summary: There were 2 WARN=
+ING messages.</span><br style=3D"border: none; margin: 0px; padding: 0px; c=
+olor: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size=
+: 14.3px;" /><br style=3D"border: none; margin: 0px; padding: 0px; color: #=
+555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3p=
+x;" /><span style=3D"color: #555555; font-family: Roboto, Arial, Helvetica,=
+ sans-serif; font-size: 14.3px;">Summary: There were 2 ERROR messages, retu=
+rning a non-zero exit code.</span><br style=3D"border: none; margin: 0px; p=
+adding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-se=
+rif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; padding:=
+ 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; fo=
+nt-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, Ari=
+al, Helvetica, sans-serif; font-size: 14.3px;">crane@Ubuntu2204:~/yocto-pi/=
+build$</span><br style=3D"border: none; margin: 0px; padding: 0px; color: #=
+555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3p=
+x;" /><br style=3D"border: none; margin: 0px; padding: 0px; color: #555555;=
+ font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 14.3px;" /><=
+span style=3D"color: #555555; font-family: Roboto, Arial, Helvetica, sans-s=
+erif; font-size: 14.3px;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><br style=3D"border: none; margin: 0px=
+; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans=
+-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; paddi=
+ng: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif;=
+ font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, =
+Arial, Helvetica, sans-serif; font-size: 14.3px;">I don't understand why it=
+ tries to parse core-image-testcontroller.bb, which I don't intentionally u=
+se at all.</span><br style=3D"border: none; margin: 0px; padding: 0px; colo=
+r: #555555; font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 1=
+4.3px;" /><span style=3D"color: #555555; font-family: Roboto, Arial, Helvet=
+ica, sans-serif; font-size: 14.3px;">I am afraid that the process to create=
+ a new machine is not correct.</span><br style=3D"border: none; margin: 0px=
+; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans=
+-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; paddi=
+ng: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif;=
+ font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto, =
+Arial, Helvetica, sans-serif; font-size: 14.3px;">Does anyone can help with=
+ understanding what is missing here? Or it is not the correct way to create=
+ a new machine for raspberrypi?</span><br style=3D"border: none; margin: 0p=
+x; padding: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, san=
+s-serif; font-size: 14.3px;" /><br style=3D"border: none; margin: 0px; padd=
+ing: 0px; color: #555555; font-family: Roboto, Arial, Helvetica, sans-serif=
+; font-size: 14.3px;" /><span style=3D"color: #555555; font-family: Roboto,=
+ Arial, Helvetica, sans-serif; font-size: 14.3px;">Thanks!</span><br style=
+=3D"border: none; padding: 0px; color: #555555; font-family: Roboto, Arial,=
+ Helvetica, sans-serif; font-size: 14.3px; margin: 0px 0px 0px !important 0=
+px;" /><span style=3D"color: #555555; font-family: Roboto, Arial, Helvetica=
+, sans-serif; font-size: 14.3px;">Crane</span>
+
+--W1Vi0UvUJTKtoVmhcYmK--
 
