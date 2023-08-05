@@ -1,83 +1,127 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <crane2018@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E470DC001DF
-	for <webhook@archiver.kernel.org>; Fri,  4 Aug 2023 09:36:07 +0000 (UTC)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web11.7622.1691141761578308500
- for <yocto@lists.yoctoproject.org>;
- Fri, 04 Aug 2023 02:36:01 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=djJK9yyn;
- spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-4fe0c566788so3216474e87.0
-        for <yocto@lists.yoctoproject.org>; Fri, 04 Aug 2023 02:36:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691141760; x=1691746560;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aTYvQkAuK99p4fsCytb/MiXOER34X0MfzhKoIbSlJF8=;
-        b=djJK9yynZXwjGoy/uspNzCdhnfbfANAmWjhCQwi09kUlFtQFLndqOBEGBBSeXRIfje
-         rlt/YkZWm8hsO0ff82R6scIReUgVb0ntPnjvkFpemoW9gzKzJOJxrtrqL+7B2qrvuWtQ
-         Y5Qdqh7Zb/7r9EtCJVRZhneDd/+GqvqWVWHmA9UlevvPAG+TbxuBdq2cOakFsiLmCEuU
-         D0RptLc4vCujYxZxCtqPlSUUeTuWCWNuWqc045T+6TWxwEhr8rzjbNaopPGFDHuWmtSj
-         zAILzJ5yjrtMnibA4GsYKZfjdD4efL3Z6LBr4SRSzo4k+k05OXLe0qFgRmpybwvSEvB9
-         PoMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691141760; x=1691746560;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aTYvQkAuK99p4fsCytb/MiXOER34X0MfzhKoIbSlJF8=;
-        b=FGKibNvTtDq8QZ1XT7+oQJjE30odsXby1Rb1F+rpXiCkPKSNLtKgitJPHqTmisJWTH
-         RRBp3BN2up2wOkMl6yAR5eq+D7ShVsC2RhHd+7axshPyu2yqgbyELh2S6dcJw1juHp9Z
-         +MbOW6HLEaG4tWc+9CyKxkUD2bUt93jSsGNQz9LhqjU6wew4OfEsxEIGqoYqUwuKWHOH
-         M+A3gKvHp/Z87Vs4REUIC9/olRnkjOICOdVrTA0UZbzZmuyHqfxByb5NVboW2mXlhQ4V
-         iliS74RWYxSVDf2w5XKwwh8U3hEAdgJsmsCzMn6Z29Q7mr0m5dzeAvWVrOdvm7XPLxEf
-         nnLQ==
-X-Gm-Message-State: AOJu0YzcCXfr9VlRj/Tqft0VhLeGnrOSx+KT6Raxvd2e4gODZJJVC6XH
-	w01jyt/C/EDWaVsSJ/l4Xqoa7iTC2YpY+njdreI=
-X-Google-Smtp-Source: AGHT+IEk7S9r+NzI1kW9dGwoURnkLH9ZuaZiLjaSsRTLwivGI7nvzsjkTfAfdG2MRfd1y6S6y60E1qBZE9VohpCL6YI=
-X-Received: by 2002:a19:7b02:0:b0:4fe:19ef:879e with SMTP id
- w2-20020a197b02000000b004fe19ef879emr749631lfc.28.1691141759624; Fri, 04 Aug
- 2023 02:35:59 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25812C00528
+	for <webhook@archiver.kernel.org>; Sat,  5 Aug 2023 00:19:51 +0000 (UTC)
+Subject: the way to create patch for Linux kernel configuration
+To: yocto@lists.yoctoproject.org
+From: "Crane" <crane2018@gmail.com>
+X-Originating-Location: Mississauga, Ontario, CA (135.0.213.201)
+X-Originating-Platform: Windows Chrome 115
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CANNYZj8ELy9FbCZrzHeWWKrW_NCfDEAY9HiG8tM2aUnVmCANpg@mail.gmail.com>
- <12180.1691137643895041077@lists.yoctoproject.org>
-In-Reply-To: <12180.1691137643895041077@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 4 Aug 2023 11:35:48 +0200
-Message-ID: <CANNYZj_sYoP+61NGtMrNJfT+m+hZyz=cxJAcOcE1kSkb6SXKUw@mail.gmail.com>
-Subject: Re: [yocto] How to migrate an older version of Yocto?
-To: msenturk <senturkmurat1999@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Fri, 04 Aug 2023 17:19:48 -0700
+Message-ID: <DfV4.1691194788292637127.95jM@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="To5YQDEP7Btimzqg9Vrm"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 04 Aug 2023 09:36:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60711
+ <yocto@lists.yoctoproject.org>; Sat, 05 Aug 2023 00:19:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60712
 
-On Fri, 4 Aug 2023 at 10:27, msenturk <senturkmurat1999@gmail.com> wrote:
->
-> Thanks for the answer. I wonder what the difference is between using Lang=
-dale branch or Master Branch. Also, How can I migrate to Langdale? Migratio=
-n Guides generally give information about migration from the prior version.=
- I actually want to delete everything about Yocto and start from scratch.
+--To5YQDEP7Btimzqg9Vrm
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Langdate is actually no longer supported/maitained either, please
-check the support information here:
-https://wiki.yoctoproject.org/wiki/Releases
+Hello,
 
-There isn't much guidance needed to migrating to an older version.
-Once you are happy with a build using master, make a fresh checkout
-(in a separate directory) of all the layers to their respective older
-version branches, and repeat what you did there, fixing issues as they
-arise. There should also be a good reason to use the older releases,
-and I haven't seen it yet in your case.
+How do you create a patch for Linux kernel configuration in a customized la=
+yer on top of an initial patch. It is a patch based on the original defconf=
+ig from vendor meta layer? I tried different ways, but none of them work.
 
-Alex
+The initial .bbappend is like this. I would like to make further changes on=
+ top of that.
+
+SRCREV =3D "0086da6acd41600d47b87b05874f99704216426f"
+
+FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"
+
+SRC_URI +=3D "\
+file://devtool-fragment.cfg \
+"
+
+1. use devtool to modify the current kernel configuration
+After using devtool menuconfig to modify the kernel configuration, the .con=
+fig is updated.
+But, here is a big BUT, after using devtool build to build kernel image, th=
+e kernel image is still built using the defconfig originally from the vendo=
+r meta layer meta-raspberrypi.
+If using devtool update-recipe to create a patch any way, then do devtool r=
+eset and use bitbake to build the kernel image, the result is the same (the=
+ kernel image uses original defconfig).
+
+2. use git format-patch to create a patch file and then add the patch file =
+into .bbappend.
+Say, a patch 0001-update-kernel-config-to-enable-uart-console.patch is adde=
+d into files folder.
+Then add one line in .bbappend file like this:
+SRCREV =3D "0086da6acd41600d47b87b05874f99704216426f"
+
+FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"
+
+SRC_URI +=3D "\
+file://devtool-fragment.cfg \
+file://0001-update-kernel-config-to-enable-uart-console.patch \
+"
+But this way, the patch couldn't be applied at all. An error is caused.
+
+3. Tried to use git to create a patch in different folder
+Most of tries got the same result.
+One of them seems applied. But from the result, it is actually not applied.
+
+So, which way should work? Anything missing in what I did.
+
+Thanks for your help!
+
+Crane
+
+--To5YQDEP7Btimzqg9Vrm
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<br /><br />How do you create a patch for Linux kernel configuration =
+in a customized layer on top of an initial patch. It is a patch based on th=
+e original defconfig from vendor meta layer? I tried different ways, but no=
+ne of them work.&nbsp;<br /><br />The initial .bbappend is like this. I wou=
+ld like to make further changes on top of that.<br />
+<div><br />SRCREV =3D "0086da6acd41600d47b87b05874f99704216426f"</div>
+<div>&nbsp;</div>
+<div>FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"</div>
+<div>&nbsp;</div>
+<div>SRC_URI +=3D "\</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; file://devtool-fragment.cfg \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; "</div>
+<div>&nbsp;</div>
+1. use devtool to modify the current kernel configuration<br />&nbsp; &nbsp=
+; After using devtool menuconfig to modify the kernel configuration, the .c=
+onfig is updated. <br />&nbsp; &nbsp; But, here is a big BUT, after using d=
+evtool build to build kernel image, the kernel image is still built using t=
+he defconfig originally from the vendor meta layer meta-raspberrypi.<br />&=
+nbsp; &nbsp; If using devtool update-recipe to create a patch any way, then=
+ do devtool reset and use bitbake to build the kernel image, the result is =
+the same (the kernel image uses original defconfig).<br /><br />2. use git =
+format-patch to create a patch file and then add the patch file into .bbapp=
+end.<br />&nbsp; &nbsp; Say, a patch 0001-update-kernel-config-to-enable-ua=
+rt-console.patch is added into files folder.<br />&nbsp; &nbsp; Then add on=
+e line in .bbappend file like this:<br />
+<div>SRCREV =3D "0086da6acd41600d47b87b05874f99704216426f"</div>
+<div>&nbsp;</div>
+<div>FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"</div>
+<div>&nbsp;</div>
+<div>SRC_URI +=3D "\</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; file://devtool-fragment.cfg \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; file://0001-update-kernel-config-to-enable=
+-uart-console.patch \</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; "</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;But this way, the patch couldn't be applied=
+ at all. An error is caused.<br /><br />3. Tried to use git to create a pat=
+ch in different folder<br />&nbsp; &nbsp; &nbsp;Most of tries got the same =
+result.<br />&nbsp; &nbsp; &nbsp;One of them seems applied. But from the re=
+sult, it is actually not applied.<br /><br />So, which way should work? Any=
+thing missing in what I did.<br /><br />Thanks for your help!<br /><br />Cr=
+ane</div>
+<br /><br /><br /><br /><br /><br />
+
+--To5YQDEP7Btimzqg9Vrm--
 
