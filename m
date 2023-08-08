@@ -1,128 +1,72 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E57BDC001DB
-	for <webhook@archiver.kernel.org>; Tue,  8 Aug 2023 09:17:48 +0000 (UTC)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
- by mx.groups.io with SMTP id smtpd.web11.57358.1691486264572278399
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5DF9C001B0
+	for <webhook@archiver.kernel.org>; Tue,  8 Aug 2023 11:55:39 +0000 (UTC)
+Received: from a27-193.smtp-out.us-west-2.amazonses.com (a27-193.smtp-out.us-west-2.amazonses.com [54.240.27.193])
+ by mx.groups.io with SMTP id smtpd.web11.59370.1691495733326152999
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Aug 2023 02:17:44 -0700
+ Tue, 08 Aug 2023 04:55:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=LRXTHF/M;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3176a439606so4118410f8f.3
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 02:17:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1691486263; x=1692091063;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0oZNJvrFXsfSfvJpJu495WOR+IJzdgdxz9t/F2tJT08=;
-        b=LRXTHF/M1Vbxs84m/xt65oCWTeVWjc98UKo7vOt64mouo+G7QjjmZmUT9Jg1i6DzCW
-         naUO3Llb+GQjRbJKzSqNa3pw99et8cvl2ReghB1rdW1AV6vF5HFDNvuEDQGur9tVzRuG
-         bWm7OjoNVsTDwKZQCXN3rtHReFqwc/3AJBti0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691486263; x=1692091063;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0oZNJvrFXsfSfvJpJu495WOR+IJzdgdxz9t/F2tJT08=;
-        b=j0vd9XRlRVewtPdbNhSd/yEM/OPhQevLIne49V5VpU920KkVhM3SgdGcbaSBex/dAt
-         yNuQ/QadkdgtDfry4b2B4V0jblJh7VjA6mJpQFldZ/ssnzht+dSmSS+051CT64F5yiR9
-         oU8mJ0flsE3sYmoMHp5NP++uzZ5ozuc2YpDYUk4Dj6W2+x11YuxMvQnVq3QhmPaX+EU1
-         D6xf961s/2nRYXRbK3SmjLXwIdvTxfDfS59p/aFGeNbwOOrZgiJ2ZLLRHHFb5kNXCEA5
-         vBA7UhoPWU5NB4hPrOvfk/qz2CYwQB78/yj6KUmyf9GIXwKzW9ogUbIEDk7RiC2qiVQL
-         GQrw==
-X-Gm-Message-State: AOJu0YwOM2yS1YQMaidMRXApbSXDaZP9CjcnRgSNyDQLy5Qlb8l6U7Iq
-	ji1E6s3rWDA94PozQkbd8pxqmQ==
-X-Google-Smtp-Source: AGHT+IF4YcSoh2tXrVG1cgDqeI/p9Zdlq/H3eX2Gw492WNCeRb9/eF4XCh3Q0cOBKl9o3LJcZFiMKg==
-X-Received: by 2002:a5d:564d:0:b0:316:f25c:d0b3 with SMTP id j13-20020a5d564d000000b00316f25cd0b3mr6986527wrw.22.1691486262898;
-        Tue, 08 Aug 2023 02:17:42 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:8c9a:4256:d8e9:42e2? ([2001:8b0:aba:5f3c:8c9a:4256:d8e9:42e2])
-        by smtp.gmail.com with ESMTPSA id b17-20020a056000055100b00314374145e0sm12810075wrf.67.2023.08.08.02.17.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Aug 2023 02:17:42 -0700 (PDT)
-Message-ID: <c9cc305944c70a7f59e881e39d020d5e216197e3.camel@linuxfoundation.org>
-Subject: Re: [yocto] Intermittent build failure where dwarfsrcfiles doesn't
- exist
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Tom Isaacson <tom.isaacson@teknique.com>, 
-	"<yocto@lists.yoctoproject.org>"
-	 <yocto@lists.yoctoproject.org>
-Date: Tue, 08 Aug 2023 10:17:41 +0100
-In-Reply-To: <CA+EiEZ+k3eSZENj_ORU+-7rx99ed__pu7Ger2JpGm1U8gZ2WRg@mail.gmail.com>
-References: 
-	<CA+EiEZ+k3eSZENj_ORU+-7rx99ed__pu7Ger2JpGm1U8gZ2WRg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
-MIME-Version: 1.0
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=a9ZS6pXT;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=rPV8roO8;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.193, mailfrom: 01010189d5009462-dcd0dd94-a30d-48c9-899a-47b17c091a46-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1691495732; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=9+KQSA9tsOHRh3+/uQKwSL1ekC2MGU81hAM4ys5WK3A=;
+	b=a9ZS6pXTqpTM9wEYxvNTjj2qpNdpMlCLZNvRuGphLshPJI9Ea++zM3SEYOWcTLjx
+	dGC7wyoi/GW4fLDpT+TDozbjBXfDfGpUrvPULtuotz08ONjyrSze+tJGujkSmJ82do+
+	HJF0aXJYiUss1AW+oL1pyBJfNM7F+aRZwaUFXy9k=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1691495732;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=9+KQSA9tsOHRh3+/uQKwSL1ekC2MGU81hAM4ys5WK3A=;
+	b=rPV8roO84h36fwLCKO0vLs4oWp5rvRg2JLu68BoB/6zffwtpRIeQWIyWxixYgGD9
+	/0PMmTDSiFYjvI86ll7mT6SWVCIU7Gtbrn4KUltpsP3kfdUZ3CdJ1ObEk1APkKvz1x1
+	4SvVULUoSUXYXm8UO3SY1hVq8LRHMdMIqmPhza0U=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.0.12.rc1)
+Message-ID: <01010189d5009462-dcd0dd94-a30d-48c9-899a-47b17c091a46-000000@us-west-2.amazonses.com>
+Date: Tue, 8 Aug 2023 11:55:32 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.08.08-54.240.27.193
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 09:17:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60734
-
-On Tue, 2023-08-08 at 18:10 +1200, Tom Isaacson wrote:
-> We've been using Dunfell for a while but recently I've started getting
-> an intermittent build failure from an app:
->     ERROR: my-app-1.0.52-213f116 do_package: Fatal errors occurred in
-> subprocesses:
->     [Errno 2] No such file or directory: 'dwarfsrcfiles':
-> 'dwarfsrcfiles': Traceback (most recent call last):
->      File "/var/lib/jenkins/workspace/la_meta-my-layer_check-build/my-yoc=
-to-sdk/poky/meta/lib/oe/utils.py",
-> line 280, in run
->        ret =3D self._target(*self._args, **self._kwargs)
->      File "/var/lib/jenkins/workspace/la_meta-my-layer_check-build/my-yoc=
-to-sdk/poky/meta/classes/package.bbclass",
-> line 405, in splitdebuginfo
->         sources =3D source_info(file, d)
->      File "/var/lib/jenkins/workspace/la_meta-my-layer_check-build/my-yoc=
-to-sdk/poky/meta/classes/package.bbclass",
-> line 353, in source_info
->        output =3D subprocess.check_output(cmd, universal_newlines=3DTrue,
-> stderr=3Dsubprocess.STDOUT)
->      File "/usr/lib/python3.7/subprocess.py", line 395, in check_output
->        **kwargs).stdout
->      File "/usr/lib/python3.7/subprocess.py", line 472, in run
->        with Popen(*popenargs, **kwargs) as process:
->      File "/usr/lib/python3.7/subprocess.py", line 775, in __init__
->        restore_signals, start_new_session)
->      File "/usr/lib/python3.7/subprocess.py", line 1522, in _execute_chil=
-d
->        raise child_exception_type(errno_num, err_msg, err_filename)
->     FileNotFoundError: [Errno 2] No such file or directory:
-> 'dwarfsrcfiles': 'dwarfsrcfiles'
->=20
-> I assumed this was a race condition, so following
-> https://docs.yoctoproject.org/3.1.26/dev-manual/dev-manual-common-tasks.h=
-tml?highlight=3Dparallel_make#debugging-parallel-make-races
-> I added:
->     PARALLEL_MAKE =3D ""
-> to the app recipe, but it didn't seem to help. However, setting:
->     PARALLEL_MAKE =3D "-j 20"
-> does seem to make it fail every time (rather than intermittently).
->=20
-> dwarfsrcfiles is being built and I can run it after the build fails.
-> I've upgraded to Kirkstone but I'm seeing the same problem. The recipe
-> isn't doing anything to the package step so I'm not sure why it's
-> running before dwarfsrcfiles is built. I can see =C4=ABt's included in
-> poky/meta/classes/package.bbclass but since it's a dependency I would
-> have thought it has to be built before the packaging step can be done?
-
-Rather than a make race, it is probably a task race and something like
-a missing task dependency.
-
-Run something like "bitbake my-app -c package -g" and have a look at
-task-depends.dot that is generated, see if there is a dependency
-between my-app:do_package and dwarfsrcfiles-native:do_populate_sysroot.
-It should come from PACKAGE_DEPENDS in package.bbclass.
-
-Cheers,
-
-Richard
+ <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 11:55:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60735
 
 
+A build flagged for QA (yocto-4.0.12.rc1) was completed on the autobuilder and is available at:
+
+
+    https://autobuilder.yocto.io/pub/releases/yocto-4.0.12.rc1
+
+
+Build hash information: 
+
+bitbake: 41b6684489d0261753344956042be2cc4adb0159
+meta-agl: e302f9668bc399d671128d325ed108be1a48ee69
+meta-arm: c39bb4ce3b60b73d35c5fb06af012432e70d6b38
+meta-aws: 723a8a04965af482fe65e8e56eabea858858bd88
+meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+meta-intel: 1aacdb4ed1e639cc6e19c541b058264eb17eb093
+meta-mingw: a90614a6498c3345704e9611f2842eb933dc51c1
+meta-openembedded: 4da92ed9be41734f6ced46b981958e2e868cbff2
+meta-virtualization: af02908efda1580e77b3fdeed25b124a2b8d9482
+oecore: e1a604db8d2cf8782038b4016cc2e2052467333b
+poky: d6b8790370500b99ca11f0d8a05c39b661ab2ba6
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
