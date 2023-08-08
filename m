@@ -2,209 +2,158 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B271CC001DB
-	for <webhook@archiver.kernel.org>; Tue,  8 Aug 2023 18:33:31 +0000 (UTC)
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
- by mx.groups.io with SMTP id smtpd.web11.69794.1691519608884804393
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B4E05C001DB
+	for <webhook@archiver.kernel.org>; Tue,  8 Aug 2023 18:34:51 +0000 (UTC)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+ by mx.groups.io with SMTP id smtpd.web10.69896.1691519683641441184
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Aug 2023 11:33:29 -0700
+ Tue, 08 Aug 2023 11:34:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=FGc8u4Ad;
- spf=pass (domain: gmail.com, ip: 209.85.167.170, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3a78a29bccbso2905817b6e.0
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 11:33:28 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=g/1riVeR;
+ spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3a44cccbd96so4180100b6e.3
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 11:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1691519608; x=1692124408;
+        d=gmail.com; s=20221208; t=1691519683; x=1692124483;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JuD/3m88dAqPFv1INql7ObMXK1PhaW7HGM4v5enjMUg=;
-        b=FGc8u4AdnfJFb2ECzyltIt4Rld61z+Fba/KHUx1x73cI0z4ANjzrHtdjRK1ZJVFmyy
-         /VJoRpeJ3skX1xUumVAGkurOBarAhskjbTd+YNd7/bBDxbDFuI43m2KNokkHpepJZJuf
-         WPN9pll3PfH7iNCHz0tADJr/bhmFgieBTpbk4CDux/2Fd1OOqqG47U+P/GCHwwnHR7J8
-         6hsoB4Ml+9a0kQIAKa/8/R60Jzj7a+dCDC9j+rdOW/bAEGeD2ORfTn2U2+PrAIq0ucWj
-         yMxi5nNs9Nqq2hSN3I4FQZ+fWPD9cmgsw3P3UqlwtpzxLb14mDQDwnBshxmSOKJSHzGN
-         0uaA==
+        bh=ghnX2obo29g0kyDYCyGBc08oMrCNKuzb/rIqQQiizk8=;
+        b=g/1riVeRJH0JSqcwkJxNjVceCzwAklUdLaEFu6770hUzTP0IrLS9Pv0LVenRfFenSR
+         eTZw1hUV6LQcYWx25ws9wO4nG/K/FMWBqJtBnHv22XxbT3QOHhzUJbSMzhm/AuxuzbY5
+         GNHwhlG6ddvkJCSNQVksne2H7A55wGSfl6wFTWEHm2zUvpdpWrk4tOEbQ9Bu2ciT/QLa
+         49xUMEK01b38obhhunKl1mABWa7JEseGzHz/r3x378JADoQyJ87dU9fWTKQRFU5nDmia
+         Bf+UgGnXNLPEOYlNwUiEVR0xCVHbA2ItsruygRDNrGy6T9nqjfDv7m6jhUnjIbcz6gFT
+         9dJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691519608; x=1692124408;
+        d=1e100.net; s=20221208; t=1691519683; x=1692124483;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JuD/3m88dAqPFv1INql7ObMXK1PhaW7HGM4v5enjMUg=;
-        b=D5i6PACdDN3/O+mpBFS0fEqVz6VA8Dhnp9i4Z++uwZeYXCM9ruUdYmiR8EKtIltc44
-         eQM9AH+k+72I61Wi0A3u/icHSSxchjt3SFvXISvWK9vrOD3TrAEHNDXQ/ow8soVkPDVN
-         KV41kA4Bx/ePOzLCN+3kd6o+mFcLfc7noT6W0DwVLISPgMfp2aKt8GphE58bW9Y4MHVE
-         SAu6Ynl2ZmcxiZjlCCGR4tuPCxfhkEJ/sLmuG1fLWg+tDrJHQrVDuiPoRrltZ7yAPvqz
-         InppO3M5quDmmrkrIjHCNNnj4hzSzvpG+ElxhuKykl8vhvsBAvZtnqx+XKWoYesdZj7/
-         SYag==
-X-Gm-Message-State: AOJu0YyOrmgqiA2zvdFVZdWNDRONgYO+jrOYI/IP94i8Hm51nL2NKsqi
-	zOJ+3CxcosbUJDQW+uxbY03w0PwyC5II4FI2t9o=
-X-Google-Smtp-Source: AGHT+IHIecJsLu3N1jnTVqbzKr9GpDY/MZUKTppOznd6Y6+iap2Sik42mZ7zQENhYl77sWfQsQDF33zMGqKF5bnow+Q=
-X-Received: by 2002:a05:6808:2022:b0:3a7:adf5:d5a6 with SMTP id
- q34-20020a056808202200b003a7adf5d5a6mr766089oiw.32.1691519608002; Tue, 08 Aug
- 2023 11:33:28 -0700 (PDT)
+        bh=ghnX2obo29g0kyDYCyGBc08oMrCNKuzb/rIqQQiizk8=;
+        b=kyHLqik9WQ5vxYU4XCila0D9nPrefQTn9Kn3AiUH/7YFxgrMjE3j8cOlwGNLDLNutN
+         nChQkuv4OKPc2E0duue+GyqVxJ2id3EEg4xnjJfhCmmF45xYwuA488KrLlN9l3n53Rmo
+         iob2JB+j2huC0C7qCYN859XPHdyeX3LXwADczgNRevlOIx2X+WGsilsYJz85q02eZD4X
+         SIGe3f2W/iuIrBqfNWbMYwAXf9S/AiFjV5pp+gvxZKSHA/1elO6oixRnBpzBVL9/zZJk
+         2WzLZOdGLCZX1T9iGA2s+ZgnBHf1mVndRjak3sXmZ8GhbQF7vVTx/1uASOr+RYViTY3s
+         TBug==
+X-Gm-Message-State: AOJu0YyKDfcLvot1YIMPRh6TCtzLBxCDoX4sgFRaIHfDJs9EeYKhYb4u
+	lYta/MTINFLoUz/ZxAiAzZC0LlpAZKshgdmNQztjwDUnkLw=
+X-Google-Smtp-Source: AGHT+IEHuwFhVk+u0YjZm0N4vr1c6TCQR7NgjWsaeoUv6woNdq0gJtmatoybjBYW1gWo4t0v9WjBwCtbmMeTuIdf53A=
+X-Received: by 2002:a05:6808:2386:b0:3a1:bfda:c6d2 with SMTP id
+ bp6-20020a056808238600b003a1bfdac6d2mr673317oib.11.1691519682822; Tue, 08 Aug
+ 2023 11:34:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAMKF1sqpfaR8Wx+N7oCQ4q8M2TVgaunE01ZLSi=8NTJA1465jQ@mail.gmail.com>
- <5592.1691514161056059340@lists.yoctoproject.org> <CAMKF1sr5OviPhVrJvm3t3_tk4N4hP=kkSdP7PWH_aPgvBCNsFw@mail.gmail.com>
- <CANDCFSyTNhLgrHD74ac2hxpF67y6KYGP1E45zA=RF91G7TaMcA@mail.gmail.com>
-In-Reply-To: <CANDCFSyTNhLgrHD74ac2hxpF67y6KYGP1E45zA=RF91G7TaMcA@mail.gmail.com>
+References: <CABKMkPK8pAVXVWXBG0nc-aKpgKzYpQt1dvfZH2sj9T2pS3p=hA@mail.gmail.com>
+In-Reply-To: <CABKMkPK8pAVXVWXBG0nc-aKpgKzYpQt1dvfZH2sj9T2pS3p=hA@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 8 Aug 2023 11:33:16 -0700
-Message-ID: <CAMKF1spEw5KejSDqzDU_J0yau6rLwf6FH9Gbq9tqpcN6OFFtQA@mail.gmail.com>
-Subject: Re: [yocto] How to add a few lines in config.txt in Yocto project for
- Raspberry Pi
-To: Daniel Chaves <dchvs11@gmail.com>
-Cc: Crane <crane2018@gmail.com>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000005d9eeb06026d9926"
+Date: Tue, 8 Aug 2023 11:34:31 -0700
+Message-ID: <CAMKF1sorNvKwy9tKMRv4FSDFP270t7ryimrv8s8tUzgXoJ=L6A@mail.gmail.com>
+Subject: Re: [yocto] Rootless Podman
+To: Joel Winarske <joel.winarske@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000d3455606026d9dee"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 18:33:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60745
+ <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 18:34:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60746
 
---0000000000005d9eeb06026d9926
+--000000000000d3455606026d9dee
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 8, 2023 at 10:44 AM Daniel Chaves <dchvs11@gmail.com> wrote:
+We have tried it hard in yoe distro but it always fails in novel ways so
+much. I have switched back to docker for now
 
-> Hi, it might be a syntax issue with THISDIR variable expansion: it should
-> be in curly braces for Yocto.
+On Tue, Aug 8, 2023 at 11:07 AM Joel Winarske <joel.winarske@gmail.com>
+wrote:
+
+> Anyone successfully building using Rootless Podman?
+>
+> I'm seeing a variety of strange issues.
+>
+> My baseline podman config:
+> --user 1001:1001
+> --ipc host
+> --privileged
+> --security-opt label=disable
+> --pid host
+> --userns keep-id
+> --ulimit host
+> --mount type=devpts,destination=/dev/pts
+> --security-opt label=disable
+> --group-add keep-groups
+>
+>
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#60743):
+> https://lists.yoctoproject.org/g/yocto/message/60743
+> Mute This Topic: https://lists.yoctoproject.org/mt/100627665/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 >
 
-Ah yes I was ignoring it all along thinking it is meta code but if it is
-literally coded like this then that is the issue really
-
-
-> FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
-> SRC_URI:append =3D  " file://rpi-config.patch"
->
-> Have a look to this Variable Expansion documentation for more details:
-> https://docs.yoctoproject.org/bitbake/2.2/bitbake-user-manual/bitbake-use=
-r-manual-metadata.html#variable-expansion
->
-> Regards,
-> Daniel
->
->
-> On Tue, Aug 8, 2023 at 11:28=E2=80=AFAM Khem Raj <raj.khem@gmail.com> wro=
-te:
->
->> where does 0001-disable-bluetooth-and-enable-uart0.patch exist in your
->> layer? can you show the path ?
->>
->> On Tue, Aug 8, 2023 at 10:02=E2=80=AFAM Crane <crane2018@gmail.com> wrot=
-e:
->> >
->> > The error is this when bitbaking only the recipe for rpi-config:
->> > "WARNING: rpi-config-git-r5 do_fetch: Failed to fetch URL
->> file://0001-disable-bluetooth-and-enable-uart0.patch, attempting MIRRORS=
- if
->> available
->> > ERROR: rpi-config-git-r5 do_fetch: Fetcher failure: Unable to find fil=
-e
->> file://0001-disable-bluetooth-and-enable-uart0.patch anywhere. The paths
->> that were searched were:
->> > ....
->> > "
->> > The listed searching paths don't include the custom layer where the
->> patch is placed.
->> > The complete error info is in the attached file "bitbake
->> rpi-config.txt".
->> >
->> > When bitbaking the recipe for the image, the error is the same.
->> > The complete error info is in attached file "bitbake image.txt".
->> >
->> >
->> >
->> >
->>
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#60740):
->> https://lists.yoctoproject.org/g/yocto/message/60740
->> Mute This Topic: https://lists.yoctoproject.org/mt/100614184/7043332
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->> dchvs11@gmail.com]
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>
->>
-
---0000000000005d9eeb06026d9926
+--000000000000d3455606026d9dee
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Tue, Aug 8, 2023 at 10:44 AM Daniel Chaves &lt;<a href=
-=3D"mailto:dchvs11@gmail.com">dchvs11@gmail.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi, it might =
-be a syntax issue with THISDIR variable expansion: it should be in curly br=
-aces for Yocto.<br></div></div></blockquote><div dir=3D"auto"><br></div><di=
-v dir=3D"auto">Ah yes I was ignoring it all along thinking it is meta code =
-but if it is literally coded like this then that is the issue really=C2=A0<=
-/div><div dir=3D"auto"><br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D=
-"ltr"><div dir=3D"ltr"><br><div>FILESEXTRAPATHS:prepend :=3D &quot;${THISDI=
-R}/files:&quot;</div>
-<div>SRC_URI:append =3D=C2=A0 &quot; file://rpi-config.patch&quot;<br><br><=
-/div><div>Have a look to this Variable Expansion documentation for more det=
-ails: <a href=3D"https://docs.yoctoproject.org/bitbake/2.2/bitbake-user-man=
-ual/bitbake-user-manual-metadata.html#variable-expansion" target=3D"_blank"=
->https://docs.yoctoproject.org/bitbake/2.2/bitbake-user-manual/bitbake-user=
--manual-metadata.html#variable-expansion</a><br></div><div><br></div><div>R=
-egards,<br></div><div>Daniel<br></div><div><br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 8, 2023 =
-at 11:28=E2=80=AFAM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" targ=
-et=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">where does 0001-disable-bluetooth-and-enab=
-le-uart0.patch exist in your<br>
-layer? can you show the path ?<br>
-<br>
-On Tue, Aug 8, 2023 at 10:02=E2=80=AFAM Crane &lt;<a href=3D"mailto:crane20=
-18@gmail.com" target=3D"_blank">crane2018@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; The error is this when bitbaking only the recipe for rpi-config:<br>
-&gt; &quot;WARNING: rpi-config-git-r5 do_fetch: Failed to fetch URL file://=
-0001-disable-bluetooth-and-enable-uart0.patch, attempting MIRRORS if availa=
-ble<br>
-&gt; ERROR: rpi-config-git-r5 do_fetch: Fetcher failure: Unable to find fil=
-e file://0001-disable-bluetooth-and-enable-uart0.patch anywhere. The paths =
-that were searched were:<br>
-&gt; ....<br>
-&gt; &quot;<br>
-&gt; The listed searching paths don&#39;t include the custom layer where th=
-e patch is placed.<br>
-&gt; The complete error info is in the attached file &quot;bitbake rpi-conf=
-ig.txt&quot;.<br>
-&gt;<br>
-&gt; When bitbaking the recipe for the image, the error is the same.<br>
-&gt; The complete error info is in attached file &quot;bitbake image.txt&qu=
-ot;.<br>
-&gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
+<div><br></div><div dir=3D"auto">We have tried it hard in yoe distro but it=
+ always fails in novel ways so much. I have switched back to docker for now=
+=C2=A0</div><div dir=3D"auto"><br><div class=3D"gmail_quote" dir=3D"auto"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 8, 2023 at 11:07 AM Joel W=
+inarske &lt;<a href=3D"mailto:joel.winarske@gmail.com">joel.winarske@gmail.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"=
+><div>Anyone successfully building using Rootless Podman?</div><div><br></d=
+iv><div>I&#39;m seeing a variety of strange issues.<br><br></div><div>My ba=
+seline podman config:<br><div style=3D"color:rgb(204,204,204);background-co=
+lor:rgb(31,31,31);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&q=
+uot;,monospace;font-weight:normal;font-size:14px;line-height:19px;white-spa=
+ce:pre-wrap"><div><span style=3D"color:rgb(204,204,204)">        </span><sp=
+an style=3D"color:rgb(206,145,120)">--user 1001:1001</span></div><div><span=
+ style=3D"color:rgb(204,204,204)">        </span><span style=3D"color:rgb(2=
+06,145,120)">--ipc host</span></div><div><span style=3D"color:rgb(204,204,2=
+04)">        </span><span style=3D"color:rgb(206,145,120)">--privileged</sp=
+an></div><div><span style=3D"color:rgb(204,204,204)">        </span><span s=
+tyle=3D"color:rgb(206,145,120)">--security-opt label=3Ddisable</span></div>=
+<div><span style=3D"color:rgb(204,204,204)">        </span><span style=3D"c=
+olor:rgb(206,145,120)">--pid host</span></div><div><span style=3D"color:rgb=
+(204,204,204)">        </span><span style=3D"color:rgb(206,145,120)">--user=
+ns keep-id</span></div><div><span style=3D"color:rgb(204,204,204)">        =
+</span><span style=3D"color:rgb(206,145,120)">--ulimit host</span><span sty=
+le=3D"color:rgb(204,204,204)"> </span></div><div><span style=3D"color:rgb(2=
+04,204,204)">        </span><span style=3D"color:rgb(206,145,120)">--mount =
+type=3Ddevpts,destination=3D/dev/pts</span></div><div><span style=3D"color:=
+rgb(204,204,204)">        </span><span style=3D"color:rgb(206,145,120)">--s=
+ecurity-opt label=3Ddisable</span></div><div><span style=3D"color:rgb(204,2=
+04,204)">        </span><span style=3D"color:rgb(206,145,120)">--group-add =
+keep-groups</span></div><div><span style=3D"color:rgb(204,204,204)"><br></s=
+pan></div></div></div><div><br><br></div></div>
 <br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60740): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60740" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/60740</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/100614184/704=
-3332" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/100614184/7043332</a><br>
+You automatically follow any topics you start or reply to.<br>
+View/Reply Online (#60743): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/60743" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/60743</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/100627665/199=
+7914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/100627665/1997914</a><br>
 Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
 =3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
 Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
 =3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:dchvs11@gmail.com" target=3D"_blank">dchvs11@gma=
-il.com</a>]<br>
+sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+mail.com</a>]<br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 <br>
 </blockquote></div></div>
-</blockquote></div></div>
 
---0000000000005d9eeb06026d9926--
+--000000000000d3455606026d9dee--
 
