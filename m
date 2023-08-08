@@ -1,252 +1,98 @@
-Return-Path: <crane2018@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03DDFC04A6A
-	for <webhook@archiver.kernel.org>; Tue,  8 Aug 2023 17:02:51 +0000 (UTC)
-Subject: Re: How to add a few lines in config.txt in Yocto project for Raspberry Pi
-To: yocto@lists.yoctoproject.org
-From: "Crane" <crane2018@gmail.com>
-X-Originating-Location: Port Hope, Ontario, CA (72.38.198.131)
-X-Originating-Platform: Windows Chrome 115
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 64785C04E69
+	for <webhook@archiver.kernel.org>; Tue,  8 Aug 2023 17:28:41 +0000 (UTC)
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+ by mx.groups.io with SMTP id smtpd.web10.68089.1691515717983483682
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 08 Aug 2023 10:28:38 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=ZOM8hh9F;
+ spf=pass (domain: gmail.com, ip: 209.85.167.181, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3a5a7e7cd61so60010b6e.0
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 10:28:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691515717; x=1692120517;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AVsHfOu/NNqOFCArXhK+cL/nN1fizR+2wMBkOqYOTLE=;
+        b=ZOM8hh9F52Kb7Hm0ZREL6Y9K7fAvOCVJA2aui4IfnyCwg2GM8HlE5fadx3cPkAYfdl
+         Peprf9gCbuCfzPdYz4bsua07d1/R2rkFyxp0B7OzWobr8zXh5WAKgPmdcebQLoAxRLDd
+         e96eaTKnZ3JRHoE6KKcdABUL/YOPdVAyycggSuK5hp+0KFGdxT+Nb6CxaLRWoYSaTL6E
+         eYp01yoZ0kJeS36wXoz3D2lbGMrJg0cCrM/t9sHrdntwremLgC+PBOcZ6aaXou2Fv5xB
+         0IQ1IXuagWH+nzcOcln8ePjOTmpET00o5iQxccUJeGjrf4Fobxg/p3q5chOJYpZwlbQN
+         nxfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691515717; x=1692120517;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AVsHfOu/NNqOFCArXhK+cL/nN1fizR+2wMBkOqYOTLE=;
+        b=Wpiihs/iVosS0ZCvKUPdV9lZT4YmS6+vZSAmKchQtUitnxnZPyen59/DsJ7SRpQUp+
+         drwCGBKUgREU5Vl5LpGQbcbuee5yZj8aCQUVWWUAFjL7awdA8kIGL0H8+VhK+cDn8hdu
+         UK6wQY6yUXf+kaPXR7Gcj3/NYg05PF/5mT8hdhDr6sjYb/aA1/INgetxwRS8/1nA+QkG
+         t5ZoOyYKWE+47J7NMKBZowD/nV5vKbbFv2a4WDtuyjEGhvAURJKu98rymXCYx/PZYc3v
+         MfAhNGTH1v0rK4uEk7wJmtqjm2SHdC4EgBhwsaWQ20AQKJ0XGxrK2OsxCZmenMwiSA2V
+         irbw==
+X-Gm-Message-State: AOJu0Yw8B3uFI9CUomljIkBczg7W42TXPrv+4XKiKf/YYKjg1GJngvC7
+	tARLc4r+g7JNzGmItR0ISp0XID2ogndSJmFCAFDJWvlJk1BNfA==
+X-Google-Smtp-Source: AGHT+IHR6jX+xY/oWRou9Okip8NZm8Z3xeh/+cgWm6ny6ESeQ0uJwxeflxXmvW1XXTbR0VCnkAUcsLLpxoGVDQDdr4Y=
+X-Received: by 2002:a54:401a:0:b0:3a5:ad4d:ee16 with SMTP id
+ x26-20020a54401a000000b003a5ad4dee16mr7627623oie.14.1691515717160; Tue, 08
+ Aug 2023 10:28:37 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 08 Aug 2023 10:02:41 -0700
 References: <CAMKF1sqpfaR8Wx+N7oCQ4q8M2TVgaunE01ZLSi=8NTJA1465jQ@mail.gmail.com>
-In-Reply-To: <CAMKF1sqpfaR8Wx+N7oCQ4q8M2TVgaunE01ZLSi=8NTJA1465jQ@mail.gmail.com>
-Message-ID: <5592.1691514161056059340@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="96SAgPlIZfqIxPoBAsqC"
+ <5592.1691514161056059340@lists.yoctoproject.org>
+In-Reply-To: <5592.1691514161056059340@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 8 Aug 2023 10:28:11 -0700
+Message-ID: <CAMKF1sr5OviPhVrJvm3t3_tk4N4hP=kkSdP7PWH_aPgvBCNsFw@mail.gmail.com>
+Subject: Re: [yocto] How to add a few lines in config.txt in Yocto project for
+ Raspberry Pi
+To: Crane <crane2018@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 17:02:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60739
+ <yocto@lists.yoctoproject.org>; Tue, 08 Aug 2023 17:28:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60740
 
---96SAgPlIZfqIxPoBAsqC
-Content-Type: multipart/alternative; boundary="CCnOtqBQFj6cphZc0fv8"
+where does 0001-disable-bluetooth-and-enable-uart0.patch exist in your
+layer? can you show the path ?
 
---CCnOtqBQFj6cphZc0fv8
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-The error is this when bitbaking only the recipe for rpi-config:
-"WARNING: rpi-config-git-r5 do_fetch: Failed to fetch URL file://0001-disab=
-le-bluetooth-and-enable-uart0.patch, attempting MIRRORS if available
-ERROR: rpi-config-git-r5 do_fetch: Fetcher failure: Unable to find file fil=
-e://0001-disable-bluetooth-and-enable-uart0.patch anywhere. The paths that =
-were searched were:
-....
-"
-The listed searching paths don't include the custom layer where the patch i=
-s placed.
-The complete error info is in the attached file "bitbake rpi-config.txt".
-
-When bitbaking the recipe for the image, the error is the same.
-The complete error info is in attached file "bitbake image.txt".
-
---CCnOtqBQFj6cphZc0fv8
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-The error is this when bitbaking only the recipe for rpi-config:<br />
-<div>"WARNING: rpi-config-git-r5 do_fetch: Failed to fetch URL file://0001-=
-disable-bluetooth-and-enable-uart0.patch, attempting MIRRORS if available</=
-div>
-<div>ERROR: rpi-config-git-r5 do_fetch: Fetcher failure: Unable to find fil=
-e file://0001-disable-bluetooth-and-enable-uart0.patch anywhere. The paths =
-that were searched were:<br />....<br />"</div>
-<div>The listed searching paths don't include the custom layer where the pa=
-tch is placed.<br />The complete error info is in the attached file "bitbak=
-e rpi-config.txt".<br /><br />When bitbaking the recipe for the image, the =
-error is the same.<br />The complete error info is in attached file "bitbak=
-e image.txt".<br /><br /></div>
-
---CCnOtqBQFj6cphZc0fv8--
-
---96SAgPlIZfqIxPoBAsqC
-Content-Type: text/plain; name="bitbake rpi-config.txt"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="bitbake rpi-config.txt"
-
-Y3JhbmVAVWJ1bnR1MjIwNDp+L3lvY3RvLXBpL2J1aWxkJCBiaXRiYWtlIHJwaS1jb25maWcNCkxv
-YWRpbmcgY2FjaGU6IDEwMCUgfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjfCBUaW1lOiAwOjAwOjAwDQpM
-b2FkZWQgMTY4MSBlbnRyaWVzIGZyb20gZGVwZW5kZW5jeSBjYWNoZS4NCldBUk5JTkc6IC9ob21l
-L2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJzcC9ib290
-ZmlsZXMvcnBpLWNvbmZpZ19naXQuYmI6IFVuYWJsZSB0byBnZXQgY2hlY2tzdW0gZm9yIHJwaS1j
-b25maWcgU1JDX1VSSSBlbnRyeSAwMDAxLWRpc2FibGUtYmx1ZXRvb3RoLWFuZC1lbmFibGUtdWFy
-dDAucGF0Y2g6IGZpbGUgY291bGQgbm90IGJlIGZvdW5kDQpQYXJzaW5nIHJlY2lwZXM6IDEwMCUg
-fCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjI3wgVGltZTogMDowMDowMA0KUGFyc2luZyBvZiA5MTkgLmJiIGZp
-bGVzIGNvbXBsZXRlICg5MTggY2FjaGVkLCAxIHBhcnNlZCkuIDE2ODAgdGFyZ2V0cywgNzQgc2tp
-cHBlZCwgMCBtYXNrZWQsIDAgZXJyb3JzLg0KTk9URTogUmVzb2x2aW5nIGFueSBtaXNzaW5nIHRh
-c2sgcXVldWUgZGVwZW5kZW5jaWVzDQoNCkJ1aWxkIENvbmZpZ3VyYXRpb246DQpCQl9WRVJTSU9O
-ICAgICAgICAgICA9ICIyLjAuMCINCkJVSUxEX1NZUyAgICAgICAgICAgID0gIng4Nl82NC1saW51
-eCINCk5BVElWRUxTQlNUUklORyAgICAgID0gInVuaXZlcnNhbCINClRBUkdFVF9TWVMgICAgICAg
-ICAgID0gImFybS1wb2t5LWxpbnV4LWdudWVhYmkiDQpNQUNISU5FICAgICAgICAgICAgICA9ICJm
-YXJ2aWV3LXJwaTMiDQpESVNUUk8gICAgICAgICAgICAgICA9ICJwb2t5Ig0KRElTVFJPX1ZFUlNJ
-T04gICAgICAgPSAiNC4wLjExIg0KVFVORV9GRUFUVVJFUyAgICAgICAgPSAiYXJtIHZmcCBjb3J0
-ZXhhNyBuZW9uIHZmcHY0IHRodW1iIGNhbGxjb252ZW50aW9uLWhhcmQiDQpUQVJHRVRfRlBVICAg
-ICAgICAgICA9ICJoYXJkIg0KbWV0YSAgICAgICAgICAgICAgICAgDQptZXRhLXBva3kgICAgICAg
-ICAgICANCm1ldGEteW9jdG8tYnNwICAgICAgID0gImtpcmtzdG9uZTpjYzMyODc2MzdjMzAwODAz
-MzNkODlhMzY4ZTQwNDczZGZmZmIyZmI3Ig0KbWV0YS1yYXNwYmVycnlwaSAgICAgPSAia2lya3N0
-b25lOjQzNjgzY2IxNGI2YWZjMTQ0NjE5MzM1YjNhMjM1M2I3MDc2MmZmM2UiDQptZXRhLWZhcnZp
-ZXcgICAgICAgICA9ICJtYXN0ZXI6NzQ0M2Y4OGRlMTZlNzY0MTczZDAxMDM0NzQwNjZkMmFmMjEz
-OGFmMiINCg0KSW5pdGlhbGlzaW5nIHRhc2tzOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6
-IDA6MDA6MDANClNzdGF0ZSBzdW1tYXJ5OiBXYW50ZWQgNCBMb2NhbCAwIE1pcnJvcnMgMCBNaXNz
-ZWQgNCBDdXJyZW50IDM2ICgwJSBtYXRjaCwgOTAlIGNvbXBsZXRlKQ0KUmVtb3ZpbmcgNCBzdGFs
-ZSBzc3RhdGUgb2JqZWN0cyBmb3IgYXJjaCBmYXJ2aWV3X3JwaTM6IDEwMCUgfCMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6MDA6MDANCk5PVEU6IEV4ZWN1dGlu
-ZyBUYXNrcw0KV0FSTklORzogcnBpLWNvbmZpZy1naXQtcjUgZG9fZmV0Y2g6IEZhaWxlZCB0byBm
-ZXRjaCBVUkwgZmlsZTovLzAwMDEtZGlzYWJsZS1ibHVldG9vdGgtYW5kLWVuYWJsZS11YXJ0MC5w
-YXRjaCwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZQ0KRVJST1I6IHJwaS1jb25maWct
-Z2l0LXI1IGRvX2ZldGNoOiBGZXRjaGVyIGZhaWx1cmU6IFVuYWJsZSB0byBmaW5kIGZpbGUgZmls
-ZTovLzAwMDEtZGlzYWJsZS1ibHVldG9vdGgtYW5kLWVuYWJsZS11YXJ0MC5wYXRjaCBhbnl3aGVy
-ZS4gVGhlIHBhdGhzIHRoYXQgd2VyZSBzZWFyY2hlZCB3ZXJlOg0KICAgICQoVEhJU0RJUikvZmls
-ZXMvcG9reQ0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlw
-aS9yZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBpLWNvbmZpZy1naXQvcG9reQ0KICAgIC9ob21lL2Ny
-YW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJzcC9ib290Zmls
-ZXMvcnBpLWNvbmZpZy9wb2t5DQogICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRh
-LXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9maWxlcy9wb2t5DQogICAgJChUSElT
-RElSKS9maWxlcy9mYXJ2aWV3LXJwaTMNCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2Vz
-L21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1jb25maWctZ2l0L2Zh
-cnZpZXctcnBpMw0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVy
-cnlwaS9yZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBpLWNvbmZpZy9mYXJ2aWV3LXJwaTMNCiAgICAv
-aG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3Av
-Ym9vdGZpbGVzL2ZpbGVzL2ZhcnZpZXctcnBpMw0KICAgICQoVEhJU0RJUikvZmlsZXMvcmFzcGJl
-cnJ5cGkzDQogICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBp
-L3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9ycGktY29uZmlnLWdpdC9yYXNwYmVycnlwaTMNCiAgICAv
-aG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3Av
-Ym9vdGZpbGVzL3JwaS1jb25maWcvcmFzcGJlcnJ5cGkzDQogICAgL2hvbWUvY3JhbmUveW9jdG8t
-cGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9maWxlcy9y
-YXNwYmVycnlwaTMNCiAgICAkKFRISVNESVIpL2ZpbGVzL2FybXY3dmUNCiAgICAvaG9tZS9jcmFu
-ZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVz
-L3JwaS1jb25maWctZ2l0L2FybXY3dmUNCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2Vz
-L21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1jb25maWcvYXJtdjd2
-ZQ0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNp
-cGVzLWJzcC9ib290ZmlsZXMvZmlsZXMvYXJtdjd2ZQ0KICAgICQoVEhJU0RJUikvZmlsZXMvcnBp
-DQogICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lw
-ZXMtYnNwL2Jvb3RmaWxlcy9ycGktY29uZmlnLWdpdC9ycGkNCiAgICAvaG9tZS9jcmFuZS95b2N0
-by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1j
-b25maWcvcnBpDQogICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJy
-eXBpL3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9maWxlcy9ycGkNCiAgICAkKFRISVNESVIpL2ZpbGVz
-L2FybQ0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9y
-ZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBpLWNvbmZpZy1naXQvYXJtDQogICAgL2hvbWUvY3JhbmUv
-eW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9y
-cGktY29uZmlnL2FybQ0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNw
-YmVycnlwaS9yZWNpcGVzLWJzcC9ib290ZmlsZXMvZmlsZXMvYXJtDQogICAgJChUSElTRElSKS9m
-aWxlcy8NCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkv
-cmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1jb25maWctZ2l0Lw0KICAgIC9ob21lL2NyYW5lL3lv
-Y3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBp
-LWNvbmZpZy8NCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5
-cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL2ZpbGVzLw0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBp
-L2J1aWxkL2Rvd25sb2Fkcw0KRVJST1I6IHJwaS1jb25maWctZ2l0LXI1IGRvX2ZldGNoOiBCaXRi
-YWtlIEZldGNoZXIgRXJyb3I6IEZldGNoRXJyb3IoJ1VuYWJsZSB0byBmZXRjaCBVUkwgZnJvbSBh
-bnkgc291cmNlLicsICdmaWxlOi8vMDAwMS1kaXNhYmxlLWJsdWV0b290aC1hbmQtZW5hYmxlLXVh
-cnQwLnBhdGNoJykNCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9j
-cmFuZS95b2N0by1waS9idWlsZC90bXAvd29yay9mYXJ2aWV3X3JwaTMtcG9reS1saW51eC1nbnVl
-YWJpL3JwaS1jb25maWcvZ2l0LXI1L3RlbXAvbG9nLmRvX2ZldGNoLjg1MDkNCkVSUk9SOiBUYXNr
-ICgvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1i
-c3AvYm9vdGZpbGVzL3JwaS1jb25maWdfZ2l0LmJiOmRvX2ZldGNoKSBmYWlsZWQgd2l0aCBleGl0
-IGNvZGUgJzEnDQpOT1RFOiBUYXNrcyBTdW1tYXJ5OiBBdHRlbXB0ZWQgMTYzIHRhc2tzIG9mIHdo
-aWNoIDE2MiBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMSBmYWlsZWQuDQoNClN1bW1hcnk6
-IDEgdGFzayBmYWlsZWQ6DQogIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNw
-YmVycnlwaS9yZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBpLWNvbmZpZ19naXQuYmI6ZG9fZmV0Y2gN
-ClN1bW1hcnk6IFRoZXJlIHdlcmUgMiBXQVJOSU5HIG1lc3NhZ2VzLg0KU3VtbWFyeTogVGhlcmUg
-d2VyZSAyIEVSUk9SIG1lc3NhZ2VzLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuDQpj
-cmFuZUBVYnVudHUyMjA0On4veW9jdG8tcGkvYnVpbGQkIA0K
-
---96SAgPlIZfqIxPoBAsqC
-Content-Type: text/plain; name="bitbake image.txt"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="bitbake image.txt"
-
-Y3JhbmVAVWJ1bnR1MjIwNDp+L3lvY3RvLXBpL2J1aWxkJCBiaXRiYWtlIC1rIGZhcnZpZXctaW1h
-Z2UtYmFzZQ0KTG9hZGluZyBjYWNoZTogMTAwJSB8IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6
-IDA6MDA6MDANCkxvYWRlZCAxNjgwIGVudHJpZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLg0KUGFy
-c2luZyByZWNpcGVzOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6MDA6MDANClBh
-cnNpbmcgb2YgOTE5IC5iYiBmaWxlcyBjb21wbGV0ZSAoOTE4IGNhY2hlZCwgMSBwYXJzZWQpLiAx
-NjgwIHRhcmdldHMsIDc0IHNraXBwZWQsIDAgbWFza2VkLCAwIGVycm9ycy4NCk5PVEU6IFJlc29s
-dmluZyBhbnkgbWlzc2luZyB0YXNrIHF1ZXVlIGRlcGVuZGVuY2llcw0KDQpCdWlsZCBDb25maWd1
-cmF0aW9uOg0KQkJfVkVSU0lPTiAgICAgICAgICAgPSAiMi4wLjAiDQpCVUlMRF9TWVMgICAgICAg
-ICAgICA9ICJ4ODZfNjQtbGludXgiDQpOQVRJVkVMU0JTVFJJTkcgICAgICA9ICJ1bml2ZXJzYWwi
-DQpUQVJHRVRfU1lTICAgICAgICAgICA9ICJhcm0tcG9reS1saW51eC1nbnVlYWJpIg0KTUFDSElO
-RSAgICAgICAgICAgICAgPSAiZmFydmlldy1ycGkzIg0KRElTVFJPICAgICAgICAgICAgICAgPSAi
-cG9reSINCkRJU1RST19WRVJTSU9OICAgICAgID0gIjQuMC4xMSINClRVTkVfRkVBVFVSRVMgICAg
-ICAgID0gImFybSB2ZnAgY29ydGV4YTcgbmVvbiB2ZnB2NCB0aHVtYiBjYWxsY29udmVudGlvbi1o
-YXJkIg0KVEFSR0VUX0ZQVSAgICAgICAgICAgPSAiaGFyZCINCm1ldGEgICAgICAgICAgICAgICAg
-IA0KbWV0YS1wb2t5ICAgICAgICAgICAgDQptZXRhLXlvY3RvLWJzcCAgICAgICA9ICJraXJrc3Rv
-bmU6Y2MzMjg3NjM3YzMwMDgwMzMzZDg5YTM2OGU0MDQ3M2RmZmZiMmZiNyINCm1ldGEtcmFzcGJl
-cnJ5cGkgICAgID0gImtpcmtzdG9uZTo0MzY4M2NiMTRiNmFmYzE0NDYxOTMzNWIzYTIzNTNiNzA3
-NjJmZjNlIg0KbWV0YS1mYXJ2aWV3ICAgICAgICAgPSAibWFzdGVyOjc0NDNmODhkZTE2ZTc2NDE3
-M2QwMTAzNDc0MDY2ZDJhZjIxMzhhZjIiDQoNCldBUk5JTkc6IC9ob21lL2NyYW5lL3lvY3RvLXBp
-L3NvdXJjZXMvbWV0YS1mYXJ2aWV3L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LWZhcnZpZXdf
-MC4xLmJiOmRvX2NvbXBpbGUgaXMgdGFpbnRlZCBmcm9tIGEgZm9yY2VkIHJ1bg0KSW5pdGlhbGlz
-aW5nIHRhc2tzOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6MDA6MDENClNzdGF0ZSBz
-dW1tYXJ5OiBXYW50ZWQgMjQzIExvY2FsIDIzNiBNaXJyb3JzIDEgTWlzc2VkIDYgQ3VycmVudCAx
-Mzg2ICg5NyUgbWF0Y2gsIDk5JSBjb21wbGV0ZSkNCk5PVEU6IEV4ZWN1dGluZyBUYXNrcw0KV0FS
-TklORzogcnBpLWNvbmZpZy1naXQtcjUgZG9fZmV0Y2g6IEZhaWxlZCB0byBmZXRjaCBVUkwgZmls
-ZTovLzAwMDEtZGlzYWJsZS1ibHVldG9vdGgtYW5kLWVuYWJsZS11YXJ0MC5wYXRjaCwgYXR0ZW1w
-dGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZQ0KRVJST1I6IHJwaS1jb25maWctZ2l0LXI1IGRvX2Zl
-dGNoOiBGZXRjaGVyIGZhaWx1cmU6IFVuYWJsZSB0byBmaW5kIGZpbGUgZmlsZTovLzAwMDEtZGlz
-YWJsZS1ibHVldG9vdGgtYW5kLWVuYWJsZS11YXJ0MC5wYXRjaCBhbnl3aGVyZS4gVGhlIHBhdGhz
-IHRoYXQgd2VyZSBzZWFyY2hlZCB3ZXJlOg0KICAgICQoVEhJU0RJUikvZmlsZXMvcG9reQ0KICAg
-IC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJz
-cC9ib290ZmlsZXMvcnBpLWNvbmZpZy1naXQvcG9reQ0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBp
-L3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBpLWNvbmZp
-Zy9wb2t5DQogICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBp
-L3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9maWxlcy9wb2t5DQogICAgJChUSElTRElSKS9maWxlcy9m
-YXJ2aWV3LXJwaTMNCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJl
-cnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1jb25maWctZ2l0L2ZhcnZpZXctcnBpMw0K
-ICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVz
-LWJzcC9ib290ZmlsZXMvcnBpLWNvbmZpZy9mYXJ2aWV3LXJwaTMNCiAgICAvaG9tZS9jcmFuZS95
-b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL2Zp
-bGVzL2ZhcnZpZXctcnBpMw0KICAgICQoVEhJU0RJUikvZmlsZXMvcmFzcGJlcnJ5cGkzDQogICAg
-L2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNw
-L2Jvb3RmaWxlcy9ycGktY29uZmlnLWdpdC9yYXNwYmVycnlwaTMNCiAgICAvaG9tZS9jcmFuZS95
-b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3Jw
-aS1jb25maWcvcmFzcGJlcnJ5cGkzDQogICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9t
-ZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9maWxlcy9yYXNwYmVycnlwaTMN
-CiAgICAkKFRISVNESVIpL2ZpbGVzL2FybXY3dmUNCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9z
-b3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1jb25maWct
-Z2l0L2FybXY3dmUNCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJl
-cnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1jb25maWcvYXJtdjd2ZQ0KICAgIC9ob21l
-L2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJzcC9ib290
-ZmlsZXMvZmlsZXMvYXJtdjd2ZQ0KICAgICQoVEhJU0RJUikvZmlsZXMvcnBpDQogICAgL2hvbWUv
-Y3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNwL2Jvb3Rm
-aWxlcy9ycGktY29uZmlnLWdpdC9ycGkNCiAgICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2Vz
-L21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3AvYm9vdGZpbGVzL3JwaS1jb25maWcvcnBpDQog
-ICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMt
-YnNwL2Jvb3RmaWxlcy9maWxlcy9ycGkNCiAgICAkKFRISVNESVIpL2ZpbGVzL2FybQ0KICAgIC9o
-b21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJzcC9i
-b290ZmlsZXMvcnBpLWNvbmZpZy1naXQvYXJtDQogICAgL2hvbWUvY3JhbmUveW9jdG8tcGkvc291
-cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNwL2Jvb3RmaWxlcy9ycGktY29uZmlnL2Fy
-bQ0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNp
-cGVzLWJzcC9ib290ZmlsZXMvZmlsZXMvYXJtDQogICAgJChUSElTRElSKS9maWxlcy8NCiAgICAv
-aG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1ic3Av
-Ym9vdGZpbGVzL3JwaS1jb25maWctZ2l0Lw0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJj
-ZXMvbWV0YS1yYXNwYmVycnlwaS9yZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBpLWNvbmZpZy8NCiAg
-ICAvaG9tZS9jcmFuZS95b2N0by1waS9zb3VyY2VzL21ldGEtcmFzcGJlcnJ5cGkvcmVjaXBlcy1i
-c3AvYm9vdGZpbGVzL2ZpbGVzLw0KICAgIC9ob21lL2NyYW5lL3lvY3RvLXBpL2J1aWxkL2Rvd25s
-b2Fkcw0KRVJST1I6IHJwaS1jb25maWctZ2l0LXI1IGRvX2ZldGNoOiBCaXRiYWtlIEZldGNoZXIg
-RXJyb3I6IEZldGNoRXJyb3IoJ1VuYWJsZSB0byBmZXRjaCBVUkwgZnJvbSBhbnkgc291cmNlLics
-ICdmaWxlOi8vMDAwMS1kaXNhYmxlLWJsdWV0b290aC1hbmQtZW5hYmxlLXVhcnQwLnBhdGNoJykN
-CkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9jcmFuZS95b2N0by1w
-aS9idWlsZC90bXAvd29yay9mYXJ2aWV3X3JwaTMtcG9reS1saW51eC1nbnVlYWJpL3JwaS1jb25m
-aWcvZ2l0LXI1L3RlbXAvbG9nLmRvX2ZldGNoLjE3MjMyDQpFUlJPUjogVGFzayAoL2hvbWUvY3Jh
-bmUveW9jdG8tcGkvc291cmNlcy9tZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMtYnNwL2Jvb3RmaWxl
-cy9ycGktY29uZmlnX2dpdC5iYjpkb19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0K
-Tk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1wdGVkIDQwNDggdGFza3Mgb2Ygd2hpY2ggNDA0NyBk
-aWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMSBmYWlsZWQuDQoNClN1bW1hcnk6IDEgdGFzayBm
-YWlsZWQ6DQogIC9ob21lL2NyYW5lL3lvY3RvLXBpL3NvdXJjZXMvbWV0YS1yYXNwYmVycnlwaS9y
-ZWNpcGVzLWJzcC9ib290ZmlsZXMvcnBpLWNvbmZpZ19naXQuYmI6ZG9fZmV0Y2gNClN1bW1hcnk6
-IFRoZXJlIHdlcmUgMiBXQVJOSU5HIG1lc3NhZ2VzLg0KU3VtbWFyeTogVGhlcmUgd2VyZSAyIEVS
-Uk9SIG1lc3NhZ2VzLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuDQpjcmFuZUBVYnVu
-dHUyMjA0On4veW9jdG8tcGkvYnVpbGQkIA0KDQo=
-
---96SAgPlIZfqIxPoBAsqC--
+On Tue, Aug 8, 2023 at 10:02=E2=80=AFAM Crane <crane2018@gmail.com> wrote:
+>
+> The error is this when bitbaking only the recipe for rpi-config:
+> "WARNING: rpi-config-git-r5 do_fetch: Failed to fetch URL file://0001-dis=
+able-bluetooth-and-enable-uart0.patch, attempting MIRRORS if available
+> ERROR: rpi-config-git-r5 do_fetch: Fetcher failure: Unable to find file f=
+ile://0001-disable-bluetooth-and-enable-uart0.patch anywhere. The paths tha=
+t were searched were:
+> ....
+> "
+> The listed searching paths don't include the custom layer where the patch=
+ is placed.
+> The complete error info is in the attached file "bitbake rpi-config.txt".
+>
+> When bitbaking the recipe for the image, the error is the same.
+> The complete error info is in attached file "bitbake image.txt".
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#60739): https://lists.yoctoproject.org/g/yocto/messag=
+e/60739
+> Unfollow This Topic: https://lists.yoctoproject.org/unft/100614184/199791=
+4
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
