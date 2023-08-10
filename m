@@ -1,93 +1,77 @@
-Return-Path: <alain.meirhaeghe@laposte.net>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 324F9C001DB
-	for <webhook@archiver.kernel.org>; Thu, 10 Aug 2023 08:33:05 +0000 (UTC)
-Subject: git ls-remote ssh kex_exchange_identification: Connection closed by remote host
-To: yocto@lists.yoctoproject.org
-From: alain.meirhaeghe@laposte.net
-X-Originating-Location: Alès, Occitanie, FR (92.167.96.66)
-X-Originating-Platform: Linux Firefox 116
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 206F8C04A94
+	for <webhook@archiver.kernel.org>; Thu, 10 Aug 2023 08:35:35 +0000 (UTC)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+ by mx.groups.io with SMTP id smtpd.web11.12871.1691656534018585284
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 10 Aug 2023 01:35:34 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=lDFDFL18;
+ spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-4fe55d70973so761965e87.0
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Aug 2023 01:35:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691656532; x=1692261332;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=c1IZHmKlWNkutp/wnK5kVD5DTSOxGLGgkOTz6tAhNW0=;
+        b=lDFDFL183haiQvmZQsSRRxxEH1iYVnWCfiuEIKnIy+8ide8FDcY9780CPhgE7Hnmcn
+         +Ym9/pqsLw1kuHmLin8pkY82j0IEt/i4/f+/+tU2j2Vq0+rjZu1qUfIGT+jVHGJf2+4h
+         /GPYLRgEovCTnamfg2UCauPOelvc2C9Hum1kZQwNeSS8h7AX9QKa9+JOT0xY6WwfXK+t
+         FLDUTF3OgsxjPbIxCu8dK/NQJmiIfX3U6ibQtQbqqCzYPaOTja456+U6LSNVVSwYaEAA
+         Kv3sU+vZ1nd5CpUsYJPdgCdJai5EY+3Xn1aJZ5ICUoLY0J2beZhm9Hrahg4vyHoLXum+
+         QzIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691656532; x=1692261332;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c1IZHmKlWNkutp/wnK5kVD5DTSOxGLGgkOTz6tAhNW0=;
+        b=DFZ9w/hMweZyccVvEV1i0DbZbgWieySh7t0/lmAYLpAzVyWfeagO7bQddUtx8RlARB
+         0Q8zeww7ynywN9H6Eu6crwDfweULCICsDicfCyjIFSQyODxZYf9Ga3XAtDnKqkAdQI7i
+         v4djYujk0CsekYhssqd5GtNiBPsTEVUwNOY6AUFl+GPBYrDWpmLxQjvYrtF9MfY2AHvw
+         MiKNauT/cElXosVfIXJ7r6y3CwnlOGJwdjVBFZ1+SnuxDCGbLO6aeSyiI9G3Fx95n9MB
+         4RiUh62YnpI4GWJni5knzGkm0/gZpjHqufRqpNjzoc/KZhklgOA2R2S+4tyK9WBxvvtH
+         oNyw==
+X-Gm-Message-State: AOJu0YzhxLmWDib9xZXZS5km+wM5i7LVjNm/vTvdlAEs63aspthH6hv3
+	YgMlALB0Erz7ZIRO7cOJ1LxgdaVXrrQGIrHxwsg=
+X-Google-Smtp-Source: AGHT+IGj3oshxHbdUQIx0uJdoRZheyt+q8P6Kr7tDkXFLF1CacSdKCLXYib4JqR84sFNkdFK6OC3v/1LEt6hgzUDTAs=
+X-Received: by 2002:a05:6512:401d:b0:4f8:6253:540 with SMTP id
+ br29-20020a056512401d00b004f862530540mr730059lfb.19.1691656531635; Thu, 10
+ Aug 2023 01:35:31 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 10 Aug 2023 01:32:58 -0700
-Message-ID: <lZrZ.1691656378987725088.wLL9@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="xLrySFYDlqNrKJe1GB7s"
+References: <CANNYZj_sYoP+61NGtMrNJfT+m+hZyz=cxJAcOcE1kSkb6SXKUw@mail.gmail.com>
+ <19617.1691654254670907270@lists.yoctoproject.org> <62798ed9-66a8-0e70-0670-a48bf24d7e50@bootlin.com>
+In-Reply-To: <62798ed9-66a8-0e70-0670-a48bf24d7e50@bootlin.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 10 Aug 2023 10:35:20 +0200
+Message-ID: <CANNYZj8P7+u8hwGTCsf6UyRbyRi74k3P7wJP7Lk7Tcbdxw8n5A@mail.gmail.com>
+Subject: Re: [yocto] How to migrate an older version of Yocto?
+To: michael.opdenacker@bootlin.com
+Cc: msenturk <senturkmurat1999@gmail.com>, yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 10 Aug 2023 08:33:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60768
+ <yocto@lists.yoctoproject.org>; Thu, 10 Aug 2023 08:35:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60769
 
---xLrySFYDlqNrKJe1GB7s
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 10 Aug 2023 at 10:28, Michael Opdenacker via
+lists.yoctoproject.org
+<michael.opdenacker=bootlin.com@lists.yoctoproject.org> wrote:
+> You may actually prefer to use our latest long term support release,
+> Kirkstone, which will be supported until 2026.
 
-I have a ramdomize problem on local ssh git repository.
-The git server is on the PC where i am using YOCTO
-The git repository belong to an another user=C2=A0 (git) than bitbake user =
-(ame).
+For what it's worth, I would not recommend anyone to start with the
+LTS. It's useful if you are shipping a product (or are close to it),
+and need a stable base for the product lifecycle, but in the setting
+up or active development it's better to stick with master or latest
+release. If you discover that you need LTS, you're gonna get it
+naturally that way when the next one comes, with the bonus that that
+next LTS will be supported longer than the one available now.
 
-DISTRO =3D "poky"
-DISTRO_NAME =3D "Poky (Yocto Project Reference Distro)"
-DISTRO_VERSION =3D "4.2"
-DISTRO_CODENAME =3D "mickledore"
-
-example:
-git -c gc.autoDetach=3Dfalse -c core.pager=3Dcat ls-remote ssh://git@maison=
-/home/git/bleconnect.git=C2=A0 failed with exit code 128, output: kex_excha=
-nge_identification: Connection closed by remote host
-In my bitbake terminal console, i can try this command many times without a=
-ny problem.
-with bitbake build image, i have a very hazardous and common problem and=C2=
-=A0 on different local git depository recipe.
-
-The recipe syntax is
-SRCREV=3D"${AUTOREV}"
-SRCBRANCH =3D "master"
-PV =3D "1.0-1+git${SRCPV}"
-S =3D "${WORKDIR}/git"
-SRC_URI =3D "git://git@maison/home/git/bleconnect.git;branch=3Dmaster;proto=
-col=3Dssh \
-"
-This problem recently appears and I had no problem before. I generate image=
- for this project for years.
-But its appear recently. I have done some POKY=C2=A0 update. (raspberry)
-Do you know the problem ?
-Is there a solution .
-Thanks.
-
---xLrySFYDlqNrKJe1GB7s
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I have a ramdomize problem on local ssh git repository. <br />The git serve=
-r is on the PC where i am using YOCTO<br />The git repository belong to an =
-another user&nbsp; (git) than bitbake user (ame).<br /><br />DISTRO =3D "po=
-ky"<br />DISTRO_NAME =3D "Poky (Yocto Project Reference Distro)"<br />DISTR=
-O_VERSION =3D "4.2"<br />DISTRO_CODENAME =3D "mickledore"<br /><br />exampl=
-e:<br />git -c gc.autoDetach=3Dfalse -c core.pager=3Dcat ls-remote ssh://gi=
-t@maison/home/git/bleconnect.git&nbsp; failed with exit code 128, output: k=
-ex_exchange_identification: Connection closed by remote host<br /><span cla=
-ss=3D"Y2IQFc" lang=3D"en">In my </span>bitbake terminal console, i <span cl=
-ass=3D"Y2IQFc" lang=3D"en">can try this command many times without any prob=
-lem. </span><br />with bitbake build image, i have a very hazardous and com=
-mon problem and&nbsp; on different local git depository recipe.<br /><br />=
-The recipe syntax is <br />SRCREV=3D"${AUTOREV}"<br />SRCBRANCH =3D "master=
-"<br />PV =3D "1.0-1+git${SRCPV}"<br />S =3D "${WORKDIR}/git"<br />SRC_URI =
-=3D "git://git@maison/home/git/bleconnect.git;branch=3Dmaster;protocol=3Dss=
-h \<br />"<br />This problem recently appears and I had no problem before. =
-I generate image for this project for years.<br />But its appear recently. =
-I have done some POKY&nbsp; update. (raspberry)<br />Do you know the proble=
-m ?<br />Is there a solution .<br />Thanks.<br /><br /><br />
-<div id=3D"tw-target-rmn-container" class=3D"tw-target-rmn tw-ta-container =
-F0azHf tw-nfl">
-<pre id=3D"tw-target-rmn" class=3D"tw-data-placeholder tw-text-small tw-ta"=
- dir=3D"ltr" style=3D"text-align: left;" data-placeholder=3D""><span class=
-=3D"Y2IQFc">&nbsp;</span></pre>
-</div>
-<span class=3D"Y2IQFc" lang=3D"en"></span>
-
---xLrySFYDlqNrKJe1GB7s--
+Alex
 
