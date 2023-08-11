@@ -1,380 +1,90 @@
-Return-Path: <rob@teegee.cloud>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86A5DC0015E
-	for <webhook@archiver.kernel.org>; Fri, 11 Aug 2023 06:38:41 +0000 (UTC)
-Subject: libudev-zero recipe issue
-To: yocto@lists.yoctoproject.org
-From: "Rob Kramer" <rob@teegee.cloud>
-X-Originating-Location: Singapore, SG (118.189.41.10)
-X-Originating-Platform: Linux Chrome 114
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C842EB64DD
+	for <webhook@archiver.kernel.org>; Fri, 11 Aug 2023 06:56:21 +0000 (UTC)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web11.37666.1691736971817374139
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 10 Aug 2023 23:56:12 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Hi8mQORT;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-317c3ac7339so1458844f8f.0
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Aug 2023 23:56:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google; t=1691736970; x=1692341770;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rqcOXR9DfZNkzW/kVBjnPMKDnXo6dDP75t2VdOjvav0=;
+        b=Hi8mQORTUlvVJpYV6QIqzJJvskGEMWP2l1MzuiFaODfXWPwyHoSHVtS59Tggsgk9Uc
+         GYwVoTJxrpcjaTWkUPsRcL2OAKn+0izaVOHUxUxQftVSL+q9SCDux7tVgKgj1qaCCnsJ
+         M81ZDUeHKzY4EQaMig7d7RoLTK/lw3nnQq63A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691736970; x=1692341770;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=rqcOXR9DfZNkzW/kVBjnPMKDnXo6dDP75t2VdOjvav0=;
+        b=eKh1584HInq9uuiW4wHe2v6UeBSuzF2GfHhMyZpei9ct5GtBo4LogzWusclWZ2Gm/u
+         Xc1sz6KvgTJUUj3tSo8V9I7NaKohIBlssVAVwfdRI1pn2yX1xeh9fOsfw0uKuR3gMqlm
+         B16CogKsvGBbNQ/nyLb5a1aWS+yfT+aAiw7WH6TFngLai22Rt1g67sN065RV/vycGihq
+         +sU/ci4aHTyav3epOHYEfjDf3hZB7rfHBIObz71TjhRiPlB+WA5Z5y/XNY7+ZPlD8TQY
+         MN/OycqjlGtMfW1FdKw1A9CsdL7RTHOqTEeVQiQdXfgIcLrxYP5g6fBslG5Hr9H7rS2e
+         pkYA==
+X-Gm-Message-State: AOJu0YwTHykN+5OzRjS3j00xQl23oxNTmb9SnQGpIvfjv8zZmF1sX1dz
+	3uMz7xOpIv1+BhuBNjcCw7TIfA==
+X-Google-Smtp-Source: AGHT+IGYTwe9MFxZUunQuUCZDeZmSe/0U13YdeYRcCyH2LD49GXh0nkIEsppi5oTUdH1htRYNy2cNw==
+X-Received: by 2002:adf:e0ce:0:b0:317:64f4:5536 with SMTP id m14-20020adfe0ce000000b0031764f45536mr673213wri.44.1691736970264;
+        Thu, 10 Aug 2023 23:56:10 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:1e7:9ff1:d8f3:9443? ([2001:8b0:aba:5f3c:1e7:9ff1:d8f3:9443])
+        by smtp.gmail.com with ESMTPSA id n16-20020a5d6610000000b003179d5aee67sm4413851wru.94.2023.08.10.23.56.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Aug 2023 23:56:09 -0700 (PDT)
+Message-ID: <fd9c2bb67198be27092ed786908f100ab8393d38.camel@linuxfoundation.org>
+Subject: Re: [yocto] Intermittent build failure where dwarfsrcfiles doesn't
+ exist
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Tom Isaacson <tom.isaacson@teknique.com>, 
+	"<yocto@lists.yoctoproject.org>"
+	 <yocto@lists.yoctoproject.org>
+Date: Fri, 11 Aug 2023 07:56:08 +0100
+In-Reply-To: <CA+EiEZLbtCfDGyxA8kjwQkPjeJJ9vzwpKMKGSW6ABGq2uogg2Q@mail.gmail.com>
+References: 
+	<CA+EiEZ+k3eSZENj_ORU+-7rx99ed__pu7Ger2JpGm1U8gZ2WRg@mail.gmail.com>
+	 <c9cc305944c70a7f59e881e39d020d5e216197e3.camel@linuxfoundation.org>
+	 <CA+EiEZLbtCfDGyxA8kjwQkPjeJJ9vzwpKMKGSW6ABGq2uogg2Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
 MIME-Version: 1.0
-Date: Thu, 10 Aug 2023 23:38:38 -0700
-Message-ID: <8A4J.1691735918881680780.WtwR@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="08DPZG4PdNYAOpRd1M2i"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 11 Aug 2023 06:38:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60777
+ <yocto@lists.yoctoproject.org>; Fri, 11 Aug 2023 06:56:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60778
 
---08DPZG4PdNYAOpRd1M2i
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2023-08-11 at 09:22 +1200, Tom Isaacson wrote:
+> DEBUG: Checking
+> /home/tom/Documents/Bitbucket/my-app/my-yocto-sdk/poky/build/tmp/work/x86=
+_64-linux/dwarfsrcfiles-native/1.0-r0/sysroot-destdir//home/tom/Documents/B=
+itbucket/my-app/my-yocto-sdk/poky/build/tmp/work/x86_64-linux/dwarfsrcfiles=
+-native/1.0-r0/recipe-sysroot-native/usr/libexec
+> for binaries to process
+> DEBUG: Python function relocatable_binaries_preprocess finished
+>=20
+> This seems totally wrong - two full paths are being combined to make a
+> path that can't possibly exist. Is this something to do with my setup?
 
-Hi all,
+No, those paths look correct. When it builds native sstate objects,
+you'd expect to see path duplication like that.
 
-I added a new recipe for libudev-zero, which provides a minimal daemon-less=
- udev implementation. The recipe works, but has an issue that pops up regul=
-arly where it causes an exception during rootfs:
-
-Exception: FileNotFoundError: [Errno 2] No such file or directory: '/ssd/op=
-t/oe/yocto/kirkstone/build-weston/tmp-glibc/deploy/ipk/core2-64/libudev1_1.=
-0.2-r1_core2-64.ipk' -> '/ssd/opt/oe/yocto/kirkstone/build-weston/tmp-glibc=
-/work/generic64-oe-linux/sollinux-ble-weston/1.0-r0/oe-rootfs-repo/core2-64=
-/libudev1_1.0.2-r1_core2-64.ipk'
-
-It seems like for some reason the ipk has been removed from deploy/ipk. To =
-recover from this, a 'bitbake -c clean libudev-zero' will restore things th=
-e next time the rootfs is run.
-
-Does anyone have an idea what could cause this? Appended below is the recip=
-e, and the full error message.
+https://docs.yoctoproject.org/ref-manual/faq.html#why-do-bindir-and-libdir-=
+have-strange-values-for-native-recipes
 
 Cheers,
 
-Rob
-
-libudev-zero_1.0.2.bb:
-DESCRIPTION =3D "Daemon-less libudev replacement"
-SECTION =3D "base"
-LICENSE=3D"ISC"
-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D09eac32a84c5d70c105cbfce173a161d=
-"
-
-PR =3D "r1"
-SRCREV =3D "04a727df50fde3f69127aed4bc48e6cff5430175"
-SRC_URI =3D "git://github.com/illiliti/${BPN};branch=3Dmaster;protocol=3Dht=
-tps"
-
-SRC_URI[sha256sum] =3D "29dff942cab9519994fb92ba6407f57e08d3dd6e6c0b86bb93d=
-7b1d681994ff8"
-
-PROVIDES =3D "udev"
-
-inherit features_check
-
-CONFLICT_DISTRO_FEATURES =3D "systemd"
-
-S =3D "${WORKDIR}/git"
-
-PACKAGES +=3D "${PN}-netlink"
-FILES:${PN} =3D "${libdir}"
-FILES:${PN}-netlink =3D "${bindir}"
-
-RPROVIDES:${PN} =3D "hotplug udev"
-
-do_configure:prepend() {
-sed -i 's;PREFIX =3D /usr/local;PREFIX =3D /usr;' ${S}/Makefile
-}
-
-do_compile:append() {
-$CCLD $LDFLAGS -o contrib/netlink-forward contrib/helper.c
-}
-
-do_install() {
-oe_runmake install DESTDIR=3D${D}
-
-install -d ${D}${bindir}
-install -m 755 contrib/netlink-forward ${D}${bindir}
-}
-
-Error message:
-ERROR: sollinux-ble-weston-1.0-r0 do_rootfs: Error executing a python funct=
-ion in exec_func_python() autogenerated:
-
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:do_rootfs(d)
-0003:
-File: '/opt/oe/yocto/kirkstone/oe-core/meta/classes/image.bbclass', lineno:=
- 255,
-function: do_rootfs
-0251:=C2=A0 =C2=A0 progress_reporter.next_stage()
-0252:
-0253:=C2=A0 =C2=A0 # generate rootfs
-0254:=C2=A0 =C2=A0 d.setVarFlag('REPRODUCIBLE_TIMESTAMP_ROOTFS', 'export', =
-'1')
-*** 0255:=C2=A0 =C2=A0 create_rootfs(d, progress_reporter=3Dprogress_report=
-er, logcatcher=3Dl
-ogcatcher)
-0256:
-0257:=C2=A0 =C2=A0 progress_reporter.finish()
-0258:}
-0259:do_rootfs[dirs] =3D "${TOPDIR}"
-File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/rootfs.py', lineno: 381,=
- func
-tion: create_rootfs
-0377:
-0378:=C2=A0 =C2=A0 img_type =3D d.getVar('IMAGE_PKGTYPE')
-0379:
-0380:=C2=A0 =C2=A0 cls =3D get_class_for_type(img_type)
-*** 0381:=C2=A0 =C2=A0 cls(d, manifest_dir, progress_reporter, logcatcher).=
-create()
-0382:=C2=A0 =C2=A0 os.environ.clear()
-0383:=C2=A0 =C2=A0 os.environ.update(env_bkp)
-0384:
-0385:
-File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/ipk/root=
-fs.py
-', lineno: 136, function: __init__
-0132:
-0133:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.inc_opkg_image_gen =3D self.d.getVar(=
-'INC_IPK_IMAGE_GEN') o
-r ""
-0134:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if self._remove_old_rootfs():
-0135:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.utils.remove(self.image_r=
-ootfs, True)
-*** 0136:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.pm =3D OpkgPM(d,
-0137:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.image_rootfs,
-0138:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.opkg_conf,
-0139:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.pkg_archs)
-0140:=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
-File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/ipk/__in=
-it__.
-py', lineno: 175, function: __init__
-0171:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.opkg_args =3D "--volatile-cache -f %s=
- -t %s -o %s " % (self
-.config_file, self.d.expand('${T}/ipktemp/') ,target_rootfs)
-0172:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.opkg_args +=3D self.d.getVar("OPKG_AR=
-GS")
-0173:
-0174:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if prepare_index:
-*** 0175:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 create_packages_dir(self=
-.d, self.deploy_dir, d.getVar("DEP
-LOY_DIR_IPK"), "package_write_ipk", filterbydependencies)
-0176:
-0177:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.opkg_dir =3D oe.path.join(target_root=
-fs, self.d.getVar('OPK
-GLIBDIR'), "opkg")
-0178:=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.utils.mkdirhier(self.opkg_dir)
-0179:
-File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/__init__=
-.py',
-lineno: 525, function: create_packages_dir
-0521:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if destdir not=
- in seendirs:
-0522:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-bb.utils.mkdirhier(destdir)
-0523:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-seendirs.add(destdir)
-0524:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 try:
-*** 0525:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 os.link(l, dest)
-0526:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 except OSError=
- as err:
-0527:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-if err.errno =3D=3D errno.EXDEV:
-0528:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 bb.utils.copyfile(l, dest)
-0529:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-else:
-Exception: FileNotFoundError: [Errno 2] No such file or directory: '/ssd/op=
-t/oe/yocto/kirkstone/build-weston/tmp-glibc/deploy/ipk/core2-64/libudev1_1.=
-0.2-r1_core2-64.ipk' -> '/ssd/opt/oe/yocto/kirkstone/build-weston/tmp-glibc=
-/work/generic64-oe-linux/sollinux-ble-weston/1.0-r0/oe-rootfs-repo/core2-64=
-/libudev1_1.0.2-r1_core2-64.ipk'
-
---08DPZG4PdNYAOpRd1M2i
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,<br /><br />I added a new recipe for libudev-zero, which provides a =
-minimal daemon-less udev implementation. The recipe works, but has an issue=
- that pops up regularly where it causes an exception during rootfs:<br /><b=
-r />
-<div>
-<div>Exception: FileNotFoundError: [Errno 2] No such file or directory: '/s=
-sd/opt/oe/yocto/kirkstone/build-weston/tmp-glibc/deploy/ipk/core2-64/libude=
-v1_1.0.2-r1_core2-64.ipk' -&gt; '/ssd/opt/oe/yocto/kirkstone/build-weston/t=
-mp-glibc/work/generic64-oe-linux/sollinux-ble-weston/1.0-r0/oe-rootfs-repo/=
-core2-64/libudev1_1.0.2-r1_core2-64.ipk'</div>
-</div>
-<div><br />It seems like for some reason the ipk has been removed from depl=
-oy/ipk. To recover from this, a 'bitbake -c clean libudev-zero' will restor=
-e things the next time the rootfs is run.<br /><br />Does anyone have an id=
-ea what could cause this? Appended below is the recipe, and the full error =
-message.<br /><br />Cheers,<br /><br />&nbsp; &nbsp; &nbsp;Rob<br /><br /><=
-br />libudev-zero_1.0.2.bb:<br />
-<div>DESCRIPTION =3D "Daemon-less libudev replacement"</div>
-<div>SECTION =3D "base"</div>
-<div>LICENSE=3D"ISC"</div>
-<div>LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D09eac32a84c5d70c105cbfce173=
-a161d"</div>
-<div>&nbsp;</div>
-<div>PR =3D "r1"</div>
-<div>SRCREV =3D "04a727df50fde3f69127aed4bc48e6cff5430175"</div>
-<div>SRC_URI =3D "git://github.com/illiliti/${BPN};branch=3Dmaster;protocol=
-=3Dhttps"</div>
-<div>&nbsp;</div>
-<div>SRC_URI[sha256sum] =3D "29dff942cab9519994fb92ba6407f57e08d3dd6e6c0b86=
-bb93d7b1d681994ff8"</div>
-<div>&nbsp;</div>
-<div>PROVIDES =3D "udev"</div>
-<div>&nbsp;</div>
-<div>inherit features_check</div>
-<div>&nbsp;</div>
-<div>CONFLICT_DISTRO_FEATURES =3D "systemd"</div>
-<div>&nbsp;</div>
-<div>S =3D "${WORKDIR}/git"</div>
-<div>&nbsp;</div>
-<div>PACKAGES +=3D "${PN}-netlink"</div>
-<div>FILES:${PN} =3D "${libdir}"</div>
-<div>FILES:${PN}-netlink =3D "${bindir}"</div>
-<div>&nbsp;</div>
-<div>RPROVIDES:${PN} =3D "hotplug udev"</div>
-<div>&nbsp;</div>
-<div>do_configure:prepend() {</div>
-<div>&nbsp; &nbsp; sed -i 's;PREFIX =3D /usr/local;PREFIX =3D /usr;' ${S}/M=
-akefile</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>do_compile:append() {</div>
-<div>&nbsp; &nbsp; $CCLD $LDFLAGS -o contrib/netlink-forward contrib/helper=
-.c</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>do_install() {</div>
-<div>&nbsp; &nbsp; oe_runmake install DESTDIR=3D${D}</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; install -d ${D}${bindir}</div>
-<div>&nbsp; &nbsp; install -m 755 contrib/netlink-forward ${D}${bindir}</di=
-v>
-<div>}</div>
-<div><br /><br /><br />Error message:<br />
-<div>ERROR: sollinux-ble-weston-1.0-r0 do_rootfs: Error executing a python =
-function in exec_func_python() autogenerated:</div>
-<div>&nbsp;</div>
-<div>The stack trace of python calls that resulted in this exception/failur=
-e was:</div>
-<div>File: 'exec_func_python() autogenerated', lineno: 2, function: &lt;mod=
-ule&gt;</div>
-<div>&nbsp; &nbsp; &nbsp;0001:</div>
-<div>&nbsp;*** 0002:do_rootfs(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0003:</div>
-<div>File: '/opt/oe/yocto/kirkstone/oe-core/meta/classes/image.bbclass', li=
-neno: 255,</div>
-<div>&nbsp;function: do_rootfs</div>
-<div>&nbsp; &nbsp; &nbsp;0251:&nbsp; &nbsp; progress_reporter.next_stage()<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0252:</div>
-<div>&nbsp; &nbsp; &nbsp;0253:&nbsp; &nbsp; # generate rootfs</div>
-<div>&nbsp; &nbsp; &nbsp;0254:&nbsp; &nbsp; d.setVarFlag('REPRODUCIBLE_TIME=
-STAMP_ROOTFS', 'export', '1')</div>
-<div>&nbsp;*** 0255:&nbsp; &nbsp; create_rootfs(d, progress_reporter=3Dprog=
-ress_reporter, logcatcher=3Dl</div>
-<div>ogcatcher)</div>
-<div>&nbsp; &nbsp; &nbsp;0256:</div>
-<div>&nbsp; &nbsp; &nbsp;0257:&nbsp; &nbsp; progress_reporter.finish()</div=
->
-<div>&nbsp; &nbsp; &nbsp;0258:}</div>
-<div>&nbsp; &nbsp; &nbsp;0259:do_rootfs[dirs] =3D "${TOPDIR}"</div>
-<div>File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/rootfs.py', lineno:=
- 381, func</div>
-<div>tion: create_rootfs</div>
-<div>&nbsp; &nbsp; &nbsp;0377:</div>
-<div>&nbsp; &nbsp; &nbsp;0378:&nbsp; &nbsp; img_type =3D d.getVar('IMAGE_PK=
-GTYPE')</div>
-<div>&nbsp; &nbsp; &nbsp;0379:</div>
-<div>&nbsp; &nbsp; &nbsp;0380:&nbsp; &nbsp; cls =3D get_class_for_type(img_=
-type)</div>
-<div>&nbsp;*** 0381:&nbsp; &nbsp; cls(d, manifest_dir, progress_reporter, l=
-ogcatcher).create()</div>
-<div>&nbsp; &nbsp; &nbsp;0382:&nbsp; &nbsp; os.environ.clear()</div>
-<div>&nbsp; &nbsp; &nbsp;0383:&nbsp; &nbsp; os.environ.update(env_bkp)</div=
->
-<div>&nbsp; &nbsp; &nbsp;0384:</div>
-<div>&nbsp; &nbsp; &nbsp;0385:</div>
-<div>File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/ipk=
-/rootfs.py</div>
-<div>', lineno: 136, function: __init__</div>
-<div>&nbsp; &nbsp; &nbsp;0132:</div>
-<div>&nbsp; &nbsp; &nbsp;0133:&nbsp; &nbsp; &nbsp; &nbsp; self.inc_opkg_ima=
-ge_gen =3D self.d.getVar('INC_IPK_IMAGE_GEN') o</div>
-<div>r ""</div>
-<div>&nbsp; &nbsp; &nbsp;0134:&nbsp; &nbsp; &nbsp; &nbsp; if self._remove_o=
-ld_rootfs():</div>
-<div>&nbsp; &nbsp; &nbsp;0135:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bb.=
-utils.remove(self.image_rootfs, True)</div>
-<div>&nbsp;*** 0136:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.pm =3D O=
-pkgPM(d,</div>
-<div>&nbsp; &nbsp; &nbsp;0137:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;self.image_rootf=
-s,</div>
-<div>&nbsp; &nbsp; &nbsp;0138:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;self.opkg_conf,<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0139:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;self.pkg_archs)<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0140:&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/ipk=
-/__init__.</div>
-<div>py', lineno: 175, function: __init__</div>
-<div>&nbsp; &nbsp; &nbsp;0171:&nbsp; &nbsp; &nbsp; &nbsp; self.opkg_args =
-=3D "--volatile-cache -f %s -t %s -o %s " % (self</div>
-<div>.config_file, self.d.expand('${T}/ipktemp/') ,target_rootfs)</div>
-<div>&nbsp; &nbsp; &nbsp;0172:&nbsp; &nbsp; &nbsp; &nbsp; self.opkg_args +=
-=3D self.d.getVar("OPKG_ARGS")</div>
-<div>&nbsp; &nbsp; &nbsp;0173:</div>
-<div>&nbsp; &nbsp; &nbsp;0174:&nbsp; &nbsp; &nbsp; &nbsp; if prepare_index:=
-</div>
-<div>&nbsp;*** 0175:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; create_packag=
-es_dir(self.d, self.deploy_dir, d.getVar("DEP</div>
-<div>LOY_DIR_IPK"), "package_write_ipk", filterbydependencies)</div>
-<div>&nbsp; &nbsp; &nbsp;0176:</div>
-<div>&nbsp; &nbsp; &nbsp;0177:&nbsp; &nbsp; &nbsp; &nbsp; self.opkg_dir =3D=
- oe.path.join(target_rootfs, self.d.getVar('OPK</div>
-<div>GLIBDIR'), "opkg")</div>
-<div>&nbsp; &nbsp; &nbsp;0178:&nbsp; &nbsp; &nbsp; &nbsp; bb.utils.mkdirhie=
-r(self.opkg_dir)</div>
-<div>&nbsp; &nbsp; &nbsp;0179:</div>
-<div>File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/__i=
-nit__.py',</div>
-<div>&nbsp;lineno: 525, function: create_packages_dir</div>
-<div>&nbsp; &nbsp; &nbsp;0521:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; if destdir not in seendirs:</div>
-<div>&nbsp; &nbsp; &nbsp;0522:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; bb.utils.mkdirhier(destdir)</div>
-<div>&nbsp; &nbsp; &nbsp;0523:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; seendirs.add(destdir)</div>
-<div>&nbsp; &nbsp; &nbsp;0524:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; try:</div>
-<div>&nbsp;*** 0525:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; os.link(l, dest)</div>
-<div>&nbsp; &nbsp; &nbsp;0526:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; except OSError as err:</div>
-<div>&nbsp; &nbsp; &nbsp;0527:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; if err.errno =3D=3D errno.EXDEV:</div>
-<div>&nbsp; &nbsp; &nbsp;0528:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bb.utils.copyfile(l, dest)</div>
-<div>&nbsp; &nbsp; &nbsp;0529:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>Exception: FileNotFoundError: [Errno 2] No such file or directory: '/s=
-sd/opt/oe/yocto/kirkstone/build-weston/tmp-glibc/deploy/ipk/core2-64/libude=
-v1_1.0.2-r1_core2-64.ipk' -&gt; '/ssd/opt/oe/yocto/kirkstone/build-weston/t=
-mp-glibc/work/generic64-oe-linux/sollinux-ble-weston/1.0-r0/oe-rootfs-repo/=
-core2-64/libudev1_1.0.2-r1_core2-64.ipk'</div>
-<div>&nbsp;</div>
-</div>
-</div>
-
---08DPZG4PdNYAOpRd1M2i--
+Richard
 
