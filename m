@@ -1,125 +1,141 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <tyrocjl@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 990FCC001DE
-	for <webhook@archiver.kernel.org>; Fri, 11 Aug 2023 21:11:25 +0000 (UTC)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web10.53995.1691788284753754322
- for <yocto@lists.yoctoproject.org>;
- Fri, 11 Aug 2023 14:11:25 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=aA1C19pn;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-317c3ac7339so2049849f8f.0
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Aug 2023 14:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1691788283; x=1692393083;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=aLM3V9PHRhmH4MGijHeVHIv+pxQ9BXyCGjcyIW79k/k=;
-        b=aA1C19pnwh3M9QN6BOHpjjmfxTSeUM+yifKVhqzRCX9P93PRDV7S94miAfLNqCVTqI
-         Y5Ahb/Y1nA+MSnSdprB0KENQhnpzO0A7NVHGRGGzBqVEDHZ6aCIwGBvTLD7Agm0umd7Y
-         Pz6xDnKXUo/SlfYcinuHobRXpETChbOiunEzs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1691788283; x=1692393083;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aLM3V9PHRhmH4MGijHeVHIv+pxQ9BXyCGjcyIW79k/k=;
-        b=c89RvwSdkmFghU9hw0kZNIY/2GR8nuckanAwgp+I/CZeXQ1IvTgGFJxXpUoV6TdmPf
-         sAXNxQlAZdpLoD4Rq9SE7VTa07xwfiNsA20nb/NJPwcmekcHuES4aSztIrZPSo9ipRjK
-         f+tbhIUSqS9GF1c4NcNdLgPnQgwqeIbTkzjLFQW4kq6u+k05h5aksepJw03NC8oDLj7D
-         N1mcwapg1XUBCsDXj1wQ4eynAjhZL987/aSp4fZ0VzGNpa8RqECorOQ/m6Bhoh8f3TeC
-         j7OLMvQLI/kSxgC7mO7ebRe9Knc9GpGVkduhGfk1UYbCjrTRtsoSGKyFExSKRIzCYFaa
-         Fvwg==
-X-Gm-Message-State: AOJu0Yy/ue1sFtgM+I2ilINZQVvTeg1tPdRC7Be+LUJdzEXDH9UeMrss
-	K3w2iHWhv+dA5JMKiHb9DZq98A==
-X-Google-Smtp-Source: AGHT+IFAAIEqQezEDwHABi6Nt7TU7Xr020YYuyxWPfj3buy0RKMrwxcHDEN9r6KFCVueotstjRBB4Q==
-X-Received: by 2002:adf:f149:0:b0:317:43e0:3f33 with SMTP id y9-20020adff149000000b0031743e03f33mr2274112wro.37.1691788283054;
-        Fri, 11 Aug 2023 14:11:23 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:a369:d6b3:1297:abfe? ([2001:8b0:aba:5f3c:a369:d6b3:1297:abfe])
-        by smtp.gmail.com with ESMTPSA id b8-20020a5d45c8000000b0030ae53550f5sm6552262wrs.51.2023.08.11.14.11.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Aug 2023 14:11:22 -0700 (PDT)
-Message-ID: <1a30874e474b84412cb2df4bc2bfeeaf8775ba89.camel@linuxfoundation.org>
-Subject: Re: [yocto] Intermittent build failure where dwarfsrcfiles doesn't
- exist
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Tom Isaacson <tom.isaacson@teknique.com>
-Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Date: Fri, 11 Aug 2023 22:11:21 +0100
-In-Reply-To: <CA+EiEZLQ5WNP_9wUFvoh33U_5J0Uys+0hXbn4UNrToV1HYuFdg@mail.gmail.com>
-References: 
-	<CA+EiEZ+k3eSZENj_ORU+-7rx99ed__pu7Ger2JpGm1U8gZ2WRg@mail.gmail.com>
-	 <c9cc305944c70a7f59e881e39d020d5e216197e3.camel@linuxfoundation.org>
-	 <CA+EiEZLbtCfDGyxA8kjwQkPjeJJ9vzwpKMKGSW6ABGq2uogg2Q@mail.gmail.com>
-	 <fd9c2bb67198be27092ed786908f100ab8393d38.camel@linuxfoundation.org>
-	 <CA+EiEZLQ5WNP_9wUFvoh33U_5J0Uys+0hXbn4UNrToV1HYuFdg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 65CF1C0015E
+	for <webhook@archiver.kernel.org>; Sat, 12 Aug 2023 07:23:58 +0000 (UTC)
+Subject: Re: How to build a specified recipe every bitbake
+To: yocto@lists.yoctoproject.org
+From: "Jiliang Cai" <tyrocjl@gmail.com>
+X-Originating-Location: HK (156.245.137.253)
+X-Originating-Platform: Windows Chrome 96
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Sat, 12 Aug 2023 00:23:48 -0700
+References: <256B8647-FC14-49FD-87A5-661B60162FF8@arm.com>
+In-Reply-To: <256B8647-FC14-49FD-87A5-661B60162FF8@arm.com>
+Message-ID: <19617.1691825028908505347@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="yYOdLtL0fF1HUK4YjDvH"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 11 Aug 2023 21:11:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60785
+ <yocto@lists.yoctoproject.org>; Sat, 12 Aug 2023 07:23:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60786
 
-On Sat, 2023-08-12 at 07:50 +1200, Tom Isaacson wrote:
-> My bad. Ok, so:
-> * What function is responsible for copying the dwarfsrcfiles binary to
-> poky/build/tmp/work/oclea_cv25-oclea-linux/my-app/1.0.53-8c74bcd/recipe-s=
-ysroot-native/usr/bin/dwarfsrcfiles?
+--yYOdLtL0fF1HUK4YjDvH
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-It would come from the extend_recipe_sysroot function in
-staging.bbclass.
+On Fri, Aug 11, 2023 at 12:47 AM, Ross Burton wrote:
 
-You will see this function being called in various tasks as it will
-show in logs in WORKDIR/temp/log.do_*
+>=20
+> On 11 Aug 2023, at 03:21, Jiliang Cai via lists.yoctoproject.org
+> <tyrocjl=3Dgmail.com@lists.yoctoproject.org> wrote:
+>=20
+>> I have a recipe abc_1.0.bb. It generates a txt contains all layers git
+>> commit
+>> ID into /etc. It is installed into image by IMAGE_INSTALL:append =3D " a=
+bc".
+>=20
+>=20
+> If you want a list of layers/SHAs in your image, look at the
+> image-buildinfo class.
 
-> * When the build completes the dwarfsrcfiles binary is present (even
-> if it got there too late). Why, if I rerun the build with no changes,
-> does it get removed and recopied?
+*I use this bbclass, but it sometimes records inaccurate SHAs.*
+For example, when I first bitbake based a dirty layer meta-aaa, the SHA wor=
+ks
+as expected, followed by a 'modified'. But when I submitted the meta-aaa
+modification and ran bitbake again, nothing happened, and the file /etc/bui=
+ld
+was not regenerated.
+*Although meta-aaa is already clean at this time, the old SHA and 'modified=
+' are*
+*still displayed in the rootfs build file.
+*
+Is there any good way to solve this problem =EF=BC=9F
 
-There are a number of reasons, the example that comes to mine readily
-is code which removes things it thinks are now invalid and then
-installs new versions of them.
+>=20
+>=20
+>> I want to rebuild abc every time I execute bitbake <image>. So I set
+>> nostamp to
+>> 1 in abc_1.0.bb.
+>>=20
+>> It served my purpose. When I execute bitbake core-image-minimal, abc_1.0
+>> is
+>> always rebuilt, even if it was built last time without any changes.
+>>=20
+>> But, it leads to re-do_rootfs every time, and repackages images in forma=
+ts
+>> such
+>> as tar.
+>>=20
+>> I expect that when the txt generated by abc_1.0 has not changed, do_root=
+fs
+>>=20
+>> should not be re-executed, what should I do?
+>=20
+> Of course it does: you explicitly told bitbake that this recipe _must_ be
+> re-run and doesn=E2=80=99t have stamps to identify if it can be reused or=
+ not. Use
+> the image-buildinfo class.
 
-For example if the taskhash of dwarfsrcfiles changes (e.g. it's code
-changed), it would rebuild it, then update copies in any recipe's
-sysroot that depended on it.
+I set nostamp to 1 in abc_1.0.bb, also to solve the problem similar to the
+above image-buildinfo.bbclass. But this introduces a new problem: it someti=
+mes
+leads to unnecessary execution of tasks such as do_rootfs.
 
-> * I asked before, but I've just been doing this by adding debug
-> output, but is there a guide on how to debug this directly? I can't
-> figure out how to step into the Python code directly. I use VSCode.
+*Is there any good way to solve this problem =EF=BC=9F*
 
-I'm not ignoring the question, I simply don't know. I don't use VSCode.
-I'm an old school C/kernel person who uses printk (or bb.warn() in
-the=C2=A0bitbake case) to debug things.
+>=20
+> Ross
 
-Personally, I'd start with looking at the logs for my-app, see when
-dwardsrc-files is being added or removed from the sysroot. The logs
-should indicate that.
+--yYOdLtL0fF1HUK4YjDvH
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Removal could also happen at build setup time where bitbake prints
-messages about removing things in which case the removal wouldn't be in
-the recipes logs and isn't well logged, that code is central.
+On Fri, Aug 11, 2023 at 12:47 AM, Ross Burton wrote:<br />
+<blockquote>On 11 Aug 2023, at 03:21, Jiliang Cai via lists.yoctoproject.or=
+g &lt;tyrocjl=3Dgmail.com@lists.yoctoproject.org&gt; wrote:<br />
+<blockquote>I have a recipe abc_1.0.bb. It generates a txt contains all lay=
+ers git commit<br />ID into /etc. It is installed into image by IMAGE_INSTA=
+LL:append =3D " abc".</blockquote>
+If you want a list of layers/SHAs in your image, look at the image-buildinf=
+o class.</blockquote>
+<div>
+<div><strong>I use this bbclass, but it sometimes records inaccurate SHAs.<=
+/strong></div>
+<div>For example, when I first bitbake based a dirty layer meta-aaa, the SH=
+A works</div>
+<div>as expected, followed by a 'modified'. But when I submitted the meta-a=
+aa</div>
+<div>modification and ran bitbake again, nothing happened, and the file /et=
+c/build</div>
+<div>was not regenerated.</div>
+<div><strong>Although meta-aaa is already clean at this time, the old SHA a=
+nd 'modified' are</strong></div>
+<div><strong>still displayed in the rootfs build file.<br /></strong><br />=
+Is there any good way to solve this problem =EF=BC=9F<br /><br /></div>
+</div>
+<blockquote>
+<blockquote>I want to rebuild abc every time I execute bitbake &lt;image&gt=
+;. So I set nostamp to<br />1 in abc_1.0.bb.<br /><br />It served my purpos=
+e. When I execute bitbake core-image-minimal, abc_1.0 is<br />always rebuil=
+t, even if it was built last time without any changes.<br /><br />But, it l=
+eads to re-do_rootfs every time, and repackages images in formats such<br /=
+>as tar.<br /><br />I expect that when the txt generated by abc_1.0 has not=
+ changed, do_rootfs<br />should not be re-executed, what should I do?</bloc=
+kquote>
+Of course it does: you explicitly told bitbake that this recipe _must_ be r=
+e-run and doesn&rsquo;t have stamps to identify if it can be reused or not.=
+ Use the image-buildinfo class.</blockquote>
+<div>I set nostamp to 1 in abc_1.0.bb, also to solve the problem similar to=
+ the</div>
+<div>above image-buildinfo.bbclass. But this introduces a new problem: it s=
+ometimes</div>
+<div>leads to unnecessary execution of tasks such as do_rootfs.<br /><br />=
+<strong>Is there any good way to solve this problem =EF=BC=9F</strong></div=
+>
+<blockquote>Ross</blockquote>
 
-I'm doing my best to at least give you some answers, I'm afraid I don't
-have them all, or tons of time to spend on this so I'm doing the best I
-can. I'm assuming some answers are better than none, particularly if
-you're looking at something you think is abnormal but really isn't.
-
-I hope you can figure it out! If/as/when you do, help documenting it so
-the next person can know what you wish was documented would be helpful
-btw!
-
-Cheers,
-
-Richard
-
-
-
+--yYOdLtL0fF1HUK4YjDvH--
 
