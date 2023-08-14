@@ -1,55 +1,141 @@
-Return-Path: <senturkmurat1999@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 428B3C001DB
-	for <webhook@archiver.kernel.org>; Mon, 14 Aug 2023 08:08:02 +0000 (UTC)
-Subject: How to Remove a Build and Does it effect anything?
-To: yocto@lists.yoctoproject.org
-From: "msenturk" <senturkmurat1999@gmail.com>
-X-Originating-Location: Ankara, TR (5.46.113.90)
-X-Originating-Platform: Linux Firefox 108
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A9D13C001DB
+	for <webhook@archiver.kernel.org>; Mon, 14 Aug 2023 09:46:22 +0000 (UTC)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+ by mx.groups.io with SMTP id smtpd.web10.104107.1692006378752026542
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 14 Aug 2023 02:46:19 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=sPbPJOrh;
+ spf=pass (domain: gmail.com, ip: 209.85.167.54, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-4ff09632194so2024311e87.2
+        for <yocto@lists.yoctoproject.org>; Mon, 14 Aug 2023 02:46:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692006377; x=1692611177;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=STn1rBgt2clDVW8Au7arLZ8YeeWfDtvE5x3WpRJKltQ=;
+        b=sPbPJOrhoW99kOZ3LSTXb37Wn8RBcRkSuyl7yn0pxfAsvVFsZ8dYtwizekuTpmA+Ki
+         aNWH/HdbvXSdXzHzbQE2/AYl3S2oA4WNBlVogH7BYMVl8C7mgLx3Q2JWAjMyHbDw46+l
+         iT7f3fdu28MVMt16RRiIPje3MFyIznr3zj9Z77AL+A9G+6FAWhO/QkJgKzAaxx1BqXlU
+         5KO1O6ckDv6e1UD7pLsPwjP4XFy/m7AGwmgHsaMaIZW3yLQSAIUFiqARRKE7dsiSR+MV
+         tDsAYYn1r20cRNsDHQI21KhU/Gtr/FOD+qV0Uto+aof+NpseyotmJJX8qRY3olYvlC3T
+         5c3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692006377; x=1692611177;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=STn1rBgt2clDVW8Au7arLZ8YeeWfDtvE5x3WpRJKltQ=;
+        b=J9AACQ9i28+AR7AGrsDT99pjfVAdSE1BV+KtIlAqUcmA3K6LpR0FvsMC6IhgRRJqFG
+         0SgpUB8CGr/6FfMIaGJo2lLtm71PMkGMVH4FDIV9hzIpQKdiwxBosInCLSJ7UuIOm5SM
+         ZeVy7I2q0YzSgfuD+We/agBkcZ0KOSaFoOEaW3B6Lhvn+kji6eP/tQZcSFIGwP5FmOxt
+         1GCFyzp0PHYpIa4Gg10S7DNokH1g6RJkWjcOBNYGwYnDBl/fcdqX4wdX/9Oa4nzAdlPa
+         VCY/0zv+5bVeZiV7cFYWWPXsOyZUyxA+K2dBU4CpyxBbBaiwHyUifhn2JUtkC/WrXOgR
+         QOGw==
+X-Gm-Message-State: AOJu0YwSgfGA4/2ZddvZ66WPcvvYf7gBAWrw3vPp+j7fxVXO0lITlsHr
+	/tP96FdaLcSStXUPW26sLdRKtTIPAeATH8XTrNw=
+X-Google-Smtp-Source: AGHT+IHqL2IxjfSWDws3vgSv95LgZNgNYnjDZnt0GePx//38wtS58cH4sxDETyOuJoO6pNuRX1dnOJ0N6ZB089S9ZJU=
+X-Received: by 2002:ac2:5b1c:0:b0:4fe:d0f:1f1b with SMTP id
+ v28-20020ac25b1c000000b004fe0d0f1f1bmr5538154lfn.65.1692006376428; Mon, 14
+ Aug 2023 02:46:16 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 14 Aug 2023 01:07:55 -0700
-Message-ID: <tVWt.1692000475931246224.UqbG@lists.yoctoproject.org>
-Content-Type: multipart/related; boundary="zd1pwh5sycCWVzcxwzM4"
+References: <tVWt.1692000475931246224.UqbG@lists.yoctoproject.org>
+In-Reply-To: <tVWt.1692000475931246224.UqbG@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 14 Aug 2023 11:46:05 +0200
+Message-ID: <CANNYZj877GU_=3TQ35=KHHpy6ZbH0-R8tGGuArdzNoMDmbLkcQ@mail.gmail.com>
+Subject: Re: [yocto] How to Remove a Build and Does it effect anything?
+To: msenturk <senturkmurat1999@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/related; boundary="0000000000000686d80602deef2a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Aug 2023 08:08:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60788
+ <yocto@lists.yoctoproject.org>; Mon, 14 Aug 2023 09:46:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60789
 
---zd1pwh5sycCWVzcxwzM4
-Content-Type: multipart/alternative; boundary="tN3torSYOsUe62sInoIW"
+--0000000000000686d80602deef2a
+Content-Type: multipart/alternative; boundary="0000000000000686d50602deef29"
 
---tN3torSYOsUe62sInoIW
-Content-Type: text/plain; charset="utf-8"
+--0000000000000686d50602deef29
+Content-Type: text/plain; charset="UTF-8"
+
+It may contain sstate cache and downloads, which are useful across builds
+and can significantly speed them up. I'd suggest you store them somewhere
+else and point to them via settings in conf/local.conf in all of your
+builds.
+
+Alex
+
+On Mon, 14 Aug 2023 at 10:07, msenturk <senturkmurat1999@gmail.com> wrote:
+
+> Hello Everybody, I need some space for another build. I was planning to
+> delete an old build which I don't use anymore. It is in the Build folder.
+> Can I basically delete Build folder? Does it contain anything used for
+> other builds? Thank you.
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60788):
+> https://lists.yoctoproject.org/g/yocto/message/60788
+> Mute This Topic: https://lists.yoctoproject.org/mt/100732908/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--0000000000000686d50602deef29
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Everybody, I need some space for another build. I was planning to del=
-ete an old build which I don't use anymore. It is in the Build folder. Can =
-I basically delete Build folder? Does it contain anything used for other bu=
-ilds? Thank you.
+<div dir=3D"ltr"><div>It may contain sstate cache and downloads, which are =
+useful across builds and can significantly speed them up. I&#39;d suggest y=
+ou store them somewhere else and point to them via settings in conf/local.c=
+onf in all of your builds.</div><div><br></div><div>Alex<br></div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 1=
+4 Aug 2023 at 10:07, msenturk &lt;<a href=3D"mailto:senturkmurat1999@gmail.=
+com">senturkmurat1999@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">Hello Everybody, I need some space for ano=
+ther build. I was planning to delete an old build which I don&#39;t use any=
+more. It is in the Build folder. Can I basically delete Build folder? Does =
+it contain anything used for other builds? Thank you.<br><br><img src=3D"ci=
+d:attach_0_177B3177DFAE1B07_29355@lists.yoctoproject.org">
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#60788): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/60788" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/60788</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/100732908/168=
+6489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/100732908/1686489</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
+anavin@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
---tN3torSYOsUe62sInoIW
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--0000000000000686d50602deef29--
 
-Hello Everybody, I need some space for another build. I was planning to del=
-ete an old build which I don't use anymore. It is in the Build folder. Can =
-I basically delete Build folder? Does it contain anything used for other bu=
-ilds? Thank you.<br /><br /><img src=3D"cid:attach_0_177B3177DFAE1B07_29355=
-@lists.yoctoproject.org" />
-
---tN3torSYOsUe62sInoIW--
-
---zd1pwh5sycCWVzcxwzM4
-Content-Id: <attach_0_177B3177DFAE1B07_29355@lists.yoctoproject.org>
-X-Attachment-Id: attach_0_177B3177DFAE1B07_29355@lists.yoctoproject.org
+--0000000000000686d80602deef2a
 Content-Type: image/png; name="Screenshot from 2023-08-14 10-58-14.png"
+Content-Disposition: inline; 
+	filename="Screenshot from 2023-08-14 10-58-14.png"
 Content-Transfer-Encoding: base64
-Content-Disposition: inline; filename="Screenshot from 2023-08-14 10-58-14.png"
+Content-ID: <attach_0_177B3177DFAE1B07_29355@lists.yoctoproject.org>
+X-Attachment-Id: attach_0_177B3177DFAE1B07_29355@lists.yoctoproject.org
 
 iVBORw0KGgoAAAANSUhEUgAAAoAAAAFRCAYAAADkRxw0AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAA
@@ -568,6 +654,5 @@ My0wOC0xNFQwODowNDoxMiswMDowMBZSi+8AAAASdEVYdGV4aWY6RXhpZk9mZnNldAA2ONDPSmYA
 AAAZdEVYdGV4aWY6UGl4ZWxYRGltZW5zaW9uADE2NjJ7R0qcAAAAGHRFWHRleGlmOlBpeGVsWURp
 bWVuc2lvbgA4NzScwMhKAAAAHnRFWHRleGlmOlNvZnR3YXJlAFNob3R3ZWxsIDAuMzAuMTC9WuP7
 AAAAAElFTkSuQmCC
-
---zd1pwh5sycCWVzcxwzM4--
+--0000000000000686d80602deef2a--
 
