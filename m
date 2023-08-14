@@ -1,192 +1,199 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA4B5C001B0
-	for <webhook@archiver.kernel.org>; Mon, 14 Aug 2023 13:23:03 +0000 (UTC)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web10.107419.1692019380663399839
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB263EB64DD
+	for <webhook@archiver.kernel.org>; Mon, 14 Aug 2023 21:01:05 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+ by mx.groups.io with SMTP id smtpd.web11.119400.1692046861104328678
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Aug 2023 06:23:01 -0700
+ Mon, 14 Aug 2023 14:01:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=PTxm22TU;
- spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-4fe0e34f498so6838452e87.2
-        for <yocto@lists.yoctoproject.org>; Mon, 14 Aug 2023 06:23:00 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=npC6FBrZ;
+ spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-99bfcf4c814so637569966b.0
+        for <yocto@lists.yoctoproject.org>; Mon, 14 Aug 2023 14:01:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692019379; x=1692624179;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sg/scpmSjIWuQTON7vgKx04lzSP9+EqiHPDb6x7uty0=;
-        b=PTxm22TUNTSrQOS7jFR1ExTK+E5A8v3pSSvecULw1v/NjbY6lNeoO6vkgM1/uY9IB0
-         JxVHdSsEX0eL0nqMCOwm3rT9LeQpu4tApbWsqeHE4YG3JCdLScDXFQHOI2ndk3jws6jV
-         oRhS+/J2BmeiX/salFjRlGOz6JQSnNu0C61jkru/FxyulAH341hXib4dsaDAVzLN2L+8
-         7IsJjvJdbYz1vwOkVr9279faS0nXA0XTucmJXiX1O05ZYf9XV5n9DwjoOu5zY0xI1iWq
-         9iQzo6+b2qcT9d61DmwqVnfRqZyHe5sk6dt0mk2ojVryVJlSyJ+bCJoz7RjQWF6mx0+C
-         vWtQ==
+        d=gmail.com; s=20221208; t=1692046859; x=1692651659;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=bzBbScufnjiVkUAnwt0s1sk5Sv8fN2RaGe6qpc3cbV4=;
+        b=npC6FBrZRvm5azp2hezw4w6BZT4hVnrVJpRZhBpYt8QcgJxAF4AgQXjZTEaVWhzakm
+         7teslHBSLWEoUFGRldIgyqSuFXpUn0pW6A5oOprNQSHdYjggIjwC/qeZfvLuC4meEyHq
+         1sQ7NKTSyx4CNR8s3NqFCOluQZTJalj0hJ3TrX4gqEpEikeybiysvX7J0gTo8Vj1qqw0
+         hpgv8Vau62LqbjhpOt2FKzetAGMLgjFl37m33biWtkn3H2lW1+Kx37Z0TKfogRI/1NYs
+         IhZE2SrrPcXnhfvHBpFy9LHgGg4/wsQSH2JZJ1Li0c3JNziPBA+sjmhE1NjUkD57xN1d
+         oI6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692019379; x=1692624179;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sg/scpmSjIWuQTON7vgKx04lzSP9+EqiHPDb6x7uty0=;
-        b=mIimq/AlOonIm6XTw7lonIpZuOm4QQasDBoCtcYR5FC9TEWEVC7g5KcZ+5p/95fNtA
-         CImaS47W+f5lqL7RWDbNHIu5LxofoGigzK90OCYFfnFK/8n8pe31sF8R4mKzHHOqDwV+
-         0DQ1oVgMTUI79lh3qB2Ns5r46PPhDIiDJOMInus7YTI4TTjNErUvcnC8iXp1lXRztf+w
-         fnutMzNepesuLRmj2ljOlOo/zcJ9nR8vgY6/3eWFPiwqOS/9KWdlAIbKCGfPkGDS6611
-         MroXroaMQJIiz0vumKe2yDNrnFaJZe2jac/qEECrI1H/SRb+BYdSgXiu/kIjWFVxfm12
-         KK7A==
-X-Gm-Message-State: AOJu0YxSY9ehinlB9lgOCjIdDcVf31SladUtFcWzb6WY7dlYdx9Ghovs
-	9Ef5lVXU184QbC2AaqieleZ4WREpwdej6ljOp2Q=
-X-Google-Smtp-Source: AGHT+IHY2nxhiRlnslIxeaf7az5nObxEU1bmhvA33FlEb+8fnMIxx9jd++ZuVWWJurXdpl4oq2Kinq7wJQqCoTZcxN4=
-X-Received: by 2002:a05:6512:29e:b0:4f9:72a5:2b76 with SMTP id
- j30-20020a056512029e00b004f972a52b76mr6176591lfp.65.1692019378291; Mon, 14
- Aug 2023 06:22:58 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692046859; x=1692651659;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bzBbScufnjiVkUAnwt0s1sk5Sv8fN2RaGe6qpc3cbV4=;
+        b=YfGOmDprjORhStusdx2VKZ3AxkkH0A+R4DqB5K/9HF+ruldyy7t2p4ypxQ09fLI/fO
+         JGXCpQlV238ENc09YZAW8yKQcbsP4K6sJ9UhtTombeHwxaBKQhwzqIxrfSBiLSjvL+zS
+         t0+HwNA/SzaTOGRUUqMWb7v9Iws1Zdz1sd+s1Zh+3FkF4i0NEGGAqFlicdORigxS7mqO
+         m19xkj7e5LOqS6AnR934J5/+Yvh7y6Dyo9G5m82Jqhxtc0NH4escszW0E+VQWNb1YYCP
+         VxXh9jYDoPulkREoKsJEhLCEmWqJonJ6N+Q1DUaw9nVIdFdFM5EYFrOoNYO4Ngdzpdr5
+         muFw==
+X-Gm-Message-State: AOJu0YzGFmuL6Q+xi4Hsp/5EaVzDdVTlMvXgZRVhV8A5jiWSp+t0gbBg
+	QsAu4uVrHVD3gkm68quDTsf1hBS4dgKMy8dhklOxo6ghFNyAZg==
+X-Google-Smtp-Source: AGHT+IHyYvi5Il2CxQxXbHR0a09EzbcC5yh7oEMsULJ2yyNuJjA4DRGKCfQFjYw88u+mWxHSAyGSGyprSdqcZjnbZAY=
+X-Received: by 2002:a17:906:21c:b0:99b:d4f5:a518 with SMTP id
+ 28-20020a170906021c00b0099bd4f5a518mr10083807ejd.13.1692046859085; Mon, 14
+ Aug 2023 14:00:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <CANNYZj_0NnuZ604gV+ZXBdXtSxQYbnnkGoukvaAUA+D3=Zo=dw@mail.gmail.com>
- <19617.1692017585524870640@lists.yoctoproject.org>
-In-Reply-To: <19617.1692017585524870640@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 14 Aug 2023 15:22:46 +0200
-Message-ID: <CANNYZj8dwD0a0o-QFEph=RFN=TfCJZMQzxqKhsB2ZWqOBJE69w@mail.gmail.com>
-Subject: Re: [yocto] How to migrate an older version of Yocto?
-To: msenturk <senturkmurat1999@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 14 Aug 2023 14:00:48 -0700
+Message-ID: <CAK5yBb-ctWy8Gz9FzvgKir2dfbaxMREGJ8x7SdLVXbA+vgqxig@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	openembedded-core-request@lists.openembedded.org
+Content-Type: multipart/alternative; boundary="000000000000faaab00602e85bd7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Aug 2023 13:23:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60791
+ <yocto@lists.yoctoproject.org>; Mon, 14 Aug 2023 21:01:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60792
 
-This snippet doesn't show what the errors are. I would suggest you set
-up a new build directory first and try then. Also make sure that all
-layers are indeed checked out to latest mickledore.
+--000000000000faaab00602e85bd7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Alex
+All,
 
-On Mon, 14 Aug 2023 at 14:53, msenturk <senturkmurat1999@gmail.com> wrote:
->
-> Thanks for the answers. I switched to mickledore and tried to build but u=
-nfortunately received some errors and warnings:
->
-> ERROR: Task (/home/stj/poky/meta/recipes-devtools/gcc/gcc_12.3.bb:do_comp=
-ile) failed with exit code '1'
-> WARNING: linux-xlnx-6.1.5-xilinx-v2023.1+gitAUTOINC+716921b6d7-r0 do_fetc=
-h: Failed to fetch URL git://github.com/Xilinx/linux-xlnx.git;protocol=3Dht=
-tps;name=3Dmachine;branch=3Dxlnx_rebase_v6.1_LTS, attempting MIRRORS if ava=
-ilable
-> WARNING: qemu-xilinx-native-v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r=
-0 do_fetch: Failed to fetch URL gitsm://gitlab.com/qemu-project/u-boot.git;=
-protocol=3Dhttps;name=3Droms/u-boot;subpath=3Droms/u-boot;nobranch=3D1;bare=
-clone=3D1;nobranch=3D1, attempting MIRRORS if available
-> ERROR: linux-xlnx-6.1.5-xilinx-v2023.1+gitAUTOINC+716921b6d7-r0 do_fetch:=
- Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; export DBUS_SES=
-SION_BUS_ADDRESS=3D"unix:path=3D/run/user/1002/bus"; export SSH_AGENT_PID=
-=3D"3557"; export SSH_AUTH_SOCK=3D"/run/user/1002/keyring/ssh"; export PATH=
-=3D"/home/stj/poky/build_mickledore/tmp/sysroots-uninative/x86_64-linux/usr=
-/bin:/home/stj/poky/scripts:/home/stj/poky/build_mickledore/tmp/work/zedboa=
-rd_zynq7-poky-linux-gnueabi/linux-xlnx/6.1.5-xilinx-v2023.1+gitAUTOINC+7169=
-21b6d7-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi:/home/stj/po=
-ky/build_mickledore/tmp/work/zedboard_zynq7-poky-linux-gnueabi/linux-xlnx/6=
-.1.5-xilinx-v2023.1+gitAUTOINC+716921b6d7-r0/recipe-sysroot/usr/bin/crosssc=
-ripts:/home/stj/poky/build_mickledore/tmp/work/zedboard_zynq7-poky-linux-gn=
-ueabi/linux-xlnx/6.1.5-xilinx-v2023.1+gitAUTOINC+716921b6d7-r0/recipe-sysro=
-ot-native/usr/sbin:/home/stj/poky/build_mickledore/tmp/work/zedboard_zynq7-=
-poky-linux-gnueabi/linux-xlnx/6.1.5-xilinx-v2023.1+gitAUTOINC+716921b6d7-r0=
-/recipe-sysroot-native/usr/bin:/home/stj/poky/build_mickledore/tmp/work/zed=
-board_zynq7-poky-linux-gnueabi/linux-xlnx/6.1.5-xilinx-v2023.1+gitAUTOINC+7=
-16921b6d7-r0/recipe-sysroot-native/sbin:/home/stj/poky/build_mickledore/tmp=
-/work/zedboard_zynq7-poky-linux-gnueabi/linux-xlnx/6.1.5-xilinx-v2023.1+git=
-AUTOINC+716921b6d7-r0/recipe-sysroot-native/bin:/home/stj/poky/bitbake/bin:=
-/home/stj/poky/build_mickledore/tmp/hosttools"; export HOME=3D"/home/stj"; =
-LANG=3DC git -c gc.autoDetach=3Dfalse -c core.pager=3Dcat clone --bare --mi=
-rror https://github.com/Xilinx/linux-xlnx.git /home/stj/poky/build_mickledo=
-re/downloads/git2/github.com.Xilinx.linux-xlnx.git --progress failed with e=
-xit code 128, no output
-> ERROR: linux-xlnx-6.1.5-xilinx-v2023.1+gitAUTOINC+716921b6d7-r0 do_fetch:=
- Bitbake Fetcher Error: FetchError('Unable to fetch URL from any source.', =
-'git://github.com/Xilinx/linux-xlnx.git;protocol=3Dhttps;name=3Dmachine;bra=
-nch=3Dxlnx_rebase_v6.1_LTS')
-> ERROR: Logfile of failure stored in: /home/stj/poky/build_mickledore/tmp/=
-work/zedboard_zynq7-poky-linux-gnueabi/linux-xlnx/6.1.5-xilinx-v2023.1+gitA=
-UTOINC+716921b6d7-r0/temp/log.do_fetch.6793
-> ERROR: Task (/home/stj/poky/meta-xilinx/meta-xilinx-core/recipes-kernel/l=
-inux/linux-xlnx_2023.1.bb:do_fetch) failed with exit code '1'
-> ERROR: qemu-xilinx-native-v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0 =
-do_fetch: Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; export=
- DBUS_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/1002/bus"; export SSH_AG=
-ENT_PID=3D"3557"; export SSH_AUTH_SOCK=3D"/run/user/1002/keyring/ssh"; expo=
-rt PATH=3D"/home/stj/poky/scripts/native-intercept:/home/stj/poky/build_mic=
-kledore/tmp/sysroots-uninative/x86_64-linux/usr/bin:/home/stj/poky/scripts:=
-/home/stj/poky/build_mickledore/tmp/work/x86_64-linux/qemu-xilinx-native/v7=
-.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0/recipe-sysroot-native/usr/bin/=
-x86_64-linux:/home/stj/poky/build_mickledore/tmp/work/x86_64-linux/qemu-xil=
-inx-native/v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0/recipe-sysroot-na=
-tive/usr/bin:/home/stj/poky/build_mickledore/tmp/work/x86_64-linux/qemu-xil=
-inx-native/v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0/recipe-sysroot-na=
-tive/usr/sbin:/home/stj/poky/build_mickledore/tmp/work/x86_64-linux/qemu-xi=
-linx-native/v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0/recipe-sysroot-n=
-ative/usr/bin:/home/stj/poky/build_mickledore/tmp/work/x86_64-linux/qemu-xi=
-linx-native/v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0/recipe-sysroot-n=
-ative/sbin:/home/stj/poky/build_mickledore/tmp/work/x86_64-linux/qemu-xilin=
-x-native/v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0/recipe-sysroot-nati=
-ve/bin:/home/stj/poky/bitbake/bin:/home/stj/poky/build_mickledore/tmp/hostt=
-ools"; export HOME=3D"/home/stj"; LANG=3DC git -c gc.autoDetach=3Dfalse -c =
-core.pager=3Dcat clone --bare --mirror https://gitlab.com/qemu-project/u-bo=
-ot.git /home/stj/poky/build_mickledore/downloads/git2/gitlab.com.qemu-proje=
-ct.u-boot.git --progress failed with exit code 128, no output
-> ERROR: qemu-xilinx-native-v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0 =
-do_fetch: gitsm: submodule download failed: FetchError Fetcher failure for =
-URL: 'gitsm://gitlab.com/qemu-project/u-boot.git;protocol=3Dhttps;name=3Dro=
-ms/u-boot;subpath=3Droms/u-boot;nobranch=3D1;bareclone=3D1;nobranch=3D1'. U=
-nable to fetch URL from any source.
-> WARNING: qemu-xilinx-native-v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r=
-0 do_fetch: Failed to fetch URL gitsm://github.com/Xilinx/qemu.git;protocol=
-=3Dhttps;branch=3Dxlnx_rel_v2023.1, attempting MIRRORS if available
-> ERROR: qemu-xilinx-native-v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0 =
-do_fetch: Fetcher failure for URL: 'gitsm://gitlab.com/qemu-project/u-boot.=
-git;protocol=3Dhttps;name=3Droms/u-boot;subpath=3Droms/u-boot;nobranch=3D1;=
-bareclone=3D1;nobranch=3D1'. Unable to fetch URL from any source.
-> ERROR: qemu-xilinx-native-v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc9f99e-r0 =
-do_fetch: Bitbake Fetcher Error: FetchError('Unable to fetch URL from any s=
-ource.', 'gitsm://github.com/Xilinx/qemu.git;protocol=3Dhttps;branch=3Dxlnx=
-_rel_v2023.1')
-> ERROR: Logfile of failure stored in: /home/stj/poky/build_mickledore/tmp/=
-work/x86_64-linux/qemu-xilinx-native/v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc=
-9f99e-r0/temp/log.do_fetch.6798
-> ERROR: Task (/home/stj/poky/meta-xilinx/meta-xilinx-core/recipes-devtools=
-/qemu/qemu-xilinx-native_2023.1.bb:do_fetch) failed with exit code '1'
-> WARNING: qemu-xilinx-system-native-v7.1.0-xilinx-v2023.1+gitAUTOINC+21adc=
-9f99e-r0 do_fetch: Failed to fetch URL gitsm://github.com/openssl/openssl;p=
-rotocol=3Dhttps;name=3DCryptoPkg/Library/OpensslLib/openssl;subpath=3DCrypt=
-oPkg/Library/OpensslLib/openssl;nobranch=3D1;bareclone=3D1;nobranch=3D1, at=
-tempting MIRRORS if available
-> NOTE: Tasks Summary: Attempted 2055 tasks of which 2010 didn't need to be=
- rerun and 5 failed.
->
-> Summary: 5 tasks failed:
->   /home/stj/poky/meta/recipes-devtools/binutils/binutils_2.40.bb:do_compi=
-le
->   /home/stj/poky/meta/recipes-devtools/cmake/cmake-native_3.25.2.bb:do_co=
-mpile
->   /home/stj/poky/meta/recipes-devtools/gcc/gcc_12.3.bb:do_compile
->   /home/stj/poky/meta-xilinx/meta-xilinx-core/recipes-kernel/linux/linux-=
-xlnx_2023.1.bb:do_fetch
->   /home/stj/poky/meta-xilinx/meta-xilinx-core/recipes-devtools/qemu/qemu-=
-xilinx-native_2023.1.bb:do_fetch
-> Summary: There were 7 WARNING messages.
-> Summary: There were 12 ERROR messages, returning a non-zero exit code.
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60790): https://lists.yoctoproject.org/g/yocto/messag=
-e/60790
-> Mute This Topic: https://lists.yoctoproject.org/mt/100525085/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 423
+unassigned or newcomer bugs.
+
+
+
+We're hoping people may be able to spare some time now and again to help
+out with these.  Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system.  There are also roughly four different "priority"
+classes right now,  =E2=80=9C4.3=E2=80=9D, =E2=80=9C4.4=E2=80=9D, "4.99" an=
+d "Future", the more
+pressing/urgent issues being in "4.3" and then =E2=80=9C4.4=E2=80=9D.
+
+
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:              *sjolley.yp.pm@gmail.com <sjolley.yp.pm@gmail.com>*
+
+--000000000000faaab00602e85bd7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"MsoNormal">All,<u></u><u></u></p><p class=3D"M=
+soNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">The triage team is=
+ starting to try and collect up and classify bugs which a newcomer to the p=
+roject would be able to work on in a way which means people can find them. =
+They&#39;re being listed on the triage page under the appropriate heading:<=
+u></u><u></u></p><p><a href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triag=
+e#Newcomer_Bugs" target=3D"_blank">https://wiki.yoctoproject.org/wiki/Bug_T=
+riage#Newcomer_Bugs</a>=C2=A0 Also please review:=C2=A0<a href=3D"https://w=
+ww.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded" target=3D"_=
+blank">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbed=
+ded</a>=C2=A0and how to create a bugzilla account at:=C2=A0<a href=3D"https=
+://bugzilla.yoctoproject.org/createaccount.cgi" target=3D"_blank"><span sty=
+le=3D"color:blue">https://bugzilla.yoctoproject.org/createaccount.cgi</span=
+></a><u></u><u></u></p><p class=3D"MsoNormal">The idea is these bugs should=
+ be straight forward for a person to help work on who doesn&#39;t have deep=
+ experience with the project.=C2=A0 If anyone can help, please take ownersh=
+ip of the bug and send patches!=C2=A0 If anyone needs help/advice there are=
+ people on irc who can likely do so, or some of the more experienced contri=
+butors will likely be happy to help too.<u></u><u></u></p><p class=3D"MsoNo=
+rmal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the Bugzill=
+a. The number of people attending that meeting has fallen, as have the numb=
+er of people available to help fix bugs. One of the things we hear users re=
+port is they don&#39;t know how to help. We (the triage team) are therefore=
+ going to start reporting out the currently 423 unassigned or newcomer bugs=
+.<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=
+=3D"MsoNormal">We&#39;re hoping people may be able to spare some time now a=
+nd again to help out with these.=C2=A0 Bugs are split into two types, &quot=
+;true bugs&quot; where things don&#39;t work as they should and &quot;enhan=
+cements&quot; which are features we&#39;d want to add to the system.=C2=A0 =
+There are also roughly four different &quot;priority&quot; classes right no=
+w, =C2=A0=E2=80=9C4.3=E2=80=9D, =E2=80=9C4.4=E2=80=9D, &quot;4.99&quot; and=
+ &quot;Future&quot;, the more pressing/urgent issues being in &quot;4.3&quo=
+t; and then =E2=80=9C4.4=E2=80=9D.<u></u><u></u></p><p class=3D"MsoNormal">=
+<u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Please review this link and =
+if a bug is something you would be able to help with either take ownership =
+of the bug, or send me (<a href=3D"mailto:sjolley.yp.pm@gmail.com" target=
+=3D"_blank">sjolley.yp.pm@gmail.com</a>) an e-mail with the bug number you =
+would like and I will assign it to you (please make sure you have a Bugzill=
+a account).=C2=A0 The list is at:=C2=A0<a href=3D"https://wiki.yoctoproject=
+.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_Bugs" target=3D"_blank"=
+>https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcom=
+er_Bugs</a><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p=
+><p class=3D"MsoNormal">Thanks,<u></u><u></u></p><p class=3D"MsoNormal"><u>=
+</u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"break-after:avoid"><b>=
+<i><span style=3D"font-size:16pt;font-family:&quot;Times New Roman&quot;,se=
+rif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=3D"font=
+-size:16pt;font-family:Tahoma,sans-serif;color:purple"><u></u><u></u></span=
+></i></b></p><p class=3D"MsoNormal"><b><span style=3D"font-size:8pt;font-fa=
+mily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager<u></=
+u><u></u></span></b></p><p class=3D"MsoNormal"><span style=3D"font-size:9pt=
+;font-family:Wingdings;color:black">(</span><span style=3D"font-size:9pt;fo=
+nt-family:&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=
+=A0</span><b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&q=
+uot;;color:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><s=
+pan style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(20=
+8) 244-4460<span style=3D"color:black"><u></u><u></u></span></span></p><p c=
+lass=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:Wingdings">*=C2=
+=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;font-family:&quot;Com=
+ic Sans MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"fon=
+t-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:</span>=
+<span lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&qu=
+ot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0<u><span style=3D"color:blue"><a href=3D"mailto:sjolle=
+y.yp.pm@gmail.com" target=3D"_blank">sjolley.yp.pm@gmail.com</a></span></u>=
+</span></p></div>
+
+--000000000000faaab00602e85bd7--
 
