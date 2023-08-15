@@ -1,70 +1,83 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38AE3C001E0
-	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 19:13:34 +0000 (UTC)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
- by mx.groups.io with SMTP id smtpd.web10.143099.1692126806829457099
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C0EDC41513
+	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 20:24:54 +0000 (UTC)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+ by mx.groups.io with SMTP id smtpd.web11.144603.1692131090682976518
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Aug 2023 12:13:27 -0700
+ Tue, 15 Aug 2023 13:24:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=ZUYCRjl8;
- spf=pass (domain: gmail.com, ip: 209.85.167.49, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-4fe8c3b5ca0so9369843e87.1
-        for <yocto@lists.yoctoproject.org>; Tue, 15 Aug 2023 12:13:26 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=bD+N0PHN;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.53, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-3fe501e0b4cso54535805e9.1
+        for <yocto@lists.yoctoproject.org>; Tue, 15 Aug 2023 13:24:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692126805; x=1692731605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6k/aUo216OcqQZIPc0MEm/lOtL18ltiB1zKXzOdvi44=;
-        b=ZUYCRjl8TxVIfSZe8mFXiPKP+ry5edJSsQz/IVpBqratQ2Rhop0WcWCVbIPSBZmzlw
-         uBtqoCiUl86+U3jat+vAyIsxnwlgw7WmyF3e5KFtFCY6mLXxARSLemfzNcNWQl8iOnG6
-         mJa1vXJLZUkXHP5/UOidH28caZGKEBfdhklP6UV2Vn2uxKI6gCmWBAwSPH7n8LnkCsOq
-         Nz6iFjegsWPLgawKL5G1mvuJJ8/3df9adATO5Arj0925W58FwDaeaiU3exnS904DnSFX
-         lqVcqcd0Gkjr4j7DPOqD5MuPHpAflBmmnr14yUjyFPkhg8w8mbkzxLX+BIKk0YchG8PM
-         8qkA==
+        d=linuxfoundation.org; s=google; t=1692131089; x=1692735889;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=q/n1cREEGY8ViHt9HL/2wrvQ5kJ8H1iJuSm7OoSrcR8=;
+        b=bD+N0PHN5/IVzNQxhr3WeDO6YUBtMzFoyaKt1j0LtYUU9NCl2noMJsSqSTGOXPf3CB
+         zjPJmJO8SwqyDKOuZmTd/ZuUZpCtDIIi+wdMF6DNSOlcROI8IvHXYMnm7TaDtLoYuqaA
+         p1iY0n06o8fhp0uu/nOvFZM9tpT/oFA85b8PI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692126805; x=1692731605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6k/aUo216OcqQZIPc0MEm/lOtL18ltiB1zKXzOdvi44=;
-        b=ZhUeut1T7iwgHak32yFm0yPiKpHrdx5LrtA2PtL+cbL38PAUo6/BhXv29MU6jF1l0U
-         S/iGonAwJtUWTvok1UJQQ5gFPKAs8rX6AREZB57DLK3mA1bSUTUtCaXTYZL3Mz+cK/Xf
-         85dy71/Xn4bLIRV24XumA4gDd8EW/BDrLtqOD1aAE3MuyHpjhUsocuKcyWedLb1bmd0p
-         ZMFv8xbon+nv0jlG1IHUdYnmTqjvW/NIN7/acRPR06xbOKcnw0f60DaZbXx/b+cVuJN5
-         xI1X44hiSGgxcVQW1A2I/QFisKTbkjOkkP4S6Pk7mkrCJ4z06SDDtpyr4NsBwUOniLkV
-         fz2w==
-X-Gm-Message-State: AOJu0YyIROlH7F3uMKq3QYplhYXKs3kIvW7ltWeBtye7vMy3DUpidOJk
-	pjfh+dwJ1SNzkwfoyLkubxLh7OaHkO7FWrWuztU=
-X-Google-Smtp-Source: AGHT+IF8ThBRqceicKGS0s/GkshliwrYw7PsWYru7WQEnqd3UUzzLepi8DPYauQV+fltEWiYRRqE+KURozR1V/5khZ0=
-X-Received: by 2002:ac2:5936:0:b0:4f7:66bf:b263 with SMTP id
- v22-20020ac25936000000b004f766bfb263mr8500667lfi.24.1692126804724; Tue, 15
- Aug 2023 12:13:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAK5yBb_CCWG_Domp-goEZuViHtMy_y9-5v1GHE1jbohzEGoLUA@mail.gmail.com>
-In-Reply-To: <CAK5yBb_CCWG_Domp-goEZuViHtMy_y9-5v1GHE1jbohzEGoLUA@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 15 Aug 2023 21:13:13 +0200
-Message-ID: <CANNYZj8qfbMCoPcTq=BViDaa6vEzCUb6QbbOXihJoMGEdtn7Ow@mail.gmail.com>
+        d=1e100.net; s=20221208; t=1692131089; x=1692735889;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q/n1cREEGY8ViHt9HL/2wrvQ5kJ8H1iJuSm7OoSrcR8=;
+        b=il0HguMpbbK++TWuULRu7rHNgX7OPfkEnF7ZUgJb3SuJ1X+Ld+3NMnEmxISsqk1KEU
+         vYxxvtFgj9R1cRDL7CpYxzNyc6YfTjcsOCQpjzK6EPl6X5HI1nwY28IR3IGMbdKv0VZn
+         /DSVXMhDB6sNLCXPboXyJo+YsWUToN865ajGEMRf6VutHBtNY02CXrfR35DWwtPo+Pf6
+         ilddtgNzAvtne2prFmcQ4xTT9tGdEh0qAlmsZsjAC7XmT46B2ESerlDfo3JHIdwfHhBY
+         L4e0q6MHSHRs8pSJSdsuePdv4qdvnExESiGkhysBGQl4qCzbIPjYEtahjmfH85n33P2e
+         x2hA==
+X-Gm-Message-State: AOJu0YzyKw+7R+0DvCtaKj+/1/5YugcixWzury58ubbWJj3wj9QAyOK1
+	eEjPAc7n0OC2UEOl8mjweegl4w==
+X-Google-Smtp-Source: AGHT+IGtQfXFGgaMOvkf2SGFRQcDH27Y009QR/xSJ9tooVtss74YO/+H8DLK9xMnJdKchXHYKcdeew==
+X-Received: by 2002:a1c:750f:0:b0:3fa:934c:8350 with SMTP id o15-20020a1c750f000000b003fa934c8350mr11022566wmc.27.1692131089026;
+        Tue, 15 Aug 2023 13:24:49 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:b782:7711:f696:663e? ([2001:8b0:aba:5f3c:b782:7711:f696:663e])
+        by smtp.gmail.com with ESMTPSA id l5-20020a7bc345000000b003feae747ff2sm2610859wmj.35.2023.08.15.13.24.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Aug 2023 13:24:48 -0700 (PDT)
+Message-ID: <b22346891833a5c6b1198bfa08771dab9d39b1a8.camel@linuxfoundation.org>
 Subject: Re: [OE-core] Yocto Project Status 15 August 2023 (WW33)
-To: Stephen Jolley <sjolley.yp.pm@gmail.com>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, Stephen Jolley
+	 <sjolley.yp.pm@gmail.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+	",openembedded-core@lists.openembedded.org"
+	 <openembedded-core@lists.openembedded.org>
+Date: Tue, 15 Aug 2023 21:24:45 +0100
+In-Reply-To: <CANNYZj8qfbMCoPcTq=BViDaa6vEzCUb6QbbOXihJoMGEdtn7Ow@mail.gmail.com>
+References: 
+	<CAK5yBb_CCWG_Domp-goEZuViHtMy_y9-5v1GHE1jbohzEGoLUA@mail.gmail.com>
+	 <CANNYZj8qfbMCoPcTq=BViDaa6vEzCUb6QbbOXihJoMGEdtn7Ow@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 15 Aug 2023 19:13:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60803
+ <yocto@lists.yoctoproject.org>; Tue, 15 Aug 2023 20:24:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60804
 
-On Tue, 15 Aug 2023 at 16:52, Stephen Jolley <sjolley.yp.pm@gmail.com> wrote:
-> The various systemd issues have mostly been resolved although the AUH did break as a result and will have to be fixed and rerun.
+On Tue, 2023-08-15 at 21:13 +0200, Alexander Kanavin wrote:
+> On Tue, 15 Aug 2023 at 16:52, Stephen Jolley <sjolley.yp.pm@gmail.com> wr=
+ote:
+> > The various systemd issues have mostly been resolved although the AUH d=
+id break as a result and will have to be fixed and rerun.
+>=20
+> I sent the patch now - it's for yocto-autobuilder-helper, not AUH, so
+> when that's applied, AUH job can re-run.
 
-I sent the patch now - it's for yocto-autobuilder-helper, not AUH, so
-when that's applied, AUH job can re-run.
+Thanks, merged and running!
 
-Alex
+Cheers,
+
+Richard
 
