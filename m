@@ -1,249 +1,188 @@
-Return-Path: <rob@teegee.cloud>
+Return-Path: <philip@balister.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DEFC5C001B0
-	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 04:23:37 +0000 (UTC)
-Received: from mail.teegee.cloud (mail.teegee.cloud [139.99.90.29])
- by mx.groups.io with SMTP id smtpd.web10.127232.1692073412600740041
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CB3C6C0015E
+	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 07:29:28 +0000 (UTC)
+Received: from smtp5.emailarray.com (smtp5.emailarray.com [65.39.216.39])
+ by mx.groups.io with SMTP id smtpd.web10.129256.1692084558562453572
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Aug 2023 21:23:33 -0700
+ Tue, 15 Aug 2023 00:29:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@teegee.cloud header.s=dkim header.b=WCCcxb34;
- spf=pass (domain: teegee.cloud, ip: 139.99.90.29, mailfrom: rob@teegee.cloud)
-Received: from mail.teegee.cloud (localhost [127.0.0.1])
-	by mail.teegee.cloud (Postfix) with ESMTP id 4RPynD6lYsz3wms
-	for <yocto@lists.yoctoproject.org>; Tue, 15 Aug 2023 04:23:28 +0000 (UTC)
-Authentication-Results: mail.teegee.cloud (amavisd-new);
-	dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-	header.d=teegee.cloud
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=teegee.cloud; h=
-	content-transfer-encoding:content-type:in-reply-to:from
-	:references:to:content-language:subject:user-agent:mime-version
-	:date:message-id; s=dkim; t=1692073407; x=1694665408; bh=9VKNkd5
-	U74wga8ym5m/ftkFCxf2NzktP5BF1fLIuPdo=; b=WCCcxb344JvW0KYn94XuLQc
-	3j5mrf2zY4dUTXGrTb1N+H+u9QCVL8SAppK00WT1rewoPKGf4/prlZ2lI91PWbDe
-	dlGMVLInQP96jjx17LN5foqSMOzhMeCGjjaHzouhwHAr/3m2maXxHdiP+RjYbLt7
-	7UazX+bnBiK1bCvqg+4mtpgvrYZbw4OGt1xUPaamSS0QKzzmg9Fb9mrcrdg0gfTb
-	zSxwbc1jepD+GigI3hZJ7eLg3NOXUO6P3OK6N0x+22wHB1crd/aHF67+nVq8ENWn
-	NFun6jzHXZw7hHiZBoYI3GWZ7tbBNQrE69CNTIE/VyhQiLRXUT2jEUmy57e83uQ=
-	=
-X-Virus-Scanned: Debian amavisd-new at mail.teegee.cloud
-Received: from mail.teegee.cloud ([127.0.0.1])
-	by mail.teegee.cloud (mail.teegee.cloud [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id 7oiDi5NOGGFe for <yocto@lists.yoctoproject.org>;
-	Tue, 15 Aug 2023 04:23:27 +0000 (UTC)
-Received: from [192.168.3.4] (unknown [195.133.134.78])
-	by mail.teegee.cloud (Postfix) with ESMTPSA id 4RPynC3tkRz3wlC;
-	Tue, 15 Aug 2023 04:23:27 +0000 (UTC)
-Message-ID: <5f03d563-9358-9cc2-af9e-4920ef26d508@teegee.cloud>
-Date: Tue, 15 Aug 2023 12:23:25 +0800
+ dkim=none (message not signed); spf=pass (domain: balister.org, ip: 65.39.216.39, mailfrom: philip@balister.org)
+Received: (qmail 17304 invoked by uid 89); 15 Aug 2023 07:29:17 -0000
+X-Orig-Sender: philip@balister.org
+Received: from unknown (HELO ?172.29.5.101?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0A4MC4xNDcuMjA2LjY0) (POLARISLOCAL)  
+  by smtp5.emailarray.com with SMTP; 15 Aug 2023 07:29:17 -0000
+Message-ID: <b6197ee0-74f3-9a41-798a-108427951573@balister.org>
+Date: Tue, 15 Aug 2023 09:29:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [yocto] libudev-zero recipe issue
+Subject: Re: [yocto] How to migrate an older version of Yocto?
 Content-Language: en-US
-To: Alexander Kanavin <alex.kanavin@gmail.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>,
+ msenturk <senturkmurat1999@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-References: <8A4J.1691735918881680780.WtwR@lists.yoctoproject.org>
- <CANNYZj-9Pey+OO_YmjK77LL_qE7c-vzgYKN3YjiV9qQWD346Zw@mail.gmail.com>
-From: Rob Kramer <rob@teegee.cloud>
-In-Reply-To: <CANNYZj-9Pey+OO_YmjK77LL_qE7c-vzgYKN3YjiV9qQWD346Zw@mail.gmail.com>
+References: <CANNYZj_0NnuZ604gV+ZXBdXtSxQYbnnkGoukvaAUA+D3=Zo=dw@mail.gmail.com>
+ <19617.1692017585524870640@lists.yoctoproject.org>
+ <CANNYZj8dwD0a0o-QFEph=RFN=TfCJZMQzxqKhsB2ZWqOBJE69w@mail.gmail.com>
+From: Philip Balister <philip@balister.org>
+In-Reply-To: <CANNYZj8dwD0a0o-QFEph=RFN=TfCJZMQzxqKhsB2ZWqOBJE69w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 15 Aug 2023 04:23:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60796
+ <yocto@lists.yoctoproject.org>; Tue, 15 Aug 2023 07:29:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60797
 
-I wiped the whole build, and the issue hasn't happened again since.=20
-Hopefully it was just bitbake being in a funny state.. If it happens=20
-again, I'll create a separate minimal poky build to test.
-
-Thanks!
-
- =C2=A0=C2=A0=C2=A0 Rob
-
-On 11/8/23 19:54, Alexander Kanavin wrote:
-> The recipe looks ok. Can you reproduce it with a plain poky build (no
-> extra layers, no custom distros, no weird BSPs :) ?
->
-> Alex
->
-> On Fri, 11 Aug 2023 at 08:38, Rob Kramer <rob@teegee.cloud> wrote:
->> Hi all,
->>
->> I added a new recipe for libudev-zero, which provides a minimal daemon=
--less udev implementation. The recipe works, but has an issue that pops u=
-p regularly where it causes an exception during rootfs:
->>
->> Exception: FileNotFoundError: [Errno 2] No such file or directory: '/s=
-sd/opt/oe/yocto/kirkstone/build-weston/tmp-glibc/deploy/ipk/core2-64/libu=
-dev1_1.0.2-r1_core2-64.ipk' -> '/ssd/opt/oe/yocto/kirkstone/build-weston/=
-tmp-glibc/work/generic64-oe-linux/sollinux-ble-weston/1.0-r0/oe-rootfs-re=
-po/core2-64/libudev1_1.0.2-r1_core2-64.ipk'
->>
->> It seems like for some reason the ipk has been removed from deploy/ipk=
-. To recover from this, a 'bitbake -c clean libudev-zero' will restore th=
-ings the next time the rootfs is run.
->>
->> Does anyone have an idea what could cause this? Appended below is the =
-recipe, and the full error message.
->>
->> Cheers,
->>
->>       Rob
->>
->>
->> libudev-zero_1.0.2.bb:
->> DESCRIPTION =3D "Daemon-less libudev replacement"
->> SECTION =3D "base"
->> LICENSE=3D"ISC"
->> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D09eac32a84c5d70c105cbfce173=
-a161d"
->>
->> PR =3D "r1"
->> SRCREV =3D "04a727df50fde3f69127aed4bc48e6cff5430175"
->> SRC_URI =3D "git://github.com/illiliti/${BPN};branch=3Dmaster;protocol=
-=3Dhttps"
->>
->> SRC_URI[sha256sum] =3D "29dff942cab9519994fb92ba6407f57e08d3dd6e6c0b86=
-bb93d7b1d681994ff8"
->>
->> PROVIDES =3D "udev"
->>
->> inherit features_check
->>
->> CONFLICT_DISTRO_FEATURES =3D "systemd"
->>
->> S =3D "${WORKDIR}/git"
->>
->> PACKAGES +=3D "${PN}-netlink"
->> FILES:${PN} =3D "${libdir}"
->> FILES:${PN}-netlink =3D "${bindir}"
->>
->> RPROVIDES:${PN} =3D "hotplug udev"
->>
->> do_configure:prepend() {
->>      sed -i 's;PREFIX =3D /usr/local;PREFIX =3D /usr;' ${S}/Makefile
->> }
->>
->> do_compile:append() {
->>      $CCLD $LDFLAGS -o contrib/netlink-forward contrib/helper.c
->> }
->>
->> do_install() {
->>      oe_runmake install DESTDIR=3D${D}
->>
->>      install -d ${D}${bindir}
->>      install -m 755 contrib/netlink-forward ${D}${bindir}
->> }
->>
->>
->>
->> Error message:
->> ERROR: sollinux-ble-weston-1.0-r0 do_rootfs: Error executing a python =
-function in exec_func_python() autogenerated:
->>
->> The stack trace of python calls that resulted in this exception/failur=
-e was:
->> File: 'exec_func_python() autogenerated', lineno: 2, function: <module=
->
->>       0001:
->>   *** 0002:do_rootfs(d)
->>       0003:
->> File: '/opt/oe/yocto/kirkstone/oe-core/meta/classes/image.bbclass', li=
-neno: 255,
->>   function: do_rootfs
->>       0251:    progress_reporter.next_stage()
->>       0252:
->>       0253:    # generate rootfs
->>       0254:    d.setVarFlag('REPRODUCIBLE_TIMESTAMP_ROOTFS', 'export',=
- '1')
->>   *** 0255:    create_rootfs(d, progress_reporter=3Dprogress_reporter,=
- logcatcher=3Dl
->> ogcatcher)
->>       0256:
->>       0257:    progress_reporter.finish()
->>       0258:}
->>       0259:do_rootfs[dirs] =3D "${TOPDIR}"
->> File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/rootfs.py', lineno:=
- 381, func
->> tion: create_rootfs
->>       0377:
->>       0378:    img_type =3D d.getVar('IMAGE_PKGTYPE')
->>       0379:
->>       0380:    cls =3D get_class_for_type(img_type)
->>   *** 0381:    cls(d, manifest_dir, progress_reporter, logcatcher).cre=
-ate()
->>       0382:    os.environ.clear()
->>       0383:    os.environ.update(env_bkp)
->>       0384:
->>       0385:
->> File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/ipk=
-/rootfs.py
->> ', lineno: 136, function: __init__
->>       0132:
->>       0133:        self.inc_opkg_image_gen =3D self.d.getVar('INC_IPK_=
-IMAGE_GEN') o
->> r ""
->>       0134:        if self._remove_old_rootfs():
->>       0135:            bb.utils.remove(self.image_rootfs, True)
->>   *** 0136:            self.pm =3D OpkgPM(d,
->>       0137:                             self.image_rootfs,
->>       0138:                             self.opkg_conf,
->>       0139:                             self.pkg_archs)
->>       0140:        else:
->> File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/ipk=
-/__init__.
->> py', lineno: 175, function: __init__
->>       0171:        self.opkg_args =3D "--volatile-cache -f %s -t %s -o=
- %s " % (self
->> .config_file, self.d.expand('${T}/ipktemp/') ,target_rootfs)
->>       0172:        self.opkg_args +=3D self.d.getVar("OPKG_ARGS")
->>       0173:
->>       0174:        if prepare_index:
->>   *** 0175:            create_packages_dir(self.d, self.deploy_dir, d.=
-getVar("DEP
->> LOY_DIR_IPK"), "package_write_ipk", filterbydependencies)
->>       0176:
->>       0177:        self.opkg_dir =3D oe.path.join(target_rootfs, self.=
-d.getVar('OPK
->> GLIBDIR'), "opkg")
->>       0178:        bb.utils.mkdirhier(self.opkg_dir)
->>       0179:
->> File: '/opt/oe/yocto/kirkstone/oe-core/meta/lib/oe/package_manager/__i=
-nit__.py',
->>   lineno: 525, function: create_packages_dir
->>       0521:                if destdir not in seendirs:
->>       0522:                    bb.utils.mkdirhier(destdir)
->>       0523:                    seendirs.add(destdir)
->>       0524:                try:
->>   *** 0525:                    os.link(l, dest)
->>       0526:                except OSError as err:
->>       0527:                    if err.errno =3D=3D errno.EXDEV:
->>       0528:                        bb.utils.copyfile(l, dest)
->>       0529:                    else:
->> Exception: FileNotFoundError: [Errno 2] No such file or directory: '/s=
-sd/opt/oe/yocto/kirkstone/build-weston/tmp-glibc/deploy/ipk/core2-64/libu=
-dev1_1.0.2-r1_core2-64.ipk' -> '/ssd/opt/oe/yocto/kirkstone/build-weston/=
-tmp-glibc/work/generic64-oe-linux/sollinux-ble-weston/1.0-r0/oe-rootfs-re=
-po/core2-64/libudev1_1.0.2-r1_core2-64.ipk'
->>
->>
->>
->>
->>
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#60782): https://lists.yoctoproject.org/g/yocto/mes=
-sage/60782
->> Mute This Topic: https://lists.yoctoproject.org/mt/100679184/7790876
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [rob@teegee.=
-cloud]
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>
-
+QWxzbyB0cnkgYXNraW5nIG9uIHRoZSBtZXRhLXhpbGlueCBsaXN0Lg0KDQpQaGlsaXANCg0K
+T24gOC8xNC8yMyAxNToyMiwgQWxleGFuZGVyIEthbmF2aW4gd3JvdGU6DQo+IFRoaXMgc25p
+cHBldCBkb2Vzbid0IHNob3cgd2hhdCB0aGUgZXJyb3JzIGFyZS4gSSB3b3VsZCBzdWdnZXN0
+IHlvdSBzZXQNCj4gdXAgYSBuZXcgYnVpbGQgZGlyZWN0b3J5IGZpcnN0IGFuZCB0cnkgdGhl
+bi4gQWxzbyBtYWtlIHN1cmUgdGhhdCBhbGwNCj4gbGF5ZXJzIGFyZSBpbmRlZWQgY2hlY2tl
+ZCBvdXQgdG8gbGF0ZXN0IG1pY2tsZWRvcmUuDQo+IA0KPiBBbGV4DQo+IA0KPiBPbiBNb24s
+IDE0IEF1ZyAyMDIzIGF0IDE0OjUzLCBtc2VudHVyayA8c2VudHVya211cmF0MTk5OUBnbWFp
+bC5jb20+IHdyb3RlOg0KPj4NCj4+IFRoYW5rcyBmb3IgdGhlIGFuc3dlcnMuIEkgc3dpdGNo
+ZWQgdG8gbWlja2xlZG9yZSBhbmQgdHJpZWQgdG8gYnVpbGQgYnV0IHVuZm9ydHVuYXRlbHkg
+cmVjZWl2ZWQgc29tZSBlcnJvcnMgYW5kIHdhcm5pbmdzOg0KPj4NCj4+IEVSUk9SOiBUYXNr
+ICgvaG9tZS9zdGovcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvZ2NjL2djY18xMi4zLmJi
+OmRvX2NvbXBpbGUpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCj4+IFdBUk5JTkc6IGxp
+bnV4LXhsbngtNi4xLjUteGlsaW54LXYyMDIzLjErZ2l0QVVUT0lOQys3MTY5MjFiNmQ3LXIw
+IGRvX2ZldGNoOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGdpdDovL2dpdGh1Yi5jb20vWGlsaW54
+L2xpbnV4LXhsbnguZ2l0O3Byb3RvY29sPWh0dHBzO25hbWU9bWFjaGluZTticmFuY2g9eGxu
+eF9yZWJhc2VfdjYuMV9MVFMsIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGUNCj4+
+IFdBUk5JTkc6IHFlbXUteGlsaW54LW5hdGl2ZS12Ny4xLjAteGlsaW54LXYyMDIzLjErZ2l0
+QVVUT0lOQysyMWFkYzlmOTllLXIwIGRvX2ZldGNoOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGdp
+dHNtOi8vZ2l0bGFiLmNvbS9xZW11LXByb2plY3QvdS1ib290LmdpdDtwcm90b2NvbD1odHRw
+cztuYW1lPXJvbXMvdS1ib290O3N1YnBhdGg9cm9tcy91LWJvb3Q7bm9icmFuY2g9MTtiYXJl
+Y2xvbmU9MTtub2JyYW5jaD0xLCBhdHRlbXB0aW5nIE1JUlJPUlMgaWYgYXZhaWxhYmxlDQo+
+PiBFUlJPUjogbGludXgteGxueC02LjEuNS14aWxpbngtdjIwMjMuMStnaXRBVVRPSU5DKzcx
+NjkyMWI2ZDctcjAgZG9fZmV0Y2g6IEZldGNoZXIgZmFpbHVyZTogRmV0Y2ggY29tbWFuZCBl
+eHBvcnQgUFNFVURPX0RJU0FCTEVEPTE7IGV4cG9ydCBEQlVTX1NFU1NJT05fQlVTX0FERFJF
+U1M9InVuaXg6cGF0aD0vcnVuL3VzZXIvMTAwMi9idXMiOyBleHBvcnQgU1NIX0FHRU5UX1BJ
+RD0iMzU1NyI7IGV4cG9ydCBTU0hfQVVUSF9TT0NLPSIvcnVuL3VzZXIvMTAwMi9rZXlyaW5n
+L3NzaCI7IGV4cG9ydCBQQVRIPSIvaG9tZS9zdGovcG9reS9idWlsZF9taWNrbGVkb3JlL3Rt
+cC9zeXNyb290cy11bmluYXRpdmUveDg2XzY0LWxpbnV4L3Vzci9iaW46L2hvbWUvc3RqL3Bv
+a3kvc2NyaXB0czovaG9tZS9zdGovcG9reS9idWlsZF9taWNrbGVkb3JlL3RtcC93b3JrL3pl
+ZGJvYXJkX3p5bnE3LXBva3ktbGludXgtZ251ZWFiaS9saW51eC14bG54LzYuMS41LXhpbGlu
+eC12MjAyMy4xK2dpdEFVVE9JTkMrNzE2OTIxYjZkNy1yMC9yZWNpcGUtc3lzcm9vdC1uYXRp
+dmUvdXNyL2Jpbi9hcm0tcG9reS1saW51eC1nbnVlYWJpOi9ob21lL3N0ai9wb2t5L2J1aWxk
+X21pY2tsZWRvcmUvdG1wL3dvcmsvemVkYm9hcmRfenlucTctcG9reS1saW51eC1nbnVlYWJp
+L2xpbnV4LXhsbngvNi4xLjUteGlsaW54LXYyMDIzLjErZ2l0QVVUT0lOQys3MTY5MjFiNmQ3
+LXIwL3JlY2lwZS1zeXNyb290L3Vzci9iaW4vY3Jvc3NzY3JpcHRzOi9ob21lL3N0ai9wb2t5
+L2J1aWxkX21pY2tsZWRvcmUvdG1wL3dvcmsvemVkYm9hcmRfenlucTctcG9reS1saW51eC1n
+bnVlYWJpL2xpbnV4LXhsbngvNi4xLjUteGlsaW54LXYyMDIzLjErZ2l0QVVUT0lOQys3MTY5
+MjFiNmQ3LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3Ivc2JpbjovaG9tZS9zdGovcG9r
+eS9idWlsZF9taWNrbGVkb3JlL3RtcC93b3JrL3plZGJvYXJkX3p5bnE3LXBva3ktbGludXgt
+Z251ZWFiaS9saW51eC14bG54LzYuMS41LXhpbGlueC12MjAyMy4xK2dpdEFVVE9JTkMrNzE2
+OTIxYjZkNy1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2JpbjovaG9tZS9zdGovcG9r
+eS9idWlsZF9taWNrbGVkb3JlL3RtcC93b3JrL3plZGJvYXJkX3p5bnE3LXBva3ktbGludXgt
+Z251ZWFiaS9saW51eC14bG54LzYuMS41LXhpbGlueC12MjAyMy4xK2dpdEFVVE9JTkMrNzE2
+OTIxYjZkNy1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvc2JpbjovaG9tZS9zdGovcG9reS9i
+dWlsZF9taWNrbGVkb3JlL3RtcC93b3JrL3plZGJvYXJkX3p5bnE3LXBva3ktbGludXgtZ251
+ZWFiaS9saW51eC14bG54LzYuMS41LXhpbGlueC12MjAyMy4xK2dpdEFVVE9JTkMrNzE2OTIx
+YjZkNy1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvYmluOi9ob21lL3N0ai9wb2t5L2JpdGJh
+a2UvYmluOi9ob21lL3N0ai9wb2t5L2J1aWxkX21pY2tsZWRvcmUvdG1wL2hvc3R0b29scyI7
+IGV4cG9ydCBIT01FPSIvaG9tZS9zdGoiOyBMQU5HPUMgZ2l0IC1jIGdjLmF1dG9EZXRhY2g9
+ZmFsc2UgLWMgY29yZS5wYWdlcj1jYXQgY2xvbmUgLS1iYXJlIC0tbWlycm9yIGh0dHBzOi8v
+Z2l0aHViLmNvbS9YaWxpbngvbGludXgteGxueC5naXQgL2hvbWUvc3RqL3Bva3kvYnVpbGRf
+bWlja2xlZG9yZS9kb3dubG9hZHMvZ2l0Mi9naXRodWIuY29tLlhpbGlueC5saW51eC14bG54
+LmdpdCAtLXByb2dyZXNzIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAxMjgsIG5vIG91dHB1dA0K
+Pj4gRVJST1I6IGxpbnV4LXhsbngtNi4xLjUteGlsaW54LXYyMDIzLjErZ2l0QVVUT0lOQys3
+MTY5MjFiNmQ3LXIwIGRvX2ZldGNoOiBCaXRiYWtlIEZldGNoZXIgRXJyb3I6IEZldGNoRXJy
+b3IoJ1VuYWJsZSB0byBmZXRjaCBVUkwgZnJvbSBhbnkgc291cmNlLicsICdnaXQ6Ly9naXRo
+dWIuY29tL1hpbGlueC9saW51eC14bG54LmdpdDtwcm90b2NvbD1odHRwcztuYW1lPW1hY2hp
+bmU7YnJhbmNoPXhsbnhfcmViYXNlX3Y2LjFfTFRTJykNCj4+IEVSUk9SOiBMb2dmaWxlIG9m
+IGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9zdGovcG9reS9idWlsZF9taWNrbGVkb3JlL3Rt
+cC93b3JrL3plZGJvYXJkX3p5bnE3LXBva3ktbGludXgtZ251ZWFiaS9saW51eC14bG54LzYu
+MS41LXhpbGlueC12MjAyMy4xK2dpdEFVVE9JTkMrNzE2OTIxYjZkNy1yMC90ZW1wL2xvZy5k
+b19mZXRjaC42NzkzDQo+PiBFUlJPUjogVGFzayAoL2hvbWUvc3RqL3Bva3kvbWV0YS14aWxp
+bngvbWV0YS14aWxpbngtY29yZS9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC14bG54XzIw
+MjMuMS5iYjpkb19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KPj4gRVJST1I6
+IHFlbXUteGlsaW54LW5hdGl2ZS12Ny4xLjAteGlsaW54LXYyMDIzLjErZ2l0QVVUT0lOQysy
+MWFkYzlmOTllLXIwIGRvX2ZldGNoOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQg
+ZXhwb3J0IFBTRVVET19ESVNBQkxFRD0xOyBleHBvcnQgREJVU19TRVNTSU9OX0JVU19BRERS
+RVNTPSJ1bml4OnBhdGg9L3J1bi91c2VyLzEwMDIvYnVzIjsgZXhwb3J0IFNTSF9BR0VOVF9Q
+SUQ9IjM1NTciOyBleHBvcnQgU1NIX0FVVEhfU09DSz0iL3J1bi91c2VyLzEwMDIva2V5cmlu
+Zy9zc2giOyBleHBvcnQgUEFUSD0iL2hvbWUvc3RqL3Bva3kvc2NyaXB0cy9uYXRpdmUtaW50
+ZXJjZXB0Oi9ob21lL3N0ai9wb2t5L2J1aWxkX21pY2tsZWRvcmUvdG1wL3N5c3Jvb3RzLXVu
+aW5hdGl2ZS94ODZfNjQtbGludXgvdXNyL2JpbjovaG9tZS9zdGovcG9reS9zY3JpcHRzOi9o
+b21lL3N0ai9wb2t5L2J1aWxkX21pY2tsZWRvcmUvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3Fl
+bXUteGlsaW54LW5hdGl2ZS92Ny4xLjAteGlsaW54LXYyMDIzLjErZ2l0QVVUT0lOQysyMWFk
+YzlmOTllLXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluL3g4Nl82NC1saW51eDov
+aG9tZS9zdGovcG9reS9idWlsZF9taWNrbGVkb3JlL3RtcC93b3JrL3g4Nl82NC1saW51eC9x
+ZW11LXhpbGlueC1uYXRpdmUvdjcuMS4wLXhpbGlueC12MjAyMy4xK2dpdEFVVE9JTkMrMjFh
+ZGM5Zjk5ZS1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2JpbjovaG9tZS9zdGovcG9r
+eS9idWlsZF9taWNrbGVkb3JlL3RtcC93b3JrL3g4Nl82NC1saW51eC9xZW11LXhpbGlueC1u
+YXRpdmUvdjcuMS4wLXhpbGlueC12MjAyMy4xK2dpdEFVVE9JTkMrMjFhZGM5Zjk5ZS1yMC9y
+ZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL3NiaW46L2hvbWUvc3RqL3Bva3kvYnVpbGRfbWlj
+a2xlZG9yZS90bXAvd29yay94ODZfNjQtbGludXgvcWVtdS14aWxpbngtbmF0aXZlL3Y3LjEu
+MC14aWxpbngtdjIwMjMuMStnaXRBVVRPSU5DKzIxYWRjOWY5OWUtcjAvcmVjaXBlLXN5c3Jv
+b3QtbmF0aXZlL3Vzci9iaW46L2hvbWUvc3RqL3Bva3kvYnVpbGRfbWlja2xlZG9yZS90bXAv
+d29yay94ODZfNjQtbGludXgvcWVtdS14aWxpbngtbmF0aXZlL3Y3LjEuMC14aWxpbngtdjIw
+MjMuMStnaXRBVVRPSU5DKzIxYWRjOWY5OWUtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Ni
+aW46L2hvbWUvc3RqL3Bva3kvYnVpbGRfbWlja2xlZG9yZS90bXAvd29yay94ODZfNjQtbGlu
+dXgvcWVtdS14aWxpbngtbmF0aXZlL3Y3LjEuMC14aWxpbngtdjIwMjMuMStnaXRBVVRPSU5D
+KzIxYWRjOWY5OWUtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL2JpbjovaG9tZS9zdGovcG9r
+eS9iaXRiYWtlL2JpbjovaG9tZS9zdGovcG9reS9idWlsZF9taWNrbGVkb3JlL3RtcC9ob3N0
+dG9vbHMiOyBleHBvcnQgSE9NRT0iL2hvbWUvc3RqIjsgTEFORz1DIGdpdCAtYyBnYy5hdXRv
+RGV0YWNoPWZhbHNlIC1jIGNvcmUucGFnZXI9Y2F0IGNsb25lIC0tYmFyZSAtLW1pcnJvciBo
+dHRwczovL2dpdGxhYi5jb20vcWVtdS1wcm9qZWN0L3UtYm9vdC5naXQgL2hvbWUvc3RqL3Bv
+a3kvYnVpbGRfbWlja2xlZG9yZS9kb3dubG9hZHMvZ2l0Mi9naXRsYWIuY29tLnFlbXUtcHJv
+amVjdC51LWJvb3QuZ2l0IC0tcHJvZ3Jlc3MgZmFpbGVkIHdpdGggZXhpdCBjb2RlIDEyOCwg
+bm8gb3V0cHV0DQo+PiBFUlJPUjogcWVtdS14aWxpbngtbmF0aXZlLXY3LjEuMC14aWxpbngt
+djIwMjMuMStnaXRBVVRPSU5DKzIxYWRjOWY5OWUtcjAgZG9fZmV0Y2g6IGdpdHNtOiBzdWJt
+b2R1bGUgZG93bmxvYWQgZmFpbGVkOiBGZXRjaEVycm9yIEZldGNoZXIgZmFpbHVyZSBmb3Ig
+VVJMOiAnZ2l0c206Ly9naXRsYWIuY29tL3FlbXUtcHJvamVjdC91LWJvb3QuZ2l0O3Byb3Rv
+Y29sPWh0dHBzO25hbWU9cm9tcy91LWJvb3Q7c3VicGF0aD1yb21zL3UtYm9vdDtub2JyYW5j
+aD0xO2JhcmVjbG9uZT0xO25vYnJhbmNoPTEnLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZyb20g
+YW55IHNvdXJjZS4NCj4+IFdBUk5JTkc6IHFlbXUteGlsaW54LW5hdGl2ZS12Ny4xLjAteGls
+aW54LXYyMDIzLjErZ2l0QVVUT0lOQysyMWFkYzlmOTllLXIwIGRvX2ZldGNoOiBGYWlsZWQg
+dG8gZmV0Y2ggVVJMIGdpdHNtOi8vZ2l0aHViLmNvbS9YaWxpbngvcWVtdS5naXQ7cHJvdG9j
+b2w9aHR0cHM7YnJhbmNoPXhsbnhfcmVsX3YyMDIzLjEsIGF0dGVtcHRpbmcgTUlSUk9SUyBp
+ZiBhdmFpbGFibGUNCj4+IEVSUk9SOiBxZW11LXhpbGlueC1uYXRpdmUtdjcuMS4wLXhpbGlu
+eC12MjAyMy4xK2dpdEFVVE9JTkMrMjFhZGM5Zjk5ZS1yMCBkb19mZXRjaDogRmV0Y2hlciBm
+YWlsdXJlIGZvciBVUkw6ICdnaXRzbTovL2dpdGxhYi5jb20vcWVtdS1wcm9qZWN0L3UtYm9v
+dC5naXQ7cHJvdG9jb2w9aHR0cHM7bmFtZT1yb21zL3UtYm9vdDtzdWJwYXRoPXJvbXMvdS1i
+b290O25vYnJhbmNoPTE7YmFyZWNsb25lPTE7bm9icmFuY2g9MScuIFVuYWJsZSB0byBmZXRj
+aCBVUkwgZnJvbSBhbnkgc291cmNlLg0KPj4gRVJST1I6IHFlbXUteGlsaW54LW5hdGl2ZS12
+Ny4xLjAteGlsaW54LXYyMDIzLjErZ2l0QVVUT0lOQysyMWFkYzlmOTllLXIwIGRvX2ZldGNo
+OiBCaXRiYWtlIEZldGNoZXIgRXJyb3I6IEZldGNoRXJyb3IoJ1VuYWJsZSB0byBmZXRjaCBV
+UkwgZnJvbSBhbnkgc291cmNlLicsICdnaXRzbTovL2dpdGh1Yi5jb20vWGlsaW54L3FlbXUu
+Z2l0O3Byb3RvY29sPWh0dHBzO2JyYW5jaD14bG54X3JlbF92MjAyMy4xJykNCj4+IEVSUk9S
+OiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9zdGovcG9reS9idWlsZF9t
+aWNrbGVkb3JlL3RtcC93b3JrL3g4Nl82NC1saW51eC9xZW11LXhpbGlueC1uYXRpdmUvdjcu
+MS4wLXhpbGlueC12MjAyMy4xK2dpdEFVVE9JTkMrMjFhZGM5Zjk5ZS1yMC90ZW1wL2xvZy5k
+b19mZXRjaC42Nzk4DQo+PiBFUlJPUjogVGFzayAoL2hvbWUvc3RqL3Bva3kvbWV0YS14aWxp
+bngvbWV0YS14aWxpbngtY29yZS9yZWNpcGVzLWRldnRvb2xzL3FlbXUvcWVtdS14aWxpbngt
+bmF0aXZlXzIwMjMuMS5iYjpkb19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0K
+Pj4gV0FSTklORzogcWVtdS14aWxpbngtc3lzdGVtLW5hdGl2ZS12Ny4xLjAteGlsaW54LXYy
+MDIzLjErZ2l0QVVUT0lOQysyMWFkYzlmOTllLXIwIGRvX2ZldGNoOiBGYWlsZWQgdG8gZmV0
+Y2ggVVJMIGdpdHNtOi8vZ2l0aHViLmNvbS9vcGVuc3NsL29wZW5zc2w7cHJvdG9jb2w9aHR0
+cHM7bmFtZT1DcnlwdG9Qa2cvTGlicmFyeS9PcGVuc3NsTGliL29wZW5zc2w7c3VicGF0aD1D
+cnlwdG9Qa2cvTGlicmFyeS9PcGVuc3NsTGliL29wZW5zc2w7bm9icmFuY2g9MTtiYXJlY2xv
+bmU9MTtub2JyYW5jaD0xLCBhdHRlbXB0aW5nIE1JUlJPUlMgaWYgYXZhaWxhYmxlDQo+PiBO
+T1RFOiBUYXNrcyBTdW1tYXJ5OiBBdHRlbXB0ZWQgMjA1NSB0YXNrcyBvZiB3aGljaCAyMDEw
+IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVuIGFuZCA1IGZhaWxlZC4NCj4+DQo+PiBTdW1tYXJ5
+OiA1IHRhc2tzIGZhaWxlZDoNCj4+ICAgIC9ob21lL3N0ai9wb2t5L21ldGEvcmVjaXBlcy1k
+ZXZ0b29scy9iaW51dGlscy9iaW51dGlsc18yLjQwLmJiOmRvX2NvbXBpbGUNCj4+ICAgIC9o
+b21lL3N0ai9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy9jbWFrZS9jbWFrZS1uYXRpdmVf
+My4yNS4yLmJiOmRvX2NvbXBpbGUNCj4+ICAgIC9ob21lL3N0ai9wb2t5L21ldGEvcmVjaXBl
+cy1kZXZ0b29scy9nY2MvZ2NjXzEyLjMuYmI6ZG9fY29tcGlsZQ0KPj4gICAgL2hvbWUvc3Rq
+L3Bva3kvbWV0YS14aWxpbngvbWV0YS14aWxpbngtY29yZS9yZWNpcGVzLWtlcm5lbC9saW51
+eC9saW51eC14bG54XzIwMjMuMS5iYjpkb19mZXRjaA0KPj4gICAgL2hvbWUvc3RqL3Bva3kv
+bWV0YS14aWxpbngvbWV0YS14aWxpbngtY29yZS9yZWNpcGVzLWRldnRvb2xzL3FlbXUvcWVt
+dS14aWxpbngtbmF0aXZlXzIwMjMuMS5iYjpkb19mZXRjaA0KPj4gU3VtbWFyeTogVGhlcmUg
+d2VyZSA3IFdBUk5JTkcgbWVzc2FnZXMuDQo+PiBTdW1tYXJ5OiBUaGVyZSB3ZXJlIDEyIEVS
+Uk9SIG1lc3NhZ2VzLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuDQo+Pg0KPj4N
+Cj4+DQo+Pg0KPj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCj4+IExpbmtzOiBZb3UgcmVj
+ZWl2ZSBhbGwgbWVzc2FnZXMgc2VudCB0byB0aGlzIGdyb3VwLg0KPj4gVmlldy9SZXBseSBP
+bmxpbmUgKCM2MDc5MSk6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3Rv
+L21lc3NhZ2UvNjA3OTENCj4+IE11dGUgVGhpcyBUb3BpYzogaHR0cHM6Ly9saXN0cy55b2N0
+b3Byb2plY3Qub3JnL210LzEwMDUyNTA4NS8zODQ0MjUNCj4+IEdyb3VwIE93bmVyOiB5b2N0
+bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+PiBVbnN1YnNjcmliZTogaHR0cHM6
+Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vdW5zdWIgW3BoaWxpcEBiYWxpc3Rl
+ci5vcmddDQo+PiAtPS09LT0tPS09LT0tPS09LT0tPS09LQ0KPj4NCg==
 
