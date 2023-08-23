@@ -1,72 +1,87 @@
-Return-Path: <konstantin.kletschke@inside-m2m.de>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CEB2EEE4993
-	for <webhook@archiver.kernel.org>; Wed, 23 Aug 2023 08:59:45 +0000 (UTC)
-Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
- by mx.groups.io with SMTP id smtpd.web10.7306.1692781178655280896
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD3F1EE49B2
+	for <webhook@archiver.kernel.org>; Wed, 23 Aug 2023 12:04:36 +0000 (UTC)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+ by mx.groups.io with SMTP id smtpd.web11.9761.1692792268451615930
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Aug 2023 01:59:39 -0700
+ Wed, 23 Aug 2023 05:04:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@inside-m2m.de header.s=default header.b=Ixa+xlX/;
- spf=pass (domain: inside-m2m.de, ip: 188.68.57.244, mailfrom: konstantin.kletschke@inside-m2m.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
-	s=default; t=1692781177;
-	bh=sV8D1rExvfoBYC5p04r/qm3fXyOge1Q+dyHpKsxTvq4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ixa+xlX/QSa4SqwEKshFNDdiuiXhrhZ+1geuIAeODlRUo4FYwomNNYUoRXenIfiqJ
-	 9pBrMIiZxq2siS/kFIYYXzDzTQRG4vToR8B4rmWZs4YZ7GxgUNE1wXthjmd34Gpxqu
-	 GlCrKY95dIpXiOzNKF6JcQb6W3SP4YooYDB9yfJIn4J7ye2B5JIWKOV8TeHptsZFIb
-	 8cuYeIUdRScplsBybxVeCqppwz3muuCu08/GlyItbBzZVJY3vCeljoUJuEQjfKwvfK
-	 UpOsf32xu9l0dk6lJ78wi6L/sIlqON47mP2ojFO/BS8/WpNrDebJ4XDPIOG6CwxBAE
-	 uYHYfmLfvXyNw==
-Received: from insidem2ms-MBP.inside-m2m.de (pd95bb737.dip0.t-ipconnect.de [217.91.183.55])
-	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
-	by mail.inside-m2m.de (Postfix) with ESMTPSA id 3A4A54019E;
-	Wed, 23 Aug 2023 10:59:36 +0200 (CEST)
-Date: Wed, 23 Aug 2023 10:59:35 +0200
-From: Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Pick up ${PV} dynamically from environment or file or
- filename
-Message-ID: <ZOXKdxJdKjtxF-mv@insidem2ms-MBP.inside-m2m.de>
-References: <ZN9m5Edu4sszrpcx@insidem2ms-MacBook-Pro.local>
- <CANNYZj969r-C5WBSHmCweE_WB_Xwxgc-0jhXTZ+ECDWvYoyXCg@mail.gmail.com>
- <ZN_VfdJcE28H6sFX@insidem2ms-MacBook-Pro.local>
- <CANNYZj_5nKJkGbE78=gmd4gpknJAHSQEokN_SUALEwM0LJi-Dg@mail.gmail.com>
+ dkim=pass header.i=@theyoctojester-info.20221208.gappssmtp.com header.s=20221208 header.b=oh+RKAZq;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.218.45, mailfrom: jester@theyoctojester.info)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso735605766b.1
+        for <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 05:04:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20221208.gappssmtp.com; s=20221208; t=1692792267; x=1693397067;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=q3UoWQwdlaTIz45OY/yTNDZ38oqkeDSp1TacrZrx3Lc=;
+        b=oh+RKAZqysa/ngHD99NabNSDz7/PLoKQts3574AbOl/KQCL21v7HqxCey3cy35E/QJ
+         aahOs/viCyZrTmUBr+ZVdaB3QFVR2GeH1y8FbKWkX1iQUPA0zHBvsWK6n0fpzQifVkLz
+         qQZRmeuUTr3jgpsdFf5+FA5H1wwo1yZgFAGpVxrs5Lq3Sqr0DbhZrPvcTdvRBczcajhC
+         8Nn2TZ+UYtrX9t2uKP1I1tyA/Iia9KlRzv1O4TrcgApqDkviEKTSX95tnCN2fvfQ0GS2
+         fwyGqbClGXDxUoWktpRGC6uAYIPxvMBDD6UzMD0KHLE8hn0i+QFoWRBpaFRNVkzGxAkh
+         jXXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692792267; x=1693397067;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q3UoWQwdlaTIz45OY/yTNDZ38oqkeDSp1TacrZrx3Lc=;
+        b=RGvz0NqNJao6AZXTeMQ8C+ECe85QqD5zOMB/1dGItpWqtdK8bnV/Nzswo81qOzJPmD
+         37AcFwoxXSgARMmBB2jIiAQ9HY7jjUOJRskzAl5ESGzc4ecM8Pf2G+EBW2Htc8LXKMFU
+         kH4tbpVFAvWLSLXxURfKuEOZYWPR3YRmLavvyH31axnGWqU3+Pywv6cslSXY6A4fhXWV
+         C6MytRrPNVSzT7sFvlwvbArLvRSzarr+qj5XnaMUZpQkKIcMK33/Bt2muYnHRx3/bkvu
+         ndLATSQYSltPqokTZ9GVK9w6BlltTOwk/3xnATY2j4OUUymKnojP4guuGnpQzHVBlfs0
+         xxhw==
+X-Gm-Message-State: AOJu0YxTHOcV+TpxTp58nfv+18Ft12PunoBD6zjJoyqR7dRP4DvOlBaN
+	xU8ICrCDsXCm1qYpQlCQp9zvggl683o1b//FOmprTep3WlOcG/A8sFrrLQ==
+X-Google-Smtp-Source: AGHT+IFNoKTvHYLZgisPSn1puoYV+bWanAdH9sUYiuAAbfkInu9Lh2JKz3VS3/q07j59AWsGau3+yyWT9q2YkP1qMGU=
+X-Received: by 2002:a17:907:7818:b0:99b:d178:f051 with SMTP id
+ la24-20020a170907781800b0099bd178f051mr10132203ejc.64.1692792266623; Wed, 23
+ Aug 2023 05:04:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CANNYZj_5nKJkGbE78=gmd4gpknJAHSQEokN_SUALEwM0LJi-Dg@mail.gmail.com>
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Wed, 23 Aug 2023 14:04:00 +0200
+Message-ID: <CAEt6Nwpy3-b0aMufb7pbTpJqQnXFe+egAUP6M2MMJmtMvWOp9A@mail.gmail.com>
+Subject: CFP for YPS 2023.11 now open!
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	openembedded-devel@lists.openembedded.org
+Content-Type: multipart/alternative; boundary="000000000000bb1f18060395e93a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 08:59:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60856
+ <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 12:04:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60857
 
-On Sat, Aug 19, 2023 at 12:07:08PM +0200, Alexander Kanavin wrote:
+--000000000000bb1f18060395e93a
+Content-Type: text/plain; charset="UTF-8"
 
-> I think the easiest would be to run a shell script prior to starting
-> bitbake, which would check what jar needs to be used, and write the
-> SRC_URI with the name and the checksum into a .inc file in the
-> meta-layer. Then there's a static .bb file that would include the
-> .inc, and do the installation/packaging. Changes to .inc would then be
-> under version control and thus reproducible.
+Its sunny, it is summer, you're just back from vacation? Nothing better to
+get into the flow again than writing a proposal for the 2023.11 edition of
+the Yocto Project Summit!
 
-Thanks for this extermely helpful advice I did not think of.
+We love to hear about all your Yocto things. What you made, what you broke,
+what you learned, what you created.
 
-I made a shell script, inspecting the jar files and extracting the
-version with a regexp from the filename.
+The CFP is open now at https://pretalx.com/yocto-project-summit-2023-11/cfp
 
-This is injected as PV into a inc file the latter bb recipe require.
-This way the inc contains only PV, the bb recipe is fix.
+Josef on behalf of the YPS organization team
 
-The shell script is invoked from the outer build brocess between maven
-and bitbake.
+--000000000000bb1f18060395e93a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Many thanks!
-Kind Regards
-Konstantin
+<div dir=3D"ltr">Its sunny, it is summer, you&#39;re just back from vacatio=
+n? Nothing better to get into the flow again than writing a proposal for th=
+e 2023.11 edition of the Yocto Project Summit!<div><br>We love to hear abou=
+t all your Yocto things. What you made, what you broke, what you learned, w=
+hat you created.<br><br>The CFP is open now at <a href=3D"https://pretalx.c=
+om/yocto-project-summit-2023-11/cfp">https://pretalx.com/yocto-project-summ=
+it-2023-11/cfp</a><br><br><div>Josef on behalf of the YPS organization team=
+</div></div></div>
+
+--000000000000bb1f18060395e93a--
 
