@@ -1,152 +1,128 @@
-Return-Path: <scott.murray@konsulko.com>
+Return-Path: <marek.belisko@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DE31C3DA6F
-	for <webhook@archiver.kernel.org>; Wed, 23 Aug 2023 18:25:40 +0000 (UTC)
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
- by mx.groups.io with SMTP id smtpd.web10.497.1692815138217363180
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1402CC27C40
+	for <webhook@archiver.kernel.org>; Wed, 23 Aug 2023 21:31:29 +0000 (UTC)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+ by mx.groups.io with SMTP id smtpd.web11.303.1692826283919072781
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Aug 2023 11:25:38 -0700
+ Wed, 23 Aug 2023 14:31:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=sFO6h16B;
- spf=pass (domain: konsulko.com, ip: 209.85.222.172, mailfrom: scott.murray@konsulko.com)
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-76df3d8fb4eso64337985a.1
-        for <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 11:25:38 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=hPayeWWY;
+ spf=pass (domain: gmail.com, ip: 209.85.208.170, mailfrom: marek.belisko@gmail.com)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2bbad32bc79so101613641fa.0
+        for <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 14:31:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1692815137; x=1693419937;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LZo4vO352x/bL4R5LS+DLy/ijWWZfHOvXAOtn8oy2f8=;
-        b=sFO6h16B2nkuwsvHztJ79WAcV6MbfZYY1LLhtZ2+GcE68/zM0x2N4EnO0xWTIeR//4
-         D31wBfbSSaHf/GH8vVMUOvJ+G/2B3zFqKRjWhc3/6C6woZZbcypDgBW7lDYPWTHxHbNQ
-         2wVWl2lQ0l4UhU/luMwL3v3hMrUxqaB5JogkM=
+        d=gmail.com; s=20221208; t=1692826282; x=1693431082;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8ZxyzEPDFNWPMGyORSOv/HdSBv7o9MkOtis6GpkFoDA=;
+        b=hPayeWWYbV9BiFW7RlRQOiPGuhXsuZpaqfBtnQT0CvNn3AM839ewK8LijqQlX2hf6K
+         DeZxHelGzgDk7MiDku/uMzQxe8jZkwlageV3afi8IVX8iYAd4o770jy+/yFY/9HOl1so
+         ZMBEJSKzLYQtfbtNyp6Qny3NvYtQUkE1GGOJMdNUj5IJDqT5tCvuz4aLC+8ocwx9StJu
+         fVgV9wO3GSkLYP1YLlWxKXj01C/nGuvhcQTyz4mcUS3xFMpWtQe10p9kT7jt8alpvkEA
+         D9jUKGVP27JyanajSdU4tf3k0XntCrXgL6LZvy2KMu7WurdGqWrZeJBpDajOS4vXJpON
+         UnSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692815137; x=1693419937;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LZo4vO352x/bL4R5LS+DLy/ijWWZfHOvXAOtn8oy2f8=;
-        b=BP/oYDkzPAxGuncyYI7641f3DtHcexFjm9B9xGaKKrXc0Lqrgn+HsyzoJSY6v0FwQU
-         nuvP9YJh1ttCK3flhBUXq2mvedw3UTo6dzgCkCn3ML/kKX8IKCH8o6zw1sylAyb73CGg
-         J/rdiZiU/juKFEAXcY62OtAFEC1DHSgIcBsefCtgVQhuYy6ihztYCTWqMJaunqu6mQh9
-         mGhgLTaKVNea8JZoL/nQA9eB177MnKXvcW20ODbZWCz9M0W7m33InLDqEWTEs7xVkhPn
-         5lAgsbsJWa8GvJhUMgxE447d9mi7DndYvZ3MFSG/oMJyIns+T/BQNi1cExEZfJk3eWDf
-         J5Sw==
-X-Gm-Message-State: AOJu0Yx2EQ4taP61i69pbIATg8PjLuZ6P+TQMFE+jpqOIgdCEax2y2mX
-	JB5SqYYVYiDMVBgUD2xpaQxrU3CS7Ve2nNKhspA=
-X-Google-Smtp-Source: AGHT+IGu/I6Q5e+Dx/9rNM9V5FvbMtYdoezbpkW+p/DOeiMt/E6xJ3eMi4OuWbCxv3FUO6ZxLNEMeA==
-X-Received: by 2002:a05:620a:2224:b0:76c:ad46:2680 with SMTP id n4-20020a05620a222400b0076cad462680mr13529208qkh.44.1692815136773;
-        Wed, 23 Aug 2023 11:25:36 -0700 (PDT)
-Received: from ghidorah.spiteful.org (192-0-174-82.cpe.teksavvy.com. [192.0.174.82])
-        by smtp.gmail.com with ESMTPSA id s22-20020a05620a16b600b0076cf49bcb50sm4107431qkj.37.2023.08.23.11.25.35
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 11:25:35 -0700 (PDT)
-From: Scott Murray <scott.murray@konsulko.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-lts-mixins][PATCH 4/4] Fix RISC-V support
-Date: Wed, 23 Aug 2023 14:25:12 -0400
-Message-ID: <20230823182512.1073623-5-scott.murray@konsulko.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230823182512.1073623-1-scott.murray@konsulko.com>
-References: <20230823182512.1073623-1-scott.murray@konsulko.com>
+        d=1e100.net; s=20221208; t=1692826282; x=1693431082;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8ZxyzEPDFNWPMGyORSOv/HdSBv7o9MkOtis6GpkFoDA=;
+        b=bngGRTXGtgadD+s4RMs8FpmB+WjdBk4rVSe3LlVeDgGF6O7cgoZ81CPMJZEKmV4JaV
+         SI47CNhcU5iCY/pHpntltaKbL6IJmHk57Qx9V22pAmTESfurAAyQ/HN9egj31zIGuNqF
+         r8nu2UapLa+IxVtlI4aZY7sCgwwlpwBitRCmPl4+zYBUZfjVKYyrhz4YO5kpPX6K0o4B
+         mh5bPzA1oc5GdLRgTsguOXKN1we0dWC/4JzEqxiI0I4dmlsp4pQfCx3wLrQ3wGxnPdts
+         STWR+Ylj4QjJd4WYJhFNIbHYi0jKB5VH5PHKvQJsxlXnD9K6sisxXOcGwq8GRSFfZClN
+         vVqg==
+X-Gm-Message-State: AOJu0YyCBxBP78VqT1CZ5KLWhykp/R9fGhr+X5E6Vb17f4pAVVeINcdG
+	iqi0YNzPow78wXYsnodduUbVPJW01UysCtCynV+qGja3gFmLXQ==
+X-Google-Smtp-Source: AGHT+IEPQvlOIU47sEGw73tF623LHz1tO51EUAA2SCeDGqzSPBi1Y5i1aeb+9O0Umm0f4x2lzaQ0we+WrDQ57lxyaHw=
+X-Received: by 2002:a2e:960f:0:b0:2bc:dfc0:1afc with SMTP id
+ v15-20020a2e960f000000b002bcdfc01afcmr1711332ljh.10.1692826281239; Wed, 23
+ Aug 2023 14:31:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Wed, 23 Aug 2023 23:31:10 +0200
+Message-ID: <CAAfyv34+oTQaT=9-QGkTdCFSJaC6CS=RB6SF=FQrOUssntoBSA@mail.gmail.com>
+Subject: [meta-virtualization] nerdctl broken in kirkstone
+To: Yocto <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000028eb5c06039dd538"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 18:25:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60867
+ <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 21:31:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60868
 
-Building Rust projects for RISC-V platforms was failing due to the
-layer not including a copy of lib/oe/rust.py to get all the changes
-from oe-core commit 1cfb9c8a ("rust-target-config: match riscv target
-names with what rust expects").  Reverting the changes from that
-commit seems likely to make things less robust, so instead add a
-copy of the updated lib/oe/rust.py in lib/mixin and update callers
-of arch_to_rust_arch to use it.  This is not ideal from an ease
-of further maintenance perspective, but seems more inline with the
-intent of matching the behavior of the Rust toolchain as it stands
-in Mickledore branch.
+--00000000000028eb5c06039dd538
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Scott Murray <scott.murray@konsulko.com>
----
- classes/rust-common.bbclass        |  4 ++--
- classes/rust-target-config.bbclass |  2 +-
- conf/layer.conf                    |  4 ++++
- lib/mixin/rust.py                  | 13 +++++++++++++
- 4 files changed, 20 insertions(+), 3 deletions(-)
- create mode 100644 lib/mixin/rust.py
+Hi,
 
-diff --git a/classes/rust-common.bbclass b/classes/rust-common.bbclass
-index 8782727..a8971cd 100644
---- a/classes/rust-common.bbclass
-+++ b/classes/rust-common.bbclass
-@@ -51,7 +51,7 @@ def rust_base_triple(d, thing):
-     if d.getVar('{}_ARCH'.format(thing)) == d.getVar('TARGET_ARCH') and target_is_armv7(d):
-         arch = "armv7"
-     else:
--        arch = oe.rust.arch_to_rust_arch(d.getVar('{}_ARCH'.format(thing)))
-+        arch = mixin.rust.arch_to_rust_arch(d.getVar('{}_ARCH'.format(thing)))
- 
-     # Substituting "unknown" when vendor is empty will match rust's standard
-     # targets when building native recipes (including rust-native itself)
-@@ -77,7 +77,7 @@ def rust_base_triple(d, thing):
- 
- 
- # In some cases uname and the toolchain differ on their idea of the arch name
--RUST_BUILD_ARCH = "${@oe.rust.arch_to_rust_arch(d.getVar('BUILD_ARCH'))}"
-+RUST_BUILD_ARCH = "${@mixin.rust.arch_to_rust_arch(d.getVar('BUILD_ARCH'))}"
- 
- # Naming explanation
- # Yocto
-diff --git a/classes/rust-target-config.bbclass b/classes/rust-target-config.bbclass
-index 21a56ed..663b02c 100644
---- a/classes/rust-target-config.bbclass
-+++ b/classes/rust-target-config.bbclass
-@@ -343,7 +343,7 @@ def rust_gen_target(d, thing, wd, arch):
-         if arch == "arm" and target_is_armv7(d):
-             arch = 'armv7'
- 
--    rust_arch = oe.rust.arch_to_rust_arch(arch)
-+    rust_arch = mixin.rust.arch_to_rust_arch(arch)
- 
-     if abi:
-         arch_abi = "{}-{}".format(rust_arch, abi)
-diff --git a/conf/layer.conf b/conf/layer.conf
-index b057c77..fa0cbd6 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -23,3 +23,7 @@ BBMASK:append = " meta/recipes-devtools/cargo/ meta/recipes-devtools/rust/ meta/
- # These are in bitbake.conf in langdale and up, adding them here to make
- # using the layer more turn-key seems reasonable.
- BB_BASEHASH_IGNORE_VARS:append = " RUST_BUILD_SYS RUST_HOST_SYS RUST_TARGET_SYS"
-+
-+# Since we cannot overlay the lib/oe version easily, make sure our backport
-+# of rust.py in lib/mixin is picked up.
-+OE_EXTRA_IMPORTS:append = " mixin.rust"
-diff --git a/lib/mixin/rust.py b/lib/mixin/rust.py
-new file mode 100644
-index 0000000..185553e
---- /dev/null
-+++ b/lib/mixin/rust.py
-@@ -0,0 +1,13 @@
-+#
-+# Copyright OpenEmbedded Contributors
-+#
-+# SPDX-License-Identifier: MIT
-+#
-+
-+# Handle mismatches between `uname -m`-style output and Rust's arch names
-+def arch_to_rust_arch(arch):
-+    if arch == "ppc64le":
-+        return "powerpc64le"
-+    if arch in ('riscv32', 'riscv64'):
-+        return arch + 'gc'
-+    return arch
+I'm trying to add nerdctl to an image using kirkstone release for
+meta-virtualization.
+I've added bbappend with following fix:
+
+SRC_URI = "git://
+github.com/containerd/nerdctl.git;name=nerdcli;branch=main;protocol=https"
+
+(branch name in original recipe is master but main is required)
+
+but then anyways it fails with:
+
+rsync: [sender] change_dir
+"/data/projects/test/build/tmp/work/cortexa53-crypto-poky-linux/nerdctl/v0.18.0-r0/nerdctl-v0.18.0/src/import/vendor.fetch/
+github.com/Masterminds/semver/v3" failed: No such file or directory (2)
+| rsync error: some files/attrs were not transferred (see previous errors)
+(code 23) at main.c(1327) [sender=3.2.5]
+
+And in ${BP} I cannot see any of those vendor stuff which should be
+present. Is there some fix for that already pending or it's known issue?
+
+Thanks and BR,
+
+marek
+
 -- 
-2.41.0
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+
+--00000000000028eb5c06039dd538
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m trying to add nerdctl=C2=A0=
+to an image using kirkstone release=C2=A0for meta-virtualization.</div><div=
+>I&#39;ve added bbappend with following fix:</div><div><br></div><div>SRC_U=
+RI =3D &quot;git://<a href=3D"http://github.com/containerd/nerdctl.git;name=
+=3Dnerdcli;branch=3Dmain;protocol=3Dhttps">github.com/containerd/nerdctl.gi=
+t;name=3Dnerdcli;branch=3Dmain;protocol=3Dhttps</a>&quot;<br></div><div><br=
+></div><div>(branch name in original recipe is master but main is required)=
+</div><div><br></div><div>but then anyways it fails with:</div><div><br></d=
+iv><div>rsync: [sender] change_dir &quot;/data/projects/test/build/tmp/work=
+/cortexa53-crypto-poky-linux/nerdctl/v0.18.0-r0/nerdctl-v0.18.0/src/import/=
+vendor.fetch/<a href=3D"http://github.com/Masterminds/semver/v3">github.com=
+/Masterminds/semver/v3</a>&quot; failed: No such file or directory (2)<br>|=
+ rsync error: some files/attrs were not transferred (see previous errors) (=
+code 23) at main.c(1327) [sender=3D3.2.5]<br></div><div><br></div><div>And =
+in ${BP} I cannot see any of those vendor stuff which should be present. Is=
+ there some fix for that already pending or it&#39;s known issue?</div><div=
+><br></div><div>Thanks=C2=A0and BR,</div><div><br></div><div>marek</div><di=
+v><div><br></div><span class=3D"gmail_signature_prefix">-- </span><br><div =
+dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">as=
+ simple and primitive as possible<br>--------------------------------------=
+-----------<br>Marek Belisko - OPEN-NANDRA<br>Freelance Developer<br><br>Ru=
+ska Nova Ves 219 | Presov, 08005 Slovak Republic<br>Tel: +421 915 052 184<b=
+r>skype: marekwhite<br>twitter: #opennandra<br>web: <a href=3D"http://open-=
+nandra.com" target=3D"_blank">http://open-nandra.com</a></div></div></div>
+
+--00000000000028eb5c06039dd538--
 
