@@ -1,83 +1,58 @@
-Return-Path: <m.salvini@koansoftware.com>
+Return-Path: <konstantin.kletschke@inside-m2m.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 858C7EE49AB
-	for <webhook@archiver.kernel.org>; Wed, 23 Aug 2023 07:45:25 +0000 (UTC)
-Received: from mail.koansoftware.com (mail.koansoftware.com [172.104.12.216])
- by mx.groups.io with SMTP id smtpd.web10.6646.1692776723025370097
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8228EE49B0
+	for <webhook@archiver.kernel.org>; Wed, 23 Aug 2023 08:56:05 +0000 (UTC)
+Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
+ by mx.groups.io with SMTP id smtpd.web11.7359.1692780962830424286
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Aug 2023 00:45:23 -0700
+ Wed, 23 Aug 2023 01:56:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: koansoftware.com, ip: 172.104.12.216, mailfrom: m.salvini@koansoftware.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.koansoftware.com (Postfix) with ESMTP id BBD9F3CB44;
-	Wed, 23 Aug 2023 09:45:21 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail
-Received: from mail.koansoftware.com ([127.0.0.1])
-	by localhost (mail.koansoftware.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id BQzm_-hLQwG9; Wed, 23 Aug 2023 09:45:20 +0200 (CEST)
-Message-ID: <0e3b4324-7a93-3643-84d9-a1d47afbbefb@koansoftware.com>
-Date: Wed, 23 Aug 2023 09:45:16 +0200
+ dkim=pass header.i=@inside-m2m.de header.s=default header.b=GiV6d0CS;
+ spf=pass (domain: inside-m2m.de, ip: 188.68.57.244, mailfrom: konstantin.kletschke@inside-m2m.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
+	s=default; t=1692780959;
+	bh=sPle6vmpqs7+ITxXGwU3KkK7RUe21B77zuoL9S8fVPs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GiV6d0CSDEg4+fZQ0QZqEOfvN3nV3c/hIdtjq19P1z/ERYoAOD5OSSYPNes97gHxv
+	 LzirAudmfvD6hPpPpcMgp1sN2lcuP9YvNr2h+0ICD0ilg9pVPeqcnHSRiaVXJjeHlx
+	 VJUgZ4gav1x2jqa309oLRM3/sxnajmOLJZ/eMRKPltob30RV9LtSYFjQGQRBSiCeRS
+	 MOnvsFRs7TOlCgDV6ojexuNb6+AAU5z8SjXHFkpEvMNf00CPvhKCvEMPE6IL0r62rZ
+	 xGuFwia94yr5jCoxYUJxpAFy0S/ZEFIqJMkjSZ7iel8ZHoxPahBoulttufu4aS7HGV
+	 46TXk/mIQsyfA==
+Received: from insidem2ms-MBP.inside-m2m.de (pd95bb737.dip0.t-ipconnect.de [217.91.183.55])
+	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
+	by mail.inside-m2m.de (Postfix) with ESMTPSA id B05714019E;
+	Wed, 23 Aug 2023 10:55:58 +0200 (CEST)
+Date: Wed, 23 Aug 2023 10:55:57 +0200
+From: Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>
+To: Darcy Watkins <dwatkins@sierrawireless.com>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Pick up ${PV} dynamically from environment or file or
+ filename
+Message-ID: <ZOXJnRjGPgI0af2_@insidem2ms-MBP.inside-m2m.de>
+References: <ZN9m5Edu4sszrpcx@insidem2ms-MacBook-Pro.local>
+ <CANNYZj969r-C5WBSHmCweE_WB_Xwxgc-0jhXTZ+ECDWvYoyXCg@mail.gmail.com>
+ <ZN_VfdJcE28H6sFX@insidem2ms-MacBook-Pro.local>
+ <CO6PR02MB8740665A96A2D7D62109554FB21BA@CO6PR02MB8740.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [yocto] EXTRA_USERS_PARAMS doesn't work to generate password for
- root and add new users
-Content-Language: en-US, it
-To: yocto@lists.yoctoproject.org
-References: <5b90942a-3d7d-d3db-42e6-5779d2fb2839@koansoftware.com>
- <25389.1692720054983292974@lists.yoctoproject.org>
-Cc: crane2018@gmail.com
-From: Mauro Salvini <m.salvini@koansoftware.com>
-In-Reply-To: <25389.1692720054983292974@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CO6PR02MB8740665A96A2D7D62109554FB21BA@CO6PR02MB8740.namprd02.prod.outlook.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 07:45:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60854
+ <yocto@lists.yoctoproject.org>; Wed, 23 Aug 2023 08:56:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60855
 
-On 22/08/23 18:00, Crane wrote:
-> On Tue, Aug 22, 2023 at 11:36 AM, Mauro wrote:
-> 
->     Try with this:
-> 
->     EXTRA_USERS_PARAMS=" usermod -p '$(openssl passwd -6 root)' root;
->     useradd -p '$(openssl passwd -6 2023)' crane; "
-> 
+On Fri, Aug 18, 2023 at 08:48:46PM +0000, Darcy Watkins wrote:
 
-Uh, I'm using this one successfully, on a Yocto Warrior.
+> Then make use of the GIT AUTOREV facility to fetch from that GIT repo.
 
-> Not working.
-> Here is the value of the variable becoming:
-> EXTRA_USERS_PARAMS=" usermod -p '\$(openssl passwd -6 root)' root; 
-> useradd -p '\$(openssl passwd -6 2023)' crane; "
-> One \ is added before $ symbol.
-> 
-> 
+Interesting idea which I will track in the future, thank you very much!
 
-Then the \ is added automatically by Yocto? Maybe something has changed 
-in variables parsing...or could be a bug? Don't know, help needed from 
-the experts!
-
-You can put the encrypted password (the result of the "openssl passwd -6 
-root" command) directly in the variable, taking care to put a "\" before 
-the three "$" contained in the string. Something like this:
-
-EXTRA_USERS_PARAMS=" usermod -p 
-'\$6\$CEM0hANiVS9VXN8N\$Q9XK1KTpq2faq2fNbSRLNeeA4mmQsl8g1Gwl3QnTPlRPb5ljCAa./bbhffcthXxUen4jSFL6HKGQPlHZNQkfA/' 
-root; useradd -p 
-'\$6\$5wVybJkbuowR0iMi\$tnEJEEbXbcRfksKRSt7rjlY1hRERrjqFOlCaa0s1ivISxAHT7MFdcnZvVbRHgkqRSYzA1oLUxtR0LuvDTMPR5/' 
-crane; "
-
-By the way, this approach has the advantage to mask the password.
-
-
--- 
-Mauro Salvini | KOAN sas | Bergamo - Italia
-embedded software engineering
-http://KoanSoftware.com
-
+Regards
+Konstantin
 
