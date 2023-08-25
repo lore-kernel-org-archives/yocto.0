@@ -2,75 +2,78 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5877FC88CB9
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 55CE4C88CB2
 	for <webhook@archiver.kernel.org>; Fri, 25 Aug 2023 01:42:22 +0000 (UTC)
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
- by mx.groups.io with SMTP id smtpd.web11.4753.1692927732326804370
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web11.4757.1692927738904304379
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Aug 2023 18:42:12 -0700
+ Thu, 24 Aug 2023 18:42:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=CpIC/0kl;
- spf=pass (domain: gmail.com, ip: 209.85.215.169, mailfrom: ticotimo@gmail.com)
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-56c2e840e70so217646a12.3
-        for <yocto@lists.yoctoproject.org>; Thu, 24 Aug 2023 18:42:12 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=SrL+loXB;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: ticotimo@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-56a55c0f8b1so232335a12.0
+        for <yocto@lists.yoctoproject.org>; Thu, 24 Aug 2023 18:42:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692927731; x=1693532531;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mkmvLIR1PbJccOUGUnwCRs5Mpg8w6dwB+pA6/Vgo2Yc=;
-        b=CpIC/0kljBzcO63w2ANwOsHRh02OYrLW2D7ddbznAIJMJu6wXNdL88ZI5HyiU3giix
-         oMxuiVCs6AA6+eM1w+Vkg2Rw+FTvjlyI3A/41WIGu7pp8S8JC1oUjwcbNZcVpIAfyLDI
-         P+TuSCaosLx0FGacdCDe5fytILhtibBUezbMDbIMGlVOo6UzNc6z6MXE3NXRuTOZBe1r
-         iMLNGnvf5Gzi1sG7DKWLepRgqA5THEId9+PLrVYdIHfo3PY4HK/nqWNU4cOu7drv4pWt
-         tMpcZzeaV90XlbLpMBM7AdTA2YYlv1VTw90ULZt8hY8C+sStEvG2/hW/fQfpRg++swyc
-         pRQw==
+        d=gmail.com; s=20221208; t=1692927738; x=1693532538;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VBGMwl8SJmNbzEdftSGmXiUk9T1b+1hjIr3ak7/dVLI=;
+        b=SrL+loXBLwY27751hdFsNFbEXLkKFJn021qWs8CArWQsuyzFgAwASBF+wYfuH9LHr1
+         56nC7TNZSWZ8G72MFWo7t//SAl3g1NnN8LJ9qxAaas68lFGv5XzwyqRkf69pbckkC2eR
+         DtlPnjuPe8W/n4AtumDzZ4gbwnhr+9rRdBrCqtearzP1H32SwQRfUz68yl4XUMSwr8dM
+         iJGKqc5WzYAl1MZqWJTQwj63BVhlJ/5S8jqb2zzz7WqJ5Cw5D/wrgqEQ8eiPtQxj5vjD
+         cmtrGefXsvCDa7aTBXzqzEE+8vVrFJz3He884egHVZm0bPUSiE4xlWxja8aIAeeF1/L8
+         7kUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692927731; x=1693532531;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mkmvLIR1PbJccOUGUnwCRs5Mpg8w6dwB+pA6/Vgo2Yc=;
-        b=Iv1lkQk17uBZQ/quZwChWoAgov/sVYfzLwHRWt2G/0MsE9Q9RQZtd1zu2cvolJwm4V
-         1x/5bdySM0UNgRxjITwqn5Z/sKj8iOzkid9nn3EoiCODkmr7EHt1lIEXaZOqOuw9u8uz
-         ds/nqJjiyyUKR2ibW094nCJfeuX14m4obwD/ESFtPwMkXSA8yQw7jBechal94vNQXO0U
-         gnW2hHzu2FAfZifGVrAtaCGkr3jKItvujhWrXEWiYVJrCulIqY+zs13TG71kebs+ysrL
-         64QNwwF5otUhIDC8FHtbY/GlIxXNZDmS7pKbOLYmK8qxDgmidGNgDbGTE97aqFeEEE5W
-         twDA==
-X-Gm-Message-State: AOJu0Yzrm8Hy2CfjC+46i0caSk5big6is0Iu7Gy46W+rkEP0onDJCDSM
-	Q/Jf9cZVnaDQMahUso9w4RLbxHvy6fo=
-X-Google-Smtp-Source: AGHT+IHMjxG1T49VL5mGPL51pmGsrAr0nn0f+9pXZhz/g3aGiyFvpRjfKMB1Ylr89+6EVM4OwsWjKg==
-X-Received: by 2002:a17:90b:364a:b0:26b:be62:c229 with SMTP id nh10-20020a17090b364a00b0026bbe62c229mr16773668pjb.32.1692927731177;
-        Thu, 24 Aug 2023 18:42:11 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692927738; x=1693532538;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VBGMwl8SJmNbzEdftSGmXiUk9T1b+1hjIr3ak7/dVLI=;
+        b=VqKyQQrqftYL36CSd7Ia3mwQRPEAExujmPGGxTxpSxNZPixrwZBvt7bprkSZPT+jv8
+         THAUZCx+ba+nu1Ykl72VijduqxjEzr2UNWeneM6XCW0e4RR0LZM+hG/n6EgVCEx1T/vf
+         dMZ08V6QOykvBRPQNZIiQbX8FDlEVvBGX+x1MeCLmlFhjTg2Yz7DS+Bm1KYOc6dgAsyU
+         KioEcC3D2EN1C5wT7rN9M8c1pEnVx0dmQWW9FCrJwIRS5UX1lpo6y7akPRvA/pTrWTCr
+         okriJnSiSBj3YT/0cTbFrEdJ3y0WVVNZy/S1zMCnxdPeXzzKfw71DTWegBC+ZoaKUatR
+         5Hzw==
+X-Gm-Message-State: AOJu0YyEQlU2g86Us15cYH3UNtxxGweXbAOOuKS//OfV1mjKXDkZh8Z2
+	GIiobxOrO8Nkv697LnmfYLejA3yy/sM=
+X-Google-Smtp-Source: AGHT+IF35/xJFREvZondKTK1pJhz9KX/KJugbJDAgx4PjYSznYO2G0IvFV5sDN+/Br3+sSAqRvPpwg==
+X-Received: by 2002:a05:6a20:12d1:b0:148:2f62:c47f with SMTP id v17-20020a056a2012d100b001482f62c47fmr17348569pzg.41.1692927738068;
+        Thu, 24 Aug 2023 18:42:18 -0700 (PDT)
 Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:e38c:3700:34c7:85e5])
-        by smtp.gmail.com with ESMTPSA id jf15-20020a170903268f00b001bb3beb2bc6sm350541plb.65.2023.08.24.18.42.10
+        by smtp.gmail.com with ESMTPSA id jf15-20020a170903268f00b001bb3beb2bc6sm350541plb.65.2023.08.24.18.42.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Aug 2023 18:42:10 -0700 (PDT)
+        Thu, 24 Aug 2023 18:42:17 -0700 (PDT)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
 Cc: Tim Orling <tim.orling@konsulko.com>
-Subject: [layerindex-web][PATCH 1/2] build(deps): bump pillow from 9.2.0 to 9.3.0
-Date: Thu, 24 Aug 2023 18:42:02 -0700
-Message-Id: <20230825014209.1817874-1-tim.orling@konsulko.com>
+Subject: [layerindex-web][PATCH 2/2] build(deps): bump gitpython from 3.1.30 to 3.1.32
+Date: Thu, 24 Aug 2023 18:42:03 -0700
+Message-Id: <20230825014209.1817874-2-tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230825014209.1817874-1-tim.orling@konsulko.com>
+References: <20230825014209.1817874-1-tim.orling@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Fri, 25 Aug 2023 01:42:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60884
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60885
 
 From: "dependabot[bot]" <49699333+dependabot[bot]@users.noreply.github.com>
 
-Bumps [pillow](https://github.com/python-pillow/Pillow) from 9.2.0 to 9.3.0.
-- [Release notes](https://github.com/python-pillow/Pillow/releases)
-- [Changelog](https://github.com/python-pillow/Pillow/blob/main/CHANGES.rst)
-- [Commits](https://github.com/python-pillow/Pillow/compare/9.2.0...9.3.0)
+Bumps [gitpython](https://github.com/gitpython-developers/GitPython) from 3.1.30 to 3.1.32.
+- [Release notes](https://github.com/gitpython-developers/GitPython/releases)
+- [Changelog](https://github.com/gitpython-developers/GitPython/blob/main/CHANGES)
+- [Commits](https://github.com/gitpython-developers/GitPython/compare/3.1.30...3.1.32)
 
 ---
 updated-dependencies:
-- dependency-name: pillow
+- dependency-name: gitpython
   dependency-type: direct:production
 ...
 
@@ -81,18 +84,18 @@ Signed-off-by: Tim Orling <tim.orling@konsulko.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/requirements.txt b/requirements.txt
-index 1f4975e..85f6520 100644
+index 85f6520..b86ac6e 100644
 --- a/requirements.txt
 +++ b/requirements.txt
-@@ -19,7 +19,7 @@ gitdb==4.0.9
- GitPython==3.1.30
+@@ -16,7 +16,7 @@ django-reversion-compare==0.14.1
+ django-simple-captcha==0.5.14
+ djangorestframework==3.13.1
+ gitdb==4.0.9
+-GitPython==3.1.30
++GitPython==3.1.32
  kombu==5.2.3
  mysqlclient==2.1.0
--Pillow==9.2.0
-+Pillow==9.3.0
- pytz==2021.3
- six==1.16.0
- smmap==5.0.0
+ Pillow==9.3.0
 -- 
 2.34.1
 
