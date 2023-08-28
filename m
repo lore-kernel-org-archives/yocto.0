@@ -1,89 +1,89 @@
-Return-Path: <stephan.muehlstrasser@gmail.com>
+Return-Path: <ecordonnier@snap.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A979C83F11
-	for <webhook@archiver.kernel.org>; Mon, 28 Aug 2023 09:22:58 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web10.9699.1693214576629270944
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4770BC83F16
+	for <webhook@archiver.kernel.org>; Mon, 28 Aug 2023 09:44:58 +0000 (UTC)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+ by mx.groups.io with SMTP id smtpd.web11.9759.1693215894940026283
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Aug 2023 02:22:56 -0700
+ Mon, 28 Aug 2023 02:44:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=Rl3U5tyT;
- spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: stephan.muehlstrasser@gmail.com)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2bcde83ce9fso44470421fa.1
-        for <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 02:22:56 -0700 (PDT)
+ dkim=pass header.i=@snap.com header.s=google header.b=GZh+hpEh;
+ spf=pass (domain: snapchat.com, ip: 209.85.218.53, mailfrom: ecordonnier@snapchat.com)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-99df431d4bfso391281466b.1
+        for <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 02:44:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693214575; x=1693819375;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8G3tH24/z+36lfcJK069Naa+gJIwabbXgYOrqU6bMAY=;
-        b=Rl3U5tyT1blxlOUsHGIaMliVs0RUwl0lp+yFgqOFzS6jxutHZhboIsvl+l4uFKGRUz
-         N/CPKiJF3k0RMd2vkWcAlFFlJBQN6f5/tQ+GZxrtBeS6lMjabCneUnLe1xxbe681/n96
-         mReWLWSPgv7jVrrSe1DbOP8OR/UL8ygdzDKBjyCx0XZnxo8LE+Zd53CF3LJ1FvifyNE5
-         /wQLx43UXHb+brEckXz+0X4XAc5bW7WXMgaZ4XO/1MRYovrgm/JH8aaMCYGbpeVQueT6
-         DTMuh01an4B/tlwgTkitL2EQp5rAl4J9+yfOaL4VH/HR89s18Iqy7eC9rASslWpkw0Q7
-         9qyw==
+        d=snap.com; s=google; t=1693215893; x=1693820693;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PxZH6ER6gD3PvwW7GsKoSLlvYSzB9DwNUDTQRmI9+Qw=;
+        b=GZh+hpEhVIYq2TUDfMpCn99Yu8M/QzulbZVBdM/BcGRZ7Arg+cAVwXxExKc8ViJkku
+         Jk9XiHyWtY3mJk9uiPMXoHBFX6dXjD4Ke3ttVBETqNOPTa/OMlceUrRsc6NW3ynXw00E
+         PFGZhp0FqLyZ0FEGWSwp8SGvOzs3JA69CEvm4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693214575; x=1693819375;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8G3tH24/z+36lfcJK069Naa+gJIwabbXgYOrqU6bMAY=;
-        b=j/oKqsTyI2wk4Mh2uAmNC2xTrQNxktQj68+Hf+itN6EW8Hh7TqiRD/C2rVszGLEfVy
-         hLrJ/avsiTtYXFTW9Ae/24f6lGM1MbrfxCHEft4C4ZL9Ydxf/NdUpVoOrLtt9abR52Q8
-         JvBjEiR+HI6fmKPt4lT1WfHBD/l9T5iQyjbywIDZKo5CTX3wfMTOCb5rycc70hb7P+xZ
-         kRyzLLwe7ItIF2/z3UqdfmO8zjvFr64DWAr0aTpzZEprMo03mzu4lyEo7zEcD8cxYBJu
-         OZZK7tA5QdNLUha5tOoDPmVhyncMbnPdhp4igrajlKnBR6ocGct1Wka+VsV6b4nJX4FO
-         yFdg==
-X-Gm-Message-State: AOJu0Ywvuzi6KLtAVVmjAhZeVHS/S4MvFQKeobvf9rHgz0KOmnp6yB0E
-	RcUE9MHOEoUrXDBExfQ8yA5CKidZufRldWMXHVc/mtQ=
-X-Google-Smtp-Source: AGHT+IHqdX3Dk7Tf3374t8m9iacWOvpkR9ApNEgN7d71r9cCkgoYSHFeT7jSv+I+1sIvvgtTra5Jz9JMh+ur6tR+3Mw=
-X-Received: by 2002:a2e:81d3:0:b0:2bc:db5a:9545 with SMTP id
- s19-20020a2e81d3000000b002bcdb5a9545mr11154614ljg.14.1693214574340; Mon, 28
- Aug 2023 02:22:54 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693215893; x=1693820693;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PxZH6ER6gD3PvwW7GsKoSLlvYSzB9DwNUDTQRmI9+Qw=;
+        b=bvQWeyJJ3rBXRclhh7hs9TvV9emIZJeGrQUKCc0LVM01LMW1c/R3ookGrx7jJKplu6
+         HWC2C7R/I6BZ8yH5vQIMn7L/kEvucxAafzZK4AQh3sj6Vt+R/KdvKbirmmCClfCMQ/MY
+         BLRicpNv0euaBUp38CCL+Zm4KDzwGlPVCQxSz2kg1zTA1Ebi36KQ3iPwKPBSYaRi8iKQ
+         uygpxOLNE5vJd6QOhFEWzLyNiD1pABXH52dL6yYln6iZszzWn1u1Sy7Xpa4Bhv+ymDlZ
+         uHi6snFQVxca2oV+hP6eCsq9GQrsSmR0VOAJtC2s95TtljJ7blo8InLN8Z+hwso9jP2B
+         YwNQ==
+X-Gm-Message-State: AOJu0YwTC5RPeLUz0wT1pHRiTk7pA5ehAxtdqtiXpSvtQKPc94+JLk0r
+	QffsLML965izsxkqycuXkynJiJK6U1mYawGZKY00fg==
+X-Google-Smtp-Source: AGHT+IEjTYM9dXYufQnqNQkSp/Jij2wL+rHgMkptRyBhOYFJ1eAN2/ePzldLDAKmWnDRqqi27LSSNQ==
+X-Received: by 2002:a17:906:308b:b0:9a1:f96c:4baf with SMTP id 11-20020a170906308b00b009a1f96c4bafmr9807357ejv.5.1693215893065;
+        Mon, 28 Aug 2023 02:44:53 -0700 (PDT)
+Received: from lj8k2dq3.sc-core.net ([85.237.126.22])
+        by smtp.gmail.com with ESMTPSA id ha19-20020a170906a89300b00989027eb30asm4396556ejb.158.2023.08.28.02.44.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Aug 2023 02:44:52 -0700 (PDT)
+From: ecordonnier@snap.com
+To: yocto@lists.yoctoproject.org
+Cc: Etienne Cordonnier <ecordonnier@snap.com>
+Subject: [meta-darwin][PATCH 2/2] gcc: re-add zstd dependency
+Date: Mon, 28 Aug 2023 11:44:21 +0200
+Message-Id: <20230828094421.763574-2-ecordonnier@snap.com>
+X-Mailer: git-send-email 2.36.1.vfs.0.0
+In-Reply-To: <20230828094421.763574-1-ecordonnier@snap.com>
+References: <20230828094421.763574-1-ecordonnier@snap.com>
 MIME-Version: 1.0
-References: <o2S3.1692955198371059896.EMq5@lists.yoctoproject.org>
- <CANNYZj9=HgFoctp0=_soxF6Wv3R8G5Og0SpEFL0y7CbbXRxJuw@mail.gmail.com>
- <CA+_BhBzFjDjrmWW6y22kHc_s1EkXa7ee9REMBDTDQMP+eDXidg@mail.gmail.com> <CANNYZj8Hv2YETSNd+uUmffSEA1Tv+q-gK7-u-WUOsrvqALr7Hg@mail.gmail.com>
-In-Reply-To: <CANNYZj8Hv2YETSNd+uUmffSEA1Tv+q-gK7-u-WUOsrvqALr7Hg@mail.gmail.com>
-From: =?UTF-8?Q?Stephan_M=C3=BChlstrasser?= <stephan.muehlstrasser@gmail.com>
-Date: Mon, 28 Aug 2023 11:22:43 +0200
-Message-ID: <CA+_BhBwcqRNfjZbFSGuie5dyiTjXCCW9wsOfM4fw1xU7w=_=Ow@mail.gmail.com>
-Subject: Re: [yocto] "Replicating a Build Offline" not working as expected
- when Git data is removed
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 09:22:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60900
+ <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 09:44:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60902
 
-Am Mo., 28. Aug. 2023 um 10:25 Uhr schrieb Alexander Kanavin
-<alex.kanavin@gmail.com>:
+From: Etienne Cordonnier <ecordonnier@snap.com>
 
-> It's well possible no one knows the definite answer, and the best
-> advice is what I said: don't touch the downloads at all. In any case,
-> if the documentation is not accurate, patches to make it accurate
-> would be appreciated.
+The zstd cross-compile build for darwin was fixed in f786ea1379a64fbbd,
+thus there is no need to remove this dependency any more.
 
-I certainly do not know the answer, as I'm just a beginner with Yocto
-and I try to follow the documentation to get things done.
+Signed-off-by: Etienne Cordonnier <ecordonnier@snap.com>
+---
+ recipes-devtools/gcc/gcc-cross-canadian_%.bbappend | 5 -----
+ 1 file changed, 5 deletions(-)
 
-It may be a bug in the documentation, but it may as well be a bug in
-the implementation. It is certainly a desirable feature not having to
-keep the Git and other SCM directories in the downloads directory and
-to retain only the tarballs because of disk space. I assume that it
-has worked in the past, otherwise it wouldn't be documented.
+diff --git a/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend b/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
+index 43ae2b5..192ee0d 100644
+--- a/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
++++ b/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
+@@ -12,8 +12,3 @@ EXTRA_OECONF:remove:darwinsdk = "--enable-clocale=generic"
+ 
+ # Remove -rpath-link and -rpath
+ LDFLAGS:darwinsdk = "${BUILDSDK_LDFLAGS}"
+-
+-# zstd uses uname to determine the compiler's target and makes the assumption that the host OS is the target,
+-# so it does not support Darwin as a cross-compiler target.
+-# zstd is not really needed as a dependency of gcc, and zstd would need to be fixed to compile for Darwin
+-DEPENDS:remove = "nativesdk-zstd"
+-- 
+2.36.1.vfs.0.0
 
-If it is a documentation bug, it would have further further
-consequences. If it is not possible to rely on the tarballs only for
-an offline build then the functionality to generate the tarballs via
-the BB_GENERATE_MIRROR_TARBALLS variable is probably useless.
-
-I filed a bug for this: https://bugzilla.yoctoproject.org/show_bug.cgi?id=15202
-
-Stephan
 
