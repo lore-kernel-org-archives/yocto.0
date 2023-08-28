@@ -1,79 +1,84 @@
-Return-Path: <stephan.muehlstrasser@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4464BC83F12
-	for <webhook@archiver.kernel.org>; Mon, 28 Aug 2023 06:16:37 +0000 (UTC)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
- by mx.groups.io with SMTP id smtpd.web11.7878.1693203389102356929
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D784DC83F11
+	for <webhook@archiver.kernel.org>; Mon, 28 Aug 2023 08:25:37 +0000 (UTC)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+ by mx.groups.io with SMTP id smtpd.web11.9070.1693211136450829218
  for <yocto@lists.yoctoproject.org>;
- Sun, 27 Aug 2023 23:16:29 -0700
+ Mon, 28 Aug 2023 01:25:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=eV+fOSO/;
- spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: stephan.muehlstrasser@gmail.com)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2bcb54226e7so33402521fa.1
-        for <yocto@lists.yoctoproject.org>; Sun, 27 Aug 2023 23:16:28 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=ijI5U9as;
+ spf=pass (domain: gmail.com, ip: 209.85.167.52, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-4fe1b00fce2so4625732e87.3
+        for <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 01:25:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693203387; x=1693808187;
+        d=gmail.com; s=20221208; t=1693211135; x=1693815935;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Lwg2kt+FVPCI2nbvKqKDnOVGSyBYeFVm/Dh2DeUAYmw=;
-        b=eV+fOSO/VZXQ0Yvjp1QsGu5EuQAy3vrx1hEDO2BuWNazRphi7jQdKkd0mxj/R/ug5L
-         C95xpZVDsu1xHVfut+fGNAEwW/3Ogb6x1jveGqDDGu3snY9hpRFhrH8i2+lomtLhewzZ
-         MUpUb/n/BRaMIm4sXBWSp09LF6F8MIeuUYjvXp9j8U/o2IGRKdfojaCkJHkZs5Ny+0IS
-         6ZvB+9HlG3mk6fx5tA3WODvSJmiZre5fqKgcFtBh/j7cWKKFWoySHJPB4mE7aU6+rVMH
-         U+JEt1UMqCTrHOuuhneGeBcN0Q77co9GdZP1fRwsFuoSdzh9KANsXi0TWJIQItjswJjR
-         0bfQ==
+        bh=eDNAYOkoMuRKFzR2iTGelY1HNhwBAI7BRBp233zk3BE=;
+        b=ijI5U9asjtTzdBJSq0hrc9lmWiE2OdiAgpRGoD+FuGZzjUjSIIu8tOjAHX8eL5ByPy
+         ZDZmfd5lECFIKgGOBevlZWbzPHhD3jaABLU0jnYDvbyR6+99uLPYrlMK1MEeMVJuvv+T
+         xaR08G05XlexUYmEZhiIQqMvdQJFKnmiJmfgjbdaSuY+0mI6l14TkB3BSxwB+43SHfj5
+         G0Ya3tUTKryEgOS2sP6wc9sAMWuKlH88UEf3qr2UEEewOsUdwpuNk5wyxRfIIqyOZO45
+         Jz4DrZUFuYasUevVqJxQfYXuPaIaTjpLTZlXste/5KvNJX+R3AlQ15mlNF5y5NNhPLl+
+         mUfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693203387; x=1693808187;
+        d=1e100.net; s=20221208; t=1693211135; x=1693815935;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Lwg2kt+FVPCI2nbvKqKDnOVGSyBYeFVm/Dh2DeUAYmw=;
-        b=kRERHloGhEW2Zw16+8QtPL+kE8nsiZcbyFXTd/Hb03T+zp6QN26KobAVSQY+4JXNCa
-         01F8MauIXl/ndv1rOWWzip7btrfcUQ2hkbEFjTU5EPDdK9bHwiJJp6F8ZG59n+rgFrgM
-         /cQYzga7kYI1dl/FhmlOZCsbIR22ReeitU85Pya8fDJ73ansdeV2nVPR5oXCZtUO9QjO
-         eyh3iDHoBLUCEN3b6OhIadgeJQH6bXvc2BV4Mt6ZNRi14dgHRpjariyKaDVeTgFHTFrK
-         twxsrTBp6VjpWDsbyT9JuZzRO5+DDoNJFeJgxqEfCvV76i9Q59UVNT2LusUPlSjHndVT
-         0fZA==
-X-Gm-Message-State: AOJu0YxVDm5h18xPp8lCk9LnUilObzsradO1cW8so1IWsY28g2kj4EmK
-	VXzqRqc7fz2nPYL3kSZHkDkzmguxGYAFM4JF7Fi3epw=
-X-Google-Smtp-Source: AGHT+IEw8fAFSciPo2Y/SDpQDxTIcJgXhGNrgl1aQYh9bCpNReK1zWYC91QSW+FpCDBF7a4xs1Ptys3N/ZamxH3X1PA=
-X-Received: by 2002:a2e:a278:0:b0:2bb:7e3f:3cc2 with SMTP id
- k24-20020a2ea278000000b002bb7e3f3cc2mr8397717ljm.2.1693203386984; Sun, 27 Aug
- 2023 23:16:26 -0700 (PDT)
+        bh=eDNAYOkoMuRKFzR2iTGelY1HNhwBAI7BRBp233zk3BE=;
+        b=eLMKPgJh8wMk7p9c/Zf7lcu9bWuTwJUK65mhPEXsaRJJJ4Yu9G/S/auqBkiM1E8Vk8
+         Rv5O/GBH4BLkPSy+okkPwLdXTWAyuM5nVI8PvaPS/VjHJHvGiOSOq5rAJEr9PvleYc8g
+         KSogHwWr64MBQFTtFC76bi0J0XHKlPmPyX+8P6aKYLa0JrhsbLmy4jM5+uAiWBf1MZhA
+         09n9j7GALGAeqrvwMHWbLDTpQUO9EPd0GnMbTM24fAYut5py+aT/oG7C97cnv6LQrtON
+         MIq7LfJDUKdBQMOWZxCbNGtBCT5dV9RXzXuncB19JCYwevCA4pAzCVaHKL/sijsU2WX1
+         6WzA==
+X-Gm-Message-State: AOJu0YyKWmiJvQ02uYg1eJsO8/tN8DZBdXRd7TJWMcwm2TcVYhavPEOM
+	OGh97v2HTGemnqezkiVteWdseSEeTafI5t718Qs=
+X-Google-Smtp-Source: AGHT+IEdAwOcedScCjrwGD+zIVq4DAT5yCavflEqq0K2q72/sbtQOFYf1m/GMdrotnvYyuX1BD5E2xn43wGHAhicOCA=
+X-Received: by 2002:ac2:58e5:0:b0:500:ae85:726a with SMTP id
+ v5-20020ac258e5000000b00500ae85726amr3767849lfo.50.1693211134317; Mon, 28 Aug
+ 2023 01:25:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <o2S3.1692955198371059896.EMq5@lists.yoctoproject.org> <CANNYZj9=HgFoctp0=_soxF6Wv3R8G5Og0SpEFL0y7CbbXRxJuw@mail.gmail.com>
-In-Reply-To: <CANNYZj9=HgFoctp0=_soxF6Wv3R8G5Og0SpEFL0y7CbbXRxJuw@mail.gmail.com>
-From: =?UTF-8?Q?Stephan_M=C3=BChlstrasser?= <stephan.muehlstrasser@gmail.com>
-Date: Mon, 28 Aug 2023 08:16:15 +0200
-Message-ID: <CA+_BhBzFjDjrmWW6y22kHc_s1EkXa7ee9REMBDTDQMP+eDXidg@mail.gmail.com>
+References: <o2S3.1692955198371059896.EMq5@lists.yoctoproject.org>
+ <CANNYZj9=HgFoctp0=_soxF6Wv3R8G5Og0SpEFL0y7CbbXRxJuw@mail.gmail.com> <CA+_BhBzFjDjrmWW6y22kHc_s1EkXa7ee9REMBDTDQMP+eDXidg@mail.gmail.com>
+In-Reply-To: <CA+_BhBzFjDjrmWW6y22kHc_s1EkXa7ee9REMBDTDQMP+eDXidg@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 28 Aug 2023 10:25:23 +0200
+Message-ID: <CANNYZj8Hv2YETSNd+uUmffSEA1Tv+q-gK7-u-WUOsrvqALr7Hg@mail.gmail.com>
 Subject: Re: [yocto] "Replicating a Build Offline" not working as expected
  when Git data is removed
-To: Alexander Kanavin <alex.kanavin@gmail.com>
+To: =?UTF-8?Q?Stephan_M=C3=BChlstrasser?= <stephan.muehlstrasser@gmail.com>
 Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 06:16:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60898
+ <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 08:25:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60899
 
-Am Fr., 25. Aug. 2023 um 11:28 Uhr schrieb Alexander Kanavin
-<alex.kanavin@gmail.com>:
+On Mon, 28 Aug 2023 at 08:16, Stephan M=C3=BChlstrasser
+<stephan.muehlstrasser@gmail.com> wrote:
+> > The documentation isn=E2=80=99t perfect. Sometimes it becomes outdated =
+and no one notices, or it may be inaccurate to begin with. Personally I wou=
+ld never tamper with content of downloads and preserve it exactly as it is.=
+ Doesn=E2=80=99t have to be git lfs, plain artifact storage options work to=
+o.
 >
-> The documentation isn=E2=80=99t perfect. Sometimes it becomes outdated an=
-d no one notices, or it may be inaccurate to begin with. Personally I would=
- never tamper with content of downloads and preserve it exactly as it is. D=
-oesn=E2=80=99t have to be git lfs, plain artifact storage options work too.
+> If it doesn't work as documented, could someone elaborate what is
+> currently necessary to replicate a build offline? Is it possible to
+> reproduce a build only with the tarballs or is it actually necessary
+> to keep the cloned Git repositories in the download directory as well?
 
-If it doesn't work as documented, could someone elaborate what is
-currently necessary to replicate a build offline? Is it possible to
-reproduce a build only with the tarballs or is it actually necessary
-to keep the cloned Git repositories in the download directory as well?
+It's well possible no one knows the definite answer, and the best
+advice is what I said: don't touch the downloads at all. In any case,
+if the documentation is not accurate, patches to make it accurate
+would be appreciated.
 
-Thanks
-Stephan
+Alex
 
