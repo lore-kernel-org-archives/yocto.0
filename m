@@ -1,273 +1,206 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BD84C71153
-	for <webhook@archiver.kernel.org>; Mon, 28 Aug 2023 20:38:35 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web11.2467.1693255107338282631
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1960EC83F19
+	for <webhook@archiver.kernel.org>; Tue, 29 Aug 2023 01:43:57 +0000 (UTC)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+ by mx.groups.io with SMTP id smtpd.web11.8527.1693273432180757446
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Aug 2023 13:38:27 -0700
+ Mon, 28 Aug 2023 18:43:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=nQFQc2VH;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: marek.belisko@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-500b0f06136so3551396e87.0
-        for <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 13:38:27 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=DGW7IQ4W;
+ spf=pass (domain: gmail.com, ip: 209.85.208.45, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-52713d2c606so5034686a12.2
+        for <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 18:43:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693255105; x=1693859905;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gAEkGgq2TThgErR5cnhA95DGtLnVRLUSUNQoODYZ8cw=;
-        b=nQFQc2VHz8FQMUzsorYpB1Xhzx+rtDDt0Y3+4dmQg6eZmY7Bi/TeV8fA6nhph31Vux
-         Gjgb0BPr4oI+hb6O1Q08iDtg1sfEKuRxdiximSYYzFJMzrlRU8sTugD+2JX2iRp0O8ZS
-         AbAi33s8Y6F8eUmuYSWRQKVO8lOXCmO+baEcPxExfTohHVOWVlhw+Akq+cI9LJwRZUoZ
-         kiluT6M0+sH0cozqZwXy+kNo5dxlegj1D7Q6VBGToPEY1x4sQAxMoFOSz6hI+XDJICbN
-         WOxRnDfU+5Ft2SG3tF9qQYdkKF1pox8EQsvG6sb5Y1DGloyOVWP+g2FToDGvU2oP5a4F
-         4TlA==
+        d=gmail.com; s=20221208; t=1693273430; x=1693878230;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=79xLu3ECsKatbuLQ9NDVLNKDtpji4F6lu+n2Whi5FM8=;
+        b=DGW7IQ4Ww1G4pIFEsZJ1FOqheplaZ8ojFI01plUSLRmnYNG5+fN1IzRxWgPD7gkWIt
+         NlvwH20iRz/Gs+nLY2mFK+nBsoHaGcvqhZxgZwytQVMz7nM1spvh4XIEZOB0VFcDW/gr
+         oYGHdQEXnz0+5AMI4yxpQv5V6ZnptE3f+bIwEQnes/uZNhMDQ1zXQzP2lOyn7yBrwpC3
+         qs8bE4XZ3sMBWOm/tXJ5YpMhKCJcrzGZejTFB0r7PhWynGf5+rvfM1HAmiR7hw+W7Blv
+         TJi+Da/rtvaJe/z33/X9vZdMbFpex09mKSif23rHUl4TY3HAV0kQ9si9KBZwx5tWuroc
+         xXLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693255105; x=1693859905;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gAEkGgq2TThgErR5cnhA95DGtLnVRLUSUNQoODYZ8cw=;
-        b=f+NGoewtAwoFP4sVdcee/BqZoJoKZ1ZBZ+1f1Qq4oK2kA7Qw7jxCedMQmHJ75cd1zE
-         +n+SvJWmn4COFsAxDUVpd5hZMXaQcvc5dfIkdjBE1ukAfocD/7Ao/mdjS64UMj9H2XMv
-         Ctyhzmhe5yW/BNU3a15GzzKs0vPS6QERmnHb9K6HBmDVl6rRE4wphxIICqywUx6UdJ6r
-         /RVbTLN3sPJa61ZYTMLyQj0l2z+BJdQxsApgTr3mAYb9DhNQN8wy9UiMgnE0AWHCAEQh
-         HMzLVlSC+gjtD4Q7yWRExkA842sZGB57FFQFqMHPy/ft+36hpt3r40tXFgCZzHK0/xGt
-         2hNg==
-X-Gm-Message-State: AOJu0YxM+5dCXxp3BnJKhEhna1Ewp8m4x1vmCX6oJzRUBSG/pXJQY41F
-	lCRppO1eJYqBkUZwLTwWnsYvY2nH2IXh0DGd084=
-X-Google-Smtp-Source: AGHT+IGBVFZ3vbaWoZ+9umblr8Rt8H+LfeWgJHQN2lXkkxyLyu5VXHvYeT3+FQT48MdGtrAOcgypnqjJl5i2i6Hw3d8=
-X-Received: by 2002:a05:6512:3241:b0:4fe:25bc:71f5 with SMTP id
- c1-20020a056512324100b004fe25bc71f5mr16555011lfr.11.1693255105107; Mon, 28
- Aug 2023 13:38:25 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693273430; x=1693878230;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=79xLu3ECsKatbuLQ9NDVLNKDtpji4F6lu+n2Whi5FM8=;
+        b=AdCC7gXhbWflIRq7q58s3YgblbQePJBaFe/jZE8jbyljqOvFKa/EeWjfcv56s9buCt
+         Qf8Lp9alojqsOypVkOxL2Kex7henW0IQa2OqZCFS8M5c1CwmuRHu29mrkVqkLV3APbsn
+         shOSD2peLGg18SuznzVltKwMkJQsF1lAwYh+pWSbEMqTJxlL6hIOGw14EslijAfHzBg/
+         28wchhjEiZYHTdMlsLEiQi3eiakUIcega7kqXKdsKSYjj/fria1QbeeUWmywNxMzGFKQ
+         ETKZOd7I6Epm+97xkrl1Wz8MYmalawAj7zeBQCGBtQEPl/LqdDY725eR8GlBn6rlidYS
+         ga2g==
+X-Gm-Message-State: AOJu0YzdefiFrYLWArDKqM7DKvawDlbl2lam2UMEDiGET9NZUmTsoX6t
+	pmuLUIyTo3trQJAZ2Jrq0XQyxyHsjm44fo+1608=
+X-Google-Smtp-Source: AGHT+IEerK7y5LwkLQ/r9LEzvidrUmPfCg2ez4eZgXNZopJoDOdJx/EkNprhqsA+UMWLP6pgvB26ditNUiT+T859+RU=
+X-Received: by 2002:a17:906:74d7:b0:9a1:da9a:f1c5 with SMTP id
+ z23-20020a17090674d700b009a1da9af1c5mr12444272ejl.45.1693273430058; Mon, 28
+ Aug 2023 18:43:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAMKF1sqe4sqEK6fO0nF2JKx-bGH6zxwZtKhbuxhDJC6=H+tJXA@mail.gmail.com>
- <246F203D-CE28-4FFB-B75B-430B65D64816@gmail.com> <CAMKF1sq-HLEDTVVwbqQXASE4GvH1zbWNe5fiaVF8=imKEwAH_g@mail.gmail.com>
-In-Reply-To: <CAMKF1sq-HLEDTVVwbqQXASE4GvH1zbWNe5fiaVF8=imKEwAH_g@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 28 Aug 2023 22:38:13 +0200
-Message-ID: <CAAfyv35kSOPJqGgjsPbO-969TwKk0969eEuKR5361d+OCrYnDg@mail.gmail.com>
-Subject: Re: [yocto] [meta-virtualization] nerdctl broken in kirkstone
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto <yocto@lists.yoctoproject.org>, Bruce Ashfield <bruce.ashfield@gmail.com>
-Content-Type: multipart/alternative; boundary="0000000000000ddc7f060401ad05"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 28 Aug 2023 18:43:39 -0700
+Message-ID: <CAK5yBb_ozcr1Ms1zAdEYK1DmTatsyr0xOEk+XswwdS0kJpA5vw@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000004e6afd060405f15e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 28 Aug 2023 20:38:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60905
+ <yocto@lists.yoctoproject.org>; Tue, 29 Aug 2023 01:43:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60906
 
---0000000000000ddc7f060401ad05
+--0000000000004e6afd060405f15e
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 24, 2023 at 4:05=E2=80=AFPM Khem Raj <raj.khem@gmail.com> wrote=
-:
+All,
 
-> does it work if you add do_compile[network] =3D "1"
->
-Nope it is not. It turns out that the fetch phase is not correct. When I do
-bitbake nerdctl -e | grep SRC_URI I got only:
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
- SRC_URI=3D"git://
-github.com/containerd/nerdctl.git;name=3Dnerdcli;branch=3Dmain;protocol=3Dh=
-ttps"
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-and not other SRC_URI's added in src_uri.inc file. It's mystery to me why
-this include is not working
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 419
+unassigned or newcomer bugs.
 
->
-> On Wed, Aug 23, 2023 at 11:14=E2=80=AFPM Belisko Marek <marek.belisko@gma=
-il.com>
-> wrote:
-> >
-> >
-> >
-> > Sent from my iPhone
-> >
-> > > On 24 Aug 2023, at 02:23, Khem Raj <raj.khem@gmail.com> wrote:
-> > >
-> > > =EF=BB=BFwhich task is failing ?
-> > do_compile
-> > >
-> > >> On Wed, Aug 23, 2023 at 2:31=E2=80=AFPM Marek Belisko <
-> marek.belisko@gmail.com> wrote:
-> > >>
-> > >> Hi,
-> > >>
-> > >> I'm trying to add nerdctl to an image using kirkstone release for
-> meta-virtualization.
-> > >> I've added bbappend with following fix:
-> > >>
-> > >> SRC_URI =3D "git://
-> github.com/containerd/nerdctl.git;name=3Dnerdcli;branch=3Dmain;protocol=
-=3Dhttps"
-> > >>
-> > >> (branch name in original recipe is master but main is required)
-> > >>
-> > >> but then anyways it fails with:
-> > >>
-> > >> rsync: [sender] change_dir
-> "/data/projects/test/build/tmp/work/cortexa53-crypto-poky-linux/nerdctl/v=
-0.18.0-r0/nerdctl-v0.18.0/src/import/vendor.fetch/
-> github.com/Masterminds/semver/v3" failed: No such file or directory (2)
-> > >> | rsync error: some files/attrs were not transferred (see previous
-> errors) (code 23) at main.c(1327) [sender=3D3.2.5]
-> > >>
-> > >> And in ${BP} I cannot see any of those vendor stuff which should be
-> present. Is there some fix for that already pending or it's known issue?
-> > >>
-> > >> Thanks and BR,
-> > >>
-> > >> marek
-> > >>
-> > >> --
-> > >> as simple and primitive as possible
-> > >> -------------------------------------------------
-> > >> Marek Belisko - OPEN-NANDRA
-> > >> Freelance Developer
-> > >>
-> > >> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> > >> Tel: +421 915 052 184
-> > >> skype: marekwhite
-> > >> twitter: #opennandra
-> > >> web: http://open-nandra.com
-> > >>
-> > >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > >> Links: You receive all messages sent to this group.
-> > >> You automatically follow any topics you start or reply to.
-> > >> View/Reply Online (#60868):
-> https://lists.yoctoproject.org/g/yocto/message/60868
-> > >> Mute This Topic: https://lists.yoctoproject.org/mt/100924569/1997914
-> > >> Group Owner: yocto+owner@lists.yoctoproject.org
-> > >> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> raj.khem@gmail.com]
-> > >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > >>
->
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C4.3=E2=80=9D, =E2=80=9C4.4=E2=80=9D, "4.99" and=
+ "Future", the more
+pressing/urgent issues being in "4.3" and then =E2=80=9C4.4=E2=80=9D.
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
 
 
---=20
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+*Stephen K. Jolley*
 
---0000000000000ddc7f060401ad05
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--0000000000004e6afd060405f15e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Aug 24, 2023 at 4:05=E2=80=AFPM K=
-hem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt=
-; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">does it work if you add do_compile[network] =3D &quot;1=
-&quot;<br></blockquote><div>Nope it is not. It turns out that the fetch pha=
-se is not correct. When I do bitbake nerdctl -e | grep SRC_URI I got only:<=
-br><br></div><div>=C2=A0SRC_URI=3D&quot;git://<a href=3D"http://github.com/=
-containerd/nerdctl.git;name=3Dnerdcli;branch=3Dmain;protocol=3Dhttps">githu=
-b.com/containerd/nerdctl.git;name=3Dnerdcli;branch=3Dmain;protocol=3Dhttps<=
-/a>&quot;</div><div><br></div><div>and not other SRC_URI&#39;s added in src=
-_uri.inc file. It&#39;s mystery to me why this include is not working</div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-On Wed, Aug 23, 2023 at 11:14=E2=80=AFPM Belisko Marek &lt;<a href=3D"mailt=
-o:marek.belisko@gmail.com" target=3D"_blank">marek.belisko@gmail.com</a>&gt=
-; wrote:<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Sent from my iPhone<br>
-&gt;<br>
-&gt; &gt; On 24 Aug 2023, at 02:23, Khem Raj &lt;<a href=3D"mailto:raj.khem=
-@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br>
-&gt; &gt;<br>
-&gt; &gt; =EF=BB=BFwhich task is failing ?<br>
-&gt; do_compile<br>
-&gt; &gt;<br>
-&gt; &gt;&gt; On Wed, Aug 23, 2023 at 2:31=E2=80=AFPM Marek Belisko &lt;<a =
-href=3D"mailto:marek.belisko@gmail.com" target=3D"_blank">marek.belisko@gma=
-il.com</a>&gt; wrote:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Hi,<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; I&#39;m trying to add nerdctl to an image using kirkstone rel=
-ease for meta-virtualization.<br>
-&gt; &gt;&gt; I&#39;ve added bbappend with following fix:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; SRC_URI =3D &quot;git://<a href=3D"http://github.com/containe=
-rd/nerdctl.git;name=3Dnerdcli;branch=3Dmain;protocol=3Dhttps" rel=3D"norefe=
-rrer" target=3D"_blank">github.com/containerd/nerdctl.git;name=3Dnerdcli;br=
-anch=3Dmain;protocol=3Dhttps</a>&quot;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; (branch name in original recipe is master but main is require=
-d)<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; but then anyways it fails with:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; rsync: [sender] change_dir &quot;/data/projects/test/build/tm=
-p/work/cortexa53-crypto-poky-linux/nerdctl/v0.18.0-r0/nerdctl-v0.18.0/src/i=
-mport/vendor.fetch/<a href=3D"http://github.com/Masterminds/semver/v3" rel=
-=3D"noreferrer" target=3D"_blank">github.com/Masterminds/semver/v3</a>&quot=
-; failed: No such file or directory (2)<br>
-&gt; &gt;&gt; | rsync error: some files/attrs were not transferred (see pre=
-vious errors) (code 23) at main.c(1327) [sender=3D3.2.5]<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; And in ${BP} I cannot see any of those vendor stuff which sho=
-uld be present. Is there some fix for that already pending or it&#39;s know=
-n issue?<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Thanks and BR,<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; marek<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; --<br>
-&gt; &gt;&gt; as simple and primitive as possible<br>
-&gt; &gt;&gt; -------------------------------------------------<br>
-&gt; &gt;&gt; Marek Belisko - OPEN-NANDRA<br>
-&gt; &gt;&gt; Freelance Developer<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Ruska Nova Ves 219 | Presov, 08005 Slovak Republic<br>
-&gt; &gt;&gt; Tel: +421 915 052 184<br>
-&gt; &gt;&gt; skype: marekwhite<br>
-&gt; &gt;&gt; twitter: #opennandra<br>
-&gt; &gt;&gt; web: <a href=3D"http://open-nandra.com" rel=3D"noreferrer" ta=
-rget=3D"_blank">http://open-nandra.com</a><br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; &gt;&gt; Links: You receive all messages sent to this group.<br>
-&gt; &gt;&gt; You automatically follow any topics you start or reply to.<br=
->
-&gt; &gt;&gt; View/Reply Online (#60868): <a href=3D"https://lists.yoctopro=
-ject.org/g/yocto/message/60868" rel=3D"noreferrer" target=3D"_blank">https:=
-//lists.yoctoproject.org/g/yocto/message/60868</a><br>
-&gt; &gt;&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt=
-/100924569/1997914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoct=
-oproject.org/mt/100924569/1997914</a><br>
-&gt; &gt;&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproje=
-ct.org" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; &gt;&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yoct=
-o/unsub" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.or=
-g/g/yocto/unsub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank=
-">raj.khem@gmail.com</a>]<br>
-&gt; &gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; &gt;&gt;<br>
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature">as=
- simple and primitive as possible<br>--------------------------------------=
------------<br>Marek Belisko - OPEN-NANDRA<br>Freelance Developer<br><br>Ru=
-ska Nova Ves 219 | Presov, 08005 Slovak Republic<br>Tel: +421 915 052 184<b=
-r>skype: marekwhite<br>twitter: #opennandra<br>web: <a href=3D"http://open-=
-nandra.com" target=3D"_blank">http://open-nandra.com</a></div></div>
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 419 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now,  =E2=80=9C=
+4.3=E2=80=9D, =E2=80=9C4.4=E2=80=9D, &quot;4.99&quot; and &quot;Future&quot=
+;, the more pressing/urgent issues being in &quot;4.3&quot; and then =E2=80=
+=9C4.4=E2=80=9D.<br><br>Please review this link and if a bug is something y=
+ou would be able to help with either take ownership of the bug, or send me =
+(<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an=
+ e-mail with the bug number you would like and I will assign it to you (ple=
+ase make sure you have a Bugzilla account).  The list is at: <a href=3D"htt=
+ps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_B=
+ugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Ne=
+wcomer_Bugs</a></span><br clear=3D"all"><span class=3D"gmail_signature_pref=
+ix"> </span><br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoNorma=
+l" style=3D"background-image:initial;background-position:initial;background=
+-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-serif=
+">Thanks,<span></span></span></p>
 
---0000000000000ddc7f060401ad05--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p><p class=3D"MsoNormal" style=3D"background-image:initial;background-p=
+osition:initial;background-repeat:initial"><u><span lang=3D"FR" style=3D"fo=
+nt-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;color:blue"><br></s=
+pan></u></p></div></div></div></div>
+
+--0000000000004e6afd060405f15e--
 
