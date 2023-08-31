@@ -1,208 +1,500 @@
-Return-Path: <sakib.sajal@windriver.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6D6BC83F01
-	for <webhook@archiver.kernel.org>; Thu, 31 Aug 2023 14:46:26 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web10.19219.1693493181336005865
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 12B2DC88CB2
+	for <webhook@archiver.kernel.org>; Thu, 31 Aug 2023 21:02:42 +0000 (UTC)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+ by mx.groups.io with SMTP id smtpd.web10.6069.1693515752734947995
  for <yocto@lists.yoctoproject.org>;
- Thu, 31 Aug 2023 07:46:21 -0700
+ Thu, 31 Aug 2023 14:02:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=k5KOSlbQ;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=760760502c=sakib.sajal@windriver.com)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37VBnu2Y017426;
-	Thu, 31 Aug 2023 14:46:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
-	 h=content-type:message-id:date:from:subject:to:cc:mime-version;
-	 s=PPS06212021; bh=+z66TMbaHhXmVdkdWsOttW4dNK75iWXfAH145d6iSEk=; b=
-	k5KOSlbQHmML+8D3ZRGHLQXurwZoAWWe750mw1u6++Q34zHEV1zPDNWlODo0N/mR
-	V81KNvjTgqEKO6MdmNtYXeeHugZ08kmyiBNBOXc8U7y2rc50I9hZcF02l1G7HYK9
-	nS6usCh1AWnMFUr1v7lnJi//3KcAKUniW4c5j0D8OojY2iX3UxlW3s5ogLKvLp5I
-	cZ+Ix2aO2RegrB1lqYmbvoNN24crabAMaCToY/cmKs5WgIVF/HtN0t5U3BaO3gsV
-	XZGoAzEl/q7KHRz9+KWgNn0y3VY1MCVztoR1M5C96Zyy1wzNscwOzLsW36ZlIdBu
-	TtdzOH2nWTtLdDs5lk3PAg==
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2100.outbound.protection.outlook.com [104.47.70.100])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3sq8c64xk7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 31 Aug 2023 14:46:09 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OavMb7eIRb7CCcmzS4yIC/HvJPHZGkKenqUMYU5DhgQ9Ap3U0vzS10YqPeTYDN8zZ07W4oTrcAeD5hjvuq5swX66H014NDAdFkcAgz4uk6koNT4XLyt1ypsKty3SMsdSkpjEwqK+naB8WfeUPvlaT7ABHLDRMVhqa7Gat/EyTnXa8kNIv3rhrMVlvb0Qi9k0Idtipje26yJ/92orX2NgXcAAOWl140fiINx/1tXzfh5q3CpVjYa7XClRiMgSwX0iYY9n0nzGbHQftnv119WGR3ENoOnTVCNbJcs9r6Z/W4Bv7i2HhDtlQ10jKC36b9TF6ASYQe/CEH+ldjGkf1Vdug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+z66TMbaHhXmVdkdWsOttW4dNK75iWXfAH145d6iSEk=;
- b=WkZgKMhstF7HyfHjG05S7Ygb34Lxnw4mrmw+0SQQiWp58mH7QsRfaFTvNK55zXep8FVXtkzOTYCDYRUR/JUS11tsxYqlKJkcqLz1x9rt6sK8EtJ/qRotW2Tm7xlSXyAMTaLBLOBfasLWVH5LvpQ9Ac53PujFiZoOIJe3dyLhclsQYGQuotKiLNRtp87JFLzb/2pLJDmTfrERhioa68YBv5HCOas+mrlqCPZ4o6BMlQ2jArKmJW1/jQErtKMiyRBY8qvaJsELHSibMtalFLI1pP3asUAS2ps5GFgm4r6qz4Fhm/jZ0CbpmHNIUbtHPDsaZPL7DutR/KVDGE2ID4Uy9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from DM6PR11MB2538.namprd11.prod.outlook.com (2603:10b6:5:be::20) by
- MW4PR11MB7101.namprd11.prod.outlook.com (2603:10b6:303:219::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6699.35; Thu, 31 Aug 2023 14:46:07 +0000
-Received: from DM6PR11MB2538.namprd11.prod.outlook.com
- ([fe80::4044:65c4:486f:538b]) by DM6PR11MB2538.namprd11.prod.outlook.com
- ([fe80::4044:65c4:486f:538b%4]) with mapi id 15.20.6745.021; Thu, 31 Aug 2023
- 14:46:07 +0000
-Content-Type: multipart/alternative;
- boundary="------------Q9ahLcdQiNbrBdxX9mg0eqK0"
-Message-ID: <e82bf3b7-ed6e-233e-fa50-c541ecf03c90@windriver.com>
-Date: Thu, 31 Aug 2023 10:46:03 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-From: Sakib Sajal <sakib.sajal@windriver.com>
-Subject: [yocto] Minutes: Yocto Project Weekly Triage Meeting 31/08/2023
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Cc: alexandre.belloni@bootlin.com, Bruce Ashfield <bruce.ashfield@gmail.com>,
-        daiane.angolini@foundries.io,
-        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
-        luca.ceresoli@bootlin.com, Randy MacLeod <randy.macleod@windriver.com>,
-        Richard Purdie <richard.purdie@linuxfoundation.org>,
-        Khem Raj <raj.khem@gmail.com>, ross@burtonini.com,
-        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
-        Steve Sakoman <steve@sakoman.com>, tim.orling@konsulko.com,
-        sakib.sajal@windriver.com, akuster808 <akuster808@gmail.com>,
-        valery.chernous@gmail.com, tgamblin@baylibre.com, pavel@zhukoff.net,
-        antonio.oliveira@konsulko.com
-Content-Language: en-US
-X-ClientProxiedBy: BL1P223CA0008.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:2c4::13) To DM6PR11MB2538.namprd11.prod.outlook.com
- (2603:10b6:5:be::20)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=qVMkKCv1;
+ spf=pass (domain: gmail.com, ip: 209.85.128.174, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-58d9ba95c78so14259677b3.1
+        for <yocto@lists.yoctoproject.org>; Thu, 31 Aug 2023 14:02:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693515752; x=1694120552; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YyQXGV08S7gSeA5g7hytIJBGdMZiunwN0ZyuNt3ahxc=;
+        b=qVMkKCv1uLRJPzS3UrjZALKBk+D2DQzPlH128Paf/p+J+Ld6ktl0kr/sb/h9Lv9PF0
+         mHy5FooYNtCVOm20TSBHCgqxxf6FacEttTKHG63sxWRe7Ge3+FDKfg4ewZ5jRvY92/hi
+         ewZmA6ohyQCYV3Zs/B/nQ6Iz0pfkeTVv1wbWr7Q8IHsa2oWFNe1My1m6TWU3O3zSJo+j
+         RiCw0O7q3Z3MirfQa7j2MK2ouZYSAhWWzP49h3ih3AVabe4DnXTv5UB0dD/sdC5SQvTo
+         8cuLqIvVHHZqId26k2UWAZ89Yzu4T2fDGVAtBEs/bH+j2tYQI0A0pJBVAKOpteiKTf41
+         P9jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693515752; x=1694120552;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YyQXGV08S7gSeA5g7hytIJBGdMZiunwN0ZyuNt3ahxc=;
+        b=MhljDS3s/z6LpRVVlBcMbthsGB+r7XjDDb8UbUfZAUQqt4r05hKgltvZJ91/RGRKim
+         Zln5XA8B+lE1yjAHgAI7jdrBPzvnPIMfPbADXZwb8ODi8fkn7SJblqrmg7uLOqP1TIxu
+         7bty+i/IVkmacoPLcNgD0tEKeX6WsW5KdZRbCn6Uxd0Cl9A0n1tJwk3+DplYkzC/54ML
+         VpSMW8D3LwWc0OabyMtbIlmMaj3At+Gg1lp+l3FAjjSUZKyFaUns8UFxEIc6dfw0vLDT
+         NObkCx3CgCHi0RbIz5EP9NaQMSYqIn7ElVVa1VcBCvdZgBgeIaj8htRKFaRR5BnZzamI
+         mytw==
+X-Gm-Message-State: AOJu0YzDiWNdaE9JsiOEcj2bolU3r/8j679Qm0bR5PAmfJjuKwNerAX/
+	8DYpn9R3C101TdqZbWR3H8VgSW7C5Lc=
+X-Google-Smtp-Source: AGHT+IEQMhmhlCUKdLh6bNSL35taBtpyHdpADvNySzDCpJgEbqwB425bVEzDrBMW54wErgvPubV/6Q==
+X-Received: by 2002:a0d:cb4e:0:b0:570:7b4d:f694 with SMTP id n75-20020a0dcb4e000000b005707b4df694mr692139ywd.3.1693515751376;
+        Thu, 31 Aug 2023 14:02:31 -0700 (PDT)
+Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:1be8:12b8:a9f1:944c])
+        by smtp.gmail.com with ESMTPSA id v184-20020a8185c1000000b005843155e284sm674253ywf.49.2023.08.31.14.02.30
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Aug 2023 14:02:30 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] scap-security-guide: update to 0.1.69+
+Date: Thu, 31 Aug 2023 17:02:30 -0400
+Message-Id: <20230831210230.3654574-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2538:EE_|MW4PR11MB7101:EE_
-X-MS-Office365-Filtering-Correlation-Id: d10d07ab-3162-43a5-7c1e-08dbaa31026b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	OmjgDIIk0EJ24Jj8Lo5pVamTXbZFb2w3udKqPZRx3iNiIU6Dd8D2+F2ouW9Psawb4Xc9vRx/5AxDddFf7O6xFcj5YEyyxZsOVmj74g43WZZeBDagPvCunnmqHpivPfa7sVpt4+8aAttAjce+jdXfjzGEuHH9/4v2THH63UHpYsk7eN32WUJZhIIOzrCLHYpGvL5Bh3Z5j7p6PyW/kfymG4XymOvjmRbr08ajtFJmKSZu2k+856zpAwwGpCiwkqQy1IWmyRcRs9hkJ9Yebg7xlSlbvxjnaOEwCjDXZidS2+Nojq0xV+FU1RdP8jfoalLcXWsFJzbwGQjlUrQmWAdrNCCdRYHzqDwCYFPoT+WJw/b5Mn+wbqLbL7l+feSnyqYRwWnNrTdMdY87zL8h7unuk8aj2NGvXaQxTIzwSihjiu6rABGCdtndQcOKKwlngckOvnIsGR3K/ErZATkPEfauMsktYKM7E1xOJ15A2cIRqsLiVwE+LklqBBoXtaNzychTLoUn2kPsddqo3YG1IVU61C8761VlHSrtn1rpLtsf3A9qyxBAZGoaOca79uYFBIJQJfsjIPRhcbmFSr5aLjvhGYhXM7AngFSyPlTcyHwK/PVb9YDoxu0rof2f+0Jf17UTAwyvLf4cHvx+1VLR99ifMQ==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2538.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(376002)(39850400004)(396003)(366004)(451199024)(186009)(1800799009)(66556008)(31686004)(166002)(6512007)(6506007)(6486002)(6666004)(86362001)(36756003)(38100700002)(31696002)(26005)(478600001)(44832011)(33964004)(2906002)(6916009)(966005)(66476007)(8676002)(66946007)(41300700001)(5660300002)(4326008)(7416002)(2616005)(316002)(8936002)(54906003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?SmFJeHUwa2tKaHRpUG9TYmhscGdNeTlPaDRUTmllRXJVVkIvanZ4WWNpbndi?=
- =?utf-8?B?MWpaQSt0WEovN0FaL0VEME10OHNuUWJXeEF1NE1uRWZTMXkveExYbkg2WW1u?=
- =?utf-8?B?MThRWEdBSXR5RDZnSG5kaHRBYmwza05hcldpVmkzdU5JeTdQTlJsaU1kZHFy?=
- =?utf-8?B?MC81ZDF3azRPSC95UWUyTXFoTVRFK3IrYkhLL3M2T1d0ck9OSVhVUkNRNTVW?=
- =?utf-8?B?c21heTZCaHpkZlNyemdkZ3QvaE44cVNGM0pkRnpQME1Jd2xFM255ajgzVmpm?=
- =?utf-8?B?bURJVTIvd3U0M2tDcmF3cnlMcE13NlJUZ3AyTlZBcWd0Wk44UWRBZWtybEtk?=
- =?utf-8?B?Zm51aFROSnpUSTliYk4vbjlyR2ExMGZrN29nMk5LSVg5V2UwVGwybzEvdGk1?=
- =?utf-8?B?M3ZvMGFnUDZoWXdoNmQ0YXJUcDBneXRFNlpmeVdET0JrTGFTK1NDVkpNU3NW?=
- =?utf-8?B?Z09pZHgxbHQ0S0UraFpsQ3k5ZFZqdXhkRzFIN0hQa0xvekhwcXcrTVc1c3E4?=
- =?utf-8?B?R2tDc2FreE0rb2IwcExHbHJVbnB0WGMwam5FVFNNV1lQNmN3WTRNQ053YWww?=
- =?utf-8?B?TnZaeVZZSS9mOXdZOWtQZzVGd1U1Y0VndE94RWg1U1RYVnducnkzenJKNis0?=
- =?utf-8?B?bmNaV0ptcTFDL041TWZNK1FvS2pKUEEvQjE3T2p2NFNIQjVlNTNqTXU3MXdm?=
- =?utf-8?B?NGlFYjF0Q1FWa0JiRTNUQzE3cGxackdsSFp5Z3MrL0xlZWdxNGtrRzdiRm8z?=
- =?utf-8?B?Skw2RVB3eGZSc1ZqVUxRSGRhRGUxNUVJbkhuSEVnT205dVp3L0V0cDBXa0Nm?=
- =?utf-8?B?aUxGRk5tRUdyUW1Mcjdqa1ZXRnVwVktqUHR3cVZSTTRyMEtNSDVPZGpqdlJk?=
- =?utf-8?B?U0FrQjdRTWZVeUNkZTB2Zm5KMm5PNHRsZHA0T1Z3cXZGNFdNZm9tMy84bjg0?=
- =?utf-8?B?SGJFc2VhNVd6QjE2ZHBidGlOdC9Ecmg3VWlPUlRrRnl2VkNpWXlhU3JlbzlG?=
- =?utf-8?B?MjdVWUFhL2poUk8rNzRTb21lRUVacmJvd3ZtQWlZVGpXSUZqM2pvOHZjMzlx?=
- =?utf-8?B?V0Y2OE1YVGI3T0RmMG8xNmZDNjdjbE1SUGtHUy8zOWF0RSthQmxCUGw0UGZY?=
- =?utf-8?B?ZGphQXdYQVpGQ0Nuc0ZVY0JYVkVsTnkrUmJuREp2M2VYa2JZR1pHdTNUc09o?=
- =?utf-8?B?bUIvY3FHTC9xNjZzOG9CVVhqczYzeHBkd2R5NjF6UGJCczJqWHNFQThNd1li?=
- =?utf-8?B?c24vWHJTd2xIZXRQdlMzd0pnbTVHSmRoQU16NWY4OFQ4MWpHLzcxSWtBemc2?=
- =?utf-8?B?N3NYYjRWTHJvS3ZwVGc3SVNiT2lhbytKT0E4UmgyRHlVall4QTVsdU5vTjFi?=
- =?utf-8?B?VmJlbEZobnRSUWZxYU5XbVlyanZiVGVUZHBXdWVRUERWeVpzbXlKWUN0R2N1?=
- =?utf-8?B?SWIrRXh3ckFNK2ZISzEwSVdYWkhzTUl4VGNRUzZpVWorOTBzREpFZHM0K0xm?=
- =?utf-8?B?aTRuK1FxZENqMm9UYUpWS3I4anlmUVEyODJLdjByWUhKWGxXMldxWXNadk9U?=
- =?utf-8?B?NE5vWkdZOXl3enBKN3dGSk8zQzV0WEh2SzA5ajBqWjBVbU94YTRjV24wL0pK?=
- =?utf-8?B?SjZaczJXdUJuYnZsNFJ6SGthbXh6bmFHSVEvU2VrM29MRit1bGY4MFViTm9p?=
- =?utf-8?B?a21WV09QYjVpajdIVDhZZ0RHUFRuYmtwcU1QbXlMcW82bXViV1lnaTVmcWlS?=
- =?utf-8?B?YUt6Rzdvb0FnYkxpOEI3UUxERHZWQXZHZ1ZnOE5CQ3ZndW9acHFLVXdHRTRX?=
- =?utf-8?B?eWdaYU9zcW83c2UyMEZma1VLUkpyWmJCNjFNUVNna3JTbkIwRnluV1dJeE9E?=
- =?utf-8?B?YU9lYXIwN1JLTUxCT0lkYk92Nkg3cUYvYXlmQzFWNk1tNmNzSG1wcGNqck51?=
- =?utf-8?B?Yks2ck1qdllNazdPMXB1d1lIV096WDRQYSt2c2FPNjFBZkJXaGhLTUd1QThs?=
- =?utf-8?B?Q0lhK3U2RXhldVoyTWdxWmFTVGR1ejVMTmNiRkwzSUJNN3pXcUp5YkNKNXFh?=
- =?utf-8?B?ekIyZTJjSEpZaCt5T2pCRkdsRXZNVGhDUHh0TU80NXVIZUVTK2p5SVFUVkx0?=
- =?utf-8?B?L2I5UGxRSlBoaTEyL1dBMlcrL2didlRvQlJyM1R0NHcvWGRMU1RSTkh5UkhQ?=
- =?utf-8?B?dEE9PQ==?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d10d07ab-3162-43a5-7c1e-08dbaa31026b
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2538.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 14:46:07.5272
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YPDN582PBslo14RylxkludanNop3R9kVte5cJcRTdDcX9mVe9uhzBS/0UzvLOM7veKgfUS/DsumhikY8dNDttv1ANfEc2AHgARSaOSmPeTQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7101
-X-Proofpoint-ORIG-GUID: 32I7wHmGADY1U6uGFFexlSGK-adBuOux
-X-Proofpoint-GUID: 32I7wHmGADY1U6uGFFexlSGK-adBuOux
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-31_12,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 phishscore=0 spamscore=0 malwarescore=0 mlxscore=0
- adultscore=0 priorityscore=1501 bulkscore=0 suspectscore=0 clxscore=1011
- mlxlogscore=830 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2308310131
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 31 Aug 2023 14:46:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60919
+ <yocto@lists.yoctoproject.org>; Thu, 31 Aug 2023 21:02:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60920
 
---------------Q9ahLcdQiNbrBdxX9mg0eqK0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Update to tip of branch
 
-*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
+Drop 0001-scap-security-guide-add-openembedded-distro-support.patch is now included in tip
 
-*Attendees: *Richard Purdie, Steve Sakoman, Stephen Jolley, Bruce 
-Ashfield, Tim Orling, Joshua Watt, Ross Burton, Randy Macleod, Trevor 
-Gamblin, Alexandre Belloni, Michael Opdenacker, Antonio, Yoann Congal, 
-Pavel Zhukov, Edi Feschiyan
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ ...uide-add-openembedded-distro-support.patch | 388 ------------------
+ ....1.67.bb => scap-security-guide_0.1.69.bb} |   5 +-
+ 2 files changed, 2 insertions(+), 391 deletions(-)
+ delete mode 100644 recipes-compliance/scap-security-guide/files/0001-scap-security-guide-add-openembedded-distro-support.patch
+ rename recipes-compliance/scap-security-guide/{scap-security-guide_0.1.67.bb => scap-security-guide_0.1.69.bb} (94%)
 
-*ARs:**
-*
+diff --git a/recipes-compliance/scap-security-guide/files/0001-scap-security-guide-add-openembedded-distro-support.patch b/recipes-compliance/scap-security-guide/files/0001-scap-security-guide-add-openembedded-distro-support.patch
+deleted file mode 100644
+index 0db2b12..0000000
+--- a/recipes-compliance/scap-security-guide/files/0001-scap-security-guide-add-openembedded-distro-support.patch
++++ /dev/null
+@@ -1,388 +0,0 @@
+-From 826dd5b109f79270819703a23cc8066895d68042 Mon Sep 17 00:00:00 2001
+-From: Armin Kuster <akuster808@gmail.com>
+-Date: Wed, 14 Jun 2023 07:46:55 -0400
+-Subject: [PATCH 1/2] scap-security-guide: add openembedded distro support
+-
+-includes a standard profile for out-of-the-box checks
+-
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-Upstream-Status: Pending
+-https://github.com/ComplianceAsCode/content/pull/10793
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+----
+- CMakeLists.txt                                |   5 +
+- build_product                                 |   1 +
+- products/openembedded/CMakeLists.txt          |   6 +
+- products/openembedded/product.yml             |  19 ++
+- .../openembedded/profiles/standard.profile    | 166 ++++++++++++++++++
+- .../openembedded/transforms/constants.xslt    |  10 ++
+- .../oval/installed_OS_is_openembedded.xml     |  33 ++++
+- .../oval/sysctl_kernel_ipv6_disable.xml       |   1 +
+- ssg/constants.py                              |   5 +-
+- 9 files changed, 245 insertions(+), 1 deletion(-)
+- create mode 100644 products/openembedded/CMakeLists.txt
+- create mode 100644 products/openembedded/product.yml
+- create mode 100644 products/openembedded/profiles/standard.profile
+- create mode 100644 products/openembedded/transforms/constants.xslt
+- create mode 100644 shared/checks/oval/installed_OS_is_openembedded.xml
+-
+-diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index 6b1ac00ff9..e4191f2cef 100644
+---- a/CMakeLists.txt
+-+++ b/CMakeLists.txt
+-@@ -97,6 +97,7 @@ option(SSG_PRODUCT_UBUNTU1804 "If enabled, the Ubuntu 18.04 SCAP content will be
+- option(SSG_PRODUCT_UBUNTU2004 "If enabled, the Ubuntu 20.04 SCAP content will be built" ${SSG_PRODUCT_DEFAULT})
+- option(SSG_PRODUCT_UBUNTU2204 "If enabled, the Ubuntu 22.04 SCAP content will be built" ${SSG_PRODUCT_DEFAULT})
+- option(SSG_PRODUCT_UOS20 "If enabled, the Uos 20 SCAP content will be built" ${SSG_PRODUCT_DEFAULT})
+-+option(SSG_PRODUCT_OE "If enabled, the OpenEmbedded SCAP content will be built" ${SSG_PRODUCT_DEFAULT})
+- 
+- 
+- option(SSG_CENTOS_DERIVATIVES_ENABLED "If enabled, CentOS derivative content will be built from the RHEL content" TRUE)
+-@@ -291,6 +292,7 @@ message(STATUS "Ubuntu 18.04: ${SSG_PRODUCT_UBUNTU1804}")
+- message(STATUS "Ubuntu 20.04: ${SSG_PRODUCT_UBUNTU2004}")
+- message(STATUS "Ubuntu 22.04: ${SSG_PRODUCT_UBUNTU2204}")
+- message(STATUS "Uos 20: ${SSG_PRODUCT_UOS20}")
+-+message(STATUS "OpenEmbedded: ${SSG_PRODUCT_OE}")
+- 
+- 
+- message(STATUS " ")
+-@@ -409,6 +411,9 @@ endif()
+- if(SSG_PRODUCT_UOS20)
+-     add_subdirectory("products/uos20" "uos20")
+- endif()
+-+if (SSG_PRODUCT_OE)
+-+    add_subdirectory("products/openembedded" "openembedded")
+-+endif()
+- 
+- # ZIP only contains source datastreams and kickstarts, people who
+- # want sources to build from should get the tarball instead.
+-diff --git a/build_product b/build_product
+-index fc793cbe70..7bdc03edfe 100755
+---- a/build_product
+-+++ b/build_product
+-@@ -333,6 +333,7 @@ all_cmake_products=(
+- 	UBUNTU2204
+- 	UOS20
+- 	MACOS1015
+-+	OPENEMBEDDED
+- )
+- 
+- DEFAULT_OVAL_MAJOR_VERSION=5
+-diff --git a/products/openembedded/CMakeLists.txt b/products/openembedded/CMakeLists.txt
+-new file mode 100644
+-index 0000000000..1981adf53e
+---- /dev/null
+-+++ b/products/openembedded/CMakeLists.txt
+-@@ -0,0 +1,6 @@
+-+# Sometimes our users will try to do: "cd openembedded; cmake ." That needs to error in a nice way.
+-+if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
+-+    message(FATAL_ERROR "cmake has to be used on the root CMakeLists.txt, see the Building ComplianceAsCode section in the Developer Guide!")
+-+endif()
+-+
+-+ssg_build_product("openembedded")
+-diff --git a/products/openembedded/product.yml b/products/openembedded/product.yml
+-new file mode 100644
+-index 0000000000..debf6870ef
+---- /dev/null
+-+++ b/products/openembedded/product.yml
+-@@ -0,0 +1,19 @@
+-+product: openembedded
+-+full_name: OpemEmbedded 
+-+type: platform
+-+
+-+benchmark_id: OPENEMBEDDED
+-+benchmark_root: "../../linux_os/guide"
+-+
+-+profiles_root: "./profiles"
+-+
+-+pkg_manager: "dnf"
+-+
+-+init_system: "systemd"
+-+
+-+cpes_root: "../../shared/applicability"
+-+cpes:
+-+  - openembedded:
+-+      name: "cpe:/o:openembedded:nodistro:"
+-+      title: "OpenEmbedded nodistro"
+-+      check_id: installed_OS_is_openembedded
+-diff --git a/products/openembedded/profiles/standard.profile b/products/openembedded/profiles/standard.profile
+-new file mode 100644
+-index 0000000000..fcb9e0e5c2
+---- /dev/null
+-+++ b/products/openembedded/profiles/standard.profile
+-@@ -0,0 +1,166 @@
+-+documentation_complete: true
+-+
+-+title: 'Sample Security Profile for OpenEmbedded Distros'
+-+
+-+description: |-
+-+    This profile is an sample for use in documentation and example content.
+-+    The selected rules are standard and should pass quickly on most systems.
+-+
+-+selections:
+-+    - file_owner_etc_passwd
+-+    - file_groupowner_etc_passwd
+-+    - service_crond_enabled
+-+    - file_groupowner_crontab
+-+    - file_owner_crontab
+-+    - file_permissions_crontab
+-+    - file_groupowner_cron_hourly
+-+    - file_owner_cron_hourly
+-+    - file_permissions_cron_hourly
+-+    - file_groupowner_cron_daily
+-+    - file_owner_cron_daily
+-+    - file_permissions_cron_daily
+-+    - file_groupowner_cron_weekly
+-+    - file_owner_cron_weekly
+-+    - file_permissions_cron_weekly
+-+    - file_groupowner_cron_monthly
+-+    - file_owner_cron_monthly
+-+    - file_permissions_cron_monthly
+-+    - file_groupowner_cron_d
+-+    - file_owner_cron_d
+-+    - file_permissions_cron_d
+-+    - file_groupowner_cron_allow
+-+    - file_owner_cron_allow
+-+    - file_cron_deny_not_exist
+-+    - file_groupowner_at_allow
+-+    - file_owner_at_allow
+-+    - file_at_deny_not_exist
+-+    - file_permissions_at_allow
+-+    - file_permissions_cron_allow
+-+    - file_groupowner_sshd_config
+-+    - file_owner_sshd_config
+-+    - file_permissions_sshd_config
+-+    - file_permissions_sshd_private_key
+-+    - file_permissions_sshd_pub_key
+-+    - sshd_set_loglevel_verbose
+-+    - sshd_set_loglevel_info
+-+    - sshd_max_auth_tries_value=4
+-+    - sshd_set_max_auth_tries
+-+    - sshd_disable_rhosts
+-+    - disable_host_auth
+-+    - sshd_disable_root_login
+-+    - sshd_disable_empty_passwords
+-+    - sshd_do_not_permit_user_env
+-+    - sshd_idle_timeout_value=15_minutes
+-+    - sshd_set_idle_timeout
+-+    - sshd_set_keepalive
+-+    - var_sshd_set_keepalive=0
+-+    - sshd_set_login_grace_time
+-+    - var_sshd_set_login_grace_time=60
+-+    - sshd_enable_warning_banner
+-+    - sshd_enable_pam
+-+    - sshd_set_maxstartups
+-+    - var_sshd_set_maxstartups=10:30:60
+-+    - sshd_set_max_sessions
+-+    - var_sshd_max_sessions=10
+-+    - accounts_password_pam_minclass
+-+    - accounts_password_pam_minlen
+-+    - accounts_password_pam_retry
+-+    - var_password_pam_minclass=4
+-+    - var_password_pam_minlen=14
+-+    - locking_out_password_attempts
+-+    - accounts_password_pam_pwhistory_remember_password_auth
+-+    - accounts_password_pam_pwhistory_remember_system_auth
+-+    - var_password_pam_remember_control_flag=required
+-+    - var_password_pam_remember=5
+-+    - set_password_hashing_algorithm_systemauth
+-+    - var_accounts_maximum_age_login_defs=365
+-+    - accounts_password_set_max_life_existing
+-+    - var_accounts_minimum_age_login_defs=7
+-+    - accounts_password_set_min_life_existing
+-+    - var_accounts_password_warn_age_login_defs=7
+-+    - account_disable_post_pw_expiration
+-+    - var_account_disable_post_pw_expiration=30
+-+    - no_shelllogin_for_systemaccounts
+-+    - accounts_tmout
+-+    - var_accounts_tmout=15_min
+-+    - accounts_root_gid_zero
+-+    - accounts_umask_etc_bashrc
+-+    - use_pam_wheel_for_su
+-+    - sshd_allow_only_protocol2
+-+    - journald_forward_to_syslog
+-+    - journald_compress
+-+    - journald_storage
+-+    - service_auditd_enabled
+-+    - service_httpd_disabled
+-+    - service_vsftpd_disabled
+-+    - service_named_disabled
+-+    - service_nfs_disabled
+-+    - service_rpcbind_disabled
+-+    - service_slapd_disabled
+-+    - service_dhcpd_disabled
+-+    - service_cups_disabled
+-+    - service_ypserv_disabled
+-+    - service_rsyncd_disabled
+-+    - service_avahi-daemon_disabled
+-+    - service_snmpd_disabled
+-+    - service_squid_disabled
+-+    - service_smb_disabled
+-+    - service_dovecot_disabled
+-+    - banner_etc_motd
+-+    - login_banner_text=cis_banners
+-+    - banner_etc_issue
+-+    - login_banner_text=cis_banners
+-+    - file_groupowner_etc_motd
+-+    - file_owner_etc_motd
+-+    - file_permissions_etc_motd
+-+    - file_groupowner_etc_issue
+-+    - file_owner_etc_issue
+-+    - file_permissions_etc_issue
+-+    - ensure_gpgcheck_globally_activated
+-+    - package_aide_installed
+-+    - aide_periodic_cron_checking
+-+    - grub2_password
+-+    - file_groupowner_grub2_cfg
+-+    - file_owner_grub2_cfg
+-+    - file_permissions_grub2_cfg
+-+    - require_singleuser_auth
+-+    - require_emergency_target_auth
+-+    - disable_users_coredumps
+-+    - configure_crypto_policy
+-+    - var_system_crypto_policy=default_policy
+-+    - dir_perms_world_writable_sticky_bits
+-+    - file_permissions_etc_passwd
+-+    - file_owner_etc_shadow
+-+    - file_groupowner_etc_shadow
+-+    - file_groupowner_etc_group
+-+    - file_owner_etc_group
+-+    - file_permissions_etc_group
+-+    - file_groupowner_etc_gshadow
+-+    - file_owner_etc_gshadow
+-+    - file_groupowner_backup_etc_passwd
+-+    - file_owner_backup_etc_passwd
+-+    - file_permissions_backup_etc_passwd
+-+    - file_groupowner_backup_etc_shadow
+-+    - file_owner_backup_etc_shadow
+-+    - file_permissions_backup_etc_shadow
+-+    - file_groupowner_backup_etc_group
+-+    - file_owner_backup_etc_group
+-+    - file_permissions_backup_etc_group
+-+    - file_groupowner_backup_etc_gshadow
+-+    - file_owner_backup_etc_gshadow
+-+    - file_permissions_unauthorized_world_writable
+-+    - file_permissions_ungroupowned
+-+    - accounts_root_path_dirs_no_write
+-+    - root_path_no_dot
+-+    - accounts_no_uid_except_zero
+-+    - file_ownership_home_directories
+-+    - file_groupownership_home_directories
+-+    - no_netrc_files
+-+    - no_rsh_trust_files
+-+    - account_unique_id
+-+    - group_unique_id
+-+    - group_unique_name
+-+    - wireless_disable_interfaces
+-+    - package_firewalld_installed
+-+    - service_firewalld_enabled
+-+    - package_iptables_installed
+-diff --git a/products/openembedded/transforms/constants.xslt b/products/openembedded/transforms/constants.xslt
+-new file mode 100644
+-index 0000000000..152571e8bb
+---- /dev/null
+-+++ b/products/openembedded/transforms/constants.xslt
+-@@ -0,0 +1,10 @@
+-+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+-+
+-+<xsl:include href="../../../shared/transforms/shared_constants.xslt"/>
+-+
+-+<xsl:variable name="product_long_name">OpenEmbedded</xsl:variable>
+-+<xsl:variable name="product_short_name">openembedded</xsl:variable>
+-+<xsl:variable name="product_stig_id_name">empty</xsl:variable>
+-+<xsl:variable name="prod_type">openembedded</xsl:variable>
+-+
+-+</xsl:stylesheet>
+-diff --git a/shared/checks/oval/installed_OS_is_openembedded.xml b/shared/checks/oval/installed_OS_is_openembedded.xml
+-new file mode 100644
+-index 0000000000..11ebdca913
+---- /dev/null
+-+++ b/shared/checks/oval/installed_OS_is_openembedded.xml
+-@@ -0,0 +1,33 @@
+-+<def-group>
+-+  <definition class="inventory" id="installed_OS_is_openembedded" version="1">
+-+    <metadata>
+-+      <title>OpenEmbedded</title>
+-+      <affected family="unix">
+-+        <platform>multi_platform_all</platform>
+-+      </affected>
+-+      <description>The operating system installed is an OpenEmbedded based system</description>
+-+    </metadata>
+-+    <criteria comment="System is OpenEmbedded based" operator="AND">
+-+      <extend_definition comment="Installed OS is part of the Unix family" definition_ref="installed_OS_is_part_of_Unix_family" />
+-+      <criterion comment="OpenEmbedded distro" test_ref="test_os_openembedded" />
+-+      <criterion comment="OpenEmbedded is installed" test_ref="test_openembedded" />
+-+    </criteria>
+-+  </definition>
+-+
+-+  <unix:file_test check="all" check_existence="all_exist" comment="/etc/os-release exists" id="test_os_openembedded" version="1">
+-+    <unix:object object_ref="obj_os_openembedded" />
+-+  </unix:file_test>
+-+  <unix:file_object comment="check /etc/os-release file" id="obj_os_openembedded" version="1">
+-+    <unix:filepath>/etc/os-release</unix:filepath>
+-+  </unix:file_object>
+-+
+-+  <ind:textfilecontent54_test check="all" check_existence="at_least_one_exists" comment="Check OpenEmbedded" id="test_openembedded" version="1">
+-+    <ind:object object_ref="obj_openembedded" />
+-+  </ind:textfilecontent54_test>
+-+  <ind:textfilecontent54_object id="obj_openembedded" version="1" comment="Check OpenEmbedded">
+-+    <ind:filepath>/etc/os-release</ind:filepath>
+-+    <ind:pattern operation="pattern match">^ID=nodistro$</ind:pattern>
+-+    <ind:instance datatype="int">1</ind:instance>
+-+  </ind:textfilecontent54_object>
+-+
+-+</def-group>
+-diff --git a/shared/checks/oval/sysctl_kernel_ipv6_disable.xml b/shared/checks/oval/sysctl_kernel_ipv6_disable.xml
+-index affb9770cb..4f22df262c 100644
+---- a/shared/checks/oval/sysctl_kernel_ipv6_disable.xml
+-+++ b/shared/checks/oval/sysctl_kernel_ipv6_disable.xml
+-@@ -8,6 +8,7 @@
+- 	<platform>multi_platform_debian</platform>
+- 	<platform>multi_platform_example</platform>
+- 	<platform>multi_platform_fedora</platform>
+-+	<platform>multi_platform_openembedded</platform>
+- 	<platform>multi_platform_opensuse</platform>
+- 	<platform>multi_platform_ol</platform>
+- 	<platform>multi_platform_rhcos</platform>
+-diff --git a/ssg/constants.py b/ssg/constants.py
+-index f66ba008fa..630fbdfcb9 100644
+---- a/ssg/constants.py
+-+++ b/ssg/constants.py
+-@@ -219,6 +219,7 @@ FULL_NAME_TO_PRODUCT_MAPPING = {
+-     "Ubuntu 20.04": "ubuntu2004",
+-     "Ubuntu 22.04": "ubuntu2204",
+-     "UnionTech OS Server 20": "uos20",
+-+    "OpenEmbedded": "openembedded",
+-     "Not Applicable" : "example"
+- }
+- 
+-@@ -267,7 +268,7 @@ REFERENCES = dict(
+- 
+- MULTI_PLATFORM_LIST = ["rhel", "fedora", "rhv", "debian", "ubuntu",
+-                        "opensuse", "sle", "ol", "ocp", "rhcos",
+--                       "example", "eks", "alinux", "uos", "anolis"]
+-+                       "example", "eks", "alinux", "uos", "anolis", "openembedded"]
+- 
+- MULTI_PLATFORM_MAPPING = {
+-     "multi_platform_alinux": ["alinux2", "alinux3"],
+-@@ -285,6 +286,7 @@ MULTI_PLATFORM_MAPPING = {
+-     "multi_platform_sle": ["sle12", "sle15"],
+-     "multi_platform_ubuntu": ["ubuntu1604", "ubuntu1804", "ubuntu2004", "ubuntu2204"],
+-     "multi_platform_uos": ["uos20"],
+-+    "multi_platform_openembedded": ["openembedded"],
+- }
+- 
+- RHEL_CENTOS_CPE_MAPPING = {
+-@@ -454,6 +456,7 @@ MAKEFILE_ID_TO_PRODUCT_MAP = {
+-     'ocp': 'Red Hat OpenShift Container Platform',
+-     'rhcos': 'Red Hat Enterprise Linux CoreOS',
+-     'eks': 'Amazon Elastic Kubernetes Service',
+-+    'openembedded': 'OpenEmbedded',
+- }
+- 
+- # References that can not be used with product-qualifiers
+--- 
+-2.34.1
+-
+diff --git a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.67.bb b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.69.bb
+similarity index 94%
+rename from recipes-compliance/scap-security-guide/scap-security-guide_0.1.67.bb
+rename to recipes-compliance/scap-security-guide/scap-security-guide_0.1.69.bb
+index a972c24..ac839de 100644
+--- a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.67.bb
++++ b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.69.bb
+@@ -6,11 +6,10 @@ HOME_URL = "https://www.open-scap.org/security-policies/scap-security-guide/"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=9bfa86579213cb4c6adaffface6b2820"
+ LICENSE = "BSD-3-Clause"
+ 
+-SRCREV = "3a1012bc9ec2b01b3b71c6feefd3cff0f52bd64d"
++SRCREV = "d09e81ae00509a9be4b01359166cfbece06e47f4"
+ SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=master;protocol=https \
+            file://run_eval.sh \
+            file://run-ptest \
+-           file://0001-scap-security-guide-add-openembedded-distro-support.patch \
+            file://0002-scap-security-guide-Add-Poky-support.patch \
+            "
+ 
+@@ -29,7 +28,7 @@ export OSCAP_XSLT_PATH="${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl"
+ 
+ OECMAKE_GENERATOR = "Unix Makefiles"
+ 
+-EXTRA_OECMAKE += "-DENABLE_PYTHON_COVERAGE=OFF -DSSG_PRODUCT_DEFAULT=OFF -DSSG_PRODUCT_OE=ON"
++EXTRA_OECMAKE += "-DENABLE_PYTHON_COVERAGE=OFF -DSSG_PRODUCT_DEFAULT=OFF -DSSG_PRODUCT_OPENEMBEDDED=ON"
+ 
+ do_configure[depends] += "openscap-native:do_install"
+ 
+-- 
+2.34.1
 
-*Notes:
-*
-*
-*
-
-*Medium+ 4.3 Unassigned Enhancements/Bugs: *66 (Last week 65)
-
-*Medium+ 4.99 Unassigned Enhancements/Bugs: *42**(Last week 42)
-
-*AB Bugs: *76 (Last week 76)
---------------Q9ahLcdQiNbrBdxX9mg0eqK0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://urldefense.com/v3/__https://wiki.yoctoproject.org/wiki/Bug_Triage__;!!AjveYdw8EvQ!cAjVArCgL_RlaRXuscB-7FXNeNbEpNLXV5wf6cuuQ5AJ_finBsyqaqIWAMBAw_THa9F-SJpSJTfbDp4zK8Q6ydo_qduobM6c$" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
-      <p><b>Attendees: </b>Richard Purdie, Steve Sakoman, Stephen
-        Jolley, Bruce Ashfield, Tim Orling, Joshua Watt, Ross Burton,
-        Randy Macleod, Trevor Gamblin, Alexandre Belloni, Michael
-        Opdenacker, Antonio, Yoann Congal, Pavel Zhukov, Edi Feschiyan</p>
-      <p><b>ARs:</b><b><br>
-        </b></p>
-    </div>
-    <span class="moz-txt-link-freetext"></span>
-    <div class="moz-text-html" lang="x-unicode"><b>Notes: <br>
-      </b></div>
-    <div class="moz-text-html" lang="x-unicode"><b><br>
-      </b></div>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Medium+ 4.3 Unassigned Enhancements/Bugs: </b>66 (Last week
-        65) </p>
-      <b>Medium+ 4.99 Unassigned Enhancements/Bugs: </b>42<b> </b>(Last
-      week 42)<br>
-    </div>
-    <div class="moz-text-html" lang="x-unicode"><br>
-    </div>
-    <b>AB Bugs: </b>76 (Last week 76)
-  </body>
-</html>
-
---------------Q9ahLcdQiNbrBdxX9mg0eqK0--
 
