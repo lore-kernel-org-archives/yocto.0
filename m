@@ -1,136 +1,218 @@
-Return-Path: <leon@sidebranch.com>
+Return-Path: <Martin.Jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B15C4EE57DE
-	for <webhook@archiver.kernel.org>; Fri,  8 Sep 2023 07:21:53 +0000 (UTC)
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
- by mx.groups.io with SMTP id smtpd.web10.34109.1694157704223123301
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47140EE57E3
+	for <webhook@archiver.kernel.org>; Fri,  8 Sep 2023 08:15:24 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web10.34627.1694160917556295608
  for <yocto@lists.yoctoproject.org>;
- Fri, 08 Sep 2023 00:21:44 -0700
+ Fri, 08 Sep 2023 01:15:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20230601.gappssmtp.com header.s=20230601 header.b=kt6RcoJg;
- spf=softfail (domain: sidebranch.com, ip: 209.85.216.42, mailfrom: leon@sidebranch.com)
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-26b41112708so1364090a91.3
-        for <yocto@lists.yoctoproject.org>; Fri, 08 Sep 2023 00:21:43 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=pE6IAbe8;
+ spf=pass (domain: gmail.com, ip: 209.85.128.41, mailfrom: martin.jansa@gmail.com)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4018af1038cso19242005e9.0
+        for <yocto@lists.yoctoproject.org>; Fri, 08 Sep 2023 01:15:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20230601.gappssmtp.com; s=20230601; t=1694157703; x=1694762503; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20221208; t=1694160916; x=1694765716; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jCERIT6+rMTcCR3LBtRnkiy3hgKWYQoO/k9ZDW4qhj8=;
-        b=kt6RcoJgYEOU295QltRR1RgXSSfw0XipPT/GbsKgOxTLo71ex9dEis3r4BH4rc7obW
-         naBpNIu12No16r3EpybOANGUMKAhc+dnsgbj1Z2KlOPqnGgM/kgrgaf5svt3xjelWesv
-         fsKpR5zisP/aQlizZEX43FzDSwoxWmZaoO6Rl5c0c4YaqqDiNBn4xOfawArNTDYTE1IR
-         7zYg7klIeM/zEBnQS9JOEt6Y3UFJg5h78/88NeCr0IDcmnY5gKqcRWFIRg5Ga09BBxcz
-         pmDiQvi5K7VNoDWEe88h0EM+2KY/rK9R64fpGxrpw1qk3S35cAt36yC41YcmlrcEVgAP
-         jbiA==
+        bh=mTHEcdi2df2F0xvEA45fy6JtPJhmq4jjP01fHg6aaSU=;
+        b=pE6IAbe87Iz5IvjWZYKZ+u0gIwjgSCjk6OjYSE4qAHkntbnRGXBRO9pqOQ8wbkbGUX
+         Xqw6akLvk8ux+lBb3o/A2FY65etZihE9CsD3bg1ZzQG3NUnD45kNsI/E6RPHtWP/BJrn
+         kTIH/YzCcYs4Bb27E83an5sTL1JO17bIfIUgh0tRZ0hTfMRF8/o4qd1PriW70vmGlgGR
+         7fEPEE5RsmRUhzZlRPE7Ao3rVIB/jdI3oD56Qq5h+ZjllGFBpxbBwk79Acdhw9dEZKA8
+         IBIzivVAMWdCfTzYaFb2mE5Md01gLfYBcWVhmAN9cyU/+ROWJ5np/FpbAZawR+F0YoSE
+         29rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694157703; x=1694762503;
+        d=1e100.net; s=20230601; t=1694160916; x=1694765716;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jCERIT6+rMTcCR3LBtRnkiy3hgKWYQoO/k9ZDW4qhj8=;
-        b=eVgHXBHDVDYfBRqXtTf9xjvg2zg9idW/TV/EkSt7oMK4ZdRkQnRBue2IDO/RkM0cJQ
-         8aOFwUfZZ2qVKW9uMlrPCHhxoJE58NRUp/+bf/WFW7l6Ru6ctxoSiPsCNx51KAqqtUaj
-         F+Ogl2Gi+9WhH4OksnIsJinJ2ENqRC0zqVIgTk7fKdTv1K6RH0pO7Q6LNKLL8zrw1Owi
-         ZmFsYIyX8tyIzoDvQ64d/k6TRP/aK6JAE55av9hwSzMXfzMd8Lot5qwFyH68EtcGq8DZ
-         I0pMeAHf+1GVF7CQdVOmAxj0JCtGsaCDeyeKBqHWeuU/qcYXmW2kiTW6s1eFQe/GLwjx
-         rfOg==
-X-Gm-Message-State: AOJu0Ywi60YZiYQIFnA3GacuNnM4PID7tv88yA/2ssCJdDCtgGTmqfQj
-	y/32lOUanOLRlsygZ/zJf97Gn9mhZpS7QNNLBfi+Ng==
-X-Google-Smtp-Source: AGHT+IEWL4O91eqqv7ewK+8t4ohyJe4rVa65B4ECSlUcdG8TkKd6Hs8X8y8n0UtMElAFmcL9AgXvkl8hfEMBzVZwCC4=
-X-Received: by 2002:a17:90a:d504:b0:26d:227c:9068 with SMTP id
- t4-20020a17090ad50400b0026d227c9068mr1858062pju.16.1694157703295; Fri, 08 Sep
- 2023 00:21:43 -0700 (PDT)
+        bh=mTHEcdi2df2F0xvEA45fy6JtPJhmq4jjP01fHg6aaSU=;
+        b=S/aMdywa+iu+jgSMSExykaYsWbRhOHF+luVik4FXBemaPQBjhDedSAOuQk6N64Eyj1
+         VJZWxWDvGas968zrgNeKUz/nBejHd/0zzSbE/CvdtUK7ECM/k4JAEU1HP9kxqFFTNJBG
+         pTwCIQv4NfS2/bVKool3PlEUxYg9MgNCQRjPGTLPBkqbyyJxFXETqX5zbHpQh7g62PVK
+         RI1so9+whTXEEt3ez1zdABfhRCRuWD887XRV3hNeCfxIreUaK29a5pS/LuBEFUm9eTUo
+         AtvoUhgkb93Rw2HWHMDGgSIwUs1vrTw5xyV5LBXZPzu2rXEKmYu9CGMItT0kXIlKPqNi
+         98sg==
+X-Gm-Message-State: AOJu0Yxs7fQyAyW+RforXL5QbpXrqbrR+xMc8lYn5AaHJ+syznpdx/mV
+	5rPUXPDxwWWxj65ohG0mZ2W033Iomm+RZM4ksCs=
+X-Google-Smtp-Source: AGHT+IFH9YwzPKokrqqHHBngEDR1bvDUsQ5VuB+UGh0eKsV8ro6DBPGwkfcVH1ISqaaF5lnQyX4FVT+6BAm9UuYfFIE=
+X-Received: by 2002:adf:f0c2:0:b0:315:8a13:ef17 with SMTP id
+ x2-20020adff0c2000000b003158a13ef17mr1354957wro.65.1694160915678; Fri, 08 Sep
+ 2023 01:15:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <CA+chaQdiOTNYTsrhPzbT=9aB3fT9Mo=DoorvNm4Bay2ioRTsdA@mail.gmail.com>
- <27912.1694157496851550594@lists.yoctoproject.org>
-In-Reply-To: <27912.1694157496851550594@lists.yoctoproject.org>
-From: Leon Woestenberg <leon@sidebranch.com>
-Date: Fri, 8 Sep 2023 09:21:32 +0200
-Message-ID: <CAMjhiJi-n_kGOvZLKaUScPmzqAr5uHMijv3NgJJJooS_iL=EBg@mail.gmail.com>
+References: <c737f04f-7bf3-c0f6-4816-87ea4f5c81ac@bootlin.com>
+ <3255.1694152878755997438@lists.yoctoproject.org> <CAMSfU+579tns5UJg4=6ryXsstfPYar9YCvghbT3piuNzzCVbWg@mail.gmail.com>
+ <CA+chaQdiOTNYTsrhPzbT=9aB3fT9Mo=DoorvNm4Bay2ioRTsdA@mail.gmail.com> <20230908072034c8e150e6@mail.local>
+In-Reply-To: <20230908072034c8e150e6@mail.local>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Fri, 8 Sep 2023 10:15:04 +0200
+Message-ID: <CA+chaQfrtYAJTAkm8VDJFG4E0uQHZR6Uho0H3HZBOgH7nOLLoQ@mail.gmail.com>
 Subject: Re: [yocto] Memory requirements for building images with different architectures
-To: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000194c490604d3d442"
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Yoann Congal <yoann.congal@smile.fr>, MOHAMMED HASSAN <hassanchattarki@gmail.com>, 
+	yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000924a980604d493b7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 08 Sep 2023 07:21:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60948
+ <yocto@lists.yoctoproject.org>; Fri, 08 Sep 2023 08:15:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60949
 
---000000000000194c490604d3d442
+--000000000000924a980604d493b7
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Mohammed,
+On Fri, Sep 8, 2023 at 9:20=E2=80=AFAM Alexandre Belloni <
+alexandre.belloni@bootlin.com> wrote:
 
-On Fri, 8 Sep 2023 at 09:18, MOHAMMED HASSAN <hassanchattarki@gmail.com>
-wrote:
-
-> My builds on an average take 15-20 mins with the build folder intact.
-> How much time do you think it will take on average with rm_work enabled?
+> On 08/09/2023 09:06:39+0200, Martin Jansa wrote:
+> > On Fri, Sep 8, 2023 at 8:42=E2=80=AFAM Yoann Congal <yoann.congal@smile=
+.fr>
+> wrote:
+> >
+> > > Hi!
+> > > Le ven. 8 sept. 2023 =C3=A0 08:01, MOHAMMED HASSAN <
+> hassanchattarki@gmail.com>
+> > > a =C3=A9crit :
+> > >
+> > >> Right, you're not the only one!
+> > >> See
+> > >>
+> > >>
+> https://docs.yoctoproject.org/ref-manual/system-requirements.html#minimum=
+-free-disk-space
+> > >> and https://docs.yoctoproject.org/dev/dev-manual/disk-space.html
+> > >>
+> > >> I can use rm_work and remove all the build related files, however
+> every
+> > >> subsequent build would take a lot more time to build. I want my
+> builds to
+> > >> be as fast as possible. Do you have any suggestions to for faster
+> builds
+> > >> while consuming less memory space.
+> > >>
+> > >
+> > > rm_work does not impact build time.
+> > >
+> >
+> > That's not true, if only do_install task checksum changed, then without
+> > rm_work you can reuse existing do_compile and re-run just following
+> tasks,
+> > while with rm_work it will need to rebuild from scratch (because
+> > do_populate_sysroot and do_package sstate archives won't be valid
+> anymore)
+> > adding more wear to those NVME drives.
+> >
+>
+> Did you really have any wear related issues on SSD disks? The
+> autobuilders are churning a lot of builds and the disk are doing just
+> fine.
 >
 
-Depends on what changed. If nothing changed, time remains the same, except
-for maybe the final image build.
+My oldest NVME dedicated for OE builds, bought 2019-11-24
+https://www.gigabyte.com/SSD/AORUS-NVMe-Gen4-SSD-2TB#kf
+with 3600TBW, shows 60% Estimated Remaining Life after around 21K running
+hours and started disconnecting under heavy load (not necessary issue
+caused by wear) about a year ago and recently became completely unusable
+for builds.
 
-But what is your goal? Reduce development/test cycle time? There are
-ways to do that, sometimes.
+2nd one I bought when the issues started on 2022-05-16 has 8400 hours and
+Data Units Read:                    87,481,897 [44.7 TB]
+Data Units Written:                 210,637,555 [107 TB]
 
-Cheers, Leon
+It's acceptable for me (already bought 4TB Segate Firecuda 530 5100TBW
+https://www.seagate.com/products/gaming-drives/pc-gaming/firecuda-530-ssd/#
+for 2/3 of the price the older 2TB was), but something to keep in mind when
+buying disk for builds - with bigger disk you have higher TBW and also
+might not need rm_work as often.
 
+And this is just my personal work station where I do a lot of builds, but
+the wear on our CI servers where every build job is starts from clean
+workspace (uses sstate and premirror) and some builds run pretty much 24/7
+will be much higher.
 
-> Regards,
-> Hassan
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60946):
-> https://lists.yoctoproject.org/g/yocto/message/60946
-> Mute This Topic: https://lists.yoctoproject.org/mt/101231469/1051774
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> leon@sidebranch.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
+Cheers,
 
---000000000000194c490604d3d442
+--000000000000924a980604d493b7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hello Mohammed,</div><div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Fri, 8 Sep 2023 at 09:18, MOHAMMED=
- HASSAN &lt;<a href=3D"mailto:hassanchattarki@gmail.com">hassanchattarki@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">My builds on=
- an average take 15-20 mins with the build folder intact.<br>How much time =
-do you think it will take on average with rm_work enabled?<br></blockquote>=
-<div dir=3D"auto"><br></div><div dir=3D"auto">Depends on what changed. If n=
-othing changed, time remains the same, except for maybe the final image bui=
-ld.</div><div dir=3D"auto"><br></div><div dir=3D"auto">But what is your goa=
-l? Reduce development/test cycle time? There are</div><div dir=3D"auto">way=
-s to do that, sometimes.</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
->Cheers, Leon</div><div dir=3D"auto"><br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x"><br>Regards,<br>Hassan
+<div dir=3D"ltr"><div dir=3D"ltr">On Fri, Sep 8, 2023 at 9:20=E2=80=AFAM Al=
+exandre Belloni &lt;<a href=3D"mailto:alexandre.belloni@bootlin.com">alexan=
+dre.belloni@bootlin.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote">=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">On 08/09/2023 09:06:39+02=
+00, Martin Jansa wrote:<br>
+&gt; On Fri, Sep 8, 2023 at 8:42=E2=80=AFAM Yoann Congal &lt;<a href=3D"mai=
+lto:yoann.congal@smile.fr" target=3D"_blank">yoann.congal@smile.fr</a>&gt; =
+wrote:<br>
+&gt; <br>
+&gt; &gt; Hi!<br>
+&gt; &gt; Le ven. 8 sept. 2023 =C3=A0 08:01, MOHAMMED HASSAN &lt;<a href=3D=
+"mailto:hassanchattarki@gmail.com" target=3D"_blank">hassanchattarki@gmail.=
+com</a>&gt;<br>
+&gt; &gt; a =C3=A9crit :<br>
+&gt; &gt;<br>
+&gt; &gt;&gt; Right, you&#39;re not the only one!<br>
+&gt; &gt;&gt; See<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; <a href=3D"https://docs.yoctoproject.org/ref-manual/system-re=
+quirements.html#minimum-free-disk-space" rel=3D"noreferrer" target=3D"_blan=
+k">https://docs.yoctoproject.org/ref-manual/system-requirements.html#minimu=
+m-free-disk-space</a><br>
+&gt; &gt;&gt; and <a href=3D"https://docs.yoctoproject.org/dev/dev-manual/d=
+isk-space.html" rel=3D"noreferrer" target=3D"_blank">https://docs.yoctoproj=
+ect.org/dev/dev-manual/disk-space.html</a><br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; I can use rm_work and remove all the build related files, how=
+ever every<br>
+&gt; &gt;&gt; subsequent build would take a lot more time to build. I want =
+my builds to<br>
+&gt; &gt;&gt; be as fast as possible. Do you have any suggestions to for fa=
+ster builds<br>
+&gt; &gt;&gt; while consuming less memory space.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;<br>
+&gt; &gt; rm_work does not impact build time.<br>
+&gt; &gt;<br>
+&gt; <br>
+&gt; That&#39;s not true, if only do_install task checksum changed, then wi=
+thout<br>
+&gt; rm_work you can reuse existing do_compile and re-run just following ta=
+sks,<br>
+&gt; while with rm_work it will need to rebuild from scratch (because<br>
+&gt; do_populate_sysroot and do_package sstate archives won&#39;t be valid =
+anymore)<br>
+&gt; adding more wear to those NVME drives.<br>
+&gt; <br>
 <br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#60946): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/60946" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/60946</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/101231469/105=
-1774" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/101231469/1051774</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:leon@sidebranch.com" target=3D"_blank">leon@side=
-branch.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
+Did you really have any wear related issues on SSD disks? The<br>
+autobuilders are churning a lot of builds and the disk are doing just<br>
+fine.<br></blockquote><div><br></div><div>My oldest NVME dedicated for OE b=
+uilds, bought 2019-11-24</div><div><a href=3D"https://www.gigabyte.com/SSD/=
+AORUS-NVMe-Gen4-SSD-2TB#kf">https://www.gigabyte.com/SSD/AORUS-NVMe-Gen4-SS=
+D-2TB#kf</a><br></div><div>with=C2=A03600TBW, shows 60% Estimated Remaining=
+ Life after around 21K running hours and started disconnecting under heavy =
+load (not necessary issue caused by wear) about a year ago and recently bec=
+ame completely unusable for builds.</div><div><br></div><div>2nd one I boug=
+ht when the issues started on=C2=A02022-05-16 has 8400 hours and</div><div>=
+Data Units Read: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A087,481,897 [44.7 TB]<br>Data Units Written: =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 210,637,555 [107 TB]<br></div><div><=
+br></div><div>It&#39;s acceptable for me (already bought 4TB Segate Firecud=
+a 530 5100TBW=C2=A0 <a href=3D"https://www.seagate.com/products/gaming-driv=
+es/pc-gaming/firecuda-530-ssd/#">https://www.seagate.com/products/gaming-dr=
+ives/pc-gaming/firecuda-530-ssd/#</a> for 2/3 of the price the older 2TB wa=
+s), but something to keep in mind when buying disk for builds - with bigger=
+ disk you have higher TBW and also might not need rm_work as often.</div><d=
+iv><br></div><div>And this is just my personal work station where I do a lo=
+t of builds, but the wear on our CI servers where every build job is starts=
+ from clean workspace (uses sstate and premirror) and some builds run prett=
+y much 24/7 will be much higher.</div><div><br></div><div>Cheers,</div></di=
+v></div>
 
---000000000000194c490604d3d442--
+--000000000000924a980604d493b7--
 
