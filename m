@@ -1,83 +1,156 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <lakshaypiplani77@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF4FBEE7FF4
-	for <webhook@archiver.kernel.org>; Mon, 11 Sep 2023 08:26:28 +0000 (UTC)
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
- by mx.groups.io with SMTP id smtpd.web11.54033.1694420781243702525
- for <yocto@lists.yoctoproject.org>;
- Mon, 11 Sep 2023 01:26:21 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=PSwDCMTE;
- spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2bcc331f942so50375461fa.0;
-        Mon, 11 Sep 2023 01:26:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694420779; x=1695025579; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LAbl/cNGEe5OgnjlR+RbaLcjVXEgIGTwt/PKlE+kkXs=;
-        b=PSwDCMTEFmTtbE2wbV/6gCuguaOrTjt5K+V03cOfVA8JnoBLIdkdABxOpKhM0c7Y8f
-         svNqZGKaipqxUJOyGdlttSB07EE2BtMeQ2N0K4ebVHGqipbKqyEJ08POSI+iscN576U9
-         70rZjivJoDromkm/lSWTo3rCedtZU65cEbB/WGlIPahU+RvdLvlboYABC0+izmQSqfqI
-         S/mjhkwmU2lCLtxndLKVurgtnexzgRM5ZQXFsKorDDndrpFtYKZGK0sUrjtMS+EPPrB5
-         DTASqq6exLbHvLxsgwwn/tLHSWubDL2Fa0gAnl1F+nLxWz7/nE9OMVK8+sLFCtbNgyAF
-         S5vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694420779; x=1695025579;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LAbl/cNGEe5OgnjlR+RbaLcjVXEgIGTwt/PKlE+kkXs=;
-        b=T+7ZLpr11NBW//m8f+p5po99vbJL7N3vmX+Vy93jza2/jE26qSidDrvfWgV8o39Muo
-         +yB75BLNaze6Na7qIzekJ7aAYz00FvcjrKukP88nIXBXa+viPb+LHdK1axW050A7MnJv
-         Y8BENPZESxBCo1xhhhPcrlWbXJUmqKpJ+Nr+uwwGWNT8YE1LR5eIbOIJ1i92jNuGnUh3
-         ujVtKXO/eIY0NoghaUc0+CQ81Wic3Ok2IpLFimazhvIHOvymAY/ODnK1DIft0BOzsxNe
-         ZMP+Csn1jGvv6ZH2HhyanzN4p3G3Ht4fzOQLjoYT/0+ikrkiGBXDtIh6DN0C8QtOtShU
-         ydHQ==
-X-Gm-Message-State: AOJu0Yxs7GaZj6VUyhSpFph/4cPVTKs61GMeI/ljPWZTrBH5Qo37ASfZ
-	KB9otHrtixjguJQIXN5aMqdNR9injLtgrhqhKMY=
-X-Google-Smtp-Source: AGHT+IEJ0Dfb7H+Gtb8Ehf1t9gPuAcDMZzJLOJFVlBZ3ggEYQGLRjGuStdWPE3ZJzZLgX+9r63QnVkhYWn5R5cHyjas=
-X-Received: by 2002:a2e:aa8c:0:b0:2bc:b63c:e823 with SMTP id
- bj12-20020a2eaa8c000000b002bcb63ce823mr4161518ljb.22.1694420779106; Mon, 11
- Sep 2023 01:26:19 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4340EE57DF
+	for <webhook@archiver.kernel.org>; Mon, 11 Sep 2023 10:22:19 +0000 (UTC)
+Subject: kernel panic error after enabling dm-verity.
+To: yocto@lists.yoctoproject.org
+From: lakshaypiplani77@gmail.com
+X-Originating-Location: New Delhi, National Capital Territory of Delhi, IN (165.225.125.65)
+X-Originating-Platform: Windows Chrome 116
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <18a81ed8796.114a3273a387212.4468069863803228583@linux.beauty>
- <c4eeb346-6cfb-2bf3-6db4-1402d595e09b@windriver.com> <CANNYZj_fr0fFbRSYF3+aqaHAWD90f6b5Frs6GWpsgqLtOX+QxQ@mail.gmail.com>
- <a523b68c-1de6-e1bb-8f61-4879ac4a7453@windriver.com>
-In-Reply-To: <a523b68c-1de6-e1bb-8f61-4879ac4a7453@windriver.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 11 Sep 2023 10:26:07 +0200
-Message-ID: <CANNYZj-dPMpLn+8SNrB-zSO=GnxMp4CFDZUEh8qmUrRHW4y7LA@mail.gmail.com>
-Subject: Re: [yocto] Question: Sharing SSTATE_DIR and DL_DIR through
- Lustre/NFS for team work
-To: ChenQi <Qi.Chen@windriver.com>
-Cc: me@linux.beauty, yocto <yocto@lists.yoctoproject.org>, 
-	yoctohelp <yocto+help@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 11 Sep 2023 03:22:18 -0700
+Message-ID: <9xAi.1694427738255968336.LypG@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="v8vgEIGKtnUd9YBxdBwV"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 Sep 2023 08:26:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60970
+ <yocto@lists.yoctoproject.org>; Mon, 11 Sep 2023 10:22:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/60971
 
-On Mon, 11 Sept 2023 at 10:13, ChenQi <Qi.Chen@windriver.com> wrote:
-> This is the case I referred to as 'different builds owned/controlled by
-> the same user'.
+--v8vgEIGKtnUd9YBxdBwV
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-'User' is ambiguous here - user as a person, or user as a local unix
-user account?
-In the latter case this is likely to be misunderstood as 'sstate cache
-must be private to a user account because it cannot handle multiple
-readers and writers eithe locally or over the network', which it can.
+I have two yocto recipes.
 
-> Say, you share the SSTATE_DIR used by Yocto CI to many people via NFS.
-> Then, a 'rm -rf' might be typed by someone by accident, maybe just
-> because of lack of coffee.
+base image and advanced image.
 
-This is correct. Deletion needs to happen via central procedure, and
-those who cannot be trusted with that should get only r/o access.
+base image have support for dm-verity. i just have to include one line in l=
+ocal.conf to enable dm-verity with initramfs support.
 
-Alex
+*DISTRO_FEATURES_append +=3D "dm-verity" (creating wic image only)*
+
+*
+* and image gets loaded successfully as follows.
+
+[=C2=A0 =C2=A0 1.366192] Run /init as init process
+
+Starting version 246
+
+realpath: /dev/disk/by-partuuid//dev: No such file or directory
+
+[=C2=A0 =C2=A0 2.971331] random: veritysetup: uninitialized urandom read (2=
+ bytes read)
+
+[=C2=A0 =C2=A0 2.973479] device-mapper: verity: sha256 using implementation=
+ "sha256-generic"
+
+[=C2=A0 =C2=A0 3.106633] EXT4-fs (dm-0): mounting ext3 file system using th=
+e ext4 subsystem
+
+[=C2=A0 =C2=A0 3.113899] EXT4-fs (dm-0): mounted filesystem with ordered da=
+ta mode. Opts: (null). Quota mode: disabled.
+
+[=C2=A0 =C2=A0 3.449425] systemd[1]: System time before build time, advanci=
+ng clock.
+
+[=C2=A0 =C2=A0 3.481321] systemd[1]: systemd 246 running in system mode. (+=
+PAM -AUDIT -SELINUX +IMA -APPARMOR -SMACK +SYSVINIT +UTMP -LIBCRYPTSETUP -G=
+CRYPT -GNUTLS +ACL +XZ -LZ4 -ZSTD -SECCOMP +BLKID -ELFUTILS +KMOD -IDN2 -ID=
+N -PCRE2 default-hierarchy=3Dhybrid)
+
+[=C2=A0 =C2=A0 3.481828] systemd[1]: Detected architecture arm64.
+
+But when i am trying to replicate it for advanced image, i am getting kerne=
+l panic error as follows.
+
+Starting version 246
+
+realpath: /dev/disk/by-partuuid//dev: No such file or directory
+
+Device /dev/mmcblk0p2 is not a valid VERITY device.
+
+mount: /rootfs: special device /dev/mapper/rootfs[=C2=A0 =C2=A0 2.935967] K=
+ernel panic - not syncing:
+
+[=C2=A0 =C2=A0 2.935983] Attempted to kill init! exitcode=3D0x00000200
+
+does not exist.
+
+[=C2=A0 =C2=A0 3.043274] SMP: stopping secondary CPUs
+
+[=C2=A0 =C2=A0 3.046769] Kernel Offset: disabled
+
+[=C2=A0 =C2=A0 3.050233] CPU features: 0x90002001,20000842
+
+[=C2=A0 =C2=A0 3.054573] Memory Limit: none
+
+[=C2=A0 =C2=A0 3.057616] ---[ end Kernel panic - not syncing: Attempted to =
+kill init! exitcode=3D0x00000200 ]---
+
+What could be the issue??
+
+*How to resolve it?*
+
+--v8vgEIGKtnUd9YBxdBwV
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>I have two yocto recipes.</p>
+<p>base image and advanced image.</p>
+<p>base image have support for dm-verity. i just have to include one line i=
+n local.conf to enable dm-verity with initramfs support.</p>
+<p>&nbsp;</p>
+<p><strong>DISTRO_FEATURES_append +=3D "dm-verity" (creating wic image only=
+)</strong></p>
+<p><strong><br /></strong>and image gets loaded successfully as follows.</p=
+>
+<p>[&nbsp; &nbsp; 1.366192] Run /init as init process</p>
+<p>Starting version 246</p>
+<p>realpath: /dev/disk/by-partuuid//dev: No such file or directory</p>
+<p>[&nbsp; &nbsp; 2.971331] random: veritysetup: uninitialized urandom read=
+ (2 bytes read)</p>
+<p>[&nbsp; &nbsp; 2.973479] device-mapper: verity: sha256 using implementat=
+ion "sha256-generic"</p>
+<p>[&nbsp; &nbsp; 3.106633] EXT4-fs (dm-0): mounting ext3 file system using=
+ the ext4 subsystem</p>
+<p>[&nbsp; &nbsp; 3.113899] EXT4-fs (dm-0): mounted filesystem with ordered=
+ data mode. Opts: (null). Quota mode: disabled.</p>
+<p>[&nbsp; &nbsp; 3.449425] systemd[1]: System time before build time, adva=
+ncing clock.</p>
+<p>[&nbsp; &nbsp; 3.481321] systemd[1]: systemd 246 running in system mode.=
+ (+PAM -AUDIT -SELINUX +IMA -APPARMOR -SMACK +SYSVINIT +UTMP -LIBCRYPTSETUP=
+ -GCRYPT -GNUTLS +ACL +XZ -LZ4 -ZSTD -SECCOMP +BLKID -ELFUTILS +KMOD -IDN2 =
+-IDN -PCRE2 default-hierarchy=3Dhybrid)</p>
+<p>&nbsp;</p>
+<p>[&nbsp; &nbsp; 3.481828] systemd[1]: Detected architecture arm64.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>But when i am trying to replicate it for advanced image, i am getting ke=
+rnel panic error as follows.</p>
+<p>&nbsp;</p>
+<p>Starting version 246</p>
+<p>realpath: /dev/disk/by-partuuid//dev: No such file or directory</p>
+<p>Device /dev/mmcblk0p2 is not a valid VERITY device.</p>
+<p>mount: /rootfs: special device /dev/mapper/rootfs[&nbsp; &nbsp; 2.935967=
+] Kernel panic - not syncing:</p>
+<p>[&nbsp; &nbsp; 2.935983] Attempted to kill init! exitcode=3D0x00000200</=
+p>
+<p>does not exist.</p>
+<p>[&nbsp; &nbsp; 3.043274] SMP: stopping secondary CPUs</p>
+<p>[&nbsp; &nbsp; 3.046769] Kernel Offset: disabled</p>
+<p>[&nbsp; &nbsp; 3.050233] CPU features: 0x90002001,20000842</p>
+<p>[&nbsp; &nbsp; 3.054573] Memory Limit: none</p>
+<p>[&nbsp; &nbsp; 3.057616] ---[ end Kernel panic - not syncing: Attempted =
+to kill init! exitcode=3D0x00000200 ]---</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>What could be the issue??</p>
+<p>&nbsp;</p>
+<p><strong>How to resolve it?</strong></p>
+
+--v8vgEIGKtnUd9YBxdBwV--
 
