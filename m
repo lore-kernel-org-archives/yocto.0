@@ -1,209 +1,138 @@
-Return-Path: <sakib.sajal@windriver.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10344EEAA54
-	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 16:12:02 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web11.16576.1694707920128214362
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62B37EEAA65
+	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 18:51:52 +0000 (UTC)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+ by mx.groups.io with SMTP id smtpd.web10.2833.1694717502519793999
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Sep 2023 09:12:00 -0700
+ Thu, 14 Sep 2023 11:51:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=MMRN2VlZ;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=7621a73da4=sakib.sajal@windriver.com)
-Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38EDNiKH002568;
-	Thu, 14 Sep 2023 16:11:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
-	 h=content-type:message-id:date:from:subject:to:cc:mime-version;
-	 s=PPS06212021; bh=u9/9i/mLJfBkdwJIHnQXys8I1X+Rs1NLB/vMTM1/UUc=; b=
-	MMRN2VlZsECmGjQO0Uu9Fn8R/pM65zdXs1N3zwNPxNVoo1BQEyK8j2I1YGfB9907
-	wGaPyMpngj2vbDF8WjM6O2aTxi+k8Ax7MlzQNj7SiP8JsKwn9REZzlfNra9wvBqA
-	rzOM8LECRvbiIMlSx0i/5qp0+sqSXtHwFQE4q6Qs9rbwychoBa+8ft9LCiGqSXOy
-	cbZC69FkDBP9EzT6FZGORfWA29JJYcJETVhLMVACiehZ8MQI/A+ZAtqtv9u3ibe2
-	gy2TmLbG3Jmf+d/lMA0xcJpRHIaD0OkMdxvHF++G/SPEu2A14xFHKbSXiFIDgspT
-	9uOtpM4fFMgHyzuIZCWXpQ==
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2173.outbound.protection.outlook.com [104.47.57.173])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3t2y8msyb7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Sep 2023 16:11:52 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZLeJAGB6JSXkmlQloWzlKSLm4AyLtOkzQlpNTINz1RZokcU6yb08k1ijMgdDACMfsYnojz7HsW/pCF/lf2gJ9o69yOJc3C/qMZyz4t2BZnyc2rLD6hr66ozTOkRWL5EmHg0Lwfk99hMoEKZW9M5muwbf6hucx8ViXJWBP3KkBUQvc4qQ9Ue0CUyNZK+EMI4CX4cVbaGj9kV6lrGG1QpgiViARuxyVlqwSu/HsTgo9Qr3ViLcaW2rK7U5sJram07pbvRE2V41OF33YgAwQCgZGAIuRQ+OqFVz6ogIBKKRLqjY+Jj4+PMP7ImBAwOPkbps7bwkK2k2F94rUaD2OR6OFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u9/9i/mLJfBkdwJIHnQXys8I1X+Rs1NLB/vMTM1/UUc=;
- b=oWPjK3Q3sC7C/jRyfgT0bqUEBMW+pPFnHHEb63h9reYo4ikiRI2Hj9tiYuz3vFOtAIKzgV2MtdUpSKXwIYWbD46mL+Hs1U29l3KC2xs2tONbbEeoxmLbHsuyrwKtTZqAdHRn+z464opDcgF2zmIgUFFWaFeLVfd5VQNbTd9x9TiC/5UndGTo6wcm26CiZ/Dmst5y1+fX4DImDgtTlFw94QSjUFjwUl/M5IsQXl8kMaLtuVgLw1iLaM7Rc8mCl2d0R+IY+K7sjERqURDwz4wxT0A12/CbkCm7ayvopeSbffIR4E4CuKusOtImLxY4nKTJ7nNWhzdhR1CLgLpmDxsbEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from DM6PR11MB2538.namprd11.prod.outlook.com (2603:10b6:5:be::20) by
- SJ2PR11MB7503.namprd11.prod.outlook.com (2603:10b6:a03:4cb::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.30; Thu, 14 Sep
- 2023 16:11:48 +0000
-Received: from DM6PR11MB2538.namprd11.prod.outlook.com
- ([fe80::4044:65c4:486f:538b]) by DM6PR11MB2538.namprd11.prod.outlook.com
- ([fe80::4044:65c4:486f:538b%4]) with mapi id 15.20.6792.020; Thu, 14 Sep 2023
- 16:11:48 +0000
-Content-Type: multipart/alternative;
- boundary="------------7x4ahDtqZSicBPEb4wm2MtsU"
-Message-ID: <4795b853-5ec3-5a35-19c0-9ba66e8b3596@windriver.com>
-Date: Thu, 14 Sep 2023 12:11:44 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-From: Sakib Sajal <sakib.sajal@windriver.com>
-Subject: [yocto] Minutes: Yocto Project Weekly Triage Meeting 14/09/2023
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Cc: alexandre.belloni@bootlin.com, Bruce Ashfield <bruce.ashfield@gmail.com>,
-        daiane.angolini@foundries.io,
-        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
-        luca.ceresoli@bootlin.com, Randy MacLeod <randy.macleod@windriver.com>,
-        Richard Purdie <richard.purdie@linuxfoundation.org>,
-        Khem Raj <raj.khem@gmail.com>, ross@burtonini.com,
-        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
-        Steve Sakoman <steve@sakoman.com>, tim.orling@konsulko.com,
-        sakib.sajal@windriver.com, akuster808 <akuster808@gmail.com>,
-        valery.chernous@gmail.com, tgamblin@baylibre.com, pavel@zhukoff.net,
-        antonio.oliveira@konsulko.com
-Content-Language: en-US
-X-ClientProxiedBy: BL6PEPF00013E13.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:22e:400:0:1001:0:14) To DM6PR11MB2538.namprd11.prod.outlook.com
- (2603:10b6:5:be::20)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=oGVS/hq6;
+ spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5007abb15e9so2315982e87.0
+        for <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 11:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694717500; x=1695322300; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bZR6QcZk0zSg2X3ROLO14x6+CABHijjl2lebPDD2/ps=;
+        b=oGVS/hq6SW49onpCgfM6LAvVufAQcbHTmlNoUDAbjYIQhc2lzMn9jNPN5dYW/kL+7s
+         q5fBbG+hzJa/edQjhyOU1gTpjsAdAg4sYQA9GnIG+DEH1iYFXIqLatPlptQbTxAyZefz
+         lXyFGKBlWCQ2uEMVMXdVkKT33DoiDyAbOxpnISVFtImdA2tgrILQO/hgD2nE3rB8E5oD
+         YpjG+VESop1+9xq0CSt0xOjiYo8/Y4MUn6V54LXqsCumlD5xDmqWKSRn9I+WKQKJ99Wz
+         B5YNzfVJ7IUyoIPYTRvYzI17bey9vYSFGd2KRGS9e80cJIFTSOzjYwqckBwmNsQJbwEN
+         FF/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694717500; x=1695322300;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bZR6QcZk0zSg2X3ROLO14x6+CABHijjl2lebPDD2/ps=;
+        b=WGPsNTbxOKFjWgOyfIU3F+v3kj5rgA2EAAzZ1vdpsUTdcBOhFkbsk6Elbkq3Oqsin0
+         +J+AWCCfnozoMujlmzt0Jct7xSIEuNavuFZNoBLPZG6srrJyNY2VK5r4w5zwv/6kbD/6
+         RGf2CXh4oPzzx16fUPGIgw6O4Mu/RjmY+2pITJE5JR5IkezVCI3Xg9InTaXhqTshnIjn
+         DHDYvpKHa16bEGw5dYjMrjGrv3xgZ6PQLiw4FQvfCmhdyrY6wfWO+R7juR9shtA7qAEq
+         3+bc26fOqviYFYLFUH0vK9AIa1oozhsGwnTfZqBD2tdKOy6BK8gx6Wmi0KGqj799favS
+         OjNQ==
+X-Gm-Message-State: AOJu0YwjEornQoJfc15N+lzhGQCUJC5lpsmHUviTcvnZpmuBn+e4iCv4
+	vwuIOmtCvGPbhkfPTOIwzbkhLi1oBedgHEKhUi0=
+X-Google-Smtp-Source: AGHT+IH3/OyK54D2eJcnSy7pwD6hjjBfAGK3dWrXc4dTr9yaU1nqzlKnZDXZE0X/qCxu6gf6r/hkeLGFKnw6FoA7V5Y=
+X-Received: by 2002:a19:914f:0:b0:500:9c05:1059 with SMTP id
+ y15-20020a19914f000000b005009c051059mr4232207lfj.41.1694717500320; Thu, 14
+ Sep 2023 11:51:40 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2538:EE_|SJ2PR11MB7503:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e612519-a1bc-43af-b276-08dbb53d4c0d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	KwoTL8pNZKyFjpeSjvpMFiVB+/Qvh1X0mMrHEtbV1yDkJNwrXPFELnqW0P+Juho8KhXA5d/zoQYOCMH3uGPrE7s0PAy1qqtbeyAZjyX9ESBP8PU8MotreUgabXqZIih1GCz3GzlkNrXWPT2d5B2nJCOXRMuXFEYHdnfyxRulcAZawe1oL83mAyVhgM32E6XichQZvC2vbR2T0KQV6KacGhtWPzD7pwjgVVyp+RsauCDK44aFgf9sBJjzklUpScSJihKHv8qo9t7GrHWQKYJW9unR9jwaWXbS8Lm/Hb2FYcDdF5fKkeieHbrLTLBDBKZvhIRUuxcI82/12ry7JmAPWQGUJhzC8HNlSBdeO+QX552UsDTnKVc5HD8gh+xBenVjUrz/r5eX4X9YCdG82tX1JmmmJAGKkNWRKKa4HlL268YBuSyOm6xqNsZFUkZVHcv4oWKf2MPp+4CI4uR3OShNXl0er27fa3q6GTHKpctZydknEinieBbyRtavUhXS3yxyom+P/MgJ1MA0TR7FDH5IxIoOwnaOLi/RdS7XtY9XCqe+S9rpQV4EHu/M5gjm4OHPkkQ/FWAiO4iAFFx5mZUzu8QHF1VUla4ANZ++uqE2WtfAHm0GNBpPlADTV058fqcgNbe0LN4ydCRsJx8oyVV/sA==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2538.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(346002)(136003)(396003)(376002)(366004)(186009)(451199024)(1800799009)(41300700001)(33964004)(6486002)(6666004)(6506007)(44832011)(6512007)(166002)(2906002)(966005)(7416002)(66946007)(5660300002)(8936002)(6916009)(2616005)(66556008)(66476007)(478600001)(54906003)(316002)(8676002)(36756003)(4326008)(38100700002)(31696002)(26005)(86362001)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?MDlmVzFkMnZTUXB3TndnMjltaiswdlViZnVndHdyRm9XcWF1aVVDallRZkh2?=
- =?utf-8?B?b0FkdVNNdUJ5clNZK1FPR3VmNVY1RjRmOGcxRnVLWk5ZRHhRZ3cybEt0RFlP?=
- =?utf-8?B?eFRTcnZVOU9vM3dKK0F3QkdTMTN1RUZGSEtwOWMvUEtrajBpRlMydEMvZzg2?=
- =?utf-8?B?Z2tYUUNnOFk2c3lrVXd5ZmRpVmxUcTQ4NHR6U3BJa01vRktrcW15OVR5MHVT?=
- =?utf-8?B?VSt1MjQ5dTFrb1VHdlcyKzFyTUJ0WkZocURaN0N6VWxJZWRVbW8zVllScGho?=
- =?utf-8?B?MmdEcnE0b3JrazJRVW43UXE0NCtZV0tTTlZJWXBTZlQ1NTJKNHU2UDNsSUJQ?=
- =?utf-8?B?K1hnbHFtQmdiTG9zc0hld2NnU3BZU0NsSVlzd0lINm54cmFSSUtEVmwzc2lW?=
- =?utf-8?B?YWRuNjZxRWxPRkw0R2RwMUs1eHoxRlREck1oY0Jmb0IxaDdOZTAxMWRZc0lm?=
- =?utf-8?B?UlRCQnordGVmTGJoODR1UVdVd2ppOUo2NlJYbmhqZWtlRzBRaElNVTB3cW1o?=
- =?utf-8?B?bWhRbnNQemxGdE5QWlVXMlQzdno0SGpPcWRhRnBVQTJxNHZHUFZIUmNRSnJl?=
- =?utf-8?B?dFoyZ051dlRJWU40VTQ3TFJMMzRpQlJ5VmpHelRtaWtWSk4xVlEwU3MxWEtp?=
- =?utf-8?B?VjBPWW5Qb29FTnpWQ2diWjNKaUJZcmt1QzlrK2oyRkdiZkkwWWZYODVVT1Yy?=
- =?utf-8?B?VW1VWFliZ0k1SFdhcE1GblFrWVZ3R1pCVEJ5TnpwOE42UjFnTkxpVWFDTldV?=
- =?utf-8?B?ckVkL09GMTd2cHNXaXJaUVNrRlZVMUV0QXlDZ1BERGRzaUxURlI4ckx6dTBz?=
- =?utf-8?B?Q3FQL0gxZDN3anB1eS9HbXdkSEp5OU1lMjRzbmRmOUdGT1JlVTJXc1NkU25y?=
- =?utf-8?B?MzZEZzU1cCtJamNnYmVFdVFhMTRiZVBtZGgrZHJNdmV6RjBNV0Ywbk11YUxX?=
- =?utf-8?B?WjlMSlljUWg4bUFVVmFnbFk5VFNlVmVRdmxkUzlTQ0hJTWNmQzExbU1rSjVv?=
- =?utf-8?B?L1NkQWZyaGFlL1ZSTjdlU01YVUtJVWoyU1hOcFVSVzU3RGtXMnY2aEpGcVVG?=
- =?utf-8?B?MUJBcjJnMVdGdHRYaUNIMUhLWkZVS0FiMHd6dU1wbmpVeWg5aWR1djFEeTM2?=
- =?utf-8?B?YnJIWUUxWG10MHhJQVpEUytvNVphRkxiRHQvaERleDd6NVFhN1B4Y2VyczQ3?=
- =?utf-8?B?ZCs5ZnBsU3Z0SUVsZmV0UlYyQWZZemN2K3JEa28vdVdjZUJOMVE5bUZTYkND?=
- =?utf-8?B?ZEtYc1ltdmNCUENZbVV2VlMyR3lleEpTNmFpcTRHcGxMZVQ3T1JWYlVyTkQ5?=
- =?utf-8?B?L0g0cHhqQ1g3U1hnNU1ycVM4QzdJcXc1WGhnQjdiL3gyaUVzTGh4enR0YnZr?=
- =?utf-8?B?QVQzdWM2NzcvalI0THcwWldGWW0xUEY2UUI5cHkvbTBweXMxLzRiTTUvWXZn?=
- =?utf-8?B?b3hvcGEzcW94LzRmTzNmcUNBd3h0Z2I1SnExQThzd2M0eVcyN1NOZGpzemR2?=
- =?utf-8?B?KytQQ0crVEpMRmQvR21nczdlZFJxQ21MaUZWb25JWVB4UXFzaEhNVkVOeGJx?=
- =?utf-8?B?KzYwenhPVWltc1hzOEdNeUNrZ1ZHMVZHK0RyQWxueWtRZlA1eEthNmZuWURR?=
- =?utf-8?B?c2JvdzJCRUdGVkJBMmVuSDRwOTRRVDlMSjRPdTN0SW5ZZW1SZzdyZHQzYlU5?=
- =?utf-8?B?YkQzNnNmRG5ZZTNTKzJESWdnOHhjMWlYK1FGVjdURjRpd2dQbVhScytsUnly?=
- =?utf-8?B?dENoclBRVCt0REJEMWh0L1dTMDNFcjNla1o2aHFTWHpFVGdDR3UrSE1wR2Zj?=
- =?utf-8?B?MXZ1LzVhSVR1MlpxcUdkQzMxbDBzOG9VMUdGMzcvL3ovVmc2OGpTbmNMcHBp?=
- =?utf-8?B?dTNzaXBYd1VSWkY1RlMxN2FvTUY1enN1ZlVHdGw5Rm9uNUNnNFpNd2dWZm1L?=
- =?utf-8?B?QzFtTFVsaWV3N2NmU1BUOWVlM3pqd1F1Z2tFeUFubHZycGhDakJJc3ZxcTVM?=
- =?utf-8?B?amtrVm84TVM1K2pMN0FqYm1lRjIzMk51M2E3NWVYVk5jcGh3Z3lSOTROdGQz?=
- =?utf-8?B?MDdobDJjQ0N4bHlZelJvMG8yWkE1dWxEYmZQZU1PNFl4MGUxc2JSYnlja2dt?=
- =?utf-8?B?V3N4MUk3U0xvTWticS9PL2VWSjUyOGtrNkRTb0dTdDZreXdyTWdVMHN3aXdO?=
- =?utf-8?B?cnc9PQ==?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e612519-a1bc-43af-b276-08dbb53d4c0d
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2538.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 16:11:47.9125
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sq7/sYzEl+vQJ/7ldcMeiVrGTnNYmD0hxGIzDH0IeyCLvA13eKnDvwl8X5eYZhJrh1YplQ/fR7DgEyotzQcoT+r1cgOpLATUeEUQeNv5gtg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7503
-X-Proofpoint-GUID: ez2GvDcwIxpTlwULVnHfHGBlyI4NkX6d
-X-Proofpoint-ORIG-GUID: ez2GvDcwIxpTlwULVnHfHGBlyI4NkX6d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-14_09,2023-09-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 mlxscore=0 mlxlogscore=842 phishscore=0 priorityscore=1501
- adultscore=0 clxscore=1011 bulkscore=0 malwarescore=0 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2309140140
+References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
+ <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com> <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
+In-Reply-To: <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 14 Sep 2023 20:51:28 +0200
+Message-ID: <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
+Subject: Re: Core workflow: sstate for all, bblock/bbunlock, tools for why is
+ sstate not being reused?
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	Michael Halstead <mhalstead@linuxfoundation.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
+	Julien STEPHAN <jstephan@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 16:12:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61009
+ <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 18:51:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61010
 
---------------7x4ahDtqZSicBPEb4wm2MtsU
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Thu, 14 Sept 2023 at 14:56, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> For the task signatures, we need to think about some questions. If I
+> make a change locally, can I query how much will rebuild and how much
+> will be reused? There is bitbake --dry-run but perhaps it is time for a
+> an option (or dedicated separate command?) to give some statistics
+> about what bitbake would do? How much sstate would be reused?
+>
+> That then logically leads into the questions, can we tell what has
+> changed? Why isn't my sstate being reused? For that we perhaps should
+> define some existing scenarios where it is currently very difficult to
+> work this out and then work out how we can report that information to
+> the user. These could become test cases?
 
-*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
+So I think there are two questions here that the tools should answer:
 
-*Attendees: *Richard Purdie, Steve Sakoman, Stephen Jolley, Bruce 
-Ashfield, Tim Orling, Joshua Watt, Ross Burton, Trevor Gamblin, 
-Alexandre Belloni, Michael Opdenacker, Antonio, Yoann Congal, Pavel 
-Zhukov, Edi Feschiyan
+1. If I would run a build, what would be missing in the cache and need
+to be built? The missing cache objects are in a dependency hierarchy,
+so only those missing objects with no dependecies on other missing
+objects would be printed. That should be comparatively easy to add as
+bitbake already does those checks all the time. Is there something
+else that's easily done and useful to print?
 
-*ARs:**
-*
+2. Then there's the question of *why* they are missing, which is
+harder to answer. If, say, curl:do_package is not in the cache, then
+the tool would have to walk the cache tree (I/O heavy operation as
+there is no index), make a list of all curl:do_package objects that
+are there, and do a recursive bitbake-diffsig (going up the task tree)
+on them vs the one we want. Then print them starting with the newest.
+Something like:
 
-*Notes:
-*
-*
-*
+Existing cache objects are not suitable because:
+<object id 1> was built on <date> and has a mismatching SRCREV
+<object id 2> was built on <earlier date> and has a different do_compile()
 
-*Medium+ 4.3 Unassigned Enhancements/Bugs: *67 (Last week 68)
+> One of the big problems in the past was that we lost much of the hash
+> information after parsing completed. This meant that if the hashes then
+> didn't match, we couldn't tell why as the original computation was
+> lost. I did some work on allowing us to retain more of the information
+> so that we didn't have to recompute it every time to be able to do
+> processing with it. I have to admit I've totally lost track of where I
+> got to with that.
 
-*Medium+ 4.99 Unassigned Enhancements/Bugs: *41 (Last week 42)
+Here's an idea I can't get out of my head. Right now, the cache is
+simply an amorphous mass of objects, with no information regarding how
+they were created. How about storing complete build confgurations as
+well into the same directory? There would be a dedicated, separate
+area for each configuration that placed objects into the cache,
+containing:
+- list of layers and revisions
+- config template used
+- complete content of build/conf
+- bitbake invocation (e.g. targets and prefixed variables like MACHINE etc.)
+- complete list of sstate objects that were produced as a result, so
+they can be checked for existence
 
-*AB Bugs: * 74 (Last week 73)
---------------7x4ahDtqZSicBPEb4wm2MtsU
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+This would be written into the cache dir at the very end of the build
+when everything else is already there.
 
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://urldefense.com/v3/__https://wiki.yoctoproject.org/wiki/Bug_Triage__;!!AjveYdw8EvQ!cAjVArCgL_RlaRXuscB-7FXNeNbEpNLXV5wf6cuuQ5AJ_finBsyqaqIWAMBAw_THa9F-SJpSJTfbDp4zK8Q6ydo_qduobM6c$" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
-      <p><b>Attendees: </b>Richard Purdie, Steve Sakoman, Stephen
-        Jolley, Bruce Ashfield, Tim Orling, Joshua Watt, Ross Burton,
-        Trevor Gamblin, Alexandre Belloni, Michael Opdenacker, Antonio,
-        Yoann Congal, Pavel Zhukov, Edi Feschiyan</p>
-      <p><b>ARs:</b><b><br>
-        </b></p>
-    </div>
-    <span class="moz-txt-link-freetext"></span>
-    <div class="moz-text-html" lang="x-unicode"><b>Notes: <br>
-      </b></div>
-    <div class="moz-text-html" lang="x-unicode"><b><br>
-      </b></div>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Medium+ 4.3 Unassigned Enhancements/Bugs: </b>67 (Last week
-        68) </p>
-      <b>Medium+ 4.99 Unassigned Enhancements/Bugs:&nbsp;</b>41 (Last week
-      42)<br>
-    </div>
-    <div class="moz-text-html" lang="x-unicode"><br>
-    </div>
-    <b>AB Bugs: </b> 74 (Last week 73)
-  </body>
-</html>
+Right now, everyone sets up their own builds first, then points
+local.conf or site.conf to the cache, and hopes for the best regarding
+hit rates. Having stored build configs would allow inverting the
+workflow, so that you first ask from the cache what it can provide
+(e.g. it can provide mickledore or kirkstone core-image-minimal for
+qemux86, and that's exactly what you want as a starting point), then
+you use the build config stored in the cache to set up a build, and
+run it - and that would guarantee complete sstate reuse and getting to
+a functional image as soon as possible. Kind of like binary distro,
+but implemented with sstate.
 
---------------7x4ahDtqZSicBPEb4wm2MtsU--
+Alex
 
