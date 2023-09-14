@@ -1,293 +1,153 @@
-Return-Path: <dave.hitchman@kymati.com>
+Return-Path: <martin.jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27824CA0EF3
-	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 12:48:49 +0000 (UTC)
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (EUR01-VE1-obe.outbound.protection.outlook.com [40.107.14.55])
- by mx.groups.io with SMTP id smtpd.web10.11382.1694695723718593239
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63F9FCA5506
+	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 12:54:59 +0000 (UTC)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web11.11469.1694696096592146609
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Sep 2023 05:48:44 -0700
+ Thu, 14 Sep 2023 05:54:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kymati.onmicrosoft.com header.s=selector2-kymati-onmicrosoft-com header.b=Stahf9in;
- spf=pass (domain: kymati.com, ip: 40.107.14.55, mailfrom: dave.hitchman@kymati.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EV109UotV3FUg7PxPx3UW0SxUPw6mWlQlKwlPZx/+zV749GZrRYDPWWkfuUJ+aELvFqiBSooSdwMI53HHA2Cwp1pQ0uLZRl+V67t7cySMj5rvnpt2V9Poay9gW9O8FDP4OONmb0TNGqxyKqlbWWkqeyKblZNj7XjyRyUhwcdhVpyYn5kXJz/+Q64dJlO6fos4wMKqcwzrWmNFS3znKMxxtXWC6M6OlKmAL/un39vjRoAenTbrOWE+9KwRWXVFj028tcidEG4v5rpYZNM6dzAdx0G2lJ8be5HROFsfRPTBy3hc9mdtyIGdZGdpFYmBg9Job3O++lcnqUVyCTPjBb2ng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9Y2Thi8zIhJRlipMaCloqxFitYE/YWfCemrOUzRUmQY=;
- b=YkJXqcYseEGCBfn5nq7YGRnnxIwU8Tc6Gh5hCGhk+y0w+88BUuDqLx+Ebv2jyfJ4Y12oK2qB+DmnbF2sk99MDxM1HMxUxv+b6dkgvGXM8wuykSVb5MyW4tAChX89mvw60XfXFd9etnEgHYactxZzKCVT/BDh5NWeWkLGzVd2jMh3NCutqkmaNU1O9MN8x0zoLAn2zv8y9ut+kZJBgWkVWj1+T22t4yZMM3Jq2cOVWtbTWmL3cUhWXmPF8bFpI2fG+t+wuQZBlkPkKkTjthq7eqeM21940jFs96I+xh9rWHQXonZM+9vwd2iKjdLoVJ+Ge5t6oNsqEQO/YgB+Mzh9kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kymati.com; dmarc=pass action=none header.from=kymati.com;
- dkim=pass header.d=kymati.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=UNmSN5L5;
+ spf=pass (domain: gmail.com, ip: 209.85.128.51, mailfrom: martin.jansa@gmail.com)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-404573e6c8fso6371985e9.1
+        for <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 05:54:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kymati.onmicrosoft.com; s=selector2-kymati-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9Y2Thi8zIhJRlipMaCloqxFitYE/YWfCemrOUzRUmQY=;
- b=Stahf9in/+QZ0f3hJL6MMrt+ZT2XyPnf+CmehvXq0PySQz0xjkQk1g4LbfchqlXEN9RoHgg+gwnWdFFZIw7fjeE/gbQFgmwd3nJRpJlBHGGfcbVL8JeWNmH7XbYnyPCw7iVIzkyZtm3VOQDSzidpO0IAnyK8yW4S0DAMu+Nsn1g=
-Received: from AM9PR03MB7012.eurprd03.prod.outlook.com (2603:10a6:20b:2d4::7)
- by DU0PR03MB9731.eurprd03.prod.outlook.com (2603:10a6:10:44d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Thu, 14 Sep
- 2023 12:48:39 +0000
-Received: from AM9PR03MB7012.eurprd03.prod.outlook.com
- ([fe80::2f9a:1999:e82f:efcf]) by AM9PR03MB7012.eurprd03.prod.outlook.com
- ([fe80::2f9a:1999:e82f:efcf%2]) with mapi id 15.20.6792.020; Thu, 14 Sep 2023
- 12:48:39 +0000
-From: Dave Hitchman <dave.hitchman@kymati.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Errno=No space left on device
-Thread-Topic: [yocto] Errno=No space left on device
-Thread-Index: AQHZ5wNVJqPYTkBL00yGm4Vi5SDKIrAaPNYAgAAEdgeAAAODAIAAAG6j
-Date: Thu, 14 Sep 2023 12:48:39 +0000
-Message-ID: 
- <AM9PR03MB7012F4B45651AF990F45E10592F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-References: 
- <AM9PR03MB70126259019EF2AD25999A2892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
- <CA+chaQefpv8V2gsmnk_DYfOCRstcp1985RNVTAdRu3hJki0x4Q@mail.gmail.com>
- <AM9PR03MB7012488D10FE95C6F4D12AA892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
- <CA+chaQdRXYCW0wdKJcCTZDkzU5u1QG49L-Gh6yL41ZDUXhvLiA@mail.gmail.com>
-In-Reply-To: 
- <CA+chaQdRXYCW0wdKJcCTZDkzU5u1QG49L-Gh6yL41ZDUXhvLiA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kymati.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR03MB7012:EE_|DU0PR03MB9731:EE_
-x-ms-office365-filtering-correlation-id: 353c676c-11d4-4417-a8f3-08dbb520eb4e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- cGbVF+VHQg5kjkrd2iERZMCZGnh2FpSM6Gs/38RBLC21QHgoEWnnWapq/SmF/GEg4QDDJQWLISjkmLT5obtSA51/QwFP8wzi5Gk1GNKM22dq/qtGJnGoe4+yYdi7e5i2zVSjXkwfgqlBAv2ULA1gFWaolPv4oqmEYBk0O2Ja8clNldQ73BIzue4qVKnmhaigethz0fHtbrybRCrObwZvlDqC2gNfPHvRAcijcp+/DtBqV9+KIvAksWqzURVg1oggmB9BXtzceiU3uOtAw+m66L2nMmEsRJPCon8jCmzOTIJ6537KuZnzi8Sn0X9suN4MtxuHRMqCnpotRrLX7RXJALBieAz5IWq3Nf7Pisn5u2Vy8w20VE9I1Atd75Jp0GMB8pgtRL7DE3JwZyczHKZTpaI+j3CNTkb6ud19yKkn+Ag+DX1YIC7t9eazl8jIyv9X5mnlAXcEXUQhB/wiZZwM2rq/1vScr2bhwKJg8GI+IxzXqmFZCQVlSeDZXt9ndMmpraSrlJEoQm+EbBXPSxWpNcfGQNM1LVQSGmZU9Kw2wR4zJo3aySx35/2ZmhnihZqcHjpNbs8JAkatVYFf/KCtYuh8R8zhGxR9w1btXH5O6BE=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR03MB7012.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(136003)(366004)(39830400003)(346002)(1800799009)(186009)(451199024)(66476007)(7696005)(6506007)(71200400001)(53546011)(38100700002)(478600001)(66446008)(33656002)(9686003)(2906002)(966005)(66946007)(66556008)(6916009)(64756008)(44832011)(316002)(76116006)(8936002)(91956017)(8676002)(41300700001)(5660300002)(4326008)(52536014)(166002)(86362001)(55016003)(83380400001)(38070700005)(19627405001)(122000001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?RjBhdDVZS1l2blM4U0tEVWRSaDE4ZXlGVVVMd2F3U0NhMlRyYUpaM2taZVZW?=
- =?utf-8?B?OTZFazlrbENtUkViUm9sY3RXMXEyWHUvRWpxaWpkWWZxR1Q3ME4wMUN0cGNH?=
- =?utf-8?B?b3ZtM1g0SXVuTnlUSTNsNWptMWx1cjdiVnRhcTIxczFHdU8rVWtEREk1WjJv?=
- =?utf-8?B?RGFWM2JZaVhYZkdGSEJsUHZGL3BvYm5KZW1WNFd5VXVJdUY0VldFNFNUWGFy?=
- =?utf-8?B?NDFrNnd4UnZNQlNuWkptRUxicGNLS0hWL0RCOTJ4eHFKNWNYZ05YeTJaTDd0?=
- =?utf-8?B?YTN5alVZODF3dURSVVd3aFkxR0RrbHJpU2krVTRtakxwejBaajRjU1dob0JS?=
- =?utf-8?B?bzRoazlDQkpqYW1QQzNQSndHUjhma3M4QkcrL2NxcGJWeUlwWG5zRTNRUWsx?=
- =?utf-8?B?cUtRcFk1Rjk4ZDFaNnRjN1pSYWV3S2U5Z1RrVjZ5SzFNTWkzSVNTblp3TG1N?=
- =?utf-8?B?ZnNaYWh4dERVMC9iK3RFSjZVbHgzVzAvSy91THB6WldQRTFRaHRTNXg0M2RS?=
- =?utf-8?B?OHB0ZGFRNnZuWVNCNHdMVVVseWs1bHBDeUNEalBILzRRd21FY2JtU3duTWJl?=
- =?utf-8?B?WHBvNyswWUVPRFlsdGVmdi81WTBWbFpQa2liWTVOSjJBaTNnV1JXMm1KbVVy?=
- =?utf-8?B?ci91YmEvU3NwbjkwblFMZkFsVmFrbExZRGZHQlY2cHBHZkdCMEczVGQwWUZk?=
- =?utf-8?B?UWwwMHBlbHJLaFhaZmlsVU1qWTVDR2tzZHhKSnBjRmlMRzNqVkpqOWltNjF5?=
- =?utf-8?B?MjF4TDJneDNPZ1FVUzdDSkM0SEZRS0NmcXgzS1poTWtvdXhOd25pWWxFajJN?=
- =?utf-8?B?Rk52aGFDc3FIaG1PM3RILy83L2xScEZRdDk1SzkrNlZqTU5xUlp0Y2JydDl4?=
- =?utf-8?B?RStPZFNITW1UQlV5S0c5M2pMeVpJY0UxRjlKK1Z1bjR3bjlQZ3RlQ0hCYjcv?=
- =?utf-8?B?Nm40VVRQQUwxbEdBR0RFVmhFRTVlZTJUZE1NcjlncEFUR1M4eTF4b3I3M09q?=
- =?utf-8?B?TjR0UHNaN3k5d0NhcHNCZUNlTlY3ZmhEK0wxM3FRQlR0ZU1lTGVQR3h2NmF0?=
- =?utf-8?B?cFk3UW1qS2hEMkx1bWkwdGpDa090Vy9DV0JHWDYxT0IzcGVldFUrVkRFQzZu?=
- =?utf-8?B?WmQxeE5VRkY2cWU3UTZidWZCSHFQQTU2NTFqR0RYZzBNVldqWTRyNFc1eUJi?=
- =?utf-8?B?cENBQ3BvczhncWgrN1BTalNYbHdldTRxcmcwd1BoeStSRFNuNndsYmV5T1VB?=
- =?utf-8?B?MnBLdDZlMG5JRE1pZVBvRzFyZlNoM2kvcHp2L0ZQRzA3b2xpN2NWemVKRzVi?=
- =?utf-8?B?U3FBa3kzTUUxVzVkcnpkTnhTcWdKZ3BLblZNTXFSRFkxTGtQQnhKS0RsYVM1?=
- =?utf-8?B?Z3ZTdnNHQVZQVml3aUI0dk9iS3hzblFZMWlmckNzQ0lmb1BLTFJnSE1TRnlx?=
- =?utf-8?B?ZEtveW04WGNhanl0SzNlcGxlazRrcmJhbjdQMnlzMzc3Z2EvYnZZdDg5cUlv?=
- =?utf-8?B?MWZFamJITFBmTkxaUU5yM21YeURtV3ppd2drbkQ2R241M00yYzEzR2FONSsr?=
- =?utf-8?B?L2UvVStNbGMzUEpaNXZyTmkvRDlpbE9kV0RjUlozdUN0Zmg4U0NCOFAvZEdq?=
- =?utf-8?B?YXVGZlhOVHZJcFUwTW1VZU1xOTZTajJzV2tYTVRUWEVnU1FhRTZyeE9odUNB?=
- =?utf-8?B?bzRpeDBhT0xVZ1hiYlhuc010VDdaMHB6WFVuanQ1T0hJcVRDenhrZWFyOWJu?=
- =?utf-8?B?QTA2SEhnM2RPa05RY24zVVRHdGJ2a2d2eEtDU3FLOHV0a2FISjNERW40MHhW?=
- =?utf-8?B?T0IraUVKYUhYZzE5dmdmRThFV1NHMVlaWTk3WmltZGJib3p0NXZlQm80Tm9x?=
- =?utf-8?B?cWZlVVlycXhRZjNvOG5NU1IrMCtGQzZUOHZyRVladHFqY0k1SHFVYmVWcjlP?=
- =?utf-8?B?Z2xVZloreDFvdHVTWjJIUVVqM3k2UEYvOTFoNTZmaUJnbGlmNTBpVmFHMmRl?=
- =?utf-8?B?emxzRytLRlF5WkdsNDFwdEJVdkgrT2Y2Zll4UFcvemxXdG1DZVZpcktHckxO?=
- =?utf-8?B?eUxBclIrcHIyK1VxVktmNHY1bWxUSGR0dWl5NVBCUUlYNEpuVHJWL2xYRkMz?=
- =?utf-8?B?Ri9rZVNqcVNyQnJSZDNXVlhBSGpyZnp3eG9WZTE1TEtNL3RtZWlVZXFSNHZp?=
- =?utf-8?Q?JpUwG7YKc9pO2FzxnEe3/i7Mj4eJuarZuGRNO5zgPihx?=
-Content-Type: multipart/alternative;
-	boundary="_000_AM9PR03MB7012F4B45651AF990F45E10592F7AAM9PR03MB7012eurp_"
+        d=gmail.com; s=20221208; t=1694696095; x=1695300895; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nl0mpEEQFoGXCwxdqqFX3eTHqqGuX3mnfgOVa0hEhNU=;
+        b=UNmSN5L568ETsZhzwgKpIqLeSF6kTRycxf6Lyoy3gFzOCtCD6I/qXJrhZjInhzfrlf
+         xf3FYM3G3VHMjr3ixJdVAGA3QUPT835UjBFS+hNsXRYINQkraivb7qbtoem+f1CZODOK
+         JIiYObllBNOdDqfICu5XZAdDxfSDRWWo2+kPKGzz3h1Lit7ymS2TtCSOk90slCF53t55
+         yNp93CaWC2n8qXzeQjgLKVDQvB87b4Q6/sLS0N5bWVfZUS0W9P+3juX5MJLfxbaVUA2j
+         tYUzCQUrTZrXN+Va7jgqs3KrgPqFGmnhX7ItsUNi5VPWaVeY9iK9cFNeUEr8kbRwiw7A
+         KmGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694696095; x=1695300895;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nl0mpEEQFoGXCwxdqqFX3eTHqqGuX3mnfgOVa0hEhNU=;
+        b=tdPrlCVth2z7xu7mw2R/7suZuAqJjlkvtdkmLy1q4+QkcG7wizLLRof4r3xArfHg2C
+         pplcpZZAXfQADK+ltpvGff9S/M/OBllCKRdQPWdUIyu/uXPokJGUIWYvqM0O+2YJALJ7
+         HmObT+BfUFKoV4KWHtkMKo+8Qh25cfcUmY31f3MPm5B4UkcZdtWavYKGCHxUwCxWmeX3
+         BlVfN/pwVgNKpM1nNgXKCS2iRWlldigpqLZhdEuz8AqeUdaDW3hkAEpfA/OKBrdR1Qq7
+         ENrujvyRe871BlIxd5oCzSYIERyc9strOmyV3ROGdt9lWbgqDmNa6DjLC91jP9wmZWf0
+         1ClQ==
+X-Gm-Message-State: AOJu0YwUfvv02dlSKGvRmcUKI7+XEjG/Bdu8jMJrFJAdoyE2MhWmzPrl
+	lvkxbuE2OC+3Na4o0lOT4QVogtZzVZiBz1fpkKQ=
+X-Google-Smtp-Source: AGHT+IF5V17/xVj98tv6HXAAeZV1NuGmqgdFyuMYYMyPnhgwCP6hyAl+R+7vyrQQrqXmUgD382ZCZ6RdmObEo2jA21E=
+X-Received: by 2002:a7b:c849:0:b0:3fe:e8b4:436f with SMTP id
+ c9-20020a7bc849000000b003fee8b4436fmr4944960wml.14.1694696094812; Thu, 14 Sep
+ 2023 05:54:54 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: kymati.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR03MB7012.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 353c676c-11d4-4417-a8f3-08dbb520eb4e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2023 12:48:39.4367
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f445f429-656f-441c-a343-dbb97855be01
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: u0XWGH9KFXbTsJgnVj75jwfEO65mn8LQ3A+hkhMWMO/1tKFkV1bueYIsK/hNzKm+w3cPJJ6qKIVIs6z7x/fUz6/nfxhh+Y7csYJ2SOdusjg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR03MB9731
+References: <AM9PR03MB70126259019EF2AD25999A2892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
+ <CA+chaQefpv8V2gsmnk_DYfOCRstcp1985RNVTAdRu3hJki0x4Q@mail.gmail.com> <AM9PR03MB701228E6AE99AC15DA40AB7692F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
+In-Reply-To: <AM9PR03MB701228E6AE99AC15DA40AB7692F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Thu, 14 Sep 2023 14:54:41 +0200
+Message-ID: <CA+chaQe_wybQ6ww08hwvsCmLdC1aH86Ajto94A4YMv5oa3WHPQ@mail.gmail.com>
+Subject: Re: [yocto] Errno=No space left on device
+To: Dave Hitchman <dave.hitchman@kymati.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000bbcd720605512eac"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 12:48:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61004
+ <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 12:54:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61005
 
---_000_AM9PR03MB7012F4B45651AF990F45E10592F7AAM9PR03MB7012eurp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000bbcd720605512eac
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzIE1hcnRpbiwgSSBoYXZlIGFkb3B0ZWQgeW91ciBodWdlIG51bWJlciBhbmQgdGhhdCBk
-b2VzIGF0IGxlYXN0IGdldCBtZSBtb3RvcmluZy4gSSB3b3VsZCBzdGlsbCBsb3ZlIHRvIGtub3cg
-d2hhdCB0aGUgZGV2aWwgaXMgZ29pbmcgb24sIEkgY2FudCBpbWFnaW5lIGhvdyBhbnlvbmUgY29u
-c3RydWN0aW5nIGFueSBmb3JtIG9mIGxpbnV4IGJ1aWxkIHJlcXVpcmVzIHRoYXQgbWFueSB0aGlu
-Z3MgdG8gYmUgd2F0Y2hlZCBkdXJpbmcgdGhlIGJ1aWxkLiBJIGRvbnQgdGhpbmsgSSBldmVuIGhh
-dmUgdGhhdCBtYW55IGZpbGVzIG9uIG15IG1hY2hpbmUhDQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KRnJvbTogTWFydGluIEphbnNhIDxtYXJ0aW4uamFuc2FAZ21haWwuY29tPg0K
-U2VudDogMTQgU2VwdGVtYmVyIDIwMjMgMTQ6NDYNClRvOiBEYXZlIEhpdGNobWFuIDxkYXZlLmhp
-dGNobWFuQGt5bWF0aS5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9j
-dG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIEVycm5vPU5v
-IHNwYWNlIGxlZnQgb24gZGV2aWNlDQoNCk9uIFRodSwgU2VwIDE0LCAyMDIzIGF0IDI6MzXigK9Q
-TSBEYXZlIEhpdGNobWFuIDxkYXZlLmhpdGNobWFuQGt5bWF0aS5jb208bWFpbHRvOmRhdmUuaGl0
-Y2htYW5Aa3ltYXRpLmNvbT4+IHdyb3RlOg0KRG9lcyBhbnlvbmUga25vdyB3aGF0IElTIGVub3Vn
-aD8NCg0KRGVwZW5kcyBvbiBob3cgYmlnIHlvdXIgbWV0YWRhdGEgbGF5ZXJzIGFyZSwgc28gdGhl
-cmUgaXNuJ3Qgc2luZ2xlIHZhbHVlIHdoaWNoIHdvdWxkIHN1aXRlIGV2ZXJ5Ym9keS4gQnV0IDFN
-IHdvcmtzIGZvciBtZSBldmVuIGZvciB2ZXJ5IGJpZyBidWlsZHMsIHNvIGl0IHNob3VsZCBiZSBi
-aWcgZW5vdWdoIGZvciB5b3UgYXMgd2VsbCAoZm9yIHdoYXRldmVyIFBIWVRFQyBpcyBkb2luZyku
-DQoNCldhdGNoaW5nIHRoZSB2aWRlbyBzZXJpZXMgYXJvdW5kIGh0dHBzOi8vd3d3LnlvdXR1YmUu
-Y29tL3dhdGNoP3Y9YlRFZGZ3dFB0TlkgaGUgZG9lc250IG1lbnRpb24gY2hhbmdpbmcgdGhpcyBz
-aXplLiBJIGRvbnQgYWN0dWFsbHkga25vdyB3aGF0IHRoaXMgd2F0Y2ggbWFuYWdlciB0aGluZyBp
-cyBzdXBwb3NlZCB0byBiZSBkb2luZywgdGhlcmUgaXMgb25lIGNvbW1hbmQgcHJvbXB0IGRvaW5n
-IG9uZSB0aGluZywgSSBjYW50IGJlbGlldmUgdGhhdCBpdCB3b3VsZCBuZWVkIHRoYXQgbWFueSB0
-aGluZ3MgYmVpbmcgd2F0Y2hlZD8gV2hhdCBpcyBpdCBldmVuIHdhdGNoaW5nIGZvcj8NCg0KSXQn
-cyB3YXRjaGluZyBmb3IgY2hhbmdlcyBpbiBtZXRhZGF0YSwgd2hpY2ggaXMgYSBsb3Qgb2YgZmls
-ZXMuDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IE1hcnRpbiBK
-YW5zYSA8bWFydGluLmphbnNhQGdtYWlsLmNvbTxtYWlsdG86bWFydGluLmphbnNhQGdtYWlsLmNv
-bT4+DQpTZW50OiAxNCBTZXB0ZW1iZXIgMjAyMyAxNDoxNw0KVG86IERhdmUgSGl0Y2htYW4gPGRh
-dmUuaGl0Y2htYW5Aa3ltYXRpLmNvbTxtYWlsdG86ZGF2ZS5oaXRjaG1hbkBreW1hdGkuY29tPj4N
-CkNjOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0BsaXN0cy55b2N0
-b3Byb2plY3Qub3JnPiA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBFcnJubz1ObyBz
-cGFjZSBsZWZ0IG9uIGRldmljZQ0KDQpPbiBUaHUsIFNlcCAxNCwgMjAyMyBhdCAyOjA34oCvUE0g
-RGF2ZSBIaXRjaG1hbiA8ZGF2ZS5oaXRjaG1hbkBreW1hdGkuY29tPG1haWx0bzpkYXZlLmhpdGNo
-bWFuQGt5bWF0aS5jb20+PiB3cm90ZToNCkVSUk9SOiBObyBzcGFjZSBsZWZ0IG9uIGRldmljZSBv
-ciBleGNlZWRzIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcz8NCkVSUk9SOiBUbyBjaGVjayBt
-YXhfdXNlcl93YXRjaGVzOiBzeXNjdGwgLW4gZnMuaW5vdGlmeS5tYXhfdXNlcl93YXRjaGVzLg0K
-RVJST1I6IFRvIG1vZGlmeSBtYXhfdXNlcl93YXRjaGVzOiBzeXNjdGwgLW4gLXcgZnMuaW5vdGlm
-eS5tYXhfdXNlcl93YXRjaGVzPTx2YWx1ZT4uDQoNCnB5aW5vdGlmeS5XYXRjaE1hbmFnZXJFcnJv
-cjogYWRkX3dhdGNoOiBjYW5ub3Qgd2F0Y2ggL2hvbWUvZGF2ZS9Eb2N1bWVudHMvS3ltYXRpL3lv
-Y3RvL2J1aWxkL2NvbmYgV0Q9LTEsIEVycm5vPU5vIHNwYWNlIGxlZnQgb24gZGV2aWNlIChFTk9T
-UEMpDQoNCmRhdmVAZGF2ZS1UVVhFRE8tQXVyYS0xNS1HZW4xOn4vRG9jdW1lbnRzL0t5bWF0aS95
-b2N0by9idWlsZCQgc3lzY3RsIC1uIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcw0KNjU1MzYN
-Cg0KV2hhdCBJUyB0aGUgYWN0dWFsIHByb2JsZW0gYW5kIGhvdyBpcyBpdCBhY3R1YWxseSBmaXhl
-ZD8gSSBjYW50IGJlIHRoZSBvbmx5IHBlcnNvbiBmYWNpbmcgdGhpcyBzdXJlbHk/DQoNCkhhdmUg
-eW91IHRyaWVkIHRvIGluY3JlYXNlIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcyBhcyB0aGUg
-ZXJyb3Igc2F5cz8NCg0KJCBzeXNjdGwgLW4gZnMuaW5vdGlmeS5tYXhfdXNlcl93YXRjaGVzDQox
-MDQ4NTc2DQoNCjY0SyBtaWdodCBub3QgYmUgZW5vdWdoLg0K
+On Thu, Sep 14, 2023 at 2:47=E2=80=AFPM Dave Hitchman <dave.hitchman@kymati=
+.com>
+wrote:
 
---_000_AM9PR03MB7012F4B45651AF990F45E10592F7AAM9PR03MB7012eurp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Well using that enormous number worked... for the moment, until when it
+> next stops. I still would like to know what the devil is being done in my
+> system with that one build that is consuming such a crazy number of
+> watches, what is being watched, why etc.
+>
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBB
-cHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBI
-ZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAw
-KTsiIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiI+DQpUaGFua3MgTWFydGluLCBJIGhhdmUgYWRvcHRl
-ZCB5b3VyIGh1Z2UgbnVtYmVyIGFuZCB0aGF0IGRvZXMgYXQgbGVhc3QgZ2V0IG1lIG1vdG9yaW5n
-LiBJIHdvdWxkIHN0aWxsIGxvdmUgdG8ga25vdyB3aGF0IHRoZSBkZXZpbCBpcyBnb2luZyBvbiwg
-SSBjYW50IGltYWdpbmUgaG93IGFueW9uZSBjb25zdHJ1Y3RpbmcgYW55IGZvcm0gb2YgbGludXgg
-YnVpbGQgcmVxdWlyZXMgdGhhdCBtYW55IHRoaW5ncyB0byBiZSB3YXRjaGVkIGR1cmluZyB0aGUg
-YnVpbGQuDQogSSBkb250IHRoaW5rIEkgZXZlbiBoYXZlIHRoYXQgbWFueSBmaWxlcyBvbiBteSBt
-YWNoaW5lITwvZGl2Pg0KPGRpdiBpZD0iYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0i
-ZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRleD0iLTEiPg0KPGRpdiBpZD0i
-ZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYi
-IHN0eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBNYXJ0
-aW4gSmFuc2EgJmx0O21hcnRpbi5qYW5zYUBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+
-IDE0IFNlcHRlbWJlciAyMDIzIDE0OjQ2PGJyPg0KPGI+VG86PC9iPiBEYXZlIEhpdGNobWFuICZs
-dDtkYXZlLmhpdGNobWFuQGt5bWF0aS5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0BsaXN0
-cy55b2N0b3Byb2plY3Qub3JnICZsdDt5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnJmd0Ozxi
-cj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBFcnJubz1ObyBzcGFjZSBsZWZ0IG9uIGRl
-dmljZTwvZm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IGRpcj0i
-bHRyIj4NCjxkaXYgZGlyPSJsdHIiPk9uIFRodSwgU2VwIDE0LCAyMDIzIGF0IDI6MzXigK9QTSBE
-YXZlIEhpdGNobWFuICZsdDs8YSBocmVmPSJtYWlsdG86ZGF2ZS5oaXRjaG1hbkBreW1hdGkuY29t
-Ij5kYXZlLmhpdGNobWFuQGt5bWF0aS5jb208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxk
-aXYgY2xhc3M9InhfZ21haWxfcXVvdGUiPg0KPGJsb2NrcXVvdGUgY2xhc3M9InhfZ21haWxfcXVv
-dGUiIHN0eWxlPSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xp
-ZCByZ2IoMjA0LDIwNCwyMDQpOyBwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXYgY2xhc3M9InhfbXNn
-LTQ5MTk0MTY0NTYyMjYyNDE5OTYiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IHN0eWxlPSJmb250
-LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxp
-YnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCww
-KSI+DQpEb2VzIGFueW9uZSBrbm93IHdoYXQgSVMgZW5vdWdoPzwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkRlcGVuZHMgb24gaG93
-IGJpZyB5b3VyIG1ldGFkYXRhIGxheWVycyBhcmUsIHNvIHRoZXJlIGlzbid0IHNpbmdsZSB2YWx1
-ZSB3aGljaCB3b3VsZCBzdWl0ZSBldmVyeWJvZHkuIEJ1dCAxTSB3b3JrcyBmb3IgbWUgZXZlbiBm
-b3IgdmVyeSBiaWcgYnVpbGRzLCBzbyBpdCBzaG91bGQgYmUgYmlnIGVub3VnaCBmb3IgeW91IGFz
-IHdlbGwgKGZvciB3aGF0ZXZlciZuYnNwO1BIWVRFQyBpcyBkb2luZykuPC9kaXY+DQo8ZGl2PiZu
-YnNwOzwvZGl2Pg0KPGJsb2NrcXVvdGUgY2xhc3M9InhfZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJn
-aW46MHB4IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwy
-MDQpOyBwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXYgY2xhc3M9InhfbXNnLTQ5MTk0MTY0NTYyMjYy
-NDE5OTYiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxB
-cHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxz
-YW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpXYXRjaGluZyB0
-aGUgdmlkZW8gc2VyaWVzIGFyb3VuZCZuYnNwOzxhIGhyZWY9Imh0dHBzOi8vd3d3LnlvdXR1YmUu
-Y29tL3dhdGNoP3Y9YlRFZGZ3dFB0TlkiIGlkPSJ4X21fLTQ5MTk0MTY0NTYyMjYyNDE5OTZMUGxu
-azYwNjEyNyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9
-YlRFZGZ3dFB0Tlk8L2E+Jm5ic3A7aGUgZG9lc250IG1lbnRpb24gY2hhbmdpbmcgdGhpcyBzaXpl
-LiBJIGRvbnQgYWN0dWFsbHkga25vdyB3aGF0IHRoaXMNCiB3YXRjaCBtYW5hZ2VyIHRoaW5nIGlz
-IHN1cHBvc2VkIHRvIGJlIGRvaW5nLCB0aGVyZSBpcyBvbmUgY29tbWFuZCBwcm9tcHQgZG9pbmcg
-b25lIHRoaW5nLCBJIGNhbnQgYmVsaWV2ZSB0aGF0IGl0IHdvdWxkIG5lZWQgdGhhdCBtYW55IHRo
-aW5ncyBiZWluZyB3YXRjaGVkPyBXaGF0IGlzIGl0IGV2ZW4gd2F0Y2hpbmcgZm9yPzwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pkl0
-J3Mgd2F0Y2hpbmcgZm9yIGNoYW5nZXMgaW4gbWV0YWRhdGEsIHdoaWNoIGlzIGEgbG90IG9mIGZp
-bGVzLjwvZGl2Pg0KPGRpdj4mbmJzcDs8YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8
-YmxvY2txdW90ZSBjbGFzcz0ieF9nbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBw
-eCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7IHBhZGRpbmct
-bGVmdDoxZXgiPg0KPGRpdiBjbGFzcz0ieF9tc2ctNDkxOTQxNjQ1NjIyNjI0MTk5NiI+DQo8ZGl2
-IGRpcj0ibHRyIj4NCjxkaXYgaWQ9InhfbV8tNDkxOTQxNjQ1NjIyNjI0MTk5NmFwcGVuZG9uc2Vu
-ZCI+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrOyB3aWR0aDo5OCUiPg0K
-PGRpdiBpZD0ieF9tXy00OTE5NDE2NDU2MjI2MjQxOTk2ZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIi
-Pjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIiBzdHlsZT0i
-Zm9udC1zaXplOjExcHQiPjxiPkZyb206PC9iPiBNYXJ0aW4gSmFuc2EgJmx0OzxhIGhyZWY9Im1h
-aWx0bzptYXJ0aW4uamFuc2FAZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+bWFydGluLmphbnNh
-QGdtYWlsLmNvbTwvYT4mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IDE0IFNlcHRlbWJlciAyMDIzIDE0
-OjE3PGJyPg0KPGI+VG86PC9iPiBEYXZlIEhpdGNobWFuICZsdDs8YSBocmVmPSJtYWlsdG86ZGF2
-ZS5oaXRjaG1hbkBreW1hdGkuY29tIiB0YXJnZXQ9Il9ibGFuayI+ZGF2ZS5oaXRjaG1hbkBreW1h
-dGkuY29tPC9hPiZndDs8YnI+DQo8Yj5DYzo8L2I+IDxhIGhyZWY9Im1haWx0bzp5b2N0b0BsaXN0
-cy55b2N0b3Byb2plY3Qub3JnIiB0YXJnZXQ9Il9ibGFuayI+eW9jdG9AbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZzwvYT4gJmx0OzxhIGhyZWY9Im1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnIiB0YXJnZXQ9Il9ibGFuayI+eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7
-PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIEVycm5vPU5vIHNwYWNlIGxlZnQgb24g
-ZGV2aWNlPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXYgZGly
-PSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+T24gVGh1LCBTZXAgMTQsIDIwMjMgYXQgMjowN+KAr1BN
-IERhdmUgSGl0Y2htYW4gJmx0OzxhIGhyZWY9Im1haWx0bzpkYXZlLmhpdGNobWFuQGt5bWF0aS5j
-b20iIHRhcmdldD0iX2JsYW5rIj5kYXZlLmhpdGNobWFuQGt5bWF0aS5jb208L2E+Jmd0OyB3cm90
-ZTo8YnI+DQo8L2Rpdj4NCjxkaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luOjBweCAwcHgg
-MHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGlu
-Zy1sZWZ0OjFleCI+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2PkVSUk9SOiBObyBzcGFj
-ZSBsZWZ0IG9uIGRldmljZSBvciBleGNlZWRzIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcz88
-YnI+DQo8L2Rpdj4NCjxkaXY+RVJST1I6IFRvIGNoZWNrIG1heF91c2VyX3dhdGNoZXM6IHN5c2N0
-bCAtbiBmcy5pbm90aWZ5Lm1heF91c2VyX3dhdGNoZXMuPC9kaXY+DQo8ZGl2PkVSUk9SOiBUbyBt
-b2RpZnkgbWF4X3VzZXJfd2F0Y2hlczogc3lzY3RsIC1uIC13IGZzLmlub3RpZnkubWF4X3VzZXJf
-d2F0Y2hlcz0mbHQ7dmFsdWUmZ3Q7LjwvZGl2Pg0KPGRpdj48L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
-DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1h
-cmdpbjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0
-LDIwNCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5w
-eWlub3RpZnkuV2F0Y2hNYW5hZ2VyRXJyb3I6IGFkZF93YXRjaDogY2Fubm90IHdhdGNoIC9ob21l
-L2RhdmUvRG9jdW1lbnRzL0t5bWF0aS95b2N0by9idWlsZC9jb25mIFdEPS0xLCBFcnJubz1ObyBz
-cGFjZSBsZWZ0IG9uIGRldmljZSAoRU5PU1BDKTxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rp
-dj4NCjxkaXY+ZGF2ZUBkYXZlLVRVWEVETy1BdXJhLTE1LUdlbjE6fi9Eb2N1bWVudHMvS3ltYXRp
-L3lvY3RvL2J1aWxkJCBzeXNjdGwgLW4gZnMuaW5vdGlmeS5tYXhfdXNlcl93YXRjaGVzPC9kaXY+
-DQo8ZGl2PjY1NTM2PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19F
-bWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
-cmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxk
-aXYgc3R5bGU9ImZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0Zv
-bnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBj
-b2xvcjpyZ2IoMCwwLDApIj4NCldoYXQgSVMgdGhlIGFjdHVhbCBwcm9ibGVtIGFuZCBob3cgaXMg
-aXQgYWN0dWFsbHkgZml4ZWQ/IEkgY2FudCBiZSB0aGUgb25seSBwZXJzb24gZmFjaW5nIHRoaXMg
-c3VyZWx5PzwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0K
-PC9kaXY+DQo8ZGl2PkhhdmUgeW91IHRyaWVkIHRvIGluY3JlYXNlIGZzLmlub3RpZnkubWF4X3Vz
-ZXJfd2F0Y2hlcyBhcyB0aGUgZXJyb3Igc2F5cz88L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8
-ZGl2PiQgc3lzY3RsIC1uIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlczxicj4NCjEwNDg1NzY8
-YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PjY0SyBtaWdodCBub3QgYmUgZW5v
-dWdoLjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxv
-Y2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+bitbake is open source, you can read what exactly it does here:
+https://git.openembedded.org/bitbake/
 
---_000_AM9PR03MB7012F4B45651AF990F45E10592F7AAM9PR03MB7012eurp_--
+
+> This is taking memory away from other things, maybe I do have a thumping
+> great machine but just endlessly sucking bigger and bigger numbers of
+> watches appears to me to be the wrong thing to be doing, not everyone can
+> afford enough ram to store an encyclopedia britannicas worth of data abou=
+t
+> every grain of sand on the planet.
+>
+
+If you're afraid that number of watches will eat your thumping great
+machine, then maybe you should avoid building software completely and use
+that machine in toaster. Other things will eat a lot more ram, cpu and disk
+once you pass the parsing phase.
+
+The same question from 2019
+https://www.yoctoproject.org/pipermail/yocto/2019-May/045221.html - you
+don't need to copy encyclopedia or count grains of sand on the planet, you
+can just google "yocto fs.inotify.max_user_watches" to find it.
+
+>
+
+--000000000000bbcd720605512eac
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Sep 14, 2023 at 2:47=E2=80=AFPM D=
+ave Hitchman &lt;<a href=3D"mailto:dave.hitchman@kymati.com">dave.hitchman@=
+kymati.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div class=3D"msg-7773867045663100651"=
+>
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Well using that enormous number worked... for the moment, until when it nex=
+t stops. I still would like to know what the devil is being done in my syst=
+em with that one build that is consuming such a crazy number of watches, wh=
+at is being watched, why etc.</div></div></div></blockquote><div><br></div>=
+<div>bitbake is open source, you can read what exactly it does here:</div><=
+div><a href=3D"https://git.openembedded.org/bitbake/">https://git.openembed=
+ded.org/bitbake/</a><br></div><div>=C2=A0</div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div class=3D"msg-7773867045663100651"><div dir=3D"lt=
+r"><div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,C=
+alibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">This
+ is taking memory away from other things, maybe I do have a thumping great =
+machine but just endlessly sucking bigger and bigger numbers of watches app=
+ears to me to be the wrong thing to be doing, not everyone can afford enoug=
+h ram to store an encyclopedia britannicas
+ worth of data about every grain of sand on the planet.=C2=A0</div></div></=
+div></blockquote><div><br></div><div>If you&#39;re afraid that number of wa=
+tches will eat your thumping great machine, then maybe you should avoid bui=
+lding software completely and use that machine in toaster. Other things wil=
+l eat a lot more ram, cpu and disk once you pass the parsing phase.</div><d=
+iv><br></div><div>The same question from 2019=C2=A0<a href=3D"https://www.y=
+octoproject.org/pipermail/yocto/2019-May/045221.html">https://www.yoctoproj=
+ect.org/pipermail/yocto/2019-May/045221.html</a> - you don&#39;t need to co=
+py encyclopedia or count grains of sand on the planet, you can just google =
+&quot;yocto=C2=A0fs.inotify.max_user_watches&quot; to find it.</div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg-77738670456631=
+00651"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>
+</div>
+</div>
+</div>
+</div>
+
+</div></blockquote></div></div>
+
+--000000000000bbcd720605512eac--
 
