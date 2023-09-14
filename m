@@ -1,263 +1,209 @@
-Return-Path: <dave.hitchman@kymati.com>
+Return-Path: <sakib.sajal@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB1AEEEAA53
-	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 15:53:41 +0000 (UTC)
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (EUR01-HE1-obe.outbound.protection.outlook.com [40.107.13.78])
- by mx.groups.io with SMTP id smtpd.web10.15879.1694706813322893125
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10344EEAA54
+	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 16:12:02 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web11.16576.1694707920128214362
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Sep 2023 08:53:33 -0700
+ Thu, 14 Sep 2023 09:12:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kymati.onmicrosoft.com header.s=selector2-kymati-onmicrosoft-com header.b=JsmFVzRE;
- spf=pass (domain: kymati.com, ip: 40.107.13.78, mailfrom: dave.hitchman@kymati.com)
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=MMRN2VlZ;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=7621a73da4=sakib.sajal@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38EDNiKH002568;
+	Thu, 14 Sep 2023 16:11:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=content-type:message-id:date:from:subject:to:cc:mime-version;
+	 s=PPS06212021; bh=u9/9i/mLJfBkdwJIHnQXys8I1X+Rs1NLB/vMTM1/UUc=; b=
+	MMRN2VlZsECmGjQO0Uu9Fn8R/pM65zdXs1N3zwNPxNVoo1BQEyK8j2I1YGfB9907
+	wGaPyMpngj2vbDF8WjM6O2aTxi+k8Ax7MlzQNj7SiP8JsKwn9REZzlfNra9wvBqA
+	rzOM8LECRvbiIMlSx0i/5qp0+sqSXtHwFQE4q6Qs9rbwychoBa+8ft9LCiGqSXOy
+	cbZC69FkDBP9EzT6FZGORfWA29JJYcJETVhLMVACiehZ8MQI/A+ZAtqtv9u3ibe2
+	gy2TmLbG3Jmf+d/lMA0xcJpRHIaD0OkMdxvHF++G/SPEu2A14xFHKbSXiFIDgspT
+	9uOtpM4fFMgHyzuIZCWXpQ==
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2173.outbound.protection.outlook.com [104.47.57.173])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3t2y8msyb7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Sep 2023 16:11:52 +0000 (GMT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oQDBWvowlV2yGhhLBwreZQMnQMAdwGPSLGFXCHM5+owuscPNnoRkKe7I3068WYHJCr+dMIo481rNKDKqfM56/K8TKOGg6kuv8nyTiXG+KsHtoXuTmt9BKdXgc9PfrOMNmTSyZn74pG3UKsuBl0URO0iAmUheKqs7L1dhPNLcB8/NOK+sSxoOKCxSlSseg1uipUEAvahMOgQjEO4j8Z4zLvRVqcFK2dBYPjq5RNGlBc6clW0ZsGNfpeSFYvxgPkjslVK+alrwEdieE/csopKODSk84+4Ke29yhL2RRDOnAXxMyw5sLSqotIH/8HGieilSjr4qgGQHWAEMj/mYlvVm8g==
+ b=ZLeJAGB6JSXkmlQloWzlKSLm4AyLtOkzQlpNTINz1RZokcU6yb08k1ijMgdDACMfsYnojz7HsW/pCF/lf2gJ9o69yOJc3C/qMZyz4t2BZnyc2rLD6hr66ozTOkRWL5EmHg0Lwfk99hMoEKZW9M5muwbf6hucx8ViXJWBP3KkBUQvc4qQ9Ue0CUyNZK+EMI4CX4cVbaGj9kV6lrGG1QpgiViARuxyVlqwSu/HsTgo9Qr3ViLcaW2rK7U5sJram07pbvRE2V41OF33YgAwQCgZGAIuRQ+OqFVz6ogIBKKRLqjY+Jj4+PMP7ImBAwOPkbps7bwkK2k2F94rUaD2OR6OFQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGM6ntKriSUPgNKNn+4WHK/5nE1PrAYzbsa4ED6gj90=;
- b=gd25KCUnrI69zW4F9oYsHpWiY9epphMWvAsPDpoPQHtHPxuNFYk6fL5e+/YhXcf8vwDqC2GdfdwUCAMtgCFxmCpEh4NpJGGrYA5iB+3n5IJWJZGwn6+OB5OuIGDGhDmcaTfW0SSHQ9szuzsRtVE2kREB3vLR+YH4DlQWx59itHS45oYQNo8BlQgg2Z5ihDOEySzs9k1QVHoeXrz9S7/kowR753AcDNcokRviLcy+5J5jut5T9k1aIfhk8Ye8ZTOpn9RfxbQ+yIWJsUHB+Vk4pdECwMg4GJYHA97HBnOvZOe12XMN7+fZAbHEXWbcvVKcb5fwYilUFrhbYyIduQEopw==
+ bh=u9/9i/mLJfBkdwJIHnQXys8I1X+Rs1NLB/vMTM1/UUc=;
+ b=oWPjK3Q3sC7C/jRyfgT0bqUEBMW+pPFnHHEb63h9reYo4ikiRI2Hj9tiYuz3vFOtAIKzgV2MtdUpSKXwIYWbD46mL+Hs1U29l3KC2xs2tONbbEeoxmLbHsuyrwKtTZqAdHRn+z464opDcgF2zmIgUFFWaFeLVfd5VQNbTd9x9TiC/5UndGTo6wcm26CiZ/Dmst5y1+fX4DImDgtTlFw94QSjUFjwUl/M5IsQXl8kMaLtuVgLw1iLaM7Rc8mCl2d0R+IY+K7sjERqURDwz4wxT0A12/CbkCm7ayvopeSbffIR4E4CuKusOtImLxY4nKTJ7nNWhzdhR1CLgLpmDxsbEA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kymati.com; dmarc=pass action=none header.from=kymati.com;
- dkim=pass header.d=kymati.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kymati.onmicrosoft.com; s=selector2-kymati-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGM6ntKriSUPgNKNn+4WHK/5nE1PrAYzbsa4ED6gj90=;
- b=JsmFVzRESI9r+DGHO6JaUffZpbjQ+cBRRJhvj5IIssDEqT4FBmRxy5wGd4orynpUeE4V3+fg43sRsV+5B8j5OJeV6OmGOn9oiIKpwq7eltf4Qdd6Yueeu/8uHBse1As8RCWiJWwLXjJB74iHJNu1eNf5mBBBs01leeI4SJSgcY8=
-Received: from AM9PR03MB7012.eurprd03.prod.outlook.com (2603:10a6:20b:2d4::7)
- by PAWPR03MB8963.eurprd03.prod.outlook.com (2603:10a6:102:334::21) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com (2603:10b6:5:be::20) by
+ SJ2PR11MB7503.namprd11.prod.outlook.com (2603:10b6:a03:4cb::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Thu, 14 Sep
- 2023 15:53:28 +0000
-Received: from AM9PR03MB7012.eurprd03.prod.outlook.com
- ([fe80::2f9a:1999:e82f:efcf]) by AM9PR03MB7012.eurprd03.prod.outlook.com
- ([fe80::2f9a:1999:e82f:efcf%2]) with mapi id 15.20.6792.020; Thu, 14 Sep 2023
- 15:53:28 +0000
-From: Dave Hitchman <dave.hitchman@kymati.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, Martin Jansa
-	<martin.jansa@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Errno=No space left on device
-Thread-Topic: [yocto] Errno=No space left on device
-Thread-Index: AQHZ5wNVJqPYTkBL00yGm4Vi5SDKIrAaPNYAgAAEdgeAABf7AIAAH8Hd
-Date: Thu, 14 Sep 2023 15:53:28 +0000
-Message-ID: 
- <AM9PR03MB7012AF8B2E587BB7939F2FF992F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-References: 
- <AM9PR03MB70126259019EF2AD25999A2892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-	 <CA+chaQefpv8V2gsmnk_DYfOCRstcp1985RNVTAdRu3hJki0x4Q@mail.gmail.com>
-	 <AM9PR03MB7012488D10FE95C6F4D12AA892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
- <aaeb579eaf7bb5914a944d6a2cb093be7521548f.camel@linuxfoundation.org>
-In-Reply-To: 
- <aaeb579eaf7bb5914a944d6a2cb093be7521548f.camel@linuxfoundation.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kymati.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR03MB7012:EE_|PAWPR03MB8963:EE_
-x-ms-office365-filtering-correlation-id: f5cce8c9-98ad-469b-0651-08dbb53abcda
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 7g9SW5+LPlxg6pFIe9HEK+VECzLVBdQNyq34buCOwdNLltAGh2AcOmyLBcRKd6jg2/M3SvFaOvi5b9aVBZDnJrfPy93BFjSIDGdAQHCf7R7j5pmyTPea2efPKKy8e8kzm9gj6f5CV3fPzQKzu73H4nLqzQfEjBAr7moAXh++CXreOuocKvJzDLsXNTAqZN/mxqemhWOSPrEsRbEI6Y/LOvq1Qyp4Qz9CPIrhUOXhXivv6gueIStNEmRkZXvKBEJXDFmse23ZFB74lraak4i8WbbGh64R6zFxPlJNMenqvWkb5I70PlhAxbTNktwth3voawTm+0NK4Q6jOecvqhzr9xKSeTcD0/xTdCY+qxLmchx4EHIff5tbyWQdNP4Nb/o4dorsgw/RBweEjjwcQrZD0bYHLeTCPgCW3cJUjU7QfteaHLK0RDYyKW69ZCVkUG6eoNu7xjvZ+mawAKdaQEu/mYi79csWcgrOQKF5HTsWYlrNqIDG6Do4SBgh7UvLFmsn64RP6nR+Ne/RTpLo0J7SM/eAIl2NlDVzXwN9K0TJohw94hQrMDEVH5vqnUfemPq5DRFuiFO5dYB9vKpHUp5TNilVkrlMLDiLtaF8BmnEqhc=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR03MB7012.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(136003)(396003)(346002)(39830400003)(451199024)(1800799009)(186009)(41300700001)(19627405001)(122000001)(6506007)(53546011)(7696005)(71200400001)(91956017)(38100700002)(86362001)(55016003)(33656002)(9686003)(1015004)(38070700005)(316002)(64756008)(2906002)(966005)(44832011)(83380400001)(66556008)(8936002)(5660300002)(110136005)(66446008)(166002)(4326008)(478600001)(52536014)(66946007)(8676002)(76116006)(66476007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?IOvdvMzwvLeHTnxdrV/EAHnIV8JFga8/2ZBmWJZj84AeP09gSfTmpS34zE?=
- =?iso-8859-1?Q?0mbdwp2Lw/kwMGIgwEgdpc+FdT+JlKd/KTqeo0W7iocyd6Ix9eOIE7zvAS?=
- =?iso-8859-1?Q?uJ0IYXFuNiYRyVkNRxLltamWg0kXXfOlrE6k7UmquIMcmq9tv+WqjNLUBE?=
- =?iso-8859-1?Q?KjTFfjsqzbQ/aIVYLEneMv20ztjD+Nbf2smZQTDL/b3/6Pk9WHkiy88Nrg?=
- =?iso-8859-1?Q?MDkhQovQOhgLA+3EM6VecnxpLowNTYwdloEWzSOCPEbHjQH1GXYhnsttdP?=
- =?iso-8859-1?Q?sWWZldqVZW80uuRAuzUVZ/butVB3KbWAIslzbd+zwKOK2n7b4FRcs5D65j?=
- =?iso-8859-1?Q?wCbwb9nsUgdUuWFQd0jBKiJf02ELsb9Ivu/OZl8yAuQ4udw5kRXRdt8FjP?=
- =?iso-8859-1?Q?sAHT47RndSQXZmoxV/CzFgcUBlPFmhhwCfrgfokI7+Nu7ATdR1XA0IKkFF?=
- =?iso-8859-1?Q?PhEAeIcyiZ8kGLMwCOtcD72ZSr9berS09STF5xlxECR8F4/OOKV6p/jKZ5?=
- =?iso-8859-1?Q?yn1IzJ94ygZm/SoPGx4LbLndIfTFX7PxcCL5vX5RuFVHIQxVqzvAy19AKX?=
- =?iso-8859-1?Q?jJM7CwvHe4FghxfTnhLOqzG5aDoboJpZXLbxsih/eUtWPf/j07TT/ZUle6?=
- =?iso-8859-1?Q?R2Og3PCoiA4KxkQ/j1itEKaXhvBH0sZxFOIp3RnYtyHsAv8JWN/p2qPCsE?=
- =?iso-8859-1?Q?IXFDWjYxQwhvqpPj7dJVz75v15p/T9bhOWvwf56irhwpRme7DwY+uUFa2J?=
- =?iso-8859-1?Q?sfh5E7oJ//Dd988Ji0GE0NVxTjO78Q+Cb9DpRyBt1Y9sO1ral5pNi+8THr?=
- =?iso-8859-1?Q?+YuRSiCcTIkRwPdBk0QOZ6TCXP/vcgWXMEHOu8Bok51H/A+5r0Owv1OqNA?=
- =?iso-8859-1?Q?+SXe3/wP5JSqDY5Te8KBe/RVYjCOqGeDQ6vV4r6lXq1+6pzuKZ5U0jiFqF?=
- =?iso-8859-1?Q?y/eqTord59qbCKEyF+vf4nr6ibG145jx2PcZeGyEPPvyH83pPyjugsPx4q?=
- =?iso-8859-1?Q?otyVqqEZX2NdY50wYqtLu1qyW2tY07SgzN6oGzgnAx2EubwVrXL6Syv8FJ?=
- =?iso-8859-1?Q?vXB1hLZ7P6eO8DLVJ8SzFkeK6GmIyrQfDyLaOmfDg2irUoAt1P7M7SEmiW?=
- =?iso-8859-1?Q?mYtzUNaFCkL9c6W3eChrvbfNsEIeDhs/sp4P/kEI02rNuQS2c7UMnD4xFd?=
- =?iso-8859-1?Q?J7284U7oMr+H/RUVClRrbKPaXGxBfktJUuV84L4gFjiMhM+eQwaWnNDIFY?=
- =?iso-8859-1?Q?11X3S4boy+E69eJUudNMrBEaT/5hxMaMnots/Z/A1oV8gYd+lwMd9WzD4H?=
- =?iso-8859-1?Q?jZSEfhn1vnXcmYND7z+zWg2BUkpYbeJ7Z6doR7zuSxPQfk5C3PELzX/GdD?=
- =?iso-8859-1?Q?+jLwZJ2wX1Nza0CQw8rrehmulA3lzq/S6KClq7y9Akm342PZDY/5QaBsDc?=
- =?iso-8859-1?Q?NsqNZpUuKkXuPWM+gD0VdT8F6z62qB/WwstXXy0b0bSpomRxdvXKYJBX0P?=
- =?iso-8859-1?Q?o3SzM+7KAN4290l8yavvnX5yM3ogdGig6FDEHphzEqMlD04BbrNSDKpRs2?=
- =?iso-8859-1?Q?ufkMDYfM1cDytDiVva7iTc52W+zV4OPS4Z4jVCfelmkt/KfnK97O2Mc+WI?=
- =?iso-8859-1?Q?azQN/H3ErC5M5fOtexTXwpIRWdhENg3DTZOHJo3hbJ5cBk8OlnBPQoiFnE?=
- =?iso-8859-1?Q?c4t0biqji00/Cu41T1797fDYu0dBlAcC0Vje+OaK?=
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.30; Thu, 14 Sep
+ 2023 16:11:48 +0000
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::4044:65c4:486f:538b]) by DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::4044:65c4:486f:538b%4]) with mapi id 15.20.6792.020; Thu, 14 Sep 2023
+ 16:11:48 +0000
 Content-Type: multipart/alternative;
-	boundary="_000_AM9PR03MB7012AF8B2E587BB7939F2FF992F7AAM9PR03MB7012eurp_"
+ boundary="------------7x4ahDtqZSicBPEb4wm2MtsU"
+Message-ID: <4795b853-5ec3-5a35-19c0-9ba66e8b3596@windriver.com>
+Date: Thu, 14 Sep 2023 12:11:44 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+From: Sakib Sajal <sakib.sajal@windriver.com>
+Subject: [yocto] Minutes: Yocto Project Weekly Triage Meeting 14/09/2023
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: alexandre.belloni@bootlin.com, Bruce Ashfield <bruce.ashfield@gmail.com>,
+        daiane.angolini@foundries.io,
+        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
+        luca.ceresoli@bootlin.com, Randy MacLeod <randy.macleod@windriver.com>,
+        Richard Purdie <richard.purdie@linuxfoundation.org>,
+        Khem Raj <raj.khem@gmail.com>, ross@burtonini.com,
+        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+        Steve Sakoman <steve@sakoman.com>, tim.orling@konsulko.com,
+        sakib.sajal@windriver.com, akuster808 <akuster808@gmail.com>,
+        valery.chernous@gmail.com, tgamblin@baylibre.com, pavel@zhukoff.net,
+        antonio.oliveira@konsulko.com
+Content-Language: en-US
+X-ClientProxiedBy: BL6PEPF00013E13.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:22e:400:0:1001:0:14) To DM6PR11MB2538.namprd11.prod.outlook.com
+ (2603:10b6:5:be::20)
 MIME-Version: 1.0
-X-OriginatorOrg: kymati.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2538:EE_|SJ2PR11MB7503:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e612519-a1bc-43af-b276-08dbb53d4c0d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	KwoTL8pNZKyFjpeSjvpMFiVB+/Qvh1X0mMrHEtbV1yDkJNwrXPFELnqW0P+Juho8KhXA5d/zoQYOCMH3uGPrE7s0PAy1qqtbeyAZjyX9ESBP8PU8MotreUgabXqZIih1GCz3GzlkNrXWPT2d5B2nJCOXRMuXFEYHdnfyxRulcAZawe1oL83mAyVhgM32E6XichQZvC2vbR2T0KQV6KacGhtWPzD7pwjgVVyp+RsauCDK44aFgf9sBJjzklUpScSJihKHv8qo9t7GrHWQKYJW9unR9jwaWXbS8Lm/Hb2FYcDdF5fKkeieHbrLTLBDBKZvhIRUuxcI82/12ry7JmAPWQGUJhzC8HNlSBdeO+QX552UsDTnKVc5HD8gh+xBenVjUrz/r5eX4X9YCdG82tX1JmmmJAGKkNWRKKa4HlL268YBuSyOm6xqNsZFUkZVHcv4oWKf2MPp+4CI4uR3OShNXl0er27fa3q6GTHKpctZydknEinieBbyRtavUhXS3yxyom+P/MgJ1MA0TR7FDH5IxIoOwnaOLi/RdS7XtY9XCqe+S9rpQV4EHu/M5gjm4OHPkkQ/FWAiO4iAFFx5mZUzu8QHF1VUla4ANZ++uqE2WtfAHm0GNBpPlADTV058fqcgNbe0LN4ydCRsJx8oyVV/sA==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2538.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(346002)(136003)(396003)(376002)(366004)(186009)(451199024)(1800799009)(41300700001)(33964004)(6486002)(6666004)(6506007)(44832011)(6512007)(166002)(2906002)(966005)(7416002)(66946007)(5660300002)(8936002)(6916009)(2616005)(66556008)(66476007)(478600001)(54906003)(316002)(8676002)(36756003)(4326008)(38100700002)(31696002)(26005)(86362001)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?MDlmVzFkMnZTUXB3TndnMjltaiswdlViZnVndHdyRm9XcWF1aVVDallRZkh2?=
+ =?utf-8?B?b0FkdVNNdUJ5clNZK1FPR3VmNVY1RjRmOGcxRnVLWk5ZRHhRZ3cybEt0RFlP?=
+ =?utf-8?B?eFRTcnZVOU9vM3dKK0F3QkdTMTN1RUZGSEtwOWMvUEtrajBpRlMydEMvZzg2?=
+ =?utf-8?B?Z2tYUUNnOFk2c3lrVXd5ZmRpVmxUcTQ4NHR6U3BJa01vRktrcW15OVR5MHVT?=
+ =?utf-8?B?VSt1MjQ5dTFrb1VHdlcyKzFyTUJ0WkZocURaN0N6VWxJZWRVbW8zVllScGho?=
+ =?utf-8?B?MmdEcnE0b3JrazJRVW43UXE0NCtZV0tTTlZJWXBTZlQ1NTJKNHU2UDNsSUJQ?=
+ =?utf-8?B?K1hnbHFtQmdiTG9zc0hld2NnU3BZU0NsSVlzd0lINm54cmFSSUtEVmwzc2lW?=
+ =?utf-8?B?YWRuNjZxRWxPRkw0R2RwMUs1eHoxRlREck1oY0Jmb0IxaDdOZTAxMWRZc0lm?=
+ =?utf-8?B?UlRCQnordGVmTGJoODR1UVdVd2ppOUo2NlJYbmhqZWtlRzBRaElNVTB3cW1o?=
+ =?utf-8?B?bWhRbnNQemxGdE5QWlVXMlQzdno0SGpPcWRhRnBVQTJxNHZHUFZIUmNRSnJl?=
+ =?utf-8?B?dFoyZ051dlRJWU40VTQ3TFJMMzRpQlJ5VmpHelRtaWtWSk4xVlEwU3MxWEtp?=
+ =?utf-8?B?VjBPWW5Qb29FTnpWQ2diWjNKaUJZcmt1QzlrK2oyRkdiZkkwWWZYODVVT1Yy?=
+ =?utf-8?B?VW1VWFliZ0k1SFdhcE1GblFrWVZ3R1pCVEJ5TnpwOE42UjFnTkxpVWFDTldV?=
+ =?utf-8?B?ckVkL09GMTd2cHNXaXJaUVNrRlZVMUV0QXlDZ1BERGRzaUxURlI4ckx6dTBz?=
+ =?utf-8?B?Q3FQL0gxZDN3anB1eS9HbXdkSEp5OU1lMjRzbmRmOUdGT1JlVTJXc1NkU25y?=
+ =?utf-8?B?MzZEZzU1cCtJamNnYmVFdVFhMTRiZVBtZGgrZHJNdmV6RjBNV0Ywbk11YUxX?=
+ =?utf-8?B?WjlMSlljUWg4bUFVVmFnbFk5VFNlVmVRdmxkUzlTQ0hJTWNmQzExbU1rSjVv?=
+ =?utf-8?B?L1NkQWZyaGFlL1ZSTjdlU01YVUtJVWoyU1hOcFVSVzU3RGtXMnY2aEpGcVVG?=
+ =?utf-8?B?MUJBcjJnMVdGdHRYaUNIMUhLWkZVS0FiMHd6dU1wbmpVeWg5aWR1djFEeTM2?=
+ =?utf-8?B?YnJIWUUxWG10MHhJQVpEUytvNVphRkxiRHQvaERleDd6NVFhN1B4Y2VyczQ3?=
+ =?utf-8?B?ZCs5ZnBsU3Z0SUVsZmV0UlYyQWZZemN2K3JEa28vdVdjZUJOMVE5bUZTYkND?=
+ =?utf-8?B?ZEtYc1ltdmNCUENZbVV2VlMyR3lleEpTNmFpcTRHcGxMZVQ3T1JWYlVyTkQ5?=
+ =?utf-8?B?L0g0cHhqQ1g3U1hnNU1ycVM4QzdJcXc1WGhnQjdiL3gyaUVzTGh4enR0YnZr?=
+ =?utf-8?B?QVQzdWM2NzcvalI0THcwWldGWW0xUEY2UUI5cHkvbTBweXMxLzRiTTUvWXZn?=
+ =?utf-8?B?b3hvcGEzcW94LzRmTzNmcUNBd3h0Z2I1SnExQThzd2M0eVcyN1NOZGpzemR2?=
+ =?utf-8?B?KytQQ0crVEpMRmQvR21nczdlZFJxQ21MaUZWb25JWVB4UXFzaEhNVkVOeGJx?=
+ =?utf-8?B?KzYwenhPVWltc1hzOEdNeUNrZ1ZHMVZHK0RyQWxueWtRZlA1eEthNmZuWURR?=
+ =?utf-8?B?c2JvdzJCRUdGVkJBMmVuSDRwOTRRVDlMSjRPdTN0SW5ZZW1SZzdyZHQzYlU5?=
+ =?utf-8?B?YkQzNnNmRG5ZZTNTKzJESWdnOHhjMWlYK1FGVjdURjRpd2dQbVhScytsUnly?=
+ =?utf-8?B?dENoclBRVCt0REJEMWh0L1dTMDNFcjNla1o2aHFTWHpFVGdDR3UrSE1wR2Zj?=
+ =?utf-8?B?MXZ1LzVhSVR1MlpxcUdkQzMxbDBzOG9VMUdGMzcvL3ovVmc2OGpTbmNMcHBp?=
+ =?utf-8?B?dTNzaXBYd1VSWkY1RlMxN2FvTUY1enN1ZlVHdGw5Rm9uNUNnNFpNd2dWZm1L?=
+ =?utf-8?B?QzFtTFVsaWV3N2NmU1BUOWVlM3pqd1F1Z2tFeUFubHZycGhDakJJc3ZxcTVM?=
+ =?utf-8?B?amtrVm84TVM1K2pMN0FqYm1lRjIzMk51M2E3NWVYVk5jcGh3Z3lSOTROdGQz?=
+ =?utf-8?B?MDdobDJjQ0N4bHlZelJvMG8yWkE1dWxEYmZQZU1PNFl4MGUxc2JSYnlja2dt?=
+ =?utf-8?B?V3N4MUk3U0xvTWticS9PL2VWSjUyOGtrNkRTb0dTdDZreXdyTWdVMHN3aXdO?=
+ =?utf-8?B?cnc9PQ==?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e612519-a1bc-43af-b276-08dbb53d4c0d
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2538.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR03MB7012.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5cce8c9-98ad-469b-0651-08dbb53abcda
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2023 15:53:28.3777
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 16:11:47.9125
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f445f429-656f-441c-a343-dbb97855be01
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rsI11Oyg7vmZebshkCAQGncHKaZLPyq0dO2TM5UNItbwGn1D5XpXKnCU5r41zex7SLRglE5pCk5Lsf0RsjH+to3GxsG+lNky8YXCsdaxrqg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR03MB8963
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Sq7/sYzEl+vQJ/7ldcMeiVrGTnNYmD0hxGIzDH0IeyCLvA13eKnDvwl8X5eYZhJrh1YplQ/fR7DgEyotzQcoT+r1cgOpLATUeEUQeNv5gtg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7503
+X-Proofpoint-GUID: ez2GvDcwIxpTlwULVnHfHGBlyI4NkX6d
+X-Proofpoint-ORIG-GUID: ez2GvDcwIxpTlwULVnHfHGBlyI4NkX6d
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-14_09,2023-09-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 mlxscore=0 mlxlogscore=842 phishscore=0 priorityscore=1501
+ adultscore=0 clxscore=1011 bulkscore=0 malwarescore=0 spamscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2309140140
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 15:53:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61008
+ <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 16:12:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61009
 
---_000_AM9PR03MB7012AF8B2E587BB7939F2FF992F7AAM9PR03MB7012eurp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------7x4ahDtqZSicBPEb4wm2MtsU
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks Richard, nice to have a little more info, at least now I know what m=
-ight be going on
+*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-________________________________
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-Sent: 14 September 2023 15:59
-To: Dave Hitchman <dave.hitchman@kymati.com>; Martin Jansa <martin.jansa@gm=
-ail.com>
-Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Errno=3DNo space left on device
+*Attendees: *Richard Purdie, Steve Sakoman, Stephen Jolley, Bruce 
+Ashfield, Tim Orling, Joshua Watt, Ross Burton, Trevor Gamblin, 
+Alexandre Belloni, Michael Opdenacker, Antonio, Yoann Congal, Pavel 
+Zhukov, Edi Feschiyan
 
-On Thu, 2023-09-14 at 12:35 +0000, Dave Hitchman wrote:
->
-> Does anyone know what IS enough? Watching the video series
-> around https://www.youtube.com/watch?v=3DbTEdfwtPtNY he doesnt mention
-> changing this size. I dont actually know what this watch manager
-> thing is supposed to be doing, there is one command prompt doing one
-> thing, I cant believe that it would need that many things being
-> watched? What is it even watching for?
+*ARs:**
+*
 
-There is a "memory resident" mode for bitbake (BB_SERVER_TIMEOUT =3D "X")
-and for that to work reliably, bitbake needs to know when to reparse
-metadata. For that reason it does track the metadata changing. In
-theory it does this even when not staying resident so it can detect
-changes in the metadata during builds and inform the user not to do
-that and also to reduce differences in the codepaths between memory
-resident and non-resident codepaths.
+*Notes:
+*
+*
+*
 
-You might think 65k sounds a lot but in a simple OE-Core checkout,
-there are 2.5k directories and 19k files.
+*Medium+ 4.3 Unassigned Enhancements/Bugs: *67 (Last week 68)
 
-In order to reduce system impact, bitbake only monitors directories,
-not files. I'd imagine somehow you have a lot of directories being
-included in the watch paths.
+*Medium+ 4.99 Unassigned Enhancements/Bugs: *41 (Last week 42)
 
-FWIW in a given build there are millions of files being processed. We
-should only be monitoring the recipe/config files though.
+*AB Bugs: * 74 (Last week 73)
+--------------7x4ahDtqZSicBPEb4wm2MtsU
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-So whilst that doesn't answer your question fully and I don't know
-where the files are coming from, 65k is a relatively easy number to
-reach in the kinds of work bitbake does.
-
-Cheers,
-
-Richard
-
-
-
-
-
---_000_AM9PR03MB7012AF8B2E587BB7939F2FF992F7AAM9PR03MB7012eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Thanks Richard, nice to have a little more info, at least now I know what m=
-ight be going on</div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size: 11pt; color: rgb(0, 0, 0);"><b>From:</b> Richard Purdie &=
-lt;richard.purdie@linuxfoundation.org&gt;<br>
-<b>Sent:</b> 14 September 2023 15:59<br>
-<b>To:</b> Dave Hitchman &lt;dave.hitchman@kymati.com&gt;; Martin Jansa &lt=
-;martin.jansa@gmail.com&gt;<br>
-<b>Cc:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
-;<br>
-<b>Subject:</b> Re: [yocto] Errno=3DNo space left on device</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
->
-<div class=3D"PlainText">On Thu, 2023-09-14 at 12:35 +0000, Dave Hitchman w=
-rote:<br>
-&gt; <br>
-&gt; Does anyone know what IS enough? Watching the video series<br>
-&gt; around&nbsp;<a href=3D"https://www.youtube.com/watch?v=3DbTEdfwtPtNY" =
-data-auth=3D"NotApplicable" id=3D"OWAd626683f-2f2c-cb15-f1df-552d81d19d67" =
-class=3D"OWAAutoLink">https://www.youtube.com/watch?v=3DbTEdfwtPtNY</a>&nbs=
-p;he doesnt mention<br>
-&gt; changing this size. I dont actually know what this watch manager<br>
-&gt; thing is supposed to be doing, there is one command prompt doing one<b=
-r>
-&gt; thing, I cant believe that it would need that many things being<br>
-&gt; watched? What is it even watching for?&nbsp;<br>
-<br>
-There is a &quot;memory resident&quot; mode for bitbake (BB_SERVER_TIMEOUT =
-=3D &quot;X&quot;)<br>
-and for that to work reliably, bitbake needs to know when to reparse<br>
-metadata. For that reason it does track the metadata changing. In<br>
-theory it does this even when not staying resident so it can detect<br>
-changes in the metadata during builds and inform the user not to do<br>
-that and also to reduce differences in the codepaths between memory<br>
-resident and non-resident codepaths.<br>
-<br>
-You might think 65k sounds a lot but in a simple OE-Core checkout,<br>
-there are 2.5k directories and 19k files.<br>
-<br>
-In order to reduce system impact, bitbake only monitors directories,<br>
-not files. I'd imagine somehow you have a lot of directories being<br>
-included in the watch paths.<br>
-<br>
-FWIW in a given build there are millions of files being processed. We<br>
-should only be monitoring the recipe/config files though.<br>
-<br>
-So whilst that doesn't answer your question fully and I don't know<br>
-where the files are coming from, 65k is a relatively easy number to<br>
-reach in the kinds of work bitbake does.<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-<br>
-<br>
-<br>
-</div>
-</span></font></div>
-</body>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://urldefense.com/v3/__https://wiki.yoctoproject.org/wiki/Bug_Triage__;!!AjveYdw8EvQ!cAjVArCgL_RlaRXuscB-7FXNeNbEpNLXV5wf6cuuQ5AJ_finBsyqaqIWAMBAw_THa9F-SJpSJTfbDp4zK8Q6ydo_qduobM6c$" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
+      <p><b>Attendees: </b>Richard Purdie, Steve Sakoman, Stephen
+        Jolley, Bruce Ashfield, Tim Orling, Joshua Watt, Ross Burton,
+        Trevor Gamblin, Alexandre Belloni, Michael Opdenacker, Antonio,
+        Yoann Congal, Pavel Zhukov, Edi Feschiyan</p>
+      <p><b>ARs:</b><b><br>
+        </b></p>
+    </div>
+    <span class="moz-txt-link-freetext"></span>
+    <div class="moz-text-html" lang="x-unicode"><b>Notes: <br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode"><b><br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Medium+ 4.3 Unassigned Enhancements/Bugs: </b>67 (Last week
+        68) </p>
+      <b>Medium+ 4.99 Unassigned Enhancements/Bugs:&nbsp;</b>41 (Last week
+      42)<br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <b>AB Bugs: </b> 74 (Last week 73)
+  </body>
 </html>
 
---_000_AM9PR03MB7012AF8B2E587BB7939F2FF992F7AAM9PR03MB7012eurp_--
+--------------7x4ahDtqZSicBPEb4wm2MtsU--
 
