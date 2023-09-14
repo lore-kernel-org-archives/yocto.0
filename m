@@ -1,153 +1,197 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63F9FCA5506
-	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 12:54:59 +0000 (UTC)
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web11.11469.1694696096592146609
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57460CA553D
+	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 12:56:09 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+ by mx.groups.io with SMTP id smtpd.web11.11493.1694696166189202810
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Sep 2023 05:54:56 -0700
+ Thu, 14 Sep 2023 05:56:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=UNmSN5L5;
- spf=pass (domain: gmail.com, ip: 209.85.128.51, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-404573e6c8fso6371985e9.1
-        for <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 05:54:56 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=A2XdTC/W;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.48, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-401f68602a8so9615495e9.3
+        for <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 05:56:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694696095; x=1695300895; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nl0mpEEQFoGXCwxdqqFX3eTHqqGuX3mnfgOVa0hEhNU=;
-        b=UNmSN5L568ETsZhzwgKpIqLeSF6kTRycxf6Lyoy3gFzOCtCD6I/qXJrhZjInhzfrlf
-         xf3FYM3G3VHMjr3ixJdVAGA3QUPT835UjBFS+hNsXRYINQkraivb7qbtoem+f1CZODOK
-         JIiYObllBNOdDqfICu5XZAdDxfSDRWWo2+kPKGzz3h1Lit7ymS2TtCSOk90slCF53t55
-         yNp93CaWC2n8qXzeQjgLKVDQvB87b4Q6/sLS0N5bWVfZUS0W9P+3juX5MJLfxbaVUA2j
-         tYUzCQUrTZrXN+Va7jgqs3KrgPqFGmnhX7ItsUNi5VPWaVeY9iK9cFNeUEr8kbRwiw7A
-         KmGQ==
+        d=linuxfoundation.org; s=google; t=1694696164; x=1695300964; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0DRjHzof5KsmG7D163vLCZ+HiRokeCij4s+D9uGfYTs=;
+        b=A2XdTC/WGGz7KbSGYu/04PnZ2eFo4SrqwvqbattylMMXCcIwDrHIizrfEpX1CIL465
+         bNGnZyfiFVJarHG2WhsVxbG38KJWy85ly3QF2kCzTpcvnbT+vGQeNtQoXaF8mi3Rzwi4
+         QJOk1/ohMTFACPoQCp6oF7+Tu3sFI4KYFyeJ4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694696095; x=1695300895;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nl0mpEEQFoGXCwxdqqFX3eTHqqGuX3mnfgOVa0hEhNU=;
-        b=tdPrlCVth2z7xu7mw2R/7suZuAqJjlkvtdkmLy1q4+QkcG7wizLLRof4r3xArfHg2C
-         pplcpZZAXfQADK+ltpvGff9S/M/OBllCKRdQPWdUIyu/uXPokJGUIWYvqM0O+2YJALJ7
-         HmObT+BfUFKoV4KWHtkMKo+8Qh25cfcUmY31f3MPm5B4UkcZdtWavYKGCHxUwCxWmeX3
-         BlVfN/pwVgNKpM1nNgXKCS2iRWlldigpqLZhdEuz8AqeUdaDW3hkAEpfA/OKBrdR1Qq7
-         ENrujvyRe871BlIxd5oCzSYIERyc9strOmyV3ROGdt9lWbgqDmNa6DjLC91jP9wmZWf0
-         1ClQ==
-X-Gm-Message-State: AOJu0YwUfvv02dlSKGvRmcUKI7+XEjG/Bdu8jMJrFJAdoyE2MhWmzPrl
-	lvkxbuE2OC+3Na4o0lOT4QVogtZzVZiBz1fpkKQ=
-X-Google-Smtp-Source: AGHT+IF5V17/xVj98tv6HXAAeZV1NuGmqgdFyuMYYMyPnhgwCP6hyAl+R+7vyrQQrqXmUgD382ZCZ6RdmObEo2jA21E=
-X-Received: by 2002:a7b:c849:0:b0:3fe:e8b4:436f with SMTP id
- c9-20020a7bc849000000b003fee8b4436fmr4944960wml.14.1694696094812; Thu, 14 Sep
- 2023 05:54:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694696164; x=1695300964;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0DRjHzof5KsmG7D163vLCZ+HiRokeCij4s+D9uGfYTs=;
+        b=VpF2HzU3I1bay0515ZyOylcG+0JGoVpkrL5xMwWOwt8axvcqK7j7ByzmG9viNHbVEO
+         TA2MupbgFQrHeBPrujD+LEKvNeo1LvLTwDztLCtsX0ejEKi+myD7E7i11+M7Or3d5hSv
+         9xGdiZLh6C4fdDcPRlmegpaI3ytXh5s+HFnQ1IFsl7nbjd9XeVHU6ooNlQMOeQygNF/x
+         8xXIpFLsZLm5sK0IC9eUP3IG2zd0cDV0Hu4rHRbOX8j6IEexkEOJpXwhNcHbUxu0lRog
+         gBz071cCDVvsU9ffvfejB5ih5f2N1KR7Luvg+udiqVY8psC46QhqpXYgDJlZdEKta1VI
+         mZMw==
+X-Gm-Message-State: AOJu0YwZCycF3Hz9E+e+L0mi5Q3Dwcy/Bvi0W0dhKOREJANqzvO0S8Cs
+	hX9qDbFycjYc1Nx5C9XDyP0ZdBXZ8QyAX6N9L+M=
+X-Google-Smtp-Source: AGHT+IHcIintTkXXNumFfnwHxUcsEfptiDR1a+wUTQ6xqT5Obd2u+k9uGWUI4dyMIQLrgcMhYrVVCQ==
+X-Received: by 2002:a5d:624e:0:b0:319:7b66:7803 with SMTP id m14-20020a5d624e000000b003197b667803mr4170659wrv.55.1694696163769;
+        Thu, 14 Sep 2023 05:56:03 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:a6e7:41e3:896b:6b97? ([2001:8b0:aba:5f3c:a6e7:41e3:896b:6b97])
+        by smtp.gmail.com with ESMTPSA id q5-20020a5d6585000000b0031f5f0d0be0sm1730434wru.31.2023.09.14.05.56.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Sep 2023 05:56:03 -0700 (PDT)
+Message-ID: <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
+Subject: Re: Core workflow: sstate for all, bblock/bbunlock, tools for why
+ is sstate not being reused?
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, openembedded-architecture
+	 <openembedded-architecture@lists.openembedded.org>, Michael Halstead
+	 <mhalstead@linuxfoundation.org>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org"
+	 <openembedded-core@lists.openembedded.org>, Julien STEPHAN
+	 <jstephan@baylibre.com>
+Date: Thu, 14 Sep 2023 13:56:02 +0100
+In-Reply-To: <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
+References: 
+	<CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
+	 <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
 MIME-Version: 1.0
-References: <AM9PR03MB70126259019EF2AD25999A2892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
- <CA+chaQefpv8V2gsmnk_DYfOCRstcp1985RNVTAdRu3hJki0x4Q@mail.gmail.com> <AM9PR03MB701228E6AE99AC15DA40AB7692F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-In-Reply-To: <AM9PR03MB701228E6AE99AC15DA40AB7692F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Thu, 14 Sep 2023 14:54:41 +0200
-Message-ID: <CA+chaQe_wybQ6ww08hwvsCmLdC1aH86Ajto94A4YMv5oa3WHPQ@mail.gmail.com>
-Subject: Re: [yocto] Errno=No space left on device
-To: Dave Hitchman <dave.hitchman@kymati.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000bbcd720605512eac"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 12:54:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61005
+ <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 12:56:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61006
 
---000000000000bbcd720605512eac
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 2023-09-14 at 13:52 +0200, Alexander Kanavin wrote:
+> On Tue, 12 Sept 2023 at 16:44, Stephen Jolley <sjolley.yp.pm@gmail.com> w=
+rote:
+> > Alexander Kanavin will be working on the core workflow topic
+>=20
+> I am now ready to start doing this, but before I do, I'd like to
+> decompose the subject into manageable tasks with a bit of help from RP
+> and the community:
+>=20
+> https://www.yoctoproject.org/community/yocto-project-engineering-request-=
+for-quotation/
+>=20
+> =3D=3D=3D=3D
+> Core Workflow =E2=80=93 Process Improvements
+>=20
+> Background
+>=20
+> The project builds everything from source by default. This means it
+> has a reputation for being slow and heavy. There are ways the project
+> can accelerate this which means faster workflows and improved
+> developer experience but these are currently cumbersome to use.
+>=20
+> Rationale
+>=20
+> The project aims to defragment customised embedded Linux. This is
+> important as if we succeed at this, it gives benefits to the wider
+> ecosystem through making it easier to inject security fixes and an
+> ability to share and collaborate without re-inventing the wheel.
+>=20
+> To do this, we need to provide best-in-class support and compete
+> against binary distributions for usability and speed. One way we can
+> do this is provide better support for binary artifacts via our sstate
+> mechanism. We do already have some of this functionality in our
+> =E2=80=9Cextensible SDK=E2=80=9D or =E2=80=9CeSDK=E2=80=9D.
+>=20
+> Deliverables
+>=20
+> Enable a public sstate mirror via a content delivery network (CDN) and
+> populate using the autobuilder
+> Ensure CDN sstate is reused under normal use case scenarios,
+> particularly for slow components like rust-native. Identify any common
+> sstate mismatch causes. Ensure test cases are added to cover the use
+> cases and prevent regressions.
+> Add lock and unlock commands to allow specific components to be locked
+> down to specific sstate checksums or allow them to vary
+> Allow switching between eSDK and non-eSDK modes
+> Add tooling so we can understand why something is rebuilding when it
+> isn=E2=80=99t expected to.
+> =3D=3D=3D=3D=3D=3D=3D
+>=20
+> So: where to start? Do we need to 'design' something, or maybe time
+> should go directly into addressing specific sore points? All feedback
+> welcome.
+>=20
+> There's also an unfinished patchset for adding bblock/bbunlock, which
+> I would prefer to *not* 'take over and finish' but rather see the
+> author get it merged:
+> https://patchwork.yoctoproject.org/project/oe-core/list/?series=3D15276
 
-On Thu, Sep 14, 2023 at 2:47=E2=80=AFPM Dave Hitchman <dave.hitchman@kymati=
-.com>
-wrote:
+To start with I'll try and write down and give a random walk through my
+thoughts.
 
-> Well using that enormous number worked... for the moment, until when it
-> next stops. I still would like to know what the devil is being done in my
-> system with that one build that is consuming such a crazy number of
-> watches, what is being watched, why etc.
->
+Certainly we need to get something like that patchset over the line. I
+think it was blocked on a reply to this email:
 
-bitbake is open source, you can read what exactly it does here:
-https://git.openembedded.org/bitbake/
+https://lists.openembedded.org/g/openembedded-core/message/186497
+
+which has suffered whilst I was pulled into the qemuppc mess. I feel
+bad for not getting to a reply to that.
+
+There are design elements to this work. We need to work out how we can
+make eSDK and "normal" builds more similar and less of an overhead to
+switch between one and the other. A "bblock all" command does partly
+get you to an eSDK effectively so part of this may be switching eSDK to
+use the new lock command. What other differences are there? What other
+differences are necessary or make sense for the use cases eSDK was
+designed for? How would you turn an existing build into an eSDK like
+one? Could you provide a copy of a local build to someone else easily
+using something like eSDK's tooling? What does the eSDK look like at
+the end of this. One section we don't have good answers to yet is setup
+and configuration although I know you've started on some of that.
+
+For the task signatures, we need to think about some questions. If I
+make a change locally, can I query how much will rebuild and how much
+will be reused? There is bitbake --dry-run but perhaps it is time for a
+an option (or dedicated separate command?) to give some statistics
+about what bitbake would do? How much sstate would be reused?
+
+That then logically leads into the questions, can we tell what has
+changed? Why isn't my sstate being reused? For that we perhaps should
+define some existing scenarios where it is currently very difficult to
+work this out and then work out how we can report that information to
+the user. These could become test cases?
+
+One of the big problems in the past was that we lost much of the hash
+information after parsing completed. This meant that if the hashes then
+didn't match, we couldn't tell why as the original computation was
+lost. I did some work on allowing us to retain more of the information
+so that we didn't have to recompute it every time to be able to do
+processing with it. I have to admit I've totally lost track of where I
+got to with that.
+
+Michael Halstead will be working on setting the CDN up so I'll let him
+comment on when we'll have things ready for testing with that. We do
+already have sstate shared from the autobuilder so some basic tests to
+make sure our "base" shared files do work as expected is something
+which can happen there already.
+
+Another interesting question - would the project be interested in
+shipping "locked" hashes for a minimal subset of recipes such as rust-
+native and maybe the cross compilers to bootstrap and speed people's
+builds, assuming they have a fast network? What does the size of those
+pieces look like and would it be useful/effective?
+
+Probably more questions than answers here but it hopefully gives a bit
+more insight into some of the directions I'm thinking about.
+
+Cheers,
+
+Richard
 
 
-> This is taking memory away from other things, maybe I do have a thumping
-> great machine but just endlessly sucking bigger and bigger numbers of
-> watches appears to me to be the wrong thing to be doing, not everyone can
-> afford enough ram to store an encyclopedia britannicas worth of data abou=
-t
-> every grain of sand on the planet.
->
-
-If you're afraid that number of watches will eat your thumping great
-machine, then maybe you should avoid building software completely and use
-that machine in toaster. Other things will eat a lot more ram, cpu and disk
-once you pass the parsing phase.
-
-The same question from 2019
-https://www.yoctoproject.org/pipermail/yocto/2019-May/045221.html - you
-don't need to copy encyclopedia or count grains of sand on the planet, you
-can just google "yocto fs.inotify.max_user_watches" to find it.
-
->
-
---000000000000bbcd720605512eac
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Sep 14, 2023 at 2:47=E2=80=AFPM D=
-ave Hitchman &lt;<a href=3D"mailto:dave.hitchman@kymati.com">dave.hitchman@=
-kymati.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><div class=3D"msg-7773867045663100651"=
->
 
 
 
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Well using that enormous number worked... for the moment, until when it nex=
-t stops. I still would like to know what the devil is being done in my syst=
-em with that one build that is consuming such a crazy number of watches, wh=
-at is being watched, why etc.</div></div></div></blockquote><div><br></div>=
-<div>bitbake is open source, you can read what exactly it does here:</div><=
-div><a href=3D"https://git.openembedded.org/bitbake/">https://git.openembed=
-ded.org/bitbake/</a><br></div><div>=C2=A0</div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><div class=3D"msg-7773867045663100651"><div dir=3D"lt=
-r"><div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,C=
-alibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">This
- is taking memory away from other things, maybe I do have a thumping great =
-machine but just endlessly sucking bigger and bigger numbers of watches app=
-ears to me to be the wrong thing to be doing, not everyone can afford enoug=
-h ram to store an encyclopedia britannicas
- worth of data about every grain of sand on the planet.=C2=A0</div></div></=
-div></blockquote><div><br></div><div>If you&#39;re afraid that number of wa=
-tches will eat your thumping great machine, then maybe you should avoid bui=
-lding software completely and use that machine in toaster. Other things wil=
-l eat a lot more ram, cpu and disk once you pass the parsing phase.</div><d=
-iv><br></div><div>The same question from 2019=C2=A0<a href=3D"https://www.y=
-octoproject.org/pipermail/yocto/2019-May/045221.html">https://www.yoctoproj=
-ect.org/pipermail/yocto/2019-May/045221.html</a> - you don&#39;t need to co=
-py encyclopedia or count grains of sand on the planet, you can just google =
-&quot;yocto=C2=A0fs.inotify.max_user_watches&quot; to find it.</div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg-77738670456631=
-00651"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>
-</div>
-</div>
-</div>
-</div>
-
-</div></blockquote></div></div>
-
---000000000000bbcd720605512eac--
 
