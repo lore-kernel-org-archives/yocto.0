@@ -1,216 +1,306 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A4B9EEAA6D
-	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 19:54:13 +0000 (UTC)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web11.4413.1694721249734311615
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A083EEAA78
+	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 21:52:44 +0000 (UTC)
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+ by mx.groups.io with SMTP id smtpd.web11.7215.1694728358453236334
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Sep 2023 12:54:10 -0700
+ Thu, 14 Sep 2023 14:52:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=NsQykAN8;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.44, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-307d20548adso1287907f8f.0
-        for <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 12:54:09 -0700 (PDT)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=JPyJ2/AU;
+ spf=pass (domain: smile.fr, ip: 209.85.218.51, mailfrom: yoann.congal@smile.fr)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-9ad8a33fd0dso185015766b.3
+        for <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 14:52:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1694721248; x=1695326048; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YBP2PDOG5YQjNI+KzfY/fyafX0oLfnTanVvEIDF+YFk=;
-        b=NsQykAN8+nX7mbSzxYtx/qpQzdE5Fz4xGhLhvOqum1BZgr837d3m3g+BuNEjVz2e1U
-         Pu8+F4xwqCo2B4PbBxMQQHnBVINf07GUxSBvM4426nIQHrVMTOdL6VojvD0B16LX0Byk
-         vZ9tskI4nCzGK75wEhMezOiPDq5m80tjgUpD4=
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1694728357; x=1695333157; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=j9pFIBsDtcrnmWueUQnkbRUQtkjj9z7Ow/eJZmC0NyI=;
+        b=JPyJ2/AUNwNa9lPJiF+Yx2Rgq2kv8k13xHtJAct0GNZfWEvGb2IMBn5lEqIE+WdCkF
+         KLB/4iEHmsnoGNitAxDkN5HbZm+9dCSB63L5v+qUabqZx1oV1T9Cf2UFi/bq1EaseGTD
+         zDYFEJE8UBUv+xCc+344yNU+lgExpuHM2UXkKfqulLM2CyTOfdGVDrm4vf6cOZ2Yfdxn
+         dEy5LEBDUzorDnc6y0nj+cZxzUCKhxKDwnN4+qPtcXH9PEswkiWwZNuBrTHhNYSKnrnP
+         9RhlB/7hO10tp6vDBSMPARa3Y1ye1dBsHfqohe0RBjLs1VgWujk2kijyB9LrFFIZZ4Bp
+         zb9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694721248; x=1695326048;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YBP2PDOG5YQjNI+KzfY/fyafX0oLfnTanVvEIDF+YFk=;
-        b=DeqE9OkYbaGNhVmOAKgPW1YH8rE4/j7GirGI25YA4ZgDRzZ+2ZYRkmHL1nI6guzqcI
-         ySfl8OiG/Rxmj2oPs+7Zjr8yf+CIro8/OVA4yruqTT7nNTo+QYtSYdsdrZSGjUk9P48O
-         eG0RZDLHoSPODsErFOJI/1ZNflfOb/ByVVjvM8RW94ACq1dXKhDVtFReeB2fUmywAdON
-         3mVOAn6PnsIPIlijKpIchZpaA5e/Ke5VDFkVAT1AzUALyFXankcCnsRtqHoCizxSQHaA
-         GUzNgp+kzboQxbUBAnjZqwxGaejAWI0/lpZnTM051gAGpCU9ZgRjYa0HLy+z3kJmVBme
-         R2Ig==
-X-Gm-Message-State: AOJu0YwegUsKFl2Boy99SbQOApLoJoMwjC+fw74pyZqSBlivwh6l4ExK
-	vf3A91tir/57yvtgWpW9C8YSpw==
-X-Google-Smtp-Source: AGHT+IHjOKDODsG769Wf8VqzF/rWyF+GQOfDXQDgb0jx0/HuI7PGP1H9TLCTGeyJD5nEUpSsfsJnqg==
-X-Received: by 2002:a5d:67c8:0:b0:319:6d91:28bf with SMTP id n8-20020a5d67c8000000b003196d9128bfmr5513758wrw.60.1694721248116;
-        Thu, 14 Sep 2023 12:54:08 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:93a7:bb97:496b:8932? ([2001:8b0:aba:5f3c:93a7:bb97:496b:8932])
-        by smtp.gmail.com with ESMTPSA id g14-20020a5d698e000000b0031759e6b43fsm2546888wru.39.2023.09.14.12.54.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Sep 2023 12:54:07 -0700 (PDT)
-Message-ID: <5ef99df95ab74e74df6f1e07ef4877487230d9fe.camel@linuxfoundation.org>
-Subject: Re: Core workflow: sstate for all, bblock/bbunlock, tools for why
- is sstate not being reused?
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>, Michael Halstead
- <mhalstead@linuxfoundation.org>, Yocto-mailing-list
- <yocto@lists.yoctoproject.org>, ",openembedded-core@lists.openembedded.org"
- <openembedded-core@lists.openembedded.org>, Julien STEPHAN
- <jstephan@baylibre.com>
-Date: Thu, 14 Sep 2023 20:54:05 +0100
-In-Reply-To: <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
-References: 
-	<CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
-	 <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
-	 <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
-	 <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+        d=1e100.net; s=20230601; t=1694728357; x=1695333157;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j9pFIBsDtcrnmWueUQnkbRUQtkjj9z7Ow/eJZmC0NyI=;
+        b=eNWq9JlQrM+sEqk00H45L3ZWPUmHiL6TNtcNlrJoOiHP+nhp+N44mZzh3UF7kByrHu
+         3+rYn4Zzhd2Vof6PrAr82bFt+cZiMQHd1+WL0ppgJkcEkWlas3EKRhaU23tM5iWK4MrL
+         EXndCt3hCcNz+CUfhKH8sU3PUGvKxaPsK30U6Bq0mfyY1ugVaoxq00piGAMrBixlHZLJ
+         hU2RswK81Qs4A8OnwxCWLZkS0vbYZBBZ/iTVaYvEAFI5IokbgKmBmEADBGfBEU2iBIZl
+         9GvEbi9xC/sTvG3r4O3R/llohwNPizR8xCuz3tHrRajT95GXPlLtXKUPl7+hu+fR1Ubf
+         5cZg==
+X-Gm-Message-State: AOJu0Yx/TbOehK5gXZ7hDjrFiwvqe1k1tGt5g23Teirsd8jOvYwJJW5C
+	q1Xapl6yfof60elceDK9cG1WyTJ6vSnPAXkMWVYmNQ==
+X-Google-Smtp-Source: AGHT+IHHnJSsFvriQcGwGEkZHJWjeOUOIw/rgupicACkPadv4iOHbK1Lag9PCpT/Z1A2YaAVxrh5uf3saJHWFZRlTG0=
+X-Received: by 2002:a17:907:75cd:b0:9aa:1e2d:56ee with SMTP id
+ jl13-20020a17090775cd00b009aa1e2d56eemr5783946ejc.7.1694728356785; Thu, 14
+ Sep 2023 14:52:36 -0700 (PDT)
 MIME-Version: 1.0
+References: <DB6PR01MB3736481355587A417D929794A41EA@DB6PR01MB3736.eurprd01.prod.exchangelabs.com>
+ <CAGAf8LwKRDmacsgnsKLqofneB85CetU_h3H7s12b8gY8_y6ZwA@mail.gmail.com> <DB6PR01MB373690DA20F88E3A64ECAEBBA4F7A@DB6PR01MB3736.eurprd01.prod.exchangelabs.com>
+In-Reply-To: <DB6PR01MB373690DA20F88E3A64ECAEBBA4F7A@DB6PR01MB3736.eurprd01.prod.exchangelabs.com>
+From: Yoann CONGAL <yoann.congal@smile.fr>
+Date: Thu, 14 Sep 2023 23:52:10 +0200
+Message-ID: <CAMSfU+4tNg0kSJr6PZWLoqbvZDhQTr0Eb-VKbCGMhCNXvO0x_w@mail.gmail.com>
+Subject: Re: [yocto] Poky/Mickledore bitbake menuconfig does not work
+To: "Sebert, Holger.ext" <holger.sebert.ext@karlstorz.com>
+Cc: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000b288fd060558b1f7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 19:54:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61011
+ <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 21:52:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61012
 
-On Thu, 2023-09-14 at 20:51 +0200, Alexander Kanavin wrote:
-> On Thu, 14 Sept 2023 at 14:56, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> > For the task signatures, we need to think about some questions. If I
-> > make a change locally, can I query how much will rebuild and how much
-> > will be reused? There is bitbake --dry-run but perhaps it is time for a
-> > an option (or dedicated separate command?) to give some statistics
-> > about what bitbake would do? How much sstate would be reused?
-> >=20
-> > That then logically leads into the questions, can we tell what has
-> > changed? Why isn't my sstate being reused? For that we perhaps should
-> > define some existing scenarios where it is currently very difficult to
-> > work this out and then work out how we can report that information to
-> > the user. These could become test cases?
->=20
-> So I think there are two questions here that the tools should answer:
->=20
-> 1. If I would run a build, what would be missing in the cache and need
-> to be built? The missing cache objects are in a dependency hierarchy,
-> so only those missing objects with no dependecies on other missing
-> objects would be printed. That should be comparatively easy to add as
-> bitbake already does those checks all the time.
+--000000000000b288fd060558b1f7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Right, what we lack is a way for the user to ask this and see the
-result easily. As you say, bitbake can do this already.
+Hi,
 
->  Is there something else that's easily done and useful to print?
+Le jeu. 14 sept. 2023 =C3=A0 14:10, Sebert, Holger.ext <
+holger.sebert.ext@karlstorz.com> a =C3=A9crit :
 
-I think there is also the scenario of:
-"I've run a build and have an existing TMPDIR and stamp info. I've now
-pulled in a change. How much is going to rebuild and more importantly
-*why*?"
-
-This is different to a remote sstate situation as you have the stamp
-info of the previous build already there to compare against.
-
-> 2. Then there's the question of *why* they are missing, which is
-> harder to answer. If, say, curl:do_package is not in the cache, then
-> the tool would have to walk the cache tree (I/O heavy operation as
-> there is no index), make a list of all curl:do_package objects that
-> are there, and do a recursive bitbake-diffsig (going up the task tree)
-> on them vs the one we want. Then print them starting with the newest.
-> Something like:
->=20
-> Existing cache objects are not suitable because:
-> <object id 1> was built on <date> and has a mismatching SRCREV
-> <object id 2> was built on <earlier date> and has a different do_compile(=
-)
-
-In theory you can do an:
-
-ls sstate/*/*/sstate:curl:corei7-64-poky-linux:<PV>:<PR>:corei7-64:10:*_pac=
-kage.tar.zst
-
-and get a list of possible objects. Some key information was put into
-the cache file names for this reason. Obviously this becomes much
-trickier when the sstate is remote over http though.
-
-"newest" is problematic in this context as you really want the closest
-match. There is no concept of build date in the cache as it often isn't
-relevant (building an old release for example). The only point a
-date/time is used is for cleaning out the cache for files which haven't
-been accessed in a long time.
-
-The tools are already supposed to support doing this with local file
-sstate sources, they just do a bad job at getting the diffs right. One
-intent of this work item was to try and understand why they don't work
-and address that so at least for filesystem sstate mirrors, you can get
-better results. I don't know how we solve the remote http issue as yet.
-
-> > One of the big problems in the past was that we lost much of the hash
-> > information after parsing completed. This meant that if the hashes then
-> > didn't match, we couldn't tell why as the original computation was
-> > lost. I did some work on allowing us to retain more of the information
-> > so that we didn't have to recompute it every time to be able to do
-> > processing with it. I have to admit I've totally lost track of where I
-> > got to with that.
->=20
-> Here's an idea I can't get out of my head. Right now, the cache is
-> simply an amorphous mass of objects, with no information regarding how
-> they were created. How about storing complete build confgurations as
-> well into the same directory? There would be a dedicated, separate
-> area for each configuration that placed objects into the cache,
-> containing:
-> - list of layers and revisions
-> - config template used
-> - complete content of build/conf
-> - bitbake invocation (e.g. targets and prefixed variables like MACHINE et=
-c.)
-> - complete list of sstate objects that were produced as a result, so
-> they can be checked for existence
->=20
-> This would be written into the cache dir at the very end of the build
-> when everything else is already there.
-
-I'm not sure this helps as much as you'd like. For example I build
-core-image-sato-sdk on the autobuilder and populate this but you want
-to build core-image-sato locally. There would be no info here that
-would help with information about what core-image-sato would need,
-despite the fact we know one is a derivative of the other and there
-would be a near full cache for it.
-
-Taking your example above and curl:do_package, how would the list of
-information above tell us why it wasn't and what the configuration
-difference was? It can tell us a set of different configs which result
-in hashes but not how an unknown hash may differ from the existing
-configs. The best you could do is iterate the configs and see which one
-got you closest to what you have but I suspect that may be even more
-expensive that the sstate search mentioned above, indexing of http
-aside.
-
-I can see it helping for some limited debug scenarios but the
-information you want is really mostly what is already being encoded
-into the sstate filename.
-
-Running with that thought, if that information is what we really need,
-should be we indexing it and sharing through some kind of hash
-equivalence like service to provide the index?
+> Hi Zoran,
+>
+> I was able to reproduce the behavior described in my original post by
+> enabling CCache. Here are the precise steps to reproduce:
+>
+> 1. Checkout Poky/Mickledore
+> 2. Add the following to `build/conf/local.conf`:
+>     INHERIT +=3D "ccache"
+> 3. Run `bitbake -c menuconfig virtual/kernel`
+>
+> The reason for the failure is that due to CCache the compiler is no longe=
+r
+> `gcc` but `ccache gcc`, i.e. we have the following variables in the
+> environment:
+>
+>     CC=3D"ccache x86_64-poky-linux-gcc"
+>     HOSTCC=3D"ccache gcc"
+>     ...
+>     etc.
+>
+> This is when the wrong quoting in the invocation of `menuconfig` leads to
+> errors.
+>
+> Could you please verify/check?
+>
 
 
-> Right now, everyone sets up their own builds first, then points
-> local.conf or site.conf to the cache, and hopes for the best regarding
-> hit rates. Having stored build configs would allow inverting the
-> workflow, so that you first ask from the cache what it can provide
-> (e.g. it can provide mickledore or kirkstone core-image-minimal for
-> qemux86, and that's exactly what you want as a starting point), then
-> you use the build config stored in the cache to set up a build, and
-> run it - and that would guarantee complete sstate reuse and getting to
-> a functional image as soon as possible. Kind of like binary distro,
-> but implemented with sstate.
+I have reproduced this. It really looks like a bug!
 
-Effectively those "configs" are what the eSDK is, you're just proposing
-a server side set of them rather than a built copy. In many ways that
-could be useful way of possibly rethinking the way the eSDK works.
 
-So in that sense I like the idea, we should just be clear the problem
-it solves as it doesn't solve the "why is my build not using the cache"
-question specifically but it potentially solves other issues.
+> [...]
+> On Mon, Aug 21, 2023 at 3:48=E2=80=AFPM Sebert, Holger.ext
+> <holger.sebert.ext@karlstorz.com> wrote:
+> >
+> > Hi,
+> >
+> > I am using a Yocto-Poky-Mickledore (version 4.2.1) based system.
+> >
+> > For configuring the kernel, I would like to use the command
+> >
+> >     bitbake -c menuconfig virtual/kernel
+> >
+> > If I do that, Bitbake opens an xterm window and runs the build steps
+> > for Kconfig. However, after the compiler has finised, the xterm window
+> > immediately closes and Bitbake exists as if nothing happened, i.e. it
+> > does not show any error message or similar.
+> >
+> > I investigated the problem and found out that, internally, Bitbake
+> > calls the following command for starting Kconfig:
+> >
+> >     make menuconfig CC=3D"ccache x86_64-system-linux-gcc ..." \
+> >         CFLAGS=3D"..." HOSTCC=3D"ccache gcc" HOSTCCFLAGS=3D"..."
+> >
+> > The quotes, however, seem to get lost when starting the actual command
+> > in the terminal. This leads to a command line like follows:
+> >
+> >     make menuconfig CC=3Dccache x86_64-system-linux-gcc ... \
+> >         CFLAGS=3D... HOSTCC=3D"ccache gcc" HOSTCCFLAGS=3D"...
+> >
+> > which is clearly wrong.
+> >
+> > The following patch fixes the problem in
+> meta/classes-recipe/cml1.bbclass:
+> >
+> > diff --git a/meta/classes-recipe/cml1.bbclass
+> b/meta/classes-recipe/cml1.bbclass
+> > index a09a042c3f..d6001d6fd0 100644
+> > --- a/meta/classes-recipe/cml1.bbclass
+> > +++ b/meta/classes-recipe/cml1.bbclass
+> > @@ -53,7 +53,8 @@ python do_menuconfig() {
+> >      # ensure that environment variables are overwritten with this task=
+s
+> 'd' values
+> >      d.appendVar("OE_TERMINAL_EXPORTS", " PKG_CONFIG_DIR PKG_CONFIG_PAT=
+H
+> PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR")
+> >
+> > -    oe_terminal("sh -c \"make %s; if [ \\$? -ne 0 ]; then echo 'Comman=
+d
+> failed.'; printf 'Press any key to continue... '; read r; fi\"" %
+> d.getVar('KCONFIG_CONFIG_COMMAND'),
+> > +    make_cmd =3D "make %s" %
+> d.getVar('KCONFIG_CONFIG_COMMAND').replace('"', '\\"')
+> > +    oe_terminal("sh -c \"%s; if [ \\$? -ne 0 ]; then echo 'Command
+> failed.'; printf 'Press any key to continue... '; read r; fi\"" % make_cm=
+d,
+> >                  d.getVar('PN') + ' Configuration', d)
+>
 
-Cheers,
+This patch looks interesting!
+I would use shlex.join() to safely construct the command :
+https://docs.python.org/3/library/shlex.html#shlex.join
 
-Richard
+
+> > What do you think? Is my observed behavior a configuration error of my
+> > setup or does the patch above indeed make sense?
+>
+
+The patch makes sense to me.
+
+I guess your next steps are :
+* If you want to contribute your patch : reproduce the bug and rebase your
+patch on master and send it to the mailing list
+* Or, create a bug in https://bugzilla.yoctoproject.org/
+
+Best Regards,
+
+--=20
+Yoann Congal
+Smile ECS - Tech expert
+
+--000000000000b288fd060558b1f7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,<br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">Le=C2=A0jeu. 14 sept. 2023 =C3=A0=C2=A014:10,=
+ Sebert, Holger.ext &lt;<a href=3D"mailto:holger.sebert.ext@karlstorz.com">=
+holger.sebert.ext@karlstorz.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">Hi Zoran,<br>
+<br>
+I was able to reproduce the behavior described in my original post by enabl=
+ing CCache. Here are the precise steps to reproduce:<br>
+<br>
+1. Checkout Poky/Mickledore<br>
+2. Add the following to `build/conf/local.conf`:<br>
+=C2=A0 =C2=A0 INHERIT +=3D &quot;ccache&quot;<br>
+3. Run `bitbake -c menuconfig virtual/kernel`<br>
+<br>
+The reason for the failure is that due to CCache the compiler is no longer =
+`gcc` but `ccache gcc`, i.e. we have the following variables in the environ=
+ment:<br>
+<br>
+=C2=A0 =C2=A0 CC=3D&quot;ccache x86_64-poky-linux-gcc&quot;<br>
+=C2=A0 =C2=A0 HOSTCC=3D&quot;ccache gcc&quot;<br>
+=C2=A0 =C2=A0 ...<br>
+=C2=A0 =C2=A0 etc.<br>
+<br>
+This is when the wrong quoting in the invocation of `menuconfig` leads to e=
+rrors.<br>
+<br>
+Could you please verify/check?<br></blockquote><div><br></div><div><br></di=
+v><div>I have reproduced this. It really looks like a bug!<br></div><div></=
+div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+[...]<br>
+
+On Mon, Aug 21, 2023 at 3:48=E2=80=AFPM Sebert, Holger.ext<br>
+&lt;<a href=3D"mailto:holger.sebert.ext@karlstorz.com" target=3D"_blank">ho=
+lger.sebert.ext@karlstorz.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I am using a Yocto-Poky-Mickledore (version 4.2.1) based system.<br>
+&gt;<br>
+&gt; For configuring the kernel, I would like to use the command<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0bitbake -c menuconfig virtual/kernel<br>
+&gt;<br>
+&gt; If I do that, Bitbake opens an xterm window and runs the build steps<b=
+r>
+&gt; for Kconfig. However, after the compiler has finised, the xterm window=
+<br>
+&gt; immediately closes and Bitbake exists as if nothing happened, i.e. it<=
+br>
+&gt; does not show any error message or similar.<br>
+&gt;<br>
+&gt; I investigated the problem and found out that, internally, Bitbake<br>
+&gt; calls the following command for starting Kconfig:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0make menuconfig CC=3D&quot;ccache x86_64-system-lin=
+ux-gcc ...&quot; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0CFLAGS=3D&quot;...&quot; HOSTCC=3D&qu=
+ot;ccache gcc&quot; HOSTCCFLAGS=3D&quot;...&quot;<br>
+&gt;<br>
+&gt; The quotes, however, seem to get lost when starting the actual command=
+<br>
+&gt; in the terminal. This leads to a command line like follows:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0make menuconfig CC=3Dccache x86_64-system-linux-gcc=
+ ... \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0CFLAGS=3D... HOSTCC=3D&quot;ccache gc=
+c&quot; HOSTCCFLAGS=3D&quot;...<br>
+&gt;<br>
+&gt; which is clearly wrong.<br>
+&gt;<br>
+&gt; The following patch fixes the problem in meta/classes-recipe/cml1.bbcl=
+ass:<br>
+&gt;<br>
+&gt; diff --git a/meta/classes-recipe/cml1.bbclass b/meta/classes-recipe/cm=
+l1.bbclass<br>
+&gt; index a09a042c3f..d6001d6fd0 100644<br>
+&gt; --- a/meta/classes-recipe/cml1.bbclass<br>
+&gt; +++ b/meta/classes-recipe/cml1.bbclass<br>
+&gt; @@ -53,7 +53,8 @@ python do_menuconfig() {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # ensure that environment variables are overwritte=
+n with this tasks &#39;d&#39; values<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 d.appendVar(&quot;OE_TERMINAL_EXPORTS&quot;, &quot=
+; PKG_CONFIG_DIR PKG_CONFIG_PATH PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR&q=
+uot;)<br>
+&gt;<br>
+&gt; -=C2=A0 =C2=A0 oe_terminal(&quot;sh -c \&quot;make %s; if [ \\$? -ne 0=
+ ]; then echo &#39;Command failed.&#39;; printf &#39;Press any key to conti=
+nue... &#39;; read r; fi\&quot;&quot; % d.getVar(&#39;KCONFIG_CONFIG_COMMAN=
+D&#39;),<br>
+&gt; +=C2=A0 =C2=A0 make_cmd =3D &quot;make %s&quot; % d.getVar(&#39;KCONFI=
+G_CONFIG_COMMAND&#39;).replace(&#39;&quot;&#39;, &#39;\\&quot;&#39;)<br>
+&gt; +=C2=A0 =C2=A0 oe_terminal(&quot;sh -c \&quot;%s; if [ \\$? -ne 0 ]; t=
+hen echo &#39;Command failed.&#39;; printf &#39;Press any key to continue..=
+. &#39;; read r; fi\&quot;&quot; % make_cmd,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 d.getVar=
+(&#39;PN&#39;) + &#39; Configuration&#39;, d)<br></blockquote><div><br></di=
+v><div>This patch looks interesting!</div><div>I would use shlex.join() to =
+safely construct the command :<br></div><div><a href=3D"https://docs.python=
+.org/3/library/shlex.html#shlex.join">https://docs.python.org/3/library/shl=
+ex.html#shlex.join</a></div><div>=C2=A0<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">
+&gt; What do you think? Is my observed behavior a configuration error of my=
+<br>
+&gt; setup or does the patch above indeed make sense?<br></blockquote><div>=
+<br></div><div>The patch makes sense to me.<br></div><div><br></div><div>I =
+guess your next steps are :</div><div>* If you want to contribute your patc=
+h : reproduce the bug and rebase your patch on master and send it to the ma=
+iling list<br></div><div>* Or, create a bug in <a href=3D"https://bugzilla.=
+yoctoproject.org/">https://bugzilla.yoctoproject.org/</a></div><div><br></d=
+iv><div>Best Regards,<br></div><div><br></div></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature" da=
+ta-smartmail=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"Raleway, re=
+gular">Yoann Congal</font><div><font face=3D"Raleway, regular">Smile ECS - =
+Tech expert<br></font></div></div></div></div>
+
+--000000000000b288fd060558b1f7--
 
