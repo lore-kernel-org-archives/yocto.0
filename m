@@ -1,248 +1,231 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <dave.hitchman@kymati.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24872EDE9BF
-	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 12:46:19 +0000 (UTC)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
- by mx.groups.io with SMTP id smtpd.web10.11315.1694695577567416917
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B15FCA0EF6
+	for <webhook@archiver.kernel.org>; Thu, 14 Sep 2023 12:47:29 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (EUR05-DB8-obe.outbound.protection.outlook.com [40.107.20.43])
+ by mx.groups.io with SMTP id smtpd.web10.11344.1694695640446125670
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Sep 2023 05:46:17 -0700
+ Thu, 14 Sep 2023 05:47:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=lPO4QrjW;
- spf=pass (domain: gmail.com, ip: 209.85.221.41, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-31c8321c48fso1347761f8f.1
-        for <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 05:46:17 -0700 (PDT)
+ dkim=pass header.i=@kymati.onmicrosoft.com header.s=selector2-kymati-onmicrosoft-com header.b=cCsEvFiH;
+ spf=pass (domain: kymati.com, ip: 40.107.20.43, mailfrom: dave.hitchman@kymati.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oQ2Fep9DA4BWkIeuBfSv3qcLHqiAuqqjKnHQbich/nxyR5GGBdtmXNnWXGZQJ7394kpjae4W1PGceyBGUJENy5Di3aftdI5YAVihKG777ufodg4dxyHM0L7VXXOhbjb9dCwALxOOW6yBIrJIi0SkO8ggtdVjaFhbFIw/POH7TAKnz95hbrsjtvAQi0C5jfHQiY9+sX2Vmg83/kEYK5c15RF1/U4854SBX4ib3jAA1nHGJV5bpphr+tpL8eyR+sFYbvhY8Ush8uqaYZWKut8IjPv1hOqnZ0KOuvYEgqWlilv/A4EZlU/jZUJgKNUPxVkhwZRmUDJMTGOZ9xds3ORpmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4td4wEa44+ucdHbV7vhwAqpG3pO8QytNHP9JH6LAaCA=;
+ b=XOdibHuhdCZnIXy4g1LuzxBzt1awjETo6sDBUNr2ssV0bH01U/c7LvG4AbmKsH+3H4YuA7g9sA3FlbuasdFiv51xogXq/7qOr11vIF+vj0dc2Ik1KRpWDz2QBOl8rPIFO22SLQ7AXb4Uu01dtBWDNvKWeNq7R22h9aCWv6vnxJzZUJMqPh9wZQ/COr+rS5xhrsAnz/XLX7si/BmhG8wu/iWVJbrzO2ClQjGEgfxaqAzOV0vSnyRRUbLGf3ez6+C+bgNWSx4AK38Vgb1IiGmRcjwpNJ6/obfgVfrtLX2tWWiXmYcDF6C9Pm0w8wqYsYOqvEpatw6VMjpbUlUB0i1JJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kymati.com; dmarc=pass action=none header.from=kymati.com;
+ dkim=pass header.d=kymati.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694695576; x=1695300376; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JF7qWnQCH7qWRHaxENSzZyZKBXcMbu7/uDMVvnI5q+8=;
-        b=lPO4QrjWRBniGHU5jAPtTFtCs3lZ36uJgIdqZN12Wi+lUVp/BilE6GmylT0RwLAwDf
-         dJs8quI8YxbDqh20bE+CX6D/cj0GO1c7OUc1dQs724bBKKzy9pGbxsy1nRUhhTBA65/y
-         UnjTS57jqJpLgyFsTTenRvPnkzCN0CFLGsPiDvAlsLUdcpC7L0ItxEjcViSq8IK/UJpH
-         l4Hfxx+l6gj0SQrPzkdu6FcgdbixZQ5bL3H3qGqBN6QnA2KX1/atbk0+O4V0pPtQdCLC
-         0LfyMiu+kh4h37HPntdrGvUbrOBwW+VMxnXMM6GARdP/hYdXeSQPWy0t+oOeRSqKe00C
-         k14Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694695576; x=1695300376;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JF7qWnQCH7qWRHaxENSzZyZKBXcMbu7/uDMVvnI5q+8=;
-        b=RiH9EVbaBdwE+EB3aMwl8uB9cVoNiHmuOXuQCxFIlb/uZ8Tl9nqBZmhWCTHFVhGUT+
-         T2sqj1tAHt4TEXg/VPaedXpJDm0wb5wfv351m4DsiU3WefndCHNE9u9jbv6Kv++RP8DO
-         h9RSqROgpZnMR5uVGu0T+57CSeOCjjwkaq8vF91fUxQp47TKv9O18AZOgBeq3f8k+Hqh
-         qcHI/Ryiio1H2VRGSfOfF2mIK39COBiqsXjyEOPWDFun+RasrSmcbzWO/s4jOcwY1n/o
-         lwA9vX61u4miIy/fvJaUPXzmtRDK3Igq7kfLF7aESV/O9psJLsDqm6oUQ5PFqZPSRV9p
-         B0KA==
-X-Gm-Message-State: AOJu0Yz3zCtOk53X81XzYaP4gPUaw59xJ89pKay9c5OuUK2ACfWtQCff
-	nwQs9fyDQiOuIHkENxqat8SxV3Q1/28PKLuSPGk=
-X-Google-Smtp-Source: AGHT+IH7uyccB4lyyng6t+RfoDQY2Fa3ylV42hgqEIdeviB6I0+zZyAYmZrHJUY1QlFZhpCj4Q18bJ2XM1p1ZzPW7PU=
-X-Received: by 2002:adf:e483:0:b0:317:59ea:1c6b with SMTP id
- i3-20020adfe483000000b0031759ea1c6bmr990048wrm.35.1694695575624; Thu, 14 Sep
- 2023 05:46:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <AM9PR03MB70126259019EF2AD25999A2892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
- <CA+chaQefpv8V2gsmnk_DYfOCRstcp1985RNVTAdRu3hJki0x4Q@mail.gmail.com> <AM9PR03MB7012488D10FE95C6F4D12AA892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-In-Reply-To: <AM9PR03MB7012488D10FE95C6F4D12AA892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Thu, 14 Sep 2023 14:46:02 +0200
-Message-ID: <CA+chaQdRXYCW0wdKJcCTZDkzU5u1QG49L-Gh6yL41ZDUXhvLiA@mail.gmail.com>
+ d=kymati.onmicrosoft.com; s=selector2-kymati-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4td4wEa44+ucdHbV7vhwAqpG3pO8QytNHP9JH6LAaCA=;
+ b=cCsEvFiH5II4NQTTLDJyWxIy53dW3m98HSll9bG/lZDOHOSl6JSRDbDWgB92pvE+harXcdUNOlKoLiQqEaRh6wh9nXg0xSbjIgaQTQx9U4tIZ5nEpEjvX44CBMQfR+8E4y5yNNPiBLBaDS6AVZsfegPeBB01/BqFIB4HKX+VXHY=
+Received: from AM9PR03MB7012.eurprd03.prod.outlook.com (2603:10a6:20b:2d4::7)
+ by AS8PR03MB7478.eurprd03.prod.outlook.com (2603:10a6:20b:2e6::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.20; Thu, 14 Sep
+ 2023 12:47:17 +0000
+Received: from AM9PR03MB7012.eurprd03.prod.outlook.com
+ ([fe80::2f9a:1999:e82f:efcf]) by AM9PR03MB7012.eurprd03.prod.outlook.com
+ ([fe80::2f9a:1999:e82f:efcf%2]) with mapi id 15.20.6792.020; Thu, 14 Sep 2023
+ 12:47:17 +0000
+From: Dave Hitchman <dave.hitchman@kymati.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Errno=No space left on device
-To: Dave Hitchman <dave.hitchman@kymati.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c9a31d0605510f11"
+Thread-Topic: [yocto] Errno=No space left on device
+Thread-Index: AQHZ5wNVJqPYTkBL00yGm4Vi5SDKIrAaPNYAgAAHpmA=
+Date: Thu, 14 Sep 2023 12:47:17 +0000
+Message-ID: 
+ <AM9PR03MB701228E6AE99AC15DA40AB7692F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
+References: 
+ <AM9PR03MB70126259019EF2AD25999A2892F7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
+ <CA+chaQefpv8V2gsmnk_DYfOCRstcp1985RNVTAdRu3hJki0x4Q@mail.gmail.com>
+In-Reply-To: 
+ <CA+chaQefpv8V2gsmnk_DYfOCRstcp1985RNVTAdRu3hJki0x4Q@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kymati.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR03MB7012:EE_|AS8PR03MB7478:EE_
+x-ms-office365-filtering-correlation-id: 6d87abb3-c568-4d84-0b62-08dbb520ba2e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ LwjePvP+9Y/J7xfYlmzK7hs57yoQNMPSLLYNCGJhj+/VbzNBfGJZBp0Je3DEgPgk9WoGmdq69G9d7oPcKaPAHpBjGkU4WRrT8wMgRGPAMRisNDSgotEBOV0PHfON9MZ7yfcb/3dJbC2sasX3am56vp+8/qw55poQgIOpmWE/JkyMXY551rkSYXqFhuTPTNPOkXJU49uTP7C4moZOD11XOJTcfcOB0ApU3eD49oOzdnTSfNGgX0wgEwx9l+bEcv0Q/XMUO45karGt/JWtOBzf9hw7fr4BKFiMoIfMJqL6cqdgoPdJWqybx6ne5h8XBAOPOT8VcFpEYLqagnkzfgJctKNwHNdoXZyLocrDVMqQS8mZAvF2uVo01MLDLN5JyuB2fk1yMDyAY7sZlB9/sE2oOCsVYDZUIzap2JBwcmYhUJQ4Ifp1ldeM+wP6JRwRlKriOzJTpwxzmOqip1z4jgAwAV/mLehbslh1SeO7iUww6srYtRPk13PJ1h0tlpsI2y8AeGi7dP3kW25isHqcIKX4vLsnIUiH6x+pp+RLeHWKNwS/w8qQ98iJkldSJqxuN64qrKA/tnkWSm3cq7nOzK+p/DAyWW5US7aXHbp/BkQT7M1YBU+KJrU9UVXWQvfxCi5nREBdGt7jFqR/uFIUAsS+2Cp2IT55cNy9JaIOChCvbuA=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR03MB7012.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39830400003)(366004)(346002)(136003)(376002)(451199024)(1800799009)(186009)(6916009)(55016003)(9686003)(66556008)(64756008)(76116006)(66476007)(66446008)(66946007)(91956017)(316002)(41300700001)(122000001)(478600001)(38100700002)(38070700005)(53546011)(6506007)(7696005)(71200400001)(44832011)(83380400001)(2906002)(33656002)(86362001)(8936002)(8676002)(4326008)(19627405001)(5660300002)(52536014);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?WGpvL3R0em4wOFpBcDA2b2NBQkN0MllwWk5EZURYMDdRRjkrUVRneTBCTEtQ?=
+ =?utf-8?B?NTVMYVdVSmVIVElDN3pKVnF3dDdiaWdrVXZVcWc0eUVSS2hlRzBOcWlJSFph?=
+ =?utf-8?B?MnYyZ1Jldlg1c1BER3JoTzQ3SUhSeDhzekpFeXpOUkJYOWZNMFRHUmhGbnhL?=
+ =?utf-8?B?ekpsY3hVeWRoNlN5ZFhvQ0pnWjFocnU5cmI3ZzRPWUduQUhRcDM5TzU2ZFNw?=
+ =?utf-8?B?NC9ONTVvSXYvY3ZkREp4Z1c2TU90eU91eUV0bWIyMlhPU25kVUNlc1dMNWpr?=
+ =?utf-8?B?T2tGYmtieVRIZ0IzMzQwY2pwOHhteVRqSHB6ekFRajhDNTdZa3dkTi9lMGNk?=
+ =?utf-8?B?QzZNa2hOMndQRTFzSnZXYloraDJGTGkxN0JtZ25FT29VL2NtWnE2bm52YklF?=
+ =?utf-8?B?MmJoeXFUYWNFQ1hIbG5TN0V0dWlsRHdLR2hoU0xEZHIxMWlsVVN5a01DV29p?=
+ =?utf-8?B?TW9YNStYSE52RnQvMzgxUndDQkxzdVowOHpENGdSL0t6VUp1Y2ZWMUgrQ2pv?=
+ =?utf-8?B?NTRmSkQyQkRRRzBpaDdXTW9FbWlnbVo4OUZJY0x0QXB6OHBsdFBCcGp5Wm9r?=
+ =?utf-8?B?Ui9vSUtmeHFLcytiRC9BUnB1THJLbkNoRjNkUWpvVG4weTdHVUd6YU81Yksr?=
+ =?utf-8?B?QmNkaXh2RXBLWmVBaVgvRitTQ0JZajdYNUgrSk5tV0YxNlh5N1VPczlyTHZH?=
+ =?utf-8?B?dXZTQTFsT2ZTcWI4VUJnYXJKT0d1bFJXRWZIWkl0ZTk5dEJaUVRmRWhXTDZu?=
+ =?utf-8?B?THh6UFhqUGduanBSMDdqMlN5SzluK2VzV3lsVDhGRG1TMlczV0U3d2R3cHo3?=
+ =?utf-8?B?R1EvZDlCNFdIa1FrcmFRVGc3QzlRSU02YmovUkVDNTdXYTg0OXBSOUhJQlFN?=
+ =?utf-8?B?L1p4RHd0TGR1enM0UlF5OW9vdkJrTkZTUlBHTUU3dlNSSU1rNm1xM0tNc2Rk?=
+ =?utf-8?B?OFpnamlpMzNUT25uRmJxYmZSN3E0WnlSSTdob0VoVTE1aHFoYi9TZUJqNlpQ?=
+ =?utf-8?B?TTl0YkRqZzl0VCsySVRGUmZ4UitBWndYNVFPRUZ4MEF3Y2xmWm5YVnRwakhF?=
+ =?utf-8?B?elN2bTFyUENCa2I0RXlOelFiUGxaQTZ5NFhoL0RuVTFmOWoxUWowYWNQMlVF?=
+ =?utf-8?B?ZkpHR0tDVXFHM0ZSNzhQd2NyRDI1OGVsaFV0RExVMyt2cWRCYVNQclptMFdy?=
+ =?utf-8?B?UUhjaDBnQ3I4Q0pNbmhxQVczRENtMUZ0WnQvdnFGeDhLN2dzcTVMMHI2MWpx?=
+ =?utf-8?B?MXZIL0JGMFd6N2pPRFJoVHhTeGJtcUhSY0JrNWJEeStDK0J3WDcvSjc3NkVk?=
+ =?utf-8?B?NmhhcEJKejNOUzhyT3h0YUVBVDV2bWhuSzhZTlR2dmpxRkhyNFM3bDBVSHow?=
+ =?utf-8?B?NlcydVRGWWk0dkJ2L2xBcWJkc0VKR1pleXZoS1VnK1FrQmdrTFNWaEpKNXo5?=
+ =?utf-8?B?ZnhoMjBNSmgrYnNGRTlpYnBQdG12dGdCZnYya2pXTmlTNmlsWGtCSG5lNWhz?=
+ =?utf-8?B?azhFQ0lmSGVDZDM4bmNlZ0ppYnZad2ZsUW02SnoremFKMG5TU0RTYUUweEQ2?=
+ =?utf-8?B?aWdmTU55ZUtyODh4WnBjQVR2b2R4ZFZ0VC9JeFZCZkVnVm9jZFhzSEUxSm01?=
+ =?utf-8?B?SFdEeGY2ZVRBMjBFMmcxUm9lWmRYMmJqWm5mWnBEKzRXM1lVcjdyMkROSFVF?=
+ =?utf-8?B?WEFXTFU1MDFSTk5lNENlR09LWFFzYjJyUUNIK0U1NDFQTDk0ZkVGVHdSK1FH?=
+ =?utf-8?B?cWJ4NnA1R1pCVGNJNFlpVEdyajM2ZFp0ajlIbmhqc2tpYk44RGlJZzZ0ZWhO?=
+ =?utf-8?B?eUxST2N6NWY1MEt5ZVpKMTFWQUd5eExkdDM5b05udFhDc0t0OXgvNEF3dEdn?=
+ =?utf-8?B?YVh3OWhFSTU1a0luTlVlUUVzWW9KbElUMEVsMmNEMDM1RFMwaDZmZGMwSk02?=
+ =?utf-8?B?aUw2OFQwUGY4MzY2blpSVTJEZ2hhUXN2SUF4TENTZHZTeEtTTlZoQ0NBK3l5?=
+ =?utf-8?B?TE9MNCtsNXYwMk1DS2w3OTd6L2txYlpZVmxZT3ZMbnlXWHpIRzVyZ2VUUm9t?=
+ =?utf-8?B?OEk1OWZaVUQrVUc3eEg0bjRWME1HajZQK0FuSzdKWEMrQnNDZkF2NURiejgy?=
+ =?utf-8?B?a1l1a3JQVVBpenNTQ2NtSUdEc3dZUmR2RjdWNFBXc3g4TTVlYVR2N2pnNERP?=
+ =?utf-8?Q?jXbzvR/1viCfNm/NnIdTuZZAI6nZqf1b4WriZ7l7mjx4?=
+Content-Type: multipart/alternative;
+	boundary="_000_AM9PR03MB701228E6AE99AC15DA40AB7692F7AAM9PR03MB7012eurp_"
+MIME-Version: 1.0
+X-OriginatorOrg: kymati.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR03MB7012.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d87abb3-c568-4d84-0b62-08dbb520ba2e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2023 12:47:17.0117
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f445f429-656f-441c-a343-dbb97855be01
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: noo3s8msv+KIK328l2Swal0KKXXT28NHYytMPewl/43iWr4AaRTWD1eQehSOfOKO/RUe7DCJmyb6LnEiy7c+OIU19dczSuaLEe40p4z5fzI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB7478
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 12:46:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61002
+ <yocto@lists.yoctoproject.org>; Thu, 14 Sep 2023 12:47:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61003
 
---000000000000c9a31d0605510f11
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_AM9PR03MB701228E6AE99AC15DA40AB7692F7AAM9PR03MB7012eurp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Sep 14, 2023 at 2:35=E2=80=AFPM Dave Hitchman <dave.hitchman@kymati=
-.com>
-wrote:
+V2VsbCB1c2luZyB0aGF0IGVub3Jtb3VzIG51bWJlciB3b3JrZWQuLi4gZm9yIHRoZSBtb21lbnQs
+IHVudGlsIHdoZW4gaXQgbmV4dCBzdG9wcy4gSSBzdGlsbCB3b3VsZCBsaWtlIHRvIGtub3cgd2hh
+dCB0aGUgZGV2aWwgaXMgYmVpbmcgZG9uZSBpbiBteSBzeXN0ZW0gd2l0aCB0aGF0IG9uZSBidWls
+ZCB0aGF0IGlzIGNvbnN1bWluZyBzdWNoIGEgY3JhenkgbnVtYmVyIG9mIHdhdGNoZXMsIHdoYXQg
+aXMgYmVpbmcgd2F0Y2hlZCwgd2h5IGV0Yy4gVGhpcyBpcyB0YWtpbmcgbWVtb3J5IGF3YXkgZnJv
+bSBvdGhlciB0aGluZ3MsIG1heWJlIEkgZG8gaGF2ZSBhIHRodW1waW5nIGdyZWF0IG1hY2hpbmUg
+YnV0IGp1c3QgZW5kbGVzc2x5IHN1Y2tpbmcgYmlnZ2VyIGFuZCBiaWdnZXIgbnVtYmVycyBvZiB3
+YXRjaGVzIGFwcGVhcnMgdG8gbWUgdG8gYmUgdGhlIHdyb25nIHRoaW5nIHRvIGJlIGRvaW5nLCBu
+b3QgZXZlcnlvbmUgY2FuIGFmZm9yZCBlbm91Z2ggcmFtIHRvIHN0b3JlIGFuIGVuY3ljbG9wZWRp
+YSBicml0YW5uaWNhcyB3b3J0aCBvZiBkYXRhIGFib3V0IGV2ZXJ5IGdyYWluIG9mIHNhbmQgb24g
+dGhlIHBsYW5ldC4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBNYXJ0
+aW4gSmFuc2EgPG1hcnRpbi5qYW5zYUBnbWFpbC5jb20+DQpTZW50OiAxNCBTZXB0ZW1iZXIgMjAy
+MyAxNDoxNw0KVG86IERhdmUgSGl0Y2htYW4gPGRhdmUuaGl0Y2htYW5Aa3ltYXRpLmNvbT4NCkNj
+OiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
+b3JnPg0KU3ViamVjdDogUmU6IFt5b2N0b10gRXJybm89Tm8gc3BhY2UgbGVmdCBvbiBkZXZpY2UN
+Cg0KT24gVGh1LCBTZXAgMTQsIDIwMjMgYXQgMjowN+KAr1BNIERhdmUgSGl0Y2htYW4gPGRhdmUu
+aGl0Y2htYW5Aa3ltYXRpLmNvbTxtYWlsdG86ZGF2ZS5oaXRjaG1hbkBreW1hdGkuY29tPj4gd3Jv
+dGU6DQpFUlJPUjogTm8gc3BhY2UgbGVmdCBvbiBkZXZpY2Ugb3IgZXhjZWVkcyBmcy5pbm90aWZ5
+Lm1heF91c2VyX3dhdGNoZXM/DQpFUlJPUjogVG8gY2hlY2sgbWF4X3VzZXJfd2F0Y2hlczogc3lz
+Y3RsIC1uIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcy4NCkVSUk9SOiBUbyBtb2RpZnkgbWF4
+X3VzZXJfd2F0Y2hlczogc3lzY3RsIC1uIC13IGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcz08
+dmFsdWU+Lg0KDQpweWlub3RpZnkuV2F0Y2hNYW5hZ2VyRXJyb3I6IGFkZF93YXRjaDogY2Fubm90
+IHdhdGNoIC9ob21lL2RhdmUvRG9jdW1lbnRzL0t5bWF0aS95b2N0by9idWlsZC9jb25mIFdEPS0x
+LCBFcnJubz1ObyBzcGFjZSBsZWZ0IG9uIGRldmljZSAoRU5PU1BDKQ0KDQpkYXZlQGRhdmUtVFVY
+RURPLUF1cmEtMTUtR2VuMTp+L0RvY3VtZW50cy9LeW1hdGkveW9jdG8vYnVpbGQkIHN5c2N0bCAt
+biBmcy5pbm90aWZ5Lm1heF91c2VyX3dhdGNoZXMNCjY1NTM2DQoNCldoYXQgSVMgdGhlIGFjdHVh
+bCBwcm9ibGVtIGFuZCBob3cgaXMgaXQgYWN0dWFsbHkgZml4ZWQ/IEkgY2FudCBiZSB0aGUgb25s
+eSBwZXJzb24gZmFjaW5nIHRoaXMgc3VyZWx5Pw0KDQpIYXZlIHlvdSB0cmllZCB0byBpbmNyZWFz
+ZSBmcy5pbm90aWZ5Lm1heF91c2VyX3dhdGNoZXMgYXMgdGhlIGVycm9yIHNheXM/DQoNCiQgc3lz
+Y3RsIC1uIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcw0KMTA0ODU3Ng0KDQo2NEsgbWlnaHQg
+bm90IGJlIGVub3VnaC4NCg==
 
-> Does anyone know what IS enough?
->
+--_000_AM9PR03MB701228E6AE99AC15DA40AB7692F7AAM9PR03MB7012eurp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Depends on how big your metadata layers are, so there isn't single value
-which would suite everybody. But 1M works for me even for very big builds,
-so it should be big enough for you as well (for whatever PHYTEC is doing).
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBB
+cHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBI
+ZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAw
+KTsiIGNsYXNzPSJlbGVtZW50VG9Qcm9vZiI+DQpXZWxsIHVzaW5nIHRoYXQgZW5vcm1vdXMgbnVt
+YmVyIHdvcmtlZC4uLiBmb3IgdGhlIG1vbWVudCwgdW50aWwgd2hlbiBpdCBuZXh0IHN0b3BzLiBJ
+IHN0aWxsIHdvdWxkIGxpa2UgdG8ga25vdyB3aGF0IHRoZSBkZXZpbCBpcyBiZWluZyBkb25lIGlu
+IG15IHN5c3RlbSB3aXRoIHRoYXQgb25lIGJ1aWxkIHRoYXQgaXMgY29uc3VtaW5nIHN1Y2ggYSBj
+cmF6eSBudW1iZXIgb2Ygd2F0Y2hlcywgd2hhdCBpcyBiZWluZyB3YXRjaGVkLCB3aHkgZXRjLiBU
+aGlzDQogaXMgdGFraW5nIG1lbW9yeSBhd2F5IGZyb20gb3RoZXIgdGhpbmdzLCBtYXliZSBJIGRv
+IGhhdmUgYSB0aHVtcGluZyBncmVhdCBtYWNoaW5lIGJ1dCBqdXN0IGVuZGxlc3NseSBzdWNraW5n
+IGJpZ2dlciBhbmQgYmlnZ2VyIG51bWJlcnMgb2Ygd2F0Y2hlcyBhcHBlYXJzIHRvIG1lIHRvIGJl
+IHRoZSB3cm9uZyB0aGluZyB0byBiZSBkb2luZywgbm90IGV2ZXJ5b25lIGNhbiBhZmZvcmQgZW5v
+dWdoIHJhbSB0byBzdG9yZSBhbiBlbmN5Y2xvcGVkaWEgYnJpdGFubmljYXMNCiB3b3J0aCBvZiBk
+YXRhIGFib3V0IGV2ZXJ5IGdyYWluIG9mIHNhbmQgb24gdGhlIHBsYW5ldC4mbmJzcDs8L2Rpdj4N
+CjxkaXYgaWQ9ImFwcGVuZG9uc2VuZCI+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5l
+LWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5kZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ci
+IGRpcj0ibHRyIj48Zm9udCBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1z
+aXplOjExcHQiIGNvbG9yPSIjMDAwMDAwIj48Yj5Gcm9tOjwvYj4gTWFydGluIEphbnNhICZsdDtt
+YXJ0aW4uamFuc2FAZ21haWwuY29tJmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiAxNCBTZXB0ZW1iZXIg
+MjAyMyAxNDoxNzxicj4NCjxiPlRvOjwvYj4gRGF2ZSBIaXRjaG1hbiAmbHQ7ZGF2ZS5oaXRjaG1h
+bkBreW1hdGkuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZyAmbHQ7eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDs8YnI+DQo8Yj5TdWJqZWN0
+OjwvYj4gUmU6IFt5b2N0b10gRXJybm89Tm8gc3BhY2UgbGVmdCBvbiBkZXZpY2U8L2ZvbnQ+DQo8
+ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRp
+cj0ibHRyIj5PbiBUaHUsIFNlcCAxNCwgMjAyMyBhdCAyOjA34oCvUE0gRGF2ZSBIaXRjaG1hbiAm
+bHQ7PGEgaHJlZj0ibWFpbHRvOmRhdmUuaGl0Y2htYW5Aa3ltYXRpLmNvbSI+ZGF2ZS5oaXRjaG1h
+bkBreW1hdGkuY29tPC9hPiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4X2dt
+YWlsX3F1b3RlIj4NCjxibG9ja3F1b3RlIGNsYXNzPSJ4X2dtYWlsX3F1b3RlIiBzdHlsZT0ibWFy
+Z2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQs
+MjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGNsYXNzPSJ4X21zZy03OTA4OTczOTY1NTYz
+NzE3MjEyIj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5FUlJPUjogTm8gc3BhY2UgbGVmdCBvbiBk
+ZXZpY2Ugb3IgZXhjZWVkcyBmcy5pbm90aWZ5Lm1heF91c2VyX3dhdGNoZXM/PGJyPg0KPC9kaXY+
+DQo8ZGl2PkVSUk9SOiBUbyBjaGVjayBtYXhfdXNlcl93YXRjaGVzOiBzeXNjdGwgLW4gZnMuaW5v
+dGlmeS5tYXhfdXNlcl93YXRjaGVzLjwvZGl2Pg0KPGRpdj5FUlJPUjogVG8gbW9kaWZ5IG1heF91
+c2VyX3dhdGNoZXM6IHN5c2N0bCAtbiAtdyBmcy5pbm90aWZ5Lm1heF91c2VyX3dhdGNoZXM9Jmx0
+O3ZhbHVlJmd0Oy48L2Rpdj4NCjxkaXY+PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1
+b3RlPg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjxibG9ja3F1b3RlIGNsYXNzPSJ4X2dtYWlsX3F1b3Rl
+IiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDoxcHggc29saWQg
+cmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGNsYXNzPSJ4X21zZy03
+OTA4OTczOTY1NTYzNzE3MjEyIj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj5weWlub3RpZnkuV2F0
+Y2hNYW5hZ2VyRXJyb3I6IGFkZF93YXRjaDogY2Fubm90IHdhdGNoIC9ob21lL2RhdmUvRG9jdW1l
+bnRzL0t5bWF0aS95b2N0by9idWlsZC9jb25mIFdEPS0xLCBFcnJubz1ObyBzcGFjZSBsZWZ0IG9u
+IGRldmljZSAoRU5PU1BDKTxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+ZGF2
+ZUBkYXZlLVRVWEVETy1BdXJhLTE1LUdlbjE6fi9Eb2N1bWVudHMvS3ltYXRpL3lvY3RvL2J1aWxk
+JCBzeXNjdGwgLW4gZnMuaW5vdGlmeS5tYXhfdXNlcl93YXRjaGVzPC9kaXY+DQo8ZGl2PjY1NTM2
+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQs
+QXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
+emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZv
+bnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENh
+bGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCww
+LDApIj4NCldoYXQgSVMgdGhlIGFjdHVhbCBwcm9ibGVtIGFuZCBob3cgaXMgaXQgYWN0dWFsbHkg
+Zml4ZWQ/IEkgY2FudCBiZSB0aGUgb25seSBwZXJzb24gZmFjaW5nIHRoaXMgc3VyZWx5PzwvZGl2
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2
+PkhhdmUgeW91IHRyaWVkIHRvIGluY3JlYXNlIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlcyBh
+cyB0aGUgZXJyb3Igc2F5cz88L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PiQgc3lzY3Rs
+IC1uIGZzLmlub3RpZnkubWF4X3VzZXJfd2F0Y2hlczxicj4NCjEwNDg1NzY8YnI+DQo8L2Rpdj4N
+CjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PjY0SyBtaWdodCBub3QgYmUgZW5vdWdoLjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-
-> Watching the video series around
-> https://www.youtube.com/watch?v=3DbTEdfwtPtNY he doesnt mention changing
-> this size. I dont actually know what this watch manager thing is supposed
-> to be doing, there is one command prompt doing one thing, I cant believe
-> that it would need that many things being watched? What is it even watchi=
-ng
-> for?
->
-
-It's watching for changes in metadata, which is a lot of files.
-
-
-------------------------------
-> *From:* Martin Jansa <martin.jansa@gmail.com>
-> *Sent:* 14 September 2023 14:17
-> *To:* Dave Hitchman <dave.hitchman@kymati.com>
-> *Cc:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-> *Subject:* Re: [yocto] Errno=3DNo space left on device
->
-> On Thu, Sep 14, 2023 at 2:07=E2=80=AFPM Dave Hitchman <dave.hitchman@kyma=
-ti.com>
-> wrote:
->
-> ERROR: No space left on device or exceeds fs.inotify.max_user_watches?
-> ERROR: To check max_user_watches: sysctl -n fs.inotify.max_user_watches.
-> ERROR: To modify max_user_watches: sysctl -n -w
-> fs.inotify.max_user_watches=3D<value>.
->
->
->
-> pyinotify.WatchManagerError: add_watch: cannot watch
-> /home/dave/Documents/Kymati/yocto/build/conf WD=3D-1, Errno=3DNo space le=
-ft on
-> device (ENOSPC)
->
-> dave@dave-TUXEDO-Aura-15-Gen1:~/Documents/Kymati/yocto/build$ sysctl -n
-> fs.inotify.max_user_watches
-> 65536
->
-> What IS the actual problem and how is it actually fixed? I cant be the
-> only person facing this surely?
->
->
-> Have you tried to increase fs.inotify.max_user_watches as the error says?
->
-> $ sysctl -n fs.inotify.max_user_watches
-> 1048576
->
-> 64K might not be enough.
->
-
---000000000000c9a31d0605510f11
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Sep 14, 2023 at 2:35=E2=80=AFPM D=
-ave Hitchman &lt;<a href=3D"mailto:dave.hitchman@kymati.com">dave.hitchman@=
-kymati.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><div class=3D"msg-4919416456226241996"=
->
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Does anyone know what IS enough?</div></div></div></blockquote><div><br></d=
-iv><div>Depends on how big your metadata layers are, so there isn&#39;t sin=
-gle value which would suite everybody. But 1M works for me even for very bi=
-g builds, so it should be big enough for you as well (for whatever=C2=A0PHY=
-TEC is doing).</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div class=3D"msg-4919416456226241996"><div dir=3D"ltr"><div st=
-yle=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Hel=
-vetica,sans-serif;font-size:12pt;color:rgb(0,0,0)"> Watching the video seri=
-es around=C2=A0<a href=3D"https://www.youtube.com/watch?v=3DbTEdfwtPtNY" id=
-=3D"m_-4919416456226241996LPlnk606127" target=3D"_blank">https://www.youtub=
-e.com/watch?v=3DbTEdfwtPtNY</a>=C2=A0he doesnt mention changing this size. =
-I dont actually know what this watch
- manager thing is supposed to be doing, there is one command prompt doing o=
-ne thing, I cant believe that it would need that many things being watched?=
- What is it even watching for?</div></div></div></blockquote><div><br></div=
-><div>It&#39;s watching for changes in metadata, which is a lot of files.</=
-div><div>=C2=A0<br></div><div><br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div class=3D"msg-4919416456226241996"><div dir=3D"ltr">
-<div id=3D"m_-4919416456226241996appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_-4919416456226241996divRplyFwdMsg" dir=3D"ltr"><font face=3D"C=
-alibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b>=
- Martin Jansa &lt;<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_blan=
-k">martin.jansa@gmail.com</a>&gt;<br>
-<b>Sent:</b> 14 September 2023 14:17<br>
-<b>To:</b> Dave Hitchman &lt;<a href=3D"mailto:dave.hitchman@kymati.com" ta=
-rget=3D"_blank">dave.hitchman@kymati.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
-">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctop=
-roject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;<br>
-<b>Subject:</b> Re: [yocto] Errno=3DNo space left on device</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div dir=3D"ltr">On Thu, Sep 14, 2023 at 2:07=E2=80=AFPM Dave Hitchman &lt;=
-<a href=3D"mailto:dave.hitchman@kymati.com" target=3D"_blank">dave.hitchman=
-@kymati.com</a>&gt; wrote:<br>
-</div>
-<div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-<div>
-<div dir=3D"ltr">
-<div>ERROR: No space left on device or exceeds fs.inotify.max_user_watches?=
-<br>
-</div>
-<div>ERROR: To check max_user_watches: sysctl -n fs.inotify.max_user_watche=
-s.</div>
-<div>ERROR: To modify max_user_watches: sysctl -n -w fs.inotify.max_user_wa=
-tches=3D&lt;value&gt;.</div>
-<div></div>
-</div>
-</div>
-</blockquote>
-<div>=C2=A0</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-<div>
-<div dir=3D"ltr">
-<div>pyinotify.WatchManagerError: add_watch: cannot watch /home/dave/Docume=
-nts/Kymati/yocto/build/conf WD=3D-1, Errno=3DNo space left on device (ENOSP=
-C)<br>
-</div>
-<div><br>
-</div>
-<div>dave@dave-TUXEDO-Aura-15-Gen1:~/Documents/Kymati/yocto/build$ sysctl -=
-n fs.inotify.max_user_watches</div>
-<div>65536</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-What IS the actual problem and how is it actually fixed? I cant be the only=
- person facing this surely?</div>
-</div>
-</div>
-</blockquote>
-<div><br>
-</div>
-<div>Have you tried to increase fs.inotify.max_user_watches as the error sa=
-ys?</div>
-<div><br>
-</div>
-<div>$ sysctl -n fs.inotify.max_user_watches<br>
-1048576<br>
-</div>
-<div><br>
-</div>
-<div>64K might not be enough.</div>
-</div>
-</div>
-</div>
-</div>
-
-</div></blockquote></div></div>
-
---000000000000c9a31d0605510f11--
+--_000_AM9PR03MB701228E6AE99AC15DA40AB7692F7AAM9PR03MB7012eurp_--
 
