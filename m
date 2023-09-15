@@ -2,124 +2,194 @@ Return-Path: <rybczynska@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1249AEEB581
-	for <webhook@archiver.kernel.org>; Fri, 15 Sep 2023 06:18:00 +0000 (UTC)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
- by mx.groups.io with SMTP id smtpd.web11.15004.1694758676106056217
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46395EEB59A
+	for <webhook@archiver.kernel.org>; Fri, 15 Sep 2023 06:31:20 +0000 (UTC)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+ by mx.groups.io with SMTP id smtpd.web11.15111.1694759470706325139
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Sep 2023 23:17:56 -0700
+ Thu, 14 Sep 2023 23:31:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=VgJPoVLS;
- spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: rybczynska@gmail.com)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2bceca8a41aso28432171fa.0;
-        Thu, 14 Sep 2023 23:17:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=emC1Erup;
+ spf=pass (domain: gmail.com, ip: 209.85.208.178, mailfrom: rybczynska@gmail.com)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2bf5bf33bcdso29675831fa.0;
+        Thu, 14 Sep 2023 23:31:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694758674; x=1695363474; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1694759469; x=1695364269; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0uiSSiNDRSvm4B8xTzKBsBa3fPNF7A+8rWeQ9ht9Njg=;
-        b=VgJPoVLSC/Jv2vVU8dOKnRt1Y1QgB644g+cE3Z9xsyMQ1pCkZEPGXsG94p8iDrDsHC
-         mHru6e8SWznrCcYGLWX4d09FhoNDqNyHChP9IGxhUl7QuKggPX1eyf9W8+HSpqiozk5g
-         Cl2q+P5zmZcShIyhZIX74uNEA1TTryaNWiITosMHwk5cqiGP6AQ4gIeulbhHodu7lKeg
-         V4xrgE/M4YkyD4LtSFDlR0uF+ufSq73vtm3Wsai8ieJAc4ic+dTe4GRETQvKBGDGf95T
-         sft/wL8SEbpKP14deJQi/nBrgC0gHP2jNYDP4RZt0FrjXF3JmCMV0Z420LuaIWxkpZoT
-         0Ifg==
+        bh=osDnKEtD8rABtGq6iZyMEVFbLNA0vkjbG3+8ZRxxul8=;
+        b=emC1ErupNnGa2Kucw21JYRWrbQiD9CIQqza1UkS3hwQHk7ZdyUnucyaqUCpCeQCS2J
+         3cUNYJ6ItvjohBUdZgdmpZwJIbSRInFVcyb/J0tOmDSectZdf8k7XJnYdC6OGQKNcEOv
+         oU/3j7wPpLdQxwP8SCqE6YnhW+NbMBZ3XnxmHE3UEOaJ01o8RUtMzIBoE0sNauMFr+6A
+         v021sFLlwjY3z1xEio3LZJt/oA6b746gX60hAm7cxLzyIrkOmPWwcCr1iOZa4Dcj5nOb
+         hl8CaIgPc7MaLAu7e8Dt+uXt7IartDHpntLE19JzNiOjpwzY82Nnt8D0+ZOGyt2uUIRU
+         yt7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694758674; x=1695363474;
+        d=1e100.net; s=20230601; t=1694759469; x=1695364269;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0uiSSiNDRSvm4B8xTzKBsBa3fPNF7A+8rWeQ9ht9Njg=;
-        b=BoErVqDnTBjFtYw2QKqnkm4zFoGdUZ3R5ETQyEW+ur26zWVFzBKBtrT/lrC16GZLCJ
-         g19garyAGOtp4kBhoYgQ1Zhi7UVwbyba/THF6gThuIK+zlxuVXYeuJAN/VujhU56nQLr
-         Ey2+z+tgZVR5EHEaIVwqMQO0ygM4JG/4g/yEt9GxFNGiQyWeC8a3EjkxV4ex9h6LS/bL
-         kA0J4ynL/LqnG6wectCPBi4WyJPyLO1IAOT4OGyJiwCt2L6qq0J7tt4cHk2YEhFBC3X6
-         R2nNDx91ranKHewN8+7AO8LKmfiMrQibYmnZce1pYMWg5g2LcCxGZRqlOiZUVrTeCth5
-         2W8w==
-X-Gm-Message-State: AOJu0YySzrr5Jg3UMVYdTJmwJJ0+FWJGEgj3PneMTxEzTitXfy4Scfj2
-	SbW3risR9q0ra2cV7z+hH2V0k/9kyLmd/C5LuPA=
-X-Google-Smtp-Source: AGHT+IHOi75TjPkeh4XrDOWqeu+u/f6YCkjlxtoHGOaT6DqJhLpjx4K2xkfOXrFgzd/SUZiNoIYnJclbq1n5SxtSrr8=
-X-Received: by 2002:a2e:9053:0:b0:2bc:d522:dfd4 with SMTP id
- n19-20020a2e9053000000b002bcd522dfd4mr706325ljg.8.1694758673837; Thu, 14 Sep
- 2023 23:17:53 -0700 (PDT)
+        bh=osDnKEtD8rABtGq6iZyMEVFbLNA0vkjbG3+8ZRxxul8=;
+        b=cnheqCEnL0WpEpUFR7fJstCG1z72Avhd0SyS3McBSYN3TCeiLc4Vk/JdsuSaNox59/
+         gpwpy32L5QT46FTZ/sO3efuW54dHZd2aR73MgXHcljGxCMg1m6/rRrNvXaYmu1iiD7ug
+         HfCEt1eiYKNVRyclNsWWeDfvsEEdInSgExhtZuiN1D2t202pLerC8sg6xG2/FVrjCx+7
+         YlCimkRhIrKXchbMslUIxSoqTlq4vP5aQAGhulI5srnu+9l/nAO35IbQ/e2wZmr/n39y
+         4IW9zlorVvrdX8I/4MWM5B6E2e1gMfVGBU2f/c3UkCmsIok5CTKgavs3gi1D1hA7sFqn
+         lErw==
+X-Gm-Message-State: AOJu0YynRR7cWnvRMCRYXXuGeE1jztzrPCgZaCAMz9uKumNizn1LTTDS
+	YYRH2rL6pfVVBbLm3TS4j1AUdAIy3sVqKVQiiLg=
+X-Google-Smtp-Source: AGHT+IEofOw/axC97gBx+1mOuzx7Mng4aQHtbo9CmEfGFtWXeRjnU5+5rahUzZ6vdAmz1XQ1S1uKe+TkI5TDALyNR+w=
+X-Received: by 2002:a2e:7308:0:b0:2be:5b09:553b with SMTP id
+ o8-20020a2e7308000000b002be5b09553bmr730030ljc.8.1694759468354; Thu, 14 Sep
+ 2023 23:31:08 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAApg2=SqAzD9zCnAGB+mtZoTnMCzcnocarpTSCQ0weH15j8KhQ@mail.gmail.com>
- <ZQGsAX4XIMkSN35C@nuoska>
-In-Reply-To: <ZQGsAX4XIMkSN35C@nuoska>
+ <a7bd9391-7800-4de8-82c7-62ae708a5f0c@ni.com>
+In-Reply-To: <a7bd9391-7800-4de8-82c7-62ae708a5f0c@ni.com>
 From: Marta Rybczynska <rybczynska@gmail.com>
-Date: Fri, 15 Sep 2023 08:17:41 +0200
-Message-ID: <CAApg2=T7P2wa6aVXJ0RhvD6ReFSX2=c1z2yqGTmFWxBEdgnHeA@mail.gmail.com>
+Date: Fri, 15 Sep 2023 08:30:56 +0200
+Message-ID: <CAApg2=RMMNyE0FV_0NzyU7SMW-6za0z+zHP78Od9hbicpVS22g@mail.gmail.com>
 Subject: Re: [Openembedded-architecture] Security processes: YP needs
-To: Mikko Rapeli <mikko.rapeli@linaro.org>
-Cc: yocto-security@lists.yoctoproject.org, 
-	OE-core <openembedded-core@lists.openembedded.org>, 
+To: Alex Stewart <alex.stewart@ni.com>
+Cc: OE-core <openembedded-core@lists.openembedded.org>, 
 	openembedded-architecture@lists.openembedded.org, 
-	yocto@lists.yoctoproject.org, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, Steve Sakoman <steve@sakoman.com>, 
-	Khem Raj <raj.khem@gmail.com>, mark.hatle@kernel.crashing.org, 
-	Ross Burton <ross.burton@arm.com>, Joshua Watt <JPEWhacker@gmail.com>
+	yocto@lists.yoctoproject.org, yocto-security@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 06:18:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61014
+ <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 06:31:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61015
 
-On Wed, Sep 13, 2023 at 2:33=E2=80=AFPM Mikko Rapeli <mikko.rapeli@linaro.o=
-rg> wrote:
+On Wed, Sep 13, 2023 at 6:00=E2=80=AFPM Alex Stewart <alex.stewart@ni.com> =
+wrote:
 >
-> Hi,
+> Thanks for driving this Marta. Internally and externally, it feels like
+> we're just on the cusp of everyone *suddenly caring* about our security
+> response strategy. So it's good to see that we're making moves in that
+> direction.
 >
-> On Wed, Sep 13, 2023 at 01:52:19PM +0200, Marta Rybczynska wrote:
-> > Hello,
-> > I've been working recently on collecting what works and what doesn't
-> > in YP security processes. The goal is to go forward and define an
-> > actionable strategy!
+
+Thank you Alex!
+
+>
+> More responses inline.
+>
+> On 9/13/23 07:52, Marta Rybczynska via lists.openembedded.org wrote:
+> > * CVEs: Visibility if YP is vulnerable or not
 > >
-> > Today, I'd like to share with you the summary of what I have heard as
-> > needs from several people (those in Cc:).
+> > People want to be able to check/look up a specific CVE; it might be a
+> > CVE unrelated to YP
+> > (eg. package not included, Windows issue). The cve-checker result is a
+> > part of the solution, but people also want to know which CVEs do not
+> > apply.
+>
+> I'm not sure I understand this usecase. Is there a reason those people
+> can't/won't just lookup the CVE on the NIST site?
+>
+
+Mark's answer is clarifying that. I'll add that this is a requirement
+I have heard
+from multiple sources. People might look up CVE/NIST, but that takes time i=
+f
+you are required to look up all CVEs. If we have common data, we avoid
+duplicate work.
+
+> > * CVEs: synchronization of the work on fixes
 > >
-> > I want the community to comment and tell us what you find important
-> > and what you'd like to see added or changed from this list.
+> > Currently, there is no synchronization; multiple parties might be
+> > working on the same fix while nobody is working on another. There
+> > might be duplication of work.
+> > Ross has https://wiki.yoctoproject.org/wiki/CVE_Status
 >
-> Since most users take poky reference distro and combine it with a number
-> of open source and closed source BSP and other meta layers and build
-> systems to produce SW for products, they also need documentation and tool=
-ing
-> so that they can replicate the Yocto Project security processes and use t=
-he
-> available tools.
-
-Do you also mean that we should make sure Poky follows security best practi=
-ces?
-
-Noted the point on documenting the way process works/will work so other tea=
-ms
-can extend it to their layer.
-
->
-> I think most of the documentation around the tools and processes is in pl=
-ace already.
-> Having maintained and shipped from a non-maintained poky branch, I can ju=
-st say
-> thank you to all who participated in the upstream work to get security vu=
-lnerability
-> detection and fixing possible!
->
-Out of curiosity, what have you backported? cve-check? LTS work?
-
-> That being said, extending the CVE scanning and status tracking work to i=
-nclude more
-> open source layers would be nice both for the maintainers and for the use=
-rs of those
-> layers. Using some random old branch of meta-foo may not be so safe. Mayb=
-e add
-> this data to layer-index?
+> Has there been any discussion of adopting the OpenVEX document standard
+> that the Chainguard guys are putting together? [1] It seems like the VEX
+> use-cases align well with our needs around tracking and coordinating CVE
+> response between YP member and individual developers.
 >
 
-We have Yocto Project Compatible already. Do we need something else?
+We might decide to use it. However, openVEX a way to output
+the data we have/will have (the conclusion), not a way to sync up the work.
+
+>
+> > * Triaging of security issues
+> >
+> > Related to CVE fixes and includes issues reported directly to the YP.
+> > Some issues are more likely to be serious for embedded products
+> > (attack by network), so not all has the same priority.
+>
+> I'll note here that some of us are sinners and do actually support
+> network-attached (and internet-attached) embedded devices. :)
+>
+> But the greater point of OS vendors being able to triage and assign
+> vendor-specific severities to incoming issues is absolutely important to
+> my use-cases.
+>
+
+This is an important point. YP is generic and YP assesment of severity migh=
+t
+be different than the one from a vendor. It means that our process should
+be flexible enough that a vendor can take the data and assign their own
+severity.
+
+> >
+> > * Visibility of the security work of the YP
+> >
+> > There is much work on security in the YP, but it lacks visibility.
+>
+> Is there a common nexus for this work? eg. do most of the folks who are
+> doing security work tend to congregate on the security sublist?
+
+I'd like to know :) This thread is a big cross-post (and sorry for
+that, but I need
+to reach the whole audience), for further discussions I'd like to invite al=
+l
+to a dedicate list.
+
+>
+> > * Additional tooling
+> >
+> > We could add additional tooling: a template on how to add cve-check to
+> > the CI (possibly
+> > a different one than the autobuilder), analyze the result, and extend
+> > our tooling to their layers...
+> > It is also related to the "Architecture" topic below.
+>
+> Can you expand on what you mean here? Is this usecase about extending
+> the existing tooling into the generic CI processes that YP members are
+> using, or about expanding the tooling in the YP's indigenous CI?
+
+This is a requirement assembling multiple ones. Many people mentioned
+that additional
+tooling would be needed and/or helpful. A CI template is an example
+here. I'm interested
+in your list of tooling that would be important or useful to have.
+Preferably related to processes
+that are currently done in-house and that we can make more generic and
+share the work.
+
+>
+> > * Presence on pre-notification lists and receiving information before
+> > the vulnerability gets public
+> >
+> > YP currently depends on public data. Principal distributions receive
+> > the information before
+> > a vulnerability becomes public. It requires (in short) private
+> > reporting, a security team, and a track
+> > of excellent security record.
+> >
+> > * Becoming a CNA (be able to assign CVEs)
+> >
+> > Needed if we want to assign CVEs to the software of the YP, like
+> > autobuilder, Toaster etc.
+>
+> I'm also interested in this, as the maintainer of our opkg fork. So far,
+> I haven't had to respond to a CVE against the project, but that won't
+> last forever.
+
+CVEs against a fork, this is an interesting use-case... Noted :)
 
 Cheers,
 Marta
