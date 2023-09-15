@@ -1,142 +1,87 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ECE13EE6452
-	for <webhook@archiver.kernel.org>; Fri, 15 Sep 2023 10:15:12 +0000 (UTC)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
- by mx.groups.io with SMTP id smtpd.web11.17189.1694772904180770268
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CC90EE645F
+	for <webhook@archiver.kernel.org>; Fri, 15 Sep 2023 14:30:25 +0000 (UTC)
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+ by mx.groups.io with SMTP id smtpd.web11.21838.1694788217735040184
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Sep 2023 03:15:04 -0700
+ Fri, 15 Sep 2023 07:30:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=fF/K6xjQ;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.167.52, mailfrom: jester@theyoctojester.info)
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-502153ae36cso3143254e87.3
-        for <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 03:15:03 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=iQDk+baC;
+ spf=softfail (domain: sakoman.com, ip: 209.85.166.46, mailfrom: steve@sakoman.com)
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-79ac0d271b4so26389139f.1
+        for <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 07:30:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1694772902; x=1695377702; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=4SRbiI8815qE7mYHeyTG3ykD22bj+R2B+nLmN6v1aX0=;
-        b=fF/K6xjQTBqdNb+AG1w4XxYOxIfGthc6ulwCoxaAKQi+xVjXMMRf7DL9PSqMPTHwhA
-         Tka+z/e9oAikdGXRd7roYqjUYcnNRYskkqS3rPKKT82eCxplCo4eKojDt3koJsaJ2wwc
-         nzgjihPEkqefSx++fU6Kg9Q+kYfWKu68zlSnkLjsOhvzpw5FZHLAO4wW5DSUxJOr231l
-         gzIuUViRO7TAjv8oFCKz4a2Kzg6Wzo/yxKYUJwsTvzSj53eF4OSrUKqtMbFYUB07jOtz
-         ITGoMNApV64Abb4ZTJTN/4mkIqvi0WPM0q5uRJP39+9/ArnFFVkh6UDqDpqrquAa8El6
-         owkg==
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1694788216; x=1695393016; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wZhCgUtA4AYhzXGC9pFsQSzI3n07wUPdwXcdPq/ITEY=;
+        b=iQDk+baCL66yC1+coVCwQ4fbLdyPFOpHcCoMllyenUK7Z7x42zbR8h19D/jXxhp+Gu
+         FTsu0DXsJIiOMg0fz3eXagXhK7/L50CE2LaLgz6D/dEYf9jw7ebANvDMN10lR4kTsbQP
+         a3B/obwgSqT9XyGOdD2K2k2u5/4MHpEB5H6i4biOU1h8edDzuWcGWagJVt74c5+SeUOy
+         fGX2qBNzAo3QRePG4gsvVyGsvJoMu5dChneAwqZq617WHEzSknqROxaaeQgUgsE32sU+
+         OfUfBKWlrAm41ENqJih+Q3UICtEVirn65HKZ+9MsE4/P0aeX2fcURiJI5gXZYJcM7wuA
+         YlgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694772902; x=1695377702;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4SRbiI8815qE7mYHeyTG3ykD22bj+R2B+nLmN6v1aX0=;
-        b=Copu5ZH+hLl6SsdNKBJMMSmiKs2CP9zD+C41QZnyk+hM4h994cnF41c3SmAWzh2Y9n
-         ciY1WPz0xcsGKOGfYtiGBBBP5YLuJNmMOYZBb+xiEBLERR1YD+X20dV1m6gQujgoshgG
-         JbD6dqFdvI0qan8+j1NZFvte78eQJPzaMVSvlxRF+tQLRQuRD7N4R7lPtdxvLHit5p+3
-         KcJNAGGfW9HI1yY1eiboGMQDeEVdTTW+Ry6qtfMpnatTFCQB7H5YC/lUjrGcmaNpzIWe
-         IjBYmgpZxbCugJCBxCn2Rbj7GFm/XJDnLyA3OJzv0oYGYuWXRcqD/Pk4Lqv9mZVPNRC2
-         sipQ==
-X-Gm-Message-State: AOJu0Yx3htwJOWquXOWxZ2ZHZRP4I/2xOrCPLWXe4+4xn2ccrdYNP1zH
-	xJ2WayFoEtKa5/CWAVZXg1CRgqify3B6lWYGv+bqKA==
-X-Google-Smtp-Source: AGHT+IE9T7FVi5WeWN5ILD6xb8ExDB1jb2d5J1cUBpR8pRReo+dlusHn54YUaGz2IR41PoQiaj1bprP+lNnDHn2vDzQ=
-X-Received: by 2002:a19:7119:0:b0:500:cb2b:866f with SMTP id
- m25-20020a197119000000b00500cb2b866fmr910715lfc.30.1694772901703; Fri, 15 Sep
- 2023 03:15:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694788216; x=1695393016;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wZhCgUtA4AYhzXGC9pFsQSzI3n07wUPdwXcdPq/ITEY=;
+        b=wj0oKFituca+DH7exwRq6z2pEAIcDNM/zPqqJ6EeC8cZm+PK362xHVXoqHIHEmvC6l
+         x88CnMIvz9g2D8Gj7W/RRwaEyr11WLDl6ipcJC4HvrFHg2T9rzYC/9iwp/Qw8rrhR9Q4
+         RJMbM1SKHRaXcKP9lFDX2bw7clo4+4KrHy1qmCyWW9LEpOFjaF0rs6W/zLm56ltZR6kK
+         vFUy1dJLEuGMP7RHNdzUs9pPq8Hh9GptQJR9jT0C2v/LuN3kjnVP4lrdR/N7vlshjr/V
+         +fs3+PUp6kcNata1wIDQATi4qqrzQS13XlcOtwUuAwhspxtABz2GgvI+qpnoRGjS3+Xp
+         hz3Q==
+X-Gm-Message-State: AOJu0YytEWgPtBMRnaX7YRU/jGxY8RHNIpyTpJ64zlJ6Jz7vgj7xaVfY
+	KJHgWcxr/V8VRmf0FZMbSRQ1h03CbZcMGOwGynA=
+X-Google-Smtp-Source: AGHT+IHOBtlyLSaFk6vCD8t4XvPyG4YRM3Lr8Qa3ZF9/7z5zP57tqOClEXKELJru85dCmXEuImq69Q==
+X-Received: by 2002:a05:6e02:1244:b0:34f:6742:1394 with SMTP id j4-20020a056e02124400b0034f67421394mr2222301ilq.1.1694788216222;
+        Fri, 15 Sep 2023 07:30:16 -0700 (PDT)
+Received: from hexa.lan (dhcp-72-234-106-30.hawaiiantel.net. [72.234.106.30])
+        by smtp.gmail.com with ESMTPSA id p1-20020a63ab01000000b0056946623d7esm2822600pgf.55.2023.09.15.07.30.15
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Sep 2023 07:30:15 -0700 (PDT)
+From: Steve Sakoman <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder2] schedulers.py: use newly created mickledore branch for meta-mingw
+Date: Fri, 15 Sep 2023 04:30:08 -1000
+Message-Id: <550c951f78ab7f262d54919c4edc07d2a93bc4be.1694788158.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1694788158.git.steve@sakoman.com>
+References: <cover.1694788158.git.steve@sakoman.com>
 MIME-Version: 1.0
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Fri, 15 Sep 2023 12:14:35 +0200
-Message-ID: <CAEt6NwrfbV1M9DJt+nXu4hu3xgiKGgnnNGexzht2q-9z4TBQ_A@mail.gmail.com>
-Subject: OEDvM 2023.12
-To: openembedded-devel@lists.openembedded.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	openembedded-members@lists.openembedded.org, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c80993060563107c"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 10:15:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61017
+ <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 14:30:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61018
 
---000000000000c80993060563107c
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ schedulers.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Howdy!
+diff --git a/schedulers.py b/schedulers.py
+index 2f7a8ab..b70b5ed 100644
+--- a/schedulers.py
++++ b/schedulers.py
+@@ -69,7 +69,7 @@ branchdefaults = {
+         'branch_meta-aws': 'mickledore',
+         'branch_meta-gplv2': 'master',
+         'branch_meta-intel': 'mickledore',
+-        'branch_meta-mingw': 'master',
++        'branch_meta-mingw': 'mickledore',
+         'branch_meta-openembedded': 'mickledore',
+         'branch_meta-ti': 'master',
+         'branch_meta-virtualization': 'mickledore',
+-- 
+2.34.1
 
-We are happy to announce this years OEDvM taking place on Friday December
-1st, 2023.
-
-Bring your topics and challenges for discussion, or just join for the
-networking.
-
-As usual, the main organization will happen through the OpenEmbedded Wiki,
-with the event page being located at
-https://www.openembedded.org/wiki/OEDvM_2023.12
-<https://www.openembedded.org/wiki/OEDvM_2023.12>
-
-The meeting is open to everybody, and explicitly inviting non-members to
-join the conversation, and possibly the organization.
-
-If you have any questions, feel free to reach out!
-
-Greetz,
-Josef, on behalf of the OpenEmbedded board
-
---000000000000c80993060563107c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Howdy!<div><br></div><div><span style=3D"color:rgba(0,0,0,=
-0.9);font-family:-apple-system,system-ui,&quot;system-ui&quot;,&quot;Segoe =
-UI&quot;,Roboto,&quot;Helvetica Neue&quot;,&quot;Fira Sans&quot;,Ubuntu,Oxy=
-gen,&quot;Oxygen Sans&quot;,Cantarell,&quot;Droid Sans&quot;,&quot;Apple Co=
-lor Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot=
-;Segoe UI Symbol&quot;,&quot;Lucida Grande&quot;,Helvetica,Arial,sans-serif=
-;font-size:14px">We are happy to announce this years OEDvM taking place on =
-Friday December 1st, 2023.</span><br style=3D"box-sizing:inherit;color:rgba=
-(0,0,0,0.9);font-family:-apple-system,system-ui,&quot;system-ui&quot;,&quot=
-;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,&quot;Fira Sans&quot;,Ubu=
-ntu,Oxygen,&quot;Oxygen Sans&quot;,Cantarell,&quot;Droid Sans&quot;,&quot;A=
-pple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Emoji&quot=
-;,&quot;Segoe UI Symbol&quot;,&quot;Lucida Grande&quot;,Helvetica,Arial,san=
-s-serif;font-size:14px;line-height:inherit"><br style=3D"box-sizing:inherit=
-;color:rgba(0,0,0,0.9);font-family:-apple-system,system-ui,&quot;system-ui&=
-quot;,&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,&quot;Fira San=
-s&quot;,Ubuntu,Oxygen,&quot;Oxygen Sans&quot;,Cantarell,&quot;Droid Sans&qu=
-ot;,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI=
- Emoji&quot;,&quot;Segoe UI Symbol&quot;,&quot;Lucida Grande&quot;,Helvetic=
-a,Arial,sans-serif;font-size:14px;line-height:inherit"><span style=3D"color=
-:rgba(0,0,0,0.9);font-family:-apple-system,system-ui,&quot;system-ui&quot;,=
-&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,&quot;Fira Sans&quot=
-;,Ubuntu,Oxygen,&quot;Oxygen Sans&quot;,Cantarell,&quot;Droid Sans&quot;,&q=
-uot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Emoji=
-&quot;,&quot;Segoe UI Symbol&quot;,&quot;Lucida Grande&quot;,Helvetica,Aria=
-l,sans-serif;font-size:14px">Bring your topics and challenges for discussio=
-n, or just join for the networking.</span><br></div><div><span style=3D"col=
-or:rgba(0,0,0,0.9);font-family:-apple-system,system-ui,&quot;system-ui&quot=
-;,&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,&quot;Fira Sans&qu=
-ot;,Ubuntu,Oxygen,&quot;Oxygen Sans&quot;,Cantarell,&quot;Droid Sans&quot;,=
-&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Emo=
-ji&quot;,&quot;Segoe UI Symbol&quot;,&quot;Lucida Grande&quot;,Helvetica,Ar=
-ial,sans-serif;font-size:14px"><br></span></div><div><span style=3D"color:r=
-gba(0,0,0,0.9);font-family:-apple-system,system-ui,&quot;system-ui&quot;,&q=
-uot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,&quot;Fira Sans&quot;,=
-Ubuntu,Oxygen,&quot;Oxygen Sans&quot;,Cantarell,&quot;Droid Sans&quot;,&quo=
-t;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Emoji&q=
-uot;,&quot;Segoe UI Symbol&quot;,&quot;Lucida Grande&quot;,Helvetica,Arial,=
-sans-serif;font-size:14px">As usual, the main organization will happen thro=
-ugh the OpenEmbedded Wiki, with the event page being located at=C2=A0</span=
-><a href=3D"https://www.openembedded.org/wiki/OEDvM_2023.12">https://www.op=
-enembedded.org/wiki/OEDvM_2023.12<span style=3D"color:rgba(0,0,0,0.9);font-=
-family:-apple-system,system-ui,&quot;system-ui&quot;,&quot;Segoe UI&quot;,R=
-oboto,&quot;Helvetica Neue&quot;,&quot;Fira Sans&quot;,Ubuntu,Oxygen,&quot;=
-Oxygen Sans&quot;,Cantarell,&quot;Droid Sans&quot;,&quot;Apple Color Emoji&=
-quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI =
-Symbol&quot;,&quot;Lucida Grande&quot;,Helvetica,Arial,sans-serif;font-size=
-:14px">=C2=A0</span></a></div><div><br></div><div>The meeting is open to ev=
-erybody, and explicitly inviting non-members to join the conversation, and =
-possibly the organization.</div><div><br></div><div>If you have any questio=
-ns, feel free to reach out!</div><div><br></div><div>Greetz,</div><div>Jose=
-f, on behalf of the OpenEmbedded board</div></div>
-
---000000000000c80993060563107c--
 
