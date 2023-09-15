@@ -1,87 +1,72 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CC90EE645F
-	for <webhook@archiver.kernel.org>; Fri, 15 Sep 2023 14:30:25 +0000 (UTC)
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
- by mx.groups.io with SMTP id smtpd.web11.21838.1694788217735040184
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F4A0CD37B0
+	for <webhook@archiver.kernel.org>; Fri, 15 Sep 2023 23:08:56 +0000 (UTC)
+Received: from a27-192.smtp-out.us-west-2.amazonses.com (a27-192.smtp-out.us-west-2.amazonses.com [54.240.27.192])
+ by mx.groups.io with SMTP id smtpd.web10.2273.1694819333391656695
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Sep 2023 07:30:17 -0700
+ Fri, 15 Sep 2023 16:08:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=iQDk+baC;
- spf=softfail (domain: sakoman.com, ip: 209.85.166.46, mailfrom: steve@sakoman.com)
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-79ac0d271b4so26389139f.1
-        for <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 07:30:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1694788216; x=1695393016; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wZhCgUtA4AYhzXGC9pFsQSzI3n07wUPdwXcdPq/ITEY=;
-        b=iQDk+baCL66yC1+coVCwQ4fbLdyPFOpHcCoMllyenUK7Z7x42zbR8h19D/jXxhp+Gu
-         FTsu0DXsJIiOMg0fz3eXagXhK7/L50CE2LaLgz6D/dEYf9jw7ebANvDMN10lR4kTsbQP
-         a3B/obwgSqT9XyGOdD2K2k2u5/4MHpEB5H6i4biOU1h8edDzuWcGWagJVt74c5+SeUOy
-         fGX2qBNzAo3QRePG4gsvVyGsvJoMu5dChneAwqZq617WHEzSknqROxaaeQgUgsE32sU+
-         OfUfBKWlrAm41ENqJih+Q3UICtEVirn65HKZ+9MsE4/P0aeX2fcURiJI5gXZYJcM7wuA
-         YlgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694788216; x=1695393016;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wZhCgUtA4AYhzXGC9pFsQSzI3n07wUPdwXcdPq/ITEY=;
-        b=wj0oKFituca+DH7exwRq6z2pEAIcDNM/zPqqJ6EeC8cZm+PK362xHVXoqHIHEmvC6l
-         x88CnMIvz9g2D8Gj7W/RRwaEyr11WLDl6ipcJC4HvrFHg2T9rzYC/9iwp/Qw8rrhR9Q4
-         RJMbM1SKHRaXcKP9lFDX2bw7clo4+4KrHy1qmCyWW9LEpOFjaF0rs6W/zLm56ltZR6kK
-         vFUy1dJLEuGMP7RHNdzUs9pPq8Hh9GptQJR9jT0C2v/LuN3kjnVP4lrdR/N7vlshjr/V
-         +fs3+PUp6kcNata1wIDQATi4qqrzQS13XlcOtwUuAwhspxtABz2GgvI+qpnoRGjS3+Xp
-         hz3Q==
-X-Gm-Message-State: AOJu0YytEWgPtBMRnaX7YRU/jGxY8RHNIpyTpJ64zlJ6Jz7vgj7xaVfY
-	KJHgWcxr/V8VRmf0FZMbSRQ1h03CbZcMGOwGynA=
-X-Google-Smtp-Source: AGHT+IHOBtlyLSaFk6vCD8t4XvPyG4YRM3Lr8Qa3ZF9/7z5zP57tqOClEXKELJru85dCmXEuImq69Q==
-X-Received: by 2002:a05:6e02:1244:b0:34f:6742:1394 with SMTP id j4-20020a056e02124400b0034f67421394mr2222301ilq.1.1694788216222;
-        Fri, 15 Sep 2023 07:30:16 -0700 (PDT)
-Received: from hexa.lan (dhcp-72-234-106-30.hawaiiantel.net. [72.234.106.30])
-        by smtp.gmail.com with ESMTPSA id p1-20020a63ab01000000b0056946623d7esm2822600pgf.55.2023.09.15.07.30.15
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Sep 2023 07:30:15 -0700 (PDT)
-From: Steve Sakoman <steve@sakoman.com>
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=RbrmBomd;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=Chnbcf1U;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.192, mailfrom: 0101018a9b1ab101-c32e6992-2e4a-4e66-8cc4-8def114b89e3-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1694819332; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=s4kI1qhaXs8R0pMIXiSWy0TDg7wc1BlOLQsOlDurfgw=;
+	b=RbrmBomdW+mF/OfmSBcXKr7iNcEeomNVC8NGY2TRioJ22LNPXKKNwelziGU6MIqw
+	s4PAGeG5EXE1pJK/Ksm/8Nq0Tvr4bIeid+D+GgGuL5JGRievo49J60gtvaQxKl9HSda
+	ZMghVy4weWYBa+4aF+7Jy0Xpj0KVFKPj+5dL02Pg=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1694819332;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=s4kI1qhaXs8R0pMIXiSWy0TDg7wc1BlOLQsOlDurfgw=;
+	b=Chnbcf1UKDrMg+znRIU3qQGOvoUip4fPXPRMbgX0ixT27ZCWEi3IZL9Y0Flbu1Qu
+	Jq3XHLmAHTaNQ+xVMONAmqg/QyV1i3xnhgkSjp0BgmFuQy5SIsMfvehDCD+2/h8cIam
+	z53M8dCBpBYd2rrA29g3ja/C7V5ve7cVApy7m/tc=
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2] schedulers.py: use newly created mickledore branch for meta-mingw
-Date: Fri, 15 Sep 2023 04:30:08 -1000
-Message-Id: <550c951f78ab7f262d54919c4edc07d2a93bc4be.1694788158.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1694788158.git.steve@sakoman.com>
-References: <cover.1694788158.git.steve@sakoman.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-3.1.28.rc1)
+Message-ID: <0101018a9b1ab101-c32e6992-2e4a-4e66-8cc4-8def114b89e3-000000@us-west-2.amazonses.com>
+Date: Fri, 15 Sep 2023 23:08:52 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.09.15-54.240.27.192
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 14:30:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61018
+ <yocto@lists.yoctoproject.org>; Fri, 15 Sep 2023 23:08:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61019
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- schedulers.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/schedulers.py b/schedulers.py
-index 2f7a8ab..b70b5ed 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -69,7 +69,7 @@ branchdefaults = {
-         'branch_meta-aws': 'mickledore',
-         'branch_meta-gplv2': 'master',
-         'branch_meta-intel': 'mickledore',
--        'branch_meta-mingw': 'master',
-+        'branch_meta-mingw': 'mickledore',
-         'branch_meta-openembedded': 'mickledore',
-         'branch_meta-ti': 'master',
-         'branch_meta-virtualization': 'mickledore',
--- 
-2.34.1
+A build flagged for QA (yocto-3.1.28.rc1) was completed on the autobuilder and is available at:
 
+
+    https://autobuilder.yocto.io/pub/releases/yocto-3.1.28.rc1
+
+
+Build hash information: 
+
+bitbake: b60c7085ec370473bea9b3b4b65826a17638837f
+meta-agl: e0f6590189cb0a510bff0d4233667c552d964591
+meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882
+meta-aws: 77e5438c27292ad5f8c7d3b100cb09b8dbf1c7f4
+meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+meta-intel: e482213f37828216c7a7df68ff353652cc865ec1
+meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+meta-openembedded: e42d1e758f9f08b98c0e8c6f0532316951bb276f
+meta-virtualization: 0dbb8593fa38ac2a04fcac04ff3e35611e849824
+oecore: a6dde75a3cbd99cb346a8ab8183e96752d005a6b
+poky: 55b09cdc1c4795f4976867034567b012e39cad41
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
