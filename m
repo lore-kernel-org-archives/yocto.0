@@ -1,139 +1,72 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 73792CD37BF
-	for <webhook@archiver.kernel.org>; Sat, 16 Sep 2023 15:33:12 +0000 (UTC)
-Subject: No able to ssh or ping to raspberry pi4 device
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93CF4CD37B3
+	for <webhook@archiver.kernel.org>; Sun, 17 Sep 2023 07:02:44 +0000 (UTC)
+Received: from a27-29.smtp-out.us-west-2.amazonses.com (a27-29.smtp-out.us-west-2.amazonses.com [54.240.27.29])
+ by mx.groups.io with SMTP id smtpd.web10.26155.1694934156727240927
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 17 Sep 2023 00:02:36 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=QIRLp9Td;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=p1FXQVt8;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.29, mailfrom: 0101018aa1f2c11f-86d5f669-c1d2-4ef2-bd68-f03f877b24b6-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1694934155; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=C+fCp+Y8Hlo2wb5mZtO7i4VBjaZRzTPNvMEXak9BFwA=;
+	b=QIRLp9TdYGeZMVo4nnT0h+NpVYF7k0K6mOGc37gDChH2tyjKwmG5BnhkbOQZ6+ER
+	2I6dTGCS5UzKad0Zy0LYwlOiLFZQwuqir41LCAywx/f3CzyFTHQK3v7OIs4JqvDNCQz
+	l4sX+6TXg3aJTgi8TLw5KLuNsoD9mboBMbbOyXHk=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1694934155;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=C+fCp+Y8Hlo2wb5mZtO7i4VBjaZRzTPNvMEXak9BFwA=;
+	b=p1FXQVt84fc6DyhCqI0oQgA9kBaswUBz5g3a+g2fF6kXH9OKG7quKS3vSC2X5t72
+	a6a5mKFZsL2NG/nOKgV5pi5iyFh1MFPlTemzKrT2IdUd1iyaGjYkRF707WXlGfWAxvS
+	uv2ERAkVWJv3ws6AUDMjxjxAxAaxCi/Df1ODU1vc=
 To: yocto@lists.yoctoproject.org
-From: mvjohn100@gmail.com
-X-Originating-Location: Mumbai, Maharashtra, IN (58.84.60.229)
-X-Originating-Platform: Linux Chrome 117
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Sat, 16 Sep 2023 07:34:08 -0700
-Message-ID: <f8wg.1694874848991616504.HOKt@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="NGOf8ngLGEUG2zo4ite6"
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-3.1.28.rc2)
+Message-ID: <0101018aa1f2c11f-86d5f669-c1d2-4ef2-bd68-f03f877b24b6-000000@us-west-2.amazonses.com>
+Date: Sun, 17 Sep 2023 07:02:35 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.09.17-54.240.27.29
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 16 Sep 2023 15:33:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61021
+ <yocto@lists.yoctoproject.org>; Sun, 17 Sep 2023 07:02:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61022
 
---NGOf8ngLGEUG2zo4ite6
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-added Raspberry layer from https://github.com/agherzan/meta-raspberrypi/tre=
-e/mickledore
+A build flagged for QA (yocto-3.1.28.rc2) was completed on the autobuilder and is available at:
 
-in local.conf changed
 
-MACHINE ?=3D "raspberrypi4-64"
-EXTRA_IMAGE_FEATURES ?=3D "debug-tweaks ssh-server-openssh"
+    https://autobuilder.yocto.io/pub/releases/yocto-3.1.28.rc2
 
-bitbake-layers show-layers=C2=A0 =C2=A0shows
 
-core=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /home/jo=
-hn/yacto/poky/meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 5
-yocto=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/home/jo=
-hn/yacto/poky/meta-poky=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A05
-yoctobsp=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /home/john/yacto/p=
-oky/meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 5
-openembedded-layer=C2=A0 =C2=A0 /home/john/yacto/meta-openembedded/meta-oe=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 5
-meta-python=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/home/john/yacto/meta-o=
-penembedded/meta-python=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 5
-networking-layer=C2=A0 =C2=A0 =C2=A0 /home/john/yacto/meta-openembedded/met=
-a-networking=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 5
-multimedia-layer=C2=A0 =C2=A0 =C2=A0 /home/john/yacto/meta-openembedded/met=
-a-multimedia=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 5
-raspberrypi=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/home/john/yacto/meta-r=
-aspberrypi=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A09
+Build hash information: 
 
-arp-scan shows
+bitbake: b60c7085ec370473bea9b3b4b65826a17638837f
+meta-agl: e0f6590189cb0a510bff0d4233667c552d964591
+meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882
+meta-aws: 77e5438c27292ad5f8c7d3b100cb09b8dbf1c7f4
+meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+meta-intel: e482213f37828216c7a7df68ff353652cc865ec1
+meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+meta-openembedded: e42d1e758f9f08b98c0e8c6f0532316951bb276f
+meta-virtualization: 0dbb8593fa38ac2a04fcac04ff3e35611e849824
+oecore: 8b91c463fb3546836789e1890b3c68acf69c162a
+poky: 926eb08fe325e2ea13098f99d920840b9354ceb9
 
-169.254.252.36 d8:3a:dd:3a:bd:ef Raspberry Pi Trading Ltd
 
-ssh root@169.254.252.36=C2=A0 show
 
-ssh: connect to host 169.254.252.36 port 22: No route to host
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
 
-ping 169.254.252.36 shows
 
-PING 169.254.252.36 (169.254.252.36) 56(84) bytes of data.
-From 192.168.1.14 icmp_seq=3D1 Destination Host Unreachable
-
---NGOf8ngLGEUG2zo4ite6
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>added Raspberry layer from&nbsp; <a href=3D"https://github.com/agherza=
-n/meta-raspberrypi/tree/mickledore" target=3D"_blank" rel=3D"noopener">http=
-s://github.com/agherzan/meta-raspberrypi/tree/mickledore</a><br /><br /></d=
-iv>
-<div>in local.conf changed&nbsp; &nbsp;<br /><br /></div>
-<div>MACHINE ?=3D "raspberrypi4-64"&nbsp;</div>
-<div>EXTRA_IMAGE_FEATURES ?=3D "debug-tweaks ssh-server-openssh"&nbsp;</div=
->
-<div>&nbsp;</div>
-<div>bitbake-layers show-layers&nbsp; &nbsp;shows&nbsp;</div>
-<div>&nbsp;</div>
-<div>core&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /ho=
-me/john/yacto/poky/meta&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5</div>
-<div>yocto&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/ho=
-me/john/yacto/poky/meta-poky&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp;5</div>
-<div>yoctobsp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /home/john/ya=
-cto/poky/meta-yocto-bsp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5=
-</div>
-<div>openembedded-layer&nbsp; &nbsp; /home/john/yacto/meta-openembedded/met=
-a-oe&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5</div>
-<div>meta-python&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/home/john/yacto/m=
-eta-openembedded/meta-python&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5</div>
-<div>networking-layer&nbsp; &nbsp; &nbsp; /home/john/yacto/meta-openembedde=
-d/meta-networking&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; 5</div>
-<div>multimedia-layer&nbsp; &nbsp; &nbsp; /home/john/yacto/meta-openembedde=
-d/meta-multimedia&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; 5</div>
-<div>raspberrypi&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/home/john/yacto/m=
-eta-raspberrypi&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp;9</div>
-<div>&nbsp;</div>
-<div>arp-scan shows&nbsp;&nbsp;</div>
-<div>&nbsp;</div>
-<div>169.254.252.36<span style=3D"white-space: pre;"> </span>d8:3a:dd:3a:bd=
-:ef<span style=3D"white-space: pre;"> </span>Raspberry Pi Trading Ltd</div>
-<div>&nbsp;</div>
-<div>ssh root@169.254.252.36&nbsp; show&nbsp;</div>
-<div>&nbsp;</div>
-<div>ssh: connect to host 169.254.252.36 port 22: No route to host</div>
-<div>&nbsp;</div>
-<div>ping 169.254.252.36 shows&nbsp;</div>
-<div>&nbsp;</div>
-<div>PING 169.254.252.36 (169.254.252.36) 56(84) bytes of data.</div>
-<div>From 192.168.1.14 icmp_seq=3D1 Destination Host Unreachable<br /><br /=
-><br /></div>
-<div>&nbsp;</div>
-
---NGOf8ngLGEUG2zo4ite6--
+ 
 
