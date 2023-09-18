@@ -1,154 +1,277 @@
-Return-Path: <quentin.schulz@theobroma-systems.com>
+Return-Path: <Logan.Grosz@b9c.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7800CD13D2
-	for <webhook@archiver.kernel.org>; Mon, 18 Sep 2023 14:50:45 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (EUR05-DB8-obe.outbound.protection.outlook.com [40.107.20.63])
- by mx.groups.io with SMTP id smtpd.web10.53180.1695048635948944935
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E59D8CD37B0
+	for <webhook@archiver.kernel.org>; Mon, 18 Sep 2023 14:54:55 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (NAM11-BN8-obe.outbound.protection.outlook.com [40.107.236.100])
+ by mx.groups.io with SMTP id smtpd.web11.53522.1695048886882108520
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Sep 2023 07:50:36 -0700
+ Mon, 18 Sep 2023 07:54:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=PD9/0ysq;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.20.63, mailfrom: quentin.schulz@theobroma-systems.com)
+ dkim=pass header.i=@b9c.com header.s=selector1 header.b=ZyINDW0K;
+ spf=pass (domain: b9c.com, ip: 40.107.236.100, mailfrom: logan.grosz@b9c.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QM5HfYRgVki1zydWNesPS7plr4aDsFWet671JZ+XXF3FC11w+OuuXuINbGdWv/y25Q2KD79NoL22xQFJjb4oKvBrCsgUir2Sntk2aBLRwKXMkPnA9STIS19CG/LkeCg/6sJkcpE8pBuYI4WG8HI9i50YlGuWphd39a/GdwumkBI+xwc3pEH4J9zmi3yxA/dJOAR6yJKwuWhXM79i0nV3B0+3c8i8ru1JBMwR7I0TDdLHTG+lzz7Hk4+y/UR3pu5twyeaD2ol3IMUmbvDYDmvdAxLpOWy/HaOpWXR/c2RNc9KWoDSXoWmEliijYPvPpMNuEwMJQY6QXjH56AD60ebYg==
+ b=KNxk6xEbNoiWoV9B6CIkoToCTGny+VpJuEb16GPlq2aF8IYngcGJ/r4Bt421DeM21aty5il0eSGVZA+2u/cqVy3dvZ9/UdvR5H53Q6s8Lt9vFlGOYQn985P6mq5xqhvZx5NucG4MOUPFzTdgWJTS6V1B4WhXY53tqNyuTkIZDUe9JwmUQkJA4VA3b6vOr+fC3f4VdEjcvLe8C27o8GQLfZUQ4ucx5ijngvSXQCvk6As5lUegIIpZVbnuIMaUBddJUZCpYkCS/1LN8mYF1yca4xwEnatS90Cyy/AmUJDKLxdvMNJ5IJ7CrIg0n0FLje5K3IKnDlNsX7u0TUiVhDSM4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9RGWFDFZ5sGSjAKf/sb+Kw2/8JjMuysFy8Pm1iRNnME=;
- b=X5wl9s1OgG47C32HTsXH2h0pfc0hDXg0Qy5tMAGP5ZySFT44vL25Pcv7GFggLAVWHN0nVv540VfCmeq6IKUAI35Cd1UtFBKBrUEL1aBIPHBBx0toHCry879qTg7FasmwNkeVsHK/bl3ulRfoFw7aOwqDcA340Ev0W3svQH6WUn91Jn4tnQAY1Q5qlrBmUkXoi0ZWjNFS4i18wNk6vo4IHzKxVRub//+Yho+F8XO+bms9yUCcjEWZCF1B96HbkEviSQhn6RZOPG6ipi1dVdnXhQqa9Lm7f1OZPI+I4kYpsMdjzOznCyjn61z9TyUyHo4J41nY8Dg4ECZIPji2X1B23Q==
+ bh=t0KrQhmiqXNUY82yhuqjvBjxZc4uHpuqHw2pyk+NsZc=;
+ b=A5uJdVXFLzlcva4scCd6t0pjfUnh2v65zTTVgsqtYYJD86Jlj7COVk4cR2CND6Caaupzr0kdfvDo/3kvoZgnKhIzFluXRKDkAZONGuRk7RBIfAYF5IcABVPfZoQOfRM1tTw5z6XmLvrkF/ZVQ8uMA9tiL4wZu3cydpPu1RxlMQTO4XtwuJ2Qs5NYkjmQJcdSVn8Sndww89z9xS9uA9lUwNV2jveBbo/0dfUMF1xlfKpmJ1ZNakZTi6e20Q82M5i4Rgi0Cl6frrhPYrGGio48rPrp2vuW8IJUJBunB/ihJD1sGDOOfP/xyaPc+ZUskmTEHTEQCdx4a73qMYJG2SVk+g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
+ smtp.mailfrom=b9c.com; dmarc=pass action=none header.from=b9c.com; dkim=pass
+ header.d=b9c.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=b9c.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9RGWFDFZ5sGSjAKf/sb+Kw2/8JjMuysFy8Pm1iRNnME=;
- b=PD9/0ysq+SyGLeZIEPMNMZ91cdv/TEtaK08xfLVKqP8ZvLJcwCWUlO95KCEf2kGgcaw2TsgPTvaRCRnsyHsHZynwjhvYNf2TOY9KIGxU/b5QJAeayI2CGvDjLIthBygQdDSIS6DbwXABf//WnrGG03UVT8BEPkoqEx+7HwbGRn+qZUgk8j+fGzncenAGAD1vth/6Qves3HDdH+dfj1kTpaIr4d3k0kKAqskrtzICnL7iDuqVYbn7WQUQmaksjKy/RlzXznLB6yAYQpjQOjuf0GcDq6Fg3UfIaAZW7LNdWrAhW9AUt08/ClSMgK4QWaDWiu2vfi7ztG30+U/d2bLPtQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
- by AS4PR04MB9549.eurprd04.prod.outlook.com (2603:10a6:20b:4f8::21) with
+ bh=t0KrQhmiqXNUY82yhuqjvBjxZc4uHpuqHw2pyk+NsZc=;
+ b=ZyINDW0K+G0vR80/kjtckhmtrovSlXVhrrHfteTP+44vcPDMzdu59ti/0mjAUcr3BCwROp2qzSgU0i6oscThHLO7axSyVn5V1C778/5xVd1Hsttu/i51QEgrp13V6OCE2LXT5dkXPLRrCvV9sCugA4EJIAySIX7NZ+6ObEd0w+0=
+Received: from MW4PR16MB5087.namprd16.prod.outlook.com (2603:10b6:303:1be::18)
+ by MW4PR16MB5032.namprd16.prod.outlook.com (2603:10b6:303:1b7::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.26; Mon, 18 Sep
- 2023 14:50:32 +0000
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::5c00:6152:6ce:72b6]) by DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::5c00:6152:6ce:72b6%7]) with mapi id 15.20.6792.026; Mon, 18 Sep 2023
- 14:50:32 +0000
-Message-ID: <838268d3-7b61-6331-270a-1a35f210d5a1@theobroma-systems.com>
-Date: Mon, 18 Sep 2023 16:50:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
+ 2023 14:54:43 +0000
+Received: from MW4PR16MB5087.namprd16.prod.outlook.com
+ ([fe80::7145:89d0:98b8:2cef]) by MW4PR16MB5087.namprd16.prod.outlook.com
+ ([fe80::7145:89d0:98b8:2cef%7]) with mapi id 15.20.6792.024; Mon, 18 Sep 2023
+ 14:54:43 +0000
+From: Logan Grosz <Logan.Grosz@b9c.com>
+To: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Overriding package configuration as a distro
+Thread-Topic: [yocto] Overriding package configuration as a distro
+Thread-Index: AQHZ6j6M7yRKz/p7LEGKuaImpNR2irAgqnIAgAAA9BM=
+Date: Mon, 18 Sep 2023 14:54:43 +0000
+Message-ID: 
+ <MW4PR16MB5087C85F25577FBAB93300D7BBFBA@MW4PR16MB5087.namprd16.prod.outlook.com>
+References: 
+ <MW4PR16MB5087B2826350F1ECBED3E9E0BBFBA@MW4PR16MB5087.namprd16.prod.outlook.com>
+ <838268d3-7b61-6331-270a-1a35f210d5a1@theobroma-systems.com>
+In-Reply-To: <838268d3-7b61-6331-270a-1a35f210d5a1@theobroma-systems.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Logan.Grosz@b9c.com,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <MW4PR16MB5087B2826350F1ECBED3E9E0BBFBA@MW4PR16MB5087.namprd16.prod.outlook.com>
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <MW4PR16MB5087B2826350F1ECBED3E9E0BBFBA@MW4PR16MB5087.namprd16.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0157.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:99::18) To DU2PR04MB8536.eurprd04.prod.outlook.com
- (2603:10a6:10:2d7::10)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=b9c.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR16MB5087:EE_|MW4PR16MB5032:EE_
+x-ms-office365-filtering-correlation-id: b789dbab-8bf6-4b61-95d8-08dbb8573164
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 05uZxEiuT0xJoVYgNIYk+LMIJH1W+bAwp3cOOX/752SLKEDJhN/ccMJ69W3cQiZHqrMIsBnoWeB+MO1+A7CbxsS+6BZeiEabzvnTrJ+XuyyUvPB0QsNoo/VlZxSmmRgKvdY5AlQBF4QKbJmsxuCmttnqUxqG7ZCXnih+Evml84lpDHAUAzrRtNoBuu0RkSLqMrgLKrlWnOh8j7+ZwaTQt5oRaXOaxOmq98i1VJLru9WtiF+Ny4eOthKoHGaL/ANTxhBEFXCYR0oI39hFGMTEK05gm62iDRmitQUycQvmXSKi1kfdU8sbSCSWGj2QfmN7BlrWbBjI8ezABdBceFqg3bgqsKCkhkW9FUsJEmjuHqyUfFqHtW0RWMmxi3t5/9c256TDYFjPH8XVWPHuaBNlm20w1Oa13uANZ15jRvFDHXSYVv2SHoqWRUWHsGrd0RGcNIpnz8uANdbwpkwoACSPJWvvYL2uALGPCau91PGotDlvtjFmvcIeA0mUfdLuYgwfXWMM4fxDOGiC0gGIdka2FIGsYr/iGt/75b9O66GC8sT+UIYKK9xivRPHjQbBuFS4loLTfbP2hkcyH87on/OCkllcIJN74duUxQNPAxynSafcr4vo9TwGJQntREPGUKVU
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR16MB5087.namprd16.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39830400003)(346002)(396003)(376002)(1800799009)(186009)(451199024)(26005)(52536014)(8936002)(8676002)(122000001)(66899024)(33656002)(2906002)(55016003)(5660300002)(86362001)(166002)(53546011)(7696005)(6506007)(19627405001)(478600001)(71200400001)(316002)(9686003)(76116006)(110136005)(91956017)(38100700002)(66946007)(66446008)(64756008)(38070700005)(66476007)(41300700001)(66556008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?gWIrOcbU9XL0Gd2z3XOZe/VEQX6ysTftBvvu60H5n7hzEMGXahRQ9uuWAj2D?=
+ =?us-ascii?Q?gQlU7qYdD/cW/TRxhV245rzZWgYHy+g0EzCMesOyutzrmywmTw6MahPTGk3v?=
+ =?us-ascii?Q?gL7PZ6EKUrLAkMGkI1KUIDz++3Qw3rCg2j+UKMOWzYViP1jE5dczTb4jV0TF?=
+ =?us-ascii?Q?9Aki+Rtc2c2GvtNicoVpJ16zdJCx5VOBNxh6Q5ZB/034JWm/zqCrRWAiQHHE?=
+ =?us-ascii?Q?huaLJ4XIvZQWp0KHwFuRmMzTam87zcZTfePBUclX929eb8FmJL+iC3acIcO4?=
+ =?us-ascii?Q?/Ra5GP8D4Y/2DfwRiwoV+NkBFIYyt/3xjslhNbW6IpeuITJghCjLfPoPMI44?=
+ =?us-ascii?Q?Re5HIieiFNUhDNEIXCRDBfSDj940Z9bUv8lNTbskNCFNSanw1ip/xKiUd5Oh?=
+ =?us-ascii?Q?iAivseRx0bsTkVAPTDoCinSIAOj8wLK/0uEv8tnDGJ6pXuUx5Aaj8BqtfE1f?=
+ =?us-ascii?Q?CY+DIoNBJEohQdj4jjII1STbvQxboUuMMdxkkogi/fq7JD4vx5eNScEz4bFh?=
+ =?us-ascii?Q?AEcvfiRkuln1MAmTYhVfZxeSU4u2XpULhVC8J+28r2jFNWxgfP/9IJlY08AS?=
+ =?us-ascii?Q?lSvGJsi3j4k1B/aiaKAhZJyLDz3k3XjrXBnoHvPBmswTWS4qDEo2sSasLenY?=
+ =?us-ascii?Q?/Np4exCOj5sVU6BkLjhQS60nLmwCoFjmiBn6/hfe6cHE28Tap/800lyKrms3?=
+ =?us-ascii?Q?w/ZsnieMZEcYeXoiTmjaOz9V5LuwS25pJt1GMP6jEXi2e0eGCejl10ruuaOs?=
+ =?us-ascii?Q?tPpqrMvarVT1nidwumqySctQFT1VTLEhhwC/VZtRO6/EytSuIowF38oDcjJJ?=
+ =?us-ascii?Q?OnKIHt6pXOEpjxfiktu61gjPGrdBFOFVhnJBaNmFxG2CopMqIHQGn9ED7MVm?=
+ =?us-ascii?Q?XCJqVQLR/atLgtnd9paJ0f+lj0j5bGbrPTSQ4TKBNSL1bwkxN5gBSNAmYZI9?=
+ =?us-ascii?Q?+cbuGCnH1LAENiWQXdz+Z/2dNi8dIlm3SSJYZvUaRqMTZApT6CE8TRnE9G2C?=
+ =?us-ascii?Q?1GjjyGPub7o2Fb9/RU2MdbOKXH+vqYChgehbpOnN0XOXXyoIb190BNyrWlBY?=
+ =?us-ascii?Q?BV1k2UnBXhGcz0mU0V6i6EVB4G3XD9ktA4kxhduxa2OEe36ldiUZ8KwI1iv5?=
+ =?us-ascii?Q?5nf9UOr9TTNLiLUVV80OE23jm+x5XBMSoQhdfuHnNpxan3Ym6G9e3oU634Tc?=
+ =?us-ascii?Q?pnHvr/7kg7dCqQSjE/uAy9h1L6fx8pf4hym/oai7HU2XEmVNK3J+3t9hpwDX?=
+ =?us-ascii?Q?BwoLT6dUFscP7ccWWrmZbJhyLkG6mIyaxvzg/J8adhmWF/pL+V7VN+oz6vwt?=
+ =?us-ascii?Q?QuWNtqR2A7eX7abbpZA8B/P8ti2br9xagw5rTjpLMwvtjihzY8ZiKjJ3LANV?=
+ =?us-ascii?Q?Lv/vyIdF8XwYz9bSkSIDj+tUk2jr1miQGP7mHCXHm1Q3WHuxpz4gZffO6Pv7?=
+ =?us-ascii?Q?YmtaPW1KrjUzb8+VYgOfiVJ0BkbwmO0Du4zZLkYwIsXOYWwOgyaDcBsk6G5w?=
+ =?us-ascii?Q?J8AbPfLK8N6NrtmHFY9vUL6VLETTs0aI5mqPChsGVGoFOclbw/YRdhZGcX1Q?=
+ =?us-ascii?Q?+zh4l1hNkG2W71m8Crjln5OA0drWhQMo1LxOml7a?=
+Content-Type: multipart/alternative;
+	boundary="_000_MW4PR16MB5087C85F25577FBAB93300D7BBFBAMW4PR16MB5087namp_"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|AS4PR04MB9549:EE_
-X-MS-Office365-Filtering-Correlation-Id: 458c0c0d-8db9-4547-8d41-08dbb8569b93
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	Aw85MNbmH5c6J0iyot23T/GkfBu873VXSPWyIXq7JxlQEqGtIvxCUxfm4iOMCDM+a3sOH9QEUWK6qZLz/jF5U8vydBVtV+qbBN76IKSFNUVCpBGLagUqOV44NnBg/5yx6QusHIeNcOqJowAB0s3+I7gPlr2RTuT8SrPJbaCr0+4ASTnEEQ7FPf76785KcGs+ETmkeh+9WjKUr19dhf7YcqMinwkVWbTgSa5RCMn1ibTh8MDzCUEEYnv3PN1gA62cRuJQju6fwQHqMOOakdHzxvPTwuf/rbH5iwzUZdIi8RLTqp35ZCzb77V2gf6Zk16yIjOyOdXZn2bJfqAxOaRuudavX/YUgaru96ujiKz+zq/+apJjAlhC+D+HCJpsxKDdTaFSDCpahjvs8fNeSDI6h91kLlyv4mwrkFOsart42imBQtPX9RBj4CiV8yuFkQebI1JIQDt944qg2l9AsWAxI4tJH0ARn0QIwkxyiv2FsK1TIj5T/vaT/z5QwQSf43wMdCwmJNUUbymMsSP/GrIwxHpXC7hp0b6B1QgoCKAa+ApBzcVjF/1NB1mwm/vug48RrWwZBw5R0AkHwx8RHmsxSBcgquZrVO6U/xfZClyIPuSmGaSC/oK9TS3057cRrstyJlk6jRhdxUJ91umwvhpzXg==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(376002)(39850400004)(346002)(396003)(186009)(1800799009)(451199024)(66899024)(6512007)(53546011)(38100700002)(6506007)(2616005)(66946007)(478600001)(66556008)(66476007)(6486002)(31696002)(86362001)(2906002)(6916009)(5660300002)(44832011)(36756003)(316002)(8936002)(8676002)(41300700001)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?NzhCenB0YWxrNHVITHpka1I0cHRnVTRYa3lBMVRQRkVPa1BMdWpNUnQ2V0Rn?=
- =?utf-8?B?K0hEWEpCSldDZXJ0UW5PQVhNcSttOU9Xb3RuWG83QUR6MGNpZUwyYm1zMHJl?=
- =?utf-8?B?R1ZtWUwvSStrRnAyMzQrNTN0SDFGbGtXQ1ZFUzBSR0hFaWVkS1FwVXFnNHlo?=
- =?utf-8?B?T0RwNmxWcHA1L1RtbFg4bFRYNzhUYWNlY2NZbHVLRmduVnhnT1dLV2tja2lB?=
- =?utf-8?B?MVEwaTdmV0NTcHFvYXgzbnIrSE5TRW5tbVBSVU5RVC9DaVgzSnJYMFFkeStl?=
- =?utf-8?B?NnFSY2ppMDNwZmd1YktPcHFpaFpjN1hvVStKaTZuMlA4M0xuZnJrRVdKUDl2?=
- =?utf-8?B?bGovVEY3b2VNRlN6cTNNc2VOWDFleTc3VkxXd1hMQmRGS2k4dUViRFdzZUNE?=
- =?utf-8?B?bHo3WS96VWZVLzlPRzhacExQZnRiaHRnYjdBNjY0RkFiM2VpSzhzWnBnUi80?=
- =?utf-8?B?R3hTSVNEWXpUN0dLU3JFZEtJMmxNNzRUbUJlRHNiVk5PY0R6WlVwcjRDOVZM?=
- =?utf-8?B?VS9neTMrYm9QNUpPQVpjcE4yRzBPbHdqWVk1SkxFajBnTmdSYnVzeHNFa2VN?=
- =?utf-8?B?UGh1bjlLT3BqUTF2RmxJcmJXbmh6akp6enNyNXZPaU9LeUdTcmQ2ODJtMUdU?=
- =?utf-8?B?SndLYmNYYkk3WEV1bUd6bW9DQWxMQjRmb3NZQ2tVU2ErcklYeHpZYVpBMXV1?=
- =?utf-8?B?RVZxam9aNGdNMmd2T2tSSlI3bngvQTRSVXk2TGs0MlBrUXlaWVg2RzYvL3Fx?=
- =?utf-8?B?WVJYRzNTN2EvOG14TEVsVm1XWlM1OVErTDJBVitOUmc1T3Q4KzFya2lCN1o2?=
- =?utf-8?B?QWtpSmd0dWRDeHJBRS9qcTZ0QzNEK1A3UEpZL0t1aC9tWnVkYTJJM01MU28w?=
- =?utf-8?B?bU1uNC9BOVVvUVl5YUFjcGg0NTNCRkNGTGpFckFTNmcxZXg2RWZvN3liQUxw?=
- =?utf-8?B?ZzBHV1BWeENGYWxlRjhrYVlRaWthdldtaEF1K20xYWhMdnIweENLNWJHeFJI?=
- =?utf-8?B?MFZGTXlHQllneU5wemYvT0NuYXpXNWErT0RDUGFadEM3cGtMbzRoMmtqN0Fo?=
- =?utf-8?B?WjU2MFllcmRuWHcxQkcxWHNqay9nVjFxUW40S3Fjb1pyc0xMM3FUd0NjQitn?=
- =?utf-8?B?NHlOQWVVMXkrUHRvQVVITHZySCt5MUY5MnNpc3BOOXVFenNVbzdLaklEKytm?=
- =?utf-8?B?UTd4RnkyajFJT1NOMlhqU3dtUmNaNmJVbXozTC9SRXM0dWFGaW44NjZyaDVa?=
- =?utf-8?B?M0lsS1JmdndJbWo1eWVKQy9DZUVTUC8xUFdGVWpvY05rOUVIWi80Z1BWb0J6?=
- =?utf-8?B?MGZsM2RFL0xtU1I2eHR1L3QzYmdTV0lkQi9PMGZ3NFRHK2xiRk1hVFJ1S0dp?=
- =?utf-8?B?NVRkeFpaY2VnbTdDa2cwYUkva25wVElBSjV2UnNsd2tIczk3SjF1T0NkYVF3?=
- =?utf-8?B?QzRuMHRoaVpuM3N2VTdyMUtvTnJnRFg5M2tZQ3I4Y1ZjZUpTb2FFU0hMdVVD?=
- =?utf-8?B?YUltekhvSk1vYmF3NXBmTGlyVWV3d0o5UTVjZ29OMkYyZWJiV3AvVkxvMmV2?=
- =?utf-8?B?SzBlYk5HV2F4ejFlTTQxdzBUckE1R0R2ZDI0NUpCTUtxOGVCcFdoMlNjbDRq?=
- =?utf-8?B?aThYZUQrSkRmVEZBajhYYWhLZHl0MEMrMVZNTmVlVlRBSERYbmFMYk1vZXJx?=
- =?utf-8?B?blJmTEFWNE9IUktBZVBMOC9ENnd3bkIwNmpETkRla3VXL3FzZ0VOTmZFdzJJ?=
- =?utf-8?B?ZFdxZHRmbzhjS0NEcXlubTdTajV5aktHQnh5SHJLMTZqVmFJdW8vdThPTldw?=
- =?utf-8?B?cnN3WTlqVytjMittR2pMM2lJc3lSU1RVa01veHRVSTZQZmwyMWMwUXNtRzVh?=
- =?utf-8?B?QTZWQVVwWXN3cjJJajZ6cG1yL3JwUCtxYTQ0endqbW1BNnVNK2MzWEozTG15?=
- =?utf-8?B?UkpnOEVYMjU2S3pCdDhLdXVTRllEZksxOU5GVWJvZVp1VWcrdUVCR3pDQWhY?=
- =?utf-8?B?bXRnYVZaTU5LV2s0OFJ3eDM5VEZaa3p2MVdPV0J2aHlmcTM1Q1dSbElMMlNV?=
- =?utf-8?B?ZEh6cnd4VUZjVmFTOTVXYTFsNWMvZ2FsWUpERTlnUTZGWElwaWRMcjJsY2xT?=
- =?utf-8?B?MXFEZFV2by95WWdMUkJ1bkl0K3BRbkJjeUpZMzdJdWpqNXBaQ2tSSnI0VVp2?=
- =?utf-8?B?b250elpEcmYxRXVmOVpMeTcyWEpNc2dXNC9ZLzFRQ1h4akM3ditsYkFJbGg2?=
- =?utf-8?B?TmhmRTlnNmFJbDVQVFVJUXJmZStBPT0=?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 458c0c0d-8db9-4547-8d41-08dbb8569b93
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
+X-OriginatorOrg: b9c.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2023 14:50:32.1673
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR16MB5087.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b789dbab-8bf6-4b61-95d8-08dbb8573164
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2023 14:54:43.3150
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ansx3icetjf/XHxuTiEoCmoKj3D/ssT60ajp19jQG3rG8xJeM5TsdkKVaJqb1kbLM6KX9MzIwKJLpuFjfjI97oZj4Bn0abrcKi6UP3jcR6hXfA55gNUyspjZvtbZMRMv
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9549
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3ace18e3-3825-4b3e-be2a-b5c73f048d39
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: g3PA5Br5hvLDpipTOMWnSqZBdL7X0zMos1UoYYjEg9vthhzDUkpRisQvV+5yDt+MHvRuojjfCAg6jXgWeWVpqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR16MB5032
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 18 Sep 2023 14:50:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61034
+ <yocto@lists.yoctoproject.org>; Mon, 18 Sep 2023 14:54:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61035
+
+--_000_MW4PR16MB5087C85F25577FBAB93300D7BBFBAMW4PR16MB5087namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi, Quentin
+
+Ah, this is great. This looks exactly like what I was looking for. I apprec=
+iate the timely response.
+
+Thank you,
+Logan
+________________________________
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Sent: Monday, September 18, 2023 8:50 AM
+To: Logan Grosz <Logan.Grosz@b9c.com>; yocto@lists.yoctoproject.org <yocto@=
+lists.yoctoproject.org>
+Subject: Re: [yocto] Overriding package configuration as a distro
 
 Hi Logan,
 
 On 9/18/23 16:43, Logan Grosz via lists.yoctoproject.org wrote:
-> You don't often get email from logan.grosz=b9c.com@lists.yoctoproject.org. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+> You don't often get email from logan.grosz=3Db9c.com@lists.yoctoproject.o=
+rg. Learn why this is important<https://aka.ms/LearnAboutSenderIdentificati=
+on>
 > Hi, all
-> 
-> I have two distros in the same meta layer, "A" and "B," and a recipe which installs a configuration file existing in a layer elsewhere. "A" and "B" should provide different configuration files, overriding the original configuration. It seems less than ideal to create a bbappend in this scenario as that would require the bbappend to know about the various distros and even handle the case where neither distro is chosen, some other "C" distro may be built for. My goal is a distro-centric configuration rather than a recipe/package-centric one. How can I do this? Does this align with the framework, or should I be looking into a different solution for this problem?
-> 
+>
+> I have two distros in the same meta layer, "A" and "B," and a recipe whic=
+h installs a configuration file existing in a layer elsewhere. "A" and "B" =
+should provide different configuration files, overriding the original confi=
+guration. It seems less than ideal to create a bbappend in this scenario as=
+ that would require the bbappend to know about the various distros and even=
+ handle the case where neither distro is chosen, some other "C" distro may =
+be built for. My goal is a distro-centric configuration rather than a recip=
+e/package-centric one. How can I do this? Does this align with the framewor=
+k, or should I be looking into a different solution for this problem?
+>
 
-The distro name is already part of FILESOVERRIDES so you can just add 
-your configuration file in a directory named after your distro. e.g. 
-provided your distro is called logan-distro, the following makes it 
+The distro name is already part of FILESOVERRIDES so you can just add
+your configuration file in a directory named after your distro. e.g.
+provided your distro is called logan-distro, the following makes it
 possible to override the configuration file from another layer:
 
 ```
 # cat recipes-foo/bar/bar-1.0.0/logan-distro/file.conf
 meh
 # cat recipes-foo/bar/bar_1.0.0.bbappend
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-${PV}:"
+FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}-${PV}:"
 ```
 
-no need to modify anything else if the file.conf file is added via 
-SRC_URI mechanism, otherwise you'll need to add a bit more to the 
-bbappend (or use patches instead), probably via a do_configure:prepend 
-or even do_patch:append (I think the file fetcher also allows to install 
-directly in the proper directory via subdir= parameter?).
+no need to modify anything else if the file.conf file is added via
+SRC_URI mechanism, otherwise you'll need to add a bit more to the
+bbappend (or use patches instead), probably via a do_configure:prepend
+or even do_patch:append (I think the file fetcher also allows to install
+directly in the proper directory via subdir=3D parameter?).
 
 Cheers,
 Quentin
+
+--_000_MW4PR16MB5087C85F25577FBAB93300D7BBFBAMW4PR16MB5087namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hi, Quentin</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Ah, this is great. This looks exactly like what I was looking for. I apprec=
+iate the timely response.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thank you,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Logan</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Quentin Schulz &lt;qu=
+entin.schulz@theobroma-systems.com&gt;<br>
+<b>Sent:</b> Monday, September 18, 2023 8:50 AM<br>
+<b>To:</b> Logan Grosz &lt;Logan.Grosz@b9c.com&gt;; yocto@lists.yoctoprojec=
+t.org &lt;yocto@lists.yoctoproject.org&gt;<br>
+<b>Subject:</b> Re: [yocto] Overriding package configuration as a distro</f=
+ont>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Hi Logan,<br>
+<br>
+On 9/18/23 16:43, Logan Grosz via lists.yoctoproject.org wrote:<br>
+&gt; You don't often get email from logan.grosz=3Db9c.com@lists.yoctoprojec=
+t.org. Learn why this is important&lt;<a href=3D"https://aka.ms/LearnAboutS=
+enderIdentification">https://aka.ms/LearnAboutSenderIdentification</a>&gt;<=
+br>
+&gt; Hi, all<br>
+&gt; <br>
+&gt; I have two distros in the same meta layer, &quot;A&quot; and &quot;B,&=
+quot; and a recipe which installs a configuration file existing in a layer =
+elsewhere. &quot;A&quot; and &quot;B&quot; should provide different configu=
+ration files, overriding the original configuration. It seems less than ide=
+al
+ to create a bbappend in this scenario as that would require the bbappend t=
+o know about the various distros and even handle the case where neither dis=
+tro is chosen, some other &quot;C&quot; distro may be built for. My goal is=
+ a distro-centric configuration rather than
+ a recipe/package-centric one. How can I do this? Does this align with the =
+framework, or should I be looking into a different solution for this proble=
+m?<br>
+&gt; <br>
+<br>
+The distro name is already part of FILESOVERRIDES so you can just add <br>
+your configuration file in a directory named after your distro. e.g. <br>
+provided your distro is called logan-distro, the following makes it <br>
+possible to override the configuration file from another layer:<br>
+<br>
+```<br>
+# cat recipes-foo/bar/bar-1.0.0/logan-distro/file.conf<br>
+meh<br>
+# cat recipes-foo/bar/bar_1.0.0.bbappend<br>
+FILESEXTRAPATHS:prepend :=3D &quot;${THISDIR}/${PN}-${PV}:&quot;<br>
+```<br>
+<br>
+no need to modify anything else if the file.conf file is added via <br>
+SRC_URI mechanism, otherwise you'll need to add a bit more to the <br>
+bbappend (or use patches instead), probably via a do_configure:prepend <br>
+or even do_patch:append (I think the file fetcher also allows to install <b=
+r>
+directly in the proper directory via subdir=3D parameter?).<br>
+<br>
+Cheers,<br>
+Quentin<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_MW4PR16MB5087C85F25577FBAB93300D7BBFBAMW4PR16MB5087namp_--
 
