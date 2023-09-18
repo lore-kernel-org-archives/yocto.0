@@ -1,91 +1,86 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <ecordonnier@snap.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 710EFCD13D2
-	for <webhook@archiver.kernel.org>; Sun, 17 Sep 2023 23:55:48 +0000 (UTC)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
- by mx.groups.io with SMTP id smtpd.web10.41008.1694994941078012691
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A57A3CD37B0
+	for <webhook@archiver.kernel.org>; Mon, 18 Sep 2023 12:58:24 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+ by mx.groups.io with SMTP id smtpd.web11.50485.1695041902799675944
  for <yocto@lists.yoctoproject.org>;
- Sun, 17 Sep 2023 16:55:41 -0700
+ Mon, 18 Sep 2023 05:58:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=I0VFt7zy;
- spf=pass (domain: gmail.com, ip: 209.85.128.176, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-59c04237bf2so31112057b3.0
-        for <yocto@lists.yoctoproject.org>; Sun, 17 Sep 2023 16:55:40 -0700 (PDT)
+ dkim=pass header.i=@snap.com header.s=google header.b=P3IATY0o;
+ spf=pass (domain: snapchat.com, ip: 209.85.218.41, mailfrom: ecordonnier@snapchat.com)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-9adb9fa7200so903734866b.0
+        for <yocto@lists.yoctoproject.org>; Mon, 18 Sep 2023 05:58:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1694994940; x=1695599740; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NglPXKgPyAz1asSd4tfbsXXr5p1UEER2Nm3unNbpBsE=;
-        b=I0VFt7zyqsD2BJPahNLTEl4s7DpiomcX1Pm3dUpHSPlHQt3JHmx7rjW8SLcb5F40UL
-         7tpQs4ryB0NtwFn/uvPol10gQGcSQbybmXvxzi7giBqfeYfh2g3PJMdXSn8O41ffbsRM
-         tEE3fa9dqA5LCrXsCK7esXzSbevngSbDgVSBRpzl6djO6bssnFpNpyKXHOGrhhW4jY6g
-         bZyafLXC3q7vy7xbN3kZoWNptHwy64ttJ5XpZb7MyX+K47xUKcRmG18kWSPJZWBVV8ZP
-         +5HPOwEyiLKM6EWySF7+GJfXnewKIXmCxB0UqcHPnx//SrSzeOb++Yab/a5/wW8/SpuO
-         4KJg==
+        d=snap.com; s=google; t=1695041901; x=1695646701; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wiSRgXdwf5KVHybaPLEL8+wHQk5PA4ol6YbzNv0m2rE=;
+        b=P3IATY0oVdnZR91vuNQ22Lqyd79V8/K1B0Hky37Z3F1FnFGxOKM3z9VtWGs58byp5K
+         He6V130HWhdsPnzIiNKF2YxuZPrivziVd5MpXevqZdHk7vClbjwRu/U71FYEvL2PhR1x
+         4fTPUtfhw1R13HABQ7vfreJgmHA9/ahu1P1y4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694994940; x=1695599740;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NglPXKgPyAz1asSd4tfbsXXr5p1UEER2Nm3unNbpBsE=;
-        b=cme4t/2FXqh6KkOotjfAFxEGdll0/xLN4xdlOeF71yL+vhjcPv8WwePEivcoztghNp
-         kjdlREHwlB5Wzz5GvVttjLpI+F5rH+uazi/8FgDL59dRzYPQq4sMNcfnEOAkHoCt5Nv7
-         NaGCDDX2wHHzBQvzafYQG8mxlYYbLhyrfsuhjn0tJ99KRD8tv7PuSt40M0CvQ14CaUZT
-         PUhvi1BdN9a2zrU0Nw3TeQjA1/MS+1TZ7Nv6BHT59Tz6qFEWBTTN4Yb/uB8ZCU4GF8DE
-         tKaMfyKjI4g53+Nqgc2QktkUn2ECvdDx3dKTO0cTnNi9wggwkHsX1xM80Sv+nXbo0uYL
-         smaA==
-X-Gm-Message-State: AOJu0Yx6B317Qfdo08kCH58jdYrM9zoT2MRjzBbd5XAFECLcYFXS2QJT
-	SllfVvmyBGjb8XoE2PToXMua2hGBCKY=
-X-Google-Smtp-Source: AGHT+IFJvyK3GsKuBa8eRZPI8EsIdrCPPPa6TYSMQbKTE5blySlJg5Z0mIj7lBMb8LLZY41j4O3niQ==
-X-Received: by 2002:a0d:f506:0:b0:59b:eb87:9bb6 with SMTP id e6-20020a0df506000000b0059beb879bb6mr8024297ywf.43.1694994939982;
-        Sun, 17 Sep 2023 16:55:39 -0700 (PDT)
-Received: from keaua.attlocal.net ([2600:1700:9190:ba10:f623:9dad:2eba:f0e5])
-        by smtp.gmail.com with ESMTPSA id x9-20020a0dd509000000b0058c4e33b2d6sm2209291ywd.90.2023.09.17.16.55.39
-        for <yocto@lists.yoctoproject.org>
+        d=1e100.net; s=20230601; t=1695041901; x=1695646701;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wiSRgXdwf5KVHybaPLEL8+wHQk5PA4ol6YbzNv0m2rE=;
+        b=h1Y4ZRz35q0csaMKg8HQQ662z38MfF4ET4BSCVc+axq+B3IuWcajzjzho6cdMolnWr
+         94Bhy2tdDM86FQPyyamP20enXeZmGpIIcNQHdLIK6WKZreQUGsVZzm0SeIOZc4XKgNUr
+         atxbQSWJA5gE0bWYGU9Gew1xWDIVFM2TjbQ4m2RdoG/sId8hD0DrC5r1yO7SuYbd4VIW
+         +swxPcJ/me/y9zV3mGWLmZH9s/eA9PJi7MZT1RU6L3XXBCMrVEvM3odkIpPlmcS6YwZt
+         HMQIKVgu2DJFcotrYdAw/y0g8Lh83twcX+yxZaZvjPqk7Eo3iw8fz+tkGviIwVGovNfB
+         +zyA==
+X-Gm-Message-State: AOJu0Yx7I0SHcHCC5VEe6qUzG5WmQQoHuhLkphyRGXRWdJiaE1kdDPd7
+	RzRiyDx0AZ++Wy3dNMg+qpUudq/4NAY+Qa8oDNE=
+X-Google-Smtp-Source: AGHT+IHmkEShgE7oGRpDzWafBWQX0+q+qiFwstIyIuk8MpdfwQXsqb5ljaKutHV2LE7JrSj5vEnaoA==
+X-Received: by 2002:a17:907:d89:b0:9a5:aa43:1c7c with SMTP id go9-20020a1709070d8900b009a5aa431c7cmr16857089ejc.26.1695041901030;
+        Mon, 18 Sep 2023 05:58:21 -0700 (PDT)
+Received: from lj8k2dq3.sc-core.net ([213.249.125.50])
+        by smtp.gmail.com with ESMTPSA id u1-20020a1709064ac100b009934855d8f1sm6403115ejt.34.2023.09.18.05.58.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Sep 2023 16:55:39 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
+        Mon, 18 Sep 2023 05:58:20 -0700 (PDT)
+From: ecordonnier@snap.com
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 7/7] lynis: Update to 3.0.9
-Date: Sun, 17 Sep 2023 19:55:34 -0400
-Message-Id: <20230917235534.2871544-7-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230917235534.2871544-1-akuster808@gmail.com>
-References: <20230917235534.2871544-1-akuster808@gmail.com>
+Cc: Etienne Cordonnier <ecordonnier@snap.com>
+Subject: [meta-darwin][PATCH] libtapi-native: use nobranch=1
+Date: Mon, 18 Sep 2023 14:58:05 +0200
+Message-Id: <20230918125805.1246947-1-ecordonnier@snap.com>
+X-Mailer: git-send-email 2.36.1.vfs.0.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 17 Sep 2023 23:55:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61030
+ <yocto@lists.yoctoproject.org>; Mon, 18 Sep 2023 12:58:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61031
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+From: Etienne Cordonnier <ecordonnier@snap.com>
+
+The master branch was deleted upstream and the commit is now in the branch
+"1300.6.5". The safest way to fix this is to use "nobranch=1".
+
+Signed-off-by: Etienne Cordonnier <ecordonnier@snap.com>
 ---
- recipes-compliance/lynis/{lynis_3.0.8.bb => lynis_3.0.9.bb} | 2 +-
+ recipes-devtools/libtapi/libtapi-native_git.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-compliance/lynis/{lynis_3.0.8.bb => lynis_3.0.9.bb} (93%)
 
-diff --git a/recipes-compliance/lynis/lynis_3.0.8.bb b/recipes-compliance/lynis/lynis_3.0.9.bb
-similarity index 93%
-rename from recipes-compliance/lynis/lynis_3.0.8.bb
-rename to recipes-compliance/lynis/lynis_3.0.9.bb
-index 0a49812..8c796c0 100644
---- a/recipes-compliance/lynis/lynis_3.0.8.bb
-+++ b/recipes-compliance/lynis/lynis_3.0.9.bb
-@@ -10,7 +10,7 @@ SRC_URI = "https://cisofy.com/files/${BPN}-${PV}.tar.gz \
-            file://0001-osdetection-add-OpenEmbedded-and-Poky.patch \
-           "
+diff --git a/recipes-devtools/libtapi/libtapi-native_git.bb b/recipes-devtools/libtapi/libtapi-native_git.bb
+index ee569ec..3c09387 100644
+--- a/recipes-devtools/libtapi/libtapi-native_git.bb
++++ b/recipes-devtools/libtapi/libtapi-native_git.bb
+@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE.APPLE-LIBTAPI.txt;md5=ecd05d65
+ SECTION = "devel"
  
--SRC_URI[sha256sum] = "98373a4cc9d0471ab9bebb249e442fcf94b6bf6d4e9c6fc0b22bca1506646c63"
-+SRC_URI[sha256sum] = "f394df7d20391fb76e975ae88f3eba1da05ac9c4945e2c7f709326e185e17025"
+ SRCREV = "b7b5bdbfda9e8062d405b48da3b811afad98ae76"
+-SRC_URI = "git://github.com/tpoechtrager/apple-libtapi.git;branch=master;protocol=https"
++SRC_URI = "git://github.com/tpoechtrager/apple-libtapi.git;nobranch=1;protocol=https"
  
- S = "${WORKDIR}/${BPN}"
+ PACKAGES = "${PN}-dbg ${PN} ${PN}-dev"
  
 -- 
-2.34.1
+2.36.1.vfs.0.0
 
 
