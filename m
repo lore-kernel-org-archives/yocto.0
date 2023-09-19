@@ -1,226 +1,189 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C46D9CD343B
-	for <webhook@archiver.kernel.org>; Tue, 19 Sep 2023 05:04:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by mx.groups.io with SMTP id smtpd.web10.833.1695099859465840260
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5398ECD5BB8
+	for <webhook@archiver.kernel.org>; Tue, 19 Sep 2023 13:01:34 +0000 (UTC)
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+ by mx.groups.io with SMTP id smtpd.web11.7887.1695128485242414081
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Sep 2023 22:04:19 -0700
+ Tue, 19 Sep 2023 06:01:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=WUHZ3Dwo;
- spf=pass (domain: intel.com, ip: 134.134.136.20, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695099859; x=1726635859;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=5MrQk+zzLRwO+3C8itle9itZ4nSWw9SQ2k5sfNe706o=;
-  b=WUHZ3DwonNdnajRFFp1hSzqNcbuf17bALAyi/YEIsa5K3jRSbgCyEvZY
-   mqVjm6tysiQxfxxWz1DUwUOv7WVHbn7EW/zODeeUyBm2bPYgGwRwWFuaz
-   tosd7K4v2v91l8AmgQHd1OSy3IxS4tuxBIeQk0siqbOqDXUZwTh9HuNk0
-   vBdV3IS+cJZS15Mmkveu+33Rp5BIb1jv0kW24En3fEmwQNUgcztF+N8J8
-   pO0jhYL2IXqj+OiVg+q4qOYUQHaPXeQAB++7P/3mhmW05jAmcE7mLXA15
-   U9mpQH8jj4YuqFb1bWi6e6p1JKv0OEEd1kQMmrBWWliOuL/XnPoJd5mJY
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="370169702"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; 
-   d="scan'208";a="370169702"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2023 22:04:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="816312686"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; 
-   d="scan'208";a="816312686"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
-  by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 18 Sep 2023 22:04:18 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 18 Sep 2023 22:04:17 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 18 Sep 2023 22:04:17 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 18 Sep 2023 22:04:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bfMwVwCZiW1NIK2gmvsMa6bboN5Sq/CdR5TwgPYAuf+R3iRl2eYiukkE22TSWjfmbAHQ0Djey1VkrGBfoHDyKC3slqsIJzPpF1c82GksarmnMA97bsRK0fRcsDoliyRs3yRs9Cc03f9SiGsp/PIELAmVC1fhIn2ZO/96xTnK5VKl3yybQYxUsGCVyzYXHXSpyqR0fBOHnwtlxSKmyeqXg2ahngLJ2D/C4DT5YulDaA6Q9wwKqw+y3qVXnkhDVRcUlloLP3rWy5yicWyWQCtu+JWZVHAhmcKr5fj2oVJnv99cXVm7GXDUDuq2yPaUljKUnVfg0w0jybH0veS7eUXflQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e6Hihqxm/v4JTUUuRth/Cim+J+zhajk/Q/S4JkoxU9k=;
- b=iIbrthKIFmw7LIAWQ/6Ips22HBqXZPX9s4JczAbPVQDRun9NF5XRHcFJO8Al6D5Gkz+Vvsvlyqvg/Ft0gkgG76re70zUx9Qdwm48hGCG+u+BrQI/N+Cuma+QaPIi5qROh1OeQtFRWh6Uq81ScEkftr+U5eYMH6axqL7tk9gXoF7nr1w6URbqSqCgnpwJHJrv7HBOOLqARVD3iH9kw7DhVJ6KnjrWqlqAVp6aGDbcfuujTP6lUp2O/XmqSjv3PJoGwufZNtqJw0iTqVx+5X8s+cMS7cQAUoHy16USoYGy837to9dJyTMwc+VK8yTjl2MES3xBmH0whKDS6BfeLwTCKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com (2603:10b6:a03:191::11)
- by CO1PR11MB4802.namprd11.prod.outlook.com (2603:10b6:303:94::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Tue, 19 Sep
- 2023 05:04:14 +0000
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3743:9715:3ecd:858e]) by BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3743:9715:3ecd:858e%4]) with mapi id 15.20.6792.026; Tue, 19 Sep 2023
- 05:04:14 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, Pokybuild User
-	<pokybuild@yoctoproject.org>, "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-3.1.28.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.28.rc2)
-Thread-Index: AQHZ6TT3eSm2ffyNYEajux+dgqks2bAhmqsQ
-Date: Tue, 19 Sep 2023 05:04:13 +0000
-Message-ID: <BY5PR11MB415244874A90AA7D1BACEC53A1FAA@BY5PR11MB4152.namprd11.prod.outlook.com>
-References: <0101018aa1f2c11f-86d5f669-c1d2-4ef2-bd68-f03f877b24b6-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018aa1f2c11f-86d5f669-c1d2-4ef2-bd68-f03f877b24b6-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR11MB4152:EE_|CO1PR11MB4802:EE_
-x-ms-office365-filtering-correlation-id: 63de5778-d279-4c45-b3f7-08dbb8cdddfa
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YFtePSEh+11gnx3OnRJiX3md9kpOmQrw6U/ucwrWohf0g5c4hnG3+U9FNUMRIypFZNWGofuP6ZpdSoQBWOsuGiHXsiTnAX/mDCf7VCbjzYiX0obMvuz2Hwlujou220Bdyi2D2ZJo1EhQlAqEGUWLghOxi7nWRo2XrTl8YJAqu0guQJTyFIdcbD1sxuoEG4kr99Y+965r2xDYoN7QS47k2jHeKGp4aqDqlkVR3csv1dWNsDWqcEta4emrX2yvxX7rTFbBZS9rZxjbb/maFWUgmPgXVUzLZbnHaqCAoiy4ZVseJjqlKWmlilICKQqY1iOKOn3ii5k44ftaoBwV8oY5gIEItommMsl1CnlE1FnSfU1FR1ZR9NRF4HQs8NDFxjrqOiQQNsv3rNrCYhAOEo9kK3Teknt9pDmTXiq6xbjRgJYYHIwl4YraFUfCnrg5BVwQiTBgELc30fVk+iU9X7jQTeUWnfqpkEg2jPFyuLUwi+xOY87oZfuHDkl3BqY0UiPLXK+ojBWk0Q/nAEy+BzAT6qTeTUC0Ii+F+yvOJWvtTfDGrrHOUMCAFPAT4rB2r60Jt+wAt7K/iEAM11kBkU8phWc6JJU41kZH7BQ7pWH/c0iXfAQYT9VYDngowkwADoxk/fEBl9M9AQe0ruHq7xOUWw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4152.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(39860400002)(366004)(396003)(136003)(1800799009)(186009)(451199024)(5660300002)(7696005)(53546011)(6506007)(8676002)(8936002)(15650500001)(316002)(52536014)(41300700001)(66946007)(66446008)(66556008)(66476007)(64756008)(478600001)(966005)(76116006)(71200400001)(110136005)(9686003)(2906002)(83380400001)(26005)(38070700005)(55016003)(122000001)(66899024)(38100700002)(82960400001)(86362001)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yo5NRYZBa58DvXQWbwVrybIfLz1EQygFXxGbiRp6NIChJDuTI8nG1iidwDoW?=
- =?us-ascii?Q?0e56TC/PsOdaPQKqgOGoveIaaa/cimg2SnqmKcUJaX72gCKSjNr0H/O3yuku?=
- =?us-ascii?Q?wceG0zSkMfOPDblYbhVN5Bm1HCvH6hWHWsLmycrqt9g6Z/Oznps4uVFm5B/o?=
- =?us-ascii?Q?PPHj9lCzcDouYcaR38g8pZ7szsCJw46MenujK6sYKM/aLe9V1ddjaBUQ5mTn?=
- =?us-ascii?Q?Eyl553lylb1YsQdNODSKKvd315lqwtdGBg0OsTr3Q+v5REVOiYUgRkvIGzx6?=
- =?us-ascii?Q?nlMoolSAAHyUHBAnqQ2tMipoWNv4xAfmqnR4FFycEsnsH8B9u4UR8sR4ygQ1?=
- =?us-ascii?Q?IR27oKjh2+8AGO1FBOsPZlAIloYxbnEbmnAp89ng7WcrK+PfqSpngocbj+Yn?=
- =?us-ascii?Q?Y2BDS3lBMDYjcR4R8Mb85ym41/9GY94kTZKsr4d6UHr//kPI0qlP1fzBDlc5?=
- =?us-ascii?Q?io17E6wgNXXwfh/sAH01RG8Lienk789DGU933G5gsI9fD6fSRHhF8cngjHvK?=
- =?us-ascii?Q?Q2It4fgHQp4jRjeOjsO9CP+2KAi096CajNrNqaCNr+VxFnh3gJHm1nbVArlC?=
- =?us-ascii?Q?ZabNzkX0i+ggwW2C4nhz6LrAKu+A1Y4ezE79UxywYGblTMcqCjFQwdc+i5bp?=
- =?us-ascii?Q?BdLyGluN2+wDxCSXGsIjNcFuYV0SJPvrQFmM2AlefOjjOjWDvHkDiISXbID5?=
- =?us-ascii?Q?3llk4H7K9PzAtcvL3QgDDUXFs2/uLH27OIJZdQuMq4FRZRZUUPg+sqwJO2u7?=
- =?us-ascii?Q?QpoTMLb1d4nnMx1C/tDF5wOiyufqeJypzmSuX82qQoDrXn7q+VAX9hjRrJQ8?=
- =?us-ascii?Q?rPlMzruV47pcwDR6ytd+jAQPTiJUwuwqd4gP9ejYQthNzR2b8159QLzgJUaD?=
- =?us-ascii?Q?qPjHpSJGrc6MsAFZARh5We+1lFlPHs0FB8Sd6PpXgxLR6FPa6Xuy4/fn2Ft4?=
- =?us-ascii?Q?fvHg5Mis7+GZZup4sypE876theNxSsm5o+Ht81FGsnU2NbCf0+b6Zsk2SrPz?=
- =?us-ascii?Q?Rqm3tj3dg6vi0lxs152+W4thyCsTHOs1uvhYTRRqhBtQ6r4137GRFJEdtnak?=
- =?us-ascii?Q?wpp9V2J35PEIiofDxXD3HT6Tm3DlofI9KVHMWNro0PrKUeZbIQPs+RTuCubG?=
- =?us-ascii?Q?DyQHYIo6ESgRRNsgHyvXSnuk6nsNp/5j76shgIOFWPArGAUQByNFsz+b1fAH?=
- =?us-ascii?Q?JRp1izCDSsspJQV3I+CZeGaQFzU60vTmbDgIrsxBy2L6g/y5tlvgHVZGC+hN?=
- =?us-ascii?Q?rqnMN0waU0B7Qpm2yFIPAH6+eowH+a9LRpdaLpu2BftZCaRtZ03mjVuGYv5a?=
- =?us-ascii?Q?S8+qbkSjqMHgK1DWAssEMdhaCDtNbDzIK1U0zNiro7o3jjCOLI6kAwDaDhI8?=
- =?us-ascii?Q?lTwlB6W34cRoUl55+YIpGKDr+fJQJz2b38KrepszvCyECudlBbmDdwZr0ngg?=
- =?us-ascii?Q?SxYYRb0Z1+3Y402kEdT+VagdvsEL0Hc4gcVLxehaRNTPADyDfRxn5RZ4KDuz?=
- =?us-ascii?Q?dTOR/3jtGvtHgJilVpedrDkxgCB4R48vkH/QrTFLgv5ro7TpAGnACT+lHuRj?=
- =?us-ascii?Q?F9IaoDU3NcxvtoNB9S5o3J+tWjj1tJ7koDa67fjt?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=MFg3BOEd;
+ spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: twoerner@gmail.com)
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6561fc267dbso30407576d6.2
+        for <yocto@lists.yoctoproject.org>; Tue, 19 Sep 2023 06:01:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695128484; x=1695733284; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=njaed2328FZYbfzHhcAKPk+XUO9w/RGwCBljEjB+0yk=;
+        b=MFg3BOEd1raev34D5bARq31mkKwIgG+SqXRyEZcdvT86dVfiSfNSAjeug13+5KI/ys
+         2WV6Cp4tfNaYDuqZU+KW7cu2uA4Zo6JlhkjJFhXifC7TcwgeJdBiGnGxm9eFqrMSlMh5
+         BVIll4ckO+OUGM5m9XHUIsHO0XYKzbu3MWE2L5Ja3qcP4yV3sWjimaEDbSc8QfI1HpwM
+         Ii0Fx3dGD3YjGr10B91BbcAQ/hG2N8ovTufHRxCDroSL3L25AjxO86JueyAfcRk1vvD8
+         9EQPuqXMS2IjnqRT1VBG8MWH4CiCc/ojLdIwoZeNBpVVgRlJSoU3bb/Wh6deW3toYWM4
+         yg4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695128484; x=1695733284;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=njaed2328FZYbfzHhcAKPk+XUO9w/RGwCBljEjB+0yk=;
+        b=ca5vkr5TRchCb9GG6NhD1hXGvLEkUkAi6TrdBbeEp976GcezBYTpxTWjK1g1l7GNCo
+         sFzN78I+SkgluSVHPoyqovjzinnxv/ZEsK8r5q0AfZHBB0vzK+kZsp3jx483ajviS9ev
+         GPCd6yV+WeQcLLBeW3IfPNZS4iGFoEWzm7y8CPvnBRDbL7GieesiRjr1QJKMOCRzPrHr
+         7rAPEY/DqRuDypA73d3r7LfkJPXSeaGlzSEfLaZgRkhKbzpdv/qxaMThFAUgfEvfwa7Z
+         pgWtx7hY/o3gvy6UHdWCa9PPvnF+378veSoqJ1t4oMmIVs4wFzYT/8OhSxnYpqEI9MX5
+         L/yA==
+X-Gm-Message-State: AOJu0Yw+A3yXtKFeQ4IH7LlO9qY3OyI5C+baQqF/s6zwuOyhkFUKHOyR
+	Tc6mKK8gkdsldxEP0PGZxZWcf/BkvNOo6A==
+X-Google-Smtp-Source: AGHT+IHs4T6m2M+E8MrmefGaWzOEY9c1sY7GEl50RwWu+MlD4zGMscD2yqNJ0AugR6qkJC+5jLpH0Q==
+X-Received: by 2002:a0c:e54e:0:b0:647:1a66:181a with SMTP id n14-20020a0ce54e000000b006471a66181amr11531582qvm.50.1695128483653;
+        Tue, 19 Sep 2023 06:01:23 -0700 (PDT)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id b18-20020a0cf052000000b0064f3f53bc9csm3204814qvl.94.2023.09.19.06.01.22
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Sep 2023 06:01:22 -0700 (PDT)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-rockchip][PATCH v2] nanopi-r4s: add
+Date: Tue, 19 Sep 2023 09:01:15 -0400
+Message-ID: <20230919130115.17484-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4152.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63de5778-d279-4c45-b3f7-08dbb8cdddfa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2023 05:04:13.4841
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RmlNnP+fI9cp1anmvTnFY71K+T4o6kQ66Z9gMwzLWnwbKyfA4dmHe/KcBgKkfCRtWhNh/n/sE849k/LiMBJ8mQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4802
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 19 Sep 2023 05:04:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61040
+ <yocto@lists.yoctoproject.org>; Tue, 19 Sep 2023 13:01:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61041
 
-Hi all,
-=20
-Intel and WR YP QA is planning for QA execution for YP build yocto-3.1.28.r=
-c2. We are planning to execute following tests for this cycle:
-=20
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-=20
-Runtime auto test for following platforms:
-	1. MinnowBoard Turbot - 32bit
-	2. Kaby Lake (7th Generation Intel(r) Core(tm) Processors)
-	3. Tiger Lake (11th Generation Intel(r) Core(tm) Processors)
-	4. Alder Lake-S (12th Generation Intel(r) Core(tm) Processors)
-	5. Raptor Lake-P (13th Generation Intel(r) Core(tm) Processors)
-	6. Edgerouter
-	7. Beaglebone
+Add a MACHINE definition for the FriendlyElec NanoPi R4S
+https://www.friendlyelec.com/index.php?route=product/product&product_id=284
 
-=20
-ETA for completion Friday, 22 Sept 2023.
-=20
-Best regards,
-Jing Hui
+Include a device-tree patch to enable the 2nd PCIe ethernet.
 
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+v2:
+- rebase on top of master
+- s/r2s/r4s/g
+- include DT patch to enable PCIe ethernet
+---
+ README                                        |  1 +
+ conf/machine/nanopi-r4s.conf                  | 13 ++++++
+ .../linux/linux-yocto/nanopi-r4s.scc          |  6 +++
+ ...anopi-r4s.dts-enable-second-ethernet.patch | 41 +++++++++++++++++++
+ recipes-kernel/linux/linux-yocto_%.bbappend   |  2 +
+ 5 files changed, 63 insertions(+)
+ create mode 100644 conf/machine/nanopi-r4s.conf
+ create mode 100644 recipes-kernel/linux/linux-yocto/nanopi-r4s.scc
+ create mode 100644 recipes-kernel/linux/linux-yocto/rockchip-kmeta/bsp/rockchip/0001-rk3399-nanopi-r4s.dts-enable-second-ethernet.patch
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Sunday, September 17, 2023 3:03 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-3.1.28.rc2)
->=20
->=20
-> A build flagged for QA (yocto-3.1.28.rc2) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.28.rc2
->=20
->=20
-> Build hash information:
->=20
-> bitbake: b60c7085ec370473bea9b3b4b65826a17638837f
-> meta-agl: e0f6590189cb0a510bff0d4233667c552d964591
-> meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882
-> meta-aws: 77e5438c27292ad5f8c7d3b100cb09b8dbf1c7f4
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: e482213f37828216c7a7df68ff353652cc865ec1
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> meta-openembedded: e42d1e758f9f08b98c0e8c6f0532316951bb276f
-> meta-virtualization: 0dbb8593fa38ac2a04fcac04ff3e35611e849824
-> oecore: 8b91c463fb3546836789e1890b3c68acf69c162a
-> poky: 926eb08fe325e2ea13098f99d920840b9354ceb9
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#308): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/308
-> Mute This Topic: https://lists.yoctoproject.org/mt/101411111/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10762429/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+diff --git a/README b/README
+index d66ed7e79bd2..286dafbe1020 100644
+--- a/README
++++ b/README
+@@ -29,6 +29,7 @@ Status of supported boards:
+ 		tinker-board-s
+ 		vyasa-rk3288
+ 		firefly-rk3288
++		nanopi-r4s
+ 	builds:
+ 		marsboard-rk3066
+ 		radxarock
+diff --git a/conf/machine/nanopi-r4s.conf b/conf/machine/nanopi-r4s.conf
+new file mode 100644
+index 000000000000..160f8b906d63
+--- /dev/null
++++ b/conf/machine/nanopi-r4s.conf
+@@ -0,0 +1,13 @@
++#@TYPE: Machine
++#@NAME: NanoPi R4S
++#@DESCRIPTION: NanoPi R4S is a high-end FriendlyElec mini-router based on the RK3399 SoC
++#https://www.friendlyelec.com/index.php?route=product/product&product_id=284
++
++MACHINEOVERRIDES =. "nanopi-r4s:"
++
++require conf/machine/include/rk3399.inc
++
++MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
++
++KERNEL_DEVICETREE = "rockchip/rk3399-nanopi-r4s.dtb"
++UBOOT_MACHINE = "nanopi-r4s-rk3399_defconfig"
+diff --git a/recipes-kernel/linux/linux-yocto/nanopi-r4s.scc b/recipes-kernel/linux/linux-yocto/nanopi-r4s.scc
+new file mode 100644
+index 000000000000..266b77c63fe5
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto/nanopi-r4s.scc
+@@ -0,0 +1,6 @@
++define KFEATURE_DESCRIPTION "tweaks for the nanopi-r4s"
++define KMACHINE nanopi-r4s
++define KTYPE standard
++define KARCH arm64
++
++include bsp/rockchip/0001-rk3399-nanopi-r4s.dts-enable-second-ethernet.patch
+diff --git a/recipes-kernel/linux/linux-yocto/rockchip-kmeta/bsp/rockchip/0001-rk3399-nanopi-r4s.dts-enable-second-ethernet.patch b/recipes-kernel/linux/linux-yocto/rockchip-kmeta/bsp/rockchip/0001-rk3399-nanopi-r4s.dts-enable-second-ethernet.patch
+new file mode 100644
+index 000000000000..e1f2b92665dd
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto/rockchip-kmeta/bsp/rockchip/0001-rk3399-nanopi-r4s.dts-enable-second-ethernet.patch
+@@ -0,0 +1,41 @@
++From 4c867907b68b417da0711cabdde30a969e368596 Mon Sep 17 00:00:00 2001
++From: Trevor Woerner <twoerner@gmail.com>
++Date: Sun, 17 Sep 2023 17:30:43 -0400
++Subject: [PATCH] rk3399-nanopi-r4s.dts: enable second ethernet
++
++# lspci
++00:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3399 PCI Express Root Port
++01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ether)
++
++Link: https://github.com/armbian/build/pull/2415
++Upstream-Status: Submitted [by someone else]
++Signed-off-by: Trevor Woerner <twoerner@gmail.com>
++---
++ arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 11 +++++++++++
++ 1 file changed, 11 insertions(+)
++
++diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
++index fe5b52610010..771615722358 100644
++--- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+++++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
++@@ -76,6 +76,17 @@ &pcie0 {
++ 	max-link-speed = <1>;
++ 	num-lanes = <1>;
++ 	vpcie3v3-supply = <&vcc3v3_sys>;
+++
+++	pcie@0 {
+++		reg = <0x00000000 0 0 0 0>;
+++		#address-cells = <3>;
+++		#size-cells = <2>;
+++
+++		r8169: pcie@0,0 {
+++			reg = <0x000000 0 0 0 0>;
+++			local-mac-address = [ 00 00 00 00 00 00 ];
+++		};
+++	};
++ };
++ 
++ &pinctrl {
++-- 
++2.41.0.327.gaa9166bcc0ba
++
+diff --git a/recipes-kernel/linux/linux-yocto_%.bbappend b/recipes-kernel/linux/linux-yocto_%.bbappend
+index d0d24f1b074f..53833f1cc3f4 100644
+--- a/recipes-kernel/linux/linux-yocto_%.bbappend
++++ b/recipes-kernel/linux/linux-yocto_%.bbappend
+@@ -12,5 +12,7 @@ COMPATIBLE_MACHINE:nanopi-m4 = "nanopi-m4"
+ COMPATIBLE_MACHINE:nanopi-m4-2gb = "nanopi-m4-2gb"
+ COMPATIBLE_MACHINE:rock64 = "rock64"
+ COMPATIBLE_MACHINE:rock-pi-e = "rock-pi-e"
++COMPATIBLE_MACHINE:nanopi-r4s = "nanopi-r4s"
+ 
+ SRC_URI:append = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
++SRC_URI:append:nanopi-r4s = " file://nanopi-r4s.scc"
+-- 
+2.41.0.327.gaa9166bcc0ba
 
 
