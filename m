@@ -1,132 +1,127 @@
-Return-Path: <jstephan@baylibre.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8880C04FCD
-	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 18:04:48 +0000 (UTC)
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
- by mx.groups.io with SMTP id smtpd.web11.2408.1695233080975949661
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A78D8C04FE5
+	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 18:36:39 +0000 (UTC)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+ by mx.groups.io with SMTP id smtpd.web11.3370.1695234993129497673
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Sep 2023 11:04:41 -0700
+ Wed, 20 Sep 2023 11:36:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre-com.20230601.gappssmtp.com header.s=20230601 header.b=lDJIgf03;
- spf=pass (domain: baylibre.com, ip: 209.85.208.182, mailfrom: jstephan@baylibre.com)
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2bfed7c4e6dso1251031fa.1
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 11:04:40 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=SMLB6Ua4;
+ spf=pass (domain: gmail.com, ip: 209.85.208.177, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so1554711fa.3
+        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 11:36:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695233079; x=1695837879; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H4lggiWIM8SFuthejfNlxLD7xTofZXjIAn1soeIKFus=;
-        b=lDJIgf03zeCRE2Csj8A6Wk4qmx/BUQt8Ci7ofvFoYOLK+cESU1RROnt3aeLyULEgzT
-         aamkE08RuRopz8OGEU6E0sddJCOFI1ydaXdTwzWIenuT5hPzrhDydNXGSvFqbPgeRnrg
-         TGPKiJQMrfnF2sd1LuGrZvcCF6VNfIRoc9WhBAPzW7m/oOqVxx7Vi0u/+Are839LHnyG
-         hIvCoJzUFcZfcSTZ9hQF8gil+2Wa1y77Yu6l5Lc+XC+R4imEqqFis8Yc7yWkcJuG5fF7
-         QnOl0BeLVSFPufR41ibyyZnD/pTq42jj+KaGVwQ/b/UWVIVOleX6tIawiJIx0f/OPiRH
-         jt0g==
+        d=gmail.com; s=20230601; t=1695234991; x=1695839791; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Tw1PKOBMRgKZvwRnA61OsmdOde8U54TmpfG+9/1vDo=;
+        b=SMLB6Ua4Lw8aJJjaz3szHC6WBqlFDxDccUxTdeH+lYvRFZWPPVkDGiv/357oTSeFkL
+         FJte3SD4x6HXSZXuUAa11Br5mu/TnkXeDOtvf77quJYVgl5e4oT5Ei8HUiW70YH83jPY
+         zpYDUC2dDWLPiGkMzn3w/kT3XthXcb6uws+alpyUvUIJs/7wLFE2sF8JQsY0kPkJyzAj
+         bHkwAJU+68oF40siSFR5BSvL8weKH72mMFG8QL+IwFvRS5SAhrSQhktmiBIaYw/81yR6
+         1OkZwjPvIAGMz2X9B3RaRhWcLXQYCiU/PtQnmugLjQ3so0aIyWH2kcte1IJbmQYY68bO
+         mNsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695233079; x=1695837879;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H4lggiWIM8SFuthejfNlxLD7xTofZXjIAn1soeIKFus=;
-        b=d1RrPHr3/kHGissZCozmmfWz4KN3ekBGnmRLSRSrq2uHDdZpZHc3PZOhdKujpEqa14
-         cKBLIcFrVjbkDy4lkfBTGCcRxE8Zg/2xPOC37Vv+zYa+S+S2rTFt/mNzlLBQk66ok6IT
-         UEmwXMzIZPOiqjtaijH+oIhJHE+1C+lDAHeQZ84ooAC4ClzdU7FhovkP4KICW9za0hxX
-         g3Mro0YV6LA0+n2ie/wwUF2B3ZPVZco2+qqQXNdoQ6zkqdHjpp2mTIvtVybzoLgtin19
-         WmCjGr7x5L70iJR7/76fPZJjD9+ixz5ynTH7fWoTrr9hPe2AiQ5FVd25gavkF5NZ6pJv
-         CtwA==
-X-Gm-Message-State: AOJu0YzpHOjjC1ZgGIEtJymUqUw+k4O2kylqYJQMKwfLCm46Ns+8vy7/
-	QzQz51MyD0RCVKQiTZpZrxLKeDAnAhsYuCiVRTNCHw==
-X-Google-Smtp-Source: AGHT+IFaZWKRntl4G+DQgA0boF9S7Hz2WJE6OpJbNu+likyYDxuqcYvIAYkDdM8EfpYc22Ta2f2OWoxYjWwhTWQ/ME8=
-X-Received: by 2002:a2e:8959:0:b0:2bc:e2bc:81ff with SMTP id
- b25-20020a2e8959000000b002bce2bc81ffmr2921723ljk.51.1695233079134; Wed, 20
- Sep 2023 11:04:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695234991; x=1695839791;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Tw1PKOBMRgKZvwRnA61OsmdOde8U54TmpfG+9/1vDo=;
+        b=MSP3VrrEVL2giwz8dfl6dbVYQZx+qwX1mxiTlc3DKn19xgW63t70U2+sxL23oxb4g5
+         +EWB3JesRsbxCI2kdT81YNkvZkVXUIygPOGn4Dag9jl03YHfpR882PwcO1b4+zhsATi5
+         +22hu0f8Xi6VOW7Ip7u+dOKz5S+zgJLHqsOFFa4kdy76UruGVHL9B0RB09Z4r+8Jq0M0
+         PxQC9JAbFR+6MrkHnJcWDmCjsv8PnZNxw8kYJgILlgUJq06Ad+qsdEbTP5ONAxJQirfu
+         aOEp7Vk+rzaGOoY9Iyw5oXFbe2NXooXzXGbo00AlMZ13camD0cE2QAdDTw7JWSg8AlDt
+         xr1A==
+X-Gm-Message-State: AOJu0Yx1H265sIDYaYq4N7uj0pNA3mvrWUbiKZzYHosZlkCUbzx5UBbI
+	lrOfhbJF2PoZnOZN+WcSO3oNbJ9HXyXcK/B+fCU=
+X-Google-Smtp-Source: AGHT+IEj+6uUyJwq+zdcosbUUYFl/DjEtfzZOcbmbxGsGX2ZwSo27HTvBv0CcHzjOtCfA6em5vWEAraV6iw2pSGSlic=
+X-Received: by 2002:a2e:8ecd:0:b0:2bd:1614:d47 with SMTP id
+ e13-20020a2e8ecd000000b002bd16140d47mr2999880ljl.42.1695234991008; Wed, 20
+ Sep 2023 11:36:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
- <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
- <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
- <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
- <5ef99df95ab74e74df6f1e07ef4877487230d9fe.camel@linuxfoundation.org>
- <CANNYZj9mekKZwHs839m3r8sYbTiTLPaqzP=8C_-9=4w6MiJTaA@mail.gmail.com>
- <CAEHHSvbb9O_5zOBWvae+sCCouW+RyjMY+J8wOdtx2jixwFqN5A@mail.gmail.com> <CANNYZj_7zmvsZ1fJHoxkN-YgspaTD6Cei1qp-TS5Axw2D-0HLA@mail.gmail.com>
-In-Reply-To: <CANNYZj_7zmvsZ1fJHoxkN-YgspaTD6Cei1qp-TS5Axw2D-0HLA@mail.gmail.com>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Wed, 20 Sep 2023 20:04:25 +0200
-Message-ID: <CAEHHSvZpdsY+ZBVnT8yYCy_AwimHUE3ii03m2qgZtGpZr6ynXw@mail.gmail.com>
-Subject: Re: Core workflow: sstate for all, bblock/bbunlock, tools for why is
- sstate not being reused?
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: ",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
-	Michael Halstead <mhalstead@linuxfoundation.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>
+References: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
+In-Reply-To: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 20 Sep 2023 20:36:19 +0200
+Message-ID: <CANNYZj_JccmXn7B3v_O+WoOCpC4gOC131JRfC06RHyqMF2A4gQ@mail.gmail.com>
+Subject: Re: [yocto] [RFC] recipetool create to support pypi project
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 18:04:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61054
+ <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 18:36:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61055
 
-Unless I missed something, I think I fixed all comments from RP on the
-branch I force pushed :)
+Basically... yes, this is fine.
 
-Cheers
-Julien
+We don't really have anyone taking care of devtool/recipetool at the
+moment or even knowing how the code works, so you have a lot of
+freedom in how it can be improved, the only request from me is to add
+tests to devtool and/or recipetool selftests for any new functionality
+or otherwise improve tests as deemed necessary (it's a good idea to
+study what there is right now - they're in
+meta/lib/oeqa/selftest/cases/).
 
-Le mer. 20 sept. 2023 =C3=A0 16:31, Alexander Kanavin
-<alex.kanavin@gmail.com> a =C3=A9crit :
+Alex
+
+On Wed, 20 Sept 2023 at 18:48, Julien Stephan <jstephan@baylibre.com> wrote:
 >
-> That=E2=80=99s great to hear! When you have a new patch set please post i=
-t here. I think there=E2=80=99s also a new reply from RP that you need to c=
-onsider.
+> Hi all,
 >
-> Alex
+> In the scope of the RFQ, I am currently looking at bug #14737 (adding
+> support of PEP-517 in recipetool/devtool).
 >
-> On Wed 20. Sep 2023 at 16.25, Julien Stephan <jstephan@baylibre.com> wrot=
-e:
->>
->> Hi Alexander,
->> About bblock tool: I just force pushed my branch on poky-contrib
->> (https://git.yoctoproject.org/poky-contrib/log/?h=3Djstephan/bblock),
->> trying to fix an autobuilder issue reported by Alexandre Belloni.
->> I am still working on this, and I would be very happy to get this merged=
- :)
->>
->> Cheers
->> Julien
->>
->> Le ven. 15 sept. 2023 =C3=A0 10:28, Alexander Kanavin
->> <alex.kanavin@gmail.com> a =C3=A9crit :
->> >
->> > On Thu, 14 Sept 2023 at 21:54, Richard Purdie
->> > <richard.purdie@linuxfoundation.org> wrote:
->> >
->> > > Effectively those "configs" are what the eSDK is, you're just propos=
-ing
->> > > a server side set of them rather than a built copy. In many ways tha=
-t
->> > > could be useful way of possibly rethinking the way the eSDK works.
->> > >
->> > > So in that sense I like the idea, we should just be clear the proble=
-m
->> > > it solves as it doesn't solve the "why is my build not using the cac=
-he"
->> > > question specifically but it potentially solves other issues.
->> >
->> > Right, I didn't make it clear that this idea is not about 'why sstate
->> > is not being reused', but rather something I thought of to avoid
->> > placing people in that situation to begin with - offering them
->> > 'pre-fabricated builds' with guaranteed sstate availability. I have a
->> > hunch there'll be plenty, for whom this is just fine, and eventually
->> > this could be the basis of that oe-setup holy grail :)
->> >
->> > I'll start with the simplest enhancement of printing what would be
->> > rebuilt. There's a lot of code I need to understand, so this needs to
->> > be in manageable chunks :)
->> >
->> > Alex
+> I am quite new to the recipetool/devtool tools and I have several
+> ideas I would like to discuss before going into development that may
+> not be appropriate/necessary for the tool.
+>
+> As of today, from what I understand (please correct me if I am wrong)
+> 'devtool add' supports the creation of recipes for python modules from
+> their download tarball so something like: devtool add
+> https://files.pythonhosted.org/packages/e4/29/f1e7113ca4632283a76cdbe40b62be860d268fdc0e8eab7216ffaf2aa0ef/subunit-0.0.0a0.tar.gz
+> works, but:
+> - the created recipe does NOT takes advantage of the pypi class: the
+> created recipe will have the SRC_URI variable instead of using
+> 'inherit pypi'
+> - user has to find the url of the tarball
+>
+> I think it would be really easier for the user to just use: 'devtool
+> add https://pypi.org/project/subunit/' This will have several
+> advantages:
+> - easier to use
+> - fetch latest version automatically
+> - easy to fetch specific version with --version
+> - can easily detect 'pypi.org' on the url and inherit pypi
+> - can easily parse the webpage for several informations such as
+> author, summary, homepage, bugtracker page .. (I know some of them can
+> be extracted from  setup.py / pyproject.toml, but not always)
+>
+> Looking at the create_recipe function of
+> scripts/lib/recipetool/create.py, we can see that code is really git
+> oriented even if you use a tarball, you go through a bunch of 'if'
+> that doesn't apply.
+>
+> I think we can modernize this part of the code. This would also be
+> useful for perl modules and cpan or rust modules and cargo...
+>
+> What do you think? Is this something that is worth investigating and
+> implementing?
+>
+> Cheers
+> Julien
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#61052): https://lists.yoctoproject.org/g/yocto/message/61052
+> Mute This Topic: https://lists.yoctoproject.org/mt/101482623/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
