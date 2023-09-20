@@ -1,189 +1,100 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <jstephan@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 754C8CE79DC
-	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 14:31:52 +0000 (UTC)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
- by mx.groups.io with SMTP id smtpd.web11.41228.1695220304346013390
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A4A9C04AB4
+	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 16:48:57 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+ by mx.groups.io with SMTP id smtpd.web11.543.1695228531619769352
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Sep 2023 07:31:44 -0700
+ Wed, 20 Sep 2023 09:48:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=CQg7PN3u;
- spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2bfed7c4e6dso72920231fa.1
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 07:31:44 -0700 (PDT)
+ dkim=pass header.i=@baylibre-com.20230601.gappssmtp.com header.s=20230601 header.b=Q3OlRuqW;
+ spf=pass (domain: baylibre.com, ip: 209.85.218.43, mailfrom: jstephan@baylibre.com)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-9ad8bba8125so945959566b.3
+        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 09:48:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695220302; x=1695825102; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xLVa9NjcewA7vwJSgB6DoFiXN3SxHPWnNUw03X420w=;
-        b=CQg7PN3uNCbvlwgeLAKv+u7A9y61KWInX8IW0AZrJmI6OgePaFCWFYRA7P/06Fmj5R
-         +1vt/gotwcObJC5NYUDNDvv56dBwMfKuwevg4k6W+KwuVM38vjt1QhUOn4W4BeUKLSws
-         nZtSW+Ape/8xXuENh9aIbUgiw3T6zmvnMf9fowQfL/gF5isiqZI7CKYB1AdmlBKB1a0L
-         Z016bv2oc5wPuX/vU2n6DVx2SmdcWoJVOedZ1setOqRe3BBzHJUc1yvmGCln6KTE6v6K
-         b1Vq0yoeING5JdA0yrVGn5dXWVGp4EwoeyF6D82Pw3RgnylvXcz1dnDZj+Uod3rdQ7sb
-         79dQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695228530; x=1695833330; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=3hI6SeTTRzWFmvRAXdsPohZ3kr3lFo2hYtuzV4vYwKM=;
+        b=Q3OlRuqWXWOqq4AV5rVClsWmNteXx0V7BpLjpyHPqzKDIBy5yLtX4kXsnYl22x7faE
+         HMPnrN24ZqqBoA5QTr3gCd5jTh4ge24D/ZRKgN5vKjf9tYcI/D88XV+oR8/NLpkaRFBP
+         f13mdwUucSfIarOghXXcPLx8yJ8xddx06FMK9sOppofEebED/m96/vxOzY73/P79W3RV
+         WnWl5OmNGsOR8em7ipXC41g/DhooQzTF35QNbHj1PU+sf4fdLTU6OlgFCVMjvJ7/9GiS
+         6My57v8mZyxaaVH3DzFy54//k6rFOv6XWH9xW1fSIvjEO9AOLQ2QoX0I0l08cVoyfdE3
+         IXMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695220302; x=1695825102;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8xLVa9NjcewA7vwJSgB6DoFiXN3SxHPWnNUw03X420w=;
-        b=CE+UDZN3NVY9Vp6m/zAp+7flw9wHAuZ3hzsm7Aj/3e6Oa44nSzypNKtzqWHOUFWDg7
-         sYl+Ypty7xPnweGGl1ZdcvOYfGfwB3cCz/EtfX1N5BM+rT0nrQyiJ6XGQYC1arAr2DLl
-         qQcLURcGXpExptlv4/KoBQK1FzDeWHBkUWC2DcORIUoo+bM4ZipfpxRDXeC6xg0MT3XF
-         OfpUFYI0MOwucZmoTNK/cPBGFg9++VqJFExMuZdS3KezHyGCnBsJwhV0HhKs/sErq7NC
-         MWBrtnsLR2PLqL49Wc3naTdOLHGISyhr6EXzEho/N7qg+lz+73wg14X37Cqq2as4tFeA
-         foYA==
-X-Gm-Message-State: AOJu0YzTqjMjQbtk8xRsd/z81bHEKCRRsT1jCE5Le8KWy0iIrQ6/nvq0
-	zyIt4K50UbLII7ay95ogr2r4UuwkpyrRboPZ2V4=
-X-Google-Smtp-Source: AGHT+IEMY/8hBwlrEg5QuoT4QZUUHZeOehHqASjXXKR8q+KUys+yY1qvHJmLy9oAQ4dqiGHxa45wAZMnnSlkqSC856Q=
-X-Received: by 2002:a2e:b00e:0:b0:2bf:d379:275b with SMTP id
- y14-20020a2eb00e000000b002bfd379275bmr2449477ljk.20.1695220302087; Wed, 20
- Sep 2023 07:31:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695228530; x=1695833330;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3hI6SeTTRzWFmvRAXdsPohZ3kr3lFo2hYtuzV4vYwKM=;
+        b=AUj1bs0zSAYZ/0DZC4qIu66Gx3azXlii2c3e7N+jIyQ0GyIfgKK4w881UibANXb1uW
+         u+Mj9K5hFcvpVBF1oG29m3uoTEzk45Vn9VWrAnfFD8JBPzb1+wuTWEfFPFWhCnR5lXpp
+         1X0lTvvcgW56oDxeuyMNUx/HHvqiwTW9BumaLCZ8zhAD/G+WeVHQoCmikSGX7KwwkFg8
+         PFYyUThaF62TYwFUHmUjV0PPHb9abO/oeD47RbTljsH+/2XQ3MHbKNs6txWzPavqmnM1
+         Tlmu0dGMuGnNnEBMMgAmzu+V72x5AVyXd64WbO8YNiw73XqmvFy7keW+WqCj2EwuaZ91
+         YdNg==
+X-Gm-Message-State: AOJu0Yx/XTCsv0vkOU7k4Q2PgF+ykV+arij0tczZYt5Nh5svgsvDmxFY
+	bV34QbfjyORZ3HZqweBBXGYeWSudySM6L18RlR0t1GpTBg/fCPAlBVg=
+X-Google-Smtp-Source: AGHT+IHovv5hrklNOnlxQZfe8dsINcIwi2jHrRipq65SDq24NK+1H4UQROSn3V4bTx/2wqxwqYZQW63LrUgYAF72PLw=
+X-Received: by 2002:a17:906:530c:b0:9ae:4096:61bf with SMTP id
+ h12-20020a170906530c00b009ae409661bfmr2763617ejo.66.1695228529607; Wed, 20
+ Sep 2023 09:48:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
- <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
- <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
- <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
- <5ef99df95ab74e74df6f1e07ef4877487230d9fe.camel@linuxfoundation.org>
- <CANNYZj9mekKZwHs839m3r8sYbTiTLPaqzP=8C_-9=4w6MiJTaA@mail.gmail.com> <CAEHHSvbb9O_5zOBWvae+sCCouW+RyjMY+J8wOdtx2jixwFqN5A@mail.gmail.com>
-In-Reply-To: <CAEHHSvbb9O_5zOBWvae+sCCouW+RyjMY+J8wOdtx2jixwFqN5A@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 20 Sep 2023 16:31:31 +0200
-Message-ID: <CANNYZj_7zmvsZ1fJHoxkN-YgspaTD6Cei1qp-TS5Axw2D-0HLA@mail.gmail.com>
-Subject: Re: Core workflow: sstate for all, bblock/bbunlock, tools for why is
- sstate not being reused?
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: ",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
-	Michael Halstead <mhalstead@linuxfoundation.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000ec0bab0605cb3b06"
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Wed, 20 Sep 2023 18:48:37 +0200
+Message-ID: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
+Subject: [RFC] recipetool create to support pypi project
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 14:31:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61051
+ <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 16:48:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61052
 
---000000000000ec0bab0605cb3b06
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi all,
 
-That=E2=80=99s great to hear! When you have a new patch set please post it =
-here. I
-think there=E2=80=99s also a new reply from RP that you need to consider.
+In the scope of the RFQ, I am currently looking at bug #14737 (adding
+support of PEP-517 in recipetool/devtool).
 
-Alex
+I am quite new to the recipetool/devtool tools and I have several
+ideas I would like to discuss before going into development that may
+not be appropriate/necessary for the tool.
 
-On Wed 20. Sep 2023 at 16.25, Julien Stephan <jstephan@baylibre.com> wrote:
+As of today, from what I understand (please correct me if I am wrong)
+'devtool add' supports the creation of recipes for python modules from
+their download tarball so something like: devtool add
+https://files.pythonhosted.org/packages/e4/29/f1e7113ca4632283a76cdbe40b62be860d268fdc0e8eab7216ffaf2aa0ef/subunit-0.0.0a0.tar.gz
+works, but:
+- the created recipe does NOT takes advantage of the pypi class: the
+created recipe will have the SRC_URI variable instead of using
+'inherit pypi'
+- user has to find the url of the tarball
 
-> Hi Alexander,
-> About bblock tool: I just force pushed my branch on poky-contrib
-> (https://git.yoctoproject.org/poky-contrib/log/?h=3Djstephan/bblock),
-> trying to fix an autobuilder issue reported by Alexandre Belloni.
-> I am still working on this, and I would be very happy to get this merged =
-:)
->
-> Cheers
-> Julien
->
-> Le ven. 15 sept. 2023 =C3=A0 10:28, Alexander Kanavin
-> <alex.kanavin@gmail.com> a =C3=A9crit :
-> >
-> > On Thu, 14 Sept 2023 at 21:54, Richard Purdie
-> > <richard.purdie@linuxfoundation.org> wrote:
-> >
-> > > Effectively those "configs" are what the eSDK is, you're just proposi=
-ng
-> > > a server side set of them rather than a built copy. In many ways that
-> > > could be useful way of possibly rethinking the way the eSDK works.
-> > >
-> > > So in that sense I like the idea, we should just be clear the problem
-> > > it solves as it doesn't solve the "why is my build not using the cach=
-e"
-> > > question specifically but it potentially solves other issues.
-> >
-> > Right, I didn't make it clear that this idea is not about 'why sstate
-> > is not being reused', but rather something I thought of to avoid
-> > placing people in that situation to begin with - offering them
-> > 'pre-fabricated builds' with guaranteed sstate availability. I have a
-> > hunch there'll be plenty, for whom this is just fine, and eventually
-> > this could be the basis of that oe-setup holy grail :)
-> >
-> > I'll start with the simplest enhancement of printing what would be
-> > rebuilt. There's a lot of code I need to understand, so this needs to
-> > be in manageable chunks :)
-> >
-> > Alex
->
+I think it would be really easier for the user to just use: 'devtool
+add https://pypi.org/project/subunit/' This will have several
+advantages:
+- easier to use
+- fetch latest version automatically
+- easy to fetch specific version with --version
+- can easily detect 'pypi.org' on the url and inherit pypi
+- can easily parse the webpage for several informations such as
+author, summary, homepage, bugtracker page .. (I know some of them can
+be extracted from  setup.py / pyproject.toml, but not always)
 
---000000000000ec0bab0605cb3b06
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Looking at the create_recipe function of
+scripts/lib/recipetool/create.py, we can see that code is really git
+oriented even if you use a tarball, you go through a bunch of 'if'
+that doesn't apply.
 
-<div dir=3D"auto">That=E2=80=99s great to hear! When you have a new patch s=
-et please post it here. I think there=E2=80=99s also a new reply from RP th=
-at you need to consider.</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
->Alex</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Wed 20. Sep 2023 at 16.25, Julien Stephan &lt;<a href=3D"mailt=
-o:jstephan@baylibre.com">jstephan@baylibre.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
--width:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(2=
-04,204,204)">Hi Alexander,<br>
-About bblock tool: I just force pushed my branch on poky-contrib<br>
-(<a href=3D"https://git.yoctoproject.org/poky-contrib/log/?h=3Djstephan/bbl=
-ock" rel=3D"noreferrer" target=3D"_blank">https://git.yoctoproject.org/poky=
--contrib/log/?h=3Djstephan/bblock</a>),<br>
-trying to fix an autobuilder issue reported by Alexandre Belloni.<br>
-I am still working on this, and I would be very happy to get this merged :)=
-<br>
-<br>
-Cheers<br>
-Julien<br>
-<br>
-Le ven. 15 sept. 2023 =C3=A0 10:28, Alexander Kanavin<br>
-&lt;<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.kanavi=
-n@gmail.com</a>&gt; a =C3=A9crit :<br>
-&gt;<br>
-&gt; On Thu, 14 Sept 2023 at 21:54, Richard Purdie<br>
-&gt; &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_b=
-lank">richard.purdie@linuxfoundation.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; &gt; Effectively those &quot;configs&quot; are what the eSDK is, you&#=
-39;re just proposing<br>
-&gt; &gt; a server side set of them rather than a built copy. In many ways =
-that<br>
-&gt; &gt; could be useful way of possibly rethinking the way the eSDK works=
-.<br>
-&gt; &gt;<br>
-&gt; &gt; So in that sense I like the idea, we should just be clear the pro=
-blem<br>
-&gt; &gt; it solves as it doesn&#39;t solve the &quot;why is my build not u=
-sing the cache&quot;<br>
-&gt; &gt; question specifically but it potentially solves other issues.<br>
-&gt;<br>
-&gt; Right, I didn&#39;t make it clear that this idea is not about &#39;why=
- sstate<br>
-&gt; is not being reused&#39;, but rather something I thought of to avoid<b=
-r>
-&gt; placing people in that situation to begin with - offering them<br>
-&gt; &#39;pre-fabricated builds&#39; with guaranteed sstate availability. I=
- have a<br>
-&gt; hunch there&#39;ll be plenty, for whom this is just fine, and eventual=
-ly<br>
-&gt; this could be the basis of that oe-setup holy grail :)<br>
-&gt;<br>
-&gt; I&#39;ll start with the simplest enhancement of printing what would be=
-<br>
-&gt; rebuilt. There&#39;s a lot of code I need to understand, so this needs=
- to<br>
-&gt; be in manageable chunks :)<br>
-&gt;<br>
-&gt; Alex<br>
-</blockquote></div></div>
+I think we can modernize this part of the code. This would also be
+useful for perl modules and cpan or rust modules and cargo...
 
---000000000000ec0bab0605cb3b06--
+What do you think? Is this something that is worth investigating and
+implementing?
+
+Cheers
+Julien
 
