@@ -1,133 +1,132 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <rudolf.streif@ibeeto.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4FA1C05022
-	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 20:37:44 +0000 (UTC)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
- by mx.groups.io with SMTP id smtpd.web11.455.1695242262488521402
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 18231C05025
+	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 21:00:05 +0000 (UTC)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+ by mx.groups.io with SMTP id smtpd.web10.1032.1695243596985073256
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Sep 2023 13:37:42 -0700
+ Wed, 20 Sep 2023 13:59:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Yr8ARxA6;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-403012f27e3so2535675e9.3
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 13:37:42 -0700 (PDT)
+ dkim=pass header.i=@ibeeto-com.20230601.gappssmtp.com header.s=20230601 header.b=TKpPQlY1;
+ spf=pass (domain: ibeeto.com, ip: 209.85.214.171, mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1c44c7dbaf9so1913335ad.1
+        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 13:59:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1695242261; x=1695847061; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ka1jyc+ouyU1FQlMOtNy7Ko/upRIezv9IypOiQJXNRc=;
-        b=Yr8ARxA65eh/pdPnK41I0jeb5rvicr+SzvUAq1dYuAqYdwGI+xwh50JMpnKwqAOV9t
-         eaRjlHtcYiKp5ebf56BuEb1q4twc6/iBpf+0edMqWmH+NvT531cu7mhtBsYObBBlCGh6
-         CUFVvBuXbR23p2TpkG/OwWQgx9wRf4J0NrV2k=
+        d=ibeeto-com.20230601.gappssmtp.com; s=20230601; t=1695243596; x=1695848396; darn=lists.yoctoproject.org;
+        h=subject:from:to:content-language:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yBJ3hXrlKwHvjUPGQsIUVQktAztRBLWYADj+54kB7dA=;
+        b=TKpPQlY12R5h/fRF4ZtudER5hkW+1m9z08JIpFDOTlKedgbBAdnRyotx4VHCg9Pjib
+         xUFGHCh1xU8Pj056BEE7dVUVwuvh60ZOI49EIO+NjyhGpQ+xljH6pD69kwC1QpwLL+ho
+         BlKWZe3tLpFHmLiHd1nIPXyexDpf9Z7SpD9GtjbezrgA1d4RPvN5iUV/alUDHY/cRT2s
+         FEna6zUT8tFj988UJOY7kizoQHDuCk1uABQKFRng7jnrsC3qHflZsIeLzBwYQcqCX64p
+         EWPPh1fkO3oxq1L2DJKZPHP+SPvmSm9vzvlTjSnql4TumfaNdTRdYE0DGVoaouvUfbFj
+         ZWAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695242261; x=1695847061;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Ka1jyc+ouyU1FQlMOtNy7Ko/upRIezv9IypOiQJXNRc=;
-        b=h0R9PVsQmUXprFkXWrvXMfUzX0LDOXUqnaBm4XGEjaqCrT85an1jqwUWcmUdlXpZg+
-         Cd303RwHgvMchYA7cCqeqQ/0JocVJHpjwGiSP53XU8RRLqCvLzYFVkUnwgbJLafw/V8I
-         Cka1tGilbcU80/6VI1nVQpwnTOhtN1iqH4GEfosISNyeIl5Snl8U3qyvqcB3DVVTfOeP
-         5I1kL+P67GTgDMfigiBDYDq35htDKS4Wt50FtRpcqghZwmxwyHe/HtZqw54mllD6Dfvu
-         66az8bPbyBMj/uU05sk7napzQt8mKAfCYYdcfhf19s3Br6yoSrp//6WDPJek9aP4OnCp
-         ffWQ==
-X-Gm-Message-State: AOJu0Yy1z4gqHAAevFglRRJSlQ9rFVHaENSIB6JhkO6cgCfYEFzPZbVq
-	c2xHXr3bsRTLDOguhYIJKA6irA==
-X-Google-Smtp-Source: AGHT+IHnhOeHWvAmF90P93a4043vioFCYbCO22DBxb4cspaxdYUVYJFltHscqMhMqxWztI1T+Qk5pg==
-X-Received: by 2002:a05:600c:ad7:b0:401:b652:b6cf with SMTP id c23-20020a05600c0ad700b00401b652b6cfmr3449665wmr.13.1695242260814;
-        Wed, 20 Sep 2023 13:37:40 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:a109:22f2:cbec:fa4e? ([2001:8b0:aba:5f3c:a109:22f2:cbec:fa4e])
-        by smtp.gmail.com with ESMTPSA id q5-20020a5d6585000000b0031f5f0d0be0sm19687401wru.31.2023.09.20.13.37.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Sep 2023 13:37:40 -0700 (PDT)
-Message-ID: <37b8c6f109fa402ddee00eab3e35d8faef9d09c6.camel@linuxfoundation.org>
-Subject: Re: [yocto] [RFC] recipetool create to support pypi project
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Julien Stephan <jstephan@baylibre.com>, yocto@lists.yoctoproject.org
-Date: Wed, 20 Sep 2023 21:37:39 +0100
-In-Reply-To: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
-References: 
-	<CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+        d=1e100.net; s=20230601; t=1695243596; x=1695848396;
+        h=subject:from:to:content-language:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yBJ3hXrlKwHvjUPGQsIUVQktAztRBLWYADj+54kB7dA=;
+        b=sHg6OHTpkMSMEwt6Od1/E47ba8cz7Msb3v5MaMGiSP9idCIsQeU5wrFNZjUM5Y2beM
+         JlcMWrK2XlZR08nxTsJrrpaeD1MjBhSdKEsVr/piF5yNNGVOJtXSNX0AJnSjd2tfI9VA
+         Z7PiBFq/KSmEW5YBGp/TsuKNWYvLekESucADB3RFJMarr6Y69WHEbEPsT2/QZcHkewUE
+         Mu43WIIuTI/Yg+nLQkfpuVktaD4uf+TK04dY21Da5t0Swn19nEIZJGwPO2QwrocPprKX
+         cx7Z/pXEHXOm8JiSWsELjQMci5jaeB+ST/5B3R0I8EyQxpaxn7IcacF2pQXglFnDQZYs
+         aAhw==
+X-Gm-Message-State: AOJu0YxMEtvWHJANyp56/mZv/c4jLJ837fL6XdHXxka7SmGU0MgduP92
+	SsfjxND2kpLEJ+1BZvD4BgI2jo02VoAMu66MwpBPNg==
+X-Google-Smtp-Source: AGHT+IG75zsYww7PO5YlaSRp6scqn11KpCE0jgSTO3PFkjRS/AM6cdSKPZkXAd+UG8p5rt4D3vt12g==
+X-Received: by 2002:a17:902:efc6:b0:1bb:7b6c:983a with SMTP id ja6-20020a170902efc600b001bb7b6c983amr2579102plb.59.1695243596036;
+        Wed, 20 Sep 2023 13:59:56 -0700 (PDT)
+Received: from ?IPV6:2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89? ([2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89])
+        by smtp.gmail.com with ESMTPSA id p4-20020a170902a40400b001c407fac227sm12258790plq.41.2023.09.20.13.59.55
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Sep 2023 13:59:55 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------zDxk4sh7CjToyUQUrfDmOCJ4"
+Message-ID: <cd75554b-294d-5ea3-ea0a-d8120390c757@ibeeto.com>
+Date: Wed, 20 Sep 2023 13:59:54 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Subject: Forcing uninative?
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 20:37:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61056
+ <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 21:00:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61057
 
-On Wed, 2023-09-20 at 18:48 +0200, Julien Stephan wrote:
-> Hi all,
->=20
-> In the scope of the RFQ, I am currently looking at bug #14737 (adding
-> support of PEP-517 in recipetool/devtool).
->=20
-> I am quite new to the recipetool/devtool tools and I have several
-> ideas I would like to discuss before going into development that may
-> not be appropriate/necessary for the tool.
->=20
-> As of today, from what I understand (please correct me if I am wrong)
-> 'devtool add' supports the creation of recipes for python modules from
-> their download tarball so something like: devtool add
-> https://files.pythonhosted.org/packages/e4/29/f1e7113ca4632283a76cdbe40b6=
-2be860d268fdc0e8eab7216ffaf2aa0ef/subunit-0.0.0a0.tar.gz
-> works, but:
-> - the created recipe does NOT takes advantage of the pypi class: the
-> created recipe will have the SRC_URI variable instead of using
-> 'inherit pypi'
-> - user has to find the url of the tarball
->=20
-> I think it would be really easier for the user to just use: 'devtool
-> add https://pypi.org/project/subunit/' This will have several
-> advantages:
-> - easier to use
-> - fetch latest version automatically
-> - easy to fetch specific version with --version
-> - can easily detect 'pypi.org' on the url and inherit pypi
-> - can easily parse the webpage for several informations such as
-> author, summary, homepage, bugtracker page .. (I know some of them can
-> be extracted from  setup.py / pyproject.toml, but not always)
->=20
-> Looking at the create_recipe function of
-> scripts/lib/recipetool/create.py, we can see that code is really git
-> oriented even if you use a tarball, you go through a bunch of 'if'
-> that doesn't apply.
->=20
-> I think we can modernize this part of the code. This would also be
-> useful for perl modules and cpan or rust modules and cargo...
->=20
-> What do you think? Is this something that is worth investigating and
-> implementing?
+This is a multi-part message in MIME format.
+--------------zDxk4sh7CjToyUQUrfDmOCJ4
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Basically, yes, it sounds like the right direction to me. Even nicer
-might be:
+I need to resurrect a Yocto Project build environment based on honister. 
+My dev system has since moved on to a newer glibc etc. As expected, I am 
+getting this warning
 
-devtool add pypi subunit
+WARNING: Your host glibc version (2.37) is newer than that in uninative 
+(2.34). Disabling uninative so that sstate is not corrupted.
 
-which might match well other possible options like:
+The distro's gcc now is 13.2.1.
 
-devtool add cpan <cpan module name>
+Now the following packages do not compile anymore:
 
-and other such usages.
+  * rust-llvm-native : which there is a patch (applied to kirkstone):
+    https://lore.kernel.org/openembedded-core/CANPvuR=G1NxfJb67xD19FoNh4eTDsTM4TDyF+vDbh6crNH=dgw@mail.gmail.com/T/
+  * libdnf-native : because std::uint32_t does not exist anymore
 
-This would take a bit more work up front to implement since it would be
-in the form "<type> <name>" rather than the existing "<url>" but that
-is probably worth investing in.
+I don't care about the sstate as I am creating a new one. However, how 
+can I force uninative to be used and would it even solve the problem (I 
+would think so as the idea of uninative is to isolate the build from the 
+host libraries)?
 
-As Alex mentioned, unit tests are key to keeping this maintainable. We
-do have really good test suites for recipetool and devtool already so
-we need to ensure new functionality has good coverage.
-
-Cheers,
-
-Richard
+Thanks,
+Rudi
 
 
+--------------zDxk4sh7CjToyUQUrfDmOCJ4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+<html>
+  <head>
 
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>I need to resurrect a Yocto Project build environment based on
+      honister. My dev system has since moved on to a newer glibc etc.
+      As expected, I am getting this warning</p>
+    <p>WARNING: Your host glibc version (2.37) is newer than that in
+      uninative (2.34). Disabling uninative so that sstate is not
+      corrupted.</p>
+    <p>The distro's gcc now is 13.2.1.</p>
+    <p>Now the following packages do not compile anymore:</p>
+    <ul>
+      <li>rust-llvm-native : which there is a patch (applied to
+        kirkstone):
+<a class="moz-txt-link-freetext" href="https://lore.kernel.org/openembedded-core/CANPvuR=G1NxfJb67xD19FoNh4eTDsTM4TDyF+vDbh6crNH=dgw@mail.gmail.com/T/">https://lore.kernel.org/openembedded-core/CANPvuR=G1NxfJb67xD19FoNh4eTDsTM4TDyF+vDbh6crNH=dgw@mail.gmail.com/T/</a></li>
+      <li>libdnf-native : because std::uint32_t does not exist anymore</li>
+    </ul>
+    <p>I don't care about the sstate as I am creating a new one.
+      However, how can I force uninative to be used and would it even
+      solve the problem (I would think so as the idea of uninative is to
+      isolate the build from the host libraries)?</p>
+    <p>Thanks,<br>
+      Rudi<br>
+    </p>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------zDxk4sh7CjToyUQUrfDmOCJ4--
 
