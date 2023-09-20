@@ -1,96 +1,87 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A78D8C04FE5
-	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 18:36:39 +0000 (UTC)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
- by mx.groups.io with SMTP id smtpd.web11.3370.1695234993129497673
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4FA1C05022
+	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 20:37:44 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web11.455.1695242262488521402
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Sep 2023 11:36:33 -0700
+ Wed, 20 Sep 2023 13:37:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=SMLB6Ua4;
- spf=pass (domain: gmail.com, ip: 209.85.208.177, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so1554711fa.3
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 11:36:32 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Yr8ARxA6;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-403012f27e3so2535675e9.3
+        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 13:37:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695234991; x=1695839791; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Tw1PKOBMRgKZvwRnA61OsmdOde8U54TmpfG+9/1vDo=;
-        b=SMLB6Ua4Lw8aJJjaz3szHC6WBqlFDxDccUxTdeH+lYvRFZWPPVkDGiv/357oTSeFkL
-         FJte3SD4x6HXSZXuUAa11Br5mu/TnkXeDOtvf77quJYVgl5e4oT5Ei8HUiW70YH83jPY
-         zpYDUC2dDWLPiGkMzn3w/kT3XthXcb6uws+alpyUvUIJs/7wLFE2sF8JQsY0kPkJyzAj
-         bHkwAJU+68oF40siSFR5BSvL8weKH72mMFG8QL+IwFvRS5SAhrSQhktmiBIaYw/81yR6
-         1OkZwjPvIAGMz2X9B3RaRhWcLXQYCiU/PtQnmugLjQ3so0aIyWH2kcte1IJbmQYY68bO
-         mNsw==
+        d=linuxfoundation.org; s=google; t=1695242261; x=1695847061; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ka1jyc+ouyU1FQlMOtNy7Ko/upRIezv9IypOiQJXNRc=;
+        b=Yr8ARxA65eh/pdPnK41I0jeb5rvicr+SzvUAq1dYuAqYdwGI+xwh50JMpnKwqAOV9t
+         eaRjlHtcYiKp5ebf56BuEb1q4twc6/iBpf+0edMqWmH+NvT531cu7mhtBsYObBBlCGh6
+         CUFVvBuXbR23p2TpkG/OwWQgx9wRf4J0NrV2k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695234991; x=1695839791;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1Tw1PKOBMRgKZvwRnA61OsmdOde8U54TmpfG+9/1vDo=;
-        b=MSP3VrrEVL2giwz8dfl6dbVYQZx+qwX1mxiTlc3DKn19xgW63t70U2+sxL23oxb4g5
-         +EWB3JesRsbxCI2kdT81YNkvZkVXUIygPOGn4Dag9jl03YHfpR882PwcO1b4+zhsATi5
-         +22hu0f8Xi6VOW7Ip7u+dOKz5S+zgJLHqsOFFa4kdy76UruGVHL9B0RB09Z4r+8Jq0M0
-         PxQC9JAbFR+6MrkHnJcWDmCjsv8PnZNxw8kYJgILlgUJq06Ad+qsdEbTP5ONAxJQirfu
-         aOEp7Vk+rzaGOoY9Iyw5oXFbe2NXooXzXGbo00AlMZ13camD0cE2QAdDTw7JWSg8AlDt
-         xr1A==
-X-Gm-Message-State: AOJu0Yx1H265sIDYaYq4N7uj0pNA3mvrWUbiKZzYHosZlkCUbzx5UBbI
-	lrOfhbJF2PoZnOZN+WcSO3oNbJ9HXyXcK/B+fCU=
-X-Google-Smtp-Source: AGHT+IEj+6uUyJwq+zdcosbUUYFl/DjEtfzZOcbmbxGsGX2ZwSo27HTvBv0CcHzjOtCfA6em5vWEAraV6iw2pSGSlic=
-X-Received: by 2002:a2e:8ecd:0:b0:2bd:1614:d47 with SMTP id
- e13-20020a2e8ecd000000b002bd16140d47mr2999880ljl.42.1695234991008; Wed, 20
- Sep 2023 11:36:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
-In-Reply-To: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 20 Sep 2023 20:36:19 +0200
-Message-ID: <CANNYZj_JccmXn7B3v_O+WoOCpC4gOC131JRfC06RHyqMF2A4gQ@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1695242261; x=1695847061;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Ka1jyc+ouyU1FQlMOtNy7Ko/upRIezv9IypOiQJXNRc=;
+        b=h0R9PVsQmUXprFkXWrvXMfUzX0LDOXUqnaBm4XGEjaqCrT85an1jqwUWcmUdlXpZg+
+         Cd303RwHgvMchYA7cCqeqQ/0JocVJHpjwGiSP53XU8RRLqCvLzYFVkUnwgbJLafw/V8I
+         Cka1tGilbcU80/6VI1nVQpwnTOhtN1iqH4GEfosISNyeIl5Snl8U3qyvqcB3DVVTfOeP
+         5I1kL+P67GTgDMfigiBDYDq35htDKS4Wt50FtRpcqghZwmxwyHe/HtZqw54mllD6Dfvu
+         66az8bPbyBMj/uU05sk7napzQt8mKAfCYYdcfhf19s3Br6yoSrp//6WDPJek9aP4OnCp
+         ffWQ==
+X-Gm-Message-State: AOJu0Yy1z4gqHAAevFglRRJSlQ9rFVHaENSIB6JhkO6cgCfYEFzPZbVq
+	c2xHXr3bsRTLDOguhYIJKA6irA==
+X-Google-Smtp-Source: AGHT+IHnhOeHWvAmF90P93a4043vioFCYbCO22DBxb4cspaxdYUVYJFltHscqMhMqxWztI1T+Qk5pg==
+X-Received: by 2002:a05:600c:ad7:b0:401:b652:b6cf with SMTP id c23-20020a05600c0ad700b00401b652b6cfmr3449665wmr.13.1695242260814;
+        Wed, 20 Sep 2023 13:37:40 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:a109:22f2:cbec:fa4e? ([2001:8b0:aba:5f3c:a109:22f2:cbec:fa4e])
+        by smtp.gmail.com with ESMTPSA id q5-20020a5d6585000000b0031f5f0d0be0sm19687401wru.31.2023.09.20.13.37.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Sep 2023 13:37:40 -0700 (PDT)
+Message-ID: <37b8c6f109fa402ddee00eab3e35d8faef9d09c6.camel@linuxfoundation.org>
 Subject: Re: [yocto] [RFC] recipetool create to support pypi project
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: yocto@lists.yoctoproject.org
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Julien Stephan <jstephan@baylibre.com>, yocto@lists.yoctoproject.org
+Date: Wed, 20 Sep 2023 21:37:39 +0100
+In-Reply-To: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
+References: 
+	<CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 18:36:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61055
+ <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 20:37:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61056
 
-Basically... yes, this is fine.
-
-We don't really have anyone taking care of devtool/recipetool at the
-moment or even knowing how the code works, so you have a lot of
-freedom in how it can be improved, the only request from me is to add
-tests to devtool and/or recipetool selftests for any new functionality
-or otherwise improve tests as deemed necessary (it's a good idea to
-study what there is right now - they're in
-meta/lib/oeqa/selftest/cases/).
-
-Alex
-
-On Wed, 20 Sept 2023 at 18:48, Julien Stephan <jstephan@baylibre.com> wrote:
->
+On Wed, 2023-09-20 at 18:48 +0200, Julien Stephan wrote:
 > Hi all,
->
+>=20
 > In the scope of the RFQ, I am currently looking at bug #14737 (adding
 > support of PEP-517 in recipetool/devtool).
->
+>=20
 > I am quite new to the recipetool/devtool tools and I have several
 > ideas I would like to discuss before going into development that may
 > not be appropriate/necessary for the tool.
->
+>=20
 > As of today, from what I understand (please correct me if I am wrong)
 > 'devtool add' supports the creation of recipes for python modules from
 > their download tarball so something like: devtool add
-> https://files.pythonhosted.org/packages/e4/29/f1e7113ca4632283a76cdbe40b62be860d268fdc0e8eab7216ffaf2aa0ef/subunit-0.0.0a0.tar.gz
+> https://files.pythonhosted.org/packages/e4/29/f1e7113ca4632283a76cdbe40b6=
+2be860d268fdc0e8eab7216ffaf2aa0ef/subunit-0.0.0a0.tar.gz
 > works, but:
 > - the created recipe does NOT takes advantage of the pypi class: the
 > created recipe will have the SRC_URI variable instead of using
 > 'inherit pypi'
 > - user has to find the url of the tarball
->
+>=20
 > I think it would be really easier for the user to just use: 'devtool
 > add https://pypi.org/project/subunit/' This will have several
 > advantages:
@@ -101,27 +92,42 @@ On Wed, 20 Sept 2023 at 18:48, Julien Stephan <jstephan@baylibre.com> wrote:
 > - can easily parse the webpage for several informations such as
 > author, summary, homepage, bugtracker page .. (I know some of them can
 > be extracted from  setup.py / pyproject.toml, but not always)
->
+>=20
 > Looking at the create_recipe function of
 > scripts/lib/recipetool/create.py, we can see that code is really git
 > oriented even if you use a tarball, you go through a bunch of 'if'
 > that doesn't apply.
->
+>=20
 > I think we can modernize this part of the code. This would also be
 > useful for perl modules and cpan or rust modules and cargo...
->
+>=20
 > What do you think? Is this something that is worth investigating and
 > implementing?
->
-> Cheers
-> Julien
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61052): https://lists.yoctoproject.org/g/yocto/message/61052
-> Mute This Topic: https://lists.yoctoproject.org/mt/101482623/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+
+Basically, yes, it sounds like the right direction to me. Even nicer
+might be:
+
+devtool add pypi subunit
+
+which might match well other possible options like:
+
+devtool add cpan <cpan module name>
+
+and other such usages.
+
+This would take a bit more work up front to implement since it would be
+in the form "<type> <name>" rather than the existing "<url>" but that
+is probably worth investing in.
+
+As Alex mentioned, unit tests are key to keeping this maintainable. We
+do have really good test suites for recipetool and devtool already so
+we need to ensure new functionality has good coverage.
+
+Cheers,
+
+Richard
+
+
+
+
 
