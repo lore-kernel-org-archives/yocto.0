@@ -1,156 +1,263 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <dave.hitchman@kymati.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A5D9CE79AC
-	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 07:44:52 +0000 (UTC)
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
- by mx.groups.io with SMTP id smtpd.web11.31797.1695195889394400432
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B223CE79CC
+	for <webhook@archiver.kernel.org>; Wed, 20 Sep 2023 11:05:08 +0000 (UTC)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.47])
+ by mx.groups.io with SMTP id smtpd.web11.35479.1695207904294828099
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Sep 2023 00:44:49 -0700
+ Wed, 20 Sep 2023 04:05:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=B5AoaKeq;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.53, mailfrom: jester@theyoctojester.info)
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-52bd9ddb741so8199941a12.0
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 00:44:49 -0700 (PDT)
+ dkim=pass header.i=@kymati.onmicrosoft.com header.s=selector2-kymati-onmicrosoft-com header.b=ojySBUlA;
+ spf=pass (domain: kymati.com, ip: 40.107.7.47, mailfrom: dave.hitchman@kymati.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fYeBk1A3Btrtn+bSCsQ3pRRNblGfLhHUiguJzDJhFla/mvxz2CexmB6xgIhu98TWQh8Sl+ytMtUZlyKVgOUODtZW2sgrI8YmHSaWBFGjr/WS6Ep+9Njlew72/C7AgJ94QAK8y/yk6uDc3QqxZDj0tInN260fOuf0+R3cG9D26ZraOph0AndwcPE0mb8Qj8kbAd/Q5m2YHTBAyOktr/PRAEmToiCBZ0rMYQ9sHS4MwmxmtG3hoVpta5olQ+nxMrGY33apM+lpwYw7b59HhcPG2rYchILIQWaQ5eahrjNbqu6QaXiAH2adjXf+Ggfi/uNuhkzUIRIAlnpQ8jpU5WnAeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/0yclNGGDSfL3pRZY9u2vokgXAjZAZL/8qvir/KEYCU=;
+ b=UBkYDTQB4mjRPSkGAIuN0nNJIvfEyygdlMO9gWm3y1fjqxSz4u2a5siRRZSJPgrFwIpeaHy5Cufq0ICKN1A5bkYOAFqxT8L76V5iAaFm6s5zBipDUtHJw6+at/Ym0Ab0+obaCBUXDib/TzEgljUFMqDA7xx2Hb/UpKgcGMozNdRfyEM+4Wu2aEi9OEnkngxNezwl4on9mrKOcpI9yQ94EQ08DOPlb+A5SJxU4zYcG9PDW2iZh1ceau1GYNJ4ZUN9If3KPwA6nYwQVigxVu2OVD8sg395ukxxEbAj9PspwCeivJpoXOjg5vukv3h3QpmQH5KclB8gytKqcWbtd5BqbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kymati.com; dmarc=pass action=none header.from=kymati.com;
+ dkim=pass header.d=kymati.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1695195887; x=1695800687; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ShvyNisbKXAlzh49cVFHHSZEqEsdrWz+pBm/cd7ST5I=;
-        b=B5AoaKeqS29w2kgHLfsSSQD0ot2q616m4AJhmy/JkdQvzUklgYyS2d4oOQihl21DQL
-         URJT+pnEk4f3cJQCmRbFUQCqpgCpBXM+bz62JfB6HOA5d7/02Ep5m9/HAjELW0VYQ3gZ
-         1efsIShC43L4hoCjtVlRkU4ZiDaMjmxHA24i68AHyiUdZsCErW9qPte6/MJ4vnSlCILs
-         Fp7EAh6CC14h6PgVbUThjVXNdMlJbsCtd+fOSgIpkst7IPveIvTGWYbWU12Et6I1Q2mF
-         PBOLsb/BLlRysI047QuwsUWfPfbDiHDXTJ/seDcafuNMv/Vx279dhR0wxsN2O1y3Ohas
-         5w4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695195887; x=1695800687;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ShvyNisbKXAlzh49cVFHHSZEqEsdrWz+pBm/cd7ST5I=;
-        b=XEpapMBXu679yrTrAUlhC+dhe30ggFmwuEjrDXrBkzNg8ZS1QgXRLXZz6Q28g4em1F
-         FYy9bmy9V8sZqmfC9hpa3BiePlQ0k16ELfx0w6uZV7kFu39WnjiDuh2WjMHtUGG1O6mq
-         zeydUNB6dXB92RgPpjZdVl6suVVPfsZyDyNUDUUON8d2EEY4834GjCTFOlehbAjaZSit
-         yItVUAKoX/r/Syrji/oaVo/XAQAiHQtOxgTwUOhYHvLiiOBo4QcXo03Lon/FlYpENCPy
-         kv1ArtnSekDvP0B6G8mQ62eZjWRkl6Mw2njtHucjdPcSlkhj1NAPXy0eiKN3l9kuJZW+
-         Tg1g==
-X-Gm-Message-State: AOJu0YwMUV9S1ClrfEhXw/zpzaR+QJw6O5O2rv3QZ54oViM7KJ37CJao
-	t9nzgGp1cpoMM9sq53BCUKvsAwnHmm289YP8kpr2Gw==
-X-Google-Smtp-Source: AGHT+IEr+Ih2GH+LxIDeI8g/uMjRTpTfZpUmblGCXPJN/9QpMICyQIxRA03o5fS3Nlsn6MNj8eXNDNIGFGB6n5Nd9xs=
-X-Received: by 2002:a05:6402:b9d:b0:533:97c:8414 with SMTP id
- cf29-20020a0564020b9d00b00533097c8414mr819349edb.7.1695195887498; Wed, 20 Sep
- 2023 00:44:47 -0700 (PDT)
+ d=kymati.onmicrosoft.com; s=selector2-kymati-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/0yclNGGDSfL3pRZY9u2vokgXAjZAZL/8qvir/KEYCU=;
+ b=ojySBUlAUJ1Pd5/a6pSwL1+95JCZE2irX15fEw4O6OvXOalvKTSeLT1UlVcWi41iy4tWhlP69dRShDaWfzeloxSjPt/yhNFSs937q8MV5JYNZ8GvxlTcyP4UN4zIL8YZ5BgIAk4ziGl8sCf/QjKC9kVpT6u3EwN7KY6Uo6bvMQg=
+Received: from AM9PR03MB7012.eurprd03.prod.outlook.com (2603:10a6:20b:2d4::7)
+ by AS8PR03MB6984.eurprd03.prod.outlook.com (2603:10a6:20b:29e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Wed, 20 Sep
+ 2023 11:05:00 +0000
+Received: from AM9PR03MB7012.eurprd03.prod.outlook.com
+ ([fe80::2f9a:1999:e82f:efcf]) by AM9PR03MB7012.eurprd03.prod.outlook.com
+ ([fe80::2f9a:1999:e82f:efcf%2]) with mapi id 15.20.6813.018; Wed, 20 Sep 2023
+ 11:05:00 +0000
+From: Dave Hitchman <dave.hitchman@kymati.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: following from bitbake virtual/kernel -c menuconfig
+Thread-Topic: following from bitbake virtual/kernel -c menuconfig
+Thread-Index: AQHZ67FV0jlqD8u+l0y8oWEb+VfoAA==
+Date: Wed, 20 Sep 2023 11:05:00 +0000
+Message-ID: 
+ <AM9PR03MB70124AD0AE23ACB9C3DA351692F9A@AM9PR03MB7012.eurprd03.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kymati.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR03MB7012:EE_|AS8PR03MB6984:EE_
+x-ms-office365-filtering-correlation-id: a2c5351a-2fa0-4e05-fdc6-08dbb9c96f20
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ biqiPYXdnJdmktG3XnblgekTH/+5I3ZW556iot4tIHHnqlbNPnud26LIWN6NhQYrdRr491m74MlM1wdm9KJnZo7zWJJk9otRonQzY9LWZnpiN/OkG2a66ZTAt557t0l20mqzq/U0nW3jJVuM5YPzLMKPoo77LTCmMtTQKMm5Fro7K4P/YtnbpNHL2rNUmHyJzBCH8znJyyG6sgRbX5BrP/8+aZj93GFhSdcPmcRH71hdKxR6U5o8GCTdTn8CMIP7iRlqH5dBy6uombk/vG5rqeVrNAqDs1JHJjmWAmQ53li83kn6EY6lahr3y3B6OXHrfsjLZW4qZtl8CCILrBT4FGbELdlFn3MQdyzr0y3TEXfz7DZveCKyePa+UxzqjO8EG3rivtKBOs5dEd8lVpt6DruxcjQa3FP+pzYm6sXAEO/AUG1nv9vNjMDY3rCGHTMBIn5+zYFWk+24pEkm4TebQq2uWdaSy/7kzOqAbi84+seGey6faSd0Jqx/qNBWKI+Jbpy/Uzs7zNQzE9LFhWyw3yaSKzNptTZkiylHOn4dIwVnnblfVQ1x+y2xFNUd8/cGSVdwaC1TbGu58YauhzCxitAjYNh82esHpJ2NHeLIvjtRCUTVx4dyJRg6GNYx13zb
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR03MB7012.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39830400003)(376002)(136003)(366004)(396003)(346002)(451199024)(1800799009)(186009)(38070700005)(19627405001)(6506007)(478600001)(7696005)(55016003)(33656002)(86362001)(122000001)(38100700002)(2906002)(66574015)(9686003)(71200400001)(83380400001)(52536014)(5660300002)(8676002)(91956017)(8936002)(41300700001)(6916009)(44832011)(76116006)(316002)(66446008)(64756008)(66556008)(66476007)(66946007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?lO1FEfnN0/oKsZU392uUcM597N2+bfEk/vdvN1cxcQCJThUTAKcEajghNl?=
+ =?iso-8859-1?Q?vlo2g3IskCcLyIr72BL7+Vcr2cE2TmQMrYzBxRe16R+3ZzfSOLTQgx1AzR?=
+ =?iso-8859-1?Q?XA5w7yfmsS7dPD+x3HOUMC1+Lo5ncJlRE3ssUl1B37bUGm+r3D+Qtxq2PK?=
+ =?iso-8859-1?Q?Dat2Bc8vBRzzwPVfco3202fOPWLm19I3ZunV5nW83BvR4qbIKWKV8aDRNr?=
+ =?iso-8859-1?Q?vLwh5YMhHpmJd6/oKRZhtG/y+4yOx5MUt14L2rRV0Yu+j01qtE+udXfUXv?=
+ =?iso-8859-1?Q?17aP4/h9i9Phum5NhxB2e4OrPgZfAe8FQ3K77pDZS9nbjAmSpdyaekx7pe?=
+ =?iso-8859-1?Q?0sJ5RNuNiMG3vOmL3szwbxjg3RH+Z42tr6H7IEl1R+PgEYVEtkLhoBxfBe?=
+ =?iso-8859-1?Q?BcrGLGV7uu4aAFtgfJRLcsTepzl7vjMVxUxQwZD8OD9vyqpWyIR0MhY7Q9?=
+ =?iso-8859-1?Q?4eTRA/Ye6YFB/myEz8vT8O0eXuFt/nfEDyG8IghiePIG/+lFMsH+9Uk4qr?=
+ =?iso-8859-1?Q?C6Ed5Tzff9niFeyTG731k9trL2ywdt3C0Ll21iFVNo/vJMj8EtiUyYA0VS?=
+ =?iso-8859-1?Q?gGI7pTTD7P9FHKTboz5IjpesQwj3Y4V7wLUSYUTEkh5Glu5bXOhIBq5VP4?=
+ =?iso-8859-1?Q?IyjgP1qaPbXHoWqAKblj4Y6eGjINM+DwWqnj1MNVfzKn8k06A0VZ+UhE5L?=
+ =?iso-8859-1?Q?/lV8hDmCqtYKHu6oYSB3lGd1eStDK6v6Dj+CUHw16MOyLtMNt1E8tAHCO+?=
+ =?iso-8859-1?Q?vWsiHlASByNXTHRwe2b+hlTwmY0RZIoT2dLjmSSP1M5DYkRu/kEhaw9WLu?=
+ =?iso-8859-1?Q?cRlGrbTTRraP21Eg9rrXrrjYKxL3uLuCXKTxwrHbJTov9doviFK60Rp5pR?=
+ =?iso-8859-1?Q?+PA2kVysTfsMksVIBJBaH1vm3v5Adg+OyMady+RPMlEnywedUpFQ79bp6L?=
+ =?iso-8859-1?Q?cEZvHufwkQ1/5buWFcQarbg1p+yAOIeCGn4RynnUl+7xV0ewtdhltGP1eH?=
+ =?iso-8859-1?Q?O3n9u76cqN5qmPOW09FFhEpF495HFag+MEkj25vkXxHLIcNPi+zkq7c+mS?=
+ =?iso-8859-1?Q?H5v+abA93PeSZ37GJlLY/3nkkFTxXFG/0LVbdQajyQN8KBjr6mIAgYcz8K?=
+ =?iso-8859-1?Q?UPE65/Weghxp2sSDmoLfw6yUk/LuYSAqbawFNYguaIKyXmuCVToUMNWM3D?=
+ =?iso-8859-1?Q?YKM6jPWlErKFlC0cnqFt3GJhku/Mum97RQJ6LoK0W1ZnKHvxeSc9pcYGq5?=
+ =?iso-8859-1?Q?OR3IFUykRjNW4l/FVbQ23QikYuThtQWoYhQWMsrVNeLCEJBoBrs5FG8/DH?=
+ =?iso-8859-1?Q?Um7iOOxWuyOGxJxVO/4OL9ytxpkSqsdzIb+nTJRHwoqsUzURFvwk51scaa?=
+ =?iso-8859-1?Q?x1BY3M77Jm+PkbZyn/SAS1OECxJKQ3riL3a6iOcYJ72LGqQ6cE6EQmNtpt?=
+ =?iso-8859-1?Q?vHGrxDv9YZJj2ae/rpH+X1oEtiZAXOiyRuFB3N9dmTpU/KByQWqxAMpZPS?=
+ =?iso-8859-1?Q?AOJTP6vMYZL8h8zB+Iz5RBJz7LD7rlg/fz2i9uvyaeysXPoxuULCLRO5sE?=
+ =?iso-8859-1?Q?/SRY0n6EDzm5LbWktstW6W3CIOGda7nNrRm4dBkOTrK3AWNZczfa7Dnrb8?=
+ =?iso-8859-1?Q?5GY1vsmT58ecs9E++wQlJu2ZvpCKZAKUmOmi1zwfiF10qb1YC/LPQdig?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_AM9PR03MB70124AD0AE23ACB9C3DA351692F9AAM9PR03MB7012eurp_"
 MIME-Version: 1.0
-References: <CAPJWBnh05sMqBfg08qYoUYC7CqQcqHNj9MQ3buR0g-5kU9-XDA@mail.gmail.com>
- <10392.1695193386394395929@lists.yoctoproject.org>
-In-Reply-To: <10392.1695193386394395929@lists.yoctoproject.org>
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Wed, 20 Sep 2023 09:44:21 +0200
-Message-ID: <CAEt6Nwq5m3MQwHwiczzA9r=XFom6cCAan5PQ1bUGGVviMfyHvg@mail.gmail.com>
-Subject: Re: [yocto] Cross-compilation of driver files
-To: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b30ca70605c58cdb"
+X-OriginatorOrg: kymati.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR03MB7012.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2c5351a-2fa0-4e05-fdc6-08dbb9c96f20
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2023 11:05:00.6784
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f445f429-656f-441c-a343-dbb97855be01
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tGNGrvpZdHrpzVfOCGQjwlp6KTQINc/kP/idJRfluKm+4Exhd4zv3nwgEYKWNw/okkztDeMDI2FECW8jCcKC1mhn8xbwYxxeS7REgcYGR1w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB6984
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 07:44:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61048
+ <yocto@lists.yoctoproject.org>; Wed, 20 Sep 2023 11:05:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61049
 
---000000000000b30ca70605c58cdb
-Content-Type: text/plain; charset="UTF-8"
+--_000_AM9PR03MB70124AD0AE23ACB9C3DA351692F9AAM9PR03MB7012eurp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-As you did not provide any meaningful information (no errors, no source, no
-logs), maybe you should start there if you expect people to help you.
+Hi folk
+I did a bitbake virtual/kernel -c menuconfig in order to try and get the fi=
+rewall stuff, particularly ip_tables, present.
 
-For documentation, please see
-https://docs.yoctoproject.org/kernel-dev/common.html#working-with-out-of-tr=
-ee-modules
+At the end it asked me about a filename to save the changes to and I  gave =
+it a new one (custom-mpet.config)
+It seems this file is stored yocto/build/tmp/work/phyboard_pollux_imx8mp_2-=
+phytec-linux/linux-imx/5.10.72-r0.0/build, not 100% sure thats right but th=
+ats where I found it.
 
-Greetz,
-Josef
+Now the simple question is how do I get it to build with this new config an=
+d check that it indeed has?
 
-On Wed, Sep 20, 2023 at 9:03=E2=80=AFAM MOHAMMED HASSAN <hassanchattarki@gm=
-ail.com>
-wrote:
+I found on the internet the command bitbake virtual/kernel -c compile -f; b=
+itbake virtual/kernel which does at least appear to do something, just not =
+sure if it really is building what I expect.
+Certainly on the finished build I get
+root@phyboard-pollux-imx8mp-2:~# modprobe ip_tables
+modprobe: FATAL: Module ip_tables not found in directory /lib/modules/5.10.=
+72-bsp-yocto-nxp-i.mx8mp-pd22.1.1
+root@phyboard-pollux-imx8mp-2:~#
 
-> On Mon, Sep 18, 2023 at 06:36 AM, MOHAMMED HASSAN wrote:
->
-> Hi guys,
-> So long back I was trying to load driver files for a battery charger and =
-a
-> battery fuel gauge as a kernel module. However I face errors that are
-> actually related to cross-compilation. I  am not sure how to proceed with
-> this. Can you guys refer to some documentation from both the yocto projec=
-t
-> and any other that can help.
-> Thanks
->
-> Come on guys, give me something!!!!!! I am tyring to load TI BQ2429x
-> driver.
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#61047):
-> https://lists.yoctoproject.org/g/yocto/message/61047
-> Mute This Topic: https://lists.yoctoproject.org/mt/101433218/4689568
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> jester@theyoctojester.info]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
 
---000000000000b30ca70605c58cdb
-Content-Type: text/html; charset="UTF-8"
+which doesnt look too encouraging. I am sure there is documentation somewhe=
+re but google hasnt found anything particularly helpful at the moment. I am=
+ still new to yocto but finding the right documentation works but there is =
+a lot of other documentation out there :0 (same as most things to be honest=
+)
+
+BR
+Dave
+
+
+
+--_000_AM9PR03MB70124AD0AE23ACB9C3DA351692F9AAM9PR03MB7012eurp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">As you did not provide any meaningful information (no erro=
-rs, no source, no logs), maybe you should start there if you expect people =
-to help you.<div><br></div><div>For documentation, please see=C2=A0<a href=
-=3D"https://docs.yoctoproject.org/kernel-dev/common.html#working-with-out-o=
-f-tree-modules">https://docs.yoctoproject.org/kernel-dev/common.html#workin=
-g-with-out-of-tree-modules</a></div><div><br></div><div>Greetz,<br>Josef</d=
-iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Wed, Sep 20, 2023 at 9:03=E2=80=AFAM MOHAMMED HASSAN &lt;<a href=3D"m=
-ailto:hassanchattarki@gmail.com">hassanchattarki@gmail.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Mon, Sep 18, 2=
-023 at 06:36 AM, MOHAMMED HASSAN wrote:<br>
-<blockquote>
-<div dir=3D"ltr">Hi guys,
-<div>So long back I was=C2=A0trying to load driver files for a battery char=
-ger and a battery fuel gauge as a kernel module. However I face errors that=
- are actually related to cross-compilation. I=C2=A0 am not sure how to proc=
-eed with this. Can you guys refer to some documentation from both the yocto=
- project and any other that can help.</div>
-<div>Thanks=C2=A0</div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Hi folk</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0">
+I did a&nbsp;bitbake virtual/kernel -c menuconfig in order to try and get t=
+he firewall stuff, particularly ip_tables, present.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0">
+<br>
 </div>
-</blockquote>
-Come on guys, give me something!!!!!! I am tyring to load TI BQ2429x driver=
-.
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0">
+At the end it asked me about a filename to save the changes to and I&nbsp; =
+gave it a new one (custom-mpet.config)&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted2">
+It seems this file is stored&nbsp;yocto/build/tmp/work/phyboard_pollux_imx8=
+mp_2-phytec-linux/linux-imx/5.10.72-r0.0/build, not 100% sure thats right b=
+ut thats where I found it.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted2">
 <br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#61047): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/61047" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/61047</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/101433218/468=
-9568" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/101433218/4689568</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">je=
-ster@theyoctojester.info</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0">
+Now the simple question is how do I get it to build with this new config an=
+d check that it indeed has?&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0">
 <br>
-</blockquote></div>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1">
+I found on the internet the command&nbsp;bitbake virtual/kernel -c compile =
+-f; bitbake virtual/kernel which does at least appear to do something, just=
+ not sure if it really is building what I expect.&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1">
+Certainly on the finished build I get</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+root@phyboard-pollux-imx8mp-2:~# modprobe ip_tables
+<div class=3D"ContentPasted3">modprobe: FATAL: Module ip_tables not found i=
+n directory /lib/modules/5.10.72-bsp-yocto-nxp-i.mx8mp-pd22.1.1</div>
+<div class=3D"ContentPasted3">root@phyboard-pollux-imx8mp-2:~# </div>
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+which doesnt look too encouraging. I am sure there is documentation somewhe=
+re but google hasnt found anything particularly helpful at the moment. I am=
+ still new to yocto but finding the right documentation works but there is =
+a lot of other documentation out
+ there :0 (same as most things to be honest)</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+BR</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+Dave</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof ContentPasted0 ContentPasted1">
+<br>
+</div>
+</body>
+</html>
 
---000000000000b30ca70605c58cdb--
+--_000_AM9PR03MB70124AD0AE23ACB9C3DA351692F9AAM9PR03MB7012eurp_--
 
