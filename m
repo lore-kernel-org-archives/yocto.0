@@ -1,111 +1,149 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <jstephan@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB007E7071E
-	for <webhook@archiver.kernel.org>; Thu, 21 Sep 2023 11:12:04 +0000 (UTC)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
- by mx.groups.io with SMTP id smtpd.web10.13816.1695294717283250065
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD041CD5BDE
+	for <webhook@archiver.kernel.org>; Thu, 21 Sep 2023 12:05:15 +0000 (UTC)
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+ by mx.groups.io with SMTP id smtpd.web11.14963.1695297912817312273
  for <yocto@lists.yoctoproject.org>;
- Thu, 21 Sep 2023 04:11:57 -0700
+ Thu, 21 Sep 2023 05:05:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=YqS+MMl1;
- spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2bff7d81b5eso13706621fa.0
-        for <yocto@lists.yoctoproject.org>; Thu, 21 Sep 2023 04:11:57 -0700 (PDT)
+ dkim=pass header.i=@baylibre-com.20230601.gappssmtp.com header.s=20230601 header.b=vHFf2C7y;
+ spf=pass (domain: baylibre.com, ip: 209.85.218.51, mailfrom: jstephan@baylibre.com)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-99c3c8adb27so104314666b.1
+        for <yocto@lists.yoctoproject.org>; Thu, 21 Sep 2023 05:05:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695294715; x=1695899515; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hnUEYAY9fFitD3R9QWynmbf070MIEmrpPJMaWHMT/Fk=;
-        b=YqS+MMl19zenA0NAL5UBoaYAbEDHo81pX8DhwYcLecSWva1N5TfBDQCpJl69Li8hlf
-         HS/zX2I33QT1mEMAuFtu5tJq8LQwDGuUKU/TGqnZpFHO0N0NscyR/7Q9EWIGof59TwYg
-         5aiygKRDw1+Jb0QPmHFAqrUxpAqT9NEApDI4QcgbJVoIughytwOamjZoN9ASO0RxGSLf
-         wyhCyTVs/hTCNpWbMUIBnZY5uHmMxDkqeCJWBOsbfwCCGj+E6RzTZEYAxGsskqSiGGsP
-         6wAHKF5sAuzgdse68Jg4UDtmx4vmvrHfvrzO5yDkPYYhugK6/oZffmQEGgPWJslbb39g
-         na8g==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695297911; x=1695902711; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c80jQ4OVYcQa4u/6d2X/Ysrqy3Kl2FekwnkeCmtqM4A=;
+        b=vHFf2C7yMsTdgVecA183uikTf9X7iiDD8u0Jbl0tacvE+6F33vvy+UFmn7qfR2sBX9
+         8/8SUByRF3h5syt7fW0edU4hmTCKdFokyeQEQbIp+WPUzrQ1cJypw2VfbI8s9yqWN5KU
+         mNrskMNCoxwG/8Sfc20QcUp7WKHM5eWs20qxI24RzSi3WTYpmWhlj+2WKcmKz+YwzOqJ
+         THLnhS5fB6CN9c0Se9b4AY5fVHqTCL4gyHiAfPAK8oajSe2IRAJ+lbY+fs2+mGDbM4Vf
+         Th9eS27T/qZyEHkFsjZrDKNbgOVZIJuEjm1hhC0EBG9ORe2kpN1Zz5QifnwjOoe3Y2WC
+         O8+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695294715; x=1695899515;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hnUEYAY9fFitD3R9QWynmbf070MIEmrpPJMaWHMT/Fk=;
-        b=CxA0SSMTG+ozWvCMY0Q++k5KfJrNDuKpUpci+axnMo0BsZLXbjB2h4cJQUFl5YG9ZE
-         HQjcxicxIExfsi+C8SHwY//pXRFxfI/uOYVcwIIVCwHdD3NHlH/EPq5mcRJ/jOJDrOV1
-         XpGf8fm8UXrP7HYvha4wsrsiBsTaqmgylgqKRQl/9oFYpbmr3SOBDBSKFkA0waWwnLjZ
-         sxvX48IapWQNot4op5Xk5+gfEdRv+k4FCedVYEsVz+KiicOsaOC8yT4mD/0C6p/ZYB3i
-         FewlmqPyZOOXWIA+4qHvPb3+LcmYJiiIcnEsKygU0YpOgqsEvlr2RdPBGXogAFBmum3R
-         lmog==
-X-Gm-Message-State: AOJu0YzXEJOCgplFhuMX3FPwCt3vmgxzVc/4hrchl8q+8HfYtjDxIWMf
-	E/e/tjltusOh98Cy1EPXYrdScNS6eT1gETPWO5c=
-X-Google-Smtp-Source: AGHT+IG8w5HEu/Ny0dWMsX0ZcQiELNZFk15PU5TGH/EQ23iVCui2Y6jIwzBBqVO7mYSxRmgv/YEe+S9eOmzgp9P5yGY=
-X-Received: by 2002:a2e:8908:0:b0:2bd:a85:899e with SMTP id
- d8-20020a2e8908000000b002bd0a85899emr4565007lji.3.1695294714932; Thu, 21 Sep
- 2023 04:11:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695297911; x=1695902711;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c80jQ4OVYcQa4u/6d2X/Ysrqy3Kl2FekwnkeCmtqM4A=;
+        b=PWLN8L7w7tKiq+OiCsPAziTNCYKAHkqQ3+D+LD3kzHkt/xEpjhpGpf/pNs7qsRzTY2
+         G7oU4zM/HCaLfYyaHv4ZJIXYxtFQhJixhJC+Uf91iShzr8RPaVMePPCvdS0WdA+IxqrY
+         7hSXPIly9rcUGW8ImB0Bzhvt7wZkzbt5aplsyeyN9ED6StgOljwkwdbX6tS1R5np7/hh
+         NiY+3rM+gf2V3Aypao2I1ySmkq4RiHyMD+ug+Cp6TN3PYMLwTt4U7VuCzEMmipcOmQQa
+         1vDqK2J5owFyexMmV0ELNuwHysuf00GCOPRevoVozLbK4D6xEg8V17ROCS9Qp4x6ZG8I
+         HT8A==
+X-Gm-Message-State: AOJu0Yy0kLIDKF5v4m8doKUWyVlKZ3/QANQm8atFCaJ3qgDrcawOGy+W
+	ikGy5Ro1JPVem/rUF6xnTf2WIChEBmPcZMqHbzuNqg==
+X-Google-Smtp-Source: AGHT+IHxqH/d6eT7vjsCxZObaacko+mYWX+XNBWTbVgEmh+wfw0M/41jLK1LFVzuThZ2J1dkg0G54dScAiipIS5bRwk=
+X-Received: by 2002:a17:906:254:b0:9ad:a86b:2337 with SMTP id
+ 20-20020a170906025400b009ada86b2337mr4974169ejl.23.1695297910879; Thu, 21 Sep
+ 2023 05:05:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
- <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
- <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
- <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com> <5ef99df95ab74e74df6f1e07ef4877487230d9fe.camel@linuxfoundation.org>
-In-Reply-To: <5ef99df95ab74e74df6f1e07ef4877487230d9fe.camel@linuxfoundation.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 21 Sep 2023 13:11:43 +0200
-Message-ID: <CANNYZj8RAvj=sJtQuH9J_zKKAsUbhcdKe0hiA2JJy1wwxuzDNQ@mail.gmail.com>
-Subject: Re: Core workflow: sstate for all, bblock/bbunlock, tools for why is
- sstate not being reused?
+References: <CAEHHSvYa+4opuw5QTcEwDWPMjLzcJd12P5rX_jqbMx_Dc4O4gw@mail.gmail.com>
+ <37b8c6f109fa402ddee00eab3e35d8faef9d09c6.camel@linuxfoundation.org>
+In-Reply-To: <37b8c6f109fa402ddee00eab3e35d8faef9d09c6.camel@linuxfoundation.org>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Thu, 21 Sep 2023 14:04:57 +0200
+Message-ID: <CAEHHSvaYsP-sf4BNFQkTewP_Ps81wyEo=iC+0Ak4_v+08qjDgg@mail.gmail.com>
+Subject: Re: [yocto] [RFC] recipetool create to support pypi project
 To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
-	Julien STEPHAN <jstephan@baylibre.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 21 Sep 2023 11:12:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61065
+ <yocto@lists.yoctoproject.org>; Thu, 21 Sep 2023 12:05:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61066
 
-On Thu, 14 Sept 2023 at 21:54, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> The tools are already supposed to support doing this with local file
-> sstate sources, they just do a bad job at getting the diffs right. One
-> intent of this work item was to try and understand why they don't work
-> and address that so at least for filesystem sstate mirrors, you can get
-> better results. I don't know how we solve the remote http issue as yet.
+Le mer. 20 sept. 2023 =C3=A0 22:37, Richard Purdie
+<richard.purdie@linuxfoundation.org> a =C3=A9crit :
+>
+> On Wed, 2023-09-20 at 18:48 +0200, Julien Stephan wrote:
+> > Hi all,
+> >
+> > In the scope of the RFQ, I am currently looking at bug #14737 (adding
+> > support of PEP-517 in recipetool/devtool).
+> >
+> > I am quite new to the recipetool/devtool tools and I have several
+> > ideas I would like to discuss before going into development that may
+> > not be appropriate/necessary for the tool.
+> >
+> > As of today, from what I understand (please correct me if I am wrong)
+> > 'devtool add' supports the creation of recipes for python modules from
+> > their download tarball so something like: devtool add
+> > https://files.pythonhosted.org/packages/e4/29/f1e7113ca4632283a76cdbe40=
+b62be860d268fdc0e8eab7216ffaf2aa0ef/subunit-0.0.0a0.tar.gz
+> > works, but:
+> > - the created recipe does NOT takes advantage of the pypi class: the
+> > created recipe will have the SRC_URI variable instead of using
+> > 'inherit pypi'
+> > - user has to find the url of the tarball
+> >
+> > I think it would be really easier for the user to just use: 'devtool
+> > add https://pypi.org/project/subunit/' This will have several
+> > advantages:
+> > - easier to use
+> > - fetch latest version automatically
+> > - easy to fetch specific version with --version
+> > - can easily detect 'pypi.org' on the url and inherit pypi
+> > - can easily parse the webpage for several informations such as
+> > author, summary, homepage, bugtracker page .. (I know some of them can
+> > be extracted from  setup.py / pyproject.toml, but not always)
+> >
+> > Looking at the create_recipe function of
+> > scripts/lib/recipetool/create.py, we can see that code is really git
+> > oriented even if you use a tarball, you go through a bunch of 'if'
+> > that doesn't apply.
+> >
+> > I think we can modernize this part of the code. This would also be
+> > useful for perl modules and cpan or rust modules and cargo...
+> >
+> > What do you think? Is this something that is worth investigating and
+> > implementing?
+>
+> Basically, yes, it sounds like the right direction to me. Even nicer
+> might be:
+>
+> devtool add pypi subunit
+>
+> which might match well other possible options like:
+>
+> devtool add cpan <cpan module name>
+>
+> and other such usages.
+>
+> This would take a bit more work up front to implement since it would be
+> in the form "<type> <name>" rather than the existing "<url>" but that
+> is probably worth investing in.
+>
+> As Alex mentioned, unit tests are key to keeping this maintainable. We
+> do have really good test suites for recipetool and devtool already so
+> we need to ensure new functionality has good coverage.
+>
+> Cheers,
+>
+> Richard
+>
+>
 
-I ran a few experiments with bitbake -S printdiff, and so far I
-haven't yet seen an unhelpful result. Here's the most impressive one:
+Hi Alexandre and Richard,
 
-$ bitbake libsolv-native (uses cmake-native)
-$ git revert <latest cmake version update>
-$ rm -rf build/tmp/
-$ bitbake -S printdiff libsolv-native
-...
-The differences between the current build and any cached tasks start
-at the following tasks:
-/srv/work/alex/poky/meta/recipes-devtools/cmake/cmake-native_3.27.4.bb:do_recipe_qa
-NOTE: Writing task signature files
-Writing locked sigs to /srv/storage/alex/yocto/build-sstate/locked-sigs.inc
+Nice, I will try to come up with something and post it as RFC.
 
-Task cmake-native:do_recipe_qa couldn't be used from the cache because:
-  We need hash 5e649a49c4f0de2e62bc8fa4215df1021b9772762065352ef0d204d2d72f4efb,
-closest matching task was
-85c73eadca06d0e92fcea130ae6e23e902c96314ef1c38c60a14ed3445d24ed7
-  basehash changed from
-7d4adf817d99893a30a94330803a0eb1c00652ab217c21599944f81f023af6cd to
-7e93631376ed159c11460647bf7f4178cb260d44f367d0858c2cd96ae2256b09
-  Variable PV value changed from '3.27.5' to '3.27.4'
-  Variable SRC_URI[sha256sum] value changed from
-'5175e8fe1ca9b1dd09090130db7201968bcce1595971ff9e9998c2f0765004c9' to
-'0a905ca8635ca81aa152e123bdde7e54cbe764fdd9a70d62af44cad8b92967af'
+I will take care of adding selftests.
 
-That's pretty good, isn't it? It does print both what needs to be
-re-run, and *why* as well.
+"devtool add pypi subunit" looks good, I will try to look at this
 
-I have no idea yet what kind of magic it does to find the 'closest
-matching task' in sstate, but if this breaks down in some other
-scenarios, we need to find them to get a starting point for making the
-tools better. Ideas? I'm ready to try them :)
+Cheers
+Julien
 
-Alex
+
+>
+>
 
