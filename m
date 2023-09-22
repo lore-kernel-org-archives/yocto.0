@@ -1,433 +1,151 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <yi.zhao@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E828E7D0C1
-	for <webhook@archiver.kernel.org>; Fri, 22 Sep 2023 02:51:44 +0000 (UTC)
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
- by mx.groups.io with SMTP id smtpd.web10.13480.1695351098427456898
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBCBCE7D0C3
+	for <webhook@archiver.kernel.org>; Fri, 22 Sep 2023 02:59:04 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web11.13797.1695351543675934429
  for <yocto@lists.yoctoproject.org>;
- Thu, 21 Sep 2023 19:51:38 -0700
+ Thu, 21 Sep 2023 19:59:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=OIt6IfwE;
- spf=pass (domain: gmail.com, ip: 209.85.219.42, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6561c09ead6so9032736d6.1
-        for <yocto@lists.yoctoproject.org>; Thu, 21 Sep 2023 19:51:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695351097; x=1695955897; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=j941coREhMYO3mE4LvCkpwpFsH14stwGehJoYEzvab0=;
-        b=OIt6IfwEIvmbiXm1o+1+c32daIghpHY45c5L2elVdzq5YDBSIKh78CFQkFOCYsFDqC
-         EnU6f+sSZgKqslkVvDi1GX9TXm8iv13l7nfExwEwefuxSGRSqSgpJo4lhZNsSXJrYbv7
-         YN2tw3awRPVgcyk2BY9IRtDIm8Tgq7VT0TwhpRWLfJY+llJkNwN1klW3oV6fkeHpAw3D
-         BiBzVJwQEkme7izugl/WwpwfnMJLywhv5SuVCpuaOk7AbjLaibMUc8IxeIOwqnw+VaZ4
-         grfsz+u8ZsP6qP+frJ1/Bpa9fMn/7sU7FOqVGhb4HAfHrrS7XwFqfqV+MHwhmKb9eCHE
-         FnYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695351097; x=1695955897;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j941coREhMYO3mE4LvCkpwpFsH14stwGehJoYEzvab0=;
-        b=FbT/kSQgNnju/NKjHFdAB6YFhJe75DhkZDEGOHbYNpBcFUWevVXf/Kw/XPwtPim3nr
-         fs70n8V9XaNDhDu9AIJbHB/M+8skDNoH2ps1ZVboEvjD8dTucMFjhVQPNxfzFNj/Ak92
-         RQ9ixFreI/PIZQDlEGGZ6fy/rtrjCpz39hzMMcfRMyKPqlEIMPI3u2rRy38Zy1Bgqb2E
-         pyQci2dFk1USa5pWwpeAMiJbCRfCikYJghFE05mshUQtu0so6TV52z7lqSVagPYpjuvj
-         pbEOSEbWS0FzpS1lCdCeqLVuYm3FJ6UDC9Xdj4K0XcIPKbtuOiQ05P1QycORV+0J0AfX
-         tD6A==
-X-Gm-Message-State: AOJu0YyT3lI1GdYMml9PylptH8gTwd0cmPBrjK1dhG+nXt6u5CmKPb41
-	GAbUQqoRa+fKt9ZF6UAqYfLqq7bY1WOflQ==
-X-Google-Smtp-Source: AGHT+IFPk+6mLB0PUPTZiiNDgQyvQbGVqKuFEpYr4I5qeBuF5JD3KNFUq7NDMnTPfX1m99vc/Pb53w==
-X-Received: by 2002:ad4:4f09:0:b0:64f:7110:8a9a with SMTP id fb9-20020ad44f09000000b0064f71108a9amr7039776qvb.56.1695351096652;
-        Thu, 21 Sep 2023 19:51:36 -0700 (PDT)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id x19-20020a0ce253000000b0063c71b62239sm1079404qvl.42.2023.09.21.19.51.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 19:51:35 -0700 (PDT)
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Quentin Schulz <qschulz@theobroma-systems.com>
-Subject: [meta-rockchip][PATCH] rock5b: add
-Date: Thu, 21 Sep 2023 22:51:23 -0400
-Message-ID: <20230922025123.20385-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
-MIME-Version: 1.0
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=hMvfvVOZ;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=76297e7a8c=yi.zhao@windriver.com)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M2e2un028558;
+	Thu, 21 Sep 2023 19:59:03 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:subject:date:message-id:content-transfer-encoding
+	:content-type:mime-version; s=PPS06212021; bh=oEqQ5iGWBfhfzUU0OP
+	HqzHdRiN+FrfVZEf+D2+iQlyY=; b=hMvfvVOZCOgJDmHylgN3yf4AcKDpnW86wu
+	GsiFNz52Pu/FV+tpCfMasi/wFtyXmKq6/wKyBYiTlxs9urUKi9Q6G7xI3AqAkI/G
+	pjlwjeTcjd5yNTUJkXX3HQM8QdLWDVL80qD8HvAyXR65wtARXV9Rfjv9Syvvwh6M
+	CIhssiT2OqWpGafD/DxX6yWNZ58g2Aomxha+TeCV1B7c4qDisJSGu4HUvLdnh037
+	nHOG3vCO8CmH9rtafholnSJFjDLz+UzC7kAfWOGmBkFVDokm6qTNpYRio3/Xoi/8
+	mqbMpqK0pY2XEeCZSFE1HGugwJqS8wQRMdG27X8y4Lzl3E5NFu5A==
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2109.outbound.protection.outlook.com [104.47.70.109])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3t8tr5rc53-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Sep 2023 19:59:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BDoBIhBnFjmRqTmZVpd/Bli+pRNisiduX9QluohCfirhguoupzb+0FBlcMcs9Y4IrRvtTyuNvGzv8AHzROJ7XTpeXvuTTdcBf/Dj4hfUvEbEq4fZQP4w/FEJ8no4Ggdao0SIUZxn8e7xbKtyP4IhpzPlRD9iMKrEYgi9/zQ0KEFvZkuENdSGfSezBZxpXHRgFo2XWCguIm1UD+HD70e7kPPXZx72kyPDHXSzs3VTmGflBdCdeB3EYpAYsbKfL1JdoMZiNuP01NvoEyndr/dlpj6f05Aoimbuktx/0ibBXKSuJv0+ph1EwU3FBpkGz56Eh+jyeV7FvV5ZZLwntIieOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oEqQ5iGWBfhfzUU0OPHqzHdRiN+FrfVZEf+D2+iQlyY=;
+ b=Wm4zDjHdLK/GuRK7TzUeCupeiQrbcdWSZ+33gO1kB7vtZykV/eFkKJpGYXVAKEAPv0xbrzKqT2pJWuXuX26CJ+OgE1+X7DJi1GthdRTuBv+9LvDmreQ/CWEVmC0jFH11PuvyyV9N2cG5ouK7MrczBXtrJAL8K+e0I1U+WYjxmFxooyNlEcD1fG9DSOXAYIs4Vp+avLkxjo/z2FWs7pkxEpkzO4RWUAtCTDUtfAdplPt7swNTiaszhCNGSBDoppdvii+3n+uGvfDsDo5LfYhOMPc+zFMFSFQUr1C7MmLnuP4ujRYx38UXByQg0Y5DBaQ1TjOiTKM3Is1rd1fO2zhG+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by PH0PR11MB4950.namprd11.prod.outlook.com (2603:10b6:510:33::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.21; Fri, 22 Sep
+ 2023 02:58:58 +0000
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::1ba9:4bef:c1a4:306]) by CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::1ba9:4bef:c1a4:306%2]) with mapi id 15.20.6792.026; Fri, 22 Sep 2023
+ 02:58:58 +0000
+From: Yi Zhao <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org, joe.macdonald@siemens.com,
+        joe_macdonald@mentor.com
+Subject: [meta-selinux][PATCH] layer.conf: update LAYERSERIES_COMPAT for nanbield
+Date: Fri, 22 Sep 2023 10:58:45 +0800
+Message-Id: <20230922025845.3608425-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGBP274CA0018.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::30)
+ To CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4867:EE_|PH0PR11MB4950:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24c24a1f-5f97-4ebd-9685-08dbbb17ddd8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	z6sLy6MUaDccSfIBADO1ior7Qwz/t1ojqgSzSWbOYCt6cjjzciutqQECZrY0u0DTAa0yXb9nL/ClG0jU55Pk3ku6KAxgP9BUc2tcpJo/FOS3E35BmxNMdMbTVTb3UPcFBpvdfoNkeUxo1G8KxcpgpjruV3vvNvYnOaftgGI5KuTCk2HYcxKWQckTB24bKi7xfTZ1HQGcSH1S+8b00uBH+Wj/NGxC/Chj3XcHp9fFjjFOVr/3H6bJazmmqwVN0Z3rP0ihDTnATwUmF90nQoetLuouwm0PuJwJEqzCsAlc5/er6U754TW00OAFZbUITUmdDkWcBzTPtQfMhIbNk9iIp3WgxnbG91u0PbJFJgooDCyGRm3yW5V/bADOaDwCFYtVfyMUMBqG7cFEjRHxT4bpsTWtGJXxUTpKvrBPmjmwPRCnY5NRkhHPTQ0GBnMzGITXTn63KbJ9I5Q0Sz+UbYT/rGjTRmlxgjuMBSlYurz7hQp3bsAUzXfNc7945TF+mC6QYWf+boZee5DB62WUaveAdeoch6BhCG6wEshGSor3r8AYnElTzQncQC24TU+APOjtq+Qikn3mD95M0wRoMeARFDkJbfCOArxngM7tHznSQYw=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(136003)(366004)(396003)(376002)(346002)(186009)(451199024)(1800799009)(6506007)(52116002)(6512007)(2616005)(66946007)(86362001)(478600001)(966005)(38100700002)(6666004)(38350700002)(1076003)(26005)(6486002)(66476007)(2906002)(44832011)(5660300002)(316002)(8936002)(41300700001)(8676002)(4744005)(36756003)(66556008)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?y3MZDz/qOKdabLgw1cjOZ5tZy05hpXQXKJZCNANOcW1/5mYpxiJ4y9s5T6xX?=
+ =?us-ascii?Q?2r94l2cVSxip1UqXJVgex+2inyUl4JSI1uGMQhcjjd20KiI07IAvkfximr7W?=
+ =?us-ascii?Q?1FPKerK0VvdRRbzkTkicWoAgs5TPDO2XM0kUU0muCKgLkh0QP7PhlI4JmdEC?=
+ =?us-ascii?Q?JeMG5omGd63uRfwdPA/41YRQ3Q12KAjgb8HDQU1yv6TpU2AkJcLlWtttDTON?=
+ =?us-ascii?Q?qgsp2RFzd+GiyCe+zPbvHyJobAxfP1yhhQpO7CGSxNZhjsr7gyxDZl3adbRW?=
+ =?us-ascii?Q?M3BSv76O8GRA4+JbT3OEKNbg+i5dXkQMRkkP+bJY84U4okuKr/uMtFcllSbM?=
+ =?us-ascii?Q?dmQmYFxdehcEDWWufXVXeEihd9+nsflZa/5P21WGeN8WrxipU1QDwHjihYrr?=
+ =?us-ascii?Q?56x8KKR9icku/8FgfEcpX4Z2k9TGRwu94EJDTkE2oTeX9/uNtvm7bngkQH+l?=
+ =?us-ascii?Q?wPAWs06EuIuVMRkdYURAQ44X/H6HZVbRiji55vjXIAL5kUaA/7GM9yF98vIX?=
+ =?us-ascii?Q?HjFq/nXULxZjnpdmQR2t6jHVukLNOU1Nvc+ezD0WnUq/VgqoJscii0C2xnG7?=
+ =?us-ascii?Q?IfmW+uLtjrXNZL2O3TRLoSAXAz810kzj9hjIYHCLDJwOM0tSvCb/7YMcFrWS?=
+ =?us-ascii?Q?D1sJVsqRHdda1AiZRrpS2xHsDVcNNPCwNprVQdkdi84YFnUz/77u2LZOnCWL?=
+ =?us-ascii?Q?jHHWd0VC7atP7BNGlKQ9CERkOFShlV5u+jqzejgfuNKJ74NJ+RQ0yXyYayVX?=
+ =?us-ascii?Q?Zs1plwTK/QaIPY03hc+mz7BotkW+u4+8uDPD9S83l6gElY95OQxI6q1qgF8N?=
+ =?us-ascii?Q?Jmjiakd8SACCVWU28YDGxElPBNSCbMIXnfKts4gYv4/iEvBN3On4xYyuyb+x?=
+ =?us-ascii?Q?rzRZ7UonMvVsx/PMdMOmSpPOx0pdZW/FjY3/4m4pAFXa+d8P8wYeQVmfO7S/?=
+ =?us-ascii?Q?0G9nZX9KC4jPXUiHTD/5RQItDIOnJm5da+CLrS5qPV/s67TpZoYp65tVOg4s?=
+ =?us-ascii?Q?y+60BnVPMx/+1gDyihfX4bmHIBWD1ol0QsfdSbZG8HZrR929LE7ewSop6Qi6?=
+ =?us-ascii?Q?v1gVNZe7e2b+6qMsJfKaFjqPdfo0PAbSzOQXhGpeDTpcv7T/rXRsJ37FZANW?=
+ =?us-ascii?Q?aznxeLQus9wpP+EdTmPLS7EfEFD1HqNQnRl5+fJhKXZepTpLqag/8irUWDgC?=
+ =?us-ascii?Q?P36Bb3fn0YG+fHQ9/zMXaHNMVj/h/o2CHCzyFFHxWMxQWG59APmEiH8KWq3G?=
+ =?us-ascii?Q?rSArTZSbYz8NCPsoiNRgmfuLsTY0CZxHmhJcV3TGzXk6XCu9mPSXgI7h1VFP?=
+ =?us-ascii?Q?S5FZHRXsNsizejs00qaEoXYgXdl0ShAIFgW+Y436ItiY9yEN7BeEqGshxpnX?=
+ =?us-ascii?Q?6HJ6FE7YXqrfiyzvx0STV394A1fnF34qiZNbq2GYwO4/XYwJHgGiHdwfmDiV?=
+ =?us-ascii?Q?BvbDWIHy0dyMZra8ClHC9VTxATDjNrkpuYAYsb/C2gcKj8HFU8jprAiwhltT?=
+ =?us-ascii?Q?KytqsKbPHrhtHH/ecl9UFSLwgul7mKmWfj/1R7D924WaUGtH2wmwGofw/QGK?=
+ =?us-ascii?Q?AcpN34rItxFRjki3xH8ywiY5tjYccpAGblY0YKn6?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24c24a1f-5f97-4ebd-9685-08dbbb17ddd8
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2023 02:58:58.6285
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QD4wAi1SItKZxNekeuYQnxA6EQdb8epyuyAIS04MFDKrQpLjqEOgdXTe+5ykvQfLNYA2icjdGkr8X9XV/a1+/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4950
+X-Proofpoint-ORIG-GUID: u78c_CKb5P2Fj4bMyL4lQ2e0qgsWs_V5
+X-Proofpoint-GUID: u78c_CKb5P2Fj4bMyL4lQ2e0qgsWs_V5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-22_01,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ spamscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0 mlxlogscore=669
+ clxscore=1011 suspectscore=0 priorityscore=1501 phishscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2309180000
+ definitions=main-2309220025
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 22 Sep 2023 02:51:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61074
+ <yocto@lists.yoctoproject.org>; Fri, 22 Sep 2023 02:59:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61075
 
-Add support for the Radxa Rock 5B
-https://wiki.radxa.com/Rock5/5b
+oe-core has switched to nanbield in:
+https://git.openembedded.org/openembedded-core/commit/?id=f212cb12a0db9c9de5afd3cc89b1331d386e55f6
 
-The device-tree for this board is better in the 6.5 (and later) kernels,
-therefore set the kernel to linux-yocto-dev for now (eventually this won't be
-needed as linux-yocto moves forward).
-
-The Trusted Firmware A project (TF-A git://git.trustedfirmware.org/TF-A)
-does not currently support the rk3588, but patches are in review. For
-the time-being we're using the binary DDR/TPL initialization blob from
-https://github.com/rockchip-linux/rkbin. Hopefully this can change if/when
-TF-A gains support for the rk3588.
-
-The rk3588 comes in two variants: rk3588 and rk3588s. The "s" option is a
-stripped-down version of the rk3588. In the Linux kernel these two SoCs are
-kept separate, with the rk3588 building on the rk3588s, so we've mimicked that
-same behaviour here.
-
-Signed-off-by: Quentin Schulz <qschulz@theobroma-systems.com>
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- README                                        |  1 +
- conf/machine/include/rk3588.inc               |  8 ++
- conf/machine/include/rk3588s-base.inc         | 16 ++++
- conf/machine/include/rk3588s.inc              |  5 ++
- conf/machine/rock5b.conf                      | 12 +++
- recipes-bsp/rkbin/rockchip-rkbin_git.bb       | 37 ++++++++
- recipes-bsp/u-boot/u-boot%.bbappend           |  5 ++
- recipes-kernel/linux/linux-yocto-dev.bbappend |  3 +
- .../rockchip/remove-non-rockchip-arch-arm.cfg | 85 +++++++++++++++++++
- .../rockchip/remove-non-rockchip-arch-arm.scc |  1 +
- .../remove-non-rockchip-arch-arm64.cfg        | 66 ++++++++++++++
- .../remove-non-rockchip-arch-arm64.scc        |  1 +
- 12 files changed, 240 insertions(+)
- create mode 100644 conf/machine/include/rk3588.inc
- create mode 100644 conf/machine/include/rk3588s-base.inc
- create mode 100644 conf/machine/include/rk3588s.inc
- create mode 100644 conf/machine/rock5b.conf
- create mode 100644 recipes-bsp/rkbin/rockchip-rkbin_git.bb
- create mode 100644 recipes-kernel/linux/linux-yocto-dev.bbappend
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/README b/README
-index 286dafbe1020..032d9bbb6b34 100644
---- a/README
-+++ b/README
-@@ -30,6 +30,7 @@ Status of supported boards:
- 		vyasa-rk3288
- 		firefly-rk3288
- 		nanopi-r4s
-+		rock5b
- 	builds:
- 		marsboard-rk3066
- 		radxarock
-diff --git a/conf/machine/include/rk3588.inc b/conf/machine/include/rk3588.inc
-new file mode 100644
-index 000000000000..d358565a904d
---- /dev/null
-+++ b/conf/machine/include/rk3588.inc
-@@ -0,0 +1,8 @@
-+# the rk3588s is a "stripped-down" version of the rk3588
-+# in the kernel's device-tree the rk3588 builds on top of the rk3588s
-+# so anything that is valid for the rk3588s is valid for the rk3588
-+MACHINEOVERRIDES =. "rk3588:rk3588s:"
-+require conf/machine/include/rk3588s-base.inc
-+
-+SOC_FAMILY = "rk3588"
-+require conf/machine/include/soc-family.inc
-diff --git a/conf/machine/include/rk3588s-base.inc b/conf/machine/include/rk3588s-base.inc
-new file mode 100644
-index 000000000000..ad74a1895ec0
---- /dev/null
-+++ b/conf/machine/include/rk3588s-base.inc
-@@ -0,0 +1,16 @@
-+DEFAULTTUNE ?= "cortexa76-cortexa55-crypto"
-+
-+require conf/machine/include/arm/armv8-2a/tune-cortexa76-cortexa55.inc
-+require conf/machine/include/rockchip-defaults.inc
-+require conf/machine/include/rockchip-wic.inc
-+
-+KBUILD_DEFCONFIG ?= "defconfig"
-+KERNEL_FEATURES:append:rk3588 = " bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
-+KERNEL_CLASSES = "kernel-fitimage"
-+KERNEL_IMAGETYPE = "fitImage"
-+
-+PREFERRED_PROVIDER_trusted-firmware-a = "rockchip-rkbin"
-+PREFERRED_PROVIDER_optee-os = "rockchip-rkbin"
-+
-+UBOOT_SUFFIX ?= "itb"
-+UBOOT_ENTRYPOINT ?= "0x06000000"
-diff --git a/conf/machine/include/rk3588s.inc b/conf/machine/include/rk3588s.inc
-new file mode 100644
-index 000000000000..a57be507bf5e
---- /dev/null
-+++ b/conf/machine/include/rk3588s.inc
-@@ -0,0 +1,5 @@
-+MACHINEOVERRIDES =. "rk3588s:"
-+require conf/machine/include/rk3588s-base.inc
-+
-+SOC_FAMILY = "rk3588s"
-+require conf/machine/include/soc-family.inc
-diff --git a/conf/machine/rock5b.conf b/conf/machine/rock5b.conf
-new file mode 100644
-index 000000000000..dc31a9f3a4e4
---- /dev/null
-+++ b/conf/machine/rock5b.conf
-@@ -0,0 +1,12 @@
-+#@TYPE: Machine
-+#@NAME: Radxa Rock5b
-+#@DESCRIPTION: ROCK5 is the 5th generation of SBC designed by Radxa.
-+#https://wiki.radxa.com/Rock5/5b
-+
-+require conf/machine/include/rk3588.inc
-+
-+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-dev"
-+KERNEL_DEVICETREE = "rockchip/rk3588-rock-5b.dtb"
-+MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
-+
-+UBOOT_MACHINE = "rock5b-rk3588_defconfig"
-diff --git a/recipes-bsp/rkbin/rockchip-rkbin_git.bb b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
-new file mode 100644
-index 000000000000..7fefb017053b
---- /dev/null
-+++ b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
-@@ -0,0 +1,37 @@
-+DESCRIPTION = "Rockchip Firmware and Tool Binaries"
-+LICENSE = "Proprietary"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=15faa4a01e7eb0f5d33f9f2bcc7bff62"
-+
-+SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
-+SRCREV = "b4558da0860ca48bf1a571dd33ccba580b9abe23"
-+
-+PROVIDES += "trusted-firmware-a"
-+PROVIDES += "optee-os"
-+
-+inherit bin_package deploy
-+
-+S = "${WORKDIR}/git"
-+
-+COMPATIBLE_MACHINE = ""
-+COMPATIBLE_MACHINE:rk3588s = "rk3588s"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+do_install() {
-+	# Nothing in this recipe is useful in a filesystem
-+	:
-+}
-+
-+PACKAGES = "${PN}"
-+ALLOW_EMPTY:${PN} = "1"
-+
-+do_deploy() {
-+	# Prebuilt TF-A
-+	install -m 644 ${S}/bin/rk35/rk3588_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3588.elf
-+	# Prebuilt OPTEE-OS
-+	install -m 644 ${S}/bin/rk35/rk3588_bl32_v*.bin ${DEPLOYDIR}/tee-rk3588.bin
-+	# Prebuilt U-Boot TPL (DDR init)
-+	install -m 644 ${S}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v*.bin ${DEPLOYDIR}/ddr-rk3588.bin
-+}
-+
-+addtask deploy after do_install
-diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
-index db8e0166f5b3..3732c7f04373 100644
---- a/recipes-bsp/u-boot/u-boot%.bbappend
-+++ b/recipes-bsp/u-boot/u-boot%.bbappend
-@@ -11,6 +11,11 @@ DEPENDS:append = " python3-pyelftools-native"
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 8bdc3de..0a0a6ab 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -17,7 +17,7 @@ BBFILE_PRIORITY_selinux = "5"
+ # cause compatibility issues with other layers
+ LAYERVERSION_selinux = "1"
  
- ATF_DEPENDS ??= ""
+-LAYERSERIES_COMPAT_selinux = "mickledore"
++LAYERSERIES_COMPAT_selinux = "nanbield"
  
-+EXTRA_OEMAKE:append:rk3588s = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf"
-+ATF_DEPENDS:append:rk3588s = " trusted-firmware-a:do_deploy"
-+EXTRA_OEMAKE:append:rk3588s = " ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin"
-+ATF_DEPENDS:append:rk3588s = " rockchip-rkbin:do_deploy"
-+
- EXTRA_OEMAKE:append:rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
- ATF_DEPENDS:rk3399 = " trusted-firmware-a:do_deploy"
- EXTRA_OEMAKE:append:rk3328 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3328.elf"
-diff --git a/recipes-kernel/linux/linux-yocto-dev.bbappend b/recipes-kernel/linux/linux-yocto-dev.bbappend
-new file mode 100644
-index 000000000000..cda5c520c4fe
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev.bbappend
-@@ -0,0 +1,3 @@
-+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-+COMPATIBLE_MACHINE:rock5b = "rock5b"
-+SRC_URI:append:rock5b = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
-new file mode 100644
-index 000000000000..e9443f17895c
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
-@@ -0,0 +1,85 @@
-+CONFIG_ARCH_ACTIONS=n
-+CONFIG_ARCH_AIROHA=n
-+CONFIG_ARCH_ALPINE=n
-+CONFIG_ARCH_ARTPEC=n
-+CONFIG_ARCH_ASPEED=n
-+CONFIG_ARCH_AT91=n
-+CONFIG_ARCH_BCM2835=n
-+CONFIG_ARCH_BCM=n
-+CONFIG_ARCH_BCMBCA=n
-+CONFIG_ARCH_BCMBCA_BRAHMAB15=n
-+CONFIG_ARCH_BCMBCA_CORTEXA7=n
-+CONFIG_ARCH_BCMBCA_CORTEXA9=n
-+CONFIG_ARCH_BCM_21664=n
-+CONFIG_ARCH_BCM_23550=n
-+CONFIG_ARCH_BCM_281XX=n
-+CONFIG_ARCH_BCM_5301X=n
-+CONFIG_ARCH_BCM_53573=n
-+CONFIG_ARCH_BCM_CYGNUS=n
-+CONFIG_ARCH_BCM_HR2=n
-+CONFIG_ARCH_BCM_NSP=n
-+CONFIG_ARCH_BERLIN=n
-+CONFIG_ARCH_BRCMSTB=n
-+CONFIG_ARCH_DIGICOLOR=n
-+CONFIG_ARCH_EMEV2=n
-+CONFIG_ARCH_EXYNOS=n
-+CONFIG_ARCH_HI3xxx=n
-+CONFIG_ARCH_HIGHBANK=n
-+CONFIG_ARCH_HIP01=n
-+CONFIG_ARCH_HIP04=n
-+CONFIG_ARCH_HISI=n
-+CONFIG_ARCH_HIX5HD2=n
-+CONFIG_ARCH_HPE=n
-+CONFIG_ARCH_HPE_GXP=n
-+CONFIG_ARCH_INTEL_SOCFPGA=n
-+CONFIG_ARCH_KEYSTONE=n
-+CONFIG_ARCH_MEDIATEK=n
-+CONFIG_ARCH_MESON=n
-+CONFIG_ARCH_MILBEAUT=n
-+CONFIG_ARCH_MILBEAUT_M10V=n
-+CONFIG_ARCH_MMP=n
-+CONFIG_ARCH_MSM8916=n
-+CONFIG_ARCH_MSM8960=n
-+CONFIG_ARCH_MSM8974=n
-+CONFIG_ARCH_MSM8X60=n
-+CONFIG_ARCH_MVEBU=n
-+CONFIG_ARCH_MXC=n
-+CONFIG_ARCH_OMAP3=n
-+CONFIG_ARCH_OMAP4=n
-+CONFIG_ARCH_QCOM=n
-+CONFIG_ARCH_R7S72100=n
-+CONFIG_ARCH_R7S9210=n
-+CONFIG_ARCH_R8A73A4=n
-+CONFIG_ARCH_R8A7740=n
-+CONFIG_ARCH_R8A7742=n
-+CONFIG_ARCH_R8A7743=n
-+CONFIG_ARCH_R8A7744=n
-+CONFIG_ARCH_R8A7745=n
-+CONFIG_ARCH_R8A77470=n
-+CONFIG_ARCH_R8A7778=n
-+CONFIG_ARCH_R8A7779=n
-+CONFIG_ARCH_R8A7790=n
-+CONFIG_ARCH_R8A7791=n
-+CONFIG_ARCH_R8A7792=n
-+CONFIG_ARCH_R8A7793=n
-+CONFIG_ARCH_R8A7794=n
-+CONFIG_ARCH_R9A06G032=n
-+CONFIG_ARCH_RENESAS=n
-+CONFIG_ARCH_SH73A0=n
-+CONFIG_ARCH_SPEAR13XX=n
-+CONFIG_ARCH_STI=n
-+CONFIG_ARCH_STM32=n
-+CONFIG_ARCH_SUNPLUS=n
-+CONFIG_ARCH_SUNXI=n
-+CONFIG_ARCH_TEGRA=n
-+CONFIG_ARCH_TEGRA_114_SOC=n
-+CONFIG_ARCH_TEGRA_124_SOC=n
-+CONFIG_ARCH_TEGRA_2x_SOC=n
-+CONFIG_ARCH_TEGRA_3x_SOC=n
-+CONFIG_ARCH_U8500=n
-+CONFIG_ARCH_UNIPHIER=n
-+CONFIG_ARCH_VEXPRESS=n
-+CONFIG_ARCH_VEXPRESS_TC2_PM=n
-+CONFIG_ARCH_VIRT=n
-+CONFIG_ARCH_WM8850=n
-+CONFIG_ARCH_ZYNQ=n
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
-new file mode 100644
-index 000000000000..ce7770456ea4
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
-@@ -0,0 +1 @@
-+kconf hardware remove-non-rockchip-arch-arm.cfg
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
-new file mode 100644
-index 000000000000..5b804a2ca26b
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
-@@ -0,0 +1,66 @@
-+CONFIG_ARCH_ACTIONS=n
-+CONFIG_ARCH_ALPINE=n
-+CONFIG_ARCH_APPLE=n
-+CONFIG_ARCH_BCM2835=n
-+CONFIG_ARCH_BCM=n
-+CONFIG_ARCH_BCMBCA=n
-+CONFIG_ARCH_BCM_IPROC=n
-+CONFIG_ARCH_BERLIN=n
-+CONFIG_ARCH_BRCMSTB=n
-+CONFIG_ARCH_EXYNOS=n
-+CONFIG_ARCH_SPARX5=n
-+CONFIG_ARCH_HISI=n
-+CONFIG_ARCH_INTEL_SOCFPGA=n
-+CONFIG_ARCH_K3=n
-+CONFIG_ARCH_KEEMBAY=n
-+CONFIG_ARCH_LAYERSCAPE=n
-+CONFIG_ARCH_LG1K=n
-+CONFIG_ARCH_MEDIATEK=n
-+CONFIG_ARCH_MESON=n
-+CONFIG_ARCH_MVEBU=n
-+CONFIG_ARCH_MXC=n
-+CONFIG_ARCH_NPCM=n
-+CONFIG_ARCH_NXP=n
-+CONFIG_ARCH_MA35=n
-+CONFIG_ARCH_QCOM=n
-+CONFIG_ARCH_REALTEK=n
-+CONFIG_ARCH_R8A774A1=n
-+CONFIG_ARCH_R8A774B1=n
-+CONFIG_ARCH_R8A774C0=n
-+CONFIG_ARCH_R8A774E1=n
-+CONFIG_ARCH_R8A77951=n
-+CONFIG_ARCH_R8A77960=n
-+CONFIG_ARCH_R8A77961=n
-+CONFIG_ARCH_R8A77965=n
-+CONFIG_ARCH_R8A77970=n
-+CONFIG_ARCH_R8A77980=n
-+CONFIG_ARCH_R8A77990=n
-+CONFIG_ARCH_R8A77995=n
-+CONFIG_ARCH_R8A779A0=n
-+CONFIG_ARCH_R8A779F0=n
-+CONFIG_ARCH_R8A779G0=n
-+CONFIG_ARCH_R9A07G043=n
-+CONFIG_ARCH_R9A07G044=n
-+CONFIG_ARCH_R9A07G054=n
-+CONFIG_ARCH_R9A09G011=n
-+CONFIG_ARCH_RENESAS=n
-+CONFIG_ARCH_S32=n
-+CONFIG_ARCH_SEATTLE=n
-+CONFIG_ARCH_STM32=n
-+CONFIG_ARCH_SPRD=n
-+CONFIG_ARCH_SUNXI=n
-+CONFIG_ARCH_SYNQUACER=n
-+CONFIG_ARCH_TEGRA=n
-+CONFIG_ARCH_TEGRA_132_SOC=n
-+CONFIG_ARCH_TEGRA_186_SOC=n
-+CONFIG_ARCH_TEGRA_194_SOC=n
-+CONFIG_ARCH_TEGRA_210_SOC=n
-+CONFIG_ARCH_TEGRA_234_SOC=n
-+CONFIG_ARCH_TESLA_FSD=n
-+CONFIG_ARCH_THUNDER2=n
-+CONFIG_ARCH_THUNDER=n
-+CONFIG_ARCH_UNIPHIER=n
-+CONFIG_ARCH_VEXPRESS=n
-+CONFIG_ARCH_VISCONTI=n
-+CONFIG_ARCH_XGENE=n
-+CONFIG_ARCH_ZYNQMP=n
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
-new file mode 100644
-index 000000000000..e169240f5067
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
-@@ -0,0 +1 @@
-+kconf hardware remove-non-rockchip-arch-arm64.cfg
+ LAYERDEPENDS_selinux = " \
+     core \
 -- 
-2.41.0.327.gaa9166bcc0ba
+2.25.1
 
 
