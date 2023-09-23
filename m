@@ -1,217 +1,415 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <mhalstead@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 383A5CE7A89
-	for <webhook@archiver.kernel.org>; Sat, 23 Sep 2023 12:58:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by mx.groups.io with SMTP id smtpd.web10.19659.1695473926904336788
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D46CDCE7A88
+	for <webhook@archiver.kernel.org>; Sat, 23 Sep 2023 19:51:43 +0000 (UTC)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+ by mx.groups.io with SMTP id smtpd.web11.27966.1695498700284442637
  for <yocto@lists.yoctoproject.org>;
- Sat, 23 Sep 2023 05:58:47 -0700
+ Sat, 23 Sep 2023 12:51:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=XcEOag+n;
- spf=pass (domain: intel.com, ip: 134.134.136.31, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695473926; x=1727009926;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=hft+IjBAEEURKxx1vCDwbq3UiAiS/3IMSLYqSYtIPSE=;
-  b=XcEOag+nRN4rdUYe+XGzpRNzlYrigrDxZDsVaLOj6pPd+ArZVfANqS52
-   SsNxQRG/o0kLqtOO+0fxEia8lWpMjPDNf5ENogit8kI19qrLCvcutk9RQ
-   cWo0B3GhCjYxV7msgo0Mi2n0LxGUfIOHNgNWnuPi61DIhFBHDtJgQRqY8
-   7NfqNhqricLdPyKwtVV1zdawtxjouf9qOPpAXck+A6HqeAtn4VCWihCji
-   yWkUtM2f6K3N7mz3OHpolE9sjV37yssLaWontAHTwWS2e8IX2QcBEFKE3
-   vf1S4kXDLQCxFSaTa3VdYsPYa+Q0fcafcj7SY/laVLuYjMisDCeQT24dx
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10842"; a="445118439"
-X-IronPort-AV: E=Sophos;i="6.03,171,1694761200"; 
-   d="scan'208";a="445118439"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2023 05:58:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10842"; a="871566136"
-X-IronPort-AV: E=Sophos;i="6.03,171,1694761200"; 
-   d="scan'208";a="871566136"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 23 Sep 2023 05:58:46 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Sat, 23 Sep 2023 05:58:46 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Sat, 23 Sep 2023 05:58:46 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Sat, 23 Sep 2023 05:58:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G0LOCPZvHFtj061i4Ywb0+1FLSD9fGSeLgAGAuug7LVrp3x3g0wjsieVunrRKLFedFGuoiPeOIoYw5DdUFBcwgim5/wqD2C3X6aVTKXbVpeEl64pqul4/+QFt9B4/qn7A7bjbwpoe4dfpEVO3fxApxlB1U1e8VgLHo+6oOzgod7HfjI/7+E16v7shyq+Jwa+q3JJpgKYPAQsP2L65SoSCV0uUPUIjqbFyn9OJsBOaGnsoMq1apYCnmpURSNPpuPt0xsaDtHnG8Ko5At8yDldrCD4LS0IAevcTtipu7O61dlDCp7XzbKDvEJ9oTrZVYDLgT/YooSeo0hiaWvjym5OCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Owox5dg9GkhYdYfBJvAH8WzoVUvvrj6cICrbEkuLAqk=;
- b=L1NNrDu9GrKeKSxallGQzNDSZWNl572DS9Jpz3X4vPCHXLK9RJmmQe9woPSPcIEIgXqAWjSFTKIPK4Mx+foL1Sr3WR9/vxMizX3rB2tgGE6ZBVfyWeqfs2/J2wzb8mjQauAnqT6M1OwVNq+3oz0KNnZIvM18r8xWcDckY0/tDmN3DPB72ho6JRfLfHZ6sBjHEySnbD/Sn8c5x7AxJfcV6uZ5bpMYIB2zyvJE9NwH9YbNq6gGTsN1MuiMT7/K6y/4+CxWZOpkdPUWWH4xKKaUlhFRBHeCC7ExdESqv4AUauLVe8QW0u2Toj2AZ9kz7p5ofgKFtutpnoMkyammQ184IQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com (2603:10b6:a03:191::11)
- by SN7PR11MB7565.namprd11.prod.outlook.com (2603:10b6:806:344::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Sat, 23 Sep
- 2023 12:58:42 +0000
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3743:9715:3ecd:858e]) by BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3743:9715:3ecd:858e%4]) with mapi id 15.20.6813.017; Sat, 23 Sep 2023
- 12:58:42 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-3.1.28.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.28.rc2)
-Thread-Index: AQHZ6TT3eSm2ffyNYEajux+dgqks2bAoaH8g
-Date: Sat, 23 Sep 2023 12:58:41 +0000
-Message-ID: <BY5PR11MB41520480F0B12B3409047F36A1FEA@BY5PR11MB4152.namprd11.prod.outlook.com>
-References: <0101018aa1f2c11f-86d5f669-c1d2-4ef2-bd68-f03f877b24b6-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018aa1f2c11f-86d5f669-c1d2-4ef2-bd68-f03f877b24b6-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR11MB4152:EE_|SN7PR11MB7565:EE_
-x-ms-office365-filtering-correlation-id: b0172186-6428-40df-37cd-08dbbc34d029
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: y8uk5QeOM8reoPwjrycJ5P3L3b2+aY5kmr3DeB3phvSI2KlEm3E2iQGopICkQeGg13ESSc+MEE7zBEts4gjcEDgAKpe3gG19p6jnfyz+lbOfumT6dSVNwD4tUxmVP7eQWFWw3scChrN13lA6kXB8YR8DQAEv3H5Ep3NMTxG2aYtS2asey2rmGHrOML8WEafipUbW5WgkwheUSkRfkVkzrFex2xSRamdaobIQ+roYxPeDhwnSlbATBrnUQKN9VINnS3C7frmzlBy6rRE2Fe5/jEg0c0BmXJQSVthPsLSAiJRsiJOv9HOtPd6iR6WZvW1mXhhKRCquJj3+FTjmNDQqVMQn+Cr3Yh8qh6UBOLrn2/HGG2nmYaJdtLSe3zQ1hdwArTu6Vwj1c1jUY0Avmt3sTgvxibhAYFAFznvSbyFJeoo9bZtS7cuniP3r6AoGCH/yA3gZblJGaZ3Z+nBmvk6l9FfxT6NkOKjsO/9Uerh8i4LwcQYttt684eJEnXLGDIxOgXmXf1xjgU7KFOsGQpgPuM8QpCGNapgLYWORL0LfORaCg5LXGX2hvw/bNOUh/+G/1fSLQVNwJwUVXw42SJbdrmKcdvPBmqvGzO5Ft0ON6Tz3TNdOo02na0Nu7L4j4uchp12zqmziWETRhG3TZpj6vA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4152.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(376002)(39860400002)(136003)(366004)(230922051799003)(186009)(451199024)(1800799009)(52536014)(9686003)(316002)(38070700005)(71200400001)(55016003)(6506007)(7696005)(53546011)(33656002)(966005)(2906002)(478600001)(41300700001)(83380400001)(66476007)(5660300002)(8676002)(76116006)(64756008)(66446008)(66556008)(8936002)(66946007)(110136005)(86362001)(26005)(38100700002)(15650500001)(82960400001)(122000001)(66899024);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?m1LZdXruAzIGD4lN3eCOO0mAeuvn7VFoS5ZV8Tlu0PvtUgAzbuIKEZEqqu3i?=
- =?us-ascii?Q?MYjfKP+Bycfl85Q4EmUjCkkOH1uWzsJzMLUpN5uXP4eK0KAKlwDE11WjVPhX?=
- =?us-ascii?Q?oYf0uwxf70dMBmAVjnXhfNp0VQ5TbOOQPlkePN+TwaBYZPl9vicfC54QjfyF?=
- =?us-ascii?Q?mdi5gDDVE0HEz3UcG7uBAK60m1fIAhu5tEFDgUsyW7gCcrbguWKK4Qqu7R4J?=
- =?us-ascii?Q?bXRMCwXzgaI+MOOHqk5tmGSZIqX2q61EeFOhuViK8dIXe0XBRKgIG7qijoWI?=
- =?us-ascii?Q?ZBDftgPKQADIMSwy1yu0DN+qYpIre8jJ3/KKFGCLn25GnwXXEUdE9O0ahZ7Z?=
- =?us-ascii?Q?wcHylQFWx5gkMSLUUs7r2zMepFJNvF8f+14itGaBTcpQgRSQJbfCrlW5f+Zo?=
- =?us-ascii?Q?okPTCJoU8Ie2Qi/fh1vHpsMoRWWMepFup1Ee4hfz3lqZCPsVMWShoOGr9l/O?=
- =?us-ascii?Q?LnUvOgAxHiA6nhNo4llXAwvZwM9FTJGOgAYkh1438OlWFdhpR48rBFQUoHOj?=
- =?us-ascii?Q?osrCZTc1+7mHJK2DQg/UrxqbrRHdBn4joIAv8mmlFosNeUJo2dT7R7sIUJHq?=
- =?us-ascii?Q?YMDe5OpXkXiTHGzXuWVswavEIGjSPjntqu1x0lgbEFb6uCPZ60BgsGpLE8Td?=
- =?us-ascii?Q?GM7yi8o38TfMOtFPeqaB1tWZ3koiiCf9Myf1wPipQwEOFmaaqQIYy6eng+Y8?=
- =?us-ascii?Q?8p4pZRbYoTHqwBG8+1Dx/m88bha94lOt/LS581TjdDzQ6Y6A0IsgxSfZaBoO?=
- =?us-ascii?Q?CpNf4XFgHh8CVZuWQJo7kY03zselH2VW4iCDbloIINUO71qIucVqrIIzf6TG?=
- =?us-ascii?Q?YMmavijfNsQi894yBjYU5yhfI3/lNXeAI2CY3nhZ8bZm+o3b5o9jcXBtEe8z?=
- =?us-ascii?Q?YkfKInPIXdjD8O3HkxsLXtVeROvfZHdYS0rOHJpmjYmiwgMSDGZugQWRPV1V?=
- =?us-ascii?Q?+VhdN0JTO9I1jj97CVRvtkIOAlztlSARV9R1jLyy8mkPpejtJPmI9hO4uy7D?=
- =?us-ascii?Q?VYMJ3qyIu9e2Y0+RxQedD/rzdCZNn4fH8tOsHfLIPbWblf7/dA5wlEYkH6Px?=
- =?us-ascii?Q?66YHRqSXlzHdLC95B0goieUv03lR/mwiwir23zwidcpHIB6TQsb2kRD9B3Nd?=
- =?us-ascii?Q?hH+SlRHYm8rm+wyYtz3Wdr3+YD+OfKq4anosjeeOvS9/CsvYDdi9Mt04ocyE?=
- =?us-ascii?Q?JZt7WBFQPhG7+FRxngNOnI8dd/cLFeRGOIq+OF3WmkuCD24/awfleMTMvPbV?=
- =?us-ascii?Q?XvxNADghlui0o3cFTVecpKCIT4XTMHJ9prfmxAOu+vkbjF+ih63ptg+j3MSU?=
- =?us-ascii?Q?J01LqSh4pA2wTEhm7iNgzSs++ak8MZMUZbLqrtVnafNCq+Adzb0+2VHK7o/2?=
- =?us-ascii?Q?2bIbbLA+L1rG3maLRvn4QYNieKQ9Nok83wmscrfmnauhWjifQbQOCqxajfK3?=
- =?us-ascii?Q?G+Zuuw4gljS8gy30GNRylVo8rkWRpbGb2C0O4cFEGXGalXvm66TIFhKBhLqr?=
- =?us-ascii?Q?FdHV66mx2Uhv1wXJVPxEbdH7KPqsyBRNZW6xH1HzBLsRf7EYu0AHLItZ2rYV?=
- =?us-ascii?Q?SMUrn8q+tcHcYHhN6NhhHAXltEsbIGifiG9G8I+F?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=B1i74XR9;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.167.49, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50308217223so6340419e87.3
+        for <yocto@lists.yoctoproject.org>; Sat, 23 Sep 2023 12:51:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google; t=1695498698; x=1696103498; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=J/xae/qu+2WGHvC0bfIWCNLRMSy+5rHDej2NSbkID90=;
+        b=B1i74XR90BDXdirkXSIA5ap1BF6z1v2SDGiXr2WxzhbsZC7sbYpk1GjgfWiyvLMEtJ
+         i/bhicIr6w0dlmiGc0tdDGjcoMVvjlxm9yqC3DGkIUPTtLzaMVV2QS84jTDyL4C4bKt9
+         2gIFFm9/kUGy/79YvNwqsG+85vUys8CjKjE6Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695498698; x=1696103498;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J/xae/qu+2WGHvC0bfIWCNLRMSy+5rHDej2NSbkID90=;
+        b=vt04dRFPUqce5kkK8DpPiIp2QpkYWf/LqhJlWMFJYjAZpDyPzS2IlUnkW3xck8KqEf
+         SCwrvx0kqCHFfnm166kb/lsyiFkY6Hn2ocgbbJSAQW0UozDudYwC2b/RvsfyKmTYzV8I
+         Bz5nQz3+5fuL8QAJTniOUXaIOs2R6JjrAVsvah9sH5RJZ8whadC1dr4NypYRYt7s/IHk
+         v1216AHHz6fXwES/qG/jb+PWxoexJo89XeeZewWwtKlzWf8LcN5sX8AnLVWcUuVbZJ9c
+         CmdhXZK/vRMrbcFw/x71z7t50KKTnTbHygutzZztztG3xvdmLilNddUgCDr8jjCmcKXG
+         4OwQ==
+X-Gm-Message-State: AOJu0YyAUQMpHShHjhKlksTC3K/3spoztpT9HVpCKaEeIY/pjsWKJYs7
+	ZrrWSKhP9g+cb3/PHqKYq7iQ04LozU3YaN42iz6QHQ==
+X-Google-Smtp-Source: AGHT+IGxiYgT8ESTw0oJd86tcw2lLIQls/jAdS1G1Doo7gC+L0DDhV3aam5qWfpXvOqiDWs76xGH9lEK85ffixqG22U=
+X-Received: by 2002:ac2:4f07:0:b0:4f9:51ac:41eb with SMTP id
+ k7-20020ac24f07000000b004f951ac41ebmr2691548lfr.16.1695498698203; Sat, 23 Sep
+ 2023 12:51:38 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4152.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0172186-6428-40df-37cd-08dbbc34d029
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2023 12:58:41.9379
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9NER9okPaW1rnWxiagoT5cjN2E1yZ4bi8RVr3ceaceAptppviz/yMlLzZo2+ux5GkaVD04RCgj6+rhdKgdKf9w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7565
-X-OriginatorOrg: intel.com
+References: <CADfgfoaiTO20VqND_cW19rcx3zKvDR2vh69GZMA0Ox3Pb-pF2Q@mail.gmail.com>
+ <CADfgfoY8c3jiGNhbVj8nETsRNxwsxZ6vg3JSqKWX8XAzTRX1tA@mail.gmail.com>
+In-Reply-To: <CADfgfoY8c3jiGNhbVj8nETsRNxwsxZ6vg3JSqKWX8XAzTRX1tA@mail.gmail.com>
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Date: Sat, 23 Sep 2023 12:51:26 -0700
+Message-ID: <CADfgfoarvGQgNSHbT0gHAChtKofgeZrv1rciJq-W9iB67jq4kw@mail.gmail.com>
+Subject: Re: CDN for sstate.yoctoproject.org
+To: Alexander Kanavin <alex.kanavin@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, Ross Burton <Ross.Burton@arm.com>
+Content-Type: multipart/alternative; boundary="0000000000009fc26306060c0d82"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 23 Sep 2023 12:58:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61086
+ <yocto@lists.yoctoproject.org>; Sat, 23 Sep 2023 19:51:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61087
 
-Hi All,
-=20
-QA for yocto-3.1.28.rc2 is completed. This is the full report for this rele=
-ase: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-=20
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-=20
-No new issue found.=20
-=20
-Thanks,
-Jing Hui
+--0000000000009fc26306060c0d82
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+After some workshopping this morning we have a solution for larger files.
+Almost every package is now available with CDN acceleration. For files over
+64MB the fetcher will need to follow a series of redirects to work
+properly. Files under 64MB will be served fast from every region. Larger
+files will be proxyed and cached on a smaller network of servers that can
+handle them. Once cached they will be stored for up to a month. Because
+sstate is immutable that means fast access after the first use in a region.
+
+Set SSTATE_MIRRORS
+<https://docs.yoctoproject.org/ref-manual/variables.html#term-SSTATE_MIRROR=
+S>
+to include https://cdn.jsdelivr.net/yocto/sstate/all or
+http://cdn.jsdelivr.net/yocto/sstate/all, test it out, and report back.
+
+If we want the system to perform as fast as possible we need to change
+SSTATE to work with 64MB file segments but that's a discussion to have
+after this solution is tested.
 
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Sunday, September 17, 2023 3:03 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-3.1.28.rc2)
->=20
->=20
-> A build flagged for QA (yocto-3.1.28.rc2) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.28.rc2
->=20
->=20
-> Build hash information:
->=20
-> bitbake: b60c7085ec370473bea9b3b4b65826a17638837f
-> meta-agl: e0f6590189cb0a510bff0d4233667c552d964591
-> meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882
-> meta-aws: 77e5438c27292ad5f8c7d3b100cb09b8dbf1c7f4
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: e482213f37828216c7a7df68ff353652cc865ec1
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> meta-openembedded: e42d1e758f9f08b98c0e8c6f0532316951bb276f
-> meta-virtualization: 0dbb8593fa38ac2a04fcac04ff3e35611e849824
-> oecore: 8b91c463fb3546836789e1890b3c68acf69c162a
-> poky: 926eb08fe325e2ea13098f99d920840b9354ceb9
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#308): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/308
-> Mute This Topic: https://lists.yoctoproject.org/mt/101411111/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10762429/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+On Fri, Sep 22, 2023 at 12:03=E2=80=AFPM Michael Halstead <
+mhalstead@linuxfoundation.org> wrote:
 
+> Here are packages and size ranges that are not yet served via CDN.
+> Hopefully testing on the smaller files is possible while we figure out
+> a solution for these.
+>
+> assimp 75M 76M
+> binutils 64M 100M
+> boost 68M 148M
+> ceres-solver 167M 182M
+> cmake 157M 553M
+> ffmpeg 68M 69M
+> gcc 127M 681M
+> gcc-cross-aarch64 64M 102M
+> gcc-cross-arm 64M 72M
+> gcc-cross-i686 65M 80M
+> gcc-cross-mips 65M 69M
+> gcc-cross-mips64 64M 69M
+> gcc-cross-powerpc 64M 72M
+> gcc-cross-x86_64 65M 104M
+> gcc-crosssdk-aarch64-pokysdk-linux 65M 75M
+> gcc-crosssdk-i686-oesdk-linux 65M 77M
+> gcc-crosssdk-i686-pokysdk-linux 65M 79M
+> gcc-crosssdk-i686-w64-mingw32 66M 78M
+> gcc-crosssdk-x86_64-oesdk-linux 65M 78M
+> gcc-crosssdk-x86_64-pokysdk-linux 65M 80M
+> gcc-crosssdk-x86_64-w64-mingw32 67M 79M
+> gdb 66M 105M
+> ghostscript 64M 115M
+> git 68M 90M
+> glibc-locale 81M 228M
+> go 67M 67M
+> go-binary-native 82M 82M
+> go-cross-core2-32 98M 100M
+> go-cross-core2-64 93M 100M
+> go-cross-corei7-64 98M 99M
+> go-cross-cortexa15t2hf-neon 99M 99M
+> go-cross-cortexa57 93M 99M
+> go-cross-cortexa8hf-neon 99M 100M
+> go-cross-mips32r2 98M 99M
+> go-cross-mips64 99M 99M
+> go-cross-mips64r2 99M 99M
+> go-native 86M 86M
+> go-runtime 64M 82M
+> grpc 74M 102M
+> hdf5 78M 137M
+> influxdb 76M 98M
+> intel-media-driver 68M 132M
+> jemalloc 164M 164M
+> kea 65M 153M
+> lib32-binutils 64M 70M
+> lib32-boost 77M 122M
+> lib32-cmake 158M 305M
+> lib32-gcc 144M 390M
+> lib32-gcc-cross-i686 65M 79M
+> lib32-gcc-cross-mips 65M 69M
+> lib32-ghostscript 65M 83M
+> lib32-git 65M 65M
+> lib32-glibc-locale 81M 228M
+> lib32-go-cross-x86 98M 99M
+> lib32-kea 64M 88M
+> lib32-linux-firmware 275M 419M
+> lib32-llvm 1126.4M 2662.4M
+> lib32-ltp 77M 305M
+> lib32-mesa 65M 68M
+> lib32-openssl 119M 360M
+> lib32-piglit 106M 106M
+> lib32-qemu 275M 639M
+> lib32-rust 93M 129M
+> lib32-rust-llvm 64M 76M
+> lib32-spirv-tools 68M 107M
+> lib32-valgrind 68M 89M
+> lib32-vulkan-demos 74M 74M
+> lib32-vulkan-validation-layers 65M 101M
+> lib32-webkitgtk 1126.4M 927M
+> lib64-boost 75M 119M
+> lib64-gcc 151M 401M
+> lib64-gcc-cross-mips64 65M 69M
+> lib64-gcc-cross-x86_64 65M 80M
+> lib64-glibc-locale 82M 228M
+> lib64-go-cross-x86_64 98M 99M
+> lib64-go-runtime 68M 81M
+> lib64-ltp 67M 347M
+> lib64-mesa 66M 68M
+> lib64-openssl 276M 411M
+> lib64-rust 97M 123M
+> lib64-rust-llvm 64M 67M
+> lib64-valgrind 65M 84M
+> libyang 93M 93M
+> linux-firmware 275M 419M
+> linux-intel 120M 395M
+> linux-yocto 66M 537M
+> linux-yocto-rt 174M 287M
+> llvm 1126.4M 3481.6M
+> llvm-native 71M 88M
+> ltp 64M 598M
+> mariadb 1331.2M 966M
+> mariadb-native 237M 259M
+> mesa 64M 113M
+> minifi-cpp 155M 214M
+> mozjs-102 183M 255M
+> nativesdk-glibc-locale 81M 226M
+> nativesdk-qemu 245M 644M
+> nativesdk-rust 82M 125M
+> nativesdk-rust-llvm 65M 73M
+> nodejs 1024.0M 723M
+> opencv 185M 237M
+> opengl-es-cts 406M 560M
+> openssl 92M 685M
+> php 67M 68M
+> piglit 106M 106M
+> poco 75M 107M
+> python3-grpcio 65M 88M
+> python3-wxgtk4 70M 100M
+> qemu 1228.8M 929M
+> qemu-system-native 65M 71M
+> renderdoc 67M 82M
+> rocksdb 177M 272M
+> rust 85M 140M
+> rust-llvm 64M 79M
+> rust-llvm-native 287M 418M
+> rust-native 78M 85M
+> spirv-tools 64M 195M
+> systemd 69M 71M
+> tesseract-lang 369M 451M
+> upm 82M 82M
+> valgrind 64M 128M
+> vsomeip 82M 149M
+> vulkan-cts 592M 833M
+> vulkan-demos 73M 138M
+> vulkan-validation-layers 65M 108M
+> webkitgtk 1024.0M 995M
+> webkitgtk3 1126.4M 1638.4M
+> wireshark 65M 85M
+> wxwidgets 70M 88M
+>
+> On Fri, Sep 22, 2023 at 10:32=E2=80=AFAM Michael Halstead <
+> mhalstead@linuxfoundation.org> wrote:
+>
+>> Right now we have https://cdn.jsdelivr.net/yocto/sstate set up as a CDN
+>> mirroring proxy endpoint. It's fast and completely free to the project.
+>> However, it will only work for files smaller than 64MB and will send a
+>> redirect to the main server at sstate.yoctoproject.org for files larger
+>> than 64MB.
+>>
+>> The good news is that we have a fast free CDN provided by
+>> https://www.jsdelivr.com/ and their many sponsors for 99.4% of our files=
+.
+>>
+>> Here is an estimated distribution of sstate files currently available:
+>> 1 KB-4 KB: 103168
+>> 4 KB-16 KB: 1218048
+>> 16 KB-64 KB: 1886976
+>> 64 KB-256 KB: 1225216
+>> 256 KB-1 MB: 170752
+>> 1 MB-4 MB: 92928
+>> 4 MB-16 MB: 83200
+>> 16 MB-64 MB: 40448
+>> 64 MB-256 MB: 17664
+>> 256 MB-1 GB: 7936
+>> 1 GB-4 GB: 2560
+>>
+>> I'm still working on a CDN solution for the larger files but we can begi=
+n
+>> testing https://cdn.jsdelivr.net/yocto/sstate today.
+>>
+>> Here is an example link to a file that is currently popular from each
+>> location:
+>>
+>>
+>> http://sstate.yoctoproject.org/all/universal/c6/81/sstate:re2c-native:x8=
+6_64-linux:3.1:r0:x86_64:11:c681f19e2786732c7920860d0b27cdcf3a79c9441d9bdaa=
+82319a12e96e6246e_deploy_source_date_epoch.tar.zst
+>>
+>>
+>> https://cdn.jsdelivr.net/yocto/sstate/all/universal/c6/81/sstate:re2c-na=
+tive:x86_64-linux:3.1:r0:x86_64:11:c681f19e2786732c7920860d0b27cdcf3a79c944=
+1d9bdaa82319a12e96e6246e_deploy_source_date_epoch.tar.zst
+>>
+>> I'm also attaching a list of the largest files in sstate. Anything we ca=
+n
+>> do to reduce the size of these or to split them into smaller pieces will
+>> help with hosting and with the user's download experience.
+>>
+>> --
+>> Michael Halstead
+>> Linux Foundation / Yocto Project
+>> Systems Operations Engineer
+>>
+>
+>
+> --
+> Michael Halstead
+> Linux Foundation / Yocto Project
+> Systems Operations Engineer
+>
+
+
+--=20
+Michael Halstead
+Linux Foundation / Yocto Project
+Systems Operations Engineer
+
+--0000000000009fc26306060c0d82
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">After some workshopping=C2=A0this=C2=A0morning we have a s=
+olution for larger files. Almost every package is now available with CDN ac=
+celeration. For files over 64MB the fetcher will need to follow a series of=
+ redirects to work properly. Files under 64MB will be served fast from ever=
+y region. Larger files will be proxyed=C2=A0and cached on a smaller network=
+ of servers that can handle them. Once cached they will be stored for up to=
+ a month. Because sstate=C2=A0is immutable that means fast access after the=
+ first use in a region.<div><br></div><div>Set=C2=A0<a href=3D"https://docs=
+.yoctoproject.org/ref-manual/variables.html#term-SSTATE_MIRRORS">SSTATE_MIR=
+RORS</a> to include=C2=A0<a href=3D"https://cdn.jsdelivr.net/yocto/sstate/a=
+ll">https://cdn.jsdelivr.net/yocto/sstate/all</a>=C2=A0or=C2=A0<a href=3D"h=
+ttp://cdn.jsdelivr.net/yocto/sstate/all">http://cdn.jsdelivr.net/yocto/ssta=
+te/all</a>, test it out, and report back.</div><div><br></div><div>If we wa=
+nt the system to perform as fast as=C2=A0possible we need to change SSTATE =
+to work with 64MB file segments but that&#39;s a discussion to have after t=
+his solution is tested.</div></div><div dir=3D"ltr"><br></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 22, 202=
+3 at 12:03=E2=80=AFPM Michael Halstead &lt;<a href=3D"mailto:mhalstead@linu=
+xfoundation.org" target=3D"_blank">mhalstead@linuxfoundation.org</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr">Here are packages and size ranges that are not yet served via CDN. Ho=
+pefully testing on the smaller files is possible while we figure out a=C2=
+=A0solution for these.<div><br></div><div>assimp	 75M	 76M<br>binutils	 64M=
+	100M<br>boost	 68M	148M<br>ceres-solver	167M	182M<br>cmake	157M	553M<br>ff=
+mpeg	 68M	 69M<br>gcc	127M	681M<br>gcc-cross-aarch64	 64M	102M<br>gcc-cross=
+-arm	 64M	 72M<br>gcc-cross-i686	 65M	 80M<br>gcc-cross-mips	 65M	 69M<br>g=
+cc-cross-mips64	 64M	 69M<br>gcc-cross-powerpc	 64M	 72M<br>gcc-cross-x86_6=
+4	 65M	104M<br>gcc-crosssdk-aarch64-pokysdk-linux	 65M	 75M<br>gcc-crosssdk=
+-i686-oesdk-linux	 65M	 77M<br>gcc-crosssdk-i686-pokysdk-linux	 65M	 79M<br=
+>gcc-crosssdk-i686-w64-mingw32	 66M	 78M<br>gcc-crosssdk-x86_64-oesdk-linux=
+	 65M	 78M<br>gcc-crosssdk-x86_64-pokysdk-linux	 65M	 80M<br>gcc-crosssdk-x=
+86_64-w64-mingw32	 67M	 79M<br>gdb	 66M	105M<br>ghostscript	 64M	115M<br>gi=
+t	 68M	 90M<br>glibc-locale	 81M	228M<br>go	 67M	 67M<br>go-binary-native	 =
+82M	 82M<br>go-cross-core2-32	 98M	100M<br>go-cross-core2-64	 93M	100M<br>g=
+o-cross-corei7-64	 98M	 99M<br>go-cross-cortexa15t2hf-neon	 99M	 99M<br>go-=
+cross-cortexa57	 93M	 99M<br>go-cross-cortexa8hf-neon	 99M	100M<br>go-cross=
+-mips32r2	 98M	 99M<br>go-cross-mips64	 99M	 99M<br>go-cross-mips64r2	 99M	=
+ 99M<br>go-native	 86M	 86M<br>go-runtime	 64M	 82M<br>grpc	 74M	102M<br>hd=
+f5	 78M	137M<br>influxdb	 76M	 98M<br>intel-media-driver	 68M	132M<br>jemal=
+loc	164M	164M<br>kea	 65M	153M<br>lib32-binutils	 64M	 70M<br>lib32-boost	 =
+77M	122M<br>lib32-cmake	158M	305M<br>lib32-gcc	144M	390M<br>lib32-gcc-cross=
+-i686	 65M	 79M<br>lib32-gcc-cross-mips	 65M	 69M<br>lib32-ghostscript	 65M=
+	 83M<br>lib32-git	 65M	 65M<br>lib32-glibc-locale	 81M	228M<br>lib32-go-cr=
+oss-x86	 98M	 99M<br>lib32-kea	 64M	 88M<br>lib32-linux-firmware	275M	419M<=
+br>lib32-llvm	1126.4M	2662.4M<br>lib32-ltp	 77M	305M<br>lib32-mesa	 65M	 68=
+M<br>lib32-openssl	119M	360M<br>lib32-piglit	106M	106M<br>lib32-qemu	275M	6=
+39M<br>lib32-rust	 93M	129M<br>lib32-rust-llvm	 64M	 76M<br>lib32-spirv-too=
+ls	 68M	107M<br>lib32-valgrind	 68M	 89M<br>lib32-vulkan-demos	 74M	 74M<br=
+>lib32-vulkan-validation-layers	 65M	101M<br>lib32-webkitgtk	1126.4M	927M<b=
+r>lib64-boost	 75M	119M<br>lib64-gcc	151M	401M<br>lib64-gcc-cross-mips64	 6=
+5M	 69M<br>lib64-gcc-cross-x86_64	 65M	 80M<br>lib64-glibc-locale	 82M	228M=
+<br>lib64-go-cross-x86_64	 98M	 99M<br>lib64-go-runtime	 68M	 81M<br>lib64-=
+ltp	 67M	347M<br>lib64-mesa	 66M	 68M<br>lib64-openssl	276M	411M<br>lib64-r=
+ust	 97M	123M<br>lib64-rust-llvm	 64M	 67M<br>lib64-valgrind	 65M	 84M<br>l=
+ibyang	 93M	 93M<br>linux-firmware	275M	419M<br>linux-intel	120M	395M<br>li=
+nux-yocto	 66M	537M<br>linux-yocto-rt	174M	287M<br>llvm	1126.4M	3481.6M<br>=
+llvm-native	 71M	 88M<br>ltp	 64M	598M<br>mariadb	1331.2M	966M<br>mariadb-n=
+ative	237M	259M<br>mesa	 64M	113M<br>minifi-cpp	155M	214M<br>mozjs-102	183M=
+	255M<br>nativesdk-glibc-locale	 81M	226M<br>nativesdk-qemu	245M	644M<br>na=
+tivesdk-rust	 82M	125M<br>nativesdk-rust-llvm	 65M	 73M<br>nodejs	1024.0M	7=
+23M<br>opencv	185M	237M<br>opengl-es-cts	406M	560M<br>openssl	 92M	685M<br>=
+php	 67M	 68M<br>piglit	106M	106M<br>poco	 75M	107M<br>python3-grpcio	 65M	=
+ 88M<br>python3-wxgtk4	 70M	100M<br>qemu	1228.8M	929M<br>qemu-system-native=
+	 65M	 71M<br>renderdoc	 67M	 82M<br>rocksdb	177M	272M<br>rust	 85M	140M<br=
+>rust-llvm	 64M	 79M<br>rust-llvm-native	287M	418M<br>rust-native	 78M	 85M=
+<br>spirv-tools	 64M	195M<br>systemd	 69M	 71M<br>tesseract-lang	369M	451M<=
+br>upm	 82M	 82M<br>valgrind	 64M	128M<br>vsomeip	 82M	149M<br>vulkan-cts	5=
+92M	833M<br>vulkan-demos	 73M	138M<br>vulkan-validation-layers	 65M	108M<br=
+>webkitgtk	1024.0M	995M<br>webkitgtk3	1126.4M	1638.4M<br>wireshark	 65M	 85=
+M<br>wxwidgets	 70M	 88M<br></div></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Fri, Sep 22, 2023 at 10:32=E2=80=AFAM =
+Michael Halstead &lt;<a href=3D"mailto:mhalstead@linuxfoundation.org" targe=
+t=3D"_blank">mhalstead@linuxfoundation.org</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Right now we hav=
+e=C2=A0<a href=3D"https://cdn.jsdelivr.net/yocto/sstate" target=3D"_blank">=
+https://cdn.jsdelivr.net/yocto/sstate</a> set up as a CDN mirroring proxy e=
+ndpoint. It&#39;s fast and completely free to the project. However, it=C2=
+=A0will only work for files smaller than 64MB and will send a redirect to t=
+he main=C2=A0server at <a href=3D"http://sstate.yoctoproject.org" target=3D=
+"_blank">sstate.yoctoproject.org</a> for files larger than 64MB.<div><br></=
+div><div>The good news is that we have a fast free CDN provided by=C2=A0<a =
+href=3D"https://www.jsdelivr.com/" target=3D"_blank">https://www.jsdelivr.c=
+om/</a> and their many sponsors=C2=A0for 99.4% of our files.<br clear=3D"al=
+l"><div><br></div><div><div>Here is an estimated distribution of sstate fil=
+es currently available:</div><div>1 KB-4 KB: 103168<br>4 KB-16 KB: 1218048<=
+br>16 KB-64 KB: 1886976<br>64 KB-256 KB: 1225216<br>256 KB-1 MB: 170752<br>=
+1 MB-4 MB: 92928<br>4 MB-16 MB: 83200<br>16 MB-64 MB: 40448<br>64 MB-256 MB=
+: 17664<br>256 MB-1 GB: 7936<br>1 GB-4 GB: 2560</div></div><div><br></div><=
+div>I&#39;m still working on a CDN solution for the larger files but we can=
+ begin testing=C2=A0<a href=3D"https://cdn.jsdelivr.net/yocto/sstate" targe=
+t=3D"_blank">https://cdn.jsdelivr.net/yocto/sstate</a>=C2=A0today.</div><di=
+v><br></div><div>Here is an example link to a file that is currently popula=
+r from each location:</div><div><br></div><div><a href=3D"http://sstate.yoc=
+toproject.org/all/universal/c6/81/sstate:re2c-native:x86_64-linux:3.1:r0:x8=
+6_64:11:c681f19e2786732c7920860d0b27cdcf3a79c9441d9bdaa82319a12e96e6246e_de=
+ploy_source_date_epoch.tar.zst" target=3D"_blank">http://sstate.yoctoprojec=
+t.org/all/universal/c6/81/sstate:re2c-native:x86_64-linux:3.1:r0:x86_64:11:=
+c681f19e2786732c7920860d0b27cdcf3a79c9441d9bdaa82319a12e96e6246e_deploy_sou=
+rce_date_epoch.tar.zst</a><br></div><div><br></div><div><a href=3D"https://=
+cdn.jsdelivr.net/yocto/sstate/all/universal/c6/81/sstate:re2c-native:x86_64=
+-linux:3.1:r0:x86_64:11:c681f19e2786732c7920860d0b27cdcf3a79c9441d9bdaa8231=
+9a12e96e6246e_deploy_source_date_epoch.tar.zst" target=3D"_blank">https://c=
+dn.jsdelivr.net/yocto/sstate/all/universal/c6/81/sstate:re2c-native:x86_64-=
+linux:3.1:r0:x86_64:11:c681f19e2786732c7920860d0b27cdcf3a79c9441d9bdaa82319=
+a12e96e6246e_deploy_source_date_epoch.tar.zst</a><br></div><div><br></div><=
+div>I&#39;m also attaching a list of the largest files in sstate. Anything =
+we can do to reduce the size of these or to split them into smaller pieces =
+will help with hosting and with the user&#39;s download experience.</div><d=
+iv><br></div><span class=3D"gmail_signature_prefix">-- </span><br><div dir=
+=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Li=
+nux Foundation / Yocto Project</div><div>Systems Operations Engineer</div><=
+/div></div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr">Michael Halstead<div>Linux Foundation / Yocto Project</div><=
+div>Systems Operations Engineer</div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr">Michael Halstead<div>Linux Foundation / Yocto Project</div><=
+div>Systems Operations Engineer</div></div></div>
+
+--0000000000009fc26306060c0d82--
 
