@@ -1,431 +1,190 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D900ACE7AA0
-	for <webhook@archiver.kernel.org>; Mon, 25 Sep 2023 16:26:53 +0000 (UTC)
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
- by mx.groups.io with SMTP id smtpd.web11.65762.1695659205413515142
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17CBBCD4853
+	for <webhook@archiver.kernel.org>; Mon, 25 Sep 2023 18:23:25 +0000 (UTC)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+ by mx.groups.io with SMTP id smtpd.web11.68847.1695666203569034863
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Sep 2023 09:26:45 -0700
+ Mon, 25 Sep 2023 11:23:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=JQybB0rW;
- spf=pass (domain: gmail.com, ip: 209.85.210.41, mailfrom: twoerner@gmail.com)
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6c4d625da40so2776265a34.1
-        for <yocto@lists.yoctoproject.org>; Mon, 25 Sep 2023 09:26:45 -0700 (PDT)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=UDQ3V2HW;
+ spf=pass (domain: smile.fr, ip: 209.85.208.169, mailfrom: yoann.congal@smile.fr)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2c00e1d4c08so117218551fa.3
+        for <yocto@lists.yoctoproject.org>; Mon, 25 Sep 2023 11:23:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695659204; x=1696264004; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lzQqKs0kbxL+gUQLlFHOoOv+fX0kiOGT4raqB8m3lbU=;
-        b=JQybB0rWXaNGSiHAkk3lzRqEziO8QqYC3wSgjdul+hPruJ5jRH0z9qnR47/uu1gn8r
-         ys2u3cq6RRTQaQhXBiiaXLrF2v3XI6xTa7UpAj3DyS0ZYvzIUnLe18xlDzoRpEdJdIf5
-         aMz+M2DXEzsO73Sm0koU5/h/3J1sjWx50UceUa6wq1DqCOrPfrHFFiy6EPMK1Mx3mCxB
-         5Uqnh+RxXGLsJfXx4mdJlCU3ZpBqmTFMAGOjoqyQOQy38Bn4RahMldct5yoaz4u4Nxfe
-         70suhROVeTrU8aLUa11AEoeQb2M2//5Y/qavB+d1mqV7JMT/TZamWsfHXITeSYrLmUAP
-         mOdQ==
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1695666201; x=1696271001; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qTfn23QczXwqN98O6gQni4fdE42kKT0YayO/4GVdpD0=;
+        b=UDQ3V2HWXJaXLBh1es/wnLufB5XSo42zzy/EMGq5nruhzLnIZ0ujb4QQQQa8HEgGir
+         puz9soarY5+cREi18L5EgM9fPMzfarEtlC9+kXcjxX5nDJBJiGVSHv4nGMMnndTE7Z7X
+         J0V6nyJqD0NVDExKsYJIbC8UauxgM5xVg8HWOZV9PDxwDyNuW4uQODiRuKZdTJA7+SOb
+         F/2PIIH/crxRbzYDGv0ehgn43rfE/HA363OyoholDOPu0zR4B/xTF8g8lOQZzISiXeI+
+         qj/RXIDuyHXerzlUCJc/zsKM8pd/Q3ISUl+k7AInmdrnd6o7SYndmC+yge/+QyxkWTDu
+         TDvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695659204; x=1696264004;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1695666201; x=1696271001;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lzQqKs0kbxL+gUQLlFHOoOv+fX0kiOGT4raqB8m3lbU=;
-        b=RoS7DrPUpuvOoiGRKuDqcQc0VN+zGeTiI1Bye4ZkUtCZoG9flAyqOVYXBIp7+xGUhh
-         +syiKeyBmBSwpG2mSBV2/fyLVMz3EzE9qP6EwketxfvZdMNDcxfiFNXnp8my5bcRYidY
-         bNwO8togJo592ge3OAXOHOJJdRxfSXdDghjHy8jDuh8WoewQ6q6tjnR27Kdwrlh18op5
-         95jqwVEcOGwjI865miHWCl9M5Cvs7KvRqKIRLD863KAC+zFfcZUGLWG+Vlsxz5+cLRz/
-         1sOOHs0W0aO45qkcClrc3CwIXyOKSYJYOchSLwg7v3JToTyFBiROUMPe1eBzqkhm3SEj
-         OAzA==
-X-Gm-Message-State: AOJu0Yz0NfFOJUI94UNjr8dJO1Fh6oeU7dG16N1Nh6Rj+TRTY0/qr/tI
-	jYzEAzQznpJnAwy0uXJu24rdEAThKcUMpg==
-X-Google-Smtp-Source: AGHT+IGiO5nBxx7Xnn/LvgopMWb5zuSgO5vplWrBRXepQaRearcjNB/C1kTKuquPAKSSS+PfKS20WQ==
-X-Received: by 2002:a05:6830:2004:b0:6b9:a6ef:2709 with SMTP id e4-20020a056830200400b006b9a6ef2709mr9397351otp.8.1695659203844;
-        Mon, 25 Sep 2023 09:26:43 -0700 (PDT)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id c7-20020a05620a164700b0076ca9f79e1fsm3937121qko.46.2023.09.25.09.26.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 09:26:42 -0700 (PDT)
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject: [meta-rockchip][PATCH v3] rock-5b: add
-Date: Mon, 25 Sep 2023 12:26:28 -0400
-Message-ID: <20230925162628.24482-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
+        bh=qTfn23QczXwqN98O6gQni4fdE42kKT0YayO/4GVdpD0=;
+        b=JA/8/Y8UP1o1n3A8+XiPF0hGJTXIcKadAUJd8mN7pJzu5iMhnPsNUCQCV4tolLL6Od
+         wMxwKs2YbJJm23klA5g41xo7hW4HIoa7/HTi1Ti3h+llXAMe6UMfEkwI8Z+P1dpAz6Ie
+         ScyMGfQwmuxkY8J2BA+TPs2NoL2HVBor6jJw+/e81B6woX2xjYVjUmKdBY1QcSFParVH
+         ZWXr0CVvCltsFZlkap28ipQCZfrZl7QN3rEHIM2lZylbO5r8dj14Ph+4l6PoSU0Gp57d
+         ijgLvJ28VWJh8cyQ7Jcs1IRUpGY6Ydfn/sbSHm6XWnifs8I4cgHFfZSh3agTj9jzBBT9
+         ZD5Q==
+X-Gm-Message-State: AOJu0YwlY4hVKYxG7jQLfJxVFzCsuRsI3Y6x7GJp5E0aeGRJmEy/Da23
+	+sE5IlOxScfQBu/zuXHK6k638Chho0ZymzDiHUcLmg==
+X-Google-Smtp-Source: AGHT+IGIQIr0KzT+FZBIut3uvPEqQPv+krYxuP5tF7pK0alvzbMMa85yqkaT7yhR1qrZ+6+cC0/hWJShXMPBSCqAUIA=
+X-Received: by 2002:a05:651c:10d4:b0:2bc:e2fb:4c8b with SMTP id
+ l20-20020a05651c10d400b002bce2fb4c8bmr6540163ljn.38.1695666201185; Mon, 25
+ Sep 2023 11:23:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CO3PR13MB57996BD3F7D1ACA647B214D3FEFCA@CO3PR13MB5799.namprd13.prod.outlook.com>
+In-Reply-To: <CO3PR13MB57996BD3F7D1ACA647B214D3FEFCA@CO3PR13MB5799.namprd13.prod.outlook.com>
+From: Yoann CONGAL <yoann.congal@smile.fr>
+Date: Mon, 25 Sep 2023 20:22:55 +0200
+Message-ID: <CAMSfU+7586KbwUnC_E9eTRcfMNZUpxmWWX3yY6u_TzJzy3Zzgg@mail.gmail.com>
+Subject: Re: [yocto] bbappend not working for recipe with git in name
+To: John Klug <john.klug@multitech.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000009469aa0606330de3"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Sep 2023 16:26:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61103
+ <yocto@lists.yoctoproject.org>; Mon, 25 Sep 2023 18:23:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61104
 
-Add support for the Radxa Rock 5B
-https://wiki.radxa.com/Rock5/5b
+--0000000000009469aa0606330de3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The device-tree for this board is better in the 6.5 (and later) kernels,
-therefore set the kernel to linux-yocto-dev for now (eventually this won't be
-needed as linux-yocto moves forward).
+Hello,
 
-Unfortunately the TF-A project does not currently have support for
-the rk3588. Therefore, for the time-being, the only way to supply a
-TPL/DDR-init for the rk3588 is to use the closed-source rkbin binaries
-from Rockchip. If/when TF-A adds support for the rk3588 we can investigate
-switching.
+Le lun. 25 sept. 2023 =C3=A0 06:55, John Klug <john.klug@multitech.com> a =
+=C3=A9crit :
 
-The rk3588 comes in two variants: rk3588 and rk3588s. The "s" option is a
-stripped-down version of the rk3588. In the Linux kernel these two SoCs are
-kept separate, with the rk3588 building on the rk3588s, so we've mimicked that
-same behaviour here.
+> bitbake-layers show-appends reports:
+>
+>   Summary: There were 3 WARNING messages.
+>   =3D=3D=3D Matched appended recipes =3D=3D=3D
+>   kernel-module-nxp89xx_git.bb:
+>
+>  /home/jklug/mlinux-kirk2/layers/meta-multitech-nxp/recipes-kernel/kernel=
+-module-nxp89xx/kernel-module-nxp89xx_%.bbappend
+>   WARNING: kernel-module-nxp89xx.bb: missing append for preferred version
+>
 
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
-v3:
-- change name from "rock5b" to "rock-5b", there seem to be more instances
-  of the latter on the manufacturer's website than the former
-- fix the MACHINEOVERRIDE in conf/machine/include/rk3588s.inc to be
-  "rk3588s" and not "rk3588"
+I may be wrong but it looks like you have 2 kernel-module-nxp89xx recipes :
+* one called kernel-module-nxp89xx_git.bb which is bbappended in you layer
+* another one called kernel-module-nxp89xx.bb (no PV in filename), which is
+preferred over the _git one.
 
-v2:
-- fix the logic behind the MACHINEOVERRIDES to get the content, and 
-  ordering, correct
-- improved the commit message around TF-A/rkbin
-- correct Quentin's SoB line
----
- README                                        |  1 +
- conf/machine/include/rk3588.inc               |  6 ++
- conf/machine/include/rk3588s.inc              | 17 ++++
- conf/machine/rock-5b.conf                     | 12 +++
- recipes-bsp/rkbin/rockchip-rkbin_git.bb       | 37 ++++++++
- recipes-bsp/u-boot/u-boot%.bbappend           |  5 ++
- recipes-kernel/linux/linux-yocto-dev.bbappend |  3 +
- .../rockchip/remove-non-rockchip-arch-arm.cfg | 85 +++++++++++++++++++
- .../rockchip/remove-non-rockchip-arch-arm.scc |  1 +
- .../remove-non-rockchip-arch-arm64.cfg        | 66 ++++++++++++++
- .../remove-non-rockchip-arch-arm64.scc        |  1 +
- 11 files changed, 234 insertions(+)
- create mode 100644 conf/machine/include/rk3588.inc
- create mode 100644 conf/machine/include/rk3588s.inc
- create mode 100644 conf/machine/rock-5b.conf
- create mode 100644 recipes-bsp/rkbin/rockchip-rkbin_git.bb
- create mode 100644 recipes-kernel/linux/linux-yocto-dev.bbappend
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
- create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
+I guess you an either :
+* Use kernel-module-nxp89xx.bb : rename your bbappend to
+kernel-module-nxp89xx.bbappend
+* keep kernel-module-nxp89xx_git.bb : remove or inhibit
+kernel-module-nxp89xx.bb
 
-diff --git a/README b/README
-index 286dafbe1020..d4576d73c636 100644
---- a/README
-+++ b/README
-@@ -30,6 +30,7 @@ Status of supported boards:
- 		vyasa-rk3288
- 		firefly-rk3288
- 		nanopi-r4s
-+		rock-5b
- 	builds:
- 		marsboard-rk3066
- 		radxarock
-diff --git a/conf/machine/include/rk3588.inc b/conf/machine/include/rk3588.inc
-new file mode 100644
-index 000000000000..34f0627dc085
---- /dev/null
-+++ b/conf/machine/include/rk3588.inc
-@@ -0,0 +1,6 @@
-+MACHINEOVERRIDES =. "rk3588:"
-+
-+# the rk3588s is a "stripped-down" version of the rk3588
-+# in the kernel's device-tree the rk3588 builds on top of the rk3588s
-+# so anything that is valid for the rk3588s is valid for the rk3588
-+require conf/machine/include/rk3588s.inc
-diff --git a/conf/machine/include/rk3588s.inc b/conf/machine/include/rk3588s.inc
-new file mode 100644
-index 000000000000..7bfc9474e96e
---- /dev/null
-+++ b/conf/machine/include/rk3588s.inc
-@@ -0,0 +1,17 @@
-+MACHINEOVERRIDES =. "rk3588s:"
-+DEFAULTTUNE ?= "cortexa76-cortexa55-crypto"
-+
-+require conf/machine/include/arm/armv8-2a/tune-cortexa76-cortexa55.inc
-+require conf/machine/include/rockchip-defaults.inc
-+require conf/machine/include/rockchip-wic.inc
-+
-+KBUILD_DEFCONFIG ?= "defconfig"
-+KERNEL_FEATURES:append:rk3588s = " bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
-+KERNEL_CLASSES = "kernel-fitimage"
-+KERNEL_IMAGETYPE = "fitImage"
-+
-+PREFERRED_PROVIDER_trusted-firmware-a = "rockchip-rkbin"
-+PREFERRED_PROVIDER_optee-os = "rockchip-rkbin"
-+
-+UBOOT_SUFFIX ?= "itb"
-+UBOOT_ENTRYPOINT ?= "0x06000000"
-diff --git a/conf/machine/rock-5b.conf b/conf/machine/rock-5b.conf
-new file mode 100644
-index 000000000000..d1371084becc
---- /dev/null
-+++ b/conf/machine/rock-5b.conf
-@@ -0,0 +1,12 @@
-+#@TYPE: Machine
-+#@NAME: Radxa Rock 5B
-+#@DESCRIPTION: ROCK5 is the 5th generation of SBC designed by Radxa.
-+#https://wiki.radxa.com/Rock5/5b
-+
-+require conf/machine/include/rk3588.inc
-+
-+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-dev"
-+KERNEL_DEVICETREE = "rockchip/rk3588-rock-5b.dtb"
-+MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
-+
-+UBOOT_MACHINE = "rock5b-rk3588_defconfig"
-diff --git a/recipes-bsp/rkbin/rockchip-rkbin_git.bb b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
-new file mode 100644
-index 000000000000..7fefb017053b
---- /dev/null
-+++ b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
-@@ -0,0 +1,37 @@
-+DESCRIPTION = "Rockchip Firmware and Tool Binaries"
-+LICENSE = "Proprietary"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=15faa4a01e7eb0f5d33f9f2bcc7bff62"
-+
-+SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
-+SRCREV = "b4558da0860ca48bf1a571dd33ccba580b9abe23"
-+
-+PROVIDES += "trusted-firmware-a"
-+PROVIDES += "optee-os"
-+
-+inherit bin_package deploy
-+
-+S = "${WORKDIR}/git"
-+
-+COMPATIBLE_MACHINE = ""
-+COMPATIBLE_MACHINE:rk3588s = "rk3588s"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+do_install() {
-+	# Nothing in this recipe is useful in a filesystem
-+	:
-+}
-+
-+PACKAGES = "${PN}"
-+ALLOW_EMPTY:${PN} = "1"
-+
-+do_deploy() {
-+	# Prebuilt TF-A
-+	install -m 644 ${S}/bin/rk35/rk3588_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3588.elf
-+	# Prebuilt OPTEE-OS
-+	install -m 644 ${S}/bin/rk35/rk3588_bl32_v*.bin ${DEPLOYDIR}/tee-rk3588.bin
-+	# Prebuilt U-Boot TPL (DDR init)
-+	install -m 644 ${S}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v*.bin ${DEPLOYDIR}/ddr-rk3588.bin
-+}
-+
-+addtask deploy after do_install
-diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
-index db8e0166f5b3..3732c7f04373 100644
---- a/recipes-bsp/u-boot/u-boot%.bbappend
-+++ b/recipes-bsp/u-boot/u-boot%.bbappend
-@@ -11,6 +11,11 @@ DEPENDS:append = " python3-pyelftools-native"
- 
- ATF_DEPENDS ??= ""
- 
-+EXTRA_OEMAKE:append:rk3588s = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf"
-+ATF_DEPENDS:append:rk3588s = " trusted-firmware-a:do_deploy"
-+EXTRA_OEMAKE:append:rk3588s = " ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin"
-+ATF_DEPENDS:append:rk3588s = " rockchip-rkbin:do_deploy"
-+
- EXTRA_OEMAKE:append:rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
- ATF_DEPENDS:rk3399 = " trusted-firmware-a:do_deploy"
- EXTRA_OEMAKE:append:rk3328 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3328.elf"
-diff --git a/recipes-kernel/linux/linux-yocto-dev.bbappend b/recipes-kernel/linux/linux-yocto-dev.bbappend
-new file mode 100644
-index 000000000000..419ebc18b229
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev.bbappend
-@@ -0,0 +1,3 @@
-+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-+COMPATIBLE_MACHINE:rock-5b = "rock-5b"
-+SRC_URI:append:rock-5b = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
-new file mode 100644
-index 000000000000..e9443f17895c
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
-@@ -0,0 +1,85 @@
-+CONFIG_ARCH_ACTIONS=n
-+CONFIG_ARCH_AIROHA=n
-+CONFIG_ARCH_ALPINE=n
-+CONFIG_ARCH_ARTPEC=n
-+CONFIG_ARCH_ASPEED=n
-+CONFIG_ARCH_AT91=n
-+CONFIG_ARCH_BCM2835=n
-+CONFIG_ARCH_BCM=n
-+CONFIG_ARCH_BCMBCA=n
-+CONFIG_ARCH_BCMBCA_BRAHMAB15=n
-+CONFIG_ARCH_BCMBCA_CORTEXA7=n
-+CONFIG_ARCH_BCMBCA_CORTEXA9=n
-+CONFIG_ARCH_BCM_21664=n
-+CONFIG_ARCH_BCM_23550=n
-+CONFIG_ARCH_BCM_281XX=n
-+CONFIG_ARCH_BCM_5301X=n
-+CONFIG_ARCH_BCM_53573=n
-+CONFIG_ARCH_BCM_CYGNUS=n
-+CONFIG_ARCH_BCM_HR2=n
-+CONFIG_ARCH_BCM_NSP=n
-+CONFIG_ARCH_BERLIN=n
-+CONFIG_ARCH_BRCMSTB=n
-+CONFIG_ARCH_DIGICOLOR=n
-+CONFIG_ARCH_EMEV2=n
-+CONFIG_ARCH_EXYNOS=n
-+CONFIG_ARCH_HI3xxx=n
-+CONFIG_ARCH_HIGHBANK=n
-+CONFIG_ARCH_HIP01=n
-+CONFIG_ARCH_HIP04=n
-+CONFIG_ARCH_HISI=n
-+CONFIG_ARCH_HIX5HD2=n
-+CONFIG_ARCH_HPE=n
-+CONFIG_ARCH_HPE_GXP=n
-+CONFIG_ARCH_INTEL_SOCFPGA=n
-+CONFIG_ARCH_KEYSTONE=n
-+CONFIG_ARCH_MEDIATEK=n
-+CONFIG_ARCH_MESON=n
-+CONFIG_ARCH_MILBEAUT=n
-+CONFIG_ARCH_MILBEAUT_M10V=n
-+CONFIG_ARCH_MMP=n
-+CONFIG_ARCH_MSM8916=n
-+CONFIG_ARCH_MSM8960=n
-+CONFIG_ARCH_MSM8974=n
-+CONFIG_ARCH_MSM8X60=n
-+CONFIG_ARCH_MVEBU=n
-+CONFIG_ARCH_MXC=n
-+CONFIG_ARCH_OMAP3=n
-+CONFIG_ARCH_OMAP4=n
-+CONFIG_ARCH_QCOM=n
-+CONFIG_ARCH_R7S72100=n
-+CONFIG_ARCH_R7S9210=n
-+CONFIG_ARCH_R8A73A4=n
-+CONFIG_ARCH_R8A7740=n
-+CONFIG_ARCH_R8A7742=n
-+CONFIG_ARCH_R8A7743=n
-+CONFIG_ARCH_R8A7744=n
-+CONFIG_ARCH_R8A7745=n
-+CONFIG_ARCH_R8A77470=n
-+CONFIG_ARCH_R8A7778=n
-+CONFIG_ARCH_R8A7779=n
-+CONFIG_ARCH_R8A7790=n
-+CONFIG_ARCH_R8A7791=n
-+CONFIG_ARCH_R8A7792=n
-+CONFIG_ARCH_R8A7793=n
-+CONFIG_ARCH_R8A7794=n
-+CONFIG_ARCH_R9A06G032=n
-+CONFIG_ARCH_RENESAS=n
-+CONFIG_ARCH_SH73A0=n
-+CONFIG_ARCH_SPEAR13XX=n
-+CONFIG_ARCH_STI=n
-+CONFIG_ARCH_STM32=n
-+CONFIG_ARCH_SUNPLUS=n
-+CONFIG_ARCH_SUNXI=n
-+CONFIG_ARCH_TEGRA=n
-+CONFIG_ARCH_TEGRA_114_SOC=n
-+CONFIG_ARCH_TEGRA_124_SOC=n
-+CONFIG_ARCH_TEGRA_2x_SOC=n
-+CONFIG_ARCH_TEGRA_3x_SOC=n
-+CONFIG_ARCH_U8500=n
-+CONFIG_ARCH_UNIPHIER=n
-+CONFIG_ARCH_VEXPRESS=n
-+CONFIG_ARCH_VEXPRESS_TC2_PM=n
-+CONFIG_ARCH_VIRT=n
-+CONFIG_ARCH_WM8850=n
-+CONFIG_ARCH_ZYNQ=n
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
-new file mode 100644
-index 000000000000..ce7770456ea4
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
-@@ -0,0 +1 @@
-+kconf hardware remove-non-rockchip-arch-arm.cfg
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
-new file mode 100644
-index 000000000000..5b804a2ca26b
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
-@@ -0,0 +1,66 @@
-+CONFIG_ARCH_ACTIONS=n
-+CONFIG_ARCH_ALPINE=n
-+CONFIG_ARCH_APPLE=n
-+CONFIG_ARCH_BCM2835=n
-+CONFIG_ARCH_BCM=n
-+CONFIG_ARCH_BCMBCA=n
-+CONFIG_ARCH_BCM_IPROC=n
-+CONFIG_ARCH_BERLIN=n
-+CONFIG_ARCH_BRCMSTB=n
-+CONFIG_ARCH_EXYNOS=n
-+CONFIG_ARCH_SPARX5=n
-+CONFIG_ARCH_HISI=n
-+CONFIG_ARCH_INTEL_SOCFPGA=n
-+CONFIG_ARCH_K3=n
-+CONFIG_ARCH_KEEMBAY=n
-+CONFIG_ARCH_LAYERSCAPE=n
-+CONFIG_ARCH_LG1K=n
-+CONFIG_ARCH_MEDIATEK=n
-+CONFIG_ARCH_MESON=n
-+CONFIG_ARCH_MVEBU=n
-+CONFIG_ARCH_MXC=n
-+CONFIG_ARCH_NPCM=n
-+CONFIG_ARCH_NXP=n
-+CONFIG_ARCH_MA35=n
-+CONFIG_ARCH_QCOM=n
-+CONFIG_ARCH_REALTEK=n
-+CONFIG_ARCH_R8A774A1=n
-+CONFIG_ARCH_R8A774B1=n
-+CONFIG_ARCH_R8A774C0=n
-+CONFIG_ARCH_R8A774E1=n
-+CONFIG_ARCH_R8A77951=n
-+CONFIG_ARCH_R8A77960=n
-+CONFIG_ARCH_R8A77961=n
-+CONFIG_ARCH_R8A77965=n
-+CONFIG_ARCH_R8A77970=n
-+CONFIG_ARCH_R8A77980=n
-+CONFIG_ARCH_R8A77990=n
-+CONFIG_ARCH_R8A77995=n
-+CONFIG_ARCH_R8A779A0=n
-+CONFIG_ARCH_R8A779F0=n
-+CONFIG_ARCH_R8A779G0=n
-+CONFIG_ARCH_R9A07G043=n
-+CONFIG_ARCH_R9A07G044=n
-+CONFIG_ARCH_R9A07G054=n
-+CONFIG_ARCH_R9A09G011=n
-+CONFIG_ARCH_RENESAS=n
-+CONFIG_ARCH_S32=n
-+CONFIG_ARCH_SEATTLE=n
-+CONFIG_ARCH_STM32=n
-+CONFIG_ARCH_SPRD=n
-+CONFIG_ARCH_SUNXI=n
-+CONFIG_ARCH_SYNQUACER=n
-+CONFIG_ARCH_TEGRA=n
-+CONFIG_ARCH_TEGRA_132_SOC=n
-+CONFIG_ARCH_TEGRA_186_SOC=n
-+CONFIG_ARCH_TEGRA_194_SOC=n
-+CONFIG_ARCH_TEGRA_210_SOC=n
-+CONFIG_ARCH_TEGRA_234_SOC=n
-+CONFIG_ARCH_TESLA_FSD=n
-+CONFIG_ARCH_THUNDER2=n
-+CONFIG_ARCH_THUNDER=n
-+CONFIG_ARCH_UNIPHIER=n
-+CONFIG_ARCH_VEXPRESS=n
-+CONFIG_ARCH_VISCONTI=n
-+CONFIG_ARCH_XGENE=n
-+CONFIG_ARCH_ZYNQMP=n
-diff --git a/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
-new file mode 100644
-index 000000000000..e169240f5067
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
-@@ -0,0 +1 @@
-+kconf hardware remove-non-rockchip-arch-arm64.cfg
--- 
-2.41.0.327.gaa9166bcc0ba
+I have tried _git instead of _%.
+>
+> I have also tried 1.0, since bitbake -e reports:
+>
+>   PV=3D"1.0"
+>
+> What should I be doing?  Nothing in the bbappend does anything, unless I
+> make it invalid, then I get an error.
+>
+> SRCREV is set in this recipe as a hash.
+>
+>
+> John Klug
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#61096):
+> https://lists.yoctoproject.org/g/yocto/message/61096
+> Mute This Topic: https://lists.yoctoproject.org/mt/101569034/4316185
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> yoann.congal@smile.fr]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+Regards,
+--=20
+Yoann Congal
+Smile ECS - Tech expert
 
+--0000000000009469aa0606330de3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hello,<br></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0lun. 25 sept. 2023 =C3=A0=C2=
+=A006:55, John Klug &lt;<a href=3D"mailto:john.klug@multitech.com" target=
+=3D"_blank">john.klug@multitech.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">bitbake-layers show-appends=
+ reports:<br>
+<br>
+=C2=A0 Summary: There were 3 WARNING messages.<br>
+=C2=A0 =3D=3D=3D Matched appended recipes =3D=3D=3D<br>
+=C2=A0 <a href=3D"http://kernel-module-nxp89xx_git.bb">kernel-module-nxp89x=
+x_git.bb</a>:<br>
+=C2=A0=C2=A0 =C2=A0/home/jklug/mlinux-kirk2/layers/meta-multitech-nxp/recip=
+es-kernel/kernel-module-nxp89xx/kernel-module-nxp89xx_%.bbappend<br>
+=C2=A0 WARNING: <a href=3D"http://kernel-module-nxp89xx.bb">kernel-module-n=
+xp89xx.bb</a>: missing append for preferred version<br></blockquote><div><b=
+r></div><div>I may be wrong but it looks like you have 2 kernel-module-nxp8=
+9xx recipes :</div><div>* one called <a href=3D"http://kernel-module-nxp89x=
+x_git.bb">kernel-module-nxp89xx_git.bb</a> which is bbappended in you layer=
+</div><div>* another one called <a href=3D"http://kernel-module-nxp89xx.bb"=
+>kernel-module-nxp89xx.bb</a> (no PV in filename), which is preferred over =
+the _git one.</div><div><br></div><div>I guess you an either :</div><div>* =
+Use <a href=3D"http://kernel-module-nxp89xx.bb">kernel-module-nxp89xx.bb</a=
+> : rename your bbappend to kernel-module-nxp89xx.bbappend</div><div>* keep=
+ <a href=3D"http://kernel-module-nxp89xx_git.bb">kernel-module-nxp89xx_git.=
+bb</a> : remove or inhibit <a href=3D"http://kernel-module-nxp89xx.bb">kern=
+el-module-nxp89xx.bb</a></div><div><br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">
+I have tried _git instead of _%.<br>
+<br>
+I have also tried 1.0, since bitbake -e reports:<br>
+<br>
+=C2=A0 PV=3D&quot;1.0&quot;<br>
+<br>
+What should I be doing?=C2=A0 Nothing in the bbappend does anything, unless=
+ I make it invalid, then I get an error.<br>
+<br>
+SRCREV is set in this recipe as a hash.<br>
+<br>
+<br>
+John Klug<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#61096): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/61096" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/61096</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/101569034/431=
+6185" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/101569034/4316185</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:yoann.congal@smile.fr" target=3D"_blank">yoann.c=
+ongal@smile.fr</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><br clear=3D"all"></div>Regards,<br><div><span class=3D"=
+gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signa=
+ture"><div dir=3D"ltr"><font face=3D"Raleway, regular">Yoann Congal</font><=
+div><font face=3D"Raleway, regular">Smile ECS - Tech expert<br></font></div=
+></div></div></div></div>
+
+--0000000000009469aa0606330de3--
 
