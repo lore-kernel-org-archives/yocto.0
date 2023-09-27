@@ -1,268 +1,195 @@
-Return-Path: <rybczynska@gmail.com>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EF98E80A9E
-	for <webhook@archiver.kernel.org>; Wed, 27 Sep 2023 07:18:17 +0000 (UTC)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
- by mx.groups.io with SMTP id smtpd.web11.12457.1695799088606727204
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3A66E810A2
+	for <webhook@archiver.kernel.org>; Wed, 27 Sep 2023 08:00:07 +0000 (UTC)
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (EUR01-VE1-obe.outbound.protection.outlook.com [40.107.14.73])
+ by mx.groups.io with SMTP id smtpd.web11.12868.1695801603357217975
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Sep 2023 00:18:09 -0700
+ Wed, 27 Sep 2023 01:00:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=CEdjXRm0;
- spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: rybczynska@gmail.com)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2c16757987fso87011801fa.3;
-        Wed, 27 Sep 2023 00:18:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695799087; x=1696403887; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xt4f7nUdxgfVpE9D8Ril82zMsFkWwVVG3HTjqSv0Li0=;
-        b=CEdjXRm0s8siNAFef01HJKBZLuO4HUZ55fZhTyuugpBgHmlQ+D5lY+aNj1x0kfeuYe
-         jOUDv2DPj7T6dnT/P5SCbh6rAj/Gg08wwd7kfZwSnyWHEFDFyKTky0TkeLJNKeOJuRWZ
-         +yzUSvvsNqvuF3AM2UMP3PLeOr7otxAlQSdMhS5wYXIyHa1l+jfTeFWlGPoCdQ3uBc3n
-         PJfGhPOltr+ndQMhXniJ+m6jOgD0CJy4LWfjFGawzk0IVl+qRMUcupc4QaVBUNUCF7Fq
-         +iptsiJ1fJcimoi+ySK9N2AnZ4iOa84f2x3HrNqZtUW0gikyAdYSPhYF2rH279fnHVsV
-         k8Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695799087; x=1696403887;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Xt4f7nUdxgfVpE9D8Ril82zMsFkWwVVG3HTjqSv0Li0=;
-        b=F854/g6gARTfiWCnFR4Dbo2ILk9WPAHmvp0FhYzRM/jmCX/PZTvOpu0zDr+r90en1T
-         gm+SmQjxKrPSBK0wQRwZzsj2fHon6BK098oXl9iflKkEfvLXp1w0fhyohvl3SbusiG/F
-         Ow7GgVqjg/2ADDSj5Gxrowp2YXJP67mexMhqUo7g3GPtMLww6Ti/BUXpFi1vC4nBi7P6
-         6+JB9kBRAFT7EGGD4NoJo7LLDAZ6ShKbHA2npct/Ai7RMKD2KM0hHjMXHpzfqu4aW07i
-         7PHFYPutm4Owb6IXhuIKG/Kai2rPweRWpJVb7Sb8+2VFeYMvVAB3Q8puYKya1o/vdqNb
-         pQMw==
-X-Gm-Message-State: AOJu0YziJ6fwjQ+XcpCZJN1FqsgmLW+KRCTHKC19lxLF43fclanNAE4a
-	vG1WSjrtFcX7cjwP0S6+mbu2LhysNuOkFrMpJHo=
-X-Google-Smtp-Source: AGHT+IGGZz5+fDm1f+oJLTDMzRYwXXAQiRIKH9zBBuOSSpMnHUFae3gmdhp9709NWC/MYC+pCkjdGpv+NfOCH2xY//A=
-X-Received: by 2002:a2e:9815:0:b0:2c0:34ed:b5ea with SMTP id
- a21-20020a2e9815000000b002c034edb5eamr1017891ljj.45.1695799086475; Wed, 27
- Sep 2023 00:18:06 -0700 (PDT)
+ dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=GgS3IEsC;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.14.73, mailfrom: quentin.schulz@theobroma-systems.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nqD6s4/N02LzOgYAjl3ZONjypTvKyECVJ9LrniaL3sLjtUMRKISlOCj3wzUufgKGxLWBmZXrxiUjlHfogJ1w5Mpr3c6y5XRzqXrA+XRuyhZ+LgljoSLYsguG6D1XdQvFzxjmUsJnfRK5qIquiOktMTfNl9t/W27I+o4wngey69zBmLq5S/QPreNTrx6GURfnC6r8U5dolACbbspYzyIy8aeKwjQOzzaeZ7dNFEJ9tDrIOKrsxbqlDrdjjInMqVn0kETW/4BSQZV3hfIQCbfnU1wGy5UysacMnBGAO7Il2cuwiT8OHMivlQDZ8NsdWXk4pCGSDXK4NmNNq86ulkv5Aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iJH6+hObLqYmDNrm95hUl7uodxTjAnjKABwihQMHp74=;
+ b=HHLoXh/Apfog9KrUzJz9brIEQEyQapuG2DUgCHFlQubJhTmRvSCHpPT1sF2tZPF1KuiGkKnii+O6bA30uWRz3qdR8tRw+M9+0/gnkawKOOYGDMhA4dVz33TKxXWimUF8GkkWlkQNTlpVz3a+epHSF3iJ0z4QttyQLzmYm7EVPPUfMx6CR0k1takA28J8ha0dNz/N+FtdGOLV0nJhy7OsSVc09TjcwSR5LQmN5UYjnMrtu7ChP6LWVonTE2ucR/FTEJ7x3gJdKw104ZqdXcQbZHR+Rjvn8to3RUi/yx+6ItBWlOd4d12eRFQyI8YolqzTpszQL/Tt2u2RgkRVwL9fkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iJH6+hObLqYmDNrm95hUl7uodxTjAnjKABwihQMHp74=;
+ b=GgS3IEsCmw7LCPMW2eF3XSvCMzl7R99keEoJqOunYJH0o14MTFFeamfVyq6nPxYYr7pLsG9xR4eZc6Vlf1hsyzu6+4x+ek0AWkkj3lmHjWQ/VS/BqEtBfwazOsFd4QC4nmzaFdSoygRbTJO5ksDVgKQ5k7Fnak5IqIk4zwuf243/TkM3Dc9/dxs2pYCni3QwJn+llDUKH8+X6Tequu5xc6dd4FD64ivNSY8PkdSpm7jRrsykOpdg8dsJcJfBmfnhdShm7zKhaFk4RIKgHA2S/2RcrGwwraEs7xSiE5hGlAx9DPzbke4jINqHPqxRYrKw2nTcgyeZtlkDitRRRY+QBA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
+ by DBBPR04MB7513.eurprd04.prod.outlook.com (2603:10a6:10:20a::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Wed, 27 Sep
+ 2023 07:59:58 +0000
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::ebac:2f16:9dd6:a30f]) by DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::ebac:2f16:9dd6:a30f%4]) with mapi id 15.20.6813.027; Wed, 27 Sep 2023
+ 07:59:58 +0000
+Message-ID: <20cddc6d-e22a-ff65-f911-daea3dde90a5@theobroma-systems.com>
+Date: Wed, 27 Sep 2023 09:59:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [meta-rockchip][PATCH v4 2/2] rock-5b: add
+Content-Language: en-US
+To: Trevor Woerner <twoerner@gmail.com>, yocto@lists.yoctoproject.org
+References: <20230927024220.17766-1-twoerner@gmail.com>
+ <20230927024220.17766-3-twoerner@gmail.com>
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <20230927024220.17766-3-twoerner@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0157.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ba::12) To DU2PR04MB8536.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d7::10)
 MIME-Version: 1.0
-References: <CAApg2=SqAzD9zCnAGB+mtZoTnMCzcnocarpTSCQ0weH15j8KhQ@mail.gmail.com>
- <BY5PR11MB41673328EC01C44668ED8870EAFCA@BY5PR11MB4167.namprd11.prod.outlook.com>
-In-Reply-To: <BY5PR11MB41673328EC01C44668ED8870EAFCA@BY5PR11MB4167.namprd11.prod.outlook.com>
-From: Marta Rybczynska <rybczynska@gmail.com>
-Date: Wed, 27 Sep 2023 09:17:54 +0200
-Message-ID: <CAApg2=QJpjSQ_z5OXgEoGxOk+Pxq2NgSnRvDY0SJN5eQ8FDtmQ@mail.gmail.com>
-Subject: Re: [Openembedded-architecture] [yocto] Security processes: YP needs
-To: david.reyna@windriver.com
-Cc: "yocto-security@lists.yoctoproject.org" <yocto-security@lists.yoctoproject.org>, 
-	OE-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-architecture@lists.openembedded.org" <openembedded-architecture@lists.openembedded.org>, 
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, 
-	"MacLeod, Randy" <Randy.MacLeod@windriver.com>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, Steve Sakoman <steve@sakoman.com>, 
-	Khem Raj <raj.khem@gmail.com>, 
-	"mark.hatle@kernel.crashing.org" <mark.hatle@kernel.crashing.org>, Ross Burton <ross.burton@arm.com>, 
-	Joshua Watt <JPEWhacker@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|DBBPR04MB7513:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5972e958-aa1f-4c79-56ef-08dbbf2fbe9a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	9w9WvJhO0BVD+TwJzrb2NsDQ0dHDmAe5dntCwlzzoWi/XeJ7/+/HmJdooYJMreeC1qhvReO36VZMrihZA5uMI/XhGMCwK6oqbidGEcskcO/tMM+4t+c0UYoLCZI5h+Qdy4D+Tgsq0/c59M20BK7BZICI4VBI3/P+NGu90jnOGpvuudXMhHO3V8nq89s/avYXomY4VSFJntyIzn5xm/s3ruYl+wKDznD5+OQmsAlqiJifHHwj5aO7TkZTH5jDJx3qBcFWntsptVfxBOAyDz+2cRz+Srg0xMQfDzSHzO2rHetF8PsAlBk05xYurYMxVMu2u1JpEJyhNMZNMipJl5W8TxF61Z3HNuHd8rsHBrsuHymvHU6AcIEh+mB65NdOaQaUcFdE17rTY9tu10XV0h76JDbb4QeJe2cb62zdN4Lan4ydIjPl53KsFIOEUc8bJRa8MCxH7ZlOLl7zv3vMpbYcwbB7TtLCH+ttvb0O0X4qUVbTNUdBBvGG/VzHMewR4pqZp+gO0BuhrssdDvdzfC3Fj/rMjk4Dxm4cxh2SnQ48ZT6AlHry+mgbMrK1PVbXsgoHwJzJr1nT0REj6XK751RG2ubt1N6/Oo7e2jaKRIX7QPLlUvDbekgi8ah+zf0zGfR5DZbaR1DAK0mjZ6Z4n1lCnw==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(136003)(346002)(39850400004)(366004)(230922051799003)(1800799009)(451199024)(186009)(53546011)(66946007)(316002)(66556008)(6512007)(6506007)(36756003)(6486002)(31686004)(26005)(2616005)(66476007)(478600001)(44832011)(31696002)(5660300002)(38100700002)(8676002)(8936002)(86362001)(2906002)(41300700001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?ZHhwMU8xTzRVV1VXZEt5bjhQVkp6cHNSbkJ1MEFabHdYa09NVmRRdEdtOG9G?=
+ =?utf-8?B?RkZaZDRJSllKeWNDWlRPd3BWT3g5YU1qckI2cDduaEVCZFUyV0kyQ2VReE9W?=
+ =?utf-8?B?S3Q0NEpsQnZpZ1VmejBYak9ETVVIeFVrVm1zeWN5dnJRd0VNbzU0TGVycng1?=
+ =?utf-8?B?NU1rUlMzSWRqNExwOHlkdFJqc1VUWGtBMndGTVNvdzdVVEpUaGU1SVFOQVRw?=
+ =?utf-8?B?SEwxTENDVk9QMm9jbjllNWZabWl2K1FjeWd3Tk96dENGQVhPcC91NHZhRzQr?=
+ =?utf-8?B?M3lJNGxYTENqa1FRbVBWbzVCeFBkclNyakV4dEJPc1ViMUQvWTQ0WDBjbEhJ?=
+ =?utf-8?B?OFN4b2h6ODIveGp0UGRQcVE5TDE0K1RITHdlQU1sYnNBdkllLy9YcDdNNnp3?=
+ =?utf-8?B?aWc4dS9TcVY0aFJLckRaRXZ0Qitta1BtdFp4SEo5TWRSWHpjcERsenE3aW4z?=
+ =?utf-8?B?L0Q0U2NqSzNyRGxvTkJ6aWN4bXp1ZXljQ0pnckZDQWhhOWNnbWd3dGM0eXQr?=
+ =?utf-8?B?VEI0OGdaS2IvaTBVQjNnNmNjdkJ6K0pzb2F5eFlNM20vZ0ZDSjVFbmRKU0gr?=
+ =?utf-8?B?d2ZQVlE3T216cTRsMjQ3YWlLbTB0UHYxb1pRU3dNTFVmNXNDYmRZVmM1QW84?=
+ =?utf-8?B?NC8vTFR0RVdzYzRjRDJaSWVhcS8wNUQrb0xYall6MWM3THJKMFVEcTlLN21P?=
+ =?utf-8?B?bktzWXRTS2tiMUZ6MmkwbnBHZlV4U3RKYlJJL3QwVWVmVlpzUGR6NUFLeXV1?=
+ =?utf-8?B?QnkwT0pkSjd4WWM4citqcEJ1NlA3cGFHRE5LaHpwd2pNQ2ljVnlPajNiMzZX?=
+ =?utf-8?B?aCtocjJCV0dkME1GcUozd2t0ckJDV1QvV1lobHZNNUVrZ1E3UFZIclhVZUN6?=
+ =?utf-8?B?WlRhcWtEeFBrZ0F2RDhYTFBtUkFnZXQwQTM3TnNwcGRpNUxjV2E0enRzTUlS?=
+ =?utf-8?B?SXFSKzh2Zldkc0tpVjhJeTRCVnB3M0R2aUhGb2dpWWkyZGV4TXY3ZUs4SUtM?=
+ =?utf-8?B?eTNuS2ZPWUNHL1pUcXpDRTE1WDR4RFBFM3VXMDcrQnJaaGYyYjlDZDVOci94?=
+ =?utf-8?B?REVYTStrREl0VHVLakIyOUwzOGZuVElGbTMrbVJ6STFzSm5YSDdnZzNRWDdP?=
+ =?utf-8?B?cmJaaXlWSWZIY0YyM0dZRlBxcVZ5NitKbEJtTUsxc1N6cDBRVWg2MnA2SzhX?=
+ =?utf-8?B?M2c4RXhYcVJocU9sbE8xbXZaL3VUSXBEbGE0bjZKOE90OFZ1eVZkTDJ6TUZX?=
+ =?utf-8?B?b1REWGs5aXpndTl5Kzg0Tk9MbEg4NS9NVEk5T0dVOC92WUdwNkhOR0lGYTVH?=
+ =?utf-8?B?bHl4T1M5Ty93L0U3Y0dqbklEWU5sUHRSUzE1MW9hMXFPcWg3L0hMbVJQUmJQ?=
+ =?utf-8?B?c3lEay9MYzRKazkzSDlUTEpabUNYbzVrbVZJYU1tMVhtd1B4V2JVUEdrVFVB?=
+ =?utf-8?B?Z1VSdncwZUdqeXEwSGpQS29WRzI2Z2VBQTEwNHJRQyt1M1BCQWYyM0ZnWHFE?=
+ =?utf-8?B?QUFiSFplUCtOSFdEd1dBZEU4SDZ2aXIyR0hxaGt0SDFtSHU3OUVBMEFlbVFL?=
+ =?utf-8?B?ZVN0aDZKWGNob3g0cTUydGVHNjN6cVpYaTRTa2g4WEcxZlhTQXZXY2ZwNjU5?=
+ =?utf-8?B?NldwUHh4MThFd2F0a0xGKzkxMDh6UURNVWNxbDlnUWJkUW9VMU5XUzd2UTVp?=
+ =?utf-8?B?dCtEQ3FidTZ0STRycjRCOFlxUGs3aU1XK1VLTlNYM1pUZUVhQWtjQnNnS0Nn?=
+ =?utf-8?B?alBPek5UaTVjc0ErZTNjUTRRRmNUbnBRa1Z5NE9YWFl2SUkrcGRaWU9jT0RM?=
+ =?utf-8?B?MndneVRERWd1R2lObk5yZE52dUFMeHhkUnpkOUhWVWt0MTA4NkYrV2RPTGZt?=
+ =?utf-8?B?N0UzRGFHb1dMOHRJZVAzaUthZXNRQnVhdzNTdy96Q294RmlGZEVjaWNyd1hj?=
+ =?utf-8?B?TmZITjBZeW4zOHhBZFF0UzhBUDVFSEZiN2YySE55RHIydW1KVjJaOTVMTjdP?=
+ =?utf-8?B?bnZHcGFqeFoxVWZGazllMXRWSG0yOVB6R2tEb2NhVHBvMzhuZXc4K1Q0K3h1?=
+ =?utf-8?B?QUIxRjhleWgxbkQyUk1pMFp5dFgzbjRGbG5CWmh3YW5NL3ZwdWJ0NU43dHY3?=
+ =?utf-8?B?SVkxRXF4UVQ1dlE4RmpmVUZvRUh4UHZXVzFTbkdWUU1YMnZkRXA5bVZYYWxs?=
+ =?utf-8?Q?a3bNJ4YAEImgDUPsK7FQRSo=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5972e958-aa1f-4c79-56ef-08dbbf2fbe9a
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 07:59:58.6659
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qiZrbZXc6LaGRdxbgbq5+o2M6TlCNWqUEvQFf6U3QFDo/dgeRBRZIwDQDUCZqvMkQDIc6rY6UCU9yFpgGHjN2R6CJXLP7VYKgg/iDDjHJ8AkXF92AgAAR4WisZmQIDK/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7513
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 27 Sep 2023 07:18:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61136
+ <yocto@lists.yoctoproject.org>; Wed, 27 Sep 2023 08:00:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61137
 
-Hi David,
-Thank you very much for the description and the offer to get a demo.
-As discussed yesterday in the call, there are some other people who
-seem interested.
+Hi Trevor,
 
-> PROPOSAL 1: If the full triage is too much to bite off to start with, per=
-haps using it to track and coordinate work will bring immediate benefit.
+On 9/27/23 04:42, Trevor Woerner wrote:
+[...]
+> diff --git a/recipes-bsp/rkbin/rockchip-rkbin_git.bb b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
+> new file mode 100644
+> index 000000000000..7fefb017053b
+> --- /dev/null
+> +++ b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
+> @@ -0,0 +1,37 @@
+> +DESCRIPTION = "Rockchip Firmware and Tool Binaries"
+> +LICENSE = "Proprietary"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=15faa4a01e7eb0f5d33f9f2bcc7bff62"
+> +
+> +SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
+> +SRCREV = "b4558da0860ca48bf1a571dd33ccba580b9abe23"
+> +
+> +PROVIDES += "trusted-firmware-a"
+> +PROVIDES += "optee-os"
+> +
+> +inherit bin_package deploy
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +COMPATIBLE_MACHINE = ""
+> +COMPATIBLE_MACHINE:rk3588s = "rk3588s"
+> +
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +do_install() {
+> +	# Nothing in this recipe is useful in a filesystem
+> +	:
+> +}
+> +
+> +PACKAGES = "${PN}"
+> +ALLOW_EMPTY:${PN} = "1"
+> +
+> +do_deploy() {
+> +	# Prebuilt TF-A
+> +	install -m 644 ${S}/bin/rk35/rk3588_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3588.elf
+> +	# Prebuilt OPTEE-OS
+> +	install -m 644 ${S}/bin/rk35/rk3588_bl32_v*.bin ${DEPLOYDIR}/tee-rk3588.bin
+> +	# Prebuilt U-Boot TPL (DDR init)
+> +	install -m 644 ${S}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v*.bin ${DEPLOYDIR}/ddr-rk3588.bin
+> +}
+> +
+> +addtask deploy after do_install
+> diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
+> index 050f55e124d4..f7800625aaf1 100644
+> --- a/recipes-bsp/u-boot/u-boot%.bbappend
+> +++ b/recipes-bsp/u-boot/u-boot%.bbappend
+> @@ -11,6 +11,12 @@ DEPENDS:append = " python3-pyelftools-native"
+>   
+>   INIT_FIRMWARE_DEPENDS ??= ""
+>   
+> +EXTRA_OEMAKE:append:rk3588s = " \
+> +	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf \
+> +	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin \
+> +	"
+> +INIT_FIRMWARE_DEPENDS:rk3588s = " rockchip-rkbin:do_deploy"
+> +
 
-This is the reason I want to test how much time it takes.
+Mmmmmm thinking about this... I think we'll have a difficult time 
+allowing rkbin for ddr.bin and upstream trusted-firmware-a from another 
+recipe for bl31.elf because both would be installing the same bl31 file 
+in the deploy directory. I guess we can postpone this problem until we 
+have to handle it though because nothing comes to mind on how to handle 
+this properly right now.
 
-> PROPOSAL 2: I am happy to give you a live demo of Wind River's fully oper=
-ational SRTool, so you can see all of the bells and whistles in action. I a=
-m available pretty much anytime between 10:00 am Pacific to 2:00 am Pacific=
-.
-
-That would be nice. What about 11am Pacific on tomorrow (28 Sept or
-Oct 3)? I think that you have meant 10am to 2PM, otherwise 1am Pacific
-would work very well for me too :P
-
-> PROPOSAL 3: I will start refreshing the YP SRTool repository with my curr=
-ent implementation level from Wind River (with the Wind River specific modu=
-les left out of course :-)
-
-That would be great. I'm going to add the missing file for the test
-next week, the tool needs a script to download 2023 data.
-
-Kind regards,
-Marta
-
-On Mon, Sep 25, 2023 at 11:02=E2=80=AFAM Reyna, David via
-lists.openembedded.org
-<david.reyna=3Dwindriver.com@lists.openembedded.org> wrote:
->
-> Hi Marta,
->
-> * SRTool: We might decide to use it again. It allows one to do much but r=
-equires constant commitment.
->
-> There are many ways to use the SRTool.
->   (a)  The original design was to perform 100% triage of incoming CVEs. T=
-his was a business requirement of Wind River, and we have used the SRTool s=
-uccessfully for 4-5 year now.
->   (b)  The main limitation with the SRTool for Yocto Project was the lack=
- of integration with Bugzilla (Ross ran out of time)
->      * This is the crucial other half of the workflow
->      * There is the automatic creation of appropriate defect records for =
-investigation
->      * There is also the automatic tracking of the overall CVE status, bo=
-th CVEs in progress and the CVEs completed
->      * Wind River has an extension for full integration with Jira, and th=
-at saves weeks of work for the CVE management
->   (c) The guiding rule was that CVE management was in the SRTool, but spe=
-cific defect work was also done in Jira/Bugzilla, for a clean separate of d=
-omains
->   (d)  The SRTool has a user model
->      * Together with Bugzilla, it is easy to track single people and even=
- multiple people working on CVEs
->   (e) The SRTool also has the built-on ability to look up the CVE status =
-from other distributions (Red Hat, Debian, ...) so that one can get a peek =
-of existing triages and resolutions
->   (f) The SRTool is build like Toaster on top of Django, so development a=
-nd debugging skills for Toaster immediate apply
->   (g) Also with the Django base, it is very simple to add any number of m=
-odular extensions to support for example CVE Scanner integration
->   (h) The SRTool also has report generation (in text, CSV, and Excel) in =
-addition to email notification support.
->   (i) There is also a "private" model for CVEs under embargo, with strict=
- access control lists.
->
-> PROPOSAL 1: If the full triage is too much to bite off to start with, per=
-haps using it to track and coordinate work will bring immediate benefit.
->
-> PROPOSAL 2: I am happy to give you a live demo of Wind River's fully oper=
-ational SRTool, so you can see all of the bells and whistles in action. I a=
-m available pretty much anytime between 10:00 am Pacific to 2:00 am Pacific=
-.
->
-> PROPOSAL 3: I will start refreshing the YP SRTool repository with my curr=
-ent implementation level from Wind River (with the Wind River specific modu=
-les left out of course :-)
->
-> David
->
-> BTW, I also support an extension to the SRTool that manages CVE scanning =
-of build images, with hooks to a  number existing CVE scanners (e.g. Trivy)=
- in addition to other vulnerability metrics. This is probably out of scope =
-to YP at this time, but it is perhaps something to grow in to.
->
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
-lf Of Marta Rybczynska via lists.yoctoproject.org
-> Sent: Wednesday, September 13, 2023 4:52 AM
-> To: yocto-security@lists.yoctoproject.org; OE-core <openembedded-core@lis=
-ts.openembedded.org>; openembedded-architecture@lists.openembedded.org; yoc=
-to@lists.yoctoproject.org
-> Cc: Richard Purdie <richard.purdie@linuxfoundation.org>; Steve Sakoman <s=
-teve@sakoman.com>; Khem Raj <raj.khem@gmail.com>; mark.hatle@kernel.crashin=
-g.org; Ross Burton <ross.burton@arm.com>; Joshua Watt <JPEWhacker@gmail.com=
->
-> Subject: [yocto] Security processes: YP needs
->
-> Hello,
-> I've been working recently on collecting what works and what doesn't
-> in YP security processes. The goal is to go forward and define an
-> actionable strategy!
->
-> Today, I'd like to share with you the summary of what I have heard as
-> needs from several people (those in Cc:).
->
-> I want the community to comment and tell us what you find important
-> and what you'd like to see added or changed from this list.
->
-> * CVEs: Visibility if YP is vulnerable or not
->
-> People want to be able to check/look up a specific CVE; it might be a
-> CVE unrelated to YP
-> (eg. package not included, Windows issue). The cve-checker result is a
-> part of the solution, but people also want to know which CVEs do not
-> apply.
->
-> * CVEs: synchronization of the work on fixes
->
-> Currently, there is no synchronization; multiple parties might be
-> working on the same fix while nobody is working on another. There
-> might be duplication of work.
-> Ross has https://wiki.yoctoproject.org/wiki/CVE_Status
->
-> * Triaging of security issues
->
-> Related to CVE fixes and includes issues reported directly to the YP.
-> Some issues are more likely to be serious for embedded products
-> (attack by network), so not all has the same priority.
->
-> * Private security communication
->
-> A way to send a notification of a non-public security issue. For
-> researchers, other projects etc.
-> The security alias exists, but only some people know about its existence.
->
-> * Visibility of the security work of the YP
->
-> There is much work on security in the YP, but it lacks visibility.
->
-> * Documentation
->
-> Related to visibility. We need easy-to-find documentation of subjects
-> like submitting a CVE fix,
-> reporting a private issue, and how our processes work... This
-> documentation should address people who are not regular contributors.
->
-> * Additional tooling
->
-> We could add additional tooling: a template on how to add cve-check to
-> the CI (possibly
-> a different one than the autobuilder), analyze the result, and extend
-> our tooling to their layers...
-> It is also related to the "Architecture" topic below.
->
-> * Architecture work
->
-> Security if more than CVE fixes. We also have what is happening in
-> meta-security: hardening, compiler option,
-> secure package configuration, use of code coverage tools, and so on
->
-> * SRTool
->
-> We might decide to use it again. It allows one to do much but requires
-> constant commitment.
->
-> * Presence on pre-notification lists and receiving information before
-> the vulnerability gets public
->
-> YP currently depends on public data. Principal distributions receive
-> the information before
-> a vulnerability becomes public. It requires (in short) private
-> reporting, a security team, and a track
-> of excellent security record.
->
-> * Becoming a CNA (be able to assign CVEs)
->
-> Needed if we want to assign CVEs to the software of the YP, like
-> autobuilder, Toaster etc.
->
-> Kind regards,
-> Marta
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#1775): https://lists.openembedded.org/g/openembedded-=
-architecture/message/1775
-> Mute This Topic: https://lists.openembedded.org/mt/101570670/5827677
-> Group Owner: openembedded-architecture+owner@lists.openembedded.org
-> Unsubscribe: https://lists.openembedded.org/g/openembedded-architecture/u=
-nsub [rybczynska@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+Cheers,
+Quentin
 
