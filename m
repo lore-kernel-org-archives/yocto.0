@@ -1,144 +1,87 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B3D2E810D2
-	for <webhook@archiver.kernel.org>; Wed, 27 Sep 2023 11:29:41 +0000 (UTC)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
- by mx.groups.io with SMTP id smtpd.web10.14882.1695814177137420134
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 802ABE80AB5
+	for <webhook@archiver.kernel.org>; Wed, 27 Sep 2023 14:35:13 +0000 (UTC)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+ by mx.groups.io with SMTP id smtpd.web11.19096.1695825305852972716
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Sep 2023 04:29:37 -0700
+ Wed, 27 Sep 2023 07:35:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=QeXWg/ew;
- spf=pass (domain: gmail.com, ip: 209.85.217.50, mailfrom: twoerner@gmail.com)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-452749f6c47so4660038137.1
-        for <yocto@lists.yoctoproject.org>; Wed, 27 Sep 2023 04:29:37 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=T56KdrUK;
+ spf=softfail (domain: sakoman.com, ip: 209.85.214.169, mailfrom: steve@sakoman.com)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1c4194f769fso83087735ad.3
+        for <yocto@lists.yoctoproject.org>; Wed, 27 Sep 2023 07:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695814176; x=1696418976; darn=lists.yoctoproject.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hY8NaTsoqtve0UEeZIy32WoTQiNCI+m2vb74YoRAYKw=;
-        b=QeXWg/ewzA0ovDv1OzjBCD08RmZrqjt5IqoebiyTRviwlrIaf8aFmCT3raJRq9ASGf
-         PfejRGdZnr9EA+BbMQAGWcP46eH/2BtTf2fUNT6u48zhuPZddzo/GLoYBSiLvh+lNz++
-         elitcM2tS9K8vDtw47NIY6kniEe1BWJwQvFuiSFc+PQvjP2AjfWBcEOU2kamlFLk3IY1
-         oygdPlpWQ4IXxFxJVpQEXiphBpmhKYBYNWddbHb9uT5L610WDmdmd337ZduPIxctvDNH
-         y0kyC9k+aNwxMGZ8lU0HhqiwPpVqS9EQ18UzuKRfNcU3t7KRVhvADopwNYuJJzUXSVUV
-         CKtQ==
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1695825305; x=1696430105; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wZhCgUtA4AYhzXGC9pFsQSzI3n07wUPdwXcdPq/ITEY=;
+        b=T56KdrUKstAWHwsyt+23crrrEnmEBAXXC00Xj5i5N9Iy5/VNX6cu516wCQhOeCqKtf
+         kmEb1UsdiY3WeNkkOdPXfgLUkWls/RBGU0u4oAUhHRdeAMgurxBgyYxXhgIvS+mVYdw5
+         Vkbla9VqxAtQ09clJ1CgI6uFvZCDKBVI9HrWm8x7xM9Ev+zDrMSwdZriaKuJTzgkh6Xw
+         wLkXrDX5dhBVW48oZMfpyBLCZ7TbI2VJgYsiCKR5jiOkaUZGClDwANg1NZtEDfAvNrPK
+         A7IrLnE95TJ8Y66iKFIq06dJqN4lq1w04uzsy7K1RpUk7IQXCiUKefW9z6ESg06MSJ4f
+         volg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695814176; x=1696418976;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1695825305; x=1696430105;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hY8NaTsoqtve0UEeZIy32WoTQiNCI+m2vb74YoRAYKw=;
-        b=VmnvifrxTn22nAKhy7uOFSsQABtv2XvR18ftyYNdzLzZjWnKWTTJr7qDpmsG+j+TbQ
-         1lASLayifojqt9Psxms4Asgcl6Q3ue1O0fpPvoqihhD2Dc4US+Etmexi9EPKavaYgRo5
-         8hjNQfCNm8pAF10bF1K+kzCSnBAQnnTkMJy6NYpD/DP2JHiiimw4lELVKHqhBBVOTyd+
-         olcDCcInb4UYQtPO3N4sHsp1D+LJusepUH290yZ63FnTk4ogGUBZSn2CJBLdPByXxWc0
-         stKYffowHz1YdxPu4dTePEEJCo3OacSL3QSRVNoeB/O7W4+ck2sohtGxs1J0vbvDHwrW
-         aTjA==
-X-Gm-Message-State: AOJu0YxiIxWitQDkkV93eQysSuHN2XI5xOFEucNV8KD/YGQXMLz4svWF
-	jDME5OKoqriuZoHB15IvZJpGIa5LQCTbXQ==
-X-Google-Smtp-Source: AGHT+IH7K7tRJxdn+LkvfQL/bmcJE4u9HR8j89JTQdPHZ4YZe0NCx+rNF2PvA8CIAa7TOXo8VrIRiA==
-X-Received: by 2002:a05:6102:2d6:b0:44d:4b34:af92 with SMTP id h22-20020a05610202d600b0044d4b34af92mr1719942vsh.7.1695814175925;
-        Wed, 27 Sep 2023 04:29:35 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id d17-20020a0caa11000000b006583270ea64sm5805666qvb.139.2023.09.27.04.29.34
+        bh=wZhCgUtA4AYhzXGC9pFsQSzI3n07wUPdwXcdPq/ITEY=;
+        b=h9jlno/raW+Y8OlhVhhtDPmuOna3MNjlje7q63pofq+TaM7JFj6aDvDWRPSjlGJHCD
+         QMlyZcKCIaowntMnCNfiMHx0+LMbaR6AnqWkV7eb+vm+XYl/kTq4nQxB1IvMq9lo73aJ
+         BifsFv9/QpjRCMfGzZB75ufXqAwpKcDK0+1CDxnZ2wXHm+/ePRk+SOPFeXZZwloqGoHT
+         Lzm5D8mc1Lx603wEHKdyGrU7gr+HS+DeUC3C+YwIRsGWTeKeCowqU7sA0/NvCH1Jqbl8
+         kk8ATjVOsIhpcS4RpP9UATHt8dp7nF0BCqepGtb+a5kC1+hM603gqjPW8leDgsiLdoZQ
+         6TBw==
+X-Gm-Message-State: AOJu0Yw/fuJMWkGNTEUQTm62OsvQ7FgElrXKYDbg/hvZmqfFFbbuWxBh
+	5Xy4PUKqJVKufOYixe90oTC4dWZ4fR8cAsUPlzI=
+X-Google-Smtp-Source: AGHT+IEgiSmZFhN2ZvVo5mReGikjBFJSccQUeNgdYLsslAEraSKwY4hou5QlWkPp3qJ8DYModx0A6A==
+X-Received: by 2002:a17:903:2386:b0:1c7:248e:7cb1 with SMTP id v6-20020a170903238600b001c7248e7cb1mr1594875plh.36.1695825304584;
+        Wed, 27 Sep 2023 07:35:04 -0700 (PDT)
+Received: from hexa.lan (dhcp-72-234-106-30.hawaiiantel.net. [72.234.106.30])
+        by smtp.gmail.com with ESMTPSA id u11-20020a170902e80b00b001bbb25dd3a7sm9592046plg.187.2023.09.27.07.35.03
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 04:29:34 -0700 (PDT)
-Date: Wed, 27 Sep 2023 07:29:32 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH v4 2/2] rock-5b: add
-Message-ID: <20230927112932.GA7200@localhost>
-References: <20230927024220.17766-1-twoerner@gmail.com>
- <20230927024220.17766-3-twoerner@gmail.com>
- <20cddc6d-e22a-ff65-f911-daea3dde90a5@theobroma-systems.com>
+        Wed, 27 Sep 2023 07:35:04 -0700 (PDT)
+From: Steve Sakoman <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder2 1/2] schedulers.py: use newly created mickledore branch for meta-mingw
+Date: Wed, 27 Sep 2023 04:34:53 -1000
+Message-Id: <e7206f0c5cf64804815030974cf3529bd51aad51.1695825197.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1695825197.git.steve@sakoman.com>
+References: <cover.1695825197.git.steve@sakoman.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20cddc6d-e22a-ff65-f911-daea3dde90a5@theobroma-systems.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 27 Sep 2023 11:29:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61140
+ <yocto@lists.yoctoproject.org>; Wed, 27 Sep 2023 14:35:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61141
 
-Hi Quentin,
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ schedulers.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Wed 2023-09-27 @ 09:59:57 AM, Quentin Schulz wrote:
-> Hi Trevor,
-> 
-> On 9/27/23 04:42, Trevor Woerner wrote:
-> [...]
-> > diff --git a/recipes-bsp/rkbin/rockchip-rkbin_git.bb b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
-> > new file mode 100644
-> > index 000000000000..7fefb017053b
-> > --- /dev/null
-> > +++ b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
-> > @@ -0,0 +1,37 @@
-> > +DESCRIPTION = "Rockchip Firmware and Tool Binaries"
-> > +LICENSE = "Proprietary"
-> > +LIC_FILES_CHKSUM = "file://LICENSE;md5=15faa4a01e7eb0f5d33f9f2bcc7bff62"
-> > +
-> > +SRC_URI = "git://github.com/rockchip-linux/rkbin;protocol=https;branch=master"
-> > +SRCREV = "b4558da0860ca48bf1a571dd33ccba580b9abe23"
-> > +
-> > +PROVIDES += "trusted-firmware-a"
-> > +PROVIDES += "optee-os"
-> > +
-> > +inherit bin_package deploy
-> > +
-> > +S = "${WORKDIR}/git"
-> > +
-> > +COMPATIBLE_MACHINE = ""
-> > +COMPATIBLE_MACHINE:rk3588s = "rk3588s"
-> > +
-> > +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > +
-> > +do_install() {
-> > +	# Nothing in this recipe is useful in a filesystem
-> > +	:
-> > +}
-> > +
-> > +PACKAGES = "${PN}"
-> > +ALLOW_EMPTY:${PN} = "1"
-> > +
-> > +do_deploy() {
-> > +	# Prebuilt TF-A
-> > +	install -m 644 ${S}/bin/rk35/rk3588_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3588.elf
-> > +	# Prebuilt OPTEE-OS
-> > +	install -m 644 ${S}/bin/rk35/rk3588_bl32_v*.bin ${DEPLOYDIR}/tee-rk3588.bin
-> > +	# Prebuilt U-Boot TPL (DDR init)
-> > +	install -m 644 ${S}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v*.bin ${DEPLOYDIR}/ddr-rk3588.bin
-> > +}
-> > +
-> > +addtask deploy after do_install
-> > diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
-> > index 050f55e124d4..f7800625aaf1 100644
-> > --- a/recipes-bsp/u-boot/u-boot%.bbappend
-> > +++ b/recipes-bsp/u-boot/u-boot%.bbappend
-> > @@ -11,6 +11,12 @@ DEPENDS:append = " python3-pyelftools-native"
-> >   INIT_FIRMWARE_DEPENDS ??= ""
-> > +EXTRA_OEMAKE:append:rk3588s = " \
-> > +	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf \
-> > +	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin \
-> > +	"
-> > +INIT_FIRMWARE_DEPENDS:rk3588s = " rockchip-rkbin:do_deploy"
-> > +
-> 
-> Mmmmmm thinking about this... I think we'll have a difficult time allowing
-> rkbin for ddr.bin and upstream trusted-firmware-a from another recipe for
-> bl31.elf because both would be installing the same bl31 file in the deploy
-> directory. I guess we can postpone this problem until we have to handle it
-> though because nothing comes to mind on how to handle this properly right
-> now.
+diff --git a/schedulers.py b/schedulers.py
+index 2f7a8ab..b70b5ed 100644
+--- a/schedulers.py
++++ b/schedulers.py
+@@ -69,7 +69,7 @@ branchdefaults = {
+         'branch_meta-aws': 'mickledore',
+         'branch_meta-gplv2': 'master',
+         'branch_meta-intel': 'mickledore',
+-        'branch_meta-mingw': 'master',
++        'branch_meta-mingw': 'mickledore',
+         'branch_meta-openembedded': 'mickledore',
+         'branch_meta-ti': 'master',
+         'branch_meta-virtualization': 'mickledore',
+-- 
+2.34.1
 
-If/when that time comes, we could tweak the do_install()s of rockchip-rkbin
-and/or tf-a to install or not install various pieces as required by the
-specific case.
-
-Thanks for reviewing!
 
