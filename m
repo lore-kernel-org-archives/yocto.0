@@ -1,104 +1,112 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 447DCE7F12A
-	for <webhook@archiver.kernel.org>; Tue, 26 Sep 2023 21:04:39 +0000 (UTC)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
- by mx.groups.io with SMTP id smtpd.web11.2773.1695762268960909773
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24256E7F154
+	for <webhook@archiver.kernel.org>; Wed, 27 Sep 2023 02:42:44 +0000 (UTC)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+ by mx.groups.io with SMTP id smtpd.web11.9446.1695782555709047982
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 Sep 2023 14:04:29 -0700
+ Tue, 26 Sep 2023 19:42:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=ZJi0THdM;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4060b623e64so21289215e9.0
-        for <yocto@lists.yoctoproject.org>; Tue, 26 Sep 2023 14:04:28 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=nWe6NVSy;
+ spf=pass (domain: gmail.com, ip: 209.85.222.174, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7740cd2e393so636975885a.1
+        for <yocto@lists.yoctoproject.org>; Tue, 26 Sep 2023 19:42:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1695762267; x=1696367067; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xc9J/FxH8IO+Gt1O3WYy9+S8RkZko1/ddO+CklnCx+g=;
-        b=ZJi0THdMqi7mxa5du+ZR9Iyq+rRgGhm7ST9Sl31TrLmRf5cqfZcqvEz8bM+c/Iu/j8
-         Dfrz9hCt+5rJ6aG4V6yntWu7w0SuUh1ZIeslglCrf+2StH96C8NT/R/XoN3uGxk+C3rb
-         ELVUC3UiasW4OVEOtxaPgW5Et7fYN6ajx6ix4=
+        d=gmail.com; s=20230601; t=1695782553; x=1696387353; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SH0X/XqRY99CzPDpqdIuCGy8f7Tingfm/cEFAyS4ohI=;
+        b=nWe6NVSyOrKae7fU8nKJgz11/tfxB+k+CowY5JUcagh5FgMXc0+wHVVn4aJgtMPBCW
+         fM0HqwKUZ0uxzP+6VFE9L06mH0+tDF2DIqiQddEUM47opxHiNuOzOS42PowyGR8cNX2m
+         eTeJgtKHyzSYMaPbNqe9w8yLHh/ImsXgJgJDtRPdcNqfSA5GSdq+F/sRy9GHbbcNINSZ
+         V8WFDyTpTR7+HjAhd1hPY3xahlmzMBgfGNOevnk0aMmCyLtGDKTwOAsjpRojkvbaClbA
+         H8/C8HeQLSF8SClAZTplG2QxmtsSXXDRrEkdqn1Rmx703SqFhAKoIB/Ves18nSgmPXDX
+         Ne1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695762267; x=1696367067;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Xc9J/FxH8IO+Gt1O3WYy9+S8RkZko1/ddO+CklnCx+g=;
-        b=Osvj+hyn71PxYcA8lmM8o3jp9GFej/fu68ll80J0PS4pNT23T+rf8ROtaIb41KFTKm
-         hT7DvIwbBAsx4pEvdlXBsbD7AnTkl8TEhoNxhZoyXRVK29ONdJYFVH6fo54qwzweTdEy
-         iVYgYBfzaXBQn8BJmEBYGQkguLWgSDI2LugXFrAQHEhxN3szDcAsDZ1yEE6smW912Q3s
-         2TkO7cIIsRRmoqwBHALWoE+o5czjqMdj5h/z8f1cO0GfHuNzfWkAKrG3qhav4DoJIB4s
-         hQqRNdYe/4U/lIK5gIsFVmIAyPQYwpLojqJ0apUt8Ca3RMRmJhZEmld7IyjxU9xJvyki
-         e/vQ==
-X-Gm-Message-State: AOJu0YwUOhaYbNaeVJ2P4YzxvxYdaRZb255EIBPBGiGN3ziSyge+17fw
-	QXm5Db+qe8M3lJJGwoDdlujnrQ==
-X-Google-Smtp-Source: AGHT+IEe9PKnIGNbyWGhTrbCm6gt2L9mJiLkmmsvB6eh5xuoq3RlNDpejtG3f7xBWmjrad2xjqme4Q==
-X-Received: by 2002:a1c:6a04:0:b0:405:19dd:ad82 with SMTP id f4-20020a1c6a04000000b0040519ddad82mr13923wmc.16.1695762267112;
-        Tue, 26 Sep 2023 14:04:27 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:ab67:eb18:db89:ef9a? ([2001:8b0:aba:5f3c:ab67:eb18:db89:ef9a])
-        by smtp.gmail.com with ESMTPSA id 19-20020a05600c229300b00405953973c3sm5383149wmf.6.2023.09.26.14.04.26
+        d=1e100.net; s=20230601; t=1695782553; x=1696387353;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SH0X/XqRY99CzPDpqdIuCGy8f7Tingfm/cEFAyS4ohI=;
+        b=vLZVjoDLFw/GSTfLIUxuxRW+ETzvkZ6b4WiyFcvQbNg6LyImDfeEQnvALbcD0q+HAY
+         9A1W6LDKm2hXoYFdr278Z8sNNFLdt3yN30ADK16MpSiQAvWVzyk95I50rfmAHZbY8hlP
+         maRGqvkw01daJCKbuAVh/DGY6I3pAfqms/LLyZP5dYum7ogx+AXcKN6cH/Z/8aft8BDT
+         T10gjYf0tlb39XcHoral0uq6STQo7lhRT1nFyylOornph4Iwm3wZeehy3anl7dFBoTJo
+         erKSrsfvyKqZUw0tomGcw5ml2v3pN28M2PgPNNnC2vCLfE1QWEfUfKlAmBwOADVdMA9s
+         0hwg==
+X-Gm-Message-State: AOJu0YxOKiQZZyo7DRW8RqN6oPrEtWCIgWQPfjTFj9RsxJck2VrZ43vJ
+	Lx9ZaJDzFwOV2iehR/JNB7DpXBJPwrXZag==
+X-Google-Smtp-Source: AGHT+IEJ7gaJkvFF/oBFlU0Pkcon2vf3kkFJgd3iO8G42eJF5AUmzhRZCmoOO31O6S27akJCYO785g==
+X-Received: by 2002:a05:620a:210c:b0:76f:26a7:1668 with SMTP id l12-20020a05620a210c00b0076f26a71668mr606372qkl.74.1695782553439;
+        Tue, 26 Sep 2023 19:42:33 -0700 (PDT)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id p4-20020a05620a056400b0077412ca0ae1sm4715763qkp.65.2023.09.26.19.42.32
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Sep 2023 14:04:26 -0700 (PDT)
-Message-ID: <2cdc97fad001fff58d54e1f71eb660ccf94c01f7.camel@linuxfoundation.org>
-Subject: Re: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.3_M3.rc9)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: qa-build-notification@lists.yoctoproject.org, 
-	yocto@lists.yoctoproject.org
-Date: Tue, 26 Sep 2023 22:04:25 +0100
-In-Reply-To: <0101018ad34ba5d6-27fffea4-4223-4f49-9cd9-834c99ca18f0-000000@us-west-2.amazonses.com>
-References: 
-	<0101018ad34ba5d6-27fffea4-4223-4f49-9cd9-834c99ca18f0-000000@us-west-2.amazonses.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+        Tue, 26 Sep 2023 19:42:32 -0700 (PDT)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-rockchip][PATCH v4 0/2] rock-5b: add
+Date: Tue, 26 Sep 2023 22:42:18 -0400
+Message-ID: <20230927024220.17766-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 26 Sep 2023 21:04:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61132
+ <yocto@lists.yoctoproject.org>; Wed, 27 Sep 2023 02:42:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61133
 
-On Tue, 2023-09-26 at 21:01 +0000, Pokybuild User wrote:
->     A build flagged for QA (yocto-4.3_M3.rc9) was completed on the autobu=
-ilder and is available at:
->=20
->=20
->         https://autobuilder.yocto.io/pub/releases/yocto-4.3_M3.rc9
->=20
->=20
->     Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83=
-/builds/5949
->=20
->     Build hash information:=20
->=20
->     bitbake: 612bdf09416ff96d08b22cf92b077516d23d0963
-> meta-agl: 4a14356a535dcd47f16f788ac830d0d03457c9da
-> meta-arm: be9bbaa16ed0d60490fb8f915fc48e40d14478a5
-> meta-aws: ba6a653f0b5a4fa55e71646f0fe1fd0673d2c947
-> meta-intel: cc04677a2717be485bf9cecf4a3d48f8a1e601cc
-> meta-mingw: 65ef95a74f6ae815f63f636ed53e140a26a014ce
-> meta-openembedded: c40aebd422e60126c3b18e35c20a1cb38a795a52
-> meta-virtualization: b65fe24b8cbcf8797f31d058a79f8a21985e955d
-> oecore: 1adf70729dafc9729e665986ad2e2250cbd25c5b
-> poky: 6cb490713ed30f1f13d25978aa0d377ce66b1861
->=20
->=20
->    =20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
+Version 4 of the patch to add Radxa's Rock 5B.
 
-Please ignore this email from a QA perspective. The good news is the
-URL addition worked but the "failure in the step if the QA regression
-report failed" changes didn't.
+v4:
+- add a patch before the "rock 5b: add" patch to rename the U-Boot
+  variables to not be TF-A specific
+- clean up the U-Boot initial binary blob dependency variable name, the
+  EXTRA_OEMAKE handling, and remove the rk3588's dependency on tf-a (which
+  it does not have)
 
-Cheers,
+v3:
+- change name from "rock5b" to "rock-5b", there seem to be more instances
+  of the latter on the manufacturer's website than the former
+- fix the MACHINEOVERRIDE in conf/machine/include/rk3588s.inc to be
+  "rk3588s" and not "rk3588"
 
-Richard
+v2:
+- fix the logic behind the MACHINEOVERRIDES to get the content, and
+  ordering, correct
+- improved the commit message around TF-A/rkbin
+- correct Quentin's SoB line
+
+Trevor Woerner (2):
+  u-boot: rename firmware dependency
+  rock-5b: add
+
+ README                                        |  1 +
+ conf/machine/include/rk3588.inc               |  6 ++
+ conf/machine/include/rk3588s.inc              | 17 ++++
+ conf/machine/rock-5b.conf                     | 12 +++
+ recipes-bsp/rkbin/rockchip-rkbin_git.bb       | 37 ++++++++
+ recipes-bsp/u-boot/u-boot%.bbappend           | 17 ++--
+ recipes-kernel/linux/linux-yocto-dev.bbappend |  3 +
+ .../rockchip/remove-non-rockchip-arch-arm.cfg | 85 +++++++++++++++++++
+ .../rockchip/remove-non-rockchip-arch-arm.scc |  1 +
+ .../remove-non-rockchip-arch-arm64.cfg        | 66 ++++++++++++++
+ .../remove-non-rockchip-arch-arm64.scc        |  1 +
+ 11 files changed, 240 insertions(+), 6 deletions(-)
+ create mode 100644 conf/machine/include/rk3588.inc
+ create mode 100644 conf/machine/include/rk3588s.inc
+ create mode 100644 conf/machine/rock-5b.conf
+ create mode 100644 recipes-bsp/rkbin/rockchip-rkbin_git.bb
+ create mode 100644 recipes-kernel/linux/linux-yocto-dev.bbappend
+ create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
+ create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
+ create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
+ create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
+
+-- 
+2.41.0.327.gaa9166bcc0ba
+
 
