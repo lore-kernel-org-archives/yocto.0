@@ -1,96 +1,105 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <rybczynska@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 836B8E732FE
-	for <webhook@archiver.kernel.org>; Thu, 28 Sep 2023 17:07:39 +0000 (UTC)
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
- by mx.groups.io with SMTP id smtpd.web11.18901.1695920854307781598
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A0D4CE7AFC
+	for <webhook@archiver.kernel.org>; Thu, 28 Sep 2023 17:50:30 +0000 (UTC)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+ by mx.groups.io with SMTP id smtpd.web11.19966.1695923426045734247
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Sep 2023 10:07:34 -0700
+ Thu, 28 Sep 2023 10:50:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Q83PGWzk;
- spf=pass (domain: gmail.com, ip: 209.85.208.179, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so217080161fa.3
-        for <yocto@lists.yoctoproject.org>; Thu, 28 Sep 2023 10:07:34 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=mb8j0eoQ;
+ spf=pass (domain: gmail.com, ip: 209.85.208.182, mailfrom: rybczynska@gmail.com)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2c135cf2459so200496311fa.0
+        for <yocto@lists.yoctoproject.org>; Thu, 28 Sep 2023 10:50:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695920852; x=1696525652; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8QVYbh7m/zP4AyBk06jPj44grWNUBd/nUaOoWZV770c=;
-        b=Q83PGWzk08Jej14b3HcnWeyAoz+YwkPjwZ+ltuqXNKp4i49LSiDqKIDII8SqTgQ8d8
-         dHmnI/4M2vXik9ZKJSbYqvF4c9o/A8PGhp8pONO1QKAqgXcqgX/Q4cTdLVF4MnQu7ekH
-         5QW/FRtR7yfZgyfX53WscH6KK37ARSc2OdexDOBj3vG2wxq6Bv4ON5L0ppOBOSgX8uYj
-         nMRg85PFvt7rzrquJJNCjEcsoUynPkEnH108N2uWXLG00pTA0SxdkixFS/PkAtdtvmOE
-         Hw0yr7G2f+nB7zT+yng1kK5ATDAh8ZTHyQI1egSQDIdAxM4IkJiIqHLvLhr24YY4n53U
-         66UQ==
+        d=gmail.com; s=20230601; t=1695923424; x=1696528224; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5peVoB9DhKNru9kKNhMg8BPWbNmOZC4m3H8LVFlOw2A=;
+        b=mb8j0eoQrjhmEtoUVQ9AEl4n8Nk67qvWsQxJRWBmatcaj/5Hh0uAwxdHgzw3/3dO9j
+         WrYyyqSmxYLs08drsjHn4ajNG9EjKRFkE2h4DfXkqfPewhpGCIXv4A1XIaSuReECyUnR
+         fu4sIsvLIWXS55xdVN4QKw/8Q5sMi56OuUUyKXmBKQQ3yZPDQvNaJDDyo+zyw7xxGwTX
+         QcqdLnkjsbvCW0ZZCxP5BCEfmhCvTZDcPlYr5Rqxe8mpucaAzmR8Cp6E04BcAIpIUY5X
+         +tw95AS8X0abzg99h1urr/LXqopihW4ZPoykGWPbXjGbuHVc/C+puebNlDLVUNCtB8fO
+         rniw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695920852; x=1696525652;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8QVYbh7m/zP4AyBk06jPj44grWNUBd/nUaOoWZV770c=;
-        b=UQCoAjwjtqSwmgUXAdZyUPxTGQqaAH7krlcP32Jh4vwtSLNhivyE84iyQh0/u8Ogu3
-         Lncq1PoDJkREkxNYl/0PZt0BhsSij/U1M5AYh4QU+yBN07QK1b2kBVkK7cr0WSqFRW0n
-         BMKRlPFche3zLS6+bbYPvRFFCwMnu3qromxOZvL/kaGS4CA4px0Q+bARZtmcPounbSfq
-         Ey8WUbFndjlNXCFl8PKVIB9jK2tbmFmYnAfhVpcogVI4Gsnw6mHdpzVFQd6zNjdaenZN
-         XxS1Rfow2vn0U0IxIAwQJFqrM5FvRdcjy3MbPEDuLGSYPBpHoufcRZNDSt+5iNZ14Pjk
-         y6Fg==
-X-Gm-Message-State: AOJu0Ywc+XxvH20NL5DWqIojvyZs31yWbLkwkkGCXndt3flYmYmihA9d
-	z7vL/zhiMhlwuMo3+o5YDBsINImFEsQyJs1aIlw=
-X-Google-Smtp-Source: AGHT+IHokwCNKHBcZ2mmGBB66DYWWLwD9wkyQ1Sfmvo2eZXSyLim4/JAmiNZPIvvJn5/06c2WFL0qJnvuzpJV1FNmaE=
-X-Received: by 2002:ac2:5051:0:b0:4ff:8863:be01 with SMTP id
- a17-20020ac25051000000b004ff8863be01mr1456914lfm.8.1695920852200; Thu, 28 Sep
- 2023 10:07:32 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695923424; x=1696528224;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5peVoB9DhKNru9kKNhMg8BPWbNmOZC4m3H8LVFlOw2A=;
+        b=d4AX97fGzQhh2NgRDKmbI04e05lhwUGyuPswNMVuZ7Ng6czLdqgG6LYrjtc0Ww4Ltu
+         gEf8dgPYPfj7dTZtf6uba0XuG81LJnQIIZnu40yIwpyDigOxUmDgP0anrlWIuKIzk8Zz
+         j9mPLFm8fqwRTL/npsi39yZBa60GTvVL0Hg9mvQu8em2bpzhKihrV2GktZeIYKcPYWIH
+         7d3rvwYys/KbAqSdgdo4P8PsafOimIbasPiiNPrv2wHnclQ7Ys1UKtXp2g3FJXi84WeP
+         P7JlF/DEocW8iX5tSAOVSU7sC1VJALVszMQw8ZNOBy15OtUKeGD2i69m6OTsnv9GT7EC
+         2hXw==
+X-Gm-Message-State: AOJu0YyytIKdVxUMRrZxCGD8Ph1OZq6FTEGZvWboMGz99dC47OmuxSsr
+	E8dftltWe+HnDDFchzCAhkvtLMmrMT46M/0Rs6Q=
+X-Google-Smtp-Source: AGHT+IH0+aaKrJCqjMyDGpaRcOejcXC9I4rvN0ut1f/9LJGbp3qsc3FVsLThMADwpY796usZYo2U0pRCfvd41feXA3w=
+X-Received: by 2002:a2e:8745:0:b0:2c1:8081:b78e with SMTP id
+ q5-20020a2e8745000000b002c18081b78emr1787572ljj.19.1695923423862; Thu, 28 Sep
+ 2023 10:50:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
- <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
- <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
- <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
- <5ef99df95ab74e74df6f1e07ef4877487230d9fe.camel@linuxfoundation.org>
- <CANNYZj8RAvj=sJtQuH9J_zKKAsUbhcdKe0hiA2JJy1wwxuzDNQ@mail.gmail.com>
- <DM8PR12MB54304C00CC6C924121E1CBDF8BF8A@DM8PR12MB5430.namprd12.prod.outlook.com>
- <CANNYZj8eSZZOfPGYCdYPrWjHf74dmRW5uYAZfTBp7JemPXxQCg@mail.gmail.com>
- <24b60007a669d075fa1e4ccd18980ada93714c7a.camel@linuxfoundation.org>
- <CANNYZj-YBTN_yje-fyzp12YDF9XMaZSuMvLh6qA1H+9GEYEmfA@mail.gmail.com> <7564ae2b6c036b10a35e8c9927c0ab2cf533f35c.camel@linuxfoundation.org>
-In-Reply-To: <7564ae2b6c036b10a35e8c9927c0ab2cf533f35c.camel@linuxfoundation.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 28 Sep 2023 19:07:20 +0200
-Message-ID: <CANNYZj_PNNb1x-H73aG73Boob7bdofvizw9KM-ZmYH0AZm2a0w@mail.gmail.com>
-Subject: Re: [Openembedded-architecture] Core workflow: sstate for all,
- bblock/bbunlock, tools for why is sstate not being reused?
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: "chris.laplante@agilent.com" <chris.laplante@agilent.com>, 
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
-	Julien STEPHAN <jstephan@baylibre.com>
+References: <7b087062faa88bd412f0b2b7a80646fff09c1ea2.camel@vrag.ch>
+In-Reply-To: <7b087062faa88bd412f0b2b7a80646fff09c1ea2.camel@vrag.ch>
+From: Marta Rybczynska <rybczynska@gmail.com>
+Date: Thu, 28 Sep 2023 19:50:11 +0200
+Message-ID: <CAApg2=S4AcW8pK_PvrCcRHgrvgAT2ZbACo=eDv+QTzgsfbeHJA@mail.gmail.com>
+Subject: Re: [yocto] SPDX generation fails every second time the image is created
+To: David Daniel <david.daniel@vrag.ch>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 28 Sep 2023 17:07:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61158
+ <yocto@lists.yoctoproject.org>; Thu, 28 Sep 2023 17:50:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61159
 
-On Thu, 28 Sept 2023 at 18:49, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> I've wondered if we should split bitbake -S printdiff into a separate
-> utility? It exists from a time before we had bitbake command APIs.
+Hello David,
+I haven't encountered this one, but it looks like a race condition.
+Could you tell us which exact
+version of the YP are you using? What is your configuration, if you
+can share (which layers and packages activated, especially).
 
-It can also be a simple shell wrapper.
+Kind regards,
+Marta
 
-I've separated -S lockedsigs into it's own option as well, so it can
-be explicitly requested (just need to fix up a couple of selftests
-that relied on -S none to get locked-sigs.inc):
-https://git.yoctoproject.org/poky-contrib/commit/?h=akanavin/sstate-for-all&id=41e8a8a79bac4e3b9eb74a99e32e0d26ac8af0c5
-
-> I'm curious to see what you find with analysis of bitbake-whatchanged.
-> I'm also somewhat surprised the scenarios you're testing all work!
-
-It's not 100% perfect. One out of 2*3=6 scenarios isn't fully
-functional (gcc-source:do_preconfigure signature isn't found from
-sstate even though it exists there - but it is found if it's in
-tmp/stamps/). I left a FIXME in the test.
-
-Alex
+On Thu, Sep 28, 2023 at 4:20=E2=80=AFPM David Daniel <david.daniel@vrag.ch>=
+ wrote:
+>
+> Hello
+>
+> Something changed in master the last days that makes the image creation
+> fail. When I create the image with bitbake, every second time the image
+> creation fails with:
+>
+>    Exception: AttributeError: 'NoneType' object has no attribute 'open'
+>
+> Funnily this only happens every 2nd time - afterwards I cannot build
+> the image anymore. Up to now I "solve" this by deleting the entire
+> build folder and start over again.
+> I attached the log of the build that shows the error - I don't
+> understand where this comes from.
+>
+> Any idea what's causing this?
+>
+> Have a great day,
+> BR
+> David
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#61154): https://lists.yoctoproject.org/g/yocto/messag=
+e/61154
+> Mute This Topic: https://lists.yoctoproject.org/mt/101638471/5827677
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [rybczynska@gma=
+il.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
