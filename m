@@ -1,79 +1,90 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A60BDE71D40
-	for <webhook@archiver.kernel.org>; Fri, 29 Sep 2023 15:02:09 +0000 (UTC)
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
- by mx.groups.io with SMTP id smtpd.web10.19762.1695999725198196405
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F974E71D4A
+	for <webhook@archiver.kernel.org>; Fri, 29 Sep 2023 15:09:40 +0000 (UTC)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+ by mx.groups.io with SMTP id smtpd.web11.20115.1696000174260982286
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Sep 2023 08:02:05 -0700
+ Fri, 29 Sep 2023 08:09:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=YZFVpTZL;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.218.51, mailfrom: jester@theyoctojester.info)
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-9ad810be221so1934581866b.2
-        for <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 08:02:04 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=SlQqyXDK;
+ spf=pass (domain: gmail.com, ip: 209.85.214.175, mailfrom: ticotimo@gmail.com)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1c3d6d88231so107802225ad.0
+        for <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 08:09:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1695999723; x=1696604523; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=BdwrQlTuOb8F4lf3fkeLYTdpeOkE1WDGQgVtyQUKdZo=;
-        b=YZFVpTZL1LNitw9G4729l9XY40ELqLO3I8m5W6d8XXywN6maVpBj+iVm5htqWez9FI
-         MfaehUnuA+v1a8xLolFycWZT+cLe8CP782eUTRIli9D4B4tbaBZmFaWmSWdf5drKR9rN
-         t1znO8Pg8MuPt5C7I/Y1yjnFaiSFUQ1kbJDEKE2WxU8ozF01lxcSDo61eKBIuLDfG6QR
-         6MjII5MyNripJ+8edtfJKayOUYWUOzyq+QSqypLisq++2uBeTefNtury2Qho/GYjjpN3
-         CDo7Durb5MR7AjsM4Mwitl1TG+t7v4PFTAcWJaLasWkpM0CKSgqe+ta6JuFj49uvG+LW
-         yyPQ==
+        d=gmail.com; s=20230601; t=1696000173; x=1696604973; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kIihUPYMmCYR/ez2+UOxBmJXAXZI/RYkaALiPI+iHP4=;
+        b=SlQqyXDKZQ0CP4nGwEVcFWCYMZQOAjnuUy0sLjA3371tj8hptI4Qcz/HhhG7l6qQYO
+         GXrHgUXOIThA5Lzk84R4MJvnVZjduEEESPgt35pP6fAEACbYnj83rv+I3vR78CUflr2Z
+         3auf+uGV+jRB6uEvlRg2T4ksx7uOwUPBtWqX+uWNOSkA0A45gawGS81YtrslgS68vC3+
+         d8fNDHgtxD6Ht6J/Fv+sHcJ+zSZ1Q/Dme+6BahDSgYX3qrX+0jG3SP4EOCe0O/0dkQsG
+         Fb1QTTPdqH40r6KTuFvfnxTEse0ekob77oelMDjAi03Z81eA0CsMto1iWPAiqUPh4va3
+         C1fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695999723; x=1696604523;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BdwrQlTuOb8F4lf3fkeLYTdpeOkE1WDGQgVtyQUKdZo=;
-        b=bbpl/FVP34fNqjmVpd9VmfHkxiDZIH6ymkunu8pmf/4CQvf4gwk4CEN+U1tXrsDqQE
-         y8wAz71P8bxfnkEbOOIyuoyYib3kDftuHyGW4YoGUKQP2P1PnvRbqQvSGkfb39QEiIWl
-         ZL9oZ7OLHsLdaPraZFgfqUbyPVsL+PrSMH81PI6xwEi+OAU7B9vVBFVt67It0ADmermC
-         xP6vjfgYeqWXX4Ekkkkv8t3gScduHNQ2Oxa+8Ltp867oC3jqVfIl1BqkN1LQeC2tqhez
-         Ytj3S6W3axETshHE1QVHPJEad0rW0nQGROyUCKNkZQ1exyqpgN+pGBZxUSKsG7vYY6Au
-         Bblg==
-X-Gm-Message-State: AOJu0YxGmbiBKW7CVVsLju3ZzcMC3sJDvUPg6M7GRuQjpqxxjKbs6vUl
-	cLDqxuEmCwQqBeYYrtryNuUv+9uMgKWjki2grDaTqhRnJShtTnyI97GnuA==
-X-Google-Smtp-Source: AGHT+IGNhOUDDwUAo0YxGSBbQ8skUjOk0ZoJPD5Kw2A6ruqbmLoAs+NEHyEA92SN5tCJlv3ahR+DARMVCmSldR0+CBE=
-X-Received: by 2002:a17:906:108f:b0:9b2:b71f:83af with SMTP id
- u15-20020a170906108f00b009b2b71f83afmr4218132eju.20.1695999723031; Fri, 29
- Sep 2023 08:02:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696000173; x=1696604973;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kIihUPYMmCYR/ez2+UOxBmJXAXZI/RYkaALiPI+iHP4=;
+        b=AN4X/6cjcB964Vi7qdfCFmz2sr6YoKm+NYDuzgOQneGxhhvgYpmfoOQLbl1TNzybYx
+         ticWV6+R0E4RMiri4wNt1w/mVjxcTnIKArxa1x7MU7HlEnDlJqtJ0F/BN4wgNGdMyNmU
+         Uz7zbhBFq5jvWPM702vwqwAyPud6yd1hb07nRiuZN57oRbpKofZR/b38fRDoUIE1FfKu
+         bUnuRCHeWmc5lzyDUrPkqWixg0HXYvArerIxXWjZvYkaawFQRn6sr/6Ne/U3joBz0I7o
+         Wswkq4oNqjFfyO1r7jjhXGw2TZbOAJLwcjSiy3rlkThDGh4kcJGI+ThKw4eM0JgOHq0I
+         S/7w==
+X-Gm-Message-State: AOJu0YyofGDI5Yq3LXaVMMt4MMTIRoITceZ5sWTfVMKz/Vvo0QTQdlN0
+	m+TWhcTg09j7+uCJz0P8jSADnq4s6rmlrw==
+X-Google-Smtp-Source: AGHT+IHfikGZFD4Tqy0AqtaUOqrOzU0u88K7A/ML1a/pqc3Ifco5ODAgjYZnQfBYt8CMt6I2giymmg==
+X-Received: by 2002:a17:903:2587:b0:1c3:f4fa:b1a2 with SMTP id jb7-20020a170903258700b001c3f4fab1a2mr3204574plb.8.1696000173274;
+        Fri, 29 Sep 2023 08:09:33 -0700 (PDT)
+Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:1244:ff8c:57dc:4464])
+        by smtp.gmail.com with ESMTPSA id g14-20020a1709029f8e00b001a5fccab02dsm1406016plq.177.2023.09.29.08.09.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Sep 2023 08:09:32 -0700 (PDT)
+From: Tim Orling <ticotimo@gmail.com>
+X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
+To: yocto@lists.yoctoproject.org
+Cc: Tim Orling <tim.orling@konsulko.com>
+Subject: [layerindex-web] layerindex/urls.py: fix submit/thanks/ url
+Date: Fri, 29 Sep 2023 08:09:06 -0700
+Message-Id: <20230929150906.1645388-1-tim.orling@konsulko.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Fri, 29 Sep 2023 17:01:37 +0200
-Message-ID: <CAEt6NwoJUjoLFKhXsDWp53qh9Wm2YZAB9YHVZrGGAL+1goxKCg@mail.gmail.com>
-Subject: Yocto Project Summit CFP closes Monday, October 2nd
-To: openembedded-devel@lists.openembedded.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000007e74c060680b50f"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 15:02:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61167
+ <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 15:09:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61168
 
---00000000000007e74c060680b50f
-Content-Type: text/plain; charset="UTF-8"
+The url returned by the reverse lookup ends in /submit/thanks/ but
+the regex was improperly searching for a string without the terminating "/".
 
-The countdown is ticking! At the moment the CFP for the Yocto Project
-Summit 2023.11 is still open, but will close on Monday, October 2nd, 2023.
-So made sure to submit this weekend!
+Thank you to Pawel Zalewski for reporting the 404 error.
 
-https://summit.yoctoproject.org/yocto-project-summit-2023-11/cfp
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ layerindex/urls.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---00000000000007e74c060680b50f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+diff --git a/layerindex/urls.py b/layerindex/urls.py
+index de15bb0..82af699 100644
+--- a/layerindex/urls.py
++++ b/layerindex/urls.py
+@@ -59,7 +59,7 @@ urlpatterns = [
+     url(r'^classes/$',
+         RedirectView.as_view(url=reverse_lazy('class_search', args=('master',)), permanent=False)),
+     url(r'^submit/$', edit_layer_view, {'template_name': 'layerindex/submitlayer.html'}, name="submit_layer"),
+-    url(r'^submit/thanks$',
++    url(r'^submit/thanks/$',
+         TemplateView.as_view(
+             template_name='layerindex/submitthanks.html'),
+         name="submit_layer_thanks"),
+-- 
+2.34.1
 
-<div dir=3D"ltr">The countdown is ticking! At the moment the CFP for the Yo=
-cto Project Summit 2023.11 is still open, but will close on Monday, October=
- 2nd, 2023. So made sure to submit this weekend!<br><br><a href=3D"https://=
-summit.yoctoproject.org/yocto-project-summit-2023-11/cfp">https://summit.yo=
-ctoproject.org/yocto-project-summit-2023-11/cfp</a><br></div>
-
---00000000000007e74c060680b50f--
 
