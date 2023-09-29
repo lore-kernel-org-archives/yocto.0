@@ -1,116 +1,98 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60C0BE71D2B
-	for <webhook@archiver.kernel.org>; Fri, 29 Sep 2023 13:03:48 +0000 (UTC)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
- by mx.groups.io with SMTP id smtpd.web10.16585.1695992622554705445
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B27CE71D2E
+	for <webhook@archiver.kernel.org>; Fri, 29 Sep 2023 13:09:28 +0000 (UTC)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+ by mx.groups.io with SMTP id smtpd.web10.16723.1695992960768693912
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Sep 2023 06:03:42 -0700
+ Fri, 29 Sep 2023 06:09:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=IkSUVNn/;
- spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6515d44b562so84690046d6.3
-        for <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 06:03:42 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=V7uTyQbN;
+ spf=pass (domain: gmail.com, ip: 209.85.208.177, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2c17de836fbso85838111fa.1
+        for <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 06:09:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695992621; x=1696597421; darn=lists.yoctoproject.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oE5PmiMraCqdlXv866iHqUDrAI2AlTETO03/P73NQ+s=;
-        b=IkSUVNn/0ST6fzGEtuZqtP4xtA0nWPFOAoQBArEGy4WYjgSeqF2JfLcM9WlUHweWCq
-         D6l5o/D+Eyz+bxh/sEdUSlLNolqxqAgSE8peLfZ9wttyxCJgWR8GK8zhrbEEF3+w0EfZ
-         Jq+unFv+yfFRk3/LAw3wKrL39WK5BpLsYWSNj1IjtrVP1JafJxYXWgw+LgGQDNrKxy3/
-         dsM1YPwZHv7mqkE8xs8f6OkHDJiGfB5lsKHkO3XwePoN+3WAn1505xftWdqU8TYaCD0n
-         oGG2KqxBEPI2HT520q5WwwAk8WpKvNd3w4eNUxaDF3oMBc/GfZJ6PywlF3zDMezLlrDM
-         VvUA==
+        d=gmail.com; s=20230601; t=1695992959; x=1696597759; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nNY2aCJGmtRSFNGtbGYVSxxI2Zr4bLMWrpjRE/hrJcg=;
+        b=V7uTyQbNv/+mHoofqdpP3/WTndmQ3vKDo5BOZzGbSp5cIu9bWJcka0KuRUDobRvb5P
+         f1UNw8x2L/taMuZORmMNLcHL7tfkwwCjWii4cWERvxkBj6lvGU8ODvgI8vBwmZe74Jdc
+         xF0E/CpkC4HcnOooebkMbb4w3vP/d5/+8JyQHL80fpF2KaJIoy1uy9BG/+9dRv2VkZqW
+         l9Oe6T+0Ixxzf3cMyayuz0mR/81i97dVH5IKA/G0m4zUGGGYvo12HHFTu9Z/xANGlIvx
+         JaL9A4ou1OsA6R3QOkutHqgvKd9FyCRfGocwhoc8OxhnEkELpHUi4IdpvstRasYMgmvB
+         strw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695992621; x=1696597421;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oE5PmiMraCqdlXv866iHqUDrAI2AlTETO03/P73NQ+s=;
-        b=BCSdPqPMsq1weVMvXJHOyurrdRtjuozC1JcfuklaR9SbF2LoUtIU74AqzWXQTYOt6P
-         tnYo55KfbEtuQulszZBrUKsNFyoBLr+98F9SqPmoQ4lnTByxdOa+o2j+xqmIj6kwQXxV
-         ykgTcDCjDayQE1uSf80dY9CtvS+FXJmFX2oKZAfpLXNvk/X1viPC7aFKtXIzzZB82Ko5
-         ScHxAd6MsqvOw6NewxVoyf81wUUyLgf/MZ+Of+278lmZIew9K9mmLI+8r+FOhczp5RwU
-         pCMCm4Ir2R+ttlnqiaGTKWslLliWLdWxzS1Us5gCP9AhoCyEJur1iyvG0bIk663ruj44
-         XJWg==
-X-Gm-Message-State: AOJu0YwyFKv4WTI+rAELRJw42q+AAjoWjJ4bnY5hx26+ufpOKUgemnPt
-	b+xO8IK7HyRMGDNRV907SOELvpxN+NY=
-X-Google-Smtp-Source: AGHT+IEDzkAD9fJdUENQ+NNrTR2txFiB0gqxBwoHsFZlLaoQQiDEtQkGsXWE1zAVxD04vDmw1/fhTQ==
-X-Received: by 2002:a05:6214:510:b0:656:5337:e7bd with SMTP id px16-20020a056214051000b006565337e7bdmr4266958qvb.3.1695992620572;
-        Fri, 29 Sep 2023 06:03:40 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id j10-20020a0cf50a000000b0064f57d3100asm4494765qvm.102.2023.09.29.06.03.39
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 06:03:39 -0700 (PDT)
-Date: Fri, 29 Sep 2023 09:03:37 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH v4 0/2] rock-5b: add
-Message-ID: <20230929130337.GA2348@localhost>
-References: <20230927024220.17766-1-twoerner@gmail.com>
+        d=1e100.net; s=20230601; t=1695992959; x=1696597759;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nNY2aCJGmtRSFNGtbGYVSxxI2Zr4bLMWrpjRE/hrJcg=;
+        b=pyNJaj/rzNlENcI7OHTcGlnuCO4+1w/tCjyq81uLwSNRkPnL5u+mrDMuiM7GWW/mpB
+         2ISZBvlCGbDScGepHXGTfcgbTyS+ZYSo3MzuULYPjyZp4bHX02u49zlR8GoNRAK37fVx
+         9VWbrKx/EJ1S97T1Xa/zxTTzBYLb6kucyOi2D3F7wUfvVKj1v6SVLYxTZCgmm1H+5ziW
+         aZsPzDEuBfLnkAaXGOxNDzDN/9c/RKKI7YcMyW38xvy0k5hsVVDkhGBURjmfqzeCGT0c
+         37pA6cO7Jv7M/Tjwrkn/8C6VBqyRy5zK3MaSgA/WHwZeokwX9/fl/cNw7+SF4hS4C2ZN
+         FMmw==
+X-Gm-Message-State: AOJu0YxxRLIg3JrUgLHs8voQj3SyNACuqkhmWGM9tjAndfrA1xk+s+BA
+	9Lz0EXCAZIwDXxeGdIY8ziO7YP+4eQ+BURsvdLY=
+X-Google-Smtp-Source: AGHT+IHT6idlN0Cptv0H42kmLdH/+7iNGxOUVD5uuLBtX/CJWbXC0Hp4xusbjZAQRVLKlfGfhwBQqFLTunykjp327fc=
+X-Received: by 2002:a2e:97c9:0:b0:2bd:10ee:7d22 with SMTP id
+ m9-20020a2e97c9000000b002bd10ee7d22mr3682008ljj.51.1695992958547; Fri, 29 Sep
+ 2023 06:09:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230927024220.17766-1-twoerner@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
+ <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
+ <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
+ <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
+ <5ef99df95ab74e74df6f1e07ef4877487230d9fe.camel@linuxfoundation.org>
+ <CANNYZj8RAvj=sJtQuH9J_zKKAsUbhcdKe0hiA2JJy1wwxuzDNQ@mail.gmail.com>
+ <DM8PR12MB54304C00CC6C924121E1CBDF8BF8A@DM8PR12MB5430.namprd12.prod.outlook.com>
+ <CANNYZj8eSZZOfPGYCdYPrWjHf74dmRW5uYAZfTBp7JemPXxQCg@mail.gmail.com>
+ <24b60007a669d075fa1e4ccd18980ada93714c7a.camel@linuxfoundation.org>
+ <CANNYZj-YBTN_yje-fyzp12YDF9XMaZSuMvLh6qA1H+9GEYEmfA@mail.gmail.com>
+ <7564ae2b6c036b10a35e8c9927c0ab2cf533f35c.camel@linuxfoundation.org>
+ <CANNYZj_16s-JuZAQ3pccnf-8Lb=yMQ1+a9FiU1abLXgORs70rw@mail.gmail.com> <ad1f866bf7b231ccd57f91f2f0a9256d18eb533f.camel@linuxfoundation.org>
+In-Reply-To: <ad1f866bf7b231ccd57f91f2f0a9256d18eb533f.camel@linuxfoundation.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 29 Sep 2023 15:09:06 +0200
+Message-ID: <CANNYZj8iRGygNAdVdHQ-k8JodmzRaLK+vx2tKhmWBBEb8R4-dA@mail.gmail.com>
+Subject: Re: [Openembedded-architecture] Core workflow: sstate for all,
+ bblock/bbunlock, tools for why is sstate not being reused?
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: "chris.laplante@agilent.com" <chris.laplante@agilent.com>, 
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
+	Julien STEPHAN <jstephan@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 13:03:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61164
+ <yocto@lists.yoctoproject.org>; Fri, 29 Sep 2023 13:09:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61165
 
-On Tue 2023-09-26 @ 10:42:18 PM, Trevor Woerner wrote:
-> Version 4 of the patch to add Radxa's Rock 5B.
-> 
-> v4:
-> - add a patch before the "rock 5b: add" patch to rename the U-Boot
->   variables to not be TF-A specific
-> - clean up the U-Boot initial binary blob dependency variable name, the
->   EXTRA_OEMAKE handling, and remove the rk3588's dependency on tf-a (which
->   it does not have)
-> 
-> v3:
-> - change name from "rock5b" to "rock-5b", there seem to be more instances
->   of the latter on the manufacturer's website than the former
-> - fix the MACHINEOVERRIDE in conf/machine/include/rk3588s.inc to be
->   "rk3588s" and not "rk3588"
-> 
-> v2:
-> - fix the logic behind the MACHINEOVERRIDES to get the content, and
->   ordering, correct
-> - improved the commit message around TF-A/rkbin
-> - correct Quentin's SoB line
-> 
-> Trevor Woerner (2):
->   u-boot: rename firmware dependency
->   rock-5b: add
-> 
->  README                                        |  1 +
->  conf/machine/include/rk3588.inc               |  6 ++
->  conf/machine/include/rk3588s.inc              | 17 ++++
->  conf/machine/rock-5b.conf                     | 12 +++
->  recipes-bsp/rkbin/rockchip-rkbin_git.bb       | 37 ++++++++
->  recipes-bsp/u-boot/u-boot%.bbappend           | 17 ++--
->  recipes-kernel/linux/linux-yocto-dev.bbappend |  3 +
->  .../rockchip/remove-non-rockchip-arch-arm.cfg | 85 +++++++++++++++++++
->  .../rockchip/remove-non-rockchip-arch-arm.scc |  1 +
->  .../remove-non-rockchip-arch-arm64.cfg        | 66 ++++++++++++++
->  .../remove-non-rockchip-arch-arm64.scc        |  1 +
->  11 files changed, 240 insertions(+), 6 deletions(-)
->  create mode 100644 conf/machine/include/rk3588.inc
->  create mode 100644 conf/machine/include/rk3588s.inc
->  create mode 100644 conf/machine/rock-5b.conf
->  create mode 100644 recipes-bsp/rkbin/rockchip-rkbin_git.bb
->  create mode 100644 recipes-kernel/linux/linux-yocto-dev.bbappend
->  create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.cfg
->  create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm.scc
->  create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.cfg
->  create mode 100644 recipes-kernel/linux/linux-yocto-dev/rockchip-kmeta/bsp/rockchip/remove-non-rockchip-arch-arm64.scc
+On Fri, 29 Sept 2023 at 14:27, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
 
-Applied to meta-rockchip, master branch.
+> I'd prefer to see some dedicated bitbake API used even if we need to
+> create/add it. tinfoil and some of the bblock/unlock work shows we can
+> get stamp data, the question would be how to get it without
+> "disturbing" the existing build.
+>
+> By using dedicated API, we'd be able to control the console output.
+
+I just noticed that compare_sigfiles() has a 'collapsed' argument,
+which, when set to True, omits most or all of the task hash printing,
+and with that its output should approximate what bitbake-whatchanged
+is aiming to do. This is currently used only by buildhistory, but it
+could be used by -S printdiff too, e.g. by having verbose and concise
+modes.
+
+I'll run some experiments, and let's see what the overall output looks
+like in real scenarios (e.g. 4.3_M3 vs current master).
+
+Alex
 
