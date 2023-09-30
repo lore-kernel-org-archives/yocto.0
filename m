@@ -1,218 +1,457 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48C4FE7735A
-	for <webhook@archiver.kernel.org>; Sat, 30 Sep 2023 05:30:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by mx.groups.io with SMTP id smtpd.web10.36563.1696051850503911964
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 53002E77374
+	for <webhook@archiver.kernel.org>; Sat, 30 Sep 2023 14:13:32 +0000 (UTC)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+ by mx.groups.io with SMTP id smtpd.web11.41331.1696083204986686825
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Sep 2023 22:30:51 -0700
+ Sat, 30 Sep 2023 07:13:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=XF1r3BOF;
- spf=pass (domain: intel.com, ip: 192.198.163.7, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696051850; x=1727587850;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=0KbX/uXEqCfOVwdD645uCVbT42NkMgRsoTSYgjogqGQ=;
-  b=XF1r3BOF5IcDd3AxvNYcFjdFIxvPCHwcoVUpRzRKF0EBQWvwlEiEvJpZ
-   8BrdwwCw178dIFb2nI+IjxnJ8Dhwk2GXBf176C0KpGWBUICx9IfSK2aGj
-   mTT2NdC8B27TCYtPVrEno5Afpsk9ZGjg/EUUciYD6PajxWO2FHJ4pDqHX
-   hdY7toxBSPGKmrC7Z2D/jfxHwu88diYtgpc2aVVmGjCvbQNglQRhMRMQ1
-   JykZRZNp6S183hl/Gc8RjNfko5BrlPGyoXCMuJw+TV2DL2q8Ykho+0AA1
-   6nt6yuirvI4m7aXqRWLjVDLgXOj3cmna0po+rQ9SQsnUKpbvm2Rv4wUmx
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="3997495"
-X-IronPort-AV: E=Sophos;i="6.03,189,1694761200"; 
-   d="scan'208";a="3997495"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2023 22:30:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="923772076"
-X-IronPort-AV: E=Sophos;i="6.03,189,1694761200"; 
-   d="scan'208";a="923772076"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 29 Sep 2023 22:30:49 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 29 Sep 2023 22:30:49 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 29 Sep 2023 22:30:49 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.171)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 29 Sep 2023 22:30:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IZCgmCMbBXUDQFIIS+fCgaMjMTQeL5UDO4B1KlwJ6uQop6KfPTLmScH6tmYC7WFhERCqHou3K6mge+5OfFsqN/t2VoQVy5P39AHzVe6iHqo20SPrAZ02eT6ZTXpCa+8+G+iVSBY28KwlxGtsj7lpYqQprY3qYm7nEQyRQWHyNgHDJAYFjYWKua6nJiZeN/jiMly0ug4MmJRdo5M/D1G48kpV+4Ta6wtguMTvazj6r9xmHspvgSG+EjyLySmYRu3exfG4OvJ8ziw06+go14/uoy8rzhJ/YxknyZ62NtzbazAxnxk65TkvMC9CJLAVLODPrch/xjBbuCNwGpv/U/d60w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8w1mZCCRPqK+hUiT7fNt56hZBUv67+8etXHQ3Q0Mr2U=;
- b=dJ/8uaneZSuHswanvM5VpoFUfcqPhiwvlZGJr6gaZnPfphYiGhlpJBrbqi7U/XDrQrCKTUk5uIBmemJ54bmIBfTpNRIlwg/XWsjsuh4dNMyhHZN+kQmNMxWSt/9G7K7frFuJJN85s36wMw3X0geE0YjH+R8bOwD7MCX1CMxoTtTGku9+MscHuh/tbdXKctKoiwf0iQGWu+2q/7gS3aUWW5Pcgaw1vlA2xCJUx7xhiJTvnuLF0KSholjfdaCoh1k4YhYfEZaS78CSwltPJVDH4kJwUvmO4FgMGJtwHhXWNx+O69WwhQpeH2/i2cW7eUwbghACQ8LbDAZXlPsj4hgbFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com (2603:10b6:a03:191::11)
- by CO1PR11MB5028.namprd11.prod.outlook.com (2603:10b6:303:9a::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Sat, 30 Sep
- 2023 05:30:47 +0000
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3743:9715:3ecd:858e]) by BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3743:9715:3ecd:858e%4]) with mapi id 15.20.6838.024; Sat, 30 Sep 2023
- 05:30:46 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.0.13.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.0.13.rc2)
-Thread-Index: AQHZ73yFHjR8RZEid0qig4vN/BKa77Ay3u4w
-Date: Sat, 30 Sep 2023 05:30:46 +0000
-Message-ID: <BY5PR11MB4152CE49FB968AE1ACE317CAA1C7A@BY5PR11MB4152.namprd11.prod.outlook.com>
-References: <0101018acb19195c-0619b075-ca67-4522-86d1-951e55dc7abb-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018acb19195c-0619b075-ca67-4522-86d1-951e55dc7abb-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR11MB4152:EE_|CO1PR11MB5028:EE_
-x-ms-office365-filtering-correlation-id: e251107a-ca8d-423a-3339-08dbc176660c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mfBp7XSlXJBE3+EvRt42YUfoJIh5piooqZZEJ+Mj4fDgDVgVy3I3zmV78iy/nyeCj6DqzSWL6IfeLA41TYqkw/5VEyxuNA/dGkDAK831svHTct+MbCTXg8npivx1o8gylmRiYHbuNLMy9ve+Q87tE5oeI+91otuJS5txAsoE/d2gQd6DjQzldLh/F8M46hHv/jaVreqJCxIypQke8+AM92z65bJf4POMFEUNRowkW5/DZEf/cruUW5xvJRP5vBMqKx2CtUEbA/J3Wh9gmODVz5eoBWPCtXIv5iSDuGM9z5CD8V/pftdR0y8vR2G9KIpzUAFxil/cWTOm67RnHVwiloB52OoE/kRGsVOx6vnSVoQg9qgGidw3UEFax86Di7SY0Q6zOzhdFZEOgGq8htXZNyQzemnm569XZru4qK8Du/6VnJ8Yfs5M7Ix4Bk4LC91ZItPvc59v0Ph0fOSsyKSVHUkAGiAUKUN5Yvr15DTHzCyRP4tepExMZTxArQSe4XcsY51cCJM0mJJR3H8oV1ui4RwsWMYG1oSOF7Q0D+jH5ovzOPi/L5OyrnjJ5uk7WVtm4RnNsSpH234dopdquuhxhoQ/5MS6Ask6ZPNQdHNvKVcMqpxfpM/a6REMZlDHKnW+6AXCjzdxuDHywFDQLjek/g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4152.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(396003)(39860400002)(136003)(346002)(230922051799003)(64100799003)(1800799009)(451199024)(186009)(478600001)(53546011)(6506007)(7696005)(9686003)(966005)(83380400001)(26005)(71200400001)(2906002)(15650500001)(316002)(110136005)(64756008)(66446008)(66476007)(8936002)(8676002)(41300700001)(66556008)(52536014)(5660300002)(66946007)(33656002)(76116006)(38070700005)(38100700002)(86362001)(82960400001)(122000001)(66899024)(55016003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eQ3/C626g3t2oqsRtqQuW2rgKmM2jKC0tWYtlGiMKe8cPY7XfWrl0bXVJiGr?=
- =?us-ascii?Q?2XUIt0zxTKDQ3qjan74oVtFCqozPVYNyE6n3n7oQkypRiAu2gkTB4eCu0LvT?=
- =?us-ascii?Q?TXWdslBLWcMM5I7teD6jbkgoQaexg5MpqJ4qEUs/jG8I7yy6AUG0JcaZq/dV?=
- =?us-ascii?Q?uDPzN3eF5a5UNiYfcsQCnc0zokMMhrVH+b4M61bJ16UATbK1xuuCFam0YjL2?=
- =?us-ascii?Q?eEOOkl5PFf5tqrn9NJ0/ntDia2TSaR/LbRVEwIX+WmshdkvWr6EVYN+gTas3?=
- =?us-ascii?Q?O1azvmiyyxDOD3lqKdKtaWDPuglYTCPL8102LHjlVrh3lN6SOwgXMg7BZ6b/?=
- =?us-ascii?Q?mmEdN3G73cO4V85N8+7xTpPS+3MWFpNnyY+l/Q5qwOc1j0bxvJShYSgnqz88?=
- =?us-ascii?Q?OIoOKFNcMO602+8HJM24OPO0qBCpP2koNvsct8zJQ9LYdgBhq/14Zhj/1+UA?=
- =?us-ascii?Q?3eLh0OG4+qzbBfGEbvBt41V4+93i+FX8rrI6bsJjO4ewXDAgcf5zgpShKuXe?=
- =?us-ascii?Q?pc7+d0xeduvGdqSDH5yw7WEJYwRJg8SxNFvGY7QbW3i4zbs6QCCjITOPVnGX?=
- =?us-ascii?Q?uZj/s1zUSPqXKRaHNAVMRuK890I6o+AO6yA26wFRXs6g6eKE23FXjO+zuvAg?=
- =?us-ascii?Q?CmoCr37Rn+qj5roxGdzBXP+Y4iztztGxsTbt0u6Jnp/RnXNofnbMkNGHX/sk?=
- =?us-ascii?Q?3seeX/2YAHUIhW+gvWL5TnElfqqN2lK/JPW6vWMMsI+rNe1l8mjjiDKbZ2+K?=
- =?us-ascii?Q?bRS5VJ8PWTqWjPGuYOvYs7G3fFAPeb7Pz9l2nVvfNyuy/2RKXMMuG1HZX6vg?=
- =?us-ascii?Q?t9SYWOwNwAUmrV318LXS+d/rfuuzLIZoEEwM8ucWo4eAV3dqOri5iVSqTw+G?=
- =?us-ascii?Q?HSbQnpGF9xICcwQGE+ae4BuPCQhJxcWKodGNt6fyN0Qeqy8p1B4xQFr2iZey?=
- =?us-ascii?Q?DHG0kABgOX+VImjQ6/p/AP4hUFOapRu4uXkAXsPHj5ZuU69jWxdvdrov5eLq?=
- =?us-ascii?Q?iOpugBh1O32zuiYNfS7fPR1RDNsqXZHnh3Khn5q6axZOcG1BX27uS8mc9fek?=
- =?us-ascii?Q?4YGa5NSzq3XyWg2prdZeIVWDHNc2UwQPzsjxHD1x2iHK9tcnbjdtq00vUTAZ?=
- =?us-ascii?Q?9+sGeLILz8+5D8pOjBUnRP4P+nddFW/lDjSYBOiiCTFJ/RwvxQfir7vR8lYF?=
- =?us-ascii?Q?2e3i85Npmd3det3YhO5TKMt1hsvnG86ZweV7Dndxgd/k5nq05XbS6kVHsuxi?=
- =?us-ascii?Q?xcsjv7+tcXZNd3A6RNUl0hQeNOtWYOE0JQGNZINJglqzcrsKQ15D7sVwndet?=
- =?us-ascii?Q?e5tFbUtyo5sykEN/hNNAzpqGvC2OaeRwHZ2/PMFxXkefIGnqwhJVaHP+xPqw?=
- =?us-ascii?Q?G89iWv+g7HVwJ7Y6JAccD1hqtSUTeFurWr9QLgQbQT2bAWuH0Wyxpaq0zf9m?=
- =?us-ascii?Q?YQJ55BVG37HSj7QruXUCEMRM3Mz98/JKFIqP+J3TzE0r+3fPtfkGyrzuwWpP?=
- =?us-ascii?Q?B9M0UIztizl6lxY9VmAdE9SHjkcZJQBmRyJTAGmCfVwzii15A/rsM6xCoIet?=
- =?us-ascii?Q?Z7ESEbQsUAPmFyqD6FMnqS+H5oZKwdg5K/FOCFuH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=WZXTDWjw;
+ spf=pass (domain: smile.fr, ip: 209.85.208.51, mailfrom: yoann.congal@smile.fr)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5334f9a56f6so19530241a12.3
+        for <yocto@lists.yoctoproject.org>; Sat, 30 Sep 2023 07:13:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1696083203; x=1696688003; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tcu+mHbjCkDu0N81EjOUB/mFTKmBUICJA5Gdhwc6dM0=;
+        b=WZXTDWjwg247XCQJdS9kKAMJIUY5yycsvIMgC7g21M9sqBBquxHgbc1NiLxJz8fEg7
+         8XHMC3c4e4C46CLiyPfC0wbmfOCCWs6z0OZeNn8OUMjGpjpcfz0rTpKy5fSBbzJd7+N1
+         qhSfhynxp3oxA1JFQ6IdTC84Lc0CRvu1OX3wYN3I9nEoRgq8VU7HM4KGWfME3jxvRBOO
+         +zvHE+mp4DQwkbi/H8Z4QEsNVnYS07yP1o4Lbn4SWBxJHitxqYa2hi2A8BvoEECEM0Wv
+         MQn6v9dJdZioIThMX3eKPGIBZLa29jRIep62ei629gE8ih3x2V4ILC7Ft/ZyEM4uT/pS
+         aQBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696083203; x=1696688003;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tcu+mHbjCkDu0N81EjOUB/mFTKmBUICJA5Gdhwc6dM0=;
+        b=p5K89wF/COYKWWNl1TXyh2z4nAf9jezCKK/wkNKn1Vh9xv+j9nMGW1vLbitH8UAohJ
+         3K3H9K6ezUBvyDtVTkUpy3BWdGcT9pW+tsc0M94PWgytKwFm5wirQEEV7+z//qoFlQ/o
+         WhiJnjNhFreSM8jdQu70Jo19C+sfDU3rktxP9Gb6tup1/64mEDAythrKjnKPfV3kpbcj
+         eOWzxyM4FoMi4pN0JJ5I4RXHDyVtKPj9MLA3FHLm61ApxNexgtvUg4aZeFzTL8lgksCh
+         rYIljWqScxUZfReQwpEbKIpSS6flKygxJOPF+UXCwh3h9WMu7IgWR+kNadZy1wEa8/D0
+         IpZg==
+X-Gm-Message-State: AOJu0YzkPa3Qup+r/Qn7Y2hTSpmT8qUkSUAdX/b1k3ufpes0Buvzzgqa
+	nz2ElOR/+Gj6pyHq5D9IltfkNGvdHE6XSp70XZXtig==
+X-Google-Smtp-Source: AGHT+IGUfuobUOum85IXmTrSrLua7gBLGy4c5eZtB3Zbw6PVrUXwfoY7mloTh4eyiw4bCtdzjxnGetE6ou+xxTpHdLM=
+X-Received: by 2002:a17:906:10c9:b0:9ae:5568:b6a8 with SMTP id
+ v9-20020a17090610c900b009ae5568b6a8mr6267105ejv.10.1696083202564; Sat, 30 Sep
+ 2023 07:13:22 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4152.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e251107a-ca8d-423a-3339-08dbc176660c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2023 05:30:46.5002
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8xFmI1mHewIqtyAZ1vRRLBycj44fIRaCw4Tp53HpLGYr6S5cilhS4V0wQn6yS4Vmycu58u+G4nHwwxVge5R8PA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5028
-X-OriginatorOrg: intel.com
+References: <DB6PR01MB3736481355587A417D929794A41EA@DB6PR01MB3736.eurprd01.prod.exchangelabs.com>
+ <CAGAf8LwKRDmacsgnsKLqofneB85CetU_h3H7s12b8gY8_y6ZwA@mail.gmail.com>
+ <DB6PR01MB373690DA20F88E3A64ECAEBBA4F7A@DB6PR01MB3736.eurprd01.prod.exchangelabs.com>
+ <CAMSfU+4tNg0kSJr6PZWLoqbvZDhQTr0Eb-VKbCGMhCNXvO0x_w@mail.gmail.com>
+ <DB6PR01MB3736AC458D68ED5170B880B3A4FAA@DB6PR01MB3736.eurprd01.prod.exchangelabs.com>
+ <CAMSfU+7ZeOef0c-814Ud_C9rz3NAuvZm_=n5xwH26qCFpQaZxQ@mail.gmail.com>
+In-Reply-To: <CAMSfU+7ZeOef0c-814Ud_C9rz3NAuvZm_=n5xwH26qCFpQaZxQ@mail.gmail.com>
+From: Yoann CONGAL <yoann.congal@smile.fr>
+Date: Sat, 30 Sep 2023 16:12:56 +0200
+Message-ID: <CAMSfU+4ELBM=rqH-fVn8bGrLBdDN9mpxEY80tevdRQnjfQefiQ@mail.gmail.com>
+Subject: Re: [yocto] Poky/Mickledore bitbake menuconfig does not work
+To: "Sebert, Holger.ext" <Holger.Sebert.ext@karlstorz.com>
+Cc: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000cc7a2306069424dc"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 30 Sep 2023 05:30:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61173
+ <yocto@lists.yoctoproject.org>; Sat, 30 Sep 2023 14:13:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61175
 
-Hi All,
-=20
-QA for yocto-4.0.13.rc2 is completed. This is the full report for this rele=
-ase: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-=20
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-=20
-No new issue found.=20
-=20
-Thanks,
-Jing Hui
+--000000000000cc7a2306069424dc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Le mer. 20 sept. 2023 =C3=A0 19:59, Yoann CONGAL <yoann.congal@smile.fr> a
+=C3=A9crit :
+
+> Le mar. 19 sept. 2023 =C3=A0 18:57, Sebert, Holger.ext <
+> Holger.Sebert.ext@karlstorz.com> a =C3=A9crit :
+>
+>> Hi Yoann, hi Zoran,
+>>
+>
+> Hi,
+>
+>
+>> The bug is not present on the Poky master branch.
+>>
+>> Until the project is rebased onto the next release, I will simply disabl=
+e
+>> CCache whenever I need to do a kernel menuconfig.
+>>
+>
+> You peaked my curiosity and I've tracked down the fix on master : Your
+> problem is fixed by
+>
+> https://git.yoctoproject.org/poky/commit/?id=3Dd4664d2b7974354e73d891762e=
+bb2c8a12d62438
+>
+> I've requested a backport on mickledore :
+> https://lists.openembedded.org/g/openembedded-core/message/187934
+>
+
+Fix has now been merged in mickledore :
+https://git.yoctoproject.org/poky/commit/?h=3Dmickledore&id=3Dcd0c6173a375e=
+5c7b617985ca2efcf167c92c827
+
+You would just have to update your poky mickledore branch to fix your
+problem :)
+
+Enjoy!
+
+Regards,
+>
+>
+>> Thanks!
+>>
+>> -Holger
+>>
+>> ________________________________________
+>> Von: Yoann CONGAL <yoann.congal@smile.fr>
+>> Gesendet: Donnerstag, 14. September 2023 23:52
+>> An: Sebert, Holger.ext
+>> Cc: Zoran Stojsavljevic; Yocto-mailing-list
+>> Betreff: [Ext] Re: [yocto] Poky/Mickledore bitbake menuconfig does not
+>> work
+>>
+>> Hi,
+>>
+>> Le jeu. 14 sept. 2023 =C3=A0 14:10, Sebert, Holger.ext <
+>> holger.sebert.ext@karlstorz.com<mailto:holger.sebert.ext@karlstorz.com>>
+>> a =C3=A9crit :
+>> Hi Zoran,
+>>
+>> I was able to reproduce the behavior described in my original post by
+>> enabling CCache. Here are the precise steps to reproduce:
+>>
+>> 1. Checkout Poky/Mickledore
+>> 2. Add the following to `build/conf/local.conf`:
+>>     INHERIT +=3D "ccache"
+>> 3. Run `bitbake -c menuconfig virtual/kernel`
+>>
+>> The reason for the failure is that due to CCache the compiler is no
+>> longer `gcc` but `ccache gcc`, i.e. we have the following variables in t=
+he
+>> environment:
+>>
+>>     CC=3D"ccache x86_64-poky-linux-gcc"
+>>     HOSTCC=3D"ccache gcc"
+>>     ...
+>>     etc.
+>>
+>> This is when the wrong quoting in the invocation of `menuconfig` leads t=
+o
+>> errors.
+>>
+>> Could you please verify/check?
+>>
+>>
+>> I have reproduced this. It really looks like a bug!
+>>
+>> [...]
+>> On Mon, Aug 21, 2023 at 3:48=E2=80=AFPM Sebert, Holger.ext
+>> <holger.sebert.ext@karlstorz.com<mailto:holger.sebert.ext@karlstorz.com>=
+>
+>> wrote:
+>> >
+>> > Hi,
+>> >
+>> > I am using a Yocto-Poky-Mickledore (version 4.2.1) based system.
+>> >
+>> > For configuring the kernel, I would like to use the command
+>> >
+>> >     bitbake -c menuconfig virtual/kernel
+>> >
+>> > If I do that, Bitbake opens an xterm window and runs the build steps
+>> > for Kconfig. However, after the compiler has finised, the xterm window
+>> > immediately closes and Bitbake exists as if nothing happened, i.e. it
+>> > does not show any error message or similar.
+>> >
+>> > I investigated the problem and found out that, internally, Bitbake
+>> > calls the following command for starting Kconfig:
+>> >
+>> >     make menuconfig CC=3D"ccache x86_64-system-linux-gcc ..." \
+>> >         CFLAGS=3D"..." HOSTCC=3D"ccache gcc" HOSTCCFLAGS=3D"..."
+>> >
+>> > The quotes, however, seem to get lost when starting the actual command
+>> > in the terminal. This leads to a command line like follows:
+>> >
+>> >     make menuconfig CC=3Dccache x86_64-system-linux-gcc ... \
+>> >         CFLAGS=3D... HOSTCC=3D"ccache gcc" HOSTCCFLAGS=3D"...
+>> >
+>> > which is clearly wrong.
+>> >
+>> > The following patch fixes the problem in
+>> meta/classes-recipe/cml1.bbclass:
+>> >
+>> > diff --git a/meta/classes-recipe/cml1.bbclass
+>> b/meta/classes-recipe/cml1.bbclass
+>> > index a09a042c3f..d6001d6fd0 100644
+>> > --- a/meta/classes-recipe/cml1.bbclass
+>> > +++ b/meta/classes-recipe/cml1.bbclass
+>> > @@ -53,7 +53,8 @@ python do_menuconfig() {
+>> >      # ensure that environment variables are overwritten with this
+>> tasks 'd' values
+>> >      d.appendVar("OE_TERMINAL_EXPORTS", " PKG_CONFIG_DIR
+>> PKG_CONFIG_PATH PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR")
+>> >
+>> > -    oe_terminal("sh -c \"make %s; if [ \\$? -ne 0 ]; then echo
+>> 'Command failed.'; printf 'Press any key to continue... '; read r; fi\""=
+ %
+>> d.getVar('KCONFIG_CONFIG_COMMAND'),
+>> > +    make_cmd =3D "make %s" %
+>> d.getVar('KCONFIG_CONFIG_COMMAND').replace('"', '\\"')
+>> > +    oe_terminal("sh -c \"%s; if [ \\$? -ne 0 ]; then echo 'Command
+>> failed.'; printf 'Press any key to continue... '; read r; fi\"" % make_c=
+md,
+>> >                  d.getVar('PN') + ' Configuration', d)
+>>
+>> This patch looks interesting!
+>> I would use shlex.join() to safely construct the command :
+>> https://docs.python.org/3/library/shlex.html#shlex.join<
+>> https://urldefense.com/v3/__https://docs.python.org/3/library/shlex.html=
+*shlex.join__;Iw!!Lw1uGqvHvtJ_psGG2Et-1voSwbo!fQdtwGScMriVPQw2RO0unCFPxKM9N=
+GX19bIH6mNdVfb77dZxiYZEkdNFiD5PZzVoxaOccilrT4L2I56P_pSw6FJuljKxeNTW$
+>> >
+>>
+>> > What do you think? Is my observed behavior a configuration error of my
+>> > setup or does the patch above indeed make sense?
+>>
+>> The patch makes sense to me.
+>>
+>> I guess your next steps are :
+>> * If you want to contribute your patch : reproduce the bug and rebase
+>> your patch on master and send it to the mailing list
+>> * Or, create a bug in https://bugzilla.yoctoproject.org/<
+>> https://urldefense.com/v3/__https://bugzilla.yoctoproject.org/__;!!Lw1uG=
+qvHvtJ_psGG2Et-1voSwbo!fQdtwGScMriVPQw2RO0unCFPxKM9NGX19bIH6mNdVfb77dZxiYZE=
+kdNFiD5PZzVoxaOccilrT4L2I56P_pSw6FJulqw2-PFV$
+>> >
+>>
+>> Best Regards,
+>>
+>> --
+>> Yoann Congal
+>> Smile ECS - Tech expert
+>>
+>
+>
+> --
+> Yoann Congal
+> Smile ECS - Tech expert
+>
 
 
+--=20
+Yoann Congal
+Smile ECS - Tech expert
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Monday, September 25, 2023 2:49 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.0.13.rc2)
->=20
->=20
-> A build flagged for QA (yocto-4.0.13.rc2) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-4.0.13.rc2
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 41b6684489d0261753344956042be2cc4adb0159
-> meta-agl: 666f141563fd7fc12b7638479d5c0cd38dae5006
-> meta-arm: b187fb9232ca0a6b5f8f90b4715958546fc41d73
-> meta-aws: 60891e535ce219b3c473a89d8ae89cdba1d396f4
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: 1342bcdc5bfc6620737e7d195e7d9bd744348577
-> meta-mingw: a90614a6498c3345704e9611f2842eb933dc51c1
-> meta-openembedded: a88cb922f91fda95e8a584cee3092083d5ad3e98
-> meta-virtualization: 2d8b3cba8ff27c9ec2187a52b6a551fe1dcfaa07
-> oecore: d90e4d5e3cca9cffe8f60841afc63667a9ac39fa
-> poky: e51bf557f596c4da38789a948a3228ba11455e3c
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#313): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/313
-> Mute This Topic: https://lists.yoctoproject.org/mt/101569753/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10762429/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+--000000000000cc7a2306069424dc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div dir=3D"ltr">Le=C2=A0mer. 20 sept. 2023 =C3=A0=C2=A019=
+:59, Yoann CONGAL &lt;<a href=3D"mailto:yoann.congal@smile.fr">yoann.congal=
+@smile.fr</a>&gt; a =C3=A9crit=C2=A0:</div><div class=3D"gmail_quote"><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"l=
+tr">Le=C2=A0mar. 19 sept. 2023 =C3=A0=C2=A018:57, Sebert, Holger.ext &lt;<a=
+ href=3D"mailto:Holger.Sebert.ext@karlstorz.com" target=3D"_blank">Holger.S=
+ebert.ext@karlstorz.com</a>&gt; a =C3=A9crit=C2=A0:</div><div class=3D"gmai=
+l_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Yoann, hi Zor=
+an,<br></blockquote><div><br></div><div>Hi,<br></div><div>=C2=A0</div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex">
+The bug is not present on the Poky master branch.<br>
+<br>
+Until the project is rebased onto the next release, I will simply disable C=
+Cache whenever I need to do a kernel menuconfig.<br></blockquote><div><br><=
+/div><div>You peaked my curiosity and I&#39;ve tracked down the fix on mast=
+er : Your problem is fixed by <br></div><div><a href=3D"https://git.yoctopr=
+oject.org/poky/commit/?id=3Dd4664d2b7974354e73d891762ebb2c8a12d62438" targe=
+t=3D"_blank">https://git.yoctoproject.org/poky/commit/?id=3Dd4664d2b7974354=
+e73d891762ebb2c8a12d62438</a></div><div><br></div><div>I&#39;ve requested a=
+ backport on mickledore : <a href=3D"https://lists.openembedded.org/g/opene=
+mbedded-core/message/187934" target=3D"_blank">https://lists.openembedded.o=
+rg/g/openembedded-core/message/187934</a></div></div></div></blockquote><di=
+v><br></div><div>Fix has now been merged in mickledore : <a href=3D"https:/=
+/git.yoctoproject.org/poky/commit/?h=3Dmickledore&amp;id=3Dcd0c6173a375e5c7=
+b617985ca2efcf167c92c827">https://git.yoctoproject.org/poky/commit/?h=3Dmic=
+kledore&amp;id=3Dcd0c6173a375e5c7b617985ca2efcf167c92c827</a></div><div><br=
+></div><div>You would just have to update your poky mickledore branch to fi=
+x your problem :)</div><div><br></div><div>Enjoy!</div><div><br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D=
+"gmail_quote"><div></div><div>Regards,<br></div><div>=C2=A0</div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">
+Thanks!<br>
+<br>
+-Holger<br>
+<br>
+________________________________________<br>
+Von: Yoann CONGAL &lt;<a href=3D"mailto:yoann.congal@smile.fr" target=3D"_b=
+lank">yoann.congal@smile.fr</a>&gt;<br>
+Gesendet: Donnerstag, 14. September 2023 23:52<br>
+An: Sebert, Holger.ext<br>
+Cc: Zoran Stojsavljevic; Yocto-mailing-list<br>
+Betreff: [Ext] Re: [yocto] Poky/Mickledore bitbake menuconfig does not work=
+<br>
+<br>
+Hi,<br>
+<br>
+Le jeu. 14 sept. 2023 =C3=A0 14:10, Sebert, Holger.ext &lt;<a href=3D"mailt=
+o:holger.sebert.ext@karlstorz.com" target=3D"_blank">holger.sebert.ext@karl=
+storz.com</a>&lt;mailto:<a href=3D"mailto:holger.sebert.ext@karlstorz.com" =
+target=3D"_blank">holger.sebert.ext@karlstorz.com</a>&gt;&gt; a =C3=A9crit =
+:<br>
+Hi Zoran,<br>
+<br>
+I was able to reproduce the behavior described in my original post by enabl=
+ing CCache. Here are the precise steps to reproduce:<br>
+<br>
+1. Checkout Poky/Mickledore<br>
+2. Add the following to `build/conf/local.conf`:<br>
+=C2=A0 =C2=A0 INHERIT +=3D &quot;ccache&quot;<br>
+3. Run `bitbake -c menuconfig virtual/kernel`<br>
+<br>
+The reason for the failure is that due to CCache the compiler is no longer =
+`gcc` but `ccache gcc`, i.e. we have the following variables in the environ=
+ment:<br>
+<br>
+=C2=A0 =C2=A0 CC=3D&quot;ccache x86_64-poky-linux-gcc&quot;<br>
+=C2=A0 =C2=A0 HOSTCC=3D&quot;ccache gcc&quot;<br>
+=C2=A0 =C2=A0 ...<br>
+=C2=A0 =C2=A0 etc.<br>
+<br>
+This is when the wrong quoting in the invocation of `menuconfig` leads to e=
+rrors.<br>
+<br>
+Could you please verify/check?<br>
+<br>
+<br>
+I have reproduced this. It really looks like a bug!<br>
+<br>
+[...]<br>
+On Mon, Aug 21, 2023 at 3:48=E2=80=AFPM Sebert, Holger.ext<br>
+&lt;<a href=3D"mailto:holger.sebert.ext@karlstorz.com" target=3D"_blank">ho=
+lger.sebert.ext@karlstorz.com</a>&lt;mailto:<a href=3D"mailto:holger.sebert=
+.ext@karlstorz.com" target=3D"_blank">holger.sebert.ext@karlstorz.com</a>&g=
+t;&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I am using a Yocto-Poky-Mickledore (version 4.2.1) based system.<br>
+&gt;<br>
+&gt; For configuring the kernel, I would like to use the command<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0bitbake -c menuconfig virtual/kernel<br>
+&gt;<br>
+&gt; If I do that, Bitbake opens an xterm window and runs the build steps<b=
+r>
+&gt; for Kconfig. However, after the compiler has finised, the xterm window=
+<br>
+&gt; immediately closes and Bitbake exists as if nothing happened, i.e. it<=
+br>
+&gt; does not show any error message or similar.<br>
+&gt;<br>
+&gt; I investigated the problem and found out that, internally, Bitbake<br>
+&gt; calls the following command for starting Kconfig:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0make menuconfig CC=3D&quot;ccache x86_64-system-lin=
+ux-gcc ...&quot; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0CFLAGS=3D&quot;...&quot; HOSTCC=3D&qu=
+ot;ccache gcc&quot; HOSTCCFLAGS=3D&quot;...&quot;<br>
+&gt;<br>
+&gt; The quotes, however, seem to get lost when starting the actual command=
+<br>
+&gt; in the terminal. This leads to a command line like follows:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0make menuconfig CC=3Dccache x86_64-system-linux-gcc=
+ ... \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0CFLAGS=3D... HOSTCC=3D&quot;ccache gc=
+c&quot; HOSTCCFLAGS=3D&quot;...<br>
+&gt;<br>
+&gt; which is clearly wrong.<br>
+&gt;<br>
+&gt; The following patch fixes the problem in meta/classes-recipe/cml1.bbcl=
+ass:<br>
+&gt;<br>
+&gt; diff --git a/meta/classes-recipe/cml1.bbclass b/meta/classes-recipe/cm=
+l1.bbclass<br>
+&gt; index a09a042c3f..d6001d6fd0 100644<br>
+&gt; --- a/meta/classes-recipe/cml1.bbclass<br>
+&gt; +++ b/meta/classes-recipe/cml1.bbclass<br>
+&gt; @@ -53,7 +53,8 @@ python do_menuconfig() {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # ensure that environment variables are overwritte=
+n with this tasks &#39;d&#39; values<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 d.appendVar(&quot;OE_TERMINAL_EXPORTS&quot;, &quot=
+; PKG_CONFIG_DIR PKG_CONFIG_PATH PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR&q=
+uot;)<br>
+&gt;<br>
+&gt; -=C2=A0 =C2=A0 oe_terminal(&quot;sh -c \&quot;make %s; if [ \\$? -ne 0=
+ ]; then echo &#39;Command failed.&#39;; printf &#39;Press any key to conti=
+nue... &#39;; read r; fi\&quot;&quot; % d.getVar(&#39;KCONFIG_CONFIG_COMMAN=
+D&#39;),<br>
+&gt; +=C2=A0 =C2=A0 make_cmd =3D &quot;make %s&quot; % d.getVar(&#39;KCONFI=
+G_CONFIG_COMMAND&#39;).replace(&#39;&quot;&#39;, &#39;\\&quot;&#39;)<br>
+&gt; +=C2=A0 =C2=A0 oe_terminal(&quot;sh -c \&quot;%s; if [ \\$? -ne 0 ]; t=
+hen echo &#39;Command failed.&#39;; printf &#39;Press any key to continue..=
+. &#39;; read r; fi\&quot;&quot; % make_cmd,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 d.getVar=
+(&#39;PN&#39;) + &#39; Configuration&#39;, d)<br>
+<br>
+This patch looks interesting!<br>
+I would use shlex.join() to safely construct the command :<br>
+<a href=3D"https://docs.python.org/3/library/shlex.html#shlex.join" rel=3D"=
+noreferrer" target=3D"_blank">https://docs.python.org/3/library/shlex.html#=
+shlex.join</a>&lt;<a href=3D"https://urldefense.com/v3/__https://docs.pytho=
+n.org/3/library/shlex.html*shlex.join__;Iw!!Lw1uGqvHvtJ_psGG2Et-1voSwbo!fQd=
+twGScMriVPQw2RO0unCFPxKM9NGX19bIH6mNdVfb77dZxiYZEkdNFiD5PZzVoxaOccilrT4L2I5=
+6P_pSw6FJuljKxeNTW$" rel=3D"noreferrer" target=3D"_blank">https://urldefens=
+e.com/v3/__https://docs.python.org/3/library/shlex.html*shlex.join__;Iw!!Lw=
+1uGqvHvtJ_psGG2Et-1voSwbo!fQdtwGScMriVPQw2RO0unCFPxKM9NGX19bIH6mNdVfb77dZxi=
+YZEkdNFiD5PZzVoxaOccilrT4L2I56P_pSw6FJuljKxeNTW$</a>&gt;<br>
+<br>
+&gt; What do you think? Is my observed behavior a configuration error of my=
+<br>
+&gt; setup or does the patch above indeed make sense?<br>
+<br>
+The patch makes sense to me.<br>
+<br>
+I guess your next steps are :<br>
+* If you want to contribute your patch : reproduce the bug and rebase your =
+patch on master and send it to the mailing list<br>
+* Or, create a bug in <a href=3D"https://bugzilla.yoctoproject.org/" rel=3D=
+"noreferrer" target=3D"_blank">https://bugzilla.yoctoproject.org/</a>&lt;<a=
+ href=3D"https://urldefense.com/v3/__https://bugzilla.yoctoproject.org/__;!=
+!Lw1uGqvHvtJ_psGG2Et-1voSwbo!fQdtwGScMriVPQw2RO0unCFPxKM9NGX19bIH6mNdVfb77d=
+ZxiYZEkdNFiD5PZzVoxaOccilrT4L2I56P_pSw6FJulqw2-PFV$" rel=3D"noreferrer" tar=
+get=3D"_blank">https://urldefense.com/v3/__https://bugzilla.yoctoproject.or=
+g/__;!!Lw1uGqvHvtJ_psGG2Et-1voSwbo!fQdtwGScMriVPQw2RO0unCFPxKM9NGX19bIH6mNd=
+Vfb77dZxiYZEkdNFiD5PZzVoxaOccilrT4L2I56P_pSw6FJulqw2-PFV$</a>&gt;<br>
+<br>
+Best Regards,<br>
+<br>
+--<br>
+Yoann Congal<br>
+Smile ECS - Tech expert<br>
+</blockquote></div><br clear=3D"all"><br><span class=3D"gmail_signature_pre=
+fix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
+tr"><font face=3D"Raleway, regular">Yoann Congal</font><div><font face=3D"R=
+aleway, regular">Smile ECS - Tech expert<br></font></div></div></div></div>
+</blockquote></div><br clear=3D"all"><br><span class=3D"gmail_signature_pre=
+fix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
+tr"><font face=3D"Raleway, regular">Yoann Congal</font><div><font face=3D"R=
+aleway, regular">Smile ECS - Tech expert<br></font></div></div></div></div>
+
+--000000000000cc7a2306069424dc--
 
