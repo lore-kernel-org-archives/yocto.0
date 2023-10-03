@@ -1,152 +1,107 @@
-Return-Path: <anthony.t.davies@gmail.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4FFC6E776DA
-	for <webhook@archiver.kernel.org>; Tue,  3 Oct 2023 00:44:21 +0000 (UTC)
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
- by mx.groups.io with SMTP id smtpd.web10.98841.1696293856342327827
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51FACE776E3
+	for <webhook@archiver.kernel.org>; Tue,  3 Oct 2023 00:47:51 +0000 (UTC)
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+ by mx.groups.io with SMTP id smtpd.web11.98543.1696294069486368042
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 Oct 2023 17:44:16 -0700
+ Mon, 02 Oct 2023 17:47:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=dr2sCMx9;
- spf=pass (domain: gmail.com, ip: 209.85.214.172, mailfrom: anthony.t.davies@gmail.com)
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1c434c33ec0so2760745ad.3
-        for <yocto@lists.yoctoproject.org>; Mon, 02 Oct 2023 17:44:16 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=F3KY0OFF;
+ spf=pass (domain: gmail.com, ip: 209.85.160.174, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-4196ae80fc3so2793511cf.0
+        for <yocto@lists.yoctoproject.org>; Mon, 02 Oct 2023 17:47:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696293855; x=1696898655; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yinm6QeBlapfjlW4UXpRiq1JMna4JV9lGfj9SHZsHbM=;
-        b=dr2sCMx9tojVdiZo+NHdfql4sSaDfzMBWbOsmJvgfJ9I1x36grMyl/SVYzpHThsBii
-         Sb5wGI7wAadWngFwTzM9Y5yA+CEyCDPGCBJNDLnOEBt4Al4aARct5Xi5VNjGCyVFwiEW
-         sLyrkz4GsGoQ0K9ZtQXymVVqU9/iYwKSYa9tFzpHjUhQF9rIgntYi66/IXs/zFw/mOel
-         U7rwHnjUU7AVh06IB4N3r7kZvpbSc+pcSdU+iRtQuIw/M8mzqV/SsDXhfUX2ofcfOXuq
-         uYZPAN22iwzjT/sKx2/KRdjgDMidfD272B1mkNVZDE09v4GNDsFuQfy/IAhqaJBfdw56
-         ixSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696293855; x=1696898655;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1696294068; x=1696898868; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yinm6QeBlapfjlW4UXpRiq1JMna4JV9lGfj9SHZsHbM=;
-        b=U5JWFGn1vxT0EBoNyzuPylf9551QMlDizmkBn5wxa/KAsKIWPcn8Xv4niUSJtay619
-         z+IKqrzOFN/yglVlwKJGfLMlfdUxB7arFdxycvxgaj5Z59a3s3xgMG9jBmGbpXb3KAH7
-         NMbj8CSdA4LeY66PYFlamIvM8Nw0WnSglzdoIasN/0EGpck7qAQ9yhmUjz+rhHb+59Gm
-         uuIxwEkLNz3uLj230Zytf3hYFa62oI0en8vov9fMW/HceujrNtDVXbTsjP0XUdtyl0BN
-         BccpROUJ17XjKcGH7Qm0KMZ4Q1N2Tk+2GZN9r4oVHIDZqzSG8ejact88hCO+kKrCDuWE
-         DBfQ==
-X-Gm-Message-State: AOJu0YzxTSC63obuRLkFCDCeFSo3AtGmc0xApzA6p7sZ8Uk0RZrqXpde
-	843SXF9AIjVLQ3LYmqpWPXL5EnWXijl4yg==
-X-Google-Smtp-Source: AGHT+IE+ZxdkCA3ZRoe628hGYDiStSvp1H/G0G5zlZcnrrfTF46AuIz0ZXh7WX5tiPiACF6P7H+gCw==
-X-Received: by 2002:a17:902:720a:b0:1c5:f4c7:b4e4 with SMTP id ba10-20020a170902720a00b001c5f4c7b4e4mr11669984plb.39.1696293855513;
-        Mon, 02 Oct 2023 17:44:15 -0700 (PDT)
-Received: from localhost.localdomain ([65.181.3.195])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170902c14a00b001bf52834696sm63548plj.207.2023.10.02.17.44.13
+        bh=vstxcR3CEe7wc35e0Ck2SIL3zxeK81/3biB9XN3avMA=;
+        b=F3KY0OFF7Mhp1CTzSX3echClCiW5Gu2VOoSM2YxLaZ5pHhFzLzw86kq0YwdgoWLr29
+         wcKjDxT+vKFxwxejRaQlJol1bNvrRFyrTDzuY2wZ80z2jp/275jnaGlsM9+Bw9v0ta6D
+         2c7CrLP2hu7MHLQM0foICiMcWFV2GfJ/UErJWPy8/yPzWoAGqtAXg6cUXRJ3xc9oaTVe
+         +ONLqHV8IKlKz16TPMcaALB2NVBtaP4vbOnYElNdswUgXK8YKD6Gqj4upA0w36QPb4hW
+         Rd2vcwEDgeeAQx3c/Wh47YrEjm7Ud9Or887NQSiOb02m0b5/j+WBjfyEIh39Kn5t6Nzb
+         QMBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696294068; x=1696898868;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vstxcR3CEe7wc35e0Ck2SIL3zxeK81/3biB9XN3avMA=;
+        b=bZwUPXHhPwUHYxIPxAwo+bO/OhhntaEwFHA+i902QfAol30bCRYZ0cp5OqZkql1Ncb
+         4vQEf8SNkV+/uyCME09YEqAEwTq+P9I7b5cOYmYiSCjCJGBlnn6epArGbGfOOjWfFhiV
+         mLY+mnzec0YDmpVTPfdfP4CUtPHBPF5DgcvId0UMFiaWWyd0UZv2PWhlO6iuznnTcsNr
+         Hoi5xjgb3zqH5h3VE1TgOZLIgXvgVl8OAixILz3+ALWKJyQWuKjVdU39SrUZQb+BS8U7
+         bvJc0UU9SD2HXXLwebfc6Kxf0lo4YKGW6l3l0PmwILMKQW34uWb5LisXmqAK0SYRZWNK
+         HiLA==
+X-Gm-Message-State: AOJu0Yx3EWhsSiRgnkV3yKAC6T4dZUcz60B6s90VOaH17t96Kka29li6
+	AMmLdc5kNwc8ntRgAuXJ7CWcH7SH6HPDcQ==
+X-Google-Smtp-Source: AGHT+IHWxwSZkrsH+Rj3b7O80BtpmhlWUOw+wZtGGqYgZ/kTbzAoB6Pq6S4/XkkAJX8zt4V3fWQNPQ==
+X-Received: by 2002:a05:622a:1990:b0:419:5775:b7b3 with SMTP id u16-20020a05622a199000b004195775b7b3mr14871174qtc.61.1696294067955;
+        Mon, 02 Oct 2023 17:47:47 -0700 (PDT)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id o1-20020ac86d01000000b004199c98f87dsm48877qtt.74.2023.10.02.17.47.46
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 17:44:15 -0700 (PDT)
-From: anthony.t.davies@gmail.com
+        Mon, 02 Oct 2023 17:47:46 -0700 (PDT)
+From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: twoerner@gmail.com,
-	Anthony Davies <anthony.t.davies@gmail.com>
-Subject: [meta-rockchip] [PATCH] Allow KERNEL_IMAGETYPE override v3
-Date: Tue,  3 Oct 2023 11:43:08 +1100
-Message-Id: <20231003004307.93133-1-anthony.t.davies@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Subject: [meta-rockchip][PATCH v2 2/4] u-boot cleanup: group dependencies
+Date: Mon,  2 Oct 2023 20:47:39 -0400
+Message-ID: <20231003004741.6021-3-twoerner@gmail.com>
+X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
+In-Reply-To: <20231003004741.6021-1-twoerner@gmail.com>
+References: <20231003004741.6021-1-twoerner@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 03 Oct 2023 00:44:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61202
+ <yocto@lists.yoctoproject.org>; Tue, 03 Oct 2023 00:47:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61205
 
-From: Anthony Davies <anthony.t.davies@gmail.com>
+Group the INIT_FIRMWARE_DEPENDS together and sort.
 
-Updated inc files to allow overriding KERNEL_IMAGETYPE in local.conf
-
-Signed-off-by: Anthony Davies <anthony.t.davies@gmail.com>
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 ---
- conf/machine/include/px30.inc   | 2 +-
- conf/machine/include/rk3066.inc | 2 +-
- conf/machine/include/rk3188.inc | 2 +-
- conf/machine/include/rk3288.inc | 2 +-
- conf/machine/include/rk3328.inc | 2 +-
- conf/machine/include/rk3399.inc | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+ recipes-bsp/u-boot/u-boot%.bbappend | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/conf/machine/include/px30.inc b/conf/machine/include/px30.inc
-index a3727fb..badcbcd 100644
---- a/conf/machine/include/px30.inc
-+++ b/conf/machine/include/px30.inc
-@@ -12,7 +12,7 @@ require conf/machine/include/rockchip-wic.inc
+diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
+index c8444aacad89..8c6ac8627efa 100644
+--- a/recipes-bsp/u-boot/u-boot%.bbappend
++++ b/recipes-bsp/u-boot/u-boot%.bbappend
+@@ -2,21 +2,20 @@ DEPENDS:append:rock-pi-4 = " gnutls-native"
+ # various machines require the pyelftools library for parsing dtb files
+ DEPENDS:append = " python3-pyelftools-native"
  
- KBUILD_DEFCONFIG ?= "defconfig"
- KERNEL_CLASSES = "kernel-fitimage"
--KERNEL_IMAGETYPE = "fitImage"
-+KERNEL_IMAGETYPE ?= "fitImage"
+-INIT_FIRMWARE_DEPENDS ??= ""
+-
+ EXTRA_OEMAKE:append:rk3588s = " \
+ 	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf \
+ 	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin \
+ 	"
+-INIT_FIRMWARE_DEPENDS:rk3588s = " rockchip-rkbin:do_deploy"
  
- TFA_PLATFORM = "px30"
- TFA_BUILD_TARGET = "bl31"
-diff --git a/conf/machine/include/rk3066.inc b/conf/machine/include/rk3066.inc
-index fa97906..3510df2 100644
---- a/conf/machine/include/rk3066.inc
-+++ b/conf/machine/include/rk3066.inc
-@@ -11,4 +11,4 @@ SERIAL_CONSOLES = "115200;ttyS2"
+ EXTRA_OEMAKE:append:rk3399 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3399.elf"
+-INIT_FIRMWARE_DEPENDS:rk3399 = " trusted-firmware-a:do_deploy"
+ EXTRA_OEMAKE:append:rk3328 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3328.elf"
+-INIT_FIRMWARE_DEPENDS:rk3328 = " trusted-firmware-a:do_deploy"
+ EXTRA_OEMAKE:append:px30 = " BL31=${DEPLOY_DIR_IMAGE}/bl31-px30.elf"
+-INIT_FIRMWARE_DEPENDS:px30 = " trusted-firmware-a:do_deploy"
  
- KBUILD_DEFCONFIG = "multi_v7_defconfig"
- KERNEL_FEATURES:append:rk3066 = " bsp/rockchip/remove-non-rockchip-arch-arm.scc"
--KERNEL_IMAGETYPE = "zImage"
-+KERNEL_IMAGETYPE ?= "zImage"
-diff --git a/conf/machine/include/rk3188.inc b/conf/machine/include/rk3188.inc
-index bc96a0c..830f908 100644
---- a/conf/machine/include/rk3188.inc
-+++ b/conf/machine/include/rk3188.inc
-@@ -11,4 +11,4 @@ SERIAL_CONSOLES = "115200;ttyFIQ0"
++INIT_FIRMWARE_DEPENDS ??= ""
++INIT_FIRMWARE_DEPENDS:px30 = " trusted-firmware-a:do_deploy"
++INIT_FIRMWARE_DEPENDS:rk3328 = " trusted-firmware-a:do_deploy"
++INIT_FIRMWARE_DEPENDS:rk3399 = " trusted-firmware-a:do_deploy"
++INIT_FIRMWARE_DEPENDS:rk3588s = " rockchip-rkbin:do_deploy"
+ do_compile[depends] .= "${INIT_FIRMWARE_DEPENDS}"
  
- KBUILD_DEFCONFIG = "multi_v7_defconfig"
- KERNEL_FEATURES:append:rk3188 = " bsp/rockchip/remove-non-rockchip-arch-arm.scc"
--KERNEL_IMAGETYPE = "zImage"
-+KERNEL_IMAGETYPE ?= "zImage"
-diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
-index b4c559d..e682c0b 100644
---- a/conf/machine/include/rk3288.inc
-+++ b/conf/machine/include/rk3288.inc
-@@ -11,6 +11,6 @@ SERIAL_CONSOLES = "115200;ttyS2"
- 
- KBUILD_DEFCONFIG ?= "multi_v7_defconfig"
- KERNEL_FEATURES:append:rk3288 = " bsp/rockchip/remove-non-rockchip-arch-arm.scc"
--KERNEL_IMAGETYPE = "zImage"
-+KERNEL_IMAGETYPE ?= "zImage"
- 
- UBOOT_SUFFIX ?= "bin"
-diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk3328.inc
-index f9f8792..6be777c 100644
---- a/conf/machine/include/rk3328.inc
-+++ b/conf/machine/include/rk3328.inc
-@@ -13,7 +13,7 @@ require conf/machine/include/rockchip-wic.inc
- KBUILD_DEFCONFIG ?= "defconfig"
- KERNEL_FEATURES:append:rk3328 = " bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
- KERNEL_CLASSES = "kernel-fitimage"
--KERNEL_IMAGETYPE = "fitImage"
-+KERNEL_IMAGETYPE ?= "fitImage"
- 
- TFA_PLATFORM = "rk3328"
- TFA_BUILD_TARGET = "bl31"
-diff --git a/conf/machine/include/rk3399.inc b/conf/machine/include/rk3399.inc
-index 88c87af..5a3f439 100644
---- a/conf/machine/include/rk3399.inc
-+++ b/conf/machine/include/rk3399.inc
-@@ -13,7 +13,7 @@ require conf/machine/include/rockchip-wic.inc
- KBUILD_DEFCONFIG ?= "defconfig"
- KERNEL_FEATURES:append:rk3399 = " bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
- KERNEL_CLASSES = "kernel-fitimage"
--KERNEL_IMAGETYPE = "fitImage"
-+KERNEL_IMAGETYPE ?= "fitImage"
- 
- TFA_PLATFORM = "rk3399"
- TFA_BUILD_TARGET = "bl31"
+ do_compile:append:rock2-square () {
 -- 
-2.34.1
+2.41.0.327.gaa9166bcc0ba
 
 
