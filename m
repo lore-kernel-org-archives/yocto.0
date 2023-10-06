@@ -2,117 +2,92 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51633E9410B
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F655E9410A
 	for <webhook@archiver.kernel.org>; Fri,  6 Oct 2023 19:59:28 +0000 (UTC)
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
- by mx.groups.io with SMTP id smtpd.web11.4016.1696622365590777904
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+ by mx.groups.io with SMTP id smtpd.web10.3924.1696622367604681169
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 Oct 2023 12:59:25 -0700
+ Fri, 06 Oct 2023 12:59:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=KQy+BuNz;
- spf=pass (domain: gmail.com, ip: 209.85.167.173, mailfrom: ticotimo@gmail.com)
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3af5b26d599so1762107b6e.2
-        for <yocto@lists.yoctoproject.org>; Fri, 06 Oct 2023 12:59:25 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ee6wT2fV;
+ spf=pass (domain: gmail.com, ip: 209.85.215.170, mailfrom: ticotimo@gmail.com)
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-578d791dd91so1981400a12.0
+        for <yocto@lists.yoctoproject.org>; Fri, 06 Oct 2023 12:59:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696622364; x=1697227164; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QXwXLitO6q9mJd6PUtc8bn4BLgsJEuflpoqoNYQE7VA=;
-        b=KQy+BuNzzysijB0IOrl6+/9KO7gZJDTyKYUu1TC0vXDq3YcY0WNvnYqP5EQHZ5LcDD
-         DgtVHAZS93qcFuiYvKuvAMkOxSH73+RNYkwNOO/5bKXYXB3kS/Jhsu0NeYwHKsP24Ize
-         KPBi+Qc3hyoQTbyv4/PaBfNoGZz7qwpyA8KcdBLS/107by/LcawECgLTbDw7ueIbDEty
-         hy24hBjKJDa9pWxT4zIPn2HFVYN4wrLszkZPqjvTm/DP2QgAoKTvsU+CslTijMfaHBTe
-         asAK82r5ifRLptTXsIIwvPhlLPn8qTaArviwAaRlJ1G3LmbUk42+ehZ5tPcActZncQQe
-         5LeQ==
+        d=gmail.com; s=20230601; t=1696622367; x=1697227167; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cPlVxZHcNpMooVL56Cd7cP6lUg7NjNNhUeXNvBnius0=;
+        b=ee6wT2fV4ci6eCKRBk7eKJ+4UzfCe0GqVvWAg1hWc7bEI7h0ZTKBh3XcG2t7n4fZBg
+         aJDwB5QwEGy26nMdF4l/AFTZWinWzThxNMUml52QuqxUoGwU2oGtdHGbsk7HOMoAgWBS
+         U2EDEl1+rr4SV9jMC9eMc16d9pVffMf4YFU3cdS12RnEvqgTiw7W6KMkyAgjxHVuTxmM
+         /82pbkOIhaH/EQJvFMuyMlkD9rOnjWQ2x3tD8kuP9opALwncLJG5u8GAptzbr78ZM3Ls
+         H1D/Sd8935RlGzW2cRctNzO/s52eg0mvtG8r+rf8wq5hrjAsPX09K3vccvEbKic0q84Q
+         ZUsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696622364; x=1697227164;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QXwXLitO6q9mJd6PUtc8bn4BLgsJEuflpoqoNYQE7VA=;
-        b=h1rJoOQn8cCbrozqb4IYYiDkhdkefxNooSYX5xgYt8DuSZfOLm+Hun07KQw/cPOQ+C
-         1X5BHup+98tDS7y9FRk6pRTYDg5ETGvhk2xL0FoKj6X3Iplg64nNnZrsfE9pwCxzop4w
-         KCzAGe+HtzHFt/mkHfWSVuEfh48EJfR43S2KR4GQZi5bnrlWufpSnmK2pAZwOjYIgiD8
-         4x5Vw56yqkNJ5vdPCmhZX9SIWYpmyWlsmUd7Y+XxO02qAyRYP2v6pd+LoF5O+cPkRNaK
-         aGxYRhSbtltH5OEK7b9ViGKW/xk/eW+zh9Y48ez2UMNbKGN90+HxM9xue2aUxMWifboG
-         Cu3A==
-X-Gm-Message-State: AOJu0YyV8R33IJE8EvXSrJ2bTKGOfi4jYsW2Y/sUP2TiphktmXr1FrJj
-	aGBJgRuPfEAzgJvpyFTgsXF8lwNTJGA=
-X-Google-Smtp-Source: AGHT+IF+ZjKWM+OoZhH6QiD5vfTgdm0aZh3Z6fmTZJGTRN3sOxx4s0SDEMpKWfePCE4f6aeM7GtyuA==
-X-Received: by 2002:a05:6358:e49e:b0:15c:e2c9:d1ca with SMTP id by30-20020a056358e49e00b0015ce2c9d1camr11191792rwb.1.1696622364435;
-        Fri, 06 Oct 2023 12:59:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696622367; x=1697227167;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cPlVxZHcNpMooVL56Cd7cP6lUg7NjNNhUeXNvBnius0=;
+        b=JedOmRDUo238gUAnGGanjPCsyrr2pIrU5G9grCmqwMTjJKTFbdB5LGe+6d+cPeQW9x
+         6QRfnA5nzrbmiI2jP+m6Tsv/G5/ts7HH+OWev1xSjyXoNJyx5ZRLK1matsuF61n3/GEb
+         mBcQR5r0x/bE8HU9VAx7XCa16CSpzL2EkJQel4lxLUgtjquHXEQ+gbjadKp5lXTmtgJa
+         JW+gAD4EuPpY0X8hJ+qwQEv6+2ZW4BGrlK4MEQkRxWqILlLaRJ72BVjstBwy3vvS+z5X
+         R4lijHpgbM+407WDrKOdrj86Ex6Xq8mzpl4UORssDwUcHb/2O++n3ttTc4qiL6ylJDXa
+         aESg==
+X-Gm-Message-State: AOJu0YyOneUDFELl69OnU2qiaHUUR551LSmNrLSQ2GIBcStfxFw6K+0u
+	sOcgjJjva5KLLvqqAggsL4FuQdcQE5I=
+X-Google-Smtp-Source: AGHT+IEXu+0orat6SpGXr+WCdK7YcQb4Ht0pwfELp9dFicXKBLGu3AQG4K74yB9L3/sirtKpDAeldg==
+X-Received: by 2002:a17:90a:4f02:b0:273:f10c:b6d2 with SMTP id p2-20020a17090a4f0200b00273f10cb6d2mr10068907pjh.18.1696622366608;
+        Fri, 06 Oct 2023 12:59:26 -0700 (PDT)
 Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:4ca0:e9cf:d643:bafd])
-        by smtp.gmail.com with ESMTPSA id 6-20020a17090a1a0600b00263dfe9b972sm6420971pjk.0.2023.10.06.12.59.23
+        by smtp.gmail.com with ESMTPSA id 6-20020a17090a1a0600b00263dfe9b972sm6420971pjk.0.2023.10.06.12.59.26
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 12:59:24 -0700 (PDT)
+        Fri, 06 Oct 2023 12:59:26 -0700 (PDT)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
-Subject: [layerindex-web 00/10] Django 4.2 LTS Upgrade
-Date: Fri,  6 Oct 2023 12:59:03 -0700
-Message-Id: <cover.1696621423.git.tim.orling@konsulko.com>
+Subject: [layerindex-web 01/10] requirements.txt: upgrade Django 3.2 -> 4.2
+Date: Fri,  6 Oct 2023 12:59:04 -0700
+Message-Id: <082f5aab793930ca046b85fbe1fb932c47a03f33.1696621423.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1696621423.git.tim.orling@konsulko.com>
+References: <cover.1696621423.git.tim.orling@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Fri, 06 Oct 2023 19:59:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61264
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61265
 
-This series upgrades to the current LTS for Django, 4.2.
+Update to 4.2 LTS release
 
-The two most obvious changes are:
-* django.utils.translation.ugettext() -> gettext
-* django.conf.urls.url() -> re_path()
+https://docs.djangoproject.com/en/4.2/releases/4.2/
+https://docs.djangoproject.com/en/4.1/releases/4.1/
+https://docs.djangoproject.com/en/4.0/releases/4.0/
 
-See:
-https://docs.djangoproject.com/en/4.2/releases/4.0/#features-removed-in-4-0
-https://docs.djangoproject.com/en/4.2/internals/deprecation/#deprecation-removed-in-4-0
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ requirements.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-While we are at it, upgrade all components in requirements.txt and
-update to reflect missing dependencies.
-
-One casualty of this upgrade is django-bootstrap-pagination which
-is no longer maintained and incompatible with Django 4.2.
-
-One additional requirement for settings.py is setting CSRF_TRUSTED_ORIGINS to
-allow POST requests (ALLOWED_HOSTS is no longer sufficient).
-
-Tim Orling (10):
-  requirements.txt: upgrade Django 3.2 -> 4.2
-  docker-compose.yml: bump mariadb from 10.3 to 10.4
-  Drop django-bootstrap-pagination: incompatible
-  bootstrap_pagination: disable via comment
-  Refactor usage of django.conf.urls
-  Dockerfile: drop python3-pil
-  requirements.txt: upgrade all to latest
-  requirements.txt: update dependencies
-  password_validation.py: fix deprecated ugettext
-  docker/settings.py: add CSRF_TRUSTED_ORIGINS
-
- Dockerfile                                 |   1 -
- docker-compose.yml                         |   2 +-
- docker/settings.py                         |   2 +-
- layerindex/urls.py                         | 108 ++++++++++-----------
- layerindex/urls_branch.py                  |  25 +++--
- password_validation.py                     |   2 +-
- requirements.txt                           |  47 +++++----
- rrs/urls.py                                |  16 +--
- settings.py                                |   1 -
- templates/layerindex/bulkchangesearch.html |   2 +
- templates/layerindex/classes.html          |   2 +
- templates/layerindex/classicrecipes.html   |   2 +
- templates/layerindex/distros.html          |   2 +
- templates/layerindex/history.html          |   2 +
- templates/layerindex/layers.html           |   2 +
- templates/layerindex/machines.html         |   2 +
- templates/layerindex/recipes.html          |   2 +
- templates/layerindex/reviewlist.html       |   2 +
- templates/layerindex/updatelist.html       |   2 +
- urls.py                                    |  31 +++---
- 20 files changed, 140 insertions(+), 115 deletions(-)
-
+diff --git a/requirements.txt b/requirements.txt
+index 18835b7..072c2f1 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -3,7 +3,7 @@ beautifulsoup4==4.10.0
+ billiard==3.6.4.0
+ celery==5.2.3
+ confusable-homoglyphs==3.2.0
+-Django>=3.2,<3.3
++Django>=4.2,<4.3
+ django-appconf==1.0.5
+ django-axes==5.31.0
+ django-bootstrap-pagination==1.7.1
 -- 
 2.34.1
 
