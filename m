@@ -1,146 +1,201 @@
-Return-Path: <dave.hitchman@kymati.com>
+Return-Path: <fabien.thomas@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E0068E81DFA
-	for <webhook@archiver.kernel.org>; Fri,  6 Oct 2023 13:15:09 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (EUR04-DB3-obe.outbound.protection.outlook.com [40.107.6.59])
- by mx.groups.io with SMTP id smtpd.web10.12439.1696598106461021483
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A03FE81E01
+	for <webhook@archiver.kernel.org>; Fri,  6 Oct 2023 14:28:00 +0000 (UTC)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+ by mx.groups.io with SMTP id smtpd.web11.14196.1696602476553520964
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 Oct 2023 06:15:06 -0700
+ Fri, 06 Oct 2023 07:27:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kymati.onmicrosoft.com header.s=selector2-kymati-onmicrosoft-com header.b=fZudm9qi;
- spf=pass (domain: kymati.com, ip: 40.107.6.59, mailfrom: dave.hitchman@kymati.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SQCTS5HLOpWm7HqRrJ5VUlnZZMrjAX66vJ0dk7d7QKgceKlQ1+608IoMhHWI7ESoThbxV/9d4QOyCQwsSkVBmxsAelJhk8yp62AT7UYMALU4VZHQDZ1CDzZ3PtH3ExEpaoLH7g/tKmTaKs7fRQHfQ7VoMXqjYB0aSWPihIUNTIUs0kQ1OzYR2VTe1MTv9oq/lYW0NknTDGsgIaNJ8XCAzxiF0G47f/srjUjLLNLAGapUHRwftf+o559oumqvvxudysg7eWpgAdz+dFI2X+BDwG5YogDluSUpQBZrTcEI3DMWVW8R/6kaEZdZ7QA69J+0MV7EC7WhL2etqaHv4GpBPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=toC1DaZXcfnCe87jRKtyKN/LKNwfLtAyHapkx5fgdHo=;
- b=c06edKBtwRLapNSRl29z9cs/DWeIt3XiGSpAsoKxlAgvYAfYYg10qaWaUY2jbEwXiNM8nUQCxl8Ry4Hj0NmnY+G+rXqhUCegIYmtCWaX22G+Kejp2dL786CHsyT+QviEsZZN8agvYFMlq1RyoceFqBzj4Zs++Qo5wSKKi66R083ZeMujrDxOYGB0gsecsJvwVb9dIJ9JzxzoFRl+mLVriPvDydyBDL44uXyk9XnhWXR5swvzha/f4ptvWQoxcXLoQCfhk7mJw8utB6ayvJErInPhzW7hXcGZOfZ/HBaRKbypGEYX3QFOlpK4A/wVkPM/+0FWkz1ON3bWL0nnMGJdWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kymati.com; dmarc=pass action=none header.from=kymati.com;
- dkim=pass header.d=kymati.com; arc=none
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=NaXMsYwC;
+ spf=pass (domain: smile.fr, ip: 209.85.208.47, mailfrom: fabien.thomas@smile.fr)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-53b32dca0bfso1291649a12.0
+        for <yocto@lists.yoctoproject.org>; Fri, 06 Oct 2023 07:27:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kymati.onmicrosoft.com; s=selector2-kymati-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=toC1DaZXcfnCe87jRKtyKN/LKNwfLtAyHapkx5fgdHo=;
- b=fZudm9qiZCArOyK4+x8ZQ+XbJNG/eomRd7XAVMKcgHvGQBMdSCQ65cbw3JxRQRydq2Uhk8A+cNhIoCfvxY9aT1pjlp3QFTlVrlmBsMwiRxfpEooIaZ7Wly786o0zvoHDigMY5V3JKea/yS5Nlc5z3tRa7bnVhoQmARyrfj4HxkI=
-Received: from AM9PR03MB7012.eurprd03.prod.outlook.com (2603:10a6:20b:2d4::7)
- by PA4PR03MB7213.eurprd03.prod.outlook.com (2603:10a6:102:bf::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Fri, 6 Oct
- 2023 13:15:02 +0000
-Received: from AM9PR03MB7012.eurprd03.prod.outlook.com
- ([fe80::e590:fcdb:f3b7:e895]) by AM9PR03MB7012.eurprd03.prod.outlook.com
- ([fe80::e590:fcdb:f3b7:e895%4]) with mapi id 15.20.6838.033; Fri, 6 Oct 2023
- 13:15:02 +0000
-From: Dave Hitchman <dave.hitchman@kymati.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: aptly repository manager
-Thread-Topic: aptly repository manager
-Thread-Index: AQHZ+FcRV9BkKNlJL0SP3JL3mKr8XQ==
-Date: Fri, 6 Oct 2023 13:15:02 +0000
-Message-ID: 
- <AM9PR03MB701298B52D19BAF588622F2092C9A@AM9PR03MB7012.eurprd03.prod.outlook.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kymati.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR03MB7012:EE_|PA4PR03MB7213:EE_
-x-ms-office365-filtering-correlation-id: a47763f0-6526-436b-efdc-08dbc66e4029
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- b/A8c4gX3MFnl4V1fwP9P0F47J3Dnz6hKLHT+WiS0NJ7giWL2BJuOxtDi0k13W1XEh0HWJqRNp6e31kpJ88bkQ6/jOnFW4zXMy/9xecqAcXSyQ7XkhPfnoh3CycqLr7c7Lxpfjs0yWfg68Uzd4CNAT0QJER2vhJkhfFVCvrZ788cV67+XRvUlM/gb5NtPnEOKG481oBxyJ1jiqhAbtHt4PU/PPpE5ap4IcNHI2nyClVzQjHunTRKPEfTcU1JZxIZkOWmOuSYXtMBlcrjBpRfxFV8XqKYcl3o5Fz0g3l9L/A0YdCS9I7EyxyIxgYl0Hk5ryJoKxxviRuj6vNNUJur9lQA5hRQVd7WgXnBDgicye4+jZq9ozNJdK8vTIuP8jn7mbl5FbcKBGSqQ8fTDi0RXjQdmhvq3+fOBSR/4icoUJs/pLihmKyjocrGRqiMhjjSiO7RDh/1kXbhXXrbr4WPd8cJlXnYXjF8R0rgq53pt85CylbaM6MS/9lBI/cgilHG4c+W1Rq6dFzQLBMd4DY01oaW+yKWoLSg3NhVdo1YRyuBMDHDefFub8fLv70kOWO0Wxx+cJbwcb+lOFr8gL5RnbSUEGeAedp0f0iFUAOvDkKUSNx0tNOXRhMPuilinMRBnBLXG/Tw9G2/2gG2FJ/+bA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR03MB7012.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(376002)(366004)(136003)(39830400003)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(66556008)(3480700007)(2906002)(64756008)(66446008)(52536014)(6916009)(6506007)(316002)(7696005)(9686003)(76116006)(478600001)(91956017)(71200400001)(66946007)(44832011)(86362001)(38070700005)(5660300002)(38100700002)(122000001)(41300700001)(8676002)(558084003)(8936002)(7116003)(33656002)(66476007)(55016003)(19627405001)(133083001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?aaIVnAd+BH6sERj1i6kTW3+x33iF7HvHpEayhFRiDfJ1H30op6WtKVlcVS?=
- =?iso-8859-1?Q?DAXHwbCItUlQvuPvt8rY3/oUtgFot7FERQGgvAl/ZCHZP9Mw63X5hMWNOT?=
- =?iso-8859-1?Q?MxEzZeGQ//pR9RMtNS04/MmZmsTuZeOP9nzyIAt3EJjRWVShTXHqb8JFGr?=
- =?iso-8859-1?Q?Deet1Y+y+msyytJvAlLXCC3Sj59nDVjITXz1WC5QXegTwJLAACP57Tl9Ls?=
- =?iso-8859-1?Q?k7x1fGJ7YTS+gWzUWdw3EN1aRBBVQ+XdbXvHQAYEKgHqlwWtCZjl6cIS4c?=
- =?iso-8859-1?Q?HvYVTaU7oFNjg8WAoTMPlr5P5ypAMUU2K7v2us/RYp3HYORO+Aw+BfJZs5?=
- =?iso-8859-1?Q?J2i2ZLE7yo5nwKAfbh7C3IdbfbtPWJMy9aGPkEMf4CCQ+KiZVPMVnGYtEF?=
- =?iso-8859-1?Q?1J/YS7COZfy0GU1XmAYmrqUf636rRdGNDKATET3u8/9WoSwla1GLYkPWaw?=
- =?iso-8859-1?Q?MtMf1FyvyaLsXctabt8j+RpWsfjvo+Zr8po8549EAqcyf9Z8xNUfNR2sEc?=
- =?iso-8859-1?Q?DVj9fHg1V0t12UYYP+BX9juj8Ui+JQJZHAmxlZn/zU5gfJqkr5YwVy/gym?=
- =?iso-8859-1?Q?BH2GDG5dgqIrKy3D2perZDxFpqw8SVYvjMIlF3vf2S57KO1k9YTRK/Xpa6?=
- =?iso-8859-1?Q?3Lmizi8nKednGp4LkAW4Z19UT/9t3zJ9QidiPHriZkVGsoWXZvjKnIbGNY?=
- =?iso-8859-1?Q?6Kg5AO6Z+Ot3hcUNUjwTjU4ts6b8aVtMgRBx3LZO90TEaC+eEZZ0KhXLwO?=
- =?iso-8859-1?Q?NDCXyOHPIDiVmH6vc2hhqQfDnEwosNcxXFgbehnBeJSzq3nutXiD/gL5bY?=
- =?iso-8859-1?Q?jvNGjWYlTMgakFC0w6948678H/ZS/7xbHMqyHeUpAqe01/MaYHNsyCkJ+Y?=
- =?iso-8859-1?Q?3fsta8doHd3baM7XdBiH96AjSBzDhS74PefQXhw9jmcbqYAlrVfmhit8kA?=
- =?iso-8859-1?Q?QNoeDzG52kkp8yktoVWfHXq2VwDNN6ti6p/XVjV/LU3UQ4HdP+M6QJqomJ?=
- =?iso-8859-1?Q?N/iljNrZYQixy1DOb7C+qrYPEtfpoGpOwxJXMsDHx8+polZblyJDwNoerR?=
- =?iso-8859-1?Q?h4QrVFxIzly0/rNcVYOKtnLdzzCpqpCM/TxbYskvf9Qpb7MtGKEExBOeBS?=
- =?iso-8859-1?Q?Tdfo02Vf3ZJLWw7YUSjvKRUVjSaJgELMmPHdW7nc6P7f9jlrDgjacr23+s?=
- =?iso-8859-1?Q?GsFsSaLytk9OlPmC1eaUtqwCVmCammOq4uAOnWtcViATAzjdqiEBkOCXB0?=
- =?iso-8859-1?Q?OnTpfABMhP72lB7gByFwwMVachNTjf/6hDcvqK9Pb9M50MzHK672LnTUmz?=
- =?iso-8859-1?Q?NQkLUHT33tCfTn+EMzZ2CIHPDMXaQIflq5mvm5gBx5Kiv9kDdn+lCqiHoK?=
- =?iso-8859-1?Q?RDztUiq5+mdUu3CBH0EAMSUqjUvsorKfpiX3BauvBo9ePi+vQ2OC87krZL?=
- =?iso-8859-1?Q?W1ujlkuYDSiVIqQ8l9REgd76S2+VGmx1EANAh68/n3tuYpnYPXqCEHEE6v?=
- =?iso-8859-1?Q?PiUNzZtFA6WgPQvHhxOzpgUdFNVBNQGhHiUJd5pYxpcbRPeUDyahcHEypl?=
- =?iso-8859-1?Q?2HdS95AMQT22oplLYyANYLVyzlYQeguk3dmRuBPuocCq/9KlPz4nRL0+lz?=
- =?iso-8859-1?Q?ekbDlYHUijImNSjJKpakUX4KBbAwTnbp+OTnDaqPVynquwyKpO47N+TUnE?=
- =?iso-8859-1?Q?PCn+ZbJQr+ukYA/v9U/OSTZVzmaK8cW1Iwvk7dj3?=
-Content-Type: multipart/alternative;
-	boundary="_000_AM9PR03MB701298B52D19BAF588622F2092C9AAM9PR03MB7012eurp_"
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1696602475; x=1697207275; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E5YFqrn1vIES39rxltJSvLbXayrQFna1h5uKJ8aAH/s=;
+        b=NaXMsYwCqGfZiW3Xw/9useeh3riofurx5dYtUT/Y9kBI9dWSc1HU3Y7cC1CvTuyqq6
+         WMZIT2f/oXoN05mOzV0fkwi6wMDXqffC5uiAY3BdAr9mfOCVEzabZt5zlzvRbxaCTCeL
+         2qo7AiX7kclEj0x8mPtkN9esjMny8Y0gXa3ji24elvhkZJeQmRF9y8/PQz9AL8xn0TSP
+         tXBQZW1DdFxy921ZV66BFzfCsUrIeG2zLeuiSGUTyT9KjeR+biWl6NhWCiEJnY3GP0s8
+         YU6hin6RUEvQyT4yeCZHLaXIwjls1sZ1h+7qFSbYjxX+GeoemA2rkkQLY9VkXmlMHF9Z
+         0hWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696602475; x=1697207275;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E5YFqrn1vIES39rxltJSvLbXayrQFna1h5uKJ8aAH/s=;
+        b=Ie6GOsxvB+XjtGAjZidn8mHskZ3FKyM23PJI+ScIGvrqUrZzpniPGLawhVqfB524ha
+         f1+osyUGAvXZPMMhGmonR+H/2lqESjB883XHI6tLF83/PVoxOID+8L0ablLRf3GI7Bbx
+         dSbsb1ka1IAAUb6sQ2jfCfosPRvSXTunYZU5B9RCcPHhrxKCSV0hpeHSrvE9tS27rRVQ
+         xWTCUjZKcxZBFuoZHBiUAHGFPZWZlCGBwKWJ756lhYr53ldfHjkcJsaWhxD6vAg1l89b
+         nRq4MJ6MYs0QQ73TDAQ7chCwH+vHqF8CfUDaZ4DnCxEknokQrYa8N5aTva3I7N6zjb1G
+         /OwA==
+X-Gm-Message-State: AOJu0YwJ+6xBi89so3rMAAjjbHi7KW5r0jeCCchfXbtJK5oOWgZFALs0
+	JmMPQTbSJG4Nb8CdsLFb2i6Uf+XTcqv0XdIUMQAM8g==
+X-Google-Smtp-Source: AGHT+IH2uh+A04fkNq3kAsPAgAWKW5WcuRkOi40DA0idAtBtCFdmZc8QtXhV7HdssKMHtCHyE6Zd8xcSQ8uv8kLPKdA=
+X-Received: by 2002:aa7:d1d9:0:b0:531:157d:ba2d with SMTP id
+ g25-20020aa7d1d9000000b00531157dba2dmr5287350edp.4.1696602474815; Fri, 06 Oct
+ 2023 07:27:54 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: kymati.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR03MB7012.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a47763f0-6526-436b-efdc-08dbc66e4029
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Oct 2023 13:15:02.8059
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f445f429-656f-441c-a343-dbb97855be01
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: r4ytD4vFW7uXLE07lJZYrmvaKZZOO1PSOnJY2/LTQadVXgD9LgCYFokVz35Z8Bv+rSeESccMxFupikRYA9byiNiC5DvR9y0/fIloBnjXgPE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR03MB7213
+References: <20231002145446.3166108-1-fabien.thomas@smile.fr>
+ <178B43BD6DF66AF4.3256@lists.yoctoproject.org> <178B4DC19A31CF35.3256@lists.yoctoproject.org>
+ <a1f9a4b2816d9f048d9ef04d20a6a21b5663ecd7.camel@linuxfoundation.org>
+In-Reply-To: <a1f9a4b2816d9f048d9ef04d20a6a21b5663ecd7.camel@linuxfoundation.org>
+From: Fabien THOMAS <fabien.thomas@smile.fr>
+Date: Fri, 6 Oct 2023 16:27:38 +0200
+Message-ID: <CAFS+G_tey5-KWRgOSsTTUcBpSWXmbzYkX_BaF=gp_iUJ3Ag9cg@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH v2] config.json: add
+ reproducible-openembedded build
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@lists.yoctoproject.org, Yoann Congal <yoann.congal@smile.fr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 06 Oct 2023 13:15:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61259
+ <yocto@lists.yoctoproject.org>; Fri, 06 Oct 2023 14:28:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61260
 
---_000_AM9PR03MB701298B52D19BAF588622F2092C9AAM9PR03MB7012eurp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Thank you Richard for trying this patch, this report is very helpful.
 
-Has anyone added this to a yocto build?
-I am sure it is possible but cant find any info, maybe someone has done it
+-> Well noted for the short name, indeed it's absolutely not readable
+in the UI, I will go with this name "Repro test OE meta-xxx" if you
+agree.
 
---_000_AM9PR03MB701298B52D19BAF588622F2092C9AAM9PR03MB7012eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+-> Reading the logs, I see that all "Add layers" steps always fail
+except meta-initramfs and meta-oe, both has no dependencies.
+I understand how it works now ! I had to respect the dependencies
+order in the "ADDLAYER" list because it uses the bitbake-layers
+add-layer cmd.
+It will be fixed too.
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Has anyone added this to a yocto build?&nbsp;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-I am sure it is possible but cant find any info, maybe someone has done it<=
-/div>
-</body>
-</html>
+-> On the build step "Run cmds" for meta-oe, I see following error :
+ERROR - Build directory
+/home/pokybuild/yocto-worker/reproducible-meta-oe/build/build-st
+already exists, aborting
+Probably due to previous step failed. Do you think it is necessary to
+add an rm -rf [...]/build-st in each step, before actually running
+selftest ?
 
---_000_AM9PR03MB701298B52D19BAF588622F2092C9AAM9PR03MB7012eurp_--
+-> Also, I would like to inform you that I'm having build problems
+with every layer in the reproducible sefltest context, except with
+meta-initramfs.
+So I focused myself on meta-oe.
+One of the building issues is regarding recipes that use the useradd
+class. In the reproducible context, these must use static-id.
+I fixed it by creating new files/static-passwd and files/static-group
+into meta-oe layer. I plan to send patches to both
+yocto-autobuilder-helper & meta-openmebdded project soon.
+Also I had trouble with 4 recipes (webkitgtk3_2.40.5, influxdb_1.8.10,
+xorgxrdp_0.9.19 and xscreensaver_6.04). I didn't investigate but only
+excluded them from the world target.
+
+So my patch might look like this :
+
+            "step6" : {
+                "shortname" : "Repro test OE meta-oe",
+                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc;
+OEQA_DEBUGGING_SAVED_OUTPUT=3D${BASE_SHAREDDIR}/pub/repro-fail-openembedded=
+/meta-oe/
+DISPLAY=3D:1 oe-selftest -r reproducible"],
+                "ADDLAYER" : [
+                    "${BUILDDIR}/../meta-openembedded/meta-oe"
+                ],
+                "extravars" : [
+                    "USERADD_UID_TABLES:append =3D '
+files/static-passwd-meta-oe'",
+                    "USERADD_GID_TABLES:append =3D ' files/static-group-met=
+a-oe'"
+                    "EXCLUDE_FROM_WORLD:pn-xscreensaver"
+                    "EXCLUDE_FROM_WORLD:pn-webkitgtk3"
+                    "EXCLUDE_FROM_WORLD:pn-influxdb"
+                    "EXCLUDE_FROM_WORLD:pn-xorgxrdp"
+                ]
+            },
+
+What do you think ? (Note that for layers with dependencies all
+static-* files should be added)
+
+-> With these adjustments, I finally had a successful build on my
+computer. FYI here are the results for meta-oe :
+oe-selftest - INFO - Reproducibility summary for deb: same=3D14650
+different=3D128 different_excluded=3D0 missing=3D0 total=3D14778
+
+
+
+
+
+
+
+
+
+Le jeu. 5 oct. 2023 =C3=A0 23:51, Richard Purdie
+<richard.purdie@linuxfoundation.org> a =C3=A9crit :
+>
+> On Thu, 2023-10-05 at 20:46 +0100, Richard Purdie via
+> lists.yoctoproject.org wrote:
+> > On Thu, 2023-10-05 at 17:42 +0100, Richard Purdie via
+> > lists.yoctoproject.org wrote:
+> > > On Mon, 2023-10-02 at 16:54 +0200, Fabien Thomas wrote:
+> > > > The purpose of this new builder is to report the reproducibility st=
+atus
+> > > > of all meta-openembedded recipes layer by layer. It use the same
+> > > > reproducible selftest than OE-Core but setting only world as target=
+,
+> > > > and excluding all oecore and other openembedded layer recipes.
+> > > > Also, the report output directory is split by layers.
+> > > >
+> > > > Signed-off-by: Fabien Thomas <fabien.thomas@smile.fr>
+> > > > Reviewed-by: Yoann Congal <yoann.congal@smile.fr>
+> > > > ---
+> > > >
+> > > > Changes v1->v2 :
+> > > > * Split builder into multiple steps, one for each openembedded laye=
+rs.
+> > > > * Split reports output in the same way, one for each layers.
+> > > > * For each step, only to be tested layer and its dependancies are a=
+dded.
+> > > > * Every other layers than the one that is tested is excluded from w=
+orld.
+> > >
+> > > Thanks, I've merged this with a tweak of "reproducible-meta-
+> > > openembedded" -> "reproducible-meta-oe" just to keep things more
+> > > readable in the UI.
+> > >
+> > > There is a test run queued here:
+> > >
+> > > https://autobuilder.yoctoproject.org/typhoon/#/buildrequests/454516?r=
+edirect_to_build=3Dtrue
+> > >
+> > > but things are a bit busy atm on the autobuilder so it is queued.
+> >
+> > That broke as did the second attempt. I've pushed controller side
+> > tweaks and some tweaks to helper which means this is now running:
+> >
+> > https://autobuilder.yoctoproject.org/typhoon/#/builders/155/builds/3
+> >
+> > Obviously there are still some failures but it is doing more this time
+> > and a least running something in some steps.
+>
+> Whilst a lot of it failed, there was one piece that succeeded and
+> generated diffoscope output:
+>
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/155/builds/3/step=
+s/21/logs/stdio
+> http://autobuilder.yocto.io/pub/repro-fail-openembedded-meta-initramfs/oe=
+-reproducible-20231005-y6zo9rio/packages/diff-html/
+>
+> As well as fixing the failures, the "short" names need work to make the
+> UI readable.
+>
+> Cheers,
+>
+> Richard
 
