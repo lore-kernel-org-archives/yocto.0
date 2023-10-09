@@ -2,266 +2,84 @@ Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 227C3E95A91
-	for <webhook@archiver.kernel.org>; Mon,  9 Oct 2023 11:03:39 +0000 (UTC)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
- by mx.groups.io with SMTP id smtpd.web10.58863.1696849414417673646
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3A26E95A8E
+	for <webhook@archiver.kernel.org>; Mon,  9 Oct 2023 12:56:19 +0000 (UTC)
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+ by mx.groups.io with SMTP id smtpd.web10.60826.1696856175126263067
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Oct 2023 04:03:34 -0700
+ Mon, 09 Oct 2023 05:56:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=fizhij3J;
- spf=pass (domain: gmail.com, ip: 209.85.218.43, mailfrom: hassanchattarki@gmail.com)
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-99357737980so767089566b.2
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Oct 2023 04:03:34 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=bHr66GU8;
+ spf=pass (domain: gmail.com, ip: 209.85.208.49, mailfrom: hassanchattarki@gmail.com)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-53639fb0ba4so7711006a12.0
+        for <yocto@lists.yoctoproject.org>; Mon, 09 Oct 2023 05:56:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696849412; x=1697454212; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1696856173; x=1697460973; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=ZYz+7iEwAQp6QJB59vIgsdT7nAgN8yxQz7PJmUv6rHo=;
-        b=fizhij3JvHwagJGROZQUAkCIosMUz0yE9q0ygYtr1ayL0hbHNB/MhDrRpcgkeYSDWh
-         XWx4/pc2RAZZwF5Zi3o4fNVqaQ+92amTc5DZFrW5chQ7kO+ImPohfUh1EQiWYMw2gCoV
-         IPbrC5kU8TWHGOmj5qAj8DRmiyf5w9YEgsK85xcarWXSCTOBnEVBjxIFriesdA31e1r5
-         eE21HBjwLwNRlBguL4YBYFdG+scDqhLvVvRxBOAvs8jAM5OVdtlNfE7Xz2IK6eSkQsgq
-         LNVaXNtLxZgSuvyslnBt+GaPt8Yg38ULVDZiWVUzUNH3I0i2ap1HUDg4oPmZOlcD2ytI
-         z00w==
+        bh=1tICi8fx5xclFdlrXWzSBGXpKUnibCwe85IHrTldcDU=;
+        b=bHr66GU8nRCxbqKQSOjkqg5uO/41AvqtKMa+XzHhbm1kyW9J5Ez8cfdTGh5QNubSol
+         xRohxkyPEfLI+z7UXRfmdkfhu62F8ZKTu1Iyxa8cknwKwp3c5Q5NhXD341rVPjPcdjmC
+         jwfzlVszbeVd6y6fBDD0HEzsmuEIbrrfD6Lu3zVoDdXLo9+NdqudVc/895r3c2YcT3TM
+         bBNnLD5fiGc8JvJjFFRH5SsG5GZmxn3QVRD4aP8O9bV3EJOE9Ii825Kb5wJQgJwWJXSm
+         PlgFBtKK57ltl5VAM991J7zucOBdBHCC5T2Eugmlcx+R7t6kH9RA1niVu+TRso7Kut+R
+         PqZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696849412; x=1697454212;
+        d=1e100.net; s=20230601; t=1696856173; x=1697460973;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZYz+7iEwAQp6QJB59vIgsdT7nAgN8yxQz7PJmUv6rHo=;
-        b=TG52fPlqDhy6JpA8SjvflSSQJwSGTxxYLnlYY0qC0b0d6DSzr16E5CdtzbrBO8KLzl
-         XCiM9dAQYBZuIm0m1vax1etBY9BdTYFSRCP+dFlketavFES7pUjbZH/uetYGKObIMgZc
-         bVziY/Ey7zSj5Q75qvWGsH1RpdXwM7FWqxzg9B7zgGDy7ycsWT4H8om94NtSn+qCDe3W
-         Y34yf5qgH/utKIdhDEOiZxNEvzu2mQhHOKjLYS/RModvoCpV91GA1CBi3QgOd6jIZrg+
-         OqzU0y3jaJhfebkNdgqX4U591OsuoA6O7bTAtmeWuTmbQKGBNcX5vYJroBqVBuiajluY
-         SoRg==
-X-Gm-Message-State: AOJu0YzI3EtfPIG0CK5bH0ibNs4MKgQNDO8gkS8LZrDxltwiybEFYxi6
-	zsmQN03RA2Qt1DmxvCwZNHvU04huMroscbGqtc/OregRR2c=
-X-Google-Smtp-Source: AGHT+IHqWX4ykKuxPy1NZ/2E2ZWoC0ltzNHAHRKy+a1/qAqlvtvJZyR7gWt2tJ3Zw1VxWmo7kq4+uiiyQyMGkmyolpA=
-X-Received: by 2002:a17:906:104e:b0:9a1:b950:abab with SMTP id
- j14-20020a170906104e00b009a1b950ababmr14390031ejj.32.1696849412175; Mon, 09
- Oct 2023 04:03:32 -0700 (PDT)
+        bh=1tICi8fx5xclFdlrXWzSBGXpKUnibCwe85IHrTldcDU=;
+        b=LIAmDeCbX20cnp9YoEurOcPRZll1TUmup8Q95q5dXwZ0aD9pxpBjGDqsEXCRddZid6
+         amrc1a88/nrOqITRG+p50bHz/Qha+vD8cMnSSdSewqH7kBIW+JWPRBqQjd2Fdjh8WXBO
+         5P3uzGh/qO+BRiJ54Eui8y+VR+oj2JQDP4q/RQNchOWvqg5xN3+e8/PikvcKxnUXcpsW
+         HboAQ3kMm86b++Va9fKqTNw7ZkkCUAA1k8m2sqpB0Z5iUCXF4Oqrqkt6g0SE15FGnVqu
+         uUnoAq2n+TaIyFrMrHUfrBsoVDbv1RXcCwvyyWihTaCRWjY6+1MCvcFkloiKN1Ymkpkp
+         DKbQ==
+X-Gm-Message-State: AOJu0Yz78F0mJSB2bfhIh45qtsbD0D6OdJWHToMYgfLzZqGcPKFAKMKt
+	/T+z6KqiPpzAzIR/fQ2FDxGOH+u+p+hyRECcPhEpBo6v
+X-Google-Smtp-Source: AGHT+IGJeaSNkhCIgXoXpdakNee3g/l05fd1WsTSQvaKLHnFz2vV7li5SItVSssQODaQ+nTctYStmcBmngupr3BtzKw=
+X-Received: by 2002:a17:906:5381:b0:9ba:321b:80e1 with SMTP id
+ g1-20020a170906538100b009ba321b80e1mr300060ejo.0.1696856172822; Mon, 09 Oct
+ 2023 05:56:12 -0700 (PDT)
 MIME-Version: 1.0
 From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Date: Mon, 9 Oct 2023 16:33:20 +0530
-Message-ID: <CAPJWBnjPT5MoXRV0df36ErAy_nue9c03asWOFLj3zjGN-c57BA@mail.gmail.com>
-Subject: Password added succesfully but defaults to autologin
+Date: Mon, 9 Oct 2023 18:26:01 +0530
+Message-ID: <CAPJWBnjjq1YO3o7r1upd2FR5rP8cX24VbzccMTsK-XGw5-624A@mail.gmail.com>
+Subject: continuous security updates for the Linux system
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/mixed; boundary="0000000000007374420607468a30"
+Content-Type: multipart/alternative; boundary="0000000000006a87190607481dc6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 09 Oct 2023 11:03:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61283
+ <yocto@lists.yoctoproject.org>; Mon, 09 Oct 2023 12:56:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61284
 
---0000000000007374420607468a30
-Content-Type: multipart/alternative; boundary="0000000000007374400607468a2e"
-
---0000000000007374400607468a2e
+--0000000000006a87190607481dc6
 Content-Type: text/plain; charset="UTF-8"
 
 Hi guys,
-I am trying to set up a login password for my hardware but the problem is
-that my device uses automatic login. I checked online to comment out
-automatic login but it seems like
-my /lib/systemd/system/serial-getty\@.service contains the line
-"ExecStart=-/sbin/agetty -8 -L %I 921600 $TERM --autologin root" but before
-building the image i checked my service file and "ExecStart=-/sbin/agetty
--8 -L %I @BAUDRATE@ $TERM". There is no mention of autologin and in my
-image recipe file I have not enabled it.
-After removing the line manually and reloading the service I can use the
-login creds to login but ssh login returns the message "permission denied".
+I want to know more about security updates in yocto.
+So generally we update our distros when we get pop-ups about security
+updates and it's done. But what if my device is installed at a
+remote location? How does security update take place in the case of yocto?
+How can we do it?
+Any other relevant information is graciously welcomed.
 
-I have attached the relevant files for your reference. Let me know if you
-need more information.
 
-Regards,
+Thanks and Regards,
 Hassan
 
---0000000000007374400607468a2e
+--0000000000006a87190607481dc6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi guys,<div>I am trying to set up a login password for my=
- hardware but the problem is that my device uses automatic login. I checked=
- online to comment out automatic login but it seems like my=C2=A0/lib/syste=
-md/system/serial-getty\@.service contains the line=C2=A0</div><div>&quot;Ex=
-ecStart=3D-/sbin/agetty -8 -L %I 921600 $TERM --autologin root&quot; but be=
-fore building the image i checked my service file and &quot;ExecStart=3D-/s=
-bin/agetty -8 -L %I @BAUDRATE@ $TERM&quot;. There is no mention of autologi=
-n and in my image recipe file I have not enabled it.</div><div>After removi=
-ng the line manually and reloading the service I can use the login creds to=
- login but ssh login returns the message &quot;permission denied&quot;.</di=
-v><div><br></div><div>I have attached the relevant files for your reference=
-. Let me know if you need more=C2=A0information.</div><div><br></div><div>R=
-egards,<br>Hassan</div></div>
+<div dir=3D"ltr">Hi guys,<div>I want to know more about security updates in=
+ yocto.</div><div>So generally we update our distros when we get pop-ups ab=
+out security updates and it&#39;s done. But what if my device is installed =
+at a remote=C2=A0location? How does security update=C2=A0take place in the =
+case of yocto? How can we do it?</div><div>Any other=C2=A0relevant informat=
+ion is graciously welcomed.</div><div><br></div><div><br></div><div>Thanks =
+and Regards,</div><div>Hassan=C2=A0</div></div>
 
---0000000000007374400607468a2e--
-
---0000000000007374420607468a30
-Content-Type: application/octet-stream; name="amlogic-yocto.bb"
-Content-Disposition: attachment; filename="amlogic-yocto.bb"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lnis9xdx0>
-X-Attachment-Id: f_lnis9xdx0
-
-U1VNTUFSWSA9ICJBbWxvZ2ljIFlvY3RvIEltYWdlIgoKRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQg
-Oj0gIiR7VEhJU0RJUn0vZmlsZXM6IgoKSU1BR0VDTEFTUyA/PSAiICR7QGJiLnV0aWxzLmNvbnRh
-aW5zKCdESVNUUk9fRkVBVFVSRVMnLCAnc2VsaW51eCcsICdzZWxpbnV4LWltYWdlJywgJ2NvcmUt
-aW1hZ2UnLCBkKX0gIgppbmhlcml0ICR7SU1BR0VDTEFTU30KCiNjb25maWd1cmF0aW9uIHRvIGFk
-ZCBwYXNzd29yZCB0byBodWIKSU1BR0VfRkVBVFVSRVNfcmVtb3ZlICs9ICIgXAoJZGVidWctdHdl
-YWtzIFwKIgoKaW5oZXJpdCBleHRyYXVzZXJzCkVYVFJBX1VTRVJTX1BBUkFNUyA9ICIgXAoJdXNl
-cm1vZCAtUCBoYXNzYW4gcm9vdDsgXAoiCgpJTUFHRV9GU1RZUEVTID0gIiR7QGJiLnV0aWxzLmNv
-bnRhaW5zKCdESVNUUk9fRkVBVFVSRVMnLCAnbmFuZCcsICd1YmknLCAnZXh0NCcsIGQpfSIKCnJl
-cXVpcmUgYW1sLXBhY2thZ2UuaW5jCgpMSUNFTlNFID0gIk1JVCIKCklNQUdFX0ZFQVRVUkVTX3Q3
-ICs9ICJzcGxhc2ggIgojSU1BR0VfRkVBVFVSRVMgKz0gInRvb2xzLWRlYnVnICIKCklNQUdFX0lO
-U1RBTEwgKz0gIiBcCiAgICBwYWNrYWdlZ3JvdXAtYW1sb2dpYy1iYXNlcm9vdGZzIFwKICAgIGJv
-YSBcCiAgICAke0BiYi51dGlscy5jb250YWlucygnRElTVFJPX0ZFQVRVUkVTJywgJ3NlbGludXgn
-LCAncGFja2FnZWdyb3VwLWNvcmUtc2VsaW51eCBhdWRpdGQnLCAnJywgZCl9IFwKICAgICR7QGJi
-LnV0aWxzLmNvbnRhaW5zKCdESVNUUk9fRkVBVFVSRVMnLCAnYW1sLWJsdWV6LWFsc2EnLCAnYW1s
-LWJsdWV6LWFsc2EnLCAnJywgZCl9IFwKICAgICR7QGJiLnV0aWxzLmNvbnRhaW5zKCJESVNUUk9f
-RkVBVFVSRVMiLCAiZ3N0MS1wbHVnaW5zLXRzcGxheWVyIiwgImdzdDEtcGx1Z2lucy10c3BsYXll
-ciIsICIiLCBkKX0gXAogICAgJHtAYmIudXRpbHMuY29udGFpbnMoJ0RJU1RST19GRUFUVVJFUycs
-ICdzd3VwZGF0ZScsICdzd3VwZGF0ZScsICcnLCBkKX0gXAogICAgJHtAYmIudXRpbHMuY29udGFp
-bnMoJ0RJU1RST19GRUFUVVJFUycsICd0ZXN0X3Rvb2xzJywgJ3Rlc3QtdG9vbHMnLCAnJywgZCl9
-IFwKICAgICIKCiMgdW5pY29kZSBsb2NhbGUgc3VwcG9ydApJTUFHRV9JTlNUQUxMX2FwcGVuZCA9
-ICIgZ2xpYmMtdXRpbHMgbG9jYWxlZGVmIgoKIyB3ZWItdWktd2lmaSBzdXBwb3J0ZWQgYnkgZGVm
-YXVsdApJTUFHRV9JTlNUQUxMX2FwcGVuZCA9ICIgd2ViLXVpLXdpZmkiCgpNQUNISU5FX0lNQUdF
-X05BTUUgPz0gIiR7UE59IgpJTUFHRV9GRUFUVVJFU19yZW1vdmUgPSAiIHJlYWQtb25seS1yb290
-ZnMiCgpERVBFTkRTX2FwcGVuZCA9ICIgYW5kcm9pZC10b29scy1uYXRpdmUiCgpQQUNLQUdFX0lO
-U1RBTEwgKz0gImJhc2UtZmlsZXMgbmV0YmFzZSAke1ZJUlRVQUwtUlVOVElNRV9iYXNlLXV0aWxz
-fSBiYXNlLXBhc3N3ZCAke1JPT1RGU19CT09UU1RSQVBfSU5TVEFMTH0gaW5pdHJhbWZzLW1lc29u
-LWJvb3QgdWRldi1leHRyYWNvbmYgZTJmc3Byb2dzICIKCiMgTGluZ3VhcyBkZWZpbmVkIGluIGxv
-Y2FsLmNvbmYKI0lNQUdFX0xJTkdVQVMgPSAiIgoKI3JlZHVjZSB0aGlzIHZhbHVlIHRvIHJlc2Vy
-dmUgc3BhY2UgZm9yIERNLXZlcml0eS9BVkIgbWV0YS1kYXRhIGF0IHRoZSBlbmQgb2YgcGFydGl0
-aW9uKDY0TSkKSU1BR0VfUk9PVEZTX1NJWkUgPSAiOTgzMDQwIgoKI1VCSQpVQklfVk9MTkFNRSA9
-ICJyb290ZnMiCiM0awojTUtVQklGU19BUkdTID0gIi1GIC1tIDQwOTYgLWUgMjUzOTUyIC1jIDEx
-MjAiCiNVQklOSVpFX0FSR1MgPSAiLW0gNDA5NiAtcCAyNTZLaUIgLXMgNDA5NiAtTyA0MDk2IgoK
-IzJLCiNNS1VCSUZTX0FSR1MgPSAiLXYgLW0gMjA0OCAtZSAxMjY5NzYgLWMgMjIxMiIKI1VCSU5J
-WkVfQVJHUyA9ICItbSAyMDQ4IC1wIDEyOEtpQiAtcyAyMDQ4IC1PIDIwNDgiCgpJTUFHRV9ST09U
-RlNfRVhUUkFfU1BBQ0UgPSAiMCIKS0VSTkVMX0JPT1RBUkdTID0gInJvb3Q9L2Rldi9zeXN0ZW0g
-cm9vdGZzdHlwZT1leHQ0IgoKZG9fcm9vdGZzW2RlcGVuZHNdICs9ICJhbmRyb2lkLXRvb2xzLW5h
-dGl2ZTpkb19wb3B1bGF0ZV9zeXNyb290IgojUFJFRkVSUkVEX1ZFUlNJT05fZWxsID0gIjAuMjIi
-CgojUk9PVEZTX1BPU1RQUk9DRVNTX0NPTU1BTkQgKz0gImRpc2FibGVfc3lzdGVtZF9zZXJ2aWNl
-czsgIgoKIyNkaXNhYmxlX3N5c3RlbWRfc2VydmljZXMoKSB7CiMgICAgICAgIGlmIFsgLWQgJHtJ
-TUFHRV9ST09URlN9JHtzeXNjb25mZGlyfS9zeXN0ZW1kL3N5c3RlbS9tdWx0aS11c2VyLnRhcmdl
-dC53YW50cy8gXTsgdGhlbgojICAgICAgICAgICAgICAgIHJtIC1mICR7SU1BR0VfUk9PVEZTfSR7
-c3lzY29uZmRpcn0vc3lzdGVtZC9zeXN0ZW0vbXVsdGktdXNlci50YXJnZXQud2FudHMvYXBwbWFu
-YWdlci5zZXJ2aWNlOwojCiMgICAgICAgIGZpCiMKIyAgICAgICAgIyBSZW1vdmUgZmlsZXMgYWRk
-ZWQgYnkgb3BlbmVtYmVkZGVkLWNvcmUvbWV0YS9yZWNpcGVzLWNvbm5lY3Rpdml0eS93cGEtc3Vw
-cGxpY2FudC93cGEtc3VwcGxpY2FudF8yLjcuYmI6CiMgICAgICAgIHJtIC1mICR7SU1BR0VfUk9P
-VEZTfSR7c3lzdGVtZF91bml0ZGlyfS9zeXN0ZW0vd3BhX3N1cHBsaWNhbnQuc2VydmljZQojICAg
-ICAgICBybSAtZiAke0lNQUdFX1JPT1RGU30ke3N5c3RlbWRfdW5pdGRpcn0vc3lzdGVtL3dwYV9z
-dXBwbGljYW50LW5sODAyMTFALnNlcnZpY2UKIyAgICAgICAgcm0gLWYgJHtJTUFHRV9ST09URlN9
-JHtzeXN0ZW1kX3VuaXRkaXJ9L3N5c3RlbS93cGFfc3VwcGxpY2FudC13aXJlZEAuc2VydmljZQoj
-ICAgICAgICBybSAtZiAke0lNQUdFX1JPT1RGU30ke3N5c3RlbWRfdW5pdGRpcn0vc3lzdGVtL3dw
-YV9zdXBwbGljYW50QC5zZXJ2aWNlCiMgICAgICAgIHJtIC1mICR7SU1BR0VfUk9PVEZTfSR7c3lz
-Y29uZmRpcn0vbmV0d29yay9pZi1wcmUtdXAuZC93cGEtc3VwcGxpY2FudAojICAgICAgICBybSAt
-ZiAke0lNQUdFX1JPT1RGU30ke3N5c2NvbmZkaXJ9L25ldHdvcmsvaWYtcG9zdC1kb3duLmQvd3Bh
-X3N1cHBsaWNhbnQKIyAgICAgICAgI3JtIC1mICR7SU1BR0VfUk9PVEZTfSR7c3lzY29uZmRpcn0v
-ZGJ1cy0xL3N5c3RlbS5kL2RidXMtd3BhX3N1cHBsaWNhbnQuY29uZgojICAgICAgICAjcm0gLWYg
-JHtJTUFHRV9ST09URlN9JHtzeXNjb25mZGlyfS9ldGMvZGVmYXVsdC92b2xhdGlsZXMvOTlfd3Bh
-X3N1cHBsaWNhbnQKI30KClIgPSAiJHtJTUFHRV9ST09URlN9IgoKUFJPSkVDVF9CUkFOQ0ggPz0g
-ImRlZmF1bHQiCgpweXRob24gdmVyc2lvbl9ob29rKCl7CiAgICAgIGJiLmJ1aWxkLmV4ZWNfZnVu
-YygnY3JlYXRlX3ZlcnNpb25fZmlsZScsIGQpCn0KCnB5dGhvbiBjcmVhdGVfdmVyc2lvbl9maWxl
-KCkgewoKICAgIHZlcnNpb25fZmlsZSA9IG9zLnBhdGguam9pbihkLmdldFZhcigiUiIsIFRydWUp
-LCAndmVyc2lvbi50eHQnKQogICAgaW1hZ2VfbmFtZSA9IGQuZ2V0VmFyKCJJTUFHRV9OQU1FIiwg
-VHJ1ZSkKICAgIG1hY2hpbmUgPSBkLmdldFZhcigiTUFDSElORSIsIFRydWUpLnVwcGVyKCkKICAg
-IGJyYW5jaCA9IGQuZ2V0VmFyKCJQUk9KRUNUX0JSQU5DSCIsIFRydWUpCiAgICB5b2N0b192ZXJz
-aW9uID0gZC5nZXRWYXIoIkRJU1RST19DT0RFTkFNRSIsIFRydWUpCiAgICByZWxlYXNlX3ZlcnNp
-b24gPSBkLmdldFZhcigiUkVMRUFTRV9WRVJTSU9OIiwgVHJ1ZSkgb3IgJzAuMC4wLjAnCiAgICBy
-ZWxlYXNlX3NwaW4gPSBkLmdldFZhcigiUkVMRUFTRV9TUElOIiwgVHJ1ZSkgb3IgJzAnCiAgICBz
-dGFtcCA9IGQuZ2V0VmFyKCJEQVRFVElNRSIsIFRydWUpCiAgICB0ID0gdGltZS5zdHJwdGltZShz
-dGFtcCwgJyVZJW0lZCVIJU0lUycpCiAgICBidWlsZF90aW1lID0gdGltZS5zdHJmdGltZSgnIiVZ
-LSVtLSVkICVIOiVNOiVTIicsIHQpCiAgICBnZW5fdGltZSA9IHRpbWUuc3RyZnRpbWUoJ0dlbmVy
-YXRlZCBvbiAlYSAlYiAlZCAgJUg6JU06JVMgVVRDICVZJywgdCkKICAgIHdpdGggb3Blbih2ZXJz
-aW9uX2ZpbGUsICd3JykgYXMgZnc6CiAgICAgICAgZncud3JpdGUoJ2ltYWdlbmFtZTp7MH1cbicu
-Zm9ybWF0KGltYWdlX25hbWUpKQogICAgICAgIGZ3LndyaXRlKCdCUkFOQ0g9ezB9XG4nLmZvcm1h
-dChicmFuY2gpKQogICAgICAgIGZ3LndyaXRlKCdZT0NUT19WRVJTSU9OPXswfVxuJy5mb3JtYXQo
-eW9jdG9fdmVyc2lvbikpCiAgICAgICAgZncud3JpdGUoJ1ZFUlNJT049ezB9XG4nLmZvcm1hdChy
-ZWxlYXNlX3ZlcnNpb24pKQogICAgICAgIGZ3LndyaXRlKCdTUElOPXswfVxuJy5mb3JtYXQocmVs
-ZWFzZV9zcGluKSkKICAgICAgICBmdy53cml0ZSgnQlVJTERfVElNRT17MH1cbicuZm9ybWF0KGJ1
-aWxkX3RpbWUpKQogICAgICAgIGZ3LndyaXRlKCd7MH1cbicuZm9ybWF0KGdlbl90aW1lKSkKICAg
-IGJ1aWxkX2NvbmZpZyA9IG9zLnBhdGguam9pbihkLmdldFZhcigiVE9QRElSIiwgVHJ1ZSksICdi
-dWlsZC1pbWFnZXMudHh0JykKICAgIHRhc2tkYXRhID0gZC5nZXRWYXIoIkJCX1RBU0tERVBEQVRB
-IiwgVHJ1ZSkKICAgIGtleSA9IHNvcnRlZCh0YXNrZGF0YSlbMF0KICAgIHRhcmdldCA9IHRhc2tk
-YXRhW2tleV1bMF0KICAgIGxpbmUgPSAnezB9IC0gezF9XG4nLmZvcm1hdCh0YXJnZXQsIGltYWdl
-X25hbWUpCiAgICB3aXRoIG9wZW4oYnVpbGRfY29uZmlnLCAnYScpIGFzIGZ3OgogICAgICAgIGZ3
-LndyaXRlKGxpbmUpCn0KCmNyZWF0ZV92ZXJzaW9uX2ZpbGVbdmFyZGVwc2V4Y2x1ZGVdICs9ICJE
-QVRFVElNRSIKY3JlYXRlX3ZlcnNpb25fZmlsZVt2YXJkZXBzZXhjbHVkZV0gKz0gIkJCX1RBU0tE
-RVBEQVRBIgoKUk9PVEZTX1BPU1RQUk9DRVNTX0NPTU1BTkQgKz0gInZlcnNpb25faG9vazsgIgo=
---0000000000007374420607468a30
-Content-Type: text/x-dbus-service; charset="US-ASCII"; name="serial-getty@.service"
-Content-Disposition: attachment; filename="serial-getty@.service"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lnisahr01>
-X-Attachment-Id: f_lnisahr01
-
-IyAgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IExHUEwtMi4xKwojCiMgIFRoaXMgZmlsZSBpcyBw
-YXJ0IG9mIHN5c3RlbWQuCiMKIyAgc3lzdGVtZCBpcyBmcmVlIHNvZnR3YXJlOyB5b3UgY2FuIHJl
-ZGlzdHJpYnV0ZSBpdCBhbmQvb3IgbW9kaWZ5IGl0CiMgIHVuZGVyIHRoZSB0ZXJtcyBvZiB0aGUg
-R05VIExlc3NlciBHZW5lcmFsIFB1YmxpYyBMaWNlbnNlIGFzIHB1Ymxpc2hlZCBieQojICB0aGUg
-RnJlZSBTb2Z0d2FyZSBGb3VuZGF0aW9uOyBlaXRoZXIgdmVyc2lvbiAyLjEgb2YgdGhlIExpY2Vu
-c2UsIG9yCiMgIChhdCB5b3VyIG9wdGlvbikgYW55IGxhdGVyIHZlcnNpb24uCgpbVW5pdF0KRGVz
-Y3JpcHRpb249U2VyaWFsIEdldHR5IG9uICVJCkRvY3VtZW50YXRpb249bWFuOmFnZXR0eSg4KSBt
-YW46c3lzdGVtZC1nZXR0eS1nZW5lcmF0b3IoOCkKRG9jdW1lbnRhdGlvbj1odHRwOi8vMHBvaW50
-ZXIuZGUvYmxvZy9wcm9qZWN0cy9zZXJpYWwtY29uc29sZS5odG1sClBhcnRPZj1kZXYtJWkuZGV2
-aWNlCkNvbmRpdGlvblBhdGhFeGlzdHM9L2Rldi8laQpBZnRlcj1kZXYtJWkuZGV2aWNlIHN5c3Rl
-bWQtdXNlci1zZXNzaW9ucy5zZXJ2aWNlIHBseW1vdXRoLXF1aXQtd2FpdC5zZXJ2aWNlIGdldHR5
-LXByZS50YXJnZXQKQWZ0ZXI9cmMtbG9jYWwuc2VydmljZQoKIyBJZiBhZGRpdGlvbmFsIGdldHR5
-cyBhcmUgc3Bhd25lZCBkdXJpbmcgYm9vdCB0aGVuIHdlIHNob3VsZCBtYWtlCiMgc3VyZSB0aGF0
-IHRoaXMgaXMgc3luY2hyb25pemVkIGJlZm9yZSBnZXR0eS50YXJnZXQsIGV2ZW4gdGhvdWdoCiMg
-Z2V0dHkudGFyZ2V0IGRpZG4ndCBhY3R1YWxseSBwdWxsIGl0IGluLgpCZWZvcmU9Z2V0dHkudGFy
-Z2V0Cklnbm9yZU9uSXNvbGF0ZT15ZXMKCiMgSWdub3JlT25Jc29sYXRlIGNhdXNlcyBpc3N1ZXMg
-d2l0aCBzdWxvZ2luLCBpZiBzb21lb25lIGlzb2xhdGVzCiMgcmVzY3VlLnRhcmdldCBvciBzdGFy
-dHMgcmVzY3VlLnNlcnZpY2UgZnJvbSBtdWx0aS11c2VyLnRhcmdldCBvcgojIGdyYXBoaWNhbC50
-YXJnZXQuCkNvbmZsaWN0cz1yZXNjdWUuc2VydmljZQpCZWZvcmU9cmVzY3VlLnNlcnZpY2UKCltT
-ZXJ2aWNlXQpFbnZpcm9ubWVudD0iVEVSTT14dGVybSIKRXhlY1N0YXJ0PS0vc2Jpbi9hZ2V0dHkg
-LTggLUwgJUkgQEJBVURSQVRFQCAkVEVSTQpUeXBlPWlkbGUKUmVzdGFydD1hbHdheXMKVXRtcElk
-ZW50aWZpZXI9JUkKVFRZUGF0aD0vZGV2LyVJClRUWVJlc2V0PXllcwpUVFlWSGFuZ3VwPXllcwpL
-aWxsTW9kZT1wcm9jZXNzCklnbm9yZVNJR1BJUEU9bm8KU2VuZFNJR0hVUD15ZXMKCltJbnN0YWxs
-XQpXYW50ZWRCeT1nZXR0eS50YXJnZXQK
---0000000000007374420607468a30
-Content-Type: application/octet-stream; name="systemd-serialgetty.bb"
-Content-Disposition: attachment; filename="systemd-serialgetty.bb"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lnisar5g2>
-X-Attachment-Id: f_lnisar5g2
-
-U1VNTUFSWSA9ICJTZXJpYWwgdGVybWluYWwgc3VwcG9ydCBmb3Igc3lzdGVtZCIKSE9NRVBBR0Ug
-PSAiaHR0cHM6Ly93d3cuZnJlZWRlc2t0b3Aub3JnL3dpa2kvU29mdHdhcmUvc3lzdGVtZC8iCkxJ
-Q0VOU0UgPSAiR1BMdjIrIgpMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly8ke0NPUkVCQVNFfS9t
-ZXRhL2ZpbGVzL2NvbW1vbi1saWNlbnNlcy9HUEwtMi4wO21kNT04MDFmODA5ODBkMTcxZGQ2NDI1
-NjEwODMzYTIyZGJlNiIKClBSID0gInI1IgoKU0VSSUFMX0NPTlNPTEVTID89ICIxMTUyMDA7dHR5
-UzAiCgpTUkNfVVJJID0gImZpbGU6Ly9zZXJpYWwtZ2V0dHlALnNlcnZpY2UiCgpTID0gIiR7V09S
-S0RJUn0iCgojIEFzIHRoaXMgcGFja2FnZSBpcyB0aWVkIHRvIHN5c3RlbWQsIG9ubHkgYnVpbGQg
-aXQgd2hlbiB3ZSdyZSBhbHNvIGJ1aWxkaW5nIHN5c3RlbWQuCmluaGVyaXQgZmVhdHVyZXNfY2hl
-Y2sKUkVRVUlSRURfRElTVFJPX0ZFQVRVUkVTID0gInN5c3RlbWQiCgpkb19pbnN0YWxsKCkgewoJ
-aWYgWyAhIC16ICIke1NFUklBTF9DT05TT0xFU30iIF0gOyB0aGVuCgkJZGVmYXVsdF9iYXVkcmF0
-ZT1gZWNobyAiJHtTRVJJQUxfQ09OU09MRVN9IiB8IHNlZCAncy9cOy4qLy8nYAoJCWluc3RhbGwg
-LWQgJHtEfSR7c3lzdGVtZF91bml0ZGlyfS9zeXN0ZW0vCgkJaW5zdGFsbCAtZCAke0R9JHtzeXNj
-b25mZGlyfS9zeXN0ZW1kL3N5c3RlbS9nZXR0eS50YXJnZXQud2FudHMvCgkJaW5zdGFsbCAtbSAw
-NjQ0ICR7V09SS0RJUn0vc2VyaWFsLWdldHR5QC5zZXJ2aWNlICR7RH0ke3N5c3RlbWRfdW5pdGRp
-cn0vc3lzdGVtLwoJCXNlZCAtaSAtZSAicy9cQEJBVURSQVRFXEAvJGRlZmF1bHRfYmF1ZHJhdGUv
-ZyIgJHtEfSR7c3lzdGVtZF91bml0ZGlyfS9zeXN0ZW0vc2VyaWFsLWdldHR5QC5zZXJ2aWNlCgoJ
-CXRtcD0iJHtTRVJJQUxfQ09OU09MRVN9IgoJCWZvciBlbnRyeSBpbiAkdG1wIDsgZG8KCQkJYmF1
-ZHJhdGU9YGVjaG8gJGVudHJ5IHwgc2VkICdzL1w7LiovLydgCgkJCXR0eWRldj1gZWNobyAkZW50
-cnkgfCBzZWQgLWUgJ3MvXlswLTldKlw7Ly8nIC1lICdzL1w7LiovLydgCgkJCWlmIFsgIiRiYXVk
-cmF0ZSIgPSAiJGRlZmF1bHRfYmF1ZHJhdGUiIF0gOyB0aGVuCgkJCQkjIGVuYWJsZSB0aGUgc2Vy
-dmljZQoJCQkJbG4gLXNmICR7c3lzdGVtZF91bml0ZGlyfS9zeXN0ZW0vc2VyaWFsLWdldHR5QC5z
-ZXJ2aWNlIFwKCQkJCQkke0R9JHtzeXNjb25mZGlyfS9zeXN0ZW1kL3N5c3RlbS9nZXR0eS50YXJn
-ZXQud2FudHMvc2VyaWFsLWdldHR5QCR0dHlkZXYuc2VydmljZQoJCQllbHNlCgkJCQkjIGluc3Rh
-bGwgY3VzdG9tIHNlcnZpY2UgZmlsZSBmb3IgdGhlIG5vbi1kZWZhdWx0IGJhdWRyYXRlCgkJCQlp
-bnN0YWxsIC1tIDA2NDQgJHtXT1JLRElSfS9zZXJpYWwtZ2V0dHlALnNlcnZpY2UgJHtEfSR7c3lz
-dGVtZF91bml0ZGlyfS9zeXN0ZW0vc2VyaWFsLWdldHR5JGJhdWRyYXRlQC5zZXJ2aWNlCgkJCQlz
-ZWQgLWkgLWUgInMvXEBCQVVEUkFURVxALyRiYXVkcmF0ZS9nIiAke0R9JHtzeXN0ZW1kX3VuaXRk
-aXJ9L3N5c3RlbS9zZXJpYWwtZ2V0dHkkYmF1ZHJhdGVALnNlcnZpY2UKCQkJCSMgZW5hYmxlIHRo
-ZSBzZXJ2aWNlCgkJCQlsbiAtc2YgJHtzeXN0ZW1kX3VuaXRkaXJ9L3N5c3RlbS9zZXJpYWwtZ2V0
-dHkkYmF1ZHJhdGVALnNlcnZpY2UgXAoJCQkJCSR7RH0ke3N5c2NvbmZkaXJ9L3N5c3RlbWQvc3lz
-dGVtL2dldHR5LnRhcmdldC53YW50cy9zZXJpYWwtZ2V0dHkkYmF1ZHJhdGVAJHR0eWRldi5zZXJ2
-aWNlCgkJCWZpCgkJZG9uZQoJZmkKfQoKIyBUaGlzIGlzIGEgbWFjaGluZSBzcGVjaWZpYyBmaWxl
-CkZJTEVTXyR7UE59ID0gIiR7c3lzdGVtZF91bml0ZGlyfS9zeXN0ZW0vKi5zZXJ2aWNlICR7c3lz
-Y29uZmRpcn0iClBBQ0tBR0VfQVJDSCA9ICIke01BQ0hJTkVfQVJDSH0iCgpBTExPV19FTVBUWV8k
-e1BOfSA9ICIxIgo=
---0000000000007374420607468a30--
+--0000000000006a87190607481dc6--
 
