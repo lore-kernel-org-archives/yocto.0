@@ -1,644 +1,722 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E39DFE95A8D
-	for <webhook@archiver.kernel.org>; Mon,  9 Oct 2023 23:37:53 +0000 (UTC)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
- by mx.groups.io with SMTP id smtpd.web11.78862.1696894671499622666
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0941ECD68F4
+	for <webhook@archiver.kernel.org>; Tue, 10 Oct 2023 06:30:46 +0000 (UTC)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+ by mx.groups.io with SMTP id smtpd.web10.85021.1696919440889717329
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Oct 2023 16:37:52 -0700
+ Mon, 09 Oct 2023 23:30:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=GC5Ec9ou;
- spf=pass (domain: gmail.com, ip: 209.85.218.43, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-9a645e54806so856913666b.0
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Oct 2023 16:37:51 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Ak6YX6dK;
+ spf=pass (domain: gmail.com, ip: 209.85.218.46, mailfrom: hassanchattarki@gmail.com)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-9b27bc8b65eso881622766b.0
+        for <yocto@lists.yoctoproject.org>; Mon, 09 Oct 2023 23:30:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696894670; x=1697499470; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1696919439; x=1697524239; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=BJ3NuRqacCpEW1nyX/BHFQlSjBDPhQoWI16dGdayZ6Y=;
-        b=GC5Ec9oubRu2iNq+7f2AMAFXMg3jt1gcpYhgxQDmdHmQKJ8YzWS8h6ix3jdoN9oGnx
-         uLPpkgefMcc05p8vjM3f/UG/fTwMDCkLSKQqb5Ol6iFnTLIEjYaLBEHezCfo9D0wuOSZ
-         NUrOdWaWEI7bimWtJdgzWNeMNTvlAwPAKX3LGuQwd05hdQs6ZFchLgXdy23NIXijCs3f
-         QJl8tr2ChqHxyKjNoA4GElELx41G/r7f1v+x0VnSWC8yqVrEVc++CYiEzgi09KG8+LEz
-         ijVGrf2p58O0zlnG9SrnFY3e2ZKlJRMiHdBSVi3YkY4aCFMOO5urDH++CxZNtoRzVC/D
-         9unA==
+        bh=HoGPm76xpTav6Ks2RTq/0Y3DEn55ZrpT1/7v6aZPAlU=;
+        b=Ak6YX6dKMvm1cXBe/tNWqUdesxnPa46X2SPwenv6SUU5afClLKXd5nPMNycJnOOOTv
+         7kMMw+vDRTU8Zlz/z72s5xNPQJ1kJWPMxrYODsK914XOr5tTJyC73tyZW79sx7OUOFKQ
+         xPTQT7EqUnL6/blWg5aOyGjAy3fjQS37HdxZgEVBpfkaQHRWrWoN/AWBLMcGaSYCcGNi
+         RrjYX7fBG3nXlZieF7xEJZ7kbs1+BEeZM0E2UlLblSWRy8wsPTtxO8ghXoYC0XNLroMT
+         YobtgM95DFldFXM3nmHw/8xOyCp2SsNSmuL6/LHLZVgRMDAMhy9Q/0ZNIUmDcQRQ/GdA
+         f7hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696894670; x=1697499470;
+        d=1e100.net; s=20230601; t=1696919439; x=1697524239;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BJ3NuRqacCpEW1nyX/BHFQlSjBDPhQoWI16dGdayZ6Y=;
-        b=Mfu1pbaqyaSZnKIUk513rmtgzDHaFUCX4C8xJsycuiY66DPtbapTwer3qflyVI0gRm
-         zgi/wM+6yIQr5JWQjH8r3Wo7FLBFJg2PkwhiYwypuYeNT+SLXoSt93Oms3khfFdvamna
-         d9bzTgN6GbEDJjWivZM7yYuDuaDbKIPUgewz4xPTlmwamFEKyFUhV5WJzAT8MkMc9hg1
-         OvQXwLRbAJ4iWL0sjdffJ3gaaG+Ot0EWtVYpqTiRGDlIOZfJPO68LrPCSQk6yvkm0EFs
-         fEsje3zKB9PZMQt7GIuWq+XL3XFgFuU1j71LlH+e+wCsb/ZFeDhT27uV+uhrK7nOMmIS
-         OUtg==
-X-Gm-Message-State: AOJu0YyJqw5EqHSXahKAVjFf8A8T8FRsJ9jtHBshS35kHbymOHjHpuJ5
-	iw5RZ0gQ9abWqeqblhfPSHvr2cRdqmRkCc57EDABdEVk5ls=
-X-Google-Smtp-Source: AGHT+IEtazVmcfkQyt8Ujv4x9lJei75Ddxo1AmX3O5d5p0QFbUxrFvga4tyP9g7OsapD5XNNWVqt/KQWsWEfreCOMh8=
-X-Received: by 2002:a17:906:2921:b0:9b9:faee:4228 with SMTP id
- v1-20020a170906292100b009b9faee4228mr9303188ejd.56.1696894669617; Mon, 09 Oct
- 2023 16:37:49 -0700 (PDT)
+        bh=HoGPm76xpTav6Ks2RTq/0Y3DEn55ZrpT1/7v6aZPAlU=;
+        b=Zt0Qt4CFE1UYWqKWE6hxLLx3l8Slxr9e+PKk5bYE5zgDbaqqq2UwKwkloZ2BIyafwa
+         8EXrBj0Ymi4h8MfAnLzuWiRoCTywnYZmV7s4//7LcHtTpp0OLMNdpvldpTYEQ8MCsFkp
+         v7a0wYrGdC3FRsQNdi9x5uCNrMUhcjrK3VKBSMXbPlH5jIlRGD6SFNu3kt2znfuZHKna
+         6tLdfTsz+6PC+WNMKw6ODoRXBxEt1VBUZ/T6fmrgpG+LjW+wn6rOr5u363k6dSfG9YBV
+         SqJyUsfjrSjbae5MaDwmLc/ViXrSAGrzA7rDddfjtTUWRsjPCpSU4R7LuAJ9JTJo7ZT7
+         zX1Q==
+X-Gm-Message-State: AOJu0Yz1vtuBrh8FFFrR0Eci4OwK907yUxH8/XRvFN+X/6lyoargNjML
+	9LGmq/8M76hAuKuKX7hL3qOyZLB0Fo5vJiwfB8Z/soJMopw=
+X-Google-Smtp-Source: AGHT+IESXsNz6LKd2pVD0YQbiDE/uGGB4zEg0nktRuQ0kHXb63XY9r0opLQxS4mDHYs3W1/HyYxi4XD7Cz/V9L7x1hw=
+X-Received: by 2002:a17:906:7692:b0:9ae:6196:d80e with SMTP id
+ o18-20020a170906769200b009ae6196d80emr15853180ejm.18.1696919437883; Mon, 09
+ Oct 2023 23:30:37 -0700 (PDT)
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 9 Oct 2023 16:37:39 -0700
-Message-ID: <CAK5yBb9pkykYJRtAFyEWSBVkdYVCo8xs6jp1NJ5CZJRJ5f-n4A@mail.gmail.com>
-Subject: M+ & H bugs with Milestone Movements WW40
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000001009b0607511429"
+From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Date: Tue, 10 Oct 2023 12:00:26 +0530
+Message-ID: <CAPJWBniXx5Mawi-F4bDdqXscQM8svNC56QTnDQW18A9mefcoAA@mail.gmail.com>
+Subject: inode mismatch
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000004ebd1c060756d86e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 09 Oct 2023 23:37:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61295
+ <yocto@lists.yoctoproject.org>; Tue, 10 Oct 2023 06:30:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61296
 
---00000000000001009b0607511429
+--0000000000004ebd1c060756d86e
 Content-Type: text/plain; charset="UTF-8"
 
-All,
+Hi guys,
+I did bitbake image clean && bitbake image but it continuously due to inode
+mismatch
+The error i see
+Initialising tasks: 100%
+|######################################################################################################################################################################################################|
+Time: 0:00:19
+Sstate summary: Wanted 236 Found 217 Missed 19 Current 2867 (91% match, 99%
+complete)
+NOTE: Executing Tasks
+ERROR: lib32-libdrm-meson-git-r0 do_prepare_recipe_sysroot: Error executing
+a python function in exec_func_python() autogenerated:
 
-YP M+ or high bugs which moved to a new milestone in WW40 are listed below:
-Priority Bug ID Short Description Changer Owner Was Became
-Medium+ 3362 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3362> Improve
-dependency analysis tools randy.macleod@windriver.com
-richard.purdie@linuxfoundation.org 0.0.0 5.99
-4530 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4530> gconv data
-needs virtual providers randy.macleod@windriver.com
-bernhard.guillon@begu.org 0.0.0 5.0 M1
-10820 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=10820> devtool:
--d/--debug doesn't show bitbake debug output randy.macleod@windriver.com
-pidge@pidge.org 4.3 M3 4.3 M4
-11704 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=11704> Add other
-resource monitoring options to conf/local.conf STOPTASKS/ABORT
-randy.macleod@windriver.com randy.macleod@windriver.com 4.3 M3 5.0 M2
-13919 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13919> Multi
-License GPLv3 -lic cannot be installed into the image because it has
-incompatible license randy.macleod@windriver.com anilrath51@gmail.com 4.3 M3
-5.99
-14007 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14007> When qemu
-hangs, try to create a snapshot or core file. randy.macleod@windriver.com
-randy.macleod@windriver.com 4.3 M3 5.0 M1
-14157 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14157> git
-fetcher: consider using different git commands for repo packing,
-eliminating "git pack-redundant" randy.macleod@windriver.com
-newcomer@yoctoproject.org 4.3 M3 5.99
-14385 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14385> mode of
-sstate files created under pseudo randy.macleod@windriver.com
-pidge@pidge.org 4.3 M3 4.3 M4
-14443 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14443> valgrind
-none/tests/amd64/fb_test_amd64 ptest intermittent failure
-randy.macleod@windriver.com randy.macleod@windriver.com 4.3 M3 5.0 M1
-14693 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14693> cmake-native
-do_configure fails when rebuilding without sstate on NIS hosts
-randy.macleod@windriver.com randy.macleod@windriver.com 4.3 M3 5.0 M1
-14710 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14710> Improve
-cargo fetcher test cases randy.macleod@windriver.com
-randy.macleod@windriver.com 4.3 M3 5.0 M2
-14723 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14723> patches not
-applied by devtool when using overrides in SRC_URI
-randy.macleod@windriver.com pidge@pidge.org 4.3 M3 4.3 M4
-14837 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14837> devtool
-modify doesnt fetch all the crates on rust based recipes
-randy.macleod@windriver.com pidge@pidge.org 4.3 M3 4.3 M4
-15023 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15023> Cannot
-build SDK with api-documentation enabled randy.macleod@windriver.com
-pidge@pidge.org 4.3 M3 4.3 M4
-15061 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15061> Rust
-multilib sdks broken randy.macleod@windriver.com
-Deepthi.Hemraj@windriver.com 4.3 M3 4.3 M4
-15071 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15071> AB-INT
-PTEST: strace ptest intermittent failure in syscall-times-ms.gen
-randy.macleod@windriver.com randy.macleod@windriver.com 4.3 M3 4.3 M4
-15074 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15074> syncfs
-probe fails with newer compilers randy.macleod@windriver.com
-pidge@pidge.org 4.3
-M3 4.3 M4
-15145 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15145> module conf
-files missing when KERNEL_SPLIT_MODULES=0 randy.macleod@windriver.com
-george.thopas@gmail.com 4.3 M3 5.0 M1
-15172 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15172> tzdata
-recipe: build tzdata.zi zoneinfo file randy.macleod@windriver.com
-randy.macleod@windriver.com 4.3 M3 5.0 M1
+The stack trace of python calls that resulted in this exception/failure was:
+File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
+     0001:
+ *** 0002:extend_recipe_sysroot(d)
+     0003:
+File: '/Yocto/yocto_sdk/poky/meta/classes/staging.bbclass', lineno: 595,
+function: extend_recipe_sysroot
+     0591:    for f in fixme:
+     0592:        staging_processfixme(fixme[f], f, recipesysroot,
+recipesysrootnative, d)
+     0593:
+     0594:    for p in postinsts:
+ *** 0595:        subprocess.check_output(p, shell=True,
+stderr=subprocess.STDOUT)
+     0596:
+     0597:    for dep in manifests:
+     0598:        c = setscenedeps[dep][0]
+     0599:        os.symlink(manifests[dep], depdir + "/" + c + ".complete")
+File: '/usr/lib/python3.8/subprocess.py', lineno: 415, function:
+check_output
+     0411:        else:
+     0412:            empty = b''
+     0413:        kwargs['input'] = empty
+     0414:
+ *** 0415:    return run(*popenargs, stdout=PIPE, timeout=timeout,
+check=True,
+     0416:               **kwargs).stdout
+     0417:
+     0418:
+     0419:class CompletedProcess(object):
+File: '/usr/lib/python3.8/subprocess.py', lineno: 516, function: run
+     0512:            # We don't call process.wait() as .__exit__ does that
+for us.
+     0513:            raise
+     0514:        retcode = process.poll()
+     0515:        if check and retcode:
+ *** 0516:            raise CalledProcessError(retcode, process.args,
+     0517:                                     output=stdout, stderr=stderr)
+     0518:    return CompletedProcess(process.args, retcode, stdout, stderr)
+     0519:
+     0520:
+Exception: subprocess.CalledProcessError: Command
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/usr/bin/postinst-useradd-lib32-systemd'
+returned non-zero exit status 1.
 
-Thanks,
+Subprocess output:
+/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/recipe-sysroot-native/usr/sbin/useradd
+Running groupadd commands...
+NOTE: lib32-systemd: Performing groupadd with [--root
+/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot
+-r systemd-journal]
+abort()ing pseudo client by server request. See
+https://wiki.yoctoproject.org/wiki/Pseudo_Abort for more details on this.
+Check logfile:
+/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/pseudo//pseudo.log
+Aborted (core dumped)
+ERROR: lib32-systemd: groupadd command did not succeed.
 
+ERROR: Logfile of failure stored in:
+/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/temp/log.do_prepare_recipe_sysroot.870561
+ERROR: Task
+(virtual:multilib:lib32:/Yocto/yocto_sdk/meta-meson/recipes-graphics/wayland/libdrm-meson_git.bb:do_prepare_recipe_sysroot)
+failed with exit code '1'
 
 
-*Stephen K. Jolley*
 
-*Yocto Project Program Manager*
+*Here is the data of the entire log file.
+/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/pseudo//pseudo.log*
 
-(    *Cell*:                (208) 244-4460
+debug_logfile: fd 2
+pid 163883 [parent 163882], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 163882.
+db cleanup for server shutdown, 09:44:43.924
+memory-to-file backup complete, 09:44:43.924.
+db cleanup finished, 09:44:43.924
+debug_logfile: fd 2
+pid 384934 [parent 384929], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 384929.
+db cleanup for server shutdown, 09:54:34.912
+memory-to-file backup complete, 09:54:34.912.
+db cleanup finished, 09:54:34.912
+debug_logfile: fd 2
+pid 1804511 [parent 1804508], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 1804508.
+creat for '/tmp/sh-thd.X4MAa7' replaces existing 9438805
+['/tmp/sh-thd.qyh9bp'].
+creat for '/tmp/sh-thd.XAqy56' replaces existing 9438805
+['/tmp/sh-thd.X4MAa7'].
+creat for '/tmp/sh-thd.OU5Xfn' replaces existing 9438805
+['/tmp/sh-thd.XAqy56'].
+creat for '/tmp/sh-thd.EXpf9x' replaces existing 9438805
+['/tmp/sh-thd.OU5Xfn'].
+creat for '/tmp/sh-thd.XJ9pbB' replaces existing 9438805
+['/tmp/sh-thd.EXpf9x'].
+db cleanup for server shutdown, 10:47:41.903
+memory-to-file backup complete, 10:47:41.903.
+db cleanup finished, 10:47:41.903
+debug_logfile: fd 2
+pid 1960923 [parent 1960922], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 1960922.
+db cleanup for server shutdown, 10:52:14.678
+memory-to-file backup complete, 10:52:14.678.
+db cleanup finished, 10:52:14.678
+debug_logfile: fd 2
+pid 208165 [parent 208150], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 208150.
+db cleanup for server shutdown, 11:53:05.928
+memory-to-file backup complete, 11:53:05.928.
+db cleanup finished, 11:53:05.928
+debug_logfile: fd 2
+pid 578377 [parent 578376], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 578376.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12220416 in db, 12191052 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12220416 in db, 12191052 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12220416 in db, 12191052 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12220416 in db, 12191052 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12220420 in db, 12191051 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12220420 in db, 12191051 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12220420 in db, 12191051 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12220420 in db, 12191051 in request.
+db cleanup for server shutdown, 05:24:01.770
+memory-to-file backup complete, 05:24:01.771.
+db cleanup finished, 05:24:01.771
+debug_logfile: fd 2
+pid 683647 [parent 683643], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 683643.
+db cleanup for server shutdown, 05:30:42.019
+memory-to-file backup complete, 05:30:42.019.
+db cleanup finished, 05:30:42.019
+debug_logfile: fd 2
+pid 838632 [parent 838631], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 838631.
+path mismatch [1 link]: ino 12191056 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group.838630'.
+db cleanup for server shutdown, 05:40:03.237
+memory-to-file backup complete, 05:40:03.237.
+db cleanup finished, 05:40:03.237
+debug_logfile: fd 2
+pid 847431 [parent 847430], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 847430.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191054 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191054 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191054 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191054 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12191056 in db, 12190983 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12191056 in db, 12190983 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12191056 in db, 12190983 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+ino 12191056 in db, 12190983 in request.
+path mismatch [1 link]: ino 12191062 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group.847572'.
+db cleanup for server shutdown, 05:41:58.655
+memory-to-file backup complete, 05:41:58.655.
+db cleanup finished, 05:41:58.655
+debug_logfile: fd 2
+pid 858274 [parent 858272], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 858272.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 05:46:24.950
+memory-to-file backup complete, 05:46:24.951.
+db cleanup finished, 05:46:24.951
+debug_logfile: fd 2
+pid 860040 [parent 860039], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 860039.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 05:49:37.801
+memory-to-file backup complete, 05:49:37.801.
+db cleanup finished, 05:49:37.801
+debug_logfile: fd 2
+pid 861335 [parent 861334], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 861334.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 05:57:11.277
+memory-to-file backup complete, 05:57:11.277.
+db cleanup finished, 05:57:11.277
+debug_logfile: fd 2
+pid 862334 [parent 862333], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 862333.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 05:58:35.546
+memory-to-file backup complete, 05:58:35.546.
+db cleanup finished, 05:58:35.546
+debug_logfile: fd 2
+pid 865962 [parent 865961], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 865961.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 06:01:59.376
+memory-to-file backup complete, 06:01:59.376.
+db cleanup finished, 06:01:59.376
+debug_logfile: fd 2
+pid 866574 [parent 866573], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 866573.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 06:04:05.766
+memory-to-file backup complete, 06:04:05.766.
+db cleanup finished, 06:04:05.766
+debug_logfile: fd 2
+pid 867967 [parent 867966], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 867966.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 06:10:05.009
+memory-to-file backup complete, 06:10:05.011.
+db cleanup finished, 06:10:05.011
+debug_logfile: fd 2
+pid 868694 [parent 868693], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 868693.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 06:15:38.308
+memory-to-file backup complete, 06:15:38.309.
+db cleanup finished, 06:15:38.309
+debug_logfile: fd 2
+pid 869887 [parent 869886], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 869886.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 06:17:53.408
+memory-to-file backup complete, 06:17:53.409.
+db cleanup finished, 06:17:53.409
+debug_logfile: fd 2
+pid 870594 [parent 870593], doing new pid setup and server start
+Setup complete, sending SIGUSR1 to pid 870593.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+inode mismatch:
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group'
+ino 12191062 in db, 12191050 in request.
+path mismatch [1 link]: ino 12191064 db
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd'
+req
+'/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+'.
+db cleanup for server shutdown, 06:20:04.191
+memory-to-file backup complete, 06:20:04.191.
+db cleanup finished, 06:20:04.191
 
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
+How can i solve this issue
+Thanks
 
---00000000000001009b0607511429
+--0000000000004ebd1c060756d86e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>YP M+ or high bugs which moved to a new milestone in WW40 are li=
-sted below: <br></span><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
-tmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><table cellspac=
-ing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layout:=
-fixed;font-size:11pt;font-family:Calibri;width:0px;border-collapse:collapse=
-;border:none"><colgroup><col width=3D"63"><col width=3D"43"><col width=3D"5=
-43"><col width=3D"235"><col width=3D"242"><col width=3D"53"><col width=3D"5=
-3"></colgroup><tbody><tr style=3D"height:20px"><td style=3D"border:1px soli=
-d rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;backgrou=
-nd-color:rgb(219,229,241);font-weight:bold">Priority</td><td style=3D"borde=
-r-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0=
-) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;ba=
-ckground-color:rgb(219,229,241);font-weight:bold">Bug ID</td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m;background-color:rgb(219,229,241);font-weight:bold">Short Description</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Change=
-r</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0=
-,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold">O=
-wner</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
-px;vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold=
-">Was</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px =
-3px;vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bol=
-d">Became</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold">Medium+=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;=
-text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.=
-yoctoproject.org/show_bug.cgi?id=3D3362" target=3D"_blank">3362</a></td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom">Improve dependency analysis tools</td><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bo=
-ttom"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windrive=
-r.com</a></td><td style=3D"border-width:1px;border-style:solid;border-color=
-:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom"><a href=3D"mailto:richard.purdie@linux=
-foundation.org">richard.purdie@linuxfoundation.org</a></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom">0.0.0</td><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom;text-align:right">5.99</td></tr><tr =
-style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom;font-weight:bold"></td><td style=3D"border-width=
-:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0)=
- rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;fon=
-t-weight:bold;text-decoration-line:underline;text-align:right"><a class=3D"=
-gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?=
-id=3D4530" target=3D"_blank">4530</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">gconv data=
- needs virtual providers</td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy=
-.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"bo=
-rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
-rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
-bottom"><a href=3D"mailto:bernhard.guillon@begu.org">bernhard.guillon@begu.=
-org</a></td><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom">0.0.0</td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.0 M1<=
-/td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-sty=
-le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom;font-weight:bold"></td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom;font-weight:bold;text-decoration-line:underline;text-align:right"=
-><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/=
-show_bug.cgi?id=3D10820" target=3D"_blank">10820</a></td><td style=3D"borde=
-r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
-(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bot=
-tom">devtool: -d/--debug doesn&#39;t show bitbake debug output</td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod=
-@windriver.com</a></td><td style=3D"border-width:1px;border-style:solid;bor=
-der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:pidge@pidge=
-.org">pidge@pidge.org</a></td><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M3</td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom">4.3 M4</td></tr><tr style=3D"height:20px"><td style=3D"border=
--width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(=
-0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bo=
-ld"></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding=
-:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underl=
-ine;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzi=
-lla.yoctoproject.org/show_bug.cgi?id=3D11704" target=3D"_blank">11704</a></=
-td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,20=
-4,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
-px;vertical-align:bottom">Add other resource monitoring options to conf/loc=
-al.conf STOPTASKS/ABORT</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.=
-macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriv=
-er.com</a></td><td style=3D"border-width:1px;border-style:solid;border-colo=
-r:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;p=
-adding:0px 3px;vertical-align:bottom">4.3 M3</td><td style=3D"border-width:=
-1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
-rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.0=
- M2</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;font-weight:bold"></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom;font-weight:bold;text-decoration-line:underline;text-align:ri=
-ght"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.=
-org/show_bug.cgi?id=3D13919" target=3D"_blank">13919</a></td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom">Multi License GPLv3 -lic cannot be installed into the image becaus=
-e it has incompatible license</td><td style=3D"border-width:1px;border-styl=
-e:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204=
-);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:=
-randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"><a href=3D"mailto:anilrath51@gmail.com">anilrath51@gmail.com<=
-/a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom">4.3 M3</td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:=
-right">5.99</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1p=
-x;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold"></td>=
-<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
-04) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom;font-weight:bold;text-decoration-line:underline;text-=
-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yocto=
-project.org/show_bug.cgi?id=3D14007" target=3D"_blank">14007</a></td><td st=
-yle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rg=
-b(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertic=
-al-align:bottom">When qemu hangs, try to create a snapshot or core file.</t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">ran=
-dy.macleod@windriver.com</a></td><td style=3D"border-width:1px;border-style=
-:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204)=
-;overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:r=
-andy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom">4.3 M3</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom">5.0 M1</td></tr><tr style=
-=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom;font-weight:bold"></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-wei=
-ght:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmail=
--in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D=
-14157" target=3D"_blank">14157</a></td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">git fetcher: =
-consider using different git commands for repo packing, eliminating &quot;g=
-it pack-redundant&quot;</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.=
-macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom"><a href=3D"mailto:newcomer@yoctoproject.org">newcomer@yoctoproject.o=
-rg</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom">4.3 M3</td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-ali=
-gn:right">5.99</td></tr><tr style=3D"height:20px"><td style=3D"border-width=
-:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0)=
-;overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold"></=
-td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,20=
-4,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
-px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;te=
-xt-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yo=
-ctoproject.org/show_bug.cgi?id=3D14385" target=3D"_blank">14385</a></td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom">mode of sstate files created under pseudo</td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@=
-windriver.com</a></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:pidge@pidge.=
-org">pidge@pidge.org</a></td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M3</td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom">4.3 M4</td></tr><tr style=3D"height:20px"><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold"=
-></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline=
-;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla=
-.yoctoproject.org/show_bug.cgi?id=3D14443" target=3D"_blank">14443</a></td>=
-<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
-04) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom">valgrind none/tests/amd64/fb_test_amd64 ptest interm=
-ittent failure</td><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@w=
-indriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-width=
-:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0)=
- rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a=
- href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a=
-></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom">4.3 M3</td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.0 M1</td><=
-/tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;pad=
-ding:0px 3px;vertical-align:bottom;font-weight:bold"></td><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bo=
-ttom;font-weight:bold;text-decoration-line:underline;text-align:right"><a c=
-lass=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_=
-bug.cgi?id=3D14693" target=3D"_blank">14693</a></td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">=
-cmake-native do_configure fails when rebuilding without sstate on NIS hosts=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">=
-randy.macleod@windriver.com</a></td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailt=
-o:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom">4.3 M3</td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom">5.0 M1</td></tr><tr style=
-=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom;font-weight:bold"></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-wei=
-ght:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmail=
--in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D=
-14710" target=3D"_blank">14710</a></td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">Improve cargo=
- fetcher test cases</td><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macl=
-eod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-=
-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.c=
-om</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom">4.3 M3</td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.0 M2<=
-/td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-sty=
-le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom;font-weight:bold"></td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom;font-weight:bold;text-decoration-line:underline;text-align:right"=
-><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/=
-show_bug.cgi?id=3D14723" target=3D"_blank">14723</a></td><td style=3D"borde=
-r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
-(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bot=
-tom">patches not applied by devtool when using overrides in SRC_URI</td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.ma=
-cleod@windriver.com</a></td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:pidge@=
-pidge.org">pidge@pidge.org</a></td><td style=3D"border-width:1px;border-sty=
-le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,20=
-4);overflow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M3</td><td st=
-yle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rg=
-b(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertic=
-al-align:bottom">4.3 M4</td></tr><tr style=3D"height:20px"><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight=
-:bold"></td><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:und=
-erline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bu=
-gzilla.yoctoproject.org/show_bug.cgi?id=3D14837" target=3D"_blank">14837</a=
-></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom">devtool modify doesnt fetch all the crates on =
-rust based recipes</td><td style=3D"border-width:1px;border-style:solid;bor=
-der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macle=
-od@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-w=
-idth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,=
-0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-"><a href=3D"mailto:pidge@pidge.org">pidge@pidge.org</a></td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom">4.3 M3</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom">4.3 M4</td></tr><tr style=3D"hei=
-ght:20px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom;font-weight:bold"></td><td style=3D"border-width:1px;border-=
-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204=
-,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bol=
-d;text-decoration-line:underline;text-align:right"><a class=3D"gmail-in-cel=
-l-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15023" =
-target=3D"_blank">15023</a></td><td style=3D"border-width:1px;border-style:=
-solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);=
-overflow:hidden;padding:0px 3px;vertical-align:bottom">Cannot build SDK wit=
-h api-documentation enabled</td><td style=3D"border-width:1px;border-style:=
-solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);=
-overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:ra=
-ndy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom"><a href=3D"mailto:pidge@pidge.org">pidge@pidge.org</a></td><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom">4.3 M3</td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M4</td></tr><tr sty=
-le=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom;font-weight:bold"></td><td style=3D"border-width:1p=
-x;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rg=
-b(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-w=
-eight:bold;text-decoration-line:underline;text-align:right"><a class=3D"gma=
-il-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=
-=3D15061" target=3D"_blank">15061</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">Rust multi=
-lib sdks broken</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@=
-windriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-widt=
-h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
-) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><=
-a href=3D"mailto:Deepthi.Hemraj@windriver.com">Deepthi.Hemraj@windriver.com=
-</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding=
-:0px 3px;vertical-align:bottom">4.3 M3</td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M4</t=
-d></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style=
-:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
-padding:0px 3px;vertical-align:bottom;font-weight:bold"></td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom;font-weight:bold;text-decoration-line:underline;text-align:right"><=
-a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/sh=
-ow_bug.cgi?id=3D15071" target=3D"_blank">15071</a></td><td style=3D"border-=
-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m">AB-INT PTEST: strace ptest intermittent failure in syscall-times-ms.gen<=
-/td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,2=
-04,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px =
-3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">r=
-andy.macleod@windriver.com</a></td><td style=3D"border-width:1px;border-sty=
-le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,20=
-4);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto=
-:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom">4.3 M3</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom">4.3 M4</td></tr><tr style=
-=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom;font-weight:bold"></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-wei=
-ght:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmail=
--in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D=
-15074" target=3D"_blank">15074</a></td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">syncfs probe =
-fails with newer compilers</td><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:ran=
-dy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"=
-border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0=
-) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-alig=
-n:bottom"><a href=3D"mailto:pidge@pidge.org">pidge@pidge.org</a></td><td st=
-yle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rg=
-b(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertic=
-al-align:bottom">4.3 M3</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M4</td></tr><tr styl=
-e=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-c=
-olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom;font-weight:bold"></td><td style=3D"border-width:1px=
-;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb=
-(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-we=
-ight:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmai=
-l-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=
-=3D15145" target=3D"_blank">15145</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">module con=
-f files missing when KERNEL_SPLIT_MODULES=3D0</td><td style=3D"border-width=
-:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0)=
- rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a=
- href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a=
-></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom"><a href=3D"mailto:george.thopas@gmail.com">geo=
-rge.thopas@gmail.com</a></td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M3</td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom">5.0 M1</td></tr><tr style=3D"height:21px"><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold"=
-></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline=
-;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla=
-.yoctoproject.org/show_bug.cgi?id=3D15172" target=3D"_blank">15172</a></td>=
-<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
-04) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom">tzdata recipe: build tzdata.zi zoneinfo file</td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.ma=
-cleod@windriver.com</a></td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.=
-macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom">4.3 M3</td><td style=3D"border-width:1px;border-style:solid;border-c=
-olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom">5.0 M1</td></tr></tbody></table><p=
- class=3D"MsoNormal" style=3D"background-image:initial;background-position:=
-initial;background-repeat:initial"><span style=3D"font-size:12pt;font-famil=
-y:Arial,sans-serif">Thanks,<span></span></span></p>
+<div dir=3D"ltr">Hi guys,<br><div>I did bitbake image clean &amp;&amp; bitb=
+ake image but it continuously=C2=A0due to inode mismatch</div><div>The erro=
+r i see=C2=A0</div><div>Initialising tasks: 100% |#########################=
+###########################################################################=
+###########################################################################=
+#######################| Time: 0:00:19<br>Sstate summary: Wanted 236 Found =
+217 Missed 19 Current 2867 (91% match, 99% complete)<br>NOTE: Executing Tas=
+ks<br>ERROR: lib32-libdrm-meson-git-r0 do_prepare_recipe_sysroot: Error exe=
+cuting a python function in exec_func_python() autogenerated:<br><br>The st=
+ack trace of python calls that resulted in this exception/failure was:<br>F=
+ile: &#39;exec_func_python() autogenerated&#39;, lineno: 2, function: &lt;m=
+odule&gt;<br>=C2=A0 =C2=A0 =C2=A00001:<br>=C2=A0*** 0002:extend_recipe_sysr=
+oot(d)<br>=C2=A0 =C2=A0 =C2=A00003:<br>File: &#39;/Yocto/yocto_sdk/poky/met=
+a/classes/staging.bbclass&#39;, lineno: 595, function: extend_recipe_sysroo=
+t<br>=C2=A0 =C2=A0 =C2=A00591: =C2=A0 =C2=A0for f in fixme:<br>=C2=A0 =C2=
+=A0 =C2=A00592: =C2=A0 =C2=A0 =C2=A0 =C2=A0staging_processfixme(fixme[f], f=
+, recipesysroot, recipesysrootnative, d)<br>=C2=A0 =C2=A0 =C2=A00593:<br>=
+=C2=A0 =C2=A0 =C2=A00594: =C2=A0 =C2=A0for p in postinsts:<br>=C2=A0*** 059=
+5: =C2=A0 =C2=A0 =C2=A0 =C2=A0subprocess.check_output(p, shell=3DTrue, stde=
+rr=3Dsubprocess.STDOUT)<br>=C2=A0 =C2=A0 =C2=A00596:<br>=C2=A0 =C2=A0 =C2=
+=A00597: =C2=A0 =C2=A0for dep in manifests:<br>=C2=A0 =C2=A0 =C2=A00598: =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0c =3D setscenedeps[dep][0]<br>=C2=A0 =C2=A0 =C2=
+=A00599: =C2=A0 =C2=A0 =C2=A0 =C2=A0os.symlink(manifests[dep], depdir + &qu=
+ot;/&quot; + c + &quot;.complete&quot;)<br>File: &#39;/usr/lib/python3.8/su=
+bprocess.py&#39;, lineno: 415, function: check_output<br>=C2=A0 =C2=A0 =C2=
+=A00411: =C2=A0 =C2=A0 =C2=A0 =C2=A0else:<br>=C2=A0 =C2=A0 =C2=A00412: =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0empty =3D b&#39;&#39;<br>=C2=A0 =C2=
+=A0 =C2=A00413: =C2=A0 =C2=A0 =C2=A0 =C2=A0kwargs[&#39;input&#39;] =3D empt=
+y<br>=C2=A0 =C2=A0 =C2=A00414:<br>=C2=A0*** 0415: =C2=A0 =C2=A0return run(*=
+popenargs, stdout=3DPIPE, timeout=3Dtimeout, check=3DTrue,<br>=C2=A0 =C2=A0=
+ =C2=A00416: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 **kwargs).std=
+out<br>=C2=A0 =C2=A0 =C2=A00417:<br>=C2=A0 =C2=A0 =C2=A00418:<br>=C2=A0 =C2=
+=A0 =C2=A00419:class CompletedProcess(object):<br>File: &#39;/usr/lib/pytho=
+n3.8/subprocess.py&#39;, lineno: 516, function: run<br>=C2=A0 =C2=A0 =C2=A0=
+0512: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# We don&#39;t call process.=
+wait() as .__exit__ does that for us.<br>=C2=A0 =C2=A0 =C2=A00513: =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0raise<br>=C2=A0 =C2=A0 =C2=A00514: =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0retcode =3D process.poll()<br>=C2=A0 =C2=A0 =C2=A00515=
+: =C2=A0 =C2=A0 =C2=A0 =C2=A0if check and retcode:<br>=C2=A0*** 0516: =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0raise CalledProcessError(retcode, pro=
+cess.args,<br>=C2=A0 =C2=A0 =C2=A00517: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 output=3Dstdout, stderr=3Dstderr)<br>=C2=A0 =C2=A0 =C2=A0=
+0518: =C2=A0 =C2=A0return CompletedProcess(process.args, retcode, stdout, s=
+tderr)<br>=C2=A0 =C2=A0 =C2=A00519:<br>=C2=A0 =C2=A0 =C2=A00520:<br>Excepti=
+on: subprocess.CalledProcessError: Command &#39;/Yocto/yocto_sdk/tmp/work/a=
+rmv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-re=
+cipe-sysroot/usr/bin/postinst-useradd-lib32-systemd&#39; returned non-zero =
+exit status 1.<br><br>Subprocess output:<br>/Yocto/yocto_sdk/tmp/work/armv7=
+at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/recipe-sysro=
+ot-native/usr/sbin/useradd<br>Running groupadd commands...<br>NOTE: lib32-s=
+ystemd: Performing groupadd with [--root /Yocto/yocto_sdk/tmp/work/armv7at2=
+hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sy=
+sroot -r systemd-journal]<br>abort()ing pseudo client by server request. Se=
+e <a href=3D"https://wiki.yoctoproject.org/wiki/Pseudo_Abort">https://wiki.=
+yoctoproject.org/wiki/Pseudo_Abort</a> for more details on this.<br>Check l=
+ogfile: /Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi=
+/lib32-libdrm-meson/git-r0/pseudo//pseudo.log<br>Aborted (core dumped)<br>E=
+RROR: lib32-systemd: groupadd command did not succeed.<br><br>ERROR: Logfil=
+e of failure stored in: /Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib=
+32-linux-gnueabi/lib32-libdrm-meson/git-r0/temp/log.do_prepare_recipe_sysro=
+ot.870561<br>ERROR: Task (virtual:multilib:lib32:/Yocto/yocto_sdk/meta-meso=
+n/recipes-graphics/wayland/libdrm-meson_git.bb:do_prepare_recipe_sysroot) f=
+ailed with exit code &#39;1&#39;<br></div><div><br></div><div><br></div><di=
+v><br></div><div><b>Here is the data of the entire log file. /Yocto/yocto_s=
+dk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/gi=
+t-r0/pseudo//pseudo.log</b></div><div><br></div><div>debug_logfile: fd 2<br=
+>pid 163883 [parent 163882], doing new pid setup and server start<br>Setup =
+complete, sending SIGUSR1 to pid 163882.<br>db cleanup for server shutdown,=
+ 09:44:43.924<br>memory-to-file backup complete, 09:44:43.924.<br>db cleanu=
+p finished, 09:44:43.924<br>debug_logfile: fd 2<br>pid 384934 [parent 38492=
+9], doing new pid setup and server start<br>Setup complete, sending SIGUSR1=
+ to pid 384929.<br>db cleanup for server shutdown, 09:54:34.912<br>memory-t=
+o-file backup complete, 09:54:34.912.<br>db cleanup finished, 09:54:34.912<=
+br>debug_logfile: fd 2<br>pid 1804511 [parent 1804508], doing new pid setup=
+ and server start<br>Setup complete, sending SIGUSR1 to pid 1804508.<br>cre=
+at for &#39;/tmp/sh-thd.X4MAa7&#39; replaces existing 9438805 [&#39;/tmp/sh=
+-thd.qyh9bp&#39;].<br>creat for &#39;/tmp/sh-thd.XAqy56&#39; replaces exist=
+ing 9438805 [&#39;/tmp/sh-thd.X4MAa7&#39;].<br>creat for &#39;/tmp/sh-thd.O=
+U5Xfn&#39; replaces existing 9438805 [&#39;/tmp/sh-thd.XAqy56&#39;].<br>cre=
+at for &#39;/tmp/sh-thd.EXpf9x&#39; replaces existing 9438805 [&#39;/tmp/sh=
+-thd.OU5Xfn&#39;].<br>creat for &#39;/tmp/sh-thd.XJ9pbB&#39; replaces exist=
+ing 9438805 [&#39;/tmp/sh-thd.EXpf9x&#39;].<br>db cleanup for server shutdo=
+wn, 10:47:41.903<br>memory-to-file backup complete, 10:47:41.903.<br>db cle=
+anup finished, 10:47:41.903<br>debug_logfile: fd 2<br>pid 1960923 [parent 1=
+960922], doing new pid setup and server start<br>Setup complete, sending SI=
+GUSR1 to pid 1960922.<br>db cleanup for server shutdown, 10:52:14.678<br>me=
+mory-to-file backup complete, 10:52:14.678.<br>db cleanup finished, 10:52:1=
+4.678<br>debug_logfile: fd 2<br>pid 208165 [parent 208150], doing new pid s=
+etup and server start<br>Setup complete, sending SIGUSR1 to pid 208150.<br>=
+db cleanup for server shutdown, 11:53:05.928<br>memory-to-file backup compl=
+ete, 11:53:05.928.<br>db cleanup finished, 11:53:05.928<br>debug_logfile: f=
+d 2<br>pid 578377 [parent 578376], doing new pid setup and server start<br>=
+Setup complete, sending SIGUSR1 to pid 578376.<br>inode mismatch: &#39;/Yoc=
+to/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdr=
+m-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12220416 in db, 1219=
+1052 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2=
+hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sy=
+sroot/etc/group&#39; ino 12220416 in db, 12191052 in request.<br>inode mism=
+atch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnue=
+abi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12220=
+416 in db, 12191052 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tm=
+p/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/=
+lib32-recipe-sysroot/etc/group&#39; ino 12220416 in db, 12191052 in request=
+.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymll=
+ib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passw=
+d&#39; ino 12220420 in db, 12191051 in request.<br>inode mismatch: &#39;/Yo=
+cto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libd=
+rm-meson/git-r0/lib32-recipe-sysroot/etc/passwd&#39; ino 12220420 in db, 12=
+191051 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7a=
+t2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-=
+sysroot/etc/passwd&#39; ino 12220420 in db, 12191051 in request.<br>inode m=
+ismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-g=
+nueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd&#39; ino 1=
+2220420 in db, 12191051 in request.<br>db cleanup for server shutdown, 05:2=
+4:01.770<br>memory-to-file backup complete, 05:24:01.771.<br>db cleanup fin=
+ished, 05:24:01.771<br>debug_logfile: fd 2<br>pid 683647 [parent 683643], d=
+oing new pid setup and server start<br>Setup complete, sending SIGUSR1 to p=
+id 683643.<br>db cleanup for server shutdown, 05:30:42.019<br>memory-to-fil=
+e backup complete, 05:30:42.019.<br>db cleanup finished, 05:30:42.019<br>de=
+bug_logfile: fd 2<br>pid 838632 [parent 838631], doing new pid setup and se=
+rver start<br>Setup complete, sending SIGUSR1 to pid 838631.<br>path mismat=
+ch [1 link]: ino 12191056 db &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon=
+-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/e=
+tc/passwd&#39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib=
+32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group.8=
+38630&#39;.<br>db cleanup for server shutdown, 05:40:03.237<br>memory-to-fi=
+le backup complete, 05:40:03.237.<br>db cleanup finished, 05:40:03.237<br>d=
+ebug_logfile: fd 2<br>pid 847431 [parent 847430], doing new pid setup and s=
+erver start<br>Setup complete, sending SIGUSR1 to pid 847430.<br>inode mism=
+atch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnue=
+abi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191=
+054 in db, 12191050 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tm=
+p/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/=
+lib32-recipe-sysroot/etc/group&#39; ino 12191054 in db, 12191050 in request=
+.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymll=
+ib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group=
+&#39; ino 12191054 in db, 12191050 in request.<br>inode mismatch: &#39;/Yoc=
+to/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdr=
+m-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191054 in db, 1219=
+1050 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2=
+hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sy=
+sroot/etc/passwd&#39; ino 12191056 in db, 12190983 in request.<br>inode mis=
+match: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnu=
+eabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd&#39; ino 121=
+91056 in db, 12190983 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/=
+tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r=
+0/lib32-recipe-sysroot/etc/passwd&#39; ino 12191056 in db, 12190983 in requ=
+est.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-poky=
+mllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/pa=
+sswd&#39; ino 12191056 in db, 12190983 in request.<br>path mismatch [1 link=
+]: ino 12191062 db &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib=
+32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#=
+39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gn=
+ueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group.847572&#39;.=
+<br>db cleanup for server shutdown, 05:41:58.655<br>memory-to-file backup c=
+omplete, 05:41:58.655.<br>db cleanup finished, 05:41:58.655<br>debug_logfil=
+e: fd 2<br>pid 858274 [parent 858272], doing new pid setup and server start=
+<br>Setup complete, sending SIGUSR1 to pid 858272.<br>inode mismatch: &#39;=
+/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-l=
+ibdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191062 in db, =
+12191050 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv=
+7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recip=
+e-sysroot/etc/group&#39; ino 12191062 in db, 12191050 in request.<br>path m=
+ismatch [1 link]: ino 12191064 db &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf=
+-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysr=
+oot/etc/passwd&#39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-poky=
+mllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/gr=
+oup+&#39;.<br>db cleanup for server shutdown, 05:46:24.950<br>memory-to-fil=
+e backup complete, 05:46:24.951.<br>db cleanup finished, 05:46:24.951<br>de=
+bug_logfile: fd 2<br>pid 860040 [parent 860039], doing new pid setup and se=
+rver start<br>Setup complete, sending SIGUSR1 to pid 860039.<br>inode misma=
+tch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnuea=
+bi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 121910=
+62 in db, 12191050 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp=
+/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/l=
+ib32-recipe-sysroot/etc/group&#39; ino 12191062 in db, 12191050 in request.=
+<br>path mismatch [1 link]: ino 12191064 db &#39;/Yocto/yocto_sdk/tmp/work/=
+armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-r=
+ecipe-sysroot/etc/passwd&#39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf=
+-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysr=
+oot/etc/group+&#39;.<br>db cleanup for server shutdown, 05:49:37.801<br>mem=
+ory-to-file backup complete, 05:49:37.801.<br>db cleanup finished, 05:49:37=
+.801<br>debug_logfile: fd 2<br>pid 861335 [parent 861334], doing new pid se=
+tup and server start<br>Setup complete, sending SIGUSR1 to pid 861334.<br>i=
+node mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-l=
+inux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; =
+ino 12191062 in db, 12191050 in request.<br>inode mismatch: &#39;/Yocto/yoc=
+to_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meso=
+n/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191062 in db, 12191050 i=
+n request.<br>path mismatch [1 link]: ino 12191064 db &#39;/Yocto/yocto_sdk=
+/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-=
+r0/lib32-recipe-sysroot/etc/passwd&#39; req &#39;/Yocto/yocto_sdk/tmp/work/=
+armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-r=
+ecipe-sysroot/etc/group+&#39;.<br>db cleanup for server shutdown, 05:57:11.=
+277<br>memory-to-file backup complete, 05:57:11.277.<br>db cleanup finished=
+, 05:57:11.277<br>debug_logfile: fd 2<br>pid 862334 [parent 862333], doing =
+new pid setup and server start<br>Setup complete, sending SIGUSR1 to pid 86=
+2333.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pok=
+ymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/g=
+roup&#39; ino 12191062 in db, 12191050 in request.<br>inode mismatch: &#39;=
+/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-l=
+ibdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191062 in db, =
+12191050 in request.<br>path mismatch [1 link]: ino 12191064 db &#39;/Yocto=
+/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-=
+meson/git-r0/lib32-recipe-sysroot/etc/passwd&#39; req &#39;/Yocto/yocto_sdk=
+/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-=
+r0/lib32-recipe-sysroot/etc/group+&#39;.<br>db cleanup for server shutdown,=
+ 05:58:35.546<br>memory-to-file backup complete, 05:58:35.546.<br>db cleanu=
+p finished, 05:58:35.546<br>debug_logfile: fd 2<br>pid 865962 [parent 86596=
+1], doing new pid setup and server start<br>Setup complete, sending SIGUSR1=
+ to pid 865961.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2h=
+f-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sys=
+root/etc/group&#39; ino 12191062 in db, 12191050 in request.<br>inode misma=
+tch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnuea=
+bi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 121910=
+62 in db, 12191050 in request.<br>path mismatch [1 link]: ino 12191064 db &=
+#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib=
+32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd&#39; req &#39;/Yocto=
+/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-=
+meson/git-r0/lib32-recipe-sysroot/etc/group+&#39;.<br>db cleanup for server=
+ shutdown, 06:01:59.376<br>memory-to-file backup complete, 06:01:59.376.<br=
+>db cleanup finished, 06:01:59.376<br>debug_logfile: fd 2<br>pid 866574 [pa=
+rent 866573], doing new pid setup and server start<br>Setup complete, sendi=
+ng SIGUSR1 to pid 866573.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work=
+/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-=
+recipe-sysroot/etc/group&#39; ino 12191062 in db, 12191050 in request.<br>i=
+node mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-l=
+inux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; =
+ino 12191062 in db, 12191050 in request.<br>path mismatch [1 link]: ino 121=
+91064 db &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-g=
+nueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd&#39; req &=
+#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib=
+32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+&#39;.<br>db cleanup =
+for server shutdown, 06:04:05.766<br>memory-to-file backup complete, 06:04:=
+05.766.<br>db cleanup finished, 06:04:05.766<br>debug_logfile: fd 2<br>pid =
+867967 [parent 867966], doing new pid setup and server start<br>Setup compl=
+ete, sending SIGUSR1 to pid 867966.<br>inode mismatch: &#39;/Yocto/yocto_sd=
+k/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git=
+-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191062 in db, 12191050 in req=
+uest.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pok=
+ymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/g=
+roup&#39; ino 12191062 in db, 12191050 in request.<br>path mismatch [1 link=
+]: ino 12191064 db &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib=
+32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/passwd&=
+#39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-g=
+nueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+&#39;.<br>d=
+b cleanup for server shutdown, 06:10:05.009<br>memory-to-file backup comple=
+te, 06:10:05.011.<br>db cleanup finished, 06:10:05.011<br>debug_logfile: fd=
+ 2<br>pid 868694 [parent 868693], doing new pid setup and server start<br>S=
+etup complete, sending SIGUSR1 to pid 868693.<br>inode mismatch: &#39;/Yoct=
+o/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm=
+-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191062 in db, 12191=
+050 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2h=
+f-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sys=
+root/etc/group&#39; ino 12191062 in db, 12191050 in request.<br>path mismat=
+ch [1 link]: ino 12191064 db &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon=
+-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/e=
+tc/passwd&#39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib=
+32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group+&=
+#39;.<br>db cleanup for server shutdown, 06:15:38.308<br>memory-to-file bac=
+kup complete, 06:15:38.309.<br>db cleanup finished, 06:15:38.309<br>debug_l=
+ogfile: fd 2<br>pid 869887 [parent 869886], doing new pid setup and server =
+start<br>Setup complete, sending SIGUSR1 to pid 869886.<br>inode mismatch: =
+&#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/li=
+b32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191062 in=
+ db, 12191050 in request.<br>inode mismatch: &#39;/Yocto/yocto_sdk/tmp/work=
+/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-=
+recipe-sysroot/etc/group&#39; ino 12191062 in db, 12191050 in request.<br>p=
+ath mismatch [1 link]: ino 12191064 db &#39;/Yocto/yocto_sdk/tmp/work/armv7=
+at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe=
+-sysroot/etc/passwd&#39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon=
+-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/e=
+tc/group+&#39;.<br>db cleanup for server shutdown, 06:17:53.408<br>memory-t=
+o-file backup complete, 06:17:53.409.<br>db cleanup finished, 06:17:53.409<=
+br>debug_logfile: fd 2<br>pid 870594 [parent 870593], doing new pid setup a=
+nd server start<br>Setup complete, sending SIGUSR1 to pid 870593.<br>inode =
+mismatch: &#39;/Yocto/yocto_sdk/tmp/work/armv7at2hf-neon-pokymllib32-linux-=
+gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe-sysroot/etc/group&#39; ino 1=
+2191062 in db, 12191050 in request.<br>inode mismatch: &#39;/Yocto/yocto_sd=
+k/tmp/work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git=
+-r0/lib32-recipe-sysroot/etc/group&#39; ino 12191062 in db, 12191050 in req=
+uest.<br>path mismatch [1 link]: ino 12191064 db &#39;/Yocto/yocto_sdk/tmp/=
+work/armv7at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/li=
+b32-recipe-sysroot/etc/passwd&#39; req &#39;/Yocto/yocto_sdk/tmp/work/armv7=
+at2hf-neon-pokymllib32-linux-gnueabi/lib32-libdrm-meson/git-r0/lib32-recipe=
+-sysroot/etc/group+&#39;.<br>db cleanup for server shutdown, 06:20:04.191<b=
+r>memory-to-file backup complete, 06:20:04.191.<br>db cleanup finished, 06:=
+20:04.191<br></div><div><br></div><div>How can i solve this issue</div><div=
+>Thanks</div></div>
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
-
---00000000000001009b0607511429--
+--0000000000004ebd1c060756d86e--
 
