@@ -1,80 +1,80 @@
-Return-Path: <hassanchattarki@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7725CD98F5
-	for <webhook@archiver.kernel.org>; Wed, 11 Oct 2023 06:55:49 +0000 (UTC)
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
- by mx.groups.io with SMTP id smtpd.web11.11105.1697007346443179916
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EC362CD68E9
+	for <webhook@archiver.kernel.org>; Wed, 11 Oct 2023 08:38:19 +0000 (UTC)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+ by mx.groups.io with SMTP id smtpd.web10.12093.1697013496412092622
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Oct 2023 23:55:46 -0700
+ Wed, 11 Oct 2023 01:38:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=OH9I0z5u;
- spf=pass (domain: gmail.com, ip: 209.85.208.49, mailfrom: hassanchattarki@gmail.com)
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-53db360294fso1378986a12.3
-        for <yocto@lists.yoctoproject.org>; Tue, 10 Oct 2023 23:55:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=W7n+u0JA;
+ spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2c135cf2459so76915251fa.0
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 01:38:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697007344; x=1697612144; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wzC5mDhGrcAwFwbJNrOsVKNAmxZ5My3qxqkKDRs7dTo=;
-        b=OH9I0z5uNCvLujlLYycIufDlE4cXhT9bKX2ztYV17Dcu/0NW7gbYt1xw+sbSL/7UqW
-         oZVycAwB6hX5mziw1rVxr69cq3fTzsM/9rBX4LM97W/bkWqM6U2qlJmw23KofjyL3h6O
-         EOzzA238bDd1wqpM76hekJ86WpG2akr+3CYN+gYIHgQWZlWJcSaq+NV7Xt0Vh3CISAzb
-         SY3f5tBG92fjPDSb5dAdmy5C5qPINQGPjYqtcWGNZ3/SrtPUyJ5x2MyrQdK0YQJ5Mh3e
-         pYulGJhdueZsyRzUzMxJJX/b1LKeaGAIYnacjvzEdC4IBQLslMTSrrJtASCYjxbz9TmC
-         0ZnA==
+        d=gmail.com; s=20230601; t=1697013494; x=1697618294; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qbho5hip/sycKXQ6WK9zpMTNaLqaAp1DTVLdDYyxOko=;
+        b=W7n+u0JATqXbh3xz90e6o2ZIoBJrEtNfyzW36Ve5sy6CwYNemDIlZO2wXwDtcOH+cl
+         GTaYHuGo7vgllloGl2pIbRWSpm4CuAop3QeU1/kXGvtOkZ/KS3Cs5yCFDTbUeaYNCLKq
+         0j5z1sec1gixL2a1tFKY5vZh+RcssicLg6En9TX5gbIabiifrt/t+2/vVgoIIeHVPKV1
+         dw1+KI3urRqsKO98rXo9/EYILMABvImcPh8CP9Iy3NtYSByiqD7m32jFD7vVaQn851XE
+         eQPwIUD+4XyzzundY9BIIpFQ/0M1eylyWeDYtsNGMZ+lfopmhcmMkGADg8etc5u81/7v
+         8H6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697007344; x=1697612144;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wzC5mDhGrcAwFwbJNrOsVKNAmxZ5My3qxqkKDRs7dTo=;
-        b=KwdEhh14+HtAoa9N8btAFoDIsewZpUBJ4UJlwNl1NJL+ZeVfLzVfIDTzA8JaxatLS3
-         FD7pkes1mVaSjuDrmW/V07j3AhIZIM2HKfe56MU6QMtTCnyGi31R6mh7cnK7el2QkQoS
-         pP3fJsbtxvYMaU3kHYHSYXOyz55jSHHZAjRgoAl/YI8gVl6zM10tyYDIGBBWoA59Zf+K
-         SboCzTgtEWpVXBdUvoFtRxcNmgBFN0Qy+DG9JrpHQEt8MFlaL8qxTFupBDDpxC638DU/
-         cBsggGUi4ktPrbTFh2ykPeYRyhXOyzH728OEZiWVBhFyz7CMVZ/bF9sM1Jfr5GRKfNFj
-         PgQA==
-X-Gm-Message-State: AOJu0YyXIhUw1MrfiFoIqOTL8bVGLwAHLL1I16KymBdWX4RKeSO547j1
-	1ZdG2Xn/hV8Q8kpzEshfm5RaIjrEwtaDcsBaoEhostuk
-X-Google-Smtp-Source: AGHT+IFh8v+oEanqJITlethcmK0SJl5fkQHJvZ4AF9ysGUviT3B6it8dxipgT8XY5L8pQz9SlH2TuBipkFa+93g49CA=
-X-Received: by 2002:a17:906:3048:b0:9ae:37d9:803e with SMTP id
- d8-20020a170906304800b009ae37d9803emr16942877ejd.8.1697007344050; Tue, 10 Oct
- 2023 23:55:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697013494; x=1697618294;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Qbho5hip/sycKXQ6WK9zpMTNaLqaAp1DTVLdDYyxOko=;
+        b=s8J8Y95tBC5p9GyIyuO8YCxykGGUQLnUE3m10MQ4ew5ND9CDCXttXvv6BX5YXMz1X5
+         SwDDsu/rLXv1isCaRVZbDaiW7k9JrLG0wkgEtKaho53LPTwvLnR54LRXXCNnlD6nrzXk
+         LKShq9m41Ftyjas8wf4vOshC2Lh9l8gaOO2wryIeGnmNTEyqHoYnjSPcx4HKngIxfheC
+         q4JCXvShkBsyHyzzDNjfIAkSJR7lwUM4RwK90cs2KIif18G9B9kUBiYL3ydcU2Q1jH2Q
+         CkNbEnSghff5hkkl41KHqmmXjydhlPg4xPUnv9WTvfR2ihNnfM4Wsufc+y3EzJ/Fimgw
+         ofYQ==
+X-Gm-Message-State: AOJu0Yzf3jUmjsjJyWZGj+Ksf3pCtHUiTlV3Z2yGr3tj1T+fmueyz8Uu
+	KUDPvtzok5a1OnbznQsmxih2ahrHBzxHoQEv0sg=
+X-Google-Smtp-Source: AGHT+IHSfDXQSeIBD21Ws4fPTw8oU5yylMnp8sTrhrN7twOsXh/qJLwna0uXWcwy6ukD7iBPvi44AGFc3nlF1YTOmnc=
+X-Received: by 2002:a2e:9ad5:0:b0:2bf:f84e:c1ec with SMTP id
+ p21-20020a2e9ad5000000b002bff84ec1ecmr18510128ljj.13.1697013494260; Wed, 11
+ Oct 2023 01:38:14 -0700 (PDT)
 MIME-Version: 1.0
-From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Date: Wed, 11 Oct 2023 12:25:33 +0530
-Message-ID: <CAPJWBnirnU03K9oc6ubx9WKojbJ=U8tkk985X0LDkq5v8XNHSQ@mail.gmail.com>
-Subject: What laptops do you use for faster builds
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ec66f506076b4fb9"
+References: <20231002145446.3166108-1-fabien.thomas@smile.fr>
+ <178B43BD6DF66AF4.3256@lists.yoctoproject.org> <178B4DC19A31CF35.3256@lists.yoctoproject.org>
+ <a1f9a4b2816d9f048d9ef04d20a6a21b5663ecd7.camel@linuxfoundation.org> <CAFS+G_tey5-KWRgOSsTTUcBpSWXmbzYkX_BaF=gp_iUJ3Ag9cg@mail.gmail.com>
+In-Reply-To: <CAFS+G_tey5-KWRgOSsTTUcBpSWXmbzYkX_BaF=gp_iUJ3Ag9cg@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 11 Oct 2023 10:38:02 +0200
+Message-ID: <CANNYZj-Y2sXGN1vKswDn_QNd5ucCQaTHN8rovN_BbvhBuge=oA@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH v2] config.json: add
+ reproducible-openembedded build
+To: Fabien Thomas <fabien.thomas@smile.fr>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, yocto@lists.yoctoproject.org, 
+	Yoann Congal <yoann.congal@smile.fr>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 06:55:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61314
+ <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 08:38:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61316
 
---000000000000ec66f506076b4fb9
-Content-Type: text/plain; charset="UTF-8"
+On Fri, 6 Oct 2023 at 16:27, Fabien Thomas <fabien.thomas@smile.fr> wrote:
+> -> On the build step "Run cmds" for meta-oe, I see following error :
+> ERROR - Build directory
+> /home/pokybuild/yocto-worker/reproducible-meta-oe/build/build-st
+> already exists, aborting
+> Probably due to previous step failed. Do you think it is necessary to
+> add an rm -rf [...]/build-st in each step, before actually running
+> selftest ?
 
-Hi guys,
-I was curious to know the laptops/desktop/workstations you guys use for
-quick and faster builds. Can you list out the specs as well and maybe some
-tips and tricks for reducing build time.
+No, because this complicates investigating failures after they
+happened. The correct thing to do is to stop the whole job when a
+specific step fails. Letting subsequent steps fail due to the already
+existing failed directory is ok too.
 
-
-Thanks and regards,
-Hassan
-
---000000000000ec66f506076b4fb9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi guys,<br><div>I was curious to know the laptops/desktop=
-/workstations you guys use for quick and faster builds. Can you list out th=
-e specs as well and maybe some tips and tricks for reducing build time.</di=
-v><div><br></div><div><br></div><div>Thanks and regards,=C2=A0</div><div>Ha=
-ssan</div></div>
-
---000000000000ec66f506076b4fb9--
+Alex
 
