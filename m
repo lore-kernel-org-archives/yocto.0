@@ -2,79 +2,83 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EC362CD68E9
-	for <webhook@archiver.kernel.org>; Wed, 11 Oct 2023 08:38:19 +0000 (UTC)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
- by mx.groups.io with SMTP id smtpd.web10.12093.1697013496412092622
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31F73CD6E42
+	for <webhook@archiver.kernel.org>; Wed, 11 Oct 2023 08:47:40 +0000 (UTC)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web10.12190.1697014052426630104
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Oct 2023 01:38:16 -0700
+ Wed, 11 Oct 2023 01:47:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=W7n+u0JA;
- spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2c135cf2459so76915251fa.0
-        for <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 01:38:16 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=C5EMj+U4;
+ spf=pass (domain: gmail.com, ip: 209.85.208.175, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2c296e6543fso81463941fa.3
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 01:47:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697013494; x=1697618294; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1697014050; x=1697618850; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qbho5hip/sycKXQ6WK9zpMTNaLqaAp1DTVLdDYyxOko=;
-        b=W7n+u0JATqXbh3xz90e6o2ZIoBJrEtNfyzW36Ve5sy6CwYNemDIlZO2wXwDtcOH+cl
-         GTaYHuGo7vgllloGl2pIbRWSpm4CuAop3QeU1/kXGvtOkZ/KS3Cs5yCFDTbUeaYNCLKq
-         0j5z1sec1gixL2a1tFKY5vZh+RcssicLg6En9TX5gbIabiifrt/t+2/vVgoIIeHVPKV1
-         dw1+KI3urRqsKO98rXo9/EYILMABvImcPh8CP9Iy3NtYSByiqD7m32jFD7vVaQn851XE
-         eQPwIUD+4XyzzundY9BIIpFQ/0M1eylyWeDYtsNGMZ+lfopmhcmMkGADg8etc5u81/7v
-         8H6w==
+        bh=WTeZxKet2SRS8gWpdWCjBS5eMolTF8mA6M+q//4aZnA=;
+        b=C5EMj+U4Qy7l94vCKLbds518fTyhNA9gP4IzschKQEoecIfCkwn8euX7xT1ntxBL+Y
+         NJ15Ycx5xijv9MydjrQtLKEj6un90QYwW2kvSofcD6ki95rb6SgSTxVZ/yNdlss4BFg0
+         /PINcaTvOGYZuOA+8sqYHkq1ivsLil6wkEVJQidaQpkNWqly0aLw/q+dKILEUvzybTuJ
+         bvo1yUB9jkS1X7RjeGgF7l6sPCjvF3TJvL5XW/X6ImzSsi8kIZdTCU7geX7gp3mDry2a
+         wf26TnHBSIf0ZpK/36Ojp/Ls7/OJ+M3y/AgyXiSC6dnf2C7Wcn+ngUwI6zItZ93I8eEI
+         Zuew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697013494; x=1697618294;
+        d=1e100.net; s=20230601; t=1697014050; x=1697618850;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Qbho5hip/sycKXQ6WK9zpMTNaLqaAp1DTVLdDYyxOko=;
-        b=s8J8Y95tBC5p9GyIyuO8YCxykGGUQLnUE3m10MQ4ew5ND9CDCXttXvv6BX5YXMz1X5
-         SwDDsu/rLXv1isCaRVZbDaiW7k9JrLG0wkgEtKaho53LPTwvLnR54LRXXCNnlD6nrzXk
-         LKShq9m41Ftyjas8wf4vOshC2Lh9l8gaOO2wryIeGnmNTEyqHoYnjSPcx4HKngIxfheC
-         q4JCXvShkBsyHyzzDNjfIAkSJR7lwUM4RwK90cs2KIif18G9B9kUBiYL3ydcU2Q1jH2Q
-         CkNbEnSghff5hkkl41KHqmmXjydhlPg4xPUnv9WTvfR2ihNnfM4Wsufc+y3EzJ/Fimgw
-         ofYQ==
-X-Gm-Message-State: AOJu0Yzf3jUmjsjJyWZGj+Ksf3pCtHUiTlV3Z2yGr3tj1T+fmueyz8Uu
-	KUDPvtzok5a1OnbznQsmxih2ahrHBzxHoQEv0sg=
-X-Google-Smtp-Source: AGHT+IHSfDXQSeIBD21Ws4fPTw8oU5yylMnp8sTrhrN7twOsXh/qJLwna0uXWcwy6ukD7iBPvi44AGFc3nlF1YTOmnc=
-X-Received: by 2002:a2e:9ad5:0:b0:2bf:f84e:c1ec with SMTP id
- p21-20020a2e9ad5000000b002bff84ec1ecmr18510128ljj.13.1697013494260; Wed, 11
- Oct 2023 01:38:14 -0700 (PDT)
+        bh=WTeZxKet2SRS8gWpdWCjBS5eMolTF8mA6M+q//4aZnA=;
+        b=iGLy/6Gb5KxgP1ARPh990Sg2iRdUOArT+vsZchoN0A/E8mmZuYxpAdQTaBCb77yM2C
+         Hmi+WJO3abm8pPcicKg7zQYDSIxJH2dfBGTOHJerbnyvOfOpi+nmthCANpfQDanytkz5
+         6+z/kRYon9Ep02QRdCKdPwVJA8LYVnVXbBHH49kPEqTS1TeV12XAlLFJD9SGrDFgfcB2
+         yLbYARLtf08Ngx3nQbR+bQXI6SWhQaXenp4ylv/4HkdCjN/ECxexNsSjRFaJ1PAHKvRE
+         o8JeLLGN780wMzPX0x5CyjNoUW8HqYZCxF6YdmGyw0ZHxEJCn+t9mlvcKAI/oxjeAUnn
+         1bOA==
+X-Gm-Message-State: AOJu0YzsKO8sHX9gM5ntZHz1LOPgQWZZAXvNI1MQ6C/Sj9Dj5UD4ty1/
+	S9BDqTZGbIdn24FkYT3RMshucozz/n1XQf0l/Mg=
+X-Google-Smtp-Source: AGHT+IFhcdzavYAaFDTsE3C0kBcvyut0yGgoX3M8Z/nyiRcCeCHTTkvH8sxQcmqtG34dz21fyosM4GRDjVG4Zz6r3n0=
+X-Received: by 2002:a2e:b60d:0:b0:2c0:e7c:bf74 with SMTP id
+ r13-20020a2eb60d000000b002c00e7cbf74mr18989710ljn.12.1697014050281; Wed, 11
+ Oct 2023 01:47:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20231002145446.3166108-1-fabien.thomas@smile.fr>
- <178B43BD6DF66AF4.3256@lists.yoctoproject.org> <178B4DC19A31CF35.3256@lists.yoctoproject.org>
- <a1f9a4b2816d9f048d9ef04d20a6a21b5663ecd7.camel@linuxfoundation.org> <CAFS+G_tey5-KWRgOSsTTUcBpSWXmbzYkX_BaF=gp_iUJ3Ag9cg@mail.gmail.com>
-In-Reply-To: <CAFS+G_tey5-KWRgOSsTTUcBpSWXmbzYkX_BaF=gp_iUJ3Ag9cg@mail.gmail.com>
+References: <CAPJWBnirnU03K9oc6ubx9WKojbJ=U8tkk985X0LDkq5v8XNHSQ@mail.gmail.com>
+In-Reply-To: <CAPJWBnirnU03K9oc6ubx9WKojbJ=U8tkk985X0LDkq5v8XNHSQ@mail.gmail.com>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 11 Oct 2023 10:38:02 +0200
-Message-ID: <CANNYZj-Y2sXGN1vKswDn_QNd5ucCQaTHN8rovN_BbvhBuge=oA@mail.gmail.com>
-Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH v2] config.json: add
- reproducible-openembedded build
-To: Fabien Thomas <fabien.thomas@smile.fr>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, yocto@lists.yoctoproject.org, 
-	Yoann Congal <yoann.congal@smile.fr>
+Date: Wed, 11 Oct 2023 10:47:19 +0200
+Message-ID: <CANNYZj9Tf7SFf62dZ+Jy-xcZOkMh_mF7g7tg-2OU_BqLXYt-fg@mail.gmail.com>
+Subject: Re: [yocto] What laptops do you use for faster builds
+To: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 08:38:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61316
+ <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 08:47:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61317
 
-On Fri, 6 Oct 2023 at 16:27, Fabien Thomas <fabien.thomas@smile.fr> wrote:
-> -> On the build step "Run cmds" for meta-oe, I see following error :
-> ERROR - Build directory
-> /home/pokybuild/yocto-worker/reproducible-meta-oe/build/build-st
-> already exists, aborting
-> Probably due to previous step failed. Do you think it is necessary to
-> add an rm -rf [...]/build-st in each step, before actually running
-> selftest ?
+There's a whole presentation on the subject:
 
-No, because this complicates investigating failures after they
-happened. The correct thing to do is to stop the whole job when a
-specific step fails. Letting subsequent steps fail due to the already
-existing failed directory is ok too.
+https://www.youtube.com/watch?v=SvxZ3MtraSA
 
 Alex
+
+On Wed, 11 Oct 2023 at 08:55, MOHAMMED HASSAN <hassanchattarki@gmail.com> wrote:
+>
+> Hi guys,
+> I was curious to know the laptops/desktop/workstations you guys use for quick and faster builds. Can you list out the specs as well and maybe some tips and tricks for reducing build time.
+>
+>
+> Thanks and regards,
+> Hassan
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#61314): https://lists.yoctoproject.org/g/yocto/message/61314
+> Mute This Topic: https://lists.yoctoproject.org/mt/101891951/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
