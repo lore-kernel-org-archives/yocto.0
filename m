@@ -2,106 +2,106 @@ Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32964CD6E53
-	for <webhook@archiver.kernel.org>; Wed, 11 Oct 2023 09:19:20 +0000 (UTC)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
- by mx.groups.io with SMTP id smtpd.web10.12516.1697015953361319271
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 55D5ACD6E55
+	for <webhook@archiver.kernel.org>; Wed, 11 Oct 2023 09:26:20 +0000 (UTC)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+ by mx.groups.io with SMTP id smtpd.web11.12642.1697016374221753410
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Oct 2023 02:19:13 -0700
+ Wed, 11 Oct 2023 02:26:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=d3cKvbSV;
- spf=pass (domain: gmail.com, ip: 209.85.222.47, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-7ae1a075fc5so2864225241.3
-        for <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 02:19:13 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=GTNgfq9W;
+ spf=pass (domain: gmail.com, ip: 209.85.222.44, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-7b0767462adso1981779241.1
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 02:26:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697015952; x=1697620752; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1697016373; x=1697621173; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=i+7UMHt9RHkhtzONxm0NRUqGTXQnLGL2Wtj22483PE4=;
-        b=d3cKvbSVXhBlG0A16BsgBDsKWd7yaxjULn2jb0jS/ZqQswXyQVvvprtFwl3GmOa6yl
-         O/DdqvjYheVoJ5A9NQwem9EVUnGVSXQwe/pKDCqajIJ8ZORfHf31BP0kAIKaN0SY93vY
-         MkiDydpCNG75k1v0SgL1SfGZMPoKMB5sZR1or+mHmGFeW/z6xTd9BP7iv8JleeuOkh8Z
-         ymruT2xra/HjRqCtqvCaF01R1Gkx6pFlakgYXoyNOF4ZWBUcnhvnkc6tPcv15gAZlijJ
-         42krY5MLFnY9GgTorYG75C8OmTxhVVAqo8blEjYn/LGQUus7JDkkWRYwq4P14Vn6d5J9
-         nkDA==
+        bh=Tx5bjsMnVrhA+GHxGN7eIChwV4fCNDHOT2OpHXdsLzs=;
+        b=GTNgfq9W3UW56d4fmCDcY33XoTubqeD5F8zBd2qLfxjCI7oQ6N1FPVkMQTUwvno8do
+         7IBFLt6PJZ8OgfYFpVcL1n6tL23OjQ/JtMKG3CPXMUYNW/A56utqW/997wK+h9TwRnMl
+         TTAkPB0rZger1arxcw71UBwr9CGnfnxOJ7BZuxlMT5ja59kqQmw2plg3wcOUAQuPCbxY
+         KsI4psFcepJSeSJsDa0XKW+uu4UGyl6CL8lCaNnnKL0ohAEHTGUgo2yfsYAnQSWrhPcy
+         pCV6nWNcuInKUXium0hcLW9JErn08b3aIicFHTfjEHASGfkJHJ6NO6p5DEXZItRw93Gc
+         o/KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697015952; x=1697620752;
+        d=1e100.net; s=20230601; t=1697016373; x=1697621173;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=i+7UMHt9RHkhtzONxm0NRUqGTXQnLGL2Wtj22483PE4=;
-        b=DRLhjojMYM/vEVYfKanR7WOkrD+dj9M5lYYRum/1DlZeSW1qpPqjQe2/Kg5X0qM4UM
-         LweklLcjzTO1idjYt20jEXU3IYpmmtQkWJsupKsC8fJwK2bEAvKRHZcFWH52NODv8sAk
-         N0KurG6t6W9TsWY+/JeJo1lGOWgdlpr1tSROz7cpUjaeZQiMCf0gQ6Xm8bUefhpa8OTG
-         FZxQBRUP5az8ojt0UftudcFkocJynXqziFVpYsSXB/P9abiN7p/aYd+6eV5XUFlYVg3B
-         KkljmLVhiQozPoZBPfRaV3ShcrK2hSNBO9H54O7JNu4Tr4o6UN6XfVuYguXwexVm9Z+r
-         JrMw==
-X-Gm-Message-State: AOJu0YyiDk27XO3TKtfummPewO6YIZacMR13Dbpu6IqDqtoNZjDLJU7y
-	tgZiuDh43Kf0Qdd/faB4JvbTsvQhegTJswy2aLw=
-X-Google-Smtp-Source: AGHT+IFR+bmFalOLtgSd5HLgpxDm/NF0GdX+oD4Ia4RRHZ7Qlvq9IhXMpqRtcViWUe+L/cwKpttMg/zfUTk1JkFl16s=
-X-Received: by 2002:a67:ec52:0:b0:450:f3aa:f405 with SMTP id
- z18-20020a67ec52000000b00450f3aaf405mr19851183vso.17.1697015952380; Wed, 11
- Oct 2023 02:19:12 -0700 (PDT)
+        bh=Tx5bjsMnVrhA+GHxGN7eIChwV4fCNDHOT2OpHXdsLzs=;
+        b=FFc559QDkwjVvsteaTladHxLhm3wDkAHixzEk5sGjJprsF4szByE5My3dx4XTSGh78
+         ngkFLvG6vhRq/idyiByB1Cpy+y3CRqtnklTzfN+qecNXK5huF4SXXpVx0s/h7GxvKHZ3
+         weUamxbbzJbLso08u6PwXaae8N85qlhY4JaipR982gUqnlJnZ1FN2Hg360nJblpKb/l8
+         PtRWVoyDW2j0RUrl/AmoeRIJwKVoiHP4SjGjZoJBwy8ng9S7W8PpOmA9GCjO4Fg2Horz
+         g49q+Er57J7S8zImj2ZFz56P+yHuLqQCS8QTb0pwKACnM/JYUvNfk3hw9O5L1KbHK3RC
+         Ysxw==
+X-Gm-Message-State: AOJu0Yx279QpUbiHDTPjZtPWQyks8w2Y+Gi4OCPA3NfUljzgSg8dP0V2
+	S2RICwAZyogPSo7JOdpMEejhhDBVd9HRnWkIIeM=
+X-Google-Smtp-Source: AGHT+IE/sjhEzP7pEElc0mw1vBA1chSHPqx13Oywt+0Lxi7QCGARXlBMSoeO6LaKtos6DEU/IhQ/1jimQZ08nhGuJYg=
+X-Received: by 2002:a67:e3c2:0:b0:452:94b8:2fe9 with SMTP id
+ k2-20020a67e3c2000000b0045294b82fe9mr13598087vsm.21.1697016373094; Wed, 11
+ Oct 2023 02:26:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <wTIm.1696959342097874087.njEw@lists.yoctoproject.org>
-In-Reply-To: <wTIm.1696959342097874087.njEw@lists.yoctoproject.org>
+References: <20231002145446.3166108-1-fabien.thomas@smile.fr>
+ <178B43BD6DF66AF4.3256@lists.yoctoproject.org> <178B4DC19A31CF35.3256@lists.yoctoproject.org>
+ <a1f9a4b2816d9f048d9ef04d20a6a21b5663ecd7.camel@linuxfoundation.org>
+ <CAFS+G_tey5-KWRgOSsTTUcBpSWXmbzYkX_BaF=gp_iUJ3Ag9cg@mail.gmail.com> <CANNYZj-Y2sXGN1vKswDn_QNd5ucCQaTHN8rovN_BbvhBuge=oA@mail.gmail.com>
+In-Reply-To: <CANNYZj-Y2sXGN1vKswDn_QNd5ucCQaTHN8rovN_BbvhBuge=oA@mail.gmail.com>
 From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Wed, 11 Oct 2023 10:19:01 +0100
-Message-ID: <CANPvuRk+Yh9VDURJA2wN5EfZdsQbtRe=rfZe+vDZPVd_Yi1=yQ@mail.gmail.com>
-Subject: Re: [yocto] Re-building out-of-tree modules after kernel change
-To: jamesbrowning137@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000051ed106076d51e0"
+Date: Wed, 11 Oct 2023 10:26:02 +0100
+Message-ID: <CANPvuRnzXnLqyXjtQkjNmQO7HtbjTkAdrF+-ebGcpRoYmUwm7w@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH v2] config.json: add
+ reproducible-openembedded build
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Fabien Thomas <fabien.thomas@smile.fr>, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>, yocto@lists.yoctoproject.org, 
+	Yoann Congal <yoann.congal@smile.fr>
+Content-Type: multipart/alternative; boundary="00000000000018b15706076d6a88"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 09:19:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61319
+ <yocto@lists.yoctoproject.org>; Wed, 11 Oct 2023 09:26:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61320
 
---000000000000051ed106076d51e0
+--00000000000018b15706076d6a88
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi James
+Alexander Kanavin <alex.kanavin@gmail.com> escreveu no dia quarta,
+11/10/2023 =C3=A0(s) 09:38:
 
-There is an open bug for this, please take a look.
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14885
+> On Fri, 6 Oct 2023 at 16:27, Fabien Thomas <fabien.thomas@smile.fr> wrote=
+:
+> > -> On the build step "Run cmds" for meta-oe, I see following error :
+> > ERROR - Build directory
+> > /home/pokybuild/yocto-worker/reproducible-meta-oe/build/build-st
+> > already exists, aborting
+> > Probably due to previous step failed. Do you think it is necessary to
+> > add an rm -rf [...]/build-st in each step, before actually running
+> > selftest ?
+>
+> No, because this complicates investigating failures after they
+> happened. The correct thing to do is to stop the whole job when a
+> specific step fails. Letting subsequent steps fail due to the already
+> existing failed directory is ok too.
+>
+
+Other options can be using oe-selftest --newbuilddir
+[...]/build-st-${LAYER} and build each layer in your own directory.
+I have used this --newbuilddir in my reproducible build and it works.
 
 Jose
 
 
-<jamesbrowning137@gmail.com> escreveu no dia quarta, 11/10/2023 =C3=A0(s) 0=
-9:35:
-
-> Hello,
 >
-> I'm having an issue with out-of-tree modules not automatically re-buildin=
-g
-> after a change to the kernel config. It seems like there may be an issue
-> with the dependency chain for make-mod-scripts and modules.bbclass:
+> Alex
 >
-> How I expect it to behave:
-> Doing *bitbake -c cleanall make-mod-scripts* should cause all out-of-tree
-> modules to re-compile the next time they are built, since module.bbclass
-> has  *do_configure[depends] +=3D "make-mod-scripts:do_compile"*
->
-> How it actually behaves:
-> After doing a *bitbake -c cleanall make-mod-scripts && bitbake
-> hello-world *(where hello-world is my out of tree module), the
-> hello-world module is not re-compiled. During the build of hello-world, i=
-t
-> re-builds make-mod-scripts, but none of the tasks for hello-world are
-> re-run. This is the case for all of my out-of-tree modules.
->
-> I am using Yocto 4.0 (kirkstone).
->
-> Thank you for your help!
-> James
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#61315):
-> https://lists.yoctoproject.org/g/yocto/message/61315
-> Mute This Topic: https://lists.yoctoproject.org/mt/101892820/5052612
+> View/Reply Online (#61316):
+> https://lists.yoctoproject.org/g/yocto/message/61316
+> Mute This Topic: https://lists.yoctoproject.org/mt/101713575/5052612
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
 > quaresma.jose@gmail.com]
@@ -114,41 +114,49 @@ Best regards,
 
 Jos=C3=A9 Quaresma
 
---000000000000051ed106076d51e0
+--00000000000018b15706076d6a88
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi James<br><br>There is an open bug for this, please take=
- a look.<br><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D=
-14885">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14885</a><br><br=
->Jose<div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">&lt;<a href=3D"mailto:jamesbrowning137@gmail.com">james=
-browning137@gmail.com</a>&gt; escreveu no dia quarta, 11/10/2023 =C3=A0(s) =
-09:35:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello,<br=
-><br>I&#39;m having an issue with out-of-tree modules not automatically re-=
-building after a change to the kernel config. It seems like there may be an=
- issue with the dependency chain for make-mod-scripts and modules.bbclass:<=
-br><br>How I expect it to behave:<br>Doing <strong>bitbake -c cleanall make=
--mod-scripts</strong> should cause all out-of-tree modules to re-compile th=
-e next time they are built, since module.bbclass has=C2=A0 <strong>do_confi=
-gure[depends] +=3D &quot;make-mod-scripts:do_compile&quot;</strong><br><br>=
-How it actually behaves:<br>After doing a <strong>bitbake -c cleanall make-=
-mod-scripts &amp;&amp; bitbake hello-world </strong>(where hello-world is m=
-y out of tree module), the hello-world module is not re-compiled. During th=
-e build of hello-world, it re-builds make-mod-scripts, but none of the task=
-s for hello-world are re-run. This is the case for all of my out-of-tree mo=
-dules.<br><br>I am using Yocto 4.0 (kirkstone).<br><br>Thank you for your h=
-elp!<br>James
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">Alexander Kanavin &lt;<a href=3D"mail=
+to:alex.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt; escreveu no dia q=
+uarta, 11/10/2023 =C3=A0(s) 09:38:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex">On Fri, 6 Oct 2023 at 16:27, Fabien Thomas &lt;<a href=
+=3D"mailto:fabien.thomas@smile.fr" target=3D"_blank">fabien.thomas@smile.fr=
+</a>&gt; wrote:<br>
+&gt; -&gt; On the build step &quot;Run cmds&quot; for meta-oe, I see follow=
+ing error :<br>
+&gt; ERROR - Build directory<br>
+&gt; /home/pokybuild/yocto-worker/reproducible-meta-oe/build/build-st<br>
+&gt; already exists, aborting<br>
+&gt; Probably due to previous step failed. Do you think it is necessary to<=
+br>
+&gt; add an rm -rf [...]/build-st in each step, before actually running<br>
+&gt; selftest ?<br>
+<br>
+No, because this complicates investigating failures after they<br>
+happened. The correct thing to do is to stop the whole job when a<br>
+specific step fails. Letting subsequent steps fail due to the already<br>
+existing failed directory is ok too.<br></blockquote><div><br></div><div>Ot=
+her options can be using=C2=A0oe-selftest --newbuilddir [...]/build-st-${LA=
+YER} and build each=C2=A0layer=C2=A0in your own directory.</div><div>I have=
+ used this --newbuilddir in my reproducible build and it works.</div><div><=
+br>Jose</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">
+<br>
+Alex<br>
 <br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 Links: You receive all messages sent to this group.<br>
-View/Reply Online (#61315): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/61315" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/61315</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/101892820/505=
+View/Reply Online (#61316): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/61316" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/61316</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/101713575/505=
 2612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/101892820/5052612</a><br>
+t/101713575/5052612</a><br>
 Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
 =3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
 Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
@@ -159,7 +167,8 @@ sma.jose@gmail.com</a>]<br>
 <br>
 </blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
 gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div>
+iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
+div>
 
---000000000000051ed106076d51e0--
+--00000000000018b15706076d6a88--
 
