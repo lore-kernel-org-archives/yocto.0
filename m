@@ -1,105 +1,183 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <fabien.thomas@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF34ACDB482
-	for <webhook@archiver.kernel.org>; Fri, 13 Oct 2023 14:23:10 +0000 (UTC)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
- by mx.groups.io with SMTP id smtpd.web10.39732.1697206989486559136
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DECDACDB47E
+	for <webhook@archiver.kernel.org>; Fri, 13 Oct 2023 14:34:20 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web11.40003.1697207656020356979
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Oct 2023 07:23:09 -0700
+ Fri, 13 Oct 2023 07:34:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=SSOgLQq7;
- spf=pass (domain: gmail.com, ip: 209.85.128.181, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5a7ad24b3aaso26676857b3.2
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Oct 2023 07:23:09 -0700 (PDT)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=YTV0DdMe;
+ spf=pass (domain: smile.fr, ip: 209.85.128.41, mailfrom: fabien.thomas@smile.fr)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-405361bb9f7so22809235e9.2
+        for <yocto@lists.yoctoproject.org>; Fri, 13 Oct 2023 07:34:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697206988; x=1697811788; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:autocrypt:subject:from:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8rIAkEbmLg7HMUjr6sXW2z9vopBuEdkWQ7/TS/v1Hnk=;
-        b=SSOgLQq7emsctBqFpdNBgaKmS38NMJl8d8Mi4X/ultyg8Wy0btPr6noJhF3SYZPsEv
-         VfInG/cQlDgA/CZA+cSW9lM5RTdhp4Wylo4fOFVxI4tUNpvTK094c60KYzRuUeV6GwqF
-         Npb4OO/3DzQkoR6vH6w653Khw73zbWhVgPP/YfNojkELw9bW2wq1xkfOJ8SzUoqMYXe6
-         bNdONiF9/b6bcfFJtct43SqMOhpI/9Q4SUWj1IzF0Fd2lU4ZsHH4fGnDGJePUm4K0/jn
-         AZ0T992OA364/yazLl50w131ij5Eaql48oWa4anpUr4ueSbGQ7qP0S1GHk17Kf9I7vnk
-         scZA==
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1697207654; x=1697812454; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cx7Od+Rf1i/OGNkGXL5VkZ21uTnNu/VDArpBGdax7xk=;
+        b=YTV0DdMevNZbdG/00Rv5I4xKrwnJU7EBYogK1N3EDsKc4qCJFcPcw8k2UF2BDmPUd/
+         V0JJQ5JNmoRoTdaWFbGdsY3H/lk+MiHUt01rsM4u0NglD4AD994iMES238TRhf2HQwPI
+         ubIf1V3OaZWBi1kXc4unGXXIuFcKOg93gJWfCWZnPJDrd8LU8RFZ9vBLcEjbT+Be/DT+
+         IerUQ24DamMy75oaCzJKaS/5lwSRgIlfCFC6iiWYkUtE8DEC+B6R7Wi8Q/Uln1Iq0M8+
+         9fU5YVxmi4r49wiX67nG2aiH3YwXwzV6igDsPvq5bDIi4Pi9J1ENhr6PNwSv823A5KOC
+         oshQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697206988; x=1697811788;
-        h=content-transfer-encoding:autocrypt:subject:from:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8rIAkEbmLg7HMUjr6sXW2z9vopBuEdkWQ7/TS/v1Hnk=;
-        b=eOjmaqeBOMppD+2HnTROdI2G+XCRkx/5PvsUHpln320ME6A2pKqgkucfGOBnZHKpEL
-         WhKD9oTWPgV7MxKQV0QeGrrEwKYmwm5v7qTBQ2Z1Wq6Rc62yYkHbJQImrdtyOAnJG5dn
-         6QMq7fiTz9dEh9D4e3JKShVPN+7coCIMkMqT/NGU99UvMOuRncMoj4sb9yuJ+rbntujr
-         PZ84CK4J5UuVbci29bqPyZhL2tyWafvJj8g3/RBXFBijAALV9Dd8HvELyHr2SKeG/A25
-         rw5/psl9KULaL5gE5kssmmklTYm7y24ltovCTXsZcylymW0qeMZxO58uAYpzmd01/HNl
-         frkA==
-X-Gm-Message-State: AOJu0YxUlzRZDMOs/eKOgQrXC6YCIHSnj3pBBGqGBU5wr8eVLBzddAU6
-	TEPEsISVzqZH/rjv/HD5HUDDos9STKI=
-X-Google-Smtp-Source: AGHT+IHWtUx1mgCMZGEITwCnagZCWW0NYeMCtRctT1ALw3pL3cW7ZTuB5qeQvzOwvyY16gEdQXbeMQ==
-X-Received: by 2002:a0d:d802:0:b0:5a7:be29:19ac with SMTP id a2-20020a0dd802000000b005a7be2919acmr11717964ywe.12.1697206988476;
-        Fri, 13 Oct 2023 07:23:08 -0700 (PDT)
-Received: from ?IPV6:2600:1700:9190:ba10:a824:c2ea:76ae:b9e0? ([2600:1700:9190:ba10:a824:c2ea:76ae:b9e0])
-        by smtp.gmail.com with ESMTPSA id d5-20020a81d345000000b0059c8387f673sm712585ywl.51.2023.10.13.07.23.08
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Oct 2023 07:23:08 -0700 (PDT)
-Message-ID: <95856e62-9ecc-470b-8dd4-866cec72e2a7@gmail.com>
-Date: Fri, 13 Oct 2023 10:23:07 -0400
+        d=1e100.net; s=20230601; t=1697207654; x=1697812454;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cx7Od+Rf1i/OGNkGXL5VkZ21uTnNu/VDArpBGdax7xk=;
+        b=v/zF6Xp8KjxsuUz9PpkBGpUgnSzIHzNzia8OIODDOB4aHyXv5MxXolDTTSl86gbV+q
+         HDxbXuTSwEWBqy5CLAZP1mZP4Pui2BbMbsm0VYzr7hG40QWWZ+u05yh7NcHJUZB7ZxiG
+         nKYbyhicEL6qsxmpAfrXZpWHrw51UKC5C9X20wiakqDHlX+HHmgdvo2cCdDCgLu3Z4iT
+         4dBUHUdfei+EbSelXeXdkdxMC6piLmeyA3lbzFxtCs2H/dzbpHqjF12IGobxn3Glg5Ti
+         B7t2y4K4NB0cS3X15/ZY8GcVyVF/y5hQXDglj/Vta42/g6YcVrU7lh/ZGlnZDqcHUwkj
+         XIzg==
+X-Gm-Message-State: AOJu0YxR+K8rdy5c/xX/KjUcqsfDElQPnYrrCUERuCd/V48nIalpjEU7
+	2ccHXnyXhMocK9z80EmW1lzQF7o3ioy0r71h8CE=
+X-Google-Smtp-Source: AGHT+IH/xFLPuaZj1Xy5p3Uv2Lyt/kwTvi83vVU7yjXIgtr9y37eiNDYu1pDeW+xf8J4L0uVmw/mFA==
+X-Received: by 2002:a05:600c:600a:b0:406:eef6:3540 with SMTP id az10-20020a05600c600a00b00406eef63540mr19403017wmb.0.1697207653878;
+        Fri, 13 Oct 2023 07:34:13 -0700 (PDT)
+Received: from p-nan-fatho.home (2a01cb0584747e0021d4f13fbc3604e3.ipv6.abo.wanadoo.fr. [2a01:cb05:8474:7e00:21d4:f13f:bc36:4e3])
+        by smtp.gmail.com with ESMTPSA id fk14-20020a05600c0cce00b004077227bcdesm284243wmb.26.2023.10.13.07.34.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Oct 2023 07:34:13 -0700 (PDT)
+From: Fabien Thomas <fabien.thomas@smile.fr>
+To: yocto@lists.yoctoproject.org
+Cc: Fabien Thomas <fabien.thomas@smile.fr>,
+	Yoann Congal <yoann.congal@smile.fr>
+Subject: [yocto-autobuilder-helper][PATCH] config.json : Fix repro-meta-oe layer dependency
+Date: Fri, 13 Oct 2023 16:34:02 +0200
+Message-Id: <20231013143402.2955811-1-fabien.thomas@smile.fr>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "yocto@yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: akuster808 <akuster808@gmail.com>
-Subject: FYI: New CVSS 4.0 version to be released end of month.
-Autocrypt: addr=akuster808@gmail.com; keydata=
- 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
- ApZ86eOP
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 13 Oct 2023 14:23:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61334
+ <yocto@lists.yoctoproject.org>; Fri, 13 Oct 2023 14:34:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61335
 
-Not sure who may be aware of these changes coming. See 
-https://www.first.org/cvss/v4-0/ for more info.
+Fix meta-filesystem build issue due to hidden dependencies (not set by
+LAYERDEPENDS) smbnetfs(meta-filesystem) depends on
+samba(meta-networking) that depends on python3-dnspython (meta-python)
 
-BR,
-Armin
+Create new build-st dir for each layer to avoid chain of
+failure between steps
+
+Signed-off-by: Fabien Thomas <fabien.thomas@smile.fr>
+Reviewed-by: Yoann Congal <yoann.congal@smile.fr>
+---
+ config.json | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+diff --git a/config.json b/config.json
+index 3acb710..c01a453 100644
+--- a/config.json
++++ b/config.json
+@@ -303,15 +303,17 @@
+             ],
+             "step1" : {
+                 "shortname" : "Repro meta-oe/meta-filesystems",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-filesystems/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-filesystems/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-filesystems -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
++                    "${BUILDDIR}/../meta-openembedded/meta-python",
+                     "${BUILDDIR}/../meta-openembedded/meta-networking",
+                     "${BUILDDIR}/../meta-openembedded/meta-filesystems"
+                 ],
+                 "extravars" : [
+                     "EXCLUDE_FROM_WORLD:layer-openembedded-layer = '1'",
+                     "EXCLUDE_FROM_WORLD:layer-networking-layer = '1'",
++                    "EXCLUDE_FROM_WORLD:layer-meta-python = '1'",
+                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-filesystems'",
+                     "USERADD_GID_TABLES:append = ' files/static-group-meta-networking'",
+                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-networking'",
+@@ -321,7 +323,7 @@
+             },
+             "step2" : {
+                 "shortname" : "Repro meta-oe/meta-gnome",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-gnome/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-gnome/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-gnome -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+@@ -341,14 +343,14 @@
+             },
+             "step3" : {
+                 "shortname" : "Repro meta-oe/meta-initramfs",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-initramfs/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-initramfs/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-initramfs -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-initramfs"
+                 ]
+             },
+             "step4" : {
+                 "shortname" : "Repro meta-oe/meta-multimedia",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-multimedia/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-multimedia/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-multimedia -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+@@ -365,7 +367,7 @@
+             },
+             "step5" : {
+                 "shortname" : "Repro meta-oe/meta-networking",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-networking/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-networking/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-networking -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-networking"
+@@ -380,7 +382,7 @@
+             },
+             "step6" : {
+                 "shortname" : "Repro meta-oe/meta-oe",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-oe/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-oe/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-oe -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe"
+                 ],
+@@ -391,7 +393,7 @@
+             },
+             "step7" : {
+                 "shortname" : "Repro meta-oe/meta-perl",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-perl/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-perl/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-perl -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-perl"
+@@ -406,7 +408,7 @@
+             },
+             "step8" : {
+                 "shortname" : "Repro meta-oe/meta-python",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-python/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-python/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-python -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python"
+@@ -417,7 +419,7 @@
+             },
+             "step9" : {
+                 "shortname" : "Repro meta-oe/meta-webserver",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-webserver/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-webserver/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-webserver -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-webserver"
+@@ -431,7 +433,7 @@
+             },
+             "step10" : {
+                 "shortname" : "Repro meta-oe/meta-xfce",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-xfce/ DISPLAY=:1 oe-selftest -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-xfce/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-xfce -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+-- 
+2.34.1
+
 
