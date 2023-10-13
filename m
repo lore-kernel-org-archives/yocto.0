@@ -1,207 +1,96 @@
-Return-Path: <ouyangxuan10@163.com>
+Return-Path: <rpjday@crashcourse.ca>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FE87CDB474
-	for <webhook@archiver.kernel.org>; Fri, 13 Oct 2023 01:33:26 +0000 (UTC)
-Received: from m1329.mail.163.com (m1329.mail.163.com [220.181.13.29])
- by mx.groups.io with SMTP id smtpd.web10.29527.1697160798045730991
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62011CDB47E
+	for <webhook@archiver.kernel.org>; Fri, 13 Oct 2023 07:09:58 +0000 (UTC)
+Received: from cpanel10.indieserve.net (cpanel10.indieserve.net [199.212.143.9])
+ by mx.groups.io with SMTP id smtpd.web10.33313.1697180992854866844
  for <yocto@lists.yoctoproject.org>;
- Thu, 12 Oct 2023 18:33:19 -0700
+ Fri, 13 Oct 2023 00:09:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@163.com header.s=s110527 header.b=apod8+PQ;
- spf=pass (domain: 163.com, ip: 220.181.13.29, mailfrom: ouyangxuan10@163.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=wdYX8Vh/cODtCzY3b+Oglh6+CMSO4ptxIC7nSnVSxFw=; b=a
-	pod8+PQ/G0t5CGMfa0OaLycXfejP6o5pDhCJfqHYnYSCFz5vEQMzzwAUUEwzGwZ7
-	X0wnTFBavZsD1FmK+3RWd0fx4xM2bWZM5r9KCTzgqVNYhvdPYIKXnThvcwZy96To
-	7sHYYvKf/kXw5JLXJ3Fkzt7t12q03zo4KNut0VrBR0=
-Received: from ouyangxuan10$163.com ( [106.120.127.5] ) by
- ajax-webmail-wmsvr29 (Coremail) ; Fri, 13 Oct 2023 09:33:13 +0800 (CST)
-X-Originating-IP: [106.120.127.5]
-Date: Fri, 13 Oct 2023 09:33:13 +0800 (CST)
-From: www  <ouyangxuan10@163.com>
-To: yocto@yoctoproject.org, bitbake-devel@lists.openembedded.org, 
-	yocto@lists.yoctoproject.org
-Subject: [yocto]: How to configure a file in yocto for the whole project or
- for a certain layer?
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
- Copyright (c) 2002-2023 www.mailtech.cn 163com
-X-NTES-SC: AL_QuySBf2dv08i5SGYbekXk0YVg+Y4UcWyvfQk3o5WOZE0linGxT4uQHpKI13kz8OTFgK+tR24awhU9cNZc65RX41YkxCU0QKXZ74odED34S/9
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_13107_1561225477.1697160793110"
+ dkim=pass header.i=@crashcourse.ca header.s=default header.b=uIZoe9sr;
+ spf=pass (domain: crashcourse.ca, ip: 199.212.143.9, mailfrom: rpjday@crashcourse.ca)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
+	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=vWNxvi+KekCgec6INFhtLE3RhsKXM6M5szgdhG7OW4o=; b=uIZoe9srLEVW8jrBu3+IVaWB8j
+	wTEOTdKn98JZLo2c79PsAfFD/evHkD7UjE8tjtHFYHUFndC7gvXIw3PJSLH6y5o9QdUjxPN2yZJ8i
+	ij8jTd2e0oq2/xkDwFIMRS4r0iaiHfwt2MjYEB+1g+MaWDIIob7U1BySk7XDIIOjVznjBKSAyhPAZ
+	iQ1OXrPV+TAaQzLT3ZncGb5Hg6AoGU9pu+gQUvA5efDsKib/ocNVzGjj5SE0hSx+FiqRNCV6n0ba6
+	cqWP71g7Pcsu/Mgj8JEn16iyQRoJxyLfuWu2bCtKqeBByHftkA1bA6AoZFCBx7gilCkpzrvocixKj
+	/dccVCSA==;
+Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.102.5]:53492 helo=fedora)
+	by cpanel10.indieserve.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.1)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1qrCIu-00Al50-1k;
+	Fri, 13 Oct 2023 03:09:50 -0400
+Date: Fri, 13 Oct 2023 03:09:37 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Josef Holzmayr <jester@theyoctojester.info>
+cc: Yocto discussion list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] are there any plans for a RISC-V reference board?
+In-Reply-To: <CAEt6NwqCT9nkdXrg8RRthVHke1adMpbzp4Nhv93XkY8A8aMFbw@mail.gmail.com>
+Message-ID: <943d42b1-8628-e247-77b1-692f5ada7d5f@crashcourse.ca>
+References: <63138cbc-ccf3-d4c7-fcc7-5f6e87744e74@crashcourse.ca> <CAEt6NwqCT9nkdXrg8RRthVHke1adMpbzp4Nhv93XkY8A8aMFbw@mail.gmail.com>
 MIME-Version: 1.0
-Message-ID: <73f4209e.de1.18b26aa8c16.Coremail.ouyangxuan10@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: HcGowAD3X25ZnihlQTwLAA--.1813W
-X-CM-SenderInfo: prx1t0pj0xt0irq6il2tof0z/xtbBFgAI2lgi7Jh4IgADsT
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Type: multipart/mixed; boundary="8323328-541123633-1697180991=:867647"
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel10.indieserve.net
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel10.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel10.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 13 Oct 2023 01:33:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61326
+ <yocto@lists.yoctoproject.org>; Fri, 13 Oct 2023 07:09:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61327
 
-------=_Part_13107_1561225477.1697160793110
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: base64
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-RGVhciBBbGyjrAoKCiAgICBZb2N0byBpcyBhIHZlcnkgZ29vZCBwcm9qZWN0IHRvIG1hbmFnZSBw
-cm9qZWN0cyBpbiBhIG1vZHVsYXIsIGxheWVyZWQgYW5kIG92ZXJsYXkgd2F5LiAKSXQncyBlYXN5
-IHRvIGJyaW5nIFlvY3RvIGludG8gZW1iZWRkZWQgcHJvamVjdHMgYW5kIG1hbmFnZSBkaWZmZXJl
-bnQgcHJvamVjdHMuIAogICAgSG93ZXZlciwgd2l0aCBtb3JlIGFuZCBtb3JlIG1vZHVsZXMgYWRk
-ZWQgdG8gdGhlaXIgZW1iZWRkZWQgcHJvamVjdHMsIG1vcmUgYW5kIG1vcmUgaGFyZHdhcmUgCnBs
-YXRmb3JtcyBhcmUgc3VwcG9ydGVkLCBtb3JlIGFuZCBtb3JlIGN1c3RvbWVycyBhcmUgZmFjaW5n
-LCBhbmQgdGhlIG5lZWRzIG9mIGN1c3RvbWl6YXRpb24gYXJlIHZhcmllZC4gClRvbyBtdWNoIGRp
-c3BlcnNpb24gb2YgY29uZmlndXJhdGlvbiBoYXMgYWxzbyBiZWNvbWUgYSBoZWFkYWNoZSBmb3Ig
-cHJvamVjdCBlbmdpbmVlcnMuCgoKeW9jdG8gdmVyc2lvbjogMi43ICh3YXJyaW9yKQoKCiAgICAg
-MS4gSG93IGNhbiBJIGN1c3RvbWl6ZSBhIGNvbmZpZ3VyYXRpb24gZmlsZSBmb3IgYSBzcGVjaWZp
-YyBsYXllciBvciBhbiBlbnRpcmUgcHJvamVjdD8gCiAgICAgICAgVGhpcyBjb25maWd1cmF0aW9u
-IGZpbGUgZGVmaW5lcyBhIG51bWJlciBvZiB2YXJpYWJsZXMsIHdoaWNoIGFyZSB1c2VkIGJ5IGRp
-ZmZlcmVudCBiYiBvciBiYmFwcGVuZCBmaWxlcyBpbiB0aGUgY2hhbmdlIG9yIHRocm91Z2hvdXQg
-dGhlIHByb2plY3QuCiAgICAgICAgIEl0IGlzIHJlcXVpcmVkIHRoYXQgd2hlbiBhIHZhcmlhYmxl
-IGluIHRoZSBmaWxlIGNoYW5nZXMsIHRoZSBiYiB1c2luZyB0aGF0IHZhcmlhYmxlIGNhbiBiZSBy
-ZWNvbXBpbGVkLgoKCiAgICAgMi4gSSBhZGRlZCBhIGZpbGUgdW5kZXIgY29uZiwgbmFtZWQgdmFs
-dWUuaW5jLCBhLmJiIGFuZCBiLmJiIGJvdGggY29uZmlndXJhdGlvbiBmaWxlcyBjb250YWluIHRo
-aXMgY29uZmlndXJhdGlvbiBmaWxlIChzdWNoIGFzOiByZXF1aXJlIHBhdGgvY29uZi92YWx1ZS5p
-bmMpLCAKICAgICAgICAgYW5kIHRoZW4gYm90aCBiYiBmaWxlcyBnZXQgdGhlIHZhbHVlIG9mIGEg
-dmFyaWFibGUsIGFuZCB0aGVuIG1vZGlmeSB0aGUgY29tcGlsYXRpb24gcGFyYW1ldGVycyBhY2Nv
-cmRpbmcgdG8gdGhlIHZhbHVlIG9mIHRoaXMgdmFyaWFibGUuIAogICAgICAgIChzdWNoIGFzOkVY
-VFJBX09FQ01BS0UgKz0gIiR7QGJiLnV0aWxzLmNvbnRhaW5zKCdDUFVfQ09VTlQnLCAnMScsICct
-RFNFTlNPUl9DUFVNX0VOQUJMRT1PTicsICctRFNFTlNPUl9DUFVNX0VOQUJMRT1PRkYnLCBkKX0i
-ICkKICAgICAgICBGaW5hbGx5LCBtb2RpZnkgdGhlIHZhbHVlIG9mIHRoZSB2YXJpYWJsZSBDUFVf
-Q09VTlQoY2hhbmdlIHRoZSB2YWx1ZSB0byAiMCIgb3IgdG8gIjEiKSBpbiB2YWx1ZS5pbmMgdG8g
-cmVjb21waWxlIHRoZSBlbnRpcmUgcHJvamVjdC4gCiAgICAgICAgSXQgd2FzIGZvdW5kIHRoYXQg
-dGhpcyB2YXJpYWJsZSB3YXMgbW9kaWZpZWQgMTAgdGltZXMgYW5kIHJlY29tcGlsZWQgMTAgdGlt
-ZXMsIG9mIHdoaWNoIDQgdGltZXMgdGhlIHR3byByZWxhdGVkIHBhY2thZ2VzIHdlcmUgbm90IHJl
-Y29tcGlsZWQuIAogICAgICAgIFdoeSBpcyB0aGF0PyBIb3cgdG8gc29sdmUgdGhpcyBwcm9ibGVt
-PwoKCiAgICAzLiBNb2RpZnkgdGhlIGRldGVjdGlvbiBydWxlcyBvZiB0aGUgQkIgZmlsZS4gKHNl
-dCBCQl9IQVNIQ0hFQ0tfRlVOQ1RJT049IKGwMaGxIGluIGxvY2FsLmNvbmYsIGFuZCBzZXQgQkJf
-SEFTSEJBU0VfV0hJVEVMSVNUID0gInBhdGgvY29uZi92YWx1ZS5pbmMiIGluIGxheWVyLmNvbmYp
-CiAgICAgICAgT3RoZXIgbW9kaWZpY2F0aW9ucyBhbmQgdGVzdGluZyBwcm9jZWR1cmVzIGFyZSBj
-b25zaXN0ZW50IHdpdGggcG9pbnQgMi4KICAgICAgICBJdCB0dXJuZWQgb3V0IHRoYXQgYWZ0ZXIg
-cmUtbW9kaWZ5aW5nIGFuZCBjb21waWxpbmcgMTAgdGltZXMsIHRoZSB0d28gQkIgcGFja2FnZXMg
-d2VyZSBzdGlsbCBub3QgY29tcGlsZWQgc2V2ZXJhbCB0aW1lcy4KICAgICAgICBXaHkgaXMgdGhh
-dD8gSG93IHRvIHNvbHZlIHRoaXMgcHJvYmxlbT8KICAgICAgIElzIGl0IHRoZSB3cm9uZyB3YXkg
-dG8gdXNlIGl0PyBXaGF0IGRvZXMgdGhlIHJpZ2h0IGFwcHJvYWNoIGxvb2sgbGlrZT8KCgogICAg
-NC4gSXMgdGhlcmUgYW55IGdvb2Qgd2F5IHRvIHNvbHZlIHRoZSBwcm9ibGVtIG1lbnRpb25lZCBh
-dCB0aGUgYmVnaW5uaW5nPyBPciB3aGVyZSB0byBzdGFydCBzb2x2aW5nIHRoaXMgcHJvYmxlbT8K
-CgpJIGxvb2sgZm9yd2FyZCB0byBoZWFyaW5nIGZyb20geW91LgpCeXJvbiBXYW5nCgo=
-------=_Part_13107_1561225477.1697160793110
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: base64
+--8323328-541123633-1697180991=:867647
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
-Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXYgc3R5bGU9Im1hcmdpbjogMHB4OyB3b3JkLWJyZWFrOiBi
-cmVhay13b3JkICFpbXBvcnRhbnQ7Ij5EZWFyIEFsbKOsPC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2lu
-OiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPjxiciBzdHlsZT0id29y
-ZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2lu
-OiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPiZuYnNwOyAmbmJzcDsm
-bmJzcDtZb2N0byBpcyBhIHZlcnkgZ29vZCBwcm9qZWN0IHRvIG1hbmFnZSBwcm9qZWN0cyBpbiBh
-IG1vZHVsYXIsIGxheWVyZWQgYW5kIG92ZXJsYXkgd2F5LiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9
-Im1hcmdpbjogMHB4OyB3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij5JdCdzIGVh
-c3kgdG8gYnJpbmcgWW9jdG8gaW50byBlbWJlZGRlZCBwcm9qZWN0cyBhbmQgbWFuYWdlIGRpZmZl
-cmVudCBwcm9qZWN0cy4mbmJzcDs8L2Rpdj48ZGl2IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1i
-cmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+Jm5ic3A7ICZuYnNwOyBIb3dldmVyLCB3aXRo
-IG1vcmUgYW5kIG1vcmUgbW9kdWxlcyBhZGRlZCB0byB0aGVpciBlbWJlZGRlZCBwcm9qZWN0cywg
-bW9yZSBhbmQgbW9yZSBoYXJkd2FyZSZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9Im1hcmdpbjogMHB4
-OyB3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij5wbGF0Zm9ybXMgYXJlIHN1cHBv
-cnRlZCwgbW9yZSBhbmQgbW9yZSBjdXN0b21lcnMgYXJlIGZhY2luZywgYW5kIHRoZSBuZWVkcyBv
-ZiBjdXN0b21pemF0aW9uIGFyZSB2YXJpZWQuJm5ic3A7PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2lu
-OiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPlRvbyBtdWNoIGRpc3Bl
-cnNpb24gb2YgY29uZmlndXJhdGlvbiBoYXMgYWxzbyBiZWNvbWUgYSBoZWFkYWNoZSBmb3IgcHJv
-amVjdCBlbmdpbmVlcnMuPC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6
-IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPjxiciBzdHlsZT0id29yZC1icmVhazogYnJlYWstd29y
-ZCAhaW1wb3J0YW50OyI+PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6
-IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPnlvY3RvIHZlcnNpb246IDIuNyAod2Fycmlvcik8L2Rp
-dj48ZGl2IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0
-YW50OyI+PGJyIHN0eWxlPSJ3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij48L2Rp
-dj48ZGl2IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0
-YW50OyI+Jm5ic3A7ICZuYnNwOyAmbmJzcDsxLiZuYnNwO0hvdyBjYW4gSSBjdXN0b21pemUgYSBj
-b25maWd1cmF0aW9uIGZpbGUgZm9yIGEgc3BlY2lmaWMgbGF5ZXIgb3IgYW4gZW50aXJlIHByb2pl
-Y3Q/Jm5ic3A7PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFr
-LXdvcmQgIWltcG9ydGFudDsiPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyBUaGlzIGNvbmZp
-Z3VyYXRpb24gZmlsZSBkZWZpbmVzIGEgbnVtYmVyIG9mIHZhcmlhYmxlcywgd2hpY2ggYXJlIHVz
-ZWQgYnkgZGlmZmVyZW50IGJiIG9yIGJiYXBwZW5kIGZpbGVzIGluIHRoZSBjaGFuZ2Ugb3IgdGhy
-b3VnaG91dCB0aGUgcHJvamVjdC48L2Rpdj48ZGl2IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1i
-cmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwO0l0IGlzIHJlcXVpcmVkIHRoYXQgd2hlbiBhIHZhcmlhYmxlIGluIHRoZSBmaWxlIGNo
-YW5nZXMsIHRoZSBiYiB1c2luZyB0aGF0IHZhcmlhYmxlIGNhbiBiZSByZWNvbXBpbGVkLjwvZGl2
-PjxkaXYgc3R5bGU9Im1hcmdpbjogMHB4OyB3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRh
-bnQ7Ij48YnIgc3R5bGU9IndvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPjwvZGl2
-PjxkaXYgc3R5bGU9Im1hcmdpbjogMHB4OyB3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRh
-bnQ7Ij4mbmJzcDsgJm5ic3A7ICZuYnNwOzIuJm5ic3A7SSBhZGRlZCBhIGZpbGUgdW5kZXIgY29u
-ZiwgbmFtZWQgdmFsdWUuaW5jLCBhLmJiIGFuZCBiLmJiIGJvdGggY29uZmlndXJhdGlvbiBmaWxl
-cyBjb250YWluIHRoaXMgY29uZmlndXJhdGlvbiBmaWxlIChzdWNoIGFzOiZuYnNwOzxpIHN0eWxl
-PSJ3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij48YiBzdHlsZT0id29yZC1icmVh
-azogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+cmVxdWlyZSBwYXRoL2NvbmYvdmFsdWUuaW5jPC9i
-PjwvaT4pLCZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9Im1hcmdpbjogMHB4OyB3b3JkLWJyZWFrOiBi
-cmVhay13b3JkICFpbXBvcnRhbnQ7Ij4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-YW5kIHRoZW4gYm90aCBiYiBmaWxlcyBnZXQgdGhlIHZhbHVlIG9mIGEgdmFyaWFibGUsIGFuZCB0
-aGVuIG1vZGlmeSB0aGUgY29tcGlsYXRpb24gcGFyYW1ldGVycyBhY2NvcmRpbmcgdG8gdGhlIHZh
-bHVlIG9mIHRoaXMgdmFyaWFibGUuJm5ic3A7PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7
-IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPiZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAoc3VjaCBhczo8aSBzdHlsZT0id29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0
-YW50OyI+PGIgc3R5bGU9IndvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPkVYVFJB
-X09FQ01BS0UgKz0gIiR7QGJiLnV0aWxzLmNvbnRhaW5zKCdDUFVfQ09VTlQnLCAnMScsICctRFNF
-TlNPUl9DUFVNX0VOQUJMRT1PTicsICctRFNFTlNPUl9DUFVNX0VOQUJMRT1PRkYnLCBkKX0iPC9i
-PjwvaT4mbmJzcDspPC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6IGJy
-ZWFrLXdvcmQgIWltcG9ydGFudDsiPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwO0Zp
-bmFsbHksIG1vZGlmeSB0aGUgdmFsdWUgb2YgdGhlIHZhcmlhYmxlIENQVV9DT1VOVCg8aSBzdHls
-ZT0id29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+PGIgc3R5bGU9IndvcmQtYnJl
-YWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPmNoYW5nZSB0aGUgdmFsdWUgdG8gIjAiIG9yIHRv
-ICIxIjwvYj48L2k+KSZuYnNwO2luIHZhbHVlLmluYyB0byByZWNvbXBpbGUgdGhlIGVudGlyZSBw
-cm9qZWN0LiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9Im1hcmdpbjogMHB4OyB3b3JkLWJyZWFrOiBi
-cmVhay13b3JkICFpbXBvcnRhbnQ7Ij4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgSXQgd2Fz
-IGZvdW5kIHRoYXQgdGhpcyB2YXJpYWJsZSB3YXMgbW9kaWZpZWQgMTAgdGltZXMgYW5kIHJlY29t
-cGlsZWQgMTAgdGltZXMsIG9mIHdoaWNoIDQgdGltZXMgdGhlIHR3byByZWxhdGVkIHBhY2thZ2Vz
-IHdlcmUgbm90IHJlY29tcGlsZWQuJm5ic3A7PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7
-IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPiZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyBXaHkgaXMgdGhhdD8gSG93IHRvIHNvbHZlIHRoaXMgcHJvYmxlbT88L2Rpdj48ZGl2
-IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+
-PGJyIHN0eWxlPSJ3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij48L2Rpdj48ZGl2
-IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+
-Jm5ic3A7ICZuYnNwOyAzLiZuYnNwO01vZGlmeSB0aGUgZGV0ZWN0aW9uIHJ1bGVzIG9mIHRoZSBC
-QiBmaWxlLiAoc2V0Jm5ic3A7PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTAuNXB0OyBmb250LWZh
-bWlseTogy87M5Tsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+PGZvbnQgZmFj
-ZT0iQ2FsaWJyaSIgc3R5bGU9IndvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPjxp
-PjxiPkJCX0hBU0hDSEVDS19GVU5DVElPTj0mbmJzcDs8L2I+PC9pPjwvZm9udD48L3NwYW4+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZTogMTAuNXB0OyBmb250LWZhbWlseTogQ2FsaWJyaTsgd29yZC1i
-cmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+PGk+PGI+obA8L2I+PC9pPjwvc3Bhbj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOiAxMC41cHQ7IGZvbnQtZmFtaWx5OiDLzszlOyB3b3JkLWJyZWFr
-OiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij48Zm9udCBmYWNlPSJDYWxpYnJpIiBzdHlsZT0id29y
-ZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+PGk+PGI+MTwvYj48L2k+PC9mb250Pjwv
-c3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMC41cHQ7IGZvbnQtZmFtaWx5OiBDYWxpYnJp
-OyB3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij48aT48Yj6hsTwvYj48L2k+IGlu
-IGxvY2FsLmNvbmYsIGFuZCBzZXQgPGk+PGI+QkJfSEFTSEJBU0VfV0hJVEVMSVNUID0gInBhdGgv
-Y29uZi92YWx1ZS5pbmMiIDwvYj48L2k+aW4gbGF5ZXIuY29uZjwvc3Bhbj4pPC9kaXY+PGRpdiBz
-dHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPiZu
-YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwO090aGVyIG1vZGlmaWNhdGlvbnMgYW5kIHRl
-c3RpbmcgcHJvY2VkdXJlcyBhcmUgY29uc2lzdGVudCB3aXRoIHBvaW50IDIuPC9kaXY+PGRpdiBz
-dHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPiZu
-YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwO0l0IHR1cm5lZCBvdXQgdGhhdCBhZnRlciBy
-ZS1tb2RpZnlpbmcgYW5kIGNvbXBpbGluZyAxMCB0aW1lcywgdGhlIHR3byBCQiBwYWNrYWdlcyB3
-ZXJlIHN0aWxsIG5vdCBjb21waWxlZCBzZXZlcmFsIHRpbWVzLjwvZGl2PjxkaXYgc3R5bGU9Im1h
-cmdpbjogMHB4OyB3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij4mbmJzcDsgJm5i
-c3A7ICZuYnNwOyAmbmJzcDsgV2h5IGlzIHRoYXQ/IEhvdyB0byBzb2x2ZSB0aGlzIHByb2JsZW0/
-PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQgIWlt
-cG9ydGFudDsiPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwO0lzIGl0IHRoZSB3cm9uZyB3YXkg
-dG8gdXNlIGl0PyBXaGF0IGRvZXMgdGhlIHJpZ2h0IGFwcHJvYWNoIGxvb2sgbGlrZT88L2Rpdj48
-ZGl2IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50
-OyI+PGJyIHN0eWxlPSJ3b3JkLWJyZWFrOiBicmVhay13b3JkICFpbXBvcnRhbnQ7Ij48L2Rpdj48
-ZGl2IHN0eWxlPSJtYXJnaW46IDBweDsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50
-OyI+Jm5ic3A7ICZuYnNwOyA0LiZuYnNwO0lzIHRoZXJlIGFueSBnb29kIHdheSB0byBzb2x2ZSB0
-aGUgcHJvYmxlbSBtZW50aW9uZWQgYXQgdGhlIGJlZ2lubmluZz8gT3Igd2hlcmUgdG8gc3RhcnQg
-c29sdmluZyB0aGlzIHByb2JsZW0/PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQt
-YnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPjxiciBzdHlsZT0id29yZC1icmVhazogYnJl
-YWstd29yZCAhaW1wb3J0YW50OyI+PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQt
-YnJlYWs6IGJyZWFrLXdvcmQgIWltcG9ydGFudDsiPkkgbG9vayBmb3J3YXJkIHRvIGhlYXJpbmcg
-ZnJvbSB5b3UuPC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2luOiAwcHg7IHdvcmQtYnJlYWs6IGJyZWFr
-LXdvcmQgIWltcG9ydGFudDsiPkJ5cm9uIFdhbmc8L2Rpdj48ZGl2IHN0eWxlPSJtYXJnaW46IDBw
-eDsgd29yZC1icmVhazogYnJlYWstd29yZCAhaW1wb3J0YW50OyI+PGJyPjwvZGl2PjwvZGl2Pg==
+On Tue, 10 Oct 2023, Josef Holzmayr wrote:
 
-------=_Part_13107_1561225477.1697160793110--
+> Hi Robert,
 
+> It has been discussed at numerous occasions. The main blocker is: we
+> need a commitment for the maintenance. So if a high-ranking member
+> decides to push forwards with this and allocate resources, or a new
+> member from the RISC-V ecosystem steps up to make it happen, then
+> the project is all ears.
+>
+> Greetz,
+> Josef
+
+   Ask and ye shall receive. I just got the following private note
+from jiaqi.dong@starfivetech.com, who obviously saw my earlier post
+(and agreed to let me reproduce his response to me to the list):
+
+> I think VisionFive 2 is an appropriate reference board. We offer
+> Long Term Support for JH7110 and VisionFive 2. After being upgraded,
+> VisionFive 2 with big improvements in the processor work frequency,
+> multimedia processing capabilities, and scalability. Since August of
+> last year, we have continued to promote the ecosystem of VF2, it has
+> successively adapted to Deepin OS, Ubuntu OS, UEFI EDK2, OpenWrt,
+> PPSSPP…you can check out the RVspace forum. So we would like to work
+> with the developers and provide LTS if there are specific project
+> requirements.
+
+  Sound promising?
+
+rday
+--8323328-541123633-1697180991=:867647--
 
