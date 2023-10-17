@@ -1,122 +1,100 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BDA79CDB474
-	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 01:30:44 +0000 (UTC)
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
- by mx.groups.io with SMTP id smtpd.web10.198232.1697506237349264510
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 495FBCDB482
+	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 05:50:16 +0000 (UTC)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+ by mx.groups.io with SMTP id smtpd.web10.201369.1697521805887983028
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Oct 2023 18:30:37 -0700
+ Mon, 16 Oct 2023 22:50:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=LR4iIdyN;
- spf=pass (domain: mvista.com, ip: 209.85.215.181, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-53fa455cd94so3369844a12.2
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Oct 2023 18:30:37 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=kKYstbkq;
+ spf=pass (domain: linaro.org, ip: 209.85.167.48, mailfrom: mikko.rapeli@linaro.org)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-507bd64814fso381850e87.1
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Oct 2023 22:50:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1697506236; x=1698111036; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=e04kIk2JUodVDaFQIRnmF6UAfxWHBlJY9A/0Bpr/ahQ=;
-        b=LR4iIdyNo7fwxuDiQd4pH7jAKoE3ngemT8cmcikk32SvZi11TF88wGG0G3RDTRMahq
-         YtsuHny/pHZt23ewT3ucUtacwxWASLBRKP9z25AmVCvTjikWBfny2CM/wqy/412WCE12
-         js0qkrBmk4koWYtRLAZQar1rrHRpQfKF0ZHWU=
+        d=linaro.org; s=google; t=1697521804; x=1698126604; darn=lists.yoctoproject.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=DOH0YLpvX3VUQBS4nbJjnpcMP2m13bvabJ77gZismRI=;
+        b=kKYstbkqTY2op7fT1q1242J1KYO5pUrF84V1IZHwZ+WT50tFD8dS7J9RPthEnxDB+s
+         28UmlXhAHcVwdL3ABdb1UJK4JTQPTY79YPqj41uUUf/IdUdF5NVYfuNNcSHgGW+N2MJC
+         mBcX8nWovCdYpQYq50/Nysk26rCkO8JgQ63F08vW4TSoHnyK+fp6TkISHxIyO5n/NFQS
+         NxMTS4fzVdNANi0tzthECNmmhztg64hBWnxLBLXKvcG0KK8DAjZbQg/8R6PUEJw36XuV
+         mDwUi6JXkQZJLIqWN8n2tryG015wtgpmxK1NgAQWf/HbbXu1WS4Pj2mP6UHyWLOPJeGi
+         ZLtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697506236; x=1698111036;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1697521804; x=1698126604;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e04kIk2JUodVDaFQIRnmF6UAfxWHBlJY9A/0Bpr/ahQ=;
-        b=bGJj93IHqcpAC3W2YnABRRG8+D39ZuPxQFBaJ2RleuBUj/bcAO/9VPsG6mjTHTx0ku
-         aYAD7Gu7Rrbd3HxPN4A2W77d6UQsLHIJxF7+FfQGAW7w9rTt+9CP4is/D1evJ9Pg0NCU
-         gp9ygidzJgful9UtcbIlktIl0nkmh0r5xUIkftpfvXu1ySd6+ZlcFc9W5pHjomR6VGqB
-         tZqOpKHZHHneXfgNwRnjNzPy8OWOF0VJXA173dlQ0poTHFsRlB27ZGQWGp9Tq7vnz+dQ
-         KoKsZGfZD+HTS/JF3IoNvMpXKeR2oExj0M7U4EWsXLdCv8MuHxthMNpq9qEdKVDGubIH
-         EqPw==
-X-Gm-Message-State: AOJu0YyYk+dl3vFdFcmIATLJeANg1nc1nbbKz4c6/PsbyG6Pc51+zWHv
-	wPQwr1YteMD7IO1Dt9SVG+y0I+six+7gvIH5XYI=
-X-Google-Smtp-Source: AGHT+IHb66uuKqCLxdciKrFjQ+V/Rft4B+ExbuyZOkffFDWDSxxd+PnrvJyjMIuYENHc2HHwNgdY7g==
-X-Received: by 2002:a17:902:d48c:b0:1c8:791c:d797 with SMTP id c12-20020a170902d48c00b001c8791cd797mr1100297plg.56.1697506236100;
-        Mon, 16 Oct 2023 18:30:36 -0700 (PDT)
-Received: from [192.168.1.9] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id z18-20020a170903019200b001bb3beb2bc6sm243653plg.65.2023.10.16.18.30.33
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Oct 2023 18:30:34 -0700 (PDT)
-Message-ID: <127ebf66-30b4-4a33-b06f-8681b392d82a@mvista.com>
-Date: Mon, 16 Oct 2023 18:30:33 -0700
+        bh=DOH0YLpvX3VUQBS4nbJjnpcMP2m13bvabJ77gZismRI=;
+        b=X+4XtckHjWCx51tvslVePJdcfz6+Ad/Zf9zsqTPLgSo2LbRN06Y3xaVf6KzjSCY3FR
+         1HIX6xJYWPx+Swss8UVmPRNKZPC4Fk2cMBVYzHxzWEJWLL/u9kCw0LPHUAWY14XazZUX
+         wSQj21imoSdTNVYM7d4wDPuMLawQXBhc3RQeb3umOQbMvgN00OAlqJE1mnANHUAVG8VB
+         4h2zxXdL8oVqkKlFpae+HNH+tIPFoC0xDHSlOqTWEIIaup0TJU2QuP1e7dzWXaC1J9tr
+         +4+p63jFu4Uoz4/UuqWMt7hTXabdACBjq2b8NC9cLyyT/mtS3sPGt5YGTz/tJSW7RawR
+         fwfg==
+X-Gm-Message-State: AOJu0YyeXDIMsrlknI57x7OkQ/Pf5YYw2Vlfis4ugJbCG7kRM3pqzYuB
+	99sP65Hqj0UyAH8OPB6SwX7poQ==
+X-Google-Smtp-Source: AGHT+IGwCucOsm4xQC69Qo9Fxj2VAyQrLl4qzZhHrDcNiAp7ZlrSqL5FTJB+nulI/FBjahGFKeR+ZA==
+X-Received: by 2002:a05:6512:45b:b0:502:f2a8:d391 with SMTP id y27-20020a056512045b00b00502f2a8d391mr778241lfk.45.1697521803857;
+        Mon, 16 Oct 2023 22:50:03 -0700 (PDT)
+Received: from nuoska (dc7g6tyyyyyyyyyyyyhbt-3.rev.dnainternet.fi. [2001:14ba:16cb:a800::183])
+        by smtp.gmail.com with ESMTPSA id f28-20020ac2533c000000b00507a0017931sm130339lfh.167.2023.10.16.22.50.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Oct 2023 22:50:03 -0700 (PDT)
+Date: Tue, 17 Oct 2023 08:49:58 +0300
+From: Mikko Rapeli <mikko.rapeli@linaro.org>
+To: Dave Hitchman <dave.hitchman@kymati.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Using cmake... how?
+Message-ID: <ZS4ghiXPvYDDW_LC@nuoska>
+References: <20231016112233.221066-1-foss+yocto@0leil.net>
+ <AM9PR03MB7012E6E478F4D2899CBE0F5192D7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [master][PATCH] meta-cgl-common: fix ParseError
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org
-References: <20231012052504.592900-1-changqing.li@windriver.com>
-From: Jeremy Puhlman <jpuhlman@mvista.com>
-In-Reply-To: <20231012052504.592900-1-changqing.li@windriver.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AM9PR03MB7012E6E478F4D2899CBE0F5192D7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 01:30:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61365
+ <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 05:50:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61366
 
-Merged, thanks! Make sure to put the repo in the subject when submitting.
+Hi,
 
-On 10/11/2023 10:25 PM, Changqing Li wrote:
-> From: Changqing Li <changqing.li@windriver.com>
->
-> Layeindex update.py report warning:
-> WARNING: Error parsing distro configuration file /meta-cgl/meta-cgl-common/conf/distro/poky-cgl.conf: ParseError at /meta-cgl/meta-cgl-common/conf/distro/poky-cgl.conf:1: Could not include required file conf/distro/poky-lsb.conf
->
-> Refer meta-yocto commit: 00fdefff55717331a220fe624f29c387970d31d7
-> [poky-altcfg: Replace poky-lsb with poky-altcfg]
->
-> replace poky-lsb with poky-altcfg here, and also add layer yocto
-> as LAYERDEPENDS for fixing above warning
->
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
-> ---
->   meta-cgl-common/conf/distro/poky-cgl.conf | 2 +-
->   meta-cgl-common/conf/layer.conf           | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/meta-cgl-common/conf/distro/poky-cgl.conf b/meta-cgl-common/conf/distro/poky-cgl.conf
-> index 10feab9..2932dcf 100644
-> --- a/meta-cgl-common/conf/distro/poky-cgl.conf
-> +++ b/meta-cgl-common/conf/distro/poky-cgl.conf
-> @@ -1,4 +1,4 @@
-> -require conf/distro/poky-lsb.conf
-> +require conf/distro/poky-altcfg.conf
->   
->   DISTRO = "poky-cgl"
->   DISTROOVERRIDES .= ":poky-cgl"
-> diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.conf
-> index fe81bcc..2a280e4 100644
-> --- a/meta-cgl-common/conf/layer.conf
-> +++ b/meta-cgl-common/conf/layer.conf
-> @@ -9,7 +9,7 @@ BBFILE_COLLECTIONS += "cgl-common"
->   BBFILE_PATTERN_cgl-common = "^${LAYERDIR}/"
->   BBFILE_PRIORITY_cgl-common = "7"
->   
-> -LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security selinux"
-> +LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security selinux yocto"
->   
->   LAYERSERIES_COMPAT_cgl-common = "honister kirkstone langdale mickledore"
->   
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61324): https://lists.yoctoproject.org/g/yocto/message/61324
-> Mute This Topic: https://lists.yoctoproject.org/mt/101912916/2167262
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jpuhlman@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+On Mon, Oct 16, 2023 at 03:27:01PM +0000, Dave Hitchman wrote:
+> So my current recipe for the project works, including building various C, C++ files
+> I wanted to now add a library of someone elses creation.
+> On my machine this library builds using the tools installed so the code is ok
+> 
+> I added a recipe to my yocto build and it attempts to do the cmake.
+> 
+> Unfortunately whatever I have tried over 2 days cmake insists:
+> 
+>   1.  On using the from my machine NOT the cross compiling tool set the rest of the yocto build uses.
+> | -- The CXX compiler identification is GNU 9.4.0
+> | -- The C compiler identification is GNU 9.4.0
+>   2.
+> Getting upset about the flags passed in:
+> |     g++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+> |     cc1plus: error: bad value (‘armv8-a+crc+crypto’) for ‘-march=’ switch
+> I cant even find where these flags are actually set, where I found them and thought they were set I altered them to be FRED and nothing changed in the errors at all.
+> 
+> Any idea? Surely it should be pretty easy?
 
--- 
-Jeremy Puhlman
-jpuhlman@mvista.com
+"inherit cmake" in the recipe and then fix the CMake scripts to use variables from
+the toolchain file and only append to them. Same problems in all build tools. CMake
+adds several abstractions on top though so finding out the details may be tricky.
+See the toolchain.cmake file in recipe build directory. If this is not followed
+wrong compiler can be used, with wrong flags, using wrong binary, module and header file
+search paths...
 
+Cheers,
+
+-Mikko
 
