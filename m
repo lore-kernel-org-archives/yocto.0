@@ -2,55 +2,56 @@ Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D233CDB474
-	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 11:42:48 +0000 (UTC)
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
- by mx.groups.io with SMTP id smtpd.web11.210808.1697542961483579553
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C38FCDB483
+	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 11:53:58 +0000 (UTC)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+ by mx.groups.io with SMTP id smtpd.web10.211585.1697543637396640088
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Oct 2023 04:42:42 -0700
+ Tue, 17 Oct 2023 04:53:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=kG8dOsD3;
- spf=pass (domain: linaro.org, ip: 209.85.167.53, mailfrom: mikko.rapeli@linaro.org)
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-507973f3b65so6461390e87.3
-        for <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 04:42:41 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=vRrcL/Sa;
+ spf=pass (domain: linaro.org, ip: 209.85.167.46, mailfrom: mikko.rapeli@linaro.org)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5079eed8bfbso4867203e87.1
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 04:53:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1697542959; x=1698147759; darn=lists.yoctoproject.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lTuoOM1KFoCT/yRjSyq0yX0rMF4Mb46UQj4kHmwyeY8=;
-        b=kG8dOsD3MWEKD7Izw4AUQL+co5wMkM/L+N2CwcsxcgxR/zUxLrODkXCJRagHNqSjZU
-         x5l+mbyEWVC31x3b17UMbdWDMkKut9Nn8XLEZuOoztE3ZUXNN+L9yjkh/7k/ngTjDyUs
-         qx1y96/ntt999tEA864cdEsv20Lh9DXPAfgxxPC2Vrs+XkcyD7k8obVtgFHyOrXXrIY0
-         yMvO+4OLGauLQ9WJPrlp05xVcmrbxbgZZrra9v4t8Yl+sP2Fz5JnzzlNPzUVhcM9+ZHD
-         mL79DSKPv4BVRWOfz6PkO3iM4dtfoDn82LIXHzXpBKP9aFTz/+3rigEZkOsi1YyHnNga
-         IjVw==
+        d=linaro.org; s=google; t=1697543635; x=1698148435; darn=lists.yoctoproject.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=pEgooOjkKAAfDui+5szcky27hF3z/Fo7QiOJa5F39H0=;
+        b=vRrcL/SapkeCyrc5sqtDriz5NaWDF4bIF7Qt/bEPsRrGPV9Q921DB4P6a/54TVGstb
+         qVMG3Tqwh4V8vk2RRBy0zPIzRLkV3lNk29RhYW/tXH+1u1P3g31jW/BO05xmK8L7qkzO
+         feenyyiZ/pc8oYW8beegUjwrdxW2TdTVhSGDCReXd14gkS6K/lg1t+Xs2GFMavZKe98n
+         fJs5v8+ZqqDj9LdleboNTTFSP1H2w4+HUK4IEyte5z5Q0rqJhU2RYkDfd5zgjxHvf5xD
+         EKavUE88VGdMNTaXRxr3ZY2MYeupiWhghVmZlF+AsF3UUJX2celrsXmLJYmPUSxpYrgR
+         uJbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697542959; x=1698147759;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lTuoOM1KFoCT/yRjSyq0yX0rMF4Mb46UQj4kHmwyeY8=;
-        b=o6xVV4TOCuaxo+xTeK4aKpo69eHqoYNL7PNOPGiUBMoCtnq5zf718MqBV/bHYiv3ay
-         FvKi7rNCvZ+ztZyCJFYYUUEnLMEHCdSsfC5e9+qCm6h+QuOdtE58Qbgm4+t48kOgX2uS
-         PQQs8WqbxMvNkvz/TTYELQ5gQxKX2F0O4p/yfmdZKjCW1CRC5CJmtM1mYmMyoW66o0Ac
-         Wgm6KD4hedZlOGxO9wvInjN55vjlAjIl1HQNB55kzyDx7SXcmTSv2VksoYBLFx9WsKtX
-         4ewI3041SssHivavsnI1Yb8u4WjDL4N4rE0mI1Pt2Cf3MfJwhD5AqsUsrqf/oXhaysLq
-         5Lpg==
-X-Gm-Message-State: AOJu0YwLAkDOjPBi2UFRnhu1ALOgks9BZK/8GBhvPlJ+scalggtcutYF
-	KDsPlq7ANIHqyj8JDif8IIkU+g==
-X-Google-Smtp-Source: AGHT+IGH0nibFfq8iqR1uadcMXx+22uEBbJBo8oRTrbdwOPTDMPFRDNrqO1oLMQikWLTCuV3yHdxsA==
-X-Received: by 2002:a19:5e5a:0:b0:502:9fce:b6db with SMTP id z26-20020a195e5a000000b005029fceb6dbmr1468939lfi.1.1697542959634;
-        Tue, 17 Oct 2023 04:42:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1697543635; x=1698148435;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pEgooOjkKAAfDui+5szcky27hF3z/Fo7QiOJa5F39H0=;
+        b=uLL8vXXJ4IDPMbDkrTAeOwFIVgpky+wXgjfZqeBVhj5xZV6MYekvBOUlNIHRrAnYDH
+         tJrk83/2HWqQ9j7UW8S09uV/1uFEcsCbulXzYg809bvE9FRezlO0OJA2ztbPhhpePegw
+         YVapfXR4NyAlrhUmCAcHBAvtU/hlXQMeq7s2oyKhZ5NE3Uu6dhgJ9M0EQXXuEpzmFgOf
+         knm57I8b7DOfTnDE53jnNUBb79u/cx9c92WJqYnYIecWs1+VLCF6f1kllVjbL54+H8qe
+         xqpskzve2BWtKB9tmm/y8H5mudOFHWbGpw91sR7uj0CPOoGefGBGU/Tmv5lY+EvTYKgB
+         w75A==
+X-Gm-Message-State: AOJu0Yz3+pNvHHU5GIgieTER7Dp+fuWPP1L4/2s8MdByhiQPmzPL3Pb6
+	YvIqbtNzvEt2/X9YfKVDvTfM9Q==
+X-Google-Smtp-Source: AGHT+IEHf4xzf/zoKbP/IDg43TalbR1b2A/7Nc6nno4UglcvfT9HRc0oQRIBDfnKAXCO0iDm3G85lA==
+X-Received: by 2002:a19:7608:0:b0:507:9dfd:f840 with SMTP id c8-20020a197608000000b005079dfdf840mr1695891lff.68.1697543635369;
+        Tue, 17 Oct 2023 04:53:55 -0700 (PDT)
 Received: from nuoska (dc7g6tyyyyyyyyyyyyhbt-3.rev.dnainternet.fi. [2001:14ba:16cb:a800::183])
-        by smtp.gmail.com with ESMTPSA id u28-20020ac2519c000000b005056c997ed6sm243755lfi.163.2023.10.17.04.42.38
+        by smtp.gmail.com with ESMTPSA id s19-20020a056512203300b005079a62f34esm248079lfs.281.2023.10.17.04.53.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 04:42:39 -0700 (PDT)
-Date: Tue, 17 Oct 2023 14:42:37 +0300
+        Tue, 17 Oct 2023 04:53:54 -0700 (PDT)
+Date: Tue, 17 Oct 2023 14:53:53 +0300
 From: Mikko Rapeli <mikko.rapeli@linaro.org>
 To: Dave Hitchman <dave.hitchman@kymati.com>
 Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Using cmake... how?
-Message-ID: <ZS5zLcJeH2v6YNKi@nuoska>
+Message-ID: <ZS510fE2Q3WeU0UT@nuoska>
 References: <20231016112233.221066-1-foss+yocto@0leil.net>
  <AM9PR03MB7012E6E478F4D2899CBE0F5192D7A@AM9PR03MB7012.eurprd03.prod.outlook.com>
  <ZS4ghiXPvYDDW_LC@nuoska>
@@ -60,28 +61,63 @@ References: <20231016112233.221066-1-foss+yocto@0leil.net>
  <ZS5gUVkTwgjNi0Ad@nuoska>
  <AM9PR03MB7012F4837978629C7E866C8792D6A@AM9PR03MB7012.eurprd03.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 In-Reply-To: <AM9PR03MB7012F4837978629C7E866C8792D6A@AM9PR03MB7012.eurprd03.prod.outlook.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 11:42:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61372
+ <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 11:53:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61373
 
 Hi,
 
 On Tue, Oct 17, 2023 at 11:35:13AM +0000, Dave Hitchman wrote:
-> Thanks, but without the CXX settings there is no difference either, it still uses the wrong toolchain (or rather tries to and fails in the same way) . I have now removed the two export CXX type lines...
+<snip>
+> |     /usr/bin/g++   -O2 -pipe -g -feliminate-unused-debug-types -fmacro-=
+prefix-map=3D/home/dave/Documents/Kymati/yocto/build/tmp/work/cortexa53-cry=
+pto-phytec-linux/libkymati/1.0-r0=3D/usr/src/debug/libkymati/1.0-r0        =
+              -fdebug-prefix-map=3D/home/dave/Documents/Kymati/yocto/build/=
+tmp/work/cortexa53-crypto-phytec-linux/libkymati/1.0-r0=3D/usr/src/debug/li=
+bkymati/1.0-r0                      -fdebug-prefix-map=3D/home/dave/Documen=
+ts/Kymati/yocto/build/tmp/work/cortexa53-crypto-phytec-linux/libkymati/1.0-=
+r0/recipe-sysroot=3D                      -fdebug-prefix-map=3D/home/dave/D=
+ocuments/Kymati/yocto/build/tmp/work/cortexa53-crypto-phytec-linux/libkymat=
+i/1.0-r0/recipe-sysroot-native=3D  -fvisibility-inlines-hidden  -mcpu=3Dcor=
+tex-a53 -march=3Darmv8-a+crc+crypto -fstack-protector-strong  -O2 -D_FORTIF=
+Y_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dformat-security  --sysroo=
+t=3D/home/dave/Documents/Kymati/yocto/build/tmp/work/cortexa53-crypto-phyte=
+c-linux/libkymati/1.0-r0/recipe-sysroot -o CMakeFiles/cmTC_e06e9.dir/testCX=
+XCompiler.cxx.o -c testCXXCompiler.cxx
+> |     g++: warning: =E2=80=98-mcpu=3D=E2=80=99 is deprecated; use =E2=80=
+=98-mtune=3D=E2=80=99 or =E2=80=98-march=3D=E2=80=99 instead
+> |     cc1plus: error: bad value (=E2=80=98armv8-a+crc+crypto=E2=80=99) fo=
+r =E2=80=98-march=3D=E2=80=99 switch
+> |     cc1plus: note: valid arguments to =E2=80=98-march=3D=E2=80=99 switc=
+h are: nocona core2 nehalem corei7 westmere sandybridge corei7-avx ivybridg=
+e core-avx-i haswell core-avx2 broadwell skylake skylake-avx512 cannonlake =
+icelake-client icelake-server cascadelake tigerlake bonnell atom silvermont=
+ slm goldmont goldmont-plus tremont knl knm x86-64 eden-x2 nano nano-1000 n=
+ano-2000 nano-3000 nano-x2 eden-x4 nano-x4 k8 k8-sse3 opteron opteron-sse3 =
+athlon64 athlon64-sse3 athlon-fx amdfam10 barcelona bdver1 bdver2 bdver3 bd=
+ver4 znver1 znver2 btver1 btver2 native
 
-Check the CMakeFile.txt etc scripts in the SW component. They are likely overwriting
-variables like CXX. Alternatively, they are trying to mix host (-native) and target
-compilation in one step by compiling code generators etc tools.
+For example here the "/usr/bin/g++" compiler will not understand -mcpu=3Dco=
+rtex-a53 flags
+since the compiler is on the Linux build machine and compiling natively for=
+ x86_64 target
+architecture, this is not the yocto/bitbake cross compiler. The correct com=
+piler binary
+is set via CMAKE_CXX_COMPILER variable in the toolchain file and path to it=
+ is somewhere
+in the recipe specific native sysroot path. CMake build scripts of libkymat=
+i must use those
+variables from the toolchain file. They must not overwrite them with their =
+own guesses
+like /usr/bin/g++.
 
-If something on bitbake side is setting CXX etc variables, those can be seen
-with "bitbake -e recipe".
-
-Sadly these issues are quite common for SW which has not been cross compiled before..
+Further details depends on what kind of CMake build scripts libkymati has.
 
 Cheers,
 
