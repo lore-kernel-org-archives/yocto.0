@@ -1,190 +1,87 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0B6BCDB474
-	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 15:33:59 +0000 (UTC)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
- by mx.groups.io with SMTP id smtpd.web11.220705.1697556836354341748
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DC77CDB474
+	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 22:38:32 +0000 (UTC)
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+ by mx.groups.io with SMTP id smtpd.web10.269802.1697582306358640087
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Oct 2023 08:33:56 -0700
+ Tue, 17 Oct 2023 15:38:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=C+h4eKZf;
- spf=pass (domain: gmail.com, ip: 209.85.208.178, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2c51682fddeso35140231fa.1
-        for <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 08:33:56 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=mWMfy0de;
+ spf=softfail (domain: sakoman.com, ip: 209.85.161.46, mailfrom: steve@sakoman.com)
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-57bce354d94so3197102eaf.2
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 15:38:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697556834; x=1698161634; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yvjNtUN038Xdr2XCaMr/mE1UX5PDwuxFCZgpziDDCiM=;
-        b=C+h4eKZf1e4OcLtMFnhW+14nNzOtotf9IgBU9Yq+U+AjgZZtochq8BHNtG+0GBXzpz
-         +kR3jMeKdqnfr28QKPx8UjJK9j5bKgg2XQo/PckZdg2t38Bfg8t2YxDVIptr1TNrtH7T
-         SI/ZGUiD44bhZQuwynus5S1trsnI8EwVt0Us2jPR/5rGadT2WG/w31kC2jLgsFJgrH2C
-         cqSmvzPsYUjL9fS/DnDSoeDfikWyK9LmWlb1ZoRef28aQyVQgxH+Qny7wRsE5qRInIcK
-         3TtpvnK2Ql93LOkVf42CrOwuzm0VOH3x1GsRpZpqIkrT/zNZXMh5qqiDFTcWryw3GB4y
-         QEmw==
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1697582305; x=1698187105; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hnmKyn0Vqn1zHn/2Hut3CaQNnUMu0Wp58i3FHmZmOko=;
+        b=mWMfy0deE9g0EnI1O1xW7mVp8r5PGLPA2O5LAAVeobt4KhqNfwPPyl1vPKx0qdhfO9
+         qnj0qZoLxa91L/WNEdyBRWYxCGf4ElZVz4BkI0wK6KTZcs2ndXr9AvGcPEjKncgCXXj+
+         b02SyWDu9kUXrJF0g6eFy35maNIJD7u5rr/b4PQZSUkkkXS/lfiWysWwXFMlC75mTm9t
+         0E77g9ur5KcP4WIft18ZoZiPNOrH/u07HYibgPhL6Qh+VCpn5KfpLnzg1AZVNyKfTqC+
+         +q4JLABDWqccXoJbPwJhUXSpMX9DXeBVB6quY/jGNV3Sr+uHU8a/JnVyX4XK4uDTQSko
+         n3Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697556834; x=1698161634;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1697582305; x=1698187105;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yvjNtUN038Xdr2XCaMr/mE1UX5PDwuxFCZgpziDDCiM=;
-        b=D/bYnuJTyyWNrzOIc7iozMm+3ycTnMBkTDP/Q/346gXDfQ60/wJNgeyjevjvLlRCEA
-         K9nFBmmF0ljp1ne95QfPmsz3sDIYteU/O4sRo+h11+FUyYCi4ecSBRF3MPHa17dlxHW6
-         E7qeTc3fTK2Std9Fup5XqgQokj6wjp9T99fV/SrRfCsC8yAZ6yBfBV0hEL/LJvMHnO9k
-         YWX/tbj3ZtrMG3Qzvjh2UCPUTMcaA3Y5VgEKqfwxp8gP1rGEW/LgQ4Dh7aBbq7x+Psaz
-         2b28InRfmBcywhmhJfAjaUQcxXUvJAOEhJ6lK3aP91iINQcn+ZoYJVCMdR5NmJ1vzVnT
-         eCnw==
-X-Gm-Message-State: AOJu0YzxFdEjbb+l4TaofuQW8MFj+3JPpUXZGXy+blLcMNj8xMcqm6M1
-	e4CzRwbV490gPzpHm6OM5fjPXTIPe+n7H37StE/8pU2zSxU=
-X-Google-Smtp-Source: AGHT+IGZ4AaeK/ayg21imCPVnMKo5gJ6f9gA5VF85bouMXc2VxzLo81Rldvbk4WeHkSSN0GXntQG+omf1rUYCmifB9w=
-X-Received: by 2002:a2e:9106:0:b0:2c5:8e7:77f with SMTP id m6-20020a2e9106000000b002c508e7077fmr859056ljg.22.1697556834156;
- Tue, 17 Oct 2023 08:33:54 -0700 (PDT)
+        bh=hnmKyn0Vqn1zHn/2Hut3CaQNnUMu0Wp58i3FHmZmOko=;
+        b=bBtfN20eD7PZiH7CsY0I7BE7ZzxC9pA+X06twwLidVU7LeCSKQpRdpbIqSfpbwYie0
+         zRQQEKgAdf+FtwEsIvxHYBGp1P7lnQ0N2T1uPEGziKvtUDIiUPoqE5XBOt05aP9PkCGJ
+         Ybw6jHQHNEMV1SfISMrBQzDz7ULcDQCs+opvcvawiuOQkH46ESjbCSLdAHMstRHeWHiR
+         qgut2jlQcOMEibGTf8cso5Q6RSdU85Erexf/jYJYAmDAuVCNMA/q6yMTsLQbjrX9RN37
+         ScgAhoU+5yU152+kiCENui6mXLcbJxxrsDAVFy4SDM9NdFWRXI/gUY5JCDbryF8kG+mO
+         JZRA==
+X-Gm-Message-State: AOJu0YwvhtE/BHwzb9vwpBeXjffVKroSnVEARbikYQ0LJtHfBR1tOoh6
+	lscalJhiwcJWqCM8xRXjc4S3GOoPkoTBfuBAQ1U=
+X-Google-Smtp-Source: AGHT+IEvFvzeYLiZHNO3J81niTurbESlJIFdZofuRI/soseLSSBV6neknk11jDBg00CXQhMVFzYrrA==
+X-Received: by 2002:a05:6358:519d:b0:143:63ae:cc76 with SMTP id 29-20020a056358519d00b0014363aecc76mr3060633rwk.11.1697582305017;
+        Tue, 17 Oct 2023 15:38:25 -0700 (PDT)
+Received: from hexa.router0800d9.com (dhcp-72-234-106-30.hawaiiantel.net. [72.234.106.30])
+        by smtp.gmail.com with ESMTPSA id d6-20020aa797a6000000b00690d1269691sm1970420pfq.22.2023.10.17.15.38.24
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Oct 2023 15:38:24 -0700 (PDT)
+From: Steve Sakoman <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder-helper][dunfell] config.json: update to latest buildtools tarball
+Date: Tue, 17 Oct 2023 12:38:17 -1000
+Message-Id: <cc33a04bc6bb9c1bf5efea35ef1dfadfde4807cf.1697582213.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1697582213.git.steve@sakoman.com>
+References: <cover.1697582213.git.steve@sakoman.com>
 MIME-Version: 1.0
-References: <CADfgfoaiTO20VqND_cW19rcx3zKvDR2vh69GZMA0Ox3Pb-pF2Q@mail.gmail.com>
-In-Reply-To: <CADfgfoaiTO20VqND_cW19rcx3zKvDR2vh69GZMA0Ox3Pb-pF2Q@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 17 Oct 2023 17:33:43 +0200
-Message-ID: <CANNYZj_SLzpPUct_BEnsm2mSJrZViHYdh0yqjwA-KfKRhymdyw@mail.gmail.com>
-Subject: Re: CDN for sstate.yoctoproject.org
-To: Michael Halstead <mhalstead@linuxfoundation.org>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 15:33:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61381
+ <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 22:38:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61382
 
-Thanks for working on this! I finally got to playing with CDN mirror a
-bit, and it seems to basically work ok, so next I'm going to write AB
-tests that check that it remains useful. Specifically:
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ config.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-1. What should the test be?
+diff --git a/config.json b/config.json
+index 03ea262..7ed8259 100644
+--- a/config.json
++++ b/config.json
+@@ -10,7 +10,7 @@
+ 
+     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
+     "BUILDTOOLS_URL_TEMPLOCAL2" : "https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
+-    "BUILDTOOLS_URL" : "https://downloads.yoctoproject.org/releases/yocto/yocto-3.4/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.4.sh",
++    "BUILDTOOLS_URL" : "/srv/autobuilder/autobuilder.yocto.io/pub/non-release/20230223-18/buildtools/x86_64-buildtools-extended-nativesdk-standalone-4.1+snapshot-9c07de0f20042c81496185293857284048d7912c.sh",
+ 
+     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
+     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
+-- 
+2.34.1
 
-I tried 'bitbake -S printdiff core-image-sato' on a blank build
-directory, and the result against current master is:
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Checking sstate mirror object availability: 100%
-|##########################################################################=
-########################################################################|
-Time: 0:05:35
-The differences between the current build and any cached tasks start
-at the following tasks:
-/srv/work/alex/poky/meta/recipes-sato/images/core-image-sato.bb:do_deploy_s=
-ource_date_epoch
-/srv/work/alex/poky/meta/recipes-core/base-files/base-files_3.0.14.bb:do_in=
-stall
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-I think this is pretty good! The two missing objects depend on the
-current date, and so should go to the exception list in the test, and
-otherwise there is a 100% match rate. The bitbake targets could be
-'world core-image-sato-sdk', and target machines could be qemux86_64
-and qemuarm64.
-
-Just to be sure that mismatches elsewhere will be reported as CDN
-misses, adding my shadow 4.14 update and re-running the command shows:
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-The differences between the current build and any cached tasks start
-at the following tasks:
-/srv/work/alex/poky/meta/recipes-gnome/hicolor-icon-theme/hicolor-icon-them=
-e_0.17.bb:do_package
-/srv/work/alex/poky/meta/recipes-sato/pulseaudio-sato/pulseaudio-client-con=
-f-sato_1.bb:do_package
-/srv/work/alex/poky/meta/recipes-core/initscripts/initscripts_1.0.bb:do_pac=
-kage
-/srv/work/alex/poky/meta/recipes-core/update-rc.d/update-rc.d_0.8.bb:do_pac=
-kage
-/srv/work/alex/poky/meta/recipes-multimedia/alsa/alsa-ucm-conf_1.2.10.bb:do=
-_package
-/srv/work/alex/poky/meta/recipes-kernel/wireless-regdb/wireless-regdb_2023.=
-09.01.bb:do_package
-/srv/work/alex/poky/meta/recipes-sato/packagegroups/packagegroup-core-x11-s=
-ato.bb:do_package
-/srv/work/alex/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-heade=
-rs_6.5.bb:do_package
-/srv/work/alex/poky/meta/recipes-core/packagegroups/packagegroup-core-ssh-d=
-ropbear.bb:do_package
-/srv/work/alex/poky/meta/recipes-graphics/packagegroups/packagegroup-core-x=
-11.bb:do_package
-/srv/work/alex/poky/meta/recipes-sato/shutdown-desktop/shutdown-desktop.bb:=
-do_package
-virtual:native:/srv/work/alex/poky/meta/recipes-support/libbsd/libbsd_0.11.=
-7.bb:do_prepare_recipe_sysroot
-/srv/work/alex/poky/meta/recipes-support/ca-certificates/ca-certificates_20=
-211016.bb:do_package
-/srv/work/alex/poky/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb:=
-do_package
-virtual:native:/srv/work/alex/poky/meta/recipes-extended/shadow/shadow_4.14=
-.0.bb:do_recipe_qa
-... (a few more missing do_package objects)
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-2. When to run the test, and against which commit in poky?
-
-RP suggested that the test could run in an antiphase with the nightly
-a-quick (i.e. 12 hours after). We can do that for a start, but I'm
-(perhaps prematurely) worrying that this will be unstable: either
-because the objects from the nightly haven't yet propagated to CDN, or
-because master has meanwhile (e.g. in the 12 hours that have passed)
-gained new commits without corresponding cache objects. Are those real
-concerns?
-
-Thoughts?
-
-Alex
-
-
-On Fri, 22 Sept 2023 at 19:32, Michael Halstead
-<mhalstead@linuxfoundation.org> wrote:
->
-> Right now we have https://cdn.jsdelivr.net/yocto/sstate set up as a CDN m=
-irroring proxy endpoint. It's fast and completely free to the project. Howe=
-ver, it will only work for files smaller than 64MB and will send a redirect=
- to the main server at sstate.yoctoproject.org for files larger than 64MB.
->
-> The good news is that we have a fast free CDN provided by https://www.jsd=
-elivr.com/ and their many sponsors for 99.4% of our files.
->
-> Here is an estimated distribution of sstate files currently available:
-> 1 KB-4 KB: 103168
-> 4 KB-16 KB: 1218048
-> 16 KB-64 KB: 1886976
-> 64 KB-256 KB: 1225216
-> 256 KB-1 MB: 170752
-> 1 MB-4 MB: 92928
-> 4 MB-16 MB: 83200
-> 16 MB-64 MB: 40448
-> 64 MB-256 MB: 17664
-> 256 MB-1 GB: 7936
-> 1 GB-4 GB: 2560
->
-> I'm still working on a CDN solution for the larger files but we can begin=
- testing https://cdn.jsdelivr.net/yocto/sstate today.
->
-> Here is an example link to a file that is currently popular from each loc=
-ation:
->
-> http://sstate.yoctoproject.org/all/universal/c6/81/sstate:re2c-native:x86=
-_64-linux:3.1:r0:x86_64:11:c681f19e2786732c7920860d0b27cdcf3a79c9441d9bdaa8=
-2319a12e96e6246e_deploy_source_date_epoch.tar.zst
->
-> https://cdn.jsdelivr.net/yocto/sstate/all/universal/c6/81/sstate:re2c-nat=
-ive:x86_64-linux:3.1:r0:x86_64:11:c681f19e2786732c7920860d0b27cdcf3a79c9441=
-d9bdaa82319a12e96e6246e_deploy_source_date_epoch.tar.zst
->
-> I'm also attaching a list of the largest files in sstate. Anything we can=
- do to reduce the size of these or to split them into smaller pieces will h=
-elp with hosting and with the user's download experience.
->
-> --
-> Michael Halstead
-> Linux Foundation / Yocto Project
-> Systems Operations Engineer
 
