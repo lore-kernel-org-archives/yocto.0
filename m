@@ -1,107 +1,172 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22C32CDB47E
-	for <webhook@archiver.kernel.org>; Wed, 18 Oct 2023 19:44:05 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web11.10632.1697658241104965100
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5826CDB483
+	for <webhook@archiver.kernel.org>; Wed, 18 Oct 2023 22:28:55 +0000 (UTC)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+ by mx.groups.io with SMTP id smtpd.web10.14597.1697668125519386141
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Oct 2023 12:44:01 -0700
+ Wed, 18 Oct 2023 15:28:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=UZuPA5BU;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40837ebba42so13085785e9.0
-        for <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 12:44:00 -0700 (PDT)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=21xFJqlt;
+ spf=pass (domain: smile.fr, ip: 209.85.128.45, mailfrom: yoann.congal@smile.fr)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-407da05f05aso17421245e9.3
+        for <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 15:28:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1697658239; x=1698263039; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=80ahV/adNWFLWu5WkQs6/6n3/WyD/Nb3qLqx/UWW2As=;
-        b=UZuPA5BUa0okUtyMdn2uQUVGLWEhqv0YIc37JOoM3lsGR71QCiPj4AiwRlpjktsK2H
-         Fp+xivogduqHxnaJHESjvbTj/inQt6xycUgUSQPAAy6LvaekILJEyvIKjx3oEVMV7cyL
-         4fxZHUr94iuDw6ZGqxdyxX3iOY3XNXfcu/kLE=
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1697668123; x=1698272923; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=agvoASTU3WfNlkQclA233Wogl3P85JhpfBZIkdTcJu0=;
+        b=21xFJqlt6cs0sIURC985nBXys7z9smCZP3saSSoZSzYNl17nWcymiI5UD+tnqkBTPC
+         C/wa04JqaOF9LR9v4134OvwRiPSoe7cTAFPbgVHiM0MztjBNuM1tBKvfw4UXUBwcNC39
+         EuV1tw78Ax+GVqgTrqjYk9LHUBAyNxf0pX9TldClyVtJkLSXmZYoNlY0XqFij3af6nBA
+         N6/6hXb6vOYd5annBXpUcoy6vbb/L/+7k8g0osanAZ4ZcHZcFZ8KDkZTKUs0EuVru+1V
+         ThWktPz5/JNcJOW01QkVMixOIiASYUigQ9MUbBNZepwh4pjDFm0buUAB3QT8uZhV0y1w
+         mK4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697658239; x=1698263039;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=80ahV/adNWFLWu5WkQs6/6n3/WyD/Nb3qLqx/UWW2As=;
-        b=Mx7QZgssuae15/psSGiHJaMWkQOnRRj5veQOxHAFjFy3QlleiT9ukdjXD4s61PdVxk
-         L/d6Csoyw3aWV8rpRQmAxJtBEgJHIZZyaG3L8/wtlWwXepcJcF3WaanjHu46Ya+2TwIe
-         K2Mr0nf2ZmonnAwsu5zJ/aMYT3wJ8YKJTEA5rkP/4ceKs7vLTCOMlOX+iZKSJ/chStFb
-         OrDFClUku4uINl98V96Y80y9xmVwsB7zMTXF55laQUUdSf+YKw58QMH90AeF51EaVcqh
-         UPZfntDUQdttCklrhn3ddCSl6wAj9Kcp96ZLNbjEWfQXFH8ly/XNzkRpNCcXfZc3AMHU
-         aUkQ==
-X-Gm-Message-State: AOJu0YzFHh/av+Ejg/afF6m2sbrgN3BsTrtObEnp2nOFdQCrbEkS5/iu
-	k2V83xZ3JNvd/opillqxjt9WoA==
-X-Google-Smtp-Source: AGHT+IGx9vZw8xe9i+lbRRWa2e8XMHVeJGd5phu2xkjj3hoGkxaCgx7kYyuG35IkKIyE5iEUZndkbw==
-X-Received: by 2002:adf:fc91:0:b0:329:6e92:8d77 with SMTP id g17-20020adffc91000000b003296e928d77mr15750wrr.51.1697658239320;
-        Wed, 18 Oct 2023 12:43:59 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:9ec8:2948:ce65:9cfb? ([2001:8b0:aba:5f3c:9ec8:2948:ce65:9cfb])
-        by smtp.gmail.com with ESMTPSA id a17-20020a5d5091000000b0032d893d8dc8sm2813877wrt.2.2023.10.18.12.43.58
+        d=1e100.net; s=20230601; t=1697668123; x=1698272923;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=agvoASTU3WfNlkQclA233Wogl3P85JhpfBZIkdTcJu0=;
+        b=fvQgmtaQ3EuEoENgzNfpvaEak/6FsiM8DI5tsvn5fa/hUhVyO/LZQQnqhDlkxLuABM
+         5/F5dQowAoAMm5e9fpPVCvtgVa/D7/Fy8RkxBQmBory71bWf2iqXy7JUmg/uYXx6HbGI
+         FqzPgY5iWuFs0eAk3a5oJeqxcJ67uv0CUKurdJUojiyiXPWP1mh3Ps681gHE88Ep7wLX
+         r2Himw+SN5cddLFaRwQ1DHiC746UGJc/weIJSMe6kw/V6ohDITgKaYHvUjVwaXaPXFcf
+         iuCoRyUUZHaa4V3oIxQfAPGqfVjnWC82SjdFRRJ/7EaNH4DH4Md/3iUgpcharMfeG6i8
+         abmQ==
+X-Gm-Message-State: AOJu0YxZTeQlvyxupw3Tqlfinpac/0JWZEYZkkZ6IR/rcE/W+Dcazax0
+	jkMhEO6w8yPDWe6xXNGs9UstAV+E+bpj3xgxsdY=
+X-Google-Smtp-Source: AGHT+IHBC0OTVtJRlL5qFPBdVNGiwJX5IkhAmmfZybWe4HRb/Ud1mmcObHxNNq6CbT5pBUk61bWuOQ==
+X-Received: by 2002:a05:600c:4595:b0:408:2686:e1ba with SMTP id r21-20020a05600c459500b004082686e1bamr465317wmo.20.1697668123152;
+        Wed, 18 Oct 2023 15:28:43 -0700 (PDT)
+Received: from P-ASN-ECS-830T8C3.numericable.fr ([89.159.1.53])
+        by smtp.gmail.com with ESMTPSA id t16-20020a05600c199000b004068e09a70bsm2806752wmq.31.2023.10.18.15.28.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Oct 2023 12:43:58 -0700 (PDT)
-Message-ID: <0a3063a9d355acc42e5326e40539601f2d8dd145.camel@linuxfoundation.org>
-Subject: Re: [tsc] [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.3.rc1)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Ross Burton <Ross.Burton@arm.com>
-Cc: "qa-build-notification@lists.yoctoproject.org"
- <qa-build-notification@lists.yoctoproject.org>, Yocto discussion list
- <yocto@lists.yoctoproject.org>, Yocto TSC <tsc@lists.yoctoproject.org>, 
- Bruce Ashfield <bruce.ashfield@gmail.com>, Paul Gortmaker
- <paul.gortmaker@windriver.com>
-Date: Wed, 18 Oct 2023 20:43:57 +0100
-In-Reply-To: <EF291923-E5FC-46CC-9AB4-291695AFABC2@arm.com>
-References: 
-	<0101018b416d8d29-59a72af7-335c-4677-b485-bc0ec3abd261-000000@us-west-2.amazonses.com>
-	 <40ab5c11d917f68dc6115d24f2fd427cb4a1fd38.camel@linuxfoundation.org>
-	 <EF291923-E5FC-46CC-9AB4-291695AFABC2@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+        Wed, 18 Oct 2023 15:28:42 -0700 (PDT)
+From: Yoann Congal <yoann.congal@smile.fr>
+To: yocto@lists.yoctoproject.org
+Cc: Yoann Congal <yoann.congal@smile.fr>
+Subject: [yocto-autobuilder-helper][PATCH] config.json: add a workaround for the "autobuilderlog.json" error
+Date: Thu, 19 Oct 2023 00:28:18 +0200
+Message-Id: <20231018222818.550730-1-yoann.congal@smile.fr>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 19:44:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61404
+ <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 22:28:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61405
 
-On Wed, 2023-10-18 at 15:32 +0000, Ross Burton wrote:
-> On 18 Oct 2023, at 07:29, Richard Purdie via lists.yoctoproject.org <rich=
-ard.purdie=3Dlinuxfoundation.org@lists.yoctoproject.org> wrote:
-> >=20
-> > On Wed, 2023-10-18 at 06:16 +0000, Pokybuild User wrote:
-> > >    A build flagged for QA (yocto-4.3.rc1) was completed on the autobu=
-ilder and is available at:
-> > >=20
-> > >=20
-> > >        https://autobuilder.yocto.io/pub/releases/yocto-4.3.rc1
-> > >=20
-> > >=20
-> > >    Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders=
-/83/builds/6062
-> >=20
-> > There was one failure in the build, a serial login issue on ttyS1, so
-> > an occurrence of our annoying 6.5 issue. This is the first time we've
-> > seen it with the workaround applied.
-> >=20
-> > The question is to proceed with rc1 in testing, or apply the upstream
-> > fixes and try an rc2 with that? I'm torn=E2=80=A6
->=20
-> I=E2=80=99d say we should proceed with RC1 whilst testing upstream fixes.
->=20
-> If they manage to shake out all of the failures then we can decide
-> whether to spin another RC with the fixes in, or just release with
-> what with have - with copious release notes obviously.=20
+For the reproducible-meta-oe builder, workaround the bug #15241 [1], by
+passing BB_LOGCONFIG through "readlink -f" to avoid relative reference
+to the main build dir.
 
-Lets run with this approach, I agree. I am running test builds in the
-background and we'll see how reliable the upstream fix is. I think
-moving forward with rc1 as is makes sense.
+Also, switch from BBPATH to BUILDDIR to reference the main build dir.
 
-Cheers,
+[1]: https://bugzilla.yoctoproject.org/show_bug.cgi?id=15241
 
-Richard
+Signed-off-by: Yoann Congal <yoann.congal@smile.fr>
+---
+ config.json | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/config.json b/config.json
+index c01a453..84da67b 100644
+--- a/config.json
++++ b/config.json
+@@ -303,7 +303,7 @@
+             ],
+             "step1" : {
+                 "shortname" : "Repro meta-oe/meta-filesystems",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-filesystems/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-filesystems -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-filesystems/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-filesystems -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+@@ -323,7 +323,7 @@
+             },
+             "step2" : {
+                 "shortname" : "Repro meta-oe/meta-gnome",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-gnome/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-gnome -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-gnome/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-gnome -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+@@ -343,14 +343,14 @@
+             },
+             "step3" : {
+                 "shortname" : "Repro meta-oe/meta-initramfs",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-initramfs/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-initramfs -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-initramfs/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-initramfs -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-initramfs"
+                 ]
+             },
+             "step4" : {
+                 "shortname" : "Repro meta-oe/meta-multimedia",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-multimedia/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-multimedia -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-multimedia/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-multimedia -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+@@ -367,7 +367,7 @@
+             },
+             "step5" : {
+                 "shortname" : "Repro meta-oe/meta-networking",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-networking/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-networking -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-networking/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-networking -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-networking"
+@@ -382,7 +382,7 @@
+             },
+             "step6" : {
+                 "shortname" : "Repro meta-oe/meta-oe",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-oe/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-oe -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-oe/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-oe -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe"
+                 ],
+@@ -393,7 +393,7 @@
+             },
+             "step7" : {
+                 "shortname" : "Repro meta-oe/meta-perl",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-perl/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-perl -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-perl/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-perl -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-perl"
+@@ -408,7 +408,7 @@
+             },
+             "step8" : {
+                 "shortname" : "Repro meta-oe/meta-python",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-python/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-python -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-python/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-python -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python"
+@@ -419,7 +419,7 @@
+             },
+             "step9" : {
+                 "shortname" : "Repro meta-oe/meta-webserver",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-webserver/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-webserver -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-webserver/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-webserver -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-webserver"
+@@ -433,7 +433,7 @@
+             },
+             "step10" : {
+                 "shortname" : "Repro meta-oe/meta-xfce",
+-                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-xfce/ DISPLAY=:1 oe-selftest --newbuilddir $BBPATH/build-st-meta-xfce -r reproducible"],
++                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-xfce/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-xfce -r reproducible"],
+                 "ADDLAYER" : [
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+-- 
+2.30.2
+
 
