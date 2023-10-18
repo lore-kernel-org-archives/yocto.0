@@ -2,60 +2,63 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60FEDCDB47E
-	for <webhook@archiver.kernel.org>; Wed, 18 Oct 2023 17:33:48 +0000 (UTC)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
- by mx.groups.io with SMTP id smtpd.web11.287592.1697650424039570155
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22C32CDB47E
+	for <webhook@archiver.kernel.org>; Wed, 18 Oct 2023 19:44:05 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web11.10632.1697658241104965100
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Oct 2023 10:33:44 -0700
+ Wed, 18 Oct 2023 12:44:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=hHUkYsUl;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-32da4ffd7e5so2800901f8f.0
-        for <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 10:33:43 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=UZuPA5BU;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40837ebba42so13085785e9.0
+        for <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 12:44:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1697650422; x=1698255222; darn=lists.yoctoproject.org;
+        d=linuxfoundation.org; s=google; t=1697658239; x=1698263039; darn=lists.yoctoproject.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=P+Nu8ImSsLYIdXSNuSp+jVFp/KA9RAIV8LBohYu45LU=;
-        b=hHUkYsUloYxawJqvPFa+3eYB45ugs9y5sy3NdsqNhOs2ENJ0/LLpL/E+PYZqFcJGAw
-         EkeR5rOftdD+Xu0MEK4ZxPdzrDHai9UGJoNfA6wpQfwvXsXNYCJ2sMrMx19TJMf+SZGN
-         FfZWo+eUe+C+PJeQyYUSdU8Lvd7jOwDXf3qSU=
+        bh=80ahV/adNWFLWu5WkQs6/6n3/WyD/Nb3qLqx/UWW2As=;
+        b=UZuPA5BUa0okUtyMdn2uQUVGLWEhqv0YIc37JOoM3lsGR71QCiPj4AiwRlpjktsK2H
+         Fp+xivogduqHxnaJHESjvbTj/inQt6xycUgUSQPAAy6LvaekILJEyvIKjx3oEVMV7cyL
+         4fxZHUr94iuDw6ZGqxdyxX3iOY3XNXfcu/kLE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697650422; x=1698255222;
+        d=1e100.net; s=20230601; t=1697658239; x=1698263039;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P+Nu8ImSsLYIdXSNuSp+jVFp/KA9RAIV8LBohYu45LU=;
-        b=oWhNT4kioM8qxd9QyBblJza4K2O1HasSzZ88FHu4g4PzNQyvCF1q4CfD80OV4Gybl9
-         0qcV6cHzie6x/BpkV5yUSSN6h0PnYm8DyBl5/QbLWd6X+FTOTRcPq5fuZfS8LS94t8uh
-         /rL8eyhzRJkVXqU7eiFJnVok+D/a0Exh2TkKTlxSkvAnkvtJbKdmZqUTIzB5oWxOuZsn
-         AtoYVyy792o9HKIKNNFxbpfnFpX96nO+JTYtrpPZEAxGU7/D3SBy9nVitwbssoefB8uj
-         TV0KogMf2FMMW7scZmqHijP8MtieF+Mwu7Jb5gxWAMI2IH1qK0z3VrlJpokoz7PqW4tH
-         U3Mg==
-X-Gm-Message-State: AOJu0Yym/zZlb+gddtsYnJnHe8+InhztvxgXdjRAWzC39edi5PbdTQ+a
-	A/Ys4KK8iGz2FTvSxcmA1rAahw==
-X-Google-Smtp-Source: AGHT+IFQ0ICzAC2qaqbXGH9Dcuiw+WFHZ5k+ml5rqBH8os9+87/IcqzaQ3AgRK38Vex0CAiMzL2Dhg==
-X-Received: by 2002:adf:a319:0:b0:323:1688:a70e with SMTP id c25-20020adfa319000000b003231688a70emr5061275wrb.16.1697650422358;
-        Wed, 18 Oct 2023 10:33:42 -0700 (PDT)
+        bh=80ahV/adNWFLWu5WkQs6/6n3/WyD/Nb3qLqx/UWW2As=;
+        b=Mx7QZgssuae15/psSGiHJaMWkQOnRRj5veQOxHAFjFy3QlleiT9ukdjXD4s61PdVxk
+         L/d6Csoyw3aWV8rpRQmAxJtBEgJHIZZyaG3L8/wtlWwXepcJcF3WaanjHu46Ya+2TwIe
+         K2Mr0nf2ZmonnAwsu5zJ/aMYT3wJ8YKJTEA5rkP/4ceKs7vLTCOMlOX+iZKSJ/chStFb
+         OrDFClUku4uINl98V96Y80y9xmVwsB7zMTXF55laQUUdSf+YKw58QMH90AeF51EaVcqh
+         UPZfntDUQdttCklrhn3ddCSl6wAj9Kcp96ZLNbjEWfQXFH8ly/XNzkRpNCcXfZc3AMHU
+         aUkQ==
+X-Gm-Message-State: AOJu0YzFHh/av+Ejg/afF6m2sbrgN3BsTrtObEnp2nOFdQCrbEkS5/iu
+	k2V83xZ3JNvd/opillqxjt9WoA==
+X-Google-Smtp-Source: AGHT+IGx9vZw8xe9i+lbRRWa2e8XMHVeJGd5phu2xkjj3hoGkxaCgx7kYyuG35IkKIyE5iEUZndkbw==
+X-Received: by 2002:adf:fc91:0:b0:329:6e92:8d77 with SMTP id g17-20020adffc91000000b003296e928d77mr15750wrr.51.1697658239320;
+        Wed, 18 Oct 2023 12:43:59 -0700 (PDT)
 Received: from ?IPv6:2001:8b0:aba:5f3c:9ec8:2948:ce65:9cfb? ([2001:8b0:aba:5f3c:9ec8:2948:ce65:9cfb])
-        by smtp.gmail.com with ESMTPSA id e18-20020adffc52000000b0032da35baf7bsm2550813wrs.113.2023.10.18.10.33.41
+        by smtp.gmail.com with ESMTPSA id a17-20020a5d5091000000b0032d893d8dc8sm2813877wrt.2.2023.10.18.12.43.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Oct 2023 10:33:41 -0700 (PDT)
-Message-ID: <9f42b38060ae8f2f4126a894bedd794b2066693b.camel@linuxfoundation.org>
-Subject: Re: CDN for sstate.yoctoproject.org
+        Wed, 18 Oct 2023 12:43:58 -0700 (PDT)
+Message-ID: <0a3063a9d355acc42e5326e40539601f2d8dd145.camel@linuxfoundation.org>
+Subject: Re: [tsc] [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-4.3.rc1)
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Michael Halstead <mhalstead@linuxfoundation.org>, Yocto-mailing-list
-	 <yocto@lists.yoctoproject.org>
-Date: Wed, 18 Oct 2023 18:33:41 +0100
-In-Reply-To: <CANNYZj_vjYt6Ldx82c-ZEp1x-L4B8gs3Ggt6FPypNYf67A9arg@mail.gmail.com>
+To: Ross Burton <Ross.Burton@arm.com>
+Cc: "qa-build-notification@lists.yoctoproject.org"
+ <qa-build-notification@lists.yoctoproject.org>, Yocto discussion list
+ <yocto@lists.yoctoproject.org>, Yocto TSC <tsc@lists.yoctoproject.org>, 
+ Bruce Ashfield <bruce.ashfield@gmail.com>, Paul Gortmaker
+ <paul.gortmaker@windriver.com>
+Date: Wed, 18 Oct 2023 20:43:57 +0100
+In-Reply-To: <EF291923-E5FC-46CC-9AB4-291695AFABC2@arm.com>
 References: 
-	<CADfgfoaiTO20VqND_cW19rcx3zKvDR2vh69GZMA0Ox3Pb-pF2Q@mail.gmail.com>
-	 <CANNYZj_SLzpPUct_BEnsm2mSJrZViHYdh0yqjwA-KfKRhymdyw@mail.gmail.com>
-	 <563dd39e0841942203e108401db10dc78c0dcb89.camel@linuxfoundation.org>
-	 <CANNYZj_vjYt6Ldx82c-ZEp1x-L4B8gs3Ggt6FPypNYf67A9arg@mail.gmail.com>
+	<0101018b416d8d29-59a72af7-335c-4677-b485-bc0ec3abd261-000000@us-west-2.amazonses.com>
+	 <40ab5c11d917f68dc6115d24f2fd427cb4a1fd38.camel@linuxfoundation.org>
+	 <EF291923-E5FC-46CC-9AB4-291695AFABC2@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.48.1-0ubuntu1 
@@ -63,165 +66,42 @@ MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 17:33:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61403
+ <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 19:44:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61404
 
-On Wed, 2023-10-18 at 14:02 +0200, Alexander Kanavin wrote:
-> On Wed, 18 Oct 2023 at 08:45, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> > I'm torn on the targets to test as sato-sdk is a large image and world
-> > is a lot of work. I'd be tempted to test sato, weston and full-cmdline?
-> > World is a good test I guess and if from sstate, shouldn't have that
-> > much of an issue. It does also prove things are working.
+On Wed, 2023-10-18 at 15:32 +0000, Ross Burton wrote:
+> On 18 Oct 2023, at 07:29, Richard Purdie via lists.yoctoproject.org <rich=
+ard.purdie=3Dlinuxfoundation.org@lists.yoctoproject.org> wrote:
+> >=20
+> > On Wed, 2023-10-18 at 06:16 +0000, Pokybuild User wrote:
+> > >    A build flagged for QA (yocto-4.3.rc1) was completed on the autobu=
+ilder and is available at:
+> > >=20
+> > >=20
+> > >        https://autobuilder.yocto.io/pub/releases/yocto-4.3.rc1
+> > >=20
+> > >=20
+> > >    Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders=
+/83/builds/6062
+> >=20
+> > There was one failure in the build, a serial login issue on ttyS1, so
+> > an occurrence of our annoying 6.5 issue. This is the first time we've
+> > seen it with the workaround applied.
+> >=20
+> > The question is to proceed with rc1 in testing, or apply the upstream
+> > fixes and try an rc2 with that? I'm torn=E2=80=A6
 >=20
-> I ran '-S printdiff world' on a blank build directory. First,
-> scalability isn't great:
+> I=E2=80=99d say we should proceed with RC1 whilst testing upstream fixes.
 >=20
-> Initialising tasks: 100%
-> > #######################################################################=
-###########################################################################=
-########################|
-> Time: 0:24:19
-> Checking sstate mirror object availability: 100%
-> > #######################################################################=
-###########################################################################=
-|
-> Time: 0:12:14
->=20
-> So it's taking 36 minutes just preparing to fetch the objects, and 2/3
-> of that time goes into communicating with hash equivalence server
-> (e.g. BB_HASHSERVE_UPSTREAM =3D "hashserv.yocto.io:8687").
+> If they manage to shake out all of the failures then we can decide
+> whether to spin another RC with the fixes in, or just release with
+> what with have - with copious release notes obviously.=20
 
-FWIW the second time an artefact is pulled from the CDN, it will be
-much faster. I don't know how much that is a factor here.
-
-We know hashequiv is slow, particularly from europe. We've ideas on
-that we're looking into but for now it is what it is. Part of this work
-was to find out what the issues are so we write that one up.
-
-> Second, there are significant misses. I don't have a clear theory
-> where they come from, just want to list them:
->=20
-> The differences between the current build and any cached tasks start
-> at the following tasks:
-> /srv/work/alex/poky/meta/recipes-core/meta/meta-ide-support.bb:do_populat=
-e_ide_support
-> /srv/work/alex/poky/meta/recipes-graphics/xorg-driver/xf86-input-synaptic=
-s_1.9.2.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-devtools/bootchart2/bootchart2_0.14.9.bb=
-:do_create_runtime_spdx
-> /srv/work/alex/poky/meta/recipes-graphics/igt-gpu-tools/igt-gpu-tools_git=
-.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-devtools/python/python3-dbusmock_0.29.1.=
-bb:do_create_runtime_spdx
-> /srv/work/alex/poky/meta/recipes-devtools/dpkg/dpkg_1.22.0.bb:do_configur=
-e
-> /srv/work/alex/poky/meta/recipes-graphics/xorg-driver/xf86-input-vmmouse_=
-13.2.0.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-graphics/glew/glew_2.2.0.bb:do_collect_s=
-pdx_deps
-> /srv/work/alex/poky/meta/recipes-graphics/xorg-driver/xf86-input-evdev_2.=
-10.6.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-graphics/libva/libva_2.19.0.bb:do_collec=
-t_spdx_deps
-> /srv/work/alex/poky/meta/recipes-sato/webkit/libwpe_1.14.1.bb:do_collect_=
-spdx_deps
-> /srv/work/alex/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-meta-b=
-ase.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-python=
-_1.22.6.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-extended/cups/cups_2.4.6.bb:do_collect_s=
-pdx_deps
-> /srv/work/alex/poky/meta/recipes-gnome/libdazzle/libdazzle_3.44.0.bb:do_c=
-ollect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-graphics/igt-gpu-tools/igt-gpu-tools_git=
-.bb:do_package
-> /srv/work/alex/poky/meta/recipes-multimedia/gstreamer/gst-devtools_1.22.6=
-.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-core/packagegroups/packagegroup-core-sdk=
-.bb:do_package
-> /srv/work/alex/poky/meta/recipes-graphics/xorg-driver/xf86-input-mouse_1.=
-9.5.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-graphics/waffle/waffle_1.7.2.bb:do_colle=
-ct_spdx_deps
-> /srv/work/alex/poky/meta/recipes-multimedia/alsa/alsa-tools_1.2.5.bb:do_c=
-ollect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-rtsp-s=
-erver_1.22.6.bb:do_collect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-devtools/apt/apt_2.6.1.bb:do_install
-> /srv/work/alex/poky/meta/recipes-gnome/gtk+/gtk4_4.12.3.bb:do_collect_spd=
-x_deps
-> /srv/work/alex/poky/meta/recipes-devtools/devel-config/distcc-config.bb:d=
-o_create_runtime_spdx
-> /srv/work/alex/poky/meta/recipes-gnome/libhandy/libhandy_1.8.2.bb:do_coll=
-ect_spdx_deps
-> /srv/work/alex/poky/meta/recipes-support/vim/vim_9.0.bb:do_collect_spdx_d=
-eps
-
-We'll have to dig into this.
-
-> So I think we should start with specific images first - minimal,
-> full-cmdline, weston, sato and sato-sdk are all much faster to check.
-
-Agreed, lets start with simpler images, full-cmdline, minimal, sato and
-weston. We can increase coverage as we move forward (world, sato-sdk).
-
-> On qemux86_64 none of them show misses, but on qemuarm64 there are
-> problems with sato, sato-sdk and weston, i.e. sato-sdk shows:
->=20
-> The differences between the current build and any cached tasks start
-> at the following tasks:
-> /srv/work/alex/poky/meta/recipes-gnome/gdk-pixbuf/gdk-pixbuf_2.42.10.bb:d=
-o_package_write_rpm
-> /srv/work/alex/poky/meta/recipes-connectivity/connman/connman-gnome_0.7.b=
-b:do_package_write_rpm
-> /srv/work/alex/poky/meta/recipes-multimedia/gstreamer/gst-examples_1.18.6=
-.bb:do_package_write_rpm
-> /srv/work/alex/poky/meta/recipes-sato/images/core-image-sato-sdk.bb:do_de=
-ploy_source_date_epoch
-> /srv/work/alex/poky/meta/recipes-graphics/xorg-font/font-util_1.4.1.bb:do=
-_package_write_rpm
-> /srv/work/alex/poky/meta/recipes-core/packagegroups/packagegroup-core-sdk=
-.bb:do_package
-> /srv/work/alex/poky/meta/recipes-gnome/librsvg/librsvg_2.56.3.bb:do_packa=
-ge_write_rpm
-> /srv/work/alex/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugin=
-s-bad_1.22.6.bb:do_package_write_rpm
->=20
->=20
-> I'm not sure if that's because cache for the current master needs to
-> be populated properly first, or if there's a deeper issue.
-
-We made a release build with current master so the cache should be
-good. We're going to have to look into it.
-
-> > Either we start logging what we've built so we get the last known
-> > revisions, or we run the test as part of a-quick/a-full at the end of
-> > the build? I don't really want to extend the build but I'm not sure we
-> > may have much choice.
->=20
-> I think it can be a selftest and bundled into
-> trigger-build-posttrigger which already runs
-> 'buildoptions.SourceMirroring.test_yocto_source_mirror':
->=20
-> https://git.yoctoproject.org/yocto-autobuilder-helper/tree/config.json#n4=
-65
->=20
-> The various yocto mirrors tests could be tagged in a way similar to
-> machine/toolchain selftests, so that they're excluded from regular
-> oe-selftest, but run specifically here.
-
-That sounds reasonable. oe-selftest has the concept of "tags" so we
-should create some for these tests and use those as the hardcoded lists
-are a pain. We already do that for the toolchain-user, toolchain-system
-and machine ones iirc.
+Lets run with this approach, I agree. I am running test builds in the
+background and we'll see how reliable the upstream fix is. I think
+moving forward with rc1 as is makes sense.
 
 Cheers,
 
 Richard
-
-
-
-
-
 
