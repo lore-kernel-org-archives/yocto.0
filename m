@@ -1,87 +1,115 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <changqing.li@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DC77CDB474
-	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 22:38:32 +0000 (UTC)
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
- by mx.groups.io with SMTP id smtpd.web10.269802.1697582306358640087
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6225CCDB474
+	for <webhook@archiver.kernel.org>; Wed, 18 Oct 2023 02:06:13 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web10.273276.1697594764971326159
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Oct 2023 15:38:26 -0700
+ Tue, 17 Oct 2023 19:06:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=mWMfy0de;
- spf=softfail (domain: sakoman.com, ip: 209.85.161.46, mailfrom: steve@sakoman.com)
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-57bce354d94so3197102eaf.2
-        for <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 15:38:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1697582305; x=1698187105; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hnmKyn0Vqn1zHn/2Hut3CaQNnUMu0Wp58i3FHmZmOko=;
-        b=mWMfy0deE9g0EnI1O1xW7mVp8r5PGLPA2O5LAAVeobt4KhqNfwPPyl1vPKx0qdhfO9
-         qnj0qZoLxa91L/WNEdyBRWYxCGf4ElZVz4BkI0wK6KTZcs2ndXr9AvGcPEjKncgCXXj+
-         b02SyWDu9kUXrJF0g6eFy35maNIJD7u5rr/b4PQZSUkkkXS/lfiWysWwXFMlC75mTm9t
-         0E77g9ur5KcP4WIft18ZoZiPNOrH/u07HYibgPhL6Qh+VCpn5KfpLnzg1AZVNyKfTqC+
-         +q4JLABDWqccXoJbPwJhUXSpMX9DXeBVB6quY/jGNV3Sr+uHU8a/JnVyX4XK4uDTQSko
-         n3Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697582305; x=1698187105;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hnmKyn0Vqn1zHn/2Hut3CaQNnUMu0Wp58i3FHmZmOko=;
-        b=bBtfN20eD7PZiH7CsY0I7BE7ZzxC9pA+X06twwLidVU7LeCSKQpRdpbIqSfpbwYie0
-         zRQQEKgAdf+FtwEsIvxHYBGp1P7lnQ0N2T1uPEGziKvtUDIiUPoqE5XBOt05aP9PkCGJ
-         Ybw6jHQHNEMV1SfISMrBQzDz7ULcDQCs+opvcvawiuOQkH46ESjbCSLdAHMstRHeWHiR
-         qgut2jlQcOMEibGTf8cso5Q6RSdU85Erexf/jYJYAmDAuVCNMA/q6yMTsLQbjrX9RN37
-         ScgAhoU+5yU152+kiCENui6mXLcbJxxrsDAVFy4SDM9NdFWRXI/gUY5JCDbryF8kG+mO
-         JZRA==
-X-Gm-Message-State: AOJu0YwvhtE/BHwzb9vwpBeXjffVKroSnVEARbikYQ0LJtHfBR1tOoh6
-	lscalJhiwcJWqCM8xRXjc4S3GOoPkoTBfuBAQ1U=
-X-Google-Smtp-Source: AGHT+IEvFvzeYLiZHNO3J81niTurbESlJIFdZofuRI/soseLSSBV6neknk11jDBg00CXQhMVFzYrrA==
-X-Received: by 2002:a05:6358:519d:b0:143:63ae:cc76 with SMTP id 29-20020a056358519d00b0014363aecc76mr3060633rwk.11.1697582305017;
-        Tue, 17 Oct 2023 15:38:25 -0700 (PDT)
-Received: from hexa.router0800d9.com (dhcp-72-234-106-30.hawaiiantel.net. [72.234.106.30])
-        by smtp.gmail.com with ESMTPSA id d6-20020aa797a6000000b00690d1269691sm1970420pfq.22.2023.10.17.15.38.24
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Oct 2023 15:38:24 -0700 (PDT)
-From: Steve Sakoman <steve@sakoman.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell] config.json: update to latest buildtools tarball
-Date: Tue, 17 Oct 2023 12:38:17 -1000
-Message-Id: <cc33a04bc6bb9c1bf5efea35ef1dfadfde4807cf.1697582213.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1697582213.git.steve@sakoman.com>
-References: <cover.1697582213.git.steve@sakoman.com>
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=nHtCANxv;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=8655852171=changqing.li@windriver.com)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39I1Gwqc022227
+	for <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 19:06:04 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PPS06212021; bh=cstW7
+	DM2OQgZ450kYQsv4RT1X9j8chrXRBy4gjFlJyc=; b=nHtCANxv+obDC4j0vxFZe
+	xix91Ggy0dfLyYY5RmeX/gQ0ezcGwiMGC8IrBAflNEnf5l8V9aRBj/iXfvB1VhAg
+	00EM2o9zjPfAN1HUjXaNiRTOmgkWD96cgkHf5ZBD6MlJ36VIwy5gkPjNwIbvgo/v
+	xNRFp1Dy1FM3FMdBla8u7mHw7LYClsLBI3Uiyw2yi2w34tIVESzIPKE7e+k0UIiW
+	HbVpmlYyxzGFvay+x+usGIVBpxyCs53slJ6U2wutYDNqYm65o5uBIqVzxPxC1IU+
+	/miE/ztAiHutx2UsmeXbsmQnhqEIcxBAcIdOTkhtRKCeT2Ma07rZW/78ui2OBrHC
+	w==
+Received: from ala-exchng02.corp.ad.wrs.com (ala-exchng02.wrs.com [147.11.82.254])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3tt147g7sm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 19:06:04 -0700 (PDT)
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Tue, 17 Oct 2023 19:06:01 -0700
+Received: from pek-lpg-core2.wrs.com (128.224.153.41) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2507.32 via Frontend Transport; Tue, 17 Oct 2023 19:06:01 -0700
+From: <changqing.li@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-anaconda][PATCH] anaconda_oe.py: correct image name
+Date: Wed, 18 Oct 2023 10:06:02 +0800
+Message-ID: <20231018020602.379476-1-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: -UXkc0C4DPQ6ybgl_zrNthP2iAf8rqfJ
+X-Proofpoint-GUID: -UXkc0C4DPQ6ybgl_zrNthP2iAf8rqfJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-17_08,2023-10-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ adultscore=0 bulkscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ clxscore=1015 lowpriorityscore=0 spamscore=0 mlxlogscore=901
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2309180000 definitions=main-2310180017
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Oct 2023 22:38:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61382
+ <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 02:06:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61383
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
+From: Changqing Li <changqing.li@windriver.com>
+
+Since oe-core commit 26d97acc713 [image-artifact-names: include
+${IMAGE_NAME_SUFFIX} directly in both ${IMAGE_NAME} and
+${IMAGE_LINK_NAME}], image name has changed to
+core-image-minimal-qemux86.rootfs.ext4, change accordingly to fix error:
+INSTALLER_TARGET_BUILD does not exist
+
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- config.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ README                                 | 2 +-
+ lib/oeqa/selftest/cases/anaconda_oe.py | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/config.json b/config.json
-index 03ea262..7ed8259 100644
---- a/config.json
-+++ b/config.json
-@@ -10,7 +10,7 @@
+diff --git a/README b/README
+index 07b63fe..76e9665 100644
+--- a/README
++++ b/README
+@@ -162,7 +162,7 @@ Building the target installer
+            Edit conf/local.conf to use:
+            $ echo 'PACKAGE_CLASSES = "package_rpm"' >> conf/local.conf
+            $ echo 'DISTRO = "anaconda"' >> conf/local.conf
+-           $ echo 'INSTALLER_TARGET_BUILD = "<target_build>/tmp-glibc/deploy/images/qemux86/core-image-minimal-qemux86.ext4"' >> conf/local.conf
++           $ echo 'INSTALLER_TARGET_BUILD = "<target_build>/tmp-glibc/deploy/images/qemux86/core-image-minimal-qemux86.rootfs.ext4"' >> conf/local.conf
  
-     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
-     "BUILDTOOLS_URL_TEMPLOCAL2" : "https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
--    "BUILDTOOLS_URL" : "https://downloads.yoctoproject.org/releases/yocto/yocto-3.4/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.4.sh",
-+    "BUILDTOOLS_URL" : "/srv/autobuilder/autobuilder.yocto.io/pub/non-release/20230223-18/buildtools/x86_64-buildtools-extended-nativesdk-standalone-4.1+snapshot-9c07de0f20042c81496185293857284048d7912c.sh",
+            Edit conf/bblayers.conf to include other layers
+            BBLAYERS ?= " \
+diff --git a/lib/oeqa/selftest/cases/anaconda_oe.py b/lib/oeqa/selftest/cases/anaconda_oe.py
+index bf55308..20b8d5b 100644
+--- a/lib/oeqa/selftest/cases/anaconda_oe.py
++++ b/lib/oeqa/selftest/cases/anaconda_oe.py
+@@ -146,7 +146,7 @@ class TestAnacondaOE(OESelftestTestCase):
+         ks_file = os.path.join(self.layer_path, 'example/ks-imagecopy.cfg')
+         features = 'TMPDIR .= "_host"\n'
+         features += 'DISTRO = "%s"\n' % self.anaconda_distro
+-        features += 'INSTALLER_TARGET_BUILD = "%s/%s-%s.ext4"\n' % (self.target_deploy_dir_image, self.target_recipe, self.machine)
++        features += 'INSTALLER_TARGET_BUILD = "%s/%s-%s.rootfs.ext4"\n' % (self.target_deploy_dir_image, self.target_recipe, self.machine)
+         features += 'KICKSTART_FILE = "%s"\n' % ks_file
+         features += 'SYSLINUX_TIMEOUT = "10"\n'
+         features += 'APPEND:append = " textinst"\n'
+@@ -164,7 +164,7 @@ class TestAnacondaOE(OESelftestTestCase):
+     def test_testanaconda_imagecopy_install(self):
+         features = 'TMPDIR .= "_host"\n'
+         features += 'DISTRO = "%s"\n' % self.anaconda_distro
+-        features += 'INSTALLER_TARGET_BUILD = "%s/%s-%s.ext4"\n' % (self.target_deploy_dir_image, self.target_recipe, self.machine)
++        features += 'INSTALLER_TARGET_BUILD = "%s/%s-%s.rootfs.ext4"\n' % (self.target_deploy_dir_image, self.target_recipe, self.machine)
+         self.logger.info('extra local.conf:\n%s' % features)
+         self.append_config(features)
  
-     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
-     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
 -- 
-2.34.1
+2.25.1
 
 
