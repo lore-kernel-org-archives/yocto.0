@@ -1,99 +1,111 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ejo@pengutronix.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27848CDB47E
-	for <webhook@archiver.kernel.org>; Wed, 18 Oct 2023 10:51:06 +0000 (UTC)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
- by mx.groups.io with SMTP id smtpd.web10.278946.1697626260772558597
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CE9ACDB47E
+	for <webhook@archiver.kernel.org>; Wed, 18 Oct 2023 12:01:16 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+ by mx.groups.io with SMTP id smtpd.web11.279496.1697630469705406616
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Oct 2023 03:51:01 -0700
+ Wed, 18 Oct 2023 05:01:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=aInRM2PZ;
- spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2c518a1d83fso58166851fa.3
-        for <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 03:51:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697626259; x=1698231059; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kkMnN4EJIQwpIFBpGNKJ/TKWRDAeeM9c6GK1eAK24pw=;
-        b=aInRM2PZqRseXR5m33VcPnRPA3sjaq4rZc/TWsWvwIDdV2NQtlqaPJz1Krd2Z97/ef
-         FC9kACfPCcjwfSKB5ApqMu6f9q3REDT3JAG1OkX1340TybpCODwAcODkK/DWO4PyqqNH
-         iDWh9zmVq5uMG7Rr8oWYB5Zao9gygN3F3Veucwd0ea88dTvns6USlPNb9zMVi9RNKYU5
-         7cJ2JSjz4h9FomHnJOvwhFfSKnIzDmZQO8C3lh1sEFi+zvpaClgJQ6L9IBfFEX5/THPP
-         +UraW8SeRTbZtSnKRkl6kXMVW4TaIYA6oJp7LPb4o2u0EdfWRpjNkALfz0wxEvqgy/Lu
-         iqRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697626259; x=1698231059;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kkMnN4EJIQwpIFBpGNKJ/TKWRDAeeM9c6GK1eAK24pw=;
-        b=IpqByoJQcL5NyCooeC5Q7OQieOhAuM0VIsCfpm2L3PMVtann1mNwiH23mHvsqsLmrz
-         PhdabEh1fYpbhG5QIxU79BE/0mWqzQzddb0afusPrbY6IXvTFLYT9GarQTHsBp9/xSTN
-         Jmzs729eRpr7k9UJDBSy5nqFBG060TZsKkbk6IshQYi+VHisU/xxipypd7BNgpz//Toi
-         7ssAmCphyCMpjsRG/ufNV6BDwKaywz80+6+aa35oYe7z3v8SVPF1rtbN/wMz/MNgYVcF
-         wX0y77YCmB/DIvVhN63PjMR9yUkWeXcIqItVCQ+NZHJVUi7DFECZrf+dCEf0T05bqmoX
-         n0jQ==
-X-Gm-Message-State: AOJu0Yz1mDjsBfvUJih8KIZy4d2MWAeLan4ckqEPaCoHGGkKMBfxEgOQ
-	DlGInWtjhpAs1tSNTe8a8j3/j6MckgSRM9NCkzk=
-X-Google-Smtp-Source: AGHT+IH0v/f2CmsuE2qZEIbr0anH+85wW3WmHTFbZk5lxPcyrNU+TfyhRdzi8O/hU3AVYK/GPJSlAKwWGsTwrRrlHs4=
-X-Received: by 2002:a2e:908d:0:b0:2bd:1804:29fa with SMTP id
- l13-20020a2e908d000000b002bd180429famr3647317ljg.39.1697626258724; Wed, 18
- Oct 2023 03:50:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <CANNYZj8P62x8q5TP59Xhajq6XNS6--Ox-G+N2pEH9hnr=Hoo=A@mail.gmail.com>
- <30180.1697619630482083755@lists.yoctoproject.org> <CANNYZj8Rj08B4vvQ8EC6v3S31U9ZAWoxdmJzh43T6CpoK5bqww@mail.gmail.com>
- <ecc7db27039d38992b6423f17bbfdd44e1967249.camel@pengutronix.de>
- <CANNYZj_scVXe2iPwTcrt-xDy2rN9ObJFo5qJmQG0ix+=J7R61w@mail.gmail.com>
- <2520ab418aa18b4b96b0fcdad4fb2364c1e8e930.camel@pengutronix.de> <178F2D5AFBF324AF.14388@lists.yoctoproject.org>
-In-Reply-To: <178F2D5AFBF324AF.14388@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 18 Oct 2023 12:50:47 +0200
-Message-ID: <CANNYZj_F7EaLSkxupsWXfbZ4HC_NmXMXWEoWOxjtuRtBohyPLw@mail.gmail.com>
+ dkim=none (message not signed); spf=pass (domain: pengutronix.de, ip: 185.203.201.7, mailfrom: ejo@pengutronix.de)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <ejo@pengutronix.de>)
+	id 1qt5EZ-00072J-2z; Wed, 18 Oct 2023 14:01:07 +0200
+Message-ID: <ddc6c58d4e31e77c1bc3012e7b3458369a046edc.camel@pengutronix.de>
 Subject: Re: [yocto] Remove packagegroup from image recipes
-To: =?UTF-8?Q?Enrico_J=C3=B6rns?= <ejo@pengutronix.de>
-Cc: Ivan Stojanovic <ivastojanovic@gmail.com>, yocto@lists.yoctoproject.org
+From: Enrico =?ISO-8859-1?Q?J=F6rns?= <ejo@pengutronix.de>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Ivan Stojanovic <ivastojanovic@gmail.com>, yocto@lists.yoctoproject.org,
+  ejo <ejo@pengutronix.de>
+Date: Wed, 18 Oct 2023 14:01:06 +0200
+In-Reply-To: <CANNYZj_F7EaLSkxupsWXfbZ4HC_NmXMXWEoWOxjtuRtBohyPLw@mail.gmail.com>
+References: 
+	<CANNYZj8P62x8q5TP59Xhajq6XNS6--Ox-G+N2pEH9hnr=Hoo=A@mail.gmail.com>
+	 <30180.1697619630482083755@lists.yoctoproject.org>
+	 <CANNYZj8Rj08B4vvQ8EC6v3S31U9ZAWoxdmJzh43T6CpoK5bqww@mail.gmail.com>
+	 <ecc7db27039d38992b6423f17bbfdd44e1967249.camel@pengutronix.de>
+	 <CANNYZj_scVXe2iPwTcrt-xDy2rN9ObJFo5qJmQG0ix+=J7R61w@mail.gmail.com>
+	 <2520ab418aa18b4b96b0fcdad4fb2364c1e8e930.camel@pengutronix.de>
+	 <178F2D5AFBF324AF.14388@lists.yoctoproject.org>
+	 <CANNYZj_F7EaLSkxupsWXfbZ4HC_NmXMXWEoWOxjtuRtBohyPLw@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: ejo@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: yocto@lists.yoctoproject.org
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 10:51:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61396
+ <yocto@lists.yoctoproject.org>; Wed, 18 Oct 2023 12:01:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61397
 
-On Wed, 18 Oct 2023 at 12:37, Alexander Kanavin via
-lists.yoctoproject.org <alex.kanavin=3Dgmail.com@lists.yoctoproject.org>
-wrote:
->
-> On Wed, 18 Oct 2023 at 12:24, Enrico J=C3=B6rns <ejo@pengutronix.de> wrot=
-e:
-> > In how is this different to the default packagegroup handling in oe-cor=
-e where package 'force
-> > themself' into images based on specific DISTRO_FEATURE or MACHINE_FEATU=
-RE settings?
-> >
-> > Thus this is a mechanism that is explicitly designed to be used by oe-c=
-ore exclusively?
->
-> I see that as something of a historical mis-feature. I would take
-> those things out of the packagegroup recipe and into a class used by
-> images if I had a bit of time (core-image.bbclass most likely).
->
-> That's what you could do as well, define a class that pulls in rauc
-> for those images that inherit it.
+Am Mittwoch, dem 18.10.2023 um 12:50 +0200 schrieb Alexander Kanavin:
+> On Wed, 18 Oct 2023 at 12:37, Alexander Kanavin via
+> lists.yoctoproject.org <alex.kanavin=3Dgmail.com@lists.yoctoproject.org>
+> wrote:
+> >=20
+> > On Wed, 18 Oct 2023 at 12:24, Enrico J=C3=B6rns <ejo@pengutronix.de> wr=
+ote:
+> > > In how is this different to the default packagegroup handling in oe-c=
+ore where package 'force
+> > > themself' into images based on specific DISTRO_FEATURE or MACHINE_FEA=
+TURE settings?
+> > >=20
+> > > Thus this is a mechanism that is explicitly designed to be used by oe=
+-core exclusively?
+> >=20
+> > I see that as something of a historical mis-feature. I would take
+> > those things out of the packagegroup recipe and into a class used by
+> > images if I had a bit of time (core-image.bbclass most likely).
+> >=20
+> > That's what you could do as well, define a class that pulls in rauc
+> > for those images that inherit it.
+>=20
+> You can see how core-image-weston.bb does it:
+>=20
+> IMAGE_FEATURES +=3D "splash package-management ssh-server-dropbear
+> hwcodecs weston"
+>=20
+> and then in core-image class:
+>=20
+> FEATURE_PACKAGES_weston =3D "packagegroup-core-weston"
+> ... etc
 
-You can see how core-image-weston.bb does it:
+Oh yes, I came across this feature a few weeks ago for the first time.
 
-IMAGE_FEATURES +=3D "splash package-management ssh-server-dropbear
-hwcodecs weston"
+Before I had never noticed that the FEATURE_PACKAGES mechanism exists.
 
-and then in core-image class:
+Maybe this could be an alternative to 'hacking' rauc into the base packageg=
+roup.
+Thanks for the hint.
 
-FEATURE_PACKAGES_weston =3D "packagegroup-core-weston"
-... etc
+My original intention was to reduce the number of manual variable switches =
+required for building a
+rauc-compatible image. But maybe this sort of 'over-optimized'.
 
-Alex
+
+Enrico
+
+> Alex
+>=20
+
+--=20
+Pengutronix e.K.=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0| Enrico J=C3=B6rns=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|
+Embedded Linux Consulting & Support=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0| https://www.pengutronix.de/ |
+Steuerwalder Str. 21=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0| Phone: +49-5121-206917-180=C2=A0=C2=A0|
+31137 Hildesheim, Germany=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0| Fax:=C2=A0=C2=
+=A0=C2=A0+49-5121-206917-9=C2=A0=C2=A0=C2=A0=C2=A0|
 
