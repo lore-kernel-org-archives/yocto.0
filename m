@@ -2,61 +2,59 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FB83C41513
-	for <webhook@archiver.kernel.org>; Thu, 19 Oct 2023 12:55:30 +0000 (UTC)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
- by mx.groups.io with SMTP id smtpd.web11.26641.1697720126587872136
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6DAACDB465
+	for <webhook@archiver.kernel.org>; Thu, 19 Oct 2023 13:47:20 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web11.28054.1697723239666823035
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Oct 2023 05:55:27 -0700
+ Thu, 19 Oct 2023 06:47:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=ACpGc4Pw;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.167.49, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-507c5249d55so3462521e87.3
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Oct 2023 05:55:26 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Fq1WDUJK;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40839652b97so18384485e9.3
+        for <yocto@lists.yoctoproject.org>; Thu, 19 Oct 2023 06:47:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1697720125; x=1698324925; darn=lists.yoctoproject.org;
+        d=linuxfoundation.org; s=google; t=1697723238; x=1698328038; darn=lists.yoctoproject.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=7eC1bm1XdciPb9r98oWLSk+ohi0Kem5JjlSH49pVVBE=;
-        b=ACpGc4PwWbcok1W3yYc96I8rR6/PBXW6IV7xd7RWsPIbX0w5LKCw75PsNrVhIvnHrY
-         HOkm7ZUgh4CIU35Vdclwu9HcLu6FVIrNenS2A3UOF1RTFUCD0sJ4dg31JlWVgYMoaCQj
-         +J+NjiZhruQXDrLjOCh/ZWlHw9z5XcoZm1rno=
+        bh=Uxf6UwuoCFbsqqm4EE/49SyL9zwiwPZm4/cRtINimvs=;
+        b=Fq1WDUJKENsdWgNqH1VmknkXYvtWDsMn29U0g6STYJn6eSVXyzaFC1X8cEkPykBQJV
+         h3sxgrFYjJHa33aGudMej9vH+/4ct8/nAY2UBoJNf5fb9kAaeld82w5r9uOs2p9gFPwb
+         DSXHESbeCoF3Z8KwFL9kiBBZkph2XJj6a8er4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697720125; x=1698324925;
+        d=1e100.net; s=20230601; t=1697723238; x=1698328038;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7eC1bm1XdciPb9r98oWLSk+ohi0Kem5JjlSH49pVVBE=;
-        b=U1GcF2mB4xU4GHhbwyDy6IbCf/e+t904c48lj3I6+6EHWlx6pSF6LNE5AEPfaWbj2W
-         FKY+V5gD/lp9whDCpBIm++zla37hL9Mpx88/0lDhM6cQjrARaXkQZu9hLD8wMgKzGNNZ
-         xqJtyuuov94X0atTYHZtk3sFOpCE19l/lNax7qRJAFxsMbOGBSsORkH/jA6/CRepLLNe
-         pLilLBBX8lFE8ZSh1St6AnrYdI57zvIFESjqErVQXSDkDvaj9CHQ7JESh4HaeP8hld47
-         64ILn94/qok6nUcqgCd1oax//z2OTD9lf20FnJhYVHSjs1n9XuDsNVXoEWmZn4MzAfoh
-         mAHw==
-X-Gm-Message-State: AOJu0YzOCWIAdzO2fY2yQZ/gb3KLBgOk6u3wChHxqMUySRcHJilwufQD
-	bogoKjmXn3byyrLrKHfKWAOJ6A==
-X-Google-Smtp-Source: AGHT+IGtRp667PP6kYrA6dDGd48ZA/5eytzXPC1+txjKRF7eQmS03HuU3IfVOArrILiRqclH0v7zMg==
-X-Received: by 2002:ac2:41d5:0:b0:501:bf37:1fc0 with SMTP id d21-20020ac241d5000000b00501bf371fc0mr1353769lfi.33.1697720124639;
-        Thu, 19 Oct 2023 05:55:24 -0700 (PDT)
+        bh=Uxf6UwuoCFbsqqm4EE/49SyL9zwiwPZm4/cRtINimvs=;
+        b=VA7Do2d7ISK1qC7w9LEM/4cPHVU/yu990qE5k940mJhHVDQVsPlRV8W7KuOnHH4hOF
+         Hx7TmCmqL2hckHZ+yi1VxXQzmdCDx2S7a6vT9XFv43lgF+kdn5/2EofnV0536uD2yHuK
+         FmWyXq5juOmnrnKr4b6rqK1N8d70CF3clV0bSi9rCyt8zMiYb2PpTN4Rkyx+fRtXjwyx
+         yADCcEngfOK+/KISade7rX1wAZK3kMhtvSUXyVQd9GJbXnspgjSx3RlBDrBvXtNo8xjF
+         h4K1TjQh8S2M0/6HQp0yFGOqWO5wNpHPQQGAbLoKFfbd7K+bD4kDneBBotCdFQihsVEr
+         +WFg==
+X-Gm-Message-State: AOJu0YwT5athSVMwJ/YsnP8UjpFfcJT0gPzh48xw+97mz3Xy9Xs3xsEE
+	zsHfnWdg/BM6MvYnINIrXlybsg==
+X-Google-Smtp-Source: AGHT+IG0lRrdZjPoH+mO3HyeqQBgj5i/+MrSsz1klQkgAbUicBBXFdq3/rZILUR5XsOAq+scYxmH7g==
+X-Received: by 2002:adf:faca:0:b0:32d:b051:9a27 with SMTP id a10-20020adffaca000000b0032db0519a27mr1395859wrs.20.1697723238004;
+        Thu, 19 Oct 2023 06:47:18 -0700 (PDT)
 Received: from ?IPv6:2001:8b0:aba:5f3c:9ec8:2948:ce65:9cfb? ([2001:8b0:aba:5f3c:9ec8:2948:ce65:9cfb])
-        by smtp.gmail.com with ESMTPSA id az30-20020adfe19e000000b0031fb91f23e9sm4608093wrb.43.2023.10.19.05.55.24
+        by smtp.gmail.com with ESMTPSA id i11-20020a5d630b000000b00327bf4f2f14sm4513516wru.88.2023.10.19.06.47.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Oct 2023 05:55:24 -0700 (PDT)
-Message-ID: <821882923fc13c45b13a5e5bff79e8e2783f5970.camel@linuxfoundation.org>
-Subject: Re: [yocto] QA notification for completed autobuilder build
- (yocto-4.3.rc1)
+        Thu, 19 Oct 2023 06:47:17 -0700 (PDT)
+Message-ID: <65837329489090e581e8080b549647c2dcc5abdc.camel@linuxfoundation.org>
+Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH v2] meta-oe-mirror:
+ Use a 2 step job to fetch and verify meta-openembedded mirror.
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexis =?ISO-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>, Ross
-	Burton <Ross.Burton@arm.com>
-Cc: Yocto discussion list <yocto@lists.yoctoproject.org>
-Date: Thu, 19 Oct 2023 13:55:23 +0100
-In-Reply-To: <39978441-6f8d-48be-92db-00cd66e13c00@bootlin.com>
-References: 
-	<0101018b416d8d29-59a72af7-335c-4677-b485-bc0ec3abd261-000000@us-west-2.amazonses.com>
-	 <a97b6ea3-0478-4cb3-a506-ad19ac7a6f86@bootlin.com>
-	 <90D7FE40-32EB-4D67-B099-9E0C764FC258@arm.com>
-	 <39978441-6f8d-48be-92db-00cd66e13c00@bootlin.com>
+To: David Pierret <david.pierret@smile.fr>, yocto@lists.yoctoproject.org, 
+	Khem Raj <raj.khem@gmail.com>
+Cc: Yoann Congal <yoann.congal@smile.fr>, Steve Sakoman <steve@sakoman.com>
+Date: Thu, 19 Oct 2023 14:47:16 +0100
+In-Reply-To: <178F8004D1FBCB68.20272@lists.yoctoproject.org>
+References: <20231018134638.608387-1-david.pierret@smile.fr>
+	 <178F7D157564D399.11247@lists.yoctoproject.org>
+	 <178F8004D1FBCB68.20272@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.48.1-0ubuntu1 
@@ -64,70 +62,72 @@ MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 19 Oct 2023 12:55:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61415
+ <yocto@lists.yoctoproject.org>; Thu, 19 Oct 2023 13:47:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61416
 
-On Thu, 2023-10-19 at 14:28 +0200, Alexis Lothor=C3=A9 wrote:
-> Hi Ross,
-> On 10/19/23 13:04, Ross Burton wrote:
-> > > On 19 Oct 2023, at 09:36, Alexis Lothor=C3=A9 via lists.yoctoproject.=
-org <alexis.lothore=3Dbootlin.com@lists.yoctoproject.org> wrote:
-> > I just skimmed your report and have some feedback to hopefully make it =
-easier to read in the future.
+On Thu, 2023-10-19 at 12:52 +0100, Richard Purdie via
+lists.yoctoproject.org wrote:
+> On Thu, 2023-10-19 at 11:58 +0100, Richard Purdie via
+> lists.yoctoproject.org wrote:
+> > On Wed, 2023-10-18 at 15:46 +0200, David Pierret wrote:
+> > > Inspired from trigger-build and trigger-build-post-trigger
+> > > The branch must be selected on build configuration.
+> > >=20
+> > > Signed-off-by: David Pierret <david.pierret@smile.fr>
+> > > Reviewed-by: Yoann Congal <yoann.congal@smile.fr>
+> > > ---
+> > >  config.json | 30 ++++++++++++++++++++++++++++++
+> > >  1 file changed, 30 insertions(+)
 > >=20
-> > I=E2=80=99d suggest sorting the output in order of importance.  For exa=
-mple, this is a section that I really don=E2=80=99t care about:
+> > I fixed a json parsing issue and merged. I also added the autobuilder2
+> > config to support it. A test build is now running here:
 > >=20
-> > Match:       sdk_core-image-sato_x86_64_fvp-base_20230910083055
-> >              sdk_core-image-sato_x86_64_fvp-base_20231017222150
-> >=20
-> > Put those at the bottom, or even better collate them into a single sect=
-ion where there have been no changes.
-> >=20
-> > Similarly:
-> >=20
-> > Match:       runtime_core-image-sato_qemux86_20230911011430
-> >              runtime_core-image-sato_qemux86_20231017223736
-> >     Additionally, 1 new test(s) is/are present
-> >=20
-> > I guess marginally more important than identical results, but =E2=80=9C=
-there are new tests that passed=E2=80=9D isn=E2=80=99t very interesting.
+> > https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/1
 >=20
-> Indeed, not so useful and hiding the real content at the bottom
+> That failed with a single fetch failure which isn't related to this
+> patch.
 >=20
-> > Regression: oeselftest_ubuntu-22.04_qemux86-64_20230911011940
-> >     oeselftest_almalinux-9.2_qemux86-64_20231017221342
-> >=20
-> > Should they have matched? The host distro doesn=E2=80=99t match and thi=
-s matters for some of the tests, as some distros don=E2=80=99t support some=
- of the selftests. In this case specifically, there are seven regressions a=
-nd six of them are specific to the host changing, which has the side-effect=
- of hiding the one actual regression.
+> I've therefore pulled the patch into the dunfell, kirkstone and
+> mickledore branches.
 >=20
-> Yeah, that's a point I have been struggling with when starting to update =
-those
-> tools. The initial assumption I have started working with, after discussi=
-ng the
-> matter with Richard (see [1]), is the following:
-> 1. MACHINE _must_ match between base and target
-> 2. Different HOSTS _can_ be cross-checked
+> Autobuilder enabling is here:
 >=20
-> But the issue you are pointing tends to show it does not work well in som=
-e
-> cases. I will have to do some tests to see if dropping 2. reduce this noi=
-se
-> without loosing valuable data, or if we need to find something smarter
+> https://git.yoctoproject.org/yocto-autobuilder2/commit/?id=3D93c034d436cb=
+e631db2354a945850c3e97dd46bd
+>=20
+> with scheduling for the all branches here:
+>=20
+> https://git.yoctoproject.org/yocto-autobuilder2/commit/?id=3D94f2878f64f1=
+1993e8de8295bb1b46202b741019
 
-What the autobuilder does is either runs one selftest on a random host
-for q-quick, or for a-full it will run five selftests, one for
-"centos", one for "arm", one for "ubuntu", one for "fedora" and one for
-"debian".
+Master reran and succeeded this time but is showing a lot of warnings:
 
-Ideally we'd therefore compare debian to debian if we have any choice.
-It is a question of finding the closest matches. That is hard in code
-though whilst keeping it generic.
+https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/2/steps/=
+12/logs/warnings
+
+Kirkstone has an issue with grubby-git and a missing SRCREV:
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/3/steps/=
+13/logs/stdio
+(plus warnings)
+
+Mickledore has an issue with uutils-coreutils:
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/5
+(plus warnings)
+
+Dunfell broke with space issues so I reran it here:
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/6
+
+So we're making progress but the meta-oe layer maintainers may need
+some tweaks on the same branches or we need to see some missing files
+into the mirror for those branches. We also need to find a way to
+address the warnings.
 
 Cheers,
 
 Richard
+
+
 
