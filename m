@@ -1,108 +1,73 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FE22CDB47E
-	for <webhook@archiver.kernel.org>; Fri, 20 Oct 2023 06:07:56 +0000 (UTC)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
- by mx.groups.io with SMTP id smtpd.web11.48764.1697782071331862237
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58B8ACDB47E
+	for <webhook@archiver.kernel.org>; Fri, 20 Oct 2023 06:55:46 +0000 (UTC)
+Received: from a27-29.smtp-out.us-west-2.amazonses.com (a27-29.smtp-out.us-west-2.amazonses.com [54.240.27.29])
+ by mx.groups.io with SMTP id smtpd.web11.49147.1697784936475088095
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Oct 2023 23:07:51 -0700
+ Thu, 19 Oct 2023 23:55:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=YiPVVFi9;
- spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: skandigraun@gmail.com)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2c52407516bso1005111fa.1
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Oct 2023 23:07:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1697782069; x=1698386869; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZHhIap6geBbNGC/uTf813QQ7kHd4ax19SxDNf53J4I=;
-        b=YiPVVFi9tqC1Fl5mUWDQw10sEB8P2s+91l2axXQzjperCc+pSs0K1MgZ5CKb3Z7TIX
-         +CaJmM/bwj46B7Lub2BhQ8zsISRhGp3MOTvLlX8qDEWmTznIKKa7gmbnKC2piQJqYWN4
-         i9oWaE1irFmGgsRiQPAl3UA/0P3r9YfJWjgD524sM8NCuOG0fODpGnJPyrNZbYVVlkjf
-         1o0FH2Ga7OO1yC9KUIwwWyAgP+NecsDUbT4+MgRkjpV/eN1/YFjHYUULRkBDkgwh3WiE
-         SbefXaMryeLxPUZ+Pei/Xx6VbOMHRanYTfFcX1utWfni6sikGmbpcSeMxZZbvIHInibz
-         RoEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1697782069; x=1698386869;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZHhIap6geBbNGC/uTf813QQ7kHd4ax19SxDNf53J4I=;
-        b=Zh6IFLeiuOyAKU/BcR+W0LCDdXxvDlxu784Myd0OgCEWYEjpfEkbOnmK5NRKZ3aGBJ
-         uGfELjvJTekL9hqYw+z6rp02FKWjc87ctDb91zF77JEgGV72gzQ0IV0z8E10JGfHYCgu
-         E0mRNm0ChBcPOt2Gi1fkFNqQpoKk7E0ajpaJXNINNv/BqDYC+TUta0sux3Lxb9AI46ag
-         o6fyWYTvXNte7nh67qh6nun99wVl2Lwo1OvAtkoCYq794a76jpvz1NDjA0FlPrIi10Ay
-         d262w/4XYz01SOpRIJPDpUWmo1vAwpFKGPgPO1x4xV4KU/wSuFBgtB8FHpR7kgr75zTs
-         ARHA==
-X-Gm-Message-State: AOJu0Yz1PQRenvznc81I2c1rjz9CxtYAPcewQ7ybTxAsjxy1HcUMfUB4
-	WnxYDvEeEjYUwZlYVaH/ZTA=
-X-Google-Smtp-Source: AGHT+IFis8N5LcErGzSI0vsAH4K8/6BJVKXlC5/75uYvSAa1xkS4OVKPiEn/SFr+JlcRV2R8BOT5dA==
-X-Received: by 2002:a05:651c:b20:b0:2b6:cd7f:5ea8 with SMTP id b32-20020a05651c0b2000b002b6cd7f5ea8mr855117ljr.1.1697782069250;
-        Thu, 19 Oct 2023 23:07:49 -0700 (PDT)
-Received: from [192.168.1.64] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id m16-20020a7bca50000000b00405d9a950a2sm6042589wml.28.2023.10.19.23.07.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Oct 2023 23:07:48 -0700 (PDT)
-Message-ID: <6baca76d-7d79-439a-a444-79a9d59e3b3c@gmail.com>
-Date: Fri, 20 Oct 2023 08:07:47 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] find: unrecognized: -printf
-Content-Language: en-US
-To: "Poornesh G ( India - Bangalore )" <poornesh.g@mindteck.com>,
- yocto@lists.yoctoproject.org
-References: <L7wx.1697780290550525004.loGj@lists.yoctoproject.org>
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <L7wx.1697780290550525004.loGj@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=Jvp9TZz7;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=Nw9FZQn6;
+ spf=pass (domain: automation.yoctoproject.org, ip: 54.240.27.29, mailfrom: 0101018b4bde33b6-a3fab4b0-bd55-4084-8c36-15407b954459-000000@automation.yoctoproject.org)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1697784935; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=HRiQUyNT7U7W57Vkjsxs2WwnUJ/FFG/Ui9r3JnFHb/o=;
+	b=Jvp9TZz7Fq6Qf+qlU6GM2J5noZa8JbXOgD9+VS0FOxeBallONuZMauQYxH+k5NWl
+	0QIkdRrXoH9k5N+U6QvBkXLdaXueS+A3PrgDkvpEXqrpl7sG/KnfgzoVsGlNLADTrnK
+	Awe6iX04rkooakbVp3iHjy1VHPdRlISbEGJVtx5k=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1697784935;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=HRiQUyNT7U7W57Vkjsxs2WwnUJ/FFG/Ui9r3JnFHb/o=;
+	b=Nw9FZQn6wu3TvhJth6sC1OyXAtKF+NImTfGYWwWTXL82mxod2QFx74bG+B6lViUJ
+	aHkh9LjBQMs75FXt1GDzfdNDfHi4jBoyEVOG4wDAZ0JDI00xb7iSo1kuUJHbSrMwWHC
+	meQijr+z4UNje/TOmetU5TdRr+uEVgck095cHtDs=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.3.rc2)
+Message-ID: <0101018b4bde33b6-a3fab4b0-bd55-4084-8c36-15407b954459-000000@us-west-2.amazonses.com>
+Date: Fri, 20 Oct 2023 06:55:35 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.10.20-54.240.27.29
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 20 Oct 2023 06:07:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61427
-
-In case busybox's "find" utility is not sufficient for you, you could 
-disable "find" in busybox's config, and add the full version of find to 
-your image (recipe is called findutils).
+ <yocto@lists.yoctoproject.org>; Fri, 20 Oct 2023 06:55:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61428
 
 
-On 10/20/23 07:38, Poornesh G ( India - Bangalore ) wrote:
-> Greetings !
-> 
-> I am trying to add "etckeeper"  to yocto . I have written a recipe and 
-> added it in my Rootfs . But when I try to commit , I am getting the 
-> below error log:
-> 
-> -------------------------------------------------------------------------------------------------
-> 
-> root@imx6ulevk:~# etckeeper commit "First commit of my /etc directory"
-> 
-> find: unrecognized: -printf
-> 
-> BusyBox v1.31.0 (2023-10-18 07:46:50 UTC) multi-call binary.
-> 
-> Usage: find [-HL] [PATH]... [OPTIONS] [ACTIONS]
-> 
-> -------------------------------------------------------------------------------------------------
-> 
-> I tried enabling the -printf for find in busybox but I could not able to 
-> see in busybox menuconfig . Requesting your suggestions to resolve this 
-> issue.
-> 
-> Thanks in advance
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61426): https://lists.yoctoproject.org/g/yocto/message/61426
-> Mute This Topic: https://lists.yoctoproject.org/mt/102076007/6084445
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+    A build flagged for QA (yocto-4.3.rc2) was completed on the autobuilder and is available at:
+
+
+        https://autobuilder.yocto.io/pub/releases/yocto-4.3.rc2
+
+
+    Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6080
+
+    Build hash information: 
+
+    bitbake: 5419a8473d6d4cd1d01537de68ad8d72cf5be0b2
+meta-agl: 4063b4f9a712e32337c1d9678b2f2481dde2a346
+meta-arm: 4bf3246b7b1147e29d42a835631c89279a6ce520
+meta-aws: a30a2b66f1447dc5abdbca6c5de743e39c08b99b
+meta-intel: 1bca60610c597571769edc4a057a04bfdbd2f994
+meta-mingw: 65ef95a74f6ae815f63f636ed53e140a26a014ce
+meta-openembedded: c66ec8776ec6f467937918a114bdefa28ac036a9
+meta-virtualization: 827092c2ec925ea3a024dcda9ccfd738e351e6ba
+oecore: 4c261f8cbdf0c7196a74daad041d04eb093015f3
+poky: 15b576c4101231d248fda7ae0824e1780e1a8901
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
