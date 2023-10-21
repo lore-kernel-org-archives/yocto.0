@@ -1,253 +1,364 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <adrian.freihofer@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 330B1C001E0
-	for <webhook@archiver.kernel.org>; Sat, 21 Oct 2023 07:05:55 +0000 (UTC)
-Subject: Trouble making a recipe for the IOBB library
-To: yocto@lists.yoctoproject.org
-From: "Iurascu Teodor" <iurascu_teo@hotmail.com>
-X-Originating-Location: Iasi, RO (81.180.209.106)
-X-Originating-Platform: Linux Firefox 115
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A7B5C001E0
+	for <webhook@archiver.kernel.org>; Sat, 21 Oct 2023 08:30:55 +0000 (UTC)
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+ by mx.groups.io with SMTP id smtpd.web10.74229.1697877051977877605
+ for <yocto@lists.yoctoproject.org>;
+ Sat, 21 Oct 2023 01:30:52 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Vi757Sn2;
+ spf=pass (domain: gmail.com, ip: 209.85.210.48, mailfrom: adrian.freihofer@gmail.com)
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6cd1918afb2so1047040a34.0
+        for <yocto@lists.yoctoproject.org>; Sat, 21 Oct 2023 01:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1697877051; x=1698481851; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hl6wwBaV4oTL/c/DKrP6uqSZKWTEpV9dwL8r4RcQ+WM=;
+        b=Vi757Sn2E2li1QT8I/duaVxQLaOqWG0+f7nbxHo4EI8Kpxrvc9p6mf/+4HKuuzaYve
+         TYOYc/bcEl7NbxGw0erekVqoAg0lV5bV2pbbuFRB/MJnrnlNMW2Z2MNDOEkpN4o++wzk
+         zjEJaM8+AXNFHhCpxrUBA0H2vNdFei9WGrzbXYA9ZSBnyWsvkKiewWRjCFBnFRX9eb39
+         cVkFwzwQSMP1XafJbsb8rfFk2V2lkcRRLAhpDuPx/G/561QG+a9Oepu3gvRRQym0FpUa
+         FX/Sf3Sb/C49Rvg3YSyo6NgYu44O8d2hZiHZFMf+yYJgWo23ErdIB2lPapgskDL3mwks
+         W1Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1697877051; x=1698481851;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hl6wwBaV4oTL/c/DKrP6uqSZKWTEpV9dwL8r4RcQ+WM=;
+        b=FQGGpmTUDAgVMLZ3VyCEy55nf9+VvPn6i9loQkT+9TBf/mM9CpGQQD8uEe4MTE4nYJ
+         pgfho9s84HpSVjJ2meoPrTvJTh/z0XRXkjDs9lcichf/UZYY7DkJk+RadafsXxPNHuU0
+         3Fj8/XrR+MOwBMd1r5CmF+3HFI1Ts3d5Tc/jtjc3mmkD1Ef0Y4Ku9j3uGqi8pPChZbNF
+         UYmrCzhb/V5xV6tk6cPiXRaLWysoXTwpibpg1Ln4+4kvsCWYGRoM4uNixvwQaSw/Y71d
+         qmrm7M3MDbbD7fRm29PcoxydNz6qkG6wwS34lJuxX0DgY2ChnZi/ashSWx+k4aWRCkz1
+         hf5A==
+X-Gm-Message-State: AOJu0Yzf/0F0ZSBKG++3ei/w4FQXxzuFbvcSX31cP9HUTq8qdImcy5Jq
+	hVvUY/PK8q+MrUkF0yE+oY5fTd22oveI8YXc22Vff7fM
+X-Google-Smtp-Source: AGHT+IEmX95NKBMM59DHs8kKsVNpOROLQl5tCRdqAxW6fTfFHUQHvyRVzLaIX1vwSPn1PPE50zvBThFkOoPMxb5q3tE=
+X-Received: by 2002:a9d:7996:0:b0:6cd:8c3:5b40 with SMTP id
+ h22-20020a9d7996000000b006cd08c35b40mr3955672otm.36.1697877050870; Sat, 21
+ Oct 2023 01:30:50 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 17 Oct 2023 08:34:15 -0700
-Message-ID: <kOAj.1697556855987913902.FIMX@lists.yoctoproject.org>
-Content-Type: multipart/related; boundary="e2CHwriGOx8plDZeTg1g"
+References: <kOAj.1697556855987913902.FIMX@lists.yoctoproject.org>
+In-Reply-To: <kOAj.1697556855987913902.FIMX@lists.yoctoproject.org>
+From: Adrian Freihofer <adrian.freihofer@gmail.com>
+Date: Sat, 21 Oct 2023 10:30:38 +0200
+Message-ID: <CAB3asfhAAuxUW26G6uthSC_9raBn_enPgGBUgsgD7pLBmwL+TQ@mail.gmail.com>
+Subject: Re: [yocto] Trouble making a recipe for the IOBB library
+To: Iurascu Teodor <iurascu_teo@hotmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/related; boundary="0000000000007d6288060835ce5b"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 21 Oct 2023 07:05:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61442
+ <yocto@lists.yoctoproject.org>; Sat, 21 Oct 2023 08:30:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61443
 
---e2CHwriGOx8plDZeTg1g
-Content-Type: multipart/alternative; boundary="XN2XoNQgHNL9ZtdkhUBV"
+--0000000000007d6288060835ce5b
+Content-Type: multipart/alternative; boundary="0000000000007d6287060835ce5a"
 
---XN2XoNQgHNL9ZtdkhUBV
-Content-Type: text/plain; charset="utf-8"
+--0000000000007d6287060835ce5a
+Content-Type: text/plain; charset="UTF-8"
+
+The best would probably be to improve the Makefile to install the files to
+standard paths such as /usr instead of /usr/local. /usr/local is usually
+used for not packaged files and therefore not handled by the default FILES
+package splitting rules of Yocto.
+
+Ideally there would be a PREFIX variable in the Makefile which defaults to
+/usr/local and gets over written by bitbake to /usr. Then also the FILES
+line should no longer be needed.
+
+Another approach would be to replace the Makefile by e.g. meson or cmake
+which both do all these details right by default.
+
+As a workaround extending the FILES line would work as well. But using
+locations like lib or usr in FILES is not a good idea. It probably adds too
+many files like debug stuff to the package.
+
+To see the variables for you recipe you might want to use bitbake -e. To
+see how bitbake spits the packages you might look into the
+packages-splitted folder in the $WORKDIR of your recipe.
+
+Regards
+Adrian
+
+
+Iurascu Teodor <iurascu_teo@hotmail.com> schrieb am Sa., 21. Okt. 2023,
+09:05:
+
+> Hello!
+> I am new to the Yocto Project and I have been trying to make a recipe to
+> include the IOBB library in my SDK for the BeagleBone Black board. I have
+> used devtool to create a recipe based on a fork of the library.
+>
+>
+> Library makefile:
+>
+>
+> LIB_PATH = ./BBBio_lib/
+> DEMO_PATH = ./Demo/
+> TOOLKIT_PATH = ./Toolkit/
+> LAB_PATH = ./Lab/
+>
+>
+> LIBRARIES = iobb
+>
+> all
+>  : libiobb.a LED ADT7301 SEVEN_SCAN SMOTOR LED_GPIO DEBOUNCING 4x4keypad
+>  ADC ADC_VOICE GPIO_STATUS EP_STATUS ADC_CALC lcd3-test test-outputs
+> pb-test-outputs test-inputs pb-test-inputs
+>
+> libiobb.a : ${LIB_PATH}BBBiolib.c ${LIB_PATH}BBBiolib.h BBBiolib_PWMSS.o BBBiolib_McSPI.o BBBiolib_ADCTSC.o i2cfunc.o
+>     gcc -c ${LIB_PATH}BBBiolib.c -o ${LIB_PATH}BBBiolib.o
+>
+>   ar -rs ${LIB_PATH}libiobb.a ${LIB_PATH}BBBiolib.o
+> ${LIB_PATH}BBBiolib_PWMSS.o ${LIB_PATH}BBBiolib_McSPI.o
+> ${LIB_PATH}BBBiolib_ADCTSC.o ${LIB_PATH}i2cfunc.o
+>     cp ${LIB_PATH}libiobb.a ./
+>     cp ${LIB_PATH}BBBiolib.h ./iobb.h
+>     cp ${LIB_PATH}BBBiolib_ADCTSC.h ./
+>     cp ${LIB_PATH}BBBiolib_McSPI.h ./
+>     cp ${LIB_PATH}BBBiolib_PWMSS.h ./
+>     cp ${LIB_PATH}i2cfunc.h ./
+>
+> BBBiolib_PWMSS.o : ${LIB_PATH}BBBiolib_PWMSS.c ${LIB_PATH}BBBiolib_PWMSS.h
+>     gcc -c ${LIB_PATH}BBBiolib_PWMSS.c -o ${LIB_PATH}BBBiolib_PWMSS.o -W
+>
+> BBBiolib_McSPI.o : ${LIB_PATH}BBBiolib_McSPI.c ${LIB_PATH}BBBiolib_PWMSS.h
+>     gcc -c ${LIB_PATH}BBBiolib_McSPI.c -o ${LIB_PATH}BBBiolib_McSPI.o -W
+>
+> BBBiolib_ADCTSC.o : ${LIB_PATH}BBBiolib_ADCTSC.c ${LIB_PATH}BBBiolib_ADCTSC.h
+>     gcc -c ${LIB_PATH}BBBiolib_ADCTSC.c -o ${LIB_PATH}BBBiolib_ADCTSC.o -W
+>
+> i2cfunc.o : ${LIB_PATH}i2cfunc.c ${LIB_PATH}i2cfunc.h
+>     gcc -c ${LIB_PATH}i2cfunc.c -o ${LIB_PATH}i2cfunc.o
+>
+> install :
+> ifndef locatie
+>     $(info locatie is [${locatie}])
+>     rm -f /usr/local/include/BBBiolib.h
+>     cp ${LIB_PATH}libiobb.a /usr/local/lib
+>     cp ${LIB_PATH}BBBiolib.h /usr/local/include/iobb.h
+>     cp ${LIB_PATH}BBBiolib_ADCTSC.h /usr/local/include
+>     cp ${LIB_PATH}BBBiolib_McSPI.h /usr/local/include
+>     cp ${LIB_PATH}BBBiolib_PWMSS.h /usr/local/include
+>     cp ${LIB_PATH}i2cfunc.h /usr/local/include
+>     ln -s /usr/local/include/iobb.h /usr/local/include/BBBiolib.h
+> else
+>     $(info locatie is [${locatie}])
+>     rm -f $(locatie)/usr/local/include/BBBiolib.h
+>     mkdir -p $(locatie)/usr/local/lib
+>     mkdir -p $(locatie)/usr/local/include
+>     cp ${LIB_PATH}libiobb.a $(locatie)/usr/local/lib
+>     cp ${LIB_PATH}BBBiolib.h $(locatie)/usr/local/include/iobb.h
+>     cp ${LIB_PATH}BBBiolib_ADCTSC.h $(locatie)/usr/local/include
+>     cp ${LIB_PATH}BBBiolib_McSPI.h $(locatie)/usr/local/include
+>     cp ${LIB_PATH}BBBiolib_PWMSS.h $(locatie)/usr/local/include
+>     cp ${LIB_PATH}i2cfunc.h $(locatie)/usr/local/include
+>     cp $(locatie)/usr/local/include/iobb.h $(locatie)/usr/local/include/BBBiolib.h
+> endif
+>
+>
+> recipe file:
+>
+> LICENSE = "Unknown"
+> LIC_FILES_CHKSUM = "file://LICENSE;md5=7db6c9cd5c53a0a05ffa2f383b2408dc"
+>
+> SRC_URI = "git://github.com/TeoThatsMe/iobb;protocol=https;branch=master"
+>
+> # Modify these as desired
+> PV = "1.0+git${SRCPV}"
+> SRCREV = "1a7bdf1767f730b0d6058117e42c4ec77047b4ab"
+>
+> S = "${WORKDIR}/git"
+> FILES:${PN} += "${base_libdir}"
+>
+> # NOTE: the following library dependencies are unknown, ignoring: iobb fftw3
+> #       (this is based on recipes that have previously been built and packaged)
+>
+> # NOTE: this is a Makefile-only piece of software, so we cannot generate much of the
+> # recipe automatically - you will need to examine the Makefile yourself and ensure
+> # that the appropriate arguments are passed in.
+>
+> do_configure () {
+> 	# Specify any needed configure commands here
+> 	:
+> }
+>
+> do_compile () {
+> 	# You will almost certainly need to add additional arguments here
+> 	oe_runmake
+> }
+>
+> do_install () {
+> 	# This is a guess; additional arguments may be required
+> 	oe_runmake install locatie=${D}
+> }
+>
+>
+> I have modified the makefile with the locatie variable so that the install
+> script installs it in the ${D} directory and not on my machine.
+> Even though I am setting
+>
+> FILES:${PN} += "${base_libdir}"
+>
+> I am still getting this error.
+>
+>
+>
+>
+> Do I have to set the FILES variable to something esle or am I doing
+> something wrong before the packaging phase?
+> Thank you!
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#61442):
+> https://lists.yoctoproject.org/g/yocto/message/61442
+> Mute This Topic: https://lists.yoctoproject.org/mt/102097263/4454582
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> adrian.freihofer@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--0000000000007d6287060835ce5a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello!
-I am new to the Yocto Project and I have been trying to make a recipe to in=
-clude the IOBB library in my SDK for the BeagleBone Black board. I have use=
-d devtool to create a recipe based on a fork of the library.
-
-Library makefile:
-
-LIB_PATH =3D ./BBBio_lib/
-DEMO_PATH =3D ./Demo/
-TOOLKIT_PATH =3D ./Toolkit/
-LAB_PATH =3D ./Lab/
-
-LIBRARIES =3D iobb
-
-all
-: libiobb.a LED ADT7301 SEVEN_SCAN SMOTOR LED_GPIO DEBOUNCING 4x4keypad
-ADC ADC_VOICE GPIO_STATUS EP_STATUS ADC_CALC lcd3-test test-outputs=20
-pb-test-outputs test-inputs pb-test-inputs
-
-libiobb.a : ${LIB_PATH}BBBiolib.c ${LIB_PATH}BBBiolib.h BBBiolib_PWMSS.o BB=
-Biolib_McSPI.o BBBiolib_ADCTSC.o i2cfunc.o
-=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib.c -o ${LIB_PATH}BBBiolib.o
-=C2=A0=C2=A0
-=C2=A0ar -rs ${LIB_PATH}libiobb.a ${LIB_PATH}BBBiolib.o=20
-${LIB_PATH}BBBiolib_PWMSS.o ${LIB_PATH}BBBiolib_McSPI.o=20
-${LIB_PATH}BBBiolib_ADCTSC.o ${LIB_PATH}i2cfunc.o
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}libiobb.a ./
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib.h ./iobb.h
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_ADCTSC.h ./
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_McSPI.h ./
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_PWMSS.h ./
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}i2cfunc.h ./
-
-BBBiolib_PWMSS.o : ${LIB_PATH}BBBiolib_PWMSS.c ${LIB_PATH}BBBiolib_PWMSS.h
-=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib_PWMSS.c -o ${LIB_PATH}BBBioli=
-b_PWMSS.o -W=20
-
-BBBiolib_McSPI.o : ${LIB_PATH}BBBiolib_McSPI.c ${LIB_PATH}BBBiolib_PWMSS.h
-=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib_McSPI.c -o ${LIB_PATH}BBBioli=
-b_McSPI.o -W
-
-BBBiolib_ADCTSC.o : ${LIB_PATH}BBBiolib_ADCTSC.c ${LIB_PATH}BBBiolib_ADCTSC=
-.h
-=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib_ADCTSC.c -o ${LIB_PATH}BBBiol=
-ib_ADCTSC.o -W
-
-i2cfunc.o : ${LIB_PATH}i2cfunc.c ${LIB_PATH}i2cfunc.h
-=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}i2cfunc.c -o ${LIB_PATH}i2cfunc.o
-
-install : =C2=A0
-ifndef locatie
-=C2=A0=C2=A0 =C2=A0$(info locatie is [${locatie}])
-=C2=A0=C2=A0 =C2=A0rm -f /usr/local/include/BBBiolib.h
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}libiobb.a /usr/local/lib
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib.h /usr/local/include/iobb.h
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_ADCTSC.h /usr/local/include
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_McSPI.h /usr/local/include
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_PWMSS.h /usr/local/include
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}i2cfunc.h /usr/local/include
-=C2=A0=C2=A0 =C2=A0ln -s /usr/local/include/iobb.h /usr/local/include/BBBio=
-lib.h
-else
-=C2=A0=C2=A0 =C2=A0$(info locatie is [${locatie}])
-=C2=A0=C2=A0 =C2=A0rm -f $(locatie)/usr/local/include/BBBiolib.h
-=C2=A0=C2=A0 =C2=A0mkdir -p $(locatie)/usr/local/lib
-=C2=A0=C2=A0 =C2=A0mkdir -p $(locatie)/usr/local/include
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}libiobb.a $(locatie)/usr/local/lib
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib.h $(locatie)/usr/local/include/io=
-bb.h
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_ADCTSC.h $(locatie)/usr/local/inc=
-lude
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_McSPI.h $(locatie)/usr/local/incl=
-ude
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_PWMSS.h $(locatie)/usr/local/incl=
-ude
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}i2cfunc.h $(locatie)/usr/local/include
-=C2=A0=C2=A0 =C2=A0cp $(locatie)/usr/local/include/iobb.h $(locatie)/usr/lo=
-cal/include/BBBiolib.h
-endif
-
-recipe file:
-LICENSE =3D "Unknown"
-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D7db6c9cd5c53a0a05ffa2f383b2408dc=
-"
-
-SRC_URI =3D "git://github.com/TeoThatsMe/iobb;protocol=3Dhttps;branch=3Dmas=
-ter"
-
-# Modify these as desired
-PV =3D "1.0+git${SRCPV}"
-SRCREV =3D "1a7bdf1767f730b0d6058117e42c4ec77047b4ab"
-
-S =3D "${WORKDIR}/git"
-FILES:${PN} +=3D "${base_libdir}"
-
-# NOTE: the following library dependencies are unknown, ignoring: iobb fftw=
-3
-#       (this is based on recipes that have previously been built and packa=
-ged)
-
-# NOTE: this is a Makefile-only piece of software, so we cannot generate mu=
-ch of the
-# recipe automatically - you will need to examine the Makefile yourself and=
- ensure
-# that the appropriate arguments are passed in.
-
-do_configure () {
-	# Specify any needed configure commands here
-	:
-}
-
-do_compile () {
-	# You will almost certainly need to add additional arguments here
-	oe_runmake
-}
-
-do_install () {
-	# This is a guess; additional arguments may be required
-	oe_runmake install locatie=3D${D}
-}
-
-I have modified the makefile with the locatie variable so that the install =
-script installs it in the ${D} directory and not on my machine.
-Even though I am setting
-FILES:${PN} +=3D "${base_libdir}" I am still getting this error.
-
-Do I have to set the FILES variable to something esle or am I doing somethi=
-ng wrong before the packaging phase?
-Thank you!
-
---XN2XoNQgHNL9ZtdkhUBV
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body>Hello!<br/>I am new to the Yocto Project and I hav=
-e been trying to make a recipe to include the IOBB library in my SDK for th=
-e BeagleBone Black board. I have used devtool to create a recipe based on a=
- fork of the library.<br/><br/><br/>Library makefile:<br/><br/><br/>
-<pre>LIB_PATH =3D ./BBBio_lib/<br/>DEMO_PATH =3D ./Demo/<br/>TOOLKIT_PATH =
-=3D ./Toolkit/<br/>LAB_PATH =3D ./Lab/<br/><br/><br/>LIBRARIES =3D iobb<br/=
-><br/>all
+<div dir=3D"auto">The best would probably be to improve the Makefile to ins=
+tall the files to standard paths such as /usr instead of /usr/local. /usr/l=
+ocal is usually used for not packaged files and therefore not handled by th=
+e default FILES package splitting rules of Yocto.<div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Ideally there would be a PREFIX variable in the Makefil=
+e which defaults to /usr/local and gets over written by bitbake to /usr. Th=
+en also the FILES line should no longer be needed.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">Another approach would be to replace the Makefil=
+e by e.g. meson or cmake which both do all these details right by default.<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">As a workaround extendin=
+g the FILES line would work as well. But using locations like lib or usr in=
+ FILES is not a good idea. It probably adds too many files like debug stuff=
+ to the package.</div><div dir=3D"auto"><br></div><div dir=3D"auto">To see =
+the variables for you recipe you might want to use bitbake -e. To see how b=
+itbake spits the packages you might look into the packages-splitted folder =
+in the $WORKDIR of your recipe.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Regards</div><div dir=3D"auto">Adrian</div><div dir=3D"auto"><br>=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">Iurascu Teodor &lt;<a href=3D"mailto:iurascu_teo@hotmail.com">iurascu=
+_teo@hotmail.com</a>&gt; schrieb am Sa., 21. Okt. 2023, 09:05:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex"><div>Hello!<br>I am new to the Yocto Project an=
+d I have been trying to make a recipe to include the IOBB library in my SDK=
+ for the BeagleBone Black board. I have used devtool to create a recipe bas=
+ed on a fork of the library.<br><br><br>Library makefile:<br><br><br>
+<pre>LIB_PATH =3D ./BBBio_lib/<br>DEMO_PATH =3D ./Demo/<br>TOOLKIT_PATH =3D=
+ ./Toolkit/<br>LAB_PATH =3D ./Lab/<br><br><br>LIBRARIES =3D iobb<br><br>all
  : libiobb.a LED ADT7301 SEVEN_SCAN SMOTOR LED_GPIO DEBOUNCING 4x4keypad
  ADC ADC_VOICE GPIO_STATUS EP_STATUS ADC_CALC lcd3-test test-outputs=20
-pb-test-outputs test-inputs pb-test-inputs<br/><br/>libiobb.a : ${LIB_PATH}=
-BBBiolib.c ${LIB_PATH}BBBiolib.h BBBiolib_PWMSS.o BBBiolib_McSPI.o BBBiolib=
-_ADCTSC.o i2cfunc.o<br/>=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib.c -o =
-${LIB_PATH}BBBiolib.o<br/>=C2=A0=C2=A0
+pb-test-outputs test-inputs pb-test-inputs<br><br>libiobb.a : ${LIB_PATH}BB=
+Biolib.c ${LIB_PATH}BBBiolib.h BBBiolib_PWMSS.o BBBiolib_McSPI.o BBBiolib_A=
+DCTSC.o i2cfunc.o<br>=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib.c -o ${L=
+IB_PATH}BBBiolib.o<br>=C2=A0=C2=A0
  =C2=A0ar -rs ${LIB_PATH}libiobb.a ${LIB_PATH}BBBiolib.o=20
 ${LIB_PATH}BBBiolib_PWMSS.o ${LIB_PATH}BBBiolib_McSPI.o=20
-${LIB_PATH}BBBiolib_ADCTSC.o ${LIB_PATH}i2cfunc.o<br/>=C2=A0=C2=A0 =C2=A0cp=
- ${LIB_PATH}libiobb.a ./<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib.h ./=
-iobb.h<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_ADCTSC.h ./<br/>=C2=A0=
-=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_McSPI.h ./<br/>=C2=A0=C2=A0 =C2=A0cp ${=
-LIB_PATH}BBBiolib_PWMSS.h ./<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}i2cfunc.h=
- ./<br/><br/>BBBiolib_PWMSS.o : ${LIB_PATH}BBBiolib_PWMSS.c ${LIB_PATH}BBBi=
-olib_PWMSS.h<br/>=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib_PWMSS.c -o $=
-{LIB_PATH}BBBiolib_PWMSS.o -W <br/><br/>BBBiolib_McSPI.o : ${LIB_PATH}BBBio=
-lib_McSPI.c ${LIB_PATH}BBBiolib_PWMSS.h<br/>=C2=A0=C2=A0 =C2=A0gcc -c ${LIB=
-_PATH}BBBiolib_McSPI.c -o ${LIB_PATH}BBBiolib_McSPI.o -W<br/><br/>BBBiolib_=
-ADCTSC.o : ${LIB_PATH}BBBiolib_ADCTSC.c ${LIB_PATH}BBBiolib_ADCTSC.h<br/>=
-=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib_ADCTSC.c -o ${LIB_PATH}BBBiol=
-ib_ADCTSC.o -W<br/><br/>i2cfunc.o : ${LIB_PATH}i2cfunc.c ${LIB_PATH}i2cfunc=
-.h<br/>=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}i2cfunc.c -o ${LIB_PATH}i2cfunc=
-.o<br/><br/>install : =C2=A0<br/>ifndef locatie<br/>=C2=A0=C2=A0 =C2=A0$(in=
-fo locatie is [${locatie}])<br/>=C2=A0=C2=A0 =C2=A0rm -f /usr/local/include=
-/BBBiolib.h<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}libiobb.a /usr/local/lib<b=
-r/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib.h /usr/local/include/iobb.h<br=
-/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_ADCTSC.h /usr/local/include<br/=
->=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_McSPI.h /usr/local/include<br/>=
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_PWMSS.h /usr/local/include<br/>=
-=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}i2cfunc.h /usr/local/include<br/>=C2=A0=C2=
-=A0 =C2=A0ln -s /usr/local/include/iobb.h /usr/local/include/BBBiolib.h<br/=
->else<br/>=C2=A0=C2=A0 =C2=A0$(info locatie is [${locatie}])<br/>=C2=A0=C2=
-=A0 =C2=A0rm -f $(locatie)/usr/local/include/BBBiolib.h<br/>=C2=A0=C2=A0 =
-=C2=A0mkdir -p $(locatie)/usr/local/lib<br/>=C2=A0=C2=A0 =C2=A0mkdir -p $(l=
-ocatie)/usr/local/include<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}libiobb.a $(=
-locatie)/usr/local/lib<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib.h $(lo=
-catie)/usr/local/include/iobb.h<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiol=
-ib_ADCTSC.h $(locatie)/usr/local/include<br/>=C2=A0=C2=A0 =C2=A0cp ${LIB_PA=
-TH}BBBiolib_McSPI.h $(locatie)/usr/local/include<br/>=C2=A0=C2=A0 =C2=A0cp =
-${LIB_PATH}BBBiolib_PWMSS.h $(locatie)/usr/local/include<br/>=C2=A0=C2=A0 =
-=C2=A0cp ${LIB_PATH}i2cfunc.h $(locatie)/usr/local/include<br/>=C2=A0=C2=A0=
- =C2=A0cp $(locatie)/usr/local/include/iobb.h $(locatie)/usr/local/include/=
-BBBiolib.h<br/>endif
+${LIB_PATH}BBBiolib_ADCTSC.o ${LIB_PATH}i2cfunc.o<br>=C2=A0=C2=A0 =C2=A0cp =
+${LIB_PATH}libiobb.a ./<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib.h ./io=
+bb.h<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_ADCTSC.h ./<br>=C2=A0=C2=
+=A0 =C2=A0cp ${LIB_PATH}BBBiolib_McSPI.h ./<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_=
+PATH}BBBiolib_PWMSS.h ./<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}i2cfunc.h ./<b=
+r><br>BBBiolib_PWMSS.o : ${LIB_PATH}BBBiolib_PWMSS.c ${LIB_PATH}BBBiolib_PW=
+MSS.h<br>=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBiolib_PWMSS.c -o ${LIB_PAT=
+H}BBBiolib_PWMSS.o -W <br><br>BBBiolib_McSPI.o : ${LIB_PATH}BBBiolib_McSPI.=
+c ${LIB_PATH}BBBiolib_PWMSS.h<br>=C2=A0=C2=A0 =C2=A0gcc -c ${LIB_PATH}BBBio=
+lib_McSPI.c -o ${LIB_PATH}BBBiolib_McSPI.o -W<br><br>BBBiolib_ADCTSC.o : ${=
+LIB_PATH}BBBiolib_ADCTSC.c ${LIB_PATH}BBBiolib_ADCTSC.h<br>=C2=A0=C2=A0 =C2=
+=A0gcc -c ${LIB_PATH}BBBiolib_ADCTSC.c -o ${LIB_PATH}BBBiolib_ADCTSC.o -W<b=
+r><br>i2cfunc.o : ${LIB_PATH}i2cfunc.c ${LIB_PATH}i2cfunc.h<br>=C2=A0=C2=A0=
+ =C2=A0gcc -c ${LIB_PATH}i2cfunc.c -o ${LIB_PATH}i2cfunc.o<br><br>install :=
+ =C2=A0<br>ifndef locatie<br>=C2=A0=C2=A0 =C2=A0$(info locatie is [${locati=
+e}])<br>=C2=A0=C2=A0 =C2=A0rm -f /usr/local/include/BBBiolib.h<br>=C2=A0=C2=
+=A0 =C2=A0cp ${LIB_PATH}libiobb.a /usr/local/lib<br>=C2=A0=C2=A0 =C2=A0cp $=
+{LIB_PATH}BBBiolib.h /usr/local/include/iobb.h<br>=C2=A0=C2=A0 =C2=A0cp ${L=
+IB_PATH}BBBiolib_ADCTSC.h /usr/local/include<br>=C2=A0=C2=A0 =C2=A0cp ${LIB=
+_PATH}BBBiolib_McSPI.h /usr/local/include<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_PA=
+TH}BBBiolib_PWMSS.h /usr/local/include<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}=
+i2cfunc.h /usr/local/include<br>=C2=A0=C2=A0 =C2=A0ln -s /usr/local/include=
+/iobb.h /usr/local/include/BBBiolib.h<br>else<br>=C2=A0=C2=A0 =C2=A0$(info =
+locatie is [${locatie}])<br>=C2=A0=C2=A0 =C2=A0rm -f $(locatie)/usr/local/i=
+nclude/BBBiolib.h<br>=C2=A0=C2=A0 =C2=A0mkdir -p $(locatie)/usr/local/lib<b=
+r>=C2=A0=C2=A0 =C2=A0mkdir -p $(locatie)/usr/local/include<br>=C2=A0=C2=A0 =
+=C2=A0cp ${LIB_PATH}libiobb.a $(locatie)/usr/local/lib<br>=C2=A0=C2=A0 =C2=
+=A0cp ${LIB_PATH}BBBiolib.h $(locatie)/usr/local/include/iobb.h<br>=C2=A0=
+=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_ADCTSC.h $(locatie)/usr/local/include<b=
+r>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_McSPI.h $(locatie)/usr/local/in=
+clude<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}BBBiolib_PWMSS.h $(locatie)/usr/l=
+ocal/include<br>=C2=A0=C2=A0 =C2=A0cp ${LIB_PATH}i2cfunc.h $(locatie)/usr/l=
+ocal/include<br>=C2=A0=C2=A0 =C2=A0cp $(locatie)/usr/local/include/iobb.h $=
+(locatie)/usr/local/include/BBBiolib.h<br>endif
 </pre>
-<br/>recipe file:<br/>
-<pre>LICENSE =3D &#34;Unknown&#34;<br/>LIC_FILES_CHKSUM =3D &#34;file://LIC=
-ENSE;md5=3D7db6c9cd5c53a0a05ffa2f383b2408dc&#34;<br/><br/>SRC_URI =3D &#34;=
-git://github.com/TeoThatsMe/iobb;protocol=3Dhttps;branch=3Dmaster&#34;<br/>=
-<br/># Modify these as desired<br/>PV =3D &#34;1.0+git${SRCPV}&#34;<br/>SRC=
-REV =3D &#34;1a7bdf1767f730b0d6058117e42c4ec77047b4ab&#34;<br/><br/>S =3D &=
-#34;${WORKDIR}/git&#34;<br/>FILES:${PN} +=3D &#34;${base_libdir}&#34;<br/><=
-br/># NOTE: the following library dependencies are unknown, ignoring: iobb =
-fftw3<br/>#       (this is based on recipes that have previously been built=
- and packaged)<br/><br/># NOTE: this is a Makefile-only piece of software, =
-so we cannot generate much of the<br/># recipe automatically - you will nee=
-d to examine the Makefile yourself and ensure<br/># that the appropriate ar=
-guments are passed in.<br/><br/>do_configure () {<br/>	# Specify any needed=
- configure commands here<br/>	:<br/>}<br/><br/>do_compile () {<br/>	# You w=
-ill almost certainly need to add additional arguments here<br/>	oe_runmake<=
-br/>}<br/><br/>do_install () {<br/>	# This is a guess; additional arguments=
- may be required<br/>	oe_runmake install locatie=3D${D}<br/>}<br/>
+<br>recipe file:<br>
+<pre>LICENSE =3D &quot;Unknown&quot;<br>LIC_FILES_CHKSUM =3D &quot;file://L=
+ICENSE;md5=3D7db6c9cd5c53a0a05ffa2f383b2408dc&quot;<br><br>SRC_URI =3D &quo=
+t;git://<a href=3D"http://github.com/TeoThatsMe/iobb;protocol=3Dhttps;branc=
+h=3Dmaster" target=3D"_blank" rel=3D"noreferrer">github.com/TeoThatsMe/iobb=
+;protocol=3Dhttps;branch=3Dmaster</a>&quot;<br><br># Modify these as desire=
+d<br>PV =3D &quot;1.0+git${SRCPV}&quot;<br>SRCREV =3D &quot;1a7bdf1767f730b=
+0d6058117e42c4ec77047b4ab&quot;<br><br>S =3D &quot;${WORKDIR}/git&quot;<br>=
+FILES:${PN} +=3D &quot;${base_libdir}&quot;<br><br># NOTE: the following li=
+brary dependencies are unknown, ignoring: iobb fftw3<br>#       (this is ba=
+sed on recipes that have previously been built and packaged)<br><br># NOTE:=
+ this is a Makefile-only piece of software, so we cannot generate much of t=
+he<br># recipe automatically - you will need to examine the Makefile yourse=
+lf and ensure<br># that the appropriate arguments are passed in.<br><br>do_=
+configure () {<br>	# Specify any needed configure commands here<br>	:<br>}<=
+br><br>do_compile () {<br>	# You will almost certainly need to add addition=
+al arguments here<br>	oe_runmake<br>}<br><br>do_install () {<br>	# This is =
+a guess; additional arguments may be required<br>	oe_runmake install locati=
+e=3D${D}<br>}<br>
 </pre>
-<br/>I have modified the makefile with the locatie variable so that the ins=
-tall script installs it in the ${D} directory and not on my machine.<br/>Ev=
-en though I am setting <br/>
-<pre>FILES:${PN} +=3D &#34;${base_libdir}&#34;</pre>
-I am still getting this error.<br/><br/><img src=3D"cid:attach_0_178EEEF76B=
-A70201_15435@groups.io" alt=3D""/><br/><br/><br/>Do I have to set the FILES=
- variable to something esle or am I doing something wrong before the packag=
-ing phase?<br/>Thank you!<br/>=C2=A0=C2=A0=C2=A0
-</body></html>
+<br>I have modified the makefile with the locatie variable so that the inst=
+all script installs it in the ${D} directory and not on my machine.<br>Even=
+ though I am setting <br>
+<pre>FILES:${PN} +=3D &quot;${base_libdir}&quot;</pre>
+I am still getting this error.<br><br><img src=3D"cid:attach_0_178EEEF76BA7=
+0201_15435@groups.io" alt=3D""><br><br><br>Do I have to set the FILES varia=
+ble to something esle or am I doing something wrong before the packaging ph=
+ase?<br>Thank you!<br>=C2=A0=C2=A0=C2=A0
+</div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#61442): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/61442" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/61442</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/102097263/445=
+4582" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopr=
+oject.org/mt/102097263/4454582</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a> [<a href=3D"mailto:adrian.freihofer@gmail.com" target=3D=
+"_blank" rel=3D"noreferrer">adrian.freihofer@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
---XN2XoNQgHNL9ZtdkhUBV--
+--0000000000007d6287060835ce5a--
 
---e2CHwriGOx8plDZeTg1g
-Content-Id: <attach_0_178EEEF76BA70201_15435@groups.io>
-X-Attachment-Id: attach_0_178EEEF76BA70201_15435@groups.io
+--0000000000007d6288060835ce5b
 Content-Type: image/png; name="dummyfile.0.part"
 Content-Disposition: inline; filename="dummyfile.0.part"
 Content-Transfer-Encoding: base64
+Content-ID: <attach_0_178EEEF76BA70201_15435@groups.io>
+X-Attachment-Id: attach_0_178EEEF76BA70201_15435@groups.io
 
 iVBORw0KGgoAAAANSUhEUgAABIIAAAEBCAIAAACL65nqAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAg
 AElEQVR4nOzdebwcVbkv/GetGrqqetyZCAgaCARBz3m98YoBATXGIRcCbwKSAMGgr1z14EUMED2G
@@ -775,6 +886,5 @@ oixBvwMAAEwbuCkRAAAAAABgoHBrCgAAAAAAwEBhGQYAAAAAADBQWIYBAAAAAAAMFJZhAAAAAAAA
 A4VlGAAAAAAAwEBhGQYAAAAAADBQWIYBAAAAAAAMFJZhAAAAAAAAA4VlGAAAAAAAwEBhGQYAAAAA
 ADBQWIYBAAAAAAAMFJZhAAAAAAAAA4VlGAAAAAAAwEBhGQYAAAAAADBQWIYBAAAAAAAMFJZhAAAA
 AAAAA/X/AcdZnJaBlvPiAAAAAElFTkSuQmCC
-
---e2CHwriGOx8plDZeTg1g--
+--0000000000007d6288060835ce5b--
 
