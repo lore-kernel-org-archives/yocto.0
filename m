@@ -2,95 +2,100 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CDD7CC004C0
-	for <webhook@archiver.kernel.org>; Mon, 23 Oct 2023 11:38:40 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web11.118657.1698061118328531861
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1401FC001E0
+	for <webhook@archiver.kernel.org>; Mon, 23 Oct 2023 12:24:31 +0000 (UTC)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+ by mx.groups.io with SMTP id smtpd.web10.119033.1698063866533103387
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Oct 2023 04:38:38 -0700
+ Mon, 23 Oct 2023 05:24:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=OrNCEZEL;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5079c846dcfso4244139e87.2
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 04:38:37 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=WedcQ3h+;
+ spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2c3e23a818bso37233921fa.0
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 05:24:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698061116; x=1698665916; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1698063865; x=1698668665; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1pwyF5nu1FdxFrVasdAtRdenRoUBaA1UMOmPrrWh9JY=;
-        b=OrNCEZELtInUIRlEd148dy6CEml4MoIH6lb68aoC2WccXBNkFFcd3jt5lV4eBsxZxk
-         I+HXM1p5XBzOBEtxQmHOWXQHppJX0EKwogAjTZjRWWT0cuqhcXl2PnO6W00aO6nae3v5
-         5Pytuz8bhk+ost3Dmal2eUGKt69YtPokJeAJeHBUGNfTquRULYcr4njxGRU1zTvWZSKB
-         4ovY5m3CtFmAtWL6ESnuF8V4WoljibL4IA4+jqsDZ1tvwZxml0J++oyi3PJoz1OjU8bS
-         YDJ0betcpecXaH0tTUSYDPahMPydmkbKGQnuJ71eLHB1ho7KT7Pj1kOqD0VAzItitXrP
-         WVdA==
+        bh=oFbW5DkHpWjeLiw7FBk0suwqO15NZP71Bja7Si8AcZY=;
+        b=WedcQ3h+vI2cXnibTweIE22o3MJQ1QOOVakB40d2U2Jb4JMjuOf7IsEBHVBvYAmDel
+         gWOT2IMgnywHTO01oUEMky5FgY6zYUZ9Z7ZiQq/38LhCB1zyVy8DzpqE0+m4sQpu5Plu
+         DXubOkttjZ70W3JOrdWALSY+JgCyzt1kbaIWwgW9P8ak/oWUdZbIwbkFMFHFZcPzHpoo
+         MJTISVwXOVEtBP/X85O1neHudVOtkeQOT4lkGLIvTpSc84hueWiTl8Dqk922et0dU/7L
+         WBEdoUJJblJVkRmzC358Syy2tBu3WYjfstg4OvGfpAwudBwA1ZmukQM3M51qtYUyymHL
+         MqtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698061116; x=1698665916;
+        d=1e100.net; s=20230601; t=1698063865; x=1698668665;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1pwyF5nu1FdxFrVasdAtRdenRoUBaA1UMOmPrrWh9JY=;
-        b=fC18lW6OyNx03aHly49HAdqPmMyAlBh3OWgfLiu64BXwrwD1/2zp2M8NAu2NigyxhE
-         xHNGWY/KXg8oaqtJ9qlQfbsancy1VbUn2cQicPXNEdQqT1So1kFfHaj0BvK2ZKXstl+m
-         mslwDHHoT53JaJrvBIg4sej67SzVoH+A7nQA3GuzjhVc/+Fw7DmfeGx74WEwCgDXRIfa
-         qCtgQvLAlekMjpH+KDLI+L0v11KgR7kJcnf1ZGJkUbvByx1BrTp3rO7Jv1nA9CRYxr/q
-         EaB4FjUdpihCKzH+m+/bkxcKrKj1HYmBohgwwTvQz2tfeB44FL3xFY5r8Yt2EsQwtlen
-         Vx/g==
-X-Gm-Message-State: AOJu0Yy5ABB3HmUTaFNYz2dTFX0v9Cp5jMa+ySpwdvS/DVJf+kAqnmM3
-	eDEwwjYPuBgvIXjwWjxkJhEl49bMr2jsE+vaUt4=
-X-Google-Smtp-Source: AGHT+IGRNfzSdugCmHMwi5SuG9YzzE9CcSh3J9d5Bn2ZDAgVqsoni3CAAwxBuJ2/zhpiw8pVC64C2CsaVGpjEZnPCC8=
-X-Received: by 2002:a2e:6a05:0:b0:2b9:ea17:558b with SMTP id
- f5-20020a2e6a05000000b002b9ea17558bmr5710217ljc.16.1698061115950; Mon, 23 Oct
- 2023 04:38:35 -0700 (PDT)
+        bh=oFbW5DkHpWjeLiw7FBk0suwqO15NZP71Bja7Si8AcZY=;
+        b=ZfxxSkAmBQeY5wJpBFTAVUTL8w8kDp8ec9jBKHJwYcEoYI1h0n5+NEV+TV2jK2I6vB
+         pnkOqpE5+Pnj5TR2jg7iWkSHNcPybys2VYfLnI5bPuS7qha8/0QraK6Axr0TEkHegWHI
+         cpEcBWkrphnZr/WDsONVutUPPlWWMuQZca8mcLNg3X3FM894ziFXRzJ2/3W3a06FJKeY
+         wXF5TqV8nK2Wk0PbKioNvCKIOUetgpsp/G6yx+XNoWQhaK5AdbMsWoHmcXXcUbDZjEw8
+         73lwDccStDPggRvHD+ne3i7k5kIBXS0IlNGMYDlLCP+h0sS+NRxikCKa37oSBvw1w6go
+         HebQ==
+X-Gm-Message-State: AOJu0YzQzxOS8HHvARRw5tsrgHCo5PBuOPMiIZW18wtfWXZLU2wwtoiY
+	I8RBjce7VPgB6H3aXVknOm3cD/u6jpVVTfzRpig=
+X-Google-Smtp-Source: AGHT+IHD2R8reLpatN2/rxZI9n2+ZG4ZjXkjrA3kOQje9YgCUZ1esroNedhT3RzhZCL7YFOwpbCLQjIT3/B/+mDTldI=
+X-Received: by 2002:a2e:be93:0:b0:2c1:795d:2e4c with SMTP id
+ a19-20020a2ebe93000000b002c1795d2e4cmr2985362ljr.2.1698063864395; Mon, 23 Oct
+ 2023 05:24:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <gtg1.1698056244656196435.xrq2@lists.yoctoproject.org>
-In-Reply-To: <gtg1.1698056244656196435.xrq2@lists.yoctoproject.org>
+References: <20231020140218.10688-1-david.pierret@smile.fr>
+In-Reply-To: <20231020140218.10688-1-david.pierret@smile.fr>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 23 Oct 2023 13:38:24 +0200
-Message-ID: <CANNYZj__qiSb=BKZbW5ZNEXN65tJTG8S7jcEEza7uN6+xAirhQ@mail.gmail.com>
-Subject: Re: [yocto] [Poky - Kirstone] About supporting kernel 6.1.
-To: Ming Wen <mwen@ambarella.com>
-Cc: yocto@lists.yoctoproject.org
+Date: Mon, 23 Oct 2023 14:24:12 +0200
+Message-ID: <CANNYZj8=ny6eVz_LC56=-nsY17AtazNouWLhkrAs1Wuyx+djBA@mail.gmail.com>
+Subject: Re: [auh][PATCH v2] upgrade-helper.py: Add layer command line option
+To: David Pierret <david.pierret@smile.fr>
+Cc: yocto@lists.yoctoproject.org, Yoann Congal <yoann.congal@smile.fr>
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 11:38:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61448
+ <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 12:24:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61449
 
-Note that the SLTS support is not coming from the actual kernel
-upstream, but from a separate project called 'Civil Infrastructure
-Platform':
+Thanks for working on this. Some comments below.
 
-https://www.linuxfoundation.org/press/civil-infrastructure-platform-expands-slt-stable-kernel-program
+On Fri, 20 Oct 2023 at 16:02, David Pierret <david.pierret@smile.fr> wrote:
+> +    parser.add_argument("-l", "--layer-names", nargs='*', action="store", default='',
+> +                        help="layers to include in the upgrade research")
+> +    parser.add_argument("-L", "--layer-dir", action="store", default='',
+> +                        help="the layers root directory")
+> +    parser.add_argument("-m", "--layer-machines", nargs='*', action="store", default='',
+> +                        help="machine to build for the layers")
 
-I think the right place for their kernels would be in a
-meta-cip-kernel layer or similar, which you are welcome to create and
-maintain.
+Can the one-letter options be dropped, and only full options provided
+(for these three new options)? Otherwise command line is going to be
+rather non-self-descriptive.
 
-Kirkstone has 5.10 and 5.15, both will continue to receive upstream
-support for the duration of kirkstone support window.
+> -                if self.recipes and pn in self.recipes:
+> -                    pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
+> -                elif self._pkg_upgradable(pn, next_ver, maintainer):
+> -                    pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
+...
+> +                    if layer_recipes and pn in layer_recipes:
+> +                        pkgs_list.append((layer_name, pn, cur_ver, next_ver, maintainer, revision))
+> +                    elif self._pkg_upgradable(pn, next_ver, maintainer):
+> +                        pkgs_list.append((layer_name, pn, cur_ver, next_ver, maintainer, revision))
+...
+>          return pkgs_list
 
-Personally I think ultra-long support windows are bad. It's an
-indicator of one's inability to do software updates properly, which
-usually comes from poor testing and qa practices.
+I think it's time this function is refactored to return a dict, and
+not a tuple. Can you make it so with a separate commit coming ahead of
+this commit?
+
+I would also prefer to avoid adding an extra nested for loop in it,
+with the awkward shift in indentation. Can the outer and inner loop be
+in separate functions?
+
+weeklyjob-oe.sh should be folded into weeklyjob.sh, rather than be a
+separate copy-paste-tweak script. List of layers can be passed in via
+command line perhaps, defaulting to just poky/meta/. It also still
+contains the sed MACHINE invocation which should not be needed?
 
 Alex
-
-On Mon, 23 Oct 2023 at 12:17, Ming Wen <mwen@ambarella.com> wrote:
->
-> Hi YOCTOers:
->
-> As you may know, according to the recent news update from Linux community, Linux Kernel V6.1 will be the SLTS being supported as LTS till 2033.
-> I'm wondering what your plan is to support Kernel 6.1 on Poky - Kirstone.
->
-> Thanks~~
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61447): https://lists.yoctoproject.org/g/yocto/message/61447
-> Mute This Topic: https://lists.yoctoproject.org/mt/102132074/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
