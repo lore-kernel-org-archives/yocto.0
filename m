@@ -1,107 +1,152 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DBAC1C25B41
-	for <webhook@archiver.kernel.org>; Mon, 23 Oct 2023 16:29:52 +0000 (UTC)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
- by mx.groups.io with SMTP id smtpd.web10.125417.1698078584840267272
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05D7CC001E0
+	for <webhook@archiver.kernel.org>; Mon, 23 Oct 2023 16:44:02 +0000 (UTC)
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+ by mx.groups.io with SMTP id smtpd.web11.126146.1698079435462328342
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Oct 2023 09:29:44 -0700
+ Mon, 23 Oct 2023 09:43:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=QWU7jT3F;
- spf=pass (domain: gmail.com, ip: 209.85.160.172, mailfrom: mtownsend1973@gmail.com)
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-41cd4cc515fso23917161cf.1
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 09:29:44 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=CpLM7Iv6;
+ spf=pass (domain: gmail.com, ip: 209.85.160.43, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1e5bc692721so2387356fac.0
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 09:43:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698078583; x=1698683383; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=n9gAx6CVGeaa2LoHa5iwt6+ag1IZcjbMfjEx5Wo7yBU=;
-        b=QWU7jT3FtT/ElQuBEMXg8ijG+diGzLIGsH5hQWXM+WMmuRyQvEQGMo+ZitznfejwEE
-         wX0K0U8+32txvQU/0mLNO7aumpM0FoY7iVC3TVcTdzbXiQnM7X1aXwklfqeVy97m27Gg
-         Kr75s9NtwLnyc0qJ6jXTwg/1IZtYIRjFCmtH2N5j9cOhQyQlMs+kEf7s86um0JU08UVi
-         rDxxkJSWLvsUo8QgaL8AE/HN4KHJ4SEO/KpOQM7PIYSgBsJnIAtLX97gmNFP/EMDRfB/
-         NYaQMbZ2ND480Cw4JJGWKQFYBpgWSFB0gJ9toejMvwqXLyUU1ak+F42naUXKYVUCDBWL
-         qC2g==
+        d=gmail.com; s=20230601; t=1698079435; x=1698684235; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AUhDZJFSHHGDSlO+RzUoIMsOHixvBQOwzuuCSKt/4tw=;
+        b=CpLM7Iv6xT9+be/lietnjXhkyILRynvGaS6uZLkpPo1X7CfloEnJqty0w3Wi/n5VUM
+         VXpCkw3VNRII6yGOzz7nAsnlGKXgRongtDCofyYKNtvT2UzplIb/l2q/KWcETRenysrz
+         HqyGMwfn4TNZnbqcgF/Z9bKQPcbqjL2vE0Q3PoLhtydn6bMXzbU3wD+CKA8MAm2AgOJz
+         0mnnH8+AZWqfzDmiwjA30hN5DlzWE7FIYbg2YjARdqYnIQKlOJvWIOjVd4doF6y4LwJq
+         BXqrcb++ccNga1OzKV+aSl1Dp1gLb4FoeEzBL9dmkbaY0w/sIkEuhRBaxbRztOKgYNLA
+         NpZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698078583; x=1698683383;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n9gAx6CVGeaa2LoHa5iwt6+ag1IZcjbMfjEx5Wo7yBU=;
-        b=nj945ObtRnJPMl3qQpWmGqmRHW0PgRUvrng3ImEK5gwu1Ss5cycMFdmEnpSZIQUcN1
-         m8cAN+xs5Mm3BrJ3u+m0yJvceOT9F8ynNAyK09ePG9rWeB/uFL4sIn5OWQxk2jrkekeW
-         7ciOWKjUiHxUutH9Rr0JcjGXpUjrmDclzEUSV1q/AImqr2wsUPEWnA2YlCa/CPvBXIGC
-         9GM4is3wjce2KFvKFIxPdrCWMOWHubqlJX612RlodBgyVSBjPAPy02U7zsmxxcD/CHHR
-         frAcKGLRhGgUjg152OMjy/1Nu8kfGNDYzNGNCD3wP2XaISdE2YVZw/nEtqEWBOZWetWP
-         7yGg==
-X-Gm-Message-State: AOJu0Yw+mcomWLRpgJbOHEmX52lTEcefrlcDEY8HSk+GeDV8PNfkES/1
-	Mp6Pusrt7V8qpMS1k2tud4RBNZ6x/jcq2KjihNyJA5ZjPI8=
-X-Google-Smtp-Source: AGHT+IEq/PH4Fa2YXzaTeQmLf5zLjp8Bj4682+adJBNxidVZP6vKNzdI0JU7HPAo0eHbGSwF7WJn+uYl1QMlXFwlCcc=
-X-Received: by 2002:a05:622a:2c3:b0:403:eb5b:1f6 with SMTP id
- a3-20020a05622a02c300b00403eb5b01f6mr12582496qtx.63.1698078583532; Mon, 23
- Oct 2023 09:29:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698079435; x=1698684235;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AUhDZJFSHHGDSlO+RzUoIMsOHixvBQOwzuuCSKt/4tw=;
+        b=Pz0Hzn/um3GLIDoanreztQ4jAi0acwDser/LEL6PZvONhCz0uzqY7FHDUQ7oT6qBFh
+         Xl/aeQJEe+J/NOgMqaC024l487JlvjZLYQjP8FMlRAa+dRd1WTf6QCSHVRGmrg+SN7Ee
+         vseKjkYIpIFXhRGC3x9zpXQaknx2SHWFduYo/imphgQti6Oa7llGo4xbhe7Myc+3Mbey
+         vPAq06+GvqMNqZPQ71/AIk/1kFJl5AtJbmE9hQvUld+R+4hAgoCaMNhfCt0d0avnpwNe
+         NMkQCYCUxOj9SVlgHfBLYo+q5XVVndN/3xIs6OV3DMA4Bjn2yI6tDe+tQwEbX0IOg/Ci
+         KWxQ==
+X-Gm-Message-State: AOJu0Yzv6NoND6Asj0DeGZsS0nd6YFpoNbJOvruB9XE0SZ6G0MHL28pI
+	BNg8ZvqhUNIkTKiRhYHnQnIDUEKEiBRPrMEcgEo=
+X-Google-Smtp-Source: AGHT+IG+akgGLQ+oMBC1lTgoJp9vLKclnaV7G6Eg0wzC/W1Cfmmc21D5IQ1VMXdyiohk8pb5u1n7gvlYYoVb+WACYxk=
+X-Received: by 2002:a05:6870:8e06:b0:1bf:9f6:b810 with SMTP id
+ lw6-20020a0568708e0600b001bf09f6b810mr13531334oab.36.1698079434525; Mon, 23
+ Oct 2023 09:43:54 -0700 (PDT)
 MIME-Version: 1.0
-From: Martin Townsend <mtownsend1973@gmail.com>
-Date: Mon, 23 Oct 2023 17:29:32 +0100
-Message-ID: <CABatt_zLLc-pGxmcqYsYQowsGRTt9ETzk7x5v6L+5bV18p8byg@mail.gmail.com>
-Subject: Clang LLVM do_package strip error
-To: yocto@lists.yoctoproject.org
+References: <CABatt_zLLc-pGxmcqYsYQowsGRTt9ETzk7x5v6L+5bV18p8byg@mail.gmail.com>
+In-Reply-To: <CABatt_zLLc-pGxmcqYsYQowsGRTt9ETzk7x5v6L+5bV18p8byg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 23 Oct 2023 09:43:27 -0700
+Message-ID: <CAMKF1sqULQJKS=aPKdYbM+PQu9346wJ6L+dr-fNBfad9WaUAtg@mail.gmail.com>
+Subject: Re: [yocto] Clang LLVM do_package strip error
+To: Martin Townsend <mtownsend1973@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 16:29:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61459
+ <yocto@lists.yoctoproject.org>; Mon, 23 Oct 2023 16:44:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61460
 
-Hi,
+On Mon, Oct 23, 2023 at 9:29=E2=80=AFAM Martin Townsend <mtownsend1973@gmai=
+l.com> wrote:
+>
+> Hi,
+>
+> I've updated the project I'm working on to kirkstone and using GCC it
+> is working.  We want to move to Clang but I've seen a couple of
+> recipes fail in do_package with a similar error.  Here is the output
+> for runc-opencontainers, the package tini has something similar
+>
+>
+> ERROR: runc-opencontainers-1.1.4+gitAUTOINC+974efd2dfc-r0 do_package:
+> Fatal errors occurred in subprocesses:
+> Command '['aarch64-poky-linux-llvm-objcopy', '--only-keep-debug',
+> '/ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-cr=
+ypto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/package/=
+usr/bin/runc',
+> '/ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-cr=
+ypto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/package/=
+usr/bin/.debug/runc']'
+> returned non-zero exit status 1.
+> Subprocess output:aarch64-poky-linux-llvm-objcopy: error: Link field
+> value 47 in section .rela.plt is not a symbol table
+>
 
-I've updated the project I'm working on to kirkstone and using GCC it
-is working.  We want to move to Clang but I've seen a couple of
-recipes fail in do_package with a similar error.  Here is the output
-for runc-opencontainers, the package tini has something similar
+Its using clang and also binutils from llvm here and there has been
+many fixes we had done to llvm
+tools and things are better with clang 17, but since you are on
+kirkstone, you might be using older clang
+and llvm. So you can try if master branch solves the problem and maybe
+next LTS you are set other
+option which might be immediately useful would be to fall back to
+using objcopy from binutils which you
+can do via something like below in site.conf
+
+ OBJCOPY:pn-runc-opencontainers:toolchain-clang =3D "${HOST_PREFIX}objcopy"
 
 
-ERROR: runc-opencontainers-1.1.4+gitAUTOINC+974efd2dfc-r0 do_package:
-Fatal errors occurred in subprocesses:
-Command '['aarch64-poky-linux-llvm-objcopy', '--only-keep-debug',
-'/ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-crypto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/package/usr/bin/runc',
-'/ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-crypto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/package/usr/bin/.debug/runc']'
-returned non-zero exit status 1.
-Subprocess output:aarch64-poky-linux-llvm-objcopy: error: Link field
-value 47 in section .rela.plt is not a symbol table
-
-ERROR: Logfile of failure stored in:
-/ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-crypto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/temp/log.do_package.2936320
-ERROR: Task (/ws/extra/octopus/octave-kirkstone/build-cad-devel/../sources/meta-virtualization/recipes-containers/runc/runc-opencontainers_git.bb:do_package)
-failed with exit code '1'
-Pseudo log:
-inode mismatch:
-'/ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-crypto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/image/usr/bin/docker-runc'
-ino 84410787 in db, 84431171 in request.
-Setup complete, sending SIGUSR1 to pid 2936321.
-
-I'm sure these used to compile with Clang in dunfell so could this be
-a toolchain problem?
-
-I'm using the kirkstone branch of meta-clang and have the following in
-my distro conf
-PREFERRED_PROVIDER_llvm = "clang"
-PREFERRED_PROVIDER_llvm-native = "clang-native"
-PREFERRED_PROVIDER_nativesdk-llvm = "nativesdk-clang"
-PROVIDES:pn-clang = "llvm"
-PROVIDES:pn-clang-native = "llvm-native"
-PROVIDES:pn-nativesdk-clang = "nativesdk-llvm"
-
-and this in local.conf
-
-TOOLCHAIN ?= "clang"
-RUNTIME ?= "llvm"
-
-I notice there is a kirkstone-clang12 branch in meta-clang, should I
-be using this?
-If not, any help in debugging this would be appreciated.
-
-Cheers,
-Martin.
+> ERROR: Logfile of failure stored in:
+> /ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-cry=
+pto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/temp/log.=
+do_package.2936320
+> ERROR: Task (/ws/extra/octopus/octave-kirkstone/build-cad-devel/../source=
+s/meta-virtualization/recipes-containers/runc/runc-opencontainers_git.bb:do=
+_package)
+> failed with exit code '1'
+> Pseudo log:
+> inode mismatch:
+> '/ws/extra/octopus/octave-kirkstone/build-cad-devel/tmp/work/cortexa53-cr=
+ypto-poky-linux/runc-opencontainers/1.1.4+gitAUTOINC+974efd2dfc-r0/image/us=
+r/bin/docker-runc'
+> ino 84410787 in db, 84431171 in request.
+> Setup complete, sending SIGUSR1 to pid 2936321.
+>
+> I'm sure these used to compile with Clang in dunfell so could this be
+> a toolchain problem?
+>
+> I'm using the kirkstone branch of meta-clang and have the following in
+> my distro conf
+> PREFERRED_PROVIDER_llvm =3D "clang"
+> PREFERRED_PROVIDER_llvm-native =3D "clang-native"
+> PREFERRED_PROVIDER_nativesdk-llvm =3D "nativesdk-clang"
+> PROVIDES:pn-clang =3D "llvm"
+> PROVIDES:pn-clang-native =3D "llvm-native"
+> PROVIDES:pn-nativesdk-clang =3D "nativesdk-llvm"
+>
+> and this in local.conf
+>
+> TOOLCHAIN ?=3D "clang"
+> RUNTIME ?=3D "llvm"
+>
+> I notice there is a kirkstone-clang12 branch in meta-clang, should I
+> be using this?
+> If not, any help in debugging this would be appreciated.
+>
+> Cheers,
+> Martin.
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#61459): https://lists.yoctoproject.org/g/yocto/messag=
+e/61459
+> Mute This Topic: https://lists.yoctoproject.org/mt/102139152/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
