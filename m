@@ -2,98 +2,219 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83853C0032E
-	for <webhook@archiver.kernel.org>; Wed, 25 Oct 2023 13:43:38 +0000 (UTC)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
- by mx.groups.io with SMTP id smtpd.web11.43926.1698241415095584929
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF932C25B47
+	for <webhook@archiver.kernel.org>; Wed, 25 Oct 2023 13:56:28 +0000 (UTC)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web11.44245.1698242180905965245
  for <yocto@lists.yoctoproject.org>;
- Wed, 25 Oct 2023 06:43:35 -0700
+ Wed, 25 Oct 2023 06:56:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Y1xAqBmH;
- spf=pass (domain: gmail.com, ip: 209.85.217.41, mailfrom: twoerner@gmail.com)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-457c82cd837so1971257137.2
-        for <yocto@lists.yoctoproject.org>; Wed, 25 Oct 2023 06:43:34 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=bOoz31cR;
+ spf=pass (domain: gmail.com, ip: 209.85.160.171, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-41cc7379b23so35038941cf.3
+        for <yocto@lists.yoctoproject.org>; Wed, 25 Oct 2023 06:56:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698241414; x=1698846214; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1698242180; x=1698846980; darn=lists.yoctoproject.org;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fAv8KRCXjjnwHDw0XNjPdBeNTdSKoZsskqeULgwBCac=;
-        b=Y1xAqBmH0yWAkpA/8FMjrLURG9wFUrDkwtYbcfVmTWj7TqA8k7rG5QV51SGFNnd/BL
-         yxjvKHzusGjzBQB8vMS3aB/ovHoNIp28fRKSsWw0mzpX5+kfW4FhNXmW/zPqmjZTN35I
-         RGJjLKElsOtNxgoZ7AkCe7qE7Im97Xss4pWcamyGuoeJVyTDJ2y4DosQFUCUq0ceIG33
-         eUqKFUDQQX0MtUs9HlZ517fBL8pQR3bbMOKFIMrT5FUaxFPjjqBUyxUKcff8tSBed53l
-         PK+BWDefNhoQ56a2cV+qx/7tx++A6JBnd0fISbs8X30IAO6/miIFC4mjgLsqCJTFWrVV
-         R9SQ==
+        bh=IRbFFpatRthfPkqbOX94puU6SXVK2LKH7tnHjmPCxJw=;
+        b=bOoz31cRAw97KtM/VfsJWpNpS2kBXkfx2HvaTeDDfj9y2k+uh1pd39BYmwWO/QKZmG
+         dtBlymnunkQwyc7SUsTI+/X85RCNJSFPv2S8jlKFzTWz2o4xuvgLWs2Qbco1xkdi/0qm
+         THNGr2nnltXpyBUXH1Wt1KuStzjkSGoC+8ejG3hmWZZQdxmitszqsjjmyN1p+k1gpzUZ
+         pyWS/M8EGAaJePZKGwI+gFIWcPwRIyfvkHBT6jdbobm9w63AhKKQSUhMLEEvoJK5Ccg3
+         4FTKWydgqCx5vzSbbaAgZB6aRdUORTV/mykbR/ZBHjNzeprAjGjkQ6AfvMLAaFji4THU
+         Ys1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698241414; x=1698846214;
+        d=1e100.net; s=20230601; t=1698242180; x=1698846980;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fAv8KRCXjjnwHDw0XNjPdBeNTdSKoZsskqeULgwBCac=;
-        b=mEF/vJQW06LXdtkd4U8TyETDZGAjwho1Boq7AfvSfm1F2GHAYIQZrKE51mYbOhikCP
-         HSawRI+SmH+I6CaaFMnwdUiAQrSF08VvE6pe/AM/ozA4T+1Ct3OoCVSof5RjU/oyLDkQ
-         3i7n5CectS88voV0vpmNwiCwjYH5T0lN6QifysSpK6yRusrnDALjNLr6aFVXSnOStspG
-         weKXOvfIIxlIOnjcjlFuKFz59PACX9uuZDH3IaId6MjxLD4T6qCObGtRM/iyVn8edalH
-         EStGHCIypUwVich7Gapqgi/83UW7fhlclbQfun/k0xFkRnToGY2bIoKyknK8jIC6fqmm
-         lRyg==
-X-Gm-Message-State: AOJu0YzBhjdXjiiWIlj+lZ6iXgQwjsjWUqg7BctBoag1M6FQwF8p5RqY
-	goJHBxPrpTCnANJaXz4ofBicRLNDZDs=
-X-Google-Smtp-Source: AGHT+IEv4sTdVp7Erp3l27zpUoCFKk/Z4YtHzE9fELGGrViOkiDslS/k9EUsg0zyXJeJHy1wcUDBmg==
-X-Received: by 2002:a67:e192:0:b0:457:c1d2:a0ab with SMTP id e18-20020a67e192000000b00457c1d2a0abmr13837882vsl.18.1698241414052;
-        Wed, 25 Oct 2023 06:43:34 -0700 (PDT)
+        bh=IRbFFpatRthfPkqbOX94puU6SXVK2LKH7tnHjmPCxJw=;
+        b=DNjXCLUXkZf4cjlmTq6gxthTMSmF7g6cOOE7xkihd+fdpXPrfxHZnbxkrpJeAPjFP4
+         +m7FaNRS2boH90uUZycQuG2TGGJFBa9yHbvhWjQDDCdKwoyfbdjTApRw4psFiF32Ahzy
+         xSPu6l/jpesffsTHbDY46C9fRXmJEWD363fEuSBt3c2DDkgZ3xwQdwpQqhp6374TUegn
+         324RPgL5RLLjfwRp5KWso90uVJqsLTTvZSke9nLBjAAdF+WTSMDzP7J/G9/C3zxsEav4
+         3C948MpqsVw3qsySFAJperFsM3Zv4ouhGNu3+FnCB4NjDWQQXhFXyKWPZN0e7G5ExU05
+         weqw==
+X-Gm-Message-State: AOJu0YxxoN5KeSj66tuRhW56upMsdrqyMJPMBStXHIUWVPZ6FG7L9yVM
+	XAEAG8a3dbPnJjVZdOFauBQ=
+X-Google-Smtp-Source: AGHT+IF7lJRqZZI7ahAY3P4zR/PzbEfi3ziM59Lqy672s4AmnH6xTTg/SDNRAE6d2HaSs3KXO04Osw==
+X-Received: by 2002:a05:622a:216:b0:41c:c6a6:338f with SMTP id b22-20020a05622a021600b0041cc6a6338fmr19461014qtx.53.1698242179874;
+        Wed, 25 Oct 2023 06:56:19 -0700 (PDT)
 Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id lg8-20020a056214548800b0066d05ed3778sm4436982qvb.56.2023.10.25.06.43.33
+        by smtp.gmail.com with ESMTPSA id k25-20020ac84799000000b0041abcc69050sm4209829qtq.95.2023.10.25.06.56.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 06:43:33 -0700 (PDT)
-Date: Wed, 25 Oct 2023 09:43:31 -0400
+        Wed, 25 Oct 2023 06:56:19 -0700 (PDT)
+Date: Wed, 25 Oct 2023 09:56:16 -0400
 From: Trevor Woerner <twoerner@gmail.com>
-To: Quentin Schulz <foss@0leil.net>
-Cc: yocto@lists.yoctoproject.org,
-	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-	Quentin Schulz <foss+yocto@0leil.net>
-Subject: Re: [yocto] [meta-rockchip][kirkstone][PATCH] bsp: rkbin: fix
- default COMPATIBLE_MACHINE matching all
-Message-ID: <20231025134331.GB9170@localhost>
-References: <20231016112233.221066-1-foss+yocto@0leil.net>
+To: anthony.t.davies@gmail.com
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [meta-rockchip] [PATCH v3] rock-3a add
+Message-ID: <20231025135616.GA9837@localhost>
+References: <20231016104344.401706-1-anthony.t.davies@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231016112233.221066-1-foss+yocto@0leil.net>
+In-Reply-To: <20231016104344.401706-1-anthony.t.davies@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 25 Oct 2023 13:43:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61480
+ <yocto@lists.yoctoproject.org>; Wed, 25 Oct 2023 13:56:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61481
 
-On Mon 2023-10-16 @ 01:22:33 PM, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Hi Anthony,
+
+Thanks for working on this.
+
+On Mon 2023-10-16 @ 09:43:45 PM, anthony.t.davies@gmail.com wrote:
+> From: Anthony Davies <anthony.t.davies@gmail.com>
 > 
-> The goal of the default COMPATIBLE_MACHINE was to not allow
-> rockchip-rkbin to be even parsed if a MACHINE isn't part of the
-> COMPATIBLE_MACHINE.
+> Add support for the Radxa Rock 3A
+> https://wiki.radxa.com/Rock3/3a
 > 
-> However, COMPATIBLE_MACHINE is a regexp checked using Python's re module
-> approximately like:
-> """
-> if re.match(COMPATIBLE_MACHINE, MACHINE):
-> 	return True
-> """
+> The TF-A project does not currently have support for
+> the rk3568. Therefore, for the time-being, the only way to supply a
+> TPL/DDR-init for the rk3568 is to use the closed-source rkbin binaries
+> from Rockchip. If/when TF-A adds support for the rk3588 we can investigate
+> switching.
 > 
-> and re.match() returns a match whatever MACHINE is if COMPATIBLE_MACHINE
-> is the empty string.
+> recipes-bsp/rkbin/rockchip-rkbin_git.bb was modified to allow a machine
+> override to allow both rk3568 and rk3588s to use differnet binary blobs
 > 
-> Therefore, let's change it to `^$` which only matches the empty string,
-> which shouldn't be possible for anything in MACHINEOVERRIDES, and if it
-> is there are probably bigger problems than parsing rockchip-rkbin.
-> 
-> Fixes: 3c7f532c2e25 ("rk3588(s): add")
-> Cc: Quentin Schulz <foss+yocto@0leil.net>
-> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> Signed-off-by: Anthony Davies <anthony.t.davies@gmail.com>
 > ---
->  recipes-bsp/rkbin/rockchip-rkbin_git.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  README                                  |  1 +
+>  conf/machine/include/rk3568.inc         | 17 +++++++++++++++++
+>  conf/machine/rock-3a.conf               | 12 ++++++++++++
+>  recipes-bsp/rkbin/rockchip-rkbin_git.bb | 16 +++++++++++++++-
+>  recipes-bsp/u-boot/u-boot%.bbappend     |  5 +++++
+>  5 files changed, 50 insertions(+), 1 deletion(-)
+>  create mode 100644 conf/machine/include/rk3568.inc
+>  create mode 100644 conf/machine/rock-3a.conf
+> 
+> diff --git a/README b/README
+> index 8104474..3357b47 100644
+> --- a/README
+> +++ b/README
+> @@ -32,6 +32,7 @@ Status of supported boards:
+>  		nanopi-r4s
+>  		rock-5b
+>  		nanopi-r2s
+> +    rock-3a
 
-Applied to meta-rockchip, kirkstone branch. Thanks!
+There's still an issue with indents/tabs.
+
+>  	builds:
+>  		marsboard-rk3066
+>  		radxarock
+> diff --git a/conf/machine/include/rk3568.inc b/conf/machine/include/rk3568.inc
+> new file mode 100644
+> index 0000000..5382b58
+> --- /dev/null
+> +++ b/conf/machine/include/rk3568.inc
+> @@ -0,0 +1,17 @@
+> +MACHINEOVERRIDES =. "rk3568:"
+> +DEFAULTTUNE ?= "cortexa55"
+> +
+> +require conf/machine/include/arm/armv8-2a/tune-cortexa55.inc
+> +require conf/machine/include/rockchip-defaults.inc
+> +require conf/machine/include/rockchip-wic.inc
+> +
+> +KBUILD_DEFCONFIG ?= "defconfig"
+> +KERNEL_FEATURES:append:rk3568 = " bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
+> +KERNEL_CLASSES ??= "kernel-fitimage"
+> +KERNEL_IMAGETYPE ??= "fitImage"
+> +
+> +PREFERRED_PROVIDER_trusted-firmware-a = "rockchip-rkbin"
+> +PREFERRED_PROVIDER_optee-os = "rockchip-rkbin"
+> +
+> +UBOOT_SUFFIX ?= "itb"
+> +UBOOT_ENTRYPOINT ?= "0x06000000"
+> diff --git a/conf/machine/rock-3a.conf b/conf/machine/rock-3a.conf
+> new file mode 100644
+> index 0000000..2ed83a3
+> --- /dev/null
+> +++ b/conf/machine/rock-3a.conf
+> @@ -0,0 +1,12 @@
+> +#@TYPE: Machine
+> +#@NAME: Radxa Rock 3a
+> +#@DESCRIPTION: ROCK3 is a series of Rockchip RK3566/RK3568 based
+> +#SBC(Single Board Computer) and Compute Module by Radxa.
+> +#https://wiki.radxa.com/Rock3
+> +
+> +require conf/machine/include/rk3568.inc
+> +
+> +KERNEL_DEVICETREE = "rockchip/rk3568-rock-3a.dtb"
+> +MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
+> +
+> +UBOOT_MACHINE = "rock-3a-rk3568_defconfig"
+> diff --git a/recipes-bsp/rkbin/rockchip-rkbin_git.bb b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
+> index 7fefb01..ad5593c 100644
+> --- a/recipes-bsp/rkbin/rockchip-rkbin_git.bb
+> +++ b/recipes-bsp/rkbin/rockchip-rkbin_git.bb
+> @@ -14,6 +14,7 @@ S = "${WORKDIR}/git"
+>  
+>  COMPATIBLE_MACHINE = ""
+>  COMPATIBLE_MACHINE:rk3588s = "rk3588s"
+> +COMPATIBLE_MACHINE:rk3568 = "rk3568"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> @@ -25,7 +26,16 @@ do_install() {
+>  PACKAGES = "${PN}"
+>  ALLOW_EMPTY:${PN} = "1"
+>  
+> -do_deploy() {
+> +do_deploy:rk3568() {
+> +	# Prebuilt TF-A
+> +	install -m 644 ${S}/bin/rk35/rk3568_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3568.elf
+> +	# Prebuilt OPTEE-OS
+> +	install -m 644 ${S}/bin/rk35/rk3568_bl32_v*.bin ${DEPLOYDIR}/tee-rk3568.bin
+> +	# Prebuilt U-Boot TPL (DDR init)
+> +	install -m 644 ${S}/bin/rk35/rk3568_ddr_1560MHz_v1.18.bin ${DEPLOYDIR}/ddr-rk3568.bin
+> +}
+> +
+> +do_deploy:rk3588s() {
+>  	# Prebuilt TF-A
+>  	install -m 644 ${S}/bin/rk35/rk3588_bl31_v*.elf ${DEPLOYDIR}/bl31-rk3588.elf
+>  	# Prebuilt OPTEE-OS
+> @@ -34,4 +44,8 @@ do_deploy() {
+>  	install -m 644 ${S}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v*.bin ${DEPLOYDIR}/ddr-rk3588.bin
+>  }
+>  
+> +do_deploy() {
+> +  bbfatal "COMPATIBLE_MACHINE requires a corressponding do_deploy:<MACHINE>() override"
+> +}
+> +
+
+This is not related to adding support for rock3a.
+
+>  addtask deploy after do_install
+> diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
+> index e79c471..66c81da 100644
+> --- a/recipes-bsp/u-boot/u-boot%.bbappend
+> +++ b/recipes-bsp/u-boot/u-boot%.bbappend
+> @@ -9,12 +9,17 @@ EXTRA_OEMAKE:append:rk3588s = " \
+>  	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3588.elf \
+>  	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3588.bin \
+>  	"
+> +EXTRA_OEMAKE:append:rk3568 = " \
+> +	BL31=${DEPLOY_DIR_IMAGE}/bl31-rk3568.elf \
+> +	ROCKCHIP_TPL=${DEPLOY_DIR_IMAGE}/ddr-rk3568.bin \
+> +	"
+>  
+>  INIT_FIRMWARE_DEPENDS ??= ""
+>  INIT_FIRMWARE_DEPENDS:px30 = " trusted-firmware-a:do_deploy"
+>  INIT_FIRMWARE_DEPENDS:rk3328 = " trusted-firmware-a:do_deploy"
+>  INIT_FIRMWARE_DEPENDS:rk3399 = " trusted-firmware-a:do_deploy"
+>  INIT_FIRMWARE_DEPENDS:rk3588s = " rockchip-rkbin:do_deploy"
+> +INIT_FIRMWARE_DEPENDS:rk3568 = " rockchip-rkbin:do_deploy"
+>  do_compile[depends] .= "${INIT_FIRMWARE_DEPENDS}"
+>  
+>  do_compile:append:rock2-square () {
+> -- 
+> 2.34.1
+> 
 
