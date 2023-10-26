@@ -1,218 +1,313 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <david.pierret@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AAFDDC25B67
-	for <webhook@archiver.kernel.org>; Thu, 26 Oct 2023 05:34:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by mx.groups.io with SMTP id smtpd.web10.193652.1698298490264842312
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8DA74C25B67
+	for <webhook@archiver.kernel.org>; Thu, 26 Oct 2023 13:04:16 +0000 (UTC)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+ by mx.groups.io with SMTP id smtpd.web11.69817.1698325453883380732
  for <yocto@lists.yoctoproject.org>;
- Wed, 25 Oct 2023 22:34:51 -0700
+ Thu, 26 Oct 2023 06:04:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=HZa6QZKR;
- spf=pass (domain: intel.com, ip: 192.55.52.151, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698298490; x=1729834490;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=Pdx8N6CMCHYlpPqcQpo4lF2BRN9bnPiqKmM/pTWI3SE=;
-  b=HZa6QZKRJWW/Y0WXZ7eWP3rOjuMdInGNftVtO94I7BWN4mI/XkOm0XzT
-   U57NR0iZtGEVqijU4ma0QEoD8pZq5f7Y8wZn7nAaH1Cwa+IUK7L91W8zx
-   om8K5f/YID4M9VTWmGFxCJxNGnEbxEUtXE1lXP9paZ50roGpKZR6bDneW
-   zY0Bqi5dZQo5xDVbrODrTQbIrFTUvn3pOx+uWgwV2BfshwvMkULLdmsOU
-   7HBufQu3WtC4SWvYUqN4DRBvt6/s6GSQj1tAQZKINs+mwpkR6Agjbo+1G
-   Q7NhugDpthXer1L0Bf4RnbFd6TF1pwFVIXsDbPJOjUIZAeSc72dJWRl1H
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="367676076"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="367676076"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2023 22:34:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="7123003"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 25 Oct 2023 22:34:38 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 25 Oct 2023 22:34:46 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Wed, 25 Oct 2023 22:34:46 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Wed, 25 Oct 2023 22:34:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JXKJZJ8qHQSNdHedH12VhAbybYTYT1H9VMJE0A28gCSimvVma7yggExRH+hVMxHB5P2/clou6CFRElLtHDDAfSqhRSYrK//im14UiLzPDZrs1jUgk30MG1sOiyehzCuEGS0kMhcgxq3swldQnkLmCFz0n5JyHvz5uZheivnsjaiJoETzm/T+dddhMo9ow3CKxFtOlASIZ3hiGdxIigh8pbw8FHbC6/hfhZuRbSMUh6rCTA6hb36K9KgmBE2FBCJMrI8aLyqNrfIKJDaSx4hJ2MrwHBeRDAz5JplkgqJZUNvEu0tAwRcVflMzzU+uimauXcsV9HSnZoM2o0YNbHtjYA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FHDfWnlw9/bEQ8V5FWR1n6mI/F2PF/P5CGEOBIahGUw=;
- b=NSth1bwNCS98RKwy27QaTqSXDxM36B4qq4zRc6RXInlvZD7fUQ6ciJOI3pDEWJO9zHvIlNZKGXXGPv7DatC7W2Ltf8DawHNY9NPRHZIi5xbpHAt40VwPkBz+zeRLQWcwIBfmeHUnXWBXCiZ4KWuJMzmnt4jdGR5IH4oWaGSSyP8eJiSAdbQnESBaYivuAtRnzkU099/LyLGJm1TtM7/yOdFgQzDMwjJbhqBWM7BiOflfIPAn7kQUqnk9I78kVDRDy6t35+/pyfwPt+buusW6PEORzBtxGxFTc2tmqJcmneA13yAgjyfSZrcxN0nykzYx4BxFJJsnUCVsuWCuCDQAkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com (2603:10b6:a03:191::11)
- by SN7PR11MB6850.namprd11.prod.outlook.com (2603:10b6:806:2a2::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.22; Thu, 26 Oct
- 2023 05:34:44 +0000
-Received: from BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3230:6041:e9a3:cdac]) by BY5PR11MB4152.namprd11.prod.outlook.com
- ([fe80::3230:6041:e9a3:cdac%3]) with mapi id 15.20.6933.022; Thu, 26 Oct 2023
- 05:34:43 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.3.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.3.rc2)
-Thread-Index: AQHaAyJ4RVzgeYR7u0aCw4IO3F76wLBbla4A
-Date: Thu, 26 Oct 2023 05:34:43 +0000
-Message-ID: <BY5PR11MB4152E73428F58A5847AAAFF8A1DDA@BY5PR11MB4152.namprd11.prod.outlook.com>
-References: <0101018b4bde33b6-a3fab4b0-bd55-4084-8c36-15407b954459-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018b4bde33b6-a3fab4b0-bd55-4084-8c36-15407b954459-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR11MB4152:EE_|SN7PR11MB6850:EE_
-x-ms-office365-filtering-correlation-id: 1e579cda-b68d-44ea-f803-08dbd5e5422b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Q2pIuOJ1zf84NzE6uFfPkyG0GYYvgMQyAwgqg1NuwrlRGj1JoZq4Pkm1J8MAZbxPdzBs0yT0HKG5kpMdUrkxuPzJOKpfZUmLt6IVrZELfKMS/Ocf2/59OPA5augXG3IW6xS7P858pGhAprFJI5DBpJmV8vp8A8Y1ct3e2No6wxHetNoNB1k+9ioyNKxY1gaBkXKHPMQCnh6RUu0CFcOUkDBP1b4o3W8zZuGJ1bfIenoo4a7SwQo7eK50G+Yxbz8yP56IR7MVX3d9B4Qnfezqpe+hXbWwYZZsmxYqARhNyvK0Zlxlz/pp49oOGesj2xYX3RWaSFlTOMZmilT6KsGpn3+fvPuXQ5t0J9hO+xXrnIhJqVbq8rQ6IlLjgiIL5jVXl2MrnEIbMkEYStjMkib71fdKNhrNt7z0LWX0l0jYLvzMaTCAhrA07TiZzKA0a/iBIzgfi5WRtf4rH/LjN1am7YIOYQoE0n0gvGX91jNzANn8KWptaJ+ZWEw20ql+xsk7OBL5obYcrHTjT9MOmTF0yyGYF9QXuUU+EFvfJ/5ATq5P/B1LXHKmjF1TBVyUKWVZ4s38KDaZrD5cKTxaA13b1V8lgenHevf0Z4UGIK3m90VpLaS0fAzNkX02s7EqpXrwaHGEcattFnkObfIa0/51FQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4152.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(346002)(396003)(39860400002)(366004)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(82960400001)(66899024)(9686003)(41300700001)(122000001)(5660300002)(55016003)(26005)(966005)(8676002)(8936002)(478600001)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(316002)(110136005)(38070700009)(6506007)(7696005)(53546011)(52536014)(71200400001)(86362001)(33656002)(38100700002)(2906002)(83380400001)(15650500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bOgeoJ0NtMMKy3XAD9vtlnrw0mhQ0VoYevb48KyyuO0xrVzE0jG3p46K8Gdl?=
- =?us-ascii?Q?Eg8UNLWCj/DqmI5q0rxPHd1LZFfFImpvf/LcCWjgW7mjSvNv8CPgLdMG2CtI?=
- =?us-ascii?Q?SXd01jT/s1BXRj+m24s0SdyoXkpiYDdVU8MOAagqHf8219eh7wyETiaZg6z1?=
- =?us-ascii?Q?+TU0XhuL1pwPG0W/v82I7T3Tjp4ELtMF8yOR1Lvkb0/fQBYAErr4Nexv2cn1?=
- =?us-ascii?Q?+A84oQD0CtRQS8OhGIT5iX4jK1nK89VIHuLKk5E4lwHmnRHRtzqETKvDgn7I?=
- =?us-ascii?Q?r9J8sb01nocV6TFMDEuxFGgXa1eTbUBjMY3cRE+/MClnppR9DzXUFD9gaQLT?=
- =?us-ascii?Q?1ppUzzoUfaQMbVJRQHxwKlidBr1o+AC7kDMOtpdUa/eqPZcON68iIniD6la+?=
- =?us-ascii?Q?7j/iuJSbEw+LUgnjgnh9EmEYrxk2QGFmweBlW9otlrEvbSNEun23rmpHwtbC?=
- =?us-ascii?Q?9nix91j11KGSPQw6gSppzTK8v1f+4XG6fEmRQlTG5C82h0Fslxw7lcbAqDCO?=
- =?us-ascii?Q?SzNshYUNcmL0P1Sv8qVtc9zfvaWpyXzKCRab1yIzRUX3chQPHJpRr9phNKL6?=
- =?us-ascii?Q?ydIJhEcv9wg4OA6YVGSB7oSdENRkLh1+Tygq37w3J7dPE4Q8b8hKR7sXaY9V?=
- =?us-ascii?Q?E9y5R90WOiCOm8leLzNowOqNC3GHSp+N/H//hnPpcnyQXGuSnBkRoMAIse60?=
- =?us-ascii?Q?wzmZqzZqIaPgaSkkwbkDjX+e/RvunxgdHAXLUWdjzOtrqraM8CAaO9c1w0RL?=
- =?us-ascii?Q?QOiG3L3PWhXQKxeysieLORDBcNMXkZaas0aDZIRV8y/GS5SVzng1foaHr369?=
- =?us-ascii?Q?oLEKzMrVGHNxcKzKuwmTMFbdk3l2/j/A/Yg29Apa6CjHh6wBogwzWUDQXhW6?=
- =?us-ascii?Q?quAiNBHDPcQhY+5f/F0VHzYH3k4FMb/CfGWZl8eSN/O+suhBkXZIephxKYPJ?=
- =?us-ascii?Q?t464IwqpH46K7IDwfM5Nxu9/8YkOOm63N0QXV3AabwKZMQPxhWroRUS36v8P?=
- =?us-ascii?Q?l9OEKBrYvOfc3m5wC1K2VB66Ysg2Wie5jAnyMb+/QbfNsNr6DXtihYwtuVJg?=
- =?us-ascii?Q?cot42stlLsHRLjaQBzQTodKmKxhLR9INoKTVSQYRqZUs/wAg4g3MvtS+RQoq?=
- =?us-ascii?Q?uznMrwyRyzdrC2DNrNECvhefcVuNUjD/IMgJ2dkpYOEfUpTGmzw6jwwG56b2?=
- =?us-ascii?Q?bI5WYOBBmzUj7yeiiCFQ9rjGR9Dw0NmWZwo6k47h3c3jgLQMLOTXuDVleiKD?=
- =?us-ascii?Q?F9BV81D05/ipTR+5i/A9faSA1nXInl7D+Fg5tzBvCMeikJUM6UwiievcBES4?=
- =?us-ascii?Q?FjAcY8OFlNCsLYrHoEwzzwWPcvQPNyBFKO1ENaO34XB4hws6ekeBHU9VqbgR?=
- =?us-ascii?Q?Rsc/8gWO+GHVyYjVyvjqPna2ytw+3IiSh3iAJxBTg6J7TS6z16PImw3rY5L5?=
- =?us-ascii?Q?UxelPl9ZeEsEvoOLvc5unl3uWJCLhO/GmYtEcwvHaHMUeAhKxI0Ecx7cFEiH?=
- =?us-ascii?Q?xPHEQaXngYcVSXNfqqDl7a1FrWTnPA8HtCsKRzz0rW45ryM9Gf02pqT5eGSp?=
- =?us-ascii?Q?hclrq9x+6LZO8/d2+Rpu0xTEpoRykNPhmGeOADkR?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=IRRRCSXS;
+ spf=pass (domain: smile.fr, ip: 209.85.208.178, mailfrom: david.pierret@smile.fr)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2c503da4fd6so13173141fa.1
+        for <yocto@lists.yoctoproject.org>; Thu, 26 Oct 2023 06:04:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1698325451; x=1698930251; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Q8LwBsbGzNAKERJ65BmUGJRkmW7YkrqGTaZJFn9BHk=;
+        b=IRRRCSXSN7nUN9CBHW4lzN2HORrGSEbccGZisxSJJFTRC6zIt7e3yBWbs9+zEMlbyn
+         Hp5SgP5VGxV28wAZAmI9MjXGFKXsf0Cw3O3omDcXYXj1DBN17mDHwbIuSbYfVDNvTNDk
+         OOKsYF4EsVmqvkS70X8KoIKUMOAabYqzNcg3YyBDHOsUExSC6chLRTCR+lVtsEGTXvEL
+         pXNOWuqKnb31Nd4a71JuWJzpW1jxSMXOOs7OZeN4Ig0afUJ5WvRE9LVI/Jz1zQL4IsJK
+         99pH4JccLLUwBdJbkbD6CSBDNkAGXGwW5vEPmrd6V/If+RwwjAc4gE7fbHhfelAn0fXR
+         kF8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698325451; x=1698930251;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3Q8LwBsbGzNAKERJ65BmUGJRkmW7YkrqGTaZJFn9BHk=;
+        b=ZHAUmN1sV4hL9+RWV6sR6MGF5jmiI9o/ogtCWUZwodfw3yAS76E0zJj/tU/cvAp8Or
+         sFimxW3+T/Sgm7browusWFmz5+TYl+ieHB8zlea48T4xy2+8JBi9ZcC3VYsHJB5jRLqF
+         oxrqRJjcQEKHiqKThhhBHED70BK/56tAfbr1jEMlzn2Ph5ucwmgc3xCUECNzuUlJiwfi
+         I+9Dz1JBF2OAgQu29evnJ79zWGHg0c0FkFaHVXlXB2FIyH94kT3ePBvyV4dFzq3P29JK
+         F9kECBlZCkAEQmqgjsVWWR/7FmZRYPY1ZPTA04tSbGMyVPF6hD2T3s/FQWTKocDrQxv9
+         P3OQ==
+X-Gm-Message-State: AOJu0Yy1t0TLJNhcyhZelgplpmywpM9jBx/urCRIWxqWJkW942PdldHq
+	VrCkoFw2A9aae7N5XMdu+a8ynPzWuPUr68xF+Tk=
+X-Google-Smtp-Source: AGHT+IEgB9dUcaoH7S9FFWheIuxlzjMlfvL8AB8/F9OCzD2OinaCmLGliCiv17H8kdWFZH72kIhQlQ==
+X-Received: by 2002:a2e:b896:0:b0:2c5:103b:b0af with SMTP id r22-20020a2eb896000000b002c5103bb0afmr12740893ljp.24.1698325451044;
+        Thu, 26 Oct 2023 06:04:11 -0700 (PDT)
+Received: from P-TOU-PARSEC.tailace47.ts.net (static-css-ccs-204145.business.bouyguestelecom.com. [176.157.204.145])
+        by smtp.gmail.com with ESMTPSA id g21-20020a05600c311500b0040651505684sm2611746wmo.29.2023.10.26.06.04.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 06:04:10 -0700 (PDT)
+From: David Pierret <david.pierret@smile.fr>
+To: yocto@lists.yoctoproject.org
+Cc: David Pierret <david.pierret@smile.fr>
+Subject: [yocto-autobuilder-helper][PATCH v3] AUH: Add Openembedded auto-update-helper with list of layer to test
+Date: Thu, 26 Oct 2023 15:03:40 +0200
+Message-Id: <20231026130340.2070302-1-david.pierret@smile.fr>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4152.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e579cda-b68d-44ea-f803-08dbd5e5422b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2023 05:34:43.6917
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sbe5DlGFCrpVCT4srqzdmmBGtthuX1jGMqWTcaNMDUASwx1nuKWCzqLz3ZZte/MYMPPYZfZcwx5Kaqo85ZpeTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6850
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 26 Oct 2023 05:34:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61488
+ <yocto@lists.yoctoproject.org>; Thu, 26 Oct 2023 13:04:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61489
 
-Hi All,
-=20
-QA for yocto-4.3.rc2 is completed. This is the full report for this release=
-: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-=20
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-=20
-No new issue found.=20
-=20
-Thanks,
-Jing Hui
+- Modify the setup-auh to use repositories cloned by the auto-builder.
+  Manage the case where meta-openembedded is not used.
 
+- Modify the run-auh to manage the optional additional layer.
+  Only 1 layer can be provided.
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Friday, October 20, 2023 2:56 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.3.rc2)
->=20
->=20
->     A build flagged for QA (yocto-4.3.rc2) was completed on the autobuild=
-er
-> and is available at:
->=20
->=20
->         https://autobuilder.yocto.io/pub/releases/yocto-4.3.rc2
->=20
->=20
->     Build URL:
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6080
->=20
->     Build hash information:
->=20
->     bitbake: 5419a8473d6d4cd1d01537de68ad8d72cf5be0b2
-> meta-agl: 4063b4f9a712e32337c1d9678b2f2481dde2a346
-> meta-arm: 4bf3246b7b1147e29d42a835631c89279a6ce520
-> meta-aws: a30a2b66f1447dc5abdbca6c5de743e39c08b99b
-> meta-intel: 1bca60610c597571769edc4a057a04bfdbd2f994
-> meta-mingw: 65ef95a74f6ae815f63f636ed53e140a26a014ce
-> meta-openembedded: c66ec8776ec6f467937918a114bdefa28ac036a9
-> meta-virtualization: 827092c2ec925ea3a024dcda9ccfd738e351e6ba
-> oecore: 4c261f8cbdf0c7196a74daad041d04eb093015f3
-> poky: 15b576c4101231d248fda7ae0824e1780e1a8901
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#329): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/329
-> Mute This Topic: https://lists.yoctoproject.org/mt/102076568/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10762429/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+- Add auh-meta-openembedded job with 1 step per layer.
+
+Signed-off-by: David Pierret <david.pierret@smile.fr>
+---
+ config.json       | 102 ++++++++++++++++++++++++++++++++++++++++++++--
+ scripts/run-auh   |  39 ++++++++++++------
+ scripts/setup-auh |  34 ++++++++++------
+ 3 files changed, 146 insertions(+), 29 deletions(-)
+
+diff --git a/config.json b/config.json
+index 3acb710..a168e48 100644
+--- a/config.json
++++ b/config.json
+@@ -1416,9 +1416,99 @@
+             "TEMPLATE" : "buildperf"
+         },
+         "auh" : {
+-            "EXTRAPLAINCMDS" : [
+-                "${SCRIPTSDIR}/setup-auh ${HELPERBUILDDIR}; ${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/"
+-            ]
++            "NEEDREPOS" : ["poky", "auto-upgrade-helper"],
++            "step1" : {
++                "shortname" : "setup AUH",
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/setup-auh ${HELPERBUILDDIR}"
++                ]
++            },
++            "step2" : {
++                "shortname" : "run AUH poky",
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/"
++                ]
++            }
++        },
++        "auh-meta-openembedded" : {
++            "NEEDREPOS" : ["poky", "meta-openembedded", "auto-upgrade-helper"],
++            "step1" : {
++                "shortname" : "setup AUH",
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/setup-auh ${HELPERBUILDDIR}"
++                ]
++            },
++            "step2" : {
++                "shortname" : "run AUH for layer meta-oe",
++
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-oe"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-oe"
++                ]
++            },
++            "step3" : {
++                "shortname" : "run AUH for layer meta-python",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-python"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-python"
++                ]
++            },
++            "step4" : {
++                "shortname" : "run AUH for layer meta-perl",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-perl"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-perl"
++                ]
++            },
++            "step5" : {
++                "shortname" : "run AUH for layer meta-networking",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-networking"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-networking"
++                ]
++            },
++            "step6" : {
++                "shortname" : "run AUH for layer meta-multimedia",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-multimedia"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-multimedia"
++                ]
++            },
++            "step7" : {
++                "shortname" : "run AUH for layer meta-gnome",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-gnome"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-gnome"
++                ]
++            },
++            "step8" : {
++                "shortname" : "run AUH for layer meta-xfce",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-xfce"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-xfce"
++                ]
++            },
++            "step9" : {
++                "shortname" : "run AUH for layer meta-filesystems",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-filesystems"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-filesystems"
++                ]
++            },
++            "step10" : {
++                "shortname" : "run AUH for layer meta-initramfs",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-initramfs"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-initramfs"
++                ]
++            },
++            "step11" : {
++                "shortname" : "run AUH for layer meta-webserver",
++                "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-webserver"],
++                "EXTRAPLAINCMDS" : [
++                    "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/meta-openembedded meta-webserver"
++                ]
++            }
+         },
+         "a-quick" : {
+             "TEMPLATE" : "trigger-build"
+@@ -1531,6 +1621,12 @@
+             "branch" : "master",
+             "revision" : "HEAD",
+             "no-layer-add" : true
++        },
++        "auto-upgrade-helper" : {
++            "url" : "git://git.yoctoproject.org/auto-upgrade-helper",
++            "branch" : "master",
++            "revision" : "HEAD",
++            "no-layer-add" : true
+         }
+     },
+     "buildtools" : {
+diff --git a/scripts/run-auh b/scripts/run-auh
+index 0419dd1..f59c561 100755
+--- a/scripts/run-auh
++++ b/scripts/run-auh
+@@ -7,28 +7,41 @@
+ # Called with $1 - the directory where the setup was created
+ 
+ if [ -z $1 ]; then
+-  echo "Use: $0 auh_setup_dir [publish_dir]"
++  echo "Use: $0 [auh_setup_dir] [publish_dir] [meta_dir] [meta_list]"
+   exit 1
+ fi
+ 
+-full_dir=$(readlink -e $1)
++build_dir=$(readlink -e $1)
+ 
+-auh_dir=$full_dir/auto-upgrade-helper
+-poky_dir=$full_dir/poky
+-build_dir=$full_dir/build
+-sstate_dir=$full_dir/build/sstate-cache
++auh_dir=$build_dir/../auto-upgrade-helper
++poky_dir=$build_dir/../poky
++sstate_dir=$build_dir/sstate-cache
+ 
+ pushd $poky_dir
++  # Base the upgrades on poky master
++  git fetch origin
++  git checkout -B tmp-auh-upgrades origin/master
++popd
++
++LAYERS_ARGS=''
++# if layer arguments are provided
++if [ ! -z $3 ]; then
++  meta_dir=$3
++  meta_layer=$4
++  machine_list="qemux86 qemux86-64 qemuarm qemumips qemuppc qemux86_musl"
++
++  pushd $meta_dir || exit 1
++    # Base the upgrades on master branch
++    git fetch origin
++    git checkout -B tmp-auh-upgrades origin/main
++  popd
+ 
+-# Base the upgrades on poky master
+-git fetch origin
+-git checkout -B tmp-auh-upgrades origin/master
++  LAYERS_ARGS="--layer-dir ${meta_dir} --layer-names ${meta_layer} --layer-machines ${machine_list}"
++fi
+ 
+-source $poky_dir/oe-init-build-env $build_dir
+-$auh_dir/upgrade-helper.py -e all
++# execute upgrade-helper script on all recipes
++$auh_dir/upgrade-helper.py -e ${LAYERS_ARGS} -- all
+ 
+ if [ -n $2 ]; then
+   cp -rf $build_dir/upgrade-helper/* $2
+ fi
+-
+-popd
+diff --git a/scripts/setup-auh b/scripts/setup-auh
+index d6b83fe..f8bd8fd 100755
+--- a/scripts/setup-auh
++++ b/scripts/setup-auh
+@@ -4,26 +4,34 @@
+ #
+ # Initialize Auto Upgrade Helper in a directory.
+ #
+-# Called with $1 - the directory to place the setup
++# Called with $1 - the build directory
+ CONFIG_DIR=`dirname $0`/auh-config
+ 
+ if [ -z $1 ]; then
+-  echo "Use: $0 target_dir"
++  echo "Use: $0 build_dir"
+   exit 1
+ fi
+ 
+-mkdir -p $1
+-pushd $1
+-
+-git clone git://git.yoctoproject.org/poky
+-pushd poky
++# Setup git repository with name and email to be able to commit
++# the upgrade patch.
++# Assume repositories are cloned on ${build_dir}/../
++pushd $1/../poky
+ git config user.email auh@yoctoproject.org
+ git config user.name "Auto Upgrade Helper"
+ popd
+-git clone git://git.yoctoproject.org/auto-upgrade-helper
+-source poky/oe-init-build-env build
+-mkdir -p upgrade-helper
+-popd
++# handle the case where meta-openembedded repository is used
++# todo: detect any layer ?
++if [ -d $1/../meta-openembedded ]; then
++  pushd $1/../meta-openembedded
++  git config user.email auh@yoctoproject.org
++  git config user.name "Auto Upgrade Helper"
++  popd
++fi
++
++# auto-upgrade-helper doesn't need to be configured.
+ 
+-cp $CONFIG_DIR/upgrade-helper.conf $1/build/upgrade-helper
+-cat $CONFIG_DIR/local.conf.append >> $1/build/conf/local.conf
++# create and copy the upgrade helper configuration file
++mkdir -p $1/upgrade-helper
++cp $CONFIG_DIR/upgrade-helper.conf $1/upgrade-helper
++# amend the local.conf
++cat $CONFIG_DIR/local.conf.append >> $1/conf/local.conf
+-- 
+2.39.2
 
 
