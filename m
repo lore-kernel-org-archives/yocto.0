@@ -2,85 +2,79 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23391C25B6B
-	for <webhook@archiver.kernel.org>; Thu, 26 Oct 2023 19:16:49 +0000 (UTC)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
- by mx.groups.io with SMTP id smtpd.web11.80003.1698347799629689533
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2EF4FC25B48
+	for <webhook@archiver.kernel.org>; Thu, 26 Oct 2023 19:20:19 +0000 (UTC)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+ by mx.groups.io with SMTP id smtpd.web11.80091.1698348015374939911
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Oct 2023 12:16:39 -0700
+ Thu, 26 Oct 2023 12:20:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=WKDhITEh;
- spf=pass (domain: gmail.com, ip: 209.85.208.52, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-53f6ccea1eeso2146596a12.3
-        for <yocto@lists.yoctoproject.org>; Thu, 26 Oct 2023 12:16:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=N1v+3Rl8;
+ spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-507bd64814fso1791389e87.1
+        for <yocto@lists.yoctoproject.org>; Thu, 26 Oct 2023 12:20:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698347798; x=1698952598; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6LZJ1CAOlkMzSVZh+pBevIvrJ5LDncGx7TmxabbDN+U=;
-        b=WKDhITEhPKZzjnVoqgEQ/pAqDeWufv6bs8p76sVW0rFXeV4H4Ay0DTQjr2gtxUfLdC
-         dGXNixyHUZq/FZp/CNaxtIdrFSMcF4T6jIytRnHOf1wgsz8BuHqh26gjJeP/ENp6/15b
-         5ZOZEj9D5pEpJhtqQpVWu91g5pBa5FUcMtLHBhpiqi8oqJar8He9pDqgOq038FUZ/OdF
-         XqYV2diKa/2a7Eoqw6H6/owb567BOTVSngVJUBTEYtp15PU4K5vq6j1fUfHBuAeTLm+V
-         UTER0P9r9jaPLp1/mEYbIe9/rdnLmSaNuMRyz8AW3wipT26cIGK2UbewR7gk8qe7pTC2
-         Pirg==
+        d=gmail.com; s=20230601; t=1698348013; x=1698952813; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yXe8WCXYaYTFPjqCx+4/EZmBRc4gocrVEpXyxd0WI5s=;
+        b=N1v+3Rl8t49dfO4gQ/4zsU4UF8/W9o5yXDIvvQUocSLUQxF7OWCqoY9aHVdXlxo07D
+         NIcu4jFcM00tgAtSh/JyP7saPJFNvHPZ9v6hmXZ+4jjEdfwC/ruao2YcxVJMwuuETv7h
+         mfgNJZPH2SLR30iEhRUMlNeJVHuO1juDKyBOxanyLEBd9uKQ2VvMBnZpJjWvwO3oDodw
+         b3/v/FyWQkKy7Uv9j6GfUtO+jnRbgbwojUTECfK9ydFaTYPC/Hrkxh79mIrUjUNkXR3B
+         ssMe6n+1S1k8cnTgluYQK6CYtZHQOo4fMmyF5lG8xluSgQx9LBSG6sFoLDcgSZZc0kp8
+         l2Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698347798; x=1698952598;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1698348013; x=1698952813;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6LZJ1CAOlkMzSVZh+pBevIvrJ5LDncGx7TmxabbDN+U=;
-        b=iC0WlpnIurH9aXIr6vJzWIS0PZSbf8Qb3rQnOkrjB4st6wEmPmLv8sCOVDNdKZngxw
-         I8itOoBYUbzFnmW3C1oqOHF2g+hyogSwLEF0chYoI2LF96qK1fWl3W4bAQJMbu88vSwZ
-         7TTCOf9JOKgkaRrk3BxChTlG2IuQ2dut/UEmjSR16XhJYmY1LKqMZhw6O2gRmTaD1wzp
-         tGYieJdbG+XAFcWngknkAEkXLmWr/BSoKKLljXzdx53r/Dhn6HSMtGSVfSbcxlTYmHmz
-         /LeUvRB0pSZBLtuUonk5/dqPDmGP4XHLl91K9i9hxCXCsp3p7JZtLuIv1wrLnDnGf43p
-         /GDw==
-X-Gm-Message-State: AOJu0YyAh6O0y2Xpj7ETlChx7xC2LwhsKledilFZNlpGvttXwcxWHOpk
-	wijfTVxquVGRaP9+Hi99XpXTY/KKoRQ=
-X-Google-Smtp-Source: AGHT+IH/Jp4EKfgvSZLp3pMXVRD4tSPqvE5/93noKgoty+YgNU0ehjLa2r7pUqJoyYwDaZqKj8VxYA==
-X-Received: by 2002:a17:907:6e89:b0:9be:36c2:162 with SMTP id sh9-20020a1709076e8900b009be36c20162mr593106ejc.31.1698347797811;
-        Thu, 26 Oct 2023 12:16:37 -0700 (PDT)
-Received: from fedora.fritz.box ([2a02:2454:29b:d900:f58f:7d32:a721:fcdd])
-        by smtp.gmail.com with ESMTPSA id mf19-20020a170906cb9300b0099ddc81903asm41744ejb.221.2023.10.26.12.16.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 12:16:37 -0700 (PDT)
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [AUH PATCH] upgrade-helper.py: trim default build targets to just 64 bit x86 with glibc and 32 bit arm with musl
-Date: Thu, 26 Oct 2023 21:16:11 +0200
-Message-ID: <20231026191632.52187-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.41.0
+        bh=yXe8WCXYaYTFPjqCx+4/EZmBRc4gocrVEpXyxd0WI5s=;
+        b=pl54Bk7t+710XoTdvFc2YBg5S4bfGmFVhOApscEXyumqj/J5Y6v+HVciZvxoOHHbO5
+         ojcbeO/meRZUTnv7QDHM0UAhJMJXzksJswo0iVwaCu70kJfPvsPqEGmhcod1H/l63u3p
+         +4RbUrtdR/NXIwmaGKALkBmIp+7XTIyhTA3csqBTZlICqQJrfaQf0NLg2bca3S0SvNEk
+         lpKJOF0/KyCOZrSISpKPfmvZr7unlDAi2LqQC31TR+92PB3PU8Gisn1eqiKVw01pwWnf
+         24j5l9kjtePezmJT6o0HsQWbIjbP4dBSBgnw0HmxF/Pynq9E/hRw5Mo0ldThjE97zoJw
+         29bw==
+X-Gm-Message-State: AOJu0Yybo8Cff6JDoGRm5pCY0MAIybNRgZtTrh/eW6byzagaAyU6BVBD
+	N+Ls8CYX4uKPrSjeFOnN00prt++A8Qtko12gsy4=
+X-Google-Smtp-Source: AGHT+IEqNu/lwqZ4ajq5kWsUK2L4mj0JN4GHmtCPQS+zffh6voTuB+iUbvQUm8Q3NnmMSeaNNFTdDV79V8woLfIbako=
+X-Received: by 2002:ac2:4a81:0:b0:503:2d9d:8226 with SMTP id
+ l1-20020ac24a81000000b005032d9d8226mr209077lfp.17.1698348013237; Thu, 26 Oct
+ 2023 12:20:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231026130340.2070302-1-david.pierret@smile.fr>
+ <CANNYZj8bZv_VHPsnaGPa_i2e5NT9683a-3szQTJXKWu9cSZeiA@mail.gmail.com> <a1220b225b84ab44e8d1f6e94b88fb4f2104a36c.camel@linuxfoundation.org>
+In-Reply-To: <a1220b225b84ab44e8d1f6e94b88fb4f2104a36c.camel@linuxfoundation.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 26 Oct 2023 21:20:01 +0200
+Message-ID: <CANNYZj-RazsYgjjoM6Vqjqvj0pGWfdUwPBkLsygLEXi8wnHdyw@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH v3] AUH: Add
+ Openembedded auto-update-helper with list of layer to test
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: David Pierret <david.pierret@smile.fr>, yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 26 Oct 2023 19:16:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61495
+ <yocto@lists.yoctoproject.org>; Thu, 26 Oct 2023 19:20:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61496
 
-Everything else isn't really necessary and greatly lengthens AUH jobs.
+On Thu, 26 Oct 2023 at 18:17, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> In general you're right, but for AUH and meta-oe, I'm ok with this
+> being done serially given what AUH does. We don't really want 11
+> workers working on this at the same time?
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- upgrade-helper.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Yes, I think that's fine for a start, unless it's proven to be
+unbearably slow (e.g. days). To help with that I just trimmed the
+default auh targets so that only qemux86-64/glibc and qemuarm/musl
+remain - that's 2 out of previous 6:
 
-diff --git a/upgrade-helper.py b/upgrade-helper.py
-index 4f0b6b7..1176a73 100755
---- a/upgrade-helper.py
-+++ b/upgrade-helper.py
-@@ -188,7 +188,7 @@ class Updater(object):
-             self.git = Git(os.path.dirname(os.getenv('PATH', False).split(':')[0]))
-             self.poky_git = None
-             self.opts['machines'] = settings.get('machines',
--                'qemux86 qemux86-64 qemuarm qemumips qemuppc qemux86_musl').split()
+-                'qemux86 qemux86-64 qemuarm qemumips qemuppc
+qemux86_musl').split()
 +                'qemux86-64 qemuarm_musl').split()
- 
-         self.opts['send_email'] = self.args.send_emails
-         self.opts['author'] = "Upgrade Helper <%s>" % \
--- 
-2.41.0
 
+
+Alex
 
