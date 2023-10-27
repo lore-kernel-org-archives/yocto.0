@@ -1,102 +1,107 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2EF2AC25B6E
-	for <webhook@archiver.kernel.org>; Fri, 27 Oct 2023 08:56:35 +0000 (UTC)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
- by mx.groups.io with SMTP id smtpd.web11.2825.1698396985392499856
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33A78C25B6E
+	for <webhook@archiver.kernel.org>; Fri, 27 Oct 2023 09:03:45 +0000 (UTC)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+ by mx.groups.io with SMTP id smtpd.web10.2932.1698397423371712695
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Oct 2023 01:56:25 -0700
+ Fri, 27 Oct 2023 02:03:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=EdIljV7A;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.208.177, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2c503dbe50dso26929821fa.1
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Oct 2023 01:56:25 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Xfc+U8Jm;
+ spf=pass (domain: gmail.com, ip: 209.85.208.182, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2c50ec238aeso25902311fa.0
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Oct 2023 02:03:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1698396983; x=1699001783; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AFL+CqqMdiY+C3e5VHGx1q8VUQeNkXbbPd3Ujzjkhvk=;
-        b=EdIljV7AZPnRQtr1d8lkBJxwzNTUmX1KmJPjB9C2OOwXsFwfTi7CznGgvt7MVcehtB
-         ubmJ0o4x96HoewCM5vZ7vdVA/douoWuR8Nn3gD9YlTEwlKHex6pRm0bWGFYAS4J05nXU
-         gVanzxIKCnCmyp6U5bmftmkChFr2a/sfuZLrc=
+        d=gmail.com; s=20230601; t=1698397421; x=1699002221; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=o6guqcqjUewZq4axxCHXeH/EDorr/fJSH+6rpsYULCY=;
+        b=Xfc+U8JmXhOF08P1J0V8K2tYR3VVdasImBm5CBdoS5zFkJQnl+5QVZNAgTVHfZlx0K
+         UJ4tm5zf1yk+1MB9CjAwZ96w+y0MiQQbTp9WL7A0Az2bXgzaNdiBo/0uEURErYs2kbkG
+         PCZ5kt/f//zTjCF8JeMEudx3zKGW2II4FvSMdgMYRB+fhftdYJE50fTw8FNTjTrYxDbx
+         COlHshYB04aoXLrB7diGnTwAiTa/F8tVvl2fJe+mWYXCVeltD0m9zsTLNLr7dlv9jdxj
+         Qes/wwNRErX/rESBntCRwiItRfs3nQovhBAE/mkZTu35kqCVrbiOyTQU4DttlL+6pWK3
+         RBZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698396983; x=1699001783;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=AFL+CqqMdiY+C3e5VHGx1q8VUQeNkXbbPd3Ujzjkhvk=;
-        b=qFa7Z1PH1vqLgw3IBjKqjrsASIcsy6xU/38PgPSr0b9ZmBBkmGAzw4YCWgMQns2fv9
-         NiUPy7eGxD+n45r1KsRYRAR78v/QCAiiDy/8+KdGMSRyfux6pEotjOgoEWKK5apQV0tb
-         iDctRNrkSdT8QkTQio+U/1vpm3+U1mwdFT7CF/l1EeMf15BzsoxQDEBbiiImVy48isc5
-         0zAC6W+M+/3F0cohNHbJKbzhBlrHACYVGRMXEjW9SyA8M5w7NVfEjFKkRxNbI4DwM4mN
-         7bMy2dWzZbxpfotpR1NJi6ixylgvEaj0IEQJY12swDQ284XDTxWCfsujyTQj7+eOaBba
-         hz2g==
-X-Gm-Message-State: AOJu0Yy/rBlLlOWNGHytDl+KTYhUyvod9wKw9RV+eh/84ZDhUjJnkOKe
-	GcfY0yPJE13kGgqFrmLKEZHBzA==
-X-Google-Smtp-Source: AGHT+IHB3v5fEgXUwZm3LFqKVkFosEuD8zuAvCdwgRVw+JqNpeibWCZYLvUS4uP2ujZpxdEYf9IGfA==
-X-Received: by 2002:a2e:3017:0:b0:2c5:1c12:cb85 with SMTP id w23-20020a2e3017000000b002c51c12cb85mr1440695ljw.16.1698396983268;
-        Fri, 27 Oct 2023 01:56:23 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:35e4:65b9:f46b:317d? ([2001:8b0:aba:5f3c:35e4:65b9:f46b:317d])
-        by smtp.gmail.com with ESMTPSA id m1-20020a05600c4f4100b004063d8b43e7sm4635840wmq.48.2023.10.27.01.56.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Oct 2023 01:56:22 -0700 (PDT)
-Message-ID: <638c906e1cfab93122fab544eef8ad43ee61222c.camel@linuxfoundation.org>
+        d=1e100.net; s=20230601; t=1698397421; x=1699002221;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o6guqcqjUewZq4axxCHXeH/EDorr/fJSH+6rpsYULCY=;
+        b=toGN3WYTEHOh6CkZ5fUwSkQyA2Dj7usFFuNP6fTNF7AjIZCTJLuU09SCtz1SmevEEg
+         Op20bJqtiQchAgffHEl0fp7oNqosoLF1geg98KYa2y/IxjOwDgkxDrBx2a8AsqcG5u4Y
+         4BR9v7u7aDu620g8ycOWd2YXS0wyJ8bY+Zz6J1vTo5iszbY8oZJHGFfv36dKHtJzND1N
+         oeBFmLzjBvt43O63Rwh35pn1AL+QNtZQ0nuGXQP/HhoZ+l3lCVwvja7Y/jYSTrdkbweF
+         3eMrPt5rGz1w6K5yoiIG+l6r2FuspPxzQpbVbRymdHV/8RPDl1vWM/E/rl/NtQ01cVo1
+         +91A==
+X-Gm-Message-State: AOJu0Yxg/wNFxVagSw5Xlb7ew5DhMO8sZxZchf1/ZsexmXfcrSbWKTl7
+	4KcisX1F1bBWD8soKBCnLYHXAw9knSJhpS8hHy/3Zuzt
+X-Google-Smtp-Source: AGHT+IG8OBUk+f0sVhy2PJjXEOrO8M7aghWWwpEkH1gm5SKTovRCY7k0KJxiNK4n4RP/5gMghjzuWQ9XY9//cKbJGPo=
+X-Received: by 2002:a2e:9e46:0:b0:2b6:da88:a2d0 with SMTP id
+ g6-20020a2e9e46000000b002b6da88a2d0mr1499191ljk.47.1698397421177; Fri, 27 Oct
+ 2023 02:03:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <20231027072147.111314-1-alex.kanavin@gmail.com> <638c906e1cfab93122fab544eef8ad43ee61222c.camel@linuxfoundation.org>
+In-Reply-To: <638c906e1cfab93122fab544eef8ad43ee61222c.camel@linuxfoundation.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 27 Oct 2023 11:03:29 +0200
+Message-ID: <CANNYZj88hevACy1oDLcgSdzef-T1umrxdi+Ust4EwMgLxvYDfw@mail.gmail.com>
 Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: add a
  standalone builder for running yocto mirror tests
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-Date: Fri, 27 Oct 2023 09:56:22 +0100
-In-Reply-To: <20231027072147.111314-1-alex.kanavin@gmail.com>
-References: <20231027072147.111314-1-alex.kanavin@gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
-MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 27 Oct 2023 08:56:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61500
+ <yocto@lists.yoctoproject.org>; Fri, 27 Oct 2023 09:03:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61501
 
-On Fri, 2023-10-27 at 09:21 +0200, Alexander Kanavin wrote:
-> Those tests are currently run as the last step in a-full/a-quick,
-> but it's useful to also trigger them separately, after perhaps
-> executing other builders that populate the mirrors (such as
-> qemux86-64 and such).
->=20
-> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
-> ---
->  config.json | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/config.json b/config.json
-> index 9987514..918cf08 100644
-> --- a/config.json
-> +++ b/config.json
-> @@ -1433,6 +1433,14 @@
->                  "${SCRIPTSDIR}/setup-auh ${HELPERBUILDDIR}; ${SCRIPTSDIR=
-}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/"
->              ]
->          },
-> +        "yocto-mirror" : {
-> +            "MACHINE" : "qemux86-64",
-> +            "step1" : {
-> +                "shortname" : "Yocto Mirror Selftest",
-> +                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; DISPLAY=3D:1 oe-=
-selftest -a -t yocto-mirrors -j 15"],
-> +                "ADDLAYER" : ["${BUILDDIR}/../meta-selftest"]
-> +            }
-> +        },
->          "meta-oe-mirror" : {
->              "SDKMACHINE" : "x86_64",
->              "MACHINE" : "qemux86-64",
+Thanks, I'm also just now testing the change that also prints what
+sstate paths were actually requested when the test fails due to
+missing objects.
 
-This and the controller patch should be live.
+Alex
 
-Cheers,
-
-Richard
+On Fri, 27 Oct 2023 at 10:56, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+>
+> On Fri, 2023-10-27 at 09:21 +0200, Alexander Kanavin wrote:
+> > Those tests are currently run as the last step in a-full/a-quick,
+> > but it's useful to also trigger them separately, after perhaps
+> > executing other builders that populate the mirrors (such as
+> > qemux86-64 and such).
+> >
+> > Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+> > ---
+> >  config.json | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/config.json b/config.json
+> > index 9987514..918cf08 100644
+> > --- a/config.json
+> > +++ b/config.json
+> > @@ -1433,6 +1433,14 @@
+> >                  "${SCRIPTSDIR}/setup-auh ${HELPERBUILDDIR}; ${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/"
+> >              ]
+> >          },
+> > +        "yocto-mirror" : {
+> > +            "MACHINE" : "qemux86-64",
+> > +            "step1" : {
+> > +                "shortname" : "Yocto Mirror Selftest",
+> > +                "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; DISPLAY=:1 oe-selftest -a -t yocto-mirrors -j 15"],
+> > +                "ADDLAYER" : ["${BUILDDIR}/../meta-selftest"]
+> > +            }
+> > +        },
+> >          "meta-oe-mirror" : {
+> >              "SDKMACHINE" : "x86_64",
+> >              "MACHINE" : "qemux86-64",
+>
+> This and the controller patch should be live.
+>
+> Cheers,
+>
+> Richard
 
