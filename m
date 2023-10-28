@@ -1,118 +1,212 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A978C0032E
-	for <webhook@archiver.kernel.org>; Sat, 28 Oct 2023 15:39:18 +0000 (UTC)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
- by mx.groups.io with SMTP id smtpd.web11.20148.1698507548143768715
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10DD0C4332F
+	for <webhook@archiver.kernel.org>; Sat, 28 Oct 2023 18:11:09 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+ by mx.groups.io with SMTP id smtpd.web11.23168.1698516660620800951
  for <yocto@lists.yoctoproject.org>;
- Sat, 28 Oct 2023 08:39:08 -0700
+ Sat, 28 Oct 2023 11:11:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=OmNfdZNM;
- spf=softfail (domain: sakoman.com, ip: 209.85.218.47, mailfrom: steve@sakoman.com)
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-9b95622c620so492856466b.0
-        for <yocto@lists.yoctoproject.org>; Sat, 28 Oct 2023 08:39:07 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=QkXqP6l7;
+ spf=pass (domain: gmail.com, ip: 209.85.128.181, mailfrom: ticotimo@gmail.com)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5a7dd65052aso27893397b3.0
+        for <yocto@lists.yoctoproject.org>; Sat, 28 Oct 2023 11:11:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1698507546; x=1699112346; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D7UGjntE6mqI3tt0/ESEaz3B/BzRhKT3A4raPuJY4sM=;
-        b=OmNfdZNMbCeNdpWS58zJCILkQExZGLwkY/ipKghWw8mtka+hTLdEP+iO3yHnSQOqPR
-         IRtE/EvJakyP4rVl9KIZEKesQ0wZUdwqP6q+1pZZnYwQtPOGujWyBZ4tvvkzhzSzCwQr
-         tX3ikJuEY67+PUrTeW2g2s86sFoq4Izy6DntGoSuSBsmaamhZiD2Yjd1dAy5VeLuC43x
-         MJ9Jv7Fva2dzBG4kHhE1mGxLNLCGVYTjIyVirl3QUbR66vtCINF6eM8yuZ0sMacKUZ52
-         enEsOPP2Jn61Imzj8Qkk1F9xf/gWyH7p50xTxi+Ed+vgKbIuzfMKM0ZFBXbesvjDrAHo
-         FtoA==
+        d=gmail.com; s=20230601; t=1698516660; x=1699121460; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=549+L0U1m1ZE37LBUjyrknJfJ4aH1Ulb1NommQDCUxg=;
+        b=QkXqP6l7G7uKYNKW95aW2o+mWPHzArjcnKkcGIM4lGjKT/ZwwnF4Rvwm07W8WaBe7Q
+         NwYiR1Vg6jpB+fUPSe29Z8bytrCNkpSWkMM1h8jKetqHuCF00B7hSrzNBbyFiczUrsXi
+         /ecDTWqNj90cZOloQ3R1xsgDzp0Yn9agIaDDxQJ1NBHO8DxEGjd+H19syVUFnjxYr4WI
+         qHwZ+6M8slb8gdefqGmZohnLr1aOy1LyigX3loUk9cuTeqBvfFFphqvYTYYaU5ZDlOm3
+         S9KfiiRwhKK6l9cMfzZSc1uqCV+HVyv6G4x7JqnrAQ0YocteBA1Iee+Ou9cmd2wBfVYl
+         WLaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698507546; x=1699112346;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D7UGjntE6mqI3tt0/ESEaz3B/BzRhKT3A4raPuJY4sM=;
-        b=CdRXxYc4teB6eYRqW9DQD8eCs3lm7UdKjYK020km9po4GF/+uFdmJXVtlRe9hEpWdV
-         MRmtMzJzpNcTY3d6KLgL0FPh+nB/RH2NhJTbbACo7pBqVicycVE/LxFYt4uzBjelpVq5
-         9hbcTbkO4QGfLcKwZLuM73Z+wU1Cxlb1F4dLfU0QtGpM+t+76wAEYH4Bmpdt301Vh3Fl
-         8RNUcxabLOEtlnxB0CAorZdQdvw0nlMDchAv5TfQ5GLivvCQzJG0ghAtnBLLv/+01lgA
-         yEwJH7m/bvcoCNTJuD8iIpKtjadTBYqbWXQQBg1ylbJKl0znxSbfZxnMJkyliGPuZNoI
-         xbmg==
-X-Gm-Message-State: AOJu0YwiH0SLrRFvNayktxKq+BsL9RDvLeezHmdj+ImZ+EFwoh8/Nm4e
-	1cJ+CmoL2bq1afWsrOpzbse3GpAOr38X1tLJJ0RQwUZ/EVkaVPND
-X-Google-Smtp-Source: AGHT+IFzZXqo7O97AMa3PihvotJrVzIZmf7xto8DXWR+SsgBqS+aIguBkJbQaevRjOvUrDKj20uvUS/wRwQ0mFn/MlY=
-X-Received: by 2002:a17:907:3206:b0:9ba:a38:f2b2 with SMTP id
- xg6-20020a170907320600b009ba0a38f2b2mr4350595ejb.41.1698507546008; Sat, 28
- Oct 2023 08:39:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698516660; x=1699121460;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=549+L0U1m1ZE37LBUjyrknJfJ4aH1Ulb1NommQDCUxg=;
+        b=oGS9kBts5SW2ncpRW0/efPiyPnT5KIqJvvoCZCxWaKvOGDnHQ2hveMZUAjwisrnQOT
+         tCHUgo279IhrVXQGt2u0hXwYwLC4S0nwOeAvfbNRud20bgOqywOTLngwazxpj4qY8/hO
+         IUDMhBNgCcSERk23YgsKvw84Ynu5FSLJwjTvytIb1704ItglgymFtv3+LIfIyIstHsXZ
+         cp6CBLGMqXDtd22XTWn8xUJSAuAL9Y0rwF49FdNBiXWVMEZcvGRTzAALWYBVaIvf3vKQ
+         mCgllsWqxyR5FRthFq+fNrmnhvp370u5kFHIEXZHukDNCorgERvTVlMhRHRv9DT4q6RJ
+         bi1Q==
+X-Gm-Message-State: AOJu0YxrcFaR/qbdHz6Pfw2Ye4OJ5vSEzU9jydFX6brZUgIjlTT29ih+
+	7MvqeHTH4KmxN87xNJhbug0oglQzLo1Cgm++St4=
+X-Google-Smtp-Source: AGHT+IG+nQJ/qShgg20zcrL/GHpBRP6TJUbBA3efati3N6iny6xNI/qHKXWr466iNf/P+WPa/lnxI/Pv+JHITewR5Hg=
+X-Received: by 2002:a25:3c7:0:b0:da0:228e:9cc5 with SMTP id
+ 190-20020a2503c7000000b00da0228e9cc5mr5035937ybd.42.1698516659717; Sat, 28
+ Oct 2023 11:10:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <0101018b732bfffb-12002d52-9058-4b77-ab53-1fa728765bda-000000@us-west-2.amazonses.com>
- <CAOSpxdZzXazeoOv=hQBSC+cyyVsiqOtfqeVqX2Hr4XEUKN=OSg@mail.gmail.com> <ac4e63b177d5612c03c10581b55fc4961dc93770.camel@linuxfoundation.org>
-In-Reply-To: <ac4e63b177d5612c03c10581b55fc4961dc93770.camel@linuxfoundation.org>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Sat, 28 Oct 2023 05:38:54 -1000
-Message-ID: <CAOSpxdZhwXBepStymL_5DvfGwxtVaEvGku1WM-9E0Lrzm4KVQg@mail.gmail.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-3.1.29.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+References: <20231021091829.968295-1-richard.purdie@linuxfoundation.org>
+In-Reply-To: <20231021091829.968295-1-richard.purdie@linuxfoundation.org>
+From: Tim Orling <ticotimo@gmail.com>
+Date: Sat, 28 Oct 2023 11:10:48 -0700
+Message-ID: <CANx9H-BX880Zc1ozQps=Q3W9+oWYzTS8jKusUzZo0RsEes1Sig@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder-helper] [PATCH] config.json: Fix
+ check-layer for meta-poky/meta-yocto-bsp
+To: Steve Sakoman <steve@sakoman.com>
+Cc: yocto@lists.yoctoproject.org, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>
+Content-Type: multipart/alternative; boundary="00000000000025cdab0608caba9d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 28 Oct 2023 15:39:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61510
+ <yocto@lists.yoctoproject.org>; Sat, 28 Oct 2023 18:11:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61511
 
-On Fri, Oct 27, 2023 at 10:30=E2=80=AFPM Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Fri, 2023-10-27 at 12:38 -1000, Steve Sakoman wrote:
-> > There is currently a known reproducibility issue with the vim-common
-> > package.  In my opinion nothing that should hold up the release.
-> >
-> > Details:
-> >
-> > It seems that the last sstate build of vim was done on an Ubuntu 22.04
-> > worker and recent changes there seem to result in an occurance of
-> > "charset=3Dcp1251" whereas builds done with the buildtools tarball yiel=
+--00000000000025cdab0608caba9d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Steve,
+
+This needs to be applied to dunfell, kirkstone, mickledore and
+nanbield (none of those are performing the correct check now).
+
+On Sat, Oct 21, 2023 at 2:18=E2=80=AFAM Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
+
+> Currently, the tests for meta-poky and meta-yocto-bsp were malfunctioning=
+.
+> We need to a) set a distro other than poky and b) avoid the isolation
+> wrapper
+> since it will use the default environment and reset to the poky distro an=
 d
-> > "charset=3DCP1251"
-> >
-> > See: https://autobuilder.yocto.io/pub/repro-fail/oe-reproducible-202310=
-24-kys9f0xn/packages/diff-html/
-> >
-> > The reproducibility build for 3.1.29 was done on alma8, so this
-> > difference resulted in a build error.
-> >
-> > I reran the reproducibility test on an Ubuntu 22.04 worker and as
-> > expected it passed:
-> >
-> > https://autobuilder.yoctoproject.org/typhoon/#/builders/117/builds/3827
-> >
-> > I will be sending an autobuilder helper patch to use buildtools
-> > tarball with Ubuntu 22.04 and this should prevent future occurrences
-> > of this issue (once the version in sstate is no longer valid)
+> default bblayers.conf which will disable the layer test.
 >
-> So we understand why master doesn't see this? I'm still a bit worried
-> about why this difference is occurring.
-
-No, I don't know why we aren't seeing this on the other branches.  The
-vim recipe is the same in every branch.
-
-I've only isolated that it is related to Ubuntu 22.04 for dunfell.
-
-Steve
-
+> With those two fixes, the layer checks work correctly.
+>
+> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+> ---
+>  config.json | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/config.json b/config.json
+> index 27e56c5..55fde54 100644
+> --- a/config.json
+> +++ b/config.json
+> @@ -1150,11 +1150,12 @@
+>          },
+>          "check-layer" : {
+>              "NEEDREPOS" : ["poky", "meta-mingw"],
+> +            "DISTRO" : "nodistro",
+>              "step1" : {
+> -                "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-poky"]
+> +                "EXTRACMDS" : ["bitbake-layers remove-layer ../meta-poky=
+;
+> yocto-check-layer ../meta-poky"]
+>              },
+>              "step2" : {
+> -                "EXTRACMDS" : ["yocto-check-layer-wrapper
+> ../meta-yocto-bsp"]
+> +                "EXTRACMDS" : ["bitbake-layers remove-layer
+> ../meta-yocto-bsp; yocto-check-layer ../meta-yocto-bsp"]
+>              },
+>              "step3" : {
+>                  "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-mingw"=
+]
+> --
+> 2.39.2
 >
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#334): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/334
-> Mute This Topic: https://lists.yoctoproject.org/mt/102231153/3620601
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/12627247/3620601/791647976/xyzzy [steve@sakoman.com]
+> View/Reply Online (#61444):
+> https://lists.yoctoproject.org/g/yocto/message/61444
+> Mute This Topic: https://lists.yoctoproject.org/mt/102097822/924729
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe:
+> https://lists.yoctoproject.org/g/yocto/leave/7531966/924729/429220467/xyz=
+zy
+> [ticotimo@gmail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 >
+
+--00000000000025cdab0608caba9d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Steve,</div><div><br></div>This needs to be applied t=
+o dunfell, kirkstone, mickledore and nanbield=C2=A0(none of those are perfo=
+rming the correct check now).</div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Sat, Oct 21, 2023 at 2:18=E2=80=AFAM Richa=
+rd Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard=
+.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">Currently, the tests for meta-poky and meta-yoct=
+o-bsp were malfunctioning.<br>
+We need to a) set a distro other than poky and b) avoid the isolation wrapp=
+er<br>
+since it will use the default environment and reset to the poky distro and<=
+br>
+default bblayers.conf which will disable the layer test.<br>
+<br>
+With those two fixes, the layer checks work correctly.<br>
+<br>
+Signed-off-by: Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfou=
+ndation.org" target=3D"_blank">richard.purdie@linuxfoundation.org</a>&gt;<b=
+r>
+---<br>
+=C2=A0config.json | 5 +++--<br>
+=C2=A01 file changed, 3 insertions(+), 2 deletions(-)<br>
+<br>
+diff --git a/config.json b/config.json<br>
+index 27e56c5..55fde54 100644<br>
+--- a/config.json<br>
++++ b/config.json<br>
+@@ -1150,11 +1150,12 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;check-layer&quot; : {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;NEEDREPOS&quot; : [&q=
+uot;poky&quot;, &quot;meta-mingw&quot;],<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;DISTRO&quot; : &quot;nodis=
+tro&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;step1&quot; : {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;EXTRACMDS&qu=
+ot; : [&quot;yocto-check-layer-wrapper ../meta-poky&quot;]<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;EXTRACMDS&qu=
+ot; : [&quot;bitbake-layers remove-layer ../meta-poky; yocto-check-layer ..=
+/meta-poky&quot;]<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;step2&quot; : {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;EXTRACMDS&qu=
+ot; : [&quot;yocto-check-layer-wrapper ../meta-yocto-bsp&quot;]<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;EXTRACMDS&qu=
+ot; : [&quot;bitbake-layers remove-layer ../meta-yocto-bsp; yocto-check-lay=
+er ../meta-yocto-bsp&quot;]<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;step3&quot; : {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;EXTRACM=
+DS&quot; : [&quot;yocto-check-layer-wrapper ../meta-mingw&quot;]<br>
+-- <br>
+2.39.2<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#61444): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/61444" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/61444</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/102097822/924=
+729" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/102097822/924729</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/leave/753196=
+6/924729/429220467/xyzzy" rel=3D"noreferrer" target=3D"_blank">https://list=
+s.yoctoproject.org/g/yocto/leave/7531966/924729/429220467/xyzzy</a> [<a hre=
+f=3D"mailto:ticotimo@gmail.com" target=3D"_blank">ticotimo@gmail.com</a>]<b=
+r>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
+
+--00000000000025cdab0608caba9d--
 
