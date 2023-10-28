@@ -1,140 +1,152 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF30DC25B47
-	for <webhook@archiver.kernel.org>; Fri, 27 Oct 2023 22:38:39 +0000 (UTC)
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
- by mx.groups.io with SMTP id smtpd.web10.28319.1698446318683958865
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A587C27C47
+	for <webhook@archiver.kernel.org>; Sat, 28 Oct 2023 08:27:46 +0000 (UTC)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+ by mx.groups.io with SMTP id smtpd.web10.14791.1698481657845294506
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Oct 2023 15:38:39 -0700
+ Sat, 28 Oct 2023 01:27:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=BiDYCjAC;
- spf=softfail (domain: sakoman.com, ip: 209.85.218.53, mailfrom: steve@sakoman.com)
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-98377c5d53eso397400366b.0
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Oct 2023 15:38:38 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=WYSSmcUy;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.45, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-32d849cc152so1915774f8f.1
+        for <yocto@lists.yoctoproject.org>; Sat, 28 Oct 2023 01:27:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1698446317; x=1699051117; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linuxfoundation.org; s=google; t=1698481656; x=1699086456; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=T0KtZGm21Oxse5F/q+4uO8mOAl0GNvbNsYkIRcHz5GI=;
-        b=BiDYCjACEQk5TOjP3AovOvDyZk7QgginKVEJHiAqyG11XGEKE4usM7+Oc9DU19VLNJ
-         HqP+J4D2ROyWr2R8g2V+kftsNi1hF/9sVPE54DlM31tXyB3oXFDJcKr6sAu4TORjGajf
-         NY327HmiccxMYIZadd2Tgsgc1UcS6XlwHWb5uFE7bEhouCIRbRU7IoSLN3YxvkQDc0TU
-         Ye0iDd8t3jCGQ8zanQLj0unfjF7HctMxIuFyI87530Fz2qqlxjRXeg19RHbs0MmJI4uO
-         BbzN20odR7gvv5kkGa8+U/Vma/Hd9KzEIMZBaB4B95zVWqvgOGUqcU8dgHcv0b9N+xty
-         YTyA==
+        bh=+4Nja+9HFPNc+B6mM7/chZ9RPFBzWYq7kkHqSUzsRGo=;
+        b=WYSSmcUy4RBRWFt/o1jnewVkuLW9xgM97Lo/vHKjnI5OFsM8zHHhj+VBLVdxqD/yU/
+         Hn+CYL6YGe0eHHUfOqk1l4/bT4vf1gxKM3xsthfygsio0KQoBG+PPPlSP3z/3pEYFurd
+         IqRKxo85wqgor3f5H8SmujGFsUL8J2nAoc7WE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698446317; x=1699051117;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=T0KtZGm21Oxse5F/q+4uO8mOAl0GNvbNsYkIRcHz5GI=;
-        b=vUClBE/TkaGBLVE4xPZ0CCzo8f7zg5KA6hKDAt1ilaKzdbHAdc+gpcWoB//IJXjRyK
-         Kq+utMyQIAMdv8/SX+mhaerxoR4t8w7RiDS87raPPkiFF7HG8/TCTNvGOjAzCMKEoGgl
-         VR0ZFLB1wVYOCHnF59bM+3UB4P3GgDXJGz+zUAFdBR9VF86LKaH69ZXM2l5xBLNQU0w7
-         bGJeNAbX5IZiVm7gr7fg9RtTG4ukmFZtIQIiFeg9X7VijYmXUCR/vvo0jYShMnMRX113
-         HdIsguz5coLt01k8eb52MWKJWNYzTLzv0M2fSx6EFAFR2H5Jm45hrQsocb61nUJ+7Ez8
-         iyLg==
-X-Gm-Message-State: AOJu0YzQ0ymaCTM25g+zJCw83qovSI9wtyQiiye9PxlfTwfMoTzY127K
-	iHldffQifuPd039HKCQ97DKJwWFNLLaA+y8WcQYwxg==
-X-Google-Smtp-Source: AGHT+IF2a5oZx9HDP7vTBX20sjSCChYwlN8Qn7ZhdmR+gIzMc0EPCjcvVWAzEfdc1c5WRghxzDrhjoHWyakdEDHeJls=
-X-Received: by 2002:a17:907:3688:b0:9bd:a7a5:3a5a with SMTP id
- bi8-20020a170907368800b009bda7a53a5amr3244955ejc.36.1698446316954; Fri, 27
- Oct 2023 15:38:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <0101018b732bfffb-12002d52-9058-4b77-ab53-1fa728765bda-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018b732bfffb-12002d52-9058-4b77-ab53-1fa728765bda-000000@us-west-2.amazonses.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Fri, 27 Oct 2023 12:38:25 -1000
-Message-ID: <CAOSpxdZzXazeoOv=hQBSC+cyyVsiqOtfqeVqX2Hr4XEUKN=OSg@mail.gmail.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-3.1.29.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: yocto@lists.yoctoproject.org
+        d=1e100.net; s=20230601; t=1698481656; x=1699086456;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=+4Nja+9HFPNc+B6mM7/chZ9RPFBzWYq7kkHqSUzsRGo=;
+        b=tlTr57vOZ1lkIlnYplYgVjHqhsAJs/4abZ0kY5L5M6HZ4ykvHr8pv55kWJ6JTs3Ja/
+         yVwTasaDfssXoTQg3b5XH1Mz8/7dh9k3sfgB0mpnnY8DO2dOd0nAO1Wc3Zxo0DHXwQud
+         71H1AuF+P+1h2ETjUkp/UNG4bPsAH/k0QQb7GKgpKO9Wfq6JX2UsffN4twKM5vDKHBS5
+         O9fRu01xswl8Xh9EoxKe1xIEomUG+y8GF+iuOMzRr03xCaXDKKX+Q0G1HWbgOSUIj44O
+         XEN5ZplsAq1A5lx8dUYl3aJUKCYa95q7kNuCdMHzqUCRtdMHpccPpTRyhtJ7SGHLzsGX
+         aXLw==
+X-Gm-Message-State: AOJu0Yywx0nGJQ1Y6jUEmiw+Snx39Za+d3eu85ZUq/JZMxJs0zW6S2ky
+	EnEqoo30vvW3dlZPyMUXZi4xPw==
+X-Google-Smtp-Source: AGHT+IE4+QBxAr2fCuVHCupwWnVBYvZBR9C/nW5LIMCCEmXhUCVnaTQ83m27HDe1xgAhuYk9L/Zomg==
+X-Received: by 2002:a05:6000:1209:b0:32d:9d3a:d8c0 with SMTP id e9-20020a056000120900b0032d9d3ad8c0mr3212076wrx.60.1698481655890;
+        Sat, 28 Oct 2023 01:27:35 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:8d0f:be40:40a9:c121? ([2001:8b0:aba:5f3c:8d0f:be40:40a9:c121])
+        by smtp.gmail.com with ESMTPSA id h11-20020a5d4fcb000000b00317a04131c5sm3389314wrw.57.2023.10.28.01.27.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Oct 2023 01:27:35 -0700 (PDT)
+Message-ID: <9a9ccb04bcccbbb2718f1c09504d2c500f78f367.camel@linuxfoundation.org>
+Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH v3] AUH: Add
+ Openembedded auto-update-helper with list of layer to test
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: David Pierret <david.pierret@smile.fr>, yocto@lists.yoctoproject.org, 
+	Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Sat, 28 Oct 2023 09:27:34 +0100
+In-Reply-To: <20231026130340.2070302-1-david.pierret@smile.fr>
+References: <20231026130340.2070302-1-david.pierret@smile.fr>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 27 Oct 2023 22:38:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61506
+ <yocto@lists.yoctoproject.org>; Sat, 28 Oct 2023 08:27:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61507
 
-There is currently a known reproducibility issue with the vim-common
-package.  In my opinion nothing that should hold up the release.
+Hi David,
 
-Details:
+On Thu, 2023-10-26 at 15:03 +0200, David Pierret wrote:
+> - Modify the setup-auh to use repositories cloned by the auto-builder.
+>   Manage the case where meta-openembedded is not used.
+>=20
+> - Modify the run-auh to manage the optional additional layer.
+>   Only 1 layer can be provided.
+>=20
+> - Add auh-meta-openembedded job with 1 step per layer.
+>=20
+> Signed-off-by: David Pierret <david.pierret@smile.fr>
+> ---
+>  config.json       | 102 ++++++++++++++++++++++++++++++++++++++++++++--
+>  scripts/run-auh   |  39 ++++++++++++------
+>  scripts/setup-auh |  34 ++++++++++------
+>  3 files changed, 146 insertions(+), 29 deletions(-)
 
-It seems that the last sstate build of vim was done on an Ubuntu 22.04
-worker and recent changes there seem to result in an occurance of
-"charset=3Dcp1251" whereas builds done with the buildtools tarball yield
-"charset=3DCP1251"
+This took a while to review. Firstly, this really should be written as
+a set of commits with incremental changes.
 
-See: https://autobuilder.yocto.io/pub/repro-fail/oe-reproducible-20231024-k=
-ys9f0xn/packages/diff-html/
+For example, changing the script to use poky from the autobuilder
+checkout instead of the local clone is one logical change. We could
+take and review/merge that independently of the other changes.
 
-The reproducibility build for 3.1.29 was done on alma8, so this
-difference resulted in a build error.
+Another logical independent change is using auto-upgrade-helper from
+the checkout of the autobuilder. That did highlight an issue that the
+autobuilder does not provide a checkout of that repository.
 
-I reran the reproducibility test on an Ubuntu 22.04 worker and as
-expected it passed:
+With that and this work in mind I added auh-meta-oe here:
 
-https://autobuilder.yoctoproject.org/typhoon/#/builders/117/builds/3827
+https://git.yoctoproject.org/yocto-autobuilder2/commit/?id=3D47c0119b6e87f9=
+20566d2176793ef8d982cf31e2
 
-I will be sending an autobuilder helper patch to use buildtools
-tarball with Ubuntu 22.04 and this should prevent future occurrences
-of this issue (once the version in sstate is no longer valid)
+and then added the auto-upgrade-helper repo here:
 
-Steve
+https://git.yoctoproject.org/yocto-autobuilder2/commit/?id=3D854a60ce8bf8ce=
+0feec370bc6782cc12aa1e29a5
 
-On Fri, Oct 27, 2023 at 12:05=E2=80=AFPM Pokybuild User
-<pokybuild@yoctoproject.org> wrote:
->
->
-> A build flagged for QA (yocto-3.1.29.rc1) was completed on the autobuilde=
-r and is available at:
->
->
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.29.rc1
->
->
-> Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/bui=
-lds/6111
->
-> Build hash information:
->
-> bitbake: dd826595414c5dc1a649f45a9dd2430bf6d4699b
-> meta-agl: 280f7e70af30eefd885f6e60bd29863b46bb2eab
-> meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882
-> meta-aws: 6e3ace380b609dadf58c81c734ef2061e9636914
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: e482213f37828216c7a7df68ff353652cc865ec1
-> meta-mingw: 7bdc58e6c5d1054b1b6ad5c4e480a95e995ccbae
-> meta-openembedded: 300be975359fdb3a3b2bf7c6fe15dea7acac575d
-> meta-virtualization: 35c723774ee06b3c1831f00a2cbf25cbeae132e1
-> oecore: 0dbf3a15321b8033ff8ed86c6aa261fdb9c3d5bb
-> poky: aeac1034661725b5c83e79f76238429fb236b090
->
->
->
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#332): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/332
-> Mute This Topic: https://lists.yoctoproject.org/mt/102231153/3620601
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/12627247/3620601/791647976/xyzzy [steve@sakoman.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+which then means this patch is closer to working.
+
+I had to make some tweaks on top of the patch to make it work:
+
+https://git.yoctoproject.org/yocto-autobuilder-helper/commit/?h=3Dmaster-ne=
+xt&id=3D673745f473024020ed9efece26462e8c884dc819
+
+where I found that:
+
+* poky in the AB context is $1/.. since it is the top level=C2=A0
+  container=C2=A0of the layers
+* meta-openembedded is located at ${HELPERBUILDDIR}/../meta-openembedded
+* we still need to source the build env script. The AB could be=C2=A0
+  configured to do that for us but currently isn't.
+* we need to trim the machine_list down as mentioned
+* the naming we're using is auh-meta-oe, not auh-meta-openembedded
+* I've temporarily configured to use the test-list so we don't=C2=A0
+  send=C2=A0lots of mail to all users
+* layer dependencies were missing in ADDLAYER. I hate having to do =20
+  that=C2=A0but it is is what it is right now.
+
+With that, we get this "successful" build:
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/159/builds/5
+
+which shows the exit code handling isn't great but probably deliberate
+to avoid autobuilder errors.
+
+This gets us to the point where the code in the upgrade helper itself
+needs the layer support changing.
+
+Since I've now had to look into that code, it seems the layer options
+are entirely missing from the commandline options parser. I'd strongly
+suggest dropping layer_machines variable and just use the machines
+value in all cases.
+
+"layer-mode" seems pointless as you can determine if we're in "layer
+mode" if a layer is specified on the commandline (which needs adding).
+
+I'm hoping you could use the layer overrides to be able to identify
+which recipes to upgrade.
+
+Cheers,
+
+Richard
+
+
+
 
