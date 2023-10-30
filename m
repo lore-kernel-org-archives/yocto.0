@@ -2,79 +2,83 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BBBEC4332F
-	for <webhook@archiver.kernel.org>; Mon, 30 Oct 2023 13:21:22 +0000 (UTC)
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
- by mx.groups.io with SMTP id smtpd.web11.148742.1698672074547845650
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50226C4332F
+	for <webhook@archiver.kernel.org>; Mon, 30 Oct 2023 13:41:12 +0000 (UTC)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+ by mx.groups.io with SMTP id smtpd.web10.149131.1698673268345534818
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Oct 2023 06:21:14 -0700
+ Mon, 30 Oct 2023 06:41:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=lRHNXNey;
- spf=pass (domain: gmail.com, ip: 209.85.222.179, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-77774120c6eso310779085a.2
-        for <yocto@lists.yoctoproject.org>; Mon, 30 Oct 2023 06:21:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fwTJOA1d;
+ spf=pass (domain: gmail.com, ip: 209.85.222.175, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-77891c236fcso351983885a.3
+        for <yocto@lists.yoctoproject.org>; Mon, 30 Oct 2023 06:41:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698672073; x=1699276873; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1698673266; x=1699278066; darn=lists.yoctoproject.org;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:to:from:date:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xFYsmlfSBbFkn5a4RRkKj03IBRL49FeCZeKPx4qK30k=;
-        b=lRHNXNeyFhmhyeGyxkEkgIcqardJTE3zmOA2l2IoDbir05Sy098GUlN5azOCyixMrt
-         nW5UEWYuIgUCscZboIgJTQSjQW6fO8vVb/0n25b40aPCaFSwPKWlORxB1oQ73D31GtGv
-         ST7JJ+CY3Yyzhch5RP5ETTKW2rd92umGIlHZVzJ2SZFcM06dn7z5L697/vatEY4WP0f7
-         7+8+KJE6Zxh2lD+tX9RDOn1qFo40tdl7DXplxKIEExx3cGyb4wWi03hFMd8+7yub3f4r
-         ZUSL4LjSRcllkKNG925y4pFJnvTkcgUKq7kitbDciQ2lHF28bdAta6M8QLjLZdcyd+s4
-         1mrQ==
+        bh=yh46KbXGdhFKN/EXrlm8s5nJBhCrvlvqrc7YmBQKWBs=;
+        b=fwTJOA1d5E9ptpu3wzoJKl+51A8wVfidXyg6XMKFwI6EM6ffWMBubW40v5PtWN3C2s
+         oVDH+QFIJf9OgYhJrPBO0+ae+HnEMkwPJaKCHOpTi1LwPonWUWIeob4LwKDn6DyPSUSk
+         n6l2uAga/iDZxXqNrtGbvgXUBcVX7qUlzsJSoaGGEgQXm82B5GyRR3FCWYdAxR7Ym8e0
+         xc3VuiXS9L4l190Xe9GmU6LJOnmUOqzEC7Llf7P/QcxGn7eU2JsLVpCTmwLeZUawNWL7
+         xrJlKtZZglzxq/y1GwW8bDOKtLsuU8OLPFOxbfxkmAnr9oncHqOhovsHhfO8Od1qIlr7
+         F98Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698672073; x=1699276873;
+        d=1e100.net; s=20230601; t=1698673266; x=1699278066;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xFYsmlfSBbFkn5a4RRkKj03IBRL49FeCZeKPx4qK30k=;
-        b=dPRK8ciFTXnuKmDJzPCz/jq3PqPS95ne+0XOQVEGn9SxX4a9zDo/wHvpLj6sgqJFR+
-         YfHbgIqaM7v4yu6e9aDTOnJMbFL/v7GmZKvA0R7qI21WfGEuY5W7kk+fdIYnE3uDwehb
-         0e6SHa62yqI7JKdPhcAcdUt41RA/sPA79ZJ4YkBMZcNRDysotx1OposlkRVnf26vH42a
-         ZIhPENDnk3NMTcG97oynYOo4/E9tqwporPiNTDhfKdOJW5qanFLsMlHXUepvDm87Ahh0
-         NlkrR8/pCAkvSDWYXaQ6wMNcltGY6kUnWqKz9vwopmfcOV7lx8rQ5nyy/Wn9Bz38oyq2
-         Citw==
-X-Gm-Message-State: AOJu0YzL7y89oIe/UoSfq85cCtdwoTwVaWqPR0w4J76G6kVquk0OVZUD
-	Oj0MbRE6dbD+wEUreY/t2JrE8YxGL0I=
-X-Google-Smtp-Source: AGHT+IEt84nL3cD5wNUqSKXc1Kdwmrk+4MldDAhR+j8TF9azuzGI0+niPiQljSZ4J2ZJKdLKy/SOsQ==
-X-Received: by 2002:ae9:c202:0:b0:76f:1d96:4eb5 with SMTP id j2-20020ae9c202000000b0076f1d964eb5mr7993642qkg.36.1698672072909;
-        Mon, 30 Oct 2023 06:21:12 -0700 (PDT)
+        bh=yh46KbXGdhFKN/EXrlm8s5nJBhCrvlvqrc7YmBQKWBs=;
+        b=rDwqhqcG55U/JJyik4W55b36Kojl9JwiJQXSYjDkbSom+936lpqYj2AxUKYKf5pv7Y
+         AHD2DIy7AyEerXfJIYKdzxwKhuICLovxmTFbmWo09Nf9r5vrwA7cd1dSs+AnzmOw/xz9
+         hUsMWcmSsAXrt4F7wRqyzHbYjwAAvE6KAov8dpyxaPjV8Ka7Zm2q1znChiL/0+xShlGV
+         STAen4nqcj0Cq6X3kAd7uRATqVGI4B9vtPJNAPWalChXfC3gQJ+sRIw5Kc2yu/Sbfwe1
+         j7g6axSNLzFmNal5Uhy+YeRfx8YerwLfTpZOVg9AXu5zrKw35m0LWMkTpiP3KrnVynci
+         oDew==
+X-Gm-Message-State: AOJu0YxaqTLxSyiE+ZBJ0a8Zs4lW2qLjiyitnJ8e5kyHB7dnmFm3dFGV
+	IEtJVHw+JSEmN3RYdeQgpiTZM8FfCgY=
+X-Google-Smtp-Source: AGHT+IGBckYsRG4xkw6ZiyZiKLt84RfVLwjjjdDVVBOR3wdB7xMUv71RG7s9s/Mlnh9tOt9augkl9Q==
+X-Received: by 2002:a05:620a:1a26:b0:76f:1817:942b with SMTP id bk38-20020a05620a1a2600b0076f1817942bmr11027533qkb.28.1698673266188;
+        Mon, 30 Oct 2023 06:41:06 -0700 (PDT)
 Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id pj36-20020a05620a1da400b00772662b7804sm3294913qkn.100.2023.10.30.06.21.11
+        by smtp.gmail.com with ESMTPSA id q7-20020ae9e407000000b007759a81d88esm3300429qkc.50.2023.10.30.06.41.05
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Oct 2023 06:21:11 -0700 (PDT)
-Date: Mon, 30 Oct 2023 09:21:09 -0400
+        Mon, 30 Oct 2023 06:41:05 -0700 (PDT)
+Date: Mon, 30 Oct 2023 09:41:03 -0400
 From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-rockchip][PATCH] rockchip-rkbin: fail if lacking
- an override
-Message-ID: <20231030132109.GA14480@localhost>
-References: <179161A449234C9C.20272@lists.yoctoproject.org>
+Subject: Re: [yocto] [meta-rockchip][PATCH] nanopi-m4b: add
+Message-ID: <20231030134103.GA24789@localhost>
+References: <178A7071DAF57DDD.9230@lists.yoctoproject.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <179161A449234C9C.20272@lists.yoctoproject.org>
+In-Reply-To: <178A7071DAF57DDD.9230@lists.yoctoproject.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 30 Oct 2023 13:21:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61516
+ <yocto@lists.yoctoproject.org>; Mon, 30 Oct 2023 13:41:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61517
 
-On Wed 2023-10-25 @ 10:57:56 AM, Trevor Woerner via lists.yoctoproject.org wrote:
-> Looking forward, rkbin should only be used by specific Rockchip platforms
-> for which TF-A support is not (yet?) available. If rkbin gets added by
-> accident without an override, add a bbfatal to let the user know an
-> override is required.
+On Mon 2023-10-02 @ 08:10:38 PM, Trevor Woerner via lists.yoctoproject.org wrote:
+> NanoPi M4B is a RK3399-based (dual-core A72, quad-core A53 with NEON) board
+> in the same form factor as the RPi B3+ (including compatible connectors) with
+> onboard 2.4/5.0 dual-band WiFi + Bluetooth 5.0 with USB type-C power from
+> FriendlyElec.
+> 
+> https://www.friendlyelec.com/index.php?route=product/product&product_id=275
 > 
 > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 > ---
->  recipes-bsp/rkbin/rockchip-rkbin_git.bb | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  README                                      |  1 +
+>  conf/machine/nanopi-m4b.conf                | 11 +++++++++++
+>  recipes-kernel/linux/linux-yocto_%.bbappend |  1 +
+>  3 files changed, 13 insertions(+)
+>  create mode 100644 conf/machine/nanopi-m4b.conf
 
 Added to meta-rockchip, master branch.
 
