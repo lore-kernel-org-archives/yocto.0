@@ -1,288 +1,230 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <jing.hui.tham@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E0DE0C4332F
-	for <webhook@archiver.kernel.org>; Sun, 29 Oct 2023 20:18:16 +0000 (UTC)
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
- by mx.groups.io with SMTP id smtpd.web10.79872.1698610688589453283
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54BDAC4167D
+	for <webhook@archiver.kernel.org>; Mon, 30 Oct 2023 06:23:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by mx.groups.io with SMTP id smtpd.web11.143161.1698647011641620703
  for <yocto@lists.yoctoproject.org>;
- Sun, 29 Oct 2023 13:18:08 -0700
+ Sun, 29 Oct 2023 23:23:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Wxs0ZYWx;
- spf=pass (domain: gmail.com, ip: 209.85.210.171, mailfrom: ticotimo@gmail.com)
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6b5e6301a19so3776556b3a.0
-        for <yocto@lists.yoctoproject.org>; Sun, 29 Oct 2023 13:18:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698610687; x=1699215487; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VPemZyaTFTAIhtdHNYxGz9rX2r7gZiq7Co9facIY2XA=;
-        b=Wxs0ZYWxqV4wROrJsMNMi92qBcmjAhHqXdIvI0qif+dxJvTr8odhMMhKCyY+DmUgF0
-         gMXkdXuxNKqOw+5PNcJToxsa5k6LeSd5Q7z3xZiBAE3Q8ySNM/dpXw+swxgWWL1jdGOv
-         E+P0rFeJMcYFERgK9dDTtxNNKg/vMVgUk/KEJrr2ZSYluHR2ct1wrJ+tcvWu6mg3RXV2
-         rSybxon7LPHyTHMO9uCiTWZ5FIBw89PQsfmjam3KuVFFqJT4+FPz06GcYRiwPAp5eSGp
-         Cxmro9Hq+fudYyAt/OBgkziutp7bPHcnqSu1n4nr8BUO4GWzJL6p+pf4mtVTIKimaAef
-         5mzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698610687; x=1699215487;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VPemZyaTFTAIhtdHNYxGz9rX2r7gZiq7Co9facIY2XA=;
-        b=KJUkhEQIGfIGMC9cjmmCFsVqdkmdIgreq83HdLVLboiPAt2zvofBVEZ90BMejZpX86
-         WRNWs6OdClnFyZFwbEobYR4sZN4BKZUQy9FESnZyicW8HqSv46skxF1HxzybKE2U03uE
-         e4uuQDVMhp9pjfbWNnbtBQ2VeaGp+vj+C6F+wlLUXIge6ytHrVTDHLiCp7RcWAA6VK4q
-         xdyfYd8zILZDYvW0yZSgLEDFK58IN7mkS6wqtsUzTOa9W/BPL9nOWl8ttuhWJ5XnEjR8
-         OtGOYWkK2SavvY623QXShcU3WCf9/UW1fXp9V7s7VboPDKSIW1s+mqS5JQudBWZnhfPg
-         kZYQ==
-X-Gm-Message-State: AOJu0Yz1+cNWA8dbHOQU7Z0EUrLQ8v+e7HF5q9xmhgss0hYn1/mCffKP
-	NQS0LSzejAG4OOghJ/AdKur0zGU/ipP0ow==
-X-Google-Smtp-Source: AGHT+IHqgWK/JnvjcGY9/N9cCwInrdypnmbqTJ/guUYOqyygqW7+FUg1YfbRAwmVMwbKZ/h0tzNJwg==
-X-Received: by 2002:a05:6a20:a120:b0:17e:4454:edc3 with SMTP id q32-20020a056a20a12000b0017e4454edc3mr11200208pzk.47.1698610687460;
-        Sun, 29 Oct 2023 13:18:07 -0700 (PDT)
-Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:9dbd:3536:679:1ce7])
-        by smtp.gmail.com with ESMTPSA id c8-20020a62e808000000b006be7d407a11sm4744134pfi.178.2023.10.29.13.18.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Oct 2023 13:18:06 -0700 (PDT)
-From: Tim Orling <ticotimo@gmail.com>
-X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
-To: yocto@lists.yoctoproject.org
-Cc: Tim Orling <tim.orling@konsulko.com>
-Subject: [yocto-autobuilder-helper][PATCH] scripts: add list-yp-compatible-layers.py
-Date: Sun, 29 Oct 2023 13:17:53 -0700
-Message-Id: <20231029201753.1318824-1-tim.orling@konsulko.com>
-X-Mailer: git-send-email 2.34.1
+ dkim=pass header.i=@intel.com header.s=Intel header.b=fhxZLAgw;
+ spf=pass (domain: intel.com, ip: 192.55.52.115, mailfrom: jing.hui.tham@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698647011; x=1730183011;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=uYQP0IjWlrc3HWyodDq/h0wgkUA0DLfu4FRgMV4pKXY=;
+  b=fhxZLAgwIa7cnE9A22IbdTtd+Ql6nSRy/uVKZHQVpF8EMMpl94xTNNHj
+   0vidHwnimsifV+N9GbAXTMr+AnoV4oHjxiS9saN/G2fWa3Vm8oiIuYhBm
+   wDPsnyC/kHIF2IhZQY+CoUV3aTsHt4CX56/dJ/AffPgMiXycHH4kcuIOU
+   +LWAjaalQ1Cx/hR/6TrcIEMurLH/aQrETNst5XyxU8h2ePHnS3eOt6PO4
+   4vz09ilYEIjgK07BR65tKyfqEM3xY1A1L9vaF2YtXDvxK5w1oKbdkwmSn
+   T13BqirAgp92EjeBNdmRiUE06JrtEx2m1fGXG5Db2WvNmpalomIvXKB+m
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10878"; a="387833336"
+X-IronPort-AV: E=Sophos;i="6.03,262,1694761200"; 
+   d="scan'208";a="387833336"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2023 23:23:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10878"; a="789363093"
+X-IronPort-AV: E=Sophos;i="6.03,262,1694761200"; 
+   d="scan'208";a="789363093"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+  by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 29 Oct 2023 23:23:29 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Sun, 29 Oct 2023 23:23:29 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Sun, 29 Oct 2023 23:23:29 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Sun, 29 Oct 2023 23:23:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i1oYVPfc3iDxNIWeDEhIFUYJ4hdJRstmAtPZ1GnBKmgrtNGoesj//xzcN0TxXXxy1nFuM8/VLmatr+IS3mpdx/CKidrmU5cf+UbV+71o/jxRWk72rvkn6axnXPeBw+waKY/RZV6Ctx+SkzH9YDNoa2IH+K5nzc8UpPECB1zvO8watBy0oBM2CZqgvGTHsK6Jnmh2UqF7XqV16Ce7dFJrz7ZNxo43itQr1pEec5OfRomq3rNUCcC8Nsd6u/BCMdWqlxRY4MYKZnbN0tmBBJ8GSoGqnF+puJQLT7k0B42e88jNMjGOYRy774jb6+RlAxD+8Ma/GBfzlH5bcFp58PAqwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AuOpPyb6y7zQZsiShuJADOSCwZs/eIYQmK9fveXKnn0=;
+ b=YDXER3J6zmq9FXmTsZ5ajiNvTdLQgOzA4kx5XB4ArH0alraXZQ4+u22rzqdWa61PZNBUbCEqbuYWSqKEQCaZsdx9MsLkkoahq/njDxhB6ZzxSecmZxSJ5GcvWcFjkQ641kIGUw4EGsXU4nZ16syCdX3AmsbTayz1sQbM5A0zA6BEwCCk2EP0QPXfgyW881HHK+/WFxeVrbENyhEk0BlDQFAeXb8O2i5P+eqPSZHruYY81/uGPNMJZLNMwxT0Tr2JokfpKolHK+lmhuHfqMr4dIgbaMbUPgY39XBS5+A1YqUb//1Wm9bbncOwjH8gbmfXhgz6FWKwP99nj66q2+5FHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BY5PR11MB4152.namprd11.prod.outlook.com (2603:10b6:a03:191::11)
+ by BY1PR11MB8007.namprd11.prod.outlook.com (2603:10b6:a03:525::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.28; Mon, 30 Oct
+ 2023 06:23:26 +0000
+Received: from BY5PR11MB4152.namprd11.prod.outlook.com
+ ([fe80::3230:6041:e9a3:cdac]) by BY5PR11MB4152.namprd11.prod.outlook.com
+ ([fe80::3230:6041:e9a3:cdac%3]) with mapi id 15.20.6933.024; Mon, 30 Oct 2023
+ 06:23:26 +0000
+From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>, Pokybuild User
+	<pokybuild@yoctoproject.org>
+Subject: RE: [qa-build-notification] QA notification for completed autobuilder
+ build (yocto-3.1.29.rc1)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-3.1.29.rc1)
+Thread-Index: AQHaCSHEX1uaUMFZi0GPLlSuvK/R5bBh4GkQ
+Date: Mon, 30 Oct 2023 06:23:26 +0000
+Message-ID: <BY5PR11MB4152ABDC8FA9CCD20376B675A1A1A@BY5PR11MB4152.namprd11.prod.outlook.com>
+References: <0101018b732bfffb-12002d52-9058-4b77-ab53-1fa728765bda-000000@us-west-2.amazonses.com>
+In-Reply-To: <0101018b732bfffb-12002d52-9058-4b77-ab53-1fa728765bda-000000@us-west-2.amazonses.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY5PR11MB4152:EE_|BY1PR11MB8007:EE_
+x-ms-office365-filtering-correlation-id: 086343f9-25d9-4bbb-2f33-08dbd910b9b4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: vLcR0z4S586U8wiP0bV2uw5FsYgZjMduYzxf6QGm4F8CEAs9WZahQDhu4qT9kjPnoJGNaSXh9QFyxJYdxnf7jLU57HnQlZE9nR4vRQp/dfH691v8hXsLl9bPMVAOKNHhvRs4aixRXGpZVvjlAbqZ5LKZ6BI25SKAecligpjeOFOHmmv4435LJWdVzZSa89eiuREtKax98ktnCEIHQYoE7toMkmXiIvxPtdZQIKv26YRpy9Axx+7EOm7jSgFLwypUfAvVf/oGEet9VV4uUo//q3dzcVy/B121ixUvwArOIWqzeektuZTIHkmIF85U8DYg/Nmb8ftP5LZg8luNYhxf9KHGX5QpMdcCQVeoiv/LM01uyN8Oq4317bTM2DdFaxWXZ2H5AMaa3RgEHQZA+n0vqkRlsbCjNxM+GSlmiFMEYSPCpOLkTN8Q7scTCfrtFgnkLcuPcmY+lbi8k15moV/C+FJxLqcBByPcMbMwEovakREEcdo4g7WdsZM+pe8ud6pKi3T/aknwXiTGZaRixMhqIU6wnSGe3TJcj3mmCqyEHhv4sEgWtqcGrjKeSD1zhz/RCaYinNCmMnjEkdnU+gUJzJEibKlp33EohBIbb4riv+D3Ui36o+1jGJnsy1Pp/0bliCOhPK8G7+9LBwNdjfEDfQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB4152.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(366004)(39860400002)(376002)(136003)(230922051799003)(451199024)(64100799003)(1800799009)(186009)(55016003)(2906002)(66446008)(66476007)(64756008)(66556008)(76116006)(66946007)(82960400001)(122000001)(316002)(38100700002)(71200400001)(6506007)(7696005)(53546011)(966005)(9686003)(478600001)(110136005)(83380400001)(26005)(41300700001)(5660300002)(15650500001)(8936002)(8676002)(86362001)(33656002)(52536014)(38070700009)(66899024);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Eh1BF4ZQ5/qVhfeQ0T8a0BGZxPO2Iq0nw/qQLaY2EAJxShXxmzB6eIYOZSRe?=
+ =?us-ascii?Q?4qNbebbeTDbo8UDDuX2OuygywmPV5py1VfxM2+W4uoKnSL5Aaa+HhLMnZeeT?=
+ =?us-ascii?Q?TQNC0WrXmjVgA+ha06sIx6p0VUN2fLfvzjN60dG5fawKkJs9F1WOn5ZiGiaf?=
+ =?us-ascii?Q?iEocgUUx/vzdNfiY1qv+fetlC539gAmaoYyscbWrHgsgUX6AE85Kwx0yc9/D?=
+ =?us-ascii?Q?hzPjmhCZtegRT+VjGIj3nGR/jBaOwoXHS4lTTFFMhBNdC8KNzzIpl07daC88?=
+ =?us-ascii?Q?lElVptSH89mjc8TZ0rk3WYfW0v/aJZCAixK6rtSYrR6ez1ON5+zz8sZHoYZd?=
+ =?us-ascii?Q?88VA81TMFBfkVNW6G+F4t3r4CSxhujhbSgJPROb/CGPIdpYbxe+8/aLSfIXD?=
+ =?us-ascii?Q?c1XnXG3Wek2ntAhUjt902DJZVhgXXk6O52mRSSmqVXVBWAdjb43FrcVWP6rT?=
+ =?us-ascii?Q?Ed0DhmGWFcY/JW7OdR761p/nwU8c7vE8VJcXTasiy7UF8VlLqdWw/NHRvESg?=
+ =?us-ascii?Q?LhvMez/l5ESBzlAyijX+yUs4vY7H3g3vTxw0p1bWol9VNGl+S5oO4ISXkjHD?=
+ =?us-ascii?Q?XojD53sV1T59c0kQGMli+ZQDOg2lPfJPmh0v51wclf+Juy6mQdwCvHrCrIKW?=
+ =?us-ascii?Q?K44V7UaBB+G1nOqU6UAwy2UTo2WAun9y1UAoCneuoVxLkYndDpA8CW8AmKsm?=
+ =?us-ascii?Q?VjPYTCQs9FLniJJNUpsvrb6CsvArQoPbuokf+r1dqWH1S+TCY89SGp9d3+K+?=
+ =?us-ascii?Q?frVomR/ZpVSVoOfYCXf/5jkBLP85V3R+piVbdUSDrYfl+VhHA124sAN1RjL8?=
+ =?us-ascii?Q?ull45GJ5HlKnWr/KqLQdEI2zH2dn9ta3DdClASyPJ0PTMgdUvwS/fHMv2Ksi?=
+ =?us-ascii?Q?GKjCfxQ8w409LdxpzxPACuPTUif/hRs1JK0kKEmnlsTe5TSgebCKNeFrGc1r?=
+ =?us-ascii?Q?aQEHR8014b6m+XuB/LlRIRwZz5yv2rwrmsfgmjo/AHWOr7BHIIdB7XzR8SnA?=
+ =?us-ascii?Q?jOh719bKU5uf4kNQ6KUYb1hpX++9h6/809vyTy/Mum+qbOZHZ7GBciI2ERWl?=
+ =?us-ascii?Q?RMrDONv8VcQH2DyNEVH4SZ1R5LihTNO2OrPuLi3XEpWZcroLuhKHx53fU06F?=
+ =?us-ascii?Q?SR/L5ouzHv/9cblaavCHtI7PWfE0PUqx/p0YTqIyg80sBBY9Z6UNm8To8uG2?=
+ =?us-ascii?Q?1zhpFmIhHEcczPezv/SSvSjqgzjZhHEo0Tdhe3NISGO56BkBWqGOa6vTPqC0?=
+ =?us-ascii?Q?MLh3dmNjmF3KGMNl7BdsnEyEes4j63S+47puiMTyoNs+gbYR97KnYqfpO+47?=
+ =?us-ascii?Q?sFxACbrnFY03bUzh2IfvXAQMgvW66fAdiOb5MhIau+QMOYYlZUM0SaHmFmly?=
+ =?us-ascii?Q?u+4mDMLkTNKBst6tU7a22IshzmYUm757vPu/LAFmJHSsGz1RJtk3T9omc4PM?=
+ =?us-ascii?Q?jiNtYe/E0uo8cS1xYJ5NoCyrbGaLPPcr549lwyV/X+9Aue+4eXFwNfb7eMPR?=
+ =?us-ascii?Q?8zvgg+QHJ6Q309j41r2PuNOaI7nvjEFqN1ZG55vytzdrEsiBge6WfdLJf54l?=
+ =?us-ascii?Q?R5fu0FeSFX+ZTRL9NoqcV0h2/e1ZWqXaI5BYEXEz?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4152.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 086343f9-25d9-4bbb-2f33-08dbd910b9b4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Oct 2023 06:23:26.0831
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1eGp8fdhHlWKNpYWx4s5ciXFGWf44sy7k3WIAdMQC0NUz1udjwBdYjVdRLyyjgBuLb4PmFp/5jZrGTmuCQjctw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8007
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 29 Oct 2023 20:18:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61513
+ <yocto@lists.yoctoproject.org>; Mon, 30 Oct 2023 06:23:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61514
 
-This is a handy helper script to query the Buildbot REST API to
-create a list of Yocto Project Compatible 2.0 layers, as defined by
-successful running of the "check-layers*" jobs.
+Hi all,
+=20
+Intel and WR YP QA is planning for QA execution for YP build yocto-3.1.29.r=
+c1. We are planning to execute following tests for this cycle:
+=20
+OEQA-manual tests for following module:
+1. OE-Core
+2. BSP-hw
+=20
+Runtime auto test for following platforms:
+	1. MinnowBoard Turbot - 32bit
+	2. Kaby Lake (7th Generation Intel(r) Core(tm) Processors)
+	3. Tiger Lake (11th Generation Intel(r) Core(tm) Processors)
+	4. Alder Lake-S (12th Generation Intel(r) Core(tm) Processors)
+	5. Raptor Lake-P (13th Generation Intel(r) Core(tm) Processors)
+	6. Edgerouter
+	7. Beaglebone
 
-The script only considers the 'jobs' ("Builders" in Buildbot speak) you
-ask it to query.
+=20
+ETA for completion Thursday, 2 November 2023.
+=20
+Best regards,
+Jing Hui
 
-The script looks at the latest -n successful builds for a branch that
-matches from a list. The number of builds approach was used because
-the property_list cannot be queried for "branch" in the "builders" API.
 
-It looks for a "step" name pattern via a regex, with which all currently
-running "check-layer" and "check-layer-nightly" jobs conform.
-
-Once a branch has successfully been queried, it is removed from the list
-in further iterations. The intent is to only find the latest passing
-list of compatible layers, for each branch.
-
-The output is a yp_compatible_layers.json file which can
-be pretty printed with:
-
-cat yp_compatible_layers.json | jq
-
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
-Changes in v2:
-  * corrected the updating of the layers set()
-  * moved all important parameters to args
-  * clean up some comments
-
- scripts/list-yp-compatible-layers.py | 181 +++++++++++++++++++++++++++
- 1 file changed, 181 insertions(+)
- create mode 100755 scripts/list-yp-compatible-layers.py
-
-diff --git a/scripts/list-yp-compatible-layers.py b/scripts/list-yp-compatible-layers.py
-new file mode 100755
-index 0000000..9d5fc48
---- /dev/null
-+++ b/scripts/list-yp-compatible-layers.py
-@@ -0,0 +1,181 @@
-+#!/usr/bin/env python3
-+
-+# Query layers that are Yocto Project Compatible (2.0) on the AutoBuilder
-+# and make a yp_compatible_layers.json file as an output
-+#
-+# Copyright (C) 2023 Konsulko Group
-+# Author: Tim Orling <tim.orling@konsulko.com>
-+#
-+# Licensed under the MIT license, see COPYING.MIT for details
-+#
-+# SPDX-License-Identifier: MIT
-+#
-+# NOTE: We cannot directly filter 'property_list' for the branch in the
-+#       /builders/<>/builds/<> REST API, as it is not exposed. We may need
-+#       to set a large number of builds (e.g. -n 400) to match older branches,
-+#       since "master" runs far more often than any other branch.
-+#
-+# For "pretty" output:
-+#  cat yp_compatible_layers.json | jq
-+
-+import sys
-+import os
-+
-+sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
-+
-+import argparse
-+import logging
-+import re
-+import requests
-+import json
-+
-+
-+def main():
-+    # Setup logging
-+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-+    logger = logging.getLogger('list-yocto-project-compatible-layers')
-+
-+    parser = argparse.ArgumentParser(description='query Yocto AutoBuilder check-layer* jobs and create a json file of Yocto Compatible 2.0 layers')
-+
-+    parser.add_argument("-b", "--branches",
-+            help = "Branches to find a matching build for in Auto Builder builds query",
-+            action="store", dest="query_branches", default="dunfell,kirkstone,mickledore,nanbield,master")
-+    parser.add_argument("-j", "--jobs",
-+            help = "Jobs ('Builders') to query on the Auto Builder that perform the actual compatibility checks",
-+            action="store", dest="query_jobs", default="check-layer,check-layer-nightly")
-+    parser.add_argument("-n", "--num-builds",
-+            help = "Limit the number of Auto Builder builds to query",
-+            action="store", dest="num_builds", default=20)
-+    parser.add_argument("-o", "--output-filename",
-+            help = "Name of the file to use for JSON output",
-+            action="store", dest="out_file", default="yp_compatible_layers.json")
-+    parser.add_argument("-u", "--url",
-+            help = "URL for the Auto Builder REST API",
-+            action="store", dest="api_url", default='https://autobuilder.yoctoproject.org/typhoon/api/v2')
-+    parser.add_argument("-d", "--debug",
-+            help = "Enable debug output",
-+            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
-+    parser.add_argument("-q", "--quiet",
-+            help = "Hide all output except error messages",
-+            action="store_const", const=logging.ERROR, dest="loglevel")
-+
-+    args = parser.parse_args()
-+
-+    logger.setLevel(args.loglevel)
-+
-+    api_url = args.api_url
-+    desired_branches = args.query_branches.split(',')
-+    desired_jobs = args.query_jobs.split(',')
-+    num_builds = args.num_builds
-+    output_filename = args.out_file
-+    # Currently unused, as the actual name of the builder is used in the REST API query
-+    builder_id=dict()
-+    # Get info about a builder
-+    # curl https://autobuilder.yoctoproject.org/typhoon/api/v2/builders?name=check-layer
-+    builder_id['check_layer']=39
-+    builder_id['check_layer_nightly']=121
-+    # Get the "api"
-+    # curl https://autobuilder.yoctoproject.org/typhoon/api/v2/application.spec
-+
-+    # Get a specific step raw stdio log
-+    # curl https://autobuilder.yoctoproject.org/typhoon/api/v2/builders/121/builds/1651/steps/11/logs/stdio/raw
-+
-+    # Filter for strings in the name of a step
-+    # curl https://autobuilder.yoctoproject.org/typhoon/api/v2/builders/check-layer-nightly/builds/1651/steps?name__contains=Test
-+    # curl https://autobuilder.yoctoproject.org/typhoon/api/v2/builders/check-layer-nightly/builds/1651/steps?name__contains=Run&field=name&field=number
-+    #
-+    # Get the latest build (NOTE: '-' in front of 'number' does reverse order)
-+    # https://autobuilder.yoctoproject.org/typhoon/api/v2/builders/check-layer-nightly/builds?order=-number&limit=1
-+    #
-+    # Get list of properties for a build
-+    # https://autobuilder.yoctoproject.org/typhoon/api/v2/builds/453477/property_list
-+    #
-+    # Get the buildid of a build from builders/ so the builds/<buildid> api can be queried for property_list
-+    # otherwise, we have no way to get the 'branch'
-+    # https://autobuilder.yoctoproject.org/typhoon/api/v2/builders/check-layer-nightly/builds?limit=10&field=buildid
-+
-+    def latest_builds(job, limit):
-+        # Limit to successful builds (however, this includes Skip)
-+        #latest_20 = requests.get('https://autobuilder.yoctoproject.org/typhoon/api/v2/builders/check-layer-nightly/builds?limit=20&order=-buildid&field=buildid')
-+        url_str = f'{api_url}/builders/{job}/builds?state_string__contains=successful&limit={str(limit)}&order=-buildid&field=buildid&field=state_string'
-+        r = requests.get(url_str)
-+        return r
-+
-+    # Set objects are not JSON serializable, so we convert our set to a list
-+    class YPCompatibleJSONEncoder(json.JSONEncoder):
-+        def default(self, obj):
-+            if isinstance(obj, set):
-+                return list(obj)
-+            return json.JSONEncoder.default(self, obj)
-+
-+    compatible_dict = dict().fromkeys(desired_jobs, dict().fromkeys(desired_branches, None))
-+    for job in desired_jobs:
-+        # We want a list we can decrement once a valid branch has been found
-+        desired_branches_copy = desired_branches.copy()
-+        # Create a simpler, flatter placeholder dict to work with inside the loop
-+        job_compatible_dict = dict().fromkeys(desired_branches_copy, set())
-+        logger.info(f'Processing at most {num_builds} builds for AutoBuilder job: {job}...')
-+        for builds in latest_builds(job, num_builds).json()['builds']:
-+            build_id=builds['buildid']
-+            logger.debug(f'\tProcessing build: {build_id}...')
-+            url_str = f'{api_url}/builds/{build_id}/property_list?name=yp_build_branch'
-+            #r = requests.get('https://autobuilder.yoctoproject.org/typhoon/api/v2/builds/%s/property_list?name=yp_build_branch' % builds['buildid'])
-+            r = requests.get(url_str)
-+            try:
-+                result_dict = r.json()['_properties'][0]
-+                branch = result_dict['value'].replace('"','')
-+            except:
-+                pass
-+            if branch in desired_branches_copy:
-+                logger.info(f'\tProcessing branch: {branch}...')
-+                url_str = f'{api_url}/builds/{build_id}/steps?name__contains=Run&field=name&field=number'
-+                steps_req = requests.get(url_str)
-+                steps_dict = steps_req.json()['steps']
-+                for step in steps_dict:
-+                    try:
-+                        step_num = step['number']
-+                        # Currently, meta-virtualization does not have ' cmds' so use a look ahead
-+                        repo_regex = re.compile(r"^Test (.+) YP Compatibility: Run(?: cmds)$")
-+                        repo = repo_regex.match(step['name']).group(1)
-+                    except:
-+                        pass
-+                    try:
-+                        url_str = f'{api_url}/builds/{build_id}/steps/{step_num}/logs/stdio/raw'
-+                        log_req = requests.get(url_str)
-+                        log = log_req.content.decode("utf-8")
-+                        # We only care about layers that have passed
-+                        layer_regex = re.compile(r"^INFO: (.+) ... PASS$", re.MULTILINE)
-+                        layers = layer_regex.findall(log)
-+                        if len(layers) > 0:
-+                            logger.info(f'\t\tDetected {layers}')
-+                            for layer in layers:
-+                                if job_compatible_dict[branch]:
-+                                    old_layers_set = job_compatible_dict[branch].copy()
-+                                    new_layers_set = set([layer]).union(old_layers_set)
-+                                    # Replace the old data with the new data
-+                                    job_compatible_dict[branch] = new_layers_set
-+                                    logger.debug(f"job_compatible_dict['{branch}'] = {job_compatible_dict[branch]}")
-+                                else:
-+                                    local_layers = set([layer])
-+                                    job_compatible_dict[branch] = local_layers
-+                                    logger.debug(f"job_compatible_dict['{branch}'] = {job_compatible_dict[branch]}")
-+                    except Exception as err:
-+                        logger.error(err)
-+                        sys.exit(1)
-+                desired_branches_copy.remove(branch)
-+        for j in compatible_dict:
-+            if j == job:
-+                # Attempts at using compatible_dict[job][branch].add(layer) added to all jobs
-+                # Apparently dicts and sets are weird and so as a functional approach:
-+                # Replace the placeholder with real data
-+                compatible_dict[j] = job_compatible_dict
-+            else:
-+                continue
-+    with open(output_filename, 'w') as f:
-+        json.dump(compatible_dict, f, cls=YPCompatibleJSONEncoder)
-+
-+    sys.exit(0)
-+
-+
-+if __name__ == "__main__":
-+    main()
--- 
-2.34.1
+> -----Original Message-----
+> From: qa-build-notification@lists.yoctoproject.org <qa-build-
+> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
+> Sent: Saturday, October 28, 2023 6:06 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [qa-build-notification] QA notification for completed autobuilde=
+r
+> build (yocto-3.1.29.rc1)
+>=20
+>=20
+> A build flagged for QA (yocto-3.1.29.rc1) was completed on the autobuilde=
+r
+> and is available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-3.1.29.rc1
+>=20
+>=20
+> Build URL:
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6111
+>=20
+> Build hash information:
+>=20
+> bitbake: dd826595414c5dc1a649f45a9dd2430bf6d4699b
+> meta-agl: 280f7e70af30eefd885f6e60bd29863b46bb2eab
+> meta-arm: b1fe8443a7a72c65fa0fc3371f607c6671b3a882
+> meta-aws: 6e3ace380b609dadf58c81c734ef2061e9636914
+> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+> meta-intel: e482213f37828216c7a7df68ff353652cc865ec1
+> meta-mingw: 7bdc58e6c5d1054b1b6ad5c4e480a95e995ccbae
+> meta-openembedded: 300be975359fdb3a3b2bf7c6fe15dea7acac575d
+> meta-virtualization: 35c723774ee06b3c1831f00a2cbf25cbeae132e1
+> oecore: 0dbf3a15321b8033ff8ed86c6aa261fdb9c3d5bb
+> poky: aeac1034661725b5c83e79f76238429fb236b090
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#332): https://lists.yoctoproject.org/g/qa-build-
+> notification/message/332
+> Mute This Topic: https://lists.yoctoproject.org/mt/102231153/6424044
+> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
+> notification/leave/10762429/6424044/1746813897/xyzzy
+> [jing.hui.tham@intel.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
 
