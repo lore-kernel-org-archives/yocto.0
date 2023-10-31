@@ -1,117 +1,119 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 764E3C41535
-	for <webhook@archiver.kernel.org>; Tue, 31 Oct 2023 13:53:21 +0000 (UTC)
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
- by mx.groups.io with SMTP id smtpd.web11.186915.1698760395941558313
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C01EFC4332F
+	for <webhook@archiver.kernel.org>; Tue, 31 Oct 2023 14:50:07 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by mx.groups.io with SMTP id smtpd.web10.573.1698763801287801277
  for <yocto@lists.yoctoproject.org>;
- Tue, 31 Oct 2023 06:53:16 -0700
+ Tue, 31 Oct 2023 07:50:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=LItNKdKK;
- spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-507a0907896so8180612e87.2
-        for <yocto@lists.yoctoproject.org>; Tue, 31 Oct 2023 06:53:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698760394; x=1699365194; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q0Ok1Q89n15vDxQD8csxX6xWaCBQ3z5WqeMHljnYZWo=;
-        b=LItNKdKKdKNMxYSmezFyv19lgi1PtuP+sgxwYyGCOSviwgrvMoIo5bBkvCDLXAwspr
-         NrR/N+ZcDRpmJwvxfg9JudjiLNCfWg9FCg/QXPmGuiRTMziguIVqZnzqBNRuJ4D7Dkgp
-         SOIAHwWbpm604jhrlNHAsLCt7uSm7Xe/wzn3Df4CRSvgOJtBdyaplY5UN7+sjdr0cQb9
-         DDGdQQleXigySES/b7TFqh8jQclQF2Qi26UEzgb5vVcfjGROLn6oZ3fjxppmqBSq3Jqi
-         YtNKz7BfB9NMDHkelwpRXU9zd6tXercKC3YEqJTs9sv/X3Qrpo3YYjIBYTccauolzGw0
-         +j0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698760394; x=1699365194;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q0Ok1Q89n15vDxQD8csxX6xWaCBQ3z5WqeMHljnYZWo=;
-        b=HXNbX15CybWdA7PuEylW7gBSPjUXUHKcjpUuZspgiXjfDDcPVxD64/pA2G5GdcGdWr
-         exwgY8CnQ2AN57cWxQm0vKaez/nWRITsijDqKVo3HK6gHpLpCCAIJBugT+oJ1dqspNrS
-         hTFwuvyilH6HRGIYE027Bdzyi1hDJ1+cmqXAkvRv/lLe7AauxfKg3sMs68A8L9iIYcwt
-         uuVr/lkavQK0Ki6zh8/PeL91IzJithQGjFmDw1a21bIflllefkKluuedPp/OHQtt6q4H
-         e+ci22PhAK2d/Y7LIEp89Xp9YHVSZKWkAR9peDT2DGuIOo+hJtQuDbWfMEQOVtdvMMjN
-         /Avw==
-X-Gm-Message-State: AOJu0YypHX7It5S3CwUGBc8is8hR+DPUEz8v+YywQsDIWw2cZtxcLyNl
-	tTP/4zjIi8tnBAIIg3PW3rYnrUDd48h7omMFpxU=
-X-Google-Smtp-Source: AGHT+IHySbkpUPSBda21cVdzcN16+OoOzR3SLFCk63lu/Ng3HUNJsbYCDbgyXBxIJpJiC+MixeVvROocCZOR1EjJK50=
-X-Received: by 2002:a19:c510:0:b0:504:7f2e:9391 with SMTP id
- w16-20020a19c510000000b005047f2e9391mr9178338lfe.34.1698760393574; Tue, 31
- Oct 2023 06:53:13 -0700 (PDT)
+ dkim=none (message not signed); spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: ross.burton@arm.com)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9DD1EDA7;
+	Tue, 31 Oct 2023 07:50:42 -0700 (PDT)
+Received: from oss-tx204.lab.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6F1A03F738;
+	Tue, 31 Oct 2023 07:50:00 -0700 (PDT)
+From: ross.burton@arm.com
+To: yocto@lists.yoctoproject.org
+Cc: nd@arm.com
+Subject: [PATCH yocto-autobuilder-helper 2/2] config.json: add meta-oe to the metrics target
+Date: Tue, 31 Oct 2023 14:49:57 +0000
+Message-Id: <20231031144957.648173-2-ross.burton@arm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231031144957.648173-1-ross.burton@arm.com>
+References: <20231031144957.648173-1-ross.burton@arm.com>
 MIME-Version: 1.0
-References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
- <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
- <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
- <CANNYZj-JhGnGFRxaF0+Q_5Sqq76kAg1pSBBMka_xefuhMv6-vQ@mail.gmail.com>
- <ea84079102bca429a6ae521d218118952a79f111.camel@linuxfoundation.org>
- <1792EACC19CD8046.7262@lists.openembedded.org> <CANNYZj_mjbH08rHoo0FzFihcax9zQ1zR6QRoEA3C_JOHG7P9kg@mail.gmail.com>
- <7488045369ecd729ac3df2e526a74ee644fbcf26.camel@linuxfoundation.org>
-In-Reply-To: <7488045369ecd729ac3df2e526a74ee644fbcf26.camel@linuxfoundation.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 31 Oct 2023 14:53:01 +0100
-Message-ID: <CANNYZj-DTi-P2aM2wYVDWpeEKn4r_bsBkV6QPr3XdfHa=pM_dA@mail.gmail.com>
-Subject: Re: [OE-core] Core workflow: sstate for all, bblock/bbunlock, tools
- for why is sstate not being reused?
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
-	Julien STEPHAN <jstephan@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 31 Oct 2023 13:53:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61531
+ <yocto@lists.yoctoproject.org>; Tue, 31 Oct 2023 14:50:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61533
 
-On Tue, 31 Oct 2023 at 13:28, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
+From: Ross Burton <ross.burton@arm.com>
 
-> > Then we can pull all of it together into 'devtool esdk <image>'
-> > command (or similar), which would enter the esdk environment directly
-> > via:
-> > - running 'bitbake <image> meta-ide-support'
-> > - running the above mentioned bitbake local.conf task to generate the
-> > esdk-specific local.conf
-> > - sourcing the environment script produced by meta-ide-support
-> > - rewriting PATH to provide only the curated esdk tools and not
-> > everything plus bitbake.
-> > - writing a custom devtool.conf similar to that of standalone esdk so
-> > that devtool can find bitbake and bitbake can use the esdk-specific
-> > local.conf
-> >
-> > And it would be tested in the same way standalone esdks are.
-> >
-> > Thoughts? Anything missing from the above list?
->
-> That sounds like a good way to handle this to me!
+This writes the metrics to a new yocto-metrics-meta-oe repository, and
+write the results to patchmetrics-meta-oe.
 
-A couple followup points:
+There's a great/ugly (delete to taste) hack to hide CVEs from oe-core,
+so this only lists issues in meta-oe.
 
-- copy_buildsystem() in populate_sdk_ext class is overly long at 400
-lines and does many different barely related things, writing
-local.conf for esdk one of them:
+Signed-off-by: Ross Burton <ross.burton@arm.com>
+---
+ config.json | 29 ++++++++++++++++++++++++-----
+ 1 file changed, 24 insertions(+), 5 deletions(-)
 
-https://git.yoctoproject.org/poky/tree/meta/classes-recipe/populate_sdk_ext.bbclass#n189
+diff --git a/config.json b/config.json
+index f3a4ee7..1b3c2b0 100644
+--- a/config.json
++++ b/config.json
+@@ -1198,7 +1198,7 @@
+             }
+         },
+         "metrics" : {
+-            "NEEDREPOS" : ["poky"],
++            "NEEDREPOS" : ["poky", "meta-openembedded"],
+             "extravars" : [
+                 "INHERIT +=3D 'cve-check'",
+                 "BB_DISKMON_DIRS =3D ''",
+@@ -1210,18 +1210,37 @@
+             "step1" : {
+                 "shortname" : "Fetching metrics repositories",
+                 "EXTRAPLAINCMDS" : [
+-                    "git clone ssh://git@push.yoctoproject.org/yocto-met=
+rics"
++                    "git clone ssh://git@push.yoctoproject.org/yocto-met=
+rics && git clone ssh://git@push.yoctoproject.org/yocto-metrics-meta-oe"
+                 ]
+             },
+             "step2" : {
+-                "shortname" : "Generating patch metrics for Poky",
++                "shortname" : "Patch metrics for meta",
+                 "EXTRACMDS" : ["${SCRIPTSDIR}/run-patchmetrics --poky ..=
+/ --metrics ../yocto-metrics --repo ../ --layer ../meta --branch ${HELPER=
+BRANCHNAME} --results ${HELPERRESULTSDIR}/../../patchmetrics --push"]
+             },
+             "step3" : {
+-                "shortname" : "Running CVE checks for Poky",
++                "shortname" : "CVE checks for meta",
+                 "EXTRACMDS" : ["${SCRIPTSDIR}/run-cvecheck --metrics ../=
+yocto-metrics --branch ${HELPERBRANCHNAME} --results ${HELPERRESULTSDIR}/=
+../../patchmetrics --push"]
++            },
++            "step4" : {
++                "shortname" : "Patch metrics for meta-oe",
++                "EXTRACMDS" : ["${SCRIPTSDIR}/run-patchmetrics --poky ..=
+/ --metrics ../yocto-metrics-meta-oe --repo ../meta-openembedded --layer =
+../meta-openembedded --branch ${HELPERBRANCHNAME} --results ${HELPERRESUL=
+TSDIR}/../../patchmetrics-meta-oe --push"]
++            },
++            "step5" : {
++                "shortname" : "CVE checks for meta-oe",
++                "ADDLAYER" : [
++                    "${BUILDDIR}/../meta-openembedded/meta-oe",
++                    "${BUILDDIR}/../meta-openembedded/meta-python",
++                    "${BUILDDIR}/../meta-openembedded/meta-perl",
++                    "${BUILDDIR}/../meta-openembedded/meta-networking",
++                    "${BUILDDIR}/../meta-openembedded/meta-multimedia",
++                    "${BUILDDIR}/../meta-openembedded/meta-gnome",
++                    "${BUILDDIR}/../meta-openembedded/meta-xfce",
++                    "${BUILDDIR}/../meta-openembedded/meta-filesystems",
++                    "${BUILDDIR}/../meta-openembedded/meta-initramfs",
++                    "${BUILDDIR}/../meta-openembedded/meta-webserver"
++                    ],
++                "EXTRACMDS" : ["echo 'do_cve_check:layer-core =3D \"\"' =
+>> conf/auto.conf ; ${SCRIPTSDIR}/run-cvecheck --metrics ../yocto-metrics=
+-meta-oe --branch ${HELPERBRANCHNAME} --results ${HELPERRESULTSDIR}/../..=
+/patchmetrics-meta-oe --push"]
+             }
+-
+         },
+         "meta-mingw" : {
+             "NEEDREPOS" : ["poky", "meta-mingw"],
+--=20
+2.34.1
 
-The first step would be to structure it into separate functions each
-doing one thing and hopefully fitting on a single screen. Then these
-functions can be hand-picked into a task designed to provide esdk
-things in a yocto build context, and the code would simply be more
-readable, as right now I can barely understand all the various things
-that function does, and the spaghetti of local variables etc.
-
-- the tool that would set up the esdk environment in a plain yocto
-build could be a shell script in scripts/oe-init-esdk-env perhaps,
-similar to oe-init-build-env. No need to make it a devtool plugin; it
-could use python helpers to program the more tricky bits such as PATH
-manipulations etc. So one would first initialize the yocto
-environment, then transition to an esdk environment from that (there
-would be no way to go back, as one can simply start a new session).
-
-Alex
 
