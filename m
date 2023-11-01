@@ -1,82 +1,178 @@
-Return-Path: <naveen.kumar.saini@intel.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B8BAC4167D
-	for <webhook@archiver.kernel.org>; Wed,  1 Nov 2023 09:31:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by mx.groups.io with SMTP id smtpd.web11.3166.1698831106519099187
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E2455C4332F
+	for <webhook@archiver.kernel.org>; Wed,  1 Nov 2023 11:16:29 +0000 (UTC)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+ by mx.groups.io with SMTP id smtpd.web10.4579.1698837381325187828
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Nov 2023 02:31:47 -0700
+ Wed, 01 Nov 2023 04:16:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=ZkLEJCs4;
- spf=pass (domain: intel.com, ip: 134.134.136.100, mailfrom: naveen.kumar.saini@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698831107; x=1730367107;
-  h=from:to:subject:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding;
-  bh=xHE5jxe+Qmj2JNek1G0Kyc1OiRt8HqH5KBGwmAEcGXo=;
-  b=ZkLEJCs4zksvFRJUdOvl2YzrGa5JMdYiCKvtdkGpOUMr/Ffw3F9KFRt5
-   MzLL7waQxBHPByjTErxqIpPkh0lLkzEhX3h+cthoSRXC5ARA6oJJXtTZx
-   3W1dZbvntz6Kuy7gkJA0006QF/jcsrlBsCKHHF/AhawHWSFMmLGhHk78o
-   v1asHQ8Ui4atN+rqdZNl+DhNAPMrNgT5k4wWOYV9G9SxBJ1JGA8ZHd5wg
-   ew37R8s4NxEpnp94hb9wCWDAKGWcBiwEuWpHRpTuU5Jeu84oMnsZa16nr
-   YCw0GBnxCwqhmu/JEludbIh8MtjiL9tTSUALfXlnB5yHJCiRzNkH6jeel
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="454941035"
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
-   d="scan'208";a="454941035"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2023 02:31:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
-   d="scan'208";a="2137563"
-Received: from saininav-desk1.png.intel.com ([172.30.130.5])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2023 02:31:46 -0700
-From: Naveen Saini <naveen.kumar.saini@intel.com>
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=f/YDFVYS;
+ spf=pass (domain: smile.fr, ip: 209.85.167.42, mailfrom: yoann.congal@smile.fr)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-507b9408c61so9183488e87.0
+        for <yocto@lists.yoctoproject.org>; Wed, 01 Nov 2023 04:16:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1698837378; x=1699442178; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=m7+c7EJUeTei0ppIcA1gJCggqdlPACsDc7w7Q99ZK0Q=;
+        b=f/YDFVYSpqNZvEPGMnz8jlbhVYvYrTz67yigHZZqByQ1onDw4p/eC+SYxFvm9IYiOI
+         MN9nwycbX3/eoHBAnBmQRJcHqAbbDoGPEyM/8hnRu8TYRzBrweAGiE+HwfX7tkemmxCx
+         ARL2LO89nDgG0jhpnEkOlh2FBU14yx07l11w0hXW5QIcLB3XEnjFVEv2ARxmGnkbULhK
+         fqEHIyEyLFszv19jQOcklqwWzmbLVLn63R29Nt1FcLJdcXWMOZJ5ep9JvvLf/i0Bm8kG
+         jyG5pBS5qtaMCmUHmGFUDpwhUCko0ZwbSfpLmPYhG+kpM6h5o7FdAqlErgQh52a1RV/b
+         QWyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698837378; x=1699442178;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m7+c7EJUeTei0ppIcA1gJCggqdlPACsDc7w7Q99ZK0Q=;
+        b=LbbZe795Eu04BmqtVDAWsvyjjuCmbi3zqDMuVyEJywBG452SAqE3rUqxjzt8Q+CCDH
+         nOMh/1xUHU4bPNNMfpgHwmsJrgKvG9z2AcpuHND57cAzhPmqrgcY3Ke5+iEAqr52l5C4
+         PF752bD1VilWjVsuecebH32cebUtXxQp+8FkSvYv6fl8in6NmSUory8cHroY80OnEGxr
+         bhFEw9k9sFbNxqFKUp3kG49WloeqgLzv3LEMNSZsAq9Y9NzCI7v3CORClZvOxnXQE4Dl
+         bfLgWfdheWGdrfIHnkBvMCg+hDyDTetwxOUyOkjHYzd3xQv+TKkGdUvvpem6W/D/6UTl
+         JG9A==
+X-Gm-Message-State: AOJu0YwogsvkxbjQdLe8KeUhMber0ntEJwHMx6uccqH1yJpUUmdJf23Y
+	rtcTstZYofOWAHKknIjmU6JG4FlWReRrBtDmf+U=
+X-Google-Smtp-Source: AGHT+IESkKYNlZBChlMOONVkPUTaMGMcSLBpuaLfSWGRumyGJfIOTSzbXYp9Lz0O9H9tHwkZx0ffNg==
+X-Received: by 2002:a05:6512:3b81:b0:509:fc7:8847 with SMTP id g1-20020a0565123b8100b005090fc78847mr10536034lfv.31.1698837378490;
+        Wed, 01 Nov 2023 04:16:18 -0700 (PDT)
+Received: from P-ASN-ECS-830T8C3.numericable.fr ([89.159.1.53])
+        by smtp.gmail.com with ESMTPSA id f19-20020a7bcd13000000b003feae747ff2sm1158603wmj.35.2023.11.01.04.16.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Nov 2023 04:16:18 -0700 (PDT)
+From: Yoann Congal <yoann.congal@smile.fr>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH 3/3] zephyr-sdk: Upgrade to version 0.16.3
-Date: Wed,  1 Nov 2023 17:58:09 +0800
-Message-Id: <20231101095809.2839319-3-naveen.kumar.saini@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231101095809.2839319-1-naveen.kumar.saini@intel.com>
-References: <20231101095809.2839319-1-naveen.kumar.saini@intel.com>
+Cc: Yoann Congal <yoann.congal@smile.fr>
+Subject: [master-next][yocto-autobuilder-helper][PATCH] config.json: force RECIPE_MAINTAINER for meta-oe layers
+Date: Wed,  1 Nov 2023 12:15:57 +0100
+Message-Id: <20231101111557.1149241-1-yoann.congal@smile.fr>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 01 Nov 2023 09:31:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61551
+ <yocto@lists.yoctoproject.org>; Wed, 01 Nov 2023 11:16:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61552
 
-https://github.com/zephyrproject-rtos/sdk-ng/releases/tag/v0.16.3
+Without it, auto-upgrade-helper skip most of the recipes because they do
+not have a specific maintainer.
 
-Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+Signed-off-by: Yoann Congal <yoann.congal@smile.fr>
 ---
- .../zephyr-sdk/{zephyr-sdk_0.16.1.bb => zephyr-sdk_0.16.3.bb} | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename meta-zephyr-core/recipes-devtools/zephyr-sdk/{zephyr-sdk_0.16.1.bb => zephyr-sdk_0.16.3.bb} (83%)
+ config.json | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/meta-zephyr-core/recipes-devtools/zephyr-sdk/zephyr-sdk_0.16.1.bb b/meta-zephyr-core/recipes-devtools/zephyr-sdk/zephyr-sdk_0.16.3.bb
-similarity index 83%
-rename from meta-zephyr-core/recipes-devtools/zephyr-sdk/zephyr-sdk_0.16.1.bb
-rename to meta-zephyr-core/recipes-devtools/zephyr-sdk/zephyr-sdk_0.16.3.bb
-index f73b92f..e34424e 100644
---- a/meta-zephyr-core/recipes-devtools/zephyr-sdk/zephyr-sdk_0.16.1.bb
-+++ b/meta-zephyr-core/recipes-devtools/zephyr-sdk/zephyr-sdk_0.16.3.bb
-@@ -14,8 +14,8 @@ SDK_ARCHIVE = "zephyr-sdk-${PV}_linux-${BUILD_ARCH}.tar.xz"
- SDK_NAME = "${BUILD_ARCH}"
- SRC_URI = "https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${PV}/${SDK_ARCHIVE};subdir=${S};name=${SDK_NAME}"
+diff --git a/config.json b/config.json
+index 6143969..ddf015f 100644
+--- a/config.json
++++ b/config.json
+@@ -1480,6 +1480,9 @@
+                 "shortname" : "run AUH for layer meta-oe",
  
--SRC_URI[x86_64.sha256sum] = "51338d51aa4cea2516641ce0d9dc0b51b763779f00dc4564a2bc0dd713df22c7"
--SRC_URI[aarch64.sha256sum] = "062bb2b5c47ca56dd29b7f92dd7f07a5ce22ba513759d2b6960bc658531eb00c"
-+SRC_URI[x86_64.sha256sum] = "9eb557d09d0e9d4e0b27f81605250a0618bb929e423987ef40167a3307c82262"
-+SRC_URI[aarch64.sha256sum] = "3acfb4fb68fc5e98f44428249b54c947cdf78f1164176e98160ca75175ad26c1"
- 
- do_configure[noexec] = "1"
- do_compile[noexec] = "1"
+                 "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-oe"],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-openembedded-layer = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-oe"
+                 ]
+@@ -1490,6 +1493,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-python"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-meta-python = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-python"
+                 ]
+@@ -1500,6 +1506,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-perl"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-perl-layer = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-perl"
+                 ]
+@@ -1510,6 +1519,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-networking"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-networking-layer = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-networking"
+                 ]
+@@ -1521,6 +1533,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-python",
+                     "${BUILDDIR}/../meta-openembedded/meta-multimedia"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-multimedia-layer = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-multimedia"
+                 ]
+@@ -1533,6 +1548,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-networking",
+                     "${BUILDDIR}/../meta-openembedded/meta-gnome"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-gnome-layer = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-gnome"
+                 ]
+@@ -1547,6 +1565,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-gnome",
+                     "${BUILDDIR}/../meta-openembedded/meta-xfce"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-xfce-layer = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-xfce"
+                 ]
+@@ -1559,6 +1580,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-networking",
+                     "${BUILDDIR}/../meta-openembedded/meta-filesystems"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-filesystems-layer = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-filesystems"
+                 ]
+@@ -1566,6 +1590,9 @@
+             "step10" : {
+                 "shortname" : "run AUH for layer meta-initramfs",
+                 "ADDLAYER" : ["${BUILDDIR}/../meta-openembedded/meta-initramfs"],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-meta-initramfs = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-initramfs"
+                 ]
+@@ -1576,6 +1603,9 @@
+                     "${BUILDDIR}/../meta-openembedded/meta-oe",
+                     "${BUILDDIR}/../meta-openembedded/meta-webserver"
+                 ],
++                "extravars" : [
++                    "RECIPE_MAINTAINER:layer-webserver = 'Forced maintainer for AUH'"
++                ],
+                 "EXTRAPLAINCMDS" : [
+                     "${SCRIPTSDIR}/run-auh ${HELPERBUILDDIR} ${WEBPUBLISH_DIR}/pub/auh/ ${HELPERBUILDDIR}/../meta-openembedded meta-webserver"
+                 ]
 -- 
-2.34.1
+2.30.2
 
 
