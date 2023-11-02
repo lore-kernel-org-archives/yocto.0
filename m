@@ -1,232 +1,104 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <alexis.lothore@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E143BC4332F
-	for <webhook@archiver.kernel.org>; Thu,  2 Nov 2023 23:15:58 +0000 (UTC)
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
- by mx.groups.io with SMTP id smtpd.web10.911.1698966956438846794
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EDE61C4332F
+	for <webhook@archiver.kernel.org>; Thu,  2 Nov 2023 23:27:08 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web10.1122.1698967623736326409
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Nov 2023 16:15:56 -0700
+ Thu, 02 Nov 2023 16:27:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=j3fVcrpa;
- spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: ticotimo@gmail.com)
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5bd306f86a8so777910a12.0
-        for <yocto@lists.yoctoproject.org>; Thu, 02 Nov 2023 16:15:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698966955; x=1699571755; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=E9+AdfqM52CX+CQbyl970KltNfpZAjMz+a4oXvv+hgs=;
-        b=j3fVcrpa+Dfq5HbJmWPPSW/0vcnmmbBgMxizauQb7dJri+4ig2qb4TkJNolJtgHYEx
-         +CAJGUgog+s0AvA8fK5GJTyykLfYW1l60mbqLY/eDNqRZogvF1EDRPmhkV9ou+3SIt+f
-         mM9xS9x3i96dn8wxan1P0P4C6dGYYlIBc84+JWU42tjpxG1LbuLeUdaStxdFCGZ9mXrN
-         9etQe+Vn7D/cH3TImdFzRPEcNIxXoopfZ9yRMAuKMMyB2Pbpy3BZxDOuJ4sb7z5h95ei
-         /gq3blDdest7ETDi+/6UfufwEXIDrqTMHJmtLOujtbhDde2+v1UtQO7Yf2nTetC9xVxs
-         DHjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698966955; x=1699571755;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E9+AdfqM52CX+CQbyl970KltNfpZAjMz+a4oXvv+hgs=;
-        b=YSG5xY5mWlM0kdv8IZymWgFN+Yfs3n0FdV+MrnKKqDjMUqpIY2CtJ3zAIOQ50tL8xp
-         QFKch2xfIJ+OXxA3+qrRvdsriAXcOb1Gmn8i0SZd/9zfE7qrl590dCV+6aYfpFGHByPK
-         3O5pHW9OpId0hxHzLlYrxkLzekFGWXqdcbshA9V5wh69FtLjSWL57uifhP23yCVR5Nyo
-         O13r4adnm33VysMpv/ECuymXsfyCGbrBqyzxlX99yLf0v01uq9HKx0duqlBHHc8IKgUa
-         YG0lJXhzU1KOH7WXK6t6EctsnDiI+rEFeRaGfMqu3v3U168N4X1mc2H5/i7lGPfIIpWJ
-         g2yw==
-X-Gm-Message-State: AOJu0YydaVmelGo3RGVsuF86K5mP1PXVPXbZSAXsd+lNHuO6sP8McEsR
-	ZYBRHx5YS5SNu8Bp2puj4qiIb0pe7qKXlw==
-X-Google-Smtp-Source: AGHT+IH0DczvaYGbr8OEs4b3UVjfEUeyGEGLbsTCT1SWU95JOCVP5nk/OziVPB8/z/29zX8Ubs5eNA==
-X-Received: by 2002:a05:6a20:c19a:b0:16b:ff2c:c42c with SMTP id bg26-20020a056a20c19a00b0016bff2cc42cmr17800715pzb.62.1698966955370;
-        Thu, 02 Nov 2023 16:15:55 -0700 (PDT)
-Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:712b:6aef:cbba:5048])
-        by smtp.gmail.com with ESMTPSA id u24-20020a63df18000000b0056b6d1ac949sm246637pgg.13.2023.11.02.16.15.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Nov 2023 16:15:54 -0700 (PDT)
-From: Tim Orling <ticotimo@gmail.com>
-X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
-To: yocto@lists.yoctoproject.org
-Cc: Tim Orling <tim.orling@konsulko.com>
-Subject: [layerindex-web][PATCH] layerindex/tools: add mark_yp_compatible_layers.py
-Date: Thu,  2 Nov 2023 16:14:47 -0700
-Message-Id: <20231102231446.27165-1-tim.orling@konsulko.com>
-X-Mailer: git-send-email 2.34.1
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=b6+OoC4P;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: alexis.lothore@bootlin.com)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 603FAFF806;
+	Thu,  2 Nov 2023 23:27:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698967621;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bHLhi1syG8BV1yJ7M95WzSby12LD8b50li1Ym8ZiI8w=;
+	b=b6+OoC4P8wqwOnRWsGy4kKPIBBdWAEYHZ8V9gc3B28Jqd+pkPG02N2xryooQ1YRIEBmeBl
+	bJWldrAYudsw0GLWNa+iotF5/UUWbfX20NpPgFrkaN9EyCTu1ofyRS6CVQszmF5P0RKrCB
+	/owb2vcCGK6PdkSwcuN4e0B673K+VvKtc0aebUmx99fkXqWphNtnUddUyVEhpREtnasLZr
+	0OgEkBw4BpnLYA6exhZL1zHhAo3ENAnL5JwwaAAP8m6yjkCk/Tp/nG9cU7xWbQyzVI7OIR
+	nvu/mGbj4aFd4ypeMOjCEZkL0ywjEUyC1Gl5ocRhxY122xeU8/TsfE5bfEOodw==
+Message-ID: <c3e08c59-43e9-43db-97e3-64a27077813a@bootlin.com>
+Date: Thu, 2 Nov 2023 16:28:18 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] QA notification for completed autobuilder build
+ (yocto-4.3.rc2)
+Content-Language: en-US
+To: Pokybuild User <pokybuild@yoctoproject.org>,
+ yocto@lists.yoctoproject.org,
+ Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: qa-build-notification@lists.yoctoproject.org,
+ Michael Halstead <mhalstead@linuxfoundation.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+References: <0101018b4bde33b6-a3fab4b0-bd55-4084-8c36-15407b954459-000000@us-west-2.amazonses.com>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+In-Reply-To: <0101018b4bde33b6-a3fab4b0-bd55-4084-8c36-15407b954459-000000@us-west-2.amazonses.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: alexis.lothore@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 02 Nov 2023 23:15:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61585
+ <yocto@lists.yoctoproject.org>; Thu, 02 Nov 2023 23:27:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61586
 
-Add a script which can either mark one --layer --branch or
-use data in a --from-file to mark multiple layer:branch objects
-as Yocto Project Compatible.
+Hello,
 
-The --from-file is a json file that is compatible with or which
-can be generated by:
+On 10/19/23 23:55, Pokybuild User wrote:
+> 
+>     A build flagged for QA (yocto-4.3.rc2) was completed on the autobuilder and is available at:
+> 
+> 
+>         https://autobuilder.yocto.io/pub/releases/yocto-4.3.rc2
+> 
+> 
+>     Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6080
 
-yocto-autobuilder-helper/scripts/list-yp-compatible-layers.py
+Once again this release is lacking a proper regression report. I am reacting a
+bit late, but I have moved forward with the diagnostic. As for yocto-4.3.rc1,
+the report is empty because of a lack in the "base" tests results, which is here
+tests results from yocto-4.2. Those are in fact the tests results that we have
+pushed manually during summer, because those weren't pushed automatically
+(because of another unrelated tagging issue which has been fixed since then).
+But it looks like we have made a mistake/omission while doing so: the tag
+associated with those results (which is required to make resulttool search for
+it) is not present on the mickledore branch. This issue is pretty visible when
+fetching the lasts commits on mickledore branch in testresults repository (see
+https://git.yoctoproject.org/yocto-testresults/log/?h=mickledore)
 
-[YOCTO #15093]
+So to fix this, my suggestion is for someone having the proper write access on
+git://git.yoctoproject.org/yocto-testresults to manually apply the missing tag
+on the proper commit and to push it:
 
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
- layerindex/tools/mark_yp_compatible_layers.py | 142 ++++++++++++++++++
- 1 file changed, 142 insertions(+)
- create mode 100755 layerindex/tools/mark_yp_compatible_layers.py
+git tag mickledore/70029-g21790e71d55f417f27cd51fae9dd47549758d4a0/1
+5bf0165296b3686ab5c400869ed2e030f2269c8a
 
-diff --git a/layerindex/tools/mark_yp_compatible_layers.py b/layerindex/tools/mark_yp_compatible_layers.py
-new file mode 100755
-index 0000000..1d2dc32
---- /dev/null
-+++ b/layerindex/tools/mark_yp_compatible_layers.py
-@@ -0,0 +1,142 @@
-+#!/usr/bin/env python3
-+
-+# Mark layers that are Yocto Project Compatible (2.0) on the AutoBuilder
-+#
-+# Copyright (C) 2017 Intel Corporation
-+# Author: Paul Eggleton <paul.eggleton@linux.intel.com>
-+# Copyright (C) 2023 Konsulko Group
-+# Author: Tim Orling <tim.orling@konsulko.com>
-+#
-+# Licensed under the MIT license, see COPYING.MIT for details
-+#
-+# SPDX-License-Identifier: MIT
-+#
-+# Input json file can be for instance generated by:
-+# https://git.yoctoproject.org/yocto-autobuilder-helper/tree/scripts/list-yp-compatible-layers.py
-+
-+import sys
-+import os
-+
-+sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
-+
-+import argparse
-+from argparse import ArgumentError
-+from layerindex import utils
-+import logging
-+import json
-+from json import JSONDecodeError
-+
-+class DryRunRollbackException(Exception):
-+    pass
-+
-+class LayerNotFoundException(Exception):
-+    pass
-+
-+class BranchNotFoundException(Exception):
-+    pass
-+
-+class YPCompatibleVersionNotFoundException(Exception):
-+    pass
-+
-+logger = utils.logger_create('LayerIndexYoctoProjectCompatible')
-+
-+
-+
-+def main():
-+    parser = argparse.ArgumentParser(description='Mark layers that are Yocto Project Compatible (2.0)')
-+
-+    layer_branch_arg_group = parser.add_argument_group()
-+    layer_branch_arg_group.add_argument("-l", "--layer",
-+            help = "Layer to mark as Yocto Project Compatible",
-+            action="store", dest="layer")
-+    layer_branch_arg_group.add_argument("-b", "--branch",
-+            help = "Branch to mark as Yocto Project Compatible",
-+            action="store", dest="branch")
-+    file_or_layer_branch_arg_group = layer_branch_arg_group.add_mutually_exclusive_group()
-+    file_or_layer_branch_arg_group.add_argument("-f", "--from-file",
-+            help = "(Recommended) JSON file compatible with 'list-yp-compatible-layers' script from 'yocto-autobuilder-helper' to use for input",
-+            action="store", dest="from_file")
-+    parser.add_argument("-v", "--compatible-version",
-+            help = "Yocto Project Compatible version",
-+            action="store", dest="yp_compatible_version", default="2.0")
-+    parser.add_argument("-n", "--dry-run",
-+            help = "Don't write any data back to the database",
-+            action="store_true", dest="dryrun")
-+    parser.add_argument("-d", "--debug",
-+            help = "Enable debug output",
-+            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
-+    parser.add_argument("-q", "--quiet",
-+            help = "Hide all output except error messages",
-+            action="store_const", const=logging.ERROR, dest="loglevel")
-+
-+    args = parser.parse_args()
-+
-+    utils.setup_django()
-+    import settings
-+    from layerindex.models import Branch, LayerBranch, LayerItem, YPCompatibleVersion
-+    from django.db import transaction
-+
-+    logger.setLevel(args.loglevel)
-+
-+    def update_from_layer_branch(layer, branch, yp_compatible_version, dryrun):
-+        try:
-+            with transaction.atomic():
-+                try:
-+                    layer_id=LayerItem.objects.filter(name__exact=layer)[0].id
-+                except IndexError:
-+                    raise LayerNotFoundException( f'Layer {layer} not found in layerindex ddatabase')
-+                try:
-+                    branch_id=Branch.objects.filter(name__exact=branch)[0].id
-+                except IndexError:
-+                    raise BranchNotFoundException( f'Branch {branch} not found in layerindex database')
-+                try:
-+                    yp_compatible_version_instance=YPCompatibleVersion.objects.filter(name__exact=yp_compatible_version)[0]
-+                except IndexError:
-+                    raise YPCompatibleVersionNotFoundException( f' Yocto Project Compatible Version {yp_compatible_version} not found in layerindex database')
-+                for layerbranch in LayerBranch.objects.filter(layer=layer_id,branch=branch_id):
-+                    logger.debug(' BEFORE: Yocto Project Compatible %s   %s:%s' % (layerbranch.yp_compatible_version, layerbranch.layer, layerbranch.branch))
-+                    layerbranch.yp_compatible_version = yp_compatible_version_instance
-+                    layerbranch.save()
-+                    logger.info('Yocto Project Compatible %s   %s:%s' % (layerbranch.yp_compatible_version, layerbranch.layer, layerbranch.branch))
-+
-+                if dryrun:
-+                    raise DryRunRollbackException()
-+        except DryRunRollbackException:
-+            pass
-+
-+    def update_from_json_file( from_file, yp_compatible_version, dryrun ):
-+        try:
-+            with open(from_file) as fp:
-+                input_dict = json.load(fp)
-+                for job in input_dict:
-+                    for branch in input_dict[job]:
-+                        try:
-+                            for layer in input_dict[job][branch]:
-+                                try:
-+                                    update_from_layer_branch( layer, branch, yp_compatible_version, dryrun )
-+                                except LayerNotFoundException as err:
-+                                    logger.warning( f"{err}" )
-+                                    pass
-+                        except BranchNotFoundException as err:
-+                            logger.warning( f"{err}" )
-+                            pass
-+        except DryRunRollbackException:
-+            pass
-+        except FileNotFoundError as err:
-+            logger.critical( f"{err}: File {from_file} not found" )
-+            sys.exit(1)
-+        except JSONDecodeError as err:
-+            logger.critical( f"{err}: JSONDecodeError loading file {from_file}" )
-+            sys.exit(1)
-+
-+    if args.layer and args.branch and not args.from_file:
-+        update_from_layer_branch( layer=args.layer, branch=args.branch, yp_compatible_version=args.yp_compatible_version, dryrun=args.dryrun )
-+    elif args.from_file and not ( args.branch or args.layer ):
-+        update_from_json_file( from_file=args.from_file, yp_compatible_version=args.yp_compatible_version, dryrun=args.dryrun )
-+
-+    sys.exit(0)
-+
-+
-+if __name__ == "__main__":
-+    main()
-+
+(adding Michael Halstead in CC since he is the one who helped me with the manual
+import of missing tests results)
+
+I have tested locally this fix (by tagging locally my clone of testresults +
+hacking around in resulttool to prevent it from reading remote tags), and I have
+been able to generate the report. Here it is :
+
+https://pastebin.com/fvRcqes4
+
+By the way, the report comes from a slightly modified resulttool run because it
+has shown that the recent regression grouping addition needs some improvements
+(among some other already discussed issues), so patch incoming.
+
+Kind regards,
+
 -- 
-2.34.1
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
