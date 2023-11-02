@@ -1,102 +1,232 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D7BDC4332F
-	for <webhook@archiver.kernel.org>; Thu,  2 Nov 2023 19:54:41 +0000 (UTC)
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
- by mx.groups.io with SMTP id smtpd.web10.42494.1698954874647422870
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E143BC4332F
+	for <webhook@archiver.kernel.org>; Thu,  2 Nov 2023 23:15:58 +0000 (UTC)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web10.911.1698966956438846794
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Nov 2023 12:54:34 -0700
+ Thu, 02 Nov 2023 16:15:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=TpzysCV7;
- spf=pass (domain: gmail.com, ip: 209.85.167.181, mailfrom: twoerner@gmail.com)
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3b2e22f1937so732064b6e.1
-        for <yocto@lists.yoctoproject.org>; Thu, 02 Nov 2023 12:54:34 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=j3fVcrpa;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: ticotimo@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5bd306f86a8so777910a12.0
+        for <yocto@lists.yoctoproject.org>; Thu, 02 Nov 2023 16:15:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698954873; x=1699559673; darn=lists.yoctoproject.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=463eFDF3sPMxo6pJW1ZNilLkW3K6uuHgWPZigF7M0wM=;
-        b=TpzysCV7pten+D24xMPBfIijmCeQq3+1u347BAk6hjTkfxchSYw115AYMnDw7LN42f
-         P6g0pS3lvoBsvOFzIm2Lv9XEm81tsBRrQZloLVi1bWzSJhtOkCiNjDCWolTY0ECt1Htg
-         R9XAKBk/LPL8Whg3tPbi2HYJ9JcEG78TBEGqZ2gDcwgS6kpMf6w6GM9M04y9vIRN/drm
-         P5r+34IFDeOGQabHJxl0nPLuli50fKZZ7jR6ByIRKPPs9oyzy635CFWX/0jNn/5QOrZ0
-         r/wvW27xrshFGIwLZa/8wwtQ5aeMFRQDDH/zEtEQQ7EiBA1DJIZP/eBL+AgH8P1+dwoj
-         SEoQ==
+        d=gmail.com; s=20230601; t=1698966955; x=1699571755; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E9+AdfqM52CX+CQbyl970KltNfpZAjMz+a4oXvv+hgs=;
+        b=j3fVcrpa+Dfq5HbJmWPPSW/0vcnmmbBgMxizauQb7dJri+4ig2qb4TkJNolJtgHYEx
+         +CAJGUgog+s0AvA8fK5GJTyykLfYW1l60mbqLY/eDNqRZogvF1EDRPmhkV9ou+3SIt+f
+         mM9xS9x3i96dn8wxan1P0P4C6dGYYlIBc84+JWU42tjpxG1LbuLeUdaStxdFCGZ9mXrN
+         9etQe+Vn7D/cH3TImdFzRPEcNIxXoopfZ9yRMAuKMMyB2Pbpy3BZxDOuJ4sb7z5h95ei
+         /gq3blDdest7ETDi+/6UfufwEXIDrqTMHJmtLOujtbhDde2+v1UtQO7Yf2nTetC9xVxs
+         DHjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698954873; x=1699559673;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=463eFDF3sPMxo6pJW1ZNilLkW3K6uuHgWPZigF7M0wM=;
-        b=UDCXOyQqba2xwLCqDaSPZ/KqMoqUKUTE8CVF8lQWg+307dtaB08KJC+trZHubjgsTB
-         gCA8bgu+fNNy06L3VasGUOQKH/vizRDPNWbuIz+U9obDS9UCs61RwlPtuSQCRV9PT0K0
-         qPrOlJW0VMhvgerMRUvbP4KKG+1p/SIa/0Qj3/1YAUvP0yhU5s+BISWuXCRg6RFhGnpb
-         /lN+5v6dKpowXp74l+vckLChpT4kZQw+Kx1YJUUfRUBkF+06DlWhahwLjDG5kZs/+yK8
-         oX+3jH6P97rK1LMTRgVFF8Cj7k7xWjAEKwWNlOC3waa6+7JHUA/GsO3BlbO3ba5Vs0Cr
-         GyLA==
-X-Gm-Message-State: AOJu0YztiPpTh9FXXfPRr+vwkU2W8Mpn25NK74hLuVbH7SvOScfyWwex
-	0yaEKV8lBDATCQUqy/fTNTdiFbIAhPY=
-X-Google-Smtp-Source: AGHT+IE9GsBZzEQ4XS3XkAek4AnVH1j6X10Jdbj25fXqfZxJGkfKyy/TRHVh8vtHX6GUJCvlU4R80Q==
-X-Received: by 2002:a05:6358:6f82:b0:168:e87f:1331 with SMTP id s2-20020a0563586f8200b00168e87f1331mr21943046rwn.5.1698954872756;
-        Thu, 02 Nov 2023 12:54:32 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id m29-20020a05620a215d00b0077411a459a8sm72487qkm.4.2023.11.02.12.54.31
-        for <yocto@lists.yoctoproject.org>
+        d=1e100.net; s=20230601; t=1698966955; x=1699571755;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E9+AdfqM52CX+CQbyl970KltNfpZAjMz+a4oXvv+hgs=;
+        b=YSG5xY5mWlM0kdv8IZymWgFN+Yfs3n0FdV+MrnKKqDjMUqpIY2CtJ3zAIOQ50tL8xp
+         QFKch2xfIJ+OXxA3+qrRvdsriAXcOb1Gmn8i0SZd/9zfE7qrl590dCV+6aYfpFGHByPK
+         3O5pHW9OpId0hxHzLlYrxkLzekFGWXqdcbshA9V5wh69FtLjSWL57uifhP23yCVR5Nyo
+         O13r4adnm33VysMpv/ECuymXsfyCGbrBqyzxlX99yLf0v01uq9HKx0duqlBHHc8IKgUa
+         YG0lJXhzU1KOH7WXK6t6EctsnDiI+rEFeRaGfMqu3v3U168N4X1mc2H5/i7lGPfIIpWJ
+         g2yw==
+X-Gm-Message-State: AOJu0YydaVmelGo3RGVsuF86K5mP1PXVPXbZSAXsd+lNHuO6sP8McEsR
+	ZYBRHx5YS5SNu8Bp2puj4qiIb0pe7qKXlw==
+X-Google-Smtp-Source: AGHT+IH0DczvaYGbr8OEs4b3UVjfEUeyGEGLbsTCT1SWU95JOCVP5nk/OziVPB8/z/29zX8Ubs5eNA==
+X-Received: by 2002:a05:6a20:c19a:b0:16b:ff2c:c42c with SMTP id bg26-20020a056a20c19a00b0016bff2cc42cmr17800715pzb.62.1698966955370;
+        Thu, 02 Nov 2023 16:15:55 -0700 (PDT)
+Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:712b:6aef:cbba:5048])
+        by smtp.gmail.com with ESMTPSA id u24-20020a63df18000000b0056b6d1ac949sm246637pgg.13.2023.11.02.16.15.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Nov 2023 12:54:32 -0700 (PDT)
-Date: Thu, 2 Nov 2023 15:54:30 -0400
-From: Trevor Woerner <twoerner@gmail.com>
+        Thu, 02 Nov 2023 16:15:54 -0700 (PDT)
+From: Tim Orling <ticotimo@gmail.com>
+X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-rockchip][PATCH v2 0/1] rock-pi-s: add
-Message-ID: <20231102195430.GA12814@localhost>
-References: <179332951F38AF26.20486@lists.yoctoproject.org>
+Cc: Tim Orling <tim.orling@konsulko.com>
+Subject: [layerindex-web][PATCH] layerindex/tools: add mark_yp_compatible_layers.py
+Date: Thu,  2 Nov 2023 16:14:47 -0700
+Message-Id: <20231102231446.27165-1-tim.orling@konsulko.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <179332951F38AF26.20486@lists.yoctoproject.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 02 Nov 2023 19:54:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61584
+ <yocto@lists.yoctoproject.org>; Thu, 02 Nov 2023 23:15:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61585
 
-On Tue 2023-10-31 @ 08:58:04 AM, Trevor Woerner via lists.yoctoproject.org wrote:
-> Add a new MACHINE: rock-pi-s
-> 
-> changes since v1:
-> - while the actual patch to add the rock-pi-s was not merged, all of the
->   cleanup patches that were submitted in advance of the "add" patch (and
->   were part of the original series) were applied, therefore those patches
->   are dropped from this version
-> - upstream master now contains a version of u-boot that supports the
->   rock-pi-s, therefore using rk3308-specific overrides in the u-boot
->   bbappend is no longer necessary
-> - add a separate rk3308-rkbin recipe instead of loading the rockchip-rkbin
->   recipe with rk3308-specific overrides
-> - allow the user to choose whether they want the rkbin and u-boot debug
->   messages to show up on the console (i.e. use an older version of rkbin)
->   or have gibberish until the linux kernel starts (use the latest version
->   of rkbin) by setting (or not) a variable; default is to use an older
->   version
-> 
-> Trevor Woerner (1):
->   rock-pi-s: add
-> 
->  README                                      | 22 +++++++++++
->  conf/machine/include/rk3308.inc             | 18 +++++++++
->  conf/machine/rock-pi-s.conf                 | 11 ++++++
->  recipes-bsp/rkbin/rk3308-rkbin_git.bb       | 41 +++++++++++++++++++++
->  recipes-bsp/rkbin/rockchip-rkbin_git.bb     | 10 +++++
->  recipes-bsp/u-boot/u-boot%.bbappend         |  8 ++++
->  recipes-kernel/linux/linux-yocto_%.bbappend |  1 +
->  7 files changed, 111 insertions(+)
->  create mode 100644 conf/machine/include/rk3308.inc
->  create mode 100644 conf/machine/rock-pi-s.conf
->  create mode 100644 recipes-bsp/rkbin/rk3308-rkbin_git.bb
+Add a script which can either mark one --layer --branch or
+use data in a --from-file to mark multiple layer:branch objects
+as Yocto Project Compatible.
 
-Applied to meta-rockchip, master branch.
+The --from-file is a json file that is compatible with or which
+can be generated by:
+
+yocto-autobuilder-helper/scripts/list-yp-compatible-layers.py
+
+[YOCTO #15093]
+
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ layerindex/tools/mark_yp_compatible_layers.py | 142 ++++++++++++++++++
+ 1 file changed, 142 insertions(+)
+ create mode 100755 layerindex/tools/mark_yp_compatible_layers.py
+
+diff --git a/layerindex/tools/mark_yp_compatible_layers.py b/layerindex/tools/mark_yp_compatible_layers.py
+new file mode 100755
+index 0000000..1d2dc32
+--- /dev/null
++++ b/layerindex/tools/mark_yp_compatible_layers.py
+@@ -0,0 +1,142 @@
++#!/usr/bin/env python3
++
++# Mark layers that are Yocto Project Compatible (2.0) on the AutoBuilder
++#
++# Copyright (C) 2017 Intel Corporation
++# Author: Paul Eggleton <paul.eggleton@linux.intel.com>
++# Copyright (C) 2023 Konsulko Group
++# Author: Tim Orling <tim.orling@konsulko.com>
++#
++# Licensed under the MIT license, see COPYING.MIT for details
++#
++# SPDX-License-Identifier: MIT
++#
++# Input json file can be for instance generated by:
++# https://git.yoctoproject.org/yocto-autobuilder-helper/tree/scripts/list-yp-compatible-layers.py
++
++import sys
++import os
++
++sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
++
++import argparse
++from argparse import ArgumentError
++from layerindex import utils
++import logging
++import json
++from json import JSONDecodeError
++
++class DryRunRollbackException(Exception):
++    pass
++
++class LayerNotFoundException(Exception):
++    pass
++
++class BranchNotFoundException(Exception):
++    pass
++
++class YPCompatibleVersionNotFoundException(Exception):
++    pass
++
++logger = utils.logger_create('LayerIndexYoctoProjectCompatible')
++
++
++
++def main():
++    parser = argparse.ArgumentParser(description='Mark layers that are Yocto Project Compatible (2.0)')
++
++    layer_branch_arg_group = parser.add_argument_group()
++    layer_branch_arg_group.add_argument("-l", "--layer",
++            help = "Layer to mark as Yocto Project Compatible",
++            action="store", dest="layer")
++    layer_branch_arg_group.add_argument("-b", "--branch",
++            help = "Branch to mark as Yocto Project Compatible",
++            action="store", dest="branch")
++    file_or_layer_branch_arg_group = layer_branch_arg_group.add_mutually_exclusive_group()
++    file_or_layer_branch_arg_group.add_argument("-f", "--from-file",
++            help = "(Recommended) JSON file compatible with 'list-yp-compatible-layers' script from 'yocto-autobuilder-helper' to use for input",
++            action="store", dest="from_file")
++    parser.add_argument("-v", "--compatible-version",
++            help = "Yocto Project Compatible version",
++            action="store", dest="yp_compatible_version", default="2.0")
++    parser.add_argument("-n", "--dry-run",
++            help = "Don't write any data back to the database",
++            action="store_true", dest="dryrun")
++    parser.add_argument("-d", "--debug",
++            help = "Enable debug output",
++            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
++    parser.add_argument("-q", "--quiet",
++            help = "Hide all output except error messages",
++            action="store_const", const=logging.ERROR, dest="loglevel")
++
++    args = parser.parse_args()
++
++    utils.setup_django()
++    import settings
++    from layerindex.models import Branch, LayerBranch, LayerItem, YPCompatibleVersion
++    from django.db import transaction
++
++    logger.setLevel(args.loglevel)
++
++    def update_from_layer_branch(layer, branch, yp_compatible_version, dryrun):
++        try:
++            with transaction.atomic():
++                try:
++                    layer_id=LayerItem.objects.filter(name__exact=layer)[0].id
++                except IndexError:
++                    raise LayerNotFoundException( f'Layer {layer} not found in layerindex ddatabase')
++                try:
++                    branch_id=Branch.objects.filter(name__exact=branch)[0].id
++                except IndexError:
++                    raise BranchNotFoundException( f'Branch {branch} not found in layerindex database')
++                try:
++                    yp_compatible_version_instance=YPCompatibleVersion.objects.filter(name__exact=yp_compatible_version)[0]
++                except IndexError:
++                    raise YPCompatibleVersionNotFoundException( f' Yocto Project Compatible Version {yp_compatible_version} not found in layerindex database')
++                for layerbranch in LayerBranch.objects.filter(layer=layer_id,branch=branch_id):
++                    logger.debug(' BEFORE: Yocto Project Compatible %s   %s:%s' % (layerbranch.yp_compatible_version, layerbranch.layer, layerbranch.branch))
++                    layerbranch.yp_compatible_version = yp_compatible_version_instance
++                    layerbranch.save()
++                    logger.info('Yocto Project Compatible %s   %s:%s' % (layerbranch.yp_compatible_version, layerbranch.layer, layerbranch.branch))
++
++                if dryrun:
++                    raise DryRunRollbackException()
++        except DryRunRollbackException:
++            pass
++
++    def update_from_json_file( from_file, yp_compatible_version, dryrun ):
++        try:
++            with open(from_file) as fp:
++                input_dict = json.load(fp)
++                for job in input_dict:
++                    for branch in input_dict[job]:
++                        try:
++                            for layer in input_dict[job][branch]:
++                                try:
++                                    update_from_layer_branch( layer, branch, yp_compatible_version, dryrun )
++                                except LayerNotFoundException as err:
++                                    logger.warning( f"{err}" )
++                                    pass
++                        except BranchNotFoundException as err:
++                            logger.warning( f"{err}" )
++                            pass
++        except DryRunRollbackException:
++            pass
++        except FileNotFoundError as err:
++            logger.critical( f"{err}: File {from_file} not found" )
++            sys.exit(1)
++        except JSONDecodeError as err:
++            logger.critical( f"{err}: JSONDecodeError loading file {from_file}" )
++            sys.exit(1)
++
++    if args.layer and args.branch and not args.from_file:
++        update_from_layer_branch( layer=args.layer, branch=args.branch, yp_compatible_version=args.yp_compatible_version, dryrun=args.dryrun )
++    elif args.from_file and not ( args.branch or args.layer ):
++        update_from_json_file( from_file=args.from_file, yp_compatible_version=args.yp_compatible_version, dryrun=args.dryrun )
++
++    sys.exit(0)
++
++
++if __name__ == "__main__":
++    main()
++
+-- 
+2.34.1
+
 
