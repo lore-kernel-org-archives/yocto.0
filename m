@@ -2,59 +2,59 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04797C4332F
-	for <webhook@archiver.kernel.org>; Fri,  3 Nov 2023 13:45:16 +0000 (UTC)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.web11.51400.1699019113643897646
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E322CC4332F
+	for <webhook@archiver.kernel.org>; Fri,  3 Nov 2023 13:46:05 +0000 (UTC)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web10.52214.1699019161764923359
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Nov 2023 06:45:14 -0700
+ Fri, 03 Nov 2023 06:46:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=YEwMNunb;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40806e4106dso13006035e9.1
-        for <yocto@lists.yoctoproject.org>; Fri, 03 Nov 2023 06:45:13 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Xpnow7N2;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-32ded3eb835so1406375f8f.0
+        for <yocto@lists.yoctoproject.org>; Fri, 03 Nov 2023 06:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1699019112; x=1699623912; darn=lists.yoctoproject.org;
+        d=linuxfoundation.org; s=google; t=1699019160; x=1699623960; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eYctzp2XiLByvyJb7ASwqEKlg6T83EPuadSR5eRYRsI=;
-        b=YEwMNunblrseZWZEPqAVHTnBqlJY+0hoq0LiSO/vDIL7k6R+/yNLQc5zkNPEp9Rlcn
-         DNkmP+DHt/WWCVKECUg7zt9cyBC+8UArOdclxhqUkku7ESKSPiJXCpw0R/96AVt24sJc
-         5j2BBEkXBG9PnQdB7LlzkvTkUPcpxyc/2AiPE=
+        bh=53YtK9SXT5LxB6VgeBjX+Vr+gwMUylpGJi61WB9cuQI=;
+        b=Xpnow7N2yRUqBI7aoaBACvjQCrULw6RYaop952iX1Hqg24lry543U0bFXik3sKEztx
+         5KB9sNYPu1l9FWVtgUGGsABeisgYHz3cPpCQ1xNAYJfXQCrO5/XX1Y9GzmlBwtUJaTzc
+         CPu2S1YaA7Q5CiwtzOg1XO5VEPl3m4AtjFHqU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699019112; x=1699623912;
+        d=1e100.net; s=20230601; t=1699019160; x=1699623960;
         h=content-transfer-encoding:mime-version:message-id:date:subject:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eYctzp2XiLByvyJb7ASwqEKlg6T83EPuadSR5eRYRsI=;
-        b=O2gg4j9pCGJ2bAxoSNvLFbzWW2ldxsYNlEBWDztI4ag9iLTKOMOr9H5TSKSDFiWCnR
-         nXDUigXIOkHxdqs6pr5ZXP00eU027qKVtwDgZS3v6xz1MPkz534k1vqSO4o701w6rWF/
-         TA07YFyXeOCRZmvoHlCcF45AUpNZbtZlO1bQv+gvSD8d91QTSEjJKV6vtFqlmWf9TrVJ
-         20UTUoAXJZlI4Gim0tHKcJqbC/A9+MnQ+1D1A25VrX81506a+1hUqgDzMcOorIiGXtA4
-         1MEL4RAufrWLH0bNf9+aHtTdH7PHYinadrGa3UrKxPSSBQyS+JSuuHSb+0GaURBUvjaw
-         wEeA==
-X-Gm-Message-State: AOJu0Yxzhi3dEhtdeKnzXZxOtCtCw09jWI0caqdRLrzUA6J7zllrgxmY
-	+FG6dpz+coZ3GmTYIr1c1/Z4mZg8AWWqkM126Ug=
-X-Google-Smtp-Source: AGHT+IH9UtqWbwMhkuoAAWZmrtAYAzaRV/UkWReAQdR1AsTmH/8EQyHNZdjhaO0sCxF7zGzvMQugfw==
-X-Received: by 2002:a05:600c:21cf:b0:401:b92f:eec5 with SMTP id x15-20020a05600c21cf00b00401b92feec5mr2873334wmj.9.1699019111360;
-        Fri, 03 Nov 2023 06:45:11 -0700 (PDT)
+        bh=53YtK9SXT5LxB6VgeBjX+Vr+gwMUylpGJi61WB9cuQI=;
+        b=NAkab6CCQsXvKAS1FAsNYbXk+asBcRSvFBTnTfwKqzExWjX3f04nXxlOEwFUrWA2AE
+         8SlHXUvTiwpx3nfNj6fxZvyLmYqPspXMrmapea23t5VhoUEZiz87JdRrMcEgEGqpmdco
+         iMiUCyM/md2cWq5S3Vk9romuVKhbgJC4spe7rqiN/uB/PJeMNlX6ThwFzcf8LBPX4KLU
+         1dSQrFqW25bj4b/LDwSVUNF6zux5j54eey86z0SOG2LlhYXDvSICtgs0nSjKZord0l2i
+         q8rNaSDABa/0gGQ61RCpFONvvlXWCm+7TCSf34NUn4Qu79iC36jpPxznZIp22lAYbuUN
+         NOPw==
+X-Gm-Message-State: AOJu0YwLtzf3oQGMhYPgjGA2qJhfL9m3sQU4c8jSirZp6l/rxpNpudYS
+	3gnS/1OVtw83OZVOrm/Ww9PohL9kETq5ne6NeW8=
+X-Google-Smtp-Source: AGHT+IGjqrY1lZ43Vs3zDcbr3W3Gd+xcnrFx4pZ29n9hwt03gi//BWdSxY2QfbOFavL3tzO1uHbiZw==
+X-Received: by 2002:a5d:6d02:0:b0:32f:8430:3baa with SMTP id e2-20020a5d6d02000000b0032f84303baamr12707715wrq.28.1699019159460;
+        Fri, 03 Nov 2023 06:45:59 -0700 (PDT)
 Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:e0d8:6688:b1fe:2c10])
-        by smtp.gmail.com with ESMTPSA id m36-20020a05600c3b2400b004075d5664basm2609918wms.8.2023.11.03.06.45.10
+        by smtp.gmail.com with ESMTPSA id e5-20020a5d5945000000b0032d81837433sm1904650wri.30.2023.11.03.06.45.58
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Nov 2023 06:45:10 -0700 (PDT)
+        Fri, 03 Nov 2023 06:45:59 -0700 (PDT)
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper] [PATCH] [kirkstone] config.json/scripts: Update to handle CVE checks for meta-oe
-Date: Fri,  3 Nov 2023 13:45:09 +0000
-Message-Id: <20231103134509.2657074-1-richard.purdie@linuxfoundation.org>
+Subject: [yocto-autobuilder-helper] [PATCH] [dunfell] config.json/scripts: Update to handle CVE checks for meta-oe
+Date: Fri,  3 Nov 2023 13:45:58 +0000
+Message-Id: <20231103134558.2657149-1-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 03 Nov 2023 13:45:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61596
+ <yocto@lists.yoctoproject.org>; Fri, 03 Nov 2023 13:46:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61597
 
 Backport the recent CVE script changes from the master branch and add in cvelayer.bbclass
 as a way to exclude specific paths from the CVE check. Master can use the layer overrides
@@ -73,10 +73,10 @@ Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
  create mode 100644 scripts/cvecheck/cvelayer.bbclass
 
 diff --git a/config.json b/config.json
-index 86ba2f4..7828462 100644
+index c5d478d..3520e9a 100644
 --- a/config.json
 +++ b/config.json
-@@ -910,7 +910,7 @@
+@@ -835,7 +835,7 @@
              }
          },
          "metrics" : {
@@ -85,7 +85,7 @@ index 86ba2f4..7828462 100644
              "extravars" : [
                  "INHERIT += 'cve-check'",
                  "BB_DISKMON_DIRS = ''",
-@@ -920,12 +920,35 @@
+@@ -845,12 +845,35 @@
                  "BB_SERVER_TIMEOUT = '0'"
              ],
              "step1" : {
