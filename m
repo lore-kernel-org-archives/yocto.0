@@ -1,183 +1,99 @@
-Return-Path: <roman.leduc@univ-pau.fr>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D85F3C4332F
-	for <webhook@archiver.kernel.org>; Fri,  3 Nov 2023 15:01:26 +0000 (UTC)
-Subject: [nanbield] meta-intel-fpga layer support
-To: yocto@lists.yoctoproject.org
-From: roman.leduc@univ-pau.fr
-X-Originating-Location: Pau, Nouvelle-Aquitaine, FR (193.55.218.79)
-X-Originating-Platform: Linux Chrome 119
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DBED1C4332F
+	for <webhook@archiver.kernel.org>; Fri,  3 Nov 2023 15:05:06 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+ by mx.groups.io with SMTP id smtpd.web10.55719.1699023899676309233
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 03 Nov 2023 08:05:00 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=fTUTwlkY;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.197, mailfrom: michael.opdenacker@bootlin.com)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B233C1C0010;
+	Fri,  3 Nov 2023 15:04:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699023896;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=M06/4IioL8oF/VoihVfcHJMHkiYUs1Ju8wFPtlxuRe4=;
+	b=fTUTwlkYUGwud0RiEMdZVcqOc+qQ5RnUZnEk4SmR01ICrcwztxLrw1EfKOjdFYo8mqiiX7
+	0ubVL+ejseGGzrN+R/uBifaAb00JOCVNDxu9aDwVOgTuR7N3ZqJu0NdjwFJvobnMBON1f7
+	Nl+A1Jymt1qErHRj+W0AZueiyJpwEw75Ts41EJ7uXlKteh+ncVBIqWWj94w4XWLlVBtOyh
+	IirDDz44ZuKyjFc1FpAuhfgPUaII9nb+0pefkEU4ArHkckBQGPupqvGMSNMyK4DvJNwdjD
+	7YZ4plW2lQv+nEbbWyNNzXUuSHtVfixnK6fGYTWwdOMsUqiEDuLYQwl7B1Bz/w==
+Message-ID: <4b04aad4-03e8-462e-bd27-a1de18708083@bootlin.com>
+Date: Fri, 3 Nov 2023 16:04:55 +0100
 MIME-Version: 1.0
-Date: Fri, 03 Nov 2023 08:01:19 -0700
-Message-ID: <YEAF.1699023679569756446.0cWP@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="JtdXOxLVdQ7wvKiHpPyl"
+User-Agent: Mozilla Thunderbird
+Cc: Regan BUSSY-SOCRATE <regan.bussy-socrate@navocap.com>
+Subject: Re: Package dependencies not generated?
+Content-Language: en-US
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <0e2b4e8a-58ab-4f7b-8548-1fd2011c5485@bootlin.com>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+In-Reply-To: <0e2b4e8a-58ab-4f7b-8548-1fd2011c5485@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: michael.opdenacker@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 03 Nov 2023 15:01:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61598
+ <yocto@lists.yoctoproject.org>; Fri, 03 Nov 2023 15:05:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61599
 
---JtdXOxLVdQ7wvKiHpPyl
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Greetings,
 
-Hello dear community,
-
-I was trying to use django recipe with core-image-minimal system file (poky=
- langdale release) because it supports meta-intel-fpga layer.
-
-In order to work with django I need also virtualenv library. The only virtu=
-alenv available on langdale release is virtualenv v1.11.4 ( https://layers.=
-openembedded.org/layerindex/recipe/341147/ ) and unfortunately, it seems no=
-t compatible with python3 from the same langdale release which is python3 v=
-3.10.6 ( https://layers.openembedded.org/layerindex/recipe/325778/ ) !
-I say this is not compatible, because when I run "virtualenv env" in prompt=
- it outputs me the following :
-
->=20
->=20
->=20
-> New python executable in env/bin/python3
->=20
->=20
->=20
-> Not overwriting existing python script env/bin/python (you must use
-> env/bin/python3)
->=20
->=20
->=20
-> Traceback (most recent call last):
->=20
->=20
->=20
-> File "/usr/bin/virtualenv", line 8, in <module>
->=20
->=20
->=20
-> sys.exit(main())
->=20
->=20
->=20
-> File "/usr/lib/python3.10/site-packages/virtualenv.py", line 815, in main
->=20
->=20
->=20
-> create_environment(home_dir,
->=20
->=20
->=20
-> File "/usr/lib/python3.10/site-packages/virtualenv.py", line 982, in
-> create_environment
->=20
->=20
->=20
-> py_executable =3D os.path.abspath(install_python(
->=20
->=20
->=20
-> File "/usr/lib/python3.10/site-packages/virtualenv.py", line 1459, in
-> install_python
->=20
->=20
->=20
-> fix_local_scheme(home_dir, symlink)
->=20
->=20
->=20
-> File "/usr/lib/python3.10/site-packages/virtualenv.py", line 1530, in
-> fix_local_scheme
->=20
->=20
->=20
-> if sysconfig._get_default_scheme() =3D=3D 'posix_local':
->=20
->=20
->=20
-> AttributeError: module 'sysconfig' has no attribute '_get_default_scheme'=
-.
-> Did you mean: 'get_default_scheme'?
->=20
->=20
-
-Especially the last line "...module 'sysconfig' has no attribute '_get_defa=
-ult_scheme'..."
-From this post on stack overflow ( https://stackoverflow.com/questions/7152=
-2731/unable-to-activate-virtual-environment-in-python ) , it seems that vir=
-tualenv version is too old and must be upgraded.
-
-I know that pip recipe can be added, but not sure if poky is made to run "p=
-ip install --upgrade virtualenv" ? Should I try this ?
-
-Also the easiest solution would be to use poky nanbield release, because it=
- provides newest virtualenv v.20.24.5 ( https://layers.openembedded.org/lay=
-erindex/recipe/352609/ ). But unfortunately I didn't find "meta-intel-fpga"=
- layer support on this release ?
-
-What do you think I should do in order to be able to run virtualenv ?
-
---JtdXOxLVdQ7wvKiHpPyl
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello dear community,<br /><br />I was trying to use django recipe with =
-core-image-minimal system file (poky langdale release) because it supports =
-meta-intel-fpga layer.<br /><br />In order to work with django I need also =
-virtualenv library. The only virtualenv available on langdale release is&nb=
-sp;<a href=3D"https://layers.openembedded.org/layerindex/recipe/341147/" ta=
-rget=3D"_blank" rel=3D"noopener">virtualenv v1.11.4</a>&nbsp;and unfortunat=
-ely, it seems not compatible with python3 from the same langdale release wh=
-ich is <a href=3D"https://layers.openembedded.org/layerindex/recipe/325778/=
-" target=3D"_blank" rel=3D"noopener">python3 v3.10.6</a> !<br />I say this =
-is not compatible, because when I run "virtualenv env" in prompt it outputs=
- me the following :</p>
-<blockquote>
-<p><span style=3D"font-size: 8pt;">New python executable in env/bin/python3=
-</span></p>
-<p><span style=3D"font-size: 8pt;">Not overwriting existing python script e=
-nv/bin/python (you must use env/bin/python3)</span></p>
-<p><span style=3D"font-size: 8pt;">Traceback (most recent call last):</span=
-></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; File "/usr/bin/virtualenv", line =
-8, in &lt;module&gt;</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; &nbsp; sys.exit(main())</span></p=
+On 02.11.23 at 19:16, Michael Opdenacker wrote:
+> Greetings,
 >
-<p><span style=3D"font-size: 8pt;">&nbsp; File "/usr/lib/python3.10/site-pa=
-ckages/virtualenv.py", line 815, in main</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; &nbsp; create_environment(home_di=
-r,</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; File "/usr/lib/python3.10/site-pa=
-ckages/virtualenv.py", line 982, in create_environment</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; &nbsp; py_executable =3D os.path.=
-abspath(install_python(</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; File "/usr/lib/python3.10/site-pa=
-ckages/virtualenv.py", line 1459, in install_python</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; &nbsp; fix_local_scheme(home_dir,=
- symlink)</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; File "/usr/lib/python3.10/site-pa=
-ckages/virtualenv.py", line 1530, in fix_local_scheme</span></p>
-<p><span style=3D"font-size: 8pt;">&nbsp; &nbsp; if sysconfig._get_default_=
-scheme() =3D=3D 'posix_local':</span></p>
-<p><span style=3D"font-size: 8pt;">AttributeError: module 'sysconfig' has n=
-o attribute '_get_default_scheme'. Did you mean: 'get_default_scheme'?</spa=
-n></p>
-</blockquote>
-<div>Especially the last line "...module 'sysconfig' has no attribute '_get=
-_default_scheme'..."<br />From <a href=3D"https://stackoverflow.com/questio=
-ns/71522731/unable-to-activate-virtual-environment-in-python" target=3D"_bl=
-ank" rel=3D"noopener">this post on stack overflow</a>, it seems that virtua=
-lenv version is too old and must be upgraded.<br /><br />I know that pip re=
-cipe can be added, but not sure if poky is made to run "pip install --upgra=
-de virtualenv" ? Should I try this ?</div>
-<div><br />Also the easiest solution would be to use poky nanbield release,=
- because it provides newest <a href=3D"https://layers.openembedded.org/laye=
-rindex/recipe/352609/" target=3D"_blank" rel=3D"noopener">virtualenv v.20.2=
-4.5</a>. But unfortunately I didn't find "meta-intel-fpga" layer support on=
- this release ?<br /><br /></div>
-<div>What do you think I should do in order to be able to run virtualenv ?<=
-/div>
+> I compiled rsyslog from meta-oe:
+> bitbake rsyslog
+>
+> I set up a binary feed ("bitbake package-index") and a webserver to 
+> serve it, and when I try to install the rsyslog package, I get:
+> $ opkg install rsyslog
+>  * Solver encountered 1 problem(s):
+>  * Problem 1/1:
+>  *   - conflicting requests
+>  *   - nothing provides libestr0 >= 0.1.11 needed by 
+> rsyslog-8.2306.0-r0.core2-64
+>
+> Indeed, no "*libestr*" package(s) got generated. Why not?
+>
+> I checked RDEPENDS:rsyslog and it contains "logrotate" for which a 
+> package was indeed generated. I thought that shared libraries 
+> dependencies were automatically detected and added to runtime 
+> dependencies. That's confirmed by 
+> https://docs.yoctoproject.org/dev/overview-manual/concepts.html#automatically-added-runtime-dependencies 
+> . Why didn't it happen?
+>
+> I checked that libestr got compiled (it's part of the DEPENDS for 
+> rsyslog), but I can't find any package for it, even in the working area.
+>
+> It sounds like a very basic misconception between my keyboard and my 
+> chair. What did I get wrong?
+>
+> Thanks in advance for your insights.
 
---JtdXOxLVdQ7wvKiHpPyl--
+A simpler way to ask this...
+
+When I build rsyslogd ("bitbake rsyslog"), an ipk package is built for 
+this software, but not for its shared library dependencies, for example 
+for libestr.
+How to explain this?
+
+Thanks in advance
+Cheers
+Michael.
+
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
