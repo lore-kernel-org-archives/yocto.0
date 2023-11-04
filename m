@@ -1,203 +1,241 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <j.casas@falconelectronica.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54ABBC4167B
-	for <webhook@archiver.kernel.org>; Sat,  4 Nov 2023 11:09:24 +0000 (UTC)
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
- by mx.groups.io with SMTP id smtpd.web11.7317.1699096159958495570
- for <yocto@lists.yoctoproject.org>;
- Sat, 04 Nov 2023 04:09:20 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=bpxzmdPz;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.208.174, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2c504a5e1deso39065181fa.2
-        for <yocto@lists.yoctoproject.org>; Sat, 04 Nov 2023 04:09:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1699096158; x=1699700958; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XxNPcw251Bg4Y/FVw1H9vbsDaBSBW3vMw4KLRXRFscM=;
-        b=bpxzmdPz0b3ncLJeK+Z/9Pe5v6KcJZZtvi80yPg/p3aBYd2qfTsvdr9z5Q1MzxV+2O
-         w+kvZWcG99lIHc6nm4HW2Oxhvww7zoX86HsuN/XAEZJnqrb56OXurqlMP+bPKBb0ELZV
-         i8sgi9T/vqVOLbPM2JB7pqpWXTatdtofCCwe8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699096158; x=1699700958;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XxNPcw251Bg4Y/FVw1H9vbsDaBSBW3vMw4KLRXRFscM=;
-        b=R+iclIOrml6UrGcA5GLDQa1IqxeQK9Frah3HdPNcFLcTRSKb9fTmxSWmZZ+3m6sHcc
-         YOF2xJqk1XHOnIFNVvQp2hCjZ1qQT08S5HobnAERG9hDfhGhyPPrgnH5heb548/Qr36c
-         aZF6vomT+x2nQJjHYaeC8JNMb05NWrpz9JPvZ5JR7jdnSTlolcjrCwWbE0FKkWzkIoLG
-         7p1K8xMWdeEtlv3q+SI+LuMZBuR7/4gMcepjhUCKnvt1+VLXc8hUjhof7HQ7AdZ5wkTZ
-         XS/DqR7qooti1yHT5KWhQSjdhrQleOLVCQH3dnp4P2IfTAdfVGwSnjNNHbF/QJEKMyXu
-         N3Jg==
-X-Gm-Message-State: AOJu0Yyjk0OBNna8x5mwqXBtcC/vaMYG8Cp4HgUQkZI+gmt6puOBh5/l
-	URf7O2id/lVAmUsuigPnE1AXzw==
-X-Google-Smtp-Source: AGHT+IHADjUeHKNZPmS5QGUz+hOdN/hUZAXZRb1j7/WaePBYQf6eG0FsavgV4D6JEAHfl9xgS+/Tpw==
-X-Received: by 2002:a2e:b0da:0:b0:2c5:1bd9:f946 with SMTP id g26-20020a2eb0da000000b002c51bd9f946mr20426094ljl.9.1699096157722;
-        Sat, 04 Nov 2023 04:09:17 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:7cfb:21f7:ac1a:8b7c? ([2001:8b0:aba:5f3c:7cfb:21f7:ac1a:8b7c])
-        by smtp.gmail.com with ESMTPSA id k25-20020a05600c1c9900b004067e905f44sm5550633wms.9.2023.11.04.04.09.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Nov 2023 04:09:16 -0700 (PDT)
-Message-ID: <0b1cfe6b26e5c61b1e700e3801900038e2d48f25.camel@linuxfoundation.org>
-Subject: Re: [OE-core] Core workflow: sstate for all, bblock/bbunlock, tools
- for why is sstate not being reused?
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: adrian.freihofer@gmail.com, Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>, Michael Halstead
- <mhalstead@linuxfoundation.org>, Yocto-mailing-list
- <yocto@lists.yoctoproject.org>, ",openembedded-core@lists.openembedded.org"
- <openembedded-core@lists.openembedded.org>, Julien STEPHAN
- <jstephan@baylibre.com>
-Date: Sat, 04 Nov 2023 11:09:15 +0000
-In-Reply-To: <58e2c7a830bceac9b3a8c6cee63f03ae4a118da0.camel@gmail.com>
-References: 
-	<CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
-	 <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
-	 <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
-	 <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
-	 <649b2f000761831cabd1f5737fb5b30a2ffc3654.camel@gmail.com>
-	 <CANNYZj_Cq+cncw5SCGii=Mhj0KGgo=qr=hCuo+wpdvtR9C=Qyg@mail.gmail.com>
-	 <58e2c7a830bceac9b3a8c6cee63f03ae4a118da0.camel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F2DFEC4332F
+	for <webhook@archiver.kernel.org>; Sat,  4 Nov 2023 13:17:34 +0000 (UTC)
+Subject: Missing -lgpiod during linking an application that uses libgpiod
+To: yocto@lists.yoctoproject.org
+From: =?UTF-8?B?SmF2aWVyIENhc2FzIE1hcsOtbg==?= <j.casas@falconelectronica.com>
+X-Originating-Location: Barcelona, Catalonia, ES (139.47.38.236)
+X-Originating-Platform: Windows Chrome 119
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Sat, 04 Nov 2023 06:17:34 -0700
+Message-ID: <DXPs.1699103854360132283.pwwX@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WiWlx3ITC8yrKpR1V9BD"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 04 Nov 2023 11:09:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61611
+ <yocto@lists.yoctoproject.org>; Sat, 04 Nov 2023 13:17:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61612
 
-On Sat, 2023-11-04 at 11:29 +0100, adrian.freihofer@gmail.com wrote:
-> Hi Alex, hi Richard
->=20
-> After some internal discussions, I would like to clarify my previous
-> answers on this topic.
->=20
->  * Usually there are two different workflows
->     - application developers: could use an SDK with a locked sstate-cache=
-.
->     - Yocto/BSP developers: need an unlocked SDK. They change the recipes=
-.
->  * A locked SDK
->     - can work with setscene from SSTATE_MIRRORS
->     - setscene does caching in the SSTATE_DIR (no issue about that)
->     - But network problems can occur during the initial build because
->       bitbake executes many independent setscene tasks. Opening so many
->       independent connections slows down the build, especially if the
->       server treats them as a denial of service attack.
->     - The denial of service problem is difficult to solve because each
->       setscene task runs in its own bibtake task. Reusing a connection to
->       download multiple sstate artifacts seems almost impossible.
->       This is much easier to solve with separate sstate download script.
+--WiWlx3ITC8yrKpR1V9BD
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-FWIW, we did have a similar issue with do_fetch overloading
-servers/proxies/ISPs and added:
+Hi,
 
-do_fetch[number_threads] =3D "4"
+I=E2=80=99m building a Qt application to controls a few GPIOs so, in my rec=
+ipe, I add libgpiod to the DEPENDS variable, but even then the =E2=80=93lgp=
+iod is missing in the linking stage and the build fails with several =E2=80=
+=98undefined reference=E2=80=99 errors to the gpiod functions:
 
-Finding the right place to put a thread limit on overall setscene tasks
-is harder but in theory possible. Or perhaps a "network capable tasks"
-thread limit?
+| /build/tmp/work/cortexa53-crypto-imx-ked-linux/testapp/0.1-r0/recipe-sysr=
+oot-native/usr/bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/aa=
+rch64-ked-linux/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/inou=
+.c:48: undefined reference to `gpiod_chip_get_line'
 
-Is the overload caused by the initial query of sstate presence, or,
-does it happen when the setscene tasks themselves run?
+| /build/tmp/work/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sy=
+sroot-native/usr/bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/=
+aarch64-ked-linux/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/in=
+ou.c:55: undefined reference to `gpiod_line_request_output'
 
+| /build/tmp/work/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sy=
+sroot-native/usr/bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/=
+aarch64-ked-linux/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/in=
+ou.c:61: undefined reference to `gpiod_line_set_value'
 
->  * An unlocked SDK
->     - Tries to download the sstate cache for changed recipes and their
->       dependencies, which obviously can't work.
->     - The useless download requests slow down the build considerably and
->       cause a high load on the servers without any benefit.
+| /build/tmp/work/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sy=
+sroot-native/usr/bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/=
+aarch64-ked-linux/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/in=
+ou.c:67: undefined reference to `gpiod_line_release'
 
-Is this sstate over http(s) or something else? I seem to remember you
-mentioning sftp. If this were using sftp, it would be horribly slow as
-it was designed for a light overhead "does this exist?" check which
-http(s) can manage well.
+| /build/tmp/work/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sy=
+sroot-native/usr/bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/=
+aarch64-ked-linux/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/in=
+ou.c:69: undefined reference to `gpiod_chip_close'
 
-Recently we've been wondering about teaching the hashequiv server about
-"presence", which would then mean the build would only query things
-that stood a good chance of existing.
+This is my recipe:
 
->     - A script which gets a list of sstate artifacts from bitbake and the=
-n
->       does a upfront download works much better
->        + The script runs only when the user calls it or the SDK gets boot=
--
->          strapped
->        + The script uses a reasonable amount of parallel connections whic=
-h
->          are re-used for more then one artifact download
+SUMMARY =3D "GPIO QT TEST APPLICATION"
 
-Explaining to users they need to do X before Y quickly gets tiring,
-both for people explaining it and the people doing it trying to
-remember. I'd really like to get to a point where the system "does the
-right thing" if we can.
+DESCRIPTION =3D "GPIO user interface build with QT"
 
-I don't believe the problems you describe are insurmountable. If you
-are using sftp, that is going to be a big chunk of the problem as the
-system assumes something faster is available. Yes, I've taken patches
-to make sftp work but it isn't recommended at all. I appreciate there
-would be reasons why you use sftp but if it is possible to get a list
-of "available sstate" via other means, it would improve things.
+LICENSE =3D "GPLv2"
 
->  * Idea for a smart lock/unlock implementation
->     - Form a user's perspective a locked vs. an unlocked SDK does not mak=
-e
->       much sense. It makes more sense if the SDK would automatically
->       download the sstate-cache if it is expected to be available.
->       Lets think about an implementation (which allows to override the
->       logic) to switch from automatic to manual mode:
->      =20
->       SSTATE_MIRRORS_ENABLED ?=3D "${is_sstate_mirror_available()}"
+LIC_FILES_CHKSUM =3D " file://${COREBASE}/meta/files/common-licenses/GPL-2.=
+0-only;md5=3D801f80980d171dd6425610833a22dbe6 ( file://$%7bCOREBASE%7d/meta=
+/files/common-licenses/GPL-2.0-only;md5=3D801f80980d171dd6425610833a22dbe6 =
+) "
 
-What determines this availability? I worry that is something very
-fragile and specific to your use case. It is also not an all or nothing
-binary thing.
+SRC_URI =3D "<source files added here>"
 
->       In our case the sstate mirror is expected to provide all artifacts
->       for tagged commits and for some git branches of the layer
->       repositories.
->       The sstate is obviousely not usable for a "dirty" git layer
->       repository.
+DEPENDS +=3D "qtbase qtdeclarative qtmultimedia qtwebengine *libgpiod* "
 
-That isn't correct and isn't going to work. If I make a single change
-locally, there is a good chance that 99.9% of the sstate could still be
-valid in some cases. Forcing the user through 10 hours of rebuild when
-potentially that much was available is a really really bad user
-experience.
+RDEPENDS:${PN} +=3D "qtxmlpatterns qtdeclarative-qmlplugins qtbase-plugins =
+ttf-dejavu-sans qtquickcontrols qtquickcontrols2 qtfreevirtualkeyboard "
 
->  That's what the is_sstate_mirror_available function
->       could check to automatically enable and disable lazy downloads.
->      =20
->     - If is_sstate_mirror_available() returns false, it should still be
->       possible to initiate a sstate-cache download manually.
->      =20
->  * Terminology
->     - Older Yocto Releases:
->        + eSDK means an installer which provides a different environment w=
-ith
->          different tools
->        + The eSDK was static, with a locked sstate cache
->        + Was for one MACHINE, for one image...
->     - Newer Yocto Releases:
->        + The bitbake environment offers all features of the eSDK installe=
-r. I
->          consider this as already implemented with meta-ide-support and
->          build-sysroots.
+S =3D "${WORKDIR}"
 
-Remember bblock and bbunlock too. These provide a way to fix or unlock
-specific sections of the codebase. Usually a developer has a pretty
-good idea of which bits they want to allow to change. I don't think
-people have yet realised/explored the potential these offer.
+do_install:append () {
 
-Cheers,
+install -d ${D}${bindir}
 
-Richard
+install -m 0775 qt_testgpio ${D}${bindir}
+
+}
+
+FILES:${PN} +=3D "${bindir}/qt_testgpio"
+
+FILES:${PN} +=3D "/opt/*"
+
+inherit qmake5
+
+What am I missing? Shouldn=E2=80=99t the inclusion of libpgiod library to t=
+he DEPENDS variable result in the addition of =E2=80=93lgpiod to the link c=
+ommand? I tried to add LDFLAGS:append =3D =E2=80=9C =E2=80=93lgpiod=E2=80=
+=9D but it didn=E2=80=99t solve the problem.
+
+Any help will be appreciated.
+
+Kind regards,
+
+Javi
+
+--WiWlx3ITC8yrKpR1V9BD
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">Hi,</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">I=E2=80=99m building a Qt application to=
+ controls a few GPIOs so, in my recipe, I add libgpiod to the DEPENDS varia=
+ble, but even then the =E2=80=93lgpiod is missing in the linking stage and =
+the build fails with several =E2=80=98undefined reference=E2=80=99 errors t=
+o the gpiod functions:</span></p>
+<br/>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">| /build/tmp/work=
+/cortexa53-crypto-imx-ked-linux/testapp/0.1-r0/recipe-sysroot-native/usr/bi=
+n/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/aarch64-ked-linux/1=
+1.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/inou.c:48: undefined =
+reference to `gpiod_chip_get_line&#39;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">| /build/tmp/work=
+/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sysroot-native/usr/=
+bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/aarch64-ked-linux=
+/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/inou.c:55: undefine=
+d reference to `gpiod_line_request_output&#39;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">| /build/tmp/work=
+/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sysroot-native/usr/=
+bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/aarch64-ked-linux=
+/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/inou.c:61: undefine=
+d reference to `gpiod_line_set_value&#39;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">| /build/tmp/work=
+/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sysroot-native/usr/=
+bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/aarch64-ked-linux=
+/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/inou.c:67: undefine=
+d reference to `gpiod_line_release&#39;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">| /build/tmp/work=
+/cortexa53-crypto-imx-ked-linux/ testapp /0.1-r0/recipe-sysroot-native/usr/=
+bin/aarch64-ked-linux/../../libexec/aarch64-ked-linux/gcc/aarch64-ked-linux=
+/11.4.0/ld: /usr/src/debug/ testapp /0.1-r0/build/../m4/inou.c:69: undefine=
+d reference to `gpiod_chip_close&#39;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">This is my recipe=
+:</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">SUMMARY =3D &#34;=
+GPIO QT TEST APPLICATION&#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">DESCRIPTION =3D &=
+#34;GPIO user interface build with QT&#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">LICENSE =3D &#34;=
+GPLv2&#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">LIC_FILES_CHKSUM =
+=3D &#34;<a href=3D"file://$%7bCOREBASE%7d/meta/files/common-licenses/GPL-2=
+.0-only;md5=3D801f80980d171dd6425610833a22dbe6">file://${COREBASE}/meta/fil=
+es/common-licenses/GPL-2.0-only;md5=3D801f80980d171dd6425610833a22dbe6</a>&=
+#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">SRC_URI =3D &#34;=
+&lt;source files added here&gt;&#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">DEPENDS +=3D &#34=
+;qtbase qtdeclarative qtmultimedia qtwebengine <strong>libgpiod</strong>&#3=
+4;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">RDEPENDS:${PN} +=
+=3D &#34;qtxmlpatterns qtdeclarative-qmlplugins qtbase-plugins ttf-dejavu-s=
+ans qtquickcontrols qtquickcontrols2 qtfreevirtualkeyboard &#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">S =3D &#34;${WORK=
+DIR}&#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">do_install:append=
+ () {</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 install -d ${D}${bindir}</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 install -m 0775 qt_testgpio ${D}${bindir}</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">}</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">FILES:${PN} +=3D =
+&#34;${bindir}/qt_testgpio&#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">FILES:${PN} +=3D =
+&#34;/opt/*&#34;</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"font-family: Consolas; mso-ansi-language: EN-US;">inherit qmake5</s=
+pan></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">What am I missing? Shouldn=E2=80=99t the=
+ inclusion of libpgiod library to the DEPENDS variable result in the additi=
+on of =E2=80=93lgpiod to the link command? I tried to add LDFLAGS:append =
+=3D =E2=80=9C =E2=80=93lgpiod=E2=80=9D but it didn=E2=80=99t solve the prob=
+lem.</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">=C2=A0<br/></span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">Any help will be appreciated.</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">=C2=A0</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">Kind regards,</span></p>
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">Javi</span></p>
+
+--WiWlx3ITC8yrKpR1V9BD--
 
