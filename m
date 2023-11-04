@@ -1,94 +1,74 @@
-Return-Path: <roman.leduc@univ-pau.fr>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F2063C4332F
-	for <webhook@archiver.kernel.org>; Fri,  3 Nov 2023 21:23:19 +0000 (UTC)
-Subject: Re: Private: Re: [yocto] [nanbield] meta-intel-fpga layer support
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F15DCC4332F
+	for <webhook@archiver.kernel.org>; Sat,  4 Nov 2023 05:49:39 +0000 (UTC)
+Received: from a27-23.smtp-out.us-west-2.amazonses.com (a27-23.smtp-out.us-west-2.amazonses.com [54.240.27.23])
+ by mx.groups.io with SMTP id smtpd.web11.4783.1699076977612231497
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 03 Nov 2023 22:49:37 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=D82/1zVX;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=ohfaITl5;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.23, mailfrom: 0101018b98e13019-57bc23d2-d205-47de-bd0b-d04b00fe895a-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1699076976; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=1+TJShjz+35qsAR6GPW8Pa5T7UUug5/UWNDhTsjVnCI=;
+	b=D82/1zVXhG3SX8KLuXoQUfnnRm3Q9Ca43bknIl/KNOi2WVAfLkLiozdAYEWrpsMx
+	8M8Hgd44Y+9F7mDRrg21ssXQwg87t+KNKN81x1nbEI/YrhNn/smumlNDHQ9oD7Atv2l
+	WS4VjLz4QtSCTEttAAs11khit/nDBcvMi2NT0AqI=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1699076976;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=1+TJShjz+35qsAR6GPW8Pa5T7UUug5/UWNDhTsjVnCI=;
+	b=ohfaITl5U0ZqJkZkDFe7v18vGvEVcI9bwWa7rEmQzI9vFvfK3Ety4ZjDJJhmF9V1
+	GgcWc947VvyFReLhScW5ut8YqFkBDKlNR0kxvsRCWsF9WTv2odfiQBAkRn26dL7RXl/
+	DAgVpPSmWI0PoJytKLYA7lb1eyzX8T+RreszEtSI=
 To: yocto@lists.yoctoproject.org
-From: roman.leduc@univ-pau.fr
-X-Originating-Location: Montardon, Nouvelle-Aquitaine, FR (77.84.238.6)
-X-Originating-Platform: Windows Chrome 118
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Fri, 03 Nov 2023 14:23:15 -0700
-References: <40A4B9D5-E62E-4375-9F6F-2DD9C1EBCACF@arm.com>
-In-Reply-To: <40A4B9D5-E62E-4375-9F6F-2DD9C1EBCACF@arm.com>
-Message-ID: <12718.1699046595108856154@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="kADhyLPfyx1i1Yoxhb6s"
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.0.14.rc1)
+Message-ID: <0101018b98e13019-57bc23d2-d205-47de-bd0b-d04b00fe895a-000000@us-west-2.amazonses.com>
+Date: Sat, 4 Nov 2023 05:49:36 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.11.04-54.240.27.23
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 03 Nov 2023 21:23:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61608
+ <yocto@lists.yoctoproject.org>; Sat, 04 Nov 2023 05:49:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61609
 
---kADhyLPfyx1i1Yoxhb6s
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-Yes sorry, new here as new with yocto,
+A build flagged for QA (yocto-4.0.14.rc1) was completed on the autobuilder and is available at:
 
-Actually I discovered yocto through guides along with intel fpga-soc boards=
-. These guides specify briefly how to use bitbake to build our system file =
-based on poky, and add existing recipes/layers.
 
-All what I did is the following :
+    https://autobuilder.yocto.io/pub/releases/yocto-4.0.14.rc1
 
-- I want recipe "django" which depends on layers "openembedded-core", "meta=
--python", "meta-oe".
-- I git clone in my folder the "meta-openembedded" repo that contains "meta=
--python" and "meta-oe". I don't clone "openembedded-core" since it is alrea=
-dy included (partially) in "poky" from what I understood.
-- I add django to my local.conf=C2=A0 : CORE_IMAGE_EXTRA_INSTALL +=3D " dja=
-ngo "
-- I add layers to my bblayers.conf : BBLAYERS +=3D " ${TOPDIR}/../meta-open=
-embedded/meta-python "
-: BBLAYERS +=3D " ${TOPDIR}/../meta-openembedded/meta-oe "
-- and I build the systemfile with bitbake "core-image-full-cmdline" for ins=
-tance (it can either be core-image-minimal, I guess this doesn't affect beh=
-avior on adding packages)
 
-I didn't modify anything else beside adding these lines in my .conf files, =
-since guide I was following didn't mention something else necessary. Did I =
-miss a step for adding modules of a recipe ? I thought they were all includ=
-ed by default.
+Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6132
 
-I might mention but I suppose it doesn't affect something, I changed ' MACH=
-INE =3D "arria10" ' in local.conf which is my fpga-soc device.
+Build hash information: 
 
-Thanks again,
+bitbake: 6c1ffa9091d0c53a100e8c8c15122d28642034bd
+meta-agl: 09890bc1ce3d1836f0e35fbae7713f54d70a72ae
+meta-arm: b187fb9232ca0a6b5f8f90b4715958546fc41d73
+meta-aws: 408f9331156ec101014cf065314d3b90e79e6814
+meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+meta-intel: 3f0115e9e59f94af54b74838f4f33339ea7584ae
+meta-mingw: f6b38ce3c90e1600d41c2ebb41e152936a0357d7
+meta-openembedded: 79a6f60dabad9e5b0e041efa91379447ef030482
+meta-virtualization: 2d8b3cba8ff27c9ec2187a52b6a551fe1dcfaa07
+oecore: 0eb8e67aa6833df0cde29833568a70e65c21d7e5
+poky: d8d6d921fad14b82167d9f031d4fca06b5e01883
 
---kADhyLPfyx1i1Yoxhb6s
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-Yes sorry, new here as new with yocto,<br /><br />Actually I discovered yoc=
-to through guides along with intel fpga-soc boards. These guides specify br=
-iefly how to use bitbake to build our system file based on poky, and add ex=
-isting recipes/layers.<br /><br />All what I did is the following :<br /><b=
-r />- I want recipe "django" which depends on layers "openembedded-core", "=
-meta-python", "meta-oe".<br />- I git clone in my folder the "meta-openembe=
-dded" repo that contains "meta-python" and "meta-oe". I don't clone "openem=
-bedded-core" since it is already included (partially) in "poky" from what I=
- understood.<br />- I add django to my local.conf&nbsp; :&nbsp;<span style=
-=3D"background-color: initial; color: var(--color-brown); font-family: var(=
---font-family-monospace);">CORE_IMAGE_EXTRA_INSTALL +=3D " django "<br />- =
-I add layers to my bblayers.conf :&nbsp;</span><span style=3D"color: var(--=
-pre-foreground); font-family: var(--font-family-monospace);">BBLAYERS +=3D =
-" ${TOPDIR}/../meta-openembedded/meta-python "<br /></span>&nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; : BBLAYERS +=3D " ${TOPDIR}/../meta-openembedded/met=
-a-oe<span style=3D"background-color: initial; color: var(--color-brown); fo=
-nt-family: var(--font-family-monospace);">&nbsp;"<br />- and I build the sy=
-stemfile with bitbake "core-image-full-cmdline" for instance (it can either=
- be core-image-minimal, I guess this doesn't affect behavior on adding pack=
-ages)<br /><br />I didn't modify anything else beside adding these lines in=
- my .conf files, since guide I was following didn't mention something else =
-necessary. Did I miss a step for adding modules of a recipe ? I thought the=
-y were all included by default.<br /><br />I might mention but I suppose it=
- doesn't affect something, I changed ' MACHINE =3D "arria10" ' in local.con=
-f which is my fpga-soc device.<br /><br />Thanks again,<br /></span>
 
---kADhyLPfyx1i1Yoxhb6s--
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
