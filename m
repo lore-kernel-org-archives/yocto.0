@@ -1,74 +1,175 @@
-Return-Path: <pokybuild@yoctoproject.org>
+Return-Path: <adrian.freihofer@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F15DCC4332F
-	for <webhook@archiver.kernel.org>; Sat,  4 Nov 2023 05:49:39 +0000 (UTC)
-Received: from a27-23.smtp-out.us-west-2.amazonses.com (a27-23.smtp-out.us-west-2.amazonses.com [54.240.27.23])
- by mx.groups.io with SMTP id smtpd.web11.4783.1699076977612231497
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31BAEC4332F
+	for <webhook@archiver.kernel.org>; Sat,  4 Nov 2023 10:29:34 +0000 (UTC)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+ by mx.groups.io with SMTP id smtpd.web11.6928.1699093767896524469
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Nov 2023 22:49:37 -0700
+ Sat, 04 Nov 2023 03:29:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=D82/1zVX;
- dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=ohfaITl5;
- spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.23, mailfrom: 0101018b98e13019-57bc23d2-d205-47de-bd0b-d04b00fe895a-000000@us-west-2.amazonses.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
-	t=1699076976; h=To:Cc:Subject:Message-Id:Date:From;
-	bh=1+TJShjz+35qsAR6GPW8Pa5T7UUug5/UWNDhTsjVnCI=;
-	b=D82/1zVXhG3SX8KLuXoQUfnnRm3Q9Ca43bknIl/KNOi2WVAfLkLiozdAYEWrpsMx
-	8M8Hgd44Y+9F7mDRrg21ssXQwg87t+KNKN81x1nbEI/YrhNn/smumlNDHQ9oD7Atv2l
-	WS4VjLz4QtSCTEttAAs11khit/nDBcvMi2NT0AqI=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1699076976;
-	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
-	bh=1+TJShjz+35qsAR6GPW8Pa5T7UUug5/UWNDhTsjVnCI=;
-	b=ohfaITl5U0ZqJkZkDFe7v18vGvEVcI9bwWa7rEmQzI9vFvfK3Ety4ZjDJJhmF9V1
-	GgcWc947VvyFReLhScW5ut8YqFkBDKlNR0kxvsRCWsF9WTv2odfiQBAkRn26dL7RXl/
-	DAgVpPSmWI0PoJytKLYA7lb1eyzX8T+RreszEtSI=
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: QA notification for completed autobuilder build (yocto-4.0.14.rc1)
-Message-ID: <0101018b98e13019-57bc23d2-d205-47de-bd0b-d04b00fe895a-000000@us-west-2.amazonses.com>
-Date: Sat, 4 Nov 2023 05:49:36 +0000
-From: Pokybuild User <pokybuild@yoctoproject.org>
-Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
-X-SES-Outgoing: 2023.11.04-54.240.27.23
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=f7BAVe+6;
+ spf=pass (domain: gmail.com, ip: 209.85.128.47, mailfrom: adrian.freihofer@gmail.com)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40790b0a224so22414005e9.0
+        for <yocto@lists.yoctoproject.org>; Sat, 04 Nov 2023 03:29:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699093766; x=1699698566; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RzbyTedT9JIBqv/5PRNuoB3Li9R5ADno3YRUD0cTICk=;
+        b=f7BAVe+6mhbcYDcPwK4+KvyE+w4G7wOwhJJ4hLOOd4YTZnD8gEADegW0/+FmLyx8Uj
+         Ow3wFeVniHIAN+1jm2Flbn0XVJC7dNG38nI0J/Lp6L561h2MIHXF4orruQbbbnQT8x0C
+         nH61jcmWwtSzhSMZMivPjoOJek5aJCXRoZecMUAjHFr6lf253jK6jfflL0OUkaVIYJhB
+         P9lhSlog2ZBGCaQuClnA4BCFIAle5YW0JrOMIkEako9XgAECTqvFnVlGKTJmLs+wKJNC
+         aP99F5ZcANM8Zna0GiC58ARTwUood7rnH5NqJfQGuNxMWmStzAaFoiFgXZPI9HZg44hS
+         Cj4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699093766; x=1699698566;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RzbyTedT9JIBqv/5PRNuoB3Li9R5ADno3YRUD0cTICk=;
+        b=H8vtw3qgGhpI3DwKTz4ucParO8FLTT+dq5vlWxO1RaFbikBLV4BYgHFJy2aGU6Cr5C
+         XsFo2oId/jRQCKSLQxkmOrPwH80yZVzeKRo8uUEt1ygfP+KI/ErT29EP67rZi1QYC0Sd
+         Z55dHA2Zv4iMY2ThFXrhLrz6M0mE3wyV0kEbuetyWxRrJtfADchZCM63K9erc+1oudJt
+         oBIXbcqT0MCcO0t/R4Mao+rb0dfS2yJAmm4+pTi6AK0a1o6Ps/QPFKtc40ioSeQIKJvb
+         NYizDO/bGVgXYGRhKmaHc3njnmEF7MoSxGvjVjCN4HCcDd4/a8k4dkZjt35h2W0pWpdN
+         TITw==
+X-Gm-Message-State: AOJu0YzfKvtt7joP6lTbceSGkpa2f2teEdVhbVzILPrvaVvUWUNP6WD8
+	MOF+qXfNnN1HEraP1IHrSW0=
+X-Google-Smtp-Source: AGHT+IGYXUNaBcRjEDakSFAY9igKG9I9qq1aPgsGtT2R2YqfQ6aFoKtmObIbtegwXhOUF5I0rFxdzg==
+X-Received: by 2002:a05:600c:1ca2:b0:408:3963:5bfd with SMTP id k34-20020a05600c1ca200b0040839635bfdmr19460261wms.34.1699093765899;
+        Sat, 04 Nov 2023 03:29:25 -0700 (PDT)
+Received: from ?IPv6:2a02:169:59a6:0:55c4:f628:91f3:4287? ([2a02:169:59a6:0:55c4:f628:91f3:4287])
+        by smtp.gmail.com with ESMTPSA id i17-20020a05600c481100b004063d8b43e7sm5192353wmo.48.2023.11.04.03.29.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Nov 2023 03:29:24 -0700 (PDT)
+Message-ID: <58e2c7a830bceac9b3a8c6cee63f03ae4a118da0.camel@gmail.com>
+Subject: Re: [OE-core] Core workflow: sstate for all, bblock/bbunlock, tools
+ for why is sstate not being reused?
+From: adrian.freihofer@gmail.com
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+ openembedded-architecture
+ <openembedded-architecture@lists.openembedded.org>, Michael Halstead
+ <mhalstead@linuxfoundation.org>,  Yocto-mailing-list
+ <yocto@lists.yoctoproject.org>, ",openembedded-core@lists.openembedded.org"
+ <openembedded-core@lists.openembedded.org>, Julien STEPHAN
+ <jstephan@baylibre.com>
+Date: Sat, 04 Nov 2023 11:29:23 +0100
+In-Reply-To: <CANNYZj_Cq+cncw5SCGii=Mhj0KGgo=qr=hCuo+wpdvtR9C=Qyg@mail.gmail.com>
+References: 
+	  <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
+	 <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
+	 <81f4c191fe6dead1feec6bfc0d36aa328af1f7d4.camel@linuxfoundation.org>
+	 <CANNYZj_uSknujoQUK2yV7U4N+WW_RkUH=sJnFDBfZgV0G5fv7Q@mail.gmail.com>
+	 <649b2f000761831cabd1f5737fb5b30a2ffc3654.camel@gmail.com>
+	 <CANNYZj_Cq+cncw5SCGii=Mhj0KGgo=qr=hCuo+wpdvtR9C=Qyg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.module_f38+17164+63eeee4a) 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 04 Nov 2023 05:49:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61609
+ <yocto@lists.yoctoproject.org>; Sat, 04 Nov 2023 10:29:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61610
 
+Hi Alex, hi Richard
 
-A build flagged for QA (yocto-4.0.14.rc1) was completed on the autobuilder and is available at:
+After some internal discussions, I would like to clarify my previous
+answers on this topic.
 
+ * Usually there are two different workflows
+    - application developers: could use an SDK with a locked sstate-cache.
+    - Yocto/BSP developers: need an unlocked SDK. They change the recipes.
+ * A locked SDK
+    - can work with setscene from SSTATE_MIRRORS
+    - setscene does caching in the SSTATE_DIR (no issue about that)
+    - But network problems can occur during the initial build because
+      bitbake executes many independent setscene tasks. Opening so many
+      independent connections slows down the build, especially if the
+      server treats them as a denial of service attack.
+    - The denial of service problem is difficult to solve because each
+      setscene task runs in its own bibtake task. Reusing a connection to
+      download multiple sstate artifacts seems almost impossible.
+      This is much easier to solve with separate sstate download script.
+ * An unlocked SDK
+    - Tries to download the sstate cache for changed recipes and their
+      dependencies, which obviously can't work.
+    - The useless download requests slow down the build considerably and
+      cause a high load on the servers without any benefit.
+    - A script which gets a list of sstate artifacts from bitbake and then
+      does a upfront download works much better
+       + The script runs only when the user calls it or the SDK gets boot-
+         strapped
+       + The script uses a reasonable amount of parallel connections which
+         are re-used for more then one artifact download
+ * Idea for a smart lock/unlock implementation
+    - Form a user's perspective a locked vs. an unlocked SDK does not make
+      much sense. It makes more sense if the SDK would automatically
+      download the sstate-cache if it is expected to be available.
+      Lets think about an implementation (which allows to override the
+      logic) to switch from automatic to manual mode:
+     =20
+      SSTATE_MIRRORS_ENABLED ?=3D "${is_sstate_mirror_available()}"
+     =20
+      In our case the sstate mirror is expected to provide all artifacts
+      for tagged commits and for some git branches of the layer
+      repositories.
+      The sstate is obviousely not usable for a "dirty" git layer
+      repository. That's what the is_sstate_mirror_available function
+      could check to automatically enable and disable lazy downloads.
+     =20
+    - If is_sstate_mirror_available() returns false, it should still be
+      possible to initiate a sstate-cache download manually.
+     =20
+ * Terminology
+    - Older Yocto Releases:
+       + eSDK means an installer which provides a different environment wit=
+h
+         different tools
+       + The eSDK was static, with a locked sstate cache
+       + Was for one MACHINE, for one image...
+    - Newer Yocto Releases:
+       + The bitbake environment offers all features of the eSDK installer.=
+ I
+         consider this as already implemented with meta-ide-support and
+         build-sysroots.
+       + The term eSDK means a replicable bitbake environment. (The
+         documentation was recently changed in that sense)
+       + The new SDK installer can be generated in different variants simil=
+ar
+         to what was already supported by the eSDK
+         installer:=C2=A0https://docs.yoctoproject.org/sdk-manual/appendix-
+         customizing.html#customizing-the-extensible-sdk-standalone-
+         installer.
+          * The lightest variant is just a script that sets up the layers (=
+git
+            clone or git checkout) and provides the build config. If
+            SSTATE_MIRRORS are configured lazy downloads will just work
+            otherwise bitbake will compile everything from scratch.
+          * The heaviest variant of the SDK installer includes the layers a=
+nd
+            the sstate-cache. After installing it is_sstate_mirror_availabl=
+e()
+            evaluates to True.
+* devtool ide
+- Tries to bring this ideas further towards IDE configuration
+- It supports two modes: No recipe mode is like the old eSDK
+environment. The recipe mode goes beyond that. It is based on
+devtool modify.
+    - Naming: I was thinking about "devtool ide" versus "devtool esdk"
+       + Why ide? I want to set up my IDE to work with the Yocto SDK. And
+         that means, of course, that I have to bootstrap the SDK.
+       + Could also be esdk: I want to bootstrap the eSDK and that should
+         also configure my IDE.
+ * Latest patch series is here:=C2=A0
+    - https://lists.openembedded.org/g/openembedded-core/message/189899
+    - docs: https://lists.yoctoproject.org/g/docs/message/4578
 
-    https://autobuilder.yocto.io/pub/releases/yocto-4.0.14.rc1
+Adrian
 
-
-Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6132
-
-Build hash information: 
-
-bitbake: 6c1ffa9091d0c53a100e8c8c15122d28642034bd
-meta-agl: 09890bc1ce3d1836f0e35fbae7713f54d70a72ae
-meta-arm: b187fb9232ca0a6b5f8f90b4715958546fc41d73
-meta-aws: 408f9331156ec101014cf065314d3b90e79e6814
-meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-meta-intel: 3f0115e9e59f94af54b74838f4f33339ea7584ae
-meta-mingw: f6b38ce3c90e1600d41c2ebb41e152936a0357d7
-meta-openembedded: 79a6f60dabad9e5b0e041efa91379447ef030482
-meta-virtualization: 2d8b3cba8ff27c9ec2187a52b6a551fe1dcfaa07
-oecore: 0eb8e67aa6833df0cde29833568a70e65c21d7e5
-poky: d8d6d921fad14b82167d9f031d4fca06b5e01883
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
- 
 
