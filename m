@@ -1,155 +1,92 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD74DC4332F
-	for <webhook@archiver.kernel.org>; Wed,  8 Nov 2023 17:31:58 +0000 (UTC)
-Subject: Re: Devtool fails if SRCREV is set to ${AUTOREV} #kirkstone #devtool #yocto
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46FD8C4332F
+	for <webhook@archiver.kernel.org>; Wed,  8 Nov 2023 19:15:59 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.23643.1699470952418081283
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 08 Nov 2023 11:15:53 -0800
+Authentication-Results: mx.groups.io;
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9721440CEA;
+	Wed,  8 Nov 2023 19:15:51 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jJM8EmRPJje0; Wed,  8 Nov 2023 19:15:51 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7A5FD40CE9;
+	Wed,  8 Nov 2023 19:15:49 +0000 (UTC)
+Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 3AA66163D57;
+	Wed,  8 Nov 2023 14:15:48 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
 To: yocto@lists.yoctoproject.org
-From: "Chris Wyse" <chris.wyse@wysechoice.net>
-X-Originating-Location: Middletown, Rhode Island, US (98.187.216.211)
-X-Originating-Platform: Linux Chrome 119
-User-Agent: GROUPS.IO Web Poster
+Cc: richard.purdie@linuxfoundation.org,
+	Denys Dmytriyenko <denis@denix.org>
+Subject: [RFC][meta-yocto][PATCH] poky.conf: re-enable TCLIBCAPPEND
+Date: Wed,  8 Nov 2023 19:15:37 +0000
+Message-Id: <20231108191537.3956782-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date: Wed, 08 Nov 2023 08:28:53 -0800
-References: <CANNYZj-sTnUxqyHM2W9TXPJK8-eTwo-5o3V6D3D5wXPNi7Lo=A@mail.gmail.com>
-In-Reply-To: <CANNYZj-sTnUxqyHM2W9TXPJK8-eTwo-5o3V6D3D5wXPNi7Lo=A@mail.gmail.com>
-Message-ID: <30457.1699460933018528490@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="EssnrY5ahawrXy79NWPQ"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 08 Nov 2023 17:31:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61639
+ <yocto@lists.yoctoproject.org>; Wed, 08 Nov 2023 19:15:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61640
 
---EssnrY5ahawrXy79NWPQ
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Back in 2011[0] TCLIBCAPPEND was disabled due to:
 
-I ran into this problem as well.=C2=A0 It doesn't seem like SRCPV is being =
-set properly before use in the externalsrc.bbclass.=C2=A0 I added the follo=
-wing line before bpn =3D d.getVar('BPN'), and now it works fine.=C2=A0 Unfo=
-rtunately, I needed to create another layer that overrides the poky classes=
- to include it in my build.=C2=A0 Here's the added line:
+"Poky doesn't support parallel builds of libc at this point"
 
-srcpv =3D d.getVar('SRCPV')
+Since then musl, newlib and baremetal support were added along with abili=
+ty
+to build them together in multiconfig environments. Some BSPs are activel=
+y
+using multiconfigs to build baremetal components for modern heterogeneous
+SoCs.
 
-And here's a bit of context:
+To enable such broad use cases for Poky (the reference Yocto distribution=
+)
+and many derivative distributions based on Poky, lets re-enable TCLIBCAPP=
+END
+to isolate dissonant TMPDIRs from each other and possible collisions.
 
-python () {
-externalsrc =3D d.getVar('EXTERNALSRC')
-externalsrcbuild =3D d.getVar('EXTERNALSRC_BUILD')
+[0] https://git.yoctoproject.org/meta-yocto/commit/?id=3D5e121094c6024d81=
+13ab0922b40ccc8a45215277
 
-if externalsrc and not externalsrc.startswith("/"):
-bb.error("EXTERNALSRC must be an absolute path")
-if externalsrcbuild and not externalsrcbuild.startswith("/"):
-bb.error("EXTERNALSRC_BUILD must be an absolute path")
+[YOCTO #15273]
 
-srcpv =3D d.getVar('SRCPV')
+Signed-off-by: Denys Dmytriyenko <denis@denix.org>
+---
+This may not be the right fix for #15273, but the change is good on its
+own and it avoids the race condition reported in that bugzilla entry.
+It also helps with other observed collisions in a combined TMPDIR, such
+as nativesdk builds for incompatible multiconfigs, etc.
 
-# If this is the base recipe and EXTERNALSRC is set for it or any of its
-# derivatives, then enable BB_DONT_CACHE to force the recipe to always be
-# re-parsed so that the file-checksums function for do_compile is run every
-# time.
-bpn =3D d.getVar('BPN')
-classextend =3D (d.getVar('BBCLASSEXTEND') or '').split()
-if bpn =3D=3D d.getVar('PN') or not classextend:
-if (externalsrc or
-('native' in classextend and
-d.getVar('EXTERNALSRC:pn-%s-native' % bpn)) or
-('nativesdk' in classextend and
-d.getVar('EXTERNALSRC:pn-nativesdk-%s' % bpn)) or
-('cross' in classextend and
-d.getVar('EXTERNALSRC:pn-%s-cross' % bpn))):
-d.setVar('BB_DONT_CACHE', '1')
+ meta-poky/conf/distro/poky.conf | 2 --
+ 1 file changed, 2 deletions(-)
 
-if externalsrc:
-import oe.recipeutils
-import oe.path
+diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky=
+.conf
+index e742666..742a64a 100644
+--- a/meta-poky/conf/distro/poky.conf
++++ b/meta-poky/conf/distro/poky.conf
+@@ -28,8 +28,6 @@ SDKPATHINSTALL =3D "/opt/${DISTRO}/${SDK_VERSION}"
+ DISTRO_EXTRA_RDEPENDS +=3D "${POKY_DEFAULT_EXTRA_RDEPENDS}"
+ DISTRO_EXTRA_RRECOMMENDS +=3D "${POKY_DEFAULT_EXTRA_RRECOMMENDS}"
+=20
+-TCLIBCAPPEND =3D ""
+-
+ PACKAGE_CLASSES ?=3D "package_rpm"
+=20
+ SANITY_TESTED_DISTROS ?=3D " \
+--=20
+2.25.1
 
-d.setVar('S', externalsrc)
-if externalsrcbuild:
-d.setVar('B', externalsrcbuild)
-else:
-d.setVar('B', '${WORKDIR}/${BPN}-${PV}')
-
---EssnrY5ahawrXy79NWPQ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I ran into this problem as well.&nbsp; It doesn't seem like SRCPV is being =
-set properly before use in the externalsrc.bbclass.&nbsp; I added the follo=
-wing line before bpn =3D d.getVar('BPN'), and now it works fine.&nbsp; Unfo=
-rtunately, I needed to create another layer that overrides the poky classes=
- to include it in my build.&nbsp; Here's the added line:<br /><br />
-<div>&nbsp; &nbsp; srcpv =3D d.getVar('SRCPV')</div>
-<div><br />And here's a bit of context:<br /><br />
-<div>python () {</div>
-<div>&nbsp; &nbsp; externalsrc =3D d.getVar('EXTERNALSRC')</div>
-<div>&nbsp; &nbsp; externalsrcbuild =3D d.getVar('EXTERNALSRC_BUILD')</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; if externalsrc and not externalsrc.startswith("/"):</div=
->
-<div>&nbsp; &nbsp; &nbsp; &nbsp; bb.error("EXTERNALSRC must be an absolute =
-path")</div>
-<div>&nbsp; &nbsp; if externalsrcbuild and not externalsrcbuild.startswith(=
-"/"):</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; bb.error("EXTERNALSRC_BUILD must be an abs=
-olute path")</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; srcpv =3D d.getVar('SRCPV')</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; # If this is the base recipe and EXTERNALSRC is set for =
-it or any of its</div>
-<div>&nbsp; &nbsp; # derivatives, then enable BB_DONT_CACHE to force the re=
-cipe to always be</div>
-<div>&nbsp; &nbsp; # re-parsed so that the file-checksums function for do_c=
-ompile is run every</div>
-<div>&nbsp; &nbsp; # time.</div>
-<div>&nbsp; &nbsp; bpn =3D d.getVar('BPN')</div>
-<div>&nbsp; &nbsp; classextend =3D (d.getVar('BBCLASSEXTEND') or '').split(=
-)</div>
-<div>&nbsp; &nbsp; if bpn =3D=3D d.getVar('PN') or not classextend:</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; if (externalsrc or</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ('native' in c=
-lassextend and</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d.getVar=
-('EXTERNALSRC:pn-%s-native' % bpn)) or</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ('nativesdk' i=
-n classextend and</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d.getVar=
-('EXTERNALSRC:pn-nativesdk-%s' % bpn)) or</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ('cross' in cl=
-assextend and</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d.getVar=
-('EXTERNALSRC:pn-%s-cross' % bpn))):</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d.setVar('BB_DONT_CACHE', '1=
-')</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; if externalsrc:</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; import oe.recipeutils</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; import oe.path</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; d.setVar('S', externalsrc)</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; if externalsrcbuild:</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d.setVar('B', externalsrcbui=
-ld)</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d.setVar('B', '${WORKDIR}/${=
-BPN}-${PV}')</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</di=
-v>
-<div>&nbsp;</div>
-</div>
-
---EssnrY5ahawrXy79NWPQ--
 
