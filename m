@@ -2,59 +2,59 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21D93C4167D
-	for <webhook@archiver.kernel.org>; Thu,  9 Nov 2023 14:56:06 +0000 (UTC)
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
- by mx.groups.io with SMTP id smtpd.web10.123297.1699541764769733192
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECEDFC4332F
+	for <webhook@archiver.kernel.org>; Thu,  9 Nov 2023 14:56:35 +0000 (UTC)
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+ by mx.groups.io with SMTP id smtpd.web11.123638.1699541794910440032
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Nov 2023 06:56:04 -0800
+ Thu, 09 Nov 2023 06:56:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=WySV2Pvn;
- spf=pass (domain: gmail.com, ip: 209.85.161.43, mailfrom: akuster808@gmail.com)
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5842a94feb2so507647eaf.0
-        for <yocto@lists.yoctoproject.org>; Thu, 09 Nov 2023 06:56:04 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=JTrKt7fY;
+ spf=pass (domain: gmail.com, ip: 209.85.161.50, mailfrom: akuster808@gmail.com)
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-586753b0ab0so510492eaf.0
+        for <yocto@lists.yoctoproject.org>; Thu, 09 Nov 2023 06:56:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699541764; x=1700146564; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1699541794; x=1700146594; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PBRXFEkpElsnAwtSCrXlDbzC0YQS6j7Zk7g7y++Xi28=;
-        b=WySV2Pvn58IdDIgtuWXeB0Z725VrlD4iddfILcNDhHijHq6by7sqq95QKZQf15CeMJ
-         76G+e8yxKlS7vDbGQ1q7oJrDaNrzUWjy0s8BorIr1i/CAA5v0ENfl6ekx6OE0Myn7zwM
-         8Qa6+d7cQ/LN7tQEYeDRoA8VX6EdS8tpFaqnnEckk96os9ayE2fr5esPRqV0Apox/GqX
-         OaSkqmYLdXtAgQ2vluuI34ckSEBn3vvNa7y6aOJ35S462nY9CvJY75S51EW3hpo8qJTZ
-         4p3yje0dhQ2oi8ewVOeYvqOWC1XrDtQ3Hgg+Whdeb7WBIbBxXbjdNtWrm03o1b7ejOp6
-         479g==
+        bh=//ZlcdaRkqdP/y48ibufB2MtSnZDGL7zOcbU+5u1408=;
+        b=JTrKt7fYmCSdYg8Mgn+4VQFho2axQ/5d1IAB0HdYFVw5hON3M4kd+Zy9WVtSUEI3w2
+         K1kG9DyTkYJPuF+X+B210BcQb7kYZp8/oknUJrXwvHdmcNPwvICEu1fWiQxQ7pzdjHlq
+         hRmWcB9og11JS4tVQppdM1nFlin3qf11hqeGcFzY3QxUJGZgM68BZvjnGiFoFIP6UP/H
+         i3jHTMcOlHd2BoKSCOkwUSLcmqszt+E2amSY18Of4yXfjOjfASi5bVdeBITWM2BDrAa5
+         48K6+JM7NoMQY4I5ItCjQvyFp1J+yajaAjMMcNkh+4RFaCua3IAhI9VVgAbLSzFvI0Td
+         QG0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699541764; x=1700146564;
+        d=1e100.net; s=20230601; t=1699541794; x=1700146594;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PBRXFEkpElsnAwtSCrXlDbzC0YQS6j7Zk7g7y++Xi28=;
-        b=llA8d9+s1xY4V6QBanFoQA2c47TY7PBIucOxD96XfvuDjE+ytaaB1wqQeUGzLmpQuX
-         CfEdto1EY06MKVv/yk0bceuTdmAAFE8LV/5Jo2RVeRW+Zd2SrCr8crEDJfr1T5SVOc/R
-         /pFgMGe0nQdPhwcsyDURj4c0biokpHolBY5N+UX6HmYE3AqEpC9T5CycYhUD2aOwQ69N
-         IYqzFN7cgYhfQwPPRYI/4UueRSze6nNuCCg3VXpWOX2fZskj5UZOpNrwvSbaIwfpmTSC
-         4UEPIwD3Pj+ahKIx4gKjO+UmLsb/VqJFIOZt8CAzgN7eVWZ+MMUxTyhRdbRjBwyDptGo
-         6i3w==
-X-Gm-Message-State: AOJu0YwNow2TfIK3s7Ipq7tbDP4uaKGY6uYIeizW34rjClhwr9yVGf9/
-	azx8p+qTb3lvW+vxqDnvk4E=
-X-Google-Smtp-Source: AGHT+IELiIu27rw8PENUvL1hTLvedw5Ooy8JEKWS73w2YwcXRoKbXTkR33aEH5ksxzT1xTPXjgBAJA==
-X-Received: by 2002:a05:6820:164:b0:582:3c4a:923a with SMTP id k4-20020a056820016400b005823c4a923amr4968882ood.9.1699541763935;
-        Thu, 09 Nov 2023 06:56:03 -0800 (PST)
+        bh=//ZlcdaRkqdP/y48ibufB2MtSnZDGL7zOcbU+5u1408=;
+        b=bvRlvZ6tCVuegJjrYltW3Nc7kazXV2EAN/xz88dbjAs1qD4J3L/oHuyKaCFBW8nE2i
+         7uNQUG6YNJnkihj5sdHJx3ZhbPq6T00cV45oQ5kEs2QnujNHlMfZeDSBKZoWVoBUSff+
+         WJCFRF9EcS6ONnnqrED8WJQpTMGJqehEuJQuMrXQUd2UZ7UwlXHzQv7cs8wDq9FcGNqO
+         GqAClxC2r+X3dlJlnUfXr3tFO6CIwinL5uYpp/eT5HuTxIrJZnklyIo5Gkmu4bvR0xum
+         q3BfZjO1WYize2sbb+4JHc+UOG5aPGOgWsPsVPpu4hARYoOFClTK7jrjEC5PeJn7Ite4
+         2o2Q==
+X-Gm-Message-State: AOJu0YzZCTUFwlg3DkGGU/OwRcMUwEd9gnJxwPV451wMZPkjlCacwnI7
+	nTlGB0miQs/a9BGkbGL1aH3/3wfet14mDA==
+X-Google-Smtp-Source: AGHT+IGEUWuDk05RBEveOsxl4dcItwVPt1dWuiC2Ludk+ZZYuGqiMeKWaQKZVui9m4zMWjQzWOs3dA==
+X-Received: by 2002:a4a:c888:0:b0:57b:c983:bce9 with SMTP id t8-20020a4ac888000000b0057bc983bce9mr5487287ooq.8.1699541794229;
+        Thu, 09 Nov 2023 06:56:34 -0800 (PST)
 Received: from ?IPV6:2600:1700:9190:ba10:ff2b:7fec:1b0c:22e7? ([2600:1700:9190:ba10:ff2b:7fec:1b0c:22e7])
-        by smtp.gmail.com with ESMTPSA id v9-20020a4ae049000000b00581e5b78ce5sm2826514oos.38.2023.11.09.06.56.03
+        by smtp.gmail.com with ESMTPSA id v9-20020a4ae049000000b00581e5b78ce5sm2826514oos.38.2023.11.09.06.56.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 06:56:03 -0800 (PST)
-Message-ID: <bffcdf6c-c1b2-4e60-8e6c-ce33a9648535@gmail.com>
-Date: Thu, 9 Nov 2023 09:56:02 -0500
+        Thu, 09 Nov 2023 06:56:33 -0800 (PST)
+Message-ID: <22ffbdc8-33c0-4de5-9953-2e64bd706bb4@gmail.com>
+Date: Thu, 9 Nov 2023 09:56:33 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [meta-security][PATCH] samhain: remove the buildpath
+Subject: Re: [meta-security][PATCH] ima,evm: Add two variables to write
+ filenames and signatures into
 Content-Language: en-US
-To: "Yu, Mingli" <mingli.yu@eng.windriver.com>, yocto@lists.yoctoproject.org
-References: <178C0E6D2C773B8E.5378@lists.yoctoproject.org>
- <008758c4-63fd-9ad5-95e3-2a2a6896cf4c@windriver.com>
+To: Stefan Berger <stefanb@linux.ibm.com>, yocto@lists.yoctoproject.org
+References: <20231101171317.643420-1-stefanb@linux.ibm.com>
 From: akuster808 <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; keydata=
  xsDNBGNNaZMBDAC6/Mhpw3EGOOTPtIpcUHT4lI974zN/QqccMPxH4oyBPRJbjVImYs9avXwV
@@ -90,84 +90,63 @@ Autocrypt: addr=akuster808@gmail.com; keydata=
  itDSpYIEGrZObj82rX1wvxf/ZQ8VXS+owIR2F4yeeqPH/CyrPA1ASdtt+Am28/dJ2krr72at
  J++uLxA0cein1kjcosFDpQscnDcPzohnGyyjgEd6VwelZboIS1jt4lIa1badtV+cWMGMgM8W
  ApZ86eOP
-In-Reply-To: <008758c4-63fd-9ad5-95e3-2a2a6896cf4c@windriver.com>
+In-Reply-To: <20231101171317.643420-1-stefanb@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 09 Nov 2023 14:56:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61645
+ <yocto@lists.yoctoproject.org>; Thu, 09 Nov 2023 14:56:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61646
 
+merged.
 
-
-On 11/8/23 9:43 PM, Yu, Mingli wrote:
-> Ping.
->
-
-Its in master and nanbield
-
-https://git.yoctoproject.org/meta-security/commit/?id=9769990db3ca6dae405049b632966cd6e08a8ada
-
-BR,
+thanks,
 Armin
-> Thanks,
+
+On 11/1/23 1:13 PM, Stefan Berger wrote:
+> Add two variables IMA_FILE_SIGNATURES_FILE and EVM_FILE_SIGNATURES_FILE
+> for filenames where the ima_evm_sign_rootfs script can write the names
+> of files and their IMA or EVM signatures into. Both variables are
+> optional. The content of the file with IMA signatures may look like
+> this:
 >
-> On 10/8/23 14:36, Yu, Mingli wrote:
->> From: Mingli Yu <mingli.yu@windriver.com>
->>
->> Fixes:
->>    WARNING: samhain-server-4.4.10-r0 do_package_qa: QA Issue: File 
->> /var/lib/samhain/samhain-install.sh in package samhain-server 
->> contains reference to TMPDIR [buildpaths]
->>    WARNING: samhain-server-4.4.10-r0 do_package_qa: QA Issue: File 
->> /usr/share/doc/samhain-server/scripts/samhain.ebuild-light in package 
->> samhain-server-doc contains reference to TMPDIR
->>    File /usr/share/doc/samhain-server/scripts/samhain.ebuild in 
->> package samhain-server-doc contains reference to TMPDIR [buildpaths]
->>
->> Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
->> ---
->>   recipes-ids/samhain/samhain.inc | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/recipes-ids/samhain/samhain.inc 
->> b/recipes-ids/samhain/samhain.inc
->> index 2788bc3..f5bea1d 100644
->> --- a/recipes-ids/samhain/samhain.inc
->> +++ b/recipes-ids/samhain/samhain.inc
->> @@ -59,6 +59,7 @@ PACKAGECONFIG[acl] = " --enable-posix-acl , 
->> --disable-posix-acl, acl"
->>   PACKAGECONFIG[audit] = 
->> "ac_cv_header_auparse_h=yes,ac_cv_header_auparse_h=no,audit"
->>   PACKAGECONFIG[ps] = "--with-ps-path=${base_bindir}/ps,,,procps"
->>   +EXTRA_OECONF += "INSTALL='install -p'"
->>   EXTRA_OEMAKE:append:aarch64 = " CPPFLAGS+=-DCONFIG_ARCH_AARCH64=1"
->>   EXTRA_OEMAKE:append:mips64 = " CPPFLAGS+=-DCONFIG_ARCH_MIPS64=1"
->>   @@ -89,6 +90,9 @@ ssp_cv_lib=no
->>   sh_cv_va_copy=yes
->>   EOF
->>       export CONFIG_SITE=${S}/config-site.${BP}
->> +    # remove the buildpath
->> +    sed -i -e 's;mydefarg;mydefargholder;g' 
->> ${S}/scripts/samhain.ebuild.in
->> +    sed -i -e 's;mydefarg;mydefargholder;g' 
->> ${S}/scripts/samhain.ebuild-light.in
->>   }
->>     do_configure () {
->>
->>
->>
->>
->>
+> /usr/bin/gpiodetect ima:0x0302046730eefd...
+> /usr/bin/pwscore ima:0x0302046730eefd004...
 >
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61642): https://lists.yoctoproject.org/g/yocto/message/61642
-> Mute This Topic: https://lists.yoctoproject.org/mt/102478928/3616698
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+> Having the filenames along with their signatures is useful for signing
+> files in the initrd when the initrd is running out of a tmpfs filesystem
+> that has support for xattrs. This allows to enable an IMA appraisal
+> policy already in the initrd where files must be signed as soon as the
+> policy becomes active.
 >
+> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
+> ---
+>   meta-integrity/classes/ima-evm-rootfs.bbclass | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+>
+> diff --git a/meta-integrity/classes/ima-evm-rootfs.bbclass b/meta-integrity/classes/ima-evm-rootfs.bbclass
+> index 98c4bc1..7b73373 100644
+> --- a/meta-integrity/classes/ima-evm-rootfs.bbclass
+> +++ b/meta-integrity/classes/ima-evm-rootfs.bbclass
+> @@ -89,6 +89,18 @@ ima_evm_sign_rootfs () {
+>           bbnote "IMA/EVM: Signing IMA policy with key ${IMA_EVM_PRIVKEY}"
+>           evmctl sign --imasig ${evmctl_param} --portable -a sha256 --key "${IMA_EVM_PRIVKEY}" "${IMAGE_ROOTFS}/etc/ima/ima-policy"
+>       fi
+> +
+> +    # Optionally write the file names and ima and evm signatures into files
+> +    if [ "${IMA_FILE_SIGNATURES_FILE}" ]; then
+> +        getfattr -R -m security.ima --e hex --dump ./ 2>/dev/null | \
+> +          sed -n -e 's|# file: |/|p' -e 's|security.ima=|ima:|p' | \
+> +          sed '$!N;s/\n/ /' > ./${IMA_FILE_SIGNATURES_FILE}
+> +    fi
+> +    if [ "${EVM_FILE_SIGNATURES_FILE}" ]; then
+> +        getfattr -R -m security.evm --e hex --dump ./ 2>/dev/null | \
+> +          sed -n -e 's|# file: |/|p' -e 's|security.evm=|evm:|p' | \
+> +          sed '$!N;s/\n/ /' > ./${EVM_FILE_SIGNATURES_FILE}
+> +    fi
+>   }
+>   
+>   # Signing must run as late as possible in the do_rootfs task.
 
 
