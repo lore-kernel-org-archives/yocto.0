@@ -1,221 +1,121 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9CCBC4332F
-	for <webhook@archiver.kernel.org>; Fri, 10 Nov 2023 21:26:38 +0000 (UTC)
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
- by mx.groups.io with SMTP id smtpd.web10.39512.1699651590843838714
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A3BDC4332F
+	for <webhook@archiver.kernel.org>; Fri, 10 Nov 2023 23:28:19 +0000 (UTC)
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+ by mx.groups.io with SMTP id smtpd.web11.42319.1699658891477494365
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Nov 2023 13:26:31 -0800
+ Fri, 10 Nov 2023 15:28:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=YUqrgbov;
- spf=pass (domain: gmail.com, ip: 209.85.221.42, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-32dcd3e5f3fso1448403f8f.1
-        for <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 13:26:30 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=gNBMrThW;
+ spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: ticotimo@gmail.com)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1cc3bb32b5dso22487285ad.3
+        for <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 15:28:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699651589; x=1700256389; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=StzvX8HDvE6jrMHUjz/nWGJlK/AzhYQHWqgbgLSi1r8=;
-        b=YUqrgbovkPhCYTeDnyZm52IMwQM+Bz/NUO9SYyWDfTkYdM02RRymNIpcJ9pVT+IANd
-         LWDjBe1F+hXRsAeza/nLVhf0iN2QbMJpkIgZbgwO9xcVz2/jr47cajo7SfIgh/moAmWv
-         CbWC09wTkKu5tQqpkVcU7ZaP/GoxxFwd6+Of9lQBsy7PMZz3mouWSbNoVpudp5gIUQVU
-         cGGnnrrxasE17ek0QIulJNF9cPKwX1DSPDu2rVe4VDJmsyPRZU9peBsSAachdsInM9J4
-         jUMWLge7iCTROiHNKfZoiVR4wKCKY2JzMWrDiN4ekXQWK/2tUWpmuyf+GTaK+38ebc55
-         BA2w==
+        d=gmail.com; s=20230601; t=1699658890; x=1700263690; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=19om76OuXKDs2OZiR7wrYnI0ZeTSmQB0HA2QpqokElA=;
+        b=gNBMrThWD2IteIfwq4oUCdeCNEFQKWpae9eSuJ4udl08uqshXYAytjIH8l5mZcs44l
+         jhzUjluuMn0l6ZKqDE1V8zWDWWB56gPEt0bFSI6u67ISdehqI7fkRX3jopmZ/v2wRylX
+         IE/we6t5F0wssNczak1P+ARxI2N2GKps7jz8NRsjOx9yQpl90eB4RUS78cjw856AMxqa
+         VDAamtWNRdCUHbQQShIc1DrFVi3na7yHrEpFFRulDAhoMc+q5XYFUzqcLfZvSUENIFe5
+         KORO+YnWKp1MbhI/TIHE+5Hm+W878bCl9mSxvcTHcS5i7i+Zigphlf1dk9+XGnMCVoLO
+         K4jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699651589; x=1700256389;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1699658890; x=1700263690;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=StzvX8HDvE6jrMHUjz/nWGJlK/AzhYQHWqgbgLSi1r8=;
-        b=Oxy9B2hsPqrIXrZSncwkUnug2fGq+lv/nWuAa+mqmmni1fjBNieC//PbJGrn5I2pU0
-         eT97ogZFUUfzy8j5RyrDzxREXop/q9Jx6UI/mrhz7LHFotvISoHXfqz+30SmKGhXgpgC
-         V6kDQ8NbnEgbDC+XbKkE3V0f+CaJE/yW1Sa4bomlvqf5g0RaE9JwZXMQUNbXPUq8WOBP
-         JRAEAYuAwuKEgT5OCiYacrLgG4ZokSW7oeXk8aDxus7su/N7hHrpMsRRFj3KBDVYEbE/
-         PlLPF1ISxsUWe7hxptvmD45cu7lJ+4gWb+6L5pdNwYBWxVELGbg7llHRtl8mu8kKCzm2
-         /XpQ==
-X-Gm-Message-State: AOJu0Yx7BLNuXN9s6tjgrs9lx6rym/OyHYEdea/KTWTGo/TNbQ3FyKMz
-	hCtx7vGCOGMmrWQZ2nj29Lmuzek8dIkwMUBwBdU=
-X-Google-Smtp-Source: AGHT+IEU69colRD8ZELD2gOfll5MDLYPJ0enFjQdWVMQICx1RG+a4ibphRl4FhWIbOppwQms0ZN7j/GuWnV8Ye2gYJ0=
-X-Received: by 2002:a5d:47ce:0:b0:32f:8248:e00 with SMTP id
- o14-20020a5d47ce000000b0032f82480e00mr340234wrc.51.1699651589013; Fri, 10 Nov
- 2023 13:26:29 -0800 (PST)
+        bh=19om76OuXKDs2OZiR7wrYnI0ZeTSmQB0HA2QpqokElA=;
+        b=WvDeGk8j8rHx0TiF2VBRoWiZKrUVHBtHkxAACLpFe3zBudAh7Yn9Zs+3QFikj02yIO
+         kOzUpxH4IDXF8Ss6l3y38hwopipC5pZJaFNcz5m5WObWYq8rMcG/TEzty50+OzNthJEn
+         8cQzyUzk/uCiXO0PoLyG++nk0c1zQbXlZpTcBTr5msrYgCgbHI0o22zIGiVwxtY7PNEC
+         Bqn/uFGKEgXJnKhtZePklW/4Tk75IpciA1gQ5oRvZwWTkMRRled0l2+76yzKPF6zeeIl
+         JnIbDeHOPbvn9Oo94aTioTQzGWo8LuFFKNs6yg69NhYsSkKbVctiRG9w80HHVkJmKYt6
+         oafQ==
+X-Gm-Message-State: AOJu0Yy/BWDdv8vV2Rm+ucbmRDGupzAenhlgKb/cn+p6/yDdgQJYAHwE
+	S0pfl0xlW1CrMNPIhzc8gH4/EzMC2VG/JA==
+X-Google-Smtp-Source: AGHT+IG1QuQYmLMjBaSyPZIsR6lV3qM6H9tp4JB3RBosi3qqw2Ghs6lUacdyBAJ1LClCt5lfzzU0wA==
+X-Received: by 2002:a17:902:aa48:b0:1cc:1dde:8680 with SMTP id c8-20020a170902aa4800b001cc1dde8680mr782523plr.45.1699658890348;
+        Fri, 10 Nov 2023 15:28:10 -0800 (PST)
+Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:3313:4488:79b1:32e])
+        by smtp.gmail.com with ESMTPSA id a22-20020a170902b59600b001c9ab91d3d7sm188398pls.37.2023.11.10.15.28.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Nov 2023 15:28:10 -0800 (PST)
+From: Tim Orling <ticotimo@gmail.com>
+X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
+To: yocto@lists.yoctoproject.org
+Cc: Tim Orling <tim.orling@konsulko.com>
+Subject: [layerindex-web][PATCH] update_layer.py: checkout dep layers as well
+Date: Fri, 10 Nov 2023 15:27:09 -0800
+Message-Id: <20231110232708.339590-1-tim.orling@konsulko.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <4145e228-b61f-42ac-ac13-5150e3b6cbe7@mistywest.com>
-In-Reply-To: <4145e228-b61f-42ac-ac13-5150e3b6cbe7@mistywest.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Fri, 10 Nov 2023 22:26:16 +0100
-Message-ID: <CA+chaQfeH8Pop=JOqDr9hZ-6ZpX9veuWmgty4QJXDyioMowV1A@mail.gmail.com>
-Subject: Re: [yocto] bitbake error about files/directories installed but not shipped
-To: Mistyron <ron.eggler@mistywest.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000003488850609d2f966"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 21:26:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61654
+ <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 23:28:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61655
 
---0000000000003488850609d2f966
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+We have never been checking out dependent layers at the same
+release/branch. With the introduction of 'addpylib', this
+became obvious due to parsing errors.
 
-I would guess that libdir in your build is set to /usr/lib
-while omx-user-module created /usr/lib64.
+Ensure that known LayerDependency objects are checked out at
+the expected branch/release. Since openembedded-core has already
+been handled elsewhere, we skip it.
 
-Check with bitbake-getvar and the files in ${D}, possibly need to pass
-libdir value to whatever build system omx-user-module uses (hard to guess
-without seeing the whole recipe or sources).
+[YOCTO #15236]
 
-On Fri, Nov 10, 2023 at 10:19=E2=80=AFPM Mistyron <ron.eggler@mistywest.com=
-> wrote:
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ layerindex/update_layer.py | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-> Hi,
->
-> I'm struggling with a Yocto build for my board, I get an error like:
-> ```
-> ERROR: omx-user-module-1.1.0-r0 do_package: QA Issue: omx-user-module:
-> Files/directories were installed but not shipped in any package:
->   /usr/lib64
-> Please set FILES such that these items are packaged. Alternatively if the=
-y
-> are unneeded, avoid installing them or delete them within do_install.
-> omx-user-module: 1 installed and not shipped files. [installed-vs-shipped=
-]
-> ERROR: omx-user-module-1.1.0-r0 do_package: Fatal QA errors found, failin=
-g
-> task.
-> ERROR: Logfile of failure stored in:
-> /home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/omx-user=
--module/1.1.0-r0/temp/log.do_package.1434925
-> ERROR: Task
-> (/home/yocto/rzv_vlp_v3.0.0/build/../poky/meta/recipes-multimedia/gstream=
-er/omx-user-module.bb:do_package)
-> failed with exit code '1'
-> ```
-> The recipe `omx-user-module.bb` is needed by my image (in image.bbappend)
-> and the omx-user-module.bb contains:
->
-> FILES:${PN} +=3D " \
->     ${libdir}/*.so \
-> "
->
-> FILES:${PN}-dev =3D " \
->     ${includedir} \
->     ${libdir}/*.la \
-> "
->
->
-> can anyone help me further with this?
->
-> Thanks,
->
-> Ron
-> --
->
-> *ron *
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61653):
-> https://lists.yoctoproject.org/g/yocto/message/61653
-> Mute This Topic: https://lists.yoctoproject.org/mt/102515765/3617156
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> martin.jansa@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index e0ecc94..6d73fad 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -293,7 +293,7 @@ def main():
+ 
+     utils.setup_django()
+     import settings
+-    from layerindex.models import LayerItem, LayerBranch, Recipe, RecipeFileDependency, Machine, Distro, BBAppend, BBClass, IncFile
++    from layerindex.models import LayerItem, LayerBranch, LayerDependency, Recipe, RecipeFileDependency, Machine, Distro, BBAppend, BBClass, IncFile
+     from django.db import transaction
+ 
+     logger.setLevel(options.loglevel)
+@@ -374,10 +374,25 @@ def main():
+             layerappends = BBAppend.objects.filter(layerbranch=layerbranch)
+             layerclasses = BBClass.objects.filter(layerbranch=layerbranch)
+             layerincfiles = IncFile.objects.filter(layerbranch=layerbranch)
++            layerdependencies = LayerDependency.objects.filter(layerbranch=layerbranch)
+             if layerbranch.vcs_last_rev != topcommit.hexsha or options.reload or options.initial:
+                 # Check out appropriate branch
+                 if not options.nocheckout:
+                     utils.checkout_layer_branch(layerbranch, repodir, logger=logger)
++                    # Ensure dependent layers are checked out at the same release
++                    for layerdependency in layerdependencies:
++                        logger.debug("layerdependency: %s" % layerdependency)
++                        try:
++                            # bitbake and openembedded-core are handled elsewhere
++                            if layerdependency.dependency == 'openembedded-core':
++                                continue
++                            dep_layer = utils.get_layer(layerdependency.dependency)
++                            dep_layerbranch = dep_layer.get_layerbranch(options.branch)
++                            dep_urldir = dep_layer.get_fetch_dir()
++                            dep_repodir = os.path.join(fetchdir, dep_urldir)
++                            utils.checkout_layer_branch(dep_layerbranch, dep_repodir, logger=logger)
++                        except Exception as e:
++                            logger.warn("Unable to checkout dependent layer %s - %s" % (layerdependency.dependency, str(e)))
+ 
+                 logger.info("Collecting data for layer %s on branch %s" % (layer.name, branchdesc))
+                 try:
+-- 
+2.34.1
 
---0000000000003488850609d2f966
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I would guess that libdir in your build is set to /usr/lib=
- while=C2=A0omx-user-module created /usr/lib64.<div><br></div><div>Check wi=
-th bitbake-getvar and the files in ${D}, possibly need to pass libdir value=
- to whatever build system omx-user-module uses (hard to guess without seein=
-g the whole recipe or sources).</div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 10, 2023 at 10:19=E2=80=AF=
-PM Mistyron &lt;<a href=3D"mailto:ron.eggler@mistywest.com">ron.eggler@mist=
-ywest.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><u></u>
-
- =20
-
-   =20
- =20
-  <div>
-    <p>Hi,<br>
-      <br>
-      I&#39;m struggling with a Yocto build for my board, I get an error
-      like:<br>
-      ```<br>
-      ERROR: omx-user-module-1.1.0-r0 do_package: QA Issue:
-      omx-user-module: Files/directories were installed but not shipped
-      in any package:<br>
-      =C2=A0 /usr/lib64<br>
-      Please set FILES such that these items are packaged. Alternatively
-      if they are unneeded, avoid installing them or delete them within
-      do_install.<br>
-      omx-user-module: 1 installed and not shipped files.
-      [installed-vs-shipped]<br>
-      ERROR: omx-user-module-1.1.0-r0 do_package: Fatal QA errors found,
-      failing task.<br>
-      ERROR: Logfile of failure stored in:
-/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/omx-user-m=
-odule/1.1.0-r0/temp/log.do_package.1434925<br>
-      ERROR: Task
-(/home/yocto/rzv_vlp_v3.0.0/build/../poky/meta/recipes-multimedia/gstreamer=
-/omx-user-module.bb:do_package)
-      failed with exit code &#39;1&#39;<br>
-      ```<br>
-      The recipe `<a href=3D"http://omx-user-module.bb" target=3D"_blank">o=
-mx-user-module.bb</a>` is needed by my image (in
-      image.bbappend) and the <a href=3D"http://omx-user-module.bb" target=
-=3D"_blank">omx-user-module.bb</a> contains:</p>
-    <p>FILES:${PN} +=3D &quot; \<br>
-      =C2=A0=C2=A0=C2=A0 ${libdir}/*.so \<br>
-      &quot;<br>
-      <br>
-      FILES:${PN}-dev =3D &quot; \<br>
-      =C2=A0=C2=A0=C2=A0 ${includedir} \<br>
-      =C2=A0=C2=A0=C2=A0 ${libdir}/*.la \<br>
-      &quot;</p>
-    <p><br>
-    </p>
-    <p>can anyone help me further with this?</p>
-    <p>Thanks,</p>
-    <p>Ron<br>
-    </p>
-    <div>-- <br>
-     =20
-     =20
-      <b>ron <br>
-      </b></div>
-  </div>
-
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#61653): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/61653" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/61653</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/102515765/361=
-7156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/102515765/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin=
-.jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---0000000000003488850609d2f966--
 
