@@ -1,126 +1,85 @@
-Return-Path: <j.casas@falconelectronica.com>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2719C4167B
-	for <webhook@archiver.kernel.org>; Fri, 10 Nov 2023 06:02:02 +0000 (UTC)
-Subject: Files copied to /usr/local during installation get removed misteriously
-To: yocto@lists.yoctoproject.org
-From: =?UTF-8?B?SmF2aWVyIENhc2FzIE1hcsOtbg==?= <j.casas@falconelectronica.com>
-X-Originating-Location: Lodosa, Navarre, ES (185.128.171.24)
-X-Originating-Platform: Windows Chrome 119
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F76DC4167B
+	for <webhook@archiver.kernel.org>; Fri, 10 Nov 2023 14:57:16 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+ by mx.groups.io with SMTP id smtpd.web11.29397.1699628235240399444
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 10 Nov 2023 06:57:15 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=OokZmhHu;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.194, mailfrom: michael.opdenacker@bootlin.com)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4D68F40008;
+	Fri, 10 Nov 2023 14:57:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699628232;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=z6a/0qrr2M/tzrhlfccXr24/rYWIBoGcp823H5w8lNY=;
+	b=OokZmhHuABHoFHMFUTkY2BO6H51JPZZYt2O2sVj5LgMXCcBi7Q5jhgdVqUeTi23zx2RaZu
+	ylEHpu2r7rkh9igBLkcZzbDn7yu1NuML0k53gUidKEG8qRRVXYTxnmp+frsuLjfv6f/TK/
+	hDgo5LK8BvixiVGyth2xVW4Ino92hsGYJ9z5WzTKSUAEpYluc4tlD0VdD2Dmrlnaf+6FjX
+	srVnTO3HMV3PTHqk1XqeLSmyv5jYmaQ8WcSlz99e2+bQfzqScdS8iDzYSIUuTKg0CV8Dw6
+	MqZUNtswI5jQeFH8rPMVikNludRkzRpC2aFXokSUIYUblF2FOk5KJW0RRYcxDA==
+Message-ID: <0dc758ee-2e07-436a-b274-f1b25c847bee@bootlin.com>
+Date: Fri, 10 Nov 2023 15:57:08 +0100
 MIME-Version: 1.0
-Date: Thu, 09 Nov 2023 22:02:00 -0800
-Message-ID: <AeAa.1699596120034371631.CWXr@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="PTAtQr9CcpOtld61nTOp"
+User-Agent: Mozilla Thunderbird
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 4.3 is Released
+Content-Language: en-US
+To: Lee Chee Yang <chee.yang.lee@intel.com>
+References: <CH3PR11MB809364115B3E18ABF048E076B9AFA@CH3PR11MB8093.namprd11.prod.outlook.com>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+In-Reply-To: <CH3PR11MB809364115B3E18ABF048E076B9AFA@CH3PR11MB8093.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: michael.opdenacker@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 06:02:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61649
+ <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 14:57:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61650
 
---PTAtQr9CcpOtld61nTOp
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Lee
 
-Hi,
-I have a recipe that creates some directories in /usr/local and copies ther=
-e some files using do_install:append
+On 09.11.23 at 16:29, Lee Chee Yang wrote:
+>
+> Hi
+>
+> We are pleased to announce the Yocto Project 4.3 Release is now 
+> available for download.
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-4.3/poky-15b576c4101231d248fda7ae0824e1780e1a8901.tar.bz2
+>
+> http://mirrors.kernel.org/yocto/yocto/yocto-4.3/poky-15b576c4101231d248fda7ae0824e1780e1a8901.tar.bz2
+>
+> A gpg signed version of these release notes is available at:
+>
+> http://downloads.yoctoproject.org/releases/yocto/yocto-4.3/RELEASENOTES
+>
 
->=20
-> inherit qmake5
-> OE_QMAKE_PATH_HEADERS =3D "${OE_QMAKE_PATH_QT_HEADERS}"
-> DEPENDS +=3D "qtbase qtdeclarative qtmultimedia libgpiod"
->=20
+Many thanks for the release. Maybe fore the next major release you could 
+mention the HTML version of the release notes, as well as the migration 
+notes, as they were available when the release was made:
+https://docs.yoctoproject.org/dev/migration-guides/release-4.3.html
 
->=20
-> RDEPENDS:${PN} +=3D "qtxmlpatterns qtdeclarative-qmlplugins qtbase-plugin=
-s
-> ttf-dejavu-sans qtquickcontrols qtquickcontrols2 qtfreevirtualkeyboard
-> libgpiod valgrind
->=20
-> do_install:append () {
-> install -d ${D}${bindir}
-> install -d ${D}/usr/local/test
-> install -m 0775 qt_test ${D}${bindir}
-> install -m 0775 ${S}/test.db ${D}/usr/local/test
-> cp -r ${WORKDIR}/Resources ${D}/usr/local/test/resources
-> cp -r ${WORKDIR}/LocalFiles ${D}/usr/local/test/LocalFiles
-> }
-> FILES:${PN} +=3D "${bindir}/qt_test"
-> FILES:${PN} +=3D "/opt/*"
-> FILES:${PN} +=3D "/usr/local/test/*"
->=20
->=20
->=20
+That's a little better than the raw rst sources :)
 
-When I build the image, I see the folders appear in /usr/local as expected =
-while creating the rootfs but at some point they are removed and, by the ti=
-me the rootfs creation finishes, they are gone.
-If I take the ipk package and install it on the embedded device the folders=
- and files are created correctly so I guess that the recipe is fine but the=
-re is some task during the rootfs creation that deletes all the files in /u=
-sr/local (my folders are not the only ones that are deleted).
+For release updates, I'm not sure that's possible, as the release notes 
+are usually available in HTML after the release is made.
+Thanks again
+Michael.
 
-Who could be doing that or how can I debug it to find the culprit?
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Kind regards,
-Javi
-
---PTAtQr9CcpOtld61nTOp
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,&nbsp;<br />I have a recipe that creates some directories in /usr/local =
-and copies there some files using do_install:append<br /><br />
-<div>
-<blockquote>
-<div>inherit qmake5</div>
-<div>OE_QMAKE_PATH_HEADERS =3D "${OE_QMAKE_PATH_QT_HEADERS}"<br />DEPENDS +=
-=3D "qtbase qtdeclarative qtmultimedia libgpiod"</div>
-</blockquote>
-</div>
-<blockquote>
-<div>
-<div>RDEPENDS:${PN} +=3D "qtxmlpatterns qtdeclarative-qmlplugins qtbase-plu=
-gins ttf-dejavu-sans qtquickcontrols qtquickcontrols2 qtfreevirtualkeyboard=
- libgpiod valgrind</div>
-</div>
-<div>
-<div>&nbsp;</div>
-</div>
-<div>
-<div>do_install:append () {</div>
-</div>
-<div>
-<div>install -d ${D}${bindir}</div>
-</div>
-<div><span style=3D"white-space: normal;">install -d ${D}/usr/local/test</s=
-pan></div>
-<div><span style=3D"white-space: normal;">install -m 0775 qt_test ${D}${bin=
-dir}</span></div>
-<div><span style=3D"white-space: normal;">install -m 0775 ${S}/test.db ${D}=
-/usr/local/test</span></div>
-<div>&nbsp; &nbsp; cp -r ${WORKDIR}/Resources ${D}/usr/local/test/resources=
-</div>
-<div>&nbsp; &nbsp; cp -r ${WORKDIR}/LocalFiles ${D}/usr/local/test/LocalFil=
-es</div>
-<div>}</div>
-<div>FILES:${PN} +=3D "${bindir}/qt_test"</div>
-<div>FILES:${PN} +=3D "/opt/*"</div>
-<div>FILES:${PN} +=3D "/usr/local/test/*"<br /><br /></div>
-</blockquote>
-<div>When I build the image, I see the folders appear in /usr/local as expe=
-cted while creating the rootfs but at some point they are removed and, by t=
-he time the rootfs creation finishes, they are gone.<br />If I take the ipk=
- package and install it on the embedded device the folders and files are cr=
-eated correctly so I guess that the recipe is fine but there is some task d=
-uring the rootfs creation that deletes all the files in /usr/local (my fold=
-ers are not the only ones that are deleted).<br /><br />Who could be doing =
-that or how can I debug it to find the culprit?<br /><br /><br />Kind regar=
-ds,<br />Javi<br /><br /><br /></div>
-<div>&nbsp;</div>
-
---PTAtQr9CcpOtld61nTOp--
 
