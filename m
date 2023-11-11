@@ -1,272 +1,136 @@
-Return-Path: <ron.eggler@mistywest.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4E14C4332F
-	for <webhook@archiver.kernel.org>; Sat, 11 Nov 2023 00:05:19 +0000 (UTC)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web10.42758.1699661116071395276
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EA380C4332F
+	for <webhook@archiver.kernel.org>; Sat, 11 Nov 2023 00:54:09 +0000 (UTC)
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+ by mx.groups.io with SMTP id smtpd.web10.44208.1699664044645093773
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Nov 2023 16:05:16 -0800
+ Fri, 10 Nov 2023 16:54:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistywest-com.20230601.gappssmtp.com header.s=20230601 header.b=hqKF1qdV;
- spf=pass (domain: mistywest.com, ip: 209.85.214.182, mailfrom: ron.eggler@mistywest.com)
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1ccbb7f79cdso21792725ad.3
-        for <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 16:05:16 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=b7+ZiyRv;
+ spf=pass (domain: gmail.com, ip: 209.85.166.177, mailfrom: ticotimo@gmail.com)
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-357cf6725acso9788455ab.3
+        for <yocto@lists.yoctoproject.org>; Fri, 10 Nov 2023 16:54:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistywest-com.20230601.gappssmtp.com; s=20230601; t=1699661115; x=1700265915; darn=lists.yoctoproject.org;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sKhEPv8Wch4gpmU2zYd/pVldg8HK6dlO5mx+Ua3mG/o=;
-        b=hqKF1qdVPtp+r0JO25DKFigeXRjez8nftJ7Iewpo3lG1TitFRMCIau6mSYmY/jvoNW
-         gev3g095nJdbzrj0L8gUvbAmMcjKYkLN/JEzjPoNXCDSRiNIwy3krJaF71kEvGpXm+EL
-         vngsk/qZaage1/itKexpwP89m2xNo3Wa7Cj6JbQnON+HIXGLtNMu2WHtuJW+753kW8ci
-         JX/qfJF32uUw22+QOZoRFJiZAvubUl+RbHZIEgxQvL1QrylTkoJbNIKCAVRVY+Kh9LMp
-         643XS4C1rzZkgvNqG2x+V//UfGTYhM08CvHzpMuxmzHOJ/GE/WMuDPoX9OpTYdPTJFGR
-         SfAQ==
+        d=gmail.com; s=20230601; t=1699664043; x=1700268843; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jKqQ8cu1EEZQrKwlyARINukQn9m00VF7aIWln4tA0tc=;
+        b=b7+ZiyRv4NTmRpa4xeJHwQEkVlt2XosLaedE5LForWd18FvovYu6oRMQQy4Ab5XQVP
+         m14m/yOm+xyEmj9Jpwpqw4tbxmPnjS+gct8Cgj+e658ykekDtrKaWX+eavI1DXUl6e2d
+         aLdSLJTu5zNHfOtTBuvAseahT3sAv7N4YsU8ZSgdEJzdaoxssxhrnT0mzDE9DYmPEBNN
+         DuPJ3UmxsOSKjkH9s+PUdQ1YbNbigS7saXmzhqBMPAL5OUVpGy53eGZ5lqJ0h7FsUWaZ
+         wz+1r42H4qHBee5SZaTEyFIS+VAeMV6S5nr2RiPDvJjRWfnvsQAbD+NXzRG1XfdMQcSU
+         9QKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699661115; x=1700265915;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sKhEPv8Wch4gpmU2zYd/pVldg8HK6dlO5mx+Ua3mG/o=;
-        b=vndgY4HT4oXGs8q1XlPFLiGAU2gvwL/SB8EzoM5KbDRMMMqzE0aJXRi0x07p1qGoPh
-         fb42mQd3nlKlitsY6PWQjk+AQrEsgTKMl0M10JbetDnceq0bZu+tFcf1A14STLSVuADG
-         P/yjzQaKVPcDdymgQhDqxHgM3jJxo+VEzOQrcFUsh8Vo1dKI2K6iuwM86K7CrwbfXbkb
-         UGDPQkZAeY2fWJZLJOHAU/pDbaQcau9EVsK7TjsX2BWQkteGMJFMLGuB5zsYwILrW++F
-         wc32JWjurEN9M5jSGUCMH3RJpG0VwPIlpp7xH04giqcRFSure6oTrZ1SSCTbTd0chXK+
-         qCcQ==
-X-Gm-Message-State: AOJu0YxSsNR9m9Mdo2cMxe3WArafbWIHUDiGPZfnkwrAN+l9FS9eQscw
-	swObV3PDmrvlsfM3d8tq7D3Nyg==
-X-Google-Smtp-Source: AGHT+IFY3JK4w4qz52Md0vmGX4gPjf/Qch478EjoMfchek0bzTXnVD8/tn9SF500+HADDEEbhZpKAw==
-X-Received: by 2002:a17:902:8e89:b0:1ce:8ed:2378 with SMTP id bg9-20020a1709028e8900b001ce08ed2378mr851293plb.1.1699661115321;
-        Fri, 10 Nov 2023 16:05:15 -0800 (PST)
-Received: from [192.168.100.190] ([209.52.149.8])
-        by smtp.gmail.com with ESMTPSA id b5-20020a170902b60500b001cc2dc61c99sm214818pls.22.2023.11.10.16.05.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 16:05:14 -0800 (PST)
-Content-Type: multipart/alternative;
- boundary="------------WU770gOlM3u4nz2t2j4oCVT4"
-Message-ID: <7916f975-2ca4-4be7-992f-50c10a1a78c9@mistywest.com>
-Date: Fri, 10 Nov 2023 16:05:16 -0800
+        d=1e100.net; s=20230601; t=1699664043; x=1700268843;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jKqQ8cu1EEZQrKwlyARINukQn9m00VF7aIWln4tA0tc=;
+        b=bVoEW9rEhWwNU28kBs70erDDvIFpifMX6kTuFv2mGeEF9sEO8hKAxu9G88P6sK5CRx
+         Rhedz4kysVSKmEVO3myqpMUIJVM0BdiXy496ufwUlDym1HFtUCfcn6lSPrvNIWarlL7n
+         HeIYKBUhTYTDho4gapR3xmlZmuHZyOGkt5X9a8KcfXYBvVGwL6WCDDO8obEg+QFZitks
+         BZXimfUwE26jr/uj9IyBhkanDf0GAwRtJXFOjFP08gr/2l3RBa9gFpTfTp5r+BkgDTlp
+         Y1nNtUdiM/yZDd/nekCmhJf24l1NG0g73TKQIiT5rDsx/zyEItDu0XX+E21fvIqXx9Fv
+         TUlg==
+X-Gm-Message-State: AOJu0YyTIa6t2He7TbcXMyoy9iIefHPV8MqnnUq2W1LR8100ROnwjwlu
+	VvVmGYjzRlkc2cnu3KJv0v4kCaQVSQKiTg==
+X-Google-Smtp-Source: AGHT+IFTLk48pze+5wS8yWsSxDID4HKNUrfOby6T/FZpjvcWkd59RqanuYxJj2PMfDtNeE3jfmWaGA==
+X-Received: by 2002:a05:6e02:1949:b0:359:6116:4d9a with SMTP id x9-20020a056e02194900b0035961164d9amr1477201ilu.7.1699664043497;
+        Fri, 10 Nov 2023 16:54:03 -0800 (PST)
+Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca00:cea0:3313:4488:79b1:32e])
+        by smtp.gmail.com with ESMTPSA id n3-20020a170903110300b001bf8779e051sm241907plh.289.2023.11.10.16.54.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Nov 2023 16:54:02 -0800 (PST)
+From: Tim Orling <ticotimo@gmail.com>
+X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
+To: yocto@lists.yoctoproject.org
+Cc: Tim Orling <tim.orling@konsulko.com>
+Subject: [layerindex-web][PATCH] utils.py: get dependent layers at same branch
+Date: Fri, 10 Nov 2023 16:52:50 -0800
+Message-Id: <20231111005249.343862-1-tim.orling@konsulko.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] bitbake error about files/directories installed but not
- shipped
-Content-Language: en-US
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <4145e228-b61f-42ac-ac13-5150e3b6cbe7@mistywest.com>
- <CA+chaQfeH8Pop=JOqDr9hZ-6ZpX9veuWmgty4QJXDyioMowV1A@mail.gmail.com>
-From: Ron Eggler <ron.eggler@mistywest.com>
-In-Reply-To: <CA+chaQfeH8Pop=JOqDr9hZ-6ZpX9veuWmgty4QJXDyioMowV1A@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 11 Nov 2023 00:05:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61656
+ <yocto@lists.yoctoproject.org>; Sat, 11 Nov 2023 00:54:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61657
 
-This is a multi-part message in MIME format.
---------------WU770gOlM3u4nz2t2j4oCVT4
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+For both meta-poky/meta-yocto and meta-xilinx/meta-xilinx-core
+we have a situation where the "collections" stayed the same
+("yocto" and "xilinx" respectively) but the layer/layerbranch
+changed. Without the "branch" argument to get_dependency_layers,
+we were always defaulting to the older layer which first
+defined the "collection".
 
-Hi Martin,
+Instead, add an option to use "branch" to filter on the expected
+LayerBranch object. Keep the old behavior just in case someone
+depends upon it.
 
-> I would guess that libdir in your build is set to /usr/lib 
-> while omx-user-module created /usr/lib64.
->
-> Check with bitbake-getvar and the files in ${D}, possibly need to pass 
-> libdir value to whatever build system omx-user-module uses (hard to 
-> guess without seeing the whole recipe or sources).
+[YOCTO #15221]
 
-For bitbake-getvar, I get "command not found", how can I invoke it properly?
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ layerindex/utils.py | 22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
 
-The recipe can be found here:
-
-https://drive.google.com/drive/folders/1wXtMENRj6TKfyo9gISX-p0dUpPBE2Up-?usp=sharing
-
->
-> On Fri, Nov 10, 2023 at 10:19 PM Mistyron <ron.eggler@mistywest.com> 
-> wrote:
->
->     Hi,
->
->     I'm struggling with a Yocto build for my board, I get an error like:
->     ```
->     ERROR: omx-user-module-1.1.0-r0 do_package: QA Issue:
->     omx-user-module: Files/directories were installed but not shipped
->     in any package:
->       /usr/lib64
->     Please set FILES such that these items are packaged. Alternatively
->     if they are unneeded, avoid installing them or delete them within
->     do_install.
->     omx-user-module: 1 installed and not shipped files.
->     [installed-vs-shipped]
->     ERROR: omx-user-module-1.1.0-r0 do_package: Fatal QA errors found,
->     failing task.
->     ERROR: Logfile of failure stored in:
->     /home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/omx-user-module/1.1.0-r0/temp/log.do_package.1434925
->     ERROR: Task
->     (/home/yocto/rzv_vlp_v3.0.0/build/../poky/meta/recipes-multimedia/gstreamer/omx-user-module.bb:do_package)
->     failed with exit code '1'
->     ```
->     The recipe `omx-user-module.bb <http://omx-user-module.bb>` is
->     needed by my image (in image.bbappend) and the omx-user-module.bb
->     <http://omx-user-module.bb> contains:
->
->     FILES:${PN} += " \
->         ${libdir}/*.so \
->     "
->
->     FILES:${PN}-dev = " \
->         ${includedir} \
->         ${libdir}/*.la \
->     "
->
->
->     can anyone help me further with this?
->
->     Thanks,
->
->     Ron
->
->     -- 
->     *ron
->     *
->
->     -=-=-=-=-=-=-=-=-=-=-=-
->     Links: You receive all messages sent to this group.
->     View/Reply Online (#61653):
->     https://lists.yoctoproject.org/g/yocto/message/61653
->     Mute This Topic: https://lists.yoctoproject.org/mt/102515765/3617156
->     Group Owner: yocto+owner@lists.yoctoproject.org
->     <mailto:yocto%2Bowner@lists.yoctoproject.org>
->     Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
->     [martin.jansa@gmail.com]
->     -=-=-=-=-=-=-=-=-=-=-=-
->
+diff --git a/layerindex/utils.py b/layerindex/utils.py
+index 9d94015..0ea8e48 100644
+--- a/layerindex/utils.py
++++ b/layerindex/utils.py
+@@ -75,13 +75,20 @@ def is_deps_satisfied(req_col, req_ver, collections):
+     # Return False when not found
+     return False
+ 
+-def get_dependency_layer(depname, version_str=None, logger=None):
++def get_dependency_layer(depname, branch=None, version_str=None, logger=None):
+     from layerindex.models import LayerItem, LayerBranch
+ 
+-    # Get any LayerBranch with a layer that has a name that matches depmod, or
+-    # a LayerBranch that has the collection name depmod.
+-    res = list(LayerBranch.objects.filter(layer__name=depname)) + \
+-          list(LayerBranch.objects.filter(collection=depname))
++    if branch:
++        # Get LayerBranch with a layer that has a name that matches depname, or
++        # a LayerBranch that has the collection name depname
++        # AND also match branch [YOCTO #15221]
++        res = list(LayerBranch.objects.filter(layer__name=depname,branch__name=branch)) + \
++              list(LayerBranch.objects.filter(collection=depname,branch__name=branch))
++    else:
++        # Get any LayerBranch with a layer that has a name that matches depname, or
++        # a LayerBranch that has the collection name depname.
++        res = list(LayerBranch.objects.filter(layer__name=depname)) + \
++              list(LayerBranch.objects.filter(collection=depname))
+ 
+     # Nothing found, return.
+     if not res:
+@@ -119,6 +126,7 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None, required=T
+     from layerindex.models import LayerBranch, LayerDependency
+ 
+     layer_name = layerbranch.layer.name
++    branch_name = layerbranch.branch.name
+     var_name = layer_name
+ 
+     if layerbranch.collection:
+@@ -143,10 +151,10 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None, required=T
+             ver_str = ver_list[0]
+ 
+         try:
+-            dep_layer = get_dependency_layer(dep, ver_str, logger)
++            dep_layer = get_dependency_layer(dep, branch_name, ver_str, logger)
+         except bb.utils.VersionStringException as vse:
+             if logger:
+-                logger.error('Error getting %s %s for %s\n%s' %(name, dep. layer_name, str(vse)))
++                logger.error('Error getting %s %s for %s:%s\n%s' %(name, dep. layer_name, branch_name, str(vse)))
+             continue
+ 
+         # No layer found.
 -- 
-ron
---------------WU770gOlM3u4nz2t2j4oCVT4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+2.34.1
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi Martin,</p>
-    <blockquote type="cite"
-cite="mid:CA+chaQfeH8Pop=JOqDr9hZ-6ZpX9veuWmgty4QJXDyioMowV1A@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">I would guess that libdir in your build is set to
-        /usr/lib while omx-user-module created /usr/lib64.
-        <div><br>
-        </div>
-        <div>Check with bitbake-getvar and the files in ${D}, possibly
-          need to pass libdir value to whatever build system
-          omx-user-module uses (hard to guess without seeing the whole
-          recipe or sources).</div>
-      </div>
-    </blockquote>
-    <p>For bitbake-getvar, I get "command not found", how can I invoke
-      it properly?</p>
-    <p>The recipe can be found here: </p>
-    <p><a class="moz-txt-link-freetext" href="https://drive.google.com/drive/folders/1wXtMENRj6TKfyo9gISX-p0dUpPBE2Up-?usp=sharing">https://drive.google.com/drive/folders/1wXtMENRj6TKfyo9gISX-p0dUpPBE2Up-?usp=sharing</a><br>
-    </p>
-    <blockquote type="cite"
-cite="mid:CA+chaQfeH8Pop=JOqDr9hZ-6ZpX9veuWmgty4QJXDyioMowV1A@mail.gmail.com"><br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Fri, Nov 10, 2023 at
-          10:19 PM Mistyron &lt;<a
-            href="mailto:ron.eggler@mistywest.com"
-            moz-do-not-send="true" class="moz-txt-link-freetext">ron.eggler@mistywest.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote"
-style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <p>Hi,<br>
-              <br>
-              I'm struggling with a Yocto build for my board, I get an
-              error like:<br>
-              ```<br>
-              ERROR: omx-user-module-1.1.0-r0 do_package: QA Issue:
-              omx-user-module: Files/directories were installed but not
-              shipped in any package:<br>
-                /usr/lib64<br>
-              Please set FILES such that these items are packaged.
-              Alternatively if they are unneeded, avoid installing them
-              or delete them within do_install.<br>
-              omx-user-module: 1 installed and not shipped files.
-              [installed-vs-shipped]<br>
-              ERROR: omx-user-module-1.1.0-r0 do_package: Fatal QA
-              errors found, failing task.<br>
-              ERROR: Logfile of failure stored in:
-/home/yocto/rzv_vlp_v3.0.0/build/tmp/work/smarc_rzv2l-poky-linux/omx-user-module/1.1.0-r0/temp/log.do_package.1434925<br>
-              ERROR: Task
-(/home/yocto/rzv_vlp_v3.0.0/build/../poky/meta/recipes-multimedia/gstreamer/omx-user-module.bb:do_package)
-              failed with exit code '1'<br>
-              ```<br>
-              The recipe `<a href="http://omx-user-module.bb"
-                target="_blank" moz-do-not-send="true">omx-user-module.bb</a>`
-              is needed by my image (in image.bbappend) and the <a
-                href="http://omx-user-module.bb" target="_blank"
-                moz-do-not-send="true">omx-user-module.bb</a> contains:</p>
-            <p>FILES:${PN} += " \<br>
-                  ${libdir}/*.so \<br>
-              "<br>
-              <br>
-              FILES:${PN}-dev = " \<br>
-                  ${includedir} \<br>
-                  ${libdir}/*.la \<br>
-              "</p>
-            <p><br>
-            </p>
-            <p>can anyone help me further with this?</p>
-            <p>Thanks,</p>
-            <p>Ron<br>
-            </p>
-            <div>-- <br>
-              <b>ron <br>
-              </b></div>
-          </div>
-          <br>
-          -=-=-=-=-=-=-=-=-=-=-=-<br>
-          Links: You receive all messages sent to this group.<br>
-          View/Reply Online (#61653): <a
-            href="https://lists.yoctoproject.org/g/yocto/message/61653"
-            rel="noreferrer" target="_blank" moz-do-not-send="true"
-            class="moz-txt-link-freetext">https://lists.yoctoproject.org/g/yocto/message/61653</a><br>
-          Mute This Topic: <a
-            href="https://lists.yoctoproject.org/mt/102515765/3617156"
-            rel="noreferrer" target="_blank" moz-do-not-send="true"
-            class="moz-txt-link-freetext">https://lists.yoctoproject.org/mt/102515765/3617156</a><br>
-          Group Owner: <a
-            href="mailto:yocto%2Bowner@lists.yoctoproject.org"
-            target="_blank" moz-do-not-send="true">yocto+owner@lists.yoctoproject.org</a><br>
-          Unsubscribe: <a
-            href="https://lists.yoctoproject.org/g/yocto/unsub"
-            rel="noreferrer" target="_blank" moz-do-not-send="true"
-            class="moz-txt-link-freetext">https://lists.yoctoproject.org/g/yocto/unsub</a>
-          [<a href="mailto:martin.jansa@gmail.com" target="_blank"
-            moz-do-not-send="true" class="moz-txt-link-freetext">martin.jansa@gmail.com</a>]<br>
-          -=-=-=-=-=-=-=-=-=-=-=-<br>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <div class="moz-signature">-- </div>
-    <div class="moz-signature">ron<br>
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <title></title>
-    </div>
-  </body>
-</html>
-
---------------WU770gOlM3u4nz2t2j4oCVT4--
 
