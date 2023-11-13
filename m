@@ -2,102 +2,99 @@ Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1880AC4332F
-	for <webhook@archiver.kernel.org>; Mon, 13 Nov 2023 11:12:29 +0000 (UTC)
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
- by mx.groups.io with SMTP id smtpd.web10.34541.1699873943328837033
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F72BC4332F
+	for <webhook@archiver.kernel.org>; Mon, 13 Nov 2023 11:19:39 +0000 (UTC)
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+ by mx.groups.io with SMTP id smtpd.web10.34622.1699874371196319861
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Nov 2023 03:12:23 -0800
+ Mon, 13 Nov 2023 03:19:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=CI7NOVXc;
- spf=pass (domain: gmail.com, ip: 209.85.218.44, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso632105866b.1
-        for <yocto@lists.yoctoproject.org>; Mon, 13 Nov 2023 03:12:23 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=CMkxtTWs;
+ spf=pass (domain: gmail.com, ip: 209.85.218.51, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-9c603e235d1so654219266b.3
+        for <yocto@lists.yoctoproject.org>; Mon, 13 Nov 2023 03:19:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699873941; x=1700478741; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1699874369; x=1700479169; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Qa9J36tqBzJRzWbb6L6KVasl4KqgRCxIsOnDkpvJIPQ=;
-        b=CI7NOVXcpnuCCV4jFoLEQK3d0pWolQ01n36sBp+wD1c3brry8nmGpd6Cdr+4lK2sBi
-         GIKPofk6qX1GAZW9WWBsOOfd75gdI7IiU9yMb3TIkFS9DWKxJy+jHHuliAIXA642OhI0
-         90g0k/1tsb37ch9o2WiHiHin2NvlrFAdxRMAc0n8K9TbfQUVFmktphLOMdCXgdxwSNE0
-         V5VbT3qwSdrd9S2cPH6HffxlLKtpd6fr4bmojOSbGQeaoWdNfHMyFgmyegGfJjuDpSMK
-         S1UMLPyA1WVrD+dKNI7tBGPPaPxjigcWzkv1BtEOFjPWucZJEy+EMcCwW5VwHUoszqin
-         GTDA==
+        bh=tKeOEVJe7sbCS7sdZbFwpia3ycVqqZkxeYSe4/lDerw=;
+        b=CMkxtTWspHaTVeOleVqM0o5b76/meQmX6i+orUCCMyotnZMRA4wdQk2Ow9PaeQT+Y7
+         1yQSCCQ9hY8x3FflI26wd6bmrFRuVpKq53MgjXtn15Tfcm/VhXHvlqQTI+OgNamqz0yK
+         X9551E4NeG7hoLfbP7rtwPfqmUM4eHPCSjwpH7haCrv5qJEZbAIuVgN2ztf3idIXXVTU
+         vnauef/s7pPs429YXT1sj3x0jxVEd9F2VeJxdi2vPmSE5FvrpCQKuysSzYDFzUsSe8S+
+         oezXBjLHmjjjoDexq5aBlwADgXq+lFlJjfdOPj/GEMs6S19/4eKpOjtLT8TVoi+oeaVM
+         7fXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699873941; x=1700478741;
+        d=1e100.net; s=20230601; t=1699874369; x=1700479169;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qa9J36tqBzJRzWbb6L6KVasl4KqgRCxIsOnDkpvJIPQ=;
-        b=cw1sNLWR5dQ81FzNoHhp1Uiu0TLfXT6pCgctJFJaapH4fD3yNdmNjXwHw+z+Lw6Lz2
-         7cIyG4asxBp1ru3YbpQhZSYA26PS/HPT4cWfHHXNtQFyi2vKibnl5XfcMHJ144cBzQYt
-         AOduk0vUuTyjPqifG/FI0PyVSV3UH5huwLpcxBXNcqLP12Otw7FDkPYpPVHicKg/jiCF
-         4qi99DbghxWsOxI9XJOfV5KLTQIFL0eBJ5cYbbvk0luKy1KEtryKp8JeqNVxsJp5WHBa
-         shPveixdPukHREriXSM0rTnX+BYOCR8WH8d9T/+v9GiCUK5yOv5QOXuQm1CdYXRY57l6
-         1uUA==
-X-Gm-Message-State: AOJu0YxIGrAL+bw3CLZ9CkeIo9Y91mLz9/Yr4DjvXKbkXLHpIBvCI52W
-	udr+kxk4nelIzqZuFDjPPer3WPSUXCuDKqokBn4=
-X-Google-Smtp-Source: AGHT+IFAugEKpWhgwAJliF00MWU2cP5+zkdhrRZmOMYY/iDnZELb9RZYo16nIRh75zAhf+FD/HPrZpRhKyQkkB5n66o=
-X-Received: by 2002:a17:906:c312:b0:9be:fc60:32d9 with SMTP id
- s18-20020a170906c31200b009befc6032d9mr4412965ejz.47.1699873941313; Mon, 13
- Nov 2023 03:12:21 -0800 (PST)
+        bh=tKeOEVJe7sbCS7sdZbFwpia3ycVqqZkxeYSe4/lDerw=;
+        b=bwxi0AcCKvh81YLbcxVpWQG/Pz+agQRSplZdHsLwXgLOkd8+A5/2CarDTkTNbw/+Cr
+         gvZRSgVPuWuL5mPyp6XHKr3UCoqSOZGGrM5PnpQ5DobaTph5UEn8Q0gUGm1eCR9GK5T4
+         qLHhFT/HnWjSvtpbiTse+X2HOcbX1ScoQ13KQYeRvJ0jDprmiS4GZnUBOpRVUX98I8a2
+         4+lq2i2MVfL1WyS6tYCloep0pNmeki2NQk5NMZjQeaBa4FJLuQ66csGFqEYMGvZe1pnj
+         Wy1pdeoSKFc24Yda0qD1RIF7ry5KnJmtJRInhtuMLPOGKcPAPD6iJlDgTnem50yPwJqz
+         bwKQ==
+X-Gm-Message-State: AOJu0Yws4RpQIiKpOe5Dpv1lru33fV9xC1Of0UKgXPK+r7Orz8TnMrvb
+	ZWA8WR0hMh3P3wz3vLWw2kEi22cdihHQfN5fxYzNr8kAVSo=
+X-Google-Smtp-Source: AGHT+IFgQdk5ciN5w5fdFvuT5vsjFdZ9cghYUVlxnGm5ZYcSG/YWYJdVQcT1Y+pdqqLAvhphU4OS5xV9HyzB4vrFrRg=
+X-Received: by 2002:a17:907:940b:b0:9e6:8415:6f0 with SMTP id
+ dk11-20020a170907940b00b009e6841506f0mr5115634ejc.63.1699874369360; Mon, 13
+ Nov 2023 03:19:29 -0800 (PST)
 MIME-Version: 1.0
 From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 13 Nov 2023 04:12:09 -0700
-Message-ID: <CAK5yBb_DX0Rd7NZMxfER7fEv7VjnO0-gNzGBdv3roxy75b2Wvw@mail.gmail.com>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-To: openembedded-devel@lists.openembedded.org, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000006f59c6060a06be2e"
+Date: Mon, 13 Nov 2023 04:19:17 -0700
+Message-ID: <CAK5yBb8ktYDbFHBJdQriWYOzP7K78GJnR9NSUK26Zpr4Dr1=yA@mail.gmail.com>
+Subject: Current high bug count owners for Yocto Project 5.0
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000f2d4ce060a06d7a2"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Nov 2023 11:12:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61663
+ <yocto@lists.yoctoproject.org>; Mon, 13 Nov 2023 11:19:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61664
 
---0000000000006f59c6060a06be2e
+--000000000000f2d4ce060a06d7a2
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 All,
 
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means
-people can find them. They're being listed on the triage page under the
-appropriate heading:
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
-review:
-https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
-how to create a bugzilla account at:
-https://bugzilla.yoctoproject.org/createaccount.cgi
-
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project. If anyone can help,
-please take ownership of the bug and send patches! If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 416
-unassigned or newcomer bugs.
-
-We're hoping people may be able to spare some time now and again to help
-out with these. Bugs are split into two types, "true bugs" where things
-don't work as they should and "enhancements" which are features we'd want
-to add to the system. There are also roughly four different "priority"
-classes right now, =E2=80=9C4.3=E2=80=9D, =E2=80=9C4.4=E2=80=9D, "4.99" and=
- "Future", the more
-pressing/urgent issues being in "4.3" and then =E2=80=9C4.4=E2=80=9D.
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
-an e-mail with the bug number you would like and I will assign it to you
-(please make sure you have a Bugzilla account). The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
-r_Bugs
+Below is the list of top 30 bug owners as of the end of WW45 who have open
+medium or higher bugs and enhancements against YP 5.0. There are 115
+possible work days left until the final release candidates for YP 5.0 needs
+to be released.
+Who Count
+michael.opdenacker@bootlin.com 36
+ross.burton@arm.com 33
+richard.purdie@linuxfoundation.org 26
+bruce.ashfield@gmail.com 25
+randy.macleod@windriver.com 23
+david.reyna@windriver.com 16
+JPEWhacker@gmail.com 10
+pidge@pidge.org 9
+pavel@zhukoff.net 8
+tim.orling@konsulko.com 7
+yoann.congal@smile.fr 5
+Yash.Shinde@windriver.com 4
+sakib.sajal@windriver.com 3
+kexin.hao@windriver.com 2
+jon.mason@arm.com 2
+alexis.lothore@bootlin.com 2
+alexandre.belloni@bootlin.com 2
+tvgamblin@gmail.com 1
+throos@amazon.de 1
+thomas.perrot@bootlin.com 1
+sundeep.kokkonda@windriver.com 1
+rybczynska@gmail.com 1
+rpjday@crashcourse.ca 1
+p.lobacz@welotec.com 1
+mark.asselstine@windriver.com 1
+louis.rannou@syslinbit.com 1
+jens.georg@desy.de 1
+fathi.boudra@linaro.org 1
+alex.kanavin@gmail.com 1
+alejandro@enedino.org 1
+Grand Total 226
 
 Thanks,
 
@@ -110,53 +107,220 @@ Thanks,
 (    *Cell*:                (208) 244-4460
 
 * *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
-*
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
 
---0000000000006f59c6060a06be2e
+--000000000000f2d4ce060a06d7a2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>The triage team is starting to try and collect up and classify b=
-ugs which a newcomer to the project would be able to work on in a way which=
- means people can find them. They&#39;re being listed on the triage page un=
-der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
-Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
-comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
-/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
-iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
-account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
->https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
- these bugs should be straight forward for a person to help work on who doe=
-sn&#39;t have deep experience with the project.  If anyone can help, please=
- take ownership of the bug and send patches!  If anyone needs help/advice t=
-here are people on irc who can likely do so, or some of the more experience=
-d contributors will likely be happy to help too.<br><br>Also, the triage te=
-am meets weekly and does its best to handle the bugs reported into the Bugz=
-illa. The number of people attending that meeting has fallen, as have the n=
-umber of people available to help fix bugs. One of the things we hear users=
- report is they don&#39;t know how to help. We (the triage team) are theref=
-ore going to start reporting out the currently 416 unassigned or newcomer b=
-ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
-again to help out with these.  Bugs are split into two types, &quot;true bu=
-gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
-quot; which are features we&#39;d want to add to the system.  There are als=
-o roughly four different &quot;priority&quot; classes right now,  =E2=80=9C=
-4.3=E2=80=9D, =E2=80=9C4.4=E2=80=9D, &quot;4.99&quot; and &quot;Future&quot=
-;, the more pressing/urgent issues being in &quot;4.3&quot; and then =E2=80=
-=9C4.4=E2=80=9D.<br><br>Please review this link and if a bug is something y=
-ou would be able to help with either take ownership of the bug, or send me =
-(<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an=
- e-mail with the bug number you would like and I will assign it to you (ple=
-ase make sure you have a Bugzilla account).  The list is at: <a href=3D"htt=
-ps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_B=
-ugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Ne=
-wcomer_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
-martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"=
-MsoNormal" style=3D"background-image:initial;background-position:initial;ba=
-ckground-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sa=
-ns-serif">Thanks,<span></span></span></p>
+ll,<br><br>Below is the list of top 30 bug owners as of the end of WW45 who=
+ have open medium or higher bugs and enhancements against YP 5.0.   There a=
+re 115 possible work days left until the final release candidates for YP 5.=
+0 needs to be released.<br></span><div dir=3D"ltr" class=3D"gmail_signature=
+" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><tab=
+le cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"ta=
+ble-layout:fixed;font-size:11pt;font-family:Calibri;width:0px;border-collap=
+se:collapse;border:none"><colgroup><col width=3D"249"><col width=3D"42"></c=
+olgroup><tbody><tr style=3D"height:20px"><td style=3D"border:1px solid rgb(=
+0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;background-col=
+or:rgb(219,229,241);font-weight:bold">Who</td><td style=3D"border-width:1px=
+;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
+04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;background-co=
+lor:rgb(219,229,241);font-weight:bold">Count</td></tr><tr style=3D"height:2=
+0px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
+204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-ali=
+gn:bottom"><a href=3D"mailto:michael.opdenacker@bootlin.com">michael.opdena=
+cker@bootlin.com</a></td><td style=3D"border-width:1px;border-style:solid;b=
+order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
+w:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">36</td></t=
+r><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:soli=
+d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;paddi=
+ng:0px 3px;vertical-align:bottom"><a href=3D"mailto:ross.burton@arm.com">ro=
+ss.burton@arm.com</a></td><td style=3D"border-width:1px;border-style:solid;=
+border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
+ow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">33</td></=
+tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:sol=
+id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padd=
+ing:0px 3px;vertical-align:bottom"><a href=3D"mailto:richard.purdie@linuxfo=
+undation.org">richard.purdie@linuxfoundation.org</a></td><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
+(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bot=
+tom;text-align:right">26</td></tr><tr style=3D"height:20px"><td style=3D"bo=
+rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
+rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
+=3D"mailto:bruce.ashfield@gmail.com">bruce.ashfield@gmail.com</a></td><td s=
+tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
+gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
+cal-align:bottom;text-align:right">25</td></tr><tr style=3D"height:20px"><t=
+d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
+) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bott=
+om"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.=
+com</a></td><td style=3D"border-width:1px;border-style:solid;border-color:r=
+gb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padd=
+ing:0px 3px;vertical-align:bottom;text-align:right">23</td></tr><tr style=
+=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-co=
+lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
+vertical-align:bottom"><a href=3D"mailto:david.reyna@windriver.com">david.r=
+eyna@windriver.com</a></td><td style=3D"border-width:1px;border-style:solid=
+;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
+low:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">16</td><=
+/tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:so=
+lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;pad=
+ding:0px 3px;vertical-align:bottom"><a href=3D"mailto:JPEWhacker@gmail.com"=
+>JPEWhacker@gmail.com</a></td><td style=3D"border-width:1px;border-style:so=
+lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
+erflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">10</t=
+d></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style=
+:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:pidge@pidge.org">p=
+idge@pidge.org</a></td><td style=3D"border-width:1px;border-style:solid;bor=
+der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
+hidden;padding:0px 3px;vertical-align:bottom;text-align:right">9</td></tr><=
+tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;b=
+order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:=
+0px 3px;vertical-align:bottom"><a href=3D"mailto:pavel@zhukoff.net">pavel@z=
+hukoff.net</a></td><td style=3D"border-width:1px;border-style:solid;border-=
+color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
+en;padding:0px 3px;vertical-align:bottom;text-align:right">8</td></tr><tr s=
+tyle=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;borde=
+r-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px =
+3px;vertical-align:bottom"><a href=3D"mailto:tim.orling@konsulko.com">tim.o=
+rling@konsulko.com</a></td><td style=3D"border-width:1px;border-style:solid=
+;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
+low:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">7</td></=
+tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:sol=
+id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padd=
+ing:0px 3px;vertical-align:bottom"><a href=3D"mailto:yoann.congal@smile.fr"=
+>yoann.congal@smile.fr</a></td><td style=3D"border-width:1px;border-style:s=
+olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
+verflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">5</t=
+d></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style=
+:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
+padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:Yash.Shinde@windri=
+ver.com">Yash.Shinde@windriver.com</a></td><td style=3D"border-width:1px;bo=
+rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
+4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align=
+:right">4</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;=
+border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);over=
+flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:sakib.=
+sajal@windriver.com">sakib.sajal@windriver.com</a></td><td style=3D"border-=
+width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
+,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
+m;text-align:right">3</td></tr><tr style=3D"height:20px"><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
+(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"m=
+ailto:kexin.hao@windriver.com">kexin.hao@windriver.com</a></td><td style=3D=
+"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
+0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
+gn:bottom;text-align:right">2</td></tr><tr style=3D"height:20px"><td style=
+=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
+,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a =
+href=3D"mailto:jon.mason@arm.com">jon.mason@arm.com</a></td><td style=3D"bo=
+rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
+rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
+bottom;text-align:right">2</td></tr><tr style=3D"height:21px"><td style=3D"=
+border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0=
+) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
+=3D"mailto:alexis.lothore@bootlin.com">alexis.lothore@bootlin.com</a></td><=
+td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
+4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
+ertical-align:bottom;text-align:right">2</td></tr><tr style=3D"height:21px"=
+><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
+204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:b=
+ottom"><a href=3D"mailto:alexandre.belloni@bootlin.com">alexandre.belloni@b=
+ootlin.com</a></td><td style=3D"border-width:1px;border-style:solid;border-=
+color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
+en;padding:0px 3px;vertical-align:bottom;text-align:right">2</td></tr><tr s=
+tyle=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;borde=
+r-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px =
+3px;vertical-align:bottom"><a href=3D"mailto:tvgamblin@gmail.com">tvgamblin=
+@gmail.com</a></td><td style=3D"border-width:1px;border-style:solid;border-=
+color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
+en;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr s=
+tyle=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;borde=
+r-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px =
+3px;vertical-align:bottom"><a href=3D"mailto:throos@amazon.de">throos@amazo=
+n.de</a></td><td style=3D"border-width:1px;border-style:solid;border-color:=
+rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
+ding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr style=
+=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-co=
+lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
+vertical-align:bottom"><a href=3D"mailto:thomas.perrot@bootlin.com">thomas.=
+perrot@bootlin.com</a></td><td style=3D"border-width:1px;border-style:solid=
+;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
+low:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></=
+tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:sol=
+id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padd=
+ing:0px 3px;vertical-align:bottom"><a href=3D"mailto:sundeep.kokkonda@windr=
+iver.com">sundeep.kokkonda@windriver.com</a></td><td style=3D"border-width:=
+1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
+rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text=
+-align:right">1</td></tr><tr style=3D"height:21px"><td style=3D"border-widt=
+h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
+);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:=
+rybczynska@gmail.com">rybczynska@gmail.com</a></td><td style=3D"border-widt=
+h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
+) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;te=
+xt-align:right">1</td></tr><tr style=3D"height:21px"><td style=3D"border-wi=
+dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
+,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailt=
+o:rpjday@crashcourse.ca">rpjday@crashcourse.ca</a></td><td style=3D"border-=
+width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
+,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
+m;text-align:right">1</td></tr><tr style=3D"height:21px"><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
+(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"m=
+ailto:p.lobacz@welotec.com">p.lobacz@welotec.com</a></td><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
+(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bot=
+tom;text-align:right">1</td></tr><tr style=3D"height:21px"><td style=3D"bor=
+der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
+gb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D=
+"mailto:mark.asselstine@windriver.com">mark.asselstine@windriver.com</a></t=
+d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
+,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
+x;vertical-align:bottom;text-align:right">1</td></tr><tr style=3D"height:21=
+px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,2=
+04,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-alig=
+n:bottom"><a href=3D"mailto:louis.rannou@syslinbit.com">louis.rannou@syslin=
+bit.com</a></td><td style=3D"border-width:1px;border-style:solid;border-col=
+or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
+padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr styl=
+e=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-c=
+olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px=
+;vertical-align:bottom"><a href=3D"mailto:jens.georg@desy.de">jens.georg@de=
+sy.de</a></td><td style=3D"border-width:1px;border-style:solid;border-color=
+:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
+dding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr style=
+=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-co=
+lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
+vertical-align:bottom"><a href=3D"mailto:fathi.boudra@linaro.org">fathi.bou=
+dra@linaro.org</a></td><td style=3D"border-width:1px;border-style:solid;bor=
+der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
+hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><=
+tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;b=
+order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:=
+0px 3px;vertical-align:bottom"><a href=3D"mailto:alex.kanavin@gmail.com">al=
+ex.kanavin@gmail.com</a></td><td style=3D"border-width:1px;border-style:sol=
+id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
+rflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td>=
+</tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:s=
+olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;pa=
+dding:0px 3px;vertical-align:bottom"><a href=3D"mailto:alejandro@enedino.or=
+g">alejandro@enedino.org</a></td><td style=3D"border-width:1px;border-style=
+:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204)=
+;overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1<=
+/td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-sty=
+le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidde=
+n;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);f=
+ont-weight:bold">Grand Total</td><td style=3D"border-width:1px;border-style=
+:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204)=
+;overflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb=
+(219,229,241);font-weight:bold;text-align:right">226</td></tr></tbody></tab=
+le><p class=3D"MsoNormal" style=3D"background-image:initial;background-posi=
+tion:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-=
+family:Arial,sans-serif">Thanks,<span></span></span></p>
 
 <p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
 n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
@@ -198,5 +362,5 @@ phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
 .pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
 u></p></div></div></div></div>
 
---0000000000006f59c6060a06be2e--
+--000000000000f2d4ce060a06d7a2--
 
