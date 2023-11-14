@@ -1,124 +1,201 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 44122C4167B
-	for <webhook@archiver.kernel.org>; Tue, 14 Nov 2023 07:04:19 +0000 (UTC)
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
- by mx.groups.io with SMTP id smtpd.web11.7874.1699945453012855613
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6632EC4332F
+	for <webhook@archiver.kernel.org>; Tue, 14 Nov 2023 10:16:20 +0000 (UTC)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web10.9701.1699956977550279611
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Nov 2023 23:04:13 -0800
+ Tue, 14 Nov 2023 02:16:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=gKCWyt7a;
- spf=pass (domain: gmail.com, ip: 209.85.167.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3b2e72fe47fso3478884b6e.1
-        for <yocto@lists.yoctoproject.org>; Mon, 13 Nov 2023 23:04:12 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=UbRTCUYM;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40906fc54fdso44582425e9.0
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Nov 2023 02:16:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699945452; x=1700550252; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nm2z2KKRGEngZ1dmdXMoyYsDeKz34H7mUuY2qQmRNPI=;
-        b=gKCWyt7as45IAfBmdyqX9K8fOQrohHRwL6FpT9bCYyUW+ggr3hMUnwXuolB+D3jkVr
-         Y6iiPyzR7tH3KB8KFgbfqirJ/LF6g/PBFwvlZ6UMxUCvXmDVmYHGtONMbYbOBUSlUhPA
-         /CwIiJUdICyWWrSHPc3hr3dT51mfez4D6R8VYs9wdaLv7aJGN1u1QzEMgu1r1zZj9PFE
-         JZB5RLcgyKnnDzKrjDsXdv3AJWys05HTgDwy1h3ILqIxEf/lt8LrixNCli4XJdGGxHIP
-         wCCsMoqO2X93pLzkg+G6Cjjiu3M8DESP+BSNSmMNMjBBdT/+LCoX7R6Ab4c/EqT6Hsz2
-         mehg==
+        d=linuxfoundation.org; s=google; t=1699956976; x=1700561776; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=UV7AMybMchiZcUSEU9KCCe07W9HXCSCRn1iRqCssgHk=;
+        b=UbRTCUYMAnaCaHpGbu24HF0hqw+qNJh0OjZs48F2ms0/BZUWkYKuoa2v19t7+Hs30z
+         XuxKQtnJHUF4DWnBnGIEz3QQ9xIXuNyYgP8UxbiCi7meMU7wwTHUS4zp2gJmfLbS7Ho1
+         qfvNzhAIIzMHysh3fQQjA+Ml1QYl2pwlfBZRE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699945452; x=1700550252;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nm2z2KKRGEngZ1dmdXMoyYsDeKz34H7mUuY2qQmRNPI=;
-        b=L8zFmnkXvmCUI6//DHT3Eki36vL9KXTqMamJNKylYVwu3LihNN62uzW8ITvDhtGskF
-         2JPrq+KRvp8ikabNLCNlnPR7Zobq2Hi5mdaTjOTIVe6TIlTU0VrI2BYmfOyNDd3OJB50
-         91c3MZLRwEGoSGvNfIO7lXBUfCi3nbyNGNzIuUw12VHjRMXXb7PLCanOXTxwWuagSo+n
-         7EUI6FR0HJ6Rg4d/8uvU4JIIFmzKiFPwM5EjToBU2J3FKKpWOsKtH5VUyW3nRAnnxFuk
-         jorawCZfNlBKbWP6gOdFMORZLda5MmnF02yQFCvpgSzClARfpNJVALL3DbrJTmU+UeQx
-         QTRw==
-X-Gm-Message-State: AOJu0Yyn6sYIGaX5Js+QiHrh/SYKFS15254iY53aK3c87BYocjWGxVnb
-	eaexaXh6sRYRvoiaI4Xan0aZaM/UghHV4hWD/3U=
-X-Google-Smtp-Source: AGHT+IEIeRRrGFbaaExeP0E5grEhYYgvdlO1y+p52HnJZfhVoPOlTxriszx9Bg4TU1YwINYr7ocWuzVI47V6pDvaYPg=
-X-Received: by 2002:a05:6871:4418:b0:1e9:f9e5:d34e with SMTP id
- nd24-20020a056871441800b001e9f9e5d34emr11765631oab.15.1699945452015; Mon, 13
- Nov 2023 23:04:12 -0800 (PST)
-MIME-Version: 1.0
-References: <AeAa.1699596120034371631.CWXr@lists.yoctoproject.org>
-In-Reply-To: <AeAa.1699596120034371631.CWXr@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 13 Nov 2023 23:03:45 -0800
-Message-ID: <CAMKF1srQnfQtFTpdfrbtEp2=FURE-Bq=R-Ek56+Xcm-VpPHcxA@mail.gmail.com>
-Subject: Re: [yocto] Files copied to /usr/local during installation get
- removed misteriously
-To: =?UTF-8?Q?Javier_Casas_Mar=C3=ADn?= <j.casas@falconelectronica.com>
-Cc: yocto@lists.yoctoproject.org
+        d=1e100.net; s=20230601; t=1699956976; x=1700561776;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UV7AMybMchiZcUSEU9KCCe07W9HXCSCRn1iRqCssgHk=;
+        b=I11FkPcbSPrQbL/R5bD8/iNLRx2qi0klZrrkDXE3tMY0YzgzcL/GI8gYmxQS4Wp1Xb
+         ALt2d48I99c2wQ4dxumE/ju8AcgW/T1zW5caDZlaU5Zm8yK6WaUWNM019bT7PmOBe+V1
+         /rmzNgkSmu81uCm9vZ9ckBnSE5R+3Mb0utoph4dR4qMA+Xq9U4EGHRhQWHEQW1GebjA+
+         WIlkUCcMlxDBWf+WEoGlYtgZfxXF7SMHNrpw1oQjnrGivpiUe0TXOndwRT9pmD/qU+5D
+         CdA7eA39+/RfGtwCtThy28uyAxjMrM6SHVfMiXB7KsiT0iayuCapCMvjO8Ai0c5hiSUN
+         XXTQ==
+X-Gm-Message-State: AOJu0YyNQQcNG4bX4xWu7bbzHgNV6fdIhFCljXh3qUW1LnYkc0SvS24o
+	NnCKtH2pdoNEl6ra8DuIOfpd0g==
+X-Google-Smtp-Source: AGHT+IHKlXpUWeBekn/xaW4Y9KrO3JwIerbhZXb7raCVUte5Cb1jHA0YXAo99ch1+qX3mhiNfeag1Q==
+X-Received: by 2002:a1c:7506:0:b0:409:677:31e7 with SMTP id o6-20020a1c7506000000b00409067731e7mr7682876wmc.11.1699956975665;
+        Tue, 14 Nov 2023 02:16:15 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:c86b:91bb:bc1f:9d3f? ([2001:8b0:aba:5f3c:c86b:91bb:bc1f:9d3f])
+        by smtp.gmail.com with ESMTPSA id iv10-20020a05600c548a00b0040535648639sm10919836wmb.36.2023.11.14.02.16.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 02:16:15 -0800 (PST)
+Message-ID: <83c87b38a8f0fd86e6005542479dd3dfe67891a3.camel@linuxfoundation.org>
+Subject: Re: [yocto] [yocto-autobuilder-helper] Add toaster test builder
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: alexander.lussier-cullen@savoirfairelinux.com, 
+	yocto@lists.yoctoproject.org
+Cc: Tim Orling <tim.orling@konsulko.com>
+Date: Tue, 14 Nov 2023 10:16:14 +0000
+In-Reply-To: <17974F5A4C85355A.17691@lists.yoctoproject.org>
+References: 
+	<20231113182116.25586-1-alexander.lussier-cullen@savoirfairelinux.com>
+	 <17974F5A4C85355A.17691@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 14 Nov 2023 07:04:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61674
+ <yocto@lists.yoctoproject.org>; Tue, 14 Nov 2023 10:16:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61675
 
-On Thu, Nov 9, 2023 at 10:02=E2=80=AFPM Javier Casas Mar=C3=ADn
-<j.casas@falconelectronica.com> wrote:
->
-> Hi,
-> I have a recipe that creates some directories in /usr/local and copies th=
-ere some files using do_install:append
->
-> inherit qmake5
-> OE_QMAKE_PATH_HEADERS =3D "${OE_QMAKE_PATH_QT_HEADERS}"
-> DEPENDS +=3D "qtbase qtdeclarative qtmultimedia libgpiod"
->
-> RDEPENDS:${PN} +=3D "qtxmlpatterns qtdeclarative-qmlplugins qtbase-plugin=
-s ttf-dejavu-sans qtquickcontrols qtquickcontrols2 qtfreevirtualkeyboard li=
-bgpiod valgrind
->
-> do_install:append () {
-> install -d ${D}${bindir}
-> install -d ${D}/usr/local/test
-> install -m 0775 qt_test ${D}${bindir}
-> install -m 0775 ${S}/test.db ${D}/usr/local/test
->     cp -r ${WORKDIR}/Resources ${D}/usr/local/test/resources
->     cp -r ${WORKDIR}/LocalFiles ${D}/usr/local/test/LocalFiles
-> }
-> FILES:${PN} +=3D "${bindir}/qt_test"
-> FILES:${PN} +=3D "/opt/*"
-> FILES:${PN} +=3D "/usr/local/test/*"
->
-> When I build the image, I see the folders appear in /usr/local as expecte=
-d while creating the rootfs but at some point they are removed and, by the =
-time the rootfs creation finishes, they are gone.
-> If I take the ipk package and install it on the embedded device the folde=
-rs and files are created correctly so I guess that the recipe is fine but t=
-here is some task during the rootfs creation that deletes all the files in =
-/usr/local (my folders are not the only ones that are deleted).
->
-> Who could be doing that or how can I debug it to find the culprit?
+On Mon, 2023-11-13 at 22:30 +0000, Richard Purdie via
+lists.yoctoproject.org wrote:
+> On Mon, 2023-11-13 at 13:21 -0500,
+> alexander.lussier-cullen@savoirfairelinux.com wrote:
+> > From: Alexander Lussier-Cullen <alexander.lussier-cullen@savoirfairelin=
+ux.com>
+> >=20
+> > Add a toaster test builder that runs the tox test suite using a new
+> > run-toaster-tests script.
+> >=20
+> > Signed-off-by: Alexander Lussier-Cullen <alexander.lussier-cullen@savoi=
+rfairelinux.com>
+> > CC: richard.purdie@linuxfoundation.org
+> > ---
+> >  config.json               |  3 +++
+> >  scripts/run-toaster-tests | 22 ++++++++++++++++++++++
+> >  2 files changed, 25 insertions(+)
+> >  create mode 100644 scripts/run-toaster-tests
+> >=20
+> > diff --git a/config.json b/config.json
+> > index d10a3a8..0c581d1 100644
+> > --- a/config.json
+> > +++ b/config.json
+> > @@ -1675,6 +1675,9 @@
+> >              "step1" : {
+> >                  "BBTARGETS" : "core-image-patchtest"
+> >              }
+> > +        },
+> > +        "toaster" : {
+> > +            "EXTRACMDS" : ["${SCRIPTSDIR}/run-toaster-tests ${HELPERBU=
+ILDDIR} ${HELPERBUILDDIR}/.."]
+> >          }
+> >      },
+> >      "repo-defaults" : {
+> > diff --git a/scripts/run-toaster-tests b/scripts/run-toaster-tests
+> > new file mode 100644
+> > index 0000000..a785c36
+> > --- /dev/null
+> > +++ b/scripts/run-toaster-tests
+> > @@ -0,0 +1,22 @@
+> > +#!/bin/bash
+> > +#
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +#
+> > +# Called with $1 as the build directory
+> > +#             $2 as the path to poky
+> > +
+> > +set -e
+> > +set -u
+> > +set -o pipefail
+> > +set -x
+> > +
+> > +builddir=3D$(realpath "$1")
+> > +pokydir=3D$(realpath "$2")
+> > +
+> > +cd $builddir
+> > +mkdir -p toaster_logs
+> > +python3 -m venv venv --without-pip --system-site-packages
+> > +source venv/bin/activate
+> > +python3 -m pip install tox
+> > +
+> > +tox -c $pokydir/bitbake/lib/toaster/tox.ini
+>=20
+> Thanks! I tested this and the first issue was:
+>=20
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds/1
+>=20
+> so I added a chmod a+x onto the commit which is on master-next of
+> yocto-autobuilder-helper.
+>=20
+> This lead to:
+>=20
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds/2
+> and
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds/3
+>=20
+> which were because a worker with python 3.8/3.9/3.10 wasn't available
+> at the time of testing and I'm not restricting the worker set the
+> target is using.
+>=20
+> I put a commit onto bitbake/poky master-next to add 3.11 and 3.12 to
+> tox.ini which leads to:
+>=20
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds/4
+>=20
+> which does appear to be running some testing with some errors.
+>=20
+> So we're making progress :)
 
-There could be a rootfs postprocessing task which could be involked
-after rootfs generation to do such tweaks. Look for what you have in
-ROOTFS_POSTPROCESS_COMMAND variable.
+https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds/4
 
->
->
-> Kind regards,
-> Javi
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#61649): https://lists.yoctoproject.org/g/yocto/messag=
-e/61649
-> Mute This Topic: https://lists.yoctoproject.org/mt/102502363/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+(on ubuntu 23.04 with python3.11) ran to completion in 45 minutes,
+failures=3D2, errors=3D18.=C2=A0
+
+It'd note that it didn't use SSTATE_DIR or DL_DIR from the parent
+environment which is partly why it was so slow, we need to fix that.
+
+I tried adding some of the pending toaster patches to master-next and
+rebuilding. There were more workers available so it tried some
+different combinations which failed:
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds/5
+
+opensuse 15.4 python 3.11
+
+  File "/home/pokybuild/yocto-
+worker/toaster/build/build/.tox/py311/lib/python3.11/site-
+packages/django/utils/timezone.py", line 12, in <module>
+    from backports import zoneinfo
+ModuleNotFoundError: No module named 'backports'
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds/6
+
+ubuntu 20.04 python 3.8
+
+  File "/usr/lib/python3.8/importlib/metadata.py", line 79, in load
+    return functools.reduce(getattr, attrs, module)
+AttributeError: module 'virtualenv.create.via_global_ref.builtin.cpython.ma=
+c_os' has no attribute 'CPython2macOsFramework'
+
+
+I've set https://autobuilder.yoctoproject.org/typhoon/#/builders/161/builds=
+/7
+on ubuntu 23.04 away so we can see if things improve or not with the patche=
+s.
+
+Cheers,
+
+Richard
+
+
+
+
+
 
