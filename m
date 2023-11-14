@@ -1,117 +1,91 @@
-Return-Path: <tgamblin@baylibre.com>
+Return-Path: <randy.macleod@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06492C4332F
-	for <webhook@archiver.kernel.org>; Tue, 14 Nov 2023 16:06:53 +0000 (UTC)
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
- by mx.groups.io with SMTP id smtpd.web11.16492.1699978009467450571
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E233C4332F
+	for <webhook@archiver.kernel.org>; Tue, 14 Nov 2023 16:47:13 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web10.17500.1699980426574194432
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Nov 2023 08:06:49 -0800
+ Tue, 14 Nov 2023 08:47:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre-com.20230601.gappssmtp.com header.s=20230601 header.b=gv+Yon2X;
- spf=pass (domain: baylibre.com, ip: 209.85.219.43, mailfrom: tgamblin@baylibre.com)
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-672f5fb0b39so33015076d6.2
-        for <yocto@lists.yoctoproject.org>; Tue, 14 Nov 2023 08:06:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699978008; x=1700582808; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sv3cRBUGH5pJ31cwIJX+zavd6+L2+F69X2E9MexYDx4=;
-        b=gv+Yon2Xa2jUQiUTcPe6TTm5U+OeVhvnUU4uS5OUdH1d+ZP6B9IQlH+plktq6QwT+J
-         pwbbW6ZLmqVsSgnbpptaiSMIdDuIjWfVCAC0ptLbHC4+0Ic76m0V0hOssaEtMx94AOhi
-         Y73f5wuvlKty05FafDwieJJR8l2q/8ljvQvjBtYcSqjKVSL9U2ZQYtYUn73qvhfAuOcM
-         xFtT6CNmIeyJzRDJnwYTc48nFWUjVaWKkHYj/xHufkV44WkJGXKrrijGcy15rZEH5jRd
-         RvGmo5xeHUsmbNmUcqgCuzuiE7feVYbs1dn4tfDGO9au3h1FXBTyyg3OM7E3XaVXMQW8
-         2grw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699978008; x=1700582808;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sv3cRBUGH5pJ31cwIJX+zavd6+L2+F69X2E9MexYDx4=;
-        b=WfPcENl3amjjy4+71PELe6yU+nJVX6rqIslOO6K1nmr6V6WA58P++7NFpbFiPA1hWy
-         OpFZz9YW8yWUfTnmavIItbvWGUnml1JQWilwrTWG+YNtj8wW9y+31sKp7MhaO/M2eob0
-         CWVbHPbKBFGugcR8rzHAQUjszs4j6Jv2i9NMN2QF6WgJVBBssOJD8K+0tHIXMGzCAaYn
-         L09teJjS5pEeytdT1wxMHZqU6kJLNqWd4uAN2Hx7HTEV6zqNBj6QnyKnls2mrxtp/pPq
-         +hTxZN/1TE9dDUWFmFKJjbs8ikK4BEYDmzFZbRBndumj5wEn0tZv7GAnVW5eVGcjIrMj
-         RsbQ==
-X-Gm-Message-State: AOJu0YxhUcHQknEs7M2Hg1Fl9vFWhQgit61lc2N2yfb2d2d8OanJKdS/
-	ov5w5haE45XS4ZQIiED0eHdaFhvtpCEvqoDNN8JYLw==
-X-Google-Smtp-Source: AGHT+IFICF/7G91e3qK2u3dLR10WA6TUqH1LKwcFm2P+F/ftkq+ZQvBMCgfYPz3LN5nSzzbvwf/jzQ==
-X-Received: by 2002:a05:6214:dcf:b0:66d:4684:4203 with SMTP id 15-20020a0562140dcf00b0066d46844203mr4135051qvt.28.1699978008329;
-        Tue, 14 Nov 2023 08:06:48 -0800 (PST)
-Received: from megalith.. (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id u3-20020a0ced23000000b0066d20f29e5fsm3026690qvq.35.2023.11.14.08.06.47
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 08:06:47 -0800 (PST)
-From: Trevor Gamblin <tgamblin@baylibre.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][PATCH] patchtest: add selftest runner
-Date: Tue, 14 Nov 2023 11:06:46 -0500
-Message-ID: <20231114160646.20143-1-tgamblin@baylibre.com>
-X-Mailer: git-send-email 2.41.0
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=pj+Tg/1x;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=96824d1732=randy.macleod@windriver.com)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AEAsoJj005361;
+	Tue, 14 Nov 2023 08:47:03 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PPS06212021; bh=p/c9n
+	0bdDjb50tOod7UuJo/6YJH5rjJYymRYfQFuqoE=; b=pj+Tg/1xq8FBjwgvnPFxF
+	GJ3ujYWyPvRbLykalsDQ4v/54zgdfaVvlRLMDDZKj5MTJJI3FJrJSpxD8Yyaj2/D
+	baZ7OYt37btJ3TCR3DH6U/kvWalQ0vgGeI7JzLQsxUDjX4n/REmmikUcRn9mLV7V
+	ZkkZ0/sVK497ezFGam1Bix/s4SoC++9SxBYvj0mwDZ8hn23GQ+GyXryM5jyxDtJ/
+	lsi3qr58KDHSbvsi/SnVC90gbaiuRZEEJrWbnqiTrsTORCsB6JWaCxT3VKcSI9tL
+	ze4k6vRcwWRdal2vQw3EHrXYu+zqXoMeF9f4Eo+HG24q+ZOtW6Ap3pXB7/BioUWO
+	w==
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.wrs.com [147.11.82.252])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3ua5s4tmgr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Tue, 14 Nov 2023 08:47:03 -0800 (PST)
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Tue, 14 Nov 2023 08:47:07 -0800
+Received: from pop-os.wrs.com (172.25.44.2) by ala-exchng01.corp.ad.wrs.com
+ (147.11.82.252) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
+ Transport; Tue, 14 Nov 2023 08:47:07 -0800
+From: <Randy.MacLeod@windriver.com>
+To: <yocto@lists.yoctoproject.org>, <alexandre.belloni@bootlin.com>
+Subject: [yocto-autobuilder-helper][PATCH] config.json: temporarily disable pressure regulation for master-next ONLY
+Date: Tue, 14 Nov 2023 11:47:02 -0500
+Message-ID: <20231114164702.3391746-1-Randy.MacLeod@windriver.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: 3yDN-1gJjACT-eEghjGM37-OnRJbX2JN
+X-Proofpoint-ORIG-GUID: 3yDN-1gJjACT-eEghjGM37-OnRJbX2JN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-14_16,2023-11-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=929 clxscore=1031
+ priorityscore=1501 lowpriorityscore=0 mlxscore=0 spamscore=0
+ suspectscore=0 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311060001 definitions=main-2311140128
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 14 Nov 2023 16:06:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61682
+ <yocto@lists.yoctoproject.org>; Tue, 14 Nov 2023 16:47:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61683
 
-Add a runner that installs the patchtest dependencies in a Python venv
-and then starts patchtest's selftests.
+From: Randy MacLeod <Randy.MacLeod@windriver.com>
 
-Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+Builds and oe-selftest runs have been seen to take around 16 hours.
+Temporarily disable pressure regulation in master-next ONLY
+to see if the pressure regulation is a significant part of what's
+causing the slow down.
+
+Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
 ---
- config.json                    |  7 +++++++
- scripts/run-patchtest-selftest | 18 ++++++++++++++++++
- 2 files changed, 25 insertions(+)
- create mode 100755 scripts/run-patchtest-selftest
+ config.json | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/config.json b/config.json
-index 0c581d1..e049a95 100644
+index 0c581d1..ffe216b 100644
 --- a/config.json
 +++ b/config.json
-@@ -1676,6 +1676,13 @@
-                 "BBTARGETS" : "core-image-patchtest"
-             }
-         },
-+	"patchtest-selftest" : {
-+	    "NEEDREPOS" : ["poky"],
-+	    "EXTRACMDS" : ["${SCRIPTSDIR}/run-patchtest-selftest ${HELPERBUILDDIR}/.."],
-+	    "ADDLAYER" : [
-+	        "${BUILDDIR}/../meta-selftest"
-+	    ]
-+	},
-         "toaster" : {
-             "EXTRACMDS" : ["${SCRIPTSDIR}/run-toaster-tests ${HELPERBUILDDIR} ${HELPERBUILDDIR}/.."]
-         }
-diff --git a/scripts/run-patchtest-selftest b/scripts/run-patchtest-selftest
-new file mode 100755
-index 0000000..58edb0e
---- /dev/null
-+++ b/scripts/run-patchtest-selftest
-@@ -0,0 +1,18 @@
-+#!/bin/bash
-+#
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Called with $1 as the path to poky
-+
-+set -e
-+set -u
-+set -o pipefail
-+set -x
-+
-+pokydir=$(realpath "$1")
-+
-+python3 -m venv venv --without-pip --system-site-packages
-+source venv/bin/activate
-+python3 -m pip install -r $pokydir/meta/lib/patchtest/requirements.txt
-+
-+$pokydir/meta/lib/patchtest/selftest/selftest
+@@ -50,8 +50,6 @@
+             "BB_NUMBER_THREADS = '16'",
+             "BB_NUMBER_PARSE_THREADS = '16'",
+             "PARALLEL_MAKE = '-j 16 -l 52'",
+-            "BB_PRESSURE_MAX_CPU = '10000'",
+-            "BB_PRESSURE_MAX_IO = '10000'",
+             "XZ_MEMLIMIT = '5%'",
+             "XZ_THREADS = '8'",
+             "ZSTD_THREADS = '8'",
 -- 
-2.41.0
+2.34.1
 
 
