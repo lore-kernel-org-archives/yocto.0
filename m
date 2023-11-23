@@ -2,129 +2,104 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 08563C61D97
-	for <webhook@archiver.kernel.org>; Thu, 23 Nov 2023 16:38:29 +0000 (UTC)
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
- by mx.groups.io with SMTP id smtpd.web10.94877.1700757507416743910
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03B4EC61D97
+	for <webhook@archiver.kernel.org>; Thu, 23 Nov 2023 16:42:59 +0000 (UTC)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+ by mx.groups.io with SMTP id smtpd.web11.95396.1700757776005574492
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Nov 2023 08:38:27 -0800
+ Thu, 23 Nov 2023 08:42:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=IIcJBBTH;
- spf=pass (domain: gmail.com, ip: 209.85.161.42, mailfrom: raj.khem@gmail.com)
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-58a0154b4baso941499eaf.1
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 08:38:27 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=VAnqDQ91;
+ spf=pass (domain: gmail.com, ip: 209.85.167.173, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3b83c4c5aefso650701b6e.1
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 08:42:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700757506; x=1701362306; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1700757775; x=1701362575; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JcDdjCk1oZtrwHzmyNsHwzGGbTz65R5WRLfQ9lD3Dds=;
-        b=IIcJBBTHyUoX+i5JUG8WQD0nKsLumtnWjKKBdI/chUd6Canjubnb49Q6b722iDH5fJ
-         sMEw5SM8Ju5AcjJoxQt/KpVS3NwpQI+oAKr5JDnpHraDLEf2dLCBPRRnOjcsnh/QTrce
-         X/C+D9GDJ/XNvnS4cts5vPDAG+QIoiLo8Gf/tlyUE0L8AVnFlki1XwgAls+Bqg5ZXLRm
-         eQfonsMDhDi9zDo2RG90n7WrvZzzGlqKo5zW17YQI1ydAToYPnCtTdZQE7t/N+NGBALt
-         oxDorq/KvzB/wmBodoF6xWwdF/9bzVYb5L0lzA9kK4RJYTRSUJrIhwyvW0JqfGgVb3Ey
-         vDZg==
+        bh=c5hOR2/UPwL9Jam0TFe4j32VV7YkRS9zLvXhnBNa5TA=;
+        b=VAnqDQ91JwdBVOroWCwr1KS8WMV6QeSXwUt2ABoSpyvn3wXLSegB64PkxEdFkENMIF
+         x8GoNxeqoBaMT46bvWCiG+0XR8jUAKOB+Imzj6MlTIGfNdVKWsJlHIi0bVKivz++g4Yj
+         34X9/xgH9vtL3oPsHgFL7mdTENPgEEGFeuR73NahxxRSRz7XHKf5UPBCJ580CnemNWNk
+         SfStiqg1EEzyD8uQhYx4x2Pv2UWbvr3zyyG9VI6ocsqG410SyfN+l+8mqOJhE5sXdCnK
+         WXGXw/VdMKgYoQO3kIi8f2gBS88t4JigYDJm/YdNHIVxKv03KDhBzsDFgUsPiKtmCu03
+         ppaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700757506; x=1701362306;
+        d=1e100.net; s=20230601; t=1700757775; x=1701362575;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JcDdjCk1oZtrwHzmyNsHwzGGbTz65R5WRLfQ9lD3Dds=;
-        b=ucOOkCuHDaGSjq86uZvtAxYi9r9rmvJ40I55zFSTRhU/ZFfa6iRCym1Zd3BNwZonPZ
-         V9VBRlCMH0W7QbkfC05V8ZDgVDbZ7e8YcMlwF4vLz+53Q7zpSQw1/x15LzkJIsYcBAv7
-         wbbfYJ6qCDM7dHNSQIB04yF3HQIhoWpUa4rYJLG0m5yBH5pTAHVl2pXJ08+OOpJLLO23
-         vOdciBOqGoN2qBAp7zxxmWe8xS+/jAUtZYxf+CRBaEkWqnIHosrGBnJnnl0iePDrEYUw
-         dKPp0jernpMBWAh6RKdWfHbe2fJjnDmbSCzigxzkMxA5iThqpoSIjuIyAyOvG78X5z27
-         CvBw==
-X-Gm-Message-State: AOJu0YzYjXD/7aJFxbctuZWx6JzWN8SWUH0y377Vp6fjdPdFT4axh09b
-	XLE1nOXgb8x8I4n5bFIWl9eEsjEoWy79pVhTBOo=
-X-Google-Smtp-Source: AGHT+IG7AORpnKNPa5j4DnsGLcZBaQnpwtGQly5oWWv4ZFuRBBi1i6v5T5KSiH5he0EaL8YruoVqHSjcgVZqXbhUgaY=
-X-Received: by 2002:a05:6870:aa99:b0:1f4:daf6:7918 with SMTP id
- gr25-20020a056870aa9900b001f4daf67918mr1510271oab.26.1700757506484; Thu, 23
- Nov 2023 08:38:26 -0800 (PST)
+        bh=c5hOR2/UPwL9Jam0TFe4j32VV7YkRS9zLvXhnBNa5TA=;
+        b=r3oYjvh2qVV6aVvrsJlIbK/+EPDvwOsDRBiEGRYL6C2WF2j2nQKKgBCAVUe3jtP9OV
+         +0ccCoQ16XdOgnIueUx3+djAAxutQc2Dl7n3QcytGFk6gb+njfBYE6KHQudXhYfzIBvb
+         F2cU+1zUFUg6q/AXMArkBvRXbGebzwGdVJi6xrGu7+o0Ul46/bsJ6RwFcUDY+Ek1ZSFT
+         hdGfS43UQlwpfY2MTewT7pvnMD8UMBJwnByZMKTi5SDeWjNgDBeKvxRtrbw5dRMNlegU
+         EBfwTWdYlkzbfWpJsm3Rd/gtgqwhlGAeVGVbBj1IqMVNbhGD5SCHSg7YJH6qaLjnkhLL
+         xD9g==
+X-Gm-Message-State: AOJu0Yw9TFn4mijx6YSRovW5DUD4mbX7BUukIfLlrXT6juQJjT/Pzigl
+	qs60hndylcb0iG8tAhE02vYcqtGwRTaxdsKyfY8=
+X-Google-Smtp-Source: AGHT+IFRsRP/ccQbHWwwUazygd/8Z6++F/b8fuiO7U/LTqdsC0kE1JTE1AQbkzltL89wZU+ApU+sb1xjWCc8Fy9m3M8=
+X-Received: by 2002:a05:6870:9f89:b0:1ea:809c:3eb with SMTP id
+ xm9-20020a0568709f8900b001ea809c03ebmr8113809oab.44.1700757774990; Thu, 23
+ Nov 2023 08:42:54 -0800 (PST)
 MIME-Version: 1.0
 References: <20231122014822.3871458-1-raj.khem@gmail.com> <25CE6021-2333-43D8-B3E4-3207FEB8ED4A@arm.com>
-In-Reply-To: <25CE6021-2333-43D8-B3E4-3207FEB8ED4A@arm.com>
+ <CANNYZj_9_yY5H8fX6=Vy3FFgiVu1V8uOJxHNdtMkfMb37JXCSg@mail.gmail.com> <74FBAD99-E844-4DF2-AD18-B02D2613228C@arm.com>
+In-Reply-To: <74FBAD99-E844-4DF2-AD18-B02D2613228C@arm.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 23 Nov 2023 08:38:00 -0800
-Message-ID: <CAMKF1spmQVfXj6TMMgDRrneUeFBKjGfvfN5JT2USC3CkyvVB5g@mail.gmail.com>
+Date: Thu, 23 Nov 2023 08:42:28 -0800
+Message-ID: <CAMKF1sqkSLHKpnW4Q_aLUFhtX-9aDKYVyZ2HWJ2UFg9QssHe9g@mail.gmail.com>
 Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH] config.json: Add
  lib32-matchbox-terminal to multilib images
 To: Ross Burton <Ross.Burton@arm.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 16:38:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61745
+ <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 16:42:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61746
 
-On Thu, Nov 23, 2023 at 3:50=E2=80=AFAM Ross Burton <Ross.Burton@arm.com> w=
+On Thu, Nov 23, 2023 at 4:14=E2=80=AFAM Ross Burton <Ross.Burton@arm.com> w=
 rote:
 >
-> Is this working around a failure on the autobuilder?  How does matchbox-t=
-erminal pull in gtk4?
+> On 23 Nov 2023, at 12:00, Alexander Kanavin <alex.kanavin@gmail.com> wrot=
+e:
+> >
+> > matchbox-terminal depends on vte, and latest vte enables gtk4 support.
+>
+> Are you sure?
+>
+> https://git.yoctoproject.org/poky/tree/meta/recipes-support/vte/vte_0.72.=
+2.bb#n14
+>
+> > Also, I do not understand how the fix works. How does installing
+> > additional packages into an image resolve a conflict between two
+> > packages installing different files into the same location?
+>
+> The problem is that the ipkg rootfs generation works =E2=80=9Cinteresting=
+ly=E2=80=9D and appears to create two parallel rootfs (one for normal one f=
+or multilib) and then splats them together.
+>
+> The schemas are installed in /usr/share but if you have different sets of=
+ libraries in /usr/lib and /usr/lib32 then the compiled schemas are differe=
+nt.
 
-yes
-it pulls in lib32-vte which pulls in lib32-gtk4
+Does not depend on content of /usr/lib or /usr/lib32, depending upon
+whats getting into given rootfs, the schemas pulled are different and
+hence the compiled gschema is
+different which is them being overlayed into combined rootfs finally.
+A good solution would be to create. common /usr/share directory
+between two rootfs'es and let it be
+populated with given dependencies, that way it will generate correct supers=
+et.
 
+>
+> This feels like an issue which has existed for a long time, so how has it=
+ only just been noticed?  Did something change?
 >
 > Ross
-> > On 22 Nov 2023, at 01:48, Khem Raj via lists.yoctoproject.org <raj.khem=
-=3Dgmail.com@lists.yoctoproject.org> wrote:
-> >
-> > This avoids an issue when a package that pulls in gtk4 into
-> > core-image-sato but not into multilib pieces results in different
-> > gschema compiled files as reported in [1]
-> >
-> > [1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15291
-> >
-> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > ---
-> > config.json | 4 ++--
-> > 1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/config.json b/config.json
-> > index c5fca45..e95a292 100644
-> > --- a/config.json
-> > +++ b/config.json
-> > @@ -900,7 +900,7 @@
-> >                     "MULTILIBS =3D 'multilib:lib32'",
-> >                     "DEFAULTTUNE:virtclass-multilib-lib32 =3D 'x86'",
-> >                     "RPM_PREFER_ELF_ARCH =3D '1'",
-> > -                    "IMAGE_INSTALL:append =3D ' lib32-connman-gnome pa=
-ngo-module-basic-fc lib32-pango-module-basic-fc'"
-> > +                    "IMAGE_INSTALL:append =3D ' lib32-connman-gnome li=
-b32-matchbox-terminal pango-module-basic-fc lib32-pango-module-basic-fc'"
-> >                 ]
-> >             },
-> >             "step4" : {
-> > @@ -915,7 +915,7 @@
-> >                     "MULTILIBS =3D 'multilib:lib32'",
-> >                     "DEFAULTTUNE:virtclass-multilib-lib32 =3D 'x86'",
-> >                     "RPM_PREFER_ELF_ARCH =3D '1'",
-> > -                    "IMAGE_INSTALL:append =3D ' lib32-connman-gnome pa=
-ngo-module-basic-fc lib32-pango-module-basic-fc'"
-> > +                    "IMAGE_INSTALL:append =3D ' lib32-connman-gnome li=
-b32-matchbox-terminal pango-module-basic-fc lib32-pango-module-basic-fc'"
-> >                 ]
-> >             },
-> >             "step5" : {
-> > --
-> > 2.43.0
-> >
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#61728): https://lists.yoctoproject.org/g/yocto/mess=
-age/61728
-> > Mute This Topic: https://lists.yoctoproject.org/mt/102741765/6875888
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [ross.burton@=
-arm.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
->
 
