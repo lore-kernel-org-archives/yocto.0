@@ -1,200 +1,102 @@
-Return-Path: <quaresma.jose@gmail.com>
+Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CECA2C61D85
-	for <webhook@archiver.kernel.org>; Thu, 23 Nov 2023 11:01:26 +0000 (UTC)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
- by mx.groups.io with SMTP id smtpd.web11.88679.1700737284237507281
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D39CAC5AD4C
+	for <webhook@archiver.kernel.org>; Thu, 23 Nov 2023 11:07:56 +0000 (UTC)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+ by mx.groups.io with SMTP id smtpd.web10.88446.1700737668217822181
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Nov 2023 03:01:24 -0800
+ Thu, 23 Nov 2023 03:07:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=AnlA1i/Y;
- spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3b83fc26e4cso475595b6e.2
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 03:01:24 -0800 (PST)
+ dkim=pass header.i=@linaro.org header.s=google header.b=UB9fZOoT;
+ spf=pass (domain: linaro.org, ip: 209.85.167.53, mailfrom: mikko.rapeli@linaro.org)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-507b9408c61so979445e87.0
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 03:07:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700737283; x=1701342083; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rEjTMmRLCf6A8MX29Pld6wu7VSK0yMzPwmUqZRcyH28=;
-        b=AnlA1i/Yzvup+IpgcxThp6L5TDc5C9MLcn4TazBP2/gRROHKRuQotJZYxhMp8fKabd
-         1h6ga1eN1wGbqyU331V1b034iSJQjPGJdkLiNbUJO2ozk7YtTfV7F5+f2cD5BvHc8YhZ
-         iyq/yZwKJk5Id6zNnQnjStlJozg4L+tX8Eqi/tx67YKnKbbG7zaRudqO3RnGguXVHCT9
-         qzyg0z1DH3gMlsE6b0PbjCDvN3HAipS1VzsrQnPhhuM0F99Kt8tgNQ1HpTJ1uG3S9ZVP
-         wkr41DWuWymbabmTTU6WLh2XLi0qyQyJxX7cqBgs2vSuB5/nOszFX0qrLAlJiXigdujT
-         i6Wg==
+        d=linaro.org; s=google; t=1700737666; x=1701342466; darn=lists.yoctoproject.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fD9YJkFSsNrde5lX8S72DMzkAPmGG8W8dkn9QL6vKRQ=;
+        b=UB9fZOoT0gfyTdrIbSEPfog0715lt8ZPLuGS+y6Anpwrc+AOtsyXrYISvx3xZKoX5M
+         NLBy4LxSqVWyprLu9SoE5ER1SnkRT9dEOfk4ohJtkGXwpQA1vG3Jy3I98ja2DulGrcj3
+         b6uKcvMrgxy4JiUpAi9RPnKsR3YI6TzjbJD5dEmQb5Lv3jCiZfRckitgBP3e+5JaIrcL
+         PTZhGzn3S3i5unvaFBiRCfb2A/KzK3pOY6uO0AZoVDBPNsCWnno0EJLv9iw8lcZrLod4
+         8nqrLjYwoKpxP3NDJJR7F8DzcO7RvFeICi3Ij+lOF/toYRDGrOYPwZc+J+fc30TQljam
+         YcsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700737283; x=1701342083;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rEjTMmRLCf6A8MX29Pld6wu7VSK0yMzPwmUqZRcyH28=;
-        b=A3aZ4s/55jthq0I5xJ7hWhSrrDTC3KhUOq0ynTpuSFOvAUgG2678Y+KqM62QbPSzkF
-         8+bofzxdYTiaMR5KkcFvFjYCh7B+Bunw+I7dmWjuUeXlpBCk/+nHvDEl5T0343gjM/aA
-         VSUkiXdaDPwk332pa21aIPL75WN/ADQ5+/n7CXlbdGx3JN+RMuX95us32lmH8FyqVJjJ
-         uXkLjr9Ensfq2nI7eCWOtDo34hbUnTDKxCtV2pbUcJaa4tsFkBguOrr+08uCoPGS8ViZ
-         JStuDhmD+2AaduNTjwYYwT4LSl4SOK/XLC7Oo8eNUMZFoTO85EOsnq2iC/ef1T9ylTh9
-         OSpQ==
-X-Gm-Message-State: AOJu0Yw/EZLojsAQCildgVaGzF83LkG0pONjp0ygWuoC4pwbaX8aJWJJ
-	zSuzztuF4poSZUl9HQvi6Kk6ToPyvd3sWSBbQ3Q=
-X-Google-Smtp-Source: AGHT+IEjtb9+j2POgecO2A6xOXBp77Hlh7eQUQfu5wlPC2DNOpdHURpB/ODie9wkamOoACsXB3EJMmFlqoatOZ62qZQ=
-X-Received: by 2002:a05:6358:281e:b0:16b:c401:955b with SMTP id
- k30-20020a056358281e00b0016bc401955bmr5952931rwb.2.1700737282945; Thu, 23 Nov
- 2023 03:01:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20231123105340.3929836-1-mikko.rapeli@linaro.org>
-In-Reply-To: <20231123105340.3929836-1-mikko.rapeli@linaro.org>
-From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Thu, 23 Nov 2023 11:01:12 +0000
-Message-ID: <CANPvuRkY1Nvy3+us3UHRDUqLEX-V4-+15Wa-v2T__GP62o+zSQ@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1700737666; x=1701342466;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fD9YJkFSsNrde5lX8S72DMzkAPmGG8W8dkn9QL6vKRQ=;
+        b=tvcS2KI6XmHWPqlrQij/iFQq032rUwcvOQURrF96SNt8ko5kltlcocOE4A5CCOXAlH
+         WkqCbhot4gADBK+MZPbWfZ7vp7c4ErQlu7u5PalnGiKewt50Ezoav1IE5R6XI81gqNwA
+         VN51JxgGOHSeP/VKJmRVpbU6kGVu5EPT5IBtFgx73bnU/PSxUeaOTplNFU2wNia34TRK
+         nhw2yNaygekiP8WZ3kbm6//OoG09bZLcu8l+JatKcjz5QHB35k9c5lmJ+VAuqNzLdp3/
+         N/GU592tNDYWiC+T9oKEAHkHd91/lykVAXcoP7C4miANdQPSr5imsojaanbaoAWWTnGL
+         0H8A==
+X-Gm-Message-State: AOJu0Yx/qc4zwyULSYaTR5Utt4TQuLqLqw/gQnn3yZ1SeHQHoiU5QdYH
+	WMn9PJkyZaRQiQt2lHRzcHhPlg==
+X-Google-Smtp-Source: AGHT+IFBqeemAA+XJmiqPahCrrtMhAWoa6AKsTxE9Ouk+L01wvaO9Zw9h16Hw6UEpK9w+DB4PZuinA==
+X-Received: by 2002:a19:5506:0:b0:509:15a3:d295 with SMTP id n6-20020a195506000000b0050915a3d295mr3413010lfe.45.1700737666339;
+        Thu, 23 Nov 2023 03:07:46 -0800 (PST)
+Received: from nuoska (dc7g6tyyyyyyyyyyyyhbt-3.rev.dnainternet.fi. [2001:14ba:16cb:a800::183])
+        by smtp.gmail.com with ESMTPSA id h7-20020a0565123c8700b0050aa51bd5b5sm155010lfv.136.2023.11.23.03.07.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Nov 2023 03:07:45 -0800 (PST)
+Date: Thu, 23 Nov 2023 13:07:44 +0200
+From: Mikko Rapeli <mikko.rapeli@linaro.org>
+To: Jose Quaresma <quaresma.jose@gmail.com>
+Cc: yocto@lists.yoctoproject.org,
+	Erik Schilling <erik.schilling@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Subject: Re: [yocto] [meta-security][PATCH] tpm2-tss: support native builds
-To: Mikko Rapeli <mikko.rapeli@linaro.org>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000009b343f060acfc10e"
+Message-ID: <ZV8ygN3viTwBTee7@nuoska>
+References: <20231123105340.3929836-1-mikko.rapeli@linaro.org>
+ <CANPvuRkY1Nvy3+us3UHRDUqLEX-V4-+15Wa-v2T__GP62o+zSQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANPvuRkY1Nvy3+us3UHRDUqLEX-V4-+15Wa-v2T__GP62o+zSQ@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 11:01:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61735
+ <yocto@lists.yoctoproject.org>; Thu, 23 Nov 2023 11:07:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61736
 
---0000000000009b343f060acfc10e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Hi Mikko,
+On Thu, Nov 23, 2023 at 11:01:12AM +0000, Jose Quaresma wrote:
+> Hi Mikko,
+> 
+> Mikko Rapeli <mikko.rapeli@linaro.org> escreveu no dia quinta, 23/11/2023
+> �(s) 10:53:
+> 
+> > systemd tool ukify
+> > https://www.freedesktop.org/software/systemd/man/latest/ukify.html
+> > depends on systemd-measure
+> >
+> > https://www.freedesktop.org/software/systemd/man/latest/systemd-measure.html
+> > which depends on tpm2-tss. So to support creating UKI
+> > images containing both kernel and initramfs with systemd-native,
+> >
+> 
+> Is systemd-native supported in any public layer?
+> I saw some proposals on the oe-core mailing list but they were not
+> integrated.
 
-Mikko Rapeli <mikko.rapeli@linaro.org> escreveu no dia quinta, 23/11/2023
-=C3=A0(s) 10:53:
+Not yet. But for uki and systemd style secure boot that will be needed.
+Current public systemd-native proposal is in
+https://lore.kernel.org/all/20230901233231.1109712-1-michelle.linto91@gmail.com/T/
+and on Linaro side we're checking that among other things. There will likely
+be a need to move some recipes to oe-core so that singing etc tooling can be
+compiled from there without additional layers. But all this depends on how maintainers
+see the situation.
 
-> systemd tool ukify
-> https://www.freedesktop.org/software/systemd/man/latest/ukify.html
-> depends on systemd-measure
->
-> https://www.freedesktop.org/software/systemd/man/latest/systemd-measure.h=
-tml
-> which depends on tpm2-tss. So to support creating UKI
-> images containing both kernel and initramfs with systemd-native,
->
+Cheers,
 
-Is systemd-native supported in any public layer?
-I saw some proposals on the oe-core mailing list but they were not
-integrated.
-
-Jose
-
-
-> tpm2-tss support is needed for native too.
->
-> Signed-off-by: Mikko Rapeli <mikko.rapeli@linaro.org>
-> ---
->  meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb
-> b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb
-> index 6386105..dceebc2 100644
-> --- a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb
-> +++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb
-> @@ -93,3 +93,5 @@ FILES:${PN} =3D "\
->      ${sysconfdir}/sysusers.d"
->
->  RDEPENDS:libtss2 =3D "libgcrypt"
-> +
-> +BBCLASSEXTEND =3D "native"
-> --
-> 2.34.1
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61734):
-> https://lists.yoctoproject.org/g/yocto/message/61734
-> Mute This Topic: https://lists.yoctoproject.org/mt/102764925/5052612
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> quaresma.jose@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---0000000000009b343f060acfc10e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0Mikko,</div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">Mikko Rapeli &lt;<a href=3D=
-"mailto:mikko.rapeli@linaro.org" target=3D"_blank">mikko.rapeli@linaro.org<=
-/a>&gt; escreveu no dia quinta, 23/11/2023 =C3=A0(s) 10:53:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex">systemd tool ukify<br>
-<a href=3D"https://www.freedesktop.org/software/systemd/man/latest/ukify.ht=
-ml" rel=3D"noreferrer" target=3D"_blank">https://www.freedesktop.org/softwa=
-re/systemd/man/latest/ukify.html</a><br>
-depends on systemd-measure<br>
-<a href=3D"https://www.freedesktop.org/software/systemd/man/latest/systemd-=
-measure.html" rel=3D"noreferrer" target=3D"_blank">https://www.freedesktop.=
-org/software/systemd/man/latest/systemd-measure.html</a><br>
-which depends on tpm2-tss. So to support creating UKI<br>
-images containing both kernel and initramfs with systemd-native,<br></block=
-quote><div><br></div><div>Is systemd-native supported in any public layer?<=
-br>I saw some proposals on the oe-core mailing list but they were not integ=
-rated.<br><br>Jose<br>=C2=A0</div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-tpm2-tss support is needed for native too.<br>
-<br>
-Signed-off-by: Mikko Rapeli &lt;<a href=3D"mailto:mikko.rapeli@linaro.org" =
-target=3D"_blank">mikko.rapeli@linaro.org</a>&gt;<br>
----<br>
-=C2=A0meta-tpm/recipes-tpm2/tpm2-tss/<a href=3D"http://tpm2-tss_4.0.1.bb" r=
-el=3D"noreferrer" target=3D"_blank">tpm2-tss_4.0.1.bb</a> | 2 ++<br>
-=C2=A01 file changed, 2 insertions(+)<br>
-<br>
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/<a href=3D"http://tpm2-tss_4.0.=
-1.bb" rel=3D"noreferrer" target=3D"_blank">tpm2-tss_4.0.1.bb</a> b/meta-tpm=
-/recipes-tpm2/tpm2-tss/<a href=3D"http://tpm2-tss_4.0.1.bb" rel=3D"noreferr=
-er" target=3D"_blank">tpm2-tss_4.0.1.bb</a><br>
-index 6386105..dceebc2 100644<br>
---- a/meta-tpm/recipes-tpm2/tpm2-tss/<a href=3D"http://tpm2-tss_4.0.1.bb" r=
-el=3D"noreferrer" target=3D"_blank">tpm2-tss_4.0.1.bb</a><br>
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss/<a href=3D"http://tpm2-tss_4.0.1.bb" r=
-el=3D"noreferrer" target=3D"_blank">tpm2-tss_4.0.1.bb</a><br>
-@@ -93,3 +93,5 @@ FILES:${PN} =3D &quot;\<br>
-=C2=A0 =C2=A0 =C2=A0${sysconfdir}/sysusers.d&quot;<br>
-<br>
-=C2=A0RDEPENDS:libtss2 =3D &quot;libgcrypt&quot;<br>
-+<br>
-+BBCLASSEXTEND =3D &quot;native&quot;<br>
--- <br>
-2.34.1<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#61734): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/61734" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/61734</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/102764925/505=
-2612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/102764925/5052612</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quare=
-sma.jose@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
-div>
-
---0000000000009b343f060acfc10e--
+-Mikko
 
