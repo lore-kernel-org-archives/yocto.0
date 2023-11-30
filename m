@@ -1,254 +1,343 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gjp1g21@soton.ac.uk>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68553C4167B
-	for <webhook@archiver.kernel.org>; Thu, 30 Nov 2023 16:54:44 +0000 (UTC)
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
- by mx.groups.io with SMTP id smtpd.web10.77585.1701363282036625856
- for <yocto@lists.yoctoproject.org>;
- Thu, 30 Nov 2023 08:54:42 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=YFBFZ+LZ;
- spf=pass (domain: gmail.com, ip: 209.85.160.50, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1fa21f561a1so545456fac.3
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Nov 2023 08:54:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701363281; x=1701968081; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qk+yYoQFKLMisahJ8/goMAiRS5ST5VdxuoIJWfpWhTs=;
-        b=YFBFZ+LZixYK8EKgmyw2rAWnhYgPNlt/CfP2JDFRmeFaRQ9dNnJw7FT5mzt/CMK5lC
-         PC/FEurh6qCqLBVSeIa4VpDWW2dmOMPL2R4QVTWEmm8oRPpvCA+SrQ1HllZWLolbXwSW
-         MPmF1AE93a7/ecDlVw6lEHNcqG/YWltIkdPBe1mKWFwLL/OKlY4ELOQNtUA7wyOPru3Y
-         qdEXBeReCPlyNTyeTVHuhz4UhT2TVQkqHdzo4CqWpcg3EZMBQ1mh2Ih6aa2b4Yd03IvK
-         tbYFswDDRXDUNb91SDgQVBbHho1kjDvs/CZPnuIYdK2vcxZDZRFizBWyoaq6bcnBpQa2
-         +HZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701363281; x=1701968081;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Qk+yYoQFKLMisahJ8/goMAiRS5ST5VdxuoIJWfpWhTs=;
-        b=I0CUj3Wmj5rwT0kJvUQ1f37Ft4ecnvNq/ajPiAdYHO82woObaSvkLGX/yFWlXPT7Oa
-         MdgZKoJNRedEyC4UUffRmFQUi0WsrXI+Q/hI24yW12iwnwGD9MQAFMkzr0hjAUepQAXQ
-         xKe4GQI6t6xnpC7Wi8FIDg4y7PVkhDZ9cUPyb+KPCYPda1URBZ1tweZTRf7AdjIVWadW
-         Gu9Jf667p5greEUD0ckJp0brb3bovNqsbRpCNb72KHbFMOYg+W7agjTBkCCY/sCsKHCy
-         WEZw9xeB5XSEL565QI02CmD0H8qgkPLyv6+A7kifuAfmUFQ+pJ70OdmisE7ec+ApOHLL
-         mrxQ==
-X-Gm-Message-State: AOJu0Yyn81Al/siTG4GlslsgVMrpHjqe+3bd0Hsm86UvWK7elyVCjtOl
-	dP7ls9HfXylH2kncpG2YPO+Gdtx/fZjVE7nQRGiAmrJHSzc=
-X-Google-Smtp-Source: AGHT+IFmNaY7nT2yHM05BFamJvkZWDmvO0xNK04TTfZAsL4D7uqgfA1lqAJzDKY01xtnV3JL0Ix765tnkoGmv0LUBMk=
-X-Received: by 2002:a05:6870:a706:b0:1f9:5407:4c34 with SMTP id
- g6-20020a056870a70600b001f954074c34mr24716809oam.29.1701363281063; Thu, 30
- Nov 2023 08:54:41 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C7F8C4167B
+	for <webhook@archiver.kernel.org>; Thu, 30 Nov 2023 17:36:44 +0000 (UTC)
+Subject: help: gobject-introspection build error #raspberrypi
+To: yocto@lists.yoctoproject.org
+From: gjp1g21@soton.ac.uk
+X-Originating-Location: Southampton, England, GB (152.78.0.22)
+X-Originating-Platform: Mac Chrome 119
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <20231130083122.2970448-1-wenlin.kang@windriver.com>
-In-Reply-To: <20231130083122.2970448-1-wenlin.kang@windriver.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 30 Nov 2023 08:54:15 -0800
-Message-ID: <CAMKF1soucss1KKERpwrfr38By7tWuceuFEQJ_HoeSJu5iSMVvA@mail.gmail.com>
-Subject: Re: [yocto] [meta-mingw][kirkstone][PATCH] libxcrypt: fixed some
- build error for nativesdk with mingw
-To: wenlin.kang@windriver.com
-Cc: yocto@lists.yoctoproject.org, jpewhacker@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 30 Nov 2023 09:36:40 -0800
+Message-ID: <HMgc.1701365800369767064.kgta@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="bz6QcyDlfMn5Webmdhj4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 30 Nov 2023 16:54:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61780
+ <yocto@lists.yoctoproject.org>; Thu, 30 Nov 2023 17:36:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61781
 
-On Thu, Nov 30, 2023 at 12:31=E2=80=AFAM wenlin.kang@windriver.com via
-lists.yoctoproject.org
-<wenlin.kang=3Dwindriver.com@lists.yoctoproject.org> wrote:
->
-> From: Wenlin Kang <wenlin.kang@windriver.com>
->
-> Steps to reproduce
->   1) add layer meta-mingw
->   2) add line in local.conf
->      SDKMACHINE =3D "x86_64-mingw32"
->   3) bitbake nativesdk-libxcrypt
->
-> Fixed:
-> 1. .symver error
->   | {standard input}: Assembler messages:
->   | {standard input}:4: Error: unknown pseudo-op: `.symver'
->
-> 2. pedantic error
->   | ../git/lib/crypt.c:316:24: error: ISO C does not allow extra ';' outs=
-ide of a function [-Werror=3Dpedantic]
->   |   316 | SYMVER_crypt_gensalt_rn;
->   |       |
->
-> 3. conversion error
->   | ../git/lib/util-get-random-bytes.c: In function '_crypt_get_random_by=
-tes':
->   | ../git/lib/util-get-random-bytes.c:140:42: error: conversion from 'si=
-ze_t' {aka 'long long unsigned int'} to 'unsigned int' may change value [-W=
-error=3Dconversion]
->   |   140 |           ssize_t nread =3D read (fd, buf, buflen);
->
-> Signed-off-by: Wenlin Kang <wenlin.kang@windriver.com>
-> ---
->  .../0001-Fix-for-compilation-on-Windows.patch | 37 +++++++++++++++
->  ...dom-bytes.c-fixed-conversion-error-w.patch | 47 +++++++++++++++++++
->  recipes-core/libxcrypt/libxcrypt_%.bbappend   |  7 +++
->  3 files changed, 91 insertions(+)
->  create mode 100644 recipes-core/libxcrypt/libxcrypt/0001-Fix-for-compila=
-tion-on-Windows.patch
->  create mode 100644 recipes-core/libxcrypt/libxcrypt/0001-lib-util-get-ra=
-ndom-bytes.c-fixed-conversion-error-w.patch
->  create mode 100644 recipes-core/libxcrypt/libxcrypt_%.bbappend
->
-> diff --git a/recipes-core/libxcrypt/libxcrypt/0001-Fix-for-compilation-on=
--Windows.patch b/recipes-core/libxcrypt/libxcrypt/0001-Fix-for-compilation-=
-on-Windows.patch
-> new file mode 100644
-> index 0000000..5760ee0
-> --- /dev/null
-> +++ b/recipes-core/libxcrypt/libxcrypt/0001-Fix-for-compilation-on-Window=
-s.patch
-> @@ -0,0 +1,37 @@
-> +From a507b628a5a5d4e4f1cf0f0a9a72967470ee7624 Mon Sep 17 00:00:00 2001
-> +From: Brecht Sanders <brecht@sanders.org>
-> +Date: Fri, 3 Feb 2023 08:44:49 +0100
-> +Subject: [PATCH] Fix for compilation on Windows
-> +
-> +This fix allows the library to build on Windows (at least with MinGW-w64=
-).
-> +
-> +`.symver` is only supported for ELF format but Windows uses COFF/PE.
-> +
-> +Workaround dummy define of `symver_set()`
-> +
-> +Upstream-Status: Backport [https://github.com/besser82/libxcrypt/commit/=
-a507b628a5a5d4e4f1cf0f0a9a72967470ee7624]
-> +
-> +Signed-off-by: Wenlin Kang <wenlin.kang@windriver.com>
-> +---
-> + lib/crypt-port.h | 5 +++++
-> + 1 file changed, 5 insertions(+)
-> +
-> +diff --git a/lib/crypt-port.h b/lib/crypt-port.h
-> +index f06ca24..a707939 100644
-> +--- a/lib/crypt-port.h
-> ++++ b/lib/crypt-port.h
-> +@@ -201,6 +201,11 @@ extern size_t strcpy_or_abort (void *dst, size_t d_=
-size, const void *src);
-> +   __asm__(".globl _" extstr);                           \
-> +   __asm__(".set _" extstr ", _" #intname)
-> +
-> ++#elif defined _WIN32
-> ++
-> ++/* .symver is only supported for ELF format, Windows uses COFF/PE */
-> ++# define symver_set(extstr, intname, version, mode)
-> ++
-> + #elif defined __GNUC__ && __GNUC__ >=3D 3
-> +
-> + # define _strong_alias(name, aliasname) \
-> +--
-> +2.34.1
-> +
-> diff --git a/recipes-core/libxcrypt/libxcrypt/0001-lib-util-get-random-by=
-tes.c-fixed-conversion-error-w.patch b/recipes-core/libxcrypt/libxcrypt/000=
-1-lib-util-get-random-bytes.c-fixed-conversion-error-w.patch
-> new file mode 100644
-> index 0000000..3846f76
-> --- /dev/null
-> +++ b/recipes-core/libxcrypt/libxcrypt/0001-lib-util-get-random-bytes.c-f=
-ixed-conversion-error-w.patch
-> @@ -0,0 +1,47 @@
-> +From ff99091eb8a6b9e6edc567f6d2552183fbaacec3 Mon Sep 17 00:00:00 2001
-> +From: Wenlin Kang <wenlin.kang@windriver.com>
-> +Date: Mon, 6 Nov 2023 14:43:28 +0800
-> +Subject: [PATCH] lib/util-get-random-bytes.c: fixed conversion error wit=
-h
-> + mingw
-> +
-> +With x86_64-w64-mingw32-gcc. get below error:
-> +| ../git/lib/util-get-random-bytes.c: In function '_crypt_get_random_byt=
-es':
-> +| ../git/lib/util-get-random-bytes.c:140:42: error: conversion from 'siz=
-e_t' {aka 'long long unsigned int'} to 'unsigned int' may change value [-We=
-rror=3Dconversion]
-> +|   140 |           ssize_t nread =3D read (fd, buf, buflen);
-> +|       |                                          ^~~~~~
-> +
-> +In util-get-random-bytes.c, has get_random_bytes(void *buf, size_t bufle=
-n),
-> +but in mingw-w64-mingw-w64/mingw-w64-headers/crt/io.h, read() has "unsig=
-ned int"
-> +read(int _FileHandle,void *_DstBuf,unsigned int _MaxCharCount), and has:
-> + #ifdef _WIN64
-> +   __MINGW_EXTENSION typedef unsigned __int64 size_t;
-> + #else
-> +   typedef unsigned int size_t;
-> + #endif /* _WIN64 */
-> +
-> +Upstream-Status: Pending
-> +
-> +Signed-off-by: Wenlin Kang <wenlin.kang@windriver.com>
-> +---
-> + lib/util-get-random-bytes.c | 4 ++++
-> + 1 file changed, 4 insertions(+)
-> +
-> +diff --git a/lib/util-get-random-bytes.c b/lib/util-get-random-bytes.c
-> +index 79816db..68cd378 100644
-> +--- a/lib/util-get-random-bytes.c
-> ++++ b/lib/util-get-random-bytes.c
-> +@@ -137,7 +137,11 @@ get_random_bytes(void *buf, size_t buflen)
-> +         dev_urandom_doesnt_work =3D true;
-> +       else
-> +         {
-> ++#ifdef _WIN64
-> ++          ssize_t nread =3D read (fd, buf, (unsigned int)buflen);
-> ++#else
-> +           ssize_t nread =3D read (fd, buf, buflen);
-> ++#endif
+--bz6QcyDlfMn5Webmdhj4
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-read is system API and I wonder why we are not getting right API
-signature here as I think
-size_t should already be defined based on _WIN64 in system headers.
+Hi all,
 
-> +           if (nread < 0 || (size_t)nread < buflen)
-> +             dev_urandom_doesnt_work =3D true;
-> +
-> +--
-> +2.25.1
-> +
-> diff --git a/recipes-core/libxcrypt/libxcrypt_%.bbappend b/recipes-core/l=
-ibxcrypt/libxcrypt_%.bbappend
-> new file mode 100644
-> index 0000000..cb9c45e
-> --- /dev/null
-> +++ b/recipes-core/libxcrypt/libxcrypt_%.bbappend
-> @@ -0,0 +1,7 @@
-> +FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"
-> +
-> +SRC_URI:append:mingw32 =3D "file://0001-Fix-for-compilation-on-Windows.p=
-atch \
-> +                          file://0001-lib-util-get-random-bytes.c-fixed-=
-conversion-error-w.patch \
-> +"
-> +
-> +CFLAGS:append:class-nativesdk:mingw32 =3D " -Wno-pedantic"
-> --
-> 2.39.0
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#61775): https://lists.yoctoproject.org/g/yocto/messag=
-e/61775
-> Mute This Topic: https://lists.yoctoproject.org/mt/102890384/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+I am at a loss as to why my build is failing. I am building core-image-mini=
+mal (for the Raspberry Pi 4) in the Poky Docker container and every time th=
+e build for gobject-introspection fails with the following error(s):
+
+FAILED: gir/GLib-2.0.gir
+/workdir/poky/build/tmp/work/cortexa72-poky-linux/gobject-introspection/1.7=
+8.1/recipe-sysroot/usr/include/glib-2.0/glib/gutils.h:378: syntax error, un=
+expected INTEGER, expecting identifier in ' =C2=A0if ((__builtin_expect (__=
+extensio.....
+
+A full log file for this can be found at https://pastebin.com/iuavxeJs
+
+If anyone knows why this may be happening - or even where to start looking =
+- I would be very thankful!
+
+Many thanks,
+George
+
+---
+George Peppard (he/they)
+Undergraduate, MEng Computer Science
+Electronics and Computer Science
+University of Southampton
+
+PGP: DC54 E1A7 336D CA37 DD35 CC89 8EA6 B970 558D 5F59 at the Ubuntu keyser=
+ver ( https://keyserver.ubuntu.com/ )
+
+--bz6QcyDlfMn5Webmdhj4
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<span style=3D"border: 0px; font-variant-numeric: inherit; font-variant-eas=
+t-asian: inherit; font-variant-alternates: inherit; font-variant-position: =
+inherit; font-stretch: inherit; font-size: 11pt; line-height: inherit; font=
+-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing: inheri=
+t; font-kerning: inherit; font-feature-settings: inherit; font-variation-se=
+ttings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color=
+: black;">Hi all,</span><span style=3D"color: #242424; font-family: 'Segoe =
+UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, 'system-ui'=
+, Roboto, 'Helvetica Neue', sans-serif; font-size: 15px;"></span>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">&nbsp;</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">I am at a loss as to why my build is failing. I am buildin=
+g core-image-minimal (for the Raspberry Pi 4) in the Poky Docker container =
+and every time the build for gobject-introspection fails with the following=
+ error(s):</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">&nbsp;</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">FAILED: gir/GLib-2.0.gir</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">/workdir/poky/build/tmp/work/cortexa72-poky-linux/gobject-=
+introspection/1.78.1/recipe-sysroot/usr/include/glib-2.0/glib/gutils.h:378:=
+ syntax error, unexpected INTEGER, expecting identifier in ' &nbsp;if ((__b=
+uiltin_expect (__extensio.....</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">&nbsp;</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">A full log file for this can be found at&nbsp;<a id=3D"LPl=
+nkOWAb1f05056-c86f-2f3b-12a4-b278ebf85fda" style=3D"border: 0px; font: inhe=
+rit; margin: 0px; padding: 0px; vertical-align: baseline;" href=3D"https://=
+pastebin.com/iuavxeJs" target=3D"_blank" rel=3D"noopener noreferrer" data-a=
+uth=3D"NotApplicable" data-linkindex=3D"0">https://pastebin.com/iuavxeJs</a=
+></span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; line-height: inherit; font-family: i=
+nherit; font-optical-sizing: inherit; font-kerning: inherit; font-feature-s=
+ettings: inherit; font-variation-settings: inherit; margin: 0px; padding: 0=
+px; vertical-align: baseline;">&nbsp;</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">If anyone knows why this may be happening - or even where =
+to start looking - I would be very thankful!</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">&nbsp;</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">Many thanks,</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-=
+family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-syst=
+em, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: #242424;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-stretch: inherit; font-size: 11pt; line-height: inheri=
+t; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing:=
+ inherit; font-kerning: inherit; font-feature-settings: inherit; font-varia=
+tion-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline=
+; color: black;">George</span></div>
+<div style=3D"border: 0px; font-variant-numeric: inherit; font-variant-east=
+-asian: inherit; font-variant-alternates: inherit; font-variant-position: i=
+nherit; font-stretch: inherit; font-size: 11pt; line-height: inherit; font-=
+family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizing: inherit=
+; font-kerning: inherit; font-feature-settings: inherit; font-variation-set=
+tings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color:=
+ black;">&nbsp;</div>
+<div id=3D"x_Signature" style=3D"border: 0px; font-variant-numeric: inherit=
+; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-=
+variant-position: inherit; font-stretch: inherit; font-size: 15px; line-hei=
+ght: inherit; font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Seg=
+oe UI', -apple-system, 'system-ui', Roboto, 'Helvetica Neue', sans-serif; f=
+ont-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: =
+inherit; font-variation-settings: inherit; margin: 0px; padding: 0px; verti=
+cal-align: baseline; color: #242424;">
+<div style=3D"border: 0px; font-style: inherit; font-variant: inherit; font=
+-weight: inherit; font-stretch: inherit; font-size: 11pt; line-height: inhe=
+rit; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizin=
+g: inherit; font-kerning: inherit; font-feature-settings: inherit; font-var=
+iation-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseli=
+ne; color: black;">---</div>
+<div style=3D"border: 0px; font-style: inherit; font-variant: inherit; font=
+-weight: inherit; font-stretch: inherit; font-size: 12pt; line-height: inhe=
+rit; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizin=
+g: inherit; font-kerning: inherit; font-feature-settings: inherit; font-var=
+iation-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseli=
+ne; color: black;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 11p=
+t; line-height: inherit; font-family: inherit; font-optical-sizing: inherit=
+; font-kerning: inherit; font-feature-settings: inherit; font-variation-set=
+tings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color:=
+ inherit;">George Peppard (he/they)</span></div>
+<div style=3D"border: 0px; font-style: inherit; font-variant: inherit; font=
+-weight: inherit; font-stretch: inherit; font-size: 12pt; line-height: inhe=
+rit; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizin=
+g: inherit; font-kerning: inherit; font-feature-settings: inherit; font-var=
+iation-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseli=
+ne; color: black;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 11p=
+t; line-height: inherit; font-family: inherit; font-optical-sizing: inherit=
+; font-kerning: inherit; font-feature-settings: inherit; font-variation-set=
+tings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color:=
+ inherit;">Undergraduate, MEng Computer Science</span></div>
+<div style=3D"border: 0px; font-style: inherit; font-variant: inherit; font=
+-weight: inherit; font-stretch: inherit; font-size: 12pt; line-height: inhe=
+rit; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizin=
+g: inherit; font-kerning: inherit; font-feature-settings: inherit; font-var=
+iation-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseli=
+ne; color: black;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 11p=
+t; line-height: inherit; font-family: inherit; font-optical-sizing: inherit=
+; font-kerning: inherit; font-feature-settings: inherit; font-variation-set=
+tings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color:=
+ inherit;">Electronics and Computer Science</span></div>
+<div style=3D"border: 0px; font-style: inherit; font-variant: inherit; font=
+-weight: inherit; font-stretch: inherit; font-size: 12pt; line-height: inhe=
+rit; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizin=
+g: inherit; font-kerning: inherit; font-feature-settings: inherit; font-var=
+iation-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseli=
+ne; color: black;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 11p=
+t; line-height: inherit; font-family: inherit; font-optical-sizing: inherit=
+; font-kerning: inherit; font-feature-settings: inherit; font-variation-set=
+tings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color:=
+ inherit;">University of Southampton</span></div>
+<div style=3D"border: 0px; font-style: inherit; font-variant: inherit; font=
+-weight: inherit; font-stretch: inherit; font-size: 12pt; line-height: inhe=
+rit; font-family: Calibri, Arial, Helvetica, sans-serif; font-optical-sizin=
+g: inherit; font-kerning: inherit; font-feature-settings: inherit; font-var=
+iation-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseli=
+ne; color: black;"><span style=3D"border: 0px; font-style: inherit; font-va=
+riant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 11p=
+t; line-height: inherit; font-family: inherit; font-optical-sizing: inherit=
+; font-kerning: inherit; font-feature-settings: inherit; font-variation-set=
+tings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color:=
+ inherit;">&nbsp;</span></div>
+<div style=3D"border: 0px; font: inherit; margin: 0px; padding: 0px; vertic=
+al-align: baseline; color: inherit;"><span style=3D"border: 0px; font-style=
+: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inher=
+it; font-size: 11pt; line-height: inherit; font-family: Calibri, Arial, Hel=
+vetica, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; fo=
+nt-feature-settings: inherit; font-variation-settings: inherit; margin: 0px=
+; padding: 0px; vertical-align: baseline; color: black;">PGP:&nbsp;</span><=
+span style=3D"border: 0px; font-style: inherit; font-variant: inherit; font=
+-weight: inherit; font-stretch: inherit; font-size: 11pt; line-height: inhe=
+rit; font-family: Consolas, Courier, monospace; font-optical-sizing: inheri=
+t; font-kerning: inherit; font-feature-settings: inherit; font-variation-se=
+ttings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color=
+: black;">DC54 E1A7 336D CA37 DD35 CC89 8EA6 B970 558D 5F59</span><span sty=
+le=3D"border: 0px; font-style: inherit; font-variant: inherit; font-weight:=
+ inherit; font-stretch: inherit; font-size: 11pt; line-height: inherit; fon=
+t-family: Calibri, Helvetica, sans-serif; font-optical-sizing: inherit; fon=
+t-kerning: inherit; font-feature-settings: inherit; font-variation-settings=
+: inherit; margin: 0px; padding: 0px; vertical-align: baseline; color: blac=
+k;">&nbsp;</span><span style=3D"border: 0px; font-style: inherit; font-vari=
+ant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 11pt;=
+ line-height: inherit; font-family: Calibri, Arial, Helvetica, sans-serif; =
+font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings:=
+ inherit; font-variation-settings: inherit; margin: 0px; padding: 0px; vert=
+ical-align: baseline; color: black;">at the&nbsp;<a style=3D"border: 0px; f=
+ont: inherit; margin: 0px; padding: 0px; vertical-align: baseline;" title=
+=3D"https://keyserver.ubuntu.com" href=3D"https://keyserver.ubuntu.com/" ta=
+rget=3D"_blank" rel=3D"noopener noreferrer" data-auth=3D"NotApplicable" dat=
+a-linkindex=3D"1">Ubuntu keyserver</a></span></div>
+</div>
+
+--bz6QcyDlfMn5Webmdhj4--
 
