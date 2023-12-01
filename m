@@ -1,101 +1,125 @@
-Return-Path: <alexander.lussier-cullen@savoirfairelinux.com>
+Return-Path: <fntoth@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D736FC4167B
-	for <webhook@archiver.kernel.org>; Fri,  1 Dec 2023 14:49:59 +0000 (UTC)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
- by mx.groups.io with SMTP id smtpd.web10.1196.1701442196999772142
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BDFAAC4167B
+	for <webhook@archiver.kernel.org>; Fri,  1 Dec 2023 22:39:02 +0000 (UTC)
+Received: from ciao.gmane.io (ciao.gmane.io [116.202.254.214])
+ by mx.groups.io with SMTP id smtpd.web11.6406.1701470336386731326
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 Dec 2023 06:49:57 -0800
+ Fri, 01 Dec 2023 14:38:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=rksRoFAe;
- spf=pass (domain: savoirfairelinux.com, ip: 208.88.110.44, mailfrom: alexander.lussier-cullen@savoirfairelinux.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8D7F39C094E;
-	Fri,  1 Dec 2023 09:49:55 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id VpAPcGPUF1Jv; Fri,  1 Dec 2023 09:49:46 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id BC7739C10F6;
-	Fri,  1 Dec 2023 09:49:46 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com BC7739C10F6
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1701442186; bh=/CZ7fKUpN6OXrcmkTZ1g2sZBH41AbQs1PNwVG7Z7ZWA=;
-	h=From:To:Date:Message-Id:MIME-Version;
-	b=rksRoFAekzV5iLQeyaKhDcZI/Qdb2luMtblRcg6t+t0vVdAOEsmZFDJd/J57Kompz
-	 60H/NQowHdc1vQYIY26oAC1wm2T2wH9EmPp9ttb96SSInD/tdtaUcB72QPP3cDyPLF
-	 cryb7DS7l0uH+qfgCninjk7mUDiVxFYKK99JkBmTzAiAtbxPiNUYujaO/YH9JPUpgO
-	 9ej8nbY0r0w3TOygz1RrKC99k0oNIHOwtCIbiJGofx1Nm+tap4S9kgeYl8pKlKizQR
-	 F184lYxBnpFzlAbuuivUQ0r1YGXqkJ7mYo4GR7l6tAHgcrmKeB2ierAXx4et6Fk8vF
-	 6gYuktzw/dXxw==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id SxGbx4pONFtG; Fri,  1 Dec 2023 09:49:46 -0500 (EST)
-Received: from localhost.localdomain (bras-base-mtrlpq427kw-grc-24-184-147-255-35.dsl.bell.ca [184.147.255.35])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id AA6F89C094E;
-	Fri,  1 Dec 2023 09:49:46 -0500 (EST)
-From: Alexander Lussier-Cullen <alexander.lussier-cullen@savoirfairelinux.com>
+ dkim=none (message not signed); spf=pass (domain: m.gmane-mx.org, ip: 116.202.254.214, mailfrom: gley-yocto@m.gmane-mx.org)
+Received: from list by ciao.gmane.io with local (Exim 4.92)
+	(envelope-from <gley-yocto@m.gmane-mx.org>)
+	id 1r9C9t-00045u-Jz
+	for yocto@lists.yoctoproject.org; Fri, 01 Dec 2023 23:38:53 +0100
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@lists.yoctoproject.org
-Cc: Alexander Lussier-Cullen <alexander.lussier-cullen@savoirfairelinux.com>,
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Subject: [yocto-autobuilder-helper v2] scripts/run-toaster-tests.py: run via pytest and fix environment setup
-Date: Fri,  1 Dec 2023 09:49:28 -0500
-Message-Id: <20231201144928.4191-1-alexander.lussier-cullen@savoirfairelinux.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+From: Ferry Toth <fntoth@gmail.com>
+Subject: Re: how to intelligently avoid OOM build errors with
+ BB_PRESSURE_MAX_MEMORY?
+Date: Fri, 1 Dec 2023 23:38:41 +0100
+Message-ID: <bd8bfc79-a990-4218-88c7-67061e63b96b@gmail.com>
+References: <ef631e8e-8bbc-5a36-8282-405b10e872b@crashcourse.ca>
+ <CA+chaQdgcDHAmUEeidWOYq_ENx6kj+FwRQ_yGzab7KgO7gCqzQ@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Cc: Yocto discussion list
+ <yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X@public.gmane.org>
+Content-Language: en-US
+In-Reply-To: <CA+chaQdgcDHAmUEeidWOYq_ENx6kj+FwRQ_yGzab7KgO7gCqzQ@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 01 Dec 2023 14:49:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61789
+ <yocto@lists.yoctoproject.org>; Fri, 01 Dec 2023 22:39:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61790
 
-Strip quotes from directory variables as they caused path errors.
-Add environment variable for the toaster artifact directory.
-Migrate from tox and django tools to using pytest.
-Install python module requirements from the script as this is no
-longer handled by tox.
+Hi
 
-Signed-off-by: Alexander Lussier-Cullen <alexander.lussier-cullen@savoirf=
-airelinux.com>
-CC: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- scripts/run-toaster-tests | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+Op 29-11-2023 om 10:45 schreef Martin Jansa:
+> I was experimenting quite a bit with this in:
+> https://github.com/shr-project/test-oe-build-time/commits/results 
+> <https://github.com/shr-project/test-oe-build-time/commits/results> e.g.:
+> https://github.com/shr-project/test-oe-build-time/commit/d5111f4472ac397c0f1197eb6366ac7d2e56453f <https://github.com/shr-project/test-oe-build-time/commit/d5111f4472ac397c0f1197eb6366ac7d2e56453f>
+> https://github.com/shr-project/test-oe-build-time/commit/e97d8fe55fcf848416a8494a90da4ae6418b19fe <https://github.com/shr-project/test-oe-build-time/commit/e97d8fe55fcf848416a8494a90da4ae6418b19fe>
+> 
+> but be aware that reasonable BB_PRESSURE_MAX_ values are different for 
+> kirkstone and master, see:
+> https://lists.openembedded.org/g/bitbake-devel/message/15499 
+> <https://lists.openembedded.org/g/bitbake-devel/message/15499>
+> which wasn't merged yet.
+> 
+> And for my system and typical builds BB_PRESSURE_MAX_* isn't able to 
+> prevent OOMK, because pressure is still fine when bitbake is starting 
+> chromium.do_compile and nodejs.do_compile tasks at the same time and 
+> OOMK gets triggered later even when only these 2 tasks are running in 
+> parallel with other tasks not started thanks to BB_PRESSURE_MAX_*.
+> 
+> So I'm setting a bit lower PARALLEL_MAKE for chromium instead as in:
+> BB_PRESSURE_MAX_CPU = "200000"
+> BB_NUMBER_THREADS = "8"
+> BB_NUMBER_PARSE_THREADS = "64"
+> PARALLEL_MAKE = "-j 70 -l 140"
+> PARALLEL_MAKE:pn-qtwebengine = "-j 40"
+> PARALLEL_MAKE:pn-webruntime = "-j 40"
+> 
+> which works well for my system and my typical builds, YMMV for yours.
+> 
+> Regards,
+> 
+> On Wed, Nov 29, 2023 at 10:21 AM Robert P. J. Day 
+> <rpjday@crashcourse.ca 
+> <mailto:rpjday@crashcourse.ca>> wrote:
+> 
+> 
+>        a colleague is using Wind River Linux and is getting occasional OOM
+>     errors when taking advantage of maximum parallelism, so he took the
+>     quick way out and dialed things back using BB_NUMBER_THREADS and
+>     PARALLEL_MAKE.
+> 
+>        however, i am aware of the bitbake variables
+>     BB_PRESSURE_MAX_{IO,CPU,MEMORY} and was wondering if there is a decent
+>     writeup on how to use, perhaps, BB_PRESSURE_MAX_MEMORY, to dynamically
+>     detect imminent OOM and adjust things. that is, how to calculate a
+>     sane value for that as i haven't yet dug into the values under
+>     /proc/pressure and how to interpret them?
+> 
+>        i've seen mentions of combining the above with the "memstat"
+>     command, and other approaches. thoughts?
+> 
+>     rday
+> 
+>     p.s. is there a docs page that expands on this stuff?
+> 
+There was an older thread "bitbake controlling memory use", maybe that 
+might help.
 
-diff --git a/scripts/run-toaster-tests b/scripts/run-toaster-tests
-index 516965e..b694e37 100755
---- a/scripts/run-toaster-tests
-+++ b/scripts/run-toaster-tests
-@@ -16,13 +16,15 @@ pokydir=3D$(realpath "$2")
- cd $builddir
-=20
- bitbake -e > bbenv
--export SSTATE_DIR=3D$(grep '^SSTATE_DIR=3D' bbenv | cut -d "=3D" -f2-)
--export DL_DIR=3D$(grep '^DL_DIR=3D' bbenv | cut -d "=3D" -f2-)
-+export SSTATE_DIR=3D$(grep '^SSTATE_DIR=3D' bbenv | cut -d "=3D" -f2- | =
-sed -e 's/^"//' -e 's/"$//')
-+export DL_DIR=3D$(grep '^DL_DIR=3D' bbenv | cut -d "=3D" -f2- | sed -e '=
-s/^"//' -e 's/"$//')
- export TOASTER_DJANGO_TMPDIR=3D$builddir
-+export TOASTER_DIR=3D$builddir
-=20
- mkdir -p toaster_logs
-+
- python3 -m venv venv --without-pip --system-site-packages
- source venv/bin/activate
--python3 -m pip install tox
-+python3 -m pip install -r $pokydir/bitbake/toaster-requirements.txt -r $=
-pokydir/bitbake/lib/toaster/tests/toaster-tests-requirements.txt
-=20
--tox -c $pokydir/bitbake/lib/toaster/tox.ini
-+python3 -m pytest -c $pokydir/bitbake/lib/toaster/pytest.ini $pokydir/bi=
-tbake/lib/toaster/tests/
---=20
-2.34.1
+Myself, I found these pressure things don't help. And even though we can 
+set the number of make threads we still can have a number of makes in 
+parallel. I patched bitbake to have make and ninja use a jobserver to 
+limit the total number of compile threads to the number of cores.
+See https://github.com/htot/meta-intel-edison/tree/kirkstone
+
+So, if you have 1GB ram x #cores you should be fine except for 1 thing:
+nodejs is linking 5 executables that require 4GB ram simultaneously. So 
+if you don't have 20GB you will start thrashing up to the point that you 
+have no mouse movement. This I solved by modifying the recipe to 
+serialize the linking.
+
+> 
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#61773): https://lists.yoctoproject.org/g/yocto/message/61773
+> Mute This Topic: https://lists.yoctoproject.org/mt/102868689/4382963
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [gley-yocto@m.gmane-mx.org]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
+
 
 
