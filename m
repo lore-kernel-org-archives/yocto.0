@@ -2,70 +2,70 @@ Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57F64C10DC1
-	for <webhook@archiver.kernel.org>; Mon,  4 Dec 2023 23:58:05 +0000 (UTC)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
- by mx.groups.io with SMTP id smtpd.web11.86500.1701734275300856261
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FCFCC46CA3
+	for <webhook@archiver.kernel.org>; Mon,  4 Dec 2023 23:58:55 +0000 (UTC)
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+ by mx.groups.io with SMTP id smtpd.web11.86522.1701734328193423990
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Dec 2023 15:57:55 -0800
+ Mon, 04 Dec 2023 15:58:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=HJmiJnnm;
- spf=pass (domain: gmail.com, ip: 209.85.221.51, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3333fbbeab9so2007178f8f.2
-        for <yocto@lists.yoctoproject.org>; Mon, 04 Dec 2023 15:57:55 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=R1B6lld5;
+ spf=pass (domain: gmail.com, ip: 209.85.218.42, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a1b22a31649so243147466b.3
+        for <yocto@lists.yoctoproject.org>; Mon, 04 Dec 2023 15:58:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701734273; x=1702339073; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1701734326; x=1702339126; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=wyOKkOs3M/37AE+HGibIHXHGPEF3lCy1f243dWgR4bA=;
-        b=HJmiJnnmy/2yZTkcPlPAnWNNSCiI3DOCtVI2W5Q1bQj12lb/nFHPCPs7oOx6f/9NiL
-         sr6StvLaBdGQfUG0o7JfE9w/Tc3MHvgZSIY2a7LBcqM8OZR1T1FBw6+rVIe1j28Dy8hw
-         kRnkK9SZ2MFmIeccaWU7RUpMGe+T4sGGirGB6niVmGnVFSpCf0pNL0PoHNkLv3wf8ZRw
-         t9LLTWrEKF8DI64XOf8AC6TnkbZgGGlbfEzN0nuSjwhus7o7LAM3HS7/rprUgJCyXRwU
-         snAP1x7Ip5hjwZE+6V6o8Org4UwimVayWEij5zBqkae4GaUm+aA1933QwdWQmKF0wSSS
-         +nZg==
+        bh=NLcf/FxKFH9pz6PrYUrF5xNrcKn976pom4ZRs2sf0g0=;
+        b=R1B6lld5wqinv2kTdVyTctuZMhlWYS/axtqRcoOJbYCGpgWfnvFZYGR488qRNRG4lF
+         isiN2RKOaBC/Nd3MmXQynnx2uaiH42/P9QonFcnshRNCU4eyYUvyVeez5SgR1e04Wr/G
+         7W+dDEBTUzXcVlD1nQRfuHUKHWWqqQoKdFqPrrgnMiIaiwIyksn7N+lV73AHGE9zuaq5
+         fAICnxgpinbkZDef7z4bTEbinG+A/LW5tZZoa1PQKWTc1G12x4da27c8rMw7er4zTOtA
+         LUlq5bPcRjC2CxF6j7lTEPHpLLw1Ey9ITW2/7h2Ughr9FpLMx4zjGLDwsxZXBZlmAwrW
+         /3ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701734273; x=1702339073;
+        d=1e100.net; s=20230601; t=1701734326; x=1702339126;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wyOKkOs3M/37AE+HGibIHXHGPEF3lCy1f243dWgR4bA=;
-        b=Pu6nvUOQaqYCprKygtWlgjBa2xYtzevxfEh20hUNDMLT4wOE1g4ijc9HHsOX5dOMKw
-         RWf8SJMR9BiHI6vWjukJ8QKUZeVWvwIpODU1FXx9VEHDreABBpaH5Rl8bKRnsUKlPjVR
-         ymX5AR32yprfrlVyxXoWMRD1I+ajzkyJgWYspc28bp6QInMnCGqEBZ67CWX7CA6HvYku
-         3EtADhTwh5Get7qaJSCtUXel5CNc24WGfwg9/ztbMkq8zqOGrD6pujf65lTEJeRDCmSv
-         ktw4SKZZikP9U0Bav7mlMxOWw7yTrnheTwfuqlnnPp9FOsChLOnqhzUNEM3a2kj8Fi/f
-         0SjA==
-X-Gm-Message-State: AOJu0YxT+oPMqNvvteDpb6e0Ce5gjAWFsCcv0trH+o/NcfsWfhbWZRJ4
-	Qmbwnk5XeWk/usC05d+JdMBhR3UA6q+U2dPi9uyiPDgGnY0=
-X-Google-Smtp-Source: AGHT+IG266MG0cBbfISvPaydpmbBbJYyPHfXCOGtzZ0ub/N2LRKJ3njEF8zzH8Ye4rSK8WM1S5jISRIcwGRHAsTStgM=
-X-Received: by 2002:a7b:c4cb:0:b0:40b:5e59:da8d with SMTP id
- g11-20020a7bc4cb000000b0040b5e59da8dmr2890717wmk.160.1701734273319; Mon, 04
- Dec 2023 15:57:53 -0800 (PST)
+        bh=NLcf/FxKFH9pz6PrYUrF5xNrcKn976pom4ZRs2sf0g0=;
+        b=KjQn9Uo6c/W9Yq1/goQnfLC2Ys348IcdKI+i+5cQI32eNIkJlpXmFYzvJh0v7cT526
+         7q82lVaEwwXjy7WfR6ggbKS6Wka69Rn8wl3S5H1W3TMZ0ojflksXD5I0oPTThsKnSwia
+         VzYpJTJmqr7rzFtpVHwXSCIEvwvHDZyz4rEwz5NdtXRDDWy8tWpEAFO/4Jx0oeA2+W8x
+         du8mQQsOFPUqsst+7UzFPcwAa6aNZ9qLxMcLkDcTIIoOoQ/jMDd7RC8iE02uNa7z6FUL
+         /zRHhdI3PfM6Oo8uj5AMx0/fKPVfnY4Uq21kN5S76/dVrxMWJyVAfX4Lb/r/glqbqY0p
+         pMrw==
+X-Gm-Message-State: AOJu0YxdYUK7UKscXDo5zQpxWjqvh7rjTOFhgGUMM8PA/tyheoXdxGhS
+	wPBMpa7A/RqC/FtgHTI6DMsUePWpZK5z2SNx6jW8Wg/vPp0=
+X-Google-Smtp-Source: AGHT+IG66HmInDea3t8DEdEbVsYExzUZUkoTzJmQVNDp2EgJImuEvMZq7PLhKtmIPaDsb2FSsoB69AdpISqqvyqONts=
+X-Received: by 2002:a17:906:d011:b0:a18:e5f5:7841 with SMTP id
+ z17-20020a170906d01100b00a18e5f57841mr3802701ejy.32.1701734326318; Mon, 04
+ Dec 2023 15:58:46 -0800 (PST)
 MIME-Version: 1.0
 From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 4 Dec 2023 16:57:41 -0700
-Message-ID: <CAK5yBb8O1X-xA3t7hgyZnXboXFXvNDkf8K8_n4+Au1wWft3Tpg@mail.gmail.com>
-Subject: Enhancements/Bugs closed WW48!
+Date: Mon, 4 Dec 2023 16:58:33 -0700
+Message-ID: <CAK5yBb80BF6PS0hH+r8=Zwri+MaoDuSXKcTHCxAuV=S_yCNikQ@mail.gmail.com>
+Subject: M+ & H bugs with Milestone Movements WW48
 To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000dd06bb060bb7e2ef"
+Content-Type: multipart/alternative; boundary="00000000000005bad0060bb7e696"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Dec 2023 23:58:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61796
+ <yocto@lists.yoctoproject.org>; Mon, 04 Dec 2023 23:58:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61797
 
---000000000000dd06bb060bb7e2ef
+--00000000000005bad0060bb7e696
 Content-Type: text/plain; charset="UTF-8"
 
 All,
 
-The below were the owners of enhancements or bugs closed during the last
-week!
-Who Count
-ross.burton@arm.com 2
-michael.opdenacker@bootlin.com 1
-alex.kanavin@gmail.com 1
-Grand Total 4
+YP M+ or high bugs which moved to a new milestone in WW48 are listed below:
+Priority Bug ID Short Description Changer Owner Was Became
+Medium+ 15300 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15300>
+bitbake-layers
+create-layer does create a new example layer with 'kirkstone' in
+LAYERSERIES_COMPAT randy.macleod@windriver.com pavel@zhukoff.net 0.0.0 5.0
+M1
 
 Thanks,
 
@@ -80,51 +80,66 @@ Thanks,
 * *Email*:                 *s
 <stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
 
---000000000000dd06bb060bb7e2ef
+--00000000000005bad0060bb7e696
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>The below were the owners of enhancements or bugs closed during =
-the last week!<br></span><div dir=3D"ltr" class=3D"gmail_signature" data-sm=
-artmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><table cellsp=
-acing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layou=
-t:fixed;font-size:11pt;font-family:Calibri;width:0px;border-collapse:collap=
-se;border:none"><colgroup><col width=3D"249"><col width=3D"42"></colgroup><=
-tbody><tr style=3D"height:20px"><td style=3D"border:1px solid rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(21=
-9,229,241);font-weight:bold">Who</td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(2=
-19,229,241);font-weight:bold">Count</td></tr><tr style=3D"height:20px"><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-"><a href=3D"mailto:ross.burton@arm.com">ross.burton@arm.com</a></td><td st=
-yle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rg=
-b(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertic=
-al-align:bottom;text-align:right">2</td></tr><tr style=3D"height:20px"><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-"><a href=3D"mailto:michael.opdenacker@bootlin.com">michael.opdenacker@boot=
-lin.com</a></td><td style=3D"border-width:1px;border-style:solid;border-col=
+ll,<br><br>YP M+ or high bugs which moved to a new milestone in WW48 are li=
+sted below: <br></span><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
+tmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><table cellspac=
+ing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layout:=
+fixed;font-size:11pt;font-family:Calibri;width:0px;border-collapse:collapse=
+;border:none"><colgroup><col width=3D"63"><col width=3D"43"><col width=3D"5=
+43"><col width=3D"235"><col width=3D"242"><col width=3D"53"><col width=3D"5=
+3"></colgroup><tbody><tr style=3D"height:20px"><td style=3D"border:1px soli=
+d rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;backgrou=
+nd-color:rgb(219,229,241);font-weight:bold">Priority</td><td style=3D"borde=
+r-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0=
+) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;ba=
+ckground-color:rgb(219,229,241);font-weight:bold">Bug ID</td><td style=3D"b=
+order-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0=
+,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
+m;background-color:rgb(219,229,241);font-weight:bold">Short Description</td=
+><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) r=
+gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
+cal-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Change=
+r</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0=
+,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
+vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold">O=
+wner</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
+0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
+px;vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold=
+">Was</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
+(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px =
+3px;vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bol=
+d">Became</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;=
+border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);over=
+flow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold">Medium+=
+</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
+204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
+ 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;=
+text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.=
+yoctoproject.org/show_bug.cgi?id=3D15300" target=3D"_blank">15300</a></td><=
+td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
+4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
+ertical-align:bottom">bitbake-layers create-layer   does create a new examp=
+le layer with &#39;kirkstone&#39; in LAYERSERIES_COMPAT</td><td style=3D"bo=
+rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
+rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
+bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windri=
+ver.com</a></td><td style=3D"border-width:1px;border-style:solid;border-col=
 or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
-padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr styl=
-e=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-c=
-olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom"><a href=3D"mailto:alex.kanavin@gmail.com">alex.kana=
-vin@gmail.com</a></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><t=
-r style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0=
-px 3px;vertical-align:bottom;background-color:rgb(219,229,241);font-weight:=
-bold">Grand Total</td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,24=
-1);font-weight:bold;text-align:right">4</td></tr></tbody></table><p class=
-=3D"MsoNormal" style=3D"background-image:initial;background-position:initia=
-l;background-repeat:initial"><span style=3D"font-size:12pt;font-family:Aria=
-l,sans-serif">Thanks,<span></span></span></p>
+padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:pavel@zhukoff.net"=
+>pavel@zhukoff.net</a></td><td style=3D"border-width:1px;border-style:solid=
+;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
+low:hidden;padding:0px 3px;vertical-align:bottom">0.0.0</td><td style=3D"bo=
+rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
+rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
+bottom">5.0 M1</td></tr></tbody></table><p class=3D"MsoNormal" style=3D"bac=
+kground-image:initial;background-position:initial;background-repeat:initial=
+"><span style=3D"font-size:12pt;font-family:Arial,sans-serif">Thanks,<span>=
+</span></span></p>
 
 <p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
 n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
@@ -166,5 +181,5 @@ phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
 .pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
 u></p></div></div></div></div>
 
---000000000000dd06bb060bb7e2ef--
+--00000000000005bad0060bb7e696--
 
