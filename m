@@ -1,125 +1,98 @@
-Return-Path: <fntoth@gmail.com>
+Return-Path: <antonio@amsobr.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BDFAAC4167B
-	for <webhook@archiver.kernel.org>; Fri,  1 Dec 2023 22:39:02 +0000 (UTC)
-Received: from ciao.gmane.io (ciao.gmane.io [116.202.254.214])
- by mx.groups.io with SMTP id smtpd.web11.6406.1701470336386731326
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B683EC4167B
+	for <webhook@archiver.kernel.org>; Mon,  4 Dec 2023 18:31:13 +0000 (UTC)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+ by mx.groups.io with SMTP id smtpd.web11.77112.1701714670130912163
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 Dec 2023 14:38:56 -0800
+ Mon, 04 Dec 2023 10:31:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: m.gmane-mx.org, ip: 116.202.254.214, mailfrom: gley-yocto@m.gmane-mx.org)
-Received: from list by ciao.gmane.io with local (Exim 4.92)
-	(envelope-from <gley-yocto@m.gmane-mx.org>)
-	id 1r9C9t-00045u-Jz
-	for yocto@lists.yoctoproject.org; Fri, 01 Dec 2023 23:38:53 +0100
-X-Injected-Via-Gmane: http://gmane.org/
+ dkim=pass header.i=@amsobr.com header.s=google header.b=zOHL4CSj;
+ spf=pass (domain: amsobr.com, ip: 209.85.128.50, mailfrom: antonio@amsobr.com)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40c0fc1cf3dso1736125e9.0
+        for <yocto@lists.yoctoproject.org>; Mon, 04 Dec 2023 10:31:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amsobr.com; s=google; t=1701714668; x=1702319468; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=irTgcoH9ymitM8MLuIR/7DAn2ErJQdYb7PI6PQrf0cY=;
+        b=zOHL4CSjnyLtlZEp+8NAKlSaNCgqKJgwdwLGLKrvAqjGi+3/xbiviEhcUwtn5tcC4d
+         Taj2KXNxUIkIcRg9hjveiPrYYRYc5zELBnLfKRMLAjBkVtajzq8eh5agljaVjEv9j+3c
+         dTUjWbBgYlkeqWWFuHyfTACXzG7mIAtbYMFhguzP4oL+idjFxiSD9CEld7R6jlwE9k+V
+         1SsIRytEf9uvgvN9ZEVPKB2KRPbt3FzNxkttKD9DcNMvo3m3jpTvhmKCBksQhNAE+7yr
+         OC0ej1TtrmDMUN9V27uDBdeVlecwybI6ChO5gmTtcZe6MpgehuYUaLcLGMzmqNkWppqo
+         sFtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701714668; x=1702319468;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=irTgcoH9ymitM8MLuIR/7DAn2ErJQdYb7PI6PQrf0cY=;
+        b=YNOqxNtZpno8fRROnWfduKYIm8hrNytd2zaYJdMrpnzJhhxvbNTUKqyztUZv94yE4v
+         bfPhFFISghSfmEzp3z4sYXMvy50emouBwmIpiG8T5oIGFh9pkvNFZAuHUIitUk5yjzYZ
+         gGuaz8nRSWEjrSSsWqkq5ZZmSakdzmjkHT9977fDZtQX5l2+Kwi37Mzcv8GVyWigplge
+         2pW35cxXh4jVTPni2JcnUoLCBUmzC/gg9y81B9W3z0Zd4HoaJkB9XuMH9B98mIZO+FtZ
+         uWDpBPw30uNZyuWktO+05IYa1h8i5wD4JhWPQMDLMf+v3rjXLNBzAwzIY61jEWdHUATY
+         lBDg==
+X-Gm-Message-State: AOJu0YyYVT+l5xBiuspa3FXXazrjNtX7u+1fKt40rTIP6SSqXHDYcXYK
+	j1M1gCMEWXxiV28mfG+ENZUR/u5vR2P+UwsDYno=
+X-Google-Smtp-Source: AGHT+IFM1PXr8/X1TH43th1I+rJdS/r6NGHqqTZFXuP4/6LlC2Ztc2alco2TvIh1Egk4Kg9krZnHug==
+X-Received: by 2002:a05:600c:474e:b0:40b:47cb:5f90 with SMTP id w14-20020a05600c474e00b0040b47cb5f90mr2681372wmo.27.1701714668211;
+        Mon, 04 Dec 2023 10:31:08 -0800 (PST)
+Received: from localhost.localdomain ([2a01:14:113:53b0:3b8f:63d9:d195:fc5d])
+        by smtp.gmail.com with ESMTPSA id fc12-20020a05600c524c00b0040b400711f5sm19816971wmb.7.2023.12.04.10.31.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 10:31:07 -0800 (PST)
+From: =?UTF-8?q?Ant=C3=B3nio=20Oliveira?= <antonio@amsobr.com>
 To: yocto@lists.yoctoproject.org
-From: Ferry Toth <fntoth@gmail.com>
-Subject: Re: how to intelligently avoid OOM build errors with
- BB_PRESSURE_MAX_MEMORY?
-Date: Fri, 1 Dec 2023 23:38:41 +0100
-Message-ID: <bd8bfc79-a990-4218-88c7-67061e63b96b@gmail.com>
-References: <ef631e8e-8bbc-5a36-8282-405b10e872b@crashcourse.ca>
- <CA+chaQdgcDHAmUEeidWOYq_ENx6kj+FwRQ_yGzab7KgO7gCqzQ@mail.gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Cc: =?UTF-8?q?Ant=C3=B3nio=20Oliveira?= <antonio@amsobr.com>
+Subject: [RFC PATCH 0/1] lts mixin: kirkstone/nodejs proposal
+Date: Mon,  4 Dec 2023 18:30:54 +0000
+Message-Id: <20231204183055.29931-1-antonio@amsobr.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-User-Agent: Mozilla Thunderbird
-Cc: Yocto discussion list
- <yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X@public.gmane.org>
-Content-Language: en-US
-In-Reply-To: <CA+chaQdgcDHAmUEeidWOYq_ENx6kj+FwRQ_yGzab7KgO7gCqzQ@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 01 Dec 2023 22:39:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61790
+ <yocto@lists.yoctoproject.org>; Mon, 04 Dec 2023 18:31:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61791
 
-Hi
+Hi all,
 
-Op 29-11-2023 om 10:45 schreef Martin Jansa:
-> I was experimenting quite a bit with this in:
-> https://github.com/shr-project/test-oe-build-time/commits/results 
-> <https://github.com/shr-project/test-oe-build-time/commits/results> e.g.:
-> https://github.com/shr-project/test-oe-build-time/commit/d5111f4472ac397c0f1197eb6366ac7d2e56453f <https://github.com/shr-project/test-oe-build-time/commit/d5111f4472ac397c0f1197eb6366ac7d2e56453f>
-> https://github.com/shr-project/test-oe-build-time/commit/e97d8fe55fcf848416a8494a90da4ae6418b19fe <https://github.com/shr-project/test-oe-build-time/commit/e97d8fe55fcf848416a8494a90da4ae6418b19fe>
-> 
-> but be aware that reasonable BB_PRESSURE_MAX_ values are different for 
-> kirkstone and master, see:
-> https://lists.openembedded.org/g/bitbake-devel/message/15499 
-> <https://lists.openembedded.org/g/bitbake-devel/message/15499>
-> which wasn't merged yet.
-> 
-> And for my system and typical builds BB_PRESSURE_MAX_* isn't able to 
-> prevent OOMK, because pressure is still fine when bitbake is starting 
-> chromium.do_compile and nodejs.do_compile tasks at the same time and 
-> OOMK gets triggered later even when only these 2 tasks are running in 
-> parallel with other tasks not started thanks to BB_PRESSURE_MAX_*.
-> 
-> So I'm setting a bit lower PARALLEL_MAKE for chromium instead as in:
-> BB_PRESSURE_MAX_CPU = "200000"
-> BB_NUMBER_THREADS = "8"
-> BB_NUMBER_PARSE_THREADS = "64"
-> PARALLEL_MAKE = "-j 70 -l 140"
-> PARALLEL_MAKE:pn-qtwebengine = "-j 40"
-> PARALLEL_MAKE:pn-webruntime = "-j 40"
-> 
-> which works well for my system and my typical builds, YMMV for yours.
-> 
-> Regards,
-> 
-> On Wed, Nov 29, 2023 at 10:21 AM Robert P. J. Day 
-> <rpjday@crashcourse.ca 
-> <mailto:rpjday@crashcourse.ca>> wrote:
-> 
-> 
->        a colleague is using Wind River Linux and is getting occasional OOM
->     errors when taking advantage of maximum parallelism, so he took the
->     quick way out and dialed things back using BB_NUMBER_THREADS and
->     PARALLEL_MAKE.
-> 
->        however, i am aware of the bitbake variables
->     BB_PRESSURE_MAX_{IO,CPU,MEMORY} and was wondering if there is a decent
->     writeup on how to use, perhaps, BB_PRESSURE_MAX_MEMORY, to dynamically
->     detect imminent OOM and adjust things. that is, how to calculate a
->     sane value for that as i haven't yet dug into the values under
->     /proc/pressure and how to interpret them?
-> 
->        i've seen mentions of combining the above with the "memstat"
->     command, and other approaches. thoughts?
-> 
->     rday
-> 
->     p.s. is there a docs page that expands on this stuff?
-> 
-There was an older thread "bitbake controlling memory use", maybe that 
-might help.
+This patch contains my proposal for an mixin layer that adds nodejs v18
+and v20 to kirkstone.
 
-Myself, I found these pressure things don't help. And even though we can 
-set the number of make threads we still can have a number of makes in 
-parallel. I patched bitbake to have make and ninja use a jobserver to 
-limit the total number of compile threads to the number of cores.
-See https://github.com/htot/meta-intel-edison/tree/kirkstone
+Kirkstone ships with nodejs-16, whose maintenance window ended in
+October 2023 (a).
 
-So, if you have 1GB ram x #cores you should be fine except for 1 thing:
-nodejs is linking 5 executables that require 4GB ram simultaneously. So 
-if you don't have 20GB you will start thrashing up to the point that you 
-have no mouse movement. This I solved by modifying the recipe to 
-serialize the linking.
+Kirkstone will be supported until April 2026 and it would be nice to have
+some level of support for a maintained version of nodejs during that time
+window.
 
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61773): https://lists.yoctoproject.org/g/yocto/message/61773
-> Mute This Topic: https://lists.yoctoproject.org/mt/102868689/4382963
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [gley-yocto@m.gmane-mx.org]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+This proposal seeks to address that by adding nodejs-18 and nodejs-20,
+which will be maintained until April 2025 and 2026, respectively.
 
+The recipes for nodejs-18 are taken from Mickledore and the recipes for
+nodejs-20 from master.
+
+The variable NODE_VERSION can be ser in local.conf to choose either v18
+or v20 (the default).
+
+This is my first attempt at sending a patch upstream with git send-email
+so any comments or suggestions for improvement are welcome. That's also
+the reason why I marked this as an RFC.
+
+Cheers,
+António
+
+António Oliveira (1):
+  initial commit
+
+-- 
+2.34.1
 
 
