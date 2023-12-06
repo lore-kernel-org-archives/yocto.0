@@ -1,117 +1,117 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <mattwood2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7154BC10DCE
-	for <webhook@archiver.kernel.org>; Wed,  6 Dec 2023 21:33:31 +0000 (UTC)
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
- by mx.groups.io with SMTP id smtpd.web11.45778.1701898401161504171
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80317C4167B
+	for <webhook@archiver.kernel.org>; Wed,  6 Dec 2023 21:48:01 +0000 (UTC)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+ by mx.groups.io with SMTP id smtpd.web11.46463.1701899274307208959
  for <yocto@lists.yoctoproject.org>;
- Wed, 06 Dec 2023 13:33:21 -0800
+ Wed, 06 Dec 2023 13:47:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=dPADGUzk;
- spf=pass (domain: mvista.com, ip: 209.85.216.42, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-286fb44eb16so241611a91.3
-        for <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 13:33:21 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BqaAdTEA;
+ spf=pass (domain: gmail.com, ip: 209.85.219.177, mailfrom: mattwood2000@gmail.com)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-da077db5145so320890276.0
+        for <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 13:47:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1701898399; x=1702503199; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/tdU5ssHWjmvQ2lWdRan53yWq3dJy23tkzzRW5Vv6Hg=;
-        b=dPADGUzkQlvX/RA0ggK94UnhaAaoOiOiN8nYpkJpbuNO0JarkYegbQaWKe628HnibM
-         UxNuVgXwLvnfDKBqELgJ4Ku4C/FQ514KjoWaqP4mTCE0Yd0w0h6jCv0xS5LN7w0GxsrY
-         m971Bw2UL9txWUkG2isWf3rzdOlckgF/PIBwI=
+        d=gmail.com; s=20230601; t=1701899273; x=1702504073; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=avcp/EId6gKoGibqzgporoxkZLYyrqiFw+8re7aaux8=;
+        b=BqaAdTEAdbX3SyOFWRQ37irTmXMdGPoNnbCLsls3bL0COEIAYM7dXUbIIrxpyw4jkr
+         X6t/2f1l6hb3GtCCGhLFqepW2EezK0dhG9DgL6hrZmZ2ALTJrm49DCnOqk2dZDhS+VlO
+         7S60UAsoCBd0+/Myy+wWHIeUYiQ8RHbYV5vCexZCg52+723q57KtRDE7yo4tSuJ6FCF5
+         DFAd1pH3DnhOBkIRfyjbINb144peESvCKZEWeGRuFUL2cq2Cq6YDxXCahFG6yuumhKcT
+         NeKYQwk5LImawsxzvgtfG/mV0lqd79lYvKg+wQ80rSr9IX61YxQtkqvnfHmtWiB3sZs5
+         VPtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701898399; x=1702503199;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/tdU5ssHWjmvQ2lWdRan53yWq3dJy23tkzzRW5Vv6Hg=;
-        b=Tracv+sqqFytToZd/IIT7/HY5AoQCGR3+gqOAXHFlWaD/gIKb33/24zRVKQG2yviqa
-         taTrrjmcc3q+GjRhvZ9DnmyPYCt2sxDrUcsLhNNQhtGg0tq6RmiAK++sAz5gZjU3Qtpz
-         AdeLGN3RbH3EUYbcaj6qV33vuz53S7OEY+Ehdt854sbK9DczvIwaxeO3DPBcHiHL/5VA
-         EsVqOq8ExoyT2Kv9j+iGKgKqO5XwnHT4U+KwjTpxXWhdYgMRSJUJanfp4l+I/2Uft/dU
-         VuX/3Dro0iDrNUL8Z3zA1SPxIpNBO4DzKlYzGMIZTgy2yxMdaXQ8Iy1Zp7pttnleMJub
-         I7ZQ==
-X-Gm-Message-State: AOJu0Yyl+G81AMUe9tv2KNVx41dP6bQIN1tmO94hiexzzuw8DP97zDML
-	fKkpFNIrpEaThbHPRfr66LjgNUblLf4tRU9KqiE=
-X-Google-Smtp-Source: AGHT+IHiZL1GIq2DKreF+9VH8fWBIPyE0I0LYPtygyx3JkuPOUwUkLwmVDap5D9znMYwNDA5Zpr6Lw==
-X-Received: by 2002:a17:90b:1b43:b0:285:a160:df1b with SMTP id nv3-20020a17090b1b4300b00285a160df1bmr1407737pjb.7.1701898399437;
-        Wed, 06 Dec 2023 13:33:19 -0800 (PST)
-Received: from [192.168.1.9] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id 5-20020a17090a1a0500b002869616d2c0sm319209pjk.33.2023.12.06.13.33.18
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 13:33:18 -0800 (PST)
-Message-ID: <c8ec51d7-3f15-4b5b-96ec-e1ce3963d519@mvista.com>
-Date: Wed, 6 Dec 2023 13:33:16 -0800
+        d=1e100.net; s=20230601; t=1701899273; x=1702504073;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=avcp/EId6gKoGibqzgporoxkZLYyrqiFw+8re7aaux8=;
+        b=gyUthcmw0UYMCJIELqw8176rJmC/zilzxNpjmb4vOFDpD5fuPJcND+g1nA5dCAPD8X
+         0Uev+EnJeAM936G0FxyNjEIVd/nJoPpkUAJhayLb0kNfCYi2BQXoYuTfT4Jz6etCADep
+         gr8iXedAqBh4ZjJozaSTEmoxUW8VKDYYF/OIU5Mx8ZhquIQn+JOgkMZgFFRTrUxBr3JZ
+         HUnIJzbSJFPNbeaPBBCVtgCb49MqCGwtHZvD7Iw4K5+MnhEhqbSA0xqIJzA2fu2ja6AK
+         wTKyVmR5+EAr81fLn6KTWeKqh3clS3DshhM2As1VCvnpIOMDApfmxHsA7c2NgESsAEMv
+         2fhg==
+X-Gm-Message-State: AOJu0YxkTSrhB1wpW8QuCorHn4MUsXVTzLNXWYGd9VFG+/8A6d3gGvkh
+	kCzCqKnQ04xOzGEausna1W0qUfCgQ04tUt3aTifxZWUouSw=
+X-Google-Smtp-Source: AGHT+IHzmn/lIWx2DTcInFHuYvpcBOFS/Y8YuQuVLSeToiGe/JSu58GJEdeEwUdiWQ3eviM8VTlHs/cHv1ph3MODcnI=
+X-Received: by 2002:a25:d8c8:0:b0:db9:56f3:b5a9 with SMTP id
+ p191-20020a25d8c8000000b00db956f3b5a9mr1375005ybg.127.1701899273245; Wed, 06
+ Dec 2023 13:47:53 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] "Replicating a Build Offline" not working as expected
- when Git data is removed
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org
-References: <o2S3.1692955198371059896.EMq5@lists.yoctoproject.org>
- <CANNYZj9=HgFoctp0=_soxF6Wv3R8G5Og0SpEFL0y7CbbXRxJuw@mail.gmail.com>
- <CA+_BhBzFjDjrmWW6y22kHc_s1EkXa7ee9REMBDTDQMP+eDXidg@mail.gmail.com>
- <CANNYZj8Hv2YETSNd+uUmffSEA1Tv+q-gK7-u-WUOsrvqALr7Hg@mail.gmail.com>
-From: Jeremy Puhlman <jpuhlman@mvista.com>
-In-Reply-To: <CANNYZj8Hv2YETSNd+uUmffSEA1Tv+q-gK7-u-WUOsrvqALr7Hg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: mattwood2000@gmail.com
+Date: Wed, 6 Dec 2023 16:47:42 -0500
+Message-ID: <CADjezmYYxWD8YgFKQyboDhbO7V8OXrzHm5_N+aOJvjxth53btQ@mail.gmail.com>
+Subject: initramfs creation
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000a025ad060bde4d5b"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 21:33:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61817
+ <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 21:48:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61818
 
+--000000000000a025ad060bde4d5b
+Content-Type: text/plain; charset="UTF-8"
 
+ Hi,
 
-On 8/28/2023 1:25 AM, Alexander Kanavin wrote:
-> On Mon, 28 Aug 2023 at 08:16, Stephan Mühlstrasser
-> <stephan.muehlstrasser@gmail.com> wrote:
->>> The documentation isn’t perfect. Sometimes it becomes outdated and no one notices, or it may be inaccurate to begin with. Personally I would never tamper with content of downloads and preserve it exactly as it is. Doesn’t have to be git lfs, plain artifact storage options work too.
->> If it doesn't work as documented, could someone elaborate what is
->> currently necessary to replicate a build offline? Is it possible to
->> reproduce a build only with the tarballs or is it actually necessary
->> to keep the cloned Git repositories in the download directory as well?
-> It's well possible no one knows the definite answer, and the best
-> advice is what I said: don't touch the downloads at all. In any case,
-> if the documentation is not accurate, patches to make it accurate
-> would be appreciated.
->
-> Alex
->
+I'm trying to create a custom initramfs to handle some things before
+switching root to my actual filesystem.  I followed the docs and have been
+able to use INITRAMFS_IMAGE = "custom-image" and INITRAMFS_IMAGE_BUNDLE =
+"1" to generate a zImage for my ARM platform.
 
-For the core repositories, few if any use AUTOINC, they almost all 
-specify the exact has of a git repository, if it is using one. For 
-rebuilding offline, that works perfectly because you
-have a copy of the git tarball or repository in your downloads 
-direction. However, if you add a repository, as in the case NXP, where 
-it is using AUTOINC to have a pull from tip of
-specific branch recipe, it is required to fetch the current hash for the 
-branch of that repository just to verify if the hash is in the 
-downloaded git repository.
+The custom-image.bb recipe is based on the core-image-minimal-initramfs
+recipe and is in a meta-layer that has another image recipe for the actual
+eMMC filesystem image.  Both the eMMC image and initramfs bundle are
+created.
 
-When this occurs on releases, we generally take the current value when 
-we start the build and define the hash value for the recipe, either via 
-bbappend, or a global override that
-sets the value for the recipe, so it does not need to go fetch the 
-value. That is more or less specifically the error he is running into.
+In custom-image.bb, PACKAGE_INSTALL includes INITRAMFS_SCRIPTS which seem
+to be geared towards live-image things but that's not what I want.
 
+The image boots but hangs waiting for removable media.  I figured out that
+/init is not pointing to systemd but the live-image script from
+recipes-core/initrdscripts.
 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60899): https://lists.yoctoproject.org/g/yocto/message/60899
-> Mute This Topic: https://lists.yoctoproject.org/mt/100952497/2167262
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jpuhlman@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+For testing I manually symlinked systemd to /init and the board boots but
+it wants a login password which was never created, I'm guessing its not
+inheriting debug-tweaks from my local.conf?
 
--- 
-Jeremy Puhlman
-jpuhlman@mvista.com
+So my question is, what is the correct way to create a minimal initramfs
+image along side the real recipe/image within a meta-layer?
 
+Does anyone have an example of doing this?
+
+Thanks, Matt.
+
+--000000000000a025ad060bde4d5b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>=C2=A0Hi,</div><div><br></div><div>I&#39;m trying to =
+create a custom initramfs to handle some things before switching root to my=
+ actual filesystem.=C2=A0 I followed the docs and have been able to use INI=
+TRAMFS_IMAGE =3D &quot;custom-image&quot; and INITRAMFS_IMAGE_BUNDLE =3D &q=
+uot;1&quot; to generate a zImage for my ARM platform.</div><div><br></div><=
+div>The <a href=3D"http://custom-image.bb">custom-image.bb</a> recipe is ba=
+sed on the core-image-minimal-initramfs recipe and is in a meta-layer that =
+has another image recipe for the actual eMMC filesystem image.=C2=A0 Both t=
+he eMMC image and initramfs bundle are created.<br></div><div><br></div><di=
+v>In <a href=3D"http://custom-image.bb">custom-image.bb</a>, PACKAGE_INSTAL=
+L includes INITRAMFS_SCRIPTS which seem to be geared towards live-image thi=
+ngs but that&#39;s not what I want.</div><div><br></div><div>The image boot=
+s but hangs waiting for removable media.=C2=A0 I figured out that /init is =
+not pointing to systemd but the live-image script from recipes-core/initrds=
+cripts.</div><div><br></div><div>For testing I manually symlinked systemd t=
+o /init and the board boots but it wants a login password which was never c=
+reated, I&#39;m guessing its not inheriting debug-tweaks from my local.conf=
+?<br></div><div><br></div><div>So my question is, what is the correct way t=
+o create a minimal initramfs image along side the real recipe/image within =
+a meta-layer?</div><div><br></div><div>Does anyone have an example of doing=
+ this?</div><div><br></div><div>Thanks, Matt.<br></div></div>
+
+--000000000000a025ad060bde4d5b--
 
