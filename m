@@ -1,292 +1,117 @@
-Return-Path: <renato.mendes.pes@gmail.com>
+Return-Path: <jpuhlman@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8C12C4167B
-	for <webhook@archiver.kernel.org>; Wed,  6 Dec 2023 15:03:08 +0000 (UTC)
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
- by mx.groups.io with SMTP id smtpd.web11.33480.1701874987456093588
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7154BC10DCE
+	for <webhook@archiver.kernel.org>; Wed,  6 Dec 2023 21:33:31 +0000 (UTC)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+ by mx.groups.io with SMTP id smtpd.web11.45778.1701898401161504171
  for <yocto@lists.yoctoproject.org>;
- Wed, 06 Dec 2023 07:03:07 -0800
+ Wed, 06 Dec 2023 13:33:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=mSkxCdvY;
- spf=pass (domain: gmail.com, ip: 209.85.214.170, mailfrom: renato.mendes.pes@gmail.com)
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1d03bcf27e9so36766265ad.0
-        for <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 07:03:07 -0800 (PST)
+ dkim=pass header.i=@mvista.com header.s=google header.b=dPADGUzk;
+ spf=pass (domain: mvista.com, ip: 209.85.216.42, mailfrom: jpuhlman@mvista.com)
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-286fb44eb16so241611a91.3
+        for <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 13:33:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701874987; x=1702479787; darn=lists.yoctoproject.org;
-        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ojO9U3enOmQjvkgd+MzPXlV5Z8a4rwsQAAGvglcp9E=;
-        b=mSkxCdvYcSTDcKLTuh6HUZ9u2O2JKb/JV3biveAQWSikmuCJFxu/Gz7C8aGOmLMh/f
-         sxFjWqdWVCIerlXpKcerUkO8DjcjP30+GLscYO6/WwMGnhlcArA0bQmJbiW4UUBDNEdd
-         2t/rRQeAiLs8xt9EL4kurfpHjMNsxvkLsI9Og19CVf3SFDCakYCZG8L/MFkWWiUEDL/x
-         qvu7YgxyvjQOJx08FcQoHBVrnIkNrbKVfOfbjXl1wFD6H8gV7uavFALnzUPYCK1PrTdM
-         MO0dZbIaj/RXD4r6dBz4S8yftmAoPvaUytsyg8aKqE4iiNy/nyEO3tGQGHsBcJEr/ruM
-         YsJw==
+        d=mvista.com; s=google; t=1701898399; x=1702503199; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/tdU5ssHWjmvQ2lWdRan53yWq3dJy23tkzzRW5Vv6Hg=;
+        b=dPADGUzkQlvX/RA0ggK94UnhaAaoOiOiN8nYpkJpbuNO0JarkYegbQaWKe628HnibM
+         UxNuVgXwLvnfDKBqELgJ4Ku4C/FQ514KjoWaqP4mTCE0Yd0w0h6jCv0xS5LN7w0GxsrY
+         m971Bw2UL9txWUkG2isWf3rzdOlckgF/PIBwI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701874987; x=1702479787;
-        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ojO9U3enOmQjvkgd+MzPXlV5Z8a4rwsQAAGvglcp9E=;
-        b=qATcRYDpdIQD+8gvSuW4fzIPaTwbnJ1p3eChxi1Cj5cfzb+drN8tYj6vd4KCNcUOIX
-         8X6mFadLpaa7FF/8JPnZReMbaBoZ5PWUi8vks2KPM2jNV/x6ABQVsqrdp4XbTul2Y+65
-         Ae7f3Eh5+zkHVYb8E4t09+sedfHv1ilbQbW6hn3oq3u6bkSwDQB3mrkfNsZkibg4jvi3
-         w5qlrnsvdM7N+NilqClqq/Uyv4FiuXfodjymnQZFulKOiZe0Z40833tzdlXEty98oXIa
-         wWxZOaB1mtRxsX2E6cSK4rn/yxGaxKKyb1aFSDO+61S133QCmWrEcFCBsc3FoBJLI8SO
-         3BQQ==
-X-Gm-Message-State: AOJu0YzjUvVojeEWyZIfmaJLpwY3DOL2+BYE+rOnp9JHtEtRfSZx2Cmt
-	ncbAUsm6H48NCW4Pj4RTMRA=
-X-Google-Smtp-Source: AGHT+IEZGkEbGXLTdqt7Ub3VpMF4R831fLowhwyAy5s+h8VRG6vykz2m1tLSTJRwv4kkXPg46JhRmg==
-X-Received: by 2002:a17:903:2585:b0:1d0:9d64:6e3e with SMTP id jb5-20020a170903258500b001d09d646e3emr706042plb.117.1701874986560;
-        Wed, 06 Dec 2023 07:03:06 -0800 (PST)
-Received: from smtpclient.apple ([2804:32d4:10:651:b1d9:c3bd:3093:4713])
-        by smtp.gmail.com with ESMTPSA id b13-20020a170902d30d00b001cfcc10491fsm4047648plc.161.2023.12.06.07.03.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 06 Dec 2023 07:03:06 -0800 (PST)
-From: Renato Mendes <renato.mendes.pes@gmail.com>
-Message-Id: <247680A7-74F9-4F28-A24A-B45AAA43AE71@gmail.com>
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_781D2FE0-70E9-44DF-93CE-1FB3A18530CE"
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.500.231\))
-Subject: Re: [yocto] WARNING: IMAGE_FSTYPES:remove += is not a recommended
- operator combination, please replace it / Fuzz detected
-Date: Wed, 6 Dec 2023 12:02:51 -0300
-In-Reply-To: <CAEt6Nwop_n5GU+exF+UXKcYufEXmoX-BJXenaBEFP1gi9pEUpg@mail.gmail.com>
-Cc: yocto@lists.yoctoproject.org
-To: Josef Holzmayr <jester@theyoctojester.info>
-References: <1w5J.1701871834409746085.0H28@lists.yoctoproject.org>
- <CAEt6Nwop_n5GU+exF+UXKcYufEXmoX-BJXenaBEFP1gi9pEUpg@mail.gmail.com>
-X-Mailer: Apple Mail (2.3731.500.231)
+        d=1e100.net; s=20230601; t=1701898399; x=1702503199;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/tdU5ssHWjmvQ2lWdRan53yWq3dJy23tkzzRW5Vv6Hg=;
+        b=Tracv+sqqFytToZd/IIT7/HY5AoQCGR3+gqOAXHFlWaD/gIKb33/24zRVKQG2yviqa
+         taTrrjmcc3q+GjRhvZ9DnmyPYCt2sxDrUcsLhNNQhtGg0tq6RmiAK++sAz5gZjU3Qtpz
+         AdeLGN3RbH3EUYbcaj6qV33vuz53S7OEY+Ehdt854sbK9DczvIwaxeO3DPBcHiHL/5VA
+         EsVqOq8ExoyT2Kv9j+iGKgKqO5XwnHT4U+KwjTpxXWhdYgMRSJUJanfp4l+I/2Uft/dU
+         VuX/3Dro0iDrNUL8Z3zA1SPxIpNBO4DzKlYzGMIZTgy2yxMdaXQ8Iy1Zp7pttnleMJub
+         I7ZQ==
+X-Gm-Message-State: AOJu0Yyl+G81AMUe9tv2KNVx41dP6bQIN1tmO94hiexzzuw8DP97zDML
+	fKkpFNIrpEaThbHPRfr66LjgNUblLf4tRU9KqiE=
+X-Google-Smtp-Source: AGHT+IHiZL1GIq2DKreF+9VH8fWBIPyE0I0LYPtygyx3JkuPOUwUkLwmVDap5D9znMYwNDA5Zpr6Lw==
+X-Received: by 2002:a17:90b:1b43:b0:285:a160:df1b with SMTP id nv3-20020a17090b1b4300b00285a160df1bmr1407737pjb.7.1701898399437;
+        Wed, 06 Dec 2023 13:33:19 -0800 (PST)
+Received: from [192.168.1.9] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
+        by smtp.gmail.com with ESMTPSA id 5-20020a17090a1a0500b002869616d2c0sm319209pjk.33.2023.12.06.13.33.18
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Dec 2023 13:33:18 -0800 (PST)
+Message-ID: <c8ec51d7-3f15-4b5b-96ec-e1ce3963d519@mvista.com>
+Date: Wed, 6 Dec 2023 13:33:16 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] "Replicating a Build Offline" not working as expected
+ when Git data is removed
+Content-Language: en-US
+To: yocto@lists.yoctoproject.org
+References: <o2S3.1692955198371059896.EMq5@lists.yoctoproject.org>
+ <CANNYZj9=HgFoctp0=_soxF6Wv3R8G5Og0SpEFL0y7CbbXRxJuw@mail.gmail.com>
+ <CA+_BhBzFjDjrmWW6y22kHc_s1EkXa7ee9REMBDTDQMP+eDXidg@mail.gmail.com>
+ <CANNYZj8Hv2YETSNd+uUmffSEA1Tv+q-gK7-u-WUOsrvqALr7Hg@mail.gmail.com>
+From: Jeremy Puhlman <jpuhlman@mvista.com>
+In-Reply-To: <CANNYZj8Hv2YETSNd+uUmffSEA1Tv+q-gK7-u-WUOsrvqALr7Hg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 15:03:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61816
+ <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 21:33:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61817
 
 
---Apple-Mail=_781D2FE0-70E9-44DF-93CE-1FB3A18530CE
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-Thanks!
+On 8/28/2023 1:25 AM, Alexander Kanavin wrote:
+> On Mon, 28 Aug 2023 at 08:16, Stephan Mühlstrasser
+> <stephan.muehlstrasser@gmail.com> wrote:
+>>> The documentation isn’t perfect. Sometimes it becomes outdated and no one notices, or it may be inaccurate to begin with. Personally I would never tamper with content of downloads and preserve it exactly as it is. Doesn’t have to be git lfs, plain artifact storage options work too.
+>> If it doesn't work as documented, could someone elaborate what is
+>> currently necessary to replicate a build offline? Is it possible to
+>> reproduce a build only with the tarballs or is it actually necessary
+>> to keep the cloned Git repositories in the download directory as well?
+> It's well possible no one knows the definite answer, and the best
+> advice is what I said: don't touch the downloads at all. In any case,
+> if the documentation is not accurate, patches to make it accurate
+> would be appreciated.
+>
+> Alex
+>
 
-> Em 6 de dez. de 2023, =C3=A0(s) 11:54, Josef Holzmayr =
-<jester@theyoctojester.info> escreveu:
->=20
-> Hi Renato,
->=20
-> Replace it with
-> IMAGE_FSTYPES:remove =3D "rpi-sdimg"
-> The +=3D operator is not meant to be used in combination with :append =
-and :remove.
->=20
-> Greetz,
-> Josef
->=20
-> On Wed, Dec 6, 2023 at 3:10=E2=80=AFPM <renato.mendes.pes@gmail.com =
-<mailto:renato.mendes.pes@gmail.com>> wrote:
->> I'm building a Yocto image to Raspi Zero W and Mender. My =
-configuration:
->>=20
->>=20
->> MACHINE =3D "raspberrypi0-wifi"
->>=20
->> MENDER_ARTIFACT_NAME =3D "release-1"
->>=20
->> INHERIT +=3D "mender-full"
->>=20
->> RPI_USE_U_BOOT =3D "1"
->>=20
->> #MENDER_PARTITION_ALIGNMENT =3D "4096000"
->>=20
->> MENDER_BOOT_PART_SIZE_MB =3D "40"
->>=20
->> IMAGE_INSTALL:append =3D " kernel-image kernel-devicetree"
->>=20
->> IMAGE_FSTYPES:remove +=3D " rpi-sdimg"
->>=20
->> MENDER_SERVER_URL =3D "https://mender.mydomain.com =
-<https://mender.mydomain.com/>"
->>=20
->> MENDER_TENANT_TOKEN =3D "MY_TOKEN"
->>=20
->> DISTRO_FEATURES:append =3D " systemd"
->>=20
->> VIRTUAL-RUNTIME_init_manager =3D "systemd"
->>=20
->> DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
->>=20
->> VIRTUAL-RUNTIME_initscripts =3D ""
->>=20
->> IMAGE_FSTYPES =3D "ext4"
->>=20
->>=20
->> When building:=20
->>=20
->> bitbake core-image-full-cmdline
->>=20
->>=20
->> I'm getting the following warning:
->>=20
->> WARNING: IMAGE_FSTYPES:remove +=3D is not a recommended operator =
-combination, please replace it.
->> WARNING: IMAGE_FSTYPES:remove +=3D is not a recommended operator =
-combination, please replace it
->>=20
->> Any ideas of what's going on and how to fix it?
->>=20
->>=20
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> Links: You receive all messages sent to this group.
->> You automatically follow any topics you start or reply to.
->> View/Reply Online (#61814): =
-https://lists.yoctoproject.org/g/yocto/message/61814
->> Mute This Topic: https://lists.yoctoproject.org/mt/103013050/4689568
->> Group Owner: yocto+owner@lists.yoctoproject.org =
-<mailto:yocto%2Bowner@lists.yoctoproject.org>
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub =
-[jester@theyoctojester.info <mailto:jester@theyoctojester.info>]
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+For the core repositories, few if any use AUTOINC, they almost all 
+specify the exact has of a git repository, if it is using one. For 
+rebuilding offline, that works perfectly because you
+have a copy of the git tarball or repository in your downloads 
+direction. However, if you add a repository, as in the case NXP, where 
+it is using AUTOINC to have a pull from tip of
+specific branch recipe, it is required to fetch the current hash for the 
+branch of that repository just to verify if the hash is in the 
+downloaded git repository.
+
+When this occurs on releases, we generally take the current value when 
+we start the build and define the hash value for the recipe, either via 
+bbappend, or a global override that
+sets the value for the recipe, so it does not need to go fetch the 
+value. That is more or less specifically the error he is running into.
 
 
---Apple-Mail=_781D2FE0-70E9-44DF-93CE-1FB3A18530CE
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#60899): https://lists.yoctoproject.org/g/yocto/message/60899
+> Mute This Topic: https://lists.yoctoproject.org/mt/100952497/2167262
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jpuhlman@mvista.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: =
-after-white-space;">Thanks!<br><div><br><blockquote type=3D"cite"><div>Em =
-6 de dez. de 2023, =C3=A0(s) 11:54, Josef Holzmayr =
-&lt;jester@theyoctojester.info&gt; escreveu:</div><br =
-class=3D"Apple-interchange-newline"><div><meta charset=3D"UTF-8"><div =
-dir=3D"ltr" style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;">Hi Renato,<div><br></div><div>Replace it =
-with</div><div>IMAGE_FSTYPES:remove =3D =
-"rpi-sdimg"</div><div>The&nbsp;+=3D operator is not meant to be used in =
-combination with :append and =
-:remove.</div><div><br></div><div>Greetz,<br>Josef</div></div><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;"><div =
-class=3D"gmail_quote" style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 6, 2023 at =
-3:10=E2=80=AFPM &lt;<a =
-href=3D"mailto:renato.mendes.pes@gmail.com">renato.mendes.pes@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin: =
-0px 0px 0px 0.8ex; border-left-width: 1px; border-left-style: solid; =
-border-left-color: rgb(204, 204, 204); padding-left: 1ex;">I'm building =
-a Yocto image to Raspi Zero W and Mender. My configuration:<br><br><div =
-style=3D"color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); =
-font-family: Menlo, Monaco, &quot;Courier New&quot;, monospace; =
-font-size: 12px; line-height: 18px; white-space: pre-wrap;">
-<div><span style=3D"color: rgb(156, 220, 254);">MACHINE</span> <span =
-style=3D"color: rgb(212, 212, 212);">=3D</span> <span style=3D"color: =
-rgb(206, 145, 120);">"raspberrypi0-wifi"</span></div>
-<div><span style=3D"color: rgb(156, 220, =
-254);">MENDER_ARTIFACT_NAME</span> <span style=3D"color: rgb(212, 212, =
-212);">=3D</span> <span style=3D"color: rgb(206, 145, =
-120);">"release-1"</span></div>
-<div><span style=3D"color: rgb(156, 220, 254);">INHERIT</span> <span =
-style=3D"color: rgb(212, 212, 212);">+=3D</span> <span style=3D"color: =
-rgb(206, 145, 120);">"mender-full"</span></div>
-<div><span style=3D"color: rgb(156, 220, 254);">RPI_USE_U_BOOT</span> =
-<span style=3D"color: rgb(212, 212, 212);">=3D</span> <span =
-style=3D"color: rgb(206, 145, 120);">"1"</span></div>
-<div><span style=3D"color: rgb(106, 153, =
-85);">#MENDER_PARTITION_ALIGNMENT =3D "4096000"</span></div>
-<div><span style=3D"color: rgb(156, 220, =
-254);">MENDER_BOOT_PART_SIZE_MB</span> <span style=3D"color: rgb(212, =
-212, 212);">=3D</span> <span style=3D"color: rgb(206, 145, =
-120);">"40"</span></div>
-<div><span style=3D"color: rgb(156, 220, =
-254);">IMAGE_INSTALL</span><span style=3D"color: rgb(212, 212, =
-212);">:</span><span style=3D"color: rgb(156, 220, 254);">append</span> =
-<span style=3D"color: rgb(212, 212, 212);">=3D</span> <span =
-style=3D"color: rgb(206, 145, 120);">" kernel-image =
-kernel-devicetree"</span></div>
-<div><span style=3D"color: rgb(156, 220, =
-254);">IMAGE_FSTYPES</span><span style=3D"color: rgb(212, 212, =
-212);">:</span><span style=3D"color: rgb(156, 220, 254);">remove</span> =
-<span style=3D"color: rgb(212, 212, 212);">+=3D</span> <span =
-style=3D"color: rgb(206, 145, 120);">" rpi-sdimg"</span></div>
-<div><span style=3D"color: rgb(156, 220, 254);">MENDER_SERVER_URL</span> =
-<span style=3D"color: rgb(212, 212, 212);">=3D</span> <span =
-style=3D"color: rgb(206, 145, 120);">"<a =
-href=3D"https://mender.mydomain.com/" =
-target=3D"_blank">https://mender.mydomain.com</a>"</span></div>
-<div><span style=3D"color: rgb(156, 220, =
-254);">MENDER_TENANT_TOKEN</span> <span style=3D"color: rgb(212, 212, =
-212);">=3D</span> <span style=3D"color: rgb(206, 145, =
-120);">"MY_TOKEN"</span></div>
-<div><span style=3D"color: rgb(156, 220, =
-254);">DISTRO_FEATURES</span><span style=3D"color: rgb(212, 212, =
-212);">:</span><span style=3D"color: rgb(156, 220, 254);">append</span> =
-<span style=3D"color: rgb(212, 212, 212);">=3D</span> <span =
-style=3D"color: rgb(206, 145, 120);">" systemd"</span></div>
-<div>VIRTUAL<span style=3D"color: rgb(212, 212, 212);">-</span><span =
-style=3D"color: rgb(156, 220, 254);">RUNTIME_init_manager</span> <span =
-style=3D"color: rgb(212, 212, 212);">=3D</span> <span style=3D"color: =
-rgb(206, 145, 120);">"systemd"</span></div>
-<div><span style=3D"color: rgb(156, 220, =
-254);">DISTRO_FEATURES_BACKFILL_CONSIDERED</span> <span style=3D"color: =
-rgb(212, 212, 212);">=3D</span> <span style=3D"color: rgb(206, 145, =
-120);">"sysvinit"</span></div>
-<div>VIRTUAL<span style=3D"color: rgb(212, 212, 212);">-</span><span =
-style=3D"color: rgb(156, 220, 254);">RUNTIME_initscripts</span> <span =
-style=3D"color: rgb(212, 212, 212);">=3D</span> <span style=3D"color: =
-rgb(206, 145, 120);">""</span></div>
-<div><span style=3D"color: rgb(156, 220, 254);">IMAGE_FSTYPES</span> =
-<span style=3D"color: rgb(212, 212, 212);">=3D</span> <span =
-style=3D"color: rgb(206, 145, 120);">"ext4"</span></div>
-</div><br>When building:&nbsp;<br><div style=3D"color: rgb(204, 204, =
-204); background-color: rgb(31, 31, 31); font-family: Menlo, Monaco, =
-&quot;Courier New&quot;, monospace; font-size: 12px; line-height: 18px; =
-white-space: pre-wrap;">
-<div><span style=3D"color: rgb(220, 220, 170);">bitbake</span> <span =
-style=3D"color: rgb(206, 145, =
-120);">core-image-full-cmdline</span></div>
-</div><br>I'm getting the following =
-warning:<br><br><div><strong>WARNING: IMAGE_FSTYPES:remove +=3D is not a =
-recommended operator combination, please replace =
-it.</strong></div><div><strong>WARNING: IMAGE_FSTYPES:remove +=3D is not =
-a recommended operator combination, please replace =
-it</strong><br><br>Any ideas of what's going on and how to fix =
-it?<br><br></div><br>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>Link=
-s: You receive all messages sent to this group.<br>You automatically =
-follow any topics you start or reply to.<br>View/Reply Online =
-(#61814):<span class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"https://lists.yoctoproject.org/g/yocto/message/61814" =
-rel=3D"noreferrer" =
-target=3D"_blank">https://lists.yoctoproject.org/g/yocto/message/61814</a>=
-<br>Mute This Topic:<span class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"https://lists.yoctoproject.org/mt/103013050/4689568" =
-rel=3D"noreferrer" =
-target=3D"_blank">https://lists.yoctoproject.org/mt/103013050/4689568</a><=
-br>Group Owner:<span class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" =
-target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>Unsubscribe:<s=
-pan class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=3D"noreferrer" =
-target=3D"_blank">https://lists.yoctoproject.org/g/yocto/unsub</a><span =
-class=3D"Apple-converted-space">&nbsp;</span>[<a =
-href=3D"mailto:jester@theyoctojester.info" =
-target=3D"_blank">jester@theyoctojester.info</a>]<br>-=3D-=3D-=3D-=3D-=3D-=
-=3D-=3D-=3D-=3D-=3D-=3D-</blockquote></div></div></blockquote></div><br></=
-body></html>=
+-- 
+Jeremy Puhlman
+jpuhlman@mvista.com
 
---Apple-Mail=_781D2FE0-70E9-44DF-93CE-1FB3A18530CE--
 
