@@ -1,112 +1,90 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B99AC4167B
-	for <webhook@archiver.kernel.org>; Wed,  6 Dec 2023 00:02:03 +0000 (UTC)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web10.17053.1701820914968928577
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F12DC4167B
+	for <webhook@archiver.kernel.org>; Wed,  6 Dec 2023 05:02:45 +0000 (UTC)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+ by mx.groups.io with SMTP id smtpd.web10.24878.1701838957923691794
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Dec 2023 16:01:55 -0800
+ Tue, 05 Dec 2023 21:02:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=hFaaWGov;
- spf=pass (domain: mvista.com, ip: 209.85.214.182, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1d0538d9bbcso42523815ad.3
-        for <yocto@lists.yoctoproject.org>; Tue, 05 Dec 2023 16:01:54 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fI16SgPm;
+ spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: hassanchattarki@gmail.com)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ca1e6a94a4so7508681fa.0
+        for <yocto@lists.yoctoproject.org>; Tue, 05 Dec 2023 21:02:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1701820914; x=1702425714; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5OFQNfNzARoiZa2nm0TKY2lgpJCFoPX2/H6uuapZf2Y=;
-        b=hFaaWGov/wfVUdpPl2spWHEtahBmWyYJIxEzQIiJ4U5X/78P4HFCilYs+FrYIssYRj
-         39+CCkU2VazEdY32WUaUOyVmb1cUvRgm2d6e+3m1rHpGobBMS6Ird4MfeAmCSYKOjMwk
-         t19Ykh+ydS+tBI7Wh6xSMkgihq6pmlIkB5CW4=
+        d=gmail.com; s=20230601; t=1701838956; x=1702443756; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=I5SFADqWe7un4bVT/LHV0kMI6BtJ8owYsx8n2uo/BsQ=;
+        b=fI16SgPmY16aDm12XFy9wLeipJt2wX/I0syROPfOzy0rs0tiLNH4hW93m3nUTd9PeO
+         TY5u29NsasGMLDT09f+IOgm3r+ab6SmCrSU2+ctu8UIU6664U5Qss8bKLZ+r/U/C4jnJ
+         ch4yqsA70AcUuSHw/MUATnofH1trddiM0d1+WOUt+Wvc+bLoazccshJTsVaQCbHWWT41
+         PI/jM43n1p679qKK/WAAxPsMJtOy5u6LNPehfpTk/k4i/0jwaIUzIK9JN2B5TONEz5Ds
+         phFRQjBecldzjtA6MTCIwpzHG5pk0U0t6oePBjooDJadAqvDW8hR1aq0sh0QmlEODPZw
+         PAqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701820914; x=1702425714;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5OFQNfNzARoiZa2nm0TKY2lgpJCFoPX2/H6uuapZf2Y=;
-        b=T+yqkuB7eS63S0H2Wru8dkCOzEtmZ538nrgIQZIiEHOlyl/YTOJ8i2hbvqX8ct5K6p
-         iCc2gV86X1S7zNdqC4v9pUF31s8r0g1fMmPZXAgFVlqtwzkKg8kHST3EMfVXAFi4kugx
-         6vLQCdopP17Q1ZCGqwocf1lKegzkVfekEAdkwsnn5XJSbaZJp8NmnUctNQAPAc/5z2Lv
-         T4exHa7eANn9kprnHWdZHXO2Pz4Qvw/M3UtRPfEJDln3C380LN4CYFgmjFlcsvAZc7xZ
-         q0TIWDjUp/2X/MfRpfoL9GZgbS7TMmbQyLbMcJIRj+Tv+/AW2B4URx0s80QzvL6zn4aC
-         GEGw==
-X-Gm-Message-State: AOJu0YyJdrmoK0p4tQd3CJ1L8pYrx1fspggtjyXT12GrbrMJUxYicWzF
-	bJEDGXiYaLhZCnStAaPLGs9VdA==
-X-Google-Smtp-Source: AGHT+IHlJmPfayvOuRIzbf+U8vtSWWyEQPgrl+K9tqvl+Lu0TVpxAMRtD4xt3vX+AHRD0KlsDT4nvA==
-X-Received: by 2002:a17:903:41cd:b0:1cc:43af:f568 with SMTP id u13-20020a17090341cd00b001cc43aff568mr37071ple.6.1701820914326;
-        Tue, 05 Dec 2023 16:01:54 -0800 (PST)
-Received: from [10.20.245.32] (50-240-203-141-static.hfc.comcastbusiness.net. [50.240.203.141])
-        by smtp.gmail.com with ESMTPSA id x16-20020a170902ec9000b001cc3fae06a6sm1840878plg.159.2023.12.05.16.01.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 16:01:53 -0800 (PST)
-Message-ID: <f00f66aa-8e5a-4c3a-a486-487dbe536cba@mvista.com>
-Date: Tue, 5 Dec 2023 16:01:51 -0800
+        d=1e100.net; s=20230601; t=1701838956; x=1702443756;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I5SFADqWe7un4bVT/LHV0kMI6BtJ8owYsx8n2uo/BsQ=;
+        b=NC+3Go5rE3A0s9xcyM/GiWc3FWmfGIP3TdJmFUC5QnVmnM+7T+EoUqd5XleR51i1Zo
+         EQMHYo1o47d446up6w1WQLbNKTj7pnjYlNenVinLGfls2nc6vtpGTin6BvK0j3uQ+N8F
+         v0K6ZeC1MXnBfjSh4CsGWYTCuOkbbmsrihjg07zRkgos6Cb9ozDMW8iyDIMnyxF7r5pg
+         phKcoPyMi9v9oSUmeo8RJJGaO7KJzejlwl5PdSPwxxma7/XrrV4cXbJrOxDA0l+vyRGk
+         8I5vIeg66OtWlxVOlmZBVprnNW9Q7MPl+D9mIBfj+k42j+6xzsQAw2rPcxfxIU2ehH5o
+         tvAA==
+X-Gm-Message-State: AOJu0YzVUeC34MOtt98niqUzOBSGMm2wz9y63K9MLPMT58sXaMA+g2GY
+	YCHgHHt7tWoOcT21GuyozSP5bvRI5VLNnEJp4iVQBihd
+X-Google-Smtp-Source: AGHT+IGZkfFx7/iqaavialXf2AS3AeSwWXA6F+TUdKyylb41PnRviN2sTaR0Nlhwf+wknSaEHJBgMzE8vdETO6ubW9o=
+X-Received: by 2002:a05:651c:23c:b0:2c9:f3eb:c652 with SMTP id
+ z28-20020a05651c023c00b002c9f3ebc652mr139838ljn.89.1701838955407; Tue, 05 Dec
+ 2023 21:02:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] sstate-cache issue with SPDX enabled
-Content-Language: en-US
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, mwen@ambarella.com,
- yocto@lists.yoctoproject.org
-References: <hJ5J.1686151970057523750.KtUg@lists.yoctoproject.org>
- <b5c6dfa4dfaa8d14c52a3269be6043dbef3e4f5f.camel@linuxfoundation.org>
-From: Jeremy Puhlman <jpuhlman@mvista.com>
-In-Reply-To: <b5c6dfa4dfaa8d14c52a3269be6043dbef3e4f5f.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Date: Wed, 6 Dec 2023 10:32:24 +0530
+Message-ID: <CAPJWBniiK8mg2K6SPpwofx_+aNvKHNe2PerxdDhkeRy4W3=ymg@mail.gmail.com>
+Subject: Reg. Efficient methods to transfer yocto source file
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000066ed5b060bd0425f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 00:02:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61810
+ <yocto@lists.yoctoproject.org>; Wed, 06 Dec 2023 05:02:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61811
 
+--00000000000066ed5b060bd0425f
+Content-Type: text/plain; charset="UTF-8"
 
+Hi guys,
+So I have been copying and transferring yocto source files into different
+partitions to test new features and to have a preexisting working build. I
+generally just copy the files and I am aware that this will take a lot of
+time. I was looking for an efficient way to transfer the source code as
+later I will be transferring the code to my other team members as well. I
+copy everything except the tmp directory.
 
-On 6/8/2023 1:15 PM, Richard Purdie wrote:
-> On Wed, 2023-06-07 at 08:32 -0700, mwen@ambarella.com wrote:
->> We’re using Poky Kirkstone(LTS) with the latest version for our
->> SDK. Recently, we're trying to enable the feature of creating SBOM in
->> SPDX. But we met a sstate-cache checking failure issue when enabling
->> SPDX to generate SBOM. It will be appreciated if you have any idea
->> for the root cause. Refer to below details for the issue.
->> https://docs.yoctoproject.org/4.0.10/singleindex.html#creating-a-software-bill-of-materials
-> We did work on this in master recently and there have been fixes merged
-> there, after which we enabled SPDX by default.
->
-> Unfortunately they were not straightforward and this may make it tricky
-> to backport into the older releases. We're still testing them in master
-> before considering that.
+Please share some efficient methods to transfer code.
+Also is it good to use GIT to save entire source code?
 
-Was there a follow up to pulling these fixes in to older releases? I 
-created a branch of kirkstone
-with create-spdx brought up to nanbield. Its likely not how it should be 
-backported, but it does
-seem to work with only one backported fix to bitbake for exposing hashfn 
-in the taskdep data.
+Regards,
+Hassan
 
-Those changes appear to resolve the similar issue I was seeing.
+--00000000000066ed5b060bd0425f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://github.com/jpuhlman/openembedded-core/tree/kirkstone-current-spdx
+<div dir=3D"ltr">Hi=C2=A0guys,<br><div>So I have been copying and transferr=
+ing=C2=A0yocto source files into different partitions=C2=A0to test new feat=
+ures and to have a preexisting working build. I generally just copy the fil=
+es and I am aware that this will take a lot of time. I was looking for an e=
+fficient way to transfer the source code as later I will be transferring th=
+e code to my other team members as well. I copy everything except the tmp d=
+irectory.</div><div><br></div><div>Please share some efficient methods to t=
+ransfer code.</div><div>Also is it good to use GIT to save entire source co=
+de?=C2=A0</div><div><br></div><div>Regards,</div><div>Hassan=C2=A0=C2=A0</d=
+iv></div>
 
->
-> Cheers,
->
-> Richard
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#60235): https://lists.yoctoproject.org/g/yocto/message/60235
-> Mute This Topic: https://lists.yoctoproject.org/mt/99403018/2167262
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/leave/6691901/2167262/1422422786/xyzzy [jpuhlman@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
-
--- 
-Jeremy Puhlman
-jpuhlman@mvista.com
-
+--00000000000066ed5b060bd0425f--
 
