@@ -1,92 +1,118 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5BEC5C4167B
-	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 22:04:21 +0000 (UTC)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
- by mx.groups.io with SMTP id smtpd.web10.105436.1701986565918860192
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C246C10DCE
+	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 22:37:31 +0000 (UTC)
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+ by mx.groups.io with SMTP id smtpd.web11.105882.1701988646999802474
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Dec 2023 14:02:47 -0800
+ Thu, 07 Dec 2023 14:37:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=sYm8EZnQ;
- spf=pass (domain: savoirfairelinux.com, ip: 208.88.110.44, mailfrom: marlon.rodriguez-garcia@savoirfairelinux.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id C94919C0B24
-	for <yocto@lists.yoctoproject.org>; Thu,  7 Dec 2023 17:02:44 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id 4QV-0zG9rkQ7 for <yocto@lists.yoctoproject.org>;
- Thu,  7 Dec 2023 17:02:44 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 76CA69C3298
-	for <yocto@lists.yoctoproject.org>; Thu,  7 Dec 2023 17:02:44 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 76CA69C3298
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ElHGtFHH;
+ spf=pass (domain: gmail.com, ip: 209.85.210.50, mailfrom: raj.khem@gmail.com)
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6d99c3a3a32so930211a34.3
+        for <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 14:37:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1701986564; bh=kjmx/TwhRV0yr8x0iM+LVWReQcP8FjZvguO8pV44M6M=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=sYm8EZnQXt0B//YJoEpmDxqFChON1B/dGl7xfXjlTmkGAMUPytAHL5rXYDAfi+oZy
-	 srB6pFz3vwD4Vx/6Cek76YZudLtPq8AVs9FJM5oTndSLSIvF3siz2wH+YZ6L5fvAkZ
-	 RWF9sdpTf3LLA9/E1GG4on+KmWo0321lotruk3NEAFDQoGWn8Z9bKY8nQ1WdGf5aAh
-	 6RozFJ8+PPiiY1JDb54obaNS7uPgUWrR7mW3+4PeBl01fersfDDZF0yO7/ReTkj5mo
-	 hTyETB3FqiWI9+OqoDAPT+Osqd1s4oTnxzQ1RCblKyW5ius9ctMn2Tz7KjYx/HmYax
-	 VU6FeIV+5IPmw==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 2um7kYHfYQtA for <yocto@lists.yoctoproject.org>;
- Thu,  7 Dec 2023 17:02:44 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 6343A9C0B24
-	for <yocto@lists.yoctoproject.org>; Thu,  7 Dec 2023 17:02:44 -0500 (EST)
-Date: Thu, 7 Dec 2023 17:02:44 -0500 (EST)
-From: "Marlon Rodriguez Garcia" <marlon.rodriguez-garcia@savoirfairelinux.com>
-To: yocto@lists.yoctoproject.org
-Message-ID: <1777760102.1602457.1701986564186.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <20231207210834.205200-1-marlon.rodriguez-garcia@savoirfairelinux.com>
-References: <20231207210834.205200-1-marlon.rodriguez-garcia@savoirfairelinux.com>
-Subject: Re: [PATCH yocto-autobuilder-helper] script/run-toaster-test : Added new global variables needed to run test in toaster build folder
+        d=gmail.com; s=20230601; t=1701988646; x=1702593446; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SKFMcuSajn7qT0YhD15Pqst+cZHkeo4Y4maYEHlLgw4=;
+        b=ElHGtFHHzXPrGUx0vGeaIMwm72J7spycwuzNADhE7syac7gshj+PY8m8h6yD3t8dP/
+         5vCWoLdiKcb58DtJBPkysqFhvfZKTHXZSavZksI8m6jHoKl8GZasL+uqJqQrLxjYT70e
+         WDj9M1KQMP73ElLaOvds1COasr8I70z20m6Csy9IreDZNeJXuMs/TpfK+ESAF67e6Ajt
+         elRN3awbHpM9t5MCefg40ARXEbnrnsG2vPLHrRCT0plwP9f9WpzRpdRDtqW0dDlytgui
+         DBsCW7JkbNmuiKM6q3oGue4UIdYDIT+G2BdQMBdoqgZK2GeM4GKyglrVWvNZGReb7GkZ
+         nxDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701988646; x=1702593446;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SKFMcuSajn7qT0YhD15Pqst+cZHkeo4Y4maYEHlLgw4=;
+        b=LqwzoIAD1tiLanIMgLzQCcZS6VbVxy0RvNXn6T2JTND7HS3xzihnp67BWuII6hQgxA
+         WCEek6b6T+peGGqq+hOsytx1B4tMxeDccaCx865bEk60q6Ts2ktayCeUt+mQJs9WwnG/
+         LFgYzYmaK3rNIKQbd8bB2AGScvabvRuxKd8EbTVYI+BITKu60GmMeG7MuT4/m+fwbNUI
+         mD3VJcB8d/eQniruUtibHvJ5IiUUBfRF35vQk19WQWBUcAp3XeBxvNh3KVAXLJ2+vmzg
+         VR3/sXSnPE6CdJ3+wUIUJWouLfoKPf6d0lKiMmntKitV71tOiw1lOFZNVMlvaF46XGkb
+         ZkfQ==
+X-Gm-Message-State: AOJu0YwmFpShIL26WGiJOovFJ/0BHke2smI8DwB5EV/+nx9YcDGAkM17
+	ox2ul2+VH3H4eiB9x/tQHUg9fMI/Rz7k4+QKCrw=
+X-Google-Smtp-Source: AGHT+IEpG63pAv9LtoQ6JtSz6TnBFH/qJMd9fCd0OlziDDsLU1tvI9bNewm6Niwh6Ou2MGwqKnUTnUSA9dPqOjUJ8ms=
+X-Received: by 2002:a05:6870:b246:b0:1fb:75a:7792 with SMTP id
+ b6-20020a056870b24600b001fb075a7792mr3171775oam.67.1701988646058; Thu, 07 Dec
+ 2023 14:37:26 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Zimbra 8.8.15_GA_4562 (ZimbraWebClient - FF119 (Linux)/8.8.15_GA_4570)
-Thread-Topic: script/run-toaster-test : Added new global variables needed to run test in toaster build folder
-Thread-Index: DmLk3ffirJg/vw2eQIWqDVEoZsgLLw==
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+References: <CADjezmYYxWD8YgFKQyboDhbO7V8OXrzHm5_N+aOJvjxth53btQ@mail.gmail.com>
+ <35CEFCFD-4EFF-4EEE-A151-132DBF65E58D@arm.com>
+In-Reply-To: <35CEFCFD-4EFF-4EEE-A151-132DBF65E58D@arm.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 7 Dec 2023 14:37:00 -0800
+Message-ID: <CAMKF1spaN_MxCUui0JdAqV2qbuawuyEdkp0NEUoUuudmttnYAQ@mail.gmail.com>
+Subject: Re: [yocto] initramfs creation
+To: Ross Burton <ross.burton@arm.com>
+Cc: "mattwood2000@gmail.com" <mattwood2000@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 22:04:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61833
+ <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 22:37:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61834
 
+On Thu, Dec 7, 2023 at 3:04=E2=80=AFAM Ross Burton <ross.burton@arm.com> wr=
+ote:
+>
+> On 6 Dec 2023, at 21:47, mattwood2000 via lists.yoctoproject.org <mattwoo=
+d2000=3Dgmail.com@lists.yoctoproject.org> wrote:
+> >
+> >  Hi,
+> >
+> > I'm trying to create a custom initramfs to handle some things before sw=
+itching root to my actual filesystem.  I followed the docs and have been ab=
+le to use INITRAMFS_IMAGE =3D "custom-image" and INITRAMFS_IMAGE_BUNDLE =3D=
+ "1" to generate a zImage for my ARM platform.
+> >
+> > The custom-image.bb recipe is based on the core-image-minimal-initramfs=
+ recipe and is in a meta-layer that has another image recipe for the actual=
+ eMMC filesystem image.  Both the eMMC image and initramfs bundle are creat=
+ed.
+> >
+> > In custom-image.bb, PACKAGE_INSTALL includes INITRAMFS_SCRIPTS which se=
+em to be geared towards live-image things but that's not what I want.
+> >
+> > The image boots but hangs waiting for removable media.  I figured out t=
+hat /init is not pointing to systemd but the live-image script from recipes=
+-core/initrdscripts.
+>
+> The problem is most likely that your kernel is missing eMMC drivers.  The=
+y=E2=80=99re most likely built as kernel modules, but you didn=E2=80=99t in=
+stall the modules into the initramfs.  One easy fix is to just add kernel-m=
+odules to your initramfs.
 
+Right, this is how we tame bbb to include some USB drivers into kernel
+proper so that we can read the USB stick in initramfs
 
------ Original Message -----
-From: "Marlon Rodriguez Garcia" <marlon.rodriguez-garcia@savoirfairelinux.com>
-To: yocto@lists.yoctoproject.org
-Sent: Thursday, December 7, 2023 4:08:34 PM
-Subject: [PATCH yocto-autobuilder-helper] script/run-toaster-test : Added new global variables needed to run test in toaster build folder
+https://github.com/YoeDistro/yoe-distro/blob/master/sources/meta-yoe/dynami=
+c-layers/meta-ti/recipes-kernel/linux/files/updater.cfg
 
-Update run-toaster-test to include BUILDDIR and TOASTER_TEST_USE_SSTATE_MIRROR which will be use in the build test in toaster
-
-Signed-off-by: Marlon Rodriguez Garcia <marlon.rodriguez-garcia@savoirfairelinux.com>
----
- scripts/run-toaster-tests | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/scripts/run-toaster-tests b/scripts/run-toaster-tests
-index b694e37..ba1f6db 100755
---- a/scripts/run-toaster-tests
-+++ b/scripts/run-toaster-tests
-@@ -20,6 +20,8 @@ export SSTATE_DIR=$(grep '^SSTATE_DIR=' bbenv | cut -d "=" -f2- | sed -e 's/^"//
- export DL_DIR=$(grep '^DL_DIR=' bbenv | cut -d "=" -f2- | sed -e 's/^"//' -e 's/"$//')
- export TOASTER_DJANGO_TMPDIR=$builddir
- export TOASTER_DIR=$builddir
-+export TOASTER_TEST_USE_SSTATE_MIRROR=True
-+export BUILDDIR=$builddir/
- 
- mkdir -p toaster_logs
- 
--- 
-2.34.1
+>
+> I do have some tweaks to the initramfs images to post, but they=E2=80=99r=
+e not quite ready yet. You can see the WIP in poky-contrib:ross/genericarm6=
+4.
+>
+> Ross
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#61824): https://lists.yoctoproject.org/g/yocto/messag=
+e/61824
+> Mute This Topic: https://lists.yoctoproject.org/mt/103022933/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/leave/6692173/1997914=
+/1837948400/xyzzy [raj.khem@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
