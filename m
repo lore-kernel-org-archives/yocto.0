@@ -1,244 +1,175 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <mans.zigher@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 44854C4167B
-	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 11:50:16 +0000 (UTC)
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
- by mx.groups.io with SMTP id smtpd.web11.81710.1701949810179971428
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D218C4167B
+	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 11:54:16 +0000 (UTC)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+ by mx.groups.io with SMTP id smtpd.web10.82178.1701950045760205333
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Dec 2023 03:50:10 -0800
+ Thu, 07 Dec 2023 03:54:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=QYxMEJ5Z;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.44, mailfrom: jester@theyoctojester.info)
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-54cfb03f1a8so1082667a12.2
-        for <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 03:50:09 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BF0QYzaY;
+ spf=pass (domain: gmail.com, ip: 209.85.208.54, mailfrom: mans.zigher@gmail.com)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-54c79968ffbso1086505a12.3
+        for <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 03:54:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1701949808; x=1702554608; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4haqXj+COq0w0Pd4RFB8yHQVC+hTuYE6FROoLGITs94=;
-        b=QYxMEJ5Z5I7bwkeAHFkO4OPkxV8WrHSRryM+zruIFwOrAWHrl7LqtdZoOd5qVJcKfh
-         Et8PoaxWk/IN8TtDGFSAYZUsMgog6mY0KX5iY6x4DCU3bWibpoMLLX8JZOrgKq9wxEC/
-         5jIaLMKnx3PSRrtyi8RcC3F0oar5wD2XRAA9Ik614VEXGWkS3YVXsHDAC9fGPpfhAQu+
-         TYw1VPBByNQr3tGYbBqi8w3Qu8t+aUvanYoI7ZYQ0Y8NtsuXNpdh0ueZEn4D32ZnOFUQ
-         VlNV2x1rMWje9mT7uP/XG5KvNWnAAdG1ZchDgvi5b7LTuFi7dh+6gqRkdeQU4l7H4UOs
-         icPg==
+        d=gmail.com; s=20230601; t=1701950044; x=1702554844; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JUXrc6qTthK2NZspInAvGMy9dML4gSIUEH0j7kiJ19k=;
+        b=BF0QYzaY8BsE0KWX5/r4/ybdgiXKOCopW2VjDEOErI/NmtrsuZGNcdPpMzzg93cVdY
+         ms4PIFkRxNaGplsQGDOeHZ1GccTeEj7Uxg9uJD2ntxAz7WgDQZ22B7Yfd8NdxL5z9L9H
+         lTA53Ig/8qqWfPF00D7AZWOQUXJ1MKcOAbqBHo2DascQQG9Nl3fmwimgpvRjRCejP1Fm
+         BFbEiv6b7l2DpvaosPLeVRqtXSXl4KJSr65eS0cV1CYtLcnmidn9vSc0unCJWwCb9KrD
+         YMFtQd7Fs5naFjxxNfZmDJcbOByUmsgYzKO9WOLk57AExZ0SdQxxd7oResz7uQpLBUg3
+         7kpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701949808; x=1702554608;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4haqXj+COq0w0Pd4RFB8yHQVC+hTuYE6FROoLGITs94=;
-        b=YM8BHHgjLVYMaDIqRpySzidOBzrn/e7dxgQ+A8hzrW9RHPhlk9LB9MzJExFm5TBvpY
-         J3xzTusxwUKnWwEM12emTT+wVNPGRyMC9okQJoD7aNu6TQfsZztLbOtx81t2VDK7qFgR
-         OJ6seYxZ1Npe7WFEsy/9EAMQrUZX2mtoMz8VZf1K2mO3b6QXEpNsvv5K1MUJylq3bJhn
-         EBb+dyzWBVKaotQLEKf7xMlPAsKWMIpmZRjM4+NauUJKGyKi5uoXZIRWMczuttyzvWK6
-         gkJCDBT+iphmGf8yCJvQkQxCmgEGhP3WMCwgr/tRzhHZUDcLSQgm/Id3QxI8VVA0x/gE
-         5snQ==
-X-Gm-Message-State: AOJu0YxaAN1utSpRodAmwUVSQ2r+50FxpmThkigm2stjQr78PHHT7D/3
-	QLLoXtceFVhC4wRBTo/mSOWtyDh4EP69xaiYMtSC/A==
-X-Google-Smtp-Source: AGHT+IFTQXeXlSzFAhBE2Drduy71xBRaGVM8ILXTHX60IjHrbwEh10PC9vTwdyd1OVeo7hbExv4givKp1PZh8+1BvHk=
-X-Received: by 2002:a17:907:30d0:b0:a19:562d:5a20 with SMTP id
- vl16-20020a17090730d000b00a19562d5a20mr1311959ejb.28.1701949808086; Thu, 07
- Dec 2023 03:50:08 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701950044; x=1702554844;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JUXrc6qTthK2NZspInAvGMy9dML4gSIUEH0j7kiJ19k=;
+        b=c4ArCc/VnWneOj3eespa9lJv/nBoN/dr3teUcEAgKP0d3JxjYU8G/LOCrubL0JH612
+         eO0gYCRg2y9J8m+n3dbyjEXFYGt/mGuJI7loLoZGfYZ6od3KR1C2TMcUPCFltzDQ9djK
+         JABL7PlknrOrTTiu/EZ3Ghfrlt+VYx8pasTbr/xHIXRXymFmpuOhNdoUTzN1JjvZ16xo
+         HQTwfg9c9NUa1j/9YIgsnXvkAcgu6sX2JYnIr18oHaRI4Kq0w+TG0uy2LeTZtRyLruRl
+         0hzvzqxg9yFwa5KcO+5BxRm8VgkktB1M+pHpW+8sEJZbWCR5ZynBaGKP/Hculmrrw6Em
+         fyfw==
+X-Gm-Message-State: AOJu0Ywg6yMyj2Rcz33lRWLTd12A68yhT1A9zt8n8BWv6RIMTh2ZTES6
+	WBY7ZLExHjNGHtshVcA75zX1gFt24a6+u98+ogS3vpUoCcM=
+X-Google-Smtp-Source: AGHT+IGKR+H/oyrK4jsbCfZ6Rs1yDaIp2P2/O9n/tuCyzRqk3bA39HMLw8ur/sfbtQhV3GJZYpxv8YEyCDhliIDXuaE=
+X-Received: by 2002:a17:907:508d:b0:a0d:6bc6:4811 with SMTP id
+ fv13-20020a170907508d00b00a0d6bc64811mr1281278ejc.37.1701950043839; Thu, 07
+ Dec 2023 03:54:03 -0800 (PST)
 MIME-Version: 1.0
-References: <25Sg.1701899393685537223.7B9d@lists.yoctoproject.org>
-In-Reply-To: <25Sg.1701899393685537223.7B9d@lists.yoctoproject.org>
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Thu, 7 Dec 2023 12:49:42 +0100
-Message-ID: <CAEt6NwrSzKxACap-sXnj=Bp8x6fWUBN7zikd_3jfYAUXkv+OzQ@mail.gmail.com>
-Subject: Re: [yocto] How to handle user network configuration on a OTA environment
-To: Renato Mendes <renato.mendes.pes@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000bca0eb060bea11e1"
+References: <CAEhQi8=ieuy1EnnH9Z02k7a7XicZYBtXX92yi4Ac_dE5PG1QjQ@mail.gmail.com>
+ <CAEhQi8=gnb9LU6B4TBYuz0nCgWk9_9w=aXs0wg+CjL1K0t0MDw@mail.gmail.com> <CANNYZj8LQEuQYKCRL=aMUMU1k3QrS8GR2-9nCd9d45192mRaQw@mail.gmail.com>
+In-Reply-To: <CANNYZj8LQEuQYKCRL=aMUMU1k3QrS8GR2-9nCd9d45192mRaQw@mail.gmail.com>
+From: =?UTF-8?B?TcOlbnM=?= <mans.zigher@gmail.com>
+Date: Thu, 7 Dec 2023 12:53:52 +0100
+Message-ID: <CAEhQi8=P0LN7U6=XsDGyiHEJ3=er+ZNBn_DdbtcQH-aia+Q+zQ@mail.gmail.com>
+Subject: Re: [yocto] The postinstall intercept hook 'update_mime_database' failed
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 11:50:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61826
+ <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 11:54:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61827
 
---000000000000bca0eb060bea11e1
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Yes, thanks. I am currently doing that but I am struggling to
+understand where to look. From what I can tell the layers are not on
+an official kirkstone release, not sure the reason for this. It is
+based on a imx-5.15.71-2.2.0.xml release but then the layers have been
+moved to a different sha. I have been able to build the
+imx-5.15.71-2.2.0.xml from scratch but right now the customer would
+like to be able to build the current setup. But I will continue to
+work on it. The reference build still builds so it is just when trying
+to duplicate the build and building from scratch.
 
-Hi Renato,
+/M=C3=A5ns
 
-I would suggest to start with the tutorial we have exactly for this usecase
-here:
-https://hub.mender.io/t/how-to-configure-networking-using-systemd-in-yocto-=
-project/1097.
-Once you have it replicated and working, add and modify the bits and pieces
-that are specific to your requirements.
-
-Greetz,
-Josef
-
-On Wed, Dec 6, 2023 at 10:49=E2=80=AFPM Renato Mendes <renato.mendes.pes@gm=
-ail.com>
-wrote:
-
-> Using a Raspberry Pi Zero W, I have build an image with the following
-> layers:
+Den fre 1 dec. 2023 kl 13:20 skrev Alexander Kanavin <alex.kanavin@gmail.co=
+m>:
 >
-> # POKY_BBLAYERS_CONF_VERSION is increased each time
-> build/conf/bblayers.conf
-> # changes incompatibly
-> POKY_BBLAYERS_CONF_VERSION =3D "2"
+> You need to try plain poky then because the error does not happen
+> there. Then figure out where the difference is.
 >
-> BBPATH =3D "${TOPDIR}"
-> BBFILES ?=3D ""
+> Alex
 >
-> BBLAYERS ?=3D " \
-> /home/release_1/src/poky/meta \
-> /home/release_1/src/poky/meta-poky \
-> /home/release_1/src/poky/meta-yocto-bsp \
-> /home/release_1/src/meta-openembedded/meta-oe \
-> /home/release_1/src/meta-openembedded/meta-python \
-> /home/release_1/src/meta-openembedded/meta-multimedia \
-> /home/release_1/src/meta-openembedded/meta-networking \
-> /home/release_1/src/meta-raspberrypi \
-> /home/release_1/src/meta-mender/meta-mender-core \
-> /home/release_1/src/meta-mender/meta-mender-raspberrypi \
-> "
->
-> I'm using Mender for OTA.
->
-> The image is fine and runs Yocto Distro at my Raspi.
->
-> As this is my first project using OTA, I'm now about to setup networking.
-> I've build a custom captive portal using Nodejs what will allow user to
-> choose the WiFi network.
->
-> Here is the logic I need:
-> a) If there is network configuration stored (in a file, ie), device goes
-> to Access Point mode with fixed IP (ex: 192.168.0.1). Then the user will
-> connect, choose WiFi network and save it to a file
->
-> b) If there is WiFi configuration, will connect automatically
->
-> c) If user reset the device (a physical push button), the WiFi
-> configuration is erased and device goes back to (a) mode
->
-> My questions are how to exactly handle the desired scenario. My doubts:
->
-> a) How will the device knows on boot if there is a network configuration
-> file to load
->
-> b) How can the device choose between AP ou WiFi mode based on the
-> existance of the given file
->
-> c) How will this file behave on a OTA update (Mender.io says, must be
-> stored at /media/ directory to be preserved on updates)
->
-> Thanks for helping... I've read several different articles for some days
-> and I'm very confused on where to start from...
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#61819):
-> https://lists.yoctoproject.org/g/yocto/message/61819
-> Mute This Topic: https://lists.yoctoproject.org/mt/103022968/4689568
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> jester@theyoctojester.info]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000bca0eb060bea11e1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Renato,<div><br></div><div>I would suggest to start wit=
-h the tutorial we have exactly for this usecase here:=C2=A0<a href=3D"https=
-://hub.mender.io/t/how-to-configure-networking-using-systemd-in-yocto-proje=
-ct/1097">https://hub.mender.io/t/how-to-configure-networking-using-systemd-=
-in-yocto-project/1097</a>. Once you have it replicated and working, add and=
- modify the bits and pieces that are specific to your requirements.</div><d=
-iv><br></div><div>Greetz,</div><div>Josef</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 6, 2023 at 10:49=
-=E2=80=AFPM Renato Mendes &lt;<a href=3D"mailto:renato.mendes.pes@gmail.com=
-">renato.mendes.pes@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex">Using a Raspberry Pi Zero W, I have build an i=
-mage with the following layers:<br><br>
-<div style=3D"color:rgb(204,204,204);background-color:rgb(31,31,31);font-fa=
-mily:Menlo,Monaco,&quot;Courier New&quot;,monospace;font-size:12px;line-hei=
-ght:18px;white-space:pre-wrap">
-<div><span style=3D"color:rgb(106,153,85)"># POKY_BBLAYERS_CONF_VERSION is =
-increased each time build/conf/bblayers.conf</span></div>
-<div><span style=3D"color:rgb(106,153,85)"># changes incompatibly</span></d=
-iv>
-<div>POKY_BBLAYERS_CONF_VERSION =3D <span style=3D"color:rgb(206,145,120)">=
-&quot;2&quot;</span></div>
-<br>
-<div>BBPATH =3D <span style=3D"color:rgb(206,145,120)">&quot;${TOPDIR}&quot=
-;</span></div>
-<div>BBFILES ?=3D <span style=3D"color:rgb(206,145,120)">&quot;&quot;</span=
-></div>
-<br>
-<div>BBLAYERS ?=3D <span style=3D"color:rgb(206,145,120)">&quot; \</span></=
-div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/poky/meta =
-\</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/poky/meta-=
-poky \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/poky/meta-=
-yocto-bsp \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
-mbedded/meta-oe \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
-mbedded/meta-python \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
-mbedded/meta-multimedia \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
-mbedded/meta-networking \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-raspb=
-errypi \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-mende=
-r/meta-mender-core \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-mende=
-r/meta-mender-raspberrypi \</span></div>
-<div><span style=3D"color:rgb(206,145,120)"> &quot;</span></div>
-</div>
-<br>I&#39;m using Mender for OTA.<br><br>The image is fine and runs Yocto D=
-istro at my Raspi.<br><br>As this is my first project using OTA, I&#39;m no=
-w about to setup networking. I&#39;ve build a custom captive portal using N=
-odejs what will allow user to choose the WiFi network.<br><br>Here is the l=
-ogic I need:<br>a) If there is network configuration stored (in a file, ie)=
-, device goes to Access Point mode with fixed IP (ex: 192.168.0.1). Then th=
-e user will connect, choose WiFi network and save it to a file<br><br>b) If=
- there is WiFi configuration, will connect automatically<br><br>c) If user =
-reset the device (a physical push button), the WiFi configuration is erased=
- and device goes back to (a) mode<br><br>My questions are how to exactly ha=
-ndle the desired scenario. My doubts:<br><br>a) How will the device knows o=
-n boot if there is a network configuration file to load<br><br>b) How can t=
-he device choose between AP ou WiFi mode based on the existance of the give=
-n file=C2=A0<br><br>c) How will this file behave on a OTA update (Mender.io=
- says, must be stored at /media/ directory to be preserved on updates)<br><=
-br>Thanks for helping... I&#39;ve read several different articles for some =
-days and I&#39;m very confused on where to start from...<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#61819): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/61819" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/61819</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/103022968/468=
-9568" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/103022968/4689568</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">je=
-ster@theyoctojester.info</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000bca0eb060bea11e1--
+> On Fri, 1 Dec 2023 at 12:56, Mans Zigher <mans.zigher@gmail.com> wrote:
+> >
+> > I have now tried building a multitude of different machines and
+> > switched to core-minimal-image and still I get these postinstall
+> > intercept scripts failing. Depending what distro and machine I build I
+> > get different errors but It is always a postinstall intercept hook
+> > script that fails and it is always related to missing some directory
+> > under the rootfs of the image that I am currently trying to build.
+> >
+> > BR
+> >
+> > Den tors 30 nov. 2023 kl 19:11 skrev M=C3=A5ns <mans.zigher@gmail.com>:
+> > >
+> > > Hi,
+> > >
+> > > I have taken over a imx8mm project that is based on kirkstone. I don'=
+t
+> > > think it is an official release and some layers are not even a
+> > > kirkstone release. The project has a reference build but currently it
+> > > is not possible to build from scratch. I have been fixing some issues
+> > > on the way to try and build a complete build from scratch but now I
+> > > have encountered an issue when creating the rootfs that I am
+> > > struggling with. The issues that I am getting is
+> > >
+> > > ERROR: fsl-image-gui-1.0-r0 do_rootfs: The postinstall intercept hook
+> > > 'update_mime_database' failed, details in
+> > > /workspace/mender-imx8mm/builds/tmp/work/imx8mm_var_dart-fslc-linux/f=
+sl-image-gui/1.0-r0/temp/log.do_rootfs
+> > > ERROR: Logfile of failure stored in:
+> > > /workspace/mender-imx8mm/builds/tmp/work/imx8mm_var_dart-fslc-linux/f=
+sl-image-gui/1.0-r0/temp/log.do_rootfs.335539
+> > > ERROR: Task (/workspace/mender-imx8mm/sources/meta-variscite-sdk/reci=
+pes-fsl/images/fsl-image-gui.bb:do_rootfs)
+> > > failed with exit code '1'
+> > >
+> > > checking the log file
+> > >
+> > > NOTE: Running intercept scripts:
+> > > NOTE: > Executing update_mime_database intercept ...
+> > > NOTE: Exit code 1. Output:
+> > > Updating MIME database... this may take a while.
+> > > Directory '/workspace/mender-imx8mm/builds/tmp/work/imx8mm_var_dart-f=
+slc-linux/fsl-image-gui/1.0-r0/rootfs/packages'
+> > > does not exist!
+> > >
+> > > In poky/meta/classes/mime.bbclass there is a comment that seems to
+> > > refer to this issue
+> > >
+> > >         # $D${MIMEDIR}/packages belong to package shared-mime-info-da=
+ta,
+> > >         # packages like libfm-mime depend on shared-mime-info-data.
+> > >         # after shared-mime-info-data uninstalled, $D${MIMEDIR}/packa=
+ges
+> > >         # is removed, but update-mime-database need this dir to updat=
+e
+> > >         # database, workaround to create one and remove it later
+> > >         if [ ! -d $D${MIMEDIR}/packages ]; then
+> > >                mkdir -p $D${MIMEDIR}/packages
+> > >                update-mime-database $D${MIMEDIR}
+> > >                rmdir --ignore-fail-on-non-empty $D${MIMEDIR}/packages
+> > >        else
+> > >                update-mime-database $D${MIMEDIR}
+> > >        fi
+> > >
+> > > This is not called so no packages directory doesn't exist and the
+> > > intercept script failed. I can adjust the script
+> > > poky/scripts/postinst-intercepts/update_mime_database
+> > >
+> > > echo "Updating MIME database... this may take a while."
+> > > update-mime-database $D${mimedir}
+> > >
+> > > By adding a similar logic I will get forward but with my build but
+> > > that doesn't seem like the right solution. Also I just get some other
+> > > issue related to a second intercept script update_desktop_database so
+> > > to me it seems more like something is not correctly set up in the
+> > > build. I am trying to understand how these intercept scripts are
+> > > configured and why they are not working for my build. Any pointers on
+> > > how to move forward would be much appreciated.
+> > >
+> > > BR
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#61786): https://lists.yoctoproject.org/g/yocto/mess=
+age/61786
+> > Mute This Topic: https://lists.yoctoproject.org/mt/102901287/1686489
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin=
+@gmail.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
 
