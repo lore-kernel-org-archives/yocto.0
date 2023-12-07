@@ -1,175 +1,168 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <iurascu_teo@hotmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D218C4167B
-	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 11:54:16 +0000 (UTC)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
- by mx.groups.io with SMTP id smtpd.web10.82178.1701950045760205333
- for <yocto@lists.yoctoproject.org>;
- Thu, 07 Dec 2023 03:54:06 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=BF0QYzaY;
- spf=pass (domain: gmail.com, ip: 209.85.208.54, mailfrom: mans.zigher@gmail.com)
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-54c79968ffbso1086505a12.3
-        for <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 03:54:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701950044; x=1702554844; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JUXrc6qTthK2NZspInAvGMy9dML4gSIUEH0j7kiJ19k=;
-        b=BF0QYzaY8BsE0KWX5/r4/ybdgiXKOCopW2VjDEOErI/NmtrsuZGNcdPpMzzg93cVdY
-         ms4PIFkRxNaGplsQGDOeHZ1GccTeEj7Uxg9uJD2ntxAz7WgDQZ22B7Yfd8NdxL5z9L9H
-         lTA53Ig/8qqWfPF00D7AZWOQUXJ1MKcOAbqBHo2DascQQG9Nl3fmwimgpvRjRCejP1Fm
-         BFbEiv6b7l2DpvaosPLeVRqtXSXl4KJSr65eS0cV1CYtLcnmidn9vSc0unCJWwCb9KrD
-         YMFtQd7Fs5naFjxxNfZmDJcbOByUmsgYzKO9WOLk57AExZ0SdQxxd7oResz7uQpLBUg3
-         7kpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701950044; x=1702554844;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JUXrc6qTthK2NZspInAvGMy9dML4gSIUEH0j7kiJ19k=;
-        b=c4ArCc/VnWneOj3eespa9lJv/nBoN/dr3teUcEAgKP0d3JxjYU8G/LOCrubL0JH612
-         eO0gYCRg2y9J8m+n3dbyjEXFYGt/mGuJI7loLoZGfYZ6od3KR1C2TMcUPCFltzDQ9djK
-         JABL7PlknrOrTTiu/EZ3Ghfrlt+VYx8pasTbr/xHIXRXymFmpuOhNdoUTzN1JjvZ16xo
-         HQTwfg9c9NUa1j/9YIgsnXvkAcgu6sX2JYnIr18oHaRI4Kq0w+TG0uy2LeTZtRyLruRl
-         0hzvzqxg9yFwa5KcO+5BxRm8VgkktB1M+pHpW+8sEJZbWCR5ZynBaGKP/Hculmrrw6Em
-         fyfw==
-X-Gm-Message-State: AOJu0Ywg6yMyj2Rcz33lRWLTd12A68yhT1A9zt8n8BWv6RIMTh2ZTES6
-	WBY7ZLExHjNGHtshVcA75zX1gFt24a6+u98+ogS3vpUoCcM=
-X-Google-Smtp-Source: AGHT+IGKR+H/oyrK4jsbCfZ6Rs1yDaIp2P2/O9n/tuCyzRqk3bA39HMLw8ur/sfbtQhV3GJZYpxv8YEyCDhliIDXuaE=
-X-Received: by 2002:a17:907:508d:b0:a0d:6bc6:4811 with SMTP id
- fv13-20020a170907508d00b00a0d6bc64811mr1281278ejc.37.1701950043839; Thu, 07
- Dec 2023 03:54:03 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 65FDEC10F04
+	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 12:28:16 +0000 (UTC)
+Subject: Static library created by recipe arch is not correct  #sdk #yocto
+To: yocto@lists.yoctoproject.org
+From: "Iurascu Teodor" <iurascu_teo@hotmail.com>
+X-Originating-Location: Iasi, RO (81.180.209.110)
+X-Originating-Platform: Linux Firefox 115
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAEhQi8=ieuy1EnnH9Z02k7a7XicZYBtXX92yi4Ac_dE5PG1QjQ@mail.gmail.com>
- <CAEhQi8=gnb9LU6B4TBYuz0nCgWk9_9w=aXs0wg+CjL1K0t0MDw@mail.gmail.com> <CANNYZj8LQEuQYKCRL=aMUMU1k3QrS8GR2-9nCd9d45192mRaQw@mail.gmail.com>
-In-Reply-To: <CANNYZj8LQEuQYKCRL=aMUMU1k3QrS8GR2-9nCd9d45192mRaQw@mail.gmail.com>
-From: =?UTF-8?B?TcOlbnM=?= <mans.zigher@gmail.com>
-Date: Thu, 7 Dec 2023 12:53:52 +0100
-Message-ID: <CAEhQi8=P0LN7U6=XsDGyiHEJ3=er+ZNBn_DdbtcQH-aia+Q+zQ@mail.gmail.com>
-Subject: Re: [yocto] The postinstall intercept hook 'update_mime_database' failed
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 07 Dec 2023 04:28:14 -0800
+Message-ID: <mZaN.1701952094193943491.UbkB@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="B44gvMfX4M86aardVwHq"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 11:54:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61827
+ <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 12:28:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61828
 
-Yes, thanks. I am currently doing that but I am struggling to
-understand where to look. From what I can tell the layers are not on
-an official kirkstone release, not sure the reason for this. It is
-based on a imx-5.15.71-2.2.0.xml release but then the layers have been
-moved to a different sha. I have been able to build the
-imx-5.15.71-2.2.0.xml from scratch but right now the customer would
-like to be able to build the current setup. But I will continue to
-work on it. The reference build still builds so it is just when trying
-to duplicate the build and building from scratch.
+--B44gvMfX4M86aardVwHq
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-/M=C3=A5ns
+Hello,
 
-Den fre 1 dec. 2023 kl 13:20 skrev Alexander Kanavin <alex.kanavin@gmail.co=
-m>:
->
-> You need to try plain poky then because the error does not happen
-> there. Then figure out where the difference is.
->
-> Alex
->
-> On Fri, 1 Dec 2023 at 12:56, Mans Zigher <mans.zigher@gmail.com> wrote:
-> >
-> > I have now tried building a multitude of different machines and
-> > switched to core-minimal-image and still I get these postinstall
-> > intercept scripts failing. Depending what distro and machine I build I
-> > get different errors but It is always a postinstall intercept hook
-> > script that fails and it is always related to missing some directory
-> > under the rootfs of the image that I am currently trying to build.
-> >
-> > BR
-> >
-> > Den tors 30 nov. 2023 kl 19:11 skrev M=C3=A5ns <mans.zigher@gmail.com>:
-> > >
-> > > Hi,
-> > >
-> > > I have taken over a imx8mm project that is based on kirkstone. I don'=
-t
-> > > think it is an official release and some layers are not even a
-> > > kirkstone release. The project has a reference build but currently it
-> > > is not possible to build from scratch. I have been fixing some issues
-> > > on the way to try and build a complete build from scratch but now I
-> > > have encountered an issue when creating the rootfs that I am
-> > > struggling with. The issues that I am getting is
-> > >
-> > > ERROR: fsl-image-gui-1.0-r0 do_rootfs: The postinstall intercept hook
-> > > 'update_mime_database' failed, details in
-> > > /workspace/mender-imx8mm/builds/tmp/work/imx8mm_var_dart-fslc-linux/f=
-sl-image-gui/1.0-r0/temp/log.do_rootfs
-> > > ERROR: Logfile of failure stored in:
-> > > /workspace/mender-imx8mm/builds/tmp/work/imx8mm_var_dart-fslc-linux/f=
-sl-image-gui/1.0-r0/temp/log.do_rootfs.335539
-> > > ERROR: Task (/workspace/mender-imx8mm/sources/meta-variscite-sdk/reci=
-pes-fsl/images/fsl-image-gui.bb:do_rootfs)
-> > > failed with exit code '1'
-> > >
-> > > checking the log file
-> > >
-> > > NOTE: Running intercept scripts:
-> > > NOTE: > Executing update_mime_database intercept ...
-> > > NOTE: Exit code 1. Output:
-> > > Updating MIME database... this may take a while.
-> > > Directory '/workspace/mender-imx8mm/builds/tmp/work/imx8mm_var_dart-f=
-slc-linux/fsl-image-gui/1.0-r0/rootfs/packages'
-> > > does not exist!
-> > >
-> > > In poky/meta/classes/mime.bbclass there is a comment that seems to
-> > > refer to this issue
-> > >
-> > >         # $D${MIMEDIR}/packages belong to package shared-mime-info-da=
-ta,
-> > >         # packages like libfm-mime depend on shared-mime-info-data.
-> > >         # after shared-mime-info-data uninstalled, $D${MIMEDIR}/packa=
-ges
-> > >         # is removed, but update-mime-database need this dir to updat=
-e
-> > >         # database, workaround to create one and remove it later
-> > >         if [ ! -d $D${MIMEDIR}/packages ]; then
-> > >                mkdir -p $D${MIMEDIR}/packages
-> > >                update-mime-database $D${MIMEDIR}
-> > >                rmdir --ignore-fail-on-non-empty $D${MIMEDIR}/packages
-> > >        else
-> > >                update-mime-database $D${MIMEDIR}
-> > >        fi
-> > >
-> > > This is not called so no packages directory doesn't exist and the
-> > > intercept script failed. I can adjust the script
-> > > poky/scripts/postinst-intercepts/update_mime_database
-> > >
-> > > echo "Updating MIME database... this may take a while."
-> > > update-mime-database $D${mimedir}
-> > >
-> > > By adding a similar logic I will get forward but with my build but
-> > > that doesn't seem like the right solution. Also I just get some other
-> > > issue related to a second intercept script update_desktop_database so
-> > > to me it seems more like something is not correctly set up in the
-> > > build. I am trying to understand how these intercept scripts are
-> > > configured and why they are not working for my build. Any pointers on
-> > > how to move forward would be much appreciated.
-> > >
-> > > BR
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#61786): https://lists.yoctoproject.org/g/yocto/mess=
-age/61786
-> > Mute This Topic: https://lists.yoctoproject.org/mt/102901287/1686489
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin=
-@gmail.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
+I have created a recipe to include the IOBB library in the SDK. Trying to c=
+ompile a .c file in the SDK environment gives me this error:
+
+$ ${CC} pb-test-inputs.c -liobb
+/opt/poky/4.2.2/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/12.3.0/ld: /opt/poky/4.2.2/sysroots/cortex=
+a8hf-neon-poky-linux-gnueabi/usr/local/lib/libiobb.a: error adding symbols:=
+ file format not recognized
+
+Recipe file:
+
+do_compile () {
+# You will almost certainly need to add additional arguments here
+oe_runmake cc=3D${CC}
+}
+
+do_install () {
+# This is a guess; additional arguments may be required
+oe_runmake install locatie=3D${D}
+#rm ${D}/usr/local/lib/libiobb.a
+}
+
+Makefile:
+
+libiobb.a : ${ LIB_PATH } BBBiolib.c ${ LIB_PATH } BBBiolib.h BBBiolib_PWMS=
+S.o BBBiolib_McSPI.o BBBiolib_ADCTSC.o i2cfunc.o
+${ cc } -c ${ LIB_PATH } BBBiolib.c -o ${ LIB_PATH } BBBiolib.o
+ar -rs ${ LIB_PATH } libiobb.a ${ LIB_PATH } BBBiolib.o ${ LIB_PATH } BBBio=
+lib_PWMSS.o ${ LIB_PATH } BBBiolib_McSPI.o ${ LIB_PATH } BBBiolib_ADCTSC.o =
+${ LIB_PATH } i2cfunc.o
+
+Thank you!
+
+--B44gvMfX4M86aardVwHq
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<br /><br />I have created a recipe to include the IOBB library in th=
+e SDK. Trying to compile a .c file in the SDK environment gives me this err=
+or:<br /><br /><span style=3D"font-family: monospace;"><span style=3D"color=
+: #000000; background-color: #ffffff; --darkreader-inline-color: #e8e6e3; -=
+-darkreader-inline-bgcolor: #181a1b;" data-darkreader-inline-color=3D"" dat=
+a-darkreader-inline-bgcolor=3D"">$ ${CC} pb-test-inputs.c -liobb </span><br=
+ />/opt/poky/4.2.2/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/12.3.0/ld: /opt/poky/4.2.2/sysroots/cor=
+texa8hf-neon-poky-linux-gnueabi/usr/local/lib/libiobb.a: error adding symbo=
+ls: file format not recognized<br /><br />Recipe file:<br /><br />do_compil=
+e () {<br />&nbsp;&nbsp; &nbsp;# You will almost certainly need to add addi=
+tional arguments here<br />&nbsp;&nbsp; &nbsp;oe_runmake cc=3D${CC}<br />}<=
+br /><br />do_install () {<br />&nbsp;&nbsp; &nbsp;# This is a guess; addit=
+ional arguments may be required<br />&nbsp;&nbsp; &nbsp;oe_runmake install =
+locatie=3D${D}<br />&nbsp;&nbsp; &nbsp;#rm ${D}/usr/local/lib/libiobb.a<br =
+/>}<br /><br /><br />Makefile:<br /><br /></span>
+<div style=3D"color: #cccccc; background-color: #1f1f1f; font-family: 'Droi=
+d Sans Mono', 'monospace', monospace; font-weight: normal; font-size: 14px;=
+ line-height: 19px; white-space: pre; --darkreader-inline-color: #c8c3bc; -=
+-darkreader-inline-bgcolor: #17191a;" data-darkreader-inline-color=3D"" dat=
+a-darkreader-inline-bgcolor=3D"">
+<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
+ta-darkreader-inline-color=3D"">libiobb.a</span><span style=3D"color: #cccc=
+cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
+ : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b=
+;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe=
+; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LI=
+B_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf9=
+47b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccc=
+cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
+BBBiolib.c </span><span style=3D"color: #ce9178; --darkreader-inline-color:=
+ #cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color:=
+ #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
+=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
+or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
+r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
+or=3D"">BBBiolib.h BBBiolib_PWMSS.o BBBiolib_McSPI.o BBBiolib_ADCTSC.o i2cf=
+unc.o</span></div>
+<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
+ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
+rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
+><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
+arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
+eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
+an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
+eader-inline-color=3D""> -c </span><span style=3D"color: #ce9178; --darkrea=
+der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><spa=
+n style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkre=
+ader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --dark=
+reader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><s=
+pan style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-dark=
+reader-inline-color=3D"">BBBiolib.c -o </span><span style=3D"color: #ce9178=
+; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${=
+</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" =
+data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9=
+178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
+>}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;=
+" data-darkreader-inline-color=3D"">BBBiolib.o</span></div>
+<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
+ta-darkreader-inline-color=3D""> ar -rs </span><span style=3D"color: #ce917=
+8; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">$=
+{</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;"=
+ data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce=
+9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"=
+">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc=
+;" data-darkreader-inline-color=3D"">libiobb.a </span><span style=3D"color:=
+ #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
+=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #8=
+7d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"col=
+or: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-co=
+lor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: =
+#c8c3bc;" data-darkreader-inline-color=3D"">BBBiolib.o </span><span style=
+=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-in=
+line-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline=
+-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span st=
+yle=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader=
+-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inli=
+ne-color: #c8c3bc;" data-darkreader-inline-color=3D"">BBBiolib_PWMSS.o </sp=
+an><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data=
+-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --dar=
+kreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH<=
+/span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" d=
+ata-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --d=
+arkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">BBBioli=
+b_McSPI.o </span><span style=3D"color: #ce9178; --darkreader-inline-color: =
+#cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: =
+#9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
+=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
+or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
+r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
+or=3D"">BBBiolib_ADCTSC.o </span><span style=3D"color: #ce9178; --darkreade=
+r-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><span =
+style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkread=
+er-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkre=
+ader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><spa=
+n style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkre=
+ader-inline-color=3D"">i2cfunc.o</span></div>
+</div>
+<span style=3D"font-family: monospace;"><br />Thank you!<br /><br /><br /><=
+/span>
+
+--B44gvMfX4M86aardVwHq--
 
