@@ -1,1485 +1,174 @@
-Return-Path: <iurascu_teo@hotmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1393C4167B
-	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 13:35:56 +0000 (UTC)
-Subject: Re: Static library created by recipe arch is not correct #yocto #sdk
-To: yocto@lists.yoctoproject.org
-From: "Iurascu Teodor" <iurascu_teo@hotmail.com>
-X-Originating-Location: Iasi, RO (81.180.209.110)
-X-Originating-Platform: Linux Firefox 115
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Thu, 07 Dec 2023 05:35:50 -0800
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 12E39C10DC3
+	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 13:47:27 +0000 (UTC)
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (EUR03-AM7-obe.outbound.protection.outlook.com [40.107.105.56])
+ by mx.groups.io with SMTP id smtpd.web11.83969.1701956838543926462
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 07 Dec 2023 05:47:19 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=P9alYae+;
+ dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=P9alYae+;
+ spf=pass (domain: arm.com, ip: 40.107.105.56, mailfrom: ross.burton@arm.com)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=MWq6snFTMIRrHCDReKL3HSdb+NYuPvFNJMvcpR3cAqKZ3hXbs6YiPik+wEReSp9lCUEU9YdKALBEoI6/zP6jdbJu7yWsch8pkyy+dwjK2/vZ3zDQMVSGb1REMWQ14dqqZbBcoEKkv0NqYAah1yyIsgoU8R/++9o5NAmoQOH3Bg4tT9EBjO2yq09lm0SVN7++g2F1MkE1jjuSW8kxYQHxsjQeQNQfwuhOjdxSTagNzZEBgSYh87rqOdzESsrPf8QX2u24TEeUQZn1er9tH2waawuVGqHP1Ct7IUKzZGMAow+3nSLmev3akw5y2AEzpJZPWpYgtiVE3yXEHu71cinFrA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gJqBnlh7AiJc6+1DXVLCZ0lrJYvQ7SdSCPBEyYvGhuc=;
+ b=gyIxnNFX9C5WHCfBcmcMAqxo1Qv5MIVXAgA1SJcyn+xQ0f72PHIPiS0f2zBSiBQg/8NkPKkqK8sj9hBbo5ylUY10/XmRD90wnhfV1MWfLc4QalP+FvONpmykKHsLoYDSbQk5v3zsgqGPMy1bC2lxLyuL3A4ePG6gOHz5e25KUcF/xcCGnVrXpm40UAqqZh1xrGDNpmbLT0v30W6rnqfHZHNI4hSgiNxsac9o21sVEdaEBuXRto5gLt5qyJlyfzqdcxmsriQL21Wg1Fy6jOo3dFeWjeXoGadZSFpwbqUx2wFM4I++5ocaWDAo1Naz/FT97d4Kb4lSR+bakhk2Sd049Q==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
+ dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
+ oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gJqBnlh7AiJc6+1DXVLCZ0lrJYvQ7SdSCPBEyYvGhuc=;
+ b=P9alYae+f5AHTXE624wwp7STJA228DDOkb6jrTTvVBTxXeiAswLXyF5Vx2T7R2VJig9KvR+mOQE1GRLV0A4wrgpvQcdeqLYboheNT5h5jmBLbOWMOzov2JmGloiwgtZJiQIppPgXHd/57HNnyhOO/gWz287+e/ZnV9zhNbqrGDk=
+Received: from AS9PR06CA0673.eurprd06.prod.outlook.com (2603:10a6:20b:49c::17)
+ by PAWPR08MB9066.eurprd08.prod.outlook.com (2603:10a6:102:342::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.27; Thu, 7 Dec
+ 2023 13:47:13 +0000
+Received: from AMS0EPF000001AF.eurprd05.prod.outlook.com
+ (2603:10a6:20b:49c:cafe::51) by AS9PR06CA0673.outlook.office365.com
+ (2603:10a6:20b:49c::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34 via Frontend
+ Transport; Thu, 7 Dec 2023 13:47:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+ pr=C
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AMS0EPF000001AF.mail.protection.outlook.com (10.167.16.155) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7068.20 via Frontend Transport; Thu, 7 Dec 2023 13:47:11 +0000
+Received: ("Tessian outbound 7671e7ddc218:v228"); Thu, 07 Dec 2023 13:47:11 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 7baa467b2b012b26
+X-CR-MTA-TID: 64aa7808
+Received: from 476d6d216aea.1
+	by 64aa7808-outbound-1.mta.getcheckrecipient.com id EFE71580-2E19-4C50-ADFD-FBB3D3C431D1.1;
+	Thu, 07 Dec 2023 13:47:04 +0000
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 476d6d216aea.1
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Thu, 07 Dec 2023 13:47:04 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OWqrZao8aha/sg2BCQ2CBTcyVmVDQ6LNsZQO+qn+zPiNUe9gH1fI34UT8euuIWXSX2rYItYy5rPpjASU1Sl5t4WigZ7ojd5Bmp8GE6oZCprKJe7wD72E/YKkDpp0WRN2viiqAb7mcVpGiog5cbB32bpZdE594i52LNRbpbX/7CDEC7n3I99BP//DSXm20UdTF5GhDXMGbEO5HEKNjBV9DViE5ZCqY7EPbjWLtyR3zFixUnvkhSzUH2kqTeBJ3HLNzIOlGtqpFoxP4pDWAuKcEfsDMc+deb0eXqJIDqcr/T4794mo5LnzcYS0mht3ZrWs8SkmRDtxQn+f6GndMbzKyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gJqBnlh7AiJc6+1DXVLCZ0lrJYvQ7SdSCPBEyYvGhuc=;
+ b=EGHJazLaJtu84wYs5VhzQIXv8e6PkKC+1MR2dgOvHK2fFMG2uUOsuJeILFGuImItzQk7to9t9nTstox9jeMEgjuLagzHEWf72PavQjewD1o9xG+yO8yMXinE2YVlWa6iVuSeKpvZo+B00vZkNflasjk3FFytUunw00+4WZ5d5EndeNbunLqlT4i7iaZnQlnSInKFKJmC7n+Zf3jkLosj4HGsIxYZj4K81YozJbJscUZGrJHmLAzFh7bE0K+i44WTOX/doydEcIkr4siNrilzTEUV9RppeQa2gNLkILFTN68JJuKAFciX3z3z4JnPkroU4xicMyXJvLWfxVHZHALprg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gJqBnlh7AiJc6+1DXVLCZ0lrJYvQ7SdSCPBEyYvGhuc=;
+ b=P9alYae+f5AHTXE624wwp7STJA228DDOkb6jrTTvVBTxXeiAswLXyF5Vx2T7R2VJig9KvR+mOQE1GRLV0A4wrgpvQcdeqLYboheNT5h5jmBLbOWMOzov2JmGloiwgtZJiQIppPgXHd/57HNnyhOO/gWz287+e/ZnV9zhNbqrGDk=
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
+ by PAVPR08MB9601.eurprd08.prod.outlook.com (2603:10a6:102:311::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.26; Thu, 7 Dec
+ 2023 13:47:01 +0000
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::ef47:2c42:1ef6:fe5c]) by PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::ef47:2c42:1ef6:fe5c%6]) with mapi id 15.20.7068.027; Thu, 7 Dec 2023
+ 13:47:01 +0000
+From: Ross Burton <Ross.Burton@arm.com>
+To: "iurascu_teo@hotmail.com" <iurascu_teo@hotmail.com>
+CC: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Static library created by recipe arch is not correct
+ #yocto #sdk
+Thread-Topic: [yocto] Static library created by recipe arch is not correct
+ #yocto #sdk
+Thread-Index: AQHaKRJVRBpRutRBvUqKUConA8Io4rCd1YMA
+Date: Thu, 7 Dec 2023 13:47:01 +0000
+Message-ID: <1D9994C9-84AD-4A67-AB5A-040A6439466D@arm.com>
 References: <49B96581-E340-47A0-B858-858DDB5690C0@arm.com>
-In-Reply-To: <49B96581-E340-47A0-B858-858DDB5690C0@arm.com>
-Message-ID: <8726.1701956150907740081@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="SguRS4jdJ9Dc3FEpx05h"
+ <8726.1701956150907740081@lists.yoctoproject.org>
+In-Reply-To: <8726.1701956150907740081@lists.yoctoproject.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Apple Mail (2.3774.200.91.1.1)
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+x-ms-traffictypediagnostic: 
+	PA4PR08MB7411:EE_|PAVPR08MB9601:EE_|AMS0EPF000001AF:EE_|PAWPR08MB9066:EE_
+X-MS-Office365-Filtering-Correlation-Id: 542489ed-0878-4a66-7855-08dbf72b036e
+x-checkrecipientrouted: true
+nodisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ yVpFgDp4RWZGbWLRSMznOiQsVJWv7oSa/RMGqJSkuAoSUSV8xQ47UAqa0JmN08bXdOCVzgCRukPUm2ewSlgwMVuvyiPosy54Lhfo1bzW97k44A09HBtauH9FelLIx2Hp0d59vU1HugQJFaWcsPqi3VCtlGdwXaSSiqjc6/8tvhWiH0ZJA0NliT9E9LZdOcHV4cTSlyiym0/CPNSKQZWy2IiwEr7OzM5MbpCaWnd/Zo3gqtxTiAjKn5cfooVr2hu7o8h/Jd5fHaqHRSmM95qHGzB0/qCQDbqTsfekZfNHUXBtyJdP0mebFaNm7eFtRVgLB5I9G24GgvQk8Cjj8/AJyeL6//jfhopid/awlBKzqacfcC6ufr4j5RbwuK7THsWuBUtzFXgZiQs8ltl/ovI3F1XlBEq9r249DdF6tshz8YTAJC6KnOawYvAXg5IIszMSqcjt9h5tOx7WnEWJmldR/UftLuoIp08Vy2aQPMyU1gDA2eY0sRwE3gGTkyQncmeJu9nlvHBoBELz/j28fQyXhyML/0XlhJeXFAWe+MhU9Qe6rm3D5d3mCmkXOW17MomJqMKe8OfLA/tH/fhtqbj6u8baZGqLRbK7MYzjOg9HsHQPHzH/64iJ91J27fKjm4+iXg5v5eY80SCUkkjO4yZsrw==
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(346002)(39860400002)(396003)(376002)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(26005)(53546011)(6506007)(6512007)(2616005)(6916009)(316002)(71200400001)(64756008)(66446008)(66946007)(4326008)(8676002)(66476007)(66556008)(6486002)(478600001)(91956017)(76116006)(122000001)(8936002)(83380400001)(41300700001)(33656002)(38100700002)(36756003)(38070700009)(86362001)(5660300002)(2906002)(4744005)(45980500001);DIR:OUT;SFP:1101;
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <37839A95837C9D44889792F84348F85F@eurprd08.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR08MB9601
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ AMS0EPF000001AF.eurprd05.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	040cf58c-ef79-4bd7-aaca-08dbf72afd32
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	Ygh/HIDH+XKoHjP59UAEjNVctDmLQ90zaD4v+yzvFwdyE46WCSQUCw8jd5j3474MRb/ILsNl1yza5G7Vy2drwwc8PFZ7Ui6zRP/tGMGfY0kloxVbgFaSh5vwGIJShMf6YiwIiIe4piwFHIFSEkQyZb9teF4nIUxiCy8RXoh5AWkVAaxYTAlbRI4uxjQz+F7d+tQJeDc183nA8NqnLQ7IwZo3HOvRa9ojm2ZgLNmZ6xvQi2Zwrz5naUwHLsW4Fio9d/nl5H1e31sKafC8BSEMiS4+thGmMnNptIbkvw07O8wnWUPSmBWiaraLH+iRZ8x+ZhbWuUcSFbO1TUJQBgxMGhlsECzpMKjVeit+gOF1Md17j9kT4lhe1wAS6lHjS1VoBI1m4/oRvJe01XAnQBTYX1DKFolZJWb4GgYtlvVXuhcmz2bNa7mYLhwa/UCo2Uf2ndJEewE43cgppGLp9ceg9bS3fNI377gN13XKR2YPKJ2n40MBuivlFrPKdsg8SUnZyremsPXp1PBGoLTKGpSnS0TrbS3qMBoVwix6vOar5DC9Hmsi/aOmnU8jO5ei9rZClg9oLKhtr8AU3o2z+Bzm8ruWoKxdz23iN8TxJhIH0Cv8d/crAhOwkMyP9za357TY1wjHZoCrJoek1OjiKq5QB1lw36EpljPjLzwVs7AnnDm7qVNq0VVQq1Oo3hGUxymTaq7FqqMRF6JHlh+kZB1CbEJIGxMsqwKo35bVOx5sv6yfBmHELkNFfgG+oCEG45Xb
+X-Forefront-Antispam-Report: 
+	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230031)(4636009)(376002)(136003)(39860400002)(396003)(346002)(230922051799003)(1800799012)(82310400011)(186009)(451199024)(64100799003)(46966006)(40470700004)(36840700001)(2906002)(4744005)(40480700001)(8936002)(8676002)(4326008)(6862004)(5660300002)(316002)(70206006)(70586007)(40460700003)(47076005)(36860700001)(2616005)(6486002)(6512007)(53546011)(6506007)(36756003)(26005)(41300700001)(336012)(478600001)(82740400003)(83380400001)(33656002)(45080400002)(356005)(81166007)(86362001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 13:47:11.5814
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 542489ed-0878-4a66-7855-08dbf72b036e
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	AMS0EPF000001AF.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR08MB9066
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 13:35:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61830
+ <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 13:47:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61831
 
---SguRS4jdJ9Dc3FEpx05h
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks for the reply Ross!
-
-This is the whole Makefile:
-
-LIB_PATH =3D ./BBBio_lib/
-DEMO_PATH =3D ./Demo/
-TOOLKIT_PATH =3D ./Toolkit/
-LAB_PATH =3D ./Lab/
-
-LIBRARIES =3D iobb
-
-cc =3D"gcc"
-
-all : libiobb.a LED ADT7301 SEVEN_SCAN SMOTOR LED_GPIO DEBOUNCING 4x4keypad=
- ADC ADC_VOICE GPIO_STATUS EP_STATUS ADC_CALC lcd3-test test-outputs pb-tes=
-t-outputs test-inputs pb-test-inputs
-
-libiobb.a : ${ LIB_PATH } BBBiolib.c ${ LIB_PATH } BBBiolib.h BBBiolib_PWMS=
-S.o BBBiolib_McSPI.o BBBiolib_ADCTSC.o i2cfunc.o
-${ cc } -c ${ LIB_PATH } BBBiolib.c -o ${ LIB_PATH } BBBiolib.o
-ar -rs ${ LIB_PATH } libiobb.a ${ LIB_PATH } BBBiolib.o ${ LIB_PATH } BBBio=
-lib_PWMSS.o ${ LIB_PATH } BBBiolib_McSPI.o ${ LIB_PATH } BBBiolib_ADCTSC.o =
-${ LIB_PATH } i2cfunc.o
-cp ${ LIB_PATH } libiobb.a ./
-cp ${ LIB_PATH } BBBiolib.h ./iobb.h
-cp ${ LIB_PATH } BBBiolib_ADCTSC.h ./
-cp ${ LIB_PATH } BBBiolib_McSPI.h ./
-cp ${ LIB_PATH } BBBiolib_PWMSS.h ./
-cp ${ LIB_PATH } i2cfunc.h ./
-
-BBBiolib_PWMSS.o : ${ LIB_PATH } BBBiolib_PWMSS.c ${ LIB_PATH } BBBiolib_PW=
-MSS.h
-${ cc } -c ${ LIB_PATH } BBBiolib_PWMSS.c -o ${ LIB_PATH } BBBiolib_PWMSS.o=
- -W
-
-BBBiolib_McSPI.o : ${ LIB_PATH } BBBiolib_McSPI.c ${ LIB_PATH } BBBiolib_PW=
-MSS.h
-${ cc } -c ${ LIB_PATH } BBBiolib_McSPI.c -o ${ LIB_PATH } BBBiolib_McSPI.o=
- -W
-
-BBBiolib_ADCTSC.o : ${ LIB_PATH } BBBiolib_ADCTSC.c ${ LIB_PATH } BBBiolib_=
-ADCTSC.h
-${ cc } -c ${ LIB_PATH } BBBiolib_ADCTSC.c -o ${ LIB_PATH } BBBiolib_ADCTSC=
-.o -W
-
-i2cfunc.o : ${ LIB_PATH } i2cfunc.c ${ LIB_PATH } i2cfunc.h
-${ cc } -c ${ LIB_PATH } i2cfunc.c -o ${ LIB_PATH } i2cfunc.o
-
-install :
-ifndef locatie
-$( info locatie is [${ locatie }])
-rm -f /usr/local/include/BBBiolib.h
-cp ${ LIB_PATH } libiobb.a /usr/local/lib
-cp ${ LIB_PATH } BBBiolib.h /usr/local/include/iobb.h
-cp ${ LIB_PATH } BBBiolib_ADCTSC.h /usr/local/include
-cp ${ LIB_PATH } BBBiolib_McSPI.h /usr/local/include
-cp ${ LIB_PATH } BBBiolib_PWMSS.h /usr/local/include
-cp ${ LIB_PATH } i2cfunc.h /usr/local/include
-ln -s /usr/local/include/iobb.h /usr/local/include/BBBiolib.h
-else
-$( info locatie is [${ locatie }])
-rm -f $( locatie ) /usr/local/include/BBBiolib.h
-mkdir -p $( locatie ) /usr/local/lib
-mkdir -p $( locatie ) /usr/local/include
-cp ${ LIB_PATH } libiobb.a $( locatie ) /usr/local/lib
-cp ${ LIB_PATH } BBBiolib.h $( locatie ) /usr/local/include/iobb.h
-cp ${ LIB_PATH } BBBiolib_ADCTSC.h $( locatie ) /usr/local/include
-cp ${ LIB_PATH } BBBiolib_McSPI.h $( locatie ) /usr/local/include
-cp ${ LIB_PATH } BBBiolib_PWMSS.h $( locatie ) /usr/local/include
-cp ${ LIB_PATH } i2cfunc.h $( locatie ) /usr/local/include
-cp $( locatie ) /usr/local/include/iobb.h $( locatie ) /usr/local/include/B=
-BBiolib.h
-endif
-
-#---------------------------------------------------
-# Demo
-#---------------------------------------------------
-
-test-outputs : test-io/test-outputs.c libiobb.a
-${ cc } -o test-outputs test-io/test-outputs.c -I. -L. -liobb
-
-pb-test-outputs : test-io/pb-test-outputs.c libiobb.a
-${ cc } -o pb-test-outputs test-io/pb-test-outputs.c -I. -L. -liobb
-
-test-inputs : test-io/test-inputs.c libiobb.a
-${ cc } -o test-inputs test-io/test-inputs.c -I. -L. -liobb
-
-pb-test-inputs : test-io/pb-test-inputs.c libiobb.a
-${ cc } -o pb-test-inputs test-io/pb-test-inputs.c -I. -L. -liobb
-
-LED : ${ DEMO_PATH } Demo_LED/LED.c libiobb.a
-${ cc } -o LED ${ DEMO_PATH } Demo_LED/LED.c -L ${ LIB_PATH } -liobb
-
-lcd3-test : ${ DEMO_PATH } Demo_I2C/lcd3-test.c libiobb.a
-${ cc } -o lcd3-test ${ DEMO_PATH } Demo_I2C/lcd3-test.c -I. -L ${ LIB_PATH=
- } -liobb
-
-ADT7301 : ${ DEMO_PATH } Demo_ADT7301/ADT7301.c libiobb.a
-${ cc } -o ADT7301 ${ DEMO_PATH } Demo_ADT7301/ADT7301.c -L ${ LIB_PATH } -=
-liobb
-
-ADXL345 : ${ DEMO_PATH } Demo_ADXL345/ADXL345.c libiobb.a
-${ cc } -o ADXL345 ${ DEMO_PATH } Demo_ADXL345/ADXL345.c -L ${ LIB_PATH } -=
-liobb
-ADXL345_NET : ${ DEMO_PATH } Demo_ADXL345/ADXL345_net.c libiobb.a
-${ cc } -o ADXL345 ${ DEMO_PATH } Demo_ADXL345/ADXL345_net.c -L ${ LIB_PATH=
- } -liobb
-
-L3G4200D : ${ DEMO_PATH } Demo_L3G4200D/L3G4200D.c libiobb.a
-${ cc } -o L3G4200D ${ DEMO_PATH } Demo_L3G4200D/L3G4200D.c -L ${ LIB_PATH =
-} -liobb
-
-SEVEN_SCAN : ${ DEMO_PATH } Demo_SevenScan/SevenScan.c libiobb.a
-${ cc } -o SevenScan ${ DEMO_PATH } Demo_SevenScan/SevenScan.c -L ${ LIB_PA=
-TH } -liobb
-
-SMOTOR : ${ DEMO_PATH } Demo_ServoMotor/ServoMotor.c libiobb.a
-${ cc } -o SMOTOR ${ DEMO_PATH } Demo_ServoMotor/ServoMotor.c -L ${ LIB_PAT=
-H } -liobb
-
-LED_GPIO : ${ DEMO_PATH } Demo_LED_GPIO/LED_GPIO.c libiobb.a
-${ cc } -o LED_GPIO ${ DEMO_PATH } Demo_LED_GPIO/LED_GPIO.c -L ${ LIB_PATH =
-} -liobb -pthread
-
-DEBOUNCING : ${ DEMO_PATH } Demo_Debouncing/Debouncing.c libiobb.a
-${ cc } -o Debouncing ${ DEMO_PATH } Demo_Debouncing/Debouncing.c -L ${ LIB=
-_PATH } -liobb
-
-4x4keypad : ${ DEMO_PATH } Demo_4x4keypad/4x4keypad.c libiobb.a
-${ cc } -o 4x4keypad ${ DEMO_PATH } Demo_4x4keypad/4x4keypad.c -L ${ LIB_PA=
-TH } -liobb
-
-PWM : ${ DEMO_PATH } Demo_PWM/PWM.c libiobb.a
-${ cc } -o PWM ${ DEMO_PATH } Demo_PWM/PWM.c -L ${ LIB_PATH } -liobb
-
-ADC : ${ DEMO_PATH } Demo_ADC/ADC.c libiobb.a
-${ cc } -o ADC ${ DEMO_PATH } Demo_ADC/ADC.c -L ${ LIB_PATH } -liobb -lm
-
-ADC_VOICE : ${ DEMO_PATH } Demo_ADC/ADC_voice.c libiobb.a
-${ cc } -o ADC_VOICE ${ DEMO_PATH } Demo_ADC/ADC_voice.c -L ${ LIB_PATH } -=
-liobb -lm -pthread -O3
-
-#---------------------------------------------------
-# toolkit
-#---------------------------------------------------
-
-GPIO_STATUS : ${ TOOLKIT_PATH } Toolkit_GPIO_CLK_Status/GPIO_status.c libio=
-bb.a
-${ cc } -o GPIO_CLK_status ${ TOOLKIT_PATH } Toolkit_GPIO_CLK_Status/GPIO_s=
-tatus.c -L ${ LIB_PATH } -liobb
-
-EP_STATUS : ${ TOOLKIT_PATH } Toolkit_EP_Status/EP_status.c libiobb.a
-${ cc } -o EP_status ${ TOOLKIT_PATH } Toolkit_EP_Status/EP_status.c -L ${ =
-LIB_PATH } -liobb
-
-ADC_CALC : ${ TOOLKIT_PATH } Toolkit_ADC_CALC/ADC_CALC.c
-${ cc } -o ADC_CALC ${ TOOLKIT_PATH } Toolkit_ADC_CALC/ADC_CALC.c
-
-#---------------------------------------------------
-# Lab
-#---------------------------------------------------
-
-RA : ${ LAB_PATH } Lab_Robot_Arm/Robot_Arm.c libiobb.a
-${ cc } -o RA ${ LAB_PATH } Lab_Robot_Arm/Robot_Arm.c -L ${ LIB_PATH } -lio=
-bb -lm
-
-VD : ${ LAB_PATH } Voice_Door/voice_door.cpp libiobb.a
-g++ -o VD ${ LAB_PATH } Voice_Door/voice_door.cpp -L ${ LIB_PATH } -liobb -=
-lfftw3 -lm -pthread -O3
-
-.PHONY : clean
-clean :
-rm -rf ${ LIB_PATH } *.o ${ LIB_PATH } libiobb.a libiobb.a iobb.h BBBiolib_=
-ADCTSC.h BBBiolib_McSPI.h i2cfunc.h lcd3-test test-inputs pb-test-inputs te=
-st-outputs pb-test-outputs BBBiolib_PWMSS.h LED ADT7301 GPIO_CLK_status Sev=
-enScan Ultrasonic28015 TMP SMOTOR LED_GPIO Debouncing 4x4keypad EP_status P=
-WM RA ADXL345 ADC ADC_CALC L3G4200D
-
-It looks like cc is used everywhere.
-
-Running file on libiobb.a returns:
-$ file libiobb.a
-libiobb.a: current ar archive I'm not sure what the correct output should b=
-e. Running file on any object files in the archive returns:
-$ file BBBiolib.o
-BBBiolib.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not strip=
-ped
-
-Thanks for the heads up about IOBB being dead, I'll search for an alternati=
-ve, after I get this working, if it doesn't meet my needs.
-
-Thank you!
-
-PS: Sorry for the mishap, the forum sets the sender to Private instead of t=
-o Group
-
---SguRS4jdJ9Dc3FEpx05h
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks for the reply Ross!<br /><br />This is the whole Makefile:<br />
-<div style=3D"color: #cccccc; background-color: #1f1f1f; font-family: 'Droi=
-d Sans Mono', 'monospace', monospace; font-weight: normal; font-size: 14px;=
- line-height: 19px; white-space: pre; --darkreader-inline-color: #c8c3bc; -=
--darkreader-inline-bgcolor: #17191a;" data-darkreader-inline-color=3D"" dat=
-a-darkreader-inline-bgcolor=3D""><br />
-<div><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ccccc=
-c; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> =
-=3D ./BBBio_lib/</span></div>
-<div><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
- =3D ./Demo/</span></div>
-<div><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">TOOLKIT_PATH</span><span style=3D"color: #c=
-ccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D=
-""> =3D ./Toolkit/</span></div>
-<div><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">LAB_PATH</span><span style=3D"color: #ccccc=
-c; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> =
-=3D ./Lab/</span></div>
-<br /><br />
-<div><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">LIBRARIES</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
- =3D iobb</span></div>
-<br />
-<div><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">cc</span><span style=3D"color: #cccccc; --d=
-arkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=3D"gcc=
-"</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">all</span><span style=3D"color: #cccccc; --=
-darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> : lib=
-iobb.a LED ADT7301 SEVEN_SCAN SMOTOR LED_GPIO DEBOUNCING 4x4keypad ADC ADC_=
-VOICE GPIO_STATUS EP_STATUS ADC_CALC lcd3-test test-outputs pb-test-outputs=
- test-inputs pb-test-inputs</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">libiobb.a</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
- : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b=
-;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe=
-; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LI=
-B_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf9=
-47b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
-BBBiolib.c </span><span style=3D"color: #ce9178; --darkreader-inline-color:=
- #cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color:=
- #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
-=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
-or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D"">BBBiolib.h BBBiolib_PWMSS.o BBBiolib_McSPI.o BBBiolib_ADCTSC.o i2cf=
-unc.o</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -c </span><span style=3D"color: #ce9178; --darkrea=
-der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><spa=
-n style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkre=
-ader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --dark=
-reader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><s=
-pan style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-dark=
-reader-inline-color=3D"">BBBiolib.c -o </span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${=
-</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" =
-data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9=
-178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
->}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;=
-" data-darkreader-inline-color=3D"">BBBiolib.o</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> ar -rs </span><span style=3D"color: #ce917=
-8; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">$=
-{</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;"=
- data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce=
-9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"=
-">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc=
-;" data-darkreader-inline-color=3D"">libiobb.a </span><span style=3D"color:=
- #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #8=
-7d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"col=
-or: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-co=
-lor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: =
-#c8c3bc;" data-darkreader-inline-color=3D"">BBBiolib.o </span><span style=
-=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-in=
-line-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline=
--color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span st=
-yle=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader=
--inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inli=
-ne-color: #c8c3bc;" data-darkreader-inline-color=3D"">BBBiolib_PWMSS.o </sp=
-an><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data=
--darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --dar=
-kreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH<=
-/span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" d=
-ata-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --d=
-arkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">BBBioli=
-b_McSPI.o </span><span style=3D"color: #ce9178; --darkreader-inline-color: =
-#cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: =
-#9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
-=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
-or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D"">BBBiolib_ADCTSC.o </span><span style=3D"color: #ce9178; --darkreade=
-r-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><span =
-style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkread=
-er-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkre=
-ader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><spa=
-n style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkre=
-ader-inline-color=3D"">i2cfunc.o</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">libiobb.a ./</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib.h ./iobb.h</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_ADCTSC.h ./</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_McSPI.h ./</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_PWMSS.h ./</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">i2cfunc.h ./</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">BBBiolib_PWMSS.o</span><span style=3D"color=
-: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-colo=
-r=3D""> : </span><span style=3D"color: #ce9178; --darkreader-inline-color: =
-#cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: =
-#9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
-=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
-or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D"">BBBiolib_PWMSS.c </span><span style=3D"color: #ce9178; --darkreader=
--inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><span s=
-tyle=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreade=
-r-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkrea=
-der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><span=
- style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkrea=
-der-inline-color=3D"">BBBiolib_PWMSS.h</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -c </span><span style=3D"color: #ce9178; --darkrea=
-der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><spa=
-n style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkre=
-ader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --dark=
-reader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><s=
-pan style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-dark=
-reader-inline-color=3D"">BBBiolib_PWMSS.c -o </span><span style=3D"color: #=
-ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #8=
-7d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"col=
-or: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-co=
-lor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: =
-#c8c3bc;" data-darkreader-inline-color=3D"">BBBiolib_PWMSS.o -W </span></di=
-v>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">BBBiolib_McSPI.o</span><span style=3D"color=
-: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-colo=
-r=3D""> : </span><span style=3D"color: #ce9178; --darkreader-inline-color: =
-#cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: =
-#9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
-=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
-or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D"">BBBiolib_McSPI.c </span><span style=3D"color: #ce9178; --darkreader=
--inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><span s=
-tyle=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreade=
-r-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkrea=
-der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><span=
- style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkrea=
-der-inline-color=3D"">BBBiolib_PWMSS.h</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -c </span><span style=3D"color: #ce9178; --darkrea=
-der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><spa=
-n style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkre=
-ader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --dark=
-reader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><s=
-pan style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-dark=
-reader-inline-color=3D"">BBBiolib_McSPI.c -o </span><span style=3D"color: #=
-ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #8=
-7d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"col=
-or: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-co=
-lor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: =
-#c8c3bc;" data-darkreader-inline-color=3D"">BBBiolib_McSPI.o -W</span></div=
->
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">BBBiolib_ADCTSC.o</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D""> : </span><span style=3D"color: #ce9178; --darkreader-inline-color:=
- #cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color:=
- #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
-=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
-or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D"">BBBiolib_ADCTSC.c </span><span style=3D"color: #ce9178; --darkreade=
-r-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><span =
-style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkread=
-er-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkre=
-ader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><spa=
-n style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkre=
-ader-inline-color=3D"">BBBiolib_ADCTSC.h</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -c </span><span style=3D"color: #ce9178; --darkrea=
-der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><spa=
-n style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkre=
-ader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --dark=
-reader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><s=
-pan style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-dark=
-reader-inline-color=3D"">BBBiolib_ADCTSC.c -o </span><span style=3D"color: =
-#ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #8=
-7d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"col=
-or: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-co=
-lor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: =
-#c8c3bc;" data-darkreader-inline-color=3D"">BBBiolib_ADCTSC.o -W</span></di=
-v>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">i2cfunc.o</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
- : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b=
-;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe=
-; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LI=
-B_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf9=
-47b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
-i2cfunc.c </span><span style=3D"color: #ce9178; --darkreader-inline-color: =
-#cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: =
-#9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
-=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
-or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D"">i2cfunc.h</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -c </span><span style=3D"color: #ce9178; --darkrea=
-der-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><spa=
-n style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkre=
-ader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --dark=
-reader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><s=
-pan style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-dark=
-reader-inline-color=3D"">i2cfunc.c -o </span><span style=3D"color: #ce9178;=
- --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${<=
-/span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" d=
-ata-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce91=
-78; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">=
-}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;"=
- data-darkreader-inline-color=3D"">i2cfunc.o</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">install</span><span style=3D"color: #cccccc=
-; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> :=
- </span></div>
-<div><span style=3D"color: #c586c0; --darkreader-inline-color: #c688c1;" da=
-ta-darkreader-inline-color=3D"">ifndef</span><span style=3D"color: #cccccc;=
- --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> lo=
-catie</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">$(</span=
-><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" data-d=
-arkreader-inline-color=3D"">info</span><span style=3D"color: #ce9178; --dar=
-kreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""> locatie =
-is [${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d=
-5fe;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"color:=
- #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">}])</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> rm -f /usr/local/include/BBBiolib.h</span>=
-</div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">libiobb.a /usr/local/lib</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib.h /usr/local/include/iobb.h</span=
-></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_ADCTSC.h /usr/local/include</span=
-></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_McSPI.h /usr/local/include</span>=
-</div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_PWMSS.h /usr/local/include</span>=
-</div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">i2cfunc.h /usr/local/include</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> ln -s /usr/local/include/iobb.h /usr/local=
-/include/BBBiolib.h</span></div>
-<div><span style=3D"color: #c586c0; --darkreader-inline-color: #c688c1;" da=
-ta-darkreader-inline-color=3D"">else</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">$(</span=
-><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" data-d=
-arkreader-inline-color=3D"">info</span><span style=3D"color: #ce9178; --dar=
-kreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""> locatie =
-is [${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d=
-5fe;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"color:=
- #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">}])</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> rm -f </span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">$(=
-</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" =
-data-darkreader-inline-color=3D"">locatie</span><span style=3D"color: #ce91=
-78; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">=
-)</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;"=
- data-darkreader-inline-color=3D"">/usr/local/include/BBBiolib.h</span></di=
-v>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> mkdir -p </span><span style=3D"color: #ce9=
-178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
->$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe=
-;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"color: #c=
-e9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D=
-"">)</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3b=
-c;" data-darkreader-inline-color=3D"">/usr/local/lib</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> mkdir -p </span><span style=3D"color: #ce9=
-178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
->$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe=
-;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"color: #c=
-e9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D=
-"">)</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3b=
-c;" data-darkreader-inline-color=3D"">/usr/local/include</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">libiobb.a </span><span style=3D"color: #ce=
-9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"=
-">$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5f=
-e;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"color: #=
-ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">)</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8=
-c3bc;" data-darkreader-inline-color=3D"">/usr/local/lib</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib.h </span><span style=3D"color: #c=
-e9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D=
-"">$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5=
-fe;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"color: =
-#ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">)</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8=
-c3bc;" data-darkreader-inline-color=3D"">/usr/local/include/iobb.h</span></=
-div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_ADCTSC.h </span><span style=3D"co=
-lor: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-c=
-olor=3D"">$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color=
-: #87d5fe;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"=
-color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline=
--color=3D"">)</span><span style=3D"color: #cccccc; --darkreader-inline-colo=
-r: #c8c3bc;" data-darkreader-inline-color=3D"">/usr/local/include</span></d=
-iv>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_McSPI.h </span><span style=3D"col=
-or: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-co=
-lor=3D"">$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color:=
- #87d5fe;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"c=
-olor: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-=
-color=3D"">)</span><span style=3D"color: #cccccc; --darkreader-inline-color=
-: #c8c3bc;" data-darkreader-inline-color=3D"">/usr/local/include</span></di=
-v>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">BBBiolib_PWMSS.h </span><span style=3D"col=
-or: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-co=
-lor=3D"">$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color:=
- #87d5fe;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"c=
-olor: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-=
-color=3D"">)</span><span style=3D"color: #cccccc; --darkreader-inline-color=
-: #c8c3bc;" data-darkreader-inline-color=3D"">/usr/local/include</span></di=
-v>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">i2cfunc.h </span><span style=3D"color: #ce=
-9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"=
-">$(</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5f=
-e;" data-darkreader-inline-color=3D"">locatie</span><span style=3D"color: #=
-ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">)</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8=
-c3bc;" data-darkreader-inline-color=3D"">/usr/local/include</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> cp </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">$(</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">locatie</span><span style=3D"color: #ce9178;=
- --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">)</=
-span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D"">/usr/local/include/iobb.h </span><span styl=
-e=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-i=
-nline-color=3D"">$(</span><span style=3D"color: #9cdcfe; --darkreader-inlin=
-e-color: #87d5fe;" data-darkreader-inline-color=3D"">locatie</span><span st=
-yle=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader=
--inline-color=3D"">)</span><span style=3D"color: #cccccc; --darkreader-inli=
-ne-color: #c8c3bc;" data-darkreader-inline-color=3D"">/usr/local/include/BB=
-Biolib.h</span></div>
-<div><span style=3D"color: #c586c0; --darkreader-inline-color: #c688c1;" da=
-ta-darkreader-inline-color=3D"">endif</span></div>
-<div>&nbsp;</div>
-<br />
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D"">#------------------------------------------=
----------</span></div>
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D""># Demo</span></div>
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D"">#------------------------------------------=
----------</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">test-outputs</span><span style=3D"color: #c=
-ccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D=
-"">: test-io/test-outputs.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o test-outputs test-io/test-outputs.c -I. -L. -li=
-obb</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">pb-test-outputs</span><span style=3D"color:=
- #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=
-=3D"">: test-io/pb-test-outputs.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o pb-test-outputs test-io/pb-test-outputs.c -I. -=
-L. -liobb</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">test-inputs</span><span style=3D"color: #cc=
-cccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"=
-">: test-io/test-inputs.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o test-inputs test-io/test-inputs.c -I. -L. -liob=
-b</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">pb-test-inputs</span><span style=3D"color: =
-#cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=
-=3D"">: test-io/pb-test-inputs.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o pb-test-inputs test-io/pb-test-inputs.c -I. -L.=
- -liobb</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">LED</span><span style=3D"color: #cccccc; --=
-darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> : </s=
-pan><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" dat=
-a-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --da=
-rkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEMO_PAT=
-H</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;"=
- data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; -=
--darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">Demo_=
-LED/LED.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o LED </span><span style=3D"color: #ce9178; --dar=
-kreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span>=
-<span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-da=
-rkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</sp=
-an><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data=
--darkreader-inline-color=3D"">Demo_LED/LED.c -L </span><span style=3D"color=
-: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-colo=
-r=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #=
-87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"co=
-lor: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-c=
-olor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color:=
- #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">lcd3-test</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
-: </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;=
-" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe;=
- --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEM=
-O_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf9=
-47b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
-Demo_I2C/lcd3-test.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o lcd3-test </span><span style=3D"color: #ce9178;=
- --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${<=
-/span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" d=
-ata-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9=
-178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
->}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;=
-" data-darkreader-inline-color=3D"">Demo_I2C/lcd3-test.c -I. -L </span><spa=
-n style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkre=
-ader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader=
--inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><=
-span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-dar=
-kreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkread=
-er-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span>=
-</div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">ADT7301</span><span style=3D"color: #cccccc=
-; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> :=
- </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;"=
- data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; =
---darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEMO=
-_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf94=
-7b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #ccccc=
-c; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">D=
-emo_ADT7301/ADT7301.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o ADT7301 </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce917=
-8; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}=
-</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" =
-data-darkreader-inline-color=3D"">Demo_ADT7301/ADT7301.c -L </span><span st=
-yle=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader=
--inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inl=
-ine-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span=
- style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkrea=
-der-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreader-i=
-nline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span></di=
-v>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">ADXL345</span><span style=3D"color: #cccccc=
-; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> :=
- </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;"=
- data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; =
---darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEMO=
-_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf94=
-7b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #ccccc=
-c; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">D=
-emo_ADXL345/ADXL345.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o ADXL345 </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce917=
-8; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}=
-</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" =
-data-darkreader-inline-color=3D"">Demo_ADXL345/ADXL345.c -L </span><span st=
-yle=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader=
--inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inl=
-ine-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span=
- style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkrea=
-der-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreader-i=
-nline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span></di=
-v>
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">ADXL345_NET</span><span style=3D"color: #cc=
-cccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"=
-"> : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf94=
-7b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdc=
-fe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">=
-DEMO_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #=
-cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #c=
-ccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D=
-"">Demo_ADXL345/ADXL345_net.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o ADXL345 </span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</s=
-pan><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" dat=
-a-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce917=
-8; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}=
-</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" =
-data-darkreader-inline-color=3D"">Demo_ADXL345/ADXL345_net.c -L </span><spa=
-n style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkre=
-ader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader=
--inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><=
-span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-dar=
-kreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkread=
-er-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span>=
-</div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">L3G4200D</span><span style=3D"color: #ccccc=
-c; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> =
-: </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;=
-" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe;=
- --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEM=
-O_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf9=
-47b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
-Demo_L3G4200D/L3G4200D.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o L3G4200D </span><span style=3D"color: #ce9178; =
---darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</=
-span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce91=
-78; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">=
-}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;"=
- data-darkreader-inline-color=3D"">Demo_L3G4200D/L3G4200D.c -L </span><span=
- style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkrea=
-der-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-=
-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><s=
-pan style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-dark=
-reader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreade=
-r-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span><=
-/div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">SEVEN_SCAN</span><span style=3D"color: #ccc=
-ccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""=
-> : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947=
-b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcf=
-e; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">D=
-EMO_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #c=
-f947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cc=
-cccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"=
-">Demo_SevenScan/SevenScan.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o SevenScan </span><span style=3D"color: #ce9178;=
- --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${<=
-/span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" d=
-ata-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9=
-178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
->}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;=
-" data-darkreader-inline-color=3D"">Demo_SevenScan/SevenScan.c -L </span><s=
-pan style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-dark=
-reader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkread=
-er-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span=
-><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-d=
-arkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkre=
-ader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</spa=
-n></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">SMOTOR</span><span style=3D"color: #cccccc;=
- --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> : =
-</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" =
-data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; -=
--darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEMO_=
-PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947=
-b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc=
-; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">De=
-mo_ServoMotor/ServoMotor.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o SMOTOR </span><span style=3D"color: #ce9178; --=
-darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</sp=
-an><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data=
--darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}<=
-/span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" d=
-ata-darkreader-inline-color=3D"">Demo_ServoMotor/ServoMotor.c -L </span><sp=
-an style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkr=
-eader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreade=
-r-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span>=
-<span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-da=
-rkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkrea=
-der-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span=
-></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">LED_GPIO</span><span style=3D"color: #ccccc=
-c; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> =
-: </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;=
-" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe;=
- --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEM=
-O_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf9=
-47b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
-Demo_LED_GPIO/LED_GPIO.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o LED_GPIO </span><span style=3D"color: #ce9178; =
---darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</=
-span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce91=
-78; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">=
-}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;"=
- data-darkreader-inline-color=3D"">Demo_LED_GPIO/LED_GPIO.c -L </span><span=
- style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkrea=
-der-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-=
-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><s=
-pan style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-dark=
-reader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreade=
-r-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb -pthrea=
-d</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">DEBOUNCING</span><span style=3D"color: #ccc=
-ccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""=
-> : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947=
-b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcf=
-e; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">D=
-EMO_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #c=
-f947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cc=
-cccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"=
-">Demo_Debouncing/Debouncing.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o Debouncing </span><span style=3D"color: #ce9178=
-; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${=
-</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" =
-data-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce=
-9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"=
-">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc=
-;" data-darkreader-inline-color=3D"">Demo_Debouncing/Debouncing.c -L </span=
-><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-d=
-arkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkr=
-eader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</s=
-pan><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" dat=
-a-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --dar=
-kreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</=
-span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">4x4keypad</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
- : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b=
-;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe=
-; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DE=
-MO_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf=
-947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #ccc=
-ccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""=
->Demo_4x4keypad/4x4keypad.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o 4x4keypad </span><span style=3D"color: #ce9178;=
- --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${<=
-/span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" d=
-ata-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9=
-178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
->}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;=
-" data-darkreader-inline-color=3D"">Demo_4x4keypad/4x4keypad.c -L </span><s=
-pan style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-dark=
-reader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkread=
-er-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span=
-><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-d=
-arkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkre=
-ader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</spa=
-n></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">PWM</span><span style=3D"color: #cccccc; --=
-darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> : </s=
-pan><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" dat=
-a-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --da=
-rkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEMO_PAT=
-H</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;"=
- data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; -=
--darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">Demo_=
-PWM/PWM.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o PWM </span><span style=3D"color: #ce9178; --dar=
-kreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span>=
-<span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-da=
-rkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</sp=
-an><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data=
--darkreader-inline-color=3D"">Demo_PWM/PWM.c -L </span><span style=3D"color=
-: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-colo=
-r=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #=
-87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"co=
-lor: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-c=
-olor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color:=
- #c8c3bc;" data-darkreader-inline-color=3D""> -liobb</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">ADC</span><span style=3D"color: #cccccc; --=
-darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> : </s=
-pan><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" dat=
-a-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --da=
-rkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DEMO_PAT=
-H</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;"=
- data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; -=
--darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">Demo_=
-ADC/ADC.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o ADC </span><span style=3D"color: #ce9178; --dar=
-kreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span>=
-<span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-da=
-rkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9178; -=
--darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</sp=
-an><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data=
--darkreader-inline-color=3D"">Demo_ADC/ADC.c -L </span><span style=3D"color=
-: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-colo=
-r=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #=
-87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"co=
-lor: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-c=
-olor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color:=
- #c8c3bc;" data-darkreader-inline-color=3D""> -liobb -lm</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">ADC_VOICE</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
- : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b=
-;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe=
-; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">DE=
-MO_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf=
-947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #ccc=
-ccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""=
->Demo_ADC/ADC_voice.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o ADC_VOICE </span><span style=3D"color: #ce9178;=
- --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${<=
-/span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" d=
-ata-darkreader-inline-color=3D"">DEMO_PATH</span><span style=3D"color: #ce9=
-178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D""=
->}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;=
-" data-darkreader-inline-color=3D"">Demo_ADC/ADC_voice.c -L </span><span st=
-yle=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader=
--inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inl=
-ine-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span=
- style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkrea=
-der-inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreader-i=
-nline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb -lm -pthre=
-ad -O3</span></div>
-<br /><br /><br />
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D"">#------------------------------------------=
----------</span></div>
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D""># toolkit </span></div>
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D"">#------------------------------------------=
----------</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">GPIO_STATUS</span><span style=3D"color: #cc=
-cccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"=
-"> : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf94=
-7b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdc=
-fe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">=
-TOOLKIT_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color=
-: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color:=
- #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=
-=3D"">Toolkit_GPIO_CLK_Status/GPIO_status.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o GPIO_CLK_status </span><span style=3D"color: #c=
-e9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D=
-"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5=
-fe;" data-darkreader-inline-color=3D"">TOOLKIT_PATH</span><span style=3D"co=
-lor: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-c=
-olor=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color:=
- #c8c3bc;" data-darkreader-inline-color=3D"">Toolkit_GPIO_CLK_Status/GPIO_s=
-tatus.c -L </span><span style=3D"color: #ce9178; --darkreader-inline-color:=
- #cf947b;" data-darkreader-inline-color=3D"">${</span><span style=3D"color:=
- #9cdcfe; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=
-=3D"">LIB_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-col=
-or: #cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"colo=
-r: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-col=
-or=3D""> -liobb</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">EP_STATUS</span><span style=3D"color: #cccc=
-cc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">=
- : </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b=
-;" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe=
-; --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">TO=
-OLKIT_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: =
-#cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #=
-cccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=
-=3D"">Toolkit_EP_Status/EP_status.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o EP_status </span><span style=3D"color: #ce9178;=
- --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${<=
-/span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" d=
-ata-darkreader-inline-color=3D"">TOOLKIT_PATH</span><span style=3D"color: #=
-ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8=
-c3bc;" data-darkreader-inline-color=3D"">Toolkit_EP_Status/EP_status.c -L <=
-/span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" d=
-ata-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --=
-darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PA=
-TH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;=
-" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; =
---darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -li=
-obb</span></div>
-<br /><br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">ADC_CALC</span><span style=3D"color: #ccccc=
-c; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> =
-: </span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;=
-" data-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe;=
- --darkreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">TOO=
-LKIT_PATH</span><span style=3D"color: #ce9178; --darkreader-inline-color: #=
-cf947b;" data-darkreader-inline-color=3D"">}</span><span style=3D"color: #c=
-ccccc; --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D=
-"">Toolkit_ADC_CALC/ADC_CALC.c</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o ADC_CALC </span><span style=3D"color: #ce9178; =
---darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</=
-span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" da=
-ta-darkreader-inline-color=3D"">TOOLKIT_PATH</span><span style=3D"color: #c=
-e9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D=
-"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3b=
-c;" data-darkreader-inline-color=3D"">Toolkit_ADC_CALC/ADC_CALC.c</span></d=
-iv>
-<br /><br />
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D"">#------------------------------------------=
----------</span></div>
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D""># Lab</span></div>
-<div><span style=3D"color: #6a9955; --darkreader-inline-color: #86b173;" da=
-ta-darkreader-inline-color=3D"">#------------------------------------------=
----------</span></div>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">RA</span><span style=3D"color: #cccccc; --d=
-arkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> : </sp=
-an><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data=
--darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --dar=
-kreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LAB_PATH<=
-/span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" d=
-ata-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --d=
-arkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">Lab_Rob=
-ot_Arm/Robot_Arm.c libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> </span><span style=3D"color: #ce9178; --da=
-rkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span=
-><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-d=
-arkreader-inline-color=3D"">cc</span><span style=3D"color: #ce9178; --darkr=
-eader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span><sp=
-an style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-darkr=
-eader-inline-color=3D""> -o RA </span><span style=3D"color: #ce9178; --dark=
-reader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">${</span><=
-span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;" data-dar=
-kreader-inline-color=3D"">LAB_PATH</span><span style=3D"color: #ce9178; --d=
-arkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">}</span=
-><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" data-d=
-arkreader-inline-color=3D"">Lab_Robot_Arm/Robot_Arm.c -L </span><span style=
-=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-in=
-line-color=3D"">${</span><span style=3D"color: #9cdcfe; --darkreader-inline=
--color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</span><span st=
-yle=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-darkreader=
--inline-color=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inli=
-ne-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb -lm</span></d=
-iv>
-<br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">VD</span><span style=3D"color: #cccccc; --d=
-arkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> : </sp=
-an><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data=
--darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --dar=
-kreader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LAB_PATH<=
-/span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" d=
-ata-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --d=
-arkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">Voice_D=
-oor/voice_door.cpp libiobb.a</span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> g++ -o VD </span><span style=3D"color: #ce=
-9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"=
-">${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5f=
-e;" data-darkreader-inline-color=3D"">LAB_PATH</span><span style=3D"color: =
-#ce9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=
-=3D"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8=
-c3bc;" data-darkreader-inline-color=3D"">Voice_Door/voice_door.cpp -L </spa=
-n><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" data-=
-darkreader-inline-color=3D"">${</span><span style=3D"color: #9cdcfe; --dark=
-reader-inline-color: #87d5fe;" data-darkreader-inline-color=3D"">LIB_PATH</=
-span><span style=3D"color: #ce9178; --darkreader-inline-color: #cf947b;" da=
-ta-darkreader-inline-color=3D"">}</span><span style=3D"color: #cccccc; --da=
-rkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> -liobb =
--lfftw3 -lm -pthread -O3</span></div>
-<br /><br />
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">.PHONY</span><span style=3D"color: #cccccc;=
- --darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D"">: c=
-lean</span></div>
-<div><span style=3D"color: #dcdcaa; --darkreader-inline-color: #d8d89f;" da=
-ta-darkreader-inline-color=3D"">clean</span><span style=3D"color: #cccccc; =
---darkreader-inline-color: #c8c3bc;" data-darkreader-inline-color=3D""> :</=
-span></div>
-<div><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc;" da=
-ta-darkreader-inline-color=3D""> rm -rf </span><span style=3D"color: #ce917=
-8; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">$=
-{</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;"=
- data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #ce=
-9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"=
-">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3bc=
-;" data-darkreader-inline-color=3D"">*.o </span><span style=3D"color: #ce91=
-78; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D"">=
-${</span><span style=3D"color: #9cdcfe; --darkreader-inline-color: #87d5fe;=
-" data-darkreader-inline-color=3D"">LIB_PATH</span><span style=3D"color: #c=
-e9178; --darkreader-inline-color: #cf947b;" data-darkreader-inline-color=3D=
-"">}</span><span style=3D"color: #cccccc; --darkreader-inline-color: #c8c3b=
-c;" data-darkreader-inline-color=3D"">libiobb.a libiobb.a iobb.h BBBiolib_A=
-DCTSC.h BBBiolib_McSPI.h i2cfunc.h lcd3-test test-inputs pb-test-inputs tes=
-t-outputs pb-test-outputs BBBiolib_PWMSS.h LED ADT7301 GPIO_CLK_status Seve=
-nScan Ultrasonic28015 TMP SMOTOR LED_GPIO Debouncing 4x4keypad EP_status PW=
-M RA ADXL345 ADC ADC_CALC L3G4200D</span></div>
-<br /><br /><br />It looks like cc is used everywhere.<br /><br />Running f=
-ile on libiobb.a returns:<br /><span style=3D"font-family: monospace;"><spa=
-n style=3D"color: #000000; background-color: #ffffff; --darkreader-inline-c=
-olor: #e8e6e3; --darkreader-inline-bgcolor: #181a1b;" data-darkreader-inlin=
-e-color=3D"" data-darkreader-inline-bgcolor=3D"">$ file libiobb.a &nbsp;</s=
-pan><br />libiobb.a: current ar archive I'm not sure what the correct outpu=
-t should be. Running file on any object files in the archive returns:<br />=
-</span><span style=3D"font-family: monospace;"><span style=3D"color: #00000=
-0; background-color: #ffffff; --darkreader-inline-color: #e8e6e3; --darkrea=
-der-inline-bgcolor: #181a1b;" data-darkreader-inline-color=3D"" data-darkre=
-ader-inline-bgcolor=3D"">$ file BBBiolib.o &nbsp;</span><br />BBBiolib.o: E=
-LF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped<br /><br =
-/></span><span style=3D"font-family: monospace;">Thanks for the heads up ab=
-out IOBB being dead, I'll search for an alternative, after I get this worki=
-ng, if it doesn't meet my needs.<br /><br />Thank you!<br /><br />PS: Sorry=
- for the mishap, the forum sets the sender to Private instead of to Group<b=
-r /><br /><br /></span></div>
-
---SguRS4jdJ9Dc3FEpx05h--
+T24gNyBEZWMgMjAyMywgYXQgMTM6MzUsIEl1cmFzY3UgVGVvZG9yIHZpYSBsaXN0cy55b2N0b3By
+b2plY3Qub3JnIDxpdXJhc2N1X3Rlbz1ob3RtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3Jn
+PiB3cm90ZToNCj4gUnVubmluZyBmaWxlIG9uIGFueSBvYmplY3QgZmlsZXMgaW4gdGhlIGFyY2hp
+dmUgcmV0dXJuczoNCj4gJCBmaWxlIEJCQmlvbGliLm8gIA0KPiBCQkJpb2xpYi5vOiBFTEYgNjQt
+Yml0IExTQiByZWxvY2F0YWJsZSwgeDg2LTY0LCB2ZXJzaW9uIDEgKFNZU1YpLCBub3Qgc3RyaXBw
+ZWQNCg0KV2VsbCB0aGF04oCZcyBub3QgcmlnaHQuIDopDQoNCkkgbm90ZSB0aGF0IHlvdXIgbWFr
+ZWZpbGUgZG9lc27igJl0IGhhdmUgYW55IGNsZWFuIGZ1bmN0aW9uYWx0eSwgc28gaXTigJlzIGVu
+dGlyZWx5IHBvc3NpYmxlIHRoYXQgaXTigJlzIHJldXNpbmcgcHJldmlvdXMgYmluYXJpZXMgZnJv
+bSB3aGVuIGNjIHdhc27igJl0IHNldCBjb3JyZWN0bHkuIEFkZGluZyBhIOKAmGNsZWFu4oCZIHRh
+cmdldCB0aGF0IGRlbGV0ZXMgYWxsIGJ1aWx0IGZpbGVzIGZyb20gdGhlIGJ1aWxkIHRyZWUgd291
+bGQgYmUgYSBnb29kIGlkZWEuDQoNCllvdSBjYW4gdGVzdCB0aGlzIHRoZW9yeSBieSBkb2luZyBi
+aXRiYWtlIC1DIHVucGFjayBiYmlvIChhc3N1bWluZyB5b3VyIHJlY2lwZSBpcyBjYWxsZWQgYmJp
+bykgdG8gZm9yY2UgaXQgdG8gcmVidWlsZCB0aGUgcmVjaXBlLCBhbmQgdGhlbiByZWJ1aWxkaW5n
+IHlvdXIgU0RLLg0KDQpBbHNvIGhhdmUgYSBsb29rIGF0IHRoZSBsb2cuZG9fY29tcGlsZSBpbiB0
+aGUgcmVjaXBlIGJ1aWxkIGRpcmVjdG9yeSB0byBjaGVjayBpdCBhY3R1YWxseSBpcyB1c2luZyB0
+aGUgYXJtIGNyb3NzIGNvbXBpbGVyLg0KDQpJ4oCZbGwgbm90ZSB0aGF0IE1ha2VmaWxlcyBhcmUg
+aGFyZCBhbmQgaWYgeW914oCZcmUgd3JpdGluZyB5b3VyIG93biBtYWtlZmlsZSBpdOKAmXMgZ29v
+ZCB0byB1c2Ugc29tZXRoaW5nIGVsc2UgaW5zdGVhZC4NCg0KUm9zcw==
 
