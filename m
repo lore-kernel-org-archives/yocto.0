@@ -1,298 +1,244 @@
-Return-Path: <quaresma.jose@gmail.com>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0176AC4167B
-	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 11:08:06 +0000 (UTC)
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
- by mx.groups.io with SMTP id smtpd.web10.81545.1701947283460964508
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 44854C4167B
+	for <webhook@archiver.kernel.org>; Thu,  7 Dec 2023 11:50:16 +0000 (UTC)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+ by mx.groups.io with SMTP id smtpd.web11.81710.1701949810179971428
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Dec 2023 03:08:03 -0800
+ Thu, 07 Dec 2023 03:50:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=c6csiEC5;
- spf=pass (domain: gmail.com, ip: 209.85.167.175, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3b9d65d184aso532175b6e.1
-        for <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 03:08:03 -0800 (PST)
+ dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=QYxMEJ5Z;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.44, mailfrom: jester@theyoctojester.info)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-54cfb03f1a8so1082667a12.2
+        for <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 03:50:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701947283; x=1702552083; darn=lists.yoctoproject.org;
+        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1701949808; x=1702554608; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QKIJTDFfyBHw/ZvTbBb3VxoY5EK6/Jvdit/WyJKC6dk=;
-        b=c6csiEC5AteOvFEllHiH6w+EatEbsYVZM01FiiDcbtPE9XM+BfhaWLS6zKo1urDxSD
-         6rCqmkTE3RC6g+8fi1Myor2DKwFYbySbdVWkujP8zIRq4FcJv29FRfz2OCOQmSMX6jJf
-         whmn5URWSHwb9kK+3M1Wqb6Bo21Q2kZtLSBteMEJT9u2XV9+ZWyGGe4JqrnG/tD/et8q
-         UVKuiwVbkTR9w1lMOwpoitjIzgUVegU66zmMgheIKMYJ5WSFMatkU3nzGdYDmBWhscI6
-         3r7rbRJqXjvGWlt+Gzg2YjAzcTWBe/IpId118XXTtR50pX/KJOaLE0UBwDoP64QObYK+
-         GQAA==
+        bh=4haqXj+COq0w0Pd4RFB8yHQVC+hTuYE6FROoLGITs94=;
+        b=QYxMEJ5Z5I7bwkeAHFkO4OPkxV8WrHSRryM+zruIFwOrAWHrl7LqtdZoOd5qVJcKfh
+         Et8PoaxWk/IN8TtDGFSAYZUsMgog6mY0KX5iY6x4DCU3bWibpoMLLX8JZOrgKq9wxEC/
+         5jIaLMKnx3PSRrtyi8RcC3F0oar5wD2XRAA9Ik614VEXGWkS3YVXsHDAC9fGPpfhAQu+
+         TYw1VPBByNQr3tGYbBqi8w3Qu8t+aUvanYoI7ZYQ0Y8NtsuXNpdh0ueZEn4D32ZnOFUQ
+         VlNV2x1rMWje9mT7uP/XG5KvNWnAAdG1ZchDgvi5b7LTuFi7dh+6gqRkdeQU4l7H4UOs
+         icPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701947283; x=1702552083;
+        d=1e100.net; s=20230601; t=1701949808; x=1702554608;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QKIJTDFfyBHw/ZvTbBb3VxoY5EK6/Jvdit/WyJKC6dk=;
-        b=XcZPrBNmwFUskyyxdP3Ak3hTuPTQ5BiF+TYrln4/5qrUa/LeLbX1kd5aQcgL7UhBCm
-         hX+uYmiHAnrjG454wKouLoWqt9bxp0lN0B58MxlsWtR+Az0vlanLEnmFeF/ZeQhW8YuR
-         ADSW7cTgUy7c6iBTLWsXwi6VM52qYiju3eIoN9K7KFUlmqocAK83jLcTyPN/12rVuNxx
-         4xGM2aDwnYdafwMbv5x99bo/+QasZ4QQUE7OI+4bo+6JUeRDyAKuQZUERCbW15NVEkNj
-         qFySUQErNlSbP9BP3rt3cPA+EgUOcITgOJF7eK9396MonkoVk5APH2JtDPfR6dIH055t
-         Pt2Q==
-X-Gm-Message-State: AOJu0YzOj1E0PdBhk50K+LBQGY7eoeg7QCoR72n9n3QAzK8sc768I/R7
-	LrH73LHoGS+gysAmFIm7b8bPdp37cwlogJFizUs=
-X-Google-Smtp-Source: AGHT+IEGUv+IGUbffLknPIk/fuGIkFW8L975V/+W3G4aEadkWsEDUcXIwDySEhF6NgOoIF9gM5UD32uf2ea5zH37nbk=
-X-Received: by 2002:a05:6808:10b:b0:3b8:b063:5d57 with SMTP id
- b11-20020a056808010b00b003b8b0635d57mr2714509oie.62.1701947282728; Thu, 07
- Dec 2023 03:08:02 -0800 (PST)
+        bh=4haqXj+COq0w0Pd4RFB8yHQVC+hTuYE6FROoLGITs94=;
+        b=YM8BHHgjLVYMaDIqRpySzidOBzrn/e7dxgQ+A8hzrW9RHPhlk9LB9MzJExFm5TBvpY
+         J3xzTusxwUKnWwEM12emTT+wVNPGRyMC9okQJoD7aNu6TQfsZztLbOtx81t2VDK7qFgR
+         OJ6seYxZ1Npe7WFEsy/9EAMQrUZX2mtoMz8VZf1K2mO3b6QXEpNsvv5K1MUJylq3bJhn
+         EBb+dyzWBVKaotQLEKf7xMlPAsKWMIpmZRjM4+NauUJKGyKi5uoXZIRWMczuttyzvWK6
+         gkJCDBT+iphmGf8yCJvQkQxCmgEGhP3WMCwgr/tRzhHZUDcLSQgm/Id3QxI8VVA0x/gE
+         5snQ==
+X-Gm-Message-State: AOJu0YxaAN1utSpRodAmwUVSQ2r+50FxpmThkigm2stjQr78PHHT7D/3
+	QLLoXtceFVhC4wRBTo/mSOWtyDh4EP69xaiYMtSC/A==
+X-Google-Smtp-Source: AGHT+IFTQXeXlSzFAhBE2Drduy71xBRaGVM8ILXTHX60IjHrbwEh10PC9vTwdyd1OVeo7hbExv4givKp1PZh8+1BvHk=
+X-Received: by 2002:a17:907:30d0:b0:a19:562d:5a20 with SMTP id
+ vl16-20020a17090730d000b00a19562d5a20mr1311959ejb.28.1701949808086; Thu, 07
+ Dec 2023 03:50:08 -0800 (PST)
 MIME-Version: 1.0
-References: <20231204183055.29931-1-antonio@amsobr.com> <CANPvuR=iEOwO_Jt4M-GOPWxCPf00CfNe=A_sziLhbpFjkn4s=g@mail.gmail.com>
- <CAGfGMDERE=08mjBuugHFB=Xui20ZYmfK59_6vhGEgfsPg3kWuQ@mail.gmail.com>
-In-Reply-To: <CAGfGMDERE=08mjBuugHFB=Xui20ZYmfK59_6vhGEgfsPg3kWuQ@mail.gmail.com>
-From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Thu, 7 Dec 2023 11:07:51 +0000
-Message-ID: <CANPvuR=yAkLmmeY5smp_9HfgSnQoq25itpTX+4ZkSjShRfCn2A@mail.gmail.com>
-Subject: Re: [yocto] [RFC PATCH 0/1] lts mixin: kirkstone/nodejs proposal
-To: =?UTF-8?Q?Ant=C3=B3nio_Oliveira?= <antonio@amsobr.com>
+References: <25Sg.1701899393685537223.7B9d@lists.yoctoproject.org>
+In-Reply-To: <25Sg.1701899393685537223.7B9d@lists.yoctoproject.org>
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Thu, 7 Dec 2023 12:49:42 +0100
+Message-ID: <CAEt6NwrSzKxACap-sXnj=Bp8x6fWUBN7zikd_3jfYAUXkv+OzQ@mail.gmail.com>
+Subject: Re: [yocto] How to handle user network configuration on a OTA environment
+To: Renato Mendes <renato.mendes.pes@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000036aa66060be97b45"
+Content-Type: multipart/alternative; boundary="000000000000bca0eb060bea11e1"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 11:08:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61825
+ <yocto@lists.yoctoproject.org>; Thu, 07 Dec 2023 11:50:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61826
 
---00000000000036aa66060be97b45
+--000000000000bca0eb060bea11e1
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Ant=C3=B3nio Oliveira <antonio@amsobr.com> escreveu no dia ter=C3=A7a, 5/12=
-/2023 =C3=A0(s)
-18:26:
+Hi Renato,
 
-> On Tue, Dec 5, 2023 at 10:44=E2=80=AFAM Jose Quaresma <quaresma.jose@gmai=
-l.com>
-> wrote:
-> >
-> >
-> >
-> > Ant=C3=B3nio Oliveira <antonio@amsobr.com> escreveu no dia segunda,
-> 4/12/2023 =C3=A0(s) 18:31:
-> >>
-> >> Hi all,
-> >>
-> >> This patch contains my proposal for an mixin layer that adds nodejs v1=
-8
-> >> and v20 to kirkstone.
-> >>
-> >> Kirkstone ships with nodejs-16, whose maintenance window ended in
-> >> October 2023 (a).
-> >>
-> >> Kirkstone will be supported until April 2026 and it would be nice to
-> have
-> >> some level of support for a maintained version of nodejs during that
-> time
-> >> window.
-> >>
-> >> This proposal seeks to address that by adding nodejs-18 and nodejs-20,
-> >> which will be maintained until April 2025 and 2026, respectively.
-> >>
-> >> The recipes for nodejs-18 are taken from Mickledore and the recipes fo=
-r
-> >> nodejs-20 from master.
-> >>
-> >> The variable NODE_VERSION can be ser in local.conf to choose either v1=
-8
-> >> or v20 (the default).
-> >>
-> >> This is my first attempt at sending a patch upstream with git send-ema=
-il
-> >> so any comments or suggestions for improvement are welcome. That's als=
-o
-> >> the reason why I marked this as an RFC.
-> >
-> >
-> > Hi Antonio,
-> >
-> > If the patchset was made with more and smaller commits it would make th=
-e
-> review easier
-> > but it is perfect in my opinion with the context well explained.
-> > The git send-mail is much simpler than it seems.
-> > Thanks for your contributions.
->
-> I thought of that but couldn't really settle for something.
->
-> I guess I can break it down into smaller pieces, like:
-> * layer config, license, readme...
-> * nodejs-18
-> * nodejs-20
-> * setting the choice of node version in layer.conf.
->
-> Would that work?
->
+I would suggest to start with the tutorial we have exactly for this usecase
+here:
+https://hub.mender.io/t/how-to-configure-networking-using-systemd-in-yocto-=
+project/1097.
+Once you have it replicated and working, add and modify the bits and pieces
+that are specific to your requirements.
 
-It will be better in my opinion but not strictly necessary.
+Greetz,
+Josef
 
-Jose
+On Wed, Dec 6, 2023 at 10:49=E2=80=AFPM Renato Mendes <renato.mendes.pes@gm=
+ail.com>
+wrote:
 
-
+> Using a Raspberry Pi Zero W, I have build an image with the following
+> layers:
 >
-> I can break
-> >
-> > Jose
-> >
-> >>
-> >>
-> >> Cheers,
-> >> Ant=C3=B3nio
-> >>
-> >> Ant=C3=B3nio Oliveira (1):
-> >>   initial commit
-> >>
-> >> --
-> >> 2.34.1
-> >>
-> >>
-> >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >> Links: You receive all messages sent to this group.
-> >> View/Reply Online (#61791):
-> https://lists.yoctoproject.org/g/yocto/message/61791
-> >> Mute This Topic: https://lists.yoctoproject.org/mt/102976461/5052612
-> >> Group Owner: yocto+owner@lists.yoctoproject.org
-> >> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> quaresma.jose@gmail.com]
-> >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >>
-> >
-> >
-> > --
-> > Best regards,
-> >
-> > Jos=C3=A9 Quaresma
+> # POKY_BBLAYERS_CONF_VERSION is increased each time
+> build/conf/bblayers.conf
+> # changes incompatibly
+> POKY_BBLAYERS_CONF_VERSION =3D "2"
+>
+> BBPATH =3D "${TOPDIR}"
+> BBFILES ?=3D ""
+>
+> BBLAYERS ?=3D " \
+> /home/release_1/src/poky/meta \
+> /home/release_1/src/poky/meta-poky \
+> /home/release_1/src/poky/meta-yocto-bsp \
+> /home/release_1/src/meta-openembedded/meta-oe \
+> /home/release_1/src/meta-openembedded/meta-python \
+> /home/release_1/src/meta-openembedded/meta-multimedia \
+> /home/release_1/src/meta-openembedded/meta-networking \
+> /home/release_1/src/meta-raspberrypi \
+> /home/release_1/src/meta-mender/meta-mender-core \
+> /home/release_1/src/meta-mender/meta-mender-raspberrypi \
+> "
+>
+> I'm using Mender for OTA.
+>
+> The image is fine and runs Yocto Distro at my Raspi.
+>
+> As this is my first project using OTA, I'm now about to setup networking.
+> I've build a custom captive portal using Nodejs what will allow user to
+> choose the WiFi network.
+>
+> Here is the logic I need:
+> a) If there is network configuration stored (in a file, ie), device goes
+> to Access Point mode with fixed IP (ex: 192.168.0.1). Then the user will
+> connect, choose WiFi network and save it to a file
+>
+> b) If there is WiFi configuration, will connect automatically
+>
+> c) If user reset the device (a physical push button), the WiFi
+> configuration is erased and device goes back to (a) mode
+>
+> My questions are how to exactly handle the desired scenario. My doubts:
+>
+> a) How will the device knows on boot if there is a network configuration
+> file to load
+>
+> b) How can the device choose between AP ou WiFi mode based on the
+> existance of the given file
+>
+> c) How will this file behave on a OTA update (Mender.io says, must be
+> stored at /media/ directory to be preserved on updates)
+>
+> Thanks for helping... I've read several different articles for some days
+> and I'm very confused on where to start from...
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#61819):
+> https://lists.yoctoproject.org/g/yocto/message/61819
+> Mute This Topic: https://lists.yoctoproject.org/mt/103022968/4689568
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> jester@theyoctojester.info]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 >
 
-
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---00000000000036aa66060be97b45
+--000000000000bca0eb060bea11e1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">Ant=C3=B3nio Oliveira &lt;<a href=3D"=
-mailto:antonio@amsobr.com">antonio@amsobr.com</a>&gt; escreveu no dia ter=
-=C3=A7a, 5/12/2023 =C3=A0(s) 18:26:<br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">On Tue, Dec 5, 2023 at 10:44=E2=80=AFAM Jose Quaresma &=
-lt;<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quaresma.jo=
-se@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Ant=C3=B3nio Oliveira &lt;<a href=3D"mailto:antonio@amsobr.com" target=
-=3D"_blank">antonio@amsobr.com</a>&gt; escreveu no dia segunda, 4/12/2023 =
-=C3=A0(s) 18:31:<br>
-&gt;&gt;<br>
-&gt;&gt; Hi all,<br>
-&gt;&gt;<br>
-&gt;&gt; This patch contains my proposal for an mixin layer that adds nodej=
-s v18<br>
-&gt;&gt; and v20 to kirkstone.<br>
-&gt;&gt;<br>
-&gt;&gt; Kirkstone ships with nodejs-16, whose maintenance window ended in<=
-br>
-&gt;&gt; October 2023 (a).<br>
-&gt;&gt;<br>
-&gt;&gt; Kirkstone will be supported until April 2026 and it would be nice =
-to have<br>
-&gt;&gt; some level of support for a maintained version of nodejs during th=
-at time<br>
-&gt;&gt; window.<br>
-&gt;&gt;<br>
-&gt;&gt; This proposal seeks to address that by adding nodejs-18 and nodejs=
--20,<br>
-&gt;&gt; which will be maintained until April 2025 and 2026, respectively.<=
-br>
-&gt;&gt;<br>
-&gt;&gt; The recipes for nodejs-18 are taken from Mickledore and the recipe=
-s for<br>
-&gt;&gt; nodejs-20 from master.<br>
-&gt;&gt;<br>
-&gt;&gt; The variable NODE_VERSION can be ser in local.conf to choose eithe=
-r v18<br>
-&gt;&gt; or v20 (the default).<br>
-&gt;&gt;<br>
-&gt;&gt; This is my first attempt at sending a patch upstream with git send=
--email<br>
-&gt;&gt; so any comments or suggestions for improvement are welcome. That&#=
-39;s also<br>
-&gt;&gt; the reason why I marked this as an RFC.<br>
-&gt;<br>
-&gt;<br>
-&gt; Hi Antonio,<br>
-&gt;<br>
-&gt; If the patchset was made with more and smaller commits it would make t=
-he review easier<br>
-&gt; but it is perfect in my opinion with the context well explained.<br>
-&gt; The git send-mail is much simpler than it seems.<br>
-&gt; Thanks for your contributions.<br>
+<div dir=3D"ltr">Hi Renato,<div><br></div><div>I would suggest to start wit=
+h the tutorial we have exactly for this usecase here:=C2=A0<a href=3D"https=
+://hub.mender.io/t/how-to-configure-networking-using-systemd-in-yocto-proje=
+ct/1097">https://hub.mender.io/t/how-to-configure-networking-using-systemd-=
+in-yocto-project/1097</a>. Once you have it replicated and working, add and=
+ modify the bits and pieces that are specific to your requirements.</div><d=
+iv><br></div><div>Greetz,</div><div>Josef</div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 6, 2023 at 10:49=
+=E2=80=AFPM Renato Mendes &lt;<a href=3D"mailto:renato.mendes.pes@gmail.com=
+">renato.mendes.pes@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">Using a Raspberry Pi Zero W, I have build an i=
+mage with the following layers:<br><br>
+<div style=3D"color:rgb(204,204,204);background-color:rgb(31,31,31);font-fa=
+mily:Menlo,Monaco,&quot;Courier New&quot;,monospace;font-size:12px;line-hei=
+ght:18px;white-space:pre-wrap">
+<div><span style=3D"color:rgb(106,153,85)"># POKY_BBLAYERS_CONF_VERSION is =
+increased each time build/conf/bblayers.conf</span></div>
+<div><span style=3D"color:rgb(106,153,85)"># changes incompatibly</span></d=
+iv>
+<div>POKY_BBLAYERS_CONF_VERSION =3D <span style=3D"color:rgb(206,145,120)">=
+&quot;2&quot;</span></div>
 <br>
-I thought of that but couldn&#39;t really settle for something.<br>
+<div>BBPATH =3D <span style=3D"color:rgb(206,145,120)">&quot;${TOPDIR}&quot=
+;</span></div>
+<div>BBFILES ?=3D <span style=3D"color:rgb(206,145,120)">&quot;&quot;</span=
+></div>
 <br>
-I guess I can break it down into smaller pieces, like:<br>
-* layer config, license, readme...<br>
-* nodejs-18<br>
-* nodejs-20<br>
-* setting the choice of node version in layer.conf.<br>
-<br>
-Would that work?<br></blockquote><div><br>It will be better in my opinion b=
-ut not strictly necessary.<br><br>Jose=C2=A0<br>=C2=A0</div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex">
-<br>
-I can break<br>
-&gt;<br>
-&gt; Jose<br>
-&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Cheers,<br>
-&gt;&gt; Ant=C3=B3nio<br>
-&gt;&gt;<br>
-&gt;&gt; Ant=C3=B3nio Oliveira (1):<br>
-&gt;&gt;=C2=A0 =C2=A0initial commit<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; 2.34.1<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;&gt; Links: You receive all messages sent to this group.<br>
-&gt;&gt; View/Reply Online (#61791): <a href=3D"https://lists.yoctoproject.=
-org/g/yocto/message/61791" rel=3D"noreferrer" target=3D"_blank">https://lis=
-ts.yoctoproject.org/g/yocto/message/61791</a><br>
-&gt;&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/1029=
-76461/5052612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproj=
-ect.org/mt/102976461/5052612</a><br>
-&gt;&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.or=
-g" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt;&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/uns=
-ub" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/y=
-octo/unsub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank=
-">quaresma.jose@gmail.com</a>]<br>
-&gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; Best regards,<br>
-&gt;<br>
-&gt; Jos=C3=A9 Quaresma<br>
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
+<div>BBLAYERS ?=3D <span style=3D"color:rgb(206,145,120)">&quot; \</span></=
 div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/poky/meta =
+\</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/poky/meta-=
+poky \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/poky/meta-=
+yocto-bsp \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
+mbedded/meta-oe \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
+mbedded/meta-python \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
+mbedded/meta-multimedia \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-opene=
+mbedded/meta-networking \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-raspb=
+errypi \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-mende=
+r/meta-mender-core \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> /home/release_1/src/meta-mende=
+r/meta-mender-raspberrypi \</span></div>
+<div><span style=3D"color:rgb(206,145,120)"> &quot;</span></div>
+</div>
+<br>I&#39;m using Mender for OTA.<br><br>The image is fine and runs Yocto D=
+istro at my Raspi.<br><br>As this is my first project using OTA, I&#39;m no=
+w about to setup networking. I&#39;ve build a custom captive portal using N=
+odejs what will allow user to choose the WiFi network.<br><br>Here is the l=
+ogic I need:<br>a) If there is network configuration stored (in a file, ie)=
+, device goes to Access Point mode with fixed IP (ex: 192.168.0.1). Then th=
+e user will connect, choose WiFi network and save it to a file<br><br>b) If=
+ there is WiFi configuration, will connect automatically<br><br>c) If user =
+reset the device (a physical push button), the WiFi configuration is erased=
+ and device goes back to (a) mode<br><br>My questions are how to exactly ha=
+ndle the desired scenario. My doubts:<br><br>a) How will the device knows o=
+n boot if there is a network configuration file to load<br><br>b) How can t=
+he device choose between AP ou WiFi mode based on the existance of the give=
+n file=C2=A0<br><br>c) How will this file behave on a OTA update (Mender.io=
+ says, must be stored at /media/ directory to be preserved on updates)<br><=
+br>Thanks for helping... I&#39;ve read several different articles for some =
+days and I&#39;m very confused on where to start from...<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+You automatically follow any topics you start or reply to.<br>
+View/Reply Online (#61819): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/61819" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/61819</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/103022968/468=
+9568" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/103022968/4689568</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">je=
+ster@theyoctojester.info</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
---00000000000036aa66060be97b45--
+--000000000000bca0eb060bea11e1--
 
