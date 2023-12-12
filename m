@@ -1,104 +1,161 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <mattwood2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7EAEC4332F
-	for <webhook@archiver.kernel.org>; Tue, 12 Dec 2023 19:09:25 +0000 (UTC)
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
- by mx.groups.io with SMTP id smtpd.web10.4963.1702408157348129894
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 09681C4332F
+	for <webhook@archiver.kernel.org>; Tue, 12 Dec 2023 20:09:26 +0000 (UTC)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+ by mx.groups.io with SMTP id smtpd.web11.6414.1702411758024632485
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 Dec 2023 11:09:17 -0800
+ Tue, 12 Dec 2023 12:09:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=mfk48vkf;
- spf=pass (domain: gmail.com, ip: 209.85.167.182, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3ba00fe4e98so2453029b6e.2
-        for <yocto@lists.yoctoproject.org>; Tue, 12 Dec 2023 11:09:17 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Yl5oNqf9;
+ spf=pass (domain: gmail.com, ip: 209.85.128.176, mailfrom: mattwood2000@gmail.com)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5d747dbf81eso53641727b3.1
+        for <yocto@lists.yoctoproject.org>; Tue, 12 Dec 2023 12:09:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702408156; x=1703012956; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A7ClHiyN+G0ZcwcvKBWi3xTNSJT3il8hNS5HJ+IK0wc=;
-        b=mfk48vkfkq/Tl3U16a+CPRGZy6FdZDpSNIav8NXw3hVaqZEwUT+stD15O3ALxB1tIA
-         MtTIa4abMf5PTwtCUN9s4jTrTKcRA3xxmsztUi0u82X2GIkBaJYEfWq87NiHR1PxJrx5
-         sMAcZaCQTCiujr3IZMszOjrnYG+HV3aU4ZNXKmEhdHYEGh8sK2R1IXPUrWL2EURfbDRy
-         fVcqhB//XdDkl3DZTD5rJkQIDEFvcU/lOydKouXKHOQy8eTpSac5SAUKDDfK9iUMDiw6
-         PY/O5IBPZ+5tpCTZ5cI47iWc2EXRtRV2SEZ19lrcdsRS2xZGMfWS8xqW1Pp30eIf+5+c
-         kZNw==
+        d=gmail.com; s=20230601; t=1702411757; x=1703016557; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=I1+gnmMilS9VT/OmagglLCZePT8m2WbnzwoF1Ippfaw=;
+        b=Yl5oNqf9/FRa5XlvM35D5Uu//1SSwmHg1mmOqlO5zo0svggig72dtqDCxwvu/5XSUp
+         1oWvN0mOk2SNb2WMdt3La82/PPDrGwduFnTRfiaLAUnpgYbwpD3OCERYmrnUWdXr1UJE
+         aE0Vy+3/Xle5IbO8AlBauuQcFHzIUCKMd6TKpjD0hMrQ8JuMY8E4vcanuUtr5FpB4KZ5
+         0vVLfRBVziB6isvwcNGZ5hRpirc6DDuiM2u3t9Ar//ZHbRjNZDaIWeiZcLFJHZfuvEhU
+         m7rONoQ+kyW0T1A8YzsNcFGhk7yFdmth16Pfi12ZF56zxusYqEo1P0T3y6yc6Ik4Ch64
+         GODw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702408156; x=1703012956;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A7ClHiyN+G0ZcwcvKBWi3xTNSJT3il8hNS5HJ+IK0wc=;
-        b=WTu4vzNv9cc9v5k3qAg0E1EonhRsKJq+g+B5t0hJvELO6Eq0np73B0Sl52/X4Rngvg
-         1xy4wH+Xkxy6FxTiMbh7FnH4JYFnHNc2vdQsf8RlblDJgVvTRtmACr/OgPDd1oQ/ZrKf
-         Njj58kb1qoUUrEkTUujRra7+5UcZy1ky7VxOA1tH/uvedHWyEqLA25/2YB3VWQaTEv26
-         PzMWuNCuhqPBiqO4/fsiMSFfXP5Oezh0/poCGz9Xx3YHEeMv1Xk/Kq/0Fs+ejqcO8DZa
-         KYOmmQ7OkqbU4ZcgXdoDisWB8iA+PSBAtmiPxsZ0NqjzZAebh2cF+E4DBJvww587P9D/
-         s+SA==
-X-Gm-Message-State: AOJu0YwE3qd5NQSPZ0JT7SEh0ynNuzS3PqqZ6gLD72gfH210JiftqQXc
-	BtPZbqtjabTLV6+Rp3AnY8ziRctXajufSWBgeJM=
-X-Google-Smtp-Source: AGHT+IE4Egl/LBgzcZXqPiqJYGeHpfx5pxp64USLqQw0fsMB47342qM777Un6drKBtRvx0MUQnSNhkheYTi2E6J6uNE=
-X-Received: by 2002:a05:6870:d625:b0:1fb:75b:1321 with SMTP id
- a37-20020a056870d62500b001fb075b1321mr8433750oaq.115.1702408156521; Tue, 12
- Dec 2023 11:09:16 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702411757; x=1703016557;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I1+gnmMilS9VT/OmagglLCZePT8m2WbnzwoF1Ippfaw=;
+        b=i3uICz9kU1ABLx61oFM1Sn920VdbsAY7BD4bbqRMNo4lh0DvAmBxJ6oNbfZ6xDYEbE
+         hnZdjzGhytR9dNhhU42zZWUn5hnXRfhtygtULh3yOMb6YEk8m+uR4+BVSW+AGpOOUUN1
+         PYp6iQ/iXozQHNC9YgJnAx8N4jc63B+Ole27j5HjqpS2uk1m++LnoJEwd3ZIjTrjnsbh
+         EWZAIKKevrf9ZPR0fZsgdHpQx/6xrsW658XqrBcVIk687FmQWKWJBK7zN0VXd2RbXTJ/
+         HV8OmL3IV+MvTqesahchOZa4q4j7Fu8hFj3Vq1LqjqyPQijIwnC2yihCpC0HAT+cy4j2
+         EkTg==
+X-Gm-Message-State: AOJu0YwZXYbYKMdaD9HVSGDpESnCcjieDoaFgvrLmlEe55FG5gT58zVw
+	PhCUq1kzSKxxDg1Af4DgPHZ1PwysJ8rAdQF0W/tY+MVLbyg=
+X-Google-Smtp-Source: AGHT+IFhMRn5XXG5XheTt+zOemGHPyFzXheAUKM/oEQV3Xp8jD8zsBRf7dq88zg6qAg7ETQtPN4r3UzU/IPyHj34224=
+X-Received: by 2002:a0d:dd13:0:b0:5e2:2668:6b4 with SMTP id
+ g19-20020a0ddd13000000b005e2266806b4mr912620ywe.6.1702411756970; Tue, 12 Dec
+ 2023 12:09:16 -0800 (PST)
 MIME-Version: 1.0
-References: <CAMKF1soGMfurWU73f7SVRQ_owbNBepor_z+WbMSJ7ThXhC-3UA@mail.gmail.com>
- <16371.1702407088705855227@lists.yoctoproject.org>
-In-Reply-To: <16371.1702407088705855227@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 12 Dec 2023 11:08:50 -0800
-Message-ID: <CAMKF1spShJcZGzvgtapnhMHknKBCmypqmZ4k+U4XrdTw6t7=7A@mail.gmail.com>
-Subject: Re: [yocto] do_rootfs failed
-To: daniele.lugli@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: mattwood2000@gmail.com
+Date: Tue, 12 Dec 2023 15:09:05 -0500
+Message-ID: <CADjezmYaoTXwjHvx_g_T8zsaUg6DQPJ-WTemVeqQb1pm6fmqew@mail.gmail.com>
+Subject: multiconfig with initramfs issues
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000092bc7060c55a09e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Dec 2023 19:09:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61866
+ <yocto@lists.yoctoproject.org>; Tue, 12 Dec 2023 20:09:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61867
 
-On Tue, Dec 12, 2023 at 10:51=E2=80=AFAM <daniele.lugli@gmail.com> wrote:
->
-> Thank you Khem for your reply.
->
-> From meta-poky/conf/distro/poky.conf:
-> DISTRO =3D "poky"
-> DISTRO_NAME =3D "Poky (Yocto Project Reference Distro)"
-> DISTRO_VERSION =3D "4.3+snapshot-${METADATA_REVISION}"
-> DISTRO_CODENAME =3D "nanbield"
->
-> From bitbake:
-> Build Configuration:
-> BB_VERSION           =3D "2.6.1"
-> BUILD_SYS            =3D "x86_64-linux"
-> NATIVELSBSTRING      =3D "universal"
-> TARGET_SYS           =3D "x86_64-poky-linux"
-> MACHINE              =3D "genericx86-64"
-> DISTRO               =3D "poky"
-> DISTRO_VERSION       =3D "4.3+snapshot-4bb222e0d71a4cb159b8a4f1a90b65b1af=
-32ac10"
-> TUNE_FEATURES        =3D "m64 core2"
-> TARGET_FPU           =3D ""
-> meta
-> meta-poky
-> meta-yocto-bsp       =3D "master:4bb222e0d71a4cb159b8a4f1a90b65b1af32ac10=
-"
-> meta-oe              =3D "master:5ad7203f68987461baaf2699378d0cf36c11d6c2=
-"
-> meta-intel           =3D "master:5cfefd9a8ff1f5a3534c1ba9d7d7f6971ed5d56f=
-"
-> meta-realtime        =3D "master:489e1d6b34e46f845a4bfe6461a39c6a4bcb7794=
-"
->
-> Working on Ubuntu 22.04.3 in VirtualBox
+--000000000000092bc7060c55a09e
+Content-Type: text/plain; charset="UTF-8"
 
-this seems all good to me, I think somewhere dependency on
-qemuwrapper-cross is being lost in your image recipe perhaps.
-Add it with append and see if it helps. something like DEPENDS:append
-=3D " qemuwrapper-cross" in core-image-rt-extended.bb
-and see if that helps.
+Hi,
+
+I'm trying to get a multiconfig setup working with initramfs.  The docs
+imply I can have a main image with glibc and initramfs image with musl.
+The main image inherits DISTRO_FEATURES policy from local.conf and the
+initramfs image inherits different DISTRO_FEATURES from the multconfig
+.conf file.
+
+I tried this with a single multiconfig file per the docs (initramfs.conf),
+setting TCLIBC and choosing the init manager to be sysvinit, dev manager as
+udev, DISTRO_FEATURES_BACKFILL_CONSIDERED=" system", etc.
+
+Meanwhile, for the main image in local.conf, I set mostly the opposite with
+systemd as the init manager and DISTROFEATURES_BACKFILL_CONSIDERED="
+sysvinit", etc.
+
+I have a custom initramfs image recipe that really just sets debug-tweaks
+and uses PACKAGE_INSTALL to include only packagegroup-core-boot items.
+
+When I kick off the build with bitbake mc:initramfs:initramfs-image, it
+appears the DISTRO_FEATURES in local.conf seem to override those in my
+initramfs.conf file.  I get a warning about musl and systemd, so something
+is pulling in systemd to my initramfs build.
+
+Now, if I make a second multiconfig for the main image and move the
+DISTRO_FEATURES and init manager stuff to main.conf, I no longer see the
+warning.
+
+So why are the local.conf settings overriding the mulitconfig settings and
+why does this seem to disagree with the docs?
+
+Second issue is that according to the docs setting the INITRAMFS_IMAGE
+variable "in the recipe that builds the kernel" will cause a mulitconfig
+dependency to automatically build the initramfs image.
+
+I have the following set in local.conf:
+INITRAMFS_IMAGE_BUNDLE = "1"
+INITRAMFS_MULTICONFIG = "initramfs"
+INITRAMFS_DEPLOY_DIR_IMAGE =
+"${TOPDIR}/tmp-initramfs/deploy/images/${MACHINE}"
+
+and in my kernel .bbappend I have:
+INITRAMFS_IMAGE = "initramfs-image"
+
+But, I get an error after issuing bitbake mc:main:base-image that
+do_bundle_initramfs could not find the cpio archive in tmp-initramfs/...
+
+Looking in the tmp-initramfs deploy and work directories, the
+initramfs-image is not being built at all.
+
+Any idea why its not being pulled in as a dependency?
+
+Does anyone have an example meta layer with multiconfig that builds an
+initramfs and main image?
+
+Thanks, Matt.
+
+--000000000000092bc7060c55a09e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;m trying to get a =
+multiconfig setup working with initramfs.=C2=A0 The docs imply I can have a=
+ main image with glibc and initramfs image with musl.=C2=A0 The main image =
+inherits DISTRO_FEATURES policy from local.conf and the initramfs image inh=
+erits different DISTRO_FEATURES from the multconfig .conf file.</div><div><=
+br></div><div>I tried this with a single multiconfig file per the docs (ini=
+tramfs.conf), setting TCLIBC and choosing the init manager to be sysvinit, =
+dev manager as udev, DISTRO_FEATURES_BACKFILL_CONSIDERED=3D&quot; system&qu=
+ot;, etc. <br></div><div><br></div><div>Meanwhile, for the main image in lo=
+cal.conf, I set mostly the opposite with systemd as the init manager and DI=
+STROFEATURES_BACKFILL_CONSIDERED=3D&quot; sysvinit&quot;, etc.<br></div><di=
+v><br></div><div>I have a custom initramfs image recipe that really just se=
+ts debug-tweaks and uses PACKAGE_INSTALL to include only packagegroup-core-=
+boot items.</div><div><br></div>When I kick off the build with bitbake mc:i=
+nitramfs:initramfs-image, it appears the DISTRO_FEATURES in local.conf seem=
+ to override those in my initramfs.conf file.=C2=A0 I get a warning about m=
+usl and systemd, so something is pulling in systemd to my initramfs build.<=
+div><br></div><div>Now, if I make a second multiconfig for the main image a=
+nd move the DISTRO_FEATURES and init manager stuff to main.conf, I no longe=
+r see the warning.</div><div><br></div><div>So why are the local.conf setti=
+ngs overriding the mulitconfig settings and why does this seem to disagree =
+with the docs?<br></div><div><br></div><div>Second issue is that according =
+to the docs setting the INITRAMFS_IMAGE variable &quot;in the recipe that b=
+uilds the kernel&quot; will cause a mulitconfig dependency to automatically=
+ build the initramfs image.<br></div><div><br></div><div><div>I have the fo=
+llowing set in local.conf:<br></div><div>INITRAMFS_IMAGE_BUNDLE =3D &quot;1=
+&quot;<br>INITRAMFS_MULTICONFIG =3D &quot;initramfs&quot;<br>INITRAMFS_DEPL=
+OY_DIR_IMAGE =3D &quot;${TOPDIR}/tmp-initramfs/deploy/images/${MACHINE}&quo=
+t;</div><div><br></div><div>and in my kernel .bbappend I have:</div><div>IN=
+ITRAMFS_IMAGE =3D &quot;initramfs-image&quot;</div><div><br></div><div>But,=
+ I get an error after issuing bitbake mc:main:base-image that do_bundle_ini=
+tramfs could not find the cpio archive in tmp-initramfs/...</div><div><br><=
+/div><div>Looking in the tmp-initramfs deploy and work directories, the ini=
+tramfs-image is not being built at all.<br></div><div><br></div><div>Any id=
+ea why its not being pulled in as a dependency?</div><div><br></div><div>Do=
+es anyone have an example meta layer with multiconfig that builds an initra=
+mfs and main image?</div><div><br></div><div>Thanks, Matt.<br></div><div><b=
+r></div><div><br></div></div></div>
+
+--000000000000092bc7060c55a09e--
 
