@@ -1,122 +1,112 @@
-Return-Path: <ron.eggler@mistywest.com>
+Return-Path: <daniele.lugli@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62D70C4332F
-	for <webhook@archiver.kernel.org>; Wed, 13 Dec 2023 06:21:19 +0000 (UTC)
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
- by mx.groups.io with SMTP id smtpd.web10.30587.1702448470651836771
- for <yocto@lists.yoctoproject.org>;
- Tue, 12 Dec 2023 22:21:10 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistywest-com.20230601.gappssmtp.com header.s=20230601 header.b=Aogp7y37;
- spf=pass (domain: mistywest.com, ip: 209.85.210.179, mailfrom: ron.eggler@mistywest.com)
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6cecb004339so3603234b3a.3
-        for <yocto@lists.yoctoproject.org>; Tue, 12 Dec 2023 22:21:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistywest-com.20230601.gappssmtp.com; s=20230601; t=1702448470; x=1703053270; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=iglhtqqi1+N+gGsAvIM9QNTZ1IR/sSy+BPEbtUU5SaQ=;
-        b=Aogp7y37c68skFb+O7xyaB0w/g7KtPMQ1bxUZrYu7ChfqXouwjqVzaLA93MXB47xQZ
-         6/YfiVAhv637LIcMrOk3Gxvznx8T6wH3u8f5G93E3Fkqo6/AmWEqCT7qFEjsk0Jg3G0F
-         A25k7K93ijWMdPm4H9GtAyrX5jIkPAEqCjDHXnd+VGUtRUvH8t/LVSNLUP0V4XVO31Br
-         3e/bsPwODWpqr6PkEqbmRyvb+EAJCPODbeJ3U1EcFFvjJ627/igR8qVx30elnsaxCoGb
-         5hiSgLXq/teVd9dSDD8XpJBbas4EU3XSiUK2vqJ3jhFguakNT/7xpaC70ZAcYMUUsByo
-         2RKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702448470; x=1703053270;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iglhtqqi1+N+gGsAvIM9QNTZ1IR/sSy+BPEbtUU5SaQ=;
-        b=G095WWdqXMaWb/5iWf7RZUXPkdXg9//WHYOqjL5CwNcsz4k0CbOARNiuPYZPJ5dHrH
-         zd5IumMZZqFMkfa0zyRN0/choOG1QfPANtnlv67vbipW8qiu8DVYyCiPEIsHjDputKWt
-         ZOHZGKoKtudQstJWPS46DWWzQOXYmSbEuYDozoXHRVS2eop4jzEwcFfw/eB1WC4fPDRm
-         /oneN9BxxJt/e6KXkqhWQKxyzrFjWLxDfK34oVOLrgE5Q1egclJROHPaPh/398du3Aki
-         BkthtpC03AGxWePk/uYnWM94n+Rrdj6BElNew7qqRHO2nQ/y8T/QoXz7nLqW/PJ3Z7Sq
-         RLOg==
-X-Gm-Message-State: AOJu0YxXKmNycaQYYr+5xwyixC/2TDTclRoiTz82hasGHHAREhBL1Nuy
-	SjSC5f8s27tSIt3t0SEB8fsyng==
-X-Google-Smtp-Source: AGHT+IGCtpcsLWOtWUuQB93LME8YnwoQ0aoctAqhMBa84hGNzk4/zA8z58HPyffM5BO3ZntwqDTTjg==
-X-Received: by 2002:a05:6a20:1604:b0:18f:ef2e:807d with SMTP id l4-20020a056a20160400b0018fef2e807dmr4438345pzj.92.1702448469778;
-        Tue, 12 Dec 2023 22:21:09 -0800 (PST)
-Received: from [192.168.98.7] ([184.68.30.58])
-        by smtp.gmail.com with ESMTPSA id q5-20020a170902bd8500b001c9d011581dsm9635891pls.164.2023.12.12.22.21.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 22:21:09 -0800 (PST)
-Message-ID: <b68d8c1b-f52f-4326-92ad-56b703e527fd@mistywest.com>
-Date: Tue, 12 Dec 2023 22:21:08 -0800
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 137C8C4332F
+	for <webhook@archiver.kernel.org>; Wed, 13 Dec 2023 08:03:51 +0000 (UTC)
+Subject: Re: [yocto] do_rootfs failed
+To: daniele.lugli@gmail.com,yocto@lists.yoctoproject.org
+From: daniele.lugli@gmail.com
+X-Originating-Location: Marina di Ravenna, Emilia-Romagna, IT (176.246.31.108)
+X-Originating-Platform: Windows Opera 105
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] unable to resolve libtss2 dependency
-To: Tim Orling <ticotimo@gmail.com>, yocto@lists.yoctoproject.org
-References: <065ce852-27e3-4df2-b53c-d3a5ceb207ff@mistywest.com>
- <CANx9H-CwuY7=QXMA4reAKpZ00DzsOJxuCYXqDDpi+w9Lr_Tvnw@mail.gmail.com>
-Content-Language: en-US
-From: Ron Eggler <ron.eggler@mistywest.com>
-In-Reply-To: <CANx9H-CwuY7=QXMA4reAKpZ00DzsOJxuCYXqDDpi+w9Lr_Tvnw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Wed, 13 Dec 2023 00:03:45 -0800
+References: <10379.1702413544329430628@lists.yoctoproject.org>
+In-Reply-To: <10379.1702413544329430628@lists.yoctoproject.org>
+Message-ID: <16371.1702454625543134373@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="8vNJh81Q4E7PmWV68Fk9"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 13 Dec 2023 06:21:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61873
+ <yocto@lists.yoctoproject.org>; Wed, 13 Dec 2023 08:03:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61874
 
-Hi Tim,
-Excellent! Exactly what I was looking for!
-Thanks so much!
--- 
-mistyron
+--8vNJh81Q4E7PmWV68Fk9
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2023-12-12 19:42, Tim Orling wrote:
-> 
-> 
-> On Tue, Dec 12, 2023 at 5:32 PM Mistyron <ron.eggler@mistywest.com 
-> <mailto:ron.eggler@mistywest.com>> wrote:
-> 
->     Hi,
-> 
->     I need to add the meta-iotedge layer to my project:
->     https://github.com/Azure/meta-iotedge/tree/dunfell
->     <https://github.com/Azure/meta-iotedge/tree/dunfell> as I need the
->     aziot-edged package.
-> 
->     Upon adding the layer and resolving its dependency on meta-rust, it
->     needs:
->     libtss2
->     libtss2-mu
->     libtss2-tcti-device
-> 
-> 
-> https://git.yoctoproject.org/meta-security/tree/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.2.bb?h=dunfell <https://git.yoctoproject.org/meta-security/tree/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.2.bb?h=dunfell>
-> 
-> 
->     And I'm not sure how I can resolve these dependencies.  I can't seem to
->     find the sources for it but only packages for all different
->     distributions. Can someone help me out, here?
-> 
->     -- 
->     mistyron
-> 
-> 
->     -- 
->     Mistyron
-> 
->     -=-=-=-=-=-=-=-=-=-=-=-
->     Links: You receive all messages sent to this group.
->     View/Reply Online (#61871):
->     https://lists.yoctoproject.org/g/yocto/message/61871
->     <https://lists.yoctoproject.org/g/yocto/message/61871>
->     Mute This Topic: https://lists.yoctoproject.org/mt/103142467/924729
->     <https://lists.yoctoproject.org/mt/103142467/924729>
->     Group Owner: yocto+owner@lists.yoctoproject.org
->     <mailto:yocto%2Bowner@lists.yoctoproject.org>
->     Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
->     <https://lists.yoctoproject.org/g/yocto/unsub> [ticotimo@gmail.com
->     <mailto:ticotimo@gmail.com>]
->     -=-=-=-=-=-=-=-=-=-=-=-
-> 
+Not sure. I don't see the original error any more, but
+
+NOTE: No reply from server in 30s (for command ping at 02:08:20.176053)
+Timeout while waiting for a reply from the bitbake server (60s at 02:08:50.=
+440750)
+
+How can I know if this timeout happened before or after completion of the b=
+itbake command?
+
+Also, I see a lot of warning messages like these:
+
+WARNING: rt-app-1.0-r0 do_package: URL: git://github.com/gbagnoli/rt-app.gi=
+t uses git protocol which is no longer supported by github. Please change t=
+o ;protocol=3Dhttps in the url.
+WARNING: rt-app-1.0-r0 do_package: URL: git://github.com/gbagnoli/rt-app.gi=
+t does not set any branch parameter. The future default branch used by tool=
+s and repositories is uncertain and we will therefore soon require this is =
+set in all git urls.
+
+Are these important and how can they be cured?
+
+Thank you again
+
+--
+Daniele Lugli
+General Logic srl
+Viale Curreno, 41
+10133 Torino
+Italy
+tel +39 329 3933041
+www.general-logic.com ( http://www.general-logic.com/ )
+www.linkedin.com/in/daniele- lugli ( http://www.linkedin.com/in/daniele-lug=
+li )
+
+--8vNJh81Q4E7PmWV68Fk9
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Not sure. I don't see the original error any more, but<br /><br />
+<div><span style=3D"color: #ff0000;">NOTE: No reply from server in 30s (for=
+ command ping at 02:08:20.176053)</span></div>
+<div><span style=3D"color: #ff0000;">Timeout while waiting for a reply from=
+ the bitbake server (60s at 02:08:50.440750)</span><br /><br />How can I kn=
+ow if this timeout happened before or after completion of the bitbake comma=
+nd?<br /><br />Also, I see a lot of warning messages like these:<br /><br /=
+>
+<div><span style=3D"color: #ff0000;">WARNING: rt-app-1.0-r0 do_package: URL=
+: git://github.com/gbagnoli/rt-app.git uses git protocol which is no longer=
+ supported by github. Please change to ;protocol=3Dhttps in the url.</span>=
+</div>
+<div><span style=3D"color: #ff0000;">WARNING: rt-app-1.0-r0 do_package: URL=
+: git://github.com/gbagnoli/rt-app.git does not set any branch parameter. T=
+he future default branch used by tools and repositories is uncertain and we=
+ will therefore soon require this is set in all git urls.</span><br /><br /=
+>Are these important and how can they be cured?<br /><br />Thank you again<=
+/div>
+<div>&nbsp;</div>
+</div>
+<div>&nbsp;</div>
+-- <br />
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;">
+<div dir=3D"ltr">
+<div>Daniele Lugli</div>
+General Logic srl</div>
+<div>Viale Curreno, 41</div>
+<div>10133 Torino<br />Italy</div>
+<div>tel +39 329 3933041</div>
+</div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.general-lo=
+gic.com/" target=3D"_blank" rel=3D"noopener" data-saferedirecturl=3D"https:=
+//www.google.com/url?q=3Dhttp://www.general-logic.com&amp;source=3Dgmail&am=
+p;ust=3D1702484712598000&amp;usg=3DAOvVaw3caieBojp7RHbXjtN3Avtg">www.genera=
+l-logic.com</a></div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.linkedin.c=
+om/in/daniele-lugli" target=3D"_blank" rel=3D"noopener" data-saferedirectur=
+l=3D"https://www.google.com/url?q=3Dhttp://www.linkedin.com/in/daniele-lugl=
+i&amp;source=3Dgmail&amp;ust=3D1702484712598000&amp;usg=3DAOvVaw2CJ1YOxQZd7=
+TCndA_wq8ak">www.linkedin.com/in/daniele-<wbr />lugli</a></div>
+
+--8vNJh81Q4E7PmWV68Fk9--
 
