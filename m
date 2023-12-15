@@ -1,89 +1,91 @@
-Return-Path: <daniele.lugli@gmail.com>
+Return-Path: <ron.eggler@mistywest.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34879C4332F
-	for <webhook@archiver.kernel.org>; Thu, 14 Dec 2023 16:31:10 +0000 (UTC)
-Subject: Re: [yocto] do_rootfs failed
-To: daniele.lugli@gmail.com,yocto@lists.yoctoproject.org
-From: daniele.lugli@gmail.com
-X-Originating-Location: Marina di Ravenna, Emilia-Romagna, IT (176.246.31.108)
-X-Originating-Platform: Windows Opera 105
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8AE6C4332F
+	for <webhook@archiver.kernel.org>; Fri, 15 Dec 2023 00:26:13 +0000 (UTC)
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+ by mx.groups.io with SMTP id smtpd.web10.45816.1702599971593310334
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 14 Dec 2023 16:26:11 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@mistywest-com.20230601.gappssmtp.com header.s=20230601 header.b=tuAUfMTD;
+ spf=pass (domain: mistywest.com, ip: 209.85.166.175, mailfrom: ron.eggler@mistywest.com)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-35f418f394dso785045ab.0
+        for <yocto@lists.yoctoproject.org>; Thu, 14 Dec 2023 16:26:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistywest-com.20230601.gappssmtp.com; s=20230601; t=1702599970; x=1703204770; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:subject:from:content-language:to
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9QOzEZ6wCvWMhF9a6fU/iaDKcQ1IHwRD9md2fVEzNtg=;
+        b=tuAUfMTDLO8XTZHE1WAKnN1o/emvMukG5zIIZbdB4gQgqVLCR1yPxKX3wxJSIVENhf
+         ZvjaOpEZ4R070d/DT9T0cZh0lSKcXuvFNVUEK5O8EDk/kp/vPNFQT62yoGD0rjefqXTC
+         AaZwZtn8k+LzkJcPUItruwh6we5Kf5Yiuv0nkekc5exF/Jqpy+i6XSrpBrkfQUVcGSx6
+         nLrTYAlycKnTnRVuirx302SPx4BFBFmLN1mIbRsHpaGVM8zoGRiDmZ0peyQrT67m8dAm
+         GTV+6yhnybj1Ye08QklkWfwjtvz9CP8arRY6mqpYxdj1AEhElXYUYSf855vnzlvnqVwn
+         pVPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702599971; x=1703204771;
+        h=content-transfer-encoding:subject:from:content-language:to
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9QOzEZ6wCvWMhF9a6fU/iaDKcQ1IHwRD9md2fVEzNtg=;
+        b=rgE78c3g7yNL4RbNPCFYV8Xqe9mjyV3set/vPdrdbrC8LKHJpUlPTyrBylaMV15T9v
+         IjoaVtZZpj2FYCyU+lyrWrDNc04FCWFjs/OXu2MpN317QjEVRQZG7m4ysoCLxuI62Eaw
+         m6DOGijxgDyXzArTrObl0vukpkP7ULQ04PwaMiwCehxS2cQKWoE+knBPBTKg1WwQ4cC/
+         dKHqCS4EaS6wGNkAUKoMii5/EHDoF2sUzj4bmAxFc0K9n/PFvUnl0Iyu3oNzY/k4F26D
+         ch3obdu3IAs1F/K6VIeh7qYHHFKzpY7Jzjum4LUVNWNuDLY7YZK/22pB/aZtCCSXLVe2
+         1MyQ==
+X-Gm-Message-State: AOJu0YyXnNay74+5Lx8Y+T+OcxIPm8DgINDK3VBIW2hJxZCWf/L3lPBq
+	yMQxs2z74dmNmX5RKPuM2SbGqJ99WgQomUErRVH5Ew==
+X-Google-Smtp-Source: AGHT+IHQ4K8nziYgobeKNazjFH+NOr0BehZkwCheoAUGjupsHCbJ2LPbakaU+Uq1cBqHWSgwPQ6MVg==
+X-Received: by 2002:a05:6e02:219d:b0:35d:5203:38ee with SMTP id j29-20020a056e02219d00b0035d520338eemr17854853ila.5.1702599970659;
+        Thu, 14 Dec 2023 16:26:10 -0800 (PST)
+Received: from [192.168.100.190] ([209.52.149.8])
+        by smtp.gmail.com with ESMTPSA id e6-20020a654786000000b005bd2b3a03eesm10639183pgs.6.2023.12.14.16.26.10
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 16:26:10 -0800 (PST)
+Message-ID: <53e087bd-6afc-47b7-9810-5307ae91728d@mistywest.com>
+Date: Thu, 14 Dec 2023 16:26:09 -0800
 MIME-Version: 1.0
-Date: Thu, 14 Dec 2023 08:31:01 -0800
-References: <16371.1702494167654412785@lists.yoctoproject.org>
-In-Reply-To: <16371.1702494167654412785@lists.yoctoproject.org>
-Message-ID: <24207.1702571461436123132@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="J19KPQSd0mu9VZpSPHcU"
+User-Agent: Mozilla Thunderbird
+To: yocto@lists.yoctoproject.org
+Content-Language: en-US
+From: Ron Eggler <ron.eggler@mistywest.com>
+Subject: how to create symlink in dunfell after compilation of library file
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Dec 2023 16:31:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61891
+ <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 00:26:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61892
 
---J19KPQSd0mu9VZpSPHcU
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-$ time bitbake core-image-rt-extended
-...
-NOTE: Executing Tasks
-NOTE: Tasks Summary: Attempted 6713 tasks of which 6 didn't need to be reru=
-n and all succeeded.
-real 315m10.027s
+I'm working with dunfell and want to create a symlink after compilation 
+of the library:
 
-Success this time !=C2=A0 Thank you all !
+I added the following in aziot-keys_%.bbapend:
 
-Now looking for what to burn from build/tmp/deploy/images/genericx86-64/ ..=
-.
---
-Daniele Lugli
-General Logic srl
-Viale Curreno, 41
-10133 Torino
-Italy
-tel +39 329 3933041
-www.general-logic.com ( http://www.general-logic.com/ )
-www.linkedin.com/in/daniele- lugli ( http://www.linkedin.com/in/daniele-lug=
-li )
+do_install_append() {
+     install -d ${D}/usr/lib
+     lnr ${D}/usr/lib64/rust/libaziot_keys.so ${D}/usr/lib/libaziot_keys.so
+}
 
---J19KPQSd0mu9VZpSPHcU
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Yet, after building the image,
+I do not see the symlink in/usr/lib/
 
-<div><span style=3D"color: #008000;"><span style=3D"color: #000000;"><span =
-style=3D"color: #008000;"><span style=3D"color: #000000;">$ time bitbake co=
-re-image-rt-extended&nbsp;</span><br /></span></span>...<br /><span style=
-=3D"color: #008000;">NOTE: Executing Tasks</span></span></div>
-<div><span style=3D"color: #008000;">NOTE: Tasks Summary: Attempted 6713 ta=
-sks of which 6 didn't need to be rerun and all succeeded.</span></div>
-<div><span style=3D"color: #008000;">real<span style=3D"white-space: pre;">=
- </span>315m10.027s</span><br /><br />Success this time !&nbsp; Thank you a=
-ll !<br /><br />Now looking for what to burn from build/tmp/deploy/images/g=
-enericx86-64/ ...</div>
--- <br />
-<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
-nt-size: small;">
-<div dir=3D"ltr">
-<div>Daniele Lugli</div>
-General Logic srl</div>
-<div>Viale Curreno, 41</div>
-<div>10133 Torino<br />Italy</div>
-<div>tel +39 329 3933041</div>
-</div>
-<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
-nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.general-lo=
-gic.com/" target=3D"_blank" rel=3D"noopener" data-saferedirecturl=3D"https:=
-//www.google.com/url?q=3Dhttp://www.general-logic.com&amp;source=3Dgmail&am=
-p;ust=3D1702484712598000&amp;usg=3DAOvVaw3caieBojp7RHbXjtN3Avtg">www.genera=
-l-logic.com</a></div>
-<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
-nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.linkedin.c=
-om/in/daniele-lugli" target=3D"_blank" rel=3D"noopener" data-saferedirectur=
-l=3D"https://www.google.com/url?q=3Dhttp://www.linkedin.com/in/daniele-lugl=
-i&amp;source=3Dgmail&amp;ust=3D1702484712598000&amp;usg=3DAOvVaw2CJ1YOxQZd7=
-TCndA_wq8ak">www.linkedin.com/in/daniele-<wbr />lugli</a></div>
+I did find the recipe for which I created the bbappend with:
+oe-pkgdata-util find-path /usr/lib64/rust/libaziot_keys.so
 
---J19KPQSd0mu9VZpSPHcU--
+What is missing?
+
+Thank you,
+Ron
+
+-- 
+Mistyron
 
