@@ -1,144 +1,74 @@
-Return-Path: <me@lrossetti.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84E73C4167B
-	for <webhook@archiver.kernel.org>; Fri, 15 Dec 2023 19:32:36 +0000 (UTC)
-Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
- by mx.groups.io with SMTP id smtpd.web11.73461.1702668754927529772
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6958C4167B
+	for <webhook@archiver.kernel.org>; Fri, 15 Dec 2023 20:08:26 +0000 (UTC)
+Received: from a27-31.smtp-out.us-west-2.amazonses.com (a27-31.smtp-out.us-west-2.amazonses.com [54.240.27.31])
+ by mx.groups.io with SMTP id smtpd.web10.75806.1702670902725939914
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Dec 2023 11:32:35 -0800
+ Fri, 15 Dec 2023 12:08:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@lrossetti.com header.s=protonmail3 header.b=OEmEiVqS;
- spf=pass (domain: lrossetti.com, ip: 185.70.40.136, mailfrom: me@lrossetti.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lrossetti.com;
-	s=protonmail3; t=1702668751; x=1702927951;
-	bh=1Ulcu4eSaaE1ZJZ4XH580WESWyq2tbmvfjQrZYxlUZc=;
-	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=OEmEiVqSooH+73CD6FPW6fqUF+UICAWPadHA3aam1drsZmbl82gSByAjnGGjZvNCy
-	 lgwILAGC4Admo8rBTcSpM8Zp77+STzsgY1eSocAK6KPAzt7reaOZBP/w3USsH2zwH7
-	 ihQUXXYuhSBYPGifEDeavWOeo9Yr5TQzlbBS3myIMxPE4pIkJgtfNnwLE4yZcNCkX8
-	 yx99Qk8SowSoPXP7lAM46iSfnrb3Wacrs56MFnAum0wz2PM79ji0thNZ0d7RN87OcC
-	 7VPcRfxaHtuGFHMkaCN8o0n9jvfQ5AMdPSinrXaTps1a6tb7L+N19nnwNhz/qdeaL2
-	 pLS/3QUFBzbRw==
-Date: Fri, 15 Dec 2023 19:32:22 +0000
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: Leonardo Rossetti <me@lrossetti.com>
-Subject: Question about DISTRO_FEATURES, DISTRO_FEATURES_NATIVE and DISTRO_FEATURES_NATIVESDK
-Message-ID: <PJaCF_UbBDlb_8qYIdXMqJeMLNIFHdJE7E9cv-F5oV2R_tgxj-Jvf9lZ8Oq1GqB0LaXu8-vg0MRoHUblQi75MzM86s59K6Kx6gGGQweVUoY=@lrossetti.com>
-Feedback-ID: 29696065:user:proton
-MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="b1_qBvFRtc4XJ4lh9OmBfvHKw6yk0OmBr6dwEItPIDo"
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=YDRkvlAh;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=i3DDmOrO;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.31, mailfrom: 0101018c6f18210f-b2be4f67-b8b5-4e25-8065-8de14c821569-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1702670901; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=Xt9EAtXWNe9A7M8GvupZ8kJbSSkwoMTfgfdL72Awldc=;
+	b=YDRkvlAhbHmZsz769JJ8ZT2iGrsTpXeLCLf8rw0fiU0AYfDK3r0sUUIfdZfayYck
+	EArtGN28RoRvsto/fNu7gB4cDlVPXP+ELk7NZWzPj8A4MIb4jok9vrHFgXYjUmVqTzb
+	+qW80YbzfApv5xPBHfZc40RRV9Dzews3Ak8lcIrI=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1702670901;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=Xt9EAtXWNe9A7M8GvupZ8kJbSSkwoMTfgfdL72Awldc=;
+	b=i3DDmOrOfeerOCrEtHWvcFon70/kq55Epv9ZkYq9L1hjdilNReBueeTJlRJv77OE
+	wN/ROLwarl37KmztdHCEY4XHInLvhBa1D1SYHLoWq/dcq+dRWv5KZ9B10zpWQDrrnnc
+	f0KnB9k6n2KjiwQP5qXzFtsdaUgYoLzM9obUZ37Y=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.0.15.rc1)
+Message-ID: <0101018c6f18210f-b2be4f67-b8b5-4e25-8065-8de14c821569-000000@us-west-2.amazonses.com>
+Date: Fri, 15 Dec 2023 20:08:21 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.12.15-54.240.27.31
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 19:32:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61919
-
-This is a multi-part message in MIME format.
-
---b1_qBvFRtc4XJ4lh9OmBfvHKw6yk0OmBr6dwEItPIDo
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-
-SGVsbG8sCgpJIGFtIHRyeWluZyB0byBidWlsZCBhbiBpbWFnZSAoY29yZS1pbWFnZS1taW5pbWFs
-KSB3aXRoIG92ZXJsYXlmcyBlbmFibGVkLCBidXQgSSBnZXQgdGhlIGZvbGxvd2luZyBlcnJvciB3
-aGVuIEkgdHJ5IHRvIGRvIHNvOgoKYGBgCnF1aWx0LW5hdGl2ZSB3YXMgc2tpcHBlZDogbWlzc2lu
-ZyByZXF1aXJlZCBkaXN0cm8gZmVhdHVyZXMgJ292ZXJsYXlmcyBzeXN0ZW1kJyAobm90IGluIERJ
-U1RST19GRUFUVVJFUykKRVJST1I6IFJlcXVpcmVkIGJ1aWxkIHRhcmdldCAnY29yZS1pbWFnZS1t
-aW5pbWFsJyBoYXMgbm8gYnVpbGRhYmxlIHByb3ZpZGVycy4KTWlzc2luZyBvciB1bmJ1aWxkYWJs
-ZSBkZXBlbmRlbmN5IGNoYWluIHdhczogWydjb3JlLWltYWdlLW1pbmltYWwnLCAncXVpbHQtbmF0
-aXZlJ10KYGBgCgpJIGRvIGhhdmUgdGhvc2Ugc2V0IGluIG15IGxvY2FsLmNvbmY6CgpgYGAKRElT
-VFJPX0ZFQVRVUkVTOmFwcGVuZCA9ICIgb3ZlcmxheWZzIHN5c3RlbWQgdmlydHVhbGl6YXRpb24g
-dXNybWVyZ2UgYWNsIHhhdHRyIHBhbSJgYGAKVGFraW5nIGEgbG9vayBhdCB0aGUgcXVpbHQgcmVj
-aXBlLCBJIGZvdW5kIG91dCB0aGF0IGl0IGluaGVyaXRzIHRoZSBuYXRpdmUuYmJjbGFzcyBmcm9t
-IHRoZSBvcGVuLWVtYmVkZGVkLWNvcmUgbGF5ZXIuCgpTbyBJIG5vdGljZWQgdGhhdCBpbiBib3Ro
-IGZpbGVzLCAibmF0aXZlLmJiY2xhc3MiIGFuZCAibmF0aXZlc2RrLmJiY2xhc3MiLCB0aGVyZSBp
-cyB0aGUgdXNhZ2Ugb2YgYSBkaWZmZXJlbnQgRElTVFJPX0ZFQVRVUkVTIHZhcmlhYmxlOgoKYGAK
-RElTVFJPX0ZFQVRVUkVTX05BVElWRQpESVNUUk9fRkVBVFVSRVNfTkFUSVZFU0RLCmBgYApJIHRy
-aWVkIHRvIGFkZCAib3ZlcmxheWZzIHN5c3RlbWQiIGludG8gZWFjaCBpbiBteSBsb2NhbC5jb25m
-IGZpbGUgdG8gc2VlIGlmIEkgd291bGQgZ2V0IGEgZGlmZmVyZW50IHJlc3VsdCBhbmQgSSBnb3Qg
-YSBjaXJjdWxhciBkZXBlbmRlbmN5IGVycm9yIHRoaXMgdGltZSAodGFraW5nIGp1c3QgYSBzbGlj
-ZSBvZiB0aGUgb3V0cHV0KToKCmBgYApEZXBlbmRlbmN5IGxvb3AgIzIgZm91bmQ6ClRhc2sgL3Zh
-ci9ob21lL2xyb3NzZXR0L1dvcmsvY2VudG9zL3NpZ3MvYXV0b21vdGl2ZS95b2N0by9hdXRvc2Qt
-ZGlzdHJvL2J1aWxkLy4uL2xheWVycy9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL3N5c3RlbWQvc3lz
-dGVtZC1zeXN0ZW1jdGwtbmF0aXZlLmJiOmRvX2NvbXBpbGUgKGRlcGVuZGVudCBUYXNrcyBbJ3N5
-c3RlbWQtc3lzdGVtY3RsLW5hdGl2ZS5iYjpkb19jb25maWd1cmUnXSkKYGBgCgpBbnkgaW5zaWdo
-dHMgb24gd2hhdCBhbSBJIGRvaW5nIHdyb25nIGluIGhlcmU/IFNob3VsZCBJIGZpbGwgb3RoZXIg
-dmFyaWFibGVzIG9yIGluIGEgZGlmZmVyZW50IHdheT8gU2V0dGluZyB0aGUgc2FtZSBkaXN0cm8g
-ZmVhdHVyZXMgdmFsdWVzIGluIHRocmVlIGRpZmZlcmVudCB2YXJpYWJsZXMgZG9lcyBub3Qgc2Vl
-bSB0aGUgcmlnaHQgd2F5IHRvIGRvIGl0LgoKVGhhbmtzLg==
-
---b1_qBvFRtc4XJ4lh9OmBfvHKw6yk0OmBr6dwEItPIDo
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7Ij5IZWxsbyw8L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2Vy
-aWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTog
-QXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPkkgYW0gdHJ5aW5nIHRvIGJ1aWxk
-IGFuIGltYWdlIChjb3JlLWltYWdlLW1pbmltYWwpIHdpdGggb3ZlcmxheWZzIGVuYWJsZWQsIGJ1
-dCBJIGdldCB0aGUgZm9sbG93aW5nIGVycm9yIHdoZW4gSSB0cnkgdG8gZG8gc286PC9kaXY+PGRp
-diBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7
-Ij48YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBm
-b250LXNpemU6IDE0cHg7Ij5gYGA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWws
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxzcGFuPnF1aWx0LW5hdGl2ZSB3YXMgc2tp
-cHBlZDogbWlzc2luZyByZXF1aXJlZCBkaXN0cm8gZmVhdHVyZXMgJ292ZXJsYXlmcyBzeXN0ZW1k
-JyAobm90IGluIERJU1RST19GRUFUVVJFUyk8L3NwYW4+PGRpdj48c3Bhbj5FUlJPUjogUmVxdWly
-ZWQgYnVpbGQgdGFyZ2V0ICdjb3JlLWltYWdlLW1pbmltYWwnIGhhcyBubyBidWlsZGFibGUgcHJv
-dmlkZXJzLjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuPk1pc3Npbmcgb3IgdW5idWlsZGFibGUgZGVw
-ZW5kZW5jeSBjaGFpbiB3YXM6IFsnY29yZS1pbWFnZS1taW5pbWFsJywgJ3F1aWx0LW5hdGl2ZSdd
-PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4+PGk+YGBgPC9pPjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFu
-PjxpPjxicj48L2k+PC9zcGFuPjwvZGl2PjxkaXY+SSBkbyBoYXZlIHRob3NlIHNldCBpbiBteSBs
-b2NhbC5jb25mOjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+YGBgPC9kaXY+PGRpdj5ESVNUUk9f
-RkVBVFVSRVM6YXBwZW5kID0gIiBvdmVybGF5ZnMgc3lzdGVtZCB2aXJ0dWFsaXphdGlvbiB1c3Jt
-ZXJnZSBhY2wgeGF0dHIgcGFtIjxicj48L2Rpdj48c3Bhbj48L3NwYW4+YGBgPC9kaXY+PGRpdiBz
-dHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij5U
-YWtpbmcgYSBsb29rIGF0IHRoZSBxdWlsdCByZWNpcGUsIEkgZm91bmQgb3V0IHRoYXQgaXQgaW5o
-ZXJpdHMgdGhlIG5hdGl2ZS5iYmNsYXNzIGZyb20gdGhlIG9wZW4tZW1iZWRkZWQtY29yZSBsYXll
-ci48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQt
-c2l6ZTogMTRweDsiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPlNvIEkgbm90aWNlZCB0aGF0IGluIGJvdGggZmls
-ZXMsICJuYXRpdmUuYmJjbGFzcyIgYW5kICJuYXRpdmVzZGsuYmJjbGFzcyIsIHRoZXJlIGlzIHRo
-ZSB1c2FnZSBvZiBhIGRpZmZlcmVudCBESVNUUk9fRkVBVFVSRVMgdmFyaWFibGU6PC9kaXY+PGRp
-diBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7
-Ij48YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBm
-b250LXNpemU6IDE0cHg7Ij5gYCZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBB
-cmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PHNwYW4+RElTVFJPX0ZFQVRVUkVT
-X05BVElWRTwvc3Bhbj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxzcGFuPkRJU1RST19GRUFUVVJFU19OQVRJVkVTREs8
-L3NwYW4+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBm
-b250LXNpemU6IDE0cHg7Ij5gYGA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWws
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPkkgdHJpZWQgdG8gYWRkICJvdmVybGF5ZnMg
-c3lzdGVtZCIgaW50byBlYWNoIGluIG15IGxvY2FsLmNvbmYgZmlsZSB0byBzZWUgaWYgSSB3b3Vs
-ZCBnZXQgYSBkaWZmZXJlbnQgcmVzdWx0Jm5ic3A7IGFuZCBJIGdvdCBhIGNpcmN1bGFyIGRlcGVu
-ZGVuY3kgZXJyb3IgdGhpcyB0aW1lICh0YWtpbmcganVzdCBhIHNsaWNlIG9mIHRoZSBvdXRwdXQp
-OjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1z
-aXplOiAxNHB4OyI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+YGBgPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1p
-bHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48c3Bhbj5EZXBlbmRlbmN5
-IGxvb3AgIzIgZm91bmQ6PC9zcGFuPjxkaXY+PHNwYW4+Jm5ic3A7IFRhc2sgL3Zhci9ob21lL2xy
-b3NzZXR0L1dvcmsvY2VudG9zL3NpZ3MvYXV0b21vdGl2ZS95b2N0by9hdXRvc2QtZGlzdHJvL2J1
-aWxkLy4uL2xheWVycy9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL3N5c3RlbWQvc3lzdGVtZC1zeXN0
-ZW1jdGwtbmF0aXZlLmJiOmRvX2NvbXBpbGUgKGRlcGVuZGVudCBUYXNrcyBbJzxhIHRhcmdldD0i
-X2JsYW5rIiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cgbm9vcGVuZXIiIGhyZWY9Imh0dHA6Ly9z
-eXN0ZW1kLXN5c3RlbWN0bC1uYXRpdmUuYmIiPnN5c3RlbWQtc3lzdGVtY3RsLW5hdGl2ZS5iYjwv
-YT46ZG9fY29uZmlndXJlJ10pPC9zcGFuPjwvZGl2PjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFt
-aWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+YGBgPC9kaXY+PGRpdiBz
-dHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48
-YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250
-LXNpemU6IDE0cHg7Ij5BbnkgaW5zaWdodHMgb24gd2hhdCBhbSBJIGRvaW5nIHdyb25nIGluIGhl
-cmU/IFNob3VsZCBJIGZpbGwgb3RoZXIgdmFyaWFibGVzIG9yIGluIGEgZGlmZmVyZW50IHdheT8g
-U2V0dGluZyB0aGUgc2FtZSBkaXN0cm8gZmVhdHVyZXMgdmFsdWVzIGluIHRocmVlIGRpZmZlcmVu
-dCB2YXJpYWJsZXMgZG9lcyBub3Qgc2VlbSB0aGUgcmlnaHQgd2F5IHRvIGRvIGl0LjwvZGl2Pjxk
-aXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4
-OyI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOiAxNHB4OyI+VGhhbmtzLiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFt
-aWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PGJyPjwvZGl2Pg0K
+ <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 20:08:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61920
 
 
---b1_qBvFRtc4XJ4lh9OmBfvHKw6yk0OmBr6dwEItPIDo--
+A build flagged for QA (yocto-4.0.15.rc1) was completed on the autobuilder and is available at:
 
+
+    https://autobuilder.yocto.io/pub/releases/yocto-4.0.15.rc1
+
+
+Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6334
+
+Build hash information: 
+
+bitbake: 42a1c9fe698a03feb34c5bba223c6e6e0350925b
+meta-agl: adf081bab632c0fedfc064b50b953252c8f72be1
+meta-arm: b187fb9232ca0a6b5f8f90b4715958546fc41d73
+meta-aws: f438745ff0e8c4c6b07b4fa66a7bff7881bc0287
+meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+meta-intel: f932ebb2544170f43edd22739f44307809bf8cfb
+meta-mingw: f6b38ce3c90e1600d41c2ebb41e152936a0357d7
+meta-openembedded: 402affcc073db39f782c1ebfd718edd5f11eed4c
+meta-virtualization: 88327090d26955a678c6f8bd2585aad4d802f6c4
+oecore: eea685e1caafd8e8121006d3f8b5d0b8a4f2a933
+poky: 755632c2fcab43aa05cdcfa529727064b045073c
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
