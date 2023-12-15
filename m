@@ -1,133 +1,210 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <renato.mendes.pes@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10AF3C4167B
-	for <webhook@archiver.kernel.org>; Fri, 15 Dec 2023 21:30:37 +0000 (UTC)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
- by mx.groups.io with SMTP id smtpd.web10.78151.1702675830139690429
- for <yocto@lists.yoctoproject.org>;
- Fri, 15 Dec 2023 13:30:30 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=koyixJit;
- spf=softfail (domain: sakoman.com, ip: 209.85.208.52, mailfrom: steve@sakoman.com)
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-548ce39b101so1353613a12.2
-        for <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 13:30:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1702675828; x=1703280628; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jvze1KhIK4fxlMF0/AuIDeobsFG6o+nlw7mYnGj+KI4=;
-        b=koyixJitaWE/xRddWMFdJKkmbgXN7YH4t1DQsGvuZlSnpY/LfJaoPQkfi4JGTfwxsv
-         iTnd36v+rdH+TwT+aGoDQ8Dt71aIwe8n9rozZgr91lMSoZQ2DMgLmJS7TMfzNv29y5sj
-         gz2+XSY17jXxXovVZzYUsTd5uxUwoTwnanV7AnoiAKCQfWIbbe4h7YOgJrj4FJZHa+QX
-         2wppRPAsoWZd5HxkDhR7zIp2JHLunYBquLWB0rM+Ov1riIiGm231byCAYS1SQaJBAnlI
-         d/ydGQ2EjEfejIrxKCyK8iPOfxokqDPtt9QVss310AD6N/4ZosbIel/mZDKgnlfEQjy4
-         CVFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702675828; x=1703280628;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Jvze1KhIK4fxlMF0/AuIDeobsFG6o+nlw7mYnGj+KI4=;
-        b=GL7iLPuuuZgyjbo3dcuph8+9jfDoPtnEkPtOYd+sFkdGPdgTC/xL4lxXSeGLtuvd1D
-         q341UFrF5RiIEiqDKxWSY3nB0tvmMzesk9IKje5/J/L0AP8jlZ6wWoL8L5HrTIRf79Cz
-         Xu/mwIsdqN8aI5hCTLq0TnKBnnTEmuOjANo9O6+WG46Nl0DC997PjtYSWZPAYV6DljWY
-         jdZQiyBsWDxqo3WMXlGU/cXMf7zmStNZwx9E1dLMYMVbeNStJECWnb7bRSM2S+diKSRb
-         Fmr+7YxDHBNYHkwpCQjHiOt92F/SilYbs9JUkz6/OP6qWZTL3WmOPLDDFf9ldQn32H49
-         mVMg==
-X-Gm-Message-State: AOJu0YxuNdfwM4qPnZxYkqgX/pFMywlxAN//Fp7wQw7BrDa9EqZ/SEv1
-	ceaBFt/NZOGuGBeAXI75Ngb61y+GK5/zwiGKQeJRvw==
-X-Google-Smtp-Source: AGHT+IHdafJoNLWb/2qMkM5bCVJ+V5jneX/PmWbYO8YIZtROU6joKvDG1Ii0Yr7pmTf2OZcw6ztG0KiEwO+a5Cw0i6U=
-X-Received: by 2002:a17:907:d8b:b0:a19:9b79:8b3f with SMTP id
- go11-20020a1709070d8b00b00a199b798b3fmr5126256ejc.80.1702675828001; Fri, 15
- Dec 2023 13:30:28 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C058C4167B
+	for <webhook@archiver.kernel.org>; Fri, 15 Dec 2023 21:33:07 +0000 (UTC)
+Subject: Re: [yocto] Wireless interface (wlan) not shown on Raspberry Pi Zero W
+To: Khem Raj <raj.khem@gmail.com>,yocto@lists.yoctoproject.org
+From: "Renato Mendes" <renato.mendes.pes@gmail.com>
+X-Originating-Location: Petrópolis, Rio de Janeiro, BR (170.254.80.206)
+X-Originating-Platform: Mac Chrome 120
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <0101018c6f18210f-b2be4f67-b8b5-4e25-8065-8de14c821569-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018c6f18210f-b2be4f67-b8b5-4e25-8065-8de14c821569-000000@us-west-2.amazonses.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Fri, 15 Dec 2023 11:30:17 -1000
-Message-ID: <CAOSpxdY10dGZYdAeyiWqe_0RcE78JF+p3WsDW+k_133zxgzy+g@mail.gmail.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.0.15.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Fri, 15 Dec 2023 13:32:58 -0800
+References: <CAMKF1spSzo-CfFSW0ELCXOoiBeV=Zf7jmtJ=FM5Yr0n2qmgvVQ@mail.gmail.com>
+In-Reply-To: <CAMKF1spSzo-CfFSW0ELCXOoiBeV=Zf7jmtJ=FM5Yr0n2qmgvVQ@mail.gmail.com>
+Message-ID: <24207.1702675978544113217@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="KO5yK14KsryLAiwxF1Pf"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 21:30:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61921
+ <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 21:33:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61922
 
-This was an all green build with the exception of a known autobuilder
-intermittent issue in qemuarm-64-ptest:
+--KO5yK14KsryLAiwxF1Pf
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14933
+So Khem, that's what I've done:
 
-A subsequent retest of qemuarm-64-ptest passed:
+*Load from git and backport:*
 
-https://autobuilder.yoctoproject.org/typhoon/#/builders/82/builds/5860
+git clone -b kirkstone git://git.yoctoproject.org/poky ./src/poky
+git clone -b kirkstone git://git.openembedded.org/meta-openembedded ./src/m=
+eta-openembedded
 
-This issue is also present in master, and the test has recently been
-disabled there:
+git clone -b kirkstone git://git.yoctoproject.org/meta-raspberrypi ./src/me=
+ta-raspberrypi
+git checkout master
+git checkout kiskstone
+git cherry-pick master
+Auto-merging docs/extra-build-config.md
+Auto-merging recipes-bsp/bootfiles/rpi-cmdline.bb
+[kirkstone a900a5e] rpi-cmdline, rpi-u-boot-src: Support USB boot
+Author: Harunobu Kurokawa <harunobu.kurokawa.dn@renesas.com>
+Date: Fri May 5 14:49:51 2023 +0900
+Committer: quadfloor <quadfloor@yocto.quadfloor.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
 
-https://git.yoctoproject.org/poky/commit/?id=3Deea4746ef5aa4d3dc86745c3e6d9=
-13f97e03febc
+git config --global --edit
 
-I'll investigate whether this can be backported to kirkstone, but I
-think we are good to QA rc1 as this shouldn't be a blocking issue.
+After doing this, you may fix the identity used for this commit with:
 
-Steve
+git commit --amend --reset-author
 
-On Fri, Dec 15, 2023 at 10:08=E2=80=AFAM Pokybuild User
-<pokybuild@yoctoproject.org> wrote:
+4 files changed, 24 insertions(+), 3 deletions(-)
+
+*Configuration:*
+
+After that, rebuilt with the short configuration:
+
+MACHINE =3D "raspberrypi0-wifi"
+SERIAL_CONSOLE =3D ""
+DISABLE_RPI_BOOT_LOGO =3D "1"
+DISABLE_OVERSCAN =3D "1"
+DISABLE_SPLASH =3D "1"
+BOOT_DELAY =3D "0"
+GPU_MEM_256 =3D "128"
+GPU_MEM_512 =3D "196"
+GPU_MEM_1024 =3D "396"
+PACKAGE_CLASSES =3D "package_ipk"
+DISTRO_FEATURES:append =3D " wifi "
+IMAGE_INSTALL:append =3D " linux-firmware-bcm43430 wpa-supplicant"
+IMAGE_FSTYPES =3D "tar.bz2 ext4 rpi-sdimg"
+SDIMG_ROOTFS_TYPE =3D "ext4"
+
+$ cat bblayers.conf
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.con=
+f
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION =3D "2"
+
+BBPATH =3D "${TOPDIR}"
+BBFILES ?=3D ""
+
+BBLAYERS ?=3D " \
+/home/quadfloor/release_1/src/poky/meta \
+/home/quadfloor/release_1/src/poky/meta-poky \
+/home/quadfloor/release_1/src/poky/meta-yocto-bsp \
+/home/quadfloor/release_1/src/meta-openembedded/meta-oe \
+/home/quadfloor/release_1/src/meta-openembedded/meta-python \
+/home/quadfloor/release_1/src/meta-openembedded/meta-multimedia \
+/home/quadfloor/release_1/src/meta-openembedded/meta-networking \
+/home/quadfloor/release_1/src/meta-raspberrypi \
+"
+
+*Result:
+* $ ifcofing -a -> Only lo interface, no wlan
+
+$ dmesg | grep brcmfmac shows nothing....
+$ dmesg | grep wlan shows nothing....
+
+$ lsmod
+Module=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Size=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0Used=C2=A0 by
+nfsd=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A045=
+4656=C2=A0 =C2=A0 11
+
+So, basically the same....
+
+Am I doing the backport correctly? Maybe config file problems?
+
+Thanks for supporting...
+
+--KO5yK14KsryLAiwxF1Pf
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+So Khem, that's what I've done:<br /><br /><strong>Load from git and backpo=
+rt:</strong><br /><span style=3D"white-space-collapse: preserve;"><br />git=
+ clone -b kirkstone git://git.yoctoproject.org/poky ./src/poky</span><br st=
+yle=3D"white-space-collapse: preserve;" /><span style=3D"white-space-collap=
+se: preserve;">git clone -b kirkstone git://git.openembedded.org/meta-opene=
+mbedded ./src/meta-openembedded</span><br style=3D"white-space-collapse: pr=
+eserve;" /><span style=3D"white-space-collapse: preserve;"><br />git clone =
+-b kirkstone git://git.yoctoproject.org/meta-raspberrypi ./src/meta-raspber=
+rypi<br /></span>git checkout master<br />git checkout kiskstone<br />git c=
+herry-pick master
+<div>Auto-merging docs/extra-build-config.md</div>
+<div>Auto-merging recipes-bsp/bootfiles/rpi-cmdline.bb</div>
+<div>[kirkstone a900a5e] rpi-cmdline, rpi-u-boot-src: Support USB boot</div=
 >
+<div>&nbsp;Author: Harunobu Kurokawa &lt;harunobu.kurokawa.dn@renesas.com&g=
+t;</div>
+<div>&nbsp;Date: Fri May 5 14:49:51 2023 +0900</div>
+<div>&nbsp;Committer: quadfloor &lt;quadfloor@yocto.quadfloor.com&gt;</div>
+<div>Your name and email address were configured automatically based</div>
+<div>on your username and hostname. Please check that they are accurate.</d=
+iv>
+<div>You can suppress this message by setting them explicitly. Run the</div=
 >
-> A build flagged for QA (yocto-4.0.15.rc1) was completed on the autobuilde=
-r and is available at:
->
->
->     https://autobuilder.yocto.io/pub/releases/yocto-4.0.15.rc1
->
->
-> Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/bui=
-lds/6334
->
-> Build hash information:
->
-> bitbake: 42a1c9fe698a03feb34c5bba223c6e6e0350925b
-> meta-agl: adf081bab632c0fedfc064b50b953252c8f72be1
-> meta-arm: b187fb9232ca0a6b5f8f90b4715958546fc41d73
-> meta-aws: f438745ff0e8c4c6b07b4fa66a7bff7881bc0287
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: f932ebb2544170f43edd22739f44307809bf8cfb
-> meta-mingw: f6b38ce3c90e1600d41c2ebb41e152936a0357d7
-> meta-openembedded: 402affcc073db39f782c1ebfd718edd5f11eed4c
-> meta-virtualization: 88327090d26955a678c6f8bd2585aad4d802f6c4
-> oecore: eea685e1caafd8e8121006d3f8b5d0b8a4f2a933
-> poky: 755632c2fcab43aa05cdcfa529727064b045073c
->
->
->
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#357): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/357
-> Mute This Topic: https://lists.yoctoproject.org/mt/103197930/3620601
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/12627247/3620601/791647976/xyzzy [steve@sakoman.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+<div>following command and follow the instructions in your editor to edit</=
+div>
+<div>your configuration file:</div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; git config --global --edit</div>
+<div>&nbsp;</div>
+<div>After doing this, you may fix the identity used for this commit with:<=
+/div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; git commit --amend --reset-author</div>
+<div>&nbsp;</div>
+<div>&nbsp;4 files changed, 24 insertions(+), 3 deletions(-)<br /><br /><st=
+rong>Configuration:</strong><br /><br />After that, rebuilt with the short =
+configuration:<br /><br />
+<div>MACHINE =3D "raspberrypi0-wifi"</div>
+<div>SERIAL_CONSOLE =3D ""</div>
+<div>DISABLE_RPI_BOOT_LOGO =3D "1"</div>
+<div>DISABLE_OVERSCAN =3D "1"</div>
+<div>DISABLE_SPLASH =3D "1"</div>
+<div>BOOT_DELAY =3D "0"</div>
+<div>GPU_MEM_256 =3D "128"</div>
+<div>GPU_MEM_512 =3D "196"</div>
+<div>GPU_MEM_1024 =3D "396"</div>
+<div>PACKAGE_CLASSES =3D "package_ipk"</div>
+<div>DISTRO_FEATURES:append =3D " wifi "</div>
+<div>IMAGE_INSTALL:append =3D " linux-firmware-bcm43430 wpa-supplicant"</di=
+v>
+<div>IMAGE_FSTYPES =3D "tar.bz2 ext4 rpi-sdimg"</div>
+<div>SDIMG_ROOTFS_TYPE =3D "ext4"</div>
+<br /><br />
+<div>$ cat bblayers.conf</div>
+<div># POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayer=
+s.conf</div>
+<div># changes incompatibly</div>
+<div>POKY_BBLAYERS_CONF_VERSION =3D "2"</div>
+<div>&nbsp;</div>
+<div>BBPATH =3D "${TOPDIR}"</div>
+<div>BBFILES ?=3D ""</div>
+<div>&nbsp;</div>
+<div>BBLAYERS ?=3D " \</div>
+<div>&nbsp; /home/quadfloor/release_1/src/poky/meta \</div>
+<div>&nbsp; /home/quadfloor/release_1/src/poky/meta-poky \</div>
+<div>&nbsp; /home/quadfloor/release_1/src/poky/meta-yocto-bsp \</div>
+<div>&nbsp; /home/quadfloor/release_1/src/meta-openembedded/meta-oe \</div>
+<div>&nbsp; /home/quadfloor/release_1/src/meta-openembedded/meta-python \</=
+div>
+<div>&nbsp; /home/quadfloor/release_1/src/meta-openembedded/meta-multimedia=
+ \</div>
+<div>&nbsp; /home/quadfloor/release_1/src/meta-openembedded/meta-networking=
+ \</div>
+<div>&nbsp; /home/quadfloor/release_1/src/meta-raspberrypi \</div>
+<div>&nbsp; "</div>
+<br /><strong>Result:<br /></strong>$ ifcofing -a -&gt; Only lo interface, =
+no wlan<br /><br /><span style=3D"white-space-collapse: preserve;">$ dmesg =
+| grep brcmfmac shows nothing....<br /></span><span style=3D"white-space-co=
+llapse: preserve;">$ dmesg | grep wlan shows nothing....</span><br style=3D=
+"white-space-collapse: preserve;" /><br />$ lsmod<br />Module&nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Size&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Us=
+ed&nbsp; by<br />nfsd&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;454656&nbsp; &nbsp; 11<br /><br />So, basically the same....=
+&nbsp;<br /><br />Am I doing the backport correctly? Maybe config file prob=
+lems?<br /><br />Thanks for supporting...</div>
+
+--KO5yK14KsryLAiwxF1Pf--
 
