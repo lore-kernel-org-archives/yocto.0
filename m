@@ -1,80 +1,97 @@
-Return-Path: <wangmy@fujitsu.com>
+Return-Path: <jpuhlman@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E82DFC4332F
-	for <webhook@archiver.kernel.org>; Fri, 15 Dec 2023 03:11:44 +0000 (UTC)
-Received: from esa9.hc1455-7.c3s2.iphmx.com (esa9.hc1455-7.c3s2.iphmx.com [139.138.36.223])
- by mx.groups.io with SMTP id smtpd.web10.51820.1702609896088337254
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13E11C4332F
+	for <webhook@archiver.kernel.org>; Fri, 15 Dec 2023 04:13:15 +0000 (UTC)
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+ by mx.groups.io with SMTP id smtpd.web10.52781.1702613586823990229
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Dec 2023 19:11:36 -0800
+ Thu, 14 Dec 2023 20:13:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: fujitsu.com, ip: 139.138.36.223, mailfrom: wangmy@fujitsu.com)
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="131858757"
-X-IronPort-AV: E=Sophos;i="6.04,277,1695654000"; 
-   d="scan'208";a="131858757"
-Received: from unknown (HELO oym-r2.gw.nic.fujitsu.com) ([210.162.30.90])
-  by esa9.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 12:11:33 +0900
-Received: from oym-m3.gw.nic.fujitsu.com (oym-nat-oym-m3.gw.nic.fujitsu.com [192.168.87.60])
-	by oym-r2.gw.nic.fujitsu.com (Postfix) with ESMTP id 280EADC646
-	for <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 12:11:31 +0900 (JST)
-Received: from kws-ab4.gw.nic.fujitsu.com (kws-ab4.gw.nic.fujitsu.com [192.51.206.22])
-	by oym-m3.gw.nic.fujitsu.com (Postfix) with ESMTP id 514DDD94D0
-	for <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 12:11:30 +0900 (JST)
-Received: from vm4860.g01.fujitsu.local (unknown [10.193.128.165])
-	by kws-ab4.gw.nic.fujitsu.com (Postfix) with ESMTP id 5636A6BED4;
-	Fri, 15 Dec 2023 12:11:29 +0900 (JST)
-From: wangmy@fujitsu.com
-To: yocto@lists.yoctoproject.org
-Cc: jpuhlman@mvista.com,
-	Wang Mingyu <wangmy@fujitsu.com>
-Subject: [yocto] [meta-cgl] [PATCH] libsocket6-perl: Remove useless option
-Date: Fri, 15 Dec 2023 11:11:21 +0800
-Message-Id: <1702609881-2917-1-git-send-email-wangmy@fujitsu.com>
-X-Mailer: git-send-email 1.8.3.1
-X-TM-AS-GCONF: 00
-X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28058.004
-X-TM-AS-User-Approved-Sender: Yes
-X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28058.004
-X-TMASE-Result: 10--2.861400-10.000000
-X-TMASE-MatchedRID: uf8KE2NGjd+SIU8VaO0skxIRh9wkXSlFN5dqZcIK7Vgg9R3V8qg5xL8F
-	Hrw7frluf146W0iUu2vUpkHbn8AvUs4svDGUw7k9z5r5y9mouSB9LQinZ4QefCP/VFuTOXUTC5M
-	umjkcRzWOhzOa6g8KrfxPuy1LnQ3d+9jROCuknV5EXR8uV7sexUWD3V8wPP5StKIkFuuvGaJ31s
-	q0F3ygNpum3XgPMP96VWcts021YqzDCdqL76sekR0m4Rm5hspVxSSu8i52URmXTt0OuyJi/IIuE
-	VM/dBEMBtjAKW7+qHc=
-X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+ dkim=pass header.i=@mvista.com header.s=google header.b=YVbPyJYP;
+ spf=pass (domain: mvista.com, ip: 209.85.210.49, mailfrom: jpuhlman@mvista.com)
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6d9d209c9bbso304368a34.0
+        for <yocto@lists.yoctoproject.org>; Thu, 14 Dec 2023 20:13:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mvista.com; s=google; t=1702613586; x=1703218386; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tFHeXXjjIxdBCttS7DLiWYjrYZbb8UWryAOGOCkSMRk=;
+        b=YVbPyJYPTPuRBEUeCK4ob/qtNjfXCNE1zjl40KI6sdSgAsoOX9jwfQ2mwCMuOpL6fj
+         urkmOEe1kXGOIOx3bDAJuk67p9qxLmHLlgMywTki40ZkUlju2DM5WWZuFokaglzsxos0
+         yOg5GRiPeIVkOB2Zk/C4DbB/lDWCyMXLRz/5c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702613586; x=1703218386;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tFHeXXjjIxdBCttS7DLiWYjrYZbb8UWryAOGOCkSMRk=;
+        b=POdCVjJ7UmMqaVUXmCWdGInI0x3yG2drGr1lVeezDT2Q4jJQfNOA6mDXqJfZW6aeSt
+         zvSgagHgmUjmFf8XlmyIqYBF82yTXk3iafu365tKBhhYcxJuFT2lY/+JZqlfANQUm1yF
+         dAkKHAbkaQgsQDKcTJoN5lzn6tpXypX4I8z25AjDNqpOggNj6Zp+wp0uMwD+P+ijlyQq
+         U4cwNFBD1SpOev0Xy18Tgxk0MHnn95zb/r3uB4r93h96oPoZKs5UOURARBp2EfYH3otX
+         RlB9Uk0xrW8OxgA2sYnFCYIhUXBohX0c/eiPI+lailh6BRAD0kepC7BX55PF+2HlBBX7
+         7mGw==
+X-Gm-Message-State: AOJu0YyqkWiY8SWcJBRm74G3EuhoHSfIa9r/sNZYJKHFCjX8+pyEhWSf
+	jr6+44hCX+gzwGzL1vuEatW4Ew==
+X-Google-Smtp-Source: AGHT+IFG8BCAtJR17LAqslv1MfrFOQWHuv4Y03bPZL/R02uWIv+TqMgmnNwCmsu5T0655W0j/i0n0w==
+X-Received: by 2002:a05:6830:914:b0:6d8:74e2:7cda with SMTP id v20-20020a056830091400b006d874e27cdamr13325712ott.53.1702613586026;
+        Thu, 14 Dec 2023 20:13:06 -0800 (PST)
+Received: from [10.5.0.2] ([185.211.32.156])
+        by smtp.gmail.com with ESMTPSA id p20-20020aa78614000000b006ce924e3926sm12572282pfn.70.2023.12.14.20.13.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 20:13:05 -0800 (PST)
+Message-ID: <303d8592-d55f-4e61-bcd8-4376d364a664@mvista.com>
+Date: Thu, 14 Dec 2023 20:13:04 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [meta-cgl] [PATCH] libsocket6-perl: Remove useless option
+Content-Language: en-US
+To: wangmy@fujitsu.com, yocto@lists.yoctoproject.org
+References: <1702609881-2917-1-git-send-email-wangmy@fujitsu.com>
+From: Jeremy Puhlman <jpuhlman@mvista.com>
+In-Reply-To: <1702609881-2917-1-git-send-email-wangmy@fujitsu.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 03:11:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61902
+ <yocto@lists.yoctoproject.org>; Fri, 15 Dec 2023 04:13:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61903
 
-From: Wang Mingyu <wangmy@fujitsu.com>
+Merged. Thanks!
 
-Error message:
- | configure: error: expected an absolute directory name for --oldincludedir:
+On 12/14/2023 7:11 PM, wangmy@fujitsu.com wrote:
+> From: Wang Mingyu <wangmy@fujitsu.com>
+>
+> Error message:
+>   | configure: error: expected an absolute directory name for --oldincludedir:
+>
+> --oldincludedir is removed by upstream.
+>
+> Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
+> ---
+>   meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb
+> index 004efe2..a01620c 100644
+> --- a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb
+> +++ b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb
+> @@ -20,7 +20,7 @@ S = "${WORKDIR}/Socket6-${PV}"
+>   do_configure:prepend () {
+>   	mkdir -p m4
+>   	autoreconf -Wcross --verbose --install --force || oefatal "autoreconf execution failed."
+> -	sed -i 's:\./configure\(.[^-]\):./configure --build=${BUILD_SYS} --host=${HOST_SYS} --target=${TARGET_SYS} --prefix=${prefix} --exec_prefix=${exec_prefix} --bindir=${bindir} --sbindir=${sbindir} --libexecdir=${libexecdir} --datadir=${datadir} --sysconfdir=${sysconfdir} --sharedstatedir=${sharedstatedir} --localstatedir=${localstatedir} --libdir=${libdir} --includedir=${includedir} --oldincludedir=${oldincludedir} --infodir=${infodir} --mandir=${mandir}\1:' Makefile.PL
+> +	sed -i 's:\./configure\(.[^-]\):./configure --build=${BUILD_SYS} --host=${HOST_SYS} --target=${TARGET_SYS} --prefix=${prefix} --exec_prefix=${exec_prefix} --bindir=${bindir} --sbindir=${sbindir} --libexecdir=${libexecdir} --datadir=${datadir} --sysconfdir=${sysconfdir} --sharedstatedir=${sharedstatedir} --localstatedir=${localstatedir} --libdir=${libdir} --includedir=${includedir} --infodir=${infodir} --mandir=${mandir}\1:' Makefile.PL
+>   }
+>   
+>   inherit autotools-brokensep cpan
 
---oldincludedir is removed by upstream.
-
-Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
----
- meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb
-index 004efe2..a01620c 100644
---- a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.29.bb
-@@ -20,7 +20,7 @@ S = "${WORKDIR}/Socket6-${PV}"
- do_configure:prepend () {
- 	mkdir -p m4
- 	autoreconf -Wcross --verbose --install --force || oefatal "autoreconf execution failed."
--	sed -i 's:\./configure\(.[^-]\):./configure --build=${BUILD_SYS} --host=${HOST_SYS} --target=${TARGET_SYS} --prefix=${prefix} --exec_prefix=${exec_prefix} --bindir=${bindir} --sbindir=${sbindir} --libexecdir=${libexecdir} --datadir=${datadir} --sysconfdir=${sysconfdir} --sharedstatedir=${sharedstatedir} --localstatedir=${localstatedir} --libdir=${libdir} --includedir=${includedir} --oldincludedir=${oldincludedir} --infodir=${infodir} --mandir=${mandir}\1:' Makefile.PL
-+	sed -i 's:\./configure\(.[^-]\):./configure --build=${BUILD_SYS} --host=${HOST_SYS} --target=${TARGET_SYS} --prefix=${prefix} --exec_prefix=${exec_prefix} --bindir=${bindir} --sbindir=${sbindir} --libexecdir=${libexecdir} --datadir=${datadir} --sysconfdir=${sysconfdir} --sharedstatedir=${sharedstatedir} --localstatedir=${localstatedir} --libdir=${libdir} --includedir=${includedir} --infodir=${infodir} --mandir=${mandir}\1:' Makefile.PL
- }
- 
- inherit autotools-brokensep cpan
 -- 
-2.34.1
+Jeremy Puhlman
+jpuhlman@mvista.com
 
 
