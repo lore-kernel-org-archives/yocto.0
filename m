@@ -1,192 +1,254 @@
-Return-Path: <yi.zhao@eng.windriver.com>
+Return-Path: <renato.mendes.pes@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14193C46CA2
-	for <webhook@archiver.kernel.org>; Sat, 16 Dec 2023 08:22:31 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web11.11932.1702714949774726202
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3E33C46CCD
+	for <webhook@archiver.kernel.org>; Sat, 16 Dec 2023 14:14:22 +0000 (UTC)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+ by mx.groups.io with SMTP id smtpd.web11.15537.1702736060602254095
  for <yocto@lists.yoctoproject.org>;
- Sat, 16 Dec 2023 00:22:29 -0800
+ Sat, 16 Dec 2023 06:14:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=OG6BtKHg;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=071467d4b3=yi.zhao@windriver.com)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BG81AaR001321;
-	Sat, 16 Dec 2023 08:22:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
-	 h=from:to:subject:date:message-id:in-reply-to:references
-	:content-transfer-encoding:content-type:mime-version; s=
-	PPS06212021; bh=Db4ORA0e6GNlWuM3+rqLMyqeNcmWoPs4JjmmrF+WvmU=; b=
-	OG6BtKHgYbge0CW6+yjPz07fhHa3OPXAQkQOVMtbD+m4tw3LGE9wRYKRJrl12dS9
-	24plVcN28rZEbVpUqjPm+9UWAZLPoWE1uvUJUT4YPUxPpESn6rpNfYbNE+lzD89Z
-	JT7RZzR/5N59QKwwBKvzmWNXr4xsSCDrgX9/CSWUU82oVQAht117AfuZNT9ClK8M
-	m8rr5tt1YYi5BceTGw5RIb3H7U92bKyCLKffR0eAXFTe1VN0VlXl/y7mIAkc29zL
-	RkP4AdEX142zqPBbrFO5ea1v15vNp9DMtuD7lwm/5qL4iOMDFaaqVtH3xg/bmB8l
-	q1hEin+31oFhCp/w+M1mzQ==
-Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2169.outbound.protection.outlook.com [104.47.56.169])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3v12v5r5rh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 16 Dec 2023 08:22:28 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jLLOML3YCarYfBoXueNnf0KkszzPedX6xluF/VFTSrvPz4KaEOZhyLEzx6/n8N6C+gJA+9MIZ9cliYCQmfZHf2rwvYNeHm+hyrypIWqMr2arw6Q5n5j6/t8GGgKfE6F89u67psRT4Rvw4ZTm3mJ0+qIlXIgL2wJnZqNda0rV9yhV2egSaszURA538vRC0VidDpnWzfK5tniuoti5KYerleT6W+1gIp/hYNofn1newRrMbJ1qB4UOtOQUWj4x85mCT5HEsn2nNLg7HKotftDRZtCE4lJmk0Kj+WM0I50oXcjTQ91aUFiRLfY1by4XXgTgYeLtNfx1UcOn8ICCPhR/bA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Db4ORA0e6GNlWuM3+rqLMyqeNcmWoPs4JjmmrF+WvmU=;
- b=Lfu+IsHsYF3Uh55WR/aY1HSCqQr0UwimIi0uPYALDvtpWPaWj/8X20abYlOKLsh62SuSaaBgGVsT0Mu8uuxvMxocMFuWSzTDnGDxVIXmzCVPgSnh/EDEDSKAMxCcNsQzaupDfdfLg7K7geYNKjaFg/EJBCEgpUW6nfPeRpUuxM0BUeXKRwg+DxVwYuOMCBRnkt9GYqeL6c6BHbJwxN2M1q2FSZdZ2nHQUKEJNn6ItA/qx/G0hYjJo01PVin/gHvrLzE7VklM9oqs3a1S3E83kPqpMUTFd9yFA8sSFUHMZ0q5MY39pPaoRpy0/x/lFaN7sx9+cCa5/l/Q2QmMdzUSDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from DS0PR11MB7484.namprd11.prod.outlook.com (2603:10b6:8:14c::10)
- by CH3PR11MB8466.namprd11.prod.outlook.com (2603:10b6:610:1ae::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.31; Sat, 16 Dec
- 2023 08:22:26 +0000
-Received: from DS0PR11MB7484.namprd11.prod.outlook.com
- ([fe80::c56:aece:e7ef:6cb3]) by DS0PR11MB7484.namprd11.prod.outlook.com
- ([fe80::c56:aece:e7ef:6cb3%3]) with mapi id 15.20.7091.028; Sat, 16 Dec 2023
- 08:22:26 +0000
-From: Yi Zhao <yi.zhao@windriver.com>
-To: yocto@lists.yoctoproject.org, joe.macdonald@siemens.com, joe@deserted.net,
-        joe_macdonald@mentor.com
-Subject: [meta-selinux][PATCH 15/15] setools: upgrade 4.4.3 -> 4.4.4
-Date: Sat, 16 Dec 2023 16:21:42 +0800
-Message-Id: <20231216082142.198501-15-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231216082142.198501-1-yi.zhao@windriver.com>
-References: <20231216082142.198501-1-yi.zhao@windriver.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0033.apcprd02.prod.outlook.com
- (2603:1096:3:18::21) To DS0PR11MB7484.namprd11.prod.outlook.com
- (2603:10b6:8:14c::10)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ivIKkaj8;
+ spf=pass (domain: gmail.com, ip: 209.85.128.44, mailfrom: renato.mendes.pes@gmail.com)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40c6736d10fso20013315e9.1
+        for <yocto@lists.yoctoproject.org>; Sat, 16 Dec 2023 06:14:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702736059; x=1703340859; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/kIqb+e5Y9DPIeZ+2EY9RtZ4gttLF0sOvuFWBHT+CxE=;
+        b=ivIKkaj8piqIbKr+xPpjizElM82iSmG0N6+4hXwFdzAH/+VR0ouE2k/paAddWLvlUK
+         cBmqoV6Ud7mpN4yctInmkD9iNHq+FqNjH0wEz+JX4/HUszK1ElQFHXJvXt0noQm9m3ts
+         mlRicI9x81Y7lKRrLF3mhVaiJlzlyXD7dRBj5yzty22viLlJ3kUXULY1paSOo5DN6fju
+         KUzkJFQU6ZhQ20E4hGX5TzDDPuCRhIBToXE17Bfwh2KyZEpQvkOD7TEa+s4hqqkSaMOk
+         dXXqKJQLnFDnI5UUvXJr6G/Ssv2ALTx0lVSwP63E2hEDJy03yQMlZODu2e0tufNIYNAK
+         ubuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702736059; x=1703340859;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/kIqb+e5Y9DPIeZ+2EY9RtZ4gttLF0sOvuFWBHT+CxE=;
+        b=vmC0LoFU57MSomK/PnPDutV++KwNNPMQmgzzECpdXeuAWgqKkhP027q8AHW7S61aPC
+         +D0elvyyrWB+GDyi+LtOmmt12aIjAkvlMBi3FdsEPSSKR5qjCaui9Q3Y2d2zm5kKF74E
+         fjYi7Ot+WEKVxkSyHfEJSx2zWIYZLgOQ+oz9jWxkar0WgEJwxeTA/9mlSameD0yBybk+
+         07dUFihpx2wyjpAIqzREPt1gz033/i9rT00Bwmc/oHW5jgi98CVWco/ZGavvl1K0mMT0
+         0btyJleiiv6J4UyquKro37JuidoSCbB3HEEU+g1NbNe5imrZAtV+KSOXB1tJmIG0ZcBN
+         dhRQ==
+X-Gm-Message-State: AOJu0YzNAUCW+wRwPztUFaiaU5GZmCGW+Y3/2n7Spsfos323geSfUjN0
+	Q0pSkeIuj2qVMUVmVUsmX/EPclQHBcR3THUIEeQ=
+X-Google-Smtp-Source: AGHT+IHgrtPq+SUqlg95Bz5IsEjatXgwbsDHvX8SIKV5viCTxVhQwUXapFLjIorPc31aEt7VoVYDXpy7G2zsVsfJaIo=
+X-Received: by 2002:a05:600c:920:b0:40c:22e2:14ea with SMTP id
+ m32-20020a05600c092000b0040c22e214eamr7385425wmp.1.1702736058603; Sat, 16 Dec
+ 2023 06:14:18 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7484:EE_|CH3PR11MB8466:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4956fc9f-389d-4a00-248f-08dbfe102318
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	u2g43W0HM/nsef/xwbXT3HvWz9FYhaGonvQSl/N46baoywWXtUJChViQF03gG/eXo25REhKwJiIi0h5x7ZiRt0OTUXCY/jDdGBBrY2G6teH+UB/EcSmg0WiTTCGtMzIDVu9rCBfbFbcRfFgWOobR1jaK0WxH3mGSsGMzWWx8moqD0mkBbBJ1xWRdvq4ZLzKuBFf3WIlH6mz0J1SH8PBmtQMjbrutRRkmh2etxHHUA03tL62nLdtSnZumS6+Fqo2FFIk3z78N/uo7H1j2N+4rFP8gALlDsU9pfg42rpt8LEAshlkwxi+l/EVrDm9RVkK7Lh7e5CszmjFRX1z0YT4oMU/7UQUBFtkMA/oxY9lROPnMvSobs4Hs+UPp8TEH66SQP2v2t51+36guxZFxhNiUHdoO7I5xXE95B+dgy+3KeeeFj8h3TM355HlyqZLCAVw9wjGB7fS2v7noJv4NDDGtcB+hB8xv69dgbk1+c+IXEsdKn2RcARsdmI35XRPvSMqmPHOUlZV2wG5uR/IMpFzpgVinQm6n6IlnhNio+Pn61SS2fHX3fxksiPMrDVLMbvKwXEJpDg6SpV9PpSIdMfImySztUBeqjewu6NEXzjcNDyE=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR11MB7484.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39850400004)(366004)(136003)(376002)(396003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(6486002)(86362001)(53546011)(2616005)(38350700005)(6512007)(6506007)(26005)(36756003)(1076003)(966005)(478600001)(52116002)(2906002)(83380400001)(6666004)(8936002)(44832011)(41300700001)(8676002)(66476007)(66556008)(316002)(5660300002)(38100700002)(66946007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?C+vzXjP5Y5CMmJ6+yLQDnQTDkTdlgM5CQQxFUaJopfkx6LvMVKHzvQICZbup?=
- =?us-ascii?Q?c6R8sw//jRefdLyRQuEIgiC2goZpBCRcB3luQj1fpEtVGi6h4jbCcsi3s3En?=
- =?us-ascii?Q?5pI8qb0im+d/rdFL9EEr1vgdjOGoOzIqutAn10BsmnTBtVKuZfvsFoXgFhnc?=
- =?us-ascii?Q?XBmCe8GGbwJEmqcQR0qrbi6o9Wtpnpq/FtveP2h8gOpauUafrtcS9cBykKMK?=
- =?us-ascii?Q?/Ya/7euonO67HATytm3CWkegrTrOUxIzNPrd5M6qSMPFzBwBnjhITooe79EF?=
- =?us-ascii?Q?LZrLAGYYx1IPSPZBeo6PU8XNbJFBSD6pPRAvoSrzgv7SBtNIaMRB7Enzhce+?=
- =?us-ascii?Q?ff06G1gYaF9JzhEQ7aiQxYBGM/D7ex0s4k2+0gzAznN9fUdsQ8po9fOGgl55?=
- =?us-ascii?Q?ILrpITjUeq7GV5Tc9Xh15nsnC+OgVIFC5rJWqQqhmA50ShLqbZb7m46A9R5J?=
- =?us-ascii?Q?kRfLlSxRIEvfOIst6kHEgboyP4uEap77spipJe/CYAGlGB0lkasg0zw89Ddc?=
- =?us-ascii?Q?gQ5CnRLLGazUpQCK+FX2EBJ1ldO8Fvf4J3ERJzSdzk4Ptl00kdbJb9SUsTT+?=
- =?us-ascii?Q?wWRxZIR/Ygltji1DLWxcE/+b6s2qTIugNtezSPODddJJdMduF1OeDtfigdbZ?=
- =?us-ascii?Q?rKV9yPO6PIUXNSvg6wRq5OHUFhNXsoeVgcfBEfb4OiBylV0aJSGOghPypchE?=
- =?us-ascii?Q?kT9rTZFD3H2MHP06Za0cZStUl3IRfwwtUc0PrxsmCvOhrvHzesbp6pDSrzyH?=
- =?us-ascii?Q?haY9JHteKdof2TKD7CjVaqmmUUmUn2FcFwu2ws5o4J/nX3lNpEE2y/TpsN8t?=
- =?us-ascii?Q?I+bctFuUdezQo3WKfUGRF7w5AAHTK4tuRlZtFNqbBrdfu5ZyUhmV88EfdKFW?=
- =?us-ascii?Q?AccZLjnaA0p2A08CNnyLUuq1+RkGxEu9eSn+0zihYceJ8TAJ6+S6lSazJ08U?=
- =?us-ascii?Q?h83JopKbk2BL/+nZrCcFOjjkQVo3idfQ8mahrFsM0cAJ8W3N/og/eVeivlCt?=
- =?us-ascii?Q?P35WHt1oMf2LeQX2p1fDqjS/G8hDDrij3EUmu+nAjBvIwadIHEJnWv0obOVE?=
- =?us-ascii?Q?eoRU2h1pvb+w1wygRqY8p+COG9wX17dxz7j4U3qn3hQFI96AZ/yaABqZdPdm?=
- =?us-ascii?Q?Ett7rkPf1jDGlFnBqxCj7pOWWbYt2A6DddmPbJQ+gwQB1PBbvy+J0BXsWXRc?=
- =?us-ascii?Q?FBw2EROZFSu4DL1YprDCycLOLtfSUvtBis9ILUgH2uVxB1MNuJhgFedg3/oU?=
- =?us-ascii?Q?GINOPR/Kb7rFpckNJlshCRkkkoiytwkndJCDzkNK0yJcefTcYEKq3BHUE0Db?=
- =?us-ascii?Q?pp7vSGsb3OVlBJdMZXwNLaGLYGU387XJdAM7SwXQ/JHmHA0KCeVjlUC4ctbp?=
- =?us-ascii?Q?EQlm4h8zNhi/CqJfqJONzTJ7y2a4cEVqyvvZb6t1KA6sBHalpGiGlcfYiQf0?=
- =?us-ascii?Q?l6lP/EOC1tofqUY4xcY9levGa12JUiggAekSXiBsa9dCpFKQ+EmiqonsZ7zY?=
- =?us-ascii?Q?ERXl6QX4gtk3ZLlTr2+UNnN0eTJXX9AEhxiOupd7yyZEA81J50GQU5j6lQzP?=
- =?us-ascii?Q?J+DLABARpVFQ7gsgrQlNwNgXp2o9a+lEA6AsxCX8?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4956fc9f-389d-4a00-248f-08dbfe102318
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7484.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2023 08:22:26.6333
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7NB6LpfS6b9BbFZgwBESBIKfbHU6unDdqLKK1xy9Q2uZxm8zx/lz4Jyx4WcL3FMP2b7Jlv/Y3PbbNQUQ+3EIQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8466
-X-Proofpoint-ORIG-GUID: crV7y6zeWwy5fvcgqnF7pZCQtEzqFXDV
-X-Proofpoint-GUID: crV7y6zeWwy5fvcgqnF7pZCQtEzqFXDV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_25,2023-11-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 suspectscore=0 bulkscore=0 phishscore=0 mlxlogscore=999
- priorityscore=1501 spamscore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2312160063
+References: <CA+chaQdAVQquj6cG7qghb=H8x20yOpRNHnazzn90rY5c6HQbuA@mail.gmail.com>
+ <2720FBEB-1C17-4CF2-A9AB-363589865FD6@gmail.com> <CAMKF1sr_H+MUR39RzxGrY1FRBvcOyc5XNoNvjTCzRU8znXK_og@mail.gmail.com>
+In-Reply-To: <CAMKF1sr_H+MUR39RzxGrY1FRBvcOyc5XNoNvjTCzRU8znXK_og@mail.gmail.com>
+From: Renato Mendes <renato.mendes.pes@gmail.com>
+Date: Sat, 16 Dec 2023 11:14:20 -0300
+Message-ID: <CAF62+jmSb8cXvLrB9Rm5=r4spaDdbVH7gCs-vu=S_hz_Q9vaww@mail.gmail.com>
+Subject: Re: [yocto] Wireless interface (wlan) not shown on Raspberry Pi Zero W
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Martin Jansa <martin.jansa@gmail.com>, yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 16 Dec 2023 08:22:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61941
+ <yocto@lists.yoctoproject.org>; Sat, 16 Dec 2023 14:14:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61942
 
-ChangeLog:
-https://github.com/SELinuxProject/setools/releases/tag/4.4.4
+Had a conflict on
+cherry-picking:quadfloor@yocto:~/release_1/src/meta-raspberrypi$ git
+fetch --all
+quadfloor@yocto:~/release_1/src/meta-raspberrypi$ git fetch -all
+error: did you mean `--all` (with two dashes)?
+quadfloor@yocto:~/release_1/src/meta-raspberrypi$ git cherry-pick
+0917b60527242d3668efc2d3b918df64b13e7b6f
+Auto-merging conf/machine/include/rpi-base.inc
+CONFLICT (content): Merge conflict in conf/machine/include/rpi-base.inc
+error: could not apply 0917b60... rpi-base.inc: Add kernel modules to all i=
+mages
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git cherry-pick --continue".
+hint: You can instead skip this commit with "git cherry-pick --skip".
+hint: To abort and get back to the state before "git cherry-pick",
+hint: run "git cherry-pick --abort".
 
-* Refresh local patch
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../setools/setools4-fixes-for-cross-compiling.patch      | 8 ++++----
- .../setools/{setools_4.4.3.bb => setools_4.4.4.bb}        | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
- rename recipes-security/setools/{setools_4.4.3.bb => setools_4.4.4.bb} (96%)
+$ git checkout -b kirkstone
+git://git.yoctoproject.org/meta-raspberrypi ./src/meta-raspberrypi
+$ git fetch --all
+$ git cherry-pick 0917b60527242d3668efc2d3b918df64b13e7b6f
+Auto-merging conf/machine/include/rpi-base.inc
+CONFLICT (content): Merge conflict in conf/machine/include/rpi-base.inc
+error: could not apply 0917b60... rpi-base.inc: Add kernel modules to all i=
+mages
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git cherry-pick --continue".
+hint: You can instead skip this commit with "git cherry-pick --skip".
+hint: To abort and get back to the state before "git cherry-pick",
+hint: run "git cherry-pick --abort".
 
-diff --git a/recipes-security/setools/setools/setools4-fixes-for-cross-compiling.patch b/recipes-security/setools/setools/setools4-fixes-for-cross-compiling.patch
-index 51c7603..cdaa45c 100644
---- a/recipes-security/setools/setools/setools4-fixes-for-cross-compiling.patch
-+++ b/recipes-security/setools/setools/setools4-fixes-for-cross-compiling.patch
-@@ -1,4 +1,4 @@
--From e0a112874d10dbf741c27b107edddedd86d51529 Mon Sep 17 00:00:00 2001
-+From 673bac44ce13f475845e0b69dc73bfaa5a0866aa Mon Sep 17 00:00:00 2001
- From: Wenzong Fan <wenzong.fan@windriver.com>
- Date: Tue, 14 Feb 2017 06:32:35 +0000
- Subject: [PATCH] setools4: fixes for cross compiling
-@@ -15,10 +15,10 @@ Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-  1 file changed, 1 insertion(+), 1 deletion(-)
- 
- diff --git a/setup.py b/setup.py
--index ac8a876..df7ebbc 100644
-+index 5584e55..057bbb5 100644
- --- a/setup.py
- +++ b/setup.py
--@@ -78,7 +78,7 @@ class QtHelpCommand(Command):
-+@@ -79,7 +79,7 @@ class QtHelpCommand(Command):
-  
-  
-  # Library linkage
-@@ -28,5 +28,5 @@ index ac8a876..df7ebbc 100644
-  
-  with suppress(KeyError):
- -- 
--2.7.4
-+2.25.1
- 
-diff --git a/recipes-security/setools/setools_4.4.3.bb b/recipes-security/setools/setools_4.4.4.bb
-similarity index 96%
-rename from recipes-security/setools/setools_4.4.3.bb
-rename to recipes-security/setools/setools_4.4.4.bb
-index 313dd0b..37bb86a 100644
---- a/recipes-security/setools/setools_4.4.3.bb
-+++ b/recipes-security/setools/setools_4.4.4.bb
-@@ -8,7 +8,7 @@ LICENSE = "GPL-2.0-only & LGPL-2.1-only"
- SRC_URI = "git://github.com/SELinuxProject/${BPN}.git;branch=4.4;protocol=https \
-            file://setools4-fixes-for-cross-compiling.patch \
-           "
--SRCREV = "d3dbddb4e162dda3a25c419d10afe042a3dff7fa"
-+SRCREV = "a04b015459512d0460ff6bc50f28d746861f4a0b"
- 
- LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=69a7b68f0a4a570d7c0c43465333ecbc \
-                     file://${S}/COPYING.GPL;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
--- 
-2.25.1
+Detail about the found conflict:
 
+<<<<<<< HEAD
+MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules udev-rules-rpi"
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D
+"${@oe.utils.conditional('ENABLE_I2C', '1', 'kernel-module-i2c-dev
+kernel-module-i2c-bcm2708', '', d)}"
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D
+"${@oe.utils.conditional('ENABLE_IR', '1', 'kernel-module-gpio-ir
+kernel-module-gpio-ir-tx', '', d)}"
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D
+"${@oe.utils.conditional('ENABLE_GPIO_SHUTDOWN', '1', 'gpio-shutdown
+kernel-module-gpio-keys', '', d)}"
+
+SERIAL_CONSOLES_CHECK ??=3D "${SERIAL_CONSOLES}"
+
+# The name of the deploy directory for raspberry pi boot files.
+# This variable is referred to by recipes fetching / generating the files.
+BOOTFILES_DIR_NAME ?=3D "bootfiles"
+=3D=3D=3D=3D=3D=3D=3D
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D " kernel-modules udev-rules-rpi"
+>>>>>>> 0917b60 (rpi-base.inc: Add kernel modules to all images)
+
+Seens that MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D " kernel-modules
+udev-rules-rpi" was already there....
+
+Confused now...
+
+Em sex., 15 de dez. de 2023 =C3=A0s 20:40, Khem Raj <raj.khem@gmail.com> es=
+creveu:
+>
+> go into meta-raspberrypi checkout and then
+>
+> then do
+> git cherry-pick 0917b60527242d3668efc2d3b918df64b13e7b6f
+>
+> this should bring the one commit I am asking you to apply on top of kirks=
+tone.
+>
+> On Fri, Dec 15, 2023 at 3:35=E2=80=AFPM Renato Mendes
+> <renato.mendes.pes@gmail.com> wrote:
+> >
+> >
+> > Sorry I=E2=80=99m confused=E2=80=A6 what exactly Khem asked to do - can=
+ you please elaborate. Thanks.
+> >
+> > Em 15 de dez. de 2023, =C3=A0(s) 18:51, Martin Jansa <martin.jansa@gmai=
+l.com> escreveu:
+> >
+> > =EF=BB=BF
+> > > Am I doing the backport correctly? Maybe config file problems?
+> >
+> > You've backported different commit than what Khem asked you to try.
+> >
+> > On Fri, Dec 15, 2023 at 10:33=E2=80=AFPM Renato Mendes <renato.mendes.p=
+es@gmail.com> wrote:
+> >>
+> >> So Khem, that's what I've done:
+> >>
+> >> Load from git and backport:
+> >>
+> >> git clone -b kirkstone git://git.yoctoproject.org/poky ./src/poky
+> >> git clone -b kirkstone git://git.openembedded.org/meta-openembedded ./=
+src/meta-openembedded
+> >>
+> >> git clone -b kirkstone git://git.yoctoproject.org/meta-raspberrypi ./s=
+rc/meta-raspberrypi
+> >> git checkout master
+> >> git checkout kiskstone
+> >> git cherry-pick master
+> >> Auto-merging docs/extra-build-config.md
+> >> Auto-merging recipes-bsp/bootfiles/rpi-cmdline.bb
+> >> [kirkstone a900a5e] rpi-cmdline, rpi-u-boot-src: Support USB boot
+> >>  Author: Harunobu Kurokawa <harunobu.kurokawa.dn@renesas.com>
+> >>  Date: Fri May 5 14:49:51 2023 +0900
+> >>  Committer: quadfloor <quadfloor@yocto.quadfloor.com>
+> >> Your name and email address were configured automatically based
+> >> on your username and hostname. Please check that they are accurate.
+> >> You can suppress this message by setting them explicitly. Run the
+> >> following command and follow the instructions in your editor to edit
+> >> your configuration file:
+> >>
+> >>     git config --global --edit
+> >>
+> >> After doing this, you may fix the identity used for this commit with:
+> >>
+> >>     git commit --amend --reset-author
+> >>
+> >>  4 files changed, 24 insertions(+), 3 deletions(-)
+> >>
+> >> Configuration:
+> >>
+> >> After that, rebuilt with the short configuration:
+> >>
+> >> MACHINE =3D "raspberrypi0-wifi"
+> >> SERIAL_CONSOLE =3D ""
+> >> DISABLE_RPI_BOOT_LOGO =3D "1"
+> >> DISABLE_OVERSCAN =3D "1"
+> >> DISABLE_SPLASH =3D "1"
+> >> BOOT_DELAY =3D "0"
+> >> GPU_MEM_256 =3D "128"
+> >> GPU_MEM_512 =3D "196"
+> >> GPU_MEM_1024 =3D "396"
+> >> PACKAGE_CLASSES =3D "package_ipk"
+> >> DISTRO_FEATURES:append =3D " wifi "
+> >> IMAGE_INSTALL:append =3D " linux-firmware-bcm43430 wpa-supplicant"
+> >> IMAGE_FSTYPES =3D "tar.bz2 ext4 rpi-sdimg"
+> >> SDIMG_ROOTFS_TYPE =3D "ext4"
+> >>
+> >>
+> >> $ cat bblayers.conf
+> >> # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayer=
+s.conf
+> >> # changes incompatibly
+> >> POKY_BBLAYERS_CONF_VERSION =3D "2"
+> >>
+> >> BBPATH =3D "${TOPDIR}"
+> >> BBFILES ?=3D ""
+> >>
+> >> BBLAYERS ?=3D " \
+> >>   /home/quadfloor/release_1/src/poky/meta \
+> >>   /home/quadfloor/release_1/src/poky/meta-poky \
+> >>   /home/quadfloor/release_1/src/poky/meta-yocto-bsp \
+> >>   /home/quadfloor/release_1/src/meta-openembedded/meta-oe \
+> >>   /home/quadfloor/release_1/src/meta-openembedded/meta-python \
+> >>   /home/quadfloor/release_1/src/meta-openembedded/meta-multimedia \
+> >>   /home/quadfloor/release_1/src/meta-openembedded/meta-networking \
+> >>   /home/quadfloor/release_1/src/meta-raspberrypi \
+> >>   "
+> >>
+> >> Result:
+> >> $ ifcofing -a -> Only lo interface, no wlan
+> >>
+> >> $ dmesg | grep brcmfmac shows nothing....
+> >> $ dmesg | grep wlan shows nothing....
+> >>
+> >> $ lsmod
+> >> Module              Size         Used  by
+> >> nfsd                   454656    11
+> >>
+> >> So, basically the same....
+> >>
+> >> Am I doing the backport correctly? Maybe config file problems?
+> >>
+> >> Thanks for supporting...
+> >>
+> >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >> Links: You receive all messages sent to this group.
+> >> View/Reply Online (#61922): https://lists.yoctoproject.org/g/yocto/mes=
+sage/61922
+> >> Mute This Topic: https://lists.yoctoproject.org/mt/103150047/3617156
+> >> Group Owner: yocto+owner@lists.yoctoproject.org
+> >> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [martin.jans=
+a@gmail.com]
+> >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >>
 
