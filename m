@@ -1,327 +1,144 @@
-Return-Path: <myles.dear@ktechnology.ca>
+Return-Path: <yi.zhao@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B2E97C4332F
-	for <webhook@archiver.kernel.org>; Sat, 16 Dec 2023 01:15:08 +0000 (UTC)
-Received: from barb.cherry.relay.mailchannels.net (barb.cherry.relay.mailchannels.net [23.83.223.10])
- by mx.groups.io with SMTP id smtpd.web11.1828.1702689308176115963
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B78D4C38147
+	for <webhook@archiver.kernel.org>; Sat, 16 Dec 2023 08:22:10 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web10.12141.1702714921520247320
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Dec 2023 17:15:08 -0800
+ Sat, 16 Dec 2023 00:22:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ktechnology.ca header.s=default header.b=b8ss2rrY;
- spf=pass (domain: ktechnology.ca, ip: 23.83.223.10, mailfrom: myles.dear@ktechnology.ca)
-X-Sender-Id: hostpapa|x-authuser|myles.dear@ktechnology.ca
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 6A7BD4C18E7
-	for <yocto@lists.yoctoproject.org>; Sat, 16 Dec 2023 01:15:07 +0000 (UTC)
-Received: from hp351.servername.online (unknown [127.0.0.6])
-	(Authenticated sender: hostpapa)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 7B9704C1965
-	for <yocto@lists.yoctoproject.org>; Sat, 16 Dec 2023 01:15:06 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1702689306; a=rsa-sha256;
-	cv=none;
-	b=4CnrfARADC3BanZ6bSLKeRRtLMQN0v9qXzl4LUuQ1+U8mgxAeXWtZF9vC48GXCJ9IzAYEe
-	oc2CAQBS0SjZW2FKrUHJal4SrJm/McvrXth7Usuw4OYyHBk80fecEmsaJuuDnHjxONzLMf
-	4bLbgCrf0GkZvUjUKQQfLjAo3fQrwukW5Gp2NsQKpSyCGIHuEnpaPGRMrse9ERro2OznZs
-	F0XPl5/1b1Gorp28KvIkRQu4CQBbR72y666iX8+nCAZRzunTPjZ3oFjMnvH1+MRya0Ctgy
-	S9k425j0F3x3OY3Ctt2qNW6Qd2madC3Gtef0/mFH87Ognfdl14OgzWKDgp3S1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1702689306;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=/+TI3iAKmdS8uibXWffLD486jXRTLTXY6OXUHfaAg8w=;
-	b=lVVnBFt+PfowHJhB1xz6Wi4n0uSWFn6i0O3zazmD2kMFFKLKmD5U8bEchVDxRDU4mbfHn+
-	48GXAZH4qXO5kNU7+HKt7ClQSML8EZyWNVov53p4CrpgkHhkUVMwxWi/R+/VaDiD/L496v
-	RBhWX0WBCg4hBkRAt1xP7ioLllFhOaH5KZ28aL3pq3id2WezwoOdLu9w18qhD8cE1mPtVn
-	yX/K6gYqIa9/2c0wTPGiI6LKJrXlTQHEoN/UHZpjPcq1nk+meDX0DaBC+NwRECHzbMrOfk
-	g87azrSzY5K1wUrSV/jNO+QFDZC/CppUUXluG7yVXlG+y8NRJh/u92ypX1K7MA==
-ARC-Authentication-Results: i=1;
-	rspamd-856c7f878f-px554;
-	auth=pass smtp.auth=hostpapa smtp.mailfrom=myles.dear@ktechnology.ca
-X-Sender-Id: hostpapa|x-authuser|myles.dear@ktechnology.ca
-X-MC-Relay: Junk
-X-MailChannels-SenderId: hostpapa|x-authuser|myles.dear@ktechnology.ca
-X-MailChannels-Auth-Id: hostpapa
-X-Cold-Share: 3cdac53a47cd87ce_1702689307216_1181407303
-X-MC-Loop-Signature: 1702689307216:1201703413
-X-MC-Ingress-Time: 1702689307216
-Received: from hp351.servername.online (hp351.servername.online
- [64.34.156.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384)
-	by 100.107.232.172 (trex/6.9.2);
-	Sat, 16 Dec 2023 01:15:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ktechnology.ca; s=default; h=In-Reply-To:References:To:From:Subject:
-	MIME-Version:Date:Message-ID:Content-Type:Sender:Reply-To:Cc:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=/+TI3iAKmdS8uibXWffLD486jXRTLTXY6OXUHfaAg8w=; b=b8ss2rrYrwgbVTBxDHmLWb6N+y
-	7Kd9n3w20Lu1M97VlMeU8UMAITvi9d7MGTNsaZJyltNbdiiloIWtQ0NCdsct7I09HnL09W8o9tT+O
-	oYAf5Lp3KHp+S4pu1btESQThNPdhbyMgBhhXZfK5BBYo5MPhg7xF4TZbMeg3iK/WPQKF7G6Dn8F+T
-	X86OxD64y9gRqxpfyh1S8MaOdu4RRmRpa0etDPrOg436tFVWKPUoYDOXSNt8FSVi7Z4k7oPubZIxB
-	Q4XkOOLV6cB8FuDIOZEs2yjQM76u858bvvzj4wQSsUQbmCmta5sWQ1yav5FtlLMpVaeLm1bWtspt/
-	a5LWPsJA==;
-Received: from [76.69.54.225] (port=56902 helo=[192.168.2.75])
-	by hp351.servername.online with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <myles.dear@ktechnology.ca>)
-	id 1rEJGl-00Du7a-1L
-	for yocto@lists.yoctoproject.org;
-	Fri, 15 Dec 2023 20:15:05 -0500
-Content-Type: multipart/alternative;
- boundary="------------8ytyfww5gq72hWyDa9UTzAhi"
-Message-ID: <7974cf33-aff5-4f15-b14b-1809ca84a68a@ktechnology.ca>
-Date: Fri, 15 Dec 2023 20:14:23 -0500
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=DPDaj4WO;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=071467d4b3=yi.zhao@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BG7pS4K009366;
+	Sat, 16 Dec 2023 08:21:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:subject:date:message-id:in-reply-to:references
+	:content-transfer-encoding:content-type:mime-version; s=
+	PPS06212021; bh=xIrZbM2o0QOXyRSDLZRLKFBnv/Sn7OaRvpyNnggIK58=; b=
+	DPDaj4WO/thyJAOVmmgeYfyuKE6st9Vwt6Q1tvQFqQdpyettOHxpYWjYWAmbfXeB
+	+lTJwC5j9Vdr09pkq9gKxHnncVqo07lu9rJ5a+Ox4O1mT8lLncyztTbRgQFzxTop
+	b6bGa8TwrZSb3PqKugn6yk+AK/tnXL6t5M6IzNkZHiog0uqE4xs3K1dxaFC9USbF
+	S8vuz+bKI54dGXnEYxcHvkiaBzFHCCrLssYSY5dipqU2mOP0fhcq+8FBA4RFP62T
+	pR1ZM0WtvvhIIvfFibnlVmkdnJfxMREmBIwChU50CHyzkE3gHUvrZKVZGbSNTNbE
+	wDUqarlHj1h9msKepPcguQ==
+Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2169.outbound.protection.outlook.com [104.47.56.169])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3v113x87ft-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 16 Dec 2023 08:21:59 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gfY9AM8iubmUtXfO0hlkJqvMkEUsO7pcNy752FWl9JHy68rlsEr2SYP+2rzCK8AyKUM2v/9zNnzULOYb1xQ6PyavHwN3251fFm0CRWxSfZGBtqobqiCyZ4bavuyz9hjKT1MretLSTSE9nF/ZaOrs3/ltKKYw51mVjUCDdqK/ZBqjV0Ogxn6YnTcPASAbaTSYl+/cDVWi51HiWxHkcI/EuEg5fA5GZHxVH+isjcSL1bszwt8TbDO1wtLysde8/gHMW5rpF/MbBI2X4rrH71oaCxeeFtSk6DObHaxXPC+UkD/jhWIzjEwj9x99Yl0beBapgsaXvhRaip2ewbdf2epQCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xIrZbM2o0QOXyRSDLZRLKFBnv/Sn7OaRvpyNnggIK58=;
+ b=ZGlTE49FeYMsHMExWv/In4JAvTgAW0j9uaD7YP27gA/ynwnrF6fI99lpj2omg928dqSUwNecS9NE0JodxTpXrP+UDvZMQ8yE+G7LcBBUXgkLSXohHjL96ccT+D2z5JewgheFc3WafGTvqTAi0ZF2IaAxqwzoa3TFDHEbI4GDW7LTmSdWXdSPCzUBVudR5zBsopMVkFEF4l+fLrG8bcyY8Nsf01+IksoVlfBoB9E3uij6OD8hz1/KT8YeDq/nL9S+G6Ugzo8HjoImLnmqA1RzVXMN14ilf09xTYAY8kxFq/9GEs2DN7x70TuTn6EXFApDkArPlbu47byGy/3mAQRWNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from DS0PR11MB7484.namprd11.prod.outlook.com (2603:10b6:8:14c::10)
+ by CH3PR11MB8466.namprd11.prod.outlook.com (2603:10b6:610:1ae::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.31; Sat, 16 Dec
+ 2023 08:21:57 +0000
+Received: from DS0PR11MB7484.namprd11.prod.outlook.com
+ ([fe80::c56:aece:e7ef:6cb3]) by DS0PR11MB7484.namprd11.prod.outlook.com
+ ([fe80::c56:aece:e7ef:6cb3%3]) with mapi id 15.20.7091.028; Sat, 16 Dec 2023
+ 08:21:57 +0000
+From: Yi Zhao <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org, joe.macdonald@siemens.com, joe@deserted.net,
+        joe_macdonald@mentor.com
+Subject: [[meta-selinux]PATCH 02/15] libsepol: upgrade 3.5 -> 3.6
+Date: Sat, 16 Dec 2023 16:21:29 +0800
+Message-Id: <20231216082142.198501-2-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231216082142.198501-1-yi.zhao@windriver.com>
+References: <20231216082142.198501-1-yi.zhao@windriver.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0033.apcprd02.prod.outlook.com
+ (2603:1096:3:18::21) To DS0PR11MB7484.namprd11.prod.outlook.com
+ (2603:10b6:8:14c::10)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Looking for "ldd" that runs on x86_64 platform against an i.MX8 ARMv8
- aarch64 binary
-Content-Language: en-US
-From: MylesDearKtechnology <myles.dear@ktechnology.ca>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <548263bf-7473-4cff-9d00-5e52499e71aa.1702431958986@community.nxp.com>
-In-Reply-To: <548263bf-7473-4cff-9d00-5e52499e71aa.1702431958986@community.nxp.com>
-X-AuthUser: myles.dear@ktechnology.ca
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7484:EE_|CH3PR11MB8466:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2776bec6-930a-4d62-cdb4-08dbfe101157
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	XfziKNXYYMkgJL7P3j7Os7+SlYwzCB0klgUUcegwGFHuKB5N8yk+RV79gJelloBU8+yRim+ok59YQXBWv5FD30oviCWlej5tA3fmMuNN3M2RTe6/8fbJBFHRhXmDfVdvSRjmWTOGLTQH/EREOp4FXEp1ODE+qXBtpYvGhGQj2/4Zq1nvQrc/DxnOX7qTXXT/Nvsutd9twfSCOv8EFYdy4L4SQ0ywjF+hgFuVPosXb1lWLdGD6cBScxDQJ/jRPr5QqClmG5s5ODsuLAqU5800t1F/b8DscELkh+MR8aL/TFJUkL8C7U7h5p1QmhLKVqZWsAGPiwsflsiHhPhZYA0og6INe2X3xPqdgK7w7+SN5+6tBEOecjbW9jiPeoEETBumyalzLDEnLtVPuvLBSgic4Mo/t54qfjbrTLylaL6r9DxeH9AIV1sTaw4I2MEVR+bD44BwZSI0O6AwTmr+B23JN9rXTjVsJmpiQirlW4+C+jcJO1h5XMN59XCIv59lQhZmK3wotwsHK99PucU9RfYbSBx+NZ3jj+xLDh8loo7FTbSo73WvreZPp536IkKy/uK0p4By9X7R57TrKQ5jSM/mN4gMR3irCVc+U6IIy/zwqYbBovBrPHukXrKfw/SUEH0P
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR11MB7484.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39850400004)(366004)(136003)(376002)(396003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(6486002)(4744005)(86362001)(2616005)(38350700005)(6512007)(6506007)(26005)(36756003)(1076003)(478600001)(52116002)(2906002)(83380400001)(6666004)(8936002)(44832011)(41300700001)(8676002)(66476007)(66556008)(316002)(5660300002)(38100700002)(66946007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?VGF1Mx7kZsc3rmWRakempEp5UviRfNYQh0THSAc8bX2TK/xE/BorA9mgIN/2?=
+ =?us-ascii?Q?Bki6KJLwO9KM/pQuPY5A2vJ043gLhmzxhDWx0I8iUo1Cj91IkgkCxGKdmG8h?=
+ =?us-ascii?Q?n08Pw9I0RflQGJHyPnKE/lFN6oj4fujyBAQAf/rX9jhYO1a7rgcpIoQAxtNQ?=
+ =?us-ascii?Q?pSxzAwsDikSNDEq0eWS3XseWn5DSDZd6U2/Wkd0aMh7kkSuY93elHx4HpCJp?=
+ =?us-ascii?Q?AojUfW3R2MqZJ6PUg19unhXRrHu7pWQDz7IAiro82Qqc/MyNqYUZTUJ2P3vC?=
+ =?us-ascii?Q?McIHcaJ3R8EMB0Nr5tro/PaOkwDhefhXqlmEwyj0b3EmFv1vAQschxr2nBrk?=
+ =?us-ascii?Q?ROnzkUltavGUq6+dyMdSdrN4a1WY35uAfPT5rU//u0pt7E2v2O7+RMpHi3UJ?=
+ =?us-ascii?Q?9lAd2OKtXq9mYv3pc+qtpNu1ZlT8O4hzVRvLlGEFdJDvV6KJh0bt/Gm6fRGt?=
+ =?us-ascii?Q?fPwBBpP/SyCV9VdCCA/wOxfWLZg841EYHWc76kJ8iCdHXV/Ur2bSh++vSBOd?=
+ =?us-ascii?Q?RAqtwzda1vSLZF//MYMI0gthK7e7jgJf6ElxoOUCi0Bp8AT8qdjlWr5lv5z9?=
+ =?us-ascii?Q?x4UzpzxGuEHF3iQYo1EMLy4unTFqDK6rjqUtNCRHwsrxKWl5RU1S3UjuDHkA?=
+ =?us-ascii?Q?TbgD3rLNCkDX/w4ShDRBZHbRzuGKRtjrU8ENLe896Tan8OC/R2rWWQSpcLny?=
+ =?us-ascii?Q?5HJ0LT2nqMxLFpT/ygAqmMYbbwFV74+/QF6fuyWoeG8bIThy0wgThTIaSO+r?=
+ =?us-ascii?Q?3w40aGzuEp9vTwsyOe6z2Dx5SJQjpq9CpXvJ2LCEkInNBZpLWP1fdSIA8acs?=
+ =?us-ascii?Q?cTVSbbASJqph6kY6LwRpHdLUmEZrgKxs6OnEImN0glTgc2SRTwfmypwWHV1p?=
+ =?us-ascii?Q?TG1jC6XGCdeZhFInbQ9HOiNSN7C9jK01MQ1JBHR+FmiUhLvobE57btTbMRAz?=
+ =?us-ascii?Q?nysfE+tQfGi1rwnddtqHlzbhCniIt9upqpX9Fog1uJK/nmzqV4ZKirb8MrEN?=
+ =?us-ascii?Q?utlSr9nqoj7bQvf6XlpPZuUjvUnVbAGefTAj8FYImljV9AzbUgXSY4wnQMk2?=
+ =?us-ascii?Q?KryhH/YhtgVP71r1P7iAjwmspGekPImIw+P1BmtcMhhzhVSxuVi7HZZaZ1yD?=
+ =?us-ascii?Q?8Jdsa2KyAakioTcEjmnWb1Tnba1HLsdgZwRkiWMbVBVS529tV1S2blnOEMgj?=
+ =?us-ascii?Q?SCcHcES1osHkX7IwWQn3dDb1g7BGvvbPlxMz76ykxEfzMYRjqx/kbZItCCK4?=
+ =?us-ascii?Q?BONRjGwOFxNs50HVD4FZPC+EjzMTgsbiKkmbbOJgsOkZnKJ0p9lAgB9DrvqU?=
+ =?us-ascii?Q?DNYOjjRixdYopGlO1JhRL/OpsTmApByh1TQNJa7lRuDKhpcJ8nZK+Ux6tQJ8?=
+ =?us-ascii?Q?Q6pUIFWWgP7AlXTzfXu8fABvAr4+3w1y6D+RKjufy1JXv4pbLMwepWvXFwKb?=
+ =?us-ascii?Q?q2MqTHkVbpEc4vyoibcge7lWn0XtJwlnZOYjzLq4IVW2t7O/LslRqoi89yJa?=
+ =?us-ascii?Q?SxbckCEKDOsZWVFO4tqGgY17et4rErS713HPN8Zl+h1E9AYrZ7fMriWhbwoM?=
+ =?us-ascii?Q?Desn0P4fpCFIO7rAePCTOPB+A6kiZ70knA95R4IB?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2776bec6-930a-4d62-cdb4-08dbfe101157
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7484.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2023 08:21:57.0365
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GQ0YiwniIZe2LFMI/bVzpRgxQjR0fBZZwvseyL48rguHydKaAweJ+AtqY77gOODZoWNNkJVaQmOEKIxxlVYddw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8466
+X-Proofpoint-ORIG-GUID: Ibg9hSBDjs5zc8w6rvxG444EOk3iJiTy
+X-Proofpoint-GUID: Ibg9hSBDjs5zc8w6rvxG444EOk3iJiTy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-16_25,2023-11-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ mlxlogscore=432 malwarescore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 mlxscore=0
+ suspectscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2311290000 definitions=main-2312160063
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 16 Dec 2023 01:15:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61926
+ <yocto@lists.yoctoproject.org>; Sat, 16 Dec 2023 08:22:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61927
 
-This is a multi-part message in MIME format.
---------------8ytyfww5gq72hWyDa9UTzAhi
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ recipes-security/selinux/{libsepol_3.5.bb => libsepol_3.6.bb} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename recipes-security/selinux/{libsepol_3.5.bb => libsepol_3.6.bb} (100%)
 
-Hello,
+diff --git a/recipes-security/selinux/libsepol_3.5.bb b/recipes-security/selinux/libsepol_3.6.bb
+similarity index 100%
+rename from recipes-security/selinux/libsepol_3.5.bb
+rename to recipes-security/selinux/libsepol_3.6.bb
+-- 
+2.25.1
 
-
-I=E2=80=99m sending this to the Yocto list on the request of the NXP comm=
-unity.
-
-I=E2=80=99m cross-compiling and doing AppImage packaging and sure could u=
-se a=20
-hand here.
-
-Thanks,
-
-<Myles>
-
-11 Malcolm Place, OTTAWA, ON
-K2G 4H7, CANADA
-
-OFFICE: +1=C2=A0613=C2=A0416 8525
-
-Canadian softphone (preferred) : +1 613 703 4152
-
-Canadian cell : +1=C2=A0613=C2=A0858 2120
-
-Sent from Mail <https://go.microsoft.com/fwlink/?LinkId=3D550986> for Win=
-dows
-
-*From: *NXP Community <mailto:no-reply@mail-community.nxp.com>
-*Sent: *December 12, 2023 8:46 PM
-*To: *myles.dear@ktechnology.ca
-*Subject: *[i.MX Processors] Looking for "ldd" that runs on x86_64=20
-platformagainst an i.MX8 binary (Subscription Update)
-
-Hi mdear,
-
-mdear (Fresh Out Contributor) posted a new topic in i.MX Processors=20
-<https://community.nxp.com/t5/i-MX-Processors/bd-p/imx-processors?emcs_t=3D=
-S2h8ZW1haWx8dG9waWNfc3Vic2NyaXB0aW9ufExRMzQxNUdVRVZGMVhUfDE3NzM0NjN8U1VCU=
-0NSSVBUSU9OU3xoSw>=20
-on 12-12-2023 06:43 PM:
-
-
-      Looking for "ldd" that runs on x86_64 platform against an i.MX8
-      binary
-      <https://community.nxp.com/t5/i-MX-Processors/Looking-for-quot-ldd-=
-quot-that-runs-on-x86-64-platform-against/m-p/1773463/emcs_t/S2h8ZW1haWx8=
-dG9waWNfc3Vic2NyaXB0aW9ufExRMzQxNUdVRVZGMVhUfDE3NzM0NjN8U1VCU0NSSVBUSU9OU=
-3xoSw#M217246>
-
-
-Hello, I'm cross-compiling on an x86_64 build VM running Ubuntu 20.04.6=20
-LTS against a CrossControl v700 running i.MX8DualXPlus=20
-cortexa35-poky-linux architecture. I've succeeded on building my app,=20
-now I'm preparing to put together a single-file AppImage distribution. =C2=
-=A0=20
-Can linuxdeploy support a cross-compilation environment ? =C2=B7 Issue #2=
-58 =C2=B7=20
-linuxdeploy/linuxdeploy (github.com) Looking for cortexa35-poky-linux=20
-ARM support =C2=B7 AppImage =C2=B7 Discussion #1303 (github.com)
-
-NXP Community sent this message to myles.dear@ktechnology.ca.
-You are receiving this email because a new message matches your=20
-subscription to a topic.
-
-
-To control which emails we send you please go to, manage your=20
-subscription & notification settings=20
-<https://community.nxp.com/pwmxy87654/user_subscriptions?emcs_t=3DS2h8ZW1=
-haWx8dG9waWNfc3Vic2NyaXB0aW9ufExRMzQxNUdVRVZGMVhUfDE3NzM0NjN8U1VCU0NSSVBU=
-SU9OU3xoSw>.=20
-
-
---------------8ytyfww5gq72hWyDa9UTzAhi
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    Hello,
-    <div class=3D"WordSection1">
-      <p class=3D"MsoNormal"><br>
-        I=E2=80=99m sending this to the Yocto list on the request of the =
-NXP
-        community.<br>
-        <br>
-        I=E2=80=99m cross-compiling and doing AppImage packaging and sure=
- could
-        use a hand here.</p>
-      <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      <p class=3D"MsoNormal">Thanks,</p>
-      <p class=3D"MsoNormal">&lt;Myles&gt; </p>
-      <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Daytona&quot;,sans-serif;colo=
-r:#1F497D;mso-fareast-language:EN-CA"
-          lang=3D"EN-US">11 Malcolm Place, OTTAWA, ON<br>
-          K2G 4H7, CANADA</span><o:p></o:p></p>
-      <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Daytona&quot;,sans-serif;colo=
-r:#1F497D;mso-fareast-language:EN-CA"
-          lang=3D"EN-US">OFFICE: +1=C2=A0613=C2=A0416 8525</span><o:p></o=
-:p></p>
-      <p class=3D"MsoNormal"><span
-style=3D"font-family:&quot;Daytona&quot;,sans-serif;color:#1F497D;mso-far=
-east-language:EN-CA"
-          lang=3D"EN-US">Canadian softphone (preferred) : +1 613 703 4152=
-</span><o:p></o:p></p>
-      <p class=3D"MsoNormal"><span
-style=3D"font-family:&quot;Daytona&quot;,sans-serif;color:#1F497D;mso-far=
-east-language:EN-CA"
-          lang=3D"EN-US">Canadian cell : +1=C2=A0613=C2=A0858 2120<o:p></=
-o:p></span></p>
-      <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      <p class=3D"MsoNormal">Sent from <a
-          href=3D"https://go.microsoft.com/fwlink/?LinkId=3D550986"
-          moz-do-not-send=3D"true">Mail</a> for Windows<o:p></o:p></p>
-      <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      <div
-style=3D"mso-element:para-border-div;border:none;border-top:solid #E1E1E1=
- 1.0pt;padding:3.0pt 0cm 0cm 0cm">
-        <p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><b>From:=
- </b><a
-            href=3D"mailto:no-reply@mail-community.nxp.com"
-            moz-do-not-send=3D"true">NXP Community</a><br>
-          <b>Sent: </b>December 12, 2023 8:46 PM<br>
-          <b>To: </b><a href=3D"mailto:myles.dear@ktechnology.ca"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">myle=
-s.dear@ktechnology.ca</a><br>
-          <b>Subject: </b>[i.MX Processors] Looking for "ldd" that runs
-          on x86_64 platformagainst an i.MX8 binary (Subscription
-          Update)</p>
-      </div>
-      <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      <p><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif">Hi
-          mdear, <o:p></o:p></span></p>
-      <p><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif">mdear
-          (Fresh Out Contributor) posted a new topic in <a
-href=3D"https://community.nxp.com/t5/i-MX-Processors/bd-p/imx-processors?=
-emcs_t=3DS2h8ZW1haWx8dG9waWNfc3Vic2NyaXB0aW9ufExRMzQxNUdVRVZGMVhUfDE3NzM0=
-NjN8U1VCU0NSSVBUSU9OU3xoSw"
-            moz-do-not-send=3D"true">i.MX Processors</a> on 12-12-2023
-          06:43 PM: <o:p></o:p></span></p>
-      <p class=3D"MsoNormal"><img style=3D"width:4.8333in;height:.0104in"
-          id=3D"Horizontal_x0020_Line_x0020_1"
-          src=3D"cid:image002.png@01DA2EA7.D7070AB0"
-          moz-do-not-send=3D"true" width=3D"464" height=3D"1" border=3D"0=
-"><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>=
-</o:p></span></p>
-      <h3><span style=3D"font-family:&quot;Arial&quot;,sans-serif"><a
-href=3D"https://community.nxp.com/t5/i-MX-Processors/Looking-for-quot-ldd=
--quot-that-runs-on-x86-64-platform-against/m-p/1773463/emcs_t/S2h8ZW1haWx=
-8dG9waWNfc3Vic2NyaXB0aW9ufExRMzQxNUdVRVZGMVhUfDE3NzM0NjN8U1VCU0NSSVBUSU9O=
-U3xoSw#M217246"
-            moz-do-not-send=3D"true">Looking for "ldd" that runs on x86_6=
-4
-            platform against an i.MX8 binary</a> <o:p></o:p></span></h3>
-      <p class=3D"email-notification-body"><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif">Hello=
-,
-          I'm cross-compiling on an x86_64 build VM running Ubuntu
-          20.04.6 LTS against a CrossControl v700 running i.MX8DualXPlus
-          cortexa35-poky-linux architecture. I've succeeded on building
-          my app, now I'm preparing to put together a single-file
-          AppImage distribution. =C2=A0 Can linuxdeploy support a
-          cross-compilation environment ? =C2=B7 Issue #258 =C2=B7
-          linuxdeploy/linuxdeploy (github.com) Looking for
-          cortexa35-poky-linux ARM support =C2=B7 AppImage =C2=B7 Discuss=
-ion #1303
-          (github.com) <o:p></o:p></span></p>
-      <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>=
-=C2=A0</o:p></span></p>
-      <p class=3D"MsoNormal"><img style=3D"width:6.5in;height:.0104in"
-          id=3D"Horizontal_x0020_Line_x0020_2"
-          src=3D"cid:image005.png@01DA2EA7.D7070AB0"
-          moz-do-not-send=3D"true" width=3D"624" height=3D"1" border=3D"0=
-"><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>=
-</o:p></span></p>
-      <div>
-        <p><span
-style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif">NXP
-            Community sent this message to <a
-              href=3D"mailto:myles.dear@ktechnology.ca"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">my=
-les.dear@ktechnology.ca</a>.
-            <br>
-            You are receiving this email because a new message matches
-            your subscription to a topic. <o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif"><br>
-            To control which emails we send you please go to, <a
-href=3D"https://community.nxp.com/pwmxy87654/user_subscriptions?emcs_t=3D=
-S2h8ZW1haWx8dG9waWNfc3Vic2NyaXB0aW9ufExRMzQxNUdVRVZGMVhUfDE3NzM0NjN8U1VCU=
-0NSSVBUSU9OU3xoSw"
-              moz-do-not-send=3D"true">manage your subscription &amp;
-              notification settings</a>. </span><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>=
-</o:p></span></p>
-      </div>
-      <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><img
-            style=3D"width:.0104in;height:.0104in" id=3D"_x0000_i1025"
-src=3D"http://url3791.us.khoros-mail.com/wf/open?upn=3DCq95pi8KOZ8D5-2BBW=
-6w-2Fcw7e5P4AJBT0kSGRMwLuN1FPfIW-2FQQmSaFDoffozl1ipS8KysfwboawLfkjN40wouM=
-GAWq8RkAyuWLXLXo0vQpvD-2BAjLbQEIcFcRf0tW30T7HOFO6DWKCaWWoW7cog4t8jn2h58Ow=
-5H-2FDmClFyYMjNC7lcdvSPnheNPINvtNHLxZUQvSEHlQ"
-            moz-do-not-send=3D"true" width=3D"1" height=3D"1" border=3D"0=
-"></span><span
-style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>=
-</o:p></span></p>
-      <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-    </div>
-    <blockquote type=3D"cite" cite=3D"mid:md5:o++dsOjfA3Wp9QM+YCGesw=3D=3D=
-">
-    </blockquote>
-  </body>
-</html>
-
---------------8ytyfww5gq72hWyDa9UTzAhi--
 
