@@ -2,36 +2,39 @@ Return-Path: <alexis.lothore@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06271C3DA6E
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3895CC46CD7
 	for <webhook@archiver.kernel.org>; Sun, 17 Dec 2023 13:30:38 +0000 (UTC)
 Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
- by mx.groups.io with SMTP id smtpd.web11.18446.1702819837237027641
+ by mx.groups.io with SMTP id smtpd.web11.18445.1702819837141836725
  for <yocto@lists.yoctoproject.org>;
  Sun, 17 Dec 2023 05:30:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=Lso5Mo4d;
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=QUp3o0GX;
  spf=pass (domain: bootlin.com, ip: 217.70.183.195, mailfrom: alexis.lothore@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 97A3A60003;
-	Sun, 17 Dec 2023 13:30:34 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 930E960008;
+	Sun, 17 Dec 2023 13:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702819834;
+	t=1702819835;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=c57cgjCzUZkruh9LEoefBPYGPuU4dh7Q9hueSfTT+BY=;
-	b=Lso5Mo4drT3512lD3vXY0nHa/NTsGmkxbfCQDTjTq6yecsv5d/pvZDOGHiVnlZjI0eyPQ1
-	rt/AjZUymlR2zgUgHyCCMaLhjPMfT912zRPgzR/B8H/1jshWSPC791HSzKlsvnNfRwpLp0
-	e+pT7ok7CKAQTIssl/4tLg71xx17qOqtAbPC+Fe4fOuCRNH7xx6YkYOMVqqm1mJdgJR97U
-	iGqoZtBRtQZ6037VKy8E79UxlscybEf9e6Ia+0IVtQg7grKBq34dzrbCvbh3cSBPHOGSJ1
-	m/HQ2I+CXp4t/3o8IweGHyPIYnloZKMOx/9sOsHu8aOXwrSxNrG2i/XUCEqzhw==
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PhAKbPcuPuJTatYuzclCX9WYCn1k56GVALGhqDcEzHY=;
+	b=QUp3o0GX7aLjaYclnkHnzc4bWDbEy+ilCOqfoSLc3sKfKn1xPR+VqkkQw6BiwfHnrTtoEF
+	OGQJu+AZv6J3eL7Qg3DfrB4JiUcgTED6NHJbBxz31aXdKIp11qBRMd/ZCIwoUeG8YbgoXf
+	UvCLV6YZJTeDE/Xd1LB4pwWqLFLAoR3Wgpzwv6nLd6lnK7ZV9SQ9tv+MmBwEdjQlBWWahC
+	Tq44+GIJ1/sDTXa1nK3m6XTTz0U3E32wK+eEgfE7dFfnnW+BTJJ1LLqCaGNTk/jkxsTMyd
+	AbMm0rwbNyPIwqG+SqWC+NFY35uyEBLg06nG7igfl8szJrHXPwVDtnIiNfr7cw==
 From: =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
 To: <yocto@lists.yoctoproject.org>
 Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [yocto-autobuilder-helper][PATCH 0/4] Fix send_qa_email for releases with new major number
-Date: Sun, 17 Dec 2023 14:30:28 +0100
-Message-ID: <20231217133032.27231-1-alexis.lothore@bootlin.com>
+Subject: [yocto-autobuilder-helper][PATCH 4/4] scripts: send_qa_email: protect get_regression_base_and_target  from exceptions
+Date: Sun, 17 Dec 2023 14:30:32 +0100
+Message-ID: <20231217133032.27231-5-alexis.lothore@bootlin.com>
 X-Mailer: git-send-email 2.42.1
+In-Reply-To: <20231217133032.27231-1-alexis.lothore@bootlin.com>
+References: <20231217133032.27231-1-alexis.lothore@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -40,40 +43,82 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Sun, 17 Dec 2023 13:30:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61948
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61949
 
-Hello,
-the autobuilder encountered a failure while trying to generate 5.0_M1.rc1
-(see [1]) on send_qa_email part, which resulted in missing QA email.
+From: Alexis Lothoré <alexis.lothore@bootlin.com>
 
-This issue is mostly due to the fact that this is the first release on new
-major 5.0. While this case is in theory handled in send_qa_email, practice
-came in and made things blew up: this version makes the tag computation
-method fall through the last branch, which currently expects the tag to
-exist. This assumption is a mistake: it may be valid when trying to
-generate regression reports a posteriori, but not for autobuilder run (tag
-is then applied only when corresponding release has been validated)
+generate_regression_reports is currently protect in a try/catch block to
+prevent it from canceling QA email generation when encountering an issue,
+but get_regression_base_and_target is not.
 
-The two first commits slightly rework tests to prepare for the fix, which
-comes in the third commit.
-Last commit makes sure that get_regression_base_and_target will not prevent
-QA email generation in case of an exception, as it is currently done with
-generate_regression_report
+Make sure that get_regression_base_and_target can not prevent QA email from
+being generated by adding it to the try/catch block protecting
+send_qa_email. While doing so, make sure to preserve the exitcode variable
+to make sure that the step is still marked as fail in autobuilder to make
+sure the error does not go silent. However the variable is not needed as
+global anymore since it is now used in a single function.
 
-[1] https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6338/steps/29/logs/stdio
+Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
+---
+ scripts/send_qa_email.py | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-Alexis Lothoré (4):
-  scripts: send_qa_email: slightly rework previous tag test
-  scripts: send_qa_email: allow testing against non fixed tags
-  scripts: send_qa_email: properly compute previous tag for new major
-    release tag
-  scripts: send_qa_email: protect get_regression_base_and_target  from
-    exceptions
-
- scripts/send_qa_email.py      | 33 +++++++++++++++++++--------------
- scripts/test_send_qa_email.py | 15 ++++++++++-----
- 2 files changed, 29 insertions(+), 19 deletions(-)
-
+diff --git a/scripts/send_qa_email.py b/scripts/send_qa_email.py
+index 8422e4937102..fe612c7e114a 100755
+--- a/scripts/send_qa_email.py
++++ b/scripts/send_qa_email.py
+@@ -16,7 +16,6 @@ import logging
+ import utils
+ 
+ TEST_RESULTS_REPOSITORY_URL="git://git.yoctoproject.org/yocto-testresults"
+-exitcode = 0
+ 
+ def is_release_version(version):
+     p = re.compile('\d{8}-\d+')
+@@ -89,21 +88,16 @@ def get_regression_base_and_target(targetbranch, basebranch, release, targetrepo
+ 
+ def generate_regression_report(querytool, targetrepodir, base, target, resultdir, outputdir, log):
+     log.info(f"Comparing {target} to {base}")
+-    global exitcode
+ 
+-    try:
+-        regreport = subprocess.check_output([querytool, "regression-report", base, target, '-t', resultdir])
+-        with open(outputdir + "/testresult-regressions-report.txt", "wb") as f:
+-           f.write(regreport)
+-    except subprocess.CalledProcessError as e:
+-        error = str(e)
+-        exitcode = 1
+-        log.error(f"Error while generating report between {target} and {base} : {error}")
++    regreport = subprocess.check_output([querytool, "regression-report", base, target, '-t', resultdir])
++    with open(outputdir + "/testresult-regressions-report.txt", "wb") as f:
++       f.write(regreport)
+ 
+ def send_qa_email():
+     # Setup logging
+     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+     log = logging.getLogger('send-qa-email')
++    exitcode = 0
+ 
+     parser = utils.ArgParser(description='Process test results and optionally send an email about the build to prompt QA to begin testing.')
+ 
+@@ -195,9 +189,15 @@ def send_qa_email():
+             #     log.warning("Test results not published on release version. Faulty AB configuration ?")
+ 
+             utils.printheader("Processing regression report")
+-            regression_base, regression_target = get_regression_base_and_target(targetbranch, basebranch, args.release, targetrepodir, log)
+-            if regression_base and regression_target:
++            try:
++                regression_base, regression_target = get_regression_base_and_target(targetbranch, basebranch, args.release, targetrepodir, log)
++                log.info(f"Generating regression report between {regression_base} and {regression_target}")
+                 generate_regression_report(querytool, targetrepodir, regression_base, regression_target, tempdir, args.results_dir, log)
++            except subprocess.CalledProcessError as e:
++                error = str(e)
++                exitcode = 1
++                log.error(f"Error while generating regression report: {error}")
++
+ 
+         finally:
+             log.info(f"[SKIP] delete {tempdir}")
 -- 
 2.42.1
 
