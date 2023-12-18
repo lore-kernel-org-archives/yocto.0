@@ -1,225 +1,83 @@
-Return-Path: <alexis.lothore@bootlin.com>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DD65AC35274
-	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 11:17:34 +0000 (UTC)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
- by mx.groups.io with SMTP id smtpd.web10.41549.1702898248381403031
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFA44C46CA2
+	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 11:34:24 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+ by mx.groups.io with SMTP id smtpd.web10.41739.1702899254619068289
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Dec 2023 03:17:28 -0800
+ Mon, 18 Dec 2023 03:34:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=i24vq8TN;
- spf=pass (domain: bootlin.com, ip: 217.70.183.196, mailfrom: alexis.lothore@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5E216E000D;
-	Mon, 18 Dec 2023 11:17:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702898246;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=/DjGolqJCQ4zMj/1A1aXW2xV0CkygKpTGFMehsIcU0E=;
-	b=i24vq8TNAMJSn9sO5FgqsTm4Noiiro41GyRC0nhY5KJY2TdRiUude/ijiO75YYBlxlThaP
-	DBboHE6h6axLtbe+3crAGoV//blQ6uDsRsi4Rfag7j9uXNw6en55gBqCqBmGZlHcq+11Ra
-	WwDwZmmGBeY0aDEwTGWCEN+yzyvq+zrb5gAn32hJzh6NXKfBs0rwGpUsQs7O0FQ34Pt1Cz
-	W8vGYIB+5aMzwOtXCZ5IjfwkAhxImVxthuzFZ/NOGH/HNTlmdAlXJrkajQIquWE9wBLQDL
-	KWBX2bJNVgd/8z/4sYGT/Q+W5t4mCqzRlhvmFg0PEb15HAP50zcKpGi8RhhFdw==
-From: =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-To: <yocto@lists.yoctoproject.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [yocto-autobuilder-helper][PATCH v2 1/1] scripts: send_qa_email: add dry-run mode
-Date: Mon, 18 Dec 2023 12:17:21 +0100
-Message-ID: <20231218111721.45408-1-alexis.lothore@bootlin.com>
-X-Mailer: git-send-email 2.42.1
+ dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=W+dezu4l;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.218.41, mailfrom: jester@theyoctojester.info)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a1fae88e66eso313655766b.3
+        for <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 03:34:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1702899253; x=1703504053; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6tXSLnJNuclctIY+DmoQr81eQmlqmxOOA0cP+sAtwgo=;
+        b=W+dezu4l41OH9rDH1FVUuzVIItZbGiYQ5+1TAxG7a+Hoar25lLlkSlaKWtWWGUMuJu
+         WpFJhYwxEl0J/M3wkwOSsDGOuJJDJG83cIFWY6+tiQOCh+BjJXGVjdbUt4HERKN+bjPk
+         jS0yjk4DrPMXZSo9Z4rlJlDtD7EFp/7zo8cYhda4JkKR82YBYsBJzRKT8jHyXSO1JnZ5
+         PcKEhEceUTkTZSbor9OpNntLh2aAaPUgmxfX2Cae2vKN3U6O1QU8i8ZZaAI1VHMV//p5
+         2IeN42O96Nk1Pg4SR/9t90emP8AKwhPsb7LDxfWtgPAOSO1s2+HmKQ8XKOC3ghO2QbdO
+         xbsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702899253; x=1703504053;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6tXSLnJNuclctIY+DmoQr81eQmlqmxOOA0cP+sAtwgo=;
+        b=cLXb1+lFqrzmwfgbMlf3RZji98QyrvuENqocOwqwXxDj2iwgzwn0o08YKfIUZ4itMU
+         8UGVFfsFbyn1LEZNDJLQ9dOO6zQycWX1DEvHb0ig+vhSjPEnIsNO8tK1BJ5B+W3qybPr
+         482uc8JZ4SxpS1umzq3OI7dHBTH2GKV1dXAK+f8erdJy6vg6sgH4cbg35U5kEfBluzs7
+         giikXptNlaqaMN+DevH3vkkONld4DJKoB+2gsr9kTlE5J9jZp3r01p0739got6Y3u6ow
+         Ac6jprEsXZrSA9PCxppGs38voXL8QolcUm1J49UpabBkCuPrpr0RzelPq9lq0tXjrnh/
+         jb+Q==
+X-Gm-Message-State: AOJu0YzoBDxL/CNf4PO/er2qLgBONOdFSy4BYQKPlAqWbXgtRWtoXiFc
+	lofizQDErLENeRvnbVszpzSw5cj1MXIxwNOCI+0iSg==
+X-Google-Smtp-Source: AGHT+IEnyb1BfHo+/CwGIig4Njrkjd0vCCm1MBFKoosEZ6mCghw5fPRQg91JkPLJZl28DO6BWYUVENLia7k1t8TYrvA=
+X-Received: by 2002:a17:906:5345:b0:a23:4f2e:f7b with SMTP id
+ j5-20020a170906534500b00a234f2e0f7bmr701964ejo.56.1702899252311; Mon, 18 Dec
+ 2023 03:34:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Mon, 18 Dec 2023 12:33:46 +0100
+Message-ID: <CAEt6Nwrk4xR6KEPYdtPJCzYHV=zsxnJapGCDPm1h8t30TSxeWg@mail.gmail.com>
+Subject: CFP for OE Workshop extended
+To: openembedded-devel@lists.openembedded.org, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	openembedded-members@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000005cab0060cc7216b"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 11:17:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61959
+ <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 11:34:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61960
 
-From: Alexis Lothoré <alexis.lothore@bootlin.com>
+--00000000000005cab0060cc7216b
+Content-Type: text/plain; charset="UTF-8"
 
-Add a dry-run mode to be able to run send_qa_email locally but disabling
-any output (no commit or tag pushed upstream, no mail sent). This eases
-all release-related debugging. This dry-run mode is enabled by the
-following changes:
-- add a -d/--dry-run parameter to send_qa_email
-- update test_results url to allow cloning test_results repository without
-  having its public key registered upstream
-- skip test results storage
-- do not erase test results temp dir
-- skip email sending (but still generate it)
+We have extended the deadline for the OE Workshop in Brussels, Monday
+February 5th until the upcoming Friday, December 22th.
 
-Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
----
-Changes in v2:
-- add missing signed-off-by
+Give the gift of OE and share your knowledge at
+https://pretalx.com/oe-ws-2024/cfp
 
-This feature is basically a translation of a "stub" commit I have been
-maintaining locally for a few months. Being able to execute send_qa_email
-locally is a big enabler to allow debugging autobuilder issues. The
-corresponding workflow then looks like the following, when replaying
-locally a failed build:
-- retrieve, from autobuilder logs, the failed job layer.json (see "Write
-  main layerinfo.json" step logs) and create a local copy
-- retrieve release number, if it was a release job
-- in the directory containing your layer.json, create tree "build/repos".
-  In there, clone all components mentioned in layer.json as poky, oe-core,
-  vendor metas, etc (this is how autobuilder organizes sources)
-- run send_qa_email in dry run mode:
-  ./scripts/send_qa_email.py -d True layer.json fakesharedrepodir \
-  --url 'https://foo.bar' -p fakepublishdir -r <version> -R \
-  faketestresultsdir
+Josef,
+Your friendly OE Santa Helper
 
-There is likely even more automation to add to this new dry-run mode, but
-that's a start
+--00000000000005cab0060cc7216b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
----
- scripts/send_qa_email.py | 55 +++++++++++++++++++++++++++-------------
- 1 file changed, 37 insertions(+), 18 deletions(-)
+<div dir=3D"ltr">We have extended the deadline for the OE Workshop in Bruss=
+els, Monday February 5th until the upcoming Friday, December 22th.<br><br>G=
+ive the gift of OE and share your knowledge at <a href=3D"https://pretalx.c=
+om/oe-ws-2024/cfp">https://pretalx.com/oe-ws-2024/cfp</a><br><div><br></div=
+><div>Josef,</div><div>Your friendly OE Santa Helper</div></div>
 
-diff --git a/scripts/send_qa_email.py b/scripts/send_qa_email.py
-index cfbbf62a9910..f0d8aa2339b9 100755
---- a/scripts/send_qa_email.py
-+++ b/scripts/send_qa_email.py
-@@ -16,6 +16,7 @@ import logging
- import utils
- 
- TEST_RESULTS_REPOSITORY_URL="git@push.yoctoproject.org:yocto-testresults"
-+TEST_RESULTS_DRY_RUN_REPOSITORY_URL="git://git.yoctoproject.org/yocto-testresults"
- 
- def is_release_version(version):
-     p = re.compile('\d{8}-\d+')
-@@ -57,17 +58,17 @@ def get_previous_tag(targetrepodir, version):
-     defaultbaseversion, _, _ = utils.get_version_from_string(subprocess.check_output(["git", "describe", "--abbrev=0"], cwd=targetrepodir).decode('utf-8').strip())
-     return utils.get_tag_from_version(defaultbaseversion, None)
- 
--def get_last_tested_rev_on_branch(branch, log):
-+def get_last_tested_rev_on_branch(branch, test_results_url, log):
-     # Fetch latest test results revision on corresponding branch in test
-     # results repository
--    tags_list = subprocess.check_output(["git", "ls-remote", "--refs", "-t", TEST_RESULTS_REPOSITORY_URL, "refs/tags/" + branch + "/*"]).decode('utf-8').strip()
-+    tags_list = subprocess.check_output(["git", "ls-remote", "--refs", "-t", test_results_url, "refs/tags/" + branch + "/*"]).decode('utf-8').strip()
-     latest_test_tag=tags_list.splitlines()[-1].split()[1]
-     # From test results tag, extract Poky revision
-     tested_revision = re.match('refs\/tags\/.*\/\d+-g([a-f0-9]+)\/\d', latest_test_tag).group(1)
-     log.info(f"Last tested revision on branch {branch} is {tested_revision}")
-     return tested_revision
- 
--def get_regression_base_and_target(targetbranch, basebranch, release, targetrepodir, log):
-+def get_regression_base_and_target(targetbranch, basebranch, release, targetrepodir, test_results_url, log):
-     if not targetbranch:
-         # Targetbranch/basebranch is an arbitrary configuration (not defined in config.json): do not run regression reporting
-         return None, None
-@@ -80,7 +81,7 @@ def get_regression_base_and_target(targetbranch, basebranch, release, targetrepo
-         # Basebranch/targetbranch are defined in config.json: regression
-         # reporting must be done between latest test result available on base branch
-         # and latest result on targetbranch
--        latest_tested_rev_on_basebranch = get_last_tested_rev_on_branch(basebranch, log)
-+        latest_tested_rev_on_basebranch = get_last_tested_rev_on_branch(basebranch, test_results_url, log)
-         return latest_tested_rev_on_basebranch, targetbranch
- 
-     #Default case: return previous tag as base
-@@ -119,6 +120,9 @@ def send_qa_email():
-     parser.add_argument('--url',
-                         action='store',
-                         help="The url for the build")
-+    parser.add_argument('-d', '--dry-run',
-+                        action='store_true',
-+                        help="Do not generate any commit, tag or mail: just simulate the release process")
- 
-     args = parser.parse_args()
- 
-@@ -136,6 +140,12 @@ def send_qa_email():
- 
-     repodir = os.path.dirname(args.repojson) + "/build/repos"
- 
-+    if args.dry_run:
-+        log.info("Running in dry-run mode")
-+        test_results_url = TEST_RESULTS_DRY_RUN_REPOSITORY_URL
-+    else:
-+        test_results_url = TEST_RESULTS_REPOSITORY_URL
-+
-     if 'poky' in repos and os.path.exists(resulttool) and os.path.exists(querytool) and args.results_dir:
-         utils.printheader("Processing test report")
-         # Need the finalised revisions (not 'HEAD')
-@@ -158,10 +168,10 @@ def send_qa_email():
-             elif targetbranch:
-                 cloneopts = ["--branch", targetbranch]
-             try:
--                subprocess.check_call(["git", "clone", TEST_RESULTS_REPOSITORY_URL, tempdir, "--depth", "1"] + cloneopts)
-+                subprocess.check_call(["git", "clone", test_results_url, tempdir, "--depth", "1"] + cloneopts)
-             except subprocess.CalledProcessError:
-                 log.info("No comparision branch found, falling back to master")
--                subprocess.check_call(["git", "clone", TEST_RESULTS_REPOSITORY_URL, tempdir, "--depth", "1"])
-+                subprocess.check_call(["git", "clone", test_results_url, tempdir, "--depth", "1"])
- 
-             # If the base comparision branch isn't present regression comparision won't work
-             # at least until we can tell the tool to ignore internal branch information
-@@ -177,19 +187,22 @@ def send_qa_email():
- 
-             utils.printheader("Storing results")
- 
--            subprocess.check_call([resulttool, "store", args.results_dir, tempdir])
--            if basebranch:
--                subprocess.check_call(["git", "push", "--all", "--force"], cwd=tempdir)
--                subprocess.check_call(["git", "push", "--tags", "--force"], cwd=tempdir)
--            elif targetbranch:
--                subprocess.check_call(["git", "push", "--all"], cwd=tempdir)
--                subprocess.check_call(["git", "push", "--tags"], cwd=tempdir)
--            elif is_release_version(args.release) and not basebranch and not targetbranch:
--                log.warning("Test results not published on release version. Faulty AB configuration ?")
-+            if not args.dry_run:
-+                subprocess.check_call([resulttool, "store", args.results_dir, tempdir])
-+                if basebranch:
-+                    subprocess.check_call(["git", "push", "--all", "--force"], cwd=tempdir)
-+                    subprocess.check_call(["git", "push", "--tags", "--force"], cwd=tempdir)
-+                elif targetbranch:
-+                    subprocess.check_call(["git", "push", "--all"], cwd=tempdir)
-+                    subprocess.check_call(["git", "push", "--tags"], cwd=tempdir)
-+                elif is_release_version(args.release) and not basebranch and not targetbranch:
-+                    log.warning("Test results not published on release version. Faulty AB configuration ?")
-+            else:
-+                log.info(f"[SKIP] store results (base {basebranch}, compare {targetbranch})")
- 
-             utils.printheader("Processing regression report")
-             try:
--                regression_base, regression_target = get_regression_base_and_target(targetbranch, basebranch, args.release, targetrepodir, log)
-+                regression_base, regression_target = get_regression_base_and_target(targetbranch, basebranch, args.release, targetrepodir, test_results_url, log)
-                 log.info(f"Generating regression report between {regression_base} and {regression_target}")
-                 generate_regression_report(querytool, targetrepodir, regression_base, regression_target, tempdir, args.results_dir, log)
-             except subprocess.CalledProcessError as e:
-@@ -199,8 +212,10 @@ def send_qa_email():
- 
- 
-         finally:
--            subprocess.check_call(["rm", "-rf",  tempdir])
--            pass
-+            if not args.dry_run:
-+                subprocess.check_call(["rm", "-rf",  tempdir])
-+            else:
-+                log.info(f"[SKIP] delete {tempdir}")
- 
-     if args.send.lower() != 'true' or not args.publish_dir or not args.release:
-         utils.printheader("Not sending QA email")
-@@ -248,6 +263,10 @@ def send_qa_email():
-     with open(os.path.join(args.publish_dir, "qa-email"), "wb") as qa_email:
-         qa_email.write(email.encode('utf-8'))
- 
-+    if args.dry_run:
-+        log.info("[SKIP] generate and send email")
-+        sys.exit(exitcode)
-+
-     utils.printheader("Sending QA email")
-     env = os.environ.copy()
-     # Many distros have sendmail in */sbin
--- 
-2.42.1
-
+--00000000000005cab0060cc7216b--
 
