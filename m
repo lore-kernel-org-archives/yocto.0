@@ -1,113 +1,73 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B9A7C35274
-	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 13:12:55 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
- by mx.groups.io with SMTP id smtpd.web11.43634.1702905170323904457
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EC028C35274
+	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 14:43:25 +0000 (UTC)
+Received: from a27-191.smtp-out.us-west-2.amazonses.com (a27-191.smtp-out.us-west-2.amazonses.com [54.240.27.191])
+ by mx.groups.io with SMTP id smtpd.web11.45427.1702910599691247497
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Dec 2023 05:12:50 -0800
+ Mon, 18 Dec 2023 06:43:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=EZPt6zYp;
- spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50e2bd8c396so1722656e87.0
-        for <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 05:12:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702905168; x=1703509968; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h3VuU/5NWl/C+PFOkbHHLIzn1TjcAkc5b6gITMCd/JQ=;
-        b=EZPt6zYpzUTk5qjWkHoREUnoGaCHDxcVm1k/vrh7lW9IU8NLYZi3OMMgGHwHSOd4Xq
-         /QsQqqVwOBxi5BWWeXLagVt0uk3T3vs/qRlHemOqN4a7xYzZ2nK7wgw1akNF+wqQGoXS
-         K5q7B8mgGYqXf6d/CrpL4TDzHmNKke/IqQHFVXS5AffWUvojeqiMKU3uY905dgeIyYz8
-         dRw+FTZUPKmVxev+d47XtDBqZoG1UE6YILcz19gyp3c2CkQFk+7N+zOvk0QM2AN0GWCe
-         yjX32LfDXs+IoXwqQrqFe4KxYe0XxaceZoqKJoQSDD/TRBHtSG6w/wgVmgUjl5n1ndfc
-         5rlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702905168; x=1703509968;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h3VuU/5NWl/C+PFOkbHHLIzn1TjcAkc5b6gITMCd/JQ=;
-        b=KfGG4zbvcxH7M2QwA2QMPH9PDnLnhigpVKmdKBhbpDG0+ygmQjM8VCVLKKq9Gh5zrV
-         1jB6ilMKKryCdAl7EzaWlQU/RQsw++SN3ljsJbiaVBTDZrnitxzB+a05kaVs3rFrDgGT
-         5odj4xs4d93+rK2opD2udNn/73g7+afknsLLs/IPU0noMRGMIgpwKDn4wV/L2jS89/rB
-         9F+M1ESsoJNdtZVPnxfdA2z3fN8jCbg6Q45/SuyxpMv4VlAS8eJlPA8Hqaul0+vPabba
-         sGQZz2FxHcCTSWVDohHspGQwk5lH698COMFxTVIJo5hoK2jffJpSHciy89AfjzqFkuJp
-         akpw==
-X-Gm-Message-State: AOJu0YyPb29hF10c91Oxrp1IiLw943PwmaL3JXS+H5AAesmvPgM99rH7
-	DllbqUqBb18ZXqgfSf2x+aZ/+TU0kxnTlSjqTVvaOpLT
-X-Google-Smtp-Source: AGHT+IEREsMJHKlH2+w2plO0B9RY3Oe17YM9gWzQZeVsYdIAEWiuHl8UVyvaAIGHeA7xPr+uW/GudhXhrzl1PrTfWjQ=
-X-Received: by 2002:a05:6512:3e1a:b0:50b:c08d:69ba with SMTP id
- i26-20020a0565123e1a00b0050bc08d69bamr9348879lfv.57.1702905168091; Mon, 18
- Dec 2023 05:12:48 -0800 (PST)
-MIME-Version: 1.0
-References: <PH1P110MB1683AE03CB7709C593AC62B49F90A@PH1P110MB1683.NAMP110.PROD.OUTLOOK.COM>
- <MADEUP.17A1ECDABEBCB3F2.26395@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.17A1ECDABEBCB3F2.26395@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 18 Dec 2023 14:12:36 +0100
-Message-ID: <CANNYZj_wEi_52c7BbQkr8+mRacw+q1gSheJL2Nbp1Tjg6K=ybQ@mail.gmail.com>
-Subject: Re: [yocto] FW: Yocto and Red Hat 8
-To: yocto@lists.yoctoproject.org, steven.monsees@baesystems.us
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=cu6wmZUX;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=pvxY8bJa;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.191, mailfrom: 0101018c7d619dc0-ba8b9b23-ffab-4656-ae64-fadc60b755dd-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1702910598; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=gx8ic2AegWzQIc5U8iZFeYz9aVYyFFI5upq3ByG5OPQ=;
+	b=cu6wmZUXQHuAyeVRp4c24quvJXnZpOv0IKVGajBjEEr7xuTMaRcusl0D886t4wbF
+	+/fXkKnB4JTzXPvsqzncKU+FugPioQrQFBJAGZFH2O65KL7QIDBde816NOi5XTpSJbv
+	HfN4qog8IkskG8OfiqIcdEn0QwftPP1JwYwfT7gQ=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1702910598;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=gx8ic2AegWzQIc5U8iZFeYz9aVYyFFI5upq3ByG5OPQ=;
+	b=pvxY8bJaIf2yBznOkn7mwnYqwPzVhluT8IWgLRqk/zSonVpkhP027kgVYl16A4qi
+	b+ZtZ6cIccmDbGoqGW69sDlg9jCcN/0CBw9DBU4KU+dJWJLrpsZNU2oBNo+fkfdo8xS
+	XO1pCJssEkgj9FIIVb9lriD5E/BcEkWu1qrmMjNs=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-5.0_M1.rc3)
+Message-ID: <0101018c7d619dc0-ba8b9b23-ffab-4656-ae64-fadc60b755dd-000000@us-west-2.amazonses.com>
+Date: Mon, 18 Dec 2023 14:43:18 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2023.12.18-54.240.27.191
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 13:12:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61964
+ <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 14:43:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61965
 
-Zeus has been EOL for a long time. You need to first upgrade to a
-supported yocto release.
 
-Alex
+    A build flagged for QA (yocto-5.0_M1.rc3) was completed on the autobuilder and is available at:
 
-On Mon, 18 Dec 2023 at 13:29, Monsees, Steven C (US)
-<steven.monsees@baesystems.us> wrote:
->
->
->
-> Is there any documentation or guidance you can provide on porting Yocto f=
-or centos7 to 8 ?
->
-> I am currently working centos7 ZEUS=E2=80=A6
->
->
->
->
->
-> From: Monsees, Steven C (US)
-> Sent: Monday, December 18, 2023 7:17 AM
-> To: yocto@lists.yoctoproject.org
-> Subject: Yocto and Red Hat 8
->
->
->
->
->
-> Is there any documentation or guidance you can provide on porting Yocto f=
-or centos7 to 8 ?
->
-> I am currently working centos7 ZEUS=E2=80=A6
->
->
->
-> Thanks,
->
-> Steve
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#61962): https://lists.yoctoproject.org/g/yocto/messag=
-e/61962
-> Mute This Topic: https://lists.yoctoproject.org/mt/103241390/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+
+        https://autobuilder.yocto.io/pub/releases/yocto-5.0_M1.rc3
+
+
+    Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6345
+
+    Build hash information: 
+
+    bitbake: 8295ac1b6672c25bee595cff6e000b2af817f904
+meta-agl: 266ac5373b4458d7fcb78b1e8948eb2b33f18b5d
+meta-arm: e6e7ac4d99f103d26a0ffefd6d0a5d2deef5b17c
+meta-aws: 7915e6bafd876ab3d654a26629dbf501479caae0
+meta-intel: 5cfefd9a8ff1f5a3534c1ba9d7d7f6971ed5d56f
+meta-mingw: e01d47d183945caeaf3c5c086539af0a925ddc32
+meta-openembedded: 0a0ea87b8dda01a2887a525cef78eb6c3f4c2c32
+meta-virtualization: caa14c63f158fdd13382ccf1ff4e20a8ba6ad667
+oecore: 6b729088dce302eb3a967cb6839f00488025be0e
+poky: 33112178d164ddd9ef0b1115c254ad4341ec3ad1
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
