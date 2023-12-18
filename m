@@ -1,180 +1,268 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <steven.monsees@baesystems.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0EB02C35274
-	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 11:40:55 +0000 (UTC)
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.77])
- by mx.groups.io with SMTP id smtpd.web11.42245.1702899649372378182
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 455C7C35274
+	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 12:29:25 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web11.42932.1702902558229834821
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Dec 2023 03:40:50 -0800
+ Mon, 18 Dec 2023 04:29:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=9Hni5aOK;
- dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=9Hni5aOK;
- spf=pass (domain: arm.com, ip: 40.107.7.77, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=h30BaBwEFWR0RobbGMh2FoCdJ5kW6H4j0prQ85u+CJd+Tdp9aMrXn3wxDli09QSjYV9yWY7Dee8WGHn9NqmK5ySFigryPbHLyBR4ZUSh8GLtvE7wDVdgDOjDmN/+xbterOJNseS9lwqwkxLP7KUOCv5frzdhRhXRomkhoMZ5KFGad4MOpmdkuOE4+jBxQFS8FNAY0uWX0tS5NJJazoIMF3kdt7LxD8fNFGcnR9tFHZ0oMpZDXCwk/hz6A+10rFanPl84JY2TDjA4v38BJWYHRyvTZ2fHWfQDogPx3nIp1ZT73Q/ZgnZ2gWNb/yteJKOauSs74tOUmsC8M+4/1PKEAQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SGx1eR1PpTux3qqCZ2sA8BOVbZwdxnASrnm6/BFd6Ks=;
- b=QaPLh3de1sFkf5hJTT9nx1vf9yZJ41+EWan8Lu2cEpB5xDKkiiRmWBCt6N1e7jZUex6pYmPBkW2rhISWNWqYrXqGhAzQoVnJTR+SFzyI4ni+VmmJRP2feZOMmmGjdKQqOP/7KmijDxl1t6GML3KWY73xtJNUhHosXbyYDWm/qVua/10r9xML7gHq+DPT9zaNHJVMmXvZlR16yPHXYmt7YwdS5HZOgenOAjgakbmrys+cTTiHk2Ui9II16IdXe/5tGf7OvLIxscKEyf/CEjQTDPdNd+/XxwowAsDzyxwEd2hjOJeupoaSyPb8HuOcMEfu4teq3Jxht8egDJ5PovqFNg==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
- oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SGx1eR1PpTux3qqCZ2sA8BOVbZwdxnASrnm6/BFd6Ks=;
- b=9Hni5aOKaWgxwM1lIrZZF569um39Vmj3umMVFRnM1jIlHj/mv4iGxqCVuPD743mGRC93YYMyrL+tvNLhWsaAgb5yus4CSugMbw7D9xRlS54R+KumFZYdVA4yeAC6mybF2NW7FwooLrrDOy/eSlF4T7Rz66BDQN8Sve6upP8q35s=
-Received: from AM0PR01CA0076.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:10e::17) by AS2PR08MB9988.eurprd08.prod.outlook.com
- (2603:10a6:20b:642::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.37; Mon, 18 Dec
- 2023 11:40:45 +0000
-Received: from AMS1EPF00000041.eurprd04.prod.outlook.com
- (2603:10a6:208:10e:cafe::73) by AM0PR01CA0076.outlook.office365.com
- (2603:10a6:208:10e::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.36 via Frontend
- Transport; Mon, 18 Dec 2023 11:40:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
- pr=C
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- AMS1EPF00000041.mail.protection.outlook.com (10.167.16.38) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7113.14 via Frontend Transport; Mon, 18 Dec 2023 11:40:44 +0000
-Received: ("Tessian outbound 20615a7e7970:v228"); Mon, 18 Dec 2023 11:40:44 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: 6337f3449c4bd49a
-X-CR-MTA-TID: 64aa7808
-Received: from 66d472578322.1
-	by 64aa7808-outbound-1.mta.getcheckrecipient.com id DB30B966-F7FC-436B-8A92-A75354843FE6.1;
-	Mon, 18 Dec 2023 11:40:37 +0000
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 66d472578322.1
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Mon, 18 Dec 2023 11:40:37 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eCm7oSMnmV0DAp5D0Ithgv9PdHPuIN0rexIOCf3gyr+scrF/buoC0OAV0CR+0ya3doLaRGZNleegUOdL4w/egKrGmG6NBpvbiMSOJZIo7Tf2BQrC7Tj0p9vkJ+gib7Rw0xvS2A6UH1siGu6X65LCeXVM8BcBfl3isBWOV0DX7x3caZY9iuRgEQ2NdkR8T3aPT23w239NVwBcv5T1s7cLwwnRlDC2Erw0TzoxBeC10TQQMblyqaxWk6bzZSuYtY9dPGWSuRShAS30P/GV9A2MrMjQgMhKZOT9KBTVQqaai6t5laEfTizmCxuJt2IAfzkqlhWggQ5LkSVEu18oo9isWw==
+ dkim=none (message not signed); spf=pass (domain: baesystems.us, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.us)
+X-IPAS-Result: =?us-ascii?q?A2BUBAAOOoBl/0LBJQpagQkJgUaBNoEDeQKBXhuWHZxTg?=
+ =?us-ascii?q?SyBfg8BAQEBAQEBAQEHAQEuARUEAQGFBgKHNCc2Bw4BAgQBAQEBAwIDAQEBA?=
+ =?us-ascii?q?QEBCAEBBgEBAQEBAQYFAYEchS8+DIJVg3ABAQEBAwEsXAIBCAQJBAQBAS8oC?=
+ =?us-ascii?q?hsBAQUDAQEEEwiCeYIXSK0SeIE0GgJlghUEsnwJAYE+gWmGMgGBToN9GYQ8g?=
+ =?us-ascii?q?gxDgRVCgmg+hEWEEoIvBIZ5gh4HMoEJEIRTkVt9RnAbAwcDfw8rBwQwIgYJF?=
+ =?us-ascii?q?C0jBlAEKCEJExJAgV2BUgqBAT8PDhGCPiICBzY2GUiCWhUGOkp1ECoEFBeBB?=
+ =?us-ascii?q?ghuGxIeNxEQFw0DCHQdAjI8AwUDBDMKHQshBVYDQgZJCwMCGgUDAwSBMAUNH?=
+ =?us-ascii?q?gIQGQgLJwMDEkkCEBQDOwMDBgMKMQMwVUQMUANpHxYcCTsPDBsCGx4NJyMCL?=
+ =?us-ascii?q?EIDEQUQAhYDJBYENBEJCygDLAY4AhMMBgYJXiYWCQQnAwgEA1QDI3YRAwQKA?=
+ =?us-ascii?q?xQHCwdKA0QdQAMLGyExPTUUGwUEY1qhSAqHEsYZBwOCX4EwmSKIJBeXTgOSO?=
+ =?us-ascii?q?JhHIKgSAgICAgQFAg4IgWoIggaBAoMlUhmiIHY7AgcLAQEDCYkiKoEWAQE?=
+IronPort-PHdr: A9a23:o2e7yhC9JsJEeK1fkDfNUyQUr0QY04WdBeb1wqQuh78GSKm/5ZOqZ
+ BWZua89ygWRDc6AtLptsKn/jePJYS863d65qncMcZhBBVcuqP49uEgeOvODElDxN/XwbiY3T
+ 4xoXV5h+GynYwAOQJ6tL1LdrWev4jEMBx7xKRR6JvjvGo7Vks+7y/2+94fcbglWhzexe61+I
+ Am1oAneuMQbg5ZpJ7osxBfOvnZHdONayH9yK16Ugxjy+Nq78oR58yRXtfIh9spAXrv/cq8lU
+ 7FWDykoPn4s6sHzuhbNUQWA5n0HUmULiRVIGBTK7Av7XpjqrCT3sPd21TSAMs33SbA0Ximi7
+ 7tuRRT1hioLKyI1/WfKgcF2kalVog+upwZnzoDUfo+bKeZ+cK3ec9MUR2VOQsleWjdbDY+gc
+ 4cCFfYNMfpGo4T7ulAArQG+BQ6pBO73xDNGgXj23ash0+s/Dw7GxxQsFM8TvnTIstr1KrkdU
+ eaox6TW0D7Pa/1Z1yr45ITGbxsspuqMXa5ufsrP10YvERnJjlCXqYzjJDOayPoCs3OA4uV7T
+ +2glXUnqgFqojiz2Mgsj5LJipgIylDf7Ch0xps+KtKkRkBhe9GkDIdQuD+AN4twWs4vQXxkt
+ Sg4x7AYpZK2eDQHxIk6yhLCa/KKb4qF7gz9WeuVIjp1hHFodr2/iRu27ESuyu3yW8iq3FhFr
+ SdIncfAu3YQ3BLQ8siKUuZx8lu71TuB1Q3f8PxILEQ6mKbBKpMsw6Y8moQPvUjfAyP7nUr7g
+ aySe0o+/+Wk9fjrbqnjq5OBNIJ7kQTzP6EzlsG+B+kzLxYDX2yG+eSnyL3s41f5TqhLjvw3j
+ KbUqIzWKMIGraCjGQBVyJws6xOnAjej19QXgGcIIUpeeBKCk4jpI1bOIO3kDfung1SjjjNrx
+ /feM73nApXNKGLMkLL6fbt+60NQ1BY/wc1F65JSEL4NOun8VVXvu9zDDh45KBC0zPjiCNVmz
+ I8RRWWPAqqBPKPTt1+H+P4vLvGRaIMJojrwJfoo6+TzgXI9l1IRZ6ik0JoPZHC9BPtmIkGZY
+ XT2gtcGFGcHphE+TPD0h12cTzFTYWy+X6c75jE9E4KpE5nMRpu2jbOaxii0AIZWZ2BdClCQD
+ 3jocp6EV+0RaCKJOsNhlCcLWqC7S4A9zRGuqBP6y71/I+bJ4iEYr47s1MBp5+3PkhE/7Tx1D
+ 8OB3GGRSGF5hWcIRz4t3KBjukxx0FeC0a9kjPxEEtxT/+lJUgA4NZHC0+N6F8r+WgXbfteGG
+ x6aRYDsEDY6UtUZx94Vf107CtKpkhfbxS2oDrQJ0buRC9Z8prPb1GT2D8J80GrdkrgmhEUhW
+ tFIN2Ctmuh47QeFVKDTlEDM3YOtc78R0TWJvFyfwHSDuglzGE5NauSPFSQEekbIoNK/40TEV
+ LKjEpwtOwZa2NWeJ65RLMDy2wYVDMz/McjTNjri01y7AgyFk+vkhMLCd2Yc2XDbD04J20AW8
+ G2dPAczTiGmvyrFDTNoGF6uBiGk8eR3pH6hCENhyQaMYh5t0rOv8UsTgvqRA/oYwrMDvnInr
+ DN5VFaw1t7bEZyOvQ1kKa9VbMgs+0tK0HmfqhcuVqE=
+IronPort-Data: A9a23:qYc7gKDz69xH8hVW/5/hw5YqxClBgxIJ4kV8jS/XYbTApD8i3zMBz
+ mJMDWiAO6yIZDD9Lo0gbY6+9EhTsJHVnIRjOVdlrnsFo1CmCSbm6XZ1Cm+qYkt+++WaFBoPA
+ /02M4WGdoZuJpPljk/FGqD7qnVh3r2/SLP5CerVUgh8XgYMpB0J0HqPoMZnxNY06TSFK1nV4
+ 4ir+ZSPYAbNNwNcawr41YrS8HuDg9yv4Fv0jnRmDdhXsVnXkWUiDZ53Dcld+FOhH+G4tsbjL
+ wry5OnRElHxpn/BOfv5+lrPSXDmd5aJVeS4Ztu6bID56vRKjnRaPq/Wr5PwY28P49mCt4gZJ
+ NmgKfVcRC9xVpAgltjxXDEAHX9iB7xL5Yb9GkGD4JHJjE6bWH7zlqAG4EEeZeX0+85xAWdH8
+ OdIdWhVN1aFjqS8yb+gW/Jwi8E4asLsOevzuFk5lXeCUrB/EMuFHfuiCdxwhV/cguhVAfvAa
+ sxfbD1pdxnNeDVFM1oMGYkikeKzwGTkG9FdgAvL+fBouDeOnGSd1pDhKufWXIGXQv5RoUHFl
+ zPN9T/0DgsjYYn3JT2ttyjEavX0tTL8U54VPLm57eJxxkyUzXAUEAcRV1awvb++kEHWZj5EA
+ xVMvHFx6/Fjrwr1ELERQiGFnZJNhTZEM/I4LgHwwFjlJnb8i+pBOlU5cw==
+IronPort-HdrOrdr: A9a23:fFbqWKg9qBoBbuFBtMriopUctnBQXjEji2hC6mlwRA09TyX5ra
+ qTdaIgpHjJYVEqKRUdcLG7Scy9qBznmaKdjbN/AV7AZniFhILLFuFfBNDZskTd8kTFn4Yx6U
+ 4HScZD4bXLZmSS5vyKgzVQfexA/PC3tJqGqM2b52txSzpncbhn6B10YzzrdHGfRGN9dOUE/J
+ j33Ls4m9J3E05nH/hSBRM+Lpj+T8WgruOfXfafbSRXlDVni1mTmcXH+0jx5GZlb9tXq41SjF
+ T4rw==
+X-Talos-CUID: 9a23:NYqqym2jD9tXkIkMtEaAUrxfQs57bkfMwWrpGXSBNTc0Ev6WFHSV5/Yx
+X-Talos-MUID: 9a23:L2z2KguxSgB0bXwva82niCtfN+E1/qOVDH8KzKRXsMPfOCBqAmLI
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="6.04,285,1695686400"; 
+   d="scan'208,217";a="164273758"
+X-IronPort-AV: E=Sophos;i="6.04,285,1695686400"; 
+   d="scan'208,217";a="422295968"
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=tuvFw0wpeF5ZDANPJ3xaqU5tTMndKeEalD8JFTdHLfznJIUTH0s5PsCu3+SA3YCIZNcgs3EqFU/Cxn7yMrSchMQZEbNHn+tqIVX1e5hniLXPUxJuyClvre7h5Z8JvHm7x1vFo8xcAH4a2MxjGF2NM2YEzf/6O9M6Sz8cWQ7u+kzwOdYZzggSYxvpEqrioSkWSJVgEuZMnlpM5o+JnMngl3ER5bfn1hEalDe4+TO6c80XY4eftz9C+5zsWpxcGZfAlhAMvFVItxXxVwi7B78fFfDktme4kL4oVUBalL2V8SDjyrusVJ8EA2W2oqJ1nOXqDB3EL4LcLsKwMFcxr/gNtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
+ s=arcselector5401;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SGx1eR1PpTux3qqCZ2sA8BOVbZwdxnASrnm6/BFd6Ks=;
- b=l10R92NPGIK0zE4PEuQub9sultoroEglS1XN4Y/MiAUxSDAqY460AnI2yKZtTQ50GzEdwBlDXKGPouqPhcpefdar2Q0XVuOBcL1KoQMwudkjsFz2PL3o0BqRovF8/fXqH/qv1NNgiF0ThIn++wNQqbdoLxWDne0Pestx13Jg6kEYYwag8onl30iU4NSmVcPt6gvyKVqFCHjt3qOpJf3Fq+cZtxF8WlWCbO5vgzk4BQ6XxxK6ECh3XNpcHcRxejHSVmepzAAsAzE+TYf1v0eX87wDZl4T18mfJLY8l040fYfmwBWb6SroyDTEoFQ/4R67iBdj9uTcSdmvkZpkzC4Y2g==
+ bh=07y1xRpxoTtJi65pnZlnqcwFQzQL9BgHI4XZ5wQMHiE=;
+ b=dVjwh1hiIYBqyImkx3COEGvVASWGeIIRYPtdQheXG9NjXhFNKhz/xmKTNG4hUIqOGZPy/Bgqz0TjN/Qc32J14Pf0z5w+OuSGbMEZrUL1Fa2Uhu7UwxfyuvpWcvSaW2IDCZ4fos5T3S53wuV6nCKcQ+AZh5wng/sejnXfMYDH3Z0Y6jDJ3j7nVa58S4RK4CzOFrfTsj9QlLt5OX4y5beyUOnvNU9vIVUJgCQOaUGdtq2vhJHIok8Cirw0Uoxf4ZlWF7LOlHzDq2kzcLx7HKId6muXQ7fUQt7UYPzkjmFqZGRhTl5bqoomz0+npYGlnONysg/GI3IiAAoBus72C4rHTg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SGx1eR1PpTux3qqCZ2sA8BOVbZwdxnASrnm6/BFd6Ks=;
- b=9Hni5aOKaWgxwM1lIrZZF569um39Vmj3umMVFRnM1jIlHj/mv4iGxqCVuPD743mGRC93YYMyrL+tvNLhWsaAgb5yus4CSugMbw7D9xRlS54R+KumFZYdVA4yeAC6mybF2NW7FwooLrrDOy/eSlF4T7Rz66BDQN8Sve6upP8q35s=
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
- by DB9PR08MB8225.eurprd08.prod.outlook.com (2603:10a6:10:39d::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.37; Mon, 18 Dec
- 2023 11:40:34 +0000
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::ef47:2c42:1ef6:fe5c]) by PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::ef47:2c42:1ef6:fe5c%6]) with mapi id 15.20.7091.034; Mon, 18 Dec 2023
- 11:40:34 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, "me@lrossetti.com"
-	<me@lrossetti.com>
-Subject: Re: [yocto] Question about DISTRO_FEATURES, DISTRO_FEATURES_NATIVE
- and DISTRO_FEATURES_NATIVESDK
-Thread-Topic: [yocto] Question about DISTRO_FEATURES, DISTRO_FEATURES_NATIVE
- and DISTRO_FEATURES_NATIVESDK
-Thread-Index: AQHaL414FYcipZZVyEynVXIzq17qk7Cu7t8A
-Date: Mon, 18 Dec 2023 11:40:34 +0000
-Message-ID: <27904E88-8CD9-4855-8F92-C744D2B728E4@arm.com>
-References: 
- <PJaCF_UbBDlb_8qYIdXMqJeMLNIFHdJE7E9cv-F5oV2R_tgxj-Jvf9lZ8Oq1GqB0LaXu8-vg0MRoHUblQi75MzM86s59K6Kx6gGGQweVUoY=@lrossetti.com>
-In-Reply-To: 
- <PJaCF_UbBDlb_8qYIdXMqJeMLNIFHdJE7E9cv-F5oV2R_tgxj-Jvf9lZ8Oq1GqB0LaXu8-vg0MRoHUblQi75MzM86s59K6Kx6gGGQweVUoY=@lrossetti.com>
-Accept-Language: en-GB, en-US
+ smtp.mailfrom=baesystems.us; dmarc=pass action=none
+ header.from=baesystems.us; dkim=pass header.d=baesystems.us; arc=none
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.us>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: FW: Yocto and Red Hat 8
+Thread-Topic: Yocto and Red Hat 8
+Thread-Index: Adoxq8FxPXzRENO3RciOKyyFd/1K/AAAa4pg
+Date: Mon, 18 Dec 2023 12:28:08 +0000
+In-Reply-To: <PH1P110MB1683AE03CB7709C593AC62B49F90A@PH1P110MB1683.NAMP110.PROD.OUTLOOK.COM>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3774.300.61.1.2)
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: 
-	PA4PR08MB7411:EE_|DB9PR08MB8225:EE_|AMS1EPF00000041:EE_|AS2PR08MB9988:EE_
-X-MS-Office365-Filtering-Correlation-Id: aefc23e9-e5e6-438c-2ee6-08dbffbe2be9
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- txosHHdBLohR44NZGxLChnCiINiN5ppyBTdVI+qdE0sWFyD+lHvytsu9NNXoM2MXy0KWhyqA5EYo5rYa6a/of44DUMgy4FypNzYqkcsISkIcD05j3iGnM6nEG91DD5SAsEDVq9MhxZYBLkeSkrF2GA08ejMjVqV7tJloEeqciJRTdN9J/eE0HqP6Gxf3hYM3SCAWAVfgoPrQKsGR7l7KwmjZYgTibKCkePT5lxyyIw/mNzTmi35MrioCa90+6MpTuGjzo2hsVklq6XUVbHSa+JtlK//1MWF0YeeaBhNwqHlXRSL4hCZYO48jBFlenVPeFi5pcSwalXQNvkd9hFKFMIiW9iOW4CErWQnrpb7OP+gypbc7gurGy/Np4Tf5wYmGTYj9r0WDokb6uRJK6IyxHD46mokrV2b8HxJGZoh6Dwkn75eTjqzW1QhBHUlkSrUG/vtH7Cz6FmfJQKTl9JKeVI17RGiXk2CqKiv4Qdmo2yQ8CFFtYAguTokZqaUKRPbj41z1eiMbfTfdlkTzqF1XfF/Ke+0TDPeD0wodMuQHiBuJ4bMtt8o3F1GM5GVNYVQCZNIiLlkY9fcDYJnt8GOUkhCQS/JCv90AzHDOCqj7ZxxFLwlZITre3kR9+gTHQxxQVR2tTSn4q4ufmJDveJC+aQ==
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(136003)(39860400002)(346002)(396003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(26005)(2616005)(38070700009)(83380400001)(6486002)(478600001)(71200400001)(6512007)(6506007)(53546011)(5660300002)(8676002)(8936002)(41300700001)(86362001)(36756003)(33656002)(2906002)(38100700002)(122000001)(91956017)(76116006)(66556008)(66476007)(66446008)(64756008)(66946007)(110136005)(316002)(45980500001);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <54804AB07EE67340AB6E40E5C834AF33@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=baesystems.us;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH1P110MB1683:EE_|PH1P110MB1586:EE_
+x-ms-office365-filtering-correlation-id: 86deeae1-ea55-41d3-2311-08dbffc4cac6
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 73RjZ5S8XzIjL1vw2KeLEdghXkNXXxpygTckvG3WZ5jfRnFN9fMOTHpoiAdH9o28MpGgbKW7ZPiKB1ufMW4JBLprUMH9NsjNTKz/aAt5Iyv1x7hXmea8LSp1Y+M21dRYvQ0UEyfnmnyCZo7lhZFh+DRGuR9+tQSgOsIthbEZo4LnCtPQFBpBFN4Mgtj5E7aBY/iVnImy9+RCj6F1Y3N9VTYrxC4aeIpt4+NOIf049uBXWN0HAi9WYGa1tIxEMWVYfHOYR+pFepuvhHOXj7sttdcB1jB/P/NcsM3J6d4U7HaSAhzlDEDX7O1Eu6v/KcnLC0c4Qt2ng1PdJFeM8WweqMHWJhpbaEv1Oa3KW0yFKQfdQHcZUHaIdoaxFiifL+l8eelH41rckCSaoKCMnTuMxDszXVdNZ0fO5wr1kOm3geGuHi2fDJWL0kjcQBDoEcoiS5S/7WUXHgm1jye2V2uFFR62whRxQJUmnp7owkLWhJ2t9ZwkvdyJ5h5WrA5GKZ0nHt++mZpkIhQt/MlGTkV+j9bneyhCQtKy4tbpzI1zxA2vWKcpzzS49xiB/j0LufRsLH1meeHukjeU1xY9vPfpJzfRAyAkWbjyvFb09wbMb95vmgf+jkO77UGqIykkjlpE+RehKlYX+J06CH0LzZ+Cjw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1683.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366004)(230922051799003)(451199024)(186009)(1800799012)(5660300002)(7696005)(2940100002)(8676002)(66476007)(52536014)(66946007)(6916009)(76116006)(66556008)(64756008)(498600001)(66446008)(86362001)(8936002)(4744005)(33656002)(38100700002)(6506007)(122000001)(71200400001)(53546011)(9686003)(2906002)(38070700009)(80162012)(26005)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Hs1JYxIuVhSXWqrLMXZcyrGwubQTEgg0xGGdcyESXK+jPV+LJ0imE0dfIg1r?=
+ =?us-ascii?Q?vh4KcSo7w1OXR3FuRi3z8STuni67cYxDv/GcTbdEzCvI274DAD8bTFr9P2ze?=
+ =?us-ascii?Q?XLp9chb+7LLMJp1PzciswZo3qUT9EOTEp3DPdiCpPgEQBG/6XFhr0i1vnUrN?=
+ =?us-ascii?Q?54/GsF1t/ge3ErCpZylclFaJ0eKEOLSgbSU+8Q1VVLb5y/MYC/AcRy2FkQ4J?=
+ =?us-ascii?Q?IpRJZs0gtRgLy3BZ9rNTI5xhhbZ45n0Rg0h7I0qH/2jUeyBFcLxShLHxVNGC?=
+ =?us-ascii?Q?UrTtQHQq/EpozAJzVBKxNE6y9x7BnmcJ1/sQ0DRXP7D1N46NstvRjKtEhJvH?=
+ =?us-ascii?Q?zVfjwcy4qiX24evdY/VG6Ru7cM/uU5HOyskwoIgrlkQmb5Tq+CI+TtG7KWLz?=
+ =?us-ascii?Q?UBv6fkW4KrfxSxYhjQ5VU4rZ4r1CfbpvItL12PY9i1+tQPOddXEpmv4D163b?=
+ =?us-ascii?Q?Ymq76FA10nu2t7InUXlFlUwCCBFj+RFmAS0633kvwSfhEqODlbJETbP6MpvS?=
+ =?us-ascii?Q?wtrr1ye8mbQXKcAqa2CGqxRdIWFDYtmMtZiuwt0Ody5pCvhF8jDaLbKN8qQl?=
+ =?us-ascii?Q?jMw5LuMizNVFXkyG/DIcP0oKnwXL8B1W1Vrba2oESxzooEUY1JEYVfJzZXhG?=
+ =?us-ascii?Q?nzd65Clg+xWNtgpCN1oThKOdf08rFy2/Jl0RrA/D7S8XtevUFXnUlUjHxybv?=
+ =?us-ascii?Q?WXWudJSVuOd3N58mmM8Ws3oB5Y+6ZtlQBSkRER+H6WbdZy+LRglGWbqxbV7W?=
+ =?us-ascii?Q?iwoD0z8dxrTdid948gULAIKL/Z95zETumnWbM+arglh/QuEQnFCzGrLYITxN?=
+ =?us-ascii?Q?hBezsYMyzfPs11vsm9XD2voMYDyWhWvf0cFkxeSLDkmKo+4wyRPXgTuOdUQS?=
+ =?us-ascii?Q?8OWHjnt5aeKKzwPVG17aKy/oJmWGJNvXK9Tf6f8xNJQZJjPHvupSL5NnNkSK?=
+ =?us-ascii?Q?jzkleEtjGE5qPhXdWV19anRfj1tYkiKFYKG3qSqXnggAMDwEcbVkQZTJ13ns?=
+ =?us-ascii?Q?yHaG395FUSaj/B2RciVZms/EkAoZxBbV1Vpdrqs0xwSFHkz+gNYYBkAH/F0e?=
+ =?us-ascii?Q?IQ5bXuKcKbUBKWO344BOoNi5zVdqM68RZqbaVRnpGAlJiIybn+acMqxm3KQL?=
+ =?us-ascii?Q?OeYezHVJRFvXBbhPGhmoMSGebNJTQsrKzjr9kDRU+VNxUufX5hHA3GjlTVYJ?=
+ =?us-ascii?Q?+ZwS2TaiySz5iollQGl5XNYkHesPe9uGCKejTKNp5yGE8rpOq0zrGryrNq52?=
+ =?us-ascii?Q?M5hio7Zm4+90euC1RGxh+hufHRdRfr5KQrOr1vzP6i0Hbj8TQOw/6Wt3LXCL?=
+ =?us-ascii?Q?uTNFKkHI6iSWT83WVXtraQLUF88QAdvBBk0hmd5FlYIZlJK2BOiQOucSaiu+?=
+ =?us-ascii?Q?m0snPKFNtEiIcarhvsnBeqrnVdImrUd9G27MBO+2AL0+/nAN55uZvt9nFR7a?=
+ =?us-ascii?Q?foZcgyjFyYem+FXaYIG+cJNF+kXMlgsPMbJBzVHsecLEnVzIjdTOf2/0MeO/?=
+ =?us-ascii?Q?WzvhzevmA4JZm3+j/FRb/t3MZH1wGzdlNlbY?=
+Content-Type: multipart/alternative;
+	boundary="_000_PH1P110MB1683FA15B6178A59B0E86CE99F90APH1P110MB1683NAMP_"
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB8225
-Original-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- AMS1EPF00000041.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	16707464-72f4-4257-da39-08dbffbe25da
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	eq4DgBgrTZ1P1+xLe9Aj6rOvZWHQkMfdyG7POLkTLNqSlKWZDapyPAK6VjRZ9cb7nmKhA0rhz/GvxrokirxObE65I54LT3nhV12ynBR2M42V0LDFaNtRLAKmrM3YLx9qbx3Pk0P6uISYXoCR+v2Joo7xNxioYzAN2iJsSr/1LzY5s4aXCxSNU5QmVOQM8oC3wYfErUO7PJuUzeKtG2JQPjYl/WwyTsiEmAn7odD+FwNL8zUEeeQiZRWWPdYTO9oDQ8Dy0I+V/HrB09w9864oYl6xbvzsp4FX2t3l41tRq1CqBYU5aqafx74FRzH0ojoiLK7vSMJZ1njbHGl9GjCxtwkycU9aKsAvkSa3stLyIIPfY03zV3OPNiobAus5WH6Reznd/6Geb9amHuSz2qMjWPZaWhkXoHHdAGpLtXgMwPKQY4y33jQHIJ9gcgWS+Kvd7YNt3XMBs6vOsqGXxuqyo3RsWG/fj4+aNbzFR1qDYT5oHptJkd2qfQ6lOOCi2GibFw8XeUGQWdT/j1WF11tqsRRyU9tEaVJs5ijITsclg1SlIMwIiroAaGGtAMtUtL9tGDC+u+PwhkDScpkY3qgwPAPdBnZBAyr//hlNQ435w20WyCGO9gSIhFsBrqyeHkzXU/RmlXfIerAP2WyL1NqtQQRbtfZ3au3ZdOOP6gdZoiqbC1gFaSLFG4isomVCG6DMyM0MQLpNjbbADF6V1q/cm1IKKb9uAMoO2eO+v37Od0Kpdks59//taDrsteEguhH7
-X-Forefront-Antispam-Report: 
-	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230031)(4636009)(396003)(136003)(376002)(346002)(39860400002)(230922051799003)(1800799012)(82310400011)(64100799003)(451199024)(186009)(46966006)(36840700001)(40470700004)(36756003)(316002)(83380400001)(336012)(70586007)(70206006)(110136005)(40480700001)(2906002)(47076005)(5660300002)(8936002)(8676002)(36860700001)(53546011)(6512007)(26005)(478600001)(6486002)(2616005)(86362001)(41300700001)(40460700003)(82740400003)(356005)(81166007)(6506007)(33656002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2023 11:40:44.8003
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1683.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86deeae1-ea55-41d3-2311-08dbffc4cac6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2023 12:28:08.3317
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aefc23e9-e5e6-438c-2ee6-08dbffbe2be9
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	AMS1EPF00000041.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB9988
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 03b86c3a-8954-4d19-9522-e464fe9f22ce
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1586
+X-OriginatorOrg: baesystems.us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 11:40:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61961
+ <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 12:29:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61962
+Message-Id: <20231218122925.455C7C35274@smtp.lore.kernel.org>
 
-T24gMTUgRGVjIDIwMjMsIGF0IDE5OjMyLCBMZW9uYXJkbyBSb3NzZXR0aSB2aWEgbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZyA8bWU9bHJvc3NldHRpLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPiB3
-cm90ZToNCj4gDQo+IEhlbGxvLA0KPiANCj4gSSBhbSB0cnlpbmcgdG8gYnVpbGQgYW4gaW1hZ2Ug
-KGNvcmUtaW1hZ2UtbWluaW1hbCkgd2l0aCBvdmVybGF5ZnMgZW5hYmxlZCwgYnV0IEkgZ2V0IHRo
-ZSBmb2xsb3dpbmcgZXJyb3Igd2hlbiBJIHRyeSB0byBkbyBzbzoNCj4gDQo+IGBgYA0KPiBxdWls
-dC1uYXRpdmUgd2FzIHNraXBwZWQ6IG1pc3NpbmcgcmVxdWlyZWQgZGlzdHJvIGZlYXR1cmVzICdv
-dmVybGF5ZnMgc3lzdGVtZCcgKG5vdCBpbiBESVNUUk9fRkVBVFVSRVMpDQo+IEVSUk9SOiBSZXF1
-aXJlZCBidWlsZCB0YXJnZXQgJ2NvcmUtaW1hZ2UtbWluaW1hbCcgaGFzIG5vIGJ1aWxkYWJsZSBw
-cm92aWRlcnMuDQo+IE1pc3Npbmcgb3IgdW5idWlsZGFibGUgZGVwZW5kZW5jeSBjaGFpbiB3YXM6
-IFsnY29yZS1pbWFnZS1taW5pbWFsJywgJ3F1aWx0LW5hdGl2ZSddDQo+IGBgYA0KPiANCj4gSSBk
-byBoYXZlIHRob3NlIHNldCBpbiBteSBsb2NhbC5jb25mOg0KPiANCj4gYGBgDQo+IERJU1RST19G
-RUFUVVJFUzphcHBlbmQgPSAiIG92ZXJsYXlmcyBzeXN0ZW1kIHZpcnR1YWxpemF0aW9uIHVzcm1l
-cmdlIGFjbCB4YXR0ciBwYW0iDQo+IGBgYA0KPiBUYWtpbmcgYSBsb29rIGF0IHRoZSBxdWlsdCBy
-ZWNpcGUsIEkgZm91bmQgb3V0IHRoYXQgaXQgaW5oZXJpdHMgdGhlIG5hdGl2ZS5iYmNsYXNzIGZy
-b20gdGhlIG9wZW4tZW1iZWRkZWQtY29yZSBsYXllci4NCj4gDQo+IFNvIEkgbm90aWNlZCB0aGF0
-IGluIGJvdGggZmlsZXMsICJuYXRpdmUuYmJjbGFzcyIgYW5kICJuYXRpdmVzZGsuYmJjbGFzcyIs
-IHRoZXJlIGlzIHRoZSB1c2FnZSBvZiBhIGRpZmZlcmVudCBESVNUUk9fRkVBVFVSRVMgdmFyaWFi
-bGU6DQoNCkl0IGxvb2tzIGxpa2UgeW914oCZcmUgaW5oZXJpdGluZyB0aGUgb3ZlcmxheWZzIGNs
-YXNzIGdsb2JhbGx5LiAgVGhlIGNsYXNzIHNob3VsZCBiZSBpbmhlcml0ZWQgaW4gdGhlIHJlY2lw
-ZSB0aGF0IGNvbnRhaW5zIHRoZSBzeXN0ZW1kIG1vdW50IHVuaXRzLg0KDQooY29weWluZyBNaWNo
-YWVsIHRvIHNlZSBpZiB3ZSBjYW4gZ2V0IHRoZSBkb2N1bWVudGF0aW9uIGNsYXJpZmllZCkNCg0K
-SWYgeW914oCZcmUgbm90IGRvaW5nIHRoYXQsIHRoZW4gaG93IGFyZSB5b3UgZW5hYmxpbmcgb3Zl
-cmxheWZzPw0KDQpSb3Nz
+--_000_PH1P110MB1683FA15B6178A59B0E86CE99F90APH1P110MB1683NAMP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+Is there any documentation or guidance you can provide on porting Yocto for=
+ centos7 to 8 ?
+I am currently working centos7 ZEUS...
+
+
+From: Monsees, Steven C (US)
+Sent: Monday, December 18, 2023 7:17 AM
+To: yocto@lists.yoctoproject.org
+Subject: Yocto and Red Hat 8
+
+
+Is there any documentation or guidance you can provide on porting Yocto for=
+ centos7 to 8 ?
+I am currently working centos7 ZEUS...
+
+Thanks,
+Steve
+
+--_000_PH1P110MB1683FA15B6178A59B0E86CE99F90APH1P110MB1683NAMP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal">Is there any documentation or guidance you can provi=
+de on porting Yocto for centos7 to 8 ?<o:p></o:p></p>
+<p class=3D"MsoNormal">I am currently working centos7 ZEUS&#8230;<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Monsees, Steven C (US) <br>
+<b>Sent:</b> Monday, December 18, 2023 7:17 AM<br>
+<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> Yocto and Red Hat 8<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is there any documentation or guidance you can provi=
+de on porting Yocto for centos7 to 8 ?<o:p></o:p></p>
+<p class=3D"MsoNormal">I am currently working centos7 ZEUS&#8230;<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_PH1P110MB1683FA15B6178A59B0E86CE99F90APH1P110MB1683NAMP_--
 
