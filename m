@@ -1,102 +1,113 @@
-Return-Path: <me@lrossetti.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5284EC35274
-	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 12:40:25 +0000 (UTC)
-Received: from mail-4022.proton.ch (mail-4022.proton.ch [185.70.40.22])
- by mx.groups.io with SMTP id smtpd.web10.42661.1702903213951526437
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B9A7C35274
+	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 13:12:55 +0000 (UTC)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+ by mx.groups.io with SMTP id smtpd.web11.43634.1702905170323904457
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Dec 2023 04:40:15 -0800
+ Mon, 18 Dec 2023 05:12:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@lrossetti.com header.s=protonmail3 header.b=aTa3E8of;
- spf=pass (domain: lrossetti.com, ip: 185.70.40.22, mailfrom: me@lrossetti.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lrossetti.com;
-	s=protonmail3; t=1702903211; x=1703162411;
-	bh=RnQgw6R6Hr1HrKbsPuLbRhgLOdyZcN9LqEz0f2vtNxk=;
-	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=aTa3E8of8E1wQKPEwLZa2v2fM8Lu0e7lnSs8vJLHtGF7e4+NeXddXl3HbJyabp0Kd
-	 QDupR8lR+HahZlUuyN4gf/BbruuEUF3fg5KiVFcuBmvxovIawMBEQE3Imo2Vl0xDmu
-	 chXaaV91nUzcsOUfdHWhEGj7fZwpgEKER7LTg1fU6EIjwd7P26uycn0kCHsDa8tIZP
-	 swXBBwE7rE3c3mimvsdIMlB78MvtyQs04V0CE3EMw3+wv2dT1bgxD1LQP6Ejr2spMG
-	 gr9jyPdU7sXK/T0jj43dqTWdSee5pksEXJXYfeVpmf3/ZiwBqtPAWvexAGYkKDTiqW
-	 4Q2MDzeB2dU+w==
-Date: Mon, 18 Dec 2023 12:39:57 +0000
-To: yocto@lists.yoctoproject.org
-From: Leonardo Rossetti <me@lrossetti.com>
-Subject: Re: [yocto] Question about DISTRO_FEATURES, DISTRO_FEATURES_NATIVE and DISTRO_FEATURES_NATIVESDK
-Message-ID: <MvEN-d-YbdymuMIY7sq-AHGZmVIEb011aiXX1Ooxeg3AhPRqFRkfjZIwfFTu_7V1NDsDVABhWrnOiSdntSUEgf3JbBqCIFjvn0YCzngxCuY=@lrossetti.com>
-In-Reply-To: <27904E88-8CD9-4855-8F92-C744D2B728E4@arm.com>
-References: <PJaCF_UbBDlb_8qYIdXMqJeMLNIFHdJE7E9cv-F5oV2R_tgxj-Jvf9lZ8Oq1GqB0LaXu8-vg0MRoHUblQi75MzM86s59K6Kx6gGGQweVUoY=@lrossetti.com> <27904E88-8CD9-4855-8F92-C744D2B728E4@arm.com>
-Feedback-ID: 29696065:user:proton
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=EZPt6zYp;
+ spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50e2bd8c396so1722656e87.0
+        for <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 05:12:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702905168; x=1703509968; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h3VuU/5NWl/C+PFOkbHHLIzn1TjcAkc5b6gITMCd/JQ=;
+        b=EZPt6zYpzUTk5qjWkHoREUnoGaCHDxcVm1k/vrh7lW9IU8NLYZi3OMMgGHwHSOd4Xq
+         /QsQqqVwOBxi5BWWeXLagVt0uk3T3vs/qRlHemOqN4a7xYzZ2nK7wgw1akNF+wqQGoXS
+         K5q7B8mgGYqXf6d/CrpL4TDzHmNKke/IqQHFVXS5AffWUvojeqiMKU3uY905dgeIyYz8
+         dRw+FTZUPKmVxev+d47XtDBqZoG1UE6YILcz19gyp3c2CkQFk+7N+zOvk0QM2AN0GWCe
+         yjX32LfDXs+IoXwqQrqFe4KxYe0XxaceZoqKJoQSDD/TRBHtSG6w/wgVmgUjl5n1ndfc
+         5rlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702905168; x=1703509968;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h3VuU/5NWl/C+PFOkbHHLIzn1TjcAkc5b6gITMCd/JQ=;
+        b=KfGG4zbvcxH7M2QwA2QMPH9PDnLnhigpVKmdKBhbpDG0+ygmQjM8VCVLKKq9Gh5zrV
+         1jB6ilMKKryCdAl7EzaWlQU/RQsw++SN3ljsJbiaVBTDZrnitxzB+a05kaVs3rFrDgGT
+         5odj4xs4d93+rK2opD2udNn/73g7+afknsLLs/IPU0noMRGMIgpwKDn4wV/L2jS89/rB
+         9F+M1ESsoJNdtZVPnxfdA2z3fN8jCbg6Q45/SuyxpMv4VlAS8eJlPA8Hqaul0+vPabba
+         sGQZz2FxHcCTSWVDohHspGQwk5lH698COMFxTVIJo5hoK2jffJpSHciy89AfjzqFkuJp
+         akpw==
+X-Gm-Message-State: AOJu0YyPb29hF10c91Oxrp1IiLw943PwmaL3JXS+H5AAesmvPgM99rH7
+	DllbqUqBb18ZXqgfSf2x+aZ/+TU0kxnTlSjqTVvaOpLT
+X-Google-Smtp-Source: AGHT+IEREsMJHKlH2+w2plO0B9RY3Oe17YM9gWzQZeVsYdIAEWiuHl8UVyvaAIGHeA7xPr+uW/GudhXhrzl1PrTfWjQ=
+X-Received: by 2002:a05:6512:3e1a:b0:50b:c08d:69ba with SMTP id
+ i26-20020a0565123e1a00b0050bc08d69bamr9348879lfv.57.1702905168091; Mon, 18
+ Dec 2023 05:12:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <PH1P110MB1683AE03CB7709C593AC62B49F90A@PH1P110MB1683.NAMP110.PROD.OUTLOOK.COM>
+ <MADEUP.17A1ECDABEBCB3F2.26395@lists.yoctoproject.org>
+In-Reply-To: <MADEUP.17A1ECDABEBCB3F2.26395@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 18 Dec 2023 14:12:36 +0100
+Message-ID: <CANNYZj_wEi_52c7BbQkr8+mRacw+q1gSheJL2Nbp1Tjg6K=ybQ@mail.gmail.com>
+Subject: Re: [yocto] FW: Yocto and Red Hat 8
+To: yocto@lists.yoctoproject.org, steven.monsees@baesystems.us
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 12:40:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61963
+ <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 13:12:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61964
 
+Zeus has been EOL for a long time. You need to first upgrade to a
+supported yocto release.
 
+Alex
 
-
-
-
-Sent with Proton Mail secure email.
-
-On Monday, December 18th, 2023 at 8:40 AM, Ross Burton <ross.burton@arm.com=
-> wrote:
-
-
-> On 15 Dec 2023, at 19:32, Leonardo Rossetti via lists.yoctoproject.org me=
-=3Dlrossetti.com@lists.yoctoproject.org wrote:
->=20
-> > Hello,
-> >=20
-> > I am trying to build an image (core-image-minimal) with overlayfs enabl=
-ed, but I get the following error when I try to do so:
-> >=20
-> > `quilt-native was skipped: missing required distro features 'overlayfs =
-systemd' (not in DISTRO_FEATURES) ERROR: Required build target 'core-image-=
-minimal' has no buildable providers. Missing or unbuildable dependency chai=
-n was: ['core-image-minimal', 'quilt-native']`
-> >=20
-> > I do have those set in my local.conf:
-> >=20
-> > `DISTRO_FEATURES:append =3D " overlayfs systemd virtualization usrmerge=
- acl xattr pam"`
-> > Taking a look at the quilt recipe, I found out that it inherits the nat=
-ive.bbclass from the open-embedded-core layer.
-> >=20
-> > So I noticed that in both files, "native.bbclass" and "nativesdk.bbclas=
-s", there is the usage of a different DISTRO_FEATURES variable:
->=20
->=20
-> It looks like you=E2=80=99re inheriting the overlayfs class globally. The=
- class should be inherited in the recipe that contains the systemd mount un=
-its.
-
-You are correct, I inherited it in my "local.conf" file but I couldn't find=
- another way to enable it in my build, or so I thought.
-
-Would just using "overlayfs" as a "distro feature" be enough?
-
->=20
-> (copying Michael to see if we can get the documentation clarified)
->=20
-> If you=E2=80=99re not doing that, then how are you enabling overlayfs?
->=20
-> Ross
+On Mon, 18 Dec 2023 at 13:29, Monsees, Steven C (US)
+<steven.monsees@baesystems.us> wrote:
+>
+>
+>
+> Is there any documentation or guidance you can provide on porting Yocto f=
+or centos7 to 8 ?
+>
+> I am currently working centos7 ZEUS=E2=80=A6
+>
+>
+>
+>
+>
+> From: Monsees, Steven C (US)
+> Sent: Monday, December 18, 2023 7:17 AM
+> To: yocto@lists.yoctoproject.org
+> Subject: Yocto and Red Hat 8
+>
+>
+>
+>
+>
+> Is there any documentation or guidance you can provide on porting Yocto f=
+or centos7 to 8 ?
+>
+> I am currently working centos7 ZEUS=E2=80=A6
+>
+>
+>
+> Thanks,
+>
+> Steve
+>
+>
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#61961): https://lists.yoctoproject.org/g/yocto/messag=
-e/61961
-> Mute This Topic: https://lists.yoctoproject.org/mt/103197288/7461047
+> View/Reply Online (#61962): https://lists.yoctoproject.org/g/yocto/messag=
+e/61962
+> Mute This Topic: https://lists.yoctoproject.org/mt/103241390/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/leave/12035803/746104=
-7/1574024554/xyzzy [me@lrossetti.com]
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+mail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
