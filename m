@@ -1,80 +1,101 @@
-Return-Path: <alexis.lothore@bootlin.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 29C1EC46CCD
-	for <webhook@archiver.kernel.org>; Sun, 17 Dec 2023 13:30:38 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
- by mx.groups.io with SMTP id smtpd.web10.18342.1702819836712831041
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AACDBC3DA6E
+	for <webhook@archiver.kernel.org>; Mon, 18 Dec 2023 00:57:51 +0000 (UTC)
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+ by mx.groups.io with SMTP id smtpd.web11.31687.1702861062288056003
  for <yocto@lists.yoctoproject.org>;
- Sun, 17 Dec 2023 05:30:37 -0800
+ Sun, 17 Dec 2023 16:57:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=nbJL4fSC;
- spf=pass (domain: bootlin.com, ip: 217.70.183.195, mailfrom: alexis.lothore@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D792C60004;
-	Sun, 17 Dec 2023 13:30:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702819835;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oiGTRRSOBvfAh88IfwjahVNov3deCCDVvdBfJK4Y5lA=;
-	b=nbJL4fSCQ5Zi4NTDkf74Cjm702k9nRzz7gZzeICH3qg42sEJrkXtxcoBtNZQljFPXuA/j+
-	GCmBEKqSL4QiHtcjUkwZvqPrUN8ArSUMZutKmer8gf4wTyqHY+tVgBKivZE+wzu1739KZy
-	EgcKWxHMXR79z7VcxHHXZgQ/C7fRO1ECaSxEh0+mTPw/zVKT4um2/PfhfNVr0SnXq+6IUl
-	MRYw/G2J7CXL+t37SW4coARHFmmm0k+Ss93lSTDryoEr77Fr+MFoiQvjt44WmB5Ko5p5Gf
-	yZBnRfzHh3mAMlDdn9p2pzt5L6E+XpU3O8TpoyKEVrmyDLiIeMr6pk5dfRC4jg==
-From: =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-To: <yocto@lists.yoctoproject.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [yocto-autobuilder-helper][PATCH 1/4] scripts: send_qa_email: slightly rework previous tag test
-Date: Sun, 17 Dec 2023 14:30:29 +0100
-Message-ID: <20231217133032.27231-2-alexis.lothore@bootlin.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <20231217133032.27231-1-alexis.lothore@bootlin.com>
-References: <20231217133032.27231-1-alexis.lothore@bootlin.com>
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=RVTWszm4;
+ spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: akuster808@gmail.com)
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-77f42ee9370so230790285a.2
+        for <yocto@lists.yoctoproject.org>; Sun, 17 Dec 2023 16:57:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702861061; x=1703465861; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sJbHiVvWFbaXOWmp6FytIDents68OdgR5U+PM8T5vs8=;
+        b=RVTWszm4s7y8M494KOGOLz3bTy3Kiq5avFU0rpc8jyNDL1crxt/TfmkUMZR8WIKlqM
+         z9SiJnjxOZUlOSl/6gRUdnHJOP6WoyHMgtBj7eni6p0q2wqKcv0QKvOKOaKE+VJxpyIX
+         G1n0Fa20FksKcTPWCXsLy7a1CK03OOAOT4Nem0knEHIJCTv0pKsRMSsObePnSOYmeewy
+         P/ep4ck1r35x3xay/ExZZMWqGFWa0tkYCpdNOSRjKM2MuJnIjn9ukGAy3WBtIScD62q0
+         GqU+zf55wn4FLEyi2TT9YcJ1nouVS2Y9sFS8k2MIYNMHQA4A9XNrbrzkgbJtZCDkR0++
+         VUMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702861061; x=1703465861;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sJbHiVvWFbaXOWmp6FytIDents68OdgR5U+PM8T5vs8=;
+        b=CQ/bti6jr0v3FZN4tFsVHJPrtTeKPeZ6+yZmCSwNTOuUCvy//8Dd710cXngFjqZwVu
+         z31qCnhKb+QzTZEvAwhVCLW5ydRaKw8q/9z2eHryS+DUvmscDVYaCEIqOc8Eixbz7tlf
+         JHeF1xBtgB7A262JBIINlJTFOhZAdnuZ9Fxz0mztkS3XvKHAV60jj6sBR0R8mwl8yHnh
+         9jEk6lS6KTPvQVUa9fne4NbvZW+0wOp7nIETefzOD7qFAMICDdacKSh+8oMvV8IdzU9Y
+         VrmGino1xC7uebvzFG67mwxByq3XH6weWTiVOJl+OHLthQmOa5lxRdTtjdx39ecT3Brc
+         beLg==
+X-Gm-Message-State: AOJu0YzbUVSjPfSmKNfJRJ5zhf0WYX2/xjXs795eOAdk7UMk/3qdH63j
+	H5hXa6Xr3vNi1y6R17xxHxGI5D23W+4Srg==
+X-Google-Smtp-Source: AGHT+IGBfZmbhRE9MYf8WWriYb9t9CFTehAPRoF0nqjnWPxvlK4bO0sUuS21rxp+Nwr/C0vaaEA0aQ==
+X-Received: by 2002:a05:620a:562f:b0:77f:3b08:ea64 with SMTP id vv15-20020a05620a562f00b0077f3b08ea64mr17646849qkn.121.1702861061065;
+        Sun, 17 Dec 2023 16:57:41 -0800 (PST)
+Received: from keaua.caveonetworks.com ([2600:1700:9190:ba10:e601:af37:f032:c87d])
+        by smtp.gmail.com with ESMTPSA id l28-20020a81ad5c000000b005e4f2da4d79sm2014182ywk.103.2023.12.17.16.57.40
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 16:57:40 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] arpwatch: adjust CONFIGURE params to allow to build again.
+Date: Sun, 17 Dec 2023 19:57:39 -0500
+Message-Id: <20231218005739.2980686-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 17 Dec 2023 13:30:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61945
+ <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 00:57:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61950
 
-From: Alexis Lothoré <alexis.lothore@bootlin.com>
+drop EXTRA_OECONF
 
-Use intermediate variables for test input/output, and print expected
-output in subtest to get more info when a test fails
-
-Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- scripts/test_send_qa_email.py | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ recipes-scanners/arpwatch/arpwatch_3.3.bb | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/scripts/test_send_qa_email.py b/scripts/test_send_qa_email.py
-index 5509b3c2510e..8ab91538748a 100755
---- a/scripts/test_send_qa_email.py
-+++ b/scripts/test_send_qa_email.py
-@@ -57,10 +57,10 @@ class TestVersion(unittest.TestCase):
+diff --git a/recipes-scanners/arpwatch/arpwatch_3.3.bb b/recipes-scanners/arpwatch/arpwatch_3.3.bb
+index 4b4d476..7a0a776 100644
+--- a/recipes-scanners/arpwatch/arpwatch_3.3.bb
++++ b/recipes-scanners/arpwatch/arpwatch_3.3.bb
+@@ -25,8 +25,6 @@ PACKAGECONFIG ??= ""
  
-     def test_versions(self):
-         for data in self.test_data_get_version:
--            test_name = data["input"]["version"]
--            with self.subTest(f"Test {test_name} previous tag"):
--                self.assertEqual(send_qa_email.get_previous_tag(os.environ.get(
--                    "POKY_PATH"), data["input"]["version"]), data["expected"])
-+            input_version = data["input"]["version"]
-+            expected = data["expected"]
-+            with self.subTest(f"Test {input_version} previous tag (expecting {expected})"):
-+                self.assertEqual(send_qa_email.get_previous_tag(os.environ.get("POKY_PATH"), input_version), expected)
+ PACKACONFIG[email] = "-with-watcher=email=${APRWATCH_FROM} --with-watchee=email=${ARPWATH_REPLY}, , postfix, postfix postfix-cfg"
  
-     def test_is_release_version(self):
-         for data in self.test_data_is_release_version:
+-EXTRA_OECONF:append = " --srcdir=${S}"
+-
+ CONFIGUREOPTS = " --build=${BUILD_SYS} \
+           --host=${HOST_SYS} \
+           --target=${TARGET_SYS} \
+@@ -41,13 +39,13 @@ CONFIGUREOPTS = " --build=${BUILD_SYS} \
+           --localstatedir=${localstatedir} \
+           --libdir=${libdir} \
+           --includedir=${includedir} \
+-          --oldincludedir=${oldincludedir} \
+           --infodir=${infodir} \
+           --mandir=${mandir} \
++          --srcdir=${S} \
+           "
+ 
+ do_configure () {
+-    ${S}/configure ${CONFIGUREOPTS} ${EXTRA_OECONF}
++    ${S}/configure ${CONFIGUREOPTS}
+ }
+ 
+ do_install () {
 -- 
-2.42.1
+2.34.1
 
 
