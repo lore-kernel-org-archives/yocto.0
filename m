@@ -1,462 +1,84 @@
-Return-Path: <an010@live.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E47F0C41535
-	for <webhook@archiver.kernel.org>; Tue, 19 Dec 2023 16:18:20 +0000 (UTC)
-Subject: Installing the build tools with the install-buildtools script fails #kirkstone #poky
-To: yocto@lists.yoctoproject.org
-From: "Aleksandar Nikolic" <an010@live.com>
-X-Originating-Location: CH (147.161.250.119)
-X-Originating-Platform: Windows Chrome 120
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28940C41535
+	for <webhook@archiver.kernel.org>; Tue, 19 Dec 2023 17:07:51 +0000 (UTC)
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+ by mx.groups.io with SMTP id smtpd.web10.1591.1703005662100773946
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 19 Dec 2023 09:07:42 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Vda68YjR;
+ spf=pass (domain: gmail.com, ip: 209.85.160.50, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1f066fc2a2aso1568558fac.0
+        for <yocto@lists.yoctoproject.org>; Tue, 19 Dec 2023 09:07:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703005661; x=1703610461; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wcdVXHIHnEPqwuG8kLMtmzIBsIhfGXQLLzSgumGjU0Y=;
+        b=Vda68YjRTeMvzoMweyhZcPkH7nm3oacZ5gfQxiYjAat1hbS4Yg4wAbRdTJBBNW27so
+         vjLC6SkBdvwQscF6+Na4ULFUj7qqE2xLAinYGR4Ijb33GV1x3/GBxaSHU8o51RdhTUQ9
+         yxNFxZmSGG658GBzScz0zZYAKjIM5YKbEIb/RGzSLtQQUUbl357psMa1BL7B4jWtgKkT
+         L9BAaI1WGcImF3kVyxHWeytOh7lzcHqsZDjIZCYmzCpz913UIXsF3tO1XUQdbVkvcTFt
+         4Hno9IGzNqs4FKZPAMeNo5yo7JqRPTzsLeg11Co/B6yI9S+9WkNwIkiXM5/FRhIdR5gH
+         yozg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703005661; x=1703610461;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wcdVXHIHnEPqwuG8kLMtmzIBsIhfGXQLLzSgumGjU0Y=;
+        b=RpqP0+rafbePLDsyacn/mBqkN23p6mydm/ohcYypVsL6OHa67GNS8a5r8gxgPcbjin
+         QmItN3hsuRSnFtvdJlv7Tt9hyhJMcgLZEzdemXYVrhB26ICQiQwrKWOeAH/jP0dDpNMZ
+         1DxCUqNONdbSkV/7NBO9KwKkPl1DThDJ77Aoj5/w6qxxIyLzDqehXwbZAi2jvn//2kS+
+         rccGi5ieqJxzruasFq9+x6hMP0CacZgLf7eMBV6mMuoOLzu1adbecRALTaVsAJCY1iKE
+         8sPSkdqnROw8rlHvTfQEZDuB+2nKt2nIdBZTmHki3Loe97fhg1Ec1HkOcfGUA6/gzyef
+         otXw==
+X-Gm-Message-State: AOJu0Yzcy0ZhxqvjTSSFai0yioHCNGOdM1raoPfOEdmQ5cvYHcf9PJ+j
+	XAlqAw9YaemAweJslveble1+iPWN4/CN3AgS9/l1wEDgV0Y=
+X-Google-Smtp-Source: AGHT+IGwI3HbkedfhcgRuVLXR0YS4+DrBP1E7fSrVIvW6L1Ie16EzCuT9tECH7tyNs1pzMLwrKNRunMB1ysZOjmQjUI=
+X-Received: by 2002:a05:6871:488:b0:1fa:d81e:2884 with SMTP id
+ f8-20020a056871048800b001fad81e2884mr12337568oaj.22.1703005661211; Tue, 19
+ Dec 2023 09:07:41 -0800 (PST)
 MIME-Version: 1.0
-Date: Tue, 19 Dec 2023 08:18:11 -0800
-Message-ID: <Mcdw.1703002691680055475.gDdZ@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="FOGoCql8sznYsTZ0orgt"
+References: <CAEt6Nwpek3T5wbHgYORCSptuRvZ=ntuWGDz=FCYvw0UdeBtb4g@mail.gmail.com>
+ <30615.1702967237069629029@lists.yoctoproject.org>
+In-Reply-To: <30615.1702967237069629029@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 19 Dec 2023 09:07:15 -0800
+Message-ID: <CAMKF1soB14c0oyc-D68yHxZDWGBH96t24cX4x2zQNHVC-2mQvg@mail.gmail.com>
+Subject: Re: [yocto] sd-bus.h not found even with DEPENDS += "systemd"
+To: yocto@lists.yoctoproject.org, ashujoshi35@gmail.com
+Cc: Josef Holzmayr <jester@theyoctojester.info>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 19 Dec 2023 16:18:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61989
+ <yocto@lists.yoctoproject.org>; Tue, 19 Dec 2023 17:07:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61990
 
---FOGoCql8sznYsTZ0orgt
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-I was trying to install the buildtools by using the scripts/install-buildto=
-ols script, however the call fails. The issue seems a bit weird, as IMHO th=
-e script would always fail, hence I am not sure whether it's really an issu=
-e or I am misusing the script. Anyway, I am using the script from the poky =
-repository,=C2=A0commit=C2=A017ce3395.
-
-The command executed:
-
->=20
-> ./scripts/install-buildtools --debug --without-extended-buildtools
-> --directory ./build-tools --base-url
-> https://downloads.yoctoproject.org/releases/yocto --release yocto-4.0.14
-> --installer-version 4.0.14
-
-The command fails and its output is given in [1].
-
-Now, I dug a bit deeper and found two potential issues (if they are even is=
-sues, I am not sure anymore).
-
-1. First one is in here ( https://git.openembedded.org/openembedded-core/tr=
-ee/scripts/install-buildtools#n304 ). Basically, while environment variable=
-s are read from build-tools/environment-setup-x86_64-pokysdk-linux (see [2]=
- for its content), some of them are read with double quotes (e.g. PATH ) an=
-d as such written in os.environ ( here ( https://git.openembedded.org/opene=
-mbedded-core/tree/scripts/install-buildtools#n306 ) ), which makes them not=
- correctly used later on. Some come without the double quotes and are fine =
-to be used (e.g., PKG_CONFIG_LIBDIR ).
-
-2. Another issue I found is related to this line ( https://git.openembedded=
-.org/openembedded-core/tree/scripts/install-buildtools#n334 ). If the comma=
-nd is called with --directory , as in my case, the function starts_with wil=
-l always fail because which_tool which is an absolute path will never start=
- with install_dir which is a relative path. The only case where this is not=
- an issue is when --directory is either an absolute path or if omitted, sin=
-ce INSTALL_DIR is used in that case and its a full path already.
-
-Now my question is am I misunderstanding something or am I misusing the ins=
-tall-buildtools script somehow? If this is really an issue I'd be more than=
- happy to provide a patch.
-
-Aleksandar
-
-[1]
-
->=20
-> anikolic@OG05N004CC:~/git/poky$ ./scripts/install-buildtools --debug
-> --without-extended-buildtools --directory ./build-tools --base-url
-> https://downloads.yoctoproject.org/releases/yocto --release yocto-4.0.14
-> --installer-version 4.0.14
-> DEBUG: milestone regex: None
-> INFO: Fetching buildtools installer
-> INFO: Fetching buildtools installer checksum
-> DEBUG: checksum regex match: <re.Match object; span=3D(0, 113),
-> match=3D'62e811c2f1a91f6d2d5e07ee3031af9bff58c15f515ff5968>
-> DEBUG: checksum:
-> 62e811c2f1a91f6d2d5e07ee3031af9bff58c15f515ff59688bf39f1f8a4341d
-> DEBUG: path: None
-> DEBUG: filename: x86_64-buildtools-nativesdk-standalone-4.0.14.sh
-> INFO: Checksum success
-> INFO: Making installer executable
-> DEBUG: os.stat_result(st_mode=3D33252, st_ino=3D410381, st_dev=3D2080,
-> st_nlink=3D1, st_uid=3D1000, st_gid=3D1000, st_size=3D29509071,
-> st_atime=3D1703001641, st_mtime=3D1699048064, st_ctime=3D1703001641)
-> Build tools installer version 4.0.14
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> You are about to install the SDK to "/home/anikolic/git/poky/build-tools"=
-.
-> Proceed [Y/n]? Y
-> Extracting SDK...........done
-> Setting it up...done
-> SDK has been successfully set up and is ready to be used.
-> Each time you wish to use the SDK in a new shell session, you need to
-> source the environment setup script e.g.
-> $ .
-> /home/anikolic/git/poky/build-tools/environment-setup-x86_64-pokysdk-linu=
-x
->=20
-> INFO: Setting up the environment
-> DEBUG: export regex: <re.Match object; span=3D(0, 309), match=3D'export
-> PATH=3D"/home/anikolic/git/poky/build-tools/>
-> DEBUG: env_var: PATH
-> DEBUG: env_val:
-> "/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/usr/bi=
-n:/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/usr/sbi=
-n:/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/bin:/ho=
-me/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/sbin:$PATH"
->=20
-> DEBUG: export regex: <re.Match object; span=3D(0, 96), match=3D'export
-> OECORE_NATIVE_SYSROOT=3D"/home/anikolic/git/>
-> DEBUG: env_var: OECORE_NATIVE_SYSROOT
-> DEBUG: env_val:
-> "/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux"
-> DEBUG: export regex: <re.Match object; span=3D(0, 123), match=3D'export
-> GIT_SSL_CAINFO=3D"/home/anikolic/git/poky/bu>
-> DEBUG: env_var: GIT_SSL_CAINFO
-> DEBUG: env_val:
-> "/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ss=
-l/certs/ca-certificates.crt"
->=20
-> DEBUG: export regex: <re.Match object; span=3D(0, 122), match=3D'export
-> SSL_CERT_FILE=3D"/home/anikolic/git/poky/bui>
-> DEBUG: env_var: SSL_CERT_FILE
-> DEBUG: env_val:
-> "/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ss=
-l/certs/ca-certificates.crt"
->=20
-> DEBUG: export regex: <re.Match object; span=3D(0, 127), match=3D'export
-> REQUESTS_CA_BUNDLE=3D"/home/anikolic/git/pok>
-> DEBUG: env_var: REQUESTS_CA_BUNDLE
-> DEBUG: env_val:
-> "/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ss=
-l/certs/ca-certificates.crt"
->=20
-> DEBUG: export regex: <re.Match object; span=3D(0, 123), match=3D'export
-> CURL_CA_BUNDLE=3D"/home/anikolic/git/poky/bu>
-> DEBUG: env_var: CURL_CA_BUNDLE
-> DEBUG: env_val:
-> "/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ss=
-l/certs/ca-certificates.crt"
->=20
-> DEBUG: export regex: <re.Match object; span=3D(0, 80),
-> match=3D'HOST_PKG_PATH=3D$(command -p pkg-config --variable=3D>
-> DEBUG: env_var: HOST_PKG_PATH
-> DEBUG: env_val: $(command -p pkg-config --variable=3Dpc_path pkg-config
-> 2>/dev/null)
-> DEBUG: export regex: <re.Match object; span=3D(0, 254), match=3D'export
-> PKG_CONFIG_LIBDIR=3D/home/anikolic/git/poky/>
-> DEBUG: env_var: PKG_CONFIG_LIBDIR
-> DEBUG: env_val:
-> /home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux//usr/li=
-b/pkgconfig:/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-lin=
-ux//usr/share/pkgconfig:${HOST_PKG_PATH:-/usr/lib/pkgconfig:/usr/share/pkgc=
-onfig}
->=20
-> DEBUG: export regex: None
-> DEBUG: export regex: None
-> DEBUG: export regex: None
-> DEBUG: export regex: None
-> DEBUG: export regex: None
-> DEBUG: export regex: None
-> DEBUG: export regex: None
-> DEBUG: export regex: None
-> INFO: Testing installation
-> DEBUG: extended regex: None
-> DEBUG: install_dir: ./build-tools
-> DEBUG: cmd: ['/usr/bin/which', 'tar']
-> DEBUG: tool: tar
-> DEBUG: proc.args: ['/usr/bin/which', 'tar']
-> DEBUG: proc.communicate(): output b''
-> DEBUG: proc.communicate(): errors None
-> DEBUG: which tar:
-> ERROR: Something went wrong: tar not found in ./build-tools
-> ERROR: Something went wrong: installation failed
->=20
-
-[2]
-
->=20
-> export
-> PATH=3D"/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux=
-/usr/bin:/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/=
-usr/sbin:/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/=
-bin:/home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/sbin:=
-$PATH"
->=20
-> export
-> OECORE_NATIVE_SYSROOT=3D"/home/anikolic/git/poky/build-tools/sysroots/x86=
-_64-pokysdk-linux"
->=20
-> export
-> GIT_SSL_CAINFO=3D"/home/anikolic/git/poky/build-tools/sysroots/x86_64-pok=
-ysdk-linux/etc/ssl/certs/ca-certificates.crt"
->=20
-> export
-> SSL_CERT_FILE=3D"/home/anikolic/git/poky/build-tools/sysroots/x86_64-poky=
-sdk-linux/etc/ssl/certs/ca-certificates.crt"
->=20
-> export
-> REQUESTS_CA_BUNDLE=3D"/home/anikolic/git/poky/build-tools/sysroots/x86_64=
--pokysdk-linux/etc/ssl/certs/ca-certificates.crt"
->=20
-> export
-> CURL_CA_BUNDLE=3D"/home/anikolic/git/poky/build-tools/sysroots/x86_64-pok=
-ysdk-linux/etc/ssl/certs/ca-certificates.crt"
->=20
-> HOST_PKG_PATH=3D$(command -p pkg-config --variable=3Dpc_path pkg-config
-> 2>/dev/null)
-> export
-> PKG_CONFIG_LIBDIR=3D/home/anikolic/git/poky/build-tools/sysroots/x86_64-p=
-okysdk-linux//usr/lib/pkgconfig:/home/anikolic/git/poky/build-tools/sysroot=
-s/x86_64-pokysdk-linux//usr/share/pkgconfig:${HOST_PKG_PATH:-/usr/lib/pkgco=
-nfig:/usr/share/pkgconfig}
->=20
-> if [ -d "$OECORE_NATIVE_SYSROOT/environment-setup.d" ]; then
-> for envfile in $OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do
-> . $envfile
-> done
-> fi
-> # We have to unset this else it can confuse oe-selftest and other tools
-> # which may also use the overlapping namespace.
-> unset OECORE_NATIVE_SYSROOT
+On Tue, Dec 19, 2023 at 12:08=E2=80=AFAM <ashujoshi35@gmail.com> wrote:
 >
+> Was this issue resolved? Even I am facing same issue and not able to figu=
+re out the solution on how to resolve sd-bus dependency
 
---FOGoCql8sznYsTZ0orgt
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+can you check if sd-bus.h is in the recipe sysroot ? and if yes whats
+the path to it, is your package adding the needed path to CLFLAGS via
+-I ?
 
-Hi,<br /><br />I was trying to install the&nbsp;<span style=3D"font-family:=
- courier_newregular, courier;">buildtools</span>&nbsp;by using the&nbsp;<sp=
-an style=3D"font-family: courier_newregular, courier;">scripts/install-buil=
-dtools</span>&nbsp;script, however the call fails. The issue seems a bit we=
-ird, as IMHO the script would always fail, hence I am not sure whether it's=
- really an issue or I am misusing the script. Anyway, I am using the script=
- from the poky repository,&nbsp;commit&nbsp;17ce3395.<br /><br />The comman=
-d executed:<br />
-<blockquote>./scripts/install-buildtools --debug --without-extended-buildto=
-ols --directory ./build-tools --base-url https://downloads.yoctoproject.org=
-/releases/yocto --release yocto-4.0.14 --installer-version 4.0.14</blockquo=
-te>
-The command fails and its output is given in [1].<br /><br />Now, I dug a b=
-it deeper and found two potential issues (if they are even issues, I am not=
- sure anymore).<br /><br />1. First one is in&nbsp;<a href=3D"https://git.o=
-penembedded.org/openembedded-core/tree/scripts/install-buildtools#n304" tar=
-get=3D"_blank" rel=3D"nofollow noopener">here</a>. Basically, while environ=
-ment variables are read from&nbsp;<span style=3D"font-family: courier_newre=
-gular, courier;">build-tools/environment-setup-x86_64-pokysdk-linux</span>&=
-nbsp;(see [2] for its content), some of them are read with double quotes (e=
-.g.&nbsp;<span style=3D"font-family: courier_newregular, courier;">PATH</sp=
-an>) and as such written in&nbsp;<span style=3D"font-family: courier_newreg=
-ular, courier;">os.environ</span>&nbsp;(<a href=3D"https://git.openembedded=
-.org/openembedded-core/tree/scripts/install-buildtools#n306" target=3D"_bla=
-nk" rel=3D"nofollow noopener">here</a>), which makes them not correctly use=
-d later on. Some come without the double quotes and are fine to be used (e.=
-g.,&nbsp;<span style=3D"font-family: courier_newregular, courier;">PKG_CONF=
-IG_LIBDIR</span>).&nbsp;<br /><br />2. Another issue I found is related to&=
-nbsp;<a href=3D"https://git.openembedded.org/openembedded-core/tree/scripts=
-/install-buildtools#n334" target=3D"_blank" rel=3D"nofollow noopener">this =
-line</a>. If the command is called with&nbsp;<span style=3D"font-family: co=
-urier_newregular, courier;">--directory</span>, as in my case, the function=
-&nbsp;<span style=3D"font-family: courier_newregular, courier;">starts_with=
-</span>&nbsp;will always fail because&nbsp;<span style=3D"font-family: cour=
-ier_newregular, courier;">which_tool</span>&nbsp;which is an absolute path =
-will never start with&nbsp;<span style=3D"color: #000000; font-family: Menl=
-o, Monaco, Consolas, 'Courier New', monospace; font-size: 13.3333px;"><span=
- style=3D"font-family: courier_newregular, courier;">install_dir</span></sp=
-an>&nbsp;which is a relative path. The only case where this is not an issue=
- is when&nbsp;<span style=3D"font-family: courier_newregular, courier;">--d=
-irectory</span>&nbsp;is either an absolute path or if omitted, since&nbsp;<=
-span style=3D"font-family: courier_newregular, courier;">INSTALL_DIR</span>=
-&nbsp;is used in that case and its a full path already.&nbsp;<br /><br />No=
-w my question is am I misunderstanding something or am I misusing the&nbsp;=
-<span style=3D"font-family: courier_newregular, courier;">install-buildtool=
-s</span>&nbsp;script somehow? If this is really an issue I'd be more than h=
-appy to provide a patch.<br /><br />Aleksandar<br /><br />[1]<br />
-<blockquote>
-<div style=3D"line-height: 1.42857;">
-<div style=3D"line-height: 1.42857;">anikolic@OG05N004CC:~/git/poky$ ./scri=
-pts/install-buildtools --debug --without-extended-buildtools --directory ./=
-build-tools --base-url https://downloads.yoctoproject.org/releases/yocto --=
-release yocto-4.0.14 --installer-version 4.0.14</div>
-<div style=3D"line-height: 1.42857;">DEBUG: milestone regex: None</div>
-<div style=3D"line-height: 1.42857;">INFO: Fetching buildtools installer</d=
-iv>
-<div style=3D"line-height: 1.42857;">INFO: Fetching buildtools installer ch=
-ecksum</div>
-<div style=3D"line-height: 1.42857;">DEBUG: checksum regex match: &lt;re.Ma=
-tch object; span=3D(0, 113), match=3D'62e811c2f1a91f6d2d5e07ee3031af9bff58c=
-15f515ff5968&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: checksum: 62e811c2f1a91f6d2d5e0=
-7ee3031af9bff58c15f515ff59688bf39f1f8a4341d</div>
-<div style=3D"line-height: 1.42857;">DEBUG: path: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: filename: x86_64-buildtools-nat=
-ivesdk-standalone-4.0.14.sh</div>
-<div style=3D"line-height: 1.42857;">INFO: Checksum success</div>
-<div style=3D"line-height: 1.42857;">INFO: Making installer executable</div=
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#61978): https://lists.yoctoproject.org/g/yocto/messag=
+e/61978
+> Mute This Topic: https://lists.yoctoproject.org/mt/77141718/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
-<div style=3D"line-height: 1.42857;">DEBUG: os.stat_result(st_mode=3D33252,=
- st_ino=3D410381, st_dev=3D2080, st_nlink=3D1, st_uid=3D1000, st_gid=3D1000=
-, st_size=3D29509071, st_atime=3D1703001641, st_mtime=3D1699048064, st_ctim=
-e=3D1703001641)</div>
-<div style=3D"line-height: 1.42857;">Build tools installer version 4.0.14</=
-div>
-<div style=3D"line-height: 1.42857;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</d=
-iv>
-<div style=3D"line-height: 1.42857;">You are about to install the SDK to "/=
-home/anikolic/git/poky/build-tools". Proceed [Y/n]? Y</div>
-<div style=3D"line-height: 1.42857;">Extracting SDK...........done</div>
-<div style=3D"line-height: 1.42857;">Setting it up...done</div>
-<div style=3D"line-height: 1.42857;">SDK has been successfully set up and i=
-s ready to be used.</div>
-<div style=3D"line-height: 1.42857;">Each time you wish to use the SDK in a=
- new shell session, you need to source the environment setup script e.g.</d=
-iv>
-<div style=3D"line-height: 1.42857;">&nbsp;$ . /home/anikolic/git/poky/buil=
-d-tools/environment-setup-x86_64-pokysdk-linux</div>
-<div style=3D"line-height: 1.42857;">INFO: Setting up the environment</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 309), match=3D'export PATH=3D"/home/anikolic/git/poky/build-=
-tools/&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: PATH</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: "/home/anikolic/git/po=
-ky/build-tools/sysroots/x86_64-pokysdk-linux/usr/bin:/home/anikolic/git/pok=
-y/build-tools/sysroots/x86_64-pokysdk-linux/usr/sbin:/home/anikolic/git/pok=
-y/build-tools/sysroots/x86_64-pokysdk-linux/bin:/home/anikolic/git/poky/bui=
-ld-tools/sysroots/x86_64-pokysdk-linux/sbin:$PATH"</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 96), match=3D'export OECORE_NATIVE_SYSROOT=3D"/home/anikolic=
-/git/&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: OECORE_NATIVE_SYSROOT<=
-/div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: "/home/anikolic/git/po=
-ky/build-tools/sysroots/x86_64-pokysdk-linux"</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 123), match=3D'export GIT_SSL_CAINFO=3D"/home/anikolic/git/p=
-oky/bu&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: GIT_SSL_CAINFO</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: "/home/anikolic/git/po=
-ky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-certificates.=
-crt"</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 122), match=3D'export SSL_CERT_FILE=3D"/home/anikolic/git/po=
-ky/bui&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: SSL_CERT_FILE</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: "/home/anikolic/git/po=
-ky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-certificates.=
-crt"</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 127), match=3D'export REQUESTS_CA_BUNDLE=3D"/home/anikolic/g=
-it/pok&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: REQUESTS_CA_BUNDLE</di=
-v>
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: "/home/anikolic/git/po=
-ky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-certificates.=
-crt"</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 123), match=3D'export CURL_CA_BUNDLE=3D"/home/anikolic/git/p=
-oky/bu&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: CURL_CA_BUNDLE</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: "/home/anikolic/git/po=
-ky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-certificates.=
-crt"</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 80), match=3D'HOST_PKG_PATH=3D$(command -p pkg-config --vari=
-able=3D&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: HOST_PKG_PATH</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: $(command -p pkg-confi=
-g --variable=3Dpc_path pkg-config 2&gt;/dev/null)</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: &lt;re.Match obje=
-ct; span=3D(0, 254), match=3D'export PKG_CONFIG_LIBDIR=3D/home/anikolic/git=
-/poky/&gt;</div>
-<div style=3D"line-height: 1.42857;">DEBUG: env_var: PKG_CONFIG_LIBDIR</div=
->
-<div style=3D"line-height: 1.42857;">DEBUG: env_val: /home/anikolic/git/pok=
-y/build-tools/sysroots/x86_64-pokysdk-linux//usr/lib/pkgconfig:/home/anikol=
-ic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux//usr/share/pkgconfig:=
-${HOST_PKG_PATH:-/usr/lib/pkgconfig:/usr/share/pkgconfig}</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: export regex: None</div>
-<div style=3D"line-height: 1.42857;">INFO: Testing installation</div>
-<div style=3D"line-height: 1.42857;">DEBUG: extended regex: None</div>
-<div style=3D"line-height: 1.42857;">DEBUG: install_dir: ./build-tools</div=
->
-<div style=3D"line-height: 1.42857;">DEBUG: cmd: ['/usr/bin/which', 'tar']<=
-/div>
-<div style=3D"line-height: 1.42857;">DEBUG: tool: tar</div>
-<div style=3D"line-height: 1.42857;">DEBUG: proc.args: ['/usr/bin/which', '=
-tar']</div>
-<div style=3D"line-height: 1.42857;">DEBUG: proc.communicate(): output b''<=
-/div>
-<div style=3D"line-height: 1.42857;">DEBUG: proc.communicate(): errors None=
-</div>
-<div style=3D"line-height: 1.42857;">DEBUG: which tar:</div>
-<div style=3D"line-height: 1.42857;">ERROR: Something went wrong: tar not f=
-ound in ./build-tools</div>
-<div style=3D"line-height: 1.42857;">ERROR: Something went wrong: installat=
-ion failed</div>
-</div>
-</blockquote>
-[2]<br />
-<blockquote>
-<div style=3D"line-height: 1.42857;">
-<div style=3D"line-height: 1.42857;">
-<div style=3D"line-height: 1.42857;">export PATH=3D"/home/anikolic/git/poky=
-/build-tools/sysroots/x86_64-pokysdk-linux/usr/bin:/home/anikolic/git/poky/=
-build-tools/sysroots/x86_64-pokysdk-linux/usr/sbin:/home/anikolic/git/poky/=
-build-tools/sysroots/x86_64-pokysdk-linux/bin:/home/anikolic/git/poky/build=
--tools/sysroots/x86_64-pokysdk-linux/sbin:$PATH"</div>
-<div style=3D"line-height: 1.42857;">export OECORE_NATIVE_SYSROOT=3D"/home/=
-anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux"</div>
-<div style=3D"line-height: 1.42857;">export GIT_SSL_CAINFO=3D"/home/anikoli=
-c/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-certi=
-ficates.crt"</div>
-<div style=3D"line-height: 1.42857;">export SSL_CERT_FILE=3D"/home/anikolic=
-/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-certif=
-icates.crt"</div>
-<div style=3D"line-height: 1.42857;">export REQUESTS_CA_BUNDLE=3D"/home/ani=
-kolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-c=
-ertificates.crt"</div>
-<div style=3D"line-height: 1.42857;">export CURL_CA_BUNDLE=3D"/home/anikoli=
-c/git/poky/build-tools/sysroots/x86_64-pokysdk-linux/etc/ssl/certs/ca-certi=
-ficates.crt"</div>
-<div style=3D"line-height: 1.42857;">HOST_PKG_PATH=3D$(command -p pkg-confi=
-g --variable=3Dpc_path pkg-config 2&gt;/dev/null)</div>
-<div style=3D"line-height: 1.42857;">export PKG_CONFIG_LIBDIR=3D/home/aniko=
-lic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux//usr/lib/pkgconfig:/=
-home/anikolic/git/poky/build-tools/sysroots/x86_64-pokysdk-linux//usr/share=
-/pkgconfig:${HOST_PKG_PATH:-/usr/lib/pkgconfig:/usr/share/pkgconfig}</div>
-<div style=3D"line-height: 1.42857;">if [ -d "$OECORE_NATIVE_SYSROOT/enviro=
-nment-setup.d" ]; then</div>
-<div style=3D"line-height: 1.42857;">&nbsp; &nbsp; &nbsp; &nbsp; for envfil=
-e in $OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do</div>
-<div style=3D"line-height: 1.42857;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; . $envfile</div>
-<div style=3D"line-height: 1.42857;">&nbsp; &nbsp; &nbsp; &nbsp; done</div>
-<div style=3D"line-height: 1.42857;">fi</div>
-<div style=3D"line-height: 1.42857;"># We have to unset this else it can co=
-nfuse oe-selftest and other tools</div>
-<div style=3D"line-height: 1.42857;"># which may also use the overlapping n=
-amespace.</div>
-<div style=3D"line-height: 1.42857;">unset OECORE_NATIVE_SYSROOT</div>
-</div>
-</div>
-</blockquote>
-
---FOGoCql8sznYsTZ0orgt--
 
