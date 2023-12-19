@@ -1,259 +1,152 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <bremenpl@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 80EC3C35274
-	for <webhook@archiver.kernel.org>; Tue, 19 Dec 2023 00:14:24 +0000 (UTC)
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
- by mx.groups.io with SMTP id smtpd.web10.6472.1702944860478300046
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CCA47C41535
+	for <webhook@archiver.kernel.org>; Tue, 19 Dec 2023 06:54:37 +0000 (UTC)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+ by mx.groups.io with SMTP id smtpd.web10.7051.1702968869823556930
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Dec 2023 16:14:20 -0800
+ Mon, 18 Dec 2023 22:54:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=LPscFe9R;
- spf=pass (domain: gmail.com, ip: 209.85.218.47, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a22deb95d21so457475166b.3
-        for <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 16:14:20 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=hnJL3xYj;
+ spf=pass (domain: gmail.com, ip: 209.85.208.179, mailfrom: bremenpl@gmail.com)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cb21afa6c1so56472151fa.0
+        for <yocto@lists.yoctoproject.org>; Mon, 18 Dec 2023 22:54:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702944859; x=1703549659; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=UwM/uEgvsdxaP1qA5xNtDnfTACivVZsbXqvazkD+BPA=;
-        b=LPscFe9RKx4NR7COp3bKvGxQafq76/IsUaMhcMbWEqZql3W2yXUBwjNXU5ktprE/dW
-         sm8F43mjzohIxnUiYBjtnuHC3Q2dOXxRmeqSOIgVx8QgO57uBPyqyLnaya9aBXbHXbFO
-         hdl5ymTivjTVr/p3vdvnOw/U+6NuRdVY/Bu0R6alzg+xusnizfdBgzLt/6u04mxXt3Mc
-         o0XMhx1TzIIerek7AVntojcaoN8m9jGgWmyH/zCTT527u51HRYVqzaTlU/jSY11LWNpC
-         xpAfvJQpYoks/zYmKDXLSOl/hmEZV6gdLNO3ipMl1Cfj3VzVe/PZjvZVtcnLVdAgu0Wf
-         sPiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702944859; x=1703549659;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1702968868; x=1703573668; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:reply-to:message-id:date:subject:to:from
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UwM/uEgvsdxaP1qA5xNtDnfTACivVZsbXqvazkD+BPA=;
-        b=wp1p9n5jMyqDGd71eSofLGByADXAjd4zJDzOfwhrZv7u+N46yL2lQWd7hZgM5GTq3b
-         32Eo5yA0B1qwr2zjmnLn2LxW/ro7t7TOy127ET+h57fM6DLJttLyf0UtgTwkoPUSxxv2
-         /Bt+c1pxIaxJgnnPqfxUhY8ej3OUmJCsuKQMMJyqsGmzM4RrLFgbLAOE5fgDRBcYX4Y1
-         1sEVHX8KKinChh6exAgLiGdEVx2uTHitONORJ9FhKV9oJCigeQCrI4JjS38J40rSm4au
-         ul7T31PaCPUOVdTqG5Tk3FKscI7btrVpsc93WSs/f/ccWbsqZkseQKOBGiyMYZu+uCSO
-         eF+Q==
-X-Gm-Message-State: AOJu0YyPPAKmF46JOzVw2E+sv+ssr0nMJDTv6r1CE59dnPtLumU3NWZD
-	7Pf5bRZ+shwtFbiOW6Q4EVGdLGq4mmbdmSgA5rBC0BqOz+8=
-X-Google-Smtp-Source: AGHT+IEGJwhlT9muaI/88VOuXK6b1fV+9KxoeapltjxSyI136HRA6mb5W9LCsp0OP9WSM9XXVq376/hIef68QAp9IVY=
-X-Received: by 2002:a17:907:9408:b0:a1d:4f7c:4428 with SMTP id
- dk8-20020a170907940800b00a1d4f7c4428mr11619724ejc.63.1702944858632; Mon, 18
- Dec 2023 16:14:18 -0800 (PST)
+        bh=ysaa0n5w7yKPJqO5U6tC9YLtehCyeOAv6PH9HdioTGw=;
+        b=hnJL3xYjxwVwsN9LitzvHf2jM33A3svBd0lp1C2JCJDhr5ywwZHDTz4DERZBJvS5e2
+         QV/GBwRr0Rw/TrtHvQoAweR6AcD9eVdHGzWcFlRanvqpV3CwcEDvwgE1qtXIFeVXXOQo
+         Peo/jlRZM0vBg6vlkxUEQlQ5SLUB/rMFKBCBHjWMnTpmKXCITBEmmKW0BDAskpC8srKW
+         Hths7K6Vhv970sEkL0l+dGa2qm2zs33jx25iLKWWCJAjLpJrbwD/M6QK/3YfJLQFoJGJ
+         4PWMk60Pn/+I6VMrPTrBNYv9xJ0hKUP+qYz1muqenzCgJ/vz0BZG3grEV62dydCQYbio
+         824Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702968868; x=1703573668;
+        h=mime-version:user-agent:reply-to:message-id:date:subject:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ysaa0n5w7yKPJqO5U6tC9YLtehCyeOAv6PH9HdioTGw=;
+        b=XONMpsZW7YG8aQjqetSxgw2yi4dLY9rHRjFGLX7ltJeb5iZxyFu7MZsaiEZ/fdIYQZ
+         2jjXevN0LuH+fQsweF/CzcrCvSsEp0n0cSlGvZQv7azjuxno2vv141QN5A3OFGDIdHbk
+         SZxOQftnFgd7NNWtj1nvknpaTHpl7iCMRv/CHT9uaa7gRYrVq/h96x6IK3aN+K8iYXE2
+         r4MtXssuOm8TPW168P3CCa051Zu5euOeJ5ZNjUFQvTbAI+2pOUeuSpxm4sGczCuuEXng
+         /5m851hpBoiFxBLH9fe2cN6fBCs8BhT2ahyG4iCRUxkIwwGL9Wu+LOY5GW2mtKggnOFY
+         VSQg==
+X-Gm-Message-State: AOJu0Yy+yzlheoGkmBJnTVz6MY1W5eF8q+df63MWHy78bnIRX/FxsWlf
+	w8QNKA8bEApHv24CvSGzxMBqihnAIUc=
+X-Google-Smtp-Source: AGHT+IGiKHbYvkTFULUNaGIb1k+Lai4wVFoeZNq1HhmpxStihM56dKbS0KpEFh2Wa8TUxd50WXRdng==
+X-Received: by 2002:a05:651c:506:b0:2cc:43ec:3922 with SMTP id o6-20020a05651c050600b002cc43ec3922mr4591875ljp.45.1702968867512;
+        Mon, 18 Dec 2023 22:54:27 -0800 (PST)
+Received: from [192.168.7.15] (eqj153.neoplus.adsl.tpnet.pl. [83.20.77.153])
+        by smtp.gmail.com with ESMTPSA id p8-20020a05640210c800b0055399fbe7b3sm282394edu.20.2023.12.18.22.54.26
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 18 Dec 2023 22:54:26 -0800 (PST)
+From: =?utf-8?q?=c5=81ukasz=20Przenios=c5=82o?= <bremenpl@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: BBB default image and extlinux dir
+Date: Tue, 19 Dec 2023 06:54:23 +0000
+Message-Id: <eme778d004-53f3-4d36-976c-441531b87cda@13fff5e5.com>
+Reply-To: =?utf-8?q?=c5=81ukasz=20Przenios=c5=82o?= <bremenpl@gmail.com>
+User-Agent: eM_Client/9.2.2157.0
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 18 Dec 2023 17:14:07 -0700
-Message-ID: <CAK5yBb8vCAt-G3eSrhNLqGQQVfZUKmvo=ZJ65F7UMGeN_dw9Gg@mail.gmail.com>
-Subject: M+ & H bugs with Milestone Movements WW50
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000005ef43a060cd1bfed"
+Content-Type: multipart/alternative;
+ boundary="------=_MBEC37531C-6F5A-4968-A7C5-FCF431C0B772"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 19 Dec 2023 00:14:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61975
+ <yocto@lists.yoctoproject.org>; Tue, 19 Dec 2023 06:54:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/61976
 
---0000000000005ef43a060cd1bfed
-Content-Type: text/plain; charset="UTF-8"
-
-All,
-
-YP M+ or high bugs which moved to a new milestone in WW50 are listed below:
-Priority Bug ID Short Description Changer Owner Was Became
-Medium+ 14125 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14125> busybox
-wget ssl is exposed to MitM attack due to CVE-2018-1000500
-randy.macleod@windriver.com randy.macleod@windriver.com 5.0 M1 5.0 M2
-15070 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15070> AB-INT
-PTEST: glib-networking glib-networking/connection-openssl.test failure
-randy.macleod@windriver.com tgamblin@baylibre.com 4.3 M4 5.0 M2
-15323 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15323> A default
-poky/core-image-minimal does surprisingly build bluez
-randy.macleod@windriver.com yoann.congal@smile.fr 0.0.0 5.0 M2
-15324 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15324>
-nativesdk-python3
-doesn't support PGO randy.macleod@windriver.com ross.burton@arm.com 0.0.0 5.0
-M2
-
-Thanks,
-
-
-
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---0000000000005ef43a060cd1bfed
-Content-Type: text/html; charset="UTF-8"
+--------=_MBEC37531C-6F5A-4968-A7C5-FCF431C0B772
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>YP M+ or high bugs which moved to a new milestone in WW50 are li=
-sted below: <br></span><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
-tmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><table cellspac=
-ing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layout:=
-fixed;font-size:11pt;font-family:Calibri;width:0px;border-collapse:collapse=
-;border:none"><colgroup><col width=3D"63"><col width=3D"43"><col width=3D"5=
-43"><col width=3D"235"><col width=3D"242"><col width=3D"53"><col width=3D"5=
-3"></colgroup><tbody><tr style=3D"height:20px"><td style=3D"border:1px soli=
-d rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;backgrou=
-nd-color:rgb(219,229,241);font-weight:bold">Priority</td><td style=3D"borde=
-r-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0=
-) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;ba=
-ckground-color:rgb(219,229,241);font-weight:bold">Bug ID</td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m;background-color:rgb(219,229,241);font-weight:bold">Short Description</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Change=
-r</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0=
-,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold">O=
-wner</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
-px;vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold=
-">Was</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px =
-3px;vertical-align:bottom;background-color:rgb(219,229,241);font-weight:bol=
-d">Became</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold">Medium+=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;=
-text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.=
-yoctoproject.org/show_bug.cgi?id=3D14125" target=3D"_blank">14125</a></td><=
-td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
-4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom">busybox wget ssl is exposed to MitM attack due to CVE=
--2018-1000500</td><td style=3D"border-width:1px;border-style:solid;border-c=
-olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@wi=
-ndriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-width:=
-1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
-rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a =
-href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a>=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom">5.0 M1</td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.0 M2</td></=
-tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:b=
-old;text-decoration-line:underline;text-align:right"><a class=3D"gmail-in-c=
-ell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15070=
-" target=3D"_blank">15070</a></td><td style=3D"border-width:1px;border-styl=
-e:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204=
-);overflow:hidden;padding:0px 3px;vertical-align:bottom">AB-INT PTEST: glib=
--networking glib-networking/connection-openssl.test failure</td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@=
-windriver.com</a></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@bay=
-libre.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1px;bord=
-er-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,=
-204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">4.3 M4</td>=
-<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
-04) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom">5.0 M2</td></tr><tr style=3D"height:20px"><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;tex=
-t-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoc=
-toproject.org/show_bug.cgi?id=3D15323" target=3D"_blank">15323</a></td><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vert=
-ical-align:bottom">A default poky/core-image-minimal does surprisingly buil=
-d bluez</td><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windrive=
-r.com">randy.macleod@windriver.com</a></td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:yoann.congal@smile.fr">yoann.congal@smile.fr</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom">0.0.0</td><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom">5.0 M2</td></tr><tr style=3D=
-"height:20px"><td style=3D"border-width:1px;border-style:solid;border-color=
-:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decora=
-tion-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15324" target=3D"_b=
-lank">15324</a></td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom">nativesdk-python3 doesn&#39;t su=
-pport PGO</td><td style=3D"border-width:1px;border-style:solid;border-color=
-:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windri=
-ver.com">randy.macleod@windriver.com</a></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:ross.burton@arm.com">ross.burton@arm.com</a></td><td style=3D"bo=
-rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
-rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
-bottom">0.0.0</td><td style=3D"border-width:1px;border-style:solid;border-c=
-olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom">5.0 M2</td></tr></tbody></table><p=
- class=3D"MsoNormal" style=3D"background-image:initial;background-position:=
-initial;background-repeat:initial"><span style=3D"font-size:12pt;font-famil=
-y:Arial,sans-serif">Thanks,<span></span></span></p>
+Hello,
+I am using Yocto Kirkstone. I want to build and run the exemplary=20
+core-image-minimal for BBB. After the build, when I dd the SD card with=20
+this command:
+sudo dd if=3Dcore-image-minimal-beaglebone-yocto.wic of=3D/dev/<media>
+Everything works- I can boot from the SD card. The boot partition then=20
+includes of the following files/ directories:
+am335x-boneblack.dtb  am335x-bone.dtb  am335x-bonegreen.dtb  extlinux  MLO  =
+u-boot.img  zImage
+Following different tutorials on how to copy the built files manually,=20
+there is no mention of the extlinux directory and am335x-bone.dtb=20
+am335x-bonegreen.dtb files (I think these blobs are for BB white and BB=20
+green, so not needed). But the thing is, my image wont boot (probably)=20
+because of the lack of the extlinux dir and the extlinux.conf file=20
+inside (its a guess). Why does it boot without that dir in the tutorials=20
+(i.e., here=20
+<https://tutorialadda.com/yocto/create-linux-image-for-beaglebone-black-usi=
+ng-yocto-build-system>)?
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+As a rule (assuming the extlinux conf is necesarry), should one always=20
+create one as part of the deploy process, or is it also auto generated=20
+and can be copied over during manual files copy instead of the dd=20
+approach?
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
+I would appreciate all feedback!
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
+--
+=C5=81ukasz Przenios=C5=82o
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
+--
+=C5=81ukasz Przenios=C5=82o
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
+--------=_MBEC37531C-6F5A-4968-A7C5-FCF431C0B772
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
---0000000000005ef43a060cd1bfed--
+<html><head>
+
+<style id=3D"css_styles">=20
+blockquote.cite { margin-left: 5px; margin-right: 0px; padding-left: 10px;=
+ padding-right:0px; border-left: 1px solid #cccccc }
+blockquote.cite2 {margin-left: 5px; margin-right: 0px; padding-left: 10px;=
+ padding-right:0px; border-left: 1px solid #cccccc; margin-top: 3px; padding=
+-top: 0px; }
+a img { border: 0px; }
+li[style=3D'text-align: center;'], li[style=3D'text-align: center; '], li[s=
+tyle=3D'text-align: right;'], li[style=3D'text-align: right; '] {  list-sty=
+le-position: inside;}
+body { font-family: Verdana; font-size: 12pt; }
+.quote { margin-left: 1em; margin-right: 1em; border-left: 5px #ebebeb soli=
+d; padding-left: 0.3em; }
+
+ </style>
+</head>
+<body><div><div id=3D"x398322b6e70646a69d43fda2664afdc2"><div>Hello,</div><=
+div>I am using Yocto Kirkstone. I want to build and run the exemplary core-=
+image-minimal for BBB. After the build, when I dd the SD card with this com=
+mand:</div><div><pre><code>sudo dd if=3Dcore-image-minimal-beaglebone-yocto=
+.wic of=3D/dev/&lt;media&gt;</code></pre></div><div>Everything works- I can =
+boot from the SD card. The <code>boot</code> partition then includes of th=
+e following files/ directories:</div><div><pre><code>am335x-boneblack.dtb =
+ am335x-bone.dtb  am335x-bonegreen.dtb  extlinux  MLO  u-boot.img  zImage</c=
+ode></pre></div><div>Following different tutorials on how to copy the built =
+files manually, there is no mention of the <code>extlinux</code> directory =
+and <code>am335x-bone.dtb  am335x-bonegreen.dtb</code>
+ files (I think these blobs are for BB white and BB green, so not=20
+needed). But the thing is, my image wont boot (probably) because of the=20
+lack of the=20
+<code>extlinux</code> dir and the <code>extlinux.conf</code> file inside (i=
+ts a guess). Why does it boot without that dir in the tutorials (i.e., <a h=
+ref=3D"https://tutorialadda.com/yocto/create-linux-image-for-beaglebone-bla=
+ck-using-yocto-build-system" rel=3D"nofollow noreferrer">here</a>)?</div><d=
+iv><br /></div><div>As a rule (assuming the extlinux conf is necesarry), sh=
+ould one always create one as part of the deploy process, or is it also aut=
+o generated and can be copied over during manual files copy instead of the=
+ dd approach?</div><div><br /></div><div>I would appreciate all feedback!</d=
+iv>
+<div><br /></div><div id=3D"signature_old" style=3D"clear:both;">--<div>=C5=
+=81ukasz Przenios=C5=82o</div></div><div></div></div></div>
+<div><br /></div><div id=3D"signature_old" style=3D"clear:both">--<div>=C5=
+=81ukasz Przenios=C5=82o</div></div><div><br /></div>
+</body></html>
+--------=_MBEC37531C-6F5A-4968-A7C5-FCF431C0B772--
+
 
