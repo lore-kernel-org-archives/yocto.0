@@ -1,68 +1,81 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EE4CC41535
-	for <webhook@archiver.kernel.org>; Fri, 22 Dec 2023 16:32:37 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web11.26809.1703262752138736989
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5637C41535
+	for <webhook@archiver.kernel.org>; Fri, 22 Dec 2023 18:46:57 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+ by mx.groups.io with SMTP id smtpd.web11.29988.1703270810470100268
  for <yocto@lists.yoctoproject.org>;
- Fri, 22 Dec 2023 08:32:32 -0800
+ Fri, 22 Dec 2023 10:46:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: ross.burton@arm.com)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D10D91570
-	for <yocto@lists.yoctoproject.org>; Fri, 22 Dec 2023 08:33:16 -0800 (PST)
-Received: from oss-tx204.lab.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 02DB03F738
-	for <yocto@lists.yoctoproject.org>; Fri, 22 Dec 2023 08:32:30 -0800 (PST)
-From: ross.burton@arm.com
-To: yocto@lists.yoctoproject.org
-Subject: [PATCH yocto-autobuilder2] config.py: add meta-qt6 and meta-webosose repositories
-Date: Fri, 22 Dec 2023 16:32:29 +0000
-Message-Id: <20231222163229.614267-1-ross.burton@arm.com>
-X-Mailer: git-send-email 2.34.1
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=VGQGv4dj;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.195, mailfrom: michael.opdenacker@bootlin.com)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A377760004;
+	Fri, 22 Dec 2023 18:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1703270808;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Zaw4zLRRJCATow61SWjNBc2tA/WrqhcepmHBK1DHA2E=;
+	b=VGQGv4djguaVXpO744T7EsplrrZJilSRxY2Y+VXHhSWhUzff9gspy/kysa2xCfkkfmcXT/
+	Z8JSIBfp2US+jFzmypTW3LquzLU3GvQmXq26jkrsV6VlaQkZA2YmcVXc7fP8v6bqP/WH5m
+	t60W90RRDMysBHpUAvNXtF7iBFE+fi+wwGWwAxQUuapG/SnsQMaAAly1wYmut3uvklzWuJ
+	gzHCataBPrIfySdXOi03A20VRbw4qs2Cx5x6A79rIiCybRYGEmZW1grNqdLX8Ll7PDEGNO
+	JNeeNKH7RJuXZSPzWej+mLplV4zp5jlmlQJ5laAHxrXpLa9GnKYJE41WmMnt5Q==
+Message-ID: <6f3f3121-47be-4d6f-8dd3-e13ff402298d@bootlin.com>
+Date: Fri, 22 Dec 2023 19:46:47 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Cc: yocto@lists.yoctoproject.org,
+ Richard Purdie <richard.purdie@linuxfoundation.org>
+Subject: Re: [PATCH yocto-autobuilder-helper v2] config.json: add
+ "package-management" to images
+Content-Language: en-US
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+References: <20231222131907.816564-1-michael.opdenacker@bootlin.com>
+ <CANNYZj-iEw6aV1Ki6BOu-xRVxKSmFvGS-thU_13NS99b8Tt_gA@mail.gmail.com>
+ <e6174a7a-2981-4b88-a24e-e6f72873886b@bootlin.com>
+ <CANNYZj8DWHh2=N+96j8zNosNUC0in-yrbqyUU-7dHWSP=6fhBQ@mail.gmail.com>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+In-Reply-To: <CANNYZj8DWHh2=N+96j8zNosNUC0in-yrbqyUU-7dHWSP=6fhBQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: michael.opdenacker@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 22 Dec 2023 16:32:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62029
+ <yocto@lists.yoctoproject.org>; Fri, 22 Dec 2023 18:46:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62030
 
-From: Ross Burton <ross.burton@arm.com>
+Hi Alex,
 
-Signed-off-by: Ross Burton <ross.burton@arm.com>
----
- config.py | 2 ++
- 1 file changed, 2 insertions(+)
+On 22.12.23 at 17:04, Alexander Kanavin wrote:
+> On Fri, 22 Dec 2023 at 16:24, Michael Opdenacker
+> <michael.opdenacker@bootlin.com> wrote:
+>> If I understand correctly, even after I define a new
+>> 'poky-binary-distro' distro in meta-poky (if agreed), I'll still have to
+>> add a new image to config.json, but indeed not touching existing ones.
+> You don't need new images, but you would have to define a new builder
+> entry in config.json that would set DISTRO to poky-binary-distro, and
+> then build exiting images, and do additional steps (e.g. publish the
+> package feeds).
 
-diff --git a/config.py b/config.py
-index e7a04be..1c7f62f 100644
---- a/config.py
-+++ b/config.py
-@@ -56,6 +56,7 @@ repos =3D {
-                           "master"],
-     "bitbake": ["ssh://git@push.openembedded.org/bitbake", "master"],
-     "auto-upgrade-helper": ["ssh://git@push.yoctoproject.org/auto-upgrad=
-e-helper", "master"],
-+    "meta-qt6": ["http://code.qt.io/yocto/meta-qt6.git", "dev"],
-     "meta-qt4": ["ssh://git@push.yoctoproject.org/meta-qt4", "master"],
-     "meta-qt3": ["ssh://git@push.yoctoproject.org/meta-qt3", "master"],
-     "meta-mingw": ["ssh://git@push.yoctoproject.org/meta-mingw", "master=
-"],
-@@ -65,6 +66,7 @@ repos =3D {
-     "meta-virtualization": ["ssh://git@push.yoctoproject.org/meta-virtua=
-lization", "master"],
-     "yocto-docs": ["ssh://git@push.yoctoproject.org/yocto-docs", "master=
-"],
-     "meta-clang": ["https://github.com/kraj/meta-clang.git", "master"],
-+    "meta-webosose": ["https://github.com/webosose/meta-webosose.git", "=
-master"],
- }
-=20
- trigger_builders_wait_shared =3D [
---=20
-2.34.1
+
+Thanks for these clarifications, that helps!
+However, if the same images are built, but with different distro 
+settings, I still need to figure out where they will be generated, 
+unlike the images on https://downloads.yoctoproject.org/releases/yocto/.
+
+Thanks again
+Michael.
+
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
