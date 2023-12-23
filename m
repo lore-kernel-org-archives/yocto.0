@@ -1,81 +1,97 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <fabian.hanke@bosch.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5637C41535
-	for <webhook@archiver.kernel.org>; Fri, 22 Dec 2023 18:46:57 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
- by mx.groups.io with SMTP id smtpd.web11.29988.1703270810470100268
- for <yocto@lists.yoctoproject.org>;
- Fri, 22 Dec 2023 10:46:50 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=VGQGv4dj;
- spf=pass (domain: bootlin.com, ip: 217.70.183.195, mailfrom: michael.opdenacker@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A377760004;
-	Fri, 22 Dec 2023 18:46:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1703270808;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Zaw4zLRRJCATow61SWjNBc2tA/WrqhcepmHBK1DHA2E=;
-	b=VGQGv4djguaVXpO744T7EsplrrZJilSRxY2Y+VXHhSWhUzff9gspy/kysa2xCfkkfmcXT/
-	Z8JSIBfp2US+jFzmypTW3LquzLU3GvQmXq26jkrsV6VlaQkZA2YmcVXc7fP8v6bqP/WH5m
-	t60W90RRDMysBHpUAvNXtF7iBFE+fi+wwGWwAxQUuapG/SnsQMaAAly1wYmut3uvklzWuJ
-	gzHCataBPrIfySdXOi03A20VRbw4qs2Cx5x6A79rIiCybRYGEmZW1grNqdLX8Ll7PDEGNO
-	JNeeNKH7RJuXZSPzWej+mLplV4zp5jlmlQJ5laAHxrXpLa9GnKYJE41WmMnt5Q==
-Message-ID: <6f3f3121-47be-4d6f-8dd3-e13ff402298d@bootlin.com>
-Date: Fri, 22 Dec 2023 19:46:47 +0100
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FADAC3DA6E
+	for <webhook@archiver.kernel.org>; Sat, 23 Dec 2023 10:47:40 +0000 (UTC)
+Subject: CVE Scanners and Package Version
+To: yocto@lists.yoctoproject.org
+From: fabian.hanke@bosch.com
+X-Originating-Location: =?UTF-8?B?U3R1dHRnYXJ0LCBCYWRlbi1Xw7xydHRlbWJlcmcsIERF?= (194.39.218.18)
+X-Originating-Platform: Windows Chrome 119
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: yocto@lists.yoctoproject.org,
- Richard Purdie <richard.purdie@linuxfoundation.org>
-Subject: Re: [PATCH yocto-autobuilder-helper v2] config.json: add
- "package-management" to images
-Content-Language: en-US
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-References: <20231222131907.816564-1-michael.opdenacker@bootlin.com>
- <CANNYZj-iEw6aV1Ki6BOu-xRVxKSmFvGS-thU_13NS99b8Tt_gA@mail.gmail.com>
- <e6174a7a-2981-4b88-a24e-e6f72873886b@bootlin.com>
- <CANNYZj8DWHh2=N+96j8zNosNUC0in-yrbqyUU-7dHWSP=6fhBQ@mail.gmail.com>
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <CANNYZj8DWHh2=N+96j8zNosNUC0in-yrbqyUU-7dHWSP=6fhBQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: michael.opdenacker@bootlin.com
+Date: Sat, 23 Dec 2023 02:47:36 -0800
+Message-ID: <01of.1703328456869824351.98Vs@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="11mKGbiySiEKFEj31QNH"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 22 Dec 2023 18:46:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62030
+ <yocto@lists.yoctoproject.org>; Sat, 23 Dec 2023 10:47:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62031
 
-Hi Alex,
+--11mKGbiySiEKFEj31QNH
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22.12.23 at 17:04, Alexander Kanavin wrote:
-> On Fri, 22 Dec 2023 at 16:24, Michael Opdenacker
-> <michael.opdenacker@bootlin.com> wrote:
->> If I understand correctly, even after I define a new
->> 'poky-binary-distro' distro in meta-poky (if agreed), I'll still have to
->> add a new image to config.json, but indeed not touching existing ones.
-> You don't need new images, but you would have to define a new builder
-> entry in config.json that would set DISTRO to poky-binary-distro, and
-> then build exiting images, and do additional steps (e.g. publish the
-> package feeds).
+Hello Yocto community,
 
+we must provide a SBOM for our Yocto based product which will then be used =
+for (internal) CVE scanning by the security department. Generating the base=
+ document in cycloneDX format is fairly easy (thanks to the nature of Yocto=
+).
 
-Thanks for these clarifications, that helps!
-However, if the same images are built, but with different distro 
-settings, I still need to figure out where they will be generated, 
-unlike the images on https://downloads.yoctoproject.org/releases/yocto/.
+But we do not know how to include information about CVE patches for each pa=
+ckage in the document. Not providing these, will cause a lot of =E2=80=9Cfa=
+lse=E2=80=9D feedback on CVEs for specific versions which are already patch=
+ed (but version number did not change). This problem was also mentioned a f=
+ew days ago in the presentation from David Reyna: https://youtu.be/PegU1G1b=
+A80?t=3D1127. I like the proposed solution of adding a vendor specific stri=
+ng to the package version. But I'm still wondering: How would the CVE scann=
+er vendor know which CVEs are included in a yocto specific version and whic=
+h are not?
 
-Thanks again
-Michael.
+I hope this is the correct place to start a discussion (if not please point=
+ me to the correct place):
 
--- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Does anyone else also have the same problem with false feedback from CVE sc=
+anners? How do you deal with it?
 
+Best regards, Fabian Hanke
+
+----------------------------------
+
+Bosch Rexroth AG
+
+Registered Office: Stuttgart, Registration Court: Amtsgericht Stuttgart HRB=
+ 23192 Executive Board: Dr. Steffen Haack (President), Roland Bittenauer, T=
+homas Fechner, Holger von Hebel, Reinhard Sch=C3=A4fer Chairman of the Supe=
+rvisory Board: Dr. Markus Forschner
+
+--11mKGbiySiEKFEj31QNH
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p class=3D"MsoPlainText" style=3D"line-height: 1.42857;">Hello Yocto commu=
+nity,</p>
+<p class=3D"MsoPlainText" style=3D"line-height: 1.42857;">we must provide a=
+ SBOM for our Yocto based product which will then be used for (internal) CV=
+E scanning by the security department. Generating the base document in cycl=
+oneDX format is fairly easy (thanks to the nature of Yocto).</p>
+<p class=3D"MsoPlainText" style=3D"line-height: 1.42857;">But we do not kno=
+w how to include information about CVE patches for each package in the docu=
+ment. Not providing these, will cause a lot of &ldquo;false&rdquo; feedback=
+ on CVEs for specific versions which are already patched (but version numbe=
+r did not change). This problem was also mentioned a few days ago in the pr=
+esentation from David Reyna:&nbsp;<a href=3D"https://youtu.be/PegU1G1bA80?t=
+=3D1127">https://youtu.be/PegU1G1bA80?t=3D1127</a>&nbsp;. I like the propos=
+ed solution of adding a vendor specific string to the package version. But =
+I'm still wondering: How would the CVE scanner vendor know which CVEs are i=
+ncluded in a yocto specific version and which are not?</p>
+<p class=3D"MsoPlainText" style=3D"line-height: 1.42857;">I hope this is th=
+e correct place to start a discussion (if not please point me to the correc=
+t place):</p>
+<p class=3D"MsoPlainText" style=3D"line-height: 1.42857;">Does anyone else =
+also have the same problem with false feedback from CVE scanners? How do yo=
+u deal with it?</p>
+<p class=3D"MsoPlainText" style=3D"line-height: 1.42857;">Best regards, Fab=
+ian Hanke</p>
+----------------------------------
+<p class=3D"MsoPlainText">Bosch Rexroth AG</p>
+<p class=3D"MsoPlainText">Registered Office: Stuttgart, Registration Court:=
+ Amtsgericht Stuttgart HRB 23192 Executive Board: Dr. Steffen Haack (Presid=
+ent), Roland Bittenauer, Thomas Fechner, Holger von Hebel, Reinhard Sch&aum=
+l;fer Chairman of the Supervisory Board: Dr. Markus Forschner</p>
+
+--11mKGbiySiEKFEj31QNH--
 
