@@ -1,99 +1,63 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <tyrocjl@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22564C46CD2
-	for <webhook@archiver.kernel.org>; Wed, 27 Dec 2023 15:59:02 +0000 (UTC)
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
- by mx.groups.io with SMTP id smtpd.web11.103828.1703692732518726521
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E53BC46CD4
+	for <webhook@archiver.kernel.org>; Fri, 29 Dec 2023 05:51:24 +0000 (UTC)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web10.140427.1703829080034024904
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Dec 2023 07:58:52 -0800
+ Thu, 28 Dec 2023 21:51:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=G9GN8SvC;
- spf=softfail (domain: sakoman.com, ip: 209.85.215.169, mailfrom: steve@sakoman.com)
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5cdfed46372so2627658a12.3
-        for <yocto@lists.yoctoproject.org>; Wed, 27 Dec 2023 07:58:52 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=bAIywM4+;
+ spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: tyrocjl@gmail.com)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cce6c719caso11764051fa.2
+        for <yocto@lists.yoctoproject.org>; Thu, 28 Dec 2023 21:51:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1703692731; x=1704297531; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gIbh3+IhHQ4yz0mFa2v+/WI0aR5ia8IzIIbMUX4sU4I=;
-        b=G9GN8SvCDQ2KKpacMTYig5XRIefSlRhFfp0M/Z3TNZpV+vQudMwa/4t8Ra4m5SSW4y
-         l4n2Ckdq3fuscat1kENxpaH9aKwGqrEwTzniMORRjsVnybk7+1UtxiOUMbDtPcjwNr5J
-         glh0lfw439Xoda/YZvaSHWGrwSX+H8hv9uplMiRrtyMr14YzcvrPcaP3DfoqRZbVcZmX
-         8+kqTK+RSJvFNNz6l6qI7PqkpLCKLHzctgcVE8SvcaMPsOkknAtPR6WSKWUbt0etilJc
-         I8rbyOyGFftlPRVhpYNEUsgFOb/Lsdga481UmhVnlOHSf747guw3dFA5dbjdCqeeJLVP
-         MtGw==
+        d=gmail.com; s=20230601; t=1703829078; x=1704433878; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0lkvdSDzFLafs9ZrRczdr2FUz77MHgur8jD+LcBr/PY=;
+        b=bAIywM4+GQB0vPlLv/vIR3fR+TaAphxLAzJWmuY0uBQcQoO5UFtLDj0fCfhYGHOxLj
+         MLmkbjqLF8ffbQ5Vtc2KXv+fEd+uqWMdgLp96xiQAcuF3z2MCdwhQUsllOVCNMXH5gdc
+         gYZ1xO5dz5eSxcteCgKe721Rd1Yl7P+zfEQfPTQJ1mEBVF7q4ed719Pd7GuY9yDYZbRy
+         BWyq/rd2TmjRDSgl6ITDhufdom3wCFabAoQ+Iva+46ZksRdvSZ8ZHu7Bz3UHoJw6GSnZ
+         ZxHdAZSTXmxZR3Ah0EN2i+lNTTs+25cZ4KuVNLliCoLjmwI7toZaiKkiw1iyGabH+U5D
+         qc4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703692731; x=1704297531;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gIbh3+IhHQ4yz0mFa2v+/WI0aR5ia8IzIIbMUX4sU4I=;
-        b=j/6Kq5Ci+4+ZIlJFxxcsAPm5JTz5yG98WsYYz4d3itGtcvtLJqrbJkwuslp6TjA3T5
-         3h21ZJknus4VJ/UX7hZYYHUCIcg7QEYovK9i71PJAcGkjVCk+H2iceD9Yp5YNSFiHS02
-         JuQJ73WVAWWxQfMhNLEQxXVi12jR2uHwacl8R92tyVAyssINr7UMIz4VjRcynapR0pWJ
-         W03RyOo2FBa8SdZE3PGgOHpX0ah3mSuxXPBuPRxUa7c+Fz9Jco/kLo5HxnO291Chhib4
-         u6xPIA+NRwf6BXPtxFbOTBFHtXtAn/HulnIn/7IyiqNYY6qjDQN8EbyLbsBjleGQkpkr
-         nxPQ==
-X-Gm-Message-State: AOJu0Yz9TfhPQ3HBhyVNI5O3oUpLNHIvtgZmVwGzzMYUx0MTy8WPhEdn
-	M/TCwxW7QeWDAz/v2oOTjCB2XC3ucW7F0fqunjQExOsbG9M9eg==
-X-Google-Smtp-Source: AGHT+IHPSVoALyRkCU8Ifn9GhZgwa7j/ZlMNsfWdWWcW1ntDrHHbNCHq/vwZvGEN9ZrEiovU9szawQ==
-X-Received: by 2002:a17:90a:cb87:b0:28b:fe1d:b142 with SMTP id a7-20020a17090acb8700b0028bfe1db142mr4679743pju.59.1703692730817;
-        Wed, 27 Dec 2023 07:58:50 -0800 (PST)
-Received: from hexa.router0800d9.com (dhcp-72-234-108-41.hawaiiantel.net. [72.234.108.41])
-        by smtp.gmail.com with ESMTPSA id fz21-20020a17090b025500b0028c512f8040sm6763443pjb.24.2023.12.27.07.58.50
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Dec 2023 07:58:50 -0800 (PST)
-From: Steve Sakoman <steve@sakoman.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2] schedulers.py: update to reflect layers that now have nanbield branches
-Date: Wed, 27 Dec 2023 05:58:40 -1000
-Message-Id: <5d1f8c3c26a8dd4747e630099458213232531dd6.1703692639.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1703692639.git.steve@sakoman.com>
-References: <cover.1703692639.git.steve@sakoman.com>
+        d=1e100.net; s=20230601; t=1703829078; x=1704433878;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0lkvdSDzFLafs9ZrRczdr2FUz77MHgur8jD+LcBr/PY=;
+        b=MB+iDWgvTmaPDtrAPXjb8nlYJBYnSlO06rZmqVjn+WsCEf8hwxPl1e2Br0JAHxhW1v
+         EXB97HnpFMtmDDTArnHzaTaUBPohD896spV0+arMZX2Rvulax5E47+FO0iFilZWmWu1Q
+         HbRCw+B1fA+rLpBQx1QxlU8mJkzPpA0kAQAriAeeBHkqJgICMuSPLauy2NIN19NMRIOA
+         xMyUBbTmH8bseRhj/YL/H3MEEFRJ6oQqm9OLO4dwSG+LgqW9ozajrt59btLHt9HvwVN9
+         /Po3ybT5YHJiO2lQ/weSvavN3KAa7P65ZzMeJgkABNPa75Y7i4Tw/rl+3n72CfAVNeVp
+         f1aQ==
+X-Gm-Message-State: AOJu0Yy5T92r79Q5Tr9B16obFP1LXupq2oW+SHuK3c0T4tKPyx+da1tj
+	s+yLPWNytbzrJnwvmiarUdz/qnHq+VX/PXquYOhdHkmeVTGJ9Q==
+X-Google-Smtp-Source: AGHT+IHNkSQ/6NfqqDC5+/b4XdKZ1PHOzPfyZfABWtOL7TCirR/J3pm9wqKRlV+NUMbjjPXuL/ftE8+cTblTZer5qbM=
+X-Received: by 2002:a2e:8190:0:b0:2cc:7ba8:d756 with SMTP id
+ e16-20020a2e8190000000b002cc7ba8d756mr5141503ljg.89.1703829077345; Thu, 28
+ Dec 2023 21:51:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Gileon Chai <tyrocjl@gmail.com>
+Date: Fri, 29 Dec 2023 13:49:56 +0800
+Message-ID: <CANzPQ-CLdx1y_skPWVvQBSpZpYEQLGvOsNJn5smG2P0du=t7Cg@mail.gmail.com>
+Subject: [yocto] How to generate a random number for all recipes?
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 27 Dec 2023 15:59:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62045
+ <yocto@lists.yoctoproject.org>; Fri, 29 Dec 2023 05:51:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62046
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- schedulers.py | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+I define a global variable in config like this:
+HELLO=${@random_number_function}
 
-diff --git a/schedulers.py b/schedulers.py
-index 9b97545..4d7522a 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -64,15 +64,15 @@ branchdefaults = {
-         'branch': 'nanbield',
-         'branch_poky': 'nanbield',
-         'branch_bitbake': '2.6',
--        'branch_meta-arm': 'master',
-+        'branch_meta-arm': 'nanbield',
-         'branch_meta-agl': 'next',
--        'branch_meta-aws': 'master',
-+        'branch_meta-aws': 'nanbield',
-         'branch_meta-gplv2': 'master',
--        'branch_meta-intel': 'master',
-+        'branch_meta-intel': 'nanbield',
-         'branch_meta-mingw': 'nanbield',
--        'branch_meta-openembedded': 'master',
-+        'branch_meta-openembedded': 'nanbield',
-         'branch_meta-ti': 'master',
--        'branch_meta-virtualization': 'master',
-+        'branch_meta-virtualization': 'nanbield',
-         'branch_oecore': 'nanbield',
-     },
- 
--- 
-2.34.1
-
+Then I print HELLO's value in two bbfiles. I found that the value of
+HELLO is different because the random_number_function was called in
+every bbfile. How to fix it?
 
