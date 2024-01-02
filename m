@@ -1,380 +1,179 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <adrian.freihofer@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6936EC46CD2
-	for <webhook@archiver.kernel.org>; Tue,  2 Jan 2024 20:55:34 +0000 (UTC)
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
- by mx.groups.io with SMTP id smtpd.web10.1854.1704228926479877529
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CA6D5C46CD2
+	for <webhook@archiver.kernel.org>; Tue,  2 Jan 2024 21:46:34 +0000 (UTC)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+ by mx.groups.io with SMTP id smtpd.web10.3032.1704231985327816172
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Jan 2024 12:55:26 -0800
+ Tue, 02 Jan 2024 13:46:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=hfUDMc3w;
- spf=pass (domain: gmail.com, ip: 209.85.208.49, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-556c60c3f9aso22820a12.3
-        for <yocto@lists.yoctoproject.org>; Tue, 02 Jan 2024 12:55:26 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=dzPEDYge;
+ spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: adrian.freihofer@gmail.com)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-555144cd330so7346618a12.2
+        for <yocto@lists.yoctoproject.org>; Tue, 02 Jan 2024 13:46:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704228924; x=1704833724; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5IiRBXqg4IOOYeQNAJ/d1ZnHRcSKrT11PCAA0FqMPsY=;
-        b=hfUDMc3w4g4oM8FTQlcp1ALW2szY8FI40c2OVyf5GBNdYea1r2X8m8MMPQ3DX1YHP+
-         rbfwWOJxSFIGkrAIZfWk+vqiGFtHrvTNAqWCqd6qRMzEXL0ZNzp9pQMoZIGAr9HXssfc
-         sO1BRrMgoM34vejCJ+mMR9A22F1n97xumjO3ukO6C8ZvICfbetN/EkUm7iFtst9PgoDj
-         Yauvuw0vptqPCcDh8Kk2IQvnaKdQu1lLxxjTKTuaTGFbsyOkdm6oHCuSR2fBp+kTRri4
-         EbxhRae6jSqOKcT5JqB//gmozaAxQR9xIRF3SzTrbwgbfkbxo15vz9jnJtO+eMFKuY+t
-         bXUQ==
+        d=gmail.com; s=20230601; t=1704231983; x=1704836783; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LCjBy2J5TQPT4GzhL4rC7y5DcXHuB36YvgU9owWRKLw=;
+        b=dzPEDYgeGMISGdTZMMrujIguLSi2CU3YpjW1Z6bDcfPyVEQm04wxJkQ2Rve564UGTl
+         cpQDaUWjL0redq6e82yRzwkXqfKETjdzk78BLLEIaf6VUAz0LZb35wpPHvz6qgW/Gu3h
+         7f/zolgWJ5E8yQg9TUUlRm0OmqJgJWER/goPpITqjLribnFdMQs55C8whhAfI0+6sBOv
+         MAOypSzYUzyzk/bhdU82D+9bm6nRsmpy1NcpuYbCipcI0oj5F8EQsmcy74Yqe0TK0bYQ
+         sPXGkoRD9QJ8hla4xJxFwaxRI3k9LC1/nVF+Y3iiflZDI1YStz+LZGiYTaDzKEk1szTd
+         ATEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704228924; x=1704833724;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5IiRBXqg4IOOYeQNAJ/d1ZnHRcSKrT11PCAA0FqMPsY=;
-        b=KjXzyMTiDaPaM/TDgiSa2PFhdDyi5wIOuh6q+7bR5idBrMLL61brp6w9cbDGUgVJG3
-         49uTRqpfI33nS2owIN62VT1+BPSkjKRL1gxw/fDW8xYI6XHTJfYdvmHWo1zE8YWvVJAZ
-         Kh/7VmhdjCD5AxMy1rXKMtoUdU7R5LQ7tnfGS4Y3tBTW5MstgGgkkgYcnSb0Rhh6UGJG
-         /aYZnhWvonnHRogeS0aGPAi8NmAYD6Hxz/cOVelT3ZFVzhBmS5LOrovDxxS4PeB0kyog
-         HOPqU3NOPAkKxez/4zHxwHhz6MbYIUOd0uCCCQscPLVjfjqPigZM1Ai/mZni3MzE/1Aq
-         Wl1A==
-X-Gm-Message-State: AOJu0YyfqK00IwNYey12NbTGweFmISg3oU/kGGDIibKG8zmv32a8svZu
-	PEIh+r8pxqoZqV1lWiVsdt7eWggCWSfxAwfbz7GIFeGdkM0=
-X-Google-Smtp-Source: AGHT+IGVFSMyIPoqanEwX4VyfRXszDWBTj15xIxpwTKxen77DRmSFlJlHh85jo0LSBw5AncpIO6wn4h+F2dJTN/wiOE=
-X-Received: by 2002:a17:906:2258:b0:a26:db3d:4888 with SMTP id
- 24-20020a170906225800b00a26db3d4888mr6931554ejr.153.1704228924542; Tue, 02
- Jan 2024 12:55:24 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704231983; x=1704836783;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=LCjBy2J5TQPT4GzhL4rC7y5DcXHuB36YvgU9owWRKLw=;
+        b=XOBe34z63VesbTjRExf5ddcTz8Itmja6snDCPCdHi8PHvPeOMVQ3EGcJvWo9kptVcx
+         nP09Grom0FClAwhrpmxHHHujvutD1mPWxkznnCd5k9yRJ+XOGqosRSWL9CA4xC/CECel
+         SsuZNTYyZXuAbwmn7l8GxZ3Hy9QVgC1POZmgd+FdmPJCSGUP7MQ1OMpr0CJwCgIF3bgl
+         6eErNHpkfpll1M859K5uhEirrpBoaRYvwmxhIp41mY3Gu4g5VmLTo/FlJDSnsDpDrq3f
+         z6sgrguDCkSe2hG4NMdeat9qhwsPPs66OIV4ht0ARMRIK+RlZzwN4wHLdROIXnTGj0Ct
+         1KKg==
+X-Gm-Message-State: AOJu0YywJcLdoJrJuCdBvGPT0sLBWHD+eSjYzetzxUK+y8XlaGJ0hqpK
+	9tbjTqXvtjWJMppNNwLptE8Vh2LQHPQ=
+X-Google-Smtp-Source: AGHT+IF5YDDp8ihXDThEYhzRA/1Px6S2AFXxC3+8i0PofrdLNv0fZDD46Jfqho27jX8ltZ5OguxE/w==
+X-Received: by 2002:a50:9f0f:0:b0:553:ee28:b97d with SMTP id b15-20020a509f0f000000b00553ee28b97dmr13464703edf.39.1704231983340;
+        Tue, 02 Jan 2024 13:46:23 -0800 (PST)
+Received: from ?IPv6:2a02:169:59a6:0:dcf2:2f65:9442:83f? ([2a02:169:59a6:0:dcf2:2f65:9442:83f])
+        by smtp.gmail.com with ESMTPSA id et8-20020a056402378800b00554753ec02fsm13844507edb.86.2024.01.02.13.46.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jan 2024 13:46:22 -0800 (PST)
+Message-ID: <38fdec21c1f00c5cacc9c3fff8f8875460f25376.camel@gmail.com>
+Subject: Re: [yocto] CVE Scanners and Package Version
+From: adrian.freihofer@gmail.com
+To: yocto@lists.yoctoproject.org, mikko.rapeli@linaro.org, 
+	fabian.hanke@bosch.com
+Date: Tue, 02 Jan 2024 22:46:21 +0100
+In-Reply-To: <ZZO6LMkb9ECnPFev@nuoska>
+References: <01of.1703328456869824351.98Vs@lists.yoctoproject.org>
+	 <ZZO6LMkb9ECnPFev@nuoska>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Tue, 2 Jan 2024 13:55:13 -0700
-Message-ID: <CAK5yBb_5vSOiyc78RfxhMqOSw71dfn10YGjtzpVvcTZQRnWreQ@mail.gmail.com>
-Subject: Current high bug count owners for Yocto Project 5.0
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000a9d33c060dfcb778"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Jan 2024 20:55:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62070
+ <yocto@lists.yoctoproject.org>; Tue, 02 Jan 2024 21:46:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62071
 
---000000000000a9d33c060dfcb778
-Content-Type: text/plain; charset="UTF-8"
+On Tue, 2024-01-02 at 09:24 +0200, Mikko Rapeli wrote:
+> Hi,
+>=20
+> On Sat, Dec 23, 2023 at 02:47:36AM -0800, fabian.hanke via
+> lists.yoctoproject.org wrote:
+> > Hello Yocto community,
+> >=20
+> > we must provide a SBOM for our Yocto based product which will then
+> > be used for (internal) CVE scanning by the security department.
+> > Generating the base document in cycloneDX format is fairly easy
+> > (thanks to the nature of Yocto).
 
-All,
+Our experts have also opted for CycloneDX. Is your CycloneDX generator
+publicly available?=20
+>=20
+> Note that SBOM is mostly used for documenting SW components and their
+> licenses.
+> Obvious but needs to be made clear.
 
-Below is the list of top 32 bug owners as of the end of WW52 who have open
-medium or higher bugs and enhancements against YP 5.0. There are 82
-possible work days left until the final release candidates for YP 5.0 needs
-to be released.
-Who Count
-michael.opdenacker@bootlin.com 35
-ross.burton@arm.com 30
-randy.macleod@windriver.com 26
-bruce.ashfield@gmail.com 26
-richard.purdie@linuxfoundation.org 25
-david.reyna@windriver.com 15
-pavel@zhukoff.net 11
-JPEWhacker@gmail.com 10
-tim.orling@konsulko.com 8
-yoann.congal@smile.fr 6
-pidge@pidge.org 5
-Yash.Shinde@windriver.com 3
-sakib.sajal@windriver.com 3
-kexin.hao@windriver.com 2
-jon.mason@arm.com 2
-dl9pf@gmx.de 2
-alexis.lothore@bootlin.com 2
-alexandre.belloni@bootlin.com 2
-alex.kanavin@gmail.com 2
-tvgamblin@gmail.com 1
-throos@amazon.de 1
-thomas.perrot@bootlin.com 1
-sundeep.kokkonda@windriver.com 1
-steve@sakoman.com 1
-sgw@bigsur.com 1
-rybczynska@gmail.com 1
-rpjday@crashcourse.ca 1
-p.lobacz@welotec.com 1
-mark.asselstine@windriver.com 1
-louis.rannou@syslinbit.com 1
-jens.georg@desy.de 1
-fathi.boudra@linaro.org 1
-Grand Total 228
-
-Thanks,
+I don't think that's true.
+A SBOM should probably also list the CVE patches and provide
+information about fixed CVEs.
+I'm not sure about SPDX, but CycloneDX also addresses this use case:
+https://cyclonedx.org/capabilities/vex/.
 
 
+>=20
+> > But we do not know how to include information about CVE patches for
+> > each package in the document. Not providing these, will cause a lot
+> > of =E2=80=9Cfalse=E2=80=9D feedback on CVEs for specific versions which=
+ are already
+> > patched (but version number did not change).
+Yes, that's a real issue.
+> > This problem was also mentioned a few days ago in the presentation
+> > from David Reyna: https://youtu.be/PegU1G1bA80?t=3D1127. I like the
+> > proposed solution of adding a vendor specific string to the package
+> > version. But I'm still wondering: How would the CVE scanner vendor
+> > know which CVEs are included in a yocto specific version and which
+> > are not?
+If the SBOM contains the information from CVE_STATUS_* variables and
+the CVE scanner has access to the NIST database it should theoretically
+work.
+>=20
+> If the intention is to know CVE paching and analysis status of a
+> product, then I'd use
+> the yocto upstream tooling for this, cve-check.bbclass. SBOM and SPDX
+> are tempting but not actually
+> useful for CVE patching and analysis work, except when they show that
+> a lot of old open source
+> SW components are embedded into various binaries.
+This works well from a developer's point of view, but not from an end
+customer's or penetration tester's point of view. Many companies sell
+products with a pre-installed Yocto-based firmware, but do not provide
+the layers and bitbake with the firmware.
+>=20
+> The work needed to push CVE data into SPDX and SBOM is not worth it
+> and it's better to put
+> the saved effort into fixing the actual CVEs.
+Fixing the CVEs is one thing. But depending on the use case, it is also
+important to be able to document this.
+>  If management wants reports, generate
+> them from cve-check.bbclass output, but note that CVE database is a
+> moving target too.
+Adding information about open CVEs to the SBOM would be a moving target
+and therefore a bad idea. But that was probably not the intention here.
 
-*Stephen K. Jolley*
+Much more reasonable is to provide a static SBOM which provides
+information about:
+- Installed packages and versions
+- CVE related patches for the packages
+- Additional information from CVE_STATUS_* variables (These use cases
+were also the motivation for adding this additional information)
 
-*Yocto Project Program Manager*
+Such a SBOM would enable a user or a pen-tester to use a tool which
+generates a CVE report from the SBOM and the current data from e.g. the
+NIST database. This tool can run at any time and could be a generic
+SBOM tool which is independent from Yocto. The NIST DB is dynamic, but
+publicly available. The SBOM is static and provided with each firmware
+release.
 
-(    *Cell*:                (208) 244-4460
+>=20
+> AFAIK, and I'd be happy to be proven wrong, SPDX and SBOM don't help
+> matching SW component names
+> and version strings so that comparison against CVE database
+> information works. Only license names
+> are standardized.
 
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
+I'm not sure what the current status is. But even if it's not
+completely solved today, that doesn't mean it can't or shouldn't be
+solved. The specifications are also open source.
 
---000000000000a9d33c060dfcb778
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Adrian
 
-<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>Below is the list of top 32 bug owners as of the end of WW52 who=
- have open medium or higher bugs and enhancements against YP 5.0.   There a=
-re 82 possible work days left until the final release candidates for YP 5.0=
- needs to be released.<br></span><div dir=3D"ltr" class=3D"gmail_signature"=
- data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><tabl=
-e cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"tab=
-le-layout:fixed;font-size:11pt;font-family:Calibri;width:0px;border-collaps=
-e:collapse;border:none"><colgroup><col width=3D"249"><col width=3D"42"></co=
-lgroup><tbody><tr style=3D"height:20px"><td style=3D"border:1px solid rgb(0=
-,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;background-colo=
-r:rgb(219,229,241);font-weight:bold">Who</td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;background-col=
-or:rgb(219,229,241);font-weight:bold">Count</td></tr><tr style=3D"height:20=
-px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,2=
-04,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-alig=
-n:bottom"><a href=3D"mailto:michael.opdenacker@bootlin.com">michael.opdenac=
-ker@bootlin.com</a></td><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">35</td></tr=
-><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom"><a href=3D"mailto:ross.burton@arm.com">ros=
-s.burton@arm.com</a></td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">30</td></t=
-r><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver=
-.com">randy.macleod@windriver.com</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:=
-right">26</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:bruce.=
-ashfield@gmail.com">bruce.ashfield@gmail.com</a></td><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;=
-text-align:right">26</td></tr><tr style=3D"height:20px"><td style=3D"border=
--width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(=
-0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"ma=
-ilto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org=
-</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding=
-:0px 3px;vertical-align:bottom;text-align:right">25</td></tr><tr style=3D"h=
-eight:20px"><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom"><a href=3D"mailto:david.reyna@windriver.com">david.reyna@=
-windriver.com</a></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;text-align:right">15</td></tr><=
-tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom"><a href=3D"mailto:pavel@zhukoff.net">pavel@z=
-hukoff.net</a></td><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom;text-align:right">11</td></tr><tr =
-style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom"><a href=3D"mailto:JPEWhacker@gmail.com">JPEWhac=
-ker@gmail.com</a></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;text-align:right">10</td></tr><=
-tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom"><a href=3D"mailto:tim.orling@konsulko.com">t=
-im.orling@konsulko.com</a></td><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">8</t=
-d></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style=
-:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
-padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:yoann.congal@smile=
-.fr">yoann.congal@smile.fr</a></td><td style=3D"border-width:1px;border-sty=
-le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,20=
-4);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">=
-6</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:pidge@pidge.or=
-g">pidge@pidge.org</a></td><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">5</td></=
-tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom"><a href=3D"mailto:Yash.Shinde@windriver.=
-com">Yash.Shinde@windriver.com</a></td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:rig=
-ht">3</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;bord=
-er-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:sakib.saja=
-l@windriver.com">sakib.sajal@windriver.com</a></td><td style=3D"border-widt=
-h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
-) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;te=
-xt-align:right">3</td></tr><tr style=3D"height:20px"><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailt=
-o:kexin.hao@windriver.com">kexin.hao@windriver.com</a></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom;text-align:right">2</td></tr><tr style=3D"height:20px"><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:jon.mason@arm.com">jon.mason@arm.com</a></td><td style=3D"border=
--width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(=
-0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bott=
-om;text-align:right">2</td></tr><tr style=3D"height:21px"><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"=
-mailto:dl9pf@gmx.de">dl9pf@gmx.de</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:=
-right">2</td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;b=
-order-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:alexis.=
-lothore@bootlin.com">alexis.lothore@bootlin.com</a></td><td style=3D"border=
--width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(=
-0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bott=
-om;text-align:right">2</td></tr><tr style=3D"height:21px"><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"=
-mailto:alexandre.belloni@bootlin.com">alexandre.belloni@bootlin.com</a></td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom;text-align:right">2</td></tr><tr style=3D"height:21p=
-x"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,20=
-4,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom"><a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.com</=
-a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(20=
-4,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0=
-px 3px;vertical-align:bottom;text-align:right">2</td></tr><tr style=3D"heig=
-ht:21px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"><a href=3D"mailto:tvgamblin@gmail.com">tvgamblin@gmail.com</=
-a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(20=
-4,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0=
-px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr style=3D"heig=
-ht:21px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"><a href=3D"mailto:throos@amazon.de">throos@amazon.de</a></td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom;text-align:right">1</td></tr><tr style=3D"height:21p=
-x"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,20=
-4,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom"><a href=3D"mailto:thomas.perrot@bootlin.com">thomas.perrot@bootlin=
-.com</a></td><td style=3D"border-width:1px;border-style:solid;border-color:=
-rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
-ding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr style=
-=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom"><a href=3D"mailto:sundeep.kokkonda@windriver.com">su=
-ndeep.kokkonda@windriver.com</a></td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right=
-">1</td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:steve@sakoma=
-n.com">steve@sakoman.com</a></td><td style=3D"border-width:1px;border-style=
-:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204)=
-;overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1<=
-/td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-sty=
-le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:sgw@bigsur.com">=
-sgw@bigsur.com</a></td><td style=3D"border-width:1px;border-style:solid;bor=
-der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><=
-tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom"><a href=3D"mailto:rybczynska@gmail.com">rybc=
-zynska@gmail.com</a></td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr=
-><tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom"><a href=3D"mailto:rpjday@crashcourse.ca">r=
-pjday@crashcourse.ca</a></td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td>=
-</tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom"><a href=3D"mailto:p.lobacz@welotec.com=
-">p.lobacz@welotec.com</a></td><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</t=
-d></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-style=
-:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;=
-padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:mark.asselstine@wi=
-ndriver.com">mark.asselstine@windriver.com</a></td><td style=3D"border-widt=
-h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
-) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;te=
-xt-align:right">1</td></tr><tr style=3D"height:21px"><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailt=
-o:louis.rannou@syslinbit.com">louis.rannou@syslinbit.com</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom;text-align:right">1</td></tr><tr style=3D"height:21px"><td sty=
-le=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb=
-(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><=
-a href=3D"mailto:jens.georg@desy.de">jens.georg@desy.de</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom;text-align:right">1</td></tr><tr style=3D"height:21px"><td sty=
-le=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb=
-(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><=
-a href=3D"mailto:fathi.boudra@linaro.org">fathi.boudra@linaro.org</a></td><=
-td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
-4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;text-align:right">1</td></tr><tr style=3D"height:21px"=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom;background-color:rgb(219,229,241);font-weight:bold">Grand Total</td><=
-td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
-4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold;tex=
-t-align:right">228</td></tr></tbody></table><p class=3D"MsoNormal" style=3D=
-"background-image:initial;background-position:initial;background-repeat:ini=
-tial"><span style=3D"font-size:12pt;font-family:Arial,sans-serif">Thanks,<s=
-pan></span></span></p>
+>=20
+> Cheers,
+>=20
+> -Mikko
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62063):
+> https://lists.yoctoproject.org/g/yocto/message/62063
+> Mute This Topic: https://lists.yoctoproject.org/mt/103332846/4454582
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe:
+> https://lists.yoctoproject.org/g/yocto/unsub=C2=A0[adrian.freihofer@gmail=
+.com
+> ]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
-
---000000000000a9d33c060dfcb778--
 
