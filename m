@@ -2,82 +2,114 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46C6FC47077
-	for <webhook@archiver.kernel.org>; Sun,  7 Jan 2024 03:53:49 +0000 (UTC)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
- by mx.groups.io with SMTP id smtpd.web10.9595.1704599624960239791
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43085C47077
+	for <webhook@archiver.kernel.org>; Sun,  7 Jan 2024 03:58:29 +0000 (UTC)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+ by mx.groups.io with SMTP id smtpd.web10.9641.1704599908023369648
  for <yocto@lists.yoctoproject.org>;
- Sat, 06 Jan 2024 19:53:45 -0800
+ Sat, 06 Jan 2024 19:58:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=KIY5AmBr;
- spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-680cb09a819so8531966d6.2
-        for <yocto@lists.yoctoproject.org>; Sat, 06 Jan 2024 19:53:44 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=lUci9Bcb;
+ spf=pass (domain: gmail.com, ip: 209.85.222.179, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-78158569dc6so117395985a.3
+        for <yocto@lists.yoctoproject.org>; Sat, 06 Jan 2024 19:58:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704599623; x=1705204423; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1704599907; x=1705204707; darn=lists.yoctoproject.org;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=k/pyFVDCpK5JwXXg2mcRy/7ZZ+XfeYjje1mo9CMr61A=;
-        b=KIY5AmBrVlRDVB7wjc6Fh7vo56l7PTtdPdlnbTjabacRjUTBGBkq2lub8RU2CcCFxn
-         hLDgA8azTqCxFOOZQ8QN+GyIWv5Vss5KxeskiF1z9m91vM1GsZMm+fEKFPzf1aiGwNNx
-         Sb5otsuKzjaHuk1nTm8tc5xjOOoYps4bgVN24ZlC45CXXoykRO0IcAkjQoquJjDDShfi
-         Yoc+z95BIU/hOoG2bmvMUz7hecnV1zP0aopfejkaHLHahlkvGZ4bWyc9Nnn6YOgm+H54
-         0bw1kArCD9gbIAnp5ATKn8M3BUIrbjNSTyma7VINdybWu7eL1dbJ1eLbA+omQD/CLHha
-         O61w==
+        bh=LVQ8pbJUqyzocXrj9xmZf2dkEJkgOegy0SVFw70ej1k=;
+        b=lUci9BcbLpdyWDCVc+D8QB8LuPTogLWFUsVRPA08eGjFRNYf2+nrnF1L0xTZULUueq
+         5KJRmaxUpxU5O9tdM1f+D9KAdksDIaAB9ta6aI/8IK/Px51PF0RDlM8+tr7eZXcXyxNU
+         QCRkgqpiGt95ZuJuohwYGy2yyvDOYcPcwFjiNROj789vuVAWQe2dgnP7KIFT1E2BlzCQ
+         9GajREqxA+/lTqYZhLBdaRY+is1lk0cwyZ901ISMk8QZeALVeRCAbMVECblUr++yuf7t
+         6f4rprl/IR79fsVMpzJTm2/QCtcsmjn0919IC3ya/t+FGYR4Tyu1pa5UrzyWtyLweR/W
+         O8vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704599623; x=1705204423;
+        d=1e100.net; s=20230601; t=1704599907; x=1705204707;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=k/pyFVDCpK5JwXXg2mcRy/7ZZ+XfeYjje1mo9CMr61A=;
-        b=mCGubMkCW9wVx9PO52uSqM4M1jYFrI7ANSvNpCkdNCv661S6fnwhVGVWDsRkfdzkrA
-         jpr4oE3aPnRMT8/ZU5/KVC70TVrv0Nj/0W+rdAf2/Yav4a0+Gk76CH76k6HgaR2+sQ9C
-         uuuhTgoV8hv5eLJCWX6Yf6zF03h4jH6DX+FrYQJb5pAI4e9Oy3aJ0u1H1m3k+0jQ2Xwt
-         gCqrMoWhM4seAirzhNlummUGBnnxRRJmYPOxRIHdKhEmHpzkMutnM+NndwF1EJdb7cQo
-         i4QPfOU9YIuLRdY6F+mF/UdbUOkBKdA1ZxhvjJDaNVf/az552Z+6jXIz5uS9FHffzg9Q
-         TqsA==
-X-Gm-Message-State: AOJu0YykxpsmVWnJnNKfcwsZH0/4HnTNJ2j6fwobqmRSJdNbhDEnU3H0
-	eIw4ITsYwYkO2gmb8rA29oc1U53Uuao=
-X-Google-Smtp-Source: AGHT+IF3HLrcBkE5cWu9W7GXnM6MD7aM376WzOCvYXs2Ler1obLhvyhTAQnh92L198eLK4uI5ZtQuQ==
-X-Received: by 2002:a05:6214:2588:b0:67f:d169:c69 with SMTP id fq8-20020a056214258800b0067fd1690c69mr2241936qvb.112.1704599622967;
-        Sat, 06 Jan 2024 19:53:42 -0800 (PST)
+        bh=LVQ8pbJUqyzocXrj9xmZf2dkEJkgOegy0SVFw70ej1k=;
+        b=xUKWWl5K/pKOZHvfulKHsmKyFPdFeOm9dCZuHtitu7YLPYGoc+KMKYkVolHF3ufLBp
+         Cm5hK4fv3InoowlgYnFeY4TQLXOQMDRaaNjrBb4WHqHj16xj00UYTViPuCeND1/f01cj
+         SLFvDjMxCSGdZWthQzKcclofIW2DMIW8OLz2uTsqGrq2orKNvs4tyi2/KAyqGrPGlfI1
+         qrc9ESh1EjJaDma71ryaTlwAFkkGWiOrOaD2nJPKAyc4w4Q2VpxSGqfrUlE/8i9jFvOe
+         WTZ1/SHr85x3KdL8oGq8y7BFmuPxWkFJP0Qyv4WZS/gRx/vkwHlkchjPOXXy0H3U/z7r
+         foOA==
+X-Gm-Message-State: AOJu0YxgSzhs9eME50B5DSP+T5YK6FtDBmxjVgTXtnxe9oCoClNX8gZu
+	cfEAcRJFYX1vlkhQ5TMBAIA=
+X-Google-Smtp-Source: AGHT+IG1UF+pDGaMntEIljWAdN6e2vCgdMnwP+lFAQeEVEYD8kLPWuzG3Nx9PPj8La6Hi3pNsH/Ppg==
+X-Received: by 2002:a05:620a:29c8:b0:781:80dc:a0c1 with SMTP id s8-20020a05620a29c800b0078180dca0c1mr2329302qkp.44.1704599907037;
+        Sat, 06 Jan 2024 19:58:27 -0800 (PST)
 Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id y14-20020ad4530e000000b0067ab9aaaedcsm1812413qvr.9.2024.01.06.19.53.41
+        by smtp.gmail.com with ESMTPSA id k16-20020a05620a07f000b0078168e10166sm1732595qkk.86.2024.01.06.19.58.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jan 2024 19:53:41 -0800 (PST)
-Date: Sat, 6 Jan 2024 22:53:39 -0500
+        Sat, 06 Jan 2024 19:58:26 -0800 (PST)
+Date: Sat, 6 Jan 2024 22:58:24 -0500
 From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org, stephen@radxa.com
-Cc: Khem Raj <raj.khem@gmail.com>
-Subject: Re: [yocto] [meta-rockchip] [PATCH] use
- MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS to add kernel-modules
-Message-ID: <20240107035339.GA29784@localhost>
-References: <CAMKF1sqdmD+E+QjRkHGjv2_+r++gPZUGpvf3xpy=YD2wd0U9fQ@mail.gmail.com>
- <19798.1704350715538435548@lists.yoctoproject.org>
+To: Stephen Chen <stephen@radxa.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [meta-rockchip] [PATCH] rock 4c+: add
+Message-ID: <20240107035824.GB29784@localhost>
+References: <20231221014100.4048121-1-stephen@radxa.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <19798.1704350715538435548@lists.yoctoproject.org>
+In-Reply-To: <20231221014100.4048121-1-stephen@radxa.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 07 Jan 2024 03:53:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62098
+ <yocto@lists.yoctoproject.org>; Sun, 07 Jan 2024 03:58:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62099
 
-I have been running little experiments on various builds with
-meta-rockchip and with just oe-core and qemu machines. The more
-I think about it, the more I wonder why a BSP layer is including
-kernel modules via MACHINE_EXTRA_RRECOMMENDS at all, never mind
-with MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS.
+Hi Stephen,
 
-If a specific module were required for something to work (like wifi) or
-perhaps some firmware blob, then it would be understandable. But a blanket
-pulling in of all kernel modules by the BSP layer seems fishy.
+Thanks for the patch.
 
-This feels more like a distro setting, or local.conf at the very least.
+Please use the proposed Yocto name for the board you are adding.
 
-I'm going to remove these from meta-rockchip. We can see if any are truly
-required for a board to work.
+On Thu 2023-12-21 @ 09:41:00 AM, Stephen Chen wrote:
+> ROCK 4C+ is a Rockchip RK3399-T based SBC from Radxa.
+> Main differences of ROCK 4C+ compared to other ROCK 4 SBC.
+> - Rockchip RK3399-T SoC
+> - DP from ROCK Pi 4C replaced with micro HDMI 2K@60fps
+> - 4-lane MIPI DSI
+> - RK817 Audio codec
+
+I want to see the capabilities of the board that is being added. Not what
+amounts to a diff between this new board and some other random board.
+
+Could you add the new board to the README file as well (the list is sorted
+chronologically, later entries are the most recently-added boards).
+
+Also, do we need to add a COMPATIBLE_MACHINE entry for the kernel?
+
+> 
+> Signed-off-by: Stephen Chen <stephen@radxa.com>
+> ---
+>  conf/machine/rock-4c-plus.conf | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>  create mode 100644 conf/machine/rock-4c-plus.conf
+> 
+> diff --git a/conf/machine/rock-4c-plus.conf b/conf/machine/rock-4c-plus.conf
+> new file mode 100644
+> index 0000000..424fed2
+> --- /dev/null
+> +++ b/conf/machine/rock-4c-plus.conf
+> @@ -0,0 +1,10 @@
+> +#@TYPE: Machine
+> +#@NAME: ROCK 4C+
+> +#@DESCRIPTION: ROCK 4C+ based on Rockchip RK3399-T Processor is designed by Radxa.
+> +#https://wiki.radxa.com/Rock4/4cplus
+> +#https://docs.radxa.com/en/rock4/rock4c+
+> +
+> +require conf/machine/include/rock-pi-4.inc
+> +
+> +KERNEL_DEVICETREE = "rockchip/rk3399-rock-4c-plus.dtb"
+> +UBOOT_MACHINE = "rock-4c-plus-rk3399_defconfig"
+> -- 
+> 2.34.1
+> 
 
