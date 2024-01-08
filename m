@@ -2,146 +2,89 @@ Return-Path: <antonio.oliveira@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DBAFBC3DA6E
-	for <webhook@archiver.kernel.org>; Mon,  8 Jan 2024 15:58:47 +0000 (UTC)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web11.347.1704729523624683061
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10370C47258
+	for <webhook@archiver.kernel.org>; Mon,  8 Jan 2024 15:58:48 +0000 (UTC)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web11.349.1704729526391245151
  for <yocto@lists.yoctoproject.org>;
- Mon, 08 Jan 2024 07:58:43 -0800
+ Mon, 08 Jan 2024 07:58:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=PTNfv8+M;
- spf=pass (domain: konsulko.com, ip: 209.85.128.50, mailfrom: antonio.oliveira@konsulko.com)
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e43e48a16so15266495e9.2
-        for <yocto@lists.yoctoproject.org>; Mon, 08 Jan 2024 07:58:43 -0800 (PST)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=EwAvf9YJ;
+ spf=pass (domain: konsulko.com, ip: 209.85.221.51, mailfrom: antonio.oliveira@konsulko.com)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3368b9bbeb4so2167387f8f.2
+        for <yocto@lists.yoctoproject.org>; Mon, 08 Jan 2024 07:58:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1704729521; x=1705334321; darn=lists.yoctoproject.org;
+        d=konsulko.com; s=google; t=1704729524; x=1705334324; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NgcWNWVL8yuD5vaDMdBfF4996Ae1Uq/KBYU3auf0HIE=;
-        b=PTNfv8+MuCuE5lSanP3VQhOEDwz8nqWSwWbev7uWtffUXyCMI289f5cbsT9jDqP0/N
-         OuoK932YwsvaU2d3jJO0G58y2hhx/LpsNmfBwZZVHXNDUWNq4DPbLCuRr4CfcyCJ9SV9
-         8iFgDZHwnbNY+QXqAi5pstDvOsSRlYe2u2kp8=
+        bh=vqtd0eBxED6qV11zJLVVpCU08xGYwatZ0VJcxHzEfU8=;
+        b=EwAvf9YJo8yrbiy3Vit9hFUgDrVhsOB2OngIEE/94gWQaXdyH0O3i0V8VKVE+ZwDxf
+         rR0qGGs3YDXrblpr6pxDGvvl2d24G5pk8A8hRvxG1CSley6338q6U73T8AOjmqT9MqZf
+         QONXERYYESlqleXvETMIYFQTjP/s54tiStgb8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704729521; x=1705334321;
+        d=1e100.net; s=20230601; t=1704729524; x=1705334324;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NgcWNWVL8yuD5vaDMdBfF4996Ae1Uq/KBYU3auf0HIE=;
-        b=PhbGktBS16SZear8vM7bBwFyTJKBSDFVX1mvJMtC3BC8yiw01TnLkJ9prODfdWFnp5
-         q0GiEat3rmUsOHHTuLEV3ZEJxlzXHt3p6hGL0JjbusGVEimf4dmK/GRheLsIULXfzsZT
-         MNYuNRBQeVfarOERkvpzYrCOmOz5twsMGzY9p9ESIVpJJxD8QcjI8tJy+xdTXzMmCjLC
-         4xeiBpe/UGpLmYS30GTIe6nFbxkCmJI6JJhikpR0tPvLtXeut6EQeOvUaetqV3wjXLKb
-         YI/E21Vs0pBqfc3Lr+yE5Ubb3poA8U+XQ4W9wGAEuIGYsoPF+0LDqMpCp2WCx2OqVypq
-         RGjQ==
-X-Gm-Message-State: AOJu0YxFXrrBRrst8CJ5C0C2WuyIKdDsBPJgIHKqmqXIRBM0Qa/3bpAO
-	meWH9EY36hehYUEyKdUkKRuY2yKjRtujTHGu3R3jY6xfv/w=
-X-Google-Smtp-Source: AGHT+IHA0D5LtfUXh7HUvElEbZDask7Q+dXNkeWiUqxNdeUr9Ygm2zL50g/rDpz3y1+9BwSFnRC4mw==
-X-Received: by 2002:a05:600c:4754:b0:40d:39ae:634a with SMTP id w20-20020a05600c475400b0040d39ae634amr1887618wmo.90.1704729521378;
-        Mon, 08 Jan 2024 07:58:41 -0800 (PST)
+        bh=vqtd0eBxED6qV11zJLVVpCU08xGYwatZ0VJcxHzEfU8=;
+        b=FCzlMj2ZD1r4ZRDJ02WJhEX1BKCC8j8IChslV9AesErR+WIBcpuqT9p+WSe5l1VgU3
+         qppACOT9pJgVL6h7YcBOMFrfWdj8caKLmUJFUE9Ix3h8llt8Ujyh1OLKOGM3mJGaOK5/
+         y0WPZpLRLLlwQ1clwdyvLkl4wj/0P40N8XeAgrS9gmCvVVJMlZ7xTbBJg9Y35F18syMa
+         Q5fKmf2GfwzRsfuzHJ5BoSbI+2jKongSs2l552DPa0xLxZuHTLRvqLeJrLoRMCXkcPrU
+         ASZFIoUPiOUnnNp+nMUmAuUFaOi4nmE/63mCZAiXY5u8cv7a3Yl156Gks67f3WO5NS3Z
+         htaw==
+X-Gm-Message-State: AOJu0Yw1MqFzmCRtbNc2ASP9hFD7ZjDB3iJJ9EimhWLY/1zYvjxPV/DO
+	G8tSCjL9aaj5hE52rN3lsmsPHXrYVhpNZqnqaW2lPomDJCA=
+X-Google-Smtp-Source: AGHT+IGf9inmn0/ZQ4rv83Hs1mslaMp/MfBDuZUvwvZg7JsP9JvBDHD/494UsgToYFsYAPCnZYm/1w==
+X-Received: by 2002:a5d:4485:0:b0:337:5d51:8b0e with SMTP id j5-20020a5d4485000000b003375d518b0emr1114672wrq.255.1704729524398;
+        Mon, 08 Jan 2024 07:58:44 -0800 (PST)
 Received: from acme-iron-carrot.home ([2a01:14:112:2860:d63:ebd1:2caf:4862])
-        by smtp.gmail.com with ESMTPSA id u3-20020a5d4343000000b003376d4248a9sm1930710wrr.71.2024.01.08.07.58.40
+        by smtp.gmail.com with ESMTPSA id u3-20020a5d4343000000b003376d4248a9sm1930710wrr.71.2024.01.08.07.58.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jan 2024 07:58:41 -0800 (PST)
+        Mon, 08 Jan 2024 07:58:43 -0800 (PST)
 From: =?UTF-8?q?Ant=C3=B3nio=20Oliveira?= <antonio.oliveira@konsulko.com>
 To: yocto@lists.yoctoproject.org
 Cc: =?UTF-8?q?Ant=C3=B3nio=20Oliveira?= <antonio.oliveira@konsulko.com>
-Subject: [RFC PATCH v2 0/3] lts mixin: kirkstone/nodejs proposal
-Date: Mon,  8 Jan 2024 15:58:35 +0000
-Message-Id: <cover.1704728801.git.antonio.oliveira@konsulko.com>
+Subject: [RFC PATCH v2 3/3] add layer configuration for default node
+Date: Mon,  8 Jan 2024 15:58:38 +0000
+Message-Id: <58100b7c02d73fa442e5c650d78e8f7a5acf8aca.1704728801.git.antonio.oliveira@konsulko.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231204183055.29931-1-antonio@amsobr.com>
-References: <20231204183055.29931-1-antonio@amsobr.com>
+In-Reply-To: <cover.1704728801.git.antonio.oliveira@konsulko.com>
+References: <cover.1704728801.git.antonio.oliveira@konsulko.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 08 Jan 2024 15:58:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62102
+ <yocto@lists.yoctoproject.org>; Mon, 08 Jan 2024 15:58:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62105
 
-Hi all,
+* declared dependency on meta-openembedded to meet depends of nodejs
+  when built with default settings.
+* added selector for default version of nodejs.
 
-This patch contains my proposal for an mixin layer that adds nodejs v18
-to kirkstone.
+Signed-off-by: António Oliveira <antonio.oliveira@konsulko.com>
+---
+ conf/layer.conf | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Kirkstone ships with nodejs-16, whose maintenance window ended in
-October 2023 (a).
-
-Kirkstone will be supported until April 2026 and it would be nice to have
-some level of support for a maintained version of nodejs during that time
-window.
-
-This proposal seeks to address that by adding nodejs-18, which will be
-maintained until April 2025.
-
-The recipes for nodejs-18 are taken from Mickledore
-
-The variable NODE_VERSION is set from the layer configuration to select
-nodejs-18. It can be overridden in case anyone wants to use any other.
-
-This is my first attempt at sending a patch upstream with git send-email
-so any comments or suggestions for improvement are welcome. That's also
-the reason why I marked this as an RFC.
-
-Revisions of this proposal:
-v1:
-  * Initial attempt at this proposal with nodejs-18 and nodejs-20
-
-v2
-  * split into smaller commits
-  * included José's suggestion of adding the dependency on the
-  "openembedded-layer" due to default configuration settings of nodejs.
-  * Updating to the latest nodejs-20 recipes forced me to also backport
-  icu_74-1 from master. Sadly this broke a build of lvgl and I opted to
-  keep nodejs-20 on the backburner for now.
-
-
-Cheers,
-António
-
-António Oliveira (3):
-  initial commit: license, readme, conf
-  add nodejs-18 from mickledore
-  add layer configuration for default node
-
- COPYING.MIT                                   |  17 ++
- README                                        |  22 +++
- conf/layer.conf                               |  21 ++
- .../nodejs/nodejs-oe-cache-18.18/oe-npm-cache |  77 ++++++++
- .../nodejs/nodejs-oe-cache-native_18.18.bb    |  21 ++
- ...e-running-gyp-files-for-bundled-deps.patch |  51 +++++
- .../nodejs/0001-Using-native-binaries.patch   |  77 ++++++++
- ...-liftoff-Correct-function-signatures.patch |  85 ++++++++
- ...Use-32bit-cast-for-operand-on-mips32.patch |  34 ++++
- ...4-Do-not-use-mminimal-toc-with-clang.patch |  23 +++
- .../0004-v8-don-t-override-ARM-CFLAGS.patch   | 102 ++++++++++
- .../nodejs/nodejs/big-endian.patch            |  18 ++
- .../nodejs/nodejs/libatomic.patch             |  21 ++
- .../nodejs/nodejs/mips-less-memory.patch      |  37 ++++
- recipes-devtools/nodejs/nodejs/run-ptest      |   3 +
- .../nodejs/nodejs/system-c-ares.patch         |  24 +++
- recipes-devtools/nodejs/nodejs_18.18.2.bb     | 185 ++++++++++++++++++
- 17 files changed, 818 insertions(+)
- create mode 100644 COPYING.MIT
- create mode 100644 README
- create mode 100644 conf/layer.conf
- create mode 100755 recipes-devtools/nodejs/nodejs-oe-cache-18.18/oe-npm-cache
- create mode 100644 recipes-devtools/nodejs/nodejs-oe-cache-native_18.18.bb
- create mode 100644 recipes-devtools/nodejs/nodejs/0001-Disable-running-gyp-files-for-bundled-deps.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/0001-Using-native-binaries.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/0001-liftoff-Correct-function-signatures.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/0001-mips-Use-32bit-cast-for-operand-on-mips32.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/0001-ppc64-Do-not-use-mminimal-toc-with-clang.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/0004-v8-don-t-override-ARM-CFLAGS.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/big-endian.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/libatomic.patch
- create mode 100644 recipes-devtools/nodejs/nodejs/mips-less-memory.patch
- create mode 100755 recipes-devtools/nodejs/nodejs/run-ptest
- create mode 100644 recipes-devtools/nodejs/nodejs/system-c-ares.patch
- create mode 100644 recipes-devtools/nodejs/nodejs_18.18.2.bb
-
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 19a19b2..7e198c8 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -12,4 +12,10 @@ LAYERSERIES_COMPAT_lts-nodejs-mixin = "kirkstone"
+ 
+ LAYERDEPENDS_lts-nodejs-mixin = " \
+     core \
++    openembedded-layer \
+ "
++
++NODE_VERSION ?= "18%"
++
++PREFERRED_VERSION_nodejs ?= "${NODE_VERSION}"
++PREVERRED_VERSION_nodejs-oe-cache-native ?= "${NODE_VERSION}"
 -- 
 2.34.1
 
