@@ -1,107 +1,85 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EF72BC46CD2
-	for <webhook@archiver.kernel.org>; Tue,  9 Jan 2024 10:44:59 +0000 (UTC)
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
- by mx.groups.io with SMTP id smtpd.web10.13972.1704797090376644233
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5793EC46CD2
+	for <webhook@archiver.kernel.org>; Tue,  9 Jan 2024 12:04:00 +0000 (UTC)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+ by mx.groups.io with SMTP id smtpd.web11.14889.1704801834650679009
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 Jan 2024 02:44:50 -0800
+ Tue, 09 Jan 2024 04:03:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=cymVvGJN;
- spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-50e7d6565b5so2990241e87.0
-        for <yocto@lists.yoctoproject.org>; Tue, 09 Jan 2024 02:44:50 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=DI2zBfNp;
+ spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: hassanchattarki@gmail.com)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e7abe4be4so3527704e87.2
+        for <yocto@lists.yoctoproject.org>; Tue, 09 Jan 2024 04:03:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704797088; x=1705401888; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KIM2diptQWeDPgtJybJX/RM21fy82MJRqJBHmvP396k=;
-        b=cymVvGJN0NVVPWT3yYkTQQy1VOW5HxnMJnydSKFsYnPz6L0miYjCvEccEFU0xGZkUs
-         8ii4u0Hg6LbwbjC+TFJWyr5WuaJyM8168cMyw6miJRRywSECZ4MTOGMLv2y9wpDRHW0O
-         vz/oieJGPgoC+YrJBZeuLwoNT4maJ+PCtklkwqkgqgKnYLo0Cphz6+atzMPFoo6/0McD
-         CQ3oICQ1GqF8ZBkJ51JuFXipxlauILY+pJU9qEX6Bfwj79swfgLncUTF8EQNpPOle6/L
-         6yqbX3oiac+DYOMbxA5q7+AzRBjGRYqFd9MACsKxPXPz0tzmrUdm1Puf0wfVOvAULWjV
-         jOUA==
+        d=gmail.com; s=20230601; t=1704801832; x=1705406632; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=nbi41hegzq25zMRpXKgAjeZV+x6kTAXQt5iCCvUtC00=;
+        b=DI2zBfNpNLVqv3PDMU0LA37NFUFIPRb3wV0FuBy2AAalIhQ7vS4nhTWfjGFp7Xy/A6
+         8XmCowqwhD7/Guwhf3otgHooB6+b2PifSJrQaE1BjFewm9XnCNMVxOri6HFioSi2bXAv
+         VeSMGjPo4W7RCpWQu4ZyCaA0UjEGfvV14Gz0Mo/CMOvM+9eiBx3b3Wl11cfVP+J28gRt
+         SxE2KWdotYxNOThhs2NLCBiz7UgmanKmsaaMmADC6jK6Np06v2RqXXBeOkxk7/U279UT
+         5klNTVNnYWngtVvkHwo9XxzxID8+f7Q10o0hUxmJ6FdZwF3Lmtlfe/ODNWXR2QVFr5ft
+         LsZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704797088; x=1705401888;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KIM2diptQWeDPgtJybJX/RM21fy82MJRqJBHmvP396k=;
-        b=c5bcSTtNUidl6ZllFhN/6shnNWK1upwZxx/S9eyhc4t2vUl7cekNTWnQkT4e/AXV8u
-         O5vRAdS0ltHFOYUZ0QOXSUp+DB0wktIRODy9iKQhjg3kU60F4P304zFLOICzjdk/1MF0
-         34d3BeIBGkQIqDCn5uWwgPxceFUMsteaUGhPDV9N94Oxriq8uVknMiQ7dpHjNmayNL5o
-         FEhCdw6nAT7hL52h6dr0V6Q83jN0+obE+n2OpOXfs3Ht/PIxlBk6tZEIYOBUVt67qdru
-         BQy91ykXpWhqzqEjJJn72a/51iA5F3xd5zeq39lAxJX9DOVUIg5BNP6aHZ1cjmCbyHsX
-         /CGw==
-X-Gm-Message-State: AOJu0YyjL7gZKvDRh29x6DjqpgkEiXQVH7jOmYCIWEldPESY4BqvfiKQ
-	p2M3kudI0EwgI5/PiblUvUGzWhvA9U8UqXkQ+lUPHBI8
-X-Google-Smtp-Source: AGHT+IFyxqZJeYfrbOnTV5EaSkZaRo9yz8KOAGSPhVHWQqgj6ZjWaNsciWMBb7greeGMHDUdND+DaRDJPXjQdH4UBjI=
-X-Received: by 2002:ac2:44db:0:b0:50e:b2bf:92ee with SMTP id
- d27-20020ac244db000000b0050eb2bf92eemr2004268lfm.64.1704797088065; Tue, 09
- Jan 2024 02:44:48 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704801832; x=1705406632;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nbi41hegzq25zMRpXKgAjeZV+x6kTAXQt5iCCvUtC00=;
+        b=KJNTrNeedCypuDcrPXrMfBrLcIq7FWP5OhAm0tgJbcFcC6CqDVY2Mt43dS6cmQzjdX
+         ladyPbqr9/0qk9/pdf5X9h2eIEZxUFmbZc2P6X3xzrIvZFNf1a1Ggod80MGzShy60Imo
+         eg0fo1FLPab49ywQO7D3s498OJrJ4p5jehBx/7uT0ZjLW3Y5LjAh2GF4ymTdYEVolDum
+         bl04RpllGOC8zAdN5ze24RfbOc1FOCpkXpHpmODn5THXYmJPDD1ywBSjpCRDzCnObZQ9
+         v6Uf5R2qVczsFLysFViTe73nsTg81hgQ9ywkSjSvdIPph0wP7qEXXUuiNhgr3A6wsgn/
+         KKuQ==
+X-Gm-Message-State: AOJu0YyB9COZWTqsmLAxKP4+RsNL18QSjcNLh8qAH3BOEIi70audBiy8
+	JYmkrXKwh+eefNpdX68Pswp4QE8g6woPJB27jYXY1LohzgY=
+X-Google-Smtp-Source: AGHT+IFBg9+m1uW6kLccoovg9xqdY6gPxCmsuyTHrWxOqTHNIMPiNH71XBy04g5MNOuwPmU1EfaHmd58jOLhA/juL/M=
+X-Received: by 2002:a05:6512:98b:b0:50e:a859:1423 with SMTP id
+ w11-20020a056512098b00b0050ea8591423mr2167473lft.91.1704801831921; Tue, 09
+ Jan 2024 04:03:51 -0800 (PST)
 MIME-Version: 1.0
-References: <11840.1704786438525164797@lists.yoctoproject.org> <28934.1704796928231404958@lists.yoctoproject.org>
-In-Reply-To: <28934.1704796928231404958@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 9 Jan 2024 11:44:36 +0100
-Message-ID: <CANNYZj9HfjU25_p9C7HwabP9YaHjMcbL0YTMwLfhLVHEE0Qa4g@mail.gmail.com>
-Subject: Re: [yocto] Problem with overlayed recipes
-To: yocto@lists.yoctoproject.org, daniele.lugli@gmail.com
-Cc: Marco Cavallini <koansoftware@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Date: Tue, 9 Jan 2024 17:33:40 +0530
+Message-ID: <CAPJWBni=AhRSKRT5NjSyirmm6e8y5497XKjBJUfE+MAXv9yfxg@mail.gmail.com>
+Subject: Menuconfig saving erased after bitbake clean
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000009aabb6060e821b13"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 Jan 2024 10:44:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62116
+ <yocto@lists.yoctoproject.org>; Tue, 09 Jan 2024 12:04:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62117
 
-I'd say including recipes across layers is not a good idea to begin
-with. Rather copy, rename and tweak it.
+--0000000000009aabb6060e821b13
+Content-Type: text/plain; charset="UTF-8"
 
-Alex
+Hi guys,
+I open menuconfig and add/remove some features, save and exit.
+If I build using "bitbake linux-meson" the built image has all the features.
+However If I use "bitbake linux-meson -c clean && bitbake linux-meson" ,
+then all the menuconfig modifications are erased and the default
+configuration is built.
+What to do.
 
-On Tue, 9 Jan 2024 at 11:42, Daniele Lugli <daniele.lugli@gmail.com> wrote:
->
-> Thank you Marco,
->
-> it is there:
->
-> # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
-> # changes incompatibly
-> POKY_BBLAYERS_CONF_VERSION = "2"
->
-> BBPATH = "${TOPDIR}"
-> BBFILES ?= ""
->
-> BBLAYERS ?= " \
->   /home/vboxuser/yocto/poky/meta \
->   /home/vboxuser/yocto/poky/meta-poky \
->   /home/vboxuser/yocto/poky/meta-yocto-bsp \
->   /home/vboxuser/yocto/meta-openembedded/meta-oe \
->   /home/vboxuser/yocto/meta-intel \
->   /home/vboxuser/yocto/meta-mytest \
->   "
->
-> Grazie, ciao
-> --
-> Daniele Lugli
-> General Logic srl
-> Viale Curreno, 41
-> 10133 Torino
-> Italy
-> tel +39 329 3933041
-> www.general-logic.com
-> www.linkedin.com/in/daniele-lugli
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62115): https://lists.yoctoproject.org/g/yocto/message/62115
-> Mute This Topic: https://lists.yoctoproject.org/mt/103602112/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+
+Thanks
+Hassan
+
+--0000000000009aabb6060e821b13
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi guys,<br><div>I open menuconfig and add/remove some fea=
+tures, save and exit.</div><div>If I build using &quot;bitbake linux-meson&=
+quot; the built image has all the features.</div><div>However If I use &quo=
+t;bitbake linux-meson -c clean &amp;&amp; bitbake linux-meson&quot; , then =
+all the menuconfig modifications are erased and the default configuration i=
+s built.=C2=A0</div><div>What to do.</div><div><br></div><div><br></div><di=
+v>Thanks</div><div>Hassan</div></div>
+
+--0000000000009aabb6060e821b13--
 
