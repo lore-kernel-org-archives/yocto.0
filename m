@@ -1,100 +1,202 @@
-Return-Path: <mattwood2000@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AB390C3DA79
-	for <webhook@archiver.kernel.org>; Mon, 15 Jan 2024 19:45:03 +0000 (UTC)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
- by mx.groups.io with SMTP id smtpd.web10.93438.1705347894878865684
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1A8AC3DA79
+	for <webhook@archiver.kernel.org>; Mon, 15 Jan 2024 19:51:13 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+ by mx.groups.io with SMTP id smtpd.web10.93643.1705348263288087816
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jan 2024 11:44:55 -0800
+ Mon, 15 Jan 2024 11:51:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=iHZtGVSG;
- spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: mattwood2000@gmail.com)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dbf22acd993so5474713276.2
-        for <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 11:44:54 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=JaaYHv7z;
+ spf=pass (domain: gmail.com, ip: 209.85.218.43, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2d7e2e7fe0so294454766b.1
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 11:51:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705347894; x=1705952694; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1705348262; x=1705953062; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=PCmBoeEVsU0AbskrI9lJS7NZ12GR/F64+dL/iWvb6cc=;
-        b=iHZtGVSGb6SrYlLzvIINRiNJzfPblBnrmfLts6/Jo/n6OOqeowGNxU37y6SM0RL512
-         rRKUBI/KWzi+/tm470+1m5k9QF052z/NcABqClFf+FD6elCnhQJjTRYTLupjVMO1n1SS
-         zfaeGj/EHTHOWD326GO1GIQrkmKxaG4PVt8h9ttgbywJpZ/YSjIhd3hKvKElhMQleB5j
-         SL0HVe+jBRzU+vA0UGvyXQbeTj15z3Dz0T/6fVq/SCOZHr24dtLCG0HR00T5z1OoZT/p
-         85lHy7Zp2dVScwpcE5Y4KeqmKXjwQSuAoZdQMYEPhML0IKRRp6JurbcWbosH+50i0E70
-         oppA==
+        bh=X8kUzMIZbxXtTtSk1Gw6rer7Vy6SwPRSrX4q1NhvRDU=;
+        b=JaaYHv7zQUPB5qGb/riFRk7un8ovaFOwmi4KGPyOnggFxQh+zvyfCIL7B8g/wSKhGY
+         ZidyhVwXXZjnBxzL1RXZLN3GbaiLw4EAHLaDfhQ/+w7jCsMuEXoR+kwVkSL4j7UyuI3i
+         UNLFj9JMMWlXiq7Zb/z7htwvzh7BpOoTIN9z6lXR/w0mtTZue8FXSMSM+U5KTJSh6Hzf
+         nJ5Y8Gcxrdncz8VvoCuzXbtW5AhCtgaPzYhPNnu8Gbl2wrhCq3u8Rcksy4v+eBmTMVKa
+         pGj4BlxQ4gMVX4lzrg03IPdhAJyI3uTDULjzx7XHBo0pZ1VuFrVUsVLxtyatEgI6g6Sg
+         HM6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705347894; x=1705952694;
+        d=1e100.net; s=20230601; t=1705348262; x=1705953062;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PCmBoeEVsU0AbskrI9lJS7NZ12GR/F64+dL/iWvb6cc=;
-        b=P5Kq4JYfzFPSxb4aFL2YbogUSIEwFOcyMpu12AJJ5blkPLuoim2adAZX8SpIrRT+Sp
-         J/yD7A0Oyfll0b1Ws+mbWOM3Cchu3sRtXsYnWqcc+CdPlez1qbKe3QPJX6f0zuUFd8Mo
-         B3/6zm1I17Dt7AvpXVceHmJZ1sp7iX1QfidvAzm6fY2HMpqV1jwC2KJn8aDIYCkFTyvt
-         +HxDEsUehtyro4WTCZlVnSztYXqesGQxJ5FQH5wHlSp3/LKSr3092sIyfU62bcNVqqJo
-         PH1/maMUdkThwnSlYm1N8F3CgG/Ui1seDzHsUcNUB8SiPdjmcKs6QiYC+8/XX6hP7CND
-         3aHA==
-X-Gm-Message-State: AOJu0Ywhplh3COS1giBdEkx4cPJ/9Xtx3oEhN8ylf8AToTGonJls3ZWC
-	tHEaUVkxTyYhpKbyIM3jFkHwbU+4WOdQIl2yaLXL9hBw
-X-Google-Smtp-Source: AGHT+IGBuPct4chM+p30+22Z8tmCAosJ/TexrP/d27VOPC0aUy7J1TD3UsHrse/iTGPoD6rbcmMeSkEIfOCssKGw9oY=
-X-Received: by 2002:a05:6902:188a:b0:dbe:8741:1af3 with SMTP id
- cj10-20020a056902188a00b00dbe87411af3mr3292323ybb.51.1705347893894; Mon, 15
- Jan 2024 11:44:53 -0800 (PST)
+        bh=X8kUzMIZbxXtTtSk1Gw6rer7Vy6SwPRSrX4q1NhvRDU=;
+        b=s0wbcwwcWR7EnOSknCgtKq+aMZ+Ijpc7nhl8sBzvI4jePkip5AFNd5BwTpbeJtHPiL
+         wazV/+JZGKeatIP4UY1HuEvTpPkSx+/sAlW69Vtp85KOhQOWyYCZk6LnepTzgqB7xYVy
+         qxVxukR/TherDiw7ucIAc4lPOO9ezYXMD2vveqGzDS/ZBGXCy7QEIqisxTZm6Fp6UXt0
+         8l47y7vF+JHod81PUDIlYZfpCxRmtDXGfrDorRWQprPWfaT9BqreEi2ghIMh3I5OeFZ2
+         kMoHU5rSIoUvoM29GDZPHvtM7sJ2tYxAT288lkH5mdd7195pLN3cETFA1dv1yMDepAL/
+         8uGQ==
+X-Gm-Message-State: AOJu0YzV70P2vUoHIQ0ekG6kI+lYhCIeqCkVecUDd2XUfeW+Go33c2i0
+	JWr1aHEbrM1vdME5SO1StanGJwMTPv3Hgdq+IrQ=
+X-Google-Smtp-Source: AGHT+IGuvqf8kimdrcK5gTn3pu5CvWm20k1/uGaubvwqCCBm6ukxw3ajNvqwsTynxYvGHuUiMMGmuGwzXeckahJY5dg=
+X-Received: by 2002:a17:906:57d5:b0:a2d:6199:4f4b with SMTP id
+ u21-20020a17090657d500b00a2d61994f4bmr3272575ejr.8.1705348261535; Mon, 15 Jan
+ 2024 11:51:01 -0800 (PST)
 MIME-Version: 1.0
-From: mattwood2000@gmail.com
-Date: Mon, 15 Jan 2024 14:44:43 -0500
-Message-ID: <CADjezmYMjHMXRwA7UF+_RFQivJ84rHpm2HyfEak_Cfsv1G=ftA@mail.gmail.com>
-Subject: append recipe to multiconfig build from top-level local.conf
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000006f200b060f013fb2"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 15 Jan 2024 12:50:51 -0700
+Message-ID: <CAK5yBb9CEKLjTicmGL9sij8f2--W3bpa0zRK=A829s3Pq=OtFg@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000058e186060f0155ae"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 19:45:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62161
+ <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 19:51:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62162
 
---0000000000006f200b060f013fb2
+--00000000000058e186060f0155ae
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+All,
 
-I was wondering if the IMAGE_INSTALL:append syntax could work in
-multiconfig environment from the top-level local.conf file?
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-For example, I have a meta-layer that defines the muitconfig (main.conf and
-initramfs.conf).  From my build directory, I was hoping to append the
-IMAGE_INSTALL list only for the main configuration similar to how it can be
-done from local.conf in a standard build.  I wanted to avoid having to
-modify the meta-layer files.
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-I tried the following from local.conf but neither worked:
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 407
+unassigned or newcomer bugs.
 
-IMAGE_INSTALL:append:mc:main = " pkg"
-IMAGE_INSTALL:mc:main:append = " pkg"
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, "5.99" and=
+ "Future", the more
+pressing/urgent issues being in "5.0" and then =E2=80=9C5.1=E2=80=9D.
 
-Is there syntax for this or would I have to put this in an image recipe or
-the multiconfig .conf file?
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
-Thanks, Matt.
+Thanks,
 
---0000000000006f200b060f013fb2
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--00000000000058e186060f0155ae
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I was wondering if the I=
-MAGE_INSTALL:append syntax could work in multiconfig environment from the t=
-op-level local.conf file?</div><div><br></div><div>For example, I have a me=
-ta-layer that defines the muitconfig (main.conf and initramfs.conf).=C2=A0 =
-From my build directory, I was hoping to append the IMAGE_INSTALL list only=
- for the main configuration similar to how it can be done from local.conf i=
-n a standard build.=C2=A0 I wanted to avoid having to modify the meta-layer=
- files.<br></div><div><br></div><div>I tried the following from local.conf =
-but neither worked:</div><div><br></div><div>IMAGE_INSTALL:append:mc:main =
-=3D &quot; pkg&quot;</div><div>IMAGE_INSTALL:mc:main:append =3D &quot; pkg&=
-quot;<br></div><div><br></div><div>Is there syntax for this or would I have=
- to put this in an image recipe or the multiconfig .conf file?</div><div><b=
-r></div><div>Thanks, Matt.<br></div></div>
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 407 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, &quot;5.99&quot; and &quot;Future&quot;=
+, the more pressing/urgent issues being in &quot;5.0&quot; and then =E2=80=
+=9C5.1=E2=80=9D.<br><br>Please review this link and if a bug is something y=
+ou would be able to help with either take ownership of the bug, or send me =
+(<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an=
+ e-mail with the bug number you would like and I will assign it to you (ple=
+ase make sure you have a Bugzilla account).  The list is at: <a href=3D"htt=
+ps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_B=
+ugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Ne=
+wcomer_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
+martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"=
+MsoNormal" style=3D"background-image:initial;background-position:initial;ba=
+ckground-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sa=
+ns-serif">Thanks,<span></span></span></p>
 
---0000000000006f200b060f013fb2--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--00000000000058e186060f0155ae--
 
