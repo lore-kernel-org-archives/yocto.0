@@ -1,108 +1,219 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11D63C47DA9
-	for <webhook@archiver.kernel.org>; Mon, 15 Jan 2024 18:03:33 +0000 (UTC)
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
- by mx.groups.io with SMTP id smtpd.web11.89456.1705341807639378391
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 89651C4707C
+	for <webhook@archiver.kernel.org>; Mon, 15 Jan 2024 19:10:03 +0000 (UTC)
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+ by mx.groups.io with SMTP id smtpd.web10.92272.1705345798561298538
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jan 2024 10:03:27 -0800
+ Mon, 15 Jan 2024 11:09:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=GbYldAY5;
- spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: ticotimo@gmail.com)
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6da6b0eb2d4so4505463b3a.1
-        for <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 10:03:27 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=GLxv5awI;
+ spf=pass (domain: gmail.com, ip: 209.85.160.44, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-206ebe78593so1257144fac.3
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 11:09:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705341807; x=1705946607; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rQBfUxQpT+iHqV9dUv/Dz+CpVOq4dYTiW4sRo3NuEvs=;
-        b=GbYldAY5oe7s/sm4MTvbjOqmCcE8B+jybSaY+r0cOLvVYFvqLoIzScI5Loj6cZWLzy
-         9NMf4TxeZAJcIzM2liaztv9l/c4FN+sf0fWGkMnsk+dHihprlA6UXelJBmCzPvT4wJso
-         3Z8ozQ/k0G4jdTatIOXNQoQvTJIu5eXkDp5j07Hzui52lCtfwMzU0Mq2oXJ8jmPYHwdJ
-         /M2TWiUg54am9jNAv3Q7gUVvHfqtWHI9JNoVfDn6Wq+bim0SltJAjtGxi9C5/pfsqTTg
-         lGvKMgkDAn7xkhdVmSd+7B/BNuLMXZsVF1eAKAKQJMVtrWcB3Gh0iZIVQrFkAgTBnHup
-         A4Pg==
+        d=gmail.com; s=20230601; t=1705345798; x=1705950598; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SwTRgnBaC83Lo1J4zV/lmhad9KzasieUZNown0SlijM=;
+        b=GLxv5awIfpoBI6RkgfnUjdlETsWdtLsBao2sSdN7ikp7sYh5A69GuTuj5AgwpT9Qhz
+         aUxWXnYvf9NBvn/pnRdfH6HBp4ErlCrQR7Z1qYrQvNLJi++HXtSCcnw3OdiSd9u5vtnH
+         1/WppIk8Y6a6yFaQl9bbECMJn47psJ2eQlkHRWw+PAO2GCBB/Q9qHZhDRxojKq5ZSEbm
+         vg0Ji0YY2+FTogP8Fqytwhl79GbmNCxbJd2KV65gd8R34N8GS25mwbb24kuslsyJiT62
+         ozz2QoGLFGNC1yFhSmzXDhnVNXggoenkUjdtM1aectfgp9OTbO+5rsIBZZLYNjYrBOOK
+         A5EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705341807; x=1705946607;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1705345798; x=1705950598;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rQBfUxQpT+iHqV9dUv/Dz+CpVOq4dYTiW4sRo3NuEvs=;
-        b=Ow6f8KlfCSXmVqXwYpukIT3xdldfwPcn9d1gx+t5xfFLa4YNJfhoKQzeVV+2w/8yGM
-         KAiKRWsvxnn+emP728swTaWykEGhYmpOv08jxoZbur2HT5QNRG3TGG4fpDyBrrMHbzr3
-         O2g5+Hs+FlehERLYIuUXtsf+U9p1elSIKCtuway/4SOEj0+VNjdc/3INvyeplJTdKewL
-         5unULGMk7zjdGGLwWPnv2oZk6QtPG0YYn7Dcbi1jxHITeOpxgePqNaKbZRvScn7JBPrr
-         7x0kfpCs2a9mDnUYSlX3BI3eqZT6g22q5XeOsdcx1g3SmvKYVNAgoCg/BtmDJUe31aOL
-         ZLjA==
-X-Gm-Message-State: AOJu0Yz1GAf8rkKoMLwaNrO35yr6bpcKWZ0fAFs8WmLeSLJiuqBsOx+0
-	41hhgDhcqL/tf1wp4jiBCjEm3oyt3xc=
-X-Google-Smtp-Source: AGHT+IEwhWxnMCe9o0AFInb9SIsSqx3s9bFhRiVgBkXyNMnEdRYhrIe4YE5yI/c7I5K/AbkmdDgLLQ==
-X-Received: by 2002:a05:6a20:96c3:b0:19a:61d2:6fa7 with SMTP id hq3-20020a056a2096c300b0019a61d26fa7mr2319323pzc.105.1705341806729;
-        Mon, 15 Jan 2024 10:03:26 -0800 (PST)
-Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca01:19f0:9093:7b1b:b931:af99])
-        by smtp.gmail.com with ESMTPSA id s5-20020a056a00178500b006d96ad39308sm7880792pfg.165.2024.01.15.10.03.26
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jan 2024 10:03:26 -0800 (PST)
-From: Tim Orling <ticotimo@gmail.com>
-X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
-To: yocto@lists.yoctoproject.org
-Subject: [layerindex-web][PATCH 3/6] rrs_upgrade_history: remap new srcrev fetcher API
-Date: Mon, 15 Jan 2024 10:03:14 -0800
-Message-Id: <1fccf3217540a67751e6890ccfacfa23fc48b102.1705341467.git.tim.orling@konsulko.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1705341467.git.tim.orling@konsulko.com>
-References: <cover.1705341467.git.tim.orling@konsulko.com>
+        bh=SwTRgnBaC83Lo1J4zV/lmhad9KzasieUZNown0SlijM=;
+        b=NBxxw1X4eMLC55Tz3VpLaI3li9NOcOWFwjdO0DJle01gAs2UxFzMh5SqimTVbf5Al6
+         VCG84ixLtHo3ys6c3deVnguJsyW2U8BKxV2OY6X01hVQqjAb1+Q6lAYRiu/DUBUM+Ut2
+         24U0K22YizCvtl3Ow0rhXJP1QDj1W2LHfxBXREsLmg0OETvwqQqECr5opP0D60m4e7Tf
+         kTVtowfjD4fMKielr0gYdfqeD8tsFVe1bh9MjlfmQbAFWWNyfbuJ6TiPRpuoigRRqKGU
+         qx2zvQnPP4xUHqYH6d0IaKAiO7y3oSmJK9MNmh6zwNF6+a6O5vrW7Yj457laMjzRFDUI
+         5aNA==
+X-Gm-Message-State: AOJu0YyGTu+zG9LBJ/oGY9pMgkyhvar/uieAr5lJ+FHS7yTnQN7zwG2k
+	7M2yYq6/0b07kZAwcJCcAk9NQhM+TIhItyobwvkOIdkzfDU=
+X-Google-Smtp-Source: AGHT+IGFnIqA10NbaFRrfr9CWsutrSFXSRDFQiXRiR2ci3gv+CIN04qWEwHQcQNOlKMmDQktLvmPuK3M0fthcWvhHbE=
+X-Received: by 2002:a05:6870:d38c:b0:1fb:75a:c44a with SMTP id
+ k12-20020a056870d38c00b001fb075ac44amr5435540oag.115.1705345797671; Mon, 15
+ Jan 2024 11:09:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240114144618.30935-1-twoerner@gmail.com> <15AE7EB5-F317-4193-AF3B-24DDA9F4BE98@0leil.net>
+In-Reply-To: <15AE7EB5-F317-4193-AF3B-24DDA9F4BE98@0leil.net>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 15 Jan 2024 11:09:31 -0800
+Message-ID: <CAMKF1soAb=e=Vh916iZ8Ts5N97z==E7xTvWGfJpqc4YqwaWgEA@mail.gmail.com>
+Subject: Re: [yocto] [meta-rockchip][PATCH] remove adding all kernel modules
+ by default
+To: yocto@lists.yoctoproject.org, foss@0leil.net
+Cc: twoerner@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 18:03:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62156
+ <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 19:10:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62160
 
-When performing rrs_upgrade_history for commit date 8/24/2023,
-the 'fetch2: Add new srcrev fetcher API' bitbake commit is not
-automatically added.
+On Mon, Jan 15, 2024 at 4:57=E2=80=AFAM Quentin Schulz <foss@0leil.net> wro=
+te:
+>
+> Hi Trevor,
+>
+> On January 14, 2024 3:46:18 PM GMT+01:00, Trevor Woerner <twoerner@gmail.=
+com> wrote:
+> >A BSP layer shouldn't be deciding to include all kernel modules. That's =
+more
+> >of a distro decision, or for local.conf at a minimum. Modules that are
+> >required for the basic functioning of a board are fine, but doing a blan=
+ket
+> >"install all" is overreach and inflates images unnecessarily (~45MB, by =
+one
+> >measurement).
+> >
+>
+> It's only a RRECOMMENDS, so I'd say this is fine as is? This allows to ha=
+ve a working system without spending too much time figuring out what's exac=
+tly needed. If someone needs to have a smaller image, they can then play wi=
+th kernel defconfig or kernel-modules- in packages to install.
+>
 
-Fix this by remapping 'cooker: Fix error message' (8/22/2023) to
-the tag on 8/24/2023 'fetch2: git: Check if clone directory is
-a git repo'.
+Yeah on one thought, BSP users may not be well versed in OE speak and
+this adds to their bad starting experience but it also has a bad
+effect where the images are bloated. So IMO if it is well documented
+how to enable/disable it easily could be useful. I don't have strong
+leanings
+on which way you want to go w.r.t defaults.
 
-This allows upgrade history for oe-core to continue across the
-8/24/2023 date.
-
-Fixes:
-2024-01-08 23:59:07,114: DEBUG: run cmd '['git', 'show', '-s', '--format=%ci']' in /opt/workdir/git___git_openembedded_org_openembedded-core
-2024-01-08 23:59:07,215: DEBUG: output: 2023-08-24 13:34:35 +0100
-2024-01-08 23:59:07,227: DEBUG: run cmd '['git', 'rev-parse', 'HEAD']' in /opt/workdir/bitbake
-2024-01-08 23:59:07,329: DEBUG: output: a06619951a43acb80b80d92e0caac560657ca249
-2024-01-08 23:59:07,448: DEBUG: Running "GIT_DIR=/opt/workdir/bitbake/.git git merge-base --is-ancestor 87104b6a167188921da157c7dba45938849fb22a HEAD"
-NOTE: Starting bitbake server...
-ERROR: Failure expanding variable fetcher_hashes_dummyfunc[vardepvalue], expression was ${@bb.fetch.get_hashvalue(d)} which triggered exception AttributeError: module 'bb.fetch2' has no attribute 'get_hashvalue'
-The variable dependency chain for the failure is: fetcher_hashes_dummyfunc[vardepvalue]
-
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
- rrs/tools/rrs_upgrade_history.py | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/rrs/tools/rrs_upgrade_history.py b/rrs/tools/rrs_upgrade_history.py
-index 9b74a05..42ba9b8 100755
---- a/rrs/tools/rrs_upgrade_history.py
-+++ b/rrs/tools/rrs_upgrade_history.py
-@@ -182,6 +182,7 @@ def upgrade_history(options, logger):
-                 # Filter out some bad commits
-                 remap_range('fef18b445c0cb6b266cd939b9c78d7cbce38663f', '39780b1ccbd76579db0fc6fb9369c848a3bafa9d')
-                 remap_range('5796ed550d127853808f38257f8dcc8c1cf59342', '547128731e62b36d2271c4390b3fee2b16c535dc')
-+                remap_range('a06619951a43acb80b80d92e0caac560657ca249', '2117db3146ce38bb4a6e2df40b6cd2ab11b514d5')
- 
-                 if options.stop_commit and (options.stop_commit not in [x.split()[0] for x in commit_list]):
-                     logger.error('Stop commit %s is not in repository %s' % (options.stop_commit, repodir))
--- 
-2.34.1
-
+> Up to you though :)
+>
+> Cheers,
+> Quentin
+>
+> >I expect patches will probably roll in after this one to add back necess=
+ary
+> >modules, but it will be easier to figure out which ones when starting wi=
+th
+> >having none of them included by default.
+> >
+> >Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> >---
+> > conf/machine/include/rock-pi-4.inc | 2 --
+> > conf/machine/nanopi-m4b.conf       | 2 --
+> > conf/machine/nanopi-r2s.conf       | 1 -
+> > conf/machine/nanopi-r4s.conf       | 2 --
+> > conf/machine/rock-5a.conf          | 1 -
+> > conf/machine/rock-5b.conf          | 1 -
+> > conf/machine/rock-pi-e.conf        | 1 -
+> > conf/machine/rock-pi-s.conf        | 1 -
+> > 8 files changed, 11 deletions(-)
+> >
+> >diff --git a/conf/machine/include/rock-pi-4.inc b/conf/machine/include/r=
+ock-pi-4.inc
+> >index 0a868463bc64..02dfb18fc775 100644
+> >--- a/conf/machine/include/rock-pi-4.inc
+> >+++ b/conf/machine/include/rock-pi-4.inc
+> >@@ -2,5 +2,3 @@
+> > MACHINEOVERRIDES =3D. "rock-pi-4:"
+> >
+> > require conf/machine/include/rk3399.inc
+> >-
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >diff --git a/conf/machine/nanopi-m4b.conf b/conf/machine/nanopi-m4b.conf
+> >index 35cd8f68e82e..b924b0018867 100644
+> >--- a/conf/machine/nanopi-m4b.conf
+> >+++ b/conf/machine/nanopi-m4b.conf
+> >@@ -5,7 +5,5 @@
+> >
+> > require conf/machine/include/rk3399.inc
+> >
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >-
+> > KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4b.dtb"
+> > UBOOT_MACHINE =3D "nanopi-m4b-rk3399_defconfig"
+> >diff --git a/conf/machine/nanopi-r2s.conf b/conf/machine/nanopi-r2s.conf
+> >index 4472c21f0217..0451002ecff5 100644
+> >--- a/conf/machine/nanopi-r2s.conf
+> >+++ b/conf/machine/nanopi-r2s.conf
+> >@@ -6,6 +6,5 @@
+> > require conf/machine/include/rk3328.inc
+> >
+> > KERNEL_DEVICETREE =3D "rockchip/rk3328-nanopi-r2s.dtb"
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >
+> > UBOOT_MACHINE =3D "nanopi-r2s-rk3328_defconfig"
+> >diff --git a/conf/machine/nanopi-r4s.conf b/conf/machine/nanopi-r4s.conf
+> >index 21be4400c89d..161f4b4e4609 100644
+> >--- a/conf/machine/nanopi-r4s.conf
+> >+++ b/conf/machine/nanopi-r4s.conf
+> >@@ -5,7 +5,5 @@
+> >
+> > require conf/machine/include/rk3399.inc
+> >
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >-
+> > KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-r4s.dtb"
+> > UBOOT_MACHINE =3D "nanopi-r4s-rk3399_defconfig"
+> >diff --git a/conf/machine/rock-5a.conf b/conf/machine/rock-5a.conf
+> >index 5ace4dac8fe4..28e06486eda3 100644
+> >--- a/conf/machine/rock-5a.conf
+> >+++ b/conf/machine/rock-5a.conf
+> >@@ -7,6 +7,5 @@ require conf/machine/include/rk3588s.inc
+> >
+> > PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-dev"
+> > KERNEL_DEVICETREE =3D "rockchip/rk3588s-rock-5a.dtb"
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >
+> > UBOOT_MACHINE =3D "rock5a-rk3588s_defconfig"
+> >diff --git a/conf/machine/rock-5b.conf b/conf/machine/rock-5b.conf
+> >index d1371084becc..ea2cf219e153 100644
+> >--- a/conf/machine/rock-5b.conf
+> >+++ b/conf/machine/rock-5b.conf
+> >@@ -7,6 +7,5 @@ require conf/machine/include/rk3588.inc
+> >
+> > PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-dev"
+> > KERNEL_DEVICETREE =3D "rockchip/rk3588-rock-5b.dtb"
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >
+> > UBOOT_MACHINE =3D "rock5b-rk3588_defconfig"
+> >diff --git a/conf/machine/rock-pi-e.conf b/conf/machine/rock-pi-e.conf
+> >index 517956c4b9db..1e2169b01993 100644
+> >--- a/conf/machine/rock-pi-e.conf
+> >+++ b/conf/machine/rock-pi-e.conf
+> >@@ -6,6 +6,5 @@
+> > require conf/machine/include/rk3328.inc
+> >
+> > KERNEL_DEVICETREE =3D "rockchip/rk3328-rock-pi-e.dtb"
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >
+> > UBOOT_MACHINE =3D "rock-pi-e-rk3328_defconfig"
+> >diff --git a/conf/machine/rock-pi-s.conf b/conf/machine/rock-pi-s.conf
+> >index 79ea73c6b47e..3aa868b7ec7c 100644
+> >--- a/conf/machine/rock-pi-s.conf
+> >+++ b/conf/machine/rock-pi-s.conf
+> >@@ -6,6 +6,5 @@
+> > require conf/machine/include/rk3308.inc
+> >
+> > KERNEL_DEVICETREE =3D "rockchip/rk3308-rock-pi-s.dtb"
+> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> >
+> > UBOOT_MACHINE =3D "rock-pi-s-rk3308_defconfig"
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#62145): https://lists.yoctoproject.org/g/yocto/messag=
+e/62145
+> Mute This Topic: https://lists.yoctoproject.org/mt/103719387/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
