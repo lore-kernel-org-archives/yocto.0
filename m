@@ -1,219 +1,100 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <mattwood2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89651C4707C
-	for <webhook@archiver.kernel.org>; Mon, 15 Jan 2024 19:10:03 +0000 (UTC)
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
- by mx.groups.io with SMTP id smtpd.web10.92272.1705345798561298538
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB390C3DA79
+	for <webhook@archiver.kernel.org>; Mon, 15 Jan 2024 19:45:03 +0000 (UTC)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+ by mx.groups.io with SMTP id smtpd.web10.93438.1705347894878865684
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jan 2024 11:09:58 -0800
+ Mon, 15 Jan 2024 11:44:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=GLxv5awI;
- spf=pass (domain: gmail.com, ip: 209.85.160.44, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-206ebe78593so1257144fac.3
-        for <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 11:09:58 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=iHZtGVSG;
+ spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: mattwood2000@gmail.com)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dbf22acd993so5474713276.2
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 11:44:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705345798; x=1705950598; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SwTRgnBaC83Lo1J4zV/lmhad9KzasieUZNown0SlijM=;
-        b=GLxv5awIfpoBI6RkgfnUjdlETsWdtLsBao2sSdN7ikp7sYh5A69GuTuj5AgwpT9Qhz
-         aUxWXnYvf9NBvn/pnRdfH6HBp4ErlCrQR7Z1qYrQvNLJi++HXtSCcnw3OdiSd9u5vtnH
-         1/WppIk8Y6a6yFaQl9bbECMJn47psJ2eQlkHRWw+PAO2GCBB/Q9qHZhDRxojKq5ZSEbm
-         vg0Ji0YY2+FTogP8Fqytwhl79GbmNCxbJd2KV65gd8R34N8GS25mwbb24kuslsyJiT62
-         ozz2QoGLFGNC1yFhSmzXDhnVNXggoenkUjdtM1aectfgp9OTbO+5rsIBZZLYNjYrBOOK
-         A5EA==
+        d=gmail.com; s=20230601; t=1705347894; x=1705952694; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=PCmBoeEVsU0AbskrI9lJS7NZ12GR/F64+dL/iWvb6cc=;
+        b=iHZtGVSGb6SrYlLzvIINRiNJzfPblBnrmfLts6/Jo/n6OOqeowGNxU37y6SM0RL512
+         rRKUBI/KWzi+/tm470+1m5k9QF052z/NcABqClFf+FD6elCnhQJjTRYTLupjVMO1n1SS
+         zfaeGj/EHTHOWD326GO1GIQrkmKxaG4PVt8h9ttgbywJpZ/YSjIhd3hKvKElhMQleB5j
+         SL0HVe+jBRzU+vA0UGvyXQbeTj15z3Dz0T/6fVq/SCOZHr24dtLCG0HR00T5z1OoZT/p
+         85lHy7Zp2dVScwpcE5Y4KeqmKXjwQSuAoZdQMYEPhML0IKRRp6JurbcWbosH+50i0E70
+         oppA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705345798; x=1705950598;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SwTRgnBaC83Lo1J4zV/lmhad9KzasieUZNown0SlijM=;
-        b=NBxxw1X4eMLC55Tz3VpLaI3li9NOcOWFwjdO0DJle01gAs2UxFzMh5SqimTVbf5Al6
-         VCG84ixLtHo3ys6c3deVnguJsyW2U8BKxV2OY6X01hVQqjAb1+Q6lAYRiu/DUBUM+Ut2
-         24U0K22YizCvtl3Ow0rhXJP1QDj1W2LHfxBXREsLmg0OETvwqQqECr5opP0D60m4e7Tf
-         kTVtowfjD4fMKielr0gYdfqeD8tsFVe1bh9MjlfmQbAFWWNyfbuJ6TiPRpuoigRRqKGU
-         qx2zvQnPP4xUHqYH6d0IaKAiO7y3oSmJK9MNmh6zwNF6+a6O5vrW7Yj457laMjzRFDUI
-         5aNA==
-X-Gm-Message-State: AOJu0YyGTu+zG9LBJ/oGY9pMgkyhvar/uieAr5lJ+FHS7yTnQN7zwG2k
-	7M2yYq6/0b07kZAwcJCcAk9NQhM+TIhItyobwvkOIdkzfDU=
-X-Google-Smtp-Source: AGHT+IGFnIqA10NbaFRrfr9CWsutrSFXSRDFQiXRiR2ci3gv+CIN04qWEwHQcQNOlKMmDQktLvmPuK3M0fthcWvhHbE=
-X-Received: by 2002:a05:6870:d38c:b0:1fb:75a:c44a with SMTP id
- k12-20020a056870d38c00b001fb075ac44amr5435540oag.115.1705345797671; Mon, 15
- Jan 2024 11:09:57 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705347894; x=1705952694;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PCmBoeEVsU0AbskrI9lJS7NZ12GR/F64+dL/iWvb6cc=;
+        b=P5Kq4JYfzFPSxb4aFL2YbogUSIEwFOcyMpu12AJJ5blkPLuoim2adAZX8SpIrRT+Sp
+         J/yD7A0Oyfll0b1Ws+mbWOM3Cchu3sRtXsYnWqcc+CdPlez1qbKe3QPJX6f0zuUFd8Mo
+         B3/6zm1I17Dt7AvpXVceHmJZ1sp7iX1QfidvAzm6fY2HMpqV1jwC2KJn8aDIYCkFTyvt
+         +HxDEsUehtyro4WTCZlVnSztYXqesGQxJ5FQH5wHlSp3/LKSr3092sIyfU62bcNVqqJo
+         PH1/maMUdkThwnSlYm1N8F3CgG/Ui1seDzHsUcNUB8SiPdjmcKs6QiYC+8/XX6hP7CND
+         3aHA==
+X-Gm-Message-State: AOJu0Ywhplh3COS1giBdEkx4cPJ/9Xtx3oEhN8ylf8AToTGonJls3ZWC
+	tHEaUVkxTyYhpKbyIM3jFkHwbU+4WOdQIl2yaLXL9hBw
+X-Google-Smtp-Source: AGHT+IGBuPct4chM+p30+22Z8tmCAosJ/TexrP/d27VOPC0aUy7J1TD3UsHrse/iTGPoD6rbcmMeSkEIfOCssKGw9oY=
+X-Received: by 2002:a05:6902:188a:b0:dbe:8741:1af3 with SMTP id
+ cj10-20020a056902188a00b00dbe87411af3mr3292323ybb.51.1705347893894; Mon, 15
+ Jan 2024 11:44:53 -0800 (PST)
 MIME-Version: 1.0
-References: <20240114144618.30935-1-twoerner@gmail.com> <15AE7EB5-F317-4193-AF3B-24DDA9F4BE98@0leil.net>
-In-Reply-To: <15AE7EB5-F317-4193-AF3B-24DDA9F4BE98@0leil.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 15 Jan 2024 11:09:31 -0800
-Message-ID: <CAMKF1soAb=e=Vh916iZ8Ts5N97z==E7xTvWGfJpqc4YqwaWgEA@mail.gmail.com>
-Subject: Re: [yocto] [meta-rockchip][PATCH] remove adding all kernel modules
- by default
-To: yocto@lists.yoctoproject.org, foss@0leil.net
-Cc: twoerner@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: mattwood2000@gmail.com
+Date: Mon, 15 Jan 2024 14:44:43 -0500
+Message-ID: <CADjezmYMjHMXRwA7UF+_RFQivJ84rHpm2HyfEak_Cfsv1G=ftA@mail.gmail.com>
+Subject: append recipe to multiconfig build from top-level local.conf
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000006f200b060f013fb2"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 19:10:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62160
+ <yocto@lists.yoctoproject.org>; Mon, 15 Jan 2024 19:45:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62161
 
-On Mon, Jan 15, 2024 at 4:57=E2=80=AFAM Quentin Schulz <foss@0leil.net> wro=
-te:
->
-> Hi Trevor,
->
-> On January 14, 2024 3:46:18 PM GMT+01:00, Trevor Woerner <twoerner@gmail.=
-com> wrote:
-> >A BSP layer shouldn't be deciding to include all kernel modules. That's =
-more
-> >of a distro decision, or for local.conf at a minimum. Modules that are
-> >required for the basic functioning of a board are fine, but doing a blan=
-ket
-> >"install all" is overreach and inflates images unnecessarily (~45MB, by =
-one
-> >measurement).
-> >
->
-> It's only a RRECOMMENDS, so I'd say this is fine as is? This allows to ha=
-ve a working system without spending too much time figuring out what's exac=
-tly needed. If someone needs to have a smaller image, they can then play wi=
-th kernel defconfig or kernel-modules- in packages to install.
->
+--0000000000006f200b060f013fb2
+Content-Type: text/plain; charset="UTF-8"
 
-Yeah on one thought, BSP users may not be well versed in OE speak and
-this adds to their bad starting experience but it also has a bad
-effect where the images are bloated. So IMO if it is well documented
-how to enable/disable it easily could be useful. I don't have strong
-leanings
-on which way you want to go w.r.t defaults.
+Hi,
 
-> Up to you though :)
->
-> Cheers,
-> Quentin
->
-> >I expect patches will probably roll in after this one to add back necess=
-ary
-> >modules, but it will be easier to figure out which ones when starting wi=
-th
-> >having none of them included by default.
-> >
-> >Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> >---
-> > conf/machine/include/rock-pi-4.inc | 2 --
-> > conf/machine/nanopi-m4b.conf       | 2 --
-> > conf/machine/nanopi-r2s.conf       | 1 -
-> > conf/machine/nanopi-r4s.conf       | 2 --
-> > conf/machine/rock-5a.conf          | 1 -
-> > conf/machine/rock-5b.conf          | 1 -
-> > conf/machine/rock-pi-e.conf        | 1 -
-> > conf/machine/rock-pi-s.conf        | 1 -
-> > 8 files changed, 11 deletions(-)
-> >
-> >diff --git a/conf/machine/include/rock-pi-4.inc b/conf/machine/include/r=
-ock-pi-4.inc
-> >index 0a868463bc64..02dfb18fc775 100644
-> >--- a/conf/machine/include/rock-pi-4.inc
-> >+++ b/conf/machine/include/rock-pi-4.inc
-> >@@ -2,5 +2,3 @@
-> > MACHINEOVERRIDES =3D. "rock-pi-4:"
-> >
-> > require conf/machine/include/rk3399.inc
-> >-
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >diff --git a/conf/machine/nanopi-m4b.conf b/conf/machine/nanopi-m4b.conf
-> >index 35cd8f68e82e..b924b0018867 100644
-> >--- a/conf/machine/nanopi-m4b.conf
-> >+++ b/conf/machine/nanopi-m4b.conf
-> >@@ -5,7 +5,5 @@
-> >
-> > require conf/machine/include/rk3399.inc
-> >
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >-
-> > KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4b.dtb"
-> > UBOOT_MACHINE =3D "nanopi-m4b-rk3399_defconfig"
-> >diff --git a/conf/machine/nanopi-r2s.conf b/conf/machine/nanopi-r2s.conf
-> >index 4472c21f0217..0451002ecff5 100644
-> >--- a/conf/machine/nanopi-r2s.conf
-> >+++ b/conf/machine/nanopi-r2s.conf
-> >@@ -6,6 +6,5 @@
-> > require conf/machine/include/rk3328.inc
-> >
-> > KERNEL_DEVICETREE =3D "rockchip/rk3328-nanopi-r2s.dtb"
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >
-> > UBOOT_MACHINE =3D "nanopi-r2s-rk3328_defconfig"
-> >diff --git a/conf/machine/nanopi-r4s.conf b/conf/machine/nanopi-r4s.conf
-> >index 21be4400c89d..161f4b4e4609 100644
-> >--- a/conf/machine/nanopi-r4s.conf
-> >+++ b/conf/machine/nanopi-r4s.conf
-> >@@ -5,7 +5,5 @@
-> >
-> > require conf/machine/include/rk3399.inc
-> >
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >-
-> > KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-r4s.dtb"
-> > UBOOT_MACHINE =3D "nanopi-r4s-rk3399_defconfig"
-> >diff --git a/conf/machine/rock-5a.conf b/conf/machine/rock-5a.conf
-> >index 5ace4dac8fe4..28e06486eda3 100644
-> >--- a/conf/machine/rock-5a.conf
-> >+++ b/conf/machine/rock-5a.conf
-> >@@ -7,6 +7,5 @@ require conf/machine/include/rk3588s.inc
-> >
-> > PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-dev"
-> > KERNEL_DEVICETREE =3D "rockchip/rk3588s-rock-5a.dtb"
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >
-> > UBOOT_MACHINE =3D "rock5a-rk3588s_defconfig"
-> >diff --git a/conf/machine/rock-5b.conf b/conf/machine/rock-5b.conf
-> >index d1371084becc..ea2cf219e153 100644
-> >--- a/conf/machine/rock-5b.conf
-> >+++ b/conf/machine/rock-5b.conf
-> >@@ -7,6 +7,5 @@ require conf/machine/include/rk3588.inc
-> >
-> > PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-dev"
-> > KERNEL_DEVICETREE =3D "rockchip/rk3588-rock-5b.dtb"
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >
-> > UBOOT_MACHINE =3D "rock5b-rk3588_defconfig"
-> >diff --git a/conf/machine/rock-pi-e.conf b/conf/machine/rock-pi-e.conf
-> >index 517956c4b9db..1e2169b01993 100644
-> >--- a/conf/machine/rock-pi-e.conf
-> >+++ b/conf/machine/rock-pi-e.conf
-> >@@ -6,6 +6,5 @@
-> > require conf/machine/include/rk3328.inc
-> >
-> > KERNEL_DEVICETREE =3D "rockchip/rk3328-rock-pi-e.dtb"
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >
-> > UBOOT_MACHINE =3D "rock-pi-e-rk3328_defconfig"
-> >diff --git a/conf/machine/rock-pi-s.conf b/conf/machine/rock-pi-s.conf
-> >index 79ea73c6b47e..3aa868b7ec7c 100644
-> >--- a/conf/machine/rock-pi-s.conf
-> >+++ b/conf/machine/rock-pi-s.conf
-> >@@ -6,6 +6,5 @@
-> > require conf/machine/include/rk3308.inc
-> >
-> > KERNEL_DEVICETREE =3D "rockchip/rk3308-rock-pi-s.dtb"
-> >-MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
-> >
-> > UBOOT_MACHINE =3D "rock-pi-s-rk3308_defconfig"
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#62145): https://lists.yoctoproject.org/g/yocto/messag=
-e/62145
-> Mute This Topic: https://lists.yoctoproject.org/mt/103719387/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+I was wondering if the IMAGE_INSTALL:append syntax could work in
+multiconfig environment from the top-level local.conf file?
+
+For example, I have a meta-layer that defines the muitconfig (main.conf and
+initramfs.conf).  From my build directory, I was hoping to append the
+IMAGE_INSTALL list only for the main configuration similar to how it can be
+done from local.conf in a standard build.  I wanted to avoid having to
+modify the meta-layer files.
+
+I tried the following from local.conf but neither worked:
+
+IMAGE_INSTALL:append:mc:main = " pkg"
+IMAGE_INSTALL:mc:main:append = " pkg"
+
+Is there syntax for this or would I have to put this in an image recipe or
+the multiconfig .conf file?
+
+Thanks, Matt.
+
+--0000000000006f200b060f013fb2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I was wondering if the I=
+MAGE_INSTALL:append syntax could work in multiconfig environment from the t=
+op-level local.conf file?</div><div><br></div><div>For example, I have a me=
+ta-layer that defines the muitconfig (main.conf and initramfs.conf).=C2=A0 =
+From my build directory, I was hoping to append the IMAGE_INSTALL list only=
+ for the main configuration similar to how it can be done from local.conf i=
+n a standard build.=C2=A0 I wanted to avoid having to modify the meta-layer=
+ files.<br></div><div><br></div><div>I tried the following from local.conf =
+but neither worked:</div><div><br></div><div>IMAGE_INSTALL:append:mc:main =
+=3D &quot; pkg&quot;</div><div>IMAGE_INSTALL:mc:main:append =3D &quot; pkg&=
+quot;<br></div><div><br></div><div>Is there syntax for this or would I have=
+ to put this in an image recipe or the multiconfig .conf file?</div><div><b=
+r></div><div>Thanks, Matt.<br></div></div>
+
+--0000000000006f200b060f013fb2--
 
