@@ -1,168 +1,167 @@
-Return-Path: <quaresma.jose@gmail.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7400C4706C
-	for <webhook@archiver.kernel.org>; Tue, 16 Jan 2024 09:34:43 +0000 (UTC)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
- by mx.groups.io with SMTP id smtpd.web11.9470.1705397680451557785
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF139C47077
+	for <webhook@archiver.kernel.org>; Tue, 16 Jan 2024 15:41:55 +0000 (UTC)
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+ by mx.groups.io with SMTP id smtpd.web11.18449.1705419714920816256
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Jan 2024 01:34:40 -0800
+ Tue, 16 Jan 2024 07:41:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=MFvXxk0c;
- spf=pass (domain: gmail.com, ip: 209.85.222.49, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-7ce4512cc24so3096941241.2
-        for <yocto@lists.yoctoproject.org>; Tue, 16 Jan 2024 01:34:40 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=CyKy5DH8;
+ spf=pass (domain: gmail.com, ip: 209.85.160.182, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-427a3887483so62404411cf.3
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Jan 2024 07:41:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705397679; x=1706002479; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nFULtkvCkMn3W/iY4lzcWHPxepL7j8n9lt26Pp1va4c=;
-        b=MFvXxk0cpEJqSbSwTcZOlXVungaRigg1FbwPndpGFNfhcXdK8zt8cu+8IccXwwMbj7
-         ShGZNm4KbAEApTbNy0sMuJEKLTjpSLqkV2gWGBOjfo8Ufu+kKGAB5kM9bgpAREn/Ovzq
-         vZMW6iVl45xfCLGe7QGvYMHy/8PlQW39XGQ/f2b2sLLE3s76C3L1C/7ulr0FbfT6R6AZ
-         qejILZ/WbmXMG00VRCkjM47tnUva7kJtJAFZYHFbOMpTF66teTBaA2dTyUhxUZU3Sk0D
-         ln7J6NHMzHOI+yfuDDNJb8V43sIQpUP//blQlMVeAxuGDLSegHTdPAWXO5PjGaq0wpIN
-         ml4Q==
+        d=gmail.com; s=20230601; t=1705419713; x=1706024513; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aEs1NyvsaJIlORET/SLb+jC16wXX1/CCxPIVpSUF5Sw=;
+        b=CyKy5DH8NRh3Fc+8Ix/aD3IRupsISSpt07YNZYkQ/rpSZveDIJlcoEuc05D38fPh6l
+         rSdpOOdmJAbJT4WB39wXlMTzKoof8bDEe3cFhcbUt4VZ5Zoh3a4ZJR4L7C9Sus+VP0pR
+         b3k7Exqr0XPd674AVQ1CZskqG48hg9jgvCB8Op56YpIDm7BOCt8u43MZ43urviO1ffo6
+         l/Dx3veZS+Yju0L22AMDZg3Bw5iTjvVw1eEccfwoDN5u1pF7I3i85OsoXczpjl1m0UvW
+         arfKc/z+41cvBiB7Lh+xvnEVYb+Iuq/QWDxLoJbZgmYhTmzhAkQZ3MtfwTKmv3FbwQnR
+         r8Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705397679; x=1706002479;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nFULtkvCkMn3W/iY4lzcWHPxepL7j8n9lt26Pp1va4c=;
-        b=IturSGbYhQQDP6OiKHCiAgxSCSPVOnuxIJeedAqCjujT5gghPxGilj9SPuUcj9mNpG
-         xh2RIjzl+60Juwmsjl+xs1V2PJRIp5/9sw1ODvgq6cDgp9oCKmI3WoefhwqU0mkEiGuu
-         IyQrQZQp6ftpuojDv+wFIGR9KT8zkpkhgYGoeSprkYdQohJEzVbXZUsqGq0nXMrYflW6
-         rYVdtoAoOEeH0VQ8BXAB0uR36tPFS8ns2RQIur0zfjiRgiA+AqJduGWrjsqsoblGj2fe
-         Ph0Po3qRgIoIZGuHrk3rzzBaThVwsHqCP9wRQc6nfv8Zf5GdKxv2niI1S0cIRdR5DsiU
-         IfxA==
-X-Gm-Message-State: AOJu0YzPyovvjSmyZblxIkLMnJ13sHC34h46334XK3zxXChTidczGWgb
-	+KGzVK8cwVQpz//snCfEh0S8t+b/SPeuYwiW/qVC+VBE/rrGKg==
-X-Google-Smtp-Source: AGHT+IHfdWt/9YAR5BnQdF2PXwt/DIyiYfp2rGIjz6sI23/PMDtUUl0c+dwZNGbl2otEKfDttW7W5TZS2au3bLg6WDQ=
-X-Received: by 2002:a67:b10b:0:b0:468:1c0b:3a91 with SMTP id
- w11-20020a67b10b000000b004681c0b3a91mr3633172vsl.41.1705397679168; Tue, 16
- Jan 2024 01:34:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705419713; x=1706024513;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aEs1NyvsaJIlORET/SLb+jC16wXX1/CCxPIVpSUF5Sw=;
+        b=N0xKdpDpgkKZDx/7dKs2V3itgjhJJFrKDEvN1lO3CGY6gbk2uJRDxfieEW12CEzVKS
+         qejR4Hok41l7TanaPX98duG38oPBU/4uSAiocYRyRhvNDosOSmkp9VAEIIjma69vLiAP
+         8JFISzbKoWtEDFUHQEpDbAh+tNijVTau1u/mHuTaKE9MFfJYMLUzWwQk5ntqEmd497m4
+         gUi1twWJ8a5Tb1yiBwtdRNgFu22XFOI43PHvJlGXpDk2+OXZGwbQ2/4ytqr0GRgYzod7
+         eToPVVQ0kZvM1lMq37DMJt76hOAedjPaWGCh4vJIii6UNHA+w5phD/Q83y6+L7T96yvY
+         4+BA==
+X-Gm-Message-State: AOJu0YwNq7vDpBsFNHHFTi/iWwlfRwqB6rUqYz1wMg201ii3lygZMvE6
+	uVpZZCsw4F0wR3MHZMTj71Bg4lpdXoM=
+X-Google-Smtp-Source: AGHT+IHKYgweqI+jpXpyXlThuuGi8o4ssuC2N8gQmLxMi1oxgnVAbJ0DtUR3UEhLiV4qnZbrtofmBA==
+X-Received: by 2002:a05:622a:1014:b0:429:bfca:bed0 with SMTP id d20-20020a05622a101400b00429bfcabed0mr8224521qte.137.1705419712803;
+        Tue, 16 Jan 2024 07:41:52 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id fj5-20020a05622a550500b004299fd63fdesm4973201qtb.4.2024.01.16.07.41.51
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jan 2024 07:41:51 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-rockchip][PATCH] rock-pi-e: enable networking in u-boot
+Date: Tue, 16 Jan 2024 10:41:45 -0500
+Message-ID: <20240116154145.11217-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
 MIME-Version: 1.0
-References: <CADjezmYMjHMXRwA7UF+_RFQivJ84rHpm2HyfEak_Cfsv1G=ftA@mail.gmail.com>
-In-Reply-To: <CADjezmYMjHMXRwA7UF+_RFQivJ84rHpm2HyfEak_Cfsv1G=ftA@mail.gmail.com>
-From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Tue, 16 Jan 2024 09:34:28 +0000
-Message-ID: <CANPvuR=1KADuvR6Hym5YAW4sWOAdLzp7ww+S1d5yo0KaRsZTLQ@mail.gmail.com>
-Subject: Re: [yocto] append recipe to multiconfig build from top-level local.conf
-To: yocto@lists.yoctoproject.org, mattwood2000@gmail.com
-Content-Type: multipart/alternative; boundary="000000000000de2517060f0cd67f"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Jan 2024 09:34:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62167
+ <yocto@lists.yoctoproject.org>; Tue, 16 Jan 2024 15:41:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62168
 
---000000000000de2517060f0cd67f
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The rock-pi-e currently comes in 4 board revisions, the latest of which
+(v1.21) replaces the realtek 8211e PHY with the 8211f.
 
-Matt Wood <mattwood2000@gmail.com> escreveu (segunda, 15/01/2024 =C3=A0(s)
-19:44):
+This patch enables networking on the rock-pi-e, which had not been working up
+to this point. Interestingly enough, this patch also has the side-effect of
+enabling both the 8211e and 8211f PHYs under Linux. Previously only the 8211e
+boards were working.
 
-> Hi,
->
-> I was wondering if the IMAGE_INSTALL:append syntax could work in
-> multiconfig environment from the top-level local.conf file?
->
-> For example, I have a meta-layer that defines the muitconfig (main.conf
-> and initramfs.conf).  From my build directory, I was hoping to append the
-> IMAGE_INSTALL list only for the main configuration similar to how it can =
-be
-> done from local.conf in a standard build.  I wanted to avoid having to
-> modify the meta-layer files.
->
-> I tried the following from local.conf but neither worked:
->
-> IMAGE_INSTALL:append:mc:main =3D " pkg"
-> IMAGE_INSTALL:mc:main:append =3D " pkg"
->
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ ...s-rk3328-rock-pi-e-enable-networking.patch | 68 +++++++++++++++++++
+ recipes-bsp/u-boot/u-boot%.bbappend           |  5 ++
+ 2 files changed, 73 insertions(+)
+ create mode 100644 recipes-bsp/u-boot/files/0001-arm-dts-rk3328-rock-pi-e-enable-networking.patch
 
-To have multiconconig you need to have more than one machine configurations
-so It should work with something like:
+diff --git a/recipes-bsp/u-boot/files/0001-arm-dts-rk3328-rock-pi-e-enable-networking.patch b/recipes-bsp/u-boot/files/0001-arm-dts-rk3328-rock-pi-e-enable-networking.patch
+new file mode 100644
+index 000000000000..6900543559b1
+--- /dev/null
++++ b/recipes-bsp/u-boot/files/0001-arm-dts-rk3328-rock-pi-e-enable-networking.patch
+@@ -0,0 +1,68 @@
++From e7b7ba2baeec01e18e7633fad81aa91d1bf64ee1 Mon Sep 17 00:00:00 2001
++From: Trevor Woerner <twoerner@gmail.com>
++Date: Tue, 16 Jan 2024 09:58:35 -0500
++Subject: [PATCH] arm: dts: rk3328-rock-pi-e: enable networking
++
++Currently the rock-pi-e comes in 4 board spins, the latest of which replaces
++the realtek phy from the rtl8211e to the rtl8211f, therefore rename the phy
++handle to be more generic.
++
++The device tree includes information for the MDIO, therefore enable DM_MDIO to
++use it.
++
++The gmac2io clause needs addition information in order for the driver to
++initialize correctly.
++
++Upstream-Status: Submitted
++Signed-off-by: Trevor Woerner <twoerner@gmail.com>
++---
++ arch/arm/dts/rk3328-rock-pi-e.dts  | 7 +++++--
++ configs/rock-pi-e-rk3328_defconfig | 2 ++
++ 2 files changed, 7 insertions(+), 2 deletions(-)
++
++diff --git a/arch/arm/dts/rk3328-rock-pi-e.dts b/arch/arm/dts/rk3328-rock-pi-e.dts
++index 018a3a5075c7..aa30de69e815 100644
++--- a/arch/arm/dts/rk3328-rock-pi-e.dts
+++++ b/arch/arm/dts/rk3328-rock-pi-e.dts
++@@ -146,12 +146,15 @@
++ 	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
++ 	assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;
++ 	clock_in_out = "input";
++-	phy-handle = <&rtl8211e>;
+++	phy-handle = <&rtl8211>;
++ 	phy-mode = "rgmii";
++ 	phy-supply = <&vcc_io>;
++ 	pinctrl-names = "default";
++ 	pinctrl-0 = <&rgmiim1_pins>;
++ 	snps,aal;
+++	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
+++	snps,reset-active-low;
+++	snps,reset-delays-us = <0 10000 50000>;
++ 	snps,rxpbl = <0x4>;
++ 	snps,txpbl = <0x4>;
++ 	tx_delay = <0x26>;
++@@ -163,7 +166,7 @@
++ 		#address-cells = <1>;
++ 		#size-cells = <0>;
++ 
++-		rtl8211e: ethernet-phy@1 {
+++		rtl8211: ethernet-phy@1 {
++ 			reg = <1>;
++ 			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
++ 			pinctrl-names = "default";
++diff --git a/configs/rock-pi-e-rk3328_defconfig b/configs/rock-pi-e-rk3328_defconfig
++index c0375beffec3..65ca028c0787 100644
++--- a/configs/rock-pi-e-rk3328_defconfig
+++++ b/configs/rock-pi-e-rk3328_defconfig
++@@ -76,6 +76,8 @@ CONFIG_SYS_I2C_ROCKCHIP=y
++ CONFIG_MISC=y
++ CONFIG_MMC_DW=y
++ CONFIG_MMC_DW_ROCKCHIP=y
+++CONFIG_PHY_REALTEK=y
+++CONFIG_DM_MDIO=y
++ CONFIG_ETH_DESIGNWARE=y
++ CONFIG_GMAC_ROCKCHIP=y
++ CONFIG_PHY_ROCKCHIP_INNO_USB2=y
++-- 
++2.43.0.76.g1a87c842ece3
++
+diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
+index d902c9a05a83..62133f24c64a 100644
+--- a/recipes-bsp/u-boot/u-boot%.bbappend
++++ b/recipes-bsp/u-boot/u-boot%.bbappend
+@@ -1,3 +1,8 @@
++FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
++SRC_URI:append:rock-pi-e = " \
++	file://0001-arm-dts-rk3328-rock-pi-e-enable-networking.patch \
++	"
++
+ # various machines require the pyelftools library for parsing dtb files
+ DEPENDS:append = " python3-pyelftools-native"
+ DEPENDS:append:rock-pi-s = " u-boot-tools-native"
+-- 
+2.43.0.76.g1a87c842ece3
 
-IMAGE_INSTALL:append:main =3D " pkg1"
-IMAGE_INSTALL:append:initramfs =3D " pkg2"
-
-Jose
-
-
->
-> Is there syntax for this or would I have to put this in an image recipe o=
-r
-> the multiconfig .conf file?
->
-> Thanks, Matt.
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62161):
-> https://lists.yoctoproject.org/g/yocto/message/62161
-> Mute This Topic: https://lists.yoctoproject.org/mt/103747116/5052612
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> quaresma.jose@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---000000000000de2517060f0cd67f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">Matt Wood &lt;<a href=3D"mailto:mattw=
-ood2000@gmail.com">mattwood2000@gmail.com</a>&gt; escreveu (segunda, 15/01/=
-2024 =C3=A0(s) 19:44):<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I was wondering i=
-f the IMAGE_INSTALL:append syntax could work in multiconfig environment fro=
-m the top-level local.conf file?</div><div><br></div><div>For example, I ha=
-ve a meta-layer that defines the muitconfig (main.conf and initramfs.conf).=
-=C2=A0 From my build directory, I was hoping to append the IMAGE_INSTALL li=
-st only for the main configuration similar to how it can be done from local=
-.conf in a standard build.=C2=A0 I wanted to avoid having to modify the met=
-a-layer files.<br></div><div><br></div><div>I tried the following from loca=
-l.conf but neither worked:</div><div><br></div><div>IMAGE_INSTALL:append:mc=
-:main =3D &quot; pkg&quot;</div><div>IMAGE_INSTALL:mc:main:append =3D &quot=
-; pkg&quot;<br></div></div></blockquote><div><br></div><div>To have multico=
-nconig you need to have more than one machine configurations so It should w=
-ork with something like:<br><br>IMAGE_INSTALL:append:main =3D &quot; pkg1&q=
-uot;<br>IMAGE_INSTALL:append:initramfs =3D &quot; pkg2&quot;<br><br>Jose</d=
-iv><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
-dir=3D"ltr"><div></div><div><br></div><div>Is there syntax for this or woul=
-d I have to put this in an image recipe or the multiconfig .conf file?</div=
-><div><br></div><div>Thanks, Matt.<br></div></div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#62161): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/62161" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/62161</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/103747116/505=
-2612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/103747116/5052612</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quare=
-sma.jose@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
-div>
-
---000000000000de2517060f0cd67f--
 
