@@ -1,99 +1,297 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <daniele.lugli@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46A22C47422
-	for <webhook@archiver.kernel.org>; Wed, 17 Jan 2024 17:50:11 +0000 (UTC)
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
- by mx.groups.io with SMTP id smtpd.web10.9977.1705513804559089887
- for <yocto@lists.yoctoproject.org>;
- Wed, 17 Jan 2024 09:50:04 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=dBsI75EU;
- spf=pass (domain: gmail.com, ip: 209.85.160.52, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-2109743a111so689522fac.0
-        for <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 09:50:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705513803; x=1706118603; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Iri6S2C6xCByM+3PwIJSlFWtf1Oosknf3FHOrAsecQ=;
-        b=dBsI75EUYChG2xidfxGZKYdAIMc0EsduDXLkSwccck3y4cTnzx0wz50LZ4Td1UC82V
-         4TOjYo3cEef4ELBLj3NfrUQ0LGXLefo2z0deUnxjhN/Su7h+eLbtXDPxrkwkB3OCXgCB
-         7I8PFuXKJ3y4j5gYVyco6KOkMJZGZ21f9cU6Y4ToxAl0LplncFo7PpEgp9PRcqtRccOj
-         SBe+gsqEAcj9GOhU8xpC1rHbJuuorEXbbHvpY/0lbj3dEqzSDikV6gSoMjjdiIfbDOzn
-         9Gurefk+3bANKulnD6/UTOtf2GJer8VMuG+rUbqOhWDD/vhKSBNdnUiHC78rnBoX45nl
-         YDXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705513803; x=1706118603;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6Iri6S2C6xCByM+3PwIJSlFWtf1Oosknf3FHOrAsecQ=;
-        b=JgtZOV8DPED/xk7942crJDn3n92fEPwPz1Z7PUAlii1DGuLar+diY6/ty4EWB7oTOM
-         ckxCIM5H2MA2RRVQqBHo8C+N1MraKbeT04bE/prxtQWOn4cupNltJ4+F3E157z8dbt2W
-         9iT1039WJT4It6jB0kcLrLYFnRwCCAXbEZIcy7b8c2bu8czy8ATxeCoOLaSfQuNG+kBX
-         kiSQX8ehdxCXWDuPOcyXhJq5LAqCBhcZdQxmbypG2lvJ3x40q4Ppm/lEgNY+hRjvgk7o
-         gBxNkuMlAZT8rvjDHuH7bXy5vE0Aw62copH3SgvP+e+MzSP3oR8ydCPX3gWQOWBoDtG6
-         X/wA==
-X-Gm-Message-State: AOJu0Yzn/vojBOdepFsXpa0sys/LlDdN0dt3F0lxnGznNSUu0nNIX6Lr
-	qMsxhTnNlzOia0lwkOYbx/qJXUx899UDIshK6hwPmMRHQKI=
-X-Google-Smtp-Source: AGHT+IF1WELkRi/IdBI39uQLgLrJt+AwKFSMpUEivnFYKNOjyQjNc8bAFPs9+ISy35l4wlVP+tDTArJ4LAtQtNdYZO4=
-X-Received: by 2002:a05:6870:e9a0:b0:204:7239:f561 with SMTP id
- r32-20020a056870e9a000b002047239f561mr9522885oao.41.1705513803516; Wed, 17
- Jan 2024 09:50:03 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB822C47258
+	for <webhook@archiver.kernel.org>; Wed, 17 Jan 2024 22:11:43 +0000 (UTC)
+Subject: etherlab
+To: yocto@lists.yoctoproject.org
+From: "Daniele Lugli" <daniele.lugli@gmail.com>
+X-Originating-Location: IT (31.26.241.23)
+X-Originating-Platform: Windows Opera 106
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <uhKG.1705499030825235144.H40Y@lists.yoctoproject.org>
-In-Reply-To: <uhKG.1705499030825235144.H40Y@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 17 Jan 2024 09:49:37 -0800
-Message-ID: <CAMKF1sp-5xrok4oopAnOBEdTM95aL4u2fVZmRiPSA3RO4wxZ1A@mail.gmail.com>
-Subject: Re: [yocto] initramfs and system logs
-To: yocto@lists.yoctoproject.org, jguittet.opensource@witekio.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Wed, 17 Jan 2024 14:11:35 -0800
+Message-ID: <WdJZ.1705529495910244509.KX6t@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WjeFAt3IVNcFwUqKdGi4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 17:50:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62179
+ <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 22:11:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62180
 
-On Wed, Jan 17, 2024 at 5:43=E2=80=AFAM jguittet.opensource via
-lists.yoctoproject.org
-<jguittet.opensource=3Dwitekio.com@lists.yoctoproject.org> wrote:
->
-> Dear community,
->
-> I'm currently building a professional yocto project.
-> There are 2 variants of the image I'm building: the first one is using cl=
-assical rootfs on SD card (dev and test purpose). The other one is building=
- an initramfs fitImage (production). I'm using INITRAMFS_IMAGE to indicate =
-the name of the recipe building the initramfs + INITRAMFS_IMAGE_BUNDLE =3D =
-"1".
->
-> Problem I get is that the initramfs image produces no logs (except kernel=
- logs) in the console while the dev with the rootfs on the SD card have log=
-s printed in the console. I don't understand why and where I should patch t=
-o have logs. The wanted logs are logs from init.d scripts for example (crea=
-ting ssh keys, setting hwclock etc) + logs from my own applications that ar=
-e properly output on the serial console with the "classic" image.
+--WjeFAt3IVNcFwUqKdGi4
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-check if /dev/console is created in the initramfs init script which
-runs as /sbin/init
+Hi all,
 
+I am trying to add an EtherLAB Ethercat master to my target.
+
+I added a new recipes-etherlab directory at the same level of other working=
+ recipes:
+
+recipes-etherlab
+|
++-etherlab
+|
++-etherlab_0.1.bb
+|
++-files
+|
++-ethercat
+
+The ethercat directory is from https://gitlab.com/etherlab.org/ethercat.git
+
+etherlab_0.1.bb says:
+
+DESCRIPTION =3D "EtherLAB Ethercat master"
+
+LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D59530bdf33659b29e73d4adb9f9f6552=
+"
+LICENSE =3D "GPLv2"
+
+S =3D "${WORKDIR}/etherlab/ethercat"
+
+FILES:${PN} =3D "\
+/etc/init.d/ethercat \
+/etc/sysconfig/ethercat \
+${libdir}/libethercat.so.1.1.0 \
+${libdir}/libethercat.so.1.1 \
+${libdir}/libethercat.so.1 \
+${bindir}/ethercat"
+
+do_compile() {
+autoreconf
+sh configure --sysconfdir=3D/etc --enable-igb
+make
+}
+
+do_install() {
+install -d ${D}${bindir}/
+install -d ${D}${libdir}/
+install -d ${D}/etc/init.d/
+install -m 0755 ${S}/lib/.libs/libethercat.so.1.0.0 ${D}${libdir}/libetherc=
+at.so.1.0.0
+install -m 0755 ${S}/tool/ethercat ${D}${bindir}/ethercat
+install -m 0755 ${S}/script/init.d/ethercat.in ${D}/etc/init.d/ethercat
+ln -s libethercat.so.1.1.0 ${D}${libdir}/libethercat.so.1.1
+ln -s libethercat.so.1.1 ${D}${libdir}/libethercat.so.1
+}
+
+Last, I added
+
+IMAGE_INSTALL +=3D "etherlab"
+
+to mytest-image.bb
+
+Now, bitbake mytest-image complains:
+
+/home/vboxuser/yocto/poky/build/tmp/work/corei7-64-poky-linux/etherlab/0.1/=
+temp/run.do_compile.5355: 141: autoreconf: not found
+
+The build configuration is
+
+BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "2.6.0"
+BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "x86_64-linux"
+NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D "universal"
+TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "x86_64-poky-linux"
+MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "intel-corei7-6=
+4"
+DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "poky"
+DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "4.3.2"
+TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "m64 corei7"
+TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D ""
+meta
+meta-poky
+meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "nanbield:f768ffb8916feb6542fc=
+be3e946cbf30e247b151"
+meta-oe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "nanbield:2da6e=
+1b0e43a8993fd422fee3f83940100b59f4c"
+meta-intel=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "nanbield:039e45e21d=
+2973fc3ce318a25beceae348e4428a"
+meta-mytest=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "<unknown>:<unknown>"
+
+and I have tools-sdk among my IMAGE_FEATURES.
+
+Thank you in advance for any hint.
+
+--
+Daniele Lugli
+General Logic srl
+Viale Curreno, 41
+10133 Torino
+Italy
+tel +39 329 3933041
+www.general-logic.com ( http://www.general-logic.com/ )
+www.linkedin.com/in/daniele- lugli ( http://www.linkedin.com/in/daniele-lug=
+li )
+
+--WjeFAt3IVNcFwUqKdGi4
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi all,</div>
+<div>&nbsp;</div>
+<div>I am trying to add an EtherLAB Ethercat master to my target.</div>
+<div>&nbsp;</div>
+<div>I added a new recipes-etherlab directory at the same level of other wo=
+rking recipes:</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">recipes-etherlab</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; |</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; +-etherlab</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp;|</span></d=
+iv>
+<div><span style=3D"white-space: normal; color: #0000ff;"><span style=3D"wh=
+ite-space: pre;"> </span>&nbsp; &nbsp;+-etherlab_0.1.bb</span></div>
+<div><span style=3D"white-space: normal; color: #0000ff;"><span style=3D"wh=
+ite-space: pre;"> </span>&nbsp; &nbsp;|</span></div>
+<div><span style=3D"white-space: normal; color: #0000ff;"><span style=3D"wh=
+ite-space: pre;"> </span>&nbsp; &nbsp;+-files</span></div>
+<div><span style=3D"white-space: normal; color: #0000ff;"><span style=3D"wh=
+ite-space: pre;"> </span>&nbsp; &nbsp; &nbsp; &nbsp;|</span></div>
+<div><span style=3D"white-space: normal; color: #0000ff;"><span style=3D"wh=
+ite-space: pre;"> </span>&nbsp; &nbsp;+-ethercat</span></div>
+<div>&nbsp;</div>
+<div><br />The ethercat directory is from https://gitlab.com/etherlab.org/e=
+thercat.git</div>
+<div>&nbsp;</div>
+<div>etherlab_0.1.bb says:</div>
+<div><br /><br /></div>
+<div><span style=3D"color: #0000ff;">DESCRIPTION =3D "EtherLAB Ethercat mas=
+ter"</span></div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">LIC_FILES_CHKSUM =3D "file://COPYING;m=
+d5=3D59530bdf33659b29e73d4adb9f9f6552"</span></div>
+<div><span style=3D"color: #0000ff;">LICENSE =3D "GPLv2"</span></div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">S =3D "${WORKDIR}/etherlab/ethercat"</=
+span></div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">FILES:${PN} =3D "\</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; /etc/init.=
+d/ethercat \</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; /etc/sysco=
+nfig/ethercat \</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; ${libdir}/=
+libethercat.so.1.1.0 \</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; ${libdir}/=
+libethercat.so.1.1 \</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; ${libdir}/=
+libethercat.so.1 \</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; ${bindir}/=
+ethercat"</span></div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">do_compile() {</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; autoreconf</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; sh configure --sysconfdir=3D/etc --enable-igb</span></div=
 >
-> Thanks for any feedbacks!
-> Joel
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#62177): https://lists.yoctoproject.org/g/yocto/messag=
-e/62177
-> Mute This Topic: https://lists.yoctoproject.org/mt/103785822/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; make</span></div>
+<div><span style=3D"color: #0000ff;">}</span></div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">do_install() {</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; install -d ${D}${bindir}/</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; install -d ${D}${libdir}/</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; install -d ${D}/etc/init.d/</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; install -m 0755 ${S}/lib/.libs/libethercat.so.1.0.0 ${D}$=
+{libdir}/libethercat.so.1.0.0</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; install -m 0755 ${S}/tool/ethercat ${D}${bindir}/ethercat=
+</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; install -m 0755 ${S}/script/init.d/ethercat.in ${D}/etc/i=
+nit.d/ethercat</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; ln -s libethercat.so.1.1.0 ${D}${libdir}/libethercat.so.1=
+.1</span></div>
+<div><span style=3D"color: #0000ff;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; ln -s libethercat.so.1.1 ${D}${libdir}/libethercat.so.1</=
+span></div>
+<div><span style=3D"color: #0000ff;">}</span></div>
+<div>&nbsp;</div>
+<div>Last, I added</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">IMAGE_INSTALL +=3D "etherlab"</span></=
+div>
+<div>&nbsp;</div>
+<div>to mytest-image.bb</div>
+<div>&nbsp;</div>
+<div>Now, bitbake mytest-image complains:</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #ff0000;">/home/vboxuser/yocto/poky/build/tmp/wo=
+rk/corei7-64-poky-linux/etherlab/0.1/temp/run.do_compile.5355: 141: autorec=
+onf: not found</span></div>
+<div>&nbsp;</div>
+<div>The build configuration is</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">BB_VERSION&nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;=3D "2.6.0"</span></div>
+<div><span style=3D"color: #0000ff;">BUILD_SYS&nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; =3D "x86_64-linux"</span></div>
+<div><span style=3D"color: #0000ff;">NATIVELSBSTRING&nbsp; &nbsp; &nbsp; =
+=3D "universal"</span></div>
+<div><span style=3D"color: #0000ff;">TARGET_SYS&nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;=3D "x86_64-poky-linux"</span></div>
+<div><span style=3D"color: #0000ff;">MACHINE&nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; =3D "intel-corei7-64"</span></div>
+<div><span style=3D"color: #0000ff;">DISTRO&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp;=3D "poky"</span></div>
+<div><span style=3D"color: #0000ff;">DISTRO_VERSION&nbsp; &nbsp; &nbsp; &nb=
+sp;=3D "4.3.2"</span></div>
+<div><span style=3D"color: #0000ff;">TUNE_FEATURES&nbsp; &nbsp; &nbsp; &nbs=
+p; =3D "m64 corei7"</span></div>
+<div><span style=3D"color: #0000ff;">TARGET_FPU&nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;=3D ""</span></div>
+<div><span style=3D"color: #0000ff;">meta&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp;</span></div>
+<div><span style=3D"color: #0000ff;">meta-poky&nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;&nbsp;</span></div>
+<div><span style=3D"color: #0000ff;">meta-yocto-bsp&nbsp; &nbsp; &nbsp; &nb=
+sp;=3D "nanbield:f768ffb8916feb6542fcbe3e946cbf30e247b151"</span></div>
+<div><span style=3D"color: #0000ff;">meta-oe&nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; =3D "nanbield:2da6e1b0e43a8993fd422fee3f83940100b59f4c"</=
+span></div>
+<div><span style=3D"color: #0000ff;">meta-intel&nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;=3D "nanbield:039e45e21d2973fc3ce318a25beceae348e4428a"</span>=
+</div>
+<div><span style=3D"color: #0000ff;">meta-mytest&nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; =3D "&lt;unknown&gt;:&lt;unknown&gt;"</span></div>
+<div>&nbsp;</div>
+<div>and I have tools-sdk among my IMAGE_FEATURES.</div>
+<div>&nbsp;</div>
+<div>Thank you in advance for any hint.</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+-- <br />
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;">
+<div dir=3D"ltr">
+<div>Daniele Lugli</div>
+General Logic srl</div>
+<div>Viale Curreno, 41</div>
+<div>10133 Torino<br />Italy</div>
+<div>tel +39 329 3933041</div>
+</div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.general-lo=
+gic.com/" target=3D"_blank" rel=3D"noopener" data-saferedirecturl=3D"https:=
+//www.google.com/url?q=3Dhttp://www.general-logic.com&amp;source=3Dgmail&am=
+p;ust=3D1702484712598000&amp;usg=3DAOvVaw3caieBojp7RHbXjtN3Avtg">www.genera=
+l-logic.com</a></div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.linkedin.c=
+om/in/daniele-lugli" target=3D"_blank" rel=3D"noopener" data-saferedirectur=
+l=3D"https://www.google.com/url?q=3Dhttp://www.linkedin.com/in/daniele-lugl=
+i&amp;source=3Dgmail&amp;ust=3D1702484712598000&amp;usg=3DAOvVaw2CJ1YOxQZd7=
+TCndA_wq8ak">www.linkedin.com/in/daniele-<wbr />lugli</a></div>
+
+--WjeFAt3IVNcFwUqKdGi4--
 
