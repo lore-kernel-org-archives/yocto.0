@@ -1,95 +1,133 @@
-Return-Path: <yushis@google.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36DBDC47DAF
-	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 00:38:51 +0000 (UTC)
-Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
- by mx.groups.io with SMTP id smtpd.web11.9.1705538324115576428
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8834FC47258
+	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 01:45:51 +0000 (UTC)
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+ by mx.groups.io with SMTP id smtpd.web11.1497.1705542348719193182
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 Jan 2024 16:38:44 -0800
+ Wed, 17 Jan 2024 17:45:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@google.com header.s=20230601 header.b=UE8XsK9M;
- spf=pass (domain: flex--yushis.bounces.google.com, ip: 209.85.128.202, mailfrom: 3e3oozqykbc4iec12c08805y.w86i8wd852cdc.i8wd89b83ywd.8b0@flex--yushis.bounces.google.com)
-Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-5ff7cf2fd21so2635117b3.1
-        for <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 16:38:44 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=PjeqSDPM;
+ spf=pass (domain: gmail.com, ip: 209.85.216.51, mailfrom: ticotimo@gmail.com)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-28e73631189so1352093a91.3
+        for <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 17:45:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1705538323; x=1706143123; darn=lists.yoctoproject.org;
-        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=899OmpBMOZCat3soCwqsILWr4FSld2y2Vc5HfigTMA4=;
-        b=UE8XsK9MRG+J3SRmCAV6DbRMx0YIZxCUnDWiueaDE24Y5zJGYMf+tVFYiiXIeUiubZ
-         hJujZ61ZRB4Y80PJZeTLo70ku8b3lGxjhCT3knT6yObm2ganXaTvytGgEA8GG66T/v3k
-         XZ6LJlTf1GywydmIpRt0bwgCSryqodtqgAmVhH3KIRMhZJjZ9Bg2sX4GLHR4IBWmR60i
-         0RSod6pkaA75VKOYhf9zRh0Vok2XNhwwnPbTZaxyWimgh71syrhYSBSlRpl8aJxa11Gl
-         e3t30HWjxW8VIN7TW0e0HOyWGxkMaFu40zIT2w4VBdIf7pgAkeHnHo9P6Xm8yTMHEUjf
-         I3jw==
+        d=gmail.com; s=20230601; t=1705542348; x=1706147148; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PaHQ5RFpWylY8oowrCSuaZ+l4Ez3TrP5aotVYV8iY5c=;
+        b=PjeqSDPMVETkyDcF1J99vqOZBjGF3Tb10F+twhhmRjKxjKafKAHZizMWkD7izgQBya
+         qCk066NqRF8EG4COxxCn6CPQH1sXJCgB+GjKhJDf7PXySB4SwvYs2mmUF5QpsGNJe9LW
+         taPeWDxF3z4x06f3VfYl9zXm9ubyKd0OPJHxC0BnGgl54NlL0HaiRa8fXtgkaoChYaBp
+         i0BCTZqxkkCSCXYJqWf17z1DBbqqLMrL5PDGfMDBNe0beFNbME9rJTt2xJPbKYgmt5O9
+         AKCtIRBsg3RNrl/skPi0scMQP1EW/wn1TRgIJNLcso+/JvNY2ODxeWf1yaqmUulfxZuS
+         +bHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705538323; x=1706143123;
-        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=899OmpBMOZCat3soCwqsILWr4FSld2y2Vc5HfigTMA4=;
-        b=wB4x0fQcffzo4DtamVjjUwxt5eUE9cb3G5sf21ot7ta1W8/FyDi/Mrahd89xjnYlmZ
-         NFnqtgLPVbmKJD9i5dj9NntiAvuINgZ7Qi/F4VBz6CW3IIffhFRmqswpXxrtwb9Pzqb+
-         g1DYzJg5tIy2DSFPtURKbFn9rHNrAMNXIw3cWGygEvZxE9yL6G++gaOkQyRRaOE6wEmx
-         R0Q1YHbKg9/GNr+UBU+hGmWQwJKbxIcH6Gr3LhSDhS5RuNCnjBYInKXapgKH9bednDoX
-         R162rclORbleIV2n2e8Wxh0zx5s/FEB6u7TH111aNUtvd2nptNWQlt/3jL2MRvWBFUCA
-         Xuiw==
-X-Gm-Message-State: AOJu0YzkE83xjUpnZnh1syRoRwg9/6g4ITbZaPMYWuyOn1wpFF86kBiD
-	gUVXjV3u+IgXeJkbA8nShj5PzBbWf6lMfOAuwg4LK3r4h95WlhSyaRPQAmXV7IhW3w0eoqKsgei
-	BYFGdyBDx84kG7YT4hEl/ks0YVNuIsMFD6vghLJFS4itAv+/Y9a8DC0AxlS0R8/E0+kT13Vkqfa
-	JeCkunw07J5iz20mIFhEMIvZBSL9ZVRmcJdmRQqHP+
-X-Google-Smtp-Source: AGHT+IEteTZxcn313/h/xfYp9X3ifIrDiZHLZ8yea1GxJ34SLg67Dkst8zcHLIsmfe2i77aFa/msNSB93E4=
-X-Received: from suntop.c.googlers.com ([fda3:e722:ac3:cc00:20:ed76:c0a8:1f3d])
- (user=yushis job=sendgmr) by 2002:a81:4c86:0:b0:5fc:7f94:da64 with SMTP id
- z128-20020a814c86000000b005fc7f94da64mr59361ywa.5.1705538323205; Wed, 17 Jan
- 2024 16:38:43 -0800 (PST)
-Date: Wed, 17 Jan 2024 16:36:47 -0800
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.43.0.381.gb435a96ce8-goog
-Message-ID: <20240118003648.2510176-1-yushis@google.com>
-Subject: [PATCH] meta-security: libhoth: SRCREV bump e520f8f...e482716
-From: Yushi Sun <yushis@google.com>
+        d=1e100.net; s=20230601; t=1705542348; x=1706147148;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PaHQ5RFpWylY8oowrCSuaZ+l4Ez3TrP5aotVYV8iY5c=;
+        b=ULihZdL9haooYracHE8KXK4OqbyiiQLxVleBtxYOlF2LdAHFxxpwRBpp6M2bCxL0Ni
+         JAYHIGPgIbvekcDccZNkuOj9AD4ubG0bZ4PilSGIrn6Gc+SgLxGrr5NyxTZZoMcgTPWJ
+         3HVyhgP+O+aq78KdBqZGWsrN115+yA8qt9STQGymhhH56xqBMNH3J6VrCEnMB8DP4o3K
+         L6joemqjejYKGPxINMX7d6VgVXfgWUz+OuAjG9pDOXf3RWJzNC6Ds/sLISh9Ca7PrMca
+         VPjd5U8nmPy82V57LBYC/ejqt2okbCTjCJhVHgpCtc0/3erpRgsPICd6JJ34YgarG3Q2
+         iPVQ==
+X-Gm-Message-State: AOJu0YwiriCMl60blA2tJsX6eLBj2Tc7nHRaWcZgkkvh5990UAAKcIMn
+	aFXQmqCu/bxvu2MSIF1u4wAkRDtDjIcz8+pz1CvoE2GqImoa46skioZFGUz/
+X-Google-Smtp-Source: AGHT+IGXAra7sw+YZnYPaJSaaUD5Lazvo1q1q89zy049l5nCW0TK/jiiKEOvGHJsgIY2Q96BZNVS0Q==
+X-Received: by 2002:a17:90b:374d:b0:28d:b5de:91e with SMTP id ne13-20020a17090b374d00b0028db5de091emr134341pjb.32.1705542347763;
+        Wed, 17 Jan 2024 17:45:47 -0800 (PST)
+Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca01:19f0:d15d:f80:769b:8c60])
+        by smtp.gmail.com with ESMTPSA id r5-20020a17090ad40500b0028e01ddb6c2sm369221pju.12.2024.01.17.17.45.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jan 2024 17:45:47 -0800 (PST)
+From: Tim Orling <ticotimo@gmail.com>
+X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
-Cc: Yushi Sun <yushis@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Cc: Tim Orling <tim.orling@konsulko.com>
+Subject: [layerindex-web][PATCH] global: deprecated pkg_resources parse_version
+Date: Wed, 17 Jan 2024 17:45:28 -0800
+Message-Id: <20240118014528.564270-1-tim.orling@konsulko.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 00:38:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62182
+ <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 01:45:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62183
 
-Nicholas Nooney (1):
-      Update error messages in htool_exec_hostcmd (#43)
+Since we are only using parse_version for comparison (typically checking
+that we are greater than some minimum version for tool or package), we
+can use packaging.version.parse as if it was parse_version
 
-Royce (1):
-      Add ability to process raw host commands (#41)
+[YOCTO #15348]
 
-Yoan Andreev (1):
-      Payload getstatus (#40)
-
-daimeng (1):
-      htool: Allow console snapshot on proxy channels (#42)
-
-Signed-off-by: Yushi Sun <yushis@google.com>
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
 ---
- meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ layerindex/update.py                  | 2 +-
+ layerindex/update_layer.py            | 2 +-
+ layerindex/views.py                   | 2 +-
+ rrs/tools/upgrade_history_internal.py | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb b/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb
-index 7ba64f5af1..df1dc04a72 100644
---- a/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb
-+++ b/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb
-@@ -7,7 +7,7 @@ LICENSE = "Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+diff --git a/layerindex/update.py b/layerindex/update.py
+index c1886bd..471a830 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -17,7 +17,7 @@ import codecs
+ import logging
+ import subprocess
+ from datetime import datetime, timedelta
+-from pkg_resources import parse_version
++from packaging.version import parse as parse_version
+ import utils
+ import operator
+ import re
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index 4a67a50..8a963a3 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -19,7 +19,7 @@ import re
+ import tempfile
+ import shutil
+ import errno
+-from pkg_resources import parse_version
++from packaging.version import parse_version
+ import itertools
+ import utils
+ import recipeparse
+diff --git a/layerindex/views.py b/layerindex/views.py
+index 25c045e..e83febb 100644
+--- a/layerindex/views.py
++++ b/layerindex/views.py
+@@ -11,7 +11,7 @@ import sys
+ import re
+ from datetime import datetime
+ from itertools import islice
+-from pkg_resources import parse_version
++from packaging.version import parse as parse_version
  
- SRC_URI = "git://github.com/google/libhoth;protocol=https;branch=main"
--SRCREV = "e520f8fa637589324ec56d34f26a48a8162a250c"
-+SRCREV = "e4827163741e0804f12ac96c81b8e97649be6795"
- 
- DEPENDS += "libusb1"
- 
+ import reversion
+ from django import forms
+diff --git a/rrs/tools/upgrade_history_internal.py b/rrs/tools/upgrade_history_internal.py
+index 2ba96b1..2ea22c9 100644
+--- a/rrs/tools/upgrade_history_internal.py
++++ b/rrs/tools/upgrade_history_internal.py
+@@ -16,7 +16,7 @@ import os
+ import optparse
+ import logging
+ import re
+-from pkg_resources import parse_version
++from packaging.version import parse as parse_version
+ import git
+ from datetime import datetime
+ import calendar
 -- 
-2.43.0.381.gb435a96ce8-goog
+2.34.1
 
 
