@@ -1,127 +1,95 @@
-Return-Path: <mattwood2000@gmail.com>
+Return-Path: <yushis@google.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7981C47258
-	for <webhook@archiver.kernel.org>; Wed, 17 Jan 2024 22:44:03 +0000 (UTC)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
- by mx.groups.io with SMTP id smtpd.web11.1452.1705531441196993956
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 36DBDC47DAF
+	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 00:38:51 +0000 (UTC)
+Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
+ by mx.groups.io with SMTP id smtpd.web11.9.1705538324115576428
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 Jan 2024 14:44:01 -0800
+ Wed, 17 Jan 2024 16:38:44 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=KGdmqMks;
- spf=pass (domain: gmail.com, ip: 209.85.219.173, mailfrom: mattwood2000@gmail.com)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-db4364ecd6aso8068879276.2
-        for <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 14:44:01 -0800 (PST)
+ dkim=pass header.i=@google.com header.s=20230601 header.b=UE8XsK9M;
+ spf=pass (domain: flex--yushis.bounces.google.com, ip: 209.85.128.202, mailfrom: 3e3oozqykbc4iec12c08805y.w86i8wd852cdc.i8wd89b83ywd.8b0@flex--yushis.bounces.google.com)
+Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-5ff7cf2fd21so2635117b3.1
+        for <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 16:38:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705531440; x=1706136240; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2EHs1Uu2IeBa8oU7d9M3gnRofvqaahVHp+bOsVdqT38=;
-        b=KGdmqMksJZ+763Jw1vZm1fR+gOT0YunV2PEsDo21N50OWkWW3FmUDN4V63VdQlNBYd
-         YlYdzXX25/ZwvLuSHgpLXd9w4expzJpkdxuN913rwtc4plkKoIt7vN0d9QR9RncRdBzO
-         BDVgS37Q3s+ycKyV7XyuqrOvIqclf+wYzHVjrfAgpYwg+Pvbp8bKmX/G3ATrXoMgkI83
-         xzik4CuC+anOJByUP0EaLck9KiPQxbL0VtqMMTI/KAj+pADNlS15ZDon1yNJ2Fi6JCuF
-         myiz8LBmSr5Xo0cNhU35Av86kUYiiJv4eMlmNjDO7HygoI2vzNkQQB6b9Bx9QOHyCcsR
-         gzDg==
+        d=google.com; s=20230601; t=1705538323; x=1706143123; darn=lists.yoctoproject.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=899OmpBMOZCat3soCwqsILWr4FSld2y2Vc5HfigTMA4=;
+        b=UE8XsK9MRG+J3SRmCAV6DbRMx0YIZxCUnDWiueaDE24Y5zJGYMf+tVFYiiXIeUiubZ
+         hJujZ61ZRB4Y80PJZeTLo70ku8b3lGxjhCT3knT6yObm2ganXaTvytGgEA8GG66T/v3k
+         XZ6LJlTf1GywydmIpRt0bwgCSryqodtqgAmVhH3KIRMhZJjZ9Bg2sX4GLHR4IBWmR60i
+         0RSod6pkaA75VKOYhf9zRh0Vok2XNhwwnPbTZaxyWimgh71syrhYSBSlRpl8aJxa11Gl
+         e3t30HWjxW8VIN7TW0e0HOyWGxkMaFu40zIT2w4VBdIf7pgAkeHnHo9P6Xm8yTMHEUjf
+         I3jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705531440; x=1706136240;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2EHs1Uu2IeBa8oU7d9M3gnRofvqaahVHp+bOsVdqT38=;
-        b=ArSNpmwLZ73wFOXgxhBBHdHT2auUAJPj/xH0tQ3JXWER84Eg5vf+sREx+So5saZXHD
-         vl3TzH5EqNz44QH/pA5FcgBcs/fWIXoubOoz7BqG8QbC7tGBVkmurl7w8X1KBgA92s0T
-         UNKha0x9gj+aGDiagx7fh3H5gZNd3aEeYC5xT2/f0wgr3KEu+LikZzUa1mivWcenXuLP
-         oaDH9KN0lbz04PJJAA1pOI2+5idwMpqU8igwBoLIRNlIqQmbhM7embKtKoUmBJBG4/4e
-         qX9s3Tex0xa7gKq2T0Nmv/aXjBd10NRZirqJ78VjMVEZNGlCf+aaTIgE7vAY6TW23PHo
-         w4Fg==
-X-Gm-Message-State: AOJu0YzEzv7D8W79sptZex2C9oGiOnwSQjPt3aYRIMjEALoddhgibkv+
-	RFCAz9F1VNzooDKLQNjvEsc=
-X-Google-Smtp-Source: AGHT+IGYxkwQ92+UFQeZxEhI8Tm1zzqZ3KhmBntj5aBWr4l9F2RqenCoi81ijZGFQUHCfyllkP4Q2g==
-X-Received: by 2002:a5b:b06:0:b0:dc2:4f64:16ad with SMTP id z6-20020a5b0b06000000b00dc24f6416admr653175ybp.117.1705531440353;
-        Wed, 17 Jan 2024 14:44:00 -0800 (PST)
-Received: from [192.168.1.225] (pool-71-184-93-207.bstnma.fios.verizon.net. [71.184.93.207])
-        by smtp.gmail.com with ESMTPSA id jp9-20020ad45f89000000b006816ffc7113sm1653654qvb.63.2024.01.17.14.43.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jan 2024 14:43:59 -0800 (PST)
-Message-ID: <ae61cfb3-ff00-4847-8fcc-5940cc31152f@gmail.com>
-Date: Wed, 17 Jan 2024 17:43:59 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] append recipe to multiconfig build from top-level
- local.conf
-To: Jose Quaresma <quaresma.jose@gmail.com>, yocto@lists.yoctoproject.org
-References: <CADjezmYMjHMXRwA7UF+_RFQivJ84rHpm2HyfEak_Cfsv1G=ftA@mail.gmail.com>
- <CANPvuR=1KADuvR6Hym5YAW4sWOAdLzp7ww+S1d5yo0KaRsZTLQ@mail.gmail.com>
-Content-Language: en-US
-From: Matt Wood <mattwood2000@gmail.com>
-In-Reply-To: <CANPvuR=1KADuvR6Hym5YAW4sWOAdLzp7ww+S1d5yo0KaRsZTLQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20230601; t=1705538323; x=1706143123;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=899OmpBMOZCat3soCwqsILWr4FSld2y2Vc5HfigTMA4=;
+        b=wB4x0fQcffzo4DtamVjjUwxt5eUE9cb3G5sf21ot7ta1W8/FyDi/Mrahd89xjnYlmZ
+         NFnqtgLPVbmKJD9i5dj9NntiAvuINgZ7Qi/F4VBz6CW3IIffhFRmqswpXxrtwb9Pzqb+
+         g1DYzJg5tIy2DSFPtURKbFn9rHNrAMNXIw3cWGygEvZxE9yL6G++gaOkQyRRaOE6wEmx
+         R0Q1YHbKg9/GNr+UBU+hGmWQwJKbxIcH6Gr3LhSDhS5RuNCnjBYInKXapgKH9bednDoX
+         R162rclORbleIV2n2e8Wxh0zx5s/FEB6u7TH111aNUtvd2nptNWQlt/3jL2MRvWBFUCA
+         Xuiw==
+X-Gm-Message-State: AOJu0YzkE83xjUpnZnh1syRoRwg9/6g4ITbZaPMYWuyOn1wpFF86kBiD
+	gUVXjV3u+IgXeJkbA8nShj5PzBbWf6lMfOAuwg4LK3r4h95WlhSyaRPQAmXV7IhW3w0eoqKsgei
+	BYFGdyBDx84kG7YT4hEl/ks0YVNuIsMFD6vghLJFS4itAv+/Y9a8DC0AxlS0R8/E0+kT13Vkqfa
+	JeCkunw07J5iz20mIFhEMIvZBSL9ZVRmcJdmRQqHP+
+X-Google-Smtp-Source: AGHT+IEteTZxcn313/h/xfYp9X3ifIrDiZHLZ8yea1GxJ34SLg67Dkst8zcHLIsmfe2i77aFa/msNSB93E4=
+X-Received: from suntop.c.googlers.com ([fda3:e722:ac3:cc00:20:ed76:c0a8:1f3d])
+ (user=yushis job=sendgmr) by 2002:a81:4c86:0:b0:5fc:7f94:da64 with SMTP id
+ z128-20020a814c86000000b005fc7f94da64mr59361ywa.5.1705538323205; Wed, 17 Jan
+ 2024 16:38:43 -0800 (PST)
+Date: Wed, 17 Jan 2024 16:36:47 -0800
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.43.0.381.gb435a96ce8-goog
+Message-ID: <20240118003648.2510176-1-yushis@google.com>
+Subject: [PATCH] meta-security: libhoth: SRCREV bump e520f8f...e482716
+From: Yushi Sun <yushis@google.com>
+To: yocto@lists.yoctoproject.org
+Cc: Yushi Sun <yushis@google.com>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 Jan 2024 22:44:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62181
+ <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 00:38:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62182
 
-Hi Jose,
+Nicholas Nooney (1):
+      Update error messages in htool_exec_hostcmd (#43)
 
-On 1/16/24 04:34, Jose Quaresma wrote:
-> 
-> 
-> Matt Wood <mattwood2000@gmail.com <mailto:mattwood2000@gmail.com>> escreveu (segunda, 15/01/2024 à(s) 19:44):
-> 
->     Hi,
-> 
->     I was wondering if the IMAGE_INSTALL:append syntax could work in multiconfig environment from the top-level local.conf file?
-> 
->     For example, I have a meta-layer that defines the muitconfig (main.conf and initramfs.conf).  From my build directory, I was hoping to append the IMAGE_INSTALL list only for the main configuration similar to how it can be done from local.conf in a standard build.  I wanted to avoid having to modify the meta-layer files.
-> 
->     I tried the following from local.conf but neither worked:
-> 
->     IMAGE_INSTALL:append:mc:main = " pkg"
->     IMAGE_INSTALL:mc:main:append = " pkg"
-> 
-> 
-> To have multiconconig you need to have more than one machine configurations so It should work with something like:
-> 
-> IMAGE_INSTALL:append:main = " pkg1"
-> IMAGE_INSTALL:append:initramfs = " pkg2"
-> 
-> Jose
+Royce (1):
+      Add ability to process raw host commands (#41)
 
-I have two configurations for a multiconfig in my meta-layer (conf/multiconfig/main.conf and conf/multiconfig/initramfs.conf)
+Yoan Andreev (1):
+      Payload getstatus (#40)
 
-Unfortunately, adding IMAGE_INSTALL:append:main = " nano" to conf/local.conf for example did not work.
+daimeng (1):
+      htool: Allow console snapshot on proxy channels (#42)
 
-But, adding IMAGE_INSTALL:append = " nano" to conf/multiconfig/main.conf does work and nano gets built.
+Signed-off-by: Yushi Sun <yushis@google.com>
+---
+ meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Any other suggestions to have append a multiconfig IMAGE_INSTALL list from the top level conf/local.conf?
-
-Thanks, Matt.
-
->  
-> 
-> 
->     Is there syntax for this or would I have to put this in an image recipe or the multiconfig .conf file?
-> 
->     Thanks, Matt.
-> 
->     -=-=-=-=-=-=-=-=-=-=-=-
->     Links: You receive all messages sent to this group.
->     View/Reply Online (#62161): https://lists.yoctoproject.org/g/yocto/message/62161 <https://lists.yoctoproject.org/g/yocto/message/62161>
->     Mute This Topic: https://lists.yoctoproject.org/mt/103747116/5052612 <https://lists.yoctoproject.org/mt/103747116/5052612>
->     Group Owner: yocto+owner@lists.yoctoproject.org <mailto:yocto%2Bowner@lists.yoctoproject.org>
->     Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub <https://lists.yoctoproject.org/g/yocto/unsub> [quaresma.jose@gmail.com <mailto:quaresma.jose@gmail.com>]
->     -=-=-=-=-=-=-=-=-=-=-=-
-> 
-> 
-> 
-> -- 
-> Best regards,
-> 
-> José Quaresma
+diff --git a/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb b/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb
+index 7ba64f5af1..df1dc04a72 100644
+--- a/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb
++++ b/meta-security/meta-tpm/recipes-tpm1/hoth/libhoth_git.bb
+@@ -7,7 +7,7 @@ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+ 
+ SRC_URI = "git://github.com/google/libhoth;protocol=https;branch=main"
+-SRCREV = "e520f8fa637589324ec56d34f26a48a8162a250c"
++SRCREV = "e4827163741e0804f12ac96c81b8e97649be6795"
+ 
+ DEPENDS += "libusb1"
+ 
+-- 
+2.43.0.381.gb435a96ce8-goog
 
 
