@@ -1,72 +1,103 @@
-Return-Path: <alexandre.belloni@bootlin.com>
+Return-Path: <daniele.lugli@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04A9DC47DAF
-	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 12:32:55 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
- by mx.groups.io with SMTP id smtpd.web10.10347.1705581173336588238
- for <yocto@lists.yoctoproject.org>;
- Thu, 18 Jan 2024 04:32:53 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=p4dWu50Z;
- spf=pass (domain: bootlin.com, ip: 217.70.183.200, mailfrom: alexandre.belloni@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 64F7C20005;
-	Thu, 18 Jan 2024 12:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1705581171;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=o5HBA4CGKKzLzfLCfaA65toGSCqbkyDdO57xOAzHuZ4=;
-	b=p4dWu50Zkf1xVH+j6rW26XS8jGVHDaxai06t7MbTwAPbp2h8I3MnUOia5GoWFVPWVTelPI
-	kRZQeByOaU0j46mnzgK/DGvl5djUQelEj8dMENR8CCeyPUCfUjti3ArUtZXPlCLUO2UuTw
-	ZkjRMuzq1TVM3B0d7NcJbx6RdF9gG6tr0gjWx9iT01ffGy2mT1P9qxVjlC6US9Z9oD6PBS
-	P0ilKx0LsiH0nVqLXFpK8Du6jU+dks8k+HFXVpUA9T2xN7lgLcf0dcwu6e9bw5lIum921k
-	vfhuQ2VBFS7vv6ulywMUV3s/zK5N6uTBdHCe4okBstsfFl2StI1XRBAdZ0aWJw==
-From: alexandre.belloni@bootlin.com
-To: yocto@lists.yoctoproject.org
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH yocto-autobuilder-helper] config.json: meta-agl now needs meta-oe
-Date: Thu, 18 Jan 2024 13:32:47 +0100
-Message-ID: <20240118123247.587100-1-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABAB0C47422
+	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 21:34:42 +0000 (UTC)
+Subject: Re: [yocto] etherlab
+To: Marek Belisko <marek.belisko@gmail.com>,yocto@lists.yoctoproject.org
+From: "Daniele Lugli" <daniele.lugli@gmail.com>
+X-Originating-Location: IT (31.26.241.23)
+X-Originating-Platform: Windows Opera 106
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Date: Thu, 18 Jan 2024 13:34:39 -0800
+References: <CAAfyv36_k6eEvWoJB4_kD4gKKmQ3ia3XWTVtYRf5hgyi5ctDzQ@mail.gmail.com>
+In-Reply-To: <CAAfyv36_k6eEvWoJB4_kD4gKKmQ3ia3XWTVtYRf5hgyi5ctDzQ@mail.gmail.com>
+Message-ID: <24610.1705613679102985792@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="srl0q4o865BpOQmmscRt"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 12:32:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62188
+ <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 21:34:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62189
 
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+--srl0q4o865BpOQmmscRt
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-rng-tools has been moved to meta-oe and is a dependency of packagegroup-agl-core-boot
+Hi Marek, and thank you for your reply.
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- config.json | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Adding line "inherit autotools" (not "autoconf") in my recipe solved that p=
+roblem.
+(I also had to put the sources of etherlab as a tgz and not as a plain dire=
+ctory)
 
-diff --git a/config.json b/config.json
-index 4686068dc5b6..b92a4f237c96 100644
---- a/config.json
-+++ b/config.json
-@@ -646,9 +646,10 @@
-             }
-         },
-         "meta-agl-core" : {
--            "NEEDREPOS" : ["poky", "meta-agl"],
-+            "NEEDREPOS" : ["poky", "meta-openembedded", "meta-agl"],
-             "ADDLAYER" : [
--                "${BUILDDIR}/../meta-agl/meta-agl-core"
-+                "${BUILDDIR}/../meta-agl/meta-agl-core",
-+                "${BUILDDIR}/../meta-openembedded/meta-oe"
-             ],
-             "DISTRO" : "poky-agl",
-             "BUILDINFO" : true,
--- 
-2.43.0
+I am now facing a different problem: the configure command complains
 
+error: kernel 6.5 not available for 8139too driver!
+
+As I don't need 8139too, I changed the configure arguments to
+
+sh configure --sysconfdir=3D/etc --enable-igb --disable-8139too
+
+This works if I build etherlab out of poky, but has no effect inside do_com=
+pile: I still get the same "not available" error.
+
+My impression is that my do_compile isn't executed at all, and somehow "con=
+figure" is executed without my parameters. Is this possible?
+
+Best regards,
+
+--
+Daniele Lugli
+General Logic srl
+Viale Curreno, 41
+10133 Torino
+Italy
+tel +39 329 3933041
+www.general-logic.com ( http://www.general-logic.com/ )
+www.linkedin.com/in/daniele- lugli ( http://www.linkedin.com/in/daniele-lug=
+li )
+
+--srl0q4o865BpOQmmscRt
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Marek, and thank you for your reply.<br /><br />Adding line "inherit aut=
+otools" (not "autoconf") in my recipe solved that problem.<br />(I also had=
+ to put the sources of etherlab as a tgz and not as a plain directory)<br /=
+><br />I am now facing a different problem: the configure command complains=
+<br /><br /><span style=3D"color: #ff0000;">error: kernel 6.5 not available=
+ for 8139too driver!</span><br /><br />As I don't need 8139too, I changed t=
+he configure arguments to<br /><br /><span style=3D"color: #0000ff;">&nbsp;=
+sh configure --sysconfdir=3D/etc --enable-igb --disable-8139too</span><br /=
+><br />This works if I build etherlab out of poky, but has no effect inside=
+ do_compile: I still get the same "not available" error.<br /><br />My impr=
+ession is that my do_compile isn't executed at all, and somehow "configure"=
+ is executed without my parameters. Is this possible?<br /><br />Best regar=
+ds,<br /><br />-- <br />
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;">
+<div dir=3D"ltr">
+<div>Daniele Lugli</div>
+General Logic srl</div>
+<div>Viale Curreno, 41</div>
+<div>10133 Torino<br />Italy</div>
+<div>tel +39 329 3933041</div>
+</div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.general-lo=
+gic.com/" target=3D"_blank" rel=3D"noopener" data-saferedirecturl=3D"https:=
+//www.google.com/url?q=3Dhttp://www.general-logic.com&amp;source=3Dgmail&am=
+p;ust=3D1702484712598000&amp;usg=3DAOvVaw3caieBojp7RHbXjtN3Avtg">www.genera=
+l-logic.com</a></div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.linkedin.c=
+om/in/daniele-lugli" target=3D"_blank" rel=3D"noopener" data-saferedirectur=
+l=3D"https://www.google.com/url?q=3Dhttp://www.linkedin.com/in/daniele-lugl=
+i&amp;source=3Dgmail&amp;ust=3D1702484712598000&amp;usg=3DAOvVaw2CJ1YOxQZd7=
+TCndA_wq8ak">www.linkedin.com/in/daniele-<wbr />lugli</a></div>
+
+--srl0q4o865BpOQmmscRt--
 
