@@ -1,83 +1,67 @@
-Return-Path: <m.salvini@koansoftware.com>
+Return-Path: <jguittet.opensource@witekio.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C395C4707B
-	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 07:53:03 +0000 (UTC)
-Received: from mail.koansoftware.com (mail.koansoftware.com [172.104.12.216])
- by mx.groups.io with SMTP id smtpd.web11.6517.1705564380971179367
- for <yocto@lists.yoctoproject.org>;
- Wed, 17 Jan 2024 23:53:01 -0800
-Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: koansoftware.com, ip: 172.104.12.216, mailfrom: m.salvini@koansoftware.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.koansoftware.com (Postfix) with ESMTP id D8EC93CAB5;
-	Thu, 18 Jan 2024 08:52:59 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail
-Received: from mail.koansoftware.com ([127.0.0.1])
-	by localhost (mail.koansoftware.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id o1oX8UV2ni0C; Thu, 18 Jan 2024 08:52:58 +0100 (CET)
-Message-ID: <82bc0af4-830e-4533-953b-057618c54df5@koansoftware.com>
-Date: Thu, 18 Jan 2024 08:52:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE4C5C4707B
+	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 08:30:43 +0000 (UTC)
 Subject: Re: [yocto] initramfs and system logs
-To: yocto@lists.yoctoproject.org, jguittet.opensource@witekio.com
-References: <uhKG.1705499030825235144.H40Y@lists.yoctoproject.org>
- <CAMKF1sp-5xrok4oopAnOBEdTM95aL4u2fVZmRiPSA3RO4wxZ1A@mail.gmail.com>
-Content-Language: en-US, it
-Cc: raj.khem@gmail.com
-From: Mauro Salvini <m.salvini@koansoftware.com>
-In-Reply-To: <CAMKF1sp-5xrok4oopAnOBEdTM95aL4u2fVZmRiPSA3RO4wxZ1A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+To: Mauro <m.salvini@koansoftware.com>,yocto@lists.yoctoproject.org
+From: "Joel GUITTET" <jguittet.opensource@witekio.com>
+X-Originating-Location: =?UTF-8?B?Q2jDonRlYXVyb3V4LCBDZW50cmUtVmFsIGRlIExvaXJlLCBGUg==?= (78.114.34.160)
+X-Originating-Platform: Linux Chrome 120
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Thu, 18 Jan 2024 00:30:42 -0800
+References: <82bc0af4-830e-4533-953b-057618c54df5@koansoftware.com>
+In-Reply-To: <82bc0af4-830e-4533-953b-057618c54df5@koansoftware.com>
+Message-ID: <31915.1705566642857353178@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="O1jmDhjfZEWsXrTdQBIA"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 07:53:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62185
+ <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 08:30:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62186
 
-On 17/01/24 18:49, Khem Raj wrote:
-> On Wed, Jan 17, 2024 at 5:43=E2=80=AFAM jguittet.opensource via
-> lists.yoctoproject.org
-> <jguittet.opensource=3Dwitekio.com@lists.yoctoproject.org> wrote:
->>
->> Dear community,
->>
->> I'm currently building a professional yocto project.
->> There are 2 variants of the image I'm building: the first one is using=
- classical rootfs on SD card (dev and test purpose). The other one is bui=
-lding an initramfs fitImage (production). I'm using INITRAMFS_IMAGE to in=
-dicate the name of the recipe building the initramfs + INITRAMFS_IMAGE_BU=
-NDLE =3D "1".
->>
->> Problem I get is that the initramfs image produces no logs (except ker=
-nel logs) in the console while the dev with the rootfs on the SD card hav=
-e logs printed in the console. I don't understand why and where I should =
-patch to have logs. The wanted logs are logs from init.d scripts for exam=
-ple (creating ssh keys, setting hwclock etc) + logs from my own applicati=
-ons that are properly output on the serial console with the "classic" ima=
-ge.
->=20
-> check if /dev/console is created in the initramfs init script which
-> runs as /sbin/init
->=20
->>
->> Thanks for any feedbacks!
->> Joel
+--O1jmDhjfZEWsXrTdQBIA
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Joel,
+Thanks for the answers.
 
-how many console=3D arguments do you have on the kernel cmdline?
-Kernel logs are shown on all of the declared consoles, but userspace=20
-logs (initrd script logs, init manager logs) are shown only on last=20
-console=3D specified in kernel cmdline.
+- /sbin/init is a symlink to /sbin/init.sysvinit and it's a binary file, no=
+t a script. Maybe I should look at the sources that build this ? Will do in=
+ parallel.
 
-Regards
+- console=3D arguments is the same for both my images, eg "console=3DttyS0,=
+115200n8".
+The difference between the 2 images on the cmdline are only the options rel=
+ated to the rootfs:
+* distro with the rootfs on the sdcard: "mem=3D128M console=3DttyS0,115200n=
+8 root=3D/dev/mmcblk0p4 rw rootfstype=3Dext4 rootwait"
+* distro with the initramfs: "mem=3D128M console=3DttyS0,115200n8"
 
---=20
-Mauro Salvini | KOAN sas | Bergamo - Italia
-embedded software engineering
-http://KoanSoftware.com
+I have done a check of /proc/consoles for both (don't know if this is reall=
+y important, this returns "ttyS0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 -W- (EC p a)=C2=A0 =C2=A0 4:64" for both distro.
 
+Joel
+
+--O1jmDhjfZEWsXrTdQBIA
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for the answers.<br /><br />- /sbin/init is a symlink to /sbin/init.=
+sysvinit and it's a binary file, not a script. Maybe I should look at the s=
+ources that build this ? Will do in parallel.<br /><br />- console=3D argum=
+ents is the same for both my images, eg "console=3DttyS0,115200n8".<br />Th=
+e difference between the 2 images on the cmdline are only the options relat=
+ed to the rootfs:<br />* distro with the rootfs on the sdcard: "mem=3D128M =
+console=3DttyS0,115200n8 root=3D/dev/mmcblk0p4 rw rootfstype=3Dext4 rootwai=
+t"<br />* distro with the initramfs: "mem=3D128M console=3DttyS0,115200n8"<=
+br /><br />I have done a check of /proc/consoles for both (don't know if th=
+is is really important, this returns "ttyS0&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; -W- (EC p a)&nbsp; &nbsp; 4:64" for both distro.<br=
+ /><br />Joel
+
+--O1jmDhjfZEWsXrTdQBIA--
 
