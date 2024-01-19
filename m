@@ -1,216 +1,178 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <dharma.b@microchip.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1FCA9C47DAF
-	for <webhook@archiver.kernel.org>; Thu, 18 Jan 2024 22:58:23 +0000 (UTC)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
- by mx.groups.io with SMTP id smtpd.web10.8084.1705618693716688703
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C302FC4725D
+	for <webhook@archiver.kernel.org>; Fri, 19 Jan 2024 04:07:54 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+ by mx.groups.io with SMTP id smtpd.web11.14328.1705637270773288091
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Jan 2024 14:58:13 -0800
+ Thu, 18 Jan 2024 20:07:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=NInlo3ng;
- spf=pass (domain: gmail.com, ip: 209.85.222.51, mailfrom: twoerner@gmail.com)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-7cedcea89a0so58118241.1
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 14:58:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705618691; x=1706223491; darn=lists.yoctoproject.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VxAhiXmGeA1Iu+7Spv05wseR5RbRmdeV9gCEtKha0dU=;
-        b=NInlo3ngupTuVY6w6MWYukZIneMrLLZV49S5s/O2B4AjKNlOxCSGVBE6K66afhkNrT
-         Ayt8emLR/9pJD1/4FTZKoPEx4cIhaJizuf+Jun3XBf7tyDY3c5l/PuOD+PGf+UNblyFA
-         F3d9oYMnJ7v0lsx8LICoTmbPA193NyNGNzbtr1CssBKyyBRL6NmjrDeuzkCi6vy1qDjW
-         fP3zqM9i+oepAupjR2hOqwMqPbrO+kal2XOsnv91tUmuSI/82/NEQdgsF3N1qy+0AlS2
-         tdo6iXBGQZecXqQo5YODriKLo1qdFVCw6nTMreIyuU1MM4YYbGV69YrNy/gaBn+LzZqV
-         LKuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705618691; x=1706223491;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VxAhiXmGeA1Iu+7Spv05wseR5RbRmdeV9gCEtKha0dU=;
-        b=cgPK8/iod/JKkKcGjJ9ZEVV2ud0rxmSBv87kjM/8R2WjpgBZ9+GuxcFfYfbOZLp3Mn
-         22p3bcz8qGFHkRhxw00a1He6YaiBVG6PfEwAuiiS8YYJ0P2JkOvNOCO/R78AZEIfvkHD
-         HBitnmrnx5e1dldaijhBiRgr+lON0mCQyR39+Mfga/fNHahP6JX+WkqgxkiI2gtqEK6H
-         dtvqohE5/czKJ0I7NHn+YXEDMx6B399WQl3yHj2b2FWsKk2T7KEUF7XdhPT+WteWDA2s
-         cpZ7beg2KqI4GKiuqbYZDW9Pd2YmT+Bi5X8NyBGRCnCUa2qOH4dtAryljIwKgZsorMoP
-         kcVg==
-X-Gm-Message-State: AOJu0YyjfS4n3cS63pXrtQmUF4zgL3fPltoStq+kGv0KjtmoCkBm/Ue8
-	LFKTs31dMTi+yoXCA4bCHepUjW2cD6OeRuYXlHRFaacD9fX39t02HIvUviPJ
-X-Google-Smtp-Source: AGHT+IHLuC2zfQk0UWOlCdAfbbM9qhvX8oPW6Q57Tk6XzPQlggXmCn3XyN+QhOrPGvjx768ZwW6qow==
-X-Received: by 2002:a67:e417:0:b0:469:8a40:897f with SMTP id d23-20020a67e417000000b004698a40897fmr1595532vsf.29.1705618691267;
-        Thu, 18 Jan 2024 14:58:11 -0800 (PST)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id 9-20020a9f2389000000b007ce1febd008sm1428942uao.34.2024.01.18.14.58.10
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Jan 2024 14:58:10 -0800 (PST)
-Date: Thu, 18 Jan 2024 17:58:08 -0500
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-rockchip][PATCH] rock-pi-e: fix kernel device-tree
-Message-ID: <20240118225808.GA14779@localhost>
-References: <17AAF40106759266.7072@lists.yoctoproject.org>
+ dkim=pass header.i=@microchip.com header.s=mchp header.b=RuP8HDiw;
+ dkim=pass header.i=@microchip.com header.s=selector1 header.b=lWe19foK;
+ spf=pass (domain: microchip.com, ip: 68.232.153.233, mailfrom: dharma.b@microchip.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1705637270; x=1737173270;
+  h=from:to:cc:subject:date:message-id:content-id:
+   content-transfer-encoding:mime-version;
+  bh=ya0m8p8viIlb6xtYxNcgYutTgejNrVRv8bv/jf1E5Qc=;
+  b=RuP8HDiwGWTUp1Qf9RdX0zYyq7aJJXa834DCfKHL+6d9sAM81QgO1jRA
+   FIbib87lND3oK9yZnGFFH/P9L+KAgXGlJL2cOUaov8RJpKQoHTblXw6qm
+   TJqSTuaXsJiTMgqbIrRKYoYuG40ILc6VUr7oWYs2f2gVxZg41Ot35oVeU
+   vUFM0xnhoNVAJGmTPCF9V//27RxMr9ZY8Ag4wLyKXlXe6SI/btmIhlNOt
+   FaslQKEra69lT13Pa+7VmY5ZoQ5neRcifjeN5IB47p7dGY15vmdhVQubV
+   b7KRuGjRw3/aiCO96uP0nnmZ10AmglDd24wy9gjFJOFtxzKw8/79QpCAZ
+   g==;
+X-CSE-ConnectionGUID: maqWGRFISPCu2VzCz5oHVw==
+X-CSE-MsgGUID: SEoKo0puQ1SggfffN9Qnsg==
+X-IronPort-AV: E=Sophos;i="6.05,204,1701154800"; 
+   d="scan'208";a="245702023"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Jan 2024 21:07:50 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 18 Jan 2024 21:07:46 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 18 Jan 2024 21:07:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QGN98sGD7ETnYFp1aTFEguPsE/IOjOGJMHNR1fucAQg6BrwyLzeEKv5sQg6aUKKRjckVYfP7X5sfj6R/Lyu4nFGjf3xjbBQN96QNLUGpc8t1YUyYwpWb/xPguOWixYYe0G+5Ng9oV4W+aZJ6was53KArBAI+W7SDo6yDvApXCH7Bs9nxWm3lP82PCkJZT7yvjFlYh9OTpOZyRsBhbyOjuvCbRTkfTTWT7qDuuLcYz1WU+GUe5efULUw5x1TOR/5ytNGy/S7tzSeFr21MMeC58uR72n5qQ9lP/zBE9YZgemrReyBKasAOBtDJNJKRlPWyZICaAgSS8ZbSxowrzmgmPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ya0m8p8viIlb6xtYxNcgYutTgejNrVRv8bv/jf1E5Qc=;
+ b=oAvA76wYtRrQqFDc0v/F8M/wE5ryuduyOSkxLIoY+HDb7m/dMSQT5Po1R2QLtXnqKna0f2cfmjWf8OL71kjZtLavhOldytJboVif8VKbk5oqPNRsq0vVaXpMQh9piDI1C1AQrKMMT02RfCl3i/z9XAI3cxBWHxJcQIBhw99VHb/y5UG5EYkzZv5sgQ/bhIUF0VDOyBWg+fhY0Xa/0Tt0o2xX3u48/rSPqdq3EBv+jTDehspCl42RkjYErmJerg6Sm0vo+oouar2WKMPWMwkpKY+W1P2opSkETSeny09AmefbbfZmxAgjrBmmG+/u2Y81vHZoy4kM6Yq67W6C2JmHZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ya0m8p8viIlb6xtYxNcgYutTgejNrVRv8bv/jf1E5Qc=;
+ b=lWe19foKTLt9NDF1Glt8a0v7R6ZfqU6cH+LULLTmYwy7UTm1z2qsBeQX3zJSmZV7aeRlnThFulPtj2ih6iKMOyl8PVslfA1VNd6kI+zarrPEasdiYpArk9S1KpevRKVUsUpUATmAA6ScG+tDrvko3f+sItWWyu2/cc9b7Fnr3+RvUZzRsJzNhysKrvmCa0ge1AKMeYyNxfw/+/wJV/zeY9wDGOAig7iDqGEODWddGopCDeOKbGOuwvz2ZHBFAi1A5z7f8xY6HrAlUZA4Nou5E1em326Cxs3/HEV7HsNouPyylCWog9Hy6KONsxnnq9INJmLTVEC9JXnRKtdQcqje4Q==
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com (2603:10b6:510:1f4::16)
+ by MW4PR11MB6715.namprd11.prod.outlook.com (2603:10b6:303:20e::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Fri, 19 Jan
+ 2024 04:07:41 +0000
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee]) by PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee%3]) with mapi id 15.20.7202.020; Fri, 19 Jan 2024
+ 04:07:41 +0000
+From: <Dharma.B@microchip.com>
+To: <yocto@lists.yoctoproject.org>
+CC: <Hari.PrasathGE@microchip.com>
+Subject: [yocto] [Question] [meta-atmel/kirkstone] do_fetch - failed with exit
+ code 128, no output
+Thread-Topic: [yocto] [Question] [meta-atmel/kirkstone] do_fetch - failed with
+ exit code 128, no output
+Thread-Index: AQHaSo0MQIMgjNoXFUKXNcKkpSf4fw==
+Date: Fri, 19 Jan 2024 04:07:41 +0000
+Message-ID: <3cb67cd1-3670-4a54-a877-3fe9c5dc37ec@microchip.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB6451:EE_|MW4PR11MB6715:EE_
+x-ms-office365-filtering-correlation-id: bc0cc18e-54b6-47e6-e795-08dc18a42eb0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wwxx9CzN9q4O4rfKrOnqjybEUDFgOSj6oziwH9YZ2G5x31K3UBnb0klvJ+2K/WH9aF7rKL4YMXtOeg36xs9IFeYkMjQsskSiXED6EaAA0GUyfqlVdnBB2ao8aWNdsbaAMsgYA0mdsuRWxX21NmxoTZ6CwtXqgCLBMbIfAVTyTO3zlxqvIwFB7vW2PxAF2ZFSjyn3INzdu9Fy00An4w8O6JgoLy3uQKyG8Fpb19WL+/dHrkee0ujanvu6JGAtq05iVoqdNASTcPzYY6YNKubN8EAsDcuEG9x5BPZHF7r+jBRVrh/1GbWJ3L6Oy9uqMYWnpIX80WPHtSVPd439mLNHQN44Q/GwhaeW5E/2ekR15vxx2rF1w/Rjw1E2Mh/BJVCTPaTD0+28EqI8hSAsqa3Pi8EwdFWbOmRAcPDHBCIu70YNUE77y+i8Dd9eARV1Qs0mYy/WdS8QJcRV+8oZ6IqdeKcCXBxl29PH6Psp6MXn3g7wNnQAxHlEWOf6ERFcPHLiVDP4XnSeblHAj+eA8Wp60agmG95qAYvT8bFK7vfBaDoU7o0g2sOB///x/CeBYh7y7UkAWR9qwUdTOiSKPZ4YK170ZuW2LZkgA/vVKwqeZVLLPGf7lQeV1B7Du8mab7tbCA45zuTeYCZ691faUcwYXQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6451.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(346002)(136003)(396003)(39860400002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(6506007)(71200400001)(2616005)(26005)(107886003)(6512007)(122000001)(5660300002)(83380400001)(4326008)(8676002)(8936002)(2906002)(41300700001)(6486002)(478600001)(316002)(66556008)(76116006)(91956017)(66946007)(6916009)(66446008)(64756008)(66476007)(36756003)(31696002)(86362001)(38100700002)(38070700009)(31686004)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WnFadStUQTh4U2pxZkdaTDJmNUZpRHRsUGZlcno4WHo0d0lhZ3FCUnoyQjJM?=
+ =?utf-8?B?akE0NjQwb1JDN201RE85NUpCM01mSVRDK1pRM2pnY2k1cXRDaHJFZnRUOWg4?=
+ =?utf-8?B?K0x0TXI4MmpDQWt0RDdRR1JsanhQWktDU0l1SVUxL2toeU1ORHNLZzI3M3F0?=
+ =?utf-8?B?Mnp5TkJXNUdPc1VOOG40b2Z2c1hJN0kzTXU1UDFCcXdBYmd1cjhlK3RpNS9J?=
+ =?utf-8?B?bm5DZEZrcGk5UThqRzhNS3NlU1M2UUlrVnNhYWFYZm4vRVQvTFZ3eGxjVmw4?=
+ =?utf-8?B?RXRwN0NPc1Y1ZDNGUEltckNlNXdpL0hvUG82aXh6YlpMR096WmN2YUFpZmVt?=
+ =?utf-8?B?RGtlQy9FQzgyVlZSVTgweFV2NGJTVHQ1WncyN3dvaXMxeVp4MWRwc0RNOHVm?=
+ =?utf-8?B?THdrWktxTDV1SURaMERVYStyLysyQWlNbmcrandqNm0rV3hucXFCMW5mWVFz?=
+ =?utf-8?B?djlvTnp1a2NFUkR5ZGNBb1dENnRjNU8rejhBclBldUZ1YWZOdmVrNkZzUHZO?=
+ =?utf-8?B?c1l0MGhBWmQrby9qcU9haVJBK0pnakJLd0lsWFRDWGhwNEtRYW91ZzR0VGV6?=
+ =?utf-8?B?VTg3OWJpR3E2TEJQMm9XdXRJeTlPdytzay9sN0k0ZVArMWZRRWFqYVovYUpN?=
+ =?utf-8?B?M3RWaGNGUlhCdlFBQXZIQmpWR1VKdkpLbzQwckRMY0JOamh6ZkpLNUNRUkFP?=
+ =?utf-8?B?eXliN08vQ1hsTk02cHRwVXJNOUhwdWJnR01NYVBxTFlDdWx4Vk9Ld1IydDIv?=
+ =?utf-8?B?N3dnbXlVU2tRRWF1SlRoODB1Y2NJWTJxSTUrY3JpNUZLVWcvTHRhSGZ3QVdj?=
+ =?utf-8?B?aWpsUVA1cE9SZVNsZ0p5V3g1QThtU0RGZW8vTGVwamEzdVJXeUY1dVZHTUcx?=
+ =?utf-8?B?amZCTGpZY2ZSeFN0SDQrRXpGUnNMTjk2STNIN2VoSklMRVBSWGNiS3ZrMUJL?=
+ =?utf-8?B?dm9qTVBLbjl1Wkx5eVhCcDd1aHlMQm9TTWpLa253dVFkUEM0VkV5MmVyOWNY?=
+ =?utf-8?B?WVA0NFpVTVZkM29EanZaTis5dUhGZ2Z2TUZ6UzNHM2NwU1AzK09rNFM4NWwv?=
+ =?utf-8?B?U3RwMXpheWl5VTJ6VUdLMFl3ekhFMXkyRFRrQXcwNEllbUdPaC9lNlZrUGZx?=
+ =?utf-8?B?RDk4OGFTaDIySnJpZENOeThCbDNZcnd3UERCTjQrZG1pdWdNVWdqNXBoZk1B?=
+ =?utf-8?B?bTFCUWhxcGxua1hhRUFSOURIandSbWtyWWxHaFVOdUdkRzZOY1VZZWJ5RHlR?=
+ =?utf-8?B?b0hlM3o3OUVxbmxzQmJ6VC9sbjVPK1RDQ01mcW5SelVCcjgrTFZpemJHS2JF?=
+ =?utf-8?B?VlJiMHdGSWVocXMxU05VVW1hSUYzZ3dGcTNmU0x5bnVjQkVleHhuMjZsSWg5?=
+ =?utf-8?B?TkZhY21BbU1tdlhrdXBjYytiTjNRRWkzMzhKWVZjQk5EQm1IT3FtREV6bTRs?=
+ =?utf-8?B?V0xDTlJORVhZRWtPNDFwZnNXTHBaejVsN0FIbXBGallLeE5LQjk5dWR2SmxP?=
+ =?utf-8?B?UU4xRWdlUjFwKzdwSjZrYVU2eVJhNC9YOCtSNm5VVHlBajVZQ0IvRDJLZHd3?=
+ =?utf-8?B?N2ZzOTAvRmxHRUg2WWl5UTlQT1JXMVNsV0RQNThXNGlhSDRFRWJKRVFTOVlu?=
+ =?utf-8?B?aENYNUMyUUlBaWdYalgyZmZmMG56ZkZFTFQwN3o4bEZkRjdRc21uZHhnWC9G?=
+ =?utf-8?B?eE1HNVdMdE1tekRPcFI3K1NNWFhpcFUyUmtJOFBMdlk2cXVnT3pwSXpJQUR2?=
+ =?utf-8?B?cVRzUG9PQXVoN1kybVVMSy9OQ2N1eDlvN0JLTk9FMDU1YnAzMk5oaGgxK2d4?=
+ =?utf-8?B?bVZJUmRTTk1laWpDVmQ2UTNvQVArcVRqZEJZdGRmYW5UWWszYWsyYW1UdFAx?=
+ =?utf-8?B?TmhIZDQwWWZlcWtoc0MwMVYyQmJ3dHFQRmNPSVVIenhzcllpOUVFTzhlb3VI?=
+ =?utf-8?B?cXpTVVRRWE9iUjJTZDdQQVBFTElxVU5yWk1vR2s4WHpkRWdCN3kybHRrT1F3?=
+ =?utf-8?B?ekxmV3dRNDhtbkl6NzAvUnJlSzlHZHJrcVRjUWN0amd5Qldhajk1YXhzZlU1?=
+ =?utf-8?B?dVExN3k2VUdsenlVOXVPL1ZjTEFwZmtsd1hHamtJQkUvZmVJQ0xScjVKdnBH?=
+ =?utf-8?Q?ax/MFq5Jy3LEiK5rQ74vbXuPN?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <36F77086CC37BB4E8F3EA0EE0386BAD4@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <17AAF40106759266.7072@lists.yoctoproject.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6451.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc0cc18e-54b6-47e6-e795-08dc18a42eb0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2024 04:07:41.6449
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1h/UB6XwJiq4PfS6PocCagJ5VBj/2/JqPeHxRufSfAguLl7MfvBORVurwGwuo/uM3Zv1z5hMTW5F0HV/36d5Xw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6715
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 18 Jan 2024 22:58:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62193
+ <yocto@lists.yoctoproject.org>; Fri, 19 Jan 2024 04:07:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62194
 
-I have provided 2 patches recently to fix the ethernet issue on the rock-pi-e.
-By submitting them upstream it prompted a conversation to led to the
-maintainer creating a proper fix in U-Boot. Therefore these 2 patches of mine
-are obsolete and I will be submitting a newer patch to add the maintainer's
-U-Boot patches to the build.
-
-On Tue 2024-01-16 @ 05:21:06 PM, Trevor Woerner via lists.yoctoproject.org wrote:
-> The device-tree for the GbE interface of the rock-pi-e had some properties
-> in the wrong location. Oddly enough the older rock-pi-e devices with
-> the Realtek 8211e PHY worked fine, but the latest spin (v1.21) with the
-> rtl8211f PHY didn't. This fixes allows both PHYs to work.
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
->  ...hip-rock-pi-e-adjust-phy-handle-name.patch | 40 +++++++++++++++
->  ...ip-rock-pi-e-fix-location-of-snps-pr.patch | 50 +++++++++++++++++++
->  recipes-kernel/linux/linux-yocto_%.bbappend   |  4 ++
->  3 files changed, 94 insertions(+)
->  create mode 100644 recipes-kernel/linux/linux-yocto/0001-arm64-dts-rockchip-rock-pi-e-adjust-phy-handle-name.patch
->  create mode 100644 recipes-kernel/linux/linux-yocto/0002-arm64-dts-rockchip-rock-pi-e-fix-location-of-snps-pr.patch
-> 
-> diff --git a/recipes-kernel/linux/linux-yocto/0001-arm64-dts-rockchip-rock-pi-e-adjust-phy-handle-name.patch b/recipes-kernel/linux/linux-yocto/0001-arm64-dts-rockchip-rock-pi-e-adjust-phy-handle-name.patch
-> new file mode 100644
-> index 000000000000..6ba072732854
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-yocto/0001-arm64-dts-rockchip-rock-pi-e-adjust-phy-handle-name.patch
-> @@ -0,0 +1,40 @@
-> +From 58f61444baa53d8818911c43e4060d550d5c19b9 Mon Sep 17 00:00:00 2001
-> +From: Trevor Woerner <twoerner@gmail.com>
-> +Date: Tue, 16 Jan 2024 15:03:58 -0500
-> +Subject: [PATCH 1/2] arm64: dts: rockchip: rock-pi-e: adjust phy-handle name
-> +
-> +The rock-pi-e currently comes in 4 board spins, the latest one (v1.21) swaps
-> +out the Realtek 8211e PHY for an 8211f PHY. Therefore modify the phy-handle
-> +name to be more generic.
-> +
-> +Upstream-Status: Submitted
-> +Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> +---
-> + arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts | 4 ++--
-> + 1 file changed, 2 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> +index 018a3a5075c7..096cfa19036e 100644
-> +--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> ++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> +@@ -146,7 +146,7 @@ &gmac2io {
-> + 	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
-> + 	assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;
-> + 	clock_in_out = "input";
-> +-	phy-handle = <&rtl8211e>;
-> ++	phy-handle = <&rtl8211>;
-> + 	phy-mode = "rgmii";
-> + 	phy-supply = <&vcc_io>;
-> + 	pinctrl-names = "default";
-> +@@ -163,7 +163,7 @@ mdio {
-> + 		#address-cells = <1>;
-> + 		#size-cells = <0>;
-> + 
-> +-		rtl8211e: ethernet-phy@1 {
-> ++		rtl8211: ethernet-phy@1 {
-> + 			reg = <1>;
-> + 			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
-> + 			pinctrl-names = "default";
-> +-- 
-> +2.43.0.76.g1a87c842ece3
-> +
-> diff --git a/recipes-kernel/linux/linux-yocto/0002-arm64-dts-rockchip-rock-pi-e-fix-location-of-snps-pr.patch b/recipes-kernel/linux/linux-yocto/0002-arm64-dts-rockchip-rock-pi-e-fix-location-of-snps-pr.patch
-> new file mode 100644
-> index 000000000000..67ed1a09a0c6
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-yocto/0002-arm64-dts-rockchip-rock-pi-e-fix-location-of-snps-pr.patch
-> @@ -0,0 +1,50 @@
-> +From 7eaabc1e5047d839376c4d9e511862f7ded67c24 Mon Sep 17 00:00:00 2001
-> +From: Trevor Woerner <twoerner@gmail.com>
-> +Date: Tue, 16 Jan 2024 15:09:15 -0500
-> +Subject: [PATCH 2/2] arm64: dts: rockchip: rock-pi-e: fix location of snps
-> + properties
-> +
-> +A number of snps (Synopsys) properties are not in their correct location.
-> +
-> +Upstream-Status: Submitted
-> +Fixes: b918e81f2145 ("arm64: dts: rockchip: rk3328: Add Radxa ROCK Pi E")
-> +Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> +---
-> + arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts | 10 +++++-----
-> + 1 file changed, 5 insertions(+), 5 deletions(-)
-> +
-> +diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> +index 096cfa19036e..0739b8fec86e 100644
-> +--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> ++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> +@@ -150,8 +150,11 @@ &gmac2io {
-> + 	phy-mode = "rgmii";
-> + 	phy-supply = <&vcc_io>;
-> + 	pinctrl-names = "default";
-> +-	pinctrl-0 = <&rgmiim1_pins>;
-> ++	pinctrl-0 = <&rgmiim1_pins>, <&eth_phy_reset_pin>;
-> + 	snps,aal;
-> ++	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
-> ++	snps,reset-active-low;
-> ++	snps,reset-delays-us = <0 10000 50000>;
-> + 	snps,rxpbl = <0x4>;
-> + 	snps,txpbl = <0x4>;
-> + 	tx_delay = <0x26>;
-> +@@ -165,13 +168,10 @@ mdio {
-> + 
-> + 		rtl8211: ethernet-phy@1 {
-> + 			reg = <1>;
-> +-			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
-> ++			pinctrl-0 = <&eth_phy_int_pin>;
-> + 			pinctrl-names = "default";
-> + 			interrupt-parent = <&gpio1>;
-> + 			interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
-> +-			reset-assert-us = <10000>;
-> +-			reset-deassert-us = <50000>;
-> +-			reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
-> + 		};
-> + 	};
-> + };
-> +-- 
-> +2.43.0.76.g1a87c842ece3
-> +
-> diff --git a/recipes-kernel/linux/linux-yocto_%.bbappend b/recipes-kernel/linux/linux-yocto_%.bbappend
-> index 7d8fb8b3d58e..7ab51f082932 100644
-> --- a/recipes-kernel/linux/linux-yocto_%.bbappend
-> +++ b/recipes-kernel/linux/linux-yocto_%.bbappend
-> @@ -19,3 +19,7 @@ COMPATIBLE_MACHINE:rock-pi-s = "rock-pi-s"
->  
->  SRC_URI:append = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
->  SRC_URI:append:nanopi-r4s = " file://nanopi-r4s.scc"
-> +SRC_URI:append:rock-pi-e = " \
-> +	file://0001-arm64-dts-rockchip-rock-pi-e-adjust-phy-handle-name.patch \
-> +	file://0002-arm64-dts-rockchip-rock-pi-e-fix-location-of-snps-pr.patch \
-> +	"
-> -- 
-> 2.43.0.76.g1a87c842ece3
-> 
-
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62173): https://lists.yoctoproject.org/g/yocto/message/62173
-> Mute This Topic: https://lists.yoctoproject.org/mt/103773839/900817
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [twoerner@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
-
+SGkgWW9jdG8gZXhwZXJ0cywNCg0KV2UgcmVjZW50bHkgZW5jb3VudGVyZWQgYW4gdW5leHBlY3Rl
+ZCBjaGFsbGVuZ2Ugc3Vic2VxdWVudCB0byBtaWdyYXRpbmcgDQp0byB0aGUgbGF0ZXN0IFBva3kg
+dGFncy4gU3VycHJpc2luZ2x5LCB0aGlzIGlzc3VlIGhhZCBub3Qgc3VyZmFjZWQgaW4gDQpvdXIg
+cHJpb3IgZXhwZXJpZW5jZXMuDQoNCldlIGFyZSBleHBlcmllbmNpbmcgZGlmZmljdWx0aWVzIHdp
+dGggZmV0Y2hpbmcgZnJvbSB0aGUgcmVwb3NpdG9yeSwgDQpzcGVjaWZpY2FsbHkgZW5jb3VudGVy
+aW5nIHRoZSBmb2xsb3dpbmcgZXJyb3JzOg0KLS0tDQpsb2cuZG8uZmV0Y2ggb2YgcmFuZG9tIHJl
+Y2lwZXMNCi0tDQpmYXRhbDogdGhlIHJlbW90ZSBlbmQgaHVuZyB1cCB1bmV4cGVjdGVkbHkNCmZh
+dGFsOiBlYXJseSBFT0YNCmZhdGFsOiBpbmRleC1wYWNrIGZhaWxlZA0KLS0tDQp3aXRoIHRoZSBm
+b2xsb3dpbmcgYnVpbGQgY29uZmlndXJhdGlvbnMNCi0tLQ0KQnVpbGQgQ29uZmlndXJhdGlvbjoN
+CkJCX1ZFUlNJT04gICAgICAgICAgID0gIjIuMC4wIg0KQlVJTERfU1lTICAgICAgICAgICAgPSAi
+eDg2XzY0LWxpbnV4Ig0KTkFUSVZFTFNCU1RSSU5HICAgICAgPSAidWJ1bnR1LTIwLjA0Ig0KVEFS
+R0VUX1NZUyAgICAgICAgICAgPSAiYXJtLXBva3ktbGludXgtZ251ZWFiaSINCk1BQ0hJTkUgICAg
+ICAgICAgICAgID0gInNhbWE1ZDI3LXNvbTEtZWstc2QiDQpESVNUUk8gICAgICAgICAgICAgICA9
+ICJwb2t5LWF0bWVsIg0KRElTVFJPX1ZFUlNJT04gICAgICAgPSAiNC4wLjE1Ig0KVFVORV9GRUFU
+VVJFUyAgICAgICAgPSAiYXJtIHZmcCBjb3J0ZXhhNSBuZW9uIHZmcHY0IHRodW1iIA0KY2FsbGNv
+bnZlbnRpb24taGFyZCINClRBUkdFVF9GUFUgICAgICAgICAgID0gImhhcmQiDQptZXRhDQptZXRh
+LXBva3kNCm1ldGEteW9jdG8tYnNwICAgICAgID0gIkhFQUQ6NzU1NjMyYzJmY2FiNDNhYTA1Y2Rj
+ZmE1Mjk3MjcwNjRiMDQ1MDczYyINCm1ldGEtb2UNCm1ldGEtbmV0d29ya2luZw0KbWV0YS13ZWJz
+ZXJ2ZXINCm1ldGEtcHl0aG9uDQptZXRhLWluaXRyYW1mcyAgICAgICA9ICJraXJrc3RvbmU6NzMw
+ZTQ0OTAwYTBhODYyNjViYWQ5M2ExNmI1YTVmZjM0NGEwNzI2NiINCm1ldGEtYXRtZWwgICAgICAg
+ICAgID0gDQoiZHVyYWliL3NhbTl4NzVlYl92MTpmYjJmYzQ0NWNkZGRlNTQ2Zjg1NTZiMjM2OTVm
+YmM2M2M4ODA3MmNhIg0KbWV0YS1tdWx0aW1lZGlhICAgICAgPSAia2lya3N0b25lOjczMGU0NDkw
+MGEwYTg2MjY1YmFkOTNhMTZiNWE1ZmYzNDRhMDcyNjYiDQptZXRhLWFybQ0KbWV0YS1hcm0tdG9v
+bGNoYWluICAgPSAia2lya3N0b25lOmIxODdmYjkyMzJjYTBhNmI1ZjhmOTBiNDcxNTk1ODU0NmZj
+NDFkNzMiDQotLS0NCg0KV2UgYXJlIGN1cmlvdXMgdG8gdW5kZXJzdGFuZCBpZiBhbnlvbmUgZWxz
+ZSB3aXRoaW4gdGhlIGNvbW11bml0eSBoYXMgDQpmYWNlZCBhIHNpbWlsYXIgaXNzdWUgYWZ0ZXIg
+dXBkYXRpbmcgdG8gdGhlIGxhdGVzdCBQb2t5IHRhZ3MuIElmIHNvLCBoYXMgDQphIHNvbHV0aW9u
+IGJlZW4gaWRlbnRpZmllZCBvciByZXBvcnRlZD8gV2UgYXJlIGtlZW4gdG8gYXNjZXJ0YWluIHdo
+ZXRoZXIgDQp0aGVyZSBtaWdodCBiZSBhIGtub3duIGJ1ZyBjb250cmlidXRpbmcgdG8gdGhpcyBm
+ZXRjaGVyIGZhaWx1cmUuDQoNCi0tIA0KV2l0aCBCZXN0IFJlZ2FyZHMsDQpEaGFybWEgQi4NCg==
 
