@@ -1,178 +1,251 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 375A6C4725D
-	for <webhook@archiver.kernel.org>; Fri, 19 Jan 2024 12:37:47 +0000 (UTC)
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.42])
- by mx.groups.io with SMTP id smtpd.web10.21012.1705667856532797128
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A60AC4725D
+	for <webhook@archiver.kernel.org>; Fri, 19 Jan 2024 15:18:08 +0000 (UTC)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+ by mx.groups.io with SMTP id smtpd.web11.24758.1705677480530214709
  for <yocto@lists.yoctoproject.org>;
- Fri, 19 Jan 2024 04:37:37 -0800
+ Fri, 19 Jan 2024 07:18:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=lX3S5Sj1;
- dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=lX3S5Sj1;
- spf=pass (domain: arm.com, ip: 40.107.22.42, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=ezJM7KKX6jmNnvHvoYXyHv1u9HGfIYS9dxlvRb76Z6dKkB8pok9q0qbmqGyRBqcYZOp5Lwuqfhk3+J89QV8pCMX3JvcGl8y5idehvDAmoy9XReK99OjSt+PDoQrqrlXDWj8sB5ZDdZFAiJxxYdZljDXIn/3djfUdmko5ysBtXg73U5LBQzUqiRYdrIXQkvjNWpl89QwGOgq8+sywmDxf6SyU53KL80YGu1wIu624Hm/NGEN+re4aD100noqPA/s8Lj7ko8Nh3eU5pETsNWL9ze5xSaSqZQuZ9iiKAjLODz1ByaeLlYNWaF1BR7WsmRGxFkMecf9ajKIbYOVWdrHq7w==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U/L7dsV9Afe9E2bPKAq4W99lRwkZU9g6+mLRiZLw0qw=;
- b=JqceKyNJmNVYPmtSaJi5SAKjjbsRoPEX3cZcxawNE/oaJelENGJYbYt2gAjDWYxt6xXadLapz2VWZOC9cfdUMiVIMheUXdfkyGTJZMwBHH8znKEoIwF0j2qDKDKrv97UUAOuUqQ2/xg48yNXN4eU6BaSRigMaYqqXktV5rTAzrDlBy6DUOyEzjvW8y9eNGc/s7a7UrA70whEiQpJFHwSxiatzac+gZCTKYU3oFyQxrtEusjY0icLq+IxvBqV6t9TOa/Vy+hgY/3LQJMMhTxeoVrrWokBnfMYaTHARS3LGLwFBi3KiHqJFpmTxPL3mkOPlQxnGahy8S23E9EdJ/SVcA==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
- oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U/L7dsV9Afe9E2bPKAq4W99lRwkZU9g6+mLRiZLw0qw=;
- b=lX3S5Sj1fdovREteoeiBSSCBcdXnG161b6mjNQsipVG5iPPtY98eX7lZJpJHkR5eNVyBJ+z24CSYne6g+gc3HLE6CgBvhckJSJR1ROEFMnHsw1elt0ysxpbdKdpNdbwwJxAI2I/b9wMT40dzJklcLb8N0FnyjHprL1mmFGBiAJU=
-Received: from AS9P250CA0002.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:532::6)
- by PAWPR08MB9053.eurprd08.prod.outlook.com (2603:10a6:102:341::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Fri, 19 Jan
- 2024 12:37:29 +0000
-Received: from AMS0EPF000001AF.eurprd05.prod.outlook.com
- (2603:10a6:20b:532:cafe::ab) by AS9P250CA0002.outlook.office365.com
- (2603:10a6:20b:532::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24 via Frontend
- Transport; Fri, 19 Jan 2024 12:37:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
- pr=C
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- AMS0EPF000001AF.mail.protection.outlook.com (10.167.16.155) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7202.16 via Frontend Transport; Fri, 19 Jan 2024 12:37:28 +0000
-Received: ("Tessian outbound a297577ee0df:v228"); Fri, 19 Jan 2024 12:37:28 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: dbc2ee258b25bc6d
-X-CR-MTA-TID: 64aa7808
-Received: from 56f79e88070b.1
-	by 64aa7808-outbound-1.mta.getcheckrecipient.com id 440BA795-C61C-450B-B27D-71B95A8ABA04.1;
-	Fri, 19 Jan 2024 12:37:22 +0000
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 56f79e88070b.1
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Fri, 19 Jan 2024 12:37:22 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fYLnVx/3RbdAOdCKe+yxdhE6vDeLLTLiC4AXX+cu6OjyAK15TOIXQfIwFFHKcfGPJ2l2NhfARTtaxt/6Gr/gi/+WUvfy032q6g1auV18LjX1FL2dW9zf0u2sTYMvTGrpOlC7XUS9g2F4XxbUEFVSmhng9nOmf9l+19U7L23NS/LhcBovhi67NqhggvHrUQyd1M7Rh60XkhXJy9D1CNuRDev2LN9CXHuRiBI/sR9p8x4ykhUnqWiecmUIebvjjkPkBhKWF/O5hDizohhZdqAoaE+Z+i2Vz8z1udAFTsd9/xXQDCfq0XuZrrqkmchAf9hAF4tc0eXyDZbSR6AYzPSHyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U/L7dsV9Afe9E2bPKAq4W99lRwkZU9g6+mLRiZLw0qw=;
- b=HFP6Xxb10Y82u0GOu/KCGQXxf5Be9p3UMaZm7GFGjdeNvcRzyeZaFHekAwhcodxVPYzVBqxFKX2re7cF6v2hK6DOXIKwPLREdz9UZgWwnJEMCjbmSxkOYvxDLDdqCwx3fxHP6aqSm2L8ttPscv5pOWM7S2wqIvib9EJ+DPKXz5I6L6dNGfpsqDye/NDpm0B5/iba87UIEwNzAqzljedIljNeBP3zeGvTbts2kyfPpb4utHTA2j4zjK3HzXT/qnuKgOKk3A28buY2v4E91pFkqZV0ub3ae+/J9RUfWtTb41bVg7wbLVQPMdUCB1/HwH94aDFZt6ND6j9uFmkQ0FS4qA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U/L7dsV9Afe9E2bPKAq4W99lRwkZU9g6+mLRiZLw0qw=;
- b=lX3S5Sj1fdovREteoeiBSSCBcdXnG161b6mjNQsipVG5iPPtY98eX7lZJpJHkR5eNVyBJ+z24CSYne6g+gc3HLE6CgBvhckJSJR1ROEFMnHsw1elt0ysxpbdKdpNdbwwJxAI2I/b9wMT40dzJklcLb8N0FnyjHprL1mmFGBiAJU=
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
- by DBBPR08MB10464.eurprd08.prod.outlook.com (2603:10a6:10:53a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Fri, 19 Jan
- 2024 12:37:21 +0000
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::9f34:f165:4c51:be06]) by PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::9f34:f165:4c51:be06%3]) with mapi id 15.20.7202.020; Fri, 19 Jan 2024
- 12:37:21 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	"marek.belisko@gmail.com" <marek.belisko@gmail.com>
-CC: Daniele Lugli <daniele.lugli@gmail.com>
-Subject: Re: [yocto] etherlab
-Thread-Topic: [yocto] etherlab
-Thread-Index: AQHaSZIq9dWGDz4VWEW/dwgaNylT+rDfHIaAgAD8nYCAAL6LAIAAPZ4A
-Date: Fri, 19 Jan 2024 12:37:21 +0000
-Message-ID: <8585005B-41BF-42D5-9703-D40F12655E0B@arm.com>
-References: 
- <CAAfyv36_k6eEvWoJB4_kD4gKKmQ3ia3XWTVtYRf5hgyi5ctDzQ@mail.gmail.com>
- <24610.1705613679102985792@lists.yoctoproject.org>
- <CAAfyv34GF1V7nGiTm_vD=twOKRdzaE4MZqAvA7nM2Dy2BZYaUA@mail.gmail.com>
-In-Reply-To: 
- <CAAfyv34GF1V7nGiTm_vD=twOKRdzaE4MZqAvA7nM2Dy2BZYaUA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3774.300.61.1.2)
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: 
-	PA4PR08MB7411:EE_|DBBPR08MB10464:EE_|AMS0EPF000001AF:EE_|PAWPR08MB9053:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83d8038a-70c3-45b6-a1d1-08dc18eb661d
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- C4ktCtsg+taUyESl+w+fettJwJuK0PExrksa4lux+29GSPxhCdT2T2Ymkf00ktqxN/rxeNF2RSwkehOspxD2/bIHF3kf9aAAXc1RppyVp4xdtJRMbg48b03gHXz7VXeKlLEhbSLk2Ba4ZR2xUHGEPJLR9vH6N9iRwt+AxLaPhVYwj2YwtT/eu6ISowGHhejg0Hg9yaDJWZC+N+1k0Ss6WfwQlCMF0mXhDEypRpTHVZHAI2S4MGn3J/IcPeK8do0Fn4IrjobgGN5uztVxVGnxLaZFEiBhKMec3oEI8hifKdDpnlW6OrV0UW809F0X87LWD4MxCrzd1yig/u+suQXWD2oWqHKtEqiRvL7Itxqqk7gJ5NcCh2Lag94+J1Ngt/trodcj1qBCv86+v0uoM8GIf8x2QQpKuCmxFth2HElfLQQ+G/7E4yzScNgYtVEEo4JY2NPkj5n59dGDb8U+0YUWfTRSqZrnzlPH7iVhNC0vqs2i7keIO4ib0vcsPbuxh4ItYlFQcb6DR0fj4feDdBR6PlP/ZajVKlAOMNH6nC7rMzJh3nyT6+lIIzR2Uk4qJpWtywcEwQLhBiCGsoA3YVUfSbn53rtHqnEgce6+iFHpO9ZShTVGpK2A2P5I0kPNsgm2Xxs4WiNgvOMa30obL9+rag==
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(396003)(376002)(366004)(136003)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(83380400001)(26005)(53546011)(6506007)(36756003)(33656002)(86362001)(38070700009)(4326008)(8676002)(71200400001)(66556008)(66476007)(6512007)(2616005)(122000001)(41300700001)(8936002)(38100700002)(316002)(2906002)(91956017)(5660300002)(110136005)(66946007)(66446008)(76116006)(64756008)(6486002)(478600001)(45980500001);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7A8F44D65150194F90626BBE9F651B32@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=GPZWebvm;
+ spf=pass (domain: gmail.com, ip: 209.85.160.178, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-42a11ee4047so5996631cf.2
+        for <yocto@lists.yoctoproject.org>; Fri, 19 Jan 2024 07:18:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705677479; x=1706282279; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C6EnQfTcpZk1EdOyLPZpLmSEsLSUj9ZLzoK3znOH0zY=;
+        b=GPZWebvm615KS9yToWGENpuU8otF8ovX+CWL4Q/dzzpBBnlsAZaFa1aBEdOD5gnOaD
+         CFcSnZ+kA8jl1Webk1zzRMpuJfCIkPJX2fNBJVdpv3DuBkpsAfI3CZ+efYsiALyZU6Gh
+         pIb6zehJOsuR0nSgVs/0vGXAodNfEspSR0rGvqH1M5Pg3GdeD4CLHJ7aPRFjnqD8SugT
+         NA8eGMZ/HZp0IDcbjKdrcc7ooT2WFmXfAWkacvAvLOndijVAQ9DhXTg9349L9sdSpWx5
+         2awvry1QermyMl/B0Vrts3P19fRf4LAqLEZZ+7aKkICZ3mhy9JF8SMDBIyj/S4X62aB5
+         LJ0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705677479; x=1706282279;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C6EnQfTcpZk1EdOyLPZpLmSEsLSUj9ZLzoK3znOH0zY=;
+        b=dADSAQ7m2ogClb/ySLio5p1wR0u6ApAcmSjA4noFJZVVwLfQpcKBGMxzdkBbyuDgJt
+         RIyPildH20VN7dQTjxfn5aReMBJGp4t4O7m0LL9JhBXLkz0xOwgjXrQsk0TM2+VI6DOf
+         MuWvFN2+QDH/Bdl29Hmq6Gi5RauiQNTNDd94TgfYQKHrNv7+QEOjO33uhkQoPBG6pb+5
+         G3hsrx9lMFWjLgdbbJU1fngIsF4De3aAF438rmr+LGf7p3Vg3N84Eq6840oTTO+HFBKp
+         10HxcGi4Vk34/I8W35WFOynnetcWUTq4i+p6rwGkwNKkJDgEXNAIu5q5EiYrQiwSJbh6
+         rV7w==
+X-Gm-Message-State: AOJu0Yy/dl1C//rKWoGi0ol5E5EiwsNt4rHk9HW3fku8OgJ8+5mLTV2C
+	eM/1S/NslBoSmoFFDTEkercvN1Vr/FJyeoR5m2EVrz7BmmYIVudn0mrY9/kX
+X-Google-Smtp-Source: AGHT+IFfwkVn3S4MfQQeO2QE5HODmcoaBTdUDZicxSaTp8tPYrAHsbULoYN62fnj4FVFt9ncl4qTlw==
+X-Received: by 2002:a05:6214:62e:b0:682:4c34:5527 with SMTP id a14-20020a056214062e00b006824c345527mr50566qvx.44.1705677478782;
+        Fri, 19 Jan 2024 07:17:58 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id me15-20020a0562145d0f00b00684c0ec71c8sm181891qvb.122.2024.01.19.07.17.57
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jan 2024 07:17:58 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-rockchip][PATCH] rock-pi-e: apply upstream PHY fix
+Date: Fri, 19 Jan 2024 10:17:55 -0500
+Message-ID: <20240119151755.34504-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR08MB10464
-Original-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- AMS0EPF000001AF.eurprd05.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	3da28557-cb6a-4ad8-2322-08dc18eb61a3
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	bToTC9fo2gSNkixPrHcv9Swwx/Vb2QBSzMvjZpQ/5kL2wVN3Hb9HPdXEg5fEjp3++cYfZio8gBeeA1bmuFBRTdvpOUWkJTD4ovo9OMkV1yJeV/DcqHrGpfKoQ6Sr4i1+i4MkE2XZdMXCdYp2SxpWsTuWjJxO4bQxp75XQpQyS5TpCT1zGaMO1ZIsyWRrB5zfUWEJMntzVPiD/QCCJ9DfLZzsSmSOfDQPXtP+Is0TpmWXcGjHau7KDFfnLl9tpHMyw3vUByhEqyXELQa+i60kGsGUmAjQ7HwktfN+aKyk3h+j77jiH4n8g2jttrRiNqGOvOcKEyhizG4RcUURJ1zEilKQGytoxseYNQbPkUbeCHjd6htIflrKjhJVFNtdSDr5FL1dJFS3Or01810Gw3LcH619krtLdwlkEtjxZykW+xdDrZYiqope8lVeU3qtRxADtj4M7RUWFujYoHDcMSUjA7DM3YS10FTI0W9Wf82UO9GhHHpgGepSrRi4lCMmAcG/GhKuvjWtQ8lzAk6Kha8hSvqYpxakfznyUVCLGKBk5Via3ijexbF4GqPWgbK1dSJ1/a82QIZJQ80RImwjvCVSlqLNipv02GfwD4dYtSiWH5Pr68Oq3X52FcCAsyXEMxfRf02iXrslgp799dcP/sN9bG9PcBJ1CMM0ySj57Hz+TuZ9psp8tCRDmU0kKm4OsaSv+FWohtRTBKIS/fiXhSFXI4apXrUiJ3YQUhEI+iMxwRXwrckMfe/EYkNVJn7mtuUf
-X-Forefront-Antispam-Report: 
-	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(396003)(136003)(376002)(230922051799003)(451199024)(82310400011)(186009)(1800799012)(64100799003)(36840700001)(40470700004)(46966006)(356005)(2616005)(47076005)(81166007)(82740400003)(36860700001)(83380400001)(8676002)(4326008)(8936002)(478600001)(6486002)(316002)(110136005)(70586007)(70206006)(2906002)(107886003)(26005)(336012)(53546011)(6512007)(5660300002)(6506007)(86362001)(33656002)(36756003)(41300700001)(40480700001)(40460700003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2024 12:37:28.8742
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83d8038a-70c3-45b6-a1d1-08dc18eb661d
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	AMS0EPF000001AF.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR08MB9053
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 19 Jan 2024 12:37:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62197
+ <yocto@lists.yoctoproject.org>; Fri, 19 Jan 2024 15:18:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62198
 
-T24gMTkgSmFuIDIwMjQsIGF0IDA4OjU2LCBNYXJlayBCZWxpc2tvIHZpYSBsaXN0cy55b2N0b3By
-b2plY3Qub3JnIDxtYXJlay5iZWxpc2tvPWdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3Jn
-PiB3cm90ZToNCj4gTElDRU5TRSA9ICJHUEwtMi4wLW9ubHkgJiBMR1BMLTIuMS1vbmx5ICYgVW5r
-bm93biINCg0KT2J2aW91c2x5IHlvdSBuZWVkIHRvIGZpeCB0aGUgVW5rbm93biBhdCBzb21lIHBv
-aW50Lg0KDQo+IERFUEVORFMgKz0gInBrZ2NvbmZpZy1uYXRpdmUiDQoNCklkaW9tYXRpY2FsbHks
-IGluaGVyaXQgcGtnY29uZmlnIGlzIHByZWZlcnJlZC4NCg0KPiBFWFRSQV9PRUNPTkYgPSAiLS1l
-bmFibGUtaWdiIC0tZGlzYWJsZS04MTM5dG9vIC0td2l0aC1saW51eC1kaXI9JHtTVEFHSU5HX0tF
-Uk5FTF9CVUlMRERJUn0gLS1kaXNhYmxlLWlnYiINCg0KWW914oCZcmUgZW5hYmxpbmcgYW5kIGRp
-c2FibGluZyBpZ2IsIHBpY2sgb25lLg0KDQo+IEZJTEVTOiR7UE59ICs9ICIke2RhdGFkaXJ9Lyoi
-DQoNClRoaXMgY2F0Y2gtYWxsIGlzIG92ZXJseSBrZWVuIGFuZCBjYW4gY2F1c2UgaW5jb3JyZWN0
-IHBhY2thZ2luZy4gIEl04oCZcyBiZXN0IHRvIG5hbWUgZXhwbGljaXQgZGlyZWN0b3JpZXMuDQoN
-Cj4gVGhpcyB3b3JrcyBpZiBJIGJ1aWxkIGV0aGVybGFiIG91dCBvZiBwb2t5LCBidXQgaGFzIG5v
-IGVmZmVjdCBpbnNpZGUgZG9fY29tcGlsZTogSSBzdGlsbCBnZXQgdGhlIHNhbWUgIm5vdCBhdmFp
-bGFibGUiIGVycm9yLg0KPiANCj4gTXkgaW1wcmVzc2lvbiBpcyB0aGF0IG15IGRvX2NvbXBpbGUg
-aXNuJ3QgZXhlY3V0ZWQgYXQgYWxsLCBhbmQgc29tZWhvdyAiY29uZmlndXJlIiBpcyBleGVjdXRl
-ZCB3aXRob3V0IG15IHBhcmFtZXRlcnMuIElzIHRoaXMgcG9zc2libGU/DQoNCk5vdCByZWFsbHku
-ICBBcmUgeW91IHN1cmUgdGhlIOKAnG5vdCBhdmFpbGFibGXigJ0gbWVzc2FnZSBpcyBmcm9tIHRo
-ZSA4MTM5dG9vIGRyaXZlciwgYW5kIG5vdCBzb21ldGhpbmcgZWxzZT8gIFNoYXJpbmcgdGhlIGNv
-bXBsZXRlIGxvZy5kb19jb25maWd1cmUgYW5kIGxvZy5kb19jb21waWxlIChkZXBlbmRpbmcgb24g
-d2hlcmUgaXQgYWN0dWFsbHkgYnJlYWtzKSB3b3VsZCBoZWxwIGRlYnVnIHRoaXMuDQoNClJvc3M=
+This patch was submitted to the U-Boot mailing list to fix an issue
+initializing the PHY on the rock-pi-e.
+
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ ...are_Reset_eth_phy_before_phy_connect.patch | 83 +++++++++++++++++++
+ ...-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch | 65 +++++++++++++++
+ recipes-bsp/u-boot/u-boot%.bbappend           |  6 ++
+ 3 files changed, 154 insertions(+)
+ create mode 100644 recipes-bsp/u-boot/files/PATCH_1-2_net_designware_Reset_eth_phy_before_phy_connect.patch
+ create mode 100644 recipes-bsp/u-boot/files/PATCH_2-2_rockchip_rk3328-rock-pi-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch
+
+diff --git a/recipes-bsp/u-boot/files/PATCH_1-2_net_designware_Reset_eth_phy_before_phy_connect.patch b/recipes-bsp/u-boot/files/PATCH_1-2_net_designware_Reset_eth_phy_before_phy_connect.patch
+new file mode 100644
+index 000000000000..4910b9803611
+--- /dev/null
++++ b/recipes-bsp/u-boot/files/PATCH_1-2_net_designware_Reset_eth_phy_before_phy_connect.patch
+@@ -0,0 +1,83 @@
++From: Jonas Karlman <jonas@kwiboo.se>
++To: Kever Yang <kever.yang@rock-chips.com>, Ramon Fried
++ <rfried.dev@gmail.com>, Joe Hershberger <joe.hershberger@ni.com>, Simon
++ Glass <sjg@chromium.org>, Banglang Huang <banglang.huang@foxmail.com>
++Cc: Trevor Woerner <twoerner@gmail.com>, u-boot@lists.denx.de, Jonas
++ Karlman <jonas@kwiboo.se>
++Subject: [PATCH 1/2] net: designware: Reset eth phy before phy connect
++Date: Thu, 18 Jan 2024 07:19:45 +0000
++Message-ID: <20240118071949.927089-2-jonas@kwiboo.se>
++X-Mailer: git-send-email 2.43.0
++In-Reply-To: <20240118071949.927089-1-jonas@kwiboo.se>
++References: <20240118071949.927089-1-jonas@kwiboo.se>
++MIME-Version: 1.0
++Content-Transfer-Encoding: 8bit
++X-Report-Abuse-To: abuse@forwardemail.net
++X-Report-Abuse: abuse@forwardemail.net
++X-Complaints-To: abuse@forwardemail.net
++X-ForwardEmail-Version: 0.4.40
++X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
++ 149.28.215.223
++X-ForwardEmail-ID: 65a8d11ed66eecd94fbb691a
++
++Some ethernet PHY require being reset before a phy-id can be read back
++on the MDIO bus. This can result in the following message being show
++on e.g. a Radxa ROCK Pi E v1.21 with a RTL8211F ethernet PHY.
++
++  Could not get PHY for ethernet@ff540000: addr -1
++
++Add support to designware ethernet driver to reset eth phy by calling
++the eth phy uclass function eth_phy_set_mdio_bus(). The call use NULL
++as bus parameter to not set a shared mdio bus reference that would be
++freed when probe fails. Also add a eth_phy_get_addr() call to try and
++get the phy addr from DT when DM_MDIO is disabled.
++
++This help fix ethernet on Radxa ROCK Pi E v1.21:
++
++  => mdio list
++  ethernet@ff540000:
++  1 - RealTek RTL8211F <--> ethernet@ff540000
++
++Upstream-Status: Submitted
++Reported-by: Trevor Woerner <twoerner@gmail.com>
++Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
++---
++ drivers/net/designware.c | 7 +++++++
++ 1 file changed, 7 insertions(+)
++
++diff --git a/drivers/net/designware.c b/drivers/net/designware.c
++index a174344b3ef5..9aa5d8a1409e 100644
++--- a/drivers/net/designware.c
+++++ b/drivers/net/designware.c
++@@ -13,6 +13,7 @@
++ #include <cpu_func.h>
++ #include <dm.h>
++ #include <errno.h>
+++#include <eth_phy.h>
++ #include <log.h>
++ #include <miiphy.h>
++ #include <malloc.h>
++@@ -576,6 +577,9 @@ static int dw_phy_init(struct dw_eth_dev *priv, void *dev)
++ 	struct phy_device *phydev;
++ 	int ret;
++ 
+++	if (IS_ENABLED(CONFIG_DM_ETH_PHY))
+++		eth_phy_set_mdio_bus(dev, NULL);
+++
++ #if IS_ENABLED(CONFIG_DM_MDIO)
++ 	phydev = dm_eth_phy_connect(dev);
++ 	if (!phydev)
++@@ -583,6 +587,9 @@ static int dw_phy_init(struct dw_eth_dev *priv, void *dev)
++ #else
++ 	int phy_addr = -1;
++ 
+++	if (IS_ENABLED(CONFIG_DM_ETH_PHY))
+++		phy_addr = eth_phy_get_addr(dev);
+++
++ #ifdef CONFIG_PHY_ADDR
++ 	phy_addr = CONFIG_PHY_ADDR;
++ #endif
++-- 
++2.43.0
++
++
+diff --git a/recipes-bsp/u-boot/files/PATCH_2-2_rockchip_rk3328-rock-pi-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch b/recipes-bsp/u-boot/files/PATCH_2-2_rockchip_rk3328-rock-pi-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch
+new file mode 100644
+index 000000000000..c4afce401655
+--- /dev/null
++++ b/recipes-bsp/u-boot/files/PATCH_2-2_rockchip_rk3328-rock-pi-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch
+@@ -0,0 +1,65 @@
++From: Jonas Karlman <jonas@kwiboo.se>
++To: Kever Yang <kever.yang@rock-chips.com>, Ramon Fried
++ <rfried.dev@gmail.com>, Joe Hershberger <joe.hershberger@ni.com>, Simon
++ Glass <sjg@chromium.org>, Banglang Huang <banglang.huang@foxmail.com>
++Cc: Trevor Woerner <twoerner@gmail.com>, u-boot@lists.denx.de, Jonas
++ Karlman <jonas@kwiboo.se>
++Subject: [PATCH 2/2] rockchip: rk3328-rock-pi-e: Enable DM_ETH_PHY and PHY_REALTEK
++Date: Thu, 18 Jan 2024 07:19:46 +0000
++Message-ID: <20240118071949.927089-3-jonas@kwiboo.se>
++X-Mailer: git-send-email 2.43.0
++In-Reply-To: <20240118071949.927089-1-jonas@kwiboo.se>
++References: <20240118071949.927089-1-jonas@kwiboo.se>
++MIME-Version: 1.0
++Content-Transfer-Encoding: 8bit
++X-Report-Abuse-To: abuse@forwardemail.net
++X-Report-Abuse: abuse@forwardemail.net
++X-Complaints-To: abuse@forwardemail.net
++X-ForwardEmail-Version: 0.4.40
++X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
++ 149.28.215.223
++X-ForwardEmail-ID: 65a8d121d66eecd94fbb6928
++
++Enable the DM_ETH_PHY and PHY_REALTEK now that the designware ethernet
++driver call eth_phy_set_mdio_bus() to assist with resetting the eth PHY
++during probe.
++
++Fixes ethernet on the v1.21 hw revision of Radxa ROCK Pi E:
++
++  => mdio list
++  ethernet@ff540000:
++  1 - RealTek RTL8211F <--> ethernet@ff540000
++  => net list
++  eth0 : ethernet@ff540000 86:e0:c0:ea:fa:a9 active
++  eth1 : ethernet@ff550000 86:e0:c0:ea:fa:a8
++  => dhcp
++  Speed: 1000, full duplex
++  BOOTP broadcast 1
++  BOOTP broadcast 2
++  BOOTP broadcast 3
++  DHCP client bound to address 192.168.1.114 (1004 ms)
++
++Upstream-Status: Submitted
++Reported-by: Trevor Woerner <twoerner@gmail.com>
++Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
++---
++ configs/rock-pi-e-rk3328_defconfig | 2 ++
++ 1 file changed, 2 insertions(+)
++
++diff --git a/configs/rock-pi-e-rk3328_defconfig b/configs/rock-pi-e-rk3328_defconfig
++index c0375beffec3..6dda900a9b42 100644
++--- a/configs/rock-pi-e-rk3328_defconfig
+++++ b/configs/rock-pi-e-rk3328_defconfig
++@@ -76,6 +76,8 @@ CONFIG_SYS_I2C_ROCKCHIP=y
++ CONFIG_MISC=y
++ CONFIG_MMC_DW=y
++ CONFIG_MMC_DW_ROCKCHIP=y
+++CONFIG_PHY_REALTEK=y
+++CONFIG_DM_ETH_PHY=y
++ CONFIG_ETH_DESIGNWARE=y
++ CONFIG_GMAC_ROCKCHIP=y
++ CONFIG_PHY_ROCKCHIP_INNO_USB2=y
++-- 
++2.43.0
++
++
+diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
+index dce4f32d356a..8de93303421e 100644
+--- a/recipes-bsp/u-boot/u-boot%.bbappend
++++ b/recipes-bsp/u-boot/u-boot%.bbappend
+@@ -1,3 +1,9 @@
++FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
++SRC_URI += " \
++	file://PATCH_1-2_net_designware_Reset_eth_phy_before_phy_connect.patch \
++	file://PATCH_2-2_rockchip_rk3328-rock-pi-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch \
++	"
++
+ # various machines require the pyelftools library for parsing dtb files
+ DEPENDS:append = " python3-pyelftools-native"
+ DEPENDS:append:rk3308 = " u-boot-tools-native"
+-- 
+2.43.0.76.g1a87c842ece3
+
 
