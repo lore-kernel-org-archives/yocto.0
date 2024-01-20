@@ -1,108 +1,219 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B498C47258
-	for <webhook@archiver.kernel.org>; Sat, 20 Jan 2024 12:03:36 +0000 (UTC)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
- by mx.groups.io with SMTP id smtpd.web11.20744.1705752209210926845
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DB60CC47258
+	for <webhook@archiver.kernel.org>; Sat, 20 Jan 2024 17:19:17 +0000 (UTC)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+ by mx.groups.io with SMTP id smtpd.web10.27906.1705771147318854271
  for <yocto@lists.yoctoproject.org>;
- Sat, 20 Jan 2024 04:03:29 -0800
+ Sat, 20 Jan 2024 09:19:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Flegd9SH;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.43, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33921b8988fso1293557f8f.3
-        for <yocto@lists.yoctoproject.org>; Sat, 20 Jan 2024 04:03:28 -0800 (PST)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=aP6rKzI3;
+ spf=pass (domain: smile.fr, ip: 209.85.167.50, mailfrom: yoann.congal@smile.fr)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50edf4f478eso2322916e87.3
+        for <yocto@lists.yoctoproject.org>; Sat, 20 Jan 2024 09:19:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1705752207; x=1706357007; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vVGF71cPnTDPZGA15BQB7K4kzttlAIuBM9DklztmrX4=;
-        b=Flegd9SHy+UZ4FEe6Q0Uml4Rz0rv+xj6zFRzECU6uuBv2p0HAqT5QtipEWPAevm5EQ
-         0pmF9Jq5Fv4q0FtPEIX5didKa1FLOy6lWWrLCwFAzTIeqo5A0/zTiXSZl2O1y7/PovEq
-         hcMRw04KL6y6PfvaI1kDbt8v5xoH+JPCLJ3bM=
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1705771145; x=1706375945; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2YgJ0315MaLr1O9JtRtkdGotbuY1YPHpBWsHGEMaIL0=;
+        b=aP6rKzI3ePlWNEkka7Kqt9OaseJjWkC6yvoEk0v6sR8sEUAV6I/JfYTUB3XNlAWgOc
+         pqi6y9SsMikID4ABbA/+HgYyBjBGePeDd4LCUP99/3AR4lneo/c+juQDKjY4e4xOCWFg
+         SRs76YVVcWuQ+AEYLmp94c4bzk1enkwpP3xb2xSIKOEA14fmjwBmx2VtXU2ZUNkE9xTb
+         OnYCABOs5377rVo4+yn+BAll7zm9BC97n+p+EHsVwwmI8g1H1rAfR3GIFnH6/hz4yTWS
+         Gz+9lWO6JLYwlDf7eIQxVwpb/OD/0L5uCmSxxWSolNIuFIM8Pwu6t8uEhbtxhb+CWdkS
+         r3rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705752207; x=1706357007;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id
+        d=1e100.net; s=20230601; t=1705771145; x=1706375945;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vVGF71cPnTDPZGA15BQB7K4kzttlAIuBM9DklztmrX4=;
-        b=gYDA2aySdr5GNB84gJHg4jKQlVSD327e3PYexl3qegqbauxTmHu6HvMO5AUQZzgULL
-         JTotxrgPwpeqYRRsKbp7sTLAS1W8/dK+DFOU17IRToYh1LRAp9im2bTshhGd0dgMj2HQ
-         WAT2ToqTn+DdnF7F1iY3NWf81YCK3saLr3wGEuXykFgu/u8eVkeXAMutzB/p1pVcVyZi
-         ED9WmWIab3nF4+21+wY6FH/7JqRPwhcYQerCu6nIngzL6GPlkUEKuPvTj5Tjn2ODTKlA
-         byBmq5Cwc45tlswScnxnJzHVHOhIMkTxkCxI0kxpNykI4FzX5pt/7D+OSNUs8Ry4Q0wg
-         y+wQ==
-X-Gm-Message-State: AOJu0Yy6EfH+n7MuYsvgJ9zVNF2ohBwu6Y9n53HjBj7wtHlTlUm9LvDI
-	RsC8lhf3ewLymKM2Lbr8RI+M7+1nt9Fw9NTK80q5FZsVstw75xwSOtEtHRWb+q7dhTodbVL5KO9
-	p
-X-Google-Smtp-Source: AGHT+IER6m7vFZFcu2x1qP6QENc9yqP7IWaHUpndX66Kwq5/HTic5EgGkf6mu+WMHxQX0rEZNIH3zA==
-X-Received: by 2002:a5d:4c43:0:b0:336:a04b:e2c1 with SMTP id n3-20020a5d4c43000000b00336a04be2c1mr721182wrt.98.1705752207357;
-        Sat, 20 Jan 2024 04:03:27 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:4a61:f8ad:d942:3289? ([2001:8b0:aba:5f3c:4a61:f8ad:d942:3289])
-        by smtp.gmail.com with ESMTPSA id g18-20020adff3d2000000b00337f722e5ccsm4216245wrp.65.2024.01.20.04.03.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Jan 2024 04:03:26 -0800 (PST)
-Message-ID: <c40f5da7967c94b779572de50bbbc5c0b834c24f.camel@linuxfoundation.org>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: meta-agl
- now needs meta-oe
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org, alexandre.belloni@bootlin.com
-Date: Sat, 20 Jan 2024 12:03:26 +0000
-In-Reply-To: <20240118123247.587100-1-alexandre.belloni@bootlin.com>
-References: <20240118123247.587100-1-alexandre.belloni@bootlin.com>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0-1 
+        bh=2YgJ0315MaLr1O9JtRtkdGotbuY1YPHpBWsHGEMaIL0=;
+        b=J68/4pgvT2JWKy6rpr6Rgx5kG+yeB8wXE2xqGEGsMi5Pfd6lsCnBuxRVDFA7OYmax9
+         PpDubBeIJRCwteHF2jKfsYeGlr5N/FVVhcb1eg9uZKpBreshqqZBT6TVfwlEcp4rY1UB
+         vTpchUN9m89haXYKjyN+/y5V/HvhfcnFZrgCyuXTtg1XjJVh7HbKPK48gaSZKWGgPNx9
+         7ovWvCHFfoP3CH1XlcAuU321sSx/7KJsuTJhEphk2FOizOfrhUM+v0StAGJQOs/N+5fE
+         y7Zb+nYGpgEj6uEyRC1Hk5QCfc58838+uNrjnIyENvRhKKmoAPuZ8TQxmmcFsUl/jIwQ
+         Jj9A==
+X-Gm-Message-State: AOJu0YwWHivPld+54KpLgYWJZGtq5OdKN1t6HEqNHbeRvAG7BUQEy1yD
+	DPzYjNtARWfxvB+nVsIxkUodohlJqIQqUME+J0RWnZKcHtCwisgpQ2AEUFYnFUgsW9rDMXsyCrT
+	6MakyPIbjK9jpynwW0UhOZrJwCcLhXNicKABcERpqddmR0zmZIriZDw==
+X-Google-Smtp-Source: AGHT+IHzSnuHUUEgj58rwMk+SXaiaREW0u/GH5da+YEzqa0/OLzHWL6KSN08fB1dKeLs96pT/aVSOC0dhJ5UwB3LaI8=
+X-Received: by 2002:a05:6512:783:b0:50f:21e2:b346 with SMTP id
+ x3-20020a056512078300b0050f21e2b346mr190724lfr.129.1705771144839; Sat, 20 Jan
+ 2024 09:19:04 -0800 (PST)
 MIME-Version: 1.0
+References: <20240108133437.2753194-1-richard.purdie@linuxfoundation.org>
+In-Reply-To: <20240108133437.2753194-1-richard.purdie@linuxfoundation.org>
+From: Yoann CONGAL <yoann.congal@smile.fr>
+Date: Sat, 20 Jan 2024 18:18:38 +0100
+Message-ID: <CAMSfU+57Knz24xXrLdbdrx4N3eDZojQNgPHszh0u_d7AGoVTUQ@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder2] [PATCH] schedulers: Drop mickledore
+ for meta-oe/layer-checks
+To: yocto@lists.yoctoproject.org, richard.purdie@linuxfoundation.org
+Content-Type: multipart/alternative; boundary="0000000000002818e7060f63cb4d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 20 Jan 2024 12:03:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62204
+ <yocto@lists.yoctoproject.org>; Sat, 20 Jan 2024 17:19:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62205
 
-On Thu, 2024-01-18 at 13:32 +0100, Alexandre Belloni via
-lists.yoctoproject.org wrote:
-> From: Alexandre Belloni <alexandre.belloni@bootlin.com>
->=20
-> rng-tools has been moved to meta-oe and is a dependency of packagegroup-a=
-gl-core-boot
->=20
-> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+--0000000000002818e7060f63cb4d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Le lun. 8 janv. 2024 =C3=A0 14:34, Richard Purdie <
+richard.purdie@linuxfoundation.org> a =C3=A9crit :
+
+> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 > ---
->  config.json | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->=20
-> diff --git a/config.json b/config.json
-> index 4686068dc5b6..b92a4f237c96 100644
-> --- a/config.json
-> +++ b/config.json
-> @@ -646,9 +646,10 @@
->              }
->          },
->          "meta-agl-core" : {
-> -            "NEEDREPOS" : ["poky", "meta-agl"],
-> +            "NEEDREPOS" : ["poky", "meta-openembedded", "meta-agl"],
->              "ADDLAYER" : [
-> -                "${BUILDDIR}/../meta-agl/meta-agl-core"
-> +                "${BUILDDIR}/../meta-agl/meta-agl-core",
-> +                "${BUILDDIR}/../meta-openembedded/meta-oe"
->              ],
->              "DISTRO" : "poky-agl",
->              "BUILDINFO" : true,
+>  schedulers.py | 6 ------
+>  1 file changed, 6 deletions(-)
+>
 
-We've decided not to do this for now so I'm not taking this.
+This patch has been merged but not applied to the scheduler config maybe ?
+meta-oe-mirror still run on Mickledore 12 days after this patch :
+https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/215
 
-Cheers,
 
-Richard
+> diff --git a/schedulers.py b/schedulers.py
+> index 4d7522a9..b8ff44b5 100644
+> --- a/schedulers.py
+> +++ b/schedulers.py
+> @@ -487,12 +487,6 @@
+> schedulers.append(sched.Nightly(name=3D'nightly-check-layer-nanbield',
+> properties=3D
+>  schedulers.append(sched.Nightly(name=3D'nightly-meta-oe-mirror-nanbield'=
+,
+> properties=3Dparent_default_props('meta-oe-mirror', 'nanbield'),
+>                    builderNames=3D['meta-oe-mirror'], dayOfWeek=3D[3, 7],
+> hour=3D2, minute=3D0, codebases =3D {'' : {'branch' : 'nanbield'}}))
+>
+> -# Run check-layer-nightly amd meta-oe-mirror twice a week for mickledore
+> -schedulers.append(sched.Nightly(name=3D'nightly-check-layer-mickledore',
+> properties=3Dparent_default_props('check-layer-nightly', 'mickledore'),
+> -                  builderNames=3D['check-layer-nightly'], dayOfWeek=3D[2=
+, 5],
+> hour=3D2, minute=3D0, codebases =3D {'' : {'branch' : 'mickledore'}}))
+> -schedulers.append(sched.Nightly(name=3D'nightly-meta-oe-mirror-mickledor=
+e',
+> properties=3Dparent_default_props('meta-oe-mirror', 'mickledore'),
+> -                  builderNames=3D['meta-oe-mirror'], dayOfWeek=3D[2, 5],
+> hour=3D2, minute=3D0, codebases =3D {'' : {'branch' : 'mickledore'}}))
+> -
+>  # Run check-layer-nightly and meta-oe-mirror twice a week for kirkstone
+>  schedulers.append(sched.Nightly(name=3D'nightly-check-layer-kirkstone',
+> properties=3Dparent_default_props('check-layer-nightly', 'kirkstone'),
+>                    builderNames=3D['check-layer-nightly'], dayOfWeek=3D[0=
+, 3],
+> hour=3D2, minute=3D0, codebases =3D {'' : {'branch' : 'kirkstone'}}))
+> --
+> 2.39.2
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62101):
+> https://lists.yoctoproject.org/g/yocto/message/62101
+> Mute This Topic: https://lists.yoctoproject.org/mt/103596671/4316185
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe:
+> https://lists.yoctoproject.org/g/yocto/leave/7785375/4316185/289819188/xy=
+zzy
+> [yoann.congal@smile.fr]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D
+
+--=20
+Yoann Congal
+Smile ECS - Tech expert
+
+--0000000000002818e7060f63cb4d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,<br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">Le=C2=A0lun. 8 janv. 2024 =C3=A0=C2=A014:34, =
+Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">ri=
+chard.purdie@linuxfoundation.org</a>&gt; a =C3=A9crit=C2=A0:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex">Signed-off-by: Richard Purdie =
+&lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_blank"=
+>richard.purdie@linuxfoundation.org</a>&gt;<br>
+---<br>
+=C2=A0schedulers.py | 6 ------<br>
+=C2=A01 file changed, 6 deletions(-)<br></blockquote><div><br></div><div>Th=
+is patch has been merged but not applied to the scheduler config maybe ?=C2=
+=A0</div><div>meta-oe-mirror still run on Mickledore 12 days after this pat=
+ch : <a href=3D"https://autobuilder.yoctoproject.org/typhoon/#/builders/156=
+/builds/215">https://autobuilder.yoctoproject.org/typhoon/#/builders/156/bu=
+ilds/215</a></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">
+diff --git a/schedulers.py b/schedulers.py<br>
+index 4d7522a9..b8ff44b5 100644<br>
+--- a/schedulers.py<br>
++++ b/schedulers.py<br>
+@@ -487,12 +487,6 @@ schedulers.append(sched.Nightly(name=3D&#39;nightly-ch=
+eck-layer-nanbield&#39;, properties=3D<br>
+=C2=A0schedulers.append(sched.Nightly(name=3D&#39;nightly-meta-oe-mirror-na=
+nbield&#39;, properties=3Dparent_default_props(&#39;meta-oe-mirror&#39;, &#=
+39;nanbield&#39;),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0builde=
+rNames=3D[&#39;meta-oe-mirror&#39;], dayOfWeek=3D[3, 7], hour=3D2, minute=
+=3D0, codebases =3D {&#39;&#39; : {&#39;branch&#39; : &#39;nanbield&#39;}})=
+)<br>
+<br>
+-# Run check-layer-nightly amd meta-oe-mirror twice a week for mickledore<b=
+r>
+-schedulers.append(sched.Nightly(name=3D&#39;nightly-check-layer-mickledore=
+&#39;, properties=3Dparent_default_props(&#39;check-layer-nightly&#39;, &#3=
+9;mickledore&#39;),<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 builderName=
+s=3D[&#39;check-layer-nightly&#39;], dayOfWeek=3D[2, 5], hour=3D2, minute=
+=3D0, codebases =3D {&#39;&#39; : {&#39;branch&#39; : &#39;mickledore&#39;}=
+}))<br>
+-schedulers.append(sched.Nightly(name=3D&#39;nightly-meta-oe-mirror-mickled=
+ore&#39;, properties=3Dparent_default_props(&#39;meta-oe-mirror&#39;, &#39;=
+mickledore&#39;),<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 builderName=
+s=3D[&#39;meta-oe-mirror&#39;], dayOfWeek=3D[2, 5], hour=3D2, minute=3D0, c=
+odebases =3D {&#39;&#39; : {&#39;branch&#39; : &#39;mickledore&#39;}}))<br>
+-<br>
+=C2=A0# Run check-layer-nightly and meta-oe-mirror twice a week for kirksto=
+ne<br>
+=C2=A0schedulers.append(sched.Nightly(name=3D&#39;nightly-check-layer-kirks=
+tone&#39;, properties=3Dparent_default_props(&#39;check-layer-nightly&#39;,=
+ &#39;kirkstone&#39;),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0builde=
+rNames=3D[&#39;check-layer-nightly&#39;], dayOfWeek=3D[0, 3], hour=3D2, min=
+ute=3D0, codebases =3D {&#39;&#39; : {&#39;branch&#39; : &#39;kirkstone&#39=
+;}}))<br>
+-- <br>
+2.39.2<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#62101): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/62101" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/62101</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/103596671/431=
+6185" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/103596671/4316185</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/leave/778537=
+5/4316185/289819188/xyzzy" rel=3D"noreferrer" target=3D"_blank">https://lis=
+ts.yoctoproject.org/g/yocto/leave/7785375/4316185/289819188/xyzzy</a> [<a h=
+ref=3D"mailto:yoann.congal@smile.fr" target=3D"_blank">yoann.congal@smile.f=
+r</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D</blockquote></div><span class=
+=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_s=
+ignature"><div dir=3D"ltr"><font face=3D"Raleway, regular">Yoann Congal</fo=
+nt><div><font face=3D"Raleway, regular">Smile ECS - Tech expert<br></font><=
+/div></div></div></div>
+
+--0000000000002818e7060f63cb4d--
 
