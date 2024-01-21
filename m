@@ -1,175 +1,183 @@
-Return-Path: <abhisit.sangjan@gmail.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8704EC47258
-	for <webhook@archiver.kernel.org>; Sun, 21 Jan 2024 02:51:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 12374C47422
+	for <webhook@archiver.kernel.org>; Sun, 21 Jan 2024 04:46:31 +0000 (UTC)
 Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
- by mx.groups.io with SMTP id smtpd.web11.39934.1705805451578988089
+ by mx.groups.io with SMTP id smtpd.web10.41674.1705812384629167310
  for <yocto@lists.yoctoproject.org>;
- Sat, 20 Jan 2024 18:50:51 -0800
+ Sat, 20 Jan 2024 20:46:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=ih/RyOQV;
- spf=pass (domain: gmail.com, ip: 209.85.222.181, mailfrom: abhisit.sangjan@gmail.com)
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-783195e57c7so140415085a.2
-        for <yocto@lists.yoctoproject.org>; Sat, 20 Jan 2024 18:50:51 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=NQvnhmLz;
+ spf=pass (domain: gmail.com, ip: 209.85.222.181, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-783137d7fb4so140455985a.2
+        for <yocto@lists.yoctoproject.org>; Sat, 20 Jan 2024 20:46:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705805450; x=1706410250; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:sender:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ajra1NtSpLV3S2UYJYLrjw7/HLpbskfQyowqj2EZ0hQ=;
-        b=ih/RyOQVc2Ay2J4ZOR613Y7HrALQvFrrBXAya9WPrsedBsE9FGLHGn340vEg06P23/
-         hDKphpjXQ548IeuB2ueKZPLY2VH3r+k/AaPX6VcebW3Jxz5yRA1960pfd32CFNKNWLd9
-         uhTQx0dhsUiWVbo8pZbqL+cBTS4RMWg1esB1ieg1yakUTIyWqfOrKHgtaolfoFUPFzf2
-         ZR2ViJhmwqQq5iAuJQ+n1ieOirUR5tCHzyYTdj+4z+ApMwqKf8qm8+AI7l98Onz8aUF+
-         hU/ANqpbncUh6sgKLmcwOZQ7NFiYctZEBy8aw7hnAbdbnVpPfvkXcLrh+5fdrLHxCXM0
-         Qeyw==
+        d=gmail.com; s=20230601; t=1705812383; x=1706417183; darn=lists.yoctoproject.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GQbRxquo6Xrr5vf4Z9qdEM60hDkSmpgPxzXZvFGPNfs=;
+        b=NQvnhmLzalICGsU/UNsSQicfTYEuen1MGmm0gwZmiti2tgMz72TrQW+ZFLIgHObmdS
+         pPUgD6BTxGf/YgKkPzwExbf68Cv+9FoszWRtnDlF6WF2B1Gapm3txdDKmMpuo8Nu7aBY
+         CXj1b2izUhRhS6M8J89rNxfvuG5+AJFvFtwbfzGv+zoy5kIDfZwVGh3YtiM7P37q2VRv
+         70GpwVjrEjfemmcczLzTcqyLYrEqylIQ0u6oY4i6nRgsJhFnhOJUclk+8EdOstu9s6Tx
+         j5jsCsyu1SdAlXzXackiAl0XEDpvqUe1zRu3wGdvJJPVELkFI/XH6aLvq1j5ZCvNCd9X
+         tEgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705805450; x=1706410250;
-        h=cc:to:subject:message-id:date:from:sender:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ajra1NtSpLV3S2UYJYLrjw7/HLpbskfQyowqj2EZ0hQ=;
-        b=mgSZAI+nvL/Tm2q9Hyy7CQ9HvZK0KoJtiHVIzZso3R04amoeopPN4p5MoUIdjoLIi0
-         aC2B5nENBKw8A1/aVb9wSkOBSyL7CH3RorYb1/iiZcnp6ckEYtlc/Pu3PHJuEM9K2ml+
-         o0nE36CyYh8eBYZcPjAvNjIrHBNiQzR4MDJXX5x1wimv0cv/eMdFMOhaPZ/kApW8YqK4
-         YdisV6bwIfSpiO9rlNR3uVA0WbNgf7RatO+i8GbYpuYRWyIFq1kOL68P9Ga/OmyukDwP
-         nCRry6Nbs3Qgk5d6OR8nEGiwZkEa2M1kZQXSxV/jjVYFrrqZEh5lfmESvpwS7Hx/JKIG
-         XhTA==
-X-Gm-Message-State: AOJu0Yx3Qm4y7gh1tMst/imh/oCNP5M/JBPw24+DCMk9Qmi/7SKPtNdg
-	6Xai4d3hHFrnuoP9uTVtuOMBf1/R01cxDJBI5SQFZnkqM9t0z7qGxWXeG4sVGm2zgEPD3R9Lnct
-	7lmLLDu9npXJXnl0fEB7Ulox083GnY7x/za8=
-X-Google-Smtp-Source: AGHT+IE/yAx2Qg7s5u1P4VgEo9t19EXJTTur+7jBPaN5YPRw8I5sYwpG7TkWEHuKwxkhLZWUSMPFZ/CrRh3paZ3pIM4=
-X-Received: by 2002:a05:620a:22ce:b0:783:9310:c71 with SMTP id
- o14-20020a05620a22ce00b0078393100c71mr1594809qki.31.1705805450648; Sat, 20
- Jan 2024 18:50:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20231221044048.1959-1-abhisit.dev@gmail.com> <20240121024220.GB17457@localhost>
-In-Reply-To: <20240121024220.GB17457@localhost>
-Sender: s.abhisit@gmail.com
-X-Google-Sender-Delegation: s.abhisit@gmail.com
-From: Abhisit Sangjan <abhisit.sangjan@gmail.com>
-Date: Sun, 21 Jan 2024 09:50:40 +0700
-X-Google-Sender-Auth: zMgyn5YOSvr4DzjcZSvvtIwTmCw
-Message-ID: <CAFRgqKGEpSMy-twsJ+OfS0hQSS3w-vasUWg74WVcJBTrO9Nf2Q@mail.gmail.com>
-Subject: Re: [meta-rockchip] [PATCH v3 1/1] orangepi-5-plus: Support Orange Pi
- 5 Plus single-board computer
-To: Trevor Woerner <twoerner@gmail.com>
+        d=1e100.net; s=20230601; t=1705812383; x=1706417183;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GQbRxquo6Xrr5vf4Z9qdEM60hDkSmpgPxzXZvFGPNfs=;
+        b=FLoKhhSqQ7chwI/qTYuaE7nHoyewRBJ3kRbpI5m1fJuLQ3SLJe3I9pQ7OEiDKWlWFQ
+         DzEhkrzAShor0XVhK/4oLpcjW/3g627XZi5LJlpvU/t0hkf87q73nVVqtjVEY4jGqddV
+         i0fnmodHj8KUyn9EcMQMXHl50r3AMZAzrqeHis45RI43O0doFlyCrDb2+PyJhfm48qUn
+         XM7WFmfzmEHBZ3a6Au0kQ8Y9emE/ThyTFD20RVTf1wKJQ6QFPtGx5KxFpBnPLY6meEOm
+         uNu2omJchN1veVTjSxA8rsBb7wdSSwJ4hY1WNIz5Z8GafafKcR6DopwZJnpSjAE94WDU
+         YgcQ==
+X-Gm-Message-State: AOJu0YyOeiEE9rJwbtP3S33os2SqUaEKjm/kXMLNxg7wMJ2Ck6fnwAO4
+	Zf7Ju0HbucjMa1QdynhlxH+7Ve54fTjIImNX0bK5aYLqb2EQeFxQ
+X-Google-Smtp-Source: AGHT+IEch9gJNHaYgQI1ScasCoDxiJM0reqC88Cpd4eS0/oLk8WiDqsRMpUg4L1gNnJ8hbhsGmnpng==
+X-Received: by 2002:a05:6214:20c6:b0:681:8851:9e80 with SMTP id 6-20020a05621420c600b0068188519e80mr2794759qve.89.1705812383645;
+        Sat, 20 Jan 2024 20:46:23 -0800 (PST)
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id cu6-20020a05621417c600b0068200592351sm1209591qvb.89.2024.01.20.20.46.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Jan 2024 20:46:22 -0800 (PST)
+Date: Sat, 20 Jan 2024 23:46:20 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Stephen Chen <stephen@radxa.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000f1202c060f6bc704"
+Subject: Re: [meta-rockchip] [PATCH] machines: correct rk3066/rk3188/rk3288
+ kernel devicetree path
+Message-ID: <20240121044620.GA9441@localhost>
+References: <20240120102520.889698-1-stephen@radxa.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240120102520.889698-1-stephen@radxa.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 21 Jan 2024 02:51:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62210
+ <yocto@lists.yoctoproject.org>; Sun, 21 Jan 2024 04:46:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62211
 
---000000000000f1202c060f6bc704
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Sat 2024-01-20 @ 06:25:20 PM, Stephen Chen wrote:
+> Since mainline linux v6.5-rc1, this commit 724ba6751532
+> ("ARM: dts: Move .dts files to vendor sub-directories")
+> was added.
+> 
+> Link: https://github.com/torvalds/linux/commit/724ba6751532055db75992fc6ae21c3e322e94a7
+> 
+> Signed-off-by: Stephen Chen <stephen@radxa.com>
+> ---
+>  conf/machine/firefly-rk3288.conf   | 2 +-
+>  conf/machine/marsboard-rk3066.conf | 2 +-
+>  conf/machine/radxarock.conf        | 2 +-
+>  conf/machine/rock2-square.conf     | 2 +-
+>  conf/machine/tinker-board-s.conf   | 2 +-
+>  conf/machine/tinker-board.conf     | 2 +-
+>  conf/machine/vyasa-rk3288.conf     | 2 +-
+>  7 files changed, 7 insertions(+), 7 deletions(-)
 
-Thank you for your time to support me!
-I will support you to contribute this kind of the single board computer.
+When I build I get:
 
-Thanks!
+	| /opt/oe/configs/z/build-master/tinker-board/layers/openembedded-core/scripts/lib/wic/engine.py:362: SyntaxWarning: invalid escape sequence '\/'
+	|   abs_path = re.sub('\/\/+', '/', path)
+	| INFO: Creating image(s)...
+	| 
+	| ERROR: _exec_cmd: install -m 0644 -D /z/build-master/tinker-board/build/tmp-glibc/deploy/images/tinker-board/rockchip/rk3288-tinker.dtb /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/tmp-wic/boot.6/rockchip/rk3288-tinker.dtb returned '1' instead of 0
+	| output: install: cannot stat '/z/build-master/tinker-board/build/tmp-glibc/deploy/images/tinker-board/rockchip/rk3288-tinker.dtb': No such file or directory
+	| 
+	| WARNING: /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/temp/run.do_image_wic.449:160 exit 1 from 'BUILDDIR="/z/build-master/tinker-board/build" PSEUDO_UNLOAD=1 wic create "$wks" --vars "/z/build-master/tinker-board/build/tmp-glibc/sysroots/tinker-board/imgdata/" -e "core-image-base" -o "$build_wic/" -w "$tmp_wic"'
+	| WARNING: Backtrace (BB generated script):
+	|       #1: do_image_wic, /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/temp/run.do_image_wic.449, line 160
+	|       #2: main, /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/temp/run.do_image_wic.449, line 177
+	ERROR: Task (/opt/oe/configs/z/build-master/tinker-board/layers/openembedded-core/meta/recipes-core/images/core-image-base.bb:do_image_wic) failed with exit code '1'
 
-On Sun, 21 Jan 2024 at 09:42, Trevor Woerner <twoerner@gmail.com> wrote:
-
-> On Thu 2023-12-21 @ 11:40:48 AM, Abhisit Sangjan wrote:
-> > From: Abhisit Sangjan <abhisit.sangjan@gmail.com>
-> >
-> > Being merged when the u-boot version is 2024.01-rc5 or newer and the
-> Linux Kernel version is 6.7 or newer
-> >
-> > Orange Pi 5 Plus is RK3588 based SBC featuring:
-> > - 2x 2.5G ethernet ports =E2=80=93 onboard NIC hooked to PCIe 2.0 inter=
-face
-> > - 2x USB 2.0 host ports
-> > - 2x USB 3.0 host ports (exposed over USB 3.0 hub)
-> > - Type-C port featuring USB 2.0/3.0 and Alt-DP mode
-> > - PCIe 2.0/USB 2.0/I2S/I2C/UART on E.KEY socket
-> > - RTC
-> > - ES8388 on-board sound codec =E2=80=93 jack in/out, onboard mic, speak=
-er
-> amplifier
-> > - SPI NOR flash
-> > - RGB LED (R is always on)
-> > - IR receiver
-> > - PCIe 3.0 on the bottom for NVMe, etc.
-> > - 40pin GPIO header (with gpio, I2C, SPI, PWM, UART)
-> > - Power, recovery and Mask ROM buttons
-> > - 2x HDMI out, 1x HDMI in
-> > - Slots/connectors for eMMC, uSD card, fan, MIPI CSI/DSI
-> > - 4 GB, 8 GB, 16 GB and 32 GB of RAM
-> >
-> > Signed-off-by: Abhisit Sangjan <abhisit.sangjan@gmail.com>
-> > ---
-> >  README                                        |  1 +
-> >  conf/machine/orangepi-5-plus.conf             | 12 ++++++++++++
-> >  recipes-bsp/rkbin/rockchip-rkbin_git.bb       |  2 +-
-> >  recipes-kernel/linux/linux-yocto-dev.bbappend |  3 +++
-> >  4 files changed, 17 insertions(+), 1 deletion(-)
-> >  create mode 100644 conf/machine/orangepi-5-plus.conf
->
-> Tweaked and applied to meta-rockchip, master branch.
-> Thanks!
->
-
---000000000000f1202c060f6bc704
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Thank you for your time to support me!<br=
->I will support you to contribute this kind of the single board computer.<b=
-r><br>Thanks!</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Sun, 21 Jan 2024 at 09:42, Trevor Woerner &lt;<a href=3D"ma=
-ilto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex">On Thu 2023-12-21 @ 11:40:48 AM,=
- Abhisit Sangjan wrote:<br>
-&gt; From: Abhisit Sangjan &lt;<a href=3D"mailto:abhisit.sangjan@gmail.com"=
- target=3D"_blank">abhisit.sangjan@gmail.com</a>&gt;<br>
-&gt; <br>
-&gt; Being merged when the u-boot version is 2024.01-rc5 or newer and the L=
-inux Kernel version is 6.7 or newer<br>
-&gt; <br>
-&gt; Orange Pi 5 Plus is RK3588 based SBC featuring:<br>
-&gt; - 2x 2.5G ethernet ports =E2=80=93 onboard NIC hooked to PCIe 2.0 inte=
-rface<br>
-&gt; - 2x USB 2.0 host ports<br>
-&gt; - 2x USB 3.0 host ports (exposed over USB 3.0 hub)<br>
-&gt; - Type-C port featuring USB 2.0/3.0 and Alt-DP mode<br>
-&gt; - PCIe 2.0/USB 2.0/I2S/I2C/UART on E.KEY socket<br>
-&gt; - RTC<br>
-&gt; - ES8388 on-board sound codec =E2=80=93 jack in/out, onboard mic, spea=
-ker amplifier<br>
-&gt; - SPI NOR flash<br>
-&gt; - RGB LED (R is always on)<br>
-&gt; - IR receiver<br>
-&gt; - PCIe 3.0 on the bottom for NVMe, etc.<br>
-&gt; - 40pin GPIO header (with gpio, I2C, SPI, PWM, UART)<br>
-&gt; - Power, recovery and Mask ROM buttons<br>
-&gt; - 2x HDMI out, 1x HDMI in<br>
-&gt; - Slots/connectors for eMMC, uSD card, fan, MIPI CSI/DSI<br>
-&gt; - 4 GB, 8 GB, 16 GB and 32 GB of RAM<br>
-&gt; <br>
-&gt; Signed-off-by: Abhisit Sangjan &lt;<a href=3D"mailto:abhisit.sangjan@g=
-mail.com" target=3D"_blank">abhisit.sangjan@gmail.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 README=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 |=C2=A0 1 +<br>
-&gt;=C2=A0 conf/machine/orangepi-5-plus.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0| 12 ++++++++++++<br>
-&gt;=C2=A0 recipes-bsp/rkbin/<a href=3D"http://rockchip-rkbin_git.bb" rel=
-=3D"noreferrer" target=3D"_blank">rockchip-rkbin_git.bb</a>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0|=C2=A0 2 +-<br>
-&gt;=C2=A0 recipes-kernel/linux/linux-yocto-dev.bbappend |=C2=A0 3 +++<br>
-&gt;=C2=A0 4 files changed, 17 insertions(+), 1 deletion(-)<br>
-&gt;=C2=A0 create mode 100644 conf/machine/orangepi-5-plus.conf<br>
-<br>
-Tweaked and applied to meta-rockchip, master branch.<br>
-Thanks!<br>
-</blockquote></div></div>
-
---000000000000f1202c060f6bc704--
+> diff --git a/conf/machine/firefly-rk3288.conf b/conf/machine/firefly-rk3288.conf
+> index 3270bb9..6ff1be8 100644
+> --- a/conf/machine/firefly-rk3288.conf
+> +++ b/conf/machine/firefly-rk3288.conf
+> @@ -9,5 +9,5 @@
+>  require conf/machine/include/rk3288.inc
+>  require conf/machine/include/rockchip-wic.inc
+>  
+> -KERNEL_DEVICETREE = "rk3288-firefly.dtb"
+> +KERNEL_DEVICETREE = "rockchip/rk3288-firefly.dtb"
+>  UBOOT_MACHINE = "firefly-rk3288_defconfig"
+> diff --git a/conf/machine/marsboard-rk3066.conf b/conf/machine/marsboard-rk3066.conf
+> index 52fd256..36945e8 100644
+> --- a/conf/machine/marsboard-rk3066.conf
+> +++ b/conf/machine/marsboard-rk3066.conf
+> @@ -8,4 +8,4 @@
+>  
+>  require conf/machine/include/rk3066.inc
+>  
+> -KERNEL_DEVICETREE = "rk3066a-marsboard.dtb"
+> +KERNEL_DEVICETREE = "rockchip/rk3066a-marsboard.dtb"
+> diff --git a/conf/machine/radxarock.conf b/conf/machine/radxarock.conf
+> index 42d8848..6ad8474 100644
+> --- a/conf/machine/radxarock.conf
+> +++ b/conf/machine/radxarock.conf
+> @@ -9,4 +9,4 @@
+>  
+>  require conf/machine/include/rk3188.inc
+>  
+> -KERNEL_DEVICETREE = "rk3188-radxarock.dtb"
+> +KERNEL_DEVICETREE = "rockchip/rk3188-radxarock.dtb"
+> diff --git a/conf/machine/rock2-square.conf b/conf/machine/rock2-square.conf
+> index 46064ee..9468b9a 100644
+> --- a/conf/machine/rock2-square.conf
+> +++ b/conf/machine/rock2-square.conf
+> @@ -9,7 +9,7 @@
+>  require conf/machine/include/rk3288.inc
+>  
+>  SPL_BINARY = "u-boot-spl-dtb.bin"
+> -KERNEL_DEVICETREE = "rk3288-rock2-square.dtb"
+> +KERNEL_DEVICETREE = "rockchip/rk3288-rock2-square.dtb"
+>  UBOOT_MACHINE = "rock2_defconfig"
+>  
+>  # This board doesn't support the combined idbloader, so resort to the older
+> diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board-s.conf
+> index 870b9bc..3a65613 100644
+> --- a/conf/machine/tinker-board-s.conf
+> +++ b/conf/machine/tinker-board-s.conf
+> @@ -7,5 +7,5 @@
+>  
+>  require conf/machine/include/tinker.inc
+>  
+> -KERNEL_DEVICETREE = "rk3288-tinker-s.dtb"
+> +KERNEL_DEVICETREE = "rockchip/rk3288-tinker-s.dtb"
+>  UBOOT_MACHINE = "tinker-s-rk3288_defconfig"
+> diff --git a/conf/machine/tinker-board.conf b/conf/machine/tinker-board.conf
+> index 8fe5f63..ef1a1c1 100644
+> --- a/conf/machine/tinker-board.conf
+> +++ b/conf/machine/tinker-board.conf
+> @@ -7,5 +7,5 @@
+>  
+>  require conf/machine/include/tinker.inc
+>  
+> -KERNEL_DEVICETREE = "rk3288-tinker.dtb"
+> +KERNEL_DEVICETREE = "rockchip/rk3288-tinker.dtb"
+>  UBOOT_MACHINE = "tinker-rk3288_defconfig"
+> diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.conf
+> index 5b44257..52b4401 100644
+> --- a/conf/machine/vyasa-rk3288.conf
+> +++ b/conf/machine/vyasa-rk3288.conf
+> @@ -9,7 +9,7 @@ require conf/machine/include/rk3288.inc
+>  require conf/machine/include/rockchip-wic.inc
+>  
+>  KERNEL_IMAGETYPE = "uImage"
+> -KERNEL_DEVICETREE = "rk3288-vyasa.dtb"
+> +KERNEL_DEVICETREE = "rockchip/rk3288-vyasa.dtb"
+>  KERNEL_EXTRA_ARGS += "LOADADDR=0x02000000"
+>  
+>  UBOOT_MACHINE = "vyasa-rk3288_defconfig"
+> -- 
+> 2.34.1
+> 
 
