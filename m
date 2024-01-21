@@ -1,219 +1,90 @@
-Return-Path: <holger.sebert.ext@karlstorz.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2ADE0C47422
-	for <webhook@archiver.kernel.org>; Sun, 21 Jan 2024 18:57:55 +0000 (UTC)
-Received: from mx07-0040c702.pphosted.com (mx07-0040c702.pphosted.com [205.220.184.135])
- by mx.groups.io with SMTP id smtpd.web11.54138.1705863470900262920
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61092C47422
+	for <webhook@archiver.kernel.org>; Sun, 21 Jan 2024 22:51:56 +0000 (UTC)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+ by mx.groups.io with SMTP id smtpd.web11.59594.1705877507385572614
  for <yocto@lists.yoctoproject.org>;
- Sun, 21 Jan 2024 10:57:51 -0800
+ Sun, 21 Jan 2024 14:51:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@karlstorz.com header.s=S-DKIM-20210427 header.b=gI3Yk8Tr;
- spf=pass (domain: karlstorz.com, ip: 205.220.184.135, mailfrom: holger.sebert.ext@karlstorz.com)
-Received: from pps.filterd (m0267679.ppops.net [127.0.0.1])
-	by mx07-0040c702.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40LIqXXt026391
-	for <yocto@lists.yoctoproject.org>; Sun, 21 Jan 2024 18:57:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=karlstorz.com;
-	 h=from:to:subject:date:message-id:content-type
-	:content-transfer-encoding:mime-version; s=S-DKIM-20210427; bh=4
-	u9qS5nBCOfG22ilbA20xMQ8p1b09l5Gjin40b4v9k8=; b=gI3Yk8TrHPO1Vosnn
-	KTIdTitHpeZfE5Sr2H9ao7Hd8or8A8+sHoq/jO6SqvLxIXs6/tTwFpVVoRM9F5VY
-	HUiICRpDkSwTmuGgcJe+sG3TcajrSaToIxVE3m8soq1ptLLF1jgTt0IdJ2xBB9gF
-	WYJfmDSPsw3IrHMPIu4iI0LwjqyWk5NdlihWsCeTzdyBXe2/dFHQG6iEdSfxQxQI
-	/jPWPGWltCM2N3YqEfXZRTAFI4xi4uNgZFXdyduJYhelQISitq1YHUZoKH/xoEDh
-	aKawa3Muyn4WyPj9gZeUstTwXwAgbe4oW7XQGSIWIZLdbKnzdZ55V4RqqBoseods
-	68wDA==
-Received: from eur03-dba-obe.outbound.protection.outlook.com (mail-dbaeur03lp2169.outbound.protection.outlook.com [104.47.51.169])
-	by mx07-0040c702.pphosted.com (PPS) with ESMTPS id 3vr4a1384w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Sun, 21 Jan 2024 18:57:48 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YzYb/RWLoT7sISVQ1HnHvIvNL5QZlI1BSeIlxW0RWtT6tEDSK30oF0p0uXOqV6B9F+HxznTif548s4SuXljhBHTVSsDMEmS4C9BKgkCe9roGZchTwCfQ9Op/l9dUicNnueUzu8aCcewFFvooYf5TUnJCGeONGQOsYBXDm3O1GJTa07vNZ3TjyUtBqjxhwzAZeEPJJGfBMzNg/u1TnLBkWQQPHunGMOUCxPzQKYDHCiuttXUdShqLOjdAgmyjiw1TcEQrJuJW5coJ4yZchAP6aD/w7oBu57ZA3gFf8ZKgO45DUFd1NXF5xULB/4yB0ZzUSINgQvlc65h3hBnDF6DZKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4u9qS5nBCOfG22ilbA20xMQ8p1b09l5Gjin40b4v9k8=;
- b=koNpk1kJIINkVLPNvrX+yo4uS6VYgs4i1KT3uDnM9a90UR942lR4JzGqCG4yNYZXR1Uz5/oBmX8X/CI8saOS30oc6rxVYFM25OQJdbqGLEqo/XqVKyl5lIayFwdxrSt5gTD7kIkqaXlkaelcfzgj8fMRBVHazhG/9pMPnq0BvXYoR697EZJS0bPVuNUpGbhOYsqjiD7yszr9yPYJo8ghnV780F/BhMvmmKPj4xKD7z0gDKcT2TCTlNyxRyag4s4iHYYaDLE9z++Ibst6CUcM1+QNE/2/N/oQ5UIjlGO+6qqfrWNwcKeegZ8WRqUwqvO7ypVCt6zZZR+P58e51zQCcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=karlstorz.com; dmarc=pass action=none
- header.from=karlstorz.com; dkim=pass header.d=karlstorz.com; arc=none
-Received: from DU2PR01MB8717.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:2f8::19) by PA4PR01MB9922.eurprd01.prod.exchangelabs.com
- (2603:10a6:102:267::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.30; Sun, 21 Jan
- 2024 18:57:45 +0000
-Received: from DU2PR01MB8717.eurprd01.prod.exchangelabs.com
- ([fe80::c1b4:fc12:b79:3081]) by DU2PR01MB8717.eurprd01.prod.exchangelabs.com
- ([fe80::c1b4:fc12:b79:3081%3]) with mapi id 15.20.7202.028; Sun, 21 Jan 2024
- 18:57:45 +0000
-From: "Sebert, Holger.ext" <Holger.Sebert.ext@karlstorz.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Remove Python dependency from target package only
-Thread-Topic: Remove Python dependency from target package only
-Thread-Index: AQHaTJuZ6a4M9U6Bbke+ReAINArD8w==
-Date: Sun, 21 Jan 2024 18:57:45 +0000
-Message-ID: 
- <DU2PR01MB871782D4F3B6384568F20F99A4762@DU2PR01MB8717.eurprd01.prod.exchangelabs.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU2PR01MB8717:EE_|PA4PR01MB9922:EE_
-x-ms-office365-filtering-correlation-id: fc14cb6a-f864-4b88-3b69-08dc1ab2da90
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- +wXGxXz+TzaZPgOP5KI4is5zTjq9a+e6Pr2W5rwSLOJtR1BFmJAfiwXO5/RxNNGyTUi0z9WAGNs9wgjP/AdoK/SQztccpe5TcLCD1B4cuubRLrEvMK+zrxHas6zdz4TbCVBN3l+vYp1BKQGKgslEJKjvDxClhZxVKqu/Eb+TTulmJB+ivwg0AWoc3IrwoYSie44AVwYDo0BR9J/TkQhnhfRwKvJPJhD2Ik5DIEJLMcdF5aWD6RYKhimdfcQ/1LB4jV+FaH1StSWfL0exNU4FkPWY/rBcL8J8tIOkSRs8X9GURP4g+Gym6wf3qhLHEXxsh+XLUk9eZlk9d6AQKqLPKk+zYHfkmyrNIkdy++kFHxowXCsWPdVR+Im9CpklOnwrnD11ZV+axA/8opKzhRumLTsWKOPDF8QK8vE0wMpO12NEv7jlv+yWdRhv+gCxk+i308zRCaqYwb37x5lSMlg+sXGMEVihCofP8zzhvpQeq+7j2QKsSmhsb2NTXXh0uevZRqlCIUVXXbRSWTIo+UstjThn+jcDgIUL2r+tdQmjk42CJ2FE64sl9x7YLTNyX8ayIQ9RgEqPejWF3k6ypNkAImrfjxPihtDWkRCkzlCWOekKxtrr46NKGn0qkk2QWEdxoRV4CaN9sfS5ccr1CsnHOjbn0Mh3bLE3wW1iDtHzA2g=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR01MB8717.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(396003)(366004)(376002)(136003)(39840400004)(230922051799003)(230173577357003)(230273577357003)(64100799003)(451199024)(186009)(1800799012)(55016003)(7696005)(6506007)(71200400001)(9686003)(26005)(38100700002)(122000001)(86362001)(33656002)(38070700009)(41300700001)(52536014)(66556008)(83380400001)(5660300002)(2906002)(66446008)(66476007)(8676002)(8936002)(91956017)(478600001)(76116006)(64756008)(6916009)(316002)(66946007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?3CrWKMA6bEchbe4rK3RuEmcgDC6Y1a98c4mic7WOmyfdXFsMgJrMPo9MHA?=
- =?iso-8859-1?Q?EUCW12uCwi6RVPcXxC8pDRQ/IS7c1khneX6oIwnNTwBtBb/4znW43NOMEp?=
- =?iso-8859-1?Q?tHdoVGNLKqTL5BCJh1H5VURlbC90ZPgZdvum5HyI151+slXuuD5DXmF6Aj?=
- =?iso-8859-1?Q?jyuuW4Vy3PTSgwWEOUw2xO2uMhIpbZKLso+4lSAnmrgqhYgC2b4Y7T1d5l?=
- =?iso-8859-1?Q?brhu74OccwW7lxb7RETE5YqnX9HWwCSI49kV+zuWGJzCStnd/zsRcncdPm?=
- =?iso-8859-1?Q?x5wm90lUn0PFCAxixIqNWs3mrPuQMi7CyE4uQNeIarPbOeFI8x+/6pJ2og?=
- =?iso-8859-1?Q?7Uw0c2SrXljSmIt263kJtyFFNvGvw8WpnDclpwqekBTaAt4pgyeSWEpqjK?=
- =?iso-8859-1?Q?/09hev/ODR2GFTP+aJNkpTxYryEIymfdG6Drxo0AHpRMo4uRN1ZkftOXkM?=
- =?iso-8859-1?Q?fiBV0RbFrrWjKn0kZzra7HLaIhORGN3GJ5lIgzaHqn9qR59BRhThoICaW/?=
- =?iso-8859-1?Q?iGHe0kLsz1qX3m/1v0E+neH7G7f8mklvWrQLc1cx/Q2fO0ZhGN/0XlBdSw?=
- =?iso-8859-1?Q?ppkxqN6vtCTvqugMh0796Xhpl1DOEGiTDM2+94qNFstrf3352V4CqJJGHl?=
- =?iso-8859-1?Q?wCvHCVGJFPXkGfOsGEuABHqUBeaQqYKksnYBTFONTyHtFedLLVYZSpAucc?=
- =?iso-8859-1?Q?YNAmz+fbIhPqVAUSyhqAxvobLCO/K5KGMOZnkvwYr4aNfsVGl/bXL7DCoH?=
- =?iso-8859-1?Q?uumYoO3Q0IbQuOC59mBPBR1+Z6ZUKZ0bfAlD4v697xBCsapek6onpTSwMe?=
- =?iso-8859-1?Q?CGushpofNnemo98PFLtRiKSTW5hpgU9AGsWs2yQOebZGExA6XrEAKczjJr?=
- =?iso-8859-1?Q?YyvLuLeKN/hyE8ZGOsIu7hqokrRBgZvMR7+Rzc3WURpFYxz7LANQHlfNd+?=
- =?iso-8859-1?Q?6ufNNAX48WvkVyLt11w2czXNs6CfDoaQSueHqAAieiEsuWUw38OiXsmN/A?=
- =?iso-8859-1?Q?Pt4RTzEbZtB3Gw54ro7M7iWg6zNVpIBIc4PhFUKoIOzM2fxbBlHni0ZNPH?=
- =?iso-8859-1?Q?zNLA9MnqR4FmOV8B+lNVdvo8wbxb62/QuHcsFUf202g/pM/8ubQWk0QZ2R?=
- =?iso-8859-1?Q?vAElFPgww0uexpxDZNfr/44t9isqfjh1RVmhgQFsdOEkMAML9Rbrc5CUP5?=
- =?iso-8859-1?Q?tNdrl48NhJjJB/Cy5EUwAGxVlFcxvMN8qJzsmCC5TBIBqyKHIzfTNyoya8?=
- =?iso-8859-1?Q?4CcL/x0NuodViZOv3boQNMwpjpkYWW+ZPQwzBKZ8SOs/pBLFKJXh+0JJhp?=
- =?iso-8859-1?Q?ZSuCpb0hFwUww9kvoSyNv48EIkCS+3oJlYqde5iewhiV8JHOg5UGx20o2i?=
- =?iso-8859-1?Q?rX2+4Le4GnS3VLdJY2AEkF3u6Ah/Ydw4LJYYdSbowfW84S7HNx+HOVkjky?=
- =?iso-8859-1?Q?iWXryhsQCb+Kaj1xLJe76sFDrlSxmYWLcakxZdvgkO27/2jDh3d7eDtPuE?=
- =?iso-8859-1?Q?iCeSSM4BZyfHyjd3qsivdRzUeb/4Eh/4NDkWEZ83mREN+f63Tqo6RxIKzR?=
- =?iso-8859-1?Q?3qR9uSnB8dMkUqeyIIAOLJ6Bma0pu4Mngj9kciL45iU1wbDX7bs2fy+V0w?=
- =?iso-8859-1?Q?3XumrfdGbQUEv6OtuasgLMi3649vZP8H+ADAVpjiUpf11KK+m2pZ7kjw?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=OIY8O1vj;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.47, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e9ef9853bso12980405e9.1
+        for <yocto@lists.yoctoproject.org>; Sun, 21 Jan 2024 14:51:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google; t=1705877505; x=1706482305; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ul9oxnqSirwbFv2LLnCTnzmn3qmB66nRTBs760D6Ugs=;
+        b=OIY8O1vjZRUiOMjDkQbXGU5v0NM8hy35MNhdE1+bINB9hDiIQULxIrJa6SuYYEAJ4N
+         sH6D4lWOfBYdZXUD5Ye/ST/WfO754zzEnV9MuF3zrvSh1kWt+uCeinApLy5INL78p+IH
+         xyXYCdC/Affc6ZGQoYrvjlQxzoRFqjTTM03jg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705877505; x=1706482305;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ul9oxnqSirwbFv2LLnCTnzmn3qmB66nRTBs760D6Ugs=;
+        b=ABlto71ZRHQm8VAg3q04PVhTrHMBFUmxUkaRhIGU4hRyQhpQ3O8wdHtCUSRwFUrRdY
+         Xc26Q7aMLGFaI1T7/08MqA3au9Hp3c1JIokydvfKX9oYSMTt5u6UaZQq62ENkSOe86/I
+         va2SY1t3sD/12Ozi/HIh6vtXFBGvr8puEOVeXJEfVegwV1bwB5eBIeLtvkiPvu4FU8YT
+         z1sxdnEESmI2BKG+s9siFqIsHFPh0LljB9vA3aw76g6mbUlDuqsVb66es8eTzPstO6vo
+         bfagaXS1iGJ1oT/zldbCtRcnY4/WILi86jKWjTgVGH1MNtJed87V1Pd3fdOxLiXIMDCO
+         MqLA==
+X-Gm-Message-State: AOJu0Yz/bXp4WxYIreSAVgYPc7QuzE/frny2Zil/sY6DI3QjR5g/kLxD
+	8H/xNPZo4MjcevkJ6ijRPwiY406MS6fKLqKD9i/18Yw0VZdzFuyYSQ+7vMhs7Jy8PwOdk+fLi1R
+	I
+X-Google-Smtp-Source: AGHT+IFUgPBoTHC//xrHerYNlwdxtSuaK9M6mpZ/2iW2W2WNRb0oZKQZKjmsA8FxgqD81L4mzWBABg==
+X-Received: by 2002:a05:600c:1605:b0:40e:52cf:e7af with SMTP id m5-20020a05600c160500b0040e52cfe7afmr1587601wmn.130.1705877505596;
+        Sun, 21 Jan 2024 14:51:45 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:a57c:4d56:a1d0:e701? ([2001:8b0:aba:5f3c:a57c:4d56:a1d0:e701])
+        by smtp.gmail.com with ESMTPSA id p12-20020a05600c468c00b0040e56830a35sm36943187wmo.18.2024.01.21.14.51.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Jan 2024 14:51:45 -0800 (PST)
+Message-ID: <07856f5e06ff5c9fc1ffa903b682426de2a32a65.camel@linuxfoundation.org>
+Subject: Re: [yocto] Remove Python dependency from target package only
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org, holger.sebert.ext@karlstorz.com
+Date: Sun, 21 Jan 2024 22:51:44 +0000
+In-Reply-To: <DU2PR01MB871782D4F3B6384568F20F99A4762@DU2PR01MB8717.eurprd01.prod.exchangelabs.com>
+References: 
+	<DU2PR01MB871782D4F3B6384568F20F99A4762@DU2PR01MB8717.eurprd01.prod.exchangelabs.com>
+Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
+ YNvg==
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.0-1 
 MIME-Version: 1.0
-X-OriginatorOrg: karlstorz.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR01MB8717.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc14cb6a-f864-4b88-3b69-08dc1ab2da90
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2024 18:57:45.3005
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4a0b6f21-e6e1-4ed6-9dcf-e60e7190f648
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4Y4HDIJBL+lFrjTQrTZmzm8KGziFZ1VFqHsaN8yQKDYoaMrZtivdbiamje91flbATG4rWq8lPyzOj8+L+hw25JRWYm0dybNeUEmNIrdjPVU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR01MB9922
-X-Proofpoint-ORIG-GUID: hS7bkGeltDTbJnoZwvdzBCJt4QUDSkqF
-X-Proofpoint-GUID: hS7bkGeltDTbJnoZwvdzBCJt4QUDSkqF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-21_02,2024-01-19_02,2023-05-22_02
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 21 Jan 2024 18:57:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62214
+ <yocto@lists.yoctoproject.org>; Sun, 21 Jan 2024 22:51:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62215
 
-Hi,=0A=
-=0A=
-I am trying to remove the Python dependency in libxml2 for the target.=0A=
-For the libxml2-native package it shall still be available, however.=0A=
-=0A=
-I have put this into my local.conf:=0A=
-=0A=
-    PACKAGECONFIG:remove:pn-libxml2 =3D "python"=0A=
-=0A=
-When I build core-image-full-cmdline I get the following error from=0A=
-the libxml2-native package:=0A=
-=0A=
-| configure: error: Package requirements (python-3.8) were not met:=0A=
-|=0A=
-| No package 'python-3.8' found=0A=
-|=0A=
-| Consider adjusting the PKG_CONFIG_PATH environment variable if you=0A=
-| installed software in a non-standard prefix.=0A=
-|=0A=
-| Alternatively, you may set the environment variables PYTHON_CFLAGS=0A=
-| and PYTHON_LIBS to avoid the need to call pkg-config.=0A=
-| See the pkg-config man page for more details.=0A=
-| NOTE: The following config.log files may provide further information.=0A=
-| NOTE: /home/hosebert.ext/data/poky-python-getvar/build/tmp/work/x86_64-li=
-nux/libxml2-native/2.11.5/build/config.log=0A=
-| ERROR: configure failed=0A=
-| WARNING: /home/hosebert.ext/data/poky-python-getvar/build/tmp/work/x86_64=
--linux/libxml2-native/2.11.5/temp/run.do_configure.453112:287 exit 1 from '=
-exit 1'=0A=
-| WARNING: Backtrace (BB generated script):=0A=
-|       #1: bbfatal_log, /home/hosebert.ext/data/poky-python-getvar/build/t=
-mp/work/x86_64-linux/libxml2-native/2.11.5/temp/run.do_configure.453112, li=
-ne 287=0A=
-|       #2: oe_runconf, /home/hosebert.ext/data/poky-python-getvar/build/tm=
-p/work/x86_64-linux/libxml2-native/2.11.5/temp/run.do_configure.453112, lin=
-e 263=0A=
-|       #3: autotools_do_configure, /home/hosebert.ext/data/poky-python-get=
-var/build/tmp/work/x86_64-linux/libxml2-native/2.11.5/temp/run.do_configure=
-.453112, line 233=0A=
-|       #4: do_configure, /home/hosebert.ext/data/poky-python-getvar/build/=
-tmp/work/x86_64-linux/libxml2-native/2.11.5/temp/run.do_configure.453112, l=
-ine 153=0A=
-|       #5: main, /home/hosebert.ext/data/poky-python-getvar/build/tmp/work=
-/x86_64-linux/libxml2-native/2.11.5/temp/run.do_configure.453112, line 291=
-=0A=
-ERROR: Task (virtual:native:/home/hosebert.ext/data/poky-python-getvar/meta=
-/recipes-core/libxml/libxml2_2.11.5.bb:do_configure) failed with exit code =
-'1'=0A=
-=0A=
-So it seems libxml2-native cannot find Python anymore!=0A=
-=0A=
-When investigating the problem, I found the following using=0A=
-bitbake-getvar:=0A=
-=0A=
-$ bitbake-getvar -r libxml2-native PYTHON=0A=
-#=0A=
-# $PYTHON=0A=
-#   set /home/hosebert.ext/data/poky-python-getvar/meta/conf/bitbake.conf:5=
-75=0A=
-#     "${@sys.executable}"=0A=
-PYTHON=3D"/usr/bin/python3"=0A=
-=0A=
-So libxml2-native is trying to use my host's Python installation and=0A=
-not the one in build/tmp/work/x86_64-linux/libxml2-native/2.11.5/recipe-sys=
-root-native/usr/bin/python3-native/python3=0A=
-as it should be?=0A=
-=0A=
-On a pristine Poky system bitbake-getvar gives the following:=0A=
-=0A=
-$ bitbake-getvar -r libxml2-native PYTHON=0A=
-#=0A=
-# $PYTHON [3 operations]=0A=
-#   set /home/hosebert.ext/data/poky-python-getvar/meta/conf/bitbake.conf:5=
-75=0A=
-#     "${@sys.executable}"=0A=
-#   set /home/hosebert.ext/data/poky-python-getvar/meta/classes-recipe/pyth=
-on3native.bbclass:9=0A=
-#     "${STAGING_BINDIR_NATIVE}/python3-native/python3"=0A=
-#   exported ast.py:52 [eval]=0A=
-#     [export] "1"=0A=
-# pre-expansion value:=0A=
-#   "${STAGING_BINDIR_NATIVE}/python3-native/python3"=0A=
-export PYTHON=3D"/home/hosebert.ext/data/poky-python-getvar/build/tmp/work/=
-x86_64-linux/libxml2-native/2.11.5/recipe-sysroot-native/usr/bin/python3-na=
-tive/python3"=0A=
-=0A=
-So, what is the proper way of removing Python from a target package?=0A=
-=0A=
-Best,=0A=
-Holger=0A=
+On Sun, 2024-01-21 at 18:57 +0000, Sebert, Holger.ext wrote:
+> Hi,
+>=20
+> I am trying to remove the Python dependency in libxml2 for the target.
+> For the libxml2-native package it shall still be available, however.
+>=20
+> I have put this into my local.conf:
+>=20
+>     PACKAGECONFIG:remove:pn-libxml2 =3D "python"
+
+Try:
+
+PACKAGECONFIG:remove:class-target:pn-libxml2 =3D "python"
+
+Cheers,
+
+Richard
 
