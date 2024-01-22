@@ -1,130 +1,149 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04881C4725D
-	for <webhook@archiver.kernel.org>; Mon, 22 Jan 2024 13:47:51 +0000 (UTC)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
- by mx.groups.io with SMTP id smtpd.web10.73989.1705931267808167914
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EF568C4725D
+	for <webhook@archiver.kernel.org>; Mon, 22 Jan 2024 14:19:01 +0000 (UTC)
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+ by mx.groups.io with SMTP id smtpd.web11.75036.1705933136794722388
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Jan 2024 05:47:48 -0800
+ Mon, 22 Jan 2024 06:18:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=TJUR34xv;
- spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50e766937ddso3610318e87.3
-        for <yocto@lists.yoctoproject.org>; Mon, 22 Jan 2024 05:47:47 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=SJ5TFq6i;
+ spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7831806c527so295888085a.3
+        for <yocto@lists.yoctoproject.org>; Mon, 22 Jan 2024 06:18:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705931266; x=1706536066; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=42MTKZeIucvsT9eSC1b2xc5YtJhfbkHs7DjrKjj55HE=;
-        b=TJUR34xv+p+0lc/FCq+eTdjCvzaPqY+L8TW9cqS8NWxu9nzh8T/VVP7wtgaDHGmV0F
-         w+eU33m8fMw2z8caOgoGDe9rYc2J4Exda8tWUTFC/feId2DeBkaQoBc3maIhnEGvsl+e
-         95Is7dbh07UDi3+7vq5mlOd0Q3cRnqH/GZakWNUl2n2MeEGe9Ug8yOYwt3ZG0e3jYzi5
-         NGxDCv6mwN/yBauxqNVQYFXAHlezhqNCnOmto3WVEeWjTtJAW5Pvlwwr+ciD69e+jzdJ
-         olycmoI6PHCpLGYZ64N3Dty88zpYBKZ/xf/U86sa1970egkPrJZK8Zfo7eiaSTeZ74mq
-         /aew==
+        d=gmail.com; s=20230601; t=1705933136; x=1706537936; darn=lists.yoctoproject.org;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mERt2/6ADXChDIrCVr6wuiRmg7+8K8gJc1gFGoOExeI=;
+        b=SJ5TFq6icbm3S/4E79vUF36Mbnl42ZBMBjfmbi/VMWdnAKPS3TFBX5De9jbu7WNTJ7
+         an4wuES65L29lQWa7MgniR38CFU1jCBMH5Gjf5OM7iE3OjZzOIMoAVv8Vri2atdhuslj
+         0HpvOnIkXhvs1qIBc2/2UvJriot5zshmtxhu5ZjTti3b0XTBHo4bzo/aU1tqRC+KOIob
+         s7O291zlLzalfKHRknGz2wXTj3xxv3pZC9KTo+yUxJ6akyj4Nk8XaQ3SltCt34Mcn1iz
+         loup3jKSdaeacqDOu0qAdz43QmybgtFd20g8KKD/BEpbw4oZmhYOBfxx5uLHL8wvdDbp
+         cFEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705931266; x=1706536066;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=42MTKZeIucvsT9eSC1b2xc5YtJhfbkHs7DjrKjj55HE=;
-        b=u2kgIF240iukz8lWzc4m/AFpj2VRmlxOem3dYKGTy7TpCVTzb5oiHbpIdPwJfoNW8G
-         5VJa31Pfhv7oB4SDYaKYyVaGlEXLOHRmd/bTJPvGCtErCHtiq1DQVxDLzb0WWHbLVLpR
-         HJf4FU+oI95Pl8oRZtFucC1QtmURSRbG5+DDKZJu0IQgtcLBWjZkObSD/fHmmh3+avm2
-         qo3rc33uvHii/D6Po7VXoqaUQwKwBx81LJEsqLPyW7fNYFjmE3oQG/JIsqTiWSYgVTe8
-         gtrd4WKJOR6+X9jTL+ju5ykfLKfrdb2fYYmpiQPTKcowK9uA9FG6CN3ZYIdac+l0LlJt
-         ITsw==
-X-Gm-Message-State: AOJu0Yyvy+kBbZFhNJj7tXTQzlqzcdAvXmt6EQDccDXWnKXjnX781iqA
-	DxJExbe+JECOrQbctRBzjabUuw+qbemjCiwQMVkzbNAxKL4sLpQ2gCLoAeL3lwEnxqBC/nlkOlr
-	osX60gAUntVP5WtuVZrCTo1yqGcjeGbJX
-X-Google-Smtp-Source: AGHT+IE0QaQa1DYIiR/gSY58SoPpLC06oDXhVS+8CFWilixBOCq7nIpSliRFfubxQ8u6zdg0PKxtOht/gVrcXHTxUXk=
-X-Received: by 2002:ac2:5297:0:b0:50e:aa74:5ff9 with SMTP id
- q23-20020ac25297000000b0050eaa745ff9mr1512018lfm.15.1705931265805; Mon, 22
- Jan 2024 05:47:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705933136; x=1706537936;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mERt2/6ADXChDIrCVr6wuiRmg7+8K8gJc1gFGoOExeI=;
+        b=NC296+/n4YZUmrMDRV8OB0gaHKvDm4R3bZWl2f3VKhWEdQf1nl5OnFTFWZe4RYyRuU
+         y5sr/E6Q+0rTTZOPtgJort4vTu1g/iXD/qjk3S6mVEhCXxERwe/BgcW6YB+f+1YYL2T4
+         OD8G+VeOkJf2rEDMjCq9UYNhFTmwXPGo0B6VpAlUofylQLjAJFNgWoAG4JY39nC6048R
+         UumLmmkD1AndV+qFiCpbP9geDrIlUYTlEGyAp7E8Ug0aHcPi6cuQQxrIQsBKmj1//T6O
+         OZ1IVjB/HdtiiAsZqA6G4Gm8IJOKe0CWr9AjSvGvdkmgkvFTox5VBYa+oQtVK1P7eEgl
+         yVeQ==
+X-Gm-Message-State: AOJu0Yw85234hqsUvbIdLsvCIHQza/VA9Co13VKXeKeZne2FC+0zYh81
+	qlhoHSu9hmeflejpXposj3okx9kBZEkdElZ6+Gs+y1P5DnwpSoZS
+X-Google-Smtp-Source: AGHT+IFz1LZPzmNs5pFQvkWQB6Fm1xWcHHoxS6M7NcL6SriNIaWgwk0z/UKLeOwMd+ZM1ulze4wLmg==
+X-Received: by 2002:a0c:cd12:0:b0:681:9b7c:dae1 with SMTP id b18-20020a0ccd12000000b006819b7cdae1mr4389404qvm.34.1705933135769;
+        Mon, 22 Jan 2024 06:18:55 -0800 (PST)
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id nf3-20020a0562143b8300b00685ad9090basm2206616qvb.97.2024.01.22.06.18.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 06:18:54 -0800 (PST)
+Date: Mon, 22 Jan 2024 09:18:52 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Stephen Chen <stephen@radxa.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] [meta-rockchip] [PATCH] machines: correct
+ rk3066/rk3188/rk3288 kernel devicetree path
+Message-ID: <20240122141852.GA29426@localhost>
+References: <20240121045243.GA32674@localhost>
+ <9257.1705830707849294512@lists.yoctoproject.org>
 MIME-Version: 1.0
-References: <DU2PR01MB871782D4F3B6384568F20F99A4762@DU2PR01MB8717.eurprd01.prod.exchangelabs.com>
- <07856f5e06ff5c9fc1ffa903b682426de2a32a65.camel@linuxfoundation.org>
- <DU2PR01MB87178F9BB04E6D84F03AFE1CA4752@DU2PR01MB8717.eurprd01.prod.exchangelabs.com>
- <f854dec6-5968-4b79-b8d5-6abfd8d75135@theobroma-systems.com>
-In-Reply-To: <f854dec6-5968-4b79-b8d5-6abfd8d75135@theobroma-systems.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 22 Jan 2024 14:47:33 +0100
-Message-ID: <CANNYZj_-tUaUE9qrDJjChX1PP5yaSWMvEDFOezkFiwZ4tqOjww@mail.gmail.com>
-Subject: Re: [yocto] Remove Python dependency from target package only
-To: yocto@lists.yoctoproject.org, quentin.schulz@theobroma-systems.com
-Cc: holger.sebert.ext@karlstorz.com, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9257.1705830707849294512@lists.yoctoproject.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Jan 2024 13:47:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62221
+ <yocto@lists.yoctoproject.org>; Mon, 22 Jan 2024 14:19:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62222
 
-I would suggest not trying to figure out PACKAGECONFIGs just yet, but
-rather go to the source of the error: inspect ${T}/log.do_configure
-and ${T}/run.do_configure. Are options to enable/disable python passed
-in? If yes, then something in PACKAGECONFIG settings doesn't quite
-work. If no, then libxml somehow needs python at build time even
-without those options, and this should be looked at separately by
-checking in libxml source code what the failing check for python
-actually does, and is it guarded by any options.
+On Sun 2024-01-21 @ 01:51:47 AM, Stephen Chen wrote:
+> Hi
+> 
+> > 
+> > Perhaps also take a look the email thread here:
+> > https://lists.yoctoproject.org/g/yocto/topic/101728482#61210
+> 
+> This patch fixes kernel build error like this.
+> 
+> Run command "MACHINE=rock2-square bitbake linux-yocto" and get the error.
+> 
+> |   SYNC    include/config/auto.conf
+> |   GEN     Makefile
+> | make[2]: *** No rule to make target 'arch/arm/boot/dts/rk3288-rock2-square.dtb'.  Stop.
+> 
+> You can run "MACHINE=tinker-board bitbake linux-yocto" to test it.
 
+If you would have read the email thread which I linked above, you would have
+noticed that I submitted a patch to do the same thing in the beginning of
+November, and you would have seen why it wasn't applied then.
 
-Alex
+> 
+> > 
+> > When I build I get:
+> > 
+> > |
+> > /opt/oe/configs/z/build-master/tinker-board/layers/openembedded-core/scripts/lib/wic/engine.py:362:
+> > SyntaxWarning: invalid escape sequence '\/'
+> > | abs_path = re.sub('\/\/+', '/', path)
+> > | INFO: Creating image(s)...
+> > |
+> > | ERROR: _exec_cmd: install -m 0644 -D
+> > /z/build-master/tinker-board/build/tmp-glibc/deploy/images/tinker-board/rockchip/rk3288-tinker.dtb
+> > /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/tmp-wic/boot.6/rockchip/rk3288-tinker.dtb
+> > returned '1' instead of 0
+> > | output: install: cannot stat
+> > '/z/build-master/tinker-board/build/tmp-glibc/deploy/images/tinker-board/rockchip/rk3288-tinker.dtb':
+> > No such file or directory
+> > |
+> > | WARNING:
+> > /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/temp/run.do_image_wic.449:160
+> > exit 1 from 'BUILDDIR="/z/build-master/tinker-board/build" PSEUDO_UNLOAD=1
+> > wic create "$wks" --vars
+> > "/z/build-master/tinker-board/build/tmp-glibc/sysroots/tinker-board/imgdata/"
+> > -e "core-image-base" -o "$build_wic/" -w "$tmp_wic"'
+> > | WARNING: Backtrace (BB generated script):
+> > | #1: do_image_wic,
+> > /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/temp/run.do_image_wic.449,
+> > line 160
+> > | #2: main,
+> > /z/build-master/tinker-board/build/tmp-glibc/work/tinker_board-oe-linux-gnueabi/core-image-base/1.0/temp/run.do_image_wic.449,
+> > line 177
+> > ERROR: Task
+> > (/opt/oe/configs/z/build-master/tinker-board/layers/openembedded-core/meta/recipes-core/images/core-image-base.bb:do_image_wic)
+> > failed with exit code '1'
+> 
+> I think another patch would fix it.
 
-On Mon, 22 Jan 2024 at 14:40, Quentin Schulz via
-lists.yoctoproject.org
-<quentin.schulz=3Dtheobroma-systems.com@lists.yoctoproject.org> wrote:
->
-> Hi Holger,
->
-> On 1/22/24 14:33, Sebert, Holger.ext via lists.yoctoproject.org wrote:
-> > [You don't often get email from holger.sebert.ext=3Dkarlstorz.com@lists=
-.yoctoproject.org. Learn why this is important at https://aka.ms/LearnAbout=
-SenderIdentification ]
-> >
-> > Hi Richard,
-> >
-> > Von: Richard Purdie <richard.purdie@linuxfoundation.org>
-> >> Try:
-> >>
-> >> PACKAGECONFIG:remove:class-target:pn-libxml2 =3D "python"
-> >>
-> >
-> > Tried it, but same error appears (=E2=80=9CPython not found=E2=80=9D in=
- libxml2-native).
-> >
->
-> What does
-> bitbake-getvar -r libxml2-native PACKAGECONFIG
-> and
-> bitbake-getvar -r libxml2 PACKAGECONFIG
->
-> return?
->
-> I'm not entirely sure if the former will work since bitbake-getvar
-> expects a recipe and libxml2 isn't reaaaaally a recipe on its own.
->
-> If the former doesn't work, we need to check for
-> PACKAGECONFIG:class-native and PACKAGECONFIG:class-target in
-> bitbake-getvar -r libxml2 PACKAGECONFIG to debug this further.
->
-> Cheers,
-> Quentin
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62220): https://lists.yoctoproject.org/g/yocto/messag=
-e/62220
-> Mute This Topic: https://lists.yoctoproject.org/mt/103871920/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+As a courtesy, in the future please test your patches before sending them.
+
+> 
+> > 
+> > diff --git a/conf/machine/include/rockchip-wic.inc
+> > b/conf/machine/include/rockchip-wic.inc
+> > index 635288c..b4f4226 100644
+> > --- a/conf/machine/include/rockchip-wic.inc
+> > +++ b/conf/machine/include/rockchip-wic.inc
+> > @@ -13,7 +13,7 @@ WKS_FILE_DEPENDS ?= " \
+> > "
+> > IMAGE_BOOT_FILES = " \
+> > ${KERNEL_IMAGETYPE} \
+> > -       ${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '',
+> > '${KERNEL_DEVICETREE}', d)} \
+> > +       ${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '',
+> > '${SOC_FAMILY}*.dtb', d)} \
+> > "
+> > 
+> > # use the first-defined <baud>;<device> pair in SERIAL_CONSOLES
 
