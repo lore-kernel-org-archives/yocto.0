@@ -1,100 +1,85 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CDD46C47258
-	for <webhook@archiver.kernel.org>; Tue, 23 Jan 2024 14:35:18 +0000 (UTC)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
- by mx.groups.io with SMTP id smtpd.web10.13716.1706020513741749919
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EDD16C47258
+	for <webhook@archiver.kernel.org>; Tue, 23 Jan 2024 14:38:58 +0000 (UTC)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+ by mx.groups.io with SMTP id smtpd.web11.14095.1706020733043107426
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Jan 2024 06:35:14 -0800
+ Tue, 23 Jan 2024 06:38:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=XXWJ3AgR;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.48, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40ea5653f6bso40119005e9.3
-        for <yocto@lists.yoctoproject.org>; Tue, 23 Jan 2024 06:35:13 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=TxaTiysL;
+ spf=pass (domain: gmail.com, ip: 209.85.128.179, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5ff88cbbcceso35556617b3.2
+        for <yocto@lists.yoctoproject.org>; Tue, 23 Jan 2024 06:38:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1706020512; x=1706625312; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1706020732; x=1706625532; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=quVOxJLdczuVgZfJRYGEgEG2N4JIi8x8Nm5yni8EeBo=;
-        b=XXWJ3AgRyenXi6/kuV8C3d2T/K5sTUV1NzVQ9KtEjE3w/jdhI4fqcyI+/t62iQlwWF
-         XbID5We02qeObdq+N7mQHJjvj7lmo2yuhHt+MabWtQEAa3Au4LKDi15DSvrhelDt8e7t
-         /p9aVSsm9QTE4m2ORJcbbnLLSE0TlEaX+NKT0=
+        bh=JFeV2F5aXrw6pXJd3xjVfsGGcrAZFZglhcC/73qok0c=;
+        b=TxaTiysLAzMGRlXrNFWrC/N2q545dCdtZlWPs8pIRqUqw6q3Aejyh0i2eUp3tCx+/U
+         gRzUJ1t4TT6hYVts0tdixWmlHfOjkF//Kl0Xxxua/QxQKIEZ9Bg8kci0pCuHj5uVap7U
+         bCy9KFxx+gFh0BpISbnawTbofa7WS5kzcqxExnmmkZ2D3IoYfEGmDe96z+O+grxbUuDC
+         jx9KtaUzfjIlbhKTcxvgbR73k/gXGtchQg2hf79GEqdAgY4fD7ElpwxetxMelq/VOo46
+         EHUxfL2UT7DCPyGjRKOiGumachLT81p3SBxKvgC9zxQ0/IFCaigFf3s7SgQSK25drwMA
+         7Lzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706020512; x=1706625312;
+        d=1e100.net; s=20230601; t=1706020732; x=1706625532;
         h=content-transfer-encoding:mime-version:message-id:date:subject:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=quVOxJLdczuVgZfJRYGEgEG2N4JIi8x8Nm5yni8EeBo=;
-        b=J6dD0tt19kSawRW8dChSdZ3w8QPi5SFJnglReZtVVNrDFxCcGnolDtm84jb/Uid5GF
-         Sq1ahCeGYAgTmwSrnISCH2T0GEfl2CqKfnvmlyE4zPAZ+1jQ4LT9j9EoAYX//PYAKqHC
-         6Lzmd9gXiSxb0uZILoj2Mx580k5R04EA/a4syL25kVpSoTxlbS9eLx/VFDqm0OCeQtjP
-         d5jpoXPqLNpBMOBj7tq252skl90wlKxpjqxI6LGD6fqdUFeV84h5NByw4E2RzHJQWSUn
-         MddAyQyjng9QnZCT+b/NKXFN+vsZE+bqXDNyUIwKqzbpR4UWUJmxohJPrQoOAyVp5wBX
-         jI3Q==
-X-Gm-Message-State: AOJu0YxT5sAlPXAvw6PiDHWWZmIHP8gWg7Sz2kDDSUU+ol8036ZjdGO4
-	/46tKtc86/KGEff7aq0UftUqqUaVIed2a5ghdIeZ6cvcrx6S8OZzNJU+GVar3MvkdJSZ3lZMnRw
-	f
-X-Google-Smtp-Source: AGHT+IG5RN1W4RstN2KEeolenMsREzOCVSQ6AQCE4CqhRBE09tRNkCWB2cQQGpRuXnCO7QZ3K5rjJw==
-X-Received: by 2002:a05:600c:3d93:b0:40e:4d66:d282 with SMTP id bi19-20020a05600c3d9300b0040e4d66d282mr203473wmb.164.1706020511715;
-        Tue, 23 Jan 2024 06:35:11 -0800 (PST)
-Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:9f8c:6efa:4303:47ea])
-        by smtp.gmail.com with ESMTPSA id b9-20020a05600c4e0900b0040ec31b38a0sm458482wmq.21.2024.01.23.06.35.11
+        bh=JFeV2F5aXrw6pXJd3xjVfsGGcrAZFZglhcC/73qok0c=;
+        b=A9PDlKu2X5W0/aecieOFsvcjS9Rr/IXaCvRqnZ4HXtlrBPLqQmWI59oSRHGXPcYXYH
+         h7Njob5UOdVClVI/5cT15BI8IYMx3ByC7BrYis0rFDh5JRrWU4QFKF4KzfXZBCeuU9iN
+         Xr1rkvmUAsIwrl2XkKjBQQIQHDkHe9fttqlBa+oRmeOxrPTUACUB65iVEEeLsH37GBQy
+         ziXjOkqx3l0mluSTkAmUY2nGQapf0jL2Qi8a5dMvYWtBL39yTbx/Lg8wXkyXMEWXESpC
+         hl+8A8bbHHvOWnYpcf27HS6yyCp1We4FgBFdv9FHIkLSpo90ogU5xsLRCQlAk557KG1V
+         er7g==
+X-Gm-Message-State: AOJu0YwsWvyk034SlW9pUlNXBt5iWTg+NXuQfRDIZLyF65wJ7G+CGc8T
+	wbqigO2a+Ew/e3rhEOvUJYaKWnNsgKXILdJpKeAelynqSxbbk5uaZzjIlCUX
+X-Google-Smtp-Source: AGHT+IGN129moKc6e1fcmM/IvGRiYgsxf0PjuatdrjzWnNU9MFuz2JUj131p+xmKgkwYJVFXooXSUQ==
+X-Received: by 2002:a81:91cf:0:b0:5d7:1941:3558 with SMTP id i198-20020a8191cf000000b005d719413558mr3559769ywg.63.1706020731876;
+        Tue, 23 Jan 2024 06:38:51 -0800 (PST)
+Received: from keaua.attlocal.net ([2600:1700:9190:ba10:de3f:b3d2:4d2d:a85e])
+        by smtp.gmail.com with ESMTPSA id e4-20020a81e944000000b005ffddb2369dsm1685245ywm.82.2024.01.23.06.38.51
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 06:35:11 -0800 (PST)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+        Tue, 23 Jan 2024 06:38:51 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper] [PATCH] cve-report: Add summary counts of CVEs by recipe
-Date: Tue, 23 Jan 2024 14:35:10 +0000
-Message-Id: <20240123143510.613306-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.1
+Subject: [meta-security][PATCH] python3-pyinotify: do not rely on smtpd module
+Date: Tue, 23 Jan 2024 09:38:51 -0500
+Message-Id: <20240123143851.2026645-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 23 Jan 2024 14:35:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62243
+ <yocto@lists.yoctoproject.org>; Tue, 23 Jan 2024 14:38:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62244
 
-It is often helpful to know how many CVEs are open against a given recipe.
-Add a summary table of this to the end of the CVE listing.
+It's not mentioned anywhere in source code, and python 3.12
+has removed it.
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- scripts/cve-report.py | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ .../recipes-devtools/python/python3-pyinotify_0.9.6.bb           | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/scripts/cve-report.py b/scripts/cve-report.py
-index 7a95668..203ea6d 100755
---- a/scripts/cve-report.py
-+++ b/scripts/cve-report.py
-@@ -12,6 +12,7 @@ with open(jsonfile) as f:
-     cvedata = json.load(f)
+diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
+index 8dd5e15..963fcfe 100644
+--- a/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
++++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
+@@ -9,7 +9,6 @@ RDEPENDS:${PN} += "\
+     ${PYTHON_PN}-logging \
+     ${PYTHON_PN}-misc \
+     ${PYTHON_PN}-shell \
+-    ${PYTHON_PN}-smtpd \
+     ${PYTHON_PN}-threading \
+ "
  
- cves = dict()
-+recipe_counts = {}
- 
- for recipe in cvedata['package']:
-     if recipe['name'] in ignored_recipes:
-@@ -28,3 +29,16 @@ for recipe in cvedata['package']:
- print("Found %d unpatched CVEs" % len(cves))
- for cve in sorted(cves.keys()):
-     print("%s: %s https://web.nvd.nist.gov/view/vuln/detail?vulnId=%s *" % (cve, cves[cve], cve))
-+
-+for cve in cves:
-+    recipename = cves[cve]
-+    if recipename in recipe_counts:
-+        recipe_counts[recipename] += 1
-+    else:
-+        recipe_counts[recipename] = 1
-+
-+
-+print("\n")
-+print("Summary of CVE counts by recipes:\n")
-+for recipe, count in sorted(recipe_counts.items(), key=lambda x: x[1], reverse=True):
-+    print("  %s: %s" % (recipe, count))
 -- 
-2.40.1
+2.34.1
 
 
