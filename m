@@ -1,68 +1,135 @@
-Return-Path: <peter.marko@siemens.com>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CD54C46CD2
-	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 21:06:41 +0000 (UTC)
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
- by mx.groups.io with SMTP id smtpd.web10.36230.1706130398091329409
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4FC05C46CD2
+	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 22:02:11 +0000 (UTC)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+ by mx.groups.io with SMTP id smtpd.web11.41639.1706133720885709556
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Jan 2024 13:06:39 -0800
+ Wed, 24 Jan 2024 14:02:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=peter.marko@siemens.com header.s=fm1 header.b=JpIiyq20;
- spf=pass (domain: rts-flowmailer.siemens.com, ip: 185.136.65.226, mailfrom: fm-256628-2024012421063507dd7d65474b282071-gz71_x@rts-flowmailer.siemens.com)
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 2024012421063507dd7d65474b282071
-        for <yocto@lists.yoctoproject.org>;
-        Wed, 24 Jan 2024 22:06:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=peter.marko@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=lvckyVw1AMKyu1tHJy/7z32Wg+1zl7FCmPWC7C/fmmI=;
- b=JpIiyq20RQBOeG0DmF7VFeubzXv27WX6qaWi/V2E7xQg4K7YT8UWSJ71Z7Eqh9dZXyw2gw
- VcyHky/BZgsdRJckL0ZFOxG7D8tLPbKHwSnkEJ1AnQa9Ui3Ou3cVWucBH67dSqDJzURhfs3X
- 5fJrG8JS6Oz9o/LiKag2emsc7deCk=;
-From: Peter Marko <peter.marko@siemens.com>
-To: yocto@lists.yoctoproject.org
-Cc: Peter Marko <peter.marko@siemens.com>
-Subject: [meta-virtualization][PATCH v2] netavark: correct PV
-Date: Wed, 24 Jan 2024 22:05:45 +0100
-Message-Id: <20240124210545.20070-1-peter.marko@siemens.com>
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ZBmeGTj3;
+ spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: jpewhacker@gmail.com)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50f11e3ba3aso8833116e87.1
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 14:02:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706133718; x=1706738518; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gk1ohIA4vzmlqpBkNTsOhda8vJVajqiNxQ4nt0YZXLc=;
+        b=ZBmeGTj3j/J6im4vnyAWV3zmvY5pUCceCm48IeTJw/TEvHLW7MezBjBPDadvFdXn0Q
+         1TSgF2qoiJlG8ZgaBgjHbptI/Xi4+R3i2H5uAMeJ7NsjP/isWRXmBmNEEfB1q7qACfHU
+         BYpB5S/AtRrUP3fLzgshMoqJYaEjKkWMl2ZQhuDuLr2OPSmbUqgojCyTv2e/5hBrODkJ
+         dJuQ0YgIVA9W+Sk9P8Fraa/BqhV5TqT6jGV/tPr0Lk+tH8FVQJ24vN+UGLDyzW8MbgzA
+         7r8hjUrVyRK7T411Ofw4N7OApYMJgPywfG9Vyc4rU2rG9rQ15UIuXCWgi33HayRzqPyg
+         eYTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706133718; x=1706738518;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gk1ohIA4vzmlqpBkNTsOhda8vJVajqiNxQ4nt0YZXLc=;
+        b=v1QQ4W/A4EFC+zmEpvS4QzZgCseaUPxfouTidlu1b6VG6ubAj1f/noyQr7Z3OAs7Xa
+         1CDOQTLnVtq54ere1pLIWDQQdF/r7+6X3vScHWPQ6DJdBq83DEQHp0GRzEJ2ySGd3EM1
+         jN6qoQVCwIRDVBUoSLQv+tO0dT1ISVE+Hv1C/wR6YoRtilcc7vfk2xBjsr79GPliaLAo
+         z5y9zs6DvoQNN3PNQsAQoJcjikCxrTkfKK/JklWJtVXG4DN4AlpsJSyUgCFPuFy4g03o
+         GXbBN1a1MtiQVmMhsOfK5k4k3Xh/M9EyKL25cXQv4pmiltWxPZGYfUcMHjQWtjV0Fx9F
+         9hIA==
+X-Gm-Message-State: AOJu0YwvfSzPeKcbpcfYWJYsvTLWI5I9WRg6atpGsf+N/ZMNihJa4QaS
+	vZcbzAfOR8qKL33W3r8lwWvBfTXCoBIif7ZRRmmQQ49NJGXG2XD1OXZouk13seJruNsuNsVzCEH
+	kDQmS/bPP7tpD7rZAmoaAzdekA64j2MiV
+X-Google-Smtp-Source: AGHT+IFoke4jgwQ/Y5WcP2mPcdLjlqe8c3IoWZOt/2cOFWExP+c17Ku+DERLWIXr5aUl6cmYfuMvgb9aHomTtKZr3Mo=
+X-Received: by 2002:ac2:428c:0:b0:50e:76ac:180b with SMTP id
+ m12-20020ac2428c000000b0050e76ac180bmr3760743lfh.53.1706133718034; Wed, 24
+ Jan 2024 14:01:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-256628:519-21489:flowmailer
+References: <5e58c6719d797be31ece8149535531036ae18a47.camel@gmail.com> <20240124175901.GA22635@localhost>
+In-Reply-To: <20240124175901.GA22635@localhost>
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Wed, 24 Jan 2024 15:01:45 -0700
+Message-ID: <CAJdd5GaMEKDF=T-udE9K4pdoQTs-WV4EXPL0QUUNwkdCAGxkgA@mail.gmail.com>
+Subject: Re: [yocto] bmap-tools repository closes
+To: yocto@lists.yoctoproject.org, twoerner@gmail.com
+Cc: dedekind1@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 21:06:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62272
+ <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 22:02:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62273
 
-From: Peter Marko <peter.marko@siemens.com>
+On Wed, Jan 24, 2024 at 10:59=E2=80=AFAM Trevor Woerner <twoerner@gmail.com=
+> wrote:
+>
+> Hi Artem,
+>
+> On Wed 2024-01-24 @ 02:01:08 PM, Artem Bityutskiy wrote:
+> > Hello Yocto community,
+> >
+> > some parts of Yocto software (MIC?) use the 'bmap-tools' project to spe=
+ed up
+> > image flashing.
+> >
+> > https://github.com/intel/bmap-tools
+> >
+> > I am the original author of the software, and I created it many years a=
+go to
+> > speed up Tizen image flashing, and it helped a lot back at the time. It=
+ was also
+> > my first python project, so it was a lot of fun learning python while a=
+lso
+> > creating something useful.
+>
+> Thank you for your contribution, this tool has been quite useful for me o=
+ver
+> the years.
+>
+> > But after that, I stopped working on it and it was mostly Yocto folks w=
+ho
+> > contributed changes here and there. I never had time and enough motivat=
+ion to
+> > maintain the project further, but other folks helped.
+> >
+> > Simon McVitte was active maintainer, but he said he does not have time =
+for it
+> > now as well.
+> >
+> > The project is in "github.com/intel" space, and Intel is going to archi=
+ve the
+> > git repository soon. This basically means the repository becomes read-o=
+nly soon.
+>
+> Thank you for this update and letting us know ahead of time.
+>
+> > Would Yocto community have enthusiasts to fork it and maintain the fork=
+?
+>
+> Yes, I'll volunteer to maintain it going forward. My non-stackoverflow py=
+thon
+> knowledge is minimal, but I recently dug deeply into bmaptools to solve a=
+n
+> issue I had noticed. So I'm confident enough to take it over if nobody el=
+se is
+> interested.
 
-Current hash is 20 commits after tag, so add +git to PV.
+Ya, it's an awesome tool and a huge time saver for us, so can also
+help maintain it
 
-Signed-off-by: Peter Marko <peter.marko@siemens.com>
----
- .../netavark/{netavark_1.9.0.bb => netavark_git.bb}              | 1 +
- 1 file changed, 1 insertion(+)
- rename recipes-containers/netavark/{netavark_1.9.0.bb => netavark_git.bb} (99%)
-
-diff --git a/recipes-containers/netavark/netavark_1.9.0.bb b/recipes-containers/netavark/netavark_git.bb
-similarity index 99%
-rename from recipes-containers/netavark/netavark_1.9.0.bb
-rename to recipes-containers/netavark/netavark_git.bb
-index 5249acee..9d3a1172 100644
---- a/recipes-containers/netavark/netavark_1.9.0.bb
-+++ b/recipes-containers/netavark/netavark_git.bb
-@@ -5,6 +5,7 @@ LICENSE = "Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
- 
- SRCREV = "167e2e4f167cadc635bbacb5331674b67787d08e"
-+PV = "1.9.0+git"
- 
- # It is possible to fetch the source using the crate fetcher instead:
- #SRC_URI = "crate://crates.io/${BPN}/${PV}"
--- 
-2.30.2
-
+>
+> Best regards,
+>         Trevor
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62262): https://lists.yoctoproject.org/g/yocto/messag=
+e/62262
+> Mute This Topic: https://lists.yoctoproject.org/mt/103930262/3616693
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [JPEWhacker@gma=
+il.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
