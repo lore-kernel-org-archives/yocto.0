@@ -1,135 +1,161 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <daniele.lugli@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4FC05C46CD2
-	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 22:02:11 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
- by mx.groups.io with SMTP id smtpd.web11.41639.1706133720885709556
- for <yocto@lists.yoctoproject.org>;
- Wed, 24 Jan 2024 14:02:01 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=ZBmeGTj3;
- spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: jpewhacker@gmail.com)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50f11e3ba3aso8833116e87.1
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 14:02:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706133718; x=1706738518; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gk1ohIA4vzmlqpBkNTsOhda8vJVajqiNxQ4nt0YZXLc=;
-        b=ZBmeGTj3j/J6im4vnyAWV3zmvY5pUCceCm48IeTJw/TEvHLW7MezBjBPDadvFdXn0Q
-         1TSgF2qoiJlG8ZgaBgjHbptI/Xi4+R3i2H5uAMeJ7NsjP/isWRXmBmNEEfB1q7qACfHU
-         BYpB5S/AtRrUP3fLzgshMoqJYaEjKkWMl2ZQhuDuLr2OPSmbUqgojCyTv2e/5hBrODkJ
-         dJuQ0YgIVA9W+Sk9P8Fraa/BqhV5TqT6jGV/tPr0Lk+tH8FVQJ24vN+UGLDyzW8MbgzA
-         7r8hjUrVyRK7T411Ofw4N7OApYMJgPywfG9Vyc4rU2rG9rQ15UIuXCWgi33HayRzqPyg
-         eYTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706133718; x=1706738518;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gk1ohIA4vzmlqpBkNTsOhda8vJVajqiNxQ4nt0YZXLc=;
-        b=v1QQ4W/A4EFC+zmEpvS4QzZgCseaUPxfouTidlu1b6VG6ubAj1f/noyQr7Z3OAs7Xa
-         1CDOQTLnVtq54ere1pLIWDQQdF/r7+6X3vScHWPQ6DJdBq83DEQHp0GRzEJ2ySGd3EM1
-         jN6qoQVCwIRDVBUoSLQv+tO0dT1ISVE+Hv1C/wR6YoRtilcc7vfk2xBjsr79GPliaLAo
-         z5y9zs6DvoQNN3PNQsAQoJcjikCxrTkfKK/JklWJtVXG4DN4AlpsJSyUgCFPuFy4g03o
-         GXbBN1a1MtiQVmMhsOfK5k4k3Xh/M9EyKL25cXQv4pmiltWxPZGYfUcMHjQWtjV0Fx9F
-         9hIA==
-X-Gm-Message-State: AOJu0YwvfSzPeKcbpcfYWJYsvTLWI5I9WRg6atpGsf+N/ZMNihJa4QaS
-	vZcbzAfOR8qKL33W3r8lwWvBfTXCoBIif7ZRRmmQQ49NJGXG2XD1OXZouk13seJruNsuNsVzCEH
-	kDQmS/bPP7tpD7rZAmoaAzdekA64j2MiV
-X-Google-Smtp-Source: AGHT+IFoke4jgwQ/Y5WcP2mPcdLjlqe8c3IoWZOt/2cOFWExP+c17Ku+DERLWIXr5aUl6cmYfuMvgb9aHomTtKZr3Mo=
-X-Received: by 2002:ac2:428c:0:b0:50e:76ac:180b with SMTP id
- m12-20020ac2428c000000b0050e76ac180bmr3760743lfh.53.1706133718034; Wed, 24
- Jan 2024 14:01:58 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C0F9C46CD2
+	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 22:07:10 +0000 (UTC)
+Subject: Re: [yocto] etherlab
+To: Ross Burton <ross.burton@arm.com>,yocto@lists.yoctoproject.org
+From: "Daniele Lugli" <daniele.lugli@gmail.com>
+X-Originating-Location: Rimini, Emilia-Romagna, IT (176.246.20.126)
+X-Originating-Platform: Windows Opera 106
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <5e58c6719d797be31ece8149535531036ae18a47.camel@gmail.com> <20240124175901.GA22635@localhost>
-In-Reply-To: <20240124175901.GA22635@localhost>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Wed, 24 Jan 2024 15:01:45 -0700
-Message-ID: <CAJdd5GaMEKDF=T-udE9K4pdoQTs-WV4EXPL0QUUNwkdCAGxkgA@mail.gmail.com>
-Subject: Re: [yocto] bmap-tools repository closes
-To: yocto@lists.yoctoproject.org, twoerner@gmail.com
-Cc: dedekind1@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Wed, 24 Jan 2024 14:07:06 -0800
+References: <4102D24C-53A4-4F4F-A192-EC9295E09D54@arm.com>
+In-Reply-To: <4102D24C-53A4-4F4F-A192-EC9295E09D54@arm.com>
+Message-ID: <9213.1706134026442454152@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="5uu9qhIsZ2dWQwCC8vQJ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 22:02:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62273
+ <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 22:07:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62274
 
-On Wed, Jan 24, 2024 at 10:59=E2=80=AFAM Trevor Woerner <twoerner@gmail.com=
-> wrote:
->
-> Hi Artem,
->
-> On Wed 2024-01-24 @ 02:01:08 PM, Artem Bityutskiy wrote:
-> > Hello Yocto community,
-> >
-> > some parts of Yocto software (MIC?) use the 'bmap-tools' project to spe=
-ed up
-> > image flashing.
-> >
-> > https://github.com/intel/bmap-tools
-> >
-> > I am the original author of the software, and I created it many years a=
-go to
-> > speed up Tizen image flashing, and it helped a lot back at the time. It=
- was also
-> > my first python project, so it was a lot of fun learning python while a=
-lso
-> > creating something useful.
->
-> Thank you for your contribution, this tool has been quite useful for me o=
-ver
-> the years.
->
-> > But after that, I stopped working on it and it was mostly Yocto folks w=
-ho
-> > contributed changes here and there. I never had time and enough motivat=
-ion to
-> > maintain the project further, but other folks helped.
-> >
-> > Simon McVitte was active maintainer, but he said he does not have time =
-for it
-> > now as well.
-> >
-> > The project is in "github.com/intel" space, and Intel is going to archi=
-ve the
-> > git repository soon. This basically means the repository becomes read-o=
-nly soon.
->
-> Thank you for this update and letting us know ahead of time.
->
-> > Would Yocto community have enthusiasts to fork it and maintain the fork=
-?
->
-> Yes, I'll volunteer to maintain it going forward. My non-stackoverflow py=
-thon
-> knowledge is minimal, but I recently dug deeply into bmaptools to solve a=
-n
-> issue I had noticed. So I'm confident enough to take it over if nobody el=
-se is
-> interested.
+--5uu9qhIsZ2dWQwCC8vQJ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Ya, it's an awesome tool and a huge time saver for us, so can also
-help maintain it
+Hi Ross, thank you for your reply.
 
->
-> Best regards,
->         Trevor
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62262): https://lists.yoctoproject.org/g/yocto/messag=
-e/62262
-> Mute This Topic: https://lists.yoctoproject.org/mt/103930262/3616693
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [JPEWhacker@gma=
-il.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+I tried
+
+...
+inherit autotools
+inherit module
+
+EXTRA_OECONF =3D "--sysconfdir=3D/etc --enable-generic --disable-igb --disa=
+ble-8139too --with-linux-dir=3D${STAGING_KERNEL_BUILDDIR}"
+EXTRA_OEMAKE +=3D "-f ${S}/Makefile.kbuild"
+...
+
+and now Makefile.kbuild is found.
+The error is now:
+
+| make -C "" M=3D"" INSTALL_MOD_DIR=3D"" modules
+| make: the '-C' option requires a non-empty string argument
+
+Makefile.kbuild contains
+
+KBUILD =3D $(MAKE) -C "$(LINUX_SOURCE_DIR)" M=3D"$(abs_srcdir)" INSTALL_MOD=
+_DIR=3D "$(INSTALL_MOD_DIR)"
+
+modules:
+$(KBUILD) modules
+
+so the problem is that these variables are empty.
+
+As there is also a Makefile, containing references to Makefile.kbuild, I al=
+so tried with
+
+EXTRA_OEMAKE +=3D "-f Makefile"
+
+(the default ${B} should be good here because Makefile doesn't come out of =
+git, it is created by configure)
+
+and now I get
+
+| ../../git/lib/domain.c:38:10: fatal error: stdio.h: No such file or direc=
+tory
+
+and a bunch of similar errors.
+--
+Daniele Lugli
+General Logic srl
+Viale Curreno, 41
+10133 Torino
+Italy
+tel +39 329 3933041
+www.general-logic.com ( http://www.general-logic.com/ )
+www.linkedin.com/in/daniele- lugli ( http://www.linkedin.com/in/daniele-lug=
+li )
+
+--5uu9qhIsZ2dWQwCC8vQJ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi Ross, thank you for your reply.</div>
+<div>&nbsp;</div>
+<div>I tried&nbsp;</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">...</span></div>
+<div><span style=3D"color: #0000ff;">inherit autotools</span></div>
+<div><span style=3D"color: #0000ff;">inherit module</span></div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">EXTRA_OECONF =3D "--sysconfdir=3D/etc =
+--enable-generic --disable-igb --disable-8139too --with-linux-dir=3D${STAGI=
+NG_KERNEL_BUILDDIR}"</span></div>
+<div><span style=3D"color: #0000ff;">EXTRA_OEMAKE +=3D "-f ${S}/Makefile.kb=
+uild"</span></div>
+<div><span style=3D"color: #0000ff;">...</span></div>
+<div>&nbsp;</div>
+<div>and now Makefile.kbuild is found.</div>
+<div>The error is now:</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #ff0000;">| make -C "" M=3D"" INSTALL_MOD_DIR=3D=
+"" modules</span></div>
+<div><span style=3D"color: #ff0000;">| make: the '-C' option requires a non=
+-empty string argument</span></div>
+<div>&nbsp;</div>
+<div>Makefile.kbuild contains</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">KBUILD =3D $(MAKE) -C "$(LINUX_SOURCE_=
+DIR)" M=3D"$(abs_srcdir)" INSTALL_MOD_DIR=3D "$(INSTALL_MOD_DIR)"</span></d=
+iv>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">modules:</span></div>
+<div><span style=3D"white-space: normal; color: #0000ff;"><span style=3D"wh=
+ite-space: pre;"> </span>$(KBUILD) modules</span></div>
+<div>&nbsp;</div>
+<div><br />so the problem is that these variables are empty.</div>
+<div>&nbsp;</div>
+<div>As there is also a Makefile, containing references to Makefile.kbuild,=
+ I also tried with&nbsp;</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #0000ff;">EXTRA_OEMAKE +=3D "-f Makefile"</span>=
+</div>
+<div>&nbsp;</div>
+<div>(the default ${B} should be good here because Makefile doesn't come ou=
+t of git, it is created by configure)</div>
+<div>&nbsp;</div>
+<div>and now I get</div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #ff0000;">| ../../git/lib/domain.c:38:10: fatal =
+error: stdio.h: No such file or directory</span></div>
+<div>&nbsp;</div>
+<div>and a bunch of similar errors.</div>
+-- <br />
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;">
+<div dir=3D"ltr">
+<div>Daniele Lugli</div>
+General Logic srl</div>
+<div>Viale Curreno, 41</div>
+<div>10133 Torino<br />Italy</div>
+<div>tel +39 329 3933041</div>
+</div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.general-lo=
+gic.com/" target=3D"_blank" rel=3D"noopener" data-saferedirecturl=3D"https:=
+//www.google.com/url?q=3Dhttp://www.general-logic.com&amp;source=3Dgmail&am=
+p;ust=3D1702484712598000&amp;usg=3DAOvVaw3caieBojp7RHbXjtN3Avtg">www.genera=
+l-logic.com</a></div>
+<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
+nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.linkedin.c=
+om/in/daniele-lugli" target=3D"_blank" rel=3D"noopener" data-saferedirectur=
+l=3D"https://www.google.com/url?q=3Dhttp://www.linkedin.com/in/daniele-lugl=
+i&amp;source=3Dgmail&amp;ust=3D1702484712598000&amp;usg=3DAOvVaw2CJ1YOxQZd7=
+TCndA_wq8ak">www.linkedin.com/in/daniele-<wbr />lugli</a></div>
+
+--5uu9qhIsZ2dWQwCC8vQJ--
 
