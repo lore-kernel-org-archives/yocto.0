@@ -1,83 +1,202 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 61944C47258
-	for <webhook@archiver.kernel.org>; Tue, 23 Jan 2024 22:21:54 +0000 (UTC)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.web11.7924.1706048507152053684
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3117C47258
+	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 03:24:35 +0000 (UTC)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+ by mx.groups.io with SMTP id smtpd.web10.14590.1706066667683525508
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Jan 2024 14:21:47 -0800
+ Tue, 23 Jan 2024 19:24:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Va49EbHK;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40e80046264so61159075e9.0
-        for <yocto@lists.yoctoproject.org>; Tue, 23 Jan 2024 14:21:46 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=V4BpsAdP;
+ spf=pass (domain: gmail.com, ip: 209.85.222.169, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7838af983c1so372486385a.3
+        for <yocto@lists.yoctoproject.org>; Tue, 23 Jan 2024 19:24:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1706048505; x=1706653305; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4/k1Lu4Njifu4JXDe7MXzqYuMA+zeiJTwaX5QgLNGKs=;
-        b=Va49EbHKt0FLV6os6nqRYBHoadVBpNH+GvmDVHSO/D3sJqcvqATkUF7Egm1MiqpT7T
-         mh0duNcEDXM9+hsQIdVmUXs2kY9xBoNb4yFPJTZhJcdbsu2jwKG26fO8PK2lnQLI0DZC
-         e53eA0SLAqYuc+T7AmIFuu8JysJSxvetCvMKY=
+        d=gmail.com; s=20230601; t=1706066665; x=1706671465; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1wYedGQcuHkTHENUa1VYohSWNXDvEeI/gRBOEyVRAuE=;
+        b=V4BpsAdP90KQ1b+t+PyHLap7Si1Jt6dUw0RQ88D+TFfx7JWJrsyv2Do6eTq/IIgkYL
+         gxSG9hijVH7kY2Q9Tyo8Bc9rvTd6qy8PKoKLYt0HbLzMWoIjlFh0fL0oNzIzXM7OQfXF
+         YX6Pcy0GgQXOP77mshdL7B+W8CgpBxcnvIyullHUiWS3yOFoDpL4wpsj4jWmGFdYlyKs
+         9+DaiHktVxaF/b1GiDbzorbiNfwSE7fNgzfs09Ez1Q/kVehMUeubK/mvndH4//RNfsPx
+         igVdNVrPY5/bgugnW9AGqoiyXy51OJs15dmmgjRY0vpeWM4tZXq4d65cq7uGAxUz6HOU
+         x6xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706048505; x=1706653305;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4/k1Lu4Njifu4JXDe7MXzqYuMA+zeiJTwaX5QgLNGKs=;
-        b=QTBXnyQGQxV7a61UcRFo03m1R1B2E4QDLAUASL9VwDeICP9GTWTR/Brk2eC/J0NFfS
-         E9aw8nexmGRl+dMI2TDEnt6cwXk5cD3nMc4l2+IWXGoC7x177tx0bb40nWJtwOWpsYy7
-         Ktv+UvdxoIsA0zHDTZXejzQLIC4WFRygWKm8BgqkFHP2dmXXoQ6zvqtxZVK3Yhahqm42
-         udNIXmn83cn/hLcLXYGyNY2ASGuVotYjzPaZQ3XKelfIeg1DxCVDhMmA6vUiuRd32yd4
-         NPIpst5qbmCKQdScbtsu3uHisBu+DdOBKawWm4foJdtmazCZ8C3mFQaIwjovm7VEoPqO
-         K1bw==
-X-Gm-Message-State: AOJu0Yzy1Z8Pvj3rYzUS+KtmsBpWiS+GmSJKGsrcGIBM0TM+IZP3iRsY
-	Wo0VrJPFMk3DS2Jr3DcdDPrg8wwjhkqkFR18DCFLFQGoKu0ZNqdRwII4mm29ijeYEUASUB6FNE3
-	c
-X-Google-Smtp-Source: AGHT+IHqyC3y2szOqP3MFfQWFqdiC/njzVj7MgZpspbzOodvOMgiUNEdB8w4we96UmGmig3ghFLwlg==
-X-Received: by 2002:a5d:650c:0:b0:337:bed5:66fa with SMTP id x12-20020a5d650c000000b00337bed566famr3260964wru.38.1706048504953;
-        Tue, 23 Jan 2024 14:21:44 -0800 (PST)
-Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:9f8c:6efa:4303:47ea])
-        by smtp.gmail.com with ESMTPSA id v27-20020adfa1db000000b0033946c0f9e7sm2190634wrv.17.2024.01.23.14.21.44
-        for <yocto@lists.yoctoproject.org>
+        d=1e100.net; s=20230601; t=1706066665; x=1706671465;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1wYedGQcuHkTHENUa1VYohSWNXDvEeI/gRBOEyVRAuE=;
+        b=Xa5R3Ld47C1uZ5DuYPSflcqKllu/vJzod+IVJ46g52/RXoJ6tjOGiToSVULHfWZhRY
+         r20glLF2QlXh2NlnEdpp7xDk+ydFiWb1c3d6LMaLGRYqkgqb0aoycbSjNJwiyss9dw8u
+         zSO29XywikXDiO9wlOVLtPHAg2mvCJWUfyvJkRvid4UK/tu3jaJ1BEi6UlLmc52zvEQc
+         74igXA8YTDPq4n6Gt3MXrLaltBgqoUeJwOWeHFzidSJ50eftvXZAdOKTi+dtlH6BCZ5K
+         3E8zv1HSr3V/x+cNjTV7pUR75n5f7X7BskgrGMGexbm0KebOrfjJArc9YRDAGAjXGfqs
+         UBTg==
+X-Gm-Message-State: AOJu0Yw5izuWl85Jfs7SNrKChlTNAw5ucYINb7VyALphpxC56h3OoNO/
+	mGTM3FNp8ovyRRCB9WROwpG9/j5p93hvrnNcQcTJLvYbhbG+fIUi3bkgi1us
+X-Google-Smtp-Source: AGHT+IH1pOMKkDMnkn40drjb5qdsJ+DgWOp/WgDUk/+JpE2JoWzijSaYoyefSZtJ5IZPVjiGYGZxYw==
+X-Received: by 2002:a05:620a:147c:b0:77f:38f2:2d99 with SMTP id j28-20020a05620a147c00b0077f38f22d99mr7294060qkl.83.1706066665634;
+        Tue, 23 Jan 2024 19:24:25 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id b26-20020a05620a119a00b0076db5b792basm3668043qkk.75.2024.01.23.19.24.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 14:21:44 -0800 (PST)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+        Tue, 23 Jan 2024 19:24:24 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2] [PATCH] schedulers: Run toaster tests daily
-Date: Tue, 23 Jan 2024 22:21:43 +0000
-Message-Id: <20240123222143.660373-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.1
+Cc: Stephen Chen <stephen@radxa.com>
+Subject: [meta-rockchip][PATCH v2] KERNEL_DEVICETREE: 32-bit re-org
+Date: Tue, 23 Jan 2024 22:24:16 -0500
+Message-ID: <20240124032416.36485-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 23 Jan 2024 22:21:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62250
+ <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 03:24:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62251
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+The upstream kernel reorganized the 32-bit arch/arm device-tree directory
+structure to separate out the device-trees by manufacturer (similar to the
+organization of the arch/arm64 device-trees). Update the references to
+32-bit arm device-trees to match.
+
+This patch can now be applied since all pre-6.5-rc1 kernels have been
+removed from oe-core.
+
+NOTE: trying to build a post-6.5-rc1 32-bit kernel with this patch applied
+      will fail
+
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+Signed-off-by: Stephen Chen <stephen@radxa.com>
 ---
- schedulers.py | 4 ++++
- 1 file changed, 4 insertions(+)
+ classes/rockchip-gpt-img.bbclass      | 2 +-
+ conf/machine/firefly-rk3288.conf      | 2 +-
+ conf/machine/include/rockchip-wic.inc | 6 +++++-
+ conf/machine/marsboard-rk3066.conf    | 2 +-
+ conf/machine/radxarock.conf           | 2 +-
+ conf/machine/rock2-square.conf        | 2 +-
+ conf/machine/tinker-board-s.conf      | 2 +-
+ conf/machine/tinker-board.conf        | 2 +-
+ conf/machine/vyasa-rk3288.conf        | 2 +-
+ 9 files changed, 13 insertions(+), 9 deletions(-)
 
-diff --git a/schedulers.py b/schedulers.py
-index edd77b51..9ffa88f5 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -509,6 +509,10 @@ schedulers.append(sched.Nightly(name='nightly-meta-oe-mirror-dunfell', propertie
- schedulers.append(sched.Nightly(name='nightly-buildperf', branch='master', properties=parent_default_props('buildperf-debian11'),
-                   builderNames=['buildperf-debian11', 'buildperf-alma8'], hour=[3,9,15,21], minute=0))
+diff --git a/classes/rockchip-gpt-img.bbclass b/classes/rockchip-gpt-img.bbclass
+index b698db0798ea..440dcac7874d 100644
+--- a/classes/rockchip-gpt-img.bbclass
++++ b/classes/rockchip-gpt-img.bbclass
+@@ -108,7 +108,7 @@ create_rk_image () {
+ 	mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::${KERNEL_IMAGETYPE}
  
-+# Run the toaster tests daily
-+schedulers.append(sched.Nightly(name='nightly-toaster', branch='master', properties=parent_default_props('toaster'),
-+                  builderNames=['toaster'], hour=[3], minute=0))
-+
- # Run the AUH twice a month on 1st and 15th
- schedulers.append(sched.Nightly(name='nightly-auh', branch='master', properties=parent_default_props('auh'),
-                   builderNames=['auh'], dayOfMonth=[1, 15], hour=5, minute=0))
+ 	DEVICETREE_DEFAULT=""
+-	for DTS_FILE in ${KERNEL_DEVICETREE}; do
++	for DTS_FILE in $(echo ${KERNEL_DEVICETREE} | cut -d'/' -f2); do
+ 		[ -n "${DEVICETREE_DEFAULT}"] && DEVICETREE_DEFAULT="${DTS_FILE}"
+ 		mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${DTS_FILE} ::${DTS_FILE}
+ 	done
+diff --git a/conf/machine/firefly-rk3288.conf b/conf/machine/firefly-rk3288.conf
+index 3270bb9f1657..6ff1be822008 100644
+--- a/conf/machine/firefly-rk3288.conf
++++ b/conf/machine/firefly-rk3288.conf
+@@ -9,5 +9,5 @@
+ require conf/machine/include/rk3288.inc
+ require conf/machine/include/rockchip-wic.inc
+ 
+-KERNEL_DEVICETREE = "rk3288-firefly.dtb"
++KERNEL_DEVICETREE = "rockchip/rk3288-firefly.dtb"
+ UBOOT_MACHINE = "firefly-rk3288_defconfig"
+diff --git a/conf/machine/include/rockchip-wic.inc b/conf/machine/include/rockchip-wic.inc
+index 635288ca4e98..b1ca27cdd0a2 100644
+--- a/conf/machine/include/rockchip-wic.inc
++++ b/conf/machine/include/rockchip-wic.inc
+@@ -11,9 +11,13 @@ WKS_FILE_DEPENDS ?= " \
+ 	virtual/bootloader \
+ 	virtual/kernel \
+ 	"
++# KERNEL_DEVICETREE follows the pattern of 'rockchip/${SOC_FAMILY}-${BOARD}.dtb'
++# but is placed in the deploy directory as simply '${SOC_FAMILY}-${BOARD}.dtb'
++# therefore we have to strip off the 'rockchip/' for IMAGE_BOOT_FILES
++NONFITDT="${@d.getVar('KERNEL_DEVICETREE').split('/')[1]}"
+ IMAGE_BOOT_FILES = " \
+ 	${KERNEL_IMAGETYPE} \
+-	${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '${KERNEL_DEVICETREE}', d)} \
++	${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '${NONFITDT}', d)} \
+ 	"
+ 
+ # use the first-defined <baud>;<device> pair in SERIAL_CONSOLES
+diff --git a/conf/machine/marsboard-rk3066.conf b/conf/machine/marsboard-rk3066.conf
+index 52fd256a3445..36945e8e407b 100644
+--- a/conf/machine/marsboard-rk3066.conf
++++ b/conf/machine/marsboard-rk3066.conf
+@@ -8,4 +8,4 @@
+ 
+ require conf/machine/include/rk3066.inc
+ 
+-KERNEL_DEVICETREE = "rk3066a-marsboard.dtb"
++KERNEL_DEVICETREE = "rockchip/rk3066a-marsboard.dtb"
+diff --git a/conf/machine/radxarock.conf b/conf/machine/radxarock.conf
+index 42d8848e1d09..6ad8474669d0 100644
+--- a/conf/machine/radxarock.conf
++++ b/conf/machine/radxarock.conf
+@@ -9,4 +9,4 @@
+ 
+ require conf/machine/include/rk3188.inc
+ 
+-KERNEL_DEVICETREE = "rk3188-radxarock.dtb"
++KERNEL_DEVICETREE = "rockchip/rk3188-radxarock.dtb"
+diff --git a/conf/machine/rock2-square.conf b/conf/machine/rock2-square.conf
+index 46064eebcc67..9468b9a6b559 100644
+--- a/conf/machine/rock2-square.conf
++++ b/conf/machine/rock2-square.conf
+@@ -9,7 +9,7 @@
+ require conf/machine/include/rk3288.inc
+ 
+ SPL_BINARY = "u-boot-spl-dtb.bin"
+-KERNEL_DEVICETREE = "rk3288-rock2-square.dtb"
++KERNEL_DEVICETREE = "rockchip/rk3288-rock2-square.dtb"
+ UBOOT_MACHINE = "rock2_defconfig"
+ 
+ # This board doesn't support the combined idbloader, so resort to the older
+diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board-s.conf
+index 870b9bcdf8c7..3a656136c554 100644
+--- a/conf/machine/tinker-board-s.conf
++++ b/conf/machine/tinker-board-s.conf
+@@ -7,5 +7,5 @@
+ 
+ require conf/machine/include/tinker.inc
+ 
+-KERNEL_DEVICETREE = "rk3288-tinker-s.dtb"
++KERNEL_DEVICETREE = "rockchip/rk3288-tinker-s.dtb"
+ UBOOT_MACHINE = "tinker-s-rk3288_defconfig"
+diff --git a/conf/machine/tinker-board.conf b/conf/machine/tinker-board.conf
+index 8fe5f6305d70..ef1a1c1ac098 100644
+--- a/conf/machine/tinker-board.conf
++++ b/conf/machine/tinker-board.conf
+@@ -7,5 +7,5 @@
+ 
+ require conf/machine/include/tinker.inc
+ 
+-KERNEL_DEVICETREE = "rk3288-tinker.dtb"
++KERNEL_DEVICETREE = "rockchip/rk3288-tinker.dtb"
+ UBOOT_MACHINE = "tinker-rk3288_defconfig"
+diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.conf
+index 5b44257acec8..52b440100407 100644
+--- a/conf/machine/vyasa-rk3288.conf
++++ b/conf/machine/vyasa-rk3288.conf
+@@ -9,7 +9,7 @@ require conf/machine/include/rk3288.inc
+ require conf/machine/include/rockchip-wic.inc
+ 
+ KERNEL_IMAGETYPE = "uImage"
+-KERNEL_DEVICETREE = "rk3288-vyasa.dtb"
++KERNEL_DEVICETREE = "rockchip/rk3288-vyasa.dtb"
+ KERNEL_EXTRA_ARGS += "LOADADDR=0x02000000"
+ 
+ UBOOT_MACHINE = "vyasa-rk3288_defconfig"
 -- 
-2.40.1
+2.43.0.76.g1a87c842ece3
 
 
