@@ -1,92 +1,85 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B18AC47E49
-	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 17:24:20 +0000 (UTC)
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
- by mx.groups.io with SMTP id smtpd.web11.29006.1706117054157336110
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 21215C46CD2
+	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 17:51:20 +0000 (UTC)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+ by mx.groups.io with SMTP id smtpd.web10.29706.1706118677709298658
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Jan 2024 09:24:14 -0800
+ Wed, 24 Jan 2024 09:51:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=Km/sEQwD;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.42, mailfrom: jester@theyoctojester.info)
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-55cdaa96f34so738733a12.1
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 09:24:13 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=WOoUQ8HU;
+ spf=pass (domain: gmail.com, ip: 209.85.219.175, mailfrom: twoerner@gmail.com)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc223f3dd5eso4817697276.2
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 09:51:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1706117052; x=1706721852; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Df2Q33/9CEgIgSoxE6XI4p8yriQO5DLHgyTrIpRn6+c=;
-        b=Km/sEQwDU2vIf4uW3uLpaRzgJ1+LDhb8d+liCgsSpJCWVddrt7ymgPCfMuxzrTUcoX
-         BnUWk4U65+e/4Opg9j9oF8kdiFfH2Wnyv5NoYCu5Gl6kMnOwckEYJrtFJjVz3k0sHbY9
-         X/bg/gNYnmct+kFIHMBulwHiZAMGneVuSyD4f08XaSWhmxgzN23xN7yJUzaB0wbSZRey
-         7KS+eiJu7gsFiAnKbHYViBnh+T7yOmO/MY4jYKNIHNFtkqsEwMtQYnW7YJQgptIc/EWU
-         f9Rl7HMzZyg0PrnprEthb1PII7pXuGxeEqQqcCalpsR8NiGvMm40yf6Vl6SNv3042sYk
-         2CoA==
+        d=gmail.com; s=20230601; t=1706118676; x=1706723476; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ppoAPsrZGZ/FGJ2YtlXjAG2qC0GRU4dDwTwmVET7iY=;
+        b=WOoUQ8HUTOSAIB+4rCTVAdfFNBvs+0NZNrIawqkNd6QIRn9ji5z9tl8TxsdB6yMsnW
+         f4Sd9Q+pNLRWtaYBxThIm5VGo3s1CwF4SxvD4blx3w0rFLpXNsV7+TvCA1RuhNFqzYYw
+         ynyqJzWFDlqSR4NmeuiRQeLVUdN+eDwHFGejRUBEC0tJyvwlPezJMhhaUS9b/qLZ5vEh
+         PxWLqrUzsh07U9hhpW5Tiv3GTjdIQucS8ZolOwd0PoYpctAzit/z4HZnUopGiy0oMRAO
+         b95rOA1cGPSCrASi6etlNZ3ge2CeJ3h2gXsPjPCSBSHmQzP1SJ9seqB9W6FxEEjIk6Eg
+         H5qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706117052; x=1706721852;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Df2Q33/9CEgIgSoxE6XI4p8yriQO5DLHgyTrIpRn6+c=;
-        b=trHoOZzyMyDOAtLOavJqotKAu8c0wasPIKFLlZfosxGuLfQ2dP8glnAiKJdfFJlMGC
-         +lfPxrIvfXgQg7AiNyN//2Kc0sUX3lQgy2lh/XN2GV5c2MhqgddwLxStV3aHn4nMSEtN
-         wSGCb+NmFCr7bGtnp9AZFvaDiAsCobSo+xBwa2oKDEgLHjIiBe8WU+f4DvLzN8ku6HH+
-         xTc4MFr3GB1Z7Gbw9Q+Ii/IztxKXMC9OKl+eVCu0XFnPX/XHCb2214dUUKeTozQ2fw4w
-         DzOykN8lOAVgR2JhtJycBCwv6rFA/TZdBOVmNUwrUIUxj22dfuYM9/5aKt7tXv+Kn8zb
-         U2ew==
-X-Gm-Message-State: AOJu0YzVldcStV9eQPSWdPlyqOJKIq38TA96bC42MV5afeEHWYLzRVXo
-	RiYWX8hITl6hVINijb1oFmUqdvg4JvGHtQE5TJj+AmmjIvh86JS7IM8dYhiuRj2ducz+cKDSI+i
-	LGJFPI+DGGOOz+O/k/mXXL6o8ckL63KeFtcaeetC9cNZ49htxLpk=
-X-Google-Smtp-Source: AGHT+IEIm8hxVb9SjdaRBAOLUVWBkG4CJryVX6g3kjBd9bZUN2v0JeLY9BTHLHXvWjpdB6stf7nizYavoo/mKybWfdc=
-X-Received: by 2002:a05:6402:5145:b0:55c:7415:ece5 with SMTP id
- n5-20020a056402514500b0055c7415ece5mr1584997edd.6.1706117052254; Wed, 24 Jan
- 2024 09:24:12 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706118676; x=1706723476;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ppoAPsrZGZ/FGJ2YtlXjAG2qC0GRU4dDwTwmVET7iY=;
+        b=rwbbz6RlDKwfBRf4WQ+prXOLFXT13AmCaqrOkKOo47HMJE6VaxSkP22PFP8FM0GWgc
+         YGyLh8icasGQuWA7r4NUiL5+0kWm0JSr7QU5Noalp05EwXnsKZqW/5/B4WqKxa7o3XTw
+         l3MWeoUidES+Bw+2kRd8g1zhgyyCSFgXzQIlqYt+zxntp5/KBYUmxhAIfq+nA0crGhDb
+         xiYkqdhv5OVdTINRkaln7b72yfZeVXkds7Pv8TNCDWHZDB7j83/Rf9Lm6LlBEDgjE4+6
+         dGgxzwaB52fTDW+dYLR7+Do/S92pKQI7Qi7E0xTlEDbLE+Eap0eT7rtD+KASaCr3vA8U
+         xTLw==
+X-Gm-Message-State: AOJu0YxEsl5RHfyaplthzLCQIZvgFdaZIsUUCXnP8/P7zfF0sM16qViv
+	lDN545e+stMBfYsfqICgJKLLkmfGHIHMQVZYiSRwRs7o+lnOQ73cZb1yMqxt
+X-Google-Smtp-Source: AGHT+IFygT42I+d6RC9xkK9ZVFdwftwNP9NRbogqT1IXXotmM/is9VSuN4rxTWGO0gh26Dj/KFAX9w==
+X-Received: by 2002:a25:8b8c:0:b0:dc2:66ab:84b0 with SMTP id j12-20020a258b8c000000b00dc266ab84b0mr1022617ybl.64.1706118675781;
+        Wed, 24 Jan 2024 09:51:15 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id d15-20020a056214184f00b006819a4354basm4705768qvy.37.2024.01.24.09.51.14
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jan 2024 09:51:15 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-rockchip][PATCH] u-boot: make rock-pi-e patches only for rock-pi-e
+Date: Wed, 24 Jan 2024 12:51:13 -0500
+Message-ID: <20240124175113.559-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
 MIME-Version: 1.0
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Wed, 24 Jan 2024 18:23:46 +0100
-Message-ID: <CAEt6NwqasJzzj46gJ3Jr=NZebW2Gue7gs8Ze2BH+UMLzdnsV+w@mail.gmail.com>
-Subject: OE Workshop in Brussels on February 5th - Monday after FOSDEM
-To: openembedded-devel@lists.openembedded.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, members@lists.openembedded.org
-Content-Type: multipart/alternative; boundary="000000000000d85b25060fb45452"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 17:24:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62259
+ <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 17:51:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62260
 
---000000000000d85b25060fb45452
-Content-Type: text/plain; charset="UTF-8"
+The U-Boot patches that were added recently are only for the rock-pi-e
+MACHINE, therefore only apply them when building for rock-pi-e.
 
-Hi you!
+Fixes: b5bba3a01197 ("rock-pi-e: apply upstream PHY fix")
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ recipes-bsp/u-boot/u-boot%.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Yes, exactly you!
+diff --git a/recipes-bsp/u-boot/u-boot%.bbappend b/recipes-bsp/u-boot/u-boot%.bbappend
+index 292530c5ad40..f8378d91ce68 100644
+--- a/recipes-bsp/u-boot/u-boot%.bbappend
++++ b/recipes-bsp/u-boot/u-boot%.bbappend
+@@ -1,5 +1,5 @@
+ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+-SRC_URI += " \
++SRC_URI:append:rock-pi-e = " \
+ 	file://PATCH_1-2_net_designware_Reset_eth_phy_before_phy_connect.patch \
+ 	file://PATCH_2-2_rockchip_rk3328-rock-pi-e_Enable_DM_ETH_PHY_and_PHY_REALTEK.patch \
+ 	"
+-- 
+2.43.0.76.g1a87c842ece3
 
-Didn't you want to grab a seat at the OE Workshop in Brussels, the Monday
-right after FOSDEM? It's time to hurry up now, there are just a couple of
-seats remaining by now. So head over to
-https://pretix.eu/OpenEmbedded/OEW24/ and make sure you get one now, or you
-might miss out.
-
-And that would be sad, right?
-
-Greets,
-Josef
-
---000000000000d85b25060fb45452
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi you!<div><br></div><div>Yes, exactly you!</div><div><br=
-></div><div>Didn&#39;t you want to grab a seat at the OE Workshop in Brusse=
-ls, the Monday right after FOSDEM? It&#39;s time to hurry up now, there are=
- just a couple of seats remaining by now. So head over to=C2=A0<a href=3D"h=
-ttps://pretix.eu/OpenEmbedded/OEW24/">https://pretix.eu/OpenEmbedded/OEW24/=
-</a> and make sure you get one now, or you might miss out.</div><div><br></=
-div><div>And that would be sad, right?</div><div><br></div><div>Greets,</di=
-v><div>Josef</div></div>
-
---000000000000d85b25060fb45452--
 
