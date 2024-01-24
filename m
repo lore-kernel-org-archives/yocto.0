@@ -1,72 +1,68 @@
-Return-Path: <daniele.lugli@gmail.com>
+Return-Path: <peter.marko@siemens.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BBC7C46CD2
-	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 19:33:50 +0000 (UTC)
-Subject: Re: [yocto] kernel headers in my image
-To: Bruce Ashfield <bruce.ashfield@gmail.com>,yocto@lists.yoctoproject.org
-From: "Daniele Lugli" <daniele.lugli@gmail.com>
-X-Originating-Location: Rimini, Emilia-Romagna, IT (176.246.20.126)
-X-Originating-Platform: Windows Opera 106
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C52C2C46CD2
+	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 20:16:10 +0000 (UTC)
+Received: from mta-64-226.siemens.flowmailer.net (mta-64-226.siemens.flowmailer.net [185.136.64.226])
+ by mx.groups.io with SMTP id smtpd.web11.33806.1706127367218923222
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 24 Jan 2024 12:16:07 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=peter.marko@siemens.com header.s=fm1 header.b=MOOd7zQh;
+ spf=pass (domain: rts-flowmailer.siemens.com, ip: 185.136.64.226, mailfrom: fm-256628-2024012420160463197f703034ba0df5-jo6uw_@rts-flowmailer.siemens.com)
+Received: by mta-64-226.siemens.flowmailer.net with ESMTPSA id 2024012420160463197f703034ba0df5
+        for <yocto@lists.yoctoproject.org>;
+        Wed, 24 Jan 2024 21:16:04 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=peter.marko@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=Rg7yhb63coJLI+cibj98VIcZKt59j95smKps9MDOKpI=;
+ b=MOOd7zQhE3stPlIakbr4yCKxdpDXERLxAN2LrbHYBJLgr12MbBvUIA3dDfcDSFGyq3/6Ms
+ ZKoYfx60JsvOTArrMtkQQbZsyx+1PYZ+DGQoYH+chey9Nd6IX4pwQxz0RTX9xc9QlBPoTxrr
+ Papo1w2r2ciZZ9158eiqirKmRfG9w=;
+From: Peter Marko <peter.marko@siemens.com>
+To: yocto@lists.yoctoproject.org
+Cc: Peter Marko <peter.marko@siemens.com>
+Subject: [meta-virtualization][PATCH] netavark: correct PV
+Date: Wed, 24 Jan 2024 21:15:16 +0100
+Message-Id: <20240124201516.19193-1-peter.marko@siemens.com>
 MIME-Version: 1.0
-Date: Wed, 24 Jan 2024 11:33:44 -0800
-References: <CADkTA4NpnJg2ZxoMyk83dEk--n4HtnbBYWF7FuSEQv6uQQcPwA@mail.gmail.com>
-In-Reply-To: <CADkTA4NpnJg2ZxoMyk83dEk--n4HtnbBYWF7FuSEQv6uQQcPwA@mail.gmail.com>
-Message-ID: <29417.1706124824770476581@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="GNyidlHE5TWP1k1PbtKr"
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-256628:519-21489:flowmailer
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 19:33:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62269
+ <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 20:16:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62270
 
---GNyidlHE5TWP1k1PbtKr
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+From: Peter Marko <peter.marko@siemens.com>
 
-I hadn't. Now, my modules are built.
+Current hash is 10 commits after tag, so add +git to PV.
 
-Thank you very much!
---
-Daniele Lugli
-General Logic srl
-Viale Curreno, 41
-10133 Torino
-Italy
-tel +39 329 3933041
-www.general-logic.com ( http://www.general-logic.com/ )
-www.linkedin.com/in/daniele- lugli ( http://www.linkedin.com/in/daniele-lug=
-li )
+Signed-off-by: Peter Marko <peter.marko@siemens.com>
+---
+ .../netavark/{netavark_1.9.0.bb => netavark_git.bb}              | 1 +
+ 1 file changed, 1 insertion(+)
+ rename recipes-containers/netavark/{netavark_1.9.0.bb => netavark_git.bb} (99%)
 
---GNyidlHE5TWP1k1PbtKr
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+diff --git a/recipes-containers/netavark/netavark_1.9.0.bb b/recipes-containers/netavark/netavark_git.bb
+similarity index 99%
+rename from recipes-containers/netavark/netavark_1.9.0.bb
+rename to recipes-containers/netavark/netavark_git.bb
+index 5249acee..9d3a1172 100644
+--- a/recipes-containers/netavark/netavark_1.9.0.bb
++++ b/recipes-containers/netavark/netavark_git.bb
+@@ -5,6 +5,7 @@ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
+ 
+ SRCREV = "167e2e4f167cadc635bbacb5331674b67787d08e"
++PV = "1.9.0+git"
+ 
+ # It is possible to fetch the source using the crate fetcher instead:
+ #SRC_URI = "crate://crates.io/${BPN}/${PV}"
+-- 
+2.30.2
 
-I hadn't. Now, my modules are built.<br /><br />Thank you very much!<br />-=
-- <br />
-<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
-nt-size: small;">
-<div dir=3D"ltr">
-<div>Daniele Lugli</div>
-General Logic srl</div>
-<div>Viale Curreno, 41</div>
-<div>10133 Torino<br />Italy</div>
-<div>tel +39 329 3933041</div>
-</div>
-<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
-nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.general-lo=
-gic.com/" target=3D"_blank" rel=3D"noopener" data-saferedirecturl=3D"https:=
-//www.google.com/url?q=3Dhttp://www.general-logic.com&amp;source=3Dgmail&am=
-p;ust=3D1702484712598000&amp;usg=3DAOvVaw3caieBojp7RHbXjtN3Avtg">www.genera=
-l-logic.com</a></div>
-<div style=3D"color: #500050; font-family: Arial, Helvetica, sans-serif; fo=
-nt-size: small;"><a style=3D"color: #1155cc;" href=3D"http://www.linkedin.c=
-om/in/daniele-lugli" target=3D"_blank" rel=3D"noopener" data-saferedirectur=
-l=3D"https://www.google.com/url?q=3Dhttp://www.linkedin.com/in/daniele-lugl=
-i&amp;source=3Dgmail&amp;ust=3D1702484712598000&amp;usg=3DAOvVaw2CJ1YOxQZd7=
-TCndA_wq8ak">www.linkedin.com/in/daniele-<wbr />lugli</a></div>
-
---GNyidlHE5TWP1k1PbtKr--
 
