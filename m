@@ -2,94 +2,79 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0DE4C46CD2
-	for <webhook@archiver.kernel.org>; Thu, 25 Jan 2024 02:00:41 +0000 (UTC)
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
- by mx.groups.io with SMTP id smtpd.web10.6709.1706148036631407987
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 895B6C46CD2
+	for <webhook@archiver.kernel.org>; Thu, 25 Jan 2024 02:01:31 +0000 (UTC)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+ by mx.groups.io with SMTP id smtpd.web10.6732.1706148087383670758
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Jan 2024 18:00:36 -0800
+ Wed, 24 Jan 2024 18:01:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=i/SkYa3Z;
- spf=pass (domain: gmail.com, ip: 209.85.219.50, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-686b7f2c535so2349156d6.0
-        for <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 18:00:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=E1HYEj46;
+ spf=pass (domain: gmail.com, ip: 209.85.160.178, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-42a446cb1baso16641321cf.0
+        for <yocto@lists.yoctoproject.org>; Wed, 24 Jan 2024 18:01:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706148034; x=1706752834; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1706148085; x=1706752885; darn=lists.yoctoproject.org;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OYAbNzo1z8gXvnuGY20Ahk5ANkZLfFLroqQnXvlaUz4=;
-        b=i/SkYa3ZlNRCPIK+8CfwQHNWFFnEN7W7Tag/6YvsgQyg/ZJap6Wr1wwtdBlqevGQ+K
-         a2rGHF2a4DmToCPpcNKJ6fytQsH+731UqpYVCXzidKmre0Al+DGPE0S5PA0PITcrNkPZ
-         OBYa6RAl6b+Bwpqrhxkb+ipyhPCr5Nl9QHjbrW6AlCEV9fmL3PCdxIO0a2y0wfWm83VI
-         91Z+L2/3/7aW7jM/6JQd02EsKZ+OWYtQAcAkW6vyYx3W/QeWDja0XHp4pLHwfP6Oc6D8
-         dvIwiwOkqxcqxV2aJsL0yGaPB/QiqQhis/wCiiUkIwQ5PpJ70xAWKHvvJRyLOaZ3fIBd
-         rzJA==
+         :message-id:subject:to:from:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KuAbNriQHJA2YGHvMSUuujUNxnPrNq4XLHXzigv9aBs=;
+        b=E1HYEj46TLEknxGV+qzTW1fW+1eTlQkBKMe7GXtJTLlveAFpczhQ/jaUYYZLO7nIM2
+         MirxJxYgoqRdqz1v7nCo7U2lcWlHhYtcxKERmq/krOL2Az8+AZgSusuSW5nXG46Rui37
+         /veJ9b+/pgPMI2WuanTE7JqbA+1SWXDqVMlvllXhMnXuR4iDc9I0I6D4f4vPfR8dmIel
+         zXfkvOOVGJ38hPc5eKCb9pz2VSnnju92ywAVG91i+lX6r3bqPwlBJOoPIqKzEM9fFb7/
+         YyAtxv29iX3thl6q7aUr7snSyy8TR6WcmxtvaSZk6dSBvvvc7H/0UEiuxyltxspjA4HH
+         tPmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706148034; x=1706752834;
+        d=1e100.net; s=20230601; t=1706148085; x=1706752885;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :message-id:subject:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OYAbNzo1z8gXvnuGY20Ahk5ANkZLfFLroqQnXvlaUz4=;
-        b=gN88E7cB6Fj4PbKfx+VpfzUj6Vbeg5eZF4oppyzU+9Iae7OBUA5OXVUki1Zn2A1cQ3
-         8fjMhtJ14dDCqXJBqsf+5HIlGFYHbIbME2MjIIbUMRY8AVWZErANbzSiOJ2lvsFY09rk
-         L9eUtBiYcy7lv/FKkpkYGbarZ33T4k4TpOreGXVzMPGrP6ZIw1ZPqC84B2rmPjHmyqaO
-         9pwdgkUQLap03TALNZ9QFkwQyA2iuqUGUhce53d8Ap6cxeEeci3FI6SY/VqIKCTxihle
-         0B64kA8ZT2J9N2KJPfrjQvrn/gkW/2crZv0n70qC3FQyvwL5hCAeGXSjcGdJp9m7DkTN
-         V++A==
-X-Gm-Message-State: AOJu0Yzn+YzH7Dx9i2u6y+3N/l867D5pwvCnJr6fK8lICvGYUo/8hqRy
-	RGGHw1S02qlprTaLiMbUNApACYk5aIwVJcbXyS9eFpBa27cKK1OIMQz1imIW
-X-Google-Smtp-Source: AGHT+IGecvzTCS2xlrfzAZbIjaEDbZy1Htt2w5mwHH+HR6guOLfRdxe0THSrsPuQA0RD50m8eCjp0A==
-X-Received: by 2002:a0c:8e8a:0:b0:681:98b8:3f55 with SMTP id x10-20020a0c8e8a000000b0068198b83f55mr754733qvb.49.1706148034454;
-        Wed, 24 Jan 2024 18:00:34 -0800 (PST)
+        bh=KuAbNriQHJA2YGHvMSUuujUNxnPrNq4XLHXzigv9aBs=;
+        b=HJfgzC1YvfNmErVAuC/SbZGdDhmaLWVhgjc2KVuWBhKiEuuw8F3A2fhmwcMrEG84g8
+         3r4oErUM38u2m9uKIm9W+dD1OCCELxH+YORuwi+Y69d1MjP4JxzThqN1DJXVr5QaVKod
+         i2WP2IYvcNSBWskP7md+PTsfVrbmprVs0xv+/uTVzcfNBV2d4PAXSbXVXsEPupgl3nu9
+         zkoGstFbBW0eunWylcHBi72tuPwftzAT6IuvxjgL2FGgmVo46V4JpDeQCqt1TmsTKynM
+         81/7QrLA5OK//4eUEzpV9Vq77yriY1z37F7xpAloBVJPsf3g1AzcFRa4/9/CdMTQ99Q5
+         z9lA==
+X-Gm-Message-State: AOJu0YyWpsmwE6YbJ7hIOTXZJnyNo/hGxr17FsoXnwF4i0p05jDsxCvZ
+	E5FZX732D1sCE8j8QP/Vlo3Nx61bKs/CaFh8We9dUXec7ZR3KGRC3mXTf8Bh
+X-Google-Smtp-Source: AGHT+IEfUL3QuPcm/q8uLuqScs1TVmUrcXImZNCLO8i/7za1kTLDHBMe6gtDrAVwo7g18BziMWQnaA==
+X-Received: by 2002:ac8:5812:0:b0:42a:61ae:e1c9 with SMTP id g18-20020ac85812000000b0042a61aee1c9mr258519qtg.7.1706148085241;
+        Wed, 24 Jan 2024 18:01:25 -0800 (PST)
 Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id lb25-20020a056214319900b00685ba831e4bsm4789281qvb.118.2024.01.24.18.00.33
+        by smtp.gmail.com with ESMTPSA id fy8-20020a05622a5a0800b0042a09928c10sm4971338qtb.33.2024.01.24.18.01.24
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jan 2024 18:00:33 -0800 (PST)
-Date: Wed, 24 Jan 2024 21:00:31 -0500
+        Wed, 24 Jan 2024 18:01:24 -0800 (PST)
+Date: Wed, 24 Jan 2024 21:01:22 -0500
 From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: Stephen Chen <stephen@radxa.com>
-Subject: Re: [yocto] [meta-rockchip][PATCH v2] KERNEL_DEVICETREE: 32-bit
- re-org
-Message-ID: <20240125020031.GA23074@localhost>
-References: <17AD2A9866FF5389.23445@lists.yoctoproject.org>
+Subject: Re: [yocto] [meta-rockchip][PATCH] u-boot: make rock-pi-e patches
+ only for rock-pi-e
+Message-ID: <20240125020122.GB23074@localhost>
+References: <17AD59E5EC73CFB5.23445@lists.yoctoproject.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <17AD2A9866FF5389.23445@lists.yoctoproject.org>
+In-Reply-To: <17AD59E5EC73CFB5.23445@lists.yoctoproject.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Jan 2024 02:00:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62279
+ <yocto@lists.yoctoproject.org>; Thu, 25 Jan 2024 02:01:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62280
 
-On Tue 2024-01-23 @ 10:24:16 PM, Trevor Woerner via lists.yoctoproject.org wrote:
-> The upstream kernel reorganized the 32-bit arch/arm device-tree directory
-> structure to separate out the device-trees by manufacturer (similar to the
-> organization of the arch/arm64 device-trees). Update the references to
-> 32-bit arm device-trees to match.
+On Wed 2024-01-24 @ 12:51:13 PM, Trevor Woerner via lists.yoctoproject.org wrote:
+> The U-Boot patches that were added recently are only for the rock-pi-e
+> MACHINE, therefore only apply them when building for rock-pi-e.
 > 
-> This patch can now be applied since all pre-6.5-rc1 kernels have been
-> removed from oe-core.
-> 
-> NOTE: trying to build a post-6.5-rc1 32-bit kernel with this patch applied
->       will fail
-> 
+> Fixes: b5bba3a01197 ("rock-pi-e: apply upstream PHY fix")
+Reviewed-by: Quentin Schulz <foss+yocto@0leil.net>
 > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> Signed-off-by: Stephen Chen <stephen@radxa.com>
 > ---
->  classes/rockchip-gpt-img.bbclass      | 2 +-
->  conf/machine/firefly-rk3288.conf      | 2 +-
->  conf/machine/include/rockchip-wic.inc | 6 +++++-
->  conf/machine/marsboard-rk3066.conf    | 2 +-
->  conf/machine/radxarock.conf           | 2 +-
->  conf/machine/rock2-square.conf        | 2 +-
->  conf/machine/tinker-board-s.conf      | 2 +-
->  conf/machine/tinker-board.conf        | 2 +-
->  conf/machine/vyasa-rk3288.conf        | 2 +-
->  9 files changed, 13 insertions(+), 9 deletions(-)
+>  recipes-bsp/u-boot/u-boot%.bbappend | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
 Applied to meta-rockchip, master branch.
 
