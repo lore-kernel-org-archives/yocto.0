@@ -1,168 +1,107 @@
-Return-Path: <yumx@amazon.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C88D4C48260
-	for <webhook@archiver.kernel.org>; Thu, 25 Jan 2024 09:52:03 +0000 (UTC)
-Received: from smtp-fw-52004.amazon.com (smtp-fw-52004.amazon.com [52.119.213.154])
- by mx.groups.io with SMTP id smtpd.web11.13889.1706176320897333284
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CB6BEC48260
+	for <webhook@archiver.kernel.org>; Thu, 25 Jan 2024 09:52:33 +0000 (UTC)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web10.13851.1706176351256899877
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Jan 2024 01:52:01 -0800
+ Thu, 25 Jan 2024 01:52:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@amazon.com header.s=amazon201209 header.b=U87i9Fmx;
- spf=pass (domain: amazon.com, ip: 52.119.213.154, mailfrom: prvs=747da17fe=yumx@amazon.com)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=hbYJU1Ve;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5100fdd37f7so2585882e87.2
+        for <yocto@lists.yoctoproject.org>; Thu, 25 Jan 2024 01:52:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1706176321; x=1737712321;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=AUJVamfI9F89wacbGRzJNfaXT0w3Xhcg5E/HVpw6c7I=;
-  b=U87i9Fmxskl6034jwMM4RrlvbgaLe+2AaO+15D9cu+svh/3Kn0Oagt42
-   mTE7IuLNBmqgSIX64RCXOsocfIDvi212fV2Q1Dfu0+D8X5WOLqIB3XMtm
-   Cij4j1VVW/8FnVRoGjak/9/C3UGqOr2E1aweO38I3pbZY3Xqdcvvn8D6L
-   Y=;
-X-IronPort-AV: E=Sophos;i="6.05,216,1701129600"; 
-   d="scan'208,217";a="180362967"
-Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-iad-1e-m6i4x-a65ebc6e.us-east-1.amazon.com) ([10.43.8.2])
-  by smtp-border-fw-52004.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2024 09:52:00 +0000
-Received: from smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev (iad7-ws-svc-p70-lb3-vlan3.iad.amazon.com [10.32.235.38])
-	by email-inbound-relay-iad-1e-m6i4x-a65ebc6e.us-east-1.amazon.com (Postfix) with ESMTPS id E67B06A055
-	for <yocto@lists.yoctoproject.org>; Thu, 25 Jan 2024 09:51:59 +0000 (UTC)
-Received: from EX19MTAUWA002.ant.amazon.com [10.0.7.35:2953]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.31.136:2525] with esmtp (Farcaster)
- id aac4fe95-a0ce-4264-86a3-2f3c226af1f9; Thu, 25 Jan 2024 09:51:59 +0000 (UTC)
-X-Farcaster-Flow-ID: aac4fe95-a0ce-4264-86a3-2f3c226af1f9
-Received: from EX19D020UWC003.ant.amazon.com (10.13.138.187) by
- EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 25 Jan 2024 09:51:58 +0000
-Received: from EX19D020UWC002.ant.amazon.com (10.13.138.147) by
- EX19D020UWC003.ant.amazon.com (10.13.138.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 25 Jan 2024 09:51:58 +0000
-Received: from EX19D020UWC002.ant.amazon.com ([fe80::25b5:6dfd:9e72:d82]) by
- EX19D020UWC002.ant.amazon.com ([fe80::25b5:6dfd:9e72:d82%5]) with mapi id
- 15.02.1118.040; Thu, 25 Jan 2024 09:51:58 +0000
-From: "Yu, Max" <yumx@amazon.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: How to properly ship rustdoc binary when building rust-native 1.71+
-Thread-Topic: How to properly ship rustdoc binary when building rust-native
- 1.71+
-Thread-Index: AQHaT3QjcRj3KBwZkEaVMspfB7+CtA==
-Date: Thu, 25 Jan 2024 09:51:58 +0000
-Message-ID: <AD914A14-8FCF-4060-B34D-B4ABA2350C18@amazon.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.142.151.183]
-Content-Type: multipart/alternative;
-	boundary="_000_AD914A148FCF4060B34DB4ABA2350C18amazoncom_"
+        d=gmail.com; s=20230601; t=1706176349; x=1706781149; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8dNg+2B/EL/S9yENDw1TtQjRCfH27u09gNJTh4fZKX8=;
+        b=hbYJU1VePnnsdFH0VK9ZVmTwwQv2Poib9XjQSO0326NH9wAIzRAzwmXQRqq+Q/LhXO
+         i2WTPdaLPOazsbUoKBWY9fDezuHvXeZA+KB+3BRQEzMdo/ijkgMC3Q956EyMaRO8ZzcB
+         UFyZ7nNwPos7Www/C1pqd5+jq0IhbDRXUOfe8OygKxjcotWSD6T48xd4PdEgHgtiA3O5
+         BSiNpCWxUe1+QRdEJu2DRhoL6UWlpmWa8odGBAYIMRwfIOp3K3LQeM+l0P9BaCU/FQUq
+         bYyztwek3Wy/wT1QoNhLDOoWx7/FtNkDGueQ7cPtnvz1deECzI2wlQJhX7pbLkO/DeTa
+         XcKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706176349; x=1706781149;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8dNg+2B/EL/S9yENDw1TtQjRCfH27u09gNJTh4fZKX8=;
+        b=Avj1x2/JmF6EVyHI7q0u2Es+d46nd+aIyBMq5puhJSlFV1NMkVv5dR4/gLWrSyEHzS
+         j75GfkT4HtPRC8J2vamEsQ1kNrspjCB8s6GFuVNhZmbm6/L+WlKWP1cQPXRBPUKDV2s4
+         2EmibpL2qvPscZsZEFwevQbOoRP5FkebJJurahQcCm3bCghgVN0SJNmLdl27z9SfyMlU
+         esYLF6MB0owdZxs/VujvPO0HAxiETu115NRu2CaTZpas3Ax+BCUfYSmZgulmLW61Z08o
+         7RKIJsCJCUSAkT7ZeDe+haWz/OuPgfJTmbIzKubjKPByxeOsJOn/j8WCX3cwS0K/wu7X
+         0Mpg==
+X-Gm-Message-State: AOJu0Yxf+Lww5NerlFnFbp+Q4ao3GoaSEWYO2cK7baKyHmYUO2LGXq1x
+	xMGpL4/ec7GVD1cPn9d74KyAdZPjn+VdYbLejnDzz7lQODgYFAOfgf5ri255JmaKPd7cc2ofiFQ
+	ez6RxPDVbpY5+oor0P/fX2LypxSuvyhcS
+X-Google-Smtp-Source: AGHT+IHodGq45YVEtk+X8+cSk51Faf0o5fnPVgnbAI6gAzlSWD3MPklWvX9mkdS6MpKv3Vfvgma11gTIyk8sUVuagPI=
+X-Received: by 2002:a19:6757:0:b0:50e:75f8:ac9f with SMTP id
+ e23-20020a196757000000b0050e75f8ac9fmr479134lfj.28.1706176349059; Thu, 25 Jan
+ 2024 01:52:29 -0800 (PST)
 MIME-Version: 1.0
+References: <44c1.1706175462811078525.y4F1@lists.yoctoproject.org>
+In-Reply-To: <44c1.1706175462811078525.y4F1@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 25 Jan 2024 10:52:17 +0100
+Message-ID: <CANNYZj9zmCp1AoEFws7x0_YMOFaqF3QPYn2-uq4vPzpdni364g@mail.gmail.com>
+Subject: Re: [yocto] Using Yocto for development on the host
+To: yocto@lists.yoctoproject.org, an010@live.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Jan 2024 09:52:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62285
+ <yocto@lists.yoctoproject.org>; Thu, 25 Jan 2024 09:52:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62286
 
---_000_AD914A148FCF4060B34DB4ABA2350C18amazoncom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Producing docker or some other container with yocto is not impossible,
+but it's a huge maintenance headache. From my experience every
+developer team wants 'their stuff' in it, and of course they never
+clean up something they no longer need. So the artefact grows in size
+indefinitely. There's also the problem of distributing it, and
+ensuring everyone is on the latest version. It also doesn't really
+match the actual target hardware: just the userspace root filesystem
+is the same.
 
-SGksDQoNCldpdGggdGhlIG5ld2VzdCBydXN0IHJlY2lwZSBjaGFuZ2UgaHR0cHM6Ly9naXQueW9j
-dG9wcm9qZWN0Lm9yZy9wb2t5L2NvbW1pdC8/aWQ9MzIxYWViZmEyODFiZDI4ZTM2OGM2ODRlY2U1
-Nzg2N2Y2YmQwY2JlNywgSSBub3RpY2VkIHRoYXQgYnVpbGRpbmcgcnVzdC1uYXRpdmUgbm8gbG9u
-Z2VyIGJ1aWxkcyB0aGUgcnVzdGRvYyBiaW5hcnkuIFNwZWNpZmljYWxseSwgdGhlIGFkZGl0aW9u
-YWwgbGluZSBvZiBgIGNvbmZpZy5zZXQoImJ1aWxkIiwgInRvb2xzIiwgWyJydXN0LWRlbWFuZ2xl
-ciIsXSlgIGRpc2FibGVzIHRoZSBydXN0ZG9jIGJpbmFyeS4gKEnigJl2ZSBhbHNvIGhhZCB0byBl
-ZmZlY3RpdmVseSByZXZlcnQgaHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5L2NvbW1p
-dC8/aWQ9M2U1MGU0NTkxNzgzMWQ5ZGEyZDg2ZTY5ZmI5MDhhMWE3ODQ4M2I2MiB3aXRoIGJiYXBw
-ZW5kcywgaW4gb3JkZXIgdG8gYnVpbGQgcnVzdC1uYXRpdmUgd2l0aCB0aGUgcnVzdCBkb2MuKQ0K
-DQpJcyB0aGlzIGludGVuZGVkPyBJZiBzbywgaG93IGlzIGl0IHJlY29tbWVuZGVkIHRvIHJlZW5h
-YmxlIHRoZSBydXN0ZG9jIGJpbmFyeT8NCg0KVGhhbmtzLA0KTWF4DQoNCg==
+I'd say using Yocto+qemu directly is better overall, if you set up
+sstate infrastructure so that no one has to do heavy builds with their
+feeble laptops.
 
---_000_AD914A148FCF4060B34DB4ABA2350C18amazoncom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <C042EF5A73FFBC4E8D1AC974C9923552@amazon.com>
-Content-Transfer-Encoding: base64
+Alex
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6RGVuZ1hpYW47DQoJcGFub3NlLTE6
-MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7
-DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZh
-bWlseToiXEBEZW5nWGlhbiI7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBT
-dHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05v
-cm1hbA0KCXttYXJnaW46MGluOw0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWxpZ2F0dXJlczpzdGFuZGFyZGNvbnRleHR1YWw7fQ0K
-YTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29s
-b3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHls
-ZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLWNvbXBvc2U7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLmFwcGxlLWNvbnZl
-cnRlZC1zcGFjZQ0KCXttc28tc3R5bGUtbmFtZTphcHBsZS1jb252ZXJ0ZWQtc3BhY2U7fQ0KLk1z
-b0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6
-IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
-MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
-b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBs
-YW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiIHN0eWxlPSJ3b3JkLXdy
-YXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5IaSw8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iY2FyZXQtY29sb3I6IHJnYigwLCAwLCAw
-KTtmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsO29ycGhhbnM6IGF1dG87dGV4dC1hbGlnbjpzdGFy
-dDt3aWRvd3M6IGF1dG87LXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4O3dvcmQtc3BhY2lu
-ZzowcHgiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iY2FyZXQtY29sb3I6IHJnYigwLCAw
-LCAwKTtmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsO29ycGhhbnM6IGF1dG87dGV4dC1hbGlnbjpz
-dGFydDt3aWRvd3M6IGF1dG87LXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4O3dvcmQtc3Bh
-Y2luZzowcHgiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5XaXRoIHRoZSBuZXdlc3QgcnVz
-dCByZWNpcGUgY2hhbmdlPHNwYW4gY2xhc3M9ImFwcGxlLWNvbnZlcnRlZC1zcGFjZSI+Jm5ic3A7
-PC9zcGFuPjxhIGhyZWY9Imh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reS9jb21taXQv
-P2lkPTMyMWFlYmZhMjgxYmQyOGUzNjhjNjg0ZWNlNTc4NjdmNmJkMGNiZTciIHRpdGxlPSJodHRw
-czovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3kvY29tbWl0Lz9pZD0zMjFhZWJmYTI4MWJkMjhl
-MzY4YzY4NGVjZTU3ODY3ZjZiZDBjYmU3Ij48c3BhbiBzdHlsZT0iY29sb3I6IzA1NjNDMSI+aHR0
-cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5L2NvbW1pdC8/aWQ9MzIxYWViZmEyODFiZDI4
-ZTM2OGM2ODRlY2U1Nzg2N2Y2YmQwY2JlNzwvc3Bhbj48L2E+LA0KIEkgbm90aWNlZCB0aGF0IGJ1
-aWxkaW5nIHJ1c3QtbmF0aXZlIG5vIGxvbmdlciBidWlsZHMgdGhlIHJ1c3Rkb2MgYmluYXJ5LiBT
-cGVjaWZpY2FsbHksIHRoZSBhZGRpdGlvbmFsIGxpbmUgb2YgYCBjb25maWcuc2V0KCZxdW90O2J1
-aWxkJnF1b3Q7LCAmcXVvdDt0b29scyZxdW90OywgWyZxdW90O3J1c3QtZGVtYW5nbGVyJnF1b3Q7
-LF0pYCBkaXNhYmxlcyB0aGUgcnVzdGRvYyBiaW5hcnkuIChJ4oCZdmUgYWxzbyBoYWQgdG8gZWZm
-ZWN0aXZlbHkgcmV2ZXJ0PHNwYW4gY2xhc3M9ImFwcGxlLWNvbnZlcnRlZC1zcGFjZSI+Jm5ic3A7
-PC9zcGFuPjxhIGhyZWY9Imh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reS9jb21taXQv
-P2lkPTNlNTBlNDU5MTc4MzFkOWRhMmQ4NmU2OWZiOTA4YTFhNzg0ODNiNjIiIHRpdGxlPSJodHRw
-czovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3kvY29tbWl0Lz9pZD0zZTUwZTQ1OTE3ODMxZDlk
-YTJkODZlNjlmYjkwOGExYTc4NDgzYjYyIj48c3BhbiBzdHlsZT0iY29sb3I6IzA1NjNDMSI+aHR0
-cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5L2NvbW1pdC8/aWQ9M2U1MGU0NTkxNzgzMWQ5
-ZGEyZDg2ZTY5ZmI5MDhhMWE3ODQ4M2I2Mjwvc3Bhbj48L2E+PHNwYW4gY2xhc3M9ImFwcGxlLWNv
-bnZlcnRlZC1zcGFjZSI+Jm5ic3A7PC9zcGFuPndpdGgNCiBiYmFwcGVuZHMsIGluIG9yZGVyIHRv
-IGJ1aWxkIHJ1c3QtbmF0aXZlIHdpdGggdGhlIHJ1c3QgZG9jLik8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iY2FyZXQtY29sb3I6IHJnYigwLCAwLCAw
-KTtmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsO29ycGhhbnM6IGF1dG87dGV4dC1hbGlnbjpzdGFy
-dDt3aWRvd3M6IGF1dG87LXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4O3dvcmQtc3BhY2lu
-ZzowcHgiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iY2FyZXQtY29sb3I6IHJnYigwLCAw
-LCAwKTtmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsO29ycGhhbnM6IGF1dG87dGV4dC1hbGlnbjpz
-dGFydDt3aWRvd3M6IGF1dG87LXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4O3dvcmQtc3Bh
-Y2luZzowcHgiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj5JcyB0aGlzIGludGVuZGVkPyBJ
-ZiBzbywgaG93IGlzIGl0IHJlY29tbWVuZGVkIHRvIHJlZW5hYmxlIHRoZSBydXN0ZG9jIGJpbmFy
-eT88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iY2Fy
-ZXQtY29sb3I6IHJnYigwLCAwLCAwKTtmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsO29ycGhhbnM6
-IGF1dG87dGV4dC1hbGlnbjpzdGFydDt3aWRvd3M6IGF1dG87LXdlYmtpdC10ZXh0LXN0cm9rZS13
-aWR0aDogMHB4O3dvcmQtc3BhY2luZzowcHgiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj4m
-bmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
-Y2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTtmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsO29ycGhh
-bnM6IGF1dG87dGV4dC1hbGlnbjpzdGFydDt3aWRvd3M6IGF1dG87LXdlYmtpdC10ZXh0LXN0cm9r
-ZS13aWR0aDogMHB4O3dvcmQtc3BhY2luZzowcHgiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNr
-Ij5UaGFua3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
-bGU9ImNhcmV0LWNvbG9yOiByZ2IoMCwgMCwgMCk7Zm9udC12YXJpYW50LWNhcHM6IG5vcm1hbDtv
-cnBoYW5zOiBhdXRvO3RleHQtYWxpZ246c3RhcnQ7d2lkb3dzOiBhdXRvOy13ZWJraXQtdGV4dC1z
-dHJva2Utd2lkdGg6IDBweDt3b3JkLXNwYWNpbmc6MHB4Ij4NCjxzcGFuIHN0eWxlPSJjb2xvcjpi
-bGFjayI+TWF4PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
-
---_000_AD914A148FCF4060B34DB4ABA2350C18amazoncom_--
+On Thu, 25 Jan 2024 at 10:37, Aleksandar Nikolic <an010@live.com> wrote:
+>
+> Hi,
+>
+> is there a way to use Yocto for development on the host as well? Usually =
+it is easier to develop code and run some basic testing on the host, howeve=
+r, I would like to avoid to have to set up the same (or at least a similar)=
+ environment by using Docker for example - some of the issues being having =
+the same versions of dependencies and their config files, the same or simil=
+ar compiler flags, etc. - this would be a lot of work in Docker after an fr=
+om e.g. Kirkstone to Scarthgap.
+>
+> I know we could use the SDK and run the code in QEMU, but this also requi=
+res a "bit more" work, is however, IMHO, better than using Docker for the s=
+ame purpose?
+>
+> Any thoughts, ideas or proposals?
+>
+> Aleksandar
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62282): https://lists.yoctoproject.org/g/yocto/messag=
+e/62282
+> Mute This Topic: https://lists.yoctoproject.org/mt/103951003/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
