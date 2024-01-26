@@ -1,128 +1,74 @@
-Return-Path: <philip@balister.org>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF247C47258
-	for <webhook@archiver.kernel.org>; Thu, 25 Jan 2024 22:58:47 +0000 (UTC)
-Received: from smtp7.emailarray.com (smtp7.emailarray.com [65.39.216.66])
- by mx.groups.io with SMTP id smtpd.web11.535.1706223520500642489
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A00E9C47422
+	for <webhook@archiver.kernel.org>; Fri, 26 Jan 2024 05:23:59 +0000 (UTC)
+Received: from a27-193.smtp-out.us-west-2.amazonses.com (a27-193.smtp-out.us-west-2.amazonses.com [54.240.27.193])
+ by mx.groups.io with SMTP id smtpd.web11.9243.1706246630983567732
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Jan 2024 14:58:41 -0800
+ Thu, 25 Jan 2024 21:23:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: balister.org, ip: 65.39.216.66, mailfrom: philip@balister.org)
-Received: (qmail 34480 invoked by uid 89); 25 Jan 2024 22:58:39 -0000
-X-Orig-Sender: philip@balister.org
-Received: from unknown (HELO ?192.168.11.155?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0A3My4xNTIuMTM0LjE1Mg==) (POLARISLOCAL)  
-  by smtp7.emailarray.com with SMTP; 25 Jan 2024 22:58:39 -0000
-Message-ID: <1426bf2a-b18a-4589-974b-3b5f9c40a904@balister.org>
-Date: Thu, 25 Jan 2024 17:58:38 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] bmap-tools repository closes
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org, twoerner@gmail.com,
- Tim Orling <ticotimo@gmail.com>, Michael Halstead <michael@yoctoproject.org>
-Cc: JPEWhacker@gmail.com, dedekind1@gmail.com
-References: <5e58c6719d797be31ece8149535531036ae18a47.camel@gmail.com>
- <20240124175901.GA22635@localhost>
- <CAJdd5GaMEKDF=T-udE9K4pdoQTs-WV4EXPL0QUUNwkdCAGxkgA@mail.gmail.com>
- <CANx9H-BPNxygNezUyDeHf3GseETi0N9n8D=cwdDrZWWK1W0jBw@mail.gmail.com>
- <20240125165853.GA16381@localhost>
-From: Philip Balister <philip@balister.org>
-In-Reply-To: <20240125165853.GA16381@localhost>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=fiDIQzku;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=L5Xk9FVn;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.193, mailfrom: 0101018d44396ab5-09abdfba-e02c-4f2e-bb9b-b00d2b98119f-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1706246630; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=jn7UzdlqHIdj/jN4v0DX6zbF/3dYYQ01T5F+DOoFIuA=;
+	b=fiDIQzku5yMrT2YNL6zmJlHG//3hDRv1aXZUhD7knUc93k7Vq8yYY/O9aau9Wvdl
+	ntE44eG/W0IlOOBLr9nUkxLnEGiUE8bIMv5HRiH4VksoYQEhn8J11fLYYaRe8Ef7xj1
+	RgXRdz9dkuypK8BHncP+E7QZAdhTAWAJGW1j1Wvo=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1706246630;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=jn7UzdlqHIdj/jN4v0DX6zbF/3dYYQ01T5F+DOoFIuA=;
+	b=L5Xk9FVnvP00/IYlK1FfnS6CjTQkXrApMmDYZkxY1CQ3qJxyWUgO3W9tA6SZ9Xw+
+	URB7ONEDhAfqNicNqT7YrvMZU2gb1P8ab4exctAeUB4ufWv0BzjUuTv4lxbj97ARdfQ
+	Vy4yb4LCS12gv/n/4kox9NFcgwzmkDY/gQoCz7L8=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.0.16.rc1)
+Message-ID: <0101018d44396ab5-09abdfba-e02c-4f2e-bb9b-b00d2b98119f-000000@us-west-2.amazonses.com>
+Date: Fri, 26 Jan 2024 05:23:50 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2024.01.26-54.240.27.193
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Jan 2024 22:58:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62296
+ <yocto@lists.yoctoproject.org>; Fri, 26 Jan 2024 05:23:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62297
 
-On 1/25/24 11:58, Trevor Woerner wrote:
-> On Wed 2024-01-24 @ 03:16:04 PM, Tim Orling wrote:
->> On Wed, Jan 24, 2024 at 2:02 PM Joshua Watt <JPEWhacker@gmail.com> wrote:
->>
->>> On Wed, Jan 24, 2024 at 10:59 AM Trevor Woerner <twoerner@gmail.com>
->>> wrote:
->>>>
->>>> Hi Artem,
->>>>
->>>> On Wed 2024-01-24 @ 02:01:08 PM, Artem Bityutskiy wrote:
->>>>> Hello Yocto community,
->>>>>
->>>>> some parts of Yocto software (MIC?) use the 'bmap-tools' project to
->>> speed up
->>>>> image flashing.
->>>>>
->>>>> https://github.com/intel/bmap-tools
->>>>>
->>>>> I am the original author of the software, and I created it many years
->>> ago to
->>>>> speed up Tizen image flashing, and it helped a lot back at the time.
->>> It was also
->>>>> my first python project, so it was a lot of fun learning python while
->>> also
->>>>> creating something useful.
->>>>
->>>> Thank you for your contribution, this tool has been quite useful for me
->>> over
->>>> the years.
->>>>
->>>>> But after that, I stopped working on it and it was mostly Yocto folks
->>> who
->>>>> contributed changes here and there. I never had time and enough
->>> motivation to
->>>>> maintain the project further, but other folks helped.
->>>>>
->>>>> Simon McVitte was active maintainer, but he said he does not have time
->>> for it
->>>>> now as well.
->>>>>
->>>>> The project is in "github.com/intel" space, and Intel is going to
->>> archive the
->>>>> git repository soon. This basically means the repository becomes
->>> read-only soon.
->>>>
->>>> Thank you for this update and letting us know ahead of time.
->>>>
->>>>> Would Yocto community have enthusiasts to fork it and maintain the
->>> fork?
->>>>
->>>> Yes, I'll volunteer to maintain it going forward. My non-stackoverflow
->>> python
->>>> knowledge is minimal, but I recently dug deeply into bmaptools to solve
->>> an
->>>> issue I had noticed. So I'm confident enough to take it over if nobody
->>> else is
->>>> interested.
->>>
->>> Ya, it's an awesome tool and a huge time saver for us, so can also
->>> help maintain it
->>>
->>
->> We can probably move it under the https://github.com/yoctoproject umbrella?
->> I can also help maintain this tremendous time saver.
-> 
-> https://github.com/yoctoproject and the github workflow is fine with me as
-> long as I can commit to it from my @gmail identity.
-> 
-> @tim do you want to import the current repository from intel? Then we can
-> update the recipe in oe-core and go from there.
-> 
 
-Michael, if you need any support from the Yocto Project advisory board 
-to move bmaptool to the yoctoproject github, I can help with that.
+A build flagged for QA (yocto-4.0.16.rc1) was completed on the autobuilder and is available at:
 
-Philip
 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62295): https://lists.yoctoproject.org/g/yocto/message/62295
-> Mute This Topic: https://lists.yoctoproject.org/mt/103930262/384425
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [philip@balister.org]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+    https://autobuilder.yocto.io/pub/releases/yocto-4.0.16.rc1
+
+
+Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6498
+
+Build hash information: 
+
+bitbake: ee090484cc25d760b8c20f18add17b5eff485b40
+meta-agl: 35adadd18a6a0fabbf57cfdb2f2d72c2807375e1
+meta-arm: b187fb9232ca0a6b5f8f90b4715958546fc41d73
+meta-aws: cab60ff0f84b2335e933d4eac326df9fab5b9bb6
+meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+meta-intel: f932ebb2544170f43edd22739f44307809bf8cfb
+meta-mingw: f6b38ce3c90e1600d41c2ebb41e152936a0357d7
+meta-openembedded: 730e44900a0a86265bad93a16b5a5ff344a07266
+meta-virtualization: 88327090d26955a678c6f8bd2585aad4d802f6c4
+oecore: a744a897f0ea7d34c31c024c13031221f9a85f24
+poky: 54af8c5e80ebf63707ef4e51cc9d374f716da603
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
