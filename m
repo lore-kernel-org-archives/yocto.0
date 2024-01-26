@@ -1,175 +1,116 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A3C39C47422
-	for <webhook@archiver.kernel.org>; Fri, 26 Jan 2024 15:28:37 +0000 (UTC)
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
- by mx.groups.io with SMTP id smtpd.web10.429.1706282915714672308
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B130FC47422
+	for <webhook@archiver.kernel.org>; Fri, 26 Jan 2024 15:37:37 +0000 (UTC)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+ by mx.groups.io with SMTP id smtpd.web10.715.1706283455447104354
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Jan 2024 07:28:35 -0800
+ Fri, 26 Jan 2024 07:37:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=MciBREXG;
- spf=pass (domain: gmail.com, ip: 209.85.219.46, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6868f31a555so3403766d6.1
-        for <yocto@lists.yoctoproject.org>; Fri, 26 Jan 2024 07:28:35 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=AajstZob;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-33adec41b55so241342f8f.0
+        for <yocto@lists.yoctoproject.org>; Fri, 26 Jan 2024 07:37:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706282915; x=1706887715; darn=lists.yoctoproject.org;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/JEm1AYGD5cJx0KFcaFh/2q0MInOSVj2s69DlDueVaY=;
-        b=MciBREXGKonJ71COGpsoEjclJIMyNIKISG5YZs1N21tHBz6IFHVTghYXztwC6h3lTu
-         A6scLDLLRTsF+LCgl75G7ooKHz6eW5SNyfxt7SzuTyP6jE+UuQdjpwJOgjF0a/FFUv/L
-         cWHRAdcK3ys0ZbKcymzyBjfgchMS2tfV1T9UCGGWhOTBhCuGfIc6z8HARLbociiMTLTO
-         1D2Up3NxyUsM1+1id7f5QQol3x9kN2jipNMZRfs9LQxz5snb+OcfvY0QvDzhRzJ0kL0Z
-         tkuddAXd5kELXz+sX0Lnk4UOEJjQKdaebyaL+XBK0z+DC+saJiLoJmmfsnFWeI2q6VvA
-         NbPQ==
+        d=linuxfoundation.org; s=google; t=1706283454; x=1706888254; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=B9XLfC2rXKzcTtzQdCPxTJu5U2c5NHOa0LToFF6KJgc=;
+        b=AajstZobuZfkcNFZKAX1fczNY1//Xdwyg7aCKqoTErRXnQSag78x4jpxmGAtbYeg6M
+         Gfs6s3/KMdsBYEi5YEfLtK+P2U7XVFM298oVErQbUK2tFStMcKhb6w5PmKDUMs7ySDdq
+         deUbPOywXIujQleIpRDBCeHdMbsLo6k4s1uo4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706282915; x=1706887715;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/JEm1AYGD5cJx0KFcaFh/2q0MInOSVj2s69DlDueVaY=;
-        b=iE7VwY3nBepOUKrUxNsSnU/KEBnEUaci150I89Eayfnm9+Dvyi8FqkfuH4Ca5PElBP
-         vj4LvCcweSOBtz4HLvKfx2+9K5wcaCqZBQST+mGgxfA3oE7bSkd4snmxcoaLhOG7tmBm
-         gSl0Dw4HF+y5K1oGl1473tUNuVaxOb2JWyP6VY68+rkJ4+0ZLaqsVb8HlxG1PlVlFOuK
-         +QnMB52z540C0Yf0ZWG35D5X4dvCRE6TMzi4Yt8bW2X5Jjd0d7B8u3LhBAeNB7wJTa/t
-         gVEghKrxzW/wcBzswsFHilPYCmoxDgz6TAGp7LAe/VR0jLzVwtLWteIvStME5tMcTwCT
-         RMXg==
-X-Gm-Message-State: AOJu0YwEn48u9OWVnAj1xpYrxKTgoYEHBdhAFoDiiFd43uv2bKrrspCY
-	3lpceuJBpC36pYlLk0KkMO5HfUnqdFmcgOtIG58fwog5nb8oy6HY
-X-Google-Smtp-Source: AGHT+IG1b/QbpifV2a0LCX8Q2WqMYIrWex+K6RksPZcYfPBHkXziSGmcskOgg/WK21NK2e+rCJBVdw==
-X-Received: by 2002:a05:6214:e48:b0:686:acb4:99ec with SMTP id o8-20020a0562140e4800b00686acb499ecmr7944qvc.29.1706282914776;
-        Fri, 26 Jan 2024 07:28:34 -0800 (PST)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id di18-20020ad458f2000000b006816edd1979sm577422qvb.140.2024.01.26.07.28.33
+        d=1e100.net; s=20230601; t=1706283454; x=1706888254;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:cc:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B9XLfC2rXKzcTtzQdCPxTJu5U2c5NHOa0LToFF6KJgc=;
+        b=tFlTOQhLH6G6kr4hCcSTl/0xepX0bt1GaYMMigAhGHR5xQNyQBL/q31bQFg7p2wsjU
+         0g3a7yqHyuklXr4mdNK11cVrZKpWqBiOHymV4XKw8iOvjS/9qBQ0epti9d8vLN2r36l1
+         FRc121cwAFYkiXdAcW3yZkcRAHHNeQGJ82KDhB0tLorIduf1eu+WYhzrBl0TjHyl3F2T
+         0MasXJG7LGe4F49Yr9oTeCrp/hSLPaS9BG1DUec2p0otlrvsAlLUrsn1p+5zXHKUtc0h
+         FGH+dSu165+EnSlzK4Rpo/DVUY9Z+ZKjI0WjSMr2nwq6Prox5LPn2p4dVpNJIY6tmVeJ
+         qESw==
+X-Gm-Message-State: AOJu0YzRKigIxZ7+lsbZ8jVIkoYZQDFWBdt5BJElFH+ctOfHBdM8ZixI
+	F1cGZkXLpVf0iMDwMMuCe3KKDaXF6nyFnXyecunG21Nc7bFeLcWWwn1uClMRalE=
+X-Google-Smtp-Source: AGHT+IG39elx4eXgtwAGUi0l933LMwJ38MVG/0AC0UsRCJa9QoI7jND6wdRxigR4Q05HPbsELHyH4w==
+X-Received: by 2002:adf:fa50:0:b0:337:160:78f1 with SMTP id y16-20020adffa50000000b00337016078f1mr1011839wrr.121.1706283453843;
+        Fri, 26 Jan 2024 07:37:33 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:eef:5a49:b13d:a655? ([2001:8b0:aba:5f3c:eef:5a49:b13d:a655])
+        by smtp.gmail.com with ESMTPSA id o8-20020a5d6708000000b0033927ccc725sm1493861wru.50.2024.01.26.07.37.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 07:28:33 -0800 (PST)
-Date: Fri, 26 Jan 2024 10:28:31 -0500
-From: Trevor Woerner <twoerner@gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: yocto@lists.yoctoproject.org, philip@balister.org,
-	Tim Orling <ticotimo@gmail.com>,
-	Michael Halstead <michael@yoctoproject.org>, JPEWhacker@gmail.com,
-	dedekind1@gmail.com
+        Fri, 26 Jan 2024 07:37:33 -0800 (PST)
+Message-ID: <138469ee4a323e906c16516c8b2fd438cd37b72b.camel@linuxfoundation.org>
 Subject: Re: [yocto] bmap-tools repository closes
-Message-ID: <20240126152831.GA17169@localhost>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: yocto@lists.yoctoproject.org, philip@balister.org, twoerner@gmail.com,
+ Tim Orling <ticotimo@gmail.com>, Michael Halstead
+ <michael@yoctoproject.org>, dedekind1@gmail.com
+Date: Fri, 26 Jan 2024 15:37:32 +0000
+In-Reply-To: <CAJdd5GZvPZDZmL5WS53j=hAp_hJAUAK4qT+ykPTMc_eLfj-bHA@mail.gmail.com>
 References: <5e58c6719d797be31ece8149535531036ae18a47.camel@gmail.com>
- <20240124175901.GA22635@localhost>
- <CAJdd5GaMEKDF=T-udE9K4pdoQTs-WV4EXPL0QUUNwkdCAGxkgA@mail.gmail.com>
- <CANx9H-BPNxygNezUyDeHf3GseETi0N9n8D=cwdDrZWWK1W0jBw@mail.gmail.com>
- <20240125165853.GA16381@localhost>
- <1426bf2a-b18a-4589-974b-3b5f9c40a904@balister.org>
- <982b471fa48268a0d3c332624859bf8003c7e586.camel@linuxfoundation.org>
+	 <20240124175901.GA22635@localhost>
+	 <CAJdd5GaMEKDF=T-udE9K4pdoQTs-WV4EXPL0QUUNwkdCAGxkgA@mail.gmail.com>
+	 <CANx9H-BPNxygNezUyDeHf3GseETi0N9n8D=cwdDrZWWK1W0jBw@mail.gmail.com>
+	 <20240125165853.GA16381@localhost>
+	 <1426bf2a-b18a-4589-974b-3b5f9c40a904@balister.org>
+	 <982b471fa48268a0d3c332624859bf8003c7e586.camel@linuxfoundation.org>
+	 <CAJdd5GZvPZDZmL5WS53j=hAp_hJAUAK4qT+ykPTMc_eLfj-bHA@mail.gmail.com>
+Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
+ YNvg==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.0-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <982b471fa48268a0d3c332624859bf8003c7e586.camel@linuxfoundation.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 26 Jan 2024 15:28:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62300
+ <yocto@lists.yoctoproject.org>; Fri, 26 Jan 2024 15:37:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62301
 
-On Fri 2024-01-26 @ 01:33:15 PM, Richard Purdie wrote:
-> On Thu, 2024-01-25 at 17:58 -0500, Philip Balister wrote:
-> > On 1/25/24 11:58, Trevor Woerner wrote:
-> > > On Wed 2024-01-24 @ 03:16:04 PM, Tim Orling wrote:
-> > > > On Wed, Jan 24, 2024 at 2:02 PM Joshua Watt <JPEWhacker@gmail.com> wrote:
-> > > > 
-> > > > > On Wed, Jan 24, 2024 at 10:59 AM Trevor Woerner <twoerner@gmail.com>
-> > > > > wrote:
-> > > > > > 
-> > > > > > Hi Artem,
-> > > > > > 
-> > > > > > On Wed 2024-01-24 @ 02:01:08 PM, Artem Bityutskiy wrote:
-> > > > > > > Hello Yocto community,
-> > > > > > > 
-> > > > > > > some parts of Yocto software (MIC?) use the 'bmap-tools' project to
-> > > > > speed up
-> > > > > > > image flashing.
-> > > > > > > 
-> > > > > > > https://github.com/intel/bmap-tools
-> > > > > > > 
-> > > > > > > I am the original author of the software, and I created it many years
-> > > > > ago to
-> > > > > > > speed up Tizen image flashing, and it helped a lot back at the time.
-> > > > > It was also
-> > > > > > > my first python project, so it was a lot of fun learning python while
-> > > > > also
-> > > > > > > creating something useful.
-> > > > > > 
-> > > > > > Thank you for your contribution, this tool has been quite useful for me
-> > > > > over
-> > > > > > the years.
-> > > > > > 
-> > > > > > > But after that, I stopped working on it and it was mostly Yocto folks
-> > > > > who
-> > > > > > > contributed changes here and there. I never had time and enough
-> > > > > motivation to
-> > > > > > > maintain the project further, but other folks helped.
-> > > > > > > 
-> > > > > > > Simon McVitte was active maintainer, but he said he does not have time
-> > > > > for it
-> > > > > > > now as well.
-> > > > > > > 
-> > > > > > > The project is in "github.com/intel" space, and Intel is going to
-> > > > > archive the
-> > > > > > > git repository soon. This basically means the repository becomes
-> > > > > read-only soon.
-> > > > > > 
-> > > > > > Thank you for this update and letting us know ahead of time.
-> > > > > > 
-> > > > > > > Would Yocto community have enthusiasts to fork it and maintain the
-> > > > > fork?
-> > > > > > 
-> > > > > > Yes, I'll volunteer to maintain it going forward. My non-stackoverflow
-> > > > > python
-> > > > > > knowledge is minimal, but I recently dug deeply into bmaptools to solve
-> > > > > an
-> > > > > > issue I had noticed. So I'm confident enough to take it over if nobody
-> > > > > else is
-> > > > > > interested.
-> > > > > 
-> > > > > Ya, it's an awesome tool and a huge time saver for us, so can also
-> > > > > help maintain it
-> > > > > 
-> > > > 
-> > > > We can probably move it under the https://github.com/yoctoproject umbrella?
-> > > > I can also help maintain this tremendous time saver.
-> > > 
-> > > https://github.com/yoctoproject and the github workflow is fine with me as
-> > > long as I can commit to it from my @gmail identity.
-> > > 
-> > > @tim do you want to import the current repository from intel? Then we can
-> > > update the recipe in oe-core and go from there.
-> > > 
-> > 
-> > Michael, if you need any support from the Yocto Project advisory board 
-> > to move bmaptool to the yoctoproject github, I can help with that.
-> 
-> This falls to the YP TSC, not the board.
-> 
-> I have no problem with the project hosting that git repo and
-> maintaining it. I do worry quite a bit about moving it to github. Would
-> moiving it to git.yoctoproject.org be ok?
-> 
-> The reason I say this is that I already get a lot of comments/randon
-> questions against commits in github repos. I feel quite sad that people
-> are effectively talking into a void. If we start supporting different
-> workflows for different repos under yoctoproject, we're going to really
-> confuse people.
-> 
-> You might argue that we should host issues for bmap-tools. The
-> challenge is that we have bugzilla, we have a triage team and we have a
-> load of processes. Telling those people to just cover both would likely
-> result in a flat refusal.
+On Fri, 2024-01-26 at 08:26 -0700, Joshua Watt wrote:
+> I'd rather it stay on GitHub; I think it makes more sense _for this
+> project_. First of all, it already is on GitHub, so moving it is
+> likely more disruptive to the workflow
+>=20
+> Secondly, it already has CI setup through GitHub actions, which we
+> would need to spend effort to replicate elsewhere.
+>=20
+> Thirdly, I've always wanted this to be published as a python module on
+> PyPi to make it easier for users to keep up to date; GitHub and PyPi
+> have streamlined this process to the point that it's surprisingly
+> trivial.
+>=20
+> Finally, if we are worried about the maintenance, it's pretty easy to
+> delegate the maintenance of the repo to the people who are
+> volunteering to maintain it here, which is likely what would happen if
+> it went somewhere other than the Yocto GitHub account anyway.
 
-git.yoctoproject.org and mailing lists are my preferred workflow, especially
-now that the oe/yp lists are in lore. But if others wanted it on github I
-wasn't feeling strongly about it.
+I hadn't realised there was CI in there, that does change things quite
+a bit.
+
+For bmap-tools it therefore makes sense.=C2=A0
+
+From the wider Yocto Project perspective, this will cause problems as
+you can't just enable some bits of github on a per repo basis very
+easily but disable them for others. Obviously those are issues others
+will have to worry about, probably Michael and I.
+
+I do feel it makes sense to join bmap-tools to the wider Yocto Project
+umbrella of projects rather than letting it sit in isolation on a
+personal account.
+
+Cheers,
+
+Richard
 
