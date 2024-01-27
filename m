@@ -1,106 +1,107 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <anibal@limonsoftware.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B2CFDC46CD2
-	for <webhook@archiver.kernel.org>; Sat, 27 Jan 2024 18:33:44 +0000 (UTC)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
- by mx.groups.io with SMTP id smtpd.web11.21920.1706380423283125861
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9C8FC47DA9
+	for <webhook@archiver.kernel.org>; Sat, 27 Jan 2024 19:23:54 +0000 (UTC)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+ by mx.groups.io with SMTP id smtpd.web10.22797.1706383425794898749
  for <yocto@lists.yoctoproject.org>;
- Sat, 27 Jan 2024 10:33:43 -0800
+ Sat, 27 Jan 2024 11:23:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=S/3oJoSl;
- spf=pass (domain: gmail.com, ip: 209.85.208.170, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2cf33035d1dso16633551fa.2
-        for <yocto@lists.yoctoproject.org>; Sat, 27 Jan 2024 10:33:43 -0800 (PST)
+ dkim=pass header.i=@limonsoftware-com.20230601.gappssmtp.com header.s=20230601 header.b=g6I3GjxE;
+ spf=pass (domain: limonsoftware.com, ip: 209.85.161.41, mailfrom: anibal@limonsoftware.com)
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-59a2dde1cfcso44502eaf.1
+        for <yocto@lists.yoctoproject.org>; Sat, 27 Jan 2024 11:23:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706380421; x=1706985221; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=limonsoftware-com.20230601.gappssmtp.com; s=20230601; t=1706383425; x=1706988225; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JcxQUGzqeZHkI9k2bh1/oCCbcICs8nJTuDlyiPGuB4M=;
-        b=S/3oJoSl82sTa5pDLYe87j2/UhCA8z3EEHAdsBxkmdtqU3Pst/FkV/QkbxMnNDUhGy
-         jhcEqiI283wGTTmP22slKljyqRrGTHLkYC6VW5U0iUt4T4+eAUaOjV8Lm4m29Y9CxY1J
-         m8bCMCwaqaHWVB67YuPw8BtxRjj0sRMlijESpX2YQk5NZj48DBuHHfXfo76RncilFuer
-         Wgt1OlBnjf9QbByAMg9255lWE8nfEqL63lpj1gzzfiPCzgQFW4TRVY8OyaQxvtaObMTN
-         QLdjqRDs/3ksEORoQEWpjahu+r/rtc9TC1m9btfZsv7a73LOr4Zv9ZzDn3BeBau8BM8Z
-         7grg==
+        bh=tOQVtVyarvQJha95YZzsVfrW+kz9SUlvqizgB/Xt96o=;
+        b=g6I3GjxE9J61jTKwG/oBOHXf+yN97WAghegPhwxQqU9TW3VjEA0M+gTEPJWZPo7Tdf
+         +p4QxIbQKRL8JZfmvpZVBoWxAGdCL6/XS7RLurYu/da4ylKVXOyZw0xz+QAlRKoGBbyb
+         seM4yYFF8DEtNGVzqYjbasRvcdc7ypoU5Qho0SB2/Se01o9U2bf5wKT+8Hkuxnm5Egvw
+         Z4LCvRpNx6EKcbEMwugqD6kqZu3f7whARYqIJbv30FliI0hjQ3pBxiynsbCZiPK7B/bm
+         KzoZFXa+rIfZlHRbFWQ87ToMenRLh9uvu/FkyLGyugU/RB2M2E81ZdBCAUzVvs+TMAHv
+         n/Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706380421; x=1706985221;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1706383425; x=1706988225;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JcxQUGzqeZHkI9k2bh1/oCCbcICs8nJTuDlyiPGuB4M=;
-        b=mXGEpb0yGqp+v7xZYoQpxZqc9bghgX7a4RyEyY3ptlE/4EkZP/007+zOCuCfPbmc1p
-         mk+ykWoc1nsNy8xMQCOvT9cM+d4XaefBihOyVQmfR2lLTcKdEPC8L91AKvQO2ye67sCk
-         CdfAo1RVIaFAbdvWXhujVPcv6GpGjZhe7gMQpzo0Wv/AKklJa5qAlQL7KIgJnSkzfx4j
-         YdsFEzK55tKzg0ZqtLJBxanuvvDSwEZUjm83QaLqIwpBnP974XLgAptEmyLfBa5Fx+6X
-         Oyu6NVqjJgJkWp0pPHvCJ2Dyg/4Ri32HTYi//2rw4fDGLzZ31hJGtrLjPnEUH4Ilr+yI
-         koUQ==
-X-Gm-Message-State: AOJu0YztrQJ30n/FYJrp+XWVY36FtbjUeSE+668bCmI9rOcYxj7HQbdT
-	P4Ewp7m4qboeyrhGd9SMvMmnGKor+Vej06o6PzpJLGSIsCdcpOucanijmJnkcCnG3OgHmy3Rofa
-	OGPDmiG55Bc7jJB9V2bPCCuNk5JIGzVvqtig=
-X-Google-Smtp-Source: AGHT+IG5IewydwzYeAd4fhZentgwbYwSZD6YwnuGW4nDF1WvbcFbFwNEU/8QmEafajvGfWzVgOyys0xcy2TdNkbxve0=
-X-Received: by 2002:a05:651c:140f:b0:2cf:1acd:ea22 with SMTP id
- u15-20020a05651c140f00b002cf1acdea22mr1069609lje.16.1706380421147; Sat, 27
- Jan 2024 10:33:41 -0800 (PST)
+        bh=tOQVtVyarvQJha95YZzsVfrW+kz9SUlvqizgB/Xt96o=;
+        b=lTIZG+Jpnq/o6a9mpeSa5ulg99J8K1TS0dvJ0U1XeD0YDakCIDVdtV6G9rYiHwrbFt
+         730L4ltQzYgx2h4MBFFo8qX1KXNknyu/1lvOw6a6uIvAWIKRYRgg6f8E6Oq4rKsdfEnU
+         3aI9f8xFgHZ1glgis4RV20A5zL2QJwkKoBgvGCR5SA6w9/m1c4IQEKwk9HAVvfvBySYn
+         TDzjSoBGeTyo3VoeYfv1k+cFB8v2SNGtKGBXo58TPnbT3UGkfIFXd7xmkN0xl+T8/Ss5
+         QMjO+UnAd56fZ1zZ/TqQGwWyiIPJkrWfTPcJwQ70kYn7aACikm7XIXJ2uua5QwPVxNpT
+         oyIw==
+X-Gm-Message-State: AOJu0YyGZvYcgWPsn9CgByexMtc6HF1eiX4sC/98aG2snGOxbibM2SAo
+	fKZ95i7FH2iD38DlmiFapLgaAiEbrZrFLKhsWUkEcCXAZW3+zTSPK6ONZS9y4o52mYbD7ynZ1mC
+	c
+X-Google-Smtp-Source: AGHT+IHLSSpMKnDodQ79gmvFlCKj7b5VuodvSFaCJX+0/XB6kU1WfRZ3csEk6otN51Mw/2UVVUsHjg==
+X-Received: by 2002:a4a:c489:0:b0:59a:a18:59cc with SMTP id f9-20020a4ac489000000b0059a0a1859ccmr579674ooq.4.1706383424994;
+        Sat, 27 Jan 2024 11:23:44 -0800 (PST)
+Received: from localhost.localdomain ([2806:10b7:3:10a9:bcea:6138:f9fd:313f])
+        by smtp.gmail.com with ESMTPSA id h10-20020a4ac44a000000b00599f1741917sm64558ooq.43.2024.01.27.11.23.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Jan 2024 11:23:44 -0800 (PST)
+From: Anibal Limon <anibal@limonsoftware.com>
+To: yocto@lists.yoctoproject.org
+Cc: richard.purdie@linuxfoundation.org,
+	JPEWhacker@gmail.com,
+	randy.macleod@windriver.com,
+	Anibal Limon <anibal@limonsoftware.com>
+Subject: [yocto][ptest-runner 2/2] utils: run_child fix security flags build
+Date: Sat, 27 Jan 2024 13:23:38 -0600
+Message-ID: <20240127192338.776610-2-anibal@limonsoftware.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240127192338.776610-1-anibal@limonsoftware.com>
+References: <20240127192338.776610-1-anibal@limonsoftware.com>
 MIME-Version: 1.0
-References: <M25h.1706340450208219324.DA7b@lists.yoctoproject.org>
-In-Reply-To: <M25h.1706340450208219324.DA7b@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Sat, 27 Jan 2024 19:33:30 +0100
-Message-ID: <CANNYZj_1VzMf12EPRQgm=zG2pAJR+_6BRrJ-Ejgq7NGwOfpnYg@mail.gmail.com>
-Subject: Re: [yocto] How to build two images with different settings of a
- recipe in Yocto
-To: yocto@lists.yoctoproject.org, joerg.sommer@navimatix.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 27 Jan 2024 18:33:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62309
+ <yocto@lists.yoctoproject.org>; Sat, 27 Jan 2024 19:23:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62311
 
-Putting image specific tweaks into local.conf is not a good practice.
-Local.conf should be extremely minimal, and ideally contain only
-MACHINE and DISTRO.
+Move chdir outside run_child to better handle when fails output an error
+message plus remove the need to strdup inside run_child (already have
+ptest_dir).
 
-I would do it with two different image recipes that share almost
-everything via common .inc, except ROOTFS_POSTPROCESS_COMMAND. You can
-find examples for how to manipulate sshd_config using that in
-meta/classes-recipe/rootfs-postcommands.bbclass
+Signed-off-by: Anibal Limon <anibal@limonsoftware.com>
+---
+ utils.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-Alex
+diff --git a/utils.c b/utils.c
+index 54394cc..472520f 100644
+--- a/utils.c
++++ b/utils.c
+@@ -327,7 +327,6 @@ static inline void
+ run_child(char *run_ptest, int fd_stdout, int fd_stderr)
+ {
+ 	char *const argv[2] = {run_ptest, NULL};
+-	chdir(dirname(strdup(run_ptest)));
+ 
+ 	dup2(fd_stdout, STDOUT_FILENO);
+ 	// XXX: Redirect stderr to stdout to avoid buffer ordering problems.
+@@ -466,7 +465,11 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 					fprintf(fp, "ERROR: Unable to attach to controlling tty, %s\n", strerror(errno));
+ 				}
+ 
+-				run_child(p->run_ptest, pipefd_stdout[PIPE_WRITE], pipefd_stderr[PIPE_WRITE]);
++				if (chdir(ptest_dir) == -1) {
++					fprintf(fp, "ERROR: Unable to chdir(%s), %s\n", ptest_dir, strerror(errno));
++				} else {
++					run_child(p->run_ptest, pipefd_stdout[PIPE_WRITE], pipefd_stderr[PIPE_WRITE]);
++				}
+ 
+ 			} else {
+ 				bool timedout = false;
+-- 
+2.43.0
 
-On Sat, 27 Jan 2024 at 08:27, J=C3=B6rg Sommer via lists.yoctoproject.org
-<joerg.sommer=3Dnavimatix.de@lists.yoctoproject.org> wrote:
->
-> [I posted this question on Stackoverflow: https://stackoverflow.com/q/778=
-71008/8452187]
->
-> I have two images with the same distro and the same machine and each imag=
-e should contain the same package, but build with different settings.
->
-> For example, the config file sshd_config is part of the opensshd package,=
- but I need a different set of HostKeyAlgorithms depending on the image. (Y=
-es, I could use Include, but that's not the point of this question.)
->
-> How can I build two different flavours of the same package? One way would=
- be to have a different distro for each image, but this wouldn't scale. My =
-other idea is to use local.conf to change the build behaviour of the recipe=
- and control the image content (and the difference between both) with diffe=
-rent local.conf. (BTW: I'm using KAS which makes local.conf generation easy=
-.) But what's best practice?
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62308): https://lists.yoctoproject.org/g/yocto/messag=
-e/62308
-> Mute This Topic: https://lists.yoctoproject.org/mt/103992605/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
 
