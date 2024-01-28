@@ -1,94 +1,97 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D8C5BC47DDB
-	for <webhook@archiver.kernel.org>; Sun, 28 Jan 2024 12:48:49 +0000 (UTC)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
- by mx.groups.io with SMTP id smtpd.web11.36710.1706446124909220398
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F7B4C47258
+	for <webhook@archiver.kernel.org>; Sun, 28 Jan 2024 17:13:11 +0000 (UTC)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+ by mx.groups.io with SMTP id smtpd.web11.41520.1706461990502226515
  for <yocto@lists.yoctoproject.org>;
- Sun, 28 Jan 2024 04:48:45 -0800
+ Sun, 28 Jan 2024 09:13:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=fqRPC/6x;
- spf=pass (domain: gmail.com, ip: 209.85.167.49, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5110c166d70so420891e87.1
-        for <yocto@lists.yoctoproject.org>; Sun, 28 Jan 2024 04:48:44 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=cp9aNSUT;
+ spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: akuster808@gmail.com)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc227feab99so1786439276.2
+        for <yocto@lists.yoctoproject.org>; Sun, 28 Jan 2024 09:13:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706446123; x=1707050923; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I/x38S36QDkhzV+8MwnhOs0P+cE7JK4m8vtZmvDiUfE=;
-        b=fqRPC/6xOxIjBog+/2ZjjEe9+AUIfTvvPOnIUbGv4mTeQv78gKtnDr3jBY01HNZtay
-         SnrDhajjl2+mLp8Dp4DztKr5xyz64ca15CpJ9rFUAU3KKJDrGA1mhp/9fRRvHY79miXY
-         g+rns0AswhidOXaiS4mZSbjPJduWH4PnNL1xrV1A1NU4l0LP0ktuIouyd/dXlwaJ4qCv
-         xgtVk3cpgesAkT8jMqjoMM6/ze7M+NfCVPc/FYarPtx4TgHCTa5Uty3p45pRYeCKejwQ
-         TKaWPRK8JZK/Vk7XIPEMocxeNFRZybjWzoW7GHmvV0lHuwD4foGs6ybQe7IQGTmQ8yOB
-         zCgg==
+        d=gmail.com; s=20230601; t=1706461989; x=1707066789; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BHjXnuz6bt4bHyHYjZK4p/3YXfyWvQPEKhWdxuzUeko=;
+        b=cp9aNSUTQfRNUm0vutP6ZNBvc2wWFXPIOmXjuUBKgljCBtLdNt4syh5K161R+dVGjU
+         GVvcbKUYDaZ2GsCZ7mCejvPekJYYhhDfevZDvaAJN24y3QyucrgajPaC+wJ54ooY22I0
+         J0swYFwUmwPrYwEyFA+ydaAMix46BcInYg1NHPbszoe7Bdip9TqffjbFECfAINor/Qlm
+         aZ8lE4ZCrMDOxx60PjkxxIqr5oI8xxicpBwAUxEgnbx4aFitIrzX1EgE+129aT5NoqjS
+         wBSjomXm8ZXR9mQGWrEEOexDS/hO8u2w8F20u0SCvSohKsMrJRN3iezvLkxjx+SdLQy3
+         nwcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706446123; x=1707050923;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I/x38S36QDkhzV+8MwnhOs0P+cE7JK4m8vtZmvDiUfE=;
-        b=f9DRDe7N/nwqDAwG3L0HHgS36ofdULmMK5wAkAdRjBuU+ipxkOKs9cTCQr0P7qBqYz
-         Xew0Vmnkk4mulUX1vdnY4Ie358AflkT4DRy5cdFAy1yNQI32In8N9e/juIgzXc6vMlhR
-         iWE0mDFMSZ0ph8y6CQePJQglPMrWYwyPAgbHLOXybYpsQ99P18vqLGgaKAQB4FzPlfpg
-         o+YmaxRaHhdEIJrNDAgVP1PHakxcvFuVUB2g1TxsZn7DdVo6YhAPRUlCbFcvXGwWnRhr
-         OjOUv2axrxv6vmKnVWeh1t3DNNhaYxhMJjASK4odZHdSFm9G0ix8NzzytidBlR8psHgh
-         yiSw==
-X-Gm-Message-State: AOJu0YxUxTk35binjF6AyO38+EU2SsGWZvr8eSNe2N2H8gsf1373SgVu
-	DCBIS2OYQGpFuIy9pZxeoUVCZj4y4E3FqShPkGyACDmp3UvOMgolVEpD5Fx0jfdv44C6o7Wy7Yj
-	Rpv2pljaIrh3eO/avGA5kQA5Ur5Q=
-X-Google-Smtp-Source: AGHT+IHv0UN9NFWoybAXXjOHPoGQ1s4oi578+GlpCaIZAJV+OS1TgE6g11sGDHQuxnt4qMxPPE5+V0O+cV91v5gNCNo=
-X-Received: by 2002:a19:7618:0:b0:50e:7225:38fd with SMTP id
- c24-20020a197618000000b0050e722538fdmr2052714lff.35.1706446122776; Sun, 28
- Jan 2024 04:48:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706461989; x=1707066789;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BHjXnuz6bt4bHyHYjZK4p/3YXfyWvQPEKhWdxuzUeko=;
+        b=ky+TrJc4gXrgyqI3g2/64ZPuWetbq27z8uy88TcVcjQ2/est3CRmEB8BOmcEd85sn0
+         ZXRAc+H+uneam8M8nSCl5DdUOw9cO4fqdOgC/mRfgkAEgnOa/IFlnj/vRp03hKqRXnIz
+         n7dF866YSl57ilKElp5p60g3Exa5SXtvMjQm/GgEYzVaf6pMlC728FQ9znCaoj/YEIWl
+         grDHXPWddq1oZgeXvY7i/oYCVt3GVakuYetIXZkW9nEmeFGwSSmuUKo5GR7vZrlRC9Xe
+         5tmlgtk1Dk7R69u0zTEnyytYpVQkC3vrgHt8RkXrhvvWGNkAadgc4gFyWzvwzF58ze2I
+         m0cQ==
+X-Gm-Message-State: AOJu0YwI4WYeThYAukGCykvcfYd9YRoD9a6RsCW54hR2KIerBmnoZCeH
+	pRfPxGRPr9D5sWcOPQFWEJcpZmLv9Sxdl7WhPofs76Sk9YBbnIwams3ZnoKi
+X-Google-Smtp-Source: AGHT+IFwbhl5PSDp5Hf7GKfCSTMMDGbGv+Yg7HsC1QsCc0GUUjzMFg+6tjGj4DzNEzvphj1ChUw+3g==
+X-Received: by 2002:a25:ae28:0:b0:dc6:4d5c:b243 with SMTP id a40-20020a25ae28000000b00dc64d5cb243mr1695863ybj.96.1706461989235;
+        Sun, 28 Jan 2024 09:13:09 -0800 (PST)
+Received: from keaua.attlocal.net (108-243-27-252.lightspeed.tukrga.sbcglobal.net. [108.243.27.252])
+        by smtp.gmail.com with ESMTPSA id 63-20020a250a42000000b00dc2324b3cddsm1738919ybk.37.2024.01.28.09.13.08
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Jan 2024 09:13:08 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] scap-security-guide: update to 0.1.71
+Date: Sun, 28 Jan 2024 12:13:08 -0500
+Message-Id: <20240128171308.2075394-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <CANNYZj_1VzMf12EPRQgm=zG2pAJR+_6BRrJ-Ejgq7NGwOfpnYg@mail.gmail.com>
- <3472.1706432485345899127@lists.yoctoproject.org>
-In-Reply-To: <3472.1706432485345899127@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Sun, 28 Jan 2024 13:48:31 +0100
-Message-ID: <CANNYZj-EnSVQaxW69fyW-xypBW6LiyCzb6sXpjC=ZhBPS8HHAA@mail.gmail.com>
-Subject: Re: [yocto] How to build two images with different settings of a
- recipe in Yocto
-To: =?UTF-8?B?SsO2cmcgU29tbWVy?= <joerg.sommer@navimatix.de>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 28 Jan 2024 12:48:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62314
+ <yocto@lists.yoctoproject.org>; Sun, 28 Jan 2024 17:13:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62315
 
-There's no way around this: you can't build the same recipe in two
-different ways for two different images in the same DISTRO. The
-different behavior has to be specified through config files and picked
-up at runtime, and not through build time settings. All products and
-builds and CI infrastructure for them must be planned with that in
-mind.
+change branch name to stable.
 
-Different local.conf is essentially a different distro in all but
-name, and less understandable or maintainable.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ ...curity-guide_0.1.69.bb => scap-security-guide_0.1.71.bb} | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+ rename recipes-compliance/scap-security-guide/{scap-security-guide_0.1.69.bb => scap-security-guide_0.1.71.bb} (95%)
 
-Alex
+diff --git a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.69.bb b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.71.bb
+similarity index 95%
+rename from recipes-compliance/scap-security-guide/scap-security-guide_0.1.69.bb
+rename to recipes-compliance/scap-security-guide/scap-security-guide_0.1.71.bb
+index 23637a5..5e45332 100644
+--- a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.69.bb
++++ b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.71.bb
+@@ -1,4 +1,4 @@
+-# Copyright (C) 2017 - 2023 Armin Kuster  <akuster808@gmail.com>
++# Copyright (C) 2017 - 2024 Armin Kuster  <akuster808@gmail.com>
+ # Released under the MIT license (see COPYING.MIT for the terms)
+ 
+ SUMARRY = "SCAP content for various platforms, upstream version"
+@@ -6,8 +6,8 @@ HOME_URL = "https://www.open-scap.org/security-policies/scap-security-guide/"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=9bfa86579213cb4c6adaffface6b2820"
+ LICENSE = "BSD-3-Clause"
+ 
+-SRCREV = "da283b9a360f2f42ad642c0c9b08b061501bc667"
+-SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=master;protocol=https \
++SRCREV = "459f0abf2ac08d36e5fc4a2619bc75cff7000da9"
++SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=stable;protocol=https \
+            file://run_eval.sh \
+            file://run-ptest \
+            "
+-- 
+2.34.1
 
-On Sun, 28 Jan 2024 at 10:01, J=C3=B6rg Sommer via lists.yoctoproject.org
-<joerg.sommer=3Dnavimatix.de@lists.yoctoproject.org> wrote:
->
-> Thanks for your reply. It helps, but I see some issues with the ROOTFS_PO=
-STPROCESS_COMMAND.
->
-> For the config file this is a possible solution. But what can I do if I n=
-eed code changes? SSH announced they'll disable DSA support by default in a=
- few months and for all other images except one I would stay with this defa=
-ult. I have to supply another setting to configure when building the recipe=
- for one image. And I have more images they require reduced (or widened) se=
-ttings of packages.
->
-> And editing the image has the drawback that it doesn't play well with pac=
-kage management. If I install/update the sshd ipk, it doesn't contain the c=
-hange from ROOTFS_POSTPROCESS_COMMAND.
 
