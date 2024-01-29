@@ -1,226 +1,151 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <chuckwolber@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA5E2C47258
-	for <webhook@archiver.kernel.org>; Sun, 28 Jan 2024 19:11:51 +0000 (UTC)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
- by mx.groups.io with SMTP id smtpd.web11.48284.1706469103089612402
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33B54C47258
+	for <webhook@archiver.kernel.org>; Mon, 29 Jan 2024 01:23:23 +0000 (UTC)
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+ by mx.groups.io with SMTP id smtpd.web10.4594.1706491400382587054
  for <yocto@lists.yoctoproject.org>;
- Sun, 28 Jan 2024 11:11:43 -0800
+ Sun, 28 Jan 2024 17:23:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=nAunViLW;
- spf=pass (domain: gmail.com, ip: 209.85.221.46, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-33ae3cc8a70so973262f8f.0
-        for <yocto@lists.yoctoproject.org>; Sun, 28 Jan 2024 11:11:42 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=F1D1URRB;
+ spf=pass (domain: gmail.com, ip: 209.85.166.172, mailfrom: chuckwolber@gmail.com)
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-36376bf7f6dso2648345ab.3
+        for <yocto@lists.yoctoproject.org>; Sun, 28 Jan 2024 17:23:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706469101; x=1707073901; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tjHXXRVqfxz+ljxkFWsIGJClVCBZYJTYvEIKcCN0w5k=;
-        b=nAunViLWeh3SHT9SgTx/u1SwfaH6r3juiqzl8w2jbmbUAkvn2jrloFKRBZt+y2BILP
-         xEP7eOR7B48TcPgSyq9RaRmpeT+cDpULJnIztzzdq1hrDNpfGBTCViB8hX3v2t5pCzK0
-         UhtiPir/FNbKmQ2lj0IXZmI2+9s4pgmyLDU78Ca+YV5T2J2s/fF6URCUPu4uwDG8rn7g
-         mJhALyIvm2AsyfM90GzaKyvN/CEunVVwFjiuZRd+LDpEMk/V5y/AN9aoVJD2GSYr2UQh
-         3Ci7ZTGXyeLKv3xmCIYewC+yFiRPlSmlzfoobuT6knj+/Jh+yzmxlex3w7C1EkMRK6tB
-         2yOA==
+        d=gmail.com; s=20230601; t=1706491399; x=1707096199; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tFImBe0uMhoZ+D27Iy0hvgyljwGGzShD9NerZzy80vY=;
+        b=F1D1URRBBb3tzSngJaD741IhVP9o5l9EzTVnwoELGcgp62/nBnZTTI87+4Tk7s23Qt
+         FT5Q9ZXyjYQ1zqTWKnRHvNLsy7dYP8gJxg35eMs5vamI0sciEFL15vnxGixHxVHW2E5E
+         KlmFJWL9lxDaRfKSoPYzRlFUQw/xTFQJ9iz8ons/S35//JiCbGYTV7CfyrdW+HEoTMeL
+         RsMYUjSCx8y/c1vSlof8u9D1dXJzXXc1VLodvwx+w06W5w5JXlVFKnehrxeWtKUJp0pe
+         6ULgbix/sS474yE8mloy013j9tb/9zuD9io8qFw0nIhBk7qCNLcL6khHvXZnPirjeZb3
+         1b9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706469101; x=1707073901;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tjHXXRVqfxz+ljxkFWsIGJClVCBZYJTYvEIKcCN0w5k=;
-        b=FVH7n83DZDZegXjXX4g+8f7/+QsEg2BMaK4mXJsyEl201bGoTMg3ZAIMswWWO72hCu
-         iJM56w3OckH2xiB+t4BWNeUs2usTR1+sFBNAils9qgkMs0WprsOf8G8110fn8w54LWdF
-         bUFtkp+3J0zM5gQMsqcmms5fvtJ+OZCrYy33xnD5Xn3UTPA+/K9T2ytcNLlA+yAKJ7Zm
-         bdnjugPF1c0brl6kZTl5yr5FqRk7LlOPGZCVI5SbJqLV5i7mWFtZoL8RfKIGWF7kmpta
-         nyM4MTgWK7szGW+qDKVVKz2WMdlBSG/+THBO6Dvj1vPZTtaV60pznVeOQhs+vuLwNbfg
-         k9IA==
-X-Gm-Message-State: AOJu0YwrehkzaFZrMhJten1cp7TjfyRQo8WgM0n1ZB7ArA6UKpJ2K/EX
-	38O9/Dv60/jV/Z4bwWUPbJdbflBE/oLxm3Mhx9PFXxxtI3mAU17eJ6GmbkxhtGm4MFmtV7mxilq
-	iB55PNWkJiLK/Nh+eOtGUtAZqarn4Opv0i6o=
-X-Google-Smtp-Source: AGHT+IH/NV7qt7CmXisDOEbVdfe3MDJfjqZWLHkd9oIdDM7P+IsLOVnt2uWcXR5Nl+WW023oKyZDKghwWr/WE2LYI/M=
-X-Received: by 2002:a5d:4f12:0:b0:33a:e5e5:5121 with SMTP id
- c18-20020a5d4f12000000b0033ae5e55121mr2031353wru.18.1706469101344; Sun, 28
- Jan 2024 11:11:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706491399; x=1707096199;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tFImBe0uMhoZ+D27Iy0hvgyljwGGzShD9NerZzy80vY=;
+        b=CVBq9oephT56vuUNeJySOqJDhJarbBwkB2Qw9LMqz5LN1cerwivl/nenJI3cfxzIRp
+         OQepxipALU+/txWzWk79D5N5l5EINkkjn/INtgGBG2HmUXmdHt65WhH1wyze8iQ3dWVB
+         1/3GvTPRXNTOt4yPokahLzYqW2LhnPJa9QeEFGbxW6hTGHi3OrR1feyI6SkpDuZcDRl2
+         OCeLzzr1DY02IANunWZpkURMdashz4CVLQdMe+1/NT/LqrRVAh0k/kp1eEoAmvXNhub/
+         QR8/VARpJI+qASP2yX51DEEH/JMnjXdZTwTKHb2xsubtNi2ldK1ZZdhU20H4DCL24bBr
+         SybQ==
+X-Gm-Message-State: AOJu0YxF8hMU5yWjTBo3SqHPu8BNIf21sOOaCZa9i70vLlK/CH1NqUZO
+	eRQidrYM8W2qGth9DTl7NDFcs8pPV6YjTm+jFn+7/ywCe5TfqWxD+GRqKCysDgDdTXXln+fJ7hg
+	TB99Jr3BLdKI9OIxvyDb7XUC3T7OERS6+
+X-Google-Smtp-Source: AGHT+IHUHtJY3Y36nWwou/5NnHOfapc5AQOsHeMM7VSqh+XFH0XVpShVYrMygvT2Tm+oMuLotSb4Xvz5gfjFGIhGbyk=
+X-Received: by 2002:a92:b00f:0:b0:362:b459:11cd with SMTP id
+ x15-20020a92b00f000000b00362b45911cdmr5384527ilh.6.1706491399359; Sun, 28 Jan
+ 2024 17:23:19 -0800 (PST)
 MIME-Version: 1.0
-References: <CANNYZj_1VzMf12EPRQgm=zG2pAJR+_6BRrJ-Ejgq7NGwOfpnYg@mail.gmail.com>
- <3472.1706432485345899127@lists.yoctoproject.org> <17AE83B5B764CF93.23935@lists.yoctoproject.org>
- <CANNYZj9i+k=TUL7T2hEtbBX4d40shBVQgH8bS-VD7rX2NpBGCw@mail.gmail.com>
-In-Reply-To: <CANNYZj9i+k=TUL7T2hEtbBX4d40shBVQgH8bS-VD7rX2NpBGCw@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Sun, 28 Jan 2024 20:11:29 +0100
-Message-ID: <CA+chaQexC9xhELtmuidLorUnUH3z3dY43LrZm7gQ=E-CHgEF9w@mail.gmail.com>
-Subject: Re: [yocto] How to build two images with different settings of a
- recipe in Yocto
-To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com
-Cc: =?UTF-8?B?SsO2cmcgU29tbWVy?= <joerg.sommer@navimatix.de>
-Content-Type: multipart/alternative; boundary="0000000000009b1c930610064c81"
+References: <pv0l.1706298924602475849.kMdt@lists.yoctoproject.org>
+In-Reply-To: <pv0l.1706298924602475849.kMdt@lists.yoctoproject.org>
+From: Chuck Wolber <chuckwolber@gmail.com>
+Date: Sun, 28 Jan 2024 17:23:07 -0800
+Message-ID: <CAB=6tBS4tjF7_CSHr+9596Je5QGE54P_Sby3W+n=5M6huKwUWw@mail.gmail.com>
+Subject: Re: [yocto] Workflow question #bitbake #dunfell #kirkstone #poky #yocto
+To: yocto@lists.yoctoproject.org, mlynch@hi-techniques.com
+Content-Type: multipart/alternative; boundary="000000000000abd42a06100b7d22"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 28 Jan 2024 19:11:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62317
+ <yocto@lists.yoctoproject.org>; Mon, 29 Jan 2024 01:23:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62318
 
---0000000000009b1c930610064c81
+--000000000000abd42a06100b7d22
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jan 28, 2024 at 7:59=E2=80=AFPM Alexander Kanavin <alex.kanavin@gma=
-il.com>
-wrote:
+On Fri, Jan 26, 2024 at 11:55=E2=80=AFAM <mlynch@hi-techniques.com> wrote:
 
-> That said, if the difference between distros is only in specific
-> recipe settings, then I think the builds will reuse each other's
-> sstate, other than the recipes that differ, and their consumers.
+> Hello all.  I've been using Yocto for a couple of years now and I
+> primarily use the dunfell and kirkstone branches.  I have a question abou=
+t
+> the work flow people generally use.  When I started with Yocto I started
+> with the dunfell branch because I was working with the TI am57xx platform=
+.
+> I worked in that development tree for several months and never updated an=
+y
+> of the layers to get changes pushed to the branches of layers I was using=
+.
+> My question is, as a normal part of your work flow do most people regular=
+ly
+> pull from the HEADs of the branches of their layers to keep up to date wi=
+th
+> changes or do most just keep using the layers without ever updating (like=
+ I
+> did)?
 >
 
-Except for example when e.g. icecc is used which adds DISTRO in all sstate
-signatures in icecc_version:
-https://git.openembedded.org/openembedded-core/tree/meta/classes/icecc.bbcl=
-ass#n217
+It really depends on your priorities and use cases, in particular how
+repeatable
+your build processes need to be.
 
-Regards,
+Are you doing one-off work by yourself that can more or less disappear when
+you
+move on to something else? Or do you need to make sure everyone on your tea=
+m
+is reliably pointing at an approved hash/tag/HEAD/etc. commit in each of
+your
+layers?
 
+I am in the latter category so I check in a setup-layers.json file to my
+distro
+repository and bake in a call to setup-layers in a wrapper script. The
+team, and the
+nightly build process, is instructed to build with the wrapper script.
+There is also a
+team level process in place for reviewing upstream layer changes and
+checking in
+periodic updates to the distro level setup-layers.json file.
 
->
-> Alex
->
-> On Sun, 28 Jan 2024 at 13:48, Alexander Kanavin via
-> lists.yoctoproject.org <alex.kanavin=3Dgmail.com@lists.yoctoproject.org>
-> wrote:
-> >
-> > There's no way around this: you can't build the same recipe in two
-> > different ways for two different images in the same DISTRO. The
-> > different behavior has to be specified through config files and picked
-> > up at runtime, and not through build time settings. All products and
-> > builds and CI infrastructure for them must be planned with that in
-> > mind.
-> >
-> > Different local.conf is essentially a different distro in all but
-> > name, and less understandable or maintainable.
-> >
-> > Alex
-> >
-> > On Sun, 28 Jan 2024 at 10:01, J=C3=B6rg Sommer via lists.yoctoproject.o=
-rg
-> > <joerg.sommer=3Dnavimatix.de@lists.yoctoproject.org> wrote:
-> > >
-> > > Thanks for your reply. It helps, but I see some issues with the
-> ROOTFS_POSTPROCESS_COMMAND.
-> > >
-> > > For the config file this is a possible solution. But what can I do if
-> I need code changes? SSH announced they'll disable DSA support by default
-> in a few months and for all other images except one I would stay with thi=
-s
-> default. I have to supply another setting to configure when building the
-> recipe for one image. And I have more images they require reduced (or
-> widened) settings of packages.
-> > >
-> > > And editing the image has the drawback that it doesn't play well with
-> package management. If I install/update the sshd ipk, it doesn't contain
-> the change from ROOTFS_POSTPROCESS_COMMAND.
-> >
-> >
-> >
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62316):
-> https://lists.yoctoproject.org/g/yocto/message/62316
-> Mute This Topic: https://lists.yoctoproject.org/mt/103992605/3617156
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> martin.jansa@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+..Ch:W..
 
---0000000000009b1c930610064c81
+--=20
+*"Perfection must be reached by degrees; she requires the slow hand of
+time." - Voltaire*
+
+--000000000000abd42a06100b7d22
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Sun, Jan 28, 2024 at 7:59=E2=80=AFPM A=
-lexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin=
-@gmail.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex">That said, if the difference between d=
-istros is only in specific<br>
-recipe settings, then I think the builds will reuse each other&#39;s<br>
-sstate, other than the recipes that differ, and their consumers.<br></block=
-quote><div><br></div><div>Except for example when e.g. icecc is used which =
-adds DISTRO in all sstate signatures in icecc_version:</div><div><a href=3D=
-"https://git.openembedded.org/openembedded-core/tree/meta/classes/icecc.bbc=
-lass#n217">https://git.openembedded.org/openembedded-core/tree/meta/classes=
-/icecc.bbclass#n217</a></div><div><br></div><div>Regards,</div><div>=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr"><div dir=3D"ltr">On Fri, Jan 26, 2024 at 11:55=E2=80=AFAM =
+&lt;<a href=3D"mailto:mlynch@hi-techniques.com">mlynch@hi-techniques.com</a=
+>&gt; wrote:</div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">Hello all.=C2=A0 I&#39;ve been using Yocto for a couple=
+ of years now and I primarily use the dunfell and kirkstone branches.=C2=A0=
+ I have a question about the work flow people generally use.=C2=A0 When I s=
+tarted with Yocto I started with the dunfell branch because I was working w=
+ith the TI am57xx platform.=C2=A0 I worked in that development tree for sev=
+eral months and never updated any of the layers to get changes pushed to th=
+e branches of layers I was using.=C2=A0 My question is, as a normal part of=
+ your work flow do most people regularly pull from the HEADs of the branche=
+s of their layers to keep up to date with changes or do most just keep usin=
+g the layers without ever updating (like I did)?
 <br>
-Alex<br>
-<br>
-On Sun, 28 Jan 2024 at 13:48, Alexander Kanavin via<br>
-<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bla=
-nk">lists.yoctoproject.org</a> &lt;alex.kanavin=3D<a href=3D"mailto:gmail.c=
-om@lists.yoctoproject.org" target=3D"_blank">gmail.com@lists.yoctoproject.o=
-rg</a>&gt;<br>
-wrote:<br>
-&gt;<br>
-&gt; There&#39;s no way around this: you can&#39;t build the same recipe in=
- two<br>
-&gt; different ways for two different images in the same DISTRO. The<br>
-&gt; different behavior has to be specified through config files and picked=
-<br>
-&gt; up at runtime, and not through build time settings. All products and<b=
-r>
-&gt; builds and CI infrastructure for them must be planned with that in<br>
-&gt; mind.<br>
-&gt;<br>
-&gt; Different local.conf is essentially a different distro in all but<br>
-&gt; name, and less understandable or maintainable.<br>
-&gt;<br>
-&gt; Alex<br>
-&gt;<br>
-&gt; On Sun, 28 Jan 2024 at 10:01, J=C3=B6rg Sommer via <a href=3D"http://l=
-ists.yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproj=
-ect.org</a><br>
-&gt; &lt;joerg.sommer=3D<a href=3D"mailto:navimatix.de@lists.yoctoproject.o=
-rg" target=3D"_blank">navimatix.de@lists.yoctoproject.org</a>&gt; wrote:<br=
->
-&gt; &gt;<br>
-&gt; &gt; Thanks for your reply. It helps, but I see some issues with the R=
-OOTFS_POSTPROCESS_COMMAND.<br>
-&gt; &gt;<br>
-&gt; &gt; For the config file this is a possible solution. But what can I d=
-o if I need code changes? SSH announced they&#39;ll disable DSA support by =
-default in a few months and for all other images except one I would stay wi=
-th this default. I have to supply another setting to configure when buildin=
-g the recipe for one image. And I have more images they require reduced (or=
- widened) settings of packages.<br>
-&gt; &gt;<br>
-&gt; &gt; And editing the image has the drawback that it doesn&#39;t play w=
-ell with package management. If I install/update the sshd ipk, it doesn&#39=
-;t contain the change from ROOTFS_POSTPROCESS_COMMAND.<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#62316): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/62316" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/62316</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/103992605/361=
-7156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/103992605/3617156</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin=
-.jansa@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
+</blockquote></div><div><br></div><div>It really depends on your priorities=
+ and use cases, in particular how repeatable</div><div>your build processes=
+ need to be.</div><div><br></div><div>Are you doing one-off work by yoursel=
+f that can more or less disappear when you</div><div>move on to something e=
+lse? Or do you need to make sure everyone on your team</div><div>is reliabl=
+y pointing at an approved hash/tag/HEAD/etc. commit in each of your</div><d=
+iv>layers?</div><div><br></div><div>I am in the latter category so I check =
+in a setup-layers.json file to my distro</div><div>repository and bake in a=
+ call to setup-layers in a wrapper script. The team, and the</div><div>nigh=
+tly build process, is instructed to build with the wrapper script. There is=
+ also a</div><div>team level process in place for reviewing upstream layer =
+changes and checking in</div><div>periodic updates to the distro level setu=
+p-layers.json file.</div><div><br></div><div>..Ch:W..<br></div><div><br></d=
+iv><span class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" cl=
+ass=3D"gmail_signature"><div dir=3D"ltr"><div><b><span style=3D"font-family=
+:monospace">&quot;Perfection must be reached by degrees; she requires the s=
+low hand of time.&quot; - Voltaire</span></b></div></div></div></div>
 
---0000000000009b1c930610064c81--
+--000000000000abd42a06100b7d22--
 
