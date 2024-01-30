@@ -1,89 +1,57 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CAEC9C46CD2
-	for <webhook@archiver.kernel.org>; Tue, 30 Jan 2024 18:03:16 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
- by mx.groups.io with SMTP id smtpd.web10.3163.1706637786569447646
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D16DC46CD2
+	for <webhook@archiver.kernel.org>; Tue, 30 Jan 2024 20:07:17 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.6655.1706645226284962290
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jan 2024 10:03:07 -0800
+ Tue, 30 Jan 2024 12:07:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Z76Czf0s;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.167.44, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5101f2dfdadso7254012e87.2
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jan 2024 10:03:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1706637783; x=1707242583; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1VlSKTp7CvpzaJdZLUyiBmiNIhj0USeqtHcrLIbLbxo=;
-        b=Z76Czf0s9nxL0IVnvladuNAJlQIrx4MKUyRrGmhMm1PbckLwY8N3ZBaNva8+fD+G7a
-         dx/zAQMN+mDlNxA29+88n3Wo/Bf/gcPJrYU7nr3KFSpHXEd96yQBWHkzhV8PCJBUldX0
-         NaM55GgABCIfaLd/7pD4Frynt2UbXocwAz+yU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706637783; x=1707242583;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1VlSKTp7CvpzaJdZLUyiBmiNIhj0USeqtHcrLIbLbxo=;
-        b=gLw/t8fgUFYPnZcLGrskiU6028JexvSmj5pRhByqXxmdpq9Qhqqqq5s2cMrpQjmrK4
-         AlzUKjdF+/lLR7vG8Zigx7QfBNdZW4RE5ffDKPeN+Ci8QmHB16oOL6EyivWkdb65HdrK
-         ykB4SpHtRyCwo86yHERSwT0i5pZSDdpRiG6XquPissgAW/Oyi99IYoIan6xZAZF+vJfc
-         jK/+/WwM3m5VwE1wcnWy5mL0Hq9OWOdh1ZExGn3iHvb6Zxjm5xQ0LLOCcbaBOBpo825W
-         tkxxvOtVE5a5ZYYn6M27ExHcjfny2K1znWocdU8p0ieQWcIci9KebDLxZuBAoReF5CfH
-         rlyA==
-X-Gm-Message-State: AOJu0YxA0TE8hniY/xu+/HOLpOq+pLaEvGwrkXlZscDBjjOCcf12IfX8
-	EdhewMJgGieCDK28VPwDedKsWPORMFpXA6dCcBp8LDWPBDkrGaboPH3UIahC3YPkKgojboZfv35
-	Gnah9UBiLqWH4cIzLGyuueBc7O7g7BZ/pJ2Z5/nmpcwzLrxaeBPE=
-X-Google-Smtp-Source: AGHT+IG7uFCq+/nMp272YkLxknBoOD2TxAFYHOcabfm8TUh2bDUHyeMkzC9mH6q7wDh6y+Y3D71jykP5LN/ANnUU5y4=
-X-Received: by 2002:a19:6406:0:b0:511:17b6:5dc5 with SMTP id
- y6-20020a196406000000b0051117b65dc5mr2393638lfb.12.1706637783196; Tue, 30 Jan
- 2024 10:03:03 -0800 (PST)
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5663540CB8;
+	Tue, 30 Jan 2024 20:07:05 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id uJhORfjmQG5g; Tue, 30 Jan 2024 20:07:05 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 263E540AB7;
+	Tue, 30 Jan 2024 20:07:02 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 37F09163DF0; Tue, 30 Jan 2024 15:07:01 -0500 (EST)
+Date: Tue, 30 Jan 2024 15:07:01 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	Yocto Project <yocto@lists.yoctoproject.org>,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour January 31 5pm/1700 UTC
+Message-ID: <20240130200701.GJ18608@denix.org>
 MIME-Version: 1.0
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-Date: Tue, 30 Jan 2024 10:02:51 -0800
-Message-ID: <CADfgfobScqVYRtPjm5buBRVzROqWX++85inBmKqZ1MVLSWawMg@mail.gmail.com>
-Subject: List membership verification
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000d3f78f06102d9210"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 Jan 2024 18:03:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62338
+ <yocto@lists.yoctoproject.org>; Tue, 30 Jan 2024 20:07:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62339
 
---000000000000d3f78f06102d9210
-Content-Type: text/plain; charset="UTF-8"
+All,
 
-Hello,
-Some mailing list users are being asked to confirm they actively want to
-continue receiving emails from our lists. Please search your inbox for a
-message with the subject: "Action Required: Confirm Your Groups.io
-Membership to Continue Receiving Group Emails" from "@groups.io". Reply to
-this email to ensure you continue to receive listmail.
+Welcome to 2024 and please join us at the first OpenEmbedded Happy Hour of 
+the year tomorrow, January 31 for Europe/Americas timezones @ 1700/5pm UTC 
+(12pm ET/9am PT)
 
-Please let me know if you have any issues.
--- 
-Michael Halstead
-Linux Foundation / Yocto Project
-Systems Operations Engineer
+https://www.openembedded.org/wiki/Calendar
+https://www.openembedded.org/wiki/Happy_Hours
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+January+31&iso=20240131T17
 
---000000000000d3f78f06102d9210
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,<div>Some mailing list users are being asked to conf=
-irm they actively want to continue receiving emails from our lists. Please =
-search your inbox for a message with the subject: &quot;Action Required: Co=
-nfirm Your Groups.io Membership to Continue Receiving Group Emails&quot; fr=
-om &quot;@<a href=3D"http://groups.io">groups.io</a>&quot;. Reply to this e=
-mail to ensure you continue to receive listmail.</div><div><br></div><div>P=
-lease let=C2=A0me know if you have any issues.<br><span class=3D"gmail_sign=
-ature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature" data=
--smartmail=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux =
-Foundation / Yocto Project</div><div>Systems Operations Engineer</div></div=
-></div></div></div>
-
---000000000000d3f78f06102d9210--
+Best regards,
+Denys Dmytriyenko
+OpenEmbedded Board of Directors
 
