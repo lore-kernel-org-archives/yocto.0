@@ -1,219 +1,232 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E7C2C47DB3
-	for <webhook@archiver.kernel.org>; Fri,  2 Feb 2024 13:51:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by mx.groups.io with SMTP id smtpd.web11.22947.1706881871319675304
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8548CC48295
+	for <webhook@archiver.kernel.org>; Fri,  2 Feb 2024 23:15:07 +0000 (UTC)
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+ by mx.groups.io with SMTP id smtpd.web10.5010.1706816296281547674
  for <yocto@lists.yoctoproject.org>;
- Fri, 02 Feb 2024 05:51:11 -0800
+ Thu, 01 Feb 2024 11:38:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=hZYci1Wg;
- spf=pass (domain: intel.com, ip: 192.198.163.18, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706881871; x=1738417871;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=QKzqscOgbavM7zPhcRwFPeiOex9NDx6Mb2MIl/YQST4=;
-  b=hZYci1Wgo8YEKZoGZl+EGkTUsGt0t+e9niUMALJapeckNlXrbzmSI68U
-   pjQkEgtmqFVc2pUjqgJ/ZkmA09bCm/0o8dVMvNr0KWy7KVdW0DYcqJnlA
-   Yv2xiV3K68SJXiFU2NSK67Omv6j2Gd8JQnSacnqSJcQmIE+3Quw2Iog5s
-   66eLP0Q3jIeodZ+PWKCxAmHqoISUeG+03rKTrI6jzyUSD6zINs6YotM+j
-   w3IpUTJudBJ7z31diECHKWY7jLQzsIVbMXg/CjAGXgM9bzOdxdKT+IQkH
-   b93fQxhE73Kyp42EPDbGLQZEKV6pMwxtd/Jj4BMKNwBR1ui9U89kTEiPE
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="63125"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="63125"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2024 05:51:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="358578"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 02 Feb 2024 05:51:10 -0800
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 2 Feb 2024 05:51:09 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 2 Feb 2024 05:51:09 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 2 Feb 2024 05:51:09 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R3xIjZxlFWgBGiH5uFOn5wqYmsOpnwrPEVD+p9G3Ou4bSvwmF6jo+mrtVk5JE+3EvEBEZcNt/WoFp2xfPk3J1WNGGzMVNQjtTucmPKCtinzZYh4lY7FfrzvzeqYE8/deF43gzOmQX1lMFKHkYLdJOVwBZP8oilNi/OLT1xA66WX4854aOanVLFFioogTRqARKhtxQnkdXPThmp4lapFR4gCa9ASK17a253KF/LSjWgL77Xf9p0EK6/oHh4zxN8om4NIYT99IehaaUaEiOEd9RGl44coffkmJ121c3FApfib3FoY3/jycGK4S+VFkJ6xt6BRfNktMytdNSLJh9o0l3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xsD2r+wc6WOwVQa7bfrIOGBnzvRFzqrcuaULJgVtyJQ=;
- b=nbX+5oYp2fKr4hN234fhHReGPQKmxtyMybAiwFW+koHcLTaEiaesYYRCL34DZc7BOcQ2qRAihDf1MTado1pEnbQmyHFEeTBERN3e/Q3kZwiDdqkbRFQOvJZ3j0rEI+DY2hLvkSjhjducEbIGcx5FlAkPv2Z5bDtqhJsIHohESXqRT2V0l0kelYMTPIm8M0XkA2JcKOVWylxCSeXKa2w4L2NQBQMvKV+6nm4ePMoM3V/ojM61VmSiqNZWLFi00l6tlfcNzX7UZgTSrN9OnrdPo+A9qIEttrKi8CX5VlA1thwpzb6hhAGFN7BoAfMZtlFXH5xjdsupe/D7CJEvkxm3rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
- by DM4PR11MB6359.namprd11.prod.outlook.com (2603:10b6:8:b9::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Fri, 2 Feb
- 2024 13:51:07 +0000
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::1025:6d41:d45c:948c]) by DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::1025:6d41:d45c:948c%7]) with mapi id 15.20.7249.027; Fri, 2 Feb 2024
- 13:51:07 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.0.16.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.0.16.rc1)
-Thread-Index: AQHaUBfkHW7ixELtiUSckp2G24Gua7D3HUlQ
-Date: Fri, 2 Feb 2024 13:51:06 +0000
-Message-ID: <DM4PR11MB776068B2B6A65039F971BC8EA1422@DM4PR11MB7760.namprd11.prod.outlook.com>
-References: <0101018d44396ab5-09abdfba-e02c-4f2e-bb9b-b00d2b98119f-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018d44396ab5-09abdfba-e02c-4f2e-bb9b-b00d2b98119f-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|DM4PR11MB6359:EE_
-x-ms-office365-filtering-correlation-id: 1f9394e5-7cdd-4f9a-9f99-08dc23f6013e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sLyEuDiEdOGC9qzu4lYnGlbjtEjw/npr89Qz1N6mGxwCLM3u1u5lC2GmNHYRfvFvfQn4TXmFgQs896v/gfLoHOuTOxj/Q7tD78ySmxl2QkvypZVFKJnjjSXuofGl/+Zs2Qe3XqenIC5KJYVNi/piqY0YN0+KUzmd3dLS77zg1ER4anJ1lNA3fSlIZtdDxn862jYhmZ3iQpiW6TKe49eUkoEAY2gRQ1tkMp9/M1mjxWoTRIISL1/ZVl8YNRVX+MXoF8+1Gboz9qcRrYfiQkULuPWr2xieHTy0wMT4/QhOKGWVlsOSNzTfn+UpuQXEkuf/SM5HdP7WqD5+zMZW4sGvhFAc1W7lsEY/c5FH/mD9ruzP6bO3LG9cN5cP3T7KpQxzhSgC51RxUGBMwz03CDwX0EEBc7nrHqYgI7i+zm7IK8LehTwK1xWsS78i3s0gK2OpbVt6cULElc/K8y4dt5V3fGMiRWuE0xUStK40J3UiTlrw7j1ka5iEDEScIXVEj9slzT2gvlbL+pBfePyv3c8vW+mNditFW0WTWNpmlbBihRfepS42sNlaYxW/OcP92jyPZZZiMatDcMcWdQKeOzfp0GDp5N7uuOc7t/X89r41+VPJVqInNK7nvSXktSRNoSGQ2rdQYfTfW/vdAi3467zQ1g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(366004)(136003)(376002)(39860400002)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(6506007)(8676002)(122000001)(15650500001)(33656002)(38100700002)(41300700001)(82960400001)(86362001)(110136005)(478600001)(7696005)(52536014)(966005)(316002)(8936002)(66556008)(5660300002)(66476007)(64756008)(26005)(83380400001)(2906002)(9686003)(53546011)(71200400001)(66946007)(66446008)(76116006)(38070700009)(66899024)(55016003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?am2yB8f54RZgA1vlLWInXkfsTvIeeRjI44ZypEBgmxKPgpJ0HRsyl7xm/yBQ?=
- =?us-ascii?Q?ktmCH1rF3XYt192dG9Wfg0cfVHV4d9gU+li2aH7BOEgbHy93+UDeTAJLwg28?=
- =?us-ascii?Q?6KHHUe4QokAaeg4gtRntuoXHVRxXDyWy0sR9Sa6z/xF9eXP8m1gFmXc8plXc?=
- =?us-ascii?Q?vcfF6bt5KWsrmpfYttCmXTWCNSI7FOzntgHwqqjPhr1l4BfhdSh8KPXLyVfc?=
- =?us-ascii?Q?umJURSjyus9PTyp/lS+Qvnq6H4LfcI3UEURc+m3mCqXMd5LMapM4WGGKxyTO?=
- =?us-ascii?Q?PgrG5BjoFdMdVEjlrPCAK2zDahvDLboruCrtifu4+6SsHW6y+rJLjuemdrqz?=
- =?us-ascii?Q?3qmDxDjq3WdQQ/+ZAvkQqr8jQTVtvZgwKDO4uG1ItoOe5Afjt5q+80YNGNcF?=
- =?us-ascii?Q?zARzNoNlL5V2WoVb4aseVLo73EkP1rZtd9aiooynZ/WB5pvJudj1Ri4r7/4x?=
- =?us-ascii?Q?nNi7cvzqI7F4UsiMS5zwj8yBlC0etXyYYkCTQTuqpnfSvgQ59rg77Yc+TEgd?=
- =?us-ascii?Q?6XmLtbbmgKYT3TZeh94dpk6ZdbpH8s0uS1IgLnjAvF9vLr7awtMeOU0ut2pd?=
- =?us-ascii?Q?2nVE7LABS7JACiBm+OX+twjj/710IL4pJdxvRSx+KMl5qFzr6kUwTHzMvOF1?=
- =?us-ascii?Q?kiRkAsCh7SqNbbwBZTGnUR9smbwBYEkWnHXDfjxAS3TVktUG57bPelRgYitp?=
- =?us-ascii?Q?JUkdXSGjWGvWPpAbdzbFgobgimHt92RfdDftXQdlHKNsQhw7RnCRx0xce9eZ?=
- =?us-ascii?Q?uOU1fabZbuN1k/7zzjxX3UqUmtCCQ1EWXNduLqorB9f0R7KPEclRX7K7HYAx?=
- =?us-ascii?Q?E+D6JUTZoBAeU6I5kFRedh926326LYC0wl5FuHQ6Q5vbskbNA/hs2NFZ1ZQK?=
- =?us-ascii?Q?f3TfRMl30DREwT7A6mxeyatYa99Hq2YOnlLxh8fPQ3ktMbZm5oSc1LwQ+zSG?=
- =?us-ascii?Q?9+aL7gN+hXCmLZeOVMEHUuthXPSHKTyS0VNVbO9eJYkzCcp6ApMAYE1/Iotj?=
- =?us-ascii?Q?NNEma352pBiAIv5lzXjERA7u8G1lrNYsW+HuhmmfFB3NToc3+MLDfApPBCQB?=
- =?us-ascii?Q?4HSB6UvWLyrL0qOe0RNvncZfYGE3pafH+RFe6xUIV3FrSAfQFY1fGk1pu+xt?=
- =?us-ascii?Q?cDf9THp6FQgb4NRfwUncBdzF6Y5K40YziHl+O9Lxp+3PA+ys12A+gyTLDIro?=
- =?us-ascii?Q?X8fgtjLm0rRVNGSvyuduXrzH1S5E+dDOpCVeB9hQwhN0A2M25cHrlVXyGS90?=
- =?us-ascii?Q?+F8UEH8movtcWupRnDKLUtP0nEBEVMdkIFKNe3tlzymdOUp7Ikn0HILbZkda?=
- =?us-ascii?Q?DODQN78TuzPzlqkP4PY9S7IdgoARuOLAw6tEkcn9EKHhMlIYLLpNR0XzK4ox?=
- =?us-ascii?Q?Aj5tISCh8qrWgwGOJ1scUdsbDXUX3+80ePs4X679iPe7pu6IkUWwGivN2f+P?=
- =?us-ascii?Q?tYr5mKJOe6VJJwfYkR3MpXr7JD8dA3WM0c7AgnVjK1BKbvfcbrqp2NR6D5xV?=
- =?us-ascii?Q?Y4EaaCYf5g8P3YAJKFQZSQWE/uoG7L0VXXfYUFx2UlSaHjaWrE0l2LnpXAu7?=
- =?us-ascii?Q?KHMYaHA/PbBjsRXjnOgX7XB1geYE/Opi6pNpPegh?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fZu6pYTX;
+ spf=pass (domain: gmail.com, ip: 209.85.216.50, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-295ff33ae32so1051856a91.2
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Feb 2024 11:38:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706816295; x=1707421095; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JByXJvA2J15uK6/w29u4TPGiTZTuFTg8NCvvxVSKjwM=;
+        b=fZu6pYTXUzHT0xKuyhO4haGVLSc5t2044Kzg0wdeo2PHbZgkopMumNX6jq9EgxU7Nq
+         CenX9SuU1vqoud10oRk6J61qqlSJ6LARlS6xkBpWp8I5tHfNeXfrvhCtSNoyTHsV97kn
+         wAKEvt/2IlvuAREsCk4kuAoCoUSSAUhUo/vckGELa6rjP/3c4XgW4MrHJoml3O/61yU1
+         K5JKPCF8d9srwzKox9R4JrOsOxEqbaQZm7lC2NYv15ih2Cl1AhS93X/ugw2Aq977oxdh
+         10kQZak8/KU0ON3a0AdgkAwYsNkuXCRbeGnIYdVA/zSxB2z5GdcPnqjKpTtrE3Ouil5K
+         OU5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706816295; x=1707421095;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JByXJvA2J15uK6/w29u4TPGiTZTuFTg8NCvvxVSKjwM=;
+        b=RCAlnEsVPJvUWAHl2w1g7WRuuD/5j11yoHuLOPRSrGxOEYc14s+MhZG0ftV2sXKYn5
+         pNHfIN82+SCZFD1ERIMLO8I25aJyZGfngOTxiYehkc0ZJhGBtKOPLfcjQhMo7PxWzvoq
+         xs5FpCkTWs5gIlvt0mfqaxDf+x13Bzh7zJD/b9GRIq8dASAlWrRenUdNX8vA/peMQmj7
+         MPclwXVnWxO9G0wVc7rMZbYq4tIq4iN3taeaPYczeCi5N9KgcaHfp3nkIxlOakr0smpt
+         awDdl0HJGMZgPQjdgR6UZBmUn2gCinoHHpdmuM3rhrVQ+VNsB3TOaxIzDvG5q4KBNLDH
+         Cebg==
+X-Gm-Message-State: AOJu0YxK3ndp7nvM0oE500Rm0xyUg3kso28jVbhFyqqJqXGdgKDwPj+c
+	joU9AmafWgBJ4KXKZdmJ33qfdKS0OPt4zDsD/wKfJ1E9XrTSpYP/J1RP+qQAyLIXq2YNIKNPAQA
+	VJyYsCzcbKQb1L5VkGwZvBa6Vdp4PRJNdG3s=
+X-Google-Smtp-Source: AGHT+IH/1eX/c/aisu4U7Oa82Tn7WnL+95hrFSit5OCM9qaiYFRLi64ECIwr6hT6czHbEtJErFpyhZqo/42ZBoWWCjo=
+X-Received: by 2002:a17:90a:e2d6:b0:28d:bab1:e94a with SMTP id
+ fr22-20020a17090ae2d600b0028dbab1e94amr3445065pjb.32.1706816295348; Thu, 01
+ Feb 2024 11:38:15 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f9394e5-7cdd-4f9a-9f99-08dc23f6013e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2024 13:51:06.9213
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gWZKQ+FyneH0XzmhpInH+hJpgEsjmb1V0F/pP7RXXrH3g41RcFpllt9T06deEBXYrPWt6hbs2jykaR/ZmF/B4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6359
-X-OriginatorOrg: intel.com
+References: <CAAfyv35xxBau9cj1e6d-a-ggoQmvg=5Fjw2pxm9MXY6Z4hhZgQ@mail.gmail.com>
+In-Reply-To: <CAAfyv35xxBau9cj1e6d-a-ggoQmvg=5Fjw2pxm9MXY6Z4hhZgQ@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Thu, 1 Feb 2024 20:38:03 +0100
+Message-ID: <CAGAf8LwDy_GT-7LnRWKxkPK-er24hDisMq=hKXHX3a7LT9PFdQ@mail.gmail.com>
+Subject: Re: [yocto] kirkstone bus error golang
+To: yocto@lists.yoctoproject.org, marek.belisko@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000fb36300610572250"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 02 Feb 2024 13:51:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62385
+ <yocto@lists.yoctoproject.org>; Fri, 02 Feb 2024 23:15:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62386
 
-Hi All,
-=20
-QA for yocto-4.0.16.rc1 is completed. This is the full report for this rele=
-ase: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-=20
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-=20
-No new issue found.=20
-=20
-Thanks,
-Jing Hui
+--000000000000fb36300610572250
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hmmmm... The guy solved this problem, using the following:
+
+go/src/runtime/asm_arm.s
+
+Line 31 in 40ed359
+
+TEXT _rt0_arm_lib(SB),NOSPLIT,$104
+
+where the function _rt0_arm_lib applied for a stack size of 104. I changed
+it to 108 and this solves the issue.
+
+I don't have much knowledge in assembly and processor architecture, so I'm
+not sure why the misalignment happens here and what should be the correct
+way to solve this issue.
+_______
+
+Where: the dir go/src/runtime/asm_arm.s should be as the full path:
+
+/usr/lib/go/src/runtime/asm_arm.s
+
+You should go there and fix the stack size in asm_arm.s (as this guy did).
+
+I tried the same programs on my Fedora 39, and I do not have bus errors.
+
+I hope this helps.
+
+Zee
+_______
 
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Friday, January 26, 2024 1:24 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.0.16.rc1)
->=20
->=20
-> A build flagged for QA (yocto-4.0.16.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-4.0.16.rc1
->=20
->=20
-> Build URL:
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6498
->=20
-> Build hash information:
->=20
-> bitbake: ee090484cc25d760b8c20f18add17b5eff485b40
-> meta-agl: 35adadd18a6a0fabbf57cfdb2f2d72c2807375e1
-> meta-arm: b187fb9232ca0a6b5f8f90b4715958546fc41d73
-> meta-aws: cab60ff0f84b2335e933d4eac326df9fab5b9bb6
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: f932ebb2544170f43edd22739f44307809bf8cfb
-> meta-mingw: f6b38ce3c90e1600d41c2ebb41e152936a0357d7
-> meta-openembedded: 730e44900a0a86265bad93a16b5a5ff344a07266
-> meta-virtualization: 88327090d26955a678c6f8bd2585aad4d802f6c4
-> oecore: a744a897f0ea7d34c31c024c13031221f9a85f24
-> poky: 54af8c5e80ebf63707ef4e51cc9d374f716da603
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#380): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/380
-> Mute This Topic: https://lists.yoctoproject.org/mt/103971039/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10762429/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+On Thu, Feb 1, 2024 at 3:34=E2=80=AFPM Marek Belisko <marek.belisko@gmail.c=
+om>
+wrote:
 
+> Hi,
+>
+> I'm testing following code on rpi3 board (taken from
+> https://github.com/golang/go/issues/58548) :
+> main.go:
+> package main
+>
+> func main() {
+> }
+>
+> main.c:
+> #include <stdio.h>
+> #include <stdlib.h>
+> #include <dlfcn.h>
+>
+> int main(int argc, char** argv)
+> {
+>     void *handle =3D dlopen("./libtest.so", RTLD_LAZY);
+>     if (!handle) {
+>         fprintf(stderr, "Error: %s\n", dlerror());
+>         return EXIT_FAILURE;
+>     }
+>
+>     dlclose(handle);
+>     return EXIT_SUCCESS;
+> }
+>
+> I'm cross compiling using yocto sdk:
+>
+> go build -buildmode=3Dc-shared -o libtest.so main.go
+> $ gcc -g main.c -o main
+> and when run main on target I'm hitting bus error:
+>
+> $ ./main
+>   389.087824] Alignment trap: not handling instruction f9420a1f at
+> [<b6e5caa6>]
+> [  389.095171] 8<--- cut here ---
+> [  389.098249] Unhandled fault: alignment exception (0x811) at 0xbeaca374
+> [  389.104881] pgd =3D d43e80f0
+> [  389.107602] [beaca374] *pgd=3Dbe8ba831
+> [  389.134496] audit: type=3D1701 audit(1706797456.639:2): auid=3D4294967=
+295
+> uid=3D0 gid=3D0 ses=3D4294967295 pid=3D2544 comm=3D"main" exe=3D"/home/ro=
+ot/main" sig=3D7
+> res=3D1
+> Bus error
+>
+> I've tried glibc2.34 and also 2.36 (in kirkstone is 2.35) as described in
+> golang issu but no luck, it still behaves the same.
+>
+> Any ideas what else to check please? Updating to the latest poky is not
+> the case unfortunately.
+>
+> BR,
+>
+> marek
+>
+>
+> --
+> as simple and primitive as possible
+> -------------------------------------------------
+> Marek Belisko - OPEN-NANDRA
+> Freelance Developer
+>
+> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> Tel: +421 915 052 184
+> skype: marekwhite
+> twitter: #opennandra
+> web: http://open-nandra.com
+>
+>=20
+>
+>
+
+--000000000000fb36300610572250
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hmmmm... The guy solved this problem, using the following:=
+<br><br>go/src/runtime/asm_arm.s<br><br>Line 31 in 40ed359<br><br>TEXT _rt0=
+_arm_lib(SB),NOSPLIT,$104<br><br>where the function _rt0_arm_lib applied fo=
+r a stack size of 104. I changed it to 108 and this solves the issue.<br><b=
+r>I don&#39;t have much knowledge in assembly and processor architecture, s=
+o I&#39;m not sure why the misalignment happens here and what should be the=
+ correct way to solve this issue.<br>_______<br><br>Where: the dir go/src/r=
+untime/asm_arm.s should be as the full path:<br><br>/usr/lib/go/src/runtime=
+/asm_arm.s<br><br>You should go there and fix the stack size in asm_arm.s  =
+(as this guy did).<br><br><div>I tried the same programs on my Fedora 39, a=
+nd I do not have bus errors.</div><div><br></div><div>I hope this helps.</d=
+iv><div><br></div><div>Zee</div><div>_______<br></div></div><br><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 1, 20=
+24 at 3:34=E2=80=AFPM Marek Belisko &lt;<a href=3D"mailto:marek.belisko@gma=
+il.com">marek.belisko@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<div><br></div><div>I&=
+#39;m testing following=C2=A0code on rpi3 board (taken from <a href=3D"http=
+s://github.com/golang/go/issues/58548" target=3D"_blank">https://github.com=
+/golang/go/issues/58548</a>) :</div><div>main.go:<br>package main<br><br>fu=
+nc main() {<br>}</div><div><br></div><div>main.c:<br>#include &lt;stdio.h&g=
+t;<br>#include &lt;stdlib.h&gt;<br>#include &lt;dlfcn.h&gt;<br><br>int main=
+(int argc, char** argv)<br>{<br>=C2=A0 =C2=A0 void *handle =3D dlopen(&quot=
+;./libtest.so&quot;, RTLD_LAZY);<br>=C2=A0 =C2=A0 if (!handle) {<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 fprintf(stderr, &quot;Error: %s\n&quot;, dlerror());<b=
+r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return EXIT_FAILURE;<br>=C2=A0 =C2=A0 }<br><b=
+r>=C2=A0 =C2=A0 dlclose(handle);<br>=C2=A0 =C2=A0 return EXIT_SUCCESS;<br>}=
+</div><div><br></div><div>I&#39;m cross compiling=C2=A0using yocto sdk:</di=
+v><div><br></div><div>go build -buildmode=3Dc-shared -o libtest.so main.go<=
+br>$ gcc -g main.c -o main</div><div>and when run main on target I&#39;m hi=
+tting bus error:</div><div><br>$ ./main<br>=C2=A0 389.087824] Alignment tra=
+p: not handling instruction f9420a1f at [&lt;b6e5caa6&gt;]<br>[ =C2=A0389.0=
+95171] 8&lt;--- cut here ---<br>[ =C2=A0389.098249] Unhandled fault: alignm=
+ent exception (0x811) at 0xbeaca374<br>[ =C2=A0389.104881] pgd =3D d43e80f0=
+<br>[ =C2=A0389.107602] [beaca374] *pgd=3Dbe8ba831<br>[ =C2=A0389.134496] a=
+udit: type=3D1701 audit(1706797456.639:2): auid=3D4294967295 uid=3D0 gid=3D=
+0 ses=3D4294967295 pid=3D2544 comm=3D&quot;main&quot; exe=3D&quot;/home/roo=
+t/main&quot; sig=3D7 res=3D1<br>Bus error<br></div><div><br></div><div>I&#3=
+9;ve tried glibc2.34 and also 2.36 (in kirkstone is 2.35) as described in g=
+olang issu but no luck, it still behaves the same.</div><div><br></div><div=
+>Any ideas what else to check please? Updating to the latest poky is not th=
+e case unfortunately.<br clear=3D"all"><div><br></div><div>BR,</div><div><b=
+r></div><div>marek</div><div><br></div><div><br></div><span class=3D"gmail_=
+signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature">=
+as simple and primitive as possible<br>------------------------------------=
+-------------<br>Marek Belisko - OPEN-NANDRA<br>Freelance Developer<br><br>=
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic<br>Tel: +421 915 052 184=
+<br>skype: marekwhite<br>twitter: #opennandra<br>web: <a href=3D"http://ope=
+n-nandra.com" target=3D"_blank">http://open-nandra.com</a></div></div></div=
+>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000fb36300610572250--
 
