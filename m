@@ -1,147 +1,138 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <chuckwolber@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66E0DC4828D
-	for <webhook@archiver.kernel.org>; Thu,  1 Feb 2024 22:47:04 +0000 (UTC)
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
- by mx.groups.io with SMTP id smtpd.web10.9767.1706827620494298138
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 52E42C4828D
+	for <webhook@archiver.kernel.org>; Thu,  1 Feb 2024 22:52:14 +0000 (UTC)
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+ by mx.groups.io with SMTP id smtpd.web10.9881.1706827925262555132
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Feb 2024 14:47:00 -0800
+ Thu, 01 Feb 2024 14:52:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=DNCotVkI;
- spf=pass (domain: gmail.com, ip: 209.85.161.52, mailfrom: raj.khem@gmail.com)
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-595b3644acbso1248922eaf.1
-        for <yocto@lists.yoctoproject.org>; Thu, 01 Feb 2024 14:47:00 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=LdxztEGP;
+ spf=pass (domain: gmail.com, ip: 209.85.166.174, mailfrom: chuckwolber@gmail.com)
+Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3639aa6a54fso5662425ab.1
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Feb 2024 14:52:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706827619; x=1707432419; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JH5ES8+p6rSDXU4jpIHX7lWJAqlkxvLo3cioJex1Ty0=;
-        b=DNCotVkIzYzEX5fexjVDA403RffiZkn5Up99mdGwAZCIq7dK8RlHDCmqx4lEe24eIS
-         n5kN9v0NNIMGWdkZCuuh2DdlPvvyxyUiu4FGjIRBI0LFNBZJ3hyJrM3HD/TMBzTDslId
-         95e3C/8YHKmMoOT091gCYqh/elN85V2zVB7eWquL8jI2Gkha1GbNen154ye4wkNckV4F
-         ZBRaWzJzfEHMjHbwPp3Abq7a1vik7xBwIAVTWlCztqJ1bBqTAntAqJstWhMtdvAdemsr
-         JmzUcYSNRzyLkZxvXnFF8/QSHD2VYwh4DSCmwHGmLLAmO8KFoQHPY1IiY1bJmoaLwLFD
-         QwaA==
+        d=gmail.com; s=20230601; t=1706827924; x=1707432724; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=z6UvKxnE+LZeK9Qr5EyqBZElw2Noa4ZDpOV03D1U1O0=;
+        b=LdxztEGPoRfO+0l7XElP23tKcF0EPoL1vaxXNZKIuI7FuwI6l/Q/kt9Xq3MwvppD1I
+         hvndwqNNJdOMLWax0GRRVxMin38uGTkgTLZr2XCf6fVxC4O+MZpq7D/FjlusNmi7hP8a
+         VtOGnyNhap13vltFPJgnMqvkFF09evvo6t+MZ6AFCfnE07Tr+k0vIRUFFTbUtJCu+/qk
+         FnTsuAA+nr9QGmExSq7kiwbCmt2xEfdPoWsYZGEBbAoVOYafz97CTCeR3Fd06CPU8zKF
+         cNAGtEs/mEkt/1+nSwnBcdWwQvY+oSMFNkcbfKFjoh/Ie2FZM7HILH7WnHaFy7ikAQ1o
+         UTxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706827619; x=1707432419;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JH5ES8+p6rSDXU4jpIHX7lWJAqlkxvLo3cioJex1Ty0=;
-        b=ncjQELmSz7vWQiF9iMr7wzRuqKSM7D0AATwCQlgi3PFUm//O/kyU8m72nhbe5VaLaJ
-         1EY126xAKeHR0yHnKdOwZh2oKUz+/v3/3xx6Kpl16p0GKV/3LEHQuo/nXvwg9jJtZr4l
-         BSE27D1p90zqbp92ovWE9J6O+mPbuv+HFzNaqaXxKyB4PxQ71ISIIAVrB1pmt8K8xx+8
-         LAInK/PCoLWdpo3tAPdJr8BvYwneHcyWFJ1D5UZOgWW5qWDqby1CMWJLeBRLrzmRlGZ2
-         kQPt5YCjnMPXcju1zNhx/MQTFQsR4sfWqA8yFUL5bYZ/MUGHjweTueF9JxrURRuIlaJm
-         FjYw==
-X-Gm-Message-State: AOJu0Yye8PrHVQ6NHVg+VM7mDlvgXMpgbU5GrMy0I3woahspT+pXEQBY
-	ZGYTa6YH/gF7sCeu947u6nGz99gfVWj8A/Bh090Y+aePF3rDNal7DDG3N36J2LmU547cpReKK2N
-	OjPkXSPZpVJWJSoGqX3dnuhnuitLq9C2nl0tMpw==
-X-Google-Smtp-Source: AGHT+IH85fO95y0pUJmVr8dKY8DZoasxBDl7kMNjI7JNZhSwXZl49v/VzNIW+7DClPd2kuiEGDXqC5kPniFHR2Mb3Yk=
-X-Received: by 2002:a05:6870:968a:b0:218:5413:5495 with SMTP id
- o10-20020a056870968a00b0021854135495mr200660oaq.17.1706827619517; Thu, 01 Feb
- 2024 14:46:59 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706827924; x=1707432724;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z6UvKxnE+LZeK9Qr5EyqBZElw2Noa4ZDpOV03D1U1O0=;
+        b=TRnwYiDLVyh2vmysQsDfqCeSyR+Spaqo5Lp/PgmTq3BA3vENWCfD8X+qK1YzGfoTEK
+         5oDSPGeMX24z1OZ2HVq0IikgZbL8tkDgHZDNvGLHVoP6vz+ZBa7CAEBCuBmQAZTB5NFe
+         6XD+Y8xLSsh7h9N7NNAD0IgLRyShXSTEpgqZaijkdwAfwjBTGBoQLTnatyQ21NHKtPpx
+         oybmVI51DrfVDpdM4EtYyWm/oXVAZT5QPfvh7OcBwlJq4nVsFt8xPItbZigYdBgX5aIV
+         C4/g/UvcnWZei8rG+xnc4otpvr+AOqt66H6Y16Fk6pT1NtUxoQ3R+gnXumdmeKaCcTcg
+         6bYw==
+X-Gm-Message-State: AOJu0YxQMu+fm7mdvR98GDxVuWR2udkVaXneh1cJF4BaucIJt9dVLjKh
+	EBfXIAcNVf4r9b1B6G127wMXzijTFtEixu56mykJdddcMI0PyunTShnJpm6ynXldX9k2UYKV5CN
+	ZWS1H92LdyEu6VSFTU0eRMFlntvU=
+X-Google-Smtp-Source: AGHT+IGhlPyxNmismfBR9ORdy/GllmnSwVJkaNLilFebyhLdPGMgwPtOO1YlNFq2m7s/jap0OnByh7cbQqeij5VNcAk=
+X-Received: by 2002:a05:6e02:681:b0:363:777b:77da with SMTP id
+ o1-20020a056e02068100b00363777b77damr285680ils.17.1706827924354; Thu, 01 Feb
+ 2024 14:52:04 -0800 (PST)
 MIME-Version: 1.0
-References: <CAAfyv35xxBau9cj1e6d-a-ggoQmvg=5Fjw2pxm9MXY6Z4hhZgQ@mail.gmail.com>
-In-Reply-To: <CAAfyv35xxBau9cj1e6d-a-ggoQmvg=5Fjw2pxm9MXY6Z4hhZgQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 1 Feb 2024 14:46:33 -0800
-Message-ID: <CAMKF1sqDg45WYkrp8QSOpd7oV70oT_CYxpO7thOizykV0SVcsg@mail.gmail.com>
-Subject: Re: [yocto] kirkstone bus error golang
-To: yocto@lists.yoctoproject.org, marek.belisko@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+References: <MW4PR16MB50871DC44FDB421C1D679248BB432@MW4PR16MB5087.namprd16.prod.outlook.com>
+ <CAB=6tBQ8Gv1vMEoKQsWUMyFmd22S-n9y_o=qreKK7XEZyScDAw@mail.gmail.com> <MW4PR16MB50874711642795418CD90D96BB432@MW4PR16MB5087.namprd16.prod.outlook.com>
+In-Reply-To: <MW4PR16MB50874711642795418CD90D96BB432@MW4PR16MB5087.namprd16.prod.outlook.com>
+From: Chuck Wolber <chuckwolber@gmail.com>
+Date: Thu, 1 Feb 2024 14:51:52 -0800
+Message-ID: <CAB=6tBTR_e8pfLgnN8px93pxvgsu=fF81qqeADdPLjTF4jJVHg@mail.gmail.com>
+Subject: Re: [yocto] Correctly packaging projects into systemd_system_unitdir
+ with CMake's GNUInstallDirs module
+To: Logan Grosz <Logan.Grosz@b9c.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000001fbd5f061059d84c"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 01 Feb 2024 22:47:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62375
+ <yocto@lists.yoctoproject.org>; Thu, 01 Feb 2024 22:52:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62376
 
-Can you try compiling with -mno-unaligned-access
+--0000000000001fbd5f061059d84c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 1, 2024 at 6:34=E2=80=AFAM Marek Belisko <marek.belisko@gmail.c=
-om> wrote:
+On Thu, Feb 1, 2024 at 2:39=E2=80=AFPM Logan Grosz <Logan.Grosz@b9c.com> wr=
+ote:
+
+> Thanks for the response, Chuck
 >
-> Hi,
+> SystemD seems to have no qualms respecting both directories on the system
+> at runtime. I was hoping the same behavior would be supported in the Yoct=
+o
+> toolchain. If not, that's ok. I can just create a task between do_install
+> and do_package which moves everything from /usr/lib/systemd/system to
+> /lib/system/system and that should work for now - or at least until I
+> decide if usrmerge is something I'd like to enable.
 >
-> I'm testing following code on rpi3 board (taken from https://github.com/g=
-olang/go/issues/58548) :
-> main.go:
-> package main
->
-> func main() {
-> }
->
-> main.c:
-> #include <stdio.h>
-> #include <stdlib.h>
-> #include <dlfcn.h>
->
-> int main(int argc, char** argv)
-> {
->     void *handle =3D dlopen("./libtest.so", RTLD_LAZY);
->     if (!handle) {
->         fprintf(stderr, "Error: %s\n", dlerror());
->         return EXIT_FAILURE;
->     }
->
->     dlclose(handle);
->     return EXIT_SUCCESS;
-> }
->
-> I'm cross compiling using yocto sdk:
->
-> go build -buildmode=3Dc-shared -o libtest.so main.go
-> $ gcc -g main.c -o main
-> and when run main on target I'm hitting bus error:
->
-> $ ./main
->   389.087824] Alignment trap: not handling instruction f9420a1f at [<b6e5=
-caa6>]
-> [  389.095171] 8<--- cut here ---
-> [  389.098249] Unhandled fault: alignment exception (0x811) at 0xbeaca374
-> [  389.104881] pgd =3D d43e80f0
-> [  389.107602] [beaca374] *pgd=3Dbe8ba831
-> [  389.134496] audit: type=3D1701 audit(1706797456.639:2): auid=3D4294967=
-295 uid=3D0 gid=3D0 ses=3D4294967295 pid=3D2544 comm=3D"main" exe=3D"/home/=
-root/main" sig=3D7 res=3D1
-> Bus error
->
-> I've tried glibc2.34 and also 2.36 (in kirkstone is 2.35) as described in=
- golang issu but no luck, it still behaves the same.
->
-> Any ideas what else to check please? Updating to the latest poky is not t=
-he case unfortunately.
->
-> BR,
->
-> marek
->
->
-> --
-> as simple and primitive as possible
-> -------------------------------------------------
-> Marek Belisko - OPEN-NANDRA
-> Freelance Developer
->
-> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> Tel: +421 915 052 184
-> skype: marekwhite
-> twitter: #opennandra
-> web: http://open-nandra.com
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#62367): https://lists.yoctoproject.org/g/yocto/messag=
-e/62367
-> Mute This Topic: https://lists.yoctoproject.org/mt/104098375/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+
+Or avoid potentially unnecessary recipe level customization and maintain
+some symlinks at
+the image level. That is how Debian (and probably others) are handling the
+migration, and you
+will avoid other breakage as everything slowly migrates from
+/{bin,sbin,lib} to
+/usr/{bin,sbin,lib}.
+
+..Ch:W..
+
+--=20
+*"Perfection must be reached by degrees; she requires the slow hand of
+time." - Voltaire*
+
+--0000000000001fbd5f061059d84c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Feb 1, 2024 at 2:39=E2=80=AFPM Lo=
+gan Grosz &lt;<a href=3D"mailto:Logan.Grosz@b9c.com">Logan.Grosz@b9c.com</a=
+>&gt; wrote:</div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div class=3D"msg-8548181371886173506">
+
+
+
+
+<div dir=3D"ltr">
+<span style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cal=
+ibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">Thanks for the r=
+esponse, Chuck</span>
+<div><span style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
+e,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)"><br>
+</span></div>
+<div><span style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontServic=
+e,Calibri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">SystemD see=
+ms to have no qualms respecting both directories on the system at runtime.
+ I was hoping the same behavior would be supported in the Yocto toolchain. =
+If not, that&#39;s ok. I can just create a task between do_install and do_p=
+ackage which moves everything from /usr/lib/systemd/system to /lib/system/s=
+ystem and that should work for now -
+ or at least until I decide if <code>usrmerge</code> is something I&#39;d l=
+ike to enable.</span></div></div>
+
+</div></blockquote></div><div><br></div><div>Or avoid potentially unnecessa=
+ry recipe level customization and maintain some symlinks at</div><div>the i=
+mage level. That is how Debian (and probably others) are handling the migra=
+tion, and you</div><div>will avoid other breakage as everything slowly migr=
+ates from /{bin,sbin,lib} to<br>/usr/{bin,sbin,lib}.</div><div><br></div>..=
+Ch:W..<br><div><div><br></div><span class=3D"gmail_signature_prefix">-- </s=
+pan><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><b=
+><span style=3D"font-family:monospace">&quot;Perfection must be reached by =
+degrees; she requires the slow hand of time.&quot; - Voltaire</span></b></d=
+iv></div></div></div></div>
+
+--0000000000001fbd5f061059d84c--
 
