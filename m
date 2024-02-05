@@ -1,138 +1,108 @@
-Return-Path: <thomas.isaacson@motorolasolutions.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F3C3C48292
-	for <webhook@archiver.kernel.org>; Mon,  5 Feb 2024 17:56:38 +0000 (UTC)
-Received: from mx0b-0019e102.pphosted.com (mx0b-0019e102.pphosted.com [67.231.157.237])
- by mx.groups.io with SMTP id smtpd.web11.650.1707155788019627341
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97194C4828D
+	for <webhook@archiver.kernel.org>; Mon,  5 Feb 2024 20:35:40 +0000 (UTC)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web11.4855.1707165331357749298
  for <yocto@lists.yoctoproject.org>;
- Mon, 05 Feb 2024 09:56:28 -0800
+ Mon, 05 Feb 2024 12:35:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@motorolasolutions.com header.s=PPS--2020-03-17 header.b=Jm7NgY8h;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: motorolasolutions.com, ip: 67.231.157.237, mailfrom: prvs=27659a8545=thomas.isaacson@motorolasolutions.com)
-Received: from pps.filterd (m0074419.ppops.net [127.0.0.1])
-	by mx0b-0019e102.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 415EgRMK015868
-	for <yocto@lists.yoctoproject.org>; Mon, 5 Feb 2024 17:56:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=motorolasolutions.com;
- h=mime-version : references : in-reply-to : from : date : message-id :
- subject : to : content-type; s=PPS--2020-03-17;
- bh=45qxvvWaQrprocgHJOko3YUU98YdANkGQmLrtntQfLk=;
- b=Jm7NgY8hIelels+44KNdyH6C1YTgjOyV+ZIDL9UaFhVDO6OaPz1tgkY/9aospK72Adye
- jZXw1+Jq98Un3rIATwMWcES+DFgP20NSdelt6rMDQESqIGkuR724LucPwDY90WW7YOhm
- EJ/qWIbs1xfJneY/liefc6eZOqpCq7J7Zx5BU6V7W2lXmhfaxJu2KH+dPgM+FOv7vT2v
- yZ6bE5tCjtnmvUYFS8XDVynAEMKYRg6c0uI3qrjScslkEZ0X73zXnbqx4xWLasynWe6g
- V3zyQwkshkchPGBc5n9AsIWLq5MfpmAyqYasIecbzkNjaVPj+J0a3jHQWtIWeqR62onI 8g== 
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0b-0019e102.pphosted.com (PPS) with ESMTPS id 3w31df9rq7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK)
-	for <yocto@lists.yoctoproject.org>; Mon, 05 Feb 2024 17:56:26 +0000
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-6e0509f3c16so572471b3a.2
-        for <yocto@lists.yoctoproject.org>; Mon, 05 Feb 2024 09:56:26 -0800 (PST)
-X-Gm-Message-State: AOJu0Yz9RpNLOVDwqfVzXKXnvpOHiCijwV5OeZvtX9kMIXByuIZvw4bo
-	xBvc07Fkx8hNqtxT3m9EQ6GLWRocAlKKVVOh1XK9FSkDchKD90jXkmsEm597LUIPcBA9RW4K/sm
-	FCmycB4DmmObjI/vcevUsGOd6cIndtNsfkYW4YWZji456r1fLdaE4/3H9uZUNYqv6zqCh0UErrd
-	0tnRbHECowPwdxTs7JphizZXL+OiNZiwswMpLW
-X-Received: by 2002:aa7:8c55:0:b0:6db:afd4:f54c with SMTP id e21-20020aa78c55000000b006dbafd4f54cmr307062pfd.0.1707155785605;
-        Mon, 05 Feb 2024 09:56:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH8TI3zOsAfLZU9KqSqg0H3fuxYmnRI/Ar2DyuMyXVSo1kwqTm+c+ts8+O7A8sZEZhCysGtsQM26hlhsYOQViM=
-X-Received: by 2002:aa7:8c55:0:b0:6db:afd4:f54c with SMTP id
- e21-20020aa78c55000000b006dbafd4f54cmr307045pfd.0.1707155785279; Mon, 05 Feb
- 2024 09:56:25 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=KjXtboUJ;
+ spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d051fb89fbso1045221fa.2
+        for <yocto@lists.yoctoproject.org>; Mon, 05 Feb 2024 12:35:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707165329; x=1707770129; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gm76o5vthT4ZCVmp/KfOXOmEVDRfwkOOhA3UihTLN9Y=;
+        b=KjXtboUJsoOuZO/m5W/X4tX41yFCgY3rxph+EtMnQoEamvOSmi71zGywnvtt4cMc8w
+         hTD4K5a3+qnQtt3jPMpIItrUxlR/yuR0+Xx0SiX5+oP7wajAHREL8x0O2EY7IxgVUSRo
+         /h/IfK7Hqk/tyEXACiQ8NhB1kyaC6OJ0lTzqmralqw6uJhoqAZG6GLS6HZL1JxV6RIjl
+         M4YTEFFVkhxdihUTXiuse0mv/l/utnJPs1/4yp9g41bFaeg96vNKJIFW5x9MZ1aSoxYP
+         ReLFrgFhGGVriH4sRtbysgJQZ2eAUENpbzez0lpJbE7+Vd8DznUubl0Va1MwXcnPY6a6
+         /gcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707165329; x=1707770129;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Gm76o5vthT4ZCVmp/KfOXOmEVDRfwkOOhA3UihTLN9Y=;
+        b=JXHeQvVxjYxfkbFl8aMIutgU5epX3B/p+Jwn7En2T1nqRFIQVSFzpIMW1BnmNgHSVD
+         3AZ4+BCjyOdQuWxJQP7peC3r+cFKqM6HiMtsfnvKq9TBUWbFcFlqcM2Vt2JwtZgYxahj
+         hJZsn0PByQoC5iULxgZnwSSwchh7aTTN8O286awXASgyp17/YQARX3mp4iXSufhqxx8v
+         HYL1Sq4hwHSCcFQouyMluGZVJ0Rt59utlVsxdy9Gmcwxt0Vsz6VLl5RLlexYLBdeNyrK
+         dqAkpj2S9PG773i481+KsR42mFXV2l+oCqc9h2SrChNVBRLKDdpKzCyQtU3cv+YLmUNx
+         ws1w==
+X-Gm-Message-State: AOJu0YxL1ki3VDX5yFw2/efewOvCIZoVMFtB2jyHfRpyUE5KtowQnfej
+	SVyhUIvk6fj3t5rsHfdb62AKWBMnlEkSVrVh6dTwHpY7auLBymB6cp+bP0YLfcT+BXgyY4qa6rM
+	p5oBhLHYs1yXhzx+ZUFw/U7Z1laQ=
+X-Google-Smtp-Source: AGHT+IFgGl+Utbyz9OwZpCfAb2e2IMKtmU4I2+srvDZ1MCW1/BOgP04uFtgT8zB7zMAMPoHmqgxH5UT6R7iQXj6ZoIc=
+X-Received: by 2002:a2e:9113:0:b0:2d0:9e95:68e9 with SMTP id
+ m19-20020a2e9113000000b002d09e9568e9mr563527ljg.11.1707165329172; Mon, 05 Feb
+ 2024 12:35:29 -0800 (PST)
 MIME-Version: 1.0
-References: <CA+EiEZLvxbbBSoweOXOXi6bEP_1=L+dZ=hcepvUa1NZ6QD8-Nw@mail.gmail.com>
- <6815.1707110917510832552@lists.yoctoproject.org> <DA622504-BE16-4534-836E-6978FE71174F@arm.com>
-In-Reply-To: <DA622504-BE16-4534-836E-6978FE71174F@arm.com>
-From: Tom Isaacson <thomas.isaacson@motorolasolutions.com>
-Date: Tue, 6 Feb 2024 06:56:14 +1300
-Message-ID: <CAMp_5HY8sv61jgS-aKuXmDTVadXK0n04tXEFYZknjzLNYX_7bw@mail.gmail.com>
-Subject: Re: [yocto] Intermittent build failure where dwarfsrcfiles doesn't exist
-To: Ross Burton <Ross.Burton@arm.com>,
-        Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000002884700610a62ec7"
-X-Proofpoint-GUID: 9n-dGbZNRYXvuGGEwzwgUaZRZrHpGGPz
-X-Proofpoint-ORIG-GUID: 9n-dGbZNRYXvuGGEwzwgUaZRZrHpGGPz
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 suspectscore=0
- impostorscore=0 bulkscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
- priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1011 mlxlogscore=669
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
- definitions=main-2402050134
+References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
+ <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com> <17ACA59E7A7FD97B.16230@lists.openembedded.org>
+In-Reply-To: <17ACA59E7A7FD97B.16230@lists.openembedded.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 5 Feb 2024 21:35:16 +0100
+Message-ID: <CANNYZj9X5qRSup7i9S=rtRpwo5nCNHp8VJOZAuvu5JzqhLYD_g@mail.gmail.com>
+Subject: Re: [OE-core] Core workflow: sstate for all, bblock/bbunlock, tools
+ for why is sstate not being reused?
+To: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, Joshua Watt <jpewhacker@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 05 Feb 2024 17:56:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62395
+ <yocto@lists.yoctoproject.org>; Mon, 05 Feb 2024 20:35:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62396
 
---0000000000002884700610a62ec7
-Content-Type: text/plain; charset="UTF-8"
-
-It's the recipe for our application:
-
-inherit externalsrc externalgitsrc pkgconfig cmake qemu-ctest
-
-
-On Tue, 6 Feb 2024 at 01:15, Ross Burton <Ross.Burton@arm.com> wrote:
-
-> On 5 Feb 2024, at 06:28, thomas.isaacson via lists.yoctoproject.org
-> <thomas.isaacson=motorolasolutions.com@lists.yoctoproject.org> wrote:
-> > I've setup a CI build at my new company using a Github Action. I haven't
-> setup a cache yet so it takes 3 hours but it's not showing this
-> intermittent fault - it works every time. On my PC (which does cache the
-> build locally) I still see this problem. So somehow it's related to the
-> cache?
+On Mon, 22 Jan 2024 at 11:47, Alexander Kanavin via
+lists.openembedded.org <alex.kanavin=gmail.com@lists.openembedded.org>
+wrote:
+> 3. Build replicator tool.
 >
-> Is this just in specific recipes?  Can you share the recipe, or at least
-> what classes it inherits?
+> I've written a proof of concept:
+> https://git.yoctoproject.org/poky-contrib/commit/?h=akanavin/sstate-for-all
 >
-> (I have a hunch this is the now-fixed bin_package bug, which was caused by
-> inappropriate use of INHIBIT_DEFAULT_DEPS)
->
-> Ross
+> There was positive feedback for the idea, so next I'll add tests and
+> submit it as a proper patch aiming for inclusion.
 
--- 
+I started working on bringing this to level suitable for proper
+submission, but quickly ran into two issues:
 
+1. The bundle should include a local copy of all the layers so it can
+be unpacked and set up entirely offline (and not by re-fetching all
+the layers like in the proof of concept). This functionality is
+available in the esdk task, but needs to be provided in plain yocto
+builds as well. The plan is to add a 'local-copy' plugin to
+'bitbake-layers create-layers-setup' that would utilize existing code.
 
-*For more information on how and why we collect your personal 
-information, please visit our Privacy Policy 
-<https://www.motorolasolutions.com/en_us/about/privacy-policy.html?elqTrackId=8980d888905940e39a2613a7a3dcb0a7&elqaid=2786&elqat=2#privacystatement>.*
+2. Something that didn't occur to me until now: simply copying over
+sstate to another location doesn't guarantee that it's going to be
+used, if that sstate needs to be discovered via hash equivalency
+database. There are two options here:
 
---0000000000002884700610a62ec7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+- lock down sstate signatures to what is available (esdks take this
+route, and get away with it because of restricted devtool-only
+functionality and hidden layers that never change)
 
-<div dir=3D"ltr">It&#39;s the recipe for our application:<div><br></div><di=
-v>inherit externalsrc externalgitsrc=C2=A0pkgconfig cmake qemu-ctest<br></d=
-iv><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Tue, 6 Feb 2024 at 01:15, Ross Burton &lt;<a href=3D"m=
-ailto:Ross.Burton@arm.com">Ross.Burton@arm.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">On 5 Feb 2024, at 06:28, thom=
-as.isaacson via <a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer=
-" target=3D"_blank">lists.yoctoproject.org</a> &lt;thomas.isaacson=3D<a hre=
-f=3D"mailto:motorolasolutions.com@lists.yoctoproject.org" target=3D"_blank"=
->motorolasolutions.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt; I&#39;ve setup a CI build at my new company using a Github Action. I h=
-aven&#39;t setup a cache yet so it takes 3 hours but it&#39;s not showing t=
-his intermittent fault - it works every time. On my PC (which does cache th=
-e build locally) I still see this problem. So somehow it&#39;s related to t=
-he cache?<br>
-<br>
-Is this just in specific recipes?=C2=A0 Can you share the recipe, or at lea=
-st what classes it inherits?<br>
-<br>
-(I have a hunch this is the now-fixed bin_package bug, which was caused by =
-inappropriate use of INHIBIT_DEFAULT_DEPS)<br>
-<br>
-Ross</blockquote></div>
+- export the hash equivalency database into something human readable,
+and placed into the bundle, and then import it back when the bundle is
+unpacked and set up. As far as I understand currently there's no code
+for this. I'd find it useful in general, as effects of hash
+equivalency can be tricky to grasp, and being able to look at the
+database in a human readable format goes a long way towards
+understanding how it all fits together. There may be other use cases
+where you'd want to move the content of the database between build
+machines. I'd like to get Joshua's take on this, did I misunderstand
+this completely?
 
-<br>
-<p dir=3D"ltr" style=3D"line-height:1.8;margin-top:0pt;margin-bottom:0pt"><=
-font size=3D"2"><i><span style=3D"background-color:rgb(255,255,255);font-fa=
-mily:Arial;white-space:pre-wrap">For more information on how and why we col=
-lect your personal information, please visit our </span><span style=3D"whit=
-e-space:pre-wrap;color:rgb(38,50,56);font-family:Roboto,sans-serif"><a href=
-=3D"https://www.motorolasolutions.com/en_us/about/privacy-policy.html?elqTr=
-ackId=3D8980d888905940e39a2613a7a3dcb0a7&amp;elqaid=3D2786&amp;elqat=3D2#pr=
-ivacystatement" target=3D"_blank">Privacy Policy</a>.</span></i></font></p>
---0000000000002884700610a62ec7--
+Alex
 
