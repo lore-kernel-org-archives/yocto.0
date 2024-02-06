@@ -2,121 +2,170 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0B68C48286
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BEFC7C4829B
 	for <webhook@archiver.kernel.org>; Tue,  6 Feb 2024 06:24:53 +0000 (UTC)
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
- by mx.groups.io with SMTP id smtpd.web10.16162.1707200684985358351
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+ by mx.groups.io with SMTP id smtpd.web10.16163.1707200689183226342
  for <yocto@lists.yoctoproject.org>;
- Mon, 05 Feb 2024 22:24:45 -0800
+ Mon, 05 Feb 2024 22:24:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=b/WpUqBJ;
- spf=pass (domain: gmail.com, ip: 209.85.210.171, mailfrom: ticotimo@gmail.com)
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6e038bdf6b1so1367910b3a.3
-        for <yocto@lists.yoctoproject.org>; Mon, 05 Feb 2024 22:24:44 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=l1nSuPmc;
+ spf=pass (domain: gmail.com, ip: 209.85.167.177, mailfrom: ticotimo@gmail.com)
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3bd4e6a7cb0so311948b6e.3
+        for <yocto@lists.yoctoproject.org>; Mon, 05 Feb 2024 22:24:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707200684; x=1707805484; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JwLKqZ89Wa8mioLsMs/X4DVPCwNuuFg15YYWyJ4Zm60=;
-        b=b/WpUqBJPCWLlbup0hnv6l3l7dQcLmdN+VwSM875uapkVYa8cbxcXWTeGsEmC/2Trk
-         LusgYdyecvN/SITUeoRZPWeYVyab4VLfitcOwpsy2W4Q1mEEwJtqrHU7cBBYRFsqXaVt
-         oVq5ynCKzoQ6iexhz6+vgUnuf3lWjHNoZeNM7EMpRY/vuy/394qEmHLAs+5avDElKiFx
-         mjMUse+wk1xLDGDjom2bPc/OCS1OjT8EOBDdX9qaQCWZ+WqUCjP+AYE9jK+ZB/eLD5fg
-         0JqtuYey8TB3vyZn+gH+T9CBkYfkb/kjIXSzpbBziL4ofDjHNeACVOZKDQRG7EtIRJsf
-         GS3Q==
+        d=gmail.com; s=20230601; t=1707200688; x=1707805488; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2SPPYt8UVBsxGKkFWF7UXXpMkwmGAg8mft2IPgPAMFE=;
+        b=l1nSuPmcJ/FsBkV4/wHxMty8Xp+Yl3X6K9qZS0BKuqRb4UNeRpiBroWSAg8C7DwvsG
+         r3XVfOo2vsDzjP8cSJjgPvPHFNELUDJJYy3Tx4W2AvigQi2t/hwjELcDRwLknYbIDNh0
+         rhZcHbA8ga33FOSQdiqD92YOCgDsnqKQG6N1ur6bI/r2grbVBrOvvMaEGWaKdovpEfTN
+         BkgJm+LZDbQ2BPbnyv1O2yB+7+xYpOI3ddYemA1Ci6NStbzigTj/TKMbWYdH39n7GKAh
+         cL0G7PR1qC1Swdv7kt95D3vktLcinCRrM4sY8gbzrQfRiXGp7x8co4/CnE3ESYVSO0hf
+         dEQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707200684; x=1707805484;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JwLKqZ89Wa8mioLsMs/X4DVPCwNuuFg15YYWyJ4Zm60=;
-        b=HpEPEA0Qm2ewV7TbI7zNoU+moMpADQ+f5NwbWMPs+dsCkhg9eM9Cmewn9If6JdcGXX
-         vEz7UyMENLn2eLLWaALI10mm7ZUQDJccGCauyvA/Foegpv+CQItFPDrKJAS531hQpMJU
-         /KDMnQUWoTuUAmp6q8rFNTOAgEwK9iAMk5tFefWwv1e2qG4aGLhWC9hLeObLm/5hh2NK
-         qa05f5TLJZKNXmEpwpQuMJ7aJ87y0TnWaNrExmB3B0YBodJ398uGE824OxwYOGQ7aTUe
-         RLJ8PyemAoQsWWrrnNce/zBHOU/b0Onfam1rDwVBsvchpmxAfTN1Lo/c0NoDdmaiRm0a
-         DEOQ==
-X-Gm-Message-State: AOJu0YzxHPxTNYPMbzGk95SGfdsWcm8Heplmd1lhaPPDEw2CQ0cNGA9O
-	42lq5Sq+1DTqCkWyefTeTM+neelABOlu4rgUn9FZwUh8DVQCdHEzDkZBN+4w
-X-Google-Smtp-Source: AGHT+IHSPpJMNSb11n+46ahiMNe1gepd/kPbALEwvIqqWNMrAK9gE3CmAnVot6Nsh9Te1+LOyhXjqg==
-X-Received: by 2002:a05:6a20:4b8a:b0:19e:9968:fe1f with SMTP id fu10-20020a056a204b8a00b0019e9968fe1fmr567115pzb.9.1707200683875;
-        Mon, 05 Feb 2024 22:24:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707200688; x=1707805488;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2SPPYt8UVBsxGKkFWF7UXXpMkwmGAg8mft2IPgPAMFE=;
+        b=wJr4ju7K70c3xEsZW1TVfteizZNsskyCXhITMaci4F+q/z8HfDZQ16D0GH/YvcVvKd
+         GdGFWuSYz/GlI6V4Nig06n2rkBNV/WvWFUOKYfKolEMrGgbp0dCIyNIDtNme9Q0eBhGo
+         k92xVI1B37+w3ad2oLUQlSem7MJe+054w5U08rBdMuYLFHpRdo2udmu2xnAcdrGDrCJY
+         c2p8xsvghTw42fg5NcLmFxyD0TxbjofURJQpzdvBqUsFJ+CKYLDju6P3W5ee3RcZYjem
+         0PQRVmUHmR6IE1ljKRvO+JHrkJO2sJyo4jfVoq5fdG8Ug3ddtXNlY4ncTEjZNkk6Tu9n
+         Dcfg==
+X-Gm-Message-State: AOJu0YyfczuCXSv1nWBT8zXrPiiWeQyjq2GqZyufvVWqxMW0/dPityH0
+	GUbmhs+E4aly5RIDOgBqY+QyDWzigFQSfVK2lFpMXKGWZKOsVkLdnL/wnAu6
+X-Google-Smtp-Source: AGHT+IGI+uniK3tYgwvK0BEUo9V0BxXLV5qcGuIS3w7DXKz7xZTBBMaIdMOp4sv4I3ZPuC9lIGR6wQ==
+X-Received: by 2002:a05:6808:1187:b0:3be:30e0:5e1e with SMTP id j7-20020a056808118700b003be30e05e1emr1892674oil.55.1707200688014;
+        Mon, 05 Feb 2024 22:24:48 -0800 (PST)
 Received: from chiron.hsd1.or.comcast.net ([2601:1c0:ca01:19f0:8ceb:42af:6dbd:6292])
-        by smtp.gmail.com with ESMTPSA id o1-20020a056a001b4100b006ddc7ed6edfsm990650pfv.51.2024.02.05.22.24.43
+        by smtp.gmail.com with ESMTPSA id o1-20020a056a001b4100b006ddc7ed6edfsm990650pfv.51.2024.02.05.22.24.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 22:24:43 -0800 (PST)
+        Mon, 05 Feb 2024 22:24:47 -0800 (PST)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
 Cc: Tim Orling <tim.orling@konsulko.com>
-Subject: [layerindex-web][PATCH 1/2] layerindex: allow Repository subdir to be 60 chars
-Date: Mon,  5 Feb 2024 22:24:30 -0800
-Message-Id: <20240206062431.558-1-tim.orling@konsulko.com>
+Subject: [layerindex-web][PATCH 2/2] layerindex: allow periods in layer name
+Date: Mon,  5 Feb 2024 22:24:31 -0800
+Message-Id: <20240206062431.558-2-tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240206062431.558-1-tim.orling@konsulko.com>
+References: <20240206062431.558-1-tim.orling@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 06 Feb 2024 06:24:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62401
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62402
 
-https://github.com/webosose/meta-webosose has layers like:
+There is nothing preventing a period in a layer name from the
+BitBake perspective.
+
+For example, https://github.com/webosose/meta-webosose has:
 meta-webos-backports/meta-webos-backports-4.1
-which is 45 characters.
 
-Allow for up to 60 characters in the vcs_subdir field in the LayerBranch class.
-
-[YOCTO #15374]
+[YOCTO #15373]
 
 Signed-off-by: Tim Orling <tim.orling@konsulko.com>
 ---
- .../0049_alter_layerbranch_vcs_subdir.py      | 22 +++++++++++++++++++
- layerindex/models.py                          |  2 +-
- 2 files changed, 23 insertions(+), 1 deletion(-)
- create mode 100644 layerindex/migrations/0049_alter_layerbranch_vcs_subdir.py
+ layerindex/forms.py       |  4 ++--
+ layerindex/urls.py        | 14 +++++++-------
+ layerindex/urls_branch.py |  8 ++++----
+ 3 files changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/layerindex/migrations/0049_alter_layerbranch_vcs_subdir.py b/layerindex/migrations/0049_alter_layerbranch_vcs_subdir.py
-new file mode 100644
-index 0000000..028a481
---- /dev/null
-+++ b/layerindex/migrations/0049_alter_layerbranch_vcs_subdir.py
-@@ -0,0 +1,22 @@
-+# Generated by Django 4.2.9 on 2024-01-30 03:48
-+
-+from django.db import migrations, models
-+
-+
-+class Migration(migrations.Migration):
-+    dependencies = [
-+        ("layerindex", "0048_bbclassglobal_bbclassrecipe_bbclass_bbclass_type"),
-+    ]
-+
-+    operations = [
-+        migrations.AlterField(
-+            model_name="layerbranch",
-+            name="vcs_subdir",
-+            field=models.CharField(
-+                blank=True,
-+                help_text="Subdirectory within the repository where the layer is located, if not in the root (usually only used if the repository contains more than one layer)",
-+                max_length=60,
-+                verbose_name="Repository subdirectory",
-+            ),
-+        ),
-+    ]
-diff --git a/layerindex/models.py b/layerindex/models.py
-index c52927f..50be60f 100644
---- a/layerindex/models.py
-+++ b/layerindex/models.py
-@@ -234,7 +234,7 @@ class LayerBranch(models.Model):
-     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
-     collection = models.CharField('Layer Collection', max_length=40, null=True, blank=True, help_text='Name of the collection that the layer provides for the purpose of expressing dependencies (as specified in BBFILE_COLLECTIONS). Can only contain letters, numbers and dashes.')
-     version = models.CharField('Layer Version', max_length=10, null=True, blank=True, help_text='The layer version for this particular branch.')
--    vcs_subdir = models.CharField('Repository subdirectory', max_length=40, blank=True, help_text='Subdirectory within the repository where the layer is located, if not in the root (usually only used if the repository contains more than one layer)')
-+    vcs_subdir = models.CharField('Repository subdirectory', max_length=60, blank=True, help_text='Subdirectory within the repository where the layer is located, if not in the root (usually only used if the repository contains more than one layer)')
-     vcs_last_fetch = models.DateTimeField('Last successful fetch', blank=True, null=True)
-     vcs_last_rev = models.CharField('Last revision fetched', max_length=80, blank=True)
-     vcs_last_commit = models.DateTimeField('Last commit date', blank=True, null=True)
+diff --git a/layerindex/forms.py b/layerindex/forms.py
+index a9e7703..2cb9b52 100644
+--- a/layerindex/forms.py
++++ b/layerindex/forms.py
+@@ -118,8 +118,8 @@ class EditLayerForm(StyledModelForm):
+ 
+     def clean_name(self):
+         name = self.cleaned_data['name'].strip()
+-        if re.compile(r'[^a-z0-9-]').search(name):
+-            raise forms.ValidationError("Name must only contain alphanumeric characters and dashes")
++        if re.compile(r'[^a-z0-9-\.]').search(name):
++            raise forms.ValidationError("Name must only contain alphanumeric characters, dashes or periods")
+         if name.startswith('-'):
+             raise forms.ValidationError("Name must not start with a dash")
+         if name.endswith('-'):
+diff --git a/layerindex/urls.py b/layerindex/urls.py
+index 1fcd11d..80ceaa7 100644
+--- a/layerindex/urls.py
++++ b/layerindex/urls.py
+@@ -46,7 +46,7 @@ urlpatterns = [
+ 
+     re_path(r'^layers/$',
+         RedirectView.as_view(url=reverse_lazy('layer_list', args=('master',)), permanent=False)),
+-    re_path(r'^layer/(?P<slug>[-\w]+)/$',
++    re_path(r'^layer/(?P<slug>[-\.\w]+)/$',
+         RedirectParamsView.as_view(permanent=False), {'redirect_name': 'layer_item', 'branch': 'master'}),
+     re_path(r'^recipes/$',
+         RedirectView.as_view(url=reverse_lazy('recipe_search', args=('master',)), permanent=False)),
+@@ -65,23 +65,23 @@ urlpatterns = [
+         LayerReviewListView.as_view(
+             template_name='layerindex/reviewlist.html'),
+         name='layer_list_review'),
+-    re_path(r'^review/(?P<slug>[-\w]+)/$',
++    re_path(r'^review/(?P<slug>[-\.\w]+)/$',
+         LayerReviewDetailView.as_view(
+             template_name='layerindex/reviewdetail.html'),
+         name='layer_review'),
+-    re_path(r'^layer/(?P<slug>[-\w]+)/addnote/$',
++    re_path(r'^layer/(?P<slug>[-\.\w]+)/addnote/$',
+         edit_layernote_view, {'template_name': 'layerindex/editlayernote.html'}, name="add_layernote"),
+-    re_path(r'^layer/(?P<slug>[-\w]+)/editnote/(?P<pk>[-\w]+)/$',
++    re_path(r'^layer/(?P<slug>[-\.\w]+)/editnote/(?P<pk>[-\w]+)/$',
+         edit_layernote_view, {'template_name': 'layerindex/editlayernote.html'}, name="edit_layernote"),
+-    re_path(r'^layer/(?P<slug>[-\w]+)/deletenote/(?P<pk>[-\w]+)/$',
++    re_path(r'^layer/(?P<slug>[-\.\w]+)/deletenote/(?P<pk>[-\w]+)/$',
+         delete_layernote_view, {'template_name': 'layerindex/deleteconfirm.html'}, name="delete_layernote"),
+-    re_path(r'^layer/(?P<slug>[-\w]+)/delete/$',
++    re_path(r'^layer/(?P<slug>[-\.\w]+)/delete/$',
+         delete_layer_view, {'template_name': 'layerindex/deleteconfirm.html'}, name="delete_layer"),
+     re_path(r'^recipe/(?P<pk>[-\w]+)/$',
+         RecipeDetailView.as_view(
+             template_name='layerindex/recipedetail.html'),
+         name='recipe'),
+-    re_path(r'^layer/(?P<name>[-\w]+)/publish/$', publish_view, name="publish"),
++    re_path(r'^layer/(?P<name>[-\.\w]+)/publish/$', publish_view, name="publish"),
+     re_path(r'^layerupdate/(?P<pk>[-\w]+)/$',
+         LayerUpdateDetailView.as_view(
+             template_name='layerindex/layerupdate.html'),
+diff --git a/layerindex/urls_branch.py b/layerindex/urls_branch.py
+index 40cd915..a9a4018 100644
+--- a/layerindex/urls_branch.py
++++ b/layerindex/urls_branch.py
+@@ -17,11 +17,11 @@ urlpatterns = [
+         LayerListView.as_view(
+             template_name='layerindex/layers.html'),
+             name='layer_list'),
+-    re_path(r'^layer/(?P<slug>[-\w]+)/$',
++    re_path(r'^layer/(?P<slug>[-\.\w]+)/$',
+         LayerDetailView.as_view(
+             template_name='layerindex/detail.html'),
+             name='layer_item'),
+-    re_path(r'^layer/(?P<slug>[-\w]+)/recipes/csv/$',
++    re_path(r'^layer/(?P<slug>[-\.\w]+)/recipes/csv/$',
+         layer_export_recipes_csv_view,
+         name='layer_export_recipes_csv'),
+     re_path(r'^recipes/$',
+@@ -40,8 +40,8 @@ urlpatterns = [
+         ClassSearchView.as_view(
+             template_name='layerindex/classes.html'),
+             name='class_search'),
+-    re_path(r'^edit/(?P<slug>[-\w]+)/$', edit_layer_view, {'template_name': 'layerindex/editlayer.html'}, name="edit_layer"),
+-    re_path(r'^update/(?P<slug>[-\w]+)/$', update_layer_view, {'template_name': 'layerindex/updatelayer.html'}, name="update_layer"),
++    re_path(r'^edit/(?P<slug>[-\.\w]+)/$', edit_layer_view, {'template_name': 'layerindex/editlayer.html'}, name="edit_layer"),
++    re_path(r'^update/(?P<slug>[-\.\w]+)/$', update_layer_view, {'template_name': 'layerindex/updatelayer.html'}, name="update_layer"),
+     re_path(r'^duplicates/$',
+         DuplicatesView.as_view(
+             template_name='layerindex/duplicates.html'),
 -- 
 2.34.1
 
