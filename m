@@ -1,89 +1,132 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D724C4828F
-	for <webhook@archiver.kernel.org>; Wed,  7 Feb 2024 23:16:12 +0000 (UTC)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
- by mx.groups.io with SMTP id smtpd.web11.5182.1707347765003117538
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96E41C4828F
+	for <webhook@archiver.kernel.org>; Thu,  8 Feb 2024 10:03:06 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web10.14582.1707386579314614347
  for <yocto@lists.yoctoproject.org>;
- Wed, 07 Feb 2024 15:16:05 -0800
+ Thu, 08 Feb 2024 02:03:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=0hi4BklZ;
- spf=pass (domain: smile.fr, ip: 209.85.221.48, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33b2960ff60so177429f8f.1
-        for <yocto@lists.yoctoproject.org>; Wed, 07 Feb 2024 15:16:04 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=MHa+e5LM;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40fd72f7125so13870905e9.1
+        for <yocto@lists.yoctoproject.org>; Thu, 08 Feb 2024 02:02:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1707347763; x=1707952563; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dk10UuGbMpfHtnLIt/fPycYoHbqaqY6U0vZT0yFoL5k=;
-        b=0hi4BklZpHqBEmiDM9mdIDQX5PsD2SCdyhiKS+rOMiZDbpqM1GxzDINp0s098Tn/3o
-         vbqzNPrU6sHGUOfzfxznkUgANuAUSKLWYJCfyStJ0cga+GrO7giq6mT1FG7g0VnRtmA4
-         KtMIzGoZCLFuUqtlNS7CHqC5ZSY2iaThn80AeMd/BFiqpOSWlAI4xF3LYijoe1AZFscg
-         RbczKgDSdIAwPEayt26zIuaJx0gwEc23Uzvgjy8frXHYtGek6ws1WCLRHxNt0xebve6/
-         A0fs2GecA4E5f+g6rtpgXnD1gfI91EMCdUWwXbJiq5NP2pyP2f/paJAlsZ9rNmA+rPSt
-         cKhQ==
+        d=linuxfoundation.org; s=google; t=1707386577; x=1707991377; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pFnEmtkNYijn8l63/rxCG1sCKbdvAD2vb3hu0dybALA=;
+        b=MHa+e5LMBrsUx0u0uzP8VZ8O891XvMHmtusSNgihpmrWnFPgqDYUpzYKrCOn/gYzOk
+         MDhUNGmqdcgB+5Xnw8wlCWqGOfV7wZIpgAncgNUTirGz2KTAXd31bCSGsszbYgMsHGzx
+         GBd1PXJlg0mbj0YTgtpBBPga6JKPVzoTpgs6w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707347763; x=1707952563;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dk10UuGbMpfHtnLIt/fPycYoHbqaqY6U0vZT0yFoL5k=;
-        b=rh+NkcmXFRWtHmFYQlpcEsirYepHAH6fg7S8rz6c4O1JqwJO8OEMmt79fnvJ/Ya4CI
-         w5RsLiP3+Bui4N1qnmK1ucPme7PfujYfWTnza6PQBuGU1baJRnpLdrFKQIcVVfPWRcxO
-         0K+xgePNsbmIlEOuZD3vmXOSBz4JWA31gA3tROrXD9/kv5K0bVv77mV4GdyVb3Vfw4ar
-         b81xIhy831JGEuilEZ0c4EWCUo+JKGN+zgkU4Wk6UgC1D4sec65LW+R5C4867xvOlmZa
-         vTP75VdjSGo38f+iQ5gLGKhAz23Ro7S9FtVaDDuHp1HMGlw7frhi/JYyvcrj8wpmpyBw
-         3CRQ==
-X-Gm-Message-State: AOJu0Yzcq2nOhZOBNDTiXrbNJqVpQXXEq6cyBYtBiPPriqYfGdQRylMD
-	Gw/9EOif1sXo0PgxkM/lHD2/1WoI60gikSTSz7Z9x3ck5DYzXZ9D4H9vL38YJR2bfmKs3i5WRSS
-	3JFi1Rw==
-X-Google-Smtp-Source: AGHT+IHj5FLHoES+t/LDtN4S6pfjGYxWordfxawsdmqBoiZmtR9OqJ8105ET89Erl3v58oMxAXhArQ==
-X-Received: by 2002:a5d:5603:0:b0:33b:5028:9fcc with SMTP id l3-20020a5d5603000000b0033b50289fccmr538455wrv.9.1707347757907;
-        Wed, 07 Feb 2024 15:15:57 -0800 (PST)
-Received: from P-ASN-ECS-830T8C3.local ([89.159.1.53])
-        by smtp.gmail.com with ESMTPSA id n30-20020a05600c501e00b004101bdae3a0sm2231834wmr.38.2024.02.07.15.15.56
+        d=1e100.net; s=20230601; t=1707386577; x=1707991377;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pFnEmtkNYijn8l63/rxCG1sCKbdvAD2vb3hu0dybALA=;
+        b=QuckvjV76M8opGugW2C7BEX6GkeIe3k+HiFvE03V222uikpBAgY6tXXr0exNNkZlxI
+         EhKJl26DKhGvml2/hmPS0OQWW+PdwQA6alEGNXa2jZgACjfGzT0whKdFfogqzObqYyCh
+         OGN3cCPPSxSMJTWt+na3QIOCta2oYZu7pmX2rRR4mivJuhO7B0mmzdwg/NewWQE7Uidg
+         m98NR++GZ/Y4O+zYGKgrk4DdgT1h8xuZm0LnNS7OJexHroHVXxC9eBJ3ThH2L4rwsVue
+         pVouc6e5oYZ11qdiZvT+KlfLaja/+9qhpVmPIlGTVBQ3F56utuQvF7sDPVMdmcU/oKy/
+         NhwA==
+X-Gm-Message-State: AOJu0YwrcP5Y2i40xdr9C3Y/NEam9+c9V/orurIylxZGhWdFKVe6gz0p
+	euIOOGQS7pkzUfDn6vveLlJ/Rtbp9vBIUhtI3zEX+dI4kmV5BD+WtvJXda43Ey2K1b5G1O3mnAB
+	D
+X-Google-Smtp-Source: AGHT+IEs/lby7JpHouqNtboMHXfxgMQkjUuFg2xzPN/u2FHT780WI0hF+ECc5cQ7TY2rOgNb2SsGzg==
+X-Received: by 2002:a05:600c:5109:b0:40e:ac4f:7156 with SMTP id o9-20020a05600c510900b0040eac4f7156mr6843235wms.5.1707386576918;
+        Thu, 08 Feb 2024 02:02:56 -0800 (PST)
+Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:c14:ae3d:85df:fff])
+        by smtp.gmail.com with ESMTPSA id fa8-20020a05600c518800b00410000a1a29sm1146606wmb.8.2024.02.08.02.02.56
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Feb 2024 15:15:56 -0800 (PST)
-From: Yoann Congal <yoann.congal@smile.fr>
+        Thu, 08 Feb 2024 02:02:56 -0800 (PST)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Cc: Yoann Congal <yoann.congal@smile.fr>
-Subject: [yocto-autobuilder-helper][PATCH 2/2] README: Add a "git send-email" example for contributing
-Date: Thu,  8 Feb 2024 00:15:54 +0100
-Message-Id: <20240207231554.149413-2-yoann.congal@smile.fr>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240207231554.149413-1-yoann.congal@smile.fr>
-References: <20240207231554.149413-1-yoann.congal@smile.fr>
+Subject: [yocto-autobuilder-helper] [PATCH] config.json: Add meta-exein compatibility testing
+Date: Thu,  8 Feb 2024 10:02:55 +0000
+Message-Id: <20240208100255.2805341-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 07 Feb 2024 23:16:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62425
+ <yocto@lists.yoctoproject.org>; Thu, 08 Feb 2024 10:03:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62426
 
-This "git send-email" example is present in most Yocto/OE repos and is
-quite useful for a quick copy/paste.
+Add meta-exein yocto-check-layer testing. Due to HOSTTOOLS issues, we
+need to had a horrible hack. v2 compatibility doesn't test for HOSTTOOLS
+changes although perhaps the next version might.
 
-Signed-off-by: Yoann Congal <yoann.congal@smile.fr>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- README | 3 +++
- 1 file changed, 3 insertions(+)
+ config.json                              | 15 ++++++++++++++-
+ scripts/exein-path-intercepts/clang      |  2 ++
+ scripts/exein-path-intercepts/llvm-strip |  2 ++
+ 3 files changed, 18 insertions(+), 1 deletion(-)
+ create mode 100755 scripts/exein-path-intercepts/clang
+ create mode 100755 scripts/exein-path-intercepts/llvm-strip
 
-diff --git a/README b/README
-index 35b928e..20e0b64 100644
---- a/README
-+++ b/README
-@@ -34,3 +34,6 @@ with the following commands:
- 
-   git config  --local --add format.subjectprefix 'yocto-autobuilder-helper][PATCH'
-   git config  --local --add sendemail.to yocto@lists.yoctoproject.org
-+
-+When sending single patches, please use something like:
-+git send-email -M -1 --to=yocto@lists.yoctoproject.org --subject-prefix='yocto-autobuilder-helper][PATCH'
+diff --git a/config.json b/config.json
+index 50a07f7..e8b51cd 100644
+--- a/config.json
++++ b/config.json
+@@ -1199,7 +1199,7 @@
+             }
+         },
+         "check-layer-nightly" : {
+-            "NEEDREPOS" : ["poky", "meta-agl", "meta-arm", "meta-aws", "meta-intel", "meta-ti", "meta-openembedded", "meta-virtualization", "meta-clang"],
++            "NEEDREPOS" : ["poky", "meta-agl", "meta-arm", "meta-aws", "meta-intel", "meta-ti", "meta-openembedded", "meta-virtualization", "meta-clang", "meta-exein"],
+             "step1" : {
+                 "shortname" : "Test meta-agl YP Compatibility",
+                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-agl/meta-agl-core ../meta-agl/meta-netboot --dependency ../meta-openembedded/meta-oe ../meta-openembedded/meta-networking ../meta-openembedded/meta-python --no-auto-dependency"]
+@@ -1232,6 +1232,13 @@
+             "step8" : {
+                 "shortname" : "Test meta-clang YP Compatibility",
+                 "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-clang --no-auto-dependency"]
++            },
++            "step9" : {
++                "shortname" : "Test meta-exein YP Compatibility",
++                "extravars" : [
++                    "HOSTTOOLS:remove = 'clang llvm-strip'"
++                ],
++                "EXTRACMDS" : ["export PATH=$PATH:${SCRIPTSDIR}/exein-path-intercepts; yocto-check-layer-wrapper ../meta-exein --dependency ../meta-openembedded/meta-oe --no-auto-dependency"]
+             }
+         },
+         "metrics" : {
+@@ -1824,6 +1831,12 @@
+             "revision" : "HEAD",
+             "no-layer-add" : true
+         },
++        "meta-exein" : {
++            "url" : "https://github.com/exein-io/meta-exein-official",
++            "branch" : "main",
++            "revision" : "HEAD",
++            "no-layer-add" : true
++        },
+         "auto-upgrade-helper" : {
+             "url" : "git://git.yoctoproject.org/auto-upgrade-helper",
+             "branch" : "master",
+diff --git a/scripts/exein-path-intercepts/clang b/scripts/exein-path-intercepts/clang
+new file mode 100755
+index 0000000..ecdbef9
+--- /dev/null
++++ b/scripts/exein-path-intercepts/clang
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exit 1
+diff --git a/scripts/exein-path-intercepts/llvm-strip b/scripts/exein-path-intercepts/llvm-strip
+new file mode 100755
+index 0000000..ecdbef9
+--- /dev/null
++++ b/scripts/exein-path-intercepts/llvm-strip
+@@ -0,0 +1,2 @@
++#!/bin/sh
++exit 1
 -- 
-2.39.2
+2.40.1
 
 
