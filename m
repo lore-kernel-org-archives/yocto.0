@@ -2,148 +2,81 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31B1FC48297
-	for <webhook@archiver.kernel.org>; Fri,  9 Feb 2024 11:39:36 +0000 (UTC)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web10.9485.1707478772416698926
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8F60C4828F
+	for <webhook@archiver.kernel.org>; Fri,  9 Feb 2024 14:01:06 +0000 (UTC)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web11.11904.1707487264921049446
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Feb 2024 03:39:33 -0800
+ Fri, 09 Feb 2024 06:01:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Dnyjb7xO;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.44, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3392b12dd21so421650f8f.0
-        for <yocto@lists.yoctoproject.org>; Fri, 09 Feb 2024 03:39:31 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=ZHtkqgJp;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.48, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33adec41b55so387790f8f.0
+        for <yocto@lists.yoctoproject.org>; Fri, 09 Feb 2024 06:01:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1707478770; x=1708083570; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MalMqMrvLyxR7TOJs1MvWmRqs7e/SPH8Ug3zD2tcJbQ=;
-        b=Dnyjb7xOhQZWAHiy4EvOVOsb8QadnysTEUxx+egxf5r5VYN7B8LWgbp5y0r4Ss9pYM
-         qIn98nyPJgyxYt4ZfWH0laUJAJwiQI11vzM5Zng4yzCzUsruh3WAeXYE6ac5vptAT7vD
-         ImC5KIENSvCFaPZSLTmanUX4PdAv5ksaWbo2E=
+        d=linuxfoundation.org; s=google; t=1707487263; x=1708092063; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LJt7bpLZYgDC++mD/vE6ou2aXGCL0+Hcr2vQnPvvHh8=;
+        b=ZHtkqgJpJjdBCAiU1dIO6AxMU+iBO6dwCJLP7xA08g/aojdr0jxfUp/hIvDX1yU/iC
+         j5scLzhbH/VSYKhnBYGvRDQ3peQ1CcL0nTcvU4byWcsXE7HadMMqHMpytQhhNnZljZ55
+         YzI9SvCZ3+m4u0C4+U3umNe//EAYTna+mgEn8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707478770; x=1708083570;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MalMqMrvLyxR7TOJs1MvWmRqs7e/SPH8Ug3zD2tcJbQ=;
-        b=G0okBZ6YwUbc828qqvpDeW+xLNbt1Vjk3JfXQWdsjsnJja7tagAfcDaBBe/XfJ+Hm/
-         q5pDL3uHb50Px5lyVATwEJ1R1dlOzctY8Q4/e76rShR0/pWlBQTYWTTsEI82XN4bXhnA
-         2qjBWmODLFLEqABnyZyXeLveQm8nsTwer2uGvOZF+LS5p+3a6ArA80wK3eLcPam4PC+E
-         NoUfLI+icEUfA1RB+iXBa8yzIMwKKQ+oRd06NmZyJX9Eqw4tpu0HW9HE27n1Yq4bc7Ea
-         PvufPSkb9951ZTa+uTHZcB5JARkib53m/4vV6EgZ5LPHIBvhi4grl4wWb78NLOT3LJV7
-         3mrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVvfVC1MpjPUWnVqeCMFmlwtU/9BY07HAC3cc5rKk4UX0iKg8vzCEcGeqq8/h/LweOCtgJRq2gPiuWXjLrbFEnkeMwLZolQq+Jffw5U
-X-Gm-Message-State: AOJu0YzS2Q1NxV/Grm1NIgsggmy7ondbSs1GZqpCZoDBXOtXITfXXmXW
-	tWCN9CGv/TPOAlXQoBGx0blOsaYfmFdUrvpsAsMYC+ikm3Ka3rBJLbCQFm5NJtQ=
-X-Google-Smtp-Source: AGHT+IHYwOBgsWb6r3Xoh13SjG462shkYyqDpzQyHvzngXzsA+wJT1659Mut95Gm7WrJRrOBb21BxA==
-X-Received: by 2002:a5d:6ad0:0:b0:33b:6452:fd3b with SMTP id u16-20020a5d6ad0000000b0033b6452fd3bmr889148wrw.27.1707478770344;
-        Fri, 09 Feb 2024 03:39:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVbivXr92TxxL7Fp/gW0Vzg47FBL2Rxz1XCxMCVPvdysxMlp00DYqp8DwPBuOI94ME8lYRJTz9t0mguMiAfYPxxtFcC78WrI3VXJi+j
-Received: from ?IPv6:2001:8b0:aba:5f3c:47e1:ee11:154c:e6b3? ([2001:8b0:aba:5f3c:47e1:ee11:154c:e6b3])
-        by smtp.gmail.com with ESMTPSA id j18-20020a056000125200b0033afe816977sm1590072wrx.66.2024.02.09.03.39.29
+        d=1e100.net; s=20230601; t=1707487263; x=1708092063;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LJt7bpLZYgDC++mD/vE6ou2aXGCL0+Hcr2vQnPvvHh8=;
+        b=UdcRT9SSpJpH5yllBejePGsUVngPl2W6CbY0DTMuuixnoTbx/JrvR/SCniM7cFQoVw
+         eWziAj5ienPLyI6neeYzEWJtKQNocVxYPvNyDNWGIG/hp37Nu8zHcO/ym51GzyW7PoZm
+         qiZcgxBAhOkC6E1v786AevmCI+xrWBxDUC6INm1iy1LTt3a274ugwmIbnrzlMpbPD00J
+         xhvXy3Us6LsQwjtDAPqJDBEV2hJqI8RCk9Te6a+hpJ7DufltFXDLQl9977TbBwGNZ8TU
+         Bry9c3Q06dWjf0BG327bOL21b+MSVo2dsH3ofQ/E9TwhhwFRGJKhi8/GXYq4XAM7COWX
+         ownA==
+X-Gm-Message-State: AOJu0Yxxv3pnpGGTn8++MnKxvuh1OeAszSiR4hrNMgGNQs9aJbTEa1Ei
+	y1kRkd11nmvIFXqZwBDP2OrYgSfx3UZGv04Ci/oMiwCsoGLIF3iWMbRWOolpEAcprMCbc0/uKDp
+	1
+X-Google-Smtp-Source: AGHT+IEmO59I0k+RxG4XdQsWWP/uVDZ1d+HoV7VDZvUW7NoLKNDRPThxLniGLYi+Cuyr4FrpyKTpZw==
+X-Received: by 2002:a5d:6506:0:b0:33b:4668:8496 with SMTP id x6-20020a5d6506000000b0033b46688496mr1305728wru.64.1707487263175;
+        Fri, 09 Feb 2024 06:01:03 -0800 (PST)
+Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:47e1:ee11:154c:e6b3])
+        by smtp.gmail.com with ESMTPSA id d23-20020adfa357000000b0033ae50e2c6asm1895009wrb.83.2024.02.09.06.01.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 03:39:29 -0800 (PST)
-Message-ID: <e122eb86f6d23c648a962dd0f8b273e0b328425d.camel@linuxfoundation.org>
-Subject: Re: [yocto] [yocto-autobuilder-helper] [PATCH] config.json: Try
- allowing a bit more parallelism
+        Fri, 09 Feb 2024 06:01:02 -0800 (PST)
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	yocto@lists.yoctoproject.org
-Cc: Randy MacLeod <randy.macleod@windriver.com>
-Date: Fri, 09 Feb 2024 11:39:29 +0000
-In-Reply-To: <20240208234036648c5e8e@mail.local>
-References: <20240208152707.2849716-1-richard.purdie@linuxfoundation.org>
-	 <a86c1fd2-f341-4575-9da0-6ab08d40539f@windriver.com>
-	 <45a88b66d57d00b1446443dcbe5460c6fd024d60.camel@linuxfoundation.org>
-	 <20240208234036648c5e8e@mail.local>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0-1 
+To: yocto@lists.yoctoproject.org
+Cc: jpewhacker@gmail.com
+Subject: [meta-mingw] [PATCH] layer.conf: Update for the scarthgap release series
+Date: Fri,  9 Feb 2024 14:01:02 +0000
+Message-Id: <20240209140102.3395109-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 09 Feb 2024 11:39:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62448
+ <yocto@lists.yoctoproject.org>; Fri, 09 Feb 2024 14:01:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62449
 
-On Fri, 2024-02-09 at 00:40 +0100, Alexandre Belloni wrote:
-> On 08/02/2024 23:31:49+0000, Richard Purdie wrote:
-> > On Thu, 2024-02-08 at 18:13 -0500, Randy MacLeod wrote:
-> > > On 2024-02-08 10:27 a.m., Richard Purdie wrote:
-> > > > Currently the autobuilders seem to run at 25% idle at times. We see=
- a lof
-> > > > of bouncing on IO load and it appears the systems could cope with h=
-igher
-> > > > values.
-> > > >=20
-> > > > Increase the make load average, cpu and IO pressure limits a bit to
-> > > > see if build times improve.
-> > > >=20
-> > > > Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-> > > > ---
-> > > > =C2=A0config.json | 6 +++---
-> > > > =C2=A01 file changed, 3 insertions(+), 3 deletions(-)
-> > > >=20
-> > > > diff --git a/config.json b/config.json
-> > > > index e8b51cd..7539aeb 100644
-> > > > --- a/config.json
-> > > > +++ b/config.json
-> > > > @@ -49,9 +49,9 @@
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0"BB_GENERATE_MIRROR_TARBALLS =3D '1'",
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0"BB_NUMBER_THREADS =3D '16'",
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0"BB_NUMBER_PARSE_THREADS =3D '16'",
-> > > > -            "PARALLEL_MAKE =3D '-j 16 -l 52'",
-> > > > -            "BB_PRESSURE_MAX_CPU =3D '10000'",
-> > > > -            "BB_PRESSURE_MAX_IO =3D '10000'",
-> > > > +            "PARALLEL_MAKE =3D '-j 16 -l 75'",
-> >=20
-> > > =C2=A0=C2=A0A value of 75 for the load average limit seems a bit high=
- given that
-> > >=20
-> > >  there are only 56 v-cores on these machines but maybe that limit won=
-'t
-> > >  kick in if the pressure regulation works.=20
-> >=20
-> > I'm working on the principle that 52 appears to be leaving the machines
-> > too underloaded. The scheduler is designed to handle load so having
-> > some new work always ready is probably better overall...
-> >=20
-> >=20
-> > > I really need to fix and write tests for the pressure regulation but=
-=C2=A0
-> > > I'm just not able to make the time these days. Sorry.
-> >=20
-> > > I guess this change is worth a try to get more data.
-> > >=20
-> >=20
-> > I think that is where my thinking was at, we need to try something
-> > different as the performance at the moment just feels wrong somehow.
->=20
-> The centos workers don't have pressure regulation and I have recently
-> seen bitbake timeout on those s I'm a bit concerned this will
-> exacerbate the issue.
+Prepare for the scarthgap release.
 
-It is a valid concern. My last build did feel "faster" but whether that
-was a fair comparison, not sure. Lets keep an eye on things and keep
-this in mind...
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Cheers,
-
-Richard
-
-
+diff --git a/conf/layer.conf b/conf/layer.conf
+index e34163b..ff34e6f 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -16,5 +16,5 @@ addpylib ${LAYERDIR}/lib oeqa
+ 
+ LAYERDEPENDS_meta-mingw = "core"
+ 
+-LAYERSERIES_COMPAT_meta-mingw = "nanbield"
++LAYERSERIES_COMPAT_meta-mingw = "scarthgap"
+ 
+-- 
+2.40.1
 
 
