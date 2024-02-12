@@ -1,99 +1,127 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CE96C4829E
-	for <webhook@archiver.kernel.org>; Mon, 12 Feb 2024 22:53:26 +0000 (UTC)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
- by mx.groups.io with SMTP id smtpd.web10.1075.1707778397538405607
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B508AC4829D
+	for <webhook@archiver.kernel.org>; Mon, 12 Feb 2024 23:32:16 +0000 (UTC)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web10.1994.1707780727785915907
  for <yocto@lists.yoctoproject.org>;
- Mon, 12 Feb 2024 14:53:17 -0800
+ Mon, 12 Feb 2024 15:32:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=SP6NrC/Z;
- spf=pass (domain: gmail.com, ip: 209.85.208.175, mailfrom: jpewhacker@gmail.com)
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d0f1ec376bso21931181fa.1
-        for <yocto@lists.yoctoproject.org>; Mon, 12 Feb 2024 14:53:17 -0800 (PST)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=HAIACoqg;
+ spf=pass (domain: smile.fr, ip: 209.85.221.48, mailfrom: yoann.congal@smile.fr)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33b401fd72bso2499759f8f.3
+        for <yocto@lists.yoctoproject.org>; Mon, 12 Feb 2024 15:32:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707778395; x=1708383195; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z1+GUHcxD+cCG8MziwZsXGkHY4x9dsv3qVz7aZng7F0=;
-        b=SP6NrC/ZAac/qmz+vgzAgo9XVUgJT+/7aznmBP+rRZ6mRnZ+VivGqx+wuqxVDUVwHI
-         XYJFsbZYeym+QUWIIM8OQVu6tE919LrGuPWPYJZrdfvsDucXg/NPDO3QTnQoF+SdSJTF
-         1VIog0YWrL1kPOP9ROiaHeUpi6aTWcxZ9YQGvBY/w4yFGrez9OcKNQ4n92bvtnhEbooZ
-         GC/9mhUMvRm3qCtAtajQ6Wf/INeN8ZDTNRHkDlgwH8Szb7WN7qiFdnln9K0mCLOSq9ob
-         LN4UPHIagbRZXemMJZfRezfwJgoK6IE3zgjbcrt9qembWigAbYKXqoyw7E3DVkr0bu74
-         ZUPA==
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1707780725; x=1708385525; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o7sF5/zRKb4z7KUijPTyr4rHAKM/8afVjRDLCRWo5Ps=;
+        b=HAIACoqg92s1uqaIWyK9HSNcvUGWscmw2G4//OqPJbnS1jTJzI3nKcqM+i0etaNpBY
+         jVTpwZArHDt5ZYmICt5yLtueJ+C4E8XmuMTqcY4IsSAJ/9nqjIyZjqX04lEMkrEoCRmg
+         whIOEo6698IaS8GDIP14XYYFFuEAqLpMiYxYNmas3SEGtO/6XQDyvKJcKLFv7hLvnkQO
+         HArN2DLaJTO2EingwfAojo0uIXMja0Slz7O+ty5aNafjoAEsgBwjqlRbVwNtPzkUnVAm
+         vksRjlccPJ6QJ67tfKKhqM3keN1hQyYwbNkLsQcGbIWfvTgNwGt7d3RvGXSDOsA8NqvQ
+         gM+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707778395; x=1708383195;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z1+GUHcxD+cCG8MziwZsXGkHY4x9dsv3qVz7aZng7F0=;
-        b=YNXro9fRPyeY621N/MDs9E41M7nyoL/5cyRnerMWo8YS/tT3opsKGp2ZPo2wQrAG3g
-         9IOYKhWZIsi1kfE/edz6PUtbrxuV6slAKf5pLdPkI/tYtq+uebWOThO6cA5DBv6ZeLNI
-         4v6RJ3z7NOp4xGEBQqysbjAs1aNQeYI4x7h6mMRv1mReNrGRs+++HExXrO7FOY6bhTvo
-         QdoYmh5uKs7NGOajuO0UiI0Kmz2Lf4d673jwQ+FqKC0QdtV2Y9j64cb0/tCGusGfmKnT
-         snSB3moM1FedSSSABX0s370BpnnG/G8Avg1CpVSQ82sALyfmZtBbQ6fVRE+sOHWLl+YS
-         /RxA==
-X-Gm-Message-State: AOJu0YxVYd0pmcIewLIchHnWlX6g8xWqP86UV0/cbmP4RA2sCPk7AQ4w
-	zENoEx74zeC8Moj6CqP2/Xw33TcQsm6GovBQ92+EXoGkNFS7GdwAhiB10A66p7JC9yWJfLvTjNu
-	6DegD5r+hZ5639reQHItGmQ5pXf5pU2XK
-X-Google-Smtp-Source: AGHT+IH8pNKPHOMhapCWnWwGPiemsepVb2woqKq6whjjQgsfUF2s/OMPpwtRs73hMzbQ4bW8ssdq0ZIh3c0Ayct3s8g=
-X-Received: by 2002:a05:651c:623:b0:2d0:7b53:9330 with SMTP id
- k35-20020a05651c062300b002d07b539330mr4877855lje.14.1707778394850; Mon, 12
- Feb 2024 14:53:14 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707780725; x=1708385525;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o7sF5/zRKb4z7KUijPTyr4rHAKM/8afVjRDLCRWo5Ps=;
+        b=OoWVPnwUQW22Le7jgJvq8F8GIlIWN2MUkyqtJbLQi7L8YuDZeSjkXeEhvhe/zdwpbI
+         70EQdyo6BabKuSesUaEWzVzw+fiEQTBy09ibknBaMujulmKVzTkJHr5iibVbBSx8s+0b
+         xJtk8z6KdMAzLVqcA0FQmWns7++pJkD0rAK0wJjuTiFphSGYU/QCBlYwc+d6vexnUcIG
+         eNybY8FLNeSavFSq403/XLOOY7vyAxuk57QlKtzhsMn2wnLV6R09DrjaCAgu5qTpbdZ/
+         G8YTVrMPVD+YegVtDvMXSF126+gOwPQBhKTIz3adjLY92GG3gwho++atXiNkgRnlTlgl
+         BtyQ==
+X-Gm-Message-State: AOJu0YyLk1NAgiQSVsFdsw5G6/0mv2YByobEE7CaKiD/Ysx2Bk6gMTLX
+	ZIicZyhxTbpx3hxoJG6HMsX/29HnHRht/AwDk9xeyilK2LFIK0iDcKcirsDJQ+HOYNb7wozfHsR
+	1jCR0kg==
+X-Google-Smtp-Source: AGHT+IGOjWQW/KViQZHP0HVXoH3mz+tOz/y7TqS3GJGAAQYXVfItpFKlE6TWAIbRYRedBiF4RUqh8A==
+X-Received: by 2002:adf:a29b:0:b0:33c:d4d6:659b with SMTP id s27-20020adfa29b000000b0033cd4d6659bmr223228wra.7.1707780725240;
+        Mon, 12 Feb 2024 15:32:05 -0800 (PST)
+Received: from P-ASN-ECS-830T8C3.local ([89.159.1.53])
+        by smtp.gmail.com with ESMTPSA id bw28-20020a0560001f9c00b0033b66ce7ae9sm8039771wrb.84.2024.02.12.15.32.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Feb 2024 15:32:05 -0800 (PST)
+From: Yoann Congal <yoann.congal@smile.fr>
+To: yocto@lists.yoctoproject.org
+Cc: Yoann Congal <yoann.congal@smile.fr>
+Subject: [yocto-autobuilder-helper][PATCH v2] config.json: meta-oe-repro: exclude packages that failed previously
+Date: Tue, 13 Feb 2024 00:31:07 +0100
+Message-Id: <20240212233107.3716212-1-yoann.congal@smile.fr>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <5e58c6719d797be31ece8149535531036ae18a47.camel@gmail.com>
- <e6cefe4b20af2ef03793fd096f01482f9f69cf67.camel@linuxfoundation.org> <ebd3d2dfe7da20db63df6ae404c7198baf484953.camel@gmail.com>
-In-Reply-To: <ebd3d2dfe7da20db63df6ae404c7198baf484953.camel@gmail.com>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Mon, 12 Feb 2024 15:53:02 -0700
-Message-ID: <CAJdd5GaOESrSMpuKr1ZJYYcjeMspqOG5SvKeQU7hpuEF0NnXAw@mail.gmail.com>
-Subject: Re: [yocto] bmap-tools repository closes
-To: yocto@lists.yoctoproject.org, dedekind1@gmail.com
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 12 Feb 2024 22:53:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62468
+ <yocto@lists.yoctoproject.org>; Mon, 12 Feb 2024 23:32:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62469
 
-On Sun, Feb 11, 2024 at 11:46=E2=80=AFPM Artem Bityutskiy <dedekind1@gmail.=
-com> wrote:
->
-> On Fri, 2024-02-09 at 18:08 +0000, Richard Purdie wrote:
-> > Thanks for reaching out to us, it is good to do this proactively rather
-> > than seeing it sit unmaintained. There is interest within the Yocto
-> > Project community to take this on so we'd like to take up that offer
-> > thanks!
-> >
-> > There are a few details we're working through but I did want to say
-> > this publicly and also to say thanks for reaching out.
->
-> Thank! Let me know when if you do this, I'll point to the new place from =
-current
-> bmap-tools github repo.
+Those are the non-reproducible packages from:
+https://autobuilder.yoctoproject.org/typhoon/#/builders/155/builds/11
 
-I think ideally we would use the GitHub feature to move the repo if
-you have permissions to do that as it should preserve issues and such;
-I think maybe it will also automatically redirect if we do that, but
-I'm not positive because I've not done it before
+NB: I've not looked too much at the list.
+At least an element is weird: samba-dbg being non-reproducible in
+meta-xfce but reproducible in meta-networking?
 
->
-> Artem.
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62462): https://lists.yoctoproject.org/g/yocto/messag=
-e/62462
-> Mute This Topic: https://lists.yoctoproject.org/mt/103930262/3616693
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [JPEWhacker@gma=
-il.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+Signed-off-by: Yoann Congal <yoann.congal@smile.fr>
+
+---
+v1->v2: Added previously missing meta-webserver packages
+---
+ config.json | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/config.json b/config.json
+index 48d43db..e2e2b0c 100644
+--- a/config.json
++++ b/config.json
+@@ -371,7 +371,8 @@
+                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-multimedia'",
+                     "USERADD_GID_TABLES:append = ' files/static-group-meta-oe'",
+                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-oe'",
+-                    "OEQA_REPRODUCIBLE_EXCLUDED_PACKAGES = 'crossguid'"
++                    "OEQA_REPRODUCIBLE_EXCLUDED_PACKAGES = 'crossguid libcamera libcamera-dbg libcamera-src libgssdp-1.6-src libgupnp-1.6-src libsquish-staticdev'",
++                    "OEQA_REPRODUCIBLE_EXCLUDED_PACKAGES += 'oscam oscam-dbg oscam-src rtmpdump-staticdev'"
+                 ]
+             },
+             "step5" : {
+@@ -426,7 +427,9 @@
+                 "extravars" : [
+                     "EXCLUDE_FROM_WORLD:layer-openembedded-layer = '1'",
+                     "USERADD_GID_TABLES:append = ' files/static-group-meta-oe'",
+-                    "USERADD_UID_TABLES:append = ' files/static-passwd-meta-oe'"
++                    "USERADD_UID_TABLES:append = ' files/static-passwd-meta-oe'",
++                    "OEQA_REPRODUCIBLE_EXCLUDED_PACKAGES = 'python3-frozenlist python3-frozenlist-dbg python3-kivy-src python3-pycocotools-src python3-pydantic-core'",
++                    "OEQA_REPRODUCIBLE_EXCLUDED_PACKAGES += 'python3-pyproj python3-pyproj-dbg python3-pyproj-src python3-pyzmq python3-yarl python3-yarl-dbg'"
+                 ]
+             },
+             "step9" : {
+@@ -441,7 +444,8 @@
+                     "USERADD_GID_TABLES:append = ' files/static-group-meta-webserver'",
+                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-webserver'",
+                     "USERADD_GID_TABLES:append = ' files/static-group-meta-oe'",
+-                    "USERADD_UID_TABLES:append = ' files/static-passwd-meta-oe'"
++                    "USERADD_UID_TABLES:append = ' files/static-passwd-meta-oe'",
++                    "OEQA_REPRODUCIBLE_EXCLUDED_PACKAGES = 'netdata-dbg netdata php-phar'"
+                 ]
+             },
+             "step10" : {
+@@ -467,7 +471,8 @@
+                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-networking'",
+                     "USERADD_GID_TABLES:append = ' files/static-group-meta-multimedia'",
+                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-multimedia'",
+-                    "USERADD_UID_TABLES:append = ' files/static-passwd-meta-gnome'"
++                    "USERADD_UID_TABLES:append = ' files/static-passwd-meta-gnome'",
++                    "OEQA_REPRODUCIBLE_EXCLUDED_PACKAGES = 'catfish libsamba-util0 samba-dbg'"
+                 ]
+             }
+         },
+-- 
+2.39.2
+
 
