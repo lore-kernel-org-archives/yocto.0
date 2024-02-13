@@ -1,106 +1,170 @@
-Return-Path: <paul@pbarker.dev>
+Return-Path: <andrei@gherzan.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78EFFC48260
-	for <webhook@archiver.kernel.org>; Tue, 13 Feb 2024 11:39:44 +0000 (UTC)
-Received: from wfout7-smtp.messagingengine.com (wfout7-smtp.messagingengine.com [64.147.123.150])
- by mx.groups.io with SMTP id smtpd.web11.9714.1707824376310206268
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98D0FC4829A
+	for <webhook@archiver.kernel.org>; Tue, 13 Feb 2024 12:24:24 +0000 (UTC)
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+ by mx.groups.io with SMTP id smtpd.web11.10426.1707827061150734926
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Feb 2024 03:39:36 -0800
+ Tue, 13 Feb 2024 04:24:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@pbarker.dev header.s=fm2 header.b=Ze1OqMxN;
- dkim=pass header.i=@messagingengine.com header.s=fm3 header.b=lNKv5fTm;
- spf=pass (domain: pbarker.dev, ip: 64.147.123.150, mailfrom: paul@pbarker.dev)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailfout.west.internal (Postfix) with ESMTP id 3DC671C000A4;
-	Tue, 13 Feb 2024 06:39:35 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 13 Feb 2024 06:39:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
-	cc:content-transfer-encoding:content-type:content-type:date:date
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1707824374;
-	 x=1707910774; bh=i+ATTnspWds25QHIz8c2REwOwDscmRkrMdSFTd4LK4M=; b=
-	Ze1OqMxNh8Nu+oIrK53vRiRBeN+EQlbzBW1pLALGq4n0RsD+ImrNPSi4//zyLe/k
-	Ef+8mbhJ3q8+QwU8HHXYVqA/dhrW/Bmk6Q20vzekdo4HpwxRapgGbuVatwCAcruH
-	EzDR2VHV4OptLyIOpk82ueEsgfTW9ogACQHDkb7bFcpAOFVSrJZEFGzL3Us4KAgm
-	2FKMpLKpY+AYLfyw1YH9CLPsUK0ddkX2fIsPckVCSpsCvy1oD5V+5pwdbfzegtgA
-	0zoMlBQm/8YchDvEMzdf7VAnqznYso81XKKnwFQSaNQBe/TaoWbY95wfM7BeUwOL
-	aAyXJzbaebbdH66lKH1I/Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-transfer-encoding:content-type
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1707824374; x=
-	1707910774; bh=i+ATTnspWds25QHIz8c2REwOwDscmRkrMdSFTd4LK4M=; b=l
-	NKv5fTmnvsv11LBY1NBpAe0J08tox25TJS3ezY3pc4eJMMy7Aj4f/Oj+EZjBMfdS
-	XG9j9lQvgSat4aC8wh8OUyfq9jaJ5FPVDjiM5ws4YHJYJGSS64oiRGNYyR36Fv5Z
-	6+XXq5tqH1Hvl77zxDIgfZ8WZE5jGUX5ykWUSm+pwpWRVX+/l4QJnB+2D0c/ySrS
-	ivaj8yuAmvmcmAr5Wb/6v59XGPkK+sPp3kEE0oJqYggWxgWGFz1ovJ3pi9fuXvzz
-	k3MEBY2DNIKDoG1w5t62fSymKo8qVXT2yHMxXpJgAleKI18qY/Bn8OJRjlaaHZ0m
-	1ql4g+8m+fDeuxpenuvSg==
-X-ME-Sender: <xms:9lTLZbprrDmZA3y8_Y5Hyzym4rad7tcdeCqmd1-GElE3IC7Ux3L26A>
-    <xme:9lTLZVoWoVrCWL6TGazhasXHUB4ecx8ArDr8ap9HI8uLPFeN6SThX7RE-1te7_fMa
-    ektXQAsAxtPbQpHAzU>
-X-ME-Received: <xmr:9lTLZYO4A-9MU0bN0Le1oGB838P3c6Ohh9cGCukj5NACENQsrrNAh_S9G1Kw-OJBglUi>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudehgdeftdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhepkfffgggfuffvfhfhjggtgfesthejre
-    dttddvjeenucfhrhhomheprfgruhhluceurghrkhgvrhcuoehprghulhesphgsrghrkhgv
-    rhdruggvvheqnecuggftrfgrthhtvghrnhepgfdugedtjefffffhkeelledtvdfgheefff
-    ffvdejvdeuuedvfeetuefgleetgfeknecuffhomhgrihhnpehpsggrrhhkvghrrdguvghv
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepphgruh
-    hlsehpsggrrhhkvghrrdguvghv
-X-ME-Proxy: <xmx:9lTLZe6tAhRyVfQrV7-SEM1xCdtjQLktZjYwEWgv6WOzYGDvoAyqfw>
-    <xmx:9lTLZa6mE-XCgAvKNbWjfp9UhXU-wi7RhAIb6ZFUy2sQPQbT78iwHA>
-    <xmx:9lTLZWjobD7uvSLX-8xqF_2KAhIy7BZdVa2qutKhAhM13PtAf_HVfg>
-    <xmx:9lTLZaGb_6EBb4jFxd_Ktt0ZhjAyvjOrGpDG9AcmWuoZV2t0TA00rVJzzgg>
-Feedback-ID: i51494658:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 13 Feb 2024 06:39:34 -0500 (EST)
-Message-ID: <c8debf1e-267f-40e0-bf8b-378d73ecaf54@pbarker.dev>
-Date: Tue, 13 Feb 2024 11:39:33 +0000
+ dkim=pass header.i=@gherzan.com header.s=google header.b=l7Fngc3l;
+ spf=pass (domain: gherzan.ro, ip: 209.85.216.54, mailfrom: andrei@gherzan.ro)
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-298ae92a7bbso313678a91.1
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 04:24:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gherzan.com; s=google; t=1707827060; x=1708431860; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uccCkl8ejpWlZILBvprWsaQWl0MQHbHycWMd/rcG5eM=;
+        b=l7Fngc3lb/AtIyxQbITVH8uTuORnOKyyCaRia+ezg8Wci2jR20jB90m9NcBfGNP7CV
+         BfoVHmCV2bHVyD5fKu4g6KgHKInsoikMR9vmJYcu5jCeox4cfi0Ti2owc4vE0PJ0DStg
+         hIiqju9YjyqDqzaPxPaWx/lxJJWsqE7P+teZa/Qldhk/CLDC+8BCssLTGs4/h8sq9Bhf
+         sW5TXU6LkS0c9rRmkmtLimJNNw7eXsGjb0A6QbtjLJvzOIOpBHEFhDr5bQIPL7nY0oz+
+         n6hxq00mUk+HRll0BgBIH2zC+4VL0wVIcwN8aPLpnwiHdBSafQjm2g0202N78ewNipr3
+         chOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707827060; x=1708431860;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uccCkl8ejpWlZILBvprWsaQWl0MQHbHycWMd/rcG5eM=;
+        b=hdny9UxU+J1tdZUZS0r5zRQElwQ2KK6Yy2QxnHa5ljBRUTtZzNF4tzTiq0+EGxbQta
+         49vFVAAFRNGdC4YTvOlMY2ijZfIfsgPT451wGqOTlQSbn+eqdB+7rIKpml3nr7It/Ce3
+         EjRXyRSDm4K/mBQTLZWoDTj6r/mc5QrX1XpTABu/9L/QphmvAfjr9JYszATGCFHPhM62
+         3ECYRAcAJPCF5FhAXn32dSs5zGZnGg3wWxOkqnF558rbaBqdsk8NzxlUldykRu5u61ED
+         nTS4DaK/krtJRa9JpRDR0UV67SFtrA2+6ATkCrks4jtKtvr3N0qdyhePLFmRcLNgDItB
+         giDA==
+X-Gm-Message-State: AOJu0Yw9kMsbv8u8LDkkVoIFTb8uyZkX949JdcS8Ah4/lUi2itItjB0z
+	w8YvRJSAsIC/1my4f0+qx6rAAhCwOyVdfgl1f3W5vakI0Jpdx0nJPKTixAV7+okeUXQNbh2MTqT
+	ep8WXJqY+BNntjsaE0nDNuajwG56+cJJ4DsOlqQ==
+X-Google-Smtp-Source: AGHT+IFqD1lUzJJ+jYXtk47JWkeAB3lWCnt0nq0Mq7BKRQzjgUr2UeSIKmZO7BUDPQQn8FHXk5aWOBrIO4Yc/98/Z0k=
+X-Received: by 2002:a17:90a:4a8d:b0:297:2315:de0b with SMTP id
+ f13-20020a17090a4a8d00b002972315de0bmr3271157pjh.11.1707827060300; Tue, 13
+ Feb 2024 04:24:20 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: condition based bbapend compilation
-Content-Language: en-GB
-To: saswatinayak2010@gmail.com, yocto@lists.yoctoproject.org
-References: <oOqR.1707584165907539093.EjWg@lists.yoctoproject.org>
-From: Paul Barker <paul@pbarker.dev>
-In-Reply-To: <oOqR.1707584165907539093.EjWg@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240205102910.3778516-1-kexin.hao@windriver.com>
+In-Reply-To: <20240205102910.3778516-1-kexin.hao@windriver.com>
+From: Andrei Gherzan <andrei@gherzan.com>
+Date: Tue, 13 Feb 2024 12:23:43 +0000
+Message-ID: <CAK18fxHRasqG=RjbFDTtHYhpiVt5zMav8qehi_p2nU6_xEh9Qw@mail.gmail.com>
+Subject: Re: [meta-raspberrypi][PATCH] rpidistro-ffmpeg: Fix old override syntax
+To: Kevin Hao <kexin.hao@windriver.com>
+Cc: Yocto Project <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000447352061142793d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 11:39:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62475
+ <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 12:24:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62476
 
-On 10/02/2024 16:56, saswatinayak2010@gmail.com wrote:
-> Hello All,
->  
-> Seeking assistance to identify a FLAG that allows the application of a condition-based bbappend file during the image compilation process. Any guidance or insights would be greatly appreciated.
->  
-> For example If 1 is set in the flag, it will indicate inclusion, while 0 will signify exclusion.
->  
-> Please anyone help me with an example.
+--000000000000447352061142793d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-You can move your bbappend contents to a .inc file, e.g. 'example.inc'.
+Thanks for this, Kevin. Could you push your patch as a GitHub merge
+request? That would help take advantage of the existing CI infrastructure.
+--=20
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640
 
-Then in the bbappend file, you can conditionally include your .inc file
-with something like:
 
-    require ${@bb.utils.contains('FLAG', '1', 'example.inc', '', d)}
+On Mon, Feb 5, 2024 at 10:29=E2=80=AFAM Kevin Hao <kexin.hao@windriver.com>=
+ wrote:
 
-There are some more tricks in the slides for my talk "Creating Friendly
-Layers, 2022 Edition" [1] from the Yocto Project Summit 2022.11.
+> Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
+> ---
+>  .../rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb              | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.b=
+b
+> b/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb
+> index a4a7f90edfc3..5a8ff8fa9c96 100644
+> --- a/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb
+> +++ b/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb
+> @@ -23,9 +23,9 @@ LIC_FILES_CHKSUM =3D
+> "file://COPYING.GPLv2;md5=3Db234ee4d69f5fce4486a80fdaf4a4263 \
+>
+>  file://COPYING.LGPLv3;md5=3De6a600fd5e1d9cbde2d983680233ad02"
+>
+>  # Build fails when thumb is enabled:
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7717
+> -ARM_INSTRUCTION_SET_armv4
+> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7717-ARM_INSTRUCTION=
+_SET_armv4>
+> =3D "arm"
+> -ARM_INSTRUCTION_SET_armv5 =3D "arm"
+> -ARM_INSTRUCTION_SET_armv6 =3D "arm"
+> +ARM_INSTRUCTION_SET:armv4 =3D "arm"
+> +ARM_INSTRUCTION_SET:armv5 =3D "arm"
+> +ARM_INSTRUCTION_SET:armv6 =3D "arm"
+>  # Should be API compatible with libav (which was a fork of ffmpeg)
+>  # libpostproc was previously packaged from a separate recipe
+>  PROVIDES =3D "ffmpeg libav libpostproc"
+> --
+> 2.40.1
+>
+>
 
-[1]: https://pub.pbarker.dev/presentations/2022-12-01%20Yocto%20Project%20Summit%202022.11%20-%20Creating%20Friendly%20Layers%202022%20Edition/Friendly%20Layers%202022.pdf
+--000000000000447352061142793d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
+<div dir=3D"ltr">Thanks for this, Kevin. Could you push your patch as a Git=
+Hub merge request? That would help take advantage of the existing CI infras=
+tructure.<br clear=3D"all"><div><div><div dir=3D"ltr" class=3D"gmail_signat=
+ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div>--=C2=A0=
+<br></div><div>Andrei Gherzan=C2=A0<br></div><div>gpg: rsa4096/D4D94F67AD0E=
+9640<br></div></div></div></div></div><br></div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 5, 2024 at 10:2=
+9=E2=80=AFAM Kevin Hao &lt;<a href=3D"mailto:kexin.hao@windriver.com">kexin=
+.hao@windriver.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">Signed-off-by: Kevin Hao &lt;<a href=3D"mailto:kexin.hao@=
+windriver.com" target=3D"_blank">kexin.hao@windriver.com</a>&gt;<br>
+---<br>
+=C2=A0.../rpidistro-ffmpeg/<a href=3D"http://rpidistro-ffmpeg_4.3.4.bb" rel=
+=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.3.4.bb</a>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 6 +++---<br>
+=C2=A01 file changed, 3 insertions(+), 3 deletions(-)<br>
+<br>
+diff --git a/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistr=
+o-ffmpeg_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.=
+3.4.bb</a> b/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistr=
+o-ffmpeg_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.=
+3.4.bb</a><br>
+index a4a7f90edfc3..5a8ff8fa9c96 100644<br>
+--- a/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistro-ffmpe=
+g_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.3.4.bb<=
+/a><br>
++++ b/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistro-ffmpe=
+g_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.3.4.bb<=
+/a><br>
+@@ -23,9 +23,9 @@ LIC_FILES_CHKSUM =3D &quot;file://COPYING.GPLv2;md5=3Db23=
+4ee4d69f5fce4486a80fdaf4a4263 \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0file://COPYING.LGPLv3;md5=3De6a600fd5e1d9cbde2d983680233ad02&quot;<br>
+<br>
+=C2=A0# Build fails when thumb is enabled: <a href=3D"https://bugzilla.yoct=
+oproject.org/show_bug.cgi?id=3D7717-ARM_INSTRUCTION_SET_armv4" rel=3D"noref=
+errer" target=3D"_blank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=
+=3D7717<br>
+-ARM_INSTRUCTION_SET_armv4</a> =3D &quot;arm&quot;<br>
+-ARM_INSTRUCTION_SET_armv5 =3D &quot;arm&quot;<br>
+-ARM_INSTRUCTION_SET_armv6 =3D &quot;arm&quot;<br>
++ARM_INSTRUCTION_SET:armv4 =3D &quot;arm&quot;<br>
++ARM_INSTRUCTION_SET:armv5 =3D &quot;arm&quot;<br>
++ARM_INSTRUCTION_SET:armv6 =3D &quot;arm&quot;<br>
+=C2=A0# Should be API compatible with libav (which was a fork of ffmpeg)<br=
+>
+=C2=A0# libpostproc was previously packaged from a separate recipe<br>
+=C2=A0PROVIDES =3D &quot;ffmpeg libav libpostproc&quot;<br>
+-- <br>
+2.40.1<br>
+<br>
+</blockquote></div>
 
--- 
-Paul Barker
+--000000000000447352061142793d--
 
