@@ -1,170 +1,105 @@
-Return-Path: <andrei@gherzan.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98D0FC4829A
-	for <webhook@archiver.kernel.org>; Tue, 13 Feb 2024 12:24:24 +0000 (UTC)
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
- by mx.groups.io with SMTP id smtpd.web11.10426.1707827061150734926
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F25D5C48260
+	for <webhook@archiver.kernel.org>; Tue, 13 Feb 2024 13:25:54 +0000 (UTC)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+ by mx.groups.io with SMTP id smtpd.web10.11199.1707830745776124070
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Feb 2024 04:24:21 -0800
+ Tue, 13 Feb 2024 05:25:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=google header.b=l7Fngc3l;
- spf=pass (domain: gherzan.ro, ip: 209.85.216.54, mailfrom: andrei@gherzan.ro)
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-298ae92a7bbso313678a91.1
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 04:24:20 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=O2hT8rIF;
+ spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51032058f17so5273172e87.3
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 05:25:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gherzan.com; s=google; t=1707827060; x=1708431860; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1707830744; x=1708435544; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uccCkl8ejpWlZILBvprWsaQWl0MQHbHycWMd/rcG5eM=;
-        b=l7Fngc3lb/AtIyxQbITVH8uTuORnOKyyCaRia+ezg8Wci2jR20jB90m9NcBfGNP7CV
-         BfoVHmCV2bHVyD5fKu4g6KgHKInsoikMR9vmJYcu5jCeox4cfi0Ti2owc4vE0PJ0DStg
-         hIiqju9YjyqDqzaPxPaWx/lxJJWsqE7P+teZa/Qldhk/CLDC+8BCssLTGs4/h8sq9Bhf
-         sW5TXU6LkS0c9rRmkmtLimJNNw7eXsGjb0A6QbtjLJvzOIOpBHEFhDr5bQIPL7nY0oz+
-         n6hxq00mUk+HRll0BgBIH2zC+4VL0wVIcwN8aPLpnwiHdBSafQjm2g0202N78ewNipr3
-         chOA==
+        bh=NF6pUN0C7iXXpugxDsNuNmcDi/YpTty/C0gkgfLvr3Y=;
+        b=O2hT8rIFpq/hu2MKN5lRr++tHm7VbUMagtw0BSvJlemZ15xVosSVfm9t+0n+gEE/hv
+         s60kEVb80GJX0NMPCF8TXVEjNm589UbCviFSYkuI3vbJgV9rCSD6WeKxxhH61czaQ6yz
+         my7FY1zlr/E6StJpzLKLMKoOUX1yFbITLfHVrWUBXv37LMcX8UclZN2zEZEEXa+oz0Ha
+         ROrMXk0xREakEQUSkVvB+iP3kjq3hQ6kBe5UViLVcBnDr3HegXdmRhZasz6R14so9Pay
+         HO4XH1C5KPyVpuQiyF/o9k8UfIAbs63MNcCY15M56gDFxuetJoMoCNPnTHvygPrkbYF1
+         iy4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707827060; x=1708431860;
+        d=1e100.net; s=20230601; t=1707830744; x=1708435544;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uccCkl8ejpWlZILBvprWsaQWl0MQHbHycWMd/rcG5eM=;
-        b=hdny9UxU+J1tdZUZS0r5zRQElwQ2KK6Yy2QxnHa5ljBRUTtZzNF4tzTiq0+EGxbQta
-         49vFVAAFRNGdC4YTvOlMY2ijZfIfsgPT451wGqOTlQSbn+eqdB+7rIKpml3nr7It/Ce3
-         EjRXyRSDm4K/mBQTLZWoDTj6r/mc5QrX1XpTABu/9L/QphmvAfjr9JYszATGCFHPhM62
-         3ECYRAcAJPCF5FhAXn32dSs5zGZnGg3wWxOkqnF558rbaBqdsk8NzxlUldykRu5u61ED
-         nTS4DaK/krtJRa9JpRDR0UV67SFtrA2+6ATkCrks4jtKtvr3N0qdyhePLFmRcLNgDItB
-         giDA==
-X-Gm-Message-State: AOJu0Yw9kMsbv8u8LDkkVoIFTb8uyZkX949JdcS8Ah4/lUi2itItjB0z
-	w8YvRJSAsIC/1my4f0+qx6rAAhCwOyVdfgl1f3W5vakI0Jpdx0nJPKTixAV7+okeUXQNbh2MTqT
-	ep8WXJqY+BNntjsaE0nDNuajwG56+cJJ4DsOlqQ==
-X-Google-Smtp-Source: AGHT+IFqD1lUzJJ+jYXtk47JWkeAB3lWCnt0nq0Mq7BKRQzjgUr2UeSIKmZO7BUDPQQn8FHXk5aWOBrIO4Yc/98/Z0k=
-X-Received: by 2002:a17:90a:4a8d:b0:297:2315:de0b with SMTP id
- f13-20020a17090a4a8d00b002972315de0bmr3271157pjh.11.1707827060300; Tue, 13
- Feb 2024 04:24:20 -0800 (PST)
+        bh=NF6pUN0C7iXXpugxDsNuNmcDi/YpTty/C0gkgfLvr3Y=;
+        b=VwCRkyWNcmX8AxCSzWKlLcuKrN/iqiHb5xn/YbrGVmtfZZHWOOnR7IKHkIPdsfYsFs
+         aAimalAKj0/0/pVCSZdaVrIwjl9nkzFKMvnNYDqrs4xpFBBeiNB+vPs3nUblxYQr+1t7
+         Fd5cMbUk+5LZd1PvVKCY+D8hQ9Go7SnEv/ej5Zvr26NHEP4SkVUZ4XLZT9NptYaSZOOn
+         7sH/b1dJk99HoUT6tJhlRKRcR2CqJ3QFjUy1ixEy0WcqzDd0x0LhxTOSJ7n7A1QjldxQ
+         HpXfjNc01HwsU9LLELmdY1T2wE7Oe2OYk2irrOcPI2ENLJnSyK8Q8MT0Yy2ENdHZUA5g
+         JwpA==
+X-Forwarded-Encrypted: i=1; AJvYcCWgvcIglOO+MnOce5CkGofYe45+/mNE7FZVnrCRSEBpqXQeKmSpwRI2agWlZMSQS0AYMtj1+epDb9tqx7uTDd1b/dZLeCSTyK5MbyFB
+X-Gm-Message-State: AOJu0YzaYC1EWqZ+RTE41n69w/2gYYE2XM20jotyDm/y9W0EVwYOd9Xe
+	mfA/SRSGvCQMA8qXJrQK0i/dSkUI7Dv60tjRK3gwMOvebw/nP2ObjrtQ0JF7dIHK51zfUNaGYwp
+	RLoNjxtu5pKrC5I4Vyvnfjkyhjj8=
+X-Google-Smtp-Source: AGHT+IE0Q/85PODmTZi75Kw6ph0GYc1JcMPdivCyQ2IABixZ1t/1aDcBKS/HKIdQ/PcIV7JodTVuL9tyLeb2Ew5yjUg=
+X-Received: by 2002:a05:6512:3056:b0:511:8125:2333 with SMTP id
+ b22-20020a056512305600b0051181252333mr8685507lfb.39.1707830743724; Tue, 13
+ Feb 2024 05:25:43 -0800 (PST)
 MIME-Version: 1.0
-References: <20240205102910.3778516-1-kexin.hao@windriver.com>
-In-Reply-To: <20240205102910.3778516-1-kexin.hao@windriver.com>
-From: Andrei Gherzan <andrei@gherzan.com>
-Date: Tue, 13 Feb 2024 12:23:43 +0000
-Message-ID: <CAK18fxHRasqG=RjbFDTtHYhpiVt5zMav8qehi_p2nU6_xEh9Qw@mail.gmail.com>
-Subject: Re: [meta-raspberrypi][PATCH] rpidistro-ffmpeg: Fix old override syntax
-To: Kevin Hao <kexin.hao@windriver.com>
-Cc: Yocto Project <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000447352061142793d"
+References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
+ <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
+ <17ACA59E7A7FD97B.16230@lists.openembedded.org> <CANNYZj9X5qRSup7i9S=rtRpwo5nCNHp8VJOZAuvu5JzqhLYD_g@mail.gmail.com>
+ <f1c9d0f8cbf8ea1972aafac0c29690ca400178d7.camel@linuxfoundation.org>
+ <CANNYZj8tyOy=z3L=uM9L_R8uP6eZSUkYXm9BwvsU+ERpE9QcZw@mail.gmail.com> <018185898b86e2fccabf68570a6aec6039a0c6d6.camel@linuxfoundation.org>
+In-Reply-To: <018185898b86e2fccabf68570a6aec6039a0c6d6.camel@linuxfoundation.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 13 Feb 2024 14:25:31 +0100
+Message-ID: <CANNYZj_UMqZe+hDs2RzOPaLZzRmyg=8X74+HCwytN5616jZgNg@mail.gmail.com>
+Subject: Re: [OE-core] Core workflow: sstate for all, bblock/bbunlock, tools
+ for why is sstate not being reused?
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, Joshua Watt <jpewhacker@gmail.com>
+Cc: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 12:24:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62476
+ <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 13:25:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62477
 
---000000000000447352061142793d
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks for this, Kevin. Could you push your patch as a GitHub merge
-request? That would help take advantage of the existing CI infrastructure.
---=20
-Andrei Gherzan
-gpg: rsa4096/D4D94F67AD0E9640
-
-
-On Mon, Feb 5, 2024 at 10:29=E2=80=AFAM Kevin Hao <kexin.hao@windriver.com>=
- wrote:
-
-> Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
-> ---
->  .../rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb              | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+On Thu, 8 Feb 2024 at 14:42, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> hashserve.db is a full hash serve database. When we run a build without
+> specifying a hash serve to use, bitbake will start a local one and this
+> is the file which backs it. In a build with a remote hashserve, it
+> won't be present.
 >
-> diff --git a/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.b=
-b
-> b/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb
-> index a4a7f90edfc3..5a8ff8fa9c96 100644
-> --- a/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb
-> +++ b/recipes-multimedia/rpidistro-ffmpeg/rpidistro-ffmpeg_4.3.4.bb
-> @@ -23,9 +23,9 @@ LIC_FILES_CHKSUM =3D
-> "file://COPYING.GPLv2;md5=3Db234ee4d69f5fce4486a80fdaf4a4263 \
+> the unihashes file is bitbake's internal lookup cache. It exists so
+> that if the hashserve isn't local, we have a local lookup of our "last"
+> value.
 >
->  file://COPYING.LGPLv3;md5=3De6a600fd5e1d9cbde2d983680233ad02"
+> This means the file is good for the current (last) build not much
+> beyond that.
 >
->  # Build fails when thumb is enabled:
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7717
-> -ARM_INSTRUCTION_SET_armv4
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7717-ARM_INSTRUCTION=
-_SET_armv4>
-> =3D "arm"
-> -ARM_INSTRUCTION_SET_armv5 =3D "arm"
-> -ARM_INSTRUCTION_SET_armv6 =3D "arm"
-> +ARM_INSTRUCTION_SET:armv4 =3D "arm"
-> +ARM_INSTRUCTION_SET:armv5 =3D "arm"
-> +ARM_INSTRUCTION_SET:armv6 =3D "arm"
->  # Should be API compatible with libav (which was a fork of ffmpeg)
->  # libpostproc was previously packaged from a separate recipe
->  PROVIDES =3D "ffmpeg libav libpostproc"
-> --
-> 2.40.1
->
->
+> I'm not saying any of this entirely solves the problem at hand, just
+> that some of the data is there.
 
---000000000000447352061142793d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+So perhaps we need the following interface:
 
-<div dir=3D"ltr">Thanks for this, Kevin. Could you push your patch as a Git=
-Hub merge request? That would help take advantage of the existing CI infras=
-tructure.<br clear=3D"all"><div><div><div dir=3D"ltr" class=3D"gmail_signat=
-ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div>--=C2=A0=
-<br></div><div>Andrei Gherzan=C2=A0<br></div><div>gpg: rsa4096/D4D94F67AD0E=
-9640<br></div></div></div></div></div><br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 5, 2024 at 10:2=
-9=E2=80=AFAM Kevin Hao &lt;<a href=3D"mailto:kexin.hao@windriver.com">kexin=
-.hao@windriver.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">Signed-off-by: Kevin Hao &lt;<a href=3D"mailto:kexin.hao@=
-windriver.com" target=3D"_blank">kexin.hao@windriver.com</a>&gt;<br>
----<br>
-=C2=A0.../rpidistro-ffmpeg/<a href=3D"http://rpidistro-ffmpeg_4.3.4.bb" rel=
-=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.3.4.bb</a>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 6 +++---<br>
-=C2=A01 file changed, 3 insertions(+), 3 deletions(-)<br>
-<br>
-diff --git a/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistr=
-o-ffmpeg_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.=
-3.4.bb</a> b/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistr=
-o-ffmpeg_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.=
-3.4.bb</a><br>
-index a4a7f90edfc3..5a8ff8fa9c96 100644<br>
---- a/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistro-ffmpe=
-g_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.3.4.bb<=
-/a><br>
-+++ b/recipes-multimedia/rpidistro-ffmpeg/<a href=3D"http://rpidistro-ffmpe=
-g_4.3.4.bb" rel=3D"noreferrer" target=3D"_blank">rpidistro-ffmpeg_4.3.4.bb<=
-/a><br>
-@@ -23,9 +23,9 @@ LIC_FILES_CHKSUM =3D &quot;file://COPYING.GPLv2;md5=3Db23=
-4ee4d69f5fce4486a80fdaf4a4263 \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0file://COPYING.LGPLv3;md5=3De6a600fd5e1d9cbde2d983680233ad02&quot;<br>
-<br>
-=C2=A0# Build fails when thumb is enabled: <a href=3D"https://bugzilla.yoct=
-oproject.org/show_bug.cgi?id=3D7717-ARM_INSTRUCTION_SET_armv4" rel=3D"noref=
-errer" target=3D"_blank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=
-=3D7717<br>
--ARM_INSTRUCTION_SET_armv4</a> =3D &quot;arm&quot;<br>
--ARM_INSTRUCTION_SET_armv5 =3D &quot;arm&quot;<br>
--ARM_INSTRUCTION_SET_armv6 =3D &quot;arm&quot;<br>
-+ARM_INSTRUCTION_SET:armv4 =3D &quot;arm&quot;<br>
-+ARM_INSTRUCTION_SET:armv5 =3D &quot;arm&quot;<br>
-+ARM_INSTRUCTION_SET:armv6 =3D &quot;arm&quot;<br>
-=C2=A0# Should be API compatible with libav (which was a fork of ffmpeg)<br=
->
-=C2=A0# libpostproc was previously packaged from a separate recipe<br>
-=C2=A0PROVIDES =3D &quot;ffmpeg libav libpostproc&quot;<br>
--- <br>
-2.40.1<br>
-<br>
-</blockquote></div>
+bitbake -S export-hashes targets...
 
---000000000000447352061142793d--
+would save all relevant entries for the targets from outhash and
+unihash tables into a local file (similar to locked-sigs.inc creation
+with -S lockedsigs). This avoids exporting the entire database, which
+is both excessive and unnecessary, and at the same time ensures
+everything relevant is in the export (merely copying bb_unihashes.dat
+does not guarantee that).
+
+Then we'd also need a way to import the data, but I'm not sure where
+to put that. 'bitbake -S' is not suitable. A new command to
+bitbake-hashclient perhaps? But bitbake-hashclient doesn't discover
+where the hash server should be from bitbake config, and won't
+autostart it if/when needed.
+
+Alex
 
