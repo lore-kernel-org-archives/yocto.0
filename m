@@ -1,138 +1,85 @@
-Return-Path: <perceval_arenou@trimble.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79C25C48BC3
-	for <webhook@archiver.kernel.org>; Wed, 14 Feb 2024 14:27:02 +0000 (UTC)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
- by mx.groups.io with SMTP id smtpd.web11.42619.1707920813428111256
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D322C48BC3
+	for <webhook@archiver.kernel.org>; Wed, 14 Feb 2024 23:50:03 +0000 (UTC)
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+ by mx.groups.io with SMTP id smtpd.web11.2635.1707954593594146771
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Feb 2024 06:26:53 -0800
+ Wed, 14 Feb 2024 15:49:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@trimble.com header.s=google header.b=EdbD0jmG;
- spf=pass (domain: trimble.com, ip: 209.85.128.53, mailfrom: perceval_arenou@trimble.com)
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-411f17700ffso4401195e9.0
-        for <yocto@lists.yoctoproject.org>; Wed, 14 Feb 2024 06:26:53 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=OMH/h0SU;
+ spf=pass (domain: gmail.com, ip: 209.85.215.181, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5dbd519bde6so267451a12.1
+        for <yocto@lists.yoctoproject.org>; Wed, 14 Feb 2024 15:49:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=trimble.com; s=google; t=1707920811; x=1708525611; darn=lists.yoctoproject.org;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oTBhLJKf/jln9oM0o4omcWJdtxfWq3BHnEdOCJocVeo=;
-        b=EdbD0jmGfVI2Cgr9sqCuxVesj8GWxTNypCZwdyJy9cIGfOSkT7B6qiejebOvkfa5rO
-         jbNoLLR8R/FCMK8niZ2F1OZVJjReyWfFj1o7qPxdmOt1Ps2e5bkuHE7+2xwHQI728YHD
-         m6MI8WPnwoo1n26EA5RRaRcEMtIsTNjOc4Mj0=
+        d=gmail.com; s=20230601; t=1707954593; x=1708559393; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=60B9I3/UkHANp/6fcbs6KQjB1ap9HxfvMHmktbSmv4g=;
+        b=OMH/h0SUqUZkut0qhYGZQKcfnGjNX/ikaXmXNtPw/2Tj8Y3KKC8fWu0mdX+HFE9Ca1
+         4lCzul0iCGE4VDCtMwAcjmJh1hBQroYM//7nD/Lt7FV8nJdwgMD4LgsYtROuPHQ0NYZ2
+         +zmG6ZiDlywNKQ3R3VDIUoQgGr4qR+TIDo7dhqHsj/g0n648fvagyzavXeL1VXHsCopY
+         4s5ODgTBpIvlqaw8No/+ZINRblLfhC6NDPZAPdHKK0w2uNN2r6TwJAMI5uWhMLxch4M7
+         QDuPlIVlkWy55Buwgv/BFtfKct4gUrXJlXACneW4CJOfoc+6tDL7/U+qumJS5eBrbG+X
+         3hlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707920811; x=1708525611;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oTBhLJKf/jln9oM0o4omcWJdtxfWq3BHnEdOCJocVeo=;
-        b=oqYUKoLbT8DpHt/d7MrYucWeTCIbVaRh2HNj+WbDfi65cr1ZhQ3byfwyxJlQi27OBK
-         tKW3Nqnkf9kMmi0AnoaG5Q9Ua1U+2iF7gOmAImIk/iENrPuoNiFvk8Xu6nLuTKGgz7PZ
-         zRny1SccZw8FxlsTgUKCxRbqA6n2LyBvZqHpQxj64FzQ3bcJCPIqiNVLALW+WwSEBXTV
-         vt4QL866o+4aJEbIMjblowi6umGOZ4Yv5I4xh3gGk9kv8mNJdwD48Lu0t0vjnmwVlgkj
-         ZHOuVoqmMlJJbT6W5hYfw9DnRNABKDuQp9nUndvuXC9OMSQbMngRS2xqPQHMtLCzmK7z
-         e0PQ==
-X-Gm-Message-State: AOJu0YzvyuZ6rmHL3TdF6RYpCLyi/HCITgCLr6jHghx5yXVH9Luf1yNh
-	LcZlryMeyxzGLGxHXppKL2anUHOPggvRxDP1f7BqqEJE8ULH6rfE5jI/1fsrOmY=
-X-Google-Smtp-Source: AGHT+IGhGMfvhR0ZKnim4KQJaqJf13KBtv2aOLFqNIwHKXRWK0+U3ny5lG/7DypSRS5R1PP6c7IYlw==
-X-Received: by 2002:a5d:4007:0:b0:337:c73f:db0f with SMTP id n7-20020a5d4007000000b00337c73fdb0fmr1684154wrp.41.1707920811344;
-        Wed, 14 Feb 2024 06:26:51 -0800 (PST)
-Received: from [10.2.87.19] (lputeaux-658-1-190-18.w80-11.abo.wanadoo.fr. [80.11.239.18])
-        by smtp.gmail.com with ESMTPSA id n12-20020a056000170c00b0033ce5b3390esm2493694wrc.38.2024.02.14.06.26.50
+        d=1e100.net; s=20230601; t=1707954593; x=1708559393;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=60B9I3/UkHANp/6fcbs6KQjB1ap9HxfvMHmktbSmv4g=;
+        b=POGn0Rn1lJj9P2EVi0Xdor030c/w0T5FC2yPRKv/Xq5v+Hmu3KoNBaAIlTuhS6lTwd
+         Caj/umlaEQPeyUCXHRax2e62d0qtsLCgunozwu4GS1iwI9rcw2hfyZcinTqHbQx/fhab
+         hL0U5+GhEDm3WH5gx1IkSuBYTpVSJmExByFKLwHFb2OLun9LV6e3PIPliAGPMNPhQ8he
+         1usxxG6g+955l0lB4v9P1QmClh9H9nxbLUgHRh3oNVUrO4np9FwI3BBG6I70hiUxTU7R
+         T2k7hecIc52RY0EjyMvojzpe5qubStz91UwjOsl+IpnzOGFekQoNnOyjTiF94qZWZdib
+         0vQQ==
+X-Gm-Message-State: AOJu0YxjvIz3vSdhivr0Y0ky7mgJ6z+HfS44iZw1wLlOvF0N2YQOlwoF
+	VH5wxYfXgnKgOmZ1F4XiabAkzFjka7N3TS1n8gG8HW/kUADjPmWnyCjmIdzHDrc=
+X-Google-Smtp-Source: AGHT+IHy1Z9ZM9xpgyeKtRkQvx7ks6bQG33pqKaOJ6fQl0S+F8IYF3tfZGoH35lDPw7deG8CKsb1vw==
+X-Received: by 2002:a05:6a20:d04f:b0:19c:a2ef:c45e with SMTP id hv15-20020a056a20d04f00b0019ca2efc45emr364386pzb.37.1707954592480;
+        Wed, 14 Feb 2024 15:49:52 -0800 (PST)
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9d80:4380::b58c])
+        by smtp.gmail.com with ESMTPSA id fb6-20020a056a002d8600b006e0515dc44dsm16547pfb.178.2024.02.14.15.49.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Feb 2024 06:26:51 -0800 (PST)
-Date: Wed, 14 Feb 2024 15:26:45 +0100
-From: Perceval <perceval_arenou@trimble.com>
-Subject: Re: [yocto] extend python3 manifest to add a module
-To: Ross Burton <Ross.Burton@arm.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Message-Id: <L4OU8S.IKKLTX9ZETHK2@trimble.com>
-In-Reply-To: <8B0A80A4-7D4E-4ADE-A645-0C7DBBBDE8E7@arm.com>
-References: <QIBU8S.RL2ZWWVWX0423@trimble.com>
-	<CF199512-3ED8-4845-AE0D-3F3FEFCD02A6@arm.com>
-	<42NU8S.WT0Y3BGIDTIA1@trimble.com>
-	<8B0A80A4-7D4E-4ADE-A645-0C7DBBBDE8E7@arm.com>
-X-Mailer: geary/40.0
+        Wed, 14 Feb 2024 15:49:52 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: twoerner@gmail.com,
+	Khem Raj <raj.khem@gmail.com>
+Subject: [meta-rockchip] [PATCH] layer.conf: Update for the scarthgap release series
+Date: Wed, 14 Feb 2024 15:49:47 -0800
+Message-ID: <20240214234947.2221729-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="=-Rd7KfF4CiCqlg5Gclyxw"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 Feb 2024 14:27:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62491
+ <yocto@lists.yoctoproject.org>; Wed, 14 Feb 2024 23:50:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62492
 
---=-Rd7KfF4CiCqlg5Gclyxw
-Content-Type: text/plain; charset=iso-8859-13; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thank you very much,
-yes indeed :)
-
-Perceval
-
-On mer., f=E9vr. 14 2024 at 14:15:46 +0000, Ross Burton=20
-<Ross.Burton@arm.com> wrote:
-> On 14 Feb 2024, at 14:03, Perceval <perceval_arenou@trimble.com=20
-> <mailto:perceval_arenou@trimble.com>> wrote:
->>=20
->>  It seems that the dataclasses is not packaged in a dedicated=20
->> package on the dunfell branch according to sources here =20
->> <https://git.openembedded.org/openembedded-core/tree/meta/recipes-devtoo=
-ls/python/python3/python3-manifest.json?h=3Ddunfell>
->>  So it ends up in python3-misc which have a lot of things:
->>  $ oe-pkgdata-util find-path /usr/lib/python3.8/dataclasses.py
->>  python3-misc: /usr/lib/python3.8/dataclasses.py
->>=20
->>  Should we package it in a dedicated package or another one? What=20
->> would you suggest?
->=20
-> For master I just sent a patch moving it into -core, because it=FFs a=20
-> fairly fundamental package.
->=20
-> For dunfell, moving it now is probably not a great idea, but at least=20
-> you know now what package to RDEPEND on to get the class.
->=20
-> (or, you can RDEPEND on python3-modules and you get the entire=20
-> standard library)
->=20
-> Ross
-
-
---=-Rd7KfF4CiCqlg5Gclyxw
-Content-Type: text/html; charset=iso-8859-13
-Content-Transfer-Encoding: quoted-printable
-
-<div id=3D"geary-body" dir=3D"auto"><div>Thank you very much,</div><div>yes=
- indeed :)</div><div><br></div><div>Perceval</div></div><div id=3D"geary-qu=
-ote" dir=3D"auto"><br>On mer., f=E9vr. 14 2024 at 14:15:46 +0000, Ross Burt=
-on &lt;Ross.Burton@arm.com&gt; wrote:<br><blockquote type=3D"cite"><div cla=
-ss=3D"plaintext" style=3D"white-space: break-spaces;">On 14 Feb 2024, at 14=
-:03, Perceval &lt;<a href=3D"mailto:perceval_arenou@trimble.com">perceval_a=
-renou@trimble.com</a>&gt; wrote:
-<blockquote>=20
- It seems that the dataclasses is not packaged in a dedicated package on th=
-e dunfell branch according to sources here  <a href=3D"https://git.openembe=
-dded.org/openembedded-core/tree/meta/recipes-devtools/python/python3/python=
-3-manifest.json?h=3Ddunfell">https://git.openembedded.org/openembedded-core=
-/tree/meta/recipes-devtools/python/python3/python3-manifest.json?h=3Ddunfel=
-l</a>=20
- So it ends up in python3-misc which have a lot of things:
- $ oe-pkgdata-util find-path /usr/lib/python3.8/dataclasses.py
- python3-misc: /usr/lib/python3.8/dataclasses.py
-=20
- Should we package it in a dedicated package or another one? What would you=
- suggest?
-</blockquote>
-For master I just sent a patch moving it into -core, because it=FFs a fairl=
-y fundamental package.
-
-For dunfell, moving it now is probably not a great idea, but at least you k=
-now now what package to RDEPEND on to get the class.
-
-(or, you can RDEPEND on python3-modules and you get the entire standard lib=
-rary)
-
-Ross</div></blockquote></div>
---=-Rd7KfF4CiCqlg5Gclyxw--
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 10bcce6..6238f33 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip = "1"
+ # This should only be incremented on significant changes that will
+ # cause compatibility issues with other layers
+ LAYERVERSION_rockchip = "1"
+-LAYERSERIES_COMPAT_rockchip = "nanbield"
++LAYERSERIES_COMPAT_rockchip = "nanbield scarthgap"
+ LAYERDEPENDS_rockchip = "core meta-arm"
+ 
+ BBFILES_DYNAMIC += " \
+-- 
+2.43.2
 
 
