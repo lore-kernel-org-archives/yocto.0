@@ -1,163 +1,102 @@
-Return-Path: <saswatinayak2010@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10FAAC4829D
-	for <webhook@archiver.kernel.org>; Wed, 14 Feb 2024 06:10:20 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web10.35822.1707891011398621550
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C85DC4829D
+	for <webhook@archiver.kernel.org>; Wed, 14 Feb 2024 06:31:20 +0000 (UTC)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+ by mx.groups.io with SMTP id smtpd.web10.36226.1707892278594032470
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Feb 2024 22:10:11 -0800
+ Tue, 13 Feb 2024 22:31:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=GSNMBibT;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: saswatinayak2010@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51182ece606so493242e87.0
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 22:10:11 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=iQm36kCe;
+ spf=pass (domain: gmail.com, ip: 209.85.167.51, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5114b2b3b73so5979442e87.0
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Feb 2024 22:31:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707891009; x=1708495809; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YoCj9YbJXG3/kPa5uppwukzBdzwFeXZABDrPOpSomnw=;
-        b=GSNMBibT5vH7F9huMjTFUBccD2Qn+NQYm7Kjlgw5IVLQm1xmDbD8iECCvXTRB72wec
-         gYJQ2JAScRRzsklVqHfWomvT/eW387tMlnVmDFpuM+NTdfM+t9GVO5ro+hf1IOSzGBTz
-         mJ7OznryFurns6gYkQ9kQGn3IlISnAww+teGDKFGLns/y9wNc1NQ+9xU+7Q3jtaUuEG0
-         hJlq1QVFc/dYEL6OBruPb/FJMEXi9KsiQEzEvdpnB+TC+WkkRi+gh46mWo6PuFfJVqF8
-         YMgHvyANxI+RfOkWn2n40yuHs8MDkIV2s51NtidmXVUIGfAYYGACqBHqtRRrAlcOPJgd
-         xtLg==
+        d=gmail.com; s=20230601; t=1707892276; x=1708497076; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vwDg3LtLhx8D65LSKvsTb5HTlfSl8EOfteQruf2zA38=;
+        b=iQm36kCeI7YOXwxPUiurdxn8m7FsHIhbhZ57UPkwQwgjXKjCWLYdhWbFQEK0xAnLKp
+         FxixEn9YrZrHmkKIY3+j7F9v56ddMagZHodyqbo2FA8pnSQ3Kl+SAu9H7lAkCXt8R8mG
+         Dl3goRudOU9pYxiRaSpHnJ7DlSXzIWEVhwsfUdKDf73fwvZ6grO48/L0/RPAdbf7kPzD
+         X4WHI2PzGom9ukl12pjv7LGD8AfmWd51yW0IL0dAKECQO7XeCCpiBhWFzQIbVgRSPJN6
+         dqc9nqYCCrmEWmxIpJiRebDcSPtkoVAWByfmgY2qCnD5PjobHV2uo8oYiA8weCBh+jTI
+         rR1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707891009; x=1708495809;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YoCj9YbJXG3/kPa5uppwukzBdzwFeXZABDrPOpSomnw=;
-        b=xQPItrAe//bjF0Nuno5gIrR8l9OTg045QTPjKR+KoES8+5OkXTOdjITc28Yc+hcBHq
-         ZGyUuAjjNJfOD0MdDBgX5nBtS8cSP0IGuiO1EZhOA1tGacbD0vqIQOkPQRYmilfK7rXD
-         XonmMK3YL+GOI1R2pLsWOLWpEQgYM4RIyD7QoZjERL7OYCml0mRvk9/0mUjY+qHpeKZ9
-         MxNavN7CsDdr2lS/T10kyCrtlWTDGvkdNd9LrwinleFuivhOIgN1Q9y8jNsoS+1ejHhy
-         lMYCEBOJW5Erc4NTv8lP/qK4QjEViAtLJkuhgJugQ8U2o4kxHwwuZ12w/Vn6ypoP1uZu
-         Bnjg==
-X-Gm-Message-State: AOJu0YzJu22dseaYuFFJmmuGN+NeLWjNFluSXZ/4uo6c5DeVRugAP9Ao
-	DLDO95XF0F1NdqVLTCZXNHksbn3HDFlzePca9SY8iCC5ubk8g7eIgm/GxsEvvSmoIIrPv9pItyd
-	ygrrFmjEWufQudXA/UgJHM8jr1/8=
-X-Google-Smtp-Source: AGHT+IEkdAnAjUGu/situpIN4lMJH128mUM5FmW69+ldlGTs6k15/LxnvpiHP6eYycwT3x7BU2ptIftOLy7ZT40hWsc=
-X-Received: by 2002:ac2:5613:0:b0:511:a049:7a7c with SMTP id
- v19-20020ac25613000000b00511a0497a7cmr280284lfd.30.1707891009263; Tue, 13 Feb
- 2024 22:10:09 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707892276; x=1708497076;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vwDg3LtLhx8D65LSKvsTb5HTlfSl8EOfteQruf2zA38=;
+        b=Dvzzy9ST7Ic8pgN81SDzNcuX99Lr2s/6BXRJBPlJtBsmiudPowJZXBxCAA7S+8+foL
+         +YTiMxoRHfHrDLeQwNs1QimSy10w5aUdHi+eAaAhCTyStcweAtbdFUVu8iMz0aYMseM0
+         aSqFLjIe6UD39pUQiI4p2cMlJUsoOwU2vwCWN20WlxZxZmLymwqgV2yxsaNY23vbGZVO
+         9FLDccKdvBC8Gj1RTNvZZzZndu4yH4M+IGtN/ot4N6f6ko/D7zVzZRpf4eFjKjwVanAh
+         +mByEU4IuH7HkEDWa8yIh/f7ktU22i9KO/sFBCsh+EvJEwcC5/hGIhyNG/a8LKTb6UxG
+         7I7g==
+X-Forwarded-Encrypted: i=1; AJvYcCW+mJD6pTJd322/hvu2AYDD8Xq/axoszoD59hfq8eK2mYBcB1Um3D6pHjPsZDskwOpYplLxvdo/gtu4SpuEcqRAgn5YYgRrH+IELQHg
+X-Gm-Message-State: AOJu0YywbIx6qyWf+VNdzAuRnITSnaFZXe2tfDPuRkua+M/rmaMYLZWa
+	ahT6tK1whNQnUzBqd6M5SgBJgYm2Ll/sD3FsmhXEcEr03ADEHgxFue+c15JyVeamdxnxBKs8ond
+	VfQX+MFxk7jrO8koZVPcyEcnLQ18=
+X-Google-Smtp-Source: AGHT+IGAi5b9ldhnB8anFvssA/zL/7G5au85uaAP7vq42Gbq4liEP51kZeZzYV3qin6TwxtBWrcf7PCNJiT8RaSCCQY=
+X-Received: by 2002:a05:6512:55c:b0:511:830d:c0a7 with SMTP id
+ h28-20020a056512055c00b00511830dc0a7mr1248406lfl.45.1707892276321; Tue, 13
+ Feb 2024 22:31:16 -0800 (PST)
 MIME-Version: 1.0
-References: <oOqR.1707584165907539093.EjWg@lists.yoctoproject.org> <c8debf1e-267f-40e0-bf8b-378d73ecaf54@pbarker.dev>
-In-Reply-To: <c8debf1e-267f-40e0-bf8b-378d73ecaf54@pbarker.dev>
-From: Saswati Nayak <saswatinayak2010@gmail.com>
-Date: Wed, 14 Feb 2024 11:39:58 +0530
-Message-ID: <CAKe-BNpXuh3+fGTyrs5H+Wamxz-JsS9f7xn8kkMerM9r29-x1A@mail.gmail.com>
-Subject: Re: condition based bbapend compilation
-To: Paul Barker <paul@pbarker.dev>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ec1cfc0611515c10"
+References: <CAK5yBb9gO+WOJrv4TArzXK_1Bxu5AORp2oi=P-v=2nn6PgJE5Q@mail.gmail.com>
+ <CANNYZj9QpstUj_A8Vb2RbiaFGZkHkFjHkUfF=E1HR-nDJ_Vk6w@mail.gmail.com>
+ <17ACA59E7A7FD97B.16230@lists.openembedded.org> <CANNYZj9X5qRSup7i9S=rtRpwo5nCNHp8VJOZAuvu5JzqhLYD_g@mail.gmail.com>
+ <f1c9d0f8cbf8ea1972aafac0c29690ca400178d7.camel@linuxfoundation.org>
+ <CANNYZj8tyOy=z3L=uM9L_R8uP6eZSUkYXm9BwvsU+ERpE9QcZw@mail.gmail.com>
+ <018185898b86e2fccabf68570a6aec6039a0c6d6.camel@linuxfoundation.org>
+ <CANNYZj_UMqZe+hDs2RzOPaLZzRmyg=8X74+HCwytN5616jZgNg@mail.gmail.com>
+ <e26e53be93a4f34b75e3e66becbaa4c6ac15133d.camel@linuxfoundation.org>
+ <CANNYZj_GFnmvmYRNGBFkivTNY7Xi-Ok3GoDEJ7+wO3A=fW3JQg@mail.gmail.com> <CAJdd5Ga9nd+smcy2426QKTEF1nOPQhqOLpXrFmb0w9bb4Cov4g@mail.gmail.com>
+In-Reply-To: <CAJdd5Ga9nd+smcy2426QKTEF1nOPQhqOLpXrFmb0w9bb4Cov4g@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 14 Feb 2024 07:31:04 +0100
+Message-ID: <CANNYZj8ZD55bwRaZB-cX5SmktFU2Z-3VTVR9dkzoiX9XKv5wjQ@mail.gmail.com>
+Subject: Re: [OE-core] Core workflow: sstate for all, bblock/bbunlock, tools
+ for why is sstate not being reused?
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 Feb 2024 06:10:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62484
+ <yocto@lists.yoctoproject.org>; Wed, 14 Feb 2024 06:31:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62485
 
---000000000000ec1cfc0611515c10
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thank you Khem and Paul.
-I was also trying some different ways. We can keep the append file in the
-dynamic-layers directory and will use the BB_DYNAMIC flag , which helped me=
-.
-
-Thanks
-Saswati
-
-On Tue, Feb 13, 2024 at 5:09=E2=80=AFPM Paul Barker <paul@pbarker.dev> wrot=
-e:
-
-> On 10/02/2024 16:56, saswatinayak2010@gmail.com wrote:
-> > Hello All,
-> >
-> > Seeking assistance to identify a FLAG that allows the application of a
-> condition-based bbappend file during the image compilation process. Any
-> guidance or insights would be greatly appreciated.
-> >
-> > For example If 1 is set in the flag, it will indicate inclusion, while =
-0
-> will signify exclusion.
-> >
-> > Please anyone help me with an example.
+On Tue, 13 Feb 2024 at 15:29, Joshua Watt <jpewhacker@gmail.com> wrote:
+>> Yes, but I'd like to replicate what bitbake does: check configuration,
+>> start the local server if needed, and only then do the mass-import
+>> from the file.
 >
-> You can move your bbappend contents to a .inc file, e.g. 'example.inc'.
 >
-> Then in the bbappend file, you can conditionally include your .inc file
-> with something like:
->
->     require ${@bb.utils.contains('FLAG', '1', 'example.inc', '', d)}
->
-> There are some more tricks in the slides for my talk "Creating Friendly
-> Layers, 2022 Edition" [1] from the Yocto Project Summit 2022.11.
->
-> [1]:
-> https://pub.pbarker.dev/presentations/2022-12-01%20Yocto%20Project%20Summ=
-it%202022.11%20-%20Creating%20Friendly%20Layers%202022%20Edition/Friendly%2=
-0Layers%202022.pdf
->
-> Thanks,
->
-> --
-> Paul Barker
+> Sorry for chiming in so late; I think you are on the right track though. =
+Exporting/importing bb_unihashes.dat is the think to do instead t of the en=
+tire database (which you may not even have if it's remote). That should at =
+least let you reuse any sstate file that is in that file. Importing the dat=
+a as the new cache is (probably) fine and the easy first step, but be aware=
+ it means you probably won't be able to find equivalent hashes that are der=
+ived from the imported data, so you'll be looking at more rebuilding than y=
+ou might expect if you change something. Reporting the hashes to the server=
+ might be an option also, but I don't know if the cache file has all the in=
+formation to do that correctly... Have to look
 >
 
---000000000000ec1cfc0611515c10
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Let's then pick only the low hanging fruit first: add 'bitbake -S
+unihash-cache' which reuses existing api and code behind it (that was
+written for esdk). 'Importing' it only requires placing the file in
+build/cache/ on the other end. The goal is to get to a working build
+replication tool that can be tested.
 
-<div dir=3D"ltr">Thank you Khem and Paul.<div>I was also trying some differ=
-ent=C2=A0ways. We can keep the append file in the dynamic-layers directory =
-and will use the BB_DYNAMIC flag , which helped me.</div><div><br></div><di=
-v>Thanks</div><div>Saswati</div></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 13, 2024 at 5:09=E2=80=AFPM Pau=
-l Barker &lt;<a href=3D"mailto:paul@pbarker.dev">paul@pbarker.dev</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 10/02/2=
-024 16:56, <a href=3D"mailto:saswatinayak2010@gmail.com" target=3D"_blank">=
-saswatinayak2010@gmail.com</a> wrote:<br>
-&gt; Hello All,<br>
-&gt;=C2=A0 <br>
-&gt; Seeking assistance to identify a FLAG that allows the application of a=
- condition-based bbappend file during the image compilation process. Any gu=
-idance or insights would be greatly appreciated.<br>
-&gt;=C2=A0 <br>
-&gt; For example If 1 is set in the flag, it will indicate inclusion, while=
- 0 will signify exclusion.<br>
-&gt;=C2=A0 <br>
-&gt; Please anyone help me with an example.<br>
-<br>
-You can move your bbappend contents to a .inc file, e.g. &#39;example.inc&#=
-39;.<br>
-<br>
-Then in the bbappend file, you can conditionally include your .inc file<br>
-with something like:<br>
-<br>
-=C2=A0 =C2=A0 require ${@bb.utils.contains(&#39;FLAG&#39;, &#39;1&#39;, &#3=
-9;example.inc&#39;, &#39;&#39;, d)}<br>
-<br>
-There are some more tricks in the slides for my talk &quot;Creating Friendl=
-y<br>
-Layers, 2022 Edition&quot; [1] from the Yocto Project Summit 2022.11.<br>
-<br>
-[1]: <a href=3D"https://pub.pbarker.dev/presentations/2022-12-01%20Yocto%20=
-Project%20Summit%202022.11%20-%20Creating%20Friendly%20Layers%202022%20Edit=
-ion/Friendly%20Layers%202022.pdf" rel=3D"noreferrer" target=3D"_blank">http=
-s://pub.pbarker.dev/presentations/2022-12-01%20Yocto%20Project%20Summit%202=
-022.11%20-%20Creating%20Friendly%20Layers%202022%20Edition/Friendly%20Layer=
-s%202022.pdf</a><br>
-<br>
-Thanks,<br>
-<br>
--- <br>
-Paul Barker<br>
-</blockquote></div>
-
---000000000000ec1cfc0611515c10--
+Alex
 
