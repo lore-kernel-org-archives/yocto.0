@@ -1,136 +1,145 @@
-Return-Path: <quentin.schulz@theobroma-systems.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CA15CC4829E
-	for <webhook@archiver.kernel.org>; Thu, 15 Feb 2024 17:48:11 +0000 (UTC)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.139])
- by mx.groups.io with SMTP id smtpd.web11.24085.1708019281891452103
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BF15CC4829E
+	for <webhook@archiver.kernel.org>; Thu, 15 Feb 2024 17:57:41 +0000 (UTC)
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+ by mx.groups.io with SMTP id smtpd.web11.25197.1708019858726489431
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Feb 2024 09:48:02 -0800
+ Thu, 15 Feb 2024 09:57:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=MCW3gnTS;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.21.139, mailfrom: quentin.schulz@theobroma-systems.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ILYdvcSskp8XLDlxtMZzFTYv8tbm6IGcGeLBud2aldzzDAlIa1/AX04elouG6C2eeQJ5TNyjlWohvIlUE8wHA1X+YGDB4nB9atDRSynwh3kv+wMR7HAZD0HNT+7bGUeJcZTnLUpr3vFbjuzGkMSWY8kjpDJs53AlQVPJOgB6H3SX+p7DkcmW63TxIP/xCmGHSXHKY0uh8ZXq8YWqTLXVKf5PbTCwwsexXCt/814+NPdKpca6O2OEtnP8eULDs5oHdOiBFAggftSAxjsuzVK1jXs3eprgVmq0q/139NvksRrWeT6ckwxVdEH7Hpi7W5JUToczp5NDEsnfANJ2nzNNwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kldNI+mAAF+FJqAHU/UErXVsnxCU651Dw3Ej277VN8w=;
- b=QsFnO9x2Q0o5QZJIq0UxvlaGq8lI+eHo+gbYVh85ct8UVqFMc8E3sBsBiKQzesNFjkd4L+j+zGprhxedURT9XeL1bN765M3LAComE300Wwks0Elw4NzkZfUjWje//ieRcIUEQAeeHJ1GFCKi57z6tjyuFiTz8F4h16J/Wja5wRngjQ09wpCzjvR24CjPe6c16wRi/w2kl4AaAjATYF2F3dkbUHYCMlbJsLgMhlr2fRO6QnNgkeFba34rFbjLFlW8vB99LuV+N/9yXFETWQy8eTC7L5sKdmBLm420VhZ7AgaDcWnXsvY9mqEoXqadv+ZLVomwbFeXZKj8ptDl9k45/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kldNI+mAAF+FJqAHU/UErXVsnxCU651Dw3Ej277VN8w=;
- b=MCW3gnTSaz5O/7hrex0acYMobaF2gnA4i2UKejlroeBA7kB5OXux9fNKYfwIDjJwyNJq6gYS427/KDOdUGXsrtDohAwOmaw6l0MaYwg6HU6NehgczRSj2T5M5r8IRbHqaoLfRX9HtKYfVdcIDCU7pUvJjHZ495+Thrb1zgTPdu75B2TvpsE/ezlpAVl70iyFX++0yfzWriPLYIZtGsxV3edoLuPH67uV8mPKJ+BC01TYujp+EKeZu8StxAg5TnC6CdBhyF3OAOqelMSN2pY0GjrVwe07WkrEBIa+nhy0wEwvqLVJw+3C2sAdum9xLxBu51SS7OYjHsF77PUelxpkPg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
- by VI1PR04MB6989.eurprd04.prod.outlook.com (2603:10a6:803:131::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Thu, 15 Feb
- 2024 17:47:57 +0000
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::550d:ad96:e3cb:9a6e]) by DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::550d:ad96:e3cb:9a6e%5]) with mapi id 15.20.7292.029; Thu, 15 Feb 2024
- 17:47:57 +0000
-Message-ID: <bd0beb98-0674-48a2-af32-89360a5798f5@theobroma-systems.com>
-Date: Thu, 15 Feb 2024 18:47:55 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [meta-rockchip][PATCH 4/4] wks file cleanup
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org, twoerner@gmail.com
-References: <20240212202342.37778-1-twoerner@gmail.com>
- <20240212202342.37778-4-twoerner@gmail.com>
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20240212202342.37778-4-twoerner@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0105.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a1::6) To DU2PR04MB8536.eurprd04.prod.outlook.com
- (2603:10a6:10:2d7::10)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=b6XEDGZB;
+ spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2906773c7e9so895083a91.1
+        for <yocto@lists.yoctoproject.org>; Thu, 15 Feb 2024 09:57:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708019858; x=1708624658; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j2T0coStblxguFx/p8OSowH6sG2BpnTWVSECMAzo4/E=;
+        b=b6XEDGZBBK/5nHGeU4DP0VI+eh0zW8SiAugV7KWX4BSXM5SsknuXP/lBNyO6Rv/nQ9
+         Z574315yjmaEpZMKMbKxI27N3WBGe6uIHOEO5NU8JPMJDE+tZmT4a06prlRamHjWqEKS
+         RSgE+OCS0t1xgHCLLSo9Zfgm3y4pPa8uoPyqtOdUsfnGM/N1aGrEbuopSesoLeJxA9kF
+         6kmHSldwksIk/6CsUY2cxlA+M61o6T1gNudVS9FV2YYi5VKN5WJKnzq+L2vTAHyQBl8X
+         TBfHrRkUwujGqv7nWVt6sYewnA27VZuFefr/Bc64XvB2CxLq6X3L3ITDjGTBqB3dsTFI
+         uz1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708019858; x=1708624658;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j2T0coStblxguFx/p8OSowH6sG2BpnTWVSECMAzo4/E=;
+        b=YLBOKuzfsIZitmIMnW56L0B9C5Q2Ni5WEgOJXY1zGv0yAybBVAYZLlmlk38gQtXZtJ
+         VZGnVNBOZjaLPQU1QQr7ersvSlsfINgMppldQCDMNxOm+MTE4My1omHEeJS7R09Pchki
+         8rsIT7mmAtzStT8pUWElnD448sEzUfU5esExCxDVzsfDPoQuC43BF+xtyboZzQHweDjH
+         AhkISVHoDUoPDCqYFKrwEO2TX/y4d78WzyR29Guykn2GRw1fHS8uhSUzKHB9Y85B3wnI
+         7XzeoTY9HdxeC/SHr0/g+MvOtEsH6n993gi66Y4e7CSn8jAjFakE7ffiWaYURfsJr25p
+         omXA==
+X-Gm-Message-State: AOJu0YxPNpFIOhmyM8IPdLUZRgpIyYuYFDJ53zb9CNZbpZWZEpYnD26T
+	M+GbVMspTYm5qlkpGcSuEYkgpIiySc2d4EO3Dc1Ngo5R4wKlKsDvLRwRf58i+CE868ZGONdyore
+	ZTvV3VNwhq5NfyxSaKylBEd8BDiT35+xqghU=
+X-Google-Smtp-Source: AGHT+IEOlVOz5v5yBJCFR+cMrwJLEySdGFq3xWoypbqFYMnu78L6bLE4jvRMq62NAtZB2/fg7IblYqR4sNkvNEVfDOU=
+X-Received: by 2002:a17:90b:19c5:b0:298:a457:d1c2 with SMTP id
+ nm5-20020a17090b19c500b00298a457d1c2mr2261710pjb.17.1708019857691; Thu, 15
+ Feb 2024 09:57:37 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|VI1PR04MB6989:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83ebb832-2f95-4948-e703-08dc2e4e3e70
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	miZoMcZEcVRYK1AK4IkMBB6OWPTCF6OjBqcqEvrpjUv01ZQQQ+bPsnX5M26OX9tBdoVB61mbxbCWrjyzx7WyPAd+Px4z7SlTUWfBoPkvYJNYdreo9eNHksERAbSgWtITHgNktlopCc5DF1qbcidg+YKCM8vqqgNKI+ZQLxNALorbwh/bS5ebyPX/t0QgZN1TnCTAkOZ05CeTjT8L3S0BuokYBY/A5dFkQ0rZz0kxPqZUokF78Ut3jL2MyqDEEE9Rc79WMktOM7m7SWjN8BpEn9vKzWjGCKQhQAsq/skPi6nuUCgXWsZY20xBQCjb3lO40Ku33kBUVw0aNObB8rLQ1LDf+8BP0r1xcqni6VpoxcAmrbNdABgtYiCitnF/t7bx1RhcL9eharX4KB/b2K01QW1x4hRmKPextdkdH4I0QDyLtpXk3UofXzGIhDH8bGXdhFm9OkD+uBjlxz+aaAf+tT3tJ6i5Q1EGUr/FLb157+jD/mrxrZ0udNXx7Ov7+jKiHGBSGB/0Dcabu2NhhVujlpagm95dHRMCrGl5aaEBELiZko5lp3e2NnX5pdDAuEZ0
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(136003)(39840400004)(346002)(376002)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(478600001)(6512007)(6486002)(6506007)(66476007)(8936002)(53546011)(8676002)(66946007)(66556008)(41300700001)(316002)(38100700002)(86362001)(31696002)(2616005)(558084003)(36756003)(5660300002)(31686004)(2906002)(44832011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?OWJRVUczRUNKMDFvd2U4aGt4T25tcDREeENOd0hyb253MXdIQk13anZRbU1t?=
- =?utf-8?B?UDlxNERKdDZDRld5NG1DOTBpeUsrend3Ymx4UGI1dUxnWE9hODNDby9nc2dQ?=
- =?utf-8?B?YnhGQWxnUUtCa3ZIOGRmaDQ0YlNJSU9UY0lKdDNvSlpIRGJURWtacDRydDhP?=
- =?utf-8?B?THI1TjgwUmp2QzRnT2ExU3FXNHYxY3JrVFIvN0Q5Mjk0b2tHUUxydmpoQmQ0?=
- =?utf-8?B?SzU1QkZLbGRRSlF4c0J2YU5WK3RWWS9oWitVM2xUeFhJbVhWQ2VMZFJqb2Nu?=
- =?utf-8?B?VVhZelovanJVSmFYc2VhblFHVERHQ2RjUGFSN0pZMmVuUGJ6SUhuMGpDOVcw?=
- =?utf-8?B?L2Q1MWxMcVl5WEEvY3phRHkveWh1dTREeG4zMGsxQm9xb2ZhNFAvdVJmQ3Er?=
- =?utf-8?B?b2ZpVnVYRSs2UmhBTlJXVEs2ZE9SNW9qcHdIT1VBeE9yMWxna3JKR3pQUXpL?=
- =?utf-8?B?S2N5OXpUU1dmQjhBTzlScHN5REVKQXh1VWswREUxcXdSVnk4R2dEditLTDBQ?=
- =?utf-8?B?ZDlsdDBQano3MnhKY1I1eEU5YURDSUhXcytvTmhrMGIrSlBIcm9lYzBIQnZD?=
- =?utf-8?B?WW5CaUl4ZHFVSjhmSi81YVFJS1VIYW1mNXljdjhmVFFlK3EwNm5yUVhtanh4?=
- =?utf-8?B?bHFwbUdMMzlxSmI2S0YrVVQ3Qzd3N2ltcjNMVi9TdmN6TllDQlh4SFR3TkxU?=
- =?utf-8?B?OFJHL256ZnJ6cUlBcnREWG9kRTJ2NzF6bDh2bGxaWG93MzM1RjVxbDRwdk1Y?=
- =?utf-8?B?TWcwWC9hUFJxTXJ1K0Z6NVBHcGZVRmY3MGhmV2VJdUZrb0JKUnlPU2U0ektx?=
- =?utf-8?B?UENQdFNDYWZwWWp5dEJmUVgwa2VWT3JWY0NicS9JZWhMKzMrVTFaVEVwOUxy?=
- =?utf-8?B?a2JPcHNZTmVqYk16UFhDcy9kc1hacGt2VGM1NzdvUzBlemtHNXdYNWZMK2l0?=
- =?utf-8?B?NDJ1aTg4S01jSHROdlRERWVIQ2FtRnBPek9OcE1UVjJ2cEpPSWZpY3FlSVNN?=
- =?utf-8?B?ZzVLSTljamRURWZYODFoaEhuVitBclNWa0VYUzhwK2RnSWhCc2lkaW9OZ0Jz?=
- =?utf-8?B?N2J0aVZSWFQrckxWMzRXalFzallSVThZZk9aY1k2bThvSWNEZzQyR0dKVEtD?=
- =?utf-8?B?Z3lHWGNOeDVvbWU2ODd3UEhWSmwyK2xwOTZvN0tWdnpJaHNwZHhXMklTSWVR?=
- =?utf-8?B?eTdSQW9ycGtGSmY0SHQ0dklYbS81ZVlQM3hUYXFlU2h3M2RKeXRMcE0rNmVJ?=
- =?utf-8?B?Y0YweXhuNUx2VURvTGM4bS9aMnFrelJ5Sy9KaE9tR05rK282Q0ZoQVFJUEEw?=
- =?utf-8?B?cVhGUVVyd2NpNzZETzBROGNjRzhLcUlmSkFYWTNOOGFYVCs2cktZb1ZDNXJS?=
- =?utf-8?B?VUprenhkVFJVWjFSVlBEZHRmdVBVMVlURmdSMWpuV045a0xNdkh5Z1JQZDlj?=
- =?utf-8?B?bHlPNjZ6WUVlVUc0UVZ4VWdNOEZiYjI5amZqUHJJK0NNT0hHN2x1OU9BQ0ZB?=
- =?utf-8?B?anphQlI1NDIvcUwzWHVMY1d2UGZsQVpybkxFYzI0MUxObFhNbk5Ecm5RanZ0?=
- =?utf-8?B?eCtUSC9tNlh2VnZBalp6RmQvL1JDcFZUNmpvWXBqMTZGdWFXM09ZOXl5ekU2?=
- =?utf-8?B?bGhMVmc5SDg4Wm5BMHpRNVVrMm5aWHl5WitFQWNDMUtWQnFCMkloVWdJY1JO?=
- =?utf-8?B?SFFvZTQ2TDBsMktZanU4N3hPRll5dXBxeW04NGh5SGsrUld0YlNQeFZhenRn?=
- =?utf-8?B?T25nYnduZktzbHpnRndrQXhsaHBZalZDY0YwWTUxd290TVp2bjE2Q293NkRJ?=
- =?utf-8?B?MGNaWkNOWDBmR0JuUzgwWUZuay9sYmVnNGs2SmpYQmdFVkp3eUhNdEFxcnhV?=
- =?utf-8?B?WHZlMk42RW8wZlFzQS9QOXFEOGR6ZCtCVWV1U3huVGhhU0Y5WUFWZjluQzVL?=
- =?utf-8?B?MHYzeU1KMGt2OEt4TzVpeEJ3VFZrb1ZOUFRDek1Jcmt1dG9EWGUyU0MzNGE5?=
- =?utf-8?B?TjFkZEErSTFHQnRVYkdwbzIwTEZTRXN1L3hwQ1Z2Y2pyZDZ6V2dzR2Mwb0xZ?=
- =?utf-8?B?aWVGK0lUNWkvWEhhUkxsZHhLRnMrL1BZbGZ6V3FpRlZQQjVKdjJXRlZWem9J?=
- =?utf-8?B?bjJ0VFJzbzgvZ0xXQ281alRUK3J5UFJ2Z3lQTldKTVJiVU84SzJrdkx5ZDZP?=
- =?utf-8?B?NUk0YWtNTW9BRFNNR21FZkEyVzF0RnJ6V2lYV2oyZVNJU1UvZ1psNlkyV2VI?=
- =?utf-8?B?WTd3MmttRzVUVXlCVGZHTDNYNVNnPT0=?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83ebb832-2f95-4948-e703-08dc2e4e3e70
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2024 17:47:57.1007
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +kFAlf3diAyRDGa4cMHHPQ0+xS52bVsmqPTNHELmOhfuSx0yDVJeyw91AV1Erbz4PQGIWXwgAiPbLAvbCtHNHWtRtkvISFdDyB08bl/df5kzCvHTUeD70w9dlgI97/5U
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6989
+References: <20240215171506.2989385-1-joe.slater@windriver.com>
+In-Reply-To: <20240215171506.2989385-1-joe.slater@windriver.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Thu, 15 Feb 2024 12:57:26 -0500
+Message-ID: <CADkTA4PoT95O=VSj2w501vPct6f8A0PTL1njiP3MuXegmPA3Rw@mail.gmail.com>
+Subject: Re: [yocto] [meta-security][PATCH 1/1] sanity-meta-security.bbclass:
+ allow warning customization
+To: yocto@lists.yoctoproject.org, joe.slater@windriver.com
+Cc: randy.macleod@windriver.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 15 Feb 2024 17:48:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62499
+ <yocto@lists.yoctoproject.org>; Thu, 15 Feb 2024 17:57:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62500
 
-Hi Trevor,
+On Thu, Feb 15, 2024 at 12:15=E2=80=AFPM Joe Slater via lists.yoctoproject.=
+org
+<joe.slater=3Dwindriver.com@lists.yoctoproject.org> wrote:
+>
+> From: Joe Slater <joe.slater@windriver.com>
+>
+> Introduce META_SECURITY_SANITY_CHECK_WARNING variable which
+> can be overridden, if desired.
 
-On 2/12/24 21:23, Trevor Woerner via lists.yoctoproject.org wrote:
-> Cleanup the elements of the wic/rockchip.wks file so they take up less
-> horizontal space.
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+The existence of the patch implies that there's a reason why the warning me=
+ssage
+isn't appropriate for your use case.
 
-Reviewed-by: Quentin Schulz <foss+yocto@0leil.net>
+That's something that should be explained in the patch.
 
-Cheers,
-Quentin
+A knob to disable the warning if you know what you are doing has already be=
+en
+provided. So again, this patch implies that you want the warning, but want =
+to
+change the message .. it would be good to understand why.
+
+Bruce
+
+>
+> Signed-off-by: Joe Slater <joe.slater@windriver.com>
+> ---
+>  classes/sanity-meta-security.bbclass | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+>
+> diff --git a/classes/sanity-meta-security.bbclass b/classes/sanity-meta-s=
+ecurity.bbclass
+> index f9e2698..95180aa 100644
+> --- a/classes/sanity-meta-security.bbclass
+> +++ b/classes/sanity-meta-security.bbclass
+> @@ -1,10 +1,15 @@
+>  addhandler security_bbappend_distrocheck
+>  security_bbappend_distrocheck[eventmask] =3D "bb.event.SanityCheck"
+> +
+>  python security_bbappend_distrocheck() {
+>      skip_check =3D e.data.getVar('SKIP_META_SECURITY_SANITY_CHECK') =3D=
+=3D "1"
+>      if 'security' not in e.data.getVar('DISTRO_FEATURES').split() and no=
+t skip_check:
+> -        bb.warn("You have included the meta-security layer, but \
+> -'security' has not been enabled in your DISTRO_FEATURES. Some bbappend f=
+iles \
+> -and preferred version setting may not take effect. See the meta-security=
+ README \
+> -for details on enabling security support.")
+> +        bb.warn(e.data.getVar('META_SECURITY_SANITY_CHECK_WARNING'))
+>  }
+> +
+> +META_SECURITY_SANITY_CHECK_WARNING ??=3D "\
+> +You have included the meta-security layer, but 'security' has not been \
+> +enabled in your DISTRO_FEATURES. Some bbappend files and preferred versi=
+on \
+> +settings may not take effect. See the meta-security README for details o=
+n \
+> +enabling security support."
+> +
+> --
+> 2.25.1
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62497): https://lists.yoctoproject.org/g/yocto/messag=
+e/62497
+> Mute This Topic: https://lists.yoctoproject.org/mt/104377037/1050810
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield=
+@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+
+
+--=20
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
 
