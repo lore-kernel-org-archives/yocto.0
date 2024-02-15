@@ -1,155 +1,156 @@
-Return-Path: <peter.marko@siemens.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F814C4829E
-	for <webhook@archiver.kernel.org>; Thu, 15 Feb 2024 19:08:42 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (EUR04-DB3-obe.outbound.protection.outlook.com [40.107.6.83])
- by mx.groups.io with SMTP id smtpd.web10.1003.1708024120709636582
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A038C4829E
+	for <webhook@archiver.kernel.org>; Thu, 15 Feb 2024 19:20:32 +0000 (UTC)
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+ by mx.groups.io with SMTP id smtpd.web11.1352.1708024822371654640
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Feb 2024 11:08:41 -0800
+ Thu, 15 Feb 2024 11:20:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@siemens.com header.s=selector2 header.b=LQiNIHSu;
- spf=pass (domain: siemens.com, ip: 40.107.6.83, mailfrom: peter.marko@siemens.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UguEDGtQ4F+bgw0+ZoJoR3bnIgldYE+GhJpQS6j4gI7+OCX+WwC7twCkMvNdAkiztmf0DNe8srI3uEwjJ+KspC7KhSDq7c+lRriY/yrzIUylahnE8rXisOXUjXH0xV5W2hPC7snK4rGZmQeeiodmBQkqYHCgEDPYYixMUwyXeWqbIKmFNeHorMeFTrGZfp5hUjxssR2JDLU8wwUHH33awmYK/CHYURmjEV1/GO3vqunT20Qiw5J0WIxykSh5cBcC8KrKogsYV8RQHx6l2RVx+0nJ7Kh87fAUzM6af3ATsHnn8ObhQHZGJN1KExllkd6+ko5R/XqGV/tpuzjRfdM6Ww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ta3qizuAb2vRdNkGqG7DbZX1eIrcuyj9A47MPepz7bw=;
- b=CYm+QxlXSi6aD9zE1usObSma8MIe97ifclvcwPiBL/vQhLzgtOrz5gyFg5SxjmDYKgwgP/IB2UZyWAjVCJLTD4PZNq+HysxPKvtRf4SklehdvnOvAHr+LSZCwOYuIaCWEtT7GDRH1RMWfG6+2ZisgyJgSjrw/yct+Wg50IWkWGtd6shBy+Bqt6oBJKfeoswghlrvqT554GYotn7Og2c8YuOKqAQcAZonAAse39KhPbNMn4o3fvvz+e6Ot0CAKC1LizY9ojhOdU4atS6EzAdCJ3wFAyMmEQ79wnFtnen0R6nSbmukwhLFLhZ5ebqqHKc2z/TbYsht63bYNJAPPTKWKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ta3qizuAb2vRdNkGqG7DbZX1eIrcuyj9A47MPepz7bw=;
- b=LQiNIHSuNA5Bwc8bMCe++gIuxFzWAPrkGSd7A2CbGk/TpOeCOXLf7++jl8WDsW7wmpXaauGclaBUXzTksvXjIxWba4+AEgeBLdDk/WFsla3D8eSlpY6316grTuVn0Tt7YtEtxib33IdSTn91wM7i7f7Y1GcYybjYVGKJkurF2JUK9nPcz/qTDs3vz4IGaQ2bNa/XBF8sKsoSE779vY6CqcHsrWKj6UdKUOohanwwsmXSNoAdRzgpjEM7zIb+ygyUNFwD+xWjZoRjeUaiD4jtGGY8NeqXgsqUbRA8ZV1NspQ+uIBruPtwUlJINOe96y6cqjITlYQkBO2tR3hLO1FtUw==
-Received: from PA4PR10MB5707.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:266::11)
- by AM0PR10MB3652.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:15c::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Thu, 15 Feb
- 2024 19:08:38 +0000
-Received: from PA4PR10MB5707.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a856:76a6:96de:4c7f]) by PA4PR10MB5707.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a856:76a6:96de:4c7f%4]) with mapi id 15.20.7270.036; Thu, 15 Feb 2024
- 19:08:38 +0000
-From: "Marko, Peter" <Peter.Marko@siemens.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [meta-virtualization][PATCH v2] netavark: correct PV
-Thread-Topic: [meta-virtualization][PATCH v2] netavark: correct PV
-Thread-Index: AQHaTwk3rfYARsNZq0SlKQ0clv97crEL5nLQ
-Date: Thu, 15 Feb 2024 19:08:38 +0000
-Message-ID: 
- <PA4PR10MB5707939B0ED8B0BF25829AABFD4D2@PA4PR10MB5707.EURPRD10.PROD.OUTLOOK.COM>
-References: <20240124210545.20070-1-peter.marko@siemens.com>
-In-Reply-To: <20240124210545.20070-1-peter.marko@siemens.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=27d3c526-1c92-4286-96d5-6dde5065d09d;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2024-02-15T19:07:45Z;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PA4PR10MB5707:EE_|AM0PR10MB3652:EE_
-x-ms-office365-filtering-correlation-id: 3dc63e85-2a8f-406a-9b5a-08dc2e59841e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- iviiT/exiPI4q1SlFyDgo0dtaK7rNwHzyBwD8VcS3F7I7zOcQsaJc4/iLUR9dMzCc+G9JGGltJIb3TGvYNEKgnZAhwjwRdoWZN2lVAcbxCx9Lr4LG2r0Lj98hDybwVUXJt+he01Qh6REmrvKPM2pYl/wjO8YKYMHB8TE/Htdh8lU92bsAHHg3cqAFr1iYVrZuKoPK409+JZfCMMD5WvbOAMl47t/tLy8jdkf7VlgbzkGVxV/O7eEL3LoqHS3qljdlOh2UqOwhZi7c8J1JBznXTnC+NYdvLtcb0HA2tyQfNYK8xDXxjgXDyq71D2tpsmiSGOQypJiApGIYwTRWGwXLWLPc3G4mR6dVhOvfM3EvZ2OiWiMb2xzOkGTUgl+VfHfmWEBgOgqIG1z1Vo0mLYySkikvgeTojWMqto98jhIfh09gmVgFcZv2tncK4IPDt0OXb5XFOw/ElZnp23+0ksHhRttRiovtUox44sWO5mZPfSe+iqO+SQqv5DHOWp8HoA5QsgkRg8KG4/0Ah12bgpJ305W2bhBm3lm9lIDiJMScho8rS0AK0FZnLAfxdIMRp6qa57EOx6y6uttegRWE0V6/bxtYIY+5ycnN/YJxBXPatdld5Gg15HQQjOFEP7clX9f
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5707.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(136003)(39860400002)(346002)(376002)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(5660300002)(76116006)(6916009)(8936002)(8676002)(66556008)(52536014)(66476007)(66946007)(64756008)(66446008)(2906002)(83380400001)(38100700002)(7696005)(38070700009)(26005)(82960400001)(122000001)(86362001)(33656002)(6506007)(71200400001)(316002)(9686003)(53546011)(478600001)(55016003)(41300700001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?8xzT0Vfi6fx8utgFYpnY1orctbhyKt2/SnEKvzL1x+ctOm9+KFeaRepxrYSr?=
- =?us-ascii?Q?AcOazPA3CjPXkPEfbs4m1TMwzpCOGLzkpVP+eAUHgi/c/iwYzKFhsfAAL0mx?=
- =?us-ascii?Q?2/fnBmske+fdbT/ux7ZsgP34aTV0Q+Yji0GAAr4ggggSeLeyS2SUBZZ9IC3d?=
- =?us-ascii?Q?PkKli60TNsfg3jIqqTJTk3U3AdFOc0czTKVxlrSpH2ozUWDWYjcx1/RbBU+Q?=
- =?us-ascii?Q?g45ia9jyrV83RmEfKaelsiCSxxZvqYJTG+srrgUVJjjW1jhkGVNj4qw4o7ab?=
- =?us-ascii?Q?qM27Tog0iUAXRyuak0AB5WNoVgs3GfmhALYdZJ55rwECLv8ffSGXUy2W9XyL?=
- =?us-ascii?Q?pRVGSWIhn146at4bWt51V54NKXn5BneRABMszRbUcEnIA5tKv1M2I325TMI7?=
- =?us-ascii?Q?zm9xDnjsPdGYv02Ji42REo1YCWGP7PXW+V7qrwrbDCxMVHslG+dzI9dkk3yV?=
- =?us-ascii?Q?dNHuwx8fsYsMmY5xtWnBK2404ISaxufS3pWQiA7R3XMduKQ2xD9XOSSh12fb?=
- =?us-ascii?Q?wguS+C75kPBb2j6H68PaMlUpqRU6nOtKzbblEfwlCeHnel76JAtKt9jIrQ/c?=
- =?us-ascii?Q?8NN8TFk6fDkkYD3jA4IQcjYEgXAf2eWXqXmTLtuU9DIPsQC339GuG3mpL7A+?=
- =?us-ascii?Q?QZFlOdcK+DsUNcn6Iq6K5/TosRVHrSdxUJm8OXrBSH4IfWppZSZszjlBt5rp?=
- =?us-ascii?Q?Z3pYYlwcklxlV9ge5CgiOVcD/dGkhuf29nSiNc+psqayHuBzZfK7dp69qlbY?=
- =?us-ascii?Q?6Scgog3eR/8qX/QPlEaSeLp96YdoEp8InkwqRMQTeu1Ia+jQdLfbGgwrVE/m?=
- =?us-ascii?Q?mJWVapxqw1WIKiPIAKSOldTR2WuQpf/fkYzrGtCL0RmaG/17/czYaHT+C0t7?=
- =?us-ascii?Q?J3KxPaEZXTGqjuYf30OKiUw4rwMA7D8lMu4aQvxErBnXcyFZj85TSMamlqMr?=
- =?us-ascii?Q?I+QbHmcWNZwcJditny4jlB7Zu6cR5zHzjkP0n9qOQ7E/UCuaZ0FKc3yl1UTj?=
- =?us-ascii?Q?++s0hlSQOzcnIep+5gmLfKH0hGIjjF6YkcHirDXJ5d1L+E1PaVHtuRE7GhX7?=
- =?us-ascii?Q?u7cM9OhTXHa0HaRr9+8X2S/GtiBFB1dBNsjUzgNAweG8xWuXbPLoScgU4Jf/?=
- =?us-ascii?Q?tYC7xF0/05DKwRQ77OeFgrj9Qpk8vJLu5nYaQhKTo79LCEpUxFvt52IhtWx9?=
- =?us-ascii?Q?jzv8rs04pqzeOIASpkSdD3GSCYT8NPATBOnMFcmoGC/jAv43pBpTrw/z4F3u?=
- =?us-ascii?Q?uuUjh2Dw8oudubKy4Mhkyh1d2nA2jc4pq0SBjAaBBrMqGxuYiK03A4I84SY1?=
- =?us-ascii?Q?AoN8fSpxPtL77Ktw5LMEKJrgcWTjKx1BrGHzn4wyvVEo2bKy+YfhGewZO/x0?=
- =?us-ascii?Q?DSfomz5NKw+Dqo4Vj2tI1RuTHEY//5wg7Ij/RnScFHrnxCNCzhyNwqgH9D+o?=
- =?us-ascii?Q?JoPEHLimW0S8tOX9F5SEWmhyFUY9YC1sYnNqAF7+kW8R5zq4eqNNXNXO3tTs?=
- =?us-ascii?Q?TvObojp7BdrOqwSFmhz0LhJlPj4NxSz1XL2bwDCZFqaZgbipcmCOjsQRad21?=
- =?us-ascii?Q?8sLoLEcaMRF5jnuhobpezVxMmKXSomtPCmXPDytm?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=mTOHoEyw;
+ spf=pass (domain: gmail.com, ip: 209.85.219.54, mailfrom: twoerner@gmail.com)
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6868823be58so5240926d6.0
+        for <yocto@lists.yoctoproject.org>; Thu, 15 Feb 2024 11:20:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708024821; x=1708629621; darn=lists.yoctoproject.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iwV1uak61x1WY9dFv6XJGKinDc1pQICVQJ+Z1ZSeB94=;
+        b=mTOHoEywvbqfIuh/50omnKmRRg7m/D5pqug0cRQYKqKgrPoLBHoflCoTJWR4nPmt1Q
+         jhY6QsMIhTaF/lq/PTqDp9et/mj0QJ0vyvsj3NL9H8xeJetC5HecDGdRNwLUiTm6mAPb
+         Wes/MBIDyOx89pP/IlVSpGuVUbHCNKFZbuaUrpgyJ73pSxTyHW6E7xrjD/lMwrg9rGXW
+         gqhEu40ep7CCHKbW0YZJk6sKSxABGhkl8YF4/vMLrkwVOXC8bCyo9igp+emINldEwwnT
+         mgGrCrUky+HNw4eVCnV1ArtBwdYtpAOofnuqOlAIMK/KJgHJ9VlLPnwrjC9YxtkR7HRf
+         KkkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708024821; x=1708629621;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iwV1uak61x1WY9dFv6XJGKinDc1pQICVQJ+Z1ZSeB94=;
+        b=V//sK+so+EVFV3m48M8ceRwcS5PWnqbf8YkGBZL5dXySFz2XQyQdSP6AQgslqPRdzS
+         hReb+LFxQdZXrGmYe5Gsh0JB8HzlFrdO6FCWYffKEoM/TT5FgVUlcXdWxSy1WYtfyN/3
+         KcL29+7XNqGgo54LL1ByUM4mYHOubXcNvgf0tX2NLCoA0hZaaEr+xRGSoSr2Wop9ek4x
+         avHZ+uOCjRDHU3D6TI7lmddoF9O+JiJrhwfSVDSqsVlUndY7aLxCHyxvU9JO3u/VTU36
+         L5madxmCUl4jIEim8aL/BubKKT2R/FUnUaUZbiJNvhdSpN8JxyCQlC7NrYtaflggP+MF
+         WnDQ==
+X-Gm-Message-State: AOJu0YzZWP2BFuxWrBoQMLhnEEv0i5hnpaZnvtF6FfV7YCp+udZUc5y1
+	roV6qXY969tOy1lT5JNpekaUKc0ArADfDG0IghpRWOiX/IAjaeuO
+X-Google-Smtp-Source: AGHT+IEB+xh6mNgwNyvObxEkzZrDfyG+xYnoGUaUe/AE0F6+/AWpmLE8WzCcKN5giiaLStL2KcugKg==
+X-Received: by 2002:a0c:e3cb:0:b0:68c:e521:4af6 with SMTP id e11-20020a0ce3cb000000b0068ce5214af6mr2567043qvl.40.1708024821319;
+        Thu, 15 Feb 2024 11:20:21 -0800 (PST)
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id qj9-20020a056214320900b0068ef74687adsm955294qvb.41.2024.02.15.11.20.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Feb 2024 11:20:20 -0800 (PST)
+Date: Thu, 15 Feb 2024 14:20:18 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] [meta-rockchip][PATCH 2/4] rockchip.wks: add all
+ Rockchip partitions
+Message-ID: <20240215192018.GA7766@localhost>
+References: <20240212202342.37778-1-twoerner@gmail.com>
+ <20240212202342.37778-2-twoerner@gmail.com>
+ <20297b5e-af8b-4bce-a192-9bf799d8a36a@theobroma-systems.com>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5707.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dc63e85-2a8f-406a-9b5a-08dc2e59841e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Feb 2024 19:08:38.2864
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7hsHklJ8ema9XqjnGUZI1Q1OIVTZ31G26FymiA3rJbPue4PWqms4pyYPE5eVHDVX6MfW2F4NBMCU+L2vZKLOog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3652
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20297b5e-af8b-4bce-a192-9bf799d8a36a@theobroma-systems.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 15 Feb 2024 19:08:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62502
+ <yocto@lists.yoctoproject.org>; Thu, 15 Feb 2024 19:20:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62503
 
-Gentle ping
+On Thu 2024-02-15 @ 06:06:42 PM, Quentin Schulz wrote:
+> Hi Trevor,
+> 
+> On 2/12/24 21:23, Trevor Woerner via lists.yoctoproject.org wrote:
+> > Rockchip defines the expected layout/map of the default storage device.
+> > Fill out the wks description so it matches.
+> > 
+> > 	https://opensource.rock-chips.com/wiki_Partitions
+> > 
+> > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> > ---
+> >   wic/rockchip.wks | 18 ++++++++++++------
+> >   1 file changed, 12 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+> > index b14ec0d1690a..8dc4d20f2f54 100644
+> > --- a/wic/rockchip.wks
+> > +++ b/wic/rockchip.wks
+> > @@ -9,16 +9,22 @@
+> >   # wic uses 1KB blocks. The following table uses 512 byte sectors:
+> >   #
+> >   #   Partition   Start Sector    Number of Sectors
+> > -#   loader1     64              8000        (idbloader / U-Boot SPL)
+> > -#   reserved1   8064            128
+> > -#   reserved2   8192            8192
+> > +#   loader1     64              7104        (idbloader / U-Boot SPL)
+> > +#   vstorage    7168            512         (serial number, MAC address, etc)
+> > +#   reserved    7680            384         (not used)
+> > +#   reserved1   8064            64          (legacy DRM key)
+> > +#   uboot_env   8128            64          (U-Boot environment)
+> > +#   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
+> >   #   loader2     16384           8192        (U-Boot proper)
+> > -#   atf         24576           8192
+> > +#   atf         24576           8192        (trusted OS e.g. ATR, OP-TEE, etc)
+> >   #   boot        32768           229376
+> >   #   root        262144          -           (suggested)
+> > -part loader1    --offset 32     --fixed-size 4000K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+> > -part reserved1  --offset 4032   --fixed-size 64K      --fstype=none
+> > +part loader1    --offset 32     --fixed-size 3552K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+> > +part vstorage   --offset 3584   --fixed-size 256K     --fstype=none
+> > +part reserved   --offset 3840   --fixed-size 192K     --fstype=none
+> > +part reserved1  --offset 4032   --fixed-size 32K      --fstype=none
+> > +part uboot_env  --offset 4064   --fixed-size 32K      --fstype=none
+> >   part reserved2  --offset 4096   --fixed-size 4096K    --fstype=none
+> >   part loader2    --offset 8192   --fixed-size 4096K    --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+> >   part atf        --offset 12288  --fixed-size 4096K    --fstype=none
+> > 
+> 
+> This is... quite dangerous. I assume people access raw partitions via their
+> index number, and now they would be changed, making it harder to do partial
+> updates. It depends how one sees this file, but could be seen as immutable
+> for existing partitions to avoid backward compatibility issues.
 
------Original Message-----
-From: Marko, Peter (ADV D EU SK BFS1) <Peter.Marko@siemens.com>=20
-Sent: Wednesday, January 24, 2024 22:06
-To: yocto@lists.yoctoproject.org
-Cc: Marko, Peter (ADV D EU SK BFS1) <Peter.Marko@siemens.com>
-Subject: [meta-virtualization][PATCH v2] netavark: correct PV
+I don't think that's a huge problem, but I could be wrong. People will see
+their builds fail, investigate, update, and move on?
 
-> From: Peter Marko <peter.marko@siemens.com>
->
-> Current hash is 20 commits after tag, so add +git to PV.
->
-> Signed-off-by: Peter Marko <peter.marko@siemens.com>
-> ---
->  .../netavark/{netavark_1.9.0.bb =3D> netavark_git.bb}              | 1 +
->  1 file changed, 1 insertion(+)
->  rename recipes-containers/netavark/{netavark_1.9.0.bb =3D> netavark_git.=
-bb} (99%)
->
-> diff --git a/recipes-containers/netavark/netavark_1.9.0.bb b/recipes-cont=
-ainers/netavark/netavark_git.bb
-> similarity index 99%
-> rename from recipes-containers/netavark/netavark_1.9.0.bb
-> rename to recipes-containers/netavark/netavark_git.bb
-> index 5249acee..9d3a1172 100644
-> --- a/recipes-containers/netavark/netavark_1.9.0.bb
-> +++ b/recipes-containers/netavark/netavark_git.bb
-> @@ -5,6 +5,7 @@ LICENSE =3D "Apache-2.0"
->  LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D86d3f3a95c324c9479bd8986968f4=
-327"
-> =20
->  SRCREV =3D "167e2e4f167cadc635bbacb5331674b67787d08e"
-> +PV =3D "1.9.0+git"
-> =20
->  # It is possible to fetch the source using the crate fetcher instead:
->  #SRC_URI =3D "crate://crates.io/${BPN}/${PV}"
-> --=20
-> 2.30.2
+But I think I saw something in wic about not adding a partition to the table,
+or not giving it a number? So it might be possible to define these partitions
+and not change the numbers? I could look into it a bit more.
 
+
+> I was wondering whether there is support for partition labels or something
+> like that for raw partitions, but doesn't seem like it. Which is quite odd,
+> wouldn't that kind of information be stored in the partition table for
+> example?
+
+Yes, I noticed some things that should probably be there and aren't, such as
+the label thing you point out. Also not formatting raw partitions; or not
+requiring an explicit fstype on raw partitions to keep from formatting them.
+
+> Also, maybe use sectors for offsets and fixed-sizes since you document them
+> this way? S is the suffix for it.
+> 
+> Random thought, but we could probably also get the env from U-Boot recipe
+> (or any other recipe that generates one) (if one is generated) and install
+> it into uboot_env partition?
+
+That's exactly where I'm going with this. I already have a spreadsheet
+listing all the rockchip devices, and their U-Boot environment configurations
+(location, size, etc) to see which ones come with environment configurations,
+and to make sure they're all the correct location and size for those that do
+(they are). I also already have Yocto pieces generating and placing
+the U-Boot environment in the U-Boot environment partition (via wic) but
+haven't submitted the patches yet (as well as generating a correct
+/etc/fw_env.config file. My next step is to add in env support in U-Boot for
+those missing it.
 
