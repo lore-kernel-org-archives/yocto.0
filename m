@@ -1,187 +1,114 @@
-Return-Path: <quentin.schulz@theobroma-systems.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 650B1C48BEB
-	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 10:06:19 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (EUR04-DB3-obe.outbound.protection.outlook.com [40.107.6.118])
- by mx.groups.io with SMTP id smtpd.web10.15525.1708077969452423952
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4260C48260
+	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 11:34:29 +0000 (UTC)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+ by mx.groups.io with SMTP id smtpd.web11.16690.1708083266515456707
  for <yocto@lists.yoctoproject.org>;
- Fri, 16 Feb 2024 02:06:09 -0800
+ Fri, 16 Feb 2024 03:34:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=cIpbeU/O;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.6.118, mailfrom: quentin.schulz@theobroma-systems.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jOePU8dr/fGOGVbHSxGBr7xZEN6G/5wxyVZEisHRzlqJHho+H6nyvENFxgdTWPI/pvGmca9wrUgkZ8JG8BhIgEUjjIyWWiQl6b8TnN/wqCR9+vF4iEMpX4fPSt8HQlo6/0cVL3zmmzph2OhV/wjmuMSvuPoqjIIHQClx7QUZw37VmYPCvR2xf1EOCfyIkU7siqpZAbeIeVR0pxMy4kI5nTu5cc/8NOi3GMWP0hFdv3iTq8gqFCubhLkp7yxyUlVeAIIXaOu3pMoNcDGlYomU832EUL/izuyccDaYjA9l8IvOOaXZl+lXg/Sh8taNTglSYCKnEwNsraaOYtl03Ibf5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z5C2yzIp+cPxXSHxvCGG12gdBagQ5txQj0esCKsK63g=;
- b=LEOcej9oirxL2UvKaSj1rYPapUM0aX8BhKxyogQFhRz7lBLIm1DQa9ks+2oQlJSlR9w1Tj9VcK4OrxyyD6qMULnOgdcrN4XeooyvQISLuJsaaqs3Z16Wq4Ye7vXmFiGd42x3esSQ4o4I9E+oLRWuWFovMZEkBhPmerqm1SzpKLy7GkTyG3P2UHdjKTY7G0VqWxZf9W8nMTSCATn4CTyikiCpq9FkA69JB7ZPuSGAn1K/3TxN5Itf4G0UF5tjs7H77NCERExW/moFHuMregnQeHV51mPaF7KnxJF34Z2qdHKcewWFdihKacpWlr68vBrsl3NutAzzm2ArjVn4cpRVqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z5C2yzIp+cPxXSHxvCGG12gdBagQ5txQj0esCKsK63g=;
- b=cIpbeU/OGiiB4mVqcJBEwUy4WXzZmvH1SjwGzEXZDa0Zt281tQ0kygLIYqBb+ioWdcPQyYI+QXTuRmxwmLNQJCKKYWp3F60xHnNn8NZxHP7EZKfZI9noAMTEA5ZoZvXYOqYgPfaUnvzJD1DUAMqGxw4qmxdH8b559DHCzQvbtYFOjfGDqgCc82bIE51Cb+HjP2BL0nAWy3pzMO3kxtYFhWQTTeq14F1gNlFpUmtGQX4oiI9t+SwZToq0Q4Vp+e2DkffXuE0uy6g9i1l6vwY3trQ3wloWqzvWnPB8xL/bkc48hA/MYAZ16ickGH6WrHsspaZ52ToOFE6r9W2LbIdfCQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
- by DU2PR04MB9148.eurprd04.prod.outlook.com (2603:10a6:10:2f7::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Fri, 16 Feb
- 2024 10:06:05 +0000
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::550d:ad96:e3cb:9a6e]) by DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::550d:ad96:e3cb:9a6e%5]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
- 10:06:05 +0000
-Message-ID: <82d5fc9b-2490-4942-8b31-13dc709ad121@theobroma-systems.com>
-Date: Fri, 16 Feb 2024 11:06:03 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [meta-rockchip][PATCH v2 3/4] remove /boot partition
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org, twoerner@gmail.com
-References: <20240216082922.7873-1-twoerner@gmail.com>
- <20240216082922.7873-3-twoerner@gmail.com>
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20240216082922.7873-3-twoerner@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0107.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9c::10) To DU2PR04MB8536.eurprd04.prod.outlook.com
- (2603:10a6:10:2d7::10)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=U/BWnM1n;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.46, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-411d3c75026so15071965e9.0
+        for <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 03:34:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google; t=1708083265; x=1708688065; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3BwhIVsshsFcFRsHlgEGX/hggIMqyuzvUpsYcS8jcCw=;
+        b=U/BWnM1nLNx111aefXdR6afu+bjJAUUJ0ofH6bctBiisUDMmUueieUrp5LRZI/MTn6
+         TmuCT52OjSb8PCSaualrKQicE2Hn8WtVUPz+CPC1myy1fZpmelQKdMHm3qWf3yV5FiXr
+         Dt1cF312ZSS91eHfGiRTasugOCXNKakYMaaw8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708083265; x=1708688065;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3BwhIVsshsFcFRsHlgEGX/hggIMqyuzvUpsYcS8jcCw=;
+        b=MnWW04JuOmWxJniimo72X3xE5TvNc2MAI1KE0AiGMIvOjKB4/q5y0qFb0HVpsaw0Hb
+         1J5gkSc/Rg1L0ncU2Radbd4J1Rc0GCJV4GK2ZQt8V7CzdT0a1ucJbMbZ5CqQqF0RVH4Q
+         QUMod0H4Ncdut6Z90ejTLz00evNlXb2hnIBnVnTf1RqnyF5tIH+eksRuNyaho1DqJGyC
+         ZcCo9hFTizgAPFVWuOcaP7qZ1ibYs900xmDQuV086dEDA/dBg7ABtgeh2ld1/dfSyM1m
+         zv/H4Rqem2AbS81YABb9+w2g9vOCFHPkH/i1fNG8pN0beByMSwpnU8KQwXzixVaevDjd
+         tmBA==
+X-Forwarded-Encrypted: i=1; AJvYcCXh60lDNT/cUqtJ316bOVJ7f4hNAhfhZ9PkNUZc0nk7jDwoL9Sl+OFcUkhBaQq4RQ0O6mBF2S4lPbDPlVMGiyTiNVPasK1cyot+ajkW
+X-Gm-Message-State: AOJu0YwHHzHYRFDronZ+s9XAdumEiM1O5hwXNbJvOjR4foa0ZnTBTieP
+	izu6IaT0xY3AQRQtChTJsbTD0ZYPunEGumReUHS+7NYO5ZRntLmcyPyWM5C3JPs=
+X-Google-Smtp-Source: AGHT+IGfXtUWEslzdI0DlGzAivSjZrlBvwCCumAT9VdEKJioNTP7B2tPFOE+uxJygX2ThJYfIIDXFQ==
+X-Received: by 2002:a05:600c:2d0b:b0:411:b334:2ff0 with SMTP id x11-20020a05600c2d0b00b00411b3342ff0mr3839387wmf.24.1708083264945;
+        Fri, 16 Feb 2024 03:34:24 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:fd13:6695:6348:c567? ([2001:8b0:aba:5f3c:fd13:6695:6348:c567])
+        by smtp.gmail.com with ESMTPSA id r2-20020a05600c35c200b004123b049f86sm2074934wmq.37.2024.02.16.03.34.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Feb 2024 03:34:24 -0800 (PST)
+Message-ID: <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
+Subject: Re: [OE-core] Yocto Project Status 13 February 2024 (WW07)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Stephen Jolley <sjolley.yp.pm@gmail.com>, Yocto-mailing-list
+ <yocto@lists.yoctoproject.org>, ",openembedded-core@lists.openembedded.org"
+ <openembedded-core@lists.openembedded.org>
+Date: Fri, 16 Feb 2024 11:34:23 +0000
+In-Reply-To: <CAK5yBb8YQoMdR=qKDHPYVUo7jKhRDEjS3Ah6EDccsbdwgmm+Vw@mail.gmail.com>
+References: 
+	<CAK5yBb8YQoMdR=qKDHPYVUo7jKhRDEjS3Ah6EDccsbdwgmm+Vw@mail.gmail.com>
+Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
+ YNvg==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.0-1 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|DU2PR04MB9148:EE_
-X-MS-Office365-Filtering-Correlation-Id: c96eef93-28f9-4fbf-a835-08dc2ed6e355
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	WR3MqEvSkcmQG1y4Amn+WU3NspHN/qz5rz8wT0oiIQp6mPhaO6oRpp/q1pB2si/qQ79WmCxTzzuW/4rIipso4HqYhJwcvlrRr3EYhdpnJnQSD23OAv5Lm4PXRg+QHG6wppB7bVDtpYP1mZPXJgmNE3Uh/pEK/XrMegTTWF+3gRWBrR0vx9TMFScM7LW9UTG1QD39q5KIxogX1Wp6hDKBdF4mLUvKb9bm2wu9yFdHC98ZdWDAwiioUVZUnwoAc7hkYOZlz2H45/xLVhM389TN6u3F2jlDYa728NLumCuPccyQVEEUedPWjpqLhHVQCzLsC5vEQsI3d9eWt64K9tku/gdf+ap9NuuvqJufymOYt7Eegq9+nZfPLVdbljcnEv8VyMqLEvTJ8ZjZJJ7BeR4mLG+WzyAXxjOhBjKlgiuwpGO/AJlMJN5M7hgDtCWPGuTGsO7ss26WhsWvSsSMJgFUkwXEAswM32Kb5comZhEG0qedm/Lm65HLz4YkcxawvbXmLNCCJ3S1LkHLaBL2W+GhNZSLNZlTE5Yq9gi+D+M39Zs=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39840400004)(136003)(346002)(396003)(376002)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(36756003)(31696002)(86362001)(31686004)(44832011)(8676002)(8936002)(66556008)(66476007)(66946007)(2906002)(5660300002)(83380400001)(38100700002)(41300700001)(2616005)(53546011)(316002)(6512007)(478600001)(6486002)(6506007)(966005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?aVFsOUNwTkVpNi9hSXgzdkZ6cFo2VEhCaUJ5cXBnV3B0cDh6N0RUaEc1eEpG?=
- =?utf-8?B?R1F5VW5STGRwcXRIMlBDZlQzdFpnaUEzMzROcEJGQTdPUnZ5dWQraStwV0VV?=
- =?utf-8?B?WEZTK1VVMjFIYTVZYWd3dTNReFlxVy84akI1K0E3N3hVRk5wZkUxb3M1aDRz?=
- =?utf-8?B?WEN0dkFqajA2YXd4YnRCR1I0TitsOXVGVUZ2Qk5JSE9tRkozbG9VUy8zTnpj?=
- =?utf-8?B?aHlwQUtHQVJ3MUh3czZHVUpwUDJTMTFMUFVET2lRaW9jL0ZDSGxLY0tySHd5?=
- =?utf-8?B?bUlMa1BiRXRIRmNMa0lOb2FYYUw0NGl1bmh2VFY2dHVmTVBzbUNoK0lKS3hp?=
- =?utf-8?B?T3ZUc1Iya1RCZjl3UGh1dURsQ3NuVjUveGRvMEtkcXdWWjhyR3Rkb0p5cGVS?=
- =?utf-8?B?SVJWNW10T0tGVzVCV1FEQUlCRm52d1pHenpOWUh3MmJTUGM0ditPeWZaOTFm?=
- =?utf-8?B?QlJhRVhnZzNOb3FBTitMUzMxRERYS2Y3bExrWk9QUlBiWlpqRXJzeEhwRTJk?=
- =?utf-8?B?a2I5MkdXdGY4TWRIWFlZSGw2WGRlTk1KKzdzV1JvQTN1UDhRS0JXTmh4d3RJ?=
- =?utf-8?B?SHhQYUhRcGtKaE9ON3ZQejZtWE1pTUZCNk9wdWFKYll3bUdKVkhoVmlvYW1W?=
- =?utf-8?B?bk5rMzFkVnBzWHpxWlNoOXF5aUhBSHdsTEJtYVdKOFdQY0RXbnpBUWJncHFU?=
- =?utf-8?B?V21vdU1tUi9JNlYzbXIyYzdFSzQxSGtPK2F0ZDVJQlpiVlRWWnU0V2lPaVZB?=
- =?utf-8?B?WEdKUjBaWkt4bDlReUVVanFVWDhRVGVsMUxtL3RPdjlpLzZwTXBod3ZkaTg0?=
- =?utf-8?B?YnhFTkxnZGVtcWFjYXJER0U0Kzk3MFh6TE1oYlRiYWo4OHhBam1tYTVOZ05F?=
- =?utf-8?B?dGdCSmlXMzVvTXJXdjl1R21zYUNaUzZSY2duNG1EalNOdkpValpzQndhcHJN?=
- =?utf-8?B?MVowUlM1eC9ud0Zqd1g1U09lS2Rrajl0cVR2SnJOZUh5L2QzRUZNeE03S3Zk?=
- =?utf-8?B?S0dYVC9nWkxlYTdhQUx6MzE2ajI4WHdYZ1VDZ0ExU1Y3YmxKREE0N2ppbFBM?=
- =?utf-8?B?U3owSmNKT1Q3SngxSmhVT0x5WTlMQW1pTTBmZndJM01pNU9iZEdBeDVHa2RV?=
- =?utf-8?B?bjFVd0M0MXRTUW93bTRmNi9lK0RBL2Nnc0JDN1NrRWloNXNiUnc2TkRjdlBy?=
- =?utf-8?B?Vk5iVFlKVTZUU0RLaStsSzQ4ejAvUm1BRFMyK2pOclJSRGJhZUpJb3A0emxw?=
- =?utf-8?B?cDdZZ25TaFJZT1BHYVl5c3pUZndFRGI3MW1oeHpEMzBiaTlGMXBkbXhJRElU?=
- =?utf-8?B?Z1FsK1hNMHlIS3AwNHBxeE85OERBTEJXd0tYSkR5ZUdyY3RyTEwvRUxyVngx?=
- =?utf-8?B?N0NIcHh5VE9PcGNVVjQvMWJnTy9kbk53Q1dzSitiWWQ3VXhUamJaTyt1TWZD?=
- =?utf-8?B?WStyUXJwbzdyODc5MC9Wc1pZNmlFdGFHUmcrbEZxa0J2QkQrNmcxMldwRkhk?=
- =?utf-8?B?R1RLWkRhNEw1M0t2SDdmQWZWQWE1SzU2ZU9sNUJaTDdvVDhNRmFGeDBqSUpG?=
- =?utf-8?B?TXJFMXFKMnZnaGMxN2dtQ0VBdXlvZ2RTNUlRL3lCU3crdTVpQ09ObTdqSklz?=
- =?utf-8?B?dFB6SnNCVHl5dEs0NWlCaHhvV3lIdnl2MkhCOGlmc29DNTZLL0VjcjU2dVRH?=
- =?utf-8?B?dExmd1FFVUJRVFFZRU9rNHpOS0d3QWtWbzJYNEFQS28xTlMzUkdoTUVLcEhI?=
- =?utf-8?B?MTZ2c25LYjNYcWwveVpIazBNVVdEVlkwaFlMdG9Bdk10cXcwS2hoOEJ5RXg3?=
- =?utf-8?B?NTZqd21QanJ5T0RjVGVLVGxSdkFYOWxwWEZ0eUVqMWdWRnZwWFN4QWVMK2pT?=
- =?utf-8?B?S0huUkI1eTFxRDJvVzhGVkJNWDJtQ0E3RjRMbVNVR2pGbjBMa3hXVW4wYjNh?=
- =?utf-8?B?Q2tzc0lvanh6amZOblBSTXBYRmFGb0swa3h4NGpYSHRJRU1IYlROV0JXeVl5?=
- =?utf-8?B?QmorSEhDa2x6SWNkdmgzaGNOQ3FIWGNLcTNTazB6ajFXelp2cDlqcXlWQ0hX?=
- =?utf-8?B?UFlSVzgxa1RRTUV0WXRXRjVaM2FHUGRpNVBMRDFuOThQZjVPbVBLY0psMml6?=
- =?utf-8?B?aXVqUThiQXVVSzAzTkNjamhHME1jZ1NLSUdoSWZmWW9peWNxK0xJb1lFWFl6?=
- =?utf-8?B?eFlra1o5dlhNbTBzd09GWTdWU2w2a3ljeTBFOWtGQkZodGJrRm13MXVjaExv?=
- =?utf-8?B?NFZ5UXBobTlSWTFRNkNaRTJGVTF3PT0=?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c96eef93-28f9-4fbf-a835-08dc2ed6e355
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 10:06:05.3150
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ccvZQz6JyB/SVr/XoZOYZ17S8+2EGW9JK5SvrRqkGf+i4wolURdbT6DriKfpaUj1lIUQWfLrDtaWhkN73sFvgXb1YgLwnNJOK9lyUTsd6U97KvmBPtm+p1IP/Hx9XSi9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9148
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 10:06:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62519
+ <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 11:34:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62520
 
-Hi Trevor,
+On Tue, 2024-02-13 at 08:50 -0700, Stephen Jolley wrote:
+> =C2=A0* We are now a week from feature freeze for 5.0, our next LTS
+> release
 
-On 2/16/24 09:29, Trevor Woerner via lists.yoctoproject.org wrote:
-> In order to boot successfully, most Rockchip SoCs require a specific
-> partitioning scheme which was defined many years (and many SoCs) ago. That
-> partitioning scheme places the SPL and U-Boot at specific offsets at the
-> start of the boot block device:
-> 
-> 	https://opensource.rock-chips.com/wiki_Partitions
-> 
-> The Rockchip partitioning scheme goes on to also define the locations and
-> sizes of a number of additional partitions, including the "boot" and "root"
-> partitions.
-> 
-> Since both the SPL and U-Boot have already been placed on the block device,
-> the "boot" partition only contains the extlinux config file and the
-> kernel+dtb/fitImage; it doesn't contain any bootloader artifacts (other
-> than the extlinux config).
-> 
-> The location and size of the SPL partition is a hard dependency since the
+For better or worse but probably not entirely surprisingly, there are
+quite a few things that we may want to try and fit in. I've listed them
+just so everyone knows what is on the list:
 
-Just because I like being pedantic, I don't thhink the size is a hard 
-dependency. The location is (well there are a few possible though :) ), 
-but the size is part of the header(s) that is parsed by the BootROM, the 
-BootROM will only fetch what it needs as far as I remember. It's a bit 
-of convoluted code but it's done in tools/rkcommon.c in U-Boot source code.
+* genericarm64 machine
+* add qemuriscv64 tests to the autobuilder, for M3 only
+* devtool changes to use git notes
+* hashserve improvements
+* pending changes in master-next where review is still being worked
+* change to rust test suite logging
+* devtool IDE changes
 
-What we can say though is that the TPL+SPL has a maximum size, since it 
-needs to fit inside the SRAM. But I don't think any SoC has been 
-released by Rockchip that has 2.5MiB of SRAM, it's usually a few tens of 
-KiB max only. Anyway, the message is fine, just wanted to give a bit 
-more info there.
+Also things which are worrying:
 
-[...]
+* Rust upgrade blocked by reproducibility issues
+* musl upgrade blocked by large number of unsubmitted pending patches
+* nativesdk-systemd usage broken by usrmerge requirement (we're not=C2=A0
+  changing=C2=A0the SDK layout days before freeze)
 
-> diff --git a/conf/machine/include/rockchip-extlinux.inc b/conf/machine/include/rockchip-extlinux.inc
-> new file mode 100644
-> index 000000000000..3af7ed629e34
-> --- /dev/null
-> +++ b/conf/machine/include/rockchip-extlinux.inc
-> @@ -0,0 +1,12 @@
-> +UBOOT_EXTLINUX ?= "1"
-> +UBOOT_EXTLINUX_ROOT ?= "root=PARTLABEL=root"
-> +UBOOT_EXTLINUX_FDTDIR ?= "${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '/boot', d)}"
-> +NONFITDT ?= "${@d.getVar('KERNEL_DEVICETREE').split('/')[1]}"
+I'm sure there are some things I'm forgetting too.
 
-Maybe keep the comment explaining the logic of this line?
+Please let me know ASAP if there is anything else pending.
 
-> +UBOOT_EXTLINUX_FDT ?= "${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '${NONFITDT}', d)}"
-> +UBOOT_EXTLINUX_CONSOLE ?= "earlycon console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8"
-> +UBOOT_EXTLINUX_KERNEL_ARGS ?= "rootwait rw rootfstype=ext4"
-> +UBOOT_EXTLINUX_KERNEL_IMAGE ?= "/boot/${KERNEL_IMAGETYPE}"
-> +UBOOT_EXTLINUX_LABELS ?= "default"
-> +UBOOT_EXTLINUX_MENU_DESCRIPTION:default ?= "${MACHINE}"
-> +
-> +MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "u-boot-extlinux"
-
-Going back to the mail I sent a few minutes ago on the v1 (which was 
-sent after your v2 was sent :) ), I have a gut feeling we need _RDEPENDS 
-here and not _RRECOMMENDS.
+The good news is that several problematic issues do seem to be finding
+resolutions in the last 48h.
 
 Cheers,
-Quentin
+
+Richard
+
+
+
+
+
+
 
