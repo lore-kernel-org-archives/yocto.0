@@ -1,114 +1,227 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4260C48260
-	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 11:34:29 +0000 (UTC)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web11.16690.1708083266515456707
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9695EC48BEB
+	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 13:12:50 +0000 (UTC)
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+ by mx.groups.io with SMTP id smtpd.web10.18408.1708089165251899382
  for <yocto@lists.yoctoproject.org>;
- Fri, 16 Feb 2024 03:34:27 -0800
+ Fri, 16 Feb 2024 05:12:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=U/BWnM1n;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.46, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-411d3c75026so15071965e9.0
-        for <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 03:34:26 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=XSUJLwZ+;
+ spf=pass (domain: gmail.com, ip: 209.85.167.174, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3c0449eaadaso1843034b6e.1
+        for <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 05:12:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1708083265; x=1708688065; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3BwhIVsshsFcFRsHlgEGX/hggIMqyuzvUpsYcS8jcCw=;
-        b=U/BWnM1nLNx111aefXdR6afu+bjJAUUJ0ofH6bctBiisUDMmUueieUrp5LRZI/MTn6
-         TmuCT52OjSb8PCSaualrKQicE2Hn8WtVUPz+CPC1myy1fZpmelQKdMHm3qWf3yV5FiXr
-         Dt1cF312ZSS91eHfGiRTasugOCXNKakYMaaw8=
+        d=gmail.com; s=20230601; t=1708089164; x=1708693964; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=oRPmeC1vhtq9SN0yog6kxlNzl1KZ2BQfcTKt8MsbFsI=;
+        b=XSUJLwZ+Bpr8EWwb05vBsCg+41xCh9AlTwFoerKA7kqNbBL7QvE/42qAnsuV+6n8PU
+         1M4tvImDBqskhEsrX2Ixv3mnAO5a19vmht8Z1LP7gOjTJqRMLhroRaBYv07F2xkpNEHZ
+         ASfgJftB9U/CQ/C9GVWtN1ZZdUMp5A7W9i+jqqoV68kCZqFYSt/+QYk/xUu2kADlAdJg
+         L48gKnwO+d/H+99zb4ME6+yVAomq3jKtm0nZvsC9GVlV66Pf13J30JJrYJVdj+NNx5lP
+         dP5kOoRWOt62NtqBWFJeTsN7TAp91gnf/AeZwNnSGPZzu8uWwPWFC/3QzgVPJ1w5hmgP
+         gagA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708083265; x=1708688065;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3BwhIVsshsFcFRsHlgEGX/hggIMqyuzvUpsYcS8jcCw=;
-        b=MnWW04JuOmWxJniimo72X3xE5TvNc2MAI1KE0AiGMIvOjKB4/q5y0qFb0HVpsaw0Hb
-         1J5gkSc/Rg1L0ncU2Radbd4J1Rc0GCJV4GK2ZQt8V7CzdT0a1ucJbMbZ5CqQqF0RVH4Q
-         QUMod0H4Ncdut6Z90ejTLz00evNlXb2hnIBnVnTf1RqnyF5tIH+eksRuNyaho1DqJGyC
-         ZcCo9hFTizgAPFVWuOcaP7qZ1ibYs900xmDQuV086dEDA/dBg7ABtgeh2ld1/dfSyM1m
-         zv/H4Rqem2AbS81YABb9+w2g9vOCFHPkH/i1fNG8pN0beByMSwpnU8KQwXzixVaevDjd
-         tmBA==
-X-Forwarded-Encrypted: i=1; AJvYcCXh60lDNT/cUqtJ316bOVJ7f4hNAhfhZ9PkNUZc0nk7jDwoL9Sl+OFcUkhBaQq4RQ0O6mBF2S4lPbDPlVMGiyTiNVPasK1cyot+ajkW
-X-Gm-Message-State: AOJu0YwHHzHYRFDronZ+s9XAdumEiM1O5hwXNbJvOjR4foa0ZnTBTieP
-	izu6IaT0xY3AQRQtChTJsbTD0ZYPunEGumReUHS+7NYO5ZRntLmcyPyWM5C3JPs=
-X-Google-Smtp-Source: AGHT+IGfXtUWEslzdI0DlGzAivSjZrlBvwCCumAT9VdEKJioNTP7B2tPFOE+uxJygX2ThJYfIIDXFQ==
-X-Received: by 2002:a05:600c:2d0b:b0:411:b334:2ff0 with SMTP id x11-20020a05600c2d0b00b00411b3342ff0mr3839387wmf.24.1708083264945;
-        Fri, 16 Feb 2024 03:34:24 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:fd13:6695:6348:c567? ([2001:8b0:aba:5f3c:fd13:6695:6348:c567])
-        by smtp.gmail.com with ESMTPSA id r2-20020a05600c35c200b004123b049f86sm2074934wmq.37.2024.02.16.03.34.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 03:34:24 -0800 (PST)
-Message-ID: <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
-Subject: Re: [OE-core] Yocto Project Status 13 February 2024 (WW07)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Stephen Jolley <sjolley.yp.pm@gmail.com>, Yocto-mailing-list
- <yocto@lists.yoctoproject.org>, ",openembedded-core@lists.openembedded.org"
- <openembedded-core@lists.openembedded.org>
-Date: Fri, 16 Feb 2024 11:34:23 +0000
-In-Reply-To: <CAK5yBb8YQoMdR=qKDHPYVUo7jKhRDEjS3Ah6EDccsbdwgmm+Vw@mail.gmail.com>
-References: 
-	<CAK5yBb8YQoMdR=qKDHPYVUo7jKhRDEjS3Ah6EDccsbdwgmm+Vw@mail.gmail.com>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0-1 
+        d=1e100.net; s=20230601; t=1708089164; x=1708693964;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oRPmeC1vhtq9SN0yog6kxlNzl1KZ2BQfcTKt8MsbFsI=;
+        b=hDXbjTNnEhLTPky8QQahavAthLTltr8uS3VORHX4W1NMbfHyoV8pnNYrYEurp6H9Xs
+         KdcHEy+ipJQAQQVoHmK2iPrvgVsTzJ8V6WAIvu9XMF/54V8DxqIOaxB/aeZv4yuh/dPH
+         vrjoEoBTg9YCDIV67TiRPq0+iyYmGUWIQDf2jPqmOsRfnK2FEwxecG3+d/0HIGkKKSnl
+         /pdpsOwF2vhVRcLwyq3fyX4NnHwdVfq9IYIIjritMUsP45iMZuMvys3YqS9N4dtlB8UJ
+         BqBH/t3UkSK8zUSxSd4m7m0aL5xQCpM41QKZOqRJ2IvLmjqwnoseKD/RX+NefSTALxWk
+         SHhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVIVbqx0I4o1PkqkbpEPX/FQNHWZsArIOLhzaf+m5DygVjZqK+gP27dFlAKC+k5HjIsGP4KD8yvJ6ek4VU6R9L3VT3B+pxLuBpqTmqs
+X-Gm-Message-State: AOJu0Yxirybhc4pdQT8PAqZqhlcPVDoVR2lmD/jqDhDll0XFy2p9PW6A
+	cdkTF/3QiVRg4MOjFlN/VmeANX3lrrpZBVx0VeuslBK8IRJuMqKDaXmfYJ721zbZ2Pn1bpwWw3P
+	Iyq/Tjq0kVk3g2FBdlsSN7aDbK8E=
+X-Google-Smtp-Source: AGHT+IHnL63lpFJJzP8QQWGXjReLXswzmvmPgTcI7E/gRRjc3Afnzn2I87+KNNcFzGGQ6nS2xBcfwMbs+0OV2kPH5H8=
+X-Received: by 2002:a05:6808:998:b0:3c0:482c:54ab with SMTP id
+ a24-20020a056808099800b003c0482c54abmr4730764oic.12.1708089164406; Fri, 16
+ Feb 2024 05:12:44 -0800 (PST)
 MIME-Version: 1.0
+References: <CAK5yBb8YQoMdR=qKDHPYVUo7jKhRDEjS3Ah6EDccsbdwgmm+Vw@mail.gmail.com>
+ <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
+In-Reply-To: <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
+From: Jose Quaresma <quaresma.jose@gmail.com>
+Date: Fri, 16 Feb 2024 13:12:33 +0000
+Message-ID: <CANPvuRmpF1m_TCQPotoNLUQUoW6FHJxEJsDnvBGr4docaCgK3A@mail.gmail.com>
+Subject: Re: [OE-core] Yocto Project Status 13 February 2024 (WW07)
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Stephen Jolley <sjolley.yp.pm@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="000000000000e3a4ce06117f7f18"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 11:34:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62520
+ <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 13:12:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62521
 
-On Tue, 2024-02-13 at 08:50 -0700, Stephen Jolley wrote:
-> =C2=A0* We are now a week from feature freeze for 5.0, our next LTS
-> release
+--000000000000e3a4ce06117f7f18
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-For better or worse but probably not entirely surprisingly, there are
-quite a few things that we may want to try and fit in. I've listed them
-just so everyone knows what is on the list:
+Richard Purdie <richard.purdie@linuxfoundation.org> escreveu (sexta,
+16/02/2024 =C3=A0(s) 11:34):
 
-* genericarm64 machine
-* add qemuriscv64 tests to the autobuilder, for M3 only
-* devtool changes to use git notes
-* hashserve improvements
-* pending changes in master-next where review is still being worked
-* change to rust test suite logging
-* devtool IDE changes
+> On Tue, 2024-02-13 at 08:50 -0700, Stephen Jolley wrote:
+> >  * We are now a week from feature freeze for 5.0, our next LTS
+> > release
+>
+> For better or worse but probably not entirely surprisingly, there are
+> quite a few things that we may want to try and fit in. I've listed them
+> just so everyone knows what is on the list:
+>
+> * genericarm64 machine
+> * add qemuriscv64 tests to the autobuilder, for M3 only
+> * devtool changes to use git notes
+> * hashserve improvements
+> * pending changes in master-next where review is still being worked
+> * change to rust test suite logging
+> * devtool IDE changes
+>
+> Also things which are worrying:
+>
+> * Rust upgrade blocked by reproducibility issues
+> * musl upgrade blocked by large number of unsubmitted pending patches
+> * nativesdk-systemd usage broken by usrmerge requirement (we're not
+>   changing the SDK layout days before freeze)
+>
+> I'm sure there are some things I'm forgetting too.
+>
+> Please let me know ASAP if there is anything else pending.
+>
 
-Also things which are worrying:
+Hi Richard,
 
-* Rust upgrade blocked by reproducibility issues
-* musl upgrade blocked by large number of unsubmitted pending patches
-* nativesdk-systemd usage broken by usrmerge requirement (we're not=C2=A0
-  changing=C2=A0the SDK layout days before freeze)
+I think it would also be important to update the golang toolchain from the
+1.20.x
+we haven't done it yet the 1.21 and 1.22.
+I intend to dedicate some time to 1.21 but I can't promise anything and
+there is a
+high probability that I won't be able to correct the problems that exist.
 
-I'm sure there are some things I'm forgetting too.
-
-Please let me know ASAP if there is anything else pending.
-
-The good news is that several problematic issues do seem to be finding
-resolutions in the last 48h.
-
-Cheers,
-
-Richard
+Jose
 
 
+>
+> The good news is that several problematic issues do seem to be finding
+> resolutions in the last 48h.
+>
+> Cheers,
+>
+> Richard
+>
+>
+>
+>
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#195747):
+> https://lists.openembedded.org/g/openembedded-core/message/195747
+> Mute This Topic: https://lists.openembedded.org/mt/104334498/5052612
+> Group Owner: openembedded-core+owner@lists.openembedded.org
+> Unsubscribe: https://lists.openembedded.org/g/openembedded-core/unsub [
+> quaresma.jose@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
+--=20
+Best regards,
 
+Jos=C3=A9 Quaresma
 
+--000000000000e3a4ce06117f7f18
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">Richard Purdie &lt;<a href=3D"mailto:=
+richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>&=
+gt; escreveu (sexta, 16/02/2024 =C3=A0(s) 11:34):<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">On Tue, 2024-02-13 at 08:50 -0700, Stephe=
+n Jolley wrote:<br>
+&gt; =C2=A0* We are now a week from feature freeze for 5.0, our next LTS<br=
+>
+&gt; release<br>
+<br>
+For better or worse but probably not entirely surprisingly, there are<br>
+quite a few things that we may want to try and fit in. I&#39;ve listed them=
+<br>
+just so everyone knows what is on the list:<br>
+<br>
+* genericarm64 machine<br>
+* add qemuriscv64 tests to the autobuilder, for M3 only<br>
+* devtool changes to use git notes<br>
+* hashserve improvements<br>
+* pending changes in master-next where review is still being worked<br>
+* change to rust test suite logging<br>
+* devtool IDE changes<br>
+<br>
+Also things which are worrying:<br>
+<br>
+* Rust upgrade blocked by reproducibility issues<br>
+* musl upgrade blocked by large number of unsubmitted pending patches<br>
+* nativesdk-systemd usage broken by usrmerge requirement (we&#39;re not=C2=
+=A0<br>
+=C2=A0 changing=C2=A0the SDK layout days before freeze)<br>
+<br>
+I&#39;m sure there are some things I&#39;m forgetting too.<br>
+<br>
+Please let me know ASAP if there is anything else pending.<br></blockquote>=
+<div><br></div><div>Hi Richard,<br><br>I think it would also be important t=
+o update the golang toolchain from the 1.20.x</div><div>we haven&#39;t done=
+ it yet the 1.21 and 1.22.</div><div>I intend to dedicate some time to 1.21=
+ but I can&#39;t promise anything and there is a</div><div>high probability=
+ that I won&#39;t be able to correct the problems that exist.<br><br>Jose</=
+div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+The good news is that several problematic issues do seem to be finding<br>
+resolutions in the last 48h.<br>
+<br>
+Cheers,<br>
+<br>
+Richard<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#195747): <a href=3D"https://lists.openembedded.org/g/op=
+enembedded-core/message/195747" rel=3D"noreferrer" target=3D"_blank">https:=
+//lists.openembedded.org/g/openembedded-core/message/195747</a><br>
+Mute This Topic: <a href=3D"https://lists.openembedded.org/mt/104334498/505=
+2612" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded.org/m=
+t/104334498/5052612</a><br>
+Group Owner: <a href=3D"mailto:openembedded-core%2Bowner@lists.openembedded=
+.org" target=3D"_blank">openembedded-core+owner@lists.openembedded.org</a><=
+br>
+Unsubscribe: <a href=3D"https://lists.openembedded.org/g/openembedded-core/=
+unsub" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded.org/=
+g/openembedded-core/unsub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" t=
+arget=3D"_blank">quaresma.jose@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
+div>
+
+--000000000000e3a4ce06117f7f18--
 
