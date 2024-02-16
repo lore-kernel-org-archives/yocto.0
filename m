@@ -2,22 +2,22 @@ Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 39DEAC48BEB
-	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 09:31:49 +0000 (UTC)
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (EUR01-VE1-obe.outbound.protection.outlook.com [40.107.14.138])
- by mx.groups.io with SMTP id smtpd.web11.15217.1708075903304125275
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54BFFC48260
+	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 09:49:09 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.123])
+ by mx.groups.io with SMTP id smtpd.web11.15419.1708076946053080522
  for <yocto@lists.yoctoproject.org>;
- Fri, 16 Feb 2024 01:31:43 -0800
+ Fri, 16 Feb 2024 01:49:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=Dpr4BLSy;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.14.138, mailfrom: quentin.schulz@theobroma-systems.com)
+ dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=hLsJ09Tp;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.22.123, mailfrom: quentin.schulz@theobroma-systems.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dWq0Svn176nytZSRRs4pAjTbwZVRohypevjowXhY/VzBjUt0lOwCbxZzYsxmLXI37wc9VYdhsagxjXsfElLfgYFIm+zNd9qfKzo2Xej6G+L2yIOEty87fxq5KCy2l29RvQW93AN/40lQxpTViiZXiMxrDR71YXyC7xNFuxj6buZfVECKQzYyD5IaiMwAwYds2kqwndNVrr9R+hlXiPe5U5SZG6+wmbhefgLSJAI/7x0UOW8PXx6yf2v3Qxq6pPV8jMVMpRcrNW2/Dtn3w5iWK9BK9yL1D+VygA/y/SmsTs7fFgmUjsj8yTwjntr4dNOMbBoAvBEbxZ838CV8jb5EjA==
+ b=jhMwfFsWRnjJk9nrJndwJRUR2Zd4crympXCplkajon9RZiR8WSrVejxPekiop+islPCPBAb8oSmjoZuvnqppsfAbt+31+ME7JwMomkABYws3zvsdT+JV8dkpvVcpatZ4c2+IVGnQWtBIpt4jUgx+4cUDOjjWv+vXGFEfhu+0XgLhXI6JRckj46KtRqzxlu8e6ISFNvJ5OOjlPK1HnddYlbpiQ7YGccz6/pz71hcUG4r/6fQrpouj/PZJcJSVsLqosM4Dzbdcnuld7wliBs1FR8vl6dn7476esAY+7DsJJMQtdDgvRz/jkMwsHS8XSVaFzXhVJQIkmi4KmlPcrwf7RA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7ZvG5k5AQRg0WoHcTs24BfE4wFaK0UWHLFAly5LeM4A=;
- b=oO3dAWOLuQWTy5p27/2MWai7lKSrN09rcciqNUCMDSY6WGgPka/gFQFyhZz8KY6AB9Zwjz5YaQXWApLCNDARP5XfOLri3r4dEaSa7TeAFmH6a+pBT5ZobcPeKZqXkysXMcoKbSJPLWSuCR4udYIDma8jTW8v4gMDs0LchAd3VTy0DHNjJcitg2tIcl2lgp417224k9zqc/cbCGyq2+yUT4vbD6orgHwZAEC+4IfeaxwjjHfo/+SgLabfmTnwzRoMqDqgQ8ARm1fnLeUrlMNeTtqCVScH7zCYHsuc9+lRFqrF+EexxVM1bAjNHWkvI3/rDuO9EoNlw0dw39X9wyYcKw==
+ bh=KdDKAUMGFWP9/YywkEy2TA6RTQpTdmpPrl451SoO75E=;
+ b=KqX07aPf5pElreFnn8Lhv7y9OvDBpH0ZyCi78/pa/IE9SPo9CrolWkDSQlLfE0gYPK2nDyV7msdbJWK5ESWt23/4F4m3H1miYJDg+21eKcdeutDTrJbehbFZ+28Wvvk6w8hGawis+NMIwfGs5NBdd19oQcfIaaXzeVtqJlGiJUi0XMnfpGCMrI6lw0mBwQkQWTJ77Gg4VGTPiVzgj1Ub+x9pPH2tOwQeZXjAdVb6z9wTzt7nnzH24SBNimf54EiREU4OmuApdg/j24BJH/8dRYT/xvtED15m0Mginn7E41DTQdQZmKJNJ/b4/mgkXZ1/DLqks0fOOr+g3EAu6jCkBg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
  header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
@@ -25,556 +25,236 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7ZvG5k5AQRg0WoHcTs24BfE4wFaK0UWHLFAly5LeM4A=;
- b=Dpr4BLSy6T8XiXaTM4BeV80rnSxtwEC8EFpcLalLPYMOWC/nJeA/PRhlakClp7b9AwCX1x+5HsvweNZ2+d74+aUEj0zrqMjtV+KPX48mtoMpRA4Fg9XQNqFcrmPZgEymC7zBnNoUaJSHKC5uZLNJwo76Itr9KZRAPUJHSxd+TxIpW4P1jg5C6YI83kS/XHrIfaK3qGV3CDAFxbEVGNFMdYag1UVzpS3Pw/vnC1dRDDz/jES5+z/d/zWKKom0myfqsy+k7/j6CFHdV8qn/yBOzjJsQqR3c96GyPLG0pGfPWHXasKPy95FeHE/BEXPbswtmKVSOPU4Jz66TYwSGjlcbg==
+ bh=KdDKAUMGFWP9/YywkEy2TA6RTQpTdmpPrl451SoO75E=;
+ b=hLsJ09Tp+AfYRURaCqczD5lfw+iNXOtHm2xDoYJWky8wMrSrjHGDwxjp/UGXIfiAxkcz6QrX2DgcPBUcjgNjmY6sv89AxBWS8SE548gpAJ2WH2jQt/R7W8B1Tl3Xn5fys6mCyaNd2//ucoEuIEKPHEI3bonGLIIvCwvkD9ZnOkaXs1p4TPGtMcpGrWvBrwOC23wdqVxU4EEIGVcA6pEedDSIObbFvfoZh7yglHD31qwgq4qh6qPj9Dm9zWslqbmUPYi1wfbyR5fexNqKcrBd0EmxmYEWItKgl2YPxtOiXvykS/lyr13cp2XooHMMpFsj4kyall0B+NUCfs9kA/KZ3A==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
 Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
- by PA4PR04MB7550.eurprd04.prod.outlook.com (2603:10a6:102:f0::14) with
+ by PAWPR04MB9888.eurprd04.prod.outlook.com (2603:10a6:102:385::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Fri, 16 Feb
- 2024 09:31:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Fri, 16 Feb
+ 2024 09:49:02 +0000
 Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
  ([fe80::550d:ad96:e3cb:9a6e]) by DU2PR04MB8536.eurprd04.prod.outlook.com
  ([fe80::550d:ad96:e3cb:9a6e%5]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
- 09:31:38 +0000
-Message-ID: <582d100d-c868-4920-a773-3dbdfb31f009@theobroma-systems.com>
-Date: Fri, 16 Feb 2024 10:31:36 +0100
+ 09:49:01 +0000
+Message-ID: <62ce91fe-9bb8-41fe-940d-59ce77ac9cfe@theobroma-systems.com>
+Date: Fri, 16 Feb 2024 10:48:59 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [meta-rockchip][PATCH 3/4] remove /boot partition from
- wic:bootimg-paritition
+Subject: Re: [yocto] [meta-rockchip][PATCH v2 2/4] rockchip.wks: add all
+ Rockchip partitions
 Content-Language: en-US
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-References: <20240212202342.37778-1-twoerner@gmail.com>
- <20240212202342.37778-3-twoerner@gmail.com>
- <ebaf257d-6822-4e23-bc09-7606a90a4f7a@theobroma-systems.com>
- <20240216082531.GA2571@localhost>
+To: yocto@lists.yoctoproject.org, twoerner@gmail.com
+References: <20240216082922.7873-1-twoerner@gmail.com>
+ <20240216082922.7873-2-twoerner@gmail.com>
 From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20240216082531.GA2571@localhost>
+In-Reply-To: <20240216082922.7873-2-twoerner@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-X-ClientProxiedBy: FR3P281CA0192.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a4::16) To DU2PR04MB8536.eurprd04.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR2P281CA0167.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:99::15) To DU2PR04MB8536.eurprd04.prod.outlook.com
  (2603:10a6:10:2d7::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|PA4PR04MB7550:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9515842-2825-444a-0d7d-08dc2ed21390
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|PAWPR04MB9888:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5867308a-9953-4254-4cd2-08dc2ed48161
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	TX9AWel5tkGoZ/O/v5f+yv34JoZ4GpyoAjTJyMmbDTqoJdbsy6J1y7bKQg3k3qCp5VXm6NZxeIIarmpmqyhT9//tD4spmSJBJQyoh+1hrAMECqvDmnaooESEpHj/cxvn0dTYWM718nm0LXqdRnaDf/P9F364YsWFikjkEW73vjxPInA1WRaT2pqEQtUjVErRUN4I5v0IJgmbZmO0N9hxHP7KeXVLfLzqrm78JUtaDehZzvyiKwqYx14+B0js60GoSazh20SRq3tXi0Ts9A+ZlP4Xtepewnqc1jrzXHBC/KsPHdDTD1dwKdWMv8hPlWLDZc3UJ0QmWsXKVeQs0JVi8VxmKrQI0+6HYM1bIrEnisLzZ2+0mTp1CKtWwcyz8OYqZQckQ8FYt+RKXMylspmB/4168hh2fPc1+jBlf27t7q5EFkZxmOsbiOg9MYjMswjJDfWis2aKm+7K4Jpxk/jmPMWXJqDSpNBMpXVlrhuwysoi/1CayEy25w2L8Ak6D1oioFI2C5rv2eLWDPFk2+hZtJpG7w+c7DBSusAZ71ryrTM=
+	0ulZbOfA6/w8RlsqYOb7BmzQJVleqnfslp9mdI8X+f8mzz/qDL47eMp3qeVWCoX5wBrUj/91kvBvA1VzUotpYiuhhbQkmdZRcSm1+aLMjM5EzL4Mv1mU2nv+P8IMTMVWvnkiGRHQbYNy4dvrZGv+pCf4935218NJPpKvOrE0Vm6zuAFK6NKejBfqRCkGtRByl2GYw1VC2EZUy7/dlNVmp6UDrYVWDzQ+/HO75ZoyqcOwwSt2MV5muXOL5OdFZ3xo3p6Imk/WOZlxBGSXDiMUhhWbUqK/KEDGlFfdWp1ZhDv+dl5ahwBYoj9RZQBlP1uTY6UN2/1OnSi4FzSRmyB4glc7uW8r5nwcdc8BABNiVpbUP8v9h/2Z2rTmcr3AzPp5WCfn95OFqybtToqatY3iyDt9OZin5+i7InBAJvgG1BPdJA2SU8wS86HjV+krpMSsXXiY2yFkI95Df2vLyWoQxHctlVc8jGK6wQZHvW87ed6sraVRiTxu61yCsRZmqZQnksHlhgUPMVTAoyazf4b8T4shf/Beusq4fmEtbsMY+G4=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(346002)(136003)(39850400004)(396003)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(38100700002)(8676002)(36756003)(31696002)(31686004)(66556008)(8936002)(66946007)(86362001)(66476007)(2906002)(83380400001)(44832011)(6916009)(2616005)(41300700001)(4326008)(316002)(5660300002)(30864003)(6512007)(45080400002)(6486002)(966005)(478600001)(6506007)(53546011);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(136003)(346002)(39850400004)(396003)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(31686004)(316002)(5660300002)(44832011)(2906002)(8936002)(66556008)(66476007)(31696002)(966005)(86362001)(8676002)(6512007)(45080400002)(41300700001)(53546011)(36756003)(2616005)(478600001)(6486002)(38100700002)(66946007)(83380400001)(6506007);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?amtxMFpzc3dNTHB6SW5oaDQzMkx1VEhNR083T3BhWTJJMlF4OW1jSVNleVRE?=
- =?utf-8?B?R3N1NlVZbHRjbUpRNHg2UHk3SEZCbThjRWwvVmoxdy8vNnBIWUx5SE5KOWYy?=
- =?utf-8?B?NElXdFB4OGZiMnpMUCtrdGptSGxyQU5sWFpubll4c3M3eVYyVzVwb3oxUDda?=
- =?utf-8?B?KzZmdEp6STlYcS9XUzczN2lURHR5OVR0bWZsRFdESU4wS04xTTUzRUltckxR?=
- =?utf-8?B?d2JWWmdyazVadER3dWFYcXRabTVoelZ5eW8vZ1B3bVVIR1NqbUNUSnRoUUZU?=
- =?utf-8?B?bk5CMTAwY1hVcUxVdTVtTnlDeDU4QUgwbjRNeTBFQkJBTHVnbWdPNjJGNnB4?=
- =?utf-8?B?dFFHZUFuS00zRzVja0p3UDNBZjVKR0t0WjZjSnByK2Z6TldFMEN1T3diRXVz?=
- =?utf-8?B?ZndZYkVoYWxLa1hGTDBicUxydDJMT1pPV3lGR2pIQUFWbGhVK2N5S3Urbzho?=
- =?utf-8?B?T1kvck5vZ3MxUEdWWkovc3Q1LzM2NkN3cjd4TVAxdWdyd2ZRKzZFQzRkYXF1?=
- =?utf-8?B?VUovdXJqOGNIWE16TWpqOUxIbkp0c2U0VHlOK0xGQmh0N1daK0JGL3FPWEx4?=
- =?utf-8?B?OWZNckt1WVh6dUtYV01vWWZkbW41OURBVFRxenhVeGs0ZlA1TVgwSGQ2ZzI3?=
- =?utf-8?B?TFVKMEtkUXFFU2xzT01JRWZQaUE3c09BRTZyRFFiZ2tRQXFEWTFxelU0cllK?=
- =?utf-8?B?NzNBcUZaK3NWZWFJaW83SU5GWE5zRTRxK0R6Y2JQeGIzVDhtWUJKOHhzZERS?=
- =?utf-8?B?eVFDdmpDZVBtYVlFVEFjdUlPYy9PV1BVOUdXVWZqOFpsb0hHTEh3S0dja1NB?=
- =?utf-8?B?MzdWZThES1U2K3hiUW5VMnExcUVTOHd4UGlCckxNU2pZTUxJMHVmVCt2VlBD?=
- =?utf-8?B?VWY3Sm00TVNxUUNuSGFkVkt3NUdoaWxtL0o4TzNPSHpvT3QwR2hMeG9qTDA0?=
- =?utf-8?B?eFV2dWRqbk4vU204dCtPUHlLSkdQQlVLQVhrelQvMWt5ZDhnRkVlaW1sYXpa?=
- =?utf-8?B?T0NveEh5cHJGZnVBYkQ4RUFhZzd0L0IrMDZBcHVoRTVBZDdyUDQ1V3Y4NTVL?=
- =?utf-8?B?TGlqZEQ0TjdodG82RFZrL2RDbDRCZjJUUzVxOEtTWWc4MUozTDM5d3Vwam5Y?=
- =?utf-8?B?VGtlc3M2THY5OGgvQlhWQTdla3BteTdxZTNIVHdDanFEWFNuS0oxZWl1Rmpk?=
- =?utf-8?B?UXdYT1hzZVFyZmJKRCtzRnZxNnZwUU5rNGs0alpzbmptdEpMak9PQkg1WWhz?=
- =?utf-8?B?aGtVeGtFM1VyWVJ5ckR3MDhaYkhLcTM0NkprQWE5K3BCVWdzNjFSc20vUGJt?=
- =?utf-8?B?d2Jra2xjMk1lVkxqZWpFRktkdFpGa1RRZUMvNmdtM2dsbEx1SXZ4cjkwVm5K?=
- =?utf-8?B?dmYyclN4bHFQK2NQbkxvMWlxUURjakhiODhISjFqNXVXNFh1UjF1RzFkMGpS?=
- =?utf-8?B?RlloYzBrOEhsUjVsTUJHWEg4akszRGFBTEJrYnBvUDdrRXRRZlZRUW5TUTMz?=
- =?utf-8?B?R0NhK29ZcWc1R0hWeEhGOWZ2Z1BMNDY0eW5pSndKY3VoL0svZVdIUjF5a1c4?=
- =?utf-8?B?SVlDSkM1MU5KOUNIVWpQQUFRUkdVRFFSQlQyRFhmbUNFTEdyZk1ZRENUYWt0?=
- =?utf-8?B?NkNhKzdua3VyR1lOZEZyQ1BHTW0xKzkxSHM1emV0ZnhDblNqY3ZZMk9NK0Ez?=
- =?utf-8?B?dFg0dFg1WHVtZUE2MVpkb0VLcXhBTjZBZ3EwZ3ZONW9xL2JqZldtb3BKbEVY?=
- =?utf-8?B?TGRQZ0VCM2pRN05UWnB4ZVhvY0ZMeTIyanF1bWxtcWNsd1IrNi90R0c0WmRt?=
- =?utf-8?B?QkIwU002eTArd2g3TFI1Q1ovWm5GN213aHVsWUZHOTZwU3JYbUwxODh4bGVh?=
- =?utf-8?B?aDV6R2ZVTzl3UEtnWndZR2x6QVJBMG5TZFVzK2pQM294RXhncXhIb2pnTXgy?=
- =?utf-8?B?dURGQXhSSHBUdWkyS29nYXJrRjYrbTB1ZWNCd01VZS9QK3pUS21hekxQZFd2?=
- =?utf-8?B?ajJqNm14b3B6R2p0UkI3VDFpNlRhdUhsWVA3dWRQdDczVnR3dnNhWWI0cUNv?=
- =?utf-8?B?RkxiWjUyd0xPai9UQ25HQkw0VUU3eWF3bHF6Y1dpK3E0ZmtUSjlzU2krMlhT?=
- =?utf-8?B?QnFhYkF0aW5KTjZ0bGNsMXNsWEQ0WWdXQi80NElvc0hmWHp0aUIrZkhaY09m?=
- =?utf-8?B?aEd2R1pQWU5wcGNaaG9ZNFJGYjBGdEcxVTVXNXJzZDBxNE05QUliRzJjb0Zt?=
- =?utf-8?B?V3crMlRtck1wN0s4UExkQkVIZ2pnPT0=?=
+	=?utf-8?B?cTlWdXphWVN4NWh4WFgrd3Q2Q2E5R0ZVQS9SWUZMQ01jUEwvb2pGZ3hjNlB3?=
+ =?utf-8?B?K3NoR2wwOE1UQzRaZzBFeEozK0FPSUtLU29sbWlscEpaUmhlV2ZjS1dQWUZH?=
+ =?utf-8?B?VWVpbGZaY09MVDBMaW8vUVZTVkw2WEJwcU9ybkpoa2FGVnBIUFRXazJDN0dN?=
+ =?utf-8?B?ZmZGZFVuaDBBMzdnL1djWHpWUDIxTVhwTGxBRkVOMUVwaS9iOEFLR3pjRkcz?=
+ =?utf-8?B?clhmVUdrT09QUjIzOWY4ZEV4YTQzL1ZiSDduR0I3d1dWSmt1TXpLaXdaT2pS?=
+ =?utf-8?B?UlNOWDhqSkhFS2ZCTXUxVUNLVWVQREhIeFEvR2txSlRDdyswSDJaL3VnbkZK?=
+ =?utf-8?B?VXdiZXZpTi92ME9lU1VrcXJQMndrQStRM2lNRkt5QUlmSjA2VG5oeXQzdkJ1?=
+ =?utf-8?B?cGZCaDhUTUVDRXkwd3BxZlZESS9NRlFWWDJQdGxaOGRNcVh6ZXV6QWN3ZUZa?=
+ =?utf-8?B?dGc2VjV2WXBSRC9yd1ZXQy9VdmxFK1cvSTdyZHl5NmZROHdvYXpTL0NMVVJQ?=
+ =?utf-8?B?L1huU2FpMjJDeFY3SVp4RzN0NVhWUEpvVS9tSFIwUTVGM2lpeSszNUNpSy9J?=
+ =?utf-8?B?d3NMK0VNdkVEZjJpekhWd0p6N3ZaUS8vQXd4OTFIVnBsWGhacHU5c3hxbXFV?=
+ =?utf-8?B?QUdXQThocVNJakpzVDhrK1lNU3JkTmNzSGl6QmFxMEZ5bGI5a0E2N09qeVF2?=
+ =?utf-8?B?TjhNeVUxZC93UndIY2tvRUNSdjJ0QWlGMTdsRVVXK2ZtbFZ0UzkvNi8yQ3JE?=
+ =?utf-8?B?MTRHREpveHl3SDlTOVEwODhoeTV6aE1SVktBSmhRSW1zRjdLc1kza3ZpR1hk?=
+ =?utf-8?B?MHUyUG9xZXA5K1F1R1hNYTZDMVFtU3ZiQSs5Ymo5eHBnWU85aExNS0I5Nms1?=
+ =?utf-8?B?d2lGK1RwYldiRlVvUVFDNTBHRDQySVhtUFUzdnZwVWRwV0tQUndmNkdLSTVN?=
+ =?utf-8?B?bWVTa1UwR0d4VWtDam5MMUNLTnVKZEZINkw4UTh2bG5FQld2UDBmL2ozNDFm?=
+ =?utf-8?B?aXVBc0pBMm1WMmlkQk0yRDYrNmpGWlpXRGRVTU1GTWVqdXVVeFAwK1pEWVFO?=
+ =?utf-8?B?WVNOSmpuMWlZblZFVmV5enNzN08wenNlMjBBWHIzYzRFUzBzMVBpMnNPMWJY?=
+ =?utf-8?B?Y096MjZHM2lFOGVVTVFxVlFDdkVVS1BjTmFBREJyd2Rxc0pFNVJzK1VFcm1q?=
+ =?utf-8?B?VXk0RXNxQUtBMnNMVm1Kd0dOeE9HWDlXNTY3aXVmOWdMdUU2dHdKY1dSeFpF?=
+ =?utf-8?B?UjVNdktCVUNuNWsxcW9uS2ZSenNyWW0wOVdjOERzdUIxQVZJNWNsNEFpalhJ?=
+ =?utf-8?B?TldZN0o1MEdSZzZoaXpRQy9pNjJWWTBxMGt6ai9tUVMvVlUzUjRBVkZhRFFk?=
+ =?utf-8?B?S2tjMks0U093RkZ6cFdKeGVvUllaeFFiS3h0aHpBZGRZWFJkTms3eFE5ODh4?=
+ =?utf-8?B?Z2tNb2s0QlNMeXo3VFJlOEZpakdEOVBZcVRRSUZiVXY3T0hKQTdTRTc0b1hE?=
+ =?utf-8?B?TzdJODdGYVI2ZG5JSGxTRmNqTjhUWjVmQ0s3VEpibUFXdExDU2pnMlRqNFE1?=
+ =?utf-8?B?ekg1ejJscXVaOEMvczd1WDN4Y3hyUUlPeXkrMVM3Nk5mNzcvSjJaRE9Xd1pu?=
+ =?utf-8?B?YUhkZDAxUENTSUM4S1E2V3NSb1g4SmVUT3FoZVU3cGswVHZIMDcyU0o0VUg5?=
+ =?utf-8?B?MlVZY0pwZmhYRlRxRHozbnIwTG9SZ1dZL3JBdHZNeDR4cW9FSzF3SCt4TEll?=
+ =?utf-8?B?MFRTVnRPdEVlVElvd2grT0tFQ3RHOGVMUFlZVnBnRmEwNzZuN3JDc1dRekpN?=
+ =?utf-8?B?eWVXSFdGWExVOXh0dzU2Y1NHWURYZGhTS2ZBS0U3cE9laStSMnlEdzJUSW82?=
+ =?utf-8?B?ZC9ybnNUblIrZ2hFdEhNUUpzcVFycmVtUVV5bjVMMXYrRVU4SStraWFSTTZY?=
+ =?utf-8?B?bzg5MnNGcU9ReXFDZDdIWlhQK3ZoVndPY0dvdXJhdzNQdzAybDhBRnByZnQ4?=
+ =?utf-8?B?M2tYMENGc2tqbzVVWk1mcm9iaHNtalEycGhzcUtHTkkzdmpVNDkySm9HYlpv?=
+ =?utf-8?B?dGhxdVJ2RHdWdWxkMXJLVEg0R3hML1VGb2dSNkxKWTRpTUhXWmhoODZ0VEV3?=
+ =?utf-8?B?UWFETGkyL3lEMCtwYXF3YjZrYlhHNWZPMitzQUJibW0vQXFiVnNkZXNyV0FQ?=
+ =?utf-8?B?di9qSms1K1V3ei95dndKR2lJZEJjOUtQSExUdmlINy84ZDUvZ1kvcG1GTEFl?=
+ =?utf-8?B?YzlObmdSZXYxWHFOcFFzSGpYYTB3PT0=?=
 X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9515842-2825-444a-0d7d-08dc2ed21390
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5867308a-9953-4254-4cd2-08dc2ed48161
 X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 09:31:38.7101
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 09:49:01.9061
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DcRHlT+zPAdQQaO3RaWP70qq4W8aYvJkEWFEB8MAB2D+4y0ft1sEU94K9UNy6GbCvG6zt8zlp0hA1DRZwHQ6uEvWHiuMJ00rIW/mHfI04xbeXN0rr3jccQ3DaYnVYdWf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7550
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0xdrdJZFo4p/fUJ9R7eYKHgziNEfF6sDK7p2g64anu8GlRb3WRk+55dQ7hPk2gM8SjftYMHm7pH6vwopPSmq4bEzLPCw3oszllaKAXOfKGNDjmGl0Id5Qu7O7dIAIyA3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9888
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 09:31:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62517
+ <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 09:49:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62518
 
+Hi Trevor,
 
-
-On 2/16/24 09:25, Trevor Woerner wrote:
-> On Thu 2024-02-15 @ 06:45:59 PM, Quentin Schulz wrote:
->> Hi Trevor,
->>
->> On 2/12/24 21:23, Trevor Woerner via lists.yoctoproject.org wrote:
-[...]
->>> +UBOOT_EXTLINUX_KERNEL_IMAGE ?= "/boot/${KERNEL_IMAGETYPE}"
->>
->> FWIW, I don't think /boot is required. bootstd/bootmeth in U-Boot (upstream
->> at the very least) will check for / and then /boot prefix for the paths in
->> extlinux.conf. Not providing /boot means if someone still wants to use a
->> separate boot partition, they wouldn't have to update this variable. But
->> since it's overridable, this is basically up to your preference.
+On 2/16/24 09:29, Trevor Woerner via lists.yoctoproject.org wrote:
+> Rockchip defines the expected layout/map of the default storage device.
+> Fill out the wks description so it matches.
 > 
-> This is a good example of working ahead. The next thing I have queued up is
-> a meta-rauc-rockchip example that works generically on all (most?) rockchip
-> boards. As part of the U-Boot script I need to make the A/B logic work, it
-> needs the "/boot" in there otherwise it doesn't work; therefore it's best to
-> set it up properly now.
+> 	https://opensource.rock-chips.com/wiki_Partitions
 > 
-
-Mmmm I'm interested to see why it fails without the /boot thing? Let's 
-see when we get patches :)
-
->>> +UBOOT_EXTLINUX_LABELS ?= "default"
->>> +UBOOT_EXTLINUX_MENU_DESCRIPTION:default ?= "${MACHINE}"
->>> +
->>> +MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "u-boot-extlinux"
->>
->> Is the image actually bootable if we do NOT have u-boot-extlinux installed?
->> I'm challenging the RRECOMMENDS basically. And wondering whether
->> MACHINE_ESSENTIAL_EXTRA_* is always included (it seems like RDEPENDS one is
->> part of packagegroup-core-boot which is virtually installed in all images).
+> Note: in the Rockchip layout, not all partitions are expected to show up
+> in the gpt partition table. This patch uses "--no-table" to only number the
+> partitions that are numbered in the Rockchip wiki, as well as to give these
+> partitions the partition numbers indicated in the wiki.
 > 
-> I can double-check, but I'm pretty sure that line was added explicitly after
-> testing and noticing that it was needed. If we remove the extlinux artifacts
-> from the image, what boot method is U-Boot supposed to use?
+> Note: there is a mistake in the Rockchip table (which I've copied
+> verbatim here). Going by the values of the "Start Sector", the size of
+> the "reserved1" partition is listed as being 2x its actual size/number of
+> sectors.
 > 
-
-I'm not saying it is not needed, I'm thinking _RRECOMMENDS is too weak 
-and it should be _RDEPENDS instead?
-
-I'm not sure the wic image (or rather the rootfs) is proper basically if 
-u-boot-extlinux is not installed.
-
-As for what U-Boot does if it doesn't find an extlinux.conf, it depends 
-on what U-Boot is configured to do. If I rememebr correctly, most (all) 
-Rockchip boards now use bootflow by default.
-
-You can check the content of the bootcmd environment variable, that's 
-what's started when the user does nothing to interrupt the boot.
-
-For me on Jaguar RK3588:
-"""
- > printenv bootcmd
-bootcmd=bootflow scan -lb
-"""
-
-remove the -b flag so it doesn't boot and you should have something 
-reasonable.
-
-For me:
-"""
-=> bootflow scan -lae
-Scanning for bootflows in all bootdevs
-Seq  Method       State   Uclass    Part  Name                      Filename
----  -----------  ------  --------  ----  ------------------------ 
-----------------
-Scanning global bootmeth 'efi_mgr':
-   0  efi_mgr      ready   (none)       0  <NULL>
-Scanning bootdev 'mmc@fe2e0000.bootdev':
-   1  extlinux     media   mmc          0  mmc@fe2e0000.bootdev.whol
-      ** No partition found, err=-2: No such file or directory
-   2  script       media   mmc          0  mmc@fe2e0000.bootdev.whol
-      ** No partition found, err=-2: No such file or directory
-   3  efi          media   mmc          0  mmc@fe2e0000.bootdev.whol
-      ** No partition found, err=-2: No such file or directory
-   4  pxe          base    mmc          0  mmc@fe2e0000.bootdev.whol
-      ** No media/partition found, err=-524: Unknown error
-   5  extlinux     media   mmc          1  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   6  script       media   mmc          1  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   7  efi          media   mmc          1  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   8  pxe          base    mmc          1  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-   9  extlinux     media   mmc          2  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   a  script       media   mmc          2  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   b  efi          media   mmc          2  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   c  pxe          base    mmc          2  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-   d  extlinux     media   mmc          3  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   e  script       media   mmc          3  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-   f  efi          media   mmc          3  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  10  pxe          base    mmc          3  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  11  extlinux     media   mmc          4  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  12  script       media   mmc          4  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  13  efi          media   mmc          4  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  14  pxe          base    mmc          4  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  15  extlinux     media   mmc          5  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  16  script       media   mmc          5  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  17  efi          media   mmc          5  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  18  pxe          base    mmc          5  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  19  extlinux     ready   mmc          6  mmc@fe2e0000.bootdev.part 
-/extlinux/extlinux.conf
-  1a  script       fs      mmc          6  mmc@fe2e0000.bootdev.part 
-/boot/boot.scr
-      ** File not found, err=-2: No such file or directory
-  1b  efi          fs      mmc          6  mmc@fe2e0000.bootdev.part 
-efi/boot/bootaa64.efi
-      ** File not found, err=-2: No such file or directory
-  1c  pxe          base    mmc          6  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  1d  extlinux     media   mmc          7  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  1e  script       media   mmc          7  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  1f  efi          media   mmc          7  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-22: Invalid argument
-  20  pxe          base    mmc          7  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  21  extlinux     media   mmc          8  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  22  script       media   mmc          8  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  23  efi          media   mmc          8  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  24  pxe          base    mmc          8  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  25  extlinux     media   mmc          9  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  26  script       media   mmc          9  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  27  efi          media   mmc          9  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  28  pxe          base    mmc          9  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  29  extlinux     media   mmc          a  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  2a  script       media   mmc          a  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  2b  efi          media   mmc          a  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  2c  pxe          base    mmc          a  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  2d  extlinux     media   mmc          b  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  2e  script       media   mmc          b  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  2f  efi          media   mmc          b  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  30  pxe          base    mmc          b  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  31  extlinux     media   mmc          c  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  32  script       media   mmc          c  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  33  efi          media   mmc          c  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  34  pxe          base    mmc          c  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  35  extlinux     media   mmc          d  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  36  script       media   mmc          d  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  37  efi          media   mmc          d  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  38  pxe          base    mmc          d  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  39  extlinux     media   mmc          e  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  3a  script       media   mmc          e  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  3b  efi          media   mmc          e  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  3c  pxe          base    mmc          e  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  3d  extlinux     media   mmc          f  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  3e  script       media   mmc          f  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  3f  efi          media   mmc          f  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  40  pxe          base    mmc          f  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  41  extlinux     media   mmc         10  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  42  script       media   mmc         10  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  43  efi          media   mmc         10  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  44  pxe          base    mmc         10  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  45  extlinux     media   mmc         11  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  46  script       media   mmc         11  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  47  efi          media   mmc         11  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  48  pxe          base    mmc         11  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  49  extlinux     media   mmc         12  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  4a  script       media   mmc         12  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  4b  efi          media   mmc         12  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  4c  pxe          base    mmc         12  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  4d  extlinux     media   mmc         13  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  4e  script       media   mmc         13  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  4f  efi          media   mmc         13  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  50  pxe          base    mmc         13  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  51  extlinux     media   mmc         14  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  52  script       media   mmc         14  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  53  efi          media   mmc         14  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  54  pxe          base    mmc         14  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  55  extlinux     media   mmc         15  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  56  script       media   mmc         15  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  57  efi          media   mmc         15  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  58  pxe          base    mmc         15  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  59  extlinux     media   mmc         16  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  5a  script       media   mmc         16  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  5b  efi          media   mmc         16  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  5c  pxe          base    mmc         16  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  5d  extlinux     media   mmc         17  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  5e  script       media   mmc         17  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  5f  efi          media   mmc         17  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  60  pxe          base    mmc         17  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  61  extlinux     media   mmc         18  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  62  script       media   mmc         18  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  63  efi          media   mmc         18  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  64  pxe          base    mmc         18  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  65  extlinux     media   mmc         19  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  66  script       media   mmc         19  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  67  efi          media   mmc         19  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  68  pxe          base    mmc         19  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  69  extlinux     media   mmc         1a  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  6a  script       media   mmc         1a  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  6b  efi          media   mmc         1a  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  6c  pxe          base    mmc         1a  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  6d  extlinux     media   mmc         1b  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  6e  script       media   mmc         1b  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  6f  efi          media   mmc         1b  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  70  pxe          base    mmc         1b  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  71  extlinux     media   mmc         1c  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  72  script       media   mmc         1c  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  73  efi          media   mmc         1c  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  74  pxe          base    mmc         1c  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-  75  extlinux     media   mmc         1d  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  76  script       media   mmc         1d  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  77  efi          media   mmc         1d  mmc@fe2e0000.bootdev.part
-      ** No partition found, err=-2: No such file or directory
-  78  pxe          base    mmc         1d  mmc@fe2e0000.bootdev.part
-      ** No media/partition found, err=-524: Unknown error
-Scanning bootdev 'mmc@fe2c0000.bootdev':
-Card did not respond to voltage select! : -110
-Unknown uclass 'nvme' in label
-scanning bus for devices...
-Bus usb@fc800000: USB EHCI 1.00
-Bus usb@fc840000: USB OHCI 1.0
-Bus usb@fc880000: USB EHCI 1.00
-Bus usb@fc8c0000: USB OHCI 1.0
-scanning bus usb@fc800000 for devices... 1 USB Device(s) found
-scanning bus usb@fc840000 for devices... 1 USB Device(s) found
-scanning bus usb@fc880000 for devices... 1 USB Device(s) found
-scanning bus usb@fc8c0000 for devices... 1 USB Device(s) found
-BOOTP broadcast 1
-BOOTP broadcast 2
-BOOTP broadcast 3
-BOOTP broadcast 4
-BOOTP broadcast 5
-BOOTP broadcast 6
-BOOTP broadcast 7
-BOOTP broadcast 8
-BOOTP broadcast 9
-BOOTP broadcast 10
-BOOTP broadcast 11
-BOOTP broadcast 12
-BOOTP broadcast 13
-BOOTP broadcast 14
-BOOTP broadcast 15
-BOOTP broadcast 16
-BOOTP broadcast 17
-
-Retry time exceeded; starting again
-BOOTP broadcast 1
-BOOTP broadcast 2
-BOOTP broadcast 3
-BOOTP broadcast 4
-BOOTP broadcast 5
-BOOTP broadcast 6
-BOOTP broadcast 7
-BOOTP broadcast 8
-BOOTP broadcast 9
-BOOTP broadcast 10
-BOOTP broadcast 11
-BOOTP broadcast 12
-BOOTP broadcast 13
-BOOTP broadcast 14
-BOOTP broadcast 15
-BOOTP broadcast 16
-BOOTP broadcast 17
-
-Retry time exceeded; starting again
-No more bootdevs
----  -----------  ------  --------  ----  ------------------------ 
-----------------
-(121 bootflows, 2 valid)
-"""
-
-The media tested seems to be located in boot_targets, which defaults for 
-that board to:
-
-"""
- > printenv boot_targets
-boot_targets=mmc0 mmc1 nvme scsi usb pxe dhcp spi
-"""
-
-So it tries to boot from mmc0 (eMMC usually), mmc1 (SD card usually), 
-nvme, scsi, usb, pxe (glorified TFTP?), dhcp, spi.
-
-So if nothing works/exists before scsi, then it'll try to boot from 
-that, then USB, then from the network and finally maybe from spi but 
-that is very likely to fail as well since SPI flashes are typically very 
-small and wouldn't be able to contain even the kernel Image?
-
->> This is actually quite nice, I was wondering also if there was a way to
->> create as many entries as there are Device Trees supported for the machine
->> (and maybe even device tree overlays? but this one's difficult because we
->> need knowledge of which device tree overlay can apply on top of which device
->> tree(s) :) ). But I don't think we can have anonymous python in conf file?
->> Or maybe we should do this in u-boot bbappend?
+> Expected:
+> 	Partition       Start Sector       Number of Sectors    Partition Size     PartNum in GPT    Requirements
+> 	MBR             0      00000000    1       00000001     512       0.5KB
+> 	Primary GPT     1      00000001    63      0000003F     32256     31.5KB
+> 	loader1         64     00000040    7104    00001bc0     4096000   2.5MB    1                 preloader (miniloader or U-Boot SPL)
+> 	Vendor Storage  7168   00001c00    512     00000200     262144    256KB                      SN, MAC and etc.
+> 	Reserved Space  7680   00001e00    384     00000180     196608    192KB                      Not used
+> 	reserved1       8064   00001f80    128     00000080     65536     64KB                       legacy DRM key
+> 	U-Boot ENV      8128   00001fc0    64      00000040     32768     32KB
+> 	reserved2       8192   00002000    8192    00002000     4194304   4MB                        legacy parameter
+> 	loader2         16384  00004000    8192    00002000     4194304   4MB      2                 U-Boot or UEFI
+> 	trust           24576  00006000    8192    00002000     4194304   4MB      3                 trusted-os like ATF, OP-TEE
+> 	boot            32768  00008000    229376  00038000     117440512 112MB    4                 kernel, dtb, extlinux.conf, ramdisk
+> 	rootfs          262144 00040000    -       -            -         -MB      5                 Linux system
 > 
-> Yes. The bbclass has logic to generate as many entries as user-supplied labels
-> in UBOOT_EXTLINUX_LABELS:
+> Prior to this patch:
+> 	# fdisk -l /dev/mmcblk1
+> 	GPT PMBR size mismatch (1504727 != 30375935) will be corrected by write.
+> 	The backup GPT table is not on the end of the device.
+> 	Disk /dev/mmcblk1: 14.48 GiB, 15552479232 bytes, 30375936 sectors
+> 	Units: sectors of 1 * 512 = 512 bytes
+> 	Sector size (logical/physical): 512 bytes / 512 bytes
+> 	I/O size (minimum/optimal): 512 bytes / 512 bytes
+> 	Disklabel type: gpt
+> 	Disk identifier: 00000000-0000-0000-0000-00004D9B9EF0
 > 
-> https://git.openembedded.org/openembedded-core/tree/meta/classes-recipe/uboot-extlinux-config.bbclass#n114
+> 	Device          Start     End Sectors   Size Type
+> 	/dev/mmcblk1p1     64    8063    8000   3.9M Microsoft basic data
+> 	/dev/mmcblk1p2   8064    8191     128    64K Microsoft basic data
+> 	/dev/mmcblk1p3   8192   16383    8192     4M Microsoft basic data
+> 	/dev/mmcblk1p4  16384   24575    8192     4M Microsoft basic data
+> 	/dev/mmcblk1p5  24576   32767    8192     4M Microsoft basic data
+> 	/dev/mmcblk1p6  32768  330955  298188 145.6M Microsoft basic data
+> 	/dev/mmcblk1p7 330956 1504693 1173738 573.1M Linux filesystem
 > 
-> I actually hint at the mechanism my providing the superfluous ":default"
-> entry.
+> New:
+> 	# fdisk -l /dev/mmcblk1
+> 	GPT PMBR size mismatch (1504727 != 30375935) will be corrected by write.
+> 	The backup GPT table is not on the end of the device.
+> 	Disk /dev/mmcblk1: 14.48 GiB, 15552479232 bytes, 30375936 sectors
+> 	Units: sectors of 1 * 512 = 512 bytes
+> 	Sector size (logical/physical): 512 bytes / 512 bytes
+> 	I/O size (minimum/optimal): 512 bytes / 512 bytes
+> 	Disklabel type: gpt
+> 	Disk identifier: 00000000-0000-0000-0000-00004D9B9EF0
+> 
+> 	Device          Start     End Sectors   Size Type
+> 	/dev/mmcblk1p1     64    7167    7104   3.5M Linux filesystem
+> 	/dev/mmcblk1p2  16384   24575    8192     4M Linux filesystem
+> 	/dev/mmcblk1p3  24576   32767    8192     4M Linux filesystem
+> 	/dev/mmcblk1p4  32768  330955  298188 145.6M Microsoft basic data
+> 	/dev/mmcblk1p5 330956 1504693 1173738 573.1M Linux filesystem
+> 
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+> changes in v2:
+> - expand the commit message to show past, expected, and new behaviour
+> - spell out that vstorage stands for "vendor storage"
+> ---
+>   wic/rockchip.wks | 20 +++++++++++++-------
+>   1 file changed, 13 insertions(+), 7 deletions(-)
+> 
+> diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+> index b14ec0d1690a..034443d90050 100644
+> --- a/wic/rockchip.wks
+> +++ b/wic/rockchip.wks
+> @@ -9,17 +9,23 @@
+>   # wic uses 1KB blocks. The following table uses 512 byte sectors:
+>   #
+>   #   Partition   Start Sector    Number of Sectors
+> -#   loader1     64              8000        (idbloader / U-Boot SPL)
+> -#   reserved1   8064            128
+> -#   reserved2   8192            8192
+> +#   loader1     64              7104        (idbloader / U-Boot SPL)
+> +#   vstorage    7168            512         (vendor storage: e.g. serial number, MAC address, etc)
+> +#   reserved    7680            384         (not used)
+> +#   reserved1   8064            64          (legacy DRM key)
+> +#   uboot_env   8128            64          (U-Boot environment)
+
+I'm surprised this isn't a partition, because then I assume it'd be 
+easier to use fw_setenv/fw_printenv from Linux userspace to interact 
+with U-Boot's env?
+
+But if we make it a partition, then the partition number for the next 
+partitions are now off by one compared to what we have today, no perfect 
+solution here :)
+
+> +#   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
+>   #   loader2     16384           8192        (U-Boot proper)
+> -#   atf         24576           8192
+> +#   atf         24576           8192        (trusted OS e.g. ATR, OP-TEE, etc)
+>   #   boot        32768           229376
+>   #   root        262144          -           (suggested)
+>   
+> -part loader1    --offset 32     --fixed-size 4000K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+> -part reserved1  --offset 4032   --fixed-size 64K      --fstype=none
+> -part reserved2  --offset 4096   --fixed-size 4096K    --fstype=none
+> +part loader1    --offset 32     --fixed-size 3552K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+> +part vstorage   --offset 3584   --fixed-size 256K     --fstype=none  --no-table
+> +part reserved   --offset 3840   --fixed-size 192K     --fstype=none  --no-table
+> +part reserved1  --offset 4032   --fixed-size 32K      --fstype=none  --no-table
+> +part uboot_env  --offset 4064   --fixed-size 32K      --fstype=none  --no-table
+> +part reserved2  --offset 4096   --fixed-size 4096K    --fstype=none  --no-table
+>   part loader2    --offset 8192   --fixed-size 4096K    --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+>   part atf        --offset 12288  --fixed-size 4096K    --fstype=none
+>   part /boot      --offset 16384  --size       114688K  --fstype=vfat  --active  --source bootimg-partition --label boot --use-uuid --sourceparams="loader=u-boot"
 > 
 
-I'm actually more discussing how to *feed* this to this part of the 
-code. Right now, this is manual because we need to define labels and for 
-each variable a label override.
+Wow, just realized that --offset doesn't have a unit (so thought B) and 
+fixed-size has one. offset default unit if missing is K and fixed-size's 
+M... Maybe we could also specify the unit for offset to be K so that 
+it's a bit less confusing (or if you want to switch to S for sector to 
+match the documentation above?).
 
-I was wondering if we could have something that automatically creates 
-labels for the non fitimage usecase, based on the KERNEL_DEVICETREE 
-variable.
-
-in pseudo code:
-
-UBOOT_EXTLINUX_LABELS ?= ""
-
-python __anonymous() {
-     UBOOT_EXTLINUX_DEFAULT_LABEL = first(KERNEL_DEVICETREE)
-     for devicetree in KERNEL_DEVICETREE:
-         UBOOT_EXTLINUX_LABELS += basename(devicetree)
-         UBOOT_EXTLINUX_FDT:basename(devicetree) = devicetree
-}
-
->>> diff --git a/conf/machine/include/rockchip-wic.inc b/conf/machine/include/rockchip-wic.inc
->>> index 67a8310f7d6a..cae14c90e1db 100644
->>> --- a/conf/machine/include/rockchip-wic.inc
->>> +++ b/conf/machine/include/rockchip-wic.inc
->>> @@ -1,5 +1,7 @@
->>>    # common meta-rockchip wic/wks items
->>> +require conf/machine/include/rockchip-extlinux.inc
->>> +
->>>    SPL_BINARY ?= "idbloader.img"
->>>    IMAGE_FSTYPES += "wic wic.bmap"
->>> @@ -11,23 +13,8 @@ WKS_FILE_DEPENDS ?= " \
->>>    	virtual/bootloader \
->>>    	virtual/kernel \
->>>    	"
->>
->> Does the WKS file still really depend on virtual/kernel or is it rather a
->> misplaced dependency now?
-> 
-> Great catch! Also, since all the partitions now have explicit fstypes, and the
-> fact we no longer have a vfat-formatted /boot partition, the mtools-native and
-> dosfstools-native dependencies can also be removed.
-> 
-> It will probably get rejected, but I think I'm going to create a patch for wic
-> that assumes unspecified partitions are "none" instead of "vfat". I wonder how
-> many BSP layers are copy&past'ing the mtools and dosfstools dependencies that
-> aren't using vfat-based partitions and wondering why?
-> 
-
-And a nice catch from you there too :)
+Reviewed-by: Quentin Schulz <foss+yocto@0leil.net>
 
 Cheers,
 Quentin
