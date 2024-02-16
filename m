@@ -1,230 +1,223 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7ED0C48BEB
-	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 08:29:48 +0000 (UTC)
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
- by mx.groups.io with SMTP id smtpd.web10.14489.1708072181063803987
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 178E0C48260
+	for <webhook@archiver.kernel.org>; Fri, 16 Feb 2024 09:00:09 +0000 (UTC)
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (EUR01-VE1-obe.outbound.protection.outlook.com [40.107.14.132])
+ by mx.groups.io with SMTP id smtpd.web11.14927.1708074003759201380
  for <yocto@lists.yoctoproject.org>;
- Fri, 16 Feb 2024 00:29:41 -0800
+ Fri, 16 Feb 2024 01:00:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=b3pAZa4G;
- spf=pass (domain: gmail.com, ip: 209.85.219.43, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6861538916cso10217236d6.3
-        for <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 00:29:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708072179; x=1708676979; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/0zjx/UDQy0kfZLjqxEhpLYDP3NbE1jSLoNjUKggU1s=;
-        b=b3pAZa4GN0rRJ2oufU2LRuNO5slLqPyZyX/GbMxGOasoHziapRWCbxzxfT0vEs1pDd
-         TwIVrsxeIbLp4u6BPrAbyx2vhy1Nh+pfWummFpn38hXtr1Z/PZiATRIXsnSgoFJImJlr
-         zZlkIGx1wXqy37PSkk/dwwPn6ek02fiHfcWK+OXKE4kRZ4e2lhtOjHMtEMTr192MRkeQ
-         HuA+S/TJpCY4Q8/Z8iPH5csZNkI6e58HsfwA0aDYrf1rs0bpBNnOUiZeyliKO1pSQPWy
-         66T4wE7l6h4yEqQmwhJ7mbRLapXtDUdVJEU0ljx1rR7PLtqBEoneqb7oEr2mdDgcjU4n
-         0p8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708072179; x=1708676979;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/0zjx/UDQy0kfZLjqxEhpLYDP3NbE1jSLoNjUKggU1s=;
-        b=FY5O4omPp8R4njNe9aeJYRyLs0CVd9t6sRIFrhRP+qZnu92fBqfemT/mhWBgyofIC1
-         Ju/effzPAKx/d78o7iQy350v189tEfpu9xEyTNpT+ryFb0dYb13KghViYKC44RmZAQps
-         D/To19Ya20ngn2GgOI1iAUEjGvJZNRUalyVGDQCWBfTdCy6ibl0W33WXrbUvx1BtrMWr
-         Dr+jF9Qcvqp2imcHbVzv2GIkmyiE5VDIkQ99QKtvncjOKeLoflzfjXTevBKld/laTmCk
-         +XeRBjqSLz1Fwxhy+oB2VzW49ts/Eft5rGR2mGvcfDhTmWVfN9CkzysVLFadJRIEseI3
-         crig==
-X-Gm-Message-State: AOJu0YwoI7AsojV8AXAZvegfLEcl2J3M7t7bwpDnQ8Z8M1wxI8KTKt/5
-	RlrZ/YADbE8Wn+A0HB7PbW6+qxhpRwk9YyVGcblNO8YdIcXOt8hCxEofn0N6
-X-Google-Smtp-Source: AGHT+IFHpabd550BP3kIuFWUet7y8FG9PskFzojJwEfcl37dg8zIZZ+u7ufVybLJGM7RHlS0VDbzZw==
-X-Received: by 2002:a05:6214:29c7:b0:68c:4f18:b057 with SMTP id gh7-20020a05621429c700b0068c4f18b057mr4839122qvb.39.1708072178872;
-        Fri, 16 Feb 2024 00:29:38 -0800 (PST)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id ma17-20020a0562145b1100b0068cd399760fsm1522701qvb.61.2024.02.16.00.29.36
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Feb 2024 00:29:36 -0800 (PST)
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH v2 3/4] remove /boot partition
-Date: Fri, 16 Feb 2024 03:29:21 -0500
-Message-ID: <20240216082922.7873-3-twoerner@gmail.com>
-X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
-In-Reply-To: <20240216082922.7873-1-twoerner@gmail.com>
-References: <20240216082922.7873-1-twoerner@gmail.com>
+ dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=bZu9kkQt;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.14.132, mailfrom: quentin.schulz@theobroma-systems.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RQadEQcWuUfMKBvAatEnC1a3ycZn0N19ZeF5kcMFJa3eksLGN0R01m1boyMecsMdWACM1uT93P6ZM7CnJLD08v/iwIB53TErsu4SCgijtfirkDNNl2n7xt3DuMsPhnAipaqSg76wIMrzEcBP2ttPjygMs9tAA0UslQtFyXHjv8WRBQakEKQZreTEqoI+0ayEb76mp9xaIBGa1pUl6/hW8wK2B0TEpW9CZqAWsFUWG78Z+DE/Dj2mv3MQ87yQ9sQKiZcDo/xkfNUsVu6EC1Qa8MuzjkRpSdYr2HA+e2pM8JqK1W2RzeDcTOm/pOS0xpDHxHc8wmPtQ2Q/4hhZVng8FA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gDWYzjiAxyW8r5axv4fitkgaIeV7lQXffQX7tl2g/oQ=;
+ b=YmHXRrtpSrLvSx+rxd3JR/kD4nWYBM1L2i9xcReGRoqRn2Pt9KBamgZYWw+b9fUYNOdafTtQlDUyuKvTB/QfHXmoS+xpR8+GZSWkOc/4KIjcPwy1PxUir5jnKqogFe4mjgaOeuS3MP/1Cbo9zmmvBvh/p9xJeRNLPMTz4gouRQhR93VynSSGQF2Be3OkAWSCoaFAJjHy9u9AFM6Jj6v4yc+4GVOVzEGGn9vwNlBX84ED4EpRhfwX6yj1IOMpShig5o4yfLJHZisGapJRbWggqcshJx0NWXBe1kjv+AfxQSR5klchwZVDJLGvGCotHu+ygNYo2IWMehb3al5pY/apKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gDWYzjiAxyW8r5axv4fitkgaIeV7lQXffQX7tl2g/oQ=;
+ b=bZu9kkQtB7RGMKmXUxrLVTdS0zmjsHhjMwYvKZWNXmgLwn3IJGSg6dJ1kUMJxfuQulMU3gB4PPjkVl3nxAu9RnH3h8c6m8vEeuan9wXoW6eHhGJGWc6zyfpofaLIBIN7snfR5SQhYrvhnRh66/hvcaBC6UDe2j3ngkw5cykRYDNRFKG8wUKxTvSwuzNQ5CB2suiGruc3R54LpyQn6KQf67klMpkl4Nwc9suhxqreiG4LZRVhVz6K8i3zlsS91ByzttVDw6WIEBeyiupxkdhwHbLlc/649GBkWHA+Mjv9TfUB5GLRJFhh9vsSs7A9PayOKgU8RslB6V7c5ixiNBAP9Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
+ by PA4PR04MB7983.eurprd04.prod.outlook.com (2603:10a6:102:c9::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.29; Fri, 16 Feb
+ 2024 08:59:59 +0000
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::550d:ad96:e3cb:9a6e]) by DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::550d:ad96:e3cb:9a6e%5]) with mapi id 15.20.7292.029; Fri, 16 Feb 2024
+ 08:59:59 +0000
+Message-ID: <191abca3-dd16-4f6c-82a8-beb9563ded34@theobroma-systems.com>
+Date: Fri, 16 Feb 2024 09:59:56 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [meta-rockchip][PATCH 2/4] rockchip.wks: add all Rockchip
+ partitions
+Content-Language: en-US
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+References: <20240212202342.37778-1-twoerner@gmail.com>
+ <20240212202342.37778-2-twoerner@gmail.com>
+ <20297b5e-af8b-4bce-a192-9bf799d8a36a@theobroma-systems.com>
+ <20240215192018.GA7766@localhost>
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <20240215192018.GA7766@localhost>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-ClientProxiedBy: FR5P281CA0025.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f1::20) To DU2PR04MB8536.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d7::10)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|PA4PR04MB7983:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06945b52-1090-429b-3ead-08dc2ecda74d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	azloGXjXrxHyMniF7CZDct2VFBUR+Xms6ZROR6p9CoT2vrvVMu4cNhuxnZxJRqtARbWEcJYTZSlw2Gf9LJ93p++vk7a4NKL9KmbOTxpUA8SwcTbxpdTEwuKpk6jMhBJZaUPGBCk9sFO/xNQMigR7W7decVhGBF9JsscqZhbd+xglM3nl0jj5GitEyMNTxGYQVEY9kL1Vcs/CffPmHOW8XKMr8EeL8oohhhm/nTtyBLzlKvrLwPmj34MTwo+3sSxXZFl48dJugoneMWCrQ/nSF1A9Itu2i3zyt9z2xNKzaU4Xq///IM3NiPJup2VSuhP2F8rGSt/6YgCL3zyz+pws58MHTUBJKRAQQXBbhmah1QqwElY3VYoKurWkmLFXQkr13xQ83nyNnRKiYINegarEKQwRxDigbgfZGKko2o4osqUk6as8UlRYiMVmt4heOpV4bHYcqq5wATJjmK+qKij9eB07M2DwfaZSkN2M27ykcfWek0NQNuaYPBlSz2nMv0Gfat/vgi6EJCQDJirMsHvMuJvnb4p8nWmDghRjrJnRmlA=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(396003)(366004)(136003)(376002)(346002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(38100700002)(83380400001)(31686004)(4326008)(5660300002)(41300700001)(44832011)(6916009)(966005)(6486002)(6512007)(6506007)(478600001)(53546011)(45080400002)(2616005)(6666004)(31696002)(316002)(2906002)(66476007)(66556008)(36756003)(66946007)(8936002)(8676002)(86362001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?WnpNN0QvbHYyOElmeEZmT0syb3hSMGRGeGJlcDlxZHlqUjhkeUxxelhLTHFK?=
+ =?utf-8?B?eC9EQVJsWlF2WXRyU1NHZEszMkFiNnp0b1NHY1RvWktLLytSL2h5MTBxOGNr?=
+ =?utf-8?B?UjZMRURjTHdPWHZTVzlQT2dTU3AxMkJVNWU3bWQwdGlycG9BbUNhanlwMUZm?=
+ =?utf-8?B?TXl5NCs2VjFLc3FEN0pURWVGRWYwNDlyUTBxYkFDakFIKys1RFRiRzk1UVIr?=
+ =?utf-8?B?bWY3TXhWb0lac1NmWHhYc25CTFVoTWRpa1l1V1cwVGh3d3h2VmVuSlgwNUlN?=
+ =?utf-8?B?bzNRQ0FSNXY2OEZWV1JnUmllM2NWUXYxUHFQdnlYVWNFeWxKaEp6azdsRVBv?=
+ =?utf-8?B?aXNocWQvOGJDVWxSZHZNK3BEYUV4MFc2U3FGQmlzc0RoazkySE84MG1VTHNl?=
+ =?utf-8?B?eVlSQWhhT0lIUVV0ZEhocTZLQUZzS3hCdjc1TWJLT1pMNEErYlFJMVJDblpp?=
+ =?utf-8?B?aCs3QmZIUmlpNk51aU0zZmJuMFU1S0VUeG1zZDFBYTZrREVKY0ZVK21LL01w?=
+ =?utf-8?B?SHg5eGdIeVV1T1k4UUtTWjlhK2YwendnM3A0UXhheUZYUGRtTHpBZWtLcFhU?=
+ =?utf-8?B?OHBDMVVHYndxQkJ3dHdaSm5laXR6S2duM1Zrc1B1cDJlRFZPWS9kTzFEbVRx?=
+ =?utf-8?B?MHlzZ1hoYk1UdkhXOTNjK3FDRjFOZHB2Mm0rZnRteUxrdTQrbFZvQXdleTA0?=
+ =?utf-8?B?RXRORkdnTDhDdFFNaWJuNm1WeTRmMTR5M3ZsekNjZ2swcWhIaXF1Rkxta0pm?=
+ =?utf-8?B?SUVPeVhZOWZnaTJlQzgyY0NTYkVkODZUREltSHRxTWRudVVXRTR3S3VaYnlI?=
+ =?utf-8?B?UzhFZXhQdzRwUTdEUmw4MnBhT0hJcDYxZFp2bmQra0RXSGJZMEcrRXQyN3RW?=
+ =?utf-8?B?d1ZjQkJvT0RickJSNGlrdWFpQUtYTjhmRmVRWXNQUGRhNlVaVnhnc0ZQdHRN?=
+ =?utf-8?B?K0FUSDFlaWxaZ2pGVnpSR1BYRm8zWnp0Q1puY0RjMmVKWmtFQkJnckFVRGF1?=
+ =?utf-8?B?SnprN1lZWWhaQUVKZWRPNnlNU2o5NFcvcGI0STh0VGloWWxUTXI2a3pLb096?=
+ =?utf-8?B?N2xBK1N3R3kwVmZlelZDYUUxaFE2YUQvdnRpV2lGQUxJdFJyV0t3R0dCRTVF?=
+ =?utf-8?B?eWpUNmtxTXJkb3BYbE9WTTlLRGhBOElsOUMwTkZiTjhxb2FtREZ4YVpZa25v?=
+ =?utf-8?B?M1V5ZFBpdEdkbU5VU3NlV25CYlIvek01alZjVkRTaUJXeWdYeDZsZ3FrOTNh?=
+ =?utf-8?B?ZmR1dkJQVCsrajB0c2c2aEFOejBIb3JId0Q5U0pjbUdKT2dvYXVxZGFlZmkr?=
+ =?utf-8?B?eCtNN1VsR2Z0YTF0aTRCcHU0cmpxdUp0dmxkVm1VVzZ3aitTU2xpeWkzTm1Q?=
+ =?utf-8?B?ckVXNDFSb2tncU12T2xHNDdUTm9EeVF3anNlWTVDdGpBSFpTM1ZtSnlHalpj?=
+ =?utf-8?B?MFZTM2NTWTRRR1pTbGx6UDkwOU9KUEgzZGJTUlpBTVhuR1ZGR0RvUUFsS3B0?=
+ =?utf-8?B?ZDV4SEM0N29zbjBpRWx6dXdjSzN1WGZtQVpRWnJpOE1jbkRqVWowanhkRldT?=
+ =?utf-8?B?b3RtSzBTTlEvTHZXNUlNbVpTaUVITFFnejhEWUUwQytBN2Y3eDFNSGFkSVBE?=
+ =?utf-8?B?TlVXWkJKN2d0YlhpQ2daMUVDRForeTBwNlVRbXk3QUl3V1lSTElqQ1dYaURE?=
+ =?utf-8?B?TVNFcXpvRlJKaHZZNCtOdnJiOHdOM2xmdVZUMTcyTU5UR2N2K1laZ0ZFcnlC?=
+ =?utf-8?B?NWlsOUYybjNTdzVnUGxlVTM2Q0lheWJRL0k0dlJUa1o2VE5qNGhRdGQvQTF6?=
+ =?utf-8?B?TFpXTlpuZWNaWllnQjdJZS9jRFcvVytxSUpYckQ0YmJwOXFpT3NMTVlTaWhi?=
+ =?utf-8?B?eTFmV0VJUTN2RTVsZ1Zka0lYV0xqTmk3MGVHd05vS2JjdXc3VENqZ0JnMFFk?=
+ =?utf-8?B?dmtQZW5zc0svOFY4Z2RERUlCa2xjd1NkQVFUTVUrTkIzTWNRQjJMTGNlSkFW?=
+ =?utf-8?B?UG9DTi9hVDFDZjBaSGJURXpzdHJ1QUFkdStXdEJjVkRZckpqcVd1SG9yS1FM?=
+ =?utf-8?B?QitDOXEyMmtVY1JKL2dzK1hxTlFYUFp5NklmckxhWjExeVRIdDFpaHo2bk40?=
+ =?utf-8?B?QjB3dzI4Um5icDlPUTlMZ1hzaWd5VHBmTnJyL21HaGhJbWpSVXBTZnc2K3Fr?=
+ =?utf-8?B?eHhkTW9CTWZDRmtoUmNmMkJjcEVwMk16Q1dweVNzbG9LdE9rd0xmK0tYTkFs?=
+ =?utf-8?B?elo5bFdQb2N4ZUg3SGhVd05DalV3PT0=?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06945b52-1090-429b-3ead-08dc2ecda74d
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2024 08:59:59.1224
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xFEUsMS0vKOf4QKAWaBuD0OVlF8Abpydi8KiTCNskn5dQoH+f2RWLLly2xgfJaTww+RGrwpMAgsDmqPDIacCtTdHy4ZtU62JBR3IjOgOfcfhCc/kDGQAwtDaYtCQ8AnV
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7983
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 08:29:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62514
+ <yocto@lists.yoctoproject.org>; Fri, 16 Feb 2024 09:00:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62516
 
-In order to boot successfully, most Rockchip SoCs require a specific
-partitioning scheme which was defined many years (and many SoCs) ago. That
-partitioning scheme places the SPL and U-Boot at specific offsets at the
-start of the boot block device:
+Hi Trevor,
 
-	https://opensource.rock-chips.com/wiki_Partitions
+On 2/15/24 20:20, Trevor Woerner wrote:
+> On Thu 2024-02-15 @ 06:06:42 PM, Quentin Schulz wrote:
+>> Hi Trevor,
+>>
+>> On 2/12/24 21:23, Trevor Woerner via lists.yoctoproject.org wrote:
+>>> Rockchip defines the expected layout/map of the default storage device.
+>>> Fill out the wks description so it matches.
+>>>
+>>> 	https://opensource.rock-chips.com/wiki_Partitions
+>>>
+>>> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+>>> ---
+>>>    wic/rockchip.wks | 18 ++++++++++++------
+>>>    1 file changed, 12 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+>>> index b14ec0d1690a..8dc4d20f2f54 100644
+>>> --- a/wic/rockchip.wks
+>>> +++ b/wic/rockchip.wks
+>>> @@ -9,16 +9,22 @@
+>>>    # wic uses 1KB blocks. The following table uses 512 byte sectors:
+>>>    #
+>>>    #   Partition   Start Sector    Number of Sectors
+>>> -#   loader1     64              8000        (idbloader / U-Boot SPL)
+>>> -#   reserved1   8064            128
+>>> -#   reserved2   8192            8192
+>>> +#   loader1     64              7104        (idbloader / U-Boot SPL)
+>>> +#   vstorage    7168            512         (serial number, MAC address, etc)
+>>> +#   reserved    7680            384         (not used)
+>>> +#   reserved1   8064            64          (legacy DRM key)
+>>> +#   uboot_env   8128            64          (U-Boot environment)
+>>> +#   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
+>>>    #   loader2     16384           8192        (U-Boot proper)
+>>> -#   atf         24576           8192
+>>> +#   atf         24576           8192        (trusted OS e.g. ATR, OP-TEE, etc)
+>>>    #   boot        32768           229376
+>>>    #   root        262144          -           (suggested)
+>>> -part loader1    --offset 32     --fixed-size 4000K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+>>> -part reserved1  --offset 4032   --fixed-size 64K      --fstype=none
+>>> +part loader1    --offset 32     --fixed-size 3552K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
+>>> +part vstorage   --offset 3584   --fixed-size 256K     --fstype=none
+>>> +part reserved   --offset 3840   --fixed-size 192K     --fstype=none
+>>> +part reserved1  --offset 4032   --fixed-size 32K      --fstype=none
+>>> +part uboot_env  --offset 4064   --fixed-size 32K      --fstype=none
+>>>    part reserved2  --offset 4096   --fixed-size 4096K    --fstype=none
+>>>    part loader2    --offset 8192   --fixed-size 4096K    --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+>>>    part atf        --offset 12288  --fixed-size 4096K    --fstype=none
+>>>
+>>
+>> This is... quite dangerous. I assume people access raw partitions via their
+>> index number, and now they would be changed, making it harder to do partial
+>> updates. It depends how one sees this file, but could be seen as immutable
+>> for existing partitions to avoid backward compatibility issues.
+> 
+> I don't think that's a huge problem, but I could be wrong. People will see
+> their builds fail, investigate, update, and move on?
+> 
 
-The Rockchip partitioning scheme goes on to also define the locations and
-sizes of a number of additional partitions, including the "boot" and "root"
-partitions.
+Why would the builds fail? This is a runtime issue IMO. E.g. they flash 
+idbloader.img to mmcblkXp0 and u-boot.itb to mmcblkXp3 but now they 
+would need to flash the latter to mmcblkXp6. And if they have a device 
+that was flashed with the old partition table and another device with 
+the new partition table, they need some kind of userspace logic to 
+figure out which is which? They could also be flashing at an offset on 
+mmcblkX itself, but then this change wouldn't impact them in any way.
 
-Since both the SPL and U-Boot have already been placed on the block device,
-the "boot" partition only contains the extlinux config file and the
-kernel+dtb/fitImage; it doesn't contain any bootloader artifacts (other
-than the extlinux config).
+> But I think I saw something in wic about not adding a partition to the table,
+> or not giving it a number? So it might be possible to define these partitions
+> and not change the numbers? I could look into it a bit more.
+> 
 
-The location and size of the SPL partition is a hard dependency since the
-BOOTROM etched inside the Rockchip SoCs is programmed to load and run a
-validated binary it finds at this location. The locations, sizes, and
-contents of the "boot" and "root" partitions are not so rigid since it
-is U-Boot which interacts with them. U-Boot is very flexible with how it
-finds boot components, and in its support for various devices, filesystems,
-sizes, etc.
+That makes sense, but then.. what would the change in this commit 
+actually bring to the table? I guess as documentation?
 
-Both oe-core's U-Boot metadata and wic's bootimg-partition script contain
-logic to generate the extlinux pieces required for a bootloader to boot
-a Linux system. If both are enabled, the wic pieces silently clobber the
-U-Boot pieces. However, the mechanisms contained in the U-Boot metadata are
-much more flexible, from a user's point of view, than the mechanisms in
-wic's bootimg-partition.
+[...]
 
-If a user wishes to setup some sort of A/B redundant update mechanism, they
-must have redundant root partitions (in order to update their filesystem
-contents) but they also need to have redundant boot partitions if they
-wish to update the kernel as part of their update mechanism. Pairing
-redundant kernel partitions with redundant filesystem partitions becomes
-unnecessarily complicated. Therefore it makes sense to combine the kernel
-and the filesystem into the same partition so that both the kernel and
-filesystem are updated, or rolled back, in lock-step as one unit. Specific
-kernel versions and configurations often have dependencies on user-space
-components and versions.
+>> Random thought, but we could probably also get the env from U-Boot recipe
+>> (or any other recipe that generates one) (if one is generated) and install
+>> it into uboot_env partition?
+> 
+> That's exactly where I'm going with this. I already have a spreadsheet
+> listing all the rockchip devices, and their U-Boot environment configurations
+> (location, size, etc) to see which ones come with environment configurations,
+> and to make sure they're all the correct location and size for those that do
+> (they are). I also already have Yocto pieces generating and placing
+> the U-Boot environment in the U-Boot environment partition (via wic) but
+> haven't submitted the patches yet (as well as generating a correct
+> /etc/fw_env.config file. My next step is to add in env support in U-Boot for
+> those missing it.
 
-The /boot location is not going away. This patch simply transfers
-responsibility for its creation to the more flexible U-Boot mechanism
-and includes the kernel as part of the same partition as the root
-filesystem. Not only does it add flexibility, it also makes update schemes
-more straightforward. Although having a separate /boot partition is a
-"requirement" of the Rockchip partitioning scheme, it is not an actual
-hard requirement when using a flexible, open-source bootloader (such as
-U-Boot) instead of using Rockchip's proprietary miniloader, preloader, and
-trust.img.
+Cool.
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
-changes in v2:
-- add UBOOT_EXTLINUX_FDT and tweak UBOOT_EXTLINUX_FDTDIR to modify their
-  behaviour based on whether or not KERNEL_IMAGETYPE is fitImage
-- remove extraneous WKS_FILE_DEPENDS
-- remove "--ptable gpt" from wks
-- move newly added "earlycon" to UBOOT_EXTLINUX_CONSOLE
-- re-word the commit message to better explain the behaviour of the
-  Rockchip BootROM
----
- conf/machine/include/rockchip-defaults.inc |  2 ++
- conf/machine/include/rockchip-extlinux.inc | 12 ++++++++++++
- conf/machine/include/rockchip-wic.inc      | 20 ++------------------
- wic/rockchip.wks                           |  8 ++------
- 4 files changed, 18 insertions(+), 24 deletions(-)
- create mode 100644 conf/machine/include/rockchip-extlinux.inc
-
-diff --git a/conf/machine/include/rockchip-defaults.inc b/conf/machine/include/rockchip-defaults.inc
-index 3ce2e246ab0b..2387eb909934 100644
---- a/conf/machine/include/rockchip-defaults.inc
-+++ b/conf/machine/include/rockchip-defaults.inc
-@@ -19,3 +19,5 @@ XSERVER = " \
- 
- # misc
- SERIAL_CONSOLES ?= "1500000;ttyS2"
-+RK_CONSOLE_BAUD ?= "${@d.getVar('SERIAL_CONSOLES').split(';')[0]}"
-+RK_CONSOLE_DEVICE ?= "${@d.getVar('SERIAL_CONSOLES').split(';')[1].split()[0]}"
-diff --git a/conf/machine/include/rockchip-extlinux.inc b/conf/machine/include/rockchip-extlinux.inc
-new file mode 100644
-index 000000000000..3af7ed629e34
---- /dev/null
-+++ b/conf/machine/include/rockchip-extlinux.inc
-@@ -0,0 +1,12 @@
-+UBOOT_EXTLINUX ?= "1"
-+UBOOT_EXTLINUX_ROOT ?= "root=PARTLABEL=root"
-+UBOOT_EXTLINUX_FDTDIR ?= "${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '/boot', d)}"
-+NONFITDT ?= "${@d.getVar('KERNEL_DEVICETREE').split('/')[1]}"
-+UBOOT_EXTLINUX_FDT ?= "${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '${NONFITDT}', d)}"
-+UBOOT_EXTLINUX_CONSOLE ?= "earlycon console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8"
-+UBOOT_EXTLINUX_KERNEL_ARGS ?= "rootwait rw rootfstype=ext4"
-+UBOOT_EXTLINUX_KERNEL_IMAGE ?= "/boot/${KERNEL_IMAGETYPE}"
-+UBOOT_EXTLINUX_LABELS ?= "default"
-+UBOOT_EXTLINUX_MENU_DESCRIPTION:default ?= "${MACHINE}"
-+
-+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "u-boot-extlinux"
-diff --git a/conf/machine/include/rockchip-wic.inc b/conf/machine/include/rockchip-wic.inc
-index 67a8310f7d6a..147a36685d7d 100644
---- a/conf/machine/include/rockchip-wic.inc
-+++ b/conf/machine/include/rockchip-wic.inc
-@@ -1,33 +1,17 @@
- # common meta-rockchip wic/wks items
- 
-+require conf/machine/include/rockchip-extlinux.inc
-+
- SPL_BINARY ?= "idbloader.img"
- 
- IMAGE_FSTYPES += "wic wic.bmap"
- WKS_FILE ?= "rockchip.wks"
- WKS_FILE_DEPENDS ?= " \
--	mtools-native \
--	dosfstools-native \
- 	e2fsprogs-native \
- 	virtual/bootloader \
--	virtual/kernel \
--	"
--# KERNEL_DEVICETREE follows the pattern of 'rockchip/${SOC_FAMILY}-${BOARD}.dtb'
--# but is placed in the deploy directory as simply '${SOC_FAMILY}-${BOARD}.dtb'
--# therefore we have to strip off the 'rockchip/' for IMAGE_BOOT_FILES
--NONFITDT="${@d.getVar('KERNEL_DEVICETREE').split('/')[1]}"
--IMAGE_BOOT_FILES = " \
--	${KERNEL_IMAGETYPE} \
--	${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '${NONFITDT}', d)} \
- 	"
- 
--# use the first-defined <baud>;<device> pair in SERIAL_CONSOLES
--# for the console parameter in the wks files
--RK_CONSOLE_BAUD ?= "${@d.getVar('SERIAL_CONSOLES').split(';')[0]}"
--RK_CONSOLE_DEVICE ?= "${@d.getVar('SERIAL_CONSOLES').split(';')[1].split()[0]}"
--
- WICVARS:append = " \
--	RK_CONSOLE_BAUD \
--	RK_CONSOLE_DEVICE \
- 	SPL_BINARY \
- 	UBOOT_SUFFIX \
- 	"
-diff --git a/wic/rockchip.wks b/wic/rockchip.wks
-index 034443d90050..4fccdf668c50 100644
---- a/wic/rockchip.wks
-+++ b/wic/rockchip.wks
-@@ -17,8 +17,7 @@
- #   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
- #   loader2     16384           8192        (U-Boot proper)
- #   atf         24576           8192        (trusted OS e.g. ATR, OP-TEE, etc)
--#   boot        32768           229376
--#   root        262144          -           (suggested)
-+#   root        32768           -
- 
- part loader1    --offset 32     --fixed-size 3552K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
- part vstorage   --offset 3584   --fixed-size 256K     --fstype=none  --no-table
-@@ -28,7 +27,4 @@ part uboot_env  --offset 4064   --fixed-size 32K      --fstype=none  --no-table
- part reserved2  --offset 4096   --fixed-size 4096K    --fstype=none  --no-table
- part loader2    --offset 8192   --fixed-size 4096K    --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
- part atf        --offset 12288  --fixed-size 4096K    --fstype=none
--part /boot      --offset 16384  --size       114688K  --fstype=vfat  --active  --source bootimg-partition --label boot --use-uuid --sourceparams="loader=u-boot"
--part /                                                --fstype=ext4            --source rootfs            --label root --use-uuid
--
--bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=ext4 init=/sbin/init"
-+part /          --offset 16384                        --fstype=ext4  --active  --source rootfs            --label root
--- 
-2.43.0.76.g1a87c842ece3
-
+Cheers,
+Quentin
 
