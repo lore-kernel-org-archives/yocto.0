@@ -2,249 +2,145 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1C49C48BC4
-	for <webhook@archiver.kernel.org>; Sun, 18 Feb 2024 17:13:03 +0000 (UTC)
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
- by mx.groups.io with SMTP id smtpd.web10.21940.1708276376693137460
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0048BC48BC4
+	for <webhook@archiver.kernel.org>; Sun, 18 Feb 2024 17:17:03 +0000 (UTC)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+ by mx.groups.io with SMTP id smtpd.web11.22079.1708276620984721060
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Feb 2024 09:12:56 -0800
+ Sun, 18 Feb 2024 09:17:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=S3Us2SGj;
- spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-68f51ba7043so8294306d6.3
-        for <yocto@lists.yoctoproject.org>; Sun, 18 Feb 2024 09:12:56 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=EJcb0vlP;
+ spf=pass (domain: gmail.com, ip: 209.85.219.41, mailfrom: twoerner@gmail.com)
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-68f56f26101so4282366d6.1
+        for <yocto@lists.yoctoproject.org>; Sun, 18 Feb 2024 09:17:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708276376; x=1708881176; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1708276620; x=1708881420; darn=lists.yoctoproject.org;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TfC4nW++XBebif+/pTHkr5Dxgs/CVZ7DdvnliRiyGhM=;
-        b=S3Us2SGjGozV81J0knTR8qSDyTiqRdIH4SNu3mySM+7CXjl0cirZGNYrhwYIfcrk+V
-         N+rb9gtPuCOMzfRJ7uKmZxZZzVLntOu3TLcrtcW+YYzMih9cLFf35rtAkqsYIEB3XcbC
-         yPJfsM7EpgdlmRZAgnmEA+01eV3s8fUcLwCJuxLEoDBddh0Qc5c0xd9arzhvnmkFJYkY
-         8+sG6LrstH2+svr6DreBTEmPndt3GBRUnyRSowzWrUQ+3nXgiuNjq94Ynhl3YVi5eS2E
-         K2XrTUhL4uppT0qLk8R73QjjSqM/0KF2ajLefMId8Jry73rNuEdwyZRAMrCTSrHZF/Wu
-         uSLQ==
+        bh=K3yj4eB16TcQovyE4OnCWmznp3ycshnEEem8OvTD42Q=;
+        b=EJcb0vlPrUB90kfXNwA2sU1BLYDs5N3xtsFA3xnTW/qLslGJyjU+JHp+dKzrNtYQiN
+         7S1Sc7FYOYDGIMWCuQD8zDgMNzWo0HPGqEf8wyyMtr/9cfM9u3t91GSCzpnHUmZrU6bz
+         c6VbVDWb7S1ZNgvA8YDPk74tSXzLOsbFb75Bjy+TABhI/JX6ZnVmW5tBIJnOzflRvGlL
+         q3z07Bjv5BdRgpKGi0g6nReJI0aZFn2cHGX4A+NWmxo/yvZNz3KjyBUAXOrzgmoCjnlI
+         IXnTUIBqn0wcDTvTLnuE9BZ8x01MqCTvP0LTZqTDel6R7aE9PPsnPrLC2LDmBEaZbHPL
+         w4Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708276376; x=1708881176;
+        d=1e100.net; s=20230601; t=1708276620; x=1708881420;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TfC4nW++XBebif+/pTHkr5Dxgs/CVZ7DdvnliRiyGhM=;
-        b=DOZkQbtLORNY6GJzlDtiEm35uy7EpJLgjN2QhtZnOwVfTxameFjNpNrqbhfIb8kcGU
-         cQlkCa1BumgVevmJ3zwkE0aVTkgt09iR+57HqlZwQosYdLkD7yP/DrAoEZO8LVVylYAD
-         UtKg7IsggpAqNk0U+IQxuy3MGQZ+LoAn4+8jyOND9wstmaVL5N1hfVPY4BGMHhIKcDX/
-         TQJdQaCsnk+sIT7j6Cjdl036iNxJoL1U1dczRBqD/mq8bUk3uNR/wD5ZFctJ/FjqlLV8
-         5yEXzcpPRgpxuPnho9/b4Smy2VX6rhOoU1TEuLaW4LrJOGDYpdIJHqPSR2dpF8i6iQEi
-         2Hbg==
-X-Gm-Message-State: AOJu0YwLZ1EEQL3hzewsdYAP7cyPYet/PN18YnqCzQApGUMBZAHSwPLD
-	8lnmZFjWJ7RGvWFLTTodeM3iFwtka37Aryy8rkiqt1YoNu/ORseBr8EquR4x
-X-Google-Smtp-Source: AGHT+IEcG5t84lzbO4ZesUJrkzImI9K0d5J/PcwC2/NJKjsaKlVr5zhfQgEKHP8imEYkgwcdccU+Eg==
-X-Received: by 2002:a05:6214:3110:b0:68c:a578:47df with SMTP id ks16-20020a056214311000b0068ca57847dfmr14322898qvb.21.1708276375624;
-        Sun, 18 Feb 2024 09:12:55 -0800 (PST)
+        bh=K3yj4eB16TcQovyE4OnCWmznp3ycshnEEem8OvTD42Q=;
+        b=lUtfEnUo9PLs5Gy9mLmMUnfXus4ANL07gUh8gIl0yDVUq7vVVyWg+Qf2XrQeAkJ3gf
+         hFbk+E2eJTNEzDXi+bokbg6Gd/le6h2nVRqet2pA/8RhIajLTxNPTafqoRDvEtaBuTzf
+         04qLJpDibyBKtge9UuVz0X9JvpBIMRWFxW9yEveq/vzt8M8b688OByPy+YHvYOYrK2VM
+         owgz5E1MXrbysy71AcFqChe/yXC2e0KSiqv2Zzi6nGCVOLpT8ZShZEodcVS6c9UvMqY+
+         YL2jFE38ZbzvSK1mLik02lRMkOViOeodnEtAp/FxjF7nsUZMHUGRhucR41HErkJi/60d
+         WNPg==
+X-Gm-Message-State: AOJu0YyEoiQTMgFjH0TxyRSXrq9V/a6AiAYiakvbMfv9z63WNpQaWTO7
+	+09gNh3ScD72pDfVk7N9yAxEsfHZEWtjtDR/+hVSZOTGZ/IU+fcoIhhQw5AU
+X-Google-Smtp-Source: AGHT+IF6YXYhig4YVlHOjP+d+HgvtAMQYGTiQSJZJ1Cfu9xdB4Dbnof+Y76xLc2dzao+azj7dTAIzw==
+X-Received: by 2002:a05:6214:29ef:b0:68f:6df2:3b60 with SMTP id jv15-20020a05621429ef00b0068f6df23b60mr916652qvb.20.1708276620030;
+        Sun, 18 Feb 2024 09:17:00 -0800 (PST)
 Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id e20-20020a056214163400b0068f128fc550sm30656qvw.131.2024.02.18.09.12.54
+        by smtp.gmail.com with ESMTPSA id oo6-20020a056214450600b0068c440bc7d0sm2210312qvb.105.2024.02.18.09.16.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Feb 2024 09:12:54 -0800 (PST)
-Date: Sun, 18 Feb 2024 12:12:52 -0500
+        Sun, 18 Feb 2024 09:16:59 -0800 (PST)
+Date: Sun, 18 Feb 2024 12:16:57 -0500
 From: Trevor Woerner <twoerner@gmail.com>
 To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-rockchip][PATCH v2 2/4] rockchip.wks: add all
- Rockchip partitions
-Message-ID: <20240218171252.GA28169@localhost>
+Subject: Re: [yocto] [meta-rockchip][PATCH v2 3/4] remove /boot partition
+Message-ID: <20240218171657.GB28169@localhost>
 References: <20240216082922.7873-1-twoerner@gmail.com>
- <20240216082922.7873-2-twoerner@gmail.com>
- <62ce91fe-9bb8-41fe-940d-59ce77ac9cfe@theobroma-systems.com>
+ <20240216082922.7873-3-twoerner@gmail.com>
+ <82d5fc9b-2490-4942-8b31-13dc709ad121@theobroma-systems.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <62ce91fe-9bb8-41fe-940d-59ce77ac9cfe@theobroma-systems.com>
+In-Reply-To: <82d5fc9b-2490-4942-8b31-13dc709ad121@theobroma-systems.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 18 Feb 2024 17:13:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62534
+ <yocto@lists.yoctoproject.org>; Sun, 18 Feb 2024 17:17:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62535
 
-On Fri 2024-02-16 @ 10:48:59 AM, Quentin Schulz wrote:
+On Fri 2024-02-16 @ 11:06:03 AM, Quentin Schulz wrote:
 > Hi Trevor,
 > 
 > On 2/16/24 09:29, Trevor Woerner via lists.yoctoproject.org wrote:
-> > Rockchip defines the expected layout/map of the default storage device.
-> > Fill out the wks description so it matches.
+> > In order to boot successfully, most Rockchip SoCs require a specific
+> > partitioning scheme which was defined many years (and many SoCs) ago. That
+> > partitioning scheme places the SPL and U-Boot at specific offsets at the
+> > start of the boot block device:
 > > 
 > > 	https://opensource.rock-chips.com/wiki_Partitions
 > > 
-> > Note: in the Rockchip layout, not all partitions are expected to show up
-> > in the gpt partition table. This patch uses "--no-table" to only number the
-> > partitions that are numbered in the Rockchip wiki, as well as to give these
-> > partitions the partition numbers indicated in the wiki.
+> > The Rockchip partitioning scheme goes on to also define the locations and
+> > sizes of a number of additional partitions, including the "boot" and "root"
+> > partitions.
 > > 
-> > Note: there is a mistake in the Rockchip table (which I've copied
-> > verbatim here). Going by the values of the "Start Sector", the size of
-> > the "reserved1" partition is listed as being 2x its actual size/number of
-> > sectors.
+> > Since both the SPL and U-Boot have already been placed on the block device,
+> > the "boot" partition only contains the extlinux config file and the
+> > kernel+dtb/fitImage; it doesn't contain any bootloader artifacts (other
+> > than the extlinux config).
 > > 
-> > Expected:
-> > 	Partition       Start Sector       Number of Sectors    Partition Size     PartNum in GPT    Requirements
-> > 	MBR             0      00000000    1       00000001     512       0.5KB
-> > 	Primary GPT     1      00000001    63      0000003F     32256     31.5KB
-> > 	loader1         64     00000040    7104    00001bc0     4096000   2.5MB    1                 preloader (miniloader or U-Boot SPL)
-> > 	Vendor Storage  7168   00001c00    512     00000200     262144    256KB                      SN, MAC and etc.
-> > 	Reserved Space  7680   00001e00    384     00000180     196608    192KB                      Not used
-> > 	reserved1       8064   00001f80    128     00000080     65536     64KB                       legacy DRM key
-> > 	U-Boot ENV      8128   00001fc0    64      00000040     32768     32KB
-> > 	reserved2       8192   00002000    8192    00002000     4194304   4MB                        legacy parameter
-> > 	loader2         16384  00004000    8192    00002000     4194304   4MB      2                 U-Boot or UEFI
-> > 	trust           24576  00006000    8192    00002000     4194304   4MB      3                 trusted-os like ATF, OP-TEE
-> > 	boot            32768  00008000    229376  00038000     117440512 112MB    4                 kernel, dtb, extlinux.conf, ramdisk
-> > 	rootfs          262144 00040000    -       -            -         -MB      5                 Linux system
-> > 
-> > Prior to this patch:
-> > 	# fdisk -l /dev/mmcblk1
-> > 	GPT PMBR size mismatch (1504727 != 30375935) will be corrected by write.
-> > 	The backup GPT table is not on the end of the device.
-> > 	Disk /dev/mmcblk1: 14.48 GiB, 15552479232 bytes, 30375936 sectors
-> > 	Units: sectors of 1 * 512 = 512 bytes
-> > 	Sector size (logical/physical): 512 bytes / 512 bytes
-> > 	I/O size (minimum/optimal): 512 bytes / 512 bytes
-> > 	Disklabel type: gpt
-> > 	Disk identifier: 00000000-0000-0000-0000-00004D9B9EF0
-> > 
-> > 	Device          Start     End Sectors   Size Type
-> > 	/dev/mmcblk1p1     64    8063    8000   3.9M Microsoft basic data
-> > 	/dev/mmcblk1p2   8064    8191     128    64K Microsoft basic data
-> > 	/dev/mmcblk1p3   8192   16383    8192     4M Microsoft basic data
-> > 	/dev/mmcblk1p4  16384   24575    8192     4M Microsoft basic data
-> > 	/dev/mmcblk1p5  24576   32767    8192     4M Microsoft basic data
-> > 	/dev/mmcblk1p6  32768  330955  298188 145.6M Microsoft basic data
-> > 	/dev/mmcblk1p7 330956 1504693 1173738 573.1M Linux filesystem
-> > 
-> > New:
-> > 	# fdisk -l /dev/mmcblk1
-> > 	GPT PMBR size mismatch (1504727 != 30375935) will be corrected by write.
-> > 	The backup GPT table is not on the end of the device.
-> > 	Disk /dev/mmcblk1: 14.48 GiB, 15552479232 bytes, 30375936 sectors
-> > 	Units: sectors of 1 * 512 = 512 bytes
-> > 	Sector size (logical/physical): 512 bytes / 512 bytes
-> > 	I/O size (minimum/optimal): 512 bytes / 512 bytes
-> > 	Disklabel type: gpt
-> > 	Disk identifier: 00000000-0000-0000-0000-00004D9B9EF0
-> > 
-> > 	Device          Start     End Sectors   Size Type
-> > 	/dev/mmcblk1p1     64    7167    7104   3.5M Linux filesystem
-> > 	/dev/mmcblk1p2  16384   24575    8192     4M Linux filesystem
-> > 	/dev/mmcblk1p3  24576   32767    8192     4M Linux filesystem
-> > 	/dev/mmcblk1p4  32768  330955  298188 145.6M Microsoft basic data
-> > 	/dev/mmcblk1p5 330956 1504693 1173738 573.1M Linux filesystem
-> > 
-> > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> > ---
-> > changes in v2:
-> > - expand the commit message to show past, expected, and new behaviour
-> > - spell out that vstorage stands for "vendor storage"
-> > ---
-> >   wic/rockchip.wks | 20 +++++++++++++-------
-> >   1 file changed, 13 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/wic/rockchip.wks b/wic/rockchip.wks
-> > index b14ec0d1690a..034443d90050 100644
-> > --- a/wic/rockchip.wks
-> > +++ b/wic/rockchip.wks
-> > @@ -9,17 +9,23 @@
-> >   # wic uses 1KB blocks. The following table uses 512 byte sectors:
-> >   #
-> >   #   Partition   Start Sector    Number of Sectors
-> > -#   loader1     64              8000        (idbloader / U-Boot SPL)
-> > -#   reserved1   8064            128
-> > -#   reserved2   8192            8192
-> > +#   loader1     64              7104        (idbloader / U-Boot SPL)
-> > +#   vstorage    7168            512         (vendor storage: e.g. serial number, MAC address, etc)
-> > +#   reserved    7680            384         (not used)
-> > +#   reserved1   8064            64          (legacy DRM key)
-> > +#   uboot_env   8128            64          (U-Boot environment)
+> > The location and size of the SPL partition is a hard dependency since the
 > 
-> I'm surprised this isn't a partition, because then I assume it'd be easier
-> to use fw_setenv/fw_printenv from Linux userspace to interact with U-Boot's
-> env?
+> Just because I like being pedantic, I don't thhink the size is a hard
+> dependency. The location is (well there are a few possible though :) ), but
+> the size is part of the header(s) that is parsed by the BootROM, the BootROM
+> will only fetch what it needs as far as I remember. It's a bit of convoluted
+> code but it's done in tools/rkcommon.c in U-Boot source code.
 > 
-> But if we make it a partition, then the partition number for the next
-> partitions are now off by one compared to what we have today, no perfect
-> solution here :)
+> What we can say though is that the TPL+SPL has a maximum size, since it
+> needs to fit inside the SRAM. But I don't think any SoC has been released by
+> Rockchip that has 2.5MiB of SRAM, it's usually a few tens of KiB max only.
+> Anyway, the message is fine, just wanted to give a bit more info there.
 
-There are 2 pieces that need to be defined to interact with a U-Boot
-environment:
-- a U-Boot config
-	to setup the environment's storage
-- an /etc/fw_env.config file in Linux user-space
-	so that the fw_printenv and fw_setenv Linux user-space programs can
-	interact with the U-Boot environment from Linux user-space
+I appreciate pedantic, so don't hesitate to jump in. In fact up until this
+point we have been playing fast and loose with the partition sizes, so I
+already had proof that the sizing was not a hard dependency. And I never mind
+in-depth explanations and experiences.
 
-If we use a partition in which to store the U-Boot environment then we need:
-- U-Boot config (assuming it's stored in mmcblkXp6 of a fat partition):
-	CONFIG_ENV_SIZE=0x8000
-	CONFIG_ENV_IS_IN_FAT=y
-	CONFIG_ENV_FAT_DEVICE_AND_PART="1:6"
-- /etc/fw_env.config
-	/boot/uboot.env 0x0000 ${UBOOT_ENV_SIZE}
-
-If, instead, we use a raw block device:
-- U-Boot
-	CONFIG_ENV_SIZE=0x8000
-	CONFIG_ENV_OFFSET=0x3f8000
-	CONFIG_ENV_IS_IN_MMC=y
-	CONFIG_SYS_MMC_ENV_DEV=1
-- /etc/fw_env.config
-	/dev/mmcblk1p6 0x0000 ${UBOOT_ENV_SIZE}
-
-I don't think one is easier than the other. If they're configured properly
-one is as easy, or as difficult, as the other. I already have plans and
-patches to add this to meta-rockchip, so it will all be handled by the BSP.
-From the user's point of view it will all work, regardless of which one is
-actually implemented.
-
-I'm working on making the "1", from above variable based on which MACHINE is
-specified. The "6", "0x8000", "0x3f8000" should be synchronized with what's in
-the wic/partitioning.
-
-> > +#   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
-> >   #   loader2     16384           8192        (U-Boot proper)
-> > -#   atf         24576           8192
-> > +#   atf         24576           8192        (trusted OS e.g. ATR, OP-TEE, etc)
-> >   #   boot        32768           229376
-> >   #   root        262144          -           (suggested)
-> > -part loader1    --offset 32     --fixed-size 4000K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
-> > -part reserved1  --offset 4032   --fixed-size 64K      --fstype=none
-> > -part reserved2  --offset 4096   --fixed-size 4096K    --fstype=none
-> > +part loader1    --offset 32     --fixed-size 3552K    --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
-> > +part vstorage   --offset 3584   --fixed-size 256K     --fstype=none  --no-table
-> > +part reserved   --offset 3840   --fixed-size 192K     --fstype=none  --no-table
-> > +part reserved1  --offset 4032   --fixed-size 32K      --fstype=none  --no-table
-> > +part uboot_env  --offset 4064   --fixed-size 32K      --fstype=none  --no-table
-> > +part reserved2  --offset 4096   --fixed-size 4096K    --fstype=none  --no-table
-> >   part loader2    --offset 8192   --fixed-size 4096K    --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
-> >   part atf        --offset 12288  --fixed-size 4096K    --fstype=none
-> >   part /boot      --offset 16384  --size       114688K  --fstype=vfat  --active  --source bootimg-partition --label boot --use-uuid --sourceparams="loader=u-boot"
-> > 
 > 
-> Wow, just realized that --offset doesn't have a unit (so thought B) and
-> fixed-size has one. offset default unit if missing is K and fixed-size's
-> M... Maybe we could also specify the unit for offset to be K so that it's a
-> bit less confusing (or if you want to switch to S for sector to match the
-> documentation above?).
+> [...]
+> 
+> > diff --git a/conf/machine/include/rockchip-extlinux.inc b/conf/machine/include/rockchip-extlinux.inc
+> > new file mode 100644
+> > index 000000000000..3af7ed629e34
+> > --- /dev/null
+> > +++ b/conf/machine/include/rockchip-extlinux.inc
+> > @@ -0,0 +1,12 @@
+> > +UBOOT_EXTLINUX ?= "1"
+> > +UBOOT_EXTLINUX_ROOT ?= "root=PARTLABEL=root"
+> > +UBOOT_EXTLINUX_FDTDIR ?= "${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '/boot', d)}"
+> > +NONFITDT ?= "${@d.getVar('KERNEL_DEVICETREE').split('/')[1]}"
+> 
+> Maybe keep the comment explaining the logic of this line?
 
-I wasn't aware of the s/S suffix for specifying offsets in the wic file! It
-took me a couple times to figure out what you were referring to in this and
-previous emails. Aha! That makes it a bit nicer! I decided to go with the s/S
-suffix for the offsets in the wic file. I thought it would be a quick 2-liner
-to also be able to specify s/S for the sizes too (--fixed-size/--size) but
-unfortunately the assumption that everything is a multiple of 1024 wrt sizing
-is buried too deep in wic's internals to make this an easy change.
+Done. But tweaked a little. The reasons for having it before (as part of the
+boot files is slightly different than the reason for keeping it for EXTLINUX,
+but very similar.
 
-I submitted, then retracted, a 2-liner to oe-core in an attempt to specify the
-sizes in sectors as well. This keeps us from being able to fully specify the
-Rockchip partition scheme. Thankfully the 2 we can't specify are together, at
-the start, and aren't really needed for anything important to us. Thankfully
-the rest of the table is aligned on 1024-byte boundaries.
+> 
+> > +UBOOT_EXTLINUX_FDT ?= "${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '${NONFITDT}', d)}"
+> > +UBOOT_EXTLINUX_CONSOLE ?= "earlycon console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8"
+> > +UBOOT_EXTLINUX_KERNEL_ARGS ?= "rootwait rw rootfstype=ext4"
+> > +UBOOT_EXTLINUX_KERNEL_IMAGE ?= "/boot/${KERNEL_IMAGETYPE}"
+> > +UBOOT_EXTLINUX_LABELS ?= "default"
+> > +UBOOT_EXTLINUX_MENU_DESCRIPTION:default ?= "${MACHINE}"
+> > +
+> > +MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "u-boot-extlinux"
+> 
+> Going back to the mail I sent a few minutes ago on the v1 (which was sent
+> after your v2 was sent :) ), I have a gut feeling we need _RDEPENDS here and
+> not _RRECOMMENDS.
+
+Ah got it. I misunderstood your comments. I thought you had been asking
+whether it was necessary at all and I was pointing out that without that
+package being added to the rootfs it wouldn't work.
+
+Not a problem, I've upgraded it from a recommendation to a dependency.
 
