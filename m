@@ -1,70 +1,86 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3134FC48BC3
-	for <webhook@archiver.kernel.org>; Mon, 19 Feb 2024 09:00:39 +0000 (UTC)
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
- by mx.groups.io with SMTP id smtpd.web11.37544.1708333229191491578
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E26BDC48BC3
+	for <webhook@archiver.kernel.org>; Mon, 19 Feb 2024 10:44:40 +0000 (UTC)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+ by mx.groups.io with SMTP id smtpd.web11.38898.1708339476604245796
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Feb 2024 01:00:29 -0800
+ Mon, 19 Feb 2024 02:44:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=kRs6n8/p;
- spf=pass (domain: bootlin.com, ip: 217.70.183.194, mailfrom: michael.opdenacker@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0836E4000F;
-	Mon, 19 Feb 2024 09:00:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1708333227;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1Gwx6skHs7YSKE9u0CDLQR621TY6J9MSkTd0CbvmwJM=;
-	b=kRs6n8/p9Iw/mMHSx605vswc1NwRllonfNBc+EGtxDn42nwSDxO3A3rg6/MPCxvWX4eW9y
-	SONZPwW1esYH30ozIUmrzG6SsaV/pTRrVzZKECLnTW93sfrcTspcHvWiJGMs/OSNxglZmR
-	Xa1NLSAm/DoLVspx3KMzjppukKzzNZldyuA6n47dTIyjAifA9/7ByZWxFs4Xy5DRy9jGf1
-	+f5dbquGgN88oA5A7zl3fdyycUEzOc1W/f2DfNoCN8zMBNdCewRJXzvKdnqhkTFtOVOjTm
-	8mmYZ1WWaNgUoa2KbjUituibmOOsMxjVmAq3N87dY3j3K0cwrWvXWlPrmJvbtw==
-Message-ID: <a5f4d4a4-2ca0-406c-893d-e9bae4dcc242@bootlin.com>
-Date: Mon, 19 Feb 2024 10:00:26 +0100
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=YXtwHBaG;
+ spf=pass (domain: gmail.com, ip: 209.85.208.182, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d204e102a9so53117241fa.0
+        for <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 02:44:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1708339475; x=1708944275; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pr8i+zkA8btczLqeve2PYRGjvn2bqYy6uNtQqw42kgo=;
+        b=YXtwHBaGxDxgBWzVi44/+OSKcoBWaABp5tnlxFt2XN6i6mN+OlQv7HS80kM4ocKUYm
+         +rl5GdMlhoXryr+DmN7koERRVXHVFbcvV/a2cEs4sUQ+KLyg85+GB8gmv5qLQvVRwbym
+         YeZEk9dI5oxRoa1r24wyPtxso/9ALxcbO40wnpsyksF+mohhbpS4qx/ahDZOMaKG7Zgd
+         k6eftC6KEITT5igv4APEb/i+FA7FmfJGEstLlWcQW3a6nCND66D92pVepzhHWLK8mlOu
+         0FnEKvM2GrcQslygswqs2Z3cWHZ+UFepIuT9I8K23aQhzNdc8KrZak4ev9GYVizyhVQy
+         a/cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708339475; x=1708944275;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Pr8i+zkA8btczLqeve2PYRGjvn2bqYy6uNtQqw42kgo=;
+        b=YqoWalu/nyvdt+8NQ695YQu8IN+0rBeSdeV/BeE7CbHi2FfIxyBve7d17blUCwX9ey
+         mATix+1HjKnLDT7lyjBo6pCgC3CoiAR+C87AWqDP4QxSBjszjAevEn6PM4eznHRje8SL
+         mfxzY2AsYeISiEqxZIqOi/7fU+hnHu1FQ3pKBnD3vUVZCluWVLy7UEF00AtTCpoLN2Qc
+         uEQodMXfkNQQw6F/1GZB0xYIZqo8T6D7+0Wc0tbuqSktJALWkKhR5NpMEfKLJKPdOtaD
+         7sOZLat4wfKEmhnLYAaPXmTreiXlP5BkPJe5v1N69g0RTLlPF2FudcFS1Xae4GeLnFGN
+         tK+A==
+X-Gm-Message-State: AOJu0YwWFOMUhFS7qlEIUjegfpxtSob8q/fBFrp4jh4q37t5S/QcDMpY
+	2sM94o5EUHO9+OGWzV4D5jq3AiFp6wjkZvxhTJ0ASk7Z6YRZO8VLvjPI2avNFzfVvZj6Tyw0Fo/
+	kFKesSRrx13PHjQfPcJmtt69PYjB8iT9TeVs=
+X-Google-Smtp-Source: AGHT+IFAaUqj3iXU9qToH0M0TVAPAFggvIrQctLiS2cOOQ8KO+TlaKjKg2cPQl10fLJWjfKtGOwI6CEvqJnqXdIA1OA=
+X-Received: by 2002:a2e:a7d2:0:b0:2d2:402d:2239 with SMTP id
+ x18-20020a2ea7d2000000b002d2402d2239mr851015ljp.25.1708339474449; Mon, 19 Feb
+ 2024 02:44:34 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [PATCH] lynis: Add missing runtime dependencies
-Content-Language: en-US
-To: belouargamohamed@gmail.com
-References: <3d7ead69-9f5b-4c6b-9215-195b397e3d19@bootlin.com>
- <32626.1708174911574167451@lists.yoctoproject.org>
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <32626.1708174911574167451@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: michael.opdenacker@bootlin.com
+References: <CANNYZj8LwDJ09+Q-wq5eRrVZATOnRSYrM=d8p_xQR5_DMPGo4g@mail.gmail.com>
+ <31097.1708271434787048272@lists.yoctoproject.org>
+In-Reply-To: <31097.1708271434787048272@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 19 Feb 2024 11:44:23 +0100
+Message-ID: <CANNYZj8g4zPZ3bnUS02CRNaduEn0zogMM9U+xWa=ziPHizD28w@mail.gmail.com>
+Subject: Re: [yocto] WHAT IS YOCTO PROJECT ACTUALLY MEAN?
+To: yocto@lists.yoctoproject.org, cqthoctap@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 09:00:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62538
+ <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 10:44:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62539
 
-Hi Mohamed
-
-On 2/17/24 at 14:01, belouargamohamed@gmail.com wrote:
-> Hey Michael,
+On Sun, 18 Feb 2024 at 16:50, <cqthoctap@gmail.com> wrote:
 >
-> I did what you asked, can you please remove my previous patches ?
+> Thanks for your reply.
+>
+> I have go through your recommend article, and I have a question. "Yocto i=
+s an open source collaboration project" and in my opinion "open source coll=
+aboration project" is a process of  create and maintain open source softwar=
+e, so what open source software does Yocto maintain?
+>
 
+The answer is directly in the article. Note the list at the start:
 
-Thanks a lot!
-Actually, I haven't merged your previous patches yet, so don't hesitate 
-to send the new ones.
+"The Yocto Project combines and maintains several key elements:"
 
-Thanks again
-Michael.
+and the section "Components And Tools Maintained By The Yocto Project"
+(which has a link to a more detailed description of each).
 
--- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+The git repositories for them are:
+https://git.yoctoproject.org/
+https://git.openembedded.org/
 
+Alex
 
