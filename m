@@ -2,85 +2,86 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E26BDC48BC3
-	for <webhook@archiver.kernel.org>; Mon, 19 Feb 2024 10:44:40 +0000 (UTC)
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
- by mx.groups.io with SMTP id smtpd.web11.38898.1708339476604245796
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BFB1C54764
+	for <webhook@archiver.kernel.org>; Mon, 19 Feb 2024 12:09:31 +0000 (UTC)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+ by mx.groups.io with SMTP id smtpd.web10.39713.1708344567446795799
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Feb 2024 02:44:36 -0800
+ Mon, 19 Feb 2024 04:09:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=YXtwHBaG;
- spf=pass (domain: gmail.com, ip: 209.85.208.182, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d204e102a9so53117241fa.0
-        for <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 02:44:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ktFIKA19;
+ spf=pass (domain: gmail.com, ip: 209.85.167.52, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-512be87a0f3so156943e87.3
+        for <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 04:09:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708339475; x=1708944275; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pr8i+zkA8btczLqeve2PYRGjvn2bqYy6uNtQqw42kgo=;
-        b=YXtwHBaGxDxgBWzVi44/+OSKcoBWaABp5tnlxFt2XN6i6mN+OlQv7HS80kM4ocKUYm
-         +rl5GdMlhoXryr+DmN7koERRVXHVFbcvV/a2cEs4sUQ+KLyg85+GB8gmv5qLQvVRwbym
-         YeZEk9dI5oxRoa1r24wyPtxso/9ALxcbO40wnpsyksF+mohhbpS4qx/ahDZOMaKG7Zgd
-         k6eftC6KEITT5igv4APEb/i+FA7FmfJGEstLlWcQW3a6nCND66D92pVepzhHWLK8mlOu
-         0FnEKvM2GrcQslygswqs2Z3cWHZ+UFepIuT9I8K23aQhzNdc8KrZak4ev9GYVizyhVQy
-         a/cg==
+        d=gmail.com; s=20230601; t=1708344566; x=1708949366; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zhlt3IAdT6wsrxbKqXj6myIUkAXDQhIZ/hRzkBzDfO4=;
+        b=ktFIKA19iZn28QwMhX5i/KA/90Jpy/klkPTdETqQQ7KvuYXlIplnjjAzHIty+jJX+z
+         ky+AlxlQq0gA15y2sYDRiZq+x/M2m1/zhgEDe1odB5CZvI57/2zg1wEUknmdyr4dQtcZ
+         u8qJ74qpI6xdy5CYo7EcOz3JPhKAEckwxf7fV4EnCLd1iQ7R6JVy522rGRUPYeH1aXbx
+         xVNe3vFz8u97avj+jhqO/D1AiASQ6eVsylWebB/SrgVPeOcgquyMciQHX4FPS/iagSvY
+         lyX5kaKfsnD0/IcxurLrLu1aW7L/BZIXdoSqqetmDuXX0dx+rKrfSVo9b4W4Sthf1ROE
+         Nu4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708339475; x=1708944275;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Pr8i+zkA8btczLqeve2PYRGjvn2bqYy6uNtQqw42kgo=;
-        b=YqoWalu/nyvdt+8NQ695YQu8IN+0rBeSdeV/BeE7CbHi2FfIxyBve7d17blUCwX9ey
-         mATix+1HjKnLDT7lyjBo6pCgC3CoiAR+C87AWqDP4QxSBjszjAevEn6PM4eznHRje8SL
-         mfxzY2AsYeISiEqxZIqOi/7fU+hnHu1FQ3pKBnD3vUVZCluWVLy7UEF00AtTCpoLN2Qc
-         uEQodMXfkNQQw6F/1GZB0xYIZqo8T6D7+0Wc0tbuqSktJALWkKhR5NpMEfKLJKPdOtaD
-         7sOZLat4wfKEmhnLYAaPXmTreiXlP5BkPJe5v1N69g0RTLlPF2FudcFS1Xae4GeLnFGN
-         tK+A==
-X-Gm-Message-State: AOJu0YwWFOMUhFS7qlEIUjegfpxtSob8q/fBFrp4jh4q37t5S/QcDMpY
-	2sM94o5EUHO9+OGWzV4D5jq3AiFp6wjkZvxhTJ0ASk7Z6YRZO8VLvjPI2avNFzfVvZj6Tyw0Fo/
-	kFKesSRrx13PHjQfPcJmtt69PYjB8iT9TeVs=
-X-Google-Smtp-Source: AGHT+IFAaUqj3iXU9qToH0M0TVAPAFggvIrQctLiS2cOOQ8KO+TlaKjKg2cPQl10fLJWjfKtGOwI6CEvqJnqXdIA1OA=
-X-Received: by 2002:a2e:a7d2:0:b0:2d2:402d:2239 with SMTP id
- x18-20020a2ea7d2000000b002d2402d2239mr851015ljp.25.1708339474449; Mon, 19 Feb
- 2024 02:44:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708344566; x=1708949366;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zhlt3IAdT6wsrxbKqXj6myIUkAXDQhIZ/hRzkBzDfO4=;
+        b=hCCczTtrqsdOu01CjN3d4yPIPsQZ4OikjhSnPhP/XD7ZPPicuy4XxZyU9RfOHr5Olj
+         yhFhgxr8TDKbBhjfyqDU+ZnOU0k2RKoDSM7dhoKphZG/PPC52ZymJC9xrGbur3I6OSpV
+         2+F7DIa5GdZqly2hk5wbqrZMpNJIXEAoHPNTxE1S4DXZzqFAfHJwL87DOeE1Zvz+AwwX
+         C6JSjjWs75SWS/kXuRf9UEbGd/hlI9iUGEfcgGOfx72uquy7lhtztHj+RnUCMQ2z874X
+         Ah0ZzOGnuOuNTVhHZvLB1WbWsKwaklvFnZ1JqrQE/O9BGokr46qbq+T17v3VAbSOdXzl
+         Z5Lg==
+X-Forwarded-Encrypted: i=1; AJvYcCWE/zdeioCK4L9SVsBM6RwfLZRcbzbTZB1gDSxDx1L3itiHGBKVnoIjp2anaugLg+MxRKkYVXyCqdVZDINZjElER73fYaHadGUVLhxP
+X-Gm-Message-State: AOJu0YxsB7BvlAUCTb9pGkMHVC/Lw0gmntPPTHO0bN9wVYk4sV23VYW9
+	gqiXIWYiRTsjCXKBEuF+ulJmAEcah2ayyQ7SRMaQDRl0CTLbowF/1/tZzl5f4O3cLbpz9i9vS5W
+	LqFtEizq70OCAFbY6nYbGFzUPvbY=
+X-Google-Smtp-Source: AGHT+IEzZhXsakMW4DleKYNM4iGFbu5p+kkV2244/kbjaK6YPgygx4MpfguDouMTsjIe7fTk/6frGciCbg3PTVzUqqU=
+X-Received: by 2002:ac2:4433:0:b0:512:b915:3b18 with SMTP id
+ w19-20020ac24433000000b00512b9153b18mr924818lfl.52.1708344565383; Mon, 19 Feb
+ 2024 04:09:25 -0800 (PST)
 MIME-Version: 1.0
-References: <CANNYZj8LwDJ09+Q-wq5eRrVZATOnRSYrM=d8p_xQR5_DMPGo4g@mail.gmail.com>
- <31097.1708271434787048272@lists.yoctoproject.org>
-In-Reply-To: <31097.1708271434787048272@lists.yoctoproject.org>
+References: <CAK5yBb8YQoMdR=qKDHPYVUo7jKhRDEjS3Ah6EDccsbdwgmm+Vw@mail.gmail.com>
+ <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
+In-Reply-To: <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 19 Feb 2024 11:44:23 +0100
-Message-ID: <CANNYZj8g4zPZ3bnUS02CRNaduEn0zogMM9U+xWa=ziPHizD28w@mail.gmail.com>
-Subject: Re: [yocto] WHAT IS YOCTO PROJECT ACTUALLY MEAN?
-To: yocto@lists.yoctoproject.org, cqthoctap@gmail.com
+Date: Mon, 19 Feb 2024 13:09:13 +0100
+Message-ID: <CANNYZj8kKYN101ednHKda0n4MF6tGqK_PcjD4Q4VhN5_ui3WDA@mail.gmail.com>
+Subject: Re: [OE-core] Yocto Project Status 13 February 2024 (WW07)
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Stephen Jolley <sjolley.yp.pm@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 10:44:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62539
+ <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 12:09:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62540
 
-On Sun, 18 Feb 2024 at 16:50, <cqthoctap@gmail.com> wrote:
+On Fri, 16 Feb 2024 at 12:34, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> I'm sure there are some things I'm forgetting too.
 >
-> Thanks for your reply.
+> Please let me know ASAP if there is anything else pending.
 >
-> I have go through your recommend article, and I have a question. "Yocto i=
-s an open source collaboration project" and in my opinion "open source coll=
-aboration project" is a process of  create and maintain open source softwar=
-e, so what open source software does Yocto maintain?
->
+> The good news is that several problematic issues do seem to be finding
+> resolutions in the last 48h.
 
-The answer is directly in the article. Note the list at the start:
+Last week I got the build replicator script and several supplementary
+fixes to the point where they do what they're meant to, and they have
+tests:
+https://git.yoctoproject.org/poky-contrib/log/?h=akanavin/sstate-for-all
 
-"The Yocto Project combines and maintains several key elements:"
-
-and the section "Components And Tools Maintained By The Yocto Project"
-(which has a link to a more detailed description of each).
-
-The git repositories for them are:
-https://git.yoctoproject.org/
-https://git.openembedded.org/
+Locally it's all working fine, including oe-selftest, but the same
+oe-selftest on the AB is failing. Depending on how fast I can fix
+this, and how many other issues there are in preparing for LTS, it'll
+probably be delayed to after that. I'm ok with that, although I wish
+the feature would be a part of that.
 
 Alex
 
