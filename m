@@ -1,87 +1,114 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BFB1C54764
-	for <webhook@archiver.kernel.org>; Mon, 19 Feb 2024 12:09:31 +0000 (UTC)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
- by mx.groups.io with SMTP id smtpd.web10.39713.1708344567446795799
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4DE9C48BF8
+	for <webhook@archiver.kernel.org>; Mon, 19 Feb 2024 17:48:36 +0000 (UTC)
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+ by mx.groups.io with SMTP id smtpd.web10.527.1708364915329702477
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Feb 2024 04:09:27 -0800
+ Mon, 19 Feb 2024 09:48:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=ktFIKA19;
- spf=pass (domain: gmail.com, ip: 209.85.167.52, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-512be87a0f3so156943e87.3
-        for <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 04:09:27 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=CAQZ6P5i;
+ spf=pass (domain: gmail.com, ip: 209.85.166.175, mailfrom: twoerner@gmail.com)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3651d6dea15so6028525ab.1
+        for <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 09:48:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708344566; x=1708949366; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zhlt3IAdT6wsrxbKqXj6myIUkAXDQhIZ/hRzkBzDfO4=;
-        b=ktFIKA19iZn28QwMhX5i/KA/90Jpy/klkPTdETqQQ7KvuYXlIplnjjAzHIty+jJX+z
-         ky+AlxlQq0gA15y2sYDRiZq+x/M2m1/zhgEDe1odB5CZvI57/2zg1wEUknmdyr4dQtcZ
-         u8qJ74qpI6xdy5CYo7EcOz3JPhKAEckwxf7fV4EnCLd1iQ7R6JVy522rGRUPYeH1aXbx
-         xVNe3vFz8u97avj+jhqO/D1AiASQ6eVsylWebB/SrgVPeOcgquyMciQHX4FPS/iagSvY
-         lyX5kaKfsnD0/IcxurLrLu1aW7L/BZIXdoSqqetmDuXX0dx+rKrfSVo9b4W4Sthf1ROE
-         Nu4w==
+        d=gmail.com; s=20230601; t=1708364913; x=1708969713; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mgDzwbbNaYad1gzcVnhpweCWM/sxQKLIO98rZl/FCgc=;
+        b=CAQZ6P5iDW8gB6XmRARDNCHy2ca9Rpt3ei1mBHVIU+r9rMPkncaDpAcXbrHv4ZFZHp
+         r2LCMiFgQi2cuy+Z1Pfn6mzWcSmFiWpZTd/7GCshTy+o+h9WCCttV9c3sJVL1nUAz0x9
+         2AaNwqj5I+ZzC3pCmaLHHugngCOOdnUmwMoFGFjMEROR1Atz2h2Sh0JgaEML75ZKw4zt
+         /Qy5nJdwVzftC1kwk4ftj8yP/GPav8IQefeOTSAkRVmwX/sboATsyMVlPma5N5P808NK
+         zztRap4SXh6yxkEDatjGolLZ4rwR7k2SODRd7S+B+bkEQQUbsd0CVC9SBmIoL0zhIUbD
+         Sjlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708344566; x=1708949366;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zhlt3IAdT6wsrxbKqXj6myIUkAXDQhIZ/hRzkBzDfO4=;
-        b=hCCczTtrqsdOu01CjN3d4yPIPsQZ4OikjhSnPhP/XD7ZPPicuy4XxZyU9RfOHr5Olj
-         yhFhgxr8TDKbBhjfyqDU+ZnOU0k2RKoDSM7dhoKphZG/PPC52ZymJC9xrGbur3I6OSpV
-         2+F7DIa5GdZqly2hk5wbqrZMpNJIXEAoHPNTxE1S4DXZzqFAfHJwL87DOeE1Zvz+AwwX
-         C6JSjjWs75SWS/kXuRf9UEbGd/hlI9iUGEfcgGOfx72uquy7lhtztHj+RnUCMQ2z874X
-         Ah0ZzOGnuOuNTVhHZvLB1WbWsKwaklvFnZ1JqrQE/O9BGokr46qbq+T17v3VAbSOdXzl
-         Z5Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCWE/zdeioCK4L9SVsBM6RwfLZRcbzbTZB1gDSxDx1L3itiHGBKVnoIjp2anaugLg+MxRKkYVXyCqdVZDINZjElER73fYaHadGUVLhxP
-X-Gm-Message-State: AOJu0YxsB7BvlAUCTb9pGkMHVC/Lw0gmntPPTHO0bN9wVYk4sV23VYW9
-	gqiXIWYiRTsjCXKBEuF+ulJmAEcah2ayyQ7SRMaQDRl0CTLbowF/1/tZzl5f4O3cLbpz9i9vS5W
-	LqFtEizq70OCAFbY6nYbGFzUPvbY=
-X-Google-Smtp-Source: AGHT+IEzZhXsakMW4DleKYNM4iGFbu5p+kkV2244/kbjaK6YPgygx4MpfguDouMTsjIe7fTk/6frGciCbg3PTVzUqqU=
-X-Received: by 2002:ac2:4433:0:b0:512:b915:3b18 with SMTP id
- w19-20020ac24433000000b00512b9153b18mr924818lfl.52.1708344565383; Mon, 19 Feb
- 2024 04:09:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708364913; x=1708969713;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mgDzwbbNaYad1gzcVnhpweCWM/sxQKLIO98rZl/FCgc=;
+        b=wPmDb4/U9DQUukJTyAGdN0e4Gghu9hvyRYi0wSICwzq0DGkmDvfwUZ3RZr0bJioF45
+         ibZSNSIryMQD80Te0S4yhZPdtJD/TUEQZaRfVqNMpQ4hLJl/mjEpQoUNl+u4w+5nH+Ef
+         1cvpoJQasMEP2FLhajjCGCKe5jykypzX8GdvgRIo/iEuyDy+md1BIvUx5aWek/wqbP88
+         HA1R7aA3Tg+4ts+mwAmBPyTFR/Ul05zGXWR4ZBftuQ6LCxt0ScJck7HRe4ZVlL4jfpCN
+         ZP6dlUYAAiyG+mvDRK6gb7LbftNPD6RhO/Pg5nsH6Z41c7z7KkmX4LpRsrAZZYMWL8ao
+         RE4g==
+X-Gm-Message-State: AOJu0Yw7IQ7k2DGiSX+u5zeNecTKoqO/qlGJTCflr4ptf/rWjOR7r1/f
+	7Ku7KpKxCpLWDIdpvkRQd1g9xS937VjDWFxmsD+3dN6eiNo0vvD9gapHjjv+
+X-Google-Smtp-Source: AGHT+IEzrGcQN151lnhEBMkZiVs1PMYzc4d8vCz4MkFtxF9LXQX16nqwWLUPpddG3dtqAYRfDXkwFA==
+X-Received: by 2002:a92:d384:0:b0:365:2399:2446 with SMTP id o4-20020a92d384000000b0036523992446mr4312982ilo.1.1708364912897;
+        Mon, 19 Feb 2024 09:48:32 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id x5-20020a056e021ca500b00363ea5c0fb4sm2300208ill.70.2024.02.19.09.48.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Feb 2024 09:48:30 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Quentin Schulz <foss+yocto@0leil.net>
+Subject: [meta-rockchip][PATCH v3 2/5] rockchip.wks: specify fstype
+Date: Mon, 19 Feb 2024 12:48:22 -0500
+Message-ID: <20240219174825.7084-2-twoerner@gmail.com>
+X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
+In-Reply-To: <20240219174825.7084-1-twoerner@gmail.com>
+References: <20240219174825.7084-1-twoerner@gmail.com>
 MIME-Version: 1.0
-References: <CAK5yBb8YQoMdR=qKDHPYVUo7jKhRDEjS3Ah6EDccsbdwgmm+Vw@mail.gmail.com>
- <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
-In-Reply-To: <007c20be5b61da1d7752835a3f4775368a76bd97.camel@linuxfoundation.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 19 Feb 2024 13:09:13 +0100
-Message-ID: <CANNYZj8kKYN101ednHKda0n4MF6tGqK_PcjD4Q4VhN5_ui3WDA@mail.gmail.com>
-Subject: Re: [OE-core] Yocto Project Status 13 February 2024 (WW07)
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Stephen Jolley <sjolley.yp.pm@gmail.com>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 12:09:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62540
+ <yocto@lists.yoctoproject.org>; Mon, 19 Feb 2024 17:48:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62542
 
-On Fri, 16 Feb 2024 at 12:34, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> I'm sure there are some things I'm forgetting too.
->
-> Please let me know ASAP if there is anything else pending.
->
-> The good news is that several problematic issues do seem to be finding
-> resolutions in the last 48h.
+If the wks file doesn't specify, the assumption is that each partition
+contains a vfat-formatted filesystem. Most of the partitions in the
+Rockchip layout don't have filesystems. Implicitly setting the fstype to
+vfat causes wic to format the partitions. It doesn't make sense to format
+the rawcopy partitions as vfat just to immediately overwrite them with
+binaries, and it wastes time formatting partitions that won't ever be used
+as filesystems.
 
-Last week I got the build replicator script and several supplementary
-fixes to the point where they do what they're meant to, and they have
-tests:
-https://git.yoctoproject.org/poky-contrib/log/?h=akanavin/sstate-for-all
+Reviewed-by: Quentin Schulz <foss+yocto@0leil.net>
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+changes in v3:
+- tweak to accommodate offsets specified in sectors
 
-Locally it's all working fine, including oe-selftest, but the same
-oe-selftest on the AB is failing. Depending on how fast I can fix
-this, and how many other issues there are in preparing for LTS, it'll
-probably be delayed to after that. I'm ok with that, although I wish
-the feature would be a part of that.
+changes in v2:
+- reword the commit message to add clarity
+- add Quentin's tag
+---
+ wic/rockchip.wks | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-Alex
+diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+index 804e84ceb316..42b731ac47b2 100644
+--- a/wic/rockchip.wks
++++ b/wic/rockchip.wks
+@@ -16,12 +16,12 @@
+ #   boot        32768           229376
+ #   root        262144          -           (suggested)
+ 
+-part loader1    --offset 64s    --fixed-size 4000K            --source rawcopy                                                 --sourceparams="file=${SPL_BINARY}"
+-part reserved1  --offset 8064s  --fixed-size 64K
+-part reserved2  --offset 8192s  --fixed-size 4096K
+-part loader2    --offset 16384s --fixed-size 4096K            --source rawcopy                                                 --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+-part atf        --offset 24576s --fixed-size 4096K
+-part /boot      --offset 32768s --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid --sourceparams="loader=u-boot"
+-part /                                                        --source rootfs            --fstype=ext4 --label root --use-uuid
++part loader1    --offset 64s    --fixed-size 4000K   --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
++part reserved1  --offset 8064s  --fixed-size 64K     --fstype=none
++part reserved2  --offset 8192s  --fixed-size 4096K   --fstype=none
++part loader2    --offset 16384s --fixed-size 4096K   --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
++part atf        --offset 24576s --fixed-size 4096K   --fstype=none
++part /boot      --offset 32768s --size       114688K --fstype=vfat --active   --source bootimg-partition --label boot --use-uuid --sourceparams="loader=u-boot"
++part /                                               --fstype=ext4            --source rootfs            --label root --use-uuid
+ 
+ bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=ext4 init=/sbin/init"
+-- 
+2.43.0.76.g1a87c842ece3
+
 
