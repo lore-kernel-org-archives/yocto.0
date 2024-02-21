@@ -1,219 +1,181 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B043CC48BC4
-	for <webhook@archiver.kernel.org>; Wed, 21 Feb 2024 02:05:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by mx.groups.io with SMTP id smtpd.web10.4062.1708481122330209869
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 211E5C48BEB
+	for <webhook@archiver.kernel.org>; Wed, 21 Feb 2024 18:31:31 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (EUR05-DB8-obe.outbound.protection.outlook.com [40.107.20.119])
+ by mx.groups.io with SMTP id smtpd.web11.708.1708540287016954955
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Feb 2024 18:05:22 -0800
+ Wed, 21 Feb 2024 10:31:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=GUEVrSKI;
- spf=pass (domain: intel.com, ip: 198.175.65.18, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1708481122; x=1740017122;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=B+G8inlEzNiffJBIEwEGUwf3aFlaPw1jpB0Y8JnFv+4=;
-  b=GUEVrSKIG5EzCk0BijA1iPqvh9fYtHM33jb5/VA+BYZ8PF8J69+NMoWc
-   CYdvhtnV1XcLLbuju0AZPR9ZysNz/0dWXLJFSsHMhv7Dv9HMS0kSLqwjo
-   VdEKrTtvNNI5kDNRBSnQ7dOtK5OqA9wP3s4VElNZNFOk/ga01NGHA6kBg
-   Vbzt7YE7R9jhMEG+oKVaOURIP74ZMBr+rSA1r/XrKKCjnlpDpOz4Y/+FB
-   mRfk5Q2b6clE4srwGoqfJyrjIpPkru8IhvmW7wd+s65qemsvlxEuouigW
-   OyELZlp4X5uuDIlLAVj9gRXHWfZ6KopT5MiwQpubSrRxtZrac7rbDHpmQ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="2733386"
-X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
-   d="scan'208";a="2733386"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 18:05:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="913198137"
-X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
-   d="scan'208";a="913198137"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 20 Feb 2024 18:05:21 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 20 Feb 2024 18:05:21 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 20 Feb 2024 18:05:21 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 20 Feb 2024 18:05:20 -0800
+ dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=YEKF9DCy;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.20.119, mailfrom: quentin.schulz@theobroma-systems.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dX5cMMRo4nuUUpj4foN5JZuTlY8y+2GLuzdVb7IOphc5rev3YgJevn4HBWfJcWKdv0KFF9VU1k2hqY+oMxQnG544MEBTXDu2wTztZNqXpXWYX4DRJNep+2uJiQVjnoqFgldONsUv9eY9X7FZtreEeYiwt68ZCTO0XJT5fd4RH96ojmcipB6gTs3KUqt59UHirTBOxbQk93tapOJIrGLUzpzXZbxDADO0dCiU0AydT8xczVRoSP+uOnpljTPYCXSfB+9wdsPmsCVo1u+Mikt43Lj873IUY/30TYV90o4T/3vLibqDhdbmhehPp+sLFxho0RGmiQzYj9BjoJbcd1bdJQ==
+ b=hsFuvMebSyXjRP02TAfM6ilE4liR7NnDWpWFZt4vCwYy5YwaCOwnn7trzufwHLV5G6rlqtTo30Zyqe9qbee36q09jCkmdfMJHD2HKstivYy3X/MNpWtMs4hfGKfMo7fK8C38BqU5RcUSpgNo30t7SX530m/m4HapvV9NVzS3wKh1rhE26GU4vU6X6qjEp4erLlbAiENAcgzLA7rdbH57gC88uW5P5ehKL9n6HQjPddJAGv3j+8+c/9s1k+I90VLgGr5RdPHeeApAJJ7CZGFfpZ//cqbxkSwagJCVXPf8/KET53uFrazuO/m6Qmd9Wdi0ASJaldhQMhvhugYadoc+sQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gIf8X36oWMO4c8yiMNM5khOSpXV6jzQcIoZGXn+wJqA=;
- b=RphYjivaT2sAHci++l290fkfEyzRGlTC/+nomwD9klG1Kcd7mOeVyrbyOXI+hDFFzTVhqU8js4sKq+5LyAc5qSU58T21xJVXpULNEx5aHlJwvGewLYecXc/jnwBS3jVOsaV74WDnj4le91B0Mk32PwzaIAECDz81IbOJosqfxW4Mar6zVwt2pG0s66MWNKss+ZDgXYMPHm+/byV58rzJp9EMQbnP3Rui/3WYvEWhrb/sc2jQmRWfHbUAZ5pHTM6AjxFGj0vBEmZDkrqwauRlbY5UnZ9Q+L9jk3L7uX7kAuelzU1y8AR8V3Rfd1eKN2QduHESG3ghSHQigyQwrUq6PA==
+ bh=djNBwuNQn3lJ+d5u+6aJSyb+QsCWilAZZj9Oswsb34Q=;
+ b=D0AQEWITaPZ4/BMZybDKnma6dEwitjTsYQe0h+SFP8Zv7R5mkRCo6uxImK8gb2K07ldZNSH2Iig/6LD1V2O3KkiZRSlMyDf4xbE6M/RdwN3sNzS/IRrji0ZiZirAft0F0aB9AqRi9w8+d4xkmjxGdx7IkKsCKoxUJLi1JRUZkthFbH2XO6d47W9pVv8d8p+0thCi6uhn11sxsFvUq68cITVRKh1IkJmGuPVVHJpI10xvJaqHdVeqIOBKduPFt1VQOJPCCQN0oWW/4m7CaJO6dlYhb8h/QK/3P2X1JY244hqxqh+l9EhQSvSO+BjxzjTZ7TSk1NDR+bq7v5zdAkeqEQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
- by LV3PR11MB8766.namprd11.prod.outlook.com (2603:10b6:408:212::18) with
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=djNBwuNQn3lJ+d5u+6aJSyb+QsCWilAZZj9Oswsb34Q=;
+ b=YEKF9DCySGCuA2P6YifSLTPgSBqvJHgUI9JeGUz0j5xXBll63BmGNNK0gjktHLdDhnOb87AFh5J23JAJq/eX9s/D7fo5J5LYb4kD3Q90gSUjT1ZAXwmj6iP+ezagfz3WoTDsZb0zsv25pbFZRk6FwELqDceaX2rB23XAMiUUEAZk4T0h3EQKlXpRmBN+Lum0kj+a21mvFCk95GpOCQGgUm+zbkTwUWKKEjxEpxSBsxvklKmUA5BmUqL6QEAS6rkjKhqzIV+I9+wrsbEZKYDxIuv2iRrMT4l52otDvZa2J7Sc3Nei9Kfczqc+rN2d6xiuSwa0C2pJhmX9CcaZbCzO4g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
+ by DU0PR04MB9321.eurprd04.prod.outlook.com (2603:10a6:10:354::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Wed, 21 Feb
- 2024 02:05:18 +0000
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::1025:6d41:d45c:948c]) by DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::1025:6d41:d45c:948c%7]) with mapi id 15.20.7292.036; Wed, 21 Feb 2024
- 02:05:18 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.3.3.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.3.3.rc1)
-Thread-Index: AQHaW8XhdmR1+XWAm0WqpxGkHnsR17EUHJ+Q
-Date: Wed, 21 Feb 2024 02:05:18 +0000
-Message-ID: <DM4PR11MB77608A38B6235E4EFD8D954BA1572@DM4PR11MB7760.namprd11.prod.outlook.com>
-References: <0101018d90c4ca55-6841b832-b832-45c0-9d4b-dc21e42261c5-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018d90c4ca55-6841b832-b832-45c0-9d4b-dc21e42261c5-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.38; Wed, 21 Feb
+ 2024 18:31:19 +0000
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::550d:ad96:e3cb:9a6e]) by DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::550d:ad96:e3cb:9a6e%5]) with mapi id 15.20.7292.036; Wed, 21 Feb 2024
+ 18:31:19 +0000
+Message-ID: <8a223cf3-7913-4cb7-848b-0b1dc4109718@theobroma-systems.com>
+Date: Wed, 21 Feb 2024 19:31:17 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [meta-rockchip][PATCH 3/4] remove /boot partition from
+ wic:bootimg-paritition
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|LV3PR11MB8766:EE_
-x-ms-office365-filtering-correlation-id: a4ca271b-81c0-496f-e468-08dc32818d99
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jFygdykcUaqfossMd2lmJ3RromdBOasDHJ8EKYBXv4vpaJsDzsjhUOTrcPnXn/mwibLUqpcBsYt1q8KfqI8QYb18WKEEQpLOvu+wvhhFD7qX3LX9Ke0mfoyg5IiN2j8gkGHAGHZIxFA/a9t6/ZxgpbrhL32TwRaLFxyFtWZPFNLDTrhWejyaYLVPNwlF6Wcx3YhuY6eXk97DCAEIP34XFNonSR6hI5s+grJdSpbFa0q/sAzSXmWXSAjhYurRzQfSqqpTvLhnOKMa2W7wZ9ofz9WbsoZPC8RIsM71BVg+rrmdzwQYYxPDUzROjVA1EzZB7gRg2NEQO12v+ras61W2cD4+J13T/SEbvtoWtnGJv6vjrhesueO3NEwvhkxXR55FQ5ctPj5kH40L6jUrDDEuG0VtxMBVyHlS0piZlE6Zy3m56Kmayvr2Z6ri8K+HruBGt6P2WkDWJtRueRIY2zZxO4dnMbtNaZR+1PYXMKHYkqzOvLNTBfEEBOOpVNh1f3VB4JeJ6OYdCrZhSPfCEMibypk8CntoMoQ+Fl1S86wGZzxU1d3WOVVekm034kfKUPA6A357gXfr4rAMuBj1nYh6TECrCIdiU+6WqF45EEgpYqa1kRFDIZotXDF7Iizki5LcieYMXlg0DtXqQrAh42t5lw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LjXCeETeUstRssFAu3lGXWRfXTr4y0YATHDZUVBoRTBYOnLOeO7YI/laLFqI?=
- =?us-ascii?Q?aVCIhXLbp0SZti4P7se5xNYxSOKAy3aDtHnFuJ2nnG6HrCNgOJK8gVaCxoag?=
- =?us-ascii?Q?RQbkJHCnncMEndk7/nHAeRY2s0H2KRLDSUevvrm+8YvfRFBdCniwToxE08Gh?=
- =?us-ascii?Q?RYS5jX8dcTqeMFVOycbbUGDzX6Do6xgO5FIBOKZbw5ZtXXrrDRxQqoJMlszW?=
- =?us-ascii?Q?Gq/3UHLeQDIyfwLIVJCWdh4qrSzQnsGqxnwwUWxRb00iNB3i1kZ+94ywB5Yv?=
- =?us-ascii?Q?SAMPc59QXpfEnYn5KLHpKPhacbOKhCK3f3/7ad3ahcn0dMDwild6J1wQAwM9?=
- =?us-ascii?Q?ltxvgiS8vSXMxjO/MQbv0g2Oi48P5nNTbRixSi38JnrDv47bkCLyMl9/YVm6?=
- =?us-ascii?Q?ssNTjWXs0udmMcDCJ6JmeH2YdrtWSwZ+UsE7miUjy6l+lSpkhq17J0ir0fNT?=
- =?us-ascii?Q?k8tOD17FwabaK/E6BrftsM2YZiGodGxqdRl3ZCuNoAC+Ja+Pywn06D9+vfno?=
- =?us-ascii?Q?egKn8vT5FdUxQaHvQ8Vovbge/WdXI+hdsBHUlR6Yu2eysOz1rZIBcHhugmTL?=
- =?us-ascii?Q?6GMZ4ug24itXqwZOfdLLxwrc98mBZYZmgo+6F3dxSF302hEKOxu6hyj41iFJ?=
- =?us-ascii?Q?aabEw2n68ylue4JaPhBGEfdREYEfwcsqL9cfaHCa7PihhHLtpFfeaNw1nHm1?=
- =?us-ascii?Q?IhDV/qYwceeIb8lNthM8UfwfQ56ANh4WOWeWANQe1lhFUxGhQnfb+U+FclsG?=
- =?us-ascii?Q?obUc/BxWRcDNn4jKuy6A8IPYFnr3dGTlrV/QUuTMCT8j/oVEHkZrRMv4v3v/?=
- =?us-ascii?Q?GDKbLFAHiWyFwk1zLQXqfKJAO4cA8kErsblqoDlQIlYHzS12/iQ/+vBVM+tS?=
- =?us-ascii?Q?6Ii27SUhfZPNaIdlCJDgxlvqbgqeEPNA3BjpUQmQYULq3Cry5Z9BZI5DXk4g?=
- =?us-ascii?Q?LRgLWLkoqCI5svgSH/Zo3Gu0KU7IYPHtcncmBtGHXQBVTO23KVbPWBbGBm+h?=
- =?us-ascii?Q?t/+3SS/R24CxDaqVFm/2d9xpkovkRXoxospC+Ovvkfl7RYuw09rY8tB8spH8?=
- =?us-ascii?Q?7P5COU7/SZhRC4EJyqVs5l5BCj3/xjh7Og3hoiP5892ZsmAQI9ohn4v/vh/J?=
- =?us-ascii?Q?Xtkrst0lGms7ID+YUy6duuMPh4g/e60vo8awScdagLx8vftsXXOuqI8UPDb8?=
- =?us-ascii?Q?SFemg1GwxQVXDl5L/ViMtcdscI+O4rX287EtTYiwrLgpfrCIA/18ylNmfMsF?=
- =?us-ascii?Q?vAS+86TlQ/ZQvd8AiT3LcdFF1GU+CfLu+qVEMaM8v2Qgt/QOFyzoL4JTgmnR?=
- =?us-ascii?Q?aH1Su07HdYRDvhBB8P/0TxaldqprqRbxpGO7AZmIQf439A0GfiZHTPh4t7kc?=
- =?us-ascii?Q?05KDpCMnf8bV8AT761j9cjpr2QS3R4IqPh+dev6mCRAMxFP1mJoUyLrjC/zv?=
- =?us-ascii?Q?GocHx2titAxbq0ecPWvm0lyi8dRHUVXrjlIVfKxZnnq/z1LKn5sX05KqPe/h?=
- =?us-ascii?Q?sS8IoAgDkeWUZ6Z1/cT6U5cgb5QnRjCm49a/98gkzN519LP8IPU8SsSYpvBu?=
- =?us-ascii?Q?9Jc896/4SQCOtdm1xq094pa7h3G1D/H0KF3f9esz?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+References: <20240212202342.37778-1-twoerner@gmail.com>
+ <20240212202342.37778-3-twoerner@gmail.com>
+ <ebaf257d-6822-4e23-bc09-7606a90a4f7a@theobroma-systems.com>
+ <20240216082531.GA2571@localhost>
+ <582d100d-c868-4920-a773-3dbdfb31f009@theobroma-systems.com>
+ <20240218172810.GC28169@localhost>
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <20240218172810.GC28169@localhost>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0092.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a1::12) To DU2PR04MB8536.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d7::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|DU0PR04MB9321:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c67eb04-23f1-4008-dbce-08dc330b4c54
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	aLcOzqWs1wkeEtFZ0PhKicQbtMQQf+1ypSNV/KFNPzWXGvZsyRp2no0w5ZLaK2MRR8eVnIFYx7b1uVcp1e7C0xZ2Io401fg9+1zRGdo/U39gehQRbQTp3mJiGhaR7xJP4ZGKX3j2WkTHYrcq1DtkmYBdiBqMs5nv5x8wfpC9rs3jMZBNkTEcRCIW0zt0HtBAiGLLOJ0LuGjkFSmuVos+h/RzFf1c6soBraMpmaYIwDln7yzwBF3BEES4BHfWRKuepflnNIBtCkBlfIsCRC/2aVNmfHkcHqsNS4TIjh0891U/Tekl8NPiQ/6PZbyncWVyC0OBCuTjxpsLjj4GnhimUzy/ydHekaW5WyFnsDwzIuaxTFsn9EupyXnY3QE4YO4Xj/4aALtChM0wFRvRmce8+kZxLGVxnxEj7TTkp/EeE/JXqfpwOjHaT1d0t4jtsy2bUVn/9SGJfpKaHewUkMvz0ExWRwVHbJu9r23IPfWWPCGrH276rnFQ5rp+qIC7yp39HgrA4yRgN3YTChzhCbQdhdjxgfguG2hvCg5bdT/mlTk=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?V0RUSHZ4ZTViNVh4dWNHemZwM3YvWk5NSmRNRWRsYjA1OTdZODdHU2tabUNK?=
+ =?utf-8?B?RFBEaUZoYVFiVEdrRVFwSWxEQ05OUlBhR1R4anpXSGpmOWZOY254TzlRVkx6?=
+ =?utf-8?B?NENDYjJIZndpaVd5dkJRaWpIc09Uc25EcU5SbUVsR041aFlTUWwvYXFXaTQy?=
+ =?utf-8?B?anhVYWJkMlVWQzBlVVB4VXgyOC9uZFBXeW5sOGtQa3UyT0MyMzJROWNEb3hk?=
+ =?utf-8?B?VjM2eGtadHRjOUxpTTVlNTNrYlBTTVI1eGN0U1RhM2VZWTkxUkpIem8yOHp5?=
+ =?utf-8?B?aDhhLzk1Y3ZXbk1FNk43ZVE3UVJZd0ZXZEkwOTU1WXROWG91cnMzQS90RWdp?=
+ =?utf-8?B?WGo3M1Z6cmc1VHFVUU9UcWs5TCtzcS96ZzJ1bTUycjNLWWxJcHpEWTdJTU1v?=
+ =?utf-8?B?SXBCOGFuU3BGTGlIWVhEUVZUSlVqTjh6dStRSk4xYkM2RUU1b2dCTHdLcDZK?=
+ =?utf-8?B?MWlxbW5rZTkyU3c1a255VU8yREpkUWcwbG02NENNb1d0SjVBbkEyRkhuQkR0?=
+ =?utf-8?B?RGlyT2kzbFJYYTJ4WDlDRk5IQXlzU0loTWNXN3hNSXcyT1BEM290MzZMeStX?=
+ =?utf-8?B?WWVWejRvbXkxTmpndkxRdHVUckhUZTZDbnpta1BBcU1IaFFzZW4xdzRuS2FD?=
+ =?utf-8?B?bzdJUzE0aEpYcE1jRlZKTHZFa015RFRDUS9VckRTV3VZdzZwaVRmNXBTdTd1?=
+ =?utf-8?B?RitlalNHOC9KYThhYXVaQ3B4eGtZRHQ0KzJacm0vTzRJeFp5Qlo3TzhtRmVC?=
+ =?utf-8?B?SWZmM09jMys5UFNCSjduUCthWGEwdVU1YXlMYzJ6K2VLQzNHU0x1OFFBM05y?=
+ =?utf-8?B?NkZGcWVpL2FWMWR2Tkx1RjFqckhMWldNSksrWFVJNlNPT1JhOHNrN2E1QjBE?=
+ =?utf-8?B?a05pbmxHOGxMQkhYMzNkL0l4RitvQnhpRlBTZ0toL3VlbUk2RDF2c2JwdEI0?=
+ =?utf-8?B?anF3VGw2TkpqWUV6K1lTZ2dnR2gya3VISlV2RkhwYlptNGtRaVBKemJSbXlN?=
+ =?utf-8?B?R0tvWFpFODVYT1J5OXJ4RXl3SVBzWk5idTNLUEtFMXBnL296d2FSVlpnSm5T?=
+ =?utf-8?B?M1hjTlRiT3UrTkF2REVNR1hyT2JmYmNOSENzR3NadU82QzJ3K05rdW9qcDBT?=
+ =?utf-8?B?UTBVTFhZWkJiM0tHSTdtaDNoN2hCdk8vNHBYN08yZ1BMQ1R5Qzc1RmlOYm5X?=
+ =?utf-8?B?b1QxNFUwenI1YmZWQ2tQTEJINUI3SnZ1b0JyVzNqMXFSNzJjTHB3WGhQN0lU?=
+ =?utf-8?B?NDU3WWRnM3p3dm9tR0FLZUtGR1czaC9iVDd6SW9tSDlpajZITFBSM0NYOVUv?=
+ =?utf-8?B?dGpiUjRDVk1CK2ZhL2h4bGNmc242NkJmUWRVSHZ2M3h3ZUE5NDhZS2dKdWpF?=
+ =?utf-8?B?bzQzZTAyMEYxUlBVUE1KeWxGQzB6alE1U0dvU1RMdDA5WmZzUmhpenN6a0sw?=
+ =?utf-8?B?dXdXUHBFenR3N0ZUakdGekZ3WUEvb1MzLzR1aFdmTFUyQ0h2L2lRRzlqQTUv?=
+ =?utf-8?B?K2RTenJIU3NVb1hHRElqckV0RE1QZERxb3grYVRDVVE0VERCSm0yQUJiRGZk?=
+ =?utf-8?B?aHN3YWRTWjA2K2xTRENoWG1HRlBpSGNXcTl6STI1U2YwcUNxdnp6ODdaMGho?=
+ =?utf-8?B?SmJDMVdlTFM5TDJpMGpvMXpQU0wyYmFVWTlWNHhXTVAxRjNVbTFRZEYwVmNH?=
+ =?utf-8?B?cTh4VnkvT1ZiOE92M3VJM3E3WUdvRWxEc2s2M1hBZitTZjcrUy9wbDZCakNN?=
+ =?utf-8?B?cWtmbDl3b082Z2FZNUpaQmZ5THVHUkRUWmNIZ1dJbHN5d1cvQ21MYnZrdGxD?=
+ =?utf-8?B?S0p3L3hicHphOVozT1laWmxEQWlYRlh6V25mZ3ZsWEpWOXFoYTByL2ZjWVhG?=
+ =?utf-8?B?ZXFBRTlhNXNMaVBpYUYrU0tBMkYvVmZjNjJEVkI3UUNkT05ka2dqdUh4MzVu?=
+ =?utf-8?B?ak5NKzVQeXJoMmVWODQ2eitudFhadUkvQXdOckRYWEp6UklIbWJoNVdrREhp?=
+ =?utf-8?B?V01hcUt1b2pBMGlWV09Ydm5rV0RsUFBhQzFrUTBFbmxIU05xM3JWaiswSHFP?=
+ =?utf-8?B?Qk5Db0dhRnRKZzVBVlAyYVFTRVp0M1R0YjJMOGxIWFN1YlA1SWZGVkdUcDlv?=
+ =?utf-8?B?dlMxSmNQUitkakxhZ3RVM0YzQi9kSGRYOTlhMzhXYVZwcG9KYkdrOGxkT1Nw?=
+ =?utf-8?B?ZTIrMlA1NGdVTW1rNzkvMkVJdEVrY0lJYW8xVWtGT2ViWW4xbVF3TFZHK3Ey?=
+ =?utf-8?B?aktzTTFlV3EwWXFOd3hvWDdrRDRRPT0=?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c67eb04-23f1-4008-dbce-08dc330b4c54
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4ca271b-81c0-496f-e468-08dc32818d99
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Feb 2024 02:05:18.7187
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 18:31:19.9063
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KY7QkCAqKyas/7QFB9pcByOS0s25xfKVlUtNaod54XIHI1SjwTdUF0mqon2T/ciUDNdcAV86eQVcFNcVJ57aug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8766
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JVPGaagCPUO+PTaMUWuGk0o+DGmfLD1ra21ID5/DYuZcEXxRYWfvI7lte0/VXuYgIQoXFprHqriOOEdZID4kLHOZzqRLNWiAUa9rrOzQFrxhiqJcIxNhMdWqYXJuSE0d
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9321
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Feb 2024 02:05:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62553
+ <yocto@lists.yoctoproject.org>; Wed, 21 Feb 2024 18:31:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62554
 
-Hi All,
-=20
-QA for yocto-4.3.3.rc1 is completed. This is the full report for this relea=
-se: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-=20
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-=20
-No new issue found.=20
-=20
-Thanks,
-Jing Hui
+Hi Trevor,
 
+On 2/18/24 18:28, Trevor Woerner wrote:
+> On Fri 2024-02-16 @ 10:31:36 AM, Quentin Schulz wrote:
+>>
+>>
+>> On 2/16/24 09:25, Trevor Woerner wrote:
+>>> On Thu 2024-02-15 @ 06:45:59 PM, Quentin Schulz wrote:
+>>>> Hi Trevor,
+>>>>
+>>>> On 2/12/24 21:23, Trevor Woerner via lists.yoctoproject.org wrote:
+>> [...]
+>>>>> +UBOOT_EXTLINUX_KERNEL_IMAGE ?= "/boot/${KERNEL_IMAGETYPE}"
+>>>>
+>>>> FWIW, I don't think /boot is required. bootstd/bootmeth in U-Boot (upstream
+>>>> at the very least) will check for / and then /boot prefix for the paths in
+>>>> extlinux.conf. Not providing /boot means if someone still wants to use a
+>>>> separate boot partition, they wouldn't have to update this variable. But
+>>>> since it's overridable, this is basically up to your preference.
+>>>
+>>> This is a good example of working ahead. The next thing I have queued up is
+>>> a meta-rauc-rockchip example that works generically on all (most?) rockchip
+>>> boards. As part of the U-Boot script I need to make the A/B logic work, it
+>>> needs the "/boot" in there otherwise it doesn't work; therefore it's best to
+>>> set it up properly now.
+>>>
+>>
+>> Mmmm I'm interested to see why it fails without the /boot thing? Let's see
+>> when we get patches :)
+> 
+> I'm working on getting rauc working with meta-rockchip generically so it works
+> with all the MACHINES in meta-rockchip. The patch won't be part of
+> meta-rockchip, but rather be part of a meta-rauc-community/meta-rauc-rockchip
+> I hope to submit upstream at some point.
+> 
+> Basically rauc works with U-Boot via a boot script. To make that script more
+> flexible I'm borrowing a variable form meta-rockchip in the rauc U-Boot script
+> to actually do the booting of the kernel/fitImage/etc. So while U-Boot might
+> be smart enough to check a bunch of places looking for the thing to boot, the
+> rauc boot script isn't quite so smart. It's my script to write, and I could
+> add such logic, but that would just inflate the script for questionable gain.
+> 
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Saturday, February 10, 2024 10:07 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.3.3.rc1)
->=20
->=20
->     A build flagged for QA (yocto-4.3.3.rc1) was completed on the autobui=
-lder
-> and is available at:
->=20
->=20
->         https://autobuilder.yocto.io/pub/releases/yocto-4.3.3.rc1
->=20
->=20
->     Build URL:
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6552
->=20
->     Build hash information:
->=20
->     bitbake: 380a9ac97de5774378ded5e37d40b79b96761a0c
-> meta-agl: 54333533f293cae29cf00948862ae86c8c814197
-> meta-arm: 6bfd024269c3888dffef7540b0618b04ee3308ea
-> meta-aws: af73d3c35933988ce286c49696827ffe63e5785b
-> meta-intel: 8d633bd01e20e31c0dae58cf3cd41eddb2f712c7
-> meta-mingw: 49617a253e09baabbf0355bc736122e9549c8ab2
-> meta-openembedded: da9063bdfbe130f424ba487f167da68e0ce90e7d
-> meta-virtualization: ac125d881f34ff356390e19e02964f8980d4ec38
-> oecore: 0584d01f623e1f9b0fef4dfa95dd66de6cbfb7b3
-> poky: d3b27346c3a4a7ef7ec517e9d339d22bda74349d
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#384): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/384
-> Mute This Topic: https://lists.yoctoproject.org/mt/104272169/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10762429/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+This seems like you're not using extlinux.conf when using rauc but using 
+one of the variables used to build the extlinux.conf to do some 
+magic/logic in rauc?
 
+In any case, not a blocker.
+
+Cheers,
+Quentin
 
