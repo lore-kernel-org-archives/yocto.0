@@ -1,189 +1,219 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <jing.hui.tham@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F54CC48BC3
-	for <webhook@archiver.kernel.org>; Wed, 21 Feb 2024 00:36:53 +0000 (UTC)
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
- by mx.groups.io with SMTP id smtpd.web10.2446.1708475809738564211
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B043CC48BC4
+	for <webhook@archiver.kernel.org>; Wed, 21 Feb 2024 02:05:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by mx.groups.io with SMTP id smtpd.web10.4062.1708481122330209869
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Feb 2024 16:36:49 -0800
+ Tue, 20 Feb 2024 18:05:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=FZY0ww2G;
- spf=pass (domain: gmail.com, ip: 209.85.210.180, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6e46e07ff07so1665284b3a.3
-        for <yocto@lists.yoctoproject.org>; Tue, 20 Feb 2024 16:36:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708475809; x=1709080609; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8L7m7tAYj1xptGijWSE1uxDLemsjMa63NdQGtZTgOwM=;
-        b=FZY0ww2GClqwgzeiHJQfhOIMlMCPw959FgOGOt5+pZSYp7Kb8o1zTQzDi1SZyrCErB
-         C09sMB/yQqOgeFWf1XcWcSupq0VCBQYRNHhnV+0E9vo4MoeAxfA7xe3Q3XNMkOJzmq4/
-         KwQe3PU55nNEuveh6Bv/3WLcsT3ieKfcKOpoAyj0vWOMVCfR6tmpbLHstvoemdb0562B
-         hRITf8fuNnQVYg41strvbxd7ODmGhs7n5IXVf0IuYiYN5z8sc11TjRwxWu4hGUGei9MB
-         RZ3fLuFztH/sENCGYAl9YDPSpza8/0Zdk2STdhxW9dmo8ceNcKbtof4a9r//io7Qnsoc
-         g+CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708475809; x=1709080609;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8L7m7tAYj1xptGijWSE1uxDLemsjMa63NdQGtZTgOwM=;
-        b=HxEHYBNA1ZwpUmYdooB4w2/FONT6zZ1mf7NGsy7Dx1zREO7VcFeBOYExWYYE7OnM8B
-         k0vLw1Z5mH0iJgY+dtbr/C7twl8FHMB/rKWN+FpbIbFJJ54q76/yHbZrWQkogipjzdRQ
-         bb3x5vFNGlWU4DORuqCuKLMQVvBWptOWHSwqjGtplTYzfm5eqZ1rGmJSvcIwwTWzj/SD
-         RshhaLQhuvOgxq9RTJgL/afjOzH7o+An37UC6lZOJ0z2LfikfI1sL8KnFXFLaqTxYDns
-         J6aNJhsZ02sgmD0uhAL548UNn2zokdqDva1gz/X1Y+FUnNTviz4T28ThJp9Q3wwjwt4P
-         molQ==
-X-Gm-Message-State: AOJu0YxZtyhSjnS1Ve5Wht3WX7xffBapOpLSchVJDX8/KKLvpTbNdM4I
-	atah6zeiP1WCELqjGthm+k4xxH9z1SGixed45DCB/H9fQzkxk1o6BjZJ5nAD7N3Argge/mwL/mO
-	A0c2LqAxmmWhMvcmG0cfNIO3IarY=
-X-Google-Smtp-Source: AGHT+IE2/+Ob764zl+lfbzLDTZgU7VzpNrPsVwU2VS4VpC0bwpiUFtSmofSVeyMv6ENuwxxoRHikc4vnsx/HToYiCTk=
-X-Received: by 2002:a17:90a:10d0:b0:299:bade:ed0b with SMTP id
- b16-20020a17090a10d000b00299badeed0bmr4818551pje.45.1708475809007; Tue, 20
- Feb 2024 16:36:49 -0800 (PST)
-MIME-Version: 1.0
-References: <20240215171506.2989385-1-joe.slater@windriver.com>
- <CADkTA4PoT95O=VSj2w501vPct6f8A0PTL1njiP3MuXegmPA3Rw@mail.gmail.com> <BY5PR11MB39927EF05CFDB9E14F089D5E884D2@BY5PR11MB3992.namprd11.prod.outlook.com>
-In-Reply-To: <BY5PR11MB39927EF05CFDB9E14F089D5E884D2@BY5PR11MB3992.namprd11.prod.outlook.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Tue, 20 Feb 2024 19:36:37 -0500
-Message-ID: <CADkTA4PdApscqVyrOSUbRp_JGC-9Qnn+J96E3gof7Rr6p+WPNA@mail.gmail.com>
-Subject: Re: [yocto] [meta-security][PATCH 1/1] sanity-meta-security.bbclass:
- allow warning customization
-To: "Slater, Joseph" <joe.slater@windriver.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, 
-	"MacLeod, Randy" <Randy.MacLeod@windriver.com>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@intel.com header.s=Intel header.b=GUEVrSKI;
+ spf=pass (domain: intel.com, ip: 198.175.65.18, mailfrom: jing.hui.tham@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708481122; x=1740017122;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=B+G8inlEzNiffJBIEwEGUwf3aFlaPw1jpB0Y8JnFv+4=;
+  b=GUEVrSKIG5EzCk0BijA1iPqvh9fYtHM33jb5/VA+BYZ8PF8J69+NMoWc
+   CYdvhtnV1XcLLbuju0AZPR9ZysNz/0dWXLJFSsHMhv7Dv9HMS0kSLqwjo
+   VdEKrTtvNNI5kDNRBSnQ7dOtK5OqA9wP3s4VElNZNFOk/ga01NGHA6kBg
+   Vbzt7YE7R9jhMEG+oKVaOURIP74ZMBr+rSA1r/XrKKCjnlpDpOz4Y/+FB
+   mRfk5Q2b6clE4srwGoqfJyrjIpPkru8IhvmW7wd+s65qemsvlxEuouigW
+   OyELZlp4X5uuDIlLAVj9gRXHWfZ6KopT5MiwQpubSrRxtZrac7rbDHpmQ
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="2733386"
+X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
+   d="scan'208";a="2733386"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2024 18:05:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10990"; a="913198137"
+X-IronPort-AV: E=Sophos;i="6.06,174,1705392000"; 
+   d="scan'208";a="913198137"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 20 Feb 2024 18:05:21 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 20 Feb 2024 18:05:21 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 20 Feb 2024 18:05:21 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 20 Feb 2024 18:05:20 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dX5cMMRo4nuUUpj4foN5JZuTlY8y+2GLuzdVb7IOphc5rev3YgJevn4HBWfJcWKdv0KFF9VU1k2hqY+oMxQnG544MEBTXDu2wTztZNqXpXWYX4DRJNep+2uJiQVjnoqFgldONsUv9eY9X7FZtreEeYiwt68ZCTO0XJT5fd4RH96ojmcipB6gTs3KUqt59UHirTBOxbQk93tapOJIrGLUzpzXZbxDADO0dCiU0AydT8xczVRoSP+uOnpljTPYCXSfB+9wdsPmsCVo1u+Mikt43Lj873IUY/30TYV90o4T/3vLibqDhdbmhehPp+sLFxho0RGmiQzYj9BjoJbcd1bdJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gIf8X36oWMO4c8yiMNM5khOSpXV6jzQcIoZGXn+wJqA=;
+ b=RphYjivaT2sAHci++l290fkfEyzRGlTC/+nomwD9klG1Kcd7mOeVyrbyOXI+hDFFzTVhqU8js4sKq+5LyAc5qSU58T21xJVXpULNEx5aHlJwvGewLYecXc/jnwBS3jVOsaV74WDnj4le91B0Mk32PwzaIAECDz81IbOJosqfxW4Mar6zVwt2pG0s66MWNKss+ZDgXYMPHm+/byV58rzJp9EMQbnP3Rui/3WYvEWhrb/sc2jQmRWfHbUAZ5pHTM6AjxFGj0vBEmZDkrqwauRlbY5UnZ9Q+L9jk3L7uX7kAuelzU1y8AR8V3Rfd1eKN2QduHESG3ghSHQigyQwrUq6PA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
+ by LV3PR11MB8766.namprd11.prod.outlook.com (2603:10b6:408:212::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.39; Wed, 21 Feb
+ 2024 02:05:18 +0000
+Received: from DM4PR11MB7760.namprd11.prod.outlook.com
+ ([fe80::1025:6d41:d45c:948c]) by DM4PR11MB7760.namprd11.prod.outlook.com
+ ([fe80::1025:6d41:d45c:948c%7]) with mapi id 15.20.7292.036; Wed, 21 Feb 2024
+ 02:05:18 +0000
+From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: RE: [qa-build-notification] QA notification for completed autobuilder
+ build (yocto-4.3.3.rc1)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-4.3.3.rc1)
+Thread-Index: AQHaW8XhdmR1+XWAm0WqpxGkHnsR17EUHJ+Q
+Date: Wed, 21 Feb 2024 02:05:18 +0000
+Message-ID: <DM4PR11MB77608A38B6235E4EFD8D954BA1572@DM4PR11MB7760.namprd11.prod.outlook.com>
+References: <0101018d90c4ca55-6841b832-b832-45c0-9d4b-dc21e42261c5-000000@us-west-2.amazonses.com>
+In-Reply-To: <0101018d90c4ca55-6841b832-b832-45c0-9d4b-dc21e42261c5-000000@us-west-2.amazonses.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|LV3PR11MB8766:EE_
+x-ms-office365-filtering-correlation-id: a4ca271b-81c0-496f-e468-08dc32818d99
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jFygdykcUaqfossMd2lmJ3RromdBOasDHJ8EKYBXv4vpaJsDzsjhUOTrcPnXn/mwibLUqpcBsYt1q8KfqI8QYb18WKEEQpLOvu+wvhhFD7qX3LX9Ke0mfoyg5IiN2j8gkGHAGHZIxFA/a9t6/ZxgpbrhL32TwRaLFxyFtWZPFNLDTrhWejyaYLVPNwlF6Wcx3YhuY6eXk97DCAEIP34XFNonSR6hI5s+grJdSpbFa0q/sAzSXmWXSAjhYurRzQfSqqpTvLhnOKMa2W7wZ9ofz9WbsoZPC8RIsM71BVg+rrmdzwQYYxPDUzROjVA1EzZB7gRg2NEQO12v+ras61W2cD4+J13T/SEbvtoWtnGJv6vjrhesueO3NEwvhkxXR55FQ5ctPj5kH40L6jUrDDEuG0VtxMBVyHlS0piZlE6Zy3m56Kmayvr2Z6ri8K+HruBGt6P2WkDWJtRueRIY2zZxO4dnMbtNaZR+1PYXMKHYkqzOvLNTBfEEBOOpVNh1f3VB4JeJ6OYdCrZhSPfCEMibypk8CntoMoQ+Fl1S86wGZzxU1d3WOVVekm034kfKUPA6A357gXfr4rAMuBj1nYh6TECrCIdiU+6WqF45EEgpYqa1kRFDIZotXDF7Iizki5LcieYMXlg0DtXqQrAh42t5lw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LjXCeETeUstRssFAu3lGXWRfXTr4y0YATHDZUVBoRTBYOnLOeO7YI/laLFqI?=
+ =?us-ascii?Q?aVCIhXLbp0SZti4P7se5xNYxSOKAy3aDtHnFuJ2nnG6HrCNgOJK8gVaCxoag?=
+ =?us-ascii?Q?RQbkJHCnncMEndk7/nHAeRY2s0H2KRLDSUevvrm+8YvfRFBdCniwToxE08Gh?=
+ =?us-ascii?Q?RYS5jX8dcTqeMFVOycbbUGDzX6Do6xgO5FIBOKZbw5ZtXXrrDRxQqoJMlszW?=
+ =?us-ascii?Q?Gq/3UHLeQDIyfwLIVJCWdh4qrSzQnsGqxnwwUWxRb00iNB3i1kZ+94ywB5Yv?=
+ =?us-ascii?Q?SAMPc59QXpfEnYn5KLHpKPhacbOKhCK3f3/7ad3ahcn0dMDwild6J1wQAwM9?=
+ =?us-ascii?Q?ltxvgiS8vSXMxjO/MQbv0g2Oi48P5nNTbRixSi38JnrDv47bkCLyMl9/YVm6?=
+ =?us-ascii?Q?ssNTjWXs0udmMcDCJ6JmeH2YdrtWSwZ+UsE7miUjy6l+lSpkhq17J0ir0fNT?=
+ =?us-ascii?Q?k8tOD17FwabaK/E6BrftsM2YZiGodGxqdRl3ZCuNoAC+Ja+Pywn06D9+vfno?=
+ =?us-ascii?Q?egKn8vT5FdUxQaHvQ8Vovbge/WdXI+hdsBHUlR6Yu2eysOz1rZIBcHhugmTL?=
+ =?us-ascii?Q?6GMZ4ug24itXqwZOfdLLxwrc98mBZYZmgo+6F3dxSF302hEKOxu6hyj41iFJ?=
+ =?us-ascii?Q?aabEw2n68ylue4JaPhBGEfdREYEfwcsqL9cfaHCa7PihhHLtpFfeaNw1nHm1?=
+ =?us-ascii?Q?IhDV/qYwceeIb8lNthM8UfwfQ56ANh4WOWeWANQe1lhFUxGhQnfb+U+FclsG?=
+ =?us-ascii?Q?obUc/BxWRcDNn4jKuy6A8IPYFnr3dGTlrV/QUuTMCT8j/oVEHkZrRMv4v3v/?=
+ =?us-ascii?Q?GDKbLFAHiWyFwk1zLQXqfKJAO4cA8kErsblqoDlQIlYHzS12/iQ/+vBVM+tS?=
+ =?us-ascii?Q?6Ii27SUhfZPNaIdlCJDgxlvqbgqeEPNA3BjpUQmQYULq3Cry5Z9BZI5DXk4g?=
+ =?us-ascii?Q?LRgLWLkoqCI5svgSH/Zo3Gu0KU7IYPHtcncmBtGHXQBVTO23KVbPWBbGBm+h?=
+ =?us-ascii?Q?t/+3SS/R24CxDaqVFm/2d9xpkovkRXoxospC+Ovvkfl7RYuw09rY8tB8spH8?=
+ =?us-ascii?Q?7P5COU7/SZhRC4EJyqVs5l5BCj3/xjh7Og3hoiP5892ZsmAQI9ohn4v/vh/J?=
+ =?us-ascii?Q?Xtkrst0lGms7ID+YUy6duuMPh4g/e60vo8awScdagLx8vftsXXOuqI8UPDb8?=
+ =?us-ascii?Q?SFemg1GwxQVXDl5L/ViMtcdscI+O4rX287EtTYiwrLgpfrCIA/18ylNmfMsF?=
+ =?us-ascii?Q?vAS+86TlQ/ZQvd8AiT3LcdFF1GU+CfLu+qVEMaM8v2Qgt/QOFyzoL4JTgmnR?=
+ =?us-ascii?Q?aH1Su07HdYRDvhBB8P/0TxaldqprqRbxpGO7AZmIQf439A0GfiZHTPh4t7kc?=
+ =?us-ascii?Q?05KDpCMnf8bV8AT761j9cjpr2QS3R4IqPh+dev6mCRAMxFP1mJoUyLrjC/zv?=
+ =?us-ascii?Q?GocHx2titAxbq0ecPWvm0lyi8dRHUVXrjlIVfKxZnnq/z1LKn5sX05KqPe/h?=
+ =?us-ascii?Q?sS8IoAgDkeWUZ6Z1/cT6U5cgb5QnRjCm49a/98gkzN519LP8IPU8SsSYpvBu?=
+ =?us-ascii?Q?9Jc896/4SQCOtdm1xq094pa7h3G1D/H0KF3f9esz?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4ca271b-81c0-496f-e468-08dc32818d99
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Feb 2024 02:05:18.7187
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KY7QkCAqKyas/7QFB9pcByOS0s25xfKVlUtNaod54XIHI1SjwTdUF0mqon2T/ciUDNdcAV86eQVcFNcVJ57aug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8766
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Feb 2024 00:36:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62552
+ <yocto@lists.yoctoproject.org>; Wed, 21 Feb 2024 02:05:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62553
 
-On Thu, Feb 15, 2024 at 2:06=E2=80=AFPM Slater, Joseph <joe.slater@windrive=
-r.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Bruce Ashfield <bruce.ashfield@gmail.com>
-> > Sent: Thursday, February 15, 2024 9:57 AM
-> > To: yocto@lists.yoctoproject.org; Slater, Joseph <joe.slater@windriver.=
-com>
-> > Cc: MacLeod, Randy <Randy.MacLeod@windriver.com>
-> > Subject: Re: [yocto] [meta-security][PATCH 1/1] sanity-meta-security.bb=
-class:
-> > allow warning customization
-> >
-> > On Thu, Feb 15, 2024 at 12:15=E2=80=AFPM Joe Slater via lists.yoctoproj=
-ect.org
-> > <joe.slater=3Dwindriver.com@lists.yoctoproject.org> wrote:
-> > >
-> > > From: Joe Slater <joe.slater@windriver.com>
-> > >
-> > > Introduce META_SECURITY_SANITY_CHECK_WARNING variable which can be
-> > > overridden, if desired.
-> >
-> > The existence of the patch implies that there's a reason why the warnin=
-g
-> > message isn't appropriate for your use case.
-> >
-> > That's something that should be explained in the patch.
-> >
-> > A knob to disable the warning if you know what you are doing has alread=
-y been
-> > provided. So again, this patch implies that you want the warning, but w=
-ant to
-> > change the message .. it would be good to understand why.
-> >
-> > Bruce
->
-> Some people want to know how to disable the warning without reading the R=
-EADME.  I don't think that's a great idea, but allowing customization would=
- let that be done on a distro or similar basis.  I didn't want to mention t=
-hat stuff in a commit message, but maybe it should be there.
-
-Things like that should always be mentioned in a commit message.
-
-Technical parts of the changes can be understood by looking at the
-commit, the why is the important part.
-
-I wouldn't allow this to be tweaked in my layers, since it opens the
-door for incorrect information to be injected into the layer's
-warning, but that decision is up to the layer maintainer :)
-
-Bruce
-
->
-> Joe
->
-> >
-> > >
-> > > Signed-off-by: Joe Slater <joe.slater@windriver.com>
-> > > ---
-> > >  classes/sanity-meta-security.bbclass | 13 +++++++++----
-> > >  1 file changed, 9 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/classes/sanity-meta-security.bbclass
-> > > b/classes/sanity-meta-security.bbclass
-> > > index f9e2698..95180aa 100644
-> > > --- a/classes/sanity-meta-security.bbclass
-> > > +++ b/classes/sanity-meta-security.bbclass
-> > > @@ -1,10 +1,15 @@
-> > >  addhandler security_bbappend_distrocheck
-> > > security_bbappend_distrocheck[eventmask] =3D "bb.event.SanityCheck"
-> > > +
-> > >  python security_bbappend_distrocheck() {
-> > >      skip_check =3D e.data.getVar('SKIP_META_SECURITY_SANITY_CHECK') =
-=3D=3D "1"
-> > >      if 'security' not in e.data.getVar('DISTRO_FEATURES').split() an=
-d not
-> > skip_check:
-> > > -        bb.warn("You have included the meta-security layer, but \
-> > > -'security' has not been enabled in your DISTRO_FEATURES. Some
-> > > bbappend files \ -and preferred version setting may not take effect.
-> > > See the meta-security README \ -for details on enabling security
-> > > support.")
-> > > +        bb.warn(e.data.getVar('META_SECURITY_SANITY_CHECK_WARNING'))
-> > >  }
-> > > +
-> > > +META_SECURITY_SANITY_CHECK_WARNING ??=3D "\ You have included the
-> > > +meta-security layer, but 'security' has not been \ enabled in your
-> > > +DISTRO_FEATURES. Some bbappend files and preferred version \ setting=
-s
-> > > +may not take effect. See the meta-security README for details on \
-> > > +enabling security support."
-> > > +
-> > > --
-> > > 2.25.1
-> > >
-> > >
-> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > > Links: You receive all messages sent to this group.
-> > > View/Reply Online (#62497):
-> > > https://lists.yoctoproject.org/g/yocto/message/62497
-> > > Mute This Topic: https://lists.yoctoproject.org/mt/104377037/1050810
-> > > Group Owner: yocto+owner@lists.yoctoproject.org
-> > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
-> > > [bruce.ashfield@gmail.com]
-> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > >
-> >
-> >
-> > --
-> > - Thou shalt not follow the NULL pointer, for chaos and madness await t=
-hee at its
-> > end
-> > - "Use the force Harry" - Gandalf, Star Trek II
+Hi All,
+=20
+QA for yocto-4.3.3.rc1 is completed. This is the full report for this relea=
+se: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
+=20
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects.
+=20
+No new issue found.=20
+=20
+Thanks,
+Jing Hui
 
 
+> -----Original Message-----
+> From: qa-build-notification@lists.yoctoproject.org <qa-build-
+> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
+> Sent: Saturday, February 10, 2024 10:07 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [qa-build-notification] QA notification for completed autobuilde=
+r
+> build (yocto-4.3.3.rc1)
+>=20
+>=20
+>     A build flagged for QA (yocto-4.3.3.rc1) was completed on the autobui=
+lder
+> and is available at:
+>=20
+>=20
+>         https://autobuilder.yocto.io/pub/releases/yocto-4.3.3.rc1
+>=20
+>=20
+>     Build URL:
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6552
+>=20
+>     Build hash information:
+>=20
+>     bitbake: 380a9ac97de5774378ded5e37d40b79b96761a0c
+> meta-agl: 54333533f293cae29cf00948862ae86c8c814197
+> meta-arm: 6bfd024269c3888dffef7540b0618b04ee3308ea
+> meta-aws: af73d3c35933988ce286c49696827ffe63e5785b
+> meta-intel: 8d633bd01e20e31c0dae58cf3cd41eddb2f712c7
+> meta-mingw: 49617a253e09baabbf0355bc736122e9549c8ab2
+> meta-openembedded: da9063bdfbe130f424ba487f167da68e0ce90e7d
+> meta-virtualization: ac125d881f34ff356390e19e02964f8980d4ec38
+> oecore: 0584d01f623e1f9b0fef4dfa95dd66de6cbfb7b3
+> poky: d3b27346c3a4a7ef7ec517e9d339d22bda74349d
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#384): https://lists.yoctoproject.org/g/qa-build-
+> notification/message/384
+> Mute This Topic: https://lists.yoctoproject.org/mt/104272169/6424044
+> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
+> notification/leave/10762429/6424044/1746813897/xyzzy
+> [jing.hui.tham@intel.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
 
