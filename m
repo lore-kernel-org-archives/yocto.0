@@ -1,162 +1,189 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28BDBC5475B
-	for <webhook@archiver.kernel.org>; Tue, 20 Feb 2024 17:32:17 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
- by mx.groups.io with SMTP id smtpd.web11.19311.1708450331780143608
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F54CC48BC3
+	for <webhook@archiver.kernel.org>; Wed, 21 Feb 2024 00:36:53 +0000 (UTC)
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+ by mx.groups.io with SMTP id smtpd.web10.2446.1708475809738564211
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Feb 2024 09:32:11 -0800
+ Tue, 20 Feb 2024 16:36:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=PF47qiuP;
- spf=pass (domain: gmail.com, ip: 209.85.128.170, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-607d9c4fa90so58270407b3.2
-        for <yocto@lists.yoctoproject.org>; Tue, 20 Feb 2024 09:32:11 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=FZY0ww2G;
+ spf=pass (domain: gmail.com, ip: 209.85.210.180, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6e46e07ff07so1665284b3a.3
+        for <yocto@lists.yoctoproject.org>; Tue, 20 Feb 2024 16:36:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708450331; x=1709055131; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=acpmp3IvNEgA1IanF5pctzaxApNkByFvcq/fiyKOYxQ=;
-        b=PF47qiuPm6qEV+BCQYt0eC/Axby4CLaz7NJJFqGZdPu/vW1UYFSRVcC0lRk18Nt7vP
-         Y673XAmp/zxp7QbvbBXHTd5TJ2HiPDauARSakX9dCvlU/QpAJU0s2J+Wrtc7j5H7xd0z
-         lURfxq5jQkE4avwSqhttxwflctfCbSdynSbuuIF//SiIu/x0qbMxNbyvqqrLUZfuo3uF
-         q0qXEAG00/Hyl9gMiX3N2rQY//a/hO3w0Ag+JppTZC3VvCDlNq+3NCdn75JjNshqsR/V
-         TzKfO9n8UoT+W1GiGmGpOQF67iYBM1ZllVlZ+MP1DxBEln3Cd1LfZSokalkJaLSnOhHW
-         VOIw==
+        d=gmail.com; s=20230601; t=1708475809; x=1709080609; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8L7m7tAYj1xptGijWSE1uxDLemsjMa63NdQGtZTgOwM=;
+        b=FZY0ww2GClqwgzeiHJQfhOIMlMCPw959FgOGOt5+pZSYp7Kb8o1zTQzDi1SZyrCErB
+         C09sMB/yQqOgeFWf1XcWcSupq0VCBQYRNHhnV+0E9vo4MoeAxfA7xe3Q3XNMkOJzmq4/
+         KwQe3PU55nNEuveh6Bv/3WLcsT3ieKfcKOpoAyj0vWOMVCfR6tmpbLHstvoemdb0562B
+         hRITf8fuNnQVYg41strvbxd7ODmGhs7n5IXVf0IuYiYN5z8sc11TjRwxWu4hGUGei9MB
+         RZ3fLuFztH/sENCGYAl9YDPSpza8/0Zdk2STdhxW9dmo8ceNcKbtof4a9r//io7Qnsoc
+         g+CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708450331; x=1709055131;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=acpmp3IvNEgA1IanF5pctzaxApNkByFvcq/fiyKOYxQ=;
-        b=XbG7FpHyvgn0cwmGhRzdGCys1blc1OlCRc8wfSAP5F2fpjDhqhPjIlSJv5u1IwRa1S
-         EOinXR8hCYP/C6f84JUSPYBMaLH7UZwkqy9sDJh+MHfSeKDeFkmvJeUENlN1cQ8pDA/B
-         ncmAnhWwjLBp21amzSFkAk7tmjUGxeVYJyn4AfARLFo8eV74pUIjYE6IngAhUb8V3FW+
-         ZPIMaZj6RSpaJgZLCUQstj9Vh5MTEGS1QM3tqjCFQ7aFxgcDjhE9h1sSDeleyHwQ8gmp
-         N7koC414lnh7jWcLZrmr88ebrz1IL1h6OnOgXYZO8nvGFt6mVg9jtRBKpwqFj1Gnp5CR
-         XmVg==
-X-Gm-Message-State: AOJu0YxP508hUY260UngGp8tF4jFO4iOj9sRWrv6SLpWgy/Kl4X79btT
-	WLNzp65vic6ghfHRsnohRuoWD03UYCpZWDHMlmA3j5oDxkc56jsqw3RtaR9c
-X-Google-Smtp-Source: AGHT+IFMdUSgIUminb1vafXjUjO+EXtUc2/akkvUGXZi0gl4xjmUZlusgK0XgZ6ezcGGfKaenAeHEA==
-X-Received: by 2002:a81:6c0f:0:b0:608:7488:8691 with SMTP id h15-20020a816c0f000000b0060874888691mr1065629ywc.38.1708450330487;
-        Tue, 20 Feb 2024 09:32:10 -0800 (PST)
-Received: from keaua.attlocal.net (108-243-27-252.lightspeed.tukrga.sbcglobal.net. [108.243.27.252])
-        by smtp.gmail.com with ESMTPSA id s4-20020a817704000000b0060788326365sm2205026ywc.0.2024.02.20.09.32.09
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Feb 2024 09:32:09 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] meta-security: Drop ${PYTHON_PN}
-Date: Tue, 20 Feb 2024 12:32:09 -0500
-Message-Id: <20240220173209.1761469-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1708475809; x=1709080609;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8L7m7tAYj1xptGijWSE1uxDLemsjMa63NdQGtZTgOwM=;
+        b=HxEHYBNA1ZwpUmYdooB4w2/FONT6zZ1mf7NGsy7Dx1zREO7VcFeBOYExWYYE7OnM8B
+         k0vLw1Z5mH0iJgY+dtbr/C7twl8FHMB/rKWN+FpbIbFJJ54q76/yHbZrWQkogipjzdRQ
+         bb3x5vFNGlWU4DORuqCuKLMQVvBWptOWHSwqjGtplTYzfm5eqZ1rGmJSvcIwwTWzj/SD
+         RshhaLQhuvOgxq9RTJgL/afjOzH7o+An37UC6lZOJ0z2LfikfI1sL8KnFXFLaqTxYDns
+         J6aNJhsZ02sgmD0uhAL548UNn2zokdqDva1gz/X1Y+FUnNTviz4T28ThJp9Q3wwjwt4P
+         molQ==
+X-Gm-Message-State: AOJu0YxZtyhSjnS1Ve5Wht3WX7xffBapOpLSchVJDX8/KKLvpTbNdM4I
+	atah6zeiP1WCELqjGthm+k4xxH9z1SGixed45DCB/H9fQzkxk1o6BjZJ5nAD7N3Argge/mwL/mO
+	A0c2LqAxmmWhMvcmG0cfNIO3IarY=
+X-Google-Smtp-Source: AGHT+IE2/+Ob764zl+lfbzLDTZgU7VzpNrPsVwU2VS4VpC0bwpiUFtSmofSVeyMv6ENuwxxoRHikc4vnsx/HToYiCTk=
+X-Received: by 2002:a17:90a:10d0:b0:299:bade:ed0b with SMTP id
+ b16-20020a17090a10d000b00299badeed0bmr4818551pje.45.1708475809007; Tue, 20
+ Feb 2024 16:36:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240215171506.2989385-1-joe.slater@windriver.com>
+ <CADkTA4PoT95O=VSj2w501vPct6f8A0PTL1njiP3MuXegmPA3Rw@mail.gmail.com> <BY5PR11MB39927EF05CFDB9E14F089D5E884D2@BY5PR11MB3992.namprd11.prod.outlook.com>
+In-Reply-To: <BY5PR11MB39927EF05CFDB9E14F089D5E884D2@BY5PR11MB3992.namprd11.prod.outlook.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Tue, 20 Feb 2024 19:36:37 -0500
+Message-ID: <CADkTA4PdApscqVyrOSUbRp_JGC-9Qnn+J96E3gof7Rr6p+WPNA@mail.gmail.com>
+Subject: Re: [yocto] [meta-security][PATCH 1/1] sanity-meta-security.bbclass:
+ allow warning customization
+To: "Slater, Joseph" <joe.slater@windriver.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, 
+	"MacLeod, Randy" <Randy.MacLeod@windriver.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 20 Feb 2024 17:32:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62551
+ <yocto@lists.yoctoproject.org>; Wed, 21 Feb 2024 00:36:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62552
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../python/python3-flask-script_2.0.6.bb           |  2 +-
- .../python/python3-pyinotify_0.9.6.bb              | 14 +++++++-------
- .../fail2ban/python3-fail2ban_1.0.2.bb             |  2 +-
- .../recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb  |  6 +++---
- recipes-ids/suricata/suricata_7.0.0.bb             |  6 +++---
- 5 files changed, 15 insertions(+), 15 deletions(-)
+On Thu, Feb 15, 2024 at 2:06=E2=80=AFPM Slater, Joseph <joe.slater@windrive=
+r.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Bruce Ashfield <bruce.ashfield@gmail.com>
+> > Sent: Thursday, February 15, 2024 9:57 AM
+> > To: yocto@lists.yoctoproject.org; Slater, Joseph <joe.slater@windriver.=
+com>
+> > Cc: MacLeod, Randy <Randy.MacLeod@windriver.com>
+> > Subject: Re: [yocto] [meta-security][PATCH 1/1] sanity-meta-security.bb=
+class:
+> > allow warning customization
+> >
+> > On Thu, Feb 15, 2024 at 12:15=E2=80=AFPM Joe Slater via lists.yoctoproj=
+ect.org
+> > <joe.slater=3Dwindriver.com@lists.yoctoproject.org> wrote:
+> > >
+> > > From: Joe Slater <joe.slater@windriver.com>
+> > >
+> > > Introduce META_SECURITY_SANITY_CHECK_WARNING variable which can be
+> > > overridden, if desired.
+> >
+> > The existence of the patch implies that there's a reason why the warnin=
+g
+> > message isn't appropriate for your use case.
+> >
+> > That's something that should be explained in the patch.
+> >
+> > A knob to disable the warning if you know what you are doing has alread=
+y been
+> > provided. So again, this patch implies that you want the warning, but w=
+ant to
+> > change the message .. it would be good to understand why.
+> >
+> > Bruce
+>
+> Some people want to know how to disable the warning without reading the R=
+EADME.  I don't think that's a great idea, but allowing customization would=
+ let that be done on a distro or similar basis.  I didn't want to mention t=
+hat stuff in a commit message, but maybe it should be there.
 
-diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb
-index 377ad02..ba0f974 100644
---- a/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb
-+++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb
-@@ -10,5 +10,5 @@ PYPI_PACKAGE = "Flask-Script"
- inherit pypi setuptools3
- 
- RDEPENDS:${PN} += "\
--    ${PYTHON_PN}-flask \
-+    python3-flask \
-     "
-diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
-index 963fcfe..9cc54f4 100644
---- a/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
-+++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
-@@ -3,13 +3,13 @@ LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://COPYING;md5=ab173cade7965b411528464589a08382"
- 
- RDEPENDS:${PN} += "\
--    ${PYTHON_PN}-ctypes \
--    ${PYTHON_PN}-fcntl \
--    ${PYTHON_PN}-io \
--    ${PYTHON_PN}-logging \
--    ${PYTHON_PN}-misc \
--    ${PYTHON_PN}-shell \
--    ${PYTHON_PN}-threading \
-+    pyhton3-ctypes \
-+    pyhton3-fcntl \
-+    pyhton3-io \
-+    pyhton3-logging \
-+    pyhton3-misc \
-+    pyhton3-shell \
-+    pyhton3-threading \
- "
- 
- SRC_URI[md5sum] = "8e580fa1ff3971f94a6f81672b76c406"
-diff --git a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
-index 135e97c..bf5f87d 100644
---- a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
-+++ b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
-@@ -54,7 +54,7 @@ do_install:append () {
- do_install_ptest:append () {
-     install -d ${D}${PTEST_PATH}
-     install -d ${D}${PTEST_PATH}/bin
--    sed -i -e 's/##PYTHON##/${PYTHON_PN}/g' ${D}${PTEST_PATH}/run-ptest
-+    sed -i -e 's/##PYTHON##/python3/g' ${D}${PTEST_PATH}/run-ptest
-     install -D ${S}/bin/* ${D}${PTEST_PATH}/bin
-     rm -f ${D}${PTEST_PATH}/bin/fail2ban-python
- }
-diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb
-index e0def0f..9dea957 100644
---- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb
-@@ -24,9 +24,9 @@ do_compile:append() {
- do_install:append() {
-     cd ${S}/tools
-     export PYTHONPATH="${D}${PYTHON_SITEPACKAGES_DIR}"
--    ${PYTHON_PN} setup.py install --root="${D}" --prefix="${prefix}" --install-lib="${PYTHON_SITEPACKAGES_DIR}" --optimize=1 --skip-build
-+    python3 setup.py install --root="${D}" --prefix="${prefix}" --install-lib="${PYTHON_SITEPACKAGES_DIR}" --optimize=1 --skip-build
- 
--    sed -i -e "s:${PYTHON}:${USRBINPATH}/env ${PYTHON_PN}:g" "${D}${bindir}"/tpm2_ptool
-+    sed -i -e "s:${PYTHON}:${USRBINPATH}/env python3:g" "${D}${bindir}"/tpm2_ptool
- }
- 
- PACKAGES =+ "${PN}-tools"
-@@ -44,4 +44,4 @@ FILES:${PN} += "\
- INSANE_SKIP:${PN}   += "dev-so"
- 
- RDEPENDS:${PN} = "p11-kit tpm2-tools "
--RDEPENDS:${PN}-tools = "${PYTHON_PN}-pyyaml ${PYTHON_PN}-cryptography ${PYTHON_PN}-pyasn1-modules"
-+RDEPENDS:${PN}-tools = "python3-pyyaml python3-cryptography python3-pyasn1-modules"
-diff --git a/recipes-ids/suricata/suricata_7.0.0.bb b/recipes-ids/suricata/suricata_7.0.0.bb
-index a52f081..a01b3d9 100644
---- a/recipes-ids/suricata/suricata_7.0.0.bb
-+++ b/recipes-ids/suricata/suricata_7.0.0.bb
-@@ -104,9 +104,9 @@ do_install () {
-     # Remove /var/run as it is created on startup
-     rm -rf ${D}${localstatedir}/run
- 
--    sed -i -e "s:#!.*$:#!${USRBINPATH}/env ${PYTHON_PN}:g" ${D}${bindir}/suricatasc
--    sed -i -e "s:#!.*$:#!${USRBINPATH}/env ${PYTHON_PN}:g" ${D}${bindir}/suricatactl
--    sed -i -e "s:#!.*$:#!${USRBINPATH}/env ${PYTHON_PN}:g" ${D}${libdir}/suricata/python/suricata/sc/suricatasc.py
-+    sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${bindir}/suricatasc
-+    sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${bindir}/suricatactl
-+    sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${libdir}/suricata/python/suricata/sc/suricatasc.py
- }
- 
- pkg_postinst_ontarget:${PN} () {
--- 
-2.34.1
+Things like that should always be mentioned in a commit message.
 
+Technical parts of the changes can be understood by looking at the
+commit, the why is the important part.
+
+I wouldn't allow this to be tweaked in my layers, since it opens the
+door for incorrect information to be injected into the layer's
+warning, but that decision is up to the layer maintainer :)
+
+Bruce
+
+>
+> Joe
+>
+> >
+> > >
+> > > Signed-off-by: Joe Slater <joe.slater@windriver.com>
+> > > ---
+> > >  classes/sanity-meta-security.bbclass | 13 +++++++++----
+> > >  1 file changed, 9 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/classes/sanity-meta-security.bbclass
+> > > b/classes/sanity-meta-security.bbclass
+> > > index f9e2698..95180aa 100644
+> > > --- a/classes/sanity-meta-security.bbclass
+> > > +++ b/classes/sanity-meta-security.bbclass
+> > > @@ -1,10 +1,15 @@
+> > >  addhandler security_bbappend_distrocheck
+> > > security_bbappend_distrocheck[eventmask] =3D "bb.event.SanityCheck"
+> > > +
+> > >  python security_bbappend_distrocheck() {
+> > >      skip_check =3D e.data.getVar('SKIP_META_SECURITY_SANITY_CHECK') =
+=3D=3D "1"
+> > >      if 'security' not in e.data.getVar('DISTRO_FEATURES').split() an=
+d not
+> > skip_check:
+> > > -        bb.warn("You have included the meta-security layer, but \
+> > > -'security' has not been enabled in your DISTRO_FEATURES. Some
+> > > bbappend files \ -and preferred version setting may not take effect.
+> > > See the meta-security README \ -for details on enabling security
+> > > support.")
+> > > +        bb.warn(e.data.getVar('META_SECURITY_SANITY_CHECK_WARNING'))
+> > >  }
+> > > +
+> > > +META_SECURITY_SANITY_CHECK_WARNING ??=3D "\ You have included the
+> > > +meta-security layer, but 'security' has not been \ enabled in your
+> > > +DISTRO_FEATURES. Some bbappend files and preferred version \ setting=
+s
+> > > +may not take effect. See the meta-security README for details on \
+> > > +enabling security support."
+> > > +
+> > > --
+> > > 2.25.1
+> > >
+> > >
+> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > > Links: You receive all messages sent to this group.
+> > > View/Reply Online (#62497):
+> > > https://lists.yoctoproject.org/g/yocto/message/62497
+> > > Mute This Topic: https://lists.yoctoproject.org/mt/104377037/1050810
+> > > Group Owner: yocto+owner@lists.yoctoproject.org
+> > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+> > > [bruce.ashfield@gmail.com]
+> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > >
+> >
+> >
+> > --
+> > - Thou shalt not follow the NULL pointer, for chaos and madness await t=
+hee at its
+> > end
+> > - "Use the force Harry" - Gandalf, Star Trek II
+
+
+
+--=20
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
 
