@@ -1,76 +1,119 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 957B7C48BF8
-	for <webhook@archiver.kernel.org>; Thu, 22 Feb 2024 15:11:38 +0000 (UTC)
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
- by mx.groups.io with SMTP id smtpd.web11.14876.1708614586292858386
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23856C48BF8
+	for <webhook@archiver.kernel.org>; Thu, 22 Feb 2024 17:04:29 +0000 (UTC)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+ by mx.groups.io with SMTP id smtpd.web10.18285.1708621465801535536
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Feb 2024 07:09:46 -0800
+ Thu, 22 Feb 2024 09:04:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Tk5nW0xA;
- spf=pass (domain: gmail.com, ip: 209.85.167.174, mailfrom: aladyshev22@gmail.com)
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3c15d1bd5b1so3299593b6e.1
-        for <yocto@lists.yoctoproject.org>; Thu, 22 Feb 2024 07:09:46 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=iFppbYDP;
+ spf=pass (domain: gmail.com, ip: 209.85.222.169, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-787a2a14d9cso47904985a.2
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Feb 2024 09:04:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708614585; x=1709219385; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=V1o49HMxNpOsta3VLS71Xfw672zeK4F9veOMpyiCwVU=;
-        b=Tk5nW0xATA+FATAy2crTfedD+lAG9SIoKxzgM4XH9w3BR238xFYrAI3gzUfehhobtP
-         6SluneMh2+pxUs00YzAFta/Si6EiRJyk0s/yUxhx/8gyffw2jYXWX8hPe5gwfyUXeuN4
-         QtsBr6pXT+x7XHanb76GbmIEqDvZidcRRnef9FWLEnf2dh++91AWiFZD4G/ozFcRzncc
-         YUqx79EEZpp9Bs6BNMGuxhmtzQ8fIuxawO+nclg3wRIkU9z/7dOwP/0AIR1Ey21zn6oi
-         Dsc8OwntQhrJO3KF9YS73HOZExtFSSA7XOmYMEB9yFijk9vLQMapNj4T9rhe0O361SMu
-         HHsg==
+        d=gmail.com; s=20230601; t=1708621464; x=1709226264; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xUuPuHN8gbHkqF/ZEFhLwVn+drImfTSoyXoRPk7D/+4=;
+        b=iFppbYDP4a8Boj6x+sGhsWOTfgRECjdCaYYdHnpHvFo5ahPJNbCoEIZQe1BTV3Fkmn
+         ja3v3Y+pWLe+pXaVJHnQzgrGWkBKlBftKI8dGQ3elo36VcTFtN9EkD3BkEwLuYRyKdLp
+         aUHR2vQ7++rBRUv5CVDkJjxY7/dOMbZ+IS8U8e9t1sNbcxA4hA/erjk36+hcvx7VUbzG
+         IFkN0yGv9FIoiHMxjmlwl+hiCCfDEPUV/C2bz+yox6RYXwbNkBt1ug4g8K9kQ1vIbZ7m
+         nI999DUfxHxdDQdxQlopKLtHxZefU/AtssLOMBTbAGTsFmaAxQTOuPWRLydxFzSk0xuM
+         KzvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708614585; x=1709219385;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V1o49HMxNpOsta3VLS71Xfw672zeK4F9veOMpyiCwVU=;
-        b=n6rXnJn0k2dvjimR1tA8aduk3YkGGfQaCesG6AOVp5FVTdmRFQ+ApEiaqs0BBh5Kih
-         0WvAzdBLKy52PyYezOQ3tsb4fhzouAu3qUwgpqUCuL7BhNLk3qNq4KrFOVwBKLYwpBzt
-         OHtNfAb/GgZgbOv5haGwADdLOOrzfbaKvMXX3+nMCuZFavmehfE1Cmu0ITPQieIzWJaX
-         58gzmZqAvpSOqZclvls7x1SKCplhk4J/kIeo38RxHsz43J/T+mM+2Ezwtd0jtKXj6t7f
-         x+dVwlULS9xLxcr+lJqOi58WIMhmDeeUCeWAypOWVClPxQ++aB2rb52KOOZEEoUbEAmW
-         9AgA==
-X-Gm-Message-State: AOJu0YwciYcocv+XY6mUuDKfDQTsUr7Lk9w2Il1SPscw9BB88MiPR0eR
-	WbVWSyUbiKTmK7PYuYfjEvlo7stRYDWh28/RhFndhkS3VRDGmTMnbgni7bCyygIfspVEspAHgA2
-	gLTFyLPwT+OscyfrMOod6a/GCzLsUbPV4e1drUlWJ
-X-Google-Smtp-Source: AGHT+IG6ayvgkAWo30Qa2Y3fUYmaTZmOlcZ5Kn0C2momUgO3Rva1TbvjTOVXqpGx4xA7LF8/q0aPNSB1hFgRyYoYj5o=
-X-Received: by 2002:a05:6808:170a:b0:3c1:33c7:68bb with SMTP id
- bc10-20020a056808170a00b003c133c768bbmr24967538oib.31.1708614585395; Thu, 22
- Feb 2024 07:09:45 -0800 (PST)
-MIME-Version: 1.0
-From: "Konstantin Aladyshev" <aladyshev22@gmail.com>
-Date: Thu, 22 Feb 2024 18:09:34 +0300
-Message-ID: <CACSj6VW3yitnPuAeg=VOXnhB7D5dN2_UD7KStSaDYug39YL3vg@mail.gmail.com>
-Subject: 'yocto-kernel-tools' requires git version much greater than general Yocto requirement
+        d=1e100.net; s=20230601; t=1708621464; x=1709226264;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xUuPuHN8gbHkqF/ZEFhLwVn+drImfTSoyXoRPk7D/+4=;
+        b=o2ta801BzZHhj/MGgLtiSQ61dnuoG8lcGkQV6fXmmvhT/N4Yx8+AduiiWnQMD6dPDs
+         CzPsZ0yz26zCkbUAV+oztdFzlIAeYNVm9jt3cqH0B8Yv0V/WZhTl444kfOUHeK12S89N
+         1vYFAvHXj1I1o0FdZ5SaqN9BIeMP8BNV+Xb5BLIL0nLdte3oUPyERUtlLGEvZ5Tv+KZW
+         xlEIaCzwdOdRGQibIBQZd7/2W3Mvxi+mav0CTJ2w93tkwOjfc1t+ADCkDWzwj1hunaW+
+         2NDReuXDetEm9OZIJ6pbM1smiC0TaPWh245OEVTbDDc6YCl/+5lSsgDoDp5ggRgZmfB3
+         +4NQ==
+X-Gm-Message-State: AOJu0YxlFJUGIeHiD1xpxQcDE0+ur/rd7z1sY0dJOso2EQzChJewUHU4
+	huyfZt1nz8j1/Z2nu29Xb6bx03JwrahMSB7e6z0ZzNm3oTZd7iR6nIP3zYHZ
+X-Google-Smtp-Source: AGHT+IHs/UKdzTpheolwovZ3xK/enmaL+bwDMk4C5CyjXMMcJohKFAMiYbqYSAmHTLxM0VTsGeS0dw==
+X-Received: by 2002:a05:620a:1489:b0:787:6f29:2f43 with SMTP id w9-20020a05620a148900b007876f292f43mr11863526qkj.0.1708621463706;
+        Thu, 22 Feb 2024 09:04:23 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id qj17-20020a05620a881100b007872541c53bsm265848qkn.24.2024.02.22.09.04.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Feb 2024 09:04:22 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Subject: [meta-rockchip][PATCH v4 1/5] rockchip.wks: specify offsets in sectors
+Date: Thu, 22 Feb 2024 12:04:11 -0500
+Message-ID: <20240222170415.7061-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 22 Feb 2024 15:11:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62567
+ <yocto@lists.yoctoproject.org>; Thu, 22 Feb 2024 17:04:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62568
 
-Hello!
-I was investigating some problems with the `devtool modify linux`
-command and have discovered that part of the problems is generated
-from the commit
-https://git.yoctoproject.org/yocto-kernel-tools/commit/?id=923a9de418b3ca8592c3fd0a0d0b1e4b29533891
-This commit is very simple and just adds the `--no-verify` flag to the
-`git am` command. The problem is that this flag was added pretty
-recently  (Jan 5 2023 -
-https://github.com/git/git/commit/566902f2db3bdad9be7fb083c713f0d21acf111e)
-and my host git doesn't have it.
-Is it normal that yocto relies on such modern git? Because the yocto
-documentation just says `Git 1.8.3.1 or greater`
-(https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution).
-And `git am --no-verify` works from something like `v2.31.6`
-apparently.
+In WIC, size arguments can be optionally specified using one of a variety
+of suffixes (e.g. K, M, G, etc.) thanks to sizetype(). One such suffix being
+"s/S" for handling sector sizes which are assumed to be 512 bytes, rather than
+the other size suffixes which are multiples of 1024 bytes.
 
-Best regards,
-Konstantin Aladyshev
+Using the s/S sizetype allows the definition to match the documentation.
+Unfortunately we can not use the s/S suffix for --fixed-size.
+
+Reviewed-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+changes in v4:
+- add Quentin's tag
+
+changes in v3:
+- new
+---
+ wic/rockchip.wks | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+index fac0b8f70112..804e84ceb316 100644
+--- a/wic/rockchip.wks
++++ b/wic/rockchip.wks
+@@ -5,8 +5,7 @@
+ # short-description: Create a disk image suitable for booting Rockchip from SD-card
+ # long-description: Creates a disk image partitioned using GPT, suitable for Rockchip
+ # Disk layout
+-# Note that the reference documentation refers to 512 byte disk sectors, but
+-# wic uses 1KB blocks. The following table uses 512 byte sectors:
++# See: https://opensource.rock-chips.com/wiki_Partitions
+ #
+ #   Partition   Start Sector    Number of Sectors
+ #   loader1     64              8000        (idbloader / U-Boot SPL)
+@@ -17,12 +16,12 @@
+ #   boot        32768           229376
+ #   root        262144          -           (suggested)
+ 
+-part loader1    --offset 32     --fixed-size 4000K            --source rawcopy                                                 --sourceparams="file=${SPL_BINARY}"
+-part reserved1  --offset 4032   --fixed-size 64K
+-part reserved2  --offset 4096   --fixed-size 4096K
+-part loader2    --offset 8192   --fixed-size 4096K            --source rawcopy                                                 --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
+-part atf        --offset 12288  --fixed-size 4096K
+-part /boot      --offset 16384  --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid --sourceparams="loader=u-boot"
++part loader1    --offset 64s    --fixed-size 4000K            --source rawcopy                                                 --sourceparams="file=${SPL_BINARY}"
++part reserved1  --offset 8064s  --fixed-size 64K
++part reserved2  --offset 8192s  --fixed-size 4096K
++part loader2    --offset 16384s --fixed-size 4096K            --source rawcopy                                                 --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
++part atf        --offset 24576s --fixed-size 4096K
++part /boot      --offset 32768s --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid --sourceparams="loader=u-boot"
+ part /                                                        --source rootfs            --fstype=ext4 --label root --use-uuid
+ 
+ bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=ext4 init=/sbin/init"
+-- 
+2.43.0.76.g1a87c842ece3
+
 
