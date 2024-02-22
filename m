@@ -2,57 +2,57 @@ Return-Path: <haokexin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFD36C54788
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EED71C48BF6
 	for <webhook@archiver.kernel.org>; Thu, 22 Feb 2024 01:22:23 +0000 (UTC)
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
- by mx.groups.io with SMTP id smtpd.web11.3351.1708564940009486206
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+ by mx.groups.io with SMTP id smtpd.web10.3379.1708564938573246530
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Feb 2024 17:22:20 -0800
+ Wed, 21 Feb 2024 17:22:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=JbkJld7u;
- spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: haokexin@gmail.com)
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6e459b39e2cso298130b3a.1
-        for <yocto@lists.yoctoproject.org>; Wed, 21 Feb 2024 17:22:19 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=MXZpxrjN;
+ spf=pass (domain: gmail.com, ip: 209.85.167.169, mailfrom: haokexin@gmail.com)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3bbbc6e51d0so4488196b6e.3
+        for <yocto@lists.yoctoproject.org>; Wed, 21 Feb 2024 17:22:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708564939; x=1709169739; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1708564937; x=1709169737; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jZlT4uf+CgJOtAWVlpNx1zwR+m3s1jJShQeHhgo8BmM=;
-        b=JbkJld7u2/xwnJe5HpR1QtczmD24/V+rPBbEHtXxGdLD5jZQTFvEaTpsGxUxQqFX5g
-         jyFIQNyiVud9HlnJHzaFMUfqYMA4LSnHpi/LoAIebHfa935wqX7rCevr418GP8Gwk0Ml
-         +Nxt5QNhrUoQrOFAElj7xGPzW30qtglwSR42BMyDIfqS1M6oofQ+xTOBWfHCNJRw0Gzu
-         9vJ1hXDjmVpPjyymL/7uJJPvVWwwT0FznnbtIz/5OkD7GFbY5IObj1/ew2W/IkxMe7lk
-         mo6A0nXqofiloh52H24CnCeFG0OOmuE5xh7rpirubVyW6JSJ7eN7neyG9RTWCgzdKide
-         xULQ==
+        bh=VVZaRJvQH0dAMb32dCGxvKMlK0uYyn3CzxZ4k2lDmJs=;
+        b=MXZpxrjNRtPZUxFQp2Pgkv0N2L1zYE0VeHaL8N3CxvHogioGlsfCxv2qzGKHpCiARw
+         xTMga3VykUmpNPxSHq5J/hFqg1EitjnF4ikvsWcwv5Sy6BfgbVDU2IaPmK0DGqv6VCWi
+         q9+tuS6hkPHD5ZEAEgNMcoLxJ2o5eO1rPptXA/syuko4pVYXAyDsPdhKW+TGAXNSyufo
+         Zhzl6mCidZFNsxT1zkVWLUeb1J3APoca+V4Z6aEV7DuyPROxWo14ykPcHDLK+pxuiWjg
+         1tPio1QAlmms2ybOBE0z/OtpW9gY8zOvVYfugm2q4mdiVL0uLnDaER8t9QwGToFZRRAb
+         woLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708564939; x=1709169739;
+        d=1e100.net; s=20230601; t=1708564937; x=1709169737;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jZlT4uf+CgJOtAWVlpNx1zwR+m3s1jJShQeHhgo8BmM=;
-        b=Y+sAvyEGEyQUz0h51y8vYMXUhijMXYhLl2oA2bderTehlnP0dkA6o+ffjC7tWd1uoM
-         h02q0gWpNpS6OU2KaYBhf5JC6OCQFYkemSbDIC8w7ugv7VHgUC4mtvC701Hc3AnUleWD
-         yCplx3aXEF2l8yMgHn96VSW01XgpFtRygTW9GRUu+jPpXDGzGgfQiOaBvn8Ehu6wYqHZ
-         SkZ1ChnzwqI+4+xoBhT7ItiTLJCdE4MgfPXP15r89hchkjTztbZDvzKBsjLdgo3sO60e
-         5blTe8kUvgM0Iy9SMNbjF1vMXZ02xDUQHZd6G5hZzeCbnpHyuJ32ve+5SMTtmuFz0g5m
-         UtaA==
-X-Gm-Message-State: AOJu0YzV55CjqbISmfflkYM04h951y+wH5A40EyOCcCegeLQ9aISb2Uf
-	molTqY3dY8HQ2SvpmX+g4a+XWeR04w1mbhlOfpL6yDQNBsC8TAZ2lyU/7XqO
-X-Google-Smtp-Source: AGHT+IEs11/ASrMwkjoHlFHsIQt7Svbt4byM+IZZ0pyk6VQEtrSUWiYzGhxubo4YocapWnInPpEVuw==
-X-Received: by 2002:a05:6a21:3101:b0:1a0:d25b:aa93 with SMTP id yz1-20020a056a21310100b001a0d25baa93mr975634pzb.20.1708564938921;
-        Wed, 21 Feb 2024 17:22:18 -0800 (PST)
+        bh=VVZaRJvQH0dAMb32dCGxvKMlK0uYyn3CzxZ4k2lDmJs=;
+        b=uwVsvPh3PEz1kkDnU9S2+Nmmc7ww+vFeYfGbJDBKljCyLxqyhVw5N9p0p2OMyRG0c+
+         RqMJtSnJ2IqLVk8g0cplwyIEcE0eI+bDfEAUbRf58B7hcGfE8yW1ufJXIpbppBsOZ/hl
+         F/2GJKizrb2KsEWqqy8D59fSeeupmn5lJ5UN9NXriSL9Nw+e9nMxoGtYXJWF+1Kk0TRk
+         OfOBdysqSMTQl+Uaap+arxuXcCZh13DSz03ubhtOTfOhIscG5kI+X64dsDFiUH/wXYMp
+         tLn4WmtIkdZBKMUF9JycHuScxwKdluGQ0VQfkNNYNsPEp/raPQuD3oiR+iTyZAOmL4EF
+         9/OQ==
+X-Gm-Message-State: AOJu0YwQzaxgptkiHAB8g/GzcWfXM4j3KWwSIDl4KBteyDkkZ5UVB3uz
+	cKXtj7Mbn/svfb2jfUsazlLEpL/Itavs+HqA6YUbIK5y5b5sOQGjusygV+Ad
+X-Google-Smtp-Source: AGHT+IG1qr6BZ4uKt7ZpAlW82ZgCuXzjfwRNaUEn/aG64pLB8oX1h22xd3t7ToYm/t/nNMB/hGeaMw==
+X-Received: by 2002:a05:6359:4c21:b0:17b:5712:70f2 with SMTP id kj33-20020a0563594c2100b0017b571270f2mr4649869rwc.11.1708564936600;
+        Wed, 21 Feb 2024 17:22:16 -0800 (PST)
 Received: from pek-lpggp6.wrs.com (unknown-105-121.windriver.com. [147.11.105.121])
-        by smtp.gmail.com with ESMTPSA id x7-20020a056a000bc700b006e4883591e7sm2975948pfu.144.2024.02.21.17.22.16
+        by smtp.gmail.com with ESMTPSA id x7-20020a056a000bc700b006e4883591e7sm2975948pfu.144.2024.02.21.17.22.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Feb 2024 17:22:18 -0800 (PST)
+        Wed, 21 Feb 2024 17:22:16 -0800 (PST)
 From: Kevin Hao <haokexin@gmail.com>
 To: Yocto Project <yocto@lists.yoctoproject.org>
 Cc: Armin Kuster <akuster808@gmail.com>,
 	Paul Gortmaker <Paul.Gortmaker@windriver.com>
-Subject: [meta-security][PATCH 3/3] dm-verity: Set the IMAGE_FSTYPES correctly when dm-verity is enabled
-Date: Thu, 22 Feb 2024 09:21:54 +0800
-Message-Id: <20240222012154.386022-4-haokexin@gmail.com>
+Subject: [meta-security][PATCH 2/3] dm-verity: Adjust the image names according to the oe-core change
+Date: Thu, 22 Feb 2024 09:21:53 +0800
+Message-Id: <20240222012154.386022-3-haokexin@gmail.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240222012154.386022-1-haokexin@gmail.com>
 References: <20240222012154.386022-1-haokexin@gmail.com>
@@ -62,78 +62,78 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Thu, 22 Feb 2024 01:22:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62563
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62562
 
 From: Kevin Hao <kexin.hao@windriver.com>
 
-After the using inherit_defer for the image classes in oe-core commit
-451363438d38 ("classes/recipes: Switch to use inherit_defer"),
-the using of anonymous python function in dm-verity-img.bbclass to
-set the IMAGE_FSTYPES doesn't work anymore. The reason is that
-image.bbclass also use anonymous python function to add the do_image_xxx
-task for the corresponding filesystem type. The anonymous function in
-dm-verity-img.bbclass is evaluated much later than the one in
-image.bbclass. Then the task such as do_image_vhash will not be added
-as we expect. So we choose to use "+=" to set the IMAGE_FSTYPES.
+After the oe-core commit 26d97acc7137 ("image-artifact-names: include
+${IMAGE_NAME_SUFFIX} directly in both ${IMAGE_NAME} and
+${IMAGE_LINK_NAME}"), the image names have changed from
+  core-image-minimal-qemux86-64-20230307181808.rootfs.ext4
+  core-image-minimal-qemux86-64.ext4
+to
+  core-image-minimal-qemux86-64.rootfs-20230307181456.ext4
+  core-image-minimal-qemux86-64.rootfs.ext4
 
-The populate_sdk_ext.bbclass may generate a dependency list like below:
-  core-image-minimal.do_sdk_depends -> lib32-core-image-minimal.do_image_vhash
-
-So we also need to make sure the do_image_vhash task for the multilib
-filesystem is added.
+Adjust the images name used by dm-verity according to this change.
 
 Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
 ---
- classes/dm-verity-img.bbclass | 24 +++++++++++++++++++-----
- 1 file changed, 19 insertions(+), 5 deletions(-)
+ classes/dm-verity-img.bbclass        | 6 +++---
+ wic/beaglebone-yocto-verity.wks.in   | 2 +-
+ wic/systemd-bootdisk-dmverity.wks.in | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/classes/dm-verity-img.bbclass b/classes/dm-verity-img.bbclass
-index 62c3069b63e6..7f79548353b0 100644
+index 2f212d6c7bcb..62c3069b63e6 100644
 --- a/classes/dm-verity-img.bbclass
 +++ b/classes/dm-verity-img.bbclass
-@@ -177,6 +177,24 @@ CONVERSION_CMD:verity = "verity_setup ${type}"
- CONVERSION_DEPENDS_verity = "cryptsetup-native"
- IMAGE_CMD:vhash = "verity_hash"
+@@ -111,10 +111,10 @@ process_verity() {
+     # Create wks.in fragment with build specific UUIDs for partitions.
+     # Unfortunately the wks.in does not support line continuations...
+     # First, the unappended filesystem data partition.
+-    echo 'part / --source rawcopy --ondisk sda --sourceparams="file=${DM_VERITY_DEPLOY_DIR}/${DM_VERITY_IMAGE}-${MACHINE}.rootfs.${DM_VERITY_IMAGE_TYPE}.verity" --part-name verityroot --part-type="${DM_VERITY_ROOT_GUID}"'" --uuid=\"$ROOT_UUID\"" > $WKS_INC
++    echo 'part / --source rawcopy --ondisk sda --sourceparams="file=${DM_VERITY_DEPLOY_DIR}/${DM_VERITY_IMAGE}-${MACHINE}${IMAGE_NAME_SUFFIX}.${DM_VERITY_IMAGE_TYPE}.verity" --part-name verityroot --part-type="${DM_VERITY_ROOT_GUID}"'" --uuid=\"$ROOT_UUID\"" > $WKS_INC
  
-+def get_verity_fstypes(d):
-+    verity_image = d.getVar('DM_VERITY_IMAGE')
-+    verity_type = d.getVar('DM_VERITY_IMAGE_TYPE')
-+    verity_hash = d.getVar('DM_VERITY_SEPARATE_HASH')
-+    pn = d.getVar('PN')
-+
-+    fstypes = ""
-+    if not pn.endswith(verity_image):
-+        return fstypes # This doesn't concern this image
-+
-+    fstypes = verity_type + ".verity"
-+    if verity_hash == "1":
-+        fstypes += " vhash"
-+
-+    return fstypes
-+
-+IMAGE_FSTYPES += "${@get_verity_fstypes(d)}"
-+
- python __anonymous() {
-     verity_image = d.getVar('DM_VERITY_IMAGE')
-     verity_type = d.getVar('DM_VERITY_IMAGE_TYPE')
-@@ -188,16 +206,12 @@ python __anonymous() {
-         bb.warn('dm-verity-img class inherited but not used')
-         return
+     # note: no default mount point for hash data partition
+-    echo 'part --source rawcopy --ondisk sda --sourceparams="file=${DM_VERITY_DEPLOY_DIR}/${DM_VERITY_IMAGE}-${MACHINE}.${DM_VERITY_IMAGE_TYPE}.vhash" --part-name verityhash --part-type="${DM_VERITY_RHASH_GUID}"'" --uuid=\"$RHASH_UUID\"" >> $WKS_INC
++    echo 'part --source rawcopy --ondisk sda --sourceparams="file=${DM_VERITY_DEPLOY_DIR}/${DM_VERITY_IMAGE}-${MACHINE}${IMAGE_NAME_SUFFIX}.${DM_VERITY_IMAGE_TYPE}.vhash" --part-name verityhash --part-type="${DM_VERITY_RHASH_GUID}"'" --uuid=\"$RHASH_UUID\"" >> $WKS_INC
+ }
  
--    if verity_image != pn:
-+    if not pn.endswith(verity_image):
-         return # This doesn't concern this image
+ verity_setup() {
+@@ -162,7 +162,7 @@ verity_setup() {
+ verity_hash() {
+     cd ${IMGDEPLOYDIR}
+     ln -sf ${IMAGE_NAME}.${DM_VERITY_IMAGE_TYPE}.vhash \
+-        ${IMAGE_BASENAME}-${MACHINE}.${DM_VERITY_IMAGE_TYPE}.vhash
++        ${IMAGE_BASENAME}-${MACHINE}${IMAGE_NAME_SUFFIX}.${DM_VERITY_IMAGE_TYPE}.vhash
+ }
  
-     if len(verity_type.split()) != 1:
-         bb.fatal('DM_VERITY_IMAGE_TYPE must contain exactly one type')
+ VERITY_TYPES = " \
+diff --git a/wic/beaglebone-yocto-verity.wks.in b/wic/beaglebone-yocto-verity.wks.in
+index d2923de12786..2d332d88bd16 100644
+--- a/wic/beaglebone-yocto-verity.wks.in
++++ b/wic/beaglebone-yocto-verity.wks.in
+@@ -12,5 +12,5 @@
+ # This .wks only works with the dm-verity-img class.
  
--    d.appendVar('IMAGE_FSTYPES', ' %s.verity' % verity_type)
--    if verity_hash == "1":
--        d.appendVar('IMAGE_FSTYPES', ' vhash')
--
-     # If we're using wic: we'll have to use partition images and not the rootfs
-     # source plugin so add the appropriate dependency.
-     if 'wic' in image_fstypes:
+ part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4 --fixed-size 32 --sourceparams="loader=u-boot" --use-uuid
+-part / --source rawcopy --ondisk mmcblk0 --sourceparams="file=${IMGDEPLOYDIR}/${DM_VERITY_IMAGE}-${MACHINE}.${DM_VERITY_IMAGE_TYPE}.verity"
++part / --source rawcopy --ondisk mmcblk0 --sourceparams="file=${IMGDEPLOYDIR}/${DM_VERITY_IMAGE}-${MACHINE}${IMAGE_NAME_SUFFIX}.${DM_VERITY_IMAGE_TYPE}.verity"
+ bootloader --append="console=ttyS0,115200"
+diff --git a/wic/systemd-bootdisk-dmverity.wks.in b/wic/systemd-bootdisk-dmverity.wks.in
+index 846636877290..0ac9ccab6af0 100644
+--- a/wic/systemd-bootdisk-dmverity.wks.in
++++ b/wic/systemd-bootdisk-dmverity.wks.in
+@@ -10,7 +10,7 @@
+ 
+ part /boot --source bootimg-efi --sourceparams="loader=systemd-boot,initrd=microcode.cpio" --ondisk sda --label msdos --active --align 1024 --use-uuid
+ 
+-part / --source rawcopy --ondisk sda  --sourceparams="file=${IMGDEPLOYDIR}/${DM_VERITY_IMAGE}-${MACHINE}.${DM_VERITY_IMAGE_TYPE}.verity" --use-uuid
++part / --source rawcopy --ondisk sda  --sourceparams="file=${IMGDEPLOYDIR}/${DM_VERITY_IMAGE}-${MACHINE}${IMAGE_NAME_SUFFIX}.${DM_VERITY_IMAGE_TYPE}.verity" --use-uuid
+ 
+ part swap --ondisk sda --size 44 --label swap1 --fstype=swap --use-uuid
+ 
 -- 
 2.40.1
 
