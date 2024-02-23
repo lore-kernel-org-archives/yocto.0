@@ -2,59 +2,59 @@ Return-Path: <aladyshev22@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34C46C54E49
-	for <webhook@archiver.kernel.org>; Fri, 23 Feb 2024 10:35:46 +0000 (UTC)
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
- by mx.groups.io with SMTP id smtpd.web11.7892.1708684537504323750
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D796C54E49
+	for <webhook@archiver.kernel.org>; Fri, 23 Feb 2024 10:38:06 +0000 (UTC)
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
+ by mx.groups.io with SMTP id smtpd.web11.7918.1708684676031815795
  for <yocto@lists.yoctoproject.org>;
- Fri, 23 Feb 2024 02:35:37 -0800
+ Fri, 23 Feb 2024 02:37:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=YhDutdrw;
- spf=pass (domain: gmail.com, ip: 209.85.221.175, mailfrom: aladyshev22@gmail.com)
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-4d051349124so179155e0c.2;
-        Fri, 23 Feb 2024 02:35:37 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=nTslFq6o;
+ spf=pass (domain: gmail.com, ip: 209.85.217.49, mailfrom: aladyshev22@gmail.com)
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4704750edd7so78664137.0;
+        Fri, 23 Feb 2024 02:37:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708684536; x=1709289336; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1708684675; x=1709289475; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
         bh=loAZ3JDSEXHMxXlZL2N39UGr6Li/iEyyCoflPPCPSKo=;
-        b=YhDutdrwmkJsrNyOJtpK3F4RPj6PLCBAOeymEeRSayU+k/DIq2HIkno3SFnEGdvz1F
-         juhXccyKQl6XQm/KkkqdKXiPuPk0J57dloVsf38zWKvmK+dsIMhilOZ2tyq566LHVHR5
-         4eMKFNu8M0/XbKNYNyhyh58ZEPHg55japlay8+v6jRUlql8/FN92A25xZlOxXyPPldSr
-         1mQ5s352ruinajAib7DFg3Qf30XIiLiQrGmdjnAZviW//9QDdRTPWguSIPpomSIv6b5j
-         5HtcB3uu3q07+Nj4CsXSgH8ZeweP984An97v8WuE/DMyPZ1XWaHR3FzE4YX3mrqUy4+h
-         yH6w==
+        b=nTslFq6o9fhEQw5IcGGQTkCW46tk2BaRNYVdc2VsyORW+OqCb7aBPs4eyiwQzTyQFA
+         4HeV73aZ/03umLgGqY9krVwwyaET+dy3EyJLJjJUSd+Vc7+SrBDO86A6XgfSd5fAcOlg
+         AzjaAsKCqZL7ixC94VJ41WvELERBmmxvuc8ltTgqaGdifCmfEocbkRs05LV507WRG4+U
+         yF/lTjf4G0upSdXBhj9qfkXhkoy/kKPHQqMNBtjuLX/+lFyF4PUrZQZVhGDtYWUM0gxr
+         /Dc/2D3S8qE5dPSzZ0YGAThrJ5+7bbaYRKXVfAKtH8mmBzuRE3NNLkyBVei55hRZoBiK
+         NMDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708684536; x=1709289336;
+        d=1e100.net; s=20230601; t=1708684675; x=1709289475;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
         bh=loAZ3JDSEXHMxXlZL2N39UGr6Li/iEyyCoflPPCPSKo=;
-        b=I2N+7BY5mDK9UkLjIDgWJMgecYytO2E1h3P37zHqKki8CtQogYfPUKqMUwpgTr6GFf
-         AFXWnkzi9egEgZedFRdAHbrYTVpbJhg+R6VkAeIXpvh5Enzbm+Lo36BfkPX9QRhi/TMA
-         bjZrjKpz4FRwu1x48bmu5d58m+3XS/gZ7cG22XLEJJHI9BFNscbUmtO/3fzNW3YNv1zZ
-         7U0FPj7eb5xiTXo0XwL9grwAKxAwEbsgosq6p2DLs8FAQ4Mjqh25K7GdrSLHz2FRZqOb
-         icO5/AIdcrjKIr9D+dJqZ5J0bqGqXeFeWtBPt9IJTX5lB9QhDHT3k7/zgp+c/dq8Jl4+
-         rNZw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbN+vwoPk4+1/W6JxKT9IjUqITsYtQllqi6tQjl2u4BEFTnhLeChwuUM7wmYBHsciT18ZVH1T5H+M8hpNzbLCYEFrtypCwH5deL6g=
-X-Gm-Message-State: AOJu0YxtCfcarHJ5XWqgiIXFAsBW99TDZmaY3tv4oH5sn1RW2utJlD8p
-	wfMm3mDg5JERa1BgxwJkZeUIqjDHJorMwBtbgPMHT7cnNOHuwGEY7dOmoETUIa3k0YdRJqRr2Pn
-	nXqFeKIGsb21WEvB0lhIU9x3f3R4rsMtok2y791Lm
-X-Google-Smtp-Source: AGHT+IG8fb09Th3d3D4Eus8WMlDlFD4IMdwKnPLr7NhZdr7Fk8T4svRH9aS6w3k1L1M0gWSjCYuqP+1GhvHqq1PPo5Q=
-X-Received: by 2002:a1f:d7c1:0:b0:4ca:b623:7786 with SMTP id
- o184-20020a1fd7c1000000b004cab6237786mr1562313vkg.2.1708684536181; Fri, 23
- Feb 2024 02:35:36 -0800 (PST)
+        b=PwPpypIk/LAIdoMgJ9G9IwKDNQoLCIRK74GYzfZtQS6lCNE3Zu2cIiOGvEoRkHSufm
+         9BTpdiwu4LTjphEr+ncRh/el1HzMETvshSibOhxFC2s+bz+z50xVclbVwUlqTAIw2WbL
+         /4mY3GG4mVXbTgG4kHgGsvSYdM7qXQj2zohF5wyagAPSWdLmB2TJremdwCa/oC3jfTvd
+         sVVUGb+njywwTw+avJk0Xvb+o4IUk5UEuYYBbHzfTgRUjivCRXCxHYDQh75cZHWj2hKo
+         GewiS9kxrHyTTNSLe04P+Qj4fCnAcfjCzD7gEpiE8xRDOOSIML0DRmJUV/cBHjueUx19
+         N2Yw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6HeD3hXVhZhsGO+gbXc1OdHyvLjxG0UCHgI2vROubJss+0FNbvrknKIDTvC1Y7G/qNeqmxzww5lpre0C1TXwsTXBgkzDruJuVjII=
+X-Gm-Message-State: AOJu0YzJJHU5d+IOizQXO+A3Qzl3+6/x8x7LxBEquGgdQ/jEvMlKKNsK
+	VGJWwIqumtXcrxZIQl+JRJhx4Er4NM0sqS9538ydSxGL8vUCiqiBYNy5fHJVZMPDqnei3LHxIcW
+	cO/fvFl3CuVf04vP5PkrbYChDGWEr4rBeErJoWQtq
+X-Google-Smtp-Source: AGHT+IGUefrX4Tok7olcc025NRIQ2zjFJLWeE0cdHzAjf7Rv7J8Z6tKARRg3MR0/eltPh9q6H76LQRycHYLJDt5g30M=
+X-Received: by 2002:a05:6102:2381:b0:470:5515:d8f4 with SMTP id
+ v1-20020a056102238100b004705515d8f4mr1413585vsr.31.1708684674727; Fri, 23 Feb
+ 2024 02:37:54 -0800 (PST)
 MIME-Version: 1.0
 From: Konstantin Aladyshev <aladyshev22@gmail.com>
-Date: Fri, 23 Feb 2024 13:35:23 +0300
-Message-ID: <CACSj6VXiG4NdETnnWcppCAxTym+kx7c3WKpj0LFGkoPKOA+Dyw@mail.gmail.com>
+Date: Fri, 23 Feb 2024 13:37:42 +0300
+Message-ID: <CACSj6VXH88d=oAw6KsancYXiW1B=oLgXD3uSxnentWJd4Dbi7Q@mail.gmail.com>
 Subject: 'kgit-s2q' doesn't remove 'rebase-apply' directory
 To: yocto@lists.yoctoproject.org, poky@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 23 Feb 2024 10:35:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62574
+ <yocto@lists.yoctoproject.org>; Fri, 23 Feb 2024 10:38:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62575
 
 Hello!
 
