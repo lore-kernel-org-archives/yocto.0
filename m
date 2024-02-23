@@ -1,74 +1,97 @@
-Return-Path: <aladyshev22@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D796C54E49
-	for <webhook@archiver.kernel.org>; Fri, 23 Feb 2024 10:38:06 +0000 (UTC)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
- by mx.groups.io with SMTP id smtpd.web11.7918.1708684676031815795
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71079C5478C
+	for <webhook@archiver.kernel.org>; Fri, 23 Feb 2024 11:25:06 +0000 (UTC)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web10.8504.1708687496579284462
  for <yocto@lists.yoctoproject.org>;
- Fri, 23 Feb 2024 02:37:56 -0800
+ Fri, 23 Feb 2024 03:24:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=nTslFq6o;
- spf=pass (domain: gmail.com, ip: 209.85.217.49, mailfrom: aladyshev22@gmail.com)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4704750edd7so78664137.0;
-        Fri, 23 Feb 2024 02:37:55 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=NjM/mRuo;
+ spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d2305589a2so10153881fa.1
+        for <yocto@lists.yoctoproject.org>; Fri, 23 Feb 2024 03:24:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708684675; x=1709289475; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=loAZ3JDSEXHMxXlZL2N39UGr6Li/iEyyCoflPPCPSKo=;
-        b=nTslFq6o9fhEQw5IcGGQTkCW46tk2BaRNYVdc2VsyORW+OqCb7aBPs4eyiwQzTyQFA
-         4HeV73aZ/03umLgGqY9krVwwyaET+dy3EyJLJjJUSd+Vc7+SrBDO86A6XgfSd5fAcOlg
-         AzjaAsKCqZL7ixC94VJ41WvELERBmmxvuc8ltTgqaGdifCmfEocbkRs05LV507WRG4+U
-         yF/lTjf4G0upSdXBhj9qfkXhkoy/kKPHQqMNBtjuLX/+lFyF4PUrZQZVhGDtYWUM0gxr
-         /Dc/2D3S8qE5dPSzZ0YGAThrJ5+7bbaYRKXVfAKtH8mmBzuRE3NNLkyBVei55hRZoBiK
-         NMDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708684675; x=1709289475;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1708687494; x=1709292294; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=loAZ3JDSEXHMxXlZL2N39UGr6Li/iEyyCoflPPCPSKo=;
-        b=PwPpypIk/LAIdoMgJ9G9IwKDNQoLCIRK74GYzfZtQS6lCNE3Zu2cIiOGvEoRkHSufm
-         9BTpdiwu4LTjphEr+ncRh/el1HzMETvshSibOhxFC2s+bz+z50xVclbVwUlqTAIw2WbL
-         /4mY3GG4mVXbTgG4kHgGsvSYdM7qXQj2zohF5wyagAPSWdLmB2TJremdwCa/oC3jfTvd
-         sVVUGb+njywwTw+avJk0Xvb+o4IUk5UEuYYBbHzfTgRUjivCRXCxHYDQh75cZHWj2hKo
-         GewiS9kxrHyTTNSLe04P+Qj4fCnAcfjCzD7gEpiE8xRDOOSIML0DRmJUV/cBHjueUx19
-         N2Yw==
-X-Forwarded-Encrypted: i=1; AJvYcCX6HeD3hXVhZhsGO+gbXc1OdHyvLjxG0UCHgI2vROubJss+0FNbvrknKIDTvC1Y7G/qNeqmxzww5lpre0C1TXwsTXBgkzDruJuVjII=
-X-Gm-Message-State: AOJu0YzJJHU5d+IOizQXO+A3Qzl3+6/x8x7LxBEquGgdQ/jEvMlKKNsK
-	VGJWwIqumtXcrxZIQl+JRJhx4Er4NM0sqS9538ydSxGL8vUCiqiBYNy5fHJVZMPDqnei3LHxIcW
-	cO/fvFl3CuVf04vP5PkrbYChDGWEr4rBeErJoWQtq
-X-Google-Smtp-Source: AGHT+IGUefrX4Tok7olcc025NRIQ2zjFJLWeE0cdHzAjf7Rv7J8Z6tKARRg3MR0/eltPh9q6H76LQRycHYLJDt5g30M=
-X-Received: by 2002:a05:6102:2381:b0:470:5515:d8f4 with SMTP id
- v1-20020a056102238100b004705515d8f4mr1413585vsr.31.1708684674727; Fri, 23 Feb
- 2024 02:37:54 -0800 (PST)
+        bh=6PJE2V+4elbWxPtLtV/NB8IWWZiW40b2EKBVRaBU128=;
+        b=NjM/mRuosp30LFEBwOGr2Rm123ZE8iDIbK+mF80nAuAWykX28qJOdNzQjvmRETpNAj
+         1gXZgxkaliNHxhwDbT0YFji+33IwUWljhlZhVQehXwcAJnpQKcF/5r1G/Anj1R/VR0QY
+         X7fCYMv8WnK8LAnOJ6yZccLQ9GZklVqVAHRM51KffbCy47JjfR+Nq4UJEnWvy20neUss
+         dy6cwuicaz2BidAdIi9RWF+XuV8WQ33fChKBTIdkDbk+kuU9zSMEhydFw1ni1ED5ZbnL
+         jqcA0PIDGTqkTr7J6X87u3FlARGEw3d9PC0b7PNe03Re1Y8v3NKzEffQ7NY9DfYMuZ/y
+         V3Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1708687494; x=1709292294;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6PJE2V+4elbWxPtLtV/NB8IWWZiW40b2EKBVRaBU128=;
+        b=oCP4O5YSq6BppX+38r5RwRkceF5S9v0etrdrCU56jGXWX9XbMh3+0XRfSpQ2TCbjez
+         evgvIhRS1yTnwgf6d9J1GFA8vmAQe2VyCadDMWBsP//k1r+JWeUKnmY+Ycsv0dp04f2p
+         ECf6ApjpBEVWrV0Maeen0mGsavleaMLvS/W6N7gPksD823qj99ineut0vMtBqqVCsW7V
+         JAPavK5r87Olf5B9eg8c1jdXggGlAiM+z5YTRKo7R4AAfSZH81RG57UN2YTQD71k/zZT
+         PjDGoPGi8dAwd7J3+opJncx8YSD3K/ClY9O37Lt/WWWxKCiRlz62lE0ZlPlK09+qO2lZ
+         UhIA==
+X-Gm-Message-State: AOJu0YwEc9iKH5Pw6chsqIPEWXpIvQLxNIILmfNLaioUXFDYYRGDjkBR
+	KYZvmm7dEfEDcXcYb1fGHsxsBoZFGpwzAfYyfOL0cgarrIXGavQu1AEFSqnkooGUQRVUa0ovg6D
+	adnSAv4wjDaTaHFkeQAR5t2sPSdLRIjRA
+X-Google-Smtp-Source: AGHT+IFKk22+G+Nc/w7HNZ9jJaNXGJZI9MsT7XI/O99sAJhHDuEqF3z7faTNBA0JRs+L0X349fTU1OiPAy8lVpXzWLg=
+X-Received: by 2002:a2e:9784:0:b0:2d2:366c:b219 with SMTP id
+ y4-20020a2e9784000000b002d2366cb219mr1000800lji.51.1708687494275; Fri, 23 Feb
+ 2024 03:24:54 -0800 (PST)
 MIME-Version: 1.0
-From: Konstantin Aladyshev <aladyshev22@gmail.com>
-Date: Fri, 23 Feb 2024 13:37:42 +0300
-Message-ID: <CACSj6VXH88d=oAw6KsancYXiW1B=oLgXD3uSxnentWJd4Dbi7Q@mail.gmail.com>
-Subject: 'kgit-s2q' doesn't remove 'rebase-apply' directory
-To: yocto@lists.yoctoproject.org, poky@lists.yoctoproject.org
+References: <CACSj6VW3yitnPuAeg=VOXnhB7D5dN2_UD7KStSaDYug39YL3vg@mail.gmail.com>
+In-Reply-To: <CACSj6VW3yitnPuAeg=VOXnhB7D5dN2_UD7KStSaDYug39YL3vg@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 23 Feb 2024 12:24:42 +0100
+Message-ID: <CANNYZj9VBXUESuy91rfF1xbaN40AfU0trdevtLVgXgq37MLk5w@mail.gmail.com>
+Subject: Re: [yocto] 'yocto-kernel-tools' requires git version much greater
+ than general Yocto requirement
+To: yocto@lists.yoctoproject.org, aladyshev22@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 23 Feb 2024 10:38:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62575
+ <yocto@lists.yoctoproject.org>; Fri, 23 Feb 2024 11:25:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62576
 
-Hello!
+It's probably just a simple oversight. If the problematic code path is
+not taken in automated tests, no one will see the issue when it's
+introduced by the commit.
 
-'kgit-s2q' in the linux recipe tries to use 'git apply' if 'git am' fails.
-In this case 'kgit-s2q' manually creates a ".git/rebase-apply"
-directory (https://git.yoctoproject.org/yocto-kernel-tools/tree/tools/kgit-s2q#n622)
-But it looks like this directory is not removed after the patches are
-applied. This creates a problem, since with this directory present git
-thinks that rebase operation is still in progress.
-Because of this bug 'devtool modify linux' can't perform its own
-rebase operations in the "devtool_post_patch" tasks
-https://git.yoctoproject.org/poky/tree/meta/classes/devtool-source.bbclass#n214
-In the end this creates a situation when the local patches are not applied.
+Alex
 
-Best regards,
-Konstantin Aladyshev
+On Thu, 22 Feb 2024 at 16:11, Konstantin Aladyshev
+<aladyshev22@gmail.com> wrote:
+>
+> Hello!
+> I was investigating some problems with the `devtool modify linux`
+> command and have discovered that part of the problems is generated
+> from the commit
+> https://git.yoctoproject.org/yocto-kernel-tools/commit/?id=923a9de418b3ca8592c3fd0a0d0b1e4b29533891
+> This commit is very simple and just adds the `--no-verify` flag to the
+> `git am` command. The problem is that this flag was added pretty
+> recently  (Jan 5 2023 -
+> https://github.com/git/git/commit/566902f2db3bdad9be7fb083c713f0d21acf111e)
+> and my host git doesn't have it.
+> Is it normal that yocto relies on such modern git? Because the yocto
+> documentation just says `Git 1.8.3.1 or greater`
+> (https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution).
+> And `git am --no-verify` works from something like `v2.31.6`
+> apparently.
+>
+> Best regards,
+> Konstantin Aladyshev
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62567): https://lists.yoctoproject.org/g/yocto/message/62567
+> Mute This Topic: https://lists.yoctoproject.org/mt/104509876/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
