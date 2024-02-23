@@ -1,206 +1,159 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <anuj.mittal@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 215E0C54E41
-	for <webhook@archiver.kernel.org>; Thu, 22 Feb 2024 17:04:39 +0000 (UTC)
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
- by mx.groups.io with SMTP id smtpd.web11.18083.1708621472184445864
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BA7F8C5478C
+	for <webhook@archiver.kernel.org>; Fri, 23 Feb 2024 05:22:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by mx.groups.io with SMTP id smtpd.web11.4510.1708665743227558965
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Feb 2024 09:04:32 -0800
+ Thu, 22 Feb 2024 21:22:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=jSohg0EU;
- spf=pass (domain: gmail.com, ip: 209.85.222.169, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-787aca0b502so3464785a.1
-        for <yocto@lists.yoctoproject.org>; Thu, 22 Feb 2024 09:04:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708621470; x=1709226270; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bT1lrq1CuwjHEpY6Fw6BfB9P7+U4TdSporDF8e9nens=;
-        b=jSohg0EUpUVaSC0bWq6F0a2RZY3ibrRYBcZwBjq+yCSYwkpsob0g31yOCYRhRRpfAe
-         ScB4dciEWemr2SrT2x7JRSobq3MyrA+SPahl/DW+g0iAE9XA5OZet+6qZx/gs2r+v7F9
-         gQBXOkYjeBvalil15nNATbe0LbL3zG9N2+jhi6V9dVIvj5WNelZDagwEYkuncueKcmAY
-         CUo/RHz+xHBFYMlvU3u4mxFmmtywpr3DFo9ZmbKOUKb9tg6vrjnhgDfAXpYY0rFMMeiQ
-         Z7cQEF3XgCDGJBiakbUtvfIfo5t9OqH8CIjgzOPeNdzERPHIoL6HZUEsQUCRD+pStqks
-         5UkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708621470; x=1709226270;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bT1lrq1CuwjHEpY6Fw6BfB9P7+U4TdSporDF8e9nens=;
-        b=oBMCPGDTCs+cHBcL5GFl/7ILztzQP0vKrRwk43an+A0Gel2f0LCz7EtAFfgGX3Rhbw
-         UCGuq97UZLeJMl/GhSoyyaDnnR58l0eguIEQ7+nfIIjzowRvznaWuC1+GsmK5fvKw/Zz
-         X1onmqAybEqJe4aaZS3XOuGp5MnNuVTi2CpispkApKjPnTFpCf5Wrq8ldy1jfFjkmBbH
-         g6EkuP0eYyZnNt+qSorDxr0mLSrVgl7FDqff6+MZeZRTjfBI/vr/gx9oIYXfj61FlhUj
-         8xf+mGtGl4+LsJ9MvshlDnd9wddXom+mdMq0rqJIqb6/Nc6wihMXeo6cHKn5ph1YAKN1
-         GSLw==
-X-Gm-Message-State: AOJu0YzallIzxYJwx4Kp2BJS6xwgESDpKzJdKsu+AllAOEWA30Ve7t+j
-	ayI7YJAW4M1Xmsc9dxhNbBMH254zSA/mPOcREvn+WB1YCOAFfCutNYVBiYa8
-X-Google-Smtp-Source: AGHT+IHHSkZeVo2iYEBs7o05Vz+Qpd9WOTDjVzxpjRN5lNY9z1RdsK+Gat+s1nSYCUPY6oh4WxnpLw==
-X-Received: by 2002:a05:620a:12c8:b0:787:25c7:1be6 with SMTP id e8-20020a05620a12c800b0078725c71be6mr24259423qkl.30.1708621469984;
-        Thu, 22 Feb 2024 09:04:29 -0800 (PST)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id qj17-20020a05620a881100b007872541c53bsm265848qkn.24.2024.02.22.09.04.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Feb 2024 09:04:27 -0800 (PST)
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Quentin Schulz <foss+yocto@0leil.net>
-Subject: [meta-rockchip][PATCH v4 3/5] rockchip.wks: add most Rockchip partitions
-Date: Thu, 22 Feb 2024 12:04:13 -0500
-Message-ID: <20240222170415.7061-3-twoerner@gmail.com>
-X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
-In-Reply-To: <20240222170415.7061-1-twoerner@gmail.com>
-References: <20240222170415.7061-1-twoerner@gmail.com>
+ dkim=pass header.i=@intel.com header.s=Intel header.b=FGNQ3XQg;
+ spf=pass (domain: intel.com, ip: 198.175.65.15, mailfrom: anuj.mittal@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1708665744; x=1740201744;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-id:content-transfer-encoding:mime-version;
+  bh=7EQtWq9nZKSzJh4MNmil9nI+Xk1mwlsc2dDgkKvCu84=;
+  b=FGNQ3XQg/WDnasOB7ttvTScRm2wMiMKSpmraawyirYAnWGCOFPEXeRIJ
+   DGgLI+N30ZvRcPSzeP3ZSAOdiUODpoObGTskzZaJYIFltDObYYj7q7wZA
+   o+QzCZSuvI8oGkxyrTvtkLGoXr49vHOpcXsAin1gTnqMm7yfhPzxqtfjp
+   zq92GXAEz0cjGN6CPtih5RvCeTqOZM7i52A1Fw6+2YGy2kgztX/ekyNdB
+   V+2Mc+kvCG5y7jUywJZfmlpw11MA/L1JBE5Ayex6IDXdqhNlt5aqbPodd
+   oOi0vCqpfz6D+6wgc5MqQ0Gom/My4/iRo0/9KcFy9t0RG1ohuujpbGMVi
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10992"; a="6779857"
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
+   d="scan'208";a="6779857"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2024 21:22:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,179,1705392000"; 
+   d="scan'208";a="10455151"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 22 Feb 2024 21:22:22 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 22 Feb 2024 21:22:21 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 22 Feb 2024 21:22:21 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 22 Feb 2024 21:22:19 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b21xRAnnccN7DPmDbP6DWy7YY/RU+W9hTXjx4CgJ/bbeoXp0UyPH4HCeT8VgJsu4wXJdQxld6OpBdAmyNrgV+9ihEMzmS6+CZLeiQ8tSXOAXiKBFRMCH2KgMEIOlW1GcTAJxwXseWDNpO9g9fnspCENZYU7aNoKtlX+87wFyacBBzCxA1DGUOKhJTF8OAJvAjD21CgLO/D/RUhZqZQfWDRUmvUtlOLwBq8JmMFa25tepFVca3DXWWqJTyLChhy4sFaJVm+olVdgEAtX0/O/w86GUb3XZXt8rNog22jSTvBBXnya66qhHpki+zcnqleajd+n5EuEUF6WDYCSph66aew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7EQtWq9nZKSzJh4MNmil9nI+Xk1mwlsc2dDgkKvCu84=;
+ b=h/nYi5DgrxMNkWmd9CQ/qWgsrazI+QVQVudAkC8HPLmH+dkhDNoDIUrBa2ySuQNE7lIdu8Z+AyBvxxcM0rkcCwHdosnau8iYoGYUw/wvtNPxJ9+bN66rI6t6HOrfHDXeK+3WUYGERSluzy73tq4t165XI9dv+B31pX+bMljEXXkUp7ZTdDqCf4HF2XzkImO1GbGnuUp8eBIHjUhf60EKvJBDVEnnXkNjHQYTbUhpBUB+NmzlrUNeGbeAWbRnYwZaofJKMQSZJ6z3ZJYnMDHJcL6MbDzr4c2EWgpJ8TlFKGcxbU2A5pyTs+asrZZv5+wPxXTeMp0DScm9OokKXCTcxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6414.namprd11.prod.outlook.com (2603:10b6:930:36::19)
+ by CH3PR11MB7795.namprd11.prod.outlook.com (2603:10b6:610:120::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.22; Fri, 23 Feb
+ 2024 05:22:17 +0000
+Received: from CY5PR11MB6414.namprd11.prod.outlook.com
+ ([fe80::4406:afd0:bb87:ece9]) by CY5PR11MB6414.namprd11.prod.outlook.com
+ ([fe80::4406:afd0:bb87:ece9%5]) with mapi id 15.20.7292.033; Fri, 23 Feb 2024
+ 05:22:17 +0000
+From: "Mittal, Anuj" <anuj.mittal@intel.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"akuster808@gmail.com" <akuster808@gmail.com>
+Subject: Re: [yocto] [meta-security][PATCH] meta-security: Drop ${PYTHON_PN}
+Thread-Topic: [yocto] [meta-security][PATCH] meta-security: Drop ${PYTHON_PN}
+Thread-Index: AQHaZCLF06Zur3Jbp0ylvCt1a+nRorEXaECA
+Date: Fri, 23 Feb 2024 05:22:17 +0000
+Message-ID: <bfdc6fb984b4398d181b73f8e41160808331e82c.camel@intel.com>
+References: <20240220173209.1761469-1-akuster808@gmail.com>
+In-Reply-To: <20240220173209.1761469-1-akuster808@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6414:EE_|CH3PR11MB7795:EE_
+x-ms-office365-filtering-correlation-id: 56c3e9c1-668a-4e19-06f2-08dc342f66c1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DwigUqzFytNCgO58M4dviEA14+pkgzuOTdZZMeB6YWu+AiFTMfObptQeMDcJ4KboO08rx6iEoRyOzU0fjAeOKQpc02Hs0PpDzhUIKIREpXIVRzr132PG4EZc1BMztMmgtxFxnV1RDor+Wwv5aytKQZyx6Orm4B80gomnmFKCcDYu4D7RswxpRGj5W4Bnh33Xzbeuyq0/6KnXR5cn1uue8FrCaGB8jw1aWHPlH3QKulHjeiDsILDyQ9zq8pFfvXYTCY5mdFPFxbEbuYPH8Uv+OiX/y6bg33igV+KAeASKknP45xqbURHlBJ8jDbyx9ZGLa4H4BX/bREnUInlnJZrMnuZxSI4wMc9Xlu5lWdxvMNCEoOxv+NQcQz3IJubpttV59bhPMAWf7UphiYcViI9DnoRTNgHQ//JLLsnM/UKlH5EzCXzR/cfz9w4KaemN8l67uCF4YP9Zao8bMeQrMdcFvhiEMzPVDCz5uwpRQjW4rRrA2nLwfQfF2MewSvfUJUEs65Q/QQPOma5hyNZf9uyR9/o3qaZYs3uJk21egzamzWuhCxBTOAAQ3G3St223CzfU2TnyhfZeT0EBpEIdG2dGc0y4emM9yEpV9DN5tPrbOlc=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY5PR11MB6414.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?L05HbUZKWTU3TEtUMDBlREdBR2ZYWlF3MklqbVdJK1pudVFrMW13ODF4VlZT?=
+ =?utf-8?B?N01PN05EbVRnT0pPS2FLNHBDclVlSE9EK1BPQTB0emlaakRjdjlDUmg4QXdL?=
+ =?utf-8?B?eDdqYjQwTzFiSUFwWHRuRjZDbThEeUdLVEFOcFFxa2JUVndtMjBwYXhNalVw?=
+ =?utf-8?B?OXdXNG1HREdaVStYM1ZWVi9PMURXdThqZEJmL0FlcndmSEt4bnRpVVpHcVJx?=
+ =?utf-8?B?eUE4YlRiNzc5c1Q1L1BCeXl1aFB0a1BCUVZ5bW03c3o1eW9wM0d2SUNYbnVv?=
+ =?utf-8?B?a2VVN3ZFeEhWNGQydkFOQWRGMnNTUGRKMU8wZmlobTl3V1YvMmVPTGo4UFhr?=
+ =?utf-8?B?d3FVTGZ3VEd2SnNtYXMycUtGVjVPQUFhTHFkSVZlVkR1Q2ovNUFZM2t4SmhU?=
+ =?utf-8?B?Nm45Zis5dGhHYTg5NkErcVJlclliZHJsbmNFUmZIVGRwNkwzdUhQTTZRdkwr?=
+ =?utf-8?B?N1ByWGhvb1Z6L0tWMC9VdCtSMHdORjBZT2V0ZHBBOERTSE5MbEFZaDZkaWE1?=
+ =?utf-8?B?MkNTWWpLZjMxVEE1ajdhb1lUdS9Jd2ZjV2FrQnpTbmd6WGZLZXJQZTJnZGpK?=
+ =?utf-8?B?LzF2Y2g4YUFoN0Rwbnh2Y1JKc3BEamxHVGFMWSsrZXcwUytDbk5pakFDTldB?=
+ =?utf-8?B?SzJYMkZOL2lzWU16SFlQVEJ4SjU4MTJFWVRaWkk5QzlacUR6aGJTenJIVHpa?=
+ =?utf-8?B?UlRjd1BuOEZ6ZVFrWXFrQ3dKajlkdnBBMjhranN6cVEreVdubTVLNGdHTURi?=
+ =?utf-8?B?WTl5U2hDNXBWNkZWeVducTJ6cU1OVVBETTZOVUgzN1lhMUlrbUNPaCtyQ1BL?=
+ =?utf-8?B?NndLeGJwZjlWNVdHYXFwMGwyaHVqdTltZjl0bENvOFgzVUNyVHFzMXdHZ2Z6?=
+ =?utf-8?B?ZDYvdTVNTGJzQWd4SUloamhESXZYNG5uOWtZdUFiOW05R3pnVVlheEhtRWJZ?=
+ =?utf-8?B?dXdHL3FmQXZIOWZIbGZDVkYrMFdwM1JXNmlLajhnd2lzNDNBQnlUblpDY0xj?=
+ =?utf-8?B?TTZXTlNKT3FxYnRMWklFeVphdll0aUo3aCt6S0ZDWml3TXpiNGMzamp4am5V?=
+ =?utf-8?B?WTZ1WDQ3SVI5OFczclk4UE5tVmJzSEdzMnJTOWQ0WENEaFZvMVdhWEo0ZHNC?=
+ =?utf-8?B?cUpYU1pPNWI5WTQzbDVwWDMxa0FLRHFLSWliSjVoN3kzL1RQK21jdk0yZmFF?=
+ =?utf-8?B?ZnMvbnVtakpTOEdDR3BVM2k5ZGRQYVRtQXg4Wk1Bb1dNMVN3MGVZRjl1aEMr?=
+ =?utf-8?B?SEV3UEFKRjg0NkFnK0dyRXhpTDJZQm9JZHh4cU9taEdxK2xtc1ZzeC8raVBC?=
+ =?utf-8?B?a0dkRy9wVXNzWWxtSmZuWE1uaVFzTWVVVkdYMGRDVTJYb3lsVjZ6dDlrd0p2?=
+ =?utf-8?B?UURUaHVYK3o1Q3ZSbUk0bkFKM2dIdktKK0JydDhtdDhHNUVmZlkzZUE1a3Bw?=
+ =?utf-8?B?emtiVXYwYm9nUHN1ZVl4ZTJIQmI0N0JHSlVrTGRhQmF4bEhUbjdVTjlDcVc1?=
+ =?utf-8?B?Q2hyWmxadEoxdldWMVJKNnZhaUxDa0dZaDY5NTU1dVFEMkhObWR1Ymp3MWg3?=
+ =?utf-8?B?c1ZJTWxUZDM3VE1aQXRtQ2x0amtybnc1dFQwTWx6UUNJV2xod3l0WFl5TDVM?=
+ =?utf-8?B?WmVnZ3VqRWhBV1ZOT1ZVcmNXTXRXZ1pZa2lqYnBkWmR5ZGJPMlU5RGxDcnRm?=
+ =?utf-8?B?SXY3ZEhYcmR2KzRhQ2xxNlBPVHpEUXZjVFJIZlZaVmIrMXR3U3Z1aWhSa1VS?=
+ =?utf-8?B?elpRNjB6bXNNdGJLaUxpN0ZENmliTzVuRzU2dmdITm0xZVZ3dEYrL0JrOTcx?=
+ =?utf-8?B?NUQrV2JscmJqOVpvbzlYUm12WlpnVW8reUhwa2N3cVpraDJhNXE3Y09YUXRQ?=
+ =?utf-8?B?V0ZWai9EV045bnZuMldpald4bEdQc3J3MGZnNHAxOUNXbDBLRWdqSjN5NHdI?=
+ =?utf-8?B?RGs4TVRXNGJXamJpeDNYWlozQk5CYW9va3IwZlNJZTNpOGZES0RHWU1aamZN?=
+ =?utf-8?B?c282TEI4SElTb0hGQ1ZzRFgwR1FFVkt3SHJ4K3VSZml6aE15VUVpNjluczVr?=
+ =?utf-8?B?UzU5Z3JDd01Ka1lUTHRDQzlhVitvZDNLSDNoQWVHeVNTdXVjQ3Z5YWc5RHFx?=
+ =?utf-8?B?ZFpiZURpR3pTcFF5dmN2amlaYWpIRVZDdDdvaHF0Vlluek93dEZ6Q0lHV2c0?=
+ =?utf-8?B?cEozVG92UEt4RHZKbHZkMzZlUU5kNHpVNVIxRForRTZtMkgrNUllaTJISkgx?=
+ =?utf-8?B?cjRKYTRTWUZJUnh0MGwzL0hmSTRBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9B8611F98E25B4439BEF6EE886D598CF@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6414.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56c3e9c1-668a-4e19-06f2-08dc342f66c1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2024 05:22:17.1538
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FNH4g2M8oUpdQsg//shP7UJDAnBKGhi/ky0b2u3+yseqEmwrkgFKik1/V9mzran/D+jd9veuWMWLzwKh8gK4+Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7795
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 22 Feb 2024 17:04:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62570
+ <yocto@lists.yoctoproject.org>; Fri, 23 Feb 2024 05:22:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62573
 
-Rockchip defines the expected layout/map of the default storage device.
-Fill out the wks description so it matches.
-
-        https://opensource.rock-chips.com/wiki_Partitions
-
-There are 2 partitions at the start that can not be specified in
-rockchip.wks due to a limitation in wic which assumes all sizes (e.g.
---size or --fixed-size) are specified in units of 1024 bytes. Since these
-partitions don't fall on 1024-byte boundaries, they can not be specified at
-this time.
-
-Note: in the Rockchip layout, not all partitions are expected to show up
-in the gpt partition table. While --no-table could be used to hide these
-partitions from the partition table, as specified in the wiki, there's
-no practical reason to do so. In fact, exposing these partitions in the
-partition table makes it easier and safer for users to interact with them.
-For example, a user dd'ing some data to a particular area would need to
-ensure they're using the correct offset and size values when accessing the
-raw disk directly. However being able to specify a partition ensures data
-won't accidentally "spill" out into adjacent regions.
-
-Note: there is a mistake in the Rockchip table (which I've copied verbatim
-here in this commit message but corrected in rockchip.wks). Going by the
-values of the "Start Sector", the size of the "reserved1" partition is
-listed as being 2x its actual size/number of sectors.
-
-Expected:
-        Partition       Start Sector       Number of Sectors    Partition Size     PartNum in GPT    Requirements
-        MBR             0      00000000    1       00000001     512       0.5KB
-        Primary GPT     1      00000001    63      0000003F     32256     31.5KB
-        loader1         64     00000040    7104    00001bc0     4096000   2.5MB    1                 preloader (miniloader or U-Boot SPL)
-        Vendor Storage  7168   00001c00    512     00000200     262144    256KB                      SN, MAC and etc.
-        Reserved Space  7680   00001e00    384     00000180     196608    192KB                      Not used
-        reserved1       8064   00001f80    128     00000080     65536     64KB                       legacy DRM key
-        U-Boot ENV      8128   00001fc0    64      00000040     32768     32KB
-        reserved2       8192   00002000    8192    00002000     4194304   4MB                        legacy parameter
-        loader2         16384  00004000    8192    00002000     4194304   4MB      2                 U-Boot or UEFI
-        trust           24576  00006000    8192    00002000     4194304   4MB      3                 trusted-os like ATF, OP-TEE
-        boot            32768  00008000    229376  00038000     117440512 112MB    4                 kernel, dtb, extlinux.conf, ramdisk
-        rootfs          262144 00040000    -       -            -         -MB      5                 Linux system
-
-Prior to this patch:
-        # fdisk -l /dev/mmcblk1
-        GPT PMBR size mismatch (1504727 != 30375935) will be corrected by write.
-        The backup GPT table is not on the end of the device.
-        Disk /dev/mmcblk1: 14.48 GiB, 15552479232 bytes, 30375936 sectors
-        Units: sectors of 1 * 512 = 512 bytes
-        Sector size (logical/physical): 512 bytes / 512 bytes
-        I/O size (minimum/optimal): 512 bytes / 512 bytes
-        Disklabel type: gpt
-        Disk identifier: 00000000-0000-0000-0000-00004D9B9EF0
-
-        Device          Start     End Sectors   Size Type
-        /dev/mmcblk1p1     64    8063    8000   3.9M Microsoft basic data
-        /dev/mmcblk1p2   8064    8191     128    64K Microsoft basic data
-        /dev/mmcblk1p3   8192   16383    8192     4M Microsoft basic data
-        /dev/mmcblk1p4  16384   24575    8192     4M Microsoft basic data
-        /dev/mmcblk1p5  24576   32767    8192     4M Microsoft basic data
-        /dev/mmcblk1p6  32768  330955  298188 145.6M Microsoft basic data
-        /dev/mmcblk1p7 330956 1504693 1173738 573.1M Linux filesystem
-
-New:
-        # fdisk -l /dev/mmcblk1
-        GPT PMBR size mismatch (1504473 != 30375935) will be corrected by write.
-        The backup GPT table is not on the end of the device.
-        Disk /dev/mmcblk1: 14.48 GiB, 15552479232 bytes, 30375936 sectors
-        Units: sectors of 1 * 512 = 512 bytes
-        Sector size (logical/physical): 512 bytes / 512 bytes
-        I/O size (minimum/optimal): 512 bytes / 512 bytes
-        Disklabel type: gpt
-        Disk identifier: 00000000-0000-0000-0000-00004D9B9EF0
-
-        Device           Start     End Sectors   Size Type
-        /dev/mmcblk1p1      64    7167    7104   3.5M Linux filesystem
-        /dev/mmcblk1p2    7168    7679     512   256K Linux filesystem
-        /dev/mmcblk1p3    7680    8063     384   192K Linux filesystem
-        /dev/mmcblk1p4    8064    8127      64    32K Linux filesystem
-        /dev/mmcblk1p5    8128    8191      64    32K Linux filesystem
-        /dev/mmcblk1p6    8192   16383    8192     4M Linux filesystem
-        /dev/mmcblk1p7   16384   24575    8192     4M Linux filesystem
-        /dev/mmcblk1p8   24576   32767    8192     4M Linux filesystem
-        /dev/mmcblk1p9   32768  330955  298188 145.6M Microsoft basic data
-        /dev/mmcblk1p10 330956 1504439 1173484   573M Linux filesystem
-
-Reviewed-by: Quentin Schulz <foss+yocto@0leil.net>
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
-changes in v4:
-- remove all --no-table to include all partitions in the gpt table
-
-changes in v3:
-- tweaked to accommodate offsets specified in sectors
-- clarified that the first 2 partitions can not be added
-- change name of vstorage to v_storage
-- fixed typo (ATR -> ATF)
-- added Quentin's tag
-
-changes in v2:
-- expand the commit message to show past, expected, and new behaviour
-- spell out that vstorage stands for "vendor storage"
----
- wic/rockchip.wks | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
-
-diff --git a/wic/rockchip.wks b/wic/rockchip.wks
-index 42b731ac47b2..714fc5e11e11 100644
---- a/wic/rockchip.wks
-+++ b/wic/rockchip.wks
-@@ -8,16 +8,22 @@
- # See: https://opensource.rock-chips.com/wiki_Partitions
- #
- #   Partition   Start Sector    Number of Sectors
--#   loader1     64              8000        (idbloader / U-Boot SPL)
--#   reserved1   8064            128
--#   reserved2   8192            8192
-+#   loader1     64              7104        (idbloader / U-Boot SPL)
-+#   v_storage   7168            512         (vendor storage: e.g. serial number, MAC address, etc)
-+#   reserved    7680            384         (not used)
-+#   reserved1   8064            64          (legacy DRM key)
-+#   uboot_env   8128            64          (U-Boo environment)
-+#   reserved2   8192            8192        (legacy parameters, ATAGS, etc)
- #   loader2     16384           8192        (U-Boot proper)
--#   atf         24576           8192
-+#   atf         24576           8192        (trusted OS e.g. ATF, OP-TEE, etc)
- #   boot        32768           229376
- #   root        262144          -           (suggested)
- 
--part loader1    --offset 64s    --fixed-size 4000K   --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
--part reserved1  --offset 8064s  --fixed-size 64K     --fstype=none
-+part loader1    --offset 64s    --fixed-size 3552K   --fstype=none            --source rawcopy                                   --sourceparams="file=${SPL_BINARY}"
-+part v_storage  --offset 7168s  --fixed-size 256K    --fstype=none
-+part reserved   --offset 7680s  --fixed-size 192K    --fstype=none
-+part reserved1  --offset 8064s  --fixed-size 32K     --fstype=none
-+part uboot_env  --offset 8128s  --fixed-size 32K     --fstype=none
- part reserved2  --offset 8192s  --fixed-size 4096K   --fstype=none
- part loader2    --offset 16384s --fixed-size 4096K   --fstype=none            --source rawcopy                                   --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
- part atf        --offset 24576s --fixed-size 4096K   --fstype=none
--- 
-2.43.0.76.g1a87c842ece3
-
+T24gVHVlLCAyMDI0LTAyLTIwIGF0IDEyOjMyIC0wNTAwLCBBcm1pbiBLdXN0ZXIgd3JvdGU6DQo+
+ICvCoMKgwqAgcHlodG9uMy1jdHlwZXMgXA0KPiArwqDCoMKgIHB5aHRvbjMtZmNudGwgXA0KPiAr
+wqDCoMKgIHB5aHRvbjMtaW8gXA0KPiArwqDCoMKgIHB5aHRvbjMtbG9nZ2luZyBcDQo+ICvCoMKg
+wqAgcHlodG9uMy1taXNjIFwNCj4gK8KgwqDCoCBweWh0b24zLXNoZWxsIFwNCj4gK8KgwqDCoCBw
+eWh0b24zLXRocmVhZGluZyBcDQoNCnB5aHRvbjMgLT4gcHl0aG9uMyA/DQoNClRoYW5rcywNCg0K
+QW51ag0K
 
