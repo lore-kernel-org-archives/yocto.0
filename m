@@ -2,164 +2,132 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8CF15C47DD9
-	for <webhook@archiver.kernel.org>; Sun, 25 Feb 2024 17:14:02 +0000 (UTC)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
- by mx.groups.io with SMTP id smtpd.web10.1173.1708881238792900240
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 452FBC54798
+	for <webhook@archiver.kernel.org>; Sun, 25 Feb 2024 17:14:32 +0000 (UTC)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+ by mx.groups.io with SMTP id smtpd.web10.1179.1708881266783910718
  for <yocto@lists.yoctoproject.org>;
- Sun, 25 Feb 2024 09:13:58 -0800
+ Sun, 25 Feb 2024 09:14:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=i5JojgTv;
- spf=pass (domain: gmail.com, ip: 209.85.128.176, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-608ceccb5f4so6118297b3.3
-        for <yocto@lists.yoctoproject.org>; Sun, 25 Feb 2024 09:13:58 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=JMdGB38W;
+ spf=pass (domain: gmail.com, ip: 209.85.128.173, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-608841dfcafso19024667b3.2
+        for <yocto@lists.yoctoproject.org>; Sun, 25 Feb 2024 09:14:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708881238; x=1709486038; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FLBIjkheFniLfVluyo5hFdOdmWMoO005MlnKA1hjkhI=;
-        b=i5JojgTvmE1mKEB60wG1zJpF4CdZenKE5rd6Ur+oaEPVfuQji71aPnD4XQGx8razVF
-         YVqeY/xK6wkc3JuCKQ+oFDUwD2ijp1KklAIlcbTboZ/uFIdShCR921UpaDe4gKh/wpmX
-         /GyFeWftMxS+TpHZ1mhlO3pBJK3aSFpLj6zx4i6Bu2VElfjh1t5oUXuikyJFDhXUkOac
-         HvnAAQnxHuUNuVd48phS082ibafgRud33w6d/dCmDxfr4Xejavox/G5ogLT3WfXbCNsB
-         /r6POrIaz/MyK0O85ICeGo8qvkMmMkgLItxTuKhyp0OA1s2IYnIqAeWmB/L7iRjt9WvN
-         qTBQ==
+        d=gmail.com; s=20230601; t=1708881266; x=1709486066; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xVaAcWe7H+ojZdyQdaSvkCXHni4nKZ0F809MkNd+RRY=;
+        b=JMdGB38W0HEFaKppCGC7S3LimMFIL6Zi0vKxkNZ2GLDoJbRL9ZZigXSoVFvZBArkJK
+         ONB1mI7mh+57VsRRHgt2aHjhMagsHuGtYeNxAWAyp+shfrEGE8B4B7aSHpJZuv+YVrmJ
+         ExHUCNE49gMbAp+1ipJQ+e9Vzr3gosUQ01mYrgmg/RnUgUsT3Yq6hfzLS40MIv0X7KjW
+         3w3pHqxm9ZtFf2faQZiTqbrf/uINBr9sfyqc4HFvKvtdUaX5ZNKMwApWmp4Llqo2niIv
+         Qp66nhmXZHaojQvr2PkdaFTVf8Js90Y0BpUh7d2kiVvJiDkczGOVruRCt6KtiuBlYreL
+         bPAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708881238; x=1709486038;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FLBIjkheFniLfVluyo5hFdOdmWMoO005MlnKA1hjkhI=;
-        b=a5JggtI0wgmn1B2Axr8vIceaoKXyJbPoCrRXYyt1iHH9k8sobWWR44+MhS5CCpz47j
-         60OZEYhA5NdGIzfAQtCWn3zmwKNExHwy4RIR2iJBuuWxh72g17Bex8Tr4XAzxvWaqpOw
-         /8/xQ/5fCa/edE6j1O7mrdPiRtFORIKroU+kcc4RgcXY6UIypnCIFGtW+WnExYkCXkve
-         K1i68ocKWCBi4Ws4ocNpRv1GC8B5bQW0TyLYBhruW3Xm91cRLW7dRTuacpQGRmH+PFyM
-         p8IrrdvbgNHCRbaqyC/tZW/B+PdJzp/ISAWrVcD9sC4ogNB4sT/oV/u09At2Wk3Hzcrj
-         VgSw==
-X-Gm-Message-State: AOJu0Ywiiq16RX9adBoaokScDP1h/m5zTFRjeYRXlCeCmnYnlX2+jKAI
-	UdJ4+j80hHzFuEhUN9F/6V3+uPAGgGrGrhoYCZjr6/7AVlLEIgO4/o7i9wcP
-X-Google-Smtp-Source: AGHT+IF8iAk1KGZYopxObbOCWFlscmRKkbckVwezra8RRzUvWJMkeerRtwt96YhjnBVS85w2m7scpA==
-X-Received: by 2002:a81:be0b:0:b0:607:7c29:8f4f with SMTP id i11-20020a81be0b000000b006077c298f4fmr4522825ywn.13.1708881237065;
-        Sun, 25 Feb 2024 09:13:57 -0800 (PST)
-Received: from keaua.mvista.com (108-243-27-252.lightspeed.tukrga.sbcglobal.net. [108.243.27.252])
-        by smtp.gmail.com with ESMTPSA id j128-20020a0de086000000b00607b37e2c74sm794908ywe.118.2024.02.25.09.13.56
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Feb 2024 09:13:56 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][v2][PATCH] meta-security: Drop ${PYTHON_PN}
-Date: Sun, 25 Feb 2024 12:13:55 -0500
-Message-Id: <20240225171355.81994-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1708881266; x=1709486066;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xVaAcWe7H+ojZdyQdaSvkCXHni4nKZ0F809MkNd+RRY=;
+        b=eMfeTWHqauYly4ekSVCPkTcTNp9rg+TzJg72gUhw84FhUiVVcdLxpvgAvriqAtadht
+         uyzEuZN02uvxYUFR1VEGvrp8+AgrPlO5Sn/Nikll3GIt6AoeJxOFwc9Iqa89mE7jTdpv
+         WamL1meMMEnIvhNd7WLk6+mck6ZQFdioZv8jMUaH4B6AuPTt0pzRgvr0Ja1pTYhe92/E
+         52gmueewtQe4AB9hFvrxA6wkGvURL5SCLTPChDunkunPMEXrUaYGsb/J5Er8rrOanUmm
+         M/UJ9V07fGVfgDqMbMTHj+SX5W/zxaRF4gFfKI+EMScwSBzsCJNn7U2quSpzvaZS0SIx
+         9LEw==
+X-Gm-Message-State: AOJu0YwNCX4z8+44kWuI7dNPEahs2JLcmMUjipa02X8CbYSGFdU3u+oq
+	4qgcSOebTImpYBgE72nddMnfGy5aoN6cXhszcOBi+LfYHEcTJ4IC9Rim1gRy
+X-Google-Smtp-Source: AGHT+IE3pEBCFcyA1Pd8SWb4AG+Rw5Vu4NVmy5pRgv5vQU+rmUgAaAJXbi9N34glEW9qEImF6Urn8w==
+X-Received: by 2002:a81:451e:0:b0:607:c8fc:9890 with SMTP id s30-20020a81451e000000b00607c8fc9890mr4434675ywa.26.1708881265675;
+        Sun, 25 Feb 2024 09:14:25 -0800 (PST)
+Received: from [192.168.18.232] (108-243-27-252.lightspeed.tukrga.sbcglobal.net. [108.243.27.252])
+        by smtp.gmail.com with ESMTPSA id c11-20020a81b54b000000b00608d9358ccbsm659020ywk.132.2024.02.25.09.14.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Feb 2024 09:14:25 -0800 (PST)
+Message-ID: <c51d6078-7d98-418b-8891-37127698d637@gmail.com>
+Date: Sun, 25 Feb 2024 12:14:24 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [meta-security][PATCH] meta-security: Drop ${PYTHON_PN}
+Content-Language: en-US
+To: yocto@lists.yoctoproject.org, anuj.mittal@intel.com
+References: <20240220173209.1761469-1-akuster808@gmail.com>
+ <bfdc6fb984b4398d181b73f8e41160808331e82c.camel@intel.com>
+From: akuster808 <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; keydata=
+ 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
+ ApZ86eOP
+In-Reply-To: <bfdc6fb984b4398d181b73f8e41160808331e82c.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 25 Feb 2024 17:14:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62598
+ <yocto@lists.yoctoproject.org>; Sun, 25 Feb 2024 17:14:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62599
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
 
----
-V2] Fix typo in python3-pyinotify changes
----
- .../python/python3-flask-script_2.0.6.bb           |  2 +-
- .../python/python3-pyinotify_0.9.6.bb              | 14 +++++++-------
- .../fail2ban/python3-fail2ban_1.0.2.bb             |  2 +-
- .../recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb  |  6 +++---
- recipes-ids/suricata/suricata_7.0.0.bb             |  6 +++---
- 5 files changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb
-index 377ad02..ba0f974 100644
---- a/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb
-+++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-flask-script_2.0.6.bb
-@@ -10,5 +10,5 @@ PYPI_PACKAGE = "Flask-Script"
- inherit pypi setuptools3
- 
- RDEPENDS:${PN} += "\
--    ${PYTHON_PN}-flask \
-+    python3-flask \
-     "
-diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
-index 963fcfe..9acdf54 100644
---- a/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
-+++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-pyinotify_0.9.6.bb
-@@ -3,13 +3,13 @@ LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://COPYING;md5=ab173cade7965b411528464589a08382"
- 
- RDEPENDS:${PN} += "\
--    ${PYTHON_PN}-ctypes \
--    ${PYTHON_PN}-fcntl \
--    ${PYTHON_PN}-io \
--    ${PYTHON_PN}-logging \
--    ${PYTHON_PN}-misc \
--    ${PYTHON_PN}-shell \
--    ${PYTHON_PN}-threading \
-+    python3-ctypes \
-+    python3-fcntl \
-+    python3-io \
-+    python3-logging \
-+    python3-misc \
-+    python3-shell \
-+    python3-threading \
- "
- 
- SRC_URI[md5sum] = "8e580fa1ff3971f94a6f81672b76c406"
-diff --git a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
-index 135e97c..bf5f87d 100644
---- a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
-+++ b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
-@@ -54,7 +54,7 @@ do_install:append () {
- do_install_ptest:append () {
-     install -d ${D}${PTEST_PATH}
-     install -d ${D}${PTEST_PATH}/bin
--    sed -i -e 's/##PYTHON##/${PYTHON_PN}/g' ${D}${PTEST_PATH}/run-ptest
-+    sed -i -e 's/##PYTHON##/python3/g' ${D}${PTEST_PATH}/run-ptest
-     install -D ${S}/bin/* ${D}${PTEST_PATH}/bin
-     rm -f ${D}${PTEST_PATH}/bin/fail2ban-python
- }
-diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb
-index e0def0f..9dea957 100644
---- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.9.0.bb
-@@ -24,9 +24,9 @@ do_compile:append() {
- do_install:append() {
-     cd ${S}/tools
-     export PYTHONPATH="${D}${PYTHON_SITEPACKAGES_DIR}"
--    ${PYTHON_PN} setup.py install --root="${D}" --prefix="${prefix}" --install-lib="${PYTHON_SITEPACKAGES_DIR}" --optimize=1 --skip-build
-+    python3 setup.py install --root="${D}" --prefix="${prefix}" --install-lib="${PYTHON_SITEPACKAGES_DIR}" --optimize=1 --skip-build
- 
--    sed -i -e "s:${PYTHON}:${USRBINPATH}/env ${PYTHON_PN}:g" "${D}${bindir}"/tpm2_ptool
-+    sed -i -e "s:${PYTHON}:${USRBINPATH}/env python3:g" "${D}${bindir}"/tpm2_ptool
- }
- 
- PACKAGES =+ "${PN}-tools"
-@@ -44,4 +44,4 @@ FILES:${PN} += "\
- INSANE_SKIP:${PN}   += "dev-so"
- 
- RDEPENDS:${PN} = "p11-kit tpm2-tools "
--RDEPENDS:${PN}-tools = "${PYTHON_PN}-pyyaml ${PYTHON_PN}-cryptography ${PYTHON_PN}-pyasn1-modules"
-+RDEPENDS:${PN}-tools = "python3-pyyaml python3-cryptography python3-pyasn1-modules"
-diff --git a/recipes-ids/suricata/suricata_7.0.0.bb b/recipes-ids/suricata/suricata_7.0.0.bb
-index a52f081..a01b3d9 100644
---- a/recipes-ids/suricata/suricata_7.0.0.bb
-+++ b/recipes-ids/suricata/suricata_7.0.0.bb
-@@ -104,9 +104,9 @@ do_install () {
-     # Remove /var/run as it is created on startup
-     rm -rf ${D}${localstatedir}/run
- 
--    sed -i -e "s:#!.*$:#!${USRBINPATH}/env ${PYTHON_PN}:g" ${D}${bindir}/suricatasc
--    sed -i -e "s:#!.*$:#!${USRBINPATH}/env ${PYTHON_PN}:g" ${D}${bindir}/suricatactl
--    sed -i -e "s:#!.*$:#!${USRBINPATH}/env ${PYTHON_PN}:g" ${D}${libdir}/suricata/python/suricata/sc/suricatasc.py
-+    sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${bindir}/suricatasc
-+    sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${bindir}/suricatactl
-+    sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${libdir}/suricata/python/suricata/sc/suricatasc.py
- }
- 
- pkg_postinst_ontarget:${PN} () {
--- 
-2.34.1
+On 2/23/24 12:22 AM, Anuj Mittal wrote:
+> On Tue, 2024-02-20 at 12:32 -0500, Armin Kuster wrote:
+>> +    pyhton3-ctypes \
+>> +    pyhton3-fcntl \
+>> +    pyhton3-io \
+>> +    pyhton3-logging \
+>> +    pyhton3-misc \
+>> +    pyhton3-shell \
+>> +    pyhton3-threading \
+> pyhton3 -> python3 ?
+
+thanks for catching that.
+
+BR,
+Armin
+>
+> Thanks,
+>
+> Anuj
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62573): https://lists.yoctoproject.org/g/yocto/message/62573
+> Mute This Topic: https://lists.yoctoproject.org/mt/104471902/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 
