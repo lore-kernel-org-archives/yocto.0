@@ -1,183 +1,208 @@
-Return-Path: <hassanchattarki@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6FF3C54E49
-	for <webhook@archiver.kernel.org>; Mon, 26 Feb 2024 12:26:49 +0000 (UTC)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
- by mx.groups.io with SMTP id smtpd.web11.18934.1708950401261850957
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D63E9C54E49
+	for <webhook@archiver.kernel.org>; Mon, 26 Feb 2024 12:34:59 +0000 (UTC)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+ by mx.groups.io with SMTP id smtpd.web10.19292.1708950893482353961
  for <yocto@lists.yoctoproject.org>;
- Mon, 26 Feb 2024 04:26:42 -0800
+ Mon, 26 Feb 2024 04:34:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=O9RPYwOO;
- spf=pass (domain: gmail.com, ip: 209.85.218.42, mailfrom: hassanchattarki@gmail.com)
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso524561766b.0
-        for <yocto@lists.yoctoproject.org>; Mon, 26 Feb 2024 04:26:41 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=gpq3gVIe;
+ spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d180d6bd32so44327551fa.1
+        for <yocto@lists.yoctoproject.org>; Mon, 26 Feb 2024 04:34:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1708950399; x=1709555199; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jeJ5f2Gdl26jfz7hJvGT7EFobyPlSiuseCCHEiVF7Ik=;
-        b=O9RPYwOOEkL3XxQeIdGTJMKq3ThJlNbXQGtsiYiqSFm7NYUxKPCQMhS+QxrkHOTJz1
-         Qw061AX3wqh0PhnXnOfed7Z04BSle5FTws7Gl0TjIM0N5icBysm6aqQo5AdLhhJv+CY8
-         KDbPwH9ohGI8jqMF23K9OD6mNxQ3Rrd/kZYo6ZRD9QSk3yWs5mYy8MO6TX1IcAa5Xrsn
-         1DeuLocPpYmBSuSY0mniTMZ3m8lSXNZZLTphYhHU6NyHjPH72V55POhjakN1t4jFXDgj
-         mrdrJdfuHtE1eGwxbmCVZ3KKtHc0A5sLtQ508P812yHX2SXzsvRIaBkB3VDjBB8IjxlE
-         asng==
+        d=gmail.com; s=20230601; t=1708950892; x=1709555692; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zwqmI6gqamCsFdSlwtsOym4zCEf+g+uxBlYGEtqweTY=;
+        b=gpq3gVIecwRkQQmm9nR9QhCdVcMU6HuspBjLyL1y73wPmqop36nLZNparsvmFlDLa6
+         3uG4hdgilSyoC6BsEjMvSCmTqDKpTWQxYJfoXaqzPmNkYdyKcjb4tX0y6LNy3DnYUkbS
+         6aRhJtjir/u8gcDjG37vS5oPotUtZ2EaK4dyTBOP83fbqDz5OWG4zRIvOJc/ANoVK5Rb
+         GxebXJiACOPpN17arAX0yzaCVwSmrg/dhB/WGnvJJXMNPxOyJQwGVCT8eFY0PHeThfDi
+         6xfYX7mU7+/2rHLcoxFDNatLR1ag5klPWLqf09JHB4B0g5mHYopQXJ/bCXedaAQJEgG8
+         AAzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1708950399; x=1709555199;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jeJ5f2Gdl26jfz7hJvGT7EFobyPlSiuseCCHEiVF7Ik=;
-        b=vwnbWDKg7CvTEus2H5bFWLvYnsn3loDxG14Wc7iCY+KNG5rFECIjzEjApeOfAgW6+g
-         RA6LSa+16NmPbWqO270+Tz7YsAhSlKwgVHuhXTCBfn//9t7pn9nNMVx5qY7rgxKskP1J
-         vRhl7ermjaKRiQvb/fDR/jQsGca+mKDRJslawBF13hA47n5o+fA4jh7fPEe81B6n8zRV
-         XzHPMvJ9vWM1fpQHI9viWam5sIsTbUF2QmrrsRJQtkTnTndv0qTk9W+SdHyxWNW+nLJ8
-         gvxuIFhlyIvbwEVOwE1YB9TE/vKOwHTwe9rDXU3lAz6q1bAn/bvhfIHPkI42h+YvhP69
-         r+Nw==
-X-Forwarded-Encrypted: i=1; AJvYcCWNp2/3lNP2cRVec21BwpxudCwXX+mr2XlXHv1m8dOzbSMnAagV7ZkaaXEg9dXUYpihc+gIc/iErQKK+Ds8cz+CrEOfQ204rPLwEIQn
-X-Gm-Message-State: AOJu0Yzw9VG6opY9HTcTb3K7ztjkn5MHcRslr1JlDJNlWTg9PlSD4O+S
-	ooOiATmKyz28d6DhEGA/hSI7uYReM4r2wk9varisSKY1BvnMhjfq2cMZ1haZOATcXBHXGnJIx0O
-	fSfmeQHhiltvN5ibU9CTBLJc+2/8=
-X-Google-Smtp-Source: AGHT+IFbz8NaLlkEsZ2tB1LuEoNSALrQTYT3C9HGSMHysxHvPSOtaAHxkL0GWRoOS9cRkJWQFvu/qZPGkHjzC9WFcDM=
-X-Received: by 2002:a17:907:7884:b0:a43:74fa:4f08 with SMTP id
- ku4-20020a170907788400b00a4374fa4f08mr947011ejc.9.1708950398938; Mon, 26 Feb
- 2024 04:26:38 -0800 (PST)
+        d=1e100.net; s=20230601; t=1708950892; x=1709555692;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zwqmI6gqamCsFdSlwtsOym4zCEf+g+uxBlYGEtqweTY=;
+        b=xITMF5i/bzKK+WcIFYsMXC5iyLpUcsKBLJPb6+PyUj/ltyAJN8ZgKeZEHXbNPL13Wh
+         k7KdL1dcDpLqzFV8XmfLsBSVcWhePNjPM1vy4OjD/CdoYx8OCGcserwEg3chl6cvjNBN
+         Uq8X3s60lLQK7neiyXoZsrLIyWwlXCuQRlYvNL2fpMv2oePY/J3HX7jjpKMmbQ1QS/HT
+         wo2cFF0quCFxgmyp+AIfuTQcV4ZXwksjQ1cVjc92kuaoSAvS7vycL5/b4vkEon684u5J
+         3aOOdVVnGIi98yvKNkxBf2SgrxHLVMHLkAexnh99VgI4+PjaSuTh1eeqrvR3EmJm1qYg
+         wVug==
+X-Gm-Message-State: AOJu0Yy/BB4dAh+mrkiGv5I+jNZVyq6EqSsHsOliJn6qLhHHwFTLIWaE
+	+xAe7gFJPIea//jzNRDkWOMOGBtYndWm2hA8RAvjkaw4wK7kx7IzH/RrCExVUbxQyDHWrJG5rYv
+	phncyL7LCXfh9mrMnMOzto68t8a+K+mEP
+X-Google-Smtp-Source: AGHT+IGeykSfv+iPbDpIOjplcA7B2ncGg7dGP535l09uPI9pfDVvLbmbCutHqyDGs0sVFTaLiv0uN59uzQcfigqNSQA=
+X-Received: by 2002:a05:651c:211d:b0:2d2:8ba4:49b2 with SMTP id
+ a29-20020a05651c211d00b002d28ba449b2mr1875052ljq.16.1708950891220; Mon, 26
+ Feb 2024 04:34:51 -0800 (PST)
 MIME-Version: 1.0
 References: <CAPJWBnhLVZOL180XF_J0roaAiyH+vVi5ufCcTPKoRGvrpxHa0w@mail.gmail.com>
  <PH7P220MB145394273CB95CDA8D2DDB4AC35A2@PH7P220MB1453.NAMP220.PROD.OUTLOOK.COM>
-In-Reply-To: <PH7P220MB145394273CB95CDA8D2DDB4AC35A2@PH7P220MB1453.NAMP220.PROD.OUTLOOK.COM>
-From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Date: Mon, 26 Feb 2024 17:56:27 +0530
-Message-ID: <CAPJWBng=c-rkkJ4Qs2XBpqtHyd3BGTUudmp8zk5xfSPZWzVJLA@mail.gmail.com>
+ <CAPJWBng=c-rkkJ4Qs2XBpqtHyd3BGTUudmp8zk5xfSPZWzVJLA@mail.gmail.com>
+In-Reply-To: <CAPJWBng=c-rkkJ4Qs2XBpqtHyd3BGTUudmp8zk5xfSPZWzVJLA@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 26 Feb 2024 13:34:39 +0100
+Message-ID: <CANNYZj-njzpZkY9tNJ=LOsg=0y5GMYkcjD43Y48j-2_136eY2g@mail.gmail.com>
 Subject: Re: [yocto] Yocto kirstone bitbake failed
-To: Myles Dear <smdear@hotmail.com>, yocto@lists.yoctoproject.org
-Content-Type: multipart/related; boundary="000000000000780fda06124805bd"
+To: yocto@lists.yoctoproject.org, hassanchattarki@gmail.com
+Cc: Myles Dear <smdear@hotmail.com>
+Content-Type: multipart/related; boundary="000000000000cf6ab2061248225c"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 26 Feb 2024 12:26:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62606
+ <yocto@lists.yoctoproject.org>; Mon, 26 Feb 2024 12:34:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62607
 
---000000000000780fda06124805bd
-Content-Type: multipart/alternative; boundary="000000000000780fd806124805bc"
+--000000000000cf6ab2061248225c
+Content-Type: multipart/alternative; boundary="000000000000cf6ab1061248225b"
 
---000000000000780fd806124805bc
+--000000000000cf6ab1061248225b
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-HI Myles,
-Thank for your reply
-Well I start by using the source oe-init-build-env command and the
-TEMPLATECONF points to the other sdk's conf directory.
+There is a hint in the traceback: bitbake is trying to set a locale that it
+can work with, but python's locale module returns an error. There are
+references to files and line numbers. So you could open those files and
+check what is it trying to do. Perhaps reproduce the issue in python shell.
+Maybe that locale is missing on your build system?
 
-[image: image.png]
+Alex
 
-So I go to templatconf.cfg file and manually change the file path to "
-*/Yocto_kirkstone/poky/meta-poky/conf*".
-Then I get this
-[image: image.png]
-[image: image.png]
+On Mon, 26 Feb 2024 at 13:26, MOHAMMED HASSAN <hassanchattarki@gmail.com>
+wrote:
 
-In local.conf  I choose machine as "*qemuarm64*"
-
-After that I run bitbake *core-image-minimal*
-
-[image: image.png]
-
-Not sure why the error occurs.
-
-Any ideas why I am facing this issue?
-
-
-
-On Mon, Feb 26, 2024 at 5:37=E2=80=AFPM Myles Dear <smdear@hotmail.com> wro=
-te:
-
-> Please provide more detail.
+> HI Myles,
+> Thank for your reply
+> Well I start by using the source oe-init-build-env command and the
+> TEMPLATECONF points to the other sdk's conf directory.
 >
-> Generally, the following link may be useful
+> [image: image.png]
 >
-> Understanding locale environment variables
-> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-locale=
--environment-variables>
-> ibm.com
-> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-locale=
--environment-variables>
-> [image: apple-touch-icon.png]
-> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-locale=
--environment-variables>
-> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-locale=
--environment-variables>
+> So I go to templatconf.cfg file and manually change the file path to "
+> */Yocto_kirkstone/poky/meta-poky/conf*".
+> Then I get this
+> [image: image.png]
+> [image: image.png]
 >
-> I recently moved from Dunfell to Kirkstone. I used git and had to maintai=
-n
-> the pky git repo as well as all other contained tepos were moved to
-> Kirkstone branches. I then moved aside build/conf to build/conf-old,
-> removed all other content in build directory, resources the oe environmen=
-t
-> script, and ported over my configuration (some naming changes happened
-> between Dunfell and Kirkstone) and my bitbake worked as expected.
+> In local.conf  I choose machine as "*qemuarm64*"
 >
-> Not sure if this fully answers your question.
+> After that I run bitbake *core-image-minimal*
 >
-> Sent from my iPhone
+> [image: image.png]
 >
-> On Feb 26, 2024, at 4:39=E2=80=AFAM, MOHAMMED HASSAN <hassanchattarki@gma=
-il.com>
-> wrote:
+> Not sure why the error occurs.
 >
-> =EF=BB=BF
-> Hi guys,
-> So I had earlier downloaded kirkstone and built an image . Later I delete=
+> Any ideas why I am facing this issue?
+>
+>
+>
+> On Mon, Feb 26, 2024 at 5:37=E2=80=AFPM Myles Dear <smdear@hotmail.com> w=
+rote:
+>
+>> Please provide more detail.
+>>
+>> Generally, the following link may be useful
+>>
+>> Understanding locale environment variables
+>> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-local=
+e-environment-variables>
+>> ibm.com
+>> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-local=
+e-environment-variables>
+>> [image: apple-touch-icon.png]
+>> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-local=
+e-environment-variables>
+>> <https://www.ibm.com/docs/en/aix/7.3?topic=3Dlocales-understanding-local=
+e-environment-variables>
+>>
+>> I recently moved from Dunfell to Kirkstone. I used git and had to
+>> maintain the pky git repo as well as all other contained tepos were move=
 d
-> the entire directory and moved to other works. Now I created a new
-> partition and tried to bitbake core-image-minimal.
-> But I get the error
-> <image.png>
->
->
-> Not sure why but even the source oe-init-build-env pointed to an older
-> yocto sdk(dunfell).
->
-> Please suggest what to do.
->
+>> to Kirkstone branches. I then moved aside build/conf to build/conf-old,
+>> removed all other content in build directory, resources the oe environme=
+nt
+>> script, and ported over my configuration (some naming changes happened
+>> between Dunfell and Kirkstone) and my bitbake worked as expected.
+>>
+>> Not sure if this fully answers your question.
+>>
+>>
+>> On Feb 26, 2024, at 4:39=E2=80=AFAM, MOHAMMED HASSAN <hassanchattarki@gm=
+ail.com>
+>> wrote:
+>>
+>> =EF=BB=BF
+>> Hi guys,
+>> So I had earlier downloaded kirkstone and built an image . Later I
+>> deleted the entire directory and moved to other works. Now I created a n=
+ew
+>> partition and tried to bitbake core-image-minimal.
+>> But I get the error
+>> <image.png>
+>>
+>>
+>> Not sure why but even the source oe-init-build-env pointed to an older
+>> yocto sdk(dunfell).
+>>
+>> Please suggest what to do.
+>>
+>>
+>>
+>>
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#62602):
-> https://lists.yoctoproject.org/g/yocto/message/62602
-> Mute This Topic: https://lists.yoctoproject.org/mt/104579162/8063318
+> View/Reply Online (#62606):
+> https://lists.yoctoproject.org/g/yocto/message/62606
+> Mute This Topic: https://lists.yoctoproject.org/mt/104579162/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> myles.dear@ktechnology.ca]
+> alex.kanavin@gmail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 >
 
---000000000000780fd806124805bc
+--000000000000cf6ab1061248225b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">HI=C2=A0Myles,<div>Thank for your reply<br><div>Well I sta=
-rt by using the source oe-init-build-env command and the TEMPLATECONF point=
-s to the other sdk&#39;s conf directory.</div><div>=C2=A0</div><img src=3D"=
-cid:ii_lt2we9c61" alt=3D"image.png" width=3D"727" height=3D"67" style=3D"ma=
-rgin-right: 0px;"><br><div><br></div><div>So I go to templatconf.cfg file a=
-nd manually change the file path to &quot;<b>/Yocto_kirkstone/poky/meta-pok=
-y/conf</b>&quot;.</div><div>Then I get this</div><div><img src=3D"cid:ii_lt=
-2wszh12" alt=3D"image.png" width=3D"562" height=3D"431"><br></div><div><img=
- src=3D"cid:ii_lt2wtvha3" alt=3D"image.png" width=3D"562" height=3D"145"><b=
-r></div><div><br></div><div>In local.conf=C2=A0 I choose machine as &quot;<=
-b>qemuarm64</b>&quot;</div><div><br></div><div>After that I run bitbake <b>=
-core-image-minimal</b></div><div><br></div><div><img src=3D"cid:ii_lt2wwlsd=
-4" alt=3D"image.png" width=3D"562" height=3D"322"><br></div><div><br></div>=
-<div>Not sure why the error occurs.</div><div><br></div><div>Any ideas why =
-I am facing this issue?</div><div><br></div><div><br></div></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Fe=
-b 26, 2024 at 5:37=E2=80=AFPM Myles Dear &lt;<a href=3D"mailto:smdear@hotma=
-il.com">smdear@hotmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">
+<div dir=3D"ltr"><div>There is a hint in the traceback: bitbake is trying t=
+o set a locale that it can work with, but python&#39;s locale module return=
+s an error. There are references to files and line numbers. So you could op=
+en those files and check what is it trying to do. Perhaps reproduce the iss=
+ue in python shell. Maybe that locale is missing on your build system?</div=
+><div><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Mon, 26 Feb 2024 at 13:26, MOHAMMED H=
+ASSAN &lt;<a href=3D"mailto:hassanchattarki@gmail.com">hassanchattarki@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"ltr">HI=C2=A0Myles,<div>Thank for your reply<br><div>Well =
+I start by using the source oe-init-build-env command and the TEMPLATECONF =
+points to the other sdk&#39;s conf directory.</div><div>=C2=A0</div><img sr=
+c=3D"cid:ii_lt2we9c61" alt=3D"image.png" width=3D"727" height=3D"67" style=
+=3D"margin-right: 0px;"><br><div><br></div><div>So I go to templatconf.cfg =
+file and manually change the file path to &quot;<b>/Yocto_kirkstone/poky/me=
+ta-poky/conf</b>&quot;.</div><div>Then I get this</div><div><img src=3D"cid=
+:ii_lt2wszh12" alt=3D"image.png" width=3D"562" height=3D"431"><br></div><di=
+v><img src=3D"cid:ii_lt2wtvha3" alt=3D"image.png" width=3D"562" height=3D"1=
+45"><br></div><div><br></div><div>In local.conf=C2=A0 I choose machine as &=
+quot;<b>qemuarm64</b>&quot;</div><div><br></div><div>After that I run bitba=
+ke <b>core-image-minimal</b></div><div><br></div><div><img src=3D"cid:ii_lt=
+2wwlsd4" alt=3D"image.png" width=3D"562" height=3D"322"><br></div><div><br>=
+</div><div>Not sure why the error occurs.</div><div><br></div><div>Any idea=
+s why I am facing this issue?</div><div><br></div><div><br></div></div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On M=
+on, Feb 26, 2024 at 5:37=E2=80=AFPM Myles Dear &lt;<a href=3D"mailto:smdear=
+@hotmail.com" target=3D"_blank">smdear@hotmail.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
 
 
 
@@ -250,8 +275,9 @@ ked as expected.=C2=A0</div>
 <div><br>
 </div>
 <div>Not sure if this fully answers your question.=C2=A0</div>
-<br id=3D"m_-3685467542297510643lineBreakAtBeginningOfSignature">
-<div dir=3D"ltr">Sent from my iPhone</div>
+<br id=3D"m_8935100347278055901m_-3685467542297510643lineBreakAtBeginningOf=
+Signature">
+<div dir=3D"ltr"></div>
 <div dir=3D"ltr"><br>
 <blockquote type=3D"cite">On Feb 26, 2024, at 4:39=E2=80=AFAM, MOHAMMED HAS=
 SAN &lt;<a href=3D"mailto:hassanchattarki@gmail.com" target=3D"_blank">hass=
@@ -279,21 +305,7 @@ older yocto sdk(dunfell).=C2=A0</div>
 <div>Please suggest what to do.</div>
 </div>
 <span></span><br>
-<span>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-</span><br>
-<span>Links: You receive all messages sent to this group.</span><br>
-<span>View/Reply Online (#62602): <a href=3D"https://lists.yoctoproject.org=
-/g/yocto/message/62602" target=3D"_blank">https://lists.yoctoproject.org/g/=
-yocto/message/62602</a></span><br>
-<span>Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/1045791=
-62/8063318" target=3D"_blank">https://lists.yoctoproject.org/mt/104579162/8=
-063318</a></span><br>
-<span>Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" =
-target=3D"_blank">yocto+owner@lists.yoctoproject.org</a></span><br>
-<span>Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub"=
- target=3D"_blank">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a hre=
-f=3D"mailto:myles.dear@ktechnology.ca" target=3D"_blank">myles.dear@ktechno=
-logy.ca</a>]</span><br>
-<span>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-</span><br>
+<span></span><br>
 <span></span><br>
 </div>
 </blockquote>
@@ -301,10 +313,28 @@ logy.ca</a>]</span><br>
 </div>
 
 </blockquote></div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#62606): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/62606" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/62606</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/104579162/168=
+6489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/104579162/1686489</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
+anavin@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
---000000000000780fd806124805bc--
+--000000000000cf6ab1061248225b--
 
---000000000000780fda06124805bd
+--000000000000cf6ab2061248225c
 Content-Type: image/png; name="apple-touch-icon.png"
 Content-Disposition: inline; filename="apple-touch-icon.png"
 Content-Transfer-Encoding: base64
@@ -317,7 +347,7 @@ BpWjb38QaAt5+NIcqDHzXaWkzSo9DStWrFixYsWKFStWrFg1WWt5+H47ZN5vsc/2h9HsvaG/7+Hd
 CUkzivax4+cqzImTk0d/Pdckg+TVu/1Cj5DrYKL/mmv5uvRDz1YAcu3PNakM8aXiXLfrlTu2p8vX
 6kBhrg7qleFkorl6nztaa4/na8L93HcrrgCD1cBBN81y6uv19TUw+n9WSa5hDSiur+wLsGLFihUr
 VqxYsWLFivU97SHAAJBSnEmAkA+3AAAAAElFTkSuQmCC
---000000000000780fda06124805bd
+--000000000000cf6ab2061248225c
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -1063,7 +1093,7 @@ BCNNBQAAAAAAAAAAEeJf6MfYLh0AAAAAAAAAACJFNv8F06gAAAAAAAAAACAyJGOjdAAAAAAAAAAA
 iChJxEwCT/QDAAAAAAAAAIBIkeFPAQAAAAAAAAAA+DFJzJ8CAAAAAAAAAIDIkv6N0hm7pQMAAAAA
 AAAAQIRgFhUAAAAAAAAAAEQY9qICAAAAAAAAAIAIQ4oKAAAAAAAAAAAiDCkqAAAAAAAAAACIMKSo
 AAAAAAAAAAAgwpCiAgAAAAAAAACACPt/xDDVx4CjbXUAAAAASUVORK5CYII=
---000000000000780fda06124805bd
+--000000000000cf6ab2061248225c
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2924,7 +2954,7 @@ lk1Z+F1S6w/Wbjj45fg293aOnfrdBauX25pG0uXNgS6pp0/fbJpHKAgICAg0OZCfa61DHfWHEWip
 1lFlYfOYpgGRvp7j9jKnjbAvCZdqizBFFFNGU2B9V6ip0vxNtn8glF/hTgRbNR4p8GQxFy/cknl9
 EpIVk9ObicWNRK2HcccDZ2BnDb20hUs1ejj/KUkb8dB1p3eJvvBZGML/JfNfj02/ZVE/dd339pgV
 0VbOZAgICAg84/w/6C8lLbWa4JwAAAAASUVORK5CYII=
---000000000000780fda06124805bd
+--000000000000cf6ab2061248225c
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -3572,7 +3602,7 @@ YsSyAAAAAPApsIl0YgFFSI0zDXiZb9PSUjKEAlZacrpuBlaVBwAAAIBPgmqrbyyKYCnCMIRQhKr5
 YlmGULWRLwsAAAAA8DlUXfuVqcXFuQAAAAAAPqUqsSxmZAEAAACg3hDFspiIBQAAAID6RxTLVpmO
 xewsAAAAANQDVfNlAQAAAADqC8SyAAAAAFBfsZW/BADgC3lVHCevqE+Djp+zJQAAUDdhXhYAAAAA
 6qv/A/ExD6+BWAyQAAAAAElFTkSuQmCC
---000000000000780fda06124805bd
+--000000000000cf6ab2061248225c
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -5189,5 +5219,5 @@ CCGEUBNVdqafAK7aiRBCCCGEUBPFAFCM9xFCCCGEEGrCcJ1+hBBCCCGEmjgGJ/YghBBCCCHUtJVN
 78G4HyGEEEIIoSYLp/cghBBCCCHUxOE6/QghhBBCCDVxDFDAaf0IIYQQQgg1YQxgyI8QQgghhFCT
 xgABfBwvQgghhBBCTVjZjbyAcT9CCCGEEEJNFa7TjxBCCCGEUBPH4Dl+hBBCCCGEmrbKJTvxfD9C
 CCGEEEJNE67TjxBCCCGEUBP3//hja0XGKcGuAAAAAElFTkSuQmCC
---000000000000780fda06124805bd--
+--000000000000cf6ab2061248225c--
 
