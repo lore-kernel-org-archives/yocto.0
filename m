@@ -1,132 +1,230 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <joerg.sommer@navimatix.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 25C33C5475B
-	for <webhook@archiver.kernel.org>; Fri,  1 Mar 2024 22:32:22 +0000 (UTC)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
- by mx.groups.io with SMTP id smtpd.web11.37676.1709332338481741760
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3E10C48BF6
+	for <webhook@archiver.kernel.org>; Sun,  3 Mar 2024 10:10:01 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.136])
+ by mx.groups.io with SMTP id smtpd.web11.70622.1709460599457978616
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 Mar 2024 14:32:18 -0800
+ Sun, 03 Mar 2024 02:10:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=fHNY21qf;
- spf=softfail (domain: sakoman.com, ip: 209.85.128.179, mailfrom: steve@sakoman.com)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6098bf69909so5604397b3.1
-        for <yocto@lists.yoctoproject.org>; Fri, 01 Mar 2024 14:32:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1709332337; x=1709937137; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W2lE2idpCQw8zyoKyVKOn+zUcWrl3khdd3WmslZ3gi8=;
-        b=fHNY21qfEqP960BJB5rRXOrBRFcZrm084x7VHCRoLEHVXEt4hhzyCV3pf1CSwWTKrM
-         WWQprbefo4xg4j4qKFm1nh6Bb1Gt7UcIFR2rTd7HVOG8Ya0OHYX1rRApdreDTlxr6m3I
-         DHjxSPKazj3rHmfjRzJpcEUqYUFOrJ39TilDizIRCJdvQoPjlzLOLGfSaICymxwfuwE0
-         rAsz08CudidwWMtrkhpYACp3hHP9S0w94pZGw0lZcJNHKTkXVaAQANYkDKTQkvXMQy/c
-         fTiE2YA3FNsv2j5hkedSfmamWkYYxvaiMX2S5Jzl4uU18UW/Ml3+S9FzgXye2GNPdDOX
-         +Btg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709332337; x=1709937137;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W2lE2idpCQw8zyoKyVKOn+zUcWrl3khdd3WmslZ3gi8=;
-        b=W773slnuq0gNj2X7wDZK7w28ztH+rWuC8WLBT/ZkXtQFyaTUOqEqKWjTbcV9mosN0C
-         EsGOuyF08kDAdfIv4LXi4rM7Tv+affcZT3DRZ3/M3MZoMYdpJICb5akrsfdhx9HGagpR
-         Bq//XuXNy2pAMSg6ob50faX4Bbzqb8lsdbvdUzrhSJQmLxSBrxLnVeXDKxYtk/3TNEvL
-         fonkK9h02/K+FIRvTeNNi5ioT7Tfy+HZesPkaAF/YXq3+xwSZ8Lp9brEpi2UEelWKH4I
-         fhRZzNH1YZG4BuRR8+tlInmYTsC0VOraYwxQHDl8ln2VJwhxA61jfs08xWXUbW3ayXKi
-         XInA==
-X-Gm-Message-State: AOJu0YynJg5GwwwcykPf1xgDXrBjcCA8rFkLyhagqoqiM5CwIdP9lyKP
-	1C1z/oraoy7R50D72OlgADnkPfxU81C2lwu9oCFEVCE8kA1WkcVvcXB04R+Z3nAP3qMwha26y6H
-	1mOzmMX4OAgjQr0hgwR5yo58PJe0M111FJTA23fP/yLPqZ0pwag5v6w==
-X-Google-Smtp-Source: AGHT+IHqddH5PotnCDOCfl90BPzJlQHZpgbWQgg64RPGdVk8mYXh1l8tTlntk5n82p86wrwV5BhlLLdV8IM8stlIEq4=
-X-Received: by 2002:a81:af4c:0:b0:609:26c9:e0a3 with SMTP id
- x12-20020a81af4c000000b0060926c9e0a3mr2730697ywj.17.1709332337540; Fri, 01
- Mar 2024 14:32:17 -0800 (PST)
+ dkim=pass header.i=@navimatix.de header.s=selector1 header.b=JQSuxf4H;
+ spf=pass (domain: navimatix.de, ip: 40.107.21.136, mailfrom: joerg.sommer@navimatix.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=niyYSoE06PnnXc5HFDU3MBBkFnvDBYismWF6cAWCH2VAXUk2zTTdACXgxicvQVIEraeXm/bleoEXNjic2NcGAarRlq6KC2gTHfrG/cjJ5qLxGapBkXcmvAUnUQDCzfYRBwMzICEDbxM0eBSfpa4dMNVMv+KhHxAp73aZCOvM7gjCOZtrbeCbuqk7WAHTE1s4cA29QQtQq4MK6aVlk1KEATlY2LaMCqhNjReomJG/DqXWMEvdzzqCgglvxfFBmLd9T7f+cKwfumOIU3vmEs+66M4KN7Wyd54rxAvQ9iZAkeLpJuoSUQSc9/acgcUcaE+XYyMAWy3p3/XObihNsb5bbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2e7Wh/3pjShIksLrnau9eafeNLmBYhBbtOgZdIf9PD0=;
+ b=cotHAiPqROrIIacEyIxzv+F7wmGIfxK4cfibJ1Lpd1/6XLd9Yl94TBAH0fQ97a0HzxYevn+9tCfPqIAGFavObNxluNBVN6Gp32gKKZpql67bY0wNpOhtXBssqko2mr+iH1fm2agU/T0m4UhTEWgZiLB9Bdb2TIAa5Z0iYxFcRZNffHg+OGsOqg4mUEO615AvI9l0uQO1KLtbsMNUAS4U+A0Idpaep4D1cOPHDhm1R7jqs0aiA2eU2a0z3G9klwjFptclpv/3/PRIineWZ5KmOnyCEtlLSlK0KjY7G5m/hhgStFmdAT5O9yghLkG0zhJ9IF21P3yD4F2YXMQSRfweCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=navimatix.de; dmarc=pass action=none header.from=navimatix.de;
+ dkim=pass header.d=navimatix.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=navimatix.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2e7Wh/3pjShIksLrnau9eafeNLmBYhBbtOgZdIf9PD0=;
+ b=JQSuxf4H8hMG2JRRbpcdp3skE6MD6e3Fc2J2VkoX25e6mzOk/DwoAcincmNDUa9UsJhH8kneNxd0dinHdh+ST6OxRKyDVTTzCLBLS/Qiz4V6lT9UPvECpq/kaI2pzE434Znt4CYC+xmLbkUQNkO73INGvZ0sUiixRzSVD0eKSEE=
+Received: from DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
+ (2603:10a6:8:7::20) by DB9PR01MB9056.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:368::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.38; Sun, 3 Mar
+ 2024 10:09:55 +0000
+Received: from DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
+ ([fe80::25b0:e60e:c5dc:54f5]) by
+ DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
+ ([fe80::25b0:e60e:c5dc:54f5%6]) with mapi id 15.20.7339.035; Sun, 3 Mar 2024
+ 10:09:55 +0000
+From: =?iso-8859-1?Q?J=F6rg_Sommer?= <joerg.sommer@navimatix.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"yocto-security@lists.yoctoproject.org"
+	<yocto-security@lists.yoctoproject.org>
+Subject: Using SBOM/spdx with DependencyTrack/CyclonDX
+Thread-Topic: Using SBOM/spdx with DependencyTrack/CyclonDX
+Thread-Index: AQHabU84Kwd5Cn8kKkyrsNU1E5NI0g==
+Date: Sun, 3 Mar 2024 10:09:55 +0000
+Message-ID: 
+ <DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2@DB3PR0102MB3658.eurprd01.prod.exchangelabs.com>
+Accept-Language: en-DE, de-DE, en-US
+Content-Language: aa
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=navimatix.de;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB3PR0102MB3658:EE_|DB9PR01MB9056:EE_
+x-ms-office365-filtering-correlation-id: 988d57ce-4399-485b-aa0f-08dc3b6a1317
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ nN1Sq1QZz/AkC8aKeD6YfMrbCwLHnfr+IDJ5ziZHKF1wP+dccvAU6H5iJnC7bfXSeVF6UkuemKJkp4/vaq07qgzVOwVMJA1crOtfIJbCnSZh8w7ZGlKCL5VfdtnMqosF4Ssr0F+C7hfHVEDyb2q68853m5Gd5FI0cxifqVqExirCQ/LYIGhvs/3yIZJbJi86m171fbKv1kHBuA91DJ61ALz4/jTi2K4fK4mRKGTTFQLVFbXi/XKeahmvLdWjxsAwIJ3vyrsRtGBv7STitoZVi4nbriIbumjH+Uuo7ABuKzOydRpjELVTyF+GdPMYCt7ttIGran1HEVEV5j8Ux78Was3dQzrzcsMX+12sV3e7IpD8lXRQdwpGDjQxeDTzck7sxGPs2LyzSs5nl2eBwGezYrWTjJ/o0wRj7gV+Hi/71LUzsTaBUXAkI5Mho4IPgMa9Aio3VpQqVm0k+76E3Hm2/a0+II+uyKutfPdmgkj1EYoKejqzC7BanmJHuBI7QUL7dyMP7vF5rblI86IMlIxhjEiRhGsTN6PD4BFnHW/42A2F/Dy+1PfH0aGmRzv2mw+jCX096kSsbzEpRMN0zbT0peKoVRUQXBp+Hw1iXydKFDaCOGOM9biIeohL+nlIe4iMoL+oOS4Coi+cCLpSD2GU1etXXxgl/T5A0BXIFXIoTa4=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB3PR0102MB3658.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?g64RT5f5m68pHFDXPMdg0uh60G2DsI7Kt1BiWYVHf9vRwBCR2BX0Nw5Bl8?=
+ =?iso-8859-1?Q?jARp8voSYE5ESc2XHs3/f5b/O6LsgwnmQRLlfRy3GPcNBkA+kn74z6/sdr?=
+ =?iso-8859-1?Q?g6ox1xeP0qmQMatqVrfMyZHAv/X+EGTgplvkm5TTwbCY8lsNKfjo5hVdaa?=
+ =?iso-8859-1?Q?R3O83PFmhFwitSDcub/ujN2/qiRAXodbhiUo3SPRP8LghYCekhmlUDjeez?=
+ =?iso-8859-1?Q?Ia6SQ6tJIficyJKys1QP/I5xnnJ9bZdWGwNdNSoVKuOUWQx9pg8n7xAkD3?=
+ =?iso-8859-1?Q?B9/AEAnsf4XE05JiAyCTFgbelR08HHUb/lcwrZJ8T9wcKOhPB5BaAEJ1tE?=
+ =?iso-8859-1?Q?GOvJlBBrQco/9o8odkeItM/cd0cV4vdG+0/tTpgqDBrOGXRXynx5Mr1xCP?=
+ =?iso-8859-1?Q?U0HR1vcMEPp6a7k3YSIB/cRg23pQoGUsOh8WZxyrGSd6AKr9Xl0DWZhJsu?=
+ =?iso-8859-1?Q?XuO3Mkgvr7owUD3u/JBo/d/LTDWHzhRzLEGpnTypH4pCkzUZCsECcZkKzu?=
+ =?iso-8859-1?Q?C02uOo7EiaaS+0iYjdA/57tkmF3aCgbSxuzrnBOfO8TryxdlJO0DIR5Ckw?=
+ =?iso-8859-1?Q?EGtQk5dmODnVQQNkJPAXJ7HsCoGaN2C2Oy0p8by8phFO2KVdWQi/hGBu9s?=
+ =?iso-8859-1?Q?IAVgEHp0AjYHAf9jQeoy7bm9WRB6fs3YovxyZnmoMUpoWW7sIfC2/hxG92?=
+ =?iso-8859-1?Q?P623dYc4K3uKrTa/wa2AWiJjuQJAZUwTclhmg1fHclHKQ01eBXV1Gz7kB7?=
+ =?iso-8859-1?Q?8P0tUHxCPyz6vcUrxV60ezIULCdB7sJ6MtOkP2v/tdtjJS3ZgqTBf9d2HH?=
+ =?iso-8859-1?Q?yOo9KaxSLRpBfpLHgX4RX6UAWMRIcU//jB9wGLWM2Mwk1EZSEK6hRgnh5x?=
+ =?iso-8859-1?Q?3HskTKHk5xCbWRn77SFty9l5rqGXX4GUwzTnKbmJgT8cBYgFDC2s/IlLjr?=
+ =?iso-8859-1?Q?wFM0403ubijs11i+yaXrlQcaOnpx+oJ86XT05k+GifWeLwjg9WeUbPPbrn?=
+ =?iso-8859-1?Q?3Erx3jIwoTSYY6oKZyH+FEkX63RM6tc2OTqjCGPHm3U7z8XVezpf8AxRez?=
+ =?iso-8859-1?Q?Px30+ifs8saX0SurIxyuBblR2+SSLhlZg5NHjVGuowjEgGLbUjiSgew9QO?=
+ =?iso-8859-1?Q?MiKerYud04i/SQ9guyYLHYblS5GmQRn7MEExFrh1UTV/u2ToJwSSeDYwkL?=
+ =?iso-8859-1?Q?bkmALiMgxMXKpgCXKMYi4m1AG1LoGQKa0r9/kAqLsz/JzxQoKVvQCVETVp?=
+ =?iso-8859-1?Q?t+EBAJx1Mz9orokDgY9anqySHUUFyiw2m0+JbcDtTfmTIkcz8E1XZa2S/v?=
+ =?iso-8859-1?Q?6TsfTJrEGvWAcyhXH3sRRubDFjlNgDsA/At9MvSIJpl7/FRv/mKduA3hPg?=
+ =?iso-8859-1?Q?BOwvNnkCWqEyhc01rTm2+Xzk1mf4R1kmOfXDG3LI6JmNsfAhSbzrz8l1ZG?=
+ =?iso-8859-1?Q?UZ6AllzmMnhy2PgegwGrR3LkizUVNsDF2UfvY65/NX0AKVbXbmxOBIxDxz?=
+ =?iso-8859-1?Q?v04D2zFNQw7it4qzU29C8e/NGHyqLAQkq12C0vHIZmyyfv8+FiLqIPa5cX?=
+ =?iso-8859-1?Q?7FNM2YdOCm7Kzb2iVAJ+xFXg2StLIGKScUsShD7c2WNK3o2Zgxlblcr/AT?=
+ =?iso-8859-1?Q?LIQk5pYxNkJj372Kq27jeuxFMC1CjPErguYyuju7uZT+5CHczpWKZc1+ci?=
+ =?iso-8859-1?Q?g8p5nzJ3lzdgtT6Di2zmV2oDKQvTSZjC8RbEV+uu?=
+Content-Type: multipart/mixed;
+	boundary="_004_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_"
 MIME-Version: 1.0
-References: <0101018dfc174a49-a1f49584-e024-4894-9905-cc8c0c222f15-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018dfc174a49-a1f49584-e024-4894-9905-cc8c0c222f15-000000@us-west-2.amazonses.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Fri, 1 Mar 2024 12:32:06 -1000
-Message-ID: <CAOSpxdZi+j8VOABfL=sVXGvGTb1rhxsEjJVp7iYYBiB4-N5oEA@mail.gmail.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-3.1.32.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: navimatix.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 988d57ce-4399-485b-aa0f-08dc3b6a1317
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2024 10:09:55.2599
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c87b4f54-b992-4813-8f3f-4a876324197f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jm+5te07JQQk5Pq1zBszgoA/pNHMH6BkrSh2781Ps2XjpSObG/sXfLu80pfHjdMa8gFpy61nQ+tPL2dsZy3O5QvJxkvzfpGOTortLHyJbEc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR01MB9056
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 01 Mar 2024 22:32:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62651
+ <yocto@lists.yoctoproject.org>; Sun, 03 Mar 2024 10:10:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62652
 
-There was one failure in this release build in qemuppc.
+--_004_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_
+Content-Type: multipart/alternative;
+	boundary="_000_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_"
 
-It is a known intermittent issue that we haven't seen in many months
-(years actually): "qemuppc ping test failure" [YOCTO #14474]
+--_000_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I've updated the bug with this occurrence but haven't reopened it
-since it happens so very infrequently.
+Hi,
 
-A subsequent re-test of qemuppc passed, as expected:
+does anyone use DependencyTrack https://dependencytrack.org/ to analyse CVE=
+ vulnerabilities? I've created a script to convert the spdx.tar.zst to a Cy=
+cloneDX JSON and upload this to DependencyTrack. But I'm having the problem=
+ that CVEs fixed in Yocto by patches are not reflected in the spdx. There i=
+s the sourceInfo field that lists fixed CVEs, but I don't know how to encod=
+e this in CycloneDX. How is this done with SDPX? Does anyone do CVE analysi=
+s with SPDX?
 
-https://autobuilder.yoctoproject.org/typhoon/#/builders/63/builds/8597
+Regards J=F6rg
 
-I think we are good to go for QA on this build, though it is fine if
-it is delayed till after the scarthgap milestone release QA.
 
-Steve
+--_000_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 1, 2024 at 12:16=E2=80=AFPM Pokybuild User
-<pokybuild@yoctoproject.org> wrote:
->
->
-> A build flagged for QA (yocto-3.1.32.rc1) was completed on the autobuilde=
-r and is available at:
->
->
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.32.rc1
->
->
-> Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/bui=
-lds/6633
->
-> Build hash information:
->
-> bitbake: 7ce4107bf824b3e115b40558336de25f99af31f8
-> meta-agl: 6779dc072af75f1f606b0aecafff80fca8bc8419
-> meta-arm: b75b8ce1ac10dc3521c0f710a4cf79bc7e985cfd
-> meta-aws: 6304ff33b112512b31919a7aaf145ab2ceed67a1
-> meta-clang: fc56d6c8014f75fbc5a3f272c62ae201888e65d5
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: e482213f37828216c7a7df68ff353652cc865ec1
-> meta-mingw: 7bdc58e6c5d1054b1b6ad5c4e480a95e995ccbae
-> meta-openembedded: daa4619fe3fbf8c28f342c4a7163a84a330f7653
-> meta-virtualization: 35c723774ee06b3c1831f00a2cbf25cbeae132e1
-> oecore: b49b0a3dd74c24f3a011c9c0b5cf8f6530956cfa
-> poky: 54d8a1f631543ce01ba513e7cdae756e2a8e1968
->
->
->
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#388): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/388
-> Mute This Topic: https://lists.yoctoproject.org/mt/104675615/3620601
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/12627247/3620601/791647976/xyzzy [steve@sakoman.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hi,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof"><span style=3D"font-family: Aptos, Aptos_Embe=
+ddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 1=
+2pt; color: rgb(0, 0, 0);">does anyone use DependencyTrack
+<a href=3D"https://dependencytrack.org/" id=3D"LPlnk" class=3D"OWAAutoLink"=
+>https://dependencytrack.org/</a>
+</span>to analyse CVE vulnerabilities? I've created a script to convert the=
+ spdx.tar.zst to a CycloneDX JSON and upload this to DependencyTrack. But I=
+'m having the problem that CVEs fixed in Yocto by patches are not reflected=
+ in the spdx. There is the
+<span style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService,=
+ Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+sourceInfo field that lists fixed CVEs, but I don't know how to encode this=
+ in CycloneDX. How is this done with SDPX? Does anyone do CVE analysis with=
+ SPDX?</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Aptos, Aptos_Embe=
+ddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 1=
+2pt; color: rgb(0, 0, 0);"><br>
+</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Aptos, Aptos_Embe=
+ddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 1=
+2pt; color: rgb(0, 0, 0);">Regards J=F6rg<br>
+</span></div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+</body>
+</html>
+
+--_000_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_--
+
+--_004_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_
+Content-Type: application/octet-stream; name="deptrack-spdx-upoad"
+Content-Description: deptrack-spdx-upoad
+Content-Disposition: attachment; filename="deptrack-spdx-upoad"; size=1641;
+	creation-date="Sun, 03 Mar 2024 10:09:24 GMT";
+	modification-date="Sun, 03 Mar 2024 10:09:55 GMT"
+Content-Transfer-Encoding: base64
+
+IyEvYmluL3NoCgpzZXQgLWUgLXUgLUMKCmlmIFsgLXogIiR7RFRfQVBJX0tFWTotfSIgXQp0aGVu
+CiAgICBlY2hvICdFbnZpcm9ubWVudCB2YXJpYWJsZSBEVF9BUElfS0VZIG5vdCBzZXQnID4mMgog
+ICAgZXhpdCAxCmZpCgppZiBbICQjIC1uZSA0IF0KdGhlbgogICAgZWNobyAiVXNhZ2U6ICQwIEhP
+U1RfVVJMIFBST0pFQ1RfTkFNRSBTUERYX1RBUl9aU1QgUFJPSkVDVF9WRVJTSU9OIiA+JjIKICAg
+IGV4aXQgMQpmaQoKZHRfaG9zdF91cmw9JDEKZHRfcHJvamVjdD0kMgpzcGR4X3Rhcj0kMwpkdF92
+ZXJzaW9uPSQ0CgojIGh0dHBzOi8vZ2l0aHViLmNvbS9DeWNsb25lRFgvc3BlY2lmaWNhdGlvbi9i
+bG9iLzEuNS9zY2hlbWEvYm9tLTEuNS5zY2hlbWEuanNvbgojIGh0dHBzOi8vZG9jcy5kZXBlbmRl
+bmN5dHJhY2sub3JnL3VzYWdlL2NpY2QvCgp0YXIgLXggLWYgIiRzcGR4X3RhciIgLS10by1zdGRv
+dXQgLS13aWxkY2FyZHMgcmVjaXBlLVwqIHwgXAogICAganEgLS1zbHVycCAnbWFwKC5wYWNrYWdl
+cykgfGZsYXR0ZW4KICAgICAgfG1hcChzZWxlY3QoLm5hbWUgfHN0YXJ0c3dpdGgoInBhY2thZ2Vn
+cm91cC0iKSB8bm90KSkgfCB7CiAgICAgICJib21Gb3JtYXQiOiAiQ3ljbG9uZURYIiwKICAgICAg
+InNwZWNWZXJzaW9uIjogIjEuNSIsCiAgICAgICJzZXJpYWxOdW1iZXIiOiAidXJuOnV1aWQ6JyIk
+KHV1aWRnZW4pIiciLAogICAgICAidmVyc2lvbiI6IDEsCiAgICAgICJtZXRhZGF0YSI6IHsKICAg
+ICAgICAidGltZXN0YW1wIjogIiciJChkYXRlIC0taXNvLTg2MDE9c2Vjb25kcykiJyIsCiAgICAg
+IH0sCiAgICAgICJjb21wb25lbnRzIjogbWFwKHsKICAgICAgICAidHlwZSI6ICJhcHBsaWNhdGlv
+biIsCiAgICAgICAgIm5hbWUiOiAubmFtZSwKICAgICAgICAic3VwcGxpZXIiOiAuc3VwcGxpZXIs
+CiAgICAgICAgInZlcnNpb24iOiAudmVyc2lvbkluZm8sCiAgICAgICAgImRlc2NyaXB0aW9uIjog
+LmRlc2NyaXB0aW9uLAogICAgICAgICJsaWNlbnNlcyI6IFt7CiAgICAgICAgICAgICJleHByZXNz
+aW9uIjogLmxpY2Vuc2VEZWNsYXJlZCwKICAgICAgICB9XSwKICAgICAgICAiY3BlIjogLmV4dGVy
+bmFsUmVmc1swXS5yZWZlcmVuY2VMb2NhdG9yLAogICAgICAgICJleHRlcm5hbFJlZmVyZW5jZXMi
+OiAoWwogICAgICAgICAgewogICAgICAgICAgICAidHlwZSI6ICJ2Y3MiLAogICAgICAgICAgICAi
+dXJsIjogLmRvd25sb2FkTG9jYXRpb24KICAgICAgICAgIH0sCiAgICAgICAgICB7CiAgICAgICAg
+ICAgICJ0eXBlIjogIndlYnNpdGUiLAogICAgICAgICAgICAidXJsIjogLmhvbWVwYWdlCiAgICAg
+ICAgICB9CiAgICAgICAgXSB8bWFwKHNlbGVjdCgudXJsICE9IG51bGwgYW5kIC51cmwgIT0gIk5P
+QVNTRVJUSU9OIikpKQogICAgICB9KQogICAgfScgXAogICAgfGN1cmwgLS1uby1wcm9ncmVzcy1t
+ZXRlciAtLWZhaWwtd2l0aC1ib2R5IFwKICAgICAgLUggIlgtQXBpLUtleTogJERUX0FQSV9LRVki
+IFwKICAgICAgLUYgJ2F1dG9DcmVhdGU9dHJ1ZScgXAogICAgICAtRiAicHJvamVjdE5hbWU9JGR0
+X3Byb2plY3QiIFwKICAgICAgLUYgInByb2plY3RWZXJzaW9uPSRkdF92ZXJzaW9uIiBcCiAgICAg
+IC1GICdib209QC0nICIkZHRfaG9zdF91cmwvYXBpL3YxL2JvbSIKCmVjaG8K
+
+--_004_DB3PR0102MB3658E433CD17D9A27297B8E5FC5C2DB3PR0102MB3658_--
 
