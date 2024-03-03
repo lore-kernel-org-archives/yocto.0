@@ -1,97 +1,130 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 532EAC5475B
-	for <webhook@archiver.kernel.org>; Sun,  3 Mar 2024 23:10:55 +0000 (UTC)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
- by mx.groups.io with SMTP id smtpd.web10.85691.1709507445025050687
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 722A5C48BF6
+	for <webhook@archiver.kernel.org>; Sun,  3 Mar 2024 23:13:25 +0000 (UTC)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+ by mx.groups.io with SMTP id smtpd.web11.85618.1709507596526993333
  for <yocto@lists.yoctoproject.org>;
- Sun, 03 Mar 2024 15:10:45 -0800
+ Sun, 03 Mar 2024 15:13:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=Tl65yWbV;
- spf=pass (domain: smile.fr, ip: 209.85.208.173, mailfrom: yoann.congal@smile.fr)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d22b8801b9so53224001fa.0
-        for <yocto@lists.yoctoproject.org>; Sun, 03 Mar 2024 15:10:44 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=StNgEAqh;
+ spf=pass (domain: gmail.com, ip: 209.85.160.178, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-42ef3c813aeso1591141cf.0
+        for <yocto@lists.yoctoproject.org>; Sun, 03 Mar 2024 15:13:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1709507442; x=1710112242; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OYunx27nbteMYuUoyKqW7qwGlMGJzLRRQnUukfr+f+0=;
-        b=Tl65yWbV5L5h+1FMRMErgKvt474WwiJUZplwUHbSbtoAWBPKYyVUiKhNyCrpkYgzUm
-         Rus2zG7vQ0pEY+FRrDqCOCNqWq2Sr1g79eLoN8Ecp7+xYZHsicC2lAKEaTwXPBLUIx06
-         2azJJ7btSKm66uwGhIcHm6nfWxcHbPjx3CUjjlxrw0mGkSiTZ8INTnTyoXNc1gWdGpgP
-         KRsTVAxSSEmKXG0LEmmzus//gB/wQ8NE5BcDxnOG6pFZC0QIAFi/frkN1rHBjaI55Ec7
-         M8LWAO2AAjcU6zv7DzCLAI0sXZveUPUbrcdU7mKZLf+5j6LPbPpLmECW4ieOZ4ylAiDu
-         TIBw==
+        d=gmail.com; s=20230601; t=1709507594; x=1710112394; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLNg6Lr+rO9CvEPzUMFGAhSfFX2SJYlH0AeUIMrHCtU=;
+        b=StNgEAqhSAMjpItcBUphx8NaKe0LT9rOH7OTngjAkTsuWwyfS14LCY7wCTbc6+YF+S
+         EkAdfbiX6dxdginBT+wn1PbcjkYyzDpk7f8/HqCdW8vy6GNnNgj5cBdGEiy8mayA+Ai4
+         xhHlivOPYlHoaT3gWeUA+R9EnC9vshuO57dQSzqBIB6zcjWXYT/AGQLBCXSXWA+tbrAy
+         8reqaVuopsGske2TpaAwUJovVqBdQvFS7t9vjrj8aghY2Yi08ajhw52n2Ii1yZBfFgkb
+         tlFRDJ+swFIeE8gJpHjBMnw/oGU1zhliVhp66PwECY3hkK+LpDA270wWgLaGFaFT0pYi
+         L6Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709507442; x=1710112242;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OYunx27nbteMYuUoyKqW7qwGlMGJzLRRQnUukfr+f+0=;
-        b=EOU57SmGxHjGWMuoGGqIUHNjfq63eO8D0uSJiq43PoblbL5Y/6615hgAz/g1NNT4Lh
-         xfu4poV071OP+JPn48fcNBwM77733d8/MsKJYrH8aIhPb2Q/iytPhwxnYdtOVfYckkvI
-         dOAMNNcCdaZYuk4374P8C4ZobWetLWuPyl1tsVmnVcch4bpwS2Q5sRvhbKDZNoOsi8rz
-         xxI9BrAaof2RxlS6rJGqm2JxLwk/VkcuFHXEHw2/tdB/fmPJlslxtLzR9rWyRG/rgp5F
-         Xh6Yw3oBMCXX9TeUK9aa1fP3GjbBB9vvufzxNumitqqc9+ZfGqUS684gc9hIg0F6R2xw
-         8MfQ==
-X-Gm-Message-State: AOJu0YyO3B2nLADY7Vch7v2QgKJDvbwUNCbSWz+pzxMOiczrCZfpFRi0
-	eH/jNVT17nXWLBtjtTQsGCnEn1blFqBAAJviuxLf29HC4oCMXmV2ufGeAA6eewQesBTsdBYAiav
-	8oyFGoA==
-X-Google-Smtp-Source: AGHT+IFiw13Z3LRCTSvhtrLam54ETCk+l1WiyQWdp45DgOEoi5s0aZcspC74ZyNO4OCF0oQ6qSe3uw==
-X-Received: by 2002:a2e:868e:0:b0:2d2:936a:f8b1 with SMTP id l14-20020a2e868e000000b002d2936af8b1mr4759054lji.46.1709507442171;
-        Sun, 03 Mar 2024 15:10:42 -0800 (PST)
-Received: from P-ASN-ECS-830T8C3.numericable.fr ([89.159.1.53])
-        by smtp.gmail.com with ESMTPSA id n10-20020a05600c4f8a00b0040fd1629443sm13000496wmq.18.2024.03.03.15.10.41
+        d=1e100.net; s=20230601; t=1709507594; x=1710112394;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLNg6Lr+rO9CvEPzUMFGAhSfFX2SJYlH0AeUIMrHCtU=;
+        b=Vw2knjDMiY4/KpS1QP1vr0ZFW0XpIdGNpRjdWESVDX9CEIDhIYa2LynnL9jLbIuxsB
+         fBjMrKA/RgR44f0oO3Q3pWPS0kNIpWfZEWKrLvmm3FZ503u43SpiV5TCyR5wYbz0hUH0
+         +v8JE1rtHvjUQnI5B15uPjDWfaAb5inT0SCmMv2f5WFGkKiBLAWBe1vUM5xkHDQ7OF39
+         tKXrG9a2MGIYhe/do0uusxwGJ/uFig5KtWi2o0+MswFAUI07YrDOT/X93rL1lA+EOnns
+         VG3SxheKuAyZDD0zkNPS5o5oeuxqZPTnf8I+5MnEZY+MScMlHNiiOtRnEXc2aJr7w3Xs
+         5hbg==
+X-Gm-Message-State: AOJu0Yy0MFuJEc0XGoE+AG5OY4ICFRDdCo7cONwZ35xYVxeWnu8h8vIR
+	X7dGd8mFP5MkZaCYN7wzLUDhjHwMjqbZQ0C61wXUpnQRJ8w8r4F7wt2ObkdN
+X-Google-Smtp-Source: AGHT+IEW5LuekQX8cIZr9vrFlRxwiHk4Jt7WWJDrf8TmU22Xio0Js/9W4Qji36RRPWy/jdQcmJQADg==
+X-Received: by 2002:ac8:580c:0:b0:42e:a626:19d9 with SMTP id g12-20020ac8580c000000b0042ea62619d9mr18263170qtg.17.1709507594357;
+        Sun, 03 Mar 2024 15:13:14 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id i24-20020ac84898000000b0042edfc2c608sm1507088qtq.2.2024.03.03.15.13.13
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Mar 2024 15:10:41 -0800 (PST)
-From: Yoann Congal <yoann.congal@smile.fr>
+        Sun, 03 Mar 2024 15:13:13 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: Yoann Congal <yoann.congal@smile.fr>
-Subject: [yocto-autobuilder-helper][PATCH v2 2/2] config.json: meta-oe-repro: fix meta-networking -> meta-python dependency
-Date: Mon,  4 Mar 2024 00:10:33 +0100
-Message-Id: <20240303231033.733840-2-yoann.congal@smile.fr>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240303231033.733840-1-yoann.congal@smile.fr>
-References: <20240303231033.733840-1-yoann.congal@smile.fr>
+Subject: [meta-rockchip][PATCH] rock-5[ab]: use regular yocto kernel
+Date: Sun,  3 Mar 2024 18:13:09 -0500
+Message-ID: <20240303231309.33027-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 03 Mar 2024 23:10:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62654
+ <yocto@lists.yoctoproject.org>; Sun, 03 Mar 2024 23:13:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62655
 
-Since [0], meta-networking depends on meta-python. So, add meta-python
-layer wherever meta-networking is used.
+Upstream kernel support for both the rock-5a and rock-5b landed in version
+6.5. Nanbield contained linux-yocto recipes for both 6.1 and 6.5 so it
+was best to simply have these MACHINEs use linux-yocto-dev. Post-nanbield
+oecore master only has a recipe for 6.6 (so far), therefore these two
+MACHINEs can use linux-yocto by default, instead of linux-yocto-dev.
 
-[0]: https://git.openembedded.org/meta-openembedded/commit/?id=ab7c469bfeb7aba97402d8eab03d9bb18725c6af
-
-Signed-off-by: Yoann Congal <yoann.congal@smile.fr>
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 ---
- config.json | 2 ++
- 1 file changed, 2 insertions(+)
+ conf/machine/rock-5a.conf                     | 1 -
+ conf/machine/rock-5b.conf                     | 1 -
+ recipes-kernel/linux/linux-yocto-dev.bbappend | 4 ----
+ recipes-kernel/linux/linux-yocto_%.bbappend   | 2 ++
+ 4 files changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/config.json b/config.json
-index ece5422..0c34161 100644
---- a/config.json
-+++ b/config.json
-@@ -385,10 +385,12 @@
-                 "EXTRACMDS" : ["${SCRIPTSDIR}/checkvnc; OEQA_DEBUGGING_SAVED_OUTPUT=${BASE_SHAREDDIR}/pub/repro-fail-openembedded/meta-networking/ DISPLAY=:1 BB_LOGCONFIG=$(readlink -f $BB_LOGCONFIG) oe-selftest --newbuilddir $BUILDDIR/build-st-meta-networking -r reproducible"],
-                 "ADDLAYER" : [
-                     "${BUILDDIR}/../meta-openembedded/meta-oe",
-+                    "${BUILDDIR}/../meta-openembedded/meta-python",
-                     "${BUILDDIR}/../meta-openembedded/meta-networking"
-                 ],
-                 "extravars" : [
-                     "EXCLUDE_FROM_WORLD:layer-openembedded-layer = '1'",
-+                    "EXCLUDE_FROM_WORLD:layer-meta-python = '1'",
-                     "USERADD_GID_TABLES:append = ' files/static-group-meta-networking'",
-                     "USERADD_UID_TABLES:append = ' files/static-passwd-meta-networking'",
-                     "USERADD_GID_TABLES:append = ' files/static-group-meta-oe'",
+diff --git a/conf/machine/rock-5a.conf b/conf/machine/rock-5a.conf
+index 5ace4dac8fe4..1a6aa36fe649 100644
+--- a/conf/machine/rock-5a.conf
++++ b/conf/machine/rock-5a.conf
+@@ -5,7 +5,6 @@
+ 
+ require conf/machine/include/rk3588s.inc
+ 
+-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-dev"
+ KERNEL_DEVICETREE = "rockchip/rk3588s-rock-5a.dtb"
+ MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
+ 
+diff --git a/conf/machine/rock-5b.conf b/conf/machine/rock-5b.conf
+index d1371084becc..c3a9b0afa57d 100644
+--- a/conf/machine/rock-5b.conf
++++ b/conf/machine/rock-5b.conf
+@@ -5,7 +5,6 @@
+ 
+ require conf/machine/include/rk3588.inc
+ 
+-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-dev"
+ KERNEL_DEVICETREE = "rockchip/rk3588-rock-5b.dtb"
+ MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
+ 
+diff --git a/recipes-kernel/linux/linux-yocto-dev.bbappend b/recipes-kernel/linux/linux-yocto-dev.bbappend
+index 38fbb77a0f2b..b6a63d7b7b29 100644
+--- a/recipes-kernel/linux/linux-yocto-dev.bbappend
++++ b/recipes-kernel/linux/linux-yocto-dev.bbappend
+@@ -1,9 +1,5 @@
+ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+ 
+-COMPATIBLE_MACHINE:rock-5a = "rock-5a"
+-COMPATIBLE_MACHINE:rock-5b = "rock-5b"
+ COMPATIBLE_MACHINE:orangepi-5-plus = "orangepi-5-plus"
+ 
+-SRC_URI:append:rock-5a = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
+-SRC_URI:append:rock-5b = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
+ SRC_URI:append:orangepi-5-plus = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
+diff --git a/recipes-kernel/linux/linux-yocto_%.bbappend b/recipes-kernel/linux/linux-yocto_%.bbappend
+index 41451dfeefb1..5528bab0d17c 100644
+--- a/recipes-kernel/linux/linux-yocto_%.bbappend
++++ b/recipes-kernel/linux/linux-yocto_%.bbappend
+@@ -20,6 +20,8 @@ COMPATIBLE_MACHINE:roc-rk3328-cc = "roc-rk3328-cc"
+ COMPATIBLE_MACHINE:roc-rk3308-cc = "roc-rk3308-cc"
+ COMPATIBLE_MACHINE:rock-3a = "rock-3a"
+ COMPATIBLE_MACHINE:rock-4c-plus = "rock-4c-plus"
++COMPATIBLE_MACHINE:rock-5a = "rock-5a"
++COMPATIBLE_MACHINE:rock-5b = "rock-5b"
+ 
+ SRC_URI:append = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
+ SRC_URI:append:nanopi-r4s = " file://nanopi-r4s.scc"
 -- 
-2.39.2
+2.43.0.76.g1a87c842ece3
 
 
