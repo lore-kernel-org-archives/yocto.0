@@ -1,132 +1,140 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB8DEC48BF6
-	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 15:48:30 +0000 (UTC)
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
- by mx.groups.io with SMTP id smtpd.web10.102505.1709567307834923753
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9C3EC48BF6
+	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 16:02:30 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+ by mx.groups.io with SMTP id smtpd.web10.102973.1709568148885691362
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Mar 2024 07:48:28 -0800
+ Mon, 04 Mar 2024 08:02:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=WkxaVwIo;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.218.41, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4499ef8b5aso315489266b.0
-        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 07:48:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1709567306; x=1710172106; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZfBoY48e2eSZC8lb/vnH+BrC8mwJ/vpcoLm6KiwnQc0=;
-        b=WkxaVwIopT3HhtrDCTK3ik9yvEJCNDSgMMgsiKAYCKJPsMXU8dbVMTTOhEG87HOwwT
-         yHM+aXKfUCa/yaw+BjXgqU20CpqGIo41GC1bhP5X1NGqKKj0gmGiFaJZurRI/AKmuilM
-         mz/rK9d1Ih/xO8uFAVMSyNZqMy+vSB5fZ3/VQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709567306; x=1710172106;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZfBoY48e2eSZC8lb/vnH+BrC8mwJ/vpcoLm6KiwnQc0=;
-        b=jQMTmTFgZADBOCtLG9OMCgzEUZa+kem+RgLcPA9YyPgQBfGHblnnXkRB7mgUw9Jq8R
-         mAc0pGuXZ3sHdLTdal81wV1YD+S00AenJ7pUVoNdHNpYfm2AVnKkViokgtrsPF1ac8WN
-         dpV6NAVFQgdyOPpoLrOF7dRFfiO0BgdfIGeZ2r8xWODl8XAvCUD6tnSQRKNor+JMwI2R
-         rGDimJBBjmgIfPPiiyffTqTYlw/EZaWI5TealeK+jOeE9jnNz0hxhGQGHW6j9CzyVPDy
-         lTRLcMcMseVDvabVfYxnLmJUQPa8vkXzVv7NLUAK7z/NCR9Lx15q7eq8x+MHzns0Xk98
-         oGRg==
-X-Forwarded-Encrypted: i=1; AJvYcCXrz1MUPq4e7rrIT5xNg+K268TaxjXLF1U3NT5kMT8B/4PZyYl+BSYDGh6Onho8HsfUQzQ/QQaZ9rPVx8t5XHjb87b7bB+g47npVACM
-X-Gm-Message-State: AOJu0YxWfTT9dj/wjPyDi5P8EKL90viZp5CiDOr7W/+HY59d9cFsaFmx
-	IBUk7UIzkr7vKoMFrcpNDrEI5oV1upNTT1tjSoy1IJID5Z2iAp7UZbnJ+mdY4IU=
-X-Google-Smtp-Source: AGHT+IHvJCPBKR8II7ZrYPC2GJS6tyaJx3xEQs2WijtKz1ZjiCjkLUg2K4MLwyQmrcOxHGNropsQ5g==
-X-Received: by 2002:a17:906:c49:b0:a3e:e678:556 with SMTP id t9-20020a1709060c4900b00a3ee6780556mr5965363ejf.58.1709567306142;
-        Mon, 04 Mar 2024 07:48:26 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:1372:82d7:9b60:58ea? ([2001:8b0:aba:5f3c:1372:82d7:9b60:58ea])
-        by smtp.gmail.com with ESMTPSA id zh14-20020a170906880e00b00a456573f9c5sm898951ejb.0.2024.03.04.07.48.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 07:48:25 -0800 (PST)
-Message-ID: <e5fe9f472bf8766413f7fc9713c68fc5c72214a8.camel@linuxfoundation.org>
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=bYbdpb9Z;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.195, mailfrom: michael.opdenacker@bootlin.com)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A58A560005;
+	Mon,  4 Mar 2024 16:02:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709568147;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=eHZZOwOlXGFAZrVMxrXHEz+0q1Z/HmZaA7wm/m0JZho=;
+	b=bYbdpb9Zio4o54q7FNPqKzm8J5Acx/Ab/brgCQew0KoWrLl5EPDsyn28QLy6B634JMZuf2
+	OezeSnw8TyWN8k5KXfjg5180YzjMuD4FCbdVaU/l5DBg+xxDcW7/hn4nism6xjwOXglVtD
+	ry3gR6n4NOcq3iQIBbsTsVjuT8CcIjG5zd2Wx6g1W2VXZGpZFsgVg8ju2ZFtRRG2HtkL4u
+	Do64Z2+0ayvuWl+hAKFL2G46nBpjZJbdqvORGI6N/9L9vIMgfI2KSlxT3GEZMHCtF4AxNF
+	xjSCwBbAMAyq6M9pTStMM6jFsh4ZGcJ6TQUWH9gjyg3ArAUpgvaHWW09cXh3Rw==
+Message-ID: <c8873a38-aac6-4cc4-a828-4c039897b5a2@bootlin.com>
+Date: Mon, 4 Mar 2024 17:02:23 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: yocto@lists.yoctoproject.org
 Subject: Re: [yocto] [yocto-autobuilder-helper] [PATCH] config.json: Switch
  poky-altcfg to use ipk as the package backend
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Michael Opdenacker <michael.opdenacker@bootlin.com>, 
-	yocto@lists.yoctoproject.org
-Date: Mon, 04 Mar 2024 15:48:25 +0000
-In-Reply-To: <ab742630-87e7-4fd2-96e3-a7987481c47a@bootlin.com>
+Content-Language: en-US
+To: richard.purdie@linuxfoundation.org
 References: <20240304151405.2093292-1-richard.purdie@linuxfoundation.org>
-	 <ab742630-87e7-4fd2-96e3-a7987481c47a@bootlin.com>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.50.0-1 
-MIME-Version: 1.0
+ <ab742630-87e7-4fd2-96e3-a7987481c47a@bootlin.com>
+ <e5fe9f472bf8766413f7fc9713c68fc5c72214a8.camel@linuxfoundation.org>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+In-Reply-To: <e5fe9f472bf8766413f7fc9713c68fc5c72214a8.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: michael.opdenacker@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 15:48:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62672
+ <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 16:02:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62673
 
-T24gTW9uLCAyMDI0LTAzLTA0IGF0IDE2OjM0ICswMTAwLCBNaWNoYWVsIE9wZGVuYWNrZXIgd3Jv
-dGU6Cj4gSGkgUmljaGFyZAo+IAo+IE1hbnkgdGhhbmtzIGZvciB0aGUgcGF0Y2ghCj4gCj4gT24g
-My80LzI0IGF0IDE2OjE0LCBSaWNoYXJkIFB1cmRpZSB3cm90ZToKPiA+IFNpbmNlIHdlIHBsYW4g
-dG8gaGF2ZSBiZXR0ZXIgImJpbmFyeSBkaXN0cm8iIHRlc3Rpbmcgb24gdGhlIGF1dG9idWlsZGVy
-Cj4gPiBhbmQgd2UgcGxhbiB0byBwcmltYXJpbHkgdXNlIGlwayBmb3IgdGhpcywgaGF2aW5nIGlw
-ayBiYXNlZCBpbWFnZXMgYXZhaWxhYmxlCj4gPiBhcyBwYXJ0IG9mIG91ciBidWlsZHMgaXMgZGVz
-aXJlYWJsZS4KPiA+IAo+ID4gU2luY2Ugd2Ugd2FudCBzeXN0ZW1kIGJhc2VkIGltYWdlcyB3aXRo
-IGlwaywgaXQgbWFrZXMgc2Vuc2UgdG8gbGVhdmUgc3RhbmRhcmQKPiA+IHBva3kgdXNpbmcgcnBt
-IGltYWdlcyBidXQgc3dpdGNoIHBva3ktYWx0Y2ZnIHRvIHVzZSBpcGsuCj4gPiAKPiA+IFdoaWxz
-dCBsYXRlIGluIHRoZSByZWxlYXNlIGN5Y2xlLCBkb2luZyB0aGlzIG5vdyBmb3Igc2NhcnRoZ2Fw
-IGdpdmVzIHVzIGEgZ29vZAo+ID4gcGxhdGZvcm0gdG8gYnVpbGQgb2ZmIGluIHRoZSBsb25nIHRl
-cm0gdG9vLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5w
-dXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4KPiA+IC0tLQo+ID4gwqAgY29uZmlnLmpzb24gfCA1
-ICsrKysrCj4gPiDCoCAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspCj4gPiAKPiA+IGRp
-ZmYgLS1naXQgYS9jb25maWcuanNvbiBiL2NvbmZpZy5qc29uCj4gPiBpbmRleCBmZDgzMzVmLi40
-ZDBmMjU4IDEwMDY0NAo+ID4gLS0tIGEvY29uZmlnLmpzb24KPiA+ICsrKyBiL2NvbmZpZy5qc29u
-Cj4gPiBAQCAtMTI3LDYgKzEyNyw3IEBACj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAi
-QlVJTERJTkZPIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiQlVJTERI
-SVNUT1JZIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0cmF2YXJz
-IiA6IFsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlBBQ0tBR0VfQ0xBU1NF
-UyA9ICdwYWNrYWdlX2lwayBwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiciLAo+ID4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiSU1BR0VfSU5TVEFMTDphcHBlbmQgPSAnIHNzaC1w
-cmVnZW4taG9zdGtleXMnIgo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXSwKPiA+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJleHRyYXRvb2xzIiA6ICIke0VYVFJBVE9PTFNfVVJM
-fSIsCj4gPiBAQCAtMTQwLDYgKzE0MSw3IEBACj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCAiQlVJTERJTkZPIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiQlVJ
-TERISVNUT1JZIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0cmF2
-YXJzIiA6IFsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlBBQ0tBR0VfQ0xB
-U1NFUyA9ICdwYWNrYWdlX2lwayBwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiciLAo+ID4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiSU1BR0VfSU5TVEFMTDphcHBlbmQgPSAnIHNz
-aC1wcmVnZW4taG9zdGtleXMnIgo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXSwKPiA+
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJleHRyYXRvb2xzIiA6ICIke0VYVFJBVE9PTFNf
-VVJMfSIsCj4gPiBAQCAtMTk4LDYgKzIwMCw5IEBACj4gPiDCoMKgwqDCoMKgwqDCoMKgwqAgImFs
-dGNmZy1odyIgOiB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiRElTVFJPIiA6ICJw
-b2t5LWFsdGNmZyIsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiQlVJTERJTkZPIiA6
-IHRydWUsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0cmF2YXJzIiA6IFsKPiA+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlBBQ0tBR0VfQ0xBU1NFUyA9ICdwYWNrYWdl
-X2lwayBwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiciCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBdLAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInN0ZXAxIiA6IHsKPiA+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIkJCVEFSR0VUUyIgOiAiY29yZS1pbWFnZS1m
-dWxsLWNtZGxpbmUgY29yZS1pbWFnZS1zYXRvIGNvcmUtaW1hZ2Utc2F0by1zZGsiCj4gPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4gPiAKPiBBY3R1YWxseSwgdG8gdXNlIHRoZXNlIGlt
-YWdlcyBmb3IgdGVzdGluZyBwYWNrYWdlIHVwZ3JhZGVzIHRocm91Z2ggCj4gZmVlZHMsIHdlIGFs
-c28gbmVlZCBlbm91Z2ggZnJlZSBzcGFjZSBpbiB0aGUgaW1hZ2VzLgo+IENvdWxkIHdlIGFsc28g
-YWRkIHNvbWV0aGluZyBsaWtlIElNQUdFX1JPT1RGU19FWFRSQV9TUEFDRSA9ICIyNjIxNDQiPwoK
-U2V0dGluZyB0aGF0ICJnbG9iYWxseSIgZm9yIHRob3NlIHRlbXBsYXRlcyB3aWxsIHBvdGVudGlh
-bGx5IGJyZWFrIG90aGVyCmltYWdlcyB0aGUgdXN1YWwgd2F5IHRvIGRvIGl0IHdvdWxkIGJlOgoK
-SU1BR0VfUk9PVEZTX0VYVFJBX1NQQUNFOmFwcGVuZCA9ICIrIDEwMjQwMCIKCmJ1dCBJIHN0aWxs
-IHdvcnJ5IGFib3V0IHNpZGUgZWZmZWN0cywgZS5nLiBmb3IgbWluaW1hbCBvciBpbml0cmFtZnMg
-aW1hZ2VzLgpXaGljaCBpbWFnZXMgZG8gd2UgcGxhbiB0byB0ZXN0PyBjb3JlLWltYWdlLWZ1bGwt
-Y21kbGluZSBhbmQgd2hhdCBlbHNlPwoKV2UgcHJvYmFibHkgbmVlZCBhIHNldCBvZiBkZWZpbml0
-aW9ucyBsaWtlOgoKSU1BR0VfUk9PVEZTX0VYVFJBX1NQQUNFOmFwcGVuZDpwbi1jb3JlLWltYWdl
-LWZ1bGwtY21kbGluZSA9ICIgKyAyNjIxNDQiCgpidXQgc29tZXRoaW5nIGxpa2U6CgpJTUFHRV9S
-T09URlNfRVhUUkFfU1BBQ0U6YXBwZW5kID0gIiR7QGJiLnV0aWxzLmNvbnRhaW5zKCJJTUFHRV9G
-RUFUVVJFUywgInBhY2thZ2UtbWFuYWdlbWVudCIsICIgKyAyNjIxNDQiLCAiIiwgZCl9IgoKbWln
-aHQgd29yay4KCkNoZWVycywKClJpY2hhcmQKCg==
+Hi Richard,
+
+On 3/4/24 at 16:48, Richard Purdie wrote:
+> On Mon, 2024-03-04 at 16:34 +0100, Michael Opdenacker wrote:
+>> Hi Richard
+>>
+>> Many thanks for the patch!
+>>
+>> On 3/4/24 at 16:14, Richard Purdie wrote:
+>>> Since we plan to have better "binary distro" testing on the autobuilder
+>>> and we plan to primarily use ipk for this, having ipk based images available
+>>> as part of our builds is desireable.
+>>>
+>>> Since we want systemd based images with ipk, it makes sense to leave standard
+>>> poky using rpm images but switch poky-altcfg to use ipk.
+>>>
+>>> Whilst late in the release cycle, doing this now for scarthgap gives us a good
+>>> platform to build off in the long term too.
+>>>
+>>> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+>>> ---
+>>>    config.json | 5 +++++
+>>>    1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/config.json b/config.json
+>>> index fd8335f..4d0f258 100644
+>>> --- a/config.json
+>>> +++ b/config.json
+>>> @@ -127,6 +127,7 @@
+>>>                "BUILDINFO" : true,
+>>>                "BUILDHISTORY" : true,
+>>>                "extravars" : [
+>>> +                "PACKAGE_CLASSES = 'package_ipk package_rpm package_deb'",
+>>>                    "IMAGE_INSTALL:append = ' ssh-pregen-hostkeys'"
+>>>                ],
+>>>                "extratools" : "${EXTRATOOLS_URL}",
+>>> @@ -140,6 +141,7 @@
+>>>                "BUILDINFO" : true,
+>>>                "BUILDHISTORY" : true,
+>>>                "extravars" : [
+>>> +                "PACKAGE_CLASSES = 'package_ipk package_rpm package_deb'",
+>>>                    "IMAGE_INSTALL:append = ' ssh-pregen-hostkeys'"
+>>>                ],
+>>>                "extratools" : "${EXTRATOOLS_URL}",
+>>> @@ -198,6 +200,9 @@
+>>>            "altcfg-hw" : {
+>>>                "DISTRO" : "poky-altcfg",
+>>>                "BUILDINFO" : true,
+>>> +            "extravars" : [
+>>> +                "PACKAGE_CLASSES = 'package_ipk package_rpm package_deb'"
+>>> +            ],
+>>>                "step1" : {
+>>>                    "BBTARGETS" : "core-image-full-cmdline core-image-sato core-image-sato-sdk"
+>>>                }
+>>>
+>> Actually, to use these images for testing package upgrades through
+>> feeds, we also need enough free space in the images.
+>> Could we also add something like IMAGE_ROOTFS_EXTRA_SPACE = "262144"?
+> Setting that "globally" for those templates will potentially break other
+> images the usual way to do it would be:
+>
+> IMAGE_ROOTFS_EXTRA_SPACE:append = "+ 102400"
+>
+> but I still worry about side effects, e.g. for minimal or initramfs images.
+> Which images do we plan to test? core-image-full-cmdline and what else?
+>
+> We probably need a set of definitions like:
+>
+> IMAGE_ROOTFS_EXTRA_SPACE:append:pn-core-image-full-cmdline = " + 262144"
+>
+> but something like:
+>
+> IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("IMAGE_FEATURES, "package-management", " + 262144", "", d)}"
+>
+> might work.
+
+
+Ouch, good catch.
+I'd vote for the second option. When we have package management, it 
+makes sense to keep enough space for downloading and applying updates.
+Cheers
+Michael.
+
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
