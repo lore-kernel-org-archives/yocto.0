@@ -1,108 +1,96 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CD79C48BF6
-	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 15:14:10 +0000 (UTC)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
- by mx.groups.io with SMTP id smtpd.web11.101204.1709565248855424611
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24827C5478C
+	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 15:20:20 +0000 (UTC)
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+ by mx.groups.io with SMTP id smtpd.web11.101407.1709565618225811551
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Mar 2024 07:14:09 -0800
+ Mon, 04 Mar 2024 07:20:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=IbPJmPlG;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-412e795f458so4180475e9.3
-        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 07:14:08 -0800 (PST)
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=0bSONVdQ;
+ spf=softfail (domain: sakoman.com, ip: 209.85.215.182, mailfrom: steve@sakoman.com)
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-5e4b775e1d6so1226412a12.1
+        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 07:20:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1709565247; x=1710170047; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=b1ph0KtXQYwayuM3oEe3tU1rmzwUZeEqaDeQ1N+u6VE=;
-        b=IbPJmPlGv63p4Iyr2fxwJ3iURH4rcEuZd4ZLvlnYb8c0xp9/EDbSVrbdaOUS/PBH03
-         lRhrci388LV3AjxXO54znwz9jyED/p2TZxNFns+WXyRvWieaUrZaSh57ZoSJhyRkr20j
-         LOOcBMrgJGGlvp5LekyONalVVJd2RTpMZC5tY=
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1709565617; x=1710170417; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qXvOkyDONxGQt7AntlFY4A7dOXumaT6NSM5gFflDSEQ=;
+        b=0bSONVdQKsRj25w7HHuUKhN02G4nXtk6D/+L+YoOC7YjOfddyQZmUTWFqmeu9xnXTo
+         Ek2rRC0/acdKPb/vMQ1/AUxPoXeIIcJEldGzC80q+103krWoTcOnrIi9DhvyN24bDURy
+         dNbiGZCNkK+Q+myFt4/n+THvuHxvK+XVWp/nyPVfQpFzRhThbcvNDIPWjZWQp8rKRoYa
+         Jms66fhxX2DPoIIlvK3u0aX0Wmpptt/xDHmhXEgTLYHkAgWCt1KJF4PdHr4Qyk6WYCKB
+         AaYsROnkOXzTUUnFXsbgtoFJ30LoqCoH60UtsrYiRCCu6gTJDU+rqZYSqxwawx6VUeNg
+         OPPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709565247; x=1710170047;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b1ph0KtXQYwayuM3oEe3tU1rmzwUZeEqaDeQ1N+u6VE=;
-        b=bu8UHEMRR24o+Ism5NFSSNDorSIMvfVgL3JH1YjW/m6y7v/lN11hlbAWKuG8JqzAVf
-         qRuj1eAd4rksYIjrQZA5NQKmR66A0Mu0RK1mVm720OTPvbijXt6wyIL5hyYHDdODQWJ2
-         G3yQjd6IialTi9yGuQW1OhJg1MXd3uGy2oHUtlaX54SFcx95l+4kgOyp+vcT1SBg6K1y
-         N9oI0GUoMM5xIbL9H11ZGXwSC3FUK4kIhh67GLeK1THxeL4OERZnQKY3DCodqupbr0D/
-         MPNc8SAwsGTV3WLwFa6LOIemoMj+RkbB/HUTDSD47u6p8+v0mTtZupj8ty48gHRIsI8k
-         lLOg==
-X-Gm-Message-State: AOJu0YwvqY/zgS6Ywlf/yv3aV7nXywDCJ8czqWdupl8PyCkbGjGW465f
-	0cbHpD2udVLiVxq5yQHZnTbYYfzz946tNuwURSeV4oWfrAc1YNkgerZMYR1A0JAXCkAPKhvbILd
-	o
-X-Google-Smtp-Source: AGHT+IEM/aaUIu23nrqAw8UrdMMKtK+uE7mNL35AHDWjaX6NN/mv68dOeBsO7t1VKARkjnNZchUzYw==
-X-Received: by 2002:a05:600c:1d87:b0:412:e823:7db3 with SMTP id p7-20020a05600c1d8700b00412e8237db3mr894010wms.16.1709565246914;
-        Mon, 04 Mar 2024 07:14:06 -0800 (PST)
-Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:1372:82d7:9b60:58ea])
-        by smtp.gmail.com with ESMTPSA id o1-20020a05600c4fc100b00412e97127c0sm337752wmq.24.2024.03.04.07.14.06
+        d=1e100.net; s=20230601; t=1709565617; x=1710170417;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qXvOkyDONxGQt7AntlFY4A7dOXumaT6NSM5gFflDSEQ=;
+        b=oXukUpn/81Sr5B1FnZ9e2ip1S1t1qdb7L4se+4Z4olE84sQ4vd70oqYVjnoAZ+3kWz
+         QHFmbjfR7cuG73fZj7WcDeIWgUCz0afHyZZfFk1erta6R55p8pOO/5xotsTccAW922lR
+         sJ2/ZErY7qkI2lu265YSHMchoozAdSi6IBclSANqHKmqihzb1jdmRJnEMuCrro/BeElu
+         rGWi01ni8oXZQ2WL68J14vuNMF09wjKje2JedvpaOheVxOOVZYs8fJnoc07BShWdhMTM
+         dDMGjjf/O2shEBkTGBOZLGuXmebZh1Ncx1YC5sD0DOtHWeKHk7gFGF3+QYSGsoz7PoF6
+         dhLA==
+X-Gm-Message-State: AOJu0YyrRXnxR+kGVmgFb3aNCzk/mlnjraFre+o1j0Jg41rLSot23Axi
+	mrA0+MYrq+M1943NLTknUF6GmBq3sdCXZurR5r0YTnAVpxQJBSvb2XMUlKpx8BnFAGTskBsg7Rl
+	nydc=
+X-Google-Smtp-Source: AGHT+IGHD0cC46ahpmhkbrGz/GjLnsrZV/fmOPRFCeFoqX4SEdAKk9OZLpIgUK22JOp0Z+4C5FgqVw==
+X-Received: by 2002:a17:90a:6b08:b0:29b:52ec:ec0c with SMTP id v8-20020a17090a6b0800b0029b52ecec0cmr2918634pjj.0.1709565617569;
+        Mon, 04 Mar 2024 07:20:17 -0800 (PST)
+Received: from hexa.router0800d9.com (dhcp-72-234-108-41.hawaiiantel.net. [72.234.108.41])
+        by smtp.gmail.com with ESMTPSA id h16-20020a17090a051000b0029932d64c2bsm8868360pjh.17.2024.03.04.07.20.16
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 07:14:06 -0800 (PST)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+        Mon, 04 Mar 2024 07:20:17 -0800 (PST)
+From: Steve Sakoman <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper] [PATCH] config.json: Switch poky-altcfg to use ipk as the package backend
-Date: Mon,  4 Mar 2024 15:14:05 +0000
-Message-Id: <20240304151405.2093292-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.1
+Subject: [yocto-autobuilder-helper][kirkstone 2/2] config.json: use buildtools for Ubuntu 18.04 (both x86 and arm)
+Date: Mon,  4 Mar 2024 05:20:06 -1000
+Message-Id: <3cb51123bbf1eb436fc26ef95f9683c81cac8ee1.1709565401.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1709565401.git.steve@sakoman.com>
+References: <cover.1709565401.git.steve@sakoman.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 15:14:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62665
+ <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 15:20:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62668
 
-Since we plan to have better "binary distro" testing on the autobuilder
-and we plan to primarily use ipk for this, having ipk based images available
-as part of our builds is desireable.
-
-Since we want systemd based images with ipk, it makes sense to leave standard
-poky using rpm images but switch poky-altcfg to use ipk.
-
-Whilst late in the release cycle, doing this now for scarthgap gives us a good
-platform to build off in the long term too.
-
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
 ---
- config.json | 5 +++++
- 1 file changed, 5 insertions(+)
+ config.json | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/config.json b/config.json
-index fd8335f..4d0f258 100644
+index 4b7ee34..60fe6a4 100644
 --- a/config.json
 +++ b/config.json
-@@ -127,6 +127,7 @@
-             "BUILDINFO" : true,
-             "BUILDHISTORY" : true,
-             "extravars" : [
-+                "PACKAGE_CLASSES = 'package_ipk package_rpm package_deb'",
-                 "IMAGE_INSTALL:append = ' ssh-pregen-hostkeys'"
-             ],
-             "extratools" : "${EXTRATOOLS_URL}",
-@@ -140,6 +141,7 @@
-             "BUILDINFO" : true,
-             "BUILDHISTORY" : true,
-             "extravars" : [
-+                "PACKAGE_CLASSES = 'package_ipk package_rpm package_deb'",
-                 "IMAGE_INSTALL:append = ' ssh-pregen-hostkeys'"
-             ],
-             "extratools" : "${EXTRATOOLS_URL}",
-@@ -198,6 +200,9 @@
-         "altcfg-hw" : {
-             "DISTRO" : "poky-altcfg",
-             "BUILDINFO" : true,
-+            "extravars" : [
-+                "PACKAGE_CLASSES = 'package_ipk package_rpm package_deb'"
-+            ],
-             "step1" : {
-                 "BBTARGETS" : "core-image-full-cmdline core-image-sato core-image-sato-sdk"
-             }
+@@ -11,6 +11,7 @@
+     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yocto.io/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
+     "BUILDTOOLS_URL_TEMPLOCAL2" : "https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
+     "BUILDTOOLS_URL" : "https://downloads.yoctoproject.org/releases/yocto/yocto-4.3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-4.3.sh",
++    "BUILDTOOLS_ARM_URL" : "https://downloads.yoctoproject.org/releases/yocto/yocto-4.3/buildtools/aarch64-buildtools-extended-nativesdk-standalone-4.3.sh",
+ 
+     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
+     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
+@@ -1311,6 +1312,8 @@
+         "debian9*" : "${BUILDTOOLS_URL}",
+         "centos7*" : "${BUILDTOOLS_URL}",
+         "ubuntu1604*" : "${BUILDTOOLS_URL}",
++        "ubuntu1804-ty-*" : "${BUILDTOOLS_URL}",
++        "ubuntu1804-arm-*" : "${BUILDTOOLS_ARM_URL}",
+         "alma8*"       : "${BUILDTOOLS_URL}",
+         "stream8*"     : "${BUILDTOOLS_URL}",
+         "opensuse153*" : "${BUILDTOOLS_URL}",
 -- 
-2.40.1
+2.34.1
 
 
