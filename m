@@ -2,86 +2,87 @@ Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EF6CC48BF6
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 44787C54E4A
 	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 15:20:20 +0000 (UTC)
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
- by mx.groups.io with SMTP id smtpd.web10.101543.1709565616539870508
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+ by mx.groups.io with SMTP id smtpd.web10.101539.1709565614878065858
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Mar 2024 07:20:16 -0800
+ Mon, 04 Mar 2024 07:20:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=QqmcBEWy;
- spf=softfail (domain: sakoman.com, ip: 209.85.215.180, mailfrom: steve@sakoman.com)
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-5ce2aada130so4047809a12.1
-        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 07:20:16 -0800 (PST)
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=tpsCYTkj;
+ spf=softfail (domain: sakoman.com, ip: 209.85.215.178, mailfrom: steve@sakoman.com)
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-5bdbe2de25fso4054061a12.3
+        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 07:20:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1709565616; x=1710170416; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s6w/a25f0yCwjikGLSovPygAT8adjzQR3MaVlWQoJUE=;
-        b=QqmcBEWyEWbLNYD6nR28pwWrGVuR1KcWHqT8oKfionXMXxSI6v77rc5+StK7KVdOWK
-         RElohjHZiC/Hgia+Z/a/0K+Vd+e8nOzuAqwvYmEXOXF8jUI7OAMYZFMyjF/1YcNuez+C
-         bdmJcnUG2SALxH7xe5oxqtpqQZgBqgxIQIRBHgjfjpOlfmHp6nNqJVwpr0wX25zmUWQn
-         FbQGZvMsxVXrgN7GvuPzGi2o6rnhZ7wTnqZMqESqz4anmzZrnkHhvS0PjTOEIqekCdy7
-         X2NF9S7czzEyngGE/a52Y5W1mKxYu75wbcUskk8yJWslFtTsmuneUMrxhJXbAFDFcZty
-         DMxA==
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1709565614; x=1710170414; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q6l3/WVPyBTL+kZqqm1/BKp4QXAnZ4p3fnJt25TPY+E=;
+        b=tpsCYTkjOaTcT2iise575NYSqON9eQUpWxxU3XkTEbq8jyac6zdLtsg0pWNGZc+Ev6
+         h+fBZdFDXcpGbOJmk5PGD/pysWVerX3PpFZPB39JPVweqhFT9GG6/+vx0Xw16yeMR2J+
+         jNlf21iq5RjJ4XbgyDU7m97dwhSRIHJjf1Nq2ncfP/wGwXRXdV30F4q7TyWdWntcZUuL
+         TyqomNGQQNuyiHaeY4LnDjXbIS7LnbuFEv/SMMZdd1vhmAS+W2TSs3Q8JG2tcCOZVnff
+         tqMrdHVXTK9/481V6kfQRPXlpla5pV+th+35f387WNbpAdOfgiAaIyPvdug25xeCmrNP
+         47SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709565616; x=1710170416;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s6w/a25f0yCwjikGLSovPygAT8adjzQR3MaVlWQoJUE=;
-        b=gkbgJcEJf4I5x5i04GiEoE21DE1b5BkRZOLyBfIU7Lv19x2T0jGzl+ZDjBO5awTJ32
-         YhWzyQqmrYXnP8yQ3/+Wqk9oX1Z6fHKJXPiTR5sUOPMEecBGBzfLGfCIQmamCB0dBsR7
-         rjNLFDub41U4ZkwufihFHQPtRB4qbUQlInix90I63WpAL0cZJCzoQOdfksZOtkLjnHs0
-         e8Lhc0fxscpEwuvv8VMtOY0TTfhhiBKWuAEXzkLuLeMQ94oIB3/R/zt0+5glCEm34T9W
-         /g3pAAg0dZa3mMVZmU2/IhvcDfyzn+dtsZs9/jeWl60+iLmOLbMGFhY8iOXpaXKExicI
-         MINA==
-X-Gm-Message-State: AOJu0YwkmvRGhwrxcgYMQoSVEwQrlrffc06D1jFlzkVvZy3QGUWzfkVA
-	TsKJYRbrmybkMIzB6ddZKaip2yZGqMhyU5MIgvRZDrvvJhAHdiQmIxn9Y1iwvQEJewBE13mPr25
-	ytFM=
-X-Google-Smtp-Source: AGHT+IFYYVe4yE75f1S8SEozjp0sjnHdKVnME1QggCIlkKmUu07upHFF1PRC4gDjdD+3QL0RS7DaYA==
-X-Received: by 2002:a17:90a:d258:b0:299:14c9:94f0 with SMTP id o24-20020a17090ad25800b0029914c994f0mr6244946pjw.11.1709565615841;
-        Mon, 04 Mar 2024 07:20:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709565614; x=1710170414;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q6l3/WVPyBTL+kZqqm1/BKp4QXAnZ4p3fnJt25TPY+E=;
+        b=jjinkjXZMt6A3co6lWTCR6Kgzgxm+knmBKkZPdbtcPunKK0BRmgkJCfAO3YPKwXV1e
+         v3TLt9fQvNi4faUI2JACCjrtZuiWpCUMyXOV5qdqI0o3vIG/onrCi8dnm03Rs3T7L14K
+         7PjjRXJfUFGYMy2N1D1OBWDRCxDlgw5xFTseQP9KmCu814gfuxV7SURT1/4IXLiMMM6Z
+         IcR8S4veW62JY76hijwSZA8iYmILoOILlZXOTzsGHWSBGO1IfeB61De/5vW/KaK3NPRI
+         257s/hwvHAMKqBKwEMcI51tLp8YiGavufV+ZsaSzheTIgM9JqzAWbTVWFik1ZLrW3/RC
+         1Tpg==
+X-Gm-Message-State: AOJu0YwiowV1xuLdu6nWPGkvs7Bb3hx7cRdE9VBFFgTk6DpyNyAia5OP
+	mCv6vbc49SZZSGkWNBofqwR0j2tnYcTAKChnTbgayWdw3HKjXjr6WUB/ZP7L8iZVSOQCl7PP2GV
+	oM7U=
+X-Google-Smtp-Source: AGHT+IFCHaqn7XVjXk8zzS9+5StdhFW73X4nJ684xzXIc+H48kplBqwws5dI67kjmwPuiHGffVZ7Eg==
+X-Received: by 2002:a17:90b:46c8:b0:29b:1f62:6a3a with SMTP id jx8-20020a17090b46c800b0029b1f626a3amr7489537pjb.29.1709565613918;
+        Mon, 04 Mar 2024 07:20:13 -0800 (PST)
 Received: from hexa.router0800d9.com (dhcp-72-234-108-41.hawaiiantel.net. [72.234.108.41])
-        by smtp.gmail.com with ESMTPSA id h16-20020a17090a051000b0029932d64c2bsm8868360pjh.17.2024.03.04.07.20.15
+        by smtp.gmail.com with ESMTPSA id h16-20020a17090a051000b0029932d64c2bsm8868360pjh.17.2024.03.04.07.20.13
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 07:20:15 -0800 (PST)
+        Mon, 04 Mar 2024 07:20:13 -0800 (PST)
 From: Steve Sakoman <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][kirkstone 1/2] config.json: update to latest buildtools tarball
-Date: Mon,  4 Mar 2024 05:20:05 -1000
-Message-Id: <9ef7fa0ff71686c291d8234626c8666158d7ad00.1709565401.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][kirkstone 0/2] Patch review
+Date: Mon,  4 Mar 2024 05:20:04 -1000
+Message-Id: <cover.1709565401.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1709565401.git.steve@sakoman.com>
-References: <cover.1709565401.git.steve@sakoman.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 15:20:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62667
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62666
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- config.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This series updates kirkstone to use the latest buildtools for selected
+x86 and arm workers.
 
-diff --git a/config.json b/config.json
-index 7c53c46..4b7ee34 100644
---- a/config.json
-+++ b/config.json
-@@ -10,7 +10,7 @@
- 
-     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yocto.io/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
-     "BUILDTOOLS_URL_TEMPLOCAL2" : "https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
--    "BUILDTOOLS_URL" : "/srv/autobuilder/autobuilder.yocto.io/pub/non-release/20230223-18/buildtools/x86_64-buildtools-extended-nativesdk-standalone-4.1+snapshot-9c07de0f20042c81496185293857284048d7912c.sh",
-+    "BUILDTOOLS_URL" : "https://downloads.yoctoproject.org/releases/yocto/yocto-4.3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-4.3.sh",
- 
-     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
-     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
+Passed a-full on autobuilder:
+
+https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6640
+
+The following changes since commit 9131fbeab58f0cad50c99dc9ba9003f04155999e:
+
+  cve-report: Add summary counts of CVEs by recipe (2024-01-24 10:24:15 +0000)
+
+are available in the Git repository at:
+
+  https://git.yoctoproject.org/yocto-autobuilder-helper contrib/kirkstone-next
+  https://git.yoctoproject.org/yocto-autobuilder-helper/log/?h=contrib/kirkstone-next
+
+Steve Sakoman (2):
+  config.json: update to latest buildtools tarball
+  config.json: use buildtools for Ubuntu 18.04 (both x86 and arm)
+
+ config.json | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
 -- 
 2.34.1
 
