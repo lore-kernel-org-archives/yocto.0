@@ -1,121 +1,132 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6AB5C5478C
-	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 15:42:30 +0000 (UTC)
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
- by mx.groups.io with SMTP id smtpd.web10.102162.1709566942042519245
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB8DEC48BF6
+	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 15:48:30 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+ by mx.groups.io with SMTP id smtpd.web10.102505.1709567307834923753
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Mar 2024 07:42:22 -0800
+ Mon, 04 Mar 2024 07:48:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20230601.gappssmtp.com header.s=20230601 header.b=CCeFLlSC;
- spf=pass (domain: ibeeto.com, ip: 209.85.214.179, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1dcc7f4717fso46226625ad.0
-        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 07:42:21 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=WkxaVwIo;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.218.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4499ef8b5aso315489266b.0
+        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 07:48:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20230601.gappssmtp.com; s=20230601; t=1709566941; x=1710171741; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0hNzxuI5IimnD+94zgOlMv+isI9PHvHDTehWZIRSvgQ=;
-        b=CCeFLlSCE9sABp8g5Bruky+aVMJaqZEZLyOvwUlz2QXqbS6fmDqukVXy67QU94dUkC
-         OD3zWebzK1VicsO+3M5H4RIEV7pSUzIJ2LrijQYBU772C+TZtnbOrA+dclUwMDe3W4Wt
-         9pgP+X4Q8obvapdS+e9V2i/g7ttjeX7eiDqhue+fVbcanzbgVEbenP0TB7gRg7D6UGBK
-         zsd9yF2tNfXo9PkJYQjsBJ7RzBM3C1CYVhY1pNvGIxnNnH/5+zJUPhzsFAbCuy4XrI++
-         tr58m9CXwZfsn9Q+3GeGJtGWbiOkkqhTdrDl7X1AAIXqKMieUU3S7ZQRpJoYaN8zAPL3
-         H1wQ==
+        d=linuxfoundation.org; s=google; t=1709567306; x=1710172106; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZfBoY48e2eSZC8lb/vnH+BrC8mwJ/vpcoLm6KiwnQc0=;
+        b=WkxaVwIopT3HhtrDCTK3ik9yvEJCNDSgMMgsiKAYCKJPsMXU8dbVMTTOhEG87HOwwT
+         yHM+aXKfUCa/yaw+BjXgqU20CpqGIo41GC1bhP5X1NGqKKj0gmGiFaJZurRI/AKmuilM
+         mz/rK9d1Ih/xO8uFAVMSyNZqMy+vSB5fZ3/VQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709566941; x=1710171741;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1709567306; x=1710172106;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0hNzxuI5IimnD+94zgOlMv+isI9PHvHDTehWZIRSvgQ=;
-        b=KAqgNSTXbHJlDNuNmw+lua5tMw3OzlEcYJXpAmsf6oq/ACiYXHtqFqtS6ZF2j/08fo
-         NEnn6mOtLwpUC87AO53SXG2AFiIfW/SwHpCmkxazn7Vc2vDcS8oeRqWGp5D1kUdYzLA/
-         Dj/xN5AoO1aAQpLU0z8WN7ukCZAGo5av/stE21mDLCDU62HMvJpRYUAaAEnpyQ0v+d8L
-         qkI2sjNM3hTG9xLJlLHspioLNEM18ESrAUT5yQNvtU4vIs07fLL1Kg45dnokiIKIEHFa
-         RJICqh/zgbcjf/o6GD7MgHMueiZyklt2nTTbx9EoLA0Juv/U4vZOKW+hMSyGTQmUEW8G
-         c4yw==
-X-Gm-Message-State: AOJu0YzYKAJkty9gwvWtEW9z8VijSsnEOcJrba8L6AwPKHoBGbzweQet
-	MK/nBVv9gSLsidR6u0DN4pQoMEtapr+0btnyH25I7CG7YT6qC5q0YtkXUsJ9iv6o8G5AD4cms8O
-	d
-X-Google-Smtp-Source: AGHT+IFA+EiCZYYwfXtvVTltpkRtBEujJ1dWQk/RxaIV1m5IbU8BhAVD9Qj/iprnYk2T6ie5t6++6g==
-X-Received: by 2002:a17:902:64d7:b0:1db:65a3:e17f with SMTP id y23-20020a17090264d700b001db65a3e17fmr10539766pli.6.1709566940152;
-        Mon, 04 Mar 2024 07:42:20 -0800 (PST)
-Received: from ?IPV6:2600:8801:8d00:d804:cd39:5769:28bb:21e2? ([2600:8801:8d00:d804:cd39:5769:28bb:21e2])
-        by smtp.gmail.com with ESMTPSA id im15-20020a170902bb0f00b001db5c8202a4sm8801072plb.59.2024.03.04.07.42.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 07:42:19 -0800 (PST)
-Message-ID: <f71d1245-7db7-4e22-bd3a-d31006d7f054@ibeeto.com>
-Date: Mon, 4 Mar 2024 07:42:18 -0800
+        bh=ZfBoY48e2eSZC8lb/vnH+BrC8mwJ/vpcoLm6KiwnQc0=;
+        b=jQMTmTFgZADBOCtLG9OMCgzEUZa+kem+RgLcPA9YyPgQBfGHblnnXkRB7mgUw9Jq8R
+         mAc0pGuXZ3sHdLTdal81wV1YD+S00AenJ7pUVoNdHNpYfm2AVnKkViokgtrsPF1ac8WN
+         dpV6NAVFQgdyOPpoLrOF7dRFfiO0BgdfIGeZ2r8xWODl8XAvCUD6tnSQRKNor+JMwI2R
+         rGDimJBBjmgIfPPiiyffTqTYlw/EZaWI5TealeK+jOeE9jnNz0hxhGQGHW6j9CzyVPDy
+         lTRLcMcMseVDvabVfYxnLmJUQPa8vkXzVv7NLUAK7z/NCR9Lx15q7eq8x+MHzns0Xk98
+         oGRg==
+X-Forwarded-Encrypted: i=1; AJvYcCXrz1MUPq4e7rrIT5xNg+K268TaxjXLF1U3NT5kMT8B/4PZyYl+BSYDGh6Onho8HsfUQzQ/QQaZ9rPVx8t5XHjb87b7bB+g47npVACM
+X-Gm-Message-State: AOJu0YxWfTT9dj/wjPyDi5P8EKL90viZp5CiDOr7W/+HY59d9cFsaFmx
+	IBUk7UIzkr7vKoMFrcpNDrEI5oV1upNTT1tjSoy1IJID5Z2iAp7UZbnJ+mdY4IU=
+X-Google-Smtp-Source: AGHT+IHvJCPBKR8II7ZrYPC2GJS6tyaJx3xEQs2WijtKz1ZjiCjkLUg2K4MLwyQmrcOxHGNropsQ5g==
+X-Received: by 2002:a17:906:c49:b0:a3e:e678:556 with SMTP id t9-20020a1709060c4900b00a3ee6780556mr5965363ejf.58.1709567306142;
+        Mon, 04 Mar 2024 07:48:26 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:1372:82d7:9b60:58ea? ([2001:8b0:aba:5f3c:1372:82d7:9b60:58ea])
+        by smtp.gmail.com with ESMTPSA id zh14-20020a170906880e00b00a456573f9c5sm898951ejb.0.2024.03.04.07.48.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Mar 2024 07:48:25 -0800 (PST)
+Message-ID: <e5fe9f472bf8766413f7fc9713c68fc5c72214a8.camel@linuxfoundation.org>
+Subject: Re: [yocto] [yocto-autobuilder-helper] [PATCH] config.json: Switch
+ poky-altcfg to use ipk as the package backend
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Michael Opdenacker <michael.opdenacker@bootlin.com>, 
+	yocto@lists.yoctoproject.org
+Date: Mon, 04 Mar 2024 15:48:25 +0000
+In-Reply-To: <ab742630-87e7-4fd2-96e3-a7987481c47a@bootlin.com>
+References: <20240304151405.2093292-1-richard.purdie@linuxfoundation.org>
+	 <ab742630-87e7-4fd2-96e3-a7987481c47a@bootlin.com>
+Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
+ YNvg==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.50.0-1 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Bundling an image artifacts into another image
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org, lorenzo.arena@powersoft.com
-References: <sH98.1709546292003941347.n1Jf@lists.yoctoproject.org>
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-In-Reply-To: <sH98.1709546292003941347.n1Jf@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 15:42:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62671
+ <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 15:48:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62672
 
-
-On 3/4/24 01:58, lorenzo.arena via lists.yoctoproject.org wrote:
-> I'm currently trying to set up a production system for a board based 
-> on the Raspberry Pi CM4. I'd like to be able to build a kernel with 
-> bundled initramfs which allows me to flash the on-board eMMC; such 
-> "flasher" image however should include the artifacts of another image 
-> (which would be the "real" image, so the output wic and bmap files). 
-> Is there a way to do this? I can build this two things separately but 
-> I'd like a single build step which allows me to get the full "flasher" 
-> image
-Yes, that is possible. I have done it many times. Create any scripts, 
-systemd service files etc. you need to automatically install the image 
-to the eMMC with recipe, create a recipe to install your previously 
-build system image, create a minimal root file system to contain the 
-necessary artifacts.
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62660): https://lists.yoctoproject.org/g/yocto/message/62660
-> Mute This Topic: https://lists.yoctoproject.org/mt/104719133/3617932
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [rudolf.streif@ibeeto.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
--- 
-Rudolf J Streif
-CEO/CTO
-1.855.442.3386
+T24gTW9uLCAyMDI0LTAzLTA0IGF0IDE2OjM0ICswMTAwLCBNaWNoYWVsIE9wZGVuYWNrZXIgd3Jv
+dGU6Cj4gSGkgUmljaGFyZAo+IAo+IE1hbnkgdGhhbmtzIGZvciB0aGUgcGF0Y2ghCj4gCj4gT24g
+My80LzI0IGF0IDE2OjE0LCBSaWNoYXJkIFB1cmRpZSB3cm90ZToKPiA+IFNpbmNlIHdlIHBsYW4g
+dG8gaGF2ZSBiZXR0ZXIgImJpbmFyeSBkaXN0cm8iIHRlc3Rpbmcgb24gdGhlIGF1dG9idWlsZGVy
+Cj4gPiBhbmQgd2UgcGxhbiB0byBwcmltYXJpbHkgdXNlIGlwayBmb3IgdGhpcywgaGF2aW5nIGlw
+ayBiYXNlZCBpbWFnZXMgYXZhaWxhYmxlCj4gPiBhcyBwYXJ0IG9mIG91ciBidWlsZHMgaXMgZGVz
+aXJlYWJsZS4KPiA+IAo+ID4gU2luY2Ugd2Ugd2FudCBzeXN0ZW1kIGJhc2VkIGltYWdlcyB3aXRo
+IGlwaywgaXQgbWFrZXMgc2Vuc2UgdG8gbGVhdmUgc3RhbmRhcmQKPiA+IHBva3kgdXNpbmcgcnBt
+IGltYWdlcyBidXQgc3dpdGNoIHBva3ktYWx0Y2ZnIHRvIHVzZSBpcGsuCj4gPiAKPiA+IFdoaWxz
+dCBsYXRlIGluIHRoZSByZWxlYXNlIGN5Y2xlLCBkb2luZyB0aGlzIG5vdyBmb3Igc2NhcnRoZ2Fw
+IGdpdmVzIHVzIGEgZ29vZAo+ID4gcGxhdGZvcm0gdG8gYnVpbGQgb2ZmIGluIHRoZSBsb25nIHRl
+cm0gdG9vLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5w
+dXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4KPiA+IC0tLQo+ID4gwqAgY29uZmlnLmpzb24gfCA1
+ICsrKysrCj4gPiDCoCAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspCj4gPiAKPiA+IGRp
+ZmYgLS1naXQgYS9jb25maWcuanNvbiBiL2NvbmZpZy5qc29uCj4gPiBpbmRleCBmZDgzMzVmLi40
+ZDBmMjU4IDEwMDY0NAo+ID4gLS0tIGEvY29uZmlnLmpzb24KPiA+ICsrKyBiL2NvbmZpZy5qc29u
+Cj4gPiBAQCAtMTI3LDYgKzEyNyw3IEBACj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAi
+QlVJTERJTkZPIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiQlVJTERI
+SVNUT1JZIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0cmF2YXJz
+IiA6IFsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlBBQ0tBR0VfQ0xBU1NF
+UyA9ICdwYWNrYWdlX2lwayBwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiciLAo+ID4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiSU1BR0VfSU5TVEFMTDphcHBlbmQgPSAnIHNzaC1w
+cmVnZW4taG9zdGtleXMnIgo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXSwKPiA+IMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJleHRyYXRvb2xzIiA6ICIke0VYVFJBVE9PTFNfVVJM
+fSIsCj4gPiBAQCAtMTQwLDYgKzE0MSw3IEBACj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCAiQlVJTERJTkZPIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiQlVJ
+TERISVNUT1JZIiA6IHRydWUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0cmF2
+YXJzIiA6IFsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlBBQ0tBR0VfQ0xB
+U1NFUyA9ICdwYWNrYWdlX2lwayBwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiciLAo+ID4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiSU1BR0VfSU5TVEFMTDphcHBlbmQgPSAnIHNz
+aC1wcmVnZW4taG9zdGtleXMnIgo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgXSwKPiA+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJleHRyYXRvb2xzIiA6ICIke0VYVFJBVE9PTFNf
+VVJMfSIsCj4gPiBAQCAtMTk4LDYgKzIwMCw5IEBACj4gPiDCoMKgwqDCoMKgwqDCoMKgwqAgImFs
+dGNmZy1odyIgOiB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiRElTVFJPIiA6ICJw
+b2t5LWFsdGNmZyIsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiQlVJTERJTkZPIiA6
+IHRydWUsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0cmF2YXJzIiA6IFsKPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlBBQ0tBR0VfQ0xBU1NFUyA9ICdwYWNrYWdl
+X2lwayBwYWNrYWdlX3JwbSBwYWNrYWdlX2RlYiciCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBdLAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInN0ZXAxIiA6IHsKPiA+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIkJCVEFSR0VUUyIgOiAiY29yZS1pbWFnZS1m
+dWxsLWNtZGxpbmUgY29yZS1pbWFnZS1zYXRvIGNvcmUtaW1hZ2Utc2F0by1zZGsiCj4gPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4gPiAKPiBBY3R1YWxseSwgdG8gdXNlIHRoZXNlIGlt
+YWdlcyBmb3IgdGVzdGluZyBwYWNrYWdlIHVwZ3JhZGVzIHRocm91Z2ggCj4gZmVlZHMsIHdlIGFs
+c28gbmVlZCBlbm91Z2ggZnJlZSBzcGFjZSBpbiB0aGUgaW1hZ2VzLgo+IENvdWxkIHdlIGFsc28g
+YWRkIHNvbWV0aGluZyBsaWtlIElNQUdFX1JPT1RGU19FWFRSQV9TUEFDRSA9ICIyNjIxNDQiPwoK
+U2V0dGluZyB0aGF0ICJnbG9iYWxseSIgZm9yIHRob3NlIHRlbXBsYXRlcyB3aWxsIHBvdGVudGlh
+bGx5IGJyZWFrIG90aGVyCmltYWdlcyB0aGUgdXN1YWwgd2F5IHRvIGRvIGl0IHdvdWxkIGJlOgoK
+SU1BR0VfUk9PVEZTX0VYVFJBX1NQQUNFOmFwcGVuZCA9ICIrIDEwMjQwMCIKCmJ1dCBJIHN0aWxs
+IHdvcnJ5IGFib3V0IHNpZGUgZWZmZWN0cywgZS5nLiBmb3IgbWluaW1hbCBvciBpbml0cmFtZnMg
+aW1hZ2VzLgpXaGljaCBpbWFnZXMgZG8gd2UgcGxhbiB0byB0ZXN0PyBjb3JlLWltYWdlLWZ1bGwt
+Y21kbGluZSBhbmQgd2hhdCBlbHNlPwoKV2UgcHJvYmFibHkgbmVlZCBhIHNldCBvZiBkZWZpbml0
+aW9ucyBsaWtlOgoKSU1BR0VfUk9PVEZTX0VYVFJBX1NQQUNFOmFwcGVuZDpwbi1jb3JlLWltYWdl
+LWZ1bGwtY21kbGluZSA9ICIgKyAyNjIxNDQiCgpidXQgc29tZXRoaW5nIGxpa2U6CgpJTUFHRV9S
+T09URlNfRVhUUkFfU1BBQ0U6YXBwZW5kID0gIiR7QGJiLnV0aWxzLmNvbnRhaW5zKCJJTUFHRV9G
+RUFUVVJFUywgInBhY2thZ2UtbWFuYWdlbWVudCIsICIgKyAyNjIxNDQiLCAiIiwgZCl9IgoKbWln
+aHQgd29yay4KCkNoZWVycywKClJpY2hhcmQKCg==
 
 
