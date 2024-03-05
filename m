@@ -1,104 +1,128 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <haokexin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E999C54798
-	for <webhook@archiver.kernel.org>; Tue,  5 Mar 2024 08:53:43 +0000 (UTC)
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
- by mx.groups.io with SMTP id smtpd.web11.17825.1709628816082450319
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F4A0C54798
+	for <webhook@archiver.kernel.org>; Tue,  5 Mar 2024 09:03:13 +0000 (UTC)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+ by mx.groups.io with SMTP id smtpd.web11.17966.1709629387139420149
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Mar 2024 00:53:36 -0800
+ Tue, 05 Mar 2024 01:03:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=Ovd0wnrh;
- spf=pass (domain: bootlin.com, ip: 217.70.183.198, mailfrom: michael.opdenacker@bootlin.com)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D5658C000F;
-	Tue,  5 Mar 2024 08:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709628814;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1yjWIW9barHogcuc1Vu4LO6eRujYpf2Uuf0atAchCF0=;
-	b=Ovd0wnrhkp5rGYJLbnOa9OB8TaKMvFJ2ftDSKPoCHYEpLmirRerIVAPzGQUVQAjyczIOfD
-	65clAydE3TEQV6wdOsgUEqEMqVkOy7wFq+qU5aNDoMEd9V4ALlIkNwEfCNf48MvrZP7tO+
-	o+DvdQAgWgmk545KtJ84l2A0mTG/xhj5AGrbQafoWdWT+D+HRrmKZuQYxJIBwOQS6sdBdl
-	H2Ek4xktT1lY5/T2Xj+VqQ+aVOVW6wmCUrW7MbNQHHebdwaeL6QBUuCCC/lDfK8NUBL4L8
-	uZiFICdI+sxw5MPaEsKpl4eVavEKWyeqDjzaU4FZLk3YKqOTjmmabA0FodBQWQ==
-Message-ID: <61d636c5-1406-4b2e-849f-48bc3ffd6c32@bootlin.com>
-Date: Tue, 5 Mar 2024 09:53:33 +0100
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=imfEoO7E;
+ spf=pass (domain: gmail.com, ip: 209.85.215.177, mailfrom: haokexin@gmail.com)
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5d8ddbac4fbso5195143a12.0
+        for <yocto@lists.yoctoproject.org>; Tue, 05 Mar 2024 01:03:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709629385; x=1710234185; darn=lists.yoctoproject.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Y21VddkfixoYxuulvzcwmxYj68EWEL0aqHnXdMzOno=;
+        b=imfEoO7EjnSVSGsonO3QOHR9A24wOa1oDNLztqrKZDx4iDccDUgUFSQbU48FPrW9Np
+         CZ0k5JeOvx8amT+K4FcwXueOqNbS81fB6nvP7soaf0VygNOX5xtwGNShaXhzM+BnnVGY
+         9jFwek64ybStUMy1hX9YvJ22USUIbTYfh+1M8udhFBYppq/Gu0hiTyrgIs7lIzrKtmhA
+         XPPgU45rtkrc0Y40ekLrdKXVDoxzUzPvZGGv4pTVOJWCAce0uTHeqbU8AQ6aHcpWNO5u
+         uruMT/Ks2bLAJD592cJQ/RVWz8OJDe0xLyIv7avaDgcIbtffNcgPjK/6Q6QWghGW9Tdz
+         UTvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709629385; x=1710234185;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5Y21VddkfixoYxuulvzcwmxYj68EWEL0aqHnXdMzOno=;
+        b=ZpqNcs7LCDI1aZ5tfyGTXeSvDcRIbSiGc1kHTCR+xbTpR/OYrw15wM3ocio1Awykmv
+         MBjYYy4OI7lLo6SbqH7AAtXN++/y88HDBZ7VRTMN/m9/NvQP4U5FsEYjTj3T9Q0ascQG
+         zOi5uKoo1q5sfJRi72Lvx65jIBSAO51tqxW/zUS79NpK+0dzhpg4KLLnCr0IN271BjYF
+         iWeQaNpGKlCsAeoU6lYHXJnBEJ5gZBUAnPc+CvgvNOp3kLcYa0Meucd5l4j3p+BWXVCA
+         RBQ4IgSfy4ea61zPe4Rn4iv812FDBROjPilwcZ3h408Dk1Rnh05qlVfLavzZ21XR5DvK
+         GKMQ==
+X-Gm-Message-State: AOJu0Yz+8JtjPnYLzBHCplu+eONfYd8rIv8Vh72zfAA8HAk4u/cci/z3
+	iaG0EY5BdmaO+Tr0W/wbvFZ7Bq2R3UBwwhcZJQ+BiGwlNsMfHiwlwMFTi/CUhyY=
+X-Google-Smtp-Source: AGHT+IFoEow5MtiaR+xzEcenNxG1y8UxyKfVchXirmg+AJHXPDZ+lc7nJRJTHv5lJ6Qa2iUHi6OXhg==
+X-Received: by 2002:a17:90a:d598:b0:29a:e0bc:4a9b with SMTP id v24-20020a17090ad59800b0029ae0bc4a9bmr9497394pju.16.1709629384983;
+        Tue, 05 Mar 2024 01:03:04 -0800 (PST)
+Received: from pek-khao-d3 (unknown-105-121.windriver.com. [147.11.105.121])
+        by smtp.gmail.com with ESMTPSA id l3-20020a17090ac58300b0029b2e00359esm6151754pjt.36.2024.03.05.01.03.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Mar 2024 01:03:04 -0800 (PST)
+Date: Tue, 5 Mar 2024 17:02:57 +0800
+From: Kevin Hao <haokexin@gmail.com>
+To: Yocto Project <yocto@lists.yoctoproject.org>
+Cc: Armin Kuster <akuster808@gmail.com>
+Subject: Re: [meta-security][PATCH] dm-verity-image-initramfs: Zero out the
+ IMAGE_ROOTFS_EXTRA_SPACE in initramfs image
+Message-ID: <ZebfwbgtE08ONuiM@pek-khao-d3>
+References: <20240222100738.919774-1-haokexin@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Introduction and my first query: Resources for learning
-To: worik.stanton@tirotech.co.nz
-References: <CANuMBWFxwxt7Fr+qab4U+HHFiSMu4KeukjiMVkme-zgDVpiq=w@mail.gmail.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <CANuMBWFxwxt7Fr+qab4U+HHFiSMu4KeukjiMVkme-zgDVpiq=w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: michael.opdenacker@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zAomHEVwOhCUuXAu"
+Content-Disposition: inline
+In-Reply-To: <20240222100738.919774-1-haokexin@gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Mar 2024 08:53:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62681
-
-Hi Worik
-
-On 3/4/24 at 23:12, Worik Stanton wrote:
-> Kia ora
->
-> I am Worik Stanton, from Dunedin New Zealand.  I am new to Yocto, and 
-> to this list, with many decades experience programming computers.
-
-Welcome to our community!
-
->
-> My question is about what are the best resources for learning how to 
-> adapt and maintain a Yocto system  I am responsible for.
->
-> I have recently become responsible for a collection of Yocto "builds" 
-> (I am unsure how I should describe them) that I must learn how to 
-> maintain, adapt, and extend.  Adapt and extend to new hardware and to 
-> new software that we are writing.
->
-> The author of the system is available only sporadically and is cleary 
-> moving to greener pastures and is unable to offer much help.
->
-> I have the "Embedded Linux Systems with the Yocto Project" and it is 
-> helpful.  However the systems I am working with are, I fear, quite 
-> idiosyncratic and highly developed.
->
-> The example  of the sort of  problem I have faced and solved  is I 
-> needed "lsblk" in my build.  I found that by adding the name of the 
-> Debian package to a variable IMAGE_INSTALL  "IMAGE_INSTALL += 
-> util_linux" essentially, places "lsblk" in the root file system.
->
-> I have no idea why I used the name of a Debian package!
+ <yocto@lists.yoctoproject.org>; Tue, 05 Mar 2024 09:03:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62682
 
 
-That's just the name of the package, which happens to be the same name 
-as in Debian, that's all :-)
+--zAomHEVwOhCUuXAu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> I do not feel ready to pester you folks with queries until I have done 
-> more reading and have moved along the learning curve.   I am hoping 
-> for some meta advice about where I can look for guidance for problems 
-> like that.
+On Thu, Feb 22, 2024 at 06:07:38PM +0800, Kevin Hao wrote:
+> From: Kevin Hao <kexin.hao@windriver.com>
+>=20
+> It may trigger the following error if we set a big value to IMAGE_ROOTFS_=
+EXTRA_SPACE.
+>   ERROR: dm-verity-image-initramfs-1.0-r0 do_image_cpio: The initramfs si=
+ze 5308416(K) exceeds INITRAMFS_MAXSIZE: 131072(K)
+>=20
+> So zero out it for initramfs image to fix this issue. This is also what
+> the initramfs images do in oe-core.
 
+Ping.
 
-Happy to help too when we can!
-I guess you also found the Yocto and BitBake manuals: 
-https://docs.yoctoproject.org/
-Cheers
-Michael.
+Thanks,
+Kevin
 
--- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>=20
+> Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
+> ---
+>  recipes-core/images/dm-verity-image-initramfs.bb | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/recipes-core/images/dm-verity-image-initramfs.bb b/recipes-c=
+ore/images/dm-verity-image-initramfs.bb
+> index 78f7b49b27d6..b6d3bdc424d2 100644
+> --- a/recipes-core/images/dm-verity-image-initramfs.bb
+> +++ b/recipes-core/images/dm-verity-image-initramfs.bb
+> @@ -17,6 +17,7 @@ PACKAGE_INSTALL =3D " \
+>  # We want a clean, minimal image.
+>  IMAGE_FEATURES =3D ""
+>  IMAGE_LINGUAS =3D ""
+> +IMAGE_ROOTFS_EXTRA_SPACE =3D "0"
+> =20
+>  # Can we somehow inspect reverse dependencies to avoid these variables?
+>  python __anonymous() {
+> --=20
+> 2.40.1
+>=20
 
+--zAomHEVwOhCUuXAu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEHc6qFoLCZqgJD98Zk1jtMN6usXEFAmXm38EACgkQk1jtMN6u
+sXHijAf/ZD22JZzaubTwrzLmyxtLzoAxnXrQJw0y4+womYeY38YXoRcbcot8b1L2
+ve/kIn46HuKwl321zekWaEGg6S3/fSn+qaycPFx6319qDRdd9741bfCYCsexpYFh
+ecpPXdVL90ffmjT98dQK+ET+0Lp56RdTPQ2bA0wDSPlQkmLDzJYHU1wexAvx3IbT
+TioplgKYk/rYVNhRlIeMvXiJLfIwEtCzpRVnvwSDCUPEUGPYygjfQPbtVhAoeeq4
+2EB8ObkB4Zd0qX05e/BEiEL6loAeqOoJho/RBH3UoM8QTh2dilf1D1h0EGP8WAmn
+NOCvVSR3ZihKeezAaNK/rZjKkowK8Q==
+=dviz
+-----END PGP SIGNATURE-----
+
+--zAomHEVwOhCUuXAu--
 
