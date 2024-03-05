@@ -1,124 +1,204 @@
-Return-Path: <worik.stanton@tirotech.co.nz>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70EADC54E41
-	for <webhook@archiver.kernel.org>; Mon,  4 Mar 2024 22:12:40 +0000 (UTC)
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
- by mx.groups.io with SMTP id smtpd.web11.6547.1709590350121856884
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86021C5478C
+	for <webhook@archiver.kernel.org>; Tue,  5 Mar 2024 05:39:42 +0000 (UTC)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+ by mx.groups.io with SMTP id smtpd.web10.14829.1709617174339648663
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Mar 2024 14:12:30 -0800
+ Mon, 04 Mar 2024 21:39:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@tirotech-co-nz.20230601.gappssmtp.com header.s=20230601 header.b=x4/BgeY3;
- spf=none, err=SPF record not found (domain: tirotech.co.nz, ip: 209.85.221.175, mailfrom: worik.stanton@tirotech.co.nz)
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-4affeacaff9so1496028e0c.3
-        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 14:12:29 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BTsXGJU4;
+ spf=pass (domain: gmail.com, ip: 209.85.208.44, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5643ae47cd3so7032979a12.3
+        for <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 21:39:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tirotech-co-nz.20230601.gappssmtp.com; s=20230601; t=1709590349; x=1710195149; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1709617172; x=1710221972; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=GI6/j+dfznJ7d5n0UWFqtgtEozavfDvW9TGBtVcb0Tw=;
-        b=x4/BgeY3t7N5lQSZfG0sf4n1Ct+o1jUPcMYNpjSHgs3nzEQ13EOTY0dJnMAlF5C/Zf
-         FGfK5H1eZKAf+/AbZm+WhWFqYRpwxhETQwSoT7Zi87clO3fwHLe8G7OJU6NpLi11d6CW
-         xAWbBk7FHr1DJXNhtLFXX+7R975UTTrmJqZOQzDlFtpeeEVKNGcq2HwARDPBm0kwwFtI
-         rcZcfoGUXc/wKODOm8/1HIZsLQZRITW/895pyEk73anp6xpPTMz3D0zY/CF/6D08jDg+
-         Vffa6srDGxygBknuA+Kqy9XLoCJ2o+rtdm4VLKeOZDUUASxFsb11j4nLKbs7F8ZcpXKQ
-         XH/Q==
+        bh=en6LB5SgQ28udNXH7THsPo9qmOd7ndoZ2Yu3PJ41N+k=;
+        b=BTsXGJU4K60HrF4j/g8K21vkQnIrVpgYNplhf4zPVYVAJhP0KYm7i2sWZil0Ji00zb
+         uOEnsb0mqLGnuRQ98ZKltbsBTbi/P4eQTuA8iorqxwQUNJ/h96XdEN1xWhoOat275hTP
+         LHpoQ3NsemhQO+cW5tYmvsTNnP8ZggKQYMCiSQlUFLoooiyQXrGQvdQIfNNXsUgH6CYd
+         FYbR0K3Us3V1E0fD1neKIpInyEP2UOiqpUCw9Yy/2g1bd71mw6S4jd/YqqVypWcwfLbt
+         ujH/3Ilpu/hScXSS67CGTOdv+6EUt0BoqqxKb4vF1gd2Y/X+mHGmAttKXk1cA/gY8C69
+         gzqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709590349; x=1710195149;
+        d=1e100.net; s=20230601; t=1709617172; x=1710221972;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GI6/j+dfznJ7d5n0UWFqtgtEozavfDvW9TGBtVcb0Tw=;
-        b=Pqx1x+4qYGUB9E7ZDvBd3JGt04Ug0Tlx38/mDRdLQiv1PFlwaYURJWceDW8ONcchdB
-         MSpA9s2TOFeUoBCgh1CbR5pgF4B5jnp95/XUs/NxXZvzV1nY/wZmrw5a7IEaLKRcW2we
-         w6N7BI5cGqe+zPmn7Sngprrv4wsOkiMSfJzlgkzWSgNn5azF2dYszb3e/c8HFAlYHdR3
-         AFhygwk2KkCC0YIlA39HaXM9mMKfQPruwp7PCAeKGwN2GDAyyvHt0UQIKP9OZ/wmaXM0
-         gZ871sbMtZd62uDu9VqBefn0nqAS7PVJRsSE4PmF5yjiTspNCaBejodTzB5qp/z2aNDF
-         E/7g==
-X-Gm-Message-State: AOJu0Yw4Hia/4c7VLeL45dSlUwJ0DquQ/cbbLwLRnKBg87Pl1KFudRWi
-	Bxe6A+gFPspyrEjv/RF0FGGZrwwR4UOcCragRF+Tx0KE6KQdU2Akr1a+xtVCbFmoZM8M88tFe1X
-	RrmdM6dvFAfINxpv2kc8ecar6gC9Vcs50dTu0f5Lk5nu7CL8L5p8=
-X-Google-Smtp-Source: AGHT+IG5VypCIfhkU7L0zCLoom9R2NC5mWNUKVqDpUDqltxK+Rh6RVise+DotOEQiPMw4cBVuWgD9PKMMW1YECDow5o=
-X-Received: by 2002:a05:6122:2024:b0:4d3:4aad:7bf0 with SMTP id
- l36-20020a056122202400b004d34aad7bf0mr77143vkd.0.1709590348942; Mon, 04 Mar
- 2024 14:12:28 -0800 (PST)
+        bh=en6LB5SgQ28udNXH7THsPo9qmOd7ndoZ2Yu3PJ41N+k=;
+        b=l5HvlcLAVSCSV7GqapX3ZwBvqF6WWY2b33umYJ2qtET1+1pT2dpS+DomAfwidX/ude
+         0zsHfWAGfcDggLvi2m2K/XuBo8siBxS/pa4zbumGW+IIbuaY5NTeVbibmtXsUMMfKuiM
+         U9w7P6WFZ+9rUv6+R8Msq3l2wEeW9HHam5yl9qPsSFs4P7FFcE7ApCgh+Cvn5aXOVONK
+         KbKOEzB8LrBUvieNkiwJl7vmRsZO1Ey50/yGaxqI0MMLE1erSyBWAd7UiL4aFisLDX0e
+         mOTFS4cjeKPeCf18OcgUK6hJglb2dDr0SYvbOe8PdORQwdZgynL3lxnzBGvkvAZsXmN/
+         RFSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXpQO2EZO9hnAvlI4iW3NEO0SIxuZxh8I4/xYR4o9mgvhXyPPTeKO+IYappnuYXO+nJ4uRpCdsBQ5D8rqrc26Dpf9avW2ZGXNppG2KN
+X-Gm-Message-State: AOJu0YyPHBhCjevvAXiNMhU9LqObhGmPq4Qocisf76ahnzVmwtdpM+aw
+	wX6stVk4N7jt+GrRZ+tmsXISk8xwp82BXmQw9utncczrfN4pjAD2KUMs3s9aOLMIHtEXrYjV/BV
+	smI1YQrWqyzk3OyeS9hfDVw5Y0YE=
+X-Google-Smtp-Source: AGHT+IEL/+zCJAvz5ks/79yulvwyHSlgLWc5mXb9LCbbHbpcIyQyikTzJ2P7xt5Zs1Mwg6d82UPULt7PFcoxsgdYxH8=
+X-Received: by 2002:a17:906:6813:b0:a43:49ca:2473 with SMTP id
+ k19-20020a170906681300b00a4349ca2473mr7708357ejr.0.1709617172056; Mon, 04 Mar
+ 2024 21:39:32 -0800 (PST)
 MIME-Version: 1.0
-From: Worik Stanton <worik.stanton@tirotech.co.nz>
-Date: Tue, 5 Mar 2024 11:12:18 +1300
-Message-ID: <CANuMBWFxwxt7Fr+qab4U+HHFiSMu4KeukjiMVkme-zgDVpiq=w@mail.gmail.com>
-Subject: Introduction and my first query: Resources for learning
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000075f3370612dd052c"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 4 Mar 2024 22:39:21 -0700
+Message-ID: <CAK5yBb93ufYCWnt6mUyTFGvwPa=gesV8EpxhRK3smsG18d5r7w@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000003e0ead0612e344c5"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Mar 2024 22:12:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62676
+ <yocto@lists.yoctoproject.org>; Tue, 05 Mar 2024 05:39:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62677
 
---00000000000075f3370612dd052c
+--0000000000003e0ead0612e344c5
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Kia ora
+All,
 
-I am Worik Stanton, from Dunedin New Zealand.  I am new to Yocto, and to
-this list, with many decades experience programming computers.
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-My question is about what are the best resources for learning how to adapt
-and maintain a Yocto system  I am responsible for.
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-I have recently become responsible for a collection of Yocto "builds" (I am
-unsure how I should describe them) that I must learn how to maintain,
-adapt, and extend.  Adapt and extend to new hardware and to new software
-that we are writing.
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 407
+unassigned or newcomer bugs.
 
-The author of the system is available only sporadically and is cleary
-moving to greener pastures and is unable to offer much help.
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, "5.99" and=
+ "Future", the more
+pressing/urgent issues being in "5.0" and then =E2=80=9C5.1=E2=80=9D.
 
-I have the "Embedded Linux Systems with the Yocto Project" and it is
-helpful.  However the systems I am working with are, I fear, quite
-idiosyncratic and highly developed.
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
-The example  of the sort of  problem I have faced and solved  is I needed
-"lsblk" in my build.  I found that by adding the name of the Debian package
-to a variable IMAGE_INSTALL  "IMAGE_INSTALL += util_linux" essentially,
-places "lsblk" in the root file system.
+Thanks,
 
-I have no idea why I used the name of a Debian package!
 
-I do not feel ready to pester you folks with queries until I have done more
-reading and have moved along the learning curve.   I am hoping for some
-meta advice about where I can look for guidance for problems like that.
 
-Worik
+*Stephen K. Jolley*
 
---00000000000075f3370612dd052c
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--0000000000003e0ead0612e344c5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Kia ora</div><div><br></div><div>I am Worik Stanton, =
-from Dunedin New Zealand.=C2=A0 I am new to Yocto, and to this list, with m=
-any decades experience programming computers.<br></div><div><br></div><div>=
-My question is about what are the best resources for learning how to adapt =
-and maintain a Yocto system=C2=A0 I am responsible for.</div><div><br></div=
-><div>I have recently become responsible for a collection of Yocto &quot;bu=
-ilds&quot; (I am unsure how I should describe them) that I must learn how t=
-o maintain, adapt, and extend.=C2=A0 Adapt and extend to new hardware and t=
-o new software that we are writing.</div><div><br></div><div>The author of =
-the system is available only sporadically and is cleary moving to greener p=
-astures and is unable to offer much help.</div><div><br></div><div>I have t=
-he &quot;Embedded Linux Systems with the Yocto Project&quot; and it is help=
-ful.=C2=A0 However the systems I am working with are, I fear, quite idiosyn=
-cratic and highly developed.=C2=A0 <br></div><div><br></div><div>The exampl=
-e=C2=A0 of the sort of=C2=A0 problem I have faced and solved=C2=A0 is I nee=
-ded &quot;lsblk&quot; in my build.=C2=A0 I found that by adding the name of=
- the Debian package to a variable IMAGE_INSTALL=C2=A0 &quot;IMAGE_INSTALL +=
-=3D util_linux&quot; essentially, places &quot;lsblk&quot; in the root file=
- system.</div><div><br></div><div>I have no idea why I used the name of a D=
-ebian package!</div><div><br></div><div>I do not feel ready to pester you f=
-olks with queries until I have done more reading and have moved along the l=
-earning curve.=C2=A0=C2=A0 I am hoping for some meta advice about where I c=
-an look for guidance for problems like that.</div><div><br></div>Worik <br>=
-<div><div><br></div></div></div>
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 407 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, &quot;5.99&quot; and &quot;Future&quot;=
+, the more pressing/urgent issues being in &quot;5.0&quot; and then =E2=80=
+=9C5.1=E2=80=9D.<br><br>Please review this link and if a bug is something y=
+ou would be able to help with either take ownership of the bug, or send me =
+(<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an=
+ e-mail with the bug number you would like and I will assign it to you (ple=
+ase make sure you have a Bugzilla account).  The list is at: <a href=3D"htt=
+ps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_B=
+ugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Ne=
+wcomer_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
+martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"=
+MsoNormal" style=3D"background-image:initial;background-position:initial;ba=
+ckground-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sa=
+ns-serif">Thanks,<span></span></span></p>
 
---00000000000075f3370612dd052c--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--0000000000003e0ead0612e344c5--
 
