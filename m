@@ -1,87 +1,98 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <mattwood2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 143C6C48BF6
-	for <webhook@archiver.kernel.org>; Thu,  7 Mar 2024 07:04:28 +0000 (UTC)
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
- by mx.groups.io with SMTP id smtpd.web11.17816.1709795066125570581
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B89CC48BF6
+	for <webhook@archiver.kernel.org>; Thu,  7 Mar 2024 16:20:51 +0000 (UTC)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+ by mx.groups.io with SMTP id smtpd.web11.27602.1709828445242377477
  for <yocto@lists.yoctoproject.org>;
- Wed, 06 Mar 2024 23:04:26 -0800
+ Thu, 07 Mar 2024 08:20:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=NcRjY3l3;
- spf=pass (domain: mvista.com, ip: 209.85.160.53, mailfrom: jpuhlman@mvista.com)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-220ee7342ddso191927fac.3
-        for <yocto@lists.yoctoproject.org>; Wed, 06 Mar 2024 23:04:26 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=jfBxgz1E;
+ spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: mattwood2000@gmail.com)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dcc7cdb3a98so1145825276.2
+        for <yocto@lists.yoctoproject.org>; Thu, 07 Mar 2024 08:20:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1709795065; x=1710399865; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DDacMX7p73aiQcB1jQz1gU+tawBxRjUolqv6Gkijh0M=;
-        b=NcRjY3l39QOaY5WqT6k5ci3Dc7+6mspVb4bwQh5oMvk2iuRlZInBdpj9YdPkesDzUo
-         w0S/Ur0J6qj4t9T8wwQmtw7zy67OWr244uXbLo8zAPJiYtmgRrv0+FAWbDpTjVVYiseD
-         GCvl871dLt45M6sJJszdRIlwRsAiOqCxamVt8=
+        d=gmail.com; s=20230601; t=1709828444; x=1710433244; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yUoW0sAo2lnIbI/3Npon/xJbA07+Jbm0ZwokOxgkqR8=;
+        b=jfBxgz1E1zb5TeK+ikjzGm00KK0rRz4fXW6W1tUKGplfz4ZxrpBaDtyqQ0wV277iXJ
+         jN2zQMstjtY5A471UME9qCS7ph3iaQeZnWzyloaRLwAgqYUNRnyby/EgdT826R9VthFf
+         ViJhrAkhkZ6eJ5kO9jhgJPSJt9j9FNl5H2lPDKkD178SabdUpXj7X8wnt+0Y1nSF0BoS
+         lPFRLo+/6QvkRzN4c1Ulixn9avDnlf4jKdmEochz2t2y5ou2xFUzgY5jwU5ayiVa75Ji
+         YVz19Bb5Z3LSXti0M3Xi+bedVAUvmdk8fRWlMCfEAOgIpRRtYEvoVOVf4oX87EM8GzG6
+         JcKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709795065; x=1710399865;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DDacMX7p73aiQcB1jQz1gU+tawBxRjUolqv6Gkijh0M=;
-        b=DVpRDnpBGgzw39eAY6Q7Ewj1mW78q2dShjiApy5rnWwj5TwjioKSuyn0iETbrRlgL0
-         ozuug5oChZ78Uf26Cuml2lIxYQX96mMSZo1waUO+vOlM/DxtOaZhGIsNXj1nQvA/Lsj/
-         pAi0y1GiJEszC/aNpCdxWgS6mXQr8eWa/ptQnf67ihFFHES7bDmVQxwRTcNGINCnfX4q
-         CDhcHb3zMjw0EI+dsusIpP0DuS8mjJN7pyZvC2lMmP9YR7rmWZPnOFuQpfjVzFV/9Ia1
-         4RnJFEZGGXKVtYXxSgvWN86kBA+WMqxL8FWSwhUEbETpTkyBcQkOOjtLrwGG/Cf6zKBw
-         Cgeg==
-X-Gm-Message-State: AOJu0YxMvvLmNfLeQxBk8DOHzzIvIOLFbH0hjeMVEbpMVO+Hw3ts79qg
-	OUKBPR/QOEwEaWJ2w/tCOhLyIeL+p7WKFO4Y2sY0lNLlmm/SB7mV41uBq45jKE3EDMam9S56gGE
-	2
-X-Google-Smtp-Source: AGHT+IGeKsM78ZL0i0X1Jf+Jq74RNQMuKxw2hw6lqdx4+5WKQ9L8PAisKXcSxG60gaUIWotu5jygAg==
-X-Received: by 2002:a05:6870:8312:b0:21e:c5d7:5966 with SMTP id p18-20020a056870831200b0021ec5d75966mr8575215oae.54.1709795064523;
-        Wed, 06 Mar 2024 23:04:24 -0800 (PST)
-Received: from brown (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id u20-20020a62d454000000b006e468cd0a5asm12774113pfl.178.2024.03.06.23.04.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Mar 2024 23:04:23 -0800 (PST)
-Received: by brown (sSMTP sendmail emulation); Wed, 06 Mar 2024 23:04:16 -0800
-From: jpuhlman@mvista.com
-To: yocto@lists.yoctoproject.org
-Cc: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
-Subject: [meta-security][PATCH] Check for usrmerge before removing /usr/lib
-Date: Wed,  6 Mar 2024 23:04:14 -0800
-Message-Id: <20240307070414.2141220-1-jpuhlman@mvista.com>
-X-Mailer: git-send-email 2.31.1
+        d=1e100.net; s=20230601; t=1709828444; x=1710433244;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yUoW0sAo2lnIbI/3Npon/xJbA07+Jbm0ZwokOxgkqR8=;
+        b=OI/fOIzV4eArGwiHLKnram8hRfSPD6DiRvGHfJxVuQJ1Hao73iAb4nPh1yEQlqx2Az
+         dU/Z3pNQLEueexKmL2EoJWuD0EGwkEnllkbZZzuQn24z06Wjw4oL0s9nou8nYDoNJW59
+         mtPFJakoAfnkZFo2CzOVslVs/kHnwESvDxBfk6gTURDO+jEyUbLa4XK2YcQHySbIkMrH
+         glNB7702Gbtne4tAzTZivJNKQrowup6OghmcbjAXjnGBjNZiY+6EB5MCgMYtjQzVEP6f
+         0CukIRO/FX5VjzFSwjFSBxeva5rQJ0+3SBW2d6s0iGf3NaDKzKyv30Vw3Qrkg6Z/VheI
+         pqMA==
+X-Gm-Message-State: AOJu0Ywz0X1T22arpGchySCMwEcDqRnZBVEXjRLi80DghNn2lSdW4ZcX
+	ZaqVCk5VY5ZSUR8XITB/LQxiniqqHWNipvPsniD1mS1rU11xV4eAX1mp/yXzUxOZeM/tSObCS8r
+	8KTbcjJFbSEea5eqHwYle474RQk1W/0eB
+X-Google-Smtp-Source: AGHT+IEBaEU4bBjOWwkMhy2D5HaimgpiJS9iS1j6kp7M3kqHvfmMwHFI64oumPWVGG3+pkxoKGPJShhvDAY2GBmTvmc=
+X-Received: by 2002:a25:8ca:0:b0:dd0:d877:bb80 with SMTP id
+ 193-20020a2508ca000000b00dd0d877bb80mr6048089ybi.49.1709828444287; Thu, 07
+ Mar 2024 08:20:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: mattwood2000@gmail.com
+Date: Thu, 7 Mar 2024 11:20:33 -0500
+Message-ID: <CADjezmaxO9pGMy91rMDgneq13VBS0FFcz9H_C-CVC2rnTX4rNQ@mail.gmail.com>
+Subject: Create separate jffs2 with only specific data from recipe
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000000c7b18061314759d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Mar 2024 07:04:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62691
+ <yocto@lists.yoctoproject.org>; Thu, 07 Mar 2024 16:20:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62693
 
-From: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
+--0000000000000c7b18061314759d
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
----
- recipes-security/cryptmount/cryptmount_6.2.0.bb | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Hi,
 
-diff --git a/recipes-security/cryptmount/cryptmount_6.2.0.bb b/recipes-security/cryptmount/cryptmount_6.2.0.bb
-index d815e1d..d69d88b 100644
---- a/recipes-security/cryptmount/cryptmount_6.2.0.bb
-+++ b/recipes-security/cryptmount/cryptmount_6.2.0.bb
-@@ -25,7 +25,9 @@ SYSTEMD_SERVICE:${PN} = "cryptmount.service"
- do_install:append () {
-     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-         install -D -m 0644 ${S}/sysinit/cryptmount.service ${D}${systemd_system_unitdir}/cryptmount.service
--        rm -fr ${D}/usr/lib
-+        if ${@bb.utils.contains('DISTRO_FEATURES','usrmerge','false','true',d)}; then
-+           rm -fr ${D}/usr/lib
-+        fi
-     fi
- }
- 
--- 
-2.31.1
+I've been looking around and trying to figure out if it is possible to
+create a separate jffs2 (or other FS) image that does not contain the main
+build image, but only specific files or data from a recipe in the same
+build.
 
+For example, I have an image recipe that creates a wic with ext4 and FAT32
+partitions containing the boot and rootfs to be flashed to eMMC.  I want to
+create a separate jffs2 file that only contains specific data or
+applications generated by a recipe in the same build used to create the
+wic.  This would be flashed to a QSPI device separate from the eMMC.
+
+I can do this manually but I would like to have the buildsystem handle it.
+
+Is this possible?
+
+Thanks, Matt.
+
+--0000000000000c7b18061314759d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;ve been looking ar=
+ound and trying to figure out if it is possible to create a separate jffs2 =
+(or other FS) image that does not contain the main build image, but only sp=
+ecific files or data from a recipe in the same build.<br></div><div><br></d=
+iv><div>For example, I have an image recipe that creates a wic with ext4 an=
+d FAT32 partitions containing the boot and rootfs to be flashed to eMMC.=C2=
+=A0 I want to create a separate jffs2 file that only contains specific data=
+ or applications generated by a recipe in the same build used to create the=
+ wic.=C2=A0 This would be flashed to a QSPI device separate from the eMMC.<=
+/div><div><br></div><div>I can do this manually but I would like to have th=
+e buildsystem handle it.</div><div><br></div><div>Is this possible?<br></di=
+v><div><br></div><div>Thanks, Matt.<br></div></div>
+
+--0000000000000c7b18061314759d--
 
