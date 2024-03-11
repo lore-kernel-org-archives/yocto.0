@@ -1,122 +1,125 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <mattwood2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D98EAC54E49
-	for <webhook@archiver.kernel.org>; Sun, 10 Mar 2024 17:19:43 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
- by mx.groups.io with SMTP id smtpd.web11.42255.1710091173948419695
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23DCFC54791
+	for <webhook@archiver.kernel.org>; Mon, 11 Mar 2024 01:29:06 +0000 (UTC)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+ by mx.groups.io with SMTP id smtpd.web11.51906.1710120541517697281
  for <yocto@lists.yoctoproject.org>;
- Sun, 10 Mar 2024 10:19:34 -0700
+ Sun, 10 Mar 2024 18:29:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=tW5RU15e;
- spf=softfail (domain: sakoman.com, ip: 209.85.128.170, mailfrom: steve@sakoman.com)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-609eb3e5a56so37139697b3.1
-        for <yocto@lists.yoctoproject.org>; Sun, 10 Mar 2024 10:19:33 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Egql4nn9;
+ spf=pass (domain: gmail.com, ip: 209.85.219.172, mailfrom: mattwood2000@gmail.com)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dd10ebcd702so3072889276.2
+        for <yocto@lists.yoctoproject.org>; Sun, 10 Mar 2024 18:29:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1710091173; x=1710695973; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q7XtkVGtsfHHiIMQLYMck/Vo1b5687InpyDgRE+4b64=;
-        b=tW5RU15eZZKNJZR++ajMbyxYGitVj39qxqaHC4oqJE4lMVt5HqNG/g0b4vwLZq8Yf+
-         FfWZlxQd6PNiS5FmB4BBXIbyLxfdSASOqPGy0rNhCnHxKxMa+zhh03jLcC3xo/RcxTFC
-         VDXb3+fTvxKTd0NmC2qoPWxRCP4qPyrf3QFildOYHRF4J2v4NYoNd7/S4TkHypWHOH8t
-         RbMg7LhqA6mQggAYV59u/ckN4FOrXmUsg7rYx0P5jE+MwD9TnGAotONWwYhAfor3swLf
-         9LVu83hKVuPbHxFiP3W3l4+hSXnC43hXadXIyFEijDWgHfAfe5Gb4LAKyR0ScnShuiWr
-         IY3g==
+        d=gmail.com; s=20230601; t=1710120540; x=1710725340; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YdMidBBPr4tm8wr1EK4DJK4PEu1jjseqkS1HQN1Heqw=;
+        b=Egql4nn93i7rxOb3taD1T4XF1HK6y+AdSxBnhldz7c7Obyqo2wY3nNVgU1ATWq/G93
+         oTPec9TN2/R+5to1G66YJAIK4QgcOBUfOo00aE4DfZEcUKz148/CCVc1aEZF0EVGXcBz
+         gpMQvpxFZhwJk6yW4dk50qpH4n/KQhZNJEv6BjbNx1do65TpIvUzt4NHM2Um0HRe1Dnm
+         Tf/+HS/aGIEDtXb2hlquhWFipjAjoQsG/5XTesOISoF7nMNV5736JY6xheRXZ5a+6yuP
+         smWZsLcC02Gh7ZSP0pj+eynT6dJKdowUzoQ3IrMS5wtLNw0ACmTZGN7epbKNAy9m1hdG
+         gTLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710091173; x=1710695973;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q7XtkVGtsfHHiIMQLYMck/Vo1b5687InpyDgRE+4b64=;
-        b=imb6ImtrTd5Wtg+9Pq8Xapit+Ht7J/NpKbkwWUI+G/KYE/N6CKY0E2P4vU4Vo4QAwi
-         Lqq/BtsIYPb2XcY3Q8ulZHpkvTwOk1j3omN7ziTnhUHEnF5uplJ0/BmJkF0WZhVkffyQ
-         Fgs3aP/I/631xk16PIy+3h67ceMl4jwD0jeZe38VrlVnpB9b59qduXMNZMMSKY9OnvHw
-         sDR+r7KuMnJtXzStP8brPApQfFOeK3fAToFg1dQj1c9sC9LPc1d6l1P2TWs+aQ+oZw8Q
-         JWYsRZPWTVwOp+Qv9oHHt3GxlPBBWoZfAhsa9qBrQe9+wxf0NNIp9qBlVQzm+ptIswpR
-         137g==
-X-Gm-Message-State: AOJu0YzfUhp85ZOTNdYSZTL/JXoyJ4Wnp6OrvqmNnercHipjeAW4DZ0d
-	ny3OwOjjGPPOjrp0RWGAGlUWNQgYIAl8tfgdAX1682qtQ5ZPz/JNcE2raXif8btTfQN2aGU4N8P
-	J0DERtuyiAs+Mp9mDTsIM2XT7Li8BNxXN15C0Rg==
-X-Google-Smtp-Source: AGHT+IH9WAV0T1OVWRFo+AXDpaL56AtnYH1Yx93zKaEFwfTspFp5GmMT91AyOdiGoYcnB2XDQXhdNO7HDq8y+4/Q9tc=
-X-Received: by 2002:a81:5d86:0:b0:608:bec5:f27d with SMTP id
- r128-20020a815d86000000b00608bec5f27dmr3805256ywb.41.1710091173092; Sun, 10
- Mar 2024 10:19:33 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710120540; x=1710725340;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YdMidBBPr4tm8wr1EK4DJK4PEu1jjseqkS1HQN1Heqw=;
+        b=wtc7YPBqLtBVSzGieAxpQlPoyd/rnnsOHZp8J3NpaVAT4VjNmLdQRtcwKUuqEOaeFa
+         L8chzPGZxeZyiJMjCAM5T8OUaOcSxSDfZ4baokv07jag437c/H791vE6oQwcsgqSmZqD
+         nJ/Z3IW7eaLB/b/Q4LEYuNK3AhPJkceH4LmbqPelsBrhUADK7CP24J41b/T+OCruI3O6
+         zOEWI4ptFhMsJT23XX6Fyxp36oHsOdIO3NOkI9mThusw5GTjY3PAruhA7HKH251dYFfW
+         wMDQd7pmgH9a/2yMpeh8HvxntXR1ZU850JtV2sJMIb0gI82bmHE2F3j1fektJjDAnsNs
+         YsGw==
+X-Gm-Message-State: AOJu0YyzpbZ2qFF42UBuARsFDhnws83YXqRDw9XkI1xciOWBUAySGQif
+	tnyRyInJVOVYKlfi9ibdfZoqBk0dqqt9zOgG6iOoPJ5mFwVQQBIDMMzRT79e8uKMUWBfKKezG2D
+	wQmn5em0e13ZydJPLpYOZ6WyR4VV4gNmMrpM=
+X-Google-Smtp-Source: AGHT+IG3s9vK9l3+1Orra0wb6yK9Be7U4nHpVYq4ySX9avUtHFd+WCzh1GgPPriiptf3ke1esLo6dR0wwUqTiH9EAYc=
+X-Received: by 2002:a25:8541:0:b0:dd0:6f7:bc3b with SMTP id
+ f1-20020a258541000000b00dd006f7bc3bmr3006867ybn.10.1710120540377; Sun, 10 Mar
+ 2024 18:29:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAOSpxdaa9X1ySRN2hgnqqEu1Hf34vTSaKGZayUaVxx09GSQOew@mail.gmail.com>
- <CA+chaQdtaqzvpKqT3JHxBn7bSb8pfPAro4e_uOSjDMypqYcVqQ@mail.gmail.com>
-In-Reply-To: <CA+chaQdtaqzvpKqT3JHxBn7bSb8pfPAro4e_uOSjDMypqYcVqQ@mail.gmail.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Sun, 10 Mar 2024 07:19:22 -1000
-Message-ID: <CAOSpxdbz+nwUUWzLqt8oYfmU_2oP=9rFSWa33eyjBfi=MZv_2A@mail.gmail.com>
-Subject: Re: [OE-core] Final nanbield release build on March 25, 2024
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+References: <CADjezmaxO9pGMy91rMDgneq13VBS0FFcz9H_C-CVC2rnTX4rNQ@mail.gmail.com>
+In-Reply-To: <CADjezmaxO9pGMy91rMDgneq13VBS0FFcz9H_C-CVC2rnTX4rNQ@mail.gmail.com>
+From: mattwood2000@gmail.com
+Date: Sun, 10 Mar 2024 21:28:49 -0400
+Message-ID: <CADjezmZCNmf+g3u+QtePO5k7Nh2-cSFGxTK4asZCu-JzpAKTbg@mail.gmail.com>
+Subject: Re: Create separate jffs2 with only specific data from recipe
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000551887061358774d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 10 Mar 2024 17:19:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62719
+ <yocto@lists.yoctoproject.org>; Mon, 11 Mar 2024 01:29:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62720
 
-On Sun, Mar 10, 2024 at 6:54=E2=80=AFAM Martin Jansa <martin.jansa@gmail.co=
-m> wrote:
+--000000000000551887061358774d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I was able to work this out.  For others who may find this useful, my
+method was to add mtd-utils-native to the DEPENDS list and then call
+mkfs.jffs2 from do_install.  I also inherited deploy and added a do_deploy
+task to copy the jffs2 file to DEPLOYDIR.
+
+Thanks, Matt.
+
+On Thu, Mar 7, 2024 at 11:20=E2=80=AFAM <mattwood2000@gmail.com> wrote:
+
+> Hi,
 >
-> Hi Steve,
+> I've been looking around and trying to figure out if it is possible to
+> create a separate jffs2 (or other FS) image that does not contain the mai=
+n
+> build image, but only specific files or data from a recipe in the same
+> build.
 >
-> I'm not using nanbield, but does
-> https://wiki.yoctoproject.org/wiki/Releases need to be updated? It
-> says "Support for 7 months (until May 2024)" so I was expecting final
-> call for dunfell (which says "Long Term Support (until Apr. 2024=C2=B9))
-> before nanbield.
+> For example, I have an image recipe that creates a wic with ext4 and FAT3=
+2
+> partitions containing the boot and rootfs to be flashed to eMMC.  I want =
+to
+> create a separate jffs2 file that only contains specific data or
+> applications generated by a recipe in the same build used to create the
+> wic.  This would be flashed to a QSPI device separate from the eMMC.
+>
+> I can do this manually but I would like to have the buildsystem handle it=
+.
+>
+> Is this possible?
+>
+> Thanks, Matt.
+>
 
-I work to the release schedule that Stephen sends out each week, the
-most recent being:
+--000000000000551887061358774d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Upcoming dot releases:
+<div dir=3D"ltr"><div>I was able to work this out.=C2=A0 For others who may=
+ find this useful, my method was to add mtd-utils-native to the DEPENDS lis=
+t and then call mkfs.jffs2 from do_install.=C2=A0 I also inherited deploy a=
+nd added a do_deploy task to copy the jffs2 file to DEPLOYDIR.</div><div><b=
+r></div><div>Thanks, Matt.<br></div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Thu, Mar 7, 2024 at 11:20=E2=80=AFAM=
+ &lt;<a href=3D"mailto:mattwood2000@gmail.com">mattwood2000@gmail.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
+ir=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;ve been looking around a=
+nd trying to figure out if it is possible to create a separate jffs2 (or ot=
+her FS) image that does not contain the main build image, but only specific=
+ files or data from a recipe in the same build.<br></div><div><br></div><di=
+v>For example, I have an image recipe that creates a wic with ext4 and FAT3=
+2 partitions containing the boot and rootfs to be flashed to eMMC.=C2=A0 I =
+want to create a separate jffs2 file that only contains specific data or ap=
+plications generated by a recipe in the same build used to create the wic.=
+=C2=A0 This would be flashed to a QSPI device separate from the eMMC.</div>=
+<div><br></div><div>I can do this manually but I would like to have the bui=
+ldsystem handle it.</div><div><br></div><div>Is this possible?<br></div><di=
+v><br></div><div>Thanks, Matt.<br></div></div>
+</blockquote></div>
 
-YP 4.3.3 was released.
-YP 3.1.32 is in QA.
-YP 3.1.32 Release date 2024/03/15
-YP 4.0.17 build date 2024/03/11
-YP 4.0.17 Release date 2024/03/22
-YP 4.3.4 build date 2024/03/25
-YP 4.3.4 Release date 2024/04/05
-YP 3.1.33 build date 2024/04/15
-YP 3.1.33 Release date 2024/04/26
-YP 4.0.18 build date 2024/04/22
-YP 4.0.18 Release date 2024/05/03
-YP 4.0.19 build date 2024/06/03
-YP 4.0.19 Release date 2024/06/14
-
-So the final nanbield release comes before the final dunfell release.
-
-I will send out a similar final call for dunfell patches.
-
-Steve
-> On Sun, Mar 10, 2024 at 5:11=E2=80=AFPM Steve Sakoman <steve@sakoman.com>=
- wrote:
-> >
-> > If you have any patches you would like to submit for nanbield before
-> > it goes EOL, please do so now!
-> >
-> > I'll be taking patches until around March 18 in preparation for a
-> > March 25 build.
-> >
-> > Steve
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#196900): https://lists.openembedded.org/g/openembed=
-ded-core/message/196900
-> > Mute This Topic: https://lists.openembedded.org/mt/104846319/3617156
-> > Group Owner: openembedded-core+owner@lists.openembedded.org
-> > Unsubscribe: https://lists.openembedded.org/g/openembedded-core/unsub [=
-martin.jansa@gmail.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
+--000000000000551887061358774d--
 
