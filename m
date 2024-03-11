@@ -1,216 +1,277 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <Qi.Chen@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFEEBC54E58
-	for <webhook@archiver.kernel.org>; Mon, 11 Mar 2024 03:55:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by mx.groups.io with SMTP id smtpd.web10.53842.1710129332570496974
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BA095C5475B
+	for <webhook@archiver.kernel.org>; Mon, 11 Mar 2024 07:12:07 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web10.56599.1710141119049893430
  for <yocto@lists.yoctoproject.org>;
- Sun, 10 Mar 2024 20:55:33 -0700
+ Mon, 11 Mar 2024 00:11:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=PdAbA+FM;
- spf=pass (domain: intel.com, ip: 198.175.65.9, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1710129333; x=1741665333;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=XZyJ7OKfdvWECG76/Ub3rf7KY5qGr5txlCuXS5K/C9o=;
-  b=PdAbA+FMK0Rc8jAiNd12on34KijZ/HdXDf/JILzUuMho8W9yudfUNzRI
-   nwU2tkUPwf8qzTWsjzR7KVZ81Os73deXaB0d9MP0yaDqTWH03BMH3yAeP
-   uzBP7lK9gOJXH2b/F3eK+v4/nRTE9GoAOulFTVw//NcDG2bt6WRgPwR8s
-   fgi3qkGDFNfGpylr8KQdzps5IdyVnc+R1Mj673ss51LpVPz2s8x6Du06w
-   6iFPSUvtpb2J3BgYrknusDZwbFj86O+mPbf+bzMAExmgAKgx+Hj+6ZGD8
-   xbE9xU2wINqGTx5+YWt10ykLp9FFsle0UUn0gNLjXFJ6T1VbNuQ8rie/T
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="27245385"
-X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; 
-   d="scan'208";a="27245385"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2024 20:55:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,115,1708416000"; 
-   d="scan'208";a="15685324"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 10 Mar 2024 20:55:33 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 10 Mar 2024 20:55:31 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 10 Mar 2024 20:55:31 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 10 Mar 2024 20:55:31 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Sun, 10 Mar 2024 20:55:30 -0700
+ dkim=fail reason="dkim: body hash did not verify" header.i=@windriver.com header.s=PPS06212021 header.b=Ri7hTF2J;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=3800ec773b=qi.chen@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42B6YZYa032304;
+	Mon, 11 Mar 2024 07:11:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=content-type:message-id:date:subject:to:references:from
+	:in-reply-to:mime-version; s=PPS06212021; bh=84eXyjNVI2dk5+5sMg0
+	p3SBb1HlIyvE+44UHqsuSuBc=; b=Ri7hTF2JSXFrjyLH21GU2vIxf6Xi0htKLRW
+	uCdDfas19je32JcDZDf5vfWJVUGdvj0/7m1d9IcGjuRzIjTr7beSznX3wCXf6GK2
+	2EAbYij3EEASyO++84TNXrvem10vVf9Sz6132Qi2klQqMgXYm72lV21jHkJxFE1l
+	Pc6B95QdWynlb9nbPeYlzUsN9Wdcy04+6XWqOrUPyEeJnu2K35k8Cvgo2Ih5ac0/
+	FLNbTcJcEtb3+RykkXa2D/FmMIkB8W4fvwN2HXBoqK1myI4D9rJbSH73emdcuYjH
+	bJHmFsua44wHm3Az3rdEju1dwmW9qjPISrGXf00XbM+f2tZ6ZGA==
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2169.outbound.protection.outlook.com [104.47.57.169])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3wrcyxsewv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Mar 2024 07:11:57 +0000 (GMT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L/NhdVRIzch7Xb+q4jrh+Q31P//UkjPEQ9dp5DoWL4FCEBBGfOtwkwOIyV9K6sppZFjFXoNdIsGnkg9roioegvuWgc5tdLABLMfCUrD1TtZzCS2nG+NwHDON1DHe1/SBRvM52HTRTF5qMVJ977x1ENWoHoIoeSyfbfoYGxMdJ8RHY+X0GLwJFCdpNJdyZ9DhZxINl42HjxzznuF9TyO0/tcO4z7jFn6eteW9NFO2V++zA+0rsW1af+ZQBAhAKtS3RELaoyo8fppzttz/QeHohp/83Gkv+3QFqrA57rh2/bob1dfYztTs4gN7ezMAA8Z8QMzvmYtS1YRwEtwJXmDHQg==
+ b=S8sLuvFwrXnpygDfPFlu/vbz6WPLRFg/cJu2NTXhdbjRqC+dkEi7+j7xYZizQd4lq+4dOzGQk5pX+Ic7o7it4sgv81SkWFUqCZNWsqWftR8PqaerwQkW8kZfeDHg5wL83Xw+2MnaYfxGpbU2j+BRog8iiE4BQ76Milw5lSl/Hw3h1Y2TG60PhwUzinYPRxR5+sxC30UqzpS+AXuBDrsX6TTXcD/WUftynOWSzaHM6sHMTNH3iDuFS2Tpy1AtC/Of3aawmsaRjdaKykmmgrc2zwShMKqmu68fdKsaj8SPD1EXfl4KEAZaqDzLzvdlZVg/SUf+jm+Xry2sVkC7VLUgEQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kigzkhNpTRPGqVBX+ml9cu2MdFYFpxwM9LdxqhCGWgA=;
- b=JFqRT5MSVz8XqWvprgqyI/962d7B5OGOn7eAeYwHT8QYnf0xFSCUfQz2AuSDUEAyvawJjM4+sjk0upFHDyL+U3oFmoJckSVeJy66x2y80/3DL6VkyqULqMgdqn8MMbatXbYcexJFgllQ4BHBerVZn8nEdr158C0zsCFlhmHBIMGgrUamcynhwcXzSVm2zhYPEz0gHOGrhHEVQAg7WzbyM956WeZ7AyF154UVaxcDz8teo7u/KOE7ST6+6dDfseiY9sNdclLpnwPsEc/1rNcitT3eM0ACxzgDL081nnBrsvIgaNAi/Ll9qD1JNHAhSZmltnvQ1Iiwf9yRVhY1RRqJ0w==
+ bh=84eXyjNVI2dk5+5sMg0p3SBb1HlIyvE+44UHqsuSuBc=;
+ b=O3ffDChi/vuiDDN7KlZSk2CKcC/f8aWPN3MYSjBf7HLl1P2ETkHbeMtC9/fvG6FjGaGX+L3HYTI7XLkFDsGZ7JIHlV9yytjOKlBuOj4WuTQPeDaMJt9xOM5JnNA8v/ZUBbE+yQ4n7y7Voxduo8AttYUu4iCWElTOiuUa2y5D/49XFGgLIVzm8PpENYyA5IWdfglkBxxxIBXRtsD9MAqrXYVeLzrg3M3f5SbereMmOgEMuC6oQ5cV960u9frzMBzIbVrtbApN38ppNoMUZdvxq/c4fOJEkQO+z2D7sjhPquhHKHMper43tW8RboIyUS/BzBsTmqJcqEY2QnGQwAqXMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
- by SJ0PR11MB4863.namprd11.prod.outlook.com (2603:10b6:a03:2ae::23) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from CO6PR11MB5602.namprd11.prod.outlook.com (2603:10b6:303:13a::5)
+ by CY8PR11MB7921.namprd11.prod.outlook.com (2603:10b6:930:7d::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.16; Mon, 11 Mar
- 2024 03:55:28 +0000
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::9df0:5c24:3b9b:1cfe]) by DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::9df0:5c24:3b9b:1cfe%6]) with mapi id 15.20.7386.016; Mon, 11 Mar 2024
- 03:55:28 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"pokybuild@yoctoproject.org" <pokybuild@yoctoproject.org>,
-	"qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [yocto] QA notification for completed autobuilder build
- (yocto-5.0_M3.rc1)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-5.0_M3.rc1)
-Thread-Index: AQHacWy1FGk9g6ok9UOWbRuvvKhOJ7Ex6y9Q
-Date: Mon, 11 Mar 2024 03:55:28 +0000
-Message-ID: <DM4PR11MB7760F4ED9AFE62987E5F8D00A1242@DM4PR11MB7760.namprd11.prod.outlook.com>
-References: <0101018e1eaa2d45-070e35e2-d7ce-4363-84c5-e31d6b513774-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101018e1eaa2d45-070e35e2-d7ce-4363-84c5-e31d6b513774-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.17; Mon, 11 Mar
+ 2024 07:11:54 +0000
+Received: from CO6PR11MB5602.namprd11.prod.outlook.com
+ ([fe80::7bce:b7a0:1830:98d0]) by CO6PR11MB5602.namprd11.prod.outlook.com
+ ([fe80::7bce:b7a0:1830:98d0%4]) with mapi id 15.20.7339.024; Mon, 11 Mar 2024
+ 07:11:52 +0000
+Content-Type: multipart/alternative;
+ boundary="------------kBflsffaM2zFx2dAFoTBd54W"
+Message-ID: <899dda60-1a74-a5b1-0a23-38f4eff50b84@windriver.com>
+Date: Mon, 11 Mar 2024 15:11:47 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [yocto] Cannot ssh into qemu guest
+To: yocto@lists.yoctoproject.org, xylopyrographer@gmail.com
+References: <ZMbp.1709938683080134225.bPqU@lists.yoctoproject.org>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|SJ0PR11MB4863:EE_
-x-ms-office365-filtering-correlation-id: 0179b9a8-e888-4035-298c-08dc417f172d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6yr1wFyhdZgdRst6keX0y2acc5INVP0poMAl87vrrIswdBPfdhkE0TcMni84kB6O3Y39bqvZJvv7RSdMIwEb7Tow4fKSCJc0TIBaqc6pWjURwFa2NAuc9TX6b8mspiE25IUKz1mRVuV6uJO8CYZ97nj9EsaYoCFUzEzOMTtdVymLXKZfh8SZg/wC6JAS8U3tpHYClmaKUARjEao0xc8f3zt+EvVIqWtgRLfn8UOZVPK1D7ywHe0OrKFLB8GelgboVxGYTZcbaL3gou+HbkwgcYPXB3ZGCA0Oa0MQBpi7drVIED/htYqqT4UDm53hAmhtbWQ5P99aZRHITJOwkTKRqUt33bcQobD/NCnPkrn7ZTJAmJ3+DEfPTWMYo3MaSa+174XZ6YtCAVCAOUMs17p0kOZl4MeCDnFtHeI/aNot5d2WuMP8WrsdrV6+UQH8EVRYMVpUcwpd0eV6fbEwxuYEXLCImeT7hpTTFS0QDc6ickzxyIoicLB94IxnMak0AhqEKCYLh+CFnePLfrcuz+bQLxJxknJZovJDFUFzUr57eZyMQ9tJplMS0FDSSYufZ3mrQP5G1O5NIarSE0BJsWdivTFYZjATjv3EOVp30gOkzmIDWAjK3tFsVu/HcUzzx6F8zpNs3J2BR5ahK9M4L1Hms8HjDeggL9HK/V1lR3wuJoerCPfaoUviu7Ov56Pa0/sC
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tem4DbVLa77SUBytmM7+O9S+WusYdlTsYc+ukJFvF0cSvZ426Jc+p3HTTdAp?=
- =?us-ascii?Q?YaeBi9Ax4Os/RiUEhsKv7Nl0MvztFEupQf8ZhrMy4o4yZaKyVeVHyhRqjXIS?=
- =?us-ascii?Q?U0DVwdtjLmd5E+k1UiEnd97YTt/BCmTrQDhMpwWvnuHrVtCGfJyY2L0eLpvu?=
- =?us-ascii?Q?xyVlXaQmNYD0jRiaV5RNKFlbq+furs8Wly7AnSEKf9Z73DS7Ck68+FSUUOmy?=
- =?us-ascii?Q?FWZn2XltZTb6Or/VKA05Heb9tXHmduxuSbBSN3wQAVdaBNju7TF2cDR982SB?=
- =?us-ascii?Q?4yUxGhq7tBxDoMHevF1Nx9il4cBEe/9+EMRqNDaIsAAXNpfJwX4sHla2Jv2x?=
- =?us-ascii?Q?tjNr7DekLYShAEOUMFtTJZC1M85hOJGsy+/+/WnBJ5XQZhqqKHI+LpJWGXZb?=
- =?us-ascii?Q?h3a7RJd4/5meITRtfxjMc5dag10gsZq8quo6X/v3KXlyMX1BOKalJuaTSie9?=
- =?us-ascii?Q?QjgByqBH64CV//kZJ/Y+2LA2zkJ3u5dJgY/6XyVmxgSe3xqwvdai8ttwD6Ov?=
- =?us-ascii?Q?mdP7O6rPbgneH6W8hiwaepFUlXOgLxMp+LqwtKWXfhIm/628BloI4MxqZrQg?=
- =?us-ascii?Q?lvZyUMPsxJ4h1yb9xtp76/wZTtjBPXiwJDSsPQTFCPXjiSKDGC3gWig0ViiF?=
- =?us-ascii?Q?XLu1qZKwt29lflkirLiZK7xz3UH4dWzSMXow9efY9QkqStWfEztj2gDSarC+?=
- =?us-ascii?Q?NFiZi+v7E43kIA3LHm+htZ63FU3ahJC2pVV4rHKncSL+AfOudITHhqoqy4Us?=
- =?us-ascii?Q?ZnI7se67zR43OeN7XMeKIi/yUsJKMxWA0zc47Xx3l5DfrQdsrR7fQaXV1kpv?=
- =?us-ascii?Q?9h+DAYop+e0/ayeP8XbumCHKkztmMs/gERgYtRcikMWqmIZgbkRZpKBHU/Xq?=
- =?us-ascii?Q?ZF4EhiSfYnY+OygJN+9LxzkEwF7rcWLvAyt+yOL9e5jCsX5cBlU9laLjXa/q?=
- =?us-ascii?Q?mxk0vg1cnK1iI7sDajwHGJ78yS5IBFu8wEVtoLlCjf6E5CmET+dcAAUy5slL?=
- =?us-ascii?Q?+XaetDO+z7xwASPXZfLOAdIHY1XBCn7bOiTTmq0dCIgtVvdduTHLOUttWNq+?=
- =?us-ascii?Q?s4Sf4oQKMgs1O5FFIN/oHiXbwnhP+hFK8asVmaNEyfaK8dTbuEe9HOenyHNH?=
- =?us-ascii?Q?WsDfNZD9VoME721o3CBGFdVviYUW4x4GPFOFagP3ObLRF1WDFRcQ0aueGxk5?=
- =?us-ascii?Q?V8BZGrCMeXYN6O2fY2SzquJw1VaHZlduHMGGGCS99j1+2BeHZB4Te2KL29AK?=
- =?us-ascii?Q?WgsE29qBHaxbOfhO8F9ax9N0BwN1q4pqxxvIXaMjTRMI3DkFKVQSjhPuNJ7A?=
- =?us-ascii?Q?P8kl+sU1ygTuchbz8szIyBVM9tNEzTkqxSK+a/bLUkBPY0ZG/d1Zdct5St/Z?=
- =?us-ascii?Q?mdcAxXtROlh3qzTEgiUq6BYkIaqiLWeg2d9YUcbpPw+Uj9COwU/24rbZnC6k?=
- =?us-ascii?Q?5nMMlH4nONmkxsg8ULjETHgIMVUg0Rg3xy5yrQlLxF9gF3dHLfO/unrmA+pt?=
- =?us-ascii?Q?8A8vyHu2+/HgpNhTkT7XEWa9JxmWu+mfCiPfnhQtErbJuKJBN6rWjlZFx6v9?=
- =?us-ascii?Q?3SyLIChlx2iwDAmR0hdpyfrAS/9oEAVklRFKVdF5?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: ChenQi <Qi.Chen@windriver.com>
+In-Reply-To: <ZMbp.1709938683080134225.bPqU@lists.yoctoproject.org>
+X-ClientProxiedBy: SGAP274CA0012.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::24)
+ To CO6PR11MB5602.namprd11.prod.outlook.com (2603:10b6:303:13a::5)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR11MB5602:EE_|CY8PR11MB7921:EE_
+X-MS-Office365-Filtering-Correlation-Id: b803f40c-2974-40d5-ab02-08dc419a86dc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	C81KxOCiijHJ2PnS7Hi7wc9KQruNAkX2uzlvUA9uYghTraVEHHhqI6xqQKNAnTfKAdBXlAKWbJAbHneNYysVDXzaR7UrsRE7CTl7QGJ1Btsm1NbMdaT+6xu25JFRUhHqGDN5D+vW9Ak1aHqGUmq8LJEqc8JxqYJgwh3neswWZMSz4Q/M5XktLf/yWON5jg/7H9JFhN8j36PEoLDdlV1vZ23ftTRm3LjZyJLuA0OC/uzo1sc7gaN6AYQbnqp11jSrQswITXfAAu6/B1Fz8du5H6wjaoiGPQdXVqAYIUG9kDwzT1M/DyGzJMT/ssktoyocWv39ifJGJZnDP/7RTOkt/lAFUEEPnK0M2SFa4LQKzR6L0bPiMHbCd3HlGLApQxzpjj7omavY72vj6AMBakEmekExjvY9FwsAyrd+FP4YGNFtQygek5zEX8Ffu4hItco6Tv6bUNHY7vLIDrG98GfEcQTa6R+FCrDF3rHnKTln3EdJYUfFAjN8hVjkdXIWDLABj4PIYQeNXpeTifmRYX0vEOYgP3HGwYGsdQwAJA9JKADEqSAdHmDu04ljnY7DCmEA+qjm/oZk+13B2KQ4wf2dQT99n+9MiN7/A48il8EhjhY=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR11MB5602.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?ZjFDY25YaUJlaTB1SGlHM1hlaFh3MHh6bWVscmk1UVR5RUVyQytDaEtMYytm?=
+ =?utf-8?B?cWFDMjFjOGxmQUhNS0RiU3ZpV3pWZWh4STViNzZiZjlHTC81Z1BNSGJWekhj?=
+ =?utf-8?B?SzM4Mzc5NHVLNXhjTjBWOW5CdEY4STNybGdYS2dWbnNuUG9lb2NkOUNuUHpE?=
+ =?utf-8?B?UEZqV0QzNmNocGpROHQyT0JIVmQrYk13alhSWGlzTTMzSkFzbFA5WTBFckJz?=
+ =?utf-8?B?TDh4emhIU2YxaW5pYm1HQW5HYjNWUVM1K044eHFxckhFWGp2Vks1d25UNUV4?=
+ =?utf-8?B?dnpKQzFzUUw3Nm9tT2lmMG4zeDBZU1kzZ3hWV0ZyVWMzSDhMQ0ZEL3lXMS9R?=
+ =?utf-8?B?bzlTbXJoQ2JyR2Z0QVFkR1lXblEvYlpKazFuZ3NxcDVvTU9iOE9renNTTTlP?=
+ =?utf-8?B?TFdzdTQySmlHWFNXWTdJSUZhVGU2bEpGRDIvbE92Y2xOUGhJalB5SDFLNzdY?=
+ =?utf-8?B?UC8rRjJaVzQ1L1ZlakdxOW1rVmFZaXVzcUpZa2ZJRWhramRBR200aUxHdjNo?=
+ =?utf-8?B?NkhSREI3alBvZlo1cnpVSGFWNHZoaTE5eElrRTBpTmxLNS9MWXpiQWt1bjlK?=
+ =?utf-8?B?Q3VxOG9JWGx3SW5DK1ZnK3JueUpCeVhoY2NPVktralZYV21sOHFocjE0ek11?=
+ =?utf-8?B?ODdnSUZDTlNRdDdSUFRxSit0RjYvMEYrR2tPbWNwNGI4MXZtWXM1VGwySGlq?=
+ =?utf-8?B?aXRrYWJtd3ZJaUFOSHN4TWpTTzkyaCtPdFNzei9ML0xuZXhXdlgzVEN6dXhh?=
+ =?utf-8?B?WUE1RldnTXlMRHIwak4zNWhvVEl4ajd6emd0T1JZSXU4SGEzc0YrbjY2WjMx?=
+ =?utf-8?B?VVNlR2pxOWpiK1M5MVp6Z0UxWjN2NFJTWEU1dmYwOUxLL1d6R04wOVVSRThT?=
+ =?utf-8?B?a21DMVgvTlBMYlFUNFFtaktHd2lmcktGaGsyQTBJUWpqa1VQUDFBSDk4c09K?=
+ =?utf-8?B?TDllS0ZkRjdGQjFQMCswN2VieWZybVU0MG9uTFVNT3l4dm1ZbG5QeHFWb2VT?=
+ =?utf-8?B?bUdyZEljWndhZzRveTV5QlFqRUgzbDY1SGo3V3lYc2RKUlllSU1veWYrL2hz?=
+ =?utf-8?B?RmkwcWxZZ3ZDWE1TbVRlQno4NWFHV1dMZnRUeTNHUjloSktvWjczOTBBYzZW?=
+ =?utf-8?B?bWVWZ2VlbHpoMWxzTVAvTGhlRzB1OFJMaHpJRHg4NzVibGZsOUZXTEFWWnBR?=
+ =?utf-8?B?bndDS2EvTzgwVm52Y2xXMzVJSWNvUWxnVXZwU3JhYXp6Q2VBZnU4R2xHaGo1?=
+ =?utf-8?B?UkFncXFJTFVuNUFrdVZBd2c2Q3R0ZTd5Y2RzYjYvWjgxMEtxYVlHbDA1cFBM?=
+ =?utf-8?B?QWI0RE8yeUtRNFMvYXZoQzM4bDljRTI2T2dYNTJVcEMzU3dBN2xiOEFrOSt5?=
+ =?utf-8?B?MUs3ZDl4aGZUaXYzdHQ3aHFpczdOOE5PTjhkTW1hTGtoMGRWdWNpdmd6UzBj?=
+ =?utf-8?B?Y3p0SnRZSXM3TEwzKzNVVFk3bnY5d09JK2JwMHNZNSs0eEM4bzA1eTh2N0VU?=
+ =?utf-8?B?eG1ETXlSNS9qNWV2Q1BJWEp0QmlEemEwU2JoaGo4QlBwRVM4MVZyVTFMZU5J?=
+ =?utf-8?B?TVJwMVpsYTJidkFuV3dhVzhUQmdkV2NaQTdmWnRETUZaT1lDeWtwRUMya3px?=
+ =?utf-8?B?NmFSSnpyRngrdnhqR0dkcWhiVjlQN0RmUkYwQlliV01jb00vWGNlZldXOGU3?=
+ =?utf-8?B?UUp0eGZwd21ZTGdPTWxqc0RKU3Z5N29UcHNkZGdYaTBpMDBMWks3aVdFZWU4?=
+ =?utf-8?B?Y3N0YVN3REFWNnRPOUtpREZTNVM5Yk5uTmxmY2RYRXhyN29aKytobm1qV0hO?=
+ =?utf-8?B?RnhjWXlkdjlkaUpEVVhObDAvclZrWjRQdUZxZzA1MTdIVy9KZWRoRGpOaGRW?=
+ =?utf-8?B?UVF2akNKcHNoWjI4djg5QSs0V05lZ2hDRzFCMkJKMU81eVQvRUVmc3YrbjEz?=
+ =?utf-8?B?ZEM2VUFSaFkweklCVVRYaHJpTjg0SE9XeGJzRkZiUmxEMXRucHlSZkZtYVNB?=
+ =?utf-8?B?ZXdFdUw4d2RwMXZrZ1d6M2ZNRW95NDFOVmdaempyQ2Q2cjExMzZqNW9VN2hU?=
+ =?utf-8?B?a3JtbFRhZ3pwU0NOT1Y0bGFBZHV4c0FjRlVBT2dsZldCaDArS1M5VVo1Z003?=
+ =?utf-8?Q?9UjTMr+a8V310hrFZY5l4KBQY?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b803f40c-2974-40d5-ab02-08dc419a86dc
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5602.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0179b9a8-e888-4035-298c-08dc417f172d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2024 03:55:28.5160
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 07:11:52.7417
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lqlJ93CktSkaWp/K9OLgOIF+wUC0TXFR3WiS7XdPJK/hUGLI1SHJTP45hjygQmuZwsjESKb99YkKUgL2R2rvsA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4863
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LXdF7Yz/R4dEzlLKqFrjfHutCye0+ooWYpS22zTrXq3iW5RvWRBamTm4enRbN2koHraqnJGgiho+MoFdAu44Zw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7921
+X-Proofpoint-GUID: sFunT-HmigBxd4orKjDi2sS4XHPWlVem
+X-Proofpoint-ORIG-GUID: sFunT-HmigBxd4orKjDi2sS4XHPWlVem
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-11_04,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 adultscore=0 spamscore=0 clxscore=1011 suspectscore=0
+ phishscore=0 mlxscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403110053
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 Mar 2024 03:55:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62721
+ <yocto@lists.yoctoproject.org>; Mon, 11 Mar 2024 07:12:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62722
 
-Hi all,
-=20
-Intel and WR YP QA is planning for QA execution for YP build yocto-5.0_M3.r=
-c1. We are planning to execute following tests for this cycle:
-=20
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-=20
-Runtime auto test for following platforms:
-	1. MinnowBoard Turbot - 32bit
-	2. Alder Lake-S (12th Generation Intel(r) Core(tm) Processors)
-	3. Raptor Lake-P (13th Generation Intel(r) Core(tm) Processors)
-	4. Meteor Lake-P (14th Generation Intel(r) Core(tm) Processors)
-	5. Beaglebone
+--------------kBflsffaM2zFx2dAFoTBd54W
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 42B6YZYa032304
 
-=20
-ETA for completion Thursday, 14 March 2024.
-=20
-Best regards,
-Jing Hui
+I'd suggest that in the serial console you get:
+1) check the ip address of the booted target
+2) Run 'ssh root@localhost' on that target to check if login onto itself=20
+is OK
+3) If you can ssh locally and the ip is 192.168.7.2, and you still have=20
+problem with 'ssh root@192.168.7.2', maybe you need to check the=20
+iptables rules of your host. Is it reachable? 'ping 192.168.7.2'?
 
+Regards,
+Qi
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
-lf
-> Of Pokybuild User
-> Sent: Friday, March 8, 2024 11:24 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [yocto] QA notification for completed autobuilder build (yocto-
-> 5.0_M3.rc1)
->=20
->=20
->     A build flagged for QA (yocto-5.0_M3.rc1) was completed on the
-> autobuilder and is available at:
->=20
->=20
->         https://autobuilder.yocto.io/pub/releases/yocto-5.0_M3.rc1
->=20
->=20
->     Build URL:
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6661
->=20
->     Build hash information:
->=20
->     bitbake: 0a33b560233b983456178541603ab96fea22238b
-> meta-agl: 403545c205c30df24e39ee03d6f188aca998b3f7
-> meta-arm: aba9250494f62360c1ec8021f81922c005d92b82
-> meta-aws: eb351722d71f5de128455b9f5bfdabfce5d2c725
-> meta-clang: eebe4ff2e539f3ffb01c5060cc4ca8b226ea8b52
-> meta-intel: 9ed54a13803e42ca40589d6ce02c76f3162f6b73
-> meta-mingw: acbba477893ef87388effc4679b7f40ee49fc852
-> meta-openembedded: a0237019f5b5c003fd0c6fd4486859214e24be01
-> meta-virtualization: e7f9c2dd2f9f4ac95942b69c05ed8f5d0494edbf
-> oecore: bc793fa9d1fe24c102d91e97b7002b6e637cbfa5
-> poky: b5624ee5643d881afa004571a096a189ab5389b5
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
+On 3/9/24 06:58, Xylopyrographer wrote:
+> I've built a QEMU quemuarm64 core-image-full-cmdline machine. Runs=20
+> fine. =C2=A0I'm launching it with:
+> *runqemu qemuarm64 nographic*
+>
+> Now trying to figure out how to ssh into it.
+>
+> The book I'm following simply states: "You can SSH into this VM with=20
+> *ssh root@192.168.7.2*"
+>
+> A bit later, going through the exercise of using devtool to add a new=20
+> recipe, the command line is:
+> *devtool deploy-target bubblewrap root@192.168.7.2*
+>
+> However, both *ssh root@192.168.7.2*=C2=A0and the *deploy-target*=C2=A0=
+commands=20
+> time out on attempting the ssh connection.
+>
+>   * Host is Debian 12 Bookworm
+>   * Yocto version is nanbield
+>   * Using GNOME Terminal
+>   * Launching qemu in one Terminal window, running everything else in
+>     a second Terminal window.
+>
+>
+> Any pointers on the magic incantation to get this running?
+>
+> Many thanks.
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#62711):https://lists.yoctoproject.org/g/yocto/messa=
+ge/62711
+> Mute This Topic:https://lists.yoctoproject.org/mt/104819558/7304865
+> Group Owner:yocto+owner@lists.yoctoproject.org
+> Unsubscribe:https://lists.yoctoproject.org/g/yocto/unsub  [Qi.Chen@eng.=
+windriver.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+
+--------------kBflsffaM2zFx2dAFoTBd54W
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">I'd suggest that in the serial console
+      you get:</div>
+    <div class="moz-cite-prefix">1) check the ip address of the booted
+      target</div>
+    <div class="moz-cite-prefix">2) Run 'ssh root@localhost' on that
+      target to check if login onto itself is OK</div>
+    <div class="moz-cite-prefix">3) If you can ssh locally and the ip is
+      192.168.7.2, and you still have problem with 'ssh
+      <a class="moz-txt-link-abbreviated" href="mailto:root@192.168.7.2">root@192.168.7.2</a>', maybe you need to check the iptables rules of
+      your host. Is it reachable? 'ping 192.168.7.2'?<br>
+    </div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">Regards,</div>
+    <div class="moz-cite-prefix">Qi<br>
+    </div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">On 3/9/24 06:58, Xylopyrographer wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:ZMbp.1709938683080134225.bPqU@lists.yoctoproject.org">
+      
+      I've built a QEMU quemuarm64 core-image-full-cmdline machine. Runs
+      fine. &nbsp;I'm launching it with:<br>
+      <strong><span style="font-family: courier_newregular, courier;">runqemu
+          qemuarm64 nographic</span></strong><br>
+      <br>
+      Now trying to figure out how to <span style="font-family:
+        courier_newregular, courier;">ssh</span> into it.<br>
+      <br>
+      The book I'm following simply states: &quot;You can SSH into this VM
+      with <strong><span style="font-family: courier_newregular,
+          courier;">ssh <a class="moz-txt-link-abbreviated" href="mailto:root@192.168.7.2">root@192.168.7.2</a></span></strong>&quot;<br>
+      <br>
+      A bit later, going through the exercise of using devtool to add a
+      new recipe, the command line is:<br>
+      <strong><span style="font-family: courier_newregular, courier;">devtool
+          deploy-target bubblewrap <a class="moz-txt-link-abbreviated" href="mailto:root@192.168.7.2">root@192.168.7.2</a></span></strong><br>
+      <br>
+      However, both&nbsp;<strong><span style="font-family:
+          courier_newregular, courier;">ssh&nbsp;<a class="moz-txt-link-abbreviated" href="mailto:root@192.168.7.2">root@192.168.7.2</a></span></strong><span style="font-family: courier_newregular, courier;">&nbsp;and the <strong>deploy-target</strong>&nbsp;commands
+        time out on attempting the ssh connection.<br>
+        <br>
+      </span>
+      <ul>
+        <li>Host is Debian 12 Bookworm</li>
+        <li>Yocto version is nanbield</li>
+        <li>Using GNOME Terminal</li>
+        <li>Launching qemu in one Terminal window, running everything
+          else in a second Terminal window.&nbsp;</li>
+      </ul>
+      <br>
+      Any pointers on the magic incantation to get this running?<br>
+      <br>
+      Many thanks.
+      <br>
+      <fieldset class="moz-mime-attachment-header"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+-=-=-=-=-=-=-=-=-=-=-=-
+Links: You receive all messages sent to this group.
+View/Reply Online (#62711): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/62711">https://lists.yoctoproject.org/g/yocto/message/62711</a>
+Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/104819558/7304865">https://lists.yoctoproject.org/mt/104819558/7304865</a>
+Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a class="moz-txt-link-abbreviated" href="mailto:Qi.Chen@eng.windriver.com">Qi.Chen@eng.windriver.com</a>]
+-=-=-=-=-=-=-=-=-=-=-=-
+
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------kBflsffaM2zFx2dAFoTBd54W--
 
