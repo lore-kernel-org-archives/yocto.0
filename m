@@ -1,94 +1,121 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B35B1C54E58
-	for <webhook@archiver.kernel.org>; Mon, 11 Mar 2024 16:01:52 +0000 (UTC)
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
- by mx.groups.io with SMTP id smtpd.web11.66974.1710172910349586170
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B26E5C54E60
+	for <webhook@archiver.kernel.org>; Mon, 11 Mar 2024 16:25:12 +0000 (UTC)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+ by mx.groups.io with SMTP id smtpd.web11.67627.1710174310647913980
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 Mar 2024 09:01:50 -0700
+ Mon, 11 Mar 2024 09:25:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=fAtatCRi;
- spf=pass (domain: mvista.com, ip: 209.85.214.176, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1dd81aee2b4so19180165ad.0
-        for <yocto@lists.yoctoproject.org>; Mon, 11 Mar 2024 09:01:50 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=GdifbDIP;
+ spf=pass (domain: gmail.com, ip: 209.85.221.46, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-33e1878e357so2708291f8f.3
+        for <yocto@lists.yoctoproject.org>; Mon, 11 Mar 2024 09:25:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1710172909; x=1710777709; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nPu/vEsmWl7ElVKempheE/zjVt6J3WGwpkeruOuglVs=;
-        b=fAtatCRin/k3NBp96kRpWys81La6B020HvvmCX8rHHgkhpTN5vxVs9oJgk0QCPktfA
-         KgRXidqw+j+48sA4A3FBkPpe9MZkI9umJGUicXKRo2Uq8bd7ywK+mfXYlt9z9OOJAKt9
-         pMy7AlR5PhPm+UcfMOJ6K0Z332oOlbt6jI4mQ=
+        d=gmail.com; s=20230601; t=1710174309; x=1710779109; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z3PJilqgUct2aooW7uv9nMUPpI17jk2Caxrt4JkS188=;
+        b=GdifbDIPaxiSxvHsC+l9cYGOl/1Ds3MEuzvK7ecftB+u4qnYN52jiDNn68ziwYrmxb
+         9JDbPM3QpXADWbKVqk77w8T4HNGQCdt9AeEF7TzUEQt5xiBFc8U/D+sagEqo7GRk/2IU
+         Uih+OrpBoy/fVcjD4FbK4mhKmSX7540d15B4Q8Ixo+iX/3EyIkJy0+IG66W0F1JLdIkW
+         IM6Sho+Tg9/8cOnG32eanIxYAz4K9ghj9o6FYCYjLg1rht4OAiiSeUl1447NJq6nwv5o
+         2NHpna7lMWoUwqKaAGlQFkIPCICBoDuTtqfzJUdJUiN45szCzmKOnBjaP+z9Ax3ctfR3
+         KDng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710172909; x=1710777709;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nPu/vEsmWl7ElVKempheE/zjVt6J3WGwpkeruOuglVs=;
-        b=dThYTGAOYD8sD3w6yxNVDVOrYRphB6X0Wbxo4s8T7IgEZ+TecQugbFyo+WgRjljkWp
-         s4KcRmfqjkynmeffdK+LVdb/aS21C43YSseAMEcZo6GK2R6Bxr4GFYiiNtz1djCfT/M/
-         cyVub8vECnQTIxUUxPgcR4CvEZNTtlWequ60HQx4YdO8Aj8Ft7Lf/5D3ar3a46PFePtk
-         gmnm3qQJcRh8bcVvmAU2v400CHdESv5ZuR3ei6YhMFMk7wMD8eY+NXbstAAF4I4lVBNG
-         O5f95z7tFA/BHry3CrVQq3VJ8MfbJiIzheeijrHWMY5zFeDKc+/tkyTyOcKSdxis9tcf
-         pspg==
-X-Gm-Message-State: AOJu0Yzl+76c2c68SUS25oaj1ueVJ6xggAUoA/rV/NJrjFEw3aGLwBxp
-	J6cLXNshWFxB9q4D0XhMWbWlMvJ6ukPPDSBcbWqj8KZutTIb1ovV8P8Q57hUilj7ec1No32Gf/4
-	w
-X-Google-Smtp-Source: AGHT+IG70Pejsv++iC+OEx0A4UKvv4eXT7qQkqIED3UKECySlJ8c6N/b3pepTYpTtZibEx5jT0cIzA==
-X-Received: by 2002:a17:902:f683:b0:1dd:918d:33ae with SMTP id l3-20020a170902f68300b001dd918d33aemr5224577plg.60.1710172908428;
-        Mon, 11 Mar 2024 09:01:48 -0700 (PDT)
-Received: from brown (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id lg13-20020a170902fb8d00b001dd6ef01492sm4881176plb.208.2024.03.11.09.01.46
+        d=1e100.net; s=20230601; t=1710174309; x=1710779109;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=z3PJilqgUct2aooW7uv9nMUPpI17jk2Caxrt4JkS188=;
+        b=vXTR4juYofm8QXqNMJR8ru6EFlJ1aeasEu+T4sM5Et0Meqi/B4Z7usQ7dvOn8FMN0W
+         B05ysuqSjdSK/v9zHPP9WGXnl2KcFU0awASEc4yizPldae58nF7jqk2sxLtG1ZX5Ay4E
+         XmpDsEdVlw9Ocz9YofVBvBMTFoD6sGZXsaOauD3W4F9SpdQU8MBjGtkaeWSXNGL9V/kA
+         yFc5qppJk3sGPNA0hq2wYiuLNC0ueKY37SzVzncckiu1zw0m9Ga+uAbwpB/eM3Sp1d/C
+         ug01+dwNFASbTwoUcQqLyiU+5kRWFCIzmhbUTTX4BEVRwQZ52ITGTa8IOJbSnhIHfvKo
+         61Bg==
+X-Gm-Message-State: AOJu0YwCZb6as15MsygEbfpwWlO1YbHXOjl99Qtc2JJKSyG4ew71z/Tg
+	JGW1dekXJaxCTdJgOZa3+26DvguPHocJbQVYcCvM8cQb54cnW/Y90PvM/+83
+X-Google-Smtp-Source: AGHT+IHuNw+zwhOFP41ON0ZGb0kFyYRbXjBMPE98wq0XidaICmqiPXS5cDOGdfG2LeOAoB2ZZwcqaQ==
+X-Received: by 2002:a05:6000:102:b0:33d:82a1:626d with SMTP id o2-20020a056000010200b0033d82a1626dmr4313102wrx.38.1710174308757;
+        Mon, 11 Mar 2024 09:25:08 -0700 (PDT)
+Received: from toster.lan (bl15-243-112.dsl.telepac.pt. [188.80.243.112])
+        by smtp.gmail.com with ESMTPSA id bs9-20020a056000070900b0033e9fca1e49sm521935wrb.60.2024.03.11.09.25.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Mar 2024 09:01:47 -0700 (PDT)
-Received: by brown (sSMTP sendmail emulation); Mon, 11 Mar 2024 09:01:40 -0700
-From: jpuhlman@mvista.com
-To: yocto@lists.yoctoproject.org
-Cc: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
-Subject: [meta-security][PATCH] arpwatch: install man8 dir
-Date: Mon, 11 Mar 2024 09:01:39 -0700
-Message-Id: <20240311160139.2228924-1-jpuhlman@mvista.com>
-X-Mailer: git-send-email 2.31.1
+        Mon, 11 Mar 2024 09:25:08 -0700 (PDT)
+From: Jose Quaresma <quaresma.jose@gmail.com>
+X-Google-Original-From: Jose Quaresma <jose.quaresma@foundries.io>
+To: yocto@lists.yoctoproject.org,
+	scott.murray@konsulko.com
+Cc: Yash Shinde <Yash.Shinde@windriver.com>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Jose Quaresma <jose.quaresma@foundries.io>
+Subject: [meta-lts-mixins][kirkstone/rust][PATCH 04/11] rust: Fix assertion failure error on oe-selftest
+Date: Mon, 11 Mar 2024 16:24:03 +0000
+Message-ID: <20240311162419.1138625-4-jose.quaresma@foundries.io>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240311162419.1138625-1-jose.quaresma@foundries.io>
+References: <20240311162419.1138625-1-jose.quaresma@foundries.io>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 Mar 2024 16:01:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62725
+ <yocto@lists.yoctoproject.org>; Mon, 11 Mar 2024 16:25:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62729
 
-From: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
+From: Yash Shinde <Yash.Shinde@windriver.com>
 
-The install expects man8 directory to already exists. If not created
-the man page gets installed as "man8", which causes conflicts with
-other packages, that expect it to be a directory.
+Fixes: thread 'main' panicked at 'assertion failed: `(left == right)`
+       left: `x86_64-unknown-linux-gnu`,
+       right: `x86_64-poky-linux-gnu`: Cannot obtain compiler for non-native build triple at stage 0', compile.rs:1474:13
 
-'arpsnmp' -> '/build/project/tmp/work/corei7-64-poky-linux/arpwatch/3.3/image/usr/sbin/arpsnmp'
-'./arpwatch.8' -> '/build/project/tmp/work/corei7-64-poky-linux/arpwatch/3.3/image/usr/share/man/man8'
-removed '/build/project/tmp/work/corei7-64-poky-linux/arpwatch/3.3/image/usr/share/man/man8'
-'./arpsnmp.8' -> '/build/project/tmp/work/corei7-64-poky-linux/arpwatch/3.3/image/usr/share/man/man8'
+Add correct target value for cross-compiled targets on stage1 during rust oe-selfest.
 
-Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
+Signed-off-by: Yash Shinde <Yash.Shinde@windriver.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+Signed-off-by: Jose Quaresma <jose.quaresma@foundries.io>
 ---
- recipes-scanners/arpwatch/arpwatch_3.3.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../rust/files/target-build-value.patch       | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 recipes-devtools/rust/files/target-build-value.patch
 
-diff --git a/recipes-scanners/arpwatch/arpwatch_3.3.bb b/recipes-scanners/arpwatch/arpwatch_3.3.bb
-index 8e9a268..e547938 100644
---- a/recipes-scanners/arpwatch/arpwatch_3.3.bb
-+++ b/recipes-scanners/arpwatch/arpwatch_3.3.bb
-@@ -52,7 +52,7 @@ do_configure () {
- do_install () {
-     install -d ${D}${bindir}
-     install -d ${D}${sbindir}
--    install -d ${D}${mandir}
-+    install -d ${D}${mandir}/man8
-     install -d ${D}${sysconfdir}
-     install -d ${D}${sysconfdir}/default
-     install -d ${D}${sysconfdir}/init.d
+diff --git a/recipes-devtools/rust/files/target-build-value.patch b/recipes-devtools/rust/files/target-build-value.patch
+new file mode 100644
+index 0000000..23e8c76
+--- /dev/null
++++ b/recipes-devtools/rust/files/target-build-value.patch
+@@ -0,0 +1,26 @@
++Add correct build value for cross-compiled targets on stage1 when
++bootstapping rustc.
++
++Upstream-Status: Backport [https://github.com/rust-lang/rust/pull/119619/commits/b888e2f82b9dbe81875f50d13adbc0271a9401ff]
++
++Signed-off-by: onur-ozkan <work@onurozkan.dev>
++Signed-off-by: Yash Shinde <Yash.Shinde@windriver.com>
++---
++diff --git a/src/bootstrap/test.rs b/src/bootstrap/test.rs
++--- a/src/bootstrap/test.rs
+++++ b/src/bootstrap/test.rs
++@@ -1489,8 +1489,12 @@
++         // NOTE: Only stage 1 is special cased because we need the rustc_private artifacts to match the
++         // running compiler in stage 2 when plugins run.
++         let stage_id = if suite == "ui-fulldeps" && compiler.stage == 1 {
++-            compiler = builder.compiler(compiler.stage - 1, target);
++-            format!("stage{}-{}", compiler.stage + 1, target)
+++            // At stage 0 (stage - 1) we are using the beta compiler. Using `self.target` can lead finding
+++            // an incorrect compiler path on cross-targets, as the stage 0 beta compiler is always equal
+++            // to `build.build` in the configuration.
+++            let build = builder.build.build;
+++            compiler = builder.compiler(compiler.stage - 1, build);
+++            format!("stage{}-{}", compiler.stage + 1, build)
++         } else {
++             format!("stage{}-{}", compiler.stage, target)
++         };
 -- 
-2.31.1
+2.44.0
 
 
