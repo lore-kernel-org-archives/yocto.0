@@ -1,155 +1,348 @@
-Return-Path: <joerg.sommer@navimatix.de>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7A44C54E58
-	for <webhook@archiver.kernel.org>; Tue, 12 Mar 2024 11:12:47 +0000 (UTC)
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (EUR04-VI1-obe.outbound.protection.outlook.com [40.107.8.139])
- by mx.groups.io with SMTP id smtpd.web11.6113.1710241960549784610
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AC71C54E58
+	for <webhook@archiver.kernel.org>; Tue, 12 Mar 2024 12:46:48 +0000 (UTC)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+ by mx.groups.io with SMTP id smtpd.web10.7913.1710247598258996794
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 Mar 2024 04:12:41 -0700
+ Tue, 12 Mar 2024 05:46:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@navimatix.de header.s=selector1 header.b=uxs8TxgE;
- spf=pass (domain: navimatix.de, ip: 40.107.8.139, mailfrom: joerg.sommer@navimatix.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z3V190fQKHlPiFMU6+9acuXQcuw1Y4dnpydfwBWJ1ReEJ94QdQxXNyTGWVO6+6j8CnI8J1imLYgaXXd0g+5nMYZoOAjoQkRPcSTmXr2xxzTAHHZmMB/caIsu2Il2mdCsbETu1g2yrywFy38DFPF22xoaxUx3d7Yu7XYaIgAsZb41+U1w8f0iCFPIK1zL5g8eGFxFnSe7dkixWdyPq/lUABWJxCtfzs7snToFV9uK7VtAqlAwLkU0qMJJvfQ+AkhBEztumBDMvh566kqBofrYzRL0poEqYbZbLf0Q6+gNdglyDHfJJ1f7ugw3kKmBrKOn7//Uaf1AB0miOLUR7Mj9Wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pg63AUfYdoeIoNs8mMta0VewSxWcewb+sD6wya9c4ys=;
- b=A/ie47naYbiIPG821tpd4+n2683zuNw43ZtTzeEQk0HIvRCNKVlpWOLc02e7QTeYIT/Yo26cl1owtiusG0Z9u2ZqGkYR79M5tx1ia0E5Z2wxYiLr9muUeF1zkBiMmCVAHzZOeo1Wmc2vHvQHcKsj5G2sF0SFXxoLnbCqhu6dXWG7OCxAgVZq8DfFEAANEJ57R+5v9R3OkJ2H7/mhonzF2FzcYaKuDQKFqB3r0IPfBPcXPSz6GazKOWret8m0KmlpgRI80sj5jiR/rWP9UoG6Nagn8ap+rEeTuegakLdyoXsAGNZO9HTShCfj4No4mCVQ/xln69HF4SDpsXjk5oAVMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=navimatix.de; dmarc=pass action=none header.from=navimatix.de;
- dkim=pass header.d=navimatix.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=navimatix.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pg63AUfYdoeIoNs8mMta0VewSxWcewb+sD6wya9c4ys=;
- b=uxs8TxgE2M7QGQSMFKufsW91l+cdLWJv89ooyjGPO+HriuHWXKc6OcjyPKBJK/EzI7pDjtD09WEmu+8gn4fhUiBIhur+YmnilLgDTQC1ERxsNhbqs6YjQOHH3XJOzpWjNr7dfy2SDvJdFZqlMZk03ZM8h8bbi1lHDhLBXEHBxkE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=navimatix.de;
-Received: from DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
- (2603:10a6:8:7::20) by DU0PR01MB10209.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:318::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Tue, 12 Mar
- 2024 11:12:36 +0000
-Received: from DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
- ([fe80::25b0:e60e:c5dc:54f5]) by
- DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
- ([fe80::25b0:e60e:c5dc:54f5%6]) with mapi id 15.20.7362.035; Tue, 12 Mar 2024
- 11:12:36 +0000
-Message-ID: <9167b721-3780-40ec-a21e-ee36ea895257@navimatix.de>
-Date: Tue, 12 Mar 2024 12:12:34 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Cannot ssh into qemu guest
-Content-Language: en-US, de-DE
-To: yocto@lists.yoctoproject.org, xylopyrographer@gmail.com,
- Marco Cavallini <koansoftware@gmail.com>
-References: <27822.1709973725254624537@lists.yoctoproject.org>
- <27822.1710010738640962284@lists.yoctoproject.org>
-From: =?UTF-8?Q?J=C3=B6rg_Sommer?= <joerg.sommer@navimatix.de>
-In-Reply-To: <27822.1710010738640962284@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: BE1P281CA0253.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:8b::12) To DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
- (2603:10a6:8:7::20)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=jSzMyJp8;
+ spf=pass (domain: gmail.com, ip: 209.85.222.47, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-7dade974b0bso2352907241.0
+        for <yocto@lists.yoctoproject.org>; Tue, 12 Mar 2024 05:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710247597; x=1710852397; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=scl+vp4Fe2fNi3HYES0VIyPyQC1uktTgwW21ummYMUw=;
+        b=jSzMyJp8r88yXP02YIqaOeQOIJjbYOlPkJa1iFw1HMsbfp07CJGddo/oM8DZYxms0j
+         4ySw6zSsgkecwsle/t5/FATK1l4jHR25vuOgn1qUPsgnvvEzajft3IjY2pK6nj4xLmzZ
+         aTRP9U3UWBpDjfgA9fyCHJjCWQUezjZ7zBDP1MOckTkmRHUElF7UEHMizFOGk2WiUcHW
+         vfTQVATG0l168nTqWu3MTT41Y9PbRcjEiCi2hNlLkMjIrEmDGgQImPfZyJfCCKBb39CV
+         OdtCL59ZPcxj8bUsekQFz7KQX6tlcS2qWod7eJOkPTzaMzgIxkXute5c983/JZuXM+sh
+         SjsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710247597; x=1710852397;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=scl+vp4Fe2fNi3HYES0VIyPyQC1uktTgwW21ummYMUw=;
+        b=ssk3cH8o3od7L6ccVM18DW7JJ4yXXttmQQwkht/FRWtP5H+CKMLCvh304lyyUcWP3m
+         y5dMzpJAOmDsSXDGXuMrXKGDnaReYDAJQsmFt8Ei8BJ8KwdoUysNuV8Fkkzj4O8qKeIy
+         t3kMU8WuX9rKzVqmflLjfCBYfvsY+POuAejQ6c75V9df09FPxk+72LAisMZ2R36I09EJ
+         r3Bw83i02Xmndfv/A6XJK3oaw3+sIpR+tEs+x8xV6D6DPQl2eV0iOj5wQBJxW63HQI6U
+         X5H4nFSg+1w0T2aX7Py8GlXufy8/il1sMSIrjtQLK9eV5XBl15Z01y2WN0AHzgh1vh/D
+         oQQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXovItMKSV8Mn0czBIpUILNsSEtAkLXCDwfv8E2d5WkGAJ43xMe2Y+OsTgg7mcj6Q7so9qHmU7d+nMEuar/P7QYyH7q4T8j93mujg7v
+X-Gm-Message-State: AOJu0YxACBgivecu/Rvih2sUkqMK72tnlG2E9GznXwJEamxUYtCTe9zU
+	pEeOHuubZULJ41UQEcONeOOFdCNiQWTDFs5KBXXtMvSg2ZAIjWU0merdCgKiaH+22vm8SxBDM0s
+	POS6pWlXNL5gXBstTSxNO7IiOaTM=
+X-Google-Smtp-Source: AGHT+IEi8v1CSaaBpngdmVT61c1a1bYYOiqle3+qdOgF0GEgnjhUB9M4EmjsxfqeCRhFtDgfn0A5qjHb14mJCoZ5HvA=
+X-Received: by 2002:a05:6102:3b96:b0:471:fc99:51a2 with SMTP id
+ z22-20020a0561023b9600b00471fc9951a2mr6924299vsu.17.1710247597039; Tue, 12
+ Mar 2024 05:46:37 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB3PR0102MB3658:EE_|DU0PR01MB10209:EE_
-X-MS-Office365-Filtering-Correlation-Id: 664d122c-5890-4b37-435c-08dc42855259
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	Zc/T5Zpami/N0Su7GrJ037MhqeIEqVDizn/AnUTc1eKZlaEjoLqSQBLF++1/RcL0FbxLzuh0x3UjqsI/7rz4xTqt3eGLqb+Un+NgQeDOQlHzNDV6g+aln87cez6Eea/fPKcSVIrXrlSt6oKI6iKQpBIfEtLClkXZJiEe6cmAY0hQ0h4tmzsMGxk9xszLl8izwBrBZwJftkry4LW3NPDLbzXHJmH8prf49F8lj7PS+Y11w+4EG22CKUNHWZevvGld5Xx+WCp9UoUGkG63NGRh3P/uNTlwZrIyX1sUEmJWMRQvYJy56WsTJdoX0OV1qQM9f6lDawBFg7NgFmz0ACK72qzAVPnmN3tc9UmvWVFoMJ+Um6KlTu+98a3txgQ/FIlGHl7dW+ykyUnct6DsgWjgQCTYIxni81fYfv5DJ7QPTzv1ttnxLRIJrTgWUOoJh0NacM4c3Xd1S77pey35k0kmnon4bd353Ul4L4kSToLSh9p+clRZ8G+M9wQeKNg8T6vY9dvAFM/n5gqxWxTjz4K68bveZpb5YhvbMKqULWKQW4mfP2WhtERSduELME/2P5j5JnkQMo3it9s4LfNrpbkUNudQaswBaXh30RxiS7Cz+z8=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB3PR0102MB3658.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?cVcQUgvWi3jP/nXSa0wBt8WFEbL3NXv6mETiMwKVi5J9AM/x4Vbn0pZnbs7x?=
- =?us-ascii?Q?KtgmMnuTThhSqEkCVi58qYPR/V/AtGTzmzUKmMddpm7zeWkkBulzXu0KDmXX?=
- =?us-ascii?Q?oKO7ohkVXECEx1WimBpEI/I+VlrwcHWMR9nwE2MC0ioNS0sjoZsfVM99vbZr?=
- =?us-ascii?Q?IVT+NTsfI5HqS6MVaN9+IGYm4asqET3xsrEvwQvY9EwV0LuhV/XdBBCOY3zY?=
- =?us-ascii?Q?0M8d+oeQb7iV13bOsGjana8O4ONTN+xCyN8jI4Quel0f+5IUpA1GtImSbGlQ?=
- =?us-ascii?Q?hsLFOBIINoMRKLwgtxSxzH1wTLkm0STcJCwx1bb/jiRa68im3LF0SaJFI8cD?=
- =?us-ascii?Q?bqvpDmQvrxeBE63qX8dhtWi89nXBqpnvggxMW+k4jWhkYhL5R6McunwZpfba?=
- =?us-ascii?Q?Wzc3W/Kr+wBl0xAnUvPqsv+hbHGCBHfHGPSM/RY1v8THo1n5OkaKY2uNn3xc?=
- =?us-ascii?Q?V2xYuGk2XHerSl5o3biN7EoCXsqcQJeGalFLdaq+ZwAqMg8VJTilCC7RYu0C?=
- =?us-ascii?Q?bzPr1riAIbHC2M1v5je8M5SbumfkAQGy8r2fM/Cph52zI5BjFHRb5tvQQnFz?=
- =?us-ascii?Q?VNxUdD9yMzYvQvu3XWZZf5hAlktq93fd6xK0KOhWRaU6ii3iZHIA2nBU/sVr?=
- =?us-ascii?Q?qmIAzfDx/T8HCh7RWmS0iUd8V1Vp3ynzwkLIC3QX40dqGf/5PFI6yGRRLXA5?=
- =?us-ascii?Q?0Uf8KfB/9QvofCZOEb7nbeI4w5s+FaVnW6F0ikMBfhHVXI3x2t0NLduHE5NY?=
- =?us-ascii?Q?Zo9Xn4Z/lXGutUzjsQPJqCa4tNg8wt0LBSuvq5ERA1LA8I+hHkYh3XIIe75e?=
- =?us-ascii?Q?giKL0rCBCYSLD9uuN/bPbaViTLxcOBi30la6y1SsSNV5t/cGJvPelGOY+R1V?=
- =?us-ascii?Q?zLZZAVC+Djre5PICt6HJx/xXrYwZH2CwaEzcXywSQnBCHB7oB2ii2reZSQ9z?=
- =?us-ascii?Q?zArs8YUkErJkCe2Qx8swL6O5FmT8D7hYBHSDQdl3Hz6cD7NkMAmcosrcUebI?=
- =?us-ascii?Q?HOgiPAfcHJ86B8oTEZaow++UBpNxOgvGxrNipqzYDX6iDHkk6Z4U4+x4yZqK?=
- =?us-ascii?Q?Z+6rVv3EfRuxL9O8n9K4elRiesxZEII81Y8O8CZxhwDR3z20rFhYiB09l8fX?=
- =?us-ascii?Q?CXFYSkJxl4ErdPR9ofhAKpvSRCn5GqVHkrLjKeKEW6y/h7saB8yGSTo1rzzx?=
- =?us-ascii?Q?aoVbHGh4MXdy0gforhu6wPIT0NkpHYXBDZKOC/snASrSsoLwq5j4kjiKNzyy?=
- =?us-ascii?Q?r7yjJ0v4C4Toq7mg+WMjVVhpmLKOJkk3g0I6iZb1DNG+1zr2LL7g20UmguPT?=
- =?us-ascii?Q?Z1ZhqyzmzsOIu6MnEwh0A42wShqcv7SOpVdYblvIjtO2TG5iMslOBQdEvhTL?=
- =?us-ascii?Q?8xHt8gPFOGTD8aqPJSYj1lTSOUp2h6JVKNJx7byfmIv6g5YbhGffn8p/Gtqu?=
- =?us-ascii?Q?2zkhdWfC3kia809VzR0HI2XJjV/qpjeO59cA1pmm8B0MskpcCAyKFhQK59fC?=
- =?us-ascii?Q?j8zbeeZoin2QZv6KuEillMdIJfMn6dBnkF4zmXg/fivj5CohJuIDWXZk97hJ?=
- =?us-ascii?Q?nuE6oroe+qbVzLfw2iMTvHrzHuIpKMZ9bSfdEyqBc3Jl52JnvONG/z7ZkWT1?=
- =?us-ascii?Q?zA=3D=3D?=
-X-OriginatorOrg: navimatix.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 664d122c-5890-4b37-435c-08dc42855259
-X-MS-Exchange-CrossTenant-AuthSource: DB3PR0102MB3658.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 11:12:36.0524
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: c87b4f54-b992-4813-8f3f-4a876324197f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xju4VLQcFumd3zm6awsho0TZxDfFInMTWoZfnY1UBASoTj5s5hz6R7HOdQYWIcuyIpDuKKDtIGrPNgEW5+SRQeIO91n9B6ULDRL9Sfl4qT8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR01MB10209
+References: <20240311162419.1138625-1-jose.quaresma@foundries.io>
+ <20240311162419.1138625-10-jose.quaresma@foundries.io> <bfbd5a23-720d-410b-a359-56c1822a0cf6@windriver.com>
+In-Reply-To: <bfbd5a23-720d-410b-a359-56c1822a0cf6@windriver.com>
+From: Jose Quaresma <quaresma.jose@gmail.com>
+Date: Tue, 12 Mar 2024 12:46:26 +0000
+Message-ID: <CANPvuRn1D=4F3XjWxDHFwCA2bRyh0JUugOt1LhSjXSs_rb1wFA@mail.gmail.com>
+Subject: Re: [meta-lts-mixins][kirkstone/rust][PATCH 10/11] rust:
+ reproducibility issue fix with v1.75
+To: Sundeep KOKKONDA <Sundeep.Kokkonda@windriver.com>
+Cc: Yash Shinde <Yash.Shinde@windriver.com>, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	Jose Quaresma <jose.quaresma@foundries.io>, yocto@lists.yoctoproject.org, 
+	scott.murray@konsulko.com
+Content-Type: multipart/alternative; boundary="0000000000007fe9390613760c3c"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Mar 2024 11:12:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62741
+ <yocto@lists.yoctoproject.org>; Tue, 12 Mar 2024 12:46:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62742
 
-On 09.03.24 19:58, Xylopyrographer via lists.yoctoproject.org wrote:
-> Thanks for the reply.
->=20
-> Still a bit green with all this but from the QEMU VM, *sshd* is running
-> and port 22 is open.
->=20
-> Checked by running:
-> *ps aux | grep sshd
-> *and
-> *netstat -plant | grep :22
->=20
-> *as well, I can telnet in to the VM itself by running (from within the VM=
-):
-> *
-> telnet localhost 22*
->=20
-> which returns:
-> *Connected to localhost*
-> *SSH-2.0-OpenSSH_9.5*
->=20
-> So I think all is as it should be on the QEMU side of things?
+--0000000000007fe9390613760c3c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-If you pass the option `slirp` to runqemu, it forwards the ssh port to
-2222 to the outside. Check with `ss -tlp`.
+Hi Sundeep,
 
-[1]:
-https://docs.yoctoproject.org/dev/dev-manual/qemu.html#runqemu-command-line=
--options
+Sundeep KOKKONDA <Sundeep.Kokkonda@windriver.com> escreveu (ter=C3=A7a,
+12/03/2024 =C3=A0(s) 03:45):
+
+> Hello,
+>
+> FYI. There is a V2 available for this patch with upstream fix backport.
+> You can consider that.
+>
+> https://lists.openembedded.org/g/openembedded-core/message/196856
 
 
-Kind regards
+Sure, when this one is integrated on the master branch I can create a
+backport for it too.
+Thanks for the notification.
 
-J=C3=B6rg Sommer
+Jose
+
+
+>
+>
+>
+> Thanks,
+>
+> Sundeep K.
+>
+> On 11-Mar-24 21:54, Jose Quaresma wrote:
+> > CAUTION: This email comes from a non Wind River email account!
+> > Do not click links or open attachments unless you recognize the sender
+> and know the content is safe.
+> >
+> > From: Yash Shinde <Yash.Shinde@windriver.com>
+> >
+> > With 1.75 rust release, the '.rustc' section of shared object libs are
+> embedded with absolute path names which is casuing reproducibiluty issues=
+.
+> > This change will fix the path name format back to '/rust/$hash' as in
+> earlier versions.
+> >
+> > Below are the links for detailed bug description & discusssion with
+> upstream rust.
+> > https://github.com/rust-lang/rust/issues/120825#issuecomment-1964307219
+> > https://github.com/rust-lang/rust/issues/120825#issuecomment-1964652656
+> >
+> > Signed-off-by: Sundeep KOKKONDA <sundeep.kokkonda@windriver.com>
+> > Signed-off-by: Yash Shinde <Yash.Shinde@windriver.com>
+> > Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+> > Signed-off-by: Jose Quaresma <jose.quaresma@foundries.io>
+> > ---
+> >   .../files/repro-issue-fix-with-v175.patch     | 23 ++++++++++++++++++=
++
+> >   recipes-devtools/rust/rust-source.inc         |  1 +
+> >   2 files changed, 24 insertions(+)
+> >   create mode 100644
+> recipes-devtools/rust/files/repro-issue-fix-with-v175.patch
+> >
+> > diff --git a/recipes-devtools/rust/files/repro-issue-fix-with-v175.patc=
+h
+> b/recipes-devtools/rust/files/repro-issue-fix-with-v175.patch
+> > new file mode 100644
+> > index 0000000..6840baf
+> > --- /dev/null
+> > +++ b/recipes-devtools/rust/files/repro-issue-fix-with-v175.patch
+> > @@ -0,0 +1,23 @@
+> > +rust: reproducibility issue fix with v1.75
+> > +
+> > +With 1.75 rust release, the '.rustc' section of shared object libs are
+> embedded with absolute path names which is casuing reproducibiluty issues=
+.
+> > +This change will fix the path name format back to '/rust/$hash' as in
+> earlier versions.
+> > +
+> > +Below are the links for detailed bug description & discusssion with
+> upstream rust.
+> > +https://github.com/rust-lang/rust/issues/120825#issuecomment-196430721=
+9
+> > +https://github.com/rust-lang/rust/issues/120825#issuecomment-196465265=
+6
+> > +
+> > +Upstream-Status: Inappropriate [patches need rework]
+> > +Signed-off-by: Sundeep KOKKONDA <sundeep.kokkonda@windriver.com>
+> > +---
+> > +--- a/compiler/rustc_session/src/session.rs    2023-12-21
+> 08:55:28.000000000 -0800
+> > ++++ b/compiler/rustc_session/src/session.rs    2024-02-26
+> 07:29:15.527577022 -0800
+> > +@@ -1269,7 +1269,7 @@
+> > +                 | CrateType::Rlib
+> > +                 | CrateType::Staticlib
+> > +                 | CrateType::Cdylib =3D> continue,
+> > +-                CrateType::ProcMacro =3D> return false,
+> > ++                CrateType::ProcMacro =3D> return true,
+> > +             }
+> > +         }
+> > +
+> > diff --git a/recipes-devtools/rust/rust-source.inc
+> b/recipes-devtools/rust/rust-source.inc
+> > index 8ae8add..6bef990 100644
+> > --- a/recipes-devtools/rust/rust-source.inc
+> > +++ b/recipes-devtools/rust/rust-source.inc
+> > @@ -12,6 +12,7 @@ SRC_URI +=3D "
+> https://static.rust-lang.org/dist/rustc-${RUST_VERSION}-src.tar.xz;n
+> >               file://rustc-bootstrap.patch;patchdir=3D${RUSTSRC} \
+> >               file://target-build-value.patch;patchdir=3D${RUSTSRC} \
+> >
+>  file://0001-Handle-vendored-sources-when-remapping-paths.patch;patchdir=
+=3D${RUSTSRC}
+> \
+> > +            file://repro-issue-fix-with-v175.patch;patchdir=3D${RUSTSR=
+C} \
+> >   "
+> >   SRC_URI[rust.sha256sum] =3D
+> "4526f786d673e4859ff2afa0bab2ba13c918b796519a25c1acce06dba9542340"
+> >
+> > --
+> > 2.44.0
+> >
+>
+
+
 --=20
-Navimatix GmbH
-Tatzendpromenade 2
-D-07745 Jena
-Gesch=C3=A4ftsf=C3=BChrer: Steffen Sp=C3=A4the, Jan Rommeley
-Registergericht: Amtsgericht Jena, HRB 501480
+Best regards,
 
+Jos=C3=A9 Quaresma
+
+--0000000000007fe9390613760c3c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Sundeep,</div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">Sundeep KOKKONDA &lt;<a href=3D"mailto:Sun=
+deep.Kokkonda@windriver.com">Sundeep.Kokkonda@windriver.com</a>&gt; escreve=
+u (ter=C3=A7a, 12/03/2024 =C3=A0(s) 03:45):<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">Hello,<br>
+<br>
+FYI. There is a V2 available for this patch with upstream fix backport. <br=
+>
+You can consider that.<br>
+<br>
+<a href=3D"https://lists.openembedded.org/g/openembedded-core/message/19685=
+6" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded.org/g/op=
+enembedded-core/message/196856</a></blockquote><div><br></div><div>Sure, wh=
+en this one is integrated on the master branch I can create a backport for =
+it too.<br></div><div>Thanks for the notification.<br></div><div><br></div>=
+<div>Jose</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><br>
+<br>
+<br>
+Thanks,<br>
+<br>
+Sundeep K.<br>
+<br>
+On 11-Mar-24 21:54, Jose Quaresma wrote:<br>
+&gt; CAUTION: This email comes from a non Wind River email account!<br>
+&gt; Do not click links or open attachments unless you recognize the sender=
+ and know the content is safe.<br>
+&gt;<br>
+&gt; From: Yash Shinde &lt;<a href=3D"mailto:Yash.Shinde@windriver.com" tar=
+get=3D"_blank">Yash.Shinde@windriver.com</a>&gt;<br>
+&gt;<br>
+&gt; With 1.75 rust release, the &#39;.rustc&#39; section of shared object =
+libs are embedded with absolute path names which is casuing reproducibiluty=
+ issues.<br>
+&gt; This change will fix the path name format back to &#39;/rust/$hash&#39=
+; as in earlier versions.<br>
+&gt;<br>
+&gt; Below are the links for detailed bug description &amp; discusssion wit=
+h upstream rust.<br>
+&gt; <a href=3D"https://github.com/rust-lang/rust/issues/120825#issuecommen=
+t-1964307219" rel=3D"noreferrer" target=3D"_blank">https://github.com/rust-=
+lang/rust/issues/120825#issuecomment-1964307219</a><br>
+&gt; <a href=3D"https://github.com/rust-lang/rust/issues/120825#issuecommen=
+t-1964652656" rel=3D"noreferrer" target=3D"_blank">https://github.com/rust-=
+lang/rust/issues/120825#issuecomment-1964652656</a><br>
+&gt;<br>
+&gt; Signed-off-by: Sundeep KOKKONDA &lt;<a href=3D"mailto:sundeep.kokkonda=
+@windriver.com" target=3D"_blank">sundeep.kokkonda@windriver.com</a>&gt;<br=
+>
+&gt; Signed-off-by: Yash Shinde &lt;<a href=3D"mailto:Yash.Shinde@windriver=
+.com" target=3D"_blank">Yash.Shinde@windriver.com</a>&gt;<br>
+&gt; Signed-off-by: Richard Purdie &lt;<a href=3D"mailto:richard.purdie@lin=
+uxfoundation.org" target=3D"_blank">richard.purdie@linuxfoundation.org</a>&=
+gt;<br>
+&gt; Signed-off-by: Jose Quaresma &lt;<a href=3D"mailto:jose.quaresma@found=
+ries.io" target=3D"_blank">jose.quaresma@foundries.io</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0.../files/repro-issue-fix-with-v175.patch=C2=A0 =C2=A0 =C2=
+=A0| 23 +++++++++++++++++++<br>
+&gt;=C2=A0 =C2=A0recipes-devtools/rust/rust-source.inc=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0|=C2=A0 1 +<br>
+&gt;=C2=A0 =C2=A02 files changed, 24 insertions(+)<br>
+&gt;=C2=A0 =C2=A0create mode 100644 recipes-devtools/rust/files/repro-issue=
+-fix-with-v175.patch<br>
+&gt;<br>
+&gt; diff --git a/recipes-devtools/rust/files/repro-issue-fix-with-v175.pat=
+ch b/recipes-devtools/rust/files/repro-issue-fix-with-v175.patch<br>
+&gt; new file mode 100644<br>
+&gt; index 0000000..6840baf<br>
+&gt; --- /dev/null<br>
+&gt; +++ b/recipes-devtools/rust/files/repro-issue-fix-with-v175.patch<br>
+&gt; @@ -0,0 +1,23 @@<br>
+&gt; +rust: reproducibility issue fix with v1.75<br>
+&gt; +<br>
+&gt; +With 1.75 rust release, the &#39;.rustc&#39; section of shared object=
+ libs are embedded with absolute path names which is casuing reproducibilut=
+y issues.<br>
+&gt; +This change will fix the path name format back to &#39;/rust/$hash&#3=
+9; as in earlier versions.<br>
+&gt; +<br>
+&gt; +Below are the links for detailed bug description &amp; discusssion wi=
+th upstream rust.<br>
+&gt; +<a href=3D"https://github.com/rust-lang/rust/issues/120825#issuecomme=
+nt-1964307219" rel=3D"noreferrer" target=3D"_blank">https://github.com/rust=
+-lang/rust/issues/120825#issuecomment-1964307219</a><br>
+&gt; +<a href=3D"https://github.com/rust-lang/rust/issues/120825#issuecomme=
+nt-1964652656" rel=3D"noreferrer" target=3D"_blank">https://github.com/rust=
+-lang/rust/issues/120825#issuecomment-1964652656</a><br>
+&gt; +<br>
+&gt; +Upstream-Status: Inappropriate [patches need rework]<br>
+&gt; +Signed-off-by: Sundeep KOKKONDA &lt;<a href=3D"mailto:sundeep.kokkond=
+a@windriver.com" target=3D"_blank">sundeep.kokkonda@windriver.com</a>&gt;<b=
+r>
+&gt; +---<br>
+&gt; +--- a/compiler/rustc_session/src/<a href=3D"http://session.rs" rel=3D=
+"noreferrer" target=3D"_blank">session.rs</a>=C2=A0 =C2=A0 2023-12-21 08:55=
+:28.000000000 -0800<br>
+&gt; ++++ b/compiler/rustc_session/src/<a href=3D"http://session.rs" rel=3D=
+"noreferrer" target=3D"_blank">session.rs</a>=C2=A0 =C2=A0 2024-02-26 07:29=
+:15.527577022 -0800<br>
+&gt; +@@ -1269,7 +1269,7 @@<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Crate=
+Type::Rlib<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Crate=
+Type::Staticlib<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Crate=
+Type::Cdylib =3D&gt; continue,<br>
+&gt; +-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 CrateType::P=
+rocMacro =3D&gt; return false,<br>
+&gt; ++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 CrateType::P=
+rocMacro =3D&gt; return true,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt; diff --git a/recipes-devtools/rust/rust-source.inc b/recipes-devtools/=
+rust/rust-source.inc<br>
+&gt; index 8ae8add..6bef990 100644<br>
+&gt; --- a/recipes-devtools/rust/rust-source.inc<br>
+&gt; +++ b/recipes-devtools/rust/rust-source.inc<br>
+&gt; @@ -12,6 +12,7 @@ SRC_URI +=3D &quot;<a href=3D"https://static.rust-la=
+ng.org/dist/rustc-$%7BRUST_VERSION%7D-src.tar.xz;n" rel=3D"noreferrer" targ=
+et=3D"_blank">https://static.rust-lang.org/dist/rustc-${RUST_VERSION}-src.t=
+ar.xz;n</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://rustc-boo=
+tstrap.patch;patchdir=3D${RUSTSRC} \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://target-bu=
+ild-value.patch;patchdir=3D${RUSTSRC} \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://0001-Hand=
+le-vendored-sources-when-remapping-paths.patch;patchdir=3D${RUSTSRC} \<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://repro-issue-fix-with=
+-v175.patch;patchdir=3D${RUSTSRC} \<br>
+&gt;=C2=A0 =C2=A0&quot;<br>
+&gt;=C2=A0 =C2=A0SRC_URI[rust.sha256sum] =3D &quot;4526f786d673e4859ff2afa0=
+bab2ba13c918b796519a25c1acce06dba9542340&quot;<br>
+&gt;<br>
+&gt; --<br>
+&gt; 2.44.0<br>
+&gt;<br>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
+div>
+
+--0000000000007fe9390613760c3c--
 
