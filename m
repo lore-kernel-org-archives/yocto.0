@@ -1,80 +1,98 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B48A4C54E66
-	for <webhook@archiver.kernel.org>; Wed, 13 Mar 2024 16:44:26 +0000 (UTC)
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
- by mx.groups.io with SMTP id smtpd.web11.637.1710348263676732324
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A9BD7C54791
+	for <webhook@archiver.kernel.org>; Wed, 13 Mar 2024 19:54:48 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+ by mx.groups.io with SMTP id smtpd.web11.5690.1710359685806018477
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Mar 2024 09:44:24 -0700
+ Wed, 13 Mar 2024 12:54:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=jWr6Kdha;
- spf=pass (domain: gmail.com, ip: 209.85.167.46, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-513b022a238so90321e87.0
-        for <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 09:44:23 -0700 (PDT)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=AMkHxMPU;
+ spf=pass (domain: smile.fr, ip: 209.85.128.48, mailfrom: yoann.congal@smile.fr)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41324a16c9eso1467715e9.0
+        for <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 12:54:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710348262; x=1710953062; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SgIdeokVSzib/QgAVRc3YeaQBNnwuzgTS7UEIug5Qpc=;
-        b=jWr6KdhaIZzNuI9OrxL1Mw6WOLMuCvkLVePNFyEF8a+r8S0XM9ZzzuBUW3MuiQw/wx
-         FO1lTt8lWRuOYsWCxS5ILXTSLNP4EkV3154a5a29qWTZt2384+WHDHjvWRj69F1KkGPX
-         bpJjMhaCnc1NBxdzEhc5uiRYBjjdvzPCXgx95YFiRp934M0ZRZ3NVDeb7cpZlmPOFqI8
-         2M1M35ytLtaPw5j3OB0Tihk/ci1XffMTcJkPAuaimFovEKwCfeaSCLp4PToNpHNo8QBp
-         P1orsj+nsi9GpqlBPQUpjV/qalNOXhwRW9SWFoQi0e4Ggdr0c/l94GHpW4giRFJvbIxc
-         lF5Q==
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1710359683; x=1710964483; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yDITUTaAMUuGbK84P1j2qTU96Z0M8xh6qf+cmNY0NhA=;
+        b=AMkHxMPUWCO1yA8Z637DvSkZQ2Y1nP17t9m1RTSK1Z+IcZZ4p1LhJqnI3n+CIOQ+G3
+         E1w48MyOd/tK6q14OuF4LQzqQHyiEsbxOdkho/jKs7G1mcFRnGgHLfS2mM2Pz5gkaDIY
+         T3yvqUMpxjcmcBULjQ2/2vSdljwuw/Feyyuel+6v64kpQVJxedgbDJsUqnMmxmW3kWqS
+         IknhBnFp0gWuwcoIsgyzSQc4gtpAR3y4iNha9sKdO/kKXpkw5DrDDNi9wmcJXpeSDjsa
+         EZeZSuTG54wCI9wnpPiEAxnGOoTYDugucKBSE9K0vWWIQm5LCMH4nZsAItPIS56AlH1+
+         4AAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710348262; x=1710953062;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SgIdeokVSzib/QgAVRc3YeaQBNnwuzgTS7UEIug5Qpc=;
-        b=wZ+Oiz5LeDDI3o7o3jUvP2KNsDDofKfrZLlbJCCXr/k80ddCooRRWnJJLcFElpCdb0
-         y5PvU3lHpxKhPJWh823/c9yWPqYFRaZxS6eWoYYpTuu1Ic8wNfeU8MMymFeNt/u2pgzv
-         hZBhnM7ROPLqHip9Ilx1jycWImj0tH0d872LREKAOIaQhX/qc1vcd3ocfLXlPO3tdrhm
-         SQMS2NxAtJkbuxsrJaJbRMmhZ38CpETEEse6ZZ68kNnVYYSRljG3pgRmLuluXvECymwW
-         Daqix27QCev/THiyHmdEJzMaWZtv8rpLnYbBokMSV9QbHJzc6nOA6O8r2Urprqnsqzht
-         +8jg==
-X-Gm-Message-State: AOJu0Yzxo6xZrxqaM8fgtNhSatjZ1H1zcWwdL0ym6aVHXZVBTR6+iyMv
-	2hI8ZaWL50J7bM9cShIPRGsyYVJXQucQImlz42kyYN3xYOSr1V330FaR7Kb5VivQ53i8jgfys2l
-	fGE50xvR8gMQs2g/8mMUYnDWiiE5nMB8U
-X-Google-Smtp-Source: AGHT+IGUC6kkvQKCwqxVQUooFg2iWBtDw/TluSnM5AV65xKXY6U4P8b1x6cTwZV9gR73BPuxYAEpwDLRZpddyfeGWUY=
-X-Received: by 2002:a05:6512:3487:b0:513:45af:4c71 with SMTP id
- v7-20020a056512348700b0051345af4c71mr3289640lfr.60.1710348261577; Wed, 13 Mar
- 2024 09:44:21 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710359683; x=1710964483;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yDITUTaAMUuGbK84P1j2qTU96Z0M8xh6qf+cmNY0NhA=;
+        b=PLIWWbf99Kffx5MIBys6sxRYZycTzPSWgx6JwWvsDluAMdUjas2AQOAFevMib3Tdkv
+         V52p2cqqFOe9NNzz127aVHrWdXrIcwzHG2gee78SBMX/CZ18i5o07kYKga+bkeeb50oL
+         3zO4Ow/o7eKCXAI9UPFHxpF52NvszWrRrZNV/d7xmr8H/PecO1cGyKUDQEYUIkqYeBpg
+         sgrZ8WszF+4/OInYp7dwbXwKH9TwWMLbGds95jCPen/wXGYeWVyfA62UsF0DRgwGc3KG
+         PcNHE2sR/eA3CrPNL6/ABO4ToEI+xp+UmC8lS13T2h5k0KtSur33RRtdrt+dnEjJalPc
+         jcJw==
+X-Gm-Message-State: AOJu0YzN7Mg3FGV8CaBrQicrND+zGZ6EfojOOa3zKEzddZSZ7YWe7mAD
+	cogeK5x3CGj1NvFJBuOi82OYT/dHByGh+zpuIW/ucB37n9nRQmu61WkQML9bbG6wSjGBLGSYm72
+	T8g0=
+X-Google-Smtp-Source: AGHT+IFdconIu8bA4pq5q4xtqnQjfNJ020igSIo80sG7ETavchBNvJif7Vzi2lltNEwf/c79Fc22Jg==
+X-Received: by 2002:a05:600c:1c9b:b0:413:2308:7d94 with SMTP id k27-20020a05600c1c9b00b0041323087d94mr767310wms.20.1710359683554;
+        Wed, 13 Mar 2024 12:54:43 -0700 (PDT)
+Received: from P-ASN-ECS-830T8C3.numericable.fr ([89.159.1.53])
+        by smtp.gmail.com with ESMTPSA id p18-20020adf9d92000000b0033e17341ebesm12480855wre.117.2024.03.13.12.54.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Mar 2024 12:54:43 -0700 (PDT)
+From: Yoann Congal <yoann.congal@smile.fr>
+To: yocto@lists.yoctoproject.org
+Cc: Yoann Congal <yoann.congal@smile.fr>
+Subject: [yocto-autobuilder-helper][PATCH] config.json: metrics: Switch to daily CVE DB full-download
+Date: Wed, 13 Mar 2024 20:54:24 +0100
+Message-Id: <20240313195424.2131952-1-yoann.congal@smile.fr>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <CABKMkPJc0BbU0owt6dVnmOBSrT+Ji=sBNMYhgWtgRUhxT2RN_A@mail.gmail.com>
-In-Reply-To: <CABKMkPJc0BbU0owt6dVnmOBSrT+Ji=sBNMYhgWtgRUhxT2RN_A@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 13 Mar 2024 17:44:09 +0100
-Message-ID: <CANNYZj-kae1ozTWxhTOoXT3N-4gfLcJBphfbTw9gfcOeZfNChw@mail.gmail.com>
-Subject: Re: [yocto] PACKAGECONFIG variable related patches
-To: yocto@lists.yoctoproject.org, joel.winarske@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 16:44:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62752
+ <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 19:54:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62753
 
-The idiomatic pattern is to reject conditional patches in code review,
+By using CVE_DB_INCR_UPDATE_AGE_THRES = CVE_DB_INCR_UPDATE_AGE_THRES = 6h,
+cve-check will do a NVD database full download if the database is older
+than 6h or reuse it un-updated if its younger than 6h. Since the metrics
+builder is scheduled every day, that will result in a daily
+full-download.
 
-Seriously, not a good idea - try to find a way to apply the patch
-without conditions, and trigger the condition through a configuration
-option, or runtime check.
+That will workaround NVD API limitations were some updates may be missed
+and the incrementaly updated database is not equivalent to a freshly
+downloaded database.
 
-Alex
+Signed-off-by: Yoann Congal <yoann.congal@smile.fr>
 
-On Wed, 13 Mar 2024 at 17:40, Joel Winarske <joel.winarske@gmail.com> wrote:
->
-> What's the idiomatic pattern for applying (a) patch(es) if a PACKAGECONFIG variable is set?
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62751): https://lists.yoctoproject.org/g/yocto/message/62751
-> Mute This Topic: https://lists.yoctoproject.org/mt/104909451/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+---
+This patch depends on [PATCH 2/2] cve-update-nvd2-native: Add an age threshold for incremental update
+https://lists.openembedded.org/g/openembedded-core/message/197046
+---
+ config.json | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/config.json b/config.json
+index fdf4052..763121a 100644
+--- a/config.json
++++ b/config.json
+@@ -1290,6 +1290,7 @@
+                 "CVE_CHECK_FORMAT_JSON = '1'",
+                 "CVE_CHECK_SHOW_WARNINGS = '0'",
+                 "CVE_DB_UPDATE_INTERVAL = '21600'",
++                "CVE_DB_INCR_UPDATE_AGE_THRES = '21600'",
+                 "BB_SERVER_TIMEOUT = '0'"
+             ],
+             "step1" : {
+-- 
+2.39.2
+
 
