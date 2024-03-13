@@ -2,98 +2,143 @@ Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 904DEC54E60
-	for <webhook@archiver.kernel.org>; Wed, 13 Mar 2024 19:57:38 +0000 (UTC)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web10.5772.1710359850834910912
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3412C54791
+	for <webhook@archiver.kernel.org>; Wed, 13 Mar 2024 20:05:08 +0000 (UTC)
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+ by mx.groups.io with SMTP id smtpd.web11.5967.1710360306328507223
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Mar 2024 12:57:31 -0700
+ Wed, 13 Mar 2024 13:05:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=yCVSB4QK;
- spf=pass (domain: smile.fr, ip: 209.85.128.50, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41312232c7aso8540345e9.0
-        for <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 12:57:30 -0700 (PDT)
+ dkim=pass header.i=@smile-fr.20230601.gappssmtp.com header.s=20230601 header.b=SI9TYIu7;
+ spf=pass (domain: smile.fr, ip: 209.85.218.50, mailfrom: yoann.congal@smile.fr)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a446b5a08f0so49566166b.1
+        for <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 13:05:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1710359848; x=1710964648; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mZJoDl81/EhY6CeyX+KY+B1MCtidD4Mte1+kRY9nebA=;
-        b=yCVSB4QKoMuDyOhTt9v1uF2W5gIm0/nrxRKtAF1n+JQ9vUpY6mdmJTecZCUlQMCMG4
-         6SGEsxfJ3IX3z0QkNzktVhZJZTT/OQCaPgySFNMJP83T++pemj/H6BFajKmDSmociNAh
-         g1hvG2rsfJUfeymttl22igB+vXIegEJ6DFWQvY+6ZbJVnSY1wj3rBH5umjN+zbmOoDrw
-         qU7m6OESuut/9rpOfaFR+awky0Qlx6SZMYXKK45bV7nUUK6YhIZmsGbi4WLcJO3s90A1
-         jRCWHWshWKDfQzwxfCw6kaAJBXqd9bCpmuemjMWbCWTmsJBD1y4X93GIHhBRj19SA8sH
-         eA/Q==
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1710360305; x=1710965105; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=a6wl6J0ApJlOt57sQ8EGKgRyPWKGc1trSNB5TrhEVmE=;
+        b=SI9TYIu777BBppeHCeNcUit7CJJ+0wsP5QVVqorA4C7cwKHKWxfL8vOj9QMnAXf1qk
+         8Y86ZWJXr0Xckq+ez/S0t7SUUNe8/hW0iNgteb6yfPogmmqu0z2I42eckXYpy4j6Waaa
+         9oBwDnoLSpQsdU9Z/T/BUSakprIVJ7mrPRx2w0Ury1f2GQiGcuirHlgyuv3Qh7H729FM
+         y1xmrJ0I4W8ltK6GyxkLxBQfwVOi1MLUCdEGHyJ6pJwxwydjopybVOjdE9ts0ZuVjxXU
+         1U6nkl8NB50O+BYIb+h8i8hEXRt44VR3Lxgj60Dyq5eRspW61d10amZpUBVVYcTymi3p
+         zv8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710359848; x=1710964648;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1710360305; x=1710965105;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mZJoDl81/EhY6CeyX+KY+B1MCtidD4Mte1+kRY9nebA=;
-        b=Hj3IGpMEg7bGb0c+YeMfUdFb312vkIZMimWGKMQfLzq/vgqp1MqOrFJLMYU3060Ja1
-         vt5pt2E3yTQoT9mCLaQ6bwVAS0FmC0x+ZgpgZRZs8yA8LZ3GMBTE4NDxvLSfX76vde+d
-         b7b9JskCQUszvxqnKxryxFUEKz2i7oOP367x41b1prBBtEQfbx/QgysMs/KzqlEnftyy
-         2zjz3RYKOJrBjST2ombdr55F1xkHW6DLCi6PF6aytoSho8VRWRM7RGG0Oy556+gI9ab+
-         n594UIq64qLw/eDgxs7co3IiYyND/wnWLG4XHoRp/0vfEkh0M82A+LbADBXyA0b8ZPtH
-         r9Gw==
-X-Gm-Message-State: AOJu0YwxnqBiWIVaj8+f03Fh4/CT8Dc/K+q8beflok38bXtqU+3u9cnA
-	/LU3c+paEjjB12ZQS9HM9jIF+TVyJ1SRAGTUc9MDkze0Bfpta41VIP7UOKw7HMZq7PWM0iLPloQ
-	gcOc=
-X-Google-Smtp-Source: AGHT+IEx26673nItKEcn+yGuC3zlAljk0lhMxnlSg80Rrr4rFPYjqkveA3Z5sYb7MzO9eiLMGu4PKA==
-X-Received: by 2002:a05:6000:906:b0:33d:a626:be71 with SMTP id cw6-20020a056000090600b0033da626be71mr3363221wrb.4.1710359848520;
-        Wed, 13 Mar 2024 12:57:28 -0700 (PDT)
-Received: from P-ASN-ECS-830T8C3.numericable.fr ([89.159.1.53])
-        by smtp.gmail.com with ESMTPSA id q4-20020adf9dc4000000b0033b6e26f0f9sm10662653wre.42.2024.03.13.12.57.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Mar 2024 12:57:28 -0700 (PDT)
-From: Yoann Congal <yoann.congal@smile.fr>
-To: yocto@lists.yoctoproject.org
-Cc: Yoann Congal <yoann.congal@smile.fr>
-Subject: [yocto-autobuilder2][PATCH] schedulers: metrics: Start with master for the daily full download
-Date: Wed, 13 Mar 2024 20:57:19 +0100
-Message-Id: <20240313195719.2132088-1-yoann.congal@smile.fr>
-X-Mailer: git-send-email 2.39.2
+        bh=a6wl6J0ApJlOt57sQ8EGKgRyPWKGc1trSNB5TrhEVmE=;
+        b=Zg1h9SvUCLzu+SR9Z8EkQ5xh040vnBHOYaK0UCkijZiLLazUHChf1un5c/CC338lb1
+         cGxpzBU72F78u592cSOt7xwu4WLntG1h8Zpx9FzOheTbR6FV6p6Dfqom5NSlEWCgGNaq
+         eZxNF860QSwxDvyP4PPidxleLijxLnhKbAERRAlyaYF5ojqNRyeN3WNchCPJMAn4s84C
+         +xNze0F/8s0AqrXgBRazhEiIuNOOkXhtZD7Y5+lNvY2jeO+chSh0plhmY+di6r4O1+hf
+         2KNnFly0zIO7sPF22wKst/VNdBo+1zGfxXy0TH5zuiZ3FWDVJCRfe9UhB/vG5+XK7GL5
+         H7BQ==
+X-Gm-Message-State: AOJu0Yx+7smBVljq3KSfz5/eq0na1ArEg4gUS7ul9k8LtJu/m0GO9WJp
+	HL9JqA0HoQZjz1DeE+jI1AZrKVj92d4uGzRur2OoBfiNGhpZ/0ifi5HKfXn33bvZg55ZrIKz0Gb
+	78Y/adE3nWcEKCUPxLLRxMnb1h65M3vgUlBa8RQ==
+X-Google-Smtp-Source: AGHT+IF1FlWARZ+pSW5Xh5MPr3Twg+uDoe+1EMnoFY5cqcA71y/oKVgawBctNiwVp25KxIYjXhqS9fwsWZveAynTOaI=
+X-Received: by 2002:a17:906:99cf:b0:a46:511c:ffcb with SMTP id
+ s15-20020a17090699cf00b00a46511cffcbmr2831052ejn.38.1710360304662; Wed, 13
+ Mar 2024 13:05:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAK5yBb-rUZzdqbXD4yoHiF5V-L2sOg1DVWMEsDGXWk36F2cexQ@mail.gmail.com>
+In-Reply-To: <CAK5yBb-rUZzdqbXD4yoHiF5V-L2sOg1DVWMEsDGXWk36F2cexQ@mail.gmail.com>
+From: Yoann CONGAL <yoann.congal@smile.fr>
+Date: Wed, 13 Mar 2024 21:04:38 +0100
+Message-ID: <CAMSfU+5fTNCyTSRMkN=L4UQ83eOSBtfBXHUUhmMtUd9KEgjJYA@mail.gmail.com>
+Subject: Re: [OE-core] Yocto Project Status 12 March 2024 (WW11)
+To: Stephen Jolley <sjolley.yp.pm@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="00000000000065dc680613904a37"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 19:57:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62754
+ <yocto@lists.yoctoproject.org>; Wed, 13 Mar 2024 20:05:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62755
 
-Change the order of metrics branches:
-* First, master at 5am which may do the full CVE download (might take
-  1 hour to finish).
-* Then, the other branches starting at 6am to allow them to use the
-  fresh download.
+--00000000000065dc680613904a37
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Yoann Congal <yoann.congal@smile.fr>
----
- schedulers.py | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Hi,
 
-diff --git a/schedulers.py b/schedulers.py
-index a30383f..34e2b70 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -497,12 +497,14 @@ schedulers.append(sched.Nightly(name='nightly-meta-oe-mirror', branch='master',
- schedulers.append(sched.Nightly(name='nightly-reproducible-meta-oe', branch='master', properties=parent_default_props('reproducible-meta-oe'),
-                   builderNames=['reproducible-meta-oe'], hour=2, minute=0, dayOfWeek=5))
- 
--# Run metrics at 3-7am each day
-+# Run metrics at 5-7am each day
-+# Starts with master which may do a full CVE database download and start other
-+# branches 1 hour later to allow them to re-use the fresh download.
-+schedulers.append(sched.Nightly(name='nightly-metrics', branch='master', properties=parent_default_props('metrics'), builderNames=['metrics'], hour=5, minute=0))
- schedulers.append(sched.Nightly(name='nightly-metrics-dunfell', branch='dunfell', properties=parent_default_props('metrics', 'dunfell'), builderNames=['metrics'], hour=6, minute=0, codebases = {'' : {'branch' : 'dunfell'}}))
- schedulers.append(sched.Nightly(name='nightly-metrics-kirkstone', branch='kirkstone', properties=parent_default_props('metrics', 'kirkstone'), builderNames=['metrics'], hour=6, minute=15, codebases = {'' : {'branch' : 'kirkstone'}}))
- schedulers.append(sched.Nightly(name='nightly-metrics-mickledore', branch='mickledore', properties=parent_default_props('metrics', 'mickledore'), builderNames=['metrics'], hour=6, minute=30, codebases = {'' : {'branch' : 'mickledore'}}))
- schedulers.append(sched.Nightly(name='nightly-metrics-nanbield', branch='nanbield', properties=parent_default_props('metrics', 'nanbield'), builderNames=['metrics'], hour=6, minute=45, codebases = {'' : {'branch' : 'nanbield'}}))
--schedulers.append(sched.Nightly(name='nightly-metrics', branch='master', properties=parent_default_props('metrics'), builderNames=['metrics'], hour=7, minute=0))
- 
- # Run check-layer-nightly twice a week for nanbield
- schedulers.append(sched.Nightly(name='nightly-check-layer-nanbield', properties=parent_default_props('check-layer-nightly', 'nanbield'),
--- 
-2.39.2
+Le mar. 12 mars 2024 =C3=A0 15:45, Stephen Jolley <sjolley.yp.pm@gmail.com>=
+ a
+=C3=A9crit :
 
+>
+>    -
+>
+>    The previously reported CVE database update issue on the autobuilder
+>    has not been addressed yet. This is causing higher numbers of CVEs to =
+be
+>    reported on the autobuilder generated charts.
+>
+> Here's my proposal to fix this :
+
+   - [PATCH 2/2] cve-update-nvd2-native: Add an age threshold for
+   incremental update
+   https://lists.openembedded.org/g/openembedded-core/message/197046
+   - [yocto-autobuilder2][PATCH] schedulers: metrics: Start with master for
+   the daily full download
+   https://lists.yoctoproject.org/g/yocto/message/62754
+   - [yocto-autobuilder-helper][PATCH] config.json: metrics: Switch to
+   daily CVE DB full-download
+   https://lists.yoctoproject.org/g/yocto/message/62753
+
+Those 3 patches work together to (hopefully) do a daily full download of
+the NVD CVE database. That should fix the metrics on master and any branch
+sharing the CVE database with it.
+
+Best regards,
+--=20
+Yoann Congal
+Smile ECS - Tech expert
+
+--00000000000065dc680613904a37
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div dir=3D"ltr"><div><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 12 m=
+ars 2024 =C3=A0=C2=A015:45, Stephen Jolley &lt;<a href=3D"mailto:sjolley.yp=
+.pm@gmail.com">sjolley.yp.pm@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><span i=
+d=3D"m_704423976736090797gmail-docs-internal-guid-9e798738-7fff-b5dd-f61c-6=
+70e7a316e89"><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr"=
+ style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;=
+color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;f=
+ont-variant-east-asian:normal;font-variant-alternates:normal;vertical-align=
+:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
+ize:11pt;background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-variant-alternates:normal;vertical-align:baselin=
+e">The previously reported CVE database update issue on the autobuilder has=
+ not been addressed yet. This is causing higher numbers of CVEs to be repor=
+ted on the autobuilder generated charts.</span></p></li></ul></span></div><=
+/blockquote><div>Here&#39;s my proposal to fix this : <br></div><div><ul><l=
+i>[PATCH 2/2] cve-update-nvd2-native: Add an age threshold for incremental =
+update <a href=3D"https://lists.openembedded.org/g/openembedded-core/messag=
+e/197046">https://lists.openembedded.org/g/openembedded-core/message/197046=
+</a></li><li>[yocto-autobuilder2][PATCH] schedulers: metrics: Start with ma=
+ster for the daily full download <a href=3D"https://lists.yoctoproject.org/=
+g/yocto/message/62754">https://lists.yoctoproject.org/g/yocto/message/62754=
+</a></li><li>[yocto-autobuilder-helper][PATCH] config.json: metrics: Switch=
+ to daily CVE DB full-download <a href=3D"https://lists.yoctoproject.org/g/=
+yocto/message/62753">https://lists.yoctoproject.org/g/yocto/message/62753</=
+a></li></ul></div><div>Those 3 patches work together to (hopefully) do a da=
+ily full download of the NVD CVE database. That should fix the metrics on m=
+aster and any branch sharing the CVE database with it.</div><div><br></div>=
+<div>Best regards,</div><div><span class=3D"gmail_signature_prefix">-- </sp=
+an><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><font fa=
+ce=3D"Raleway, regular">Yoann Congal</font><div><font face=3D"Raleway, regu=
+lar">Smile ECS - Tech expert<br></font></div></div></div></div></div></div>=
+</div></div>
+
+--00000000000065dc680613904a37--
 
