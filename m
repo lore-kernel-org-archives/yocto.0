@@ -1,169 +1,143 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A6CDC54E5D
-	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 10:48:09 +0000 (UTC)
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.67])
- by mx.groups.io with SMTP id smtpd.web10.12272.1710845281526469113
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A33AC54E5D
+	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 11:15:39 +0000 (UTC)
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+ by mx.groups.io with SMTP id smtpd.web11.12716.1710846934996331996
  for <yocto@lists.yoctoproject.org>;
- Tue, 19 Mar 2024 03:48:01 -0700
+ Tue, 19 Mar 2024 04:15:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=SyjUeew9;
- dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=SyjUeew9;
- spf=pass (domain: arm.com, ip: 40.107.22.67, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=W21kAv3bP+V0dQfK1xKVzeQjrNVkgr/kir60Nei2atW3DsrovwdYo1ON4O9WJ4hkNtACqiIbB+38B4pRIjKdaK4YrPZr858L+OgUXs/G6NOtvRl9Xbb/vyMv+C5LwXQhyl4GRElFiILg5RO/RHfBhM0uxoyk1qlZ4ewV21kE8Y/u6JBNjxezhjAuYCTAG25/Zt6KLkZSt5Ikdw+S5cqVbEgR9Qcf/sp1x3YIBD554AsKHWNqqpQzx7Yi8f2IQy7zlUhD2CZX/9ag5wCFjh+L8RBqHs8aok93D9ECAh8jY4XnpRK9kRXkPqJN5m3WZdk/LXbjNM9+3MWZb7MMBj4/EA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zr8utlTg8OtuyJVkHdmR2nAt65TPP+DwapSRulEK9NE=;
- b=fkxbvbKoojs1xkXmvoacUhw3vs84AhiNr8EiZtQRCi/z9yBOukyTJve0UYNQTujdc6Zt53Wj5e5bV6BYPFHQ7YR88oKz2sGNzn9mPgKEqB25VY/iRVnmpSKh0U/TmPfQy1t2tmQfkqm8g6c1BDKWziYWzafAdRcL80JvfZ4QN/tdrjZ8GYaSdP4uDAH1xni5lYb8xW8e0k2Iz9ZI1gGyjVX0KQroYLVnzFmctvMUfHP87X/qXgWrBTQWoDObq+F393WRaJ9Ba43No1EP8hHsE9H8QT9E6nsK5XbqcyvNfThvxoVYvTokHFq7clsGE4pmdM0362tKH6Hrrx23WeZ3uQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
- oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zr8utlTg8OtuyJVkHdmR2nAt65TPP+DwapSRulEK9NE=;
- b=SyjUeew9OX2TUkAtKYLeMJmviX4781gjLfIiLYmeIQmqMk/AQQqGNJlhECvJ7gQrYCmx7i3P2F0CVN1f4TRX1r4HR7T4TPG2mv8PMLPHBuRXtVgcDkAFl95gJsBb3dOOTpEG9jKTmEmb14yv7MbYPMtXapm+wNTnh93tT2JH6mA=
-Received: from DUZPR01CA0148.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bd::15) by GV1PR08MB8715.eurprd08.prod.outlook.com
- (2603:10a6:150:85::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26; Tue, 19 Mar
- 2024 10:47:55 +0000
-Received: from DB5PEPF00014B98.eurprd02.prod.outlook.com
- (2603:10a6:10:4bd:cafe::3f) by DUZPR01CA0148.outlook.office365.com
- (2603:10a6:10:4bd::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.27 via Frontend
- Transport; Tue, 19 Mar 2024 10:47:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
- pr=C
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- DB5PEPF00014B98.mail.protection.outlook.com (10.167.8.165) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.10 via Frontend Transport; Tue, 19 Mar 2024 10:47:54 +0000
-Received: ("Tessian outbound 9b7417e2a8eb:v300"); Tue, 19 Mar 2024 10:47:54 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: dfc05eec20bb6ca7
-X-CR-MTA-TID: 64aa7808
-Received: from c5dc97ebdb41.1
-	by 64aa7808-outbound-1.mta.getcheckrecipient.com id 4995844D-4581-4B8E-89F5-3E423AE674C7.1;
-	Tue, 19 Mar 2024 10:47:48 +0000
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id c5dc97ebdb41.1
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Tue, 19 Mar 2024 10:47:48 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NjujYB3PUYRcjOhHQgwKpyTQ/QuaXevuaGF1bAYNpfEACTY6gm+gcqo0xk4LzPQzbE6hvCSFMmcCxAqBDepJvUff/nHcRtdwbAxoBCttKSXa1Dd+NPQa7d/KYhG0eRqwlW4pcuS2lWyVHkAqKvx1Nc53ilLj8ItXVShXLJsZmI2OJnkS/VIz1ucdnBM2NpVTUdZK4fgWMiG1/HHsnZFP0ynFD4Jj5XBdWKQlgwyp2E1QtRmAW2v+ajpqozRfBv5PxA/Fw5J9TMQ2wFWe84q6spNhxCvoNrp5BfmWSAlPpFtbXQ9MU2UzX4npS+MhgfxFv69ksVbUUAvftKe5JTVUtQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zr8utlTg8OtuyJVkHdmR2nAt65TPP+DwapSRulEK9NE=;
- b=aQP9QePIC6vPtHtoiOZCGN9UzFOf7X7WmPBqMVAUj0YQjWj4Ck/2p34IKOl3iKzUrhX0WIy782a08WqaoM2TFdby0sp8K8xjnKwsksAtvcQjRJAhtNSOiGk8HI/Y4yNogmm0VrSs9KECfYfzV6jf5Y6arLPGExhrK1VH7bePjkCVVqcXDIsdcHibqZqw1HG+caYGvAGaAJae2uFaeZghso8bnb2ZGnbwOX9e0mNAZg+v5L6sxfzRBgJ1gdTeCRvvXY+TxPTFI4FIfgGmdNLXKlwf2ibbu/JGUSrAWbhZmaM5quWbwwqIUkZgjtaP0vuXp9bZEYSt5PkQ4m8cOhm/yA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zr8utlTg8OtuyJVkHdmR2nAt65TPP+DwapSRulEK9NE=;
- b=SyjUeew9OX2TUkAtKYLeMJmviX4781gjLfIiLYmeIQmqMk/AQQqGNJlhECvJ7gQrYCmx7i3P2F0CVN1f4TRX1r4HR7T4TPG2mv8PMLPHBuRXtVgcDkAFl95gJsBb3dOOTpEG9jKTmEmb14yv7MbYPMtXapm+wNTnh93tT2JH6mA=
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
- by PA4PR08MB6285.eurprd08.prod.outlook.com (2603:10a6:102:e0::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.22; Tue, 19 Mar
- 2024 10:47:46 +0000
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::36de:39f1:4d:5228]) by PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::36de:39f1:4d:5228%5]) with mapi id 15.20.7386.025; Tue, 19 Mar 2024
- 10:47:46 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"bratiranjan12@gmail.com" <bratiranjan12@gmail.com>
-Subject: Re: [yocto] install-vs-shipped
-Thread-Topic: [yocto] install-vs-shipped
-Thread-Index: AQHaeV70Yyua3NjSREKRdBxpEW/mwLE+4vcA
-Date: Tue, 19 Mar 2024 10:47:46 +0000
-Message-ID: <E8642BEB-E07A-458D-BD67-B738A2C8321A@arm.com>
-References: 
- <CALSmAY73Erq8=dHXVh2c-8Q78ztm_iAXwOBbM1HXmCcgDV0mwA@mail.gmail.com>
-In-Reply-To: 
- <CALSmAY73Erq8=dHXVh2c-8Q78ztm_iAXwOBbM1HXmCcgDV0mwA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3774.400.31)
-x-ms-traffictypediagnostic: 
-	PA4PR08MB7411:EE_|PA4PR08MB6285:EE_|DB5PEPF00014B98:EE_|GV1PR08MB8715:EE_
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- Sa/chEo9tUgYKG/Jv0HJDYMekH8cjdVZb2HclDJyiQ9xXrokVP6BRBssNmuc53IJYDXEHrXM1nP8/eCxWeEDoQUbcAgfUu02c8MYObGVAd1WwL/x5WZDEUnYf//y+doRIX7ku+y8DGSFukW2y08cMviPOE75WHcOGssdwEJmYfvv6JUg7o4U1a9eM5b5mWTne2eBPS1MjwDAFtwc5f1BOk20ON39B8pjZIjQrFeamWGjNrJHD/KNlNfLLNxkEOo4v+zkmQkJWXyZFtLxuvNJhBJ74DFsmXL9J8443Hkl1tVYWFLD+Oc0v8+XceZml0fJTOaQ7lzB4RCWP1GCPgNNKZSF4nZKKnYraf2K0EL+zclQ6/GiL15i1t3IYBDZHvlq3HL5Ktu9CpIm1Wvn8Cwy4lJ1XFJJ7SuGd2J27aEfR4IDmS4ezIuDghQAklZCn0heyTyM+Xkd480LKL42Edva2ea3lLayylr1B1bYfyBvTbPY8uTpQWaJiRk1aAA1sWjv6YqkDpZz9nDoGGl7hEdnFCoWSXaKLcYaHhUvrqpHOVQJM6wD5WgT01tbcSW/2OPh9brIRqwakPwoekQk6OiHvJCBX4OXxe4HIZ2DNWiA0zx6R91QZyuYZRFmH85TFdLt
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005);DIR:OUT;SFP:1102;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <21D6EA15CFFC4147894AD81B061B9D9A@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=HMWZy6Dp;
+ spf=pass (domain: gmail.com, ip: 209.85.210.46, mailfrom: akuster808@gmail.com)
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6e4f1660493so2841940a34.0
+        for <yocto@lists.yoctoproject.org>; Tue, 19 Mar 2024 04:15:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710846934; x=1711451734; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mVCEIVG6UnhvijQ8f8npwvmpYu08SI9dsZ6sikGhnI0=;
+        b=HMWZy6DpRErqENrVOfwiA+Ly0TxoE8poL6eEteB/xInrBAR988vHEnm9//xvNDe/iL
+         00I7BQZi+4gmPmQLjouHGJy45t+luXRwc3IDM6fZW9jV4rt569Ejfo2Vrz5AQshwgX+F
+         mfHtZwaoJXKzGeurpmTKQiRmC0VmhuUIjTvjUiOvY80HH3j/i8FotFRT6PNHeQCvo/o9
+         pM9joSBotb1ohEiHhuNieqAYck0YXxBBQ6kmS+lT01bk1vd3QjXuvrLGj4fsjQC9IPju
+         Cxracxr4QfjzhQDApnrz2l/ZkFmY+Dj2Fwq1lk+4aA1PySopFRGkNQln9v+ALcdIy5WN
+         hdnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710846934; x=1711451734;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mVCEIVG6UnhvijQ8f8npwvmpYu08SI9dsZ6sikGhnI0=;
+        b=aFCQdcrWdj+8uMCfzQj406mcuG2ADKR1JWh2epnZj3wi6jOZBuJEVrYYUwfCsB5hQW
+         /vIS8I7zBZiuTkbu5rvscIpWFY0ztgM+UAlWd4lsyy3OzCULUfJaSmftI9Gz5aaPY0mq
+         +i/2O2dbER8YnxCsZeqnI4muwTUGMJGDLtWAJ8/4vMF6SL2PfuYV8UrqYGs7UGSlm+WQ
+         G6no20zLng1LQc1HjMU/GrUfbrZzhfd7AXKFkayxetJKypkTd7UkVi8XzFQ54KFEHDYt
+         DRldAtEWq2wd6GZDykc1pFHZY5YGwFAO1D21wdLj2iDMN3IrIGXeVURUmGb5qVVSXk3F
+         HzrA==
+X-Gm-Message-State: AOJu0YxsMVi/fObU/IjWx/v+UovVfQUu5hS++ebbH8VwrVrrozhGqqH5
+	zMoaBpzbpz6nsgimcJKFzxzRVARRUf982PEgcbbGRk5HwQfuXnKUM46qQywE
+X-Google-Smtp-Source: AGHT+IE93d6B+pw/5lmUxRmPO8++MQDFsOBRMLg04eWXtYpcnhsSg8MX5yDTmXHk1rCUBpg5g2jS4A==
+X-Received: by 2002:a9d:6753:0:b0:6e6:7641:74a0 with SMTP id w19-20020a9d6753000000b006e6764174a0mr2427628otm.21.1710846934071;
+        Tue, 19 Mar 2024 04:15:34 -0700 (PDT)
+Received: from keaua.attlocal.net ([2600:1700:45dd:7000:f204:39c3:6c76:15b1])
+        by smtp.gmail.com with ESMTPSA id l16-20020a05683016d000b006e68a7fa66fsm921460otr.45.2024.03.19.04.15.33
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Mar 2024 04:15:33 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 2/2] layers: add scarthgap to LAYERSERIES_COMPAT
+Date: Tue, 19 Mar 2024 07:15:32 -0400
+Message-Id: <20240319111532.413323-2-akuster808@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240319111532.413323-1-akuster808@gmail.com>
+References: <20240319111532.413323-1-akuster808@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR08MB6285
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- DB5PEPF00014B98.eurprd02.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 504caf53-4475-47e4-de80-08dc4802084a
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	KGLqb47FoZ1CNINbx+bEZ1PKUHjV+3JVHWne4xmS8Y9IaEh2QuRn+dGvZHhsQP5l8n5fziKS0ueRnKfCZtSi4OZVhqWqwl5Xl1UtNWgf0ASx20L2pb+/Vq10n6d5Z9oWM00B0/OkDO8M1Xef8BeeDYJrGFTNkNaQ04ooV+ZrITeeeh+7dGobEdjEctphjnGbJa+SmH4gh4OR/WUoX9n5FFkPv3+YMldpG6rfg6GoBMxn+hwIbcJ1XjX0AfFvY8metWicXvPqPAxccuO9pqW3OojLHlbLi9s5gBiuVq76xxwRKiYrR0vTYioySXCAiqZAPQKRlu5Fy26b5S+o/LHTorcKnRcR1Y9jHLL9pOjmN72CN06mcsVb3OFGSEUz3B3E2JPMUMzdLB43Jm+t5n9DE/WsP7B45XH9TGWtSTzbu1CptOIgXdRW1HXKVFV1S9BFzEpfFIDwZzoeg0wtgDRNrenkryBiSml99iraYjy8fbRbITWZVnVMaRcKKebHaNlsh9hKyrLc8qRL35QMUr9EaauOrdyp2dx+CIpA4q009ijb6FGe5Jm7UOfJPJeSMRMByG2AXDHVBGTs5tV/f44QbSwFXbwORPO+bUKzZcPZUE54rIdXmtCKk7v21UQ6ZdJxtEIbw9X5RUqYUlaLEu9X/lPHFTrr6Bodc04PlPae81A9nFlJTsJCO9nBBYMk61Ae7d4Jf5rML6r56TgvZUcy+g==
-X-Forefront-Antispam-Report: 
-	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230031)(376005)(1800799015)(82310400014)(36860700004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 10:47:54.6026
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 504caf53-4475-47e4-de80-08dc4802084a
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	DB5PEPF00014B98.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR08MB8715
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 19 Mar 2024 10:48:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62793
+ <yocto@lists.yoctoproject.org>; Tue, 19 Mar 2024 11:15:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62795
 
-T24gMTggTWFyIDIwMjQsIGF0IDE3OjE3LCBCcmF0aXJhbmphbiBBY2hhcnlhIHZpYSBsaXN0cy55
-b2N0b3Byb2plY3Qub3JnIDxicmF0aXJhbmphbjEyPWdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnPiB3cm90ZToNCj4gRVJST1I6IGVhc3lsb2dnaW5ncHAtMS4wK2dpdEFVVE9JTkMrZjFm
-NmQ5OGM0Yy1yMCBkb19wYWNrYWdlOiBRQSBJc3N1ZTogZWFzeWxvZ2dpbmdwcDogRmlsZXMvZGly
-ZWN0b3JpZXMgd2VyZSBpbnN0YWxsZWQgYnV0IG5vdCBzaGlwcGVkIGluIGFueSBwYWNrYWdlOg0K
-PiAgIC91c3IvbGliDQo+ICAgL3Vzci9saWIvbGliZWFzeWxvZ2dpbmdwcC5hDQoNClRoZSBkZWZh
-dWx0IHBhY2thZ2luZyBydWxlcyBwdXQgJGxpYmRpci8qLmEgaW50byAkUE4tc3RhdGljZGV2LCBz
-byB5b3Ugc2hvdWxkIGhhdmUgbm90aGluZyBsZWZ0IHRvIGRvLg0KDQpCdXQgdGhhdCByZWxpZXMg
-b24gdGhlIGZpbGVzIGJlaW5nIHB1dCBpbiB0aGUgY29ycmVjdCBsb2NhdGlvbiBpbiB0aGUgZmly
-c3QgcGxhY2UuICBJIHN1c3BlY3QgdGhpcyBwYWNrYWdl4oCZcyBDTWFrZUxpc3RzLnR4dCBpcyBi
-cm9rZW4sIHJ1biB0aGUgZm9sbG93aW5nIGNvbW1hbmQ6DQoNCiQgYml0YmFrZS1nZXR2YXIgLXIg
-ZWFzeWxvZ2dpbmdwcCBsaWJkaXINCg0KSSBleHBlY3QgdGhlIHZhbHVlIGl0IHByaW50cyBpcyBf
-bm90XyAvdXNyL2xpYiwgd2hpY2ggaXMgd2hlcmUgZWFzeWxvZ2dpbmdwcCBpcyBpbnN0YWxsaW5n
-IGZpbGVzLiAgVGhpcyBpcyBiZWNhdXNlIHRoZSBDTWFrZUxpc3RzLnR4dCBoYXJkY29kZXMgdGhl
-IGxvY2F0aW9uIG9mIHRoZSBsaWJyYXJ5LCBhbmQgaXTigJlzIHdyb25nLg0KDQpUaGVyZeKAmXMg
-YW4gdXBzdHJlYW0gZml4IHN1Ym1pdHRlZCBhdCBodHRwczovL2dpdGh1Yi5jb20vYWJ1bXEvZWFz
-eWxvZ2dpbmdwcC9wdWxsLzgxNSBidXQgdXBzdHJlYW0gYXBwZWFycyB0byBoYXZlIGlnbm9yZWQg
-aXQgZm9yIHR3byB5ZWFycy4gIEnigJlkIHRyeSBncmFiYmluZyBodHRwczovL2dpdGh1Yi5jb20v
-YWJ1bXEvZWFzeWxvZ2dpbmdwcC9wdWxsLzgxNS9jb21taXRzL2FmZTAxMDQzNWQwNTExMzYzZDAy
-NTViM2FkM2FmYmQ0MjMyNTFlNDQgYW5kIGFwcGx5aW5nIHRoYXQgcGF0Y2guDQoNClJvc3M=
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ conf/layer.conf                | 2 +-
+ meta-hardening/conf/layer.conf | 2 +-
+ meta-integrity/conf/layer.conf | 2 +-
+ meta-parsec/conf/layer.conf    | 2 +-
+ meta-tpm/conf/layer.conf       | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 3e8db1f..586b823 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,7 +9,7 @@ BBFILE_COLLECTIONS += "security"
+ BBFILE_PATTERN_security = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_security = "8"
+ 
+-LAYERSERIES_COMPAT_security = "nanbield"
++LAYERSERIES_COMPAT_security = "scarthgap nanbield"
+ 
+ LAYERDEPENDS_security = "core openembedded-layer"
+ 
+diff --git a/meta-hardening/conf/layer.conf b/meta-hardening/conf/layer.conf
+index c499e60..5e22b86 100644
+--- a/meta-hardening/conf/layer.conf
++++ b/meta-hardening/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "harden-layer"
+ BBFILE_PATTERN_harden-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_harden-layer = "6"
+ 
+-LAYERSERIES_COMPAT_harden-layer = "nanbield"
++LAYERSERIES_COMPAT_harden-layer = "scarthgap nanbield"
+ 
+ LAYERDEPENDS_harden-layer = "core openembedded-layer"
+ 
+diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+index d00298a..043c8d3 100644
+--- a/meta-integrity/conf/layer.conf
++++ b/meta-integrity/conf/layer.conf
+@@ -20,7 +20,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
+ # interactive shell is enough.
+ OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
+ 
+-LAYERSERIES_COMPAT_integrity = "nanbield"
++LAYERSERIES_COMPAT_integrity = "scarthgap nanbield"
+ # ima-evm-utils depends on keyutils from meta-oe
+ LAYERDEPENDS_integrity = "core openembedded-layer"
+ 
+diff --git a/meta-parsec/conf/layer.conf b/meta-parsec/conf/layer.conf
+index 503953a..9d90deb 100644
+--- a/meta-parsec/conf/layer.conf
++++ b/meta-parsec/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "parsec-layer"
+ BBFILE_PATTERN_parsec-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_parsec-layer = "5"
+ 
+-LAYERSERIES_COMPAT_parsec-layer = "nanbield"
++LAYERSERIES_COMPAT_parsec-layer = "scarthgap nanbield"
+ 
+ LAYERDEPENDS_parsec-layer = "core clang-layer"
+ BBLAYERS_LAYERINDEX_NAME_parsec-layer = "meta-parsec"
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index 8075706..88a5f54 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
+ BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_tpm-layer = "6"
+ 
+-LAYERSERIES_COMPAT_tpm-layer = "nanbield"
++LAYERSERIES_COMPAT_tpm-layer = "scarthgap nanbield"
+ 
+ LAYERDEPENDS_tpm-layer = " \
+     core \
+-- 
+2.34.1
+
 
