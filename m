@@ -1,156 +1,149 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <yi.zhao@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AEFAC54E68
-	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 11:15:39 +0000 (UTC)
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
- by mx.groups.io with SMTP id smtpd.web10.12734.1710846934773605248
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16764C54E60
+	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 13:13:10 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web11.15026.1710853989663485920
  for <yocto@lists.yoctoproject.org>;
- Tue, 19 Mar 2024 04:15:34 -0700
+ Tue, 19 Mar 2024 06:13:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=RMmcIvU4;
- spf=pass (domain: gmail.com, ip: 209.85.210.47, mailfrom: akuster808@gmail.com)
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6e67b5d6dd8so2351298a34.2
-        for <yocto@lists.yoctoproject.org>; Tue, 19 Mar 2024 04:15:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710846934; x=1711451734; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LWGiYf/+JyywAaC5WL/uN3GwCICyDo+wrYZF/x/MObg=;
-        b=RMmcIvU4ZxuoMmAkrfWRVjgvk8tZdbFjETCe4Bwnafm5nMLmSxgfhdS6nzfFZ01p7m
-         ZWBmC5nXlNj8XgYRphNH0tteAZ8F0ot5YiGUjZQFZfB6wnnZ5Yynyb6o6xET3ZAHb++v
-         CHsfuWk2HzlA59UL7muIu8h4vraRZkgYdHnI4I8sx3JIrpe209K4j2qxsdAlMzIrYbha
-         SYzOrecfYOU1YlG/HKcdN16BzB7gq73hhQPDiELGbrPNMbHukrKusyc0s8WNwTL7BUf1
-         vH0rUcJt653EwDPMHqcNOYmFyM/XQWO2g2v2bJvoobAZjUFDg57NIuLKfhVMxK7iFEER
-         qa8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710846934; x=1711451734;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LWGiYf/+JyywAaC5WL/uN3GwCICyDo+wrYZF/x/MObg=;
-        b=lQ6scrAbzDfhSEvQxCOkAa70ZRTVzFLRs+4EDGxc6eQbQkGsBBOBa9IsHf5f8dljrt
-         aYsD6/6e5+8/kosaoV80WIPAakx63NJAHCHOEJLqYHxaekw9PJZEBumtqZ8y2VJI7OE0
-         iY9u+sX+uXqYu91VhlO+GhtU4unnw1IZeKml0RapFK35gvG4s8Ygth8sZQbxP9w79oc8
-         gGDCGbGzexqpmXOlqMWLDK3KyzEsQWRc40EUkN49nLxWozQkB0b2NmZdLfWbRaUd8pDK
-         Z34L7x04bS38vCND+CG1LAUKmhTnXJi8CcguFHCZXLSLan3HUX2P9riTxI3LDhkqvcHq
-         CHSg==
-X-Gm-Message-State: AOJu0Yxl1r3afuVlZTJfjN/7NNp2ymg0ow5NYA1QTAdyy6QFA9z8LeCQ
-	992GI0I52DzVlMFNrAyMMOE82QXZNn0evreN9HPMR/G2MOH4l38Nv1ZuT8IK
-X-Google-Smtp-Source: AGHT+IEuJngp6OtVK0C5wyTi7Z5u97/JZFEs2rtT6K0gYzSE5EsEn1t7eFaKmt7VMIi1bRVk7BSXpQ==
-X-Received: by 2002:a05:6830:1c7:b0:6e5:a89:2ddd with SMTP id r7-20020a05683001c700b006e50a892dddmr2516110ota.27.1710846933533;
-        Tue, 19 Mar 2024 04:15:33 -0700 (PDT)
-Received: from keaua.attlocal.net ([2600:1700:45dd:7000:f204:39c3:6c76:15b1])
-        by smtp.gmail.com with ESMTPSA id l16-20020a05683016d000b006e68a7fa66fsm921460otr.45.2024.03.19.04.15.32
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Mar 2024 04:15:33 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] openscap: update to tip to fix new build issue.
-Date: Tue, 19 Mar 2024 07:15:31 -0400
-Message-Id: <20240319111532.413323-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=QJOhwslO;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=38086297de=yi.zhao@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42JASbaL032332;
+	Tue, 19 Mar 2024 06:13:08 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:subject:date:message-id:content-transfer-encoding
+	:content-type:mime-version; s=PPS06212021; bh=k3Fz+9S5AL9lCOgFgJ
+	o3R6XlZnfJAyQMUsliFlu53DI=; b=QJOhwslO98pwfot867WBn6V95XXYmadApZ
+	uRwTADeQFt7rKFJk0WK6k78Q0f+kQ06uosaZmA+VPOTdJNt69iGPS+4bFEAUwD7S
+	Kna4px4+xVQLZmv/sdiTbML5syDTKbYUgjBN1hWx9jKOYY4Rv5hHeoNMKHWupDm2
+	s7FLHrrRRP6p8wO7CKcMjJMME0xKJrxxgdiTxSOsaOvZjcACHB7C8lFgya5Qj7wE
+	Am+4JF9aVQD6wLIX5R8d2s+ToghyVyLbwOggmE7IeE2T/OW6fKSXVC1Clf6c3RBA
+	TeeFwXMuBCRbI/9NJL62no3/4YBiCwSdJ0ch51wtp3dehPLN7h9A==
+Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam04lp2041.outbound.protection.outlook.com [104.47.74.41])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3wwaxgajb9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Mar 2024 06:13:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=m7gmykDlDC73LZ36PXnbgATCfR1OLLrp2rzr7ScKjmxQfv7Qhfz4iRKIWenk8f8qRwYHCinBssDZekqCXmrjdkmrJnepE+1EZp4ig6t1jYsaAr+Aim47/YoocBjkqdubB0RGwLbdXUyRJXiMmGgkqMGxaDGIW5jsWChnoHTdgkuaAFB8YTtxJIDpUp1a3ThmOYYXYeVLEtlf7W0r7rC/wQmok8BacpTuLKqyCsLrYVG/IzSNAcMMGabu+XWSR9glz4exYttJeHJCRQSqwj1CatlqsPiiWf/YJcvuWp9RvJXvHiZvlnPT2kOMjlfQnIy/7xIR32lOnY8zpnh1dVnqyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=k3Fz+9S5AL9lCOgFgJo3R6XlZnfJAyQMUsliFlu53DI=;
+ b=PzN1RDjS5+vAhU44fYQxgAOD5I1oJX/zLno/p9t9idHkBzAvQ8+/0ACw064+QgvtDc7p/oTSGecfpl+vLA+6gaf6Cd49JxQcmA0xAjnkkZspEC+88xK5Wg3eW3om5E64NVg7wCXaH31IrYJnSrrqDfXGMODdHPQKBg2Gaum4lJVxU2mhgam5DMOqdjyguj3R0IXjmA5aGGLRCV+Vhn2PjgyTi6WWsTUqQdiKP2lJ2Bue4b42OdhmVPDhB5eel1Gwpq43fCk+hSX0RI99COWpO7mCj1CrbhvA+l3TMrxUadNIFyyVJHNrcWkRA8sAeQrz/uR2XQ+uGwZpfh4N95uZZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from DS0PR11MB7484.namprd11.prod.outlook.com (2603:10b6:8:14c::10)
+ by DS0PR11MB7788.namprd11.prod.outlook.com (2603:10b6:8:f5::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.11; Tue, 19 Mar
+ 2024 13:12:57 +0000
+Received: from DS0PR11MB7484.namprd11.prod.outlook.com
+ ([fe80::97da:833f:8511:a558]) by DS0PR11MB7484.namprd11.prod.outlook.com
+ ([fe80::97da:833f:8511:a558%6]) with mapi id 15.20.7409.010; Tue, 19 Mar 2024
+ 13:12:57 +0000
+From: Yi Zhao <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org, joe.macdonald@siemens.com,
+        joe_macdonald@mentor.com, joe@deserted.net
+Subject: [meta-selinux][PATCH] layer.conf: update for the scarthgap release series
+Date: Tue, 19 Mar 2024 21:12:44 +0800
+Message-Id: <20240319131244.2101964-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0054.apcprd02.prod.outlook.com
+ (2603:1096:4:1f5::13) To DS0PR11MB7484.namprd11.prod.outlook.com
+ (2603:10b6:8:14c::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7484:EE_|DS0PR11MB7788:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	98cNpElTClU84MqLOfTTTOCHWGMZO2B6n9E+33ZH+xkG91lFA21+Ug7NtcLvItRz9JVscSegJF1sb1wrrtZNfL+ciyyvn3E7b5pSKQ9PqY0j+fRLwAZLCn8LawoTs2XvrcoasPeXI9OnxC601SDStsDIKLIjSO2x/1cWS0e9O9ZDNcaM68syKOFxINPYkRRF0OPRnQZQNDdibHCPwZ15KR7xdyJqVt96fw4m+AQnO8tJiXGWjdpW8pmpsBhMwBb2hXprhVLa9ikNNLT3Uz/oAtmgBeuYv+4njW5T4DYp/f7rHxq0Wr4RsuyNhH7IJR5XaWCycjDEIvhQDI2wmpegv8FEpltQI8Y/fjzGoOUJVNnRi5yWyr7A+bndVK/tF0cps4psbfpdZSc/CUloEtI0POyMmGFFNYxhpspPJOsoGd9KZ5d/atuWVSBAxqUij1UyzPX1Z37mly+UIKX1VhlkiGWDH+VwZl10N7KVflmUae906sHhF4WpyUoWjvKVuwZ80rPZK7pBsFwgisM4jTE2LY4YmzZ762yzS+kJA2m0lEu4iGsIQvgZavZt978MHUrPKzwz3G/XKY2/zVSEYwllouuQPGECgOFK4M5wGa3K+sS/EllrWH2YQFQL6SAyTafbk8Bi6gU0Gbsbr1BQ1LKgh3YS5g0CL4UsC82aP53J4qY4erwRhwPAWjnCKP24OgFxKCqO0vUS+OpEVgd6OywU9A==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR11MB7484.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(366007)(52116005)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?r6ST+MeUabzcKWa8pLRDtl8VOimjRLk8gL4mdYywemfhSMrnuUzb/G5krHdJ?=
+ =?us-ascii?Q?QvgALjUD4WNC3o1Y3dFS0o+vlNzutDr9NkK2IaVO2CqtXQeSqYpz87WzYf68?=
+ =?us-ascii?Q?2uXnBKRsOhI+eMry6faozhoz0lSnfflGt3gFGGLpWDERHaLpnAm7CatHmqMV?=
+ =?us-ascii?Q?dyuTTqrj95275rhLy40dxmcozWALuK6xkiHeyCXckGwswiDJGL6MZAHzV3pY?=
+ =?us-ascii?Q?Jh/0DvvyLUyyqBgdCEgKIourx8Q/X12f7I9e34TWu4Fym14N+Is1Ip5dlcWw?=
+ =?us-ascii?Q?z1XUpLHtaz/A0a9YK/cAGR43SRdcVr7FYXenRyWllAyIIU627YErOMKp1hEz?=
+ =?us-ascii?Q?N6AcBGwMC2wPzHe9VJ6vJGK4e5dIkVCXchygLTACQESYOlVBSnDlM1Kt2okt?=
+ =?us-ascii?Q?/NJkEcPpbZx8oN0wnWb7Whej345EUaKiXwaCsPHBrDUTVfcU3qLpJJpLAl0C?=
+ =?us-ascii?Q?agiCkNfe/7LhjMmdgrC9CpNK9h1rRKM3qQl7PyU7izxnixbS3svne0mb3gI0?=
+ =?us-ascii?Q?S3/CqFAW8xKAmSB+nroOBsVzOoiUOkoiaaQD0xq51xEnLfI+2FOC5nyJ4CpC?=
+ =?us-ascii?Q?5I8bXp07AuU7l/AS3/zmBBKCF6hOAZqetcF25KhkAT5izdaAYWYr8EWJ2ema?=
+ =?us-ascii?Q?mGEga9kwKh1MuZ/+dY9RghyQfOU47QiOfMXH+JLPaiiheroBR7ObtFQ+Zyil?=
+ =?us-ascii?Q?vbU/Oyu8vnUFFwNNtDHqyBYc8j0ZJTSnc0cQUXJXeiVJNVVZ7W9mOQvWfJmZ?=
+ =?us-ascii?Q?04TUm3OPcMQSUisOrh3XO8qMfupB6eg/bu6CqUNYDe19dbPo6RZHTK//OlGK?=
+ =?us-ascii?Q?4wPq0B1EgvZRa6+w6uxUFNJ0/uYKXwogytzRa+ktw16wHHsrLOkEAA0KSVY5?=
+ =?us-ascii?Q?MPUT13tocMqczSU4roMwcDrKu+4Qy61LPVGmbetzNpYP0yUDcp0LPAJckrNE?=
+ =?us-ascii?Q?42LQ8EKDxKy8VP5ukcevmGzqpBoMxHoYrFXLzzLM788IHP4QnSUsqHe2jUWa?=
+ =?us-ascii?Q?+nSa7Xg5pvlbeua4+78qyGGFVG9RjyuzM7eiJDwfNb1+SSG7ARhsWuFS+soz?=
+ =?us-ascii?Q?g/UbpOAlDD0UBJOpxz+lm5fx5ulXDMnRVhnFBftbg9iAc+1VHPysKvK8uy2D?=
+ =?us-ascii?Q?f7//13r+Kbzc6DrKG/oXngKOzjGUNMszgrW7plrLlPIPwOTsVu6sitA6mxDp?=
+ =?us-ascii?Q?AnNulOvsD1KwaHPXtTAHcqTl760/KpZBVWunLmYyq0fHCVdS4vEvbo+2Ddk6?=
+ =?us-ascii?Q?Mf2CyxwqEhjz+l3I/l387VFwciaLxrENcv8Df08umZjj1WAtEr2qRGaaROzW?=
+ =?us-ascii?Q?+5wYZ7/vtjHjVb0ADhXXgByHEDK/OK3EFH1rdWmjx8DiKeKtcEIhg+k4DNFM?=
+ =?us-ascii?Q?rBbqLvoS6nU6nBSyOCu9KVz5kpI294urtB/889NNGtWh9saodeip2nrkbWaY?=
+ =?us-ascii?Q?Ihsg8n8jN1QmcDV1I7BnxKTmJKaLvTSVY6nzBH7cxMsP8vkArmyp01axOnqY?=
+ =?us-ascii?Q?ZKZ/tbJeRFO5xdYDx8Sq6MZHE2ArM7724G2xoIO34vM7k6xogq8LrobZgOA7?=
+ =?us-ascii?Q?od1HgHAqVcGP66VxmdrVCf8uz+ery39ejN//R1D5?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bedca02e-39d0-4d8f-3a62-08dc48164b25
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7484.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2024 13:12:57.0374
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eXhXnvx5tDLe9Ud1jqEJJG+4A0Zs9zQA5j1dedPOLbCv0LJDsGgcRLwPn8nlg0bfzLXkvOw+4R3ScZfQjv/bzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7788
+X-Proofpoint-GUID: BbDgHfmDe4SGdXQqBoXNxkh_2g24USwR
+X-Proofpoint-ORIG-GUID: BbDgHfmDe4SGdXQqBoXNxkh_2g24USwR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-19_03,2024-03-18_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=900 clxscore=1015 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 spamscore=0 phishscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2403140001
+ definitions=main-2403190101
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 19 Mar 2024 11:15:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62794
+ <yocto@lists.yoctoproject.org>; Tue, 19 Mar 2024 13:13:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62796
 
-drop patch now included.
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- ...e-distutils.sysconfig-with-sysconfig.patch | 57 -------------------
- recipes-compliance/openscap/openscap_1.3.9.bb |  8 +--
- 2 files changed, 3 insertions(+), 62 deletions(-)
- delete mode 100644 recipes-compliance/openscap/files/0001-Replace-distutils.sysconfig-with-sysconfig.patch
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-compliance/openscap/files/0001-Replace-distutils.sysconfig-with-sysconfig.patch b/recipes-compliance/openscap/files/0001-Replace-distutils.sysconfig-with-sysconfig.patch
-deleted file mode 100644
-index f3f8cf7..0000000
---- a/recipes-compliance/openscap/files/0001-Replace-distutils.sysconfig-with-sysconfig.patch
-+++ /dev/null
-@@ -1,57 +0,0 @@
--From 9a8e01f8421f92f40b4cbff6cf055538e9a0b0ae Mon Sep 17 00:00:00 2001
--From: Evgeny Kolesnikov <ekolesni@redhat.com>
--Date: Thu, 25 Jan 2024 21:37:05 +0100
--Subject: [PATCH] Replace distutils.sysconfig with sysconfig
--
--Upstream-Status: Backport
--[https://github.com/OpenSCAP/openscap/commit/9a8e01f8421f92f40b4cbff6cf055538e9a0b0ae]
--
--Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-----
-- docs/developer/developer.adoc | 2 +-
-- swig/python3/CMakeLists.txt   | 2 +-
-- utils/CMakeLists.txt          | 2 +-
-- 3 files changed, 3 insertions(+), 3 deletions(-)
--
--diff --git a/docs/developer/developer.adoc b/docs/developer/developer.adoc
--index 77c6d5161..e923069cc 100644
----- a/docs/developer/developer.adoc
--+++ b/docs/developer/developer.adoc
--@@ -113,7 +113,7 @@ On Ubuntu 18.04 and potentially other distro, the python3 dist-packages path is
-- If the following command:
-- 
-- ----
---$ python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
--+$ python3 -c "import sysconfig; print(sysconfig.get_path('platlib'))"
-- ----
-- 
-- returns "/usr/local/lib/python3/dist-packages" instead of a path like
--diff --git a/swig/python3/CMakeLists.txt b/swig/python3/CMakeLists.txt
--index 2594cf000..5f301326c 100644
----- a/swig/python3/CMakeLists.txt
--+++ b/swig/python3/CMakeLists.txt
--@@ -26,7 +26,7 @@ add_custom_target(python3_compile ALL DEPENDS ${PYTHON_COMPILED_FILES})
-- 
-- if(NOT PYTHON_SITE_PACKAGES_INSTALL_DIR)
-- execute_process(COMMAND
---	${PYTHON_EXECUTABLE} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True, prefix='${CMAKE_INSTALL_PREFIX}'))"
--+	${PYTHON_EXECUTABLE} -c "import sysconfig; print(sysconfig.get_path('platlib'))"
-- 	OUTPUT_VARIABLE PYTHON_SITE_PACKAGES_INSTALL_DIR
-- 	OUTPUT_STRIP_TRAILING_WHITESPACE
-- )
--diff --git a/utils/CMakeLists.txt b/utils/CMakeLists.txt
--index 93ce1f2a9..9347c2976 100644
----- a/utils/CMakeLists.txt
--+++ b/utils/CMakeLists.txt
--@@ -91,7 +91,7 @@ if(ENABLE_OSCAP_UTIL_DOCKER)
-- 
-- 	if(NOT PYTHON_SITE_PACKAGES_INSTALL_DIR)
-- 	execute_process(COMMAND
---		${OSCAP_DOCKER_PYTHON} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(False, False, prefix='${CMAKE_INSTALL_PREFIX}'))"
--+		${OSCAP_DOCKER_PYTHON} -c "import sysconfig; print(sysconfig.get_path('purelib'))"
-- 		OUTPUT_VARIABLE PYTHON_SITE_PACKAGES_INSTALL_DIR
-- 		OUTPUT_STRIP_TRAILING_WHITESPACE
-- 	)
---- 
--2.25.1
--
-diff --git a/recipes-compliance/openscap/openscap_1.3.9.bb b/recipes-compliance/openscap/openscap_1.3.9.bb
-index d956ff1..b35ce9f 100644
---- a/recipes-compliance/openscap/openscap_1.3.9.bb
-+++ b/recipes-compliance/openscap/openscap_1.3.9.bb
-@@ -9,11 +9,9 @@ LICENSE = "LGPL-2.1-only"
- DEPENDS = "dbus acl bzip2 pkgconfig gconf procps curl libxml2 libxslt libcap swig libpcre  xmlsec1"
- DEPENDS:class-native = "pkgconfig-native swig-native curl-native libxml2-native libxslt-native libcap-native libpcre-native xmlsec1-native"
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 0a0a6ab..4e04e5c 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -17,7 +17,7 @@ BBFILE_PRIORITY_selinux = "5"
+ # cause compatibility issues with other layers
+ LAYERVERSION_selinux = "1"
  
--#Jun 22th, 2023
--SRCREV = "9b3e7563575f7e5b419f8a09999b40f30e3e7c29"
--SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https \
--           file://0001-Replace-distutils.sysconfig-with-sysconfig.patch \
--          "
-+#March 18th, 2024
-+SRCREV = "0e7f654570971c1acee6dd3f34b17121372d6152"
-+SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https "
+-LAYERSERIES_COMPAT_selinux = "nanbield"
++LAYERSERIES_COMPAT_selinux = "scarthgap"
  
- S = "${WORKDIR}/git"
- 
+ LAYERDEPENDS_selinux = " \
+     core \
 -- 
-2.34.1
+2.25.1
 
 
