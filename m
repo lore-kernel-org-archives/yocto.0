@@ -1,109 +1,170 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 583ABC54E67
-	for <webhook@archiver.kernel.org>; Wed, 20 Mar 2024 12:13:42 +0000 (UTC)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web11.42604.1710936821747242768
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BEDBC54E58
+	for <webhook@archiver.kernel.org>; Wed, 20 Mar 2024 15:27:43 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.85])
+ by mx.groups.io with SMTP id smtpd.web10.47869.1710948456156993289
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Mar 2024 05:13:42 -0700
+ Wed, 20 Mar 2024 08:27:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=F/w6Otsw;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.44, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-33e17342ea7so3357263f8f.2
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Mar 2024 05:13:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1710936820; x=1711541620; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R4xHmQ4/r0q9Q4LpLfcSZaKaWX/2FrsRcWJ8lDOJeUg=;
-        b=F/w6OtswT76EQC0IQh5ij9zvYYI3J+l1oUjtnrMAzBomXXFYBlwBcxwACEbaymz+M2
-         izCykI2OG9zN4V7tJqEODSQ8/GlbH5mZy7wtsZb7KohG+Mm+87aIhBYIVEW9RhbBeNqo
-         gOXol5HND2T1yFqqEm1GhO9FHYeNtTjc7KXKk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710936820; x=1711541620;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R4xHmQ4/r0q9Q4LpLfcSZaKaWX/2FrsRcWJ8lDOJeUg=;
-        b=IH96dSrl2RULyU0IIDfuKi3aEoAO+oBdwyvGGsDJjmyhPGmv/BpwYF8kHl6Itb2RiN
-         RIOUaQaYZ8ZJ20uI6kFkvGYN30tKmvnOQiInlgoOAXD2wdzmhHij/gOcpQFIrNSMJS03
-         dtUKPTgK/w4xwDHee9xR0pTV0EgMARIBfQuKcJgrYNItFQYIMWkS1RnJch9m4Et0HCuq
-         B6bvtCUIusOjiIP124css3Wcy8wHJEgtVVb8wZ6H8qoDK6lXzzv6Njd2QcaszZ6aee38
-         PZUctiZ6sjpRbf0cths3JU8hE+q5oYE6GcYsZ8wpOgLMxU6ke7iSlc418J/n6eGTCoUY
-         UMoA==
-X-Gm-Message-State: AOJu0YwJBf2unitmf86tHGoADOLG6lY6y27KHeit08ihBNqlEx43MoOz
-	BOTAuvMn3tSdqvPvf426IxbD1LADCepyoXptMPcZqvkFba7sPWo/j+FvPQQ4gyZaPQ1Fgts4krF
-	E
-X-Google-Smtp-Source: AGHT+IGEBHaY9PzTjQCK5fzar33lVjfU7dE1HQ9ohwkDB1+PwVyYM0i5Q6HIN9iIedJxRKlVwdqs2A==
-X-Received: by 2002:adf:f5d1:0:b0:33e:7650:58b4 with SMTP id k17-20020adff5d1000000b0033e765058b4mr12139177wrp.27.1710936819730;
-        Wed, 20 Mar 2024 05:13:39 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:f87e:2489:3571:2337? ([2001:8b0:aba:5f3c:f87e:2489:3571:2337])
-        by smtp.gmail.com with ESMTPSA id m10-20020adffe4a000000b0033de10c9efcsm14513227wrs.114.2024.03.20.05.13.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Mar 2024 05:13:39 -0700 (PDT)
-Message-ID: <f1afa9c5192e3a8b86686df4bec5bddc1280b346.camel@linuxfoundation.org>
-Subject: Re: [yocto] make a-quick quick again (and light on the AB,
- particularly arm)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com, Ross Burton
-	 <Ross.Burton@arm.com>
-Date: Wed, 20 Mar 2024 12:13:38 +0000
-In-Reply-To: <CANNYZj8GNMB+=xkkzFW9iuX8Nk6fhC-XT3+3eY3thwK2tuZPCQ@mail.gmail.com>
+ dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=m+qeaXQ4;
+ dkim=pass header.i=@armh.onmicrosoft.com header.s=selector2-armh-onmicrosoft-com header.b=m+qeaXQ4;
+ spf=pass (domain: arm.com, ip: 40.107.21.85, mailfrom: ross.burton@arm.com)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=exzdgJFXqfHLV01mfBRuut5lCcYpUcIkCdXpdYJoGcz6rlU2NVudHfKnFnfd0f4x37EXeB3fF4/kigfNPyTpySUjIfHoEBKXnrKzF1/M9q1BIQCDCcLmDjiMgUQBrfk0CGoAGqbfbugZFdWTCGroEuorT5ViBLGimjWp+9dLKUrMjd0OVzOQGuhy5efaq3KIRGISOk98yla98m023/8GBHBrro0W5xbYpaBp+nZyYaRIcHDHnG9LGS/k6UypZx5wg+eHgPDbzJp0m/30ta0Il1OLoT7HoymMHb9763PSTc2/cUWK+XArksjzuEOZWxlGtCZl4MUsi2IMvgtGaRi7SA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ke2YxuDYKioE5Nzv8LCLPNrJjecJFeHO8Vim0ZyALNE=;
+ b=S1YDSypTQSWhvT29OkFqOu3eYU9Er9XRyoiSH6yZNe3XkN0/xw7cl4Z45aAYHoEkYL8huT3XiCS1ynBvKysYB8tEClTKGB02RSXTvEqZYrsw6buu5ManSLtvElrjGrzMAZWCu5PCvPe5WYfOmCBd/JFpxvCagIBt4xudTQ1KlU7KqyQNcEyw+NZX3fgUTulHADHJW5l8wqjl8JAMSwLkxmaVIbSTBuuhliasz1Wb8FJ4bvmwj9Na0Ss1ObjvCx8fJom2XDKI3qxpf8CFbCV17dTwBuVDIrw08sMay0fEie9L8Bxx5vtABgrnS+ErmbWsOovh+jsIeJMA6TVEpUexTQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
+ dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
+ oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ke2YxuDYKioE5Nzv8LCLPNrJjecJFeHO8Vim0ZyALNE=;
+ b=m+qeaXQ4Tw88ZXGG/Yfr+Y/A51Lj+/YZvOMhoR423NE6miDdoW7Xs/7gs3oc4nmoR48Cslc5/1PFZfjnFLxd5b7G4CTmr4lOq9Lnbn5j57eQnCZAwqsdKlcyuu/gBkOllVaIn6Uwjfs5WCtxLiONamH8b1y5OL5W30WOKiip3z8=
+Received: from AM9P195CA0002.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:21f::7)
+ by AS8PR08MB9120.eurprd08.prod.outlook.com (2603:10a6:20b:5c1::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.30; Wed, 20 Mar
+ 2024 15:27:32 +0000
+Received: from AM3PEPF0000A798.eurprd04.prod.outlook.com
+ (2603:10a6:20b:21f:cafe::10) by AM9P195CA0002.outlook.office365.com
+ (2603:10a6:20b:21f::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26 via Frontend
+ Transport; Wed, 20 Mar 2024 15:27:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+ pr=C
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AM3PEPF0000A798.mail.protection.outlook.com (10.167.16.103) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7409.10 via Frontend Transport; Wed, 20 Mar 2024 15:27:32 +0000
+Received: ("Tessian outbound 1b0f2681ce6f:v300"); Wed, 20 Mar 2024 15:27:32 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 27dc67bde6ddcb3f
+X-CR-MTA-TID: 64aa7808
+Received: from a584f0e6393b.1
+	by 64aa7808-outbound-1.mta.getcheckrecipient.com id 02A10BA9-E259-413D-8AC8-78B74CF624C2.1;
+	Wed, 20 Mar 2024 15:27:25 +0000
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id a584f0e6393b.1
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Wed, 20 Mar 2024 15:27:25 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QrPS733OB2AjwRP6wgvhMwPPrz6eLWs8UWYJr5IGFTi+ZkDBr7FjWKPKk7CJ66lwUFs7IxShNCiAAp1exE412cHknk16jZuhRBvpoTXJrDEBu5W3elvD+8HAgLFM0KWJ6rZAKnC0FHH1t9bCVC1Tw9F0KeJ2KaH/MdUA0mOV45lsDyhGbwYATKlQjHk/JkX1Ycwzz5TC/YGZxPIggK9i2aBmbaw0op4IVbUp/z1ckKPOuSMK+892+SVL+ItAvNDUkizeBLO8QUkJghmSdJBQCmCZfPHQwkP3DKUDcSzlFViGI2OGP6OjyNUHH+zewXgiB1mowqerEjauXYEA9L6QwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ke2YxuDYKioE5Nzv8LCLPNrJjecJFeHO8Vim0ZyALNE=;
+ b=LBWrRVHDBmToYz1Y56TWks9yPyG1Ra+dbV3yYNqp4m8SdRu8x6wuCFZ1YlFxJ8kEVx3iic4XNS9Pw9ASK7vk4ZZmpz0Beewh4Lqu0PasxmuSThTTWgXCi854FJh9vm9Tf1MdfDH5FVNGWUl1oSDlNU5wA1WfYzuREKVDX6pDeh4AKmuKW7XH5Mei2XRyBQPTM/0EFs3sOxC0y4DD1tN5M/U4Mkg8MQyw92ynInPrFaOqGfNltBHrQyQCAM50VTujYDxio+R7ekOu6dHgO4NUJv+IS9jPLER3lWHp0EB+5X129abuWlmF/jpoJMaoP+0k9ES4/afu4Je2MQvxOGyf5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ke2YxuDYKioE5Nzv8LCLPNrJjecJFeHO8Vim0ZyALNE=;
+ b=m+qeaXQ4Tw88ZXGG/Yfr+Y/A51Lj+/YZvOMhoR423NE6miDdoW7Xs/7gs3oc4nmoR48Cslc5/1PFZfjnFLxd5b7G4CTmr4lOq9Lnbn5j57eQnCZAwqsdKlcyuu/gBkOllVaIn6Uwjfs5WCtxLiONamH8b1y5OL5W30WOKiip3z8=
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
+ by AS2PR08MB8950.eurprd08.prod.outlook.com (2603:10a6:20b:5f9::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.31; Wed, 20 Mar
+ 2024 15:27:22 +0000
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::36de:39f1:4d:5228]) by PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::36de:39f1:4d:5228%5]) with mapi id 15.20.7386.025; Wed, 20 Mar 2024
+ 15:27:22 +0000
+From: Ross Burton <Ross.Burton@arm.com>
+To: Bratiranjan Acharya <bratiranjan12@gmail.com>
+CC: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] install-vs-shipped
+Thread-Topic: [yocto] install-vs-shipped
+Thread-Index: AQHaeV70Yyua3NjSREKRdBxpEW/mwLE+4vcAgAHdbQCAAAMFgA==
+Date: Wed, 20 Mar 2024 15:27:22 +0000
+Message-ID: <A68B9688-967B-446E-A241-728BE913E100@arm.com>
 References: 
-	<CANNYZj8WgSAT_jZw0yqeQSQo=ByBcrwcMSz28AOPEhthGvfcvQ@mail.gmail.com>
-	 <E09C30F2-732B-4047-8BDA-72C67FDA2788@arm.com>
-	 <CANNYZj8GNMB+=xkkzFW9iuX8Nk6fhC-XT3+3eY3thwK2tuZPCQ@mail.gmail.com>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=mQINBGN1PzgBEADqZynxX+ivalgYtZ+AoHoGynCiJw0lR+H9rC83sj9z38nlKHBCuh8r8KOqelDUf1B73E9oCLjZQVwqKLmao6ZDQYt7utG+h6qGLEgyDfeochYkLwElvRtjhTp0Ks5WPIHUgE4lwfqmsLrHbkEfRYui9eSd+zJpPKTRgQ7WhTGfRaXPEVYn24fWEo637biLyoEop1qaZMoY/mPsflDYDISWgAeunFx63oL9zNAhOWbLIy2uicKq2GyS56CooPzQkpUv7ssQBOqXp/FSuGJ49RV7Npj/eXyEepAh3BtMliJF08rAj07Hpywp3skXku8YcwUAD7TqOnJ4Wr6G8vpJlQKSITIGMBqtq3f8+SwImWEMRVXxDzrmznihOC7qEUWH4tN/AEkz2BJQbGYnp3iQjZqsoqKblyC83/5MCCUHHpDg20HooEWVNTUxUa8dGWaJehKC5fX1276Sm4WLaoqbQwSGCmwS1e+LjO9lFT80WHIELw07iDhQxshNqVLIxCt3pZfWRlf9fHCtxStiQIRrQLAKN7ze+//YjExjkDOt1ZFIsgMmKIQmJ6b8kRAAmQUraTcn4E/hy0mArFLmROyPSc1nD8hQMeELDcjyjEmo7j3qQCsU464v4tcvJVXyqPc4TU1GDQdZBaKP0/jR68aR3ZOvzx99jdocPdHNW4Kpbv6PnQARAQABtDNSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz6JAlcEEwEKAEECGwEFCQPCZwAFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VBgQIZAQAKCRCaUMY1GLyygAtOEADglyjAhkCSGGetbs40FJ4
- xdHKck7aaB1FgbpGn9e9/WAeAPC722eJsxhujxgKaS9b7mHcTcWeMP7KFut4yKTDHovt4VbQOd PGqwyUmi8z0yd2ORlT9E3RjEEllpj/Z2Wfzs3H4qR5wz3Rij1BCirDH8LD5yAO8PpIW2N1Y4VbzFDTPX2KtLGQYIraOHZQQe8XjAJnXflVQbzSIbNw14IlVWnF94UwkamxRhhCVAdA4139ebU+R0inaVsG0Bb7GP3KiED4C1I/tj171G4bOsyz3zYkpuV64yuq5pVevLBuCJv1Z/yiBdbB02B+FkosKLWRvoZFa2gqK2xpZT8RvDdkBQTmZTs/hP59mh1QSt4d2p1KsBu7cx2fjRBuf9XVG+uR/XnbD5T1BQRVV641ZNzPTjtE3rEZzR1nsUv+vcFYv0V/FPcLg5f3Ui+4cuYj/xDykMKZlrBIVGExBOJr7Anbzwq8o4nYUsrbFE3Fu88l8/mWrQCkAIZqc2NRyuXplZrDanB9Abi2XmZO0B3Q9wKvzmH0yJyLfswmzrejf3oVOJNEKJP5acPnXfQqAr5F7gdeLvdHbOAtg1iU8GujkOvRA7ad5ahT/1mDzKlkjaf36p4jodsGzPydOks2/jbVZxbZsR1il3BuDXb0agChNXJH4IpcnrjAliBtTKwnEYuLQeLQsUmljaGFyZCBQdXJkaWUgPHJwdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz6JAlQEEwEKAD4WIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VBEAIbAQUJA8JnAAULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRCaUMY1GLyygA0tD/4l5GVZ1OTKoCsHzQuSUVnyzmSwYmJD7W7E1VeVVvVk5bfFf/w6p3dXfGjhZ8zFackE+RmT3//8kQ+Zs68csd0wjX8klyFXgA5PWP3DxNkejnHCq7wiLouOGC/E9RSUULn1DYb68yPzvdGQBooqPQZORtXzNgM
- NuWDKH+9uvhGbdvURJHCRPTpgcdCo64d+IMzA+XmZUg0P722IyVmB+I2TgjaIRr/NsbsGP4x3u8 TVfJPXmE1IS9nrKEm023ntuy1AH9JlACLZ4LGvpxf8x7ZVKaXXqWOQ1aQ5BCQoOc41AiVUyeiq2wdLRQaNOxbb8+ED34BYLyMjZdII9eovZMbMt7kLSjkbOs/k3s7wtQ2eY7QnSggf8/MWUSUaJzLKHnOBRcqGjdFdlZ0BKXL+v9NrpjcUBsG1TY5XORIahk6Pt1+cPyIsKdycKU4RHtNfwX5fidE8AhU97U04z3tIYs121J4M/EG3bEfOtwDaH7BRTZHK5B05Mks/kX608CwLSJSbX2dSENInh5+dSVQ0egbFbXQGcHFmCCMjYH09hcNUSEyI4OUQHVu8HHQIfvutPqIsZEtJ1K/s3ZD3Zyq35UUiwnCu5hYohX9B0o0TwgDaI85dS2edHy2bnM3a9yuTPiwNYpfR6dp6cg8BM+9qqkJvwp5LiMcZcJC8S5xR3U0FtbQiUmljaGFyZCBQdXJkaWUgPHJwdXJkaWVAcnBzeXMubmV0PokCVAQTAQoAPhYhBBFyVvdv+rrMsD0Wf5pQxjUYvLKABQJjdUEhAhsBBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEJpQxjUYvLKA/iUQAJJkVW2yDzxrH/5szOuG0ZDDH6X6Yrdp+m+F4hHHJQkTYgdRPeoHYKyXNOettdVKrZyEDkztBWkB7Sd7zuVHR3Q4PVTsEh09ZzkqBgN8OevMA7RPHZOa2PYJ8pAx7eTah1whM2eOf+VZGKrW1R9ouTluV7/c4o5loaKuh+t61W2nH6E+lQt3/gKnwj4QmUb5V957ZSHO1cnjtHrd4FFmkYQOCbolEfC25lT9vh4ldY+dILQPcq4at/LEABp4xEgS6R7K4E3cDnjWogrZTiniAUrR7P0SNYv7WCpAbvk4Z9DGCHXpKod
- KjTi3em7xDpqA1Rxd/rV4z9VQJrbpL/oiPCnTW/iCx+eMH70dRk+gHxSU8FWVf+CucFZprvO9UMi tGHLvfpBxfnGDT2EOqOoFOYgYHq7MfSDZT+zM/gBWfHXbyz6W9RYqycwWCIhG5jhMhT2sEWr4FlwmXfogvSqxvKondwPfXsgNT1MdBqa0Hhm0pIJYs4ovKWnvymTraziqSWI2C9X5lPmf6ugNiuzJt5BqlilNHxsej9OC53HfBbkgDONdcJbduW9nrJlIl9OLanB4/fvuqG1ZIS/eFFAkb2YnBBuS2TNz3aPd7vFkOoMU7VegDic/sH23eZPGQm3XWcTYwIY2djBU8Jzyy4mRIOQZMGXb/ygrGXAuIxL2R2O1uFYEY3VB1RIIKoZIzj0DAQcCAwQzkAYGjbS/m2SeumSYfDZKeazIkOpwUxpTQ7kPxz0ijiquKSsEZzlPMFzhA+iBJh2jdCyabi5K+8+v3VZZglbWAwEIB4kCNgQYAQoAIBYhBBFyVvdv+rrMsD0Wf5pQxjUYvLKABQJjdUHVAhsMAAoJEJpQxjUYvLKAr6UQAMyaDatvvCkxvOyFgO6jxLLzbkwl40hTNB/TsG5RdwL6FXnBMzkIa5lEfgV1u2zwu0p7SKWH9J3DSNqYKjUCAfwDEv6aDKrFYqGQZMuke1ZAfKqmWTIYOKYG4vRgvvF1u0aCOrRJiipjEPnrw1LC6eaqpnI3WGJyy8Wgr8aO0RBUO93ax/+Mpw3QG+jQqZjuomBWGvUwsjRtzE9j2QUcGxjyTrocVsR2qjK0boE4jLGJWNreSIgs5Nllww++3l0pabmXhyXqDdoYE1U0WkI/yemsc8ydDtjpeG4uzv9rfd5VUqHoZpuYZ1sc4DTGFrEAoght/9FXWsOFOtX8vZprLFFi7iFNSDChIFEsyuizHOW5wl/PYkGCCMZvwPK61IvCARKwevdnSrle9omYEqjnU/HjVZ/kvtKxn1VN15j1NNF
- 0zgmm+/RfbZFHbeuea/lVInXpNBMDj+pl3VyygUae65DMFWgYVSLtXPTRLVMb2mIxiNpk3T2UcuVW 1XC9LWup6h8jHEJ0zBCPjPyd1tFQ9hHVOJnwRthV+VG3zuBf8sri1TPnz5XjNpu3Q3r/6turvh+Khal2itb980tITH5fDbLUewPiA2jCAgZCkVMQcvYTS4rZCC+hpHSMte4m1n7AcmF9ohhw6tt41AEhwbMh+nRkyjDkY+k/vivg0obC2JpruDMEY3VCGBYJKwYBBAHaRw8BAQdArl5/9Fe2aA9JEc+HRm2rnCl6NMb7DZJLnM0xmQg1ouyJAq0EGAEKACAWIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VCGAIbAgCBCRCaUMY1GLyygHYgBBkWCAAdFiEEHKt8QO5c0zRDdmiGodJewzbIKeYFAmN1QhgACgkQodJewzbIKeawUgEAzEwjSYf8lXVNcZVYL/4SLX9FEop83Q8+WmwT2rGhA+MBAKga5Fl8afYVHuPlPOxB/M7aQdP8vfYEx/cWmHmQEUICQxQQAJd85C4//BU0FOUPlEQ1vofZGNC1wTzVA7cQtYlIRrgQOmjR4tOFTxEzusA8QvXxOYkMkDlaa/Ai4/nicMqadnWPQ37BmTAW3/O5PVA22mWaC/ZVeG6DGBGVWb/OAwZe9KMxOR6say+bEIM6B6iDgc3V/HNsLWYYPHaj5HebHOKAJ7dqGGUlFV02OrVW5yAaOUEI61cKw0QuwoN1fZgih94EvFicNaLnDVDV64cbOnNyxGlJhbv4WMErtU4RVD3tT1soESmDB4jS2v49reBpsVVXg2G/M1xFO3sUcczHeo5LRaKtXpkXNh4WO3HDT/eb/IWP8Me2YKpwa5dzlrUz0AYi2s+h+LGclOP0Mls0tgS8sQSVdTj/feLk1FSSQGhSKdHMMGTlSsqj7XjToTAnIheq+5sdaY8UCEYu4s6jDiKu6G02HlF
- WpERQ9FmtGo2PVqnMaZy2w9lkNNn8ccyMWpP2EwGuCxONQrc22a7WnCYLTpOukLUSD7ApH7M2Jk8on
- kPGvi48NFq7PWaTkvG3vuSm+eApSToeyz7AVtFt8QOUnHTiNHbuiNpQsDd3y5bLLhU9mIJTbsWNP/72oXV7Tcz7w8zVh2qmuZqhu5qz9rcox3D9unGQ49N3i+CO9c7SqxcLckEjd9o62HsDDpqYv3cdtFNajNsHD8bFU9bb+swCuDMEY3VCRhYJKwYBBAHaRw8BAQdAjoQBsbbnpigttLSFJOFohHY6BGWmjCi520kt0UBBgG+JAjYEGAEKACAWIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VCRgIbIAAKCRCaUMY1GLyygAQbD/0WyvGz8jA3CTAMTa8yoAlcX73+7aHQaP+DT1PaVU6W85Mm/Bv5JXJ+RWyCCa1jllAWTOhqkOXZ1lXqgislBGtpY22LdwlXW4NGETWwZb79ypR+nayuIPnjOrxkxPOFpcH+wCk9wX0qYi4/8xFTeIZtoty6ayP2bZUZL8aQ91kyUn7nrLmAymPhDq1AAjg+Dkz6DDyzkzXDsY6OY9SpKcWxLkcOm8oXn5B5K5Pl3FaRfYrmX2pAZ6DliQsvPMtXlA01qJ6W4nvRN5ROfjXefNGdyRK8LfJ8BkfDqtZ9/5UrMrW1b7CPA9/7dC5P2jfImtU6R90fz/S4ua2jzeVY2gt7olSDsBqJDOMBPwqEETDROu1+oCIXvdrrZszBu0pTCLV8r+rQqqjICZtK17CEXH3jmDeD/Q6MmAQqeyIhi3uQpGOaveP81WMiC8DDLRXmSuMYOIH/KebzgNnaCQzlQl3a+8tD2qQ48RqzR6JLcKu6h0A6KWItZScfshopNRVsm7FIWM1XUGm1nG6lmPtpVYsXF75hx+YxpAogbzm6fOnUJWFiP1/NVRgtWiii2HG8YCIrEeR3LCUQd/5aYS0CI0cy8WATg/1qkLbcr0lVaCRLT2KZd5WH7tz/4IBanSdCAj6vEfovE5ilWNThQHwg8aPQI6COaHFcTcervMD4Sy
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
+ <CALSmAY73Erq8=dHXVh2c-8Q78ztm_iAXwOBbM1HXmCcgDV0mwA@mail.gmail.com>
+ <E8642BEB-E07A-458D-BD67-B738A2C8321A@arm.com>
+ <CALSmAY7ySwZm07iFW+Wfh9wXxtC63QX1W6LWCZrLmvWxbmAMDg@mail.gmail.com>
+In-Reply-To: 
+ <CALSmAY7ySwZm07iFW+Wfh9wXxtC63QX1W6LWCZrLmvWxbmAMDg@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Apple Mail (2.3774.400.31)
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+x-ms-traffictypediagnostic: 
+	PA4PR08MB7411:EE_|AS2PR08MB8950:EE_|AM3PEPF0000A798:EE_|AS8PR08MB9120:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3beece02-ed5f-46e0-ca48-08dc48f2431c
+x-checkrecipientrouted: true
+nodisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ OtttwGcKBMMiH/d+SbKGdJ4uAYSJHVHRmVs4GPkPo60JpOLFXAmnCwFJw8TR2Z1N5Xust9QH0OSaBAaLJdr2n+xujHSrFQuuaRTMcoe5UK4lhezBryvWIdk1ua51n46ls0t+BrUG83HEJqgy6OXT4Hs+PHJmT+POqMajVWH6v1i4waj8swCdTwTpWFdkWa1myvQciGzDUgmPrY0jDWra1l0khclkhCC9eg1M8iFGceMcBaK6U18t2KZP/Wwq3hKD+X+ay8Dx36kkbXc8clywzn8g9begkjFXDYUvJfn2FtA4IGJxVzyhRcQfzhIl0qvtzoWdTug6hknp+PYvtetwoxJu+0gf5Cwll4nfR2yJfguAAn5KB9h5MMSNbsRqnymsUd+Bicu2jpUkHbmJAP0gxE45GkIW/t3NA7IxrB+xQonJqHalbqF2hcxbi+ywaXJ9T4zoApBjK+QI9r/d8CHBK/G6SWPGVFIsxIl3txRmerEOS3mleMSONUYnOxi8cmcGrjhF1tsltK++e6Ni7KuFWBO4yzVm4TFs2nGotDZRTgES1nElCJrBAIah31Gr1KAg6UlKkG2x1hPRa3GQfV2Dw8t7vbobKI2DluLmhAPTcVCxb70aQtgrj0QzZXzuCmwNuAYvdXxEOm1vKKDIL0G0OCRgm20dHyC+0qedgBAQJ81N8kc+uI7VslW5CcQuCqd5ehpWc6AEsJN/BF80RcgAd4oBR4rlvDYrndaSdxhakW0=
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1101;
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <361FD76E8879DF44BB4F94ADCE2EA53D@eurprd08.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0-1 
 MIME-Version: 1.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB8950
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ AM3PEPF0000A798.eurprd04.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	141f67f2-6224-49a3-05ca-08dc48f23d06
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	K2ka9IHEPAIYkeKENJYbfMPMJzV7eUk/8VbN6ig7YRSfmaRK2D1U4RMUjVUUgKzPEZwVnysUF4LT9bnN/2HIhtC0VT5axKJM0Zfmt6/nowyXwWHBzwA+Ra7MxCJ2/0TkuZjoaxcFXXyTomKuAjV/puUsaHH2RZeFuM5GFnU/4K9y58nBGcwuGVNOaeEhBVmJwIHydYxzgt9DdST7yxPg2EpwRCtXMi2AP7qlcjXLfRSr7pG8m1NXs20CFWW7jBD55/CvhHuXRrc5LD9dJ7UNfTDJJRJZM2CUsJNNuAo0Wvuhp0/v3CQhNlbs6h3Q0nWQfjW6PQ8Ii3Nvl6mBAfu3p3qbYoDqSaUdi9s174l0tK/R5a/Pd2CTuZZnAWB50Lop6YLxT/aem+Zw19/J2yzqxSNg2cjXlQD6oWZsUzn2oITy4ZJnsHb0PXn+d39FHkInBx9DJ6lFMyL3FpLXBdL+1nnk3vkTnl9T4GbEASzXE5/I8VcKEa3hBQ+BjSlkF/Yv49kH2IgAsmOUzY95uQhv3JGaG10MokoOHuXi4jMGGvHBdM8DN+RHZp878OYl+GW2Hmak0QDDb8mYAe4HNhdJE628wfdqdqgDxOp/o8zfNtivUuA/GtoCtwqg9bhc6NZTx9rcsz3ei1ZeEjqeozewZQmEHAGlaSThib5W0a+xATSykeAzHwTRNMdRYihpct9taCeUNI4tXt7CNIibaPRzNyDw7ByqyrVi0u7v5kUZqwj/ZyU6zxshc4vca0brRh19
+X-Forefront-Antispam-Report: 
+	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230031)(82310400014)(376005)(36860700004)(1800799015);DIR:OUT;SFP:1101;
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2024 15:27:32.4388
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3beece02-ed5f-46e0-ca48-08dc48f2431c
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	AM3PEPF0000A798.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9120
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Mar 2024 12:13:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62804
+ <yocto@lists.yoctoproject.org>; Wed, 20 Mar 2024 15:27:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62805
 
-On Wed, 2024-03-20 at 12:27 +0100, Alexander Kanavin wrote:
-> On Wed, 20 Mar 2024 at 11:55, Ross Burton <Ross.Burton@arm.com>
-> wrote:
-> > I=E2=80=99d be against removing _all_ arm hosts from the quick build.=
-=C2=A0 With
-> > the in-progress changes to the autobuilder hosting we should be
-> > able to retire the slower Arm workers and a build running on the
-> > Arm hosts shouldn=E2=80=99t be a problem.=C2=A0 It would be a waste of =
-effort to
-> > attempt to optimise the build for the current cluster when there
-> > are plans to relocate shortly anyway.
+On 20 Mar 2024, at 15:16, Bratiranjan Acharya <bratiranjan12@gmail.com> wro=
+te:
 >=20
-> Right, then let's not make this about arm builders, and simply drop
-> selftest of any kind and reproducible from a-quick. How about that?
->=20
-> Particularly selftest keeps getting bigger and slower and that isn't
-> going to change. It used to take under an hour, nowadays it's 2+
-> hours on x86 and 3+ on arm, with full sstate ready from the start.
+> HI,
+> it is informative yeah i am able to getting the hold of the problem. yeah=
+ you were right after running the command i got libdir as usr/lib64 .I coul=
+dn't get any clearer from the links of fix patch can you please tell how i =
+can solve this shall i try to export the path of libdir to usr/lib for the =
+recipe?
 
-It does depend what you're testing btw. You tend to test package
-upgrades which don't really affect selftest as much as some of the
-other changes I'm often dealing with.
+Download the patch, add it to SRC_URI for the recipe, hope it works.
 
-I don't disagree with adding a separate target but I do want to make it
-clear we should improve the speed of selftest too, I'm not ready to
-give up on that yet!
-
-Cheers,
-
-Richard
-
-
+Ross=
 
