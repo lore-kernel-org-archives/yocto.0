@@ -1,730 +1,1122 @@
-Return-Path: <tim.orling@konsulko.com>
+Return-Path: <ashujoshi35@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA16CCD11BF
-	for <webhook@archiver.kernel.org>; Wed, 20 Mar 2024 18:53:54 +0000 (UTC)
-Received: from mail-pj1-f65.google.com (mail-pj1-f65.google.com [209.85.216.65])
- by mx.groups.io with SMTP id smtpd.web10.53879.1710960825891806517
- for <yocto@lists.yoctoproject.org>;
- Wed, 20 Mar 2024 11:53:45 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=Q9KVXl+Y;
- spf=pass (domain: konsulko.com, ip: 209.85.216.65, mailfrom: tim.orling@konsulko.com)
-Received: by mail-pj1-f65.google.com with SMTP id 98e67ed59e1d1-29f9af2e0b7so199442a91.1
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Mar 2024 11:53:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1710960824; x=1711565624; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xfHY2ngMQ4/JaHsBJIoFcVL+EpL0UzPNFo3cwl41yWk=;
-        b=Q9KVXl+Yg2RpqDQ01FzCwY60KTr5UEr8SHsi7WjFn/CSxlTq0SvFJ5DcBhhI5i9fkW
-         /q//kJRXWgMVvLDSl7cJRhu3wVWyZcpLfi2AavosPvHqd5wtmVIGzAEaIdKjji2YuLJa
-         pVetWLmr/M/ijH53S+spFivuWj6x+qHojqSxg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710960824; x=1711565624;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xfHY2ngMQ4/JaHsBJIoFcVL+EpL0UzPNFo3cwl41yWk=;
-        b=Vn+hhXjWrWxXk4VkstBewQbNRtTaVYOEpJ13I6cu4AZ7y3g2c0TMgK0aqXPnuRZssW
-         VlzbpaJxqpDbkkrw54kWgI/+X5Roc5YpoleCh+la5DAjyXdOWeEJudifuz7yjDorzvL5
-         XW3tnpr5gkvsFFZQ14GEq6LBgGFQBorg5GSA6Ddtd+wWxts7oV43ceEoKsh093BRhd2j
-         F+NJOTAxWp/NKdAciuEGV60lPBC2lRYxbboSZgsmNIuT+QE1UY7+qqJvA2nLtGL9zdj8
-         iymv+Mew8pYaGSeWGGi099nvYuT9qKFHFJr9ZxjAFawc99d0Y7YCMISSuwuIDFEjXo/f
-         trWA==
-X-Gm-Message-State: AOJu0Ywd0d/krKTO7LUw8WIodjm0V2LA1CSPGHRmaVDHixbo2EtCodzC
-	6WrhQEDUMtgLxhJpxUVwiBmM4kX7+hupKkeOAq/18tEwQ5CvujFWTd839+ewHnpVMRV8ug2ju0U
-	PBaWFbgHA
-X-Google-Smtp-Source: AGHT+IFekKMkBl/2oDUHKja4fpfCY0cyU9dR67C2hGKG59EpV8sPMS/5bJLYz7jyAlmq+CuRQlMtEw==
-X-Received: by 2002:a17:90a:6f01:b0:29c:7769:419b with SMTP id d1-20020a17090a6f0100b0029c7769419bmr6606574pjk.9.1710960824096;
-        Wed, 20 Mar 2024 11:53:44 -0700 (PDT)
-Received: from localhost ([2601:1c0:ca00:bd60:fa32:ee43:a809:30af])
-        by smtp.gmail.com with ESMTPSA id x20-20020a17090abc9400b00298e11b600dsm1965162pjr.27.2024.03.20.11.53.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Mar 2024 11:53:43 -0700 (PDT)
-From: Tim Orling <tim.orling@konsulko.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C74CC54E68
+	for <webhook@archiver.kernel.org>; Thu, 21 Mar 2024 07:29:47 +0000 (UTC)
+Subject: Export python packages installed using pypi to target
 To: yocto@lists.yoctoproject.org
-Cc: Tim Orling <tim.orling@konsulko.com>
-Subject: [meta-lts-mixins][scarthgap/u-boot][RFC PATCH 1/2] Initial commit: u-boot 2024.04-rc3
-Date: Wed, 20 Mar 2024 11:53:16 -0700
-Message-Id: <20240320185317.2173087-2-tim.orling@konsulko.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240320185317.2173087-1-tim.orling@konsulko.com>
-References: <20240320185317.2173087-1-tim.orling@konsulko.com>
+From: "Ashu Joshi" <ashujoshi35@gmail.com>
+X-Originating-Location: Pune, Maharashtra, IN (165.225.120.114)
+X-Originating-Platform: Windows Chrome 122
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Thu, 21 Mar 2024 00:29:46 -0700
+Message-ID: <m2J0.1711006186858455727.l7Zd@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="QQknf7rj1XAL2EeAe2vM"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Mar 2024 18:53:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62807
+ <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 07:29:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62809
 
-At the time this was written, neither scarthgap nor u-boot had been
-released at the target April 2024 releases.
+--QQknf7rj1XAL2EeAe2vM
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Release announcement:
-https://lists.denx.de/pipermail/u-boot/2024-February/546867.html
+Hello,
+I am trying to install wirpas_gateway package from pypi using yocto recipe.=
+. Once service is build completely and=C2=A0 I flash image to target, i don=
+'t see any of the installed packages. Does anyone has nay reference how to =
+install these packages in target as well. I dont see any generated binary w=
+hich i can ship tp target. However, source code of the package can be seen =
+in work directory. Currently I am trying to do something like below:
 
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
- LICENSE.MIT                                   |  25 ++
- README.md                                     |  13 +
- SECURITY.md                                   |  22 ++
- conf/layer.conf                               |  14 +
- recipes-bsp/u-boot/u-boot-common.inc          |  24 ++
- recipes-bsp/u-boot/u-boot-configure.inc       |  38 ++
- recipes-bsp/u-boot/u-boot-tools.inc           |  85 +++++
- .../u-boot/u-boot-tools_2024.04-rc3.bb        |   2 +
- recipes-bsp/u-boot/u-boot.inc                 | 345 ++++++++++++++++++
- recipes-bsp/u-boot/u-boot_2024.04-rc3.bb      |   5 +
- 10 files changed, 573 insertions(+)
- create mode 100644 LICENSE.MIT
- create mode 100644 README.md
- create mode 100644 SECURITY.md
- create mode 100644 conf/layer.conf
- create mode 100644 recipes-bsp/u-boot/u-boot-common.inc
- create mode 100644 recipes-bsp/u-boot/u-boot-configure.inc
- create mode 100644 recipes-bsp/u-boot/u-boot-tools.inc
- create mode 100644 recipes-bsp/u-boot/u-boot-tools_2024.04-rc3.bb
- create mode 100644 recipes-bsp/u-boot/u-boot.inc
- create mode 100644 recipes-bsp/u-boot/u-boot_2024.04-rc3.bb
+do_install() {
+install -m 0755 -d ${D}${sysconfdir}/systemd/system
+install -m 0755 ${WORKDIR}/wirepasTransport.service ${D}${sysconfdir}/syste=
+md/system
 
-diff --git a/LICENSE.MIT b/LICENSE.MIT
-new file mode 100644
-index 0000000..a6919eb
---- /dev/null
-+++ b/LICENSE.MIT
-@@ -0,0 +1,25 @@
-+Permission is hereby granted, free of charge, to any person obtaining a copy
-+of this software and associated documentation files (the "Software"), to deal
-+in the Software without restriction, including without limitation the rights
-+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-+copies of the Software, and to permit persons to whom the Software is
-+furnished to do so, subject to the following conditions:
-+
-+The above copyright notice and this permission notice shall be included in
-+all copies or substantial portions of the Software.
-+
-+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-+SOFTWARE.
-+
-+Note:
-+Individual files contain the following tag instead of the full license text.
-+
-+    SPDX-License-Identifier: MIT
-+
-+This enables machine processing of license information based on the SPDX
-+License Identifiers that are here available: http://spdx.org/licenses/
-diff --git a/README.md b/README.md
-new file mode 100644
-index 0000000..5eb92c4
---- /dev/null
-+++ b/README.md
-@@ -0,0 +1,13 @@
-+# meta-lts-mixin scarthgap/u-boot
-+
-+"Mixin" layer for adding current u-boot into the Yocto Project LTS.
-+
-+At the time Scarthgap was released in April 2024 it included u-boot 2024.01,
-+and officially Scarthgap supports only that. This thin special-purpose
-+mixin layer is meant to provide a current u-boot for Scarthgap
-+by extending or backporting the appropriate recipes from the master branch of
-+openembedded-core.
-+
-+Maintainers:
-+- Tim Orling <tim.orling AT konsulko DOT com>
-+- Tom Rini <tom.rini AT konsulko DOT com>
-diff --git a/SECURITY.md b/SECURITY.md
-new file mode 100644
-index 0000000..8d3ebc6
---- /dev/null
-+++ b/SECURITY.md
-@@ -0,0 +1,22 @@
-+How to Report a Potential Vulnerability?
-+========================================
-+
-+If you would like to report a public issue (for example, one with a released
-+CVE number), please report it using the
-+[Security Bugzilla](https://bugzilla.yoctoproject.org/enter_bug.cgi?product=Security)
-+
-+If you are dealing with a not-yet released or urgent issue, please send a
-+message to security AT yoctoproject DOT org, including as many details as
-+possible: the layer or software module affected, the recipe and its version,
-+and any example code, if available.
-+
-+Branches maintained with security fixes
-+---------------------------------------
-+
-+See [Stable release and LTS](https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS)
-+for detailed info regarding the policies and maintenance of Stable branches.
-+
-+The [Release page](https://wiki.yoctoproject.org/wiki/Releases) contains a list of all
-+releases of the Yocto Project. Versions in grey are no longer actively maintained with
-+security patches, but well-tested patches may still be accepted for them for
-+significant issues.
-diff --git a/conf/layer.conf b/conf/layer.conf
-new file mode 100644
-index 0000000..426f7f8
---- /dev/null
-+++ b/conf/layer.conf
-@@ -0,0 +1,14 @@
-+# We have a conf and classes directory, but we have classes that should
-+# override those in oe-core, so prepend to BBPATH
-+BBPATH =. "${LAYERDIR}:"
-+
-+# We have a recipes directory, add to BBFILES
-+BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
-+
-+BBFILE_COLLECTIONS += "lts-u-boot-mixin"
-+BBFILE_PATTERN_lts-u-boot-mixin := "^${LAYERDIR}/"
-+BBFILE_PRIORITY_lts-u-boot-mixin = "6"
-+
-+LAYERSERIES_COMPAT_lts-u-boot-mixin = "scarthgap"
-+
-+LAYERDEPENDS_lts-u-boot-mixin = "core"
-diff --git a/recipes-bsp/u-boot/u-boot-common.inc b/recipes-bsp/u-boot/u-boot-common.inc
-new file mode 100644
-index 0000000..3f29f23
---- /dev/null
-+++ b/recipes-bsp/u-boot/u-boot-common.inc
-@@ -0,0 +1,24 @@
-+HOMEPAGE = "http://www.denx.de/wiki/U-Boot/WebHome"
-+DESCRIPTION = "U-Boot, a boot loader for Embedded boards based on PowerPC, \
-+ARM, MIPS and several other processors, which can be installed in a boot \
-+ROM and used to initialize and test the hardware or to download and run \
-+application code."
-+SECTION = "bootloaders"
-+DEPENDS += "flex-native bison-native python3-setuptools-native"
-+
-+LICENSE = "GPL-2.0-or-later"
-+LIC_FILES_CHKSUM = "file://Licenses/README;md5=2ca5f2c35c8cc335f0a19756634782f1"
-+PE = "1"
-+
-+# We use the revision in order to avoid having to fetch it from the
-+# repo during parse
-+SRCREV = "d49fa3defa50c6d3f04acbb52fd486c13c14ab6a"
-+
-+SRC_URI = "git://source.denx.de/u-boot/u-boot.git;protocol=https;branch=master"
-+
-+S = "${WORKDIR}/git"
-+B = "${WORKDIR}/build"
-+
-+inherit pkgconfig
-+
-+do_configure[cleandirs] = "${B}"
-diff --git a/recipes-bsp/u-boot/u-boot-configure.inc b/recipes-bsp/u-boot/u-boot-configure.inc
-new file mode 100644
-index 0000000..235623d
---- /dev/null
-+++ b/recipes-bsp/u-boot/u-boot-configure.inc
-@@ -0,0 +1,38 @@
-+# This provides the logic for creating the desired u-boot config,
-+# accounting for any *.cfg files added to SRC_URI.  It's separated
-+# from u-boot.inc for use by recipes that need u-boot properly
-+# configured but aren't doing a full build of u-boot itself (such as
-+# its companion tools).
-+
-+inherit uboot-config cml1
-+
-+DEPENDS += "kern-tools-native"
-+
-+do_configure () {
-+    if [ -n "${UBOOT_CONFIG}" ]; then
-+        unset i j
-+        for config in ${UBOOT_MACHINE}; do
-+            i=$(expr $i + 1);
-+            for type in ${UBOOT_CONFIG}; do
-+                j=$(expr $j + 1);
-+                if [ $j -eq $i ]; then
-+                    oe_runmake -C ${S} O=${B}/${config} ${config}
-+                    if [ -n "${@' '.join(find_cfgs(d))}" ]; then
-+                        merge_config.sh -m -O ${B}/${config} ${B}/${config}/.config ${@" ".join(find_cfgs(d))}
-+                        oe_runmake -C ${S} O=${B}/${config} oldconfig
-+                    fi
-+                fi
-+            done
-+            unset j
-+        done
-+        unset i
-+    else
-+        if [ -n "${UBOOT_MACHINE}" ]; then
-+            oe_runmake -C ${S} O=${B} ${UBOOT_MACHINE}
-+        else
-+            oe_runmake -C ${S} O=${B} oldconfig
-+        fi
-+        merge_config.sh -m .config ${@" ".join(find_cfgs(d))}
-+        cml1_do_configure
-+    fi
-+}
-diff --git a/recipes-bsp/u-boot/u-boot-tools.inc b/recipes-bsp/u-boot/u-boot-tools.inc
-new file mode 100644
-index 0000000..09b3c3f
---- /dev/null
-+++ b/recipes-bsp/u-boot/u-boot-tools.inc
-@@ -0,0 +1,85 @@
-+SUMMARY = "U-Boot bootloader tools"
-+DEPENDS += "gnutls openssl util-linux swig-native"
-+
-+inherit python3native
-+export STAGING_INCDIR="${STAGING_INCDIR_NATIVE}"
-+
-+PROVIDES = "${MLPREFIX}u-boot-mkimage ${MLPREFIX}u-boot-mkenvimage"
-+PROVIDES:class-native = "u-boot-mkimage-native u-boot-mkenvimage-native"
-+
-+PACKAGES += "${PN}-mkimage ${PN}-mkenvimage"
-+
-+# Required for backward compatibility with "u-boot-mkimage-xxx.bb"
-+RPROVIDES:${PN}-mkimage = "u-boot-mkimage"
-+RREPLACES:${PN}-mkimage = "u-boot-mkimage"
-+RCONFLICTS:${PN}-mkimage = "u-boot-mkimage"
-+
-+EXTRA_OEMAKE:class-target = 'CROSS_COMPILE="${TARGET_PREFIX}" CC="${CC} ${CFLAGS} ${LDFLAGS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" STRIP=true V=1'
-+EXTRA_OEMAKE:class-native = 'CC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" STRIP=true V=1'
-+EXTRA_OEMAKE:class-nativesdk = 'CROSS_COMPILE="${HOST_PREFIX}" CC="${CC} ${CFLAGS} ${LDFLAGS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" STRIP=true V=1'
-+
-+SED_CONFIG_EFI = '-e "s/CONFIG_EFI_LOADER=.*/# CONFIG_EFI_LOADER is not set/"'
-+SED_CONFIG_EFI:x86 = ''
-+SED_CONFIG_EFI:x86-64 = ''
-+SED_CONFIG_EFI:arm = ''
-+SED_CONFIG_EFI:armeb = ''
-+SED_CONFIG_EFI:aarch64 = ''
-+SED_CONFIG_EFI:loongarch64 = ''
-+
-+do_compile () {
-+	# Yes, this is crazy. If you build on a system with git < 2.14 from scratch, the tree will
-+	# be marked as "dirty" and the version will include "-dirty", leading to a reproducibility problem.
-+	# The issue is the inode count for Licnses/README changing due to do_populate_lic hardlinking a
-+	# copy of the file. We avoid this by ensuring the index is updated with a "git diff" before the
-+	# u-boot machinery tries to determine the version.
-+	#
-+	# build$ ../git/scripts/setlocalversion ../git
-+	# ""
-+	# build$ ln ../git/
-+	# build$ ln ../git/README ../foo
-+	# build$ ../git/scripts/setlocalversion ../git
-+	# ""-dirty
-+	# (i.e. creating a hardlink dirties the index)
-+	cd ${S}; git diff; cd ${B}
-+
-+	oe_runmake -C ${S} tools-only_defconfig O=${B}
-+
-+	# Disable CONFIG_CMD_LICENSE, license.h is not used by tools and
-+	# generating it requires bin2header tool, which for target build
-+	# is built with target tools and thus cannot be executed on host.
-+	sed -i -e "s/CONFIG_CMD_LICENSE=.*/# CONFIG_CMD_LICENSE is not set/" ${SED_CONFIG_EFI} ${B}/.config
-+
-+	oe_runmake -C ${S} cross_tools NO_SDL=1 O=${B}
-+}
-+
-+do_install () {
-+	install -d ${D}${bindir}
-+
-+	# mkimage
-+	install -m 0755 tools/mkimage ${D}${bindir}/uboot-mkimage
-+	ln -sf uboot-mkimage ${D}${bindir}/mkimage
-+
-+	# mkenvimage
-+	install -m 0755 tools/mkenvimage ${D}${bindir}/uboot-mkenvimage
-+	ln -sf uboot-mkenvimage ${D}${bindir}/mkenvimage
-+
-+	# dumpimage
-+	install -m 0755 tools/dumpimage ${D}${bindir}/uboot-dumpimage
-+	ln -sf uboot-dumpimage ${D}${bindir}/dumpimage
-+
-+	# fit_check_sign
-+	install -m 0755 tools/fit_check_sign ${D}${bindir}/uboot-fit_check_sign
-+	ln -sf uboot-fit_check_sign ${D}${bindir}/fit_check_sign
-+}
-+
-+ALLOW_EMPTY:${PN} = "1"
-+FILES:${PN} = ""
-+FILES:${PN}-mkimage = "${bindir}/uboot-mkimage ${bindir}/mkimage ${bindir}/uboot-dumpimage ${bindir}/dumpimage ${bindir}/uboot-fit_check_sign ${bindir}/fit_check_sign"
-+FILES:${PN}-mkenvimage = "${bindir}/uboot-mkenvimage ${bindir}/mkenvimage"
-+
-+RDEPENDS:${PN}-mkimage += "dtc"
-+RDEPENDS:${PN} += "${PN}-mkimage ${PN}-mkenvimage"
-+RDEPENDS:${PN}:class-native = ""
-+
-+BBCLASSEXTEND = "native nativesdk"
-+
-diff --git a/recipes-bsp/u-boot/u-boot-tools_2024.04-rc3.bb b/recipes-bsp/u-boot/u-boot-tools_2024.04-rc3.bb
-new file mode 100644
-index 0000000..7eaf721
---- /dev/null
-+++ b/recipes-bsp/u-boot/u-boot-tools_2024.04-rc3.bb
-@@ -0,0 +1,2 @@
-+require u-boot-common.inc
-+require u-boot-tools.inc
-diff --git a/recipes-bsp/u-boot/u-boot.inc b/recipes-bsp/u-boot/u-boot.inc
-new file mode 100644
-index 0000000..f5b43f6
---- /dev/null
-+++ b/recipes-bsp/u-boot/u-boot.inc
-@@ -0,0 +1,345 @@
-+SUMMARY = "Universal Boot Loader for embedded devices"
-+PROVIDES = "virtual/bootloader"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+DEPENDS += "${@bb.utils.contains('UBOOT_ENV_SUFFIX', 'scr', 'u-boot-mkimage-native', '', d)}"
-+
-+inherit uboot-config uboot-extlinux-config uboot-sign deploy python3native kernel-arch
-+
-+DEPENDS += "swig-native"
-+
-+EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS} ${DEBUG_PREFIX_MAP}" V=1'
-+EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
-+EXTRA_OEMAKE += 'STAGING_INCDIR=${STAGING_INCDIR_NATIVE} STAGING_LIBDIR=${STAGING_LIBDIR_NATIVE}'
-+
-+PACKAGECONFIG ??= "openssl"
-+# u-boot will compile its own tools during the build, with specific
-+# configurations (aka when CONFIG_FIT_SIGNATURE is enabled) openssl is needed as
-+# a host build dependency.
-+PACKAGECONFIG[openssl] = ",,openssl-native"
-+
-+# Allow setting an additional version string that will be picked up by the
-+# u-boot build system and appended to the u-boot version.  If the .scmversion
-+# file already exists it will not be overwritten.
-+UBOOT_LOCALVERSION ?= ""
-+
-+# Default name of u-boot initial env, but enable individual recipes to change
-+# this value.
-+UBOOT_INITIAL_ENV ?= "${PN}-initial-env"
-+
-+require u-boot-configure.inc
-+
-+do_savedefconfig() {
-+	bbplain "Saving defconfig to:\n${B}/defconfig"
-+	oe_runmake -C ${B} savedefconfig
-+}
-+do_savedefconfig[nostamp] = "1"
-+addtask savedefconfig after do_configure
-+UBOOT_ARCH_DIR = "${@'arm' if d.getVar('UBOOT_ARCH').startswith('arm') else d.getVar('UBOOT_ARCH')}"
-+do_compile () {
-+    if [ "${@bb.utils.filter('DISTRO_FEATURES', 'ld-is-gold', d)}" ]; then
-+        sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' ${S}/config.mk
-+    fi
-+
-+    unset LDFLAGS
-+    unset CFLAGS
-+    unset CPPFLAGS
-+
-+    if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
-+    then
-+        echo ${UBOOT_LOCALVERSION} > ${B}/.scmversion
-+        echo ${UBOOT_LOCALVERSION} > ${S}/.scmversion
-+    fi
-+
-+    if [ -n "${UBOOT_CONFIG}" -o -n "${UBOOT_DELTA_CONFIG}" ]
-+    then
-+        unset i j k
-+        for config in ${UBOOT_MACHINE}; do
-+            i=$(expr $i + 1);
-+            for type in ${UBOOT_CONFIG}; do
-+                j=$(expr $j + 1);
-+                if [ $j -eq $i ]
-+                then
-+                    oe_runmake -C ${S} O=${B}/${config} ${UBOOT_MAKE_TARGET}
-+                    for binary in ${UBOOT_BINARIES}; do
-+                        k=$(expr $k + 1);
-+                        if [ $k -eq $i ]; then
-+                            cp ${B}/${config}/${binary} ${B}/${config}/${UBOOT_BINARYNAME}-${type}.${UBOOT_SUFFIX}
-+                        fi
-+                    done
-+
-+                    # Generate the uboot-initial-env
-+                    if [ -n "${UBOOT_INITIAL_ENV}" ]; then
-+                        oe_runmake -C ${S} O=${B}/${config} u-boot-initial-env
-+                        cp ${B}/${config}/u-boot-initial-env ${B}/${config}/u-boot-initial-env-${type}
-+                    fi
-+
-+                    unset k
-+                fi
-+            done
-+            unset j
-+        done
-+        unset i
-+    else
-+        oe_runmake -C ${S} O=${B} ${UBOOT_MAKE_TARGET}
-+
-+        # Generate the uboot-initial-env
-+        if [ -n "${UBOOT_INITIAL_ENV}" ]; then
-+            oe_runmake -C ${S} O=${B} u-boot-initial-env
-+        fi
-+    fi
-+
-+    if [ -n "${UBOOT_ENV}" ] && [ "${UBOOT_ENV_SUFFIX}" = "scr" ]
-+    then
-+        ${UBOOT_MKIMAGE} -C none -A ${UBOOT_ARCH} -T script -d ${WORKDIR}/${UBOOT_ENV_SRC} ${WORKDIR}/${UBOOT_ENV_BINARY}
-+    fi
-+}
-+
-+do_install () {
-+    if [ -n "${UBOOT_CONFIG}" ]
-+    then
-+        for config in ${UBOOT_MACHINE}; do
-+            i=$(expr $i + 1);
-+            for type in ${UBOOT_CONFIG}; do
-+                j=$(expr $j + 1);
-+                if [ $j -eq $i ]
-+                then
-+                    install -D -m 644 ${B}/${config}/${UBOOT_BINARYNAME}-${type}.${UBOOT_SUFFIX} ${D}/boot/${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX}
-+                    ln -sf ${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX} ${D}/boot/${UBOOT_BINARY}-${type}
-+                    ln -sf ${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX} ${D}/boot/${UBOOT_BINARY}
-+
-+                    # Install the uboot-initial-env
-+                    if [ -n "${UBOOT_INITIAL_ENV}" ]; then
-+                        install -D -m 644 ${B}/${config}/u-boot-initial-env-${type} ${D}/${sysconfdir}/${UBOOT_INITIAL_ENV}-${MACHINE}-${type}-${PV}-${PR}
-+                        ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${type}-${PV}-${PR} ${D}/${sysconfdir}/${UBOOT_INITIAL_ENV}-${MACHINE}-${type}
-+                        ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${type}-${PV}-${PR} ${D}/${sysconfdir}/${UBOOT_INITIAL_ENV}-${type}
-+                        ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${type}-${PV}-${PR} ${D}/${sysconfdir}/${UBOOT_INITIAL_ENV}
-+                    fi
-+                fi
-+            done
-+            unset j
-+        done
-+        unset i
-+    else
-+        install -D -m 644 ${B}/${UBOOT_BINARY} ${D}/boot/${UBOOT_IMAGE}
-+        ln -sf ${UBOOT_IMAGE} ${D}/boot/${UBOOT_BINARY}
-+
-+        # Install the uboot-initial-env
-+        if [ -n "${UBOOT_INITIAL_ENV}" ]; then
-+            install -D -m 644 ${B}/u-boot-initial-env ${D}/${sysconfdir}/${UBOOT_INITIAL_ENV}-${MACHINE}-${PV}-${PR}
-+            ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${PV}-${PR} ${D}/${sysconfdir}/${UBOOT_INITIAL_ENV}-${MACHINE}
-+            ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${PV}-${PR} ${D}/${sysconfdir}/${UBOOT_INITIAL_ENV}
-+        fi
-+    fi
-+
-+    if [ -n "${UBOOT_ELF}" ]
-+    then
-+        if [ -n "${UBOOT_CONFIG}" ]
-+        then
-+            for config in ${UBOOT_MACHINE}; do
-+                i=$(expr $i + 1);
-+                for type in ${UBOOT_CONFIG}; do
-+                    j=$(expr $j + 1);
-+                    if [ $j -eq $i ]
-+                    then
-+                        install -m 644 ${B}/${config}/${UBOOT_ELF} ${D}/boot/u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX}
-+                        ln -sf u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX} ${D}/boot/${UBOOT_BINARY}-${type}
-+                        ln -sf u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX} ${D}/boot/${UBOOT_BINARY}
-+                    fi
-+                done
-+                unset j
-+            done
-+            unset i
-+        else
-+            install -m 644 ${B}/${UBOOT_ELF} ${D}/boot/${UBOOT_ELF_IMAGE}
-+            ln -sf ${UBOOT_ELF_IMAGE} ${D}/boot/${UBOOT_ELF_BINARY}
-+        fi
-+    fi
-+
-+    if [ -e ${WORKDIR}/fw_env.config ] ; then
-+        install -d ${D}${sysconfdir}
-+        install -m 644 ${WORKDIR}/fw_env.config ${D}${sysconfdir}/fw_env.config
-+    fi
-+
-+    if [ -n "${SPL_BINARY}" ]
-+    then
-+        if [ -n "${UBOOT_CONFIG}" ]
-+        then
-+            for config in ${UBOOT_MACHINE}; do
-+                i=$(expr $i + 1);
-+                for type in ${UBOOT_CONFIG}; do
-+                    j=$(expr $j + 1);
-+                    if [ $j -eq $i ]
-+                    then
-+                         install -m 644 ${B}/${config}/${SPL_BINARY} ${D}/boot/${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX}
-+                         ln -sf ${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX} ${D}/boot/${SPL_BINARYFILE}-${type}
-+                         ln -sf ${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX} ${D}/boot/${SPL_BINARYFILE}
-+                    fi
-+                done
-+                unset j
-+            done
-+            unset i
-+        else
-+            install -m 644 ${B}/${SPL_BINARY} ${D}/boot/${SPL_IMAGE}
-+            ln -sf ${SPL_IMAGE} ${D}/boot/${SPL_BINARYFILE}
-+        fi
-+    fi
-+
-+    if [ -n "${UBOOT_ENV}" ]
-+    then
-+        install -m 644 ${WORKDIR}/${UBOOT_ENV_BINARY} ${D}/boot/${UBOOT_ENV_IMAGE}
-+        ln -sf ${UBOOT_ENV_IMAGE} ${D}/boot/${UBOOT_ENV_BINARY}
-+    fi
-+
-+    if [ "${UBOOT_EXTLINUX}" = "1" ]
-+    then
-+        install -Dm 0644 ${UBOOT_EXTLINUX_CONFIG} ${D}/${UBOOT_EXTLINUX_INSTALL_DIR}/${UBOOT_EXTLINUX_CONF_NAME}
-+    fi
-+}
-+
-+PACKAGE_BEFORE_PN += "${PN}-env ${PN}-extlinux"
-+
-+RPROVIDES:${PN}-env += "u-boot-default-env"
-+ALLOW_EMPTY:${PN}-env = "1"
-+FILES:${PN}-env = " \
-+    ${@ '${sysconfdir}/${UBOOT_INITIAL_ENV}*' if d.getVar('UBOOT_INITIAL_ENV') else ''} \
-+    ${sysconfdir}/fw_env.config \
-+"
-+
-+FILES:${PN}-extlinux = "${UBOOT_EXTLINUX_INSTALL_DIR}/${UBOOT_EXTLINUX_CONF_NAME}"
-+RDEPENDS:${PN} += "${@bb.utils.contains('UBOOT_EXTLINUX', '1', '${PN}-extlinux', '', d)}"
-+
-+SYSROOT_DIRS += "/boot"
-+FILES:${PN} = "/boot ${datadir}"
-+RDEPENDS:${PN} += "${PN}-env"
-+
-+do_deploy () {
-+    if [ -n "${UBOOT_CONFIG}" ]
-+    then
-+        for config in ${UBOOT_MACHINE}; do
-+            i=$(expr $i + 1);
-+            for type in ${UBOOT_CONFIG}; do
-+                j=$(expr $j + 1);
-+                if [ $j -eq $i ]
-+                then
-+                    install -D -m 644 ${B}/${config}/${UBOOT_BINARYNAME}-${type}.${UBOOT_SUFFIX} ${DEPLOYDIR}/${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX}
-+                    cd ${DEPLOYDIR}
-+                    ln -sf ${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX} ${UBOOT_SYMLINK}-${type}
-+                    ln -sf ${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX} ${UBOOT_SYMLINK}
-+                    ln -sf ${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX} ${UBOOT_BINARY}-${type}
-+                    ln -sf ${UBOOT_BINARYNAME}-${type}-${PV}-${PR}.${UBOOT_SUFFIX} ${UBOOT_BINARY}
-+
-+                    # Deploy the uboot-initial-env
-+                    if [ -n "${UBOOT_INITIAL_ENV}" ]; then
-+                        install -D -m 644 ${B}/${config}/u-boot-initial-env-${type} ${DEPLOYDIR}/${UBOOT_INITIAL_ENV}-${MACHINE}-${type}-${PV}-${PR}
-+                        cd ${DEPLOYDIR}
-+                        ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${type}-${PV}-${PR} ${UBOOT_INITIAL_ENV}-${MACHINE}-${type}
-+                        ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${type}-${PV}-${PR} ${UBOOT_INITIAL_ENV}-${type}
-+                    fi
-+                fi
-+            done
-+            unset j
-+        done
-+        unset i
-+    else
-+        install -D -m 644 ${B}/${UBOOT_BINARY} ${DEPLOYDIR}/${UBOOT_IMAGE}
-+
-+        cd ${DEPLOYDIR}
-+        rm -f ${UBOOT_BINARY} ${UBOOT_SYMLINK}
-+        ln -sf ${UBOOT_IMAGE} ${UBOOT_SYMLINK}
-+        ln -sf ${UBOOT_IMAGE} ${UBOOT_BINARY}
-+
-+        # Deploy the uboot-initial-env
-+        if [ -n "${UBOOT_INITIAL_ENV}" ]; then
-+            install -D -m 644 ${B}/u-boot-initial-env ${DEPLOYDIR}/${UBOOT_INITIAL_ENV}-${MACHINE}-${PV}-${PR}
-+            cd ${DEPLOYDIR}
-+            ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${PV}-${PR} ${UBOOT_INITIAL_ENV}-${MACHINE}
-+            ln -sf ${UBOOT_INITIAL_ENV}-${MACHINE}-${PV}-${PR} ${UBOOT_INITIAL_ENV}
-+        fi
-+    fi
-+
-+    if [ -e ${WORKDIR}/fw_env.config ] ; then
-+        install -D -m 644 ${WORKDIR}/fw_env.config ${DEPLOYDIR}/fw_env.config-${MACHINE}-${PV}-${PR}
-+        cd ${DEPLOYDIR}
-+        ln -sf fw_env.config-${MACHINE}-${PV}-${PR} fw_env.config-${MACHINE}
-+        ln -sf fw_env.config-${MACHINE}-${PV}-${PR} fw_env.config
-+    fi
-+
-+    if [ -n "${UBOOT_ELF}" ]
-+    then
-+        if [ -n "${UBOOT_CONFIG}" ]
-+        then
-+            for config in ${UBOOT_MACHINE}; do
-+                i=$(expr $i + 1);
-+                for type in ${UBOOT_CONFIG}; do
-+                    j=$(expr $j + 1);
-+                    if [ $j -eq $i ]
-+                    then
-+                        install -m 644 ${B}/${config}/${UBOOT_ELF} ${DEPLOYDIR}/u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX}
-+                        ln -sf u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX} ${DEPLOYDIR}/${UBOOT_ELF_BINARY}-${type}
-+                        ln -sf u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX} ${DEPLOYDIR}/${UBOOT_ELF_BINARY}
-+                        ln -sf u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX} ${DEPLOYDIR}/${UBOOT_ELF_SYMLINK}-${type}
-+                        ln -sf u-boot-${type}-${PV}-${PR}.${UBOOT_ELF_SUFFIX} ${DEPLOYDIR}/${UBOOT_ELF_SYMLINK}
-+                    fi
-+                done
-+                unset j
-+            done
-+            unset i
-+        else
-+            install -m 644 ${B}/${UBOOT_ELF} ${DEPLOYDIR}/${UBOOT_ELF_IMAGE}
-+            ln -sf ${UBOOT_ELF_IMAGE} ${DEPLOYDIR}/${UBOOT_ELF_BINARY}
-+            ln -sf ${UBOOT_ELF_IMAGE} ${DEPLOYDIR}/${UBOOT_ELF_SYMLINK}
-+        fi
-+    fi
-+
-+
-+     if [ -n "${SPL_BINARY}" ]
-+     then
-+        if [ -n "${UBOOT_CONFIG}" ]
-+        then
-+            for config in ${UBOOT_MACHINE}; do
-+                i=$(expr $i + 1);
-+                for type in ${UBOOT_CONFIG}; do
-+                    j=$(expr $j + 1);
-+                    if [ $j -eq $i ]
-+                    then
-+                        install -m 644 ${B}/${config}/${SPL_BINARY} ${DEPLOYDIR}/${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX}
-+                        rm -f ${DEPLOYDIR}/${SPL_BINARYFILE} ${DEPLOYDIR}/${SPL_SYMLINK}
-+                        ln -sf ${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX} ${DEPLOYDIR}/${SPL_BINARYFILE}-${type}
-+                        ln -sf ${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX} ${DEPLOYDIR}/${SPL_BINARYFILE}
-+                        ln -sf ${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX} ${DEPLOYDIR}/${SPL_SYMLINK}-${type}
-+                        ln -sf ${SPL_BINARYNAME}-${type}-${PV}-${PR}${SPL_DELIMITER}${SPL_SUFFIX} ${DEPLOYDIR}/${SPL_SYMLINK}
-+                    fi
-+                done
-+                unset j
-+            done
-+            unset i
-+        else
-+            install -m 644 ${B}/${SPL_BINARY} ${DEPLOYDIR}/${SPL_IMAGE}
-+            ln -sf ${SPL_IMAGE} ${DEPLOYDIR}/${SPL_BINARYNAME}
-+            ln -sf ${SPL_IMAGE} ${DEPLOYDIR}/${SPL_SYMLINK}
-+        fi
-+    fi
-+
-+    if [ -n "${UBOOT_ENV}" ]
-+    then
-+        install -m 644 ${WORKDIR}/${UBOOT_ENV_BINARY} ${DEPLOYDIR}/${UBOOT_ENV_IMAGE}
-+        ln -sf ${UBOOT_ENV_IMAGE} ${DEPLOYDIR}/${UBOOT_ENV_BINARY}
-+        ln -sf ${UBOOT_ENV_IMAGE} ${DEPLOYDIR}/${UBOOT_ENV_SYMLINK}
-+    fi
-+
-+    if [ "${UBOOT_EXTLINUX}" = "1" ]
-+    then
-+        install -m 644 ${UBOOT_EXTLINUX_CONFIG} ${DEPLOYDIR}/${UBOOT_EXTLINUX_SYMLINK}
-+        ln -sf ${UBOOT_EXTLINUX_SYMLINK} ${DEPLOYDIR}/${UBOOT_EXTLINUX_CONF_NAME}-${MACHINE}
-+        ln -sf ${UBOOT_EXTLINUX_SYMLINK} ${DEPLOYDIR}/${UBOOT_EXTLINUX_CONF_NAME}
-+    fi
-+
-+    if [ -n "${UBOOT_DTB}" ]
-+    then
-+        install -m 644 ${B}/arch/${UBOOT_ARCH_DIR}/dts/${UBOOT_DTB_BINARY} ${DEPLOYDIR}/
-+    fi
-+}
-+
-+addtask deploy before do_build after do_compile
-diff --git a/recipes-bsp/u-boot/u-boot_2024.04-rc3.bb b/recipes-bsp/u-boot/u-boot_2024.04-rc3.bb
-new file mode 100644
-index 0000000..b15bcaa
---- /dev/null
-+++ b/recipes-bsp/u-boot/u-boot_2024.04-rc3.bb
-@@ -0,0 +1,5 @@
-+require u-boot-common.inc
-+require u-boot.inc
-+
-+DEPENDS += "bc-native dtc-native python3-pyelftools-native"
-+
--- 
-2.34.1
+install -m 0755 -d ${D}/usr/share
+install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
 
+install -m 0755 -d ${D}/usr/share/wirepas_gateway
+install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3 ${D}/usr/share/wirepas_gat=
+eway
+}
+
+FILES_${PN} +=3D "usr/share/wirepas_gateway"
+FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
+FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.service"
+FILES_${PN} +=3D "/usr/share/settings.yml"
+
+wirepas_gateway-1.4.3 is directory which contains setup and other files. Ge=
+tting error while trying to ship this to target.
+
+--QQknf7rj1XAL2EeAe2vM
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<br />I am trying to install wirpas_gateway package from pypi using y=
+octo recipe.. Once service is build completely and&nbsp; I flash image to t=
+arget, i don't see any of the installed packages. Does anyone has nay refer=
+ence how to install these packages in target as well. I dont see any genera=
+ted binary which i can ship tp target. However, source code of the package =
+can be seen in work directory. Currently I am trying to do something like b=
+elow:<br /><br />
+<div>do_install() {</div>
+<div>&nbsp; &nbsp; &nbsp; install -m 0755 -d ${D}${sysconfdir}/systemd/syst=
+em&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; install -m 0755 ${WORKDIR}/wirepasTransport.servi=
+ce ${D}${sysconfdir}/systemd/system</div>
+<div>&nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; install -m 0755 -d ${D}/usr/share</div>
+<div>&nbsp; &nbsp; &nbsp; install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/=
+share</div>
+<div>&nbsp; &nbsp; &nbsp;&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; install -m 0755 -d ${D}/usr/share/wirepas_gateway=
+</div>
+<div>&nbsp; &nbsp; &nbsp; install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3 =
+${D}/usr/share/wirepas_gateway</div>
+<div>}</div>
+<div>&nbsp;</div>
+<div>FILES_${PN} +=3D "usr/share/wirepas_gateway"</div>
+<div>FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"</d=
+iv>
+<div>FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.servic=
+e"</div>
+<div>FILES_${PN} +=3D "/usr/share/settings.yml"<br /><br />wirepas_gateway-=
+1.4.3 is directory which contains setup and other files. Getting error whil=
+e trying to ship this to target.<br /><br /><img src=3D"data:image/png;base=
+64,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" alt=3D"" width=3D"834" height=
+=3D"75" /></div>
+
+--QQknf7rj1XAL2EeAe2vM--
 
