@@ -1,140 +1,229 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ashujoshi35@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5782FC54E58
-	for <webhook@archiver.kernel.org>; Thu, 21 Mar 2024 07:56:57 +0000 (UTC)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
- by mx.groups.io with SMTP id smtpd.web10.2070.1711007810643380862
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C816EC54E58
+	for <webhook@archiver.kernel.org>; Thu, 21 Mar 2024 09:43:27 +0000 (UTC)
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+ by mx.groups.io with SMTP id smtpd.web11.3353.1711014207046692807
  for <yocto@lists.yoctoproject.org>;
- Thu, 21 Mar 2024 00:56:51 -0700
+ Thu, 21 Mar 2024 02:43:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=PCfdpe5V;
- spf=pass (domain: gmail.com, ip: 209.85.208.176, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d4360ab3daso12113031fa.3
-        for <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 00:56:50 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=OOiMh4oz;
+ spf=pass (domain: gmail.com, ip: 209.85.221.173, mailfrom: ashujoshi35@gmail.com)
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-4d43a1f0188so295479e0c.2
+        for <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 02:43:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711007809; x=1711612609; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sPmsOwYMIMcMunyImw/VubBhD/twDz4dGeaKC0g6lRM=;
-        b=PCfdpe5VhYxLpUACvit3yM7zlS3TtFDWzaAemu15SX3hFKNPxLaO6+5sgqF6diYIjj
-         lsBS/UzgbvpHbXX9atRRZOs7Kl79R7lVjwwiQnejJEml4XgUZeX6B6nWybwBVkbxmenw
-         lv3ARxfgXHU0Nqaqvj9OesAR9Mj+W1tDKUMh97Q9akciUL0pnuMoMyuVjZyrpY9zYpSI
-         9JyG1wxPSC/hy6hpYWSowLnkzYtJQMYe0bThcYhrJR8DCIe+66x7qypoC5ahMcI1BjyI
-         eTlB3q3LeAeoV283crvSWzNnObquNZDUg5a02iuYbIDRxyDd5ELYr6QDrEoFXfZRx+QP
-         Tgig==
+        d=gmail.com; s=20230601; t=1711014206; x=1711619006; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JSmN0DASXuns/y2W0Kvysp+fNdtTa9SfspMfVzGXsxE=;
+        b=OOiMh4ozPfmSInMw5FSWnD+00ifoL37y/69jbtuq5jwBii7jkLbluoqXdeFZ5SF1iH
+         yXSRCgnEyj7quhFAEcXQ76WLkQPf5ufxLusi3gdfa8CZbgGBk2A/ZbRgkpCRtc/ixBpF
+         aydTCjiJJZveX22bN1HIAs0ns9dkqDaW8jmKeEfwgydyY43k7uP2eyDASEJFC4HiUbob
+         oTF8vZwIaFGDzNb5h02qR7srlN306fleDIiJ1wLmbqnfD2VCcL5/jykvPvGcYbyiczRH
+         gcU5cXSHmNzax7dPhOhAN1Rq4tKwngtfri0U9OPiCxQWfQCVKn2eeDZL8yF3A1Jq2jUP
+         ZA5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711007809; x=1711612609;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sPmsOwYMIMcMunyImw/VubBhD/twDz4dGeaKC0g6lRM=;
-        b=kOlIrz4DREehQHiPnAMURRy2V9d24FmLADWaVeX1rc6moRsPTixhbKeCiZUonrTNk1
-         IbjuQGWLCoa2u2c503qISaXqhEKONv9A3y1YfucSj+vuiI/SAZfnAFSp7gCbCNrxhjn0
-         1CaR2/RYVmgOFpx5GXsgVY45z5Pq15r11hc+EIUwGVD0rOMV3rYssqiF7KmDq5j/Gvgw
-         DRqQJaiIaJs7F3/Q+AGTqRV91KPchm6WrDdNZ3Vhwdr+YOiA9G/eIn0obTl10EVj545o
-         abBsf1AainQ6LcF11fgGmN83Rwr1rXh/qSZN2a/h4Qq5jFCyudbiqm5mPc1n1lkhQfZa
-         KcwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCXMstZk0cD26Rk3hZVd6AQAC8PkiN0H04iuJ5erA4pDC99CBrmAC0/Fj+uvcX038Gr+tRao/dyf5lcek+0NIJtomDguBdSyFmNagd
-X-Gm-Message-State: AOJu0YzxUiTQeJurUfy5cVgjR3fOOwuo10Z+xsy5VzKkc6pu+5DVZnL5
-	6vHjGH1STEqn3cD27/uyUBIz4ifqag9Q/9w5N1E/uu/JkQmheCQs8f0eb/hUlEhZY4Kr64USodV
-	vi/m7TpGz2tp8pRtY5FNljjgIJcg=
-X-Google-Smtp-Source: AGHT+IEe1QiLFsOQubXPgVd1DlBbMRjKbkFaF0Squ7RKLeHO/XI6mWViLqToF9a8wPsyIZRcPgIpyXOiXizDNbdNuc4=
-X-Received: by 2002:a2e:9f11:0:b0:2d4:1fa4:9eb8 with SMTP id
- u17-20020a2e9f11000000b002d41fa49eb8mr5303843ljk.40.1711007807873; Thu, 21
- Mar 2024 00:56:47 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1711014206; x=1711619006;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JSmN0DASXuns/y2W0Kvysp+fNdtTa9SfspMfVzGXsxE=;
+        b=Ay4R87U3VEE5vqYXIqHods6Zo7b2Gd4IVceONFwqJ3dRciaMeIhEwk0iaAiwZX0VrA
+         Uj7CnjD055+dap/cqTEJ4/BANHExTHsTze4SI3xgfNigJbcUywBNU6/XIvI4JUFXo5AN
+         MMPXUhNumd880G9R5rgyEsGs/8FAbEavBGI9jnEJ3Eg8M9O47BNcuLUaEjSgVOWsyc27
+         LP+TzK2z778VnurCtiTMA04Ft9CeSPh1AUddXr1cwyFzsVQMDGV9HNap7I5mboGnO/jf
+         z33ugk6Y3No9taMaWEPqSL/Ph7ss4Hlf3J/eVjWBM7AqvNyHKu2jBamfBuWkC2tUhu7B
+         oXQw==
+X-Gm-Message-State: AOJu0YzpZIJvWbN++UePKCof9QGlwUY4Qx0ieKjkRzTbotlN0zuQLvOI
+	OQtMy4J5mKz5BSqABz+2Qnc0hNeQIV5Sv5YipCKeLPxGqqzfdhtnV7GWboVUfF8DeaYHBeQULDc
+	STJIT2VhqPOEEM2dbN+FS07BHaGZpswgM8sz8bA==
+X-Google-Smtp-Source: AGHT+IGIPTsxGUkCK67cvM5eFrg1bxBHAfdwhkEtIf3NIrmlWxkAGC7Zj8McpMeKDQiYJPyrmh7Ky+iD38YQkf7D/dk=
+X-Received: by 2002:a05:6122:1d8d:b0:4d8:37eb:9562 with SMTP id
+ gg13-20020a0561221d8d00b004d837eb9562mr1453888vkb.0.1711014205592; Thu, 21
+ Mar 2024 02:43:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <m2J0.1711006186858455727.l7Zd@lists.yoctoproject.org>
-In-Reply-To: <m2J0.1711006186858455727.l7Zd@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 21 Mar 2024 08:56:36 +0100
-Message-ID: <CANNYZj9LmNwaSWh9d+fDgAqJpjdmazBEH5chfc+32eBrb82yoA@mail.gmail.com>
+References: <m2J0.1711006186858455727.l7Zd@lists.yoctoproject.org> <CANNYZj9LmNwaSWh9d+fDgAqJpjdmazBEH5chfc+32eBrb82yoA@mail.gmail.com>
+In-Reply-To: <CANNYZj9LmNwaSWh9d+fDgAqJpjdmazBEH5chfc+32eBrb82yoA@mail.gmail.com>
+From: Ashu Joshi <ashujoshi35@gmail.com>
+Date: Thu, 21 Mar 2024 15:13:13 +0530
+Message-ID: <CAKjBKDNWqKq=P6CdWKd6WAivMZyzH9sco9B9=jq68gZ+S56o+g@mail.gmail.com>
 Subject: Re: [yocto] Export python packages installed using pypi to target
-To: ashujoshi35@gmail.com, yocto@lists.yoctoproject.org
-Content-Type: multipart/related; boundary="00000000000098c6a70614270c2e"
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/related; boundary="000000000000ee7c6f061428891a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 07:56:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62810
+ <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 09:43:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62811
 
---00000000000098c6a70614270c2e
-Content-Type: multipart/alternative; boundary="00000000000098c6a60614270c2d"
+--000000000000ee7c6f061428891a
+Content-Type: multipart/alternative; boundary="000000000000ee7c6e0614288919"
 
---00000000000098c6a60614270c2d
+--000000000000ee7c6e0614288919
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Please share your complete recipe and all of the error message, otherwise
-it=E2=80=99s impossible to tell what is happening.
+Entire recipe is:
 
-Alex
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+DESCRIPTION =3D "Wirepas gateway transport service that connects the local
+dbus to a remote MQTT broker"
+LICENSE =3D "Apache-2.0"
+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dcb6bb17b0d0cca188339074207e9f4d8=
+"
 
-On Thu 21. Mar 2024 at 8.29, Ashu Joshi <ashujoshi35@gmail.com> wrote:
+SRC_URI =3D "file://wirepasTransport.service \
+           file://settings.yml \
+"
 
-> Hello,
-> I am trying to install wirpas_gateway package from pypi using yocto
-> recipe.. Once service is build completely and  I flash image to target, i
-> don't see any of the installed packages. Does anyone has nay reference ho=
-w
-> to install these packages in target as well. I dont see any generated
-> binary which i can ship tp target. However, source code of the package ca=
-n
-> be seen in work directory. Currently I am trying to do something like bel=
-ow:
->
-> do_install() {
->       install -m 0755 -d ${D}${sysconfdir}/systemd/system
->       install -m 0755 ${WORKDIR}/wirepasTransport.service
-> ${D}${sysconfdir}/systemd/system
->
->       install -m 0755 -d ${D}/usr/share
->       install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
->
->       install -m 0755 -d ${D}/usr/share/wirepas_gateway
->       install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3
-> ${D}/usr/share/wirepas_gateway
-> }
->
-> FILES_${PN} +=3D "usr/share/wirepas_gateway"
-> FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
-> FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.service"
-> FILES_${PN} +=3D "/usr/share/settings.yml"
->
-> wirepas_gateway-1.4.3 is directory which contains setup and other files.
-> Getting error while trying to ship this to target.
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62809):
-> https://lists.yoctoproject.org/g/yocto/message/62809
-> Mute This Topic: https://lists.yoctoproject.org/mt/105061124/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+PYPI_PACKAGE =3D "wirepas_gateway"
+PV =3D "1.4.3"
+inherit pypi pkgconfig setuptools3
 
---00000000000098c6a60614270c2d
+SRC_URI[md5sum] =3D "941a4407513445c64f16b57a1474fc43"
+
+DEPENDS +=3D "systemd python3 python3-pkgconfig-native python3-pip"
+
+SYSTEMD_SERVICE_${PN} =3D "wirepasTransport.service"
+SYSTEMD_AUTO_ENABLE_${PN} =3D "enable"
+
+do_install() {
+      install -m 0755 -d ${D}${sysconfdir}/systemd/system
+      install -m 0755 ${WORKDIR}/wirepasTransport.service
+${D}${sysconfdir}/systemd/system
+
+      install -m 0755 -d ${D}/usr/share
+      install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
+
+#      install -m 0755 -d ${D}/usr/share/wirepas_gateway
+#      install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3
+${D}/usr/share/wirepas_gateway
+}
+
+FILES_${PN} +=3D "usr/share/wirepas_gateway"
+#FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
+FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.service"
+FILES_${PN} +=3D "/usr/share/settings.yml"
+
+Error was basically because of commented code wherein I was trying to
+export the entire directory. I have commented out that for now.. I found
+that by creating rpm or opkg package we can export the package to target.
+Need help around that, if that is the correct way and how to use this
+method in yocto recipe. If not, what can be the other way using which we
+can ship or install the package in target.
+
+On Thu, Mar 21, 2024 at 1:26=E2=80=AFPM Alexander Kanavin <alex.kanavin@gma=
+il.com>
+wrote:
+
+> Please share your complete recipe and all of the error message, otherwise
+> it=E2=80=99s impossible to tell what is happening.
+>
+> Alex
+>
+> On Thu 21. Mar 2024 at 8.29, Ashu Joshi <ashujoshi35@gmail.com> wrote:
+>
+>> Hello,
+>> I am trying to install wirpas_gateway package from pypi using yocto
+>> recipe.. Once service is build completely and  I flash image to target, =
+i
+>> don't see any of the installed packages. Does anyone has nay reference h=
+ow
+>> to install these packages in target as well. I dont see any generated
+>> binary which i can ship tp target. However, source code of the package c=
+an
+>> be seen in work directory. Currently I am trying to do something like be=
+low:
+>>
+>> do_install() {
+>>       install -m 0755 -d ${D}${sysconfdir}/systemd/system
+>>       install -m 0755 ${WORKDIR}/wirepasTransport.service
+>> ${D}${sysconfdir}/systemd/system
+>>
+>>       install -m 0755 -d ${D}/usr/share
+>>       install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
+>>
+>>       install -m 0755 -d ${D}/usr/share/wirepas_gateway
+>>       install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3
+>> ${D}/usr/share/wirepas_gateway
+>> }
+>>
+>> FILES_${PN} +=3D "usr/share/wirepas_gateway"
+>> FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
+>> FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.service"
+>> FILES_${PN} +=3D "/usr/share/settings.yml"
+>>
+>> wirepas_gateway-1.4.3 is directory which contains setup and other files.
+>> Getting error while trying to ship this to target.
+>>
+>>
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>> Links: You receive all messages sent to this group.
+>> View/Reply Online (#62809):
+>> https://lists.yoctoproject.org/g/yocto/message/62809
+>> Mute This Topic: https://lists.yoctoproject.org/mt/105061124/1686489
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+>> alex.kanavin@gmail.com]
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>
+>>
+
+--000000000000ee7c6e0614288919
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Please share your complete recipe and all of the error me=
-ssage, otherwise it=E2=80=99s impossible to tell what is happening.</div><d=
-iv dir=3D"auto"><br></div><div dir=3D"auto">Alex</div><div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu 21. Mar 2024 =
-at 8.29, Ashu Joshi &lt;<a href=3D"mailto:ashujoshi35@gmail.com">ashujoshi3=
-5@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
-padding-left:1ex;border-left-color:rgb(204,204,204)"><div>Hello,<br>I am tr=
-ying to install wirpas_gateway package from pypi using yocto recipe.. Once =
-service is build completely and=C2=A0 I flash image to target, i don&#39;t =
-see any of the installed packages. Does anyone has nay reference how to ins=
-tall these packages in target as well. I dont see any generated binary whic=
-h i can ship tp target. However, source code of the package can be seen in =
-work directory. Currently I am trying to do something like below:<br><br>
+<div dir=3D"ltr">Entire recipe is:<div><br></div><div>FILESEXTRAPATHS_prepe=
+nd :=3D &quot;${THISDIR}/files:&quot;<br>DESCRIPTION =3D &quot;Wirepas gate=
+way transport service that connects the local dbus to a remote MQTT broker&=
+quot;<br>LICENSE =3D &quot;Apache-2.0&quot;<br>LIC_FILES_CHKSUM =3D &quot;f=
+ile://LICENSE;md5=3Dcb6bb17b0d0cca188339074207e9f4d8&quot;<br><br>SRC_URI =
+=3D &quot;file://wirepasTransport.service \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0file://settings.yml \<br>&quot;<br><br>PYPI_PACKAGE =3D &quot;=
+wirepas_gateway&quot;<br>PV =3D &quot;1.4.3&quot;<br>inherit pypi pkgconfig=
+ setuptools3<br><br>SRC_URI[md5sum] =3D &quot;941a4407513445c64f16b57a1474f=
+c43&quot;<br><br>DEPENDS +=3D &quot;systemd python3 python3-pkgconfig-nativ=
+e python3-pip&quot;<br><br>SYSTEMD_SERVICE_${PN} =3D &quot;wirepasTransport=
+.service&quot;<br>SYSTEMD_AUTO_ENABLE_${PN} =3D &quot;enable&quot; <br><br>=
+do_install() {<br>=C2=A0 =C2=A0 =C2=A0 install -m 0755 -d ${D}${sysconfdir}=
+/systemd/system <br>=C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/wirepas=
+Transport.service ${D}${sysconfdir}/systemd/system<br>=C2=A0 =C2=A0 =C2=A0 =
+<br>=C2=A0 =C2=A0 =C2=A0 install -m 0755 -d ${D}/usr/share<br>=C2=A0 =C2=A0=
+ =C2=A0 install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share<br>=C2=A0 =
+=C2=A0 =C2=A0 <br># =C2=A0 =C2=A0 =C2=A0install -m 0755 -d ${D}/usr/share/w=
+irepas_gateway<br># =C2=A0 =C2=A0 =C2=A0install -m 0644 ${WORKDIR}/wirepas_=
+gateway-1.4.3 ${D}/usr/share/wirepas_gateway<br>}<br><br>FILES_${PN} +=3D &=
+quot;usr/share/wirepas_gateway&quot;<br>#FILES_${PN} +=3D &quot;/usr/share/=
+wirepas_gateway/wirepas_gateway-1.4.3&quot;<br>FILES_${PN} +=3D &quot;${sys=
+confdir}/systemd/system/wirepasTransport.service&quot;<br>FILES_${PN} +=3D =
+&quot;/usr/share/settings.yml&quot;<br></div><div><br></div><div>Error was =
+basically because of commented code wherein I was trying to export the enti=
+re directory. I have commented out that for now.. I found that by creating =
+rpm or opkg package we can export the package to target. Need help around t=
+hat, if that is the correct way and how to use this method in yocto recipe.=
+ If not, what can be the other way using which we can ship or install the p=
+ackage in target.</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Thu, Mar 21, 2024 at 1:26=E2=80=AFPM Alexander Ka=
+navin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"auto">Please share your complete recipe and all of the error mes=
+sage, otherwise it=E2=80=99s impossible to tell what is happening.</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Alex</div><div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu 21. Mar 2024 at =
+8.29, Ashu Joshi &lt;<a href=3D"mailto:ashujoshi35@gmail.com" target=3D"_bl=
+ank">ashujoshi35@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div>Hello,<br>I am trying to install wirpas_gate=
+way package from pypi using yocto recipe.. Once service is build completely=
+ and=C2=A0 I flash image to target, i don&#39;t see any of the installed pa=
+ckages. Does anyone has nay reference how to install these packages in targ=
+et as well. I dont see any generated binary which i can ship tp target. How=
+ever, source code of the package can be seen in work directory. Currently I=
+ am trying to do something like below:<br><br>
 <div>do_install() {</div>
 <div>=C2=A0 =C2=A0 =C2=A0 install -m 0755 -d ${D}${sysconfdir}/systemd/syst=
 em=C2=A0</div>
@@ -159,8 +248,8 @@ ervice&quot;</div>
 <div>FILES_${PN} +=3D &quot;/usr/share/settings.yml&quot;<br><br>wirepas_ga=
 teway-1.4.3 is directory which contains setup and other files. Getting erro=
 r while trying to ship this to target.<br><br><img src=3D"cid:attach_0_17BE=
-B70FC8D110C2_26480@groups.io" alt=3D"" style=3D"width:812px;max-width:100%"=
-></div>
+B70FC8D110C2_26480@groups.io" alt=3D"" style=3D"width: 812px; max-width: 10=
+0%;"></div>
 </div>
 <br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
@@ -180,10 +269,11 @@ anavin@gmail.com</a>]<br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 <br>
 </blockquote></div></div>
+</blockquote></div>
 
---00000000000098c6a60614270c2d--
+--000000000000ee7c6e0614288919--
 
---00000000000098c6a70614270c2e
+--000000000000ee7c6f061428891a
 Content-Type: image/png; name="dummyfile.0.part"
 Content-Disposition: inline; filename="dummyfile.0.part"
 Content-Transfer-Encoding: base64
@@ -1204,5 +1294,5 @@ qgNIz8hDSYUFVqEKhen7kTqmfwN2KapzrLSBXs60t9XLG60nYMtlW729kEAtSjZMdeyGJIwX0r10
 a0vw6XDHOGBvr8cPxe+SLJrxpc+6S3YdeSLD52HPFQG5m5Jc41zE3bPw+aUaZK95DH1CpXqEwBgl
 LnRtLOvVGbFDV2L7/gwUlEl5wYzyK5n4ZlG8u1ag2KdtLJasOYKc6zUQzSW4eDQdeVaPowt17OOy
 I1l2WQe+su2YAWaAGWAGmAFmgBlgBpgBZoAZYAaYAWbAeAb+H6CO5SJhUywcAAAAAElFTkSuQmCC
---00000000000098c6a70614270c2e--
+--000000000000ee7c6f061428891a--
 
