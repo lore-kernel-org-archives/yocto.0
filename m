@@ -1,249 +1,270 @@
-Return-Path: <ashujoshi35@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E4747C54E68
-	for <webhook@archiver.kernel.org>; Thu, 21 Mar 2024 13:36:38 +0000 (UTC)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
- by mx.groups.io with SMTP id smtpd.web10.7670.1711028196968312513
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 118CFC54E68
+	for <webhook@archiver.kernel.org>; Thu, 21 Mar 2024 14:23:39 +0000 (UTC)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+ by mx.groups.io with SMTP id smtpd.web11.8967.1711031015443442821
  for <yocto@lists.yoctoproject.org>;
- Thu, 21 Mar 2024 06:36:37 -0700
+ Thu, 21 Mar 2024 07:23:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=JrWC7d4y;
- spf=pass (domain: gmail.com, ip: 209.85.222.54, mailfrom: ashujoshi35@gmail.com)
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-7e046990b6aso424226241.1
-        for <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 06:36:36 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fk/2Njhb;
+ spf=pass (domain: gmail.com, ip: 209.85.167.54, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513e10a4083so1208197e87.1
+        for <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 07:23:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711028196; x=1711632996; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1711031013; x=1711635813; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XUpB+mZV9wiw6wLeUmkrgR+dRXPwUKHPYXrxfaZWvlE=;
-        b=JrWC7d4ykFLOyb8uyYlykyx+OjZPLJ/vu/RWcllwdtSgipuiMPFhyhRF22mwE5U8jh
-         v7olazTetnq5j73+fG0aQ11W1jC+2U3hnTBjNxDDzaDJJeQYV1uwRfQ5M/EoKwSobthH
-         4g+NV/koJiLTNXjOBnFldUpQiz2zSwlJMLC0lbq907qBixoqI7puvFVs7g+b5hHuYFea
-         IVX/JSARMyBKWYVEw7br+coSp2Xkx+8U7ZofCoSt4GOvnAgPa4zAZDr8VsZY1SfKz9Al
-         kQnIUGXNjgnUiOqBS9ITHAnykuPCnZS2lGQIXLssixAih8ZmxSoZ8j8GVDNy7ivk+qB/
-         XBwA==
+        bh=tXu5lPyDccjPjyBGy3A4kRQUNoQshPJfZFvOXmiApQ0=;
+        b=fk/2Njhbz0YqYgLDjGhT7MIJHtHigaWbRQESBAxhkdn74pXhDXd+sOc1zXANp3SPa5
+         XcICvK85A7FJUwo/QvvcK7du3wN+cnGKOHuUPRDuHa8YKA+UIRTTio9YuTT2ie55puD7
+         0qXrizRu1gmRQSbzwbYG4a7IJH3S1842Zl/Wji1Zx7/FPD8F3oGezikrHrXmnJmIZOAl
+         NRqyS9ae4JFpBKkGaUJbIBPMZhQG0+SmYeY+V93aRJfaza7vBEpvPItlCxerxCJ/LvBx
+         vXUBoqxwtFXkU6nIoKp2UdlOLs6vTvMaAPX/e3ohXOnSLbWc+ghrjHdyjt2x7+HhZ6LI
+         Qsig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711028196; x=1711632996;
+        d=1e100.net; s=20230601; t=1711031013; x=1711635813;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XUpB+mZV9wiw6wLeUmkrgR+dRXPwUKHPYXrxfaZWvlE=;
-        b=qZi6DutiutNwWnQNZ83V/z1K4jcZwtDTwi8PZ4lUrHj2zXrxNTjNeVx9wE1AQyaCOh
-         Gb407awnXNqqfc/HWv4/IVeBeUddDxI+l69nD9v7kruaWysx3qnbm6HYqiM1TiZhTQ0d
-         zduR72epAvse5qF4sf10sEEjySQpoHdXqfDU0c9a1GHXAOBqz6S5RpM5buinqHiw2r8H
-         pfeWkdThlXS26WbESqdmzDHiI4culg9Wj5bB0b3UoQW0hIchUiV6AlQInhap+Uz1IILb
-         B7nMZkBfE7jBR0LFe1gnKK+OaeYjrPraAykf2DyskD/7kQZNJeiW543svgIeVHRFXpa1
-         I3mA==
-X-Gm-Message-State: AOJu0YyxVlgai+xhJaA85SHkuoniQOpq6W2nd+fEJlPacgfIP42aWpWT
-	WJaC+cGhKfhvdGCVtYFMwhZqZDkM9ywbagPiVGjBdlR2YITuAgB63e4Q2MlbxtMKeU8s6WMOYGx
-	FIuaIt/NwDt7V4v7AbXTmL9s6/FgTeguGVNA=
-X-Google-Smtp-Source: AGHT+IGn8JYTGXSsxW/lUu4y9HKuT6ByVVAlvA8bTMqr2R5Lm2G0grPB3Lyl1yvnQ9MJXLRxQ1F7/HjOmhPkPfIV8YI=
-X-Received: by 2002:a1f:df83:0:b0:4d4:eb8:bf27 with SMTP id
- w125-20020a1fdf83000000b004d40eb8bf27mr4792519vkg.0.1711028195105; Thu, 21
- Mar 2024 06:36:35 -0700 (PDT)
+        bh=tXu5lPyDccjPjyBGy3A4kRQUNoQshPJfZFvOXmiApQ0=;
+        b=tzO53agHK911kuLoGvRbG8Sz3LKiXQT6BW+SbTv6YSG/6R1CbVz5x0RhF4OuniSD7U
+         dLtf3fg78C0VDfjcqzJUCmMc7A7303RAEzFxdP4KuV7lCrZW5vpBslkkDt7XLNrrZADg
+         6SYhQLKp2j2Sbs5dm8MRfpFjNleO9l4mxX5c4OesqrvhnHwe3F7JCj3x2biesmP4JFGK
+         v0MqbBIAEkKljP3Z+SPdUUiyucWbeVqzA5ZU93ho9wazd3jaIMMfbEQUvZlNPmMUlhh4
+         vIWB8Fj/YLy9qAwlIrsHVvGmZQ8dePWf30x9VkLt/57YWU6M8l5GEYhyQJ5FbLcgd3MF
+         rUBA==
+X-Gm-Message-State: AOJu0Yx6hmxzZL3dmlCQrHO3rtHMToQEhFdL6vB/NAAtv7PyaBPtVe6V
+	tO0GS4qQa800gbOmpJAUQq9j591oKchOA+tLHrxHH17gE003EGkGnGTd3mS1ssWPGvR54dA0rD3
+	m6QXTC0Ke3JlJnh7oLgRGGUd1160=
+X-Google-Smtp-Source: AGHT+IHQ0+gbYisF0BexBvvFsO7lbEaGTDB7SkQFC9Br6SSy3DQbtTfIbJ4m3Cqr0qjFLLpJvR2nmYSCYJkQHS57WrE=
+X-Received: by 2002:a05:6512:292:b0:513:a39e:ae45 with SMTP id
+ j18-20020a056512029200b00513a39eae45mr1771238lfp.62.1711031012931; Thu, 21
+ Mar 2024 07:23:32 -0700 (PDT)
 MIME-Version: 1.0
 References: <m2J0.1711006186858455727.l7Zd@lists.yoctoproject.org>
- <CANNYZj9LmNwaSWh9d+fDgAqJpjdmazBEH5chfc+32eBrb82yoA@mail.gmail.com> <CAKjBKDNWqKq=P6CdWKd6WAivMZyzH9sco9B9=jq68gZ+S56o+g@mail.gmail.com>
-In-Reply-To: <CAKjBKDNWqKq=P6CdWKd6WAivMZyzH9sco9B9=jq68gZ+S56o+g@mail.gmail.com>
-From: Ashu Joshi <ashujoshi35@gmail.com>
-Date: Thu, 21 Mar 2024 19:06:24 +0530
-Message-ID: <CAKjBKDNiKYPTdaoafx3e63_S5PvNJSZUyX4KVGFx5e3tvYcbyw@mail.gmail.com>
+ <CANNYZj9LmNwaSWh9d+fDgAqJpjdmazBEH5chfc+32eBrb82yoA@mail.gmail.com>
+ <CAKjBKDNWqKq=P6CdWKd6WAivMZyzH9sco9B9=jq68gZ+S56o+g@mail.gmail.com> <CAKjBKDNiKYPTdaoafx3e63_S5PvNJSZUyX4KVGFx5e3tvYcbyw@mail.gmail.com>
+In-Reply-To: <CAKjBKDNiKYPTdaoafx3e63_S5PvNJSZUyX4KVGFx5e3tvYcbyw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 21 Mar 2024 15:23:21 +0100
+Message-ID: <CANNYZj9qjjs4d+FDkYh+Q7oy0FoAQaiUQt4iiukUud56JcTPUA@mail.gmail.com>
 Subject: Re: [yocto] Export python packages installed using pypi to target
-To: Alexander Kanavin <alex.kanavin@gmail.com>
+To: Ashu Joshi <ashujoshi35@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/related; boundary="000000000000c543f106142bcbde"
+Content-Type: multipart/related; boundary="000000000000b9e6a206142c7371"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 13:36:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62813
+ <yocto@lists.yoctoproject.org>; Thu, 21 Mar 2024 14:23:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62814
 
---000000000000c543f106142bcbde
-Content-Type: multipart/alternative; boundary="000000000000c543f006142bcbdd"
+--000000000000b9e6a206142c7371
+Content-Type: multipart/alternative; boundary="000000000000b9e6a006142c7370"
 
---000000000000c543f006142bcbdd
+--000000000000b9e6a006142c7370
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-It seems I have been able to install the package in gateway but getting
-some encoding related error. Below is the error:
+It's a little odd that the application is looking for python modules in
+/lib and not /usr/lib.
 
-~ $ wm-gw --help
-Python path configuration:
-  PYTHONHOME =3D '/'
-  PYTHONPATH =3D (not set)
-  program name =3D 'python3'
-  isolated =3D 0
-  environment =3D 1
-  user site =3D 1
-  import site =3D 1
-  sys._base_executable =3D '/usr/bin/python3'
-  sys.base_prefix =3D '/'
-  sys.base_exec_prefix =3D '/'
-  sys.executable =3D '/usr/bin/python3'
-  sys.prefix =3D '/'
-  sys.exec_prefix =3D '/'
-  sys.path =3D [
-    'lib/python38.zip',
-    '/lib/python3.8',
-    '/lib/python3.8/lib-dynload',
-  ]
-Fatal Python error: init_fs_encoding: failed to get the Python codec of the
-file
-                                      system encoding
-Python runtime state: core initialized
-ModuleNotFoundError: No module named 'encodings'
+If you run python3 on the target and issue 'import encodings', does that
+work? Then they are installed in /usr/lib, and you need to find out why the
+app redirects python to look elsewhere.
 
-I even tried to unset PYTHONHOME and  PYTHONPATH  by adding below in the
-recipe file but still encountering the same error. Any idea how to fix this=
-?
+Alex
 
-do_configure(){
-    unset PYTHONPATH
-    unset PYTHONHOME
-}
+On Thu, 21 Mar 2024 at 14:36, Ashu Joshi <ashujoshi35@gmail.com> wrote:
 
-
-On Thu, Mar 21, 2024 at 3:13=E2=80=AFPM Ashu Joshi <ashujoshi35@gmail.com> =
-wrote:
-
-> Entire recipe is:
+> It seems I have been able to install the package in gateway but getting
+> some encoding related error. Below is the error:
 >
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-> DESCRIPTION =3D "Wirepas gateway transport service that connects the loca=
-l
-> dbus to a remote MQTT broker"
-> LICENSE =3D "Apache-2.0"
-> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dcb6bb17b0d0cca188339074207e9f4=
-d8"
+> ~ $ wm-gw --help
+> Python path configuration:
+>   PYTHONHOME =3D '/'
+>   PYTHONPATH =3D (not set)
+>   program name =3D 'python3'
+>   isolated =3D 0
+>   environment =3D 1
+>   user site =3D 1
+>   import site =3D 1
+>   sys._base_executable =3D '/usr/bin/python3'
+>   sys.base_prefix =3D '/'
+>   sys.base_exec_prefix =3D '/'
+>   sys.executable =3D '/usr/bin/python3'
+>   sys.prefix =3D '/'
+>   sys.exec_prefix =3D '/'
+>   sys.path =3D [
+>     'lib/python38.zip',
+>     '/lib/python3.8',
+>     '/lib/python3.8/lib-dynload',
+>   ]
+> Fatal Python error: init_fs_encoding: failed to get the Python codec of
+> the file
+>                                           system encoding
+> Python runtime state: core initialized
+> ModuleNotFoundError: No module named 'encodings'
 >
-> SRC_URI =3D "file://wirepasTransport.service \
->            file://settings.yml \
-> "
+> I even tried to unset PYTHONHOME and  PYTHONPATH  by adding below in the
+> recipe file but still encountering the same error. Any idea how to fix th=
+is?
 >
-> PYPI_PACKAGE =3D "wirepas_gateway"
-> PV =3D "1.4.3"
-> inherit pypi pkgconfig setuptools3
->
-> SRC_URI[md5sum] =3D "941a4407513445c64f16b57a1474fc43"
->
-> DEPENDS +=3D "systemd python3 python3-pkgconfig-native python3-pip"
->
-> SYSTEMD_SERVICE_${PN} =3D "wirepasTransport.service"
-> SYSTEMD_AUTO_ENABLE_${PN} =3D "enable"
->
-> do_install() {
->       install -m 0755 -d ${D}${sysconfdir}/systemd/system
->       install -m 0755 ${WORKDIR}/wirepasTransport.service
-> ${D}${sysconfdir}/systemd/system
->
->       install -m 0755 -d ${D}/usr/share
->       install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
->
-> #      install -m 0755 -d ${D}/usr/share/wirepas_gateway
-> #      install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3
-> ${D}/usr/share/wirepas_gateway
+> do_configure(){
+>     unset PYTHONPATH
+>     unset PYTHONHOME
 > }
 >
-> FILES_${PN} +=3D "usr/share/wirepas_gateway"
-> #FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
-> FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.service"
-> FILES_${PN} +=3D "/usr/share/settings.yml"
 >
-> Error was basically because of commented code wherein I was trying to
-> export the entire directory. I have commented out that for now.. I found
-> that by creating rpm or opkg package we can export the package to target.
-> Need help around that, if that is the correct way and how to use this
-> method in yocto recipe. If not, what can be the other way using which we
-> can ship or install the package in target.
->
-> On Thu, Mar 21, 2024 at 1:26=E2=80=AFPM Alexander Kanavin <alex.kanavin@g=
-mail.com>
+> On Thu, Mar 21, 2024 at 3:13=E2=80=AFPM Ashu Joshi <ashujoshi35@gmail.com=
 > wrote:
 >
->> Please share your complete recipe and all of the error message, otherwis=
-e
->> it=E2=80=99s impossible to tell what is happening.
+>> Entire recipe is:
 >>
->> Alex
+>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+>> DESCRIPTION =3D "Wirepas gateway transport service that connects the loc=
+al
+>> dbus to a remote MQTT broker"
+>> LICENSE =3D "Apache-2.0"
+>> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dcb6bb17b0d0cca188339074207e9f=
+4d8"
 >>
->> On Thu 21. Mar 2024 at 8.29, Ashu Joshi <ashujoshi35@gmail.com> wrote:
+>> SRC_URI =3D "file://wirepasTransport.service \
+>>            file://settings.yml \
+>> "
 >>
->>> Hello,
->>> I am trying to install wirpas_gateway package from pypi using yocto
->>> recipe.. Once service is build completely and  I flash image to target,=
- i
->>> don't see any of the installed packages. Does anyone has nay reference =
-how
->>> to install these packages in target as well. I dont see any generated
->>> binary which i can ship tp target. However, source code of the package =
-can
->>> be seen in work directory. Currently I am trying to do something like b=
-elow:
->>>
->>> do_install() {
->>>       install -m 0755 -d ${D}${sysconfdir}/systemd/system
->>>       install -m 0755 ${WORKDIR}/wirepasTransport.service
->>> ${D}${sysconfdir}/systemd/system
->>>
->>>       install -m 0755 -d ${D}/usr/share
->>>       install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
->>>
->>>       install -m 0755 -d ${D}/usr/share/wirepas_gateway
->>>       install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3
->>> ${D}/usr/share/wirepas_gateway
->>> }
->>>
->>> FILES_${PN} +=3D "usr/share/wirepas_gateway"
->>> FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
->>> FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.service=
-"
->>> FILES_${PN} +=3D "/usr/share/settings.yml"
->>>
->>> wirepas_gateway-1.4.3 is directory which contains setup and other files=
+>> PYPI_PACKAGE =3D "wirepas_gateway"
+>> PV =3D "1.4.3"
+>> inherit pypi pkgconfig setuptools3
+>>
+>> SRC_URI[md5sum] =3D "941a4407513445c64f16b57a1474fc43"
+>>
+>> DEPENDS +=3D "systemd python3 python3-pkgconfig-native python3-pip"
+>>
+>> SYSTEMD_SERVICE_${PN} =3D "wirepasTransport.service"
+>> SYSTEMD_AUTO_ENABLE_${PN} =3D "enable"
+>>
+>> do_install() {
+>>       install -m 0755 -d ${D}${sysconfdir}/systemd/system
+>>       install -m 0755 ${WORKDIR}/wirepasTransport.service
+>> ${D}${sysconfdir}/systemd/system
+>>
+>>       install -m 0755 -d ${D}/usr/share
+>>       install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
+>>
+>> #      install -m 0755 -d ${D}/usr/share/wirepas_gateway
+>> #      install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3
+>> ${D}/usr/share/wirepas_gateway
+>> }
+>>
+>> FILES_${PN} +=3D "usr/share/wirepas_gateway"
+>> #FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
+>> FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.service"
+>> FILES_${PN} +=3D "/usr/share/settings.yml"
+>>
+>> Error was basically because of commented code wherein I was trying to
+>> export the entire directory. I have commented out that for now.. I found
+>> that by creating rpm or opkg package we can export the package to target=
 .
->>> Getting error while trying to ship this to target.
+>> Need help around that, if that is the correct way and how to use this
+>> method in yocto recipe. If not, what can be the other way using which we
+>> can ship or install the package in target.
+>>
+>> On Thu, Mar 21, 2024 at 1:26=E2=80=AFPM Alexander Kanavin <alex.kanavin@=
+gmail.com>
+>> wrote:
+>>
+>>> Please share your complete recipe and all of the error message,
+>>> otherwise it=E2=80=99s impossible to tell what is happening.
 >>>
+>>> Alex
 >>>
->>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>> Links: You receive all messages sent to this group.
->>> View/Reply Online (#62809):
->>> https://lists.yoctoproject.org/g/yocto/message/62809
->>> Mute This Topic: https://lists.yoctoproject.org/mt/105061124/1686489
->>> Group Owner: yocto+owner@lists.yoctoproject.org
->>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->>> alex.kanavin@gmail.com]
->>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>> On Thu 21. Mar 2024 at 8.29, Ashu Joshi <ashujoshi35@gmail.com> wrote:
 >>>
->>>
+>>>> Hello,
+>>>> I am trying to install wirpas_gateway package from pypi using yocto
+>>>> recipe.. Once service is build completely and  I flash image to target=
+, i
+>>>> don't see any of the installed packages. Does anyone has nay reference=
+ how
+>>>> to install these packages in target as well. I dont see any generated
+>>>> binary which i can ship tp target. However, source code of the package=
+ can
+>>>> be seen in work directory. Currently I am trying to do something like =
+below:
+>>>>
+>>>> do_install() {
+>>>>       install -m 0755 -d ${D}${sysconfdir}/systemd/system
+>>>>       install -m 0755 ${WORKDIR}/wirepasTransport.service
+>>>> ${D}${sysconfdir}/systemd/system
+>>>>
+>>>>       install -m 0755 -d ${D}/usr/share
+>>>>       install -m 0644 ${WORKDIR}/settings.yml ${D}/usr/share
+>>>>
+>>>>       install -m 0755 -d ${D}/usr/share/wirepas_gateway
+>>>>       install -m 0644 ${WORKDIR}/wirepas_gateway-1.4.3
+>>>> ${D}/usr/share/wirepas_gateway
+>>>> }
+>>>>
+>>>> FILES_${PN} +=3D "usr/share/wirepas_gateway"
+>>>> FILES_${PN} +=3D "/usr/share/wirepas_gateway/wirepas_gateway-1.4.3"
+>>>> FILES_${PN} +=3D "${sysconfdir}/systemd/system/wirepasTransport.servic=
+e"
+>>>> FILES_${PN} +=3D "/usr/share/settings.yml"
+>>>>
+>>>> wirepas_gateway-1.4.3 is directory which contains setup and other
+>>>> files. Getting error while trying to ship this to target.
+>>>>
+>>>>
+>>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>> Links: You receive all messages sent to this group.
+>>>> View/Reply Online (#62809):
+>>>> https://lists.yoctoproject.org/g/yocto/message/62809
+>>>> Mute This Topic: https://lists.yoctoproject.org/mt/105061124/1686489
+>>>> Group Owner: yocto+owner@lists.yoctoproject.org
+>>>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+>>>> alex.kanavin@gmail.com]
+>>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>>
+>>>>
 
---000000000000c543f006142bcbdd
+--000000000000b9e6a006142c7370
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">It seems I have been able to install the package in gatewa=
-y but getting some encoding related error. Below is the error:<div><br></di=
-v><div>~ $ wm-gw --help<br>Python path configuration:<br>=C2=A0 PYTHONHOME =
-=3D &#39;/&#39;<br>=C2=A0 PYTHONPATH =3D (not set)<br>=C2=A0 program name =
-=3D &#39;python3&#39;<br>=C2=A0 isolated =3D 0<br>=C2=A0 environment =3D 1<=
-br>=C2=A0 user site =3D 1<br>=C2=A0 import site =3D 1<br>=C2=A0 sys._base_e=
-xecutable =3D &#39;/usr/bin/python3&#39;<br>=C2=A0 sys.base_prefix =3D &#39=
-;/&#39;<br>=C2=A0 sys.base_exec_prefix =3D &#39;/&#39;<br>=C2=A0 sys.execut=
-able =3D &#39;/usr/bin/python3&#39;<br>=C2=A0 sys.prefix =3D &#39;/&#39;<br=
->=C2=A0 sys.exec_prefix =3D &#39;/&#39;<br>=C2=A0 sys.path =3D [<br>=C2=A0 =
-=C2=A0 &#39;lib/python38.zip&#39;,<br>=C2=A0 =C2=A0 &#39;/lib/python3.8&#39=
-;,<br>=C2=A0 =C2=A0 &#39;/lib/python3.8/lib-dynload&#39;,<br>=C2=A0 ]<br>Fa=
-tal Python error: init_fs_encoding: failed to get the Python codec of the f=
-ile =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+<div dir=3D"ltr"><div>It&#39;s a little odd that the application is looking=
+ for python modules in /lib and not /usr/lib.</div><div><br></div><div>If y=
+ou run python3 on the target and issue &#39;import encodings&#39;, does tha=
+t work? Then they are installed in /usr/lib, and you need to find out why t=
+he app redirects python to look elsewhere.</div><div><br></div><div>Alex<br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Thu, 21 Mar 2024 at 14:36, Ashu Joshi &lt;<a href=3D"mailto:ashuj=
+oshi35@gmail.com">ashujoshi35@gmail.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">It seems I have bee=
+n able to install the package in gateway but getting some encoding related =
+error. Below is the error:<div><br></div><div>~ $ wm-gw --help<br>Python pa=
+th configuration:<br>=C2=A0 PYTHONHOME =3D &#39;/&#39;<br>=C2=A0 PYTHONPATH=
+ =3D (not set)<br>=C2=A0 program name =3D &#39;python3&#39;<br>=C2=A0 isola=
+ted =3D 0<br>=C2=A0 environment =3D 1<br>=C2=A0 user site =3D 1<br>=C2=A0 i=
+mport site =3D 1<br>=C2=A0 sys._base_executable =3D &#39;/usr/bin/python3&#=
+39;<br>=C2=A0 sys.base_prefix =3D &#39;/&#39;<br>=C2=A0 sys.base_exec_prefi=
+x =3D &#39;/&#39;<br>=C2=A0 sys.executable =3D &#39;/usr/bin/python3&#39;<b=
+r>=C2=A0 sys.prefix =3D &#39;/&#39;<br>=C2=A0 sys.exec_prefix =3D &#39;/&#3=
+9;<br>=C2=A0 sys.path =3D [<br>=C2=A0 =C2=A0 &#39;lib/python38.zip&#39;,<br=
+>=C2=A0 =C2=A0 &#39;/lib/python3.8&#39;,<br>=C2=A0 =C2=A0 &#39;/lib/python3=
+.8/lib-dynload&#39;,<br>=C2=A0 ]<br>Fatal Python error: init_fs_encoding: f=
+ailed to get the Python codec of the file =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
 =A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
 =A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 system encoding<br>Python runtime state: core initialized<br>=
-ModuleNotFoundError: No module named &#39;encodings&#39;<br></div><div><br>=
-</div><div>I even tried=C2=A0to unset PYTHONHOME and=C2=A0
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 system encoding<br>Pyt=
+hon runtime state: core initialized<br>ModuleNotFoundError: No module named=
+ &#39;encodings&#39;<br></div><div><br></div><div>I even tried=C2=A0to unse=
+t PYTHONHOME and=C2=A0
 
 PYTHONPATH=C2=A0 by adding below in the recipe file but still encountering =
 the same error. Any idea how to fix this?</div><div><br></div><div>do_confi=
@@ -349,10 +370,11 @@ anavin@gmail.com</a>]<br>
 </blockquote></div></div>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
 
---000000000000c543f006142bcbdd--
+--000000000000b9e6a006142c7370--
 
---000000000000c543f106142bcbde
+--000000000000b9e6a206142c7371
 Content-Type: image/png; name="dummyfile.0.part"
 Content-Disposition: inline; filename="dummyfile.0.part"
 Content-Transfer-Encoding: base64
@@ -1373,5 +1395,5 @@ qgNIz8hDSYUFVqEKhen7kTqmfwN2KapzrLSBXs60t9XLG60nYMtlW729kEAtSjZMdeyGJIwX0r10
 a0vw6XDHOGBvr8cPxe+SLJrxpc+6S3YdeSLD52HPFQG5m5Jc41zE3bPw+aUaZK95DH1CpXqEwBgl
 LnRtLOvVGbFDV2L7/gwUlEl5wYzyK5n4ZlG8u1ag2KdtLJasOYKc6zUQzSW4eDQdeVaPowt17OOy
 I1l2WQe+su2YAWaAGWAGmAFmgBlgBpgBZoAZYAaYAWbAeAb+H6CO5SJhUywcAAAAAElFTkSuQmCC
---000000000000c543f106142bcbde--
+--000000000000b9e6a206142c7371--
 
