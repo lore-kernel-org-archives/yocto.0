@@ -1,106 +1,204 @@
-Return-Path: <osfan6313@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78BFAC54E58
-	for <webhook@archiver.kernel.org>; Mon, 25 Mar 2024 19:38:01 +0000 (UTC)
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
- by mx.groups.io with SMTP id smtpd.web11.1203.1711395474918631639
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A329C54E64
+	for <webhook@archiver.kernel.org>; Mon, 25 Mar 2024 20:47:32 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+ by mx.groups.io with SMTP id smtpd.web10.2906.1711399648198908488
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Mar 2024 12:37:55 -0700
+ Mon, 25 Mar 2024 13:47:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=VeIGd2/d;
- spf=pass (domain: gmail.com, ip: 209.85.161.43, mailfrom: osfan6313@gmail.com)
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5a522ae3747so1300555eaf.1
-        for <yocto@lists.yoctoproject.org>; Mon, 25 Mar 2024 12:37:54 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=mWupSalv;
+ spf=pass (domain: gmail.com, ip: 209.85.218.43, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4a387ff7acso161429866b.2
+        for <yocto@lists.yoctoproject.org>; Mon, 25 Mar 2024 13:47:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1711395474; x=1712000274; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1711399646; x=1712004446; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=bTwbHrddyX0uTdJrPZGjU/ySOwvLRRX3NI1i1gScAEY=;
-        b=VeIGd2/diwTBRdX8mYPX14eSBnm4VM0d2n7/l1aYk6ojrweqVyHPk7mwG0NnyiC1io
-         9HJpTvEJELGTW/iz7n2EmC7Pn+reZfD1Kvil/sl2cyj3UnSQCCfRhlihx0ZO9TxKWwg3
-         VPHNvtRo6afXp4KTLcS8qFaiEZCXmte82QQaZHa8C9oKpA0ADHrt4MtOryv40zH4pByd
-         RyMnPoUV7wIZUya5SruEWHBTFS84+3vt+1VkNSKRVSAcau64+MBxE395UE6Bmypt9K7T
-         zUmhJj9B8QcBWthjdDyfYYcnC4G30Xtw/wxI4TKA1UNU+Y/uo1y0Wgw6ZvEXWfrtRgjN
-         erIg==
+        bh=0Ds9Y3PGkheywlc2gLvUfFD9DG6BMs71jqnzNvW9J4I=;
+        b=mWupSalvbJ+LpkMuq5TFpEMoEYJDM4/U9CCZ7wwugxwwOr0eughY4yWPyhTLX3EQII
+         R4nPQvRxRqGC9Y89TlrImv5bkNgw8lHYFMAlkNRraNidzwUXTxoqWoWCneOoLSoy9/xS
+         x5MpuDryVC7oz2exAEdm7F/iJ7neERHsGAUfi2xrX/HaO3+ahg1i07HwuVnRcUxYqgmC
+         +tFypRusRAQ7hfV2O+mkFQtTT9H1HlVb15mO2bQQkmzV1yvcHzVmgWpZvTBXX98nss5a
+         KcgOMkJId5aIoGMyEPGwTkKHO8CHZtwAVTvgPvsCi/WGp8GPt4bqkKYdsttG45Z0na9b
+         mDTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1711395474; x=1712000274;
+        d=1e100.net; s=20230601; t=1711399646; x=1712004446;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bTwbHrddyX0uTdJrPZGjU/ySOwvLRRX3NI1i1gScAEY=;
-        b=J2CZ4rfNIUv7dGiVGpmcH0NFl/iHiXQWcgronPrOsg+Q9mIS/9nznO3tR51md6GWH2
-         8Of2qn2Zx0odT7Xxpy5O6nrgnl8A9taz7+toykvnUOpE0RpxMLcZhunq3m9QHw4l+IXc
-         aYTGLstg4RnE2uTfT/UKvthXUUqKV4AJdpNMNuhb29V6iRhHKPKos6NxFZhyD2yeFHfZ
-         R3zH0htvY1/dTcMjzw3dXhqw+zEX/qaImqjiMIw+TjWkJdLKUNyIiIRUqMFaNd7pSata
-         +C9qGeY/zdX/WFYnvQYg1YO4N7IQNnC5RqRjBgJpx1EWsYckXNO2S53j/1JcmtaipFXB
-         xlBA==
-X-Gm-Message-State: AOJu0YzPJ0fFLIEAig/xuuB5Cs8HNJq9fIA+YEA1j2NNtLKqorEaQAfz
-	+xk3VMZxOg6+q5KwK6+ZHGkYdlxjzQRDax5MrdTETSCX54LCIvyQPjaeOYkbYc3TCzEBKxWkrT2
-	LGFgxbxPqH20c54a1rWAefDYyUbOmjFUBp70=
-X-Google-Smtp-Source: AGHT+IH6anDw2H6mE9AJrbr6FhJ/KW1spKb32lVTulRXxEMRCWUNaysgxt3rSeFvrn5HgPrnIC3mfwwyOe6NKV1Qz1k=
-X-Received: by 2002:a05:6870:d626:b0:222:6e0e:bca8 with SMTP id
- a38-20020a056870d62600b002226e0ebca8mr3091887oaq.10.1711395473932; Mon, 25
- Mar 2024 12:37:53 -0700 (PDT)
+        bh=0Ds9Y3PGkheywlc2gLvUfFD9DG6BMs71jqnzNvW9J4I=;
+        b=WY08tryvFCoIvgLgI/+lrnYfpTniXUoDPHctsqwRFs0peePxx777QAlxGAGD48jHe5
+         XNV012snc89zTEhnaVdX6J4JtOa8Oz1QJKJLJ22nVZvT/phfvOp7lUWWcnhNgRtcyaJS
+         DG8RQwyeRH69G2TwL2+PZVylTPRPiksFLjON5eZCocx+T6NOKcA1nzJp8WGmPUO4RZ+d
+         SuO1611zrPyl3k/yoKvMtm6BSt9QJ8lE7JndQPAWvonoj099ICH3o20cubG+SNdKCd2J
+         sCvZ2HAW1XBvaHT4CoEfJv91Zjl45p4G2Y6xxm+Vgxl/M9JovqL6ZA+DJdVqpw4qWfSr
+         phXA==
+X-Forwarded-Encrypted: i=1; AJvYcCUT0ITz4afFD4Ut43dgr/VKfPSu1c0z/EMpbAsjliQEklimL+ISly/flosBanMhLRYof9WDeE6FKwSjVO+VDRHrOmESkjxMPJBJqRPW
+X-Gm-Message-State: AOJu0YwDmxQPUhFPz+/fZKiH2YjPcqFBx7/1ihUEG3zvlVfiYAC/tLU9
+	M5yzFOA0Aj8dsKzYm8VpnJfNHnQBGR+gBkLNHqIL4zy0vBp3lcoYQUlLyGi+06Hf/DH3ClqanOH
+	4mkKEUoBB0awDTttJmpMsGqDpwy4=
+X-Google-Smtp-Source: AGHT+IGhdBiDd1syU3qBSLTrinqJhl2NCPKogfpbaR7U0tzyYtCIzn1sa5rXWrdqyNcslpxixL1lSQ35CKeCUwh7j9Y=
+X-Received: by 2002:a17:906:c003:b0:a45:b91f:2f95 with SMTP id
+ e3-20020a170906c00300b00a45b91f2f95mr5005892ejz.72.1711399645975; Mon, 25 Mar
+ 2024 13:47:25 -0700 (PDT)
 MIME-Version: 1.0
-From: Robert Middleton <osfan6313@gmail.com>
-Date: Mon, 25 Mar 2024 15:37:43 -0400
-Message-ID: <CAKpcJVYfMp5SMshEHLrEDT28N60+AUqP+6RpLqvJsMKu7BEf0w@mail.gmail.com>
-Subject: esdk configuration issues
-To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 25 Mar 2024 13:47:16 -0700
+Message-ID: <CAK5yBb-SU2r+NrhoQ2GEVVLahVimL7KwFOY2quVavPWCE-L_gQ@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000f79eb3061482470a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Mar 2024 19:38:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62837
+ <yocto@lists.yoctoproject.org>; Mon, 25 Mar 2024 20:47:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62838
 
-Hi,
+--000000000000f79eb3061482470a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm generating an esdk for my project, and I've come across two issues
-that I can't seem to find a solution to.
+All,
 
-1. I want to install a .sh file that is run when the ESDK environment
-file is sourced.  I did the following, which seemed to work for the
-normal SDK but not the ESDK:
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-DESCRIPTION = "SDK Testing"
-SECTION = "libs"
-LICENSE = "CLOSED"
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-BBCLASSEXTEND = "nativesdk"
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 411
+unassigned or newcomer bugs.
 
-FILES:${PN}:append:class-nativesdk = " ${SDKPATHNATIVE}"
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, "5.99" and=
+ "Future", the more
+pressing/urgent issues being in "5.0" and then =E2=80=9C5.1=E2=80=9D.
 
-do_configure[noexec] = "1"
-do_compile[noexec] = "1"
-do_fetch[noexec] = "1"
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
-do_install:append:class-nativesdk () {
-mkdir -p ${D}${SDKPATHNATIVE}/environment-setup.d
-echo "PS1=[sdk]\$PS1" >
-${D}${SDKPATHNATIVE}/environment-setup.d/add-ps1-variable.sh
-chmod 755 ${D}${SDKPATHNATIVE}/environment-setup.d/add-ps1-variable.sh
-}
+Thanks,
 
-Any ideas as to why this doesn't work properly?  It's very similar to
-what the cmake build does:
-https://git.yoctoproject.org/poky/tree/meta/recipes-devtools/cmake/cmake_3.22.3.bb?h=kirkstone#n52
-The .sh file does exist, it's just not in the correct directory when
-the ESDK is installed so it is never sourced.
 
-2. For the main application that needs to be built, I need to manually
-deploy a file that is built(so it is not part of the normal 'make
-install').  I did the following in my .bb file for the recipe:
-do_deploy() {
-    install -m 0755 ${WORKDIR}/build/some-binary-file
-${DEPLOYDIR}/some-binary-file
-}
-This works fine when building with bitbake, but when building in the
-ESDK the directory paths have changed.  In bitbake, the binaries are
-placed in ${WORKDIR}/build, but in the SDK the binaries are placed in
-${WORKDIR}/<recipe-name>.  Is there a consistent way to find the build
-directory?  This is using CMake if that makes a difference.
 
--Robert Middleton
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--000000000000f79eb3061482470a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 411 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, &quot;5.99&quot; and &quot;Future&quot;=
+, the more pressing/urgent issues being in &quot;5.0&quot; and then =E2=80=
+=9C5.1=E2=80=9D.<br><br>Please review this link and if a bug is something y=
+ou would be able to help with either take ownership of the bug, or send me =
+(<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an=
+ e-mail with the bug number you would like and I will assign it to you (ple=
+ase make sure you have a Bugzilla account).  The list is at: <a href=3D"htt=
+ps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_B=
+ugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Ne=
+wcomer_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
+martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"=
+MsoNormal" style=3D"background-image:initial;background-position:initial;ba=
+ckground-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sa=
+ns-serif">Thanks,<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--000000000000f79eb3061482470a--
 
