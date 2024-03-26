@@ -1,372 +1,129 @@
-Return-Path: <ppanaccio78@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C6AAC54E67
-	for <webhook@archiver.kernel.org>; Tue, 26 Mar 2024 16:25:10 +0000 (UTC)
-Subject: Problem with locales and SDK
-To: yocto@lists.yoctoproject.org
-From: ppanaccio78@gmail.com
-X-Originating-Location: Bologna, Emilia-Romagna, IT (93.34.81.216)
-X-Originating-Platform: Linux Chrome 120
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A67A1C54E67
+	for <webhook@archiver.kernel.org>; Tue, 26 Mar 2024 17:59:40 +0000 (UTC)
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+ by mx.groups.io with SMTP id smtpd.web11.16916.1711475972045462171
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 26 Mar 2024 10:59:32 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=RTiAPs1G;
+ spf=pass (domain: gmail.com, ip: 209.85.161.53, mailfrom: raj.khem@gmail.com)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-5a550ce1a41so1307024eaf.0
+        for <yocto@lists.yoctoproject.org>; Tue, 26 Mar 2024 10:59:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711475971; x=1712080771; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zdsUBp+ZAfGys0QwgalsbrnhFHl5mFZfCFDwOI22sls=;
+        b=RTiAPs1GvhGgwQLHRQkR/mDe8kZ+8/HQnIDrcXceTClksQmqJ7WArhbcuQ4uBywV/P
+         9U0WqluAAXZ7Eolu2Lsn76WNqIPOLKpUllGYthNHG6CKZGq7TEaZHzOlzHrftQxoDs7s
+         qppT+bbTEAX/nxWRxgzR73Z0vPXTcSCdXOcBa7b/jVhdr3EMDHp334pTCYzM1RY1bP6j
+         dRksa0jQ5EKbc+lWKCbbAJz7QrRV65rpHNa2K2Q06UQ2Gm8lZGDwEQgPJuEYtb0N+Ocq
+         LH1GEjk048nn5Q41zzChApIGoaQ49wzLWo7+TF5S4vucQn9c/GLwhCa9hqK9Ju5+z15T
+         GI/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711475971; x=1712080771;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zdsUBp+ZAfGys0QwgalsbrnhFHl5mFZfCFDwOI22sls=;
+        b=Fs/tBTEoVDrhEnNatjz7h4AmLRFF2oIZIFh3fZU8RPfS8R7D29VC4mbBbAsErZhRHH
+         DTTx54Wa/ZaWghltyilbKR2TWZ9yNcsSSefq9bb55cME7pv3vvA8ustkloOQ2DcRTYNA
+         Gpr3ghZ6Cqs1+Sdaw5T2BDr7VbvQrIIHtf47lQK3UtDbBuXX0Wt1IVT9D7Q1lS8DYb/h
+         l+AO3IUp3NCPEWaYYpLMMiFfwp6jDb1XwkETlAC5sbGisWIvdPbDvEfoZF4/zyBXtY7H
+         +T1H+1Nr5inmMquWlFA17aCQcoktuM0BG6TwgcSYPbyQZcJGudCOgG9JsMWi0VlUVK0Q
+         ghuA==
+X-Gm-Message-State: AOJu0YyNXzOZZ7K2clrPIMRAVsMxYIAlEuQyUhUZi0/69cBP0doGVPM7
+	+xAvZbzc0p1WjFaDJZItC3IbduUuoGDHNMdgB0DWlNDC0Ausd4tU2l+ZYvtGl85glj30v80cjQ/
+	KMEtt7ehCdRPQe1MhwfDKGOvje2kVfO58
+X-Google-Smtp-Source: AGHT+IFtA2efbk7LzoEsorAlbOFktjnd/Lh2SFbS/zJMvIk3g4h2Xyy7naeRmQITpGYR5Qw+ZHYakGERMsB38aKZoC8=
+X-Received: by 2002:a05:6870:a714:b0:21f:9eaa:3f5 with SMTP id
+ g20-20020a056870a71400b0021f9eaa03f5mr1880638oam.59.1711475971046; Tue, 26
+ Mar 2024 10:59:31 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 26 Mar 2024 09:25:03 -0700
-Message-ID: <gMOo.1711470303127402347.6ujz@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="oJMNJNGK5GdjZtvgQMiY"
+References: <Ws4w.1711454234860006570.EdLJ@lists.yoctoproject.org>
+In-Reply-To: <Ws4w.1711454234860006570.EdLJ@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 26 Mar 2024 10:59:05 -0700
+Message-ID: <CAMKF1spJDACujg-zPAtCJdMnTNQjUg0rH5eyikfZ69pk3tH4ag@mail.gmail.com>
+Subject: Re: [yocto] Pipewire Integration with Yocto 4.0.13 (kirkstone)
+To: yocto@lists.yoctoproject.org, sudarshana.singathala@moschip.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 26 Mar 2024 16:25:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62847
+ <yocto@lists.yoctoproject.org>; Tue, 26 Mar 2024 17:59:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62848
 
---oJMNJNGK5GdjZtvgQMiY
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-newby on Yocto project here. I have some issues with locales generation and=
- the SDK generation.
-
-Here's my setup:
-
-DISTRO_VERSION =3D "3.0.4"
-DISTRO_CODENAME =3D "zeus"
-
-local.conf:
-...
-ENABLE_BINARY_LOCALE_GENERATION =3D "1"
-GLIBC_GENERATE_LOCALES =3D "en_US.UTF-8 en_GB.UTF-8 zh_CN.UTF-8 ru_RU.UTF-8=
- fr_FR.UTF-8 es_ES.UTF-8 it_IT.UTF-8 ja_JP.UTF-8 pt_BR.UTF-8 de_DE.UTF-8"
-IMAGE_LINGUAS_append =3D " en-us en-gb zh-cn ru-ru fr-fr es-es it-it ja-jp =
-pt-br de-de"
-...
-
-Basically I can bitbake the image, but when I generate the sdk I have error=
-s on locales I'm not interested into:
-...
-NOTE: Installing the following packages: nativesdk-glibc-binary-localedata-=
-en-bw.utf-8 nativesdk-glibc-binary-localedata-uk-ua.utf-8 ...and so on, a l=
-ot of locales listed
-...
-Reading state information...
-E: Unable to locate package nativesdk-glibc-binary-localedata-en-bw.utf-8
-E: Couldn't find any package by glob 'nativesdk-glibc-binary-localedata-en-=
-bw.utf-8'
-E: Couldn't find any package by regex 'nativesdk-glibc-binary-localedata-en=
--bw.utf-8'
-E: Unable to locate package nativesdk-glibc-binary-localedata-uk-ua.utf-8
-E: Couldn't find any package by glob 'nativesdk-glibc-binary-localedata-uk-=
-ua.utf-8'
-E: Couldn't find any package by regex 'nativesdk-glibc-binary-localedata-uk=
--ua.utf-8'
-...the list proceeds with a lot of locales not indicated in the local.conf.
-
-And finally:
-----
-ERROR: Error executing a python function in exec_python_func() autogenerate=
-d:
-
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:do_populate_sdk(d)
-0003:
-File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/classe=
-s/populate_sdk_base.bbclass', lineno: 180, function: do_populate_sdk
-0176:
-0177:=C2=A0 =C2=A0 populate_sdk(d)
-0178:
-0179:fakeroot python do_populate_sdk() {
-*** 0180:=C2=A0 =C2=A0 populate_sdk_common(d)
-0181:}
-0182:SSTATETASKS +=3D "do_populate_sdk"
-0183:SSTATE_SKIP_CREATION_task-populate-sdk =3D '1'
-0184:do_populate_sdk[cleandirs] =3D "${SDKDEPLOYDIR}"
-File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/classe=
-s/populate_sdk_base.bbclass', lineno: 177, function: populate_sdk_common
-0173:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-manifest_type=3DManifest.MANIFEST_TYPE_SDK_HOST)
-0174:=C2=A0 =C2=A0 create_manifest(d, manifest_dir=3Dd.getVar('SDK_DIR'),
-0175:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-manifest_type=3DManifest.MANIFEST_TYPE_SDK_TARGET)
-0176:
-*** 0177:=C2=A0 =C2=A0 populate_sdk(d)
-0178:
-0179:fakeroot python do_populate_sdk() {
-0180:=C2=A0 =C2=A0 populate_sdk_common(d)
-0181:}
-File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/lib/oe=
-/sdk.py', lineno: 417, function: populate_sdk
-0413:=C2=A0 =C2=A0 =C2=A0 =C2=A0 RpmSdk(d, manifest_dir).populate()
-0414:=C2=A0 =C2=A0 elif img_type =3D=3D "ipk":
-0415:=C2=A0 =C2=A0 =C2=A0 =C2=A0 OpkgSdk(d, manifest_dir).populate()
-0416:=C2=A0 =C2=A0 elif img_type =3D=3D "deb":
-*** 0417:=C2=A0 =C2=A0 =C2=A0 =C2=A0 DpkgSdk(d, manifest_dir).populate()
-0418:
-0419:=C2=A0 =C2=A0 os.environ.clear()
-0420:=C2=A0 =C2=A0 os.environ.update(env_bkp)
-0421:
-File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/lib/oe=
-/sdk.py', lineno: 42, function: populate
-0038:=C2=A0 =C2=A0 def populate(self):
-0039:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.mkdirhier(self.sdk_output)
-0040:
-0041:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # call backend dependent implementation
-*** 0042:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self._populate()
-0043:
-0044:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Don't ship any libGL in the SDK
-0045:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.remove(os.path.join(self.sdk_output, =
-self.sdk_native_path,
-0046:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0self.d.getVar('libdir_nativesdk').strip('/'),
-File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/lib/oe=
-/sdk.py', lineno: 369, function: _populate
-0365:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.target_pm.remove_packag=
-ing_data()
-0366:
-0367:=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.note("Installing NATIVESDK packages")
-0368:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self._populate_sysroot(self.host_pm, self.=
-host_manifest)
-*** 0369:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.install_locales(self.host_pm)
-0370:
-0371:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.host_pm.run_intercepts(populate_sdk=
-=3D'host')
-0372:
-0373:=C2=A0 =C2=A0 =C2=A0 =C2=A0 execute_pre_post_process(self.d, self.d.ge=
-tVar("POPULATE_SDK_POST_HOST_COMMAND"))
-File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/lib/oe=
-/sdk.py', lineno: 104, function: install_locales
-0100:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Generate a locale archive =
-of them
-0101:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 target_arch =3D self.d.getVa=
-r('SDK_ARCH')
-0102:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rootfs =3D oe.path.join(self=
-.sdk_host_sysroot, self.sdk_native_path)
-0103:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 localedir =3D oe.path.join(r=
-ootfs, self.d.getVar("libdir_nativesdk"), "locale")
-*** 0104:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 generate_locale_archive(=
-self.d, rootfs, target_arch, localedir)
-0105:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # And now delete the binary =
-locales
-0106:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pkgs =3D fnmatch.filter(pm.l=
-ist_installed(), "nativesdk-glibc-binary-localedata-*.utf-8")
-0107:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pm.remove(pkgs)
-0108:=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
-File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/lib/oe=
-/package_manager.py', lineno: 134, function: generate_locale_archive
-0130:=C2=A0 =C2=A0 # Need to set this so cross-localedef knows where the ar=
-chive is
-0131:=C2=A0 =C2=A0 env =3D dict(os.environ)
-0132:=C2=A0 =C2=A0 env["LOCALEARCHIVE"] =3D oe.path.join(localedir, "locale=
--archive")
-0133:
-*** 0134:=C2=A0 =C2=A0 for name in os.listdir(localedir):
-0135:=C2=A0 =C2=A0 =C2=A0 =C2=A0 path =3D os.path.join(localedir, name)
-0136:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if os.path.isdir(path):
-0137:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd =3D ["cross-localedef", =
-"--verbose"]
-0138:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd +=3D arch_options
-Exception: FileNotFoundError: [Errno 2] No such file or directory: '/home/u=
-ser/engicam-bsp-scripts/nxp_zeus-2.3/build/tmp/work/cortexa7t2hf-neon-poky-=
-linux-gnueabi/meta-toolchain-qt5/1.0-r0/sdk/image/opt/eng-imx-fb/5.4-zeus/s=
-ysroots/x86_64-pokysdk-linux/usr/lib/locale'
-
-DEBUG: Python function do_populate_sdk finished
-----
-I read in another request a suggestion to add:
-SDK_DEPENDS +=3D "nativesdk-glibc-locale"
-in local.conf, but that didn't fixed the issue.
-
-The only way I found to pass the sdk generation is to remove the ENABLE_BIN=
-ARY_LOCALE_GENERATION, GLIBC_GENERATE_LOCALES and IMAGE_LINGUAS_append line=
-s in the local.conf. And then un-comment them back when I have to generate =
-a new image.
-
-Did you experienced similar problems?
-Thanks
-
---oJMNJNGK5GdjZtvgQMiY
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,<br />newby on Yocto project here. I have some issues with locales g=
-eneration and the SDK generation.&nbsp;<br /><br />Here's my setup:<br />
-<div><br />
-<div>DISTRO_VERSION =3D "3.0.4"</div>
-<div>DISTRO_CODENAME =3D "zeus"</div>
-<div><br />local.conf:<br />...</div>
-<em>ENABLE_BINARY_LOCALE_GENERATION =3D "1"</em></div>
-<div><em>GLIBC_GENERATE_LOCALES =3D "en_US.UTF-8 en_GB.UTF-8 zh_CN.UTF-8 ru=
-_RU.UTF-8 fr_FR.UTF-8 es_ES.UTF-8 it_IT.UTF-8 ja_JP.UTF-8 pt_BR.UTF-8 de_DE=
-.UTF-8"</em></div>
-<div><em>IMAGE_LINGUAS_append =3D " en-us en-gb zh-cn ru-ru fr-fr es-es it-=
-it ja-jp pt-br de-de"</em><br />...<br /><br />Basically I can bitbake the =
-image, but when I generate the sdk I have errors on locales I'm not interes=
-ted into:<br />...<br />NOTE: Installing the following packages: nativesdk-=
-glibc-binary-localedata-en-bw.utf-8 nativesdk-glibc-binary-localedata-uk-ua=
-.utf-8 ...and so on, a lot of locales listed<br />...<br />
-<div>Reading state information...</div>
-<div><em>E: Unable to locate package nativesdk-glibc-binary-localedata-en-b=
-w.utf-8</em></div>
-<div><em>E: Couldn't find any package by glob 'nativesdk-glibc-binary-local=
-edata-en-bw.utf-8'</em></div>
-<div><em>E: Couldn't find any package by regex 'nativesdk-glibc-binary-loca=
-ledata-en-bw.utf-8'</em></div>
-<div><em>E: Unable to locate package nativesdk-glibc-binary-localedata-uk-u=
-a.utf-8</em></div>
-<div><em>E: Couldn't find any package by glob 'nativesdk-glibc-binary-local=
-edata-uk-ua.utf-8'</em></div>
-<div>E: Couldn't find any package by regex 'nativesdk-glibc-binary-localeda=
-ta-uk-ua.utf-8'<br />...the list proceeds with a lot of locales not indicat=
-ed in the local.conf.<br /><br />And finally:<br />----<br />
-<div>ERROR: Error executing a python function in exec_python_func() autogen=
-erated:</div>
-<div>&nbsp;</div>
-<div>The stack trace of python calls that resulted in this exception/failur=
-e was:</div>
-<div>File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;mod=
-ule&gt;</div>
-<div>&nbsp; &nbsp; &nbsp;0001:</div>
-<div>&nbsp;*** 0002:do_populate_sdk(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0003:</div>
-<div>File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/c=
-lasses/populate_sdk_base.bbclass', lineno: 180, function: do_populate_sdk</=
-div>
-<div>&nbsp; &nbsp; &nbsp;0176:</div>
-<div>&nbsp; &nbsp; &nbsp;0177:&nbsp; &nbsp; populate_sdk(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0178:</div>
-<div>&nbsp; &nbsp; &nbsp;0179:fakeroot python do_populate_sdk() {</div>
-<div>&nbsp;*** 0180:&nbsp; &nbsp; populate_sdk_common(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0181:}</div>
-<div>&nbsp; &nbsp; &nbsp;0182:SSTATETASKS +=3D "do_populate_sdk"</div>
-<div>&nbsp; &nbsp; &nbsp;0183:SSTATE_SKIP_CREATION_task-populate-sdk =3D '1=
-'</div>
-<div>&nbsp; &nbsp; &nbsp;0184:do_populate_sdk[cleandirs] =3D "${SDKDEPLOYDI=
-R}"</div>
-<div>File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/c=
-lasses/populate_sdk_base.bbclass', lineno: 177, function: populate_sdk_comm=
-on</div>
-<div>&nbsp; &nbsp; &nbsp;0173:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; manifest_type=3DManifest.MANIFEST_TYPE_SDK_HOST)</=
-div>
-<div>&nbsp; &nbsp; &nbsp;0174:&nbsp; &nbsp; create_manifest(d, manifest_dir=
-=3Dd.getVar('SDK_DIR'),</div>
-<div>&nbsp; &nbsp; &nbsp;0175:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; manifest_type=3DManifest.MANIFEST_TYPE_SDK_TARGET)=
-</div>
-<div>&nbsp; &nbsp; &nbsp;0176:</div>
-<div>&nbsp;*** 0177:&nbsp; &nbsp; populate_sdk(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0178:</div>
-<div>&nbsp; &nbsp; &nbsp;0179:fakeroot python do_populate_sdk() {</div>
-<div>&nbsp; &nbsp; &nbsp;0180:&nbsp; &nbsp; populate_sdk_common(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0181:}</div>
-<div>File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/l=
-ib/oe/sdk.py', lineno: 417, function: populate_sdk</div>
-<div>&nbsp; &nbsp; &nbsp;0413:&nbsp; &nbsp; &nbsp; &nbsp; RpmSdk(d, manifes=
-t_dir).populate()</div>
-<div>&nbsp; &nbsp; &nbsp;0414:&nbsp; &nbsp; elif img_type =3D=3D "ipk":</di=
-v>
-<div>&nbsp; &nbsp; &nbsp;0415:&nbsp; &nbsp; &nbsp; &nbsp; OpkgSdk(d, manife=
-st_dir).populate()</div>
-<div>&nbsp; &nbsp; &nbsp;0416:&nbsp; &nbsp; elif img_type =3D=3D "deb":</di=
-v>
-<div>&nbsp;*** 0417:&nbsp; &nbsp; &nbsp; &nbsp; DpkgSdk(d, manifest_dir).po=
-pulate()</div>
-<div>&nbsp; &nbsp; &nbsp;0418:</div>
-<div>&nbsp; &nbsp; &nbsp;0419:&nbsp; &nbsp; os.environ.clear()</div>
-<div>&nbsp; &nbsp; &nbsp;0420:&nbsp; &nbsp; os.environ.update(env_bkp)</div=
+On Tue, Mar 26, 2024 at 5:01=E2=80=AFAM Sudarshana Reddy Singathala
+<sudarshana.singathala@moschip.com> wrote:
 >
-<div>&nbsp; &nbsp; &nbsp;0421:</div>
-<div>File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/l=
-ib/oe/sdk.py', lineno: 42, function: populate</div>
-<div>&nbsp; &nbsp; &nbsp;0038:&nbsp; &nbsp; def populate(self):</div>
-<div>&nbsp; &nbsp; &nbsp;0039:&nbsp; &nbsp; &nbsp; &nbsp; self.mkdirhier(se=
-lf.sdk_output)</div>
-<div>&nbsp; &nbsp; &nbsp;0040:</div>
-<div>&nbsp; &nbsp; &nbsp;0041:&nbsp; &nbsp; &nbsp; &nbsp; # call backend de=
-pendent implementation</div>
-<div>&nbsp;*** 0042:&nbsp; &nbsp; &nbsp; &nbsp; self._populate()</div>
-<div>&nbsp; &nbsp; &nbsp;0043:</div>
-<div>&nbsp; &nbsp; &nbsp;0044:&nbsp; &nbsp; &nbsp; &nbsp; # Don't ship any =
-libGL in the SDK</div>
-<div>&nbsp; &nbsp; &nbsp;0045:&nbsp; &nbsp; &nbsp; &nbsp; self.remove(os.pa=
-th.join(self.sdk_output, self.sdk_native_path,</div>
-<div>&nbsp; &nbsp; &nbsp;0046:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;self.d.getVar('libdir_nativesd=
-k').strip('/'),</div>
-<div>File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/l=
-ib/oe/sdk.py', lineno: 369, function: _populate</div>
-<div>&nbsp; &nbsp; &nbsp;0365:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
-f.target_pm.remove_packaging_data()</div>
-<div>&nbsp; &nbsp; &nbsp;0366:</div>
-<div>&nbsp; &nbsp; &nbsp;0367:&nbsp; &nbsp; &nbsp; &nbsp; bb.note("Installi=
-ng NATIVESDK packages")</div>
-<div>&nbsp; &nbsp; &nbsp;0368:&nbsp; &nbsp; &nbsp; &nbsp; self._populate_sy=
-sroot(self.host_pm, self.host_manifest)</div>
-<div>&nbsp;*** 0369:&nbsp; &nbsp; &nbsp; &nbsp; self.install_locales(self.h=
-ost_pm)</div>
-<div>&nbsp; &nbsp; &nbsp;0370:</div>
-<div>&nbsp; &nbsp; &nbsp;0371:&nbsp; &nbsp; &nbsp; &nbsp; self.host_pm.run_=
-intercepts(populate_sdk=3D'host')</div>
-<div>&nbsp; &nbsp; &nbsp;0372:</div>
-<div>&nbsp; &nbsp; &nbsp;0373:&nbsp; &nbsp; &nbsp; &nbsp; execute_pre_post_=
-process(self.d, self.d.getVar("POPULATE_SDK_POST_HOST_COMMAND"))</div>
-<div>File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/l=
-ib/oe/sdk.py', lineno: 104, function: install_locales</div>
-<div>&nbsp; &nbsp; &nbsp;0100:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # G=
-enerate a locale archive of them</div>
-<div>&nbsp; &nbsp; &nbsp;0101:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tar=
-get_arch =3D self.d.getVar('SDK_ARCH')</div>
-<div>&nbsp; &nbsp; &nbsp;0102:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; roo=
-tfs =3D oe.path.join(self.sdk_host_sysroot, self.sdk_native_path)</div>
-<div>&nbsp; &nbsp; &nbsp;0103:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; loc=
-aledir =3D oe.path.join(rootfs, self.d.getVar("libdir_nativesdk"), "locale"=
-)</div>
-<div>&nbsp;*** 0104:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; generate_loca=
-le_archive(self.d, rootfs, target_arch, localedir)</div>
-<div>&nbsp; &nbsp; &nbsp;0105:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # A=
-nd now delete the binary locales</div>
-<div>&nbsp; &nbsp; &nbsp;0106:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pkg=
-s =3D fnmatch.filter(pm.list_installed(), "nativesdk-glibc-binary-localedat=
-a-*.utf-8")</div>
-<div>&nbsp; &nbsp; &nbsp;0107:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pm.=
-remove(pkgs)</div>
-<div>&nbsp; &nbsp; &nbsp;0108:&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>File: '/home/user/engicam-bsp-scripts/nxp_zeus-2.3/sources/poky/meta/l=
-ib/oe/package_manager.py', lineno: 134, function: generate_locale_archive</=
-div>
-<div>&nbsp; &nbsp; &nbsp;0130:&nbsp; &nbsp; # Need to set this so cross-loc=
-aledef knows where the archive is</div>
-<div>&nbsp; &nbsp; &nbsp;0131:&nbsp; &nbsp; env =3D dict(os.environ)</div>
-<div>&nbsp; &nbsp; &nbsp;0132:&nbsp; &nbsp; env["LOCALEARCHIVE"] =3D oe.pat=
-h.join(localedir, "locale-archive")</div>
-<div>&nbsp; &nbsp; &nbsp;0133:</div>
-<div>&nbsp;*** 0134:&nbsp; &nbsp; for name in os.listdir(localedir):</div>
-<div>&nbsp; &nbsp; &nbsp;0135:&nbsp; &nbsp; &nbsp; &nbsp; path =3D os.path.=
-join(localedir, name)</div>
-<div>&nbsp; &nbsp; &nbsp;0136:&nbsp; &nbsp; &nbsp; &nbsp; if os.path.isdir(=
-path):</div>
-<div>&nbsp; &nbsp; &nbsp;0137:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
- =3D ["cross-localedef", "--verbose"]</div>
-<div>&nbsp; &nbsp; &nbsp;0138:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
- +=3D arch_options</div>
-<div>Exception: FileNotFoundError: [Errno 2] No such file or directory: '/h=
-ome/user/engicam-bsp-scripts/nxp_zeus-2.3/build/tmp/work/cortexa7t2hf-neon-=
-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/sdk/image/opt/eng-imx-fb/5.4-z=
-eus/sysroots/x86_64-pokysdk-linux/usr/lib/locale'</div>
-<div>&nbsp;</div>
-<div>DEBUG: Python function do_populate_sdk finished</div>
-----</div>
-<br />I read in another request a suggestion to add:<br /><em>SDK_DEPENDS +=
-=3D "nativesdk-glibc-locale"<br /></em>in local.conf, but that didn't fixed=
- the issue.<br /><br />The only way I found to pass the sdk generation is t=
-o remove the&nbsp;<em>ENABLE_BINARY_LOCALE_GENERATION,&nbsp;</em><em>GLIBC_=
-GENERATE_LOCALES and&nbsp;</em><em>IMAGE_LINGUAS_append&nbsp;</em>lines in =
-the local.conf. And then un-comment them back when I have to generate a new=
- image.<br /><br />Did you experienced similar problems?<br />Thanks<br /><=
-br /><br /></div>
+> Hi,
+>
+> I am working with yocto project on IMX8MM board, i am trying to replace p=
+ulseaudio with pipewire as I have seen pipewire is part of  yocto meta-opem=
+bedded/meta-multimedia/recipe-multimedia/pipewire.
+>
+> But im not able to see pipewire configuration and commands in my image.
+>
+> And then i added the below packages in local.conf file
+> IMAGE_INSTALL:append =3D " libspa-dbus libpipewire pipewire pipewire-puls=
+e wireplumber pipewire-alsa pipewire-modules-meta pipewire-v4l2"
+>
+> And i getting the below error message while running pipewire service,
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 pipewire[483]: [W][00008.835990]=
+ pw.context   | [       context.c:  374 pw_context_new()] 0xaaab10aeba40: c=
+an't load dbus library: support/libspa-dbus
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 pipewire[483]: [E][00008.836576]=
+ pw.module    | [   impl-module.c:  278 pw_context_load_module()] No module=
+ "libpipewire-module-rt" was found
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 pipewire[483]: [E][00008.838528]=
+ pw.module    | [   impl-module.c:  278 pw_context_load_module()] No module=
+ "libpipewire-module-profiler" was found
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 pipewire[483]: [E][00008.838576]=
+ pw.conf      | [          conf.c:  560 load_module()] 0xaaab10aeba40: coul=
+d not load mandatory module "libpipewire-module-profily
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 pipewire[483]: [E][00008.839009]=
+ default      | [      pipewire.c:  125 main()] failed to create context: N=
+o such file or directory
 
---oJMNJNGK5GdjZtvgQMiY--
+I guess it needs some additional pipewire-modules to be installed, you
+might have to add them into the IMAGE_INSTALL as well.
+
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 systemd[1]: pipewire.service: Ma=
+in process exited, code=3Dexited, status=3D254/n/a
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 systemd[1]: pipewire.service: Fa=
+iled with result 'exit-code'.
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 systemd[1]: pipewire.service: Sc=
+heduled restart job, restart counter is at 5.
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 systemd[1]: Stopped PipeWire Mul=
+timedia Service.
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 systemd[1]: pipewire.service: St=
+art request repeated too quickly.
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 systemd[1]: pipewire.service: Fa=
+iled with result 'exit-code'.
+> Apr 28 18:28:37 phyboard-pollux-imx8mp-3 systemd[1]: Failed to start Pipe=
+Wire Multimedia Service.
+>
+> Can some one help me in integrating pipewire.
+>
+> Best Regards,
+> Sudarshan.
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#62845): https://lists.yoctoproject.org/g/yocto/messag=
+e/62845
+> Mute This Topic: https://lists.yoctoproject.org/mt/105156440/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
