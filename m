@@ -1,182 +1,194 @@
-Return-Path: <pbarker.renesas@gmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4ECBCC6FD1F
-	for <webhook@archiver.kernel.org>; Tue,  2 Apr 2024 08:39:09 +0000 (UTC)
-Received: from relmlie6.idc.renesas.com (relmlie6.idc.renesas.com [210.160.252.172])
- by mx.groups.io with SMTP id smtpd.web11.7670.1712047140323411238
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1FF67CD1284
+	for <webhook@archiver.kernel.org>; Tue,  2 Apr 2024 11:33:40 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web11.3787.1712026303467848072
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Apr 2024 01:39:00 -0700
+ Mon, 01 Apr 2024 19:51:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: bp.renesas.com, ip: 210.160.252.172, mailfrom: paul.barker.ct@bp.renesas.com)
-X-IronPort-AV: E=Sophos;i="6.07,174,1708354800"; 
-   d="asc'?scan'208";a="204035470"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 02 Apr 2024 17:38:58 +0900
-Received: from [10.226.93.98] (unknown [10.226.93.98])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7CEC741B0F86;
-	Tue,  2 Apr 2024 17:38:56 +0900 (JST)
-Message-ID: <1f92e19a-6e2e-43ed-b300-2d4f5cd4815b@bp.renesas.com>
-Date: Tue, 2 Apr 2024 09:38:54 +0100
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=sVbjHRUg;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=482223ac68=zhe.he@windriver.com)
+Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4322jOk1015744
+	for <yocto@lists.yoctoproject.org>; Tue, 2 Apr 2024 02:51:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:subject:date:message-id:content-transfer-encoding
+	:content-type:mime-version; s=PPS06212021; bh=76IYIMccfF90zX9uja
+	WbsMKNXNxjlmHQzYopZede1ow=; b=sVbjHRUgzOgS6Y5l2tvWNC4Vg2lrZWs5PP
+	FuGkHj01tU9yeUebnSyV5Os+VbDsOiWYuNWTJf6laPNCLhgqDdszkasxnnND52Jg
+	mmT1RfAA17gsFhY/iubHMpwHtDRtHc3mxn2VW269AOa152kB+VNj+BrTGNAb3Ra1
+	mkjx9pUz1GRGcKgiSLFI7wORrwUD43H9SBLd1eVg0+i6PL2pWiq+fzEJJRRcftxu
+	WPgDLmKub8veORZor9n2VVm2SQj5nyMSIUlc1nLa32y3l6IPsSbRDmYe59La1hoN
+	Yzy0dlyIqOkpVVDhjFn//peefRJlcuc+HEzqhwExXb7AKrEiIp0w==
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2169.outbound.protection.outlook.com [104.47.55.169])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3x69q6tn5a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Tue, 02 Apr 2024 02:51:42 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j6caHrUiqpi+A6Tk2cAB/8eirhjGcTIcN8MmffpNVbNnHIHokhLUQsxzFuE6ms6b4mJZN7vx+1GN9WMCnz7vgx/fhdgjg6EY4UAqLs5QcP0QbQ7gPfTm82r16mKMxVPfIJYLCVDBki8j+jxomj5/017sLz+0Tx34V8eRMHslNoFvaJXT/IqGzY1ZOoLVU7CqQE9F3ju4WW/KmCorTACHNB7hXrgKWsgWpvG3RGPd5ka2jD5ysyzHuiRCxWSS9zg5UlpUUwm00W376z4U3NP7AgBnhIWKrx+hpR/3hcY1745nQLACDlM4/Rxrw2xvht84WmgcyZRe/Ss5RzNrovN8Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=76IYIMccfF90zX9ujaWbsMKNXNxjlmHQzYopZede1ow=;
+ b=iKgcGY5De+wccvPoYfMIrTaZarUdYtQwdypL9dLyu+oyPTLRsH3UcsdoZq5L4vaHZ/x4MhEkOKxdbzWGQci2+kJv9n8tJX1Wf5S+mz623fx2vA2Huly6EpFBXxDsOBkOdnkrFyYglGB6Ruv86I8SDkSWnPWMojSK8qmcE+XrwT7sX2CrcZg6mlQ8nI9KOTmyCtgtrW77BppTJ414W5Nxc8QBkImo2WAvjVAtERI52PaHoLwW0pZgBVM3wnLrTk2Z+z1zsLcdwvWrkB4CoNykHpIm+cxxu9BR5PFPRn/jArA2M5D9t42dZB6x/sTrUBmm2FkWZvAMocKd3QsAzjjJIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from SA3PR11MB7527.namprd11.prod.outlook.com (2603:10b6:806:314::20)
+ by PH0PR11MB5781.namprd11.prod.outlook.com (2603:10b6:510:14a::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.25; Tue, 2 Apr
+ 2024 02:51:38 +0000
+Received: from SA3PR11MB7527.namprd11.prod.outlook.com
+ ([fe80::65ea:a821:96fd:4dc1]) by SA3PR11MB7527.namprd11.prod.outlook.com
+ ([fe80::65ea:a821:96fd:4dc1%5]) with mapi id 15.20.7452.019; Tue, 2 Apr 2024
+ 02:51:38 +0000
+From: "He Zhe" <zhe.he@windriver.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto][meta-anaconda][PATCH] kernel: ide: Remove ide kernel options that had been deleted upstream
+Date: Tue,  2 Apr 2024 10:51:25 +0800
+Message-Id: <20240402025125.1105603-1-zhe.he@windriver.com>
+X-Mailer: git-send-email 2.25.1
+X-ClientProxiedBy: TYCPR01CA0191.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b0::16) To SA3PR11MB7527.namprd11.prod.outlook.com
+ (2603:10b6:806:314::20)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Openembedded-architecture] New mailing list for layer patches
-Content-Language: en-GB
-To: Ross Burton <ross.burton@arm.com>,
- openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>,
- OE-core <openembedded-core@lists.openembedded.org>
-References: <8363E7C5-B3C0-4B3E-941E-762A400DF87B@arm.com>
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-Organization: Renesas Electronics Corporation
-In-Reply-To: <8363E7C5-B3C0-4B3E-941E-762A400DF87B@arm.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------qi2dMd21oWSzwW02qH6KOJGp"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA3PR11MB7527:EE_|PH0PR11MB5781:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	SM0cy3W0eE8MczExQpRhwKg9H32OnJTQ+MQmF4DAdvrDOegTv2Z0wzvP9iejuezEG3/ZW4cDO0MNN2x6jeTgXsnTUp0/ROxVmN1zTeTTzuTflYmfypJga1kYVzuO+rW6NqfvSFQCRhc7NGw7nNG9Ice6/9dz70iHtRpgjWai6meTBesUCavwa3A8UOoYPOfKtnN6fAT5Lm5gzuS1OjE3OdqpTaf3afraVsfZvtaaJSW4R/ikMf/ud7OXRiRtJHNZQE7yANOuUnDPQsZB0TLTYFilC3+1/M0ClNJBFArAcWfWtHQfXlonmpAKo1h41mYgqOuzkqf0LFEg82K/EzKOPBx17fmspOH4kcofGaYeDkpadiZlwriVc/4amPj9aPUZ4S8ZQVpDutmiWNdDK4xVS31FwZPyFv2RSlFELOyreVjHNWhaZihzUqrzqYATFJEFfXHAeQikkm8ceXAiZSFiLaQP4+bnkGbFTq7sSfHFYy0eAfEysuqoiD0TveRubeoOEyd5v9SLVrrJ5jWIFW1rrY6o4BFCt6XjYZcekUxy2993+peHR6xwLa3tfLZwxT7VK1VyJ1/mA1ip4b9t6rTHaHBu/FlDh0zTEtDFef9H1Q50GM+bNnidAVKDSe7km3CD2OYvJ5sq6Ur0XryWDFRdDNd25QEkvAMnl1MQKYhlNYY=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA3PR11MB7527.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(52116005)(1800799015)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?y7Jig8LqV9I82Kcsj3u1/35hgQo6LZpyZm5fRwLwqioK9nm+P1wMi9f3M+/Q?=
+ =?us-ascii?Q?k0Hklobr5ss7+vnIzu+T4R6Z7TauGPO+ThoQTy2EsyVi+MaXNGlWzeIOU1m+?=
+ =?us-ascii?Q?XoeWVjr60lESgL1KcN9GzX79wLtfEOnDVqYaDD8vJzg5sjgSfpXMUM7veB/K?=
+ =?us-ascii?Q?o7J4UccDZbSDJvcoROURpQioZBSapTlIezWyMmlVYq3vZ1T830AWrcGFrKP6?=
+ =?us-ascii?Q?XrFW2wCw1fW6t6RfI+XryV3w8iVJib/ptan/EqtjV8eQUamCPoNOCGdcO/q8?=
+ =?us-ascii?Q?FIhJVNbPX/V0WAZmAAQABIcCVzfiepef1ZtLUdM2lTSuJDpH6qFcmZdIM9KS?=
+ =?us-ascii?Q?c/nWKI2u+5nZ6wQj1WQq2iXcQQsHJE0+lrm0vgGr4hfv4sA8JwoUGK/aOHIV?=
+ =?us-ascii?Q?eeNdx/DMMInwbHSiy5QD3qbCp+pAcpFUnsJQhPB5O+ITREjK51wkzTKCTEi+?=
+ =?us-ascii?Q?q1eTWI7fhxYFeew2tR/q4lEQsTdzmJ/WO6eLoMxIYSROEFcntQUjojKmObSU?=
+ =?us-ascii?Q?2l4p3C8kBYkl8PsFKhzUEU4Nv/gsf8JhmSItEM6vnHkAS7H3ab59yX9GCvQj?=
+ =?us-ascii?Q?HnCsxEPJBh5ljHXVlG3xFmV4Ekau8gQncV5JoBLjmHKMFID7SKrBDbwyZrKw?=
+ =?us-ascii?Q?dFSgrQuZ+sPLm7L6d4hMgszSv5kAHH3re8l6BsPVCs71rUVhq03cfvj7V1CW?=
+ =?us-ascii?Q?kGG8Xv4RZpp+q4eGI8PSIYpGr6NFFDBdyulBze5N9nSp7QYJkZOZp4QTB3BS?=
+ =?us-ascii?Q?YznF0LaITqdaJbj8vHmLQ6BfIVnKm9jKb9F/04ZPg3qUD0ycRSCphbLdkFi7?=
+ =?us-ascii?Q?bQD/wI9by+zeNi2ZGpVCH4pZqmGpPzqiENXjBJwNa9NG8cnlwva9S6CC35Nr?=
+ =?us-ascii?Q?JRT1089p4qEK2jd5V96dK5GJkDfVpJgRcui2qleAipdlOICDVufLhX7Yd3Zq?=
+ =?us-ascii?Q?Jx4+LEmFu2nGZEUIXwC5ITIiMzNSGdhWGT2BUnGqfAJEmuoy+Dzm9m/idwC7?=
+ =?us-ascii?Q?29p1f/E6gXkNyuC6b7c5fU9wlYslv3FGpkmLfQEKfmldBTt4fBPe8OmqGQDJ?=
+ =?us-ascii?Q?Sk8U0ljiVkZ/YzPF8c1PE8KNcKR1G8Y+wY1D6oZXAwj+IKKCZSnHcxcpTvxE?=
+ =?us-ascii?Q?pMZRtfSGK2ZU4/kR3N8YRg0QsPwcLw9Ii6y5zo0ZrluoOY0xasPBO27Y8mno?=
+ =?us-ascii?Q?s/a5CPVND3TdVrLQYt7+ttC3oGF5nNp2D2/A+8NuCSZzPHW2YjlMb++z9zHu?=
+ =?us-ascii?Q?K2NCKkE//GvT437z3MGcFYX9j5WNUh/vMQ2YEUw9gOmdF+TvgQGSZSToCJWg?=
+ =?us-ascii?Q?xmO2DmXpyvy0aTQLq6m9XVI0UxE46vCqwdp+phR0tJfGJ+kU9QBVT+6EHFSM?=
+ =?us-ascii?Q?tcAr9jySFFwD9r8QQD3ueG0/c2OFDX1mrYZUYsd8NSuVk8UUBFRJ2h3Wxc3l?=
+ =?us-ascii?Q?+DIkbxt0QMIKjg96OBv/+inLtuMbqxaJBn9+zks/Jf0fER99sWUujkJZNlAV?=
+ =?us-ascii?Q?yS9w3cRMRfqBvnsaz3r++TADkYGtrPzQzYxiFLYkQboEWEd8QOJliPCcLHg3?=
+ =?us-ascii?Q?3f+++VL2E5bOY8vA31d+VSHtOn5zjVmI4aG6GT4n?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37ac7a31-975e-444e-ebe3-08dc52bfd173
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7527.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2024 02:51:38.7799
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PdZG6a710ard375+GrIG9yGG/yFHIgcwBbfCQ8Q2AyXJEsll250zWFDrfPW3XVMXLDIkNTdlRPk2ZDt/jFS7AA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5781
+X-Proofpoint-ORIG-GUID: pyYDEqdnVxSDTkWccbdcqQSY_E01lN0H
+X-Proofpoint-GUID: pyYDEqdnVxSDTkWccbdcqQSY_E01lN0H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-01_18,2024-04-01_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ bulkscore=0 spamscore=0 suspectscore=0 phishscore=0 adultscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 mlxlogscore=806
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403210001 definitions=main-2404020019
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Apr 2024 08:39:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62873
+ <yocto@lists.yoctoproject.org>; Tue, 02 Apr 2024 11:33:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62874
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------qi2dMd21oWSzwW02qH6KOJGp
-Content-Type: multipart/mixed; boundary="------------6qJWPpZARVgEq6mVejJiXR1M";
- protected-headers="v1"
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-To: Ross Burton <ross.burton@arm.com>,
- openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>,
- OE-core <openembedded-core@lists.openembedded.org>
-Message-ID: <1f92e19a-6e2e-43ed-b300-2d4f5cd4815b@bp.renesas.com>
-Subject: Re: [Openembedded-architecture] New mailing list for layer patches
-References: <8363E7C5-B3C0-4B3E-941E-762A400DF87B@arm.com>
-In-Reply-To: <8363E7C5-B3C0-4B3E-941E-762A400DF87B@arm.com>
+IDE related kernel options had been deleted from upstream since v5.14
+http://lxgit.wrs.com/cgit/linux-yocto-6.1.git/commit/?h=v6.1/standard/base&id=
+b7fb14d3ac63117e0e8beabe75f4ea52051fbe3a
 
---------------6qJWPpZARVgEq6mVejJiXR1M
-Content-Type: multipart/mixed; boundary="------------q9UE7QPgN7QHu0iiGqdOiYT0"
+Remove them to fix the following warning:
+WARNING: linux-yocto-6.1.83+gitAUTOINC+85ba1038b5_1d90573765-r0
+do_kernel_configcheck: [kernel config]:
+This BSP contains fragments with warnings:
 
---------------q9UE7QPgN7QHu0iiGqdOiYT0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+[INFO]: the following symbols were not found in the active configuration:
+     - CONFIG_BLK_DEV_PIIX
+     - CONFIG_BLK_DEV_IDEDMA_SFF
+     - CONFIG_BLK_DEV_IDEPCI
+     - CONFIG_IDEPCI_PCIBUS_ORDER
+     - CONFIG_BLK_DEV_IDEDMA
 
-On 28/03/2024 14:36, Ross Burton wrote:
-> Hi,
->=20
-> At the moment if a layer doesn=E2=80=99t have enough volume to justify =
-a dedicated mailing list for patches (see, for example, meta-arm@lists.yo=
-ctoproject.org <mailto:meta-arm@lists.yoctoproject.org>) then the convent=
-ion is that the patches can be sent to yocto@lists.yoctoproject.org <mail=
-to:yocto@lists.yoctoproject.org>.
->=20
-> However, that=E2=80=99s also the list that we encourage users of Yocto =
-to use for help, so the list has a mix of patches for various layers and =
-people asking for help, which isn=E2=80=99t ideal: users who want help do=
-n=E2=80=99t want to be flooded with patches for layers they=E2=80=99re no=
-t using, layer maintainers may not want to see the requests for help, and=
- people who want the status reports have to receive patches and support.
->=20
-> The Yocto TSC has been discussing this, and as a solution to this we=E2=
-=80=99ve just created a new mailing list: yocto-patches@lists.yoctoprojec=
-t.org <mailto:yocto-patches@lists.yoctoproject.org>.  This list is specif=
-ically for Yocto-related projects which don=E2=80=99t have their own mail=
-ing list or other patch submission process.   We ask that all layers curr=
-ently using yocto@ for patches move to yocto-patches@, so that yocto@ can=
- be used purely for discussion and other non-patch related subjects.
+Signed-off-by: He Zhe <zhe.he@windriver.com>
+---
+ classes/anaconda_kernel.bbclass            | 1 -
+ recipes-kernel/linux/files/ide.cfg         | 5 -----
+ recipes-kernel/linux/files/ide.scc         | 1 -
+ recipes-kernel/linux/files/liveinstall.cfg | 1 -
+ 4 files changed, 8 deletions(-)
+ delete mode 100644 recipes-kernel/linux/files/ide.cfg
+ delete mode 100644 recipes-kernel/linux/files/ide.scc
 
-I think this is a great change, along with the new yocto-status@ list it =
-will make things easier to follow :)
+diff --git a/classes/anaconda_kernel.bbclass b/classes/anaconda_kernel.bbclass
+index 5461a22..b5dc983 100644
+--- a/classes/anaconda_kernel.bbclass
++++ b/classes/anaconda_kernel.bbclass
+@@ -5,7 +5,6 @@ SRC_URI:append = " \
+     file://liveinstall.scc \
+     file://efivarfs.scc \
+     file://multipath.scc \
+-    file://ide.scc \
+ "
+ 
+ KERNEL_FEATURES:append = " \
+diff --git a/recipes-kernel/linux/files/ide.cfg b/recipes-kernel/linux/files/ide.cfg
+deleted file mode 100644
+index 9d973ce..0000000
+--- a/recipes-kernel/linux/files/ide.cfg
++++ /dev/null
+@@ -1,5 +0,0 @@
+-CONFIG_BLK_DEV_IDEDMA_SFF=y
+-CONFIG_BLK_DEV_IDEPCI=y
+-CONFIG_IDEPCI_PCIBUS_ORDER=y
+-CONFIG_BLK_DEV_PIIX=y
+-CONFIG_BLK_DEV_IDEDMA=y
+diff --git a/recipes-kernel/linux/files/ide.scc b/recipes-kernel/linux/files/ide.scc
+deleted file mode 100644
+index 81e57f5..0000000
+--- a/recipes-kernel/linux/files/ide.scc
++++ /dev/null
+@@ -1 +0,0 @@
+-kconf non-hardware ide.cfg
+diff --git a/recipes-kernel/linux/files/liveinstall.cfg b/recipes-kernel/linux/files/liveinstall.cfg
+index 37c9f47..6794674 100644
+--- a/recipes-kernel/linux/files/liveinstall.cfg
++++ b/recipes-kernel/linux/files/liveinstall.cfg
+@@ -2,4 +2,3 @@ CONFIG_ISO9660_FS=y
+ CONFIG_BLK_DEV_LOOP=y
+ CONFIG_SQUASHFS=y
+ CONFIG_SQUASHFS_XATTR=y
+-# CONFIG_BLK_DEV_PIIX is not set
+-- 
+2.25.1
 
-Do you know if yocto-patches@ will be available via lore.kernel.org?
-
-Thanks,
-
---=20
-Paul Barker
-
---------------q9UE7QPgN7QHu0iiGqdOiYT0
-Content-Type: application/pgp-keys; name="OpenPGP_0x27F4B3459F002257.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x27F4B3459F002257.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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3D
-=3DsIIN
------END PGP PUBLIC KEY BLOCK-----
-
---------------q9UE7QPgN7QHu0iiGqdOiYT0--
-
---------------6qJWPpZARVgEq6mVejJiXR1M--
-
---------------qi2dMd21oWSzwW02qH6KOJGp
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSiu8gv1Xr0fIw/aoLbaV4Vf/JGvQUCZgvEHgUDAAAAAAAKCRDbaV4Vf/JGvZsL
-AP96Uh2bzQPNYC76G91QkWAn6EeC2qUaeqcnFNhY8439PwEAt6JeNUd9YAEdA/PY0XOUBPIiAufJ
-DYGlHoJa1G/7IAw=
-=qH0M
------END PGP SIGNATURE-----
-
---------------qi2dMd21oWSzwW02qH6KOJGp--
 
