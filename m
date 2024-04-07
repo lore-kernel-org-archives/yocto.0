@@ -2,88 +2,94 @@ Return-Path: <tim.orling@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 902B0CD1292
-	for <webhook@archiver.kernel.org>; Sun,  7 Apr 2024 19:54:07 +0000 (UTC)
-Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
- by mx.groups.io with SMTP id smtpd.web11.90483.1712519646849940783
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79108CD1292
+	for <webhook@archiver.kernel.org>; Sun,  7 Apr 2024 19:54:17 +0000 (UTC)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+ by mx.groups.io with SMTP id smtpd.web10.90641.1712519650592082520
  for <yocto@lists.yoctoproject.org>;
- Sun, 07 Apr 2024 12:54:06 -0700
+ Sun, 07 Apr 2024 12:54:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=bp9LfWaL;
- spf=pass (domain: konsulko.com, ip: 209.85.215.194, mailfrom: tim.orling@konsulko.com)
-Received: by mail-pg1-f194.google.com with SMTP id 41be03b00d2f7-5dbd519bde6so2846510a12.1
-        for <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 12:54:06 -0700 (PDT)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=DcB2fMbU;
+ spf=pass (domain: konsulko.com, ip: 209.85.214.179, mailfrom: tim.orling@konsulko.com)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1e3e84a302eso6267215ad.0
+        for <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 12:54:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1712519645; x=1713124445; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KYchwJJqW4uvZp02Gf8eNDLx1o9nLAw7MV6tXBGlnNY=;
-        b=bp9LfWaLOLxycizV/CGAISE0CRZpf4i46kit5dn9ACRQE/uCFu9RZJ6JBVJZ8YE3ir
-         PBXjMekLnk65szy13L/dbxbeBOHyjfannwcDpu0khazsEv4NlrhfVvQ1NYLY5ThNF1kS
-         gV/X7XK0VDiydk/w5OskRQFg49PkOsUbyFc1Q=
+        d=konsulko.com; s=google; t=1712519650; x=1713124450; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pBN3rSNtCduIZfqDKEvDkJAa+2cgFaLSV0KoNaPiZRg=;
+        b=DcB2fMbUbwKTbkL2rsT/Bcrk4Y7pvjSgt+s6a7evz7lWuWHbMM3mVJF9iJBc/i+hd8
+         TwChEZQ0WTSAzdVCqw0Jg4kw4cg1Tt4xW5O771400mBLmkp1AR3/mqsmyiW6hgCZ7BMK
+         PiPcWmV8wb06W1UmX6snA2rxLIcOKXgA5ElBY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712519645; x=1713124445;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KYchwJJqW4uvZp02Gf8eNDLx1o9nLAw7MV6tXBGlnNY=;
-        b=ROPBZqLLgr0ZN2zyPw5umvPXQMiMQh6Vnw5QoAMsoY2KLC+w0cRGGwdhUWEtpR7bad
-         CBCbrAqomCPE0yd5kBEzGxnyo/olBZr+QsXNYGJ/zH9jXASmlNWGjUtdon4Dwaho4IMZ
-         n0uI0ftwj22a1PmBkHhtpFZc/oge4VOS+hFYJyVnnUIQJSaBPYeEW8LbsEKfWV4nW/V3
-         owl/c/RjO7/V4JfZ4+5vALNKu32zOvep14oBx41S8qRJzb3d2TclJ7SPomv7o4Lqr5DD
-         sduqEOYMxnG5FnGdosuiSwh4MYpYIC0kqN2oHMhLlNFpFzzfbV/Y8YuSle8zX/llZ7Lk
-         mmdg==
-X-Gm-Message-State: AOJu0Yx1kkWr6dk0R4ksQZKdjS9+N7sLQtdLmbLKsLhb3CXp5MVOLUUv
-	sfKynQy6DETMdeYKDf764fZMKuwoM321a+F4mjpQ2cbPghwLyIYaJpcObsj6YJtkIKzhsaAHXsu
-	bPzQQOtCl
-X-Google-Smtp-Source: AGHT+IHcZ52MTdmbkxuDDZd2s6+ti5rqFzgBeprcfx9dCmGuCefi0Cjh3f6D7dWROgG2H2CRAktI0g==
-X-Received: by 2002:a05:6a20:5521:b0:1a3:600b:444c with SMTP id ko33-20020a056a20552100b001a3600b444cmr6280072pzb.36.1712519645514;
-        Sun, 07 Apr 2024 12:54:05 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1712519650; x=1713124450;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pBN3rSNtCduIZfqDKEvDkJAa+2cgFaLSV0KoNaPiZRg=;
+        b=svHNVGYorfO7D8PV60R/EZbiiLLFAHaSMxbkH9nC0VBuGdsVPi4Hasa7+Wje+j1CL6
+         lTlYHnmMlXQ0ga1hi4iE3bK34pqcnVKfUiRO6wZvpjoQswHK50yy+HNldQheL23u6zV+
+         /F1V8IX2O1ZloQVWRpMq+wZWwEU8rqBKYQdMPY/7iQRSo6Tx9VDoCeuYpXXXyRkrnGG4
+         hrE3rdat9ED9q3IqEWvn0MY6uTu8A2lYqamzhMRpBAdwLw8hpLkJtLxqJJA9krO0W54R
+         6rhSOnMGoYqEMAeMO3LoLSgJfPSbRGV+D+aC4GRFoJZ6Qr0RBP7/0L38Fh1i9O/eSY8q
+         YPvg==
+X-Gm-Message-State: AOJu0Yzno5ZiQinCN2bTSaFl2baz50yH8PtYBFKjmVyYj8hnH77wbNLa
+	x8+mUxXbWkt5NVZV50QBIfBKWkLgFtRZ2Duuhs4A+4qv4SM1NDygCPgmfZxN9MFY08gQH0X5hGR
+	dei6KXg==
+X-Google-Smtp-Source: AGHT+IF9kg8OrOOmUW44jY4gTMe+5QUFjcsz4BDSWbBJiGfPHio16moCPPkdmROUGN0LKts4xp4agA==
+X-Received: by 2002:a17:902:dac8:b0:1e2:8c12:aac0 with SMTP id q8-20020a170902dac800b001e28c12aac0mr9111387plx.28.1712519649716;
+        Sun, 07 Apr 2024 12:54:09 -0700 (PDT)
 Received: from localhost ([2601:1c0:ca00:bd60:5996:ce4c:d10f:fa94])
-        by smtp.gmail.com with ESMTPSA id kp15-20020a170903280f00b001e4028c9d60sm1483594plb.212.2024.04.07.12.54.04
+        by smtp.gmail.com with ESMTPSA id q4-20020a170902a3c400b001e2a43bafbasm5418889plb.216.2024.04.07.12.54.09
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Apr 2024 12:54:05 -0700 (PDT)
+        Sun, 07 Apr 2024 12:54:09 -0700 (PDT)
 From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-raspberrypi][PATCH 0/3] Initial u-boot support for raspberrypi5
-Date: Sun,  7 Apr 2024 12:53:58 -0700
-Message-ID: <cover.1712518899.git.tim.orling@konsulko.com>
+Subject: [meta-raspberrypi][PATCH 2/3] u-boot: re-enable rapsberrypi5
+Date: Sun,  7 Apr 2024 12:54:00 -0700
+Message-ID: <16dcfcd6ee331d712e3cc7c0cdf2b0f85c33e8af.1712518899.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <cover.1712518899.git.tim.orling@konsulko.com>
+References: <cover.1712518899.git.tim.orling@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 19:54:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62891
+ <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 19:54:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62893
 
-Enable u-boot for the raspberrypi5 via the meta-lts-mixins 'scarthgap/u-boot' branch.
+With meta-lts-mixins scarthgap/u-boot we can now support raspberrypi5
 
-This is initial support for raspberrypi5, not all features (usb, ethernet) are enabled
-in u-boot yet.
-
-You may need to have a UART dongle plugged into the 'UART' port between 'HDMI0' and
-'HDMI1' to get the kernel to boot. Your mileage may vary.
-
-The following changes since commit d072cc8a48571a4af40a937f98e173b5c9468c4f:
-
-  rpi-base: Add hifiberry-dacplusadc overlay (2024-03-28 03:35:31 +0000)
-
-are available in the Git repository at:
-
-  https://github.com/moto-timo/meta-raspberrypi scarthgap/raspberrypi5_u-boot
-  https://github.com/moto-timo/meta-raspberrypi/tree/scarthgap/raspberrypi5_u-boot
-
-Tim Orling (3):
-  layer.conf: rpi5 recommends lts-u-boot-mixin
-  u-boot: re-enable rapsberrypi5
-  raspberrypi5.conf: Fix KERNEL_IMAGETYPE_UBOOT
-
- conf/layer.conf                      | 3 +++
- conf/machine/raspberrypi5.conf       | 6 ++++++
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ conf/machine/raspberrypi5.conf       | 2 ++
  recipes-bsp/u-boot/u-boot_%.bbappend | 3 ---
- 3 files changed, 9 insertions(+), 3 deletions(-)
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
+diff --git a/conf/machine/raspberrypi5.conf b/conf/machine/raspberrypi5.conf
+index 8c38637..e53c2d5 100644
+--- a/conf/machine/raspberrypi5.conf
++++ b/conf/machine/raspberrypi5.conf
+@@ -24,3 +24,5 @@ VC4DTBO ?= "vc4-kms-v3d"
+ 
+ # "zImage" not supported on arm64 and ".gz" images not supported by bootloader yet
+ KERNEL_IMAGETYPE_DIRECT ?= "Image"
++
++UBOOT_MACHINE = "rpi_arm64_config"
+diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
+index 78b3e48..e50acf5 100644
+--- a/recipes-bsp/u-boot/u-boot_%.bbappend
++++ b/recipes-bsp/u-boot/u-boot_%.bbappend
+@@ -12,6 +12,3 @@ do_install:append:rpi () {
+     install -d ${D}${sysconfdir}
+     install -m 0644 ${WORKDIR}/fw_env.config ${D}${sysconfdir}/fw_env.config
+ }
+-
+-# Temporary avoid Raspberry Pi 5 because U-Boot has not been ported yet
+-COMPATIBLE_MACHINE:raspberrypi5 = "(-)"
 -- 
 2.43.2
 
