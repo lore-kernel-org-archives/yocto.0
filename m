@@ -1,92 +1,117 @@
-Return-Path: <tim.orling@konsulko.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79F10CD129A
-	for <webhook@archiver.kernel.org>; Sun,  7 Apr 2024 19:54:17 +0000 (UTC)
-Received: from mail-oa1-f67.google.com (mail-oa1-f67.google.com [209.85.160.67])
- by mx.groups.io with SMTP id smtpd.web11.90484.1712519648768222994
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A96B4CD1292
+	for <webhook@archiver.kernel.org>; Sun,  7 Apr 2024 20:11:07 +0000 (UTC)
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+ by mx.groups.io with SMTP id smtpd.web10.90922.1712520662136200512
  for <yocto@lists.yoctoproject.org>;
- Sun, 07 Apr 2024 12:54:08 -0700
+ Sun, 07 Apr 2024 13:11:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=bvccq4ed;
- spf=pass (domain: konsulko.com, ip: 209.85.160.67, mailfrom: tim.orling@konsulko.com)
-Received: by mail-oa1-f67.google.com with SMTP id 586e51a60fabf-222a9eae9a7so2000937fac.3
-        for <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 12:54:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Dj55SHEb;
+ spf=pass (domain: gmail.com, ip: 209.85.160.51, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-221a9e5484aso2477832fac.0
+        for <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 13:11:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1712519647; x=1713124447; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aFWd4K1sD8262p3ctumxZqYbM0ZWpRsLYec6k8cOVVc=;
-        b=bvccq4edK2/v5CPe9A4GrLdhC8uPrt7jFGuwMVW8Px3sflA1r54UvVOxEeDXebR+KQ
-         08OsW3/6f1KgQWsDvaVfstIUwE3v0YdCrmCzzcMyzINq6w8u7UoTGmiKsmW3dV48Ksnk
-         N3KVLMEbgA/wu3LXINwiSrQPGd2gEDd+y/HRw=
+        d=gmail.com; s=20230601; t=1712520661; x=1713125461; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=inq4ci2KHiDb4fqelY3/8KIa4W1/KisUrOY/qJzQXQo=;
+        b=Dj55SHEb6szr/ZqJDhKCvJELTpAHYcjFJIOXARhUSLVd3fjfzVCmDP5cdplDT+0jh7
+         YiU08qw7jgGF5Bh1fVrk8TOf8ndygTTl/FnxMZ33wMykS+K+dYv3j97t9blpK+CdT0SE
+         8EsLFz4X3kUdwUSKdN1Sl5RzDDcQ4T+l0SvRmh2KLLlJ2L8YZLvqsopY/50rV5zs928/
+         hGpbFqctd7aWlM+Bsv4In6Y3p44hnTGw8v1+AB9rEWurc3hp+2PKyrw6imm2xl/JSxu5
+         8rJM8vq9ZgS4m9Ygkwp963+s136pAAj6cahXNAH1Lms0uArPhnQuGXC/XN0Jc8AqTHNU
+         V4pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712519647; x=1713124447;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1712520661; x=1713125461;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aFWd4K1sD8262p3ctumxZqYbM0ZWpRsLYec6k8cOVVc=;
-        b=M1gdgcUQ+CmrW/SSe4B3yn5AeOYqVlXRpY+CpBqF27RmiM3VCq6IwpT2LzV/L5Glig
-         /OMnwxHaDsuNPUK70dYojkHPrU9MQsErP1b6peasKA95kxIf+wqfodHP+zFUurAQE2rG
-         gY6joQql1EtPFhahnxbJWTfyDRAZqX1ChCMMcfuY6G8+q3iiWmW89L7YEStr0hhNDdLZ
-         PiiQnqWhG3ZC1Zn9XOD54/FhiMXsn9Vuqfrly1lD2QPdEZj7X4oia9/ZfRhwSZhPygdv
-         Gv1jkv5iiiFcentwtj5U6XFv7+FHkf66szkyX2K/OuUTaqp8gfe5v/1Euks0P1mtJcIP
-         vDWg==
-X-Gm-Message-State: AOJu0YxrcuMyhaVmyhy2XQ828rwdUp5ZvxQPscCzkqYQvpQMNq67ke/m
-	toFFgIUvaBsmMz3fLaOZSruePJ6wmCu9BOAx3kyZIxJG9Btn5FGi5YUjwhlwE6zydtJfFV6L7yg
-	FICT4HNdW
-X-Google-Smtp-Source: AGHT+IFaYj+LgNFp5YhHjMhMc/ix+VeJYLNkOOwNHt9z+ueBb/zu356CLJc+zVTLjJJQRYDyVABKrA==
-X-Received: by 2002:a05:6870:80ca:b0:22e:c656:4dc3 with SMTP id r10-20020a05687080ca00b0022ec6564dc3mr8003107oab.12.1712519647676;
-        Sun, 07 Apr 2024 12:54:07 -0700 (PDT)
-Received: from localhost ([2601:1c0:ca00:bd60:5996:ce4c:d10f:fa94])
-        by smtp.gmail.com with ESMTPSA id b187-20020a62cfc4000000b006e6b7124b33sm5173425pfg.209.2024.04.07.12.54.07
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Apr 2024 12:54:07 -0700 (PDT)
-From: Tim Orling <tim.orling@konsulko.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-raspberrypi][PATCH 1/3] layer.conf: rpi5 recommends lts-u-boot-mixin
-Date: Sun,  7 Apr 2024 12:53:59 -0700
-Message-ID: <88d6d14c11d2846531d235ae18f88ddd4391d7a4.1712518899.git.tim.orling@konsulko.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <cover.1712518899.git.tim.orling@konsulko.com>
-References: <cover.1712518899.git.tim.orling@konsulko.com>
+        bh=inq4ci2KHiDb4fqelY3/8KIa4W1/KisUrOY/qJzQXQo=;
+        b=taxDXijiYwFMdaZmytFeP5Mzh5dLMW1k/3hTlwz/b1GTVZO6uuyFwyAjuhhKyvWicZ
+         SCd5us44QUrpqifK/S181p7cIMfJJLWD+BFcE75tLb45QEZDEYlLKch6x8yqnWWOLkrX
+         opiDpyZHukVNfnUH5bq8sgZidAVDz1aeVv2cq6/kqphcOhJpDZRoKhuduGzg25qEXFcs
+         cTtcKRP2ASjtH8OCR5m4VMCmPCPYjJqENgIgqKsjr65FR5Cio9Cfb+niUxJJO1r2bSxJ
+         /JKT925iPhfhQmS4vG8YzSGFqJHjYLqgYlBeaucmpFF1lffG2LFrCaSHRTdEibx+oFTm
+         +B9Q==
+X-Gm-Message-State: AOJu0YxRoc/5bMwWSsWZ0Pl/I3lZkuFnCxOyxNopNcJ5Ijv9UoLzXzgA
+	NcFVWmd/cz0WE7+IeXxyDFE/0fLk+9cS9qfBrLbCYALPEqeWfBa1nY6cuNRimZE1mqSoKE/Pmfw
+	sOsFLASk3v/asZdQEHtelBf7I2HP/gmPH
+X-Google-Smtp-Source: AGHT+IHF+PW51IOkFHKWGDXIqUOd2A98Oo44w7+AwendWscrvtjo5qUPbBlEca2FOcDSGBKkJgFt0IEtm+OsPUAkPzM=
+X-Received: by 2002:a05:6870:64a4:b0:22a:828b:57ea with SMTP id
+ cz36-20020a05687064a400b0022a828b57eamr7108639oab.53.1712520661193; Sun, 07
+ Apr 2024 13:11:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1712518899.git.tim.orling@konsulko.com>
+In-Reply-To: <cover.1712518899.git.tim.orling@konsulko.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 7 Apr 2024 13:10:34 -0700
+Message-ID: <CAMKF1sr-jARNHK4c1nW-idjuCj=tXfb1fDg8vf4kViE7XsAkMg@mail.gmail.com>
+Subject: Re: [yocto] [meta-raspberrypi][PATCH 0/3] Initial u-boot support for raspberrypi5
+To: yocto@lists.yoctoproject.org, tim.orling@konsulko.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 19:54:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62892
+ <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 20:11:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62895
 
-Add lts-u-boot-mixin to LAYERRECOMMENDS
+I think it would be better if you opened a github PR so it can run through =
+CI
 
-https://git.yoctoproject.org/meta-lts-mixins 'scarthgap/u-boot' branch
-adds u-boot v2024.04 support which includes the initial support for
-raspberrypi5.
-
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
- conf/layer.conf | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 9488ac9..deea4a1 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -11,6 +11,9 @@ BBFILE_PRIORITY_raspberrypi = "9"
- 
- LAYERSERIES_COMPAT_raspberrypi = "nanbield scarthgap"
- LAYERDEPENDS_raspberrypi = "core"
-+# Recommended for u-boot support for raspberrypi5
-+# https://git.yoctoproject.org/meta-lts-mixins 'scarthgap/u-boot' branch
-+LAYERRECOMMENDS_raspberrypi = "lts-u-boot-mixin"
- 
- # Additional license directories.
- LICENSE_PATH += "${LAYERDIR}/files/custom-licenses"
--- 
-2.43.2
-
+On Sun, Apr 7, 2024 at 12:54=E2=80=AFPM Tim Orling <tim.orling@konsulko.com=
+> wrote:
+>
+> Enable u-boot for the raspberrypi5 via the meta-lts-mixins 'scarthgap/u-b=
+oot' branch.
+>
+> This is initial support for raspberrypi5, not all features (usb, ethernet=
+) are enabled
+> in u-boot yet.
+>
+> You may need to have a UART dongle plugged into the 'UART' port between '=
+HDMI0' and
+> 'HDMI1' to get the kernel to boot. Your mileage may vary.
+>
+> The following changes since commit d072cc8a48571a4af40a937f98e173b5c9468c=
+4f:
+>
+>   rpi-base: Add hifiberry-dacplusadc overlay (2024-03-28 03:35:31 +0000)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/moto-timo/meta-raspberrypi scarthgap/raspberrypi5_u-=
+boot
+>   https://github.com/moto-timo/meta-raspberrypi/tree/scarthgap/raspberryp=
+i5_u-boot
+>
+> Tim Orling (3):
+>   layer.conf: rpi5 recommends lts-u-boot-mixin
+>   u-boot: re-enable rapsberrypi5
+>   raspberrypi5.conf: Fix KERNEL_IMAGETYPE_UBOOT
+>
+>  conf/layer.conf                      | 3 +++
+>  conf/machine/raspberrypi5.conf       | 6 ++++++
+>  recipes-bsp/u-boot/u-boot_%.bbappend | 3 ---
+>  3 files changed, 9 insertions(+), 3 deletions(-)
+>
+> --
+> 2.43.2
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#62891): https://lists.yoctoproject.org/g/yocto/messag=
+e/62891
+> Mute This Topic: https://lists.yoctoproject.org/mt/105388889/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
