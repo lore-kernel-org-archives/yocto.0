@@ -1,178 +1,197 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <tim.orling@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32980CD128A
-	for <webhook@archiver.kernel.org>; Sun,  7 Apr 2024 21:58:28 +0000 (UTC)
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
- by mx.groups.io with SMTP id smtpd.web11.92903.1712527101829116632
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A21ACD1292
+	for <webhook@archiver.kernel.org>; Sun,  7 Apr 2024 22:09:58 +0000 (UTC)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+ by mx.groups.io with SMTP id smtpd.web11.93196.1712527792847480490
  for <yocto@lists.yoctoproject.org>;
- Sun, 07 Apr 2024 14:58:21 -0700
+ Sun, 07 Apr 2024 15:09:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=b7/wcQVH;
- spf=pass (domain: gmail.com, ip: 209.85.160.45, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-22ed72b0082so1418489fac.3
-        for <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 14:58:21 -0700 (PDT)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=IPa3hbUO;
+ spf=pass (domain: konsulko.com, ip: 209.85.218.44, mailfrom: tim.orling@konsulko.com)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a4715991c32so546684766b.1
+        for <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 15:09:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712527101; x=1713131901; darn=lists.yoctoproject.org;
+        d=konsulko.com; s=google; t=1712527791; x=1713132591; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cMNxR2XM/fAB/YF4Q+z/CHNH2idXascWyT1g8kXtFTg=;
-        b=b7/wcQVHZvmBQ+FIMQVQkJu7EWC7jdegflMKCnctM0Pv2VJfudnMkKNIVu7X6nWsRr
-         rpcw9eoVACBP9UjjBqBIcT33/UMvDEmr7fNvtQqMrD/a7Hnm1ABbhZHwe8iuxcdrc4Gr
-         Y2P04Rm0N5juHUuS3ead1ILDlt+HXYVWVNk+3aK6B1LKFYuaqbU+qjVQ/sCBsQuVFB9m
-         kddEklzfC4VPwYxjzEiUPswoMUc7gffO42U6jwddX4kZDTpBwOb+3zxguLaRePp6Vm1R
-         DOgJM4vzAGtBbRx40OKXrgCPFW4tRtT11Ux/LqLuiuB/94gzcK0m7Tv6uMbN5cxi3IEf
-         TOBQ==
+        bh=1V12buYVG5UPjtUVd3kZXY6uvpVYKMvY/nF1xP/rLGM=;
+        b=IPa3hbUO+ZBatXIqD8WDHIjpikTwIxEip91WTEtR6rwndr6jTVDYqyu0/JXy0kBiK1
+         iR4WiaBjxmrU9XLEjWZ5hSncPwA4PoPTpADuQJlFtNDCwCNFqn7msKdHUN7MvwD1zSAM
+         fYnefMQme/jayfAnuKoDQrGOyc0rawURD2OM0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712527101; x=1713131901;
+        d=1e100.net; s=20230601; t=1712527791; x=1713132591;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cMNxR2XM/fAB/YF4Q+z/CHNH2idXascWyT1g8kXtFTg=;
-        b=hjI8UwSz+77GTb7fm08eDtwHU1Xji9DwrUZeCNVaCTnTh1qZwbOz5bQNNomfwR3oVP
-         ue6B44AVaHJuzAg/hngS9ipy0P2A45/eQ+hqicfgpk7RqDiBayeyfZX/K4GTlWr4CdLh
-         70xZFcJpIyWqZsL4q1oX1tdVmb0ZCwsv/EDGcSoAfpHeuyd8X4xBIS4MMK32wfc6FWNg
-         Bi30PyqfYLqNmjnOSeHL4jbF2xl0ZEHAypMn4hsOYNP9xNtTv8tPCOjHAFGl/iXaCg2F
-         FWqFZFHBwzf2giYfyL4jvuwjc/yLeBzk6bMpdCyrON1gz2F3mVO02uv6ZAFeMsypUvN8
-         Z4aQ==
-X-Gm-Message-State: AOJu0YyK+xcqiYPbpBvGS6e0YEvydZRn8831WhXwIXIDMJptcd3FzbN1
-	SPjb4fJ5rxE5jMnpcikmyIJTtHtuAFqzR5b4CEnuF501eGCgU8PRxQvVdzJSZ2ozyZVaOk0N/x0
-	6XYvJB5KOqqmfGBQZA0vEOBAi91M=
-X-Google-Smtp-Source: AGHT+IHhp+0lr+1e9AGZ/+lEEPAeKLnLO0+V6OVRohE76UmECZtX1zKu0YMX18gfJfkPpAEEwrejs6j/l02C9/vvpIQ=
-X-Received: by 2002:a05:6870:819d:b0:22e:bcfd:debc with SMTP id
- k29-20020a056870819d00b0022ebcfddebcmr8404387oae.13.1712527100933; Sun, 07
- Apr 2024 14:58:20 -0700 (PDT)
+        bh=1V12buYVG5UPjtUVd3kZXY6uvpVYKMvY/nF1xP/rLGM=;
+        b=fmcNyUy0pZRZkkk6jSb+p3RxM+ONare0kQGPFI1Uy6HRkbwyolo2YzgARUhImRgiIW
+         9JaqlK6VDHKTxCSWVQl9qG5gssBtk0d98kajglq+dMpSo3aqdn1gU3oFcYoZYMgEJLlD
+         1VoWVC78yd8r6Jk+7BmaXcIEGshZISzgC6PSpVbdx3xY2l1ezVlSGgProXh/KpST6m/9
+         9ECoEvqpUO2vFkuCQ1ymGZVEz7wkP5v1ye8yg+m7S+gdMcuh9Zfxe3E4qGU1LAfH6wZs
+         KMDJIdtywQF1UjT7yl/8M/U+1f0tqoXCJ0ruaOuB2C9fpg0R+QsrniWpCyUFJJBDxBZ0
+         zlnQ==
+X-Gm-Message-State: AOJu0YwqsRuSSNzVarX3le6iBFt8jgd22SHN+pUvlTiITgija/Vo0KZL
+	lnZFehvRwVR4TG8VqhqHFlDCICAQq/jsYqOiLet38toAq6laYpbsqe7+yTTZC7wXmg2ESNdn+4a
+	5vE1eT+Ws6owkIQClEdIb9UsCHcvJ/TQ+SluwORtXHLajV4cq3BLux2dk
+X-Google-Smtp-Source: AGHT+IE0wImpKU2j6LmFEsYMIHDDgnmQS3UpkJU6gdxtDEyqrcG8xDLNFNydiBHpp+ele9tr8/5S/jUbxBx5VkWoMU4=
+X-Received: by 2002:a17:907:7242:b0:a51:d463:32bb with SMTP id
+ ds2-20020a170907724200b00a51d46332bbmr895889ejc.53.1712527791167; Sun, 07 Apr
+ 2024 15:09:51 -0700 (PDT)
 MIME-Version: 1.0
 References: <cover.1712518899.git.tim.orling@konsulko.com> <CAMKF1sr-jARNHK4c1nW-idjuCj=tXfb1fDg8vf4kViE7XsAkMg@mail.gmail.com>
- <CAOyo-87ZhjCZ=iyF+uU2mqae-0Wp3dbZ-LpZ7Mt9ee2Tc-G_Xg@mail.gmail.com> <CAOyo-85HLUirXcL0W_hGaRqZVTgxVoN5V=qLZpOQGCWYQe4=+w@mail.gmail.com>
-In-Reply-To: <CAOyo-85HLUirXcL0W_hGaRqZVTgxVoN5V=qLZpOQGCWYQe4=+w@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 7 Apr 2024 14:58:09 -0700
-Message-ID: <CAMKF1soLixG_OHx9uM0OUqK8vtJY4UbditEx0V18hQguou4bfA@mail.gmail.com>
+ <CAOyo-87ZhjCZ=iyF+uU2mqae-0Wp3dbZ-LpZ7Mt9ee2Tc-G_Xg@mail.gmail.com>
+ <CAOyo-85HLUirXcL0W_hGaRqZVTgxVoN5V=qLZpOQGCWYQe4=+w@mail.gmail.com> <CAMKF1soLixG_OHx9uM0OUqK8vtJY4UbditEx0V18hQguou4bfA@mail.gmail.com>
+In-Reply-To: <CAMKF1soLixG_OHx9uM0OUqK8vtJY4UbditEx0V18hQguou4bfA@mail.gmail.com>
+From: Tim Orling <tim.orling@konsulko.com>
+Date: Sun, 7 Apr 2024 15:09:39 -0700
+Message-ID: <CAOyo-86FcT85b-AeWdb-dxLp_rP46NZefY+6fJcbepWqERQqLQ@mail.gmail.com>
 Subject: Re: [yocto] [meta-raspberrypi][PATCH 0/3] Initial u-boot support for raspberrypi5
-To: Tim Orling <tim.orling@konsulko.com>
+To: Khem Raj <raj.khem@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000084ffaa061588c9ea"
+Content-Type: multipart/alternative; boundary="000000000000a936cb061588f208"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 21:58:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62898
+ <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 22:09:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62899
 
---00000000000084ffaa061588c9ea
+--000000000000a936cb061588f208
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Apr 7, 2024 at 1:25=E2=80=AFPM Tim Orling <tim.orling@konsulko.com>=
- wrote:
+I was able to do a workaround and use our `konsulko` github account instead=
+:
+https://github.com/agherzan/meta-raspberrypi/pull/1304
 
-> Dear GitHub, please let us attach a repo to another GitHub repo after the
-> creation. Why is a fork something opaque to us?
+Never give up. Keep on trying.
+
+On Sun, Apr 7, 2024 at 2:58=E2=80=AFPM Khem Raj <raj.khem@gmail.com> wrote:
+
 >
-
-Look into using git remote add =E2=80=A6
-
 >
-> On Sun, Apr 7, 2024 at 1:22=E2=80=AFPM Tim Orling <tim.orling@konsulko.co=
+> On Sun, Apr 7, 2024 at 1:25=E2=80=AFPM Tim Orling <tim.orling@konsulko.co=
 m> wrote:
 >
->> I set up my github repo with git.yoctoproject.org so I have to destroy
->> it to fork from agherzan and send a PR.
+>> Dear GitHub, please let us attach a repo to another GitHub repo after th=
+e
+>> creation. Why is a fork something opaque to us?
 >>
->> It's Sunday. I'm not going to do that.
+>
+> Look into using git remote add =E2=80=A6
+>
 >>
->> On Sun, Apr 7, 2024 at 1:11=E2=80=AFPM Khem Raj <raj.khem@gmail.com> wro=
-te:
+>> On Sun, Apr 7, 2024 at 1:22=E2=80=AFPM Tim Orling <tim.orling@konsulko.c=
+om>
+>> wrote:
 >>
->>> I think it would be better if you opened a github PR so it can run
->>> through CI
+>>> I set up my github repo with git.yoctoproject.org so I have to destroy
+>>> it to fork from agherzan and send a PR.
 >>>
->>> On Sun, Apr 7, 2024 at 12:54=E2=80=AFPM Tim Orling <tim.orling@konsulko=
-.com>
->>> wrote:
->>> >
->>> > Enable u-boot for the raspberrypi5 via the meta-lts-mixins
->>> 'scarthgap/u-boot' branch.
->>> >
->>> > This is initial support for raspberrypi5, not all features (usb,
->>> ethernet) are enabled
->>> > in u-boot yet.
->>> >
->>> > You may need to have a UART dongle plugged into the 'UART' port
->>> between 'HDMI0' and
->>> > 'HDMI1' to get the kernel to boot. Your mileage may vary.
->>> >
->>> > The following changes since commit
->>> d072cc8a48571a4af40a937f98e173b5c9468c4f:
->>> >
->>> >   rpi-base: Add hifiberry-dacplusadc overlay (2024-03-28 03:35:31
->>> +0000)
->>> >
->>> > are available in the Git repository at:
->>> >
->>> >   https://github.com/moto-timo/meta-raspberrypi
->>> scarthgap/raspberrypi5_u-boot
->>> >
->>> https://github.com/moto-timo/meta-raspberrypi/tree/scarthgap/raspberryp=
-i5_u-boot
->>> >
->>> > Tim Orling (3):
->>> >   layer.conf: rpi5 recommends lts-u-boot-mixin
->>> >   u-boot: re-enable rapsberrypi5
->>> >   raspberrypi5.conf: Fix KERNEL_IMAGETYPE_UBOOT
->>> >
->>> >  conf/layer.conf                      | 3 +++
->>> >  conf/machine/raspberrypi5.conf       | 6 ++++++
->>> >  recipes-bsp/u-boot/u-boot_%.bbappend | 3 ---
->>> >  3 files changed, 9 insertions(+), 3 deletions(-)
->>> >
->>> > --
->>> > 2.43.2
->>> >
->>> >
->>> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>> > Links: You receive all messages sent to this group.
->>> > You automatically follow any topics you start or reply to.
->>> > View/Reply Online (#62891):
->>> https://lists.yoctoproject.org/g/yocto/message/62891
->>> > Mute This Topic: https://lists.yoctoproject.org/mt/105388889/1997914
->>> > Group Owner: yocto+owner@lists.yoctoproject.org
->>> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->>> raj.khem@gmail.com]
->>> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>> >
+>>> It's Sunday. I'm not going to do that.
 >>>
->>
+>>> On Sun, Apr 7, 2024 at 1:11=E2=80=AFPM Khem Raj <raj.khem@gmail.com> wr=
+ote:
+>>>
+>>>> I think it would be better if you opened a github PR so it can run
+>>>> through CI
+>>>>
+>>>> On Sun, Apr 7, 2024 at 12:54=E2=80=AFPM Tim Orling <tim.orling@konsulk=
+o.com>
+>>>> wrote:
+>>>> >
+>>>> > Enable u-boot for the raspberrypi5 via the meta-lts-mixins
+>>>> 'scarthgap/u-boot' branch.
+>>>> >
+>>>> > This is initial support for raspberrypi5, not all features (usb,
+>>>> ethernet) are enabled
+>>>> > in u-boot yet.
+>>>> >
+>>>> > You may need to have a UART dongle plugged into the 'UART' port
+>>>> between 'HDMI0' and
+>>>> > 'HDMI1' to get the kernel to boot. Your mileage may vary.
+>>>> >
+>>>> > The following changes since commit
+>>>> d072cc8a48571a4af40a937f98e173b5c9468c4f:
+>>>> >
+>>>> >   rpi-base: Add hifiberry-dacplusadc overlay (2024-03-28 03:35:31
+>>>> +0000)
+>>>> >
+>>>> > are available in the Git repository at:
+>>>> >
+>>>> >   https://github.com/moto-timo/meta-raspberrypi
+>>>> scarthgap/raspberrypi5_u-boot
+>>>> >
+>>>> https://github.com/moto-timo/meta-raspberrypi/tree/scarthgap/raspberry=
+pi5_u-boot
+>>>> >
+>>>> > Tim Orling (3):
+>>>> >   layer.conf: rpi5 recommends lts-u-boot-mixin
+>>>> >   u-boot: re-enable rapsberrypi5
+>>>> >   raspberrypi5.conf: Fix KERNEL_IMAGETYPE_UBOOT
+>>>> >
+>>>> >  conf/layer.conf                      | 3 +++
+>>>> >  conf/machine/raspberrypi5.conf       | 6 ++++++
+>>>> >  recipes-bsp/u-boot/u-boot_%.bbappend | 3 ---
+>>>> >  3 files changed, 9 insertions(+), 3 deletions(-)
+>>>> >
+>>>> > --
+>>>> > 2.43.2
+>>>> >
+>>>> >
+>>>> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>> > Links: You receive all messages sent to this group.
+>>>> > You automatically follow any topics you start or reply to.
+>>>> > View/Reply Online (#62891):
+>>>> https://lists.yoctoproject.org/g/yocto/message/62891
+>>>> > Mute This Topic: https://lists.yoctoproject.org/mt/105388889/1997914
+>>>> > Group Owner: yocto+owner@lists.yoctoproject.org
+>>>> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+>>>> raj.khem@gmail.com]
+>>>> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>> >
+>>>>
+>>>
 
---00000000000084ffaa061588c9ea
+--000000000000a936cb061588f208
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Sun, Apr 7, 2024 at 1:25=E2=80=AFPM Tim Orling &lt;<a hr=
-ef=3D"mailto:tim.orling@konsulko.com">tim.orling@konsulko.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
-der-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Dear GitHub, ple=
-ase let us attach a repo to another GitHub repo after the creation. Why is =
-a fork something opaque to us?</div></blockquote><div dir=3D"auto"><br></di=
-v><div dir=3D"auto">Look into using git remote add =E2=80=A6</div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
-lid;padding-left:1ex"><div dir=3D"ltr"></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 7, 2024 at 1:22=E2=80=AF=
-PM Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=3D"_bla=
-nk">tim.orling@konsulko.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div dir=3D"ltr">I set up my github repo with <a=
- href=3D"http://git.yoctoproject.org" target=3D"_blank">git.yoctoproject.or=
-g</a> so I have to destroy it to fork from agherzan and send a PR.<div><br>=
-</div><div>It&#39;s Sunday. I&#39;m not going to do that.</div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr =
-7, 2024 at 1:11=E2=80=AFPM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.co=
-m" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">I think it would be better if you op=
-ened a github PR so it can run through CI<br>
+<div dir=3D"ltr">I was able to do a workaround and use our `konsulko` githu=
+b account instead:<div><a href=3D"https://github.com/agherzan/meta-raspberr=
+ypi/pull/1304">https://github.com/agherzan/meta-raspberrypi/pull/1304</a><b=
+r></div><div><br></div><div>Never give up. Keep on trying.</div></div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr=
+ 7, 2024 at 2:58=E2=80=AFPM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.c=
+om">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div><br></div><div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 7, 2024 at 1:25=E2=80=AFPM =
+Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=3D"_blank"=
+>tim.orling@konsulko.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr">Dear GitHub, please let us attach =
+a repo to another GitHub repo after the creation. Why is a fork something o=
+paque to us?</div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Look into using git remote add =E2=80=A6</div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr"></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 7, 2024 at 1:22=E2=80=
+=AFPM Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=3D"_=
+blank">tim.orling@konsulko.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr">I set up my github repo with=
+ <a href=3D"http://git.yoctoproject.org" target=3D"_blank">git.yoctoproject=
+.org</a> so I have to destroy it to fork from agherzan and send a PR.<div><=
+br></div><div>It&#39;s Sunday. I&#39;m not going to do that.</div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, A=
+pr 7, 2024 at 1:11=E2=80=AFPM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail=
+.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex">I think it would be better if you=
+ opened a github PR so it can run through CI<br>
 <br>
 On Sun, Apr 7, 2024 at 12:54=E2=80=AFPM Tim Orling &lt;<a href=3D"mailto:ti=
 m.orling@konsulko.com" target=3D"_blank">tim.orling@konsulko.com</a>&gt; wr=
@@ -241,6 +260,7 @@ m@gmail.com</a>]<br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div></div>
+</blockquote></div>
 
---00000000000084ffaa061588c9ea--
+--000000000000a936cb061588f208--
 
