@@ -1,266 +1,55 @@
-Return-Path: <tim.orling@konsulko.com>
+Return-Path: <duy.dang.yw@renesas.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A21ACD1292
-	for <webhook@archiver.kernel.org>; Sun,  7 Apr 2024 22:09:58 +0000 (UTC)
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
- by mx.groups.io with SMTP id smtpd.web11.93196.1712527792847480490
- for <yocto@lists.yoctoproject.org>;
- Sun, 07 Apr 2024 15:09:53 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=IPa3hbUO;
- spf=pass (domain: konsulko.com, ip: 209.85.218.44, mailfrom: tim.orling@konsulko.com)
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a4715991c32so546684766b.1
-        for <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 15:09:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1712527791; x=1713132591; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1V12buYVG5UPjtUVd3kZXY6uvpVYKMvY/nF1xP/rLGM=;
-        b=IPa3hbUO+ZBatXIqD8WDHIjpikTwIxEip91WTEtR6rwndr6jTVDYqyu0/JXy0kBiK1
-         iR4WiaBjxmrU9XLEjWZ5hSncPwA4PoPTpADuQJlFtNDCwCNFqn7msKdHUN7MvwD1zSAM
-         fYnefMQme/jayfAnuKoDQrGOyc0rawURD2OM0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712527791; x=1713132591;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1V12buYVG5UPjtUVd3kZXY6uvpVYKMvY/nF1xP/rLGM=;
-        b=fmcNyUy0pZRZkkk6jSb+p3RxM+ONare0kQGPFI1Uy6HRkbwyolo2YzgARUhImRgiIW
-         9JaqlK6VDHKTxCSWVQl9qG5gssBtk0d98kajglq+dMpSo3aqdn1gU3oFcYoZYMgEJLlD
-         1VoWVC78yd8r6Jk+7BmaXcIEGshZISzgC6PSpVbdx3xY2l1ezVlSGgProXh/KpST6m/9
-         9ECoEvqpUO2vFkuCQ1ymGZVEz7wkP5v1ye8yg+m7S+gdMcuh9Zfxe3E4qGU1LAfH6wZs
-         KMDJIdtywQF1UjT7yl/8M/U+1f0tqoXCJ0ruaOuB2C9fpg0R+QsrniWpCyUFJJBDxBZ0
-         zlnQ==
-X-Gm-Message-State: AOJu0YwqsRuSSNzVarX3le6iBFt8jgd22SHN+pUvlTiITgija/Vo0KZL
-	lnZFehvRwVR4TG8VqhqHFlDCICAQq/jsYqOiLet38toAq6laYpbsqe7+yTTZC7wXmg2ESNdn+4a
-	5vE1eT+Ws6owkIQClEdIb9UsCHcvJ/TQ+SluwORtXHLajV4cq3BLux2dk
-X-Google-Smtp-Source: AGHT+IE0wImpKU2j6LmFEsYMIHDDgnmQS3UpkJU6gdxtDEyqrcG8xDLNFNydiBHpp+ele9tr8/5S/jUbxBx5VkWoMU4=
-X-Received: by 2002:a17:907:7242:b0:a51:d463:32bb with SMTP id
- ds2-20020a170907724200b00a51d46332bbmr895889ejc.53.1712527791167; Sun, 07 Apr
- 2024 15:09:51 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29BAFC67861
+	for <webhook@archiver.kernel.org>; Mon,  8 Apr 2024 09:25:31 +0000 (UTC)
+Subject: Any recommendation to make software layer Yocto Compatible?
+To: yocto@lists.yoctoproject.org
+From: "Duy" <duy.dang.yw@renesas.com>
+X-Originating-Location: Singapore, SG (165.225.231.71)
+X-Originating-Platform: Windows Chrome 122
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <cover.1712518899.git.tim.orling@konsulko.com> <CAMKF1sr-jARNHK4c1nW-idjuCj=tXfb1fDg8vf4kViE7XsAkMg@mail.gmail.com>
- <CAOyo-87ZhjCZ=iyF+uU2mqae-0Wp3dbZ-LpZ7Mt9ee2Tc-G_Xg@mail.gmail.com>
- <CAOyo-85HLUirXcL0W_hGaRqZVTgxVoN5V=qLZpOQGCWYQe4=+w@mail.gmail.com> <CAMKF1soLixG_OHx9uM0OUqK8vtJY4UbditEx0V18hQguou4bfA@mail.gmail.com>
-In-Reply-To: <CAMKF1soLixG_OHx9uM0OUqK8vtJY4UbditEx0V18hQguou4bfA@mail.gmail.com>
-From: Tim Orling <tim.orling@konsulko.com>
-Date: Sun, 7 Apr 2024 15:09:39 -0700
-Message-ID: <CAOyo-86FcT85b-AeWdb-dxLp_rP46NZefY+6fJcbepWqERQqLQ@mail.gmail.com>
-Subject: Re: [yocto] [meta-raspberrypi][PATCH 0/3] Initial u-boot support for raspberrypi5
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a936cb061588f208"
+Date: Mon, 08 Apr 2024 02:25:30 -0700
+Message-ID: <vZmm.1712568330433528726.9xnh@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="KiwpSAySoT5KHJNbeEbZ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 07 Apr 2024 22:09:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62899
+ <yocto@lists.yoctoproject.org>; Mon, 08 Apr 2024 09:25:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62900
 
---000000000000a936cb061588f208
-Content-Type: text/plain; charset="UTF-8"
+--KiwpSAySoT5KHJNbeEbZ
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I was able to do a workaround and use our `konsulko` github account instead=
-:
-https://github.com/agherzan/meta-raspberrypi/pull/1304
+Hi,
 
-Never give up. Keep on trying.
+I'm currently trying to make my software layer Yocto compatible. Running yo=
+cto-check-layer script is a convenient way.
+But in practice, I found that for software layer, it is difficult to make i=
+t pass test_signatures case. It requires to put the condition check to ever=
+y variable or function appending in bbappend file. With a deep customizing =
+software layer, it reduces code readability.
+Can anyone share your experience in making a software layer Yocto compatibl=
+e while keeping it easy to read?
 
-On Sun, Apr 7, 2024 at 2:58=E2=80=AFPM Khem Raj <raj.khem@gmail.com> wrote:
+Best regards,
+Duy
 
->
->
-> On Sun, Apr 7, 2024 at 1:25=E2=80=AFPM Tim Orling <tim.orling@konsulko.co=
-m> wrote:
->
->> Dear GitHub, please let us attach a repo to another GitHub repo after th=
-e
->> creation. Why is a fork something opaque to us?
->>
->
-> Look into using git remote add =E2=80=A6
->
->>
->> On Sun, Apr 7, 2024 at 1:22=E2=80=AFPM Tim Orling <tim.orling@konsulko.c=
-om>
->> wrote:
->>
->>> I set up my github repo with git.yoctoproject.org so I have to destroy
->>> it to fork from agherzan and send a PR.
->>>
->>> It's Sunday. I'm not going to do that.
->>>
->>> On Sun, Apr 7, 2024 at 1:11=E2=80=AFPM Khem Raj <raj.khem@gmail.com> wr=
-ote:
->>>
->>>> I think it would be better if you opened a github PR so it can run
->>>> through CI
->>>>
->>>> On Sun, Apr 7, 2024 at 12:54=E2=80=AFPM Tim Orling <tim.orling@konsulk=
-o.com>
->>>> wrote:
->>>> >
->>>> > Enable u-boot for the raspberrypi5 via the meta-lts-mixins
->>>> 'scarthgap/u-boot' branch.
->>>> >
->>>> > This is initial support for raspberrypi5, not all features (usb,
->>>> ethernet) are enabled
->>>> > in u-boot yet.
->>>> >
->>>> > You may need to have a UART dongle plugged into the 'UART' port
->>>> between 'HDMI0' and
->>>> > 'HDMI1' to get the kernel to boot. Your mileage may vary.
->>>> >
->>>> > The following changes since commit
->>>> d072cc8a48571a4af40a937f98e173b5c9468c4f:
->>>> >
->>>> >   rpi-base: Add hifiberry-dacplusadc overlay (2024-03-28 03:35:31
->>>> +0000)
->>>> >
->>>> > are available in the Git repository at:
->>>> >
->>>> >   https://github.com/moto-timo/meta-raspberrypi
->>>> scarthgap/raspberrypi5_u-boot
->>>> >
->>>> https://github.com/moto-timo/meta-raspberrypi/tree/scarthgap/raspberry=
-pi5_u-boot
->>>> >
->>>> > Tim Orling (3):
->>>> >   layer.conf: rpi5 recommends lts-u-boot-mixin
->>>> >   u-boot: re-enable rapsberrypi5
->>>> >   raspberrypi5.conf: Fix KERNEL_IMAGETYPE_UBOOT
->>>> >
->>>> >  conf/layer.conf                      | 3 +++
->>>> >  conf/machine/raspberrypi5.conf       | 6 ++++++
->>>> >  recipes-bsp/u-boot/u-boot_%.bbappend | 3 ---
->>>> >  3 files changed, 9 insertions(+), 3 deletions(-)
->>>> >
->>>> > --
->>>> > 2.43.2
->>>> >
->>>> >
->>>> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>>> > Links: You receive all messages sent to this group.
->>>> > You automatically follow any topics you start or reply to.
->>>> > View/Reply Online (#62891):
->>>> https://lists.yoctoproject.org/g/yocto/message/62891
->>>> > Mute This Topic: https://lists.yoctoproject.org/mt/105388889/1997914
->>>> > Group Owner: yocto+owner@lists.yoctoproject.org
->>>> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->>>> raj.khem@gmail.com]
->>>> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>>> >
->>>>
->>>
-
---000000000000a936cb061588f208
-Content-Type: text/html; charset="UTF-8"
+--KiwpSAySoT5KHJNbeEbZ
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I was able to do a workaround and use our `konsulko` githu=
-b account instead:<div><a href=3D"https://github.com/agherzan/meta-raspberr=
-ypi/pull/1304">https://github.com/agherzan/meta-raspberrypi/pull/1304</a><b=
-r></div><div><br></div><div>Never give up. Keep on trying.</div></div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr=
- 7, 2024 at 2:58=E2=80=AFPM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.c=
-om">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><div><br></div><div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 7, 2024 at 1:25=E2=80=AFPM =
-Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=3D"_blank"=
->tim.orling@konsulko.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr">Dear GitHub, please let us attach =
-a repo to another GitHub repo after the creation. Why is a fork something o=
-paque to us?</div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto=
-">Look into using git remote add =E2=80=A6</div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div dir=3D"ltr"></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 7, 2024 at 1:22=E2=80=
-=AFPM Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=3D"_=
-blank">tim.orling@konsulko.com</a>&gt; wrote:<br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
-04,204,204);padding-left:1ex"><div dir=3D"ltr">I set up my github repo with=
- <a href=3D"http://git.yoctoproject.org" target=3D"_blank">git.yoctoproject=
-.org</a> so I have to destroy it to fork from agherzan and send a PR.<div><=
-br></div><div>It&#39;s Sunday. I&#39;m not going to do that.</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, A=
-pr 7, 2024 at 1:11=E2=80=AFPM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail=
-.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex">I think it would be better if you=
- opened a github PR so it can run through CI<br>
-<br>
-On Sun, Apr 7, 2024 at 12:54=E2=80=AFPM Tim Orling &lt;<a href=3D"mailto:ti=
-m.orling@konsulko.com" target=3D"_blank">tim.orling@konsulko.com</a>&gt; wr=
-ote:<br>
-&gt;<br>
-&gt; Enable u-boot for the raspberrypi5 via the meta-lts-mixins &#39;scarth=
-gap/u-boot&#39; branch.<br>
-&gt;<br>
-&gt; This is initial support for raspberrypi5, not all features (usb, ether=
-net) are enabled<br>
-&gt; in u-boot yet.<br>
-&gt;<br>
-&gt; You may need to have a UART dongle plugged into the &#39;UART&#39; por=
-t between &#39;HDMI0&#39; and<br>
-&gt; &#39;HDMI1&#39; to get the kernel to boot. Your mileage may vary.<br>
-&gt;<br>
-&gt; The following changes since commit d072cc8a48571a4af40a937f98e173b5c94=
-68c4f:<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0rpi-base: Add hifiberry-dacplusadc overlay (2024-03-28 03:=
-35:31 +0000)<br>
-&gt;<br>
-&gt; are available in the Git repository at:<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0<a href=3D"https://github.com/moto-timo/meta-raspberrypi" =
-rel=3D"noreferrer" target=3D"_blank">https://github.com/moto-timo/meta-rasp=
-berrypi</a> scarthgap/raspberrypi5_u-boot<br>
-&gt;=C2=A0 =C2=A0<a href=3D"https://github.com/moto-timo/meta-raspberrypi/t=
-ree/scarthgap/raspberrypi5_u-boot" rel=3D"noreferrer" target=3D"_blank">htt=
-ps://github.com/moto-timo/meta-raspberrypi/tree/scarthgap/raspberrypi5_u-bo=
-ot</a><br>
-&gt;<br>
-&gt; Tim Orling (3):<br>
-&gt;=C2=A0 =C2=A0layer.conf: rpi5 recommends lts-u-boot-mixin<br>
-&gt;=C2=A0 =C2=A0u-boot: re-enable rapsberrypi5<br>
-&gt;=C2=A0 =C2=A0raspberrypi5.conf: Fix KERNEL_IMAGETYPE_UBOOT<br>
-&gt;<br>
-&gt;=C2=A0 conf/layer.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 | 3 +++<br>
-&gt;=C2=A0 conf/machine/raspberrypi5.conf=C2=A0 =C2=A0 =C2=A0 =C2=A0| 6 +++=
-+++<br>
-&gt;=C2=A0 recipes-bsp/u-boot/u-boot_%.bbappend | 3 ---<br>
-&gt;=C2=A0 3 files changed, 9 insertions(+), 3 deletions(-)<br>
-&gt;<br>
-&gt; --<br>
-&gt; 2.43.2<br>
-&gt;<br>
-&gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; You automatically follow any topics you start or reply to.<br>
-&gt; View/Reply Online (#62891): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/62891" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/62891</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/10538888=
-9/1997914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/mt/105388889/1997914</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khe=
-m@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
+Hi,<br /><br />I'm currently trying to make my software layer Yocto compati=
+ble. Running yocto-check-layer script is a convenient way.<br />But in prac=
+tice, I found that for software layer, it is difficult to make it pass test=
+_signatures case. It requires to put the condition check to every variable =
+or function appending in bbappend file. With a deep customizing software la=
+yer, it reduces code readability.<br />Can anyone share your experience in =
+making a software layer Yocto compatible while keeping it easy to read?<br =
+/><br />Best regards,<br />Duy
 
---000000000000a936cb061588f208--
+--KiwpSAySoT5KHJNbeEbZ--
 
