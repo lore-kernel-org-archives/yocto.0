@@ -1,146 +1,272 @@
-Return-Path: <simonkbaby@gmail.com>
+Return-Path: <peter.marko@siemens.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C6D12C001CC
-	for <webhook@archiver.kernel.org>; Thu, 11 Apr 2024 16:49:27 +0000 (UTC)
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
- by mx.groups.io with SMTP id smtpd.web11.23214.1712854166235356384
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 931D9C4345F
+	for <webhook@archiver.kernel.org>; Thu, 11 Apr 2024 19:30:38 +0000 (UTC)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (EUR04-VI1-obe.outbound.protection.outlook.com [40.107.8.49])
+ by mx.groups.io with SMTP id smtpd.web10.27630.1712863836856292337
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Apr 2024 09:49:26 -0700
+ Thu, 11 Apr 2024 12:30:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=DgHGpJQL;
- spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: simonkbaby@gmail.com)
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2a55a3d0b8eso23552a91.1
-        for <yocto@lists.yoctoproject.org>; Thu, 11 Apr 2024 09:49:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1712854165; x=1713458965; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=P3HTQUEVKiTOs9DIuFDxnTC1CwL9KtgR7d88zZiH1lo=;
-        b=DgHGpJQLxxP9Bu9z2q5HOhxM3aQQswOUI/EDJnCEem4m3tizcQOqlu9HU6DM9H/nEt
-         y+6/jE4T+8bSmwdcpahJFgWIU+OOAxPDNkdsj69cas/kROtWoW7a+vQJ+e0tRB1VMFDr
-         o50eerEteu1W0YA6C7BuT//Thdra60c0XanDhYQ98JHARpBSPGkUqA8Az8zQFLqvI7Xn
-         eqYPJgV7qPgxjddVvhChzhr2sDHCFj+pIkVXLdhd9DV1Xk0L6GdJM9I+RG+XqDINMF7Z
-         zX0QBRrqHEREgZvoh82QYbU5CnyoH1lrt8FCc7M/TMY1020U2waE+zz/sWlcKrQBHQz4
-         FaMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1712854165; x=1713458965;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P3HTQUEVKiTOs9DIuFDxnTC1CwL9KtgR7d88zZiH1lo=;
-        b=U9d106U7BG6fbSTgHTHw5YpRtctbSfRz9F2O/qbSu2m9aia3+EXoXEZQD+hRa34EiX
-         DrZvTnvTYBcqYvaebN1xWGGJ8rxZ8cHFofNDNFOwmbqC9zvKZlprCV3ZazBVBOAco7zu
-         1l0xI2N3o0zlD02SIZGNxEQbJ+We53y0OhXCRMKt195pOLx4I8jeONz9X3OStOt7sMiE
-         lMgpdXwdLIezjYCsgkgIft2MQAyODyT4H65beWXS0TG1pXOQ/3tj9MmJr4aRuEwyQiPx
-         LpDcQ1TIv+DoWwxOUoWbnUqKKNhV/mZSopFUUF1KCxjCE7eYXOYmNoTNOUKYqMRb9n1l
-         gVNw==
-X-Gm-Message-State: AOJu0Yyr6JOZunsueHmFhiWdmQF3P8tRD/5kwGY7SP4X2rCS57mRsp+E
-	7GVqTAxBeqfX73qBkf5ta63sFgbmZ2nXDSt+tMyrtEKfgqiyZdTUUyeGfU9r2Otx3HH+5VZXQAy
-	39JQeWg9RzpkkVCobQiGagVVnnKyaxw==
-X-Google-Smtp-Source: AGHT+IFEjccp5DozAIPZ6p8pXgQ+VhYh0qq7kdUbzuQWhmC8TuI4MwyBFUltIc2KAZRgn7UtXaMegQyKYdS/+vXBO6Y=
-X-Received: by 2002:a17:90b:5387:b0:2a5:506f:161c with SMTP id
- sv7-20020a17090b538700b002a5506f161cmr347762pjb.4.1712854165126; Thu, 11 Apr
- 2024 09:49:25 -0700 (PDT)
+ dkim=pass header.i=@siemens.com header.s=selector2 header.b=GoJS8/Jc;
+ spf=pass (domain: siemens.com, ip: 40.107.8.49, mailfrom: peter.marko@siemens.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=brn8qvwkdi2rAugg1YkCVZZjbxDEZ9/4Ugs3eJyGwPZpjKtrppGFcS5tbaibKVB8HAaJHveAqVudRAT/Y6t48ZRYkUuv+jm0fqPaetL1t+UikFEIC7y1DtJrX0gIBe9Cmp/+IepkQoDK7xjehZznCQkUZMC5jU7dq+Pk47AOHso90XzapO1UdA/XdUX0t4/dY/8K/cCrxx+jbPv31JAn5UDK9IxFUYSOkW6gb7NTDShJwPsH0qaVoccfdOyoC6QrQv+R2BWYJAcXnvrKr1fXyIQq9B9D9P/8WNI6jyQrbqhyN5/OvUxZSf95J/3p+7lIoQkny5DqWuJAKqqvNj79yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x0CqXB2PbakF1hb9HvZfm5aD9YiZHLo7Zd5Y+hCRxjE=;
+ b=X5kZjTEc7Ih5ulUv5qTylc+FwzhBLtLr8M58S78RlUQGSjQgwt14aPXYjmLdnfPg2fFnd7+uA85LnI8D5L+RgxpHL4mded8T+CAgp4NNkPTiGQowc+tqKUqpaRjbFyJtIWddtc0VvPzZDiDMrILjWo4zv22b0HioACmsiSH4NbxLYvBDFeF6Ovd3pvsOgnjR3P8/oiR6SbaS1QmtBMWdP3DW+XY4PyW0wPiE1BqEj0SZ9ya/DnUYaItUMxlbUlr6FL/0nW8V5GfnKlR79+7gXpIBhLuFgzQKSgRHN5JiFPqaHPcHGL6K+tr5qaUE8SAGPISqvnQXGnEQLaHQUzBN1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x0CqXB2PbakF1hb9HvZfm5aD9YiZHLo7Zd5Y+hCRxjE=;
+ b=GoJS8/Jc9J0DwB+0XjMkDgW7WJHF4DBS3D16PhWcTue+2V+lgEw6yqyRd+N1s/hB074vONzPNehP4wOWmgaGA0DzbZ7CxuktSa/9fcEEvkZPrQ5LEyIGSfcLLuqycjeJzNAPVhCHYzV3ByUgRZS5+UVZvO8usJR+UcNc5TLVsaY+awl0zmfEXVPfrCBU72Le2n8D2GyuDhZb1U8tfMbCHIldWSbt8C6OgS7GW0YGDOphjU2OtyiQGiIZ0toHMKKpF+0fXBBYcrBklyPgvYKIrN7yPQKh9pPvayqTstNr067FoUdE52Ed4ErI6dT5iciABJGvIpgzw+b/SrPGwu71Xw==
+Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:479::20)
+ by DB8PR10MB3273.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:119::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Thu, 11 Apr
+ 2024 19:30:33 +0000
+Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::fd78:3502:7564:1891]) by AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::fd78:3502:7564:1891%4]) with mapi id 15.20.7409.053; Thu, 11 Apr 2024
+ 19:30:33 +0000
+From: "Marko, Peter" <Peter.Marko@siemens.com>
+To: "linusnilsson@hotmail.com" <linusnilsson@hotmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] Correct way for multiple recipes to install files in the
+ same directory
+Thread-Topic: [yocto] Correct way for multiple recipes to install files in the
+ same directory
+Thread-Index: AQHai+VD48dymrzYmU6J6GD8gN4hVbFiwLaAgABBq4CAAHLkMA==
+Date: Thu, 11 Apr 2024 19:30:33 +0000
+Message-ID: 
+ <AS1PR10MB5697190D6580085C83A3A310FD052@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
+References: 
+ <AS1PR10MB5697DD3141937F7F5C9EC77CFD052@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
+ <28425.1712839079294002919@lists.yoctoproject.org>
+In-Reply-To: <28425.1712839079294002919@lists.yoctoproject.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=86abe471-f815-472c-87dc-69ff595e83a2;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2024-04-11T19:29:11Z;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS1PR10MB5697:EE_|DB8PR10MB3273:EE_
+x-ms-office365-filtering-correlation-id: 9a830e16-1b6e-49ec-829e-08dc5a5ddb1c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 9mW0jGny4kqUS+tSwV5otXZoClTY9UXODypEQ2zJVF3PnB6YOC7995n6ecMaSvafP7B/anIhtbxXe1pl4g5BPhCVw74hAAliLht4zYkwpnWr955bzp8I/hRPreBeOECQoU09NxRKhsqhqLoVlp9Vmku7Dzv8Cjc4VHWjq2m/Fk+bctYOyNj+yfK1QKFfFqS2vEYPhBD110wMvJEA+5Mij/tpcmwxBAXDsMNI6v+3V7RLDYHI54nFw/YjmZj74dSWCZ0Jmj8DcENdLAZEmBrFPPy6caqFGwqDxKFitBAW9sOqYkTO9SbllJ8zRMunV2Pm7/zF43uKNXEdwqQq6cp7LGU4tTPTL2CpXrD28a4mK6hNJNk6n/IQxE+ea6pqtcBaeBj4mBhponmcQgFNZGPYEaHR2u8Ut7MvkHbN+1N1hfhTLOLMq+7PS17FPhWQyBEKldaibhm49F7gyyAtRifyRYsHWL9QqH6fOZPW24f+EuFQ57AIfXKZ41kN5D055pA6NZjDusVlDyA8cuvJO0Of1VN1qbjWdjt2u+mt7s8gwkFAQsXE4NCxAv331oTCcrinxdv4iN8s5BViErjKasluYUlEKnZaJ2x2DHv+Ktvlcmu/HHyZYyGYLWnqivKmV+ENjSzuRt/brncE7tP5AcjyPa6tLyOthGNDRW0kmLAVI16RgHbMxNenMGJ1NZZkI1ZD+waqzmFJN8FwjYMGnGyR0Ai/gUpqkXPbwdPqm0BK2ik=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?ZXNUVEdjRW5jR0pzYkxubDhEUTV5V3VmcDFOelA0Y09zWFVQUjVhbE1haGFz?=
+ =?utf-8?B?NHVCRTdvR3dkZWI1d0RYdHZ5QnFFWTQ4MnN4bUZKTTlWOGR3MlZYbCtQcHA0?=
+ =?utf-8?B?WndaWExtWXhsdkZreUQzZXVZK0dpRGxxZ24rUWl0N1Q5bzJHZFVLYk9MV0M2?=
+ =?utf-8?B?SXNCa3NNZW9HbDhIcHNQcGdNY0tjVy9BcU1HaUJPbU9PMDBYMEY3MGRzblpJ?=
+ =?utf-8?B?blhRcjR6MXdTVUpHVlZrTk1MTm5LSDdxWURLRG1PQWZzYXZTR2xtNyt1TjAy?=
+ =?utf-8?B?ejVXL1VDQkh1eXBZVFFpalV6NUU3b2V2ajN6SzljWVZXeXRFczBvYUhWWFZT?=
+ =?utf-8?B?TDkzV0hhQ3RhVFJMaTQwY1UxSmc5NkJlWThDT0EzVGt2RVg1Sm8vMlp4Z0Rv?=
+ =?utf-8?B?dmY2QTFiSGYvc1RSOTBlMmo0TmRMODRnWDR2dDljNUZObk1jZmpyQkZWbzhm?=
+ =?utf-8?B?REFwNXR4MTJCcVc1ZTlvS3NYZjJpNlJvQlhDNE1UU0twbGNNRkk2QmR4clVQ?=
+ =?utf-8?B?MER2VTBOSXhHbjBaenBNVXMxSFROQVY2dzFmQ21qZ1N4L2lYelB6OENyZjlx?=
+ =?utf-8?B?RTJGbzBpdkJWSkg2MnlGL2ZuYVBQcFpMS2NWOGUwWHc4UStISEdBQmxpK2w4?=
+ =?utf-8?B?cjJjTFlxWmhEbTVLbFdCUHZzQUhITFliblFHTkdEZjV0b1NWZXMyc3RHcFpX?=
+ =?utf-8?B?am5xQUhMSjZ6ZVFJZlZPU0FGR0YrMmo5c0puOWVidGNCcncyc2s3MmY2QTV3?=
+ =?utf-8?B?bzlNODhkR21lUEFOWlBFd0gvSVY0WGZkczJ2RTM4ZnZaVDRLekQ2di9JcVIw?=
+ =?utf-8?B?Z2llYVNxQ0RiNHV5bmVKNzRFRHVyWGVMamJlbEhkOWRCaGhRMGFWcjdkT21W?=
+ =?utf-8?B?SWJmQ2hxQVJLQnpoQUt3LzNyYkJhdzhydUFFMkJHN1cvQW9pNXdXUmRuN2ta?=
+ =?utf-8?B?aUlzWW81WEhETTNhOFE4disrY2FVemU5WVlMTXRreVd5WjVJdXU4V1JhSXhI?=
+ =?utf-8?B?dXlLL0hjZ2JsZS9LRjErWG9yK1AvRWxsMTZzL2FQaXN1TWhUOFNxVW9LdVVx?=
+ =?utf-8?B?bnFRaFo1Nk85ZVJScVVNMGlMOVExWGJQUFIvWWFNY295UVQrckpqejlMbEF2?=
+ =?utf-8?B?RWpMcTBrNmdoL20weUY3SVpRa0pYU1F3RmpSTTZsR0cwOWFDM0hldGVvVHV4?=
+ =?utf-8?B?ejdmTnJrNGJBQ3lKb1NBYlloYlJsa25ReXE5MENEOHk0RlBRa2k0M0ZEWTlZ?=
+ =?utf-8?B?WVhwcjg2VHFSaEYrTTdOZVhVa3hYZ2M0WUI0NTB6YXdLdm8xMVhBWTcyZSt5?=
+ =?utf-8?B?THMvbGsvYW1Qd3lFdVhBWU9jQzBISnIwWGJaTFpXMDh0RHl1NmZMQzhrK3U2?=
+ =?utf-8?B?bGs5RWpnUStQbGVSbXBRazBhR3piNHRPWVorcGhsUUZnMTVpM3EzUldIQ0Jt?=
+ =?utf-8?B?ZXpyQ3NsQ0JnSmY0ZjBKdnRZdzhaVTVQSUhJUzBkeWVjRFFmT2FuOEJVMHdB?=
+ =?utf-8?B?WDN4Y0lwSEM4YTZ3V1U0cmJlMUxzZDQrVythcCtVbmpXSElhbFNGRkEvVVdI?=
+ =?utf-8?B?NWVpaXhiellOdndJQXFUMTZ2Ynl5OHc0UEFnNTVjdEhpOHVjMDFJWERlaVNN?=
+ =?utf-8?B?djFQNGUwMVJRWExWR0ZjcFJPYjZXTFBwQlZ5ZkxVSjVqS0VpSFlxNDA2bVVy?=
+ =?utf-8?B?M3Yxdm1IbkZtRnV3V0dEMlg0YkdRREV0SU90TnFpbDU3WkFabDVwWXFsWEZR?=
+ =?utf-8?B?U1VnYThVMEp5Uk9GZTNCK3pxMXNjTG93OWgrK2w2b1dTV2lDajI4TDg5TmtV?=
+ =?utf-8?B?cmVzN1hlaGw3cldlRmtHUm56TWdzZHBsNUFDV0tlTW5xSTNkR21FdHI5bFk4?=
+ =?utf-8?B?L1EremhXRURGSlYzai9uWTdGZ3lzZWhrbFgveUhkSmYyZW8yMmRqelBjMWdB?=
+ =?utf-8?B?Zm1LdXJYbm9vT0ttcW9ib0hUbVZtT3k2ODFJQ2RJb3ZmWWxXOGszaXQxUUZp?=
+ =?utf-8?B?SlREKytjL1k1MXVJc1Z5eTF4NjJ3ckxHUjVUdE43aDFKUmZaYzFsOTJXVmEr?=
+ =?utf-8?B?VDNxR001MEo1TTlhOFVaN1dvWlFHR2VIeU9sdCtLUytSaUcyZy9lUS9aYnBz?=
+ =?utf-8?Q?2QsH6/7yjbQXX3KasYZsrezRX?=
+Content-Type: multipart/alternative;
+	boundary="_000_AS1PR10MB5697190D6580085C83A3A310FD052AS1PR10MB5697EURP_"
 MIME-Version: 1.0
-References: <CALSmAY76pRGxBWfWJQFEuiEQ1e3tmMm03p=wAnZr+=+Eb_cZbg@mail.gmail.com>
-In-Reply-To: <CALSmAY76pRGxBWfWJQFEuiEQ1e3tmMm03p=wAnZr+=+Eb_cZbg@mail.gmail.com>
-From: SIMON BABY <simonkbaby@gmail.com>
-Date: Thu, 11 Apr 2024 09:49:13 -0700
-Message-ID: <CAEFUPH3zHR2BF13UpUhxfSx+cChsgZqg=gMBhty01JJrzEz+Wg@mail.gmail.com>
-Subject: Re: [yocto] Wic Image Generation
-To: yocto@lists.yoctoproject.org, bratiranjan12@gmail.com
-Content-Type: multipart/alternative; boundary="000000000000108d2a0615d4f0f8"
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a830e16-1b6e-49ec-829e-08dc5a5ddb1c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Apr 2024 19:30:33.3768
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 15Gs+XKpIGsQbkom2lg0XDFnVgzvIqC5WfV+ZDwfleVGbblorM0KNKBAJy/VSmGcZM0ouCZRJWiq6oNpUeanRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3273
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Apr 2024 16:49:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62920
+ <yocto@lists.yoctoproject.org>; Thu, 11 Apr 2024 19:30:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62921
 
---000000000000108d2a0615d4f0f8
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_AS1PR10MB5697190D6580085C83A3A310FD052AS1PR10MB5697EURP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I am also looking to format my eMMC card with 6 partitions with different
-primary and secondary images. How can I achieve this using the wks file ?
+T2J2aW91cyBzb2x1dGlvbiBpcyB0byBjb3B5IGNobW9kIGNvbW1hbmQgdG8geW91ciByZWNpcGUu
+DQpQZXRlcg0KDQpGcm9tOiBsaW51c25pbHNzb24gdmlhIExpc3RzLllvY3RvcHJvamVjdC5Pcmcg
+PGxpbnVzbmlsc3Nvbj1ob3RtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPg0KU2VudDog
+VGh1cnNkYXksIEFwcmlsIDExLCAyMDI0IDE0OjM4DQpUbzogTWFya28sIFBldGVyIChBRFYgRCBF
+VSBTSyBCRlMxKSA8UGV0ZXIuTWFya29Ac2llbWVucy5jb20+OyB5b2N0b0BsaXN0cy55b2N0b3By
+b2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBDb3JyZWN0IHdheSBmb3IgbXVsdGlwbGUg
+cmVjaXBlcyB0byBpbnN0YWxsIGZpbGVzIGluIHRoZSBzYW1lIGRpcmVjdG9yeQ0KDQo+IENoYW5n
+aW5nIGluIHJlY2lwZSAyIGZyb20NCj4gY2hvd24gLVIgdXNlcjE6dXNlcjEgJHtEfS9ob21lL3Vz
+ZXIxLy5jb25maWcvDQo+IHRvDQo+IGNob3duIC1SIHVzZXIxOnVzZXIxICR7RH0vaG9tZS91c2Vy
+MQ0KPiBhY3R1YWxseSBzZWVtcyB0byBzb2x2ZSB0aGUgcHJvYmxlbSB3aXRoIHRob3NlIHBhcnRp
+Y3VsYXIgcmVjaXBlcy4NCj4NCj4gQWZ0ZXIgZ2V0dGluZyBhIGJpdCBmdXJ0aGVyIGluIHRoZSBi
+aXRiYWtlIHByb2Nlc3MgSSBub3cgaGF2ZSB0aGUgc2FtZSBwcm9ibGVtIHdpdGggYW5vdGhlciBy
+ZWNpcGUgdGhhdCB3YW50cyB0byBhZGQgY3VzdG9tIGZpbGVzIHRvIC9ldGMvcG9sa2l0LTEvcnVs
+ZXMuZC8gYnV0IHRoaXMgcmVjaXBlIGRvZXNuJ3QgY29udGFpbiBhbnkgJ2Nob3duJyBzdGF0ZW1l
+bnQgc28gSSBjYW4ndCBhcHBseSB0aGUgc2FtZSBzb2x1dGlvbiBoZXJlLg0KPiBmaWxlIC9ldGMv
+cG9sa2l0LTEvcnVsZXMuZCBjb25mbGljdHMgYmV0d2VlbiBhdHRlbXB0ZWQgaW5zdGFsbHMgb2Yg
+ZGlzay1hdXRvbW91bnQtMC4xLXIwLmNvcmUyXzY0IGFuZCBwb2xraXQtMTI0LXIwLmNvcmUyXzY0
+DQo+DQo+IGRpc2stYXV0b21vdW50LTAuMSByZWNpcGUgY29udGFpbnM6DQo+IGRvX2luc3RhbGwo
+KXsNCj4gIGluc3RhbGwgLWQgJHtEfS8ke3N5c2NvbmZkaXJ9L3BvbGtpdC0xL3J1bGVzLmQNCj4g
+IGluc3RhbGwgLW0gMDY0NCAke1N9LzAwLW1vdW50LWludGVybmFsLnJ1bGVzICR7RH0vJHtzeXNj
+b25mZGlyfS9wb2xraXQtMS9ydWxlcy5kDQo+IH0NCj4NCj4gcG9sa2l0LTEyNCByZWNpcGUgY29u
+dGFpbnM6DQo+IGRvX2luc3RhbGw6YXBwZW5kKCkgew0KPiAgI0ZpeCB1cCBwZXJtaXNzaW9ucyBv
+biBwb2xraXQgcnVsZXMuZCB0byB3b3JrIHdpdGggcnBtNCBjb25zdHJhaW50cw0KPiAgY2htb2Qg
+NzAwICR7RH0vJHtkYXRhZGlyfS9wb2xraXQtMS9ydWxlcy5kDQo+ICBjaG1vZCA3MDAgJHtEfS8k
+e3N5c2NvbmZkaXJ9L3BvbGtpdC0xL3J1bGVzLmQNCj4gIGNob3duIHBvbGtpdGQ6cm9vdCAke0R9
+LyR7ZGF0YWRpcn0vcG9sa2l0LTEvcnVsZXMuZA0KPiAgY2hvd24gcG9sa2l0ZDpyb290ICR7RH0v
+JHtzeXNjb25mZGlyfS9wb2xraXQtMS9ydWxlcy5kDQo+IH0NCj4NCj4gU2luY2UgcG9sa2l0IGlz
+IG1haW50YWluZWQgYnkgeW9jdG8gSSB3YW50IHRvIGF2b2lkIG1ha2luZyBjaGFuZ2VzIHRvIGl0
+IGJ1dCByYXRoZXIgYWRhcHQgbXkgZGlzay1hdXRvbW91bnQgcmVjaXBlIHNvbWVob3cgc2luY2Ug
+dGhlIHByb2JsZW0gcHJvYmFibHkgaXMgb24gbXkgZW5kLg0KPiBJSVJDIGluc3RhbGwgLWQgd2ls
+bCBzZXQgdGhlIHBlcm1pc3Npb25zIHRvIDA3NTUgdW5sZXNzIG90aGVyd2lzZSBzcGVjaWZpZWQg
+d2hpY2ggbWlnaHQgY29uZmxpY3Qgd2l0aCBwb2xraXQncyBjaG1vZCA3MDAgc28gSSBtaWdodCB0
+cnkgY29weWluZyBjaG1vZCA3MDAgJHtEfS8ke3N5c2NvbmZkaXJ9L3BvbGtpdC0xL3J1bGVzLmQg
+dG8gbXkgZGlzay1hdXRvbW91bnQgcmVjaXBlLg0K
 
-Regards
-Simon
+--_000_AS1PR10MB5697190D6580085C83A3A310FD052AS1PR10MB5697EURP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Apr 11, 2024 at 12:38=E2=80=AFAM Bratiranjan Acharya <
-bratiranjan12@gmail.com> wrote:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCWZvbnQtc2l6ZTox
+MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KY29kZQ0KCXttc28t
+c3R5bGUtcHJpb3JpdHk6OTk7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpzcGFuLkVt
+YWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZh
+dWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
+CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
+ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
+eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
+IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
+eSBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiIHN0eWxlPSJ3b3Jk
+LXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+T2J2aW91cyBzb2x1dGlvbiBpcyB0byBjb3B5IGNobW9kIGNvbW1hbmQgdG8g
+eW91ciByZWNpcGUuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5QZXRlcjxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7
+cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9t
+OjwvYj4gbGludXNuaWxzc29uIHZpYSBMaXN0cy5Zb2N0b3Byb2plY3QuT3JnICZsdDtsaW51c25p
+bHNzb249aG90bWFpbC5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDsNCjxicj4NCjxiPlNl
+bnQ6PC9iPiBUaHVyc2RheSwgQXByaWwgMTEsIDIwMjQgMTQ6Mzg8YnI+DQo8Yj5Ubzo8L2I+IE1h
+cmtvLCBQZXRlciAoQURWIEQgRVUgU0sgQkZTMSkgJmx0O1BldGVyLk1hcmtvQHNpZW1lbnMuY29t
+Jmd0OzsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBS
+ZTogW3lvY3RvXSBDb3JyZWN0IHdheSBmb3IgbXVsdGlwbGUgcmVjaXBlcyB0byBpbnN0YWxsIGZp
+bGVzIGluIHRoZSBzYW1lIGRpcmVjdG9yeTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PiZndDsgQ2hhbmdpbmcgaW4gcmVjaXBlIDIgZnJvbTxicj4NCiZndDsgPHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6I0M3MjU0RTtiYWNrZ3Jv
+dW5kOiNGOUYyRjQiPg0KY2hvd24gLVIgdXNlcjE6dXNlcjEgJHtEfS9ob21lL3VzZXIxLy5jb25m
+aWcvPC9zcGFuPjxicj4NCiZndDsgdG88YnI+DQomZ3Q7IDxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTAuMHB0O2ZvbnQtZmFtaWx5OkNvbnNvbGFzO2NvbG9yOiNDNzI1NEU7YmFja2dyb3VuZDojRjlG
+MkY0Ij4NCmNob3duIC1SIHVzZXIxOnVzZXIxICR7RH0vaG9tZS91c2VyMTxicj4NCjwvc3Bhbj4m
+Z3Q7IGFjdHVhbGx5IHNlZW1zIHRvIHNvbHZlIHRoZSBwcm9ibGVtIHdpdGggdGhvc2UgcGFydGlj
+dWxhciByZWNpcGVzLjxicj4NCiZndDs8YnI+DQomZ3Q7IEFmdGVyIGdldHRpbmcgYSBiaXQgZnVy
+dGhlciBpbiB0aGUgYml0YmFrZSBwcm9jZXNzIEkgbm93IGhhdmUgdGhlIHNhbWUgcHJvYmxlbSB3
+aXRoIGFub3RoZXIgcmVjaXBlIHRoYXQgd2FudHMgdG8gYWRkIGN1c3RvbSBmaWxlcyB0byAvZXRj
+L3BvbGtpdC0xL3J1bGVzLmQvIGJ1dCB0aGlzIHJlY2lwZSBkb2Vzbid0IGNvbnRhaW4gYW55ICdj
+aG93bicgc3RhdGVtZW50IHNvIEkgY2FuJ3QgYXBwbHkgdGhlIHNhbWUgc29sdXRpb24gaGVyZS48
+YnI+DQomZ3Q7IDxjb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij5maWxlIC9ldGMv
+cG9sa2l0LTEvcnVsZXMuZCBjb25mbGljdHMgYmV0d2VlbiBhdHRlbXB0ZWQgaW5zdGFsbHMgb2Yg
+ZGlzay1hdXRvbW91bnQtMC4xLXIwLmNvcmUyXzY0IGFuZCBwb2xraXQtMTI0LXIwLmNvcmUyXzY0
+PC9zcGFuPjwvY29kZT48YnI+DQomZ3Q7PGJyPg0KJmd0OyBkaXNrLWF1dG9tb3VudC0wLjEgcmVj
+aXBlIGNvbnRhaW5zOjxicj4NCiZndDsgPGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4w
+cHQiPmRvX2luc3RhbGwoKXs8L3NwYW4+PC9jb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0
+Ozxjb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij4mbmJzcDsgaW5zdGFsbCAtZCAk
+e0R9LyR7c3lzY29uZmRpcn0vcG9sa2l0LTEvcnVsZXMuZDwvc3Bhbj48L2NvZGU+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsi
+Pjxicj4NCjwvc3Bhbj4mZ3Q7PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPiZu
+YnNwOyBpbnN0YWxsIC1tIDA2NDQgJHtTfS8wMC1tb3VudC1pbnRlcm5hbC5ydWxlcyAke0R9LyR7
+c3lzY29uZmRpcn0vcG9sa2l0LTEvcnVsZXMuZDwvc3Bhbj48L2NvZGU+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxicj4N
+Cjwvc3Bhbj4mZ3Q7IDxjb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij59PC9zcGFu
+PjwvY29kZT48YnI+DQomZ3Q7PGJyPg0KJmd0OyBwb2xraXQtMTI0IHJlY2lwZSBjb250YWluczo8
+YnI+DQomZ3Q7IDxjb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij5kb19pbnN0YWxs
+OmFwcGVuZCgpIHs8L3NwYW4+PC9jb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0Ozxjb2Rl
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij4mbmJzcDsgI0ZpeCB1cCBwZXJtaXNzaW9u
+cyBvbiBwb2xraXQgcnVsZXMuZCB0byB3b3JrIHdpdGggcnBtNCBjb25zdHJhaW50czwvc3Bhbj48
+L2NvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291
+cmllciBOZXcmcXVvdDsiPjxicj4NCjwvc3Bhbj4mZ3Q7PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMC4wcHQiPiZuYnNwOyBjaG1vZCA3MDAgJHtEfS8ke2RhdGFkaXJ9L3BvbGtpdC0xL3J1
+bGVzLmQ8L3NwYW4+PC9jb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0Ozxjb2RlPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij4mbmJzcDsgY2htb2QgNzAwICR7RH0vJHtzeXNjb25m
+ZGlyfS9wb2xraXQtMS9ydWxlcy5kPC9zcGFuPjwvY29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90OyI+PGJyPg0KPC9zcGFu
+PiZndDs8Y29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+Jm5ic3A7IGNob3duIHBv
+bGtpdGQ6cm9vdCAke0R9LyR7ZGF0YWRpcn0vcG9sa2l0LTEvcnVsZXMuZDwvc3Bhbj48L2NvZGU+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBO
+ZXcmcXVvdDsiPjxicj4NCjwvc3Bhbj4mZ3Q7PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MC4wcHQiPiZuYnNwOyBjaG93biBwb2xraXRkOnJvb3QgJHtEfS8ke3N5c2NvbmZkaXJ9L3BvbGtp
+dC0xL3J1bGVzLmQ8L3NwYW4+PC9jb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0OyA8Y29k
+ZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+fTwvc3Bhbj48L2NvZGU+PGJyPg0KJmd0
+Ozxicj4NCiZndDsgU2luY2UgcG9sa2l0IGlzIG1haW50YWluZWQgYnkgeW9jdG8gSSB3YW50IHRv
+IGF2b2lkIG1ha2luZyBjaGFuZ2VzIHRvIGl0IGJ1dCByYXRoZXIgYWRhcHQgbXkgZGlzay1hdXRv
+bW91bnQgcmVjaXBlIHNvbWVob3cgc2luY2UgdGhlIHByb2JsZW0gcHJvYmFibHkgaXMgb24gbXkg
+ZW5kLjxicj4NCiZndDsgSUlSQyA8Y29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+
+aW5zdGFsbCAtZDwvc3Bhbj48L2NvZGU+IHdpbGwgc2V0IHRoZSBwZXJtaXNzaW9ucyB0byAwNzU1
+IHVubGVzcyBvdGhlcndpc2Ugc3BlY2lmaWVkIHdoaWNoIG1pZ2h0IGNvbmZsaWN0IHdpdGggcG9s
+a2l0J3MgY2htb2QgNzAwIHNvIEkgbWlnaHQgdHJ5IGNvcHlpbmcNCjxjb2RlPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTAuMHB0Ij5jaG1vZCA3MDAgJHtEfS8ke3N5c2NvbmZkaXJ9L3BvbGtpdC0x
+L3J1bGVzLmQ8L3NwYW4+PC9jb2RlPiB0byBteSBkaXNrLWF1dG9tb3VudCByZWNpcGUuDQo8bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-> Hi,
-> I want to create a Wic image from total scratch. Like, i have a "gpt.bin"
-> which creates the partition and put the required images in it. But, i wan=
-t
-> to reate a wic image which will do the same. So, for that do i need that
-> "gpt.bin"? like, as per my knowledge wic cannot create the gpt
-> partition please do correct me if am wrong. And i dont even have any
-> .bbclass file which can help to create the wic image so please help me to
-> generate this wic image from total scratch, what are the steps i need to
-> follow, where i need to put the wks file and how i can write in the wks
-> file.
->
-> FOR Eg: I need to have 6 partitions where i have a active and backup
-> bootloader,kernel,rootfs so for that how we can write the wks file.
->
-> Thanks & Regards
-> Brati
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62913):
-> https://lists.yoctoproject.org/g/yocto/message/62913
-> Mute This Topic: https://lists.yoctoproject.org/mt/105458322/4946642
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> simonkbaby@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000108d2a0615d4f0f8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I am also looking to format=C2=A0my eMMC card with 6 parti=
-tions with different primary and secondary images. How can I achieve this u=
-sing the wks file ?<div><br></div><div>Regards</div><div>Simon</div></div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu,=
- Apr 11, 2024 at 12:38=E2=80=AFAM Bratiranjan Acharya &lt;<a href=3D"mailto=
-:bratiranjan12@gmail.com">bratiranjan12@gmail.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<br>I =
-want to create a Wic image from total=C2=A0scratch. Like, i have a &quot;gp=
-t.bin&quot; which creates the partition and put the required images in it. =
-But, i want to reate a wic image which will do the same. So, for that do i =
-need that &quot;gpt.bin&quot;? like, as per my knowledge wic cannot create =
-the gpt partition=C2=A0please do correct me if am wrong. And i dont even ha=
-ve any .bbclass file which can help to create the wic image so please help =
-me to generate this wic image from total scratch, what are the steps i need=
- to follow, where i need to put the wks file and how i can write in the wks=
- file.<br><br>FOR Eg: I need to have 6 partitions=C2=A0where i have a activ=
-e and backup bootloader,kernel,rootfs so for that how we can write the wks =
-file.<br><br>Thanks &amp; Regards<br>Brati</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#62913): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/62913" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/62913</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/105458322/494=
-6642" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/105458322/4946642</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:simonkbaby@gmail.com" target=3D"_blank">simonkba=
-by@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000108d2a0615d4f0f8--
+--_000_AS1PR10MB5697190D6580085C83A3A310FD052AS1PR10MB5697EURP_--
 
