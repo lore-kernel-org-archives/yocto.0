@@ -1,87 +1,267 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <peter.marko@siemens.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40FC6CD128A
-	for <webhook@archiver.kernel.org>; Thu, 11 Apr 2024 08:02:45 +0000 (UTC)
-Received: from mailout12.t-online.de (mailout12.t-online.de [194.25.134.22])
- by mx.groups.io with SMTP id smtpd.web10.12384.1712822559237041739
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71141CD128A
+	for <webhook@archiver.kernel.org>; Thu, 11 Apr 2024 08:45:15 +0000 (UTC)
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (EUR03-AM7-obe.outbound.protection.outlook.com [40.107.105.87])
+ by mx.groups.io with SMTP id smtpd.web11.12836.1712825113245170352
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Apr 2024 01:02:39 -0700
+ Thu, 11 Apr 2024 01:45:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: t-online.de, ip: 194.25.134.22, mailfrom: f_l_k@t-online.de)
-Received: from fwd75.aul.t-online.de (fwd75.aul.t-online.de [10.223.144.101])
-	by mailout12.t-online.de (Postfix) with SMTP id F0E51599D;
-	Thu, 11 Apr 2024 10:02:36 +0200 (CEST)
-Received: from [192.168.178.67] ([84.163.37.197]) by fwd75.t-online.de
-	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
-	esmtp id 1rupOF-1iSOvI0; Thu, 11 Apr 2024 10:02:35 +0200
-Date: Thu, 11 Apr 2024 10:02:54 +0200
-From: Markus Volk <f_l_k@t-online.de>
-Subject: Re: [yocto] Correct way for multiple recipes to install files in the
+ dkim=pass header.i=@siemens.com header.s=selector2 header.b=r9+NjJ/9;
+ spf=pass (domain: siemens.com, ip: 40.107.105.87, mailfrom: peter.marko@siemens.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TMQPwwQAde3SptSoFNG9z6gGOyDLNQkOkIr/PUTlJZg2qfztpEAKPJYUmbcnZmUT6pcmCkie5K0PgLvFTiKzrMThFEpiZIs0xSPkHf85rIUiaqZet9qRCD2HtxUZqFs/FgZ2GsSsxmoELbmFgWjO8zqrV2o3lOdgfTNPpy4L7H5Zbcnm+9zUVZ0j5GA8ldSVk/brInFgRXJfVU4EyXbpNyqFpT438L3nltps/1QyCUxSA8uhq6Ps8rcTc7YXsBs4XA+wZPmxvykqareG+RzRJzJYk2x1o7Uvt+Dl5U5klHKPVUTsbyLV2h2Ct1HermTCq8aefnfqw0hXUa60NwDYbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kxqP3IkAKmkSV7FS1GaVm05zCqGORsBgdcMWdAOqyTw=;
+ b=CjuOCufB0+AoKd3sHMo+idXKpVMiEYObk7fDj6NSITCap22VSLs/oaOYNuLcYx6vwpJ/VG2vBG2vxVHP1A0L4he9Ed5PdDzfgu7YMy4kwZGivYBYOIvjUM/rz/Clj4akCCPba3f4KEcvooi3ZRvJU/JI06X653m9c7Qc28qYaL1+1fPOlRvX3FLwy+rvhKGeVeayuE9hpLI3GGKCC0ZCPKsV7XcMxzSazWoMeztNeOUs7QirEEUrwfCxwHJxt6b75JvPTkKoKSeUA8dISdInTwbDbO424eXAY45t0o7NXsH0skj2D3HuoCHCjtzQLXo1LKUp9mn47eqp8L4F8ChMlA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kxqP3IkAKmkSV7FS1GaVm05zCqGORsBgdcMWdAOqyTw=;
+ b=r9+NjJ/9v9v3FJcepfkqOUufTgKFCORxXslXMhYVZ2lMycH4j7BdOOmCch0+FaKL3eiXUqUC/V1GO6aCI62kO8PBtV0WF9FlLg/z6awpmyeVgxV8lsf17zpvglC38UYg6Ln4YBQo08ivxULMdUxmKayA3ooM+aEA88xqhkl50qyAWrU4fWtDA2xWup23dy+4+HFEaSxdOxg+whHsEOkyCUZCYVI9Q2ekM604RfKpYboQYi3mCIYdOrgG1nnMUO2Wev6JAFHxH8wXudbBcDBB5rrw4SwYiCGK5F+81QaFjoNq7evIO/jI7rj5gI6NkL9Ma9aOg+ZTNN+/66hRCj5pPA==
+Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:479::20)
+ by PAWPR10MB7149.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:2e3::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 11 Apr
+ 2024 08:45:10 +0000
+Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::fd78:3502:7564:1891]) by AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::fd78:3502:7564:1891%4]) with mapi id 15.20.7409.053; Thu, 11 Apr 2024
+ 08:45:09 +0000
+From: "Marko, Peter" <Peter.Marko@siemens.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"linusnilsson@hotmail.com" <linusnilsson@hotmail.com>
+Subject: RE: [yocto] Correct way for multiple recipes to install files in the
  same directory
-To: yocto@lists.yoctoproject.org, linusnilsson@hotmail.com
-Message-Id: <UCQRBS.EOAK12EU960P1@t-online.de>
-In-Reply-To: <ZfwI.1712821969796887981.Ve9P@lists.yoctoproject.org>
+Thread-Topic: [yocto] Correct way for multiple recipes to install files in the
+ same directory
+Thread-Index: AQHai+VD48dymrzYmU6J6GD8gN4hVbFiwLaA
+Date: Thu, 11 Apr 2024 08:45:09 +0000
+Message-ID: 
+ <AS1PR10MB5697DD3141937F7F5C9EC77CFD052@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
 References: <ZfwI.1712821969796887981.Ve9P@lists.yoctoproject.org>
-X-Mailer: geary/44.1
+In-Reply-To: <ZfwI.1712821969796887981.Ve9P@lists.yoctoproject.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=cf625b85-9bbb-480a-b0d9-a44b2734a7e6;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2024-04-11T08:42:57Z;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS1PR10MB5697:EE_|PAWPR10MB7149:EE_
+x-ms-office365-filtering-correlation-id: 38b73d48-dcb8-46fb-d8f4-08dc5a03b214
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ JrrsYwveuf8fMOy2BGhGjfjeBO0J0UvevauxN1w0Pxo3yS9AKA1fDfMw9y4ByIFu9VDdS7HCZFaUZxR64mWrt3+vRNcE8p07vzJ7ZYrvhNRvin2AIvlKWgh98PVAxdPSERj4ryWVpdB9Za9hxXEaeBYGuYkfYOcxXs8wPRFZAij2yEh95sWTFWYM/Ek8+Ibq1HULtrLvgNnIsfqs8xv5kTOylDxMkdEEhMXyjSxE3U0/PUSEFBeLSAEB85QC4z+RUb8Y3YKaL1q0ydHf6SSgHLoTlG1KWgPaP04ZB1D5ffsqgKtLBsiCHTb9+4K1n+Gr4PUO7cZQqJuW5lITZISn8JiOzBGUmh+WGBXrmRpeh4GQCLdGawlM6IVN5ly/T2CQ4opCScLTydi3LMDelRBk+9T5L6X5XA6M246MT8V15TUaqGA19QFVrLcPzKyH06ip8IsNtqtPw9X6aAOlPYPgfWgzIrJRWrRy6UNV4M6kuHaiuQ/nqYg70hKSJbZsNfUkSjMulnvnZBtyhk/q8uFDH87yiLrfhRTHjTc9iNZinYmmqLkzj3lgUmk+BnVhZwvRJq/M6wpCt691+KaybvXwJUE5wc7DIFSX3roTm79Q1eYEKNMvHLjK0SwN0P7ywJ3VxDaY90EhWmzJOsyTkKmFlULab/m9fwuZPsESgTb7W8FClBEfreHsHCKiZ7af/0jHclPAsHVCSuUT05/51C7AQQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?WEY5QXBONHYydG5PNVlXeEJSZXI5Y2xYT2lRTktWY0VnYllqZGtjbkw3UzNK?=
+ =?utf-8?B?KzdlK1llM3puSW1FR2huNG5BN1pZVjZ5dTNYQjh4dWRtUS9MVFlodlp3cEs5?=
+ =?utf-8?B?Zk94SE9jY1E1OEFQLzhMbTZPb3lYYmlOSFhzQXpCSWpoTGk2aHZCT01mYlBN?=
+ =?utf-8?B?OEVDdDYvL0hWSFJYSmhnTVNnRWRFMUdUQmZRaUdjWFczQ3o1eDdSUDJEOTZW?=
+ =?utf-8?B?bW80cHoyNGRtSVV6UWNBRFhDems0M0FMY2U1YkcwMEp1aUp6TTJydUd6K2Vv?=
+ =?utf-8?B?ajJKRFFuUFBuVys0M1ZoS1RlT05yR2svRjRIOU9XR3hObXV4REQzZVh3cmVF?=
+ =?utf-8?B?cyt3Zy9ZejNQOHE2YTBQRTVrRVJ6SEQzaGF3WEc5c2YzZjVvYWJ6K2pMV2JI?=
+ =?utf-8?B?VkJzZGcrbFh3QjB6LzBnM0FydTgyVTBveDFaOGRGTUdrNW1sWHhjSzBqa1Rx?=
+ =?utf-8?B?dnp1d3NYS0J1RWRiUzJFODJCY281Q2N4cFpKelRqWEgzSUFBd2tEVkxFd1Er?=
+ =?utf-8?B?dmEvV3FCSWRrckZwL1dHTG0xT0FhOHArUlIzYW96TlFONzZCWjhWWEwwTkY0?=
+ =?utf-8?B?Nno0SlJuUzlnMDNVbUFtS3Q5TE5EeGQrQk9LMWVxQXEyOWQ0b1ZTQjBVNytK?=
+ =?utf-8?B?VjJUMU1uUGpHaDkrS25OK1JVV2JiMjI2R1VYK05lMStadTR3NkR6Qk5NNE0z?=
+ =?utf-8?B?aVgwVW5ISml5VDBFdS9UbTNKL0QrY2JDbzJZTWloVkROaHhHbW1GVUZJYTRF?=
+ =?utf-8?B?ZVhtV1pST25NSXVtbDJQUzFZVk4zVnNzcXBSZlZSTmhxZUFQRC9WVmRQVEVU?=
+ =?utf-8?B?Rm5zeGpqbXMwMHRwbktMZ3lISU9ZVDljdGlWdHpRTGl1NXZGNHROYzR2Vm00?=
+ =?utf-8?B?eExSZzZjWGdXMEVKTTVKKzBRS0NZMkhXajBkOCtSTnZ3Ti8rSE5QUk43MGZT?=
+ =?utf-8?B?cUtvV0hHc25GOFo4N3pSaGVpV3pnb0t6emZQTXQxcFhtemJZdVIxTlBIZS9C?=
+ =?utf-8?B?NXFOSlhpNEhMcStCWHF4aGRaUHJHWDhrQXpxbFJMK0JXU0l1R3ZsbnlzR0x5?=
+ =?utf-8?B?cjV1QktoYW1EMCt3ZzVCZThlbUduZU9IR2RTeHEzSFh4VTJNRkZJajRZQkVa?=
+ =?utf-8?B?TWsvcG8wVlh2VjNPaGV1U282eG1CeDJYUWdaVTBtRVBMWWlZcTd1VHY1R0xz?=
+ =?utf-8?B?N0R2d0VKbThjMzdnNEtIa3FxL0dNZk9qcGZCSm1mN0dZNmJwRDJDK0VLdHdw?=
+ =?utf-8?B?Z2ZQYTdGVXBiU3N6ZjZDRCt6aE54SU1hSDlRYWVrcFhXMGdlTkdaTFM4R2NR?=
+ =?utf-8?B?aTVjWE9yTlZZRkJnVjBLNWc5ZCtCWXc0UFJQZW9CeXlYeS91QzcwcHovc0VN?=
+ =?utf-8?B?a1F4UGoydThuTGp2RnV1ekRoYVNRTUlNei9DbXZWcXFZcGxwQ0JOQkw1ejdq?=
+ =?utf-8?B?bDNzcXY4bnI0TnEwN3hzRFdtRDlHYmVwZmNzbjlOVzlLMVVyUjg5NmFQRVJO?=
+ =?utf-8?B?czFlYmc0Unp3cHFoZzFDSUtjdk1jdzRzZlg1cFNLMkpBdmlpSDJsaThDWW5h?=
+ =?utf-8?B?NlFXRVVmVXpOUVkwSk5BTEg1clhKSUhvdGpUaDJidXpwbFJGdzhWVFEzdU9W?=
+ =?utf-8?B?dnNkWWtEM1BPRDRXVTQ4eGdkeXlRYnpJYW04dk9NcFEyMmRCWmlCT29qTENW?=
+ =?utf-8?B?SVoxYkxEL1BlTmh2aEhQVlhYd1hXbWNDMm1EcjF5cStTbWQ4cGtzbmd6dWFC?=
+ =?utf-8?B?Z0NoaHFqMEZsYW8xYS9qcUpsU1JXY3JpZjJBRWVEWFVNR3Vuck85alg0MGx2?=
+ =?utf-8?B?VjhBR204bEtVcVRwOTJEaEVjeW5BbnhEV3k4eFZXbTBiUkxrcFo0UVVBMTlu?=
+ =?utf-8?B?b1U2aFJKTjE2VitGT3lvU1FVNzJwU1dlaHFjMENpbDd6NWd6TmRYb1hTMTBW?=
+ =?utf-8?B?T3k0Z1phRE9xY1kxQXdZMU5LOVVvL3M3WVM3d1p6UkdiV1JVNHgzTnQzTjVJ?=
+ =?utf-8?B?VVJWWllsbExHQnQ0WHZycHZqcENTMS9tV28xWStwNENxZ2xQaFJEVitRaDlR?=
+ =?utf-8?B?RE1QZFVQTFdYWlRjSUl4S3cvRVJZUnYyaTJVdDkvVEtQempTT0pXdk5MK1JE?=
+ =?utf-8?Q?xTIzD6Gog/kOueCKoulqBsyME?=
+Content-Type: multipart/alternative;
+	boundary="_000_AS1PR10MB5697DD3141937F7F5C9EC77CFD052AS1PR10MB5697EURP_"
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="=-1HgY2EHDav7C3/zzX8lJ"
-X-TOI-EXPURGATEID: 150726::1712822555-3D98AC7B-DAF99C76/0/0 CLEAN NORMAL
-X-TOI-MSGID: b5f74ea3-977b-45ab-b214-fe3cd89c80b5
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38b73d48-dcb8-46fb-d8f4-08dc5a03b214
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Apr 2024 08:45:09.8545
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XdVJep14vWPH5Ma+HzxbVtmDNH+W0YbXSTIew6MnxOv1uJuTz/CXQwyJ0rd9vjBoGEdhySKTl04MQ2sepEE+7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR10MB7149
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Apr 2024 08:02:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62915
+ <yocto@lists.yoctoproject.org>; Thu, 11 Apr 2024 08:45:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62916
 
---=-1HgY2EHDav7C3/zzX8lJ
-Content-Type: text/plain; charset=us-ascii; format=flowed
+--_000_AS1PR10MB5697DD3141937F7F5C9EC77CFD052AS1PR10MB5697EURP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Apr 11 2024 at 12:52:49 AM -07:00:00, linusnilsson@hotmail.com 
-wrote:
-> Is there a proper way to do this?
-> 
-> Kind regards, Linus
+RnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZz4gT24gQmVoYWxmIE9mIGxpbnVzbmlsc3NvbiB2aWEgbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZw0KU2VudDogVGh1cnNkYXksIEFwcmlsIDExLCAyMDI0IDk6NTMNClRvOiB5b2N0b0BsaXN0
+cy55b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIENvcnJlY3Qgd2F5IGZvciBtdWx0
+aXBsZSByZWNpcGVzIHRvIGluc3RhbGwgZmlsZXMgaW4gdGhlIHNhbWUgZGlyZWN0b3J5DQoNCg0K
+PiBIaSENCj4gSG93L2NhbiBJIGxldCBtdWx0aXBsZSByZWNpcGVzIGluc3RhbGwgZmlsZXMgaW4g
+dGhlIHNhbWUgZGlyZWN0b3J5IHdpdGhvdXQgZ2V0dGluZyBhIGNvbmZsaWN0IGR1cmluZyBiaXRi
+YWtlIHByb2Nlc3M/DQo+DQo+IFJlY2lwZSAxIGNyZWF0ZXMgYSB1c2VyIGFuZCBpdHMgaG9tZWRp
+cjoNCj4gaW5oZXJpdCB1c2VyYWRkDQo+IFVTRVJBRERfUEFDS0FHRVMgPSAiJHtQTn0iDQo+IFVT
+RVJBRERfUEFSQU06JHtQTn0gPSAiLXUgMTAwMCAtZCAvaG9tZS91c2VyMSAtbSAtcyAvYmluL2Jh
+c2ggLXAgJ1hYWCcgdXNlcjEiDQo+IGRvX2luc3RhbGwoKXsNCj4gIGluc3RhbGwgLWQgJHtEfS9o
+b21lL3VzZXIxDQo+ICBjaG93biAtUiB1c2VyMTp1c2VyMSAke0R9L2hvbWUvdXNlcjENCj4gfQ0K
+Pg0KPiBSZWNpcGUgMiB3YW50cyB0byBpbnN0YWxsIHNvbWUgY29uZmlnLWZpbGVzIGluc2lkZSAv
+aG9tZS91c2VyMS8uY29uZmlnLy4NCj4gREVQRU5EUyA9ICJyZWNpcGUxIg0KPiBSREVQRU5EUzok
+e1BOfSA9ICJyZWNpcGUxIg0KPiBkb19pbnN0YWxsKCl7DQo+ICBpbnN0YWxsIC1kICR7RH0vaG9t
+ZS91c2VyMS8uY29uZmlnLw0KPiAgaW5zdGFsbCAtbSAwNjQ0IHNvdXJjZWZpbGUgJHtEfS9ob21l
+L3VzZXIxLy5jb25maWcvDQo+ICBjaG93biAtUiB1c2VyMTp1c2VyMSAke0R9L2hvbWUvdXNlcjEv
+LmNvbmZpZy8NCg0KSGF2ZSB5b3UgdHJpZWQgdG8gY2hhbmdlIHRoaXMgbGluZSB0bw0KDQpjaG93
+biAtUiB1c2VyMTp1c2VyMSAke0R9L2hvbWUvdXNlcjENCg0KVGhlIGVycm9yIG1heSBjb21lIGZy
+b20gZmFjdCB0aGF0IGRpcmVjdG9yeSAvaG9tZS91c2VyMSBoYXMgZGlmZmVyZW50IG93bmVyc2hp
+cCBpbiBib3RoIHJlY2lwZXMNCj4gfQ0KPg0KPiBUaGVyZSBpcyBhbHNvIEZJTEVTIGRpcmVjdGl2
+ZXMgYXQgdGhlIGVuZCBvZiBlYWNoIHJlY2lwZSBmb3IgdGhlIGNvcnJlc3BvbmRpbmcgZmlsZXMu
+IEZvciBiZXR0ZXIgcmVhZGFiaWxpdHkgSSd2ZSByZW1vdmVkIGV2ZXJ5dGhpbmcgdGhhdCBJIGRl
+ZW1lZCB3YXMgaXJyZWxldmFudC4NCj4gVGhlIHByb2JsZW0gSSBnZXQgd2hlbiB0cnlpbmcgdG8g
+Yml0YmFrZSB0aGUgaW1hZ2UgaXMgZHVyaW5nIHRoZSBkb19yb290ZnMgc3RhZ2U6DQo+IGZpbGUg
+L2hvbWUvdXNlcjEgY29uZmxpY3RzIGJldHdlZW4gYXR0ZW1wdGVkIGluc3RhbGxzIG9mIDxyZWNp
+cGUyPiBhbmQgPHJlY2lwZTE+DQo+DQo+IElmIEkgY29tbWVudCBvdXQgdGhlICJjaG93biIgbGlu
+ZSBmcm9tIGJvdGggcmVjaXBlcyBpdCBzZWVtcyB0byB3b3JrIGJ1dCB0aGVuIEkgZ3Vlc3MgdGhv
+c2UgZGlyZWN0b3JpZXMgd2lsbCBiZSBvd25lZCBieSByb290IGR1cmluZyBydW50aW1lLCB3aGlj
+aCB3aWxsIGJlIGEgcHJvYmxlbSBmb3IgdXNlcjEuDQo+DQo+IElzIHRoZXJlIGEgcHJvcGVyIHdh
+eSB0byBkbyB0aGlzPw0KPg0KPiBLaW5kIHJlZ2FyZHMsIExpbnVzDQo=
 
-Hi,
-can't tell if this would be a proper way, but this is how I do it and 
-what works for me:
+--_000_AS1PR10MB5697DD3141937F7F5C9EC77CFD052AS1PR10MB5697EURP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Create a main user:
-<https://codeberg.org/flk/meta-image/src/branch/master/recipes-extended/system-config/main-user.bb>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmNvZGUNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7
+bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
+bnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5
+bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAx
+MS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlv
+bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+
+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8
+L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0
+IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNo
+YXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMi
+IGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdv
+cmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25l
+O2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGlu
+Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiB5b2N0b0BsaXN0cy55b2N0b3By
+b2plY3Qub3JnICZsdDt5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnJmd0Ow0KPGI+T24gQmVo
+YWxmIE9mIDwvYj5saW51c25pbHNzb24gdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8
+Yj5TZW50OjwvYj4gVGh1cnNkYXksIEFwcmlsIDExLCAyMDI0IDk6NTM8YnI+DQo8Yj5Ubzo8L2I+
+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3Rv
+XSBDb3JyZWN0IHdheSBmb3IgbXVsdGlwbGUgcmVjaXBlcyB0byBpbnN0YWxsIGZpbGVzIGluIHRo
+ZSBzYW1lIGRpcmVjdG9yeTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwPiZndDsgSGkhPGJyPg0KJmd0OyBIb3cvY2Fu
+IEkgbGV0IG11bHRpcGxlIHJlY2lwZXMgaW5zdGFsbCBmaWxlcyBpbiB0aGUgc2FtZSBkaXJlY3Rv
+cnkgd2l0aG91dCBnZXR0aW5nIGEgY29uZmxpY3QgZHVyaW5nIGJpdGJha2UgcHJvY2Vzcz88YnI+
+DQomZ3Q7PGJyPg0KJmd0OyBSZWNpcGUgMSBjcmVhdGVzIGEgdXNlciBhbmQgaXRzIGhvbWVkaXI6
+PGJyPg0KJmd0OyA8Y29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+aW5oZXJpdCB1
+c2VyYWRkPC9zcGFuPjwvY29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90OyI+PGJyPg0KPC9zcGFuPiZndDsgPGNvZGU+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPlVTRVJBRERfUEFDS0FHRVMgPSAmcXVvdDske1BO
+fSZxdW90Ozwvc3Bhbj48L2NvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxicj4NCjwvc3Bhbj4mZ3Q7IDxjb2RlPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij5VU0VSQUREX1BBUkFNOiR7UE59ID0gJnF1b3Q7
+LXUgMTAwMCAtZCAvaG9tZS91c2VyMSAtbSAtcyAvYmluL2Jhc2ggLXAgJ1hYWCcgdXNlcjEmcXVv
+dDs8L3NwYW4+PC9jb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0OyA8Y29kZT48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEwLjBwdCI+ZG9faW5zdGFsbCgpezwvc3Bhbj48L2NvZGU+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVv
+dDsiPjxicj4NCjwvc3Bhbj4mZ3Q7PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQi
+PiZuYnNwOyBpbnN0YWxsIC1kICR7RH0vaG9tZS91c2VyMTwvc3Bhbj48L2NvZGU+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsi
+Pjxicj4NCjwvc3Bhbj4mZ3Q7PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPiZu
+YnNwOyBjaG93biAtUiB1c2VyMTp1c2VyMSAke0R9L2hvbWUvdXNlcjE8L3NwYW4+PC9jb2RlPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3
+JnF1b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0OyA8Y29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+LjBwdCI+fTwvc3Bhbj48L2NvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxicj4NCjwvc3Bhbj4mZ3Q7PGJyPg0KJmd0
+OyBSZWNpcGUgMiB3YW50cyB0byBpbnN0YWxsIHNvbWUgY29uZmlnLWZpbGVzIGluc2lkZSAvaG9t
+ZS91c2VyMS8uY29uZmlnLy48YnI+DQomZ3Q7IDxjb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTAuMHB0Ij5ERVBFTkRTID0gJnF1b3Q7cmVjaXBlMSZxdW90Ozwvc3Bhbj48L2NvZGU+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVv
+dDsiPjxicj4NCjwvc3Bhbj4mZ3Q7IDxjb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
+Ij5SREVQRU5EUzoke1BOfSA9ICZxdW90O3JlY2lwZTEmcXVvdDs8L3NwYW4+PC9jb2RlPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1
+b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0OyA8Y29kZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
+dCI+ZG9faW5zdGFsbCgpezwvc3Bhbj48L2NvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxicj4NCjwvc3Bhbj4mZ3Q7
+PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPiZuYnNwOyBpbnN0YWxsIC1kICR7
+RH0vaG9tZS91c2VyMS8uY29uZmlnLzwvc3Bhbj48L2NvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxicj4NCjwvc3Bh
+bj4mZ3Q7PGNvZGU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPiZuYnNwOyBpbnN0YWxs
+IC1tIDA2NDQgc291cmNlZmlsZSAke0R9L2hvbWUvdXNlcjEvLmNvbmZpZy88L3NwYW4+PC9jb2Rl
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIg
+TmV3JnF1b3Q7Ij48YnI+DQo8L3NwYW4+Jmd0Ozxjb2RlPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTAuMHB0Ij4mbmJzcDsgY2hvd24gLVIgdXNlcjE6dXNlcjEgJHtEfS9ob21lL3VzZXIxLy5jb25m
+aWcvPG86cD48L286cD48L3NwYW4+PC9jb2RlPjwvcD4NCjxwPkhhdmUgeW91IHRyaWVkIHRvIGNo
+YW5nZSB0aGlzIGxpbmUgdG8gPG86cD48L286cD48L3A+DQo8cD48Y29kZT48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjEwLjBwdCI+Y2hvd24gLVIgdXNlcjE6dXNlcjEgJHtEfS9ob21lL3VzZXIxPG86
+cD48L286cD48L3NwYW4+PC9jb2RlPjwvcD4NCjxwPlRoZSBlcnJvciBtYXkgY29tZSBmcm9tIGZh
+Y3QgdGhhdCBkaXJlY3RvcnkgL2hvbWUvdXNlcjEgaGFzIGRpZmZlcmVudCBvd25lcnNoaXAgaW4g
+Ym90aCByZWNpcGVzPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q291cmllciBOZXcmcXVvdDsiPjxicj4NCjwvc3Bhbj4mZ3Q7IDxjb2RlPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTAuMHB0Ij59PC9zcGFuPjwvY29kZT48YnI+DQomZ3Q7PGJyPg0KJmd0OyBU
+aGVyZSBpcyBhbHNvIEZJTEVTIGRpcmVjdGl2ZXMgYXQgdGhlIGVuZCBvZiBlYWNoIHJlY2lwZSBm
+b3IgdGhlIGNvcnJlc3BvbmRpbmcgZmlsZXMuIEZvciBiZXR0ZXIgcmVhZGFiaWxpdHkgSSd2ZSBy
+ZW1vdmVkIGV2ZXJ5dGhpbmcgdGhhdCBJIGRlZW1lZCB3YXMgaXJyZWxldmFudC48YnI+DQomZ3Q7
+IFRoZSBwcm9ibGVtIEkgZ2V0IHdoZW4gdHJ5aW5nIHRvIGJpdGJha2UgdGhlIGltYWdlIGlzIGR1
+cmluZyB0aGUgZG9fcm9vdGZzIHN0YWdlOjxicj4NCiZndDsgPGNvZGU+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMC4wcHQiPmZpbGUgL2hvbWUvdXNlcjEgY29uZmxpY3RzIGJldHdlZW4gYXR0ZW1w
+dGVkIGluc3RhbGxzIG9mICZsdDtyZWNpcGUyJmd0OyBhbmQgJmx0O3JlY2lwZTEmZ3Q7PC9zcGFu
+PjwvY29kZT48YnI+DQomZ3Q7PGJyPg0KJmd0OyBJZiBJIGNvbW1lbnQgb3V0IHRoZSAmcXVvdDtj
+aG93biZxdW90OyBsaW5lIGZyb20gYm90aCByZWNpcGVzIGl0IHNlZW1zIHRvIHdvcmsgYnV0IHRo
+ZW4gSSBndWVzcyB0aG9zZSBkaXJlY3RvcmllcyB3aWxsIGJlIG93bmVkIGJ5IHJvb3QgZHVyaW5n
+IHJ1bnRpbWUsIHdoaWNoIHdpbGwgYmUgYSBwcm9ibGVtIGZvciB1c2VyMS48YnI+DQomZ3Q7PGJy
+Pg0KJmd0OyBJcyB0aGVyZSBhIHByb3BlciB3YXkgdG8gZG8gdGhpcz88YnI+DQomZ3Q7PGJyPg0K
+Jmd0OyBLaW5kIHJlZ2FyZHMsIExpbnVzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4N
+CjwvaHRtbD4NCg==
 
-Inherit a main-user class for every recipe that wants to write stuff to 
-/home/user
-<https://codeberg.org/flk/meta-image/src/branch/master/classes/main-user.bbclass>
-
-You can override the values set in main-user.bbclass to fit your needs 
-in e.g. local.conf
-
-Regards,
-Markus
-
-
-
---=-1HgY2EHDav7C3/zzX8lJ
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<div id=3D"geary-body" dir=3D"auto">On Thu, Apr 11 2024 at 12:52:49 AM -07:=
-00:00, linusnilsson@hotmail.com wrote:<br><blockquote type=3D"cite">Is ther=
-e a proper way to do this?<br><br>Kind regards, Linus</blockquote><div><br>=
-</div><div>Hi,</div><div>can't tell if this would be a proper way, but this=
- is how I do it and what works for me:</div><div><br></div><div>Create a ma=
-in user:&nbsp;</div><div><a href=3D"https://codeberg.org/flk/meta-image/src=
-/branch/master/recipes-extended/system-config/main-user.bb">https://codeber=
-g.org/flk/meta-image/src/branch/master/recipes-extended/system-config/main-=
-user.bb</a></div><div><br></div><div>Inherit a main-user class for every re=
-cipe that wants to write stuff to /home/user</div><div><a href=3D"https://c=
-odeberg.org/flk/meta-image/src/branch/master/classes/main-user.bbclass">htt=
-ps://codeberg.org/flk/meta-image/src/branch/master/classes/main-user.bbclas=
-s</a></div><div><br></div><div>You can override the values set in main-user=
-.bbclass to fit your needs in e.g. local.conf</div><div></div><div><br></di=
-v><div>Regards,</div><div>Markus</div><div><br></div></div>
---=-1HgY2EHDav7C3/zzX8lJ--
-
+--_000_AS1PR10MB5697DD3141937F7F5C9EC77CFD052AS1PR10MB5697EURP_--
 
