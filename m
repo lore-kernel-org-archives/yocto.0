@@ -1,192 +1,168 @@
-Return-Path: <pbarker.renesas@gmail.com>
+Return-Path: <chee.yang.lee@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED1BAC4345F
-	for <webhook@archiver.kernel.org>; Thu, 11 Apr 2024 20:45:58 +0000 (UTC)
-Received: from relmlie6.idc.renesas.com (relmlie6.idc.renesas.com [210.160.252.172])
- by mx.groups.io with SMTP id smtpd.web11.31116.1712868351594603317
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35F55C4345F
+	for <webhook@archiver.kernel.org>; Fri, 12 Apr 2024 01:29:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by mx.groups.io with SMTP id smtpd.web10.36867.1712885334274080091
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Apr 2024 13:45:52 -0700
+ Thu, 11 Apr 2024 18:28:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: bp.renesas.com, ip: 210.160.252.172, mailfrom: paul.barker.ct@bp.renesas.com)
-X-IronPort-AV: E=Sophos;i="6.07,194,1708354800"; 
-   d="asc'?scan'208";a="205103686"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 12 Apr 2024 05:45:50 +0900
-Received: from [10.226.92.32] (unknown [10.226.92.32])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D7B474010DE2;
-	Fri, 12 Apr 2024 05:45:48 +0900 (JST)
-Message-ID: <b2e411fe-b4be-4fe7-b952-69ac32207ff6@bp.renesas.com>
-Date: Thu, 11 Apr 2024 21:45:46 +0100
+ dkim=pass header.i=@intel.com header.s=Intel header.b=TbUnvUr4;
+ spf=pass (domain: intel.com, ip: 192.198.163.13, mailfrom: chee.yang.lee@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1712885334; x=1744421334;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=aOC2be3LB3XgULYA7qkHE/JGGvx3BTDwQvX1fZuq35Y=;
+  b=TbUnvUr4dAJ2UkffCiIqRnl9I7AI1UK8uiDkW+djy0sK+tDv8hvc5HjF
+   As9X+NJzN0r6Fa/E5j3a3R/dqyMQ8zGiHFIpgD5Q2IFYVicdKTKWgCEoI
+   FXIY8Z/lmW0yZXw9SKf/07+/Pd3F0qlUKShJ1ETLDO8dkm7d8C6mz2MA0
+   Ze6lAUvqNKwDmZC2iay7NF6PHv8tTEmVyb0COS0YEvUapg/FuGB/cTiyQ
+   oRtaY1SQ0lRb7rkBDGg2xtY7GqGXWgHtaTff/2IRPG3jz3h7y3fs/bVa4
+   HyB8bFsNHfypR/6KJKytzI6He+G6Fe8xWCC1/DaLxOGoRhjBR2jLHkv2F
+   Q==;
+X-CSE-ConnectionGUID: NoHuEyqtTtqNnbvbDeTYuQ==
+X-CSE-MsgGUID: 63VaXbToSMOk2psOfsIU8g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="11293311"
+X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; 
+   d="scan'208";a="11293311"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2024 18:28:54 -0700
+X-CSE-ConnectionGUID: /j4EW3ZjRSuIr+fA55vcPQ==
+X-CSE-MsgGUID: fZHZIQRnRQapQQl+CEzfRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; 
+   d="scan'208";a="44365745"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 11 Apr 2024 18:28:53 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 11 Apr 2024 18:28:53 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 11 Apr 2024 18:28:52 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Thu, 11 Apr 2024 18:28:52 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Thu, 11 Apr 2024 18:28:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PSTFjrA6r/2OlQRVaUrfbm/UrampTnHCcF/YwrRZHoFOKjhUDgL01wgYv6mMPf7YWDn40bDfOAz6fmymjGXvaOm9+norkwDb7jdG2ZGPxcLl9rz8mNerBer8RsK30rk3X1/ScZiDysL0gpEXYLy9APD+HqrfzyEp1JIO3idRXmMp0637UyzreudiwN9VGY1VlCererJAU7y9NG6sKpf940qaz5DHLAjA/zxKLln+bMcUctK3eiS4rxLgEjR8Sm0V0mTPbYcGiGd3ea96raerJB8/KYvFxYz/ym+4xqNQip7g7hnzticjdxadcmqV86HT1FWBrzx1r+b0KZNnwmidpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aOC2be3LB3XgULYA7qkHE/JGGvx3BTDwQvX1fZuq35Y=;
+ b=SZZRIpuTgwarp9ri0Evq4w7Mg2yVuYBoKFjPSQBT65aOxyhEtLkFRwS6NRTtGEPpAc7f6Aa/zuVtDPgACyzG+Y9lMln2vNhaP1ohzhUx2na2MGXVC/VBSSWrO4C+Lujul1ELVGII/aoVhGr6dyBPb8CdtTUlhHGYGLady+JaShCaoUpvwhh8xDDlUhiXzJsamftJm7ZHye+5g/CnpOwuZQIrhNpBHAX7ADw2lOpdaSiC94ujc9Al7rfIZvf9YTRZOvSPpaQyDDptKRjEDCLZyCbWvk6s68hj14TZhS8u+z/0spGQkh8lUPBw/aVrlBtbpRGCcb1Va3SElc4NRtJziw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH3PR11MB8093.namprd11.prod.outlook.com (2603:10b6:610:139::10)
+ by SA2PR11MB4939.namprd11.prod.outlook.com (2603:10b6:806:115::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.26; Fri, 12 Apr
+ 2024 01:28:51 +0000
+Received: from CH3PR11MB8093.namprd11.prod.outlook.com
+ ([fe80::37e3:dd3a:22ef:9f25]) by CH3PR11MB8093.namprd11.prod.outlook.com
+ ([fe80::37e3:dd3a:22ef:9f25%6]) with mapi id 15.20.7430.045; Fri, 12 Apr 2024
+ 01:28:50 +0000
+From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
+To: Michael Opdenacker <michael.opdenacker@bootlin.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] [ANNOUNCEMENT] Yocto Project 4.3.4 is Released
+Thread-Topic: [yocto] [ANNOUNCEMENT] Yocto Project 4.3.4 is Released
+Thread-Index: AdqLIFTDf9VSTDOeQJa3lPAh60hZOQA09bMAACBDbQA=
+Date: Fri, 12 Apr 2024 01:28:50 +0000
+Message-ID: <CH3PR11MB80936E26280256B2F2B391B6B9042@CH3PR11MB8093.namprd11.prod.outlook.com>
+References: <CH3PR11MB8093B804A555BA168F74110EB9062@CH3PR11MB8093.namprd11.prod.outlook.com>
+ <5bdf017a-b7fc-4124-ad5a-79bf42873370@bootlin.com>
+In-Reply-To: <5bdf017a-b7fc-4124-ad5a-79bf42873370@bootlin.com>
+Accept-Language: en-SG, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH3PR11MB8093:EE_|SA2PR11MB4939:EE_
+x-ms-office365-filtering-correlation-id: b5d05b53-f136-43dd-eb4b-08dc5a8fe88e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AfxoOPwlaTfJzqWeMiUD7s+HAGsU6DgPHWeV874RGUbURvs29FaTop5IDyPlhrRcfyKRNlYwAumV/Lsp0ai6ss60eTX7y/YIcyWiNQ5d+pzufvaPFzmJwk+HUZyPp0pbr3VF36nM9EQNvPSnr/vs9x0h6+r3HJMEsIPM+RkC2oEk0dHwQcCOgaZEYEAaXSBiNHWa76zAmi4F32OB0Gy1Vs+Q5THRPEZ1N7MOQc/6jDW30WX6M6QHzmolOxVGhQR8pOoOUEQFLLkOQFBEIdQ7wCmMvjX8YnfoOQs0EZmxRLVXcq38AdnHpQ2jDEcnDAJRsKaTslGQRhwsf1hthubiX0/QhQAdPrjbJddVazatlrrULxVT1qWSmUMsFaNquhYGSt+SNxZqtZP7yfBj0vd+aBy14g7E0dIPOvX7RTlIZS5etzkRA5G96Q4Dq7hoZkfmRY8ltb1M8TSpoZGIcxMIyQaDXHfu21l/tvh27GGe/rhr3PNX1WAcliPoyKomkJlOr4tVM0miNKKHEn2aV26MYyJmA2U6H4K8G0QY1xqFlTQIcWsjt7ztMXaBREg4E98vaFZiD/sSgp27wPTCMyYlKh05PgXepnNyKMhAWZU2Pp49CH4/3xNA+En80F6aCrWD6PW1S3HS7gxMYuAdOgIZMovyqobrA0BvTJT59GR08uQ=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR11MB8093.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ckVSSVFDL2pIRlZ5Zlpyd2ZSSGdDYUpTZ2F1eitiakNCRjZCb1liUU9LeUVJ?=
+ =?utf-8?B?MUVGcU93ejM5VFV3K3MzOVFIcGVhcENwaWhyZmVVNUZWWkF5M0U2Q0Jtc0hu?=
+ =?utf-8?B?Rlpxcm0vd0VXdWpKTHRyMHU0ZDc2dm5VQmhEZEdRYjdjQVE3ZU1wOFR3K0lV?=
+ =?utf-8?B?QTRaZmVOczI0aWs0MnF0RTBWZGtBZWd5UGwycXFJWEwvTHRtS3VwT2tDNkR3?=
+ =?utf-8?B?ZWFFZVZxNzlzbWsvNDAwQWtLT09CTE5kajRyTVdFRGpNYmF4bzF4QWg0OWI3?=
+ =?utf-8?B?YS9IN3ppdlRxSXdqTXNQdlZ2NXdoclNFLzcxNUM3NTllS254SlQvWlBQeHov?=
+ =?utf-8?B?dXdtZ2JPcTczKzN2czhHL1o2REJ1aWpCeENyWVFmUWtWZW5QbVBIRUcvaXFm?=
+ =?utf-8?B?RXNCVUd0ZlRkajlGMHR2ckEzMmtkNm82Skx5dGFHUWh2SnJ4NUtBMGpKWHpn?=
+ =?utf-8?B?aVgwRUtlcDQvRGdpK3VvNWNsM1BqVU9sTmUrZENJeTN1VXF6N0ZFSmZERVBR?=
+ =?utf-8?B?NmF4K2NHclAzYzZHd0k5UlhhdTU5VXJNeEVjMHZxb21lNExVVjdab2VZMVFL?=
+ =?utf-8?B?YlFQNGwrVlBDeGlIa2tMaUlKYjJJVHp2YVRtWEFKUy9vWlZ5cHZQR3RoKy9L?=
+ =?utf-8?B?cDc2MEdSWHREQ3FvUW4vMy9DMmlXQjUzS1d1Z2NvSTJoT05kLzBFQnN2UThM?=
+ =?utf-8?B?YTc5TGVKeXl2U2s1RmU4RUtqZzJIMHFKTzV1cHMwdmh0N0kzbFQza1dTYjBP?=
+ =?utf-8?B?SEFKazVMMHdONTk3UVNPUDAzb3RQcnNJaVlTWTRHM1BxMXh5YXpnRDJXT3lC?=
+ =?utf-8?B?RXBOcGx5NE9QRmFySlZ2TFR1RzRwN2picE5iNXZZb25ldlRBV0dLeldrcXdr?=
+ =?utf-8?B?Q1EybVQrZ3pNQUFCUkxrVE1UR0llbU82NUhDUDRadkRpMXhFTElKcTZJSTlt?=
+ =?utf-8?B?VG5RMFV0QWcrS3U5bWdRT3AzR3pORjVvVUtTeDNhNGFPZmtBbmdVNExXVFVj?=
+ =?utf-8?B?UTUwSUxtUXlDRHJyNmdUWlFudEV2a09SdnpFeUlmczU0WUxScnhndkRESnp5?=
+ =?utf-8?B?ZGJkdTg1OEpDQUIyTUdrczNaT3UwL0Z6QldlOXVBMU5KZ0pOOExmRTBOcWpo?=
+ =?utf-8?B?c1hpenV0KzZvNVdESlROb2c5eEliL3NpNFIxZ1VOTzkvTHp3V2U4YS83dHkr?=
+ =?utf-8?B?TDVxd3hJZVlOblhFRG9BR0kvRVFRWExicVpnaWZUMzFDRGxna3ZYUnQreEJt?=
+ =?utf-8?B?cUFrZFZjbXdsRU1tZHpMcE9HUWttd1ljUDA5NDhwVUtweU91VURZRzVWQUFO?=
+ =?utf-8?B?Z1c2djQwNXh0ZS9oa0pSQ05wajR1RWcrWEIwaHNuNVBPRVE3V0NNQnVVWE9v?=
+ =?utf-8?B?dXhtS3Q3RHpSWU5mRmhSNTZKdEV6NThRclR6M0EvM2ZXTmtKUklad0FOcFZV?=
+ =?utf-8?B?YWVrVlFBdjhQMEhwM00rTGtka1daYUlEN2V0dUNuNmlVLytENEVCL3RzRlBm?=
+ =?utf-8?B?ZnB3eFo3R0dxZ3pNUUM5RFZkeFpwN1hiL00zN241ak8zanFSZ1NZSTQ4S0RP?=
+ =?utf-8?B?U1QyRE9xQzY5cmtiQzZQcXBxNVArT2tqd2NuZUVHZENwbWRpQTMzWU1hSjZy?=
+ =?utf-8?B?djFWdHM4cWh3Z2hYYXFCWkcvcmRJc21ySUwxZmt2NkxCbDlXZlN3dnBIY1hF?=
+ =?utf-8?B?a1JtWGpHOHNGeUFnSUwvZlJKd2xPb1dZMm5pVVUyWTdibDF3dFA1b2xZSjJx?=
+ =?utf-8?B?emRPT1VEN0VZMTdZNHZpYmFxUmpmNUMxT3BzQjc2cXB4dlVNNHY5Y0NTWHNw?=
+ =?utf-8?B?eEhIMC9CSk03QzdTeExnWlg4SHdBeWV4QXZrWmM4ekFWUlRhaDh6c3RCTUpw?=
+ =?utf-8?B?QkpIZm5Jd1E2V05oUFArcTBhcmpwcGlyZC9EK09RV1o5eU1GRG5YQTlHWHlw?=
+ =?utf-8?B?citqa2V3bnN3VWs1WTAwejA2dE91bkJMSHBONmJ4cURuSzdwNS8relNNZjg4?=
+ =?utf-8?B?ZGNYTEhJcFdnbUhOaHQ2MXBFc25vdW81WTFUVEljQnRrMHd6S3BHRC9aUHdn?=
+ =?utf-8?B?SUtRUHJGMlhURUtVNUNWNHFKaXdDdzdhRi9JNklRaVFJc0FYS1Jid3RRc1Yy?=
+ =?utf-8?B?UHN5VWpqZmc1c2N6YVN6WStMQXF4V3pZd0Z5a21VNm1UMHRyWnJHRitnQnQw?=
+ =?utf-8?Q?KwrzOplRMK/ER6ZQU/Hy14XIOe7fWPiERiRC8+e9SL/7?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Any recommendation to make software layer Yocto
- Compatible?
-Content-Language: en-GB
-To: Duy <duy.dang.yw@renesas.com>,
- Richard Purdie <richard.purdie@linuxfoundation.org>,
- yocto@lists.yoctoproject.org
-References: <afb2f4d332b2c1b003d132cd9152251ef6e32dcc.camel@linuxfoundation.org>
- <20226.1712579798480481849@lists.yoctoproject.org>
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-Organization: Renesas Electronics Corporation
-In-Reply-To: <20226.1712579798480481849@lists.yoctoproject.org>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------KJZMrWV7aAG020vz107055T0"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8093.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5d05b53-f136-43dd-eb4b-08dc5a8fe88e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2024 01:28:50.7935
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HOlt1rtadHRRQOFKkYu+9YUrc0QTONSsZhN8y8yMtxCilG6cYnjvjj+TQLBBItIFdItP/7+eLadnYVkE38L3aA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4939
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Apr 2024 20:45:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62922
+ <yocto@lists.yoctoproject.org>; Fri, 12 Apr 2024 01:29:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62923
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------KJZMrWV7aAG020vz107055T0
-Content-Type: multipart/mixed; boundary="------------FQ0l0O0azQwN8nwwM6UCmEe3";
- protected-headers="v1"
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-To: Duy <duy.dang.yw@renesas.com>,
- Richard Purdie <richard.purdie@linuxfoundation.org>,
- yocto@lists.yoctoproject.org
-Message-ID: <b2e411fe-b4be-4fe7-b952-69ac32207ff6@bp.renesas.com>
-Subject: Re: [yocto] Any recommendation to make software layer Yocto
- Compatible?
-References: <afb2f4d332b2c1b003d132cd9152251ef6e32dcc.camel@linuxfoundation.org>
- <20226.1712579798480481849@lists.yoctoproject.org>
-In-Reply-To: <20226.1712579798480481849@lists.yoctoproject.org>
-
---------------FQ0l0O0azQwN8nwwM6UCmEe3
-Content-Type: multipart/mixed; boundary="------------p9AsrFa33gGQaehZ8HzI70xZ"
-
---------------p9AsrFa33gGQaehZ8HzI70xZ
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On 08/04/2024 13:36, Duy wrote:
-> Hi Richard,
->=20
-> Thanks for your response.
-> Here is one of the recipe bbappend files I'm working on:
-> meta-agl-ic-container/recipes-extended/dlt-daemon/dlt-daemon_%.bbappend=
- =C2=B7 master =C2=B7 Automotive Grade Linux / AGL / meta-agl-devel =C2=B7=
- GitLab <https://gitlab.com/automotivegradelinux/AGL/meta-agl-devel/-/blo=
-b/master/meta-agl-ic-container/recipes-extended/dlt-daemon/dlt-daemon_%25=
-=2Ebbappend?ref_type=3Dheads>
-> meta-agl-ic-container/recipes-extended/dlt-daemon/dlt-daemon_%.bbappend=
- =C2=B7 master =C2=B7 Automotive Grade Linux / AGL / meta-agl-devel =C2=B7=
- GitLab <https://gitlab.com/automotivegradelinux/AGL/meta-agl-devel/-/blo=
-b/master/meta-agl-ic-container/recipes-extended/dlt-daemon/dlt-daemon_%25=
-=2Ebbappend?ref_type=3Dheads>
->=20
-> I think some configurations are better to be upstreaming, e.g: Adding n=
-ew PACKAGES, adding new PACKAGECONFIG. It avoids adding too much to bbapp=
-end. If you have any idea, please share it.
-
-When in doubt, steal from meta-virtualization.
-
-In https://git.yoctoproject.org/meta-virtualization/tree/recipes-kernel/l=
-inux/linux-%25.bbappend,
-there is a conditional include based on DISTRO_FEATURES. You can do the
-same based on DISTRO.
-
-Then you have a .inc file which is only included when the appropriate
-configuration is enabled, like
-https://git.yoctoproject.org/meta-virtualization/tree/recipes-kernel/linu=
-x/linux-yocto_virtualization.inc.
-The statements in this file don't each need to check DISTRO, etc.
-
-There is more useful information in my Creating Friendly Layers
-presentation:
-  * https://pub.pbarker.dev/presentations/2022-12-01%20Yocto%20Project%20=
-Summit%202022.11%20-%20Creating%20Friendly%20Layers%202022%20Edition/Frie=
-ndly%20Layers%202022.pdf
-  * https://www.youtube.com/watch?v=3D6iGuKViITjg
-
-Thanks,
-
---=20
-Paul Barker
---------------p9AsrFa33gGQaehZ8HzI70xZ
-Content-Type: application/pgp-keys; name="OpenPGP_0x27F4B3459F002257.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x27F4B3459F002257.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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3D
-=3DsIIN
------END PGP PUBLIC KEY BLOCK-----
-
---------------p9AsrFa33gGQaehZ8HzI70xZ--
-
---------------FQ0l0O0azQwN8nwwM6UCmEe3--
-
---------------KJZMrWV7aAG020vz107055T0
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSiu8gv1Xr0fIw/aoLbaV4Vf/JGvQUCZhhL+wUDAAAAAAAKCRDbaV4Vf/JGvYBr
-AP9lGczUmrMipByjxHwMLizdq9Z1jTYgWHuVzU5eAuF93wEAm6rmEXHCRmKbM3qrLgLkniSdHrmz
-67TPJEv63co25QQ=
-=oAUU
------END PGP SIGNATURE-----
-
---------------KJZMrWV7aAG020vz107055T0--
+PiBDYW4gd2UgZXhwZWN0IGEgbGFzdCA0LjMuNSByZWxlYXNlLCBvciB3YXMgdGhpcyB0aGUgbGFz
+dCBvbmU/DQoNClNlZW1zIGxpa2Ugbm8gcGxhbiBmb3IgNC4zLjUuDQpodHRwczovL2xpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdlLzYyOTA2IA0KSSB0aGluayB0aGlzIHNob3Vs
+ZCBiZSB0aGUgbGFzdCBkb3QgcmVsZWFzZSBmb3IgbmFuYmllbGQuDQoNCj4gSSdtIGFza2luZyB0
+byBrbm93IHdoZXRoZXIgdGhlIGRvY3VtZW50YXRpb24gYnJhbmNoIGZvciAibmFuYmllbGQiIHN0
+aWxsIG5lZWRzDQo+IG1haW50YWluaW5nIGZvciBhIGZldyBtb3JlIHdlZWtzLg0KPiANCj4gVGhh
+bmtzIGluIGFkdmFuY2UNCj4gQ2hlZXJzDQo+IE1pY2hhZWwuDQo+IA0KPiAtLQ0KPiBNaWNoYWVs
+IE9wZGVuYWNrZXIsIEJvb3RsaW4NCj4gRW1iZWRkZWQgTGludXggYW5kIEtlcm5lbCBlbmdpbmVl
+cmluZw0KPiBodHRwczovL2Jvb3RsaW4uY29tDQoNCg==
 
