@@ -1,115 +1,57 @@
-Return-Path: <linusnilsson@hotmail.com>
+Return-Path: <f_l_k@t-online.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27550C4345F
-	for <webhook@archiver.kernel.org>; Fri, 12 Apr 2024 16:14:55 +0000 (UTC)
-Subject: Re: [yocto] Correct way for multiple recipes to install files in the same directory
-To: "Linus Nilsson" <linusnilsson@hotmail.com>, yocto@lists.yoctoproject.org
-From: "Linus Nilsson" <linusnilsson@hotmail.com>
-X-Originating-Location: =?UTF-8?B?SGVsc2luZ2JvcmcsIFNrw6VuZSBDb3VudHksIFNF?= (83.226.1.118)
-X-Originating-Platform: Windows Chrome 123
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Fri, 12 Apr 2024 09:14:45 -0700
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B1E5C4345F
+	for <webhook@archiver.kernel.org>; Fri, 12 Apr 2024 22:48:14 +0000 (UTC)
+Received: from mailout09.t-online.de (mailout09.t-online.de [194.25.134.84])
+ by mx.groups.io with SMTP id smtpd.web10.78.1712962093229008248
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 12 Apr 2024 15:48:13 -0700
+Authentication-Results: mx.groups.io;
+ dkim=none (message not signed); spf=pass (domain: t-online.de, ip: 194.25.134.84, mailfrom: f_l_k@t-online.de)
+Received: from fwd70.aul.t-online.de (fwd70.aul.t-online.de [10.223.144.96])
+	by mailout09.t-online.de (Postfix) with SMTP id 1646843869;
+	Sat, 13 Apr 2024 00:48:10 +0200 (CEST)
+Received: from [192.168.178.67] ([84.163.32.93]) by fwd70.t-online.de
+	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
+	esmtp id 1rvPgl-2Cuhlo0; Sat, 13 Apr 2024 00:48:07 +0200
+Date: Sat, 13 Apr 2024 00:48:28 +0200
+From: Markus Volk <f_l_k@t-online.de>
+Subject: Re: [yocto] Correct way for multiple recipes to install files in the
+ same directory
+To: yocto@lists.yoctoproject.org, linusnilsson@hotmail.com
+Message-Id: <S0QUBS.O4LXIGQ2JHXB1@t-online.de>
+In-Reply-To: <31389.1712938485279864761@lists.yoctoproject.org>
 References: <31389.1712902067429675400@lists.yoctoproject.org>
-In-Reply-To: <31389.1712902067429675400@lists.yoctoproject.org>
-Message-ID: <31389.1712938485279864761@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="fUKFjvCtq6Wya9hZayqO"
+	<31389.1712938485279864761@lists.yoctoproject.org>
+X-Mailer: geary/44.1
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=-pRUsU5gLUj5/mV5KoZPc"
+X-TOI-EXPURGATEID: 150726::1712962087-22CFE89A-5F619581/0/0 CLEAN NORMAL
+X-TOI-MSGID: 025476a3-7c08-45b6-b6ec-b0486d1eba65
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 12 Apr 2024 16:14:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62925
+ <yocto@lists.yoctoproject.org>; Fri, 12 Apr 2024 22:48:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62926
 
---fUKFjvCtq6Wya9hZayqO
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--=-pRUsU5gLUj5/mV5KoZPc
+Content-Type: text/plain; charset=us-ascii; format=flowed
 
-I found a solution and I'll try to break it down. There was the original pr=
-oblem with the conflict between the recipes and then there were the problem=
- with the recipe not being aware of the existence of the user polkitd.
+On Fri, Apr 12 2024 at 09:14:45 AM -07:00:00, Linus Nilsson 
+<linusnilsson@hotmail.com> wrote:
+> I haven't worked with the classes yet but I can see how they can be 
+> used to make things a lot easier in my case.
 
-The solution for the first problem was to make sure that the permissions an=
-d ownership set by my recipe 2 matches the one in recipe 1 exactly, hence:
->=20
->=20
-> Changing in recipe 2 from
-> chown -R user1:user1 ${D}/home/user1/.config/
-> to
-> chown -R user1:user1 ${D}/home/user1/
-> actually seems to solve the problem with those particular recipes.
+But don't use classen too invasively. They can be problematic, e.g. an 
+:append may be ignored depending on the BBFILE_PRIORITY of a layer
 
-The solution to the second problem (disk-automount recipe bitbake error bec=
-ause user polkitd is invalid) was to copy the creation of the user polkitd =
-from the original polkit recipe into my recipe:
-inherit useradd
-USERADD_PACKAGES =3D "${PN}"
-USERADD_PARAM:${PN} =3D "--system --no-create-home --user-group --home-dir =
-${sysconfdir}/${BPN}-1 --shell /bin/nologin polkitd"
 
-and then make sure that my disk-automount recipe matches the permissions an=
-d ownerships set up by the polkit recipe as well:
-do_install:append() {
-#Fix up permissions on polkit rules.d to work with rpm4 constraints
-chmod 700 ${D}/${datadir}/polkit-1/rules.d
-chmod 700 ${D}/${sysconfdir}/polkit-1/rules.d
-chown polkitd:root ${D}/${datadir}/polkit-1/rules.d
-chown polkitd:root ${D}/${sysconfdir}/polkit-1/rules.d
-}
+--=-pRUsU5gLUj5/mV5KoZPc
+Content-Type: text/html; charset=us-ascii
 
-This is working but I can see some issues with copying code from one recipe=
- to another. If the original recipe changes, I will need to manually update=
- every one of my own recipes with the corresponding changes, which doesn't =
-scale very well. Having this in mind I think that Markus Volk's post might =
-be a nicer way to do things so I think I will consider his way of doing it =
-in the future. I haven't worked with the classes yet but I can see how they=
- can be used to make things a lot easier in my case.
+<div id="geary-body" dir="auto">On Fri, Apr 12 2024 at 09:14:45 AM -07:00:00, Linus Nilsson &lt;linusnilsson@hotmail.com&gt; wrote:<br><blockquote type="cite"> I haven't worked with the classes yet but I can see how they can be used to make things a lot easier in my case.</blockquote><div><br></div><div>But don't use classen too invasively. They can be problematic, e.g. an :append may be ignored depending on the BBFILE_PRIORITY of a layer</div></div>
+--=-pRUsU5gLUj5/mV5KoZPc--
 
-Big thanks and great appreciation to everyone who came up with suggestions,=
- they eventually led me towards a solution! :)
-
---fUKFjvCtq6Wya9hZayqO
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I found a solution and I'll try to break it down. There was the original pr=
-oblem with the conflict between the recipes and then there were the problem=
- with the recipe not being aware of the existence of the user polkitd.<br /=
-><br />The solution for the first problem was to make sure that the permiss=
-ions and ownership set by my recipe 2 matches the one in recipe 1 exactly, =
-hence:
-<blockquote>Changing in recipe 2 from<br />&nbsp;<span style=3D"color: #c72=
-54e; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-s=
-ize: 13.3333px; background-color: #f9f2f4;">chown -R user1:user1 ${D}/home/=
-user1/.config/</span><br />to<br /><span style=3D"color: #c7254e; font-fami=
-ly: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13.3333px=
-; background-color: #f9f2f4;">chown -R user1:user1 ${D}/home/user1/<br /></=
-span>actually seems to solve the problem with those particular recipes.</bl=
-ockquote>
-<p>The solution to the second problem (disk-automount recipe bitbake error =
-because user polkitd is invalid) was to copy the creation of the user polki=
-td from the original polkit recipe into my recipe:<br /><code>
-inherit useradd<br />
-USERADD_PACKAGES =3D "${PN}"<br />
-USERADD_PARAM:${PN} =3D "--system --no-create-home --user-group --home-dir =
-${sysconfdir}/${BPN}-1 --shell /bin/nologin polkitd"
-</code> <br /><br />and then make sure that my disk-automount recipe matche=
-s the permissions and ownerships set up by the polkit recipe as well:<br />=
-<code>do_install:append() {<br />&nbsp; #Fix up permissions on polkit rules=
-.d to work with rpm4 constraints<br />&nbsp; chmod 700 ${D}/${datadir}/polk=
-it-1/rules.d<br />&nbsp; chmod 700 ${D}/${sysconfdir}/polkit-1/rules.d<br /=
->&nbsp; chown polkitd:root ${D}/${datadir}/polkit-1/rules.d<br />&nbsp; cho=
-wn polkitd:root ${D}/${sysconfdir}/polkit-1/rules.d<br />}</code><br /><br =
-/>This is working but I can see some issues with copying code from one reci=
-pe to another. If the original recipe changes, I will need to manually upda=
-te every one of my own recipes with the corresponding changes, which doesn'=
-t scale very well. Having this in mind I think that Markus Volk's post migh=
-t be a nicer way to do things so I think I will consider his way of doing i=
-t in the future. I haven't worked with the classes yet but I can see how th=
-ey can be used to make things a lot easier in my case.</p>
-<p>Big thanks and great appreciation to everyone who came up with suggestio=
-ns, they eventually led me towards a solution! :)</p>
-
---fUKFjvCtq6Wya9hZayqO--
 
