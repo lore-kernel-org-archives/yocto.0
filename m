@@ -1,169 +1,108 @@
-Return-Path: <linusnilsson@hotmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7E36C4345F
-	for <webhook@archiver.kernel.org>; Sat, 13 Apr 2024 10:16:47 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (EUR04-DB3-obe.outbound.protection.outlook.com [40.92.74.83])
- by mx.groups.io with SMTP id smtpd.web10.8097.1713003403558642505
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26D5DC4345F
+	for <webhook@archiver.kernel.org>; Sat, 13 Apr 2024 11:42:08 +0000 (UTC)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+ by mx.groups.io with SMTP id smtpd.web11.10188.1713008520348314146
  for <yocto@lists.yoctoproject.org>;
- Sat, 13 Apr 2024 03:16:43 -0700
+ Sat, 13 Apr 2024 04:42:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hotmail.com header.s=selector1 header.b=rkO3AfPv;
- spf=pass (domain: hotmail.com, ip: 40.92.74.83, mailfrom: linusnilsson@hotmail.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=edXudNgt1CvuOxB0e4U97GcXd00cDsrDA3ZbJavATRgECQt8S7tuY/44idztIqiD7C+MKBJ3SV/GxFuehAXkCab2BdN9xLXtxf8BA7kJiSlK7/uzt8Kwsowa85w4MT+gA+0ahdAvgjo+WAenJul/f973VPJVW/+W8WyI7xRcvpTdruAgwZ0yMfIe8IdWDGkbNfRb1LSOrRaBAvALJzgCtiR/QrZ/035TsPSCOe0qG8TSmFlZsr88UX2XvhIXwzFa0OweXCDO1HuDit57fudGZRwzm1WmWDsdECE6DE3KnOEq2CGs1YzFhXDLuwNLENM6TirL7Q0R97VUhN0HAAweqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m/YbOWXJdnf12W8ljjA1Vl1KNsR4StWNGj0/EsxbcUE=;
- b=g+72p7wRCazKzVGIXreEsyD+ipZUCIJ2cQUFDj2YHSLuSIAub1+KTP5TM94GpBRmSJLduyThNK5eNXH5S6EV1iWhNjEb+JVICGAR6vrYs1jHmFPclXui81p/VtuHRcUCB1nB3AL4PGuXNf9xU8U2la0Pwe3Bp03cev/VUQVyhC467SuBhEcLli5vSnbUhY55RZesSxVJAjwgSi5oTqVfAI85LCQBwj/d+zfqxEUq98t9ESvb5rA4o0rCjB7i+t/+T6KNJaiWptQMREgrwtoaLbep+lgZ/c/7YtZtyIhsd+FO5iDvoKzj9TWRaXMPcgYq/Vu3KF58v8clfD8XWOEpfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m/YbOWXJdnf12W8ljjA1Vl1KNsR4StWNGj0/EsxbcUE=;
- b=rkO3AfPvRC6iyMZ4wwlYotLwGbNdbo1Zj8qJlfZQwWCnWuJgd7RBdagawCXouZdsUix1Xx/yr3iQwoy/Mq82V3WL0JEv2IfTSIirzuQTRgZGNTGtCBexxtb1RgMxRyJTJV7q0oWnD6wAum15IDOUPeUikJKbcyP6uZXUPeC0JnXGAdR8bPMGHeUjjcJMuUY2WwLoz7rnm5MBNkg1cr2s9wmrTXEbaNu04JFjuyYIHiZcAKeUBLV+7ZaXEqJFHJPFZKBKH2zXI2wGZ3VDiIM8rLNQH96uUrQDyopfuFvxkOqPcI5k+qwwnxjs/rD76wS5Xbo2FNwpMTkBQF3Ec0SC/A==
-Received: from GV1P195MB1785.EURP195.PROD.OUTLOOK.COM (2603:10a6:150:59::14)
- by AM8P195MB1076.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:1e3::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Sat, 13 Apr
- 2024 10:16:40 +0000
-Received: from GV1P195MB1785.EURP195.PROD.OUTLOOK.COM
- ([fe80::c8b8:87dc:e89d:49ca]) by GV1P195MB1785.EURP195.PROD.OUTLOOK.COM
- ([fe80::c8b8:87dc:e89d:49ca%6]) with mapi id 15.20.7409.055; Sat, 13 Apr 2024
- 10:16:40 +0000
-From: Linus Nilsson <linusnilsson@hotmail.com>
-To: Markus Volk <f_l_k@t-online.de>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Sv: [yocto] Correct way for multiple recipes to install files in the
- same directory
-Thread-Topic: [yocto] Correct way for multiple recipes to install files in the
- same directory
-Thread-Index: 
- AQHai+VC/tS/n34Ttky2RPnaV7r6GLFiwVOAgABBDoCAAHNFgIAAsgqAgACploCAAG4BAIAAv5aF
-Date: Sat, 13 Apr 2024 10:16:40 +0000
-Message-ID: 
- <GV1P195MB178586BEDD4B820A7BD7D559C80B2@GV1P195MB1785.EURP195.PROD.OUTLOOK.COM>
-References: <31389.1712902067429675400@lists.yoctoproject.org>
-	<31389.1712938485279864761@lists.yoctoproject.org>
- <S0QUBS.O4LXIGQ2JHXB1@t-online.de>
-In-Reply-To: <S0QUBS.O4LXIGQ2JHXB1@t-online.de>
-Accept-Language: sv-SE, en-US
-Content-Language: sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [MelTVC9SBcqKtUejMos/ev6BfG0+CJLz]
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GV1P195MB1785:EE_|AM8P195MB1076:EE_
-x-ms-office365-filtering-correlation-id: 86854a64-f190-4cfe-daa1-08dc5ba2cfaf
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- H01Qwb4lNZfCxbHCDw+41DL9SOYB5PV84Vyfl+mV3ySN0SKC5CUuLHtGCWgzuSnqsrsCaylQ0OPmEpfWdagmKppJfqxyEKMyedmhNQ5u7viQmqJJL05pisKZ02bXkoiqEazNge6pVI2Kvs8YFLrK7GAArhDF1t+EWYCKO6Bt+IxO/sa6tTc560i+0rsWcghoauQ1tFDls75XjMQRIe5T92KAWoBsh+hZfFCJYvEtn3iLulxkPk8bOAsah5zISRA9r7EVOn/bUa/J/utXTDEDOYm2hRSIA4Nloj3fF1/Gxhoj6X0AVD5ga4Os1iqqGrdKqReZ7KXoKP5N4r95X3nOikQVtry0B10liYIAmQffQXbFzap0zySI+f1Kk2/UIaY6T8iSk5KPmdlfjQpnyndH7TKSIXyEQ47pwK9gYhcq0Rqr9fY7T4GGfTzHqiy4x4c5EvPLax6FeG5b+R2d+gbAFf5bIlGHxi1VrFV+05Mat+QHHUbWVWX6rCT40bctgj/84oX/JY7mHvJTL/7gqVEqQ1RU49QF1t/nxDFkq32HItjbGWJTTjLKyn1DXEcBU4vz
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?VDFGdXlXME1ONTlXZ21qK3hlYnZKbXdjd1N3bW9xZTBzMCtZUWZscEY4VFVT?=
- =?utf-8?B?bzN3M0IxZzNBZFBjRzN2dElDcXl3OVBtY1ROdi9qTUNBbkN4R1d4a1BpWWxi?=
- =?utf-8?B?bWY2NUJnZVVwZzV2RzhSWCtDV2Y0bis2eWVPWHhIZXd0aDlZVlB4SWNaek9p?=
- =?utf-8?B?ZTB2ZWRKaDJ5M3B3ZHBYdmlTL04vTStGaDlwTkw1ejlWdkNmaU1DZFpXZmRZ?=
- =?utf-8?B?a2U1cFlFU2l0eSthcVY0amNqcFVOTVhWSlZBRnJRdm8wdXRsa0lqMDFHYmVH?=
- =?utf-8?B?WS9WaDhDRHdyS0pwSWM2Z2hrSjgrYlB1eGNNSlduWXRUYkRkQUo2TU1zK0Mr?=
- =?utf-8?B?anlNS3BYblFaKzJocGtNQlVQTjgyS3M5U25sZkVhK1BmZlc0UElLN3RHVU5N?=
- =?utf-8?B?YlJDNUtpTS9oQ3IrdXVJajdoSmtsNWJpYXBFVnMydjEyYUpIK29Qc2tEeXR3?=
- =?utf-8?B?THVYQ01IdXVENzg5VjFjZUdzanZxTHhNR01jZVB2U2xrR3plSDNFc2Nmd2ty?=
- =?utf-8?B?ajVQOVRIeko4UjduNmtzNUVxVEFBRnpGSTBRcDY2eVZCUHErRzNubDBTS3ZC?=
- =?utf-8?B?ZEZEcWg3cnZRODFjdzRrOFBkWUFOWmtMaU82d0U1SXF3Q280bjM2YU5zSFc1?=
- =?utf-8?B?YWFoZlVRYzJWdkpVVVdqWDdja0RZeHlZWnRDdnQ0YnlkbXNWS0c1WlhPYm8z?=
- =?utf-8?B?V0RDUFhaMm5VUUo1aFplQzFudElPeXJuNzh5VXI0R3o4bjAwYVZreklNSHJG?=
- =?utf-8?B?T2RuYjlVSURBMWJLY0NUVzY3WGtFN1A1SHRzbC8rdTVOQ1JIR0diS3k5SmVX?=
- =?utf-8?B?ZTc3UEJadzZqaTNHRHprODBuMXU2eExZcGlBaGZKeGJ4LzJTTVZFZEFyMFp5?=
- =?utf-8?B?QUx0VzhLWDVNV1V2azZicUQyT3NXT0NTTDdJbVk4Uzc5NmlSSjhLNWh3dXZh?=
- =?utf-8?B?V0k1MnlmR0NoZytySUZETUpwY1pYQzdMbk1xNXN6TXUybUt2bzlrbWZZWkdD?=
- =?utf-8?B?UnUxQjRiNmRxUFZ2MTBKa01OMHhqYi80ZjgwU3RnOTNoRElqQWV3azdlcDdZ?=
- =?utf-8?B?Rit1MVF3QkJqTmxBQkJRV3N4TjF4REdYMkhzSXljSnVjYUloUi8rNDgvMXdS?=
- =?utf-8?B?Rm02TklIK0hXc0tkYTN6L2gvRk1GdU1KbEtwUDFxZWZ6YmhDdWR6N3Ayd29v?=
- =?utf-8?B?c1hnTGUzdmlvaWd6Y2VLTDRlcWNjVUx5VnF4SEtxQ0lzMTF4WE01K0xkazV1?=
- =?utf-8?B?RmtjR0xZMU9SdGFkcjI4bU15OVd3ZmZ2a09JNnJWUzArd0JHSDczeEhGY3BR?=
- =?utf-8?B?RklKMUtuVlRXcG51ajJDRzhJUDhQeGdwalh6QjA5ZUpoYlc3d0V2Q2xvd0pK?=
- =?utf-8?B?MVA0T1g2VEx5S2kzT3NrM1ZoUUxKNzJ5M2V3Tm9sQ01WdU1XczR5N3FYOTNl?=
- =?utf-8?B?OWJvMFB5NXpPR0MzZUN0UGhIVmhSOFZFbnY0Qnh2T2Q4L202aWU4N3FERXlE?=
- =?utf-8?B?ZzZLdUNFbHBsMHNSRkxkMG9pSDBTaVVCL3daU0liMEdFVHg3ZXlKOTdxOGdp?=
- =?utf-8?B?Y1Rwc0U0dXMvdm1uRy9iMlpFMFZYZlZxeE91SWRkT1ZFWmVTQ2x2T3ppanNK?=
- =?utf-8?Q?ZOBU49OmiLTcCDLTc4xeq/hs2LWdPmszM8cgu6CWMXg0=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_GV1P195MB178586BEDD4B820A7BD7D559C80B2GV1P195MB1785EURP_"
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Zbtr6yKn;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.53, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-41551500a7eso10809765e9.2
+        for <yocto@lists.yoctoproject.org>; Sat, 13 Apr 2024 04:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google; t=1713008519; x=1713613319; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=A++7ZgrtP89ZF52zbFO05s/uzbxptpaStX7JpPEWjfs=;
+        b=Zbtr6yKneAqRrvD3B03vodIoEDdWhV8/7fKzjW76Vdz4jD9oz2njwPd9jMtab4M9Iy
+         +PG1ipxsS1baPNYbTH4COCkvBstKoCb8KCL+ZotvWdIpWf5GmknRve9SA37Rsi7QGcWt
+         SV7xQOkqy4UWozH2IONtdQnNGzGxf4DWYJcxs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713008519; x=1713613319;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A++7ZgrtP89ZF52zbFO05s/uzbxptpaStX7JpPEWjfs=;
+        b=Lcdynt+s/3MM8y3ni36e84u+l59IKsawOKZZIu0lDMQPCzOsbFeoeD1LVQ/E+N93xa
+         MBeVb0IGBk0w7z6RaksqoAhTlpbJ6W935P+1R+RCMt7x3/Mqa7aZAXxYtEU1Hn9ZzC4N
+         f2VcTg4hK6SP3bZKe45oOoChwb6xazD8SjPbl4Ty0UeFvV0eUQWsNiJRArTRItMTLYgO
+         jaE8UtzZ4yehJ/uhAUW6q7W8MDM4q8Zs7+dL1bOvlMDQBYAp66sF0pxuhDBBY4FbCZBW
+         jF8K+277PDHCaqTWdJj1gnDTsHR7s+P7Rzz2ew7eDroLf7qWzg9KnO+8jBEtnyZ61twY
+         34vw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVe8zcSr641r3Z/yIUExhadXnfzD87wk+MVKq2nKvso7CZ31qeWhE1cC/LMdbVv7pYqeXyoHhrrVlQvSWxFi+lLJbCsOPHtXHLDZpY
+X-Gm-Message-State: AOJu0YwI1OYW8+1ybJrPOqubWrNc8A/Awd3QJy8vQ2syCEvuQ4fxClFE
+	eoyQWfGPY3UOmfvsLD4icmdp3cwq3fuc4fqR4jV0/kz2VjD3DyEblPHeDS0WZLg=
+X-Google-Smtp-Source: AGHT+IH6TqvYVl0CX7Nm43PYPgPqbGJVnU3sz12Q0wWDngDznMN1k7exPeTlkXdC1ScVkjAqJh2KAg==
+X-Received: by 2002:a05:600c:4e91:b0:418:1083:d2a0 with SMTP id f17-20020a05600c4e9100b004181083d2a0mr2087480wmq.21.1713008518699;
+        Sat, 13 Apr 2024 04:41:58 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:5d2c:926b:df1b:3491? ([2001:8b0:aba:5f3c:5d2c:926b:df1b:3491])
+        by smtp.gmail.com with ESMTPSA id jh4-20020a05600ca08400b004147db8a91asm11597896wmb.40.2024.04.13.04.41.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 13 Apr 2024 04:41:58 -0700 (PDT)
+Message-ID: <a00c5a8a0b94fd557e701f715c013c46138a9c41.camel@linuxfoundation.org>
+Subject: Re: [yocto] Any recommendation to make software layer Yocto
+ Compatible?
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Duy <duy.dang.yw@renesas.com>, yocto@lists.yoctoproject.org
+Date: Sat, 13 Apr 2024 12:41:57 +0100
+In-Reply-To: <20226.1712579798480481849@lists.yoctoproject.org>
+References: 
+	<afb2f4d332b2c1b003d132cd9152251ef6e32dcc.camel@linuxfoundation.org>
+	 <20226.1712579798480481849@lists.yoctoproject.org>
+Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
+ YNvg==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.0-1 
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-49ed2.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GV1P195MB1785.EURP195.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86854a64-f190-4cfe-daa1-08dc5ba2cfaf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2024 10:16:40.6572
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8P195MB1076
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 13 Apr 2024 10:16:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62927
+ <yocto@lists.yoctoproject.org>; Sat, 13 Apr 2024 11:42:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62928
 
---_000_GV1P195MB178586BEDD4B820A7BD7D559C80B2GV1P195MB1785EURP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Mon, 2024-04-08 at 05:36 -0700, Duy wrote:
+> Hi Richard,
+>=20
+> Thanks for your response.
+> Here is one of the recipe bbappend files I'm working on:
+> meta-agl-ic-container/recipes-extended/dlt-daemon/dlt-
+> daemon_%.bbappend =C2=B7 master =C2=B7 Automotive Grade Linux / AGL / met=
+a-agl-
+> devel =C2=B7 GitLab
+> meta-agl-ic-container/recipes-extended/dlt-daemon/dlt-
+> daemon_%.bbappend =C2=B7 master =C2=B7 Automotive Grade Linux / AGL / met=
+a-agl-
+> devel =C2=B7 GitLab
+>=20
+> I think some configurations are better to be upstreaming, e.g: Adding
+> new PACKAGES, adding new PACKAGECONFIG. It avoids adding too much to
+> bbappend. If you have any idea, please share it.
 
-QXMgSSBoYXZlIG5vIHByaW9yIGV4cGVyaWVuY2Ugd2l0aCBjbGFzc2VzIEknbGwgaGF2ZSB0byBy
-ZWFkIHRocm91Z2ggdGhlIG1hbnVhbCB0byBsZWFybiBhbmQgSSdsbCBoYXZlIHRoYXQgaW4gbWlu
-ZCwgY2hlZXJzLiDwn5mCDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KRnLDpW46
-IE1hcmt1cyBWb2xrIDxmX2xfa0B0LW9ubGluZS5kZT4NClNraWNrYXQ6IGRlbiAxMyBhcHJpbCAy
-MDI0IDAwOjQ4DQpUaWxsOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0
-cy55b2N0b3Byb2plY3Qub3JnPjsgbGludXNuaWxzc29uQGhvdG1haWwuY29tIDxsaW51c25pbHNz
-b25AaG90bWFpbC5jb20+DQrDhG1uZTogUmU6IFt5b2N0b10gQ29ycmVjdCB3YXkgZm9yIG11bHRp
-cGxlIHJlY2lwZXMgdG8gaW5zdGFsbCBmaWxlcyBpbiB0aGUgc2FtZSBkaXJlY3RvcnkNCg0KT24g
-RnJpLCBBcHIgMTIgMjAyNCBhdCAwOToxNDo0NSBBTSAtMDc6MDA6MDAsIExpbnVzIE5pbHNzb24g
-PGxpbnVzbmlsc3NvbkBob3RtYWlsLmNvbT4gd3JvdGU6DQpJIGhhdmVuJ3Qgd29ya2VkIHdpdGgg
-dGhlIGNsYXNzZXMgeWV0IGJ1dCBJIGNhbiBzZWUgaG93IHRoZXkgY2FuIGJlIHVzZWQgdG8gbWFr
-ZSB0aGluZ3MgYSBsb3QgZWFzaWVyIGluIG15IGNhc2UuDQoNCkJ1dCBkb24ndCB1c2UgY2xhc3Nl
-biB0b28gaW52YXNpdmVseS4gVGhleSBjYW4gYmUgcHJvYmxlbWF0aWMsIGUuZy4gYW4gOmFwcGVu
-ZCBtYXkgYmUgaWdub3JlZCBkZXBlbmRpbmcgb24gdGhlIEJCRklMRV9QUklPUklUWSBvZiBhIGxh
-eWVyDQo=
+Where possible please do share changes with upstream recipes,
+particularly for things like PACKAGECONFIG entries. There is no good
+reason to have them separate in most cases.
 
---_000_GV1P195MB178586BEDD4B820A7BD7D559C80B2GV1P195MB1785EURP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Other parts of this look to be adding configuration files. Are these
+generally useful? That might help to know if they should be upstream.
+If not, should they be in a separate recipe?
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9u
-dC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpBcyBJIGhhdmUgbm8gcHJpb3Ig
-ZXhwZXJpZW5jZSB3aXRoIGNsYXNzZXMgSSdsbCBoYXZlIHRvIHJlYWQgdGhyb3VnaCB0aGUgbWFu
-dWFsIHRvIGxlYXJuIGFuZCBJJ2xsIGhhdmUgdGhhdCBpbiBtaW5kLCBjaGVlcnMuIPCfmYI8L2Rp
-dj4NCjxkaXYgaWQ9ImFwcGVuZG9uc2VuZCI+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5s
-aW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5kZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RN
-c2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9u
-dC1zaXplOjExcHQiIGNvbG9yPSIjMDAwMDAwIj48Yj5GcsOlbjo8L2I+IE1hcmt1cyBWb2xrICZs
-dDtmX2xfa0B0LW9ubGluZS5kZSZndDs8YnI+DQo8Yj5Ta2lja2F0OjwvYj4gZGVuIDEzIGFwcmls
-IDIwMjQgMDA6NDg8YnI+DQo8Yj5UaWxsOjwvYj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
-ZyAmbHQ7eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDs7IGxpbnVzbmlsc3NvbkBob3Rt
-YWlsLmNvbSAmbHQ7bGludXNuaWxzc29uQGhvdG1haWwuY29tJmd0Ozxicj4NCjxiPsOEbW5lOjwv
-Yj4gUmU6IFt5b2N0b10gQ29ycmVjdCB3YXkgZm9yIG11bHRpcGxlIHJlY2lwZXMgdG8gaW5zdGFs
-bCBmaWxlcyBpbiB0aGUgc2FtZSBkaXJlY3Rvcnk8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0K
-PC9kaXY+DQo8ZGl2Pg0KPGRpdiBpZD0ieF9nZWFyeS1ib2R5IiBkaXI9ImF1dG8iPk9uIEZyaSwg
-QXByIDEyIDIwMjQgYXQgMDk6MTQ6NDUgQU0gLTA3OjAwOjAwLCBMaW51cyBOaWxzc29uICZsdDts
-aW51c25pbHNzb25AaG90bWFpbC5jb20mZ3Q7IHdyb3RlOjxicj4NCjxibG9ja3F1b3RlIHR5cGU9
-ImNpdGUiPkkgaGF2ZW4ndCB3b3JrZWQgd2l0aCB0aGUgY2xhc3NlcyB5ZXQgYnV0IEkgY2FuIHNl
-ZSBob3cgdGhleSBjYW4gYmUgdXNlZCB0byBtYWtlIHRoaW5ncyBhIGxvdCBlYXNpZXIgaW4gbXkg
-Y2FzZS48L2Jsb2NrcXVvdGU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5CdXQgZG9uJ3QgdXNl
-IGNsYXNzZW4gdG9vIGludmFzaXZlbHkuIFRoZXkgY2FuIGJlIHByb2JsZW1hdGljLCBlLmcuIGFu
-IDphcHBlbmQgbWF5IGJlIGlnbm9yZWQgZGVwZW5kaW5nIG9uIHRoZSBCQkZJTEVfUFJJT1JJVFkg
-b2YgYSBsYXllcjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+This isn't just a software layer, it has quite a bit of
+configuration/distro policy in there so the layer checks are right to
+flag it as problematic in my view.
 
---_000_GV1P195MB178586BEDD4B820A7BD7D559C80B2GV1P195MB1785EURP_--
+Cheers,
+
+Richard
 
