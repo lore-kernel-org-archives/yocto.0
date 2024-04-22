@@ -1,226 +1,204 @@
-Return-Path: <Salahaldeen.Altous@leica-camera.com>
+Return-Path: <maik@quatt.io>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 52047C4345F
-	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 06:53:00 +0000 (UTC)
-Subject: Re: [yocto] Http access token fetching with gitsm fetcher
-To: "Janne Kiiskila" <janne.kiiskila@izumanetworks.com>, yocto@lists.yoctoproject.org
-From: "Altous, Salahaldeen" <Salahaldeen.Altous@leica-camera.com>
-X-Originating-Location: Ankara, TR (91.93.226.216)
-X-Originating-Platform: Linux Firefox 124
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8EDBC4345F
+	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 08:33:30 +0000 (UTC)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+ by mx.groups.io with SMTP id smtpd.web10.13586.1713774802076504123
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 22 Apr 2024 01:33:22 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@quatt-io.20230601.gappssmtp.com header.s=20230601 header.b=eWvuVaWM;
+ spf=pass (domain: quatt.io, ip: 209.85.208.46, mailfrom: maik@quatt.io)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-571be483ccaso4889228a12.2
+        for <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 01:33:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quatt-io.20230601.gappssmtp.com; s=20230601; t=1713774800; x=1714379600; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VcWleurReLO5GvD+CLZ5qCk+pWGMQNczd3CJG4CcFsc=;
+        b=eWvuVaWMT89jV/ARDF82Fu5CBMvkVB7D7R3yViAGPnqUBP3zLcvvTg366foOkv3lTM
+         Mzh7gxwRWOpArPb4D43Rf+i3seIVt89xcxIkxVLWDE9lnOAlpaGYMWlA/3LUdAqFJOfH
+         VcUZo3rQgdRdEh3YiU4XduGylTsIBf/5twgHuuMR2Lg19kOGyZ2U+v5p64eB3bY3d7y2
+         +Vp+BV+ahAjfBSG7qvYbEKnSFZDxIWCkp5J+XiRP8nbt8xCuV7wo2yQvrsNOJY1a1Vv7
+         ZN9B3HvV6+A8rhSKL7RyhwXDs/BbGc3mgzBLUZVDGoVIaNpOhUM4+oRP/vVDGa1Qn3g9
+         T4uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713774800; x=1714379600;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VcWleurReLO5GvD+CLZ5qCk+pWGMQNczd3CJG4CcFsc=;
+        b=wiitlRI0Q3BgWyl/hTeuLZeff5SlxLHmlEA6Y4y0i8SNDFXwMIji2QfxpStuijL9ju
+         Sx6tP5UJqPXF765TxdRg2UCRgckKietHSIsfSdFIuaBBrPCa1XKQyOojQSjtd6Z2LAZ8
+         TQXZIa4wYkL8Aqn4sO2A+iJtODY5hYUfqc9TCurmpT6FfhOP8ER/bA92YzIrBaN6BuOv
+         gzB7nOKYz36u4G1XPQVSEEj3DI34ZqqBfJedBJc+3zPJg2sT9J8f5K/ubYoaGlLhkZIk
+         +hnqGu0F1dv9eKiQvIBq1Rawv/xjN3tjEjpREFwpMKOThKHlY/yOky9/K+CJGu13MHI6
+         AgPg==
+X-Gm-Message-State: AOJu0YyYfpjROJXJSN4ST8Am2sfSlGOHfDREsGhI+3tPRfO1M/dN+V0Z
+	v2wUFGvjvjwvXCK+/jC4E2/nW3Ou9KvMUTWnXs8N+mCrT+2GtQIRZGlD3FTKBzhFOjNn0CYy0dU
+	1v7dYgiBpOoCJnD97PZG4k4uFlBqrs/c/HvSRYA==
+X-Google-Smtp-Source: AGHT+IEnzy2b6KFAEtNk3ONobZ5QObqfY/3RGFhmQ4VNpUD1nHOTk/Jmy/kA/+0NfbzKzFFBj8HPskmKSF6dLUBM7gw=
+X-Received: by 2002:a17:907:9487:b0:a55:b3bb:e7c7 with SMTP id
+ dm7-20020a170907948700b00a55b3bbe7c7mr1710863ejc.10.1713774800291; Mon, 22
+ Apr 2024 01:33:20 -0700 (PDT)
 MIME-Version: 1.0
-Date: Sun, 21 Apr 2024 23:52:51 -0700
-References: <DS0PR14MB6191FE636A1287711CE03096850D2@DS0PR14MB6191.namprd14.prod.outlook.com>
-In-Reply-To: <DS0PR14MB6191FE636A1287711CE03096850D2@DS0PR14MB6191.namprd14.prod.outlook.com>
-Message-ID: <28950.1713768771510530708@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="i1SG1qSiICfrK79UlpZb"
+References: <CALEqzqcC1PrqzEuQRe3W-6z75QgcpN9jBAaoseOGKEyGFZQsXA@mail.gmail.com>
+ <CAB=6tBR1RRkOd33ymxtWUj_=usy1GLcYcwTEPDx43FyqVbKQjQ@mail.gmail.com>
+In-Reply-To: <CAB=6tBR1RRkOd33ymxtWUj_=usy1GLcYcwTEPDx43FyqVbKQjQ@mail.gmail.com>
+From: Maik Vermeulen <maik@quatt.io>
+Date: Mon, 22 Apr 2024 10:33:09 +0200
+Message-ID: <CALEqzqc5nmMZXzAm9ivDHz2c2F4RkSD6g1fHwkPFHr7r3YVrdA@mail.gmail.com>
+Subject: Re: [yocto] EXTRA_USERS_PARAMS and recipe file ownership
+To: Chuck Wolber <chuckwolber@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000003261340616ab4aa4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 06:53:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62973
+ <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 08:33:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62974
 
---i1SG1qSiICfrK79UlpZb
-Content-Type: text/plain; charset="utf-8"
+--0000000000003261340616ab4aa4
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Janne,
+Hi Chuck,
 
-On Fri, Apr 19, 2024 at 06:44 AM, Janne Kiiskila wrote:
+Thanks for the quick response!
 
->=20
->=20
->=20
-> * SRC_URI =3D "git://${ COMPANY_GIT_REPO }/path/to/project.git;protocol=
-=3Dhttps;
-> *user=3Dtoken_name:${TOKEN}"*
-> * The https+Token was working fine with Dunfell, now I have ported this
-> recipe to kirkstone but it is not working and I get this error
-> * fatal: could not read Password for 'https://git@COMPANY_GIT_REPO': No
-> such device or address
->=20
->=20
->=20
->=20
-> Finally, something I might be able to contribute with.
->=20
-> * Do not put ever any credentials to any recipes. That=E2=80=99s not the =
-right
-> place for them and they will leak.
-> * Credentials are a build machine configuration issue. You can use git
-> redirects for this purpose.
->=20
->=20
-> This type of thing is only required for private repositories typically,
-> here is an example for a GitHub action
->=20
->=20
->=20
-> https://github.com/PelionIoT/actions
->=20
->=20
->=20
-> that does it. But, essentially it boils down to configuring git:
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> git config --global user.name "Your BOT"
->=20
->=20
->=20
-> git config --global user.email your@email.com
->=20
->=20
->=20
-> git config --global url. https://${{ inputs.github_token }}@github.com/ (
-> https://$%7b%7b%20inputs.github_token%20%7d%7d@github.com/ ).insteadOf gi=
-t@github.com:
->=20
->=20
->=20
->=20
-> git config --global url. https://${{ inputs.github_token }}@github (
-> https://$%7b%7b%20inputs.github_token%20%7d%7d@github ).insteadOf https:/=
-/github
->=20
->=20
->=20
->=20
-> I hope this helps.
->=20
->=20
->=20
->=20
->=20
->=20
->=20
+I'm not sure if it's the same issue, ours isn't systemd specific at least.
+Btw, we're using Kirkstone.
 
-thanks for your help, I will give it a try.
+Here is an example log of the issue we see when we use USERADD in a recipe
+to create the user, and set ownership in do_install, while using
+EXTRA_USERS_PARAMS to manage extra groups and user options, and using
+useradd-staticids.bbclass too:
+DEBUG: Executing shell function set_user_group
+NOTE: company-img: Performing groupadd with [-R
+/workdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnueabi/company-img/1.0=
+-r0/rootfs
+--gid 1000 company]
+NOTE: company-img: group company already exists, not re-creating it
+NOTE: company-img: Performing useradd with [-R
+/workdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnueabi/company-img/1.0=
+-r0/rootfs
+--gid 1000 --system --shell /bin/false --uid 1001 mender]
+configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
+configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
+useradd: group '1000' does not exist
+ERROR: company-img: useradd command did not succeed.
 
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> Best Regards,
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> Janne Kiiskil=C3=A4
->=20
->=20
->=20
+But then when I check
+tmp/work/machine-linux-gnueabi/copmany-img/1.0-r0/rootfs/etc/group, no
+entries for GID 1000 are found.
 
-Regards,
+Kind regards,
 
-Salahaldeen Altous
+On Fri, Apr 19, 2024 at 5:44=E2=80=AFPM Chuck Wolber <chuckwolber@gmail.com=
+> wrote:
 
---i1SG1qSiICfrK79UlpZb
-Content-Type: text/html; charset="utf-8"
+> On Fri, Apr 19, 2024 at 7:29=E2=80=AFAM Maik Vermeulen via lists.yoctopro=
+ject.org
+> <maik=3Dquatt.io@lists.yoctoproject.org> wrote:
+>
+> %< SNIP %<
+>
+>
+>> I've also tried using the useradd.bbclass in the recipes, which allows u=
+s
+>> to set permissions from within the do_install task, but that started
+>> causing trouble when we tried to start using useradd-staticids, which we
+>> need to keep compatibility between software versions using the same file=
+s
+>> from a persistent partition. The useradd.bbclass in combination with the
+>> central extrausers.bbclass and useradd-staticids.bbclass is messy and
+>> hasn't resulted in a working build yet, with recipes complaining certain
+>> groups e.g. aren't available yet.
+>>
+>
+>
+> You are not very specific about what is going wrong, but it sounds
+> familiar so it is possible that
+> I am to blame for not following up on an earlier observation that may
+> potentially benefit your
+> situation.
+>
+> Take a look at this message and let me know if it sounds familiar.
+>
+> https://lists.openembedded.org/g/openembedded-core/topic/88922422#161387
+>
+> If so I can probably submit an RFC patch.
+>
+> ..Ch:W..
+>
+>
+>
+> --
+> *"Perfection must be reached by degrees; she requires the slow hand of
+> time." - Voltaire*
+>
+
+--0000000000003261340616ab4aa4
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Janne,</p>
-<p>&nbsp;</p>
-<p>On Fri, Apr 19, 2024 at 06:44 AM, Janne Kiiskila wrote:</p>
-<blockquote><!-- [if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!-- [if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-<div class=3D"WordSection1">
-<div>
-<ul type=3D"disc">
-<li style=3D"mso-list: l2 level1 lfo2;"><span style=3D"font-size: 11.5pt; f=
-ont-family: 'Arial',sans-serif; color: #1d1c1d; background: white;">SRC_URI=
- =3D "git://${</span>COMPANY_GIT_REPO<span style=3D"font-size: 11.5pt; font=
--family: 'Arial',sans-serif; color: #1d1c1d; background: white;">}/path/to/=
-project.git;protocol=3Dhttps;<strong><span style=3D"font-family: 'Arial',sa=
-ns-serif;">user=3Dtoken_name:${TOKEN}"</span></strong></span></li>
-<li style=3D"mso-list: l2 level1 lfo2;">The https+Token was working fine wi=
-th Dunfell, now I have ported this recipe to kirkstone but it is not workin=
-g and I get this error</li>
-<li style=3D"mso-list: l2 level1 lfo2;">fatal: could not read Password for =
-'https://git@COMPANY_GIT_REPO': No such device or address</li>
-</ul>
-<p>&nbsp;<span lang=3D"EN-US">Finally, something I might be able to contrib=
-ute with. </span></p>
-<ol start=3D"1" type=3D"1">
-<li style=3D"mso-list: l0 level1 lfo3;"><span lang=3D"EN-US" style=3D"font-=
-size: 11.0pt;">Do not put ever any credentials to any recipes. That&rsquo;s=
- not the right place for them and they will leak.</span></li>
-<li style=3D"mso-list: l0 level1 lfo3;"><span lang=3D"EN-US" style=3D"font-=
-size: 11.0pt;">Credentials are a build machine configuration issue. You can=
- use git redirects for this purpose.</span></li>
-</ol>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">This type of thing is only required for private repositories typic=
-ally, here is an example for a GitHub action</span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;"><a href=3D"https://github.com/PelionIoT/actions">https://github.co=
-m/PelionIoT/actions</a></span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">that does it. But, essentially it boils down to configuring git:</=
-span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">&nbsp;</span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git config =
---global user.name "Your BOT"</span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git config =
---global user.email <a href=3D"mailto:your@email.com">your@email.com</a></s=
-pan></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git config =
---global url.<a href=3D"https://$%7b%7b%20inputs.github_token%20%7d%7d@gith=
-ub.com/">https://${{ inputs.github_token }}@github.com/</a>.insteadOf <a hr=
-ef=3D"mailto:git@github.com:">git@github.com:</a></span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git config =
---global url.<a href=3D"https://$%7b%7b%20inputs.github_token%20%7d%7d@gith=
-ub">https://${{ inputs.github_token }}@github</a>.insteadOf <a href=3D"http=
-s://github">https://github</a></span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">I hope this helps.</span></p>
-<p style=3D"margin-left: 18.0pt;">&nbsp;</p>
-</div>
-</div>
-</blockquote>
-<p>thanks for your help, I will give it a try.</p>
-<blockquote>
-<div class=3D"WordSection1">
-<div>
-<p style=3D"margin-left: 18.0pt;">&nbsp;</p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">&nbsp;</span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">Best Regards,</span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">&nbsp;</span></p>
-<p style=3D"margin-left: 18.0pt;"><span lang=3D"EN-US" style=3D"font-size: =
-11.0pt;">Janne Kiiskil&auml;</span></p>
-</div>
-</div>
-</blockquote>
-<p><br />Regards,</p>
-<p>Salahaldeen Altous</p>
+<div dir=3D"ltr">Hi Chuck,<div><br></div><div>Thanks for the quick=C2=A0res=
+ponse!</div><div><br></div><div>I&#39;m not sure if it&#39;s the same issue=
+, ours isn&#39;t systemd specific at least.</div><div>Btw, we&#39;re using =
+Kirkstone.</div><div><br></div><div>Here is an example log of the issue we =
+see when we use USERADD in a recipe to create the user, and set ownership=
+=C2=A0in do_install, while using EXTRA_USERS_PARAMS to manage extra groups =
+and user options, and using useradd-staticids.bbclass too:</div><div>DEBUG:=
+ Executing shell function set_user_group<br>NOTE: company-img: Performing g=
+roupadd with [-R /workdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnueab=
+i/company-img/1.0-r0/rootfs --gid 1000 company]<br>NOTE: company-img: group=
+ company already exists, not re-creating it<br>NOTE: company-img: Performin=
+g useradd with [-R /workdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnue=
+abi/company-img/1.0-r0/rootfs --gid 1000 --system --shell /bin/false --uid =
+1001 mender]<br>configuration error - unknown item &#39;SYSLOG_SU_ENAB&#39;=
+ (notify administrator)<br>configuration error - unknown item &#39;SYSLOG_S=
+G_ENAB&#39; (notify administrator)<br>useradd: group &#39;1000&#39; does no=
+t exist<br>ERROR: company-img: useradd command did not succeed.<br></div><d=
+iv><br></div><div>But then when I check tmp/work/machine-linux-gnueabi/copm=
+any-img/1.0-r0/rootfs/etc/group, no entries for GID 1000 are found.</div><d=
+iv><br></div><div>Kind regards,</div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 19, 2024 at 5:44=E2=80=AFP=
+M Chuck Wolber &lt;<a href=3D"mailto:chuckwolber@gmail.com" target=3D"_blan=
+k">chuckwolber@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Fri, Apr 19, 2=
+024 at 7:29=E2=80=AFAM Maik Vermeulen via <a href=3D"http://lists.yoctoproj=
+ect.org" target=3D"_blank">lists.yoctoproject.org</a> &lt;maik=3D<a href=3D=
+"mailto:quatt.io@lists.yoctoproject.org" target=3D"_blank">quatt.io@lists.y=
+octoproject.org</a>&gt; wrote:</div><div class=3D"gmail_quote"><br></div><d=
+iv class=3D"gmail_quote">%&lt; SNIP %&lt;<br></div><div class=3D"gmail_quot=
+e"><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr"><div>I&#39;ve also tried using the useradd.bbclass in the recip=
+es, which allows us to set permissions from within the do_install task, but=
+ that started causing trouble when we tried to start using useradd-staticid=
+s, which we need to keep compatibility between software versions using the =
+same files from a persistent partition. The useradd.bbclass in combination =
+with the central extrausers.bbclass and useradd-staticids.bbclass is messy =
+and hasn&#39;t resulted in a working build yet, with recipes complaining ce=
+rtain groups e.g. aren&#39;t available yet.</div></div></blockquote><div><b=
+r></div><div><br></div><div>You are not very specific about what is going w=
+rong, but it sounds familiar so it is possible that</div><div>I am to blame=
+ for not following up on an earlier observation that may potentially benefi=
+t your</div><div>situation.<br></div><div><br></div><div>Take a look at thi=
+s message and let me know if it sounds familiar.<br></div><div><br></div><d=
+iv><a href=3D"https://lists.openembedded.org/g/openembedded-core/topic/8892=
+2422#161387" target=3D"_blank">https://lists.openembedded.org/g/openembedde=
+d-core/topic/88922422#161387</a></div><div><br></div><div>If so I can proba=
+bly submit an RFC patch.<br></div><div><br></div></div><div>..Ch:W..<br></d=
+iv><div><br></div><div><br></div><div><br></div><span class=3D"gmail_signat=
+ure_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div d=
+ir=3D"ltr"><div><b><span style=3D"font-family:monospace">&quot;Perfection m=
+ust be reached by degrees; she requires the slow hand of time.&quot; - Volt=
+aire</span></b></div></div></div></div>
+</blockquote></div>
 
---i1SG1qSiICfrK79UlpZb--
+--0000000000003261340616ab4aa4--
 
