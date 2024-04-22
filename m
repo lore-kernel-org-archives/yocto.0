@@ -1,181 +1,362 @@
-Return-Path: <quentin.schulz@theobroma-systems.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB883C4345F
-	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 10:29:51 +0000 (UTC)
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (EUR01-DB5-obe.outbound.protection.outlook.com [40.107.15.134])
- by mx.groups.io with SMTP id smtpd.web10.15153.1713781785448937573
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CBC4C07C79
+	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 15:34:18 +0000 (UTC)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+ by mx.groups.io with SMTP id smtpd.web11.332.1713800053806679539
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Apr 2024 03:29:45 -0700
+ Mon, 22 Apr 2024 08:34:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=L8QPkrHO;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.15.134, mailfrom: quentin.schulz@theobroma-systems.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Onav9ocrMc4x/AmJhQ7i0ufTFYm3SXRl0AhDB1k8Ju+F+9sdUX+ge1CXbJwby4D348/sUoBwvbrmAmIUeb1+bMzfbiB07TDtTD1Ue9dVU/NaI+DRbrWJ/oPt+oZ4eIgDnFah0GxwFsOckQYVIHwkZWRdqx+EvANOBofOm+Kb1k6vqSDaliS7TLle7QGY2H4ZwbGcaAnmIeQsNCTCyBwd/I/CyR+rqXtfkawIEDkQy79c/V7ANKFeYVX8/xIiuckyBwY0YJmKVdOYm/qCLKQoYDkpRJ+4gJSmRdCDTQhFV4OWJHlq8UWdgM/SBKHVSz9+w4h44cqxDmQeUV/TI6maDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Uiyb7HlvMNAvP+33Ae8Hx1SMV192R941ljc23sVlz54=;
- b=QTiIsR/DYnJldumPSdnvWNGVyTpFkvfuRHJV+1qd/y+M6ZSlQUeKDfqYVVZ9WrgTHpIr6IHPR6PR1w9ZTKkjULRzA8S3h7C7qqEF0+sjKZ2YvsAm6g/dnT7DBWD93TEfRlXcvKHMcZ8R4KnKfbLK6k+FgEfrGPrgi6tvXEOw7wZJyjbUeoJLDmfr5Xs3Vu2t1YQBUpRTIE+L9P0CY3V8ZpydAOCHKNWV+AzKPgRLwhjIzACKGCfDBqcz9AxJdZ9iYc4L9DU8EY5AGxnaHRbbpX6eyTBQZ0C9lpyfaegOJalkNMhemQiVqfGxQgTPAsuyiagd5S2QNtm0GFIgkLq5gQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uiyb7HlvMNAvP+33Ae8Hx1SMV192R941ljc23sVlz54=;
- b=L8QPkrHO3jWtVyQ2Wj3MSLIOp3JbPbybITPrymktzpsZdizhDfVWXi/zqBQsWnHjrMCT27Mw9ANo7K47Fr966FWIm/8rff6ifwlXoV3X5JaAL1gEOBS/ilGHHv1JXtOX3zNlAb61OEdnnInZQC3wn96F69HwT3mr2qAFBHOvDaXC2wItQo5/rD/SnWIi0ZlQsxOtQz9jtC22/R+zfkIHEIh3mce2/1QN4SCFw8FGnUHOUwE/hwhYMD7ID1Er1p0ty1jRDgEu7gHQZfJlo+xWrNywmBA5iRwiCjIlPKdqW3KCIzOme+V/h5h2P50UHTRtw+EKSWb1rKNFVaaUj0/LSw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from DB7PR04MB4842.eurprd04.prod.outlook.com (2603:10a6:10:1b::13)
- by DUZPR04MB9946.eurprd04.prod.outlook.com (2603:10a6:10:4db::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Mon, 22 Apr
- 2024 10:29:41 +0000
-Received: from DB7PR04MB4842.eurprd04.prod.outlook.com
- ([fe80::bdc7:4b2c:e74e:1504]) by DB7PR04MB4842.eurprd04.prod.outlook.com
- ([fe80::bdc7:4b2c:e74e:1504%7]) with mapi id 15.20.7472.044; Mon, 22 Apr 2024
- 10:29:41 +0000
-Message-ID: <24a2a7bb-4d13-4e07-973c-8d212671c14e@theobroma-systems.com>
-Date: Mon, 22 Apr 2024 12:29:39 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Wic Image Generation
-To: Bratiranjan Acharya <bratiranjan12@gmail.com>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>
-References: <CALSmAY76pRGxBWfWJQFEuiEQ1e3tmMm03p=wAnZr+=+Eb_cZbg@mail.gmail.com>
- <CALSmAY6riT0qgNcrQMcYTSSfguvXirYb3EEa2=Kd1CcdQOX9gA@mail.gmail.com>
- <5430bd55-37cc-4ca2-9bc4-bad41a77d6d2@theobroma-systems.com>
- <CALSmAY49g7EZudVrMzv0QtXxPPTqujG0AkaK8D4MPmBRmcDLqw@mail.gmail.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <CALSmAY49g7EZudVrMzv0QtXxPPTqujG0AkaK8D4MPmBRmcDLqw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: WA2P291CA0022.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::24) To DB7PR04MB4842.eurprd04.prod.outlook.com
- (2603:10a6:10:1b::13)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=XJRmzqE9;
+ spf=pass (domain: gmail.com, ip: 209.85.128.171, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-61b6200fcb5so12122497b3.2
+        for <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 08:34:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1713800053; x=1714404853; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nhtj/DTYgj7PyySeID1woZlHrLtV86jjyy9ew3KQAy8=;
+        b=XJRmzqE9CUZ7QsK5R9qffLNxkMx/4RskwxAB8F9FHKUoCZ/pSytCdsUyLdkkipE4c5
+         LWnrB0RxYlhKyd7/j9vfqjX3bAQTVUWJN6OD4HRXN0Eh07BCsg8JaoGm6fFsqoMdbMgR
+         iG5POoadmwr/eYDq1BHTFxFMWiSrjX1wB2z90QwldsCFOAEYLI5zxhTJevQfpKCXLG5f
+         v53+ARMm3NZLi4LDoYSrbYHx3b78gKA3VJBBTR56eIrPo+NpNY8YRuTFxlRVneFf6A/g
+         VGq3z/sPsds4NCcJK5lfjZWwWO3GEbsNqKniTHn9pb/l3OPe/wUsGXppq8nAXNFrtr5a
+         7mpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1713800053; x=1714404853;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nhtj/DTYgj7PyySeID1woZlHrLtV86jjyy9ew3KQAy8=;
+        b=Ewb1YyT4YpkCKjJQ5OvWsPU/cDgMCBD0oFEDJP9xvBx3K1Y+NgeZiNrYBiTwAcrcFK
+         7U991SVt/0oMLYkR5aOPRtQe2p4VFVy1W7DOA3yV2gM39Nry5FbfKcB9veG7B7OAFXXn
+         aworJqfGKlNgMO8wRWt+u8wMw60xlfTp7QF8EOugFvdGS3GyzP1WU+dS9figKJCWazBc
+         nDqIudrlblR+XKdSMqkenDvtPncb+Y5WSyupY6JH5agdvbLEXiZwYDtWL9Nz9/C7GpqO
+         lS7FJKSgm3a2Iwi9rxmCiiY2pPkU2+CylJ+oMC6O7kDP0iFsWbU48i7MyyUSD1ji8x15
+         T19Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVs7naliEwBry9TTak4E9GiPhgozNL96bA/tzS7Vcnwso6G0bvGD5lBCJRiQAcNqKAreipujApwujFO1LQamtqJIrbW6kDIE9D1Ij6f
+X-Gm-Message-State: AOJu0YytXMexzFr1rILJFLLky4thhGHE3Ctoc13rdjIbkl7uO7ofa0eU
+	YxWWlNXz7LGPCIrL3h/xpCYyuBsDnzx/ar/f0kpJVFgAi/0TaO20
+X-Google-Smtp-Source: AGHT+IEUuEDOWuca8CBl6eHr6VatZLu7pAIGo13h0Mjr9ctfdLFhQqaSr9DtE//kSVhH1nY6jin+Pg==
+X-Received: by 2002:a05:690c:6d05:b0:61a:f895:3442 with SMTP id iv5-20020a05690c6d0500b0061af8953442mr14787117ywb.16.1713800052700;
+        Mon, 22 Apr 2024 08:34:12 -0700 (PDT)
+Received: from ?IPV6:2600:1700:45dd:7000:188e:5bde:fe5c:3bce? ([2600:1700:45dd:7000:188e:5bde:fe5c:3bce])
+        by smtp.gmail.com with ESMTPSA id y193-20020a81a1ca000000b0061abd7e611asm1989641ywg.103.2024.04.22.08.34.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Apr 2024 08:34:12 -0700 (PDT)
+Message-ID: <db8fc58e-27d4-4daa-82ed-0fa74d1b8250@gmail.com>
+Date: Mon, 22 Apr 2024 11:34:06 -0400
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4842:EE_|DUZPR04MB9946:EE_
-X-MS-Office365-Filtering-Correlation-Id: b424d927-2b3c-4a44-1600-08dc62b71ed1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?VXBhQmM5MkhEVDFOQzh4UzV5cWRXdWE0RTlnNFJ5UUwySHBaZldiaWdWL2sz?=
- =?utf-8?B?MkhDc0Z0QitrZ3JJVFphcE5lVElkMTZOSzk1eTEyMndrYUNTN0ZsaG5US1BR?=
- =?utf-8?B?K3Z1Z2lMOXE5WGVod01pYlBlVStad3ovcktpenVad3NrZHAraE9VZGtVNUx2?=
- =?utf-8?B?cmhmbzJQNVFCZUt0YUhSVDA3cUpFT0VRcDNmQWNLaDFiS1poT1hpOHdCdGJ1?=
- =?utf-8?B?Ni9UeitlL2FhcDBnS0h1dFdNdDZqVHF4UkUyZ0JiZEJJVGN5VHZFKzFUVVYw?=
- =?utf-8?B?Q1AwSlIwQk83SDErZnBKNjVNVUMxWUh4a3FNd1JwcUlIc0NXUWZINzRuYVZY?=
- =?utf-8?B?MjZsOGx0VnV1S0tFQmk1MUVFcUNXcFgwNGExRmxiTlNYR0l3N0JyOHlSWllx?=
- =?utf-8?B?cWRVT0dVSk1tR1oxREx6RlpHL2VxeFhYTXJSUVpKMlpsUGRFYWJFd0RnZzh3?=
- =?utf-8?B?UFJVNWRtdDI0cDJYM2N0clBnNU5IV3NJNDMwc2NjTG9CL2ZQSVpOQmRRenlV?=
- =?utf-8?B?UHBjWHZtNmxERFh5ZW9vQ0c2bWtseWNQdFNEUU5NNDhLbjN4ME80NjdsR0xN?=
- =?utf-8?B?cjljODgyc2ZFc0ZVTGl6aHJwWEx1SlVJZFRtRFJBVlNtM08ySEo5RENEaTFs?=
- =?utf-8?B?WDJJS2hLa0FtL2lJSDAvd1pySmVDSzB5aGdNMjdqOFFHSHNjOFZsSmFtbVo0?=
- =?utf-8?B?Nm5uc0x6VzlML1dTZy9zWFdWbWdDUVBxclZHbjFtbDBsVCtFa0JWUWhQM25x?=
- =?utf-8?B?dlMzTGt2UDg3QTBsWXZVOHNOSHhKcmxDbTVjQmRYdjZ6UDFvK0g2djVyWlFa?=
- =?utf-8?B?Sy8xYzRudmF1cU1lU3N5RTZoNDdxOWhSR3hNU3ErQ3EzN2JPSVRiOG40TzUr?=
- =?utf-8?B?YytZa3FtWS9seUtVVFd2cEdqZFpmMXJXNzdUNHRXUldDeTRTTHg2RDc0YXY1?=
- =?utf-8?B?TnhiQ1UxTk5lcWpjWC9TTnUzSUtjMmVMY25KTExTWklla2xyVHd5bzVoQnVE?=
- =?utf-8?B?UHZjWnNheUNCWlRpeWRpMHIzZWlPZFlkdUlvdTB1S0tGL0RjY2xnTERncDlQ?=
- =?utf-8?B?S1A5UndqaktmMUs2TnJVS2tyY1hnTTQwTHYwZjVvVVBxVkNmY09tT1VOU2Zw?=
- =?utf-8?B?MW1qMXFCUHkzSXNrOEVwa0hPVlhleENZbUFoMHdubUtUNkdrd0QrVmZzUm1C?=
- =?utf-8?B?WlUrSTZMYm9TQXlGK2VyUTRFbWZtV2dXamVBaWhuWUVXSkF1bVpSRGJiTE13?=
- =?utf-8?B?dzF1OG1sWW1vYldCRGJvaW94UlROck5rSkg4OUsvemRQYnd3R0Vxc0FyMTE1?=
- =?utf-8?B?c3ZORlRuZFNMSnFWMXRMSTRWK3NCaXFnOWwwaS8vYTQwcUpiRDFMcHNvTzQ0?=
- =?utf-8?B?a09TZnhyMlFSRVhzSXVJNWhBT2hwMEcvUzJ2Q2hacEFFOWVIWUJreUN4TFBM?=
- =?utf-8?B?MUdvaTNxT2dOazRnZ2RmdlVDMUI1a1BVUzlHVlJqMUZEWXhza1FtODhldkFT?=
- =?utf-8?B?WXA0NnYrZDV4Sk53QjlodFRSRGgxejQ0YjY5QnpXUklSYzRNNlhIQXBXdlFH?=
- =?utf-8?B?aVlpQlVBbjFqMHBQc0RzR2phQ2RYMHNVR1Bpc0xRNzQ1cWtHaENIUmgzS2Qv?=
- =?utf-8?Q?GRUGPUzrTzOx5Fp3Dn0Ymmz6/WQB+xQyIJpS5a6GCQ1A=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4842.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(366007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?SmM3c05Sc3dTWi84amgrMnltQTVZdk5mTzlXNEExNGFyR211OUdOWnF1MDRJ?=
- =?utf-8?B?WVA1K3lja0lGMlQ3MUhMbStManVyeTBiaGJEWWVDTCtjTVprcVJVVzM2RzJJ?=
- =?utf-8?B?UEY5UTFrR3U1Ky83ZWVwSTBSYzlOTmtuVWVJZTR5eFN4VmdNYUdFQy95VnZq?=
- =?utf-8?B?eWplaWRQYnA0YU9OSzVtdGlOejlycWpEVTYrdTM3TFFMWFhYY2dEUEpzcHdO?=
- =?utf-8?B?MVJsNWRadHNlRC9JWEc1QmdtWFc1Q1Y1VFIvcVVlOHhxcGJ0NXNhc2trUnFW?=
- =?utf-8?B?Rmh4VkxjZXVTcWJrTGZoVW85MHRCQW5mQmhsNUZUNVlON2NRZll4dFRDREpL?=
- =?utf-8?B?Y1ZyeGJYRVFkT1ZYYjVvVTVLdC9TYW04dkt5S0ZYQmVGaElvOThmTW5LaHVG?=
- =?utf-8?B?VmNSRm5zamJDaWUyWUZ1Y3RsOERqKzRGUUxSR3RjcEo4SHJWL1BDcFByU0tv?=
- =?utf-8?B?NUpMWkt6RWpEWFliZTE3Z1Z1cWx0bDc1ZmV1QitGZE4xOUorRWhzSjFDTXRw?=
- =?utf-8?B?TUhSMnhDRHp2MUtLblBXcU1WQkd6YVVJN0hPUUgvM0dIbENYWFdVT2ovd09p?=
- =?utf-8?B?dkM3NmZsQWpOaDBCZ3FTcE01SFpCU1BoTmdxaGJNU21jbndRT2dlQy84Sk51?=
- =?utf-8?B?aDVuS2FxWGdsRFROSmhkbjBqTnk1N0txVjdzb2hUMlNSWkp2eDZLYlJPVGpX?=
- =?utf-8?B?UUlMWS85TUpOQ3cwZlJ0KzdEV05iTGhEMmVFcTZML1g5Q3Y1TGQvUjhqNUI3?=
- =?utf-8?B?SVdPbHVvdmF0ZnI5ZzkyaEg2K2NtMEl2U2xlcGJyZFgydUVtMzNQZFdIZjZh?=
- =?utf-8?B?K2VrcEJQdk51U2w1eUE0aWlwYWZ0djVWYllvbytTdDlqVUZ0NHQxZjdPQTY2?=
- =?utf-8?B?Wmx0VVpFTmg1djRaQUFNby9sVlpZMWZWZDhYRjZ6WUdMWkxVQ2N0ZndlM2Fp?=
- =?utf-8?B?dmdwamI2K0ZNeS9HMTI5SDdFN2tQalBoSlpUTTRwYmhmVGJ0MFZPM0NkSEIr?=
- =?utf-8?B?Z3RGRXNtb1pSUnE4TE9jdGFDdi9GcW45NFNQRTNhUU5KV0YrTEkyTVVWbTVE?=
- =?utf-8?B?SE5mZ2JWVjBSRjZTLzJJaW5pWnpmWllaLzRmZXppcVkzZkNRblcrTUF2RGFC?=
- =?utf-8?B?c1E4bHFKV3BOc05MY0p4cHF1QXE1VWlXdHFYQkNweWNaTVBEV3I4K2tlUG1v?=
- =?utf-8?B?NlZDaEZvZFFKeEVJZUZWN2pOOHdPenQ1cUU2d1FrY3k3WjJYVVdSQTZDVmFh?=
- =?utf-8?B?a0NiZk50aWRDTUNQZVpscEpwQ0lwVEJZUEhwNTJYSUNaQ1VRM2VJNGJOMU1M?=
- =?utf-8?B?aUR3K2w2MHh4d3h6QjlwZDlPMGRzalhiU2cwUFNYU1k0bTI0aUF6blZzS3h6?=
- =?utf-8?B?dHJGK25vSXpoU2drdzUxN1NoMlJiakVvUnVmS3hkVVJJblBmNkJLWlk0aThB?=
- =?utf-8?B?eUJQb3lMT2xXNi9PU21QcnlJV2k4KzJhUjhxaU1aN0hnY2Z0eDFobEhSUzBz?=
- =?utf-8?B?SEJNWXg2eW1yRi9qK3orUHZKMU0ySVdCZ1FhU2tpQ0daQStVakVlTTFZV1RY?=
- =?utf-8?B?UGRGZ3NieGo2V3UzWGRzVWNVNHBRaURJdzVoWHJuS3NIc2lWZXlsc3VpTjRI?=
- =?utf-8?B?ck9pK0U5RkxVL0tzOHlhVHRVblZEdHR5TktSbEdXK2lxQVlEWHBxWjdMS3U0?=
- =?utf-8?B?ckoySjdoVHRyMGFiVi9QKzZqUVg0cEhrUDN2Vy9mR2lNK1Z4cmJiZFhpM2JG?=
- =?utf-8?B?N2dIY3lCV0kyeWkrOU41U2cvcTlLZ1JXWlNkbmh6UjNXRWNBZzZ0MUZjcFVC?=
- =?utf-8?B?OXlhbkhqeUsrZXIrcVZ4c3FVdUVuN2MrQkxkdE5MQnl5a2hJWjdkNVMybUps?=
- =?utf-8?B?SUptRjhHZFBzYTU4QTlhVVRUQXFRVmxTUVJSMUhSWDArY3NLTmhiMndERmhm?=
- =?utf-8?B?a3I4aGFydGlwMCtKeWJ1dnpMdDB6aTVDdzVJS1JmOFEvZ1pNZEhMTTBGTno4?=
- =?utf-8?B?T3hpZkR1S1dJeEgrQ1NDTENZSWFRNDQ2RURweVphOW04ODZGVW1EOWkwMStU?=
- =?utf-8?B?Mm5WeWFzb1FsK2pEcjgwY0pyTjVWc21RaUlack9VTFhOZytXbUQyUGhIdHlw?=
- =?utf-8?B?Zi9scm9PaG1Vd2VoK0hrU0lqbnFTWXl0ejA5WUFQbEF4YmVQbzRtdGNLWWRu?=
- =?utf-8?Q?pl14rX4wTuNQ/muJkPQbzBc=3D?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b424d927-2b3c-4a44-1600-08dc62b71ed1
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4842.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 10:29:41.7805
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XfojAGAiYyeTIP7Xn/+TvefWaqh/4/RZ1Ftwtm261NF2ntxujqNGzupXraz4UhnxZqGgM6U++m7J7jmrqnMNZRRZTKhGpGxWmnzNHTvrIRZfeA0flGqwImCgwiT7/xZW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9946
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-security][kirkstone][PATCH] sssd: fix CVE-2023-3758 Race
+ condition during authorization leads to GPO policies functioning
+ inconsistently
+To: Hitendra Prajapati <hprajapati@mvista.com>, yocto@lists.yoctoproject.org
+References: <20240422130054.239371-1-hprajapati@mvista.com>
+Content-Language: en-US
+From: akuster808 <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; keydata=
+ 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
+ ApZ86eOP
+In-Reply-To: <20240422130054.239371-1-hprajapati@mvista.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 10:29:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62977
+ <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 15:34:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62978
 
-Hi Brati,
+Hello Hitendra,
 
-Please always use the "Answer all" button so that the mailing list is 
-still in copy.
+On 4/22/24 9:00 AM, Hitendra Prajapati wrote:
+> Upstream-Status: Backport from https://github.com/SSSD/sssd/commit/f4ebe1408e0bc67abfbfb5f0ca2ea13803b36726
+>
+> Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
 
-On 4/22/24 11:47, Bratiranjan Acharya wrote:
-> Hi,
-> 
-> I've reviewed the information you shared. Can you clarify one thing for me?
-> In the last line, "bootloader --ptable gpt," what does it entail? Here's
-> the scenario: I have a gpt.bin file that creates all the necessary
-> partitions, but I'm aiming to generate a wic image instead. What steps
-> should I take? Do I still require the gpt.bin file, or is there an
-> alternative approach?
-> 
+A fix landed yesterday for the same issue.
 
-bootloader --ptable gpt
+- armin
+> ---
+>   .../sssd/files/CVE-2023-3758.patch            | 222 ++++++++++++++++++
+>   recipes-security/sssd/sssd_2.5.2.bb           |   1 +
+>   2 files changed, 223 insertions(+)
+>   create mode 100644 recipes-security/sssd/files/CVE-2023-3758.patch
+>
+> diff --git a/recipes-security/sssd/files/CVE-2023-3758.patch b/recipes-security/sssd/files/CVE-2023-3758.patch
+> new file mode 100644
+> index 0000000..db6f8ed
+> --- /dev/null
+> +++ b/recipes-security/sssd/files/CVE-2023-3758.patch
+> @@ -0,0 +1,222 @@
+> +From f4ebe1408e0bc67abfbfb5f0ca2ea13803b36726 Mon Sep 17 00:00:00 2001
+> +From: Sumit Bose <sbose@redhat.com>
+> +Date: Wed, 8 Nov 2023 14:50:24 +0100
+> +Subject: [PATCH] ad-gpo: use hash to store intermediate results
+> +MIME-Version: 1.0
+> +Content-Type: text/plain; charset=UTF-8
+> +Content-Transfer-Encoding: 8bit
+> +
+> +Currently after the evaluation of a single GPO file the intermediate
+> +results are stored in the cache and this cache entry is updated until
+> +all applicable GPO files are evaluated. Finally the data in the cache is
+> +used to make the decision of access is granted or rejected.
+> +
+> +If there are two or more access-control request running in parallel one
+> +request might overwrite the cache object with intermediate data while
+> +another request reads the cached data for the access decision and as a
+> +result will do this decision based on intermediate data.
+> +
+> +To avoid this the intermediate results are not stored in the cache
+> +anymore but in hash tables which are specific to the request. Only the
+> +final result is written to the cache to have it available for offline
+> +authentication.
+> +
+> +Reviewed-by: Alexey Tikhonov <atikhono@redhat.com>
+> +Reviewed-by: Tomáš Halman <thalman@redhat.com>
+> +(cherry picked from commit d7db7971682da2dbf7642ac94940d6b0577ec35a)
+> +
+> +Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/f4ebe1408e0bc67abfbfb5f0ca2ea13803b36726]
+> +CVE: CVE-2023-3758
+> +Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
+> +---
+> + src/providers/ad/ad_gpo.c | 116 +++++++++++++++++++++++++++++++++-----
+> + 1 file changed, 102 insertions(+), 14 deletions(-)
+> +
+> +diff --git a/src/providers/ad/ad_gpo.c b/src/providers/ad/ad_gpo.c
+> +index 219f398..bdca096 100644
+> +--- a/src/providers/ad/ad_gpo.c
+> ++++ b/src/providers/ad/ad_gpo.c
+> +@@ -1314,6 +1314,33 @@ ad_gpo_extract_policy_setting(TALLOC_CTX *mem_ctx,
+> +     return ret;
+> + }
+> +
+> ++static errno_t
+> ++add_result_to_hash(hash_table_t *hash, const char *key, char *value)
+> ++{
+> ++    int hret;
+> ++    hash_key_t k;
+> ++    hash_value_t v;
+> ++
+> ++    if (hash == NULL || key == NULL || value == NULL) {
+> ++        return EINVAL;
+> ++    }
+> ++
+> ++    k.type = HASH_KEY_CONST_STRING;
+> ++    k.c_str = key;
+> ++
+> ++    v.type = HASH_VALUE_PTR;
+> ++    v.ptr = value;
+> ++
+> ++    hret = hash_enter(hash, &k, &v);
+> ++    if (hret != HASH_SUCCESS) {
+> ++        DEBUG(SSSDBG_OP_FAILURE, "Failed to add [%s][%s] to hash: [%s].\n",
+> ++                                 key, value, hash_error_string(hret));
+> ++        return EIO;
+> ++    }
+> ++
+> ++    return EOK;
+> ++}
+> ++
+> + /*
+> +  * This function parses the cse-specific (GP_EXT_GUID_SECURITY) filename,
+> +  * and stores the allow_key and deny_key of all of the gpo_map_types present
+> +@@ -1321,6 +1348,7 @@ ad_gpo_extract_policy_setting(TALLOC_CTX *mem_ctx,
+> +  */
+> + static errno_t
+> + ad_gpo_store_policy_settings(struct sss_domain_info *domain,
+> ++                             hash_table_t *allow_maps, hash_table_t *deny_maps,
+> +                              const char *filename)
+> + {
+> +     struct ini_cfgfile *file_ctx = NULL;
+> +@@ -1454,14 +1482,14 @@ ad_gpo_store_policy_settings(struct sss_domain_info *domain,
+> +                 goto done;
+> +             } else if (ret != ENOENT) {
+> +                 const char *value = allow_value ? allow_value : empty_val;
+> +-                ret = sysdb_gpo_store_gpo_result_setting(domain,
+> +-                                                         allow_key,
+> +-                                                         value);
+> ++                ret = add_result_to_hash(allow_maps, allow_key,
+> ++                                         talloc_strdup(allow_maps, value));
+> +                 if (ret != EOK) {
+> +-                    DEBUG(SSSDBG_CRIT_FAILURE,
+> +-                          "sysdb_gpo_store_gpo_result_setting failed for key:"
+> +-                          "'%s' value:'%s' [%d][%s]\n", allow_key, allow_value,
+> +-                          ret, sss_strerror(ret));
+> ++                    DEBUG(SSSDBG_CRIT_FAILURE, "Failed to add key: [%s] "
+> ++                                               "value: [%s] to allow maps "
+> ++                                               "[%d][%s].\n",
+> ++                                               allow_key, value, ret,
+> ++                                               sss_strerror(ret));
+> +                     goto done;
+> +                 }
+> +             }
+> +@@ -1481,14 +1509,14 @@ ad_gpo_store_policy_settings(struct sss_domain_info *domain,
+> +                 goto done;
+> +             } else if (ret != ENOENT) {
+> +                 const char *value = deny_value ? deny_value : empty_val;
+> +-                ret = sysdb_gpo_store_gpo_result_setting(domain,
+> +-                                                         deny_key,
+> +-                                                         value);
+> ++                ret = add_result_to_hash(deny_maps, deny_key,
+> ++                                         talloc_strdup(deny_maps, value));
+> +                 if (ret != EOK) {
+> +-                    DEBUG(SSSDBG_CRIT_FAILURE,
+> +-                          "sysdb_gpo_store_gpo_result_setting failed for key:"
+> +-                          "'%s' value:'%s' [%d][%s]\n", deny_key, deny_value,
+> +-                          ret, sss_strerror(ret));
+> ++                    DEBUG(SSSDBG_CRIT_FAILURE, "Failed to add key: [%s] "
+> ++                                               "value: [%s] to deny maps "
+> ++                                               "[%d][%s].\n",
+> ++                                               deny_key, value, ret,
+> ++                                               sss_strerror(ret));
+> +                     goto done;
+> +                 }
+> +             }
+> +@@ -1781,6 +1809,8 @@ struct ad_gpo_access_state {
+> +     int num_cse_filtered_gpos;
+> +     int cse_gpo_index;
+> +     const char *ad_domain;
+> ++    hash_table_t *allow_maps;
+> ++    hash_table_t *deny_maps;
+> + };
+> +
+> + static void ad_gpo_connect_done(struct tevent_req *subreq);
+> +@@ -1903,6 +1933,19 @@ ad_gpo_access_send(TALLOC_CTX *mem_ctx,
+> +         goto immediately;
+> +     }
+> +
+> ++    ret = sss_hash_create(state, 0, &state->allow_maps);
+> ++    if (ret != EOK) {
+> ++        DEBUG(SSSDBG_FATAL_FAILURE, "Could not create allow maps "
+> ++              "hash table [%d]: %s\n", ret, sss_strerror(ret));
+> ++        goto immediately;
+> ++    }
+> ++
+> ++    ret = sss_hash_create(state, 0, &state->deny_maps);
+> ++    if (ret != EOK) {
+> ++        DEBUG(SSSDBG_FATAL_FAILURE, "Could not create deny maps "
+> ++              "hash table [%d]: %s\n", ret, sss_strerror(ret));
+> ++        goto immediately;
+> ++    }
+> +
+> +     subreq = sdap_id_op_connect_send(state->sdap_op, state, &ret);
+> +     if (subreq == NULL) {
+> +@@ -2722,6 +2765,43 @@ ad_gpo_cse_step(struct tevent_req *req)
+> +     return EAGAIN;
+> + }
+> +
+> ++static errno_t
+> ++store_hash_maps_in_cache(struct sss_domain_info *domain,
+> ++                         hash_table_t *allow_maps, hash_table_t *deny_maps)
+> ++{
+> ++    int ret;
+> ++    struct hash_iter_context_t *iter;
+> ++    hash_entry_t *entry;
+> ++    size_t c;
+> ++    hash_table_t *hash_list[] = { allow_maps, deny_maps, NULL};
+> ++
+> ++
+> ++    for (c = 0; hash_list[c] != NULL; c++) {
+> ++        iter = new_hash_iter_context(hash_list[c]);
+> ++        if (iter == NULL) {
+> ++            DEBUG(SSSDBG_OP_FAILURE, "Failed to create hash iterator.\n");
+> ++            return EINVAL;
+> ++        }
+> ++
+> ++        while ((entry = iter->next(iter)) != NULL) {
+> ++            ret = sysdb_gpo_store_gpo_result_setting(domain,
+> ++                                                     entry->key.c_str,
+> ++                                                     entry->value.ptr);
+> ++            if (ret != EOK) {
+> ++                free(iter);
+> ++                DEBUG(SSSDBG_OP_FAILURE,
+> ++                      "sysdb_gpo_store_gpo_result_setting failed for key:"
+> ++                      "[%s] value:[%s] [%d][%s]\n", entry->key.c_str,
+> ++                      (char *) entry->value.ptr, ret, sss_strerror(ret));
+> ++                return ret;
+> ++            }
+> ++        }
+> ++        talloc_free(iter);
+> ++    }
+> ++
+> ++    return EOK;
+> ++}
+> ++
+> + /*
+> +  * This cse-specific function (GP_EXT_GUID_SECURITY) increments the
+> +  * cse_gpo_index until the policy settings for all applicable GPOs have been
+> +@@ -2763,6 +2843,7 @@ ad_gpo_cse_done(struct tevent_req *subreq)
+> +      * (as part of the GPO Result object in the sysdb cache).
+> +      */
+> +     ret = ad_gpo_store_policy_settings(state->host_domain,
+> ++                                       state->allow_maps, state->deny_maps,
+> +                                        cse_filtered_gpo->policy_filename);
+> +     if (ret != EOK) {
+> +         DEBUG(SSSDBG_OP_FAILURE,
+> +@@ -2776,6 +2857,13 @@ ad_gpo_cse_done(struct tevent_req *subreq)
+> +
+> +     if (ret == EOK) {
+> +         /* ret is EOK only after all GPO policy files have been downloaded */
+> ++        ret = store_hash_maps_in_cache(state->host_domain,
+> ++                                       state->allow_maps, state->deny_maps);
+> ++        if (ret != EOK) {
+> ++            DEBUG(SSSDBG_OP_FAILURE, "Failed to store evaluated GPO maps "
+> ++                                     "[%d][%s].\n", ret, sss_strerror(ret));
+> ++            goto done;
+> ++        }
+> +         ret = ad_gpo_perform_hbac_processing(state,
+> +                                              state->gpo_mode,
+> +                                              state->gpo_map_type,
+> +--
+> +2.25.1
+> +
+> diff --git a/recipes-security/sssd/sssd_2.5.2.bb b/recipes-security/sssd/sssd_2.5.2.bb
+> index 4c75e0a..c07559c 100644
+> --- a/recipes-security/sssd/sssd_2.5.2.bb
+> +++ b/recipes-security/sssd/sssd_2.5.2.bb
+> @@ -24,6 +24,7 @@ SRC_URI = "https://github.com/SSSD/sssd/releases/download/${PV}/sssd-${PV}.tar.g
+>              file://fix-ldblibdir.patch \
+>              file://musl_fixup.patch \
+>              file://CVE-2021-3621.patch \
+> +           file://CVE-2023-3758.patch \
+>              "
+>   
+>   SRC_URI[sha256sum] = "5e21b3c7b4a2f1063d0fbdd3216d29886b6eaba153b44fb5961698367f399a0f"
 
-will generate the GPT table based on the partitions defined in the same 
-file.
-
-wic is capable of generating the GPT table for you.
-
-I believe wic source code is in 
-https://git.openembedded.org/openembedded-core/tree/scripts/lib/wic.
-
-Cheers,
-Quentin
 
