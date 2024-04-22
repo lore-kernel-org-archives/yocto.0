@@ -1,293 +1,180 @@
-Return-Path: <maik@quatt.io>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7309C4345F
-	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 09:08:20 +0000 (UTC)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
- by mx.groups.io with SMTP id smtpd.web10.13981.1713776894163051817
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EFC02C10F15
+	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 09:11:30 +0000 (UTC)
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (EUR01-HE1-obe.outbound.protection.outlook.com [40.107.13.121])
+ by mx.groups.io with SMTP id smtpd.web10.14009.1713777088168644830
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Apr 2024 02:08:14 -0700
+ Mon, 22 Apr 2024 02:11:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@quatt-io.20230601.gappssmtp.com header.s=20230601 header.b=3XfJXZQh;
- spf=pass (domain: quatt.io, ip: 209.85.167.52, mailfrom: maik@quatt.io)
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-51abd9fcbf6so4986863e87.1
-        for <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 02:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quatt-io.20230601.gappssmtp.com; s=20230601; t=1713776892; x=1714381692; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eBznyyRY/MAOHabkOXhEyamEBLJizZhoHx2k62BIi3Y=;
-        b=3XfJXZQhkierKgssSxY+Juof3UQBAFH97rw1pjLMb/o/hGlylhrtjZyHYzw88z4ne8
-         D7V+jW3q08RFShXr71WZ7k0h7j8M0qh7RjlLG1EVAvoVnpmNeQgwe3HYuQFKip+eb9XU
-         mme2X3t64CBFqxk6/GE3okMqbY70vzrZdyK2U5RWMrz5nkPs6iMOwiLJhPP6GZL3DvF4
-         q+86ps5bce9wN7TdqUDZmkpNcE13NiUrcdPT8yQLP9+V4P7QwQKuBsnhg08yYvzgF11Q
-         I2dDrxJWij5tQ0lSsjgAGyfdjnQiCsmevq/WoDDuvPxSnewmlVrPVx3Y/zbDxDUPMtCm
-         NMtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713776892; x=1714381692;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eBznyyRY/MAOHabkOXhEyamEBLJizZhoHx2k62BIi3Y=;
-        b=UyQedURKyhXsvprikFKQmziR+X1jNAUmmC0BXqia5/AfnsCxwrxFOaz87vpKktY3YW
-         FBlsV26WP6usRDorq0ntXjurenGcmcug8yQXAt2Xy1UYKec9IgWMD+TCOVz+/kYqG4gc
-         LOIf/jvAY2olxlMD3dITt7cksJCRkx142nR0Mf14o4+Jnb38EjaR0CIgyg5AbTqm4/HL
-         rO1b/1VdXqsE9mm/9fm3NQfHnCmp8PHu+csO12ZjQm8hRS/jQ42L/D6qyDQBZR25yVn4
-         56EArb2maHWDxBoMOZQDpMZ3MLjM5nsz01sUQ4n5qze+9x7KTHutIq+/IXNcVx7SYSCK
-         nhVA==
-X-Gm-Message-State: AOJu0YxKGb5IATkES9fa7NAIk4yvZjQSJlW6AD58Zgzywdeb3GIfFKac
-	5xksxaThxiWWtnLkqIQpP7UpLCZqhP1aDHUi7/fXXDMAZywQtvheSK2GcnPMngypzOuItO0JQIC
-	v+FS0sTBwKS1VdPOFeIGXxew6rUsUeG8XPYr3H2621kw6Vidio3Z0W/Ug
-X-Google-Smtp-Source: AGHT+IHw9q4C8SpXOttzx2pM+T2b8TIxl9rtqI1twwfBGx/Xi+w6ushkQ4wvuKDF0Vemt4LkckzSqC/Ox57VK/Ejo6E=
-X-Received: by 2002:ac2:4bd0:0:b0:516:9f03:6a92 with SMTP id
- o16-20020ac24bd0000000b005169f036a92mr9063294lfq.43.1713776891821; Mon, 22
- Apr 2024 02:08:11 -0700 (PDT)
+ dkim=pass header.i=@theobroma-systems.com header.s=selector1 header.b=LlOJIYpU;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.13.121, mailfrom: quentin.schulz@theobroma-systems.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cMYH04XS/Z61CyPMv02OIV8mBCD9KAjzFE8iOtVQ+10eaH1/jfkupKpjHeQSHiFXwHlXljvWSXCudkAJg7A23xQkEYauSzfvfSHAlrq1xJ0cLuOHW52PN5SRLYd1bLfvU1l5eylFDMhaXT6c8AwFLHR7inCW8NTorDyI2C/ItIYjMut99hnjMzAFbm2+LYTNke0Ff9afQjt3XQGgSj91GOkhWtEZlHnkTVr+GIjgSiuGEexRuCTFhUy42h8B+gNiT6wpQVbbeE8XrL8+9zUCO7R0d0bQzyuAmey8x/pJbolOZLJB9eGBPwdCBMObQnbBcfNWcK2/7COfjGKJgkawGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TROXXwV4wuDMZZFZskzSfq2MWxZRi3hU2+kOiM70ygA=;
+ b=MgnptNLIkxq4ItkzJ6W4HYAW7falhF612gT1mHgb0m6ifeKtV05OxE3o2XrzWi2u+/soeRXDfQxivVQq8PemlsSRSlLQNnHE5hxLnSy+QEg775UDfSiR366aTjuN8FA8uWnvs//8mbP8zSMFYzKNxRTOyDQtXwVEU7BErPxSXMQhb/2yb6k1G6dFEdhvW3XRVdTGUD7aozzWiRtVnkyeNJCrOx1Ax8TpSXPq7wqRwRdjcihSUDDR681UXZR7HR8obr7nZlagy1AtCj/1niNfZLLA3hIWROby16/7PS1f9Qjgfc3cihKnJKw+V3SKMiIkoAWAMaCZNYXHr/wD7hX30w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TROXXwV4wuDMZZFZskzSfq2MWxZRi3hU2+kOiM70ygA=;
+ b=LlOJIYpUfjoF/WDX1V5DSlPPygfYa0QVnutpSbF348/wSQcIZpDP1QMDCWjO79a/yNA4ZEtVrVD9+XgrNvuOLxzBxCo6txNrks4xNKJOb6+C0LNRpCtO07P6yWe3YX9j8p1/0/L0zHbabtm1FF8K8W5DSbGotkbFilkgjW6jA5hkXYc5Jw5bRrlnGQdSuZK+8uU9Tra6hSH2flS+Gtq/WaAv5ZGfKC4rDQdXw66wNiyvF1H/sTiyvS5lck7zXiOetLPo3tU+39oKXQLUbGah5QtAn9tGKqVecIISkqX6ojZ5M+Hm3+vQ9xINDC5+96bVoV2L7AMx0vAhDDPLP1yjOA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from DB7PR04MB4842.eurprd04.prod.outlook.com (2603:10a6:10:1b::13)
+ by AS8PR04MB7815.eurprd04.prod.outlook.com (2603:10a6:20b:28a::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Mon, 22 Apr
+ 2024 09:11:23 +0000
+Received: from DB7PR04MB4842.eurprd04.prod.outlook.com
+ ([fe80::bdc7:4b2c:e74e:1504]) by DB7PR04MB4842.eurprd04.prod.outlook.com
+ ([fe80::bdc7:4b2c:e74e:1504%7]) with mapi id 15.20.7472.044; Mon, 22 Apr 2024
+ 09:11:23 +0000
+Message-ID: <5430bd55-37cc-4ca2-9bc4-bad41a77d6d2@theobroma-systems.com>
+Date: Mon, 22 Apr 2024 11:11:22 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Wic Image Generation
+To: yocto@lists.yoctoproject.org, bratiranjan12@gmail.com
+References: <CALSmAY76pRGxBWfWJQFEuiEQ1e3tmMm03p=wAnZr+=+Eb_cZbg@mail.gmail.com>
+ <CALSmAY6riT0qgNcrQMcYTSSfguvXirYb3EEa2=Kd1CcdQOX9gA@mail.gmail.com>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <CALSmAY6riT0qgNcrQMcYTSSfguvXirYb3EEa2=Kd1CcdQOX9gA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA0P291CA0013.POLP291.PROD.OUTLOOK.COM (2603:10a6:1d0:1::8)
+ To DB7PR04MB4842.eurprd04.prod.outlook.com (2603:10a6:10:1b::13)
 MIME-Version: 1.0
-References: <CALEqzqcC1PrqzEuQRe3W-6z75QgcpN9jBAaoseOGKEyGFZQsXA@mail.gmail.com>
- <CAB=6tBR1RRkOd33ymxtWUj_=usy1GLcYcwTEPDx43FyqVbKQjQ@mail.gmail.com> <17C88D1A5A183672.10861@lists.yoctoproject.org>
-In-Reply-To: <17C88D1A5A183672.10861@lists.yoctoproject.org>
-From: Maik Vermeulen <maik@quatt.io>
-Date: Mon, 22 Apr 2024 11:08:01 +0200
-Message-ID: <CALEqzqcvW=dTrCuv1VOmHRWQTSOQPY=daUQs08vCz5jz9SOsKw@mail.gmail.com>
-Subject: Re: [yocto] EXTRA_USERS_PARAMS and recipe file ownership
-To: yocto@lists.yoctoproject.org
-Cc: Chuck Wolber <chuckwolber@gmail.com>
-Content-Type: multipart/alternative; boundary="000000000000dc9c6a0616abc673"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4842:EE_|AS8PR04MB7815:EE_
+X-MS-Office365-Filtering-Correlation-Id: bbc2c20e-a85c-45ef-9b48-08dc62ac2e9a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?VTlnN2tqQnpnTFpPaWhqOTR3UDNPUlN0SGVlWmRWSi82Zi9XSnBOZWQ1YlZn?=
+ =?utf-8?B?ZTBUajRxbWNtM0N1QUF0R05ZTnA1SzFyOW1ZTDA0eVB5WFJBaWNob1VCYjdm?=
+ =?utf-8?B?UXpXT21EaHlBVWVDMm41TGNhc2dqd2xKbXUzOXRnWE9Vb1dyWjZqVVJ0TlZN?=
+ =?utf-8?B?M281aG5SYnNWOUVXLytUSjdobGp5UkppUVdscFBIaWROMCsxZ1N3LzVqV0tk?=
+ =?utf-8?B?SUdzSlBsWFZTd0tnNms0dTdkUHROVTRaU3VnQ0NXbm9nNmxBMXJWb2xFR0hw?=
+ =?utf-8?B?RXo2T2FIaWNsMzRmN3E4QzNERDdHTE1pTytNMGdidU4rcUJrbUZoWStoeXNr?=
+ =?utf-8?B?LzdLeWV1cXVLNGRoejZKVE5qVngvTWlqUWk5aTBINnFiTzBXVm02N1FMTTB6?=
+ =?utf-8?B?RFU4Uys3ZCtPMENtcXhHa2V4S0NJL3U5ZXd2NFpBNUlPM0NPTzI0K3lVTUw4?=
+ =?utf-8?B?Z052RWZsUnlpTW5mTEZKNnA2V1RuNktkc2w4VDRFNG1VTWhlOHFaaVpmVFNJ?=
+ =?utf-8?B?N2JXQmg3ZmljZVdXWGNiOHF0aEh5YkNHbzRIa0lLRkJBL1NhbDFTdlE2eGIy?=
+ =?utf-8?B?VEdwcFlLeGdnZFZTOVBMUzdwSVRDTVB1dXpESlpaaWt0WHZFRWc0NU8xY3FL?=
+ =?utf-8?B?MG4wRDUxdjE2M3owbDBiU3NQcFIxRGovTWVPWjRJditLbnJUT3ZwTDBHOTAv?=
+ =?utf-8?B?OExUa1lQWFVxUmh5ZldHMjhSS01yR3BUK3ArcGlzWHhncU4zYzcrYVlXeFNE?=
+ =?utf-8?B?ajEwTENxc2dtbzBwSEpxQlhQU0JHd0t5VHNBRzBydTM4RWgzUTFUbThLYlUy?=
+ =?utf-8?B?Ym40bzdITkpua3cxd3ZJT3VYY080R3hUbzdjS3h6aVYwOFZuVjNETm1nSENl?=
+ =?utf-8?B?QWx3L1hVSmxoNkxGQXE4blNFNXhFT3ltejJuREs4akVETFRBTlprcU82UmVz?=
+ =?utf-8?B?bUdnTDRWdVdDWE9CZzY1Nm1HOVJPM3h4L2ZhMzc2ZkdXbDVKRmRJakhKVTNY?=
+ =?utf-8?B?Sm11TlNaWjU4TFdJdEpKSzBlYXBqVW5CY3lQeWFucWtOWklwUUpMRGN1WkFR?=
+ =?utf-8?B?eXEwN0JKZnVPMVNKNWozTkdIRWhtVm9vbjdIdUFZbi9UWUdTZWMzMndxN3A2?=
+ =?utf-8?B?bGYwYS9TVjJJNzBzc1AyRjRQWDgvaFVveHBDckhQWFBXVGJNelhPZ1Y4aXRY?=
+ =?utf-8?B?MTFlc085L1F4VDhkQVVXUVlDaEx0U1ExNjVGMXE1NnlIbUY2blpHMldDTGlq?=
+ =?utf-8?B?Nk9nVEppWDVITWlWU0p1OTE2Uks2bFltTE8yLzVHb3ZSeUFPcTBDUGdrQWpz?=
+ =?utf-8?B?WFRDRmJTQjlVNXo3b0Z1QngzcDNNTVMyZTE0SjQzVWdpVEVFdVBBcnNXZmlU?=
+ =?utf-8?B?MmZlQWN2MlNBQ2p0Wmo3bW1FNGszOVZZQzE2b0d6UTJtZ1ZOYVdxeGNpRVJW?=
+ =?utf-8?B?Q0k3eVhvTlN6aVlSa3JXcXprK0RyUGVCc202bnYyNng5dEplbnZDY0UzSzdj?=
+ =?utf-8?B?SlFVVGx2am10M3hVZ2FUOGlmaVNpUVpJdHBLOEdLcWd1QWZmb0NjemJ1di9H?=
+ =?utf-8?B?MGZXa05IT05zUzVTZThLRFZ6bjgzc3pjbTFCSnZuOVEzb0Z4R3FDWkxnTkRr?=
+ =?utf-8?B?WGVLakszcEZGTmZudC9qYklQWlhRV0E9PQ==?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4842.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?a3AvWXVhdkl3Y1lIcFFrODdkcHpwT25CMks1N3dHb2pHL2YxTlJIZFF6Mm8v?=
+ =?utf-8?B?SWNFNjZTU2M0UFFZMU52TDJaRVdZaWIwQk9rUUxNaHVhdllmQ1VxMkZBV3hj?=
+ =?utf-8?B?TjE1Zm8ySFd0ODl4OUdVWnFRQjRQaDB3alNJTWF0WXRKTVo4MkxjNmVKazN2?=
+ =?utf-8?B?Z3ZUVlBJVDdrNEJNTlR6YjZmZGhRQkhKMUI2TXdUdXFSTFQyZTgwTDl4YWp2?=
+ =?utf-8?B?cEpMYTRCb0NnWFozemxzZm1aSlpzVWl5L3gydk8yZ2pyeG5VMVlIaDlyOG9j?=
+ =?utf-8?B?a3UvMlhEYkxpYmoyVy8wRi9OdmNLeTY5NHFZVW5LM2RkU295TWhzcjZnZnQ5?=
+ =?utf-8?B?MHBIV3l0Z0d5NlFhaUw4UDZpR2F6N1E2bzlnckgxM0lsaHk1QVppNUhZZUZI?=
+ =?utf-8?B?V3lFbW9aQ010VDI1a0dod1M0SFhIZGQxM3p3bVBYZ1pjWkNPUk5YR3d4ZU5u?=
+ =?utf-8?B?Z3FWbGJhL3VtdktGellqeGJqVitwYytQZmpXRXlFUG9EbXRBRmUySnpNbXZa?=
+ =?utf-8?B?cUxSeGE1SEtocFU3aHNZYWd5YWlnaklNMDJ4M3U4OTE0L2FSQmNnWXl6MmN5?=
+ =?utf-8?B?RUtURm1NbnNVcUVNU1o2cnByTDBHMnliMGExL3ZlK0NQZ3dnSWVsb0s3NkNU?=
+ =?utf-8?B?RWpBY3V3bUY0MkZFbmpxSTVwZWlRK0w5WnBJN2N2Y0tReDNoVlNPR1M5dHRO?=
+ =?utf-8?B?Q1N5Uksyb0poQy9zYWJsZW8xVGIwQ3hIWEM4c0hOaXVLWmExQXdFTjEvR2w3?=
+ =?utf-8?B?aGx1eCtZSU9vbHJmNHBaNjEzVjc2NWlmN2NEb092dVlxY0xhQjBUVEwwcGNE?=
+ =?utf-8?B?MUxrMktIRUhGMHlFVCtoS09qWHdoZ1FvN0lBSmJ1dU41TjcyMkVzcFpHSFIv?=
+ =?utf-8?B?ZnZubnp1cDN3RS9QUkg5MXM2U1Jia0Jiem16OE5mMVUwU1VGVXNORGk4MVZi?=
+ =?utf-8?B?U0J4aTBhY3hya1ByUnM5dzJzRzBMS3F0blY5SGk3NFl6L3lqRk9rMVdwUERm?=
+ =?utf-8?B?M2JVQ29ISDRZYlFJU2hVd3BYalQ3bXdXZ2VseUxGSGRhcTZCTWJwY2ordmJP?=
+ =?utf-8?B?SHZSTTE3RStUYXRBdU9SRW1EYnVwZEl1MUF1U3hJbHc4dnZNbGNzenhOSnlQ?=
+ =?utf-8?B?SXh4b0x2WnkxMitOOHc4ZWcvejRQTEZkT0p3eEdEWUxLb1hPaitCMklDOTNU?=
+ =?utf-8?B?Vm50TzRicDVzUHFRUXdJWC9scC82Z2FkV1U4anVZbnVoVi9STDBKRWdCYTA1?=
+ =?utf-8?B?U01JTEVNMU01c0x1LzVvUzEwd2J3ZmsxSWU3OGE3VHorNkE2T2dqWGx6emFi?=
+ =?utf-8?B?cnc2SEZRdHcyTUF3Slg2eDYyMzZQUHBxcVJRVlBRUlBrRmczK3d5dDlDdDQw?=
+ =?utf-8?B?ditNQWZoQUZ3R014RkNtdWhRRUV3a3VpeE1qamR1cnM1NkpEaDZwN0cyN0l0?=
+ =?utf-8?B?RWhWT2hYUUNNZ3gxeTBSTmtIOUF1aTlqZzRINjR4YkZnZE5Kb1dTM1R1aDRz?=
+ =?utf-8?B?Sk1qRGUrQms5YnhHZm5hZ3BFOXp3U0xnM1VRYllISFhqWjB2VDhWeldCeERG?=
+ =?utf-8?B?UEN1T0creEN3dklaZHpWYlJjV1BEU1NGTjB4RXB5Smp6N0RCNDN2QmM2Qmx0?=
+ =?utf-8?B?WlB4Q2RnUWlWemp3OWkySXUwUWMxUkdndVAxeUlJeTdCUVdzVXI4QS8wZGda?=
+ =?utf-8?B?dS9jRVpXbTF0aWlRdTdNUFEzc2t2eXV3VFNGSisreXJZRFhJSXBTYUJ5NHM5?=
+ =?utf-8?B?TzRsb2xrdlpqd1ZjcVg5ZU96SUMzUUU4OE5uUGZ5Q1pmRkd2WThZQUxFbCtM?=
+ =?utf-8?B?UjdyenB0ZFlXNjhvV2NVQk8xeUdIeVJrd2tEVFNndWRNWGxSVWhlcHZBZ3M3?=
+ =?utf-8?B?cVdMTGJyQUp3V0xTQnd1TTh1RjZWYzl1cjlBbTJoQ1lvMUhkQnBOUXJ5RHVB?=
+ =?utf-8?B?WkVRTkdRajVNaHVGdUZqUFZEWVMzVUJjWEsrc2tkNElQdGdiaWswQzAzSW5H?=
+ =?utf-8?B?T214Wnp5TzNDQTh3cWNUQWJVR3Zmb0hUNFJ2MkY3RkFhOU8yWlVhVGFKc21O?=
+ =?utf-8?B?eHFmR2tCYThLdmlFUmkxaFRjaG5zYzA2RkRNVGpTbll2RlVlM1JVRi83dzhV?=
+ =?utf-8?B?d0RVZDd6UUtNc2RiWnY5SWd6NVRnSzZvUnZKdDVTRTJ6TXI2SFRPMEQwZUpY?=
+ =?utf-8?Q?SVeCFowMqO4GhDEfYdK1vu8=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bbc2c20e-a85c-45ef-9b48-08dc62ac2e9a
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4842.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 09:11:23.6824
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MH99wwVQHlMskjYwiI2TMhzyXb4TmG/HRlJWDJBV+U6Yn0l2pUIYgYxGbh8fv8l2iQjYDlNZlH2Y1UBicJWvhhxn5isEpo6auldGjh6cYakWu5DMr/W/OXVxy22hm1EE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7815
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 09:08:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62975
+ <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 09:11:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62976
 
---000000000000dc9c6a0616abc673
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Brati,
 
-Actually I think this log may be more telling, showing that the
-useradd.bbclass is using gid 1007 thanks to useradd-staticids, but that
-1007 group is only available after extrausers.bbclass
+On 4/16/24 10:36, Bratiranjan Acharya via lists.yoctoproject.org wrote:
+> You don't often get email from bratiranjan12=gmail.com@lists.yoctoproject.org. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+> 
+> 
+> ---------- Forwarded message ---------
+> From: Bratiranjan Acharya <bratiranjan12@gmail.com<mailto:bratiranjan12@gmail.com>>
+> Date: Thu, 11 Apr 2024 at 11:12
+> Subject: Wic Image Generation
+> To: <yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>>
+> 
+> 
+> Hi,
+> I want to create a Wic image from total scratch. Like, i have a "gpt.bin" which creates the partition and put the required images in it. But, i want to reate a wic image which will do the same. So, for that do i need that "gpt.bin"? like, as per my knowledge wic cannot create the gpt partition please do correct me if am wrong. And i dont even have any .bbclass file which can help to create the wic image so please help me to generate this wic image from total scratch, what are the steps i need to follow, where i need to put the wks file and how i can write in the wks file.
+> 
+> FOR Eg: I need to have 6 partitions where i have a active and backup bootloader,kernel,rootfs so for that how we can write the wks file.
+> 
 
-DEBUG: Executing shell function useradd_sysroot
-/workdir/build_runner_maik/tmp/work/cortexa9hf-neon-tps-linux-gnueabi/our-w=
-atchdog/1.0-r0/recipe-sysroot-native/usr/sbin/useradd
-Running groupadd commands...
-NOTE: our-watchdog: Performing groupadd with [--root
-/workdir/build_runner_maik/tmp/work/cortexa9hf-neon-tps-linux-gnueabi/our-w=
-atchdog/1.0-r0/recipe-sysroot
---gid 1000 --system company]
-configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
-configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
-Running useradd commands...
-NOTE: our-watchdog: Performing useradd with [--root
-/workdir/build_runner_maik/tmp/work/cortexa9hf-neon-tps-linux-gnueabi/our-w=
-atchdog/1.0-r0/recipe-sysroot
---gid 1007 --no-create-home --system --shell /bin/false --uid 1021 watchdog=
-]
-configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
-configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
-useradd: group '1007' does not exist
-ERROR: our-watchdog: useradd command did not succeed.
+Have a look at what is done in meta-rockchip:
+https://git.yoctoproject.org/meta-rockchip/tree/wic/rockchip.wks
 
-On Mon, Apr 22, 2024 at 10:33=E2=80=AFAM Maik Vermeulen via lists.yoctoproj=
-ect.org
-<maik=3Dquatt.io@lists.yoctoproject.org> wrote:
+This creates a wic image with 9 partitions and a GPT partition table.
 
-> Hi Chuck,
->
-> Thanks for the quick response!
->
-> I'm not sure if it's the same issue, ours isn't systemd specific at least=
-.
-> Btw, we're using Kirkstone.
->
-> Here is an example log of the issue we see when we use USERADD in a recip=
-e
-> to create the user, and set ownership in do_install, while using
-> EXTRA_USERS_PARAMS to manage extra groups and user options, and using
-> useradd-staticids.bbclass too:
-> DEBUG: Executing shell function set_user_group
-> NOTE: company-img: Performing groupadd with [-R
-> /workdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnueabi/company-img/1=
-.0-r0/rootfs
-> --gid 1000 company]
-> NOTE: company-img: group company already exists, not re-creating it
-> NOTE: company-img: Performing useradd with [-R
-> /workdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnueabi/company-img/1=
-.0-r0/rootfs
-> --gid 1000 --system --shell /bin/false --uid 1001 mender]
-> configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator=
-)
-> configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator=
-)
-> useradd: group '1000' does not exist
-> ERROR: company-img: useradd command did not succeed.
->
-> But then when I check
-> tmp/work/machine-linux-gnueabi/copmany-img/1.0-r0/rootfs/etc/group, no
-> entries for GID 1000 are found.
->
-> Kind regards,
->
-> On Fri, Apr 19, 2024 at 5:44=E2=80=AFPM Chuck Wolber <chuckwolber@gmail.c=
-om>
-> wrote:
->
->> On Fri, Apr 19, 2024 at 7:29=E2=80=AFAM Maik Vermeulen via lists.yoctopr=
-oject.org
->> <maik=3Dquatt.io@lists.yoctoproject.org> wrote:
->>
->> %< SNIP %<
->>
->>
->>> I've also tried using the useradd.bbclass in the recipes, which allows
->>> us to set permissions from within the do_install task, but that started
->>> causing trouble when we tried to start using useradd-staticids, which w=
-e
->>> need to keep compatibility between software versions using the same fil=
-es
->>> from a persistent partition. The useradd.bbclass in combination with th=
-e
->>> central extrausers.bbclass and useradd-staticids.bbclass is messy and
->>> hasn't resulted in a working build yet, with recipes complaining certai=
-n
->>> groups e.g. aren't available yet.
->>>
->>
->>
->> You are not very specific about what is going wrong, but it sounds
->> familiar so it is possible that
->> I am to blame for not following up on an earlier observation that may
->> potentially benefit your
->> situation.
->>
->> Take a look at this message and let me know if it sounds familiar.
->>
->> https://lists.openembedded.org/g/openembedded-core/topic/88922422#161387
->>
->> If so I can probably submit an RFC patch.
->>
->> ..Ch:W..
->>
->>
->>
->> --
->> *"Perfection must be reached by degrees; she requires the slow hand of
->> time." - Voltaire*
->>
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#62974):
-> https://lists.yoctoproject.org/g/yocto/message/62974
-> Mute This Topic: https://lists.yoctoproject.org/mt/105618946/8452744
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [maik@quatt.io]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+Maybe https://docs.yoctoproject.org/dev-manual/wic.html could be useful 
+as well. I'm not entirely sure we provide enough documentation for the 
+wks file in the docs, so probably something we can improve, patches 
+welcome :)
 
---000000000000dc9c6a0616abc673
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Actually I think this log may be more telling, showing tha=
-t the useradd.bbclass is using gid 1007 thanks to useradd-staticids, but th=
-at 1007 group is only available after extrausers.bbclass<br><br>DEBUG: Exec=
-uting shell function useradd_sysroot<br>/workdir/build_runner_maik/tmp/work=
-/cortexa9hf-neon-tps-linux-gnueabi/our-watchdog/1.0-r0/recipe-sysroot-nativ=
-e/usr/sbin/useradd<br>Running groupadd commands...<br>NOTE: our-watchdog: P=
-erforming groupadd with [--root /workdir/build_runner_maik/tmp/work/cortexa=
-9hf-neon-tps-linux-gnueabi/our-watchdog/1.0-r0/recipe-sysroot --gid 1000 --=
-system company]<br>configuration error - unknown item &#39;SYSLOG_SU_ENAB&#=
-39; (notify administrator)<br>configuration error - unknown item &#39;SYSLO=
-G_SG_ENAB&#39; (notify administrator)<br>Running useradd commands...<br>NOT=
-E: our-watchdog: Performing useradd with [--root /workdir/build_runner_maik=
-/tmp/work/cortexa9hf-neon-tps-linux-gnueabi/our-watchdog/1.0-r0/recipe-sysr=
-oot --gid 1007 --no-create-home --system --shell /bin/false --uid 1021 watc=
-hdog]<br>configuration error - unknown item &#39;SYSLOG_SU_ENAB&#39; (notif=
-y administrator)<br>configuration error - unknown item &#39;SYSLOG_SG_ENAB&=
-#39; (notify administrator)<br>useradd: group &#39;1007&#39; does not exist=
-<br>ERROR: our-watchdog: useradd command did not succeed.<br></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 22=
-, 2024 at 10:33=E2=80=AFAM Maik Vermeulen via <a href=3D"http://lists.yocto=
-project.org">lists.yoctoproject.org</a> &lt;maik=3D<a href=3D"mailto:quatt.=
-io@lists.yoctoproject.org">quatt.io@lists.yoctoproject.org</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-Hi Chuck,<div><br></div><div>Thanks for the quick=C2=A0response!</div><div>=
-<br></div><div>I&#39;m not sure if it&#39;s the same issue, ours isn&#39;t =
-systemd specific at least.</div><div>Btw, we&#39;re using Kirkstone.</div><=
-div><br></div><div>Here is an example log of the issue we see when we use U=
-SERADD in a recipe to create the user, and set ownership=C2=A0in do_install=
-, while using EXTRA_USERS_PARAMS to manage extra groups and user options, a=
-nd using useradd-staticids.bbclass too:</div><div>DEBUG: Executing shell fu=
-nction set_user_group<br>NOTE: company-img: Performing groupadd with [-R /w=
-orkdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnueabi/company-img/1.0-r=
-0/rootfs --gid 1000 company]<br>NOTE: company-img: group company already ex=
-ists, not re-creating it<br>NOTE: company-img: Performing useradd with [-R =
-/workdir/build_runner_maik/tmp/work/tppg2-tps-linux-gnueabi/company-img/1.0=
--r0/rootfs --gid 1000 --system --shell /bin/false --uid 1001 mender]<br>con=
-figuration error - unknown item &#39;SYSLOG_SU_ENAB&#39; (notify administra=
-tor)<br>configuration error - unknown item &#39;SYSLOG_SG_ENAB&#39; (notify=
- administrator)<br>useradd: group &#39;1000&#39; does not exist<br>ERROR: c=
-ompany-img: useradd command did not succeed.<br></div><div><br></div><div>B=
-ut then when I check tmp/work/machine-linux-gnueabi/copmany-img/1.0-r0/root=
-fs/etc/group, no entries for GID 1000 are found.</div><div><br></div><div>K=
-ind regards,</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Fri, Apr 19, 2024 at 5:44=E2=80=AFPM Chuck Wolber &lt;=
-<a href=3D"mailto:chuckwolber@gmail.com" target=3D"_blank">chuckwolber@gmai=
-l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Fri, Apr 19, 2024 at 7:29=E2=80=
-=AFAM Maik Vermeulen via <a href=3D"http://lists.yoctoproject.org" target=
-=3D"_blank">lists.yoctoproject.org</a> &lt;maik=3D<a href=3D"mailto:quatt.i=
-o@lists.yoctoproject.org" target=3D"_blank">quatt.io@lists.yoctoproject.org=
-</a>&gt; wrote:</div><div class=3D"gmail_quote"><br></div><div class=3D"gma=
-il_quote">%&lt; SNIP %&lt;<br></div><div class=3D"gmail_quote"><div>=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
-v>I&#39;ve also tried using the useradd.bbclass in the recipes, which allow=
-s us to set permissions from within the do_install task, but that started c=
-ausing trouble when we tried to start using useradd-staticids, which we nee=
-d to keep compatibility between software versions using the same files from=
- a persistent partition. The useradd.bbclass in combination with the centra=
-l extrausers.bbclass and useradd-staticids.bbclass is messy and hasn&#39;t =
-resulted in a working build yet, with recipes complaining certain groups e.=
-g. aren&#39;t available yet.</div></div></blockquote><div><br></div><div><b=
-r></div><div>You are not very specific about what is going wrong, but it so=
-unds familiar so it is possible that</div><div>I am to blame for not follow=
-ing up on an earlier observation that may potentially benefit your</div><di=
-v>situation.<br></div><div><br></div><div>Take a look at this message and l=
-et me know if it sounds familiar.<br></div><div><br></div><div><a href=3D"h=
-ttps://lists.openembedded.org/g/openembedded-core/topic/88922422#161387" ta=
-rget=3D"_blank">https://lists.openembedded.org/g/openembedded-core/topic/88=
-922422#161387</a></div><div><br></div><div>If so I can probably submit an R=
-FC patch.<br></div><div><br></div></div><div>..Ch:W..<br></div><div><br></d=
-iv><div><br></div><div><br></div><span class=3D"gmail_signature_prefix">-- =
-</span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div=
-><b><span style=3D"font-family:monospace">&quot;Perfection must be reached =
-by degrees; she requires the slow hand of time.&quot; - Voltaire</span></b>=
-</div></div></div></div>
-</blockquote></div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#62974): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/62974" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/62974</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/105618946/845=
-2744" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/105618946/8452744</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:maik@quatt.io" target=3D"_blank">maik@quatt.io</=
-a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000dc9c6a0616abc673--
+Cheers,
+Quentin
 
