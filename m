@@ -1,362 +1,114 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CBC4C07C79
-	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 15:34:18 +0000 (UTC)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
- by mx.groups.io with SMTP id smtpd.web11.332.1713800053806679539
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D953C4345F
+	for <webhook@archiver.kernel.org>; Mon, 22 Apr 2024 19:37:27 +0000 (UTC)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web10.1496.1713814642206360116
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Apr 2024 08:34:13 -0700
+ Mon, 22 Apr 2024 12:37:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=XJRmzqE9;
- spf=pass (domain: gmail.com, ip: 209.85.128.171, mailfrom: akuster808@gmail.com)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-61b6200fcb5so12122497b3.2
-        for <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 08:34:13 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Q0eH78Lb;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-343c7fae6e4so4282007f8f.1
+        for <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 12:37:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1713800053; x=1714404853; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nhtj/DTYgj7PyySeID1woZlHrLtV86jjyy9ew3KQAy8=;
-        b=XJRmzqE9CUZ7QsK5R9qffLNxkMx/4RskwxAB8F9FHKUoCZ/pSytCdsUyLdkkipE4c5
-         LWnrB0RxYlhKyd7/j9vfqjX3bAQTVUWJN6OD4HRXN0Eh07BCsg8JaoGm6fFsqoMdbMgR
-         iG5POoadmwr/eYDq1BHTFxFMWiSrjX1wB2z90QwldsCFOAEYLI5zxhTJevQfpKCXLG5f
-         v53+ARMm3NZLi4LDoYSrbYHx3b78gKA3VJBBTR56eIrPo+NpNY8YRuTFxlRVneFf6A/g
-         VGq3z/sPsds4NCcJK5lfjZWwWO3GEbsNqKniTHn9pb/l3OPe/wUsGXppq8nAXNFrtr5a
-         7mpA==
+        d=linuxfoundation.org; s=google; t=1713814640; x=1714419440; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt:date:to
+         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=3W9fvyzAUpLxG/BMvKciU7+uugQyae/XO3w2ekD7CpU=;
+        b=Q0eH78LbA5wK4FtW12Pe8bl9wt6vfL8n/y8Bb8z3MuP28VRHD5KRzaZB3IA3UJ7rEF
+         c9wE32xSl2xb+46orLLYaq/ZKo+6w7+noQsZs++Ji1dF8KJRWU36bS0ufJFChj+vb7Dj
+         Ya6T7k0ObWsKUe1afa34FpnOmL8FtL0hBQZJU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1713800053; x=1714404853;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nhtj/DTYgj7PyySeID1woZlHrLtV86jjyy9ew3KQAy8=;
-        b=Ewb1YyT4YpkCKjJQ5OvWsPU/cDgMCBD0oFEDJP9xvBx3K1Y+NgeZiNrYBiTwAcrcFK
-         7U991SVt/0oMLYkR5aOPRtQe2p4VFVy1W7DOA3yV2gM39Nry5FbfKcB9veG7B7OAFXXn
-         aworJqfGKlNgMO8wRWt+u8wMw60xlfTp7QF8EOugFvdGS3GyzP1WU+dS9figKJCWazBc
-         nDqIudrlblR+XKdSMqkenDvtPncb+Y5WSyupY6JH5agdvbLEXiZwYDtWL9Nz9/C7GpqO
-         lS7FJKSgm3a2Iwi9rxmCiiY2pPkU2+CylJ+oMC6O7kDP0iFsWbU48i7MyyUSD1ji8x15
-         T19Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVs7naliEwBry9TTak4E9GiPhgozNL96bA/tzS7Vcnwso6G0bvGD5lBCJRiQAcNqKAreipujApwujFO1LQamtqJIrbW6kDIE9D1Ij6f
-X-Gm-Message-State: AOJu0YytXMexzFr1rILJFLLky4thhGHE3Ctoc13rdjIbkl7uO7ofa0eU
-	YxWWlNXz7LGPCIrL3h/xpCYyuBsDnzx/ar/f0kpJVFgAi/0TaO20
-X-Google-Smtp-Source: AGHT+IEUuEDOWuca8CBl6eHr6VatZLu7pAIGo13h0Mjr9ctfdLFhQqaSr9DtE//kSVhH1nY6jin+Pg==
-X-Received: by 2002:a05:690c:6d05:b0:61a:f895:3442 with SMTP id iv5-20020a05690c6d0500b0061af8953442mr14787117ywb.16.1713800052700;
-        Mon, 22 Apr 2024 08:34:12 -0700 (PDT)
-Received: from ?IPV6:2600:1700:45dd:7000:188e:5bde:fe5c:3bce? ([2600:1700:45dd:7000:188e:5bde:fe5c:3bce])
-        by smtp.gmail.com with ESMTPSA id y193-20020a81a1ca000000b0061abd7e611asm1989641ywg.103.2024.04.22.08.34.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Apr 2024 08:34:12 -0700 (PDT)
-Message-ID: <db8fc58e-27d4-4daa-82ed-0fa74d1b8250@gmail.com>
-Date: Mon, 22 Apr 2024 11:34:06 -0400
+        d=1e100.net; s=20230601; t=1713814640; x=1714419440;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt:date:to
+         :from:subject:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3W9fvyzAUpLxG/BMvKciU7+uugQyae/XO3w2ekD7CpU=;
+        b=d8idpziDWGFM5H5nsQLe+zh7Vug9+EFMxIcKWKxhW4E/TWrEwrpSpRcCSo7D8TrgwO
+         pQ67zjBq5qBx3A1O2cek34joE9TTKBiO2SLQR5HwnUkXCFvo1jPMS3JR9BbWSOkdaJBy
+         QHtgrJXSZ8t7uLDnzF0cRLT/u8L/0WvM2bVaoxZ4o8C8dUKE3qj+gsIvq/xojrFUm0KV
+         4idHY3Nn25os2/VAggt9U2B0SffVwLME6PgPF2ggP9sUgGOiAaYbeZvfeNrMDP/XpFqH
+         7QxmC1+SRHatyvlsA4n8qL0qpcWQbQO8afQ9H+bNFEcDs3yB2EvtOr7z12VVYsoG5YaF
+         4A3w==
+X-Gm-Message-State: AOJu0Yz8nQuCjlxvCWMuDixi4V26onskXbF56vLqlEZkAucDyM6Jkq+b
+	J/SPP8Pj6gWXOqRobUg4SbEM+mdw4rhZ3Vxwn/MoQfoUpJqmgn708GkCwPNXlY2UMxG1H7I6EAa
+	1lcY=
+X-Google-Smtp-Source: AGHT+IHZ9SYuxnqgqxkYc1lNyAh7LF09bp/h9YSViLaZVLx6iEHnuJhEDCO7FN11jTUOdkPak9mDIA==
+X-Received: by 2002:a5d:6b0f:0:b0:34a:9be4:4674 with SMTP id v15-20020a5d6b0f000000b0034a9be44674mr5490522wrw.8.1713814639897;
+        Mon, 22 Apr 2024 12:37:19 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:e662:2da:e92:e002? ([2001:8b0:aba:5f3c:e662:2da:e92:e002])
+        by smtp.gmail.com with ESMTPSA id z6-20020adff1c6000000b00343ad4bca7dsm12836742wro.85.2024.04.22.12.37.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Apr 2024 12:37:19 -0700 (PDT)
+Message-ID: <8738470640cac255caf789fed51d834c57f1b983.camel@linuxfoundation.org>
+Subject: Open letter to the CVE Project/CNAs
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, 
+ openembedded-architecture <openembedded-architecture@lists.openembedded.org>
+Date: Mon, 22 Apr 2024 20:37:18 +0100
+Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
+ YNvg==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.0-1 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-security][kirkstone][PATCH] sssd: fix CVE-2023-3758 Race
- condition during authorization leads to GPO policies functioning
- inconsistently
-To: Hitendra Prajapati <hprajapati@mvista.com>, yocto@lists.yoctoproject.org
-References: <20240422130054.239371-1-hprajapati@mvista.com>
-Content-Language: en-US
-From: akuster808 <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; keydata=
- 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
- ApZ86eOP
-In-Reply-To: <20240422130054.239371-1-hprajapati@mvista.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 15:34:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62978
+ <yocto@lists.yoctoproject.org>; Mon, 22 Apr 2024 19:37:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62979
 
-Hello Hitendra,
+The recent NVD changes have impacted a number of projects and there are
+quite a few uneasy developers out there, not just in the Yocto Project
+community but much more widely. There could be some simple changes or
+process improvements that the CVE Project could make which would
+massively help things.
 
-On 4/22/24 9:00 AM, Hitendra Prajapati wrote:
-> Upstream-Status: Backport from https://github.com/SSSD/sssd/commit/f4ebe1408e0bc67abfbfb5f0ca2ea13803b36726
->
-> Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
+The key thing for many of us is to have accurate product/vendor
+identification and useful version constraints. A secondary issue is an
+easy process to allow updates/addition of that information.
 
-A fix landed yesterday for the same issue.
+The intent would be to have accurate CVE data at source, freeing NVD
+andothers to validate/improve/vet that information.
 
-- armin
-> ---
->   .../sssd/files/CVE-2023-3758.patch            | 222 ++++++++++++++++++
->   recipes-security/sssd/sssd_2.5.2.bb           |   1 +
->   2 files changed, 223 insertions(+)
->   create mode 100644 recipes-security/sssd/files/CVE-2023-3758.patch
->
-> diff --git a/recipes-security/sssd/files/CVE-2023-3758.patch b/recipes-security/sssd/files/CVE-2023-3758.patch
-> new file mode 100644
-> index 0000000..db6f8ed
-> --- /dev/null
-> +++ b/recipes-security/sssd/files/CVE-2023-3758.patch
-> @@ -0,0 +1,222 @@
-> +From f4ebe1408e0bc67abfbfb5f0ca2ea13803b36726 Mon Sep 17 00:00:00 2001
-> +From: Sumit Bose <sbose@redhat.com>
-> +Date: Wed, 8 Nov 2023 14:50:24 +0100
-> +Subject: [PATCH] ad-gpo: use hash to store intermediate results
-> +MIME-Version: 1.0
-> +Content-Type: text/plain; charset=UTF-8
-> +Content-Transfer-Encoding: 8bit
-> +
-> +Currently after the evaluation of a single GPO file the intermediate
-> +results are stored in the cache and this cache entry is updated until
-> +all applicable GPO files are evaluated. Finally the data in the cache is
-> +used to make the decision of access is granted or rejected.
-> +
-> +If there are two or more access-control request running in parallel one
-> +request might overwrite the cache object with intermediate data while
-> +another request reads the cached data for the access decision and as a
-> +result will do this decision based on intermediate data.
-> +
-> +To avoid this the intermediate results are not stored in the cache
-> +anymore but in hash tables which are specific to the request. Only the
-> +final result is written to the cache to have it available for offline
-> +authentication.
-> +
-> +Reviewed-by: Alexey Tikhonov <atikhono@redhat.com>
-> +Reviewed-by: Tomáš Halman <thalman@redhat.com>
-> +(cherry picked from commit d7db7971682da2dbf7642ac94940d6b0577ec35a)
-> +
-> +Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/f4ebe1408e0bc67abfbfb5f0ca2ea13803b36726]
-> +CVE: CVE-2023-3758
-> +Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
-> +---
-> + src/providers/ad/ad_gpo.c | 116 +++++++++++++++++++++++++++++++++-----
-> + 1 file changed, 102 insertions(+), 14 deletions(-)
-> +
-> +diff --git a/src/providers/ad/ad_gpo.c b/src/providers/ad/ad_gpo.c
-> +index 219f398..bdca096 100644
-> +--- a/src/providers/ad/ad_gpo.c
-> ++++ b/src/providers/ad/ad_gpo.c
-> +@@ -1314,6 +1314,33 @@ ad_gpo_extract_policy_setting(TALLOC_CTX *mem_ctx,
-> +     return ret;
-> + }
-> +
-> ++static errno_t
-> ++add_result_to_hash(hash_table_t *hash, const char *key, char *value)
-> ++{
-> ++    int hret;
-> ++    hash_key_t k;
-> ++    hash_value_t v;
-> ++
-> ++    if (hash == NULL || key == NULL || value == NULL) {
-> ++        return EINVAL;
-> ++    }
-> ++
-> ++    k.type = HASH_KEY_CONST_STRING;
-> ++    k.c_str = key;
-> ++
-> ++    v.type = HASH_VALUE_PTR;
-> ++    v.ptr = value;
-> ++
-> ++    hret = hash_enter(hash, &k, &v);
-> ++    if (hret != HASH_SUCCESS) {
-> ++        DEBUG(SSSDBG_OP_FAILURE, "Failed to add [%s][%s] to hash: [%s].\n",
-> ++                                 key, value, hash_error_string(hret));
-> ++        return EIO;
-> ++    }
-> ++
-> ++    return EOK;
-> ++}
-> ++
-> + /*
-> +  * This function parses the cse-specific (GP_EXT_GUID_SECURITY) filename,
-> +  * and stores the allow_key and deny_key of all of the gpo_map_types present
-> +@@ -1321,6 +1348,7 @@ ad_gpo_extract_policy_setting(TALLOC_CTX *mem_ctx,
-> +  */
-> + static errno_t
-> + ad_gpo_store_policy_settings(struct sss_domain_info *domain,
-> ++                             hash_table_t *allow_maps, hash_table_t *deny_maps,
-> +                              const char *filename)
-> + {
-> +     struct ini_cfgfile *file_ctx = NULL;
-> +@@ -1454,14 +1482,14 @@ ad_gpo_store_policy_settings(struct sss_domain_info *domain,
-> +                 goto done;
-> +             } else if (ret != ENOENT) {
-> +                 const char *value = allow_value ? allow_value : empty_val;
-> +-                ret = sysdb_gpo_store_gpo_result_setting(domain,
-> +-                                                         allow_key,
-> +-                                                         value);
-> ++                ret = add_result_to_hash(allow_maps, allow_key,
-> ++                                         talloc_strdup(allow_maps, value));
-> +                 if (ret != EOK) {
-> +-                    DEBUG(SSSDBG_CRIT_FAILURE,
-> +-                          "sysdb_gpo_store_gpo_result_setting failed for key:"
-> +-                          "'%s' value:'%s' [%d][%s]\n", allow_key, allow_value,
-> +-                          ret, sss_strerror(ret));
-> ++                    DEBUG(SSSDBG_CRIT_FAILURE, "Failed to add key: [%s] "
-> ++                                               "value: [%s] to allow maps "
-> ++                                               "[%d][%s].\n",
-> ++                                               allow_key, value, ret,
-> ++                                               sss_strerror(ret));
-> +                     goto done;
-> +                 }
-> +             }
-> +@@ -1481,14 +1509,14 @@ ad_gpo_store_policy_settings(struct sss_domain_info *domain,
-> +                 goto done;
-> +             } else if (ret != ENOENT) {
-> +                 const char *value = deny_value ? deny_value : empty_val;
-> +-                ret = sysdb_gpo_store_gpo_result_setting(domain,
-> +-                                                         deny_key,
-> +-                                                         value);
-> ++                ret = add_result_to_hash(deny_maps, deny_key,
-> ++                                         talloc_strdup(deny_maps, value));
-> +                 if (ret != EOK) {
-> +-                    DEBUG(SSSDBG_CRIT_FAILURE,
-> +-                          "sysdb_gpo_store_gpo_result_setting failed for key:"
-> +-                          "'%s' value:'%s' [%d][%s]\n", deny_key, deny_value,
-> +-                          ret, sss_strerror(ret));
-> ++                    DEBUG(SSSDBG_CRIT_FAILURE, "Failed to add key: [%s] "
-> ++                                               "value: [%s] to deny maps "
-> ++                                               "[%d][%s].\n",
-> ++                                               deny_key, value, ret,
-> ++                                               sss_strerror(ret));
-> +                     goto done;
-> +                 }
-> +             }
-> +@@ -1781,6 +1809,8 @@ struct ad_gpo_access_state {
-> +     int num_cse_filtered_gpos;
-> +     int cse_gpo_index;
-> +     const char *ad_domain;
-> ++    hash_table_t *allow_maps;
-> ++    hash_table_t *deny_maps;
-> + };
-> +
-> + static void ad_gpo_connect_done(struct tevent_req *subreq);
-> +@@ -1903,6 +1933,19 @@ ad_gpo_access_send(TALLOC_CTX *mem_ctx,
-> +         goto immediately;
-> +     }
-> +
-> ++    ret = sss_hash_create(state, 0, &state->allow_maps);
-> ++    if (ret != EOK) {
-> ++        DEBUG(SSSDBG_FATAL_FAILURE, "Could not create allow maps "
-> ++              "hash table [%d]: %s\n", ret, sss_strerror(ret));
-> ++        goto immediately;
-> ++    }
-> ++
-> ++    ret = sss_hash_create(state, 0, &state->deny_maps);
-> ++    if (ret != EOK) {
-> ++        DEBUG(SSSDBG_FATAL_FAILURE, "Could not create deny maps "
-> ++              "hash table [%d]: %s\n", ret, sss_strerror(ret));
-> ++        goto immediately;
-> ++    }
-> +
-> +     subreq = sdap_id_op_connect_send(state->sdap_op, state, &ret);
-> +     if (subreq == NULL) {
-> +@@ -2722,6 +2765,43 @@ ad_gpo_cse_step(struct tevent_req *req)
-> +     return EAGAIN;
-> + }
-> +
-> ++static errno_t
-> ++store_hash_maps_in_cache(struct sss_domain_info *domain,
-> ++                         hash_table_t *allow_maps, hash_table_t *deny_maps)
-> ++{
-> ++    int ret;
-> ++    struct hash_iter_context_t *iter;
-> ++    hash_entry_t *entry;
-> ++    size_t c;
-> ++    hash_table_t *hash_list[] = { allow_maps, deny_maps, NULL};
-> ++
-> ++
-> ++    for (c = 0; hash_list[c] != NULL; c++) {
-> ++        iter = new_hash_iter_context(hash_list[c]);
-> ++        if (iter == NULL) {
-> ++            DEBUG(SSSDBG_OP_FAILURE, "Failed to create hash iterator.\n");
-> ++            return EINVAL;
-> ++        }
-> ++
-> ++        while ((entry = iter->next(iter)) != NULL) {
-> ++            ret = sysdb_gpo_store_gpo_result_setting(domain,
-> ++                                                     entry->key.c_str,
-> ++                                                     entry->value.ptr);
-> ++            if (ret != EOK) {
-> ++                free(iter);
-> ++                DEBUG(SSSDBG_OP_FAILURE,
-> ++                      "sysdb_gpo_store_gpo_result_setting failed for key:"
-> ++                      "[%s] value:[%s] [%d][%s]\n", entry->key.c_str,
-> ++                      (char *) entry->value.ptr, ret, sss_strerror(ret));
-> ++                return ret;
-> ++            }
-> ++        }
-> ++        talloc_free(iter);
-> ++    }
-> ++
-> ++    return EOK;
-> ++}
-> ++
-> + /*
-> +  * This cse-specific function (GP_EXT_GUID_SECURITY) increments the
-> +  * cse_gpo_index until the policy settings for all applicable GPOs have been
-> +@@ -2763,6 +2843,7 @@ ad_gpo_cse_done(struct tevent_req *subreq)
-> +      * (as part of the GPO Result object in the sysdb cache).
-> +      */
-> +     ret = ad_gpo_store_policy_settings(state->host_domain,
-> ++                                       state->allow_maps, state->deny_maps,
-> +                                        cse_filtered_gpo->policy_filename);
-> +     if (ret != EOK) {
-> +         DEBUG(SSSDBG_OP_FAILURE,
-> +@@ -2776,6 +2857,13 @@ ad_gpo_cse_done(struct tevent_req *subreq)
-> +
-> +     if (ret == EOK) {
-> +         /* ret is EOK only after all GPO policy files have been downloaded */
-> ++        ret = store_hash_maps_in_cache(state->host_domain,
-> ++                                       state->allow_maps, state->deny_maps);
-> ++        if (ret != EOK) {
-> ++            DEBUG(SSSDBG_OP_FAILURE, "Failed to store evaluated GPO maps "
-> ++                                     "[%d][%s].\n", ret, sss_strerror(ret));
-> ++            goto done;
-> ++        }
-> +         ret = ad_gpo_perform_hbac_processing(state,
-> +                                              state->gpo_mode,
-> +                                              state->gpo_map_type,
-> +--
-> +2.25.1
-> +
-> diff --git a/recipes-security/sssd/sssd_2.5.2.bb b/recipes-security/sssd/sssd_2.5.2.bb
-> index 4c75e0a..c07559c 100644
-> --- a/recipes-security/sssd/sssd_2.5.2.bb
-> +++ b/recipes-security/sssd/sssd_2.5.2.bb
-> @@ -24,6 +24,7 @@ SRC_URI = "https://github.com/SSSD/sssd/releases/download/${PV}/sssd-${PV}.tar.g
->              file://fix-ldblibdir.patch \
->              file://musl_fixup.patch \
->              file://CVE-2021-3621.patch \
-> +           file://CVE-2023-3758.patch \
->              "
->   
->   SRC_URI[sha256sum] = "5e21b3c7b4a2f1063d0fbdd3216d29886b6eaba153b44fb5961698367f399a0f"
+As such I'm inviting our community to sign this open letter, the intent
+of which is show the demand for these improvements:
+
+https://github.com/yoctoproject/cve-cna-open-letter
+
+I've chosen to use github pull requests for this for ease.
+
+Please feel free to share this widely as I believe the ideas here would
+benefit many projects as we all face a similar challenge.
+
+What we don't want to see is "pay for access" data, or a fragmented
+data ecosystem which is becoming a real risk.
+
+The letter deliberately doesn't dive into implementation details as it
+would complicate a simple message, those details are a solvable problem
+if the desire is there. The version 5 schema already hints at some of
+this path, this proposal would just take it a step further again by
+allowing buy in from the CNAs themselves.
+
+If there is a good process and tooling to allow updates of CVE entries
+with information, even if it is optional, it will get adopted if it
+works well and is helpful.
+
+Cheers,
+
+Richard
+(on behalf of the Yocto Project/OpenEmbedded TSCs)
+
+
+
 
 
