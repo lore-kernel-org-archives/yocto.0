@@ -2,85 +2,77 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B09FEC4345F
-	for <webhook@archiver.kernel.org>; Thu, 25 Apr 2024 07:26:48 +0000 (UTC)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
- by mx.groups.io with SMTP id smtpd.web11.11504.1714030004106059499
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6F73C10F1A
+	for <webhook@archiver.kernel.org>; Thu, 25 Apr 2024 07:29:18 +0000 (UTC)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+ by mx.groups.io with SMTP id smtpd.web10.11449.1714030155753250032
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Apr 2024 00:26:44 -0700
+ Thu, 25 Apr 2024 00:29:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=mBqNlZWq;
- spf=pass (domain: gmail.com, ip: 209.85.208.176, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d87660d5c9so6593601fa.2
-        for <yocto@lists.yoctoproject.org>; Thu, 25 Apr 2024 00:26:43 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=PeEkiUCL;
+ spf=pass (domain: gmail.com, ip: 209.85.167.53, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-51bae805c56so727754e87.0
+        for <yocto@lists.yoctoproject.org>; Thu, 25 Apr 2024 00:29:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1714030002; x=1714634802; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1714030154; x=1714634954; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l04SY4SjphI2Nfa9HYH6Fy9FgzFhdwr7RQd1I6trAVY=;
-        b=mBqNlZWqh0mRrCWgZMs4Gwht1Nps3TVZJynyCa0W3ailMNmdyn5vm0qB9qcBegMSTr
-         c9LTzSPeYDOfQtoQfiq0SuXDdRDnpeBbv+qO9a8obJ2J/cfCfpP34gsNsbpq5nhdLmZR
-         VIAum3YGoohcM+LwJPwMNQVVsGGEhwUb9heGBJFTWM4J8pM73n+dQkehZZs/cA61bN0R
-         gxhkPnZBSlQTZq4Dk+ZbBGBoIJyjfS0ghaKf4eYHw0gkQBYNFNSMI3S/mXkzHN+fqtVe
-         3NQINf17ViRkVsWXEBfuB/6aoIbJ3nWKq0Ry5b0vm4aSn1p/EUpnlvgkgUTStJ0BSfew
-         5VLg==
+        bh=sG6J4EFtxdbjyb4nQjPL+s7n4rIeyF/qe592dv57sbg=;
+        b=PeEkiUCLS0q6c3OMoV6D3ovt7x/0jU4hIplGmPxdTYxcXT/Hd9X8KfIGn9OVXFdAoU
+         TJjKbSBwozGuDT5ajW0xT+WT/JZVBwdNv4cG4KibSuGYsQuypLGRb+v4cLfTos4t9t8l
+         JIRMxwg0CGhSNTulPzMtY5pyvxb9KGPYTgZ1/mb24aMtf8eTSEyIV58d0dZb8IuedDLW
+         vxiWLPDw8OUNrXX6oetdBxsh/RzPo9niWMtvgoNlGq+xaARpEu+j8JSbR8MWtzLjUxzI
+         DGu1rQYBvcvgjQSpY6WMxaWlZ8EyEM4KlUygsAcFcZK44L/rVrKcYgm2tIG4B3fgtMta
+         QpnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1714030002; x=1714634802;
+        d=1e100.net; s=20230601; t=1714030154; x=1714634954;
         h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l04SY4SjphI2Nfa9HYH6Fy9FgzFhdwr7RQd1I6trAVY=;
-        b=YL95cicsfrNt9z1o/qQ1+4LE69UaigYDSjEeSniQObjDNkHAGPXJTGn7ZElcymEyEP
-         eWjVX5zx0+qn3HUt1fdHz9xmui0Ey6hWnc1rpI88D92+rdmIDRMAsRF9V3v0JwRHEG/2
-         T+Wy+TBvsm6TPrwbxmvtbHYdxjAI48JJcTTOxbwaD5lnLzDJOfijcFIf56e3ab3n3X+o
-         rgyz4Z/QyJfLrucFwkO1Ad1bE88x3h6Q+/GDnhRi0kqENajqOqLwICATI0Bu4TJ5+q6Q
-         UTpmNsgEvdkBvQA56rBLcrIh8KGMjaUY+jshCO+WLfjgB7Hw5fxRgaFackrEQSsZnHwS
-         5aiQ==
-X-Gm-Message-State: AOJu0Yy5H1UoUW601naFWWl6+pR3E/M3THfm9UEicAv+anKJbekTh5FP
-	X557QygTPCiIqB5T5LELjpvsXUbnvZwqrALm4wAfMR/LwTwLv5skZMS6iePGhvL2I7P4/2F+qSc
-	I/LhxgiXchEtPE5RUprpKM7aYL9cCLA==
-X-Google-Smtp-Source: AGHT+IHroNAPDM9nZn9W1sKcV9FKuMjf0pZlAOzxLao3BTpWchpZpMW6EiOFIyKfzwh3kV8SZ1CR++U1V8wiBlymBYk=
-X-Received: by 2002:a2e:81c2:0:b0:2dd:cb34:ddbc with SMTP id
- s2-20020a2e81c2000000b002ddcb34ddbcmr4631848ljg.48.1714030001986; Thu, 25 Apr
- 2024 00:26:41 -0700 (PDT)
+        bh=sG6J4EFtxdbjyb4nQjPL+s7n4rIeyF/qe592dv57sbg=;
+        b=jjkDVwg4SW+7phpq919RfMmnsVf5cMDh3lEQ1AAkmbSFfQ7moJ46V3E/Lbkc1K1DO+
+         9vwOHXyC8W3xB61GKNhWUKTpB2cQGZ/OWz70yTiB2O1aKqt1WXIWPQ5CuE54Ve/k0LMi
+         O4V1FEvuIFB0chbTpFqssP56G4NCL9vnaQJUn7TO21NrP0Q4ihBQozV360aCr/KCCJ6Y
+         hx6tU86s55bzbap2OXbhha9RLA1TMH/6Y0VippiKQmzb/533fyCgtL+C5LxKNyc9NAGG
+         v/jmQmu+6lAxJwJMy+ToZfJnG7QcLQTKZZe2IOQ8xYKRFfN3dxUkIpeuzrFG35dhGRCZ
+         AhBQ==
+X-Gm-Message-State: AOJu0Yw9fcta2/Dff3LsDZBboD2U7d3zj5gCrDpSIiOIbCCyJXhffE7E
+	5ErzdxpKYEulg4wFh6US7aZ+bdoYAtzQ6ZS36sv+cRh33OXnCBsgE9/Unwpv/5fJjckwhskAXSY
+	Pbk6CRCrY29L9LaVatkO2CNtxe7DYeg==
+X-Google-Smtp-Source: AGHT+IGqxLzr52Ult9thJCNkXTC6l5umP5r815921Q+1OLbxbA398TK+YKEtvb5NqBpZ5J3RHnWzb5AzOxFNQaeHU+g=
+X-Received: by 2002:ac2:4c2c:0:b0:518:d212:75dd with SMTP id
+ u12-20020ac24c2c000000b00518d21275ddmr3102003lfq.35.1714030153471; Thu, 25
+ Apr 2024 00:29:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <j9su.1713969552488817175.31Ed@lists.yoctoproject.org>
-In-Reply-To: <j9su.1713969552488817175.31Ed@lists.yoctoproject.org>
+References: <f6GB.1713970791763030669.6DXp@lists.yoctoproject.org>
+In-Reply-To: <f6GB.1713970791763030669.6DXp@lists.yoctoproject.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 25 Apr 2024 09:26:30 +0200
-Message-ID: <CANNYZj_3QKp67y9R8_iyH_Emq3-gnYN=yEcwmXPABhKCTu_5Xg@mail.gmail.com>
-Subject: Re: [yocto] How I can add/remove libxxxx-dev.ipk to the installed
- yocto SDK? SDK partial update #devtool #kirkstone #sdk #yocto
+Date: Thu, 25 Apr 2024 09:29:02 +0200
+Message-ID: <CANNYZj__fSRwHRNhg8pL3wr8C7GK5RHxMymLgvzBXyOobVocbQ@mail.gmail.com>
+Subject: Re: [yocto] Installing Multiple Versions of the Same Library with a
+ single recipe
 To: yocto@lists.yoctoproject.org, Salahaldeen.Altous@leica-camera.com
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Apr 2024 07:26:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62996
+ <yocto@lists.yoctoproject.org>; Thu, 25 Apr 2024 07:29:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62997
 
-I would suggest that you teach the 3rd party to set up a Yocto build
-and provide pre-built sstate cache to them. We've added SDK features
-directly into it, and incremental updates are both possible and easy
-in that setup (just pull from the layer repos and rerun bitbake as
-instructed).
+You should find out why people want same that library in different
+versions in the first place. This indicates some kind of dysfunction
+in the product development process.
 
 Alex
 
-On Wed, 24 Apr 2024 at 16:39, Altous, Salahaldeen via
+On Wed, 24 Apr 2024 at 16:59, Altous, Salahaldeen via
 lists.yoctoproject.org
 <Salahaldeen.Altous=leica-camera.com@lists.yoctoproject.org> wrote:
 >
 > Hi,
 >
-> I am compiling new version of shared-libs are yocto recipes and plan to ship these libraries to 3rd party without provide a complete SDK, can I only ship the ibxxxx-dev.ipk and install to the already shipped SDK are incremental update.
+> can I install Multiple Versions of the Same shared Library with single recipe? by provide different tag
 >
-> From time to time I can provide a full update for the SDK, but I would like to avoid frequent update.
->
-> what is the best practice to provide partial update without using devtool? is this possible?
->
-> Also, can I uninstall/replace these libs which not official released from the installed SDK path?
->
-> show I use rpm instead of ipk?
+> or should i make a new recipe for every lib version?
 >
 > Regards,
 >
@@ -89,12 +81,8 @@ lists.yoctoproject.org
 >
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#62994): https://lists.yoctoproject.org/g/yocto/message/62994
-> Mute This Topic: https://lists.yoctoproject.org/mt/105711257/1686489
-> Mute #devtool:https://lists.yoctoproject.org/g/yocto/mutehashtag/devtool
-> Mute #kirkstone:https://lists.yoctoproject.org/g/yocto/mutehashtag/kirkstone
-> Mute #sdk:https://lists.yoctoproject.org/g/yocto/mutehashtag/sdk
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
+> View/Reply Online (#62995): https://lists.yoctoproject.org/g/yocto/message/62995
+> Mute This Topic: https://lists.yoctoproject.org/mt/105711657/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
