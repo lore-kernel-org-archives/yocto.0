@@ -1,127 +1,77 @@
-Return-Path: <Salahaldeen.Altous@leica-camera.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D8B6C4345F
-	for <webhook@archiver.kernel.org>; Thu, 25 Apr 2024 08:10:29 +0000 (UTC)
-Subject: Re: [yocto] How I can add/remove libxxxx-dev.ipk to the installed yocto SDK? SDK partial update #devtool #kirkstone #sdk #yocto
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: "Altous, Salahaldeen" <Salahaldeen.Altous@leica-camera.com>
-X-Originating-Location: Ankara, TR (91.93.226.216)
-X-Originating-Platform: Linux Firefox 125
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB287C4345F
+	for <webhook@archiver.kernel.org>; Thu, 25 Apr 2024 08:16:38 +0000 (UTC)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+ by mx.groups.io with SMTP id smtpd.web11.11963.1714032991622014979
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 25 Apr 2024 01:16:31 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=IdRgo0NE;
+ spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-516ef30b16eso751911e87.3
+        for <yocto@lists.yoctoproject.org>; Thu, 25 Apr 2024 01:16:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714032990; x=1714637790; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cv5oQGS7Rr9/VR9ENqDp5sqW6VJLlNFGKdH3S7qg6Ho=;
+        b=IdRgo0NEL75NIoFGvhnzV8BnJSTQ+mxUdUvBTtezZXmCVvluve7n3q14zJiqiFPjNB
+         yBImEMf8meI8ZQMH9baynZQj+r17+NfSJ2swY/QUN4nREbxIJZTcJcgPeCil66hy6IXk
+         4aXDgP/BRAaXsuzpFvWYIeCMw1b+1j9RlNg52L1yfSI3d5mPYm6yDdtob04oUXDVZtX0
+         ypBlW6fsPzF6oM5S44FCk1Ge4JOPi+MQlR+y38bG3fPswrkUq463Dmtig+SnP94C+cpq
+         eSZyLVbsmX1Olz8Wp1nxNnXB7dhXL6itKPQJjPNI3evW6dwJhrxHINA3uBTw21d8h/zS
+         WrXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714032990; x=1714637790;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cv5oQGS7Rr9/VR9ENqDp5sqW6VJLlNFGKdH3S7qg6Ho=;
+        b=b2+wd5Y/DtRJMqgA7vW4ROl4NakL1Drg/eQSdR6oPDFDjkRnzP3HNzgIWxS+Sxlqix
+         mScyoNTv3QOTdcyUeMhU279FAM+8I3Y67v/ViuHaf5CEFY7ypDQWeLhtGqe6wA2LxI6g
+         tguIbKY5YwNJ8DBTVUoS4cwe6/wNpZWwnUcblv9VuTgvczr0HWvrIsU+gvYTceJkM4Dp
+         guYGC+lfk/8VUeg7EGHK7DmY2EQSZsPilcpfx3Iy1zVSFuEIIrvmiyINbSAfC4MW2bSE
+         xM1RR0RhUmu1dEAbeomZw62o8E613Evn6MR6fJZPbLDE7WoUNDqxwIGEENtm3UPjgjs+
+         wpSw==
+X-Gm-Message-State: AOJu0YzCvyj6dGizISkiooun78SRcEpk6ocIvNdaoIaPL1WjaJbPO+Ev
+	f7+5tua0y66LDhenyqf2xAwNyoSICQL05RL/vFFjGI6Fj/SXlFQTtn41n4sSbcDguG/Qx2kWr4w
+	VVrkNZZE3H5S9RtJWSfLHSSqXkh0/uw==
+X-Google-Smtp-Source: AGHT+IFxMt1ZrL6wnXR2vN0qDwaqhrLcIqs9z1DHUGguNL0cJjUVmcMBIFOjtIXc4xDbsDp5f18KoqhVzwH+IZSNjV8=
+X-Received: by 2002:a19:f614:0:b0:51b:812:3c87 with SMTP id
+ x20-20020a19f614000000b0051b08123c87mr3012308lfe.39.1714032989685; Thu, 25
+ Apr 2024 01:16:29 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 25 Apr 2024 01:10:25 -0700
 References: <CANNYZj_3QKp67y9R8_iyH_Emq3-gnYN=yEcwmXPABhKCTu_5Xg@mail.gmail.com>
-In-Reply-To: <CANNYZj_3QKp67y9R8_iyH_Emq3-gnYN=yEcwmXPABhKCTu_5Xg@mail.gmail.com>
-Message-ID: <3353.1714032625110471937@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="xYm0kDkSVcR7P8G4Al3l"
+ <3353.1714032625110471937@lists.yoctoproject.org>
+In-Reply-To: <3353.1714032625110471937@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 25 Apr 2024 10:16:17 +0200
+Message-ID: <CANNYZj9thxdH9hx5V9k_m4qWeaEiFGDzdxvdYce5fvqbR6G51Q@mail.gmail.com>
+Subject: Re: [yocto] How I can add/remove libxxxx-dev.ipk to the installed
+ yocto SDK? SDK partial update #devtool #kirkstone #sdk #yocto
+To: Salahaldeen.Altous@leica-camera.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Apr 2024 08:10:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62998
+ <yocto@lists.yoctoproject.org>; Thu, 25 Apr 2024 08:16:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/62999
 
---xYm0kDkSVcR7P8G4Al3l
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Alex,
-
-On Thu, Apr 25, 2024 at 12:26 AM, Alexander Kanavin wrote:
-
->=20
-> I would suggest that you teach the 3rd party to set up a Yocto build
-> and provide pre-built sstate cache to them. We've added SDK features
-> directly into it, and incremental updates are both possible and easy
-> in that setup (just pull from the layer repos and rerun bitbake as
-> instructed).
->=20
-> Alex
-
-The 3rd party is using only The Yocto SDK (not the eSDK), they want to test=
- pre-release for one or two libs which are not included in the machine conf=
- yet.
-
-If I provide a pre-build sstate-cache, which command in the SDK can be used=
- to get the updates?
-
-Salah
-
->=20
->=20
-> On Wed, 24 Apr 2024 at 16:39, Altous, Salahaldeen via
-> lists.yoctoproject.org
-> <Salahaldeen.Altous=3Dleica-camera.com@lists.yoctoproject.org> wrote:
->=20
->> Hi,
->>=20
->> I am compiling new version of shared-libs are yocto recipes and plan to
->> ship these libraries to 3rd party without provide a complete SDK, can I
->> only ship the ibxxxx-dev.ipk and install to the already shipped SDK are
->> incremental update.
->>=20
->> From time to time I can provide a full update for the SDK, but I would
->> like to avoid frequent update.
->>=20
->> what is the best practice to provide partial update without using devtoo=
-l?
->> is this possible?
->>=20
->> Also, can I uninstall/replace these libs which not official released fro=
-m
->> the installed SDK path?
->>=20
->> show I use rpm instead of ipk?
->>=20
->> Regards,
->>=20
->> Salahaldeen
->>=20
->>=20
->>=20
->=20
->=20
-
-On Thu, Apr 25, 2024 at 12:26 AM, Alexander Kanavin wrote:
-
->=20
-> instructed
-
---xYm0kDkSVcR7P8G4Al3l
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Alex,</p>
-<p><br />On Thu, Apr 25, 2024 at 12:26 AM, Alexander Kanavin wrote:</p>
-<blockquote>I would suggest that you teach the 3rd party to set up a Yocto =
-build<br />and provide pre-built sstate cache to them. We've added SDK feat=
-ures<br />directly into it, and incremental updates are both possible and e=
-asy<br />in that setup (just pull from the layer repos and rerun bitbake as=
-<br />instructed).<br /><br />Alex</blockquote>
-<p>The 3rd party is using only The Yocto SDK (not the eSDK), they want to t=
-est pre-release for one or two libs which are not included in the machine c=
-onf yet.</p>
-<p>If I provide a pre-build sstate-cache, which command in the SDK can be u=
-sed to get the updates?</p>
-<p>Salah</p>
-<blockquote><br />On Wed, 24 Apr 2024 at 16:39, Altous, Salahaldeen via<br =
-/>lists.yoctoproject.org<br />&lt;Salahaldeen.Altous=3Dleica-camera.com@lis=
-ts.yoctoproject.org&gt; wrote:<br />
-<blockquote>Hi,<br /><br />I am compiling new version of shared-libs are yo=
-cto recipes and plan to ship these libraries to 3rd party without provide a=
- complete SDK, can I only ship the ibxxxx-dev.ipk and install to the alread=
-y shipped SDK are incremental update.<br /><br />From time to time I can pr=
-ovide a full update for the SDK, but I would like to avoid frequent update.=
-<br /><br />what is the best practice to provide partial update without usi=
-ng devtool? is this possible?<br /><br />Also, can I uninstall/replace thes=
-e libs which not official released from the installed SDK path?<br /><br />=
-show I use rpm instead of ipk?<br /><br />Regards,<br /><br />Salahaldeen<b=
-r /><br /><br /></blockquote>
-</blockquote>
-<br />&nbsp;On Thu, Apr 25, 2024 at 12:26 AM, Alexander Kanavin wrote:<br /=
+On Thu, 25 Apr 2024 at 10:10, Altous, Salahaldeen via
+Lists.Yoctoproject.Org
+<Salahaldeen.Altous=leica-camera.com@lists.yoctoproject.org> wrote:
+> The 3rd party is using only The Yocto SDK (not the eSDK), they want to test pre-release for one or two libs which are not included in the machine conf yet.
 >
-<blockquote>instructed</blockquote>
+> If I provide a pre-build sstate-cache, which command in the SDK can be used to get the updates?
 
---xYm0kDkSVcR7P8G4Al3l--
+If they insist on the standard SDK, there's no incremental updates
+there. It's just a tarball with the toolchain and sysroots. We have
+better options as I said in the first message, but they need to agree
+to them first.
+
+Alex
 
