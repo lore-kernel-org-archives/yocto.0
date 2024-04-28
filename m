@@ -1,99 +1,90 @@
-Return-Path: <dchvs11@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82B4AC4345F
-	for <webhook@archiver.kernel.org>; Fri, 26 Apr 2024 19:22:38 +0000 (UTC)
-Subject: Re: [yocto] issue adding the user with the yocto kirkstone
-To: "Mahendra Sondagar" <mahendrasondagar08@gmail.com>, yocto@lists.yoctoproject.org
-From: "Daniel" <dchvs11@gmail.com>
-X-Originating-Location: Alajuela, Provincia de Alajuela, CR (201.204.89.104)
-X-Originating-Platform: Linux Firefox 125
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0802FC4345F
+	for <webhook@archiver.kernel.org>; Sun, 28 Apr 2024 13:28:05 +0000 (UTC)
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+ by mx.groups.io with SMTP id smtpd.web11.9812.1714310876284650686
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 28 Apr 2024 06:27:56 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=0qym2aTz;
+ spf=softfail (domain: sakoman.com, ip: 209.85.214.172, mailfrom: steve@sakoman.com)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1e3e84a302eso27656205ad.0
+        for <yocto@lists.yoctoproject.org>; Sun, 28 Apr 2024 06:27:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1714310875; x=1714915675; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YaQI/ZM3GvmLHvZh3OtEBl4oJE9OHDBHJCVdtNZxB/o=;
+        b=0qym2aTz2+TfLUoJ1ZrJGP6Ybj/YUZBiu+w8XfdR5YJQXOLOS5CNblGP4Bz/pT1SEV
+         ROvNkGdBmENjq1Zcb3G/YCigvyPC5T5gsZ67uFs1fLMkbzN4O0Huir5EHpt+3qT8yJjr
+         tgQN9B3z3828T4xZAgQMP4oyhfZ3eBBtZpT8F6hqOrx4O9iqbDzy9BdVFtU1LluEPbG+
+         cRx+X9FdJsV3lCTP0pM/9i68IZNkZd0c+RF5QtIcZbfNvFktWK/xCcAdAW8BOxhg9inw
+         N89LQzFFU9B79QbR7774OPkFH6zptZ/F9Ucwe1MVh1u0/IsKDiykT9U/RWmQx0tX0QVq
+         JB/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714310875; x=1714915675;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YaQI/ZM3GvmLHvZh3OtEBl4oJE9OHDBHJCVdtNZxB/o=;
+        b=HU2W+bh0yyMNQfVW+eZmENCqTOuLxGQKoIWb1uGduUN2UA3jKJAVeTubXu8CXSLKLQ
+         32ZwIsz3ShPY02KEDmNPDoC+0y4jge351Jp+EtYtFC8cKWzz2XSdrbJAVyn02f8pY2ko
+         roSjboC1ETHqIAfclKIT1v0mXnVOeskhRZ4N8oNdBTy6Iogb7LrQHCeDDxOCL7bciQyl
+         e32cuEqweibHs7tXSxufzBCByCoaTxMfP30nHpcb92nk0ZRQv0hoVHTBjJHt1+OBB35k
+         o7pWsyufKEWW/V3vK555KamwsnQtP/y2U6jMP1xGKPfnYYN686zxqQ2mXhpVeAuAPFID
+         I/Dw==
+X-Gm-Message-State: AOJu0YxloOGNelk+Fym2poowAFxUYSYY/PwC/Ph+ITzQ6X0KyOBOIu3H
+	+k77nHgSU9GLAfEG0l7lR/8vW2h4ZvzVQxk3KtY2xAmDpCCMNgxFyVHt33Llmxm36wHJv6i+xB8
+	beUTROg==
+X-Google-Smtp-Source: AGHT+IEkS2GG+pLUMwfs/EJhvG4qd1ZbvvlK5+NYDCJAsGEXWqK7Gd5hlNppCBPQG4st+y+xRPsoiA==
+X-Received: by 2002:a17:902:6843:b0:1eb:1474:5ef5 with SMTP id f3-20020a170902684300b001eb14745ef5mr4979629pln.33.1714310875395;
+        Sun, 28 Apr 2024 06:27:55 -0700 (PDT)
+Received: from xps13.. ([209.237.67.158])
+        by smtp.gmail.com with ESMTPSA id u2-20020a17090341c200b001eb50fc9f83sm2650547ple.6.2024.04.28.06.27.54
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Apr 2024 06:27:55 -0700 (PDT)
+From: Steve Sakoman <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder-helper] config-json: use quillback branch for meta-agl
+Date: Sun, 28 Apr 2024 06:27:45 -0700
+Message-Id: <a8ea3204bb6ca48d50b68e0488cce083dfb18d0b.1714310808.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1714310808.git.steve@sakoman.com>
+References: <cover.1714310808.git.steve@sakoman.com>
 MIME-Version: 1.0
-Date: Fri, 26 Apr 2024 12:22:31 -0700
-References: <27643.1714153781642827519@lists.yoctoproject.org>
-In-Reply-To: <27643.1714153781642827519@lists.yoctoproject.org>
-Message-ID: <27643.1714159351905953827@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="btF4la24CZp93RgFnoPu"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 26 Apr 2024 19:22:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63006
+ <yocto@lists.yoctoproject.org>; Sun, 28 Apr 2024 13:28:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63007
 
---btF4la24CZp93RgFnoPu
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+kirkstone is no longer supported on master branch
 
-You might want to check the "useradd/usermod" options with the "useradd/use=
-rmod --help" command. If you want to add a password the flag would be "-p",=
- and this argument expects the password to be encrypted. You can generate t=
-his encrypted password with the command: " openssl passwd -1 <password_to_h=
-ash_encrypt> ", for example.
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ config.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Now, I've just noticed that we are referring to the 'root' user, which alre=
-ady exists! In this case, you just need to change its password, and you can=
- use the 'usermod' command with the '-p' flag. Here are the two scenarios:
+diff --git a/config.json b/config.json
+index 60fe6a4..cc6d45c 100644
+--- a/config.json
++++ b/config.json
+@@ -1284,7 +1284,7 @@
+         },
+         "meta-agl": {
+             "url" : "https://git.automotivelinux.org/AGL/meta-agl",
+-            "branch" : "master",
++            "branch" : "quillback",
+             "revision" : "HEAD",
+             "no-layer-add" : true
+         },
+-- 
+2.34.1
 
-# Case for adding a new user with password
-EXTRA_USERS_PARAMS : append =3D "\
-
-useradd -m -s /bin /bash -p '<encrypted password>' <new_user>; \
-"
-
-# Case for adding a password to an existent user like root
-EXTRA_USERS_PARAMS : append =3D "\
-usermod -p '<encrypted password>' root; \
-"
-
-Note. Remember to escape characters from the encrypted password. For exampl=
-e, if there are any dollars in your string, escape them with the backslash.=
- For instance:
-
-- '$7abc.$8'
-+ '\$7abc.\$8'
-
-=E2=80=94Daniel
-
---btF4la24CZp93RgFnoPu
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>You might want to check the "useradd/usermod" options with the "useradd/=
-usermod --help" command. If you want to add a password the flag would be "-=
-p", and this argument expects the password to be encrypted. You can generat=
-e this encrypted password with the command: "<span style=3D"color: #ce9178;=
-">openssl passwd -1 &lt;password_to_hash_encrypt&gt;</span>", for example.<=
-/p>
-<p>Now, I've just noticed that we are referring to the 'root' user, which a=
-lready exists! In this case, you just need to change its password, and you =
-can use the 'usermod' command with the '-p' flag. Here are the two scenario=
-s:<br /><br /># Case for adding a new user with password<br /><span style=
-=3D"color: #9cdcfe;">EXTRA_USERS_PARAMS</span><span style=3D"color: #ffffff=
-;">:</span><span style=3D"color: #c586c0;">append</span><span style=3D"colo=
-r: #ffffff;"> </span><span style=3D"color: #d4d4d4;">=3D</span><span style=
-=3D"color: #ffffff;"> </span><span style=3D"color: #ce9178;">"\</span></p>
-<div><span style=3D"color: #ce9178;"> useradd -m -s </span><span style=3D"c=
-olor: #569cd6;">/bin</span><span style=3D"color: #ce9178;">/bash -p '&lt;en=
-crypted password&gt;' &lt;new_user&gt;; \</span></div>
-<div><span style=3D"color: #ce9178;">"<br /></span><br /># Case for adding =
-a password to an existent user like root</div>
-<div><span style=3D"color: #9cdcfe;">EXTRA_USERS_PARAMS</span><span style=
-=3D"color: #ffffff;">:</span><span style=3D"color: #c586c0;">append</span><=
-span style=3D"color: #ffffff;"> </span><span style=3D"color: #d4d4d4;">=3D<=
-/span><span style=3D"color: #ffffff;"> </span><span style=3D"color: #ce9178=
-;">"\</span></div>
-<div><span style=3D"color: #ce9178;"> usermod -p '&lt;encrypted password&gt=
-;' </span><span style=3D"color: #ce9178;">root; \</span></div>
-<div><span style=3D"color: #ce9178;">"</span></div>
-<div>&nbsp;</div>
-<div><span style=3D"color: #ce9178;">Note. Remember to escape characters fr=
-om the encrypted password. For example, if there are any dollars in your st=
-ring, escape them with the backslash. For instance:<br /><br />- '$7abc.$8'=
-<br />+ '\$7abc.\$8'</span></div>
-<div>&nbsp;</div>
-<div><span style=3D"color: #ce9178;">&mdash;Daniel</span></div>
-
---btF4la24CZp93RgFnoPu--
 
