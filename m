@@ -1,97 +1,132 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <worik.stanton@tirotech.co.nz>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A12CC19F4F
-	for <webhook@archiver.kernel.org>; Wed,  8 May 2024 14:12:33 +0000 (UTC)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
- by mx.groups.io with SMTP id smtpd.web10.13531.1715177524198358725
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60ED4C04FFE
+	for <webhook@archiver.kernel.org>; Wed,  8 May 2024 21:19:12 +0000 (UTC)
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+ by mx.groups.io with SMTP id smtpd.web11.518.1715203144564089183
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 May 2024 07:12:04 -0700
+ Wed, 08 May 2024 14:19:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=iBVMv/aN;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.208.170, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2e3b1b6e9d1so31664681fa.2
-        for <yocto@lists.yoctoproject.org>; Wed, 08 May 2024 07:12:03 -0700 (PDT)
+ dkim=pass header.i=@tirotech-co-nz.20230601.gappssmtp.com header.s=20230601 header.b=eELUwWH2;
+ spf=none, err=SPF record not found (domain: tirotech.co.nz, ip: 209.85.221.173, mailfrom: worik.stanton@tirotech.co.nz)
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-4df456bbf86so91005e0c.1
+        for <yocto@lists.yoctoproject.org>; Wed, 08 May 2024 14:19:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1715177522; x=1715782322; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qx+ZLey2flkjg1XkWznV2jkaYgFjALtER9X8K/mHvN4=;
-        b=iBVMv/aNEoveFiZzhOCezt+DKbn4j6tyP8DkWKuiAG/imAd/2qUaoqxLHZCC6UKAIr
-         LGBPzo5rDv5v0v+nrUgVnCOYW/EA7y33p0jjUpClWecCoZrc/o1kXxMBraUyAtemTG5a
-         I0g7J1ub5iC1LP5K3P1X+aL94b0tzzuC86Fe0=
+        d=tirotech-co-nz.20230601.gappssmtp.com; s=20230601; t=1715203143; x=1715807943; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=m2mRfeEKSAajUQy66D+GX2JGeco+MKCVTg0ScQvfBc8=;
+        b=eELUwWH2MDhTC3JDJpLks4n5hhb2Qg9Vw9C9HlmrPcNo+XbpXI0xB/AdSI0xlTUWDf
+         DgRWc5ON7YkGZrk5KTyvNzx935hy2h5x+jtO3BsBG1w6Frrg1iYLbviDqEQCFJTnsYlt
+         Yqxe+5HJjnX0gg0is5qNKpuk1zzmtP2cDmCyT7zTQL6J5hhODAxFkIVp4Z9UpWbR6maV
+         9TvzAI4LaWvmktMsh4SwtBvKhxMO5nRwRMTW8ViwMnbMRe3Ct4WJ3zIYw3vGEGSSAdCo
+         B54OCPLFbPuVNqGCfCbqFhAhyI5SURMzkD6V0MKW6VuzFqJKx+IFqs5Ib59Hf5jsA/zH
+         q+Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715177522; x=1715782322;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qx+ZLey2flkjg1XkWznV2jkaYgFjALtER9X8K/mHvN4=;
-        b=fi8xIc2/GaVcTi3dWwm3WPeydDU/ZY98bgnqIZ3UtT+VJI1naSOI1EofaUbsEz6bJD
-         PqnJNVNtWHBPGX0NCe4R6v/kXvqn4uAuL+Abi4VHimGzKuP0for3jFa6eBgCx8/PSpmm
-         PYbWoXND6Bqv370rrWdfBBzIxysAEW4LSveZ1X+G6ZNgGDM1/KFk4Bxhv7r/q3YxKPtm
-         g+sE1hIxQyfXwddHijGcFKJrDGxbTA3TjaP8z59tKBwNc2EEwN8x/b9cigDWsENkol4l
-         hb7NbNHDnnzDkGA/KbH5dW3WwrUAKkFXsa/jMZ5j3v2rJB3WBxkfLc4N67lmnb0YPQsD
-         zeqg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9G9nKnLVXzJCYVr9Ui8GHb7mup6Q9fiH2tPWlFneGcDVf8kKuzFTX48aumTjuABZm7CWNKi/4zd1RSWPNxIIf8u5ukQtevI1kCgEW
-X-Gm-Message-State: AOJu0YwoDP6eN5n1ZiHDv0CJRs/m9yG4Wv5Fyg60JOcddswYcAlxsstL
-	JixzxzCsjyxgUTssjuyQ6al77pgYdhvVY481vX29isvN4+IOGCMgX7uR/e5TLr8=
-X-Google-Smtp-Source: AGHT+IE08djV5DKVXFwqUofMr1n9ITj4xDkqt5P4dZ0brVAg4RQRpkSBtqa9OO+x617A+rixHQ6tdA==
-X-Received: by 2002:a2e:80c2:0:b0:2e1:f267:374 with SMTP id 38308e7fff4ca-2e446d830cfmr18215291fa.5.1715177522059;
-        Wed, 08 May 2024 07:12:02 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:5b88:fab8:c8fc:9dd2? ([2001:8b0:aba:5f3c:5b88:fab8:c8fc:9dd2])
-        by smtp.gmail.com with ESMTPSA id n12-20020a5d588c000000b0034cfb79220asm15594766wrf.116.2024.05.08.07.12.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 May 2024 07:12:01 -0700 (PDT)
-Message-ID: <45f44a2531134bfc9a419d9aa76355d0c0db0660.camel@linuxfoundation.org>
-Subject: Re: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-5.0.1.rc1)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: qa-build-notification@lists.yoctoproject.org, 
-	yocto@lists.yoctoproject.org
-Date: Wed, 08 May 2024 15:12:00 +0100
-In-Reply-To: <0101018f588765c1-a41d2a62-bd93-4b59-ade3-86684525d648-000000@us-west-2.amazonses.com>
-References: 
-	<0101018f588765c1-a41d2a62-bd93-4b59-ade3-86684525d648-000000@us-west-2.amazonses.com>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0-1 
+        d=1e100.net; s=20230601; t=1715203143; x=1715807943;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m2mRfeEKSAajUQy66D+GX2JGeco+MKCVTg0ScQvfBc8=;
+        b=EXFqXZHeqI/Ic69gduufg7ETiOVp/B7/JFgCjctk1ftW5nItXelZcgpgpLLCqxfhj2
+         MmIe62Ypq0RCf9dr+maFFQIZFM2cx3YbBbH5Y7kSYqbs2mhPvh8tv1BCteG60YwJBxNl
+         zVZKAIKrrGFu+tvq7l7k//vfohpWKlEPJu5yOeCWYHxeM4vTxV1I/CGuWiF/b77uR4Kb
+         u9x52SrU0MMrYgCwucqq9AwOaCKgJyXauxvL2n9sN2kDJ3Jlif8GFn5fSGeuWS2CQCxf
+         jCKsht322mB1X47SCiVCEU8DFunMfjXaL6JHBqc+9KVmzQu7U+H66FG82BrCcbDj9d8B
+         6uww==
+X-Gm-Message-State: AOJu0Yxc/P/6kXUpfae/EifCO5qIz+8Ligxdrzkfk4lF3LL16lF2WGLa
+	9JEQ8u+ORPCo47X7vc9FIH7xX8qTzxdCH4rMiQ5Tp8Kor+LnasXTPCmYbGVZ7mKEdwqLeAbd7+O
+	Fy2AJb1Jxm5Zho22s55Is8lHwpH79SV0zw5gAGA==
+X-Google-Smtp-Source: AGHT+IHpiPJc+rMbbeFa0lN8dJfjPSRec/mVobUZ+L4OiU9sz/sa9Af8wk0TwoyrAG6XFJxu864lY6JPZqLynSI9Pi4=
+X-Received: by 2002:a05:6122:2a50:b0:4d8:74cb:e3c2 with SMTP id
+ 71dfb90a1353d-4df692b640amr4018270e0c.9.1715203143610; Wed, 08 May 2024
+ 14:19:03 -0700 (PDT)
 MIME-Version: 1.0
+References: <CANuMBWHa8ZkbRuG-=QURATjqKL2N1W3PkYwd-gk-U+NK9da-kA@mail.gmail.com>
+ <CAMKF1soiCS7BQ10rS_XpjHHApmUdjxd56Pe84kHCpD1Km5ZyhQ@mail.gmail.com>
+ <CANuMBWE-nUnL4AKZvkhNqC+23YKOri5pbVNb8mtQgZ9oh_Krag@mail.gmail.com>
+ <CAMKF1spiK52Tr4fVyaCNNiqsSAOm8bA6CEBT0d0ONf7VcJ4prQ@mail.gmail.com>
+ <CANuMBWEvnXYsoUJj1mByhV8pOwan+6hQFkZMvjG1Y_d1W7RDYw@mail.gmail.com> <CAMKF1sokVhLK2muYkdM==d-OCQ66PDgcc2TcMZeK8pCa0xxbPg@mail.gmail.com>
+In-Reply-To: <CAMKF1sokVhLK2muYkdM==d-OCQ66PDgcc2TcMZeK8pCa0xxbPg@mail.gmail.com>
+From: Worik Stanton <worik.stanton@tirotech.co.nz>
+Date: Thu, 9 May 2024 09:18:52 +1200
+Message-ID: <CANuMBWG=_pScxQj=xYYc21Ks3DPhK1t+C+U0z2uTbAu2kinT2Q@mail.gmail.com>
+Subject: Re: [yocto] Warning about "no-recipes"
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000017d1c60617f7da46"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 08 May 2024 14:12:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63056
+ <yocto@lists.yoctoproject.org>; Wed, 08 May 2024 21:19:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63057
 
-On Wed, 2024-05-08 at 14:06 +0000, Pokybuild User via
-lists.yoctoproject.org wrote:
->=20
-> =C2=A0=C2=A0=C2=A0 A build flagged for QA (yocto-5.0.1.rc1) was completed=
- on the
-> autobuilder and is available at:
->=20
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 https://autobuilder.yocto.io/p=
-ub/releases/yocto-5.0.1.rc1
->=20
->=20
-> =C2=A0=C2=A0=C2=A0 Build URL:
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6885
->=20
+--00000000000017d1c60617f7da46
+Content-Type: text/plain; charset="UTF-8"
 
-From discussions with Steve, I think due to failures in this build
-we're trying an rc2.
+> > The "whomever" has gone away, and I am on my own!
+> >
+> > Where do I start resolving a dependency like this?
+>
+> It's hard to help you with the information you have shared so far.
+> Maybe you can describe in detail about your
+> setup and what release you are using and machines being targeted etc.
+>
+>
+Forgive me I am in the deep end with not much knowledge.  What I need is
+pointers to the sorts of files I should be looking in to diagnose this sort
+of problem.  I have been through the documentation and I have built a
+custom, fresh, Yocto for another board.  But I am feeling very lost among a
+huge number of files, which is natural considering my position (a lack of
+knowledge trying to maintain a system built by an expert who has abandoned
+me)
 
-Cheers,
+I am targeting a Toradex processor on a custom board.
 
-Richard
+What are the pertinent details  about   my setup?
+
+The system (before a build) has two subdirectories:
+
+* layers: Consists of "meta-*" directories, and "openembedded-core" all
+git repositories pinned to particular commits
+* meta-mybuild: Consisting of "recipies-*" and a "conf" directories
+
+I expect it is that latter directory my warning is originating from.
+
+Worik
+
+--00000000000017d1c60617f7da46
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_quote"><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex">
+&gt; The &quot;whomever&quot; has gone away, and I am on my own!<br>
+&gt;<br>
+&gt; Where do I start resolving a dependency like this?<br>
+<br>
+It&#39;s hard to help you with the information you have shared so far.<br>
+Maybe you can describe in detail about your<br>
+setup and what release you are using and machines being targeted etc.<br>
+<br></blockquote><div><br></div><div>Forgive me I am in the deep end with n=
+ot much knowledge.=C2=A0 What I need is pointers to the sorts of files I sh=
+ould be looking in to diagnose this sort of problem.=C2=A0 I have been thro=
+ugh the documentation and I have built a custom, fresh, Yocto for another b=
+oard.=C2=A0 But I am feeling very lost among a huge number of files, which =
+is natural considering my position (a lack of knowledge trying to maintain =
+a system built by an expert who has abandoned me)<br></div><div><br></div><=
+div>I am targeting a Toradex processor on a custom board.</div><div><br></d=
+iv><div>What are the pertinent details=C2=A0 about=C2=A0=C2=A0 my setup?=C2=
+=A0 <br></div><div><br></div><div>The system (before a build) has two subdi=
+rectories:</div><div><br></div><div>* layers: Consists of &quot;meta-*&quot=
+; directories, and &quot;openembedded-core&quot; all=C2=A0 git repositories=
+ pinned to particular commits</div><div>* meta-mybuild: Consisting of &quot=
+;recipies-*&quot; and a &quot;conf&quot; directories</div><div><br></div><d=
+iv>I expect it is that latter directory my warning is originating from.</di=
+v><div><br></div><div>Worik<br></div><div>=C2=A0</div><br></div></div>
+
+--00000000000017d1c60617f7da46--
 
