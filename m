@@ -1,118 +1,74 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB61EC04FFE
-	for <webhook@archiver.kernel.org>; Wed,  8 May 2024 12:53:32 +0000 (UTC)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web10.11457.1715172802497680169
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BFB4C04FFE
+	for <webhook@archiver.kernel.org>; Wed,  8 May 2024 14:07:03 +0000 (UTC)
+Received: from a27-192.smtp-out.us-west-2.amazonses.com (a27-192.smtp-out.us-west-2.amazonses.com [54.240.27.192])
+ by mx.groups.io with SMTP id smtpd.web11.13481.1715177220504737111
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 May 2024 05:53:22 -0700
+ Wed, 08 May 2024 07:07:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=VLXOSp7a;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.50, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41dc9c83e57so4587115e9.0
-        for <yocto@lists.yoctoproject.org>; Wed, 08 May 2024 05:53:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1715172800; x=1715777600; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g7A01MFfVHfyjl23X1Lp9hLGbrJc/2BgedBv1VzbB/k=;
-        b=VLXOSp7anZSsdzxU9VKk7uLqLdWH/ZN03Ih/c6xW1FLLb5fQB0I9qOntPPt09NA0ki
-         I/4ksHMNEysEIZHCozZfFWjxrol17W9skU0KBEHChUkcxTesa2Pml9n0PVulNPdKMpzI
-         ZpaYsu7FyYcoSINcB/5lPeWYm602b+OxNliDk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715172800; x=1715777600;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g7A01MFfVHfyjl23X1Lp9hLGbrJc/2BgedBv1VzbB/k=;
-        b=MP4K9AhBz9qzQ4GaT/sbMixILe5QGiOmxECwwv58jGn4aJXxGxlzSuz8gnLT/ziIes
-         paH7hHPgTHLWAo48YExlSwZau/HY09Ee5BzljmxI9hMuUbUcq9Tsu0TuR4DCaegVzNnn
-         I/macBmGgzd0WMHGVhdVQioU3F2X8xzvpN4JORs2EMoiGn/gyTwIAlJ+NfAWgCREH9jh
-         7zm5buz7k9GzfaZOh4+jQxOIYT83Qp8x4W7r/SZnv4xJFR6BEUStV6ob5C4ynsQoTSYP
-         4NsVu8Fj4Gt7sO/qCQo06U1SLA2uoGYoAWsHdow/xFjiCn8bJRvMRQe7jOjzhkOzRk+v
-         h9cQ==
-X-Gm-Message-State: AOJu0Yzgi3NoJDxtgWfmpCFTAdFJlMQoiRM8cfVK7TxkljbkrUhXrhU/
-	R3VFRCItpomCRCOXIOBDESMXCqmX6kU2yXSSgXpyf8/qodKfVIF1nUFQQoygV4vj+mMHDP7fJ4k
-	g/pk=
-X-Google-Smtp-Source: AGHT+IFLPqXzeLiwBkutY1SmGV28UtXmZPzHvxK0WaEPfF9k6JpCbNeagLEflxO8Xi9FBMX6LPYIAA==
-X-Received: by 2002:a05:600c:4f87:b0:418:2981:c70f with SMTP id 5b1f17b1804b1-41f2db24fcamr51155515e9.19.1715172799991;
-        Wed, 08 May 2024 05:53:19 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:5b88:fab8:c8fc:9dd2? ([2001:8b0:aba:5f3c:5b88:fab8:c8fc:9dd2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41f87d1fe4fsm22750125e9.22.2024.05.08.05.53.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 May 2024 05:53:19 -0700 (PDT)
-Message-ID: <349c2caef16b0f7428864a6ce56328caadd4bff9.camel@linuxfoundation.org>
-Subject: Re: [yocto] Generating SPDX documents without actually building
- anything
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org, sschuberth@gmail.com
-Date: Wed, 08 May 2024 13:53:18 +0100
-In-Reply-To: <CAHGBnuPBiOEEHnnCuPA-1AxTq60qCsMcP3-y=PvkVqguGyAt+w@mail.gmail.com>
-References: 
-	<CAHGBnuPBiOEEHnnCuPA-1AxTq60qCsMcP3-y=PvkVqguGyAt+w@mail.gmail.com>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0-1 
-MIME-Version: 1.0
+ dkim=pass header.i=@yoctoproject.org header.s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx header.b=D3UOGDgB;
+ dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=WJv2XuMP;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.192, mailfrom: 0101018f588765c1-a41d2a62-bd93-4b59-ade3-86684525d648-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx; d=yoctoproject.org;
+	t=1715177219; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=DHlANQuXXTcxjNPyay86JZrXaGObTvjtp3WYWFg6t5c=;
+	b=D3UOGDgB5Oppiq91VitLmCCqKJRC55IYOqMsGaSDTcpW9+B2UhzNsD4fZufkIBYE
+	MapKCkt106Qsn93RdMAaas/SFM2GxgY8leBHPgglsirsYOmL8kSI/48r8FqOFuzlDzk
+	N1cbGWV3moGZ9LeGkObsWrnRx5g/du6XXLmxgeH8=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1715177219;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=DHlANQuXXTcxjNPyay86JZrXaGObTvjtp3WYWFg6t5c=;
+	b=WJv2XuMP/++DppRdGEqDPwmcns5YB7d6CNvFRYtjs+UPokW7Rb0Cokkfpq0CBFH7
+	6p7yUZO+Jn1LAtQQc3ZduaMtlc461mGnPEgoxQitImNaVBC9xxAk6QrXM7OTwjOpFIi
+	xStA/CRAUP1MEo5Zobzc49sBD+GeNNq9odtSMjqs=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-5.0.1.rc1)
+Message-ID: <0101018f588765c1-a41d2a62-bd93-4b59-ade3-86684525d648-000000@us-west-2.amazonses.com>
+Date: Wed, 8 May 2024 14:06:59 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2024.05.08-54.240.27.192
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 08 May 2024 12:53:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63054
+ <yocto@lists.yoctoproject.org>; Wed, 08 May 2024 14:07:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63055
 
-On Wed, 2024-05-08 at 13:59 +0200, Sebastian Schuberth via
-lists.yoctoproject.org wrote:
-> Hi all,
->=20
-> to start with a disclaimer, I'm a total noob when it comes to Open
-> Embedded / Embedded Linux / Yocto / BitBake stuff. That said, I'm in
-> need of creating SPDX documents for Yocto projects in the context of
-> [1]. I'm already quite far in that I work with Poky and
-> programmatically run something like
->=20
-> bitbake -r /home/sebastian/Development/GitHub/doubleopen-
-> project/ort/plugins/package-
-> managers/bitbake/src/main/resources/spdx.conf -c create_spdx xmlto
->=20
-> However, I continuously run into various build problems on my Fedora
-> 40 machine (one of which has been recently addressed by [2]), let
-> alone the time it takes to build something from scratch, even
-> something as small as e.g. the "xmlto" target. So, ideally, I would
-> be able to create SPDX documents without really building any binaries
-> at all. I probably want all the source download and patching to
-> happen, in order to archive the patched code that goes into the
-> binaries, but skip the actual compiler / linker invocations to save
-> time, and just create the SPDX documents.
->=20
-> Is something like this already possible somehow, maybe by setting
-> from compiler / linker variables to fake scripts that just do
-> nothing?
 
-The SPDX generated information includes information about the generated
-binaries, the dependencies between them and also traces license headers
-used by a given binary through the binary debug information.
+    A build flagged for QA (yocto-5.0.1.rc1) was completed on the autobuilder and is available at:
 
-Whilst it is true you could generate a simpler SPDX document without
-compiling anything, that isn't how our SPDX generation currently works,
-it includes a lot more information and some of that is from the
-binaries.
 
-You could create a different simpler spdx like class that could do what
-you describe but that isn't what we have today. We went for the version
-with all the information.
+        https://autobuilder.yocto.io/pub/releases/yocto-5.0.1.rc1
 
-Cheers,
 
-Richard
+    Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6885
+
+    Build hash information: 
+
+    bitbake: 8f90d10f9efc9a32e13f6bd031992aece79fe7cc
+meta-agl: 73b088ccfa385f91b8aa56c1d2fbf78d97447dfa
+meta-arm: c9c93da0dd647c9e2bfea238bdead1e0efb526ce
+meta-aws: 3265343c2f2b22bd0a2a9a688fd20e6540d0d746
+meta-clang: ad26539222d8d6e07cd0bcda196c9cf3433430ae
+meta-intel: 11c41c9a46305e7b57832de92735e53558356a25
+meta-mingw: acbba477893ef87388effc4679b7f40ee49fc852
+meta-openembedded: 5778e32eae201072c5dc37c9db67dc1848ffb9de
+meta-virtualization: e9bb0a338fdf637f7929e19b21857d4c1d532ce6
+oecore: 704d3695092148cfbf5d67c81af81665949847b5
+poky: f450ddee3e1299dc80e1641c38bbd1699764ac87
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
