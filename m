@@ -1,105 +1,130 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <bill.mills@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87925C10F1A
-	for <webhook@archiver.kernel.org>; Thu,  9 May 2024 16:42:48 +0000 (UTC)
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
- by mx.groups.io with SMTP id smtpd.web10.488.1715272965014109764
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CEBB8C10F1A
+	for <webhook@archiver.kernel.org>; Thu,  9 May 2024 17:21:58 +0000 (UTC)
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+ by mx.groups.io with SMTP id smtpd.web11.1486.1715275315861192098
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 May 2024 09:42:45 -0700
+ Thu, 09 May 2024 10:21:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=cPNuGz56;
- spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52192578b95so1190175e87.2
-        for <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 09:42:44 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=V6N360Ef;
+ spf=pass (domain: linaro.org, ip: 209.85.219.44, mailfrom: bill.mills@linaro.org)
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6a04bb4f6d5so6884066d6.0
+        for <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 10:21:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715272963; x=1715877763; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lkomQ98NcQs0V70hefuWcwPt+ikcqg3kXtj2rqSjH1Q=;
-        b=cPNuGz56ZOjE9LAZ1gZHj4DZaISFJ2KbwV0hP6bXBkan8+fn6pZZ5dmn2/qlPTafk5
-         HWUt5Nm32nUumCElXbqcCi4jYJhltR8k+C42cKGYZbs7l0Uw+/HZCrMlBt9I/dVm8X0f
-         4mSWyjQbEK+w0tCchwEDjChY8c9ELhS5cdRD5VwkBoHdB1QKhktupsjDKwZLDWEDQlUF
-         dTSZb8bvmqOyrbgbpkVhzy2KvBoG39A2Vgykdta0DYzTcElKebXtB/BwgxOjlt3KZcf+
-         VCSRVaHlyXWznuaCt3b50GBZm27QpqLMpts0grb1DURodh7Dx7dUw9IQRjxKzoDPgVih
-         ytJw==
+        d=linaro.org; s=google; t=1715275314; x=1715880114; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:cc:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=aSU0Ek8sGhHLoGg3OPMkVI9BZUiItl26d01CyOZVcBk=;
+        b=V6N360EfzKBb6bkZtsaqD8KFJpxEMnZi+jHvr6qRGvVEYh7DcG8twMHHLS17B2oTFn
+         LysW2aZ4dDSbrQCawO9tkQUSCeUuBhTTNh10HvejPRI6PxO8jtz96ZYMPM/DYV4uPz4A
+         qpJR0jp31q0hUp10Yy6Ei9waDkLZxEgHqLtoTYFHTtgE5EbRYoYDRJHh08bFz7KYuBVi
+         beBpoeCqu3Rvxtx3lqCFLD7jVmCBxOpGSyu439qI7gJcmcyq6ns+WbQ4EPDkgD9ZzAgx
+         9cxZ25GNcjHKJFLuDBuY4NFpz9LfoQsUa6hXyyPi7j5eSAgdx/0jLlT+89uO9kFHgfRF
+         rJfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715272963; x=1715877763;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lkomQ98NcQs0V70hefuWcwPt+ikcqg3kXtj2rqSjH1Q=;
-        b=pSShJEytOTK20Eiir32Zb4qQjqYbBT0COIzkK1iTLpOONZ66j8/UkY4FvL8/9xtCD2
-         k4Frkf3t7AmtMb3jW60AzveXmIPdBwE1WEubJ1WVuFRMl+NKO6v4tuE1Ky2BzRaIUzeD
-         GBO8Iu8ApOx1jw8sXZLdTV4qliH5ftFktRQYXGWqxujBAxFOHvFbbuVNk0qF4SuIwsmK
-         vl7ETCP7e9ZeFN8FOn45zUWXY50VT62tJ96IqPutj2NohHvo0CnHyrULR6a616n7DE5I
-         fqZ7PNy9dTet9IUjNk5wHoNv16vqaBRD6Ay323FznDGl+jw8y2ApaDmIF6KqLn/7bSfp
-         8yEg==
-X-Gm-Message-State: AOJu0YySm0csA2xs17kaUho2o5rrd1gI+6nGuejulfG5oSN9eDZIjF2Q
-	fUw/xAXIpWWOLw/k1IfWQhWqTwfwOAjwMlfwsKoHrrz/hkWzrLqTbU1uhyUXcCzPwnIwwo66/Mt
-	ZlhrxUNqN7lnBNVjmYEzHzGNDNOiaZAeA
-X-Google-Smtp-Source: AGHT+IHAf7+gac2ej1QSTCap27sqo3U6ab8XqL6bnfcAfi/D1jPL7dpP4GtP29GJAVMTPAVqPf3sMXkYwiARb7LtscE=
-X-Received: by 2002:a05:6512:398a:b0:519:2a88:add6 with SMTP id
- 2adb3069b0e04-5220fe7999amr47544e87.55.1715272962952; Thu, 09 May 2024
- 09:42:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715275314; x=1715880114;
+        h=content-transfer-encoding:in-reply-to:cc:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aSU0Ek8sGhHLoGg3OPMkVI9BZUiItl26d01CyOZVcBk=;
+        b=ahT1W02BW/SLXczSIR7U2dxY+Y9KCwS8qG6YqZlpEX888hzZsEssAJdgdKi2l0QYxK
+         mgx/kLwGG0Fs2M/sE8xJM8kNW3pfaqDl2/ws53AJn4YVmL59fxuaNQejEDjxSl7DdtUl
+         EIF+yJIBQiuViNmOJYjdOzPNYOfYskRQWqgBrH1bbBQGZBE9WuQdy1GOkiiHSBFSNi9u
+         zmojJjtrVFAlp09KHmXbd5SY0oCMXjGtSsGBGwhxyVNXmeir1ePBD6AtoF7VbewNelb4
+         AHbbkz6jiwt/3WW728JBb0mQkn60WYkXpXkWgz/mMHKdZY5JH/GW9Kbvyqjpw+FAFQaj
+         gwDQ==
+X-Gm-Message-State: AOJu0YypnQYX60iql3IB7fN882CPLVZ74U1KG87X8+CnoK+g0jOOQV6l
+	Kgue8yozwUNSUZdYbGVUoTcbKudqMW3o/+GOLaKEschI27hYMAVpu8JU5RuGWhWDnXOkEgB+NvY
+	OV1Y=
+X-Google-Smtp-Source: AGHT+IGvpQA+zBaRaH838Zy3IE1zVjLKi8F9VjkzzQdDacJ9Ve6JqlOd0Y8yt7r8N5kkhTJwWN3naQ==
+X-Received: by 2002:a05:6214:5242:b0:6a0:cb69:2ec8 with SMTP id 6a1803df08f44-6a16822c920mr121446d6.43.1715275314514;
+        Thu, 09 May 2024 10:21:54 -0700 (PDT)
+Received: from [192.168.2.7] (pool-72-83-14-124.washdc.fios.verizon.net. [72.83.14.124])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6a15f17b4cfsm8785096d6.26.2024.05.09.10.21.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 May 2024 10:21:54 -0700 (PDT)
+Message-ID: <800eeeed-19e1-4b10-aab5-34f5c4a9d51c@linaro.org>
+Date: Thu, 9 May 2024 13:21:53 -0400
 MIME-Version: 1.0
-References: <CANuMBWHa8ZkbRuG-=QURATjqKL2N1W3PkYwd-gk-U+NK9da-kA@mail.gmail.com>
- <CAMKF1soiCS7BQ10rS_XpjHHApmUdjxd56Pe84kHCpD1Km5ZyhQ@mail.gmail.com>
- <CANuMBWE-nUnL4AKZvkhNqC+23YKOri5pbVNb8mtQgZ9oh_Krag@mail.gmail.com>
- <CAMKF1spiK52Tr4fVyaCNNiqsSAOm8bA6CEBT0d0ONf7VcJ4prQ@mail.gmail.com>
- <CANuMBWEvnXYsoUJj1mByhV8pOwan+6hQFkZMvjG1Y_d1W7RDYw@mail.gmail.com>
- <CAMKF1sokVhLK2muYkdM==d-OCQ66PDgcc2TcMZeK8pCa0xxbPg@mail.gmail.com> <CANuMBWG=_pScxQj=xYYc21Ks3DPhK1t+C+U0z2uTbAu2kinT2Q@mail.gmail.com>
-In-Reply-To: <CANuMBWG=_pScxQj=xYYc21Ks3DPhK1t+C+U0z2uTbAu2kinT2Q@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 9 May 2024 18:42:31 +0200
-Message-ID: <CANNYZj8fD0sqYWum7Otyy=dZezCuk53AV_Vj1sMoZG5zo38Eug@mail.gmail.com>
-Subject: Re: [yocto] Warning about "no-recipes"
-To: yocto@lists.yoctoproject.org, worik.stanton@tirotech.co.nz
-Cc: Khem Raj <raj.khem@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-5.0.1.rc1)
+To: yocto@lists.yoctoproject.org, richard.purdie@linuxfoundation.org
+References: <0101018f588765c1-a41d2a62-bd93-4b59-ade3-86684525d648-000000@us-west-2.amazonses.com>
+ <45f44a2531134bfc9a419d9aa76355d0c0db0660.camel@linuxfoundation.org>
+Content-Language: en-US
+From: Bill Mills <bill.mills@linaro.org>
+Cc: "ilias.apalodimas@linaro.org" <ilias.apalodimas@linaro.org>,
+ Mikko Rapeli <mikko.rapeli@linaro.org>
+In-Reply-To: <45f44a2531134bfc9a419d9aa76355d0c0db0660.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 16:42:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63064
+ <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 17:21:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63065
 
-On Wed, 8 May 2024 at 23:19, Worik Stanton via lists.yoctoproject.org
-<worik.stanton=tirotech.co.nz@lists.yoctoproject.org> wrote:
-> The system (before a build) has two subdirectories:
->
-> * layers: Consists of "meta-*" directories, and "openembedded-core" all  git repositories pinned to particular commits
-> * meta-mybuild: Consisting of "recipies-*" and a "conf" directories
->
-> I expect it is that latter directory my warning is originating from.
+Richard / Steve / All,
 
-The warning is:
-WARNING: No recipes in default available for:
-  /home/yocto/thisbuild-yocto/layers/openembedded-core/../meta-thisbuild-nxp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.20.0.imx.bbappend
+On 5/8/24 10:12 AM, Richard Purdie via lists.yoctoproject.org wrote:
+> On Wed, 2024-05-08 at 14:06 +0000, Pokybuild User via
+> lists.yoctoproject.org wrote:
+>>
+>>      A build flagged for QA (yocto-5.0.1.rc1) was completed on the
+>> autobuilder and is available at:
+>>
+>>
+>>          https://autobuilder.yocto.io/pub/releases/yocto-5.0.1.rc1
+>>
+>>
+>>      Build URL:
+>> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/6885
+>>
+> 
+>  From discussions with Steve, I think due to failures in this build
+> we're trying an rc2.
 
-What this means is bitbake is looking for recipe file called
-gstreamer1.0-plugins-base_1.20.0.imx.bb and can't find it anywhere in
-configured layers. This can happen for multiple reasons:
+We are looking for a pipe cleaner for automated machine tests.
+If this is DOA we probibly don't want to use it correct?
 
-1. That recipe file used to be available, but someone updated the
-layer containing it to a different revision where the file was either
-removed or updated to a different version (which is encoded into the
-filename). You need to find out whether that has happened, and either
-revert to the original revision, or rename the bbappend to match. Try
-using 'find' command with a generous wildcard expression to see what
-would roughly match in the overall tree.
+Unfortunately the 5.0 rc4 release is no longer on the autobuilder.  (But 
+rc1 rc2 and rc3 still are). [1] How long are they kept and when are they 
+deleted?
 
-2. The needed file is available, but the the layer containing it is
-not enabled in conf/bblayers.conf. Again, you need to find out how
-this happened and either add the needed layer, or remove the bbappend.
+Is the dir structure of the release [2] the exact same as the rcN?  It 
+appears so on first glance.  Did rc4 get mv'ed instead of cp'ed? Is this 
+the expected behavior?
 
-3. The file is not available in any of the layers. You need to go over
-the list of required layers in documentation for meta-this-build-nxp,
-and find everything you can about layers it depends on, and perhaps
-look at commit history for bbappend as well to find out
-which layer it's meant to be used with.
+[1] https://autobuilder.yocto.io/pub/releases/
+[2] https://downloads.yoctoproject.org/releases/yocto/yocto-5.0/
 
-Without a specific look at your setup it's hard to say much more.
+Thanks,
+Bill
+> 
+> Cheers,
+> 
+> Richard
+> 
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63056): https://lists.yoctoproject.org/g/yocto/message/63056
+> Mute This Topic: https://lists.yoctoproject.org/mt/105981534/3619240
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bill.mills@linaro.org]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
-Alex
+-- 
+Bill Mills
+Principal Technical Consultant, Linaro
++1-240-643-0836
+TZ: US Eastern
+Work Schedule:  Tues/Wed/Thur
 
