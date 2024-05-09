@@ -2,57 +2,56 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98BB1C25B10
-	for <webhook@archiver.kernel.org>; Thu,  9 May 2024 09:37:19 +0000 (UTC)
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
- by mx.groups.io with SMTP id smtpd.web10.6199.1715247435747035556
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B53A1C10F1A
+	for <webhook@archiver.kernel.org>; Thu,  9 May 2024 10:36:09 +0000 (UTC)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+ by mx.groups.io with SMTP id smtpd.web10.7206.1715250965058716511
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 May 2024 02:37:16 -0700
+ Thu, 09 May 2024 03:36:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=BfdMfFRC;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.167.53, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-51f2ebbd8a7so678815e87.2
-        for <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 02:37:15 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=C/kGNnG7;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.43, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-41b79451145so5837395e9.3
+        for <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 03:36:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1715247433; x=1715852233; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt:date:cc
-         :to:from:subject:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nlLFM/FFzLs+B6MiurEIwk3CU8u6a1TE7bkM0NQenwk=;
-        b=BfdMfFRCntMbsWrPFQi3XeS0ACJtV/QWOoB9eo++zlsqqZ/+ydEa2VAlRN4eaxmofK
-         dA74lV+P/65562pkIjOrlfzj4uGlB4TU6T0oCeiiVQEhmPG/f4tBArRr4wyn80hEpvLo
-         gDnj2wD+oh5rmB7d33MxUotIUo+Rmj+T8BFTE=
+        d=linuxfoundation.org; s=google; t=1715250963; x=1715855763; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VJxqt1jthpG4/AQsfsBnVWOHOSQnKnBsJYxLf3ksY8E=;
+        b=C/kGNnG7Uizzd/TqQZj83wop2hwtCUtUmEPfqaOX9UBMcTNx0EZ4Ua36M5vgFxGTbJ
+         oOUjxWZFJ+nwWN1+oi4Mh9IE4E48/DdteAl9jMpNA2E8XPEKJneSXcKvTsTkSGZt9qnx
+         AgrV93md1727ceSGqc8yyYrVjOd08hWr5abBo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715247433; x=1715852233;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt:date:cc
-         :to:from:subject:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=nlLFM/FFzLs+B6MiurEIwk3CU8u6a1TE7bkM0NQenwk=;
-        b=bG/3/b6lvucfDX5kI699iPBWlszpUsnDUP7brv1834Ew13jEQTSAfN9jCMQTTdnYdR
-         lu9Li6YnSRwcyo00BgtVWvS/ppsUvKfJy4lkC65Jr5B3LJNC+S31GWtbZ8GCHA9Juft1
-         kasrkaYuh04X+1R1nD5lsYdsSYbFRRpd8a0Lxd9rOW9gZt3zZsW+T/nsrt6uB6rIS/NZ
-         luDtZTJF+PNK17U1Hhhv+ezEmbivDthUIeKJrmPUhXYjIJ6HTWmUI4b9/XccPItfGh3Q
-         /Cwlr6RjJi+ub4osNcXY3G9nOV+P0qgN2mKwObOZLg4ux05sHiItaQGUFGrB3QihTp5l
-         Mg5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWERdDLdK/fYRE2iJ7ZfRl0KABs4RqA1/ANnxuJ8XADb9uTXkDGzYNujWnkCrLEjk680IBwp64yAtDZv2PVwegNpFv94KJ8TBSBxpdm
-X-Gm-Message-State: AOJu0YyJ/hn+FLffnyWeci9oF5+4WDhlTQyeLJg1LN5UHj6oetsJoVaH
-	T/HBVMGQhMV2ZvG0kpHJPRoOUJKokNnWkzCrFkNLXos7I5F+8s5hxKfZ4VMLawA=
-X-Google-Smtp-Source: AGHT+IFaZJHhzpUXp8Ea0m7CaX8Sw8Cao3HBcjG/2BMu9B6iEo21FIMLhNDwNLK9W9jEtdTos77V/g==
-X-Received: by 2002:ac2:464d:0:b0:51a:f362:ab30 with SMTP id 2adb3069b0e04-5217c3707e4mr3329134e87.7.1715247432448;
-        Thu, 09 May 2024 02:37:12 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715250963; x=1715855763;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VJxqt1jthpG4/AQsfsBnVWOHOSQnKnBsJYxLf3ksY8E=;
+        b=wGoAKaPCah6gihrPeXx1MXDkqbU/QgFNsuHMqEu+/rSPK8y8+DeJPkbh7zSgZEBstd
+         dO5bpH7jpIvCi9J/VasHD6OOOUSetasHJ4ujj6zWFRfKSfhy/KuAHdqTvQSDrkuCZnQL
+         HEnvYOJ7phyd9rrDMqBUrxrtlufePv768H+pLYZJOjzw99aiD9u4jMEW8idXnsyAzL3k
+         wx2FH+IOjzhflA1L5KzU/LoQNVBprKpLgyHdUzbzDYDqJJWGgc5n7l8Uk2pMbyBnjFQS
+         /pGnsMMON20+vGCN2H5Z24IErZ45bGKr2QY6gC0sIMT+IYXDNBJp7NeaKqwD9zbuiqUL
+         41cQ==
+X-Gm-Message-State: AOJu0YyT7cckAiL04oEjnpH0o/6S5l9/CLvk/wfRghmMevAFjqpxqdWQ
+	amNKiK7AE5CmMYveV/3iO30fN+JaEsCKcGCY27/fK1wnfwBRq4UiosNzxJygtvYuDHjGIiDm5fV
+	ucIs=
+X-Google-Smtp-Source: AGHT+IEl/MnYyRwAmJH/Wo3UFAs1xJysKMUTNCtJyyTvscy+Tvz+UyFsRBxLznnAfDizYJDrIUYIUg==
+X-Received: by 2002:a05:600c:1f06:b0:41d:9d8c:5a34 with SMTP id 5b1f17b1804b1-41f71309593mr33743485e9.9.1715250963152;
+        Thu, 09 May 2024 03:36:03 -0700 (PDT)
 Received: from ?IPv6:2001:8b0:aba:5f3c:a95b:1bc1:5128:ffbc? ([2001:8b0:aba:5f3c:a95b:1bc1:5128:ffbc])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b79bd09sm1209211f8f.14.2024.05.09.02.37.11
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41f882085a4sm55597055e9.39.2024.05.09.03.36.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 May 2024 02:37:12 -0700 (PDT)
-Message-ID: <737087f797ecd87620bc96abab014d4fac6bb1e5.camel@linuxfoundation.org>
-Subject: Where are we at?
+        Thu, 09 May 2024 03:36:02 -0700 (PDT)
+Message-ID: <73820cf56fc9db54e88f9e827e448d79e56c6b62.camel@linuxfoundation.org>
+Subject: Re: [yocto] Yocto recipe file://DIRECTORY fetcher recursive
+ tracking?
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: openembedded-architecture
-	 <openembedded-architecture@lists.openembedded.org>
-Cc: openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"<yocto@lists.yoctoproject.org>"
-	 <yocto@lists.yoctoproject.org>
-Date: Thu, 09 May 2024 10:37:10 +0100
+To: yocto@lists.yoctoproject.org, bibibobibo@gmail.com
+Date: Thu, 09 May 2024 11:36:02 +0100
+In-Reply-To: <GfmG.1715197041107111792.DMO0@lists.yoctoproject.org>
+References: <GfmG.1715197041107111792.DMO0@lists.yoctoproject.org>
 Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
@@ -68,141 +67,35 @@ MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 09:37:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63059
+ <yocto@lists.yoctoproject.org>; Thu, 09 May 2024 10:36:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63060
 
-I think I need to write down a bit of a summary status on where we (and
-I) am at with things.
+On Wed, 2024-05-08 at 12:37 -0700, bibibobibo via lists.yoctoproject.org wr=
+ote:
+> I have a dummy question regarding the file://DIRECTORY/ in recipe
+> usage, we are using this mechanism to directly point at a source
+> repository with potentially lots of subfolders, etc. Does bitbake
+> track file://DIRECTORY tracks all contents accordingly (i.e something
+> will recursively walk through this directory and checksum each file,
+> then arrive at a final combined checksum?) and if we happen to repo-
+> sync or git-pull to pull new changes in DIRECTORY/, Yocto will be
+> able to detect any changes in this directory and automatically
+> rebuild this recipe.
+>=20
+> I was getting mixed answers from a few sources, some said this can
+> work, some said it works sometimes but not always. So I would like to
+> get a definitive answer from Yocto forum.
 
-The good news is that scarthgap is released. On the downside, we messed
-up the public hash server url in local.conf.sample so we have a point
-release in progress to fix that.
+It is meant to work. There have been some bugs in this area in the
+past, I believe they have been fixed. It also doesn't perform well with
+large trees of files from a speed perspective.
 
-The Sovereign Tech Fund (STF) work is drawing to a close now, some
-tweaks are needed on some patch series to get them over the line and
-able to merge but the basic pieces are there. We have the PoC for
-bitbake-setup too. I have not had the time to look at it in detail yet
-(see below for an idea of why). That work brings us many steps forward
-in many key areas of the project and takes a number of weights off my
-mind. It adds some new ones too but change is at least refreshing.
+Something like git allows for much faster operations as git is designed
+to do tracking of this kind of thing.
 
-It isn't all rosy, in particular the autobuilder is struggling. The
-quality of builds for scarthgap isn't what I'd have liked and Steve is
-already abandoning rc builds due to intermittent failures. We're seeing
-the same failures with master.
-
-In particular:
-
-A rust reproducibility issue lurking somewhere:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/97/builds/8318
-https://autobuilder.yoctoproject.org/typhoon/#/builders/76/builds/8906/step=
-s/17/logs/stdio
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15185
-[both master and scarthgap]
-
-Intermittent do_compile failure in libportal:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/117/builds/4760/ste=
-ps/12/logs/stdio
-
-debuginfod keeps breaking:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/127/builds/3299/ste=
-ps/14/logs/stdio
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14937
-
-qemuppc with intermittent issues:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/76/builds/8906/step=
-s/17/logs/stdio
-
-qemuarm eSDK intermittent failure:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/53/builds/8946/step=
-s/15/logs/stdio
-(network glitch or a problem with git/curl/certs in the tools?)
-
-We did have an intermittent python3 test hang. We've taken the decision
-just to disable that test for now as we don't have the time to debug
-it.
-
-The weird hang in the 6.6 kernel in early boot also remains. Paul
-Gortmaker made some progress in debugging it but I haven't found any
-time to help/support him.
-
-There is some kind of issue where the longer the arm servers have
-uptime, the more broken the builds get too. It is hard to be more
-specific, someone needs to do some analysis of the failure and try and
-find the pattern.
-
-
-We then get to the non oe-core failures that seem to be piling up:
-
-meta-oe source mirroring giving warnings:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/353/step=
-s/12/logs/warnings
-
-meta-oe source mirroring fetch failures:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/156/builds/353/step=
-s/16/logs/stdio
-
-kirkstone meta-oe metrics failures:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/138/builds/1612/ste=
-ps/16/logs/stdio
-
-meta-ti nightly layer check failures:
-https://autobuilder.yoctoproject.org/typhoon/#/builders/121/builds/2064/ste=
-ps/19/logs/stdio
-
-Yes, some of these need reporting to the right people, e.g. meta-ti.
-*Someone* actually needs to do it. If someone doesn't do it, someone
-needs to notice and find/remind someone to do it. We expanded testing
-to meta-oe on the basiss there would be help in addressing the issues
-but few people seem to be paying attention :(.
-
-
-Meanwhile, we have a pile of gcc 14 fixes piling up and pressure to get
-gcc 14 in so we can build a new uninative to fix things for people on
-Fedora 40 and arch. There are simple things others could do to help
-like replying to patches about missing patch information.
-
-The current autobuilder hardware is failing. We have a plan for a new
-setup however that new setup has issues that need debugging. The one
-resource I can direct to help with that is me, everyone else just runs
-away from intermittent issues or says it is too hard or they don't have
-access/experience/whatever.
-
-We have challenges in the CVE space, I'm hoping Marta has some patches
-coming which can help there soon. The open letter idea is all well and
-good but it needs socialising with people outside the project.
-
-There are also some bigger changes I think the project needs to make,
-WORKDIR changes are one example, we also need to revisit the layer
-dependency situation and "Yocto Project Compatible" needs work too,
-amongst many other things.
-
-
-Personally, I'm now really struggling. The intensity of the last few
-months has taken a toll on me and I simply can't switch into handling
-all of the above, I'm running on empty. This means I need a break,
-everyone knows that and agrees. The twist is that yes, everyone
-encourages me to do that, as long as I fix the issues on the current
-autobuilder, the issues on the new one, review and merge patches, make
-architecture/development changes at the right point in the release
-cycle, ensure proposals made for key changes are well thought out and
-don't upset anyone and so on.
-
-I'm sharing this not as a complaint, but to try and show people that if
-their patches aren't merging, it isn't that I/we don't care, it is just
-that there simply aren't enough hours in the day and I'm at breaking
-point if I don't let some things slow down.
-
-One of the key issues is that I act like a traffic director in the
-middle of all this. Nobody else is willing to step into all those
-different streams and help try and tame/direct them. The downside to
-that is that if I stop or slow down, things do break.
-
-Obviously, help in any of the most regular autobuilder failures would
-be much appreciated.
+So yes, it should work but isn't optimal with really large trees.
 
 Cheers,
 
 Richard
-
 
