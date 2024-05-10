@@ -1,103 +1,79 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D3A2C25B5F
-	for <webhook@archiver.kernel.org>; Fri, 10 May 2024 12:06:33 +0000 (UTC)
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
- by mx.groups.io with SMTP id smtpd.web11.10156.1715340060103088521
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D752EC41513
+	for <webhook@archiver.kernel.org>; Fri, 10 May 2024 17:58:54 +0000 (UTC)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+ by mx.groups.io with SMTP id smtpd.web10.20643.1715363931116469561
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 May 2024 04:21:00 -0700
+ Fri, 10 May 2024 10:58:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=FV9Tbb2Y;
- spf=pass (domain: gmail.com, ip: 209.85.216.50, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2b33d011e5dso1347159a91.0
-        for <yocto@lists.yoctoproject.org>; Fri, 10 May 2024 04:21:00 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fd2pjf38;
+ spf=pass (domain: gmail.com, ip: 209.85.208.169, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2e0a0cc5e83so37683291fa.1
+        for <yocto@lists.yoctoproject.org>; Fri, 10 May 2024 10:58:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715340059; x=1715944859; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VkdW0j4gvNdVaAWWSQzzgOVoEXkspUNmDZgRINZTZoo=;
-        b=FV9Tbb2YJZDn8Y3inS+007DtWhQEaGezOMgIWp0hr0qmqzBAJZ8D0x7fR+aTsqXTys
-         gtk5i8CesDa4zUOptmIKe10F36KjOj6M6RZKrGf2z6lDWBxI4zCfmkwgFpmxBSr4qCyu
-         L7t+uhnVyLwNs4RMVD9FYBWTJQyCwdAgZHF75n35F/OaYcGAvUm7J+UGdqnyphdLN6az
-         XM0HQ31ELOZiM32vHhz+S+Pr+Rm+9IncJHw9Qn1UP6+IU1RiZrzBwsyNAJ0JDDBqUppE
-         IJeIksEdebE5cqWjpUZBCpWNa0BPKS1ihwEE2ODD54UJsJfsQEjAq1RQJy+8hRG1hpg6
-         77Yg==
+        d=gmail.com; s=20230601; t=1715363929; x=1715968729; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OeMbVPruBmJFVfleHM27o7UuzSBjAnwpIRsnCWVrAtk=;
+        b=fd2pjf38VeGU1453BmZPaxu2kEgJ1JjIk8vonplUo72lJXiKr4R91Z5XlM9NjiPwk/
+         MPl0ZCwPz9s/xfdDHixT/4DyBhMt/s6+d2hiM1/rtDTsl9OWEMchk9Hl06czlT2iZsnM
+         pllgJ8GzV+L1LJR0WrWsR/2Cs6445k3HnUn6vvrCh75pKypaxnV8kDsMejKpK1R4lHi2
+         iScrQ55VATFi4syP2+vNT88ynhGY22BBS1+PbPM4aMH/G+ji9GawyMRrHzhVYNStaASp
+         gSlEtE1uQLL9rML20HwXbgjnxDFDPaEYx0VO9S8usD4L9KkrewZaVMtPh2N7HLEr623B
+         7kZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715340059; x=1715944859;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VkdW0j4gvNdVaAWWSQzzgOVoEXkspUNmDZgRINZTZoo=;
-        b=Y0s5usz391EyBCcOx3Zpx6PCR8hZg0fhEe7zC3yYLSGup0yMZTkSxxSNM4pVSWjg2f
-         px5CGFmTKktfz+czZhmr6+53h6qwBIV+C74iSP1VvxG2hoSicoxwh2OxTw0GosAht/fY
-         eJEUgkpSc0Ryz1H3I1POvZukhxYEySobRvn8jL1ewuKR6TmlzENCcijkbSUz1OE8wONc
-         36weOuEZH0rGwzhEmRtPMRXHWkZ56qHk9niQHWyfUFyHKSWc696PMblxsyJKSsohnzC3
-         Zj9lHDKE5LK4T1lxSkrYVaMbReuqHxo7XVxnIm8tXAMOyjxhgoDvILnO/xdLXZ8EnjiJ
-         0arg==
-X-Gm-Message-State: AOJu0Yxj9ZUJbkdas/mceepgIR/LcjU0FRCeQ2D21D0hDwi3sKV4RDzE
-	/uncH5UD+rn9YNO9HKZxfc7S1XwYdLzm8/O+oBCoyRhTUcpZnl5LIQi3IF6F7gfrLdkPDrDWb7t
-	gEqRGfAKjhhrhkjAwrit2e9ZTTzqtUHxS9DFV+g==
-X-Google-Smtp-Source: AGHT+IHSrOOn/RCVpmxB0SEGPcFja2cupaKKc7U8CfbPIPujQE/pwbCowSk25g0f4cKKXRIya2BD10h8dWPq/PGCyx8=
-X-Received: by 2002:a17:90a:aa12:b0:2b4:1396:6d3d with SMTP id
- 98e67ed59e1d1-2b6c710ff79mr3760593a91.11.1715340059163; Fri, 10 May 2024
- 04:20:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715363929; x=1715968729;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OeMbVPruBmJFVfleHM27o7UuzSBjAnwpIRsnCWVrAtk=;
+        b=RWrj0/5VhnGrj8gUAgiiCk9tg0sTXUeQ9oIZXM1TwFqSHDxgRtbeh0ZzALMu3KckMF
+         3K0h7pvkFh4kq007ovQUivFNrbA9Y0qq4Q24yt4OkL0Q4N3rcbDCiu82+rYqzpTqZVoY
+         NQguwilztjN2fztFF3e0GKbYM1JsJZnxpArORwXniLJX3przUXZaFJg2IlYem1A0vlqE
+         BpSDhqrDDCqBshGkg1jis5MCmKQj2ST3GA73BOSmdFm4eijI6KpPhwRJv1JIiFbaUiMt
+         1wRGpWk5vUid0G0MCny7kjQNEm0UPcYBvf9aUlBfGxw3u7tYdJIzybebuhTWQd5FnZRn
+         4y5Q==
+X-Gm-Message-State: AOJu0YzomB30lwDWtGdrcp4pmAjCOp7aVFnbjRYBUJmznbsbklFjxPys
+	9AcjFP975SU41A4sM1Syxcn5DlnhkCaEKy2DrkhlmPPgrVmgkxkbOM9Aflgca+3oyvM/OngRjy6
+	i0NTiZByCmBomaUGA68qhRMDROuzA5Rb/
+X-Google-Smtp-Source: AGHT+IE6FYCTGRlREsOFpWpAAiewepqPRPhLlY1mND54S8cfF15oPOlYxWbkv9+EzTVy9TeR0lvyPZUAPbGBtygHk6Q=
+X-Received: by 2002:a2e:9051:0:b0:2e1:ebec:1ded with SMTP id
+ 38308e7fff4ca-2e5200627a2mr19630551fa.25.1715363928830; Fri, 10 May 2024
+ 10:58:48 -0700 (PDT)
 MIME-Version: 1.0
 References: <737087f797ecd87620bc96abab014d4fac6bb1e5.camel@linuxfoundation.org>
- <DD5F76CF-3124-4673-A394-91EF62CFE5A9@arm.com>
-In-Reply-To: <DD5F76CF-3124-4673-A394-91EF62CFE5A9@arm.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Fri, 10 May 2024 13:20:47 +0200
-Message-ID: <CAGAf8LxoiBGwj1g93-aioAZC9mvU3vJFTtf3FN3=POuveVbPxw@mail.gmail.com>
-Subject: Re: [yocto] [OE-core] Where are we at?
-To: yocto@lists.yoctoproject.org, ross.burton@arm.com
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+In-Reply-To: <737087f797ecd87620bc96abab014d4fac6bb1e5.camel@linuxfoundation.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 10 May 2024 19:58:36 +0200
+Message-ID: <CANNYZj-i90gLUfdk51Now0HY+=RCNkg8ugr2qcK65xXS+AypZg@mail.gmail.com>
+Subject: Re: [yocto] Where are we at?
+To: yocto@lists.yoctoproject.org, richard.purdie@linuxfoundation.org
+Cc: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
 	openembedded-core <openembedded-core@lists.openembedded.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 May 2024 12:06:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63072
+ <yocto@lists.yoctoproject.org>; Fri, 10 May 2024 17:58:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63073
 
-We all here are trying to be somewhere... With Yocto!
+On Thu, 9 May 2024 at 11:37, Richard Purdie via lists.yoctoproject.org
+<richard.purdie=linuxfoundation.org@lists.yoctoproject.org> wrote:
+> A rust reproducibility issue lurking somewhere:
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/97/builds/8318
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/76/builds/8906/steps/17/logs/stdio
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=15185
+> [both master and scarthgap]
 
-Not an easy task. Not at all.
+I have reproduced this. The filenames differ depending on whether the
+build host is arm or x86. If packagedata sstate comes from arm and
+package sstate from x86, the reported error will occur.
 
-We believe in Fate. In Hope. In Yocto.
+I'm going to look into how the hash part is formed and how the build
+host architecture leaks into it (on monday).
 
-Hope dies last. Doesn't it?
-
-Zoran Stojsavljevic
-_______
-
-On Thu, May 9, 2024 at 8:58=E2=80=AFPM Ross Burton via lists.yoctoproject.o=
-rg
-<ross.burton=3Darm.com@lists.yoctoproject.org> wrote:
->
->
->
-> > On 9 May 2024, at 10:37, Richard Purdie via lists.openembedded.org <ric=
-hard.purdie=3Dlinuxfoundation.org@lists.openembedded.org> wrote:
-> > Intermittent do_compile failure in libportal:
-> > https://autobuilder.yoctoproject.org/typhoon/#/builders/117/builds/4760=
-/steps/12/logs/stdio
->
-> Root caused this, fix incoming.
->
-> > debuginfod keeps breaking:
-> > https://autobuilder.yoctoproject.org/typhoon/#/builders/127/builds/3299=
-/steps/14/logs/stdio
-> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14937
->
-> I realised that I didn=E2=80=99t do what I thought I had previously so un=
-derstand this now, hopefully fixable tomorrow.
->
-> Ross
->=20
->
+Alex
 
