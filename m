@@ -1,110 +1,126 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24C02C25B74
-	for <webhook@archiver.kernel.org>; Thu, 16 May 2024 15:58:49 +0000 (UTC)
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
- by mx.groups.io with SMTP id smtpd.web11.18007.1715875119146132964
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47B00C25B74
+	for <webhook@archiver.kernel.org>; Thu, 16 May 2024 16:08:49 +0000 (UTC)
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+ by mx.groups.io with SMTP id smtpd.web11.18229.1715875634681425050
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 May 2024 08:58:39 -0700
+ Thu, 16 May 2024 09:07:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Xp4ds/I5;
- spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: martin.jansa@gmail.com)
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-523b017a5c6so1551769e87.1
-        for <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 08:58:38 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=cbhJBX4T;
+ spf=pass (domain: gmail.com, ip: 209.85.216.45, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2b9ddac7971so312507a91.1
+        for <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 09:07:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715875117; x=1716479917; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=gmail.com; s=20230601; t=1715875634; x=1716480434; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vHNCNwfPW7zRngGYoSJp21Qf83mA0tnMRBU2pp/NzxI=;
-        b=Xp4ds/I5SSKgqRBgj1upLdBEClvZYufxWJSwvoJyrYoCGy+jxBUuObuS/4QgLo8M+g
-         ugolECA2Hx+CkOCMvgVM/UWVfL+6Y0fy0V39h6nzlWN5Dv4nQ0i9onn2YoD/2xwRZfvu
-         /56kd2yU/U0VEYAo6dOb5c4b5mHTmLp3wa8amfuz3vlmPl03WG3AoUApib4w1MhfZd2f
-         tKzYVf5eRwPQRZQBzwnfVJUXSDmIDR96cRST0hQg6gyDyOEDNo+rOEmgryW9AZDJXMK1
-         +fhyFKwqo8wwIxrghVLw4CuE/N95JSqnmmF99+TotL4kwpm5/RIDE+RLCHhGxt5lbI65
-         pdLQ==
+        bh=I04LhvS3dgDUNrjLkjN5GqzlJT1WUvz2X5lEASdtVRc=;
+        b=cbhJBX4TQ3JnH495STgFKDBPWSiKFRkCMR8iO8QKB/e29sQMzQf8CeZcXvI9VJkosD
+         LBhMV4ojn8GzqBDbQGiquKzOaamus3eC5ZMYZ4B91uzazb/9zFtpei5J4gFi7GcIOTfR
+         oP2Gb0Cm4S7w6HzAm0YR7vuz3mJjlHyQmCunHfUsTULoVkwIKj7kELc4VlzNaHoCEWKn
+         22wY5J5vIUVKDLu3ppVuoDUvCcbBtCwm83Ekv8iDxGS66aJbPyQCvwKMkPtRpMFwHFfi
+         7PPol73StdHMmuVBjklx046VIfuhxVwcJzkNlDAZhGtHDU+QA0gYsVRuo4xSQPuqwc9D
+         0yTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715875117; x=1716479917;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=1e100.net; s=20230601; t=1715875634; x=1716480434;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vHNCNwfPW7zRngGYoSJp21Qf83mA0tnMRBU2pp/NzxI=;
-        b=iz59SX2X7CvRKUc4mPKeVKTuuOadWBDFMonMvtlOKR9jhFiX0vppZWn0xsRDzpY7i2
-         IY/GnrANsbScmU8zwACTs8zmLlVsaxOaIs5cyWh0MV5ceLxcYs2cwtpf1bv86apNUene
-         9lJ8p0tPbMSpbHVUAGwgaQRLirWqyDWHfSjH3jK0izcIOh2wwWvrekntMxC69r1Gh1Gr
-         jiXaeHclo1WZdhdZm3eIXy17Be3/tPpN3XEwyGtUcVUWhNK4yn70uJsPqVba/f2MiiTT
-         D602Bm/42ucvhhf3Gzq0O1NsVPFGCtYoY0x+LW3welSh71PeiTy/CHT/uDt5Iz9eb1MK
-         cbkQ==
-X-Gm-Message-State: AOJu0YwUpot9k5kfrbCGKwSRtiPLYF/m2tnEGVLHVQPW931mtx98J0ed
-	gnqaQX/1juc1HXiNwU8KNqRA8VIpbwRwDMEwOOxQD9MLPSH8PaFIuDx0fFqo7mWy89RkB820ilh
-	tPFAYXAvo+7kMJ8V0j1gN1UHwQqZM7Hzn
-X-Google-Smtp-Source: AGHT+IEq6fkCYVkv9x4Hkkf5bZmqpQHFGiMpzj+/98HSqS0EC7rUPkJTJo5DCWh678Qyxamfnx8N8mhHsMu0l5o6GfQ=
-X-Received: by 2002:ac2:4a84:0:b0:51d:9aa7:23e with SMTP id
- 2adb3069b0e04-52210475801mr15279086e87.65.1715875117040; Thu, 16 May 2024
- 08:58:37 -0700 (PDT)
+        bh=I04LhvS3dgDUNrjLkjN5GqzlJT1WUvz2X5lEASdtVRc=;
+        b=QxUofKaPRVCAvXPP/Tb3eIh46KwbmBW8GWqWJ7a9xhI2Y7lfo0Y+tAiJZg1Ddk9gRN
+         8HbapM/k2qcFHA4JWz0tpDfN8zsg57LownDbcWOEKYKk8cLqJssTRnqESSJZDHJGYjW/
+         ilbMWTindBDwf9ZMec8tqWAPRjXLe4r/RTodjXS+RCUyV6dBRifEFQ6rmLCYMJG4hoMe
+         r605beBBq5vwOOBs4ZbHzyLH31fNyuSNoh6rPNxA3R4V9goFFPrSuS/zU/ouvSEYbgmO
+         GClCnnkUWm8O4A74/XkZb6U1jxs7gEOjpxnprR4QVwFu2CktJtKzP5H9wiO78QIUSdbT
+         MyUA==
+X-Gm-Message-State: AOJu0YzvfUlz/psfkgITjn4tCFt/kgE+qU+BsagX1/BYbgOcPaOIM9pN
+	WTNRe2SVVC42YshOrs+aktbKsM/Pz0diIr3TCWGkPH5QOTdaHlQuzwMycuoX/oseivMDBxbOvTo
+	JqcaLVP/s4ohuXHJegDBIk13ogRk=
+X-Google-Smtp-Source: AGHT+IEzyKtmN+eFQzmSlpT312x4o4DLkEYLoDv4q1yR3YSY16pyeUrwrXcm3xTCrU80tv2NrpqZ4HA1iMbObgha400=
+X-Received: by 2002:a17:90a:69a4:b0:2b9:7afc:e7be with SMTP id
+ 98e67ed59e1d1-2b97afce8a1mr8068331a91.46.1715875633940; Thu, 16 May 2024
+ 09:07:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <ylyl.1715874478415461344.p2g1@lists.yoctoproject.org>
-In-Reply-To: <ylyl.1715874478415461344.p2g1@lists.yoctoproject.org>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Thu, 16 May 2024 17:58:22 +0200
-Message-ID: <CA+chaQcE4CXETG8EN4kd4RbUhF2z8-fdpwpGzed7Pe8o_vx3Kg@mail.gmail.com>
-Subject: Re: [yocto] Can someone help decipher what an error means #bitbake #kirkstone
-To: yocto@lists.yoctoproject.org, mlynch@hi-techniques.com
+References: <CAGAf8LwEkmPWUi+B3BotJy0g2AhfBRyVfO4jUBkhRXVtNS1aww@mail.gmail.com>
+ <7a55c302-24cf-463f-831c-889c2fa0d168@cherry.de> <CAGAf8Ly=jt9WusiC3PEHakxZjjHHnd=gV1yYonTdQRRE5qrtZQ@mail.gmail.com>
+ <35A42455-17EC-48EE-A140-6B42B23C80CB@arm.com>
+In-Reply-To: <35A42455-17EC-48EE-A140-6B42B23C80CB@arm.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Thu, 16 May 2024 18:07:02 +0200
+Message-ID: <CAGAf8Lzh7-eGr3+-55vHMhSVtQbfQvgy53AQtv7gN2gbZ6CSaA@mail.gmail.com>
+Subject: Re: [yocto] Strange errors while executing poky/meta/recipes-devtools/gcc/gcc-cross_13.2.bb using scarthgap release
+To: Ross Burton <Ross.Burton@arm.com>
+Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, Quentin Schulz <quentin.schulz@cherry.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 15:58:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63122
+ <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 16:08:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63123
 
-Can you show the recipe?
+Hello Ross,
 
-Is the AnalogDevice.h file originally under ${S} variable (which is
-excluded with PSEUDO_IGNORE_PATHS by default)?
+I guess, U might be very right!
 
-I think it's not based on
-"tmp/work/core2-64-poky-linux/libht2/0.90-r0/AnalogDevice.h" path, so
-move it under ${S} like e.g. in:
-https://git.openembedded.org/meta-openembedded/commit/?h=3Dkirkstone&id=3Dd=
-a98a75f37830e69ded0207cc6c73182ab00ec50
+OFF TOPIC: Fedora 40.
 
-Regards,
+I had another terrible issue with Fedora 40. I pressed M-net, my net
+provider, that they screwed up my DNS setup. For 4 days.
 
-On Thu, May 16, 2024 at 5:48=E2=80=AFPM mlynch via lists.yoctoproject.org
-<mlynch=3Dhi-techniques.com@lists.yoctoproject.org> wrote:
+Then... I started to investigate myself!
+
+Here is what I did find about unfortunate Fedora 40 release (IT IS
+ONLY Fedora 40 release mortal issue):
+
+https://gitlab.com/gnuwget/wget2/-/issues/661#top
+
+https://www.reddit.com/r/Fedora/comments/1cf5jpu/switching_from_wget_to_wge=
+t2_suddenly_in_fedora/?rdt=3D40957
+
+Please, all U who R using Fedora 40, find that there are issues with
+newly introduced wget2 (wget2-wget) Fedora 40 packages.
+
+Zee
+_______
+
+
+On Thu, May 16, 2024 at 5:39=E2=80=AFPM Ross Burton <Ross.Burton@arm.com> w=
+rote:
 >
-> I have a recipe that gives me an error and I don't understand what it mea=
-ns and/or what causes it.  If I knew what it meant I could probably fix it =
-myself but I'm not sure where to look to do so.  The error message is paste=
-d below.  This happens whenever I try to "bitbake" this recipe without firs=
-t doing a "bitbake -c cleansstate" on it.  Any ideas would be greatly appre=
-ciated because I loathe having to clean it every time I change something in=
- the code.  Oh, BTW, I have 1/2 dozen recipes for other items and none of t=
-hem have this issue.  Anyway here's the error message (kirkstone branch, ge=
-nericx86-64 target):
 >
-> ERROR: Task (/.../libht2/libht2.bb:do_install) failed with exit code '1'
-> Pseudo log:
-> path mismatch [3 links]: ino 172501654 db '/.../tmp/work/core2-64-poky-li=
-nux/libht2/0.90-r0/package/usr/src/debug/libht2/0.90-r0/AnalogDevice.h' req=
- '/.../tmp/work/core2-64-poky-linux/libht2/0.90-r0/AnalogDevice.h'.
-> Setup complete, sending SIGUSR1 to pid 2308081.
 >
-> Thanks in advance for any guidance anyone can provide.
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#63120): https://lists.yoctoproject.org/g/yocto/messag=
-e/63120
-> Mute This Topic: https://lists.yoctoproject.org/mt/106137267/3617156
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Mute #kirkstone:https://lists.yoctoproject.org/g/yocto/mutehashtag/kirkst=
-one
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [martin.jansa@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > On 16 May 2024, at 16:31, Zoran via lists.yoctoproject.org <zoran.stojs=
+avljevic=3Dgmail.com@lists.yoctoproject.org> wrote:
+> > The full log (full_log.txt) is attached to this @, as per Ur request
+> > (lot of stuff, echt!).
 >
+> From your log:
+>
+> WARNING: Host distribution "fedora-40" has not been validated with this v=
+ersion of the build system; you may possibly experience unexpected failures=
+. It is recommended that you use a tested distribution.
+>
+> This is saying that Fedora 40 has not been validated and you may experien=
+ce unexpected failures.
+>
+> Later in the log:
+>
+> pzstd: /home/vuser/projects2/yocto/yocto_test2/bbb-yocto/poky/build/tmp/s=
+ysroots-uninative/x86_64-linux/usr/lib/libstdc++.so.6: version `CXXABI_1.3.=
+15' not found (required by pzstd)
+>
+> That is the sort of unexpected failure you can expect when using Fedora 4=
+0, because it has not been validated.
+>
+> This is an incompatibility with Fedora 40 and uninative, so until this is=
+ resolved you can disable uninative with this in your local.conf:
+>
+> INHERIT:remove =3D =E2=80=9Cuninative=E2=80=9D
+>
+> Ross
 
