@@ -1,126 +1,101 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <simonkbaby@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47B00C25B74
-	for <webhook@archiver.kernel.org>; Thu, 16 May 2024 16:08:49 +0000 (UTC)
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
- by mx.groups.io with SMTP id smtpd.web11.18229.1715875634681425050
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E174C25B74
+	for <webhook@archiver.kernel.org>; Thu, 16 May 2024 19:28:50 +0000 (UTC)
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+ by mx.groups.io with SMTP id smtpd.web11.23264.1715887722201069022
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 May 2024 09:07:14 -0700
+ Thu, 16 May 2024 12:28:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=cbhJBX4T;
- spf=pass (domain: gmail.com, ip: 209.85.216.45, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2b9ddac7971so312507a91.1
-        for <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 09:07:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=iHm8JfZL;
+ spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: simonkbaby@gmail.com)
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2b37731c118so478154a91.1
+        for <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 12:28:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715875634; x=1716480434; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I04LhvS3dgDUNrjLkjN5GqzlJT1WUvz2X5lEASdtVRc=;
-        b=cbhJBX4TQ3JnH495STgFKDBPWSiKFRkCMR8iO8QKB/e29sQMzQf8CeZcXvI9VJkosD
-         LBhMV4ojn8GzqBDbQGiquKzOaamus3eC5ZMYZ4B91uzazb/9zFtpei5J4gFi7GcIOTfR
-         oP2Gb0Cm4S7w6HzAm0YR7vuz3mJjlHyQmCunHfUsTULoVkwIKj7kELc4VlzNaHoCEWKn
-         22wY5J5vIUVKDLu3ppVuoDUvCcbBtCwm83Ekv8iDxGS66aJbPyQCvwKMkPtRpMFwHFfi
-         7PPol73StdHMmuVBjklx046VIfuhxVwcJzkNlDAZhGtHDU+QA0gYsVRuo4xSQPuqwc9D
-         0yTw==
+        d=gmail.com; s=20230601; t=1715887721; x=1716492521; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=aLPgyreBPZSIVewJR4waK08LyfPhwEwZHhuth8I5zEA=;
+        b=iHm8JfZL5blTf9oPahQJnSv8C1QOx+LCyu6Xk5+fT80okkkmZ9PO+RCpliZS9cBKdM
+         sE6I/xTve5gi+oyk0Nmas9peLbejNrPnZmIAzgX8shOL33Uq4kDrzyPuiPp2IH+cXnMz
+         CWEa9eU8zSPVQ4HAkm9z3SceG3Z79s+KqAQSzjolxhxFhgtDly2ESQTm5lbaAMmKLkfQ
+         GHbyMoQtjV2lz4nahjFv6Dk5SVv3C6dw89cz3kRJMrouQeklQ/B1qzOCgRIcrHwJPLBM
+         N7DIFuYZ3BlNPEW2W1XBjKVoAiPbma/cNE0jtvJDYJu0likwebFkvIfjUjM3Jdw1DKbq
+         u/oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715875634; x=1716480434;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I04LhvS3dgDUNrjLkjN5GqzlJT1WUvz2X5lEASdtVRc=;
-        b=QxUofKaPRVCAvXPP/Tb3eIh46KwbmBW8GWqWJ7a9xhI2Y7lfo0Y+tAiJZg1Ddk9gRN
-         8HbapM/k2qcFHA4JWz0tpDfN8zsg57LownDbcWOEKYKk8cLqJssTRnqESSJZDHJGYjW/
-         ilbMWTindBDwf9ZMec8tqWAPRjXLe4r/RTodjXS+RCUyV6dBRifEFQ6rmLCYMJG4hoMe
-         r605beBBq5vwOOBs4ZbHzyLH31fNyuSNoh6rPNxA3R4V9goFFPrSuS/zU/ouvSEYbgmO
-         GClCnnkUWm8O4A74/XkZb6U1jxs7gEOjpxnprR4QVwFu2CktJtKzP5H9wiO78QIUSdbT
-         MyUA==
-X-Gm-Message-State: AOJu0YzvfUlz/psfkgITjn4tCFt/kgE+qU+BsagX1/BYbgOcPaOIM9pN
-	WTNRe2SVVC42YshOrs+aktbKsM/Pz0diIr3TCWGkPH5QOTdaHlQuzwMycuoX/oseivMDBxbOvTo
-	JqcaLVP/s4ohuXHJegDBIk13ogRk=
-X-Google-Smtp-Source: AGHT+IEzyKtmN+eFQzmSlpT312x4o4DLkEYLoDv4q1yR3YSY16pyeUrwrXcm3xTCrU80tv2NrpqZ4HA1iMbObgha400=
-X-Received: by 2002:a17:90a:69a4:b0:2b9:7afc:e7be with SMTP id
- 98e67ed59e1d1-2b97afce8a1mr8068331a91.46.1715875633940; Thu, 16 May 2024
- 09:07:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715887721; x=1716492521;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aLPgyreBPZSIVewJR4waK08LyfPhwEwZHhuth8I5zEA=;
+        b=NAMYhsliCpigdL0FZfWoaReNU5JIqe75HLwD+aH1jpMM6qoFqnsIwElDTKdt136ktK
+         Lt8M9fTWUjVAEvOL+CE0xlz7Q5SAy+odP+oMLs+Jiw7r4qe+8FNRvbhYyeHjmNvBjS8L
+         T5QzEQYQWZtAmn9xHp398NPVpqjr6QR6FIzOYxB+4bRUbfaJthsq/OS1WDVjrxpzgEYe
+         Poe1xLvDN/PV6IKOwYzOkvyk2sgEdY3/rwvhYTWVOoH5PMRL3KnMh3iF5+d1zAWShpkm
+         DXhDeWGk69RjrTtMHrdMsaVV4uxpi9FqVAX+2WOiXGFR3A1ceKaVzQElYeDHI81TZckO
+         3bBA==
+X-Gm-Message-State: AOJu0YyxmaFLqQSd611eBxBf5BzlBUYsnT2qDQWY7GegLJQda0vcukEb
+	101NGzjQ2jjU6WhzrpmJkpQan5SJh1y//bgJqqgb1qICTlKwfyR2jaUNzRE6j2pIFI3nx3thSp6
+	lqThINF18ilfIrX7uJEyBH2gDrYg65Rcl
+X-Google-Smtp-Source: AGHT+IGP3yzz0mNqgJWYvfrs+iMZqFuvmFgLfgTivL5NSRzm/c83Gax/QEn1EB2YsEkBtXaxrnFfOvt6bMPXyMiqtiY=
+X-Received: by 2002:a17:90b:5384:b0:2b5:1f7d:7eae with SMTP id
+ 98e67ed59e1d1-2b6cc780211mr17777028a91.24.1715887721084; Thu, 16 May 2024
+ 12:28:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAGAf8LwEkmPWUi+B3BotJy0g2AhfBRyVfO4jUBkhRXVtNS1aww@mail.gmail.com>
- <7a55c302-24cf-463f-831c-889c2fa0d168@cherry.de> <CAGAf8Ly=jt9WusiC3PEHakxZjjHHnd=gV1yYonTdQRRE5qrtZQ@mail.gmail.com>
- <35A42455-17EC-48EE-A140-6B42B23C80CB@arm.com>
-In-Reply-To: <35A42455-17EC-48EE-A140-6B42B23C80CB@arm.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 16 May 2024 18:07:02 +0200
-Message-ID: <CAGAf8Lzh7-eGr3+-55vHMhSVtQbfQvgy53AQtv7gN2gbZ6CSaA@mail.gmail.com>
-Subject: Re: [yocto] Strange errors while executing poky/meta/recipes-devtools/gcc/gcc-cross_13.2.bb using scarthgap release
-To: Ross Burton <Ross.Burton@arm.com>
-Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, Quentin Schulz <quentin.schulz@cherry.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: SIMON BABY <simonkbaby@gmail.com>
+Date: Thu, 16 May 2024 12:28:29 -0700
+Message-ID: <CAEFUPH2wugXtmvaVQPWi4Le=5vAKOEr7=9Cn3Nv47WOqHFhE9g@mail.gmail.com>
+Subject: packages not generated in output folder
+To: Yocto Mailing list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000001710810618973e8e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 16:08:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63123
+ <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 19:28:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63124
 
-Hello Ross,
+--0000000000001710810618973e8e
+Content-Type: text/plain; charset="UTF-8"
 
-I guess, U might be very right!
+Hello,
 
-OFF TOPIC: Fedora 40.
+I am building some applications in 5.15.0-102-generic #112~20.04.1-Ubuntu.
+My yocto recipes aeh building successfully but I am unable to see any
+package folders under the tmp directory. I see only log files under temp
+are created. Nothing else. Can I know if I am missing any configuration?
 
-I had another terrible issue with Fedora 40. I pressed M-net, my net
-provider, that they screwed up my DNS setup. For 4 days.
+tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7-r0$
+ls -ll
+total 12
+drwxr-xr-x 2 sbaby sbaby 12288 May 16 12:26 temp
 
-Then... I started to investigate myself!
+This is valid for other recipes as well.
 
-Here is what I did find about unfortunate Fedora 40 release (IT IS
-ONLY Fedora 40 release mortal issue):
-
-https://gitlab.com/gnuwget/wget2/-/issues/661#top
-
-https://www.reddit.com/r/Fedora/comments/1cf5jpu/switching_from_wget_to_wge=
-t2_suddenly_in_fedora/?rdt=3D40957
-
-Please, all U who R using Fedora 40, find that there are issues with
-newly introduced wget2 (wget2-wget) Fedora 40 packages.
-
-Zee
-_______
+/build/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/libgcc/11.4.0-r0$
+ls
+temp
 
 
-On Thu, May 16, 2024 at 5:39=E2=80=AFPM Ross Burton <Ross.Burton@arm.com> w=
-rote:
+Regards
+Simon
+
+--0000000000001710810618973e8e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br></div><div>I am building some applications =
+in=C2=A05.15.0-102-generic #112~20.04.1-Ubuntu. My yocto recipes aeh buildi=
+ng successfully but I am unable to see any package folders under the tmp di=
+rectory. I see only=C2=A0log files under temp are created. Nothing else. Ca=
+n I know if I am missing any configuration?=C2=A0</div><div><br></div><div>=
+tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7-r0$ =
+ls -ll<br>total 12<br>drwxr-xr-x 2 sbaby sbaby 12288 May 16 12:26 temp<br><=
+/div><div><br></div><div>This is valid for other recipes=C2=A0as well.=C2=
+=A0</div><div><br></div><div>/build/tmp/work/cortexa5t2hf-neon-vfpv4-poky-l=
+inux-gnueabi/libgcc/11.4.0-r0$ ls<br>temp<br></div><div><br></div><div><br>=
+</div><div>Regards</div><div>Simon</div><div><br></div><div><br></div></div=
 >
->
->
-> > On 16 May 2024, at 16:31, Zoran via lists.yoctoproject.org <zoran.stojs=
-avljevic=3Dgmail.com@lists.yoctoproject.org> wrote:
-> > The full log (full_log.txt) is attached to this @, as per Ur request
-> > (lot of stuff, echt!).
->
-> From your log:
->
-> WARNING: Host distribution "fedora-40" has not been validated with this v=
-ersion of the build system; you may possibly experience unexpected failures=
-. It is recommended that you use a tested distribution.
->
-> This is saying that Fedora 40 has not been validated and you may experien=
-ce unexpected failures.
->
-> Later in the log:
->
-> pzstd: /home/vuser/projects2/yocto/yocto_test2/bbb-yocto/poky/build/tmp/s=
-ysroots-uninative/x86_64-linux/usr/lib/libstdc++.so.6: version `CXXABI_1.3.=
-15' not found (required by pzstd)
->
-> That is the sort of unexpected failure you can expect when using Fedora 4=
-0, because it has not been validated.
->
-> This is an incompatibility with Fedora 40 and uninative, so until this is=
- resolved you can disable uninative with this in your local.conf:
->
-> INHERIT:remove =3D =E2=80=9Cuninative=E2=80=9D
->
-> Ross
+
+--0000000000001710810618973e8e--
 
