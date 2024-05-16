@@ -1,106 +1,232 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <dhanyalakshmi.k@priyarajaelectronics.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BE4FC25B74
-	for <webhook@archiver.kernel.org>; Thu, 16 May 2024 08:47:26 +0000 (UTC)
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
- by mx.groups.io with SMTP id smtpd.web11.8520.1715848324800760879
- for <yocto@lists.yoctoproject.org>;
- Thu, 16 May 2024 01:32:05 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@geanix.com header.s=default2211 header.b=V273fPUy;
- spf=pass (domain: geanix.com, ip: 188.40.30.78, mailfrom: esben@geanix.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=N/RLFz3NcGptax0G7A8uqwAE2SXJQmHI9ypbNsMFVTk=; b=V273fPUyV3/0mWeGnPIMYkAv2A
-	CQWS28UNKJA46psSxHt/8GUs8+y5y4UorztrEG79Zv1Ba+4QNrXYqofDuaFZfdFzlOPtSVDe+Imqu
-	tXgDGY6ZwkPkmyij/xK1AoSBiqU8W0Vm7WUU0VOE9RWAQeVvJFVPpy87xWgwk+z9W7PCxiG7Iunu4
-	Hxxqag2b9xiY2XaR+j4zrgqU97NPvHlQX11InuMnH22x1NX33dBuhGYWgxR1ogfkfzgjKdeXPKQ5n
-	A6NN/k8+4Ci1LGnbvNVrdtvRjRf8mRl6Zcsaan72RarewzJrLkqzwi8HVjEdeEzoUXG97E99JuaIs
-	5LGRvMUw==;
-Received: from sslproxy04.your-server.de ([78.46.152.42])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <esben@geanix.com>)
-	id 1s7WWw-000NE0-NZ; Thu, 16 May 2024 10:32:02 +0200
-Received: from [185.17.218.86] (helo=localhost)
-	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <esben@geanix.com>)
-	id 1s7WWw-000P9d-0O;
-	Thu, 16 May 2024 10:32:02 +0200
-From: "Esben Haabendal" <esben@geanix.com>
-To: "Marta Rybczynska" <rybczynska@gmail.com>
-Cc: Joshua Watt <jpewhacker@gmail.com>,  yocto@lists.yoctoproject.org,
-  openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>
-Subject: Re: [Openembedded-architecture] SPDX delivery
-In-Reply-To: <CAApg2=TJAxkN995fApsU15T1sywt6uM_6v-wjyJhYH_fRPx5dA@mail.gmail.com>
-	(Marta Rybczynska's message of "Thu, 16 May 2024 09:26:46 +0200")
-References: <CAApg2=T_sdGmAYKEzTCKS77YoEew2HM-PaoDWczoH8a=A6=nwg@mail.gmail.com>
-	<CAJdd5Gax3CXHckaQuAQRwnx8V=u8X69CeJFqwb5v96B0fOpQjQ@mail.gmail.com>
-	<CAApg2=TJAxkN995fApsU15T1sywt6uM_6v-wjyJhYH_fRPx5dA@mail.gmail.com>
-Date: Thu, 16 May 2024 10:32:01 +0200
-Message-ID: <87eda2qhry.fsf@geanix.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EACAC25B79
+	for <webhook@archiver.kernel.org>; Thu, 16 May 2024 09:33:46 +0000 (UTC)
+Subject: Unable to populate_sdk for ls1012afrwy macine
+To: yocto@lists.yoctoproject.org
+From: dhanyalakshmi.k@priyarajaelectronics.com
+X-Originating-Location: =?UTF-8?B?UGFyaXMsIMOObGUtZGUtRnJhbmNlLCBGUg==?= (51.158.186.242)
+X-Originating-Platform: Linux Chrome 123
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-Authenticated-Sender: esben@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27276/Wed May 15 10:26:29 2024)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 16 May 2024 02:33:37 -0700
+Message-ID: <OwGd.1715852017157298760.iJN3@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="lhZIqsVRLiM3mkiJQi6t"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 08:47:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63106
+ <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 09:33:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63107
 
-"Marta Rybczynska" <rybczynska@gmail.com> writes:
+--lhZIqsVRLiM3mkiJQi6t
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> On Wed, May 15, 2024 at 8:09=E2=80=AFPM Joshua Watt <jpewhacker@gmail.com=
-> wrote:
->
->  On Wed, May 15, 2024 at 11:11=E2=80=AFAM Marta Rybczynska <rybczynska@gm=
-ail.com> wrote:
->  > So, the question is, what people plan to archive from the build? Do
->  > we need to archive the whole SPDX output too? This is an
->  > interesting question for example in case of "world" builds..
->
->  The algorithm for creating the final SBoM for SPDX is actually pretty
->  generic: Given a single starting document that has some references to
->  external SPDX objects, it finds the documents that provide those
->  objects and adds those documents to the final SBoM. It then
->  re-calculates all of the (missing) external SPDX objects from the new
->  SBoM and repeats the process of adding documents to the SBoM until
->  either all references are satisfied, or the references are known to
->  not exist in the current build (which generates a warning, since it's
->  not really expected).
->
->  The nice thing about this algorithm is that we can really generate a
->  SBoM for anything as long as you have the document (e.g. initial
->  objects) you want to start from. As such, we should be able to
->  generate SBoMs for world builds, individual packages, or just about
->  whatever we want.
->
-> I'm wondering what makes sense to store: on one side, image is
-> something that people flash on the device, so we definitely want to
-> keep it. If there is a vulnerability in the compiler used to build, it
-> does not necessarily affect the image (and you do not need to update
-> it); except the case it affects the generated code. It makes then
-> sense to store SDK and image status separately.
->
-> I'd like to head opinions from people who use the SPDX generation, if
-> there is a preference.
+Hello,
+I tried to build toolchain for aarch64 target architecture using below comm=
+and:
+$ bitbake -c populate_sdk ls-image-main
+Errors that i'm facing is:
+ERROR: ls-image-main-22.04.2-r0 do_populate_sdk: Could not invoke dnf. Comm=
+and '/home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/work/ls1012afrwy-fsl-=
+linux/ls-image-main/22.04.2-r0/recipe-sysroot-native/usr/bin/dnf -v --rpmve=
+rbosity=3Dinfo -y -c /home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/work/=
+ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/sdk/image/usr/local/oe-sdk-h=
+ardcoded-buildpath/sysroots/aarch64-fsl-linux/etc/dnf/dnf.conf --setopt=3Dr=
+eposdir=3D/home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/work/ls1012afrwy=
+-fsl-linux/ls-image-main/22.04.2-r0/sdk/image/usr/local/oe-sdk-hardcoded-bu=
+ildpath/sysroots/aarch64-fsl-linux/etc/yum.repos.d --installroot=3D/home/dh=
+anyalakshmi/distro/build_ls1012afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-imag=
+e-main/22.04.2-r0/sdk/image/usr/local/oe-sdk-hardcoded-buildpath/sysroots/a=
+arch64-fsl-linux --setopt=3Dlogdir=3D/home/dhanyalakshmi/distro/build_ls101=
+2afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/temp --repof=
+rompath=3Doe-repo,/home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/work/ls1=
+012afrwy-fsl-linux/ls-image-main/22.04.2-r0/oe-sdk-repo --nogpgcheck instal=
+l blktrace can-utils cpufrequtils dpdk-examples fio i2c-tools iozone3 iperf=
+2 iperf3 ipsec-demo ipsec-tools kernel-devicetree kernel-image kernel-modul=
+es linuxptp lmbench lmsensors-sensors makedevs mmc-utils netperf openssl-en=
+gines packagegroup-core-standalone-sdk-target packagegroup-fsl-tools-core p=
+ackagegroup-fsl-tools-extended perf rt-tests sysfsutils target-sdk-provides=
+-dummy ubuntu-main ubuntu-main-dbg ubuntu-main-dev ubuntu-main-doc udev-ext=
+raconf udev-rules-qoriq usbutils watchdog' returned 1:
+DNF version: 4.14.0
+cachedir: /home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/work/ls1012afrwy=
+-fsl-linux/ls-image-main/22.04.2-r0/sdk/image/usr/local/oe-sdk-hardcoded-bu=
+ildpath/sysroots/aarch64-fsl-linux/var/cache/dnf
+Added oe-repo repo from /home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/wo=
+rk/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/oe-sdk-repo
+User-Agent: falling back to 'libdnf': could not detect OS or basearch
+repo: using cache for: oe-repo
+oe-repo: using metadata from Thu 16 May 2024 09:31:47 AM UTC.
+Last metadata expiration check: 0:00:01 ago on Thu 16 May 2024 09:32:01 AM =
+UTC.
+--> Starting dependency resolution
+--> Finished dependency resolution
+Error:
+Problem 1: package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_targ=
+et from oe-repo conflicts with /bin/sh provided by ubuntu-main-22.04.2-r0.a=
+arch64 from oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with perl provided by ubuntu-main-22.04.2-r0.aarch64 from =
+oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with bash provided by ubuntu-main-22.04.2-r0.aarch64 from =
+oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with coreutils provided by ubuntu-main-22.04.2-r0.aarch64 =
+from oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with /usr/bin/env provided by ubuntu-main-22.04.2-r0.aarch=
+64 from oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with /bin/bash provided by ubuntu-main-22.04.2-r0.aarch64 =
+from oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with bash-dev provided by ubuntu-main-22.04.2-r0.aarch64 f=
+rom oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with pkgconfig provided by ubuntu-main-22.04.2-r0.aarch64 =
+from oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with perl-dev provided by ubuntu-main-22.04.2-r0.aarch64 f=
+rom oe-repo
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with /usr/bin/perl provided by ubuntu-main-22.04.2-r0.aarc=
+h64 from oe-repo
+- package ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with perl p=
+rovided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from =
+oe-repo
+- package ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with bash p=
+rovided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from =
+oe-repo
+- package ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with coreut=
+ils provided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target =
+from oe-repo
+- package ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with bash-d=
+ev provided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target f=
+rom oe-repo
+- package ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with pkgcon=
+fig provided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target =
+from oe-repo
+- package ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with perl-d=
+ev provided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target f=
+rom oe-repo
+- conflicting requests
+Problem 2: package ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts wi=
+th libc6-dbg provided by libc6-dbg-2.35-r0.aarch64 from oe-repo
+- package ubuntu-main-22.04.2-r0.aarch64 from oe-repo obsoletes libc6-dbg p=
+rovided by libc6-dbg-2.35-r0.aarch64 from oe-repo
+- package ubuntu-main-doc-22.04.2-r0.aarch64 from oe-repo requires ubuntu-m=
+ain, but none of the providers can be installed
+- package packagegroup-core-standalone-sdk-target-1.0-r8.aarch64 from oe-re=
+po requires glibc-dbg, but none of the providers can be installed
+- conflicting requests
+(try to add '--allowerasing' to command line to replace conflicting package=
+s or '--skip-broken' to skip uninstallable packages)
 
-As SDK is something that is potentially delivered to customers, having
-SBoM for it definitely makes sense, and I believe any output of security
-scanning/analysis would also make sense.
+ERROR: Logfile of failure stored in: /home/dhanyalakshmi/distro/build_ls101=
+2afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/temp/log.do_=
+populate_sdk.2348536
+ERROR: Task (/home/dhanyalakshmi/distro/sources/meta-nxp-desktop/recipes-fs=
+l/images/ls-image-main.bb:do_populate_sdk) failed with exit code '1'
 
-As for the native recipes, I don't think I will ever want to see that in
-any of this.
+Can anyone explain what is this error and how can i resolve it so that i ca=
+n get cross compiler toolchain.
 
-/Esben
+--lhZIqsVRLiM3mkiJQi6t
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<br />I tried to build toolchain for aarch64 target architecture usin=
+g below command:<br />$ bitbake -c populate_sdk ls-image-main<br />Errors t=
+hat i'm facing is:<br />ERROR: ls-image-main-22.04.2-r0 do_populate_sdk: Co=
+uld not invoke dnf. Command '/home/dhanyalakshmi/distro/build_ls1012afrwy/t=
+mp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/recipe-sysroot-nativ=
+e/usr/bin/dnf -v --rpmverbosity=3Dinfo -y -c /home/dhanyalakshmi/distro/bui=
+ld_ls1012afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/sdk/=
+image/usr/local/oe-sdk-hardcoded-buildpath/sysroots/aarch64-fsl-linux/etc/d=
+nf/dnf.conf --setopt=3Dreposdir=3D/home/dhanyalakshmi/distro/build_ls1012af=
+rwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/sdk/image/usr/l=
+ocal/oe-sdk-hardcoded-buildpath/sysroots/aarch64-fsl-linux/etc/yum.repos.d =
+--installroot=3D/home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/work/ls101=
+2afrwy-fsl-linux/ls-image-main/22.04.2-r0/sdk/image/usr/local/oe-sdk-hardco=
+ded-buildpath/sysroots/aarch64-fsl-linux --setopt=3Dlogdir=3D/home/dhanyala=
+kshmi/distro/build_ls1012afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main=
+/22.04.2-r0/temp --repofrompath=3Doe-repo,/home/dhanyalakshmi/distro/build_=
+ls1012afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/oe-sdk-=
+repo --nogpgcheck install blktrace can-utils cpufrequtils dpdk-examples fio=
+ i2c-tools iozone3 iperf2 iperf3 ipsec-demo ipsec-tools kernel-devicetree k=
+ernel-image kernel-modules linuxptp lmbench lmsensors-sensors makedevs mmc-=
+utils netperf openssl-engines packagegroup-core-standalone-sdk-target packa=
+gegroup-fsl-tools-core packagegroup-fsl-tools-extended perf rt-tests sysfsu=
+tils target-sdk-provides-dummy ubuntu-main ubuntu-main-dbg ubuntu-main-dev =
+ubuntu-main-doc udev-extraconf udev-rules-qoriq usbutils watchdog' returned=
+ 1:<br />DNF version: 4.14.0<br />cachedir: /home/dhanyalakshmi/distro/buil=
+d_ls1012afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/sdk/i=
+mage/usr/local/oe-sdk-hardcoded-buildpath/sysroots/aarch64-fsl-linux/var/ca=
+che/dnf<br />Added oe-repo repo from /home/dhanyalakshmi/distro/build_ls101=
+2afrwy/tmp/work/ls1012afrwy-fsl-linux/ls-image-main/22.04.2-r0/oe-sdk-repo<=
+br />User-Agent: falling back to 'libdnf': could not detect OS or basearch<=
+br />repo: using cache for: oe-repo<br />oe-repo: using metadata from Thu 1=
+6 May 2024 09:31:47 AM UTC.<br />Last metadata expiration check: 0:00:01 ag=
+o on Thu 16 May 2024 09:32:01 AM UTC.<br />--&gt; Starting dependency resol=
+ution<br />--&gt; Finished dependency resolution<br />Error:&nbsp;<br />&nb=
+sp;Problem 1: package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_t=
+arget from oe-repo conflicts with /bin/sh provided by ubuntu-main-22.04.2-r=
+0.aarch64 from oe-repo<br />&nbsp; - package target-sdk-provides-dummy-1.0-=
+r0.sdk_provides_dummy_target from oe-repo conflicts with perl provided by u=
+buntu-main-22.04.2-r0.aarch64 from oe-repo<br />&nbsp; - package target-sdk=
+-provides-dummy-1.0-r0.sdk_provides_dummy_target from oe-repo conflicts wit=
+h bash provided by ubuntu-main-22.04.2-r0.aarch64 from oe-repo<br />&nbsp; =
+- package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from o=
+e-repo conflicts with coreutils provided by ubuntu-main-22.04.2-r0.aarch64 =
+from oe-repo<br />&nbsp; - package target-sdk-provides-dummy-1.0-r0.sdk_pro=
+vides_dummy_target from oe-repo conflicts with /usr/bin/env provided by ubu=
+ntu-main-22.04.2-r0.aarch64 from oe-repo<br />&nbsp; - package target-sdk-p=
+rovides-dummy-1.0-r0.sdk_provides_dummy_target from oe-repo conflicts with =
+/bin/bash provided by ubuntu-main-22.04.2-r0.aarch64 from oe-repo<br />&nbs=
+p; - package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target fro=
+m oe-repo conflicts with bash-dev provided by ubuntu-main-22.04.2-r0.aarch6=
+4 from oe-repo<br />&nbsp; - package target-sdk-provides-dummy-1.0-r0.sdk_p=
+rovides_dummy_target from oe-repo conflicts with pkgconfig provided by ubun=
+tu-main-22.04.2-r0.aarch64 from oe-repo<br />&nbsp; - package target-sdk-pr=
+ovides-dummy-1.0-r0.sdk_provides_dummy_target from oe-repo conflicts with p=
+erl-dev provided by ubuntu-main-22.04.2-r0.aarch64 from oe-repo<br />&nbsp;=
+ - package target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from =
+oe-repo conflicts with /usr/bin/perl provided by ubuntu-main-22.04.2-r0.aar=
+ch64 from oe-repo<br />&nbsp; - package ubuntu-main-22.04.2-r0.aarch64 from=
+ oe-repo conflicts with perl provided by target-sdk-provides-dummy-1.0-r0.s=
+dk_provides_dummy_target from oe-repo<br />&nbsp; - package ubuntu-main-22.=
+04.2-r0.aarch64 from oe-repo conflicts with bash provided by target-sdk-pro=
+vides-dummy-1.0-r0.sdk_provides_dummy_target from oe-repo<br />&nbsp; - pac=
+kage ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with coreutils p=
+rovided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from =
+oe-repo<br />&nbsp; - package ubuntu-main-22.04.2-r0.aarch64 from oe-repo c=
+onflicts with bash-dev provided by target-sdk-provides-dummy-1.0-r0.sdk_pro=
+vides_dummy_target from oe-repo<br />&nbsp; - package ubuntu-main-22.04.2-r=
+0.aarch64 from oe-repo conflicts with pkgconfig provided by target-sdk-prov=
+ides-dummy-1.0-r0.sdk_provides_dummy_target from oe-repo<br />&nbsp; - pack=
+age ubuntu-main-22.04.2-r0.aarch64 from oe-repo conflicts with perl-dev pro=
+vided by target-sdk-provides-dummy-1.0-r0.sdk_provides_dummy_target from oe=
+-repo<br />&nbsp; - conflicting requests<br />&nbsp;Problem 2: package ubun=
+tu-main-22.04.2-r0.aarch64 from oe-repo conflicts with libc6-dbg provided b=
+y libc6-dbg-2.35-r0.aarch64 from oe-repo<br />&nbsp; - package ubuntu-main-=
+22.04.2-r0.aarch64 from oe-repo obsoletes libc6-dbg provided by libc6-dbg-2=
+.35-r0.aarch64 from oe-repo<br />&nbsp; - package ubuntu-main-doc-22.04.2-r=
+0.aarch64 from oe-repo requires ubuntu-main, but none of the providers can =
+be installed<br />&nbsp; - package packagegroup-core-standalone-sdk-target-=
+1.0-r8.aarch64 from oe-repo requires glibc-dbg, but none of the providers c=
+an be installed<br />&nbsp; - conflicting requests<br />(try to add '--allo=
+werasing' to command line to replace conflicting packages or '--skip-broken=
+' to skip uninstallable packages)<br /><br />ERROR: Logfile of failure stor=
+ed in: /home/dhanyalakshmi/distro/build_ls1012afrwy/tmp/work/ls1012afrwy-fs=
+l-linux/ls-image-main/22.04.2-r0/temp/log.do_populate_sdk.2348536<br />ERRO=
+R: Task (/home/dhanyalakshmi/distro/sources/meta-nxp-desktop/recipes-fsl/im=
+ages/ls-image-main.bb:do_populate_sdk) failed with exit code '1'<br /><br /=
+>Can anyone explain what is this error and how can i resolve it so that i c=
+an get cross compiler toolchain.
+
+--lhZIqsVRLiM3mkiJQi6t--
 
