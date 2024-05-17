@@ -1,193 +1,169 @@
-Return-Path: <simonkbaby@gmail.com>
+Return-Path: <dhanyalakshmi.k@priyarajaelectronics.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A340FC25B78
-	for <webhook@archiver.kernel.org>; Thu, 16 May 2024 21:06:20 +0000 (UTC)
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
- by mx.groups.io with SMTP id smtpd.web10.25422.1715893572275111946
- for <yocto@lists.yoctoproject.org>;
- Thu, 16 May 2024 14:06:12 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=QSyptPjn;
- spf=pass (domain: gmail.com, ip: 209.85.214.171, mailfrom: simonkbaby@gmail.com)
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1ec4dc64c6cso62715175ad.0
-        for <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 14:06:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715893572; x=1716498372; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=b+9zeq6LkXckRLy9tgU+yp/hFHaLwquFufv92umL2Z0=;
-        b=QSyptPjnrMdAK8rtCbmFrV5vi1upZ4wTQ2x6+OHZbzvqfr5aCD6T4DAV5MpQ2fSvyo
-         bISZ+cNTRvj9aVqHXCUJ2btejyqNfQ6mKHl2YJKqYn490qnGBbHaNtDwptA3hyQ+lrpZ
-         MAtsgDQfC9+12Y259/2rdV5l57q/ZQJ9x/1B2oODrGkjwnbuPW52Ua6R9XOgFUTYA7r4
-         FGJZY/I5ZzU0hkCgG5y6S04nCpR0kJSCiD5IYvrm653O1wSoEADe62ua8T90U15IwXs6
-         PhG8HdvfNO81RdhRCJ0Y0R4358DUdQ5bLbxgkCioiI+Fm6BpaRuvzxU8seZnu0M9rxg5
-         a9BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715893572; x=1716498372;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=b+9zeq6LkXckRLy9tgU+yp/hFHaLwquFufv92umL2Z0=;
-        b=wm2MYAtVCMAaVdQ3Xm3VqI6EzK470zfu4pa2h0M5f4f7+zaYU6VcE209AXr2grphHV
-         GNJ3PJvoZ8pRMbLKIEdaxBa67jTXB+bx+P1h8pfh7HH4++XtPBV+eRpwBOs1fOXI1iXm
-         dEr70JmeYG/oHs4dnlGPqPH9QDMbDYtD1gjg6okCHjQv9UOsIhCJQAmomaKiDwINZnbB
-         LbmUxZLoQOyx9eK30BWznMR5PJ3/Rdjc0LijGUfy7o37A2eSThTBDDQ9IY5ik0KIeZea
-         ZyvGGutJZjFTd7Pa5KfU7XzovEaT/iBSTORA0Xa9Jtdsq+vArYIxVzlfpPtUEDYk4RCT
-         Ljxw==
-X-Gm-Message-State: AOJu0Yxy6IM7IehXFIy5bhieGObr2xonyDT5CUbYD1B6ssJc7Qlf10iw
-	9FQCHRk88jKtXdO257J35+V3JsT5OJmOSYa64cp6NPVrvvbHctvl1C0lt5feuZ/o/n8h9NrB2Fc
-	h9cYJRdgLIIrAt4p8tGekwc3/O50=
-X-Google-Smtp-Source: AGHT+IGMAuHhS4wslcHvCe09CEw7i2fPN8o2QVV3QDsdZ0rQbxV857TJZzULh0uvEU6gOgC15B8gk0Ns/LXEcKc+dAM=
-X-Received: by 2002:a17:902:cf07:b0:1e0:ca47:4d96 with SMTP id
- d9443c01a7336-1ef43d0ad15mr277375865ad.3.1715893571572; Thu, 16 May 2024
- 14:06:11 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D8D78C25B7A
+	for <webhook@archiver.kernel.org>; Fri, 17 May 2024 09:14:33 +0000 (UTC)
+Subject: Getting error when i build an image after starting the toaster
+To: yocto@lists.yoctoproject.org
+From: dhanyalakshmi.k@priyarajaelectronics.com
+X-Originating-Location: =?UTF-8?B?UGFyaXMsIMOObGUtZGUtRnJhbmNlLCBGUg==?= (51.158.166.131)
+X-Originating-Platform: Linux Chrome 123
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAEFUPH2wugXtmvaVQPWi4Le=5vAKOEr7=9Cn3Nv47WOqHFhE9g@mail.gmail.com>
- <CA+chaQdFtjos0jHY71mO-dy-MneHoP9-Mmp4FEm9rSBoLCx14A@mail.gmail.com>
-In-Reply-To: <CA+chaQdFtjos0jHY71mO-dy-MneHoP9-Mmp4FEm9rSBoLCx14A@mail.gmail.com>
-From: SIMON BABY <simonkbaby@gmail.com>
-Date: Thu, 16 May 2024 14:06:00 -0700
-Message-ID: <CAEFUPH0XuCXv0DTK+MdOEC31AhYkLjyb79NPuZNJ16n1UfGvwQ@mail.gmail.com>
-Subject: Re: [yocto] packages not generated in output folder
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ce63fc0618989a5b"
+Date: Fri, 17 May 2024 02:14:32 -0700
+Message-ID: <0Ha1.1715937272379372240.3Su9@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="bukfbsp4TCqdC5ZsesVp"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 16 May 2024 21:06:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63128
+ <yocto@lists.yoctoproject.org>; Fri, 17 May 2024 09:14:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63129
 
---000000000000ce63fc0618989a5b
-Content-Type: text/plain; charset="UTF-8"
+--bukfbsp4TCqdC5ZsesVp
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-sounds good . I have fixed it already. My local.conf file has rm_work and
-after iIremoved it, it worked.
-Thank you for the quick answer.
+Hello,
+I'm Dhanya,currently working to build an image using toaster. But the image=
+ is getting build successfully but at the last in toaster message i'm getti=
+ng the error as " *ERROR: Target_File matching query does not exist*."
+The steps i followed is:
+$ sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential=
+ chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutil=
+s iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev python=
+3-subunit mesa-common-dev zstd liblz4-tool file locales
 
-Regards
-Simon
+$ sudo locale-gen en_US.UTF-8
 
-On Thu, May 16, 2024 at 12:55=E2=80=AFPM Martin Jansa <martin.jansa@gmail.c=
-om>
-wrote:
+$ mkdir distro
+$ cd distro
+$ repo init -u https://github.com/nxp-qoriq/yocto-sdk.git -b mickledore -m =
+ls-6.1.55-2.2.0_distro.xml
+$ repo sync
 
-> You probably inherit rm_work somewhere, use bitbake-getvar to find out
-> where and remove it if you don't want the files to be removed after
-> the build is finished.
->
-> On Thu, May 16, 2024 at 9:28=E2=80=AFPM SIMON BABY via lists.yoctoproject=
-.org
-> <simonkbaby=3Dgmail.com@lists.yoctoproject.org> wrote:
-> >
-> > Hello,
-> >
-> > I am building some applications in 5.15.0-102-generic
-> #112~20.04.1-Ubuntu. My yocto recipes aeh building successfully but I am
-> unable to see any package folders under the tmp directory. I see only log
-> files under temp are created. Nothing else. Can I know if I am missing an=
-y
-> configuration?
-> >
-> >
-> tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7-r0=
-$
-> ls -ll
-> > total 12
-> > drwxr-xr-x 2 sbaby sbaby 12288 May 16 12:26 temp
-> >
-> > This is valid for other recipes as well.
-> >
-> >
-> /build/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/libgcc/11.4.0-=
-r0$
-> ls
-> > temp
-> >
-> >
-> > Regards
-> > Simon
-> >
-> >
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#63124):
-> https://lists.yoctoproject.org/g/yocto/message/63124
-> > Mute This Topic: https://lists.yoctoproject.org/mt/106141357/3617156
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> martin.jansa@gmail.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
->
+$ source =C2=A0distro-setup-env -m ls1012afrwy
+$ source toaster start
+$ bitbake ls-image-main
 
---000000000000ce63fc0618989a5b
-Content-Type: text/html; charset="UTF-8"
+This above steps i followed because it for my layerscape board.But i tried =
+to build core-image-minimal from poky directory as well but still i got the=
+ same error.
+
+Error is:
+ERROR: Target_File matching query does not exist.
+Traceback (most recent call last):
+File "/home/dhanyalakshmi/distro/sources/poky/bitbake/lib/bb/ui/toasterui.p=
+y", line 408, in main
+buildinfohelper.store_target_package_data(event)
+File "/home/dhanyalakshmi/distro/sources/poky/bitbake/lib/bb/ui/buildinfohe=
+lper.py", line 1364, in store_target_package_data
+self.orm_wrapper.save_target_file_information(self.internal_state['build'],=
+ target, filedata)
+File "/home/dhanyalakshmi/distro/sources/poky/bitbake/lib/bb/ui/buildinfohe=
+lper.py", line 562, in save_target_file_information
+parent_obj =3D Target_File.objects.get(target =3D target_obj, path =3D pare=
+nt_path, inodetype =3D Target_File.ITYPE_DIRECTORY)
+File "/home/dhanyalakshmi/.local/lib/python3.10/site-packages/django/db/mod=
+els/manager.py", line 85, in manager_method
+return getattr(self.get_queryset(), name)(*args, **kwargs)
+File "/home/dhanyalakshmi/.local/lib/python3.10/site-packages/django/db/mod=
+els/query.py", line 435, in get
+raise self.model.DoesNotExist(
+orm.models.Target_File.DoesNotExist: Target_File matching query does not ex=
+ist.
+
+ERROR: expected string or bytes-like object
+Traceback (most recent call last):
+File "/home/dhanyalakshmi/distro/sources/poky/bitbake/lib/bb/ui/toasterui.p=
+y", line 362, in main
+buildinfohelper.scan_image_artifacts()
+File "/home/dhanyalakshmi/distro/sources/poky/bitbake/lib/bb/ui/buildinfohe=
+lper.py", line 1782, in scan_image_artifacts
+real_image_name =3D re.sub(r'^defaultpkgname', image_target.target,
+File "/usr/lib/python3.10/re.py", line 209, in sub
+return _compile(pattern, flags).sub(repl, string, count)
+TypeError: expected string or bytes-like object
+
+WARNING: Return value is 2
+
+I'm unable to understand this,like is a problem with toaster itself? Is the=
+ir anything that i could do to resolve this issue. Does this relates to ima=
+ge not getting build successfully?
+Please help me to resolve this
+Hoping for the reply.
+Thank You.
+
+--bukfbsp4TCqdC5ZsesVp
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">sounds good . I have fixed it already. My local.conf file =
-has rm_work and after iIremoved it, it worked.<div>Thank you for the quick =
-answer.<br><div><br></div><div>Regards</div><div>Simon</div></div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, M=
-ay 16, 2024 at 12:55=E2=80=AFPM Martin Jansa &lt;<a href=3D"mailto:martin.j=
-ansa@gmail.com">martin.jansa@gmail.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex">You probably inherit rm_work somewher=
-e, use bitbake-getvar to find out<br>
-where and remove it if you don&#39;t want the files to be removed after<br>
-the build is finished.<br>
-<br>
-On Thu, May 16, 2024 at 9:28=E2=80=AFPM SIMON BABY via <a href=3D"http://li=
-sts.yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproje=
-ct.org</a><br>
-&lt;simonkbaby=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org" target=
-=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; I am building some applications in 5.15.0-102-generic #112~20.04.1-Ubu=
-ntu. My yocto recipes aeh building successfully but I am unable to see any =
-package folders under the tmp directory. I see only log files under temp ar=
-e created. Nothing else. Can I know if I am missing any configuration?<br>
-&gt;<br>
-&gt; tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7=
--r0$ ls -ll<br>
-&gt; total 12<br>
-&gt; drwxr-xr-x 2 sbaby sbaby 12288 May 16 12:26 temp<br>
-&gt;<br>
-&gt; This is valid for other recipes as well.<br>
-&gt;<br>
-&gt; /build/tmp/work/cortexa5t2hf-neon-vfpv4-poky-linux-gnueabi/libgcc/11.4=
-.0-r0$ ls<br>
-&gt; temp<br>
-&gt;<br>
-&gt;<br>
-&gt; Regards<br>
-&gt; Simon<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#63124): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/63124" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/63124</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/10614135=
-7/3617156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/mt/106141357/3617156</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">mar=
-tin.jansa@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-</blockquote></div>
+Hello,<br />I'm Dhanya,currently working to build an image using toaster. B=
+ut the image is getting build successfully but at the last in toaster messa=
+ge i'm getting the error as "<strong>ERROR: Target_File matching query does=
+ not exist</strong>."<br />The steps i followed is:<br />
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">$ s=
+udo apt install gawk wget git diffstat unzip texinfo gcc build-essential ch=
+rpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils i=
+putils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev python3-s=
+ubunit mesa-common-dev zstd liblz4-tool file locales&nbsp;</div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">&nb=
+sp;</div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">$ s=
+udo locale-gen en_US.UTF-8</div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">&nb=
+sp;</div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">$ m=
+kdir distro</div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">$ c=
+d distro<br />$ repo init -u <a class=3D"moz-txt-link-freetext" href=3D"htt=
+ps://github.com/nxp-qoriq/yocto-sdk.git">https://github.com/nxp-qoriq/yocto=
+-sdk.git</a> -b mickledore -m ls-6.1.55-2.2.0_distro.xml<br />$ repo sync</=
+div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">&nb=
+sp;</div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">$ s=
+ource &nbsp;distro-setup-env -m&nbsp;<span style=3D"background-color: trans=
+parent; font-family: ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'=
+Liberation Mono',monospace; font-size: 13.6px; color: #1f2328;">ls1012afrwy=
+<br /></span>$ source toaster start</div>
+<div class=3D"gmail_default" style=3D"font-family: verdana,sans-serif;">$ b=
+itbake ls-image-main<br /><br /><span style=3D"background-color: transparen=
+t; font-family: ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liber=
+ation Mono',monospace; font-size: 13.6px; color: #1f2328;">This above steps=
+ i followed because it for my layerscape board.But i tried to build core-im=
+age-minimal from poky directory as well but still i got the same error.<br =
+/><br />Error is:<br />ERROR: Target_File matching query does not exist.<br=
+ />Traceback (most recent call last):<br />&nbsp; File "/home/dhanyalakshmi=
+/distro/sources/poky/bitbake/lib/bb/ui/toasterui.py", line 408, in main<br =
+/>&nbsp; &nbsp; buildinfohelper.store_target_package_data(event)<br />&nbsp=
+; File "/home/dhanyalakshmi/distro/sources/poky/bitbake/lib/bb/ui/buildinfo=
+helper.py", line 1364, in store_target_package_data<br />&nbsp; &nbsp; self=
+.orm_wrapper.save_target_file_information(self.internal_state['build'], tar=
+get, filedata)<br />&nbsp; File "/home/dhanyalakshmi/distro/sources/poky/bi=
+tbake/lib/bb/ui/buildinfohelper.py", line 562, in save_target_file_informat=
+ion<br />&nbsp; &nbsp; parent_obj =3D Target_File.objects.get(target =3D ta=
+rget_obj, path =3D parent_path, inodetype =3D Target_File.ITYPE_DIRECTORY)<=
+br />&nbsp; File "/home/dhanyalakshmi/.local/lib/python3.10/site-packages/d=
+jango/db/models/manager.py", line 85, in manager_method<br />&nbsp; &nbsp; =
+return getattr(self.get_queryset(), name)(*args, **kwargs)<br />&nbsp; File=
+ "/home/dhanyalakshmi/.local/lib/python3.10/site-packages/django/db/models/=
+query.py", line 435, in get<br />&nbsp; &nbsp; raise self.model.DoesNotExis=
+t(<br />orm.models.Target_File.DoesNotExist: Target_File matching query doe=
+s not exist.<br /><br />ERROR: expected string or bytes-like object<br />Tr=
+aceback (most recent call last):<br />&nbsp; File "/home/dhanyalakshmi/dist=
+ro/sources/poky/bitbake/lib/bb/ui/toasterui.py", line 362, in main<br />&nb=
+sp; &nbsp; buildinfohelper.scan_image_artifacts()<br />&nbsp; File "/home/d=
+hanyalakshmi/distro/sources/poky/bitbake/lib/bb/ui/buildinfohelper.py", lin=
+e 1782, in scan_image_artifacts<br />&nbsp; &nbsp; real_image_name =3D re.s=
+ub(r'^defaultpkgname', image_target.target,<br />&nbsp; File "/usr/lib/pyth=
+on3.10/re.py", line 209, in sub<br />&nbsp; &nbsp; return _compile(pattern,=
+ flags).sub(repl, string, count)<br />TypeError: expected string or bytes-l=
+ike object<br /><br />WARNING: Return value is 2<br /><br />I'm unable to u=
+nderstand this,like is a problem with toaster itself? Is their anything tha=
+t i could do to resolve this issue. Does this relates to image not getting =
+build successfully?&nbsp;<br />Please help me to resolve this&nbsp;<br />Ho=
+ping for the reply.<br />Thank You.<br /></span></div>
 
---000000000000ce63fc0618989a5b--
+--bukfbsp4TCqdC5ZsesVp--
 
