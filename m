@@ -1,91 +1,96 @@
-Return-Path: <ecordonnier@snap.com>
+Return-Path: <martin.jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D79C1C25B75
-	for <webhook@archiver.kernel.org>; Sun, 19 May 2024 20:34:30 +0000 (UTC)
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
- by mx.groups.io with SMTP id smtpd.web10.45817.1716150862085420507
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D9A5C25B75
+	for <webhook@archiver.kernel.org>; Sun, 19 May 2024 20:48:11 +0000 (UTC)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web11.46713.1716151687311941816
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 May 2024 13:34:22 -0700
+ Sun, 19 May 2024 13:48:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@snap.com header.s=google header.b=OGec3Jaq;
- spf=pass (domain: snapchat.com, ip: 209.85.218.44, mailfrom: ecordonnier@snapchat.com)
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a59cdd185b9so965526466b.1
-        for <yocto@lists.yoctoproject.org>; Sun, 19 May 2024 13:34:21 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Pyl+FES9;
+ spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: martin.jansa@gmail.com)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2e3b1b6e9d1so42752711fa.2
+        for <yocto@lists.yoctoproject.org>; Sun, 19 May 2024 13:48:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snap.com; s=google; t=1716150860; x=1716755660; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=I9PuvvVEViyj+lBVaK0lnJBu7wv66wKApM1ezMZi0IU=;
-        b=OGec3Jaq2sztS+NLvPeHF6yYBg43O98GP7gri0eDjiGfqRv8VCQXmW9+mI2EnRdGhn
-         72sEvV9bpamAuISm9Hr2ZI3+TGJPj0iel9rDAbtnzszJBvrLkaUxVBjtcUXcViMKPK3P
-         qZrL2V6z5gF2wnXRjrW+mowGqGNOpGQbrGTds=
+        d=gmail.com; s=20230601; t=1716151685; x=1716756485; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=28n+Wtt7MBfBqBvjLOGDHsnOV/ZagKVfuv3FAHTlBqo=;
+        b=Pyl+FES9lMajT7dC+X0MFONPNa6y7UlJp3pek/dZ6l/z14im/gkC+qP/iXnV/7FlTe
+         JXjEEIqpzKR1zD9L8DZlzthK58Ir33VcIglQ8DCFvDf6WEjF3OeO+yArZ3yLzyy5PVTu
+         /jgh4F72KlUxh+kVeyKraKsvoYJxjKEsGZiF6seIfYMGsBVv0EWWEyeWorIS7zp2Up4p
+         qLk+03VJsG85fZW28xZ1PRQSt6l00eIn4L+RGK9Jnu+khJIGfdsijpbcd7SYYsl8FJHI
+         uJXuxOwZPglCj1GMcTb0flv+Qff0IiPDtjBFyVOtQf/coGcqurFgNlkxZdGJ8XTYzELM
+         tpJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716150860; x=1716755660;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I9PuvvVEViyj+lBVaK0lnJBu7wv66wKApM1ezMZi0IU=;
-        b=WP+3q7j2zmBvKZcczEJP273BQiwGuhOgmZ38OwOtv39tQxkYJ7BGnWHgsgEPkwzMyx
-         dxgfEeikVdxUW00p6BHyU0HibAwhODQKlzoK+CwLCW97dao/GUVua8A5UhC0PZRCzliK
-         JaBKWoiRihUzJqXYzopQa/PXYm/5oOYmqHrJ6XfQSP0Says8AGK/G6DpUQsVC59PSo9y
-         1O2KbllBXgupvgKLLPXDzbr1Ob2dh9+/wk06BPwrTf+tVTKVbf24jCYx75jqSEajAWi9
-         ljV80AtnwV2tCIbL1Ug/s2BS3ltfzVHI8WGOIDogeS3Wdkr7FZmiNBzP8E+bsUMT+hLl
-         Pe4Q==
-X-Gm-Message-State: AOJu0YwaY5EB0eeWgfmRD7sBYcGHUthic7OihcCAS4PSybZN17HuEtQD
-	XxrIjjHOgpKNl7ua3aTM2SpqtaQUWCqzz3np1YOSSKIPvFTwPDSX2f2W17vU35dysaBhadQWCHi
-	mrdzsSPy4xA9jCe5Tyx2p3zN7iIsN4qNdypQ0/QKvlbWLuOtVfv4=
-X-Google-Smtp-Source: AGHT+IFRbKE/9kpt7gQOLRTZLHgUh3GMkqXCyu/TtF4GHIKmp45O0Zgch8DigubmnMDUbyrKAUewAHrOKIPp7yxtNxo=
-X-Received: by 2002:a17:906:3386:b0:a55:b67c:bd04 with SMTP id
- a640c23a62f3a-a5d58d52a19mr414095366b.4.1716150859654; Sun, 19 May 2024
- 13:34:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716151685; x=1716756485;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=28n+Wtt7MBfBqBvjLOGDHsnOV/ZagKVfuv3FAHTlBqo=;
+        b=h9pWY1IKQrVtdYSwYimG95wKVx7+eT7qRsH3shXiptwB2pxFVxSEnglKLabA7sxSps
+         lQExorlalj990hNQIsQi2BV9DNY+NyaBIs9YflUEkwgQPBds7b5lOIJhm9ZAMFx8sCfd
+         vpWKUGALgnUKkPD9QG6S43+NvyZFhMnsgiaevUZ8GedUU5fGHFb2yzc32YQDxvjtQG2b
+         3+CkGKHDKlhQPWMnWOUuA3AFa61DAtUB07rh3gDuPOJDbeK91nlnZggiN/2SoIGFfU0d
+         jdpxTy4B4lsi5U9279+Lkd9zVNgAgAD/dwEz52lXJhlStpbvGDaG7n8zkarewFhdwlAG
+         JOJQ==
+X-Gm-Message-State: AOJu0Yz7H3xyh35iUVRRFFF/37538tlMt3v2ke8WQdZABEm091Zbralo
+	QcnHXVDBBfDbRj9vuODSCd666RkVyY3db7XRfj65YnDRAPhI16YKrXVpw4+NNofIpN8o6TCr7Ig
+	Bnwpkmgv940/uTLaiQrxFDqvSiMIunWV0
+X-Google-Smtp-Source: AGHT+IFa8i3dAbyrAzMGYHVpnCMA3pp8xiHNZC76qkiKEBo/APgjuEMAdEyFG4eM+TjuvBRpS+nH2JC3P9ulPW+KnvU=
+X-Received: by 2002:ac2:494a:0:b0:51c:dffc:41f2 with SMTP id
+ 2adb3069b0e04-5220fa71c21mr17346937e87.1.1716151685199; Sun, 19 May 2024
+ 13:48:05 -0700 (PDT)
 MIME-Version: 1.0
-From: Etienne Cordonnier <ecordonnier@snap.com>
-Date: Sun, 19 May 2024 22:34:08 +0200
-Message-ID: <CAHUKmYbx81srtVGCh1iyts893T7d7Sf44fgq+MTaxDSwMsXzZg@mail.gmail.com>
-Subject: Workaround for uid_map error on Ubuntu 24.04
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000005f0f4b0618d482e3"
+References: <CAHUKmYbx81srtVGCh1iyts893T7d7Sf44fgq+MTaxDSwMsXzZg@mail.gmail.com>
+In-Reply-To: <CAHUKmYbx81srtVGCh1iyts893T7d7Sf44fgq+MTaxDSwMsXzZg@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Sun, 19 May 2024 22:47:53 +0200
+Message-ID: <CA+chaQeFu93o4PC+jt=SdQxb_+5-L5dqBhtPycuf+OG1mg=PmA@mail.gmail.com>
+Subject: Re: [yocto] Workaround for uid_map error on Ubuntu 24.04
+To: yocto@lists.yoctoproject.org, ecordonnier@snap.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 19 May 2024 20:34:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63137
+ <yocto@lists.yoctoproject.org>; Sun, 19 May 2024 20:48:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63138
 
---0000000000005f0f4b0618d482e3
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Yes, it's also described in:
+https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/=
+39890
 
-Hi all,
-in order to build poky on Ubuntu 24.04, I have needed this workaround to
-fix the error "Errno 1 Operation not permitted" when disable_network (from
+echo 0 > /proc/sys/kernel/apparmor_restrict_unprivileged_userns
+is bigger hammer, but works as well.
+
+On Sun, May 19, 2024 at 10:34=E2=80=AFPM Etienne Cordonnier via
+lists.yoctoproject.org <ecordonnier=3Dsnap.com@lists.yoctoproject.org>
+wrote:
+>
+> Hi all,
+> in order to build poky on Ubuntu 24.04, I have needed this workaround to =
+fix the error "Errno 1 Operation not permitted" when disable_network (from =
 bitbake/lib/bb/utils.py) attempts to write to the file /proc/self/uid_map:
-
-$ sudo apparmor_parser -R /etc/apparmor.d/unprivileged_userns
-
-For details, see https://bugs.launchpad.net/ubuntu/+source/dash/+bug/205655=
-5
-
-=C3=89tienne
-
---0000000000005f0f4b0618d482e3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all,<br>in order to build poky on Ubuntu 24.04, I have =
-needed this workaround to fix the error &quot;Errno 1 Operation not permitt=
-ed&quot; when disable_network (from bitbake/lib/bb/utils.py) attempts to wr=
-ite to the file /proc/self/uid_map:<br><br><span style=3D"color:rgb(0,0,0);=
-font-family:&quot;Ubuntu Mono variable&quot;,&quot;Ubuntu Mono&quot;,Consol=
-as,Monaco,Courier,monospace;font-size:12.8px">$ sudo apparmor_parser -R /et=
-c/apparmor.</span><span style=3D"color:rgb(0,0,0);font-family:&quot;Ubuntu =
-Mono variable&quot;,&quot;Ubuntu Mono&quot;,Consolas,Monaco,Courier,monospa=
-ce;font-size:12.8px">d/unprivileged_</span><span style=3D"color:rgb(0,0,0);=
-font-family:&quot;Ubuntu Mono variable&quot;,&quot;Ubuntu Mono&quot;,Consol=
-as,Monaco,Courier,monospace;font-size:12.8px">userns<br></span><br>For deta=
-ils, see=C2=A0<a href=3D"https://bugs.launchpad.net/ubuntu/+source/dash/+bu=
-g/2056555">https://bugs.launchpad.net/ubuntu/+source/dash/+bug/2056555</a><=
-div><br></div><div>=C3=89tienne</div></div>
-
---0000000000005f0f4b0618d482e3--
+>
+> $ sudo apparmor_parser -R /etc/apparmor.d/unprivileged_userns
+>
+> For details, see https://bugs.launchpad.net/ubuntu/+source/dash/+bug/2056=
+555
+>
+> =C3=89tienne
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63137): https://lists.yoctoproject.org/g/yocto/messag=
+e/63137
+> Mute This Topic: https://lists.yoctoproject.org/mt/106192359/3617156
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [martin.jansa@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
