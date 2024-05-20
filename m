@@ -1,56 +1,204 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F821C04FFE
-	for <webhook@archiver.kernel.org>; Mon, 20 May 2024 07:47:34 +0000 (UTC)
-Subject: runqemu qemux86-64
-To: yocto@lists.yoctoproject.org
-From: "SasiKumar E" <sasikumar.e@fdss.co.in>
-X-Originating-Location: Tiruchi, Tamil Nadu, IN (122.165.190.191)
-X-Originating-Platform: Linux Chrome 124
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD9A7C41513
+	for <webhook@archiver.kernel.org>; Mon, 20 May 2024 22:38:30 +0000 (UTC)
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+ by mx.groups.io with SMTP id smtpd.web10.6326.1716244707813737135
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 20 May 2024 15:38:28 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=XrIklSRn;
+ spf=pass (domain: gmail.com, ip: 209.85.218.54, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a59cdd185b9so1195846766b.1
+        for <yocto@lists.yoctoproject.org>; Mon, 20 May 2024 15:38:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716244706; x=1716849506; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yLC9nhZaRrINPgrM2TGMKeoCW4O9lsE09YI9wNiTKZE=;
+        b=XrIklSRnSCq1/nA45sM3U3AvRKMMlTd0nWlftiHoXX1NHlqam9+qIKCPK761ElpBxT
+         NpRKoOx2ZHeKW1CG8Wip6l1bI2EkHZoyiuELRTgC6bh0wQHhbzvhZO0yt4scBuj3lOhQ
+         vJcJOiFs4FbISg8qL3OxLW+KzFd7HIf2tjfJxv1/MoII55FYABmK5Ks5htlBmWBkIw2M
+         sRB9vVM/eO5fKiXdYIyUneoyQBxXaa1dt0L68DUrGQ2d5nyU3Cdor6WPLYm9b0iYpBug
+         sb+8HKZkIk/M9Qy9K5FfNKhbD2YUgumbbKYjidUthQYIpPOWsnsT/crhFV1fte6dOUq2
+         d87A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716244706; x=1716849506;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yLC9nhZaRrINPgrM2TGMKeoCW4O9lsE09YI9wNiTKZE=;
+        b=RhqpV1upNpeAUpmb6OJk0Epx5zuA5hAi0heHnUON5biCSa0e64HZy3o2fJtMZz5+0x
+         NjiUJQLCgGhgxKVgS/cSUMKAEW6JLv0g+Br/jABIF2se5aca9CXGl1dnamfWJp4R7pII
+         jn7TKi1FIv7vPxQnUBXzJ4aoTLLzfjirn43+LfvP3DOO/2MB2K5ISD2S3Pih3xykCCvU
+         PjIJ1LNjewAA0/Q/lp4uZ87H3/nYsvhp0nPfspMdiz9DSy0T1tLTnUDc7AvTnV8DYq0O
+         MBCFk/j9CgDinTUfRUVU5RaGGQ3IZ4zG5c+wokjJ/gQ7mF5CgN0f/zMHiQ4wNv+xBpzj
+         lWRw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFAivLOdPmatzXEu3+347/OuRZun7XE6b9oFud5MObiNJaN6DW29Qx5XDpe/o/JzVwloWGlZRJM8d6tAr/ZVPGGXJUQSh4FEtSTwup
+X-Gm-Message-State: AOJu0Yy05PDSyRR2hQwXIggFNDlkWrPyRe4bYK1ADmDLR7YfHhXMUAer
+	lkGh2kHYJtg8DTUIIZNNN9OYx+xvnxzPnQ5Xb24MMGAF0GZJKrIfQigSjqgFv/3YGcbsi9e0zaX
+	v1Pi/HWXYOrt1m3Q3S4ScbasKl+k=
+X-Google-Smtp-Source: AGHT+IHKDlptMGFwXiUinHhVJYQWgD4yvLFZ0QrYe3tQpSMJWKObnvuhlerUdeTwEJpfMm0L5VeujWWHsupXtRrYNFs=
+X-Received: by 2002:a17:907:c91b:b0:a5c:e82c:42da with SMTP id
+ a640c23a62f3a-a5d5903b785mr604824466b.6.1716244705950; Mon, 20 May 2024
+ 15:38:25 -0700 (PDT)
 MIME-Version: 1.0
-Date: Sun, 19 May 2024 21:59:19 -0700
-Message-ID: <vSKx.1716181159836412366.VStY@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="91thBGx5hLqzcLd3R24d"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 20 May 2024 15:38:15 -0700
+Message-ID: <CAK5yBb-UOg9PZ1=j7s4JxFZQocWZ2Lq=u7y1n-GqWuQqNTu-yA@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000000bc5f20618ea5cf6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 20 May 2024 07:47:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63139
+ <yocto@lists.yoctoproject.org>; Mon, 20 May 2024 22:38:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63140
 
---91thBGx5hLqzcLd3R24d
-Content-Type: text/plain; charset="utf-8"
+--0000000000000bc5f20618ea5cf6
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I followed all the instructions as per the quick build, initially qemu had =
-run for the second time it is not working and resulting to this error
+All,
 
-runqemu - INFO - Running MACHINE=3Dqemux86-64 bitbake -e =C2=A0...
-runqemu - ERROR - /home/perdaa/poky/build/tmp/deploy/images/qemux86-64 not =
-a directory valid DEPLOY_DIR_IMAGE
-ls: cannot access '/home/perdaa/poky/build/tmp/deploy/images/qemux86-64/*.q=
-emuboot.conf': No such file or directory
-runqemu - ERROR - Command 'ls -t /home/perdaa/poky/build/tmp/deploy/images/=
-qemux86-64/*.qemuboot.conf' returned non-zero exit status 2.
-runqemu - INFO - Cleaning up
-runqemu - INFO - Host uptime: 278.63
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
---91thBGx5hLqzcLd3R24d
-Content-Type: text/html; charset="utf-8"
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 417
+unassigned or newcomer bugs.
+
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, "5.99" and=
+ "Future", the more
+pressing/urgent issues being in "5.0" and then =E2=80=9C5.1=E2=80=9D.
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--0000000000000bc5f20618ea5cf6
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I followed all the instructions as per the quick build, initially qemu had =
-run for the second time it is not working and resulting to this error&nbsp;=
-<br /><br /><br />runqemu - INFO - Running MACHINE=3Dqemux86-64 bitbake -e =
-&nbsp;...<br />runqemu - ERROR - /home/perdaa/poky/build/tmp/deploy/images/=
-qemux86-64 not a directory valid DEPLOY_DIR_IMAGE<br />ls: cannot access '/=
-home/perdaa/poky/build/tmp/deploy/images/qemux86-64/*.qemuboot.conf': No su=
-ch file or directory<br />runqemu - ERROR - Command 'ls -t /home/perdaa/pok=
-y/build/tmp/deploy/images/qemux86-64/*.qemuboot.conf' returned non-zero exi=
-t status 2.<br />runqemu - INFO - Cleaning up<br />runqemu - INFO - Host up=
-time: 278.63
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 417 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, &quot;5.99&quot; and &quot;Future&quot;=
+, the more pressing/urgent issues being in &quot;5.0&quot; and then =E2=80=
+=9C5.1=E2=80=9D.<br><br>Please review this link and if a bug is something y=
+ou would be able to help with either take ownership of the bug, or send me =
+(<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an=
+ e-mail with the bug number you would like and I will assign it to you (ple=
+ase make sure you have a Bugzilla account).  The list is at: <a href=3D"htt=
+ps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_B=
+ugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Ne=
+wcomer_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
+martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"=
+MsoNormal" style=3D"background-image:initial;background-position:initial;ba=
+ckground-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sa=
+ns-serif">Thanks,<span></span></span></p>
 
---91thBGx5hLqzcLd3R24d--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--0000000000000bc5f20618ea5cf6--
 
