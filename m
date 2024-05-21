@@ -1,126 +1,143 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <kunin@google.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ECFE1C25B7A
-	for <webhook@archiver.kernel.org>; Tue, 21 May 2024 14:55:05 +0000 (UTC)
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
- by mx.groups.io with SMTP id smtpd.web11.20644.1716300705333226627
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BEC12C25B75
+	for <webhook@archiver.kernel.org>; Tue, 21 May 2024 20:39:26 +0000 (UTC)
+Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
+ by mx.groups.io with SMTP id smtpd.web10.960.1716323958149279900
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 May 2024 07:11:45 -0700
+ Tue, 21 May 2024 13:39:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=NbwUP4CP;
- spf=pass (domain: gmail.com, ip: 209.85.214.171, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1ed41eb3382so1799385ad.0
-        for <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 07:11:45 -0700 (PDT)
+ dkim=pass header.i=@google.com header.s=20230601 header.b=2ohVFZHB;
+ spf=pass (domain: flex--kunin.bounces.google.com, ip: 209.85.128.202, mailfrom: 3dqznzgukbe4akdydweewbu.secoesjebyiji.oesjefhezusj.ehw@flex--kunin.bounces.google.com)
+Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-62035d9ecc4so255827077b3.1
+        for <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 13:39:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716300704; x=1716905504; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NRHkl1DKNHupPek2cicyxTRgS8w6piiTOHbk73tFtxs=;
-        b=NbwUP4CPC1rI4FZHsXsMZ9Re6xeFY6GDM8msCNZ86E5sAa4WHnVHpB97VPgprRoNkC
-         QagOP6Vg2joyxNQV3QqOFTVhDWAeS+W2+bBdZTEsApVRfIlgdjFc+wxnsjJlcHjA0YZp
-         KauzgwjAWRI7kxSRO0gwlde9Ql1Gn0pAGvhmFlWADvf/8mjQPNJ0NivHZr6edjDiySTy
-         yMJ+vLOp6JTTf7eQyMOacIMrLPyvvzd4RpkYEovR9yXJVB3V60CMtC0b360uF9N0VL+I
-         gor0UFdKwNMWszBMMHePglL0UQi+Frtwt3Ida7nxVD+c8MjuWV3ueZ3i5As8WSUafANb
-         5esA==
+        d=google.com; s=20230601; t=1716323957; x=1716928757; darn=lists.yoctoproject.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=MvhFNjuNubNm45A0gB4jzMUb9DWFibD2sJznJq2DGc0=;
+        b=2ohVFZHBRSLcC+SclDaZcAhn1AqHbEXJ1Kvw90/zbHqT/hpX8N0w/gIxT6M3ZMjxse
+         m9oMKJgCl4PMz1rwrZJNMTsHAL1xPYrb+RCrMc8DHPbQkFcNrJgKSnCboBKLRBHDZo4S
+         sqlOurM+1CkrH8A6J3ZVBikXT42djQ1K3bQ7VQGY8EWmUlybCVuHqs+umGprSueZB6JB
+         GtelRA0Utqt43PRR0v5IhuHZjzN/a3hcUjWSXllrNoD0PHk4XytAQzzKzj/38sygiuc1
+         NJxQUmQHJk93zceim9lBxQyG+AwwtyJsCMc9lWkaMd3XANZMc3uGv80gm9NXEJk9796a
+         moYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716300704; x=1716905504;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NRHkl1DKNHupPek2cicyxTRgS8w6piiTOHbk73tFtxs=;
-        b=VEjOS2k76RO6sHUBXQ6YL8adodKk4VL0qZ53A1+JYb6RoP1D62IuIAnkWn/tcPynok
-         BTYQdE+Z1za3SJGSwB60iOLJF8WEDZHA7u7Tj4XBSlvJoYMSzVrQwGECDr/z04T6bZ/G
-         kx3J4k0d07ElXkJM1G9jCMs5Iz2VS+c1RhS+ePRt+vOM5duqC93lGP9UwOhoPkd5w81d
-         tAs97gmbDyS5JvhzBFA26FtmoQZbI6gesuZneNMtQtz41CcTLsWH8/rZpy306DBa0OYl
-         S8QiJTQEf0XU/ySM+GXKmD3/GCJttf+X/pU+h35QJRptWsksT4WZKY6iTydc8LyAqnYo
-         EzpA==
-X-Gm-Message-State: AOJu0Yz0xcmfsrOLaxzQCLGqnqJZNFFKQ6vumbgIjdDvpNGqUIWS+r6d
-	DNfWO3WB+2eslV0uE5n/jLJ8DsRfUy0X/v2Y8NL9Xj9Hqctkg5HkgMCjRfCh3fVOyIxafGrwIAv
-	DC3F+/x6bfbcvflF4Lbt3rjAeawurowM95II=
-X-Google-Smtp-Source: AGHT+IFps0jJAoW/eG8Gh7p5AWbaEhXYRyYstY0CrI7K63dLrBU+kFDGyM9HH+NRByxA2TKs0ofeLGwis9l7HNIMuU4=
-X-Received: by 2002:a17:902:f683:b0:1f3:4e4:f76a with SMTP id
- d9443c01a7336-1f304e53670mr72396185ad.65.1716300703988; Tue, 21 May 2024
- 07:11:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <jYQv.1716298736518064029.eGIf@lists.yoctoproject.org>
-In-Reply-To: <jYQv.1716298736518064029.eGIf@lists.yoctoproject.org>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Tue, 21 May 2024 16:11:32 +0200
-Message-ID: <CAGAf8LxoACaZ3wXp6whZbxbPMcR=M0TcmGeKjE7+G3XpRsTvUw@mail.gmail.com>
-Subject: Re: [yocto] Git Auth error on ls-remote (git-remote-https) since update to Yocto-5.0
-To: yocto@lists.yoctoproject.org, lukas.weiss@janitza.de
+        d=1e100.net; s=20230601; t=1716323957; x=1716928757;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MvhFNjuNubNm45A0gB4jzMUb9DWFibD2sJznJq2DGc0=;
+        b=Q+O1FqY4ZRTvJvVXKX1srBkYPNoR9fmG2UVWLAmV7wHwc1ISBLRVsMvn56MkolSLrp
+         qI+SW9mnmPpr5ZbzKl1XDrWHpu9/+VzyE0O44ehfVwplKS5kPaMHL2hDxxcJVA0tzRnk
+         mFETzQNxvopNpfKO3Wj90KP9IXzz2p3dtKo4dL1KtWbtXAIFNDsfCjmmtmmOJe2oo4Es
+         HNDNwDhKlIVzTPdo2XJUBxUQRd2NmZDnaetU7j82tHFJOUqeERJUqYwqZxTS4kruTJyH
+         P+CXgbiLQchr1u9rx7Zeoezw4ezRBjEuDaBIRLM2q/xHmZhW9L4PCrocUqWQ8ZpRQ+qW
+         e/jQ==
+X-Gm-Message-State: AOJu0Yx2obHk7LIIn1DIN2VuzI7j3Ugto2Kbb8cZVXFxP4mr4GehzdGW
+	ruVf5amGwH9LxZPeveyKXBkLoDMmhUO8nFa7dRgESDK7rXIzYD4QhWeum1rluQHZn4zZ9SBofSb
+	SQiC15yJ9Ys6uaHp74I3jATYgFn8tzw7tSPIC3+STkMPy+ap0VJXzPSVgL5oFGJSl8YzlrcJm7z
+	z8tQIuf7pW2kieTOX5Ke7FDL/hMURCTlkYCC0=
+X-Google-Smtp-Source: AGHT+IGJg1PzP7irygSPBAWcu5OsNwLpHcGJqR3QtCKsc/tz/TYJ6XHawz34vGNMsch+kYLEnMeREChvrw==
+X-Received: from skl.c.googlers.com ([fda3:e722:ac3:cc00:20:ed76:c0a8:9ef])
+ (user=kunin job=sendgmr) by 2002:a25:ab14:0:b0:df4:9d0c:5c60 with SMTP id
+ 3f1490d57ef6-df4e0be3f90mr63570276.7.1716323957244; Tue, 21 May 2024 13:39:17
+ -0700 (PDT)
+Date: Tue, 21 May 2024 20:39:11 +0000
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.45.1.288.g0e0cd299f1-goog
+Message-ID: <20240521203911.1107365-1-kunin@google.com>
+Subject: [meta-security][PATCH] tpm2-tss: upgrade 4.0.1 -> 4.1.2
+From: kunin@google.com
+To: yocto@lists.yoctoproject.org
+Cc: jebr@google.com, kunin@google.com, benjaminfair@google.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 14:55:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63158
+ <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 20:39:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63159
 
-Looks like you are using wget2 fetcher instead of old good wget?!
+From: Valentin Kunin <kunin@google.com>
 
-Which distro on the host are you using? Fedora? Or something else?
+Bump tpm2-tss library version from 4.0.1 to 4.1.2.
 
-Please, start reading from here!
+This simply involves renaming the recipe and chaning the target SHA256
+library file hash.
 
-https://lists.yoctoproject.org/g/yocto/message/63118
+Also update the fixup_hosttools.patch to apply to the new version of the
+library. It stays the same functionally, but some line numbers needed to
+be updated to apply cleanly.
 
-Zee
-_______
+Signed-off-by: Valentin Kunin <kunin@google.com>
+---
+ .../tpm2-tss/tpm2-tss/fixup_hosttools.patch   | 25 +++++++++++++------
+ .../{tpm2-tss_4.0.1.bb => tpm2-tss_4.1.2.bb}  |  2 +-
+ 2 files changed, 19 insertions(+), 8 deletions(-)
+ rename meta-tpm/recipes-tpm2/tpm2-tss/{tpm2-tss_4.0.1.bb => tpm2-tss_4.1.2.bb} (97%)
 
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/fixup_hosttools.patch b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/fixup_hosttools.patch
+index 3f680ba..8822d1b 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/fixup_hosttools.patch
++++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/fixup_hosttools.patch
+@@ -1,17 +1,26 @@
+-revert configure: add checks for all tools used by make install
++From ab120a9642516cdfdae5c5b8a91e42e2c9898172 Mon Sep 17 00:00:00 2001
++From: Valentin Kunin <kunin@google.com>
++Date: Mon, 20 May 2024 21:09:27 +0000
++Subject: [PATCH] revert configure: add checks for all tools used by make
++ install
+ 
+ Not appropriate for cross build env.
+ 
+ Upstream-Status: Inappropriate [OE specific]
++
+ Signed-off-by: Armin Kuster <akuster808@gmail.com>
++Signed-off-by: Valentin Kunin <kunin@google.com>
++---
++ configure.ac | 11 -----------
++ 1 file changed, 11 deletions(-)
+ 
+-Index: tpm2-tss-4.0.1/configure.ac
+-===================================================================
+---- tpm2-tss-4.0.1.orig/configure.ac
+-+++ tpm2-tss-4.0.1/configure.ac
+-@@ -554,17 +554,6 @@ AM_CONDITIONAL(SYSD_SYSUSERS, test "x$systemd_sysusers" = "xyes")
++diff --git a/configure.ac b/configure.ac
++index eb6051ea..a52c4725 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -663,17 +663,6 @@ AM_CONDITIONAL([SYSD_SYSUSERS], [test "x$systemd_sysusers" = "xyes" && test "x$s
+  AC_CHECK_PROG(systemd_tmpfiles, systemd-tmpfiles, yes)
+- AM_CONDITIONAL(SYSD_TMPFILES, test "x$systemd_tmpfiles" = "xyes")
++ AM_CONDITIONAL([SYSD_TMPFILES], [test "x$systemd_tmpfiles" = "xyes" && test "x$tmpfilesdir" != "xno"])
+  
+ -# Check all tools used by make install
+ -AS_IF([test "$HOSTOS" = "Linux" && test "x$systemd_sysusers" != "xyes"],
+@@ -27,3 +36,5 @@ Index: tpm2-tss-4.0.1/configure.ac
+  AC_SUBST([PATH])
+  
+  dnl --------- Doxy Gen -----------------------
++-- 
++2.45.0.rc1.225.g2a3ae87e7f-goog
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.1.2.bb
+similarity index 97%
+rename from meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb
+rename to meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.1.2.bb
+index dceebc2..9e68983 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.0.1.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_4.1.2.bb
+@@ -10,7 +10,7 @@ SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN
+            file://fixup_hosttools.patch \
+            "
+ 
+-SRC_URI[sha256sum] = "532a70133910b6bd842289915b3f9423c0205c0ea009d65294ca18a74087c950"
++SRC_URI[sha256sum] = "6ad3ef0993cf3bc953710abed847ff727ab427b5577e812e3ad3197bbcec069e"
+ 
+ UPSTREAM_CHECK_URI = "https://github.com/tpm2-software/${BPN}/releases"
+ 
+-- 
+2.45.1.288.g0e0cd299f1-goog
 
-
-
-
-On Tue, May 21, 2024 at 3:38=E2=80=AFPM Lukas Wei=C3=9F via lists.yoctoproj=
-ect.org
-<lukas.weiss=3Djanitza.de@lists.yoctoproject.org> wrote:
->
-> Hello there,
-> i just updated our Yocto Project to latest 5.0 release. First tests went =
-well, but now after a subsequent repo-update (tag=3Dyocto-5.0) i have probl=
-ems with call of most bitbake calls because of an error in some recipes wit=
-h code in our own repository: Clean build runs without problems, but when i=
- run fetch for any recipe, i get the following error:
->
-> $ bitbake -C fetch myapp
-> ...
-> bb.data_smart.ExpansionError: Failure expanding variable fetcher_hashes_d=
-ummyfunc[vardepvalue], expression was ${@bb.fetch.get_hashvalue(d)} which t=
-riggered exception FetchError: Fetcher failure: Fetch command export PSEUDO=
-_DISABLED=3D1; export DBUS_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/115=
-10/bus"; export GIT_SSH=3D"/home/admin/workspaces/yocto/build/conf/ssh_util=
-/yocto_ssh.sh"; export PATH=3D"(...)"; export HOME=3D"/home/admin"; git -c =
-gc.autoDetach=3Dfalse -c core.pager=3Dcat -c safe.bareRepository=3Dall ls-r=
-emote https://gitreader:XXXXXXXXXX@repo.srv/swupdate.git  failed with exit =
-code 128, output:
-> fatal: Authentication failed for 'https://repo.srv/swupdate.git/'
->
-> (shortened, full output see attachment; anonymized)
->
-> My Recipe of swupdate uses
->
-> SRC_URI =3D "git://repo.srv/swupdate.git;protocol=3Dhttps;user=3D${AUTH_S=
-CM_USER}:${AUTH_SCM_PASSWD};branch=3D${BRANCH}"
->
-> I have multiple Recipes using this scheme, most are working, three not. I=
- can not find a difference. When i run the given command (green) with hosts=
- git, everything works fine (so it is not really a auth problem!)
->
-> I figured out, that the problem belongs to the git ls-remote command of t=
-he git-remote-https program in recipes recipe-sysroot-native dir (u-boot-pl=
-at/2019.01-/recipe-sysroot-native/usr/share/git-core/git-remote-https). I c=
-an even reproduce this, when i run the ls-remote git command manually with =
-my hosts git, with GIT_EXEC_PATH-Env variable set to the git-core dir in re=
-cipe-sysroot-native.  When i replace the git-remote-https program with the =
-hosts one, everything runs fine.
->
-> Any ideas what is going wrong here?
->
-> PS: I didn't have the Problem on older Yocto-Versions.
->=20
->
 
