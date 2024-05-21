@@ -2,94 +2,130 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CCDADC25B74
-	for <webhook@archiver.kernel.org>; Tue, 21 May 2024 14:26:15 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.21045.1716301573354198107
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CF113C25B74
+	for <webhook@archiver.kernel.org>; Tue, 21 May 2024 14:27:45 +0000 (UTC)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+ by mx.groups.io with SMTP id smtpd.web11.21078.1716301663403383717
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 May 2024 07:26:13 -0700
+ Tue, 21 May 2024 07:27:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=TXPKLJ4C;
- spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2e3efa18e6aso36898281fa.0
-        for <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 07:26:13 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=nd3sNFhO;
+ spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2e34e85ebf4so46312491fa.2
+        for <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 07:27:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716301571; x=1716906371; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SrUZh0o56aU6PlkoOj7gwDJQuQARsYDSfoiistBoX20=;
-        b=TXPKLJ4C5U3kSXlH9iD07ShcoRxsnkdbulyy3R26aT5xPG1Ihx/fKoK2r+Me9nMEYE
-         qblbhpQUUuVlCH2DbyHbE/1c2ml3g+kXfdN69U1mm5TM3el9Jg7bfszDknYVr3FGl7uQ
-         OmTuzd2gLtNSuUk8qkGnckIUQNjqRE+3foqm6miaBK4QZwHUS+2yIxdEGry+XSTrwiNP
-         ve/NbnhW+mYXMRXjZ3jlk2TAGsbP/dXUU9JZDPwIqqJGGVkZPN8Zjge845JjKYvaawvD
-         j9FbOFkCyq03Wt2ovbemW/c/jN10a6IpnnM9jNv6w00gw0kZAP9gXYp99/jtkipH2yLf
-         iQeg==
+        d=gmail.com; s=20230601; t=1716301661; x=1716906461; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qgxB9jsV5EGIHIWklpquGdRoXkRk0w/Pma/3mishNNM=;
+        b=nd3sNFhOq3j31Cq5TEdvr7M0Xj8ewt5cBo2yNsiW3OJsO+Csr0qNwoGkCdjBCA4wZK
+         J311HEliICgeFVmxzmbPM5SlCtfB9Rt1oT99ux5x7Hi+dbH+Izm65OvrkC9QC5w2fn8B
+         7rkonqzhJhVWC4+EJ9a0batYWjWcopWgRGK3epAD5MW+ztBEuYDZauFeFCLrI95aA3or
+         XDNVKUzyp8B8gJCxA/i4v6FKh16TN+JkQKfa/c+7tKkcCZFvfDzBOR1+EG9/GqKXJiZH
+         CJTiisfoVX81FuKi3Fob5xBrCscOVUE6KiCeFgimJD30yZeHvs9PqpHKN80lJTQpBIUA
+         s2FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716301571; x=1716906371;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SrUZh0o56aU6PlkoOj7gwDJQuQARsYDSfoiistBoX20=;
-        b=Ldi77HLR8x+DNMXROfCD/5zkr2YyS/MZakzNAa6zyJz7p39pQI/rawBeD2smDlDRUK
-         UJJnmX+PEGAO1jTYE+1ftunwVh1msJ4njQy/yZyVxdKyrBVLaL9YLGleZU5Yt4Yg+kr+
-         J816PGP2D7nnnRSBgVWvB7QPSS0Bu2GFxalcnu4as5pYWBXMkrZmRtIpdF50Pnea6LZw
-         Y0qoIySDlEYt2LC4MWFiSwT5Hx9GgDszqz77KwkYVtbwWqWtQ5xM+bnd4k+jzofLMQBF
-         m0h6l/A6r4+a4K7gmbixlnCMmIIyoFp02dzx9yloqMmRcWEURkaySO7b9JKWcyiWWvwn
-         UU9A==
-X-Gm-Message-State: AOJu0Ywz149aNHTg1LsZi72VixtRv77nvDmVLW4ODL4ZavOGaGiseyns
-	d8tBMZvUafa4zLlk4SM3pF+EhhQvU2LsK5fK//NvuB4ietyMF3NvLFamIdL2GoYvHMXMh2q9VFI
-	cYkC5oGMu3Z/pCgZ1FFNFvG3PWMbrAw==
-X-Google-Smtp-Source: AGHT+IFgjLnlkaZgSP7EYi7Ez8VlQwK/gVDWP5AqTqPouxnLsF94JvVJo4bkLLSHwqtDQ/qfVb5WudyNKFpYxbV0EFc=
-X-Received: by 2002:a2e:98d2:0:b0:2e1:ff62:d92 with SMTP id
- 38308e7fff4ca-2e7171b80demr29705961fa.19.1716301571138; Tue, 21 May 2024
- 07:26:11 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716301661; x=1716906461;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qgxB9jsV5EGIHIWklpquGdRoXkRk0w/Pma/3mishNNM=;
+        b=haLNa8BHwbj9i7/GoT0ZiHtF7zybLWPEd8q6qjSmYNYjDvezoG80hMKbTm1FUihwYi
+         QF6k8lCO7qY2sNGK8mw4M6O0YPFHnY3Kix/MUZNsR/FoKyHN7iy/2ZfNY8IeHikxHU/K
+         wpUdIjuU7hlbaBEb7ftq2fhQazDMAsOVJWKw8vkJ8O1dDboWF3MRKeKE/hVAOoZwx9ev
+         7TC7wwrE09zFypn+bK6yMSwLUFjvhMkvdlwQr/2DlNMvEFtbYKQa3J6sA9dfUdGWBKlO
+         p1yxt9+ACzIwi4r0/35wxSL7VfGdaM1ekhpioWmhMuGNxQzBi+i60IS98EgMo3AhHcO5
+         GsjA==
+X-Gm-Message-State: AOJu0YwNTBkovv2tOcG3aJ2QrJlo24qUIwvJlMmuRhcv1jM395rZhUoM
+	a3VyvakmgEP6P8/UDb3zOO3c8yVzx20NQq9DnHTOr1UlDoPFoMU2kHB62yC4s6ACmuZ2FdL0wcb
+	CItvrWqQ1u5MYNzhkUgTmvWfcjseiRw==
+X-Google-Smtp-Source: AGHT+IGGq9bT04X6idN89zp99K7sxbuCuVjgKkp+0o66kEiGSRBCG5PEL2KhbrPsszApN0qZxGG3abixarS/9O8lewU=
+X-Received: by 2002:a2e:9dc3:0:b0:2e2:72a7:843f with SMTP id
+ 38308e7fff4ca-2e52028ae76mr183039091fa.35.1716301661011; Tue, 21 May 2024
+ 07:27:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <CANNYZj8Vm-PZ+3ARi12HjqGZ0UnvMWqNYPsNRjg0zveTc0T9CA@mail.gmail.com>
- <9920.1716301235291965196@lists.yoctoproject.org>
-In-Reply-To: <9920.1716301235291965196@lists.yoctoproject.org>
+References: <jYQv.1716298736518064029.eGIf@lists.yoctoproject.org>
+In-Reply-To: <jYQv.1716298736518064029.eGIf@lists.yoctoproject.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 21 May 2024 16:25:59 +0200
-Message-ID: <CANNYZj_rwBL+uXQvsm9n=ZZikEZoC2Os97qX_M92ZAWK_TwyVQ@mail.gmail.com>
-Subject: Re: [yocto] runqemu qemux86-64
-To: yocto@lists.yoctoproject.org, sasikumar.e@fdss.co.in
+Date: Tue, 21 May 2024 16:27:29 +0200
+Message-ID: <CANNYZj_Ur679b81UQo+yTfQ6hud_xdK2K-AXT2O+hOVJpory1Q@mail.gmail.com>
+Subject: Re: [yocto] Git Auth error on ls-remote (git-remote-https) since
+ update to Yocto-5.0
+To: yocto@lists.yoctoproject.org, lukas.weiss@janitza.de
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 14:26:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63155
+ <yocto@lists.yoctoproject.org>; Tue, 21 May 2024 14:27:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63156
 
-You need to re-run bitbake after you make changes to configuration in
-build/conf/local.conf or other files there.
-
-runqemu itself won't trigger a rebuild, it only starts qemu. If for
-example the machine changes, then the files are going to be expected
-in different locations and only bitbake will place them there.
+Supplying passwords this way is a terrible idea, and isn't supported
+(there's a comment in git fetcher source stating that explicitly). You
+should transition everything to ssh (at which point the issue will go
+away anyway), or place the https secrets into a more secure location
+(man gitcredentials may help).
 
 Alex
 
-On Tue, 21 May 2024 at 16:20, SasiKumar E via lists.yoctoproject.org
-<sasikumar.e=fdss.co.in@lists.yoctoproject.org> wrote:
+
+
+
+
+On Tue, 21 May 2024 at 15:38, Lukas Wei=C3=9F via lists.yoctoproject.org
+<lukas.weiss=3Djanitza.de@lists.yoctoproject.org> wrote:
 >
-> Hi Alex
+> Hello there,
+> i just updated our Yocto Project to latest 5.0 release. First tests went =
+well, but now after a subsequent repo-update (tag=3Dyocto-5.0) i have probl=
+ems with call of most bitbake calls because of an error in some recipes wit=
+h code in our own repository: Clean build runs without problems, but when i=
+ run fetch for any recipe, i get the following error:
 >
-> I am sasikumar,
-> I am an embedded design engineer, i am new to yocto Linux, i have done the step-by-step procedure provided in the yocto project quick build and was able to run QEMU, after that I tried to configure the machine name in local.conf file and it failed
-> thus I again tried to run the QEMU by changing the values to default in local.conf file, it failed with the respective error
+> $ bitbake -C fetch myapp
+> ...
+> bb.data_smart.ExpansionError: Failure expanding variable fetcher_hashes_d=
+ummyfunc[vardepvalue], expression was ${@bb.fetch.get_hashvalue(d)} which t=
+riggered exception FetchError: Fetcher failure: Fetch command export PSEUDO=
+_DISABLED=3D1; export DBUS_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/115=
+10/bus"; export GIT_SSH=3D"/home/admin/workspaces/yocto/build/conf/ssh_util=
+/yocto_ssh.sh"; export PATH=3D"(...)"; export HOME=3D"/home/admin"; git -c =
+gc.autoDetach=3Dfalse -c core.pager=3Dcat -c safe.bareRepository=3Dall ls-r=
+emote https://gitreader:XXXXXXXXXX@repo.srv/swupdate.git  failed with exit =
+code 128, output:
+> fatal: Authentication failed for 'https://repo.srv/swupdate.git/'
 >
-> runqemu - INFO - Running MACHINE=qemux86-64 bitbake -e ...
-> runqemu - ERROR - /home/perdaa/poky/build/tmp/deploy/images/qemux86-64 not a directory valid DEPLOY_DIR_IMAGE
-> ls: cannot access '/home/perdaa/poky/build/tmp/deploy/images/qemux86-64/*.qemuboot.conf': No such file or directory
-> runqemu - ERROR - Command 'ls -t /home/perdaa/poky/build/tmp/deploy/images/qemux86-64/*.qemuboot.conf' returned non-zero exit status 2.
-> runqemu - INFO - Cleaning up
-> runqemu - INFO - Host uptime: 278.63
+> (shortened, full output see attachment; anonymized)
 >
-> I totally  deleted the poky folder and again redone the process yet it is still getting the error, how to resolve this
-> -=-=-=-=-=-=-=-=-=-=-=-
+> My Recipe of swupdate uses
+>
+> SRC_URI =3D "git://repo.srv/swupdate.git;protocol=3Dhttps;user=3D${AUTH_S=
+CM_USER}:${AUTH_SCM_PASSWD};branch=3D${BRANCH}"
+>
+> I have multiple Recipes using this scheme, most are working, three not. I=
+ can not find a difference. When i run the given command (green) with hosts=
+ git, everything works fine (so it is not really a auth problem!)
+>
+> I figured out, that the problem belongs to the git ls-remote command of t=
+he git-remote-https program in recipes recipe-sysroot-native dir (u-boot-pl=
+at/2019.01-/recipe-sysroot-native/usr/share/git-core/git-remote-https). I c=
+an even reproduce this, when i run the ls-remote git command manually with =
+my hosts git, with GIT_EXEC_PATH-Env variable set to the git-core dir in re=
+cipe-sysroot-native.  When i replace the git-remote-https program with the =
+hosts one, everything runs fine.
+>
+> Any ideas what is going wrong here?
+>
+> PS: I didn't have the Problem on older Yocto-Versions.
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#63154): https://lists.yoctoproject.org/g/yocto/message/63154
-> Mute This Topic: https://lists.yoctoproject.org/mt/106199430/1686489
+> View/Reply Online (#63152): https://lists.yoctoproject.org/g/yocto/messag=
+e/63152
+> Mute This Topic: https://lists.yoctoproject.org/mt/106223085/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 
