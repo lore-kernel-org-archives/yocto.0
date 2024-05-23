@@ -2,313 +2,115 @@ Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66339C25B75
-	for <webhook@archiver.kernel.org>; Thu, 23 May 2024 09:46:40 +0000 (UTC)
-Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
- by mx.groups.io with SMTP id smtpd.web10.10547.1716452500364560905
- for <yocto@lists.yoctoproject.org>;
- Thu, 23 May 2024 01:21:40 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=VbZynPjk;
- spf=pass (domain: gmail.com, ip: 209.85.215.194, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pg1-f194.google.com with SMTP id 41be03b00d2f7-65c5a29f7f0so2881412a12.1
-        for <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 01:21:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716452499; x=1717057299; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=sNmi9tABtouOGvMmHK4UOg+NFy/EEDsgoweB677u5XY=;
-        b=VbZynPjkEyU9aleRgWSTbDagc0kdGSuO5AjbYA9Qxz4K5iOK5ufWFh5ohSZyQqLzq0
-         qbZlqntHDKvqbnJyTerz5IkFKzND3spxUoBGm1+O2Wc62AH92/FRI8Ev2wkg5v2Hsb8w
-         CiXSKZ9pLdX0GnRaUuEw7abL8vivXlTBDGbwN6FgqybrGxD7V8ZMIXtZ0FDKRZS8jOlb
-         7D6OTihdkzt5ZzZ06ANl12vkS9OkZGuEC0LzMWoVIw4l+FvnXtEKk0YmbsI6fzviu/vI
-         siWPptz5BJGw35wzvTGowjUxguqsZOFrRlBjiE35u+UTvNlrDIq4zWK8UCc7+VC110F6
-         49SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716452499; x=1717057299;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sNmi9tABtouOGvMmHK4UOg+NFy/EEDsgoweB677u5XY=;
-        b=gj/tExrNJPYz8TfP/bFictm5HGZyvLNX2IYDTIhACPdTV8g3KqpUEik0XPg5L6N7sg
-         JjB3RIWbEFTUrSzhoGFMxmmFXJUourQJxVSdqs5dqsQ2PsadGAA9bUzKlkJiMQSbavhh
-         sWLIwEyQjUFOFFYXkt34xU0Zwl3/S6RJTeRl3Yd+DHseyrO0GzgWs/ucvJ7J6z6bDMNi
-         q5dYhf6QxVBygQAej/Gn907XPpF0sX5S4gp8efvyJr6vYVmxSvwkPrxApDEt+mzjApZv
-         x4RlondY54TR3J0/ajGVU+ghjA6qNeb0z9CblGcLpJg2gSo3QoXyfQmrL4i7KLZkK4CJ
-         AUkw==
-X-Gm-Message-State: AOJu0YwukSP62kSr/I4OQgvMHFvehM9wFSBBWg0PSdovkgkxXqjzH3PN
-	VJszo5Z2mzJD6IWYejh6vcRyuqt8vwhC3RQbxPRKGT44dPsJassfT57AXv3ow+DOpU/Yi6JjJyA
-	cNzwj06ToW3nJ4RQBn5VuHXZ9fwk4/57pKt2jBQ==
-X-Google-Smtp-Source: AGHT+IFs80YHKkpyVnJPGEeMVkA6crGhzLTp843aWaUy3cu9r95HkOXZvUm2sr46b+EOr2n4YxEK3MKn4r8JLUf81Do=
-X-Received: by 2002:a17:90b:10c:b0:2a0:2fb3:c1ff with SMTP id
- 98e67ed59e1d1-2bd9f450ad9mr4599815a91.15.1716452499341; Thu, 23 May 2024
- 01:21:39 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E376C25B79
+	for <webhook@archiver.kernel.org>; Thu, 23 May 2024 09:46:50 +0000 (UTC)
+Subject: Getting a list of recipes which accessed network during do_fetch
+To: yocto@lists.yoctoproject.org
+From: gauravpathak129@gmail.com
+X-Originating-Location: US (136.226.234.102)
+X-Originating-Platform: Windows Chrome 125
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 23 May 2024 10:21:27 +0200
-Message-ID: <CAGAf8LyERGTEWr-3wUX1wH-=1Shri=uq1Y+MrM8Jz0aWrxv8Og@mail.gmail.com>
-Subject: Still problems with my experimental bbb-yocto repo on branch scarthgap
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Cc: Quentin Schulz <quentin.schulz@cherry.de>, Ross Burton <Ross.Burton@arm.com>, 
-	Khem Raj <raj.khem@gmail.com>, Martin Jansa <martin.jansa@gmail.com>
-Content-Type: multipart/mixed; boundary="0000000000007f5da306191abd95"
+Date: Thu, 23 May 2024 01:27:31 -0700
+Message-ID: <lZoQ.1716452851320671080.ZUB7@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="pjp2C7cHyqmIiYhjiF5G"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 09:46:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63177
+ <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 09:46:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63178
 
---0000000000007f5da306191abd95
-Content-Type: text/plain; charset="UTF-8"
+--pjp2C7cHyqmIiYhjiF5G
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Yocto Folks.
+Hello Experts,
 
-Still interesting problems with my experimental bbb-yocto repo on
-branch  scarthgap.
+I am wondering if there is any built in "Yocto way" of listing all the reci=
+pes/packages which accessed network while fetching the source code during d=
+o_fetch().
 
-Let me remind you all what the issues were:
-https://lists.yoctoproject.org/g/yocto/message/63118
+Also, would like to list the recipes/packages which got its source code fro=
+m local file system and didn't accessed the network.
 
-Everything works after some temp fixes I made (with sticks and ropes),
-but with the latest kernel 6.1.45 I used, as a scarthgap Stage 1.
+I did a grep for "Trying Upstream" and "Fetcher accessed the network" and I=
+ indeed got the output something like
 
-Now, I replaced kernel 6.1.45 with kernel 6.9.0 (Stage 2),
+tmp-glibc/work/x86_64-linux/python3-flit-core-native/3.7.1-r0/temp/log.do_f=
+etch.80085:34:DEBUG: Trying Upstream
+tmp-glibc/work/x86_64-linux/python3-flit-core-native/3.7.1-r0/temp/log.do_f=
+etch.80085:36:DEBUG: Fetcher accessed the network with the command /usr/bin=
+/env wget -t 2 -T 30 --passive-ftp -P /home/gaurav/uno_yocto_cache/download=
+s 'https://files.pythonhosted.org/packages/source/f/flit/flit-3.7.1.tar.gz'
+tmp-glibc/work/x86_64-linux/unifdef-native/2.12-r0/temp/log.do_fetch.79254:=
+34:DEBUG: Trying Upstream
+tmp-glibc/work/x86_64-linux/unifdef-native/2.12-r0/temp/log.do_fetch.79254:=
+36:DEBUG: Fetcher accessed the network with the command /usr/bin/env wget -=
+t 2 -T 30 --passive-ftp -P /home/gaurav/uno_yocto_cache/downloads 'http://d=
+otat.at/prog/unifdef/unifdef-2.12.tar.xz'
+tmp-glibc/work/x86_64-linux/unifdef-native/2.12-r0/temp/log.do_fetch.79254:=
+324:DEBUG: Fetcher accessed the network with the command /usr/bin/env wget =
+-t 2 -T 30 --passive-ftp -P /home/gaurav/uno_yocto_cache/downloads 'http://=
+downloads.yoctoproject.org/mirror/sources/unifdef-2.12.tar.xz'
+tmp-glibc/work/x86_64-linux/pseudo-native/1.9.0+gitAUTOINC+c9670c27ff-r0/te=
+mp/log.do_fetch.86477:102:DEBUG: Trying Upstream
+tmp-glibc/work/x86_64-linux/pseudo-native/1.9.0+gitAUTOINC+c9670c27ff-r0/te=
+mp/log.do_fetch.86477:104:DEBUG: Fetcher accessed the network with the comm=
+and /usr/bin/env wget -t 2 -T 30 --passive-ftp -P /home/gaurav/uno_yocto_ca=
+che/downloads 'http://downloads.yoctoproject.org/mirror/sources/pseudo-preb=
+uilt-2.33.tar.xz'
+tmp-glibc/work/x86_64-linux/python3-installer-native/0.5.1-r0/temp/log.do_f=
+etch.82362:34:DEBUG: Trying Upstream
 
-I needed to rebase some patches, since they do NOT work for kernel 6.9.0 .
+But I would like to list only the package name such as unifdef-native pytho=
+n3-installer-native.
 
-And here very interesting things started to happen. Namely, kernel
-6.9.0 failed compiling in the last phase.
+--pjp2C7cHyqmIiYhjiF5G
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-The bbb-yocto_kernel-6.9.0.log file is attached.
+<p>Hello Experts,</p>
+<p>I am wondering if there is any built in "Yocto way" of listing all the r=
+ecipes/packages which accessed network while fetching the source code durin=
+g do_fetch().</p>
+<p>Also, would like to list the recipes/packages which got its source code =
+from local file system and didn't accessed the network.</p>
+<p>I did a grep for "Trying Upstream" and "Fetcher accessed the network" an=
+d I indeed got the output something like</p>
+<p><span style=3D"font-family: courier_newregular, courier;">tmp-glibc/work=
+/x86_64-linux/python3-flit-core-native/3.7.1-r0/temp/log.do_fetch.80085:34:=
+DEBUG: Trying Upstream</span><br /><span style=3D"font-family: courier_newr=
+egular, courier;">tmp-glibc/work/x86_64-linux/python3-flit-core-native/3.7.=
+1-r0/temp/log.do_fetch.80085:36:DEBUG: Fetcher accessed the network with th=
+e command /usr/bin/env wget -t 2 -T 30 --passive-ftp -P /home/gaurav/uno_yo=
+cto_cache/downloads 'https://files.pythonhosted.org/packages/source/f/flit/=
+flit-3.7.1.tar.gz'</span><br /><span style=3D"font-family: courier_newregul=
+ar, courier;">tmp-glibc/work/x86_64-linux/unifdef-native/2.12-r0/temp/log.d=
+o_fetch.79254:34:DEBUG: Trying Upstream</span><br /><span style=3D"font-fam=
+ily: courier_newregular, courier;">tmp-glibc/work/x86_64-linux/unifdef-nati=
+ve/2.12-r0/temp/log.do_fetch.79254:36:DEBUG: Fetcher accessed the network w=
+ith the command /usr/bin/env wget -t 2 -T 30 --passive-ftp -P /home/gaurav/=
+uno_yocto_cache/downloads 'http://dotat.at/prog/unifdef/unifdef-2.12.tar.xz=
+'</span><br /><span style=3D"font-family: courier_newregular, courier;">tmp=
+-glibc/work/x86_64-linux/unifdef-native/2.12-r0/temp/log.do_fetch.79254:324=
+:DEBUG: Fetcher accessed the network with the command /usr/bin/env wget -t =
+2 -T 30 --passive-ftp -P /home/gaurav/uno_yocto_cache/downloads 'http://dow=
+nloads.yoctoproject.org/mirror/sources/unifdef-2.12.tar.xz'</span><br /><sp=
+an style=3D"font-family: courier_newregular, courier;">tmp-glibc/work/x86_6=
+4-linux/pseudo-native/1.9.0+gitAUTOINC+c9670c27ff-r0/temp/log.do_fetch.8647=
+7:102:DEBUG: Trying Upstream</span><br /><span style=3D"font-family: courie=
+r_newregular, courier;">tmp-glibc/work/x86_64-linux/pseudo-native/1.9.0+git=
+AUTOINC+c9670c27ff-r0/temp/log.do_fetch.86477:104:DEBUG: Fetcher accessed t=
+he network with the command /usr/bin/env wget -t 2 -T 30 --passive-ftp -P /=
+home/gaurav/uno_yocto_cache/downloads 'http://downloads.yoctoproject.org/mi=
+rror/sources/pseudo-prebuilt-2.33.tar.xz'</span><br /><span style=3D"font-f=
+amily: courier_newregular, courier;">tmp-glibc/work/x86_64-linux/python3-in=
+staller-native/0.5.1-r0/temp/log.do_fetch.82362:34:DEBUG: Trying Upstream<b=
+r /><br /></span>But I would like to list only the package name such as <sp=
+an style=3D"font-family: courier_newregular, courier;">unifdef-native <span=
+ style=3D"font-family: courier_newregular, courier;">python3-installer-nati=
+ve.</span></span></p>
+<p>&nbsp;</p>
 
-Here is the issue (from bbb-yocto_kernel-6.9.0..log file):
-
-|   SYNC    include/config/auto.conf
-|   GEN     Makefile
-| make[2]: *** No rule to make target
-'arch/arm/boot/dts/am335x-boneblack.dtb'.  Stop.
-
-The file am335x-boneblack.dtb for kernel 6.9.0 is rebased in
-arch/arm/boot/dts/ti/omap/am335x-boneblack.dtb from
-arch/arm/boot/dts/am335x-boneblack.dtb .
-
-And this net pointer reflects the correct position of it (rebased 0002-patch):
-https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/recipes-kernel/linux/linux-stable-6.9/0002-dts-Remove-bbb-cape-i2c-definitions.patch
-
-And this is the kernel recipe:
-https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/recipes-kernel/linux/linux-stable_6.9.bb
-
-from:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
-
-I recompiled the whole thing from scratch. Introducing again
-.../poky/build and rebuilding from beginning with bitbake -k
-core-image-minimal
-
-Still: | make[2]: *** No rule to make target
-'arch/arm/boot/dts/am335x-boneblack.dtb'.  Stop.
-
-Where does this path come from? No idea!
-
-Should be: arch/arm/boot/dts/ti/omap/am335x-boneblack.dtb (as in 6.9.0) !?
-
-Thank you,
-Zee
-_______
-
---0000000000007f5da306191abd95
-Content-Type: application/octet-stream; name="bbb-yocto_kernel-6.9.0.log"
-Content-Disposition: attachment; filename="bbb-yocto_kernel-6.9.0.log"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lwiy1dd00>
-X-Attachment-Id: f_lwiy1dd00
-
-fCAgIENDICAgICAgZHJpdmVycy9paW8vYWRjL3RpX2FtMzM1eF9hZGMubwp8ICAgQVIgICAgICBk
-cml2ZXJzL252bWVtL2xheW91dHMvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL252bWVt
-L2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vYWRkYWMvYnVpbHQtaW4uYQp8ICAg
-QVIgICAgICBkcml2ZXJzL2lpby9hZmUvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL2lp
-by9hbXBsaWZpZXJzL2J1aWx0LWluLmEKfCAgIENDICAgICAgZHJpdmVycy9paW8vYnVmZmVyL2lu
-ZHVzdHJpYWxpby10cmlnZ2VyZWQtYnVmZmVyLm8KfCAgIEFSICAgICAgZHJpdmVycy9paW8vY2Rj
-L2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vY2hlbWljYWwvYnVpbHQtaW4uYQp8
-ICAgQVIgICAgICBkcml2ZXJzL2lpby9jb21tb24vY3Jvc19lY19zZW5zb3JzL2J1aWx0LWluLmEK
-fCAgIEFSICAgICAgZHJpdmVycy9paW8vY29tbW9uL2hpZC1zZW5zb3JzL2J1aWx0LWluLmEKfCAg
-IEFSICAgICAgZHJpdmVycy9paW8vY29tbW9uL2ludl9zZW5zb3JzL2J1aWx0LWluLmEKfCAgIEFS
-ICAgICAgZHJpdmVycy9paW8vY29tbW9uL21zX3NlbnNvcnMvYnVpbHQtaW4uYQp8ICAgQ0MgICAg
-ICBkcml2ZXJzL2lpby9idWZmZXIva2ZpZm9fYnVmLm8KfCAgIEFSICAgICAgZHJpdmVycy9paW8v
-Y29tbW9uL3NjbWlfc2Vuc29ycy9idWlsdC1pbi5hCnwgICBBUiAgICAgIGRyaXZlcnMvaWlvL2Nv
-bW1vbi9zc3Bfc2Vuc29ycy9idWlsdC1pbi5hCnwgICBBUiAgICAgIGRyaXZlcnMvaWlvL2NvbW1v
-bi9zdF9zZW5zb3JzL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vY29tbW9uL2J1
-aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vZGFjL2J1aWx0LWluLmEKfCAgIEFSICAg
-ICAgZHJpdmVycy9paW8vZHVtbXkvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL2lpby9n
-eXJvL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vZmlsdGVyL2J1aWx0LWluLmEK
-fCAgIEFSICAgICAgZHJpdmVycy9paW8vZnJlcXVlbmN5L2J1aWx0LWluLmEKfCAgIEFSICAgICAg
-ZHJpdmVycy9paW8vaGVhbHRoL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vaHVt
-aWRpdHkvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL2lpby9pbXUvYm1pMTYwL2J1aWx0
-LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vaW11L2JtaTMyMy9idWlsdC1pbi5hCnwgICBB
-UiAgICAgIGRyaXZlcnMvaWlvL2ltdS9ibm8wNTUvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2
-ZXJzL2lpby9pbXUvaW52X2ljbTQyNjAwL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9p
-aW8vaW11L2ludl9tcHU2MDUwL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vaW11
-L3N0X2xzbTZkc3gvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL2lpby9pbXUvc3RfbHNt
-OWRzMC9idWlsdC1pbi5hCnwgICBBUiAgICAgIGRyaXZlcnMvaWlvL2ltdS9idWlsdC1pbi5hCnwg
-ICBBUiAgICAgIGRyaXZlcnMvaWlvL2xpZ2h0L2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVy
-cy9paW8vbWFnbmV0b21ldGVyL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vbXVs
-dGlwbGV4ZXIvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL2lpby9vcmllbnRhdGlvbi9i
-dWlsdC1pbi5hCnwgICBBUiAgICAgIGRyaXZlcnMvaWlvL3Bvc2l0aW9uL2J1aWx0LWluLmEKfCAg
-IEFSICAgICAgZHJpdmVycy9paW8vcG90ZW50aW9tZXRlci9idWlsdC1pbi5hCnwgICBBUiAgICAg
-IGRyaXZlcnMvaWlvL3BvdGVudGlvc3RhdC9idWlsdC1pbi5hCnwgICBBUiAgICAgIGRyaXZlcnMv
-aWlvL3ByZXNzdXJlL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vcHJveGltaXR5
-L2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vcmVzb2x2ZXIvYnVpbHQtaW4uYQp8
-ICAgQVIgICAgICBkcml2ZXJzL2lpby90ZW1wZXJhdHVyZS9idWlsdC1pbi5hCnwgICBBUiAgICAg
-IGRyaXZlcnMvaWlvL3Rlc3QvYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL2lpby90cmln
-Z2VyL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVycy9paW8vYWRjL2J1aWx0LWluLmEKfCAg
-IEFSICAgICAgZHJpdmVycy9paW8vYnVmZmVyL2J1aWx0LWluLmEKfCAgIEFSICAgICAgZHJpdmVy
-cy9paW8vYnVpbHQtaW4uYQp8ICAgQVIgICAgICBkcml2ZXJzL2J1aWx0LWluLmEKfCAgIEFSICAg
-ICAgYnVpbHQtaW4uYQp8ICAgQVIgICAgICB2bWxpbnV4LmEKfCAgIExEICAgICAgdm1saW51eC5v
-CnwgICBPQkpDT1BZIG1vZHVsZXMuYnVpbHRpbi5tb2RpbmZvCnwgICBHRU4gICAgIG1vZHVsZXMu
-YnVpbHRpbgp8ICAgR0VOICAgICAudm1saW51eC5vYmpzCnwgICBNT0RQT1NUIHZtbGludXguc3lt
-dmVycwp8ICAgQ0MgICAgICAudm1saW51eC5leHBvcnQubwp8ICAgVVBEICAgICBpbmNsdWRlL2dl
-bmVyYXRlZC91dHN2ZXJzaW9uLmgKfCAgIENDICAgICAgaW5pdC92ZXJzaW9uLXRpbWVzdGFtcC5v
-CnwgICBMRCAgICAgIC50bXBfdm1saW51eC5rYWxsc3ltczEKfCAgIE5NICAgICAgLnRtcF92bWxp
-bnV4LmthbGxzeW1zMS5zeW1zCnwgICBLU1lNUyAgIC50bXBfdm1saW51eC5rYWxsc3ltczEuUwp8
-ICAgQVMgICAgICAudG1wX3ZtbGludXgua2FsbHN5bXMxLlMKfCAgIExEICAgICAgLnRtcF92bWxp
-bnV4LmthbGxzeW1zMgp8ICAgTk0gICAgICAudG1wX3ZtbGludXgua2FsbHN5bXMyLnN5bXMKfCAg
-IEtTWU1TICAgLnRtcF92bWxpbnV4LmthbGxzeW1zMi5TCnwgICBBUyAgICAgIC50bXBfdm1saW51
-eC5rYWxsc3ltczIuUwp8ICAgTEQgICAgICB2bWxpbnV4CnwgICBOTSAgICAgIFN5c3RlbS5tYXAK
-fCAgIFNPUlRUQUIgdm1saW51eAp8ICAgT0JKQ09QWSBhcmNoL2FybS9ib290L0ltYWdlCnwgICBL
-ZXJuZWw6IGFyY2gvYXJtL2Jvb3QvSW1hZ2UgaXMgcmVhZHkKfCAgIExEUyAgICAgYXJjaC9hcm0v
-Ym9vdC9jb21wcmVzc2VkL3ZtbGludXgubGRzCnwgICBBUyAgICAgIGFyY2gvYXJtL2Jvb3QvY29t
-cHJlc3NlZC9oZWFkLm8KfCAgIExaNCAgICAgYXJjaC9hcm0vYm9vdC9jb21wcmVzc2VkL3BpZ2d5
-X2RhdGEKfCAgIENDICAgICAgYXJjaC9hcm0vYm9vdC9jb21wcmVzc2VkL21pc2Mubwp8ICAgQ0Mg
-ICAgICBhcmNoL2FybS9ib290L2NvbXByZXNzZWQvZGVjb21wcmVzcy5vCnwgICBDQyAgICAgIGFy
-Y2gvYXJtL2Jvb3QvY29tcHJlc3NlZC9zdHJpbmcubwp8ICAgQVMgICAgICBhcmNoL2FybS9ib290
-L2NvbXByZXNzZWQvaHlwLXN0dWIubwp8ICAgQ0MgICAgICBhcmNoL2FybS9ib290L2NvbXByZXNz
-ZWQvZmR0X3J3Lm8KfCAgIENDICAgICAgYXJjaC9hcm0vYm9vdC9jb21wcmVzc2VkL2ZkdF9yby5v
-CnwgICBDQyAgICAgIGFyY2gvYXJtL2Jvb3QvY29tcHJlc3NlZC9mZHRfd2lwLm8KfCAgIENDICAg
-ICAgYXJjaC9hcm0vYm9vdC9jb21wcmVzc2VkL2ZkdC5vCnwgICBDQyAgICAgIGFyY2gvYXJtL2Jv
-b3QvY29tcHJlc3NlZC9mZHRfY2hlY2tfbWVtX3N0YXJ0Lm8KfCAgIEFTICAgICAgYXJjaC9hcm0v
-Ym9vdC9jb21wcmVzc2VkL2xpYjFmdW5jcy5vCnwgICBBUyAgICAgIGFyY2gvYXJtL2Jvb3QvY29t
-cHJlc3NlZC9hc2hsZGkzLm8KfCAgIEFTICAgICAgYXJjaC9hcm0vYm9vdC9jb21wcmVzc2VkL2Jz
-d2Fwc2RpMi5vCnwgICBBUyAgICAgIGFyY2gvYXJtL2Jvb3QvY29tcHJlc3NlZC9waWdneS5vCnwg
-ICBMRCAgICAgIGFyY2gvYXJtL2Jvb3QvY29tcHJlc3NlZC92bWxpbnV4CnwgICBPQkpDT1BZIGFy
-Y2gvYXJtL2Jvb3QvekltYWdlCnwgICBLZXJuZWw6IGFyY2gvYXJtL2Jvb3QvekltYWdlIGlzIHJl
-YWR5CnwgTk9URTogbWFrZSAtaiA0IENDPWFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjICAgLWZ1
-c2UtbGQ9YmZkIC1mY2Fub24tcHJlZml4LW1hcCAgLWZtYWNyby1wcmVmaXgtbWFwPS9ob21lL3Z1
-c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8vcG9reS9idWlsZC90bXAv
-d29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1zdGFibGUvNi45LjAvZ2l0
-PS91c3Ivc3JjL2RlYnVnL2xpbnV4LXN0YWJsZS82LjkuMCAgLWZkZWJ1Zy1wcmVmaXgtbWFwPS9o
-b21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8vcG9reS9idWls
-ZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1zdGFibGUvNi45
-LjAvZ2l0PS91c3Ivc3JjL2RlYnVnL2xpbnV4LXN0YWJsZS82LjkuMCAgLWZtYWNyby1wcmVmaXgt
-bWFwPS9ob21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8vcG9r
-eS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1zdGFi
-bGUvNi45LjAvYnVpbGQ9L3Vzci9zcmMvZGVidWcvbGludXgtc3RhYmxlLzYuOS4wICAtZmRlYnVn
-LXByZWZpeC1tYXA9L2hvbWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15
-b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xp
-bnV4LXN0YWJsZS82LjkuMC9idWlsZD0vdXNyL3NyYy9kZWJ1Zy9saW51eC1zdGFibGUvNi45LjAg
-IC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVz
-dDIvYmJiLXlvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvYmVhZ2xlYm9uZS1wb2t5LWxpbnV4LWdu
-dWVhYmkvbGludXgtc3RhYmxlLzYuOS4wL3JlY2lwZS1zeXNyb290PSAgLWZtYWNyby1wcmVmaXgt
-bWFwPS9ob21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8vcG9r
-eS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1zdGFi
-bGUvNi45LjAvcmVjaXBlLXN5c3Jvb3Q9ICAtZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUvdnVzZXIv
-cHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1aWxkL3RtcC93b3Jr
-L2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LXN0YWJsZS82LjkuMC9yZWNpcGUt
-c3lzcm9vdC1uYXRpdmU9ICAtZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUvdnVzZXIvcHJvamVjdHMy
-L3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrLXNoYXJlZC9i
-ZWFnbGVib25lL2tlcm5lbC1zb3VyY2U9L3Vzci9zcmMva2VybmVsIC1mZGVidWctcHJlZml4LW1h
-cD0vaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3RvL3Bva3kv
-YnVpbGQvdG1wL3dvcmstc2hhcmVkL2JlYWdsZWJvbmUva2VybmVsLWJ1aWxkLWFydGlmYWN0cz0v
-dXNyL3NyYy9rZXJuZWwgTEQ9YXJtLXBva3ktbGludXgtZ251ZWFiaS1sZC5iZmQgICBPQkpDT1BZ
-PWFybS1wb2t5LWxpbnV4LWdudWVhYmktb2JqY29weSAgU1RSSVA9YXJtLXBva3ktbGludXgtZ251
-ZWFiaS1zdHJpcCBIT1NUQ0M9Z2NjICBIT1NUQ0ZMQUdTPS1pc3lzdGVtL2hvbWUvdnVzZXIvcHJv
-amVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL2Jl
-YWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LXN0YWJsZS82LjkuMC9yZWNpcGUtc3lz
-cm9vdC1uYXRpdmUvdXNyL2luY2x1ZGUgLU8yIC1waXBlIEhPU1RMREZMQUdTPS1ML2hvbWUvdnVz
-ZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1aWxkL3RtcC93
-b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LXN0YWJsZS82LjkuMC9yZWNp
-cGUtc3lzcm9vdC1uYXRpdmUvdXNyL2xpYiAgICAgICAgICAgICAgICAgICAgICAgICAtTC9ob21l
-L3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8vcG9reS9idWlsZC90
-bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1zdGFibGUvNi45LjAv
-cmVjaXBlLXN5c3Jvb3QtbmF0aXZlL2xpYiAgICAgICAgICAgICAgICAgICAgICAgICAtV2wsLS1l
-bmFibGUtbmV3LWR0YWdzICAgICAgICAgICAgICAgICAgICAgICAgIC1XbCwtcnBhdGgtbGluaywv
-aG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3RvL3Bva3kvYnVp
-bGQvdG1wL3dvcmsvYmVhZ2xlYm9uZS1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgtc3RhYmxlLzYu
-OS4wL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvbGliICAgICAgICAgICAgICAgICAgICAgICAg
-IC1XbCwtcnBhdGgtbGluaywvaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIv
-YmJiLXlvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvYmVhZ2xlYm9uZS1wb2t5LWxpbnV4LWdudWVh
-YmkvbGludXgtc3RhYmxlLzYuOS4wL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9saWIgICAgICAgICAg
-ICAgICAgICAgICAgICAgLVdsLC1ycGF0aCwvaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9j
-dG9fdGVzdDIvYmJiLXlvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvYmVhZ2xlYm9uZS1wb2t5LWxp
-bnV4LWdudWVhYmkvbGludXgtc3RhYmxlLzYuOS4wL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3Iv
-bGliICAgICAgICAgICAgICAgICAgICAgICAgIC1XbCwtcnBhdGgsL2hvbWUvdnVzZXIvcHJvamVj
-dHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL2JlYWds
-ZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LXN0YWJsZS82LjkuMC9yZWNpcGUtc3lzcm9v
-dC1uYXRpdmUvbGliICAgICAgICAgICAgICAgICAgICAgICAgIC1XbCwtTzEgSE9TVENQUD1nY2Mg
-IC1FIEhPU1RDWFg9ZysrICBIT1NUQ1hYRkxBR1M9LWlzeXN0ZW0vaG9tZS92dXNlci9wcm9qZWN0
-czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvYmVhZ2xl
-Ym9uZS1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgtc3RhYmxlLzYuOS4wL3JlY2lwZS1zeXNyb290
-LW5hdGl2ZS91c3IvaW5jbHVkZSAtTzIgLXBpcGUgSE9TVFBLR19DT05GSUc9cGtnLWNvbmZpZy1u
-YXRpdmUgYW0zMzV4LWJvbmVibGFjay5kdGIgQ0M9YXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2Mg
-ICAtZnVzZS1sZD1iZmQgLWZjYW5vbi1wcmVmaXgtbWFwICAtZm1hY3JvLXByZWZpeC1tYXA9L2hv
-bWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1aWxk
-L3RtcC93b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LXN0YWJsZS82Ljku
-MC9naXQ9L3Vzci9zcmMvZGVidWcvbGludXgtc3RhYmxlLzYuOS4wICAtZmRlYnVnLXByZWZpeC1t
-YXA9L2hvbWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5
-L2J1aWxkL3RtcC93b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LXN0YWJs
-ZS82LjkuMC9naXQ9L3Vzci9zcmMvZGVidWcvbGludXgtc3RhYmxlLzYuOS4wICAtZm1hY3JvLXBy
-ZWZpeC1tYXA9L2hvbWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0
-by9wb2t5L2J1aWxkL3RtcC93b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4
-LXN0YWJsZS82LjkuMC9idWlsZD0vdXNyL3NyYy9kZWJ1Zy9saW51eC1zdGFibGUvNi45LjAgIC1m
-ZGVidWctcHJlZml4LW1hcD0vaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIv
-YmJiLXlvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvYmVhZ2xlYm9uZS1wb2t5LWxpbnV4LWdudWVh
-YmkvbGludXgtc3RhYmxlLzYuOS4wL2J1aWxkPS91c3Ivc3JjL2RlYnVnL2xpbnV4LXN0YWJsZS82
-LjkuMCAgLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0
-b190ZXN0Mi9iYmIteW9jdG8vcG9reS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGlu
-dXgtZ251ZWFiaS9saW51eC1zdGFibGUvNi45LjAvcmVjaXBlLXN5c3Jvb3Q9ICAtZm1hY3JvLXBy
-ZWZpeC1tYXA9L2hvbWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0
-by9wb2t5L2J1aWxkL3RtcC93b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4
-LXN0YWJsZS82LjkuMC9yZWNpcGUtc3lzcm9vdD0gIC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS92
-dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3RvL3Bva3kvYnVpbGQvdG1w
-L3dvcmsvYmVhZ2xlYm9uZS1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgtc3RhYmxlLzYuOS4wL3Jl
-Y2lwZS1zeXNyb290LW5hdGl2ZT0gIC1mZGVidWctcHJlZml4LW1hcD0vaG9tZS92dXNlci9wcm9q
-ZWN0czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmstc2hh
-cmVkL2JlYWdsZWJvbmUva2VybmVsLXNvdXJjZT0vdXNyL3NyYy9rZXJuZWwgLWZkZWJ1Zy1wcmVm
-aXgtbWFwPS9ob21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8v
-cG9reS9idWlsZC90bXAvd29yay1zaGFyZWQvYmVhZ2xlYm9uZS9rZXJuZWwtYnVpbGQtYXJ0aWZh
-Y3RzPS91c3Ivc3JjL2tlcm5lbCAgIExEPWFybS1wb2t5LWxpbnV4LWdudWVhYmktbGQuYmZkICAg
-T0JKQ09QWT1hcm0tcG9reS1saW51eC1nbnVlYWJpLW9iamNvcHkgIFNUUklQPWFybS1wb2t5LWxp
-bnV4LWdudWVhYmktc3RyaXAKfCAgIFNZTkMgICAgaW5jbHVkZS9jb25maWcvYXV0by5jb25mCnwg
-ICBHRU4gICAgIE1ha2VmaWxlCnwgbWFrZVsyXTogKioqIE5vIHJ1bGUgdG8gbWFrZSB0YXJnZXQg
-J2FyY2gvYXJtL2Jvb3QvZHRzL2FtMzM1eC1ib25lYmxhY2suZHRiJy4gIFN0b3AuCnwgbWFrZVsx
-XTogKioqIFsvaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3Rv
-L3Bva3kvYnVpbGQvdG1wL3dvcmstc2hhcmVkL2JlYWdsZWJvbmUva2VybmVsLXNvdXJjZS9NYWtl
-ZmlsZToxMzg3OiBhbTMzNXgtYm9uZWJsYWNrLmR0Yl0gRXJyb3IgMgp8IG1ha2U6ICoqKiBbL2hv
-bWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1aWxk
-L3RtcC93b3JrLXNoYXJlZC9iZWFnbGVib25lL2tlcm5lbC1zb3VyY2UvTWFrZWZpbGU6MjQwOiBf
-X3N1Yi1tYWtlXSBFcnJvciAyCnwgRVJST1I6IG9lX3J1bm1ha2UgZmFpbGVkCnwgV0FSTklORzog
-L2hvbWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15b2N0by9wb2t5L2J1
-aWxkL3RtcC93b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LXN0YWJsZS82
-LjkuMC90ZW1wL3J1bi5kb19jb21waWxlLjk1MTAwMzozMDggZXhpdCAxIGZyb20gJ2V4aXQgMScK
-fCBXQVJOSU5HOiBCYWNrdHJhY2UgKEJCIGdlbmVyYXRlZCBzY3JpcHQpOgp8IAkjMTogYmJmYXRh
-bF9sb2csIC9ob21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8v
-cG9reS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1z
-dGFibGUvNi45LjAvdGVtcC9ydW4uZG9fY29tcGlsZS45NTEwMDMsIGxpbmUgMzA4CnwgCSMyOiBk
-aWUsIC9ob21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9jdG8vcG9r
-eS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1zdGFi
-bGUvNi45LjAvdGVtcC9ydW4uZG9fY29tcGlsZS45NTEwMDMsIGxpbmUgMjkyCnwgCSMzOiBvZV9y
-dW5tYWtlLCAvaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3Rv
-L3Bva3kvYnVpbGQvdG1wL3dvcmsvYmVhZ2xlYm9uZS1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgt
-c3RhYmxlLzYuOS4wL3RlbXAvcnVuLmRvX2NvbXBpbGUuOTUxMDAzLCBsaW5lIDIyMAp8IAkjNDog
-ZG9fY29tcGlsZSwgL2hvbWUvdnVzZXIvcHJvamVjdHMyL3lvY3RvL3lvY3RvX3Rlc3QyL2JiYi15
-b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpL2xp
-bnV4LXN0YWJsZS82LjkuMC90ZW1wL3J1bi5kb19jb21waWxlLjk1MTAwMywgbGluZSAxNTcKfCAJ
-IzU6IG1haW4sIC9ob21lL3Z1c2VyL3Byb2plY3RzMi95b2N0by95b2N0b190ZXN0Mi9iYmIteW9j
-dG8vcG9reS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51
-eC1zdGFibGUvNi45LjAvdGVtcC9ydW4uZG9fY29tcGlsZS45NTEwMDMsIGxpbmUgMzEyCkVSUk9S
-OiBUYXNrICgvaG9tZS92dXNlci9wcm9qZWN0czIveW9jdG8veW9jdG9fdGVzdDIvYmJiLXlvY3Rv
-L21ldGEtYmJiL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXN0YWJsZV82LjkuYmI6ZG9fY29t
-cGlsZSkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJwpTZXRzY2VuZSB0YXNrczogMjQwNSBvZiAy
-NDA1CkN1cnJlbnRseSAgMyBydW5uaW5nIHRhc2tzICg0MDczIG9mIDQ5OTApICA4MSUgfCMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjICAgICAgICAK
-
---0000000000007f5da306191abd95--
+--pjp2C7cHyqmIiYhjiF5G--
 
