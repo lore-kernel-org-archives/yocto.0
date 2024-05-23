@@ -1,100 +1,106 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C20DC25B75
-	for <webhook@archiver.kernel.org>; Thu, 23 May 2024 05:48:09 +0000 (UTC)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
- by mx.groups.io with SMTP id smtpd.web11.10020.1716443286688165090
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16045C41513
+	for <webhook@archiver.kernel.org>; Thu, 23 May 2024 05:52:59 +0000 (UTC)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+ by mx.groups.io with SMTP id smtpd.web10.8596.1716443571805238419
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 May 2024 22:48:07 -0700
+ Wed, 22 May 2024 22:52:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=AmYu32n0;
- spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e72b8931caso45721211fa.0
-        for <yocto@lists.yoctoproject.org>; Wed, 22 May 2024 22:48:06 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=RXGNv1gQ;
+ spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: martin.jansa@gmail.com)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51ffff16400so11668025e87.2
+        for <yocto@lists.yoctoproject.org>; Wed, 22 May 2024 22:52:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716443285; x=1717048085; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GfyYh7dSnwpNeKsmo2FWld2d6k9JwMInFxirmelgRrU=;
-        b=AmYu32n0Qm1fQhTZHaT/9U+yqchIjKIoMX89YNT1EfkL9i91dX2Ehj77AX09E7UwWt
-         1p8l3rM+M5l1bjFnmyZ0dcDBTJ6D4razNS2nynUWfncsmdpLgGqU1TQlCvHj5I8sFzUN
-         hr3QUse4HKsdUrXFzfHjcSF4YrIMPzXyBsEGTq+QmqRKQwuWIA9FZO07s3/N8WfTvIr4
-         D5eQN6PE0wuCZIopAObuXrf7NDnKWSPWKpEs0fQ2vbyc0Ti1djhahue/fNuyd6Jz4WUF
-         4LOQHaQ0ZmECHMeoP+PmlUxPg/o7IG3wMJWwc7gDKxkg9ywKI6qaKzclNzU7EVvkjj6i
-         U8vA==
+        d=gmail.com; s=20230601; t=1716443570; x=1717048370; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AzPXHLlYYfA5FvF+7C2LEhsSmIKmsmiSinkM54u9dMs=;
+        b=RXGNv1gQFTNJG9UukbZ8MRH/N+lW8Ni7UjTpHr9q2kyzak1nDZseo7tHgSRcnvMNpp
+         bLBM+Lwt0xSVZDFXw+KLpsSRHspfl7zgAdM7PC2OitFgTJrD3xfjd09N9M6WtP9KYpVU
+         N4bsK5dLCUDhwczl9Zhejv/OSp00lLQmBS7HcB9+B7Hsf0TwGZdMdz3jDC0tmAVxruhn
+         4HfGMqloIzu56OgSmO20sDAapJpC0RczCgGDN2Q1JThXAFYyJa0ICSFv4ZoU1mtlhLDA
+         wMyp8UBeZ8H5ahYDy3bHiQMLQcLIJQvTDOV1BBXO9Dzwd8DWIxNJBE0P+WmtjHu7U0ap
+         iQDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716443285; x=1717048085;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1716443570; x=1717048370;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GfyYh7dSnwpNeKsmo2FWld2d6k9JwMInFxirmelgRrU=;
-        b=cbFjhwmZk8Erc7zBbpoIedL3uBWOaIH7doDSpx7n7yIIqVQee8ah+r5bzAxvrfDF0I
-         K+x/w3W2pfz8sodEO75ah5egmwvtfKYab1+2j0HJCSvNIBIOGmEiKUBUe3OkPFS4Ka4Q
-         2aPUTxKA2Vqnku9gQHy14kSB7WDiXNfwoWTrn4q2YUKyvE1zQKqa99EqGH29tgikYyEV
-         TCAvge6FVl98X/neeqTpuIDMPBqVpDd2pE+X04x1izAb/aMwrdQE5Nnkd7vam8Z3Ky+m
-         5KtxcGvPpC4YVFeQhZIvOmLChJl6dDUNdITG52uNw5KHnNR+7Rb3NLrN91TZaxOdcC1W
-         2Qrg==
-X-Gm-Message-State: AOJu0YwZk+uVHZZUKhGTNphKldocjWn6MoEBWXfvmTQIwkJS1LAOLn/w
-	bc0QYnjgQHh/4b6irXuxw2d2/xUPPEKypiNLEv+/p4D8dxu2BylQM1iJIA6jfFwYr1f1qjzEJhI
-	PetxsbdgVUpx87DlCeFTaPSUFdY8=
-X-Google-Smtp-Source: AGHT+IGKOeeJXk09T5rSOFbRQrhAGYE+bmMcCDbwNqGpSKfW9ZnCkxbQ0xh1zEnvpcSUEzB89q7wg2MvLbcqhA18lXY=
-X-Received: by 2002:a2e:8ec7:0:b0:2e9:48db:353a with SMTP id
- 38308e7fff4ca-2e9496645camr22627291fa.53.1716443284233; Wed, 22 May 2024
- 22:48:04 -0700 (PDT)
+        bh=AzPXHLlYYfA5FvF+7C2LEhsSmIKmsmiSinkM54u9dMs=;
+        b=Ab6tbnp+zQ9hOpNGoK7C3WAKRB+RBtfq+gngZ5W8xkdu8GdGFLyWtX+Ykz06V1gwi1
+         HRYMw0fIpPAFtAoSTBeal5GYRG0tDWGS1xmJXPaciXGyOxwr/WdKH8UYhhHZl5B6IIJ4
+         RsxZejEcr44pFc901f8VnWVKYh9PS1RsyJzyPJijld+djg+gdAjeAQGm7TZf+GkZXcT9
+         Yxg7vM+lZEM1k198ZlU4w6inM0/vQT8AO9gzNp3IXqW5qPHPVdoh45XYJwwswyrZNVjC
+         8pFhOVm+r2QTnp1Gr6xo4HG/rmLnfc7uV5C0jWL7DIbcnsj3VfjJv7yztXmR9pAxpy49
+         s/kg==
+X-Gm-Message-State: AOJu0Yw1Tv36a2hYoPz8OUXhQe3oufKHvciq+Yi5IVP/yfsJFdamIycM
+	pnbX3pQ79Fr1niJvGyCyCj9hccPL4nQbMeidf/PuVvTfrEZbZg914/zLgg==
+X-Google-Smtp-Source: AGHT+IEmreIjRndZ66cdwN1BV+mlg7z9fdh0bsWjSlOsE9rbZgHHpGkc3rgeU/PKcQ4aZJka0z03ig==
+X-Received: by 2002:a19:6410:0:b0:522:8352:ff29 with SMTP id 2adb3069b0e04-526c0b5d646mr2923204e87.42.1716443569577;
+        Wed, 22 May 2024 22:52:49 -0700 (PDT)
+Received: from localhost (ip-109-238-218-228.aim-net.cz. [109.238.218.228])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b17cc5sm1872220466b.205.2024.05.22.22.52.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 May 2024 22:52:49 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Martin Jansa <martin.jansa@gmail.com>
+Subject: [meta-security][PATCH 1/2] {tcp,udp}-smack-test: fix implicit-function-declaration issues fatal with gcc-14
+Date: Thu, 23 May 2024 07:52:39 +0200
+Message-ID: <20240523055240.593564-1-martin.jansa@gmail.com>
+X-Mailer: git-send-email 2.45.1
 MIME-Version: 1.0
-References: <CANNYZj9M8M1FEfKurCJwceuPff3EGTGN1gPXWTxPkdkzQhFHaQ@mail.gmail.com>
- <423.1716442662251903836@lists.yoctoproject.org>
-In-Reply-To: <423.1716442662251903836@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 23 May 2024 07:47:53 +0200
-Message-ID: <CANNYZj-T2DMBVPQEbREOoWHVxwTOzF=EdPC6iiZn2K9vUHJK9w@mail.gmail.com>
-Subject: Re: [yocto] runqemu qemux86-64
-To: sasikumar.e@fdss.co.in
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000003be81906191898f2"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 05:48:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63170
+ <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 05:52:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63171
 
---0000000000003be81906191898f2
-Content-Type: text/plain; charset="UTF-8"
+tcp-smack-test:
+http://errors.yoctoproject.org/Errors/Details/766925/
+  tcp_client.c:55:16: error: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
 
-You need to delete the build folder, not the poky folder. You also need to
-start a new shell session.
+udp-client-tests:
+http://errors.yoctoproject.org/Errors/Details/766927/
+  udp_client.c:41:16: error: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+  udp_client.c:51:12: error: implicit declaration of function 'fsetxattr' [-Wimplicit-function-declaration]
+  udp_client.c:66:9: error: implicit declaration of function 'close'; did you mean 'pclose'? [-Wimplicit-function-declaration]
 
-Alex
+Signed-off-by: Martin Jansa <martin.jansa@gmail.com>
+---
+ recipes-mac/smack/tcp-smack-test/tcp_client.c | 1 +
+ recipes-mac/smack/udp-smack-test/udp_client.c | 1 +
+ 2 files changed, 2 insertions(+)
 
-On Thu 23. May 2024 at 7.37, SasiKumar E via Lists.Yoctoproject.Org
-<sasikumar.e=fdss.co.in@lists.yoctoproject.org> wrote:
+diff --git a/recipes-mac/smack/tcp-smack-test/tcp_client.c b/recipes-mac/smack/tcp-smack-test/tcp_client.c
+index 6c0a474..b82b575 100644
+--- a/recipes-mac/smack/tcp-smack-test/tcp_client.c
++++ b/recipes-mac/smack/tcp-smack-test/tcp_client.c
+@@ -18,6 +18,7 @@
+ // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ // THE SOFTWARE.
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <sys/socket.h>
+ #include <sys/types.h>
+ #include <errno.h>
+diff --git a/recipes-mac/smack/udp-smack-test/udp_client.c b/recipes-mac/smack/udp-smack-test/udp_client.c
+index 23f3e00..976cbdc 100644
+--- a/recipes-mac/smack/udp-smack-test/udp_client.c
++++ b/recipes-mac/smack/udp-smack-test/udp_client.c
+@@ -18,6 +18,7 @@
+ // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ // THE SOFTWARE.
+ #include <sys/socket.h>
++#include <stdlib.h>
+ #include <stdio.h>
+ #include <netinet/in.h>
+ #include <netdb.h>
+-- 
+2.45.1
 
-> yes Alex, I have deleted the poky folder itself and retried the steps
-> provided in the URL "
-> https://docs.yoctoproject.org/4.3.4/brief-yoctoprojectqs/index.html#welcome"
-> and I am facing the error
-
---0000000000003be81906191898f2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">You need to delete the build folder, not the poky folder.=
- You also need to start a new shell session.</div><div dir=3D"auto"><br></d=
-iv><div dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu 23. May 2024 at 7.37, SasiKumar E via =
-<a href=3D"http://Lists.Yoctoproject.Org">Lists.Yoctoproject.Org</a> &lt;sa=
-sikumar.e=3D<a href=3D"mailto:fdss.co.in@lists.yoctoproject.org">fdss.co.in=
-@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-=
-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">yes Alex, =
-I have deleted the poky folder itself and retried the steps provided in the=
- URL &quot;<a href=3D"https://docs.yoctoproject.org/4.3.4/brief-yoctoprojec=
-tqs/index.html#welcome" target=3D"_blank">https://docs.yoctoproject.org/4.3=
-.4/brief-yoctoprojectqs/index.html#welcome</a>&quot; and I am facing the er=
-ror
-</blockquote></div></div><br>
-
---0000000000003be81906191898f2--
 
