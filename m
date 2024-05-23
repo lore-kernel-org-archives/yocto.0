@@ -1,55 +1,55 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A98DC25B75
-	for <webhook@archiver.kernel.org>; Thu, 23 May 2024 09:50:30 +0000 (UTC)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
- by mx.groups.io with SMTP id smtpd.web10.11560.1716457818301140868
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 606E9C25B75
+	for <webhook@archiver.kernel.org>; Thu, 23 May 2024 09:59:30 +0000 (UTC)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+ by mx.groups.io with SMTP id smtpd.web10.11742.1716458368021349924
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 May 2024 02:50:18 -0700
+ Thu, 23 May 2024 02:59:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=c2GdJI/M;
- spf=pass (domain: gmail.com, ip: 209.85.167.51, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-51f60817e34so8499687e87.2
-        for <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 02:50:18 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Kcq7bjN4;
+ spf=pass (domain: gmail.com, ip: 209.85.208.170, mailfrom: martin.jansa@gmail.com)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2e576057c2bso109852901fa.1
+        for <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 02:59:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716457816; x=1717062616; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1716458366; x=1717063166; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Gp/TxmzKwnvLoAjswLvwy+jgzMySySTZpYmqB+wd/V8=;
-        b=c2GdJI/MtZZSCYtiFDT1EVqE4xjymBTHplQAAabSQNhyAi9QGzdwOeTLVJSoo8mtKs
-         HRUSM/tR6RoNw9x78EFkvkz3DlWz6zTICmGEkYFMJugdZOQcJZuHaGcEEVJpdbtV53Jc
-         /hWSoYlQ50Ch0s7iv44pln9M9k95SGWWK63Mj/ZjsOjS0NR7M4JsAfM7XazpstdjRX1Z
-         SMvc++JkhyA4mPrz2GRMawEPHQjAc0sr8CEoec54Puvt+S2LZ8rX+EiHKDPov4BQWVd0
-         ps2FyraK0tJ/kB3cNtWVmdRm+QhY+hT9kmHyPtscDl0G0nm9n3GBhg+8F19YBdXKxd+1
-         bM2g==
+        bh=zeGWckbkqskTNb1p79xjkvo9z1mm/OIH6pd7dBhrEK8=;
+        b=Kcq7bjN4dJNoBmISrh7rMC9LJYCpVDXXl9zfMn/UFsegVVzQJnyGTPyOEV6nFRXc9+
+         wP2/5NA7Ar8o4Y/W6fE8ePshd8P3V30oobvnBQI9fL//G4HOjI1HnR7JTmiq4s/ZIkYn
+         /xYYPoNSPTraNThLDpSJrCCSwrk9uyXBklch5b6YfxRpFBCOFh+8rIH+aDpTJx2TIakc
+         fPCIXimp7TY0+T1LAj4BkPCkdYsHG97tSrJhjso+K//5gsLN+tohcBdP8NW/FenxoBjT
+         8BhB7V2Vq/OKi+kAj923EjMPbsVOdx7h9x7MIDPDCL6xKOC+vgvpfL3nC/1Fmtkpjzfm
+         QKRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716457816; x=1717062616;
+        d=1e100.net; s=20230601; t=1716458366; x=1717063166;
         h=content-transfer-encoding:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Gp/TxmzKwnvLoAjswLvwy+jgzMySySTZpYmqB+wd/V8=;
-        b=GXV+6ubf5qZqrwyMBFGcfeupAnZbYozLhT08Y+WAlKeYcTrWDvTtLX2dtpyb4ToF8k
-         4WctPwiHiDGtteZr4ZVrD4ZtWyiZQLXkscIIj7X4qSkfsubT98x5Off7W2/unWapUlDC
-         khpaahHArgni7T8jR0xTuG3sEmFyLF56QYs4Ln0a/WDw109F9EZRLa9WyZb9F0lDAaC3
-         OtjDrpYfU145YDwqNyGe0UQVEHdJziMGstFV/tW5BrzFoNLR/tVSv6cWH3q3xEJOQXNY
-         QDU8RqaIArsM8G6HIP+MbFedFDXUxJvSLDPRQCgP5aBgo3MAav17ai4otmMPegtiXa1M
-         O7dQ==
-X-Gm-Message-State: AOJu0Yw0MPQ28Ly+gp1HLxcZNezNbFhtYVrYrCJlIoOE5sMKXQBJ4/7K
-	gWUHx9jjD9K5rh48Zwdmtho1XPEQvc4o3jXQh3Rs1rbFZeV2/p5S7fFqoJ04iJtnur1R9niEUTa
-	PlI6oBh+yooUKvPwCY6tox3WzqAGI+g==
-X-Google-Smtp-Source: AGHT+IH+5jAyBlxtX41WbmY4One38mfskT/IJSD73/kyofB9z11Yu+SbophmITwhwRNZdiCYoTqAYWq41/sG35aFjzY=
-X-Received: by 2002:ac2:4d87:0:b0:51b:58c7:d04d with SMTP id
- 2adb3069b0e04-526bbea2866mr2537168e87.0.1716457816183; Thu, 23 May 2024
- 02:50:16 -0700 (PDT)
+        bh=zeGWckbkqskTNb1p79xjkvo9z1mm/OIH6pd7dBhrEK8=;
+        b=PCyHAddATkxcmblFqO/7wjKNQh3/7ixjFo+KCBI8fV0OE95z2KYJ7Tn3lR/lwVij5Q
+         qKspDlubgnnyoIrI9tK3Kx3OQS5nL5GLYkodYayJWMEO1diP5mHOCXfDgWBwBfJvgS9B
+         wG18kuCRU+8/ncgCM/Q77npL/yzPD/eke+t97Y3Lg3oljqqEPi9y1sVqJBUax0FgRhno
+         GYB9Z7cb69ts8hCCF+tpIQHfifynho8llC6ylAdp87XvtCKwz7I2F/vDcbnmw8t1rlwM
+         x+IocKPUewBhKv+AJpPdEzD9dJOmTFA51MuqXGkz1AUpDADFfggwV0+NlTInMfW61FaP
+         ut3Q==
+X-Gm-Message-State: AOJu0YxVdv9m2mnhtfXStIjMPus0Y0z34L2PaIX+wpLxznKlq7nVHgca
+	6URHUfswwK9FMpdCWd77jwCzs7ykhy2KAVJIfhKbIHoRVqZwgsVrHDrCTWoxPp43rkIHabeKNAE
+	2jwnieC67EK/XnmOqLlgnh6H7Gcr+lZ+5
+X-Google-Smtp-Source: AGHT+IEBHAyqV+ECi3H9G/QKhveig6sKT3T26665Lz2UAwgCqjSfp/B3xaIevgpNDjOTOeutSOXiBLXQteprkuJua+k=
+X-Received: by 2002:a2e:8017:0:b0:2e1:d48e:d5b3 with SMTP id
+ 38308e7fff4ca-2e949467efemr36708991fa.20.1716458365917; Thu, 23 May 2024
+ 02:59:25 -0700 (PDT)
 MIME-Version: 1.0
 References: <lZoQ.1716452851320671080.ZUB7@lists.yoctoproject.org>
 In-Reply-To: <lZoQ.1716452851320671080.ZUB7@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 23 May 2024 11:50:03 +0200
-Message-ID: <CANNYZj_hqM=FvvWhN-c2=g8Wom3RwFWZH0HSgsDrm9RM2GAoeg@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Thu, 23 May 2024 11:59:09 +0200
+Message-ID: <CA+chaQd8-hn=5AAsF32LfDjLv0FNn3ca95XAgLzCUa3vkEheqg@mail.gmail.com>
 Subject: Re: [yocto] Getting a list of recipes which accessed network during do_fetch
 To: yocto@lists.yoctoproject.org, gauravpathak129@gmail.com
 Content-Type: text/plain; charset="UTF-8"
@@ -57,15 +57,12 @@ Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 09:50:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63179
+ <yocto@lists.yoctoproject.org>; Thu, 23 May 2024 09:59:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63180
 
-I wonder what is the use case? Perhaps there's a way to achieve that
-in some other way altogether?
+You can set BB_NO_NETWORK and check what fails to build from local DL_DIR.
 
-Alex
-
-On Thu, 23 May 2024 at 11:46, gauravpathak129 via
+On Thu, May 23, 2024 at 11:46=E2=80=AFAM gauravpathak129 via
 lists.yoctoproject.org
 <gauravpathak129=3Dgmail.com@lists.yoctoproject.org> wrote:
 >
@@ -118,9 +115,9 @@ hon3-installer-native.
 > Links: You receive all messages sent to this group.
 > View/Reply Online (#63178): https://lists.yoctoproject.org/g/yocto/messag=
 e/63178
-> Mute This Topic: https://lists.yoctoproject.org/mt/106259482/1686489
+> Mute This Topic: https://lists.yoctoproject.org/mt/106259482/3617156
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [martin.jansa@g=
 mail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
