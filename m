@@ -1,117 +1,101 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F584C25B74
-	for <webhook@archiver.kernel.org>; Fri, 24 May 2024 12:49:51 +0000 (UTC)
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
- by mx.groups.io with SMTP id smtpd.web11.14885.1716554903400723043
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96E45C25B74
+	for <webhook@archiver.kernel.org>; Fri, 24 May 2024 17:06:20 +0000 (UTC)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+ by mx.groups.io with SMTP id smtpd.web10.924.1716570373774886781
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 May 2024 05:48:23 -0700
+ Fri, 24 May 2024 10:06:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=NJfKHTWe;
- spf=pass (domain: gmail.com, ip: 209.85.215.170, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-681a49e6e86so515344a12.3
-        for <yocto@lists.yoctoproject.org>; Fri, 24 May 2024 05:48:23 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=CaiI2tVj;
+ spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5295d509178so1177299e87.1
+        for <yocto@lists.yoctoproject.org>; Fri, 24 May 2024 10:06:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716554903; x=1717159703; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1716570372; x=1717175172; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NCKetm+StdoQLGkjoOZTHDL7xdsXHMhEpd3fx++AN8U=;
-        b=NJfKHTWe5oPFFjI0PU8ZUrUXnuOLaFk+bqpZyxd2OrUdDLiZT3Ny632JrVcaXqgmUb
-         8zX8r2rFsGxPpXahUGzz7P1kQ7rTiRVRPEWUOPtR8rAJyWEs3sfo46T6csEk0q3Ttx5m
-         IFf9iyStTItIW3ZE6iT+9DOI66nAJ5+qQYhrSeZ+oo1mY01hVHBAT0q9iph01q28swij
-         bZn3Q2Z22RRdKF1iHNqI0hhQPxCbNOoVP1wgtYCZNlo4iqBBr2xqrWw2PrKlpjEcQRXo
-         Fsm3UcoY2WuvStwrE6Zh2R0yvnKktZUB4XsGox4c0slAI4A/0ZTOtPDeByqTQAxTo3G6
-         Eoyg==
+        bh=aRaOwyY0jrG4g06zPpLyTmGtN6Hm1xBKzB276gUWVS4=;
+        b=CaiI2tVjdqsInazIwvek59gNVx3vjKkRt8yQQOuHmuCNVNXGSdxrquwLr9Qqt2ISvf
+         riHrDXRsDjz6z0bnXnMl4HASJ0uDqgORIcwiIFTvVY+wey97bkRTJ2Rfh1SB8vNxqdUK
+         8ScWptbBRym0VPdN2HTGZ2CGnAv0bAdMmYqZ+ClBpA6GqNs0qnuLhbiSW1+APPtDVtb2
+         AB4Mynp4k6mGcs12Q8eM0+Ewiv0BzcZcMARf1vq0vMGRmmK/+Uu2rkuBNJVnJB0JelFu
+         2v87LDXmuMeMeK/mVCbpkothCoB7XiReAwfkk7GE26/FhhL1zGpnCQ0jPg1dMxf+tWRz
+         75Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716554903; x=1717159703;
+        d=1e100.net; s=20230601; t=1716570372; x=1717175172;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NCKetm+StdoQLGkjoOZTHDL7xdsXHMhEpd3fx++AN8U=;
-        b=clZRyEITPgo9Y/F7R8FTqmu91flrVUmlZYdE/eMw71A7w7mJbWyG9Pr6udggXiCSyu
-         ZNsqeVO+eHUCGfUjWhDXcTpKWVlzTxICi7JuVNoStLM87ZpPIWi0xEKUhsioUd4jCwSV
-         dbxilXJm989v4WOgT57aya2peGd70GSJ+8BiBpA0m98QXxG6j4bcK6FjClR7Xb52iPW5
-         aBFpicmv9PHwIFAuVCs2Op5znz4nSw+qCuJOGUmdmzHhyQ6LVojGh46SqgLWSyq5A0WY
-         jWl0rKn3J5DnuaSG1igN4mWz2vv90ykFqLLWIhF4OzKjJnQcYcZl6DqK1I77MU6tacjf
-         ylhQ==
-X-Gm-Message-State: AOJu0Yzf4UCdfyCwjA41cXp6PXM9R2hfKa4RQxxJQAO+q5ECZJU9y5c0
-	G+J1ltWjuk9bizxQIcYEAfjQS2sTCE++WdSqdwyNYraWM1cZFsdcJJU+yY3lg9d4ldaC+HgQvfX
-	N+wuo4DW2L1Mi1ozqG9Jqf18Y5hQ=
-X-Google-Smtp-Source: AGHT+IGcRCImPKTe3Z5yQO2WopI/RICjik2jjayDcTcVqiRwlT49MY23lud1Td9Ltn2lH2xfaegJ8k/NTlx/m+MKFwk=
-X-Received: by 2002:a17:90a:ec12:b0:2bf:5992:31ae with SMTP id
- 98e67ed59e1d1-2bf5ee1cb71mr2079924a91.20.1716554902496; Fri, 24 May 2024
- 05:48:22 -0700 (PDT)
+        bh=aRaOwyY0jrG4g06zPpLyTmGtN6Hm1xBKzB276gUWVS4=;
+        b=ViP72bN1eiCl6wTJXD2p1NlLdA6hdStTPKLi7S0EuTXMkHVTe3pLLMINVoe50kot1g
+         DTbfFUTi1UbVVUqTgSEf9+PBqr64FXimfKxjj6XvACUlL0niWgwAD3bVZU8423eL+X5w
+         AVLlma7MZvYLkujy2GunHfo8SdkpNyVeifLM1d2/9bQdE3TLwVavQ36FgbcAhmCI54Q0
+         S7v3/pAqQVLVdfbg+C4NsWwbok9Zte3gIIS9Mb8bqiPi/PRjQCm+/IJ/60spJ/Cbns0G
+         upfyEKqTWuOf5owsKC/qf/6HTrzyFHM+1X1eZPpaOShAsthPBk2QWTXqsA6wL9XGhlNB
+         2w6A==
+X-Gm-Message-State: AOJu0YyswRnlgPK8Yi/6Z64h1D8A8/hnJ4j1QhmPAC5Du6DHCvjqGAY4
+	XtgVQvioVzZcENgiaShUi7cv5QpjxL7km38kETAMpdK2MYJORkKvkHCRRj0tvxILVZVCnKdP6a7
+	A1dN3v1S8Vdf7zIFi29zX5xeZTOw=
+X-Google-Smtp-Source: AGHT+IGUTUS7iPh2f5xn+yFHF7lmfn+JCvIBCbQ4S0y5gjJmGNG63Zw0w9XDSil9HljSfAC354s5GRf94o08hV0aW6Q=
+X-Received: by 2002:ac2:5a07:0:b0:520:11b7:6caf with SMTP id
+ 2adb3069b0e04-52967465dbdmr2112590e87.64.1716570371579; Fri, 24 May 2024
+ 10:06:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <EB772314-DE2E-4782-8D5C-87699453EAF0@gmail.com>
- <CAGAf8LwAfEGUHtEWOpATj1Tt3u6W=QEuQFBBGztCmDyr0yq1Pg@mail.gmail.com> <DA4472B0-C469-41DB-951B-293257EF46D1@arm.com>
-In-Reply-To: <DA4472B0-C469-41DB-951B-293257EF46D1@arm.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Fri, 24 May 2024 14:48:10 +0200
-Message-ID: <CAGAf8LyaQZBVhG2rfW9HwD-jf_CHTBeV1yhOzO+CpasvFvd-Pw@mail.gmail.com>
-Subject: Re: [yocto] [Openembedded-architecture] proposal: controlled deprecation process for oe-core
-To: Ross Burton <Ross.Burton@arm.com>
+References: <CANNYZj_XF0cXbK-nVeK=xpd8_XC07j-FC8rovvips085M1OMHQ@mail.gmail.com>
+ <18579.1716564818242640497@lists.openembedded.org>
+In-Reply-To: <18579.1716564818242640497@lists.openembedded.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 24 May 2024 19:06:00 +0200
+Message-ID: <CANNYZj9fgxKQ9w6c=KCJvUV5qkoppXt3AH==YC2FPr6Mevp_kA@mail.gmail.com>
+Subject: Re: [bitbake-devel] Dependencies ?
+To: mlynch@hi-techniques.com
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 May 2024 12:49:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63196
+ <yocto@lists.yoctoproject.org>; Fri, 24 May 2024 17:06:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63197
 
-> I don=E2=80=99t know what is in your rootfs, but http://downloads
-> yoctoproject.org/releases/yocto/yocto-5.0.1/machines/
-> beaglebone-yocto/ has core-image-minimal for beaglebone-yocto
-> and the tar.bz2 is 12M, an order of magnitude smaller
-> than your image.  And our core-image-minimal isn=E2=80=99t even
-> _that_ small, as it still uses glibc and has a full init system.
+On Fri, 24 May 2024 at 17:33, Michael Lynch via lists.openembedded.org
+<mlynch=3Dhi-techniques.com@lists.openembedded.org> wrote:
 >
-> My guess is you=E2=80=99re installing large amounts of firmware.
-
-Interesting... I never thought about the size. You are probably
-right. I need to start looking into trimming the whole thing.
-
-I think I also carry elements of BB Green, BBB Wireless,
-BB Blue, Pocket Bone.. I should get rid of these platforms.
-
-But there are layers which are overwriting the Poky elements,
-and a lot of unnecessary stuff these layers are also carrying.
-
-And these are NOT used there at all. Most of them.
-
-The issue of the YOCTO scalability stays as an unwanted
-feature. Hard to decouple packages.
-
-Zee
-_______
-
-On Fri, May 24, 2024 at 1:02=E2=80=AFPM Ross Burton <Ross.Burton@arm.com> w=
-rote:
+> For informational purposes the two recipes in question here are intel-com=
+pute-runtime and intel-graphics-compiler.  Both are items needed to use Ope=
+nCL with INTEL GPUs.
 >
-> On 24 May 2024, at 10:00, Zoran via lists.yoctoproject.org <zoran.stojsav=
-ljevic=3Dgmail.com@lists.yoctoproject.org> wrote:
-> >
-> > If you allow me...
-> >
-> > The lack of scalability was always the biggest problem of YOCTO.
-> >
-> > It brings a humongous rootfs, while BuildRoot is (almost) perfectly
-> > scalable. It can scale down almost 20x.
-> >
-> > Latest Example for YOCTO:
-> > -rw-r--r--. 2 vuser vboxusers 101327860 May 23 17:24
-> > core-image-minimal-beaglebone.rootfs-20240523141721.cpio.xz
->
-> I don=E2=80=99t know what is in your rootfs, but http://downloads.yoctopr=
-oject.org/releases/yocto/yocto-5.0.1/machines/beaglebone-yocto/ has core-im=
-age-minimal for beaglebone-yocto and the tar.bz2 is 12M, an order of magnit=
-ude smaller than your image.  And our core-image-minimal isn=E2=80=99t even=
- _that_ small, as it still uses glibc and has a full init system.
->
-> My guess is you=E2=80=99re installing large amounts of firmware.
->
-> Ross
+> Alex, it sounds like the "wrong" thing to do is to "rollback" the meta-cl=
+ang layer back to the "mickledore" branch as was suggested?  Here's the wei=
+rd thing, the layer compatibility for meta-clang in the "mickledore" branch=
+ actually lists "scarthgap" in addition to "mickeldore" and one other.  Whe=
+re as layer compatibility of meta-clang in the "scarthgap" branch is set to=
+ "scarthgap" only.  Did someone maybe do the wrong thing with layer compati=
+bility in meta-clang on the mickledore branch?  Just curious because it see=
+med that mixing layer branches to make things build seemed a bit off of the=
+ whole philosophy of how yocto/bitbake was intended to work but I thought m=
+aybe that was just me not understanding everything completely.
+
+Let's continue in the proper list.
+
+This is the commit that added scarthgap compatibility to mickledore:
+https://github.com/kraj/meta-clang/commit/8fbc4b443893ab3842063e65d8fe27a5d=
+166bd3e
+
+So this was intentional and not a mistake, but it's still problematic:
+what if something else in your setup would require meta-clang to be at
+scarthgap branch? You might get cryptic errors when that happens and
+no easy way to resolve the conflict.
+
+Sadly llvm 16 support in the intel items is a deeper issue than I
+thought, and certainly not a trivial fix. Upstream will get to it, at
+some point:
+https://github.com/intel/intel-graphics-compiler/issues/289
+
+
+Alex
 
