@@ -1,47 +1,290 @@
-Return-Path: <jonas.fredriksson92@gmail.com>
+Return-Path: <janne.kiiskila@izumanetworks.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8392CC25B74
-	for <webhook@archiver.kernel.org>; Mon, 27 May 2024 07:21:51 +0000 (UTC)
-Subject: Re: [yocto] How to include full Golang build support in SDK?
-To: "Bratiranjan Acharya" <bratiranjan12@gmail.com>, yocto@lists.yoctoproject.org
-From: "Jonas Fredriksson" <jonas.fredriksson92@gmail.com>
-X-Originating-Location: =?UTF-8?B?TGFuZHZldHRlciwgVsOkc3RyYSBHw7Z0YWxhbmQgQ291bnR5LCBTRQ==?= (136.163.208.2)
-X-Originating-Platform: Linux Chrome 125
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Mon, 27 May 2024 00:21:49 -0700
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90D23C25B74
+	for <webhook@archiver.kernel.org>; Mon, 27 May 2024 07:25:51 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (NAM12-BN8-obe.outbound.protection.outlook.com [40.107.237.106])
+ by mx.groups.io with SMTP id smtpd.web10.22475.1716794743470479670
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 27 May 2024 00:25:43 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@izumanetworks.com header.s=selector1 header.b=TuKyRNWq;
+ spf=pass (domain: izumanetworks.com, ip: 40.107.237.106, mailfrom: janne.kiiskila@izumanetworks.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SYdsNUf6pOlCvUrgOeWvY3+V3cQETLepYDsZ3ibgtP7uh2iSAM3mlviREeysoA3wEhvgoRpovIN/0rnIM7Hr/EVzsYNi07wXagttoTccroxQeZafzS4/P8bbWQ9sDAwcrbsEdmXe//FyEKAe6xci5p6jWJ3bz/QRprXy8h9jvjuj9oD9u2LD2sc/0fy74634E9awSxV13cSXmpZJJrfkioDwCjGb+3I14pb3loXLfUemqXeHY8qV15g1UV22yK/HPUV7E11slMOSwnAWH1K62nvo1K4uJIJpcT6EHeaNb0FCLN4c7LwXUh2Jq2p4VDihBJqZMXNRdbv2tcIEeXmTqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=udXsSAUbPEGjaMQpgQACmAphl76E/+ZEg9H1uHrOZ7s=;
+ b=JAsGoybHuZaNPXp/xyMQOUV0ZZlre2uSaAcfIuyOAYiWfVeAoINpvPcDbvokeImx/+TyL4LHn+FruKegG3XbJW34duaG6MdL/OVV6c95+lC+3xKOLAJ65k2R3InY3/X3ntm3MdpyyzKhzaEfS3fSZUnR/ecdavtuD5EIM8ALlXkmSRPHR0enOdQPsCe+chTomISovqmPFEEOEQynWdMYdyohQj21jf7M/6KBmO/EFXftHoNXQoyxBQzAImRzqoSrkF/3HetNHg1Zfx5Gs5gXinN2WfP0BAw0/CIFWPiq4KDiZ/DseMmFxWXYKJwJupcRMhRd03deRDiBwe3GsKzZcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=izumanetworks.com; dmarc=pass action=none
+ header.from=izumanetworks.com; dkim=pass header.d=izumanetworks.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=izumanetworks.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=udXsSAUbPEGjaMQpgQACmAphl76E/+ZEg9H1uHrOZ7s=;
+ b=TuKyRNWqVKVwmKxIgQOuE09tI4Hd4ih8rOcX890827ui5iQ7IcyUh5E1upgqKrmQjujpT7wlyXVNluk3uA6bhPytUEKuqcgfaqlvmnU7KTMSKrv8DElpa1jK9Q5dtYLVzPGthcnxpw9Emypez2lYeVA2B1l0UMOjDqXKFvhFSc/Hjxdn5l7vJ2mlEV6N4xIlMsGL5xDTm6s1ts/XmMPlNMM0B548Q/BoyVLgeiDzI6qsJf8XsMmWPy/ppHwMrxraf7thVZFWPdmT+jR+sHAa0muTcPOMfXEfruVjWTyaUzeuO8o5k93qtMNXaKpw7dKI1o3JJGum1goHhpUuvcEQmg==
+Received: from IA0PR14MB6188.namprd14.prod.outlook.com (2603:10b6:208:440::14)
+ by IA0PR14MB6887.namprd14.prod.outlook.com (2603:10b6:208:40e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.29; Mon, 27 May
+ 2024 07:25:38 +0000
+Received: from IA0PR14MB6188.namprd14.prod.outlook.com
+ ([fe80::b395:4be7:dff8:ea75]) by IA0PR14MB6188.namprd14.prod.outlook.com
+ ([fe80::b395:4be7:dff8:ea75%5]) with mapi id 15.20.7611.025; Mon, 27 May 2024
+ 07:25:38 +0000
+From: Janne Kiiskila <janne.kiiskila@izumanetworks.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"jonas.fredriksson92@gmail.com" <jonas.fredriksson92@gmail.com>, Bratiranjan
+ Acharya <bratiranjan12@gmail.com>
+Subject: RE: [yocto] How to include full Golang build support in SDK?
+Thread-Topic: [yocto] How to include full Golang build support in SDK?
+Thread-Index: AQHasAASG6MnGpjyx066m5n2mzUnJbGqq3uAgAABmICAAABu0A==
+Date: Mon, 27 May 2024 07:25:38 +0000
+Message-ID: 
+ <IA0PR14MB61881CC2ED0A1A0758FDD9BC85F02@IA0PR14MB6188.namprd14.prod.outlook.com>
 References: <22769.1716794167619610605@lists.yoctoproject.org>
-In-Reply-To: <22769.1716794167619610605@lists.yoctoproject.org>
-Message-ID: <22769.1716794509765367469@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="TGLSPDJD5FkrHRe568mW"
+ <22769.1716794509765367469@lists.yoctoproject.org>
+In-Reply-To: <22769.1716794509765367469@lists.yoctoproject.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=izumanetworks.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PR14MB6188:EE_|IA0PR14MB6887:EE_
+x-ms-office365-filtering-correlation-id: c8c8fcb0-d768-488f-19b7-08dc7e1e3517
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230031|366007|376005|1800799015|38070700009;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?VFlzZTNPSXYzWXd6WWdCZSt6TmxadTRyNmNYZUhLL20vYXpDeElnSnA3MEZq?=
+ =?utf-8?B?bkJaa0pTS3FEL2FycnZYM2hKUlBZcllNeHI5cnhjNE1RWnVrTnBSVzB6bEhm?=
+ =?utf-8?B?eEp3TUxKMzBvNEZQWDVJYXNzS1EzNnJkR1E1MlRycW9VNnRzd1BIS21POE5D?=
+ =?utf-8?B?SnBETWs3bWEwTCs0V1R5MEk4djJqaFdkR0xLSmI4dFBWVkUxV0lwVGtwUDh6?=
+ =?utf-8?B?N1FmYi9ZaDdXNVdoSXdsbGFJRXFmVkRuT256SGduc0gyOEp1YS82aDNnMkNC?=
+ =?utf-8?B?cjVJVWhEUmlaVzZvc2V4SzBUdlMyU1lvUEo4amRQa2taOUtYY0FnK2ZzUHMv?=
+ =?utf-8?B?SUhxOXVUcSsvanIxTHBkUlBmWTlRcHVCanNwaU84dmtIb3YwWndLV20zQlE1?=
+ =?utf-8?B?SVBteGlDcFRPRVNtM1hXYU9xZ1NqeERvdXAzMGpUMVdSamF0WWtpY2tDcnJO?=
+ =?utf-8?B?djFmS0wvRkVEV2NqK1ZhdFlvNWpQRGtDOHg1Y3lLMWduWlAzR3JEWXNlMDJH?=
+ =?utf-8?B?VlI2UnQ2aTZlZ0MxanUvNXphTEZESkFCSGdYMUhHKzNwY3ZvSG1NMG5NU1VW?=
+ =?utf-8?B?Y2Rhd3pmOVY2cjFrR01salE1UFpycGxpRlFiaGkyYVNwaWdXK09aZHNtWnJs?=
+ =?utf-8?B?c2xsNkl2VVFZYjlQa01lMFhnRUFjS0FFV056SUFLSTV6NWdCb0l6bUhKR1U0?=
+ =?utf-8?B?akl4S0hnclNuMDZXSEZCSTlxNmxLQjEzVFcrNTdlZDkraE5CTGhGbHZlK084?=
+ =?utf-8?B?b1Q0Ni9JSEVYQlpva0xRM041S3V6bHdiQWh0RTZwdnVQYUFZOTBkWUR5cytY?=
+ =?utf-8?B?VTJ4M2RrcndpaXlQU2x4RkJ5VDV2WHd4NGFnRGJLaCtnb0sxMzZGelFBMEFx?=
+ =?utf-8?B?RGlXUzAxWDRyWGdCTWczaGZXakRUWTBRaGJKMWh0YzhYTkZCWFFrdXFWb2F6?=
+ =?utf-8?B?UnpPc3lZQU1Fd1RERUNkbXhDa1lhalQ4NDQxemdhcWVBWk85dW83dUNkUUZo?=
+ =?utf-8?B?ZzQvd1E0K0hzOE1mWUxxZ0xVOVFVMFFDb21rSDdiM1ZoaG5HRHlwUGJkUmlj?=
+ =?utf-8?B?QjV3b3VxanZJWllnN2pRQlVUbGM5YXlkYWdnSEtXazVjU1hrZTVqS2lJeHpO?=
+ =?utf-8?B?VXNSYWk5YUlWakhEL05pbU8rYkxEbE1tZ2lEYndKYVdCaVFvUVFTT2MxV3dK?=
+ =?utf-8?B?MVRLN3RuM3VxSER6aTRFS1NLOWZTVTQ0WkZOOFRaZ0RKZDNTcHZWU2h5bzZY?=
+ =?utf-8?B?SmY2LzljcitWYWloeTkrdFh4S09rQi9mSzlFbmhSK0xHVk1nRVVWWmdodWlq?=
+ =?utf-8?B?TXJYbHZkaXpYQk1xa2VNWHQ0NVFzU2dueVo1S2ludXNFQ1hlZFA0MGljN3FZ?=
+ =?utf-8?B?TmY0TUhXMllXU0syZStBUUdGNUlnQlMxOFBQbmk3dFY0MGRWWlB5UFJJeC85?=
+ =?utf-8?B?SVFhT3NsN3hleHJ0Z21YeFBjNUt5WlVUNUZ2eVAvMTJ5bXA2elRrU0NhZC9H?=
+ =?utf-8?B?aVdVdzhKU3Rzb0dkcE1nSHNUZytSTXU4ckFyRk4zTVpJdXNxS3gwNStNTkMr?=
+ =?utf-8?B?c2ZXaytQOWFTNnl3U1g2M292MzRIZ0FNc3JrN3ZGcVpkV1BIRGg3YU5QZnk0?=
+ =?utf-8?B?QWRGYktoeWRuY2VyMVkrYWdraWpIbm92b3hldWhrVm1JYlh1SitjSWRiNDlG?=
+ =?utf-8?B?VmoxYURqZXQxTjJKeDY1ZVhRc2FLQjB6LzFBdVVEZERpOGxMZVFzWlJRPT0=?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA0PR14MB6188.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?Y1ZCbnI5NCtaanVUWER3dkV6VE9ZRjIvM2pDNzUyN2dVVEx0WnlYWThZZ1I5?=
+ =?utf-8?B?Mm02M3I2NEs0UDVTV2gwc3FqMDU2U1g5OG1lWGptT3Z3RkhIN1k0MjdOdUJR?=
+ =?utf-8?B?eUZPaXl3QmIzZ0RydkEyOElVOTgxUlg2SHg1OTY2bUFia2RoaXhuVEhlbjJO?=
+ =?utf-8?B?TDBwRTAyZ1g5dkVJV3Vzc2U0akhSWnJQbXkzLzBJd2pnaFpKWUtXNVp4VHBR?=
+ =?utf-8?B?UVd4VHJNclFtb2p4RTZWbHZLMWkzKzZRd0JPQm1yK0FWZ3hla3U5WFZSRlFp?=
+ =?utf-8?B?SUhicHZFSzlYb0IrekdHZ2tmaDFkSE8xM0YzTWNEQWs4NU02Y3dlRkhaWGJC?=
+ =?utf-8?B?b3UxY1NBb0ZZYVc1b1lzSTlTek1wWXh4bTROSmptL2JIaEJQNTZDeGpQN3Ey?=
+ =?utf-8?B?OXNsUnFuT0tDL29aYVlLVEJLTldZM2JtTXc1M25rTjNlWmtNem0xQkRvK3p1?=
+ =?utf-8?B?dmZueDZRU3h1OWJTZ0Q1Y0NIdHFrNzRxYzlQdmF3SFlPalh0NGkrMUpCUnZz?=
+ =?utf-8?B?empId1UrVWcxMTMrRmJZdyt0bFNvdS8rUjdPSWpuOU9kdS9qMTdPaDBkNmtj?=
+ =?utf-8?B?cnhoRTF4a2xiSDRIMnJ3KzdRMVMraVNJcHpDYzFSaW5HUlBIcHppNy84OXdJ?=
+ =?utf-8?B?Szl5SjVPbktBT1g0RlN0YTZQN2hualhlSDMxQTl0TW1WRnZPanpsMXM4MURR?=
+ =?utf-8?B?dGpPRWtXb1pZWUpkVGx2eHRaeWZqenhaaXo0c0U1VVU3Z1ZZVlY4bnh1bFFQ?=
+ =?utf-8?B?eHg5RlAxYm4wb05VcXdGbDN6c3ZYQXhaajVENlNiVWQxOUtLOEtHNVZjVldm?=
+ =?utf-8?B?TW1BMDF1WkQvVE5LTnBkQTI0OSsrNzBVTmZXZ2hrZGhXOUp0b2FIMWJZRlZC?=
+ =?utf-8?B?eGFGRWdJM2l5Q3oxUmd6M2YxR3EzZkUxYU56c1h4ZTJ1U1BpcEUrQXorR1pF?=
+ =?utf-8?B?OEZUR2QvaGVzMXg5Q0VvZTNWMy9ENTFIdUI1eGRQSmNsaWpTYnZXZVBDakd3?=
+ =?utf-8?B?dHpOZGpoaVIreFdpT3BOallBNzJxNDVYSE8zdEhXZ0xTQWM4NUpnaFgyV3lK?=
+ =?utf-8?B?RzJvN1E5OWhtOVhtbHE1dEE5RzRNYjZUVHFjNmRVdGJydUV3OHByS3p6NXlz?=
+ =?utf-8?B?SWk4UXZob1Jla0RZcWRGS1FGanlDbWU1REZsMElNS1JKU2dnOHhONE5ZVjFt?=
+ =?utf-8?B?V1EyclFwMkUydENmR0JERzA4ZDRyVHJkeWlHT0g2NmtOc0lkWWU3M1RkWVg5?=
+ =?utf-8?B?SmQ0N1NSalRRTnRpQlRWclkvWi8vTnFtd1BVdFlEMTJLSEw2QVpkS2Z4cmZt?=
+ =?utf-8?B?cUtnZ3N4ZjlldENtTzlpRHJTZWJ2Z2lPMElqcDFwdThmQUlpRUFBRVBObSth?=
+ =?utf-8?B?NHVDYm1DczFLcjVrVDRiQmxtTm5YaGxWRkpyM0tjTzVMV3ZSZW95dEdpSGli?=
+ =?utf-8?B?L09xaFVnN1JhNDBOemxqSkhjWWJRNGg5RkgzTkM3dEE5alpiTVhzRkVWZWoy?=
+ =?utf-8?B?M3czUEdrbmZwMWYwWUZvS2lTZVoyU29jQW1JMi9JaDJ4OXdleU91MEJVSEFp?=
+ =?utf-8?B?LzZKRmRUNThLNy9RSVBsRFFvTFJtY3RVN2Rrc1FlZ0xhaG95YWdGSDdsdm9U?=
+ =?utf-8?B?MEw4RmttNjhuUEV1bS8yd0YwM2ZXTVdzWVgzTCtNcXhTWHF1UnlzUmNWT3lL?=
+ =?utf-8?B?bXk5eXpTVE85Y1B3RmhLNlpnNE5YMGdPOFprZXZHN2dLajNsNWFaZ0ZBU3BS?=
+ =?utf-8?B?NGI5eU1MZUlBb3JPUmllQk5YZEwxQ0dhQTdWd0FVbWNzS3ZuaGFCbFo3akQ3?=
+ =?utf-8?B?aDZ0NXFDL1NuUTMzS1BKQ0tORlNFbEhKMGk4UXg1dGJlU3hZUzJ5b3dCcUNF?=
+ =?utf-8?B?THBvRGtOQVB2ZklGVURIcGRQa1QyZnhqb0c3VHdKQnN6Sk8vNzhGREJnMUdw?=
+ =?utf-8?B?cFJSS2o0SnBjeXNhSmRSc05SeGVZKytCUWs1eWVEWWE5bmlSVTlCd3kvWGwy?=
+ =?utf-8?B?b2U2dTlJM0duc2NLbzV1NC80b1UrRmF2RkQyd3JnSjhsRXVkQmpGdFZVNWNq?=
+ =?utf-8?B?U2NaeXJHMHV3b2YwRlRiWUZnM3pJbERVUXc0QXZTY3lldjYwSXdCbXI3Wkx2?=
+ =?utf-8?B?THBUa01JWDBuaDRmbGdlU1U1Q3A1dGV3WDdESWpxK0phRWhrbVd4MDFqYXgz?=
+ =?utf-8?B?cXc9PQ==?=
+Content-Type: multipart/alternative;
+	boundary="_000_IA0PR14MB61881CC2ED0A1A0758FDD9BC85F02IA0PR14MB6188namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: izumanetworks.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR14MB6188.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8c8fcb0-d768-488f-19b7-08dc7e1e3517
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2024 07:25:38.4140
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b75ac1ab-4ecf-4491-a62d-9087b0c0cf30
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: o49m7opgJVLAE2kWVdapowRAq+Y+b5AQBM6idqpDcQo0kiwLeq68qMCoSbmV8C3Lxw1cgAuZIU/0kB1F01OJ8J+jR8qYxbZygWwYKVS9p8C4f+xom6PZPlVUMhn4FZfs
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR14MB6887
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 May 2024 07:21:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63202
+ <yocto@lists.yoctoproject.org>; Mon, 27 May 2024 07:25:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63203
 
---TGLSPDJD5FkrHRe568mW
+--_000_IA0PR14MB61881CC2ED0A1A0758FDD9BC85F02IA0PR14MB6188namp_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-Thank you for your answer.
+SGVpLA0KDQpJIGRvIG5vdCB0aGluayB0aGUgU0RLIHBlciBzZSBuZWVkcyB0byBwcm92aWRlIGFu
+eXRoaW5nLCBhbGwgb2YgdGhlIG1hZ2ljIGlzIGluIHRoZSByZWNpcGUuDQpIZXJl4oCZcyBvbmUg
+ZXhhbXBsZSBvZiBhIGdvbGFuZyBiYXNlZCBhcHBsaWNhdGlvbiwgd2hpY2ggaXMgY3Jvc3MtY29t
+cGlsYWJsZSBhcyB3ZWxsLg0KDQpJIHRoaW5rIHRoZXkga2V5IHRyaWNrIGlzIHRvIGluaGVyaXQg
+Z28uDQoNCmh0dHBzOi8vZ2l0aHViLmNvbS9QZWxpb25Jb1QvbWV0YS1lZGdlL2Jsb2IvbWFpbi9y
+ZWNpcGVzLWVkZ2UvZWRnZS1wcm94eS9lZGdlLXByb3h5X2dpdC5iYg0KDQpCZXN0IFJlZ2FyZHMs
+DQoNCg0KSmFubmUgS2lpc2tpbMOkDQoNCg0KRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9mIEpvbmFzIEZy
+ZWRyaWtzc29uIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTZW50OiBtYWFuYW50YWkgMjcu
+IHRvdWtva3V1dGEgMjAyNCAxMC4yMg0KVG86IEJyYXRpcmFuamFuIEFjaGFyeWEgPGJyYXRpcmFu
+amFuMTJAZ21haWwuY29tPjsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDog
+UmU6IFt5b2N0b10gSG93IHRvIGluY2x1ZGUgZnVsbCBHb2xhbmcgYnVpbGQgc3VwcG9ydCBpbiBT
+REs/DQoNCllvdSBkb24ndCBvZnRlbiBnZXQgZW1haWwgZnJvbSBqb25hcy5mcmVkcmlrc3Nvbjky
+PWdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPG1haWx0bzpqb25hcy5mcmVkcmlrc3Nv
+bjkyPWdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPi4gTGVhcm4gd2h5IHRoaXMgaXMg
+aW1wb3J0YW50PGh0dHBzOi8vYWthLm1zL0xlYXJuQWJvdXRTZW5kZXJJZGVudGlmaWNhdGlvbj4N
+Cg0KVGhhbmsgeW91IGZvciB5b3VyIGFuc3dlci4NCg0KVGhlIHRoaW5nIGlzLCByaWdodCBub3cg
+SSBkb24ndCByZWFsbHkgaGF2ZSBhIHJlY2lwZSB0aGF0IGJ1aWxkcyB0aGUgYXBwbGljYXRpb24s
+IHRoYXQgaXMgZm9yIHRoZSBjdXN0b21lciB0byBwcm92aWRlLiBNeSB0YXNrIHJpZ2h0IG5vdyBp
+cyBqdXN0IHRvIHByb3ZpZGUgdGhlIFNESyB0aGF0IHRoZXkgY2FuIGJ1aWxkIGFnYWluc3QuIE9y
+IGFyZSB5b3UgcmVmZXJyaW5nIHRvIHRoZSBpbWFnZS1yZWNpcGU/DQo=
 
-The thing is, right now I don't really have a recipe that builds the applic=
-ation, that is for the customer to provide. My task right now is just to pr=
-ovide the SDK that they can build against. Or are you referring to the imag=
-e-recipe?
-
---TGLSPDJD5FkrHRe568mW
+--_000_IA0PR14MB61881CC2ED0A1A0758FDD9BC85F02IA0PR14MB6188namp_
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-<p>Thank you for your answer.</p>
-<p>The thing is, right now I don't really have a recipe that builds the app=
-lication, that is for the customer to provide. My task right now is just to=
- provide the SDK that they can build against. Or are you referring to the i=
-mage-recipe?</p>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpBcHRvczt9DQpAZm9udC1mYWNlDQoJe2Zv
+bnQtZmFtaWx5OiJTZWdvZSBVSSI7DQoJcGFub3NlLTE6MiAxMSA1IDIgNCAyIDQgMiAyIDM7fQ0K
+LyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5N
+c29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5
+OiJBcHRvcyIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
+bmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7
+DQoJZm9udC1mYW1pbHk6IkFwdG9zIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0K
+Lk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXpl
+OjEwLjBwdDsNCgltc28tbGlnYXR1cmVzOm5vbmU7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3Np
+emU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3Mi4wcHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7
+fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwh
+LS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3Bp
+ZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1s
+Pg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRh
+dGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8
+Ym9keSBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdv
+cmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDttc28tZmFyZWFzdC1sYW5n
+dWFnZTpFTi1VUyI+SGVpLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDttc28tZmFyZWFz
+dC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O21z
+by1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5JIGRvIG5vdCB0aGluayB0aGUgU0RLIHBlciBzZSBu
+ZWVkcyB0byBwcm92aWRlIGFueXRoaW5nLCBhbGwgb2YgdGhlIG1hZ2ljIGlzIGluIHRoZSByZWNp
+cGUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
+Zz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj5IZXJl4oCZcyBvbmUgZXhhbXBsZSBvZiBhIGdvbGFuZyBiYXNlZCBhcHBsaWNhdGlvbiwg
+d2hpY2ggaXMgY3Jvc3MtY29tcGlsYWJsZSBhcyB3ZWxsLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5JIHRoaW5rIHRoZXkg
+a2V5IHRyaWNrIGlzIHRvIGluaGVyaXQgZ28uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxhIGhyZWY9Imh0dHBzOi8vZ2l0
+aHViLmNvbS9QZWxpb25Jb1QvbWV0YS1lZGdlL2Jsb2IvbWFpbi9yZWNpcGVzLWVkZ2UvZWRnZS1w
+cm94eS9lZGdlLXByb3h5X2dpdC5iYiI+aHR0cHM6Ly9naXRodWIuY29tL1BlbGlvbklvVC9tZXRh
+LWVkZ2UvYmxvYi9tYWluL3JlY2lwZXMtZWRnZS9lZGdlLXByb3h5L2VkZ2UtcHJveHlfZ2l0LmJi
+PC9hPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
+bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpF
+Ti1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxh
+bmd1YWdlOkVOLVVTIj5CZXN0IFJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SmFubmUgS2lpc2tp
+bMOkPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
+Zz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+
+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpu
+b25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20g
+MGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
+aWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4geW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZn
+dDsNCjxiPk9uIEJlaGFsZiBPZiA8L2I+Sm9uYXMgRnJlZHJpa3Nzb24gdmlhIGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmc8YnI+DQo8Yj5TZW50OjwvYj4gbWFhbmFudGFpIDI3LiB0b3Vrb2t1dXRhIDIw
+MjQgMTAuMjI8YnI+DQo8Yj5Ubzo8L2I+IEJyYXRpcmFuamFuIEFjaGFyeWEgJmx0O2JyYXRpcmFu
+amFuMTJAZ21haWwuY29tJmd0OzsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxi
+PlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBIb3cgdG8gaW5jbHVkZSBmdWxsIEdvbGFuZyBidWls
+ZCBzdXBwb3J0IGluIFNESz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8dGFibGUgY2xhc3M9
+Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjAiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0i
+MCIgYWxpZ249ImxlZnQiIHdpZHRoPSIxMDAlIiBzdHlsZT0id2lkdGg6MTAwLjAlIj4NCjx0Ym9k
+eT4NCjx0cj4NCjx0ZCBzdHlsZT0iYmFja2dyb3VuZDojQTZBNkE2O3BhZGRpbmc6NS4yNXB0IDEu
+NXB0IDUuMjVwdCAxLjVwdCI+PC90ZD4NCjx0ZCB3aWR0aD0iMTAwJSIgc3R5bGU9IndpZHRoOjEw
+MC4wJTtiYWNrZ3JvdW5kOiNFQUVBRUE7cGFkZGluZzo1LjI1cHQgMy43NXB0IDUuMjVwdCAxMS4y
+NXB0Ij4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLWVsZW1lbnQ6ZnJh
+bWU7bXNvLWVsZW1lbnQtZnJhbWUtaHNwYWNlOjIuMjVwdDttc28tZWxlbWVudC13cmFwOmFyb3Vu
+ZDttc28tZWxlbWVudC1hbmNob3ItdmVydGljYWw6cGFyYWdyYXBoO21zby1lbGVtZW50LWFuY2hv
+ci1ob3Jpem9udGFsOmNvbHVtbjttc28taGVpZ2h0LXJ1bGU6ZXhhY3RseSI+DQo8c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1NlZ29lIFVJJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6IzIxMjEyMSI+WW91IGRvbid0IG9mdGVuIGdldCBlbWFpbCBmcm9tDQo8YSBo
+cmVmPSJtYWlsdG86am9uYXMuZnJlZHJpa3Nzb245Mj1nbWFpbC5jb21AbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZyI+am9uYXMuZnJlZHJpa3Nzb245Mj1nbWFpbC5jb21AbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZzwvYT4uDQo8YSBocmVmPSJodHRwczovL2FrYS5tcy9MZWFybkFib3V0U2VuZGVySWRlbnRp
+ZmljYXRpb24iPkxlYXJuIHdoeSB0aGlzIGlzIGltcG9ydGFudDwvYT48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8L2Rpdj4NCjwvdGQ+DQo8dGQgd2lkdGg9Ijc1IiBzdHlsZT0id2lkdGg6NTYuMjVw
+dDtiYWNrZ3JvdW5kOiNFQUVBRUE7cGFkZGluZzo1LjI1cHQgMy43NXB0IDUuMjVwdCAzLjc1cHQ7
+YWxpZ246bGVmdCI+DQo8L3RkPg0KPC90cj4NCjwvdGJvZHk+DQo8L3RhYmxlPg0KPGRpdj4NCjxw
+PlRoYW5rIHlvdSBmb3IgeW91ciBhbnN3ZXIuPG86cD48L286cD48L3A+DQo8cD5UaGUgdGhpbmcg
+aXMsIHJpZ2h0IG5vdyBJIGRvbid0IHJlYWxseSBoYXZlIGEgcmVjaXBlIHRoYXQgYnVpbGRzIHRo
+ZSBhcHBsaWNhdGlvbiwgdGhhdCBpcyBmb3IgdGhlIGN1c3RvbWVyIHRvIHByb3ZpZGUuIE15IHRh
+c2sgcmlnaHQgbm93IGlzIGp1c3QgdG8gcHJvdmlkZSB0aGUgU0RLIHRoYXQgdGhleSBjYW4gYnVp
+bGQgYWdhaW5zdC4gT3IgYXJlIHlvdSByZWZlcnJpbmcgdG8gdGhlIGltYWdlLXJlY2lwZT88bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---TGLSPDJD5FkrHRe568mW--
+--_000_IA0PR14MB61881CC2ED0A1A0758FDD9BC85F02IA0PR14MB6188namp_--
 
