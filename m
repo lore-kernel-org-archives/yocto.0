@@ -1,54 +1,58 @@
-Return-Path: <bibibobibo@gmail.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 17F59C25B78
-	for <webhook@archiver.kernel.org>; Tue, 28 May 2024 21:31:15 +0000 (UTC)
-Subject: Disable bitbake command ANSI color output
-To: yocto@lists.yoctoproject.org
-From: bibibobibo@gmail.com
-X-Originating-Location: San Jose, California, US (204.246.162.39)
-X-Originating-Platform: Linux Chrome 125
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35B72C27C44
+	for <webhook@archiver.kernel.org>; Tue, 28 May 2024 23:00:33 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.58.1716937225149194208
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 28 May 2024 16:00:25 -0700
+Authentication-Results: mx.groups.io;
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 311E140C8F;
+	Tue, 28 May 2024 23:00:24 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Hq0fBpTHgi1D; Tue, 28 May 2024 23:00:24 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2A89B40BE6;
+	Tue, 28 May 2024 23:00:20 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 599FF163F70; Tue, 28 May 2024 19:00:19 -0400 (EDT)
+Date: Tue, 28 May 2024 19:00:19 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	Yocto Project <yocto@lists.yoctoproject.org>,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour May 29 5pm/1700 UTC
+Message-ID: <20240528230019.GL21287@denix.org>
+References: <17C0668733C284D5.6405@lists.openembedded.org>
 MIME-Version: 1.0
-Date: Tue, 28 May 2024 14:31:06 -0700
-Message-ID: <ybnS.1716931866846451135.tppV@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="Nh2gwtEL8UKBrBB2zC49"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <17C0668733C284D5.6405@lists.openembedded.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 28 May 2024 21:31:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63219
+ <yocto@lists.yoctoproject.org>; Tue, 28 May 2024 23:00:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63220
 
---Nh2gwtEL8UKBrBB2zC49
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+All,
 
-Greetings everyone,
+Please join us for our monthly OpenEmbedded Happy Hour tomorrow, 
+May 29 at 1700/5pm UTC (1pm ET/10am PT)
 
-Dummy question, is there a quick way to disable bitbake output color? When =
-we do container build, there is a lot of ANSI color code.
+https://www.openembedded.org/wiki/Calendar
+https://www.openembedded.org/wiki/Happy_Hours
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+May+29&iso=20240529T17
 
-=1B[36m=1B[39m NOTE: recipe python3-gcovr-native-5.1-r0: task do_autorev_ch=
-eck: Succeeded=1B[0m=1B[0m
-...
-
-I was wondering if there is some quick TERM=3D setting or NO_COLOR env var =
-that can suppress these things.
-
-Thanks,
-m.
-
---Nh2gwtEL8UKBrBB2zC49
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Greetings everyone,<br /><br />Dummy question, is there a quick way to disa=
-ble bitbake output color? When we do container build, there is a lot of ANS=
-I color code.&nbsp;<br /><br />&nbsp;=1B[36m=1B[39m NOTE: recipe python3-gc=
-ovr-native-5.1-r0: task do_autorev_check: Succeeded=1B[0m=1B[0m<br />...<br=
- /><br />I was wondering if there is some quick TERM=3D setting or NO_COLOR=
- env var that can suppress these things.<br /><br />Thanks,<br />m.
-
---Nh2gwtEL8UKBrBB2zC49--
+Best regards,
+Denys Dmytriyenko
+OpenEmbedded Board of Directors
 
