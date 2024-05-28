@@ -1,222 +1,151 @@
-Return-Path: <rybczynska@gmail.com>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C4DBC25B78
-	for <webhook@archiver.kernel.org>; Tue, 28 May 2024 14:59:33 +0000 (UTC)
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
- by mx.groups.io with SMTP id smtpd.web11.24589.1716908364188371755
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50588C41513
+	for <webhook@archiver.kernel.org>; Tue, 28 May 2024 15:13:23 +0000 (UTC)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+ by mx.groups.io with SMTP id smtpd.web10.24670.1716909198758710799
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 May 2024 07:59:24 -0700
+ Tue, 28 May 2024 08:13:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Z6wYWxwh;
- spf=pass (domain: gmail.com, ip: 209.85.210.181, mailfrom: rybczynska@gmail.com)
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6f8ecafd28cso698669b3a.3
-        for <yocto@lists.yoctoproject.org>; Tue, 28 May 2024 07:59:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=PoiyOlUW;
+ spf=pass (domain: gmail.com, ip: 209.85.167.51, mailfrom: jpewhacker@gmail.com)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-529614b8c29so1629716e87.2
+        for <yocto@lists.yoctoproject.org>; Tue, 28 May 2024 08:13:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716908363; x=1717513163; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=179mGgFRCc6DfgyindXGtFFKpsVHOhMEJiJVh7CQTDw=;
-        b=Z6wYWxwhTXt1AELzl50YTF4/o+kaq72uT4uoLNplrtmLyiunYD+fHW2ZkJllcpkpbb
-         ZoEIhZ7KVUSZTOEv/UKwGcG26kgmu3BEH0pK+ThPfZpWMJlP0J/d93xzLLSsHuGx5eBW
-         aVhcfvWKNtvf7/D8wGo/oGVhB29RFeMEq20UxVH2iioObjk+jRlb0FlJZtuk5tGm4lyX
-         ZsP06HpgvlgKsOv/2HqpTcPG3pRTIqevRAbHZEnwC9o4lz5bMoqAAWpzmxA2dvbIf9DQ
-         xa0VRN1vakI2pyOjgLZCfoawu8YTnEH+enIliz/nAZZLYEsEjPSGGpUBvLelFhMy57g2
-         3oCw==
+        d=gmail.com; s=20230601; t=1716909197; x=1717513997; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ctVxBjiPyaTZpkblTsAAuwKyyrEoHOUlCd3z3IVD0x4=;
+        b=PoiyOlUW70B6wY7HdG3NspASqZAqPbclhCRCMdjZ9jBIv8XZ0koUoqizzVMa4UKx/H
+         wcyqDJImnsPaOyyHv88iG8wY8EYexp6DY5Riv4queap5ANfSFG0cnybfnp9sxRcFcO4F
+         JqK+hAbcPH1WrwAA+V6QfVtBrUc6Q8V4ILHDQM7akyr3ISnX9brlcSWy2zaI37bqA4/X
+         nxsFnrsvGYaDABuyXiB7nQDhe7v3YpOCMeK00W2F2Q2tdvk+rn/Juvu/AwNX/ESxt8tZ
+         8RrZ1m5/KCtXg/4Sv0eiYWJwW9VE3Lr+hhMvoId6HECN87muhkO29tdJD++J/navOw6r
+         LJMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716908363; x=1717513163;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=179mGgFRCc6DfgyindXGtFFKpsVHOhMEJiJVh7CQTDw=;
-        b=LzdgVa9B5af9QvkHOjH1mGbvN5VxV6FblZYHjaYoC56NTFnysTA9jXAuI73xqsTXx6
-         GOYptpeNCFypnAxlHcXDjw5Qhcx21GfwmllC9S6iJo/vslRcN12uBiFLJhVnM35TOFfC
-         tFmQ9XKUTLsPQEiNfGEZFAl7IupALAodimwdySR2zb6eScgu5p1ZndRgr1DG8DQofFyr
-         Gzgpor3Wd14GMpBnvf5FzxOGpXyr6IFh66sX1Uib3TQSOD+XUNoAmciIW5uihtAtmPPr
-         6fNd5YVVah89hD0tqXCU1Xh4lRRoyPQXQmKUYQxL8F/JcIVbYWqjMYEqKBFg3+rosEGl
-         RBVA==
-X-Gm-Message-State: AOJu0YwiO9k5+QGmANHjS8cN5y5DNn1rxPiS8yd9U9BDn090GYJnBID2
-	52GppqB+nnqEAglqIo9li+Ecp8r2h/HIE49DF3+WsI8NJ8YFMjFVgWrfhL2KzMLTwWg6dS5mdar
-	BPgiq/xYVxd4bxNw3V65SKtSL/NM=
-X-Google-Smtp-Source: AGHT+IEDUHVGTsxM96fGmYOEmXnIApR/wsIoLrgg/f47cMeBaYv/pVS/n37WYJxPnaGSiEcgmTCJp07aUeO//XnxmhE=
-X-Received: by 2002:a05:6a20:d48c:b0:1af:f92c:de8e with SMTP id
- adf61e73a8af0-1b212f724e1mr13538877637.52.1716908363362; Tue, 28 May 2024
- 07:59:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716909197; x=1717513997;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ctVxBjiPyaTZpkblTsAAuwKyyrEoHOUlCd3z3IVD0x4=;
+        b=lnmEYIP+UEnzz9BFCecu+MKPJCu4nz2zi85MPsw1/kUNGyxH4oJiyYh1ylrXIoiocV
+         fXwcuA16g5YnPyWKyMBjM2RnvrDPjlEEOQvsMaQAqkVfuarx6R6OAuaLmtNXIE+1AR5A
+         NkoLJOoys35RXTqBLamanwQtudo0ZYHISJKzwJysQhSzhwHOPCsfVKONsgE1Ej85RNVJ
+         gCpBpIRmlMKFowM14I3FnQw5q408w4w+kZq5xWT7POZQPossBBZgw/AVPI2Bt0AKV5Eh
+         4WaZ99v9h/3CArz0KNKj/WuEQ+FxEJdFYZCB/jrzSx9gw1p2vqSXLmGzp+A25cu/HrM3
+         TGZQ==
+X-Gm-Message-State: AOJu0YycjddXCC+eDO72/tdLU2siq1ZXAZPp9ie1cl+8Pxah+GdDLLTd
+	a6bq1LneZ95OaFWkA6kyFJN3Xr04W25faL5Ha+tSUARAWeKWYGas174OaQ56j0L4kmTacFs3BrZ
+	7Vdhgk3rwxs/J+eIlELKVkwmYTuk=
+X-Google-Smtp-Source: AGHT+IG7wmszjeSVyd41La4wWmDs1Wk3DLPpzRvHL6o8oyn0r+9Y3ve9l7EhJRtBnqbZQKnt4Xr2Lx7HLhu9g4Pv1Hw=
+X-Received: by 2002:ac2:4c2d:0:b0:51e:f79e:15d9 with SMTP id
+ 2adb3069b0e04-5296594d06amr9657125e87.21.1716909196510; Tue, 28 May 2024
+ 08:13:16 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAApg2=T_sdGmAYKEzTCKS77YoEew2HM-PaoDWczoH8a=A6=nwg@mail.gmail.com>
  <CAJdd5Gax3CXHckaQuAQRwnx8V=u8X69CeJFqwb5v96B0fOpQjQ@mail.gmail.com>
- <CAApg2=Q+K-twqpgTGpddzRJjUB21a7xOjgOg=FxcDzq3pLdgqQ@mail.gmail.com> <CAJdd5GZB-qaJxTai1_zorqowU4Sw0oZeRNLsUG2y7LsVF_E5iQ@mail.gmail.com>
-In-Reply-To: <CAJdd5GZB-qaJxTai1_zorqowU4Sw0oZeRNLsUG2y7LsVF_E5iQ@mail.gmail.com>
-From: Marta Rybczynska <rybczynska@gmail.com>
-Date: Tue, 28 May 2024 16:59:11 +0200
-Message-ID: <CAApg2=RrUQ_YKj_cBMnPPm0d9EGbiGNzYUH7FHDhEppgJu7Ghg@mail.gmail.com>
+ <CAApg2=Q+K-twqpgTGpddzRJjUB21a7xOjgOg=FxcDzq3pLdgqQ@mail.gmail.com>
+ <CAJdd5GZB-qaJxTai1_zorqowU4Sw0oZeRNLsUG2y7LsVF_E5iQ@mail.gmail.com> <CAApg2=RrUQ_YKj_cBMnPPm0d9EGbiGNzYUH7FHDhEppgJu7Ghg@mail.gmail.com>
+In-Reply-To: <CAApg2=RrUQ_YKj_cBMnPPm0d9EGbiGNzYUH7FHDhEppgJu7Ghg@mail.gmail.com>
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Tue, 28 May 2024 09:13:04 -0600
+Message-ID: <CAJdd5GYtuhXQnJo=iK3u28mk68uV=jatd44nc_gBCheubbjM3g@mail.gmail.com>
 Subject: Re: SPDX delivery
-To: Joshua Watt <jpewhacker@gmail.com>
+To: Marta Rybczynska <rybczynska@gmail.com>
 Cc: yocto <yocto@lists.yoctoproject.org>, 
 	openembedded-architecture <openembedded-architecture@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="0000000000001c48d9061984e185"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 28 May 2024 14:59:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63216
+ <yocto@lists.yoctoproject.org>; Tue, 28 May 2024 15:13:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63217
 
---0000000000001c48d9061984e185
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, May 28, 2024 at 1:01=E2=80=AFAM Joshua Watt <jpewhacker@gmail.com> =
-wrote:
-
+On Tue, May 28, 2024 at 8:59=E2=80=AFAM Marta Rybczynska <rybczynska@gmail.=
+com> wrote:
 >
 >
-> On Mon, May 27, 2024, 11:47=E2=80=AFAM Marta Rybczynska <rybczynska@gmail=
-.com>
+>
+> On Tue, May 28, 2024 at 1:01=E2=80=AFAM Joshua Watt <jpewhacker@gmail.com=
 > wrote:
->
 >>
 >>
->> On Wed, May 15, 2024 at 8:09=E2=80=AFPM Joshua Watt <jpewhacker@gmail.co=
-m> wrote:
 >>
->>> On Wed, May 15, 2024 at 11:11=E2=80=AFAM Marta Rybczynska <rybczynska@g=
-mail.com>
->>> wrote:
->>> >
->>> > Hello all,
->>> > As this discussion might be interesting to multiple people, I post it
->>> to YP list and the OE architecture list.
->>> >
->>> > In the VEX work (the status will go out in a moment in a separate
->>> message), we're collecting SPDX and CVE files for builds to re-run the =
-CVE
->>> checks later (potentially months later). The CVE check file is generate=
-d
->>> for both the image and the build as it is (including the SDK).
->>> >
->>> > On the other hand, the SPDX archive is generated for the image only,
->>> and contains only packages from the system image itself, omitting the b=
-uild
->>> system. This is possible for us to get all the partial SPDX files from =
-the
->>> build dir, but we do not expect the complete build dir to be kept for
->>> months.
+>> On Mon, May 27, 2024, 11:47=E2=80=AFAM Marta Rybczynska <rybczynska@gmai=
+l.com> wrote:
 >>>
->>> Can you clarify what you mean by "build" here? We do generate SPDX for
->>> the "native" recipes used during the build, and they are in the final
->>> SPDX generated for an image, so we do have some idea of the "build"
->>> tools used to generate an image.
 >>>
->>
->>
->> Hello Joshua,
->> This is still unclear to me. When I build an image eg bitbake
->> core-image-minimal I get the spdx archive as expected:
->>
->> ./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootf=
-s.spdx.tar.zst
->>
->> ./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootf=
-s-20240522164207.spdx.tar.zst
->>
->> ./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core-=
-image-minimal-image-complete/core-image-minimal-qemux86-64.rootfs.spdx.tar.=
-zst
->>
->>
->> ./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core-=
-image-minimal-image-complete/core-image-minimal-qemux86-64.rootfs-202405221=
-64207.spdx.tar.zst
->>
->> However, there's no archive for the world build (not going to mention ho=
-w
->> long it lasted). Is it on purpose?
->>
->
->
-> Ya sorry. I wasn't trying to imply that we currently generate a  SPDX
-> archive for world builds, just that we should be able to do so without to
-> much trouble
->
-
-Thanks for clarification. I was confused and couldn't find the code... To
-clarify, what we have today is generation of the archive for rootfs images
-and in case of sdk build with populate_sdk. Is it correct?
-
-Kind regards,
-Marta
-
---0000000000001c48d9061984e185
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 28, 2024 at 1:01=E2=80=AF=
-AM Joshua Watt &lt;<a href=3D"mailto:jpewhacker@gmail.com">jpewhacker@gmail=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Mon, May 27, 2024, 11:47=E2=80=AFAM Marta Rybcz=
-ynska &lt;<a href=3D"mailto:rybczynska@gmail.com" target=3D"_blank">rybczyn=
-ska@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"auto"><div dir=3D"ltr"><div dir=3D"ltr"><br></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed=
-, May 15, 2024 at 8:09=E2=80=AFPM Joshua Watt &lt;<a href=3D"mailto:jpewhac=
-ker@gmail.com" rel=3D"noreferrer noreferrer" target=3D"_blank">jpewhacker@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">On Wed, May 15, 2024 at 11:11=E2=80=AFAM Marta Rybczynska &lt;<a hr=
-ef=3D"mailto:rybczynska@gmail.com" rel=3D"noreferrer noreferrer" target=3D"=
-_blank">rybczynska@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello all,<br>
-&gt; As this discussion might be interesting to multiple people, I post it =
-to YP list and the OE architecture list.<br>
-&gt;<br>
-&gt; In the VEX work (the status will go out in a moment in a separate mess=
-age), we&#39;re collecting SPDX and CVE files for builds to re-run the CVE =
-checks later (potentially months later). The CVE check file is generated fo=
-r both the image and the build as it is (including the SDK).<br>
-&gt;<br>
-&gt; On the other hand, the SPDX archive is generated for the image only, a=
-nd contains only packages from the system image itself, omitting the build =
-system. This is possible for us to get all the partial SPDX files from the =
-build dir, but we do not expect the complete build dir to be kept for month=
-s.<br>
-<br>
-Can you clarify what you mean by &quot;build&quot; here? We do generate SPD=
-X for<br>
-the &quot;native&quot; recipes used during the build, and they are in the f=
-inal<br>
-SPDX generated for an image, so we do have some idea of the &quot;build&quo=
-t;<br>
-tools used to generate an image.<br></blockquote><div><br></div><div><br></=
-div><div>Hello Joshua,</div><div>This is still unclear to me. When I build =
-an image eg bitbake core-image-minimal I get the spdx archive as expected:<=
-/div><div><br></div><div><span style=3D"font-family:monospace"><span style=
-=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)">./tmp-glibc/deploy/=
-images/qemux86-64/core-image-minimal-qemux86-64.rootfs.spdx.tar.zst
-</span><br>./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-=
-64.rootfs-20240522164207.spdx.tar.zst
-<br>./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core=
+>>>
+>>> On Wed, May 15, 2024 at 8:09=E2=80=AFPM Joshua Watt <jpewhacker@gmail.c=
+om> wrote:
+>>>>
+>>>> On Wed, May 15, 2024 at 11:11=E2=80=AFAM Marta Rybczynska <rybczynska@=
+gmail.com> wrote:
+>>>> >
+>>>> > Hello all,
+>>>> > As this discussion might be interesting to multiple people, I post i=
+t to YP list and the OE architecture list.
+>>>> >
+>>>> > In the VEX work (the status will go out in a moment in a separate me=
+ssage), we're collecting SPDX and CVE files for builds to re-run the CVE ch=
+ecks later (potentially months later). The CVE check file is generated for =
+both the image and the build as it is (including the SDK).
+>>>> >
+>>>> > On the other hand, the SPDX archive is generated for the image only,=
+ and contains only packages from the system image itself, omitting the buil=
+d system. This is possible for us to get all the partial SPDX files from th=
+e build dir, but we do not expect the complete build dir to be kept for mon=
+ths.
+>>>>
+>>>> Can you clarify what you mean by "build" here? We do generate SPDX for
+>>>> the "native" recipes used during the build, and they are in the final
+>>>> SPDX generated for an image, so we do have some idea of the "build"
+>>>> tools used to generate an image.
+>>>
+>>>
+>>>
+>>> Hello Joshua,
+>>> This is still unclear to me. When I build an image eg bitbake core-imag=
+e-minimal I get the spdx archive as expected:
+>>>
+>>> ./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-64.root=
+fs.spdx.tar.zst
+>>> ./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-64.root=
+fs-20240522164207.spdx.tar.zst
+>>> ./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core=
 -image-minimal-image-complete/core-image-minimal-qemux86-64.rootfs.spdx.tar=
 .zst
-<br>./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core=
+>>> ./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core=
 -image-minimal-image-complete/core-image-minimal-qemux86-64.rootfs-20240522=
-164207.spdx.tar.zst<br>
-<br>However, there&#39;s no archive for the world build (not going to menti=
-on how long it lasted). Is it on purpose?</span></div></div></div></div></b=
-lockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></d=
-iv><div dir=3D"auto">Ya sorry. I wasn&#39;t trying to imply that we current=
-ly generate a=C2=A0 SPDX archive for world builds, just that we should be a=
-ble to do so without to much trouble <br></div></div></blockquote><div><br>=
-</div><div>Thanks for clarification. I was confused and couldn&#39;t find t=
-he code... To clarify, what we have today is generation of the archive for =
-rootfs images and in case of sdk build with populate_sdk. Is <span class=3D=
-"ng" style=3D"background:none!important">it correct</span>?</div><div><br><=
-/div><div>Kind regards,</div><div>Marta <br></div></div></div>
+164207.spdx.tar.zst
+>>>
+>>> However, there's no archive for the world build (not going to mention h=
+ow long it lasted). Is it on purpose?
+>>
+>>
+>>
+>> Ya sorry. I wasn't trying to imply that we currently generate a  SPDX ar=
+chive for world builds, just that we should be able to do so without to muc=
+h trouble
+>
+>
+> Thanks for clarification. I was confused and couldn't find the code... To=
+ clarify, what we have today is generation of the archive for rootfs images=
+ and in case of sdk build with populate_sdk. Is it correct?
 
---0000000000001c48d9061984e185--
+Correct; those are the two things we can generate a final archive for.
+
+The final archive is a collection of intermediate files, and we always
+generate the intermediate files anytime we build a recipe, so making
+archives for other targets is mostly a matter of determining which
+intermediate files need to be included in the (new) final archive, and
+passing them to the code that creates the archive.
+
+>
+> Kind regards,
+> Marta
 
