@@ -1,209 +1,204 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1340C25B74
-	for <webhook@archiver.kernel.org>; Mon, 27 May 2024 23:01:47 +0000 (UTC)
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
- by mx.groups.io with SMTP id smtpd.web11.9886.1716850906680524579
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 745B5C25B78
+	for <webhook@archiver.kernel.org>; Tue, 28 May 2024 05:35:10 +0000 (UTC)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+ by mx.groups.io with SMTP id smtpd.web10.15356.1716874490370390301
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 May 2024 16:01:47 -0700
+ Mon, 27 May 2024 22:34:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=lCwAqn8r;
- spf=pass (domain: gmail.com, ip: 209.85.167.42, mailfrom: jpewhacker@gmail.com)
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-529682e013dso246358e87.3
-        for <yocto@lists.yoctoproject.org>; Mon, 27 May 2024 16:01:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=OOhVxLOJ;
+ spf=pass (domain: gmail.com, ip: 209.85.208.53, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5785eab8d5dso424597a12.3
+        for <yocto@lists.yoctoproject.org>; Mon, 27 May 2024 22:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716850905; x=1717455705; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2F7WFE+ntjFgSmgeTTzUjEViFjTxCIZJ/QoGzFIfhlU=;
-        b=lCwAqn8rN5LDUYtmiXS6UAzuTjMBmtVmT+C7PflszcAuZlzE6VTkfNkZKRvzk+453i
-         lkHu2Ty9TQlIsOUFg0wN3fOeQSBnJhK+PztGUDWoVDiKizca91YfSHdOjbPICEWYOG7g
-         mz79VEiBdjA7v5aSVDOZqcjK5GM+H9Gz5ajKJIcXn4BMaUU3/CzosKQ0YVD/NR6l254E
-         f0kDbx9nmx0fWubxU8dDio+p/zyf+5f6sfrjledrTFPXZqr4elhBbIMeyoX41p2mbkre
-         6F8XJ8fIiL0FqPRn8Q+BwelMycI1kmI/aaT83iiOvBD4S6dCgZKXRA1qmAk2IK/P14Ih
-         tYiw==
+        d=gmail.com; s=20230601; t=1716874488; x=1717479288; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=122Whs6K+QV6uUk8TRx08YJaze322VHEEAonvH3ElEw=;
+        b=OOhVxLOJ3O0Kz7ON14LusnsEo/RHgSrkYkclMWs1Dzwd+uVsrTAX/+WLpz03uHwAIa
+         pFiy+t5JKYDYcyOlvXxSJ6GNz4m2VUozam9HiYnGfjtX5vl4DlgAm5xU83mBQWqQj1K+
+         FIKcfeuw5Sbxao+5I2Zz5keVWHpf0GPuayvDlliWfAfGa80FXQN81N1mk1vtzQ3GTpYf
+         CPnidB1GEmbq9tHz0A9L7NDucwhTRXVs/zvH68/bLvPQCQTBAJKMv1w42uVB6KhBcWRR
+         G6JnRSHoyoDbI9NJPF4igFlG2j7c+1qIYU1r7nLH9c7ewB5Tt/OLCnZbxahKZjjDcbMC
+         5MoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716850905; x=1717455705;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2F7WFE+ntjFgSmgeTTzUjEViFjTxCIZJ/QoGzFIfhlU=;
-        b=TdDXNOAHL4cwoQoJ2UgFvlrFoTUqszYSFSEVZHLSZou0Wcz4UeSVjD0W9DY/fYU3Bp
-         gp2wHyRzIabmpE35iiyAz+Ziv+kfBaOG08U/HRxMYHcaIOFfCADSSphi3nDgVvkFb+xQ
-         t8cfNKjnjGCFX0g7rxHA4egq8b8R6fd7SKt2BDJG9tBWTh+8V0im8+P3FdODQMCbFRxq
-         Ydd4sR6lMsopcSFQKtgcpaYBCHGpPm3firCBpRGwcxLAwoUL5gDRj5dW6ANvHxFOv881
-         cInrTYPnYfjY4OJt73N/+HgnFzQCK2xNPoV2ZaeMMu1FkXscq6vmDmjJnyB1IjSlTiki
-         90lg==
-X-Gm-Message-State: AOJu0YzkL2efBOywheCc6t+kGOyTKSxvHx8CZHixikWjFhuBRyJh0eiA
-	KtQbLj1bx5JT7zk01Y83RFhIhBTIfJQAjBF3JocSVnfWg1Ltlob3TlHovRL0nS3S0XrsX9qafBQ
-	snvy2/sr/xww73w83aBTw9tfdy3M=
-X-Google-Smtp-Source: AGHT+IFzPGvnP89PGJeNjsiJIKrEqSjGS8p62TL18nL5o+2Yed/yfZ3P/2dFwWHQmrQ8B/J309lhPnCEdqRHAehor3c=
-X-Received: by 2002:a05:6512:33c3:b0:523:899f:c63d with SMTP id
- 2adb3069b0e04-529663e663amr8465762e87.47.1716850904619; Mon, 27 May 2024
- 16:01:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716874488; x=1717479288;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=122Whs6K+QV6uUk8TRx08YJaze322VHEEAonvH3ElEw=;
+        b=PMe1GjzVVJw9SmdOkdDLmNwb/hU3k6bLqCUzruAwYowDcrbEBRhuJ7k24cjoGs4OJv
+         NdiWCk7BkgGnUoWhx2A8MxvUa8if4SxibvZ63mVUf7k5ro/jjwKe5A8rWSCWmtMUFzD8
+         3G6ZUGnfvvjMDz+vAuLpoPVaW/SIY1sk39EavGpDvrb7vrkOs7deQrOXjl0YwTi7FAjD
+         da8/gqXOh8PSnThDCGmS39sTqh7dtp9SPsoY6YQUciTM9cjtxID+bjQQM89kQecAPw70
+         WCyIQZQ2xGAtjc7vqEh5rqUygmckZ2/yDNZFEe1SXDvSEuUPBw14/fKwtCkcLo33wIty
+         7rpw==
+X-Forwarded-Encrypted: i=1; AJvYcCW6hotiUJJLUIhws8Z1ZEtDq18533l7yQn2/XjK+LkQSKGXlDk8BgOlRvXdWmMYVZkTKEUoakuAVKP2o3wQDgGTY1ZCWFn53HJ8MyAH
+X-Gm-Message-State: AOJu0YwJr8vg4bil2TWwMQywZsOK3Mal6CkZyg7XJPpafri4W8t3CIT4
+	fLELYN61scBbshl1bLizMGPCZavNZ3AA8xnsXtyetdsy43UWRxmJrq6DHmTuI+ChR82IcuObwMa
+	LpGQXPzOTL7TVdBE/ajRYQoxU7Do=
+X-Google-Smtp-Source: AGHT+IGOhwU+wnhk1n0pvTBPiNpnMYhkk3Ao355MLeYWO2HY8e/ucwI7Pdny17+6le6nKgZTzicSFhk0pwe/k4gqLtw=
+X-Received: by 2002:a17:906:34c4:b0:a5d:1079:ae43 with SMTP id
+ a640c23a62f3a-a62646cff2bmr665768066b.46.1716874488348; Mon, 27 May 2024
+ 22:34:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAApg2=T_sdGmAYKEzTCKS77YoEew2HM-PaoDWczoH8a=A6=nwg@mail.gmail.com>
- <CAJdd5Gax3CXHckaQuAQRwnx8V=u8X69CeJFqwb5v96B0fOpQjQ@mail.gmail.com> <CAApg2=Q+K-twqpgTGpddzRJjUB21a7xOjgOg=FxcDzq3pLdgqQ@mail.gmail.com>
-In-Reply-To: <CAApg2=Q+K-twqpgTGpddzRJjUB21a7xOjgOg=FxcDzq3pLdgqQ@mail.gmail.com>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Mon, 27 May 2024 17:01:33 -0600
-Message-ID: <CAJdd5GZB-qaJxTai1_zorqowU4Sw0oZeRNLsUG2y7LsVF_E5iQ@mail.gmail.com>
-Subject: Re: SPDX delivery
-To: Marta Rybczynska <rybczynska@gmail.com>
-Cc: yocto <yocto@lists.yoctoproject.org>, 
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="0000000000004d63c00619778045"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 27 May 2024 22:34:37 -0700
+Message-ID: <CAK5yBb9M-C7U9_H5-UU=Zj=h18UQgkX+9idCjxHpVma2eAU9tg@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000000886606197cfe71"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 May 2024 23:01:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63210
+ <yocto@lists.yoctoproject.org>; Tue, 28 May 2024 05:35:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63211
 
---0000000000004d63c00619778045
+--00000000000000886606197cfe71
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 27, 2024, 11:47=E2=80=AFAM Marta Rybczynska <rybczynska@gmail.c=
-om>
-wrote:
+All,
 
->
->
-> On Wed, May 15, 2024 at 8:09=E2=80=AFPM Joshua Watt <jpewhacker@gmail.com=
-> wrote:
->
->> On Wed, May 15, 2024 at 11:11=E2=80=AFAM Marta Rybczynska <rybczynska@gm=
-ail.com>
->> wrote:
->> >
->> > Hello all,
->> > As this discussion might be interesting to multiple people, I post it
->> to YP list and the OE architecture list.
->> >
->> > In the VEX work (the status will go out in a moment in a separate
->> message), we're collecting SPDX and CVE files for builds to re-run the C=
-VE
->> checks later (potentially months later). The CVE check file is generated
->> for both the image and the build as it is (including the SDK).
->> >
->> > On the other hand, the SPDX archive is generated for the image only,
->> and contains only packages from the system image itself, omitting the bu=
-ild
->> system. This is possible for us to get all the partial SPDX files from t=
-he
->> build dir, but we do not expect the complete build dir to be kept for
->> months.
->>
->> Can you clarify what you mean by "build" here? We do generate SPDX for
->> the "native" recipes used during the build, and they are in the final
->> SPDX generated for an image, so we do have some idea of the "build"
->> tools used to generate an image.
->>
->
->
-> Hello Joshua,
-> This is still unclear to me. When I build an image eg bitbake
-> core-image-minimal I get the spdx archive as expected:
->
-> ./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs=
-.spdx.tar.zst
->
-> ./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs=
--20240522164207.spdx.tar.zst
->
-> ./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core-i=
-mage-minimal-image-complete/core-image-minimal-qemux86-64.rootfs.spdx.tar.z=
-st
->
->
-> ./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core-i=
-mage-minimal-image-complete/core-image-minimal-qemux86-64.rootfs-2024052216=
-4207.spdx.tar.zst
->
-> However, there's no archive for the world build (not going to mention how
-> long it lasted). Is it on purpose?
->
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 424
+unassigned or newcomer bugs.
+
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, "5.99" and=
+ "Future", the more
+pressing/urgent issues being in "5.0" and then =E2=80=9C5.1=E2=80=9D.
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
 
 
-Ya sorry. I wasn't trying to imply that we currently generate a  SPDX
-archive for world builds, just that we should be able to do so without to
-much trouble
 
->
-> Kind regards,
-> Marta
->
->
+*Stephen K. Jolley*
 
---0000000000004d63c00619778045
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--00000000000000886606197cfe71
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Mon, May 27, 2024, 11:47=E2=80=AFAM Marta Rybczynsk=
-a &lt;<a href=3D"mailto:rybczynska@gmail.com">rybczynska@gmail.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto"><div dir=
-=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, May 15, 2024 at 8:09=E2=80=AFPM Joshu=
-a Watt &lt;<a href=3D"mailto:jpewhacker@gmail.com" rel=3D"noreferrer norefe=
-rrer" target=3D"_blank">jpewhacker@gmail.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex">On Wed, May 15, 2024 at 11:11=
-=E2=80=AFAM Marta Rybczynska &lt;<a href=3D"mailto:rybczynska@gmail.com" re=
-l=3D"noreferrer noreferrer" target=3D"_blank">rybczynska@gmail.com</a>&gt; =
-wrote:<br>
-&gt;<br>
-&gt; Hello all,<br>
-&gt; As this discussion might be interesting to multiple people, I post it =
-to YP list and the OE architecture list.<br>
-&gt;<br>
-&gt; In the VEX work (the status will go out in a moment in a separate mess=
-age), we&#39;re collecting SPDX and CVE files for builds to re-run the CVE =
-checks later (potentially months later). The CVE check file is generated fo=
-r both the image and the build as it is (including the SDK).<br>
-&gt;<br>
-&gt; On the other hand, the SPDX archive is generated for the image only, a=
-nd contains only packages from the system image itself, omitting the build =
-system. This is possible for us to get all the partial SPDX files from the =
-build dir, but we do not expect the complete build dir to be kept for month=
-s.<br>
-<br>
-Can you clarify what you mean by &quot;build&quot; here? We do generate SPD=
-X for<br>
-the &quot;native&quot; recipes used during the build, and they are in the f=
-inal<br>
-SPDX generated for an image, so we do have some idea of the &quot;build&quo=
-t;<br>
-tools used to generate an image.<br></blockquote><div><br></div><div><br></=
-div><div>Hello Joshua,</div><div>This is still unclear to me. When I build =
-an image eg bitbake core-image-minimal I get the spdx archive as expected:<=
-/div><div><br></div><div><span style=3D"font-family:monospace"><span style=
-=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)">./tmp-glibc/deploy/=
-images/qemux86-64/core-image-minimal-qemux86-64.rootfs.spdx.tar.zst
-</span><br>./tmp-glibc/deploy/images/qemux86-64/core-image-minimal-qemux86-=
-64.rootfs-20240522164207.spdx.tar.zst
-<br>./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core=
--image-minimal-image-complete/core-image-minimal-qemux86-64.rootfs.spdx.tar=
-.zst
-<br>./tmp-glibc/work/qemux86_64-oe-linux/core-image-minimal/1.0/deploy-core=
--image-minimal-image-complete/core-image-minimal-qemux86-64.rootfs-20240522=
-164207.spdx.tar.zst<br>
-<br>However, there&#39;s no archive for the world build (not going to menti=
-on how long it lasted). Is it on purpose?</span></div></div></div></div></b=
-lockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></d=
-iv><div dir=3D"auto">Ya sorry. I wasn&#39;t trying to imply that we current=
-ly generate a=C2=A0 SPDX archive for world builds, just that we should be a=
-ble to do so without to much trouble=C2=A0</div><div dir=3D"auto"><div clas=
-s=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
-8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto"><div dir=
-=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"auto"><span style=3D"font-f=
-amily:monospace"><br></span></div><div dir=3D"auto"><span style=3D"font-fam=
-ily:monospace">Kind regards,</span></div><div dir=3D"auto"><span style=3D"f=
-ont-family:monospace">Marta</span></div><br></div></div></div>
-</blockquote></div></div></div>
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 424 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.0=E2=80=9D, =E2=80=9C5.1=E2=80=9D, &quot;5.99&quot; and &quot;Future&quot;=
+, the more pressing/urgent issues being in &quot;5.0&quot; and then =E2=80=
+=9C5.1=E2=80=9D.<br><br>Please review this link and if a bug is something y=
+ou would be able to help with either take ownership of the bug, or send me =
+(<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an=
+ e-mail with the bug number you would like and I will assign it to you (ple=
+ase make sure you have a Bugzilla account).  The list is at: <a href=3D"htt=
+ps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_B=
+ugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Ne=
+wcomer_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
+martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"=
+MsoNormal" style=3D"background-image:initial;background-position:initial;ba=
+ckground-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sa=
+ns-serif">Thanks,<span></span></span></p>
 
---0000000000004d63c00619778045--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--00000000000000886606197cfe71--
 
