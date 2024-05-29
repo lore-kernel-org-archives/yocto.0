@@ -1,117 +1,95 @@
-Return-Path: <farias@automac.net>
+Return-Path: <enguerrand.de-ribaucourt@savoirfairelinux.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 602CAC25B75
-	for <webhook@archiver.kernel.org>; Wed, 29 May 2024 14:16:30 +0000 (UTC)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
- by mx.groups.io with SMTP id smtpd.web10.15347.1716992185113859243
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60086C25B75
+	for <webhook@archiver.kernel.org>; Wed, 29 May 2024 14:40:30 +0000 (UTC)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+ by mx.groups.io with SMTP id smtpd.web11.16096.1716993625219318367
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 May 2024 07:16:25 -0700
+ Wed, 29 May 2024 07:40:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@automac-net.20230601.gappssmtp.com header.s=20230601 header.b=RxpnnKgT;
- spf=pass (domain: automac.net, ip: 209.85.208.180, mailfrom: farias@automac.net)
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2e95a1d5ee2so4900211fa.0
-        for <yocto@lists.yoctoproject.org>; Wed, 29 May 2024 07:16:24 -0700 (PDT)
+ dkim=pass header.i=@savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=kag4FJu4;
+ spf=pass (domain: savoirfairelinux.com, ip: 208.88.110.44, mailfrom: enguerrand.de-ribaucourt@savoirfairelinux.com)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id BEA0B9C15E0;
+	Wed, 29 May 2024 10:40:23 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id dezcNLe8zGOZ; Wed, 29 May 2024 10:40:23 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 2F3CB9C57A8;
+	Wed, 29 May 2024 10:40:23 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 2F3CB9C57A8
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=automac-net.20230601.gappssmtp.com; s=20230601; t=1716992183; x=1717596983; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=o3WZb5xUSXV8PFIKTS27jwxQx6YsjMyUX0cA9iFg7gU=;
-        b=RxpnnKgTGyTXV0xNCXfKUl8D4/gmlOvw0E1Jrd8DAgKRua1kXjpXegil4ND3f362u5
-         GYHXDt2TwbRbS0B6fnHPoGXFNG98PxEmYk45Cib87/xaqIdF1Ca/uM3n/flICHWa+/Zs
-         ySrFnIoElyIQa9WW7yDQ/yVCYauHxCdxZ7Sn1SLYHY537S1roVpoiGYAd5tvl/kzb2qz
-         hV+xXoD4AFmxX5hWjMtYnGEMpKZ6foF5FTkJQFBPiTN0mhaesqTXCACGiFCy34CRAyF3
-         h68lsWz1ySP9QGXW7SFwailqxpvIO4ei1Cfo8mJpVAFbdl+GR0NqmVvwyY7fEuGTjCtd
-         yQOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716992183; x=1717596983;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o3WZb5xUSXV8PFIKTS27jwxQx6YsjMyUX0cA9iFg7gU=;
-        b=TiZ+4r+irRWeF+zKjkPkIavHRlSNohOA05O5rabiaIvLBSXYF8P0WVPE9Esw7pbAU3
-         dhVbXlHKvN+wbYAJDh0cOLaY5KYB37HimWWyCfFtSDno3KYedjVtuwMmxuIZe26KVboO
-         7oNeRS2W6C6lRqb80ZwP9k20iWQTg1IkCaElUF2HiE1mp3Jp1conTcB7rMbX/jRgBBO1
-         I2ua1ZlUiq0ztgLc4nM4pHmV5BUhuH8jA8rYIUQ67w7oncc9sD5yDcy8rUrOD+JOKJ6K
-         2jbwKSRb2Fn+/24fltFAXOt/m4iwLSRIHFrU0Ls52pQkyTvvYMcN9My7yYJ/3TsTHrVE
-         owPg==
-X-Gm-Message-State: AOJu0YxKR9ucynkqyvC7eHFdARWw21LATnSg57/T/4bQMSueiF71eoa9
-	qzkgBrvWKrcYPgS1JXv/KfwzDM0IRrnn8kOqZbNpgpSHBc0Xv3o5hasqzZqNR19O2QODllVqlgP
-	eiaqNgH6xsevC2SPhNhHiRETG7izJ6qnkH71yJOBPTRJI16T7cuQ=
-X-Google-Smtp-Source: AGHT+IEeBlk/Ybs4lxyclf3n9nC8nLwGFmgELCycrHNOBnV0JPmaNFMoD1IRdc2OoxDLhhE1PBcM+Nbb1GE8U9Ysi/c=
-X-Received: by 2002:a2e:b385:0:b0:2e6:be3c:9d4d with SMTP id
- 38308e7fff4ca-2e95b096b68mr127024641fa.12.1716992182660; Wed, 29 May 2024
- 07:16:22 -0700 (PDT)
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1716993623; bh=FKQth7IQtdb02jDOeGrtYCGeQnUeUcb/n3fCKR4m2lc=;
+	h=Message-ID:Date:MIME-Version:From:To;
+	b=kag4FJu4UFOlbXLiKdtKgFsts86pGNE4TSaKygr8KlWkh98foap5GeFGRFTk9scvC
+	 7BvFDZTW0FLLkueIWCMc7mdjOJ6BZ1rO08whIZYh/UiH7Bi7p+gROixspsF6cuZypm
+	 xLDFTXTUSgny/VcqkaIfRjQ52YBpb9o22L01bZvUDI8OnQf3esMhdoH3PyNE3hUJPx
+	 dYD18fzDq23Ya6WucsamgWoHWPFm4Bq1fRJbTLdJKtXJWGeRkSJ++WsDV0Nttl08s6
+	 9UXbq9PKBv/iqJ0TdOM6KNr4W4nkPM6BTxinS4UWQJ+EgM7zD37752EjAySe1ULDHo
+	 rp7hhZhb2KWHw==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id QbAtpUeVIbSS; Wed, 29 May 2024 10:40:23 -0400 (EDT)
+Received: from [192.168.216.123] (lmontsouris-657-1-69-118.w80-15.abo.wanadoo.fr [80.15.101.118])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 8E5629C15E0;
+	Wed, 29 May 2024 10:40:22 -0400 (EDT)
+Message-ID: <59211b95-d1b2-45d5-9cfb-dd88f74f7b9d@savoirfairelinux.com>
+Date: Wed, 29 May 2024 16:40:21 +0200
 MIME-Version: 1.0
-From: Federico Arias <farias@automac.net>
-Date: Wed, 29 May 2024 11:16:11 -0300
-Message-ID: <CALBkiFDL_cvngvGivfZvz9zcfc7YKkm4CTTaRoiHLEwiautc-Q@mail.gmail.com>
-Subject: [meta-raspberrypi] Raspberry CM4 does not load audremap overlay
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000214684061998658c"
+User-Agent: Mozilla Thunderbird
+From: Enguerrand de Ribaucourt <enguerrand.de-ribaucourt@savoirfairelinux.com>
+Subject: [ANNOUNCEMENT] VS Code Yocto Project extension v2.5.0 is released
+To: yocto-announce@lists.yoctoproject.org, yocto@lists.yoctoproject.org
+Cc: Mohammed Raza <mohammed.raza@savoirfairelinux.com>,
+ Ross Burton <Ross.Burton@arm.com>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 29 May 2024 14:16:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63229
+ <yocto@lists.yoctoproject.org>; Wed, 29 May 2024 14:40:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63230
 
---000000000000214684061998658c
-Content-Type: text/plain; charset="UTF-8"
+Hello,
 
-  Hello, I'm new to the Yocto and Raspberry community, so let me know if
-I'm doing something wrong please.
-I am trying to compile with Yocto Kirkstone (also tried newer branches),
-for a Raspberry Pi CM4 (emmc) + Official IO Board. I chose the Raspberrypi4
-machine config, is this the correct one for the CM4 32bits?
+We are thrilled to announce the release of v2.5.0 of the official VS=20
+Code Yocto Project's extension.
 
-I just build the core-image-base with the alsa package. I enabled in
-local.conf dtparam=audio=on and also dtoverlay=audremap to route the audio
-to pins 12 and 13 (pwm).
-This works fine with the official raspberry distro (only Bullseye onwards)
-but it doesn't work here. With the aplay -L command only the HDMI audio
-appears, not the headphones.
+Download is available through the VSCode marketplace at:
+  =C2=A0-=20
+https://marketplace.visualstudio.com/items?itemName=3Dyocto-project.yocto=
+-bitbake
 
-The SO image works fine, it boots and outputs audio via HDMI.
-I also tried enabling pwm audio with other commands in local.conf like:
-audio_pwm_mode2
-dtoverlay=audremap, pins_12_13
-dtoverlay=pwm1
-and the same above with pins 40 & 41
+Some features are now also available to other IDEs like vim by following=20
+this configuration guide:
+  -=20
+https://github.com/yoctoproject/vscode-bitbake/blob/staging/server/README=
+.md
 
-also tried running >modprobe snd_bcm2835
+Happy coding,
 
-I really don't know what else to do, or where else to look for more info.
-Please tell me if you need me to add more data like dmesg logs etc.
+Enguerrand de Ribaucourt
+Savoir-faire Linux
 
-Additional details (revisions used, host distro, etc.):
-rev Kirkstone, Linux 5.15, poky distro, Raspberry pi CM4 with emmc and
-official IO Board
+---------------------------
+Changelog for v2.5.0:
+---------------------------
 
-Many thanks for your time.
+  - Add Yocto variables renaming across a recipe file
+  - Add code suggestions for SRC_URI local files
+  - Add code suggestions for recipe names in variables (DEPENDS,=20
+RDEPENDS, etc)
+  - Add an option to prevent modification of .vscode/settings.json
+  - Add a command to start the taskexp GUI for a recipe
+  - Minor bug fixes
+  - Validate support for the latest Yocto Scarthgap LTS
+  - Remove deprecated shouldDeepExamine setting
+  - Refactor client/server packaging to remove deprecated dependencies
 
---000000000000214684061998658c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">=C2=A0 Hello, I&#39;m new to the Yocto and Raspberry commu=
-nity, so let me know if I&#39;m doing something wrong please.<br>I am tryin=
-g to compile with Yocto Kirkstone (also tried newer branches), for a Raspbe=
-rry Pi CM4 (emmc) + Official IO Board. I chose the Raspberrypi4 machine con=
-fig, is this the correct one for the CM4 32bits?<div><br>I just build the c=
-ore-image-base with the alsa package. I enabled in local.conf dtparam=3Daud=
-io=3Don and also dtoverlay=3Daudremap to route the audio to pins 12 and 13 =
-(pwm).<br>This works fine with the official raspberry distro (only Bullseye=
- onwards) but it doesn&#39;t work here. With the aplay -L command only the =
-HDMI audio appears, not the headphones.=C2=A0<div><br></div><div>The SO ima=
-ge works fine, it boots and outputs audio via HDMI.<br>I also tried enablin=
-g pwm audio with other commands in local.conf like:<br>audio_pwm_mode2<br>d=
-toverlay=3Daudremap, pins_12_13<br>dtoverlay=3Dpwm1<br>and the same above w=
-ith pins 40 &amp; 41<br><br>also tried running &gt;modprobe snd_bcm2835<br>=
-<br>I really don&#39;t know what else to do, or where else to look for more=
- info. Please tell me if you need me to add more data like dmesg logs etc.<=
-br><br>Additional details (revisions used, host distro, etc.):<br>rev Kirks=
-tone, Linux 5.15, poky distro, Raspberry pi CM4 with emmc and official IO B=
-oard<br><br>Many thanks for your time.</div></div></div>
-
---000000000000214684061998658c--
 
