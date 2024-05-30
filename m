@@ -2,95 +2,87 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 464BAC25B7E
-	for <webhook@archiver.kernel.org>; Thu, 30 May 2024 09:40:45 +0000 (UTC)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
- by mx.groups.io with SMTP id smtpd.web11.4372.1717062044588514155
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B10AC25B74
+	for <webhook@archiver.kernel.org>; Thu, 30 May 2024 09:51:05 +0000 (UTC)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+ by mx.groups.io with SMTP id smtpd.web10.4419.1717062655834834054
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 May 2024 02:40:44 -0700
+ Thu, 30 May 2024 02:50:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=QdGb16ni;
- spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e719bab882so7207271fa.3
-        for <yocto@lists.yoctoproject.org>; Thu, 30 May 2024 02:40:44 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=dt7/p93h;
+ spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2e3efa18e6aso5577441fa.0
+        for <yocto@lists.yoctoproject.org>; Thu, 30 May 2024 02:50:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717062043; x=1717666843; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tg70E1DMLQAJYMbSibCEomGPgBF/Q6k8vXQ9aXsw7qY=;
-        b=QdGb16ni9EPtxwdFUvWHNx2u4asg3MrBYHshQVsK3xA3rk6IvcE/EwWlk393DgXeTk
-         PqZfZLTrs+e3PPdJt7kTTGAazz7TbxtGz+sMnkrl3j6MzJsxTLFbps4ZKv829ncgKHpP
-         gtkSbhmnwLHjAg24oLKxEDNdNmTdhEmonUu5VH/wfA7FsIP7LxLZkWq8HaAdn5UVPqsX
-         Zs25H58ujKB08kAVt8srsvagUHUyZaS9gXRe1GGxSYfbfrQX1cD5ayFPNl+cp8QYQVKu
-         WKHfuDFPExu/G3k1mHGyxVUcZFLbB1IIlmrQzPIBglQMyBBdSMipRnsBW09HsMbcysyN
-         wvhA==
+        d=gmail.com; s=20230601; t=1717062654; x=1717667454; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LHIZKHK9jOnXH6QFBharri+hZUWnk+IbpWZ1rJowKRI=;
+        b=dt7/p93h0myWUjHmzDLyGkC/BjGo4IdHIyXNXHtA01Psl3h+usjb+q+Z4Ecv4TNozy
+         NWN8Q62MWs9pwL7c1bX/CRuq2mOpro7Katne8lWfo0gUHX9XTlwrQLAdtgSc9qECSUGp
+         eTzMC1TnTbi5ldINpZUbDC6jFppeCchpyjfpR2uSuEAiNuCLLy96Z7K5zRpMmxFNEJLc
+         urj1TASjXwqJl5dnXM8kqfZaFKLxO2lWS/ZRltdICKtnON+br1gVQ7AbD7n2dAyh0+/L
+         zMz7c/K68ROtbcGK3rVQGY1y3g4N+gYQf/ug1sqZBffD6iFj9bvpdOd5eIB/H++EWrjp
+         Wkyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717062043; x=1717666843;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tg70E1DMLQAJYMbSibCEomGPgBF/Q6k8vXQ9aXsw7qY=;
-        b=kpe1PAr9CrOmV78hw8XqFGrgrZbMjWv8h0Pyd3CdXhkwQuhLASmdeCzp8RBbhBp/ZN
-         0RxVEz3YIAm52cdgSZLVXzOBHn3ihIp9HLCdzEKlqYo601v4VlcW0LlU6Zzsim9lLvQT
-         QaLWln337k7a3BE6E8H42Nc/s4rv1sVLO3XynARskBB8EiBfZqaJ0L5ci8eNFhI6gUyY
-         QH1l5KDu7Z1DKmR+CwDT/V6hgP8XO8O3N1FC+7Tw/ncAATryB5/whpYBZo9Xyu3/dIU2
-         yE202OsfbvU3GfQc8oA0mIWVm8JMGe9V0BDreUxmSAS3cM8MSR1IRD/KFi2+K5sX6CUl
-         HiWQ==
-X-Gm-Message-State: AOJu0YzBwUHNW7+AJ3uQ3R6yklJMcsueuWxNu8Hby5fypLtn4FdL/LG7
-	nChS0qq5YKkBfu8s9UcJy6Wge8Ee5cjPPjq8jDL0Y0cN8tddZSUi/tkSobYvtQ/So+J+05Cb4+v
-	+F+5yo9Jtk7DEcRRPGvue2NctTkTMEg==
-X-Google-Smtp-Source: AGHT+IHlhwv3KgKFUCJMC4qLn2ecPv73iELoRLAVNddL22Dqs9JY9LLw9l0PsdN+tKwGDfcpm5VPEvGhdS5c7bI9FAw=
-X-Received: by 2002:a2e:90d2:0:b0:2de:73b5:427c with SMTP id
- 38308e7fff4ca-2ea847c8a0amr9543371fa.9.1717062042495; Thu, 30 May 2024
- 02:40:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717062654; x=1717667454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LHIZKHK9jOnXH6QFBharri+hZUWnk+IbpWZ1rJowKRI=;
+        b=ecpaMhe6KpvrUw8F9ShlNmGcdad+6kVEhs0NYitDfUD92/mhgfwclm+MKlKsQNdmmx
+         Bwmx0clmAEZ4JixYWgDfSLSf0pRaE2v3dIWmXqcOn5r6+n7UJvNPfOiWqtFfcOz2+1pS
+         QPgBH7llV0cILX73Qp/WXE70aRIyPWcOGlkhLiGDMPL46F3LHZt2aR1U8XywJOzuMCXU
+         rpZrtH0o+0QiFGYg1jZKNKIEwICIQPK0FRZyUw5vCnSHCLIl6NgE/HRnOotpI2BzFItp
+         Xemc+Zd5zbzPPQwrcokzX8LEFy7eC2rgyyx2qV21mpJ8ecS2rpTLg0K4zFQH0szpKn3L
+         7VbQ==
+X-Gm-Message-State: AOJu0YwpMwyQlpByoQe82LaOpLG4+cZFzPDs047PKHhMv+1NEKAN9g3t
+	/EXpLJKV4UEfU2RuV3szI9/mwKkh3NMFbTMK1U+f99IorXg4BEPdPdbKH1YkxufALmDFFJoUZD8
+	LTz2PUd4jmPR2OaZE+cGxzMTjgRJu0Q==
+X-Google-Smtp-Source: AGHT+IG+pwAjROOx4HFjJflUpvvCSti2y+V6/ZUsWLr4LBDzxbFGxoM/W9CKAsJcCbbT2WNv+zoLw8ZnVOwROJd1SGc=
+X-Received: by 2002:a2e:3501:0:b0:2e9:8150:8efe with SMTP id
+ 38308e7fff4ca-2ea84ca382fmr3238921fa.26.1717062653758; Thu, 30 May 2024
+ 02:50:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEFUPH2w2F_wRffJTmSyV4T8KMoPs790RESbpJLTU2yxhfEZqQ@mail.gmail.com>
-In-Reply-To: <CAEFUPH2w2F_wRffJTmSyV4T8KMoPs790RESbpJLTU2yxhfEZqQ@mail.gmail.com>
+References: <CANNYZj9nYyaTk164KYdCxXbcf6snvgCKseS-_sUzxcktSiAb9Q@mail.gmail.com>
+ <27121.1716999189293869730@lists.yoctoproject.org>
+In-Reply-To: <27121.1716999189293869730@lists.yoctoproject.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 30 May 2024 11:40:30 +0200
-Message-ID: <CANNYZj-sf3j4yJeCvDWSjqBQbA_-iwEQyD4QLF6oin6Y-UMo5w@mail.gmail.com>
-Subject: Re: [yocto] query on building rabbitmq-c
-To: yocto@lists.yoctoproject.org, simonkbaby@gmail.com
+Date: Thu, 30 May 2024 11:50:42 +0200
+Message-ID: <CANNYZj9WxSLVHsXcUbwA2xEME8e_qQ6=ygBvpOLukc1TvAb2mw@mail.gmail.com>
+Subject: Re: [yocto] Bad lib symlink in Host SDK
+To: lukas.weiss@janitza.de
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 30 May 2024 09:40:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63240
+ <yocto@lists.yoctoproject.org>; Thu, 30 May 2024 09:51:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63241
 
-The recipe puts them in rabbitmq-c-tools package. If you would look in
-packages-split/ instead of image/ you would see the same.
+On Wed, 29 May 2024 at 18:13, Lukas Wei=C3=9F via Lists.Yoctoproject.Org
+<lukas.weiss=3Djanitza.de@lists.yoctoproject.org> wrote:
+> how can i see if the link is broken on build or packaging? Since the path=
+ of the broken link can't be known on build process (it was entered in inst=
+all process of SDK sh installer), i will not be able to find it somewhere i=
+n logs or env. It must be some kind of variable that is used here, but i ha=
+ve no idea which one. Note that the broken link os not only the wrong direc=
+tory depth - the parent-dir dots only lead to /home/admin/sdk (not root).
+
+You need to look in ${WORKDIR} of nativesdk-udev, specifically, under
+image/ package/ packages/split/ directories. Links like that are
+typically created already at that stage, so is it correct then?
+
+> Since we use host SDK not only for tests, but also for partial "Simulatio=
+ns" with real devices connected, qemu is not the best choice. The pain is j=
+ust on another end.
+
+It's just not a supported use case and you're entirely on your own
+trying to make it work. nativesdk- is meant only for building
+toolchains and their dependencies; any target items should be built
+for the target and deployed to physical hardware or qemu.
 
 Alex
-
-On Thu, 30 May 2024 at 00:23, SIMON BABY via lists.yoctoproject.org
-<simonkbaby=gmail.com@lists.yoctoproject.org> wrote:
->
-> Hello,
->
-> I am building the recipe below.
->
-> https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connectivity/rabbitmq-c/rabbitmq-c_0.11.0.bb?h=kirkstone
->
-> I am unable to see the binaries on the target. Do I have to enable anything? However my build work directory has the generated binaries.
->
->
-> /build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/image/usr/bin$ ls
-> amqp-consume  amqp-declare-queue  amqp-delete-queue  amqp-get  amqp-publish
->
->
-> Regards
-> Simon
->
->
->
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#63232): https://lists.yoctoproject.org/g/yocto/message/63232
-> Mute This Topic: https://lists.yoctoproject.org/mt/106378618/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
