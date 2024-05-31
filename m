@@ -1,259 +1,146 @@
-Return-Path: <simonkbaby@gmail.com>
+Return-Path: <bbergquist@epc-instore.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 756AAC25B74
-	for <webhook@archiver.kernel.org>; Thu, 30 May 2024 17:22:06 +0000 (UTC)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
- by mx.groups.io with SMTP id smtpd.web10.2657.1717089717522665802
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECC4AC25B74
+	for <webhook@archiver.kernel.org>; Fri, 31 May 2024 00:28:51 +0000 (UTC)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+ by mx.groups.io with SMTP id smtpd.web11.585.1717115323226711381
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 May 2024 10:21:57 -0700
+ Thu, 30 May 2024 17:28:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=NWbtfjv4;
- spf=pass (domain: gmail.com, ip: 209.85.219.170, mailfrom: simonkbaby@gmail.com)
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-df78b040314so1178323276.0
-        for <yocto@lists.yoctoproject.org>; Thu, 30 May 2024 10:21:57 -0700 (PDT)
+ dkim=pass header.i=@epc-instore.com header.s=google header.b=MwAVyC2K;
+ spf=permerror, err=too many SPF records (domain: epc-instore.com, ip: 209.85.219.43, mailfrom: bbergquist@epc-instore.com)
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6ab9d9f0ee2so5776866d6.3
+        for <yocto@lists.yoctoproject.org>; Thu, 30 May 2024 17:28:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717089717; x=1717694517; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2W4WwpWgrJGbXZod1K0Z8T7gB2zaWma+0OR+Q3m6t7c=;
-        b=NWbtfjv4DYfIRW+/vSOAq/7yMKYpI5bt6apKm2Lkzi6bCCXm7Fq1j2R4vW9/diQqR7
-         p1NyCob3vaJgFejeVFlxR1AdsBNVJ/iTbMypOXwhm8znbzKVMAW7f+YCaVt6Bd620+ud
-         ITXGAZEon0xxR96JDN6vF01jrXEX144i/z2QJnFkD9be+VLK1H63yLnrBJBG+Xl4I+n/
-         MpLN1BOl4sGPv/78N2UmRDE/PfdCuwvcAOs7X4pxRujAnyGwSsrGcZBOkpddaZJH6fm5
-         J+ZaXA780/jiwi4ADfXWK9iYsxcPF9AEDYHOSYSZMW+US1xrsDUKjHdo8pIDS7WSqBjE
-         gMPA==
+        d=epc-instore.com; s=google; t=1717115322; x=1717720122; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0+GOgDUCoXN+xlgTlwWVk9MEfWmYm6TK8bMHMFRGb7I=;
+        b=MwAVyC2KDnN40yw1IXYjyal0AeZysyrOmcs+eptLnjQLyybxuWb5HRLtVqyRSF2cT0
+         J4KDY8Gt7dn9FHcP87XGPY8/0cWqz/pmuRqfOI2uJpIhqseZAyLJIoK2PWpRn6MQwGxB
+         Vx4q5z7vFcFaYXVIcrW/CZt8oaWRhiXggq0+yw1Bn4Y8JQ6byU5FCej+BEJ9+l3j7pUe
+         gc4bIP67eI4n3WmVQAfuL0tIfH7x/r0YTC+aoJAk3uAIfDyVhNwFqHM7jyZeBv7+rJqm
+         HsjWSKy5z2SuFvqnaY8RxdG0B56Qb73Lfhudk1Q2KaOj5OJ4g+zPagBk3eSud/PM8g1h
+         tO6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717089717; x=1717694517;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2W4WwpWgrJGbXZod1K0Z8T7gB2zaWma+0OR+Q3m6t7c=;
-        b=MIO6vMyoy2onrWXXtTd9/cGPFjfVRJVaHA2kuFUqSU//2nHNwZfmL16glPYD0OxhSC
-         jYDK2pjsjaFqkyyn2G4A2wcWzRZo0+9EILQVKc8Bqf1Cvv1m1/P34T4+MdXScQawP/9t
-         UNZEtUh0I1KAaGzQGEvVi3nuzh0NIDje34r6CgRKfTR/8BCfe3ZLOr/dDc3x73UB6CFb
-         WStL2OQ35Yg0RCtcoeti7OGTK2mTaQKkknqig4g0ZT6UzJgu5OZZhmxEet39C9ePyiXx
-         vi+Hvd06IMfHIlX/NGu4A5rDhXea264y8ywUKwyEvS83chRfMYI+vCuODTvPwlO+2DkQ
-         rwrw==
-X-Gm-Message-State: AOJu0YwBcdQv35QZuooVsZntvJcVNOJqI7ZgrznJ+cLXemumTpuqxvGB
-	b0cgPw66929gzPGveu1zkukxakH+xfapDJgFopO7IQOZo24KZuka6udCaOS+V3IMo9OOkFY4Vmk
-	oxtk5+paxTg+38OXKpmQE8QUe/c4=
-X-Google-Smtp-Source: AGHT+IHu1T53RhWYJePvVrxYO3emmmwk0g7hqxIW2Oon37ZVPrq/dAhtlHk5wlm1/J+8TBdcieqpbx/gKOQjNlIGPgc=
-X-Received: by 2002:a25:d850:0:b0:df4:a2e7:dd6 with SMTP id
- 3f1490d57ef6-dfa5a423488mr3008326276.0.1717089716353; Thu, 30 May 2024
- 10:21:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1717115322; x=1717720122;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0+GOgDUCoXN+xlgTlwWVk9MEfWmYm6TK8bMHMFRGb7I=;
+        b=hrp646fSs3Y4PnU3MDt4k1tri5M9P/oe+q2aoR7DPlcLTHkmYCF4+NY82YcRZWxIYE
+         q2QmSHXA5Eu8d1vbZlMgl4MWJE38dt/sGpgH+QX1fIUIYCP65dnYl89QVdemrNUmsYuR
+         5WibbIta6wuwEYS4AwWUBB7VJz2giDmzVpEVN93Py/R4j+jmiyJfQMZKL/twl3azmxGQ
+         TunFeen0HTQlUGfO54BZ+GWL3mDru+RkVLCXwRbMyCDsX+eTcBA2gfbYDHDogynKtaWU
+         QEJ21PPzCLn8JrcVfu6GSwgkyIVuXpHuv/i2JDNPDtF4FOjMCxDGhGKBZ87GyA9T0hnQ
+         lApQ==
+X-Gm-Message-State: AOJu0YzbC5CYOJLJ60BTc7+t/sYMqFrpliaRPiZn6qbQBHoROTDjMNok
+	HbW6b22StW4xVuUoL2Fj4+6oeKV5nPhtMgMr0J2TiyH79yMGPik1Awb9tjCvkiXSwThLIUxk3eL
+	A9xhKGwiQgcUipGTD8r456NXoXtBl0yjxYOAMPp5EtIY8awCX8uI=
+X-Google-Smtp-Source: AGHT+IGHAOoJsO31lrxqm3wbzsvnZHQ7NNJF+hPdkXpbeCqf9/TOawbbwlONZwupgk+uS9Pj8yDj/YaDykmtGh6d014=
+X-Received: by 2002:a0c:fb08:0:b0:6ae:d383:d707 with SMTP id
+ 6a1803df08f44-6aed383d732mr1610416d6.27.1717115322038; Thu, 30 May 2024
+ 17:28:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEFUPH2w2F_wRffJTmSyV4T8KMoPs790RESbpJLTU2yxhfEZqQ@mail.gmail.com>
- <CANNYZj-sf3j4yJeCvDWSjqBQbA_-iwEQyD4QLF6oin6Y-UMo5w@mail.gmail.com>
-In-Reply-To: <CANNYZj-sf3j4yJeCvDWSjqBQbA_-iwEQyD4QLF6oin6Y-UMo5w@mail.gmail.com>
-From: SIMON BABY <simonkbaby@gmail.com>
-Date: Thu, 30 May 2024 10:21:43 -0700
-Message-ID: <CAEFUPH0j1FXCMF4E1yVbD1hed264SWsYZ5MnPftL1NSVQg16aw@mail.gmail.com>
-Subject: Re: [yocto] query on building rabbitmq-c
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000009745c20619af1a77"
+From: Brett Bergquist <bbergquist@epc-instore.com>
+Date: Thu, 30 May 2024 20:28:31 -0400
+Message-ID: <CAH+ZgJu01xTWKoB95KaDGeC8fYR+dUhWYMDOztHgrocYXJCJmQ@mail.gmail.com>
+Subject: Trying to build a self-installing Yocto image but with an multiconfig initramfs
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000cf18440619b510c9"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 30 May 2024 17:22:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63244
+ <yocto@lists.yoctoproject.org>; Fri, 31 May 2024 00:28:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63245
 
---0000000000009745c20619af1a77
+--000000000000cf18440619b510c9
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hello Alexander,
+I am trying to build a self-installing Yocto image.  I started by following
+this blog
 
-Thank you for helping this out.
+https://www.thegoodpenguin.co.uk/blog/self-installing-yocto-image-from-a-usb-drive/
 
-I can see packages-split with below files:
+and that worked fine.  However I need to change my main image to use the
+full set of packages instead of the busybox ones.  So I set
 
-sbaby@eadlng-build-machine:~/workspace/05162024_NIC/741819_NICOPS/build/tmp=
-/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/package=
-s-split/rabbitmq-c-tools$
-ls -ll usr/bin/
-total 104
--rwxr-xr-x 2 sbaby sbaby 22284 Mar 31  2021 amqp-consume
--rwxr-xr-x 2 sbaby sbaby 18184 Mar 31  2021 amqp-declare-queue
--rwxr-xr-x 2 sbaby sbaby 18184 Mar 31  2021 amqp-delete-queue
--rwxr-xr-x 2 sbaby sbaby 18176 Mar 31  2021 amqp-get
--rwxr-xr-x 2 sbaby sbaby 18184 Mar 31  2021 amqp-publish
-
-sbaby@eadlng-build-machine:~/workspace/05162024_NIC/741819_NICOPS/build/tmp=
-/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/package=
-s-split$
-ls -ll rabbitmq-c/usr/lib/
-total 80
-lrwxrwxrwx 1 sbaby sbaby    20 Mar 31  2021 librabbitmq.so.4 ->
-librabbitmq.so.4.5.0
--rwxr-xr-x 2 sbaby sbaby 79204 Mar 31  2021 librabbitmq.so.4.5.0
+#
+# Use a full set of packages instead of busybox for base utils
+#
+PREFERRED_PROVIDER_base-utils = "packagegroup-core-base-utils"
+VIRTUAL-RUNTIME_base-utils = "packagegroup-core-base-utils"
+VIRTUAL-RUNTIME_base-utils-hwclock = "util-linux-hwclock"
+VIRTUAL-RUNTIME_base-utils-syslog = ""
 
 
+But that bleeds over into the intramfs image.  I am trying to use the
+multiconfig setup for the initramfs which I have done and it in fact does
+built the core-image-minimal-initramfs which I have
+building in ${TOPDIR}/tmp-initramfs.
 
-However, On the target I could not see the amqp-* binaries under /usr/bin.
-But I see the library librabbitmq.so.4.5.0. Is this expected? Do we need
-only the library to execute some client code with rabbitmq-c  api ?
+The problem that I am having is that when wic is run, it is looking in the
+DEPLOY_DIR_IMAGE of my main image and the wic copy step fails.  This is in
+the "boot-efi.py" wic plugin:
 
-root@sama7g5ek-sd:~# ls -ll /usr/lib/librabbitmq.so.4.5.0
--rwxr-xr-x 1 root root 79204 Mar  9  2018 /usr/lib/librabbitmq.so.4.5.0
+        if initrd:
+            bootimg_dir = get_bitbake_var("DEPLOY_DIR_IMAGE")
+            if not bootimg_dir:
+                raise WicError("Couldn't find DEPLOY_DIR_IMAGE, exiting")
 
-root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-consume
-ls: cannot access '/usr/bin/amqp-consume': No such file or directory
-root@sama7g5ek-sd:~#
-root@sama7g5ek-sd:~#
-root@sama7g5ek-sd:~#
-root@sama7g5ek-sd:~#
-root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-*
-ls: cannot access '/usr/bin/amqp-*': No such file or directory
-
-Regards
-Simon
+            initrds = initrd.split(';')
+            for rd in initrds:
+                cp_cmd = "cp %s/%s %s" % (bootimg_dir, rd, hdddir)
+                exec_cmd(cp_cmd, True)
 
 
-On Thu, May 30, 2024 at 2:40=E2=80=AFAM Alexander Kanavin <alex.kanavin@gma=
-il.com>
-wrote:
+That is hard coded to look in DEPLOY_DIR_IMAGE which for a multiconfig
+build is not the correct value.
 
-> The recipe puts them in rabbitmq-c-tools package. If you would look in
-> packages-split/ instead of image/ you would see the same.
->
-> Alex
->
-> On Thu, 30 May 2024 at 00:23, SIMON BABY via lists.yoctoproject.org
-> <simonkbaby=3Dgmail.com@lists.yoctoproject.org> wrote:
-> >
-> > Hello,
-> >
-> > I am building the recipe below.
-> >
-> >
-> https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-conne=
-ctivity/rabbitmq-c/rabbitmq-c_0.11.0.bb?h=3Dkirkstone
-> >
-> > I am unable to see the binaries on the target. Do I have to enable
-> anything? However my build work directory has the generated binaries.
-> >
-> >
-> >
-> /build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/0.1=
-1.0-r0/image/usr/bin$
-> ls
-> > amqp-consume  amqp-declare-queue  amqp-delete-queue  amqp-get
-> amqp-publish
-> >
-> >
-> > Regards
-> > Simon
-> >
-> >
-> >
-> >
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#63232):
-> https://lists.yoctoproject.org/g/yocto/message/63232
-> > Mute This Topic: https://lists.yoctoproject.org/mt/106378618/1686489
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
->
+I am wondering what I can do to get this to work and any suggestions will
+be most appreciated.
 
---0000000000009745c20619af1a77
+--000000000000cf18440619b510c9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Alexander,<div><br></div><div>Thank=C2=A0you for hel=
-ping this out.</div><div><br></div><div>I can see packages-split with below=
- files:</div><div><br></div><div>sbaby@eadlng-build-machine:~/workspace/051=
-62024_NIC/741819_NICOPS/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnu=
-eabi/rabbitmq-c/0.11.0-r0/packages-split/rabbitmq-c-tools$ ls -ll usr/bin/<=
-br>total 104<br>-rwxr-xr-x 2 sbaby sbaby 22284 Mar 31 =C2=A02021 amqp-consu=
-me<br>-rwxr-xr-x 2 sbaby sbaby 18184 Mar 31 =C2=A02021 amqp-declare-queue<b=
-r>-rwxr-xr-x 2 sbaby sbaby 18184 Mar 31 =C2=A02021 amqp-delete-queue<br>-rw=
-xr-xr-x 2 sbaby sbaby 18176 Mar 31 =C2=A02021 amqp-get<br>-rwxr-xr-x 2 sbab=
-y sbaby 18184 Mar 31 =C2=A02021 amqp-publish<br></div><div><br></div><div>s=
-baby@eadlng-build-machine:~/workspace/05162024_NIC/741819_NICOPS/build/tmp/=
-work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/packages=
--split$ ls -ll rabbitmq-c/usr/lib/<br>total 80<br>lrwxrwxrwx 1 sbaby sbaby =
-=C2=A0 =C2=A020 Mar 31 =C2=A02021 librabbitmq.so.4 -&gt; librabbitmq.so.4.5=
-.0<br>-rwxr-xr-x 2 sbaby sbaby 79204 Mar 31 =C2=A02021 librabbitmq.so.4.5.0=
-<br></div><div><br></div><div><br></div><div><br></div><div>However, On the=
- target I could not see the amqp-* binaries under /usr/bin. But I see the l=
-ibrary=C2=A0librabbitmq.so.4.5.0. Is this expected?=C2=A0Do we need only th=
-e library to execute some client code with rabbitmq-c=C2=A0 api=C2=A0?</div=
-><div><br></div><div>root@sama7g5ek-sd:~# ls -ll /usr/lib/librabbitmq.so.4.=
-5.0<br>-rwxr-xr-x 1 root root 79204 Mar =C2=A09 =C2=A02018 /usr/lib/librabb=
-itmq.so.4.5.0<br><br>root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-consume<br>l=
-s: cannot access &#39;/usr/bin/amqp-consume&#39;: No such file or directory=
-<br>root@sama7g5ek-sd:~#<br>root@sama7g5ek-sd:~#<br>root@sama7g5ek-sd:~#<br=
->root@sama7g5ek-sd:~#<br>root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-*<br>ls:=
- cannot access &#39;/usr/bin/amqp-*&#39;: No such file or directory<br></di=
-v><div><br></div><div>Regards</div><div>Simon</div><div><br></div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, M=
-ay 30, 2024 at 2:40=E2=80=AFAM Alexander Kanavin &lt;<a href=3D"mailto:alex=
-.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex">The recipe puts them in rabbitmq-=
-c-tools package. If you would look in<br>
-packages-split/ instead of image/ you would see the same.<br>
-<br>
-Alex<br>
-<br>
-On Thu, 30 May 2024 at 00:23, SIMON BABY via <a href=3D"http://lists.yoctop=
-roject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a>=
-<br>
-&lt;simonkbaby=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org" target=
-=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; I am building the recipe below.<br>
-&gt;<br>
-&gt; <a href=3D"https://git.openembedded.org/meta-openembedded/tree/meta-oe=
-/recipes-connectivity/rabbitmq-c/rabbitmq-c_0.11.0.bb?h=3Dkirkstone" rel=3D=
-"noreferrer" target=3D"_blank">https://git.openembedded.org/meta-openembedd=
-ed/tree/meta-oe/recipes-connectivity/rabbitmq-c/rabbitmq-c_0.11.0.bb?h=3Dki=
-rkstone</a><br>
-&gt;<br>
-&gt; I am unable to see the binaries on the target. Do I have to enable any=
-thing? However my build work directory has the generated binaries.<br>
-&gt;<br>
-&gt;<br>
-&gt; /build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/=
-0.11.0-r0/image/usr/bin$ ls<br>
-&gt; amqp-consume=C2=A0 amqp-declare-queue=C2=A0 amqp-delete-queue=C2=A0 am=
-qp-get=C2=A0 amqp-publish<br>
-&gt;<br>
-&gt;<br>
-&gt; Regards<br>
-&gt; Simon<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#63232): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/63232" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/63232</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/10637861=
-8/1686489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/mt/106378618/1686489</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">ale=
-x.kanavin@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-</blockquote></div>
+<div dir=3D"ltr">I am trying to build a self-installing Yocto image.=C2=A0 =
+I started by following this blog<div><br></div><div><a href=3D"https://www.=
+thegoodpenguin.co.uk/blog/self-installing-yocto-image-from-a-usb-drive/">ht=
+tps://www.thegoodpenguin.co.uk/blog/self-installing-yocto-image-from-a-usb-=
+drive/</a><br></div><div><br></div><div>and that worked fine.=C2=A0 However=
+ I need to change my main image to use the full set of packages instead of =
+the busybox ones.=C2=A0 So I set</div><blockquote style=3D"margin:0 0 0 40p=
+x;border:none;padding:0px"><div>#</div><div># Use a full set of packages in=
+stead of busybox for base utils</div><div>#</div><div>PREFERRED_PROVIDER_ba=
+se-utils =3D &quot;packagegroup-core-base-utils&quot;</div><div>VIRTUAL-RUN=
+TIME_base-utils =3D &quot;packagegroup-core-base-utils&quot;</div><div>VIRT=
+UAL-RUNTIME_base-utils-hwclock =3D &quot;util-linux-hwclock&quot;</div><div=
+>VIRTUAL-RUNTIME_base-utils-syslog =3D &quot;&quot;</div></blockquote><div>=
+<br></div><div>But that bleeds over into the intramfs=C2=A0image.=C2=A0 I a=
+m trying to use the multiconfig setup for the initramfs which I have done a=
+nd it in fact does built the=C2=A0core-image-minimal-initramfs which I have=
+ building=C2=A0in=C2=A0${TOPDIR}/tmp-initramfs.=C2=A0 =C2=A0</div><div><br>=
+</div><div>The problem that I am having is that when wic is run, it is look=
+ing in the DEPLOY_DIR_IMAGE of my main image and the=C2=A0wic copy step fai=
+ls.=C2=A0 This is in the &quot;boot-efi.py&quot; wic plugin:</div><div><br>=
+</div><div><blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px">=
+<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 if initrd:<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 bootimg_dir =3D get_bitbake_var(&quot;DEPLOY_DIR_IMAGE&quot;)=
+<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if not bootimg_dir:<br>=C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise WicError(&quot;Coul=
+dn&#39;t find DEPLOY_DIR_IMAGE, exiting&quot;)<br><br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 initrds =3D initrd.split(&#39;;&#39;)<br>=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 for rd in initrds:<br>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp_cmd =3D &quot;cp %s/%s %s&quot; % (booti=
+mg_dir, rd, hdddir)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 exec_cmd(cp_cmd, True)</div></blockquote><div><br></div>That is hard co=
+ded to look in DEPLOY_DIR_IMAGE which for a multiconfig build is not the co=
+rrect value.=C2=A0 =C2=A0</div><div><br></div><div>I am wondering what I ca=
+n do to get this to work and any suggestions will be most appreciated.<br><=
+blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"><div><br></d=
+iv></blockquote></div></div>
 
---0000000000009745c20619af1a77--
+--000000000000cf18440619b510c9--
 
