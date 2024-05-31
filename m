@@ -1,107 +1,231 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <simonkbaby@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B95DFC25B75
-	for <webhook@archiver.kernel.org>; Fri, 31 May 2024 13:54:56 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web10.12878.1717163693284095528
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7562BC25B7E
+	for <webhook@archiver.kernel.org>; Fri, 31 May 2024 16:25:07 +0000 (UTC)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+ by mx.groups.io with SMTP id smtpd.web10.17104.1717172704324267953
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 May 2024 06:54:53 -0700
+ Fri, 31 May 2024 09:25:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Xgw4Sxfb;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-420180b5922so26217475e9.2
-        for <yocto@lists.yoctoproject.org>; Fri, 31 May 2024 06:54:53 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=KyjecGh5;
+ spf=pass (domain: gmail.com, ip: 209.85.216.42, mailfrom: simonkbaby@gmail.com)
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2c1b94dab63so1207930a91.0
+        for <yocto@lists.yoctoproject.org>; Fri, 31 May 2024 09:25:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1717163691; x=1717768491; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wuVzWe36mRTb24/orhZsd9a9SG5sNX72Tn0IRG4BDOI=;
-        b=Xgw4SxfbSj9zP93BhDqKDt9r/I1KM3iNEXW6o2Do2tK8h2YP3tO1q27RxqmjNIM9sb
-         oezFFjLZmYjuxlJ6cUf8fwjFlxnc5FYz2RdEBgT5rfia+0bsgArmO2bJsacwrFB9dMT9
-         KZ1xDKyd6D7AoIXHDEBDhPA2BvDJ39oG3BdoM=
+        d=gmail.com; s=20230601; t=1717172704; x=1717777504; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=s1kg5xb9D/f7mT0zZo13cMJUXf+aGIeEOiXLCmwgJ68=;
+        b=KyjecGh5rszc9QiI8HxXjeDvUBf3359LZyLQRHGEx/zKkP/RdEHuaFjKRWDC21tuI3
+         ec5zTS5zFIripgwEt/slkE7u1IM9x3Ul6VjkipHae6dvq6hhi39pvOUoLcC6ZF0P/9qY
+         s2JfKLxNQBfqShWkHsoC8tPYTFMMcstNzEbepJrw9xG62u8/X+v+3wBPQ9dKPYaXKF0k
+         /NEhrFZKubbTtkv2BV4v2J5s/6cU9fqbIM8bsHi1tVWnAowYKGD05ZRfMtFM0mkeX5Ta
+         EAtYkrHgmxtVVEJiwzTRp3eM1NAgO1ykKd1MRvkW6UJVQwiLNDuhR/rObf6eWuZ/8X2d
+         2z1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717163691; x=1717768491;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wuVzWe36mRTb24/orhZsd9a9SG5sNX72Tn0IRG4BDOI=;
-        b=F85DR24/0vc1ObhhrK2mEP5bZgVwYRnWn0qNDgfRe37De5rDJso7RwAi9rV+2JOJ5i
-         PD3HMrrDKMx6LbD57P/Y1NBUM2h1hVZQhp7Wk+yMk+V4YIKyUAIjXZ1wjBkd3Mgkyxq9
-         2wnlJP3RrM6qJQQtHZQ5VyrogPY7p+oJ4XjD2WYkPf7VKiDxQo9Nbcy0MqkPDhsHxVTI
-         kKPXkVS6yAnnvLMa1Wix13j4JhA9nFgSdnmO+JN44OqVj310YapFargQBm4tPQXEnc1z
-         a3HndErwJIsmd7yNofM1BqVDkBiBM5RJy5k4dqCan3aS5Klzy8RhbbdI9OYGIls12XpJ
-         /bfw==
-X-Gm-Message-State: AOJu0YxtxsDEzfTs6ERbLsCBUbwCKqZZuYyz6zCzdT7yei+PfuIWn2J2
-	02UnB00SrukSBJuroHCBGA7q2UzMvDIRKFUFlueImPhCD1e4Sp82A56IfCChyABaKM8Kp8XDHQq
-	s
-X-Google-Smtp-Source: AGHT+IFMR3GXpB03piG0UyDRGQeVmRbFkqD3aA283pPyQhIiza75lQX0/+rCnU4LPUlAsmhtY6IayQ==
-X-Received: by 2002:a05:600c:4f46:b0:421:212c:c963 with SMTP id 5b1f17b1804b1-4212e075949mr19866625e9.20.1717163691204;
-        Fri, 31 May 2024 06:54:51 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:9173:4fa2:d1b3:c8be? ([2001:8b0:aba:5f3c:9173:4fa2:d1b3:c8be])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42127062f0dsm56251435e9.17.2024.05.31.06.54.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 May 2024 06:54:50 -0700 (PDT)
-Message-ID: <a738afa77c76f1214e8cee06f3915931d7b13589.camel@linuxfoundation.org>
-Subject: Re: [yocto] GPL License Compliance - Automatically detect linking
- against GPL libraries
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org, fabian.hanke@bosch.com, Stefano Babic
-	 <sbabic@denx.de>
-Date: Fri, 31 May 2024 14:54:49 +0100
-In-Reply-To: <918.1717162801361364915@lists.yoctoproject.org>
-References: <1572b957-1e36-442b-885f-a4d575afcca2@denx.de>
-	 <918.1717162801361364915@lists.yoctoproject.org>
-Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=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
- YNvg==
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0-1 
+        d=1e100.net; s=20230601; t=1717172704; x=1717777504;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s1kg5xb9D/f7mT0zZo13cMJUXf+aGIeEOiXLCmwgJ68=;
+        b=WpJLq3fYKSw4uh16x1BW3NTsSdOqg90bWNqwt68Vd4vDRF3ESVFaateq+gzUTBmazX
+         ItdyUxFSFJ6YsvAJ8TR/EBeQPoEG+1aKljlXTFk7eiSWH6sonAClSMAUXyACvXUERLhk
+         +krJjSu67iobQPzzt5NguSybtY4L4qjq1RlV1usgbXtFrjBN78D5T/ssPpqC+1q10Yhy
+         0fyFZ6RX0z112Q2TOTftbbH8jtc5E7Z0vzmNWGoVWGTHKnewPliq7dGaOqZuCkRGXk8f
+         QdFr3rYkler44VSGhIcuqrAR6uHOPBj6LUUA4GO80q+pzVPGse0dQ4EyuOYtBtUlocG6
+         PJpA==
+X-Gm-Message-State: AOJu0Yxi9LsRzpqYVjPu5DOXoCEfaXfYA4bBYx/nyHDUS6PNn8/jO71Y
+	3GXHre9+z6p9qht4h5iRilVAl4SHj1HhOyGtLCj4XqqxqvlHySkOSIyrWl6HT6wJPbot2n6MiDi
+	AoF0Midmts0GZenpIZFfhUob2D18=
+X-Google-Smtp-Source: AGHT+IEw8KXQgWMuky3raX/WvfxYz69PHTVoXWMd64kdqmhLPjJlZNNbBP5yb3iXaLMhqc8ut0TfKcr2Y6YRfTpZgOY=
+X-Received: by 2002:a17:90a:fc87:b0:2c1:9eb9:a352 with SMTP id
+ 98e67ed59e1d1-2c1dc5dd511mr1942649a91.49.1717172703488; Fri, 31 May 2024
+ 09:25:03 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAEFUPH2w2F_wRffJTmSyV4T8KMoPs790RESbpJLTU2yxhfEZqQ@mail.gmail.com>
+ <CANNYZj-sf3j4yJeCvDWSjqBQbA_-iwEQyD4QLF6oin6Y-UMo5w@mail.gmail.com>
+ <CAEFUPH0j1FXCMF4E1yVbD1hed264SWsYZ5MnPftL1NSVQg16aw@mail.gmail.com> <277bbb26-8723-4b66-882a-34543fb61a6e@cherry.de>
+In-Reply-To: <277bbb26-8723-4b66-882a-34543fb61a6e@cherry.de>
+From: SIMON BABY <simonkbaby@gmail.com>
+Date: Fri, 31 May 2024 09:24:52 -0700
+Message-ID: <CAEFUPH3r7QrVXO-f_8DYab34GmQAP504SZHJQkRj77KO=CuKqw@mail.gmail.com>
+Subject: Re: [yocto] query on building rabbitmq-c
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: yocto@lists.yoctoproject.org, Alexander Kanavin <alex.kanavin@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000000274460619c26d84"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 31 May 2024 13:54:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63248
+ <yocto@lists.yoctoproject.org>; Fri, 31 May 2024 16:25:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63249
 
-On Fri, 2024-05-31 at 06:40 -0700, Hanke Fabian (DC/PAR) via
-lists.yoctoproject.org wrote:
-> Hello,
->=20
-> thank you for all the responses so far. I guess we will have a look
-> at fossology and fossas, but we would prefer a solution which does
-> not require an additional thirdparty service. We know that there are
-> different types of GPL licenses which bring different obligations.=20
->=20
-> We are searching for an automatic mechanism to detect linking to a
-> shared library from a GPL package. We thought there might be a way to
-> utilize the build system=E2=80=99s shared library resolver which is used =
-for
-> the automatic runtime added runtime dependencies [1].
->=20
-> For static libraries we found that they are disabled by default [2].
->=20
-> [1]
-> https://docs.yoctoproject.org/overview-manual/concepts.html#automatically=
--added-runtime-dependencies
-> [2]
-> https://docs.yoctoproject.org/dev/dev-manual/licenses.html#compliance-lim=
-itations-with-executables-built-from-static-libraries
+--0000000000000274460619c26d84
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-It can definitely be done and we have a lot of the information there.
-Our packaging code does already look at linking as you mention. Nobody
-has proposed a solution that could be merged to OE-Core though. I'd
-love to see one.
+Thank you Quentin.This helps
 
-Cheers,
+Regards
+Simon
 
-Richard
+On Fri, May 31, 2024 at 3:16=E2=80=AFAM Quentin Schulz <quentin.schulz@cher=
+ry.de>
+wrote:
+
+> Hi Simon,
+>
+> On 5/30/24 7:21 PM, SIMON BABY via lists.yoctoproject.org wrote:
+> > Hello Alexander,
+> >
+> > Thank you for helping this out.
+> >
+> > I can see packages-split with below files:
+> >
+> > sbaby@eadlng-build-machine
+> :~/workspace/05162024_NIC/741819_NICOPS/build/tmp/work/cortexa7hf-neon-vf=
+pv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/packages-split/rabbitmq-c-tools=
+$
+> > ls -ll usr/bin/
+> > total 104
+> > -rwxr-xr-x 2 sbaby sbaby 22284 Mar 31  2021 amqp-consume
+> > -rwxr-xr-x 2 sbaby sbaby 18184 Mar 31  2021 amqp-declare-queue
+> > -rwxr-xr-x 2 sbaby sbaby 18184 Mar 31  2021 amqp-delete-queue
+> > -rwxr-xr-x 2 sbaby sbaby 18176 Mar 31  2021 amqp-get
+> > -rwxr-xr-x 2 sbaby sbaby 18184 Mar 31  2021 amqp-publish
+> >
+> > sbaby@eadlng-build-machine
+> :~/workspace/05162024_NIC/741819_NICOPS/build/tmp/work/cortexa7hf-neon-vf=
+pv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/packages-split$
+> > ls -ll rabbitmq-c/usr/lib/
+> > total 80
+> > lrwxrwxrwx 1 sbaby sbaby    20 Mar 31  2021 librabbitmq.so.4 ->
+> > librabbitmq.so.4.5.0
+> > -rwxr-xr-x 2 sbaby sbaby 79204 Mar 31  2021 librabbitmq.so.4.5.0
+> >
+> >
+> >
+> > However, On the target I could not see the amqp-* binaries under
+> /usr/bin.
+> > But I see the library librabbitmq.so.4.5.0. Is this expected? Do we nee=
+d
+> > only the library to execute some client code with rabbitmq-c  api ?
+> >
+> > root@sama7g5ek-sd:~# ls -ll /usr/lib/librabbitmq.so.4.5.0
+> > -rwxr-xr-x 1 root root 79204 Mar  9  2018 /usr/lib/librabbitmq.so.4.5.0
+> >
+> > root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-consume
+> > ls: cannot access '/usr/bin/amqp-consume': No such file or directory
+> > root@sama7g5ek-sd:~#
+> > root@sama7g5ek-sd:~#
+> > root@sama7g5ek-sd:~#
+> > root@sama7g5ek-sd:~#
+> > root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-*
+> > ls: cannot access '/usr/bin/amqp-*': No such file or directory
+> >
+>
+> The rabbitmq-c recipe generates multiple packages. One of those is
+> rabbitmq-c (named identically to the recipe) and another,
+> rabbitmq-c-tools. If you want the binaries, you need to install
+> rabbitmq-c-tools in your image as well (via e.g. IMAGE_INSTALL variable).
+>
+> One can know which package to install by using
+>
+> oe-pkgdata-util find-path '/usr/bin/amqp-*'
+>
+> this will list the package(s) that contains files matching the regular
+> expression.
+>
+> Cheers,
+> Quentin
+>
+
+--0000000000000274460619c26d84
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank=C2=A0you Quentin.This helps<div><br></div><div>Regar=
+ds</div><div>Simon</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Fri, May 31, 2024 at 3:16=E2=80=AFAM Quentin Sch=
+ulz &lt;<a href=3D"mailto:quentin.schulz@cherry.de">quentin.schulz@cherry.d=
+e</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>Hi Simon,<br>
+<br>
+On 5/30/24 7:21 PM, SIMON BABY via <a href=3D"http://lists.yoctoproject.org=
+" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a> wrote:<br=
+>
+&gt; Hello Alexander,<br>
+&gt; <br>
+&gt; Thank you for helping this out.<br>
+&gt; <br>
+&gt; I can see packages-split with below files:<br>
+&gt; <br>
+&gt; sbaby@eadlng-build-machine:~/workspace/05162024_NIC/741819_NICOPS/buil=
+d/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/pa=
+ckages-split/rabbitmq-c-tools$<br>
+&gt; ls -ll usr/bin/<br>
+&gt; total 104<br>
+&gt; -rwxr-xr-x 2 sbaby sbaby 22284 Mar 31=C2=A0 2021 amqp-consume<br>
+&gt; -rwxr-xr-x 2 sbaby sbaby 18184 Mar 31=C2=A0 2021 amqp-declare-queue<br=
+>
+&gt; -rwxr-xr-x 2 sbaby sbaby 18184 Mar 31=C2=A0 2021 amqp-delete-queue<br>
+&gt; -rwxr-xr-x 2 sbaby sbaby 18176 Mar 31=C2=A0 2021 amqp-get<br>
+&gt; -rwxr-xr-x 2 sbaby sbaby 18184 Mar 31=C2=A0 2021 amqp-publish<br>
+&gt; <br>
+&gt; sbaby@eadlng-build-machine:~/workspace/05162024_NIC/741819_NICOPS/buil=
+d/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/rabbitmq-c/0.11.0-r0/pa=
+ckages-split$<br>
+&gt; ls -ll rabbitmq-c/usr/lib/<br>
+&gt; total 80<br>
+&gt; lrwxrwxrwx 1 sbaby sbaby=C2=A0 =C2=A0 20 Mar 31=C2=A0 2021 librabbitmq=
+.so.4 -&gt;<br>
+&gt; librabbitmq.so.4.5.0<br>
+&gt; -rwxr-xr-x 2 sbaby sbaby 79204 Mar 31=C2=A0 2021 librabbitmq.so.4.5.0<=
+br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; However, On the target I could not see the amqp-* binaries under /usr/=
+bin.<br>
+&gt; But I see the library librabbitmq.so.4.5.0. Is this expected? Do we ne=
+ed<br>
+&gt; only the library to execute some client code with rabbitmq-c=C2=A0 api=
+ ?<br>
+&gt; <br>
+&gt; root@sama7g5ek-sd:~# ls -ll /usr/lib/librabbitmq.so.4.5.0<br>
+&gt; -rwxr-xr-x 1 root root 79204 Mar=C2=A0 9=C2=A0 2018 /usr/lib/librabbit=
+mq.so.4.5.0<br>
+&gt; <br>
+&gt; root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-consume<br>
+&gt; ls: cannot access &#39;/usr/bin/amqp-consume&#39;: No such file or dir=
+ectory<br>
+&gt; root@sama7g5ek-sd:~#<br>
+&gt; root@sama7g5ek-sd:~#<br>
+&gt; root@sama7g5ek-sd:~#<br>
+&gt; root@sama7g5ek-sd:~#<br>
+&gt; root@sama7g5ek-sd:~# ls -ll /usr/bin/amqp-*<br>
+&gt; ls: cannot access &#39;/usr/bin/amqp-*&#39;: No such file or directory=
+<br>
+&gt; <br>
+<br>
+The rabbitmq-c recipe generates multiple packages. One of those is <br>
+rabbitmq-c (named identically to the recipe) and another, <br>
+rabbitmq-c-tools. If you want the binaries, you need to install <br>
+rabbitmq-c-tools in your image as well (via e.g. IMAGE_INSTALL variable).<b=
+r>
+<br>
+One can know which package to install by using<br>
+<br>
+oe-pkgdata-util find-path &#39;/usr/bin/amqp-*&#39;<br>
+<br>
+this will list the package(s) that contains files matching the regular <br>
+expression.<br>
+<br>
+Cheers,<br>
+Quentin<br>
+</blockquote></div>
+
+--0000000000000274460619c26d84--
 
