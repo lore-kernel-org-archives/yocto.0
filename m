@@ -1,345 +1,115 @@
-Return-Path: <simonkbaby@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C86BC25B76
-	for <webhook@archiver.kernel.org>; Mon,  3 Jun 2024 16:43:28 +0000 (UTC)
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
- by mx.groups.io with SMTP id smtpd.web11.88872.1717433001059125179
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 41DCEC25B75
+	for <webhook@archiver.kernel.org>; Mon,  3 Jun 2024 21:48:26 +0000 (UTC)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+ by mx.groups.io with SMTP id smtpd.web11.6328.1717451297946019916
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Jun 2024 09:43:21 -0700
+ Mon, 03 Jun 2024 14:48:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=GvE18IKr;
- spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: simonkbaby@gmail.com)
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2c1e6eadb54so149757a91.3
-        for <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 09:43:21 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=YRu2r7sy;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.47, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4213b94b8b5so15188055e9.0
+        for <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 14:48:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717433000; x=1718037800; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vkeiK9ducuL98Aw2I02WKqCD0Crxd5Us2FPmKpn/2gU=;
-        b=GvE18IKrAGO6nHEvrUIQ48H6BS7YPry7cty8lcda53s7/O9mgPY7n9Q07uGbO8mup8
-         nSKefGaVudpjm1KKxaLEdiQaocKj7Jwz8hp6vfkAQjI8cC+VQMueLU4LLljpPbs6Dq7H
-         Fq4F0aOqVQ9AgrG1nezvL71znO7DI8tsrWgNoZaU5RWm0uf5MyxlsZUKBlrW05kUWevy
-         WEl0KKRS9XUU6ki1h8pIgwOJOHdjo92/43DyaVMjfdIXvGrIqBuCBAFZg7t5gzfQbQh4
-         TTGB1YpLpEbAELBmSioCH6XSU9hvuC6yr8EeD/PQBpX/sobpAEv63pNUOJMXsOk4qoZA
-         3AIw==
+        d=linuxfoundation.org; s=google; t=1717451296; x=1718056096; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w7ZwC4Xhsz0YqK/gDIe2dr/LrEgyGwYUk8mj29zEsXo=;
+        b=YRu2r7syL68QnEEzu77dY7VocArmNTtx6vt/gojLuiche1L1FZAuFpzdpDyUu+ofGZ
+         ib/U7jyAWy2fflhcH3+2ty9VnKrINPopzZBK5r2T+oETA+dKM6SvQgRTy9tEy5h5t/ta
+         u4ThOvOEU3KPShTZPIlf0MAmL6yJbXwaUrMkQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717433000; x=1718037800;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vkeiK9ducuL98Aw2I02WKqCD0Crxd5Us2FPmKpn/2gU=;
-        b=VmrQf7eM78gUEobDUrnyWmLGian7P8eVdWSWAdfMB1sDDu4q6kn8/OpwrGgTK2WVBM
-         xmWttgVNeEDbOKVKJ/bDTlcMFJGTDgmJdh6jlpgojS/kT8CbKQt1hbIQPnwOG0usgJjZ
-         h5b5JUR6n50ymRx2dO5n5VWmzMtcMtVPCZwCOOR9u/JMdWMGbqx+h8BTb6FojNBYbIEv
-         hMjN+Kke2r+aah2x9vMZXLp8uI0+UJ43BYxi5bH/LK3G5s6q0Nzavs5KjCL9b1vtkjG1
-         jhzEeDY1RRFQ9Fw4EkoyxosQSpHIg3lNdIqP6m5zxyGglff5SHxZkIzxbSEWy/Q4Homn
-         QnFA==
-X-Gm-Message-State: AOJu0YwV4GkGS8nU+7rH58RX4nGwLdnRGmSgk6vT9t8KanLKqRyuWhkf
-	Esc0RUTvvaoowKEiyFdw7arrwD5pzKcHj/fWidGp8xaz2REHcDCDNesQ5DoWZG19sf28rdi0I2S
-	wLyFZqFIvg2rkecVUVmcq86WjW84=
-X-Google-Smtp-Source: AGHT+IE11BITf05G1jwf05X0rBuB7zyFfm5UwFiGtBtQuPklHoVT8dMcmNgR43a667w4Jj5TQHODk1z+OQFjbg75Zp8=
-X-Received: by 2002:a17:90b:f87:b0:2bd:ed6d:de9 with SMTP id
- 98e67ed59e1d1-2c1dc587d1amr8169439a91.24.1717433000305; Mon, 03 Jun 2024
- 09:43:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAEFUPH03pVQO2pmeyCwQ4WW_mEGJXZvV=2Wihi+LL2+woEUhPg@mail.gmail.com>
- <CANNYZj855qs0zrV0_6qYXrhtmLE-eVsG2-y_a=9oUGvmFvYNXg@mail.gmail.com>
-In-Reply-To: <CANNYZj855qs0zrV0_6qYXrhtmLE-eVsG2-y_a=9oUGvmFvYNXg@mail.gmail.com>
-From: SIMON BABY <simonkbaby@gmail.com>
-Date: Mon, 3 Jun 2024 09:43:09 -0700
-Message-ID: <CAEFUPH33YJ7QWTN5hgoZH_-TAoobRzZTtMgU+Zsk7XqV8TyjEg@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1717451296; x=1718056096;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w7ZwC4Xhsz0YqK/gDIe2dr/LrEgyGwYUk8mj29zEsXo=;
+        b=UPEZ8iyGEiVOfZdeb0lu1jl4ikz5x9Q5n3Np8VHXAm2KW/MFe+BoC6rhVHcTYY4kQE
+         JtMZpPUm+WKDuY/9/FTurRUtI1mq/2rb2Dg6SGAcAVGMfEiRL+i1ExljolU8MGEFpffn
+         OTxRrkn+w8GCWhWlC2tmpXn8Z7vb02Ob8IpXc9xpU324YFUNXxsNkfoxcf0d7glb5TB8
+         ETiNIthr5az1BzVrk5yD3Ojy+EyNfIwOI1BENy1Inn1F0j/ogUTfcHuV3UB3nRn7DKLv
+         /fFX0C6B+iLcY+J/9KW0k5HYZO2UHGegy2yh4EZik570OY+olvlnZJ0GUKflHTWK6i1d
+         J0mw==
+X-Gm-Message-State: AOJu0YyFI2vdyeInyJdDNV+ScO6kWh5O+R+j1R9Qkh5XnEoEtgGh3CfM
+	6vFRVt3v2efcbuGKFQP+jBWfy9ENgFt/dzXVoQSwqdcjCxl9EYg1kRSik8tGyG64cQFoEycW2Ir
+	K
+X-Google-Smtp-Source: AGHT+IHlz6GQ9Init38IGCUBovHV4MLnySTZNJEhu/XGcPQ5fmDlItYogS90uj5Z4AXus/sZIoYstw==
+X-Received: by 2002:a05:600c:511c:b0:421:2df7:beb8 with SMTP id 5b1f17b1804b1-4212e05ea16mr90126745e9.14.1717451296066;
+        Mon, 03 Jun 2024 14:48:16 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:9a5c:ae3c:1b90:53c1? ([2001:8b0:aba:5f3c:9a5c:ae3c:1b90:53c1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212b85c628sm132991405e9.25.2024.06.03.14.48.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 14:48:15 -0700 (PDT)
+Message-ID: <eda7a7666e799206b7fc548c3609f52256a4dce8.camel@linuxfoundation.org>
 Subject: Re: [yocto] query on do_stage
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000e8acb40619ff078a"
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org, simonkbaby@gmail.com
+Date: Mon, 03 Jun 2024 22:48:14 +0100
+In-Reply-To: <CAEFUPH03pVQO2pmeyCwQ4WW_mEGJXZvV=2Wihi+LL2+woEUhPg@mail.gmail.com>
+References: 
+	<CAEFUPH03pVQO2pmeyCwQ4WW_mEGJXZvV=2Wihi+LL2+woEUhPg@mail.gmail.com>
+Autocrypt: addr=richard.purdie@linuxfoundation.org; prefer-encrypt=mutual; keydata=mQINBGN1PzgBEADqZynxX+ivalgYtZ+AoHoGynCiJw0lR+H9rC83sj9z38nlKHBCuh8r8KOqelDUf1B73E9oCLjZQVwqKLmao6ZDQYt7utG+h6qGLEgyDfeochYkLwElvRtjhTp0Ks5WPIHUgE4lwfqmsLrHbkEfRYui9eSd+zJpPKTRgQ7WhTGfRaXPEVYn24fWEo637biLyoEop1qaZMoY/mPsflDYDISWgAeunFx63oL9zNAhOWbLIy2uicKq2GyS56CooPzQkpUv7ssQBOqXp/FSuGJ49RV7Npj/eXyEepAh3BtMliJF08rAj07Hpywp3skXku8YcwUAD7TqOnJ4Wr6G8vpJlQKSITIGMBqtq3f8+SwImWEMRVXxDzrmznihOC7qEUWH4tN/AEkz2BJQbGYnp3iQjZqsoqKblyC83/5MCCUHHpDg20HooEWVNTUxUa8dGWaJehKC5fX1276Sm4WLaoqbQwSGCmwS1e+LjO9lFT80WHIELw07iDhQxshNqVLIxCt3pZfWRlf9fHCtxStiQIRrQLAKN7ze+//YjExjkDOt1ZFIsgMmKIQmJ6b8kRAAmQUraTcn4E/hy0mArFLmROyPSc1nD8hQMeELDcjyjEmo7j3qQCsU464v4tcvJVXyqPc4TU1GDQdZBaKP0/jR68aR3ZOvzx99jdocPdHNW4Kpbv6PnQARAQABtDNSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz6JAlcEEwEKAEECGwEFCQPCZwAFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VBgQIZAQAKCRCaUMY1GLyygAtOEADglyjAhkCSGGetbs40FJ4
+ xdHKck7aaB1FgbpGn9e9/WAeAPC722eJsxhujxgKaS9b7mHcTcWeMP7KFut4yKTDHovt4VbQOd PGqwyUmi8z0yd2ORlT9E3RjEEllpj/Z2Wfzs3H4qR5wz3Rij1BCirDH8LD5yAO8PpIW2N1Y4VbzFDTPX2KtLGQYIraOHZQQe8XjAJnXflVQbzSIbNw14IlVWnF94UwkamxRhhCVAdA4139ebU+R0inaVsG0Bb7GP3KiED4C1I/tj171G4bOsyz3zYkpuV64yuq5pVevLBuCJv1Z/yiBdbB02B+FkosKLWRvoZFa2gqK2xpZT8RvDdkBQTmZTs/hP59mh1QSt4d2p1KsBu7cx2fjRBuf9XVG+uR/XnbD5T1BQRVV641ZNzPTjtE3rEZzR1nsUv+vcFYv0V/FPcLg5f3Ui+4cuYj/xDykMKZlrBIVGExBOJr7Anbzwq8o4nYUsrbFE3Fu88l8/mWrQCkAIZqc2NRyuXplZrDanB9Abi2XmZO0B3Q9wKvzmH0yJyLfswmzrejf3oVOJNEKJP5acPnXfQqAr5F7gdeLvdHbOAtg1iU8GujkOvRA7ad5ahT/1mDzKlkjaf36p4jodsGzPydOks2/jbVZxbZsR1il3BuDXb0agChNXJH4IpcnrjAliBtTKwnEYuLQeLQsUmljaGFyZCBQdXJkaWUgPHJwdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz6JAlQEEwEKAD4WIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VBEAIbAQUJA8JnAAULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRCaUMY1GLyygA0tD/4l5GVZ1OTKoCsHzQuSUVnyzmSwYmJD7W7E1VeVVvVk5bfFf/w6p3dXfGjhZ8zFackE+RmT3//8kQ+Zs68csd0wjX8klyFXgA5PWP3DxNkejnHCq7wiLouOGC/E9RSUULn1DYb68yPzvdGQBooqPQZORtXzNgM
+ NuWDKH+9uvhGbdvURJHCRPTpgcdCo64d+IMzA+XmZUg0P722IyVmB+I2TgjaIRr/NsbsGP4x3u8 TVfJPXmE1IS9nrKEm023ntuy1AH9JlACLZ4LGvpxf8x7ZVKaXXqWOQ1aQ5BCQoOc41AiVUyeiq2wdLRQaNOxbb8+ED34BYLyMjZdII9eovZMbMt7kLSjkbOs/k3s7wtQ2eY7QnSggf8/MWUSUaJzLKHnOBRcqGjdFdlZ0BKXL+v9NrpjcUBsG1TY5XORIahk6Pt1+cPyIsKdycKU4RHtNfwX5fidE8AhU97U04z3tIYs121J4M/EG3bEfOtwDaH7BRTZHK5B05Mks/kX608CwLSJSbX2dSENInh5+dSVQ0egbFbXQGcHFmCCMjYH09hcNUSEyI4OUQHVu8HHQIfvutPqIsZEtJ1K/s3ZD3Zyq35UUiwnCu5hYohX9B0o0TwgDaI85dS2edHy2bnM3a9yuTPiwNYpfR6dp6cg8BM+9qqkJvwp5LiMcZcJC8S5xR3U0FtbQiUmljaGFyZCBQdXJkaWUgPHJwdXJkaWVAcnBzeXMubmV0PokCVAQTAQoAPhYhBBFyVvdv+rrMsD0Wf5pQxjUYvLKABQJjdUEhAhsBBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEJpQxjUYvLKA/iUQAJJkVW2yDzxrH/5szOuG0ZDDH6X6Yrdp+m+F4hHHJQkTYgdRPeoHYKyXNOettdVKrZyEDkztBWkB7Sd7zuVHR3Q4PVTsEh09ZzkqBgN8OevMA7RPHZOa2PYJ8pAx7eTah1whM2eOf+VZGKrW1R9ouTluV7/c4o5loaKuh+t61W2nH6E+lQt3/gKnwj4QmUb5V957ZSHO1cnjtHrd4FFmkYQOCbolEfC25lT9vh4ldY+dILQPcq4at/LEABp4xEgS6R7K4E3cDnjWogrZTiniAUrR7P0SNYv7WCpAbvk4Z9DGCHXpKod
+ KjTi3em7xDpqA1Rxd/rV4z9VQJrbpL/oiPCnTW/iCx+eMH70dRk+gHxSU8FWVf+CucFZprvO9UMi tGHLvfpBxfnGDT2EOqOoFOYgYHq7MfSDZT+zM/gBWfHXbyz6W9RYqycwWCIhG5jhMhT2sEWr4FlwmXfogvSqxvKondwPfXsgNT1MdBqa0Hhm0pIJYs4ovKWnvymTraziqSWI2C9X5lPmf6ugNiuzJt5BqlilNHxsej9OC53HfBbkgDONdcJbduW9nrJlIl9OLanB4/fvuqG1ZIS/eFFAkb2YnBBuS2TNz3aPd7vFkOoMU7VegDic/sH23eZPGQm3XWcTYwIY2djBU8Jzyy4mRIOQZMGXb/ygrGXAuIxL2R2O1uFYEY3VB1RIIKoZIzj0DAQcCAwQzkAYGjbS/m2SeumSYfDZKeazIkOpwUxpTQ7kPxz0ijiquKSsEZzlPMFzhA+iBJh2jdCyabi5K+8+v3VZZglbWAwEIB4kCNgQYAQoAIBYhBBFyVvdv+rrMsD0Wf5pQxjUYvLKABQJjdUHVAhsMAAoJEJpQxjUYvLKAr6UQAMyaDatvvCkxvOyFgO6jxLLzbkwl40hTNB/TsG5RdwL6FXnBMzkIa5lEfgV1u2zwu0p7SKWH9J3DSNqYKjUCAfwDEv6aDKrFYqGQZMuke1ZAfKqmWTIYOKYG4vRgvvF1u0aCOrRJiipjEPnrw1LC6eaqpnI3WGJyy8Wgr8aO0RBUO93ax/+Mpw3QG+jQqZjuomBWGvUwsjRtzE9j2QUcGxjyTrocVsR2qjK0boE4jLGJWNreSIgs5Nllww++3l0pabmXhyXqDdoYE1U0WkI/yemsc8ydDtjpeG4uzv9rfd5VUqHoZpuYZ1sc4DTGFrEAoght/9FXWsOFOtX8vZprLFFi7iFNSDChIFEsyuizHOW5wl/PYkGCCMZvwPK61IvCARKwevdnSrle9omYEqjnU/HjVZ/kvtKxn1VN15j1NNF
+ 0zgmm+/RfbZFHbeuea/lVInXpNBMDj+pl3VyygUae65DMFWgYVSLtXPTRLVMb2mIxiNpk3T2UcuVW 1XC9LWup6h8jHEJ0zBCPjPyd1tFQ9hHVOJnwRthV+VG3zuBf8sri1TPnz5XjNpu3Q3r/6turvh+Khal2itb980tITH5fDbLUewPiA2jCAgZCkVMQcvYTS4rZCC+hpHSMte4m1n7AcmF9ohhw6tt41AEhwbMh+nRkyjDkY+k/vivg0obC2JpruDMEY3VCGBYJKwYBBAHaRw8BAQdArl5/9Fe2aA9JEc+HRm2rnCl6NMb7DZJLnM0xmQg1ouyJAq0EGAEKACAWIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VCGAIbAgCBCRCaUMY1GLyygHYgBBkWCAAdFiEEHKt8QO5c0zRDdmiGodJewzbIKeYFAmN1QhgACgkQodJewzbIKeawUgEAzEwjSYf8lXVNcZVYL/4SLX9FEop83Q8+WmwT2rGhA+MBAKga5Fl8afYVHuPlPOxB/M7aQdP8vfYEx/cWmHmQEUICQxQQAJd85C4//BU0FOUPlEQ1vofZGNC1wTzVA7cQtYlIRrgQOmjR4tOFTxEzusA8QvXxOYkMkDlaa/Ai4/nicMqadnWPQ37BmTAW3/O5PVA22mWaC/ZVeG6DGBGVWb/OAwZe9KMxOR6say+bEIM6B6iDgc3V/HNsLWYYPHaj5HebHOKAJ7dqGGUlFV02OrVW5yAaOUEI61cKw0QuwoN1fZgih94EvFicNaLnDVDV64cbOnNyxGlJhbv4WMErtU4RVD3tT1soESmDB4jS2v49reBpsVVXg2G/M1xFO3sUcczHeo5LRaKtXpkXNh4WO3HDT/eb/IWP8Me2YKpwa5dzlrUz0AYi2s+h+LGclOP0Mls0tgS8sQSVdTj/feLk1FSSQGhSKdHMMGTlSsqj7XjToTAnIheq+5sdaY8UCEYu4s6jDiKu6G02HlF
+ WpERQ9FmtGo2PVqnMaZy2w9lkNNn8ccyMWpP2EwGuCxONQrc22a7WnCYLTpOukLUSD7ApH7M2Jk8on
+ kPGvi48NFq7PWaTkvG3vuSm+eApSToeyz7AVtFt8QOUnHTiNHbuiNpQsDd3y5bLLhU9mIJTbsWNP/72oXV7Tcz7w8zVh2qmuZqhu5qz9rcox3D9unGQ49N3i+CO9c7SqxcLckEjd9o62HsDDpqYv3cdtFNajNsHD8bFU9bb+swCuDMEY3VCRhYJKwYBBAHaRw8BAQdAjoQBsbbnpigttLSFJOFohHY6BGWmjCi520kt0UBBgG+JAjYEGAEKACAWIQQRclb3b/q6zLA9Fn+aUMY1GLyygAUCY3VCRgIbIAAKCRCaUMY1GLyygAQbD/0WyvGz8jA3CTAMTa8yoAlcX73+7aHQaP+DT1PaVU6W85Mm/Bv5JXJ+RWyCCa1jllAWTOhqkOXZ1lXqgislBGtpY22LdwlXW4NGETWwZb79ypR+nayuIPnjOrxkxPOFpcH+wCk9wX0qYi4/8xFTeIZtoty6ayP2bZUZL8aQ91kyUn7nrLmAymPhDq1AAjg+Dkz6DDyzkzXDsY6OY9SpKcWxLkcOm8oXn5B5K5Pl3FaRfYrmX2pAZ6DliQsvPMtXlA01qJ6W4nvRN5ROfjXefNGdyRK8LfJ8BkfDqtZ9/5UrMrW1b7CPA9/7dC5P2jfImtU6R90fz/S4ua2jzeVY2gt7olSDsBqJDOMBPwqEETDROu1+oCIXvdrrZszBu0pTCLV8r+rQqqjICZtK17CEXH3jmDeD/Q6MmAQqeyIhi3uQpGOaveP81WMiC8DDLRXmSuMYOIH/KebzgNnaCQzlQl3a+8tD2qQ48RqzR6JLcKu6h0A6KWItZScfshopNRVsm7FIWM1XUGm1nG6lmPtpVYsXF75hx+YxpAogbzm6fOnUJWFiP1/NVRgtWiii2HG8YCIrEeR3LCUQd/5aYS0CI0cy8WATg/1qkLbcr0lVaCRLT2KZd5WH7tz/4IBanSdCAj6vEfovE5ilWNThQHwg8aPQI6COaHFcTcervMD4Sy
+ YNvg==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.0-1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 16:43:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63263
+ <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 21:48:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63264
 
---000000000000e8acb40619ff078a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2024-05-31 at 15:17 -0700, SIMON BABY via
+lists.yoctoproject.org wrote:
+> Hei=C2=A0Team,
+>=20
+> I have a recipe below. I did not see the staging directory under the
+> tmp generated folder. Is there a hidden folder or where are the files
+> going?
+>=20
+>=20
+>=20
+[...]
 
-Hello Alexander,
-
-Thank you for your comments. I tried the below sequence of commands and
-still could not see anything generated for include or library files.
-
-bitbake -c clean marvell-umsd
-bitbake -c clean -f marvell-umsd
-bitbake -c cleansstate marvell-umsd
-rm -rf sstate-cache/
-
-sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test/build/tm=
-p/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7-r0$
-ls
-configure.sstate  deploy-source-date-epoch  license-destdir  packages-split
- pkgdata-pdata-input  pseudo          recipe-sysroot-native
- sysroot-destdir  UMSD_v3.0.7
-deploy-ipks       image                     package          pkgdata
-  pkgdata-sysroot      recipe-sysroot  source-date-epoch      temp
-
-
-My recipe does not have do_install() but it has do_stage() function. Where
-are those files generated? (Marked in bold below)
-
-do_stage () {
-        mkdir -p ${STAGING_INCDIR}/marvell-umsd
-        *cp --dereference -R ${MSD_ROOT}/include/*
-${STAGING_INCDIR}/marvell-umsd/*
-       * cp ${MSD_ROOT}/library/msdDrv.o ${STAGING_LIBDIR}*
-}
-
-
-
-Regards
-Simon
-
-
-On Sat, Jun 1, 2024 at 3:10=E2=80=AFAM Alexander Kanavin <alex.kanavin@gmai=
-l.com>
-wrote:
-
-> The folders indicate that the build happened entirely from sstate, and
-> so only the sstate objects for populate_sysroot and package_write_ipk
-> tasks were executed. You need to use -c cleansstate first and rerun
-> it.
->
-> Alex
->
-> On Sat, 1 Jun 2024 at 00:17, SIMON BABY via lists.yoctoproject.org
-> <simonkbaby=3Dgmail.com@lists.yoctoproject.org> wrote:
-> >
-> > Hei Team,
-> >
-> > I have a recipe below. I did not see the staging directory under the tm=
-p
-> generated folder. Is there a hidden folder or where are the files going?
-> >
-> >
-> > DESCRIPTION =3D "UMSD SDK library for Marvell Switch Product Family."
-> > LICENSE =3D "CLOSED"
-> > PR =3D "r0"
-> > PROVIDES =3D "marvell-umsd"
-> > SRC_URI =3D "file://UMSD_v${PV}.tar.gz"
-> >
-> > S =3D "${WORKDIR}/UMSD_v${PV}"
-> >
-> > MSD_ROOT=3D"${S}"
-> > MSD_USER_BASE=3D"${MSD_ROOT}"
-> > MSD_PROJ_NAME=3D"msdDrv"
-> > MSD_TOOL_DIR=3D"${MSD_USER_BASE}/tools"
-> > RELEASE=3D"YES"
-> > OS_RUN=3D"LINUX"
-> > TOPAZ_BUILD=3D"YES"
-> > PERIDOT_BUILD=3D"YES"
-> > AGATE_BUILD=3D"YES"
-> > PEARL_BUILD=3D"YES"
-> > AMETHYST_BUILD=3D"YES"
-> > export STAGING_INCDIR
-> > export STAGING_LIBDIR
-> >
-> > do_compile () {
-> >         make -C  ${MSD_ROOT}/src MSD_USER_BASE=3D${MSD_USER_BASE}/
-> MSD_PROJ_NAME=3DmsdDrv MSD_TOOL_DIR=3D"${MSD_USER_BASE}/tools" RELEASE=3D=
-YES
-> OS_RUN:=3DLINUX PERIDOT_BUILD=3DYES
-> > }
-> >
-> >
-> > do_stage () {
-> >         mkdir -p ${STAGING_INCDIR}/marvell-umsd
-> >         cp --dereference -R ${MSD_ROOT}/include/*
+>=20
+> do_stage () {
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 mkdir -p ${STAGING_INCDIR}/marvell-umsd
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp --dereference -R ${MSD_ROOT}/include/*
 > ${STAGING_INCDIR}/marvell-umsd/
-> >         cp ${MSD_ROOT}/library/msdDrv.o ${STAGING_LIBDIR}
-> > }
-> >
-> >
-> >
-> > I checked the path below and could not see the include files or the
-> msdDrv.o copied anywhere. Please correct me with any other solution. Can =
-I
-> go with do_install () ?
-> > The requirement is to use this recipe as a dependency for other modules
-> to use the include file and library.
-> >
-> > sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test/buil=
-d$
-> ls -ll
-> tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7-r0/
-> > total 40
-> > drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 deploy-ipks
-> > drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 license-destdir
-> > drwxr-xr-x 7 sbaby sbaby 4096 May 29 10:46 pkgdata-pdata-input
-> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-packagedata
-> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-package_qa
-> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52
-> sstate-install-package_write_ipk
-> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-populate_lic
-> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52
-> sstate-install-populate_sysroot
-> > drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 sysroot-destdir
-> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 temp
-> >
-> > Regards
-> > Simon
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#63251):
-> https://lists.yoctoproject.org/g/yocto/message/63251
-> > Mute This Topic: https://lists.yoctoproject.org/mt/106417703/1686489
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
->
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp ${MSD_ROOT}/library/msdDrv.o ${STAGING_LIB=
+DIR}
+> }
+>=20
+>=20
+>=20
+> I checked the path below and could not see the include files or the=C2=A0
+> msdDrv.o copied anywhere. Please correct me with any other solution.
+> Can I go with do_install () ?
+> The requirement=C2=A0is to use this recipe as a dependency for other
+> modules to use the=C2=A0include file and library.=C2=A0
 
---000000000000e8acb40619ff078a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+do_stage was a task which was removed many many years ago:
 
-<div dir=3D"ltr">Hello Alexander,<div><br></div><div>Thank you for your com=
-ments. I tried the below sequence of commands and still could not see anyth=
-ing generated for include or library files.=C2=A0</div><div><br></div><div>=
-bitbake -c clean marvell-umsd<br>bitbake -c clean -f marvell-umsd <br>bitba=
-ke -c cleansstate marvell-umsd<br>rm -rf sstate-cache/<br></div><div><br></=
-div><div>sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test=
-/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7=
--r0$ ls<br>configure.sstate =C2=A0deploy-source-date-epoch =C2=A0license-de=
-stdir =C2=A0packages-split =C2=A0pkgdata-pdata-input =C2=A0pseudo =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0recipe-sysroot-native =C2=A0sysroot-destdir =C2=
-=A0UMSD_v3.0.7<br>deploy-ipks =C2=A0 =C2=A0 =C2=A0 image =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 package =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0pkgdata =C2=A0 =C2=A0 =C2=A0 =C2=A0 pkgdata-sysroot =C2=
-=A0 =C2=A0 =C2=A0recipe-sysroot =C2=A0source-date-epoch =C2=A0 =C2=A0 =C2=
-=A0temp<br></div><div><br></div><div><br></div><div>My recipe does not have=
- do_install() but it has do_stage() function. Where are those files generat=
-ed? (Marked in bold below)</div><div><br></div><div><span style=3D"color:rg=
-b(80,0,80)">do_stage () {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 mkdir -p ${STAGING=
-_INCDIR}/marvell-umsd<br></span>=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<b>cp --de=
-reference -R ${MSD_ROOT}/include/* ${STAGING_INCDIR}/marvell-umsd/</b><br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0<b>=C2=A0cp ${MSD_ROOT}/library/msdDrv.o ${STAGI=
-NG_LIBDIR}</b><br>}<br></div><div><br></div><div><br></div><div><br></div><=
-div>Regards</div><div>Simon</div><div><br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Jun 1, 2024 at 3:10=
-=E2=80=AFAM Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com"=
->alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">The folders indicate that the build happened entirel=
-y from sstate, and<br>
-so only the sstate objects for populate_sysroot and package_write_ipk<br>
-tasks were executed. You need to use -c cleansstate first and rerun<br>
-it.<br>
-<br>
-Alex<br>
-<br>
-On Sat, 1 Jun 2024 at 00:17, SIMON BABY via <a href=3D"http://lists.yoctopr=
-oject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a><=
-br>
-&lt;simonkbaby=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org" target=
-=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hei Team,<br>
-&gt;<br>
-&gt; I have a recipe below. I did not see the staging directory under the t=
-mp generated folder. Is there a hidden folder or where are the files going?=
-<br>
-&gt;<br>
-&gt;<br>
-&gt; DESCRIPTION =3D &quot;UMSD SDK library for Marvell Switch Product Fami=
-ly.&quot;<br>
-&gt; LICENSE =3D &quot;CLOSED&quot;<br>
-&gt; PR =3D &quot;r0&quot;<br>
-&gt; PROVIDES =3D &quot;marvell-umsd&quot;<br>
-&gt; SRC_URI =3D &quot;file://UMSD_v${PV}.tar.gz&quot;<br>
-&gt;<br>
-&gt; S =3D &quot;${WORKDIR}/UMSD_v${PV}&quot;<br>
-&gt;<br>
-&gt; MSD_ROOT=3D&quot;${S}&quot;<br>
-&gt; MSD_USER_BASE=3D&quot;${MSD_ROOT}&quot;<br>
-&gt; MSD_PROJ_NAME=3D&quot;msdDrv&quot;<br>
-&gt; MSD_TOOL_DIR=3D&quot;${MSD_USER_BASE}/tools&quot;<br>
-&gt; RELEASE=3D&quot;YES&quot;<br>
-&gt; OS_RUN=3D&quot;LINUX&quot;<br>
-&gt; TOPAZ_BUILD=3D&quot;YES&quot;<br>
-&gt; PERIDOT_BUILD=3D&quot;YES&quot;<br>
-&gt; AGATE_BUILD=3D&quot;YES&quot;<br>
-&gt; PEARL_BUILD=3D&quot;YES&quot;<br>
-&gt; AMETHYST_BUILD=3D&quot;YES&quot;<br>
-&gt; export STAGING_INCDIR<br>
-&gt; export STAGING_LIBDIR<br>
-&gt;<br>
-&gt; do_compile () {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0make -C=C2=A0 ${MSD_ROOT}/src MSD_USE=
-R_BASE=3D${MSD_USER_BASE}/ MSD_PROJ_NAME=3DmsdDrv MSD_TOOL_DIR=3D&quot;${MS=
-D_USER_BASE}/tools&quot; RELEASE=3DYES OS_RUN:=3DLINUX PERIDOT_BUILD=3DYES<=
-br>
-&gt; }<br>
-&gt;<br>
-&gt;<br>
-&gt; do_stage () {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mkdir -p ${STAGING_INCDIR}/marvell-um=
-sd<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cp --dereference -R ${MSD_ROOT}/inclu=
-de/* ${STAGING_INCDIR}/marvell-umsd/<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cp ${MSD_ROOT}/library/msdDrv.o ${STA=
-GING_LIBDIR}<br>
-&gt; }<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; I checked the path below and could not see the include files or the=C2=
-=A0 msdDrv.o copied anywhere. Please correct me with any other solution. Ca=
-n I go with do_install () ?<br>
-&gt; The requirement is to use this recipe as a dependency for other module=
-s to use the include file and library.<br>
-&gt;<br>
-&gt; sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test/bui=
-ld$ ls -ll tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3=
-.0.7-r0/<br>
-&gt; total 40<br>
-&gt; drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 deploy-ipks<br>
-&gt; drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 license-destdir<br>
-&gt; drwxr-xr-x 7 sbaby sbaby 4096 May 29 10:46 pkgdata-pdata-input<br>
-&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-packagedata<=
-br>
-&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-package_qa<b=
-r>
-&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-package_writ=
-e_ipk<br>
-&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-populate_lic=
-<br>
-&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-populate_sys=
-root<br>
-&gt; drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 sysroot-destdir<br>
-&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 temp<br>
-&gt;<br>
-&gt; Regards<br>
-&gt; Simon<br>
-&gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#63251): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/63251" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/63251</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/10641770=
-3/1686489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/mt/106417703/1686489</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">ale=
-x.kanavin@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-</blockquote></div>
+https://git.yoctoproject.org/poky/commit/?id=3Ddc807f54f858419f97e211cd62fd=
+2d30db9a80de
 
---000000000000e8acb40619ff078a--
+i.e. around 2010.
+
+We opted to have the output from do_install work for both sysroots and
+target packages.
+
+Cheers,
+
+Richard
 
