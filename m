@@ -1,309 +1,345 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <simonkbaby@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62429C25B76
-	for <webhook@archiver.kernel.org>; Mon,  3 Jun 2024 16:20:38 +0000 (UTC)
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web10.87782.1717430989838590204
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C86BC25B76
+	for <webhook@archiver.kernel.org>; Mon,  3 Jun 2024 16:43:28 +0000 (UTC)
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+ by mx.groups.io with SMTP id smtpd.web11.88872.1717433001059125179
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Jun 2024 09:09:49 -0700
+ Mon, 03 Jun 2024 09:43:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=jwEyxvQo;
- spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2c24115469bso637156a91.0
-        for <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 09:09:49 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=GvE18IKr;
+ spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: simonkbaby@gmail.com)
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2c1e6eadb54so149757a91.3
+        for <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 09:43:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717430989; x=1718035789; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1717433000; x=1718037800; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PoGfyRUz3/uZsXgUHM4fGjINRwWcqV2ZN7G7xrYoeoU=;
-        b=jwEyxvQoh+hTHJ6VvBuLczqRV6f2NYUqAX6wevYIqhOS4G4VGTrgg9h6lKXH2upXQd
-         KIyJfqmKuTBIvmfiHRU1Jv3vQVZdKIJBUMMXf4R3jx5OvfowzfUkcwDY0zlJevysJyGd
-         3OgcFs56lF6BD8IATh+xbXYgpUQQw6G7q/WDL1MKhJxwRVNt5e/QJg1F71XkYdIrVba+
-         qRozFFXtO85QZM0S3cMk1c8QDHF/8TlVT5TairbOXcCLrgQBlOw0mS7Ep3a8L0qg9C4I
-         /dMseVRF4l8rKcEaO8O95s6h/dSkw03RiCjyunPRM3b6d4SLMFhrp7edgk65+x3wbvYx
-         NKHQ==
+        bh=vkeiK9ducuL98Aw2I02WKqCD0Crxd5Us2FPmKpn/2gU=;
+        b=GvE18IKrAGO6nHEvrUIQ48H6BS7YPry7cty8lcda53s7/O9mgPY7n9Q07uGbO8mup8
+         nSKefGaVudpjm1KKxaLEdiQaocKj7Jwz8hp6vfkAQjI8cC+VQMueLU4LLljpPbs6Dq7H
+         Fq4F0aOqVQ9AgrG1nezvL71znO7DI8tsrWgNoZaU5RWm0uf5MyxlsZUKBlrW05kUWevy
+         WEl0KKRS9XUU6ki1h8pIgwOJOHdjo92/43DyaVMjfdIXvGrIqBuCBAFZg7t5gzfQbQh4
+         TTGB1YpLpEbAELBmSioCH6XSU9hvuC6yr8EeD/PQBpX/sobpAEv63pNUOJMXsOk4qoZA
+         3AIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717430989; x=1718035789;
+        d=1e100.net; s=20230601; t=1717433000; x=1718037800;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PoGfyRUz3/uZsXgUHM4fGjINRwWcqV2ZN7G7xrYoeoU=;
-        b=chz44xVSIreG/ax9eDfqSiFv/Th7ifWBAnxqQ9msUoAYqJt9ssDrVfUvgX6gGOj7tw
-         F5yt+HC7jtEFeP5ixVPRaHyLp46DaY1R9sCXn7MKcXWvFmW8NFqsQ8/oBxokikKKRvJb
-         z4DM3y2ImIiHV897eh7IDgor0Y6EPPFNJgTEIN2QDEUXUtuynnWsgqB1/73drTA9vAuk
-         Bj7WISFSjROe7ePWYt9qgV7ricCfzs+xz25jvLsQJsw4VMN/cAopAsQx0KdiI1iZ8SES
-         pweRDC12rhJChE1qjAFbIj+1eZmD+mAmz2M17khcPtAR1MRKVPNGWaUZLpJ+IM0Ynnoa
-         8pog==
-X-Gm-Message-State: AOJu0Yz3PvFuMg3tYQj0en93vVP4Kzd5sGhDGtT2pUQ4jaGrE1cqcgv8
-	9wjwyK7MeGr5MwGPPWZAB18MGGd9QCjThzg/0xSmGMFWZ8WuA7qh5McdOcaZQJCGq4uXU+5ALBE
-	jAUJXboeGKILnA8fVKKwsDKGC4gFhNpCH
-X-Google-Smtp-Source: AGHT+IELAohXuPS1pFaVoPndDMaYSEUK3hwhlz5Lso3JRfTihTbG6xLao9cdkomM/c+krNDdN8nfIVweE5o5UMjHhgk=
-X-Received: by 2002:a17:90b:3647:b0:2bd:f4ba:fc3 with SMTP id
- 98e67ed59e1d1-2c2530786b4mr143477a91.7.1717430988397; Mon, 03 Jun 2024
- 09:09:48 -0700 (PDT)
+        bh=vkeiK9ducuL98Aw2I02WKqCD0Crxd5Us2FPmKpn/2gU=;
+        b=VmrQf7eM78gUEobDUrnyWmLGian7P8eVdWSWAdfMB1sDDu4q6kn8/OpwrGgTK2WVBM
+         xmWttgVNeEDbOKVKJ/bDTlcMFJGTDgmJdh6jlpgojS/kT8CbKQt1hbIQPnwOG0usgJjZ
+         h5b5JUR6n50ymRx2dO5n5VWmzMtcMtVPCZwCOOR9u/JMdWMGbqx+h8BTb6FojNBYbIEv
+         hMjN+Kke2r+aah2x9vMZXLp8uI0+UJ43BYxi5bH/LK3G5s6q0Nzavs5KjCL9b1vtkjG1
+         jhzEeDY1RRFQ9Fw4EkoyxosQSpHIg3lNdIqP6m5zxyGglff5SHxZkIzxbSEWy/Q4Homn
+         QnFA==
+X-Gm-Message-State: AOJu0YwV4GkGS8nU+7rH58RX4nGwLdnRGmSgk6vT9t8KanLKqRyuWhkf
+	Esc0RUTvvaoowKEiyFdw7arrwD5pzKcHj/fWidGp8xaz2REHcDCDNesQ5DoWZG19sf28rdi0I2S
+	wLyFZqFIvg2rkecVUVmcq86WjW84=
+X-Google-Smtp-Source: AGHT+IE11BITf05G1jwf05X0rBuB7zyFfm5UwFiGtBtQuPklHoVT8dMcmNgR43a667w4Jj5TQHODk1z+OQFjbg75Zp8=
+X-Received: by 2002:a17:90b:f87:b0:2bd:ed6d:de9 with SMTP id
+ 98e67ed59e1d1-2c1dc587d1amr8169439a91.24.1717433000305; Mon, 03 Jun 2024
+ 09:43:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <CA+-BmJZxdiOzpTs9j+WFWNnn-wtAH1zdUZdQQq9HniMhFij1+A@mail.gmail.com>
- <CANNYZj8Q5gGPAjcftrJJ4w601b26s65eVc0d4BhiK2Hwkbe+=g@mail.gmail.com>
-In-Reply-To: <CANNYZj8Q5gGPAjcftrJJ4w601b26s65eVc0d4BhiK2Hwkbe+=g@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Mon, 3 Jun 2024 18:09:35 +0200
-Message-ID: <CAGAf8Lz0_XwW=BOnQJYdFBUwe8ecuk658gjXQeUMH65fuMwCeQ@mail.gmail.com>
-Subject: Re: [yocto] Systemd resolv.conf
-To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com
-Cc: ayoub.zaki@googlemail.com
-Content-Type: multipart/alternative; boundary="000000000000fd654e0619fe8fd3"
+References: <CAEFUPH03pVQO2pmeyCwQ4WW_mEGJXZvV=2Wihi+LL2+woEUhPg@mail.gmail.com>
+ <CANNYZj855qs0zrV0_6qYXrhtmLE-eVsG2-y_a=9oUGvmFvYNXg@mail.gmail.com>
+In-Reply-To: <CANNYZj855qs0zrV0_6qYXrhtmLE-eVsG2-y_a=9oUGvmFvYNXg@mail.gmail.com>
+From: SIMON BABY <simonkbaby@gmail.com>
+Date: Mon, 3 Jun 2024 09:43:09 -0700
+Message-ID: <CAEFUPH33YJ7QWTN5hgoZH_-TAoobRzZTtMgU+Zsk7XqV8TyjEg@mail.gmail.com>
+Subject: Re: [yocto] query on do_stage
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000e8acb40619ff078a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 16:20:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63262
+ <yocto@lists.yoctoproject.org>; Mon, 03 Jun 2024 16:43:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63263
 
---000000000000fd654e0619fe8fd3
+--000000000000e8acb40619ff078a
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Interesting...
-_______
+Hello Alexander,
 
-vuser@fedora40-ssd-2TB:~/projects2/yocto/yocto_test2/bbb-yocto/poky/build$
-git status
-On branch scarthgap
-Your branch is up to date with 'origin/scarthgap'.
+Thank you for your comments. I tried the below sequence of commands and
+still could not see anything generated for include or library files.
 
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-    modified:   ../meta/recipes-core/images/core-image-base.bb
-    modified:   ../meta/recipes-core/images/core-image-minimal.bb
-    modified:
-../meta/recipes-extended/cracklib/cracklib/0001-packlib.c-support-dictionar=
-y-byte-order-dependent.patch
+bitbake -c clean marvell-umsd
+bitbake -c clean -f marvell-umsd
+bitbake -c cleansstate marvell-umsd
+rm -rf sstate-cache/
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-    ../meta/recipes-core/images/core-image-base.bb.genesis
-    ../meta/recipes-core/images/core-image-minimal.bb.genesis
-
-no changes added to commit (use "git add" and/or "git commit -a")
-
-vuser@fedora40-ssd-2TB:~/projects2/yocto/yocto_test2/bbb-yocto/poky/build$
-ping yocto.org
-PING yocto.org (217.160.0.14) 56(84) bytes of data.
-64 bytes from 217-160-0-14.elastic-ssl.ui-r.com (217.160.0.14): icmp_seq=3D=
-1
-ttl=3D57 time=3D16.2 ms
-64 bytes from 217-160-0-14.elastic-ssl.ui-r.com (217.160.0.14): icmp_seq=3D=
-2
-ttl=3D57 time=3D14.6 ms
-64 bytes from 217-160-0-14.elastic-ssl.ui-r.com (217.160.0.14): icmp_seq=3D=
-3
-ttl=3D57 time=3D14.8 ms
-^C
---- yocto.org ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2002ms
-rtt min/avg/max/mdev =3D 14.617/15.214/16.188/0.694 ms
-
-vuser@fedora40-ssd-2TB:~/projects2/yocto/yocto_test2/bbb-yocto/poky/build$
-ls -l /etc/resolv.conf
-lrwxrwxrwx. 1 root root 39 Jul 18  2022 /etc/resolv.conf ->
-../run/systemd/resolve/stub-resolv.conf
-
-Zee
-_______
+sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test/build/tm=
+p/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7-r0$
+ls
+configure.sstate  deploy-source-date-epoch  license-destdir  packages-split
+ pkgdata-pdata-input  pseudo          recipe-sysroot-native
+ sysroot-destdir  UMSD_v3.0.7
+deploy-ipks       image                     package          pkgdata
+  pkgdata-sysroot      recipe-sysroot  source-date-epoch      temp
 
 
-On Mon, Jun 3, 2024 at 4:52=E2=80=AFPM Alexander Kanavin via lists.yoctopro=
-ject.org
-<alex.kanavin=3Dgmail.com@lists.yoctoproject.org> wrote:
+My recipe does not have do_install() but it has do_stage() function. Where
+are those files generated? (Marked in bold below)
 
-> Yes please; can you send a patch for master?
+do_stage () {
+        mkdir -p ${STAGING_INCDIR}/marvell-umsd
+        *cp --dereference -R ${MSD_ROOT}/include/*
+${STAGING_INCDIR}/marvell-umsd/*
+       * cp ${MSD_ROOT}/library/msdDrv.o ${STAGING_LIBDIR}*
+}
+
+
+
+Regards
+Simon
+
+
+On Sat, Jun 1, 2024 at 3:10=E2=80=AFAM Alexander Kanavin <alex.kanavin@gmai=
+l.com>
+wrote:
+
+> The folders indicate that the build happened entirely from sstate, and
+> so only the sstate objects for populate_sysroot and package_write_ipk
+> tasks were executed. You need to use -c cleansstate first and rerun
+> it.
 >
 > Alex
 >
-> On Mon, 3 Jun 2024 at 16:48, Ayoub Zaki via lists.yoctoproject.org
-> <ayoub.zaki=3Dgooglemail.com@lists.yoctoproject.org> wrote:
+> On Sat, 1 Jun 2024 at 00:17, SIMON BABY via lists.yoctoproject.org
+> <simonkbaby=3Dgmail.com@lists.yoctoproject.org> wrote:
 > >
-> > Hello,
+> > Hei Team,
 > >
-> > after upgrading to scarthgap, I noticed that the name resolution doesn'=
-t
-> work anymore:
-> >
-> > ~ # ping yocto.org
-> > ping: bad address 'yocto.org'
-> > ~ #
-> >
-> > ~ # ping 217.160.0.14
-> > PING 217.160.0.14 (217.160.0.14): 56 data bytes
-> > 64 bytes from 217.160.0.14: seq=3D0 ttl=3D57 time=3D24.174 ms
-> > 64 bytes from 217.160.0.14: seq=3D1 ttl=3D57 time=3D19.452 ms
-> >
-> > --- 217.160.0.14 ping statistics ---
-> > 2 packets transmitted, 2 packets received, 0% packet loss
-> > round-trip min/avg/max =3D 19.452/21.813/24.174 ms
+> > I have a recipe below. I did not see the staging directory under the tm=
+p
+> generated folder. Is there a hidden folder or where are the files going?
 > >
 > >
-> > ~ # ls -l /etc/resolv.conf
-> > lrwxrwxrwx    1 root     root            20 Mar  9  2018
-> /etc/resolv.conf -> /var/run/resolv.conf
-> > ~ # cat /var/run/resolv.conf
-> > cat: can't open '/var/run/resolv.conf': No such file or directory
+> > DESCRIPTION =3D "UMSD SDK library for Marvell Switch Product Family."
+> > LICENSE =3D "CLOSED"
+> > PR =3D "r0"
+> > PROVIDES =3D "marvell-umsd"
+> > SRC_URI =3D "file://UMSD_v${PV}.tar.gz"
+> >
+> > S =3D "${WORKDIR}/UMSD_v${PV}"
+> >
+> > MSD_ROOT=3D"${S}"
+> > MSD_USER_BASE=3D"${MSD_ROOT}"
+> > MSD_PROJ_NAME=3D"msdDrv"
+> > MSD_TOOL_DIR=3D"${MSD_USER_BASE}/tools"
+> > RELEASE=3D"YES"
+> > OS_RUN=3D"LINUX"
+> > TOPAZ_BUILD=3D"YES"
+> > PERIDOT_BUILD=3D"YES"
+> > AGATE_BUILD=3D"YES"
+> > PEARL_BUILD=3D"YES"
+> > AMETHYST_BUILD=3D"YES"
+> > export STAGING_INCDIR
+> > export STAGING_LIBDIR
+> >
+> > do_compile () {
+> >         make -C  ${MSD_ROOT}/src MSD_USER_BASE=3D${MSD_USER_BASE}/
+> MSD_PROJ_NAME=3DmsdDrv MSD_TOOL_DIR=3D"${MSD_USER_BASE}/tools" RELEASE=3D=
+YES
+> OS_RUN:=3DLINUX PERIDOT_BUILD=3DYES
+> > }
 > >
 > >
-> >
-> > After linking manually :
-> >
-> > ~ # ln -sf /etc/resolv-conf.systemd /etc/resolv.conf
-> > ~ #
-> > ~ #
-> > ~ # ping yocto.org
-> > PING yocto.org (217.160.0.14): 56 data bytes
-> > 64 bytes from 217.160.0.14: seq=3D0 ttl=3D57 time=3D17.577 ms
-> > 64 bytes from 217.160.0.14: seq=3D1 ttl=3D57 time=3D18.716 ms
-> > ^C
-> > --- yocto.org ping statistics ---
-> > 2 packets transmitted, 2 packets received, 0% packet loss
-> > round-trip min/avg/max =3D 17.577/18.146/18.716 ms
-> >
-> >
-> > shouldn't be that added in the systemd recipe :
-> >
-> >
-> https://git.yoctoproject.org/poky/tree/meta/recipes-core/systemd/systemd_=
-255.4.bb?h=3Dscarthgap#n352
-> >
-> > Best regards
+> > do_stage () {
+> >         mkdir -p ${STAGING_INCDIR}/marvell-umsd
+> >         cp --dereference -R ${MSD_ROOT}/include/*
+> ${STAGING_INCDIR}/marvell-umsd/
+> >         cp ${MSD_ROOT}/library/msdDrv.o ${STAGING_LIBDIR}
+> > }
 > >
 > >
 > >
->
->=20
->
+> > I checked the path below and could not see the include files or the
+> msdDrv.o copied anywhere. Please correct me with any other solution. Can =
+I
+> go with do_install () ?
+> > The requirement is to use this recipe as a dependency for other modules
+> to use the include file and library.
+> >
+> > sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test/buil=
+d$
+> ls -ll
+> tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7-r0/
+> > total 40
+> > drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 deploy-ipks
+> > drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 license-destdir
+> > drwxr-xr-x 7 sbaby sbaby 4096 May 29 10:46 pkgdata-pdata-input
+> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-packagedata
+> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-package_qa
+> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52
+> sstate-install-package_write_ipk
+> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-populate_lic
+> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52
+> sstate-install-populate_sysroot
+> > drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 sysroot-destdir
+> > drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 temp
+> >
+> > Regards
+> > Simon
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#63251):
+> https://lists.yoctoproject.org/g/yocto/message/63251
+> > Mute This Topic: https://lists.yoctoproject.org/mt/106417703/1686489
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> alex.kanavin@gmail.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
 >
 
---000000000000fd654e0619fe8fd3
+--000000000000e8acb40619ff078a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Interesting...</div><div><font size=3D"1">_______</fo=
-nt></div><div><br></div>vuser@fedora40-ssd-2TB:~/projects2/yocto/yocto_test=
-2/bbb-yocto/poky/build$ git status<br>On branch scarthgap<br>Your branch is=
- up to date with &#39;origin/scarthgap&#39;.<br><br>Changes not staged for =
-commit:<br>=C2=A0 (use &quot;git add &lt;file&gt;...&quot; to update what w=
-ill be committed)<br>=C2=A0 (use &quot;git restore &lt;file&gt;...&quot; to=
- discard changes in working directory)<br>=C2=A0 =C2=A0 modified: =C2=A0 ..=
-/meta/recipes-core/images/<a href=3D"http://core-image-base.bb">core-image-=
-base.bb</a><br>=C2=A0 =C2=A0 modified: =C2=A0 ../meta/recipes-core/images/<=
-a href=3D"http://core-image-minimal.bb">core-image-minimal.bb</a><br>=C2=A0=
- =C2=A0 modified: =C2=A0 ../meta/recipes-extended/cracklib/cracklib/0001-pa=
-cklib.c-support-dictionary-byte-order-dependent.patch<br><br>Untracked file=
-s:<br>=C2=A0 (use &quot;git add &lt;file&gt;...&quot; to include in what wi=
-ll be committed)<br>=C2=A0 =C2=A0 ../meta/recipes-core/images/core-image-ba=
-se.bb.genesis<br>=C2=A0 =C2=A0 ../meta/recipes-core/images/core-image-minim=
-al.bb.genesis<br><br><div>no changes added to commit (use &quot;git add&quo=
-t; and/or &quot;git commit -a&quot;)</div><div><br></div>vuser@fedora40-ssd=
--2TB:~/projects2/yocto/yocto_test2/bbb-yocto/poky/build$ ping <a href=3D"ht=
-tp://yocto.org">yocto.org</a><br>PING <a href=3D"http://yocto.org">yocto.or=
-g</a> (217.160.0.14) 56(84) bytes of data.<br>64 bytes from <a href=3D"http=
-://217-160-0-14.elastic-ssl.ui-r.com">217-160-0-14.elastic-ssl.ui-r.com</a>=
- (217.160.0.14): icmp_seq=3D1 ttl=3D57 time=3D16.2 ms<br>64 bytes from <a h=
-ref=3D"http://217-160-0-14.elastic-ssl.ui-r.com">217-160-0-14.elastic-ssl.u=
-i-r.com</a> (217.160.0.14): icmp_seq=3D2 ttl=3D57 time=3D14.6 ms<br>64 byte=
-s from <a href=3D"http://217-160-0-14.elastic-ssl.ui-r.com">217-160-0-14.el=
-astic-ssl.ui-r.com</a> (217.160.0.14): icmp_seq=3D3 ttl=3D57 time=3D14.8 ms=
-<br>^C<br>--- <a href=3D"http://yocto.org">yocto.org</a> ping statistics --=
--<br>3 packets transmitted, 3 received, 0% packet loss, time 2002ms<br>rtt =
-min/avg/max/mdev =3D 14.617/15.214/16.188/0.694 ms<br><div><br></div><div>v=
-user@fedora40-ssd-2TB:~/projects2/yocto/yocto_test2/bbb-yocto/poky/build$ l=
-s -l /etc/resolv.conf</div><div>lrwxrwxrwx. 1 root root 39 Jul 18 =C2=A0202=
-2 /etc/resolv.conf -&gt; ../run/systemd/resolve/stub-resolv.conf</div><div>=
-<br></div><div>Zee</div><div>_______</div></div><br><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 3, 2024 at 4:52=
-=E2=80=AFPM Alexander Kanavin via <a href=3D"http://lists.yoctoproject.org"=
->lists.yoctoproject.org</a> &lt;alex.kanavin=3D<a href=3D"mailto:gmail.com@=
-lists.yoctoproject.org">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">Yes please; can you=
- send a patch for master?<br>
+<div dir=3D"ltr">Hello Alexander,<div><br></div><div>Thank you for your com=
+ments. I tried the below sequence of commands and still could not see anyth=
+ing generated for include or library files.=C2=A0</div><div><br></div><div>=
+bitbake -c clean marvell-umsd<br>bitbake -c clean -f marvell-umsd <br>bitba=
+ke -c cleansstate marvell-umsd<br>rm -rf sstate-cache/<br></div><div><br></=
+div><div>sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test=
+/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3.0.7=
+-r0$ ls<br>configure.sstate =C2=A0deploy-source-date-epoch =C2=A0license-de=
+stdir =C2=A0packages-split =C2=A0pkgdata-pdata-input =C2=A0pseudo =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0recipe-sysroot-native =C2=A0sysroot-destdir =C2=
+=A0UMSD_v3.0.7<br>deploy-ipks =C2=A0 =C2=A0 =C2=A0 image =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 package =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0pkgdata =C2=A0 =C2=A0 =C2=A0 =C2=A0 pkgdata-sysroot =C2=
+=A0 =C2=A0 =C2=A0recipe-sysroot =C2=A0source-date-epoch =C2=A0 =C2=A0 =C2=
+=A0temp<br></div><div><br></div><div><br></div><div>My recipe does not have=
+ do_install() but it has do_stage() function. Where are those files generat=
+ed? (Marked in bold below)</div><div><br></div><div><span style=3D"color:rg=
+b(80,0,80)">do_stage () {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 mkdir -p ${STAGING=
+_INCDIR}/marvell-umsd<br></span>=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<b>cp --de=
+reference -R ${MSD_ROOT}/include/* ${STAGING_INCDIR}/marvell-umsd/</b><br>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0<b>=C2=A0cp ${MSD_ROOT}/library/msdDrv.o ${STAGI=
+NG_LIBDIR}</b><br>}<br></div><div><br></div><div><br></div><div><br></div><=
+div>Regards</div><div>Simon</div><div><br></div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Jun 1, 2024 at 3:10=
+=E2=80=AFAM Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com"=
+>alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex">The folders indicate that the build happened entirel=
+y from sstate, and<br>
+so only the sstate objects for populate_sysroot and package_write_ipk<br>
+tasks were executed. You need to use -c cleansstate first and rerun<br>
+it.<br>
 <br>
 Alex<br>
 <br>
-On Mon, 3 Jun 2024 at 16:48, Ayoub Zaki via <a href=3D"http://lists.yoctopr=
+On Sat, 1 Jun 2024 at 00:17, SIMON BABY via <a href=3D"http://lists.yoctopr=
 oject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a><=
 br>
-&lt;ayoub.zaki=3D<a href=3D"mailto:googlemail.com@lists.yoctoproject.org" t=
-arget=3D"_blank">googlemail.com@lists.yoctoproject.org</a>&gt; wrote:<br>
+&lt;simonkbaby=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org" target=
+=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br>
 &gt;<br>
-&gt; Hello,<br>
+&gt; Hei Team,<br>
 &gt;<br>
-&gt; after upgrading to scarthgap, I noticed that the name resolution doesn=
-&#39;t work anymore:<br>
-&gt;<br>
-&gt; ~ # ping <a href=3D"http://yocto.org" rel=3D"noreferrer" target=3D"_bl=
-ank">yocto.org</a><br>
-&gt; ping: bad address &#39;<a href=3D"http://yocto.org" rel=3D"noreferrer"=
- target=3D"_blank">yocto.org</a>&#39;<br>
-&gt; ~ #<br>
-&gt;<br>
-&gt; ~ # ping 217.160.0.14<br>
-&gt; PING 217.160.0.14 (217.160.0.14): 56 data bytes<br>
-&gt; 64 bytes from <a href=3D"http://217.160.0.14" rel=3D"noreferrer" targe=
-t=3D"_blank">217.160.0.14</a>: seq=3D0 ttl=3D57 time=3D24.174 ms<br>
-&gt; 64 bytes from <a href=3D"http://217.160.0.14" rel=3D"noreferrer" targe=
-t=3D"_blank">217.160.0.14</a>: seq=3D1 ttl=3D57 time=3D19.452 ms<br>
-&gt;<br>
-&gt; --- 217.160.0.14 ping statistics ---<br>
-&gt; 2 packets transmitted, 2 packets received, 0% packet loss<br>
-&gt; round-trip min/avg/max =3D 19.452/21.813/24.174 ms<br>
-&gt;<br>
-&gt;<br>
-&gt; ~ # ls -l /etc/resolv.conf<br>
-&gt; lrwxrwxrwx=C2=A0 =C2=A0 1 root=C2=A0 =C2=A0 =C2=A0root=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 20 Mar=C2=A0 9=C2=A0 2018 /etc/resolv.conf -&gt=
-; /var/run/resolv.conf<br>
-&gt; ~ # cat /var/run/resolv.conf<br>
-&gt; cat: can&#39;t open &#39;/var/run/resolv.conf&#39;: No such file or di=
-rectory<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; After linking manually :<br>
-&gt;<br>
-&gt; ~ # ln -sf /etc/resolv-conf.systemd /etc/resolv.conf<br>
-&gt; ~ #<br>
-&gt; ~ #<br>
-&gt; ~ # ping <a href=3D"http://yocto.org" rel=3D"noreferrer" target=3D"_bl=
-ank">yocto.org</a><br>
-&gt; PING <a href=3D"http://yocto.org" rel=3D"noreferrer" target=3D"_blank"=
->yocto.org</a> (217.160.0.14): 56 data bytes<br>
-&gt; 64 bytes from <a href=3D"http://217.160.0.14" rel=3D"noreferrer" targe=
-t=3D"_blank">217.160.0.14</a>: seq=3D0 ttl=3D57 time=3D17.577 ms<br>
-&gt; 64 bytes from <a href=3D"http://217.160.0.14" rel=3D"noreferrer" targe=
-t=3D"_blank">217.160.0.14</a>: seq=3D1 ttl=3D57 time=3D18.716 ms<br>
-&gt; ^C<br>
-&gt; --- <a href=3D"http://yocto.org" rel=3D"noreferrer" target=3D"_blank">=
-yocto.org</a> ping statistics ---<br>
-&gt; 2 packets transmitted, 2 packets received, 0% packet loss<br>
-&gt; round-trip min/avg/max =3D 17.577/18.146/18.716 ms<br>
-&gt;<br>
-&gt;<br>
-&gt; shouldn&#39;t be that added in the systemd recipe :<br>
-&gt;<br>
-&gt; <a href=3D"https://git.yoctoproject.org/poky/tree/meta/recipes-core/sy=
-stemd/systemd_255.4.bb?h=3Dscarthgap#n352" rel=3D"noreferrer" target=3D"_bl=
-ank">https://git.yoctoproject.org/poky/tree/meta/recipes-core/systemd/syste=
-md_255.4.bb?h=3Dscarthgap#n352</a><br>
-&gt;<br>
-&gt; Best regards<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
+&gt; I have a recipe below. I did not see the staging directory under the t=
+mp generated folder. Is there a hidden folder or where are the files going?=
 <br>
+&gt;<br>
+&gt;<br>
+&gt; DESCRIPTION =3D &quot;UMSD SDK library for Marvell Switch Product Fami=
+ly.&quot;<br>
+&gt; LICENSE =3D &quot;CLOSED&quot;<br>
+&gt; PR =3D &quot;r0&quot;<br>
+&gt; PROVIDES =3D &quot;marvell-umsd&quot;<br>
+&gt; SRC_URI =3D &quot;file://UMSD_v${PV}.tar.gz&quot;<br>
+&gt;<br>
+&gt; S =3D &quot;${WORKDIR}/UMSD_v${PV}&quot;<br>
+&gt;<br>
+&gt; MSD_ROOT=3D&quot;${S}&quot;<br>
+&gt; MSD_USER_BASE=3D&quot;${MSD_ROOT}&quot;<br>
+&gt; MSD_PROJ_NAME=3D&quot;msdDrv&quot;<br>
+&gt; MSD_TOOL_DIR=3D&quot;${MSD_USER_BASE}/tools&quot;<br>
+&gt; RELEASE=3D&quot;YES&quot;<br>
+&gt; OS_RUN=3D&quot;LINUX&quot;<br>
+&gt; TOPAZ_BUILD=3D&quot;YES&quot;<br>
+&gt; PERIDOT_BUILD=3D&quot;YES&quot;<br>
+&gt; AGATE_BUILD=3D&quot;YES&quot;<br>
+&gt; PEARL_BUILD=3D&quot;YES&quot;<br>
+&gt; AMETHYST_BUILD=3D&quot;YES&quot;<br>
+&gt; export STAGING_INCDIR<br>
+&gt; export STAGING_LIBDIR<br>
+&gt;<br>
+&gt; do_compile () {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0make -C=C2=A0 ${MSD_ROOT}/src MSD_USE=
+R_BASE=3D${MSD_USER_BASE}/ MSD_PROJ_NAME=3DmsdDrv MSD_TOOL_DIR=3D&quot;${MS=
+D_USER_BASE}/tools&quot; RELEASE=3DYES OS_RUN:=3DLINUX PERIDOT_BUILD=3DYES<=
+br>
+&gt; }<br>
+&gt;<br>
+&gt;<br>
+&gt; do_stage () {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mkdir -p ${STAGING_INCDIR}/marvell-um=
+sd<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cp --dereference -R ${MSD_ROOT}/inclu=
+de/* ${STAGING_INCDIR}/marvell-umsd/<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cp ${MSD_ROOT}/library/msdDrv.o ${STA=
+GING_LIBDIR}<br>
+&gt; }<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; I checked the path below and could not see the include files or the=C2=
+=A0 msdDrv.o copied anywhere. Please correct me with any other solution. Ca=
+n I go with do_install () ?<br>
+&gt; The requirement is to use this recipe as a dependency for other module=
+s to use the include file and library.<br>
+&gt;<br>
+&gt; sbaby@eadlng-build-machine:~/workspace/05222024_simon/ecp-nic-test/bui=
+ld$ ls -ll tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/marvell-umsd/3=
+.0.7-r0/<br>
+&gt; total 40<br>
+&gt; drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 deploy-ipks<br>
+&gt; drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 license-destdir<br>
+&gt; drwxr-xr-x 7 sbaby sbaby 4096 May 29 10:46 pkgdata-pdata-input<br>
+&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-packagedata<=
+br>
+&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-package_qa<b=
+r>
+&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-package_writ=
+e_ipk<br>
+&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-populate_lic=
 <br>
-<br>
+&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 sstate-install-populate_sys=
+root<br>
+&gt; drwxr-xr-x 3 sbaby sbaby 4096 May 29 10:46 sysroot-destdir<br>
+&gt; drwxr-xr-x 2 sbaby sbaby 4096 May 29 14:52 temp<br>
+&gt;<br>
+&gt; Regards<br>
+&gt; Simon<br>
+&gt;<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; View/Reply Online (#63251): <a href=3D"https://lists.yoctoproject.org/=
+g/yocto/message/63251" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
+octoproject.org/g/yocto/message/63251</a><br>
+&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/10641770=
+3/1686489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
+org/mt/106417703/1686489</a><br>
+&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
+arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
+rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
+/unsub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">ale=
+x.kanavin@gmail.com</a>]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt;<br>
 </blockquote></div>
 
---000000000000fd654e0619fe8fd3--
+--000000000000e8acb40619ff078a--
 
