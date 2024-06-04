@@ -1,133 +1,298 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <paul@pbarker.dev>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65E7BC25B78
-	for <webhook@archiver.kernel.org>; Tue,  4 Jun 2024 13:46:11 +0000 (UTC)
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
- by mx.groups.io with SMTP id smtpd.web10.21799.1717508263704552447
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A347DC25B78
+	for <webhook@archiver.kernel.org>; Tue,  4 Jun 2024 14:43:11 +0000 (UTC)
+Received: from wfout6-smtp.messagingengine.com (wfout6-smtp.messagingengine.com [64.147.123.149])
+ by mx.groups.io with SMTP id smtpd.web10.23455.1717512181951903076
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 Jun 2024 06:37:43 -0700
+ Tue, 04 Jun 2024 07:43:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=eTzP83eB;
- spf=pass (domain: gmail.com, ip: 209.85.210.176, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7024cd9dd3dso3096110b3a.3
-        for <yocto@lists.yoctoproject.org>; Tue, 04 Jun 2024 06:37:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717508263; x=1718113063; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+RHbPgvoTOZqewLAVhUhOHvZJ37cmqabuKcSLACL/EA=;
-        b=eTzP83eBYJk9yjB6JjBln+dhIVWtfuJ5yAlLbrctGzG6hTkCPg55Lbb/hx+ARGiiuZ
-         h9cB9dQI6e9O9sM7HNzxUQwnGh3FbKCzFoGCzuW902jZXMo81kA/z3AGalhZhbzDPKzZ
-         Xbwr8MAlwqmhfQz8Me/iEdtpkTteL0DLLh+C5nCYJgOE9dRzzlF/XmxlalS3eGAD1LQD
-         sDcHfRpSGES8RwZDE++ckbNvkF+uDgEqV6ixfDlROzuE+sqVOQhWyw/tnwct93Jk0z6X
-         JOvpp1ijs63vl3T2G7h6LmA5snZE6rwCUMtkJR7Is5HEIzd3o16Rx+5X3b6ZV6KFf/Vh
-         O07A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717508263; x=1718113063;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+RHbPgvoTOZqewLAVhUhOHvZJ37cmqabuKcSLACL/EA=;
-        b=tPncXDNvPDR8KIJHeyEhd9IvwCVxhtZEgaON+HrnHc1v0v0tSeKxHI7C7q85/tdkov
-         XExUeJUXS5yb7MBIlt3J7Fy3kbJP9BFyKJjhnAfYtoor7EfEswuYnKKnc+v1lw8Rflnf
-         pN7vVuW3YDOKTRdwwPFZ+O9VMcL9ItwJLceED0glrlqQmr+1OQalrlw6GIfvCtGy3vwl
-         QZcVZps9qcgjxrqYU2Iai4eEJ1WxZ2vwUL8c1Quf9GYeFB4CFX/IQq+QSBoBbMeebx5E
-         +n8D6SZCMPVTiTRRjWdZxIJHtZOQJjHL6zzts9Aj+0WlejodEdzqcKqfzfSYb4jMfChX
-         PzXA==
-X-Gm-Message-State: AOJu0YwQ3FIP8S67ZRCzCpY8pf3Dtn3JWMzCNkQyy76PU3GNhkA94f1j
-	Y/Vwg9d0zzK0kiwLgrogXzcFh2fVyk8lPmPRK/JtnG2Bq1eF2PBU/LNS8JyPfzitqA7Mu44btDN
-	dv0Cdjs96InHx/5U0ga7mZN+kYuEQtYEV
-X-Google-Smtp-Source: AGHT+IH0xFRGTjvDpoXQHRUAsWVHI5fJheJEoXNgzxcJTF3z8fB85d6N0A9LHp3JUVUBgFASpMv8b9EukoNctOOD+sI=
-X-Received: by 2002:a05:6a20:9188:b0:1b0:14a0:c873 with SMTP id
- adf61e73a8af0-1b26f185930mr13384902637.35.1717508262604; Tue, 04 Jun 2024
- 06:37:42 -0700 (PDT)
+ dkim=pass header.i=@pbarker.dev header.s=fm3 header.b=aUiUvvaS;
+ dkim=pass header.i=@messagingengine.com header.s=fm1 header.b=U800oi+N;
+ spf=pass (domain: pbarker.dev, ip: 64.147.123.149, mailfrom: paul@pbarker.dev)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfout.west.internal (Postfix) with ESMTP id 151BB1C00098;
+	Tue,  4 Jun 2024 10:43:01 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 04 Jun 2024 10:43:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm3; t=1717512180; x=1717598580; bh=PvrU3Bd1CT
+	nfTjdYKWFb0AopPzdlAryTchcQYx8dyPE=; b=aUiUvvaSUd+vFTX0aAWKbnB28E
+	tlBOHxw/HyXLaZzDgsPyTuZCzPH5zkwqeqr1TjkujJs7MufEUcE53aSucH621lW/
+	L/jCDlkGQSleEKuNMFaUhPGIVSxN0DXL+BGSEtLWPS9Xh8j36c+InGnURDEGfinZ
+	yNAafOFyqRfBFGSslm7qYv+Ckv21tv2nEO4WfQ7MRt/pOU6MMr0JIZp/twGSo78n
+	9Im5UmNHYfQeq5wmjUG7we4ljfyVhngSWAHrsrVJbSySxGsOjpgtyiljRFgyHbyH
+	ylNEEtuFArgfIZTa/AKciMqm8qrFhrU+58fu9e7ZstH8E3FqMdxGqZB/n98A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1717512180; x=1717598580; bh=PvrU3Bd1CTnfTjdYKWFb0AopPzdl
+	AryTchcQYx8dyPE=; b=U800oi+Ndd+sdUtdchcfw+wI9KcZEQEDAOSTFSxBEYGf
+	M1bbjsJpCg+5QygjN0m3ZaC1hOtMaVcRuME9Up16VTzEDi20cjwsI7XXSIAr9BlA
+	PSEFYo0yLJh60/o7xB3CJW/jhdmsSSA9A8aIigJaMu2BsfjGliqdSVZe2N+jfs3a
+	W7bjUJQvC05zhEFZkXNGKaNo5hNf0hUOtqsjo5bye1FmsnlPvkcpJkPRdl7KSe0c
+	D3w5wF4DEGxaPAeSr1qPKZuBZkVTB/3LxrVjM/kj3RYwXGm4dtRpbUmC46PZDhX1
+	4yA5XvuPvH3RFJYxn8xcbgF166DTSOl62OyE4h+KdQ==
+X-ME-Sender: <xms:9CdfZi97Ih6l9mrr4v1w1KCsA1R9ovJRLAril6QYhA-Qgb69keFtvQ>
+    <xme:9CdfZivJpGifXoehPTPXgDa4KXuOpPoHzPsiNni5XZbVI8Y6NuDoFQ3j1j5Dc9Q9E
+    9dTyJSAxrMD9lgHquU>
+X-ME-Received: <xmr:9CdfZoCh6k__J4RJLpLvXAHndM1yBFtbm-F2vodTYYsgC2Wdhe_zGFmVVA2WpNaMB66U-QoG29WJSjVUIywGU6zLLS-oPKY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdelgedgjeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvfhfhjggtsehgtderredtvdejnecuhfhrohhmpefrrghulhcu
+    uegrrhhkvghruceophgruhhlsehpsggrrhhkvghrrdguvghvqeenucggtffrrghtthgvrh
+    hnpeegjeetueeuvdeuffekuefgveeiteehvdekjeffhfekhfdtgeelffdttdefteegteen
+    ucffohhmrghinhepghhithhhuhgsrdgtohhmpddutddrsggsnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepphgruhhlsehpsggrrhhkvghrrdgu
+    vghv
+X-ME-Proxy: <xmx:9CdfZqcv4_qE5jvVq5jyMCIp2SpiOspTN7nUhyvTobTx7sZCzZFn6g>
+    <xmx:9CdfZnMYw-tF26DqvzQ7MZporcpafqRxvhbkeq5xdK_86H2EVakKSw>
+    <xmx:9CdfZklX826YEVYLkEn7BAH7PmfNVG2YmYUzu4TWt_7pmdMhvISEow>
+    <xmx:9CdfZptR8RU51-AgYA6hFdX9cvxSlFSlPBa6IuK2sbdDC4nNMdmJlQ>
+    <xmx:9CdfZgahv0L-plIb7op0WHa4bHwjhONKdDOpIrqD1Wb6eIonG__QmxQr>
+Feedback-ID: i51494658:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 4 Jun 2024 10:42:59 -0400 (EDT)
+Message-ID: <f2379284-5427-43d5-8f67-6f827a60d1f5@pbarker.dev>
+Date: Tue, 4 Jun 2024 15:43:19 +0100
 MIME-Version: 1.0
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Tue, 4 Jun 2024 15:37:31 +0200
-Message-ID: <CAGAf8LwkyOJqcsZzEduUOqccdM42s+=m7S9tbA6kGZ-eovN2Gw@mail.gmail.com>
-Subject: Problems with Torvalds Kernels (6.10-rcX)
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: Problems with Torvalds Kernels (6.10-rcX)
+To: Zoran <zoran.stojsavljevic@gmail.com>,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <CAGAf8LwkyOJqcsZzEduUOqccdM42s+=m7S9tbA6kGZ-eovN2Gw@mail.gmail.com>
+Content-Language: en-US
+From: Paul Barker <paul@pbarker.dev>
+In-Reply-To: <CAGAf8LwkyOJqcsZzEduUOqccdM42s+=m7S9tbA6kGZ-eovN2Gw@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------cDMEdM76zgvb8q4kXrWXKV78"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 04 Jun 2024 13:46:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63278
+ <yocto@lists.yoctoproject.org>; Tue, 04 Jun 2024 14:43:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63279
 
-Hello Yocto Community,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------cDMEdM76zgvb8q4kXrWXKV78
+Content-Type: multipart/mixed; boundary="------------JJT0vNQSKZcF1UUOOg4PaDE3";
+ protected-headers="v1"
+From: Paul Barker <paul@pbarker.dev>
+To: Zoran <zoran.stojsavljevic@gmail.com>,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Message-ID: <f2379284-5427-43d5-8f67-6f827a60d1f5@pbarker.dev>
+Subject: Re: Problems with Torvalds Kernels (6.10-rcX)
+References: <CAGAf8LwkyOJqcsZzEduUOqccdM42s+=m7S9tbA6kGZ-eovN2Gw@mail.gmail.com>
+In-Reply-To: <CAGAf8LwkyOJqcsZzEduUOqccdM42s+=m7S9tbA6kGZ-eovN2Gw@mail.gmail.com>
 
-I am trying to understand how to handle (beside linux-stable) another
-pre-released stream of kernels, handled ONLY by Linus.
+--------------JJT0vNQSKZcF1UUOOg4PaDE3
+Content-Type: multipart/mixed; boundary="------------FBkC6Bk2WL5XIvfgP0aTw5yy"
 
-I called it linux-torvalds. Whatever I tried last week does NOT work for me.
+--------------FBkC6Bk2WL5XIvfgP0aTw5yy
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Let me start describing the problem.
+T24gMDQvMDYvMjAyNCAxNDozNywgWm9yYW4gd3JvdGU6DQo+IEhlbGxvIFlvY3RvIENvbW11
+bml0eSwNCj4gDQo+IEkgYW0gdHJ5aW5nIHRvIHVuZGVyc3RhbmQgaG93IHRvIGhhbmRsZSAo
+YmVzaWRlIGxpbnV4LXN0YWJsZSkgYW5vdGhlcg0KPiBwcmUtcmVsZWFzZWQgc3RyZWFtIG9m
+IGtlcm5lbHMsIGhhbmRsZWQgT05MWSBieSBMaW51cy4NCj4gDQo+IEkgY2FsbGVkIGl0IGxp
+bnV4LXRvcnZhbGRzLiBXaGF0ZXZlciBJIHRyaWVkIGxhc3Qgd2VlayBkb2VzIE5PVCB3b3Jr
+IGZvciBtZS4NCj4gDQo+IExldCBtZSBzdGFydCBkZXNjcmliaW5nIHRoZSBwcm9ibGVtLg0K
+PiANCj4gVGhpcyBpcyB0aGUga2VybmVsIHJlY2lwZSBJIGFtIHVzaW5nIGluIG15IG1ldGEt
+YmJiIGxheWVyLCBleHBlcmltZW50YWxseS4NCj4gDQo+IEhlcmUgaXMgdGhlIHBvaW50ZXIg
+Zm9yIGtlcm5lbCByZWNpcGUgNi4xMC1yYzEgKG9uIHRoZSBuZXQgc3RpbGwNCj4gdmlzaWJs
+ZSBmcm9tIGdpdGh1Yik6DQo+IA0KPiBodHRwczovL2dpdGh1Yi5jb20vWm9yYW5TdG9qc2F2
+bGpldmljL21ldGEtYmJiL2Jsb2Ivc2NhcnRoZ2FwL3JlY2lwZXMta2VybmVsL2xpbnV4Lw0K
+PiBodHRwczovL2dpdGh1Yi5jb20vWm9yYW5TdG9qc2F2bGpldmljL21ldGEtYmJiL2Jsb2Iv
+c2NhcnRoZ2FwL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXRvcnZhbGRzXzYuMTAuYmIN
+Cj4gDQo+IE5vdCBzdXJlIGZyb20gd2hlcmUgdGhlIHZhcmlhYmxlICR7U1JDUFZ9IGNvbWVz
+IGZyb20gKGZyb20gLi4uL3Bva3kvbWV0YS8uLi4pPw0KPiANCj4gVGhlIC4uLi9idWlsZC9j
+b25mL2xvY2FsLmNvbmYgaXMgTk9UIHZpc2libGUgZnJvbSB0aGUgbmV0LCBidXQgaW4NCj4g
+bnV0c2hlbGwsIGhlcmUgaXMgd2hhdCBJIGhhdmUgaW4gaXQgKGltcG9ydGFudCk6DQo+IA0K
+PiAjIyBEZWZpbmUga2VybmVsIHZlcnNpb24NCj4gIyMgU1JDUFYgPSAiJHtAYmIuZmV0Y2gy
+LmdldF9zcmNyZXYoZCl9IDw8PD09PT09PT0gQ29tbWVudGVkIG91dCAtDQo+IGp1c3QgdG8g
+cmVtaW5kIG1lIGFib3V0IHRoaXMgbXlzdGVyaW91cyB2YXJpYWJsZQ0KPiAjIyBQUkVGRVJS
+RURfUFJPVklERVJfdmlydHVhbC9rZXJuZWwgPz0gIm1ldGEtYmJiIg0KPiAjIyBQUkVGRVJS
+RURfVkVSU0lPTl9tZXRhLWJiYiA/PSAiNi4xLiUiDQo+IFBSRUZFUlJFRF9QUk9WSURFUl92
+aXJ0dWFsL2tlcm5lbCA9ICJsaW51eC10b3J2YWxkcyINCj4gUFJFRkVSUkVEX1ZFUlNJT05f
+bWV0YS1iYmIgPz0gIjYuMTAuJSINCg0KVGhlIHBhdHRlcm4gaGVyZSBpcyBQUkVGRVJSRURf
+VkVSU0lPTl88cmVjaXBlIG5hbWU+Lg0KDQpTbyBpZiB5b3VyIHJlY2lwZSBpcyBuYW1lZCBs
+aW51eC10b3J2YWxkcywgeW91IHdhbnQ6DQoNClBSRUZFUlJFRF9WRVJTSU9OX2xpbnV4LXRv
+cnZhbGRzID89ICI2LjEwLiUiDQoNCkFzIGFuIGFsdGVybmF0aXZlIHRvIG1haW50YWluaW5n
+IHN1Y2ggYSByZWNpcGUgeW91cnNlbGYsIEkgcmVjb21tZW5kIHlvdSANCmxvb2sgYXQgdGhl
+IGZvbGxvd2luZzoNCg0KLSBUaGUgbGludXgteW9jdG8tZGV2IHJlY2lwZSBpbiBvcGVuZW1i
+ZWRkZWQtY29yZS9wb2t5LiBUaGlzIGlzIHRoZSANCm1haW5saW5lIGtlcm5lbCBwbHVzIHNv
+bWUgWW9jdG8tc3BlY2lmaWMgcGF0Y2hlcyBhbmQgaXMgcmVndWxhcmx5IA0KdXBkYXRlZCBi
+eSBCcnVjZSAobGludXgteW9jdG8gbWFpbnRhaW5lcikuDQoNCi0gVGhlIGxpbnV4LW1haW5s
+aW5lIHJlY2lwZSBpbiBteSBtZXRhLWxpbnV4LW1haW5saW5lIGxheWVyLiBUaGlzIGlzIHRo
+ZSANCm1haW5saW5lIGtlcm5lbCB3aXRoIG5vIGFkZGl0aW9uYWwgcGF0Y2hlcyBhbmQgaXMg
+cmVndWxhcmx5IHVwZGF0ZWQgYnkgDQptZS4gU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9iZXRh
+Zml2ZS9tZXRhLWxpbnV4LW1haW5saW5lIGZvciBtb3JlIGluZm8gb24gDQp0aGlzIGxheWVy
+Lg0KDQpUaGFua3MsDQoNCi0tIA0KUGF1bCBCYXJrZXINCg0K
+--------------FBkC6Bk2WL5XIvfgP0aTw5yy
+Content-Type: application/pgp-keys; name="OpenPGP_0x74975C81B7E66BAC.asc"
+Content-Disposition: attachment; filename="OpenPGP_0x74975C81B7E66BAC.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
-This is the kernel recipe I am using in my meta-bbb layer, experimentally.
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-Here is the pointer for kernel recipe 6.10-rc1 (on the net still
-visible from github):
+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
+Rg=3D=3D
+=3D3xIg
+-----END PGP PUBLIC KEY BLOCK-----
 
-https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/recipes-kernel/linux/
-https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/recipes-kernel/linux/linux-torvalds_6.10.bb
+--------------FBkC6Bk2WL5XIvfgP0aTw5yy--
 
-Not sure from where the variable ${SRCPV} comes from (from .../poky/meta/...)?
+--------------JJT0vNQSKZcF1UUOOg4PaDE3--
 
-The .../build/conf/local.conf is NOT visible from the net, but in
-nutshell, here is what I have in it (important):
+--------------cDMEdM76zgvb8q4kXrWXKV78
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-## Define kernel version
-## SRCPV = "${@bb.fetch2.get_srcrev(d)} <<<======= Commented out -
-just to remind me about this mysterious variable
-## PREFERRED_PROVIDER_virtual/kernel ?= "meta-bbb"
-## PREFERRED_VERSION_meta-bbb ?= "6.1.%"
-PREFERRED_PROVIDER_virtual/kernel = "linux-torvalds"
-PREFERRED_VERSION_meta-bbb ?= "6.10.%"
+-----BEGIN PGP SIGNATURE-----
 
-It then tries to pick up a latest linux-stable kernel 6.9.3 (talking
-from the scratch/fresh bitbake), but since I have:
+wnsEABYIACMWIQSzjPXf5Y1BDWhU2iCrY1Tsnbr0bgUCZl8oCAUDAAAAAAAKCRCrY1Tsnbr0bpd+
+AP9rnqkSAYK1sgXVlzEFNlHLIN8CqEfRmo8pY87ZwBGIygD/TeJ27QMHX/+yfVh282gnoIvnGdh/
+4tbffrOfIBMb/QM=
+=2kHO
+-----END PGP SIGNATURE-----
 
-PREFERRED_PROVIDER_virtual/kernel = "linux-torvalds"
-
-It fails, since it does not know the location where it needs to fetch it?!
-
-If I make the following changes:
-## PREFERRED_PROVIDER_virtual/kernel = "linux-torvalds"
-PREFERRED_PROVIDER_virtual/kernel ?= "meta-bbb"
-PREFERRED_VERSION_meta-bbb ?= "6.10.%"
-
-It does fetch it correctly, but ONLY again kernel-stable 6.9.3 ???
-
-Despite the line PREFERRED_VERSION_meta-bbb ?= "6.10.%"???
-
-Where am I making a mistake here?
-
-How to pick up linux-torvalds_6.10_rc1 recipe??? At least, then I can
-continue forward?
-_______
-
-I just spotted it!
-
-It seems here is the problem!?
-
-https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/conf/machine/beaglebone.conf
-
-5 SOC_FAMILY = "ti335x"
- 6 TARGET_ARCH = "arm"
- 7
- 8 DEFAULTTUNE ?= "cortexa8hf-neon"
- 9
-10 require conf/machine/include/soc-family.inc
-11 require conf/machine/include/arm/armv7a/tune-cortexa8.inc
-12
-=======>>> 13 PREFERRED_PROVIDER_virtual/kernel = "linux-stable" <<<=======
-14 #PREFERRED_PROVIDER_virtual/kernel = "ti-linux"
-15 KERNEL_IMAGETYPE = "zImage"
-16
-17 PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
-
-Thank you,
-Zee
-_______
+--------------cDMEdM76zgvb8q4kXrWXKV78--
 
