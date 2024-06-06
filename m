@@ -1,78 +1,147 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6332FC27C55
-	for <webhook@archiver.kernel.org>; Thu,  6 Jun 2024 17:10:04 +0000 (UTC)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web11.20395.1717693802337980379
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31406C27C54
+	for <webhook@archiver.kernel.org>; Thu,  6 Jun 2024 20:10:35 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.24209.1717702667687576565
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Jun 2024 10:10:02 -0700
+ Thu, 06 Jun 2024 12:37:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Ahsy623f;
- spf=pass (domain: gmail.com, ip: 209.85.221.50, mailfrom: skandigraun@gmail.com)
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-35dcbbff045so81811f8f.0
-        for <yocto@lists.yoctoproject.org>; Thu, 06 Jun 2024 10:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717693801; x=1718298601; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=DoY6ipQSuvVGPkZYBtiUX/gP3a2/1nhZkwF2ZZy/jmQ=;
-        b=Ahsy623fnUmVggbahgPkINJc43QCwoEXuJGWXEIkRg0Z2RrN7xn5C05mlewbVKWbFU
-         pxJq7j0jJE4555bz7HdyKmyONNuQKGRU7x0nurFwSad538BT2YEvsKwQiGpZgqL+pbZ+
-         rxB+fBb7bOfwe9g5Ss0Jz0tPsWq54m5mNmNcgF5OnsMQ0L7Y5MGE0wauoOJiVOzNspZq
-         8EBdFkgJnAiC6Yh5VMqeH2Wg/vAYJblx/1bZx1FYFS8WhVhGJd61l8YhXNj9q3sPwcqW
-         yp+rEm867KBnIdxZcLbzGnS7tg+0GRhVISSX0z/Ad8KxFip6P3/zNQFXPpdJT/PI6TnN
-         gPRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717693801; x=1718298601;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DoY6ipQSuvVGPkZYBtiUX/gP3a2/1nhZkwF2ZZy/jmQ=;
-        b=uxvcyLKVvs9+IuvC/mXJYLx0tU7z5KeFVoaV1/CF2LoVX/vu0mbdlBNML2KvgH8/Om
-         vSsPs7dTN8GvMfksHyfVqYguF+zWWcMjvUiltHjR9WMfAdM2jUyHHF3Nc/tT12OTe9Yx
-         BjrIxA7cNGQXyJ6pqySJMqmK2FQLNkTue+8aMbfByIBQDGlh5vnD0qXTU1Q1d5ZtPyy0
-         aD0GiIFMHO98Xk13CWTf4UaylevzLQGEqQ4TKSWY39xTpYBilOqaBKqr2QOYacj7xkQh
-         28zdFIAhj3R05xKbxAZIebsfyq1u0YxSsmXBcbUmOnWqLXdx9WMyCzQq8QDbiYAPN32/
-         21Mg==
-X-Gm-Message-State: AOJu0YxJYquNMUjx6s56N91cTcSnwP0F5S7Qpf5h4nUGIa8npO/49RtO
-	Mp3uiOPJGZMkXIHAssTI9i77leBskrKER8QcV7TwanABheUY9IZrc1pmBQ==
-X-Google-Smtp-Source: AGHT+IEXjw5Sobq7DaZLpO8HiRuEfKKEyGZb14rWw96QGmS27+4+Rm+QOCoYkYJimAS2Qi9ViFjsVA==
-X-Received: by 2002:a05:6000:154c:b0:35e:f8b5:4f5a with SMTP id ffacd0b85a97d-35efedd4a8emr167352f8f.3.1717693800444;
-        Thu, 06 Jun 2024 10:10:00 -0700 (PDT)
-Received: from [192.168.1.3] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35ef5d69c68sm2075773f8f.61.2024.06.06.10.09.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jun 2024 10:09:59 -0700 (PDT)
-Message-ID: <94146a21-1052-4325-b672-32476a7d3144@gmail.com>
-Date: Thu, 6 Jun 2024 19:09:58 +0200
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=cDnmYUk8;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 456JbkMO085862;
+	Thu, 6 Jun 2024 14:37:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1717702666;
+	bh=qcfxNZGbazSMBb5TnzXZcF6qkN0iCJYePd+hkqAoa5k=;
+	h=Date:Subject:From:To:References:In-Reply-To;
+	b=cDnmYUk89JIGQZkC9vvQnEGmvJVhYIVwbc+FBEEYBL/Wm4BPepy4sbA1udHeyH5v2
+	 bbx82Y5YRF0cMKWQJ8UDXjDWWZliLxdDeuOWP2K9C3PKroYQ/2H0NwRlmetuKf8mXJ
+	 vVuQhPHsyJJqwsU7R/auiGjqQbmeS5dICBzBy/To=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 456JbkfR032734
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 6 Jun 2024 14:37:46 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
+ Jun 2024 14:37:46 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 6 Jun 2024 14:37:46 -0500
+Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 456JbkU3117151;
+	Thu, 6 Jun 2024 14:37:46 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] am437x do_rootfs error
-To: yocto@lists.yoctoproject.org, amolpractise@gmail.com
+Date: Thu, 6 Jun 2024 14:37:46 -0500
+Message-ID: <D1T6RZ3TP11T.81OCAF3BR5TN@ti.com>
+Subject: Re: [meta-ti] [yocto] am437x do_rootfs error
+From: "Randolph Sapp" <rs@ti.com>
+To: Amol Practise <amolpractise@gmail.com>, <yocto@lists.yoctoproject.org>,
+        <meta-ti@lists.yoctoproject.org>
+X-Mailer: aerc 0.17.0
 References: <17D51E6437DB5314.21428@lists.yoctoproject.org>
  <CAAkkBwNBtJGY_c8dgjCn2n4ccKu7uHMk8AbHQAV3WbfWea2N3w@mail.gmail.com>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
 In-Reply-To: <CAAkkBwNBtJGY_c8dgjCn2n4ccKu7uHMk8AbHQAV3WbfWea2N3w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 06 Jun 2024 17:10:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63288
+ <yocto@lists.yoctoproject.org>; Thu, 06 Jun 2024 20:10:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63289
 
->     ERROR: Logfile of failure stored in:
->     /home/amol/git_repos/poky/build_am437xgp/tmp/work/am437x_evm-poky-linux-gnueabi/core-image-weston/1.0/temp/log.do_rootfs.4596
+On Thu Jun 6, 2024 at 11:02 AM CDT, Amol Practise wrote:
+> Hi Team,
+>
+> Any help would be appreciated on below issue.
+>
+> On Sun, Jun 2, 2024 at 12:40=E2=80=AFPM Amol Practise via lists.yoctoproj=
+ect.org
+> <amolpractise=3Dgmail.com@lists.yoctoproject.org> wrote:
+>
+> > Hi all,
+> >
+> > I am getting below error while i am trying to build westom image for
+> > am436xgp board, can anyone help me in this regard?
+> >
+> >
+> > bitbake core-image-weston
+> > Loading cache: 100% |############################################| Time=
+:
+> > 0:00:00
+> > Loaded 2004 entries from dependency cache.
+> > NOTE: Resolving any missing task queue dependencies
+> >
+> > Build Configuration:
+> > BB_VERSION           =3D "2.8.0"
+> > BUILD_SYS            =3D "x86_64-linux"
+> > NATIVELSBSTRING      =3D "universal"
+> > TARGET_SYS           =3D "arm-poky-linux-gnueabi"
+> > MACHINE              =3D "am437x-evm"
+> > DISTRO               =3D "poky"
+> > DISTRO_VERSION       =3D "5.0.1"
+> > TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-hard=
+"
+> > TARGET_FPU           =3D "hard"
+> > meta
+> > meta-poky
+> > meta-yocto-bsp       =3D
+> > "my-scarthgap:68f9a4b73d17839e0ec1f12a31fc1d42331cc42f"
+> > meta-arm-toolchain
+> > meta-arm             =3D "master:6877a1c2bdd3cd275af2be3fa26c2e0be1da5b=
+32"
+> > meta-ti-bsp          =3D "master:0584bef40f3806613d0d2c3ff0c990705cba3a=
+5b"
+> >
+> > Sstate summary: Wanted 389 Local 386 Mirrors 0 Missed 3 Current 3728 (9=
+9%
+> > match, 99% complete)
+> > Initialising tasks: 100% |#######################################| Time=
+:
+> > 0:00:09
+> > NOTE: Executing Tasks
+> > ERROR: core-image-weston-1.0-r0 do_rootfs: Postinstall scriptlets of
+> > ['ti-sgx-ddk-um'] have failed. If the intention is to defer them to fir=
+st
+> > boot,
+> > then please place them into pkg_postinst_ontarget:${PN} ().
+> > Deferring to first boot via 'exit 1' is no longer supported.
+> > Details of the failure are in
+> > /home/amol/git_repos/poky/build_am437xgp/tmp/work/am437x_evm-poky-linux=
+-gnueabi/core-image-weston/1.0/temp/log.do_rootfs.
+> > ERROR: Logfile of failure stored in:
+> > /home/amol/git_repos/poky/build_am437xgp/tmp/work/am437x_evm-poky-linux=
+-gnueabi/core-image-weston/1.0/temp/log.do_rootfs.4596
+> > ERROR: Task
+> > (/home/amol/git_repos/poky/meta/recipes-graphics/images/core-image-west=
+on.bb:do_rootfs)
+> > failed with exit code '1'
+> > NOTE: Tasks Summary: Attempted 8487 tasks of which 8486 didn't need to =
+be
+> > rerun and 1 failed.
+> >
+> > Summary: 1 task failed:
+> >
+> > /home/amol/git_repos/poky/meta/recipes-graphics/images/core-image-westo=
+n.bb:
+> > do_rootfs
+> > Summary: There was 1 ERROR message, returning a non-zero exit code.
+> >
+> >
+> > Thank you.
+> > Amol Palshetkar
+> >
 
-1. Did you modify the ti-sgx-ddk-um recipe in any way? (Either with a 
-bbappend, or otherwise?)
+Master builds of SGX are not supported right now. That's a legacy driver th=
+at
+has been reserved to yearly LTS migrations. Please use kirkstone until the
+legacy migration for this year occurs (10.1).
 
-2. The above mentioned logfile could have thousands of lines, but 
-somewhere in the middle of it there should be the actual error, what 
-made it unhappy - this supposed to help with the investigation in 
-theory... (search for "ERROR: " or similar in it.)
+- Randolph
 
