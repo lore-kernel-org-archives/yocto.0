@@ -1,172 +1,222 @@
-Return-Path: <rs@ti.com>
+Return-Path: <wangmy@fujitsu.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14807C41513
-	for <webhook@archiver.kernel.org>; Thu,  6 Jun 2024 23:19:06 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web10.29159.1717715945429678817
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D687C27C5E
+	for <webhook@archiver.kernel.org>; Fri,  7 Jun 2024 03:17:37 +0000 (UTC)
+Received: from esa10.hc1455-7.c3s2.iphmx.com (esa10.hc1455-7.c3s2.iphmx.com [139.138.36.225])
+ by mx.groups.io with SMTP id smtpd.web11.33324.1717730253138431007
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Jun 2024 16:19:05 -0700
+ Thu, 06 Jun 2024 20:17:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=EqNdiQ5g;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 456NIwEn103552;
-	Thu, 6 Jun 2024 18:18:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717715938;
-	bh=LAGqdFAPy0NGXJIOsmkuit5k4mvdrVFjr8ZpC5ZveAI=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=EqNdiQ5geXTE85CCRML1gT365qE4zkYYupmjYAxXTibJQhZdilCYD6qx+EkbTthCx
-	 BOfb8PWwVrv8D2Yadmi09mnOywxVkwIgUrPVY1QUCUzbYWZPVMHekD1NhPd9k6/c3O
-	 ywQsW5crSb+T3Qo7SMWowe3cfsXoU7MRLtEsj9UA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 456NIwaq015337
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 6 Jun 2024 18:18:58 -0500
-Received: from lewvowa02.ent.ti.com (10.180.75.80) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
- Jun 2024 18:18:58 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by lewvowa02.ent.ti.com
- (10.180.75.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2507.34; Thu, 6 Jun
- 2024 18:18:58 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 6 Jun 2024 18:18:58 -0500
-Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 456NIwFo017604;
-	Thu, 6 Jun 2024 18:18:58 -0500
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Thu, 6 Jun 2024 18:18:58 -0500
-Message-ID: <D1TBHC5ZYAYK.IDH1HT22OEB1@ti.com>
-Subject: Re: [meta-ti] [yocto] am437x do_rootfs error
-From: Randolph Sapp <rs@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Amol Practise <amolpractise@gmail.com>, <yocto@lists.yoctoproject.org>,
-        <meta-ti@lists.yoctoproject.org>
-X-Mailer: aerc 0.17.0
-References: <17D51E6437DB5314.21428@lists.yoctoproject.org>
- <CAAkkBwNBtJGY_c8dgjCn2n4ccKu7uHMk8AbHQAV3WbfWea2N3w@mail.gmail.com>
- <D1T6RZ3TP11T.81OCAF3BR5TN@ti.com> <20240606221037.GS21287@denix.org>
-In-Reply-To: <20240606221037.GS21287@denix.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+ dkim=pass header.i=@fujitsu.com header.s=fj2 header.b=q6Vfanri;
+ spf=pass (domain: fujitsu.com, ip: 139.138.36.225, mailfrom: wangmy@fujitsu.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
+  t=1717730253; x=1749266253;
+  h=from:to:cc:subject:date:message-id;
+  bh=Kb0nBQD3+7dbAxosmlDi+Pki77mI+2Q3EJQc2cso7K0=;
+  b=q6VfanriK5/g/7DVbhWZM130hFxdobEfelbXhU/70OrXVagl2EqLcnr0
+   POlLF6lDddprCiS0nE6YhKinFZt3sWUbNHETZvkGEA/JnygiNiVI/i5GH
+   HmPw+Urq2BQzpuPtF2DA7h3eU85DDMJOZ2RkTRmdx/RQqV30cYTbA5Bnx
+   sH6WuQt1ZCX0NDl9AQY89Dti0YbNGFD6YRBBbg2UmtK0OuNaKMaUeEHza
+   pz6d0LAKxikF2eTxrrX5IGZrxmBAuVRrcyRFSMgj9+3kTKoD0aABDPC0t
+   z0KZbR9jDhnePW73CfG3vV7e/QDNE43m82yrsCozTwyzfnjMMkNC+KB8f
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="149647087"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712588400"; 
+   d="scan'208";a="149647087"
+Received: from unknown (HELO yto-r4.gw.nic.fujitsu.com) ([218.44.52.220])
+  by esa10.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2024 12:17:30 +0900
+Received: from yto-m2.gw.nic.fujitsu.com (yto-nat-yto-m2.gw.nic.fujitsu.com [192.168.83.65])
+	by yto-r4.gw.nic.fujitsu.com (Postfix) with ESMTP id 17112C9443
+	for <yocto@lists.yoctoproject.org>; Fri,  7 Jun 2024 12:17:28 +0900 (JST)
+Received: from kws-ab4.gw.nic.fujitsu.com (kws-ab4.gw.nic.fujitsu.com [192.51.206.22])
+	by yto-m2.gw.nic.fujitsu.com (Postfix) with ESMTP id 5A4C5D50BE
+	for <yocto@lists.yoctoproject.org>; Fri,  7 Jun 2024 12:17:27 +0900 (JST)
+Received: from edo.cn.fujitsu.com (edo.cn.fujitsu.com [10.167.33.5])
+	by kws-ab4.gw.nic.fujitsu.com (Postfix) with ESMTP id D4D42E475F
+	for <yocto@lists.yoctoproject.org>; Fri,  7 Jun 2024 12:17:26 +0900 (JST)
+Received: from vm4860.g01.fujitsu.local (unknown [10.193.128.200])
+	by edo.cn.fujitsu.com (Postfix) with ESMTP id 5D0ED1A0002;
+	Fri,  7 Jun 2024 11:17:26 +0800 (CST)
+From: wangmy@fujitsu.com
+To: yocto@lists.yoctoproject.org
+Cc: Wang Mingyu <wangmy@fujitsu.com>
+Subject: [yocto] [meta-security] [PATCH] recipes: Start WORKDIR -> UNPACKDIR transition
+Date: Fri,  7 Jun 2024 11:17:17 +0800
+Message-Id: <1717730237-20290-1-git-send-email-wangmy@fujitsu.com>
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28436.004
+X-TM-AS-User-Approved-Sender: Yes
+X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28436.004
+X-TMASE-Result: 10--4.438500-10.000000
+X-TMASE-MatchedRID: AHaZm2SNi6em3gqX2JbPoQPZZctd3P4BRzUPAqhCjtiNJ2ckLRg2UYkw
+	FLBp6Bq1c8RafM8kX5W12HagvbwDji/7QU2czuUNgyKXAUOPYkRLGPRv0WdxQojqjGwEhbwShEz
+	I3+mkzic2AjvSSs99nRmrh2/8FzyKzCK25xPd0TunpBmVzsFAbj/FEHo4advax1Xsf0CZ5tejxY
+	yRBa/qJft6/2HgfIgDVymkLM+r7VTGVuWouVipcqMtBMm2dcEYD6wEkjE9BXpZsrm/FwwfSNift
+	cAEK4NFBzCFfKPnM23fboELNpU7OpAX1jOMwHb5EsdVnPAx0ajR/XVEOk2stf6/2/nZkihaOgB/
+	fz3EXdcVKT0eFRmfDs4YhafCzgujIdY9jOi4lTI=
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 06 Jun 2024 23:19:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63291
+ <yocto@lists.yoctoproject.org>; Fri, 07 Jun 2024 03:17:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63292
 
-On Thu Jun 6, 2024 at 5:10 PM CDT, Denys Dmytriyenko wrote:
-> On Thu, Jun 06, 2024 at 02:37:46PM -0500, Randolph Sapp via lists.yoctopr=
-oject.org wrote:
-> > On Thu Jun 6, 2024 at 11:02 AM CDT, Amol Practise wrote:
-> > > Hi Team,
-> > >
-> > > Any help would be appreciated on below issue.
-> > >
-> > > On Sun, Jun 2, 2024 at 12:40=E2=80=AFPM Amol Practise via lists.yocto=
-project.org
-> > > <amolpractise=3Dgmail.com@lists.yoctoproject.org> wrote:
-> > >
-> > > > Hi all,
-> > > >
-> > > > I am getting below error while i am trying to build westom image fo=
-r
-> > > > am436xgp board, can anyone help me in this regard?
-> > > >
-> > > >
-> > > > bitbake core-image-weston
-> > > > Loading cache: 100% |############################################| =
-Time:
-> > > > 0:00:00
-> > > > Loaded 2004 entries from dependency cache.
-> > > > NOTE: Resolving any missing task queue dependencies
-> > > >
-> > > > Build Configuration:
-> > > > BB_VERSION           =3D "2.8.0"
-> > > > BUILD_SYS            =3D "x86_64-linux"
-> > > > NATIVELSBSTRING      =3D "universal"
-> > > > TARGET_SYS           =3D "arm-poky-linux-gnueabi"
-> > > > MACHINE              =3D "am437x-evm"
-> > > > DISTRO               =3D "poky"
-> > > > DISTRO_VERSION       =3D "5.0.1"
-> > > > TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-=
-hard"
-> > > > TARGET_FPU           =3D "hard"
-> > > > meta
-> > > > meta-poky
-> > > > meta-yocto-bsp       =3D
-> > > > "my-scarthgap:68f9a4b73d17839e0ec1f12a31fc1d42331cc42f"
-> > > > meta-arm-toolchain
-> > > > meta-arm             =3D "master:6877a1c2bdd3cd275af2be3fa26c2e0be1=
-da5b32"
-> > > > meta-ti-bsp          =3D "master:0584bef40f3806613d0d2c3ff0c990705c=
-ba3a5b"
-> > > >
-> > > > Sstate summary: Wanted 389 Local 386 Mirrors 0 Missed 3 Current 372=
-8 (99%
-> > > > match, 99% complete)
-> > > > Initialising tasks: 100% |#######################################| =
-Time:
-> > > > 0:00:09
-> > > > NOTE: Executing Tasks
-> > > > ERROR: core-image-weston-1.0-r0 do_rootfs: Postinstall scriptlets o=
-f
-> > > > ['ti-sgx-ddk-um'] have failed. If the intention is to defer them to=
- first
-> > > > boot,
-> > > > then please place them into pkg_postinst_ontarget:${PN} ().
-> > > > Deferring to first boot via 'exit 1' is no longer supported.
-> > > > Details of the failure are in
-> > > > /home/amol/git_repos/poky/build_am437xgp/tmp/work/am437x_evm-poky-l=
-inux-gnueabi/core-image-weston/1.0/temp/log.do_rootfs.
-> > > > ERROR: Logfile of failure stored in:
-> > > > /home/amol/git_repos/poky/build_am437xgp/tmp/work/am437x_evm-poky-l=
-inux-gnueabi/core-image-weston/1.0/temp/log.do_rootfs.4596
-> > > > ERROR: Task
-> > > > (/home/amol/git_repos/poky/meta/recipes-graphics/images/core-image-=
-weston.bb:do_rootfs)
-> > > > failed with exit code '1'
-> > > > NOTE: Tasks Summary: Attempted 8487 tasks of which 8486 didn't need=
- to be
-> > > > rerun and 1 failed.
-> > > >
-> > > > Summary: 1 task failed:
-> > > >
-> > > > /home/amol/git_repos/poky/meta/recipes-graphics/images/core-image-w=
-eston.bb:
-> > > > do_rootfs
-> > > > Summary: There was 1 ERROR message, returning a non-zero exit code.
-> > > >
-> > > >
-> > > > Thank you.
-> > > > Amol Palshetkar
-> > > >
-> >=20
-> > Master builds of SGX are not supported right now. That's a legacy drive=
-r that
-> > has been reserved to yearly LTS migrations. Please use kirkstone until =
-the
-> > legacy migration for this year occurs (10.1).
->
-> Yeah, I already checked that - meta-ti SHA points to some March-based 6.1=
-=20
-> snapshot, which was supposed to have SGX working...
+From: Wang Mingyu <wangmy@fujitsu.com>
 
-Hmm... the only post install script for that package should be related to t=
-he
-init script. I don't think that broke down, but looking back on how the ini=
-t
-script inclusion logic works I'm not sure how much sstate would like it.
+deal with error of un_pack.
 
-Do you know if the person attempted to switch init managers part of the way
-through a build or something like that?
+Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
+---
+ .../recipes-security/bastille/bastille_3.2.1.bb    | 12 ++++++------
+ .../fail2ban/python3-fail2ban_1.0.2.bb             |  2 +-
+ meta-tpm/recipes-tpm1/trousers/trousers_git.bb     |  6 +++---
+ recipes-ids/samhain/samhain-server.bb              |  2 +-
+ recipes-ids/samhain/samhain.inc                    | 14 +++++++-------
+ .../ecryptfs-utils/ecryptfs-utils_111.bb           |  2 +-
+ 6 files changed, 19 insertions(+), 19 deletions(-)
 
-- Randolph
+diff --git a/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb b/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb
+index f2ef335..7074f68 100644
+--- a/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb
++++ b/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb
+@@ -83,11 +83,11 @@ do_install () {
+ 	install -m 0644 Bastille/AccountSecurity.pm    ${D}${libdir}/Bastille
+ 	install -m 0644 Bastille/Apache.pm    ${D}${libdir}/Bastille
+ 	install -m 0644 Bastille/API.pm    ${D}${libdir}/Bastille
+-	install -m 0644 ${WORKDIR}/AccountPermission.pm    ${D}${libdir}/Bastille/API
+-	install -m 0644 ${WORKDIR}/FileContent.pm    ${D}${libdir}/Bastille/API
+-	install -m 0644 ${WORKDIR}/HPSpecific.pm    ${D}${libdir}/Bastille/API
+-	install -m 0644 ${WORKDIR}/ServiceAdmin.pm    ${D}${libdir}/Bastille/API
+-	install -m 0644 ${WORKDIR}/Miscellaneous.pm    ${D}${libdir}/Bastille/API
++	install -m 0644 ${UNPACKDIR}/AccountPermission.pm    ${D}${libdir}/Bastille/API
++	install -m 0644 ${UNPACKDIR}/FileContent.pm    ${D}${libdir}/Bastille/API
++	install -m 0644 ${UNPACKDIR}/HPSpecific.pm    ${D}${libdir}/Bastille/API
++	install -m 0644 ${UNPACKDIR}/ServiceAdmin.pm    ${D}${libdir}/Bastille/API
++	install -m 0644 ${UNPACKDIR}/Miscellaneous.pm    ${D}${libdir}/Bastille/API
+ 	install -m 0644 Bastille/BootSecurity.pm    ${D}${libdir}/Bastille
+ 	install -m 0644 Bastille/ConfigureMiscPAM.pm    ${D}${libdir}/Bastille
+ 	install -m 0644 Bastille/DisableUserTools.pm    ${D}${libdir}/Bastille
+@@ -138,7 +138,7 @@ do_install () {
+ 	install -m 0644 OSMap/OSX.bastille    ${D}${datadir}/Bastille/OSMap
+ 	install -m 0644 OSMap/OSX.system    ${D}${datadir}/Bastille/OSMap
+ 
+-	install -m 0644 ${WORKDIR}/config ${D}${sysconfdir}/Bastille/config
++	install -m 0644 ${UNPACKDIR}/config ${D}${sysconfdir}/Bastille/config
+ 
+ 	for file in `cat Modules.txt` ; do
+ 		install -m 0644 Questions/$file.txt ${D}${datadir}/Bastille/Questions
+diff --git a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
+index bf5f87d..757336a 100644
+--- a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
++++ b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
+@@ -40,7 +40,7 @@ do_install:append () {
+     rm  -f ${D}/${bindir}/fail2ban-python
+     install -d ${D}/${sysconfdir}/fail2ban
+     install -d ${D}/${sysconfdir}/init.d
+-    install -m 0755 ${WORKDIR}/initd ${D}${sysconfdir}/init.d/fail2ban-server
++    install -m 0755 ${UNPACKDIR}/initd ${D}${sysconfdir}/init.d/fail2ban-server
+ 
+     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+         install -d ${D}${systemd_system_unitdir}
+diff --git a/meta-tpm/recipes-tpm1/trousers/trousers_git.bb b/meta-tpm/recipes-tpm1/trousers/trousers_git.bb
+index 192c66c..44a4ee6 100644
+--- a/meta-tpm/recipes-tpm1/trousers/trousers_git.bb
++++ b/meta-tpm/recipes-tpm1/trousers/trousers_git.bb
+@@ -32,13 +32,13 @@ do_install () {
+ 
+ do_install:append() {
+     install -d ${D}${sysconfdir}/init.d
+-    install -m 0755 ${WORKDIR}/trousers.init.sh ${D}${sysconfdir}/init.d/trousers
++    install -m 0755 ${UNPACKDIR}/trousers.init.sh ${D}${sysconfdir}/init.d/trousers
+     install -d ${D}${sysconfdir}/udev/rules.d
+-    install -m 0644 ${WORKDIR}/trousers-udev.rules ${D}${sysconfdir}/udev/rules.d/45-trousers.rules
++    install -m 0644 ${UNPACKDIR}/trousers-udev.rules ${D}${sysconfdir}/udev/rules.d/45-trousers.rules
+ 
+     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+         install -d ${D}${systemd_unitdir}/system
+-        install -m 0644 ${WORKDIR}/tcsd.service ${D}${systemd_unitdir}/system/
++        install -m 0644 ${UNPACKDIR}/tcsd.service ${D}${systemd_unitdir}/system/
+         sed -i -e 's#@SBINDIR@#${sbindir}#g' ${D}${systemd_unitdir}/system/tcsd.service
+     fi        
+ }
+diff --git a/recipes-ids/samhain/samhain-server.bb b/recipes-ids/samhain/samhain-server.bb
+index 8bae2d2..e7156dd 100644
+--- a/recipes-ids/samhain/samhain-server.bb
++++ b/recipes-ids/samhain/samhain-server.bb
+@@ -16,7 +16,7 @@ TARGET_CC_ARCH += "${LDFLAGS}"
+ do_install:append() {
+     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+         install -d ${D}${sysconfdir}/tmpfiles.d
+-        install -m 0644 ${WORKDIR}/samhain-server-volatiles.conf \
++        install -m 0644 ${UNPACKDIR}/samhain-server-volatiles.conf \
+             ${D}${sysconfdir}/tmpfiles.d/samhain-server.conf
+     else
+         install -d ${D}${sysconfdir}/default/volatiles
+diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
+index f5bea1d..74123e0 100644
+--- a/recipes-ids/samhain/samhain.inc
++++ b/recipes-ids/samhain/samhain.inc
+@@ -26,7 +26,7 @@ SRC_URI[sha256sum] = "ae6ee8eff3cb111b7fc14a57bcc258443dd0bcf1bfacfdf229935ed053
+ UPSTREAM_CHECK_URI = "https://www.la-samhna.de/samhain/archive.html"
+ UPSTREAM_CHECK_REGEX = "samhain_signed-(?P<pver>(\d+(\.\d+)+))\.tar"
+ 
+-S = "${WORKDIR}/samhain-${PV}"
++S = "${UNPACKDIR}/samhain-${PV}"
+ 
+ inherit autotools-brokensep update-rc.d pkgconfig systemd
+ 
+@@ -64,7 +64,7 @@ EXTRA_OEMAKE:append:aarch64 = " CPPFLAGS+=-DCONFIG_ARCH_AARCH64=1"
+ EXTRA_OEMAKE:append:mips64 = " CPPFLAGS+=-DCONFIG_ARCH_MIPS64=1"
+ 
+ do_unpack_samhain() {
+-    cd ${WORKDIR}
++    cd ${UNPACKDIR}
+     tar -xzvf samhain-${PV}.tar.gz
+ }
+ 
+@@ -129,19 +129,19 @@ do_compile:prepend:libc-musl () {
+ do_install:append () {
+ 	oe_runmake install DESTDIR='${D}' INSTALL=install-boot
+ 
+-	install -D -m 755 ${WORKDIR}/${INITSCRIPT_NAME}.init \
++	install -D -m 755 ${UNPACKDIR}/${INITSCRIPT_NAME}.init \
+ 		${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+ 
+-	install -D -m 755 ${WORKDIR}/${INITSCRIPT_NAME}.default \
++	install -D -m 755 ${UNPACKDIR}/${INITSCRIPT_NAME}.default \
+ 		${D}${sysconfdir}/default/${INITSCRIPT_NAME}
+ 
+ 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+ 		if [ "${SAMHAIN_MODE}" = "no" ]; then
+-		    install -D -m 0644 ${WORKDIR}/samhain.service ${D}/${systemd_system_unitdir}/samhain.service
++		    install -D -m 0644 ${UNPACKDIR}/samhain.service ${D}/${systemd_system_unitdir}/samhain.service
+ 		else
+-		    install -D -m 0644 ${WORKDIR}/samhain.service ${D}/${systemd_system_unitdir}/${BPN}.service
++		    install -D -m 0644 ${UNPACKDIR}/samhain.service ${D}/${systemd_system_unitdir}/${BPN}.service
+ 		fi
+-		install -D -m 0755 ${WORKDIR}/${BPN}.init ${D}/${libexecdir}/${BPN}
++		install -D -m 0755 ${UNPACKDIR}/${BPN}.init ${D}/${libexecdir}/${BPN}
+ 		sed -i -e 's,@LIBDIR@,${libexecdir},' \
+ 		       -e 's,@SAMHAIN_HELPER@,${BPN},' \
+ 		       -e 's,@MODE_NAME@,${MODE_NAME},' \
+diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+index 00e8997..83d37d6 100644
+--- a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
++++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+@@ -62,7 +62,7 @@ do_install:append() {
+            -e 's:-L${STAGING_LIBDIR}::' ${D}/${libdir}/pkgconfig/libecryptfs.pc
+     sed -i -e "s: ${base_sbindir}/cryptsetup: ${sbindir}/cryptsetup:" ${D}${bindir}/ecryptfs-setup-swap
+     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+-        install -D -m 0644 ${WORKDIR}/ecryptfs.service ${D}${systemd_system_unitdir}/ecryptfs.service
++        install -D -m 0644 ${UNPACKDIR}/ecryptfs.service ${D}${systemd_system_unitdir}/ecryptfs.service
+     fi
+ }
+ 
+-- 
+2.34.1
+
 
