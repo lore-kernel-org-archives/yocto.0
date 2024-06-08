@@ -1,108 +1,218 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CD2AC27C53
-	for <webhook@archiver.kernel.org>; Fri,  7 Jun 2024 12:52:30 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web10.40826.1717764740271199552
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3490C25B76
+	for <webhook@archiver.kernel.org>; Sat,  8 Jun 2024 10:24:16 +0000 (UTC)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+ by mx.groups.io with SMTP id smtpd.web10.4010.1717842254165995561
  for <yocto@lists.yoctoproject.org>;
- Fri, 07 Jun 2024 05:52:20 -0700
+ Sat, 08 Jun 2024 03:24:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=dlidn9ba;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-421757d217aso1956765e9.3
-        for <yocto@lists.yoctoproject.org>; Fri, 07 Jun 2024 05:52:19 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=R1/hc1gc;
+ spf=pass (domain: gmail.com, ip: 209.85.208.179, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2eaccc097e2so30951341fa.0
+        for <yocto@lists.yoctoproject.org>; Sat, 08 Jun 2024 03:24:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1717764738; x=1718369538; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ckX2fe/0nUY6L2C4WBSX7GEjozWmkTSlrAaSjRZr63M=;
-        b=dlidn9baV37tM8l47T4goe6H9+ha3jj4I1fLK3FkA2FHlSldGwFTA2vtixA1zYyA2f
-         DQpHMXMR/X67sbNMFnlEZO0koplpdBlf+oPlQFMnfUj8d0+cU9V4TU5HB449Y2a9AeP3
-         x3/lIdgOg2JUyfEj4KDi9ssbGqn0F0XutVLb0=
+        d=gmail.com; s=20230601; t=1717842252; x=1718447052; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vjSk+5G25owhvTKxZDj3/A/wWSj5S6jsDLK+92sAk8s=;
+        b=R1/hc1gc7nZvU54ZF2yWtGc/5hKJvuf9b2J6pg3Ku5x6Qnwi5X+t4VUnR3sheMCKOZ
+         DlpSeoncNd+8D7+HwnjZIcDsdLjgQWVrwcYBYDyT2ECBkLJo0FbzAfBW8jk5I4d58UnI
+         FYDrYGdMNfRzsj/zwcnz4dx0Gt+V/dnidNijvmg7pDf0xC76oIr/D3FvoKnq50RxGy7f
+         5GTPROUvAOTY+rIvexjzam+PJ0sQudepzF6lm8Mv+yeweLMnQ4FHIORaMg3q+eaFL0bp
+         7dqCONjzRKMv1Vu4oUcJoPpHBZTqRad2aOcQZx5sO5kmZG4t7DkVZMCIV/ZhMtjMg6MO
+         g+/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717764738; x=1718369538;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ckX2fe/0nUY6L2C4WBSX7GEjozWmkTSlrAaSjRZr63M=;
-        b=u/4vZPu8SXWtozEDm3yl0gnYnnTHNU68BnR/XGiKJ7n3sgAd8K4q0vzW9REe2+Pgsd
-         9+m+P1sRAqgeeZaBcz8qRJ5glIYQaS16SH9DxwkW5ruD2mSoNLaDl5sJv+VHlxJPgXFI
-         ftu9jV1nsp+w9K0tEHoXTrHKix/NO2isUHcLVqS6Yq8Ttq7I0kTI8nTD1SCp8uScYzJb
-         m6rQUPQ/TzqGFh86L8+l0QJz/Z91wZ+Yhg9HstNVDU2CN3TVDDxgbFT+rCkHG1cqNwip
-         VsN4tQBg9XAgKLXnt+Ye6drffzJF6FXTUJIhEZ2IMK+LhCFrcNLWqXSCbL0+KQ5wcOJB
-         HP4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWyWKrsNtxd2USQhpU+Ziq6XOmqcS8dIMVSHuSHmBUSd3tXeLrnSGy8cH9xLXlWQXjq25wjx71sIGTmAVqJehsP/UbnweHU24uA2oJE
-X-Gm-Message-State: AOJu0Yxt5gNDZj2/lOOSru1fNGLs6j12Hh9fMk+a1h1sQrI6O47Rv8hb
-	cNTMFsFUr/H83shIzOLi8vnnCti8QhCzxwSH0I05QwRHRghpA3a0z+7N5uWyPw97GmFrLY1F0Il
-	j
-X-Google-Smtp-Source: AGHT+IHOK4KG3+L4o5ZWuLbGCmy4JrBD+foCiPR2e+VYwCL24YWLPUECu9ogFMTPsBm55TboFBFFpQ==
-X-Received: by 2002:a05:600c:1913:b0:421:756f:b2e8 with SMTP id 5b1f17b1804b1-421756fb522mr4719685e9.11.1717764738254;
-        Fri, 07 Jun 2024 05:52:18 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:910f:5798:f456:d86d? ([2001:8b0:aba:5f3c:910f:5798:f456:d86d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4215c2cd2d3sm51889605e9.41.2024.06.07.05.52.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jun 2024 05:52:17 -0700 (PDT)
-Message-ID: <a4e84e2597a18eb31644476e38bc0b65da47c375.camel@linuxfoundation.org>
-Subject: Re: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-5.1_M1.rc2)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: qa-build-notification@lists.yoctoproject.org, 
-	yocto@lists.yoctoproject.org
-Date: Fri, 07 Jun 2024 13:52:17 +0100
-In-Reply-To: <0101018fe7819c42-92849e6f-1a80-409e-9100-713586c8ea4a-000000@us-west-2.amazonses.com>
-References: 
-	<0101018fe7819c42-92849e6f-1a80-409e-9100-713586c8ea4a-000000@us-west-2.amazonses.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0-1build2 
+        d=1e100.net; s=20230601; t=1717842252; x=1718447052;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vjSk+5G25owhvTKxZDj3/A/wWSj5S6jsDLK+92sAk8s=;
+        b=Vr1Xen9iYpFqntBWa1dNUSeKXgiCVJSsXhW5ClzIECBUrXGMvZrSRax6GC4fIX1AY3
+         KJpRYyXpfLVkWiBEbIUak6JxI/9nnkY8O4yMpmxNR6IIDYrAp+2Qp+O4k0wG6QdHK9pb
+         J1SOn9GAL9kj+XsCg6l8HqsR5VaGzOvWczyjfEaOaG4+UmWkKH26Vt2gQry8HXy2KWFh
+         hdJ59Yt+GZsvol2KNkuoGL5MijJTGD34lbzKYgXWsxcKHSxy/dX+XpD4RWkTvZAguvoz
+         JnvwQ0oNjMDSovXYgxAnJ1zJbzV3a4Iob2rPcshw1EI0ZPUiJy/ran6m6u9VXZXtgHSB
+         xgXg==
+X-Gm-Message-State: AOJu0YyJ0SgLdGB6IiEvLH6I/2oBSz1bqa74sgQO/DQonXcu2Y8WpUQO
+	CeyL6zV78Np37kHMmG7mv9eAen2Lp0M0EDsiN+TxDJj55vXzb+m9c/2wEZr2ytgy1CHeVcvECE/
+	H8dy93u3kRUs2cP1KetV9vCUAvrc=
+X-Google-Smtp-Source: AGHT+IH/V76+xeEYFNoDweBgPrgGG8juhHLmls7PZrRq8pOZLYXOHjWLzBdajFDkKMO4QOX+igosg5hj1QN2KY68NoU=
+X-Received: by 2002:a05:6512:308b:b0:51e:41a1:4d5 with SMTP id
+ 2adb3069b0e04-52bb9f63763mr4246625e87.9.1717842251729; Sat, 08 Jun 2024
+ 03:24:11 -0700 (PDT)
 MIME-Version: 1.0
+References: <CANNYZj9WxSLVHsXcUbwA2xEME8e_qQ6=ygBvpOLukc1TvAb2mw@mail.gmail.com>
+ <7313.1717670469256332062@lists.yoctoproject.org>
+In-Reply-To: <7313.1717670469256332062@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Sat, 8 Jun 2024 12:24:00 +0200
+Message-ID: <CANNYZj9qzDmbO8=MG1KCFd5WUWs2DCDyNeXTjWkBSLuaM+Kbrw@mail.gmail.com>
+Subject: Re: [yocto] Bad lib symlink in Host SDK
+To: lukas.weiss@janitza.de
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000031d7b4061a5e51c7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 07 Jun 2024 12:52:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63297
+ <yocto@lists.yoctoproject.org>; Sat, 08 Jun 2024 10:24:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63298
 
-On Wed, 2024-06-05 at 08:26 +0000, Pokybuild User via
-lists.yoctoproject.org wrote:
->=20
-> =C2=A0=C2=A0=C2=A0 A build flagged for QA (yocto-5.1_M1.rc2) was complete=
-d on the
-> autobuilder and is available at:
->=20
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 https://autobuilder.yocto.io/p=
-ub/releases/yocto-5.1_M1.rc2
->=20
->=20
-> =C2=A0=C2=A0=C2=A0 Build URL:
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/7008
->=20
-> =C2=A0=C2=A0=C2=A0 Build hash information:=20
->=20
-> =C2=A0=C2=A0=C2=A0 bitbake: 23681775e5941e54ebead469addf708fca1e6beb
-> meta-agl: f65060f370e8834de0229c6074c6e4326bdd04a6
-> meta-arm: f5ebb36c59b6eb847f45713a1f9b08a88f9978e1
-> meta-aws: 15bb71aff6bcdcbeeaa21a0e7ec915e0e90fae39
-> meta-clang: ce7d354da7a498f90ba260c006d29a4d23e3b4f7
-> meta-intel: 4f4e6d763cf2e7d04eaa8db65c0bd3e8c3b689a4
-> meta-mingw: e4d377d5ddb62b265536bd33dbccfbb0904f8701
-> meta-openembedded: 446560ab41de5e29ef5dfb556de1149e76a80367
-> meta-virtualization: e96da98e4038f5388596b4294ac3d8425b2dacb2
-> oecore: e068ba7d6b91237f9dabc2050c9473bed311690c
-> poky: 5fc59beaec099cd4a78b38fb0686f377bbe7dadd
+--00000000000031d7b4061a5e51c7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-There was a failing bitbake-selftest which affected multiple builds in
-this release build but it should be ok to release since that issue is
-well understood and has since been resolved.
+You should open a ticket with eudev though or submit a patch there.
 
-The meta-arm and meta-agl-core layers are also failing but this is also
-a known issue related to recent changes in master which those layers
-are still catching up on.
+Alex
 
-Cheers,
+On Thu 6. Jun 2024 at 12.41, Lukas Wei=C3=9F via Lists.Yoctoproject.Org
+<lukas.weiss=3Djanitza.de@lists.yoctoproject.org> wrote:
 
-Richard
+> Sorry, was busy with something else.
+>
+> Thanks for the hint. I think, i found the reason: The Links is already
+> broken on install. Its part of the Autotools Install of the eudev project
+> (src/libudev/Makefile.in):
+>
+> install-exec-hook:
+>     libname=3Dlibudev.so; if test "$(libdir)" !=3D "$(rootlibdir)"; then =
+\
+>         $(MKDIR_P) $(DESTDIR)$(rootlibdir) && \
+>         so_img_name=3D$$(readlink $(DESTDIR)$(libdir)/$$libname) && \
+>         so_img_rel_target_prefix=3D$$(echo $(libdir) | sed
+> 's,\(^/\)\?[^/]\+,..,g') && \
+>         $(LN_S) -f $$so_img_rel_target_prefix$(rootlibdir)/$$so_img_name
+> $(DESTDIR)$(libdir)/$$libname && \
+>         mv $(DESTDIR)$(libdir)/$$libname.* $(DESTDIR)$(rootlibdir); \
+>     fi
+>
+> In Case of nativesdk, this leads to bad results, as all of these paths a
+> prefixed with default SDK path (/opt/plat_sdk/sysroots/x86_64-platsdk-lin=
+ux
+> in my case):
+>
+> libname=3Dlibudev.so; if test
+> "/opt/plat_sdk/sysroots/x86_64-platsdk-linux/usr/lib" !=3D
+> "/opt/plat_sdk/sysroots/x86_64-platsdk-linux/lib"; then \
+>   /home/admin/workspaces/yocto/build/tmp/hosttools/mkdir -p
+> /home/admin/workspaces/yocto/build/tmp/work/x86_64-nativesdk-platsdk-linu=
+x/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-platsdk-linux/l=
+ib
+> && \
+>   so_img_name=3D$(readlink
+> /home/admin/workspaces/yocto/build/tmp/work/x86_64-nativesdk-platsdk-linu=
+x/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-platsdk-linux/u=
+sr/lib/$libname)
+> && \
+>   so_img_rel_target_prefix=3D$(echo
+> /opt/plat_sdk/sysroots/x86_64-platsdk-linux/usr/lib | sed
+> 's,\(^/\)\?[^/]\+,..,g') && \
+>   ln -s -f
+> $so_img_rel_target_prefix/opt/plat_sdk/sysroots/x86_64-platsdk-linux/lib/=
+$so_img_name
+> /home/admin/workspaces/yocto/build/tmp/work/x86_64-nativesdk-platsdk-linu=
+x/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-platsdk-linux/u=
+sr/lib/$libname
+> && \
+>   mv
+> /home/admin/workspaces/yocto/build/tmp/work/x86_64-nativesdk-platsdk-linu=
+x/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-platsdk-linux/u=
+sr/lib/$libname.*
+> /home/admin/workspaces/yocto/build/tmp/work/x86_64-nativesdk-platsdk-linu=
+x/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-platsdk-linux/l=
+ib;
+> \
+> fi
+>
+> That path seems to be replaced in all symlinks when SDK is installed to a
+> different location than default - thats the reason for the individual bad
+> symlinks.
+> As a workaround i just replace the symlink with the correct one. This is
+> very dirty, but it works and i do not have to patch eudev:
+>
+> do_install:append:class-nativesdk() {
+>     # Workaround to fix libudev.so symlink in nativesdk
+>     ln -s -f ../../lib/$(basename $(readlink -f ${D}${libdir}/libudev.so)=
+)
+> ${D}${libdir}/libudev.so.new
+>     rm -f ${D}${libdir}/libudev.so
+>     mv ${D}${libdir}/libudev.so.new ${D}${libdir}/libudev.so
+> }
+>
+>
+> Thanks for help!
+
+--00000000000031d7b4061a5e51c7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">You should open a ticket with eudev though or submit a pa=
+tch there.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alex</div><di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
+hu 6. Jun 2024 at 12.41, Lukas Wei=C3=9F via <a href=3D"http://Lists.Yoctop=
+roject.Org">Lists.Yoctoproject.Org</a> &lt;lukas.weiss=3D<a href=3D"mailto:=
+janitza.de@lists.yoctoproject.org">janitza.de@lists.yoctoproject.org</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;b=
+order-left-color:rgb(204,204,204)"><p>Sorry, was busy with something else.=
+=C2=A0</p>
+<p>Thanks for the hint. I think, i found the reason: The Links is already b=
+roken on install. Its part of the Autotools Install of the eudev project (s=
+rc/libudev/Makefile.in):</p>
+<blockquote>
+<p>install-exec-hook:<br>=C2=A0 =C2=A0 libname=3Dlibudev.so; if test &quot;=
+$(libdir)&quot; !=3D &quot;$(rootlibdir)&quot;; then \<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 $(MKDIR_P) $(DESTDIR)$(rootlibdir) &amp;&amp; \<br>=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 so_img_name=3D$$(readlink $(DESTDIR)$(libdir)/$$libname) &am=
+p;&amp; \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 so_img_rel_target_prefix=3D$$(echo=
+ $(libdir) | sed &#39;s,\(^/\)\?[^/]\+,..,g&#39;) &amp;&amp; \<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 $(LN_S) -f $$so_img_rel_target_prefix$(rootlibdir)/$$s=
+o_img_name $(DESTDIR)$(libdir)/$$libname &amp;&amp; \<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 mv $(DESTDIR)$(libdir)/$$libname.* $(DESTDIR)$(rootlibdir); \<br=
+>=C2=A0 =C2=A0 fi</p>
+</blockquote>
+<p>In Case of nativesdk, this leads to bad results, as all of these paths a=
+ prefixed with default SDK path (/opt/plat_sdk/sysroots/x86_64-platsdk-linu=
+x in my case):</p>
+<blockquote>
+<p>libname=3Dlibudev.so; if test &quot;/opt/plat_sdk/sysroots/x86_64-platsd=
+k-linux/usr/lib&quot; !=3D &quot;/opt/plat_sdk/sysroots/x86_64-platsdk-linu=
+x/lib&quot;; then \<br>=C2=A0 /home/admin/workspaces/yocto/build/tmp/hostto=
+ols/mkdir -p /home/admin/workspaces/yocto/build/tmp/work/x86_64-nativesdk-p=
+latsdk-linux/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-plat=
+sdk-linux/lib &amp;&amp; \<br>=C2=A0 so_img_name=3D$(readlink /home/admin/w=
+orkspaces/yocto/build/tmp/work/x86_64-nativesdk-platsdk-linux/nativesdk-eud=
+ev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-platsdk-linux/usr/lib/$libname=
+) &amp;&amp; \<br>=C2=A0 so_img_rel_target_prefix=3D$(echo /opt/plat_sdk/sy=
+sroots/x86_64-platsdk-linux/usr/lib | sed &#39;s,\(^/\)\?[^/]\+,..,g&#39;) =
+&amp;&amp; \<br>=C2=A0 ln -s -f $so_img_rel_target_prefix/opt/plat_sdk/sysr=
+oots/x86_64-platsdk-linux/lib/$so_img_name /home/admin/workspaces/yocto/bui=
+ld/tmp/work/x86_64-nativesdk-platsdk-linux/nativesdk-eudev/3.2.14/image/opt=
+/plat_sdk/sysroots/x86_64-platsdk-linux/usr/lib/$libname &amp;&amp; \<br>=
+=C2=A0 mv /home/admin/workspaces/yocto/build/tmp/work/x86_64-nativesdk-plat=
+sdk-linux/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroots/x86_64-platsdk=
+-linux/usr/lib/$libname.* /home/admin/workspaces/yocto/build/tmp/work/x86_6=
+4-nativesdk-platsdk-linux/nativesdk-eudev/3.2.14/image/opt/plat_sdk/sysroot=
+s/x86_64-platsdk-linux/lib; \<br>fi</p>
+</blockquote>
+<p><span style=3D"background-color:var(--light-mode-body-color)">That path =
+seems to be replaced in all symlinks when SDK is installed to a different l=
+ocation than default - thats the reason for the individual bad symlinks.<br=
+>As a workaround i just replace the symlink with the correct one. This is v=
+ery dirty, but it works and i do not have to patch eudev:</span></p>
+<blockquote>
+<p><span style=3D"background-color:var(--light-mode-body-color)">do_install=
+:append:class-nativesdk() {<br>=C2=A0 =C2=A0 # Workaround to fix libudev.so=
+ symlink in nativesdk<br>=C2=A0 =C2=A0 ln -s -f ../../lib/$(basename $(read=
+link -f ${D}${libdir}/libudev.so)) ${D}${libdir}/libudev.so.new<br>=C2=A0 =
+=C2=A0 rm -f ${D}${libdir}/libudev.so<br>=C2=A0 =C2=A0 mv ${D}${libdir}/lib=
+udev.so.new ${D}${libdir}/libudev.so<br>}<br></span></p>
+</blockquote>
+<br>Thanks for help!
+</blockquote></div></div>
+
+--00000000000031d7b4061a5e51c7--
 
