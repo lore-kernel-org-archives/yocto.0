@@ -1,123 +1,236 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F317EC27C55
-	for <webhook@archiver.kernel.org>; Mon, 10 Jun 2024 11:22:40 +0000 (UTC)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
- by mx.groups.io with SMTP id smtpd.web11.16996.1718018551990869643
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 615DDC27C5E
+	for <webhook@archiver.kernel.org>; Mon, 10 Jun 2024 16:32:52 +0000 (UTC)
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+ by mx.groups.io with SMTP id smtpd.web11.23877.1718036442911601451
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Jun 2024 04:22:32 -0700
+ Mon, 10 Jun 2024 09:20:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Zqim+j1n;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-35f24fabb81so675513f8f.3
-        for <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 04:22:31 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=gAfFegCn;
+ spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2c199e37f4eso3956199a91.1
+        for <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 09:20:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1718018550; x=1718623350; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+        d=gmail.com; s=20230601; t=1718036442; x=1718641242; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=kYC5F2Lfk2kUzPNJtBgBco8lnamjzIj2p41YHgklygo=;
-        b=Zqim+j1nAg2BZy6kRc5sbKdqSaysLk59mfJY42gDo5btEjMCDmbqtcNeGB34J7Bqx7
-         ZSzKkLDT8MsOHaE6im5aSV4WGaPirUGvUFCzQ5P7JDij6Yg6l2l83nYmszCud1INtWj0
-         qUSfaLATM1Awfojvf/FXTP+qD8ABsBfa5VfJA=
+        bh=riWEiEEqa+YkWupejVsMOGh2b9zpmKzfTIZx8IM0Ojo=;
+        b=gAfFegCnus9hd3g/fh20V9G2bNdHKr87PwhH9AijV8aeRxGHYeO9Qlc0G8+lUX7QLT
+         DOVx1pAtFxkE2RV0woEkzf/wtEmDjEBWWwcpI4k8NBGT7jcDC/V9skXbQ2yqVdXGij42
+         GTtrBnWVS4ShzIfwPKXC5viI3iq4Be6vGfDhlsXS7tM96uC4h2pAgdTjKAXDnjo0McPR
+         HCCHgh/wSbCcGrVa3vSbP7OKMThTcmyJhJ5XDPvKpHfQXF+UCiGcd0q3LL6AYutca5j0
+         c6vZ1vsi/XA4ei/hIyh0YSfrIaObFajs2uK/oA816EdLbdhuybD3T9D3aT/H+vMcHsix
+         7RNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718018550; x=1718623350;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=1e100.net; s=20230601; t=1718036442; x=1718641242;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kYC5F2Lfk2kUzPNJtBgBco8lnamjzIj2p41YHgklygo=;
-        b=tCzf4nOguz9niAkiZzE84PWCz5Xu9KPpJnAMyqPKFwCbRWR9yH+uaCwDXwoip7de9O
-         /8NlyIZ16RU+7rZpJByQnfopX+FRxoPxAPKIJPodRIIoZQaENoKSBaj8oS5OO6+XFHBc
-         BoUQIeIL1FFwooOZ9E8V87zvJDwcOb5JVT1onmcwWts/EMz2EqNaJXoL7ivVEwGvORhe
-         lVIni2SiY78YFg3riGk3AvHoALGImwbIKMVa5ciLaYzKnzy9ls7J2EAAKZmxeSmVJA66
-         1vAbwBysPYjoBMtVA2QZK3WKn2I2oVFNFaKYdHKInyns19dDyZ1Hz7dERGKCpMKn/i+P
-         BrHA==
-X-Forwarded-Encrypted: i=1; AJvYcCVZZEfB0KUNTxVo1i1FKTDu/MEBI5fejZEES8kbBEvdvz2ds+2VGFb86G0DgsfdBQ0oevOEryHco9EnEm7LsohGj7JRIu6C2ZVmwPhe
-X-Gm-Message-State: AOJu0YwVnXglRBIwPMYqhYE9qtiBFVrF8Lb50kkG2KIQPgeyN7fmpqjR
-	+RZR1seaceuqJ7x/hsqfW7ok6S7iYFh+S7dRfUGmsaGh1IAH3iUuCyJAT8dwEqI=
-X-Google-Smtp-Source: AGHT+IFLHWGE54jNM0I3k4wFJkjhswmKldUpslyPk+OEuNXucZSaRNw6PKV50I0DnsS1M7PKQE2mwA==
-X-Received: by 2002:a5d:42c8:0:b0:35f:1f19:594d with SMTP id ffacd0b85a97d-35f1f1959aamr2563210f8f.33.1718018550314;
-        Mon, 10 Jun 2024 04:22:30 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:fc3b:77d4:176b:a54? ([2001:8b0:aba:5f3c:fc3b:77d4:176b:a54])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35f11cc5061sm6377363f8f.5.2024.06.10.04.22.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jun 2024 04:22:29 -0700 (PDT)
-Message-ID: <17fdbe98636e4e93ba2f7dfd52e294d2fb479ff3.camel@linuxfoundation.org>
-Subject: Re: [Openembedded-architecture] [RFC PATCH] bitbake-setup: add the
- proof of concept implementation
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: alex.kanavin@gmail.com, bitbake-devel@lists.openembedded.org, 
- yocto@lists.yoctoproject.org,
- openembedded-architecture@lists.openembedded.org
-Cc: Alexander Kanavin <alex@linutronix.de>
-Date: Mon, 10 Jun 2024 12:22:29 +0100
-In-Reply-To: <20240502105745.3073153-1-alex.kanavin@gmail.com>
-References: <20240502105745.3073153-1-alex.kanavin@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0-1build2 
+        bh=riWEiEEqa+YkWupejVsMOGh2b9zpmKzfTIZx8IM0Ojo=;
+        b=v/aIbstpbilOuypd1ZKBhBargWIoh76m7T4Ah/ildGX4+5v3FeZ5WIj0CBYatJgtBO
+         15qSFyQVhNZZ2FXbKFAYFdG0ty/wiVaIWvYPG1HxqwJHgtbfHSdMcgYD5y6A6XfA2mqN
+         LFLgCK5udIo+6L2luvc5AV9PgQwh02dgv0BRKEnEiDDNYKb5aviiO/N3rq4WLpI2PGf6
+         OlqAGrx4us2ArEq5xvrCM+sljgW0AfbzUOpJONUYOCDYEsxKGYIf4jLqVV+1fKNgppUh
+         Y0KwB69pQoaUm7M4pf99CK7mpihqfRqg6+lu7yxXi/eZlFIW7BWFBeNw9G3arDsRyVin
+         ElGA==
+X-Gm-Message-State: AOJu0Yw6EuziFq5hXnphq/dzyCGkIp/XZ0vx3g4t3P6uiJdJaqe6g0/J
+	lE6RbjXjc40zYVtEAHLCOm3hT+EwRozzxIqj/NMmmogJpn3YVjShrKLiKbdXo0GxMWcT5m9gM9M
+	RK8fBNnjdvKp71LmmNNaZ4uVQsb8rdFJYIOo=
+X-Google-Smtp-Source: AGHT+IFKusugj09oQnp9NpXBcifIGBL/eVnUVf9cqpzcQB8kf8S6jDXbypheiLjFnnlV7TVXnUSpu4+1O712hBu13X4=
+X-Received: by 2002:a17:90a:a005:b0:2c2:f044:e1a7 with SMTP id
+ 98e67ed59e1d1-2c2f044e21emr4496434a91.22.1718036441730; Mon, 10 Jun 2024
+ 09:20:41 -0700 (PDT)
 MIME-Version: 1.0
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Mon, 10 Jun 2024 18:20:30 +0200
+Message-ID: <CAGAf8LxDDNaS6OXvDcYfs1A9mH8iAjH6kZ=PhfU2qT+wNZ8xaw@mail.gmail.com>
+Subject: Kernel mainline recipe does produce lot of warnings
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="000000000000d22fc1061a8b8732"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 11:22:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63305
+ <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 16:32:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63306
 
-On Thu, 2024-05-02 at 12:57 +0200, Alexander Kanavin via lists.openembedded=
-.org wrote:
-> From: Alexander Kanavin <alex@linutronix.de>
->=20
-> For the rationale and design guidelines please see this message:
-> https://lists.openembedded.org/g/openembedded-architecture/message/1913
->=20
-> Left out for now but will be done later:
-> - config fragment support
-> - tests
-> - documentation
-> - official configuration repository
+--000000000000d22fc1061a8b8732
+Content-Type: text/plain; charset="UTF-8"
 
-I finally got around to looking at bitbake-setup, sorry about the
-delay. For some reason I've been struggling to want to start thinking
-about this!
+Hello Yocto Community,
 
-My initial impressions are really good, I think it is a start down the
-right path for what we need. I've noted down my thoughts as they came
-to me:
+I decided to expand a bit my knowledge about mainline kernels. So for
+the last few days I have been trying to make a 6.10-rc2 kernel to work
+with YOCTO.
 
-From the init command, it isn't clear what build.sh is for. I think it
-should also mention the traditional build env file too, make it clear
-where that is.
+Somehow I did it, but I got tons of warnings, which I could not figure
+out why this really happens.
 
-I struggled to find the --build-dir option to init, I tried to specify
-a direction as the next parameter but that has to be named.
+Here is how ny kernel recipe looks alike:
+https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/recipes-kernel/linux/linux-mainline_6.10.bb
 
-For the cloning of repos, I wondered if we should have some config file
-in HOME with a pointer to a central downloads/clone cache? The
-autobuilder will certainly need something like that. Whether we could
-use a common cache with DL_DIR remains to be seen too.
+The local.conf is:
+https://github.com/ZoranStojsavljevic/bbb-yocto/blob/scarthgap/bbb-releases/bbb-scarthgap/local.conf
 
-I'm not sure I like the build config being moved out the way when
-updating. The tmpdir "ABI" and conf file versioning should protect us
-from the worst problems?
+And the whole .log is attached to this @: kernel-mainline.log
 
-Also, once you're "in" a build environment, can we can bitbake-setup
-without parameters, i.e "bitbake-setup status" and "bitbake-setup
-update"? Effectively that means teaching init-build-env about the
-environment it is in so that bitbake-setup can then read the right
-config from the env.
+WARNING: preferred version 6.10.% of linux-mainline not available (for
+item virtual/kernel)
+WARNING: versions of linux-mainline available: 6.10-rc2
+WARNING: preferred version 6.10.% of linux-mainline not available (for
+item kernel-modules)
+WARNING: versions of linux-mainline available: 6.10-rc2
+WARNING: preferred version 6.10.% of linux-mainline not available (for
+item kernel-base)
+WARNING: versions of linux-mainline available: 6.10-rc2
+WARNING: preferred version 6.10.% of linux-mainline not available (for
+item kernel-image-zimage)
+WARNING: versions of linux-mainline available: 6.10-rc2
+...
 
-For demo purposes it might help if we could add a "poky-ng" config,
-which would be poky, but built using the config from the individual
-bitbake/core/meta-yocto/docs components. That shouldn't be too hard to
-add?
+Any reason/bug why this is happening?
 
-I'll be experimenting a bit more but I wanted to give some feedback now
-I've taken a look.
+What am I missing here???
 
-Cheers,
+Thank you,
+Zee
+_______
 
-Richard
+--000000000000d22fc1061a8b8732
+Content-Type: text/x-log; charset="US-ASCII"; name="kernel-mainline.log"
+Content-Disposition: attachment; filename="kernel-mainline.log"
+Content-Transfer-Encoding: base64
+Content-ID: <f_lx96er310>
+X-Attachment-Id: f_lx96er310
 
+Yml0YmFrZSAtayBjb3JlLWltYWdlLW1pbmltYWwKV0FSTklORzogSG9zdCBkaXN0cmlidXRpb24g
+ImZlZG9yYS00MCIgaGFzIG5vdCBiZWVuIHZhbGlkYXRlZCB3aXRoIHRoaXMgdmVyc2lvbiBvZiB0
+aGUgYnVpbGQgc3lzdGVtOyB5b3UgbWF5IHBvc3NpYmx5IGV4cGVyaWVuY2UgdW5leHBlY3RlZCBm
+YWlsdXJlcy4gSXQgaXMgcmVjb21tZW5kZWQgdGhhdCB5b3UgdXNlIGEgdGVzdGVkIGRpc3RyaWJ1
+dGlvbi4KTG9hZGluZyBjYWNoZTogMTAwJSB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICB8IEVUQTogIC0tOi0tOi0tCkxvYWRlZCAwIGVudHJp
+ZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLgpQYXJzaW5nIHJlY2lwZXM6IDEwMCUgfCMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6
+MDM6NTcKUGFyc2luZyBvZiAyODEwIC5iYiBmaWxlcyBjb21wbGV0ZSAoMCBjYWNoZWQsIDI4MTAg
+cGFyc2VkKS4gNDcxMyB0YXJnZXRzLCAxMzcgc2tpcHBlZCwgMCBtYXNrZWQsIDAgZXJyb3JzLgpO
+T1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXMKV0FSTklO
+RzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFi
+bGUgKGZvciBpdGVtIHZpcnR1YWwva2VybmVsKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1t
+YWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYu
+MTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9k
+dWxlcykKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEw
+LXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUg
+bm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLWJhc2UpCldBUk5JTkc6IHZlcnNpb25zIG9m
+IGxpbnV4LW1haW5saW5lIGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZl
+cnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtl
+cm5lbC1pbWFnZS16aW1hZ2UpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2
+YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxp
+bnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1pbWFnZSkKV0FSTklO
+RzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5H
+OiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbGliYy1oZWFkZXJzIG5vdCBhdmFp
+bGFibGUgKGZvciBpdGVtIGxpbnV4LWxpYmMtaGVhZGVycykKV0FSTklORzogdmVyc2lvbnMgb2Yg
+bGludXgtbGliYy1oZWFkZXJzIGF2YWlsYWJsZTogNi42CldBUk5JTkc6IHByZWZlcnJlZCB2ZXJz
+aW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJu
+ZWwtZGV2aWNldHJlZSkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxh
+YmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgt
+bWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1uZnNkKQpXQVJO
+SU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5J
+Tkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1saWJjLWhlYWRlcnMgbm90IGF2
+YWlsYWJsZSAoZm9yIGl0ZW0gbGludXgtbGliYy1oZWFkZXJzLWRldikKV0FSTklORzogdmVyc2lv
+bnMgb2YgbGludXgtbGliYy1oZWFkZXJzIGF2YWlsYWJsZTogNi42CldBUk5JTkc6IHByZWZlcnJl
+ZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRl
+bSBrZXJuZWwtbW9kdWxlLWxvb3ApCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5l
+IGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9m
+IGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtYXV0
+b2ZzNCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEw
+LXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUg
+bm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1pcHY2KQpXQVJOSU5HOiB2ZXJz
+aW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZl
+cnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3Ig
+aXRlbSBrZXJuZWwtbW9kdWxlLWRtLW1vZCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFp
+bmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEw
+LiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVs
+ZS1zY2gtZnEtY29kZWwpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2YWls
+YWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4
+LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtYmluZm10LW1p
+c2MpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2YWlsYWJsZTogNi4xMC1y
+YzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5v
+dCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtdW5peCkKV0FSTklORzogdmVyc2lv
+bnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJy
+ZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0
+ZW0ga2VybmVsLW1vZHVsZS10dW4pCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5l
+IGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9m
+IGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtc2Qt
+bW9kKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAt
+cmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBu
+b3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLWFsZ2lmLWhhc2gpCldBUk5JTkc6
+IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzog
+cHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUg
+KGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtc2NzaS1kZWJ1ZykKV0FSTklORzogdmVyc2lvbnMgb2Yg
+bGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVy
+c2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2Vy
+bmVsLW1vZHVsZS1pcDYtdGFibGVzKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGlu
+ZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBv
+ZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLW5m
+LW5hdCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEw
+LXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUg
+bm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1uZi1kZWZyYWctaXB2NCkKV0FS
+TklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJO
+SU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWls
+YWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1pcHRhYmxlLW5hdCkKV0FSTklORzogdmVyc2lv
+bnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJy
+ZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0
+ZW0ga2VybmVsLW1vZHVsZS1pcC10YWJsZXMpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1h
+aW5saW5lIGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4x
+MC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1
+bGUtaXB0LW1hc3F1ZXJhZGUpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2
+YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxp
+bnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtaXA2dGFi
+bGUtZmlsdGVyKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6
+IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlu
+bGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLXgtdGFibGVzKQpXQVJO
+SU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5J
+Tkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxh
+YmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLWlwdGFibGUtZmlsdGVyKQpXQVJOSU5HOiB2ZXJz
+aW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZl
+cnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3Ig
+aXRlbSBrZXJuZWwtbW9kdWxlLW5mLWNvbm50cmFjaykKV0FSTklORzogdmVyc2lvbnMgb2YgbGlu
+dXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lv
+biA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVs
+LW1vZHVsZS1uZi1jb25udHJhY2staXB2NCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFp
+bmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEw
+LiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVs
+ZS1ib25kaW5nKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6
+IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlu
+bGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLWR1bW15KQpXQVJOSU5H
+OiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCgpCdWlsZCBD
+b25maWd1cmF0aW9uOgpCQl9WRVJTSU9OICAgICAgICAgICA9ICIyLjguMCIKQlVJTERfU1lTICAg
+ICAgICAgICAgPSAieDg2XzY0LWxpbnV4IgpOQVRJVkVMU0JTVFJJTkcgICAgICA9ICJmZWRvcmEt
+NDAiClRBUkdFVF9TWVMgICAgICAgICAgID0gImFybS1wb2t5LWxpbnV4LWdudWVhYmkiCk1BQ0hJ
+TkUgICAgICAgICAgICAgID0gImJlYWdsZWJvbmUiCkRJU1RSTyAgICAgICAgICAgICAgID0gInBv
+a3kiCkRJU1RST19WRVJTSU9OICAgICAgID0gIjUuMC4xIgpUVU5FX0ZFQVRVUkVTICAgICAgICA9
+ICJhcm0gdmZwIGNvcnRleGE4IG5lb24gY2FsbGNvbnZlbnRpb24taGFyZCIKVEFSR0VUX0ZQVSAg
+ICAgICAgICAgPSAiaGFyZCIKbWV0YSAgICAgICAgICAgICAgICAgCm1ldGEtcG9reSAgICAgICAg
+ICAgIAptZXRhLXlvY3RvLWJzcCAgICAgICA9ICJzY2FydGhnYXA6ODM3OTNjY2Q4NjVlM2U3MjU2
+M2U2ZDU3MzNiNmJkMDI5NDNmZWI4YSIKbWV0YS1qdW1wbm93ICAgICAgICAgPSAic2NhcnRoZ2Fw
+OjNlZmIxYWE3ZDUxMWYwZmI0NGQ5ZGNkYjU3OGJhZGExODgyZGMxYjMiCm1ldGEtYmJiICAgICAg
+ICAgICAgID0gInNjYXJ0aGdhcDphZmY1MmZmNDFmMWMxMGZmOTUwYTk0MmJhZTE3NmU0NTA0MDZj
+Yjg3IgptZXRhLW9lICAgICAgICAgICAgICAKbWV0YS1weXRob24gICAgICAgICAgCm1ldGEtbmV0
+d29ya2luZyAgICAgID0gInNjYXJ0aGdhcDo0YTdiYjc3ZjdlYmUwYWM4YmU1YmFiNTEwM2Q4YmQ5
+OTNlMTdlMThkIgptZXRhLXF0NSAgICAgICAgICAgICA9ICJ1cHN0cmVhbS9zY2FydGhnYXA6ZDhl
+ZWVmMGJmZDg0NjcyYzc5MTljZDM0NmYyNWY3YzlhOThkZGFlYSIKbWV0YS1zb2NrZXRjYW4gICAg
+ICAgPSAic2NhcnRoZ2FwOjdiYmE3YWY4NDAzZWI5YTI4ZTdkMGU3ZjBkMDIyOWUzYmZmY2Y2NWEi
+CgpTc3RhdGUgc3VtbWFyeTogV2FudGVkIDIzOTkgTG9jYWwgMCBNaXJyb3JzIDAgTWlzc2VkIDIz
+OTkgQ3VycmVudCAwICgwJSBtYXRjaCwgMCUgY29tcGxldGUpMDAKSW5pdGlhbGlzaW5nIHRhc2tz
+OiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjfCBUaW1lOiAwOjAwOjA0Ck5PVEU6IEV4ZWN1dGluZyBUYXNrcwpXQVJOSU5HOiBsaWJwbmct
+MS42LjQyLXIwIGRvX2ZldGNoOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHBzOi8vZG93bmxvYWRz
+LnNvdXJjZWZvcmdlLm5ldC9wcm9qZWN0L2xpYnBuZy9saWJwbmcxNi9saWJwbmctMS42LjQyLnRh
+ci54eiwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZQpOT1RFOiBUYXNrcyBTdW1tYXJ5
+OiBBdHRlbXB0ZWQgNDk4NSB0YXNrcyBvZiB3aGljaCA2IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVu
+IGFuZCBhbGwgc3VjY2VlZGVkLgoKU3VtbWFyeTogVGhlcmUgd2VyZSA2OCBXQVJOSU5HIG1lc3Nh
+Z2VzLgo=
+
+--000000000000d22fc1061a8b8732--
 
