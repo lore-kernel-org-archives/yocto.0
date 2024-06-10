@@ -1,236 +1,121 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <martin.jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 615DDC27C5E
-	for <webhook@archiver.kernel.org>; Mon, 10 Jun 2024 16:32:52 +0000 (UTC)
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web11.23877.1718036442911601451
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 668C4C27C55
+	for <webhook@archiver.kernel.org>; Mon, 10 Jun 2024 16:35:22 +0000 (UTC)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+ by mx.groups.io with SMTP id smtpd.web10.24447.1718037314385190423
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Jun 2024 09:20:42 -0700
+ Mon, 10 Jun 2024 09:35:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=gAfFegCn;
- spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2c199e37f4eso3956199a91.1
-        for <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 09:20:42 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=P3j2F8++;
+ spf=pass (domain: gmail.com, ip: 209.85.208.174, mailfrom: martin.jansa@gmail.com)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ebeefb9a7fso8599321fa.0
+        for <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 09:35:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718036442; x=1718641242; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=riWEiEEqa+YkWupejVsMOGh2b9zpmKzfTIZx8IM0Ojo=;
-        b=gAfFegCnus9hd3g/fh20V9G2bNdHKr87PwhH9AijV8aeRxGHYeO9Qlc0G8+lUX7QLT
-         DOVx1pAtFxkE2RV0woEkzf/wtEmDjEBWWwcpI4k8NBGT7jcDC/V9skXbQ2yqVdXGij42
-         GTtrBnWVS4ShzIfwPKXC5viI3iq4Be6vGfDhlsXS7tM96uC4h2pAgdTjKAXDnjo0McPR
-         HCCHgh/wSbCcGrVa3vSbP7OKMThTcmyJhJ5XDPvKpHfQXF+UCiGcd0q3LL6AYutca5j0
-         c6vZ1vsi/XA4ei/hIyh0YSfrIaObFajs2uK/oA816EdLbdhuybD3T9D3aT/H+vMcHsix
-         7RNw==
+        d=gmail.com; s=20230601; t=1718037312; x=1718642112; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cc4iSjStJs7EV8K744p1YasF277T1ifmpnzLTWadDyw=;
+        b=P3j2F8++HCCwVQn//CJP3WiapnQ4oyWvLURr4/RhpsF8741IamjYZksszTcpmNKOvH
+         Us0Trvk3OgflKt1pt6qVt7IU6RzL0/2UPVQ8EnAGGSHiM22dzhcriCjAUUVKLjeEVGb+
+         ZztzAXmn14g2WSo1gy8aQwj1KmfU1Yt6oIOMe5WFVyPDN7g4y7rdi0YQLgYTJzq5adNf
+         98fjKhJ+5KpltzXgjJX8lTWLlGaSSDfde8EhrjxA1C8LSOQ9j8BF+PqNXEdchNoxHak8
+         h4AxCVOH7JFUCBtNzjpeTmRxVI4bkY8GVyu2zsJcxJI1Mlt94SXbQWzvfr/71YqVLT6m
+         m43w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718036442; x=1718641242;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=riWEiEEqa+YkWupejVsMOGh2b9zpmKzfTIZx8IM0Ojo=;
-        b=v/aIbstpbilOuypd1ZKBhBargWIoh76m7T4Ah/ildGX4+5v3FeZ5WIj0CBYatJgtBO
-         15qSFyQVhNZZ2FXbKFAYFdG0ty/wiVaIWvYPG1HxqwJHgtbfHSdMcgYD5y6A6XfA2mqN
-         LFLgCK5udIo+6L2luvc5AV9PgQwh02dgv0BRKEnEiDDNYKb5aviiO/N3rq4WLpI2PGf6
-         OlqAGrx4us2ArEq5xvrCM+sljgW0AfbzUOpJONUYOCDYEsxKGYIf4jLqVV+1fKNgppUh
-         Y0KwB69pQoaUm7M4pf99CK7mpihqfRqg6+lu7yxXi/eZlFIW7BWFBeNw9G3arDsRyVin
-         ElGA==
-X-Gm-Message-State: AOJu0Yw6EuziFq5hXnphq/dzyCGkIp/XZ0vx3g4t3P6uiJdJaqe6g0/J
-	lE6RbjXjc40zYVtEAHLCOm3hT+EwRozzxIqj/NMmmogJpn3YVjShrKLiKbdXo0GxMWcT5m9gM9M
-	RK8fBNnjdvKp71LmmNNaZ4uVQsb8rdFJYIOo=
-X-Google-Smtp-Source: AGHT+IFKusugj09oQnp9NpXBcifIGBL/eVnUVf9cqpzcQB8kf8S6jDXbypheiLjFnnlV7TVXnUSpu4+1O712hBu13X4=
-X-Received: by 2002:a17:90a:a005:b0:2c2:f044:e1a7 with SMTP id
- 98e67ed59e1d1-2c2f044e21emr4496434a91.22.1718036441730; Mon, 10 Jun 2024
- 09:20:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718037312; x=1718642112;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cc4iSjStJs7EV8K744p1YasF277T1ifmpnzLTWadDyw=;
+        b=oQeT3348kQTgx08ezMWTJs6Tt8H2RduxF1VzHzBF3eD8/LhWm57ac14M6agA3OnrHX
+         DI9PbgF+IX4F4EL2Ux6MaedxfcqMeRm5IfW8E8MOshGQ0zJ3fH0LJnZUndsl3QQ/h5Zz
+         ckpmPV/oySsjykwBTYE2W82/M3UKneBRWWo8rTlncBhHqrVKucH1536plzw96RtV6BIC
+         VyOeCPlzoNzvqlldhQGSjMkrsJ+Sb4MTg8l1ysWS6jS9ktBdorZoLgRDdSdpIUKooSVx
+         I+5NDH4rc0ffVJMqKZXGbIPtIeOQoCQHfyhRIEsrHLjKaFTTvnJ0lkvNAocwGy0vbrxE
+         ngFA==
+X-Gm-Message-State: AOJu0YwNpnEybgZa2FD+bKae2PQpojMzbx1doX4U64hrrY7vRH7/pi4V
+	WbPK1D0QFS5SrBafOKP8u35ssQz8V3K2MBDMxpiUpuBiFE0MlI8+l3OTxfb5UIZVU4//8QoW4Si
+	jlLwxwcIvSYhirJn9MVGS8VfwFU7c61Kh
+X-Google-Smtp-Source: AGHT+IGMC44pG1TUkQnlzn7UfnsrScxv7iHICrHt/YNzmeQ7cLXYp/G8wzWRCjwCVvuVZBPQfdkzpYlLwJCf5d3ULSI=
+X-Received: by 2002:a05:651c:8a:b0:2e6:f619:8363 with SMTP id
+ 38308e7fff4ca-2eadceadb17mr53999731fa.51.1718037312243; Mon, 10 Jun 2024
+ 09:35:12 -0700 (PDT)
 MIME-Version: 1.0
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Mon, 10 Jun 2024 18:20:30 +0200
-Message-ID: <CAGAf8LxDDNaS6OXvDcYfs1A9mH8iAjH6kZ=PhfU2qT+wNZ8xaw@mail.gmail.com>
-Subject: Kernel mainline recipe does produce lot of warnings
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="000000000000d22fc1061a8b8732"
+References: <CAGAf8LxDDNaS6OXvDcYfs1A9mH8iAjH6kZ=PhfU2qT+wNZ8xaw@mail.gmail.com>
+In-Reply-To: <CAGAf8LxDDNaS6OXvDcYfs1A9mH8iAjH6kZ=PhfU2qT+wNZ8xaw@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Mon, 10 Jun 2024 18:35:00 +0200
+Message-ID: <CA+chaQf8e2yH_WVg+yYh=1=o_xV-Hf6pRH=33UQtDEMdnbNb=Q@mail.gmail.com>
+Subject: Re: [yocto] Kernel mainline recipe does produce lot of warnings
+To: yocto@lists.yoctoproject.org, zoran.stojsavljevic@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 16:32:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63306
+ <yocto@lists.yoctoproject.org>; Mon, 10 Jun 2024 16:35:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63307
 
---000000000000d22fc1061a8b8732
-Content-Type: text/plain; charset="UTF-8"
+> What am I missing here???
 
-Hello Yocto Community,
+dot after 6.10 in the PV to match your PREFERRED_VERSION.
 
-I decided to expand a bit my knowledge about mainline kernels. So for
-the last few days I have been trying to make a 6.10-rc2 kernel to work
-with YOCTO.
-
-Somehow I did it, but I got tons of warnings, which I could not figure
-out why this really happens.
-
-Here is how ny kernel recipe looks alike:
-https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/recipes-kernel/linux/linux-mainline_6.10.bb
-
-The local.conf is:
-https://github.com/ZoranStojsavljevic/bbb-yocto/blob/scarthgap/bbb-releases/bbb-scarthgap/local.conf
-
-And the whole .log is attached to this @: kernel-mainline.log
-
-WARNING: preferred version 6.10.% of linux-mainline not available (for
-item virtual/kernel)
-WARNING: versions of linux-mainline available: 6.10-rc2
-WARNING: preferred version 6.10.% of linux-mainline not available (for
-item kernel-modules)
-WARNING: versions of linux-mainline available: 6.10-rc2
-WARNING: preferred version 6.10.% of linux-mainline not available (for
-item kernel-base)
-WARNING: versions of linux-mainline available: 6.10-rc2
-WARNING: preferred version 6.10.% of linux-mainline not available (for
-item kernel-image-zimage)
-WARNING: versions of linux-mainline available: 6.10-rc2
-...
-
-Any reason/bug why this is happening?
-
-What am I missing here???
-
-Thank you,
-Zee
-_______
-
---000000000000d22fc1061a8b8732
-Content-Type: text/x-log; charset="US-ASCII"; name="kernel-mainline.log"
-Content-Disposition: attachment; filename="kernel-mainline.log"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lx96er310>
-X-Attachment-Id: f_lx96er310
-
-Yml0YmFrZSAtayBjb3JlLWltYWdlLW1pbmltYWwKV0FSTklORzogSG9zdCBkaXN0cmlidXRpb24g
-ImZlZG9yYS00MCIgaGFzIG5vdCBiZWVuIHZhbGlkYXRlZCB3aXRoIHRoaXMgdmVyc2lvbiBvZiB0
-aGUgYnVpbGQgc3lzdGVtOyB5b3UgbWF5IHBvc3NpYmx5IGV4cGVyaWVuY2UgdW5leHBlY3RlZCBm
-YWlsdXJlcy4gSXQgaXMgcmVjb21tZW5kZWQgdGhhdCB5b3UgdXNlIGEgdGVzdGVkIGRpc3RyaWJ1
-dGlvbi4KTG9hZGluZyBjYWNoZTogMTAwJSB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICB8IEVUQTogIC0tOi0tOi0tCkxvYWRlZCAwIGVudHJp
-ZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLgpQYXJzaW5nIHJlY2lwZXM6IDEwMCUgfCMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6
-MDM6NTcKUGFyc2luZyBvZiAyODEwIC5iYiBmaWxlcyBjb21wbGV0ZSAoMCBjYWNoZWQsIDI4MTAg
-cGFyc2VkKS4gNDcxMyB0YXJnZXRzLCAxMzcgc2tpcHBlZCwgMCBtYXNrZWQsIDAgZXJyb3JzLgpO
-T1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXMKV0FSTklO
-RzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFi
-bGUgKGZvciBpdGVtIHZpcnR1YWwva2VybmVsKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1t
-YWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYu
-MTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9k
-dWxlcykKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEw
-LXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUg
-bm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLWJhc2UpCldBUk5JTkc6IHZlcnNpb25zIG9m
-IGxpbnV4LW1haW5saW5lIGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZl
-cnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtl
-cm5lbC1pbWFnZS16aW1hZ2UpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2
-YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxp
-bnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1pbWFnZSkKV0FSTklO
-RzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5H
-OiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbGliYy1oZWFkZXJzIG5vdCBhdmFp
-bGFibGUgKGZvciBpdGVtIGxpbnV4LWxpYmMtaGVhZGVycykKV0FSTklORzogdmVyc2lvbnMgb2Yg
-bGludXgtbGliYy1oZWFkZXJzIGF2YWlsYWJsZTogNi42CldBUk5JTkc6IHByZWZlcnJlZCB2ZXJz
-aW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJu
-ZWwtZGV2aWNldHJlZSkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxh
-YmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgt
-bWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1uZnNkKQpXQVJO
-SU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5J
-Tkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1saWJjLWhlYWRlcnMgbm90IGF2
-YWlsYWJsZSAoZm9yIGl0ZW0gbGludXgtbGliYy1oZWFkZXJzLWRldikKV0FSTklORzogdmVyc2lv
-bnMgb2YgbGludXgtbGliYy1oZWFkZXJzIGF2YWlsYWJsZTogNi42CldBUk5JTkc6IHByZWZlcnJl
-ZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRl
-bSBrZXJuZWwtbW9kdWxlLWxvb3ApCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5l
-IGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9m
-IGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtYXV0
-b2ZzNCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEw
-LXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUg
-bm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1pcHY2KQpXQVJOSU5HOiB2ZXJz
-aW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZl
-cnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3Ig
-aXRlbSBrZXJuZWwtbW9kdWxlLWRtLW1vZCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFp
-bmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEw
-LiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVs
-ZS1zY2gtZnEtY29kZWwpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2YWls
-YWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4
-LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtYmluZm10LW1p
-c2MpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2YWlsYWJsZTogNi4xMC1y
-YzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5v
-dCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtdW5peCkKV0FSTklORzogdmVyc2lv
-bnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJy
-ZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0
-ZW0ga2VybmVsLW1vZHVsZS10dW4pCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5l
-IGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9m
-IGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtc2Qt
-bW9kKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAt
-cmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBu
-b3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLWFsZ2lmLWhhc2gpCldBUk5JTkc6
-IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzog
-cHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUg
-KGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtc2NzaS1kZWJ1ZykKV0FSTklORzogdmVyc2lvbnMgb2Yg
-bGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVy
-c2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2Vy
-bmVsLW1vZHVsZS1pcDYtdGFibGVzKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGlu
-ZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBv
-ZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLW5m
-LW5hdCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEw
-LXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUg
-bm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1uZi1kZWZyYWctaXB2NCkKV0FS
-TklORzogdmVyc2lvbnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJO
-SU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWls
-YWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVsZS1pcHRhYmxlLW5hdCkKV0FSTklORzogdmVyc2lv
-bnMgb2YgbGludXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJy
-ZWQgdmVyc2lvbiA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0
-ZW0ga2VybmVsLW1vZHVsZS1pcC10YWJsZXMpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1h
-aW5saW5lIGF2YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4x
-MC4lIG9mIGxpbnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1
-bGUtaXB0LW1hc3F1ZXJhZGUpCldBUk5JTkc6IHZlcnNpb25zIG9mIGxpbnV4LW1haW5saW5lIGF2
-YWlsYWJsZTogNi4xMC1yYzIKV0FSTklORzogcHJlZmVycmVkIHZlcnNpb24gNi4xMC4lIG9mIGxp
-bnV4LW1haW5saW5lIG5vdCBhdmFpbGFibGUgKGZvciBpdGVtIGtlcm5lbC1tb2R1bGUtaXA2dGFi
-bGUtZmlsdGVyKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6
-IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlu
-bGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLXgtdGFibGVzKQpXQVJO
-SU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5J
-Tkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxh
-YmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLWlwdGFibGUtZmlsdGVyKQpXQVJOSU5HOiB2ZXJz
-aW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCldBUk5JTkc6IHByZWZl
-cnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlubGluZSBub3QgYXZhaWxhYmxlIChmb3Ig
-aXRlbSBrZXJuZWwtbW9kdWxlLW5mLWNvbm50cmFjaykKV0FSTklORzogdmVyc2lvbnMgb2YgbGlu
-dXgtbWFpbmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lv
-biA2LjEwLiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVs
-LW1vZHVsZS1uZi1jb25udHJhY2staXB2NCkKV0FSTklORzogdmVyc2lvbnMgb2YgbGludXgtbWFp
-bmxpbmUgYXZhaWxhYmxlOiA2LjEwLXJjMgpXQVJOSU5HOiBwcmVmZXJyZWQgdmVyc2lvbiA2LjEw
-LiUgb2YgbGludXgtbWFpbmxpbmUgbm90IGF2YWlsYWJsZSAoZm9yIGl0ZW0ga2VybmVsLW1vZHVs
-ZS1ib25kaW5nKQpXQVJOSU5HOiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6
-IDYuMTAtcmMyCldBUk5JTkc6IHByZWZlcnJlZCB2ZXJzaW9uIDYuMTAuJSBvZiBsaW51eC1tYWlu
-bGluZSBub3QgYXZhaWxhYmxlIChmb3IgaXRlbSBrZXJuZWwtbW9kdWxlLWR1bW15KQpXQVJOSU5H
-OiB2ZXJzaW9ucyBvZiBsaW51eC1tYWlubGluZSBhdmFpbGFibGU6IDYuMTAtcmMyCgpCdWlsZCBD
-b25maWd1cmF0aW9uOgpCQl9WRVJTSU9OICAgICAgICAgICA9ICIyLjguMCIKQlVJTERfU1lTICAg
-ICAgICAgICAgPSAieDg2XzY0LWxpbnV4IgpOQVRJVkVMU0JTVFJJTkcgICAgICA9ICJmZWRvcmEt
-NDAiClRBUkdFVF9TWVMgICAgICAgICAgID0gImFybS1wb2t5LWxpbnV4LWdudWVhYmkiCk1BQ0hJ
-TkUgICAgICAgICAgICAgID0gImJlYWdsZWJvbmUiCkRJU1RSTyAgICAgICAgICAgICAgID0gInBv
-a3kiCkRJU1RST19WRVJTSU9OICAgICAgID0gIjUuMC4xIgpUVU5FX0ZFQVRVUkVTICAgICAgICA9
-ICJhcm0gdmZwIGNvcnRleGE4IG5lb24gY2FsbGNvbnZlbnRpb24taGFyZCIKVEFSR0VUX0ZQVSAg
-ICAgICAgICAgPSAiaGFyZCIKbWV0YSAgICAgICAgICAgICAgICAgCm1ldGEtcG9reSAgICAgICAg
-ICAgIAptZXRhLXlvY3RvLWJzcCAgICAgICA9ICJzY2FydGhnYXA6ODM3OTNjY2Q4NjVlM2U3MjU2
-M2U2ZDU3MzNiNmJkMDI5NDNmZWI4YSIKbWV0YS1qdW1wbm93ICAgICAgICAgPSAic2NhcnRoZ2Fw
-OjNlZmIxYWE3ZDUxMWYwZmI0NGQ5ZGNkYjU3OGJhZGExODgyZGMxYjMiCm1ldGEtYmJiICAgICAg
-ICAgICAgID0gInNjYXJ0aGdhcDphZmY1MmZmNDFmMWMxMGZmOTUwYTk0MmJhZTE3NmU0NTA0MDZj
-Yjg3IgptZXRhLW9lICAgICAgICAgICAgICAKbWV0YS1weXRob24gICAgICAgICAgCm1ldGEtbmV0
-d29ya2luZyAgICAgID0gInNjYXJ0aGdhcDo0YTdiYjc3ZjdlYmUwYWM4YmU1YmFiNTEwM2Q4YmQ5
-OTNlMTdlMThkIgptZXRhLXF0NSAgICAgICAgICAgICA9ICJ1cHN0cmVhbS9zY2FydGhnYXA6ZDhl
-ZWVmMGJmZDg0NjcyYzc5MTljZDM0NmYyNWY3YzlhOThkZGFlYSIKbWV0YS1zb2NrZXRjYW4gICAg
-ICAgPSAic2NhcnRoZ2FwOjdiYmE3YWY4NDAzZWI5YTI4ZTdkMGU3ZjBkMDIyOWUzYmZmY2Y2NWEi
-CgpTc3RhdGUgc3VtbWFyeTogV2FudGVkIDIzOTkgTG9jYWwgMCBNaXJyb3JzIDAgTWlzc2VkIDIz
-OTkgQ3VycmVudCAwICgwJSBtYXRjaCwgMCUgY29tcGxldGUpMDAKSW5pdGlhbGlzaW5nIHRhc2tz
-OiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjfCBUaW1lOiAwOjAwOjA0Ck5PVEU6IEV4ZWN1dGluZyBUYXNrcwpXQVJOSU5HOiBsaWJwbmct
-MS42LjQyLXIwIGRvX2ZldGNoOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHBzOi8vZG93bmxvYWRz
-LnNvdXJjZWZvcmdlLm5ldC9wcm9qZWN0L2xpYnBuZy9saWJwbmcxNi9saWJwbmctMS42LjQyLnRh
-ci54eiwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZQpOT1RFOiBUYXNrcyBTdW1tYXJ5
-OiBBdHRlbXB0ZWQgNDk4NSB0YXNrcyBvZiB3aGljaCA2IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVu
-IGFuZCBhbGwgc3VjY2VlZGVkLgoKU3VtbWFyeTogVGhlcmUgd2VyZSA2OCBXQVJOSU5HIG1lc3Nh
-Z2VzLgo=
-
---000000000000d22fc1061a8b8732--
+On Mon, Jun 10, 2024 at 6:32=E2=80=AFPM Zoran via lists.yoctoproject.org
+<zoran.stojsavljevic=3Dgmail.com@lists.yoctoproject.org> wrote:
+>
+> Hello Yocto Community,
+>
+> I decided to expand a bit my knowledge about mainline kernels. So for
+> the last few days I have been trying to make a 6.10-rc2 kernel to work
+> with YOCTO.
+>
+> Somehow I did it, but I got tons of warnings, which I could not figure
+> out why this really happens.
+>
+> Here is how ny kernel recipe looks alike:
+> https://github.com/ZoranStojsavljevic/meta-bbb/blob/scarthgap/recipes-ker=
+nel/linux/linux-mainline_6.10.bb
+>
+> The local.conf is:
+> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/scarthgap/bbb-releas=
+es/bbb-scarthgap/local.conf
+>
+> And the whole .log is attached to this @: kernel-mainline.log
+>
+> WARNING: preferred version 6.10.% of linux-mainline not available (for
+> item virtual/kernel)
+> WARNING: versions of linux-mainline available: 6.10-rc2
+> WARNING: preferred version 6.10.% of linux-mainline not available (for
+> item kernel-modules)
+> WARNING: versions of linux-mainline available: 6.10-rc2
+> WARNING: preferred version 6.10.% of linux-mainline not available (for
+> item kernel-base)
+> WARNING: versions of linux-mainline available: 6.10-rc2
+> WARNING: preferred version 6.10.% of linux-mainline not available (for
+> item kernel-image-zimage)
+> WARNING: versions of linux-mainline available: 6.10-rc2
+> ...
+>
+> Any reason/bug why this is happening?
+>
+> What am I missing here???
+>
+> Thank you,
+> Zee
+> _______
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63306): https://lists.yoctoproject.org/g/yocto/messag=
+e/63306
+> Mute This Topic: https://lists.yoctoproject.org/mt/106596446/3617156
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [martin.jansa@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
