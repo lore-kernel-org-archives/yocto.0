@@ -1,106 +1,133 @@
-Return-Path: <scott.murray@konsulko.com>
+Return-Path: <pandeymayank96@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EDB85C27C53
-	for <webhook@archiver.kernel.org>; Wed, 12 Jun 2024 17:20:55 +0000 (UTC)
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
- by mx.groups.io with SMTP id smtpd.web10.237.1718212847973957302
- for <yocto@lists.yoctoproject.org>;
- Wed, 12 Jun 2024 10:20:48 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=AjYscn3Z;
- spf=pass (domain: konsulko.com, ip: 209.85.222.180, mailfrom: scott.murray@konsulko.com)
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7955aaf8006so2519085a.1
-        for <yocto@lists.yoctoproject.org>; Wed, 12 Jun 2024 10:20:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1718212847; x=1718817647; darn=lists.yoctoproject.org;
-        h=mime-version:references:message-id:in-reply-to:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GOpWKWramxyQEFew99hsoysEj+5IYupi6XK3/qGo8po=;
-        b=AjYscn3ZtVUkQ0j/HYCvjeDA11oJb2+91WymD+il+27K37iWIQUNuhzbTZfB96+zjJ
-         Grbtn5k1SOz1dHAKmh7WNSPTobTuqZ4XOS4M8db2yD1rXVUWHsGCfuoaja7SV0T3r6Yr
-         JanOupoawwuKvZ7gBGgNKzQvNJQjkbDWUyB+E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718212847; x=1718817647;
-        h=mime-version:references:message-id:in-reply-to:subject:cc:to:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GOpWKWramxyQEFew99hsoysEj+5IYupi6XK3/qGo8po=;
-        b=rmVPemn0huW5BR4sPYGMP0PDt3xLHhBJiqnP0yYP23jTaJDPj2a+9NP0cbwQXqkT5O
-         VIuMo/0D9UNPCVH+IgKYbUssaRK5mPj+ayzpeRlrPFuP0GpPGWH4ya4GUjPc8b1enFKZ
-         Afl7mdqm5A71zZkOhrQG6jcoAUd5MuLyvCpWHk1nnWl4D0vjDLwrOUawGRqJXGklp67v
-         bYQj5po2PqiNhMCj2ia0pwbR46rknULhYWKE0afPvAciYYXNoO6GnSkFPIMs5QT5/Bo8
-         KH/FLB4tbLZLndTORLkrKBt13x1s+rgmntgGnsaSLA+8IV5iaOydidX+31HXoZdXSDai
-         6BEw==
-X-Gm-Message-State: AOJu0YzfnV7isFM1b4n3zOIDF9NR/nJXjX2OgII+WicHiO8Hq4LDC+JP
-	4fKH7mfbnN4Bm/goHw3/gUMt8wveViSL9t/GRj8MkfE0Yu97WkSlcO9XUTDDGOdptMrp+Iiym1V
-	/
-X-Google-Smtp-Source: AGHT+IHkLLF9cgqqfFyFE1wRSfg1+dFFwiAOO9mRj3dnSlRV36WZHm5p30m+OzVzXxzkE11H3FFvvQ==
-X-Received: by 2002:a05:620a:3913:b0:794:f1d8:2798 with SMTP id af79cd13be357-797f61680edmr278018385a.43.1718212846613;
-        Wed, 12 Jun 2024 10:20:46 -0700 (PDT)
-Received: from godzilla (107-179-213-3.cpe.teksavvy.com. [107.179.213.3])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-795332e1cddsm612655485a.132.2024.06.12.10.20.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jun 2024 10:20:46 -0700 (PDT)
-Date: Wed, 12 Jun 2024 13:20:45 -0400 (EDT)
-From: Scott Murray <scott.murray@konsulko.com>
-To: Steve Sakoman <steve@sakoman.com>
-cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [yocto-autobuilder-helper] config-json: use master branch
- for meta-agl
-In-Reply-To: <CAOSpxdYUbOAh+gAu3cUN+U0TxoO87iDot+i7DrUw0TfoiGCPTQ@mail.gmail.com>
-Message-ID: <b9a9b8d6-6dd0-23f6-a5a5-2b16e8bb00e0@konsulko.com>
-References: <cover.1718202342.git.steve@sakoman.com> <e9bb457701c3b1878bf236e2b13cf4d17fd5c9c8.1718202342.git.steve@sakoman.com> <c304afdf-e085-d81d-c317-4d89d5823571@konsulko.com> <CAOSpxdYUbOAh+gAu3cUN+U0TxoO87iDot+i7DrUw0TfoiGCPTQ@mail.gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F23EC27C4F
+	for <webhook@archiver.kernel.org>; Thu, 13 Jun 2024 09:01:31 +0000 (UTC)
+Subject: [yocto] [scarthgap] Failure with python + ncurses combination with Yocto 5.0 (and even 4.3) upgrades #yocto
+To: yocto@lists.yoctoproject.org
+From: "Mayank Pandey" <pandeymayank96@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (202.164.25.5)
+X-Originating-Platform: Mac Chrome 125
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="-1463811583-1206277869-1718212846=:4206"
+Date: Thu, 13 Jun 2024 02:01:27 -0700
+Message-ID: <mzo3.1718269287097313595.M9xy@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="SF60MneryBYC1HDXpcwG"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 12 Jun 2024 17:20:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63336
+ <yocto@lists.yoctoproject.org>; Thu, 13 Jun 2024 09:01:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63337
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--SF60MneryBYC1HDXpcwG
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
----1463811583-1206277869-1718212846=:4206
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Hello Yocto experts
 
-On Wed, 12 Jun 2024, Steve Sakoman wrote:
+I am trying to upgrade my custom bsp layer working on Yocto 4.0 (kirkstone)=
+ branch to Yocto 5.0 (scarthgap). I have made all the necessary modificatio=
+ns to the custom recipes based on the 5.0 patch notes. I am facing an error=
+ with the python3 version of scarthgap not being able to build ncurses modu=
+le due to implicit declaration error. I tried the same with 4.3 branch (nan=
+bield) as well, which gave me the same error. The error snippet is as follo=
+ws (error is from python3 do_install step)
+>=20
+>=20
+> NOTE: Skipping as already exists in sysroot: ['openssl', 'expat',
+> 'gettext-minimal-native', 'glibc', 'libxcrypt', 'ncurses',
+> 'util-linux-libuuid', 'zlib', 'binutils-cross-aarch64', 'cmake-native',
+> 'gcc-cross-aarch64', 'gcc-runtime', 'libgcc', 'libedit', 'libtool-cross',
+> 'libtool-native', 'm4-native', 'opkg-utils', 'quilt-native', 'bzip2',
+> 'libnsl2', 'libtirpc', 'texinfo-dummy-native', 'xz', 'linux-libc-headers'=
+,
+> 'gdbm', 'libffi', 'sqlite3', 'openssl-native', 'expat-native',
+> 'ncurses-native', 'util-linux-libuuid-native', 'zlib-native',
+> 'autoconf-archive-native', 'autoconf-native', 'automake-native',
+> 'flex-native', 'gnu-config-native', 'libedit-native', 'make-native',
+> 'patch-native', 'perl-native', 'pkgconfig-native', 'pseudo-native',
+> 'python3-native', 'bzip2-native', 'libnsl2-native', 'libtirpc-native',
+> 'xz-native', 'zstd-native', 'attr-native', 'gdbm-native', 'gmp-native',
+> 'libffi-native', 'libmpc-native', 'mpfr-native', 'sqlite3-native']DEBUG:
+> Python function extend_recipe_sysroot finishedDEBUG: Executing python
+> function autotools_aclocalsDEBUG: SITE files ['endian-little', 'bit-64',
+> 'arm-common', 'arm-64', 'common-linux', 'common-glibc', 'aarch64-linux',
+> 'common']DEBUG: Python function autotools_aclocals finishedDEBUG:
+> Executing shell function do_installFailed to build these modules:_curses
 
-> On Wed, Jun 12, 2024 at 8:30 AM Scott Murray <scott.murray@konsulko.com> wrote:
-> >
-> > On Wed, 12 Jun 2024, Steve Sakoman via lists.yoctoproject.org wrote:
-> >
-> > > scarthgap is no longer supported on next branch
-> > >
-> > > Signed-off-by: Steve Sakoman <steve@sakoman.com>
-> > > ---
-> > >  config.json | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/config.json b/config.json
-> > > index fbf2e6c..2089fa9 100644
-> > > --- a/config.json
-> > > +++ b/config.json
-> > > @@ -1853,7 +1853,7 @@
-> > >          },
-> > >          "meta-agl": {
-> > >              "url" : "https://git.automotivelinux.org/AGL/meta-agl",
-> > > -            "branch" : "next",
-> > > +            "branch" : "master",
-> > >              "revision" : "HEAD",
-> > >              "no-layer-add" : true
-> > >          },
-> >
-> > Is this patch missing a "[scarthgap]"?  I ask because it makes sense for
-> > the yocto-autobuilder-helper scarthgap branch, but master AB will need to
-> > keep using meta-agl's next branch.
->
-> Yes, indeed, I did forget the [scarthgap] tag.  Sorry about that!
+Now I dug a little deeper to get the error from the do_install step, and fo=
+und that the _curses module had failed in compilation step itself but the c=
+ompilation continuer, and then it failed in the do_install step.
+The do_compile logs are as below:
 
-No worries. Thanks for fixing up the config.
+>=20
+> /dvs/container/cm/git-master_yocto/yocto/build/tmp/work/armv8a-gnu-linux/=
+python3/3.11.5/Python-3.11.5/Modules/_cursesmodule.c:3398:35:
+> error: implicit declaration of function 'setupterm'; did you mean
+> 'set_term'? [-Werror=3Dimplicit-function-declaration]=C2=A03398 | =C2=A0 =
+=C2=A0 if
+> (!initialised_setupterm && setupterm((char *)term, fd, &err) =3D=3D ERR) =
+{=C2=A0 =C2=A0=20
+> | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~~=C2=A0 =C2=A0 =C2=
+=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0
+> set_term
 
-Scott
----1463811583-1206277869-1718212846=:4206--
+Does anyone know what could be the root cause of this issue?
+One more thing to not is that the error is intermittent - but with a very l=
+ow passing rate of ~5-10% (90-95 % of the build fails with the upgrade).
+Thanks for any inputs
+
+--SF60MneryBYC1HDXpcwG
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Yocto experts<br /><br />I am trying to upgrade my custom bsp layer w=
+orking on Yocto 4.0 (kirkstone) branch to Yocto 5.0 (scarthgap). I have mad=
+e all the necessary modifications to the custom recipes based on the 5.0 pa=
+tch notes. I am facing an error with the python3 version of scarthgap not b=
+eing able to build ncurses module due to implicit declaration error. I trie=
+d the same with 4.3 branch (nanbield) as well, which gave me the same error=
+. The error snippet is as follows (error is from python3 do_install step)&n=
+bsp;
+<blockquote>NOTE: Skipping as already exists in sysroot: ['openssl', 'expat=
+', 'gettext-minimal-native', 'glibc', 'libxcrypt', 'ncurses', 'util-linux-l=
+ibuuid', 'zlib', 'binutils-cross-aarch64', 'cmake-native', 'gcc-cross-aarch=
+64', 'gcc-runtime', 'libgcc', 'libedit', 'libtool-cross', 'libtool-native',=
+ 'm4-native', 'opkg-utils', 'quilt-native', 'bzip2', 'libnsl2', 'libtirpc',=
+ 'texinfo-dummy-native', 'xz', 'linux-libc-headers', 'gdbm', 'libffi', 'sql=
+ite3', 'openssl-native', 'expat-native', 'ncurses-native', 'util-linux-libu=
+uid-native', 'zlib-native', 'autoconf-archive-native', 'autoconf-native', '=
+automake-native', 'flex-native', 'gnu-config-native', 'libedit-native', 'ma=
+ke-native', 'patch-native', 'perl-native', 'pkgconfig-native', 'pseudo-nati=
+ve', 'python3-native', 'bzip2-native', 'libnsl2-native', 'libtirpc-native',=
+ 'xz-native', 'zstd-native', 'attr-native', 'gdbm-native', 'gmp-native', 'l=
+ibffi-native', 'libmpc-native', 'mpfr-native', 'sqlite3-native']DEBUG: Pyth=
+on function extend_recipe_sysroot finishedDEBUG: Executing python function =
+autotools_aclocalsDEBUG: SITE files ['endian-little', 'bit-64', 'arm-common=
+', 'arm-64', 'common-linux', 'common-glibc', 'aarch64-linux', 'common']DEBU=
+G: Python function autotools_aclocals finishedDEBUG: Executing shell functi=
+on do_installFailed to build these modules:_curses</blockquote>
+<br />Now I dug a little deeper to get the error from the do_install step, =
+and found that the _curses module had failed in compilation step itself but=
+ the compilation continuer, and then it failed in the do_install step.&nbsp=
+;<br />The do_compile logs are as below:&nbsp;<br />
+<blockquote>/dvs/container/cm/git-master_yocto/yocto/build/tmp/work/armv8a-=
+gnu-linux/python3/3.11.5/Python-3.11.5/Modules/_cursesmodule.c:3398:35: err=
+or: implicit declaration of function 'setupterm'; did you mean 'set_term'? =
+[-Werror=3Dimplicit-function-declaration]&nbsp;3398 | &nbsp; &nbsp; if (!in=
+itialised_setupterm &amp;&amp; setupterm((char *)term, fd, &amp;err) =3D=3D=
+ ERR) {&nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^=
+~~~~~~~~&nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+set_term</blockquote>
+<br />Does anyone know what could be the root cause of this issue? <br />On=
+e more thing to not is that the error is intermittent - but with a very low=
+ passing rate of ~5-10% (90-95 % of the build fails with the upgrade).<br /=
+>Thanks for any inputs&nbsp;
+
+--SF60MneryBYC1HDXpcwG--
 
