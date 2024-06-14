@@ -1,107 +1,95 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <wangmy@fujitsu.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EA0B0C27C75
-	for <webhook@archiver.kernel.org>; Fri, 14 Jun 2024 09:20:07 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web10.7225.1718356798494794050
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B403BC41513
+	for <webhook@archiver.kernel.org>; Fri, 14 Jun 2024 09:26:47 +0000 (UTC)
+Received: from esa7.hc1455-7.c3s2.iphmx.com (esa7.hc1455-7.c3s2.iphmx.com [139.138.61.252])
+ by mx.groups.io with SMTP id smtpd.web11.7480.1718357198707042852
  for <yocto@lists.yoctoproject.org>;
- Fri, 14 Jun 2024 02:19:58 -0700
+ Fri, 14 Jun 2024 02:26:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=HtatCFAj;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52bc121fb1eso2470359e87.1
-        for <yocto@lists.yoctoproject.org>; Fri, 14 Jun 2024 02:19:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718356797; x=1718961597; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7+b4ctLjKWoqQzow+gws+mgIAkHCYg6ZXi8mK0GHwJ4=;
-        b=HtatCFAjulZiHgCElu2IAHudGklEEa9I2EFBitrsnOQSgKxfEhOSTAZI8zKkNlOyxx
-         GbuQ0KlQy76UeLqTThbuByd0zT/Ly6kGW2bmDSPbZF77JNYVbOoE+KUFX+qdxrjc5jmL
-         dJb3wnEDxjKD/ciYzZ/NW9teEM4+oq7CrncraSDxzzJApugHv1F8oWatP678o/8YkIkJ
-         OJZ35D5w6U3YSwErrtHuJo9QE/iDMDjEuNdaoyOGgg7U7MHtfj+JF9ZRP5t5xq66PkwT
-         JWMef4hfDLRcYB9R9B+YQFLJ9/PxBd9+27h1BoanM96zySknm30DGw0gUa40+yi0UNxq
-         1lgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718356797; x=1718961597;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+b4ctLjKWoqQzow+gws+mgIAkHCYg6ZXi8mK0GHwJ4=;
-        b=UBhWtgfU0M+SrA1jXOCRQhMl08OBA59ppGVIv7/4EmTDMtHHyVFGovHEsavFkByMe6
-         1HMR40dfkm36dTqxx2FjGcHvRdmuEqY9SN8SvFaZ8eThU2pUXpt9fUxz5WXSn/rZsbOf
-         lmbl+3E+3JcIEKyk4yJRUFVtxzlvAcLqYe9CVx98cRstN4T2yvLcrp/bqjeDl89FiSPg
-         Vs4ympkT8SINOkAjm3GxrsyDaNtNfu7lffri+WiqoZZCBhDvIDD36+Rm34sVft0qDviH
-         EhI2pZKK+/coAK4kPQOv3SHRMONTluc/cuss8p9bvZFGgk08JLeonPUf43qP4Y8s9s2l
-         81MA==
-X-Gm-Message-State: AOJu0YwQesaY7DN4toReTcXuPzHIGBHqVJaSgHppAzJUlnCKhM7d8Bbj
-	5re/KpH1v3QIAwHtnAhy72ro83BhxIDgR3XsZsCa9MWfsBuivr9QythZFMJ3ACm1WgqHTc2HmNV
-	4Vv1Dv9cbCX9lPmnZSunKAwNkUh4zIQ==
-X-Google-Smtp-Source: AGHT+IEsxwWQ9beoOlkvc60sAkZkeqIG1CxlIvPaWADIib3sod9ss43m/T4QXwr2QJ5h7K/T3qGcUjZlU5alG8UPnk4=
-X-Received: by 2002:a05:6512:114a:b0:52c:a809:62e9 with SMTP id
- 2adb3069b0e04-52ca80963f5mr1356378e87.0.1718356796367; Fri, 14 Jun 2024
- 02:19:56 -0700 (PDT)
+ dkim=pass header.i=@fujitsu.com header.s=fj2 header.b=Zdow0dHb;
+ spf=pass (domain: fujitsu.com, ip: 139.138.61.252, mailfrom: wangmy@fujitsu.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
+  t=1718357198; x=1749893198;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JpsW4/vkNZnAizI/btrrwUlC4wuN37/VAK0egvP2990=;
+  b=Zdow0dHbvCna4hTT0CVFd5fnkkFuitynxv0Y3oKgSmtKaMhaIK6MFj4N
+   QVgUYVTvixio4J73PphBOigxqNyKV8KKj27SJYNNjIrcmFPecT6nYUCUj
+   1RvAaPWMmrqYo0O3+m+4LltFxkacDtyEuXBt476cLvSEFRgbMfV/ZRBhF
+   DicejOf5ZfiZfY/w1VaNratSklAEOdCzLH2dUjvkcMIfpTHHESJie2qJE
+   rSFGJObWO1SY+3KupnKeqbnqlh9LO6PpWHSHkB5d++e87hEh5W7cc1uN/
+   l5lq323R9srhmcM0e2BF1Xib2g1r5+8SsFG/4rNsjzEgj5KqUV8tsDOu6
+   w==;
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="142074866"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712588400"; 
+   d="scan'208";a="142074866"
+Received: from unknown (HELO yto-r3.gw.nic.fujitsu.com) ([218.44.52.219])
+  by esa7.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 18:26:36 +0900
+Received: from yto-m2.gw.nic.fujitsu.com (yto-nat-yto-m2.gw.nic.fujitsu.com [192.168.83.65])
+	by yto-r3.gw.nic.fujitsu.com (Postfix) with ESMTP id 7F564C2ABD
+	for <yocto@lists.yoctoproject.org>; Fri, 14 Jun 2024 18:26:33 +0900 (JST)
+Received: from kws-ab4.gw.nic.fujitsu.com (kws-ab4.gw.nic.fujitsu.com [192.51.206.22])
+	by yto-m2.gw.nic.fujitsu.com (Postfix) with ESMTP id BED78D50BE
+	for <yocto@lists.yoctoproject.org>; Fri, 14 Jun 2024 18:26:32 +0900 (JST)
+Received: from edo.cn.fujitsu.com (edo.cn.fujitsu.com [10.167.33.5])
+	by kws-ab4.gw.nic.fujitsu.com (Postfix) with ESMTP id 4969CE51AF
+	for <yocto@lists.yoctoproject.org>; Fri, 14 Jun 2024 18:26:32 +0900 (JST)
+Received: from wangmy-QiTianM610-N000.g08.fujitsu.local (unknown [10.167.225.86])
+	by edo.cn.fujitsu.com (Postfix) with ESMTP id DFCB81A000B;
+	Fri, 14 Jun 2024 17:26:31 +0800 (CST)
+From: wangmy@fujitsu.com
+To: yocto@lists.yoctoproject.org
+Cc: Wang Mingyu <wangmy@fujitsu.com>
+Subject: [yocto] [meta-security] [PATCH 1/3] ima-policy-hashed: Start WORKDIR -> UNPACKDIR transition
+Date: Fri, 14 Jun 2024 14:25:05 -0400
+Message-Id: <20240614182507.3323332-1-wangmy@fujitsu.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <CAAfyv358wG_nii0otoSLGQVXT-BzQK4ey2o1YEx6=m4-jqX3fg@mail.gmail.com>
-In-Reply-To: <CAAfyv358wG_nii0otoSLGQVXT-BzQK4ey2o1YEx6=m4-jqX3fg@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 14 Jun 2024 11:19:45 +0200
-Message-ID: <CANNYZj94+pZzmA9Xz6QptqVrie22Z6KZcyE2x6DV4045BzQh+Q@mail.gmail.com>
-Subject: Re: [yocto] glib-2.0 compialtion issue in scarthgap
-To: yocto@lists.yoctoproject.org, marek.belisko@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28452.006
+X-TM-AS-User-Approved-Sender: Yes
+X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28452.006
+X-TMASE-Result: 10--0.416700-10.000000
+X-TMASE-MatchedRID: TtGBFeo3UetAJjQFQUSfYQPZZctd3P4BRzUPAqhCjtiNJ2ckLRg2UeEm
+	ROSC5Th42kgHBGbjCr58eC2pVr1wb4grKnsJ1GRgngIgpj8eDcBpkajQR5gb3mn0m688Eo38Kra
+	uXd3MZDU5lPd4jEgxRucwI8QWQ0/5dVDLN5vd/x+g8/Snz4jlyP+GyzFwCmUk6elXZ+xVjxhkts
+	1qNz+y1P3j8LmGs1Ym8ZhLES3gbAgtPl/iWhS4GBXFEH92Kf64nTtPxlIuIBW9Hzj86YHXBCnif
+	x5AGfCL
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 14 Jun 2024 09:20:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63344
+ <yocto@lists.yoctoproject.org>; Fri, 14 Jun 2024 09:26:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63345
 
-Does the issue occur if you build plain poky with default confuguration?
+From: Wang Mingyu <wangmy@fujitsu.com>
 
-Alex
+Replace references of WORKDIR with UNPACKDIR where it makes sense to do so in preparation for changing the default value of UNPACKDIR.
 
-On Fri, 14 Jun 2024 at 08:37, Marek Belisko via lists.yoctoproject.org
-<marek.belisko=gmail.com@lists.yoctoproject.org> wrote:
->
-> Hi,
->
-> I'm using latest scarthgap release and I'm facing issue with building glib-2.0 with following problem (build for arm64):
->
-> Run-time dependency iconv found: YES
-> | Looking for a fallback subproject for the dependency libpcre2-8 because:
-> | Use of fallback dependencies is forced.
-> | Automatic wrap-based subproject downloading is disabled
-> | Subproject  pcre2 is buildable: NO (disabling)
-> | Dependency libpcre2-8 from subproject pcre2 found: NO (subproject failed to configure)
-> | Looking for a fallback subproject for the dependency libpcre2-8 because:
-> | Use of fallback dependencies is forced.
-> |
-> | ../glib-2.78.6/meson.build:2107:2: ERROR: Subproject "subprojects/pcre2" required but not found.
->
-> Any ideas or suggestions?
->
-> Thanks and regards,
->
-> marek
-> --
-> as simple and primitive as possible
-> -------------------------------------------------
-> Marek Belisko - OPEN-NANDRA
-> Freelance Developer
->
-> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> Tel: +421 915 052 184
-> skype: marekwhite
-> twitter: #opennandra
-> web: http://open-nandra.com
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#63343): https://lists.yoctoproject.org/g/yocto/message/63343
-> Mute This Topic: https://lists.yoctoproject.org/mt/106666097/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
+---
+ .../recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb b/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb
+index 57c0640..8c670e8 100644
+--- a/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb
++++ b/meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb
+@@ -11,7 +11,7 @@ REQUIRED_DISTRO_FEATURES = "ima"
+ 
+ do_install () {
+     install -d ${D}/${sysconfdir}/ima
+-    install ${WORKDIR}/ima_policy_hashed ${D}/${sysconfdir}/ima/ima-policy
++    install ${UNPACKDIR}/ima_policy_hashed ${D}/${sysconfdir}/ima/ima-policy
+ }
+ 
+ FILES:${PN} = "${sysconfdir}/ima"
+-- 
+2.34.1
+
 
