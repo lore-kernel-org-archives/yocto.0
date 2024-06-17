@@ -1,178 +1,291 @@
-Return-Path: <allan.elkaim@gmail.com>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B050AC27C79
-	for <webhook@archiver.kernel.org>; Mon, 17 Jun 2024 17:17:17 +0000 (UTC)
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
- by mx.groups.io with SMTP id smtpd.web11.62490.1718644633527232451
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6E54C27C79
+	for <webhook@archiver.kernel.org>; Mon, 17 Jun 2024 17:22:17 +0000 (UTC)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+ by mx.groups.io with SMTP id smtpd.web10.63170.1718644930700780745
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Jun 2024 10:17:13 -0700
+ Mon, 17 Jun 2024 10:22:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=JpWPihP8;
- spf=pass (domain: gmail.com, ip: 209.85.166.169, mailfrom: allan.elkaim@gmail.com)
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-375ae697210so18412345ab.3
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Jun 2024 10:17:13 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=OwMHomm8;
+ spf=pass (domain: gmail.com, ip: 209.85.222.42, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-80d68861bf9so1594939241.2
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Jun 2024 10:22:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718644632; x=1719249432; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Ms/Y/rAs0zxNA6Tf/r7ih4rxCGU70isDmCyBCvml1PE=;
-        b=JpWPihP8PYay2AsvF62C8RytO/VhRQxcbDvSrvFBagI77p0E49LCYiOt09ESgosmsj
-         +AW3fvbDnDrPJBa2pqqZnsMwTnIoSVLUqpQhfAip/g4Cd/BPbPg73K7iYtTDYTDpBHlR
-         q0jO9h00VtFV9FaYX49oMTSbvnJqU1bgYNlg0MuS9vfAbJAfohmoK+4h47gmR7YmfADm
-         5MliNopjABnz1aVLC56EmevJyn1+NMs3RJRFAEGsPQDcYL0gNTXkjW80NwFDKekU1VCv
-         UBWzfjgjNtJxamJ5DQVWI2Uy1zaGFV9hDX5r1uHD4YRwxwCPAIjDNXsbByKZmog3QPbN
-         IDag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718644632; x=1719249432;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=gmail.com; s=20230601; t=1718644929; x=1719249729; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ms/Y/rAs0zxNA6Tf/r7ih4rxCGU70isDmCyBCvml1PE=;
-        b=SwnSpSCJiG4Y385nJWJNzcdS6/jcyBINXXQ/WyzwuLUqtxyhXPqrE2SGfz/aIMM1w8
-         Ul0x45Kr+G6GktRry384mlFPqxT4aERLG/DOfDI9gZ4m7YKSmh/l8McNM9IJCryG38jC
-         R8T/bq7tWwifgeu0mTgfkZ3YUL6LoDdjMU8y84VEwcpzbEvTy4sZFpjMZqk9XyqFJRLR
-         hsS3GDJ3r0BWGLDuZuAWLjhLZS9v3c9AcFo3JxCfUv8FxIqajvPivaRl9w6hCCeTSi8k
-         5+mfR9bLwzAQqFxJ8OT5QnkqSL2DnbUD8HMV8k6vrZkmzE31933I1RboGTScyzSZU9DA
-         FjCw==
-X-Gm-Message-State: AOJu0YzkjXm7LJHL6rkVm91psfQrAzfXEkYhS8OSp37jVB/9A00p5wMf
-	NwsEs8A5NPECm99HcKYSMNedgE9JRNfkPaqczY3RfqKSVaY6FhfMvt+cS6fWGoTE6z4DTvphHjN
-	q9Bz44IDHYT74MHrEEE9CC3u1ObQFVw==
-X-Google-Smtp-Source: AGHT+IHJzt5Ca+S7ySUT7zGvl2Wi0TQtERbFk3GpoMGSwcWhegh4vUet3sBRLX0Lq8RVziaKuYOMvog52BANOE+AVKo=
-X-Received: by 2002:a05:6e02:1d05:b0:375:9cb9:9cf9 with SMTP id
- e9e14a558f8ab-375e0df8c39mr109885035ab.4.1718644631683; Mon, 17 Jun 2024
- 10:17:11 -0700 (PDT)
+        bh=jfY89wRDmQt5mcnLm4wKsxL4yJTVSEXXKyeyaS8u4XY=;
+        b=OwMHomm856Qybz7sY+cwzHhhNcPa5b/FsUOWEPyuNYROkGA2gBpfvEw04SHtiJg5SG
+         tAsGkOCVj6lq9bL2wk+Q3zTU0HphMPZjqUFI7dRKDhFcyHF21hJbxzWDUekr/qUc3E1K
+         evWo7/CLCOw/sEuJ2huDTyESL0LqWHvkQKzINfu6M7tfmps54CNS4l/DaeWGcJseIw0X
+         WEIkFQXn9PgEFjWED+dZa1pmPPJPHXC3iTNQypcaQ/IBHoYanstJBar4lFpD9qHJ8GwD
+         Q1b29jbJmBsRO7H4U1V4wA1L8u4JkcE3bOti4g86fbp11bRS4hdz7pl7hwHtRafGVRQe
+         j6sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718644929; x=1719249729;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jfY89wRDmQt5mcnLm4wKsxL4yJTVSEXXKyeyaS8u4XY=;
+        b=cVSbEjbQaVl8FabO16YH00cEYnBt0KAjhTShNF8m51s8uJPBTK2zVem9NnsxeG24Pj
+         1BBLnFzq5VGx0Y05wtvkA9Up/Blzo/j2l0YpV7axqw165/D7WOgwzVOiO5XMauUxZMbP
+         8gqv2BKPRGj+8ZizYJiY5BHugSNb0bqI6pfbg5/qcXU7tIF/uoDjtG1cyaNn325ut0nO
+         xbCArCqfmTzVn9sg8u610hjXYV36HydzMU1+dFTl0z8nGifKMkyBKfMhYuzzK/GNkdWa
+         aqQj9eDRxvNmv24TvNc2XZgIS8T1o1c49wQS9WuDlc3t+LPr7na2nYHa/9LAZxzLb8Qf
+         jM6g==
+X-Gm-Message-State: AOJu0YzgjpajdatjnsLRWzaGq06djdhJehH935s5YXdb1JRobL3Z0zQd
+	V0QkPVnUAiVZ5kKYntNpH1OlwjlStC/o1LW2z+Ekvhp3Je8PpX0tkowmMphuqSfOtRLPSLXwf/2
+	J0FSAIIItYGtb9FQ/jplWHe4C+MPTlgY7ouE=
+X-Google-Smtp-Source: AGHT+IHz019fpWrtq/DuQZWQKSGVT5mIwcCoPb/ruxsh38hfBhenAoM2Sq/bAW2ujvYGOGUXT6Y5Pqb1lpA6U8nbLgY=
+X-Received: by 2002:a67:e3b2:0:b0:48d:7126:e27e with SMTP id
+ ada2fe7eead31-48dae3ee3e6mr9762157137.33.1718644929371; Mon, 17 Jun 2024
+ 10:22:09 -0700 (PDT)
 MIME-Version: 1.0
-From: Allan Elkaim <allan.elkaim@gmail.com>
-Date: Mon, 17 Jun 2024 19:16:56 +0200
-Message-ID: <CACgNL-F86ipDKQRynK8+Sjkx48Ww4zkX9R=ns393eJ88EAJaHA@mail.gmail.com>
-Subject: Help needed on SBOM generation using Yocto
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000c44950061b19229e"
+References: <DM8PR11MB5669244330546D6C5C985281EDCD2@DM8PR11MB5669.namprd11.prod.outlook.com>
+In-Reply-To: <DM8PR11MB5669244330546D6C5C985281EDCD2@DM8PR11MB5669.namprd11.prod.outlook.com>
+From: Jose Quaresma <quaresma.jose@gmail.com>
+Date: Mon, 17 Jun 2024 18:21:58 +0100
+Message-ID: <CANPvuRm-EzMib+vgKRiRNB3Y9F=W_qZ2JLo-3Pe8enAnO-MsXQ@mail.gmail.com>
+Subject: Re: [yocto] bb.utils.contains() and 'inherit' issue
+To: yocto@lists.yoctoproject.org, lukasz.zemla@woodward.com
+Content-Type: multipart/alternative; boundary="00000000000082a4c7061b19344e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Jun 2024 17:17:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63352
+ <yocto@lists.yoctoproject.org>; Mon, 17 Jun 2024 17:22:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63353
 
---000000000000c44950061b19229e
+--00000000000082a4c7061b19344e
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Lukasz Zemla via lists.yoctoproject.org <lukasz.zemla=3D
+woodward.com@lists.yoctoproject.org> escreveu (segunda, 17/06/2024 =C3=A0(s=
+)
+18:07):
 
-I am trying to generate an SBOM using Yocto, but I am having issues
-exploiting the result and could really use a hand.
+> Hello,
+>
+> I believe, the bb.utils.contains() statement is being evaluated 'as it
+> goes', so any changes done in .bbappend files will not be reflected in th=
+at
+> expression.
+>
+> For example, I wanted to enable 'privdrop' PACKAGECONFIG for 'chrony'
+> package, however adding PACKAGECONFIG:append =3D "privdrop" in my bbappen=
+d
+> file has not resulted in inheriting the 'useradd' package:
+>
 
-I have done the following steps on a "blank" poky repository on
-the scarthgap branch:
+There is an extra space missing in before the privdrop, the :append
+override does not add the extra space.
 
-   -
+Can you try with:  PACKAGECONFIG:append =3D " privdrop" ?
 
-   git clone git://git.yoctoproject.org/poky
-
-   -
-
-   cd poky
-
-   -
-
-   git checkout origin/scarthgap -b my-branch
-
-   -
-
-   source oe-init-build-env
-
-
-I have then edited my local.conf to include those changes:
-
-INHERIT += "create-spdx"
-SPDX_PRETTY = "1"
+Jose
 
 
-And finally, I compiled the core-image-minimal image for the
-default qemux86-64 image.
+>     inherit ${@bb.utils.contains('PACKAGECONFIG', 'privdrop', 'useradd',
+> '', d)}
+>
+> I believe, to address that issue the release 5.0 introduced the
+> 'inherit_defer' statement.
+>
+> Do I understand correctly that all following occurrences of 'inherit' in
+> meta-openembedded should be replaced by 'inherit_defer'?
+>
+> $ grep -r "inherit \${@bb.utils.contains" .
+> ./meta-openembedded/meta-multimedia/recipes-multimedia/vlc/vlc_3.0.20.bb:=
+inherit
+> ${@bb.utils.contains('PACKAGECONFIG', 'qt5', 'qmake5_paths', '', d)}
+> ./meta-openembedded/meta-webserver/recipes-webadmin/cockpit/cockpit_304.b=
+b:inherit
+> ${@bb.utils.contains('PACKAGECONFIG', 'old-bridge', '',
+> 'python3targetconfig', d)}
+>
+> ./meta-openembedded/meta-networking/recipes-protocols/openlldp/openlldp_1=
+.1.1.bb:inherit
+> ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}
+>
+> ./meta-openembedded/meta-networking/recipes-filter/nftables/nftables_1.0.=
+9.bb:inherit${@bb.utils.contains('PACKAGECONFIG',
+> 'python', 'setuptools3', '', d)}
+>
+> ./meta-openembedded/meta-networking/recipes-connectivity/networkmanager/n=
+etworkmanager_1.46.0.bb:inherit
+> ${@bb.utils.contains('PACKAGECONFIG', 'vala', 'vala', '', d)}
+> ./meta-networking/recipes-support/chrony/chrony_4.5.bb:inherit
+> ${@bb.utils.contains('PACKAGECONFIG', 'privdrop', 'useradd', '', d)}
+>
+> ./meta-openembedded/meta-networking/recipes-support/wireshark/wireshark_4=
+.2.4.bb:inherit
+> ${@bb.utils.contains('PACKAGECONFIG', 'qt5', 'cmake_qt5', '', d)}
+> ./meta-openembedded/meta-oe/recipes-support/lio-utils/lio-utils_4.1.bb:in=
+herit
+> ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "distutils", "=
+",
+> d)}
+> ./meta-openembedded/meta-oe/recipes-support/poppler/poppler_23.04.0.bb:in=
+herit
+> ${@bb.utils.contains('PACKAGECONFIG', 'qt5', 'cmake_qt5', '', d)}
+> ./meta-openembedded/meta-oe/recipes-extended/wxwidgets/wxwidgets_3.2.1.bb=
+:inherit
+> ${@bb.utils.contains('PACKAGECONFIG', 'qt', 'cmake_qt5', 'cmake', d)}
+>
+> ./meta-openembedded/meta-oe/recipes-extended/openlmi/openlmi-tools_0.10.5=
+.bb:inherit
+> ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "setuptools",
+> "", d)}
+> ./meta-openembedded/meta-oe/recipes-dbs/mysql/mysql-python_1.2.5.bb:inher=
+it
+> ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "setuptools",
+> "", d)}
+>
+> I use Yocto 5.0.1.
+>
+> Best regards,
+> Lukasz
+>
+> ***
+> The information in this email is confidential and intended solely for the
+> individual or entity to whom it is addressed.  If you have received this
+> email in error please notify the sender by return e-mail, delete this
+> email, and refrain from any disclosure or action based on the information=
+.
+> This email system is not authorized to receive Controlled Unclassified
+> Information (CUI). Please contact your intended Woodward recipient to
+> identify permissible and authorized options for transmission of CUI to a
+> Woodward recipient.
+> ***
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63351):
+> https://lists.yoctoproject.org/g/yocto/message/63351
+> Mute This Topic: https://lists.yoctoproject.org/mt/106724990/5052612
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> quaresma.jose@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
-   - bitbake core-image-minimal
+--=20
+Best regards,
 
-Once everything is built, I have the following file:
+Jos=C3=A9 Quaresma
 
-poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs.spdx.tar.zst
-
-From here, I'm confused about how to exploit this archive, there are many
-files in it and I do not understand why some of them seems to be named
-after the name of the software "component" and other start with "recipe".
-
-I mainly am interested in establishing the list of software "packages"
-(binary / libraries...) , along with their "owner" and their license.
-
-For instance, if I had dropbear embedded in my image, I would like to
-extract the following information:
-
-
-
-
-
-*PACKAGE : dropbearVERSION: 2022.83LICENSE: MITSOURCE
-SITE: https://matt.ucc.asn.au/dropbear/releases
-<https://matt.ucc.asn.au/dropbear/releases>OWNER: Matt Johnston
-<matt@ucc.asn.au <matt@ucc.asn.au>>*
-
-Also, if possible, having the ability to produce some sort of dependency
-tree would be really helpful.
-
-Do you have any tips / or leads on how to achieve those goals from the
-produced core-image-minimal-qemux86-64.rootfs.spdx.tar.zst file ?
-
-I thank you very much in advance for your help and wish you a nice day !
-
-Regards,
-
-Allan ELKAIM.
-
---000000000000c44950061b19229e
+--00000000000082a4c7061b19344e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello,<div><br>I am trying to generate an SBOM using Yocto=
-, but I am having issues exploiting the result and could really use a hand.=
-<br></div><div><br></div><div>I have done the following steps on a &quot;bl=
-ank&quot; poky repository on the=C2=A0scarthgap=C2=A0branch:</div><div><ul>=
-<li style=3D"margin-left:15px"><pre style=3D"overflow:auto;color:rgb(51,51,=
-51)">git clone git://<a href=3D"http://git.yoctoproject.org/poky" target=3D=
-"_blank">git.yoctoproject.org/poky</a></pre></li><li style=3D"margin-left:1=
-5px"><pre style=3D"overflow:auto;color:rgb(51,51,51)">cd poky</pre></li><li=
- style=3D"margin-left:15px"><pre style=3D"overflow:auto;color:rgb(51,51,51)=
-">git checkout origin/scarthgap=C2=A0-b my-branch</pre></li><li style=3D"ma=
-rgin-left:15px"><pre style=3D"overflow:auto;color:rgb(51,51,51)">source oe-=
-init-build-env</pre></li></ul><div><div>I have then edited my local.conf to=
- include those changes:</div></div></div><div><br></div><blockquote style=
-=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div>INHERIT +=3D &quo=
-t;create-spdx&quot;</div><div>SPDX_PRETTY =3D &quot;1&quot;</div></blockquo=
-te><br><div>And finally, I compiled the=C2=A0core-image-minimal image for t=
-he default=C2=A0qemux86-64 image.</div><div><ul><li style=3D"margin-left:15=
-px">bitbake core-image-minimal</li></ul><div>Once everything is built, I ha=
-ve the following file:</div></div><div><br></div><blockquote style=3D"margi=
-n:0px 0px 0px 40px;border:none;padding:0px"><div>poky/build/tmp/deploy/imag=
-es/qemux86-64/core-image-minimal-qemux86-64.rootfs.spdx.tar.zst</div><div><=
-br></div></blockquote>From here, I&#39;m confused about how to exploit this=
- archive, there are many files in it and I do not understand why some of th=
-em seems to be named after the name of the software &quot;component&quot; a=
-nd other start with &quot;recipe&quot;.<div><br></div><div>I mainly am inte=
-rested in establishing the list of software &quot;packages&quot; (binary / =
-libraries...) , along with their &quot;owner&quot; and their license.<br><b=
-r>For instance, if I had dropbear embedded in my image, I would like to ext=
-ract the following information:</div><div><br><i>PACKAGE : dropbear<br>VERS=
-ION: 2022.83<br>LICENSE: MIT<br>SOURCE SITE:=C2=A0<a href=3D"https://matt.u=
-cc.asn.au/dropbear/releases" target=3D"_blank">https://matt.ucc.asn.au/drop=
-bear/releases</a><br>OWNER: Matt Johnston &lt;<a href=3D"mailto:matt@ucc.as=
-n.au" target=3D"_blank">matt@ucc.asn.au</a>&gt;</i><br></div><div><br></div=
-><div>Also, if possible, having the ability to produce some sort of depende=
-ncy tree would be really helpful.</div><div><br></div><div>Do you have=C2=
-=A0any tips / or leads on how to achieve those goals from the produced core=
--image-minimal-qemux86-64.rootfs.spdx.tar.zst file ?</div><div><br></div><d=
-iv>I thank you very much in advance for your help and wish you a nice day !=
-</div><div><br></div><div>Regards,</div><div><br></div><div>Allan ELKAIM.</=
-div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">Lukasz Zemla via <a href=3D"http://li=
+sts.yoctoproject.org">lists.yoctoproject.org</a> &lt;lukasz.zemla=3D<a href=
+=3D"mailto:woodward.com@lists.yoctoproject.org">woodward.com@lists.yoctopro=
+ject.org</a>&gt; escreveu (segunda, 17/06/2024 =C3=A0(s) 18:07):<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex">Hello,<br>
+<br>
+I believe, the bb.utils.contains() statement is being evaluated &#39;as it =
+goes&#39;, so any changes done in .bbappend files will not be reflected in =
+that expression. <br>
+<br>
+For example, I wanted to enable &#39;privdrop&#39; PACKAGECONFIG for &#39;c=
+hrony&#39; package, however adding PACKAGECONFIG:append =3D &quot;privdrop&=
+quot; in my bbappend file has not resulted in inheriting the &#39;useradd&#=
+39; package:<br></blockquote><div><br></div><div>There is an extra space mi=
+ssing in before the=C2=A0privdrop, the :append override does not add the ex=
+tra space.<br><br></div><div>Can you try with:=C2=A0 PACKAGECONFIG:append =
+=3D &quot;=C2=A0privdrop&quot; ?<br><br>Jose<br><br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
+<br>
+=C2=A0 =C2=A0 inherit ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;pr=
+ivdrop&#39;, &#39;useradd&#39;, &#39;&#39;, d)}<br>
+<br>
+I believe, to address that issue the release 5.0 introduced the &#39;inheri=
+t_defer&#39; statement.<br>
+<br>
+Do I understand correctly that all following occurrences of &#39;inherit&#3=
+9; in meta-openembedded should be replaced by &#39;inherit_defer&#39;?<br>
+<br>
+$ grep -r &quot;inherit \${@bb.utils.contains&quot; .<br>
+./meta-openembedded/meta-multimedia/recipes-multimedia/vlc/vlc_3.0.20.bb:in=
+herit ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;qt5&#39;, &#39;qma=
+ke5_paths&#39;, &#39;&#39;, d)}<br>
+./meta-openembedded/meta-webserver/recipes-webadmin/cockpit/cockpit_304.bb:=
+inherit ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;old-bridge&#39;,=
+ &#39;&#39;, &#39;python3targetconfig&#39;, d)}<br>
+./meta-openembedded/meta-networking/recipes-protocols/openlldp/openlldp_1.1=
+.1.bb:inherit ${@bb.utils.contains(&#39;DISTRO_FEATURES&#39;, &#39;systemd&=
+#39;, &#39;systemd&#39;, &#39;&#39;, d)}<br>
+./meta-openembedded/meta-networking/recipes-filter/nftables/nftables_1.0.9.=
+bb:inherit${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;python&#39;, &=
+#39;setuptools3&#39;, &#39;&#39;, d)}<br>
+./meta-openembedded/meta-networking/recipes-connectivity/networkmanager/net=
+workmanager_1.46.0.bb:inherit ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;,=
+ &#39;vala&#39;, &#39;vala&#39;, &#39;&#39;, d)}<br>
+./meta-networking/recipes-support/chrony/chrony_4.5.bb:inherit ${@bb.utils.=
+contains(&#39;PACKAGECONFIG&#39;, &#39;privdrop&#39;, &#39;useradd&#39;, &#=
+39;&#39;, d)}<br>
+./meta-openembedded/meta-networking/recipes-support/wireshark/wireshark_4.2=
+.4.bb:inherit ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;qt5&#39;, =
+&#39;cmake_qt5&#39;, &#39;&#39;, d)}<br>
+./meta-openembedded/meta-oe/recipes-support/lio-utils/lio-utils_4.1.bb:inhe=
+rit ${@bb.utils.contains(&quot;BBFILE_COLLECTIONS&quot;, &quot;meta-python2=
+&quot;, &quot;distutils&quot;, &quot;&quot;, d)}<br>
+./meta-openembedded/meta-oe/recipes-support/poppler/poppler_23.04.0.bb:inhe=
+rit ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;qt5&#39;, &#39;cmake=
+_qt5&#39;, &#39;&#39;, d)}<br>
+./meta-openembedded/meta-oe/recipes-extended/wxwidgets/wxwidgets_3.2.1.bb:i=
+nherit ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;qt&#39;, &#39;cma=
+ke_qt5&#39;, &#39;cmake&#39;, d)}<br>
+./meta-openembedded/meta-oe/recipes-extended/openlmi/openlmi-tools_0.10.5.b=
+b:inherit ${@bb.utils.contains(&quot;BBFILE_COLLECTIONS&quot;, &quot;meta-p=
+ython2&quot;, &quot;setuptools&quot;, &quot;&quot;, d)}<br>
+./meta-openembedded/meta-oe/recipes-dbs/mysql/mysql-python_1.2.5.bb:inherit=
+ ${@bb.utils.contains(&quot;BBFILE_COLLECTIONS&quot;, &quot;meta-python2&qu=
+ot;, &quot;setuptools&quot;, &quot;&quot;, d)}<br>
+<br>
+I use Yocto 5.0.1.<br>
+<br>
+Best regards,<br>
+Lukasz<br>
+<br>
+***<br>
+The information in this email is confidential and intended solely for the i=
+ndividual or entity to whom it is addressed.=C2=A0=C2=A0If you have receive=
+d this email in error please notify the sender by return e-mail, delete thi=
+s email, and refrain from any disclosure or action based on the information=
+. This email system is not authorized to receive Controlled Unclassified In=
+formation (CUI). Please contact your intended Woodward recipient to identif=
+y permissible and authorized options for transmission of CUI to a Woodward =
+recipient.<br>
+***<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#63351): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/63351" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/63351</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/106724990/505=
+2612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/106724990/5052612</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quare=
+sma.jose@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
+div>
 
---000000000000c44950061b19229e--
+--00000000000082a4c7061b19344e--
 
