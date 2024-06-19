@@ -1,108 +1,108 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <mehmet.fide@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28153C27C53
-	for <webhook@archiver.kernel.org>; Wed, 19 Jun 2024 14:17:14 +0000 (UTC)
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
- by mx.groups.io with SMTP id smtpd.web10.22315.1718806630337552462
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 07184C27C53
+	for <webhook@archiver.kernel.org>; Wed, 19 Jun 2024 17:04:35 +0000 (UTC)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+ by mx.groups.io with SMTP id smtpd.web10.26629.1718816664677599502
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Jun 2024 07:17:10 -0700
+ Wed, 19 Jun 2024 10:04:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=eu98cIUm;
- spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cccd44570so703217e87.2
-        for <yocto@lists.yoctoproject.org>; Wed, 19 Jun 2024 07:17:10 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Ruc+TvkI;
+ spf=pass (domain: gmail.com, ip: 209.85.221.47, mailfrom: mehmet.fide@gmail.com)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-361b376236fso4537f8f.3
+        for <yocto@lists.yoctoproject.org>; Wed, 19 Jun 2024 10:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718806628; x=1719411428; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DbTu6iUnmCEmpTiSEpzVbVI0KxgbsF5xRhs5SjZVRJw=;
-        b=eu98cIUmi1leyFpUJpIXA8WLvvpnBxxk5uZdd5x8JQi7AIrewbWlJ7eS6d+RGlQh84
-         TENbvVOxu+EgG3hfVgL0r30KTdgW13pj5fyefnck0dZYvGW4Y/vfvYTjXfuU0nCPD8aQ
-         4laznFRNLzazk8zdXWvLjGwC5g28iH+31AYOhuGK/MPj2MLWdK9jgRKplop97SzfSqcz
-         O8qN2e+U+2OF5ZOWaYKpy8WTFwKsNiFdahJ/JYxlfnRPBY0GkaMPtY+eonhBOXEdql7q
-         ErQnFzjDCLCiXBfUf/0b/LBwLKanI8cPencop3sXXadH9cJ+148ZECXcz3qxsxcTkxlS
-         yUXQ==
+        d=gmail.com; s=20230601; t=1718816663; x=1719421463; darn=lists.yoctoproject.org;
+        h=content-language:thread-index:content-transfer-encoding
+         :mime-version:message-id:date:subject:in-reply-to:references:to:from
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tqKg2hUofH/1NV0M+SVuthJk8xTh7/Ogn64pY/yNWZ0=;
+        b=Ruc+TvkIGhe2sRf1nJHNsjbjSYccw7NZI2ySRlq5G3KLz8PA6cVK1R42p+TL1XXDmN
+         4i26qAP7f4mY+FodlDgP0zxmWvi/XyWaIsfosgiSCLcn5dLFZLH5sGUuFc6yiRJkX6LT
+         mD+UWFKZUZoT2IBO5nnNiNrbHSua4b1+2O254Jf9oyPsMOET04bB0xIwzVsB3A7tMG1H
+         oLnaR+s2Uqe9TozafsipURf2yWfpmmWMc/5kbUYuCrQrysp+9ty+5Tv8aqGtHChBYadb
+         TJCzgc1zkOVJDvsYYwwOi5k1WYMQpduQaG9k0HlmQInpg9kt5gjf8elXzdR4PnrEdVhZ
+         iGXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718806628; x=1719411428;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DbTu6iUnmCEmpTiSEpzVbVI0KxgbsF5xRhs5SjZVRJw=;
-        b=cC5KYVecRaQ9RqQ6y3ez27jISs+ZLrUHzXI0IA+PMUNoVbuwVAp34IEkHokQ5VtoWz
-         HuIGx4kBk+SJJQ6tYDZ8SJz6Ca1Ej0KbD2LDR2OyJ3Fa8VFWIz130DsEDxU1x8lsb8uO
-         B1aeay/dbZ07TzRNJAID/91/eUggepRvbBcab9QJ+P6JDZxTWdYCEsR13eKCsnBmF115
-         8Ky7A2MdDbjJ/xr1dSdQTg4cuLoOXBoQq651oPjCSMWkBPm8h3jyxifpk2qez0Uudqa0
-         2j1oodw0UcQNa4bX3SttmLS9o/bmQg0eW9dvjqkOYgpEm51jastLipnhzE0+Mjc1BStv
-         ngkg==
-X-Gm-Message-State: AOJu0YxXAdpcToHPBd7EflGp/o5v4Km9g2d/FZ0iN8APaAPYYzAK5/WZ
-	dS/rGAkEuyt6YBCm/vgzwDhnSJqBaO5RAh/+ZEn5DLNtbJCXfQFkcvYVBLZ9E4Skew+Gs/DwxvE
-	0A1glLHasIuwsfbHj0vQlrF6zYjIT/Q==
-X-Google-Smtp-Source: AGHT+IF5+/h6Tf0Psh7l2J3JiLDdu1YSr5hpa9ZUOUVTlIcrZ2hkEjd7EDNtN3HXFwIo8lS1h+QqoiPaC5BxtykebOA=
-X-Received: by 2002:a05:6512:1050:b0:52c:ae34:26e0 with SMTP id
- 2adb3069b0e04-52ccaa97170mr1780291e87.45.1718806628184; Wed, 19 Jun 2024
- 07:17:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718816663; x=1719421463;
+        h=content-language:thread-index:content-transfer-encoding
+         :mime-version:message-id:date:subject:in-reply-to:references:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tqKg2hUofH/1NV0M+SVuthJk8xTh7/Ogn64pY/yNWZ0=;
+        b=CRCaptPOwWYWYZFOM/f5Lztmq281XTC2WfbQUR7Zx5XwGcWXBEBgnKzFJIBiXuWfMK
+         bFOXCoguuCnq3w37rOZq/sEHZJ0bRnSEmu6+9183wQo6BOmP7bCUeughw+aj4lOGcOUq
+         I5rKR5mv9ReHXYpDnPSAfNE9Xqvl6Yh3b3Obk2K25a5wAuDX8msluLvtKgr8+Lo7G266
+         Sj8iqp6cYu0nNXmkyfuCp49FOkStha3q/6H/9NJc12OisXqh6Zt1VWFZP2ZQIqd/PHqb
+         ypnzg3IjdmIvP9IlPAhYlQQqqvsYCAqxGoKC3+sMrCTD/zqDM3gXwEe5Ifm/E3QYUuih
+         juEA==
+X-Forwarded-Encrypted: i=1; AJvYcCVSLX41o1ptmaolxG7H2VdjcDLgooMnlPWNSiBVvxcL5HruabFFuHjgpeEg/moAP0CvLfEjIYQHqo9d6SF5A4M6UtN8wM7BGKelo08I
+X-Gm-Message-State: AOJu0YxC9PsZgBOyN0Of7EfHylRI/IFxPHagn3ZGMb8sgw68xU9zOpxJ
+	Tbqcn8gEUD2ks1zPeqdn4p0vYfnETaJRX62zn4NoabdtKKV05t6u
+X-Google-Smtp-Source: AGHT+IH5M/erferEL4cUann3HM6HdobMWP6gEvTEWK6icjXA+bXViOXpgBhR3ZbfpVMaVk9cttXBYg==
+X-Received: by 2002:a5d:6443:0:b0:360:73b0:e58e with SMTP id ffacd0b85a97d-363178982bfmr2298782f8f.26.1718816662792;
+        Wed, 19 Jun 2024 10:04:22 -0700 (PDT)
+Received: from fidepc ([2a04:ee41:3:736a:5dbe:ad5d:edf1:b583])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-362e90f2322sm3609044f8f.9.2024.06.19.10.04.21
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 19 Jun 2024 10:04:22 -0700 (PDT)
+From: <mehmet.fide@gmail.com>
+To: "'Alexander Kanavin'" <alex.kanavin@gmail.com>,
+	<yocto@lists.yoctoproject.org>
+References: <CAA7J33X=Zydis3=9AMxgA4vWOKYhgySq8tPoYwPhT0vh7WMYDQ@mail.gmail.com> <CANNYZj9w8tQSWCLERavC2NXMdS5i=QrimoZ1vGoF=8LNP0wVdw@mail.gmail.com>
+In-Reply-To: <CANNYZj9w8tQSWCLERavC2NXMdS5i=QrimoZ1vGoF=8LNP0wVdw@mail.gmail.com>
+Subject: RE: [yocto] Dropbear and deprecated ssh-rsa issue
+Date: Wed, 19 Jun 2024 19:04:22 +0200
+Message-ID: <000001dac26a$bbe3a070$33aae150$@gmail.com>
 MIME-Version: 1.0
-References: <93uJ.1718806002438603654.UEJt@lists.yoctoproject.org>
-In-Reply-To: <93uJ.1718806002438603654.UEJt@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 19 Jun 2024 16:17:04 +0200
-Message-ID: <CANNYZj9AHu5_LYZ+rreTR-VEBs=dXkCKRVKCE+aeBLEDpsZfww@mail.gmail.com>
-Subject: Re: [yocto] OpenLDAP License Update?
-To: yocto@lists.yoctoproject.org, fabian.hanke@bosch.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGklZGG090QSihqIQYjKCOtrzCPAgH2vsvysivywxA=
+Content-Language: en-ch
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 19 Jun 2024 14:17:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63365
+ <yocto@lists.yoctoproject.org>; Wed, 19 Jun 2024 17:04:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63366
 
-This sounds like you are ready to write a patch with the fix :) please
-do and send to openenmbedded-devel list.
+Yes, I believe I can do that. But there are couple of options, I'm not =
+sure which one to be followed:
+1. Replace rsa key with ecdsa and continue with ecdsa support only. =
+(this disables rsa mode)
+2. Keep rsa mode on and also activate ecdsa key next to it therefore =
+they can work side by side simultaneously
+3. ??
+
+Thanks.
+
+
+-----Original Message-----
+From: Alexander Kanavin <alex.kanavin@gmail.com>=20
+Sent: Thursday, June 13, 2024 3:28 PM
+To: yocto@lists.yoctoproject.org; mehmet.fide@gmail.com
+Subject: Re: [yocto] Dropbear and deprecated ssh-rsa issue
+
+On Thu, 13 Jun 2024 at 13:20, Mehmet Fide via lists.yoctoproject.org =
+<mehmet.fide=3Dgmail.com@lists.yoctoproject.org> wrote:
+> I was silently following the email list for a while.
+>
+> Today I have a question regarding dropbear and its default recipe =
+provided in poky/meta/recipes-core/dropbear.
+>
+> It has been 4 years since ssh-rsa is deprecated by openssh followed by =
+Linux distros and Visual Studio 2022 as of 17.10.
+>
+> As I checked today, the dropbear recipe with the master poky still =
+uses ssh-rsa instead of ecdsa mode which is widely accepted today.
+>
+> Don't you think that it would be appropriate to change the recipe =
+content to use ecdsa instead of ssh-rsa one?
+
+Yes that would be much welcome. Can you work on that?
 
 Alex
 
-On Wed, 19 Jun 2024 at 16:09, Hanke Fabian (DC/PAR) via
-lists.yoctoproject.org <fabian.hanke=3Dbosch.com@lists.yoctoproject.org>
-wrote:
->
-> Hello,
-> we noticed that the OpenLDAP recipe provided in meta-oe/recipes-support/o=
-penldap does not use an SPDX identifier for the license but rather just "Op=
-enLDAP" [1]. Based on the comment above the custom license was introduced, =
-because an official license did not exist on OpenSource.org. But in the mea=
-ntime, the license was added to OpenSource.org and provides a correct SPDX =
-identifier [2]. So, I was wondering if the license can be changed to "OLDAP=
--2.8" or if there are any other reasons for keeping the old "OpenLDAP" lice=
-nse for the recipe?
->
-> Kindest regards,
-> Fabian Hanke
->
->
-> [1] https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-s=
-upport/openldap/openldap_2.6.7.bb#n9
-> [2] https://opensource.org/license/oldap-2-8
-> --------------------------------
->
-> Bosch Rexroth AG
->
-> Registered Office: Stuttgart, Registration Court: Amtsgericht Stuttgart H=
-RB 23192 Executive Board: Dr. Steffen Haack (President), Roland Bittenauer,=
- Thomas Fechner, Holger von Hebel, Reinhard Sch=C3=A4fer Chairman of the Su=
-pervisory Board: Dr. Markus Forschner
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#63364): https://lists.yoctoproject.org/g/yocto/messag=
-e/63364
-> Mute This Topic: https://lists.yoctoproject.org/mt/106761034/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
 
