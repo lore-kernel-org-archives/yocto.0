@@ -1,53 +1,144 @@
-Return-Path: <aseelkhairudhar@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBFC6C27C4F
-	for <webhook@archiver.kernel.org>; Sun, 23 Jun 2024 10:21:13 +0000 (UTC)
-Subject: bitbake core-image-minimal error
-To: yocto@lists.yoctoproject.org
-From: aseelkhairudhar@gmail.com
-X-Originating-Location: IN (152.58.208.229)
-X-Originating-Platform: Windows Firefox 126
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B88B5C27C4F
+	for <webhook@archiver.kernel.org>; Sun, 23 Jun 2024 16:57:35 +0000 (UTC)
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+ by mx.groups.io with SMTP id smtpd.web11.121489.1719161854507538145
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 23 Jun 2024 09:57:34 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=jRuk0Rwr;
+ spf=pass (domain: gmail.com, ip: 209.85.161.49, mailfrom: raj.khem@gmail.com)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5ba70a0ed75so1799567eaf.1
+        for <yocto@lists.yoctoproject.org>; Sun, 23 Jun 2024 09:57:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719161853; x=1719766653; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ADCqrDZc9URdTRa/JrMYwnyq4wmoOX1Ii5j3cRFZupo=;
+        b=jRuk0RwrEEYz3aiSeC4rd8Amu4dNL0ImihzoIV4YCRx78DCgTxECw+BXKWW7/wEkL0
+         RJKlsdmJNWc+ncaiAn7YftFhJbn1l02t8H1uoAxw/GRfW430ofpQVg0iCTg0u+SgVXg7
+         SClOCUhHRlBcxEnaKbNb6tWI++EmXW82FO51XPZ/OakMmGPuu/cHj5i4bJBNie5TJ3A+
+         ffBUGDnVfT17ikJ5BcbvoXF+f92DOCskTycZ+DB30s8Tmg9zfQeO/YuBTPK3oabk/n6Q
+         PNa4I7lDL/C/d317c4ZeINBkb8Jeq8dTk6jksf4eXWNaCxh1jiudjSJM7JpkcXEQrbaP
+         ruPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719161853; x=1719766653;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ADCqrDZc9URdTRa/JrMYwnyq4wmoOX1Ii5j3cRFZupo=;
+        b=hPBuJYfcM1CuH4dARoDvUDbYfxOKCD8ZVfB74efOtAgNjSaI/qwRXuSF1NcOxNmBxX
+         7QPxvlyRFmfThq/V/XYuWx8VICwNXUpbJbUrtEUSYOXUTZq4+yb9AtJ/S6XZOOUCOodp
+         hYwe2T3QAaZ5PpV3WzReHhQWQrF8mnmR8G41BJ3bI15JshkLTR/Sczr/m1ddr/AiRlOf
+         DxXodIMK719T4udJbJHxFcSlIWi4oXTfVFDqvbOZ+PNdMiP0Pgu6AfVlj5ZMbZkVo45Y
+         9W4bnUMEDOLILGUSqsvISM4nnnCfNOqOO3TAQ1Y5N/e4A/CeWrd7gWbKBiyrL8oZoLaR
+         IUeg==
+X-Gm-Message-State: AOJu0YyEaoLCRE/83rI8Zhxgsxni1ocJ7PdfA3LBGSE0kCbyLgQedxYI
+	28wsnhlHNgzNqPdBcQ3i77kSNbn33WhhVS3EFgFMpEpp82GHuV/WKrIy78IBfBtOHyW64UI6Msv
+	NLrmn55w4Kp5yTYDWEQnszd+fjfa0ow==
+X-Google-Smtp-Source: AGHT+IEsNkIeoNO8IvCyywbMRFssd1555W1OycErNv8gmOebB5cHPay60U1J8/hjeyXe5NNg91lRpLMOF6l3zy7DRMM=
+X-Received: by 2002:a05:6870:6391:b0:254:c08d:cb54 with SMTP id
+ 586e51a60fabf-25d06bc7f50mr2393185fac.1.1719161853168; Sun, 23 Jun 2024
+ 09:57:33 -0700 (PDT)
 MIME-Version: 1.0
-Date: Sun, 23 Jun 2024 03:21:11 -0700
-Message-ID: <wUqU.1719138071806508147.B91g@lists.yoctoproject.org>
-Content-Type: multipart/related; boundary="wEmGXORCwdcVuAiwkRjN"
+References: <wUqU.1719138071806508147.B91g@lists.yoctoproject.org>
+In-Reply-To: <wUqU.1719138071806508147.B91g@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 23 Jun 2024 09:57:06 -0700
+Message-ID: <CAMKF1sq2OeQMjbDMJoF6xnY7GcbQHE_ZmREKV0e1dL7ZL=BgJA@mail.gmail.com>
+Subject: Re: [yocto] bitbake core-image-minimal error
+To: yocto@lists.yoctoproject.org, aseelkhairudhar@gmail.com
+Content-Type: multipart/related; boundary="00000000000091f0f5061b918fca"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 23 Jun 2024 10:21:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63380
+ <yocto@lists.yoctoproject.org>; Sun, 23 Jun 2024 16:57:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63381
 
---wEmGXORCwdcVuAiwkRjN
-Content-Type: multipart/alternative; boundary="emUG5cae2L63HjUx9qos"
+--00000000000091f0f5061b918fca
+Content-Type: multipart/alternative; boundary="00000000000091f0f4061b918fc9"
 
---emUG5cae2L63HjUx9qos
-Content-Type: text/plain; charset="utf-8"
+--00000000000091f0f4061b918fc9
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hey I am trying to build an image using 'bitbake core-image-minimal error' =
-command. But I am getting the following error. As I am new to this its not =
-making sense. Can anyone help out?? Thanks in advance.
+On Sun, Jun 23, 2024 at 3:21=E2=80=AFAM aseelkhairudhar via lists.yoctoproj=
+ect.org
+<aseelkhairudhar=3Dgmail.com@lists.yoctoproject.org> wrote:
 
---emUG5cae2L63HjUx9qos
-Content-Type: text/html; charset="utf-8"
+> Hey I am trying to build an image using 'bitbake core-image-minimal error=
+'
+> command. But I am getting the following error. As I am new to this its no=
+t
+> making sense. Can anyone help out?? Thanks in advance.
+>
+
+This snap is unreadable. preferably, sharing text works better on mailing
+lists, however, attaching screenshots is ok if they are readable.
+
+
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#63380):
+> https://lists.yoctoproject.org/g/yocto/message/63380
+> Mute This Topic: https://lists.yoctoproject.org/mt/106829640/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> raj.khem@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--00000000000091f0f4061b918fc9
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hey I am trying to build an image using 'bitbake core-image-minimal error' =
-command. But I am getting the following error. As I am new to this its not =
-making sense. Can anyone help out?? Thanks in advance.<img src=3D"cid:attac=
-h_0_17DB9AF7C9E50C23_6942@lists.yoctoproject.org" />
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jun 23, 2024 at 3:21=E2=80=AF=
+AM aseelkhairudhar via <a href=3D"http://lists.yoctoproject.org">lists.yoct=
+oproject.org</a> &lt;aseelkhairudhar=3D<a href=3D"mailto:gmail.com@lists.yo=
+ctoproject.org">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">Hey I am trying to build an=
+ image using &#39;bitbake core-image-minimal error&#39; command. But I am g=
+etting the following error. As I am new to this its not making sense. Can a=
+nyone help out?? Thanks in advance.<img src=3D"cid:attach_0_17DB9AF7C9E50C2=
+3_6942@lists.yoctoproject.org">
+<br>
+</blockquote><div><br></div><div>This snap is unreadable. preferably, shari=
+ng text works better on mailing lists, however, attaching screenshots is ok=
+ if they are readable.</div><div>=C2=A0</div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+You automatically follow any topics you start or reply to.<br>
+View/Reply Online (#63380): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/63380" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/63380</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/106829640/199=
+7914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/106829640/1997914</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+mail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div>
 
---emUG5cae2L63HjUx9qos--
+--00000000000091f0f4061b918fc9--
 
---wEmGXORCwdcVuAiwkRjN
-Content-Id: <attach_0_17DB9AF7C9E50C23_6942@lists.yoctoproject.org>
-X-Attachment-Id: attach_0_17DB9AF7C9E50C23_6942@lists.yoctoproject.org
+--00000000000091f0f5061b918fca
 Content-Type: image/jpeg; name="error_pic.jpg"
-Content-Transfer-Encoding: base64
 Content-Disposition: inline; filename="error_pic.jpg"
+Content-Transfer-Encoding: base64
+Content-ID: <attach_0_17DB9AF7C9E50C23_6942@lists.yoctoproject.org>
+X-Attachment-Id: attach_0_17DB9AF7C9E50C23_6942@lists.yoctoproject.org
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsK
 CwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQU
@@ -608,6 +699,5 @@ cWzTSBoZUDIQA2AQeK2P4k8l3qWFl9v9LNIsJfH304D2Vu4nld5Q0SnqMtwdpbjkjAwT2xVbme5c
 Kp/xu718V44tIILbSpYoY45Z2u2ldEAaQi5cAsfUgcc1zp/xHcPZer/Z3evla6olESiJREoiURKI
 lESiJREoiURKIlESiJREoiURKIlESiJREoiURKIlESiJREoiURKIlESiJREoiURKIlESiJREoiUR
 KIlEX//Z
-
---wEmGXORCwdcVuAiwkRjN--
+--00000000000091f0f5061b918fca--
 
