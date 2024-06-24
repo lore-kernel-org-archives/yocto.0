@@ -1,744 +1,1038 @@
-Return-Path: <michael@opdenacker.org>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 371C6C2BD05
-	for <webhook@archiver.kernel.org>; Mon, 24 Jun 2024 05:37:49 +0000 (UTC)
-Received: from sender-op-o18.zoho.eu (sender-op-o18.zoho.eu [136.143.169.18])
- by mx.groups.io with SMTP id smtpd.web11.134010.1719207460284002174
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1AF8DC2BD09
+	for <webhook@archiver.kernel.org>; Mon, 24 Jun 2024 09:18:41 +0000 (UTC)
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+ by mx.groups.io with SMTP id smtpd.web10.134360.1719209892851814339
  for <yocto@lists.yoctoproject.org>;
- Sun, 23 Jun 2024 22:37:41 -0700
+ Sun, 23 Jun 2024 23:18:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: signature did not verify: crypto/rsa: verification error" header.i=michael@opdenacker.org header.s=zmail header.b=ax2P+lPT;
- spf=pass (domain: opdenacker.org, ip: 136.143.169.18, mailfrom: michael@opdenacker.org)
-ARC-Seal: i=1; a=rsa-sha256; t=1719207456; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=XfS1gh3R0u1BFhLPu4qxjTS9wzMsdC59bmrzGYw6MlRtkLM9rNX3OHfh1UXxbhTjaZOHlKLvXQgmi554Hf1Q6+0L27mprrRAz/j+RLREMXLCUx0PiqXMGROyXmNlhftrLC+d0wMmk6gGnfVwmPcidf2SvXnIz59P4wWlP03mEdI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1719207456; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ABftWJxZ70ukWdmgZMymUnd9hL59mRoXtwZUKAjtE9E=; 
-	b=SXjaCuEOhtfr5FYefd20N+cUn3vrA+pO6hVxkdB1+tGBVg3nC7pWPk2bXHNLDGqzDvQOA6VNFxIyqZiSUWRqfsXW7sxWB012lW05Vqm4kmOMo9WBFzg6WsjVZiFgjb9qCOZpqnp3YDbiPpuDqte9D9rAnN0K3h546gHCRzUIga0=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=opdenacker.org;
-	spf=pass  smtp.mailfrom=michael@opdenacker.org;
-	dmarc=pass header.from=<michael@opdenacker.org>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1719207456;
-	s=zmail; d=opdenacker.org; i=michael@opdenacker.org;
-	h=Content-Type:Message-ID:Date:Date:MIME-Version:Cc:Cc:Subject:Subject:To:To:References:From:From:In-Reply-To:Message-Id:Reply-To;
-	bh=ABftWJxZ70ukWdmgZMymUnd9hL59mRoXtwZUKAjtE9E=;
-	b=ax2P+lPTMnhacR9vr63MDOviIDwKBuEWeEzUsm6KO1qkJ5uiJLY4Y7ArRl7QOLkq
-	UfbyNGUI33pH0H8M2pjSvoWnhP/apKkTtJD5rDIm3wPJ/hlFW9seYE5ifRaUSR12K+2
-	eVViDp5nu7sCPDbxQHCSPe+erzIirDiNd/oiwwis=
-Received: by mx.zoho.eu with SMTPS id 1719207453320948.7892630595215;
-	Mon, 24 Jun 2024 07:37:33 +0200 (CEST)
-Content-Type: multipart/alternative;
- boundary="------------zpOr104DRgx30FnXkaLI9pkH"
-Message-ID: <4c71bc03-8190-42fa-90e2-cc3c16e25e0f@opdenacker.org>
-Date: Mon, 24 Jun 2024 07:37:32 +0200
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=bUmu6IO1;
+ spf=pass (domain: gmail.com, ip: 209.85.215.175, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-7178727da84so1516632a12.0;
+        Sun, 23 Jun 2024 23:18:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719209892; x=1719814692; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uLDnQ2BiChURWHgAGD6WWdNrswGGoPYQl87/Q2wponM=;
+        b=bUmu6IO1EkJeWMtK3DwSB1DzqbAAKkAz7Nq4nS0TbZ1ElmHfguTkmvOxZIOH923YVN
+         lZVd9guC6RYWdseUbjaXgqCeKDnzFrxCrpP0HluDi084DpNgk9NaWCZV2+/60vjLD4YM
+         sn7j0Zo61Z5Bf9O/FZOkYfYbjMokZP+exweoOdrcjs3ToP2gEqSrJQqsqJsl3fyz52Xv
+         ZdiZeR+wshUqUgIhrKdiQRfDfVeh2dniH2R+Ij8aS2SqCmFktRyw8NB/Qq3OJJbKNN0n
+         F5A9FQ+ldUsiVevqqj2uomnA2g+9UdhLp5xglsXl1VaWi+gxfs8hhSkZlcn4qTD/BT5G
+         EEdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719209892; x=1719814692;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uLDnQ2BiChURWHgAGD6WWdNrswGGoPYQl87/Q2wponM=;
+        b=ApM+CGKl16UjzylbboxL2mDC8RSSc6xOLa18P2mmWaPtRKRInrHzFXwL6tpxmOnGyW
+         eoFrHL2EKU9X86TKllCGZk2qXwPkFH27CEfkOOGBr08q0KTptc3+K+PHSxeXFCIvombi
+         UteAmq1F63V42I2Qw4efgkeAqzfQN10+pZNdVPKxa1jI9yeTQqlpd6xOXnVMw2vAyJ34
+         BCARIngCa4ArQ3xvSBjiK5LDXMCuC7K33YSwIasxWgaBKPvzyRueLTCbzcL2vDOmdNLG
+         ZdFDaisCSh/tDUY42zXoYLpGyToavXg9Q9bguqp9j0/QJ2p8Vg0/fdbhtoTibi0cwx9y
+         rrIw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrCexXnIPYMpT9qz0oy7zzIl7fb2H7A5qPZzbsuRsOLMJFOYDQAauKn8FBRDV+0aFMEliuI9+FFl+qSE51bZHp+FuyKdWyqEwSE908ETMQgEDYXA==
+X-Gm-Message-State: AOJu0YxQfpzO+vaQNfUVEcWXYgXdbRX6zfN0aLMVdMJwsrdHecXdU60W
+	KFziH/x/EhyVsHkFT20i3BQiGEjThs1Dco+bSM62MC8mReK6iazxN+g3y2zsjlOKYTh60ZV3H7Y
+	SwIszHtDByC59BUquFy48AxO7ZwRfB0Re
+X-Google-Smtp-Source: AGHT+IHfPtEKonV6sv5Hqp8OStWITlnrt8S29XMaNCmZBtngI1K2LpgO9XItF3McMqnNGFPImxFPhVENmuPYa14+g9s=
+X-Received: by 2002:a17:90a:43c3:b0:2c4:e4a3:b83c with SMTP id
+ 98e67ed59e1d1-2c8504c81ffmr3228242a91.2.1719209891648; Sun, 23 Jun 2024
+ 23:18:11 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: yocto@lists.yoctoproject.org, raj.khem@gmail.com
-Subject: Re: [yocto] bitbake core-image-minimal error
-To: aseelkhairudhar@gmail.com
-References: <wUqU.1719138071806508147.B91g@lists.yoctoproject.org>
- <CAMKF1sq2OeQMjbDMJoF6xnY7GcbQHE_ZmREKV0e1dL7ZL=BgJA@mail.gmail.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael@opdenacker.org>
-In-Reply-To: <CAMKF1sq2OeQMjbDMJoF6xnY7GcbQHE_ZmREKV0e1dL7ZL=BgJA@mail.gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.0/219.178.65
-X-ZohoMailClient: External
+References: <CAK5yBb-XZMRnfJuC66B=FoOhOXkvwfpsFDES2FH+Vcp61vR=_w@mail.gmail.com>
+In-Reply-To: <CAK5yBb-XZMRnfJuC66B=FoOhOXkvwfpsFDES2FH+Vcp61vR=_w@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Mon, 24 Jun 2024 08:18:00 +0200
+Message-ID: <CAGAf8Lwvx09=1Z4N6dx0tQYZfTnNyCSTox+eUGb8v12m1HOyTA@mail.gmail.com>
+Subject: Re: [yocto] Yocto Project Status 11 June 2024 (WW24)
+To: yocto@lists.yoctoproject.org, sjolley.yp.pm@gmail.com, 
+	Ross Burton <Ross.Burton@arm.com>
+Cc: ",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
+	yocto-status@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000e2e122061b9cbec8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 24 Jun 2024 05:37:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63382
+ <yocto@lists.yoctoproject.org>; Mon, 24 Jun 2024 09:18:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63383
 
-This is a multi-part message in MIME format.
---------------zpOr104DRgx30FnXkaLI9pkH
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--000000000000e2e122061b9cbec8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ahhh... Now I see what is really going on under the hood! ;-)))
+
+>>> Upcoming dot releases:
+*>>> YP 5.0.2 Build Date 2024-06-24*
+
+I see dead people! :-)))
+
+Why this date? Because Fedora 40 JUST upgraded GCC 13.2 to GCC 14.1*!!!*
 
 
-On 6/23/24 18:57, Khem Raj wrote:
+*The missing link!*
+
+I expect Poky 5.0.2 to kick in within a half of the day!
+
+Zee
+*_______*
+
+
+
+On Tue, Jun 11, 2024 at 4:53=E2=80=AFPM Stephen Jolley via lists.yoctoproje=
+ct.org <
+sjolley.yp.pm=3Dgmail.com@lists.yoctoproject.org> wrote:
+
+> Current Dev Position: YP 5.1 M2
+>
+> Next Deadline: YP 5.1 M2 Build 8 July 2024
+>
+> Next Team Meetings:
+>
+>    -
+>
+>    Bug Triage meeting Thursday June 13th at 7:30 am PST (
+>    https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
+>    -
+>
+>    Weekly Project Engineering Sync Tuesday June 11th at 8 am PST (
+>    https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09)
+>    <https://zoom.us/j/990892712>
+>    -
+>
+>    Twitch -  See https://www.twitch.tv/theyoctojester
 >
 >
-> On Sun, Jun 23, 2024 at 3:21 AM aseelkhairudhar via 
-> lists.yoctoproject.org <http://lists.yoctoproject.org> 
-> <aseelkhairudhar=gmail.com@lists.yoctoproject.org> wrote:
+> Key Status/Updates:
 >
->     Hey I am trying to build an image using 'bitbake
->     core-image-minimal error' command. But I am getting the following
->     error. As I am new to this its not making sense. Can anyone help
->     out?? Thanks in advance.
+>    -
+>
+>    YP 4.0.19 has been through QA and is due for release
+>    -
+>
+>    YP 5.1 M1 rc2 is in QA
+>    -
+>
+>    RFC patches for the CVE tooling changes have been posted, help in
+>    review is appreciated
+>    -
+>
+>    There are SPDX 3.0 patches ready for review on the mailing list
+>    -
+>
+>    There are patches proposing that missing patch Upstream-Status entries
+>    be a fatal QA error, this is likely to merge soon as there have been n=
+o
+>    objections to it.
+>    -
+>
+>    We have a fix for the final Fedora 40 issue, thanks Victor.
+>    -
+>
+>    We appreciate everyone fixing layers to work with master after recent
+>    changes, the autobuilder health is looking greener, thanks!
+>    -
+>
+>    The copy_unihashes function was dropped from bitbake after the locked
+>    signature file improvements which simplifies further tooling work
+>    -
+>
+>    There is discussion on openembedded-architecture about the details
+>    around  configuration fragment tooling potentially being integrated in=
+to
+>    bitbake
+>    -
+>
+>    There is an open letter the project has created related to the CVE/NVD
+>    situation, more information is available here:
+>    https://lists.openembedded.org/g/openembedded-architecture/message/199=
+0
+>
+> Please consider signing this to show support for those changes.
+>
+> Signatures from small businesses/consultancies are as welcome as those
+> from larger organizations as we want to demonstrate the breadth of the ne=
+ed
+> for these changes.
+>
+>    -
+>
+>    We continue to have trouble tracking down the rust reproducibility
+>    problem in rustdoc.
+>    -
+>
+>    Through post release upgrading our patch count reduced again and is
+>    now the lowest level since July 2008!
 >
 >
-> This snap is unreadable. preferably, sharing text works better on 
-> mailing lists, however, attaching screenshots is ok if they are readable.
+> Ways to contribute:
+>
+>    -
+>
+>    As people are likely aware, the project has a number of components
+>    which are either unmaintained, or have people with little to no time t=
+rying
+>    to keep them alive. These components include: devtool, toaster, wic, o=
+eqa,
+>    autobuilder, CROPs containers, pseudo and more. Many have open bugs. H=
+elp
+>    is welcome in trying to better look after these components!
+>    -
+>
+>    There are bugs identified as possible for newcomers to the project:
+>    https://wiki.yoctoproject.org/wiki/Newcomers
+>    -
+>
+>    There are bugs that are currently unassigned for YP 5.1. See:
+>    https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium+_5.1_Unassigned_E=
+nhancements/Bugs
+>    -
+>
+>    We=E2=80=99d welcome new maintainers for recipes in OE-Core. Please se=
+e the
+>    list at:
+>    http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/includ=
+e/maintainers.inc
+>    and discuss with the existing maintainer, or ask on the OE-Core mailin=
+g
+>    list. We will likely move a chunk of these to =E2=80=9CUnassigned=E2=
+=80=9D soon to help
+>    facilitate this.
+>    -
+>
+>    Help is very much welcome in trying to resolve our autobuilder
+>    intermittent issues. You can see the list of failures we=E2=80=99re co=
+ntinuing to
+>    see by searching for the =E2=80=9CAB-INT=E2=80=9D tag in bugzilla:
+>    https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-INT.
+>    -
+>
+>    Help us resolve CVE issues: CVE metrics
+>    <https://autobuilder.yocto.io/pub/non-release/patchmetrics/>
+>    -
+>
+>    We have a growing number of bugs in bugzilla, any help with them is
+>    appreciated.
+>    -
+>
+>    Regarding bugs, even if you can=E2=80=99t fix a bug, submitting a fail=
+ing test
+>    case that can reproduce the issue significantly improves the chances i=
+t
+>    might get fixed.
+>
+>
+> Tracking Metrics:
+>
+>    -
+>
+>    WDD 2774 (last week 2772) (
+>    https://wiki.yoctoproject.org/charts/combo.html)
+>    -
+>
+>    OE-Core/Poky Patch Metrics
+>    -
+>
+>       Total patches found: 1072 (last week 1098)
+>       -
+>
+>       Patches in the Pending State: 205 (19%) [last week 205 (19%)]
+>       -
+>
+>    https://autobuilder.yocto.io/pub/non-release/patchmetrics/
+>
+>
+> YP 5.1 Milestone Dates:
+>
+>    -
+>
+>    YP 5.1 M1 is in QA
+>    -
+>
+>    YP 5.1 M1 Release date 2024-05-31
+>    -
+>
+>    YP 5.1 M2 Build date  2024-07-08
+>    -
+>
+>    YP 5.1 M2 Release date 2024-07-19
+>    -
+>
+>    YP 5.1 M3 Build date  2024-08-26
+>    -
+>
+>    YP 5.1 M3 Release date 2024-09-06
+>    -
+>
+>    YP 5.1 M4 Build date  2024-09-30
+>    -
+>
+>    YP 5.1 M4 Release date 2024-10-25
+>
+>
+> Upcoming dot releases:
+>
+>    -
+>
+>    YP 4.0.19 is in QA.
+>    -
+>
+>    YP 5.0.2 Build Date 2024-06-24
+>    -
+>
+>    YP 5.0.2 Release Date 2024-07-05
+>    -
+>
+>    YP 4.0.20 Build Date 2024-07-15
+>    -
+>
+>    YP 4.0.20 Release Date 2024-07-26
+>    -
+>
+>    YP 5.0.3 Build Date 2024-08-12
+>    -
+>
+>    YP 5.0.3 Release Date 2024-08-23
+>    -
+>
+>    YP 4.0.21 Build Date 2024-09-09
+>    -
+>
+>    YP 4.0.21 Release Date 2024-09-20
+>    -
+>
+>    YP 5.0.4 Build Date 2024-09-23
+>    -
+>
+>    YP 5.0.4 Release Date 2024-10-04
+>    -
+>
+>    YP 4.0.22 Build Date 2024-10-14
+>    -
+>
+>    YP 4.0.22 Release Date 2024-10-25
+>    -
+>
+>    YP 5.0.5 Build Date 2024-11-11
+>    -
+>
+>    YP 5.0.5 Release Date 2024-11-22
+>    -
+>
+>    YP 4.0.23 Build Date 2024-11-18
+>    -
+>
+>    YP 4.0.23 Release Date 2024-11-29
+>
+>
+> The Yocto Project=E2=80=99s technical governance is through its Technical=
+ Steering
+> Committee, more information is available at:
+>
+> https://wiki.yoctoproject.org/wiki/TSC
+>
+> The Status reports are now stored on the wiki at:
+> https://wiki.yoctoproject.org/wiki/Weekly_Status
+>
+> [If anyone has suggestions for other information you=E2=80=99d like to se=
+e on this
+> weekly status update, let us know!]
+>
+> Thanks,
+>
+>
+>
+> *Stephen K. Jolley*
+>
+> *Yocto Project Program Manager*
+>
+> (    *Cell*:                (208) 244-4460
+>
+> * *Email*:                 *s
+> <stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.co=
+m>*
+>
+>=20
+>
+>
 
+--000000000000e2e122061b9cbec8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Right, text is better as other people with the same issue will benefit 
-from the discussion, are at least knowing that they are not alone ;-)
-Michael.
+<div dir=3D"ltr">Ahhh... Now I see what is really going on under the hood! =
+;-)))<br><br>&gt;&gt;&gt; Upcoming dot releases:<br><div><b><span style=3D"=
+color:rgb(255,0,0)">&gt;&gt;&gt; YP 5.0.2 Build Date 2024-06-24</span></b><=
+/div><br><div>I see dead people! :-)))</div><div><br></div><div>Why this da=
+te? Because Fedora 40 JUST upgraded GCC 13.2 to GCC 14.1<b>!!!</b></div><di=
+v><b><br></b></div><div><b><i><u>The missing link!</u><br></i></b></div><di=
+v><b><br></b></div><div>I expect Poky 5.0.2 to kick in within a half of the=
+ day!<b><br></b></div><div><b><br></b></div><div>Zee<b><br></b></div><div><=
+b>_______</b></div><div><b><br></b></div></div><br><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 11, 2024 at 4:53=
+=E2=80=AFPM Stephen Jolley via <a href=3D"http://lists.yoctoproject.org">li=
+sts.yoctoproject.org</a> &lt;<a href=3D"http://sjolley.yp.pm">sjolley.yp.pm=
+</a>=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.com@lists.=
+yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr"><span id=3D"m_2270391077743118021gmail-doc=
+s-internal-guid-dda5e0df-7fff-de9c-770a-46f5fc7d3f05"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
+size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:tr=
+ansparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-v=
+ariant-alternates:normal;vertical-align:baseline">Current Dev Position: YP =
+5.1 M2</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-serif=
+;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;=
+font-variant-east-asian:normal;font-variant-alternates:normal;vertical-alig=
+n:baseline">Next Deadline: YP 5.1 M2 Build 8 July 2024</span></p><br><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backg=
+round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-variant-alternates:normal;vertical-align:baseline">Next Team M=
+eetings:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=
+=3D"ltr" style=3D"list-style-type:disc;font-size:9.5pt;font-family:Arial,sa=
+ns-serif;color:rgb(0,0,0);background-color:transparent;font-variant-numeric=
+:normal;font-variant-east-asian:normal;font-variant-alternates:normal;verti=
+cal-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-heigh=
+t:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline">Bug Triage meeting Thursday June 13th at 7:30 am PST (</span><=
+a href=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz0=
+9" style=3D"text-decoration-line:none" target=3D"_blank"><span style=3D"fon=
+t-size:11pt;background-color:transparent;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;font-variant-alternates:normal;text-decoration-lin=
+e:underline;vertical-align:baseline">https://zoom.us/j/454367603?pwd=3DZGxo=
+a2ZXL3FkM3Y0bFd5aVpHVVZ6dz09</span></a><span style=3D"font-size:11pt;backgr=
+ound-color:transparent;font-variant-numeric:normal;font-variant-east-asian:=
+normal;font-variant-alternates:normal;vertical-align:baseline">)</span></p>=
+</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:9.5pt;font-fam=
+ily:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-var=
+iant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:=
+normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline">Weekly Project Engineering Sync Tuesday June 11th=
+ at 8 am PST (</span><a href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM=
+2x6ck81bkcrYjRrcmJsUT09" style=3D"text-decoration-line:none" target=3D"_bla=
+nk"><span style=3D"font-size:11pt;background-color:transparent;font-variant=
+-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norm=
+al;text-decoration-line:underline;vertical-align:baseline">https://zoom.us/=
+j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</span></a><a href=3D"htt=
+ps://zoom.us/j/990892712" style=3D"text-decoration-line:none" target=3D"_bl=
+ank"><span style=3D"font-size:11pt;background-color:transparent;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:nor=
+mal;text-decoration-line:underline;vertical-align:baseline">)</span></a></p=
+></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:9.5pt;font-fa=
+mily:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-va=
+riant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates=
+:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline">Twitch -=C2=A0 See </span><a href=3D"https://www.=
+twitch.tv/theyoctojester" style=3D"text-decoration-line:none" target=3D"_bl=
+ank"><span style=3D"font-size:11pt;background-color:transparent;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:nor=
+mal;text-decoration-line:underline;vertical-align:baseline">https://www.twi=
+tch.tv/theyoctojester</span></a><span style=3D"font-size:11pt;background-co=
+lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-variant-alternates:normal;vertical-align:baseline">=C2=A0</span></p></=
+li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-=
+bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;colo=
+r:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;vertical-align:bas=
+eline">Key Status/Updates:</span></p><ul style=3D"margin-top:0px;margin-bot=
+tom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-=
+family:Arial,sans-serif;color:rgb(46,52,54);background-color:transparent;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alter=
+nates:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presenta=
+tion"><span style=3D"font-size:11pt;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline"=
+>YP 4.0.19 has been through QA and is due for release</span></p></li><li di=
+r=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sa=
+ns-serif;color:rgb(46,52,54);background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ve=
+rtical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span sty=
+le=3D"font-size:11pt;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;font-variant-alternates:normal;vertical-align:baseline">YP 5.1 M1 rc2 =
+is in QA</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-=
+size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:tr=
+ansparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-v=
+ariant-alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline">RFC patches for the CVE tooling c=
+hanges have been posted, help in review is appreciated</span></p></li><li d=
+ir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,s=
+ans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-numeri=
+c:normal;font-variant-east-asian:normal;font-variant-alternates:normal;vert=
+ical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-heig=
+ht:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline">There are SPDX 3.0 patches ready for review on the mailing lis=
+t</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11=
+pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:11pt;background-color:transparent;font-=
+variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternat=
+es:normal;vertical-align:baseline">There are patches proposing that missing=
+ patch Upstream-Status entries be a fatal QA error, this is likely to merge=
+ soon as there have been no objections to it.</span></p></li><li dir=3D"ltr=
+" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif=
+;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;=
+font-variant-east-asian:normal;font-variant-alternates:normal;vertical-alig=
+n:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-=
+size:11pt;background-color:transparent;font-variant-numeric:normal;font-var=
+iant-east-asian:normal;font-variant-alternates:normal;vertical-align:baseli=
+ne">We have a fix for the final Fedora 40 issue, thanks Victor.</span></p><=
+/li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-famil=
+y:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:no=
+rmal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"=
+line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><s=
+pan style=3D"font-size:11pt;background-color:transparent;font-variant-numer=
+ic:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ver=
+tical-align:baseline">We appreciate everyone fixing layers to work with mas=
+ter after recent changes, the autobuilder health is looking greener, thanks=
+!</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11=
+pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:11pt;background-color:transparent;font-=
+variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternat=
+es:normal;vertical-align:baseline">The copy_unihashes function was dropped =
+from bitbake after the locked signature file improvements which simplifies =
+further tooling work</span></p></li><li dir=3D"ltr" style=3D"list-style-typ=
+e:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backgro=
+und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;font-variant-alternates:normal;vertical-align:baseline;white-space:pr=
+e-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bott=
+om:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-colo=
+r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fo=
+nt-variant-alternates:normal;vertical-align:baseline">There is discussion o=
+n openembedded-architecture about the details around=C2=A0 configuration fr=
+agment tooling potentially being integrated into bitbake</span></p></li><li=
+ dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial=
+,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ve=
+rtical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span sty=
+le=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-a=
+lign:baseline">There is an open letter the project has created related to t=
+he CVE/NVD situation, more information is available here: </span><a href=3D=
+"https://lists.openembedded.org/g/openembedded-architecture/message/1990" s=
+tyle=3D"text-decoration-line:none" target=3D"_blank"><span style=3D"font-si=
+ze:11pt;background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;text-decoration-line:un=
+derline;vertical-align:baseline">https://lists.openembedded.org/g/openembed=
+ded-architecture/message/1990</span></a></p></li></ul><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-left:36pt;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;font-variant-alternates:normal;vertical-align:baseline">Please c=
+onsider signing this to show support for those changes.</span></p><p dir=3D=
+"ltr" style=3D"line-height:1.38;margin-left:36pt;margin-top:0pt;margin-bott=
+om:0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rg=
+b(0,0,0);background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-variant-alternates:normal;vertical-align:baselin=
+e">Signatures from small businesses/consultancies are as welcome as those f=
+rom larger organizations as we want to demonstrate the breadth of the need =
+for these changes.</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"=
+><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:A=
+rial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norma=
+l;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"lin=
+e-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span=
+ style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;font-variant-alternates:normal;vertic=
+al-align:baseline">We continue to have trouble tracking down the rust repro=
+ducibility problem in rustdoc.</span></p></li><li dir=3D"ltr" style=3D"list=
+-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,=
+0);background-color:transparent;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;font-variant-alternates:normal;vertical-align:baseline;whit=
+e-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backg=
+round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-variant-alternates:normal;vertical-align:baseline">Through pos=
+t release upgrading our patch count reduced again and is now the lowest lev=
+el since July 2008!</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;f=
+ont-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alte=
+rnates:normal;vertical-align:baseline">Ways to contribute:</span></p><ul st=
+yle=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-styl=
+e-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;font-variant-alternates:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background=
+-color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
+al;font-variant-alternates:normal;vertical-align:baseline">As people are li=
+kely aware, the project has a number of components which are either unmaint=
+ained, or have people with little to no time trying to keep them alive. The=
+se components include: devtool, toaster, wic, oeqa, autobuilder, CROPs cont=
+ainers, pseudo and more. Many have open bugs. Help is welcome in trying to =
+better look after these components!</span></p></li><li dir=3D"ltr" style=3D=
+"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb=
+(0,0,0);background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline=
+;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;=
+background-color:transparent;font-variant-numeric:normal;font-variant-east-=
+asian:normal;font-variant-alternates:normal;vertical-align:baseline">There =
+are bugs identified as possible for newcomers to the project: </span><a hre=
+f=3D"https://wiki.yoctoproject.org/wiki/Newcomers" style=3D"text-decoration=
+-line:none" target=3D"_blank"><span style=3D"font-size:11pt;background-colo=
+r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fo=
+nt-variant-alternates:normal;text-decoration-line:underline;vertical-align:=
+baseline">https://wiki.yoctoproject.org/wiki/Newcomers</span></a></p></li><=
+li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ari=
+al,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;=
+vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span s=
+tyle=3D"font-size:11pt;background-color:transparent;font-variant-numeric:no=
+rmal;font-variant-east-asian:normal;font-variant-alternates:normal;vertical=
+-align:baseline">There are bugs that are currently unassigned for YP 5.1. S=
+ee: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium+=
+_5.1_Unassigned_Enhancements/Bugs" style=3D"text-decoration-line:none" targ=
+et=3D"_blank"><span style=3D"font-size:11pt;background-color:transparent;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alter=
+nates:normal;text-decoration-line:underline;vertical-align:baseline">https:=
+//wiki.yoctoproject.org/wiki/Bug_Triage#Medium+_5.1_Unassigned_Enhancements=
+/Bugs</span></a></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font=
+-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-=
+variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p =
+dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" rol=
+e=3D"presentation"><span style=3D"font-size:11pt;background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline">We=E2=80=99d welcome new maintai=
+ners for recipes in OE-Core. Please see the list at: </span><a href=3D"http=
+://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/maintai=
+ners.inc" style=3D"text-decoration-line:none" target=3D"_blank"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;text-decorat=
+ion-line:underline;vertical-align:baseline">http://git.yoctoproject.org/cgi=
+t.cgi/poky/tree/meta/conf/distro/include/maintainers.inc</span></a><span st=
+yle=3D"font-size:11pt;background-color:transparent;font-variant-numeric:nor=
+mal;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-=
+align:baseline"> and discuss with the existing maintainer, or ask on the OE=
+-Core mailing list. We will likely move a chunk of these to =E2=80=9CUnassi=
+gned=E2=80=9D soon to help facilitate this.</span></p></li><li dir=3D"ltr" =
+style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;c=
+olor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fo=
+nt-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:=
+baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;mar=
+gin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-si=
+ze:11pt;background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline=
+">Help is very much welcome in trying to resolve our autobuilder intermitte=
+nt issues. You can see the list of failures we=E2=80=99re continuing to see=
+ by searching for the =E2=80=9CAB-INT=E2=80=9D tag in bugzilla: </span><a h=
+ref=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-INT" =
+style=3D"text-decoration-line:none" target=3D"_blank"><span style=3D"font-s=
+ize:11pt;background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-variant-alternates:normal;text-decoration-line:u=
+nderline;vertical-align:baseline">https://bugzilla.yoctoproject.org/buglist=
+.cgi?quicksearch=3DAB-INT</span></a><span style=3D"font-size:11pt;backgroun=
+d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
+mal;font-variant-alternates:normal;vertical-align:baseline">.</span></p></l=
+i><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:=
+Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant=
+-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:norm=
+al;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"li=
+ne-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><spa=
+n style=3D"font-size:11pt;background-color:transparent;font-variant-numeric=
+:normal;font-variant-east-asian:normal;font-variant-alternates:normal;verti=
+cal-align:baseline">Help us resolve CVE issues: </span><a href=3D"https://a=
+utobuilder.yocto.io/pub/non-release/patchmetrics/" style=3D"text-decoration=
+-line:none" target=3D"_blank"><span style=3D"font-size:11pt;background-colo=
+r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fo=
+nt-variant-alternates:normal;text-decoration-line:underline;vertical-align:=
+baseline">CVE metrics</span></a><span style=3D"font-size:11pt;background-co=
+lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-variant-alternates:normal;vertical-align:baseline">=C2=A0</span></p></=
+li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family=
+:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:nor=
+mal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"l=
+ine-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><sp=
+an style=3D"font-size:11pt;background-color:transparent;font-variant-numeri=
+c:normal;font-variant-east-asian:normal;font-variant-alternates:normal;vert=
+ical-align:baseline">We have a growing number of bugs in bugzilla, any help=
+ with them is appreciated.</span></p></li><li dir=3D"ltr" style=3D"list-sty=
+le-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);b=
+ackground-color:transparent;font-variant-numeric:normal;font-variant-east-a=
+sian:normal;font-variant-alternates:normal;vertical-align:baseline;white-sp=
+ace:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgroun=
+d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
+mal;font-variant-alternates:normal;vertical-align:baseline">Regarding bugs,=
+ even if you can=E2=80=99t fix a bug, submitting a failing test case that c=
+an reproduce the issue significantly improves the chances it might get fixe=
+d.</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,=
+sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-numer=
+ic:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ver=
+tical-align:baseline">Tracking Metrics:</span></p><ul style=3D"margin-top:0=
+px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-si=
+ze:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;font-var=
+iant-alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-a=
+lternates:normal;vertical-align:baseline">WDD 2774 (last week 2772) </span>=
+<span style=3D"font-size:11pt;font-family:Consolas,sans-serif;background-co=
+lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-variant-alternates:normal;vertical-align:baseline">(</span><a href=3D"=
+https://wiki.yoctoproject.org/charts/combo.html" style=3D"text-decoration-l=
+ine:none" target=3D"_blank"><span style=3D"font-size:11pt;background-color:=
+transparent;font-variant-numeric:normal;font-variant-east-asian:normal;font=
+-variant-alternates:normal;text-decoration-line:underline;vertical-align:ba=
+seline">https://wiki.yoctoproject.org/charts/combo.html</span></a><span sty=
+le=3D"font-size:11pt;font-family:Consolas,sans-serif;background-color:trans=
+parent;font-variant-numeric:normal;font-variant-east-asian:normal;font-vari=
+ant-alternates:normal;vertical-align:baseline">)</span></p></li><li dir=3D"=
+ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Consolas,sans=
+-serif;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D=
+"font-size:11pt;font-family:Arial,sans-serif;background-color:transparent;f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alte=
+rnates:normal;vertical-align:baseline">OE-Core/Poky Patch Metrics</span></p=
+></li><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=
+=3D"list-style-type:circle;font-size:11pt;font-family:Arial,sans-serif;colo=
+r:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;vertical-align:bas=
+eline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin=
+-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:=
+11pt;background-color:transparent;font-variant-numeric:normal;font-variant-=
+east-asian:normal;font-variant-alternates:normal;vertical-align:baseline">T=
+otal patches found: 1072 (last week 1098)</span></p></li><li dir=3D"ltr" st=
+yle=3D"list-style-type:circle;font-size:11pt;font-family:Consolas,sans-seri=
+f;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font=
+-size:11pt;font-family:Arial,sans-serif;background-color:transparent;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;font-variant-alternate=
+s:normal;vertical-align:baseline">Patches in the Pending State: 205 (19%) [=
+last week 205 (19%)]</span></p></li></ul><li dir=3D"ltr" style=3D"list-styl=
+e-type:disc;font-size:11pt;font-family:Consolas,sans-serif;color:rgb(0,0,0)=
+;background-color:transparent;font-variant-numeric:normal;font-variant-east=
+-asian:normal;font-variant-alternates:normal;vertical-align:baseline;white-=
+space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt" role=3D"presentation"><a href=3D"https://autobuilder.yocto.=
+io/pub/non-release/patchmetrics/" style=3D"text-decoration-line:none" targe=
+t=3D"_blank"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;bac=
+kground-color:transparent;font-variant-numeric:normal;font-variant-east-asi=
+an:normal;font-variant-alternates:normal;text-decoration-line:underline;ver=
+tical-align:baseline">https://autobuilder.yocto.io/pub/non-release/patchmet=
+rics/</span></a></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family=
+:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:nor=
+mal;vertical-align:baseline">YP 5.1 Milestone Dates:</span></p><ul style=3D=
+"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type=
+:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backgrou=
+nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;font-variant-alternates:normal;vertical-align:baseline;white-space:pre=
+-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-botto=
+m:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-color=
+:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-alternates:normal;vertical-align:baseline">YP 5.1 M1 is in QA</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alter=
+nates:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presenta=
+tion"><span style=3D"font-size:11pt;background-color:transparent;font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:no=
+rmal;vertical-align:baseline">YP 5.1 M1 Release date 2024-05-31</span></p><=
+/li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-famil=
+y:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:no=
+rmal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"=
+line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><s=
+pan style=3D"font-size:11pt;background-color:transparent;font-variant-numer=
+ic:normal;font-variant-east-asian:normal;font-variant-alternates:normal;ver=
+tical-align:baseline">YP 5.1 M2 Build date=C2=A0 2024-07-08</span></p></li>=
+<li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ar=
+ial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline">YP 5.1 M2 Release date 2024-07-19</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,san=
+s-serif;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;font-variant-alternates:normal;vertic=
+al-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline">YP 5.1 M3 Build date=C2=A0 2024-08-26</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,san=
+s-serif;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;font-variant-alternates:normal;vertic=
+al-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline">YP 5.1 M3 Release date 2024-09-06</span></p></li><li dir=3D"lt=
+r" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-seri=
+f;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font=
+-size:11pt;background-color:transparent;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;font-variant-alternates:normal;vertical-align:basel=
+ine">YP 5.1 M4 Build date=C2=A0 2024-09-30</span></p></li><li dir=3D"ltr" s=
+tyle=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;co=
+lor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fon=
+t-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:b=
+aseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;marg=
+in-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-siz=
+e:11pt;background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline"=
+>YP 5.1 M4 Release date 2024-10-25</span></p></li></ul><br><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"f=
+ont-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-colo=
+r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;fo=
+nt-variant-alternates:normal;vertical-align:baseline">Upcoming dot releases=
+:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" =
+style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;c=
+olor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fo=
+nt-variant-east-asian:normal;font-variant-alternates:normal;vertical-align:=
+baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;mar=
+gin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-si=
+ze:11pt;background-color:transparent;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-variant-alternates:normal;vertical-align:baseline=
+">YP 4.0.19 is in QA.</span></p></li><li dir=3D"ltr" style=3D"list-style-ty=
+pe:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backgr=
+ound-color:transparent;font-variant-numeric:normal;font-variant-east-asian:=
+normal;font-variant-alternates:normal;vertical-align:baseline;white-space:p=
+re-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bot=
+tom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-col=
+or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;f=
+ont-variant-alternates:normal;vertical-align:baseline">YP 5.0.2 Build Date =
+2024-06-24</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;fon=
+t-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:=
+transparent;font-variant-numeric:normal;font-variant-east-asian:normal;font=
+-variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p=
+ dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" ro=
+le=3D"presentation"><span style=3D"font-size:11pt;background-color:transpar=
+ent;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant=
+-alternates:normal;vertical-align:baseline">YP 5.0.2 Release Date 2024-07-0=
+5</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11=
+pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:11pt;background-color:transparent;font-=
+variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternat=
+es:normal;vertical-align:baseline">YP 4.0.20 Build Date 2024-07-15</span></=
+p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fa=
+mily:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-va=
+riant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates=
+:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline">YP 4.0.20 Release Date 2024-07-26</span></p></li>=
+<li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ar=
+ial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline">YP 5.0.3 Build Date 2024-08-12</span></p></li><li dir=3D"=
+ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-se=
+rif;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-a=
+lign:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"fo=
+nt-size:11pt;background-color:transparent;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;vertical-align:bas=
+eline">YP 5.0.3 Release Date 2024-08-23</span></p></li><li dir=3D"ltr" styl=
+e=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color=
+:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;font-variant-alternates:normal;vertical-align:base=
+line;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:1=
+1pt;background-color:transparent;font-variant-numeric:normal;font-variant-e=
+ast-asian:normal;font-variant-alternates:normal;vertical-align:baseline">YP=
+ 4.0.21 Build Date 2024-09-09</span></p></li><li dir=3D"ltr" style=3D"list-=
+style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0=
+);background-color:transparent;font-variant-numeric:normal;font-variant-eas=
+t-asian:normal;font-variant-alternates:normal;vertical-align:baseline;white=
+-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgr=
+ound-color:transparent;font-variant-numeric:normal;font-variant-east-asian:=
+normal;font-variant-alternates:normal;vertical-align:baseline">YP 4.0.21 Re=
+lease Date 2024-09-20</span></p></li><li dir=3D"ltr" style=3D"list-style-ty=
+pe:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backgr=
+ound-color:transparent;font-variant-numeric:normal;font-variant-east-asian:=
+normal;font-variant-alternates:normal;vertical-align:baseline;white-space:p=
+re-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bot=
+tom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-col=
+or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;f=
+ont-variant-alternates:normal;vertical-align:baseline">YP 5.0.4 Build Date =
+2024-09-23</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;fon=
+t-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:=
+transparent;font-variant-numeric:normal;font-variant-east-asian:normal;font=
+-variant-alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p=
+ dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" ro=
+le=3D"presentation"><span style=3D"font-size:11pt;background-color:transpar=
+ent;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant=
+-alternates:normal;vertical-align:baseline">YP 5.0.4 Release Date 2024-10-0=
+4</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11=
+pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-=
+alternates:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:11pt;background-color:transparent;font-=
+variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternat=
+es:normal;vertical-align:baseline">YP 4.0.22 Build Date 2024-10-14</span></=
+p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fa=
+mily:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-va=
+riant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates=
+:normal;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline">YP 4.0.22 Release Date 2024-10-25</span></p></li>=
+<li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ar=
+ial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal=
+;vertical-align:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-variant-alternates:normal;vertica=
+l-align:baseline">YP 5.0.5 Build Date 2024-11-11</span></p></li><li dir=3D"=
+ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-se=
+rif;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-variant-alternates:normal;vertical-a=
+lign:baseline;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"fo=
+nt-size:11pt;background-color:transparent;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-variant-alternates:normal;vertical-align:bas=
+eline">YP 5.0.5 Release Date 2024-11-22</span></p></li><li dir=3D"ltr" styl=
+e=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color=
+:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;font-variant-alternates:normal;vertical-align:base=
+line;white-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:1=
+1pt;background-color:transparent;font-variant-numeric:normal;font-variant-e=
+ast-asian:normal;font-variant-alternates:normal;vertical-align:baseline">YP=
+ 4.0.23 Build Date 2024-11-18</span></p></li><li dir=3D"ltr" style=3D"list-=
+style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0=
+);background-color:transparent;font-variant-numeric:normal;font-variant-eas=
+t-asian:normal;font-variant-alternates:normal;vertical-align:baseline;white=
+-space:pre-wrap"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgr=
+ound-color:transparent;font-variant-numeric:normal;font-variant-east-asian:=
+normal;font-variant-alternates:normal;vertical-align:baseline">YP 4.0.23 Re=
+lease Date 2024-11-29</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt=
+;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent=
+;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-al=
+ternates:normal;vertical-align:baseline">The Yocto Project=E2=80=99s techni=
+cal governance is through its Technical Steering Committee, more informatio=
+n is available at:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt"><a href=3D"https://wiki.yoctoproject.org/wiki/=
+TSC" style=3D"text-decoration-line:none" target=3D"_blank"><span style=3D"f=
+ont-size:11pt;font-family:Arial,sans-serif;background-color:transparent;fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;font-variant-altern=
+ates:normal;text-decoration-line:underline;vertical-align:baseline">https:/=
+/wiki.yoctoproject.org/wiki/TSC</span></a></p><br><p dir=3D"ltr" style=3D"l=
+ine-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:=
+11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transpa=
+rent;font-variant-numeric:normal;font-variant-east-asian:normal;font-varian=
+t-alternates:normal;vertical-align:baseline">The Status reports are now sto=
+red on the wiki at: </span><a href=3D"https://wiki.yoctoproject.org/wiki/We=
+ekly_Status" style=3D"text-decoration-line:none" target=3D"_blank"><span st=
+yle=3D"font-size:11pt;font-family:Arial,sans-serif;background-color:transpa=
+rent;font-variant-numeric:normal;font-variant-east-asian:normal;font-varian=
+t-alternates:normal;text-decoration-line:underline;vertical-align:baseline"=
+>https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a></p><br><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
+style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backg=
+round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-variant-alternates:normal;vertical-align:baseline">[If anyone =
+has suggestions for other information you=E2=80=99d like to see on this wee=
+kly status update, let us know!]</span></p></span><br><div dir=3D"ltr" clas=
+s=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoNorm=
+al" style=3D"background-image:initial;background-position:initial;backgroun=
+d-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-seri=
+f">Thanks,<span></span></span></p>
 
---------------zpOr104DRgx30FnXkaLI9pkH
-Content-Type: multipart/related;
- boundary="------------WeIkY81LRBmeNffpBRk7q8lK"
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
 
---------------WeIkY81LRBmeNffpBRk7q8lK
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 6/23/24 18:57, Khem Raj wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAMKF1sq2OeQMjbDMJoF6xnY7GcbQHE_ZmREKV0e1dL7ZL=BgJA@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div dir="ltr"><br>
-        </div>
-        <br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Sun, Jun 23, 2024 at
-            3:21 AM aseelkhairudhar via <a
-              href="http://lists.yoctoproject.org"
-              moz-do-not-send="true">lists.yoctoproject.org</a>
-            &lt;aseelkhairudhar=<a
-              href="mailto:gmail.com@lists.yoctoproject.org"
-              moz-do-not-send="true" class="moz-txt-link-freetext">gmail.com@lists.yoctoproject.org</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote"
-style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hey
-            I am trying to build an image using 'bitbake
-            core-image-minimal error' command. But I am getting the
-            following error. As I am new to this its not making sense.
-            Can anyone help out?? Thanks in advance.<img
-              src="cid:part1.Vpqc57k8.OJ6fumwF@opdenacker.org" class="">
-            <br>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>This snap is unreadable. preferably, sharing text works
-            better on mailing lists, however, attaching screenshots is
-            ok if they are readable.</div>
-        </div>
-      </div>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>Right, text is better as other people with the same issue will
-      benefit from the discussion, are at least knowing that they are
-      not alone ;-)<br>
-      Michael.</p>
-  </body>
-</html>
---------------WeIkY81LRBmeNffpBRk7q8lK
-Content-Type: image/jpeg; name="error_pic.jpg"
-Content-Disposition: inline; filename="error_pic.jpg"
-Content-Id: <part1.Vpqc57k8.OJ6fumwF@opdenacker.org>
-Content-Transfer-Encoding: base64
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
 
-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
-nBz/AL5FZqGrJa0Wj1WuHZwoY19UycQkcpv8z4Lix2RjQNsUiZg7LKSduPLjjkd+as1JJGw0
-1VDeGLQHQDiM30i0bjSV2yNo6RGRY0w8gZHfGQV8vOO2fX0qPxiY5e90oGgQ0vAF3SCdxa8Z
-A66ZqxINNjmjYyiWLqBWRnIOMtk9u2NvNZLqxaRF4XRtPg2vDsUtkAidJM6ZRF1GO307pQlp
-SZGch1WQYUc+p9P08+vNUuqyYHoo2lwmFuJ15vewz12yvrdZYYrf71keQGEFsMCQG745xwDx
-zXYl2CQLrxsZS7ctc76b30O19Ad4WhINPEIZ5MuMkosnc+bjt24Xn1zXLFVmAPTu599l6m0+
-EDMTje9ge+2WWV9ZU1ksY3t4lVHj6r75W5JXOFJ47YrMVSHO1gQFsO4VhZTABGIyeWQ062XU
-021FhHI8qq75UOZOC2G9MduBz81e1eXkAenXkg4Wh2Ae51zaZtN9IysL81BINON0sZkPS85M
-m7vgnaPjIAOfmrirYSYvb8rLafB9qGF303vPMwOUiLqN2lnHY4gYPIZAcs3nx5uCPQfp59ar
-DUL/AKhaPj8rnWbwzaP+IyZ3vH1aaad68+vSvmJREoiURKIlESiJREoiURKIlESiJREoiURK
-IlESiJREoiURKIlESiJREoiURKIlEXKIu0RcAxRF2iJREoiURKIlESiJREoiURKIlESiJREo
-iURKIlESiJREoqlFEoqlESiJREoolESiqURKKJREoqlFEoqlESiJREoiURKIlFEoqlFEoiUR
-KKpRRKIlESiJREoiURKIlESiJREoiURKIlESiJREoiURKIlESiJREoiURKIlESiJREoiURKI
-lESiJREoiURKIlESiJREoiURKIlESiJREoiURKIlESiJRF9XH4XsXNwHeWJknWNFL8lcpk4K
-jP6jz6Y9a+QeLqCIE2n35nZfs2/o/Cu7QOJaQ4AXuR9MmC0Tmb2jmu/9ldPMzhbiRo96gOJF
-KqDt4zjnduIB4/SeKn7urFxfuPPnaNe9aP6NwheQ15iReRAy5CZkgGBcGQsep+Gobew1O9t5
-Z3htZbaNSIg8Z6queZcjBGzgbfNz228++hUdUphzxeT6L85+o8PT4XiTSomWwCDM584Ejnbu
-XlW1gbmCN1JBabpsx/SowME/1rTqmFxB2lc6XDdqwOGroOwyuVpOhhI3kMzbU2kjp8qCVGG5
-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
-KIlEX//Z
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
 
---------------WeIkY81LRBmeNffpBRk7q8lK--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+<br>
+<br>
+<br>
+</blockquote></div>
 
---------------zpOr104DRgx30FnXkaLI9pkH--
+--000000000000e2e122061b9cbec8--
 
