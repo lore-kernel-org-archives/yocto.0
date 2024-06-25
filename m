@@ -1,185 +1,74 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E56A1C2BBCA
-	for <webhook@archiver.kernel.org>; Tue, 25 Jun 2024 04:08:42 +0000 (UTC)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
- by mx.groups.io with SMTP id smtpd.web11.162553.1719288513143647898
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E6E4C2BBCA
+	for <webhook@archiver.kernel.org>; Tue, 25 Jun 2024 08:09:04 +0000 (UTC)
+Received: from a27-191.smtp-out.us-west-2.amazonses.com (a27-191.smtp-out.us-west-2.amazonses.com [54.240.27.191])
+ by mx.groups.io with SMTP id smtpd.web11.166045.1719302939674550990
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 Jun 2024 21:08:33 -0700
+ Tue, 25 Jun 2024 01:08:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=nhcmFHgK;
- spf=pass (domain: gmail.com, ip: 209.85.218.42, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a6fe81a5838so264097866b.3
-        for <yocto@lists.yoctoproject.org>; Mon, 24 Jun 2024 21:08:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719288511; x=1719893311; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=A5VeB6VvhTMmqcKJXlGgN8zHYKR+AHn5CkJP72OrO3c=;
-        b=nhcmFHgKH4gm3GIeVYr0uVPPCHdX+U1jEg762H8G7js767fBraKhH+osi6TYZ7qSNL
-         9CejMU3nP6771G62eX7WmWht9MyfFBxKgV8bXAL18em6QjyShxoGGIOFFx3W1relAeAf
-         rJx/uNazVoB0geffivIFPAFtqj62ya4lm0HjzljZKsjEQa/c5plzR8iEYDDQbQLGB4NW
-         RKyZAXWvamRM03soA7/k3acxky0agzPYbjE7yW/AkrzQ8SmbNrzVO9Gnboquo/QPTq9T
-         EoXh8abSrqo52SAlk5zPHmirnTUKtQjsRVzCJYT7ajLpKUhmcCEfq8h/wUodUy3DVqSk
-         aQUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719288511; x=1719893311;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A5VeB6VvhTMmqcKJXlGgN8zHYKR+AHn5CkJP72OrO3c=;
-        b=E7GQ8zFucnLplETQBAN4WqWyy4Kkf41DWznsH+e4EYLUUi+gt4gqJMBcJ6uFn5bfrX
-         9QVDXrniIrTgKrBoMrwJOVSn+HV9gtR8VnW/GnYAlneY/3WzwHcVWFFK8vKc0GzTSQzK
-         9g+08+FResbo0DaBSodvcazaMo8m8toRyVkCLIqVJ0TQvXmeenmH+fvZapWzwQrQbAgV
-         i2Cvqlfw8PRQNRDyRRFrkQhaJZt4Pu1CAVzzNfgqga5ka6laiS6YyeoDZE+kXd6Mgp7d
-         npLJCMf/WokjYMVTNWEyxNfYN0gjlt/bf94SKoHOj5+C9zFk6zgtjKVm9LgJEZBW8kFw
-         VQzw==
-X-Gm-Message-State: AOJu0Yz/qO2b0KU+cLo0Ix2jLh6ckpudeyMM0xN2pjdZ3yEY+bPEfZoM
-	qiFt/j2632HiV2G8KJebSleyVnbzFbs99rSZjOjpKsMAh2rjUzxWKV+9Rh6hySemAHGxOvMmCca
-	u/g23ErHLQkzqNleUAtyGcHZ99/xBNNxv
-X-Google-Smtp-Source: AGHT+IFDwPrwO4mDuPf/ITa7i95W01F1zAkMA5ELZo7mTah2aKZeLHNWD8H9R2sjPiYuFJ0/xbQ9Z5zNNvvKuhSDlj0=
-X-Received: by 2002:a17:907:8b8b:b0:a72:4bf2:e16 with SMTP id
- a640c23a62f3a-a724bf20f01mr296100066b.16.1719288511107; Mon, 24 Jun 2024
- 21:08:31 -0700 (PDT)
-MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 24 Jun 2024 21:08:21 -0700
-Message-ID: <CAK5yBb-srtoyeCVAZ=ujM4PirrubXxcObudOGRH-vjBe0gZD6g@mail.gmail.com>
-Subject: Enhancements/Bugs closed WW25!
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000f89d49061baf0c0c"
+ dkim=pass header.i=@yoctoproject.org header.s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx header.b=K2o+wBW8;
+ dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=U4QFZKNk;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.191, mailfrom: 010101904e70e071-638d333c-a229-48ce-96b2-86cc080208a9-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx; d=yoctoproject.org;
+	t=1719302938; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=Nh3DJTjkv8fdphxgkuhG3Q6KO0Lk/qFtTL648AXAm8o=;
+	b=K2o+wBW8oXFKEbrY4od5bvO8ADqvh++IDIe4SLB6p9jcQjw3ZFnkYrt1Va722cCg
+	ETwj965wrbCHOEBmfBRpt00YQ+Q6mBjKcrLYH6oSySEoETs87P0gzy0/yXK2OUtX8wX
+	SsJfTA/TJ7gBgD0ztWUGYOCYFPbNoi5isYVz0fFE=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1719302938;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=Nh3DJTjkv8fdphxgkuhG3Q6KO0Lk/qFtTL648AXAm8o=;
+	b=U4QFZKNkZK9rExKlC17TdLrkY/HC8u3lQbwOnPg9nptt4yz4Oom1brSb8cF0bITA
+	jnDCEtGzNholVkBHCiwcDG9Ih4vL8OENGrHGUuvh/HFIMi2riSptqd7UHxKF48hNfW5
+	z/EkXjSFKDX4qdDwXMv0DhZwwOz1ZFjNGoIOAc3w=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-5.0.2.rc1)
+Message-ID: <010101904e70e071-638d333c-a229-48ce-96b2-86cc080208a9-000000@us-west-2.amazonses.com>
+Date: Tue, 25 Jun 2024 08:08:58 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2024.06.25-54.240.27.191
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Jun 2024 04:08:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63386
-
---000000000000f89d49061baf0c0c
-Content-Type: text/plain; charset="UTF-8"
-
-All,
-
-The below were the owners of enhancements or bugs closed during the last
-week!
-Who Count
-ross.burton@arm.com 2
-throos@amazon.de 1
-sjolley.yp.pm@gmail.com 1
-mhalstead@linuxfoundation.org 1
-alexandre.belloni@bootlin.com 1
-Grand Total 6
-
-Thanks,
+ <yocto@lists.yoctoproject.org>; Tue, 25 Jun 2024 08:09:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63387
 
 
+    A build flagged for QA (yocto-5.0.2.rc1) was completed on the autobuilder and is available at:
 
-*Stephen K. Jolley*
 
-*Yocto Project Program Manager*
+        https://autobuilder.yocto.io/pub/releases/yocto-5.0.2.rc1
 
-(    *Cell*:                (208) 244-4460
 
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
+    Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/7076
 
---000000000000f89d49061baf0c0c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+    Build hash information: 
 
-<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>The below were the owners of enhancements or bugs closed during =
-the last week!<br></span><div dir=3D"ltr" class=3D"gmail_signature" data-sm=
-artmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><table cellsp=
-acing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layou=
-t:fixed;font-size:11pt;font-family:Calibri;width:0px;border-collapse:collap=
-se;border:none"><colgroup><col width=3D"249"><col width=3D"42"></colgroup><=
-tbody><tr style=3D"height:20px"><td style=3D"border:1px solid rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(21=
-9,229,241);font-weight:bold">Who</td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(2=
-19,229,241);font-weight:bold">Count</td></tr><tr style=3D"height:20px"><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-"><a href=3D"mailto:ross.burton@arm.com">ross.burton@arm.com</a></td><td st=
-yle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rg=
-b(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertic=
-al-align:bottom;text-align:right">2</td></tr><tr style=3D"height:20px"><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-"><a href=3D"mailto:throos@amazon.de">throos@amazon.de</a></td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom;text-align:right">1</td></tr><tr style=3D"height:20px"><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom;text-align:right">1</td></tr><tr style=3D"height:20px"><=
-td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
-4) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bot=
-tom"><a href=3D"mailto:mhalstead@linuxfoundation.org">mhalstead@linuxfounda=
-tion.org</a></td><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr sty=
-le=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom"><a href=3D"mailto:alexandre.belloni@bootlin.com">a=
-lexandre.belloni@bootlin.com</a></td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right=
-">1</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,24=
-1);font-weight:bold">Grand Total</td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom;background-color=
-:rgb(219,229,241);font-weight:bold;text-align:right">6</td></tr></tbody></t=
-able><p class=3D"MsoNormal" style=3D"background-image:initial;background-po=
-sition:initial;background-repeat:initial"><span style=3D"font-size:12pt;fon=
-t-family:Arial,sans-serif">Thanks,<span></span></span></p>
+    bitbake: 8714a02e13477a9d97858b3642e05f28247454b5
+meta-agl: e1a0adc8cfdc3b306537fc64f8b29c3c53f744ca
+meta-arm: 29799b787d57d623dce140012a87568f314f3460
+meta-aws: e3e4c876830c76aa1112b51ace6bb6fe35d5f0f4
+meta-clang: 83e93bcda1654477802ed18b5f440fba7a733caf
+meta-intel: d172a00f487a8ea4391b96e0f6cef5279c5a07d7
+meta-mingw: acbba477893ef87388effc4679b7f40ee49fc852
+meta-openembedded: 4a7bb77f7ebe0ac8be5bab5103d8bd993e17e18d
+meta-virtualization: 37c06acf58f9020bccfc61954eeefe160642d5f3
+oecore: 803cc32e72b4fc2fc28d92090e61f5dd288a10cb
+poky: f7def85be9f99dcb4ba488bead201f670304379b
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
-
---000000000000f89d49061baf0c0c--
+     
 
