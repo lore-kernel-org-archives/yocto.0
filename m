@@ -1,246 +1,502 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <lukas.dibelka@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 898B5C3064D
-	for <webhook@archiver.kernel.org>; Tue,  2 Jul 2024 06:43:57 +0000 (UTC)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
- by mx.groups.io with SMTP id smtpd.web11.15448.1719886894589201527
- for <yocto@lists.yoctoproject.org>;
- Mon, 01 Jul 2024 19:21:34 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=V0RtEGoM;
- spf=pass (domain: mvista.com, ip: 209.85.219.171, mailfrom: vanusuri@mvista.com)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e0354459844so3485782276.3
-        for <yocto@lists.yoctoproject.org>; Mon, 01 Jul 2024 19:21:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1719886893; x=1720491693; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IYmNEztYcdtN61eXGoacaAGdZRg87Dak9obwFto0l0Y=;
-        b=V0RtEGoMFZInSPjw6eBovjVOTcJU8JWjjBzorhNW9PxmJEZUyRO5xThlHpBbqQa0fd
-         gXX0URfwsQ8Cq7d26bqIohGngw7SShLrPt3bL2gI1zJSgEzdSw3c6gRrY+3qEPI+tI7Q
-         Tg9WV7d5wz08KbI8bemUGmT7/8z9w9uJW6/5U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719886893; x=1720491693;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IYmNEztYcdtN61eXGoacaAGdZRg87Dak9obwFto0l0Y=;
-        b=O4HrjsWpW7F8aAsPUdQbQKeZvKu/Bm1aWo9srC/nnsHqoNA3s28Jd7IKAYLmWtCtzc
-         W1/bezb+eID+XFGEAOk9m/0bYECqvSwTbcSyJzpKJ1Fnt5cjwwCDKmrPAlTeHbisrm0v
-         c0JAdazwZDDv887dD/M6zWRjwhkVtBd5xN7PNmC4sazACCAAYQLrOQmBMt7BTA9cM2vS
-         +zCIQzDthu5yx85KQybpit5UJ/WnVMOPR7PY4YeBZqeXznrAvRwURvFdfcL2xp3yzaOF
-         LK/bMqIQIiKh51mTBJxc59uxr44mZ/XuQCmwa2SWVCViJ5iXG5H9UAC9J5ibL/tzSbeC
-         ynZA==
-X-Gm-Message-State: AOJu0YxN9bCHOz6lQu//JLz/4JSLtIThCAyiwXeEjooxck2rO3WnGAbi
-	NVi//yM+3USAilRoFrI+ZmFIQvzJVPoPnq/mED6cFrccKSY+t8W47AFX4AE0ux5fMyyw6l8wR67
-	j8Kg=
-X-Google-Smtp-Source: AGHT+IHdF7zhCHBbdIC4UVLlIcIW9nEXg73frD2LHuu7JmtyzQ8kfcyQ2zyQF1oj+izdzkhOPmTuaA==
-X-Received: by 2002:a5b:651:0:b0:e03:3f55:b1ac with SMTP id 3f1490d57ef6-e036ec35ec6mr7441483276.48.1719886893177;
-        Mon, 01 Jul 2024 19:21:33 -0700 (PDT)
-Received: from MVIN00020.mvista.com ([2401:4900:882d:b0a8:36a3:3a26:48c8:602d])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e036402b600sm1301515276.1.2024.07.01.19.21.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jul 2024 19:21:32 -0700 (PDT)
-From: "Vijay Anusuri" <vanusuri@mvista.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22F76C30658
+	for <webhook@archiver.kernel.org>; Tue,  2 Jul 2024 08:55:08 +0000 (UTC)
+Subject: RSUGGEST with rpm
 To: yocto@lists.yoctoproject.org
-Cc: Vijay Anusuri <vanusuri@mvista.com>
-Subject: [meta-security][kirkstone][PATCH] clamav: Fix for CVE-2024-20328
-Date: Tue,  2 Jul 2024 07:51:17 +0530
-Message-Id: <20240702022117.7708-1-vanusuri@mvista.com>
-X-Mailer: git-send-email 2.25.1
+From: lukas.dibelka@gmail.com
+X-Originating-Location: Vienna, AT (165.225.200.109)
+X-Originating-Platform: Windows Chrome 126
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Tue, 02 Jul 2024 01:55:03 -0700
+Message-ID: <C0Fe.1719910503368761741.mBzW@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="lGb5ZZuBwupLwU5JiClu"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Jul 2024 06:43:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63424
+ <yocto@lists.yoctoproject.org>; Tue, 02 Jul 2024 08:55:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63425
 
-From: Vijay Anusuri <vanusuri@mvista.com>
+--lGb5ZZuBwupLwU5JiClu
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Upstream-Status: Backport [https://github.com/Cisco-Talos/clamav/commit/fe7638287bb11419474ea314652404e7e9b314b2]
+Hello Guys,
 
-Signed-off-by: Vijay Anusuri <vanusuri@mvista.com>
----
- recipes-scanners/clamav/clamav_0.104.0.bb     |   1 +
- .../clamav/files/CVE-2024-20328.patch         | 153 ++++++++++++++++++
- 2 files changed, 154 insertions(+)
- create mode 100644 recipes-scanners/clamav/files/CVE-2024-20328.patch
+I am trying to leverage *RSUGGESTS* variable in one of my recipes for kind =
+of weak rdependency on another recipe coming from another layer. But variab=
+le does not do what is expected.
+(basically the expected binaries from another recipe are not in the final i=
+mage)
+Doc says
 
-diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
-index 18e8329..9e6693f 100644
---- a/recipes-scanners/clamav/clamav_0.104.0.bb
-+++ b/recipes-scanners/clamav/clamav_0.104.0.bb
-@@ -21,6 +21,7 @@ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104;protocol=http
-     file://headers_fixup.patch \
-     file://oe_cmake_fixup.patch \
-     file://fix_systemd_socket.patch \
-+    file://CVE-2024-20328.patch \
- "
- S = "${WORKDIR}/git"
- 
-diff --git a/recipes-scanners/clamav/files/CVE-2024-20328.patch b/recipes-scanners/clamav/files/CVE-2024-20328.patch
-new file mode 100644
-index 0000000..2f422cf
---- /dev/null
-+++ b/recipes-scanners/clamav/files/CVE-2024-20328.patch
-@@ -0,0 +1,153 @@
-+From fe7638287bb11419474ea314652404e7e9b314b2 Mon Sep 17 00:00:00 2001
-+From: Micah Snyder <micasnyd@cisco.com>
-+Date: Wed, 10 Jan 2024 12:09:15 -0500
-+Subject: [PATCH] ClamD: Disable VirusEvent '%f' feature, use environment var
-+ instead
-+
-+The '%f' filename format character has been disabled and will no longer
-+be replaced with the file name, due to command injection security concerns.
-+Use the 'CLAM_VIRUSEVENT_FILENAME' environment variable instead.
-+
-+For the same reason, you should NOT use the environment variables in the
-+command directly, but should use it carefully from your executed script.
-+
-+Upstream-Status: Backport [https://github.com/Cisco-Talos/clamav/commit/fe7638287bb11419474ea314652404e7e9b314b2]
-+CVE: CVE-2024-20328
-+Signed-off-by: Vijay Anusuri <vanusuri@mvista.com>
-+---
-+ clamd/clamd_others.c                  |  8 +++++---
-+ common/optparser.c                    |  2 +-
-+ docs/man/clamd.conf.5.in              | 14 ++++++++++----
-+ etc/clamd.conf.sample                 | 18 ++++++++++++------
-+ win32/conf_examples/clamd.conf.sample | 18 ++++++++++++------
-+ 5 files changed, 40 insertions(+), 20 deletions(-)
-+
-+diff --git a/clamd/clamd_others.c b/clamd/clamd_others.c
-+index 23f3b022c7..32d0701a0d 100644
-+--- a/clamd/clamd_others.c
-++++ b/clamd/clamd_others.c
-+@@ -101,6 +101,8 @@ void virusaction(const char *filename, const char *virname,
-+ #define VE_FILENAME "CLAM_VIRUSEVENT_FILENAME"
-+ #define VE_VIRUSNAME "CLAM_VIRUSEVENT_VIRUSNAME"
-+ 
-++#define FILENAME_DISABLED_MESSAGE "The filename format character has been disabled due to security concerns, use the 'CLAM_VIRUSEVENT_FILENAME' environment variable instead."
-++
-+ void virusaction(const char *filename, const char *virname,
-+                  const struct optstruct *opts)
-+ {
-+@@ -145,7 +147,7 @@ void virusaction(const char *filename, const char *virname,
-+     }
-+     len = strlen(opt->strarg);
-+     buffer_cmd =
-+-        (char *)calloc(len + v * strlen(virname) + f * strlen(filename) + 1, sizeof(char));
-++        (char *)calloc(len + v * strlen(virname) + f * strlen(FILENAME_DISABLED_MESSAGE) + 1, sizeof(char));
-+     if (!buffer_cmd) {
-+         if (path)
-+             xfree(env[0]);
-+@@ -160,8 +162,8 @@ void virusaction(const char *filename, const char *virname,
-+             j += strlen(virname);
-+             i++;
-+         } else if (i + 1 < len && opt->strarg[i] == '%' && opt->strarg[i + 1] == 'f') {
-+-            strcat(buffer_cmd, filename);
-+-            j += strlen(filename);
-++            strcat(buffer_cmd, FILENAME_DISABLED_MESSAGE);
-++            j += strlen(FILENAME_DISABLED_MESSAGE);
-+             i++;
-+         } else {
-+             buffer_cmd[j++] = opt->strarg[i];
-+diff --git a/common/optparser.c b/common/optparser.c
-+index a7bdbee064..1be7afe867 100644
-+--- a/common/optparser.c
-++++ b/common/optparser.c
-+@@ -333,7 +333,7 @@ const struct clam_option __clam_options[] = {
-+ 
-+     {"DisableCache", "disable-cache", 0, CLOPT_TYPE_BOOL, MATCH_BOOL, 0, NULL, 0, OPT_CLAMD | OPT_CLAMSCAN, "This option allows you to disable clamd's caching feature.", "no"},
-+ 
-+-    {"VirusEvent", NULL, 0, CLOPT_TYPE_STRING, NULL, -1, NULL, 0, OPT_CLAMD, "Execute a command when a virus is found. In the command string %v will be\nreplaced with the virus name and %f will be replaced with the file name.\nAdditionally, two environment variables will be defined: $CLAM_VIRUSEVENT_FILENAME\nand $CLAM_VIRUSEVENT_VIRUSNAME.", "/usr/bin/mailx -s \"ClamAV VIRUS ALERT: %v\" alert < /dev/null"},
-++    {"VirusEvent", NULL, 0, CLOPT_TYPE_STRING, NULL, -1, NULL, 0, OPT_CLAMD, "Execute a command when virus is found.\nUse the following environment variables to identify the file and virus names:\n- $CLAM_VIRUSEVENT_FILENAME\n- $CLAM_VIRUSEVENT_VIRUSNAME\nIn the command string, '%v' will also be replaced with the virus name.\nNote: The '%f' filename format character has been disabled and will no longer\nbe replaced with the file name, due to command injection security concerns.\nUse the 'CLAM_VIRUSEVENT_FILENAME' environment variable instead.\nFor the same reason, you should NOT use the environment variables in the\ncommand directly, but should use it carefully from your executed script.", "/opt/send_virus_alert_sms.sh"},
-+ 
-+     {"ExitOnOOM", NULL, 0, CLOPT_TYPE_BOOL, MATCH_BOOL, 0, NULL, 0, OPT_CLAMD, "Stop the daemon when libclamav reports an out of memory condition.", "yes"},
-+ 
-+diff --git a/docs/man/clamd.conf.5.in b/docs/man/clamd.conf.5.in
-+index 2d9748a39e..a9926533b9 100644
-+--- a/docs/man/clamd.conf.5.in
-++++ b/docs/man/clamd.conf.5.in
-+@@ -240,10 +240,16 @@ Enable non-blocking (multi-threaded/concurrent) database reloads. This feature w
-+ Default: yes
-+ .TP
-+ \fBVirusEvent COMMAND\fR
-+-Execute a command when a virus is found. In the command string %v will be
-+-replaced with the virus name and %f will be replaced with the file name.
-+-Additionally, two environment variables will be defined: $CLAM_VIRUSEVENT_FILENAME
-+-and $CLAM_VIRUSEVENT_VIRUSNAME.
-++Execute a command when virus is found.
-++Use the following environment variables to identify the file and virus names:
-++- $CLAM_VIRUSEVENT_FILENAME
-++- $CLAM_VIRUSEVENT_VIRUSNAME
-++In the command string, '%v' will also be replaced with the virus name.
-++Note: The '%f' filename format character has been disabled and will no longer
-++be replaced with the file name, due to command injection security concerns.
-++Use the 'CLAM_VIRUSEVENT_FILENAME' environment variable instead.
-++For the same reason, you should NOT use the environment variables in the
-++command directly, but should use it carefully from your executed script.
-+ \fR
-+ .br
-+ Default: disabled
-+diff --git a/etc/clamd.conf.sample b/etc/clamd.conf.sample
-+index 37fb03bf20..54738128da 100644
-+--- a/etc/clamd.conf.sample
-++++ b/etc/clamd.conf.sample
-+@@ -209,12 +209,18 @@ Example
-+ # Default: yes
-+ #ConcurrentDatabaseReload no
-+ 
-+-# Execute a command when virus is found. In the command string %v will
-+-# be replaced with the virus name and %f will be replaced with the file name.
-+-# Additionally, two environment variables will be defined: $CLAM_VIRUSEVENT_FILENAME
-+-# and $CLAM_VIRUSEVENT_VIRUSNAME.
-+-# Default: no
-+-#VirusEvent /usr/local/bin/send_sms 123456789 "VIRUS ALERT: %v in %f"
-++# Execute a command when virus is found.
-++# Use the following environment variables to identify the file and virus names:
-++# - $CLAM_VIRUSEVENT_FILENAME
-++# - $CLAM_VIRUSEVENT_VIRUSNAME
-++# In the command string, '%v' will also be replaced with the virus name.
-++# Note: The '%f' filename format character has been disabled and will no longer
-++# be replaced with the file name, due to command injection security concerns.
-++# Use the 'CLAM_VIRUSEVENT_FILENAME' environment variable instead.
-++# For the same reason, you should NOT use the environment variables in the
-++# command directly, but should use it carefully from your executed script.
-++# Default: no
-++#VirusEvent /opt/send_virus_alert_sms.sh
-+ 
-+ # Run as another user (clamd must be started by root for this option to work)
-+ # Default: don't drop privileges
-+diff --git a/win32/conf_examples/clamd.conf.sample b/win32/conf_examples/clamd.conf.sample
-+index 5a8a9cfeae..a4813f99cb 100644
-+--- a/win32/conf_examples/clamd.conf.sample
-++++ b/win32/conf_examples/clamd.conf.sample
-+@@ -182,12 +182,18 @@ TCPAddr localhost
-+ # Default: yes
-+ #ConcurrentDatabaseReload no
-+ 
-+-# Execute a command when virus is found. In the command string %v will
-+-# be replaced with the virus name and %f will be replaced with the file name.
-+-# Additionally, two environment variables will be defined: $CLAM_VIRUSEVENT_FILENAME
-+-# and $CLAM_VIRUSEVENT_VIRUSNAME.
-+-# Default: no
-+-#VirusEvent "C:\example\SendEmail.ps1" email@addresscom "VIRUS ALERT: %v in %f"
-++# Execute a command when virus is found.
-++# Use the following environment variables to identify the file and virus names:
-++# - $CLAM_VIRUSEVENT_FILENAME
-++# - $CLAM_VIRUSEVENT_VIRUSNAME
-++# In the command string, '%v' will also be replaced with the virus name.
-++# Note: The '%f' filename format character has been disabled and will no longer
-++# be replaced with the file name, due to command injection security concerns.
-++# Use the 'CLAM_VIRUSEVENT_FILENAME' environment variable instead.
-++# For the same reason, you should NOT use the environment variables in the
-++# command directly, but should use it carefully from your executed script.
-++# Default: no
-++#VirusEvent "C:\example\SendVirusAlertEmail.ps1"
-+ 
-+ # Run as another user (clamd must be started by root for this option to work)
-+ # Default: don't drop privileges
--- 
-2.25.1
+is it the case? Does variable *RSUGGESTS* work together with *rpm* ?
 
+Thank you in advance,
+Lukas Dibelka
+
+--lGb5ZZuBwupLwU5JiClu
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Guys,&nbsp;<br /><br />I am trying to leverage <strong>RSUGGESTS </st=
+rong>variable in one of my recipes for kind of weak rdependency on another =
+recipe coming from another layer. But variable does not do what is expected=
+.&nbsp;<br />(basically the expected binaries from another recipe are not i=
+n the final image)<br />Doc says&nbsp;<br /><br /><img src=3D"data:image/pn=
+g;base64,iVBORw0KGgoAAAANSUhEUgAABnwAAACJCAIAAACJlgEAAAAgAElEQVR4Ae29j2+byZ=
+nnuX9HgMHhcIc94HB7wOIFBkusBhBgnzBtWDdBCN/FjJDWGbcRnB0iBkz0wIInbiOxlUy8dPpGs=
+Mar8bS13umWkG7ZQIPO9KnRvdFm1HSfPWpEI98ZYHcc2jHCaW/oPee4zUERONRTVe9bVe/zvi9J=
+URIpfQXDfPmy3qqnPvXUU1XPWz/+icAfCIAACIAACIAACIAACIAACIAACIAACIAACIDAQAn8k4H=
+GhshAAARAAARAAARAAARAAARAAARAAARAAARAAAQEnG5QAhAAARAAARAAARAAARAAARAAARAAAR=
+AAARAYMAE43QYMFNGBAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAJxu0AEQAAEQAAEQAAEQAAEQA=
+AEQAAEQAAEQAAEQGDABON0GDBTRgQAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgACcbtABEAABEAAB=
+EAABEAABEAABEAABEAABEAABEBgwATjdBgwU0YEACIAACIAACIAACIAACIAACIAACIAACIAAnG7=
+QARAAARAAARAAARAAARAAARAAARAAARAAARAYMAE43QYMFNGBAAiAAAiAAAiAAAiAAAiAAAiAAA=
+iAAAiAAJxu0AEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQGDABON0GDBTRgQAIgAAIgAAIgAAIg=
+AAIgAAIgAAIgAAIgACcbtABEAABEAABEAABEAABEAABEAABEAABEAABEBgwATjdBgwU0YEACIAA=
+CIAACIAACIAACIAACIAACIAACIAAnG7QARAAARAAARAAARAAARAAARAAARAAARAAARAYMAE43QY=
+MFNGBAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAJxu0AEQAAEQAAEQAAEQAAEQAAEQAAEQAAEQAA=
+EQGDABON0GDBTRgQAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgACcbtABEAABEAABEAABEAABEAABE=
+AABEAABEAABEBgwATjdBgwU0YEACIAACIAACIAACIAACIAACIAACIAACIAAnG7QARAAARAAARAA=
+ARAAARAAARAAgV4JvBDis07n7zqdD4fm398J8ZkQz3vNCcKDAAiAwC4RgNNtl8AiWhAAARAAARA=
+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
+Iwd0pIdxs7gAWxe5miQrahelNwt/d9Ic8drmh2+T17W6kpFUt7hEK3TyGMIMjgCIYHEvEtGsEnA=
+34cubA5V1LDhH3TmCY+z9osnsvTzwBAntPAE63vWeOFEHg4BOA0+0AlvEwdzrrd0oFvd1eoDabs=
+3eeOoCFsZtZam7Mz0zpjUaC+P5xu5n0wYq7WXmNOULhYOVxyHODIhjyAoJ4RKCxNvuK3C0298r0=
+3B19TDfQDBWBYe7/oMkeKlWBMCCQQABOtwQwuA0CILADAnC67QAeHgUBEAABEAABEAABEAABEAA=
+BEAABEAABEAABjgCcbhwV3AMBEAABEAABEAABEAABEAABEAABEAABEACBHRCA020H8PAoCIAACI=
+AACIAACIAACIAACIAACIAACIAACHAE4HTjqOAeCIAACIAACIAACIAACIAACIAACIAACIAACOyAA=
+JxuO4CHR0EABEC46SrvAAAB10lEQVQABEAABEAABEAABEAABEAABEAABECAIwCnG0cF90AABEAA=
+BEAABEAABEAABEAABEAABEAABEBgBwTgdNsBPDwKAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAhw=
+BON04KrgHAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAjsgAKfbDuDhURAAARAAARAAARAAARAAAR=
+AAARAAARAAARDgCMDpxlHBPRAAARAAARAAARAAARAAARAAARAAARAAARDYAQE43XYAD4+CAAiAA=
+AiAAAiAAAiAAAiAAAiAAAiAAAiAAEcATjeOCu6BAAiAAAiAAAiAAAiAAAiAAAiAAAiAAAiAwA4I=
+wOm2A3h4FARAAARAAARAAARAAARAAARAAARAAARAAAQ4AnC6cVRwDwRAAARAAARAAARAAARAAAR=
+AAARAAARAAAR2QABOtx3Aw6MgAAIgAAIgAAIgAAIgAAIgAAIgAAIgAAIgwBGA042jgnsgAAIgAA=
+IgAAIgAAIgAAIgAAIgAAIgAAIgsAMCo+R0+9XTX+MfCIAACIAACIAACIAACIAACIAACIAACIAAC=
+Aw/gRFzun2JPxAAARAAARAAARAAARAAARAAARAAARAAARAYegL/P12yB448oP0qAAAAAElFTkSu=
+QmCC" width=3D"1309" height=3D"108" /><br /><br />is it the case? Does vari=
+able <strong>RSUGGESTS </strong>work together with <strong>rpm</strong>?<br=
+ /><br />Thank you in advance,<br />Lukas Dibelka
+
+--lGb5ZZuBwupLwU5JiClu--
 
