@@ -1,250 +1,311 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <lukasz.zemla@woodward.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 133F9C2BD09
-	for <webhook@archiver.kernel.org>; Wed,  3 Jul 2024 15:44:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by mx.groups.io with SMTP id smtpd.web10.53660.1720021453017528344
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A63DAC2BD09
+	for <webhook@archiver.kernel.org>; Wed,  3 Jul 2024 17:47:57 +0000 (UTC)
+Received: from mx0b-00246501.pphosted.com (mx0b-00246501.pphosted.com [205.220.177.109])
+ by mx.groups.io with SMTP id smtpd.web11.57435.1720028870189829810
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Jul 2024 08:44:13 -0700
+ Wed, 03 Jul 2024 10:47:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=nUna4C4X;
- spf=pass (domain: intel.com, ip: 192.198.163.17, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1720021453; x=1751557453;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=ddV0BYd4o1FwCkLFVdo3RxRiDQ98dQlpXdPGpc1lv/Q=;
-  b=nUna4C4XfMKefOXWOvVDHQL3QS84NpawHsYItzc2pOEGHiQ8zDEl24HY
-   AWJ9Py2kw7BB28kONVds7pCZ0XUX37IyaN4Hj8LsTiN8PoFGL9jXMZgQZ
-   RmakyCPV/FN+3SGiUI/Ph2BIZEx+UNPdH3Lkm7HxK2440Y7rU21KUr8lC
-   V01KOZ+wVRjTDaJO1YVyaffkOnQfnhzRTP/letLK9YAYYOnavkzMDh1iM
-   m0+YV66xnsIaZGCOI/tcMerjmBDgCsqM+E5X3Yvfb8/cDmdKjo+sKMGil
-   DniAD9aQJOVhQhb0tZZinm2xmoPS60Pk97P0q80SQE9tApE8FFG4Bgz4s
-   A==;
-X-CSE-ConnectionGUID: X3UZMj2HSc2zehjm+sGp3Q==
-X-CSE-MsgGUID: T/V8yI+KQZaR9MgErRE0Xg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11121"; a="17129285"
-X-IronPort-AV: E=Sophos;i="6.09,182,1716274800"; 
-   d="scan'208";a="17129285"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2024 08:44:13 -0700
-X-CSE-ConnectionGUID: LUhd6SY6TxqHVpiZLNPMgA==
-X-CSE-MsgGUID: 4urQNHrCQlG8QrDnDLwMbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,182,1716274800"; 
-   d="scan'208";a="46959288"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
-  by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 03 Jul 2024 08:44:13 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 3 Jul 2024 08:44:12 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 3 Jul 2024 08:44:11 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 3 Jul 2024 08:44:11 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 3 Jul 2024 08:44:11 -0700
+ dkim=pass header.i=@woodward.com header.s=woodward.com.07.14.2020 header.b=cIDj/osD;
+ dkim=fail reason="dkim: body hash did not verify" header.i=@WWDInc.onmicrosoft.com header.s=selector1-WWDInc-onmicrosoft-com header.b=VsRsHZJ5;
+ spf=pass (domain: woodward.com, ip: 205.220.177.109, mailfrom: lukasz.zemla@woodward.com)
+Received: from pps.filterd (m0216729.ppops.net [127.0.0.1])
+	by mx0a-00246501.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 463EXwUN020466
+	for <yocto@lists.yoctoproject.org>; Wed, 3 Jul 2024 12:47:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=woodward.com; h=
+	content-type:date:from:message-id:mime-version:subject:to; s=
+	woodward.com.07.14.2020; bh=Yq20fppzJrzHEdNXRLiRtPQOxZmwWueQfYDG
+	7ejxnA8=; b=cIDj/osDsJ+4tp1D/ncHz0I/pOWVQzhtZWaMBcXps5zaWO/SueAf
+	V7U8s0Xr0ZvhE+s1Bb4kzUpOG/EBsd4RmWBZ8GdtgdjUVJ2YxGmkaOJhvYO0qzOj
+	TjvuahrIR8RC/vzs9irI6Min0gvkK/830p2OFAXV01He4b6PBae3wIGDAn6QIWuq
+	tNkurqzzJhmyXJ739JmlJdPnuJYL2zB09mnu9tWrSmgzJ9eT6vLeB2ZvyFndnPCF
+	Y1cuBrF6pmmP/IbgCgLr+7shLIUpzVHBkukamr1zx2icSGRUlXnCbtWeD/qvlnL8
+	Z9fCvrpiT8ebb0MQMje67qezOz882m2GbQ==
+Received: from nam02-sn1-obe.outbound.protection.outlook.com (mail-sn1nam02lp2041.outbound.protection.outlook.com [104.47.57.41])
+	by mx0a-00246501.pphosted.com (PPS) with ESMTPS id 40560ks98b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Wed, 03 Jul 2024 12:47:49 -0500 (CDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L5rMQjPrgoTYI47EjKqjUeU5OhYyP1jWq/HwilTKkE+uUbSZLq+INOjQkEa9pbLCVIyHB9lmKhce0BTAYd8pcq/VUhEkQCEeBdnX6KQT+netNMw/SbxSh4suZPLR3CMYBE+G6Bwwduutw6jwxIOA0gWIyC4v5+9cR0F7nwm1QJpY6U91jsmX+/faF9Te2eP/9KcOdf0D+Y8gnVsL9Ah3AADoKq8p3YaNksFxuv6Wb1HkZa+DADqDyH258XYiNjF0lvusPv9LbZnFck5KFfpYTRZBxsRSSUn4OMB+HYr7o3QN+iDhAHTGGjVpjsGIgJ/8BUheBgYGoyfrvQkgYGlt7Q==
+ b=W9fCfxLd5R9m9vHmJRrdRy59vAFytPCzEOcNY26eLG16HM3jNW8ZmCYD/MCZxlGU8sqeB82Z+LLq8lfxiQnPifS4mGvcgFeramjWhaa+EzXqAtWAwLhnfVmIk2RFjpZNJYpVzQqLTIX+KkPus70tRkX57PI+NdX3kQw/vyp4RrCAJCzlXAvhmn9rcQOn13pF3hiFXwVVikvIUjh92589N1vEcQ83vJCMIpJO766TkDreVXoyfyfVJZdHbaqiQNUvStAjZON3r5UcYBLrewxkrj6MOAezwxWP6SzauDiKi4XnBmxuoXkGI4MfcznzQYCwA6Cu3D2FnQ8U7nBaMmsA3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OON6CpQp1Ni5ptwtrTwjlwB/7LTDXuBC3UcUIn0dm1c=;
- b=nbnsdFklDvM45LPMl3RqVmUsDZDTpRa3K+8OeyHAhLzwPNt+zHmfTn/cLVs1AgH5QGET6khDq3ZQ3fofAuA7jwFzgjAlR5ZyjCCYL6ZLgjxTSetodoW78kJXfeV7KqIa1mHWwEml/vdKnL+UgwVcPsX6O38XwYX7YUCT1L3myjcMrxUiJyU87OB/CUsJ0lzHSnN0ff2quhtyc6lawJ2TzFAIZa3y/TGHYDdP8ixwrwDtnDhtmmAj3prS32TiUQHX7l6Vmy/1j7TF/JpZgIm5ABWZixUqOxQN01kZJirc+ng18wWQe4qKLeJvv7AVCyUyJzDjfc2VKYP6sYYye3Hwrw==
+ bh=TeyaBKdDte8FKJ7CRxXyGO6wLuvV9q9dm8NNCxuPj6U=;
+ b=KXHHrf63UCkIsuOihe36pZpBp5hOs2kez48VAOpb9m20UqRfq9QmAnW0reXo8pLlZV0RfaT1fCNxHI092nkftBxN2b4n48ubCMmXftL7ECPIKC9WpDSM1dfqL3C3DiXuG7TZ0uELVu0nIyV0hE2xtpMySKCJVlwgdTj54aO5dECV7kAeeb4r15dhIqpqquYWaO6TLBc35wnDLWgXhOFOJF2knn8akC91MBj07LpHv1w/XlCgpljgD5wd3Vqh906pV8KhMTSZ/qF3Pv/VMBAk0y8jXFp5Bxu6XdR0UDz3qck4ejy1apwqyeKukSB1wf2hshJKLuMEOg6kmTiKTGP/eA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
- by BN9PR11MB5323.namprd11.prod.outlook.com (2603:10b6:408:118::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.23; Wed, 3 Jul
- 2024 15:44:08 +0000
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::e210:b6a3:f037:f49a]) by DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::e210:b6a3:f037:f49a%7]) with mapi id 15.20.7719.029; Wed, 3 Jul 2024
- 15:44:04 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-5.0.2.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-5.0.2.rc1)
-Thread-Index: AQHaxtb2+J04oyLUQkeiuWKBC3BQdbHlMcLA
-Date: Wed, 3 Jul 2024 15:44:04 +0000
-Message-ID: <DM4PR11MB77602C33878D4611D259B4C3A1DD2@DM4PR11MB7760.namprd11.prod.outlook.com>
-References: <010101904e70e071-638d333c-a229-48ce-96b2-86cc080208a9-000000@us-west-2.amazonses.com>
-In-Reply-To: <010101904e70e071-638d333c-a229-48ce-96b2-86cc080208a9-000000@us-west-2.amazonses.com>
+ smtp.mailfrom=woodward.com; dmarc=pass action=none header.from=woodward.com;
+ dkim=pass header.d=woodward.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=WWDInc.onmicrosoft.com; s=selector1-WWDInc-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TeyaBKdDte8FKJ7CRxXyGO6wLuvV9q9dm8NNCxuPj6U=;
+ b=VsRsHZJ5Fn/Lj7rO5xSPHgDjdkgnwBSmQdgIlliCkQeT3s6mLYeOPdSMlymP1YkdJT6ImD3EjFdzY/bqn3r6/IdvGcdBKenhLYuXp+CK8Fw960CKwSawPPw5cCEcQTo7eOA+0zShBUUVhquZjiKxeVopMfUBWk3tQ7YIw1l6+xI=
+Received: from DM8PR11MB5669.namprd11.prod.outlook.com (2603:10b6:8:36::10) by
+ PH7PR11MB8060.namprd11.prod.outlook.com (2603:10b6:510:24f::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7741.26; Wed, 3 Jul 2024 17:47:46 +0000
+Received: from DM8PR11MB5669.namprd11.prod.outlook.com
+ ([fe80::e7be:d24:d106:ca27]) by DM8PR11MB5669.namprd11.prod.outlook.com
+ ([fe80::e7be:d24:d106:ca27%6]) with mapi id 15.20.7719.029; Wed, 3 Jul 2024
+ 17:47:46 +0000
+From: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: yocto 5.0: systemd: dev-null.device: Job dev-null.device/start timed
+ out
+Thread-Topic: yocto 5.0: systemd: dev-null.device: Job dev-null.device/start
+ timed out
+Thread-Index: AdrNcJo0P/7/0oZISMqosDsDoZKX0A==
+Date: Wed, 3 Jul 2024 17:47:46 +0000
+Message-ID: 
+ <DM8PR11MB5669CCF6A30D6964AF009479EDDD2@DM8PR11MB5669.namprd11.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|BN9PR11MB5323:EE_
-x-ms-office365-filtering-correlation-id: 3a287f4e-e214-43a7-fe07-08dc9b76f7f4
+x-ms-traffictypediagnostic: DM8PR11MB5669:EE_|PH7PR11MB8060:EE_
+x-ms-office365-filtering-correlation-id: 4d603ed3-5b56-4519-c441-08dc9b883f99
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|4022899009|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?pBMk4t7vrJtSk4qEoDHStfHSu/kNf3RWhbhUwgqwnIZjI0OAtl3Qota7OD55?=
- =?us-ascii?Q?g8S5JQ5qGI03970wLyNQrGitho3JqAHHXZdw/bgBCOXftpwkDDAm4n+QVbWL?=
- =?us-ascii?Q?F6lZf3oVcsQeHgPpSqmBFAtu6UhZn+XZlPxZSYpmy/OY2+4fuqOx9VRS7y8g?=
- =?us-ascii?Q?f7m5YKMkKtZU/fUQlzsnm2nvEly6wq90YCa/KQEaCWRE+w4fE7LNHLZeeh9A?=
- =?us-ascii?Q?7qTPs+KuRvN58at4u9u+MU7UU+uwzeSV5evHxkmfuGgGS9sGAouQpQcAaX5y?=
- =?us-ascii?Q?OqZDbf1vUjGoS8r99u5dEAiqbr6HN49j+0drCL1jSOqE7sYyWAiDSAMR4Slb?=
- =?us-ascii?Q?sZscBQ62JiIukDJoSeayZnTLLv4pGQ/qLHOyFjJlwMFXYZPuQ4gOpa1/0l3l?=
- =?us-ascii?Q?8AtfzjWaQFA7Wlau5k6zRKOL1Ts6bUrIjptua0epeZ8mseQ/FBwfLqIxjztM?=
- =?us-ascii?Q?aCvoIbD5a9jKz65gzJ8VZmb2LJMMD2Ib932PR0pmmgw53sHZLo9zVDqI6qqq?=
- =?us-ascii?Q?Kndjn801Mdi9TXiMBttX/SSdtV58wBqD7sP/pnT/EszZOt0LUpTuyGaEBbmX?=
- =?us-ascii?Q?HG0kqvGviIPyxJfcTYCcFJFM7MWoNHoRV7nRj97WcAuujj7p39Docxp0dGre?=
- =?us-ascii?Q?SZ5ptz9OMMY8+O++r5OoEM98uhrCXYu4PBd0KWQfPjyMiF2PuD+HPrZwt5me?=
- =?us-ascii?Q?KQiG1IqTPms3YxZMetPFY3iw/IgGmYgXHTVn9InW9ILJWpSCWZpWZVM/ufrf?=
- =?us-ascii?Q?zqtAeu4HVWrjQiw/pW4BpoljMOlTSBd8hCPkwi1pQ57Gz1ALnmDBLYvnXO7g?=
- =?us-ascii?Q?fJu2vKCC6gTYToCAM5dqRUAYhvxvm/iSbDLzRYJrHzM+GZcCNb9nAJGSYW5R?=
- =?us-ascii?Q?3giWH20nz9UcjX7k9l/keRBRssKOku+M0TIHPTtNNutsgXklqN3C/CfUsMtu?=
- =?us-ascii?Q?UDFD+vSEIc9RABohPysdWNXDp1WMyR4w5HISnqGGhIAAYiuW7DVgcJIdhfNp?=
- =?us-ascii?Q?pnoo8gZmZ6cQKNFzJMGs0HSIdBCnkFyk3QFt1SMS0LbFRf76kqqqyDCECFON?=
- =?us-ascii?Q?aRnGuYzbKbItt/qH7fvSNzEkYKenLMoRCo8Bw5V9mCJNJTuYxbMHMi53wO4G?=
- =?us-ascii?Q?LSZ+NmBRbc4N9KA3fI1XLIIpsTG97DNCY9YnkRHxp0jmN52NQsF6oAufBuD4?=
- =?us-ascii?Q?nL2pXVvMAuyAr7mrLbsSS/azx57877yC6sO6E7tDZq3uU+YjbBK6mP+auS4Q?=
- =?us-ascii?Q?zE7oR+XV+CgtgANaUcbtVuDgym49YYRpyzcGEMAp19zRik+Cwi/vPB57IrNi?=
- =?us-ascii?Q?4Yw+wb2wTWzukFuffJp2Pv0jWlphmsP/l5KxMtZeF3cZktQqr3Vh3PthAHYu?=
- =?us-ascii?Q?8gkbREY=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(4022899009)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info: 
+ =?us-ascii?Q?uXQpbHg1h20gSz/Iw9URC1xwMrjni3unfjTPsAtghqVPA432T6vE2xXz3LZS?=
+ =?us-ascii?Q?sTTyxe2O2VxYmkxM6D8pPvs/GNmlZt/ZNrleuF1Nd1CjlxrYcE/Ti0o9YHkv?=
+ =?us-ascii?Q?5BsP54cz7Y4mOj4pwiHdOjtQPJ/z/a2gT14EzCm6Fb/tY2KkEMl3p1JHFqD/?=
+ =?us-ascii?Q?WUPgcMut2C/t5O9VXqq3w0BTNhxyMHLqWsGDy6nOEeXuq+R1Cz6epIqzjUYf?=
+ =?us-ascii?Q?UHseTB4OQmfuvpfwCUgNy0ETPRwbD5MqI3ui4xyQMqsAB9vD8Z/06E483+my?=
+ =?us-ascii?Q?oLunwHyM6RbCphNkSxfjJKcsePkyJSPoIkf7mc1sQ7wCb6UsOZxrfrRp1tbG?=
+ =?us-ascii?Q?qnPjb/QW2OELsOzOGusxdmreBPKNldlnAHkBKMx+zVuIARFdNEeFjHvD5S5/?=
+ =?us-ascii?Q?XWzA5Ax/zXoJnmE3lry8XwGpBSrIgSbumbez7M6zliosXYmJPEdiKDreVDrh?=
+ =?us-ascii?Q?D8qFZumMAYGKfLE7C4/XPDrHHX0TZE5YFm6GsC4hCd7xnZfm8oDHOVgihNC2?=
+ =?us-ascii?Q?MxLpWeumwzkPOuTPGIoA4It/lH+Jt5dxzohId3bBC3ZDbxD3oQ4uZpf1LJuK?=
+ =?us-ascii?Q?MfSKcrnKm0WhdL3ke4hDtkLfOiWZKpQECxoY8Q6mXT0uF8VmBiEIdeTnbiWc?=
+ =?us-ascii?Q?B125wdtq/C8qDE+LuC/ompcrDC9VY1np56I1/QOurG57FOw0h0evSrqsq2BK?=
+ =?us-ascii?Q?ix8FF5gh46MUk9lYKD74mJh7yo7P8/9wAfBHuiaBzLwXsqniFxRYxtqMFnJb?=
+ =?us-ascii?Q?ktQcgEnwGDBJMC7Kj1tq8O5+RXqQ/VdtGcGs3BYXwrXDWfz4Qyzf1qIev9Zt?=
+ =?us-ascii?Q?UfrQivErgB06UsWulYP3HLQHMkhlSKKRMAayv3uFoGELmbYxDa5w2Z3VxqJI?=
+ =?us-ascii?Q?xX7H209SNR5ArAoxxlTOaATPLriXuNtz2Hr1g4njGVFKoclaHYdnE9TuGwwe?=
+ =?us-ascii?Q?ILTgWeiQXWoquBrqfrvvQ/D8jFlOKA42Vw79jll5p0Y5JLJyI73E/7pU7rBY?=
+ =?us-ascii?Q?DZZln5laTECcMi0Kf3rvYnlFcDfC9MRG/raEc0+/q5iqyZ7sfPbTjpqssMMz?=
+ =?us-ascii?Q?Ot7MEv0RCD14vrm2sJPFpNjlReHOJX5aAzfy6OeLHzxIThYm7JQpAB7nJAYM?=
+ =?us-ascii?Q?ysY2lyLyKUsshdaNTrE4+3m13VfosxGwquV5cl8OarNrysoLrQGH2NQzg07R?=
+ =?us-ascii?Q?Qe7xdaXZ7uFPVNFIaBl81qNpYZdAJzIqt/wpq9kNbHZUgc8oQaEmHNTEHJ0U?=
+ =?us-ascii?Q?qCtljOcmAVHd3x4v866NlZhPv4EBE7XHrRkUCwLnJKjQPY86o/ayM/qMEPjB?=
+ =?us-ascii?Q?e3oWlrWNrYJHHIQxNQ+R9XiPPA7P5YAmGpwtqf7LZUxmug=3D=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR11MB5669.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?E44vCzPFy+axOTf395wVo0Vm4lgkNZgc7avMwYeZ9mxNHq5XUfFi6nbCjvFA?=
- =?us-ascii?Q?bj0mjqZhkiJD6Yp4/QNklizEP7fzVfSeVn/vacfJexVHD1cjGo4BBTSut728?=
- =?us-ascii?Q?C4AWlpzX3MFZ9YW1ungH1cHYPMwuat9+UWMDCcZ5bwXDTjwg6xNJNUjYOsqq?=
- =?us-ascii?Q?3qmWnG+eiDDtdBolWsHAwggg5X1nLieA9iOxD1mNMWsQ8RyNLP/ibbIgHNkd?=
- =?us-ascii?Q?tEyO4TJRCpDocvSWdF8+UhWwlUSbsiIxNUj5dFfoQw8IL4C2/mLaPY12zAgc?=
- =?us-ascii?Q?pKUXpDFLZoX27NmZBBNdmuj3GbYhxvo2qkAt3PM3SQgv98l39eldtRO5gPyE?=
- =?us-ascii?Q?DJ9ZgGvnADpxLjHmVjc8WdVbPvRzStJ41CxVxCS+BMxNXAZrHB/Fqcf0RmU5?=
- =?us-ascii?Q?mFJ9pR+9h63r+hDKw1opeoB68vSUSUm1YNIfYjlDyQx8L5USPiYiLM3j8jDg?=
- =?us-ascii?Q?Atni4hPBDWsCZzxY445xVRpNOGrz5bxxXPltQgM7MRwNPs1j9Dm+aw4uwJP+?=
- =?us-ascii?Q?77M1xo5XUJyQuSUdMeW07E+gT4xgYua6kSIVq5zNjrxBvkFQkUhn9yyoVOD1?=
- =?us-ascii?Q?vT5WLT2dvt+CtnDExU1UMuM1VXHAiB2Piu1BMKc3DsvSze59O1gYWEkYcNiv?=
- =?us-ascii?Q?blQxFrxaI4+IWhXZ1VjkvZlsXPIZpLpxxi8tpROfjMYk2aiLdtLRvtLwGl+P?=
- =?us-ascii?Q?evPpnJIADCgcYTGJdv7dP2qBya9J82gan/sdHRpUVbvhMe33iXIhFbX1J2PD?=
- =?us-ascii?Q?meZkA1sgLwfmpbz0sez9/ur5NM0fAl8zXPU2JBt4e3LgJK51WyDoR6RfFKo7?=
- =?us-ascii?Q?QtCka4QInYd+ZEqFBb52ys4v5MDzxRbtSvR1mzoNpitC2G4+czNkhwbcWc3T?=
- =?us-ascii?Q?3g/kl7jC9eDnV3LhUKQmMfVSUvaixVXrCZsY27pRlfPu7hkwXrcrmH0Gj5RX?=
- =?us-ascii?Q?JvBJTfjSs+17o9KDgqk/8nzb294oMgIA0ZHLO/l6HuWy+5nAdmYynCOLUglq?=
- =?us-ascii?Q?ddYkKStqYw7o9j54RYvymufaYs9Wx+46tAP27jZeqZCu3T0NbzbKpm05zHLo?=
- =?us-ascii?Q?XkwfFvrXqT3jhZKpzpGTF6IQadphugIgSOuoPAHzblLnsXqo8i5E4SfxnYY5?=
- =?us-ascii?Q?/SOlzVlbCzjshWSjJT2uotNYHkGDgPAo3oRBU3RRaTyY6W9HRyqr7KORw07Q?=
- =?us-ascii?Q?qGrSTRCK18PLjvk4GtLIb4DokTygc5TkwEv66kBbNk7gaESOIK3KicCn8GVS?=
- =?us-ascii?Q?wd433MQ/bp0XIHlnghH2Pa9YwWSEFaQysmTAbamEoGdqtifscKynA9XGQqx1?=
- =?us-ascii?Q?fvmA2ucWaiJtd24yqP/B6Si1gm3U/JQzDadxKdQ1+YVid41t4adj/SFSKNzo?=
- =?us-ascii?Q?ddByJuy3cmR7lf9QyUs7gfknoUKgzhGaYOvnAop+2XkUJjs1uMnJYitcw2Aq?=
- =?us-ascii?Q?gZm3xmFeIn2eGmOp4hTN65I9ercbjWNWCrObavGPQZYM3bolX29ob0ytL8Lx?=
- =?us-ascii?Q?ZRx+FDADIgxvjP9OiNesDGFGobU/eBu4jcuadn7zej0qc5I7A3UOJgzhMHOq?=
- =?us-ascii?Q?qh7Qi4jyCZZjHPmT3uTiijEx3Bl/79XXKGRo0Smc?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?JurfNjPo9+MpbeOOo3/1O4xA3nXvzDSaaR/6Rcz7jamHmAuoi00BGfRmulIc?=
+ =?us-ascii?Q?QDGUEZyklIZh5A0andC0hraJ60682hkxBGIshfWYO4lByKXzdAnV912YLW+O?=
+ =?us-ascii?Q?nYWjpHdKccx6QgNyi0/hkWgHcUSiLVcMH/SAtEA/jhNNOnGAd6oF6yvoOcH/?=
+ =?us-ascii?Q?1BPnNJxcfa6V+AEZcIuGV5Ff4Fq2aKMY6tvVURAEhMWh7nOokj4NsYNwpI2y?=
+ =?us-ascii?Q?jJjdZbMNG7nwYUSlKdyNq5FBni0hhg5yQ45jsTSWv+FUvFKQ7ztDWQa2nlKX?=
+ =?us-ascii?Q?PloE19KSnC1z1oG+Yoo8caW0uAiNPeGAxgbnOwjYYUq5HJqZPliagrOU7bwo?=
+ =?us-ascii?Q?T6VeaDyqU/KnLut8DXeeE21pFFkAN7GXHbrGAoiMVcZ4fhKxkXvJozW+4KQU?=
+ =?us-ascii?Q?qDLDNPj2N9Ni5ZDzjKyXhelm/hpf7GBT5Z/PgazEvNHHzTn2sOUFfDM4CK/H?=
+ =?us-ascii?Q?XN8uSTMtPgH87/41IoeMq9hB3hp4M/MHStaQeE3JRB9TTCnRWLVcar2YbxGd?=
+ =?us-ascii?Q?Z34e0lC1Cq/uX9YOOXkd3kba77SdmdvtKQNqxHVnhrTNdfykyoIVpWnMENWA?=
+ =?us-ascii?Q?C19DZVfKpBlrAqX5HNg+qcDYkwMHAS3zKvS3JiuyPskYfK/3/f0A9ul7wdJu?=
+ =?us-ascii?Q?kCsztOGu/7y94/pGEE0JdlLZJwBagqoSOjjodvcg1Cid+x8o1K9r/o2ldpfh?=
+ =?us-ascii?Q?mO7Wioo17PNuJAZuYaU/qiBw0yfXt2qppebyr5iN7TGbFqxPphswJbCUIeaA?=
+ =?us-ascii?Q?Qwz93g0vYnr5FqdrK5G0Z3stSGKFKhu0KLdYgx8JkcgYPTEYBLQRdH3xelvR?=
+ =?us-ascii?Q?OjF4rO9QksATw0WyY6AdQnc/z8nEcAKY2QStcbwtLn9/utYC4/bxMFHrFcLD?=
+ =?us-ascii?Q?8SyECVwui4mdYdIgNU9y+bHGkobxbpFd7X0pL7hYEYPFaY9rk0UkYO7rer76?=
+ =?us-ascii?Q?ZzkEA+X8pk26bG4c3FiOVbUFeNUOdWtH0qomHRUPxF6B7n00D3f40hjgTu4B?=
+ =?us-ascii?Q?FbkqSxADpLbcl7AZ7wSMBX61e8cK1DaHp3wS7JejXCWfbmmnV86b6WIvSqGK?=
+ =?us-ascii?Q?A/RlRxtvTRsXG4lABx9a2mk4NA1yiDjWSzyHOGKCm8FzC4adpH627/Qceikd?=
+ =?us-ascii?Q?ALuBALGt0j+4gy9e6i14f3HW4kLfxEID6iJUg6Pxx8wPUckDmD/juq87EEvZ?=
+ =?us-ascii?Q?VEQYkiHYXPiisg5KX1obtUBSMtDe0Am40JutGW4hdGXqtR+j9/M/iXRpULVe?=
+ =?us-ascii?Q?EnC+cxNbkkOsTeb5eJH3Bax01VqJfOie4LtEZV7pyu0mgRiAeTV5G1By5gNb?=
+ =?us-ascii?Q?gVavouqwOsZSaAFcaz4+ygGMk0p0zO5VKIfplMYiv22HVtEOldZNwp74kZ+Y?=
+ =?us-ascii?Q?WMKWx/FRBfPR5rpgmfkMjvqK1VzCyDaJm329Izo9cbHbjSV2ghlwHntRhkgh?=
+ =?us-ascii?Q?cAO7/Xk3x2okguQ8iEM0mhHKaN6YYtsVF5iKyCDKxBIMKnEVyfVaAsqbiMC2?=
+ =?us-ascii?Q?VCQF2/twMh2frn/79DKg+U8ZGbH55a4lQ0WVqnXKWCM3soDUNyN9kV/bZUxQ?=
+ =?us-ascii?Q?2tcBetm7DEfIctBSArxq8BCbytmonY5Ov+w+ZObU?=
+Content-Type: multipart/alternative;
+	boundary="_000_DM8PR11MB5669CCF6A30D6964AF009479EDDD2DM8PR11MB5669namp_"
 MIME-Version: 1.0
+X-OriginatorOrg: woodward.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a287f4e-e214-43a7-fe07-08dc9b76f7f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2024 15:44:04.7862
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5669.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d603ed3-5b56-4519-c441-08dc9b883f99
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2024 17:47:46.4339
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 9ad0fca6-569f-4932-b35f-593f6e9deb96
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SwRjBQOjNu+mnW7a6D0jY97uzKR5+OERSEtFG7nu8uUPlPBsKgIiAqnsENjBXpcEyLY0TqNwGHvKGO0WbK5BHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5323
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-userprincipalname: 8NFguni3JO434IBsLfiXjB8I1KGmI+iWbcLujwyfJGjeuqd3JBE4IRYNXQPm0Rtdr2KFOit8/QYxYCr3I0bQOh9D23/61CoM2iPhuxYzaqA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8060
+X-Proofpoint-ORIG-GUID: VDrAsTF7_VHAhEXVnEY9bX7y-mGirLQP
+X-Proofpoint-GUID: VDrAsTF7_VHAhEXVnEY9bX7y-mGirLQP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-03_12,2024-07-03_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ priorityscore=1501 spamscore=0 mlxlogscore=711 adultscore=0
+ lowpriorityscore=0 suspectscore=0 mlxscore=0 impostorscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407030132
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 03 Jul 2024 15:44:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63436
+ <yocto@lists.yoctoproject.org>; Wed, 03 Jul 2024 17:47:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63437
 
-Hi All,
-=20
-QA for yocto-5.0.2.rc1 is completed. This is the full report for this relea=
-se: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-=20
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-=20
-No new issue found.=20
-=20
-Thanks,
-Jing Hui
+--_000_DM8PR11MB5669CCF6A30D6964AF009479EDDD2DM8PR11MB5669namp_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+I use yocto 5.0. From time to time during boot up I get the following error=
+s:
+
+# journalctl | grep dev-null
+Jul 03 17:30:57 cpu3-07 systemd[1]: dev-null.device: Job dev-null.device/st=
+art timed out.
+Jul 03 17:30:57 cpu3-07 systemctl[352]: Job for dev-null.device timed out.
+Jul 03 17:30:57 cpu3-07 systemd[1]: dev-null.device: Job dev-null.device/st=
+art failed with result 'timeout'.
+
+I do not know why, especially that:
+
+# systemctl list-dependencies dev-null.device
+dev-null.device
+# systemctl list-dependencies --reverse dev-null.device
+dev-null.device
+
+That dev-null device delays start of another services, which do not have di=
+rect dependencies on that device. Have anyone else encountered similar issu=
+e?
+
+# systemctl --version
+systemd 255 (255.4^)
++PAM -AUDIT -SELINUX -APPARMOR -IMA -SMACK +SECCOMP -GCRYPT -GNUTLS -OPENSS=
+L -ACL +BLKID -CURL -ELFUTILS -FIDO2 -IDN2 -IDN -IPTC -KMOD -LIBCRYPTSETUP =
++LIBFDISK -PCRE2 -PWQUALITY -P11KIT -QRENCODE -TPM2 -BZIP2 -LZ4 -XZ -ZLIB +=
+ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP -SYSVINIT default-hierarchy=3Dunified
 
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Tuesday, June 25, 2024 4:09 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-5.0.2.rc1)
->=20
->=20
->     A build flagged for QA (yocto-5.0.2.rc1) was completed on the autobui=
-lder
-> and is available at:
->=20
->=20
->         https://autobuilder.yocto.io/pub/releases/yocto-5.0.2.rc1
->=20
->=20
->     Build URL:
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/7076
->=20
->     Build hash information:
->=20
->     bitbake: 8714a02e13477a9d97858b3642e05f28247454b5
-> meta-agl: e1a0adc8cfdc3b306537fc64f8b29c3c53f744ca
-> meta-arm: 29799b787d57d623dce140012a87568f314f3460
-> meta-aws: e3e4c876830c76aa1112b51ace6bb6fe35d5f0f4
-> meta-clang: 83e93bcda1654477802ed18b5f440fba7a733caf
-> meta-intel: d172a00f487a8ea4391b96e0f6cef5279c5a07d7
-> meta-mingw: acbba477893ef87388effc4679b7f40ee49fc852
-> meta-openembedded: 4a7bb77f7ebe0ac8be5bab5103d8bd993e17e18d
-> meta-virtualization: 37c06acf58f9020bccfc61954eeefe160642d5f3
-> oecore: 803cc32e72b4fc2fc28d92090e61f5dd288a10cb
-> poky: f7def85be9f99dcb4ba488bead201f670304379b
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#443): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/443
-> Mute This Topic: https://lists.yoctoproject.org/mt/106866039/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10762429/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+Best regards,
+Lukasz
 
+***
+The information in this email is confidential and intended solely for the i=
+ndividual or entity to whom it is addressed.=C2=A0=C2=A0If you have receive=
+d this email in error please notify the sender by return e-mail, delete thi=
+s email, and refrain from any disclosure or action based on the information=
+. This email system is not authorized to receive Controlled Unclassified In=
+formation (CUI). Please contact your intended Woodward recipient to identif=
+y permissible and authorized options for transmission of CUI to a Woodward =
+recipient.
+***
+
+--_000_DM8PR11MB5669CCF6A30D6964AF009479EDDD2DM8PR11MB5669namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Aptos",sans-serif;
+	mso-ligatures:standardcontextual;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Aptos",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:11.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I use yocto 5.0. From time to time during boot up I =
+get the following errors:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"># journalctl | grep dev-null<o:p></o:p></p>
+<p class=3D"MsoNormal">Jul 03 17:30:57 cpu3-07 systemd[1]: dev-null.device:=
+ Job dev-null.device/start timed out.<o:p></o:p></p>
+<p class=3D"MsoNormal">Jul 03 17:30:57 cpu3-07 systemctl[352]: Job for dev-=
+null.device timed out.<o:p></o:p></p>
+<p class=3D"MsoNormal">Jul 03 17:30:57 cpu3-07 systemd[1]: dev-null.device:=
+ Job dev-null.device/start failed with result 'timeout'.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I do not know why, especially that:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"># systemctl list-dependencies dev-null.device<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">dev-null.device<o:p></o:p></p>
+<p class=3D"MsoNormal"># systemctl list-dependencies --reverse dev-null.dev=
+ice<o:p></o:p></p>
+<p class=3D"MsoNormal">dev-null.device<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">That dev-null device delays start of another service=
+s, which do not have direct dependencies on that device. Have anyone else e=
+ncountered similar issue?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"># systemctl --version<o:p></o:p></p>
+<p class=3D"MsoNormal">systemd 255 (255.4^)<o:p></o:p></p>
+<p class=3D"MsoNormal">+PAM -AUDIT -SELINUX -APPARMOR -IMA -SMACK +SECCOMP =
+-GCRYPT -GNUTLS -OPENSSL -ACL +BLKID -CURL -ELFUTILS -FIDO2 -IDN2 -IDN -IPT=
+C -KMOD -LIBCRYPTSETUP +LIBFDISK -PCRE2 -PWQUALITY -P11KIT -QRENCODE -TPM2 =
+-BZIP2 -LZ4 -XZ -ZLIB +ZSTD -BPF_FRAMEWORK
+ -XKBCOMMON +UTMP -SYSVINIT default-hierarchy=3Dunified<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"PL" style=3D"mso-ligatures:none">Best =
+regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"PL" style=3D"mso-ligatures:none">Lukas=
+z<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+
+<DIV>
+***<BR>
+The information in this email is confidential and intended solely for the i=
+ndividual or entity to whom it is addressed.&nbsp;&nbsp;If you have receive=
+d this email in error please notify the sender by return e-mail, delete thi=
+s email, and refrain from any disclosure or action based on the information=
+. This email system is not authorized to receive Controlled Unclassified In=
+formation (CUI). Please contact your intended Woodward recipient to identif=
+y permissible and authorized options for transmission of CUI to a Woodward =
+recipient.<BR>
+***<BR>
+</DIV></body>
+</html>
+
+--_000_DM8PR11MB5669CCF6A30D6964AF009479EDDD2DM8PR11MB5669namp_--
 
