@@ -1,80 +1,82 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <philip@balister.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 313F1C3DA41
-	for <webhook@archiver.kernel.org>; Wed, 10 Jul 2024 17:07:09 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web11.287.1720631225299882864
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 41AE0C3DA41
+	for <webhook@archiver.kernel.org>; Wed, 10 Jul 2024 17:22:39 +0000 (UTC)
+Received: from smtp3.emailarray.com (smtp3.emailarray.com [65.39.216.17])
+ by mx.groups.io with SMTP id smtpd.web10.651.1720632154064530999
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Jul 2024 10:07:05 -0700
+ Wed, 10 Jul 2024 10:22:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=bRyRPh29;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42561c16ffeso45345105e9.3
-        for <yocto@lists.yoctoproject.org>; Wed, 10 Jul 2024 10:07:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1720631223; x=1721236023; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xgQNmJJ96LFy4+IzKS8HnczuV7RF+oOe0auDZaEHI7U=;
-        b=bRyRPh29sobo08oOjgqIFG8uluZS9v8+pYdRcILZ1WsZcjcB/NYBJcetRLPtmZnfYE
-         oVYUSqFn3PgOqKFuULHB25v1FGz1xS7mheqfvlByrIbuU6zy3GNn3ULWXCRLNw7JogH0
-         Sc4j/gB5MibgJdwbPsYrIT6zv21Ok2KhNhyu0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720631223; x=1721236023;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xgQNmJJ96LFy4+IzKS8HnczuV7RF+oOe0auDZaEHI7U=;
-        b=Mf04ysyFaWbb8YySIZ21dE9CpAD1ElUcrbJBgK0mJHuhwnSe5TSiTAoiypZnj7dkTW
-         SNxg1jNsX+m72uxa8CZk/znWLtC5OtxjaaDfhdGOA9LYYm3dQWynVGbm652Mzi0xL/M4
-         RaClVOuxy0Kzn351ozBxEI2lBiQGUrUfm+IkibfDb1IlgaXzCzUlDz+ijapn9ooR9bkX
-         J8VgI0tbqzhON0QWw9nyazx++lW+XKTPfvJHoXtXscaGe3R5KuCjjB8hJwp0EOPORblD
-         julJIEavDhFcbcaefEWFnA+QnAprlGcq2Pr6zGhgHSKBAVnQu6vr9d2Gg6rkBukVe5m4
-         E0Ng==
-X-Gm-Message-State: AOJu0YzfJfoc36aD7pFAda7sEKJqF9jLg5R0maW6T9jzhlQ586xB42nU
-	wY5MCb4s599lHvfVJtqcAcnsM4l6ZYg63olwDnCl75jdJo0iejgQ9stUdwCUo2wbnqVfH6C83pZ
-	c
-X-Google-Smtp-Source: AGHT+IG/TVce0ZHcvklaXQdRbrtFrnX0/iI/xPqQ4YtofEP60rHxZ8Y4r6fQZK2fvkRLgvvsqwXWug==
-X-Received: by 2002:a5d:5552:0:b0:367:4354:52c2 with SMTP id ffacd0b85a97d-367cea6b825mr4065510f8f.22.1720631223250;
-        Wed, 10 Jul 2024 10:07:03 -0700 (PDT)
-Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:40c6:a25f:553:e199])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde89128sm5776100f8f.57.2024.07.10.10.07.02
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jul 2024 10:07:02 -0700 (PDT)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper] [PATCH] config.json: OpenSUSE 15.5 and 15.6 have old python
-Date: Wed, 10 Jul 2024 18:07:01 +0100
-Message-ID: <20240710170702.954211-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.43.0
+ dkim=none (message not signed); spf=pass (domain: balister.org, ip: 65.39.216.17, mailfrom: philip@balister.org)
+Received: (qmail 56971 invoked by uid 89); 10 Jul 2024 17:22:32 -0000
+X-Orig-Sender: philip@balister.org
+Received: from unknown (HELO ?172.24.0.68?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0A3Ny4yMy4yNDcuMjE0) (POLARISLOCAL)  
+  by smtp3.emailarray.com with SMTP; 10 Jul 2024 17:22:32 -0000
+Message-ID: <6c49ddf4-f5ff-455d-b50f-bdd3e7035cd5@balister.org>
+Date: Wed, 10 Jul 2024 19:22:29 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Common Kernel and Rootfs builds for multiple devices with
+ different device trees
+To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com
+References: <CANNYZj_pGxrBGoVPnBpS-0ZG6Fa=JboV6QVph3DMAgsfqykR5w@mail.gmail.com>
+ <12578.1720618108139349239@lists.yoctoproject.org>
+ <CANNYZj9epBMR2JDQgP0HyhAi8pNPHHE7sXe1r=zHazzKiqzTgA@mail.gmail.com>
+Content-Language: en-US
+From: Philip Balister <philip@balister.org>
+In-Reply-To: <CANNYZj9epBMR2JDQgP0HyhAi8pNPHHE7sXe1r=zHazzKiqzTgA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 10 Jul 2024 17:07:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63463
+ <yocto@lists.yoctoproject.org>; Wed, 10 Jul 2024 17:22:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63464
 
-We need buildtools on these distros as the python version is still 3.6.
+Also look at the meta-xilinx@lists.yoctoproject.org, they should be able 
+to answer petalinux questions and how to migrate off petalinux.
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- config.json | 2 ++
- 1 file changed, 2 insertions(+)
+Philip
 
-diff --git a/config.json b/config.json
-index 1acdbc9..07ac95b 100644
---- a/config.json
-+++ b/config.json
-@@ -1938,6 +1938,8 @@
-         "alma8*"       : "${BUILDTOOLS_URL}",
-         "stream8*"     : "${BUILDTOOLS_URL}",
-         "opensuse154*" : "${BUILDTOOLS_URL}",
-+        "opensuse155*" : "${BUILDTOOLS_URL}",
-+        "opensuse156*" : "${BUILDTOOLS_URL}",
-         "perf-alma8*"  : "${BUILDTOOLS_URL}",
-         "perf-ubuntu1804-ty-*" : "${BUILDTOOLS_URL}"
-     }
+On 7/10/24 17:18, Alexander Kanavin wrote:
+> I suspect with plain Yocto, you're simply going to have one build for
+> everything and an image that boots everywhere, with MACHINE set to
+> zynqmp_generic. You need to try and see.
+> 
+> Alex
+> 
+> On Wed, 10 Jul 2024 at 15:28, philip.dawson via Lists.Yoctoproject.Org
+> <philip.dawson=datapath.co.uk@lists.yoctoproject.org> wrote:
+>>
+>> OK, thank you for your help. I'll ask on the Xilinx forums.
+>>
+>> Out of interest if I was to work to extract ourselves from Petalinux, do you have any brief idea how you might go about supporting 4 device trees -> 1 kernel if this was a pure Yocto build? Or if that's not sensible how to break the kernel driver header -> user-space dependency that's causing us to have to recompile our software?
+>>
+>> Best Regards,
+>> Phil
+>>
+>> On Wed, Jul 10, 2024 at 02:19 PM, Alexander Kanavin wrote:
+>>
+>> If you're using petalinux, then you should ask for support from the
+>> petalinux provider.
+>>
+>> On the other hand it's probably possible to transition to a direct
+>> yocto build using only standard yocto upstream mechanisms, without all
+>> the extra custom BSP generation, and then you'd be better able to
+>> control how the build gets constructed, and to get help with that in
+>> this forum.
+>>
+>> Alex
+>>
+>>
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>> Links: You receive all messages sent to this group.
+>> View/Reply Online (#63461): https://lists.yoctoproject.org/g/yocto/message/63461
+>> Mute This Topic: https://lists.yoctoproject.org/mt/107140139/384425
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [philip@balister.org]
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>>
 
