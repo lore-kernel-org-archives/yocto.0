@@ -2,95 +2,92 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBCAEC3DA41
-	for <webhook@archiver.kernel.org>; Thu, 11 Jul 2024 11:52:00 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.9959.1720698716253247417
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EA1A4C3DA4A
+	for <webhook@archiver.kernel.org>; Thu, 11 Jul 2024 11:53:20 +0000 (UTC)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+ by mx.groups.io with SMTP id smtpd.web10.9984.1720698790637382678
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Jul 2024 04:51:56 -0700
+ Thu, 11 Jul 2024 04:53:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=bDGbc2PL;
- spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2eea8ea8bb0so13547131fa.1
-        for <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 04:51:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Qa1occHT;
+ spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2eeb1ba0468so8299781fa.0
+        for <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 04:53:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720698714; x=1721303514; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1720698789; x=1721303589; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6IlS1Q+hme36DkCcAlheY260nJLYc6i/Qt41O+oxeY8=;
-        b=bDGbc2PLA7SviQ/NhyeG42G519MCPezsXdaAvOyd8DiJyRV/ZTahU9zkJo8LtpUjJh
-         ynDTrqiBY6p3/lTCa+xSszlTiXxi2nv/bCGM/UJ/agzeN7Zw3POQI/wepLWgMchaRMq3
-         T7d2Qxt4Q7WR2qpngsJZDL6XMm9wveLNnlF7sbmzNZRJdHruHyuGRsdxdFwb6otZmdf2
-         o4lZB3G/9LrL1qsHugM5CUbXkj9RWMt54In0eRMVNmXOIiNx2Fiy8g1fOxESGVsfn2lX
-         OK5xa85ghoU9i6ZbYhkE9GBiP4J6uH7AHmKwzC012ZQRpxOtUuca2K3XgxsvHma34nZN
-         Maaw==
+        bh=sFaGk6Qr1/YZsMCaidbTByAFXaJbJrO0LF8KsdFLZ78=;
+        b=Qa1occHTYrqXGqe9AEs7FDJXJd4olBBsZM3srnUyQagPsFyfb22vdUUwAE9ZV5rWTL
+         VlMe91VUqrUbWFpGxHIJSTFayu041B9ae/OqM5IgCfWYtp7jYBUVgDRTMG8qwn8Aimak
+         J8L/SYTiW6Vwc7qu8H4NgkQojuYehtiiJLFS5fXcUK9+BJ6GV+ACqSHjkBlCiAltxXcH
+         70Srm9Fb4hMYXJIPqsx450/DBiCYBnvPQnLYrQ/aMJYaGqKKoW92O788vdTHUzyJh7k1
+         QIv5w/5lupk3v6UrzSKaLjZmR2MrmHV+ScYAUCLGzNLJg9KjjyF/BS1L9lsYuINivNVs
+         y88g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720698714; x=1721303514;
+        d=1e100.net; s=20230601; t=1720698789; x=1721303589;
         h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6IlS1Q+hme36DkCcAlheY260nJLYc6i/Qt41O+oxeY8=;
-        b=uKNeN9WZp4UQWhJNPjKMrxd/D9m7ez4Qp8kV6rQt7bJBU5DYTcLgXFGOytbRDZKOcA
-         6W4VLebiQeJ1t1a3xEca2d00ntZ7MUcmBe0RpP9Wuj21UU/6AV+77NtGO2w5WRTb5uG/
-         A1+5xo5mD1ow9ce6ZPvxxOWdvTGVFNdheqTZySL4WjSyq9tQecXoYQKkG0EBNQQ4wN3Y
-         tVHdFGbGK/UIduRf4aWbp4qAx9ovmWnlvOsJkSbbi8K3qSXy/AXVp6UIRPFoFrRuV0/m
-         TshtrvG29OafDZGCHfHJsgqaV3e2YKUTnEv/bVnfihvhSnPCGpqsOoZ+7KVoYCi4dUNr
-         U8mA==
-X-Gm-Message-State: AOJu0YyILeqMo0oDJR4hwjB73HDBAXTL1Ez/zJsYG0i7denfQwbElS9r
-	9LZmJ9DL++eKpX73HjT2A50Y1uXKrAUp0hzHMZIM69cUHwUo3nF1VimOoIH5aT7vOul7LKBeA0K
-	MVaoTHoRlnCiyPjaW2IrXirEuCy7VbmJ+
-X-Google-Smtp-Source: AGHT+IGT+DdeTeVYZswzH0bc6bxTQC+CUqu3AcwV+C9wf8T/Z00cZ+If8RP1K4U42xsfXVyFQQBbOjJRI67CBPViW6E=
-X-Received: by 2002:a2e:870a:0:b0:2ee:87b9:91a8 with SMTP id
- 38308e7fff4ca-2eeb30e46ccmr67649091fa.19.1720698714093; Thu, 11 Jul 2024
- 04:51:54 -0700 (PDT)
+        bh=sFaGk6Qr1/YZsMCaidbTByAFXaJbJrO0LF8KsdFLZ78=;
+        b=XKeTXK690ZxlAE/H+/TGcpa7UHFuNPzCVqgq0BParycYw4W7/h+n+Lw9oGsL6psbvg
+         PXyKQssBbtEAwLALF/RGaR6WMu5b2b47l/DLqiMgOxC+fDJRmAslv2NywuWwO0VY4AtV
+         aWj5AntOspsh+lsENbiSXVzYLXsNFlJKb7FuftWxTMocT+T8p1fA1augdCAaeTCRcEdT
+         65hEl2jXmyEjlOgSv6V9Oh2vnTvK40x56rwb4Lkt7cCmSSAvd+tvSu4FkomTm/seEaDh
+         SNQ5TceXTiGISPiw7+rxjQQnUeuIZSXyOpD/7SUB4JDgdQyfnoQ5J3dIjKzyJvArvvPC
+         2nfw==
+X-Gm-Message-State: AOJu0YwPttkpUaAuDF+pQe/zmj9TBmG554+OH0brWotMkHVycoRkmU+Y
+	sM7WmjmHssG3zq3f7QuOJ2tkbmM5QvE1UDdSmh2U54WuS/3uroW1WAy94b21P9SSVJeAfhyIsuZ
+	hjhfPY07ciTBR11+CxX3IRd5b2ZWqcA==
+X-Google-Smtp-Source: AGHT+IEcV09XG1cSAcOX08DlxXOAy/I7CmHH7B+1RVpEdmAZ3pzzqfpXgM4fipFoNozsbzuKDzggNtXyZdVxheUuIEI=
+X-Received: by 2002:a2e:880a:0:b0:2eb:e258:717f with SMTP id
+ 38308e7fff4ca-2eeb318a0ecmr56117181fa.42.1720698788518; Thu, 11 Jul 2024
+ 04:53:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <VxRX.1720687573779163831.wDFU@lists.yoctoproject.org>
-In-Reply-To: <VxRX.1720687573779163831.wDFU@lists.yoctoproject.org>
+References: <sXnF.1720691769997145553.cDZj@lists.yoctoproject.org>
+In-Reply-To: <sXnF.1720691769997145553.cDZj@lists.yoctoproject.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 11 Jul 2024 13:51:42 +0200
-Message-ID: <CANNYZj9LXwGTswVAn0Fon2SyjQ72g6LY=cNNDE_YeE95Kvn-TA@mail.gmail.com>
-Subject: Re: [yocto] get version info of dependencies in recipe
-To: yocto@lists.yoctoproject.org, tastyherring@gmail.com
+Date: Thu, 11 Jul 2024 13:52:57 +0200
+Message-ID: <CANNYZj_y5cxE0JmWrm359bsE1GMNmF2P7fG4DGR6gRh1ZfZuwA@mail.gmail.com>
+Subject: Re: [yocto] "usermod command did not succeed" while building image
+To: yocto@lists.yoctoproject.org, jguittet.opensource@witekio.com
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 11:52:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63468
+ <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 11:53:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63469
 
-I'm curious about the use case. How is the version information used
-once passed in to cmake?
-
-The correct approach would be for the pkga's cmake build system to
-obtain the version from pkgb.pc (pkg-config file) in its sysroot.
+You need to do this with a class-target qualifier. Otherwise this
+removal will be done for shadow-native too, and none of the user
+management will work.
 
 Alex
 
-On Thu, 11 Jul 2024 at 11:40, tastyherring via lists.yoctoproject.org
-<tastyherring=gmail.com@lists.yoctoproject.org> wrote:
+On Thu, 11 Jul 2024 at 11:56, Joel GUITTET via lists.yoctoproject.org
+<jguittet.opensource=witekio.com@lists.yoctoproject.org> wrote:
 >
-> When writing a recipe  I would like to get access to the meta data of the dependencies, specifically there PV so I can then pass this info into this build.
+> Hello,
 >
-> >> pkga.bb
+> I'm building an image removing userdel and usermod to reduce image size:
 >
-> ```
+> shadow_%.bbappend:
 >
-> DEPENDS = "pkgb";
+> do_install:append () {
+>     rm -f ${D}${sbindir}/usermod
+>     rm -f ${D}${sbindir}/userdel
+> }
 >
-> EXTRA_OECMAKE += "-DPKGB_REV=${PV:pn-pkgb}"
+> And I would like to set the root password so my image inherit extrausers and use EXTRA_USERS_PARAMS = " usermod -p 'xxxxx' root; "
 >
-> ```
+> When doing this, do_rootfs of the image fails with the error "usermod command did not succeed".
 >
-> Is this possible?
+> I'm surprised to notice that the usermod command of EXTRA_USERS_PARAMS which is executed is the one in the image itself ! Is it expected behavior ? This looks like a strong dependency...
 >
->
->
->
->
->
+> Joel
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#63466): https://lists.yoctoproject.org/g/yocto/message/63466
-> Mute This Topic: https://lists.yoctoproject.org/mt/107159621/1686489
+> View/Reply Online (#63467): https://lists.yoctoproject.org/g/yocto/message/63467
+> Mute This Topic: https://lists.yoctoproject.org/mt/107159697/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
