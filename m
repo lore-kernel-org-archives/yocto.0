@@ -1,60 +1,66 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <jguittet.opensource@witekio.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4971AC3DA41
-	for <webhook@archiver.kernel.org>; Thu, 11 Jul 2024 09:40:30 +0000 (UTC)
-Subject: get version info of dependencies in recipe
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62844C3DA41
+	for <webhook@archiver.kernel.org>; Thu, 11 Jul 2024 09:56:10 +0000 (UTC)
+Subject: "usermod command did not succeed" while building image
 To: yocto@lists.yoctoproject.org
-From: tastyherring@gmail.com
-X-Originating-Location: Brisbane, Queensland, AU (116.255.1.251)
-X-Originating-Platform: Linux Firefox 128
+From: "Joel GUITTET" <jguittet.opensource@witekio.com>
+X-Originating-Location: Brest, Brittany, FR (78.120.132.222)
+X-Originating-Platform: Linux Chrome 126
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Thu, 11 Jul 2024 01:46:13 -0700
-Message-ID: <VxRX.1720687573779163831.wDFU@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="7QqxBzJDpXgsyCreRT8X"
+Date: Thu, 11 Jul 2024 02:56:09 -0700
+Message-ID: <sXnF.1720691769997145553.cDZj@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="kRLA3t8fb3Kzk8gzw2Xw"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 09:40:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63466
+ <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 09:56:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63467
 
---7QqxBzJDpXgsyCreRT8X
+--kRLA3t8fb3Kzk8gzw2Xw
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-When writing a recipe=C2=A0 I would like to get access to the meta data of =
-the dependencies, specifically there PV so I can then pass this info into t=
-his build.
+Hello,
 
->> pkga.bb
+I'm building an image removing userdel and usermod to reduce image size:
 
-```
+shadow_%.bbappend:
 
-DEPENDS =3D "pkgb";
+do_install:append () {
+rm -f ${D}${sbindir}/usermod
+rm -f ${D}${sbindir}/userdel
+}
 
-EXTRA_OECMAKE +=3D "-DPKGB_REV=3D${PV:pn-pkgb}"
+And I would like to set the root password so my image inherit extrausers an=
+d use EXTRA_USERS_PARAMS =3D " usermod -p 'xxxxx' root; "
 
-```
+When doing this, do_rootfs of the image fails with the error "usermod comma=
+nd did not succeed".
 
-Is this possible?
+I'm surprised to notice that the usermod command of EXTRA_USERS_PARAMS whic=
+h is executed is the one in the image itself ! Is it expected behavior ? Th=
+is looks like a strong dependency...
 
---7QqxBzJDpXgsyCreRT8X
+Joel
+
+--kRLA3t8fb3Kzk8gzw2Xw
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>When writing a recipe&nbsp; I would like to get access to the meta data =
-of the dependencies, specifically there PV so I can then pass this info int=
-o this build.&nbsp;</p>
-<p>&gt;&gt; pkga.bb</p>
-<p>```</p>
-<p>DEPENDS =3D "pkgb";</p>
-<p>EXTRA_OECMAKE +=3D "-DPKGB_REV=3D${PV:pn-pkgb}"</p>
-<p>```</p>
-<p>Is this possible?</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+Hello,<br /><br />I'm building an image removing userdel and usermod to red=
+uce image size:<br /><br />shadow_%.bbappend:<br /><br />do_install:append =
+() {<br />&nbsp; &nbsp; rm -f ${D}${sbindir}/usermod<br />&nbsp; &nbsp; rm =
+-f ${D}${sbindir}/userdel<br />}<br /><br />And I would like to set the roo=
+t password so my image inherit extrausers and use EXTRA_USERS_PARAMS =3D " =
+usermod -p 'xxxxx' root; "<br /><br />When doing this, do_rootfs of the ima=
+ge fails with the error "usermod command did not succeed".<br /><br />I'm s=
+urprised to notice that the usermod command of EXTRA_USERS_PARAMS which is =
+executed is the one in the image itself ! Is it expected behavior ? This lo=
+oks like a strong dependency...<br /><br />Joel
 
---7QqxBzJDpXgsyCreRT8X--
+--kRLA3t8fb3Kzk8gzw2Xw--
 
