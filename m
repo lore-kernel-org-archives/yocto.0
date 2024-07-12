@@ -1,169 +1,199 @@
-Return-Path: <ycnakajsph@gmail.com>
+Return-Path: <ganeshsamunuri015@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78FC8C3DA41
-	for <webhook@archiver.kernel.org>; Thu, 11 Jul 2024 13:50:51 +0000 (UTC)
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
- by mx.groups.io with SMTP id smtpd.web10.12422.1720705842887354336
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B5BEC2BD09
+	for <webhook@archiver.kernel.org>; Fri, 12 Jul 2024 05:20:20 +0000 (UTC)
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+ by mx.groups.io with SMTP id smtpd.web10.1121.1720761616932303240
  for <yocto@lists.yoctoproject.org>;
- Thu, 11 Jul 2024 06:50:42 -0700
+ Thu, 11 Jul 2024 22:20:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=RtNJxXce;
- spf=pass (domain: gmail.com, ip: 209.85.215.175, mailfrom: ycnakajsph@gmail.com)
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-761e0f371f5so1496197a12.1
-        for <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 06:50:42 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=OOeKLIlY;
+ spf=pass (domain: gmail.com, ip: 209.85.161.50, mailfrom: ganeshsamunuri015@gmail.com)
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5c694d5c5adso765654eaf.3
+        for <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 22:20:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1720705842; x=1721310642; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qw3fb0DldhD2Fy7I+RK3ZtWzIZ/nNMl+emHTFt2nfL4=;
-        b=RtNJxXceYjyNeQ3lTURdHzXswxdiQTKQFJM64reBWCP8os2HCcrvN+VS58IN1tZVhS
-         qIdtfG3Hkd5Q2weEKQjSF0qzPtS14Qd5WCpriFBN+uFzecA1L+XNcfSMrfN83cfKe0GI
-         uXcLbjmB0AgnoyWyDWAzv1Nn2rtBYYTnd4dN0A6Om9rQRI+YLzvFsAiTCop1pS135V1F
-         geKVdEHBO585GAaJIcU8s60IVExpHHXic0WGA4l1lz7vqeP7NyyaMnX743zj/oI5P5q+
-         Ma8oz/B28XxcbRO4ar3sBRhl5D/aVOhxr1aKNg5T8THUIUgLH3HTNthm1tHEpPTcpLLd
-         RtdA==
+        d=gmail.com; s=20230601; t=1720761616; x=1721366416; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kuXov5G1XQ8qHMk4yYhZHN3vZFCKP2POJ+89TPmfaUM=;
+        b=OOeKLIlYfV8MmE2I16qsEhSDu4xMZjKHPIAWMCEtiWH3JwdprqrcEXTZHF9a0xP5PV
+         ODD/5CEeqyygWH2kU92RuFEtht2uAmTPU82Nxzco4qLmhIxXfJigDtS4sSRkC42tAUPz
+         ZgKWhqGC/grbDcd+HS1pKpz0CICJiFPgQ6XYKaJloRsw4NWxZvbsDOIURLRPMvqRAfmL
+         053sWbPvpjdk5FHTAo27CSXpU2rkzkZU9KUeLaSwa7MEerGVOPXtS7gR16+bAdIolgfo
+         Tlt7Q/Q9G0QpZFl//GYq6Ke9WKKm37mapMO1934ZXaKEqy1GJCGgzvjxEq4jydHgLKnt
+         VCyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720705842; x=1721310642;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qw3fb0DldhD2Fy7I+RK3ZtWzIZ/nNMl+emHTFt2nfL4=;
-        b=V/B/i6wLu2vYLBy1EjpewQcPpT84p/HyJgFbVyY6bR3aVkWRexH5k3XNfccIqgCzCA
-         BvwXdLXuceZo1f0SJIORF8i541yMLlIHFCYS1fh/zDGx//GXvrFiTgCG8hlr6TyUDvWu
-         0LKPXnt36QhJa8rJUs0PT0rXJpCdYFCsQRgrB5iSG1kHv2gXarezEz7edltfzmXwibVb
-         O8Vsf3zaWz3rOrXxFop5CpREhzThfrlU8eNCe66Y+YlIbx5njd3JoFiI5DITVpYlk70/
-         XI14IsxKLKj0HgY0YLiZK1tN9Ru8hV2meuLAHWp/d3cpd4nzT9wkkWxdLNqXM5eWN5Zf
-         eMfQ==
-X-Gm-Message-State: AOJu0YxMlWVBJpAWf42iv+noZgIIh0Yns/PiOHM3p3w4XGY7XwPlIunj
-	Mu9dNFJ3fILvzD2nXIO430eWT5Ve/HFe0V/mk9orBpzh+o7Ypx1VWWXj9b6AncNNrkDQLWDY2F+
-	iQUCMD277G6gjAiEJ9aTVavy63J+7XIO2
-X-Google-Smtp-Source: AGHT+IHZ+rXqM6FJwGEABf1qU2RPUOS0u4HPtSqjTWBpzEKXLA3y8R2sjhdjO0ZPI6Q2VfptPdRsEi3rehkaYm7m38I=
-X-Received: by 2002:a17:90a:9b04:b0:2c7:d24b:57f with SMTP id
- 98e67ed59e1d1-2ca9e20b6acmr4047225a91.19.1720705842013; Thu, 11 Jul 2024
- 06:50:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1720761616; x=1721366416;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kuXov5G1XQ8qHMk4yYhZHN3vZFCKP2POJ+89TPmfaUM=;
+        b=LvmLiF3ESkJeBqmE9GI6PqxuSYYBMuXBfYPJGH7CJADoCyDofSqVO/Dx5qEvzWaFXV
+         sQKWs1+4dqnBGCZrhtzQQi+d859PPPj6AI2V5l8zY3P9504vWSB45t+dArnUTf1GLuK5
+         O8iODGHIk6rfeqXMF0bXOGQxVPOvWosKnXLhpLm1N/e0M6NqNW/PkFKBTQnDXHruKN4E
+         7irDWElGExTV1iV9F2KoMlfviQH8NLzTs0pq6gK43J2oZ6ckPZIBeeZF1EjAu3wsU4Fh
+         W6C2OAluACeUCpe1yiLXvaxjkHXVfaNFU3YZw+gEsnHw0/vk+awZhAZHfcVokOQTWVCN
+         gv+A==
+X-Gm-Message-State: AOJu0YwmMntPxBAXmjzZIglK/zi/fqabL+Bhx6f+JaJNGoR6PMgT/TPJ
+	jkxvxrhLJlkR5AVNdE998Wy9haFG1+ijHQQBBD13j5YHfrdvTLjzDe4pt5b9a98DWXFrK40/Eee
+	hp/1bn2rEWRpMDkugDKdY6Panhw5W0+ibn7ByOvvE
+X-Google-Smtp-Source: AGHT+IHRcV5uU20DnPZYOj+ZWlwnqtG2rNIxYVKOAjQLnLBZd37RPf3LxfHhsgRH/y/svLmQk1oaeWd0XB9fXXkR9hk=
+X-Received: by 2002:a05:6358:618a:b0:1aa:b462:9e92 with SMTP id
+ e5c5f4694b2df-1aade176f18mr1070280355d.28.1720761615807; Thu, 11 Jul 2024
+ 22:20:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAC3TgAK9+yDoz=3emvD6GTB6PNNe7=o5w6hkGpWm0juwt_X=pA@mail.gmail.com>
- <CANNYZj99c_sfCDt+MtAswB4UvoTnc-97RiAKjfG5dd7a2kin1A@mail.gmail.com>
-In-Reply-To: <CANNYZj99c_sfCDt+MtAswB4UvoTnc-97RiAKjfG5dd7a2kin1A@mail.gmail.com>
-From: Ycn aKaJoseph <ycnakajsph@gmail.com>
-Date: Thu, 11 Jul 2024 15:50:32 +0200
-Message-ID: <CAC3TgAJGvSjZ8ZZq35ay3h1-UvOFGZbEd6-rZ60WE=k70-krew@mail.gmail.com>
-Subject: Re: [Yocto][QA] patches : QA Issue: Missing Upstream-Status in patch
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000079f0ae061cf90c5e"
+From: Ganesh Samunuri <ganeshsamunuri015@gmail.com>
+Date: Fri, 12 Jul 2024 10:50:04 +0530
+Message-ID: <CA+5Uccmt8J-j3VkMFgcD13pbAWkW36WiAAQK0eAbnq77gvwq7g@mail.gmail.com>
+Subject: Help in booting The board
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000da7f8b061d060816"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Jul 2024 13:50:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63473
+ <yocto@lists.yoctoproject.org>; Fri, 12 Jul 2024 05:20:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63474
 
---00000000000079f0ae061cf90c5e
+--000000000000da7f8b061d060816
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Well, I'm not really sure I would need it in most cases.
+Ganesh Samunuri <ganeshsamunuri015@gmail.com>
+10:40 (8 minutes ago)
+to main
+Hey as iam new to yocto project,
 
-For instance today I was modifying an existing device tree to make it fit
-my board, that's not necessarily going to last.
+I downloaded Yocto project (kirkstone) in cyclone v by adding met-altera
+layer and meta-openembedded layers,
+ i did everything according to online article provided and able to bitbake
+it , after bitbake i flashed my .wic  file into the SD card but it missing
+some files like u-boot.scr and .rbf files, even i tried to boot with the
+image file i got but it's not booting .
 
-Or say I have a package, which is from my company and doesn't have any
-reason to get out of it.
+I am Hoping if anyone can help me with these problem and help me to boot
+the board
 
-As an integrator I need to modify the build system, let's say something in
-the makefile, or maybe there's simply stuff that I don't want on my system.
+Thank you.
 
-So I'll make a patch.
-
-Why would Yocto be authority for the way my commits are formatted? In all
-the above cases I don't see why.
-
-Yann CARDAILLAC,
-
-
-On Wed, Jul 10, 2024 at 5:26=E2=80=AFPM Alexander Kanavin <alex.kanavin@gma=
-il.com>
-wrote:
-
-> On Wed, 10 Jul 2024 at 15:45, Yann CARDAILLAC via
-> lists.yoctoproject.org <ycnakajsph=3Dgmail.com@lists.yoctoproject.org>
-> wrote:
-> > I'm not having the issue anymore, but I don't want to do that for all
-> the patches I'm going to backport, can you explain why and when this erro=
-r
-> occurs? And if it's systematic how can I systematically ignore it as I
-> don't really care about the "Upstream-Status".
->
-> Having a well-defined upstream-status in every patch is a layer
-> maintenance practice we do want to encourage. You might not care about
-> this information right now, but you might want it a few months from
-> now. Or someone else working with your layer might want it when they
-> need to rebase the software being patched to some different version.
-> It will help them find where the original commit is, or give them a
-> reason why the patch was never submitted upstream and shouldn't be
-> etc. We have a rich nomenclature that covers almost every scenario.
->
-> If you're backporting patches, put 'Upstream-Status: Backport [link
-> from where]' into them. 'Pending' without a reason is basically same
-> as 'no status', and even though it's currently allowed, the
-> restrictions on it will get tighter over time.
->
-> Alex
->
-
---00000000000079f0ae061cf90c5e
+--000000000000da7f8b061d060816
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Well, I&#39;m not really sure I would need it in most=
- cases.=C2=A0</div><div><br></div><div>For instance today I was modifying a=
-n existing device tree to make it fit my board, that&#39;s not necessarily =
-going to last.<br></div><div><br></div><div>Or say I have a package, which =
-is from my company and doesn&#39;t have any reason to get out of it.</div><=
-div><br></div><div>As an integrator I need to modify the build system, let&=
-#39;s say something in the makefile, or maybe there&#39;s simply stuff that=
- I don&#39;t want on my system.</div><div><br></div><div>So I&#39;ll make a=
- patch.<br></div><div><br></div><div>Why would Yocto be authority for the w=
-ay my commits are formatted? In all the above cases I don&#39;t see why.<br=
-></div><div><br></div><div><div><div dir=3D"ltr" class=3D"gmail_signature" =
-data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div>Yann CARDAILLAC,<b=
-r></div></div></div></div><br></div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 10, 2024 at 5:26=E2=80=AFPM=
- Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanav=
-in@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">On Wed, 10 Jul 2024 at 15:45, Yann CARDAILLAC via<br>
-<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bla=
-nk">lists.yoctoproject.org</a> &lt;ycnakajsph=3D<a href=3D"mailto:gmail.com=
-@lists.yoctoproject.org" target=3D"_blank">gmail.com@lists.yoctoproject.org=
-</a>&gt;<br>
-wrote:<br>
-&gt; I&#39;m not having the issue anymore, but I don&#39;t want to do that =
-for all the patches I&#39;m going to backport, can you explain why and when=
- this error occurs? And if it&#39;s systematic how can I systematically ign=
-ore it as I don&#39;t really care about the &quot;Upstream-Status&quot;.<br=
->
-<br>
-Having a well-defined upstream-status in every patch is a layer<br>
-maintenance practice we do want to encourage. You might not care about<br>
-this information right now, but you might want it a few months from<br>
-now. Or someone else working with your layer might want it when they<br>
-need to rebase the software being patched to some different version.<br>
-It will help them find where the original commit is, or give them a<br>
-reason why the patch was never submitted upstream and shouldn&#39;t be<br>
-etc. We have a rich nomenclature that covers almost every scenario.<br>
-<br>
-If you&#39;re backporting patches, put &#39;Upstream-Status: Backport [link=
-<br>
-from where]&#39; into them. &#39;Pending&#39; without a reason is basically=
- same<br>
-as &#39;no status&#39;, and even though it&#39;s currently allowed, the<br>
-restrictions on it will get tighter over time.<br>
-<br>
-Alex<br>
-</blockquote></div>
+<div dir=3D"ltr"><div class=3D"gmail-aju" style=3D"display:flex;float:none;=
+height:80px;padding:0px 16px;min-width:40px;font-family:&quot;Google Sans&q=
+uot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium"><div c=
+lass=3D"gmail-aCi" style=3D""><img id=3D"gmail-:m4_11-e" name=3D"gmail-:m4"=
+ src=3D"https://lh3.googleusercontent.com/a/ACg8ocJKBDvjJN4qJ4TVhnlpIb5Nq_p=
+RhRnmXIyjRIA5q1j-SPtCKQ=3Ds40-p-mo" class=3D"gmail-ajn" aria-hidden=3D"true=
+" style=3D"width: 40px; height: 40px; border-radius: 50%; display: block; b=
+ackground-color: rgb(204, 204, 204);"></div></div><div class=3D"gmail-gs" s=
+tyle=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:initial;font-fa=
+mily:&quot;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;=
+font-size:medium"><div class=3D"gmail-gE gmail-iv gmail-gt" style=3D"font-s=
+ize:0.875rem;padding:20px 0px 0px"><table cellpadding=3D"0" class=3D"gmail-=
+cf gmail-gJ" style=3D"border-collapse:collapse;margin-top:0px;width:auto;fo=
+nt-size:0.875rem;display:block"><tbody style=3D"display:block"><tr class=3D=
+"gmail-acZ" style=3D"display:flex;height:auto"><td class=3D"gmail-gF gmail-=
+gK" style=3D"padding:0px;vertical-align:top;width:905.312px;line-height:20p=
+x;display:block;max-height:20px"><table cellpadding=3D"0" class=3D"gmail-cf=
+ gmail-ix" style=3D"border-collapse:collapse;table-layout:fixed;width:905.3=
+12px"><tbody><tr><td class=3D"gmail-c2" style=3D"display:flex"><h3 class=3D=
+"gmail-iw" style=3D"overflow:hidden;font-size:0.75rem;font-weight:inherit;m=
+argin:inherit;text-overflow:ellipsis;color:rgb(95,99,104);line-height:20px"=
+><span class=3D"gmail-qu" role=3D"gridcell" tabindex=3D"-1"><span name=3D"G=
+anesh Samunuri" class=3D"gmail-gD" style=3D"color:rgb(31,31,31);font-size:0=
+.875rem;font-weight:bold;display:inline;vertical-align:top;line-height:20px=
+"><span style=3D"vertical-align:top">Ganesh Samunuri</span></span>=C2=A0<sp=
+an class=3D"gmail-cfXrwd"></span><span class=3D"gmail-go" style=3D"vertical=
+-align:top;color:rgb(94,94,94)"><span aria-hidden=3D"true">&lt;</span><a hr=
+ef=3D"mailto:ganeshsamunuri015@gmail.com">ganeshsamunuri015@gmail.com</a><s=
+pan aria-hidden=3D"true">&gt;</span></span></span></h3></td></tr></tbody></=
+table></td><td class=3D"gmail-gH gmail-bAk" style=3D"text-align:right;verti=
+cal-align:top;display:block;max-height:20px"><div class=3D"gmail-gK" style=
+=3D"padding:0px;display:flex"><span id=3D"gmail-:w1" class=3D"gmail-g3" tit=
+le=3D"12 Jul 2024, 10:40" alt=3D"12 Jul 2024, 10:40" role=3D"gridcell" tabi=
+ndex=3D"-1" style=3D"vertical-align:top;margin:0px;font-size:0.75rem;color:=
+rgb(94,94,94);display:block;line-height:20px">10:40 (8 minutes ago)</span><=
+div class=3D"gmail-zd gmail-bi4" aria-label=3D"Not starred" title=3D"Not st=
+arred" tabindex=3D"0" role=3D"checkbox" aria-checked=3D"false" style=3D"dis=
+play:inline-block;height:20px;margin-left:20px;outline:0px"><span class=3D"=
+gmail-T-KT" style=3D"display:inline-flex;height:20px;text-align:center;widt=
+h:20px;padding:0px;margin:0px;border:none;outline:none"></span></div></div>=
+</td><td class=3D"gmail-gH" style=3D"text-align:right;vertical-align:top;di=
+splay:flex"></td><td class=3D"gmail-gH gmail-acX gmail-bAm" rowspan=3D"2" s=
+tyle=3D"text-align:right;vertical-align:top;display:block;max-height:20px">=
+<div class=3D"gmail-T-I gmail-J-J5-Ji gmail-T-I-Js-IF gmail-R1Zuwf gmail-T-=
+I-ax7 gmail-L3" role=3D"button" tabindex=3D"0" aria-label=3D"Add reaction" =
+style=3D"display:inline-flex;border-radius:2px 0px 0px 2px;font-size:0.875r=
+em;text-align:center;margin:0px 0px 0px 20px;height:20px;line-height:18px;m=
+in-width:auto;outline:none;padding:0px;background:transparent;color:rgb(68,=
+68,68);border:none"><img class=3D"gmail-qfynfc gmail-T-I-J3" role=3D"button=
+" src=3D"https://mail.google.com/mail/u/1/images/cleardot.gif" alt=3D"" sty=
+le=3D"background-image: url(&quot;//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x=
+/mood_baseline_nv700_20dp.png&quot;); background-position: 50% 50%; backgro=
+und-repeat: no-repeat; background-size: 20px; margin: 0px; vertical-align: =
+middle; opacity: 1; display: inline-block; height: 20px; padding: 0px; tran=
+sition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s; width: 20px;"></div>=
+<div class=3D"gmail-T-I gmail-J-J5-Ji gmail-T-I-Js-IF gmail-aaq gmail-T-I-a=
+x7 gmail-L3" role=3D"button" tabindex=3D"0" aria-label=3D"Reply" style=3D"d=
+isplay:inline-flex;border-radius:2px 0px 0px 2px;font-size:0.875rem;text-al=
+ign:center;margin:0px 0px 0px 20px;height:20px;line-height:18px;min-width:0=
+px;outline:none;padding:0px;background:transparent;color:rgb(68,68,68);bord=
+er:none"><img class=3D"gmail-hB gmail-T-I-J3" role=3D"button" src=3D"https:=
+//mail.google.com/mail/u/1/images/cleardot.gif" alt=3D"" style=3D"backgroun=
+d: url(&quot;//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/reply_baseline_nv700=
+_20dp.png&quot;) 50% 50% / 20px no-repeat; height: 20px; margin: 0px; verti=
+cal-align: middle; width: 20px; opacity: 1; display: inline-block; padding:=
+ 0px; transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s;"></div><di=
+v id=3D"gmail-:w9" class=3D"gmail-T-I gmail-J-J5-Ji gmail-T-I-Js-Gs gmail-a=
+ap gmail-T-I-awG gmail-T-I-ax7 gmail-L3" role=3D"button" tabindex=3D"0" ari=
+a-expanded=3D"false" aria-haspopup=3D"true" aria-label=3D"More message opti=
+ons" style=3D"display:inline-flex;border-radius:0px 2px 2px 0px;font-size:0=
+.875rem;text-align:center;margin:0px 0px 0px 20px;height:20px;line-height:1=
+8px;min-width:0px;outline:none;padding:0px;background:transparent;color:rgb=
+(68,68,68);border:none"><img class=3D"gmail-hA gmail-T-I-J3" role=3D"menu" =
+src=3D"https://mail.google.com/mail/u/1/images/cleardot.gif" alt=3D"" style=
+=3D"background: url(&quot;//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/more_ve=
+rt_baseline_nv700_20dp.png&quot;) 50% 50% / 20px no-repeat; height: 20px; w=
+idth: 20px; margin: 0px; vertical-align: middle; opacity: 1; display: inlin=
+e-block; padding: 0px; transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, =
+1) 0s;"></div></td></tr><tr class=3D"gmail-acZ gmail-xD" style=3D"display:f=
+lex;height:auto"><td colspan=3D"3"><table cellpadding=3D"0" class=3D"gmail-=
+cf gmail-adz" style=3D"border-collapse:collapse;table-layout:fixed;width:11=
+84px"><tbody><tr><td class=3D"gmail-ady" style=3D"overflow:visible;text-ove=
+rflow:ellipsis;display:flex;line-height:20px"><div class=3D"gmail-iw gmail-=
+ajw" style=3D"overflow:hidden;max-width:92%;display:inline-block"><span cla=
+ss=3D"gmail-hb" style=3D"vertical-align:top;color:rgb(94,94,94);font-size:0=
+.75rem;line-height:20px">to=C2=A0<span name=3D"main" class=3D"gmail-g2" sty=
+le=3D"vertical-align:top">main</span></span></div><div id=3D"gmail-:mo" ari=
+a-haspopup=3D"true" class=3D"gmail-ajy" role=3D"button" tabindex=3D"0" aria=
+-label=3D"Show details" style=3D"display:inline-flex;margin-left:4px;vertic=
+al-align:top;border:none;outline:none"><img class=3D"gmail-ajz" src=3D"http=
+s://mail.google.com/mail/u/1/images/cleardot.gif" alt=3D"" style=3D"backgro=
+und: url(&quot;https://www.gstatic.com/images/icons/material/system_gm/1x/a=
+rrow_drop_down_black_20dp.png&quot;) 50% 50% / 20px no-repeat; cursor: poin=
+ter; padding: 0px; vertical-align: baseline; height: 20px; width: 20px; bor=
+der: none; margin: 0px 0px 0px auto; right: 0px; top: 0px; display: flex; o=
+pacity: 0.71;"></div></td></tr></tbody></table></td></tr></tbody></table></=
+div><div id=3D"gmail-:vx"><div class=3D"gmail-qQVYZb"></div><div class=3D"g=
+mail-utdU2e"></div><div class=3D"gmail-lQs8Hd"></div><div class=3D"gmail-wl=
+4W9b" style=3D"display:flex"></div></div><div class=3D"gmail-"><div class=
+=3D"gmail-aHl" style=3D""></div><div id=3D"gmail-:nf" tabindex=3D"-1"></div=
+><div id=3D"gmail-:vz" class=3D"gmail-ii gmail-gt" style=3D"direction:ltr;m=
+argin:8px 0px 0px;padding:0px;font-size:0.875rem;overflow-x:hidden"><div id=
+=3D"gmail-:vy" class=3D"gmail-a3s gmail-aiL" style=3D"direction:initial;fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;font-variant-altern=
+ates:normal;font-kerning:auto;font-feature-settings:normal;font-stretch:nor=
+mal;font-size:small;line-height:1.5;font-family:Arial,Helvetica,sans-serif;=
+overflow:auto hidden"><div dir=3D"ltr">Hey as iam new to yocto project,<br>=
+<br>I downloaded Yocto project=C2=A0(kirkstone) in cyclone v by adding met-=
+altera layer and meta-openembedded layers,<div>=C2=A0i did everything accor=
+ding to online article provided and able to bitbake it , after bitbake i fl=
+ashed my .wic=C2=A0 file into the SD card but it missing some files like u-=
+boot.scr and .rbf files, even i tried to boot with the image file i got but=
+ it&#39;s not booting .<br><br>I am Hoping if anyone can help me with these=
+ problem and help me to boot the board<br><br>Thank you.=C2=A0</div></div><=
+/div></div></div></div></div>
 
---00000000000079f0ae061cf90c5e--
+--000000000000da7f8b061d060816--
 
