@@ -2,93 +2,201 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F17C2C2BD09
-	for <webhook@archiver.kernel.org>; Fri, 12 Jul 2024 11:49:11 +0000 (UTC)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
- by mx.groups.io with SMTP id smtpd.web10.5770.1720784949080752880
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84B2EC3DA45
+	for <webhook@archiver.kernel.org>; Fri, 12 Jul 2024 16:14:13 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web10.11780.1720800848023491625
  for <yocto@lists.yoctoproject.org>;
- Fri, 12 Jul 2024 04:49:09 -0700
+ Fri, 12 Jul 2024 09:14:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=To6wZOCt;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.167.52, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52ea5765e75so2216398e87.0
-        for <yocto@lists.yoctoproject.org>; Fri, 12 Jul 2024 04:49:08 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=UkNOvBLx;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4267300145eso17318135e9.3
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Jul 2024 09:14:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1720784947; x=1721389747; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RWsyX6fjC4WXAMev6tuxwWMwblchSgMEQ0QJFaZj2k4=;
-        b=To6wZOCtTjOuOwE3bb+Sb80G7DcKYDSGU7jLo1hEXS1KHAu00YfZ/XetYrLed/a/oN
-         7/MP+hV9QwF4JomQnVwsViYEtn3h2wI37f5/egHm48vlf5ufv4S6xPMi+SGpBdw6dCt9
-         fXlkajCXPJHMdqxGyHgP+wESZKaadHULyl+GI=
+        d=linuxfoundation.org; s=google; t=1720800846; x=1721405646; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X4OORO1gR5zxD5psujOuiVLRlJ1oiNNgKi2eqhvIxE0=;
+        b=UkNOvBLxDEdkCeX8Dv9uVv0YTYpnNeMWfWb3QFVZA6CYy0d67OBI1v3/wGFQUzZpWS
+         8DZ8JiXVLazPSM7HwaUu4zTjq1uu6U7Xosoam+rQCvA41+Xvdz4czkCOb1fPvwvsSwLq
+         kZqx2P8ab1Fq7Y+IWOVLI0BYBWCSWvKX2hKUI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1720784947; x=1721389747;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=RWsyX6fjC4WXAMev6tuxwWMwblchSgMEQ0QJFaZj2k4=;
-        b=eMdMW/aA7wYYuUPk8F2PZ4i6wGwOhAgbTSAcblLi8tpsoK+H2oHp4vF+gLwjfE306W
-         bIv3v3m9wzsNOF71ssj1HMff9xsdLIas1hUIdSZz6OR7K0edEWSVgVy6He2O0swryoni
-         C0ari0Q9ckkVlZO3iHxFqGuhaOMo1EWYmt80gcIvmiW/POvEotqZ9ONHjmVxZicjIc8L
-         ZWuDImY/GSXWUlONLNiwFXbXX1PaggQEHlOalOQCvLNikWhBtxWRyR1R4oaV+a6ukDEM
-         D2MvfAEyGxJ0pH5mETjYUpNfY7wW5cN4Gnmax3Cx9OMcVCEcREqWiQlMxjS3w8PQx2cS
-         Y/8A==
-X-Gm-Message-State: AOJu0Yz2Jy/zuqE6WQ6KNnob3XhkZiwx1E8MHGZvM2iaNu3nSfAWh515
-	mDiRayNFtGeOMh0cOCoGTCXKRgp6EsV63Ohm5WsBfwReSlnuLrDakdoMQO7XSocf/0Ej/zChiWR
-	G
-X-Google-Smtp-Source: AGHT+IH3PSATzENCaGMzPmoBVMkSy+YmST4dmORUJmUgxvCFxw/n1g/fHX0V/PMXVfOwf88dnoDvDA==
-X-Received: by 2002:ac2:57cc:0:b0:52c:892e:2b26 with SMTP id 2adb3069b0e04-52eb9991397mr6237575e87.2.1720784946854;
-        Fri, 12 Jul 2024 04:49:06 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:c138:9d7a:7e79:ba70? ([2001:8b0:aba:5f3c:c138:9d7a:7e79:ba70])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-367cde891e4sm10050029f8f.64.2024.07.12.04.49.06
+        d=1e100.net; s=20230601; t=1720800846; x=1721405646;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X4OORO1gR5zxD5psujOuiVLRlJ1oiNNgKi2eqhvIxE0=;
+        b=ccd3Mofu9fyRjjzCiMo3Pmo3ve+lsnd4E15kNiv5zpVzmCyzIsqvmfu9Keu1FYiJNp
+         SO/7ErNreIv9F3CdN7CW9xDH3mBrzEPUsF7wfQsrhA5bvccwPHx055ifRvBQ2M2pnMX6
+         f2kD9A0FTnxw1otILfXQI7SycT/A2EFvIlvDsYl4ZCKEfQCzkRccfSPiFpS1QX3W8ONM
+         MN8b7pv9TtUmyE9LgEhhQdGzHq66NCP4hU1Ev9bw9OO1iW85SIjDFJDnyYyuybmcw27j
+         aKnTJZNtl936BVOJ55iQ6TIksTJW8Nm00dncJLUjawIhthYdbmMYePYPXL3i3IQqHz8u
+         PC7w==
+X-Gm-Message-State: AOJu0YyIRT7LzgxhxWWX6XYNM5K6f5y6iI4TI3OCJbjjo9QUiHUMnHgZ
+	HF20JsXv2Xq0nho8R2WIHvZSkzHCui0T/oWWJ2IbMSCqbx33FWV43CIhkZyv58nFJwJ2+xnEq3n
+	2
+X-Google-Smtp-Source: AGHT+IHfh7NicacHrkkj1D5U4xJXEJ9ikpv1v16TRUe8joaMLYG0YIdKCdNfCvd5euJdY+BbS+4TeA==
+X-Received: by 2002:a05:600c:4930:b0:426:5269:982c with SMTP id 5b1f17b1804b1-426707f8939mr89856075e9.28.1720800845881;
+        Fri, 12 Jul 2024 09:14:05 -0700 (PDT)
+Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:c138:9d7a:7e79:ba70])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4279f268175sm27542685e9.19.2024.07.12.09.14.05
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jul 2024 04:49:06 -0700 (PDT)
-Message-ID: <689b928c15c976198dea9c12839f28594de4559c.camel@linuxfoundation.org>
-Subject: Re: [Yocto][QA] patches : QA Issue: Missing Upstream-Status in patch
+        Fri, 12 Jul 2024 09:14:05 -0700 (PDT)
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org, peter.marko@siemens.com, 
- "ycnakajsph@gmail.com"
-	 <ycnakajsph@gmail.com>
-Date: Fri, 12 Jul 2024 12:49:05 +0100
-In-Reply-To: <AS1PR10MB5697F5E6530BC9C8F0836443FDA42@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
-References: 
-	<CAC3TgAK9+yDoz=3emvD6GTB6PNNe7=o5w6hkGpWm0juwt_X=pA@mail.gmail.com>
-	 <AS1PR10MB5697F5E6530BC9C8F0836443FDA42@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0-1build2 
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder-helper] [PATCH] scripts: Split ptest log extraction to separate script
+Date: Fri, 12 Jul 2024 17:14:04 +0100
+Message-ID: <20240712161404.1663344-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 12 Jul 2024 11:49:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63480
+ <yocto@lists.yoctoproject.org>; Fri, 12 Jul 2024 16:14:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63481
 
-On Wed, 2024-07-10 at 14:02 +0000, Peter Marko via lists.yoctoproject.org w=
-rote:
-> Following distro config did the trick for me half a year ago when I
-> started our migration to scarthgap.
-> ERROR_QA:remove =3D "patch-status"
-> WARN_QA:append =3D " patch-status"
-> =C2=A0
-> But I would not recommend to use it as permanent solution.
-> Rather adapt your toolkit which backports patches to add proper
-> upstream status flag.
+The ptest extraction should really happen separately to the index generation,
+move it to do so.
 
-Whilst I have the concerns others have raised about disabling this, I'd
-like to make more people aware you can do:
+Add code to only consider directories changed in the last 7 days to make
+the script faster.
 
-ERROR_QA:remove:layer-mylayername =3D "patch-status"
-WARN_QA:append:layer-mylayername =3D " patch-status"
+Add an indexing target to config.json to trigger the script.
 
-so at least you isolate this change to your layer.
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ config.json                          |  6 +++
+ scripts/generate-ptest-logs.py       | 78 ++++++++++++++++++++++++++++
+ scripts/generate-testresult-index.py | 14 -----
+ 3 files changed, 84 insertions(+), 14 deletions(-)
+ create mode 100755 scripts/generate-ptest-logs.py
 
-If you do then change other layers, they then retain the sanity checks
-needed for acceptable submissions.
-
-Cheers,
-
-Richard
-
+diff --git a/config.json b/config.json
+index 6907f26..07bbd8e 100644
+--- a/config.json
++++ b/config.json
+@@ -1343,6 +1343,12 @@
+                 "EXTRACMDS": [ "${SCRIPTSDIR}/run-abint ${HELPERRESULTSDIR}/../../abint/"]
+             }
+         },
++        "indexing" : {
++            "step1" : {
++                "shortname" : "Extract ptest logs",
++                "EXTRACMDS" : ["${SCRIPTSDIR}/generate-ptest-logs.py /srv/autobuilder/autobuilder.yocto.io/pub/non-release/"]
++            }
++        },
+         "meta-mingw" : {
+             "NEEDREPOS" : ["poky", "meta-mingw"],
+             "MACHINE" : "qemux86-64",
+diff --git a/scripts/generate-ptest-logs.py b/scripts/generate-ptest-logs.py
+new file mode 100755
+index 0000000..9565f2f
+--- /dev/null
++++ b/scripts/generate-ptest-logs.py
+@@ -0,0 +1,78 @@
++#!/usr/bin/env python3
++#
++# Copyright Linux Foundation, Richard Purdie
++#
++# SPDX-License-Identifier: GPL-2.0-only
++#
++
++import argparse
++import os
++import glob
++import re
++import time
++import subprocess
++
++def parse_args(argv=None):
++    """Parse command line arguments"""
++    parser = argparse.ArgumentParser(
++            description="Generate separate ptest logs from any testresults.json files",
++            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
++
++    parser.add_argument('path', help='path to directory to index')
++
++    return parser.parse_args(argv)
++
++args = parse_args()
++path = os.path.abspath(args.path)
++
++# Pad so 20190601-1 becomes 20190601-000001 and sorts correctly
++def keygen(k):
++    m = re.match(r"(\d+)-(\d+)", k)
++    if m:
++        k1, k2 = m.groups()
++        return k1 + "-" + k2.rjust(6, '0')
++    else:
++        return k
++
++current_time = time.time()
++
++# number of seconds in 7 days
++days = 7 * 24 * 60 * 60
++
++for build in sorted(os.listdir(path), key=keygen, reverse=True):
++    buildpath = os.path.join(path, build, "testresults")
++    if not os.path.exists(buildpath):
++        # No test results
++        continue
++    reldir = "./" + build + "/"
++    modified_time = os.stat(buildpath).st_mtime
++
++    # Only consider things in the last X days
++    if (modified_time < (current_time - days):
++        continue
++
++    btype = "other"
++    files = os.listdir(buildpath)
++    if os.path.exists(buildpath + "/a-full-posttrigger") or \
++            os.path.exists(buildpath + "/a-full"):
++        btype = "full"
++    elif os.path.exists(buildpath + "/a-quick-posttrigger") or \
++            os.path.exists(buildpath + "/a-quick"):
++        btype = "quick"
++    elif len(files) == 1:
++        btype = files[0]
++
++    # Ensure we have saved out log data for ptest runs to aid debugging
++    if "ptest" in btype or btype in ["full", "quick"]:
++        for root, dirs, files in os.walk(buildpath):
++            for name in dirs:
++                if "ptest" in name:
++                    f = os.path.join(root, name)
++                    logs = glob.glob(f + "/*.log")
++                    if logs:
++                        continue
++                    subprocess.check_call(["resulttool", "log", f, "--dump-ptest", f])
++                    # Ensure we don't rerun every time with a dummy log
++                    with open(f + "/resulttool-done.log", "a+") as tf:
++                        tf.write("\n")
++
+diff --git a/scripts/generate-testresult-index.py b/scripts/generate-testresult-index.py
+index 568154d..d6d0a8f 100755
+--- a/scripts/generate-testresult-index.py
++++ b/scripts/generate-testresult-index.py
+@@ -145,20 +145,6 @@ for build in sorted(os.listdir(path), key=keygen, reverse=True):
+ 
+     entries.append(entry)
+ 
+-    # Also ensure we have saved out log data for ptest runs to aid debugging
+-    if "ptest" in btype or btype in ["full", "quick"]:
+-        for root, dirs, files in os.walk(buildpath):
+-            for name in dirs:
+-                if "ptest" in name:
+-                    f = os.path.join(root, name)
+-                    logs = glob.glob(f + "/*.log")
+-                    if logs:
+-                        continue
+-                    subprocess.check_call(["resulttool", "log", f, "--dump-ptest", f])
+-                    # Ensure we don't rerun every time with a dummy log
+-                    with open(f + "/resulttool-done.log", "a+") as tf:
+-                        tf.write("\n")
+-
+ with open("./index-table.html") as file_:
+     t = Template(file_.read())
+ 
 
