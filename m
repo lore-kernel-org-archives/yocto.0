@@ -2,52 +2,58 @@ Return-Path: <gavrosc@yahoo.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9742BC3DA45
-	for <webhook@archiver.kernel.org>; Sat, 13 Jul 2024 15:50:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CA0CC3DA42
+	for <webhook@archiver.kernel.org>; Sat, 13 Jul 2024 17:07:03 +0000 (UTC)
 Subject: Re: [yocto] Bitbake: arm-poky-linux-gnueabi-gcc not found
-To: "Khem Raj" <raj.khem@gmail.com>, yocto@lists.yoctoproject.org
+To: gavrosc@yahoo.com, yocto@lists.yoctoproject.org
 From: gavrosc@yahoo.com
 X-Originating-Location: =?UTF-8?B?VmFlc3RyYSBGcm9lbHVuZGEsIFbDpHN0cmEgR8O2dGFsYW5kIENvdW50eSwgU0U=?= (83.253.125.5)
-X-Originating-Platform: Mac Safari 17.5
+X-Originating-Platform: Linux Firefox 127
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sat, 13 Jul 2024 08:50:44 -0700
-References: <CAMKF1spQk=Yz7AEus4_27iyxoaCjoembuOOEeHG0rj6LH5bA0g@mail.gmail.com>
-In-Reply-To: <CAMKF1spQk=Yz7AEus4_27iyxoaCjoembuOOEeHG0rj6LH5bA0g@mail.gmail.com>
-Message-ID: <18817.1720885844486271136@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="wZdarjsjlsrC5X1tb1w1"
+Date: Sat, 13 Jul 2024 10:06:54 -0700
+References: <18817.1720885844486271136@lists.yoctoproject.org>
+In-Reply-To: <18817.1720885844486271136@lists.yoctoproject.org>
+Message-ID: <1227.1720890414430366496@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="xwALAlYn3bM8TcQWx6rz"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 13 Jul 2024 15:50:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63485
+ <yocto@lists.yoctoproject.org>; Sat, 13 Jul 2024 17:07:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63486
 
---wZdarjsjlsrC5X1tb1w1
+--xwALAlYn3bM8TcQWx6rz
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-hi
+hi again
 
-thank you very much for your reply.
+i have removed the line from the file as you suggested and i tried run one =
+by one the following commands
+and finally is successful and all folders created correctly.
 
-When I remove this variable the build is indeed completed without errors bu=
-t only a temp folder is created under ...../helloworld/1.0
-and not executables are created. Also the helloworld.c doesn't exist either=
- in this folder.
+bitbake -c do_fetch helloworld
+bitbake -c do_unpack helloworld
+bitbake -c do_compile helloworld
+bitbake -c do_install helloworld
 
-Any other ideas?
+Do you have any idea why it build correct when i ran all the orders one by =
+one instead of executing 'bitbake helloworld' ?
 
-Thenx in advance
+Thank you for your support
 
---wZdarjsjlsrC5X1tb1w1
+--xwALAlYn3bM8TcQWx6rz
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-hi<br /><br />thank you very much for your reply. <br /><br />When I remove=
- this variable the build is indeed completed without errors but only a temp=
- folder is created under ...../helloworld/1.0<br />and not executables are =
-created. Also the helloworld.c doesn't exist either in this folder. <br /><=
-br />Any other ideas?<br /><br />Thenx in advance
+hi again<br /><br />i have removed the line from the file as you suggested =
+and i tried run one by one the following commands<br />and finally is succe=
+ssful and all folders created correctly. <br /><br />bitbake -c do_fetch he=
+lloworld<br />bitbake -c do_unpack helloworld<br />bitbake -c do_compile he=
+lloworld<br />bitbake -c do_install helloworld<br /><br /><br />Do you have=
+ any idea why it build correct when i ran all the orders one by one instead=
+ of executing 'bitbake helloworld' ?<br /><br />Thank you for your support<=
+br /><br /><br />
 
---wZdarjsjlsrC5X1tb1w1--
+--xwALAlYn3bM8TcQWx6rz--
 
