@@ -1,287 +1,325 @@
-Return-Path: <G.Kautzmann@PRIMES.de>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87F6AC3DA59
-	for <webhook@archiver.kernel.org>; Mon, 15 Jul 2024 10:25:57 +0000 (UTC)
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
- by mx.groups.io with SMTP id smtpd.web11.34871.1721039153503403120
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5059FC3DA59
+	for <webhook@archiver.kernel.org>; Mon, 15 Jul 2024 13:27:08 +0000 (UTC)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+ by mx.groups.io with SMTP id smtpd.web11.37875.1721050018039869479
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jul 2024 03:25:53 -0700
+ Mon, 15 Jul 2024 06:26:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: domain mismatch" header.i=g.kautzmann@primes.de header.s=s1-ionos header.b=1VMW0O4o;
- spf=pass (domain: primes.de, ip: 212.227.126.131, mailfrom: g.kautzmann@primes.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=PRIMES.de;
-	s=s1-ionos; t=1721039152; x=1721643952; i=g.kautzmann@primes.de;
-	bh=QJZsNLdOHjKaJ2f1e3SNWgdx+J3uEDxBCF9PebmTIrQ=;
-	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:Content-Type:
-	 MIME-Version:cc:content-transfer-encoding:content-type:date:from:
-	 message-id:mime-version:reply-to:subject:to;
-	b=1VMW0O4oJoQTUVzHMeX3aCWiWOg3uypq1PxEP8VX21mzDOrk8bZMt4yehZdMS5B5
-	 Efu6DE7Ry0HmnwFe+BD8DApTPPmVYUxUBqE6/df5XoIO/UeEBbAJFctA0Ml0OSw/3
-	 VjsAkf5CSPWavcatAtDP6uLX22E9VvEd8JEsDant8RDISRXRZkYtIAM6cbaF/8XbB
-	 Kt5Jshty/tMn9lvCqvAjRBpFH6UrK1WJu4JOpmXaay6dfs55L/vtBPmmo9uiSSdD0
-	 4Mhwu89aPBrsmIMiHCNhcwi41XEBpF/LYQVu1grkpyMnZGzMRu0AvwWnCINLaTqfs
-	 c5WbSxAq6Kzf7JCErA==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from Exchange2013.PRIMES.local ([149.249.153.88]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1Mf0Nm-1rsIOT3ziM-00dslw for <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024
- 12:25:51 +0200
-Received: from EXCHANGE2013.PRIMES.local ([192.168.116.253]) by
- Exchange2013.PRIMES.local ([192.168.116.253]) with mapi id 14.03.0513.000;
- Mon, 15 Jul 2024 12:25:51 +0200
-From: Gerd Kautzmann <G.Kautzmann@PRIMES.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Exception during boot process, any ideas?
-Thread-Topic: Exception during boot process, any ideas?
-Thread-Index: AdrWoPoI6FsGi3zrT5WPYPnnmwMP8g==
-Date: Mon, 15 Jul 2024 10:25:51 +0000
-Message-ID: <1619D009AA8C9E469331A8EE22395AEC01106D1AB7@Exchange2013.PRIMES.local>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.117.140]
-Content-Type: multipart/alternative;
-	boundary="_000_1619D009AA8C9E469331A8EE22395AEC01106D1AB7Exchange2013P_"
+ dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=xWjY5BL/;
+ spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.208.42, mailfrom: jester@theyoctojester.info)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-58e76294858so9145365a12.0
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 06:26:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1721050016; x=1721654816; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A01P5zvLxNVS8hQvP4Rd3BiUzxzrbn3LiyqoSnGfgY4=;
+        b=xWjY5BL/alUM0BJtRV1LCiRQTEKb9jv/pAesjQvA8mr4CmEzvHjH9LQVpWVHlH4Xqe
+         bjzA4fF1RnFFutvra+A9YFeP6V2whJkBcfNiEEYKntxJT1lnoZytgBWZjaMjAH6wMv/U
+         wobg7sqCawj592+JRFeur3ELJc25gWYf9FVWqsFQpxPn/ON4+wwbi/OjhuKOG6fSweoW
+         35RLMmQT7PDXiL2j77/KWH335qbmwJFYHP8yvM86VinDOzfrzhLeebNBij4ZT8ge7Auz
+         MM+qLVCD7RDhYcnEjnhBOjqhASU2VeQFjnKIXnNvD3KLY3ktv+pHSB0b8Ffp1UDXCdV1
+         NKhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721050016; x=1721654816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A01P5zvLxNVS8hQvP4Rd3BiUzxzrbn3LiyqoSnGfgY4=;
+        b=lEkfjyAp1wTVYiHCB49vXU43bHVmSjnI0V4dRMTEIThbIaIEkHtFvoXOutr7pcy1vU
+         0VCtKI8HBI7i662n9Go3SFkwh1oe+rO30MSC/5TiSMsRLoOJaf5o2Ga1djEATuDUKv3A
+         9xg8bphxUMWcknMyXTtTXnQq2phD2Xi5dCKlS3wCbtsfXbHOn214mKro3JZO5AHo3gko
+         GnEu0VaWMnAb/4lIYeKm/6Bhc/LV+rvMzL/KDUz1Y6PXZDZLsgvV8j+CT+5zMMkpuQyW
+         MY+q76kjIyuNgpmX6xus+Lp1UvPH+w6aS5/2OG5CmT+EcVzUBZPdjYI0OUm5Jf/5HqXB
+         Qlgg==
+X-Gm-Message-State: AOJu0YyX86xe3n2xaNEhJLWudhfmHBd0JyqN8XTCAbL1Yc5xkWUZJm6l
+	s30Yd28bfbYrMC5ZpsgyuMJBGBa4insm2JpOhlSeKm6nwJlg/HKU8oRMqWHSAxtQDQKu3c6FG5H
+	pooHxqPsZFfLPdcRMSVjKFQ6vue/tUEuHVqmUP1k1n21QJ7NwCI0=
+X-Google-Smtp-Source: AGHT+IEL1rU3VIHDzh5h3OC5FiRUYM3jXvZrnZeWH+c9twdtUSRCJkGjoyB1TelsfibevoSfBl5vDN2QS2Pe8mc9nuw=
+X-Received: by 2002:a17:906:12cf:b0:a77:cd4f:e4f1 with SMTP id
+ a640c23a62f3a-a799cd00b60mr734032766b.27.1721050016216; Mon, 15 Jul 2024
+ 06:26:56 -0700 (PDT)
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:ZJtsSadHvgpw816EVdcaYjcPuuZ+NnhwQYFkDsOC4AesoCavyus
- RYQv0HRmqeDzF7hJ8JCeGRCwxuXujJWBiKq1JbhQIeEgI+lwQz4hybnKJuuhEks3ga3oW6W
- gCUCP4+0jqJWNFDDKQxZhbwNw7xdZ8iAUoHWBjM4snW0mLdkZG9ijhXqX/kk+E4Qvc6N4/6
- NHXf/1oOikAzNw8CjIxqA==
-UI-OutboundReport: notjunk:1;M01:P0:NfbSh6KCxNs=;/L6f18AG8YTEqvytUVvcL5HvnYk
- WfKxgSA2MyDg1O+21ibq+J/fwkTfySicJqglYvc+4srMbBGOHJNaRsf2Q1AexYOD64IzzeeJ5
- T08aokJLQU/ByNnFjAnbzDYg1Es+l16zhYXrc3+3Yh0pAvTZ+fZhhQpokg4xZRyJYsfhER8WW
- 2FH01mLqjYLyYXK1pZDelOwBTYZkDQ0KnmqQp9AArk6lgw4k97sloyCSGh7K9gXz6zdYk6/2N
- 7WMbixNBgjwMvfl5ogYnJJ/iSxd+MJbQSyVaoUe+yHxwwO1C4P2GX/B0IAi6kRNusml9ZgVVt
- MT/QR9B4PSSm2W+uf4Hb0SHEDITVnC2HpEKwOqKwVWsDN696LEI7rIcmtssxuvVEhSERdTrrG
- WBKVj4ES4H9Zi408H/CkA7Pn+2sraW7MtDVXWa1DcTSIcVezmLAex+dy68a2iNU1aaq91uyFg
- fp+f8Jefz7LPsegCHQWxQTZRXsf6qPlf656PywiCTK8BMWtxaBOzPk/nK9vx0YHRUjoKDoH7U
- QCTMMfb1T4pvE4JLHH0+pIzkZ40kBShgW2K//MyyAHA6YW8lMdJ0DKOowwCk8X3zu8fNu/xjj
- d7y3pZDXS1Zn6UPgDes05NkrxlYcQ1OVDbkJFJgXHMVF33+VvF1mnqj7mHg9A3/qXQbZkA0ky
- rOnEiWhfDRTVf8oQ8LILUDSPVvTrQ9EmhikYegqA4a997HnWXNI24IhOokvpum3hkygB3zYuR
- XwQziIa7low09aMwdNjo7FXT8ruBtUjvw==
+References: <1619D009AA8C9E469331A8EE22395AEC01106D1AB7@Exchange2013.PRIMES.local>
+In-Reply-To: <1619D009AA8C9E469331A8EE22395AEC01106D1AB7@Exchange2013.PRIMES.local>
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Mon, 15 Jul 2024 15:26:30 +0200
+Message-ID: <CAEt6Nwp6yxvGTnANtsuFwr=qsoFtpmpV7m2AMMcMuU-TQRwgbA@mail.gmail.com>
+Subject: Re: [yocto] Exception during boot process, any ideas?
+To: yocto@lists.yoctoproject.org, G.Kautzmann@primes.de
+Content-Type: multipart/alternative; boundary="000000000000db8d43061d492e4f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 10:25:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63497
+ <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 13:27:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63498
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1AB7Exchange2013P_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000db8d43061d492e4f
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello ML members,
+Hi Gerd,
 
-I have a scarthgap image that is constantly crashing during boot, it is (mo=
-re or less) the 'core-minimal-build' but I have no idea where it is crashin=
-g
+As much as we love your enthusiasm - four mails on basically the same issue
+in just a matter of hours are a bit much. Remember, this is a list where
+community volunteers share their advice.
 
-[    3.639669] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops)
-[    3.650552] EXT4-fs (mmcblk0p2): mounted filesystem b76223f7-8225-46bd-b=
-533-9139d82816b6 ro with ordered data mode. Quota mode: none.
-[    3.662792] VFS: Mounted root (ext4 filesystem) readonly on device 179:2=
-.
-[    3.670144] devtmpfs: mounted
-[    3.676937] Freeing unused kernel image (initmem) memory: 2048K
-[    3.696802] Run /sbin/init as init process
-[    3.702487] Run /etc/init as init process
-[    3.707038] Run /bin/init as init process
-[    3.711531] Run /bin/sh as init process
-[    3.719204] usb 1-1: New USB device found, idVendor=3D2109, idProduct=3D=
-3431, bcdDevice=3D 4.21
-[    3.727533] usb 1-1: New USB device strings: Mfr=3D0, Product=3D1, Seria=
-lNumber=3D0
-[    3.734776] usb 1-1: Product: USB2.0 Hub
-[    3.740197] hub 1-1:1.0: USB hub found
-[    3.744237] hub 1-1:1.0: 4 ports detected
-[    3.758903] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops)
-sh: cannot set terminal process group (-1): Inappropriate ioctl for device
-sh: no job control in this shell
-sh-5.2# exit
-exit[    7.716845] Kernel panic - not syncing: Attempted to kill init! exit=
-code=3D0x00000000
-[    7.724835] CPU: 0 PID: 1 Comm: sh Not tainted 6.6.22-v7l #1
-[    7.730585] Hardware name: BCM2711
+As you say "I have a scarthgap image that is constantly crashing during
+boot, it is (more or less) the =E2=80=9Acore-minimal-build=E2=80=98 but I h=
+ave no idea
+where it is crashing" the obvious first thing for you to do is remove the
+"more or less" part. If a generic poky+meta-raspberrypi build boots, then
+the problem is in your additions. Then, bisecting will probably help. If it
+also fails, then please proved the corresponding layer revisions and build
+configuration so other can possibly reproduce it.
 
+Greets,
+Josef
 
-I tried to include some drivers for cameras, but it crashes, when I delete =
-my changes it still keeps crashing.
+On Mon, Jul 15, 2024 at 12:26=E2=80=AFPM Gerd Kautzmann via lists.yoctoproj=
+ect.org
+<G.Kautzmann=3DPRIMES.de@lists.yoctoproject.org> wrote:
 
-
-PRIMES GmbH    Max-Planck-Str. 2    64319 Pfungstadt   Germany
-T +49 6157 9878 0
-CEO: Dr.-Ing. Reinhard Kramer, Dr. rer. nat. Thomas Umschlag
-Local Court: Darmstadt HRB 5134
-g.kautzmann@primes.de<mailto:g.kautzmann@primes.de>    www.primes.de<blocke=
-d::http://www.primes.de/>
-
-
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1AB7Exchange2013P_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hello ML members,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
+> I have a scarthgap image that is constantly crashing during boot, it is
+> (more or less) the =E2=80=9Acore-minimal-build=E2=80=98 but I have no ide=
+a where it is
+> crashing
+>
+> [    3.639669] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops)
+>
+> [    3.650552] EXT4-fs (mmcblk0p2): mounted filesystem
+> b76223f7-8225-46bd-b533-9139d82816b6 ro with ordered data mode. Quota mod=
+e:
+> none.
+>
+> [    3.662792] VFS: Mounted root (ext4 filesystem) readonly on device
+> 179:2.
+>
+> [    3.670144] devtmpfs: mounted
+>
+> [    3.676937] Freeing unused kernel image (initmem) memory: 2048K
+>
+> [    3.696802] Run /sbin/init as init process
+>
+> [    3.702487] Run /etc/init as init process
+>
+> [    3.707038] Run /bin/init as init process
+>
+> [    3.711531] Run /bin/sh as init process
+>
+> [    3.719204] usb 1-1: New USB device found, idVendor=3D2109,
+> idProduct=3D3431, bcdDevice=3D 4.21
+>
+> [    3.727533] usb 1-1: New USB device strings: Mfr=3D0, Product=3D1,
+> SerialNumber=3D0
+>
+> [    3.734776] usb 1-1: Product: USB2.0 Hub
+>
+> [    3.740197] hub 1-1:1.0: USB hub found
+>
+> [    3.744237] hub 1-1:1.0: 4 ports detected
+>
+> [    3.758903] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops)
+>
+> sh: cannot set terminal process group (-1): Inappropriate ioctl for devic=
+e
+>
+> sh: no job control in this shell
+>
+> sh-5.2# exit
+>
+> exit[    7.716845] Kernel panic - not syncing: Attempted to kill init!
+> exitcode=3D0x00000000
+>
+> [    7.724835] CPU: 0 PID: 1 Comm: sh Not tainted 6.6.22-v7l #1
+>
+> [    7.730585] Hardware name: BCM2711
+>
+>
+>
+> I tried to include some drivers for cameras, but it crashes, when I delet=
+e
+> my changes it still keeps crashing.
+>
+>
+>
+>
+>
+> *PRIMES GmbH    *Max-Planck-Str. 2    64319 Pfungstadt   Germany
+>
+> T +49 6157 9878 0
+>
+> CEO: Dr.-Ing. Reinhard Kramer, Dr. rer. nat. Thomas Umschlag
+>
+> Local Court: Darmstadt HRB 5134
+>
+> g.kautzmann@primes.de    www.primes.de
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#63497):
+> https://lists.yoctoproject.org/g/yocto/message/63497
+> Mute This Topic: https://lists.yoctoproject.org/mt/107228623/4689568
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> jester@theyoctojester.info]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--000000000000db8d43061d492e4f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Gerd,<div><br></div><div>As much as we love your enthus=
+iasm - four mails on basically the same issue in just a matter of hours are=
+ a bit much. Remember, this is a list where community volunteers share thei=
+r advice.</div><div><br></div><div>As you say &quot;I have a scarthgap imag=
+e that is constantly crashing during boot, it is (more or less) the =E2=80=
+=9Acore-minimal-build=E2=80=98 but I have no idea where it is crashing&quot=
+; the obvious first thing for you to do is remove the &quot;more or less&qu=
+ot; part. If a generic poky+meta-raspberrypi build boots, then the problem =
+is in your additions. Then, bisecting will probably help. If it also fails,=
+ then please proved the corresponding layer revisions and build configurati=
+on so other can possibly reproduce it.</div><div><br></div><div>Greets,</di=
+v><div>Josef</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Mon, Jul 15, 2024 at 12:26=E2=80=AFPM Gerd Kautzmann v=
+ia <a href=3D"http://lists.yoctoproject.org" target=3D"_blank">lists.yoctop=
+roject.org</a> &lt;G.Kautzmann=3D<a href=3D"mailto:PRIMES.de@lists.yoctopro=
+ject.org" target=3D"_blank">PRIMES.de@lists.yoctoproject.org</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,=
+204,204);padding-left:1ex"><div>
+
+
+
+
+
+<div lang=3D"DE">
+<div>
 <p class=3D"MsoNormal">Hello ML members,<br>
 <br>
 I have a scarthgap image that is constantly crashing during boot, it is (mo=
-re or less) the &#8218;core-minimal-build&#8216; but I have no idea where i=
-t is crashing
+re or less) the =E2=80=9Acore-minimal-build=E2=80=98 but I have no idea whe=
+re it is crashing
 <br>
 <br>
-[&nbsp;&nbsp;&nbsp; 3.639669] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_=
-ops)<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.650552] EXT4-fs (mmcblk0p2): m=
+[=C2=A0=C2=A0=C2=A0 3.639669] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_=
+ops)<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.650552] EXT4-fs (mmcblk0p2): m=
 ounted filesystem b76223f7-8225-46bd-b533-9139d82816b6 ro with ordered data=
- mode. Quota mode: none.<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.662792] VFS: Mounted root (ext=
-4 filesystem) readonly on device 179:2.<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.670144] devtmpfs: mounted<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.676937] Freeing unused kernel =
-image (initmem) memory: 2048K<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.696802] Run /sbin/init as init=
- process<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.702487] Run /etc/init as init =
-process<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.707038] Run /bin/init as init =
-process<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.711531] Run /bin/sh as init pr=
-ocess<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.719204] usb 1-1: New USB devic=
-e found, idVendor=3D2109, idProduct=3D3431, bcdDevice=3D 4.21<o:p></o:p></p=
->
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.727533] usb 1-1: New USB devic=
-e strings: Mfr=3D0, Product=3D1, SerialNumber=3D0<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.734776] usb 1-1: Product: USB2=
-.0 Hub<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.740197] hub 1-1:1.0: USB hub f=
-ound<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.744237] hub 1-1:1.0: 4 ports d=
-etected<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.758903] vc4-drm gpu: bound fe4=
-00000.hvs (ops vc4_hvs_ops)<o:p></o:p></p>
+ mode. Quota mode: none.<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.662792] VFS: Mounted root (ext=
+4 filesystem) readonly on device 179:2.<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.670144] devtmpfs: mounted<u></=
+u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.676937] Freeing unused kernel =
+image (initmem) memory: 2048K<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.696802] Run /sbin/init as init=
+ process<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.702487] Run /etc/init as init =
+process<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.707038] Run /bin/init as init =
+process<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.711531] Run /bin/sh as init pr=
+ocess<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.719204] usb 1-1: New USB devic=
+e found, idVendor=3D2109, idProduct=3D3431, bcdDevice=3D 4.21<u></u><u></u>=
+</p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.727533] usb 1-1: New USB devic=
+e strings: Mfr=3D0, Product=3D1, SerialNumber=3D0<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.734776] usb 1-1: Product: USB2=
+.0 Hub<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.740197] hub 1-1:1.0: USB hub f=
+ound<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.744237] hub 1-1:1.0: 4 ports d=
+etected<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 3.758903] vc4-drm gpu: bound fe4=
+00000.hvs (ops vc4_hvs_ops)<u></u><u></u></p>
 <p class=3D"MsoNormal">sh: cannot set terminal process group (-1): Inapprop=
-riate ioctl for device<o:p></o:p></p>
-<p class=3D"MsoNormal">sh: no job control in this shell<o:p></o:p></p>
-<p class=3D"MsoNormal">sh-5.2# exit<o:p></o:p></p>
-<p class=3D"MsoNormal">exit[&nbsp;&nbsp;&nbsp; 7.716845] Kernel panic - not=
- syncing: Attempted to kill init! exitcode=3D0x00000000<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 7.724835] CPU: 0 PID: 1 Comm: sh=
- Not tainted 6.6.22-v7l #1<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 7.730585] Hardware name: BCM2711=
-<o:p></o:p></p>
+riate ioctl for device<u></u><u></u></p>
+<p class=3D"MsoNormal">sh: no job control in this shell<u></u><u></u></p>
+<p class=3D"MsoNormal">sh-5.2# exit<u></u><u></u></p>
+<p class=3D"MsoNormal">exit[=C2=A0=C2=A0=C2=A0 7.716845] Kernel panic - not=
+ syncing: Attempted to kill init! exitcode=3D0x00000000<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 7.724835] CPU: 0 PID: 1 Comm: sh=
+ Not tainted 6.6.22-v7l #1<u></u><u></u></p>
+<p class=3D"MsoNormal">[=C2=A0=C2=A0=C2=A0 7.730585] Hardware name: BCM2711=
+<u></u><u></u></p>
 <p class=3D"MsoNormal"><br>
 <br>
 I tried to include some drivers for cameras, but it crashes, when I delete =
-my changes it still keeps crashing.<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE"><o:p>&nbsp;</o:p></span></=
-p>
+my changes it still keeps crashing.<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal" style=3D"margin-left:5.65pt"><span style=3D"font-siz=
-e:2.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#383739;mso-fareast-=
-language:DE"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<b><span lang=3D"EN-GB" style=3D"font-size:8.0pt;font-family:&quot;Arial&qu=
-ot;,sans-serif;color:#4F4D51;mso-fareast-language:DE">PRIMES GmbH&nbsp;&nbs=
-p;&nbsp;
-</span></b><span lang=3D"EN-US" style=3D"font-size:8.0pt;font-family:&quot;=
-Arial&quot;,sans-serif;color:#4F4D51;mso-fareast-language:DE">Max-Planck-St=
-r.
-</span><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-se=
-rif;color:#4F4D51;mso-fareast-language:DE">2<b>&nbsp;&nbsp;&nbsp;
-</b>64319 Pfungstadt&nbsp;&nbsp; Germany&nbsp;&nbsp;&nbsp; <o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;col=
-or:#4F4D51;mso-fareast-language:DE">T &#43;49 6157 9878 0&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;col=
-or:#4F4D51;mso-fareast-language:DE">CEO: Dr.-Ing. Reinhard Kramer, Dr. rer.=
- nat. Thomas Umschlag&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;col=
-or:#4F4D51;mso-fareast-language:DE">Local Court: Darmstadt HRB 5134<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:0cm;margin-right:0cm;mar=
-gin-bottom:12.0pt;margin-left:5.65pt;line-height:11.1pt;mso-line-height-rul=
-e:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;mso=
--fareast-language:DE"><a href=3D"mailto:g.kautzmann@primes.de"><span style=
-=3D"color:#0563C1">g.kautzmann@primes.de</span></a></span><span style=3D"fo=
-nt-size:8.0pt;color:#4F4D51;mso-fareast-language:DE">&nbsp;&nbsp;&nbsp;
-</span><span style=3D"mso-fareast-language:DE"><a href=3D"blocked::http://w=
-ww.primes.de/" title=3D"blocked::http://www.primes.de/=0A=
-http://www.primes.de/"><span style=3D"font-size:8.0pt;font-family:&quot;Ari=
-al&quot;,sans-serif;color:#4F4D51;text-decoration:none">www.primes.de</span=
-></a></span><span style=3D"font-size:8.0pt;color:#4F4D51;mso-fareast-langua=
-ge:DE">&nbsp;</span><span style=3D"position:relative;top:3.0pt;mso-text-rai=
-se:-3.0pt;mso-fareast-language:DE"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+e:2pt;font-family:Arial,sans-serif;color:rgb(56,55,57)"><u></u>=C2=A0<u></u=
+></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<b><span lang=3D"EN-GB" style=3D"font-size:8pt;font-family:Arial,sans-serif=
+;color:rgb(79,77,81)">PRIMES GmbH=C2=A0=C2=A0=C2=A0
+</span></b><span lang=3D"EN-US" style=3D"font-size:8pt;font-family:Arial,sa=
+ns-serif;color:rgb(79,77,81)">Max-Planck-Str.
+</span><span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(=
+79,77,81)">2<b>=C2=A0=C2=A0=C2=A0
+</b>64319 Pfungstadt=C2=A0=C2=A0 Germany=C2=A0=C2=A0=C2=A0 <u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(79,77,8=
+1)">T +49 6157 9878 0=C2=A0=C2=A0=C2=A0
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(79,77,8=
+1)">CEO: Dr.-Ing. Reinhard Kramer, Dr. rer. nat. Thomas Umschlag=C2=A0=C2=
+=A0=C2=A0
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(79,77,8=
+1)">Local Court: Darmstadt HRB 5134<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:12pt;margin-=
+left:5.65pt;line-height:11.1pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif"><a href=3D"mailt=
+o:g.kautzmann@primes.de" target=3D"_blank"><span style=3D"color:rgb(5,99,19=
+3)">g.kautzmann@primes.de</span></a></span><span style=3D"font-size:8pt;col=
+or:rgb(79,77,81)">=C2=A0=C2=A0=C2=A0
+</span><span><a title=3D"blocked::http://www.primes.de/
+http://www.primes.de/"><span style=3D"font-size:8pt;font-family:Arial,sans-=
+serif;color:rgb(79,77,81);text-decoration:none">www.primes.de</span></a></s=
+pan><span style=3D"font-size:8pt;color:rgb(79,77,81)">=C2=A0</span><span><u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
-</body>
-</html>
+</div>
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1AB7Exchange2013P_--
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+You automatically follow any topics you start or reply to.<br>
+View/Reply Online (#63497): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/63497" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/63497</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/107228623/468=
+9568" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/107228623/4689568</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:jester@theyoctojester.info" target=3D"_blank">je=
+ster@theyoctojester.info</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</div></blockquote></div>
+
+--000000000000db8d43061d492e4f--
 
