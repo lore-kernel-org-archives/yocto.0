@@ -2,110 +2,97 @@ Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47FE8C3DA59
-	for <webhook@archiver.kernel.org>; Mon, 15 Jul 2024 09:58:57 +0000 (UTC)
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
- by mx.groups.io with SMTP id smtpd.web10.34413.1721036601402199410
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C260C3DA59
+	for <webhook@archiver.kernel.org>; Mon, 15 Jul 2024 09:59:07 +0000 (UTC)
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+ by mx.groups.io with SMTP id smtpd.web11.33684.1721033594320934535
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jul 2024 02:43:21 -0700
+ Mon, 15 Jul 2024 01:53:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: domain mismatch" header.i=g.kautzmann@primes.de header.s=s1-ionos header.b=D5PuTUhI;
- spf=pass (domain: primes.de, ip: 217.72.192.73, mailfrom: g.kautzmann@primes.de)
+ dkim=fail reason="dkim: domain mismatch" header.i=g.kautzmann@primes.de header.s=s1-ionos header.b=NuVfo3Q8;
+ spf=pass (domain: primes.de, ip: 212.227.126.133, mailfrom: g.kautzmann@primes.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=PRIMES.de;
-	s=s1-ionos; t=1721036599; x=1721641399; i=g.kautzmann@primes.de;
-	bh=L8noVKGfxBtfcqVh75PdlRzb5QARXn06Ujl6qDGlAkc=;
-	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:References:
-	 In-Reply-To:Content-Type:MIME-Version:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=D5PuTUhIjVT77FhooTfSe9QskT84Bjhh0cpIIv2BbPh213uH1KSa8FZElgODP8ch
-	 ddMCNKRjVEpZNwKP/U6WFhna8jp8bKeZoy1HYFvllhqjKnrSeN6J2pR5cT3tZ54kk
-	 khQn3m/qQFmAPwfUFNpK36rkHSoKG/hSAdBWyaQLjV6uymdARj6wGYfVH7TM++RBY
-	 sY7wg8Q/Fft58qUy0+Fmiab8O2g+C9hnuvoNdpXn98e8RfTNUs9v+1KvfZQ9xYb2Y
-	 1GH6JcCBX90jsw/u89xO162WuN6hRmbvHoxm8M5Tb77UWicbf9mER1nBdMSr+33SR
-	 U9A0Ip64aK/CXVn+tA==
+	s=s1-ionos; t=1721033592; x=1721638392; i=g.kautzmann@primes.de;
+	bh=mj2fkmpaxf3mGeH4Ga7B68+OLU7JNwfzRGBiBx3bmak=;
+	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:Content-Type:
+	 MIME-Version:cc:content-transfer-encoding:content-type:date:from:
+	 message-id:mime-version:reply-to:subject:to;
+	b=NuVfo3Q8Jv9QSufRCt/8t/aEjH53K91KohANfJjLhtbC6JA3wFZPwY2sn3vrUMcs
+	 JM+N6XlqtlRqPo9PLezUm3Xx/+bZuDfL6LbpRTtfEV0+WFkWc2DPWyI5jG2HsE6a4
+	 7kW2ugPhrHwp95fgAn8PmjwBTCCc8jbIh/iD57IcXN+QnCCI2ncLhz50K37De59PJ
+	 FCxJPX2z+aFSswEUuny0e5OQ0DQuGdTjnJ6hi/IVP2XavYgfFHL8H1ZaBbxd0iQsw
+	 zajc3iGL0gz5MOH/kjeZPt1rO9yQQOLQAvFTVuD0M5qbz595BvdlV4FEaw2abfc4D
+	 A0W0h8VsAGIRY+QsZA==
 X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from Exchange2013.PRIMES.local ([80.154.17.250]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MLQgv-1sle4K0aVn-00I1zW for <yocto@lists.yoctoproject.org>; Mon, 15 Jul
- 2024 11:43:19 +0200
+Received: from Exchange2013.PRIMES.local ([149.249.153.88]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1M5fdC-1sRecc28CY-005Fvy for <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024
+ 10:53:12 +0200
 Received: from EXCHANGE2013.PRIMES.local ([192.168.116.253]) by
  Exchange2013.PRIMES.local ([192.168.116.253]) with mapi id 14.03.0513.000;
- Mon, 15 Jul 2024 11:43:18 +0200
+ Mon, 15 Jul 2024 10:53:12 +0200
 From: "Gerd Kautzmann" <G.Kautzmann@PRIMES.de>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: WG: Went from Dunfell to Scartgap
+Subject: Went from Dunfell to Scartgap
 Thread-Topic: Went from Dunfell to Scartgap
-Thread-Index: AdrWksoBpGmk4q9oSHmQTx5963QBrAACDKMw
-Date: Mon, 15 Jul 2024 09:43:17 +0000
-Message-ID: <1619D009AA8C9E469331A8EE22395AEC01106D1A5D@Exchange2013.PRIMES.local>
-References: <1619D009AA8C9E469331A8EE22395AEC01106D1A3E@Exchange2013.PRIMES.local>
-In-Reply-To: <1619D009AA8C9E469331A8EE22395AEC01106D1A3E@Exchange2013.PRIMES.local>
+Thread-Index: AdrWksoBpGmk4q9oSHmQTx5963QBrA==
+Date: Mon, 15 Jul 2024 08:53:11 +0000
+Message-ID: <1619D009AA8C9E469331A8EE22395AEC01106D1A3E@Exchange2013.PRIMES.local>
 Accept-Language: de-DE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [192.168.117.140]
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:i5R8ImpCtkAai+s0b4EUIgOezA8I7lnTd3OPcOtBWmB2S2QPiLK
- LW+r6nutpaJah7uQZYJqiaKauk+A5w9pwhC7luYbH2jUZ8Rcjsq30gTkQMCFfi6dI14EqNg
- sIDBjqdaQJWhNgalMOeKOdYiWA8Ed6xBRcYA2lRrtpFt1Y1ZNMBJAQicnelhAnji5w0xpPl
- HVG3WyjHUeA+joymQT+Ow==
-UI-OutboundReport: notjunk:1;M01:P0:nk6HDhnScFY=;c8cBXY/6BWgJMzowr2eImdsB6n2
- KdCBnm+bQkfDnA123bfkyYmEAoHfm1YecplAZmG2lP+R2LUR3KATrGOCNxKaEBNc/HLHxwIcT
- +XASmVF1xiK9Hz8ifEZz6k7MF07DZhqKX3tesf53BvFx6qj/ehBw/OyXyhVpUMfB2bO3y3pCN
- cZT1SFlVuBd3ICOVuXAoPpMCWL1RJ6NDS9VGBcVl/LCCAv/mJCjE7my8Q5IHHXJczpujRJ+6I
- 5u2RXviw5SXTP9BEwmluOp9eM9UwxM3PobOikn3+2mi0pW/VhEHcARzaVZ9S1ABXhFxVkj/Oz
- 4WGU6pdrEbJGNAg3BKK6hQBU3jIHEgfjl1QM1ZcsxjTvWP3TFGw3HSgHA4rk7szHZEertYdaL
- Z6HCrnNnwlKgOg2DBwd5SBoJqDPtPBQZL+m3woFWbDMev6eV1uOT1fknEj7c1cerr09u2+l9f
- CwboBingJCq3PQZCc+DH32ZrQYhYKbB4pQRNwDsjXuXtQjMgKvmDbDRdh5XXU8NYUw27EfY+O
- F1y2eNquEkLn+1GkUA873jJWq88IjqmE8ALysSrEJQM6ZR45o/GNsq2eEQwpE4RaHmgWzm3gH
- 9bBpoUjARlxQVj6tf6R+fwNa1pGtOXVVAgjsoK/uVTFuSGM0nUmoc6UkMgn8jSuAkm1dOCqs1
- XOWH2c6inQEwDFaD6Tf68wD1RIWZJTQyJUP3NjtcK2t7Kz4y8ZUYImVa93nTZxKORkY+5exlw
- F73To6Km1J4SrMyeBeYG0KzQciESY8Bsg==
+X-Provags-ID: V03:K1:QLzDcou7Z8VgH2Lo2B0nsBRUMkRiCnB0CPKAxXsb8mhvbHcIhSY
+ UV3z+Hj2nSbRlNySuu7PoRns8Q5ubatZiDNfum8YMtLkg+k/15AoX5GMrHHhOBxYOfnfP36
+ 0vzPMPK0myVItxvTpgTVi5zYS6Zjwh75AngMLyR9efYLz5OHV8znScflqUSo+SgppFHBSr1
+ kNPc132pObrT+lbQQMLtQ==
+UI-OutboundReport: notjunk:1;M01:P0:KSPBUtle7tc=;Lev4HxcXqUuD7dMgetfyRX4cvcV
+ jPsDbrycPyji9Ru/cEGckIY3c7vV9wFe1AfBQt2ALXYGWhfpXYSZ6mq48HaCsPNmTxVVr6JFP
+ 97jvFbHePiKZt0COveBhYXP3n237ND7NKX0fzcN3bQYKos4HKTb3O1No04ufz4ybYU0rO7/6n
+ +iBTH3susgPpdxsKXwvA9cWIl03zBmf6bctejkzGoJq/5ngRgeNILDM4v9duskiUKS3tGUd8t
+ e+hPoyzrZ7gXnkKnk4NySsRJEL0TMGaqHXGdh9rGajd/iUFNVXTD6Z/cWiAwT5yHNRkuUeHc/
+ LSSWMyHHWl1KqbcjaySMahVYXCPTPKgyF5JxevNbrNm+i1sYBAnSFW+nxFMNYJWEqF4Kw+68d
+ IkbGKvwWoEqLyTD3MSWmqPyszJIbD2pu5m0iC48t8RVkjtqXB0fiDr77BBc0dzVPetE6QFpPX
+ XiElUff0RRbSA0s3HC3Yp+l1VCgAT9hmO9H55run7PhbYJLfB+AZynK1SdghSnhkAAFff4CUA
+ 0Ft+r7ySwAqpR307sjrcfkmH7CfkHtQO9HxGS2F9caOiIyx/fUESPz7uHjGvFW4kNhknBHUGB
+ KTebxKl8rgkJDBWm+0CzQtldAmIfIDijHncysbtTaBQQ7M3HT1JYvpkFx0N5ezjO5B4FCyPUc
+ Ok1uUqHDPIc0A9sOFwDrbkO+b2DVyFQYXOhwqIZ/XAnvvNAw245qdHDI7LkN8/DyzrorFMYt7
+ 0xyMxYEC6FJVNk4F+8U2SjTsXDtDZgcuA==
 Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_1619D009AA8C9E469331A8EE22395AEC01106D1A5DExchange2013P_"
+	boundary="_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 09:58:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63494
+ <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 09:59:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63495
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1A5DExchange2013P_
+--_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hello ML Members,
 
-I have a constantly crashing build, could someone give me a hint where the =
-boot process did crash:
+I went from Dunfell to Scarthgap for a small RasPi image and noted some dif=
+ferences I didn't understand:
 
-[    3.639669] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops)
-[    3.650552] EXT4-fs (mmcblk0p2): mounted filesystem b76223f7-8225-46bd-b=
-533-9139d82816b6 ro with ordered data mode. Quota mode: none.
-[    3.662792] VFS: Mounted root (ext4 filesystem) readonly on device 179:2=
-.
-[    3.670144] devtmpfs: mounted
-[    3.676937] Freeing unused kernel image (initmem) memory: 2048K
-[    3.696802] Run /sbin/init as init process
-[    3.702487] Run /etc/init as init process
-[    3.707038] Run /bin/init as init process
-[    3.711531] Run /bin/sh as init process
-[    3.719204] usb 1-1: New USB device found, idVendor=3D2109, idProduct=3D=
-3431, bcdDevice=3D 4.21
-[    3.727533] usb 1-1: New USB device strings: Mfr=3D0, Product=3D1, Seria=
-lNumber=3D0
-[    3.734776] usb 1-1: Product: USB2.0 Hub
-[    3.740197] hub 1-1:1.0: USB hub found
-[    3.744237] hub 1-1:1.0: 4 ports detected
-[    3.758903] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops)
-sh: cannot set terminal process group (-1): Inappropriate ioctl for device
-sh: no job control in this shell
-sh-5.2# exit
-exit[    7.716845] Kernel panic - not syncing: Attempted to kill init! exit=
-code=3D0x00000000
-[    7.724835] CPU: 0 PID: 1 Comm: sh Not tainted 6.6.22-v7l #1
-[    7.730585] Hardware name: BCM2711
+1. The Dunfell build 'core-image-minimal' let me use a monitor and USB keyb=
+oard as console, on Scarthgap I got an empty screen.
+I could use the serial console by inserting the line ' ENABLE_UART =3D "1" =
+' in conf/local.conf
+
+Is this a bug or a feature?
+Is there a simple trick for getting back the boot screen on a monitor?
+
+2.  On the Dunfell built I the folder '/lib/modules/...' this folder doesn'=
+t even exist on Scarthgap.
+On Dunfell  I used ' sbin/modprobe i2c-dev'
+On Scarthgap I got the error message:
+modprobe: FATAL: Module i2c-dev not found in directory /lib/modules/6.6.22-=
+v7l
+
+Any help for getting i2c-dev back in Scarthgap?
 
 Thanks for reading
 
@@ -118,7 +105,7 @@ g.kautzmann@primes.de<mailto:g.kautzmann@primes.de>    www.primes.de<blocke=
 d::http://www.primes.de/>
 
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1A5DExchange2013P_
+--_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -153,25 +140,14 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:#954F72;
 	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.E-MailFormatvorlage18
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.E-MailFormatvorlage19
-	{mso-style-type:personal-reply;
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
@@ -188,53 +164,30 @@ div.WordSection1
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hello ML Members,<o:p></o:p></p>
 <p class=3D"MsoNormal"><br>
-I have a constantly crashing build, could someone give me a hint where the =
-boot process did crash:<br>
+I went from Dunfell to Scarthgap for a small RasPi image and noted some dif=
+ferences I didn&#8217;t understand:<br>
 <br>
-[&nbsp;&nbsp;&nbsp; 3.639669] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_=
-ops)<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.650552] EXT4-fs (mmcblk0p2): m=
-ounted filesystem b76223f7-8225-46bd-b533-9139d82816b6 ro with ordered data=
- mode. Quota mode: none.<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.662792] VFS: Mounted root (ext=
-4 filesystem) readonly on device 179:2.<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.670144] devtmpfs: mounted<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.676937] Freeing unused kernel =
-image (initmem) memory: 2048K<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.696802] Run /sbin/init as init=
- process<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.702487] Run /etc/init as init =
-process<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.707038] Run /bin/init as init =
-process<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.711531] Run /bin/sh as init pr=
-ocess<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.719204] usb 1-1: New USB devic=
-e found, idVendor=3D2109, idProduct=3D3431, bcdDevice=3D 4.21<o:p></o:p></p=
->
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.727533] usb 1-1: New USB devic=
-e strings: Mfr=3D0, Product=3D1, SerialNumber=3D0<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.734776] usb 1-1: Product: USB2=
-.0 Hub<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.740197] hub 1-1:1.0: USB hub f=
-ound<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.744237] hub 1-1:1.0: 4 ports d=
-etected<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 3.758903] vc4-drm gpu: bound fe4=
-00000.hvs (ops vc4_hvs_ops)<o:p></o:p></p>
-<p class=3D"MsoNormal">sh: cannot set terminal process group (-1): Inapprop=
-riate ioctl for device<o:p></o:p></p>
-<p class=3D"MsoNormal">sh: no job control in this shell<o:p></o:p></p>
-<p class=3D"MsoNormal">sh-5.2# exit<o:p></o:p></p>
-<p class=3D"MsoNormal">exit[&nbsp;&nbsp;&nbsp; 7.716845] Kernel panic - not=
- syncing: Attempted to kill init! exitcode=3D0x00000000<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 7.724835] CPU: 0 PID: 1 Comm: sh=
- Not tainted 6.6.22-v7l #1<o:p></o:p></p>
-<p class=3D"MsoNormal">[&nbsp;&nbsp;&nbsp; 7.730585] Hardware name: BCM2711=
-<br>
-<br>
+1. The Dunfell build &#8218;core-image-minimal&#8216; let me use a monitor =
+and USB keyboard as console, on Scarthgap I got an empty screen.<o:p></o:p>=
 </p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">I could use the seria=
+l console by inserting the line &#8218;<span style=3D"font-size:11.5pt;font=
+-family:&quot;Arial&quot;,sans-serif;color:#3A3A3D;background:white"> ENABL=
+E_UART =3D &quot;1&quot;</span> &#8216; in conf/local.conf<br>
+<br>
+Is this a bug or a feature?<br>
+Is there a simple trick for getting back the boot screen on a monitor?<br>
+<br>
+2. &nbsp;On the Dunfell built I the folder &#8218;/lib/modules/&#8230;&#821=
+6; this folder doesn&#8217;t even exist on Scarthgap.<br>
+On Dunfell &nbsp;I used &#8218; sbin/modprobe i2c-dev&#8216;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Scarthgap I got th=
+e error message:<br>
+modprobe: FATAL: Module i2c-dev not found in directory /lib/modules/6.6.22-=
+v7l<br>
+<br>
+Any help for getting i2c-dev back in Scarthgap?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Thanks for reading<o:p></o:p></p>
 <p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
 argin-bottom:1.0pt;margin-left:0cm">
@@ -276,9 +229,9 @@ or:#4F4D51;mso-fareast-language:DE">Local Court: Darmstadt HRB 5134<o:p></o=
 gin-bottom:12.0pt;margin-left:5.65pt;line-height:11.1pt;mso-line-height-rul=
 e:exactly">
 <span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;mso=
--fareast-language:DE"><a href=3D"mailto:g.kautzmann@primes.de">g.kautzmann@=
-primes.de</a></span><span style=3D"font-size:8.0pt;color:#4F4D51;mso-fareas=
-t-language:DE">&nbsp;&nbsp;&nbsp;
+-fareast-language:DE"><a href=3D"mailto:g.kautzmann@primes.de"><span style=
+=3D"color:#0563C1">g.kautzmann@primes.de</span></a></span><span style=3D"fo=
+nt-size:8.0pt;color:#4F4D51;mso-fareast-language:DE">&nbsp;&nbsp;&nbsp;
 </span><span style=3D"mso-fareast-language:DE"><a href=3D"blocked::http://w=
 ww.primes.de/" title=3D"blocked::http://www.primes.de/=0A=
 http://www.primes.de/"><span style=3D"font-size:8.0pt;font-family:&quot;Ari=
@@ -291,5 +244,5 @@ se:-3.0pt;mso-fareast-language:DE"><o:p></o:p></span></p>
 </body>
 </html>
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1A5DExchange2013P_--
+--_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_--
 
