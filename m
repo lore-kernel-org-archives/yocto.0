@@ -1,76 +1,77 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <G.Kautzmann@PRIMES.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C260C3DA59
-	for <webhook@archiver.kernel.org>; Mon, 15 Jul 2024 09:59:07 +0000 (UTC)
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
- by mx.groups.io with SMTP id smtpd.web11.33684.1721033594320934535
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46057C3DA59
+	for <webhook@archiver.kernel.org>; Mon, 15 Jul 2024 10:21:47 +0000 (UTC)
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+ by mx.groups.io with SMTP id smtpd.web10.34885.1721038897794966652
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jul 2024 01:53:14 -0700
+ Mon, 15 Jul 2024 03:21:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: domain mismatch" header.i=g.kautzmann@primes.de header.s=s1-ionos header.b=NuVfo3Q8;
- spf=pass (domain: primes.de, ip: 212.227.126.133, mailfrom: g.kautzmann@primes.de)
+ dkim=fail reason="dkim: domain mismatch" header.i=g.kautzmann@primes.de header.s=s1-ionos header.b=bkaTYHBe;
+ spf=pass (domain: primes.de, ip: 212.227.126.135, mailfrom: g.kautzmann@primes.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=PRIMES.de;
-	s=s1-ionos; t=1721033592; x=1721638392; i=g.kautzmann@primes.de;
-	bh=mj2fkmpaxf3mGeH4Ga7B68+OLU7JNwfzRGBiBx3bmak=;
+	s=s1-ionos; t=1721038896; x=1721643696; i=g.kautzmann@primes.de;
+	bh=LNdsKWBrt7E00XZoW4V3gW02F4EkQPZm8jZqc2kSb1s=;
 	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:Content-Type:
 	 MIME-Version:cc:content-transfer-encoding:content-type:date:from:
 	 message-id:mime-version:reply-to:subject:to;
-	b=NuVfo3Q8Jv9QSufRCt/8t/aEjH53K91KohANfJjLhtbC6JA3wFZPwY2sn3vrUMcs
-	 JM+N6XlqtlRqPo9PLezUm3Xx/+bZuDfL6LbpRTtfEV0+WFkWc2DPWyI5jG2HsE6a4
-	 7kW2ugPhrHwp95fgAn8PmjwBTCCc8jbIh/iD57IcXN+QnCCI2ncLhz50K37De59PJ
-	 FCxJPX2z+aFSswEUuny0e5OQ0DQuGdTjnJ6hi/IVP2XavYgfFHL8H1ZaBbxd0iQsw
-	 zajc3iGL0gz5MOH/kjeZPt1rO9yQQOLQAvFTVuD0M5qbz595BvdlV4FEaw2abfc4D
-	 A0W0h8VsAGIRY+QsZA==
+	b=bkaTYHBeNj1in2ccouE0OlDqCaEhQQdJkIHUKS5HzEAIm1OIpXhUjAIuavKQYMDa
+	 F+y312bh+TDL6lup0SZ0l6Dfruis+VN7S9EPUeTa+CT8baV2X3GHZxHToCJeeC014
+	 eXb3hgD3kXf+47TssipTGY2IJwqq05lOADENwsoXGie0/Z49ectP5w2OxJLRTsRjD
+	 ibmaeQZOTs2DMYfPiBfI1IWUFCbkz8dV5XRCT7qDP4skFi2SQumeoCLKF32iTBT+2
+	 sPDx/rMYqf6mkdZYPkHAfnMIkhOfKFbYbijQ0fF3wCY3vH0TK5D6mgyTVjPhv9LXZ
+	 0hKcBFbWx5qvb1s6mQ==
 X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from Exchange2013.PRIMES.local ([149.249.153.88]) by
- mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1M5fdC-1sRecc28CY-005Fvy for <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024
- 10:53:12 +0200
+Received: from Exchange2013.PRIMES.local ([80.154.17.250]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MFJfN-1sa7Nx0Uyv-00DcuM for <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024
+ 12:21:36 +0200
 Received: from EXCHANGE2013.PRIMES.local ([192.168.116.253]) by
  Exchange2013.PRIMES.local ([192.168.116.253]) with mapi id 14.03.0513.000;
- Mon, 15 Jul 2024 10:53:12 +0200
-From: "Gerd Kautzmann" <G.Kautzmann@PRIMES.de>
+ Mon, 15 Jul 2024 12:21:35 +0200
+From: Gerd Kautzmann <G.Kautzmann@PRIMES.de>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Went from Dunfell to Scartgap
-Thread-Topic: Went from Dunfell to Scartgap
-Thread-Index: AdrWksoBpGmk4q9oSHmQTx5963QBrA==
-Date: Mon, 15 Jul 2024 08:53:11 +0000
-Message-ID: <1619D009AA8C9E469331A8EE22395AEC01106D1A3E@Exchange2013.PRIMES.local>
+Subject: went from Dunfell to Scarthgap
+Thread-Topic: went from Dunfell to Scarthgap
+Thread-Index: AdrWoLvobhdO8h/KRWuM37t8iew5gg==
+Date: Mon, 15 Jul 2024 10:21:34 +0000
+Message-ID: <1619D009AA8C9E469331A8EE22395AEC01106D1A9D@Exchange2013.PRIMES.local>
 Accept-Language: de-DE, en-US
+Content-Language: de-DE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [192.168.117.140]
-MIME-Version: 1.0
-X-Provags-ID: V03:K1:QLzDcou7Z8VgH2Lo2B0nsBRUMkRiCnB0CPKAxXsb8mhvbHcIhSY
- UV3z+Hj2nSbRlNySuu7PoRns8Q5ubatZiDNfum8YMtLkg+k/15AoX5GMrHHhOBxYOfnfP36
- 0vzPMPK0myVItxvTpgTVi5zYS6Zjwh75AngMLyR9efYLz5OHV8znScflqUSo+SgppFHBSr1
- kNPc132pObrT+lbQQMLtQ==
-UI-OutboundReport: notjunk:1;M01:P0:KSPBUtle7tc=;Lev4HxcXqUuD7dMgetfyRX4cvcV
- jPsDbrycPyji9Ru/cEGckIY3c7vV9wFe1AfBQt2ALXYGWhfpXYSZ6mq48HaCsPNmTxVVr6JFP
- 97jvFbHePiKZt0COveBhYXP3n237ND7NKX0fzcN3bQYKos4HKTb3O1No04ufz4ybYU0rO7/6n
- +iBTH3susgPpdxsKXwvA9cWIl03zBmf6bctejkzGoJq/5ngRgeNILDM4v9duskiUKS3tGUd8t
- e+hPoyzrZ7gXnkKnk4NySsRJEL0TMGaqHXGdh9rGajd/iUFNVXTD6Z/cWiAwT5yHNRkuUeHc/
- LSSWMyHHWl1KqbcjaySMahVYXCPTPKgyF5JxevNbrNm+i1sYBAnSFW+nxFMNYJWEqF4Kw+68d
- IkbGKvwWoEqLyTD3MSWmqPyszJIbD2pu5m0iC48t8RVkjtqXB0fiDr77BBc0dzVPetE6QFpPX
- XiElUff0RRbSA0s3HC3Yp+l1VCgAT9hmO9H55run7PhbYJLfB+AZynK1SdghSnhkAAFff4CUA
- 0Ft+r7ySwAqpR307sjrcfkmH7CfkHtQO9HxGS2F9caOiIyx/fUESPz7uHjGvFW4kNhknBHUGB
- KTebxKl8rgkJDBWm+0CzQtldAmIfIDijHncysbtTaBQQ7M3HT1JYvpkFx0N5ezjO5B4FCyPUc
- Ok1uUqHDPIc0A9sOFwDrbkO+b2DVyFQYXOhwqIZ/XAnvvNAw245qdHDI7LkN8/DyzrorFMYt7
- 0xyMxYEC6FJVNk4F+8U2SjTsXDtDZgcuA==
-Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_"
+	boundary="_000_1619D009AA8C9E469331A8EE22395AEC01106D1A9DExchange2013P_"
+MIME-Version: 1.0
+X-Provags-ID: V03:K1:RbxgZ4tgl3SxZ4/uKfpuBPOAK4wZHshgitI5lYgKXPdAbJiiLY9
+ h4muUsg8wsnVn1osbm1YfqijqXEnUd9r6rycEdn7yGAo1HylCAdjkvPAEfFIF+8I0GbpbdO
+ a+ELjAWfrrjpEAo2qKzWoOm3XYrjUjkHBOMdZhTlDlc55gYlT9SPUcFNNX0cmXFqHDoeJU9
+ D9/0NmWAzRjp9jH2BfePw==
+UI-OutboundReport: notjunk:1;M01:P0:I89s7R+kgJE=;rcwRoL2YhPMYVFIls3HrFkPd0AM
+ X+130LjVNothfmU/GcPS8G04Sf9C56+ezy0ZWs2vZ+NRtCwz9dfOXM8eQrd+RAQcbltekgAfP
+ JCZVXhrlhHmflOvnc7ePst4oNSG9XQ4WGJDKrWUOAIG2FId0BaPhDNuEc/YnIuzzJyMhZGMZ3
+ lzHwZm0DuWNBByGiSfYhGeCvCCOJluqn7UtiXAMlfjHjIz1Vj0E3GOVMGFE+BZ2PusZaMTu8C
+ XccX2Xg6Jnf3Pr5lhVCnP6qGnhLSmWwTFAhfo5EVHNYrq9O+/lRlkj1V9iIJIfZ0xDkjqe4sY
+ 1TqFyNfT7NCzSD9dgtAxE7SMwf1fdWrlL3uwDAVlidEcaJ+1YZT4+DHx7VQGhjZXXxL2ZDmli
+ fvV5VcaYMLvCtufWnV5ku4ThQiD8YR4W3F0FWK/muzJAO+nyGNHSJjdX5mzXrABVtX3YkfJCh
+ EXwHlU3stoBWHVPziKm2lEgYf+NyOLxcHvruP6H9vNWrQhpmsv334isl9136RNq84RkQsKig6
+ pwr3bMckDQIUHQeQFyBad4kB19+sCVv428AwlnsJc3UwgPiVJI2fe9pDI512jdGn0lk/6z0cZ
+ AWjvS8+L6LAoFFio8eBSjJnYNdcZ955KSjwyMoghZVAqreYKRP1SFW/Fzm/dEz1NqeA8pNiaQ
+ vWEDVO/IpvwWzfkUjvVlPqYHtJxeGMdkYrD/5ECWoAqVTOPF3MVMKKNJi4+Yjmn1qCjj71DKh
+ cZx4Ebl8GFvC+rQgDqbZgg/YjVcZ7FAqw==
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 09:59:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63495
+ <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 10:21:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63496
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_
+--_000_1619D009AA8C9E469331A8EE22395AEC01106D1A9DExchange2013P_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
 
 Hello ML Members,
 
@@ -94,7 +95,6 @@ v7l
 
 Any help for getting i2c-dev back in Scarthgap?
 
-Thanks for reading
 
 
 PRIMES GmbH    Max-Planck-Str. 2    64319 Pfungstadt   Germany
@@ -105,7 +105,7 @@ g.kautzmann@primes.de<mailto:g.kautzmann@primes.de>    www.primes.de<blocke=
 d::http://www.primes.de/>
 
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_
+--_000_1619D009AA8C9E469331A8EE22395AEC01106D1A9DExchange2013P_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -162,6 +162,7 @@ div.WordSection1
 </head>
 <body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Hello ML Members,<o:p></o:p></p>
 <p class=3D"MsoNormal"><br>
 I went from Dunfell to Scarthgap for a small RasPi image and noted some dif=
@@ -188,7 +189,6 @@ v7l<br>
 <br>
 Any help for getting i2c-dev back in Scarthgap?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks for reading<o:p></o:p></p>
 <p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
 argin-bottom:1.0pt;margin-left:0cm">
 <span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
@@ -244,5 +244,5 @@ se:-3.0pt;mso-fareast-language:DE"><o:p></o:p></span></p>
 </body>
 </html>
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D1A3EExchange2013P_--
+--_000_1619D009AA8C9E469331A8EE22395AEC01106D1A9DExchange2013P_--
 
