@@ -2,61 +2,61 @@ Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A88AC3DA49
-	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 15:58:33 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
- by mx.groups.io with SMTP id smtpd.web11.13916.1721144262335928368
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8B8EC3DA49
+	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 15:58:42 +0000 (UTC)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+ by mx.groups.io with SMTP id smtpd.web11.14086.1721144674185734925
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Jul 2024 08:37:42 -0700
+ Tue, 16 Jul 2024 08:44:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=g1k79uco;
- spf=pass (domain: mvista.com, ip: 209.85.128.170, mailfrom: sdoshi@mvista.com)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6519528f44fso50633317b3.1
-        for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 08:37:42 -0700 (PDT)
+ dkim=pass header.i=@mvista.com header.s=google header.b=Pifpsyu9;
+ spf=pass (domain: mvista.com, ip: 209.85.219.172, mailfrom: sdoshi@mvista.com)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e05e0e3fbbeso368419276.3
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 08:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1721144261; x=1721749061; darn=lists.yoctoproject.org;
+        d=mvista.com; s=google; t=1721144673; x=1721749473; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vQUPdODqRe5o+GRWWUEF6P2XKFaaw5P08DH2sqH52q8=;
-        b=g1k79ucoWyWLzonFNcQy3vlYN1wKu0MqfLYDo9XCo0ZUJfBZCVmBApeyOdAKyULt5A
-         GNyfsoMCyeNWX0KaJC/zMaIiaH/AyVNTGyk/QIlkLOHgaruwHl1DYU2JnRUnKWk0RJ/w
-         XVkSXcHmtYcq5csVScDljcuu8RjRd2FGGV1TA=
+        bh=zjkhH+wHS1PkTzDljniK6VayICF1mqkeIUg1SzwqqA4=;
+        b=Pifpsyu95zFgfe2mPoSJ6RSsGKj7yOK/xp1zjmDMBFUE5orXKr0Cs+cvC0nkKuF1ux
+         UarUPSxRjLuK8TU87fu5S0xEwjkpnQQCE7pfSIvZYhn0gXXRwKH8fRQceEGdiYiG0EkY
+         w9ojcd0iehTGeLKsoZAeGbeR79hYL9cmODvdw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721144261; x=1721749061;
+        d=1e100.net; s=20230601; t=1721144673; x=1721749473;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vQUPdODqRe5o+GRWWUEF6P2XKFaaw5P08DH2sqH52q8=;
-        b=e5qGRmdNFaBtq0L2lCFfFBHQX62LFHG+wto5iRtq+mEtvysr4Cj5Aw7LrlAaLM3ma5
-         XCPleZdy36nSfwR+qjH0/oNc3jND/4MegPCgU9LXKq7IqYNHfxijIgtMPeRGw1+knuOn
-         d3v9p/ViL6Rw4eVwU95QJAEQAZl/f+0iVuNFp1jBD5SsLjy1XDWRfHDDRgRYhZG4pLn2
-         TLgfQbEpM4/rbmvLb/WrnF6cE3tyZgzRb88eKWulEREi1XIS/MtAC2sWht7AtefgE0Nk
-         2Tde9Q6V414EQfes663kw2K4ZOHvVMKxBRgvdFLCStlLVN3gu2fRvkYo4KR5EV5+ltBh
-         PKqg==
-X-Gm-Message-State: AOJu0Yy1Kju0NbwtbbDSVxuQX6XDR5uBFCL971QiM3n2vXjDAEodLXVT
-	dBSFr9ZtvplUleqaRFPsAJdpXcNAA6x2rkV6+E5BKDzr1KHYoKiD+mi97EMPowLTGov9M5Yi7cu
-	F
-X-Google-Smtp-Source: AGHT+IGQRvYj+/ayZRuMYxIJirkjtfQigF31C7jH/CPT/hWU47/B2MZsM03wrSCMlTKBTjHHU3+Zyw==
-X-Received: by 2002:a81:9e0f:0:b0:64a:4728:ef4 with SMTP id 00721157ae682-66381abd922mr26644057b3.47.1721144261007;
-        Tue, 16 Jul 2024 08:37:41 -0700 (PDT)
+        bh=zjkhH+wHS1PkTzDljniK6VayICF1mqkeIUg1SzwqqA4=;
+        b=WYur8kIK/BNDYkd9bc8z+5KPU8+AodzZ52W+mih9mlyRwXvcz+zBFgPlM1BWOL0pO+
+         k2K4Iu0Lyaf6CDRl7zg9ub5ATnpgDuIlenIC2vGODLF1Lk7DFaZcdI+LBSePi8IgH00F
+         aMpufVhz08NQQ7wU2Hz1uLwHbl54PipnPn8s85t+SpucYZpxy/MCcDh6gFu4COV/Z1Cf
+         vJkzcEvNlDW813e5Y/E2E860rY+eOaCAUk+8D2w+9+nQwvfyhZhcgPH4BxtorPXH+gIo
+         Fjykyq0LZxf70IcXrYekpGFgjK3poDhn0/91kYyxP1TEmaexu1ka08gJJmufw7LFYSxk
+         TwBQ==
+X-Gm-Message-State: AOJu0YyMKMZtbxaLPM8exvVGmulMvsZU8J1gTW2uupk24kOnu85FpBYI
+	iERK1V1IK/TqWVeF1s9Hg89JadEqySwnkMjjtRtsNmyz7uLt+N7i7RW3hCujTCmg9xojwpkpsJQ
+	g
+X-Google-Smtp-Source: AGHT+IH332ifn+xBueri2F/XGwG7G85TU89tWKtmjBlYiCrN4IfMy5N3rPkbkv2ihmh3OVEVRzN2EA==
+X-Received: by 2002:a05:6902:1107:b0:e03:9c35:1712 with SMTP id 3f1490d57ef6-e05d56b8e58mr3692355276.20.1721144672363;
+        Tue, 16 Jul 2024 08:44:32 -0700 (PDT)
 Received: from siddharth-latitude-3420.mvista.com ([157.32.47.147])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-65fc3f78254sm11861367b3.80.2024.07.16.08.37.38
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e05a45a3fa0sm1268517276.4.2024.07.16.08.44.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jul 2024 08:37:40 -0700 (PDT)
+        Tue, 16 Jul 2024 08:44:32 -0700 (PDT)
 From: "Siddharth Doshi" <sdoshi@mvista.com>
 To: yocto@lists.yoctoproject.org
 Cc: Siddharth Doshi <sdoshi@mvista.com>
 Subject: [meta-security][master][scarthgap][PATCH] Suricata: Security Fix for CVE-2024-37151, CVE-2024-38534, CVE-2024-38535, CVE-2024-38536
-Date: Tue, 16 Jul 2024 21:07:31 +0530
-Message-Id: <20240716153731.224793-1-sdoshi@mvista.com>
+Date: Tue, 16 Jul 2024 21:14:16 +0530
+Message-Id: <20240716154416.225013-1-sdoshi@mvista.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 15:58:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63515
+ <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 15:58:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63516
 
 From: Siddharth Doshi <sdoshi@mvista.com>
 
@@ -600,7 +600,7 @@ index 0000000..2d4b3d7
 +2.44.0
 +
 diff --git a/recipes-ids/suricata/suricata_7.0.0.bb b/recipes-ids/suricata/suricata_7.0.0.bb
-index a01b3d9..700ab78 100644
+index 21d4306..1f3b694 100644
 --- a/recipes-ids/suricata/suricata_7.0.0.bb
 +++ b/recipes-ids/suricata/suricata_7.0.0.bb
 @@ -16,6 +16,11 @@ SRC_URI += " \
