@@ -1,128 +1,204 @@
-Return-Path: <wangmy@fujitsu.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3226AC41513
-	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 03:47:26 +0000 (UTC)
-Received: from esa9.hc1455-7.c3s2.iphmx.com (esa9.hc1455-7.c3s2.iphmx.com [139.138.36.223])
- by mx.groups.io with SMTP id smtpd.web11.2936.1721101635646575252
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EF270C41513
+	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 06:32:46 +0000 (UTC)
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+ by mx.groups.io with SMTP id smtpd.web11.4715.1721111562958941989
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Jul 2024 20:47:17 -0700
+ Mon, 15 Jul 2024 23:32:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fujitsu.com header.s=fj2 header.b=rv/OEksj;
- spf=pass (domain: fujitsu.com, ip: 139.138.36.223, mailfrom: wangmy@fujitsu.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
-  t=1721101636; x=1752637636;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=BNE9Z4v7tJP+ppT8spVN2TvI2k2Be69VXpCpogc2NRo=;
-  b=rv/OEksjclSWrDpR9EHil1N/YJdJh4joDSztT6+UI4LlsCUIN9PXCMwN
-   AAW/Gccwf51RFyfXGQ2FyHAMPsFAiCULXVFwxKtyUlzjrAldf0grKi/uS
-   uc1ZTwYrd0VPPhqAioPg3SKOCzIFDZeFmvqV+G/7ky/1W9O7dmSBvv3xE
-   WvPK16HzaRxJuOU5Rz+wVQ7vj8leWqpbLQCr2LMNBLp5v+F5tSNRhFAlf
-   2QGXv0JvEstOR8rMuWC3ZbNpQHqRWIZxgqE7SD1wqjanLMP+qMcmiU68V
-   Gp5H8ZRWS887n3a1o423AywDCuk5SChU1MJ01U6fmiKDhD3ynzyEc/Yl3
-   A==;
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="155576553"
-X-IronPort-AV: E=Sophos;i="6.09,211,1716217200"; 
-   d="scan'208";a="155576553"
-Received: from unknown (HELO oym-r2.gw.nic.fujitsu.com) ([210.162.30.90])
-  by esa9.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2024 12:47:13 +0900
-Received: from oym-m4.gw.nic.fujitsu.com (oym-nat-oym-m4.gw.nic.fujitsu.com [192.168.87.61])
-	by oym-r2.gw.nic.fujitsu.com (Postfix) with ESMTP id A0AA1D9BEF
-	for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 12:47:11 +0900 (JST)
-Received: from kws-ab4.gw.nic.fujitsu.com (kws-ab4.gw.nic.fujitsu.com [192.51.206.22])
-	by oym-m4.gw.nic.fujitsu.com (Postfix) with ESMTP id E657AD4C24
-	for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 12:47:10 +0900 (JST)
-Received: from edo.cn.fujitsu.com (edo.cn.fujitsu.com [10.167.33.5])
-	by kws-ab4.gw.nic.fujitsu.com (Postfix) with ESMTP id 7193CE5184
-	for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 12:47:10 +0900 (JST)
-Received: from vm4860.g01.fujitsu.local (unknown [10.193.128.200])
-	by edo.cn.fujitsu.com (Postfix) with ESMTP id 1EEB11A000A;
-	Tue, 16 Jul 2024 11:47:10 +0800 (CST)
-From: wangmy@fujitsu.com
-To: yocto@lists.yoctoproject.org
-Cc: Wang Mingyu <wangmy@fujitsu.com>
-Subject: [yocto] [meta-cgl] [PATCH 2/2] ocfs2-tools: fix Upstream-Status
-Date: Tue, 16 Jul 2024 11:46:51 +0800
-Message-Id: <1721101611-7311-2-git-send-email-wangmy@fujitsu.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1721101611-7311-1-git-send-email-wangmy@fujitsu.com>
-References: <1721101611-7311-1-git-send-email-wangmy@fujitsu.com>
-X-TM-AS-GCONF: 00
-X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28532.004
-X-TM-AS-User-Approved-Sender: Yes
-X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28532.004
-X-TMASE-Result: 10--9.986600-10.000000
-X-TMASE-MatchedRID: k5N68qbYN2jEQS2ecfkpFyrLqyE6Ur/j1QQ6Jx/fflbk6Qbi+9i6D188
-	KFWF27c+/Ro//2i2qWVCyGE7PA8pRbVQ6XPWwtdy/HTKStsDGMI2ZWOmuJUS2SXSpoIWp4vFOZU
-	bAxfIy1IWeucbks6Qtphl+M5E4O1lkfRhdidsajMURSScn+QSXt0H8LFZNFG7bkV4e2xSge6e0Z
-	rBNd7PLS2l7G5NTaog4PpzzpEJOvWd+OA3skiH6UsMHBii02BH
-X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ihWCMcMj;
+ spf=pass (domain: gmail.com, ip: 209.85.214.181, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1fb1c918860so43612065ad.1
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Jul 2024 23:32:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1721111562; x=1721716362; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=eGQGT8h8xpoYEApXnqNMrSN2Lge7LK3YNeHP9p4++rU=;
+        b=ihWCMcMjXrnox+ewzYMpq6JAIYW9beP0mGUQZdxRnq2276YYPX3NoXuVZwimes/T1D
+         fICnrJF5BUudTTjpZBb4aUNalW6dNMMVtZhGr7kQFWTKiFNL6rriFx+V89abfry0fT1O
+         IlgVGu5qyWdmuKuHOhdgFw876ihVzt7gMlaVMXwd8SzINSRxdw0k9OgiavSN05ufQHIx
+         8RG2V8uywXRLgIGfTAOuuaCTAovP2w5mUPRyZqf2RCxpUeXeKC+LPSiI6eb5MQhsSrJv
+         JsccVpEhUjVAESGK5RWYXFWors1kefA6TLuoIXF5my0wXR6Weq7O4MALggefZ3R8n01V
+         Nn3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721111562; x=1721716362;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eGQGT8h8xpoYEApXnqNMrSN2Lge7LK3YNeHP9p4++rU=;
+        b=INiC1SrbgDPBdE4msb++qB7Rc9Xy2HTC2Fgq8+B+iQvxe2LFhTDul5kY+VtyWo6YLZ
+         G4MJuz3nCJW21JOOSddNXgDymdg8H2xW7M6+RgZPLCVl967hoG/f8XJ6VapY98NN1bQL
+         223GsBV2rQyjpemrHQXwtPmtE3TriVMpJdEtvGbMZkFV2O2ZlRcbC79rk9UX0D6CJEZq
+         PCe073i/M0Mukr21L3bwSbnPjf8wgZr3jjr4H6eyzvUy5lvHNxyirCtQBrHNxnOv0ZHd
+         fc6+TMcM6xBjfwi8sxNJ0bJZo3HpOxJxfUzK+OrzS/cRE4JoCLkS3V6SjSe5WlljkkrY
+         j8nA==
+X-Forwarded-Encrypted: i=1; AJvYcCXW0k5vymYBpneoMagYhfNdL6/T0iw/HRuTq4XY2iVquCZduCX/mzZDlfnQHeKZfZmUVA4Tt3GZbi2mgrhMlEqd9EjrG+1UOHmwUWCw
+X-Gm-Message-State: AOJu0YzxG2nH0BFD97bIiE5bY0ttpZwo8QRIa/HYl+97N/HEANu5dUo5
+	P6A+Kpeu7F8pJz6Xxu7oFu6HPq8EXAhgEiEHwm7rykvqwngWhGehrYcjUfonP9or1x1We+dzKvU
+	JoeBI+8E0uY6hjBpeaOwsknfTbkY=
+X-Google-Smtp-Source: AGHT+IHiEMQulW7fV79Kxe9L8PlwlgN3FtJqlk/cVzQGXNBxbTk6mjke+zNl8C9EsCkrUi2iFuhEtH9CORq0Z0xy0Rc=
+X-Received: by 2002:a17:90a:f2c2:b0:2c2:d6ca:3960 with SMTP id
+ 98e67ed59e1d1-2cb37e19cf5mr1544625a91.17.1721111562079; Mon, 15 Jul 2024
+ 23:32:42 -0700 (PDT)
+MIME-Version: 1.0
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 15 Jul 2024 23:32:31 -0700
+Message-ID: <CAK5yBb-ZVwQZ7QnRg5dS6LfuvE64PkhX-0MT_eS636p8Cqvt0w@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000046d3df061d578306"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 03:47:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63506
+ <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 06:32:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63507
 
-From: Wang Mingyu <wangmy@fujitsu.com>
+--00000000000046d3df061d578306
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
----
- .../ocfs2-tools/0001-Fix-build-with-glibc-2.28.patch            | 2 +-
- .../0003-vendor-common-o2cb.ocf-add-new-conf-file.patch         | 2 +-
- .../recipes-cgl/ocfs2-tools/ocfs2-tools/no-redhat.patch         | 2 ++
- .../ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch          | 2 ++
- 4 files changed, 6 insertions(+), 2 deletions(-)
+All,
 
-diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0001-Fix-build-with-glibc-2.28.patch b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0001-Fix-build-with-glibc-2.28.patch
-index 7ce8405..b32ed6e 100644
---- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0001-Fix-build-with-glibc-2.28.patch
-+++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0001-Fix-build-with-glibc-2.28.patch
-@@ -16,7 +16,7 @@ In file included from o2cb_abi.c:52:
-   loff_t d_off; /* Offset of structure in the file */
-   ^~~~~~
- 
--Upstream-Status: Backport[https://github.com/cheese/ocfs2-tools/commit/fa150e35931123fc630125ebef1901ffb30d421f]
-+Upstream-Status: Backport [https://github.com/cheese/ocfs2-tools/commit/fa150e35931123fc630125ebef1901ffb30d421f]
- 
- Signed-off-by: Robin Lee <cheeselee@fedoraproject.org>
- Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0003-vendor-common-o2cb.ocf-add-new-conf-file.patch b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0003-vendor-common-o2cb.ocf-add-new-conf-file.patch
-index 2df4ed8..9504d0a 100644
---- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0003-vendor-common-o2cb.ocf-add-new-conf-file.patch
-+++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0003-vendor-common-o2cb.ocf-add-new-conf-file.patch
-@@ -3,7 +3,7 @@ From: Li xin <lixin.fnst@cn.fujitsu.com>
- Date: Fri, 12 Dec 2014 16:15:28 +0900
- Subject: [PATCH 3/3] vendor/common/o2cb.ocf: add new conf file
- 
--Upstream-Status: pending
-+Upstream-Status: Pending
- 
- Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
- ---
-diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/no-redhat.patch b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/no-redhat.patch
-index 7347786..16abb21 100644
---- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/no-redhat.patch
-+++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/no-redhat.patch
-@@ -1,3 +1,5 @@
-+Upstream-Status: Pending
-+
- --- a/vendor/common/o2cb.init.sh
- +++ b/vendor/common/o2cb.init.sh
- @@ -18,7 +18,7 @@
-diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch
-index f8ab313..2a79b4a 100644
---- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch
-+++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch
-@@ -1,3 +1,5 @@
-+Upstream-Status: Pending
-+
- diff --git a/tunefs.ocfs2/op_query.c b/tunefs.ocfs2/op_query.c
- index 295c185b..40394d15 100644
- --- a/tunefs.ocfs2/op_query.c
--- 
-2.34.1
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 410
+unassigned or newcomer bugs.
+
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.1=E2=80=9D, =E2=80=9C5.2", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.1" and then =E2=80=9C5.2=E2=80=9D.
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--00000000000046d3df061d578306
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 410 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.1=E2=80=9D, =E2=80=9C5.2&quot;, &quot;5.99&quot; and &quot;Future&quot;, t=
+he more pressing/urgent issues being in &quot;5.1&quot; and then =E2=80=9C5=
+.2=E2=80=9D.<br><br>Please review this link and if a bug is something you w=
+ould be able to help with either take ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an e-m=
+ail with the bug number you would like and I will assign it to you (please =
+make sure you have a Bugzilla account).  The list is at: <a href=3D"https:/=
+/wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_Bugs"=
+>https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcom=
+er_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoN=
+ormal" style=3D"background-image:initial;background-position:initial;backgr=
+ound-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-s=
+erif">Thanks,<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--00000000000046d3df061d578306--
 
