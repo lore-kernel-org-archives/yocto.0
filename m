@@ -1,365 +1,430 @@
-Return-Path: <G.Kautzmann@PRIMES.de>
+Return-Path: <ecordonnier@snap.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B9FDC3DA59
-	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 13:00:30 +0000 (UTC)
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
- by mx.groups.io with SMTP id smtpd.web10.10217.1721134824002037416
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC379C3DA49
+	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 14:38:30 +0000 (UTC)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web11.12429.1721140709067124958
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Jul 2024 06:00:24 -0700
+ Tue, 16 Jul 2024 07:38:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: domain mismatch" header.i=g.kautzmann@primes.de header.s=s1-ionos header.b=SAuKBblz;
- spf=pass (domain: primes.de, ip: 212.227.126.131, mailfrom: g.kautzmann@primes.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=PRIMES.de;
-	s=s1-ionos; t=1721134822; x=1721739622; i=g.kautzmann@primes.de;
-	bh=pHjXd9ggE98TZNnvrYXRqEbA5GJomvABG0jmSNJ/zEU=;
-	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:Content-Type:
-	 MIME-Version:cc:content-transfer-encoding:content-type:date:from:
-	 message-id:mime-version:reply-to:subject:to;
-	b=SAuKBblz6NtGJOB0x7quUmdpT1XVk5A5nX19ONrxwo58Gz3srQ084L6LNnMpGIpM
-	 4Fa4mpY6ntyJ1Qb2BhBLBoHCK3U+dp5gBKbsjhUWpV6b+TLfQSWfKoMIQOahU6ObA
-	 hZ4df3YHuSsrbPjshql0HzS5G+EMXqKkBCoMKVM6oS8/dBOnlb5P+gO65iGlh9Vsa
-	 l1gdP4iKT8iUcY6SAawZheF3VRTq2nblJgrA07eZ1XjvfLbhKyW4owroXNTVhmK6G
-	 2I1yDuSDCFXvk3CPcvZG6CCMouxtwSF05bkmLgd3Yh/KLvmmmMugpHHOrRlgiPNEX
-	 KyYsKaCxovgMLkH74Q==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from Exchange2013.PRIMES.local ([80.154.17.250]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MhFpq-1rpi4q1BEA-00gO2u for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024
- 15:00:22 +0200
-Received: from EXCHANGE2013.PRIMES.local ([192.168.116.253]) by
- Exchange2013.PRIMES.local ([192.168.116.253]) with mapi id 14.03.0513.000;
- Tue, 16 Jul 2024 15:00:21 +0200
-From: Gerd Kautzmann <G.Kautzmann@PRIMES.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: kernel modules
-Thread-Topic: kernel modules
-Thread-Index: AdrXfYMvqJrcd/i9SW2XAYqTHQctNg==
-Date: Tue, 16 Jul 2024 13:00:20 +0000
-Message-ID: <1619D009AA8C9E469331A8EE22395AEC01106D2BD2@Exchange2013.PRIMES.local>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.117.140]
-Content-Type: multipart/alternative;
-	boundary="_000_1619D009AA8C9E469331A8EE22395AEC01106D2BD2Exchange2013P_"
+ dkim=pass header.i=@snap.com header.s=google header.b=R39LK7xw;
+ spf=pass (domain: snapchat.com, ip: 209.85.218.52, mailfrom: ecordonnier@snapchat.com)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a77d85f7fa3so889435066b.0
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 07:38:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=snap.com; s=google; t=1721140707; x=1721745507; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oZjc39XuDRV1n3Yl6IMUoiqvEZWTxPEB37Whr5SPlRk=;
+        b=R39LK7xwIx5+x0zNA1/V8ugGY13/FlZKL6f8etV4wQE/k++Z/DrQNmy6/uoDRj32U0
+         wbCS8PTsVeHjG+oq5TfFJbGjq7xwRcTvqP2f/2OGiripb6ASmTKfsEDEuJuwHx8kaNRD
+         QXj+uk+Jk3St+ld8vsyblkAfqIPwrphcOq//U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1721140707; x=1721745507;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oZjc39XuDRV1n3Yl6IMUoiqvEZWTxPEB37Whr5SPlRk=;
+        b=UGU74jSc1BAcq4M9QhJcKI/tQTmPJanHMDogxd+6n0if28aTzDx3A6mkRB5IgzmwbH
+         a0O4iJr9TWsdlT85Mye2rpNkcbU5B25CYQPaQxZCfxNbCBjXdgLKgp5SYfghJ3aj335u
+         bYrh05eITSRRLLlEOlMNHSfyTm1YWkyEFZJwnsURW7rNmuuTtvYlhzfeIkrBvAyDCiu8
+         4uFXMLXdl9U1hNqSXEwAEklCmNVN2sz+RspvwYxjJUbA3VFW4pxxCPQjdSl3PgFznJ+V
+         kNWHdehvXb43DoAu/5OqCmZyQRkL2871pScxMkqt3CBkI80yibdidar9//tNc6riSWzw
+         siTg==
+X-Gm-Message-State: AOJu0YzVh3WVJF/F3SUQIueqBbNJKzraLaBthZ3H9ex+SKolojYKzKKh
+	a2gJxX2b3HVntk5MCW9yah8suMUh2HvRnJELJGe53WXvL61RolPs31OKHTYdk8L+wlFD0ID0vUP
+	w9HhY4sGpfu4W9Bk7Qqvi67wsVbra+ugdfmYqbQhy/zUfggQdl+oRkA==
+X-Google-Smtp-Source: AGHT+IFOmv3Dmt3s4HLKhFQhxxR6QM8VEhmuWwQXlo/mxdOSCiE6aq3x9i2uBKJtO3n7NlyaFJQ25m5BHSceLHNHyn8=
+X-Received: by 2002:a17:906:369a:b0:a6f:6df5:a264 with SMTP id
+ a640c23a62f3a-a79eda4204amr194714966b.1.1721140706922; Tue, 16 Jul 2024
+ 07:38:26 -0700 (PDT)
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:zaQl/PQCOBcxeK/Jj6AUbX/BUGRwt8JaCldnCjdNaObvvKS30SP
- n8y8pShODbx2svTlGApKXKJi2lMP13NXNp2Zz6UYAzeWobGwuNaAWzc6BC4AQr0NqnBNN1f
- Dt0NBs88sJfnF9HfLM+R2Ev2xsRQQPLkmNc/55D0NIwKhhs0LQ37WXDYBTyV7Ij6eUDwc3o
- AE5215/BXqchMDgpk9BQg==
-UI-OutboundReport: notjunk:1;M01:P0:X6GkjtOue7s=;0fqHJU1WSUKHiqvrUVrsFGNzBDy
- m6vUA2m/26TgDJOAPWC1m2UZXqQbi2BCSC/h6uIu3UISEj3+zXLAb5uvXPv5iuZvXRsCxHXce
- QZR30ahr+68+mOQTpDp8zDxb+BH6clM2nXpTlNqTqhAOgYXSHWW6KsrtpD3Rg34PLBNQQizfj
- gOEuZXuNaMSZscnD55jSyYk2hYfd/okxJkL5NITS3icYgOnEHRgFPxKfuKpcguuREsulb85dh
- +oEW4VRVnBZLMeL4saciXpdt7BN593R04/9Vv/FJgPiTGzsyKkbCisdsM4tmbw39q1jBR32QI
- ZoLbIkoWP3oC9fzbN1n4wjkVY4cyuSFvBZ8s/YpwHAhJFZNToFnGxAedkQgxUvtCtDwKPf+s6
- x5InSktf5q0sQy+ZloNQSoEwwUrHKwfYdey2L5usUGNV3tTD3CemNrMYGrp9FSk9i7FILzToV
- 5c3UW7EooxwLf18HWyT2nWLYyLVhp521Ly0qJiNRGOObJn6o4R2WPfFLj6p2jHuC2iEJ1BHqg
- AgQt6iVNsQv6UAjdk7Ygvchxezc2xs6M2yL8LEwuUArRJ+tUcTY4cADdQS9n9x1gSHpZ7PP2Z
- EeG9Pxw+3WdUjhYshR6NpJmSk/QuLG46QaFE1Obt4ZoRbutek0zBvSzuoRXeTWAA9XYQOdJTe
- vOVvL+00OegkemtHibnBeWzrRZFMfEwmUUjzg9jHIWT9qhwNhUF4d/7paeWYNwlsT2Wid8rkl
- v+fNviOVTnniI7rn/dKnOAkwy2MtgYSaA==
+References: <1619D009AA8C9E469331A8EE22395AEC01106D2BD2@Exchange2013.PRIMES.local>
+In-Reply-To: <1619D009AA8C9E469331A8EE22395AEC01106D2BD2@Exchange2013.PRIMES.local>
+From: Etienne Cordonnier <ecordonnier@snap.com>
+Date: Tue, 16 Jul 2024 16:38:15 +0200
+Message-ID: <CAHUKmYbw6ssEshjTFaU7xkLWW+=ZnLmHqqfTh=XH1YZooWdMoQ@mail.gmail.com>
+Subject: Re: [yocto] kernel modules
+To: yocto@lists.yoctoproject.org, G.Kautzmann@primes.de
+Content-Type: multipart/alternative; boundary="00000000000071fba8061d5e4c02"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 13:00:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63512
+ <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 14:38:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63513
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D2BD2Exchange2013P_
-Content-Type: text/plain; charset="us-ascii"
+--00000000000071fba8061d5e4c02
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello ML members,
+Hi Gerd,
+as far as I know, this should work exactly the same way in Dunfell and
+Scarthgap. You should perform the usual checks to debug the issue:
+- double-check that your image depends on the kernel modules using bitbake
+-g core-image-minimal (if not use bitbake -e to check if something is maybe
+modifying IMAGE_INSTALL, etc.)
+- try bitbake -c clean sstate hello && bitbake hello to see if this
+populates the sysroot
+- if everything else, keep the downloads directory and rm -rf the rest,
+then build core-image-minimal again
 
-I used to include some drivers for a camera chip for RaspberryPi4 in Yocto =
-dunfell.
+=C3=89tienne
 
-Now I'm trying the same under Yicto Scarthgap but it doesn't work.
+On Tue, Jul 16, 2024 at 3:00=E2=80=AFPM Gerd Kautzmann via lists.yoctoproje=
+ct.org
+<G.Kautzmann=3DPRIMES.de@lists.yoctoproject.org> wrote:
 
-
-dunfell
----------
-find tmp/work -name my_driver.ko
-tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/rootfs/l=
-ib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko
-tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/my_driver/my_driv=
-er.ko
-tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/sysroot-destdir/l=
-ib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko
-tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/image/lib/modules=
-/5.4.72-v7l/extra/my_driver/my_driver.ko
-tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/package/lib/modul=
-es/5.4.72-v7l/extra/my_driver/my_driver.ko
-tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/packages-split/ke=
-rnel-module-vc-mipi-common-5.4.72-v7l/lib/modules/5.4.72-v7l/extra/my_drive=
-r/my_driver.ko
-
-The kernel modules are compiled but they are never transferred or installed=
- in the image
-
-scarthgap
-------------
-find tmp/work -name my_driver.ko
-tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0/my_driver/my_driver.=
-ko
-
-
-Under dunfell I used an expanded core-image-minimal for my system:
-------------
-cat meta/recipes-core/images/core-image-minimal.bb
-
-SUMMARY =3D "Small image with own kernel module"
-
-IMAGE_INSTALL =3D "packagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL}"
-IMAGE_INSTALL +=3D "kernel-modules v4l-utils hello-mod hello autoconf"
-IMAGE_INSTALL +=3D "libgpiod"
-
-KERNEL_MODULE_AUTOLOAD +=3D "hello"
-
-...
-------------
-
-I tried different changes on my conf/local.conf without any changes.
-
-I built with:
-bitbake core-image-minimal -c cleanall
-bitbake core-image-minimal
-
-But nothing changed.
-
-
-
-
-PRIMES GmbH    Max-Planck-Str. 2    64319 Pfungstadt   Germany
-T +49 6157 9878 0
-CEO: Dr.-Ing. Reinhard Kramer, Dr. rer. nat. Thomas Umschlag
-Local Court: Darmstadt HRB 5134
-g.kautzmann@primes.de<mailto:g.kautzmann@primes.de>    www.primes.de<blocke=
-d::http://www.primes.de/>
-
-
---_000_1619D009AA8C9E469331A8EE22395AEC01106D2BD2Exchange2013P_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hello ML members,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
+> I used to include some drivers for a camera chip for RaspberryPi4 in Yoct=
+o
+> dunfell.
+>
+> Now I=E2=80=99m trying the same under Yicto Scarthgap but it doesn=E2=80=
+=99t work.
+>
+>
+> dunfell
+>
+> ---------
+>
+> find tmp/work -name my_driver.ko
+>
+>
+> tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/rootfs=
+/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko
+>
+>
+> tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/my_driver/my_dr=
+iver.ko
+>
+>
+> tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/sysroot-destdir=
+/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko
+>
+>
+> tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/image/lib/modul=
+es/5.4.72-v7l/extra/my_driver/my_driver.ko
+>
+>
+> tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/package/lib/mod=
+ules/5.4.72-v7l/extra/my_driver/my_driver.ko
+>
+>
+> tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0-r0/packages-split/=
+kernel-module-vc-mipi-common-5.4.72-v7l/lib/modules/5.4.72-v7l/extra/my_dri=
+ver/my_driver.ko
+>
+>
+> The kernel modules are compiled but they are never transferred or
+> installed in the image
+>
+>
+>
+> scarthgap
+>
+> ------------
+>
+> find tmp/work -name my_driver.ko
+>
+>
+> tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1.0/my_driver/my_drive=
+r.ko
+>
+>
+>
+> Under dunfell I used an expanded core-image-minimal for my system:
+> ------------
+>
+> cat meta/recipes-core/images/core-image-minimal.bb
+>
+>
+>
+> SUMMARY =3D "Small image with own kernel module"
+>
+>
+>
+> IMAGE_INSTALL =3D "packagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL}"
+>
+> IMAGE_INSTALL +=3D "kernel-modules v4l-utils hello-mod hello autoconf"
+>
+> IMAGE_INSTALL +=3D "libgpiod"
+>
+>
+>
+> KERNEL_MODULE_AUTOLOAD +=3D "hello"
+>
+> =E2=80=A6
+> ------------
+>
+>
+> I tried different changes on my conf/local.conf without any changes.
+>
+> I built with:
+> bitbake core-image-minimal -c cleanall
+> bitbake core-image-minimal
+>
+> But nothing changed.
+>
+>
+>
+>
+>
+> *PRIMES GmbH    *Max-Planck-Str. 2    64319 Pfungstadt   Germany
+>
+> T +49 6157 9878 0
+>
+> CEO: Dr.-Ing. Reinhard Kramer, Dr. rer. nat. Thomas Umschlag
+>
+> Local Court: Darmstadt HRB 5134
+>
+> g.kautzmann@primes.de    www.primes.de
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63512):
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject=
+.org_g_yocto_message_63512&d=3DDwIFaQ&c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkIC=
+C2epckfdiw&r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&m=3Dv9D15pWAhFSR=
+eK1xw5OGOVEnxuekS2Nhlknnv_TbuIX8AlXwW6Ps1pbBoLKyOb1_&s=3DFYrwVYvyu-uSKSgh7j=
+lFpsqvx9GOhTUIBdq7CZ5NlDo&e=3D
+> Mute This Topic:
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject=
+.org_mt_107251140_7048771&d=3DDwIFaQ&c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC=
+2epckfdiw&r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&m=3Dv9D15pWAhFSRe=
+K1xw5OGOVEnxuekS2Nhlknnv_TbuIX8AlXwW6Ps1pbBoLKyOb1_&s=3D4afPSjmes-A7cdSV70V=
+aJxtQcIj2X1ES5xzt0ezDQ-s&e=3D
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe:
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject=
+.org_g_yocto_unsub&d=3DDwIFaQ&c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfd=
+iw&r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&m=3Dv9D15pWAhFSReK1xw5OG=
+OVEnxuekS2Nhlknnv_TbuIX8AlXwW6Ps1pbBoLKyOb1_&s=3DW_Mpx9Wj5PoD8AFqGW6r1pZZ7M=
+0ee4qqH_RULBDbSG0&e=3D
+> [ecordonnier@snap.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--00000000000071fba8061d5e4c02
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Gerd,<br>as far as I know, this should work exactly the=
+ same way in Dunfell and Scarthgap. You should perform the usual checks to =
+debug the issue:<br>- double-check that your image depends on the kernel mo=
+dules using bitbake -g core-image-minimal (if not use bitbake -e to check i=
+f something is maybe modifying IMAGE_INSTALL, etc.)<br>- try bitbake -c cle=
+an sstate hello &amp;&amp; bitbake hello to see if this populates the sysro=
+ot<br>- if everything else, keep the downloads directory and rm -rf the res=
+t, then build core-image-minimal again<br><br>=C3=89tienne</div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 16, 2=
+024 at 3:00=E2=80=AFPM Gerd Kautzmann via <a href=3D"http://lists.yoctoproj=
+ect.org">lists.yoctoproject.org</a> &lt;G.Kautzmann=3D<a href=3D"mailto:PRI=
+MES.de@lists.yoctoproject.org">PRIMES.de@lists.yoctoproject.org</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=
+=3D"msg4098885771716789682">
+
+
+
+
+
+<div lang=3D"DE">
+<div class=3D"m_4098885771716789682WordSection1">
 <p class=3D"MsoNormal">Hello ML members,<br>
 <br>
 I used to include some drivers for a camera chip for RaspberryPi4 in Yocto =
 dunfell.<br>
 <br>
-Now I&#8217;m trying the same under Yicto Scarthgap but it doesn&#8217;t wo=
-rk.<br>
+Now I=E2=80=99m trying the same under Yicto Scarthgap but it doesn=E2=80=99=
+t work.<br>
 <br>
 <br>
-dunfell<o:p></o:p></p>
-<p class=3D"MsoNormal">---------<o:p></o:p></p>
-<p class=3D"MsoNormal">find tmp/work -name my_driver.ko<o:p></o:p></p>
+dunfell<u></u><u></u></p>
+<p class=3D"MsoNormal">---------<u></u><u></u></p>
+<p class=3D"MsoNormal">find tmp/work -name my_driver.ko<u></u><u></u></p>
 <p class=3D"MsoNormal">tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-=
-minimal/1.0-r0/rootfs/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<o=
-:p></o:p></p>
+minimal/1.0-r0/rootfs/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<u=
+></u><u></u></p>
 <p class=3D"MsoNormal">tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1=
-.0-r0/my_driver/my_driver.ko<o:p></o:p></p>
+.0-r0/my_driver/my_driver.ko<u></u><u></u></p>
 <p class=3D"MsoNormal">tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1=
-.0-r0/sysroot-destdir/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<o=
-:p></o:p></p>
+.0-r0/sysroot-destdir/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<u=
+></u><u></u></p>
 <p class=3D"MsoNormal">tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1=
-.0-r0/image/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<o:p></o:p><=
-/p>
+.0-r0/image/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<u></u><u></=
+u></p>
 <p class=3D"MsoNormal">tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1=
-.0-r0/package/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<o:p></o:p=
-></p>
+.0-r0/package/lib/modules/5.4.72-v7l/extra/my_driver/my_driver.ko<u></u><u>=
+</u></p>
 <p class=3D"MsoNormal">tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1=
 .0-r0/packages-split/kernel-module-vc-mipi-common-5.4.72-v7l/lib/modules/5.=
-4.72-v7l/extra/my_driver/my_driver.ko<o:p></o:p></p>
+4.72-v7l/extra/my_driver/my_driver.ko<u></u><u></u></p>
 <p class=3D"MsoNormal"><br>
 The kernel modules are compiled but they are never transferred or installed=
- in the image<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">scarthgap<o:p></o:p></p>
-<p class=3D"MsoNormal">------------<o:p></o:p></p>
-<p class=3D"MsoNormal">find tmp/work -name my_driver.ko<o:p></o:p></p>
+ in the image<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">scarthgap<u></u><u></u></p>
+<p class=3D"MsoNormal">------------<u></u><u></u></p>
+<p class=3D"MsoNormal">find tmp/work -name my_driver.ko<u></u><u></u></p>
 <p class=3D"MsoNormal">tmp/work/raspberrypi4-poky-linux-gnueabi/hello-mod/1=
 .0/my_driver/my_driver.ko<br>
 <br>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
-amily:&quot;Arial&quot;,sans-serif;color:black;mso-fareast-language:DE">Und=
-er dunfell I used an expanded core-image-minimal for my system:<br>
-</span>------------<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE">cat meta/recipes-core/imag=
-es/core-image-minimal.bb<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE"><o:p>&nbsp;</o:p></span></=
-p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE">SUMMARY =3D &quot;Small im=
-age with own kernel module&quot;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE"><o:p>&nbsp;</o:p></span></=
-p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE">IMAGE_INSTALL =3D &quot;pa=
-ckagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL}&quot;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE">IMAGE_INSTALL &#43;=3D &qu=
-ot;kernel-modules v4l-utils hello-mod hello autoconf&quot;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE">IMAGE_INSTALL &#43;=3D &qu=
-ot;libgpiod&quot;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE"><o:p>&nbsp;</o:p></span></=
-p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
-amily:&quot;Arial&quot;,sans-serif;color:black;mso-fareast-language:DE">KER=
-NEL_MODULE_AUTOLOAD &#43;=3D &quot;hello&quot;<br>
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9pt;font-fam=
+ily:Arial,sans-serif;color:black">Under dunfell I used an expanded core-ima=
+ge-minimal for my system:<br>
+</span>------------<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black">cat meta/recipes-core/images/<a href=3D"http://core-image-minima=
+l.bb" target=3D"_blank">core-image-minimal.bb</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black">SUMMARY =3D &quot;Small image with own kernel module&quot;
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black">IMAGE_INSTALL =3D &quot;packagegroup-core-boot ${CORE_IMAGE_EXTR=
+A_INSTALL}&quot;
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black">IMAGE_INSTALL +=3D &quot;kernel-modules v4l-utils hello-mod hell=
+o autoconf&quot;
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black">IMAGE_INSTALL +=3D &quot;libgpiod&quot;
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9pt;font-fam=
+ily:Arial,sans-serif;color:black">KERNEL_MODULE_AUTOLOAD +=3D &quot;hello&q=
+uot;<br>
 <br>
-&#8230;<br>
-</span>------------<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE"><br>
+=E2=80=A6<br>
+</span>------------<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black"><br>
 I tried different changes on my conf/local.conf without any changes.<br>
 <br>
 I built with:<br>
 bitbake core-image-minimal -c cleanall<br>
 bitbake core-image-minimal<br>
 <br>
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:1.0pt;margin-right:0cm;m=
-argin-bottom:1.0pt;margin-left:0cm">
-<span lang=3D"EN-US" style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black;mso-fareast-language:DE">But nothing changed.<br>
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:1pt;margin-l=
+eft:0cm">
+<span lang=3D"EN-US" style=3D"font-size:9pt;font-family:Arial,sans-serif;co=
+lor:black">But nothing changed.<br>
 <br>
 <br>
 <br>
-<o:p></o:p></span></p>
+<u></u><u></u></span></p>
 <p class=3D"MsoNormal" style=3D"margin-left:5.65pt"><span style=3D"font-siz=
-e:2.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#383739;mso-fareast-=
-language:DE"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<b><span lang=3D"EN-GB" style=3D"font-size:8.0pt;font-family:&quot;Arial&qu=
-ot;,sans-serif;color:#4F4D51;mso-fareast-language:DE">PRIMES GmbH&nbsp;&nbs=
-p;&nbsp;
-</span></b><span lang=3D"EN-US" style=3D"font-size:8.0pt;font-family:&quot;=
-Arial&quot;,sans-serif;color:#4F4D51;mso-fareast-language:DE">Max-Planck-St=
-r.
-</span><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-se=
-rif;color:#4F4D51;mso-fareast-language:DE">2<b>&nbsp;&nbsp;&nbsp;
-</b>64319 Pfungstadt&nbsp;&nbsp; Germany&nbsp;&nbsp;&nbsp; <o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;col=
-or:#4F4D51;mso-fareast-language:DE">T &#43;49 6157 9878 0&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;col=
-or:#4F4D51;mso-fareast-language:DE">CEO: Dr.-Ing. Reinhard Kramer, Dr. rer.=
- nat. Thomas Umschlag&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt;mso-l=
-ine-height-rule:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;col=
-or:#4F4D51;mso-fareast-language:DE">Local Court: Darmstadt HRB 5134<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:0cm;margin-right:0cm;mar=
-gin-bottom:12.0pt;margin-left:5.65pt;line-height:11.1pt;mso-line-height-rul=
-e:exactly">
-<span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;mso=
--fareast-language:DE"><a href=3D"mailto:g.kautzmann@primes.de"><span style=
-=3D"color:#0563C1">g.kautzmann@primes.de</span></a></span><span style=3D"fo=
-nt-size:8.0pt;color:#4F4D51;mso-fareast-language:DE">&nbsp;&nbsp;&nbsp;
-</span><span style=3D"mso-fareast-language:DE"><a href=3D"blocked::http://w=
-ww.primes.de/" title=3D"blocked::http://www.primes.de/=0A=
-http://www.primes.de/"><span style=3D"font-size:8.0pt;font-family:&quot;Ari=
-al&quot;,sans-serif;color:#4F4D51;text-decoration:none">www.primes.de</span=
-></a></span><span style=3D"font-size:8.0pt;color:#4F4D51;mso-fareast-langua=
-ge:DE">&nbsp;</span><span style=3D"position:relative;top:3.0pt;mso-text-rai=
-se:-3.0pt;mso-fareast-language:DE"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+e:2pt;font-family:Arial,sans-serif;color:rgb(56,55,57)"><u></u>=C2=A0<u></u=
+></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<b><span lang=3D"EN-GB" style=3D"font-size:8pt;font-family:Arial,sans-serif=
+;color:rgb(79,77,81)">PRIMES GmbH=C2=A0=C2=A0=C2=A0
+</span></b><span lang=3D"EN-US" style=3D"font-size:8pt;font-family:Arial,sa=
+ns-serif;color:rgb(79,77,81)">Max-Planck-Str.
+</span><span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(=
+79,77,81)">2<b>=C2=A0=C2=A0=C2=A0
+</b>64319 Pfungstadt=C2=A0=C2=A0 Germany=C2=A0=C2=A0=C2=A0 <u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(79,77,8=
+1)">T +49 6157 9878 0=C2=A0=C2=A0=C2=A0
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(79,77,8=
+1)">CEO: Dr.-Ing. Reinhard Kramer, Dr. rer. nat. Thomas Umschlag=C2=A0=C2=
+=A0=C2=A0
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:5.65pt;line-height:11.5pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(79,77,8=
+1)">Local Court: Darmstadt HRB 5134<u></u><u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right:0cm;margin-bottom:12pt;margin-=
+left:5.65pt;line-height:11.1pt">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif"><a href=3D"mailt=
+o:g.kautzmann@primes.de" target=3D"_blank"><span style=3D"color:rgb(5,99,19=
+3)">g.kautzmann@primes.de</span></a></span><span style=3D"font-size:8pt;col=
+or:rgb(79,77,81)">=C2=A0=C2=A0=C2=A0
+</span><span><a title=3D"blocked::http://www.primes.de/
+http://www.primes.de/"><span style=3D"font-size:8pt;font-family:Arial,sans-=
+serif;color:rgb(79,77,81);text-decoration:none">www.primes.de</span></a></s=
+pan><span style=3D"font-size:8pt;color:rgb(79,77,81)">=C2=A0</span><span><u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
-</body>
-</html>
+</div>
 
---_000_1619D009AA8C9E469331A8EE22395AEC01106D2BD2Exchange2013P_--
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#63512): <a href=3D"https://urldefense.proofpoint.com/v2=
+/url?u=3Dhttps-3A__lists.yoctoproject.org_g_yocto_message_63512&amp;d=3DDwI=
+FaQ&amp;c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMI=
+GRfPx_Qj9TsRih1DULJTKUkSGa66m67E&amp;m=3Dv9D15pWAhFSReK1xw5OGOVEnxuekS2Nhlk=
+nnv_TbuIX8AlXwW6Ps1pbBoLKyOb1_&amp;s=3DFYrwVYvyu-uSKSgh7jlFpsqvx9GOhTUIBdq7=
+CZ5NlDo&amp;e=3D" rel=3D"noreferrer" target=3D"_blank">https://urldefense.p=
+roofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject.org_g_yocto_message_6=
+3512&amp;d=3DDwIFaQ&amp;c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp=
+;r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&amp;m=3Dv9D15pWAhFSReK1xw5=
+OGOVEnxuekS2Nhlknnv_TbuIX8AlXwW6Ps1pbBoLKyOb1_&amp;s=3DFYrwVYvyu-uSKSgh7jlF=
+psqvx9GOhTUIBdq7CZ5NlDo&amp;e=3D</a> <br>
+Mute This Topic: <a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dht=
+tps-3A__lists.yoctoproject.org_mt_107251140_7048771&amp;d=3DDwIFaQ&amp;c=3D=
+ncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMIGRfPx_Qj9TsR=
+ih1DULJTKUkSGa66m67E&amp;m=3Dv9D15pWAhFSReK1xw5OGOVEnxuekS2Nhlknnv_TbuIX8Al=
+XwW6Ps1pbBoLKyOb1_&amp;s=3D4afPSjmes-A7cdSV70VaJxtQcIj2X1ES5xzt0ezDQ-s&amp;=
+e=3D" rel=3D"noreferrer" target=3D"_blank">https://urldefense.proofpoint.co=
+m/v2/url?u=3Dhttps-3A__lists.yoctoproject.org_mt_107251140_7048771&amp;d=3D=
+DwIFaQ&amp;c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonV=
+uMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&amp;m=3Dv9D15pWAhFSReK1xw5OGOVEnxuekS2N=
+hlknnv_TbuIX8AlXwW6Ps1pbBoLKyOb1_&amp;s=3D4afPSjmes-A7cdSV70VaJxtQcIj2X1ES5=
+xzt0ezDQ-s&amp;e=3D</a> <br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-=
+3A__lists.yoctoproject.org_g_yocto_unsub&amp;d=3DDwIFaQ&amp;c=3DncDTmphkJTv=
+jIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUk=
+SGa66m67E&amp;m=3Dv9D15pWAhFSReK1xw5OGOVEnxuekS2Nhlknnv_TbuIX8AlXwW6Ps1pbBo=
+LKyOb1_&amp;s=3DW_Mpx9Wj5PoD8AFqGW6r1pZZ7M0ee4qqH_RULBDbSG0&amp;e=3D" rel=
+=3D"noreferrer" target=3D"_blank">https://urldefense.proofpoint.com/v2/url?=
+u=3Dhttps-3A__lists.yoctoproject.org_g_yocto_unsub&amp;d=3DDwIFaQ&amp;c=3Dn=
+cDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMIGRfPx_Qj9TsRi=
+h1DULJTKUkSGa66m67E&amp;m=3Dv9D15pWAhFSReK1xw5OGOVEnxuekS2Nhlknnv_TbuIX8AlX=
+wW6Ps1pbBoLKyOb1_&amp;s=3DW_Mpx9Wj5PoD8AFqGW6r1pZZ7M0ee4qqH_RULBDbSG0&amp;e=
+=3D</a>=C2=A0 [<a href=3D"mailto:ecordonnier@snap.com" target=3D"_blank">ec=
+ordonnier@snap.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</div></blockquote></div>
+
+--00000000000071fba8061d5e4c02--
 
