@@ -1,306 +1,118 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <wangmy@fujitsu.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 45B8FC3DA49
-	for <webhook@archiver.kernel.org>; Wed, 17 Jul 2024 01:27:41 +0000 (UTC)
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
- by mx.groups.io with SMTP id smtpd.web10.5621.1721179658083512042
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67232C3DA59
+	for <webhook@archiver.kernel.org>; Wed, 17 Jul 2024 01:40:41 +0000 (UTC)
+Received: from esa10.hc1455-7.c3s2.iphmx.com (esa10.hc1455-7.c3s2.iphmx.com [139.138.36.225])
+ by mx.groups.io with SMTP id smtpd.web10.5877.1721180438402691984
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Jul 2024 18:27:38 -0700
+ Tue, 16 Jul 2024 18:40:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=XlkEx+jV;
- spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: b.hutchman@gmail.com)
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2cb2a6a8b2fso1669247a91.3
-        for <yocto@lists.yoctoproject.org>; Tue, 16 Jul 2024 18:27:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721179657; x=1721784457; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gmV7EP5HgZEgVDadm85hqcrZfsbpRjWden+kBwDUWyE=;
-        b=XlkEx+jV5El308H22HGVDCWIsz8uv0s6bxDQmdU8n/rBTczGhYB3gdJr/Zg7wyw6G6
-         GNNOaaQMTyaEQp98eJjvglHqic8MDN3e6ReCrT3iJP7m4NqFccskh4Ay6b1G5RxoUdWv
-         XVMGD3UPQ78vBZYztywTWcUZ+aTWbFR9pb3g7vMb8cZyLuKatewutsmQRWF+OO58ud6D
-         AISocEMm/p29eBWAgt8hD2PcvQ1TcXnT9SRE+YG3V6W1BCqqM1BwtDomwAlxRLxRa2rC
-         mPagEoahshXfpgy0g+P/M8t/ezzYLg6yPZcihkzblcE9JtlPz7DBkqtWpRz0K8MNdRlN
-         Q53g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721179657; x=1721784457;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gmV7EP5HgZEgVDadm85hqcrZfsbpRjWden+kBwDUWyE=;
-        b=sY4jT6y70XyXniJw1r+NQ0/oGLNFLDia0jQtY+Nvttjm5Jk9uqiCfIv6F5dsWaCvOD
-         AnokbYUjNIgVCIFwPW6IZIZVVh9OCSgAkpv+GPbOMiWJNxehugziY4yplzd9MyaE8eWS
-         bvX/KARkLM2FvVeOWyRZvqrHT0VTQ/V0lNdXVzrHVW++F0/iTDH0+VtWDQTL9VyhdM7f
-         CxRiceZoBg/OVzB2DvwRM1mgnqgcI22yeBJzgLVMp3IywJv46hboT5n/edTmA8G5crJ/
-         B2AT41IHlPgdxx3YARu1dB40Pa9+vKtgF0v1Iy+7gorNZAiNPoPin/F+Wf1vcu9d1l38
-         es9g==
-X-Forwarded-Encrypted: i=1; AJvYcCXArf65ao7uuYoZurckveVSNA0IKs07eb9zz9MR+39+e54leosIWktxUG1Fz3KPYM+LZxRhpaQkj9xad+oSrbdF8Piq40X58LLEGPdK
-X-Gm-Message-State: AOJu0YwRyUpp9otwoAiF5m/pnHQ5L0ItKAsweNqMgaVAXdvT0ymELZb8
-	Db3r45QPKI6aNPKQj/dqhNdNDeBf5rBgBV2/l+W0cGeYmQO9JissrkEUgsbg5gyHaah6rMzxqPP
-	Ae7TyQDAw0EHSkbiQDaGLXZbohT8=
-X-Google-Smtp-Source: AGHT+IHyM3PKomaKwT5wHcTvzKSD2ZraMWFSXgPnO/VZSsuAYVNeasLqaegx/dNdQcPzO48bLBc4lnoUdHjI6DpBnwQ=
-X-Received: by 2002:a17:90a:ea0f:b0:2c9:6cd2:1732 with SMTP id
- 98e67ed59e1d1-2cb51e52059mr144574a91.0.1721179657108; Tue, 16 Jul 2024
- 18:27:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAFZh4h_wh01sjAar-QqHsQ=KY4zLjmpmXuJc83OeYue7YyYW3A@mail.gmail.com>
- <CAFZh4h9iaCGdnDhxik9Qtq82f0MGU2eL+8nBa8qoCCJrH-xsGQ@mail.gmail.com> <d30f1655-0efa-440a-ac17-fe82342f4556@efficios.com>
-In-Reply-To: <d30f1655-0efa-440a-ac17-fe82342f4556@efficios.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-Date: Tue, 16 Jul 2024 21:27:25 -0400
-Message-ID: <CAFZh4h_pOCzpJ6ssdZ7ts3vSdJNfEtS+d+2Foi4qAY6oH0+VKw@mail.gmail.com>
-Subject: Re: [lttng-dev] Using lttng-ust 2.13.6 from Yocto Kirkstone and
- getting weird segfault saying strlen_asimd.S can't be found.
-To: Kienan Stewart <kstewart@efficios.com>
-Cc: lttng-dev@lists.lttng.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000000e867e061d675e52"
+ dkim=pass header.i=@fujitsu.com header.s=fj2 header.b=RHSRsM2h;
+ spf=pass (domain: fujitsu.com, ip: 139.138.36.225, mailfrom: wangmy@fujitsu.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
+  t=1721180438; x=1752716438;
+  h=from:to:cc:subject:date:message-id;
+  bh=gEcuLRFYffC7S0IgstgbhTACOp3KBRSsENVC8q9Zaes=;
+  b=RHSRsM2hlaNZesBi6QhUiuRVR0kjzQz1lqX0PqGyq4YyCacvO6SJ793T
+   FDJg7rpfOuGwgw3Pha0D2ktgEbxfqPyPmpHTGMUvvcRGS+qNJ69yajBM8
+   nl2Vj0rVweN2o9Re0SauMEiAo2GVqvrlSLXVWHBby4Yw1EWQiUcyClx7n
+   hlH1q6H1SGeXV4h1gNeIGgZVcUtJ025AIERJyYLiD9NeojOYFBE9mge8i
+   cuWP40lDsPkMtSfyZgVI0nXsvnZz+z9TOxMxnl3u4HSEOeG/911mcikVj
+   H4WqDoGU3tdJE+ykNIDXpQrND/DasG7PTGMdGjpm9JLcVOtCyeuCYtrOZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="154858469"
+X-IronPort-AV: E=Sophos;i="6.09,213,1716217200"; 
+   d="scan'208";a="154858469"
+Received: from unknown (HELO oym-r2.gw.nic.fujitsu.com) ([210.162.30.90])
+  by esa10.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2024 10:40:35 +0900
+Received: from oym-m2.gw.nic.fujitsu.com (oym-nat-oym-m2.gw.nic.fujitsu.com [192.168.87.59])
+	by oym-r2.gw.nic.fujitsu.com (Postfix) with ESMTP id 6AD68D9223
+	for <yocto@lists.yoctoproject.org>; Wed, 17 Jul 2024 10:40:33 +0900 (JST)
+Received: from kws-ab3.gw.nic.fujitsu.com (kws-ab3.gw.nic.fujitsu.com [192.51.206.21])
+	by oym-m2.gw.nic.fujitsu.com (Postfix) with ESMTP id A7080BF4A9
+	for <yocto@lists.yoctoproject.org>; Wed, 17 Jul 2024 10:40:27 +0900 (JST)
+Received: from edo.cn.fujitsu.com (edo.cn.fujitsu.com [10.167.33.5])
+	by kws-ab3.gw.nic.fujitsu.com (Postfix) with ESMTP id 0A6342007CDD7
+	for <yocto@lists.yoctoproject.org>; Wed, 17 Jul 2024 10:40:27 +0900 (JST)
+Received: from vm4860.g01.fujitsu.local (unknown [10.193.128.200])
+	by edo.cn.fujitsu.com (Postfix) with ESMTP id 89F151A000A;
+	Wed, 17 Jul 2024 09:40:26 +0800 (CST)
+From: wangmy@fujitsu.com
+To: yocto@lists.yoctoproject.org
+Cc: Wang Mingyu <wangmy@fujitsu.com>
+Subject: [yocto] [meta-cgl] [PATCH] resource-agents: fix Upstream-Status
+Date: Wed, 17 Jul 2024 09:40:07 +0800
+Message-Id: <1721180407-14937-1-git-send-email-wangmy@fujitsu.com>
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSS-9.1.0.1417-9.0.0.1002-28534.003
+X-TM-AS-User-Approved-Sender: Yes
+X-TMASE-Version: IMSS-9.1.0.1417-9.0.1002-28534.003
+X-TMASE-Result: 10-2.068900-10.000000
+X-TMASE-MatchedRID: nM1g40D14vvEQS2ecfkpF+/uue7xcpjD8boZEVitthhXGTbsQqHbkiia
+	SqRpkfBttOhu6Z0cMoa12HagvbwDjqcUQ7z3S96i8t4fUUGeErQUi4Ehat0545wUo7HqAU16o8W
+	MkQWv6iXBcIE78YqRWo6HM5rqDwqtyTAZKret7XMYrk8OJ1T1rzxJ31jni7c+oU+zS4qfFbYJhR
+	avBnNhhF+fO2W0vUPBGAylEfJGut05GgzEDr0HL7uG81IsSlpWHSbhGbmGylXFJK7yLnZRGZdO3
+	Q67ImL8gi4RUz90EQwG2MApbv6odw==
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-22:0,33:0,34:0-0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 Jul 2024 01:27:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63517
+ <yocto@lists.yoctoproject.org>; Wed, 17 Jul 2024 01:40:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63518
 
---0000000000000e867e061d675e52
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Wang Mingyu <wangmy@fujitsu.com>
 
-Hi Kienan,
+Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
+---
+ .../resource-agents/01-disable-doc-build.patch                  | 2 ++
+ .../resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch     | 2 ++
+ .../resource-agents/03-fix-header-defs-lookup.patch             | 2 ++
+ 3 files changed, 6 insertions(+)
 
-On Thu, Jul 11, 2024 at 8:38=E2=80=AFAM Kienan Stewart <kstewart@efficios.c=
-om>
-wrote:
+diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch
+index f136ec8..9429eb4 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch
++++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch
+@@ -3,6 +3,8 @@ From: Bian Naimeng <biannm@cn.fujitsu.com>
+ Date: Tue, 30 Jun 2015 16:42:48 +0800
+ Subject: [PATCH] disable doc build
+ 
++Upstream-Status: Pending
++
+ Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+ ---
+  Makefile.am | 2 +-
+diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch
+index ca36bc6..75ac8e7 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch
++++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch
+@@ -3,6 +3,8 @@ From: Bian Naimeng <biannm@cn.fujitsu.com>
+ Date: Tue, 30 Jun 2015 16:42:48 +0800
+ Subject: [PATCH] Set OCF_ROOT_DIR to ${libdir}/ocf
+ 
++Upstream-Status: Pending
++
+ Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+ 
+ ---
+diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch
+index fb578cb..32454fb 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch
++++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch
+@@ -3,6 +3,8 @@ From: Bian Naimeng <biannm@cn.fujitsu.com>
+ Date: Tue, 1 Apr 2014 16:20:39 +0200
+ Subject: [PATCH] fix header defs lookup
+ 
++Upstream-Status: Pending
++
+ Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+ 
+ ---
+-- 
+2.34.1
 
-> Hi Brian,
->
-> On 7/11/24 8:33 AM, Brian Hutchinson via lttng-dev wrote:
->  > ...
->  >
->  > I'm not sure about this, still trying to comprehend everything, but I
->  > think my issue could be related to all this gcc TLS, heap, trampoline
->  > talk here:
->  >
->  > https://www.mail-archive.com/lttng-dev@lists.lttng.org/msg13584.html
->  > <https://www.mail-archive.com/lttng-dev@lists.lttng.org/msg13584.html>
->  >
->  > Regards,
->  >
->  > Brian
->  >
->
-> You could try using lttng-ust 2.13.8, which includes a fix for the
-> discussion you referenced.
->
->
-> https://github.com/lttng/lttng-ust/commit/5db715e800d9b721f48495a987cd26c=
-25965e836
->
-> Please let us know if it doesn't solve it.
->
-> thanks,
-> kienan
->
-
-I updated to lttng-ust 2.13.8 as you suggested.  At first, I pulled in the
-recipe from master branch of Yocto, but had the same problem as before
-after rebuilding.
-
-Next, I downloaded the 2.13.8 lttng-ust tarball from the lttng site and
-setup a native build environment on my target and built lttng-ust 2.13.8
-and my app as a second independent build method for sanity check.  I can
-report that I get the exact same result as before this way too.
-
-In both cases, I verified that I had the commit you referenced above.
-
-I did a backtrace of the three threads captured in the coredump and show
-them below in hopes it will shed light on what I need to try next.
-
-(gdb) thread apply all backtrace
-
-Thread 3 (Thread 0xffffbe7de7e0 (LWP 559)):
-#0  syscall () at ../sysdeps/unix/sysv/linux/aarch64/syscall.S:38
-#1  0x0000ffffbeef1bb8 in lttng_ust_futex (val3=3D0, uaddr2=3D0x0, timeout=
-=3D0x0,
-val=3D0, op=3D0, uaddr=3D0xffffbefd8000) at ../../../src/lib/lttng-ust/fute=
-x.h:56
-#2  lttng_ust_futex_async (op=3D0, val=3D0, timeout=3D0x0, uaddr2=3D0x0, va=
-l3=3D0,
-uaddr=3D0xffffbefd8000) at ../../../src/lib/lttng-ust/futex.h:88
-#3  wait_for_sessiond (sock_info=3D0xffffbef6b638 <global_apps>) at
-lttng-ust-comm.c:1761
-#4  ust_listener_thread (arg=3D0xffffbef6b638 <global_apps>) at
-lttng-ust-comm.c:1832
-#5  0x0000ffffbe9206a8 in start_thread (arg=3D0xffffc1bd8687) at
-pthread_create.c:442
-#6  0x0000ffffbe98801c in thread_start () at
-../sysdeps/unix/sysv/linux/aarch64/clone.S:79
-
-Thread 2 (Thread 0xffffbdfce7e0 (LWP 560)):
-#0  syscall () at ../sysdeps/unix/sysv/linux/aarch64/syscall.S:38
-#1  0x0000ffffbeef1bb8 in lttng_ust_futex (val3=3D0, uaddr2=3D0x0, timeout=
-=3D0x0,
-val=3D0, op=3D0, uaddr=3D0xffffbefd7000) at ../../../src/lib/lttng-ust/fute=
-x.h:56
-#2  lttng_ust_futex_async (op=3D0, val=3D0, timeout=3D0x0, uaddr2=3D0x0, va=
-l3=3D0,
-uaddr=3D0xffffbefd7000) at ../../../src/lib/lttng-ust/futex.h:88
-#3  wait_for_sessiond (sock_info=3D0xffffbef695e0 <local_apps>) at
-lttng-ust-comm.c:1761
-#4  ust_listener_thread (arg=3D0xffffbef695e0 <local_apps>) at
-lttng-ust-comm.c:1832
-#5  0x0000ffffbe9206a8 in start_thread (arg=3D0xffffc1bd8687) at
-pthread_create.c:442
-#6  0x0000ffffbe98801c in thread_start () at
-../sysdeps/unix/sysv/linux/aarch64/clone.S:79
-
-Thread 1 (Thread 0xffffbefcf460 (LWP 545)):
-#0  __strlen_asimd () at ../sysdeps/aarch64/multiarch/strlen_asimd.S:96
-#1  0x0000ffffbe834bd0 in lttng_ust_tp_validate_event_name
-(tp=3D0xaaaab8f14de0
-<lttng_ust_tracepoint_hello_world___my_first_tracepoint>, tp=3D0xaaaab8f14d=
-e0
-<lttng_ust_tracepoint_hello_world___my_first_tracepoint>) at
-tracepoint.c:143
-#2  add_callsite (tp=3D0xaaaab8f14de0
-<lttng_ust_tracepoint_hello_world___my_first_tracepoint>,
-lib=3D0xaaaae74fad30) at tracepoint.c:412
-#3  lib_register_callsites (lib=3D0xaaaae74fad30) at tracepoint.c:552
-#4  lttng_ust_tracepoint_module_register (tracepoints_start=3D<optimized
-out>, tracepoints_count=3D<optimized out>) at tracepoint.c:956
-#5  0x0000aaaab8758204 in lttng_ust.tracepoints.ptrs_init ()
-#6  0x0000ffffbe8cb30c in call_init (env=3D<optimized out>,
-argv=3D0xffffc1bd8c88, argc=3D1) at ../csu/libc-start.c:145
-#7  __libc_start_main_impl (main=3D0xaaaab867aabc <main>, argc=3D1,
-argv=3D0xffffc1bd8c88, init=3D<optimized out>, fini=3D<optimized out>,
-rtld_fini=3D<optimized out>, stack_end=3D<optimized out>) at
-../csu/libc-start.c:376
-#8  0x0000aaaab867a7f0 in _start () at ../sysdeps/aarch64/start.S:81
-
-Regards,
-
-Brian
-
---0000000000000e867e061d675e52
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Kienan,</div><div></div><div></di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Thu, Jul 11, 2024 at 8:38=E2=80=AFAM Kienan Stewart &lt;<a href=3D"mai=
-lto:kstewart@efficios.com" target=3D"_blank">kstewart@efficios.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Brian,=
-<br>
-<br>
-On 7/11/24 8:33 AM, Brian Hutchinson via lttng-dev wrote:<br>
-=C2=A0&gt; ...<br>
-=C2=A0&gt;<br>
-=C2=A0&gt; I&#39;m not sure about this, still trying to comprehend everythi=
-ng, but I<br>
-=C2=A0&gt; think my issue could be related to all this gcc TLS, heap, tramp=
-oline<br>
-=C2=A0&gt; talk here:<br>
-=C2=A0&gt;<br>
-=C2=A0&gt; <a href=3D"https://www.mail-archive.com/lttng-dev@lists.lttng.or=
-g/msg13584.html" rel=3D"noreferrer" target=3D"_blank">https://www.mail-arch=
-ive.com/lttng-dev@lists.lttng.org/msg13584.html</a><br>
-=C2=A0&gt; &lt;<a href=3D"https://www.mail-archive.com/lttng-dev@lists.lttn=
-g.org/msg13584.html" rel=3D"noreferrer" target=3D"_blank">https://www.mail-=
-archive.com/lttng-dev@lists.lttng.org/msg13584.html</a>&gt;<br>
-=C2=A0&gt;<br>
-=C2=A0&gt; Regards,<br>
-=C2=A0&gt;<br>
-=C2=A0&gt; Brian<br>
-=C2=A0&gt;<br>
-<br>
-You could try using lttng-ust 2.13.8, which includes a fix for the <br>
-discussion you referenced.<br>
-<br>
-<a href=3D"https://github.com/lttng/lttng-ust/commit/5db715e800d9b721f48495=
-a987cd26c25965e836" rel=3D"noreferrer" target=3D"_blank">https://github.com=
-/lttng/lttng-ust/commit/5db715e800d9b721f48495a987cd26c25965e836</a><br>
-<br>
-Please let us know if it doesn&#39;t solve it.<br>
-<br>
-thanks,<br>
-kienan<br></blockquote><div><br></div><div>I updated to lttng-ust 2.13.8 as=
- you suggested.=C2=A0 At first, I pulled in the recipe from master branch o=
-f Yocto, but had the same problem as before after rebuilding.<br></div><div=
-><br></div><div>Next, I downloaded the 2.13.8 lttng-ust tarball from the lt=
-tng site and setup a native build environment on my target and built lttng-=
-ust 2.13.8 and my app as a second independent build method for sanity check=
-.=C2=A0 I can report that I get the exact same result as before this way to=
-o. <br></div><div><br></div><div>In both cases, I verified that I had the c=
-ommit you referenced above.</div><div><br></div><div>I did a backtrace of t=
-he three threads captured in the coredump and show them below in hopes it w=
-ill shed light on what I need to try next.</div><div><br></div><div><span s=
-tyle=3D"font-family:monospace"><span style=3D"color:rgb(0,0,0);background-c=
-olor:rgb(255,255,255)">(gdb) thread apply all backtrace
-</span><br>
-<br>Thread 3 (Thread 0xffffbe7de7e0 (LWP 559)):
-<br>#0 =C2=A0syscall () at ../sysdeps/unix/sysv/linux/aarch64/syscall.S:38
-<br>#1 =C2=A00x0000ffffbeef1bb8 in lttng_ust_futex (val3=3D0, uaddr2=3D0x0,=
-=20
-timeout=3D0x0, val=3D0, op=3D0, uaddr=3D0xffffbefd8000) at=20
-../../../src/lib/lttng-ust/futex.h:56
-<br>#2 =C2=A0lttng_ust_futex_async (op=3D0, val=3D0, timeout=3D0x0, uaddr2=
-=3D0x0, val3=3D0, uaddr=3D0xffffbefd8000) at ../../../src/lib/lttng-ust/fut=
-ex.h:88
-<br>#3 =C2=A0wait_for_sessiond (sock_info=3D0xffffbef6b638 &lt;global_apps&=
-gt;) at lttng-ust-comm.c:1761
-<br>#4 =C2=A0ust_listener_thread (arg=3D0xffffbef6b638 &lt;global_apps&gt;)=
- at lttng-ust-comm.c:1832
-<br>#5 =C2=A00x0000ffffbe9206a8 in start_thread (arg=3D0xffffc1bd8687) at p=
-thread_create.c:442
-<br>#6 =C2=A00x0000ffffbe98801c in thread_start () at ../sysdeps/unix/sysv/=
-linux/aarch64/clone.S:79
-<br>
-<br>Thread 2 (Thread 0xffffbdfce7e0 (LWP 560)):
-<br>#0 =C2=A0syscall () at ../sysdeps/unix/sysv/linux/aarch64/syscall.S:38
-<br>#1 =C2=A00x0000ffffbeef1bb8 in lttng_ust_futex (val3=3D0, uaddr2=3D0x0,=
-=20
-timeout=3D0x0, val=3D0, op=3D0, uaddr=3D0xffffbefd7000) at=20
-../../../src/lib/lttng-ust/futex.h:56
-<br>#2 =C2=A0lttng_ust_futex_async (op=3D0, val=3D0, timeout=3D0x0, uaddr2=
-=3D0x0, val3=3D0, uaddr=3D0xffffbefd7000) at ../../../src/lib/lttng-ust/fut=
-ex.h:88
-<br>#3 =C2=A0wait_for_sessiond (sock_info=3D0xffffbef695e0 &lt;local_apps&g=
-t;) at lttng-ust-comm.c:1761
-<br>#4 =C2=A0ust_listener_thread (arg=3D0xffffbef695e0 &lt;local_apps&gt;) =
-at lttng-ust-comm.c:1832
-<br>#5 =C2=A00x0000ffffbe9206a8 in start_thread (arg=3D0xffffc1bd8687) at p=
-thread_create.c:442
-<br>#6 =C2=A00x0000ffffbe98801c in thread_start () at ../sysdeps/unix/sysv/=
-linux/aarch64/clone.S:79
-<br>
-<br>Thread 1 (Thread 0xffffbefcf460 (LWP 545)):
-<br>#0 =C2=A0__strlen_asimd () at ../sysdeps/aarch64/multiarch/strlen_asimd=
-.S:96
-<br>#1 =C2=A00x0000ffffbe834bd0 in lttng_ust_tp_validate_event_name (tp=3D0=
-xaaaab8f14de0 &lt;lttng_ust_tracepoint_hello_world___my_first_tracepoint&gt=
-;, tp=3D0xaaaab8f14de0 &lt;lttng_ust_tracepoint_hello_world___my_first_trac=
-epoint&gt;) at tracepoint.c:143
-<br>#2 =C2=A0add_callsite (tp=3D0xaaaab8f14de0 &lt;lttng_ust_tracepoint_hel=
-lo_world___my_first_tracepoint&gt;, lib=3D0xaaaae74fad30) at tracepoint.c:4=
-12
-<br>#3 =C2=A0lib_register_callsites (lib=3D0xaaaae74fad30) at tracepoint.c:=
-552
-<br>#4 =C2=A0lttng_ust_tracepoint_module_register (tracepoints_start=3D&lt;=
-optimized out&gt;, tracepoints_count=3D&lt;optimized out&gt;) at tracepoint=
-.c:956
-<br>#5 =C2=A00x0000aaaab8758204 in lttng_ust.tracepoints.ptrs_init ()
-<br>#6 =C2=A00x0000ffffbe8cb30c in call_init (env=3D&lt;optimized out&gt;, =
-argv=3D0xffffc1bd8c88, argc=3D1) at ../csu/libc-start.c:145
-<br>#7 =C2=A0__libc_start_main_impl (main=3D0xaaaab867aabc &lt;main&gt;,=20
-argc=3D1, argv=3D0xffffc1bd8c88, init=3D&lt;optimized out&gt;,=20
-fini=3D&lt;optimized out&gt;, rtld_fini=3D&lt;optimized out&gt;,=20
-stack_end=3D&lt;optimized out&gt;) at ../csu/libc-start.c:376
-<br>#8 =C2=A00x0000aaaab867a7f0 in _start () at ../sysdeps/aarch64/start.S:=
-81</span></div><div><span style=3D"font-family:monospace"><br></span></div>=
-<div><span style=3D"font-family:monospace">Regards,</span></div><div><span =
-style=3D"font-family:monospace"><br></span></div><div><span style=3D"font-f=
-amily:monospace">Brian<br></span></div></div></div>
-
---0000000000000e867e061d675e52--
 
