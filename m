@@ -1,130 +1,189 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9372C3DA5D
-	for <webhook@archiver.kernel.org>; Wed, 17 Jul 2024 20:38:15 +0000 (UTC)
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
- by mx.groups.io with SMTP id smtpd.web11.404.1721248688623382645
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F427C3DA49
+	for <webhook@archiver.kernel.org>; Thu, 18 Jul 2024 14:14:52 +0000 (UTC)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+ by mx.groups.io with SMTP id smtpd.web11.16113.1721312089737612545
  for <yocto@lists.yoctoproject.org>;
- Wed, 17 Jul 2024 13:38:08 -0700
+ Thu, 18 Jul 2024 07:14:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=PrPgBOvX;
- spf=pass (domain: mvista.com, ip: 209.85.214.169, mailfrom: jpuhlman@mvista.com)
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1fb8781ef1bso1509565ad.3
-        for <yocto@lists.yoctoproject.org>; Wed, 17 Jul 2024 13:38:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=VJqHP+QU;
+ spf=pass (domain: gmail.com, ip: 209.85.128.174, mailfrom: akuster808@gmail.com)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-66493332ebfso7258947b3.3
+        for <yocto@lists.yoctoproject.org>; Thu, 18 Jul 2024 07:14:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1721248686; x=1721853486; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6l41N1NhQDjW+nfH9OJPKjPpV1fPydPECey94x/4vmk=;
-        b=PrPgBOvXwV4HnO8woN+p83glO2ai5f46qJLg7AwUYsZZwYzFnh9wAu/Wbsh3f0Q7Q1
-         I03pCAOpIstpQL69Lamn2s2228cY9RybaQZN8bje1P4rvb5XYHWmXrwSjuFQ+lvLlvhN
-         EkYPfFeK1oMOVk5bv4szTEteyoonQHZ4XNgnE=
+        d=gmail.com; s=20230601; t=1721312089; x=1721916889; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=JS7qBoi05G3lWryW4qMK5KtOq7TPeQ/CEfLlEI14NIQ=;
+        b=VJqHP+QUhpRDlVC6PyDC5pTdD91qR7HaEdsgyKm8CDQ3PbgiHUMv4CtiXbcuRy406j
+         Y6AU34KpNh0u4qZ/HTlv32zlMCBwwqV0t1ICA+bxk5Aob1rMxR5lu06B91dQVhYXUFOb
+         QicrQwhmIgftBnQ7ueeF5tfShgnh339KMhGPe58UP4gJigVjL/3TifYPsJ7jvaxGEtMp
+         GOzD9iwRf5nXVzWOGj0NM9/VP0zpPwZRRZCYdKwu2XGxgLvl/9y38gtJFYR4oGna8VqB
+         76PQe3YeX/BUle0UmtW+1Lby03uzKYaPZO1AD2Ldpzu4w4HLh08zP5i+IeOvHp5fE7+h
+         nD2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721248686; x=1721853486;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6l41N1NhQDjW+nfH9OJPKjPpV1fPydPECey94x/4vmk=;
-        b=vkNaB10qE0E+0NZDnD5CSthBIfPedzst8PpDBaJQTo0ruKcM39AcZMepuNqyOaq2ep
-         2MgQa31Fu8s5NhSqBKRpjO1oKAtl699fyYfvqBz0us1+WpaqxvRGNmP8FGDb0lnBwCWt
-         5HMA8Uz5cgmDWvGpQK6+l8vKpdDks7rnP2F2boFIwJcxIB9MenHdn84HEh6XwOuLxLr7
-         XDUL7j5G14x/8RHAD0HxUMiY7iaHFNc4ZmvyLY878TrHdVjMaQlpKECZGdzoJJnI4aDE
-         R82SrXgwoI0BznhxW5jO3cp0v3S/aVrLxZtOfZmgzrbdDbx1XdI+DlghCE66Pw/CTkCQ
-         WZSA==
-X-Gm-Message-State: AOJu0YwoHm7r92uAhFrafQw74IwHFjwx6+m8PfE3TiVHP6UZ1JyfhrxL
-	crSSSFU9djfHCPQvdZeEsPmAll6l7puGuvAXAfxkaR0C+o1q5+FORDd1L/ndLbIWSXkKWvK3uaF
-	O
-X-Google-Smtp-Source: AGHT+IFy5QXi8MAeFdDN3+eUFZrBxHIOB+hqfaymbi68XQBCWapMeH+7psYV4pPn1Z/PlztmGz7akg==
-X-Received: by 2002:a17:903:2449:b0:1fb:9627:b353 with SMTP id d9443c01a7336-1fc4e1358ffmr23294005ad.12.1721248686621;
-        Wed, 17 Jul 2024 13:38:06 -0700 (PDT)
-Received: from [192.168.1.9] (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1fc0eea3cfbsm77581155ad.115.2024.07.17.13.38.05
+        d=1e100.net; s=20230601; t=1721312089; x=1721916889;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JS7qBoi05G3lWryW4qMK5KtOq7TPeQ/CEfLlEI14NIQ=;
+        b=D4osXQ7+KpfUvY9cHm4hRJGfMaH6TDRzyiblsbLvUWfyHzgykEppDZLfFycuUX/lQ1
+         r9RZXnDeKC9o0LwNebL7RoVR9Lm617qLpyQrsAK3MNyNQTKexvkEHOAh6sR6f4fvV/jF
+         Rx0xpRg6GwKeEEDH9bnLqAU38I3/Rw5JtnzlNskFtkc5Q4GZhf78AgazHHATIdbXCVF8
+         o6AnkM0HHtU4rLphPgfyEYgowz/+Hlq9ISPHdfS9IsfVS3WmDiC+dI0/6VhcwAIpA3fa
+         NCTfyhUm2/4tarZHaa06OCE813oycj8DHl4RgBCdo2vGf0lGCCic2vHOCZGXs9dvnggB
+         s5Fw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFYpLOB0LWHaKOF39oMX22FO8t/X5yNh/FXMjCGACGfzTmsQbjzWFRYvc1DxTdRke6sf6+NdBkySb/J0rXvDKVl6S3hLm3OuN/grvX
+X-Gm-Message-State: AOJu0Yw4nrKnv50m03BuEmpQM6Fxre75+zIijt4GG97ke5nUZt1vlnoW
+	MX7XEXIrEtDf/zq+kE336wKmOeXMjheZGfy2fsFAssQM5JS31oz6
+X-Google-Smtp-Source: AGHT+IETXnKDXkKUWz/88f0DAPHSxh2e3HYAfGd2P3OVCzB7XLA4GFUeuZAhk4pM4iSrVPPM7Y/72g==
+X-Received: by 2002:a05:690c:d91:b0:64a:d9a1:db3f with SMTP id 00721157ae682-66603516a87mr39219757b3.7.1721312088759;
+        Thu, 18 Jul 2024 07:14:48 -0700 (PDT)
+Received: from ?IPV6:2600:1700:45dd:7000:8cb7:cc5a:7aad:a524? ([2600:1700:45dd:7000:8cb7:cc5a:7aad:a524])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-666042bc58asm3394417b3.134.2024.07.18.07.14.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jul 2024 13:38:05 -0700 (PDT)
-Message-ID: <3ffa325d-b44d-4bf8-993c-91be53059da8@mvista.com>
-Date: Wed, 17 Jul 2024 13:38:05 -0700
+        Thu, 18 Jul 2024 07:14:48 -0700 (PDT)
+Message-ID: <6080b3ef-fd52-43e0-a7a1-17e81c21455f@gmail.com>
+Date: Thu, 18 Jul 2024 10:14:48 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [meta-cgl] [PATCH] resource-agents: fix Upstream-Status
-To: yocto@lists.yoctoproject.org, wangmy@fujitsu.com
-References: <1721180407-14937-1-git-send-email-wangmy@fujitsu.com>
+Subject: Re: [meta-security][PATCH] fail2ban: update to 1.1.0+
+To: Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+ yocto@lists.yoctoproject.org
+References: <20240708131138.3125264-1-rasmus.villemoes@prevas.dk>
 Content-Language: en-US
-From: Jeremy Puhlman <jpuhlman@mvista.com>
-In-Reply-To: <1721180407-14937-1-git-send-email-wangmy@fujitsu.com>
+From: akuster808 <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; keydata=
+ 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
+ ApZ86eOP
+In-Reply-To: <20240708131138.3125264-1-rasmus.villemoes@prevas.dk>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 Jul 2024 20:38:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63529
+ <yocto@lists.yoctoproject.org>; Thu, 18 Jul 2024 14:14:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63530
 
-Merged.
 
-On 7/16/2024 6:40 PM, wangmy via lists.yoctoproject.org wrote:
-> From: Wang Mingyu <wangmy@fujitsu.com>
+
+On 7/8/24 9:11 AM, Rasmus Villemoes wrote:
+> From: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
 >
-> Signed-off-by: Wang Mingyu <wangmy@fujitsu.com>
+> Current 1.0.2 version does not work with scarthgap or later releases,
+> as the asynchat module has been removed (as scheduled) from python's
+> stdlib as of v3.12.
+>
+> fail2ban 1.1.0 also does not work out-of-the-box, as the distutils
+> module which the pyinotify and systemd backends depend has also been
+> removed.
+>
+> So update the recipe to point at commit ac62658c10f4, which fixes
+> those two backends to no longer depend on distutils.
+>
+> Upstream's out-of-the-box ban action now uses the 'nft'
+> command. People can still override and customize that in
+> jail.conf/jail.local, but to make the recipe useful without
+> customizing things back to use iptables, change the dependency
+> iptables->nftables.
+>
+> Since 1.1.0, fail2ban has been python3-only, so the recipe becomes
+> somewhat simpler since the whole do_compile preparation step can be
+> removed.
+
+I am seeing an install error, see: 
+https://errors.yoctoproject.org/Errors/Details/791129/
+>
+> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
 > ---
->   .../resource-agents/01-disable-doc-build.patch                  | 2 ++
->   .../resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch     | 2 ++
->   .../resource-agents/03-fix-header-defs-lookup.patch             | 2 ++
->   3 files changed, 6 insertions(+)
+>   ...fail2ban_1.0.2.bb => python3-fail2ban_git.bb} | 16 ++++------------
+>   1 file changed, 4 insertions(+), 12 deletions(-)
+>   rename dynamic-layers/meta-python/recipes-security/fail2ban/{python3-fail2ban_1.0.2.bb => python3-fail2ban_git.bb} (89%)
 >
-> diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch
-> index f136ec8..9429eb4 100644
-> --- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch
-> +++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/01-disable-doc-build.patch
-> @@ -3,6 +3,8 @@ From: Bian Naimeng <biannm@cn.fujitsu.com>
->   Date: Tue, 30 Jun 2015 16:42:48 +0800
->   Subject: [PATCH] disable doc build
+> diff --git a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_git.bb
+> similarity index 89%
+> rename from dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
+> rename to dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_git.bb
+> index bf5f87d..1d0fb62 100644
+> --- a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_1.0.2.bb
+> +++ b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_git.bb
+> @@ -11,12 +11,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
 >   
-> +Upstream-Status: Pending
+>   DEPENDS = "python3-native"
+>   
+> -SRCREV = "e1d3006b0330e9777705a7baafe3989d442ed120"
+> +SRCREV = "ac62658c10f492911f8a0037a0bcf97c8521cd78"
+>   SRC_URI = "git://github.com/fail2ban/fail2ban.git;branch=master;protocol=https \
+>              file://initd \
+>              file://run-ptest \
+>              "
+>   
+> +PV = "1.1.0+git"
 > +
->   Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
->   ---
->    Makefile.am | 2 +-
-> diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch
-> index ca36bc6..75ac8e7 100644
-> --- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch
-> +++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/02-set-OCF_ROOT_DIR-to-libdir-ocf.patch
-> @@ -3,6 +3,8 @@ From: Bian Naimeng <biannm@cn.fujitsu.com>
->   Date: Tue, 30 Jun 2015 16:42:48 +0800
->   Subject: [PATCH] Set OCF_ROOT_DIR to ${libdir}/ocf
+>   UPSTREAM_CHECK_GITTAGREGEX = "(?P<pver>\d+(\.\d+)+)"
 >   
-> +Upstream-Status: Pending
-> +
->   Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+>   inherit update-rc.d ptest setuptools3_legacy
+> @@ -26,16 +28,6 @@ SYSTEMD_SERVICE:${PN} = "fail2ban.service"
 >   
->   ---
-> diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch
-> index fb578cb..32454fb 100644
-> --- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch
-> +++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/03-fix-header-defs-lookup.patch
-> @@ -3,6 +3,8 @@ From: Bian Naimeng <biannm@cn.fujitsu.com>
->   Date: Tue, 1 Apr 2014 16:20:39 +0200
->   Subject: [PATCH] fix header defs lookup
+>   S = "${WORKDIR}/git"
 >   
-> +Upstream-Status: Pending
-> +
->   Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
+> -do_compile () {
+> -    cd ${S}
+> -
+> -    #remove symlink to python3
+> -    # otherwise 2to3 is run against it
+> -    rm -f bin/fail2ban-python
+> -
+> -    ./fail2ban-2to3
+> -}
+> -
+>   do_install:append () {
+>       rm  -f ${D}/${bindir}/fail2ban-python
+>       install -d ${D}/${sysconfdir}/fail2ban
+> @@ -66,7 +58,7 @@ INITSCRIPT_PARAMS = "defaults 25"
 >   
->   ---
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#63518): https://lists.yoctoproject.org/g/yocto/message/63518
-> Mute This Topic: https://lists.yoctoproject.org/mt/107264397/2167262
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jpuhlman@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
-
--- 
-Jeremy Puhlman
-jpuhlman@mvista.com
+>   INSANE_SKIP:${PN}:append = "already-stripped"
+>   
+> -RDEPENDS:${PN} = "${VIRTUAL-RUNTIME_base-utils-syslog} iptables python3-core python3-pyinotify"
+> +RDEPENDS:${PN} = "${VIRTUAL-RUNTIME_base-utils-syslog} nftables python3-core python3-pyinotify"
+>   RDEPENDS:${PN} += "python3-sqlite3"
+>   RDEPENDS:${PN} += " python3-logging python3-fcntl python3-json"
+>   RDEPENDS:${PN}-ptest = "python3-core python3-io python3-modules python3-fail2ban"
 
 
