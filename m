@@ -1,434 +1,204 @@
-Return-Path: <u.apeiron@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8510FC3DA59
-	for <webhook@archiver.kernel.org>; Mon, 22 Jul 2024 17:47:16 +0000 (UTC)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
- by mx.groups.io with SMTP id smtpd.web11.24614.1721670434962489672
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E809C3DA5D
+	for <webhook@archiver.kernel.org>; Mon, 22 Jul 2024 23:17:48 +0000 (UTC)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web11.32205.1721690257869233401
  for <yocto@lists.yoctoproject.org>;
- Mon, 22 Jul 2024 10:47:15 -0700
+ Mon, 22 Jul 2024 16:17:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=QE99NTeY;
- spf=pass (domain: gmail.com, ip: 209.85.128.181, mailfrom: u.apeiron@gmail.com)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-654cf0a069eso47166477b3.1
-        for <yocto@lists.yoctoproject.org>; Mon, 22 Jul 2024 10:47:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=eVfp81pl;
+ spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2cb7cd6f5f2so2712781a91.2
+        for <yocto@lists.yoctoproject.org>; Mon, 22 Jul 2024 16:17:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721670434; x=1722275234; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1721690257; x=1722295057; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=bd8blUUAblFFS7QlMoLhazbt7LPoLKcJOcv5FCbFQoM=;
-        b=QE99NTeYWQ2y4w9uAqSAYFJHz25RsC5GbbWjA/7xOU08c/ZFNjo5CRHyfjkzq1v5CX
-         tIwkNK9ly3CeLhWWXp0JbS2w39QevzXBURj9mxA5huDQj1Gc+SuY070WEipKAiZm4RVc
-         pZCKMHKyRwHu9NDwT32Qu78xUx+E4UaQVkWZBli110/cn9CA4ga8i/HKThw4Zx0Qn5yX
-         y0xcDC6gcyOP8hPHQjavglyk0m71GQKpJox764gkQZtQVOcl0RkLaCZ4IGRhxvCR9HVR
-         knbwLs2qERmk2VWgpvPNOn93SMVca1cfjJ31Sh8Wk5eTjro7MhKHhjoN9wYUWEHetgfi
-         pn3w==
+        bh=C7qD5iVv69b4RPkTsvDNIRzx97dMcLInQThWoTuNQ40=;
+        b=eVfp81plZhACPWOowAMZbF3qrhc6h7S1KX163xCUwD4GAxQfihVmBfzGU4DcJr8OOI
+         NoThvCssNhX790b2ABV1TB/o8afGRUPmq2Pd+/zKUt59srJ71vf48bdE0jIwPJN6d2jD
+         h/wzzc/Z0w4xbe5gnhIeXCJXVQKOTKLotQEWCWRHkJvyxR7J3HvgITUBR6kgS6WIUKSb
+         Y8Su67A8FhAMD59fFZvlRWCnFOWR7l7pBoAxDPBARL18+6tAvmszCNOnuR0lJqg2oSEP
+         IEDTSehj9OkQFfN/BcxbsVyhGQk1y2W53JFUQt/nT6wzd4AnA7NBdvqx3xozGTAm+jkl
+         ZRPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721670434; x=1722275234;
+        d=1e100.net; s=20230601; t=1721690257; x=1722295057;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bd8blUUAblFFS7QlMoLhazbt7LPoLKcJOcv5FCbFQoM=;
-        b=RVSGRvDMWl1kMVe36ikZO8Bj+B9nubKGdpVi0iI++uaaLjOGk3LiH9XP3sD79hdklw
-         Hhlk+akZe/7xCOP8h45vdWsBxksybJ3ENV38lXNvITbQaTEt22fuUeTyPfN4cosuq7Ti
-         7WUKDzgAtWDgQaDmckVK+JEbyYk7BpzspTshMBIFJhGQXNUcQfffomMixdG3GsZVEEWN
-         OeR+KukDVGh+wXSl6e1jrlA03hmOTNtNP7kNqpGMZnaSUiSBW1JBfnBxrvtCgasf254W
-         txiPBjfCCnX+QpzcrWFQLb+8qG7lGL8gX6/wxWThtHunRiUKlDxUhU0jfzvsivrkBAYD
-         MrkQ==
-X-Gm-Message-State: AOJu0Yx8OhIrLVS2e28WPKKw9gGpmutj/dcdTOrHMvbpzyXOGHVDB264
-	QHmAQIvMKU/93B+2aSAztLRWNuf6ZZ0artQYVUdFN1quE1PZOAveVV/IdXEv84LwRMS0ymbP/C4
-	9Y7+eJbIpaGHu59KWIRF2tsLW3A3MKWH50zc=
-X-Google-Smtp-Source: AGHT+IE4eHIKwZx2l5OZsECPafcYKh/CCV4BNqEBfEKL9Udpk/AMipRWReDkXrxpny391zcqOhDly4nFQFf/oKqOPbA=
-X-Received: by 2002:a05:690c:f14:b0:648:3c1d:36d6 with SMTP id
- 00721157ae682-66ad89d933bmr91579697b3.10.1721670433739; Mon, 22 Jul 2024
- 10:47:13 -0700 (PDT)
+        bh=C7qD5iVv69b4RPkTsvDNIRzx97dMcLInQThWoTuNQ40=;
+        b=GxB80jBTlWTAPAmKRLpvd/uvWyqsC0ZFO4ZL41nrKBAgDIjO85kHDb5OajNiqgu6+g
+         eCxJEz9Xp/oKxEPVoDNKIQq0EjP/VqAbjJsQEUbYrOzaJhQW5QfA48bILyWi8E+56sCI
+         C5are4uNdjuLtfVuIpEE1z7goF2JxUrt6NmPsburKRRRHhAgacgoZuL1K9Upd7CYv33g
+         0R6q7Xep6+Uh1C0Bh9nPAHzerGtfxy9DK/Mt+iyn5YH+nNf/c1L/g5Eh41PYfZox9dsG
+         rKstGmWcJEq1ZWJt3MRAx1Bs2q0hVuaYhEkUdasA1nuQKZnEx/JpE9wo3OkCzpiG39KR
+         2kUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTXGr1hH6/p9vN2j1yshtbD3IxXhjsZIHzq5GRGtNxCAPxqF2G2d340A73S2UErcfmK/GCww6jxFlvtuiS7j8hGHV1UiOXJYnLBDAE
+X-Gm-Message-State: AOJu0YzP7a97DNCptzAbWG6Z232CJX9E2YYeuOHF/smJWIjRtw/l0E6N
+	A5HGPQ8Pl6ustJ1EC0vOQLGWWxvCW1DrrMcay4h3lE6uZJn6/C1sWAqTk5SpUMN0z1b+EZd42np
+	QWldHE12E4uBh0b3eVd74R7sCgyA=
+X-Google-Smtp-Source: AGHT+IHr/vb4Pz+nc+ozkZz98PvYQnSnIWYc8R4vqWlOowylzw387Au3wMWE40PbBT9zVX9Gok7rYy6OEJ0ZljluPU0=
+X-Received: by 2002:a17:90b:2283:b0:2c9:65f5:5f5b with SMTP id
+ 98e67ed59e1d1-2cd27431322mr7370549a91.24.1721690257014; Mon, 22 Jul 2024
+ 16:17:37 -0700 (PDT)
 MIME-Version: 1.0
-From: "Ulises V." <u.apeiron@gmail.com>
-Date: Mon, 22 Jul 2024 11:47:03 -0600
-Message-ID: <CAK+BxzT_5ipwp+F6QuQctr-M+XfXy3yuN+ZkJP+Rbq+sDEonTA@mail.gmail.com>
-Subject: problems while creating a initrd image with wic image size.
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000009fa910061dd9a29e"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 22 Jul 2024 16:17:26 -0700
+Message-ID: <CAK5yBb_Ty+W7cokNYHH0CO+OiqZ+PC298EC=n8+Nu7_RhprB1g@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000002ec85f061dde407f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Jul 2024 17:47:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63549
+ <yocto@lists.yoctoproject.org>; Mon, 22 Jul 2024 23:17:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63551
 
---0000000000009fa910061dd9a29e
+--0000000000002ec85f061dde407f
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello everyone,
+All,
 
-I'm trying to run Automotive Grade Linux (AGL) on beagleboneai-64.
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-AGL uses a yocto based build. I'm trying to generate an initrd image for
-the beagleboneai-64.
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-I'm using yocto scarthgap. I added the following features to
-conf/local.conf but got some errors while creating the wic image.
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 407
+unassigned or newcomer bugs.
 
-INITRAMFS_IMAGE = "core-image-tiny-initramfs"
-INITRAMFS_IMAGE_BUNDLE = "1"
-INITRAMFS_IMAGE_NAME ?= "${INITRAMFS_IMAGE}-${MACHINE}"
-INITRAMFS_KERNEL_IMAGE="${KERNEL_IMAGETYPE}-initramfs-${MACHINE}.bin"
-VIRTUAL-RUNTIME_dev_manager = "busybox-mdev"
-IMAGE_BOOT_FILES:append = " ${INITRAMFS_KERNEL_IMAGE};${KERNEL_IMAGETYPE}"
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.1=E2=80=9D, =E2=80=9C5.2", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.1" and then =E2=80=9C5.2=E2=80=9D.
 
-IMAGE_ROOTFS_MAXSIZE ?= "4294967296"
-ROOTFS_PARTITION_SIZE ?= "4294967296"
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
-SDCARD_ROOTFS ?= "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4"
+Thanks,
 
-IMAGE_FSTYPES:append = " ext4 cpio.gz"
 
-These are the errors I got.
 
-DEBUG: Executing python function extend_recipe_sysroot
-NOTE: Direct dependencies are
-['/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-core/glibc/cross-localedef-native_2.39.bb:do_populate_sysroot',
-'/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-core/glibc/ldconfig-native_2.12.1.bb:do_populate_sysroot',
-'/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/binutils/binutils-cross_2.42.bb:do_populate_sysroot',
-'/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/cdrtools/cdrtools-native_3.01.bb:do_populate_sysroot',
-'/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/qemu/qemuwrapper-cross_1.0.bb:do_populate_sysroot',
-'/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-kernel/kmod/depmodwrapper-cross_1.0.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/meta-selinux/recipes-security/selinux/policycoreutils_3.6.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-core/update-rc.d/update-rc.d_0.8.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/btrfs-tools/btrfs-tools_6.7.1.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/createrepo-c/createrepo-c_1.0.4.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/dnf/dnf_4.19.0.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/dosfstools/dosfstools_4.2.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.47.0.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/erofs-utils/erofs-utils_1.7.1.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/fdisk/gptfdisk_1.0.9.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/makedevs/makedevs_1.0.1.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/mtools/mtools_4.0.43.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/opkg-utils/opkg-utils_0.6.3.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/rpm/rpm_4.19.1.1.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/squashfs-tools/squashfs-tools_git.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/syslinux/syslinux_6.04-pre2.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-extended/parted/parted_3.6.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-extended/pigz/pigz_2.8.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-extended/xz/xz_5.4.6.bb:do_populate_sysroot',
-'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-support/bmaptool/bmaptool_git.bb:
-do_populate_sysroot']
-NOTE: u-boot-ti-staging exists in sysroot, but is stale
-(u-boot-ti-staging.fb4c3165ab7b6a4cdff9ac6dd66ec27131b6b0a1458829b9a2435efbb437d016
-vs.
-u-boot-ti-staging.e12d75717bc48fff394b754723686e43ed4c4136875027162649d00c6473048b),
-removing.
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-boot-beaglebone-ai64-2023.04+git-r0.img
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-boot-spl.bin
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/tispl.bin-beaglebone-ai64-2023.04+git-r0
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-boot.img
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-boot-spl.bin-beaglebone-ai64-2023.04+git-r0
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/tispl.bin
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/u-boot-ti-staging
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/u-boot
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/virtual_bootloader
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/
-NOTE: linux-bb.org exists in sysroot, but is stale
-(linux-bb.org.72fd73ea1b79abe5b75726e3efd6ea0d79ca9966b16cddfdaafc987fba084c80
-vs.
-linux-bb.org.2a69e1fa14e6277a5b20f66736709b5530721756913f3d6246e20f465f8b792e),
-removing.
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/
-linux-bb.org
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/virtual_kernel
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-only/fitImage
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/
-DEBUG: Removing manifest:
-/media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-only/
-NOTE: Installed into sysroot: ['u-boot-ti-staging', 'linux-bb.org']
-NOTE: Skipping as already exists in sysroot: ['trusted-firmware-a',
-'optee-os', 'ti-dm-fw', 'ti-sci-fw', 'gettext-minimal-native',
-'cross-localedef-native', 'glibc', 'ldconfig-native',
-'systemd-systemctl-native', 'binutils-cross-aarch64', 'cdrtools-native',
-'cmake-native', 'gcc-runtime', 'libgcc', 'libtool-native', 'm4-native',
-'opkg-utils', 'qemu-native', 'qemuwrapper-cross', 'texinfo-dummy-native',
-'depmodwrapper-cross', 'linux-libc-headers', 'nspr-native', 'nss-native',
-'libselinux-native', 'libsemanage-native', 'libsepol-native',
-'policycoreutils-native', 'openssl-native', 'coreutils-native',
-'expat-native', 'gettext-native', 'glib-2.0-native', 'libxml2-native',
-'ncurses-native', 'readline-native', 'update-rc.d-native',
-'util-linux-libuuid-native', 'util-linux-native', 'zlib-native',
-'btrfs-tools-native', 'createrepo-c-native', 'desktop-file-utils-native',
-'dnf-native', 'dosfstools-native', 'e2fsprogs-native', 'elfutils-native',
-'erofs-utils-native', 'gptfdisk-native', 'file-native', 'flex-native',
-'gnu-config-native', 'json-c-native', 'libcomps-native', 'libdnf-native',
-'libedit-native', 'libmodulemd-native', 'librepo-native', 'lua-native',
-'make-native', 'makedevs-native', 'mtools-native', 'nasm-native',
-'opkg-utils-native', 'perl-native', 'pseudo-native',
-'python3-build-native', 'python3-flit-core-native',
-'python3-iniparse-native', 'python3-installer-native',
-'python3-packaging-native', 'python3-pyproject-hooks-native',
-'python3-setuptools-native', 'python3-six-native', 'python3-wheel-native',
-'python3-native', 'rpm-native', 'squashfs-tools-native', 'swig-native',
-'syslinux-native', 'bzip2-native', 'cpio-native', 'groff-native',
-'libarchive-native', 'libidn2-native', 'libnsl2-native', 'libsolv-native',
-'libtirpc-native', 'lzlib-native', 'parted-native', 'pigz-native',
-'shadow-native', 'unzip-native', 'xz-native', 'zstd-native',
-'gdk-pixbuf-native', 'gobject-introspection-native',
-'libjpeg-turbo-native', 'kmod-native', 'libpng-native', 'acl-native',
-'attr-native', 'bmaptool-native', 'curl-native', 'debianutils-native',
-'gdbm-native', 'gmp-native', 'gnutls-native', 'libtasn1-native',
-'gpgme-native', 'itstool-native', 'libassuan-native', 'libbsd-native',
-'libcap-ng-native', 'libcap-native', 'libcheck-native', 'libffi-native',
-'libgcrypt-native', 'libgpg-error-native', 'libmd-native',
-'libmicrohttpd-native', 'libpcre2-native', 'libunistring-native',
-'libyaml-native', 'lz4-native', 'lzo-native', 'nettle-native',
-'popt-native', 'shared-mime-info-native', 'sqlite3-native']
-DEBUG: Python function extend_recipe_sysroot finished
-DEBUG: Executing python function set_image_size
-DEBUG: 2361054.800000 = 1816196 * 1.300000
-DEBUG: 2467550.800000 = max(2361054.800000, 8192)[2361054.800000] + 106496
-DEBUG: 2467551.000000 = int(2467550.800000)
-DEBUG: 2467551 = aligned(2467551)
-DEBUG: returning 2467551
-DEBUG: Python function set_image_size finished
-DEBUG: Executing shell function do_image_wic
-INFO: Creating image(s)...
+*Stephen K. Jolley*
 
-ERROR: File system image of partition None is larger (336164 kB) than its
-allowed size 131072 kB
+*Yocto Project Program Manager*
 
-WARNING: exit code 1 from a shell command.
-~
+(    *Cell*:                (208) 244-4460
 
-Thanks.
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
 
-Ulises Vega
-
---0000000000009fa910061dd9a29e
+--0000000000002ec85f061dde407f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello everyone,</div><div><br></div><div>I&#39;m tryi=
-ng to run Automotive Grade Linux (AGL) on beagleboneai-64.</div><div><br></=
-div><div>AGL uses a yocto based build. I&#39;m trying to generate an initrd=
- image for the beagleboneai-64.</div><div><br></div><div>I&#39;m using yoct=
-o scarthgap. I added the following features to conf/local.conf but got some=
- errors while creating the wic image.</div><div><br></div><div><span class=
-=3D"gmail-im">INITRAMFS_IMAGE =3D &quot;core-image-tiny-initramfs&quot;<br>=
-INITRAMFS_IMAGE_BUNDLE =3D &quot;1&quot;<br>INITRAMFS_IMAGE_NAME ?=3D &quot=
-;${INITRAMFS_IMAGE}-${MACHINE}&quot;<br>INITRAMFS_KERNEL_IMAGE=3D&quot;${KE=
-RNEL_IMAGETYPE}-initramfs-${MACHINE}.bin&quot;<br>VIRTUAL-RUNTIME_dev_manag=
-er =3D &quot;busybox-mdev&quot;<br>IMAGE_BOOT_FILES:append =3D &quot; ${INI=
-TRAMFS_KERNEL_IMAGE};${KERNEL_IMAGETYPE}&quot;<br><br>IMAGE_ROOTFS_MAXSIZE =
-?=3D &quot;4294967296&quot;<br>ROOTFS_PARTITION_SIZE ?=3D &quot;4294967296&=
-quot;<br><br>SDCARD_ROOTFS ?=3D &quot;${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.roo=
-tfs.ext4&quot;</span></div><div><span class=3D"gmail-im"><br></span></div><=
-div>IMAGE_FSTYPES:append =3D &quot; ext4 cpio.gz&quot;</div><div><br></div>=
-<div>These are the errors I got.</div><div><br></div><div><div><div class=
-=3D"gmail-im"><div>DEBUG: Executing python function extend_recipe_sysroot<b=
-r>NOTE: Direct dependencies are [&#39;/media/ulisesv/linux_workspace/AGL/ri=
-cefish/external/poky/meta/recipes-core/glibc/cross-localedef-native_2.39.bb=
-:do_populate_sysroot&#39;, &#39;/media/ulisesv/linux_workspace/AGL/ricefish=
-/external/poky/meta/recipes-core/glibc/ldconfig-native_2.12.1.bb:do_populat=
-e_sysroot&#39;, &#39;/media/ulisesv/linux_workspace/AGL/ricefish/external/p=
-oky/meta/recipes-devtools/binutils/binutils-cross_2.42.bb:do_populate_sysro=
-ot&#39;, &#39;/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/met=
-a/recipes-devtools/cdrtools/cdrtools-native_3.01.bb:do_populate_sysroot&#39=
-;, &#39;/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/reci=
-pes-devtools/qemu/qemuwrapper-cross_1.0.bb:do_populate_sysroot&#39;, &#39;/=
-media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-kerne=
-l/kmod/depmodwrapper-cross_1.0.bb:do_populate_sysroot&#39;, &#39;virtual:na=
-tive:/media/ulisesv/linux_workspace/AGL/ricefish/external/meta-selinux/reci=
-pes-security/selinux/policycoreutils_3.6.bb:do_populate_sysroot&#39;, &#39;=
-virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/me=
-ta/recipes-core/update-rc.d/update-rc.d_0.8.bb:do_populate_sysroot&#39;, &#=
-39;virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/btrfs-tools/btrfs-tools_6.7.1.bb:do_populate_sysroot=
-&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/exte=
-rnal/poky/meta/recipes-devtools/createrepo-c/createrepo-c_1.0.4.bb:do_popul=
-ate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/ri=
-cefish/external/poky/meta/recipes-devtools/dnf/dnf_4.19.0.bb:do_populate_sy=
-sroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish=
-/external/poky/meta/recipes-devtools/dosfstools/dosfstools_4.2.bb:do_popula=
-te_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/ric=
-efish/external/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.47.0.bb:do_=
-populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/A=
-GL/ricefish/external/poky/meta/recipes-devtools/erofs-utils/erofs-utils_1.7=
-.1.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_wo=
-rkspace/AGL/ricefish/external/poky/meta/recipes-devtools/fdisk/gptfdisk_1.0=
-.9.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_wo=
-rkspace/AGL/ricefish/external/poky/meta/recipes-devtools/makedevs/makedevs_=
-1.0.1.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux=
-_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/mtools/mtools_4=
-.0.43.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux=
-_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/opkg-utils/opkg=
--utils_0.6.3.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulises=
-v/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/pseudo/p=
-seudo_git.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/l=
-inux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/rpm/rpm_4.1=
-9.1.1.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux=
-_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/squashfs-tools/=
-squashfs-tools_git.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/=
-ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/sy=
-slinux/syslinux_6.04-pre2.bb:do_populate_sysroot&#39;, &#39;virtual:native:=
-/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-exte=
-nded/parted/parted_3.6.bb:do_populate_sysroot&#39;, &#39;virtual:native:/me=
-dia/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-extende=
-d/pigz/pigz_2.8.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/uli=
-sesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-extended/xz/xz=
-_5.4.6.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linu=
-x_workspace/AGL/ricefish/external/poky/meta/recipes-support/bmaptool/bmapto=
-ol_git.bb:do_populate_sysroot&#39;]<br>NOTE: u-boot-ti-staging exists in sy=
-sroot, but is stale (u-boot-ti-staging.fb4c3165ab7b6a4cdff9ac6dd66ec27131b6=
-b0a1458829b9a2435efbb437d016 vs. u-boot-ti-staging.e12d75717bc48fff394b7547=
-23686e43ed4c4136875027162649d00c6473048b), removing.<br>DEBUG: Removing man=
-ifest: /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work=
-/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot=
-/u-boot-beaglebone-ai64-2023.04+git-r0.img<br>DEBUG: Removing manifest: /me=
-dia/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebon=
-e_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-boot-sp=
-l.bin<br>DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricef=
-ish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-cros=
-ssdk/1.0/recipe-sysroot/boot/tispl.bin-beaglebone-ai64-2023.04+git-r0<br>DE=
-BUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/beagleb=
-one-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/re=
-cipe-sysroot/boot/u-boot.img<br>DEBUG: Removing manifest: /media/ulisesv/li=
-nux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-lin=
-ux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-boot-spl.bin-beaglebo=
-ne-ai64-2023.04+git-r0<br>DEBUG: Removing manifest: /media/ulisesv/linux_wo=
-rkspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl=
--ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/tispl.bin<br>DEBUG: Removing =
-manifest: /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/w=
-ork/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/s=
-ysroot-providers/u-boot-ti-staging<br>DEBUG: Removing manifest: /media/ulis=
-esv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-a=
-gl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/u-bo=
-ot<br>DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish=
-/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssd=
-k/1.0/recipe-sysroot/sysroot-providers/virtual_bootloader<br>DEBUG: Removin=
-g manifest: /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp=
-/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot=
-/sysroot-providers/<br>DEBUG: Removing manifest: /media/ulisesv/linux_works=
-pace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-iv=
-i-demo-qt-crosssdk/1.0/recipe-sysroot/boot/<br>NOTE: <a href=3D"http://linu=
-x-bb.org" target=3D"_blank">linux-bb.org</a> exists in sysroot, but is stal=
-e (linux-bb.org.72fd73ea1b79abe5b75726e3efd6ea0d79ca9966b16cddfdaafc987fba0=
-84c80 vs. linux-bb.org.2a69e1fa14e6277a5b20f66736709b5530721756913f3d6246e2=
-0f465f8b792e), removing.<br>DEBUG: Removing manifest: /media/ulisesv/linux_=
-workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/a=
-gl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-providers/<a href=3D"htt=
-p://linux-bb.org" target=3D"_blank">linux-bb.org</a><br>DEBUG: Removing man=
-ifest: /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work=
-/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysr=
-oot-providers/virtual_kernel<br>DEBUG: Removing manifest: /media/ulisesv/li=
-nux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-lin=
-ux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-only/fitImage<br>DEB=
-UG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/beaglebo=
-ne-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/rec=
-ipe-sysroot/sysroot-providers/<br>DEBUG: Removing manifest: /media/ulisesv/=
-linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beaglebone_ai64-agl-l=
-inux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-only/<br>NOTE: Ins=
-talled into sysroot: [&#39;u-boot-ti-staging&#39;, &#39;<a href=3D"http://l=
-inux-bb.org" target=3D"_blank">linux-bb.org</a>&#39;]<br>NOTE:
- Skipping as already exists in sysroot: [&#39;trusted-firmware-a&#39;,=20
-&#39;optee-os&#39;, &#39;ti-dm-fw&#39;, &#39;ti-sci-fw&#39;, &#39;gettext-m=
-inimal-native&#39;,=20
-&#39;cross-localedef-native&#39;, &#39;glibc&#39;, &#39;ldconfig-native&#39=
-;,=20
-&#39;systemd-systemctl-native&#39;, &#39;binutils-cross-aarch64&#39;, &#39;=
-cdrtools-native&#39;,
- &#39;cmake-native&#39;, &#39;gcc-runtime&#39;, &#39;libgcc&#39;, &#39;libt=
-ool-native&#39;, &#39;m4-native&#39;,
- &#39;opkg-utils&#39;, &#39;qemu-native&#39;, &#39;qemuwrapper-cross&#39;,=
-=20
-&#39;texinfo-dummy-native&#39;, &#39;depmodwrapper-cross&#39;, &#39;linux-l=
-ibc-headers&#39;,=20
-&#39;nspr-native&#39;, &#39;nss-native&#39;, &#39;libselinux-native&#39;, &=
-#39;libsemanage-native&#39;,=20
-&#39;libsepol-native&#39;, &#39;policycoreutils-native&#39;, &#39;openssl-n=
-ative&#39;,=20
-&#39;coreutils-native&#39;, &#39;expat-native&#39;, &#39;gettext-native&#39=
-;, &#39;glib-2.0-native&#39;,
- &#39;libxml2-native&#39;, &#39;ncurses-native&#39;, &#39;readline-native&#=
-39;,=20
-&#39;update-rc.d-native&#39;, &#39;util-linux-libuuid-native&#39;, &#39;uti=
-l-linux-native&#39;,=20
-&#39;zlib-native&#39;, &#39;btrfs-tools-native&#39;, &#39;createrepo-c-nati=
-ve&#39;,=20
-&#39;desktop-file-utils-native&#39;, &#39;dnf-native&#39;, &#39;dosfstools-=
-native&#39;,=20
-&#39;e2fsprogs-native&#39;, &#39;elfutils-native&#39;, &#39;erofs-utils-nat=
-ive&#39;,=20
-&#39;gptfdisk-native&#39;, &#39;file-native&#39;, &#39;flex-native&#39;, &#=
-39;gnu-config-native&#39;,=20
-&#39;json-c-native&#39;, &#39;libcomps-native&#39;, &#39;libdnf-native&#39;=
-, &#39;libedit-native&#39;,=20
-&#39;libmodulemd-native&#39;, &#39;librepo-native&#39;, &#39;lua-native&#39=
-;, &#39;make-native&#39;,=20
-&#39;makedevs-native&#39;, &#39;mtools-native&#39;, &#39;nasm-native&#39;, =
-&#39;opkg-utils-native&#39;,=20
-&#39;perl-native&#39;, &#39;pseudo-native&#39;, &#39;python3-build-native&#=
-39;,=20
-&#39;python3-flit-core-native&#39;, &#39;python3-iniparse-native&#39;,=20
-&#39;python3-installer-native&#39;, &#39;python3-packaging-native&#39;,=20
-&#39;python3-pyproject-hooks-native&#39;, &#39;python3-setuptools-native&#3=
-9;,=20
-&#39;python3-six-native&#39;, &#39;python3-wheel-native&#39;, &#39;python3-=
-native&#39;,=20
-&#39;rpm-native&#39;, &#39;squashfs-tools-native&#39;, &#39;swig-native&#39=
-;, &#39;syslinux-native&#39;,
- &#39;bzip2-native&#39;, &#39;cpio-native&#39;, &#39;groff-native&#39;, &#3=
-9;libarchive-native&#39;,=20
-&#39;libidn2-native&#39;, &#39;libnsl2-native&#39;, &#39;libsolv-native&#39=
-;, &#39;libtirpc-native&#39;,
- &#39;lzlib-native&#39;, &#39;parted-native&#39;, &#39;pigz-native&#39;, &#=
-39;shadow-native&#39;,=20
-&#39;unzip-native&#39;, &#39;xz-native&#39;, &#39;zstd-native&#39;, &#39;gd=
-k-pixbuf-native&#39;,=20
-&#39;gobject-introspection-native&#39;, &#39;libjpeg-turbo-native&#39;,=20
-&#39;kmod-native&#39;, &#39;libpng-native&#39;, &#39;acl-native&#39;, &#39;=
-attr-native&#39;,=20
-&#39;bmaptool-native&#39;, &#39;curl-native&#39;, &#39;debianutils-native&#=
-39;, &#39;gdbm-native&#39;,=20
-&#39;gmp-native&#39;, &#39;gnutls-native&#39;, &#39;libtasn1-native&#39;, &=
-#39;gpgme-native&#39;,=20
-&#39;itstool-native&#39;, &#39;libassuan-native&#39;, &#39;libbsd-native&#3=
-9;,=20
-&#39;libcap-ng-native&#39;, &#39;libcap-native&#39;, &#39;libcheck-native&#=
-39;, &#39;libffi-native&#39;,
- &#39;libgcrypt-native&#39;, &#39;libgpg-error-native&#39;, &#39;libmd-nati=
-ve&#39;,=20
-&#39;libmicrohttpd-native&#39;, &#39;libpcre2-native&#39;, &#39;libunistrin=
-g-native&#39;,=20
-&#39;libyaml-native&#39;, &#39;lz4-native&#39;, &#39;lzo-native&#39;, &#39;=
-nettle-native&#39;,=20
-&#39;popt-native&#39;, &#39;shared-mime-info-native&#39;, &#39;sqlite3-nati=
-ve&#39;]<br>DEBUG: Python function extend_recipe_sysroot finished<br>DEBUG:=
- Executing python function set_image_size<br>DEBUG: 2361054.800000 =3D 1816=
-196 * 1.300000<br>DEBUG: 2467550.800000 =3D max(2361054.800000, 8192)[23610=
-54.800000] + 106496<br>DEBUG: 2467551.000000 =3D int(2467550.800000)<br>DEB=
-UG: 2467551 =3D aligned(2467551)<br>DEBUG: returning 2467551<br>DEBUG: Pyth=
-on function set_image_size finished<br>DEBUG: Executing shell function do_i=
-mage_wic<br>INFO: Creating image(s)...<br><br>ERROR: File system image of p=
-artition None is larger (336164 kB) than its allowed size 131072 kB<br><br>=
-WARNING: exit code 1 from a shell command.<br>~ =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 <br></div><div><br></div></div></div><div>Thanks.</div><div><br></di=
-v><div>Ulises Vega</div></div><div><span class=3D"gmail-im"><br></span></di=
-v></div>
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 407 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.1=E2=80=9D, =E2=80=9C5.2&quot;, &quot;5.99&quot; and &quot;Future&quot;, t=
+he more pressing/urgent issues being in &quot;5.1&quot; and then =E2=80=9C5=
+.2=E2=80=9D.<br><br>Please review this link and if a bug is something you w=
+ould be able to help with either take ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an e-m=
+ail with the bug number you would like and I will assign it to you (please =
+make sure you have a Bugzilla account).  The list is at: <a href=3D"https:/=
+/wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_Bugs"=
+>https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcom=
+er_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoN=
+ormal" style=3D"background-image:initial;background-position:initial;backgr=
+ound-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-s=
+erif">Thanks,<span></span></span></p>
 
---0000000000009fa910061dd9a29e--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--0000000000002ec85f061dde407f--
 
