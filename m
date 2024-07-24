@@ -1,189 +1,82 @@
-Return-Path: <ms.priyanshu.sharma@gmail.com>
+Return-Path: <thomas.isaacson@motorolasolutions.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7378FC3DA63
-	for <webhook@archiver.kernel.org>; Wed, 24 Jul 2024 02:47:36 +0000 (UTC)
-Subject: python3 recipe failing in Yocto scarthgap branch
-To: yocto@lists.yoctoproject.org
-From: "Priyanshu Sharma" <ms.priyanshu.sharma@gmail.com>
-X-Originating-Location: Bengaluru, Karnataka, IN (202.164.25.5)
-X-Originating-Platform: Windows Chrome 126
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BD19C3DA61
+	for <webhook@archiver.kernel.org>; Wed, 24 Jul 2024 05:08:17 +0000 (UTC)
+Received: from mx0b-0019e102.pphosted.com (mx0b-0019e102.pphosted.com [67.231.149.242])
+ by mx.groups.io with SMTP id smtpd.web10.3908.1721797696390484626
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 23 Jul 2024 22:08:16 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@motorolasolutions.com header.s=PPS--2020-03-17 header.b=hpQ7LJDn;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: motorolasolutions.com, ip: 67.231.149.242, mailfrom: prvs=293530f799=thomas.isaacson@motorolasolutions.com)
+Received: from pps.filterd (m0074412.ppops.net [127.0.0.1])
+	by mx0a-0019e102.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 46O2ZXdG010740
+	for <yocto@lists.yoctoproject.org>; Wed, 24 Jul 2024 05:08:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=motorolasolutions.com;
+ h=content-type : date : from : message-id : mime-version : subject : to;
+ s=PPS--2020-03-17; bh=E2Rxnr5EK600gRGGP/ErmyXomnNNZ9x33OA/V+wwofU=;
+ b=hpQ7LJDnTVghSIpaf3MHH1ePvJ7X7WC4/hujoSya7y+UMSN6eME1br1uJszcD9BuxbVM
+ Luredrsq4VgVxX3rDKNECHnqzFMVvOHVAe+ewq17koUAMgtYeDkcLMq4Zm1HsLmu5fQ0
+ uUhv6Z/NtPy3WcMxnGEJa5cF6QaPI3dMiR/fCbaTsyqw8r1RN+O/6G/Vsfoap6YGq6pt
+ dxJe7fHuvpYA5Wpw6dXZqXnQQi12HAGzqYfDkj5kaVW792w92v/MY3fe8D4scOrTgrDw
+ pXkki0qQZ5IhGfvj5dCydYb3LRwfT4QkPCsDzRx9BIiPhnDWjnWuXLmdgEP9Zj2fO6hr 0Q== 
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0019e102.pphosted.com (PPS) with ESMTPS id 40jd0gdw8a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK)
+	for <yocto@lists.yoctoproject.org>; Wed, 24 Jul 2024 05:08:15 +0000
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-2cb4e6725ccso7273892a91.1
+        for <yocto@lists.yoctoproject.org>; Tue, 23 Jul 2024 22:08:15 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxTlmiMgdH1/AcA/s4l/pzS0kjc8pEh5IQEDrGVKGXXxMHW6wsw
+	drIbAq2Zm8QqECubt8Zqqpmuv8udYPvlKJZxevQhKHjD1N3w92QC0ot9nFD9R+msP2XeaT/GE33
+	+bLNdWUgHpEQuJi3++WPiryOcIrJlbGL0PKeJIQxE6f/PTbfgTyenmni1oyOyVk+zn1CDL7XRMz
+	xGFZVn1nXXKLdz3q2NarfVOeO5kLEt2hoBttvMmQbmJLz7jK4=
+X-Received: by 2002:a17:90a:c0f:b0:2c9:5c63:29f4 with SMTP id 98e67ed59e1d1-2cdb515745amr1384340a91.25.1721797694607;
+        Tue, 23 Jul 2024 22:08:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGfBOI6TdikOMDBzfQ0ay/DDXzPNEXg3D7QReRqw8/scHDDQvKez4KtJ3yyu8gtr093S6j4hP6cw/d3I8+w7fE=
+X-Received: by 2002:a17:90a:c0f:b0:2c9:5c63:29f4 with SMTP id
+ 98e67ed59e1d1-2cdb515745amr1384316a91.25.1721797693925; Tue, 23 Jul 2024
+ 22:08:13 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 23 Jul 2024 19:47:34 -0700
-Message-ID: <Oedp.1721789254652860989.pCOY@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="QBmUwpy3HEgsTEqxllHm"
+From: Tom Isaacson <thomas.isaacson@motorolasolutions.com>
+Date: Wed, 24 Jul 2024 17:08:02 +1200
+Message-ID: <CAMp_5HaLZnjOEyajTmbiqEM2khxu0NpYjpRWTSabs462L=Z7=w@mail.gmail.com>
+Subject: SPDX for dependency checks
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-ORIG-GUID: -7PmHq2b3iactBvJcyczCUKwByAbZKz5
+X-Proofpoint-GUID: -7PmHq2b3iactBvJcyczCUKwByAbZKz5
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0 phishscore=0
+ priorityscore=1501 spamscore=0 adultscore=0 suspectscore=0 clxscore=1011
+ mlxscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2407110000
+ definitions=main-2407240035
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Jul 2024 02:47:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63562
+ <yocto@lists.yoctoproject.org>; Wed, 24 Jul 2024 05:08:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63563
 
---QBmUwpy3HEgsTEqxllHm
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+We're using Kirkstone and wanted to take advantage of the SPDX support
+to use for dependency checking. The two apps we have access to are:
+1. Github Dependabot
+(https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide)
+2. Mend (https://www.mend.io/)
 
-I'm building with Yocto project scarthgap branch. The python3 is failing in=
-termittently due to this same error : https://github.com/python/cpython/iss=
-ues/118505
-As per the above forum, I upgraded my ncurses recipe to version 6.5 (which =
-is available in the master branch of poky - https://git.yoctoproject.org/po=
-ky/tree/meta/recipes-core/ncurses?h=3Dmaster )
+We generate the SPDX in a Github Action then tried uploading it using:
+* https://github.com/marketplace/actions/spdx-dependency-submission-action
+* https://pypi.org/project/mend-import-sbom/
+but so far we haven't been able to get it to work. Has anyone else tried this?
 
-However the error continues intermittently.
+Thanks,
 
-./Modules/_cursesmodule.c: In function _curses_window_addch_impl:
-./Modules/_cursesmodule.c:763:9: error: implicit declaration of function se=
-tcchar; did you mean getwchar     ? [-Werror=3Dimplicit-function-declaratio=
-n]
-763 |         setcchar(&wcval, wstr, attr, PAIR_NUMBER(attr), NULL);
-      |         ^~~~~~~~
-      |         getwchar
-./Modules/_cursesmodule.c:765:19: error: implicit declaration of function m=
-vwadd_wch; did you mean mvwad     dch? [-Werror=3Dimplicit-function-declara=
-tion]
-765 |             rtn =3D mvwadd_wch(self->win,y,x, &wcval);
-      |                   ^~~~~~~~~~
-      |                   mvwaddch
-./Modules/_cursesmodule.c:767:19: error: implicit declaration of function w=
-add_wch; did you mean waddch?      [-Werror=3Dimplicit-function-declaration=
-]
-767 |             rtn =3D wadd_wch(self->win, &wcval);
-      |                   ^~~~~~~~
-      |                   waddch
-./Modules/_cursesmodule.c: In function _curses_window_addstr_impl:
-1394 ./Modules/_cursesmodule.c:847:19: error: implicit declaration of funct=
-ion mvwaddwstr; did you mean mvwad     dstr? [-Werror=3Dimplicit-function-d=
-eclaration]
-847 |             rtn =3D mvwaddwstr(self->win,y,x,wstr);
-      |                   ^~~~~~~~~~
-      |                   mvwaddstr
-  4 ./Modules/_cursesmodule.c:849:19: error: implicit declaration of functi=
-on waddwstr; did you mean waddstr     ? [-Werror=3Dimplicit-function-declar=
-ation]
-849 |             rtn =3D waddwstr(self->win,wstr);
-      |                   ^~~~~~~~
-      |                   waddstr
-./Modules/_cursesmodule.c: In function _curses_window_addnstr_impl:
-./Modules/_cursesmodule.c:930:19: error: implicit declaration of function m=
-vwaddnwstr; did you mean mvwa     ddnstr? [-Werror=3Dimplicit-function-decl=
-aration]
-930 |             rtn =3D mvwaddnwstr(self->win,y,x,wstr,n);
-       |                   ^~~~~~~~~~~
-       |                   mvwaddnstr
-./Modules/_cursesmodule.c:932:19: error: implicit declaration of function w=
-addnwstr; did you mean waddns     tr? [-Werror=3Dimplicit-function-declarat=
-ion]
-932 |             rtn =3D waddnwstr(self->win,wstr,n);
-       |                   ^~~~~~~~~
-       |                   waddnstr
+Tom Isaacson
 
-Any fixes or work arounds for this issue?
-#yocto #scarthgap #ncurses
+-- 
 
-Thanks!
 
---QBmUwpy3HEgsTEqxllHm
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>I'm building with Yocto project scarthgap branch. The python3 is faili=
-ng intermittently due to this same error : <a href=3D"https://github.com/py=
-thon/cpython/issues/118505" target=3D"_blank" rel=3D"noopener">https://gith=
-ub.com/python/cpython/issues/118505</a></div>
-<div>As per the above forum, I upgraded my ncurses recipe to version 6.5 (w=
-hich is available in the master branch of poky - <a href=3D"https://git.yoc=
-toproject.org/poky/tree/meta/recipes-core/ncurses?h=3Dmaster" target=3D"_bl=
-ank" rel=3D"noopener">https://git.yoctoproject.org/poky/tree/meta/recipes-c=
-ore/ncurses?h=3Dmaster</a>)<br /><br />However the error continues intermit=
-tently.</div>
-<div>&nbsp;</div>
-<div>
-<pre class=3D"notranslate" style=3D"box-sizing: border-box; font-family: va=
-r(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Cons=
-olas, Liberation Mono, monospace); font-size: 11.9px; margin-top: 0px; marg=
-in-bottom: var(--base-size-16); overflow-wrap: normal; padding: var(--base-=
-size-16); overflow: auto; line-height: 1.45; color: #1f2328; background-col=
-or: var(--bgcolor-muted, var(--color-canvas-subtle)); border-radius: 6px; f=
-ont-style: normal; font-variant-ligatures: normal; font-variant-caps: norma=
-l; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start;=
- text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -web=
-kit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decora=
-tion-style: initial; text-decoration-color: initial;"><code class=3D"notran=
-slate" style=3D"box-sizing: border-box; font-family: var(--fontStack-monosp=
-ace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mon=
-o, monospace); font-size: 11.9px; padding: 0px; margin: 0px; white-space: p=
-re; background: transparent; border-radius: 6px; word-break: normal; border=
-: 0px; display: inline; overflow: visible; line-height: inherit; overflow-w=
-rap: normal;">./Modules/_cursesmodule.c: In function _curses_window_addch_i=
-mpl:
-./Modules/_cursesmodule.c:763:9: error: implicit declaration of function se=
-tcchar; did you mean getwchar     ? [-Werror=3Dimplicit-function-declaratio=
-n]
-763 |         setcchar(&amp;wcval, wstr, attr, PAIR_NUMBER(attr), NULL);
-       |         ^~~~~~~~
-       |         getwchar
-./Modules/_cursesmodule.c:765:19: error: implicit declaration of function m=
-vwadd_wch; did you mean mvwad     dch? [-Werror=3Dimplicit-function-declara=
-tion]
-765 |             rtn =3D mvwadd_wch(self-&gt;win,y,x, &amp;wcval);
-       |                   ^~~~~~~~~~
-       |                   mvwaddch
-./Modules/_cursesmodule.c:767:19: error: implicit declaration of function w=
-add_wch; did you mean waddch?      [-Werror=3Dimplicit-function-declaration=
-]
-767 |             rtn =3D wadd_wch(self-&gt;win, &amp;wcval);
-       |                   ^~~~~~~~
-       |                   waddch
-./Modules/_cursesmodule.c: In function _curses_window_addstr_impl:
-1394 ./Modules/_cursesmodule.c:847:19: error: implicit declaration of funct=
-ion mvwaddwstr; did you mean mvwad     dstr? [-Werror=3Dimplicit-function-d=
-eclaration]
-847 |             rtn =3D mvwaddwstr(self-&gt;win,y,x,wstr);
-       |                   ^~~~~~~~~~
-       |                   mvwaddstr
-   4 ./Modules/_cursesmodule.c:849:19: error: implicit declaration of funct=
-ion waddwstr; did you mean waddstr     ? [-Werror=3Dimplicit-function-decla=
-ration]
-849 |             rtn =3D waddwstr(self-&gt;win,wstr);
-       |                   ^~~~~~~~
-       |                   waddstr
-./Modules/_cursesmodule.c: In function _curses_window_addnstr_impl:
-./Modules/_cursesmodule.c:930:19: error: implicit declaration of function m=
-vwaddnwstr; did you mean mvwa     ddnstr? [-Werror=3Dimplicit-function-decl=
-aration]
-930 |             rtn =3D mvwaddnwstr(self-&gt;win,y,x,wstr,n);
-        |                   ^~~~~~~~~~~
-        |                   mvwaddnstr
-./Modules/_cursesmodule.c:932:19: error: implicit declaration of function w=
-addnwstr; did you mean waddns     tr? [-Werror=3Dimplicit-function-declarat=
-ion]
-932 |             rtn =3D waddnwstr(self-&gt;win,wstr,n);
-        |                   ^~~~~~~~~
-        |                   waddnstr</code></pre>
-<div><br /><br /><code class=3D"notranslate" style=3D"box-sizing: border-bo=
-x; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF=
- Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 11.9px; pad=
-ding: 0px; margin: 0px; white-space: pre; background: transparent; border-r=
-adius: 6px; word-break: normal; border: 0px; display: inline; overflow: vis=
-ible; line-height: inherit; overflow-wrap: normal;">Any fixes or work aroun=
-ds for this issue?</code></div>
-<div><code class=3D"notranslate" style=3D"box-sizing: border-box; font-fami=
-ly: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo=
-, Consolas, Liberation Mono, monospace); font-size: 11.9px; padding: 0px; m=
-argin: 0px; white-space: pre; background: transparent; border-radius: 6px; =
-word-break: normal; border: 0px; display: inline; overflow: visible; line-h=
-eight: inherit; overflow-wrap: normal;">#yocto #scarthgap #ncurses</code></=
-div>
-<div>&nbsp;</div>
-<div><code class=3D"notranslate" style=3D"box-sizing: border-box; font-fami=
-ly: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo=
-, Consolas, Liberation Mono, monospace); font-size: 11.9px; padding: 0px; m=
-argin: 0px; white-space: pre; background: transparent; border-radius: 6px; =
-word-break: normal; border: 0px; display: inline; overflow: visible; line-h=
-eight: inherit; overflow-wrap: normal;">Thanks!</code></div>
-</div>
-
---QBmUwpy3HEgsTEqxllHm--
+*For more information on how and why we collect your personal 
+information, please visit our Privacy Policy 
+<https://www.motorolasolutions.com/en_us/about/privacy-policy.html?elqTrackId=8980d888905940e39a2613a7a3dcb0a7&elqaid=2786&elqat=2#privacystatement>.*
 
