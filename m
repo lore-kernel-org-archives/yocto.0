@@ -1,96 +1,192 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <marek.belisko@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4AA86C3DA5D
-	for <webhook@archiver.kernel.org>; Thu, 25 Jul 2024 09:35:36 +0000 (UTC)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
- by mx.groups.io with SMTP id smtpd.web11.32475.1721900134342295299
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 934C0C3DA5D
+	for <webhook@archiver.kernel.org>; Thu, 25 Jul 2024 10:22:56 +0000 (UTC)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+ by mx.groups.io with SMTP id smtpd.web10.33144.1721902971478482816
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Jul 2024 02:35:35 -0700
+ Thu, 25 Jul 2024 03:22:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=KSpcgiRX;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.53, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4266f3e0df8so4868445e9.2
-        for <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 02:35:34 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=UJhKgXTC;
+ spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: marek.belisko@gmail.com)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ef2fbf1d14so18481291fa.1
+        for <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 03:22:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1721900133; x=1722504933; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:date:to:from
-         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=y7xWJf3Y5wvStVrnrF4ssh2tv0XOpKa5B4GjvU+hEgE=;
-        b=KSpcgiRXDSzxINPXIi5LSl8+x7iBZN1ZEi8aV9CGKcYJMwbuHY7ai+yRJrW61M40LN
-         FLq0Xn8AbhQDZfoMCSe9Vp/HNZnEiz4lBRm7ZUv8nupxrNgc9KBNjfI7A6JgS85YvqRm
-         OMU6fqqs7qHZSolDFWTKhqDlavNPK/PALaGAY=
+        d=gmail.com; s=20230601; t=1721902969; x=1722507769; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=AtQ7Yzvc6BGkwB3klPitsTiwh9pySk8Gl8CqfKblfRw=;
+        b=UJhKgXTCku0Zq2SYvkQ1/TuTgj2JFwr6Fb5XBdIy/b4omwXVVzFcfgpQwEoi31W2DF
+         g6m0CjybkYrGpeMzHqIGuwxwl2+O79oNv/E4wEQpU1H4rrQQjPHgsmQNOlztFRXq8h0k
+         Hok9MeBLqUh1oPNlKOY+Z8l3Cu7hTtb57UOw0NIixF+ONNEdhdlH38wxiTrSeUAXk+qD
+         6Ig0QnkiQAQ5ay6FNMIt1yxtI5Ya+CaYQL5oUEKzV+4cB3PWvtcmdhIzqAWg/u6NFu6h
+         0CrDLIxwuNyoDQpu1eOaws0TOQMKmz+rizHzfKAf74p1x5CrkItpDv1wZ+FlNdUrwTFU
+         xpvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721900133; x=1722504933;
-        h=mime-version:user-agent:content-transfer-encoding:date:to:from
-         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y7xWJf3Y5wvStVrnrF4ssh2tv0XOpKa5B4GjvU+hEgE=;
-        b=hmxwsjarHPyXS/AuzV7UszwlSDAKhZ01Ue6gj3UKO6rWwzrkJttxMt6u1z7Bw5EqW0
-         cwLw9Sj/y0Lai/ByZ79AiFBjBp+US7Y660mqt+MytcYPD9xkY6ck6/lWXn9KeM1XfbPg
-         uL5y92TqpjEBz+eRUFZR66HkU96vR5lCCgNv06jP/5wVfRGCv5HSb72c3FqbORzbqmSS
-         YihQu+J5V/2YrVeuwpxBmFcRbGAQT+kg9NLqOkn4Dvq8OWvuVMM7FkPm+ym5rBVERaAl
-         AUc2OnPn38rI0A7/7D09z1Y/EF5A0jigOsovpJr+sgnuL+1TBFU+Fi+i2w9E53Gh9sUs
-         sHYg==
-X-Forwarded-Encrypted: i=1; AJvYcCXs0XrhQWNt4fb4BR0d6P9TQthdrkd4dGJgppte5Rn7K0TxwKVNs+3eN8yNixgo58O/g9eJaWoBxtdccf6oYwVLhC8nRvG4Bo+oFtSQ
-X-Gm-Message-State: AOJu0Yx+Dk4BofZh3ezvQ17mKyBBUW3AVoGKg1hl7u/DOK53fflwdci/
-	zmP4xhdj5pS9pjNERzol5cjb/95EvUfG2P17wVrXUP33sC1AD1zUFW+udvlUs1Q=
-X-Google-Smtp-Source: AGHT+IExY0uJ+S8bAJgwsj/yseeuXGpFWV1CxLeYhPqRSdA4pikntXWs3En3rs/kF/lsIZ8wqNxFRQ==
-X-Received: by 2002:a5d:4a51:0:b0:368:7427:5205 with SMTP id ffacd0b85a97d-36b31af94ecmr1308248f8f.32.1721900132694;
-        Thu, 25 Jul 2024 02:35:32 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:267:c2d:5abd:7ee6? ([2001:8b0:aba:5f3c:267:c2d:5abd:7ee6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-427f9397285sm63792115e9.27.2024.07.25.02.35.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jul 2024 02:35:32 -0700 (PDT)
-Message-ID: <9882c3d9da920df6d645fd4aceaa9d732bc63424.camel@linuxfoundation.org>
-Subject: Tuesday Tech Call - 30 mins on our autobuilder infrastructure -
- 30th July
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Stephen K Jolley (via Google Docs)" <sjolley.yp.pm@gmail.com>, 
- "neal.caidin" <neal.caidin@linuxfoundation.org>,
- "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Date: Thu, 25 Jul 2024 10:35:31 +0100
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.0-1build2 
+        d=1e100.net; s=20230601; t=1721902969; x=1722507769;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AtQ7Yzvc6BGkwB3klPitsTiwh9pySk8Gl8CqfKblfRw=;
+        b=RMu+Gyc4xyMRVZt/LOmA1DF08RoaL8spo9n+PwHriP0TkIWV5HHBeW0KameW9l2QpA
+         iRtIyMYXKTBvy/txd7w2anBZDJx3RFtg56tVrfjLmbYApQOnb8Wk0o6q1ytOqQdQtrXa
+         9wqPPvtc2t8yKYldZHXf3wNPTFB+HCikefyTzcneIn5CBmgN764phVGBt5XJCsVje+jT
+         y2XEkydRBDDt0lNp5cH42bmUDGZXzeKAwAzCUZqD4nYRYT4bEPQKLTXu9qpyuHiPk4wI
+         NWbA1AU/zyXuja7RlM5ur4kqLFcQbQ1hc8rZT5IAzUM2Ai4WvaGLIwTnSWtBVNkZrpXk
+         pUtg==
+X-Gm-Message-State: AOJu0Yy/DeXlkVYbsYfKXr8EWO4Y1zHjEvpsCs12aC/ZWZoThOjn5aDc
+	cSqm3Q2ak7yyLdoOouvPl2BTKeiifIPENEV6qd5BvOmp9NbmrCO9e7fdJJnTHre1GTSdocjjwFx
+	NQlLj9s6z1JHjqmXFTtVMYwal+bTQMca6
+X-Google-Smtp-Source: AGHT+IGeu4cHG5gVePLDW7yqr5hfMDibgfhX9+LztqkMQTNudc1raGgw3gEyazbjUuPd2rr7c9qBvHUB4AqwYYFRNmo=
+X-Received: by 2002:a2e:a98e:0:b0:2f0:1ab3:201 with SMTP id
+ 38308e7fff4ca-2f03ac409e4mr8859471fa.19.1721902968865; Thu, 25 Jul 2024
+ 03:22:48 -0700 (PDT)
 MIME-Version: 1.0
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Thu, 25 Jul 2024 12:22:37 +0200
+Message-ID: <CAAfyv37kUr5DE7Q+eD7-d3SiT4PVbahVY156sbQodv9gqsug7Q@mail.gmail.com>
+Subject: rockchip: chromium HW accelerated
+To: Yocto <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000cc0e45061e0fc63b"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 09:35:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63569
+ <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 10:22:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63570
 
-The project has been asked some questions about our testing
-infrastructure, how it is setup, what it does, how we configure it, why
-and so on.
+--000000000000cc0e45061e0fc63b
+Content-Type: text/plain; charset="UTF-8"
 
-I think these are good questions and ones that a wider audience could
-be interested in hearing discussed so I'm proposing we use half of the
-next Tuesday tech call to talk a bit about the autobuilder and try and
-answer some of the questions. This won't be a formal presentation,
-there might be some graphics just to make things easier to picture.
+Hi,
 
-We all know I'm overloaded but sadly when it comes to the autobuilder,
-I'm probably the person who knows a chunk of this topic well enough to
-talk about it. I do worry that as soon as I agree to this, it will
-escalate into people wanting slides, recordings, new chapters in the
-testing manual and so on. They're all wonderful ideas, I just don't
-have the time/energy to do more than I'm doing to keep the project
-running day to day. If anyone wants to listen and then document things,
-that would be very helpful and welcome.
+I would like to ask if anyone tried on scrathgap accelerated chromium for
+radxa cm3 using the mainline rockchip layer. I've enabled chromium it was
+compiled properly but getting below:
 
-I started to write down a description of the things we should cover and
-realised it could take a lot longer than 30 mins. I'm thinking we may
-have a second session in the meeting the week after, assuming people
-find it useful and we have more to cover.
+[1860:1860:0805/093227.660753:ERROR:filesystem_posix.cc(63)] mkdir : No
+such file or directory (2)
+chrome_crashpad_handler: --database is required
+Try 'chrome_crashpad_handler --help' for more information.
+[1860:1876:0805/093228.292318:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address: Unknown address type (examples of
+valid types are "tcp" and on UNIX "unix")
+[1860:1876:0805/093228.292474:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address: Unknown address type (examples of
+valid types are "tcp" and on UNIX "unix")
+[1860:1876:0805/093228.292569:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address: Unknown address type (examples of
+valid types are "tcp" and on UNIX "unix")
+[1860:1876:0805/093228.292849:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address: Unknown address type (examples of
+valid types are "tcp" and on UNIX "unix")
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+libEGL warning: MESA-LOADER: failed to open rockchip:
+/usr/lib/dri/rockchip_dri.so: cannot open shared object file: No such file
+or directory (search paths /usr/lib/dri, suffix _dri)
 
-Please pass the message around to any colleagues who may be interested
-too.
+libEGL warning: MESA-LOADER: failed to open rockchip:
+/usr/lib/dri/rockchip_dri.so: cannot open shared object file: No such file
+or directory (search paths /usr/lib/dri, suffix _dri)
 
-Cheers,
+libEGL warning: MESA-LOADER: failed to open zink: /usr/lib/dri/zink_dri.so:
+cannot open shared object file: No such file or directory (search paths
+/usr/lib/dri, suffix _dri)
 
-Richard
+[1888:1888:0805/093228.660850:FATAL:gpu_init.cc(593)] Passthrough is not
+supported, GL is egl, ANGLE is
+[  585.551873] audit: type=1701 audit(1501925548.664:112): auid=4294967295
+uid=0 gid=0 ses=4294967295 pid=1888 comm="chromium-bin"
+exe="/usr/lib/chromium/chromium-bin" sig=5 res=1
+[1860:1876:0805/093228.748702:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address: Unknown address type (examples of
+valid types are "tcp" and on UNIX "unix")
+[1860:1876:0805/093228.748903:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address: Unknown address type (examples of
+valid types are "tcp" and on UNIX "unix")
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+[1860:1876:0805/093229.134377:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address: Unknown address type (examples of
+valid types are "tcp" and on UNIX "unix")
+[1860:1876:0805/093229.134507:ERROR:bus.cc(407)] Failed to connect to the
+bus: Could not parse server address
 
+and it won't start. Could it be mesa related (assuming from above errors).
 
+Thanks and BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+
+--000000000000cc0e45061e0fc63b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I would like to ask if anyone tried=
+ on scrathgap accelerated chromium=C2=A0for radxa cm3 using the mainline ro=
+ckchip layer. I&#39;ve enabled chromium it was compiled properly but gettin=
+g below:<br><br>[1860:1860:0805/093227.660753:ERROR:filesystem_posix.cc(63)=
+] mkdir : No such file or directory (2)<br>chrome_crashpad_handler: --datab=
+ase is required<br>Try &#39;chrome_crashpad_handler --help&#39; for more in=
+formation.<br>[1860:1876:0805/093228.292318:ERROR:bus.cc(407)] Failed to co=
+nnect to the bus: Could not parse server address: Unknown address type (exa=
+mples of valid types are &quot;tcp&quot; and on UNIX &quot;unix&quot;)<br>[=
+1860:1876:0805/093228.292474:ERROR:bus.cc(407)] Failed to connect to the bu=
+s: Could not parse server address: Unknown address type (examples of valid =
+types are &quot;tcp&quot; and on UNIX &quot;unix&quot;)<br>[1860:1876:0805/=
+093228.292569:ERROR:bus.cc(407)] Failed to connect to the bus: Could not pa=
+rse server address: Unknown address type (examples of valid types are &quot=
+;tcp&quot; and on UNIX &quot;unix&quot;)<br>[1860:1876:0805/093228.292849:E=
+RROR:bus.cc(407)] Failed to connect to the bus: Could not parse server addr=
+ess: Unknown address type (examples of valid types are &quot;tcp&quot; and =
+on UNIX &quot;unix&quot;)<br>Fontconfig error: No writable cache directorie=
+s<br>Fontconfig error: No writable cache directories<br>libEGL warning: MES=
+A-LOADER: failed to open rockchip: /usr/lib/dri/rockchip_dri.so: cannot ope=
+n shared object file: No such file or directory (search paths /usr/lib/dri,=
+ suffix _dri)<br><br>libEGL warning: MESA-LOADER: failed to open rockchip: =
+/usr/lib/dri/rockchip_dri.so: cannot open shared object file: No such file =
+or directory (search paths /usr/lib/dri, suffix _dri)<br><br>libEGL warning=
+: MESA-LOADER: failed to open zink: /usr/lib/dri/zink_dri.so: cannot open s=
+hared object file: No such file or directory (search paths /usr/lib/dri, su=
+ffix _dri)<br><br>[1888:1888:0805/093228.660850:FATAL:gpu_init.cc(593)] Pas=
+sthrough is not supported, GL is egl, ANGLE is <br>[ =C2=A0585.551873] audi=
+t: type=3D1701 audit(1501925548.664:112): auid=3D4294967295 uid=3D0 gid=3D0=
+ ses=3D4294967295 pid=3D1888 comm=3D&quot;chromium-bin&quot; exe=3D&quot;/u=
+sr/lib/chromium/chromium-bin&quot; sig=3D5 res=3D1<br>[1860:1876:0805/09322=
+8.748702:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse s=
+erver address: Unknown address type (examples of valid types are &quot;tcp&=
+quot; and on UNIX &quot;unix&quot;)<br>[1860:1876:0805/093228.748903:ERROR:=
+bus.cc(407)] Failed to connect to the bus: Could not parse server address: =
+Unknown address type (examples of valid types are &quot;tcp&quot; and on UN=
+IX &quot;unix&quot;)<br>Fontconfig error: No writable cache directories<br>=
+Fontconfig error: No writable cache directories<br>[1860:1876:0805/093229.1=
+34377:ERROR:bus.cc(407)] Failed to connect to the bus: Could not parse serv=
+er address: Unknown address type (examples of valid types are &quot;tcp&quo=
+t; and on UNIX &quot;unix&quot;)<br>[1860:1876:0805/093229.134507:ERROR:bus=
+.cc(407)] Failed to connect to the bus: Could not parse server address<br c=
+lear=3D"all"><div><br></div><div>and it won&#39;t start. Could it be mesa r=
+elated (assuming from above errors).</div><div><br></div><div>Thanks and BR=
+,</div><div><br></div><div>marek</div><div><br></div><span class=3D"gmail_s=
+ignature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature">as simple and primitive as possible<br>--=
+-----------------------------------------------<br>Marek Belisko - OPEN-NAN=
+DRA<br>Freelance Developer<br><br>Ruska Nova Ves 219 | Presov, 08005 Slovak=
+ Republic<br>Tel: +421 915 052 184<br>skype: marekwhite<br>twitter: #openna=
+ndra<br>web: <a href=3D"http://open-nandra.com" target=3D"_blank">http://op=
+en-nandra.com</a></div></div></div>
+
+--000000000000cc0e45061e0fc63b--
 
