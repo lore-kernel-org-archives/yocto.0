@@ -1,717 +1,785 @@
-Return-Path: <u.apeiron@gmail.com>
+Return-Path: <b.hutchman@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19BD9C3DA5D
-	for <webhook@archiver.kernel.org>; Thu, 25 Jul 2024 18:20:59 +0000 (UTC)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
- by mx.groups.io with SMTP id smtpd.web11.43557.1721931650904722149
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66BF9C3DA70
+	for <webhook@archiver.kernel.org>; Thu, 25 Jul 2024 19:54:59 +0000 (UTC)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web10.45270.1721937294842848483
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Jul 2024 11:20:51 -0700
+ Thu, 25 Jul 2024 12:54:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=M0mzZKof;
- spf=pass (domain: gmail.com, ip: 209.85.128.173, mailfrom: u.apeiron@gmail.com)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6518f8bc182so19701707b3.0
-        for <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 11:20:50 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=cKyxbH4Y;
+ spf=pass (domain: gmail.com, ip: 209.85.216.48, mailfrom: b.hutchman@gmail.com)
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2c964f5a037so189349a91.0
+        for <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 12:54:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1721931650; x=1722536450; darn=lists.yoctoproject.org;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PtM7L8EgGO/dqUVVrgqGlOPrygbUmZnp5I/PNpJzQwo=;
-        b=M0mzZKofZ2vTZX8l+ayPH3Uu9SINFymNIKyK9dTwQReeNK6v+Qiuw3/7EEa0J8uBUb
-         BO8GOZKMSpkz3+y24jD1uUReyQvFWV9CanyPvp16PR2pfFyFgF3MDlyTar+jbki7WUX3
-         SPYMDHhitkIZZ1twCjIGhnMozull1f6xNmuvgD714Fyqcg6iYftms/LOk2jsydH288zL
-         W9JV4Svt0+30Bhr8NLA0+Eh7Z7KtnIsjG09ji8t6MOsHkJuMhGA9isQ1lSbxwd8RE/Tg
-         r9Jpbz9bU6xRTV1pYIfFJAg6+vyQ6162O7kZ5AHmHOlVEtIGvabnZYZY4OGOyjtOSvtR
-         IGAw==
+        d=gmail.com; s=20230601; t=1721937294; x=1722542094; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DW3qX7pluSG/kE1GSgQx+Fl2RtlplKVu1kHAG/+lP1U=;
+        b=cKyxbH4YBhK+Ch/zy6pzuS6RSXtqkRv0HVRozATHITYm5EzqGZqI/ABZn1ujwLZA4J
+         glYVusTmTNTqTvof582v6m2+3Ub/vM8a3hujiW9APocg1xjelr0cFqukNOyqoXA4fmqg
+         Pms/7uDSUOBIxcNf6nG7F/1pu4KlYhKEk6IJOwfWzskzvgzgk+0j2McP7zu5WNyeraMN
+         IfCE+cpthqSLrvsSLw5SM3FtxCARwJqJT3MiDYSqff9R14ewiegJcEnLHpaOK6LMSiFU
+         btQr0TKje7waMD5MZMpK1Z6C6WjjCHGAZ+3MoIxhhr+hO3wkUWW3ffgO7+Ez2NFwxRkF
+         bRag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1721931650; x=1722536450;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PtM7L8EgGO/dqUVVrgqGlOPrygbUmZnp5I/PNpJzQwo=;
-        b=OYOWB49EBPdxt+4nzY8lNucah5EgQO/zL4j/zrVn7eO9nald49fGlglI2fvpcTIokS
-         kb/RacIGMCp705KHoSXo0uTlHXK5051ssxb073WIQ7oROTnXkfs+9ktX2jZxAgfX0XbH
-         Tr8KuV8hS9tMuQCdVDDNRhIlVWmgz0jyxTNPBuO51E5eP8nRcEH+0S3vp4/b0RfA9itn
-         dmDEANiHWzqUSzqoubg2C8Jh8AS2Gfn4z9hiLG9YGxdGvH6uBaAfYfyPRR2EMX4pieoy
-         C79N4iN5ucfICfoGalnAbXsqywjomUSoeJLYdwXRjwsA1Lo7DuSyy8XL3YDrs+IsSuwp
-         Wb6A==
-X-Gm-Message-State: AOJu0Yw3IkM6rLLGlQrjGIxb1yblYjupDIFSMLEYsK8waAax58t8IjpP
-	0zcHEosnIvUaqUp9L9kzjqgXmtDyhWI4h1cY1wer/UHMHoY9qo/EEgSdwL/RXgTkZSe/ypD/LE0
-	BePGRLUOqh9ThOODmmJL0xrzFulhwO8iE8Zc=
-X-Google-Smtp-Source: AGHT+IEGWJFe1secr+w4kMbv48GIK8PN6i/uzr2n0EXeAsoDYbWEr43tydt8TsAIkIL7J7UgTaeVKGh5Vy9S/aLRhVQ=
-X-Received: by 2002:a0d:ed46:0:b0:664:fd78:e3b3 with SMTP id
- 00721157ae682-674df2dca6emr29127257b3.5.1721931649717; Thu, 25 Jul 2024
- 11:20:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1721937294; x=1722542094;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DW3qX7pluSG/kE1GSgQx+Fl2RtlplKVu1kHAG/+lP1U=;
+        b=JKoQgpW4Di+8dA+Dsf1Va/5lkle7YDZhIqBQFCfSCuPGLBb9g3QdVNZWtmOAC5PahD
+         qOl1pXYWumZplFN6vpQba78FgndK3uFKS3xcdNsinvDvholSmizWRtcGp/JJEZS/8yAo
+         eTP5jvNJj9EX4uNnohwltvJ8xRtIq6u/vhT0+8VG4bg8p1DHsOmMd+ygGyuFF6tpolTw
+         1DxbwYSIkD9Y+06HdgbQDfsmNIRQJ0TLZmbhpBaORMZc37qrLuAndpCi0pchWNtMiuxG
+         Y+mZKMEaaKVMuMoSXMrbdVL0hbqhF2W7UnoFWia3LXtMRhYvIzRuc++uZMuJyKY3VMw6
+         4SSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVQwsGVzRn1zvZjs2daznYoMpXsiyD8+wuCRrh5oN4ALH8k6r/ZFty5Hj8FZiZ1MiRWODzpqKTarSdNJ2L1fMDOQoQlwBYPyhiI83+j
+X-Gm-Message-State: AOJu0YxAuGa/lh+VMVpPgcRh8RyXf43rJEwzunb6c/JKStz/9/Z+8Twl
+	bsdDLtUWWiU2D2UEMaNjMLJubiTJini9gx0cQ7rLt49tWnvhoAgR14sQiJ2BHIbzv599pnilV06
+	eFGi2Tk/r10ePzqURAsItZihhpXA=
+X-Google-Smtp-Source: AGHT+IFB0LKqlULr406DBj4jYkTQGseP0AdZ2hUFngZAp0iXqkGcLIMoBrMrfcHabPX0gWXE3AsFpQO0D1DHtwNLtXk=
+X-Received: by 2002:a17:90b:4ad1:b0:2c9:7803:1cf6 with SMTP id
+ 98e67ed59e1d1-2cf2ea14a02mr3295142a91.20.1721937293743; Thu, 25 Jul 2024
+ 12:54:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAK+BxzT_5ipwp+F6QuQctr-M+XfXy3yuN+ZkJP+Rbq+sDEonTA@mail.gmail.com>
- <CAGAf8LyXr5mJaaGdcmXnqQAxkz28AtU51X5RZyE+Qe0vddu6+Q@mail.gmail.com>
-In-Reply-To: <CAGAf8LyXr5mJaaGdcmXnqQAxkz28AtU51X5RZyE+Qe0vddu6+Q@mail.gmail.com>
-From: "Ulises V." <u.apeiron@gmail.com>
-Date: Thu, 25 Jul 2024 12:20:37 -0600
-Message-ID: <CAK+BxzSaKUu9ihtfPkQZh4xOKz6QuSRAtAVGZc54SWG8eZDa2g@mail.gmail.com>
-Subject: Re: [yocto] problems while creating a initrd image with wic image size.
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000004f20a6061e1674d8"
+References: <CAFZh4h_wh01sjAar-QqHsQ=KY4zLjmpmXuJc83OeYue7YyYW3A@mail.gmail.com>
+ <CAFZh4h9iaCGdnDhxik9Qtq82f0MGU2eL+8nBa8qoCCJrH-xsGQ@mail.gmail.com>
+ <d30f1655-0efa-440a-ac17-fe82342f4556@efficios.com> <CAFZh4h_pOCzpJ6ssdZ7ts3vSdJNfEtS+d+2Foi4qAY6oH0+VKw@mail.gmail.com>
+ <33527830-3bf3-4bc3-a53d-55eaefb74902@efficios.com> <CAFZh4h8k+eGuVJLJ_1vA1_P7+3Hi7h+UgUSmoN51Paxyypw-fA@mail.gmail.com>
+ <09087915-9e15-4485-b3d3-f48b245690ec@efficios.com> <CAFZh4h-_ixamDD4hMMETXGx8oA6Dr_3R5eFBeQPusFnKHEXKGg@mail.gmail.com>
+ <d52b867f-c35c-497a-af92-dfbe4452794c@efficios.com>
+In-Reply-To: <d52b867f-c35c-497a-af92-dfbe4452794c@efficios.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+Date: Thu, 25 Jul 2024 15:54:42 -0400
+Message-ID: <CAFZh4h-Sp0HrUZZzfze0zwVcJznD1NeiJTpBt3hAfk=j1JieQw@mail.gmail.com>
+Subject: Re: [lttng-dev] Using lttng-ust 2.13.6 from Yocto Kirkstone and
+ getting weird segfault saying strlen_asimd.S can't be found.
+To: Kienan Stewart <kstewart@efficios.com>
+Cc: lttng-dev@lists.lttng.org, yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 18:20:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63574
+ <yocto@lists.yoctoproject.org>; Thu, 25 Jul 2024 19:54:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63575
 
---0000000000004f20a6061e1674d8
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Kienan,
 
-Hello Zee,
+I'll answer your questions below, but I've got questions on what I saw
+building and installing lttng-tools (2.13.13) and lttng-ust (2.13.8).
 
-Thank you for your reply. I was able to fix it by doing several approaches:
+Based on the struggles I've had trying to get lttng to work with my
+app over various Yocto versions (Dunfell & Kirkstone) and lttng
+version, I think the problems I'm facing are mostly around C++ and
+weak and hidden symbols in Yocto toolchain.
 
-at the end I found out that the size of the wic image in my yocto scarthgap
-version was being set by a wks file  which is a template file for creating
-wic images in yocto:
+When I started my app with the options you mentioned previously a
+while back, Id see things like:
 
-I did a "wic list images" that showed me that beaglebone-yocto had a .wks
-file for it and I modify the source code as follows:
+# LTTNG_UST_DEBUG=3D1 LTTNG_UST_REGISTER_TIMEOUT=3D-1 /opt/tc/TrafficContro=
+ller
+liblttng_ust_tracepoint[4012/4012]: Your compiler treats weak symbols
+with hidden visibility for integer objects as SAME address between
+compile units part of the same module. (in check_weak_hidden() at
+tracepoint.c:1012)
+liblttng_ust_tracepoint[4012/4012]: Your compiler treats weak symbols
+with hidden visibility for pointer objects as SAME address between
+compile units part of the same module. (in check_weak_hidden() at
+tracepoint.c:1016)
+liblttng_ust_tracepoint[4012/4012]: Your compiler treats weak symbols
+with hidden visibility for 24-byte structure objects as SAME address
+between compile units part of the same module. (in check_weak_hidden()
+at tracepoint.c:1020)
 
-original beaglebone-yocto.wks source code line
-part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat
---label boot --active --align 4 --fixed-size 32
---sourceparams=3D"loader=3Du-boot" --use-uuid
+I further researched this whole 'weak symbol' and 'hidden visibility'
+topic in the lttng-dev archives and it smells a lot like what I've
+been seeing.  You should be able to mix both tracef and tracepoint
+calls in souce code ... but I could not.  I could get a tracef call to
+work but if I put a tracepoint call in the same code then nothing
+would work.  This was with Dunfell 3.1.7 and earlier versions of
+lttng.
 
-I changed  the --fixed-size to 64, and that give me enough space for what I
-want.
-part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat
---label boot --active --align 4 --fixed-size 64
---sourceparams=3D"loader=3Du-boot" --use-uuid
+At one point I could get a tracepoint call to work but I'd have to let
+our cmake build system build and link the tpp.c file and then turn
+around and use gcc to recompile it and copy it to where all the
+objects were to create the huge .a library the app was built against.
+That's when I first learned there are issues with C++.  I think g++ is
+used to build even .c files that aren't c++.
 
-Problem solved.
+Then if I tried to put a tracepoint in another sub project, none of
+the tracepoints would work and I'd get empty traces.  This is a
+symptom of the 'weak symbols with hidden visibility' issue ... and I
+finally found others that were having same issue in the archives.  I
+don't fully understand the issues here, although I do understand some
+of what's going on ... I just don't know what to do about it.
 
-I tried your conf/local.conf with the following modifications because for
-some reason I got some problems:
+At this point I was being encouraged to keep upgrading to newer
+versions of lttng.  Our app never changed, gcc & lttng etc., kept
+changing.  Now with newer versions nothing runs, all I get is an
+immediate segfault.  Again, I'm building just like I did before a year
+or so ago with older versions of Yocto and lttng.  I say all of that
+to give perspective and history of what I've seen and experienced.
+Now this TLS thing has entered the picture too and so far I've only
+changed lttng, I don't know if I should be applying patches to my gcc
+for that issue.  Like I said, I'm currently using Yocto Kirkstone
+4.0.18 and 6.1.38 kernel.
+
+Now I'll move into the area of things I've seen building/installing
+lttng-tools and lttng-ust natively on the target environment I've
+setup where I can run 'make check' etc.  These are in the category of
+"hey, is this ok, should I be worried about this":
+
+While building lttng-tools I see things like:
+
+*** Warning: Linking the executable userspace-probe-elf-binary against
+the loadable module
+*** libfoo.so is not portable!
+
+In file included from ../../../src/common/macros.h:15,
+                from ../../../include/lttng/health-internal.h:19,
+                from lttng-ctl-health.c:19:
+In function 'lttng_strnlen',
+   inlined from 'lttng_strncpy' at ../../../src/common/macros.h:128:6,
+   inlined from 'set_health_socket_path' at lttng-ctl-health.c:146:9,
+   inlined from 'lttng_health_query' at lttng-ctl-health.c:264:8:
+../../../src/common/compat/string.h:19:16: warning: 'strnlen'
+specified bound 4096 may exceed source size 37 [-Wstringop-overread]
+  19 |         return strnlen(str, max);
+     |                ^~~~~~~~~~~~~~~~~
+lttng-ctl-health.c: At top level:
+cc1: note: unrecognized command-line option
+'-Wno-incomplete-setjmp-declaration' may have been intended to silence
+earlier diagnostics
+
+** Warning: Linking the shared library libbar.la against the loadable modul=
+e
+*** libzzz.so is not portable!
+
+*** Warning: Linking the shared library libfoo.la against the loadable modu=
+le
+*** libbar.so is not portable!
+
+While installing lttng-tools I see things like this:
+
+make[4]: Entering directory '/opt/lttng/lttng-tools-2.13.13/src/lib/lttng-c=
+tl'
+ CC       lttng-ctl.lo
+ CC       snapshot.lo
+ CC       lttng-ctl-health.lo
+In file included from ../../../src/common/macros.h:15,
+                from ../../../include/lttng/health-internal.h:19,
+                from lttng-ctl-health.c:19:
+In function 'lttng_strnlen',
+   inlined from 'lttng_strncpy' at ../../../src/common/macros.h:128:6,
+   inlined from 'set_health_socket_path' at lttng-ctl-health.c:146:9,
+   inlined from 'lttng_health_query' at lttng-ctl-health.c:264:8:
+../../../src/common/compat/string.h:19:16: warning: 'strnlen'
+specified bound 4096 may exceed source size 37 [-Wstringop-overread]
+  19 |         return strnlen(str, max);
+     |                ^~~~~~~~~~~~~~~~~
+lttng-ctl-health.c: At top level:
+cc1: note: unrecognized command-line option
+'-Wno-incomplete-setjmp-declaration' may have been intended to silence
+earlier diagnostics
+
+Making install in trigger-condition-event-matches
+make[2]: Entering directory
+'/opt/lttng/lttng-tools-2.13.13/doc/examples/trigger-condition-event-matche=
+s'
+ CC       instrumented-app.o
+ CC       tracepoint-trigger-example.o
+ AR       libtracepoint-trigger-example.a
+ar: `u' modifier ignored since `D' is the default (see `U')
+
+While building lttng-ust I see things like:
+
+Making all in utils
+make[2]: Entering directory
+'/home/iadmin/lttng-ust/lttng-ust-2.13.8/tests/utils'
+ CC       tap.o
+ AR       libtap.a
+ar: `u' modifier ignored since `D' is the default (see `U')
+
+*** Warning: Linking the shared library libzero.la against the
+loadable module
+*** libfakeust0.so is not portable!
+ CCLD     app_noust_indirect_abi0
+
+*** Warning: Linking the executable app_noust_indirect_abi0 against
+the loadable module
+*** libzero.so is not portable!
+ CC       app_noust_indirect_abi0_abi1-app_noust.o
+ CC       libone.lo
+ CCLD     libone.la
+ CCLD     app_noust_indirect_abi0_abi1
+
+*** Warning: Linking the executable app_noust_indirect_abi0_abi1
+against the loadable module
+*** libzero.so is not portable!
+
+*** Warning: Linking the executable app_noust_indirect_abi0_abi1
+against the loadable module
+*** libone.so is not portable!
+ CC       app_noust_indirect_abi1-app_noust.o
+ CCLD     app_noust_indirect_abi1
+
+*** Warning: Linking the executable app_noust_indirect_abi0_abi1
+against the loadable module
+*** libone.so is not portable!
+ CC       app_noust_indirect_abi1-app_noust.o
+ CCLD     app_noust_indirect_abi1
+
+*** Warning: Linking the executable app_noust_indirect_abi1 against
+the loadable module
+*** libone.so is not portable!
+ CC       app_ust.o
+ CC       tp.o
+ CCLD     app_ust
+ CC       app_ust_dlopen.o
+ CCLD     app_ust_dlopen
+ CC       app_ust_indirect_abi0-app_ust.o
+ CC       app_ust_indirect_abi0-tp.o
+ CCLD     app_ust_indirect_abi0
+
+*** Warning: Linking the executable app_ust_indirect_abi0 against the
+loadable module
+*** libzero.so is not portable!
+ CC       app_ust_indirect_abi0_abi1-app_ust.o
+ CC       app_ust_indirect_abi0_abi1-tp.o
+ CCLD     app_ust_indirect_abi0_abi1
+
+*** Warning: Linking the executable app_ust_indirect_abi0_abi1 against
+the loadable module
+*** libzero.so is not portable!
+
+I don't know if these are ok or if I should be worried about any of that.
+
+... now on to your questions below.
 
 
-   - MACHINE =3D "beaglebone"
 
-it is not recognized by my yocto system. I had to use:
-
-MACHINE ??=3D "beaglebone-yocto"
-
- I'm using scarthgap release of yocto.
-
-out of curiosity, which version of yocto are you using?
-
-   - How did you get the layers for beaglebone I see the following line in
-   the conf/local.conf file:
-
-## mask for non-mender builds
-BBMASK =3D "meta-bbb/recipes-mender"
-
-I looked for it in
-https://layers.openembedded.org/layerindex/branch/master/layers/ and could
-not find it.
-
-   - I commented out the following lines in your conf/local.conf, but I
-   don't think this makes a huge difference.
-
-#original from zoran
-#PREFERRED_PROVIDER_virtual/kernel ?=3D "linux-mainline"
-#PREFERRED_VERSION_linux-libc-headers=3D"6.10.%"
-#PREFERRED_VERSION_linux-mainline ?=3D "6.10.%"
-
-#original from zoran
-#CORE_IMAGE_EXTRA_INSTALL:append =3D "openssh cmake libsocketcan nfs-utils
-rt-tests strace procps packagegroup-core-buildessential "
-
-After all these modifications I was still getting a similar error.
-
-To solve the problems I did the following steps: I tried looking for some
-variable that contain the 32768 limit using "source toaster start" which
-guide me to a UI of build output and I found look a failed recipe, click on
-the task number and that lead to a page that allow me to look for yocto
-variables and their values being set up, I read some variable description
-and that lead me to the finding that wic image is created by wic tools in
-yocto I search how to create wic images in yocto and found the info I told
-you some lines above in yocto documentation et voil=C3=A1 !!! problem solve=
-d
-just in time for the Olympics!!!
-
-Thanks for your help.
-
-Ulises Vega
-
-On Mon, Jul 22, 2024 at 11:55=E2=80=AFPM Zoran Stojsavljevic <
-zoran.stojsavljevic@gmail.com> wrote:
-
-> Hello Ulises,
+On Wed, Jul 24, 2024 at 12:04=E2=80=AFPM Kienan Stewart <kstewart@efficios.=
+com> wrote:
 >
-> I did try to stuff your initramfs changes/addendums in my local.conf .
+> Hi Brian,
 >
-> Just out of curiosity. ;-)
->
-> It does work seamlessly. The build finished without any problems.
->
-> Please, find attached my local.conf with your addendums.
->
-> It could help you... I believe.
->
-> Zee
-> _______
->
-> On Mon, Jul 22, 2024 at 7:47=E2=80=AFPM Ulises Vega via lists.yoctoprojec=
-t.org
-> <u.apeiron=3Dgmail.com@lists.yoctoproject.org> wrote:
+> On 7/22/24 6:00 PM, Brian Hutchinson wrote:
+> > Hi Kienan,
 > >
-> > Hello everyone,
+> > Took a while to gather your grocery list but I think I have most of it
+> > below ;)
+>
+> thanks for all the extra info. Replies inline below, but I'll cut a lot
+> of the long output for readability.
+>
+> tl;dr the environment continues to be weird, but my present suspicion is
+> that something in either compilation, the linking of your app (eg. with
+> ld when producing the executable), or some post linking stripping might
+> be causing issues.
+
+I'm not aware of any stripping that's going on.  In fact everything is
+being built with debug symbols at the moment and I even turned off
+optimization ... even used the debug friendly -O flag to see if that
+made a difference.
+
+>
+> I will stop digging into further hypotheticals on my side as there is no
+> reproducer for both the environment and the application. If you ever end
+> up with a minimal reproducer that you can share, I'd be more than happy
+> to examine it.
+
+I'm planning on trying to make a small reproducer I can share but not there=
+ yet.
+
+>
 > >
-> > I'm trying to run Automotive Grade Linux (AGL) on beagleboneai-64.
+> > I may have not been clear.  Most of the application components are
+> > statically linked but I think there are some that are built as shared
+> > objects (.so's) so that's what I was referring to.  I know that
+> > lttng-ust is dynamically linked ... I think the lttng-ust docs say this
+> > is only option but also makes reference to the fact static linking was
+> > once possible (in some versions of the documentation) but not supported
+> > anymore (I probably have the docs memorized by now ha, ha ... I've
+> > looked at many, many versions of them).
 > >
-> > AGL uses a yocto based build. I'm trying to generate an initrd image fo=
+> > Just for full disclosure my ldd looks like:
+> >
+> >         linux-vdso.so.1 (0x0000ffffab196000)
+> >         libfcgi.so.0 =3D> /usr/lib/libfcgi.so.0 (0x0000ffffa57f0000)
+> >         liblttng-ust.so.1 =3D> /usr/lib/liblttng-ust.so.1
+> > (0x0000ffffa5750000)
+> >         libxml2.so.2 =3D> /usr/lib/libxml2.so.2 (0x0000ffffa55d0000)
+> >         librt.so.1 =3D> /lib/librt.so.1 (0x0000ffffa55b0000)
+> >         libm.so.6 =3D> /lib/libm.so.6 (0x0000ffffa5510000)
+> >         libstdc++.so.6 =3D> /usr/lib/libstdc++.so.6 (0x0000ffffa52f0000=
+)
+> >         libgcc_s.so.1 =3D> /lib/libgcc_s.so.1 (0x0000ffffa52c0000)
+> >         libc.so.6 =3D> /lib/libc.so.6 (0x0000ffffa5110000)
+> >         /lib/ld-linux-aarch64.so.1 (0x0000ffffab15d000)
+> >         liblttng-ust-common.so.1 =3D>
+> > /usr/local/lib/liblttng-ust-common.so.1 (0x0000ffffa50e0000)
+> >         liblttng-ust-tracepoint.so.1 =3D>
+> > /usr/local/lib/liblttng-ust-tracepoint.so.1 (0x0000ffffa50a0000)
+> >         libpthread.so.0 =3D> /lib/libpthread.so.0 (0x0000ffffa5080000)
+> >         libz.so.1 =3D> /lib/libz.so.1 (0x0000ffffa5050000)
+> >
+> >
+>
+> I find it very suspicious that `liblttng-ust.so.1` is in `/usr/lib`,
+> while the other lttng-ust libraries are being loaded from `/usr/local/lib=
+`.
+
+So Yocto puts all of the lttng libs into /usr/lib.  When I sent the
+previous info I was using lttng-tools and modules built by Yocto/OE
+and I setup a native build environment on the target so I could run
+'make check' etc., and that's why there were things in /usr/local/lib
+because that's where you guys want stuff to be.  So I actually left
+the lttng-ust installables in /usr/local/build but also copied them to
+/usr/lib to overwrite old Yocto versions there.
+
+>
+> This information also matches the statedump and the LD_DEBUG info from
+> later on.
+>
+> Could you verify some of the following information:
+>
+> 1. In your build root for lttng-ust, enumerate all the liblttng*so
+> files. For each shared object, run `file $libname` and record the value
+> of the BuildID hash.
+
+Sorry, I'm not following you here.  The only buildID hash I can think
+of is with 'eu-unstrip -n' but that's on core files, not individual
+libs.  And looking at the options I have for 'file' on my target, I
+don't see anything that looks like what you are asking.
+
+>
+> 2. In your deployed environment, enumerate all the liblttng*so files in
+> /usr/local/lib and record the value of the BuildID hash.
+>
+> 3. In your deployed environment, enumerate all the liblttng*so files in
+> /usr/lib and record the value of the BuildID hash.
+>
+> The BuildID will vary from one object to the next, but the deployed
+> environment BuildIDs should match the BuildIDs of the corresponding
+> library from the build root.
+>
+> In particular my interest is the `liblttng-ust.so.1` library  that is
+> loaded  from `/usr/lib` in your deployed environment, and if there are
+> any in `/usr/local/lib`.
+
+As I said above, when I built lttng-ust from source natively on the
+target and installed it, it went to /usr/local/lib, your default.  I
+then copied everything from /usr/local/lib (which was just lttng-ust
+stuff) to /usr/lib to overwrite the old versions Yocto put there.
+
+>
+> In the working hello example, does it also end up linking against
+> `/usr/lib/liblttng-ust.so.1`?
+
+Yes
+
+>
+> >     Further along in stepping back:
+> >
+> >        - Does make check for lttng-ust pass in your environment?
+> >
+> >
+> > So I'm glad you mentioned this.  I didn't try to run make check because
+> > #1 have never seen anything in the documentation about it and what it
+> > does and #2 It said that it depended on Perl and since this is an
+> > embedded system, I really didn't want to pull it and its dependencies i=
+n.
+> >
+> > Nevertheless, I ran it on my native target build I setup to see what
+> > would happen.  I didn't notice it complaining about perl so then I
+> > checked my manifest and perl is in fact in our image (I guess some othe=
 r
-> the beagleboneai-64.
+> > recipe pulled it in and I never paid attention to that):
 > >
-> > I'm using yocto scarthgap. I added the following features to
-> conf/local.conf but got some errors while creating the wic image.
+> > Making check in include
+> > make[1]: Entering directory
+> > '/home/iadmin/lttng-ust/lttng-ust-2.13.8/include'
+> > ...
+>  >
 > >
-> > INITRAMFS_IMAGE =3D "core-image-tiny-initramfs"
-> > INITRAMFS_IMAGE_BUNDLE =3D "1"
-> > INITRAMFS_IMAGE_NAME ?=3D "${INITRAMFS_IMAGE}-${MACHINE}"
-> > INITRAMFS_KERNEL_IMAGE=3D"${KERNEL_IMAGETYPE}-initramfs-${MACHINE}.bin"
-> > VIRTUAL-RUNTIME_dev_manager =3D "busybox-mdev"
-> > IMAGE_BOOT_FILES:append =3D "
-> ${INITRAMFS_KERNEL_IMAGE};${KERNEL_IMAGETYPE}"
+> >        - Does make check for lttng-tools pass in your environment?
 > >
-> > IMAGE_ROOTFS_MAXSIZE ?=3D "4294967296"
-> > ROOTFS_PARTITION_SIZE ?=3D "4294967296"
+> > I'm still using lttng-tools built by yocto so I don't know how to run
+> > make check in that situation.  From devtool maybe???  I don't know, I'd
+> > have to look into that one.   I never upgraded lttng-tools either, only
+> > upgraded lttng-ust and built from source tar to get the fix you
+> > mentioned for TLS stuff.
+>
+> The poky version of the tools recipe seems to have some stuff relating
+> to ptest, which seems to be a yocto tool for package testing. There
+> might be a run to run that?
+>
+> https://git.yoctoproject.org/poky/plain/meta/recipes-kernel/lttng/lttng-t=
+ools_2.13.13.bb
+> https://wiki.yoctoproject.org/wiki/Ptest
+>
+> Otherwise I would get the lttng-tools source for your version,
+> bootstrap, configure, build, and run the tests in tree.
+>
+> The bulk of regression testing for lttng-ust, -modules, and -tools
+> happens during `make check` for lttng-tools.
+
+I did all of that.  First I did it with lttng-ust, building it from
+source tarball on target natively to eliminate any Yocto recipe/patch
+issues.  Then did the same with lttng-tools.
+
+>
 > >
-> > SDCARD_ROOTFS ?=3D "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4"
+> >        - Is this reproducible in non-yocto environments or on other
+> >     architectures with the same project?
 > >
-> > IMAGE_FSTYPES:append =3D " ext4 cpio.gz"
+> > Hmm, that's a good question.  I don't have any other embedded targets t=
+o
+> > try this on that are a different arch.  I think I heard at one point
+> > early on a heavily stubbed out version ran on a PC but I'd have to look
+> > into that.
 > >
-> > These are the errors I got.
-> >
-> > DEBUG: Executing python function extend_recipe_sysroot
-> > NOTE: Direct dependencies are
-> ['/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-=
-core/glibc/cross-localedef-native_2.39.bb:do_populate_sysroot',
-> '/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-c=
-ore/glibc/ldconfig-native_2.12.1.bb:do_populate_sysroot',
-> '/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-d=
-evtools/binutils/binutils-cross_2.42.bb:do_populate_sysroot',
-> '/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-d=
-evtools/cdrtools/cdrtools-native_3.01.bb:do_populate_sysroot',
-> '/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-d=
-evtools/qemu/qemuwrapper-cross_1.0.bb:do_populate_sysroot',
-> '/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-k=
-ernel/kmod/depmodwrapper-cross_1.0.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/meta=
--selinux/recipes-security/selinux/policycoreutils_3.6.bb:do_populate_sysroo=
-t',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-core/update-rc.d/update-rc.d_0.8.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/btrfs-tools/btrfs-tools_6.7.1.bb:do_populate_sysroot=
-',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/createrepo-c/createrepo-c_1.0.4.bb:do_populate_sysro=
-ot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/dnf/dnf_4.19.0.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/dosfstools/dosfstools_4.2.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.47.0.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/erofs-utils/erofs-utils_1.7.1.bb:do_populate_sysroot=
-',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/fdisk/gptfdisk_1.0.9.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/makedevs/makedevs_1.0.1.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/mtools/mtools_4.0.43.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/opkg-utils/opkg-utils_0.6.3.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/rpm/rpm_4.19.1.1.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/squashfs-tools/squashfs-tools_git.bb:do_populate_sys=
-root',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-devtools/syslinux/syslinux_6.04-pre2.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-extended/parted/parted_3.6.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-extended/pigz/pigz_2.8.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-extended/xz/xz_5.4.6.bb:do_populate_sysroot',
-> 'virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-support/bmaptool/bmaptool_git.bb:
-> do_populate_sysroot']
-> > NOTE: u-boot-ti-staging exists in sysroot, but is stale
-> (u-boot-ti-staging.fb4c3165ab7b6a4cdff9ac6dd66ec27131b6b0a1458829b9a2435e=
-fbb437d016
-> vs.
-> u-boot-ti-staging.e12d75717bc48fff394b754723686e43ed4c4136875027162649d00=
-c6473048b),
-> removing.
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-bo=
-ot-beaglebone-ai64-2023.04+git-r0.img
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-bo=
-ot-spl.bin
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/tisp=
-l.bin-beaglebone-ai64-2023.04+git-r0
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-bo=
-ot.img
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/u-bo=
-ot-spl.bin-beaglebone-ai64-2023.04+git-r0
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/tisp=
-l.bin
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-p=
-roviders/u-boot-ti-staging
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-p=
-roviders/u-boot
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-p=
-roviders/virtual_bootloader
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-p=
-roviders/
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/boot/
-> > NOTE: linux-bb.org exists in sysroot, but is stale (linux-bb.org.72fd73=
-ea1b79abe5b75726e3efd6ea0d79ca9966b16cddfdaafc987fba084c80
-> vs. linux-bb.org.2a69e1fa14e6277a5b20f66736709b5530721756913f3d6246e20f46=
-5f8b792e),
-> removing.
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-p=
-roviders/
-> linux-bb.org
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-p=
-roviders/virtual_kernel
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-o=
-nly/fitImage
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-p=
-roviders/
-> > DEBUG: Removing manifest:
-> /media/ulisesv/linux_workspace/AGL/ricefish/beaglebone-ai64/tmp/work/beag=
-lebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk/1.0/recipe-sysroot/sysroot-o=
-nly/
-> > NOTE: Installed into sysroot: ['u-boot-ti-staging', 'linux-bb.org']
-> > NOTE: Skipping as already exists in sysroot: ['trusted-firmware-a',
-> 'optee-os', 'ti-dm-fw', 'ti-sci-fw', 'gettext-minimal-native',
-> 'cross-localedef-native', 'glibc', 'ldconfig-native',
-> 'systemd-systemctl-native', 'binutils-cross-aarch64', 'cdrtools-native',
-> 'cmake-native', 'gcc-runtime', 'libgcc', 'libtool-native', 'm4-native',
-> 'opkg-utils', 'qemu-native', 'qemuwrapper-cross', 'texinfo-dummy-native',
-> 'depmodwrapper-cross', 'linux-libc-headers', 'nspr-native', 'nss-native',
-> 'libselinux-native', 'libsemanage-native', 'libsepol-native',
-> 'policycoreutils-native', 'openssl-native', 'coreutils-native',
-> 'expat-native', 'gettext-native', 'glib-2.0-native', 'libxml2-native',
-> 'ncurses-native', 'readline-native', 'update-rc.d-native',
-> 'util-linux-libuuid-native', 'util-linux-native', 'zlib-native',
-> 'btrfs-tools-native', 'createrepo-c-native', 'desktop-file-utils-native',
-> 'dnf-native', 'dosfstools-native', 'e2fsprogs-native', 'elfutils-native',
-> 'erofs-utils-native', 'gptfdisk-native', 'file-native', 'flex-native',
-> 'gnu-config-native', 'json-c-native', 'libcomps-native', 'libdnf-native',
-> 'libedit-native', 'libmodulemd-native', 'librepo-native', 'lua-native',
-> 'make-native', 'makedevs-native', 'mtools-native', 'nasm-native',
-> 'opkg-utils-native', 'perl-native', 'pseudo-native',
-> 'python3-build-native', 'python3-flit-core-native',
-> 'python3-iniparse-native', 'python3-installer-native',
-> 'python3-packaging-native', 'python3-pyproject-hooks-native',
-> 'python3-setuptools-native', 'python3-six-native', 'python3-wheel-native'=
-,
-> 'python3-native', 'rpm-native', 'squashfs-tools-native', 'swig-native',
-> 'syslinux-native', 'bzip2-native', 'cpio-native', 'groff-native',
-> 'libarchive-native', 'libidn2-native', 'libnsl2-native', 'libsolv-native'=
-,
-> 'libtirpc-native', 'lzlib-native', 'parted-native', 'pigz-native',
-> 'shadow-native', 'unzip-native', 'xz-native', 'zstd-native',
-> 'gdk-pixbuf-native', 'gobject-introspection-native',
-> 'libjpeg-turbo-native', 'kmod-native', 'libpng-native', 'acl-native',
-> 'attr-native', 'bmaptool-native', 'curl-native', 'debianutils-native',
-> 'gdbm-native', 'gmp-native', 'gnutls-native', 'libtasn1-native',
-> 'gpgme-native', 'itstool-native', 'libassuan-native', 'libbsd-native',
-> 'libcap-ng-native', 'libcap-native', 'libcheck-native', 'libffi-native',
-> 'libgcrypt-native', 'libgpg-error-native', 'libmd-native',
-> 'libmicrohttpd-native', 'libpcre2-native', 'libunistring-native',
-> 'libyaml-native', 'lz4-native', 'lzo-native', 'nettle-native',
-> 'popt-native', 'shared-mime-info-native', 'sqlite3-native']
-> > DEBUG: Python function extend_recipe_sysroot finished
-> > DEBUG: Executing python function set_image_size
-> > DEBUG: 2361054.800000 =3D 1816196 * 1.300000
-> > DEBUG: 2467550.800000 =3D max(2361054.800000, 8192)[2361054.800000] +
-> 106496
-> > DEBUG: 2467551.000000 =3D int(2467550.800000)
-> > DEBUG: 2467551 =3D aligned(2467551)
-> > DEBUG: returning 2467551
-> > DEBUG: Python function set_image_size finished
-> > DEBUG: Executing shell function do_image_wic
-> > INFO: Creating image(s)...
-> >
-> > ERROR: File system image of partition None is larger (336164 kB) than
-> its allowed size 131072 kB
-> >
-> > WARNING: exit code 1 from a shell command.
-> > ~
-> >
-> > Thanks.
-> >
-> > Ulises Vega
+> >        - Does running the traced application with `LTTNG_UST_DEBUG=3D1`=
+ yield
+> >     more information?
 > >
 > >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#63549):
-> https://lists.yoctoproject.org/g/yocto/message/63549
-> > Mute This Topic: https://lists.yoctoproject.org/mt/107490023/3618681
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> zoran.stojsavljevic@gmail.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > So far I've just been trying to get the app to run without even startin=
+g
+> > lttng just to get past segfault issue.  Here is what it looks like with
+> > debug turned on without starting lttng or a lttng-sessiond:
+> >
+> > liblttng_ust_tracepoint[599/599]: Your compiler treats weak symbols wit=
+h
+> > hidden visibility for integer objects as SAME address between compile
+> > units part of the same module. (in check_weak_hidden() at
+> >
+> > liblttng_ust[599/601]: Waiting for local apps sessiond (in
+> > wait_for_sessiond() at lttng-ust-comm.c:1758)
+> > liblttng_ust[599/600]: Info: sessiond not accepting connections to
+> > global apps socket (in ust_listener_thread() at lttng-ust-comm.c:1884)
+> > Segmentation fault
+> >
+> >        - I'd also run lttng-sessiond with the environment variable
+> >     `LTTNG_UST_DEBUG=3D1` set and `-vvv --verbose-consumer` in the prog=
+ram
+> >     arguments and capture for stdout & stderr into a file for analysis.
+> >        - Verify if the main program is dynamically linked with `ldd`
+> >        - Verify which libraries are loaded at runtime and which calls a=
+re
+> >     shimmed with `LD_DEBUG=3Dlibs,binding`
+> >
+> >
+> > I provided some of this above.
+> > The output of LD_DEBUG=3Dlibs,bindings is attached as file
+> > ld_debug-libs-bindings.txt
+>
+> Thanks. For your own debugging, I would recommend to run the hello world
+> example with the same environment variables in order to have comparison
+> point to a working example.
+
+I ran the hello world in the example directory
+lttng-ust-2.13.8/doc/examples/hello-static-lib and it ran fine.
+
+I can send the sessiond.log etc. if you want to see it but it ran just
+fine on target using the native built lttng-ust and lttng-tools.
+
+>
+>  From my observations in my own environment, for the hello example (and
+> presumably your app if it's set up in the same way) I would expect
+> something similar to the following
+>
+> ```
+>    3624895:     initialize program: ./hello
+>     3624895:
+>     3624895:     binding file ./hello [0] to
+> /lib/x86_64-linux-gnu/libc.so.6 [0]: normal symbol `dlopen' [GLIBC_2.34]
+>     3624895:     opening
+> file=3D/x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0];
+> direct_opencount=3D3
+>     3624895:
+>     3624895:     binding file ./hello [0] to
+> /lib/x86_64-linux-gnu/libc.so.6 [0]: normal symbol `dlsym' [GLIBC_2.34]
+>     3624895:     binding file
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0] to
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0]: normal symbol
+> `lttng_ust_tp_rcu_re
+> ad_lock'
+>     3624895:     binding file
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0] to
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0]: normal symbol
+> `lttng_ust_tp_rcu_re
+> ad_unlock'
+>     3624895:     binding file
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0] to
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0]: normal symbol
+> `lttng_ust_tp_rcu_de
+> reference_sym'
+>     3624895:     binding file
+> x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0] to
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0]: normal symbol
+> `lttng_ust_tracepoin
+> t_module_register'
+>     3624895:     binding file
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0] to
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0]: normal symbol
+> `lttng_ust_tracepoin
+> t_module_unregister'
+>     3624895:     binding file
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0] to
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0]: normal symbol
+> `lttng_ust_tp_disabl
+> e_destructors'
+>     3624895:     binding file
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0] to
+> /x/lttng/master/usr/lib/liblttng-ust-tracepoint.so.1 [0]: normal symbol
+> `lttng_ust_tp_get_de
+> structors_state'
+>     3624895:     binding file ./hello [0] to
+> /x/lttng/master/usr/lib/liblttng-ust.so.1 [0]: normal symbol
+> `lttng_ust_probe_register'
+>     3624895:
+>     3624895:     transferring control: ./hello
+>     3624895:
+> ```
+>
+> The bit that is missing from your program is the binding of
+> `lttng_ust_probe_register`. Here, it's not like the symbol isn't
+> resolved at all: it's found earlier and if it didn't exist at all the
+> error would probably be relatively clear like:
+>
+> ```
+> ./doc/examples/hello/hello: symbol lookup error:
+> /x/lttng/master/usr/lib/liblttng-ust.so.1: undefined symbol:
+> lttng_ust_probe_register
+> ```
+>
+> I'd like you to run another test with your app. This should indicate
+> that all symbols should be immediately resolved during dynamic loading
+> rather than performing lazy symbol resolution. The goal of this test is
+> to separate clearly the symbol resolution from the call that happens in
+> the program's initialization. You can also run it with the hello demo to
+> compare the runs.
+
+At this point I need to quit for a bit so I'll send what I have up to
+this point and perform these tests on both my app and the hello
+example and report back as soon as I can.
+
+>
+> ```
+> LTTNG_UST_DEBUG=3D1 LD_DEBUG=3Dall LD_BIND_NOW=3D1 ./my_app
+> ```
+>
+> >
+> >        - Review in detail which gcc commands are executed to produce th=
+e
+> >     tracepoint provider and link it to the main executable.
+> >
+> > Exactly like hello world example.
+>
+> Okay. I see your program also has at least some portions in C++, which
+> is different than the hello world example.
+>
+> Does your build process use particular optimizations or strip parts from
+> the resulting object files?
+>
+> When you're building the hello world example, does it get compiled in
+> the same buildroot as your app, or is it done differently?
+>
+> Do you use a custom linker script(s)?
+>
+>
+> >
+> >
+> >
+> > So the embedded target doesn't have babletrace so I archived the sessio=
+n
+> > and transferred it over to my dev PC and used tracecompas to view the
+> > lttng-session.
+> >
+> > You can see that in the attached file my_session.csv
+>
+> This is good, the statedump is happening properly.
+>
+> >
+> >     ```
+> >
+> >      >
+> >      > Thanks!  I'm running out of things to try.
 > >
 >
-
---0000000000004f20a6061e1674d8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello Zee,</div><div><br></div><div>Thank you for you=
-r reply. I was able to fix it by doing several approaches:</div><div><br></=
-div><div>at the end I found out that the size of the wic image in my yocto =
-scarthgap version was being set by a wks file=C2=A0 which is a template fil=
-e for creating wic images in yocto:</div><div><br></div><div>I did a &quot;=
-wic list images&quot; that showed me that beaglebone-yocto had a .wks file =
-for it and I modify the source code as follows:</div><div><br></div><div>or=
-iginal beaglebone-yocto.wks source code line<br></div><div>part /boot --sou=
-rce bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat --label boot --activ=
-e --align 4 --fixed-size 32 --sourceparams=3D&quot;loader=3Du-boot&quot; --=
-use-uuid</div><div><br></div><div>I changed=C2=A0 the --fixed-size to 64, a=
-nd that give me enough space for what I want.<br></div><div>part /boot --so=
-urce bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat --label boot --acti=
-ve --align 4 --fixed-size 64 --sourceparams=3D&quot;loader=3Du-boot&quot; -=
--use-uuid<br></div><div><br></div><div>Problem solved.<br></div><div><br></=
-div><div>I tried your conf/local.conf with the following modifications beca=
-use for some reason I got some problems:</div><div><br></div><div><ul><li>M=
-ACHINE =3D &quot;beaglebone&quot;</li></ul></div><div>it is not recognized =
-by my yocto system. I had to use:<div><div><br></div><div>MACHINE ??=3D &qu=
-ot;beaglebone-yocto&quot;</div></div></div><div><br></div><div>=C2=A0I&#39;=
-m using scarthgap release of yocto.</div><div><br></div><div>out of curiosi=
-ty, which version of yocto are you using? <br></div><div><ul><li>How did yo=
-u get the layers for beaglebone I see the following line in the conf/local.=
-conf file:</li></ul></div><div>## mask for non-mender builds<br>BBMASK =3D =
-&quot;meta-bbb/recipes-mender&quot;</div><div><br></div><div>I looked for i=
-t in <a href=3D"https://layers.openembedded.org/layerindex/branch/master/la=
-yers/" target=3D"_blank">https://layers.openembedded.org/layerindex/branch/=
-master/layers/</a> and could not find it.<br></div><div><ul><li>I commented=
- out the following lines in your conf/local.conf, but I don&#39;t think thi=
-s makes a huge difference.</li></ul><div>#original from zoran<br>#PREFERRED=
-_PROVIDER_virtual/kernel ?=3D &quot;linux-mainline&quot;<br>#PREFERRED_VERS=
-ION_linux-libc-headers=3D&quot;6.10.%&quot;<br>#PREFERRED_VERSION_linux-mai=
-nline ?=3D &quot;6.10.%&quot;</div><div><br></div><div>#original from zoran=
-<br>#CORE_IMAGE_EXTRA_INSTALL:append =3D &quot;openssh cmake libsocketcan n=
-fs-utils rt-tests strace procps packagegroup-core-buildessential &quot;</di=
-v><div><br></div></div><div>After all these modifications I was still getti=
-ng a similar error.</div><div><br></div><div>To solve the problems I did th=
-e following steps: I tried looking for some variable that contain the 32768=
- limit using &quot;source toaster start&quot; which guide me to a UI of bui=
-ld output and I found look a failed recipe, click on the task number and th=
-at lead to a page that allow me to look for yocto variables and their value=
-s being set up, I read some variable description and that lead me to the fi=
-nding that wic image is created by wic tools in yocto I search how to creat=
-e wic images in yocto and found the info I told you some lines above in yoc=
-to documentation et voil=C3=A1 !!! problem solved just in time for the Olym=
-pics!!!<br></div><div><br></div><div>Thanks for your help.</div><div><br></=
-div><div>Ulises Vega<br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Mon, Jul 22, 2024 at 11:55=E2=80=AFPM Zora=
-n Stojsavljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=
-=3D"_blank">zoran.stojsavljevic@gmail.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">Hello Ulises,<br>
-<br>
-I did try to stuff your initramfs changes/addendums in my local.conf .<br>
-<br>
-Just out of curiosity. ;-)<br>
-<br>
-It does work seamlessly. The build finished without any problems.<br>
-<br>
-Please, find attached my local.conf with your addendums.<br>
-<br>
-It could help you... I believe.<br>
-<br>
-Zee<br>
-_______<br>
-<br>
-On Mon, Jul 22, 2024 at 7:47=E2=80=AFPM Ulises Vega via <a href=3D"http://l=
-ists.yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproj=
-ect.org</a><br>
-&lt;u.apeiron=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org" target=
-=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello everyone,<br>
-&gt;<br>
-&gt; I&#39;m trying to run Automotive Grade Linux (AGL) on beagleboneai-64.=
-<br>
-&gt;<br>
-&gt; AGL uses a yocto based build. I&#39;m trying to generate an initrd ima=
-ge for the beagleboneai-64.<br>
-&gt;<br>
-&gt; I&#39;m using yocto scarthgap. I added the following features to conf/=
-local.conf but got some errors while creating the wic image.<br>
-&gt;<br>
-&gt; INITRAMFS_IMAGE =3D &quot;core-image-tiny-initramfs&quot;<br>
-&gt; INITRAMFS_IMAGE_BUNDLE =3D &quot;1&quot;<br>
-&gt; INITRAMFS_IMAGE_NAME ?=3D &quot;${INITRAMFS_IMAGE}-${MACHINE}&quot;<br=
+> For the next steps I would start disassembling "my_app" or checking in
+> gdb which bad address is being fed into strnlen.
 >
-&gt; INITRAMFS_KERNEL_IMAGE=3D&quot;${KERNEL_IMAGETYPE}-initramfs-${MACHINE=
-}.bin&quot;<br>
-&gt; VIRTUAL-RUNTIME_dev_manager =3D &quot;busybox-mdev&quot;<br>
-&gt; IMAGE_BOOT_FILES:append =3D &quot; ${INITRAMFS_KERNEL_IMAGE};${KERNEL_=
-IMAGETYPE}&quot;<br>
-&gt;<br>
-&gt; IMAGE_ROOTFS_MAXSIZE ?=3D &quot;4294967296&quot;<br>
-&gt; ROOTFS_PARTITION_SIZE ?=3D &quot;4294967296&quot;<br>
-&gt;<br>
-&gt; SDCARD_ROOTFS ?=3D &quot;${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4=
-&quot;<br>
-&gt;<br>
-&gt; IMAGE_FSTYPES:append =3D &quot; ext4 cpio.gz&quot;<br>
-&gt;<br>
-&gt; These are the errors I got.<br>
-&gt;<br>
-&gt; DEBUG: Executing python function extend_recipe_sysroot<br>
-&gt; NOTE: Direct dependencies are [&#39;/media/ulisesv/linux_workspace/AGL=
-/ricefish/external/poky/meta/recipes-core/glibc/cross-localedef-native_2.39=
-.bb:do_populate_sysroot&#39;, &#39;/media/ulisesv/linux_workspace/AGL/ricef=
-ish/external/poky/meta/recipes-core/glibc/ldconfig-native_2.12.1.bb:do_popu=
-late_sysroot&#39;, &#39;/media/ulisesv/linux_workspace/AGL/ricefish/externa=
-l/poky/meta/recipes-devtools/binutils/binutils-cross_2.42.bb:do_populate_sy=
-sroot&#39;, &#39;/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/=
-meta/recipes-devtools/cdrtools/cdrtools-native_3.01.bb:do_populate_sysroot&=
-#39;, &#39;/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/r=
-ecipes-devtools/qemu/qemuwrapper-cross_1.0.bb:do_populate_sysroot&#39;, &#3=
-9;/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-ke=
-rnel/kmod/depmodwrapper-cross_1.0.bb:do_populate_sysroot&#39;, &#39;virtual=
-:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/meta-selinux/r=
-ecipes-security/selinux/policycoreutils_3.6.bb:do_populate_sysroot&#39;, &#=
-39;virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky=
-/meta/recipes-core/update-rc.d/update-rc.d_0.8.bb:do_populate_sysroot&#39;,=
- &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/external/p=
-oky/meta/recipes-devtools/btrfs-tools/btrfs-tools_6.7.1.bb:do_populate_sysr=
-oot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/ricefish/e=
-xternal/poky/meta/recipes-devtools/createrepo-c/createrepo-c_1.0.4.bb:do_po=
-pulate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL=
-/ricefish/external/poky/meta/recipes-devtools/dnf/dnf_4.19.0.bb:do_populate=
-_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/ricef=
-ish/external/poky/meta/recipes-devtools/dosfstools/dosfstools_4.2.bb:do_pop=
-ulate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspace/AGL/=
-ricefish/external/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.47.0.bb:=
-do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux_workspac=
-e/AGL/ricefish/external/poky/meta/recipes-devtools/erofs-utils/erofs-utils_=
-1.7.1.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux=
-_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/fdisk/gptfdisk_=
-1.0.9.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/linux=
-_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/makedevs/makede=
-vs_1.0.1.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/li=
-nux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/mtools/mtool=
-s_4.0.43.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/li=
-nux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/opkg-utils/o=
-pkg-utils_0.6.3.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/uli=
-sesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/pseud=
-o/pseudo_git.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulises=
-v/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/rpm/rpm_=
-4.19.1.1.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/li=
-nux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools/squashfs-too=
-ls/squashfs-tools_git.bb:do_populate_sysroot&#39;, &#39;virtual:native:/med=
-ia/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-devtools=
-/syslinux/syslinux_6.04-pre2.bb:do_populate_sysroot&#39;, &#39;virtual:nati=
-ve:/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-e=
-xtended/parted/parted_3.6.bb:do_populate_sysroot&#39;, &#39;virtual:native:=
-/media/ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-exte=
-nded/pigz/pigz_2.8.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/=
-ulisesv/linux_workspace/AGL/ricefish/external/poky/meta/recipes-extended/xz=
-/xz_5.4.6.bb:do_populate_sysroot&#39;, &#39;virtual:native:/media/ulisesv/l=
-inux_workspace/AGL/ricefish/external/poky/meta/recipes-support/bmaptool/bma=
-ptool_git.bb:do_populate_sysroot&#39;]<br>
-&gt; NOTE: u-boot-ti-staging exists in sysroot, but is stale (u-boot-ti-sta=
-ging.fb4c3165ab7b6a4cdff9ac6dd66ec27131b6b0a1458829b9a2435efbb437d016 vs. u=
--boot-ti-staging.e12d75717bc48fff394b754723686e43ed4c4136875027162649d00c64=
-73048b), removing.<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/boot/u-boot-beaglebone-ai64-2023.04+git-r0.img<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/boot/u-boot-spl.bin<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/boot/tispl.bin-beaglebone-ai64-2023.04+git-r0<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/boot/u-boot.img<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/boot/u-boot-spl.bin-beaglebone-ai64-2023.04+git-r0<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/boot/tispl.bin<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-providers/u-boot-ti-staging<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-providers/u-boot<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-providers/virtual_bootloader<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-providers/<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/boot/<br>
-&gt; NOTE: <a href=3D"http://linux-bb.org" rel=3D"noreferrer" target=3D"_bl=
-ank">linux-bb.org</a> exists in sysroot, but is stale (<a href=3D"http://li=
-nux-bb.org" target=3D"_blank">linux-bb.org</a>.72fd73ea1b79abe5b75726e3efd6=
-ea0d79ca9966b16cddfdaafc987fba084c80 vs. <a href=3D"http://linux-bb.org" ta=
-rget=3D"_blank">linux-bb.org</a>.2a69e1fa14e6277a5b20f66736709b553072175691=
-3f3d6246e20f465f8b792e), removing.<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-providers/<a href=3D"http://linux-bb.org" rel=
-=3D"noreferrer" target=3D"_blank">linux-bb.org</a><br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-providers/virtual_kernel<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-only/fitImage<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-providers/<br>
-&gt; DEBUG: Removing manifest: /media/ulisesv/linux_workspace/AGL/ricefish/=
-beaglebone-ai64/tmp/work/beaglebone_ai64-agl-linux/agl-ivi-demo-qt-crosssdk=
-/1.0/recipe-sysroot/sysroot-only/<br>
-&gt; NOTE: Installed into sysroot: [&#39;u-boot-ti-staging&#39;, &#39;<a hr=
-ef=3D"http://linux-bb.org" rel=3D"noreferrer" target=3D"_blank">linux-bb.or=
-g</a>&#39;]<br>
-&gt; NOTE: Skipping as already exists in sysroot: [&#39;trusted-firmware-a&=
-#39;, &#39;optee-os&#39;, &#39;ti-dm-fw&#39;, &#39;ti-sci-fw&#39;, &#39;get=
-text-minimal-native&#39;, &#39;cross-localedef-native&#39;, &#39;glibc&#39;=
-, &#39;ldconfig-native&#39;, &#39;systemd-systemctl-native&#39;, &#39;binut=
-ils-cross-aarch64&#39;, &#39;cdrtools-native&#39;, &#39;cmake-native&#39;, =
-&#39;gcc-runtime&#39;, &#39;libgcc&#39;, &#39;libtool-native&#39;, &#39;m4-=
-native&#39;, &#39;opkg-utils&#39;, &#39;qemu-native&#39;, &#39;qemuwrapper-=
-cross&#39;, &#39;texinfo-dummy-native&#39;, &#39;depmodwrapper-cross&#39;, =
-&#39;linux-libc-headers&#39;, &#39;nspr-native&#39;, &#39;nss-native&#39;, =
-&#39;libselinux-native&#39;, &#39;libsemanage-native&#39;, &#39;libsepol-na=
-tive&#39;, &#39;policycoreutils-native&#39;, &#39;openssl-native&#39;, &#39=
-;coreutils-native&#39;, &#39;expat-native&#39;, &#39;gettext-native&#39;, &=
-#39;glib-2.0-native&#39;, &#39;libxml2-native&#39;, &#39;ncurses-native&#39=
-;, &#39;readline-native&#39;, &#39;update-rc.d-native&#39;, &#39;util-linux=
--libuuid-native&#39;, &#39;util-linux-native&#39;, &#39;zlib-native&#39;, &=
-#39;btrfs-tools-native&#39;, &#39;createrepo-c-native&#39;, &#39;desktop-fi=
-le-utils-native&#39;, &#39;dnf-native&#39;, &#39;dosfstools-native&#39;, &#=
-39;e2fsprogs-native&#39;, &#39;elfutils-native&#39;, &#39;erofs-utils-nativ=
-e&#39;, &#39;gptfdisk-native&#39;, &#39;file-native&#39;, &#39;flex-native&=
-#39;, &#39;gnu-config-native&#39;, &#39;json-c-native&#39;, &#39;libcomps-n=
-ative&#39;, &#39;libdnf-native&#39;, &#39;libedit-native&#39;, &#39;libmodu=
-lemd-native&#39;, &#39;librepo-native&#39;, &#39;lua-native&#39;, &#39;make=
--native&#39;, &#39;makedevs-native&#39;, &#39;mtools-native&#39;, &#39;nasm=
--native&#39;, &#39;opkg-utils-native&#39;, &#39;perl-native&#39;, &#39;pseu=
-do-native&#39;, &#39;python3-build-native&#39;, &#39;python3-flit-core-nati=
-ve&#39;, &#39;python3-iniparse-native&#39;, &#39;python3-installer-native&#=
-39;, &#39;python3-packaging-native&#39;, &#39;python3-pyproject-hooks-nativ=
-e&#39;, &#39;python3-setuptools-native&#39;, &#39;python3-six-native&#39;, =
-&#39;python3-wheel-native&#39;, &#39;python3-native&#39;, &#39;rpm-native&#=
-39;, &#39;squashfs-tools-native&#39;, &#39;swig-native&#39;, &#39;syslinux-=
-native&#39;, &#39;bzip2-native&#39;, &#39;cpio-native&#39;, &#39;groff-nati=
-ve&#39;, &#39;libarchive-native&#39;, &#39;libidn2-native&#39;, &#39;libnsl=
-2-native&#39;, &#39;libsolv-native&#39;, &#39;libtirpc-native&#39;, &#39;lz=
-lib-native&#39;, &#39;parted-native&#39;, &#39;pigz-native&#39;, &#39;shado=
-w-native&#39;, &#39;unzip-native&#39;, &#39;xz-native&#39;, &#39;zstd-nativ=
-e&#39;, &#39;gdk-pixbuf-native&#39;, &#39;gobject-introspection-native&#39;=
-, &#39;libjpeg-turbo-native&#39;, &#39;kmod-native&#39;, &#39;libpng-native=
-&#39;, &#39;acl-native&#39;, &#39;attr-native&#39;, &#39;bmaptool-native&#3=
-9;, &#39;curl-native&#39;, &#39;debianutils-native&#39;, &#39;gdbm-native&#=
-39;, &#39;gmp-native&#39;, &#39;gnutls-native&#39;, &#39;libtasn1-native&#3=
-9;, &#39;gpgme-native&#39;, &#39;itstool-native&#39;, &#39;libassuan-native=
-&#39;, &#39;libbsd-native&#39;, &#39;libcap-ng-native&#39;, &#39;libcap-nat=
-ive&#39;, &#39;libcheck-native&#39;, &#39;libffi-native&#39;, &#39;libgcryp=
-t-native&#39;, &#39;libgpg-error-native&#39;, &#39;libmd-native&#39;, &#39;=
-libmicrohttpd-native&#39;, &#39;libpcre2-native&#39;, &#39;libunistring-nat=
-ive&#39;, &#39;libyaml-native&#39;, &#39;lz4-native&#39;, &#39;lzo-native&#=
-39;, &#39;nettle-native&#39;, &#39;popt-native&#39;, &#39;shared-mime-info-=
-native&#39;, &#39;sqlite3-native&#39;]<br>
-&gt; DEBUG: Python function extend_recipe_sysroot finished<br>
-&gt; DEBUG: Executing python function set_image_size<br>
-&gt; DEBUG: 2361054.800000 =3D 1816196 * 1.300000<br>
-&gt; DEBUG: 2467550.800000 =3D max(2361054.800000, 8192)[2361054.800000] + =
-106496<br>
-&gt; DEBUG: 2467551.000000 =3D int(2467550.800000)<br>
-&gt; DEBUG: 2467551 =3D aligned(2467551)<br>
-&gt; DEBUG: returning 2467551<br>
-&gt; DEBUG: Python function set_image_size finished<br>
-&gt; DEBUG: Executing shell function do_image_wic<br>
-&gt; INFO: Creating image(s)...<br>
-&gt;<br>
-&gt; ERROR: File system image of partition None is larger (336164 kB) than =
-its allowed size 131072 kB<br>
-&gt;<br>
-&gt; WARNING: exit code 1 from a shell command.<br>
-&gt; ~<br>
-&gt;<br>
-&gt; Thanks.<br>
-&gt;<br>
-&gt; Ulises Vega<br>
-&gt;<br>
-&gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#63549): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/63549" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/63549</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/10749002=
-3/3618681" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/mt/107490023/3618681</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_bla=
-nk">zoran.stojsavljevic@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-</blockquote></div>
-
---0000000000004f20a6061e1674d8--
+> Sections of interest (`objdump -sD my_app` _and_ `readelf -W -a my_app`):
+>
+> - lttng_ust_tracepoints_ptrs
+> - lttng_ust_tracepoints_strings
+>
+> Symbols of interest (`objdump -sD my_app` _and `nm my_app`):
+>
+> - lttng_ust_tracepoint_hello_world___my_first_tracepoint
+> - lttng_ust_tracepoints_ptrs
+> - __start_lttng_ust_tracepoints_ptrs
+> - __stop_lttng_ust_tracepoints_ptrs
+>
+> thanks,
+> kienan
+>
+> >     Ultimately, given the bespoke environment, build steps, and applica=
+tion
+> >     it's tough to diagnose a lot of things that we would go over with a
+> >     fine
+> >     tooth comb: seeing how the TPPs are built and linked, seeing how th=
+e
+> >     application is built and linked, analyzing what's happening at runt=
+ime,
+> >     having a coredump that allows us to see the variables, etc.
+> >
+> >     If you can provide a minimal reproducer, it's possible to dig furth=
+er
+> >     into it.
+> >
+> >     Otherwise, to look in more detail at your specific project would be
+> >     covered under a service contract (for which we can sign NDAs, etc. =
+as
+> >     needed). Feel free to reach out the sales@efficios.com
+> >     <mailto:sales@efficios.com> to organise that.
+> >
+> >
+> > I understand but so far schedules & budget/priorities haven't aligned s=
+o
+> > once again I've been scheduled to look at this issue again since we las=
+t
+> > tried it on older Dunfell OS with older versions of lttng and it looks
+> > like we have the same problem as before.
+> >
+> > Thanks for your help!
+> >
+> > Regards,
+> >
+> > Brian
+> >
+> >
+> >      >
+> >      > I don't fully understand the implications of some of this
+> >     documentation,
+> >      > but I have learned enough to know LD_PRELOAD means nothing if
+> >     everything
+> >      > is static built.  Our application is heavily multi threaded, use=
+s
+> >     fork,
+> >      > clone and who knows if it's doing double closes or not ... so
+> >     I've tried
+> >      > these LD_PRELOAD "helpers" or whatever they are, before and
+> >     didn't get a
+> >      > different result, but now know it's only for shared library
+> >     object.  So
+> >      > now I will experiment with making our tpp a shared object and tr=
+y
+> >      > LD_PRELOAD of fork, fd and pthread helpers and starting my app
+> >     that way.
+> >
+> >     LD_PRELOAD has an effect if the application you are running is
+> >     dynamically linked (note: the TPP can be statically linked inside a=
+n
+> >     dynamically linked executable, and the preloads are still useful an=
+d/or
+> >     needed in that case).
+> >
+> >     The function of the helpers are to ensure that various system calls
+> >     don't clobber things in use by lttng-ust. E.g., close() is shimmed =
+by
+> >     liblttng-ust-fd.so so that FDs that lttng-ust uses aren't suddenly =
+shut
+> >     by the program.
+> >
+> >     If you want to see it in action, you could try an experiment with a
+> >     slightly modified hello-static-lib application, with instructions i=
+n
+> >     the
+> >     top comment:
+> >     https://gist.github.com/kienanstewart/299eb6a511d92d458569b210e4a41=
+8a8 <https://gist.github.com/kienanstewart/299eb6a511d92d458569b210e4a418a8=
+>
+> >
+> >     The effect of the preloads such as liblttng-ust-fd.so are
+> >     independent of
+> >     how the TPP is built and linked to the application or library.
+> >
+> >     thanks,
+> >     kienan
+> >
+> >      >
+> >      > This is what I'm referring to above from the lttng docs:
+> >      >
+> >      >
+> >      >           Use LTTng-UST with daemons
+> >      >
+> >       <https://lttng.org/docs/v2.13/#doc-using-lttng-ust-with-daemons
+> >     <https://lttng.org/docs/v2.13/#doc-using-lttng-ust-with-daemons>>
+> >      >
+> >      > If your instrumented application calls fork(2)
+> >      > <https://man7.org/linux/man-pages/man2/fork.2.html
+> >     <https://man7.org/linux/man-pages/man2/fork.2.html>>, clone(2)
+> >      > <https://man7.org/linux/man-pages/man2/clone.2.html
+> >     <https://man7.org/linux/man-pages/man2/clone.2.html>>, or BSD=E2=80=
+=99s
+> >     rfork(2)
+> >      >
+> >     <http://www.freebsd.org/cgi/man.cgi?query=3Drfork&sektion=3D2&manpa=
+th=3DFreeBSD+4.10-RELEASE <http://www.freebsd.org/cgi/man.cgi?query=3Drfork=
+&sektion=3D2&manpath=3DFreeBSD+4.10-RELEASE>>, without a following exec(3) =
+<https://man7.org/linux/man-pages/man3/exec.3.html <https://man7.org/linux/=
+man-pages/man3/exec.3.html>>-family system call, you must preload the |libl=
+ttng-ust-fork.so| shared object when you start the application.
+> >      >
+> >      > LD_PRELOAD=3Dliblttng-ust-fork.so ./my-app
+> >      >
+> >      > If your tracepoint provider package is a shared library which yo=
+u
+> >     also
+> >      > preload, you must put both shared objects in |LD_PRELOAD|:
+> >      >
+> >      > LD_PRELOAD=3Dliblttng-ust-fork.so:/path/to/tp.so ./my-app
+> >      >
+> >      >
+> >      >           Use LTTng-UST with applications which close file
+> >     descriptors
+> >      >           that don=E2=80=99t belong to them
+> >      >           <https://lttng.org/docs/v2.13/#doc-liblttng-ust-fd
+> >     <https://lttng.org/docs/v2.13/#doc-liblttng-ust-fd>>
+> >      >
+> >      > Since 2.9
+> >      >
+> >      > If your instrumented application closes one or more file descrip=
+tors
+> >      > which it did not open itself, you must preload the
+> >     |liblttng-ust-fd.so|
+> >      > shared object when you start the application:
+> >      >
+> >      > LD_PRELOAD=3Dliblttng-ust-fd.so ./my-app
+> >      >
+> >      > Typical use cases include closing all the file descriptors after
+> >     fork(2)
+> >      > <https://man7.org/linux/man-pages/man2/fork.2.html
+> >     <https://man7.org/linux/man-pages/man2/fork.2.html>> or rfork(2)
+> >      >
+> >     <http://www.freebsd.org/cgi/man.cgi?query=3Drfork&sektion=3D2&manpa=
+th=3DFreeBSD+4.10-RELEASE <http://www.freebsd.org/cgi/man.cgi?query=3Drfork=
+&sektion=3D2&manpath=3DFreeBSD+4.10-RELEASE>> and buggy applications doing =
+=E2=80=9Cdouble closes=E2=80=9D.
+> >      >
+> >      >
+> >      > Thanks,
+> >      >
+> >      > Brian
+> >      >
+> >      >
+> >
 
