@@ -1,354 +1,231 @@
-Return-Path: <soumya.sambu@windriver.com>
+Return-Path: <jing.hui.tham@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7E01C3DA7F
-	for <webhook@archiver.kernel.org>; Fri, 26 Jul 2024 12:03:58 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web11.59891.1721995437514782747
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19DF2C3DA70
+	for <webhook@archiver.kernel.org>; Fri, 26 Jul 2024 15:46:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by mx.groups.io with SMTP id smtpd.web11.64571.1722008790855379602
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Jul 2024 05:03:57 -0700
+ Fri, 26 Jul 2024 08:46:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=793772edd4=soumya.sambu@windriver.com)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46Q5ADSa014772
-	for <yocto@lists.yoctoproject.org>; Fri, 26 Jul 2024 12:03:56 GMT
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.wrs.com [147.11.82.252])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 40kca1sjqs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Fri, 26 Jul 2024 12:03:56 +0000 (GMT)
-Received: from blr-linux-engg1.wrs.com (147.11.136.210) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ dkim=pass header.i=@intel.com header.s=Intel header.b=lV2K6ukS;
+ spf=pass (domain: intel.com, ip: 192.198.163.12, mailfrom: jing.hui.tham@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722008791; x=1753544791;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=gJ/r1h+cYG4UuLMyvPkWCa6AiUzRCwZdBz56/+Siu5c=;
+  b=lV2K6ukSk2Y5CbQhixZj495F/uYGjboxITcehb+0sbMo9PfKgZihdtqm
+   uDzQakBOrHbbHI1/+WuPw30ZmNXaHyyNPyWSKOdaD4SocSXsVrJSvm8VG
+   kTbQPEbahq+4JJW2q8dzKz9nXYPeVxDJ4ngQnwucIHXTahEHNOWQCp47k
+   RiN8uIjINXn+XUsPdG5l2HC4AwtRpmlhhjph4ucDJLdvzW5iNLYZnPtbl
+   ku5+HH23IJFBJBv/A9genPH2GVU2i00AN7xuzYms93SWiJRziCSQFz77k
+   O0FqfeTZzkPd6TjQpWpmQLcq+YlccbjpwhlN0prRT32eOv6RHLI6c+FJv
+   Q==;
+X-CSE-ConnectionGUID: e7i46xsTRg+IlHoL9JbfAw==
+X-CSE-MsgGUID: +kokO6voSqO+6d2y95vyYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="23662179"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; 
+   d="scan'208";a="23662179"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2024 08:46:30 -0700
+X-CSE-ConnectionGUID: UvdkwGinT1qsJWlIrwX57Q==
+X-CSE-MsgGUID: Xy/zBcQHTEGaGiO/tAhtfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; 
+   d="scan'208";a="58404498"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+  by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 26 Jul 2024 08:46:29 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 26 Jul 2024 05:03:53 -0700
-From: ssambu <soumya.sambu@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [meta-security][scarthgap][PATCH 1/1] sssd: Fix CVE-2023-3758
-Date: Fri, 26 Jul 2024 12:03:33 +0000
-Message-ID: <20240726120333.1918532-1-soumya.sambu@windriver.com>
-X-Mailer: git-send-email 2.40.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [147.11.136.210]
-X-ClientProxiedBy: ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) To
- ala-exchng01.corp.ad.wrs.com (147.11.82.252)
-X-Proofpoint-ORIG-GUID: _dhTpfYXOiwWvjoJFQLbXBHkZKR_tLi5
-X-Proofpoint-GUID: _dhTpfYXOiwWvjoJFQLbXBHkZKR_tLi5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-26_10,2024-07-26_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
- malwarescore=0 spamscore=0 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 phishscore=0 mlxscore=0 mlxlogscore=999
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.21.0-2407110000 definitions=main-2407260081
+ 15.1.2507.39; Fri, 26 Jul 2024 08:46:28 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 26 Jul 2024 08:46:28 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 26 Jul 2024 08:46:28 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EOGCIkg+Ty6qomjUlxv01ZAEABVLMfDlS62GjpNOGRiOheqGKXpn/d6MTN8kkh9JH+Rk+UGe86vmijkzFFwN1BVHiDaUelZQFpCJotydMm6WkBlxcuTWk248QaRAp8twXMbOJ0jXDUBUn1nUZfifpv+Jsg71xgTyGowUn2DcYs4TMw59FgTjNGxaypM4/9DY8FThA4r+rh9EIz/q5LXSyB9qAHmd+mTaSRc+D6Xy+FGRF8At0GAk1MdhosYbOWraqnERhoypDuJeAw3jwbi2gW/YPxA5u/6lPpnV0o4XHwxgidEK8jGD6E4H94I68yy7sRWedNN5mhcmIXxaWrBd6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2lMzkOfXYMVppDvKZ1+04YrQiSK/ipmFHZxnG6rCcKk=;
+ b=kIs+3FJt8ufjQs8SPqRhIbgJmrLF2Yql1k09CMpYhXcqmUKIEkBZRE1ynbFO5PXFnEOHj56FdnBTrGTfQsNECA5ckFc+FRldf/c0/EMWRBW615hUYOviAEo5Tmtrx/OrOOKvkYaI2DGS8gD+j2Jell6EmAGjkM34e2I8Lg4WdPQYJaIY4KaYuy9YlV26bbTReOoYUIAPpS4iyA6P1t194gPSg9w/wc2r9Vpp8iLl3XC9RRLBnZ0DGHsEgYDzVFqf1DvW/9w+9q2m9VFPd4QFOrR7ez1fT8ig2cTpjK0+otH3TcyTy1y67es7VKt/NFzlQh0ijz+gDGLipsoYSJx98Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
+ by CY8PR11MB7195.namprd11.prod.outlook.com (2603:10b6:930:93::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Fri, 26 Jul
+ 2024 15:46:23 +0000
+Received: from DM4PR11MB7760.namprd11.prod.outlook.com
+ ([fe80::e210:b6a3:f037:f49a]) by DM4PR11MB7760.namprd11.prod.outlook.com
+ ([fe80::e210:b6a3:f037:f49a%7]) with mapi id 15.20.7784.020; Fri, 26 Jul 2024
+ 15:46:23 +0000
+From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: RE: [yocto] QA notification for completed autobuilder build
+ (yocto-5.1_M2.rc1)
+Thread-Topic: [yocto] QA notification for completed autobuilder build
+ (yocto-5.1_M2.rc1)
+Thread-Index: AQHa2AQx8ch0dv4+z0aOOHyncPiz6rIJM/mA
+Date: Fri, 26 Jul 2024 15:46:23 +0000
+Message-ID: <DM4PR11MB7760B180E51B8A7E662FC4FEA1B42@DM4PR11MB7760.namprd11.prod.outlook.com>
+References: <01010190bf027a1f-d75a0402-7be5-4a91-a98e-e1905f9e0340-000000@us-west-2.amazonses.com>
+In-Reply-To: <01010190bf027a1f-d75a0402-7be5-4a91-a98e-e1905f9e0340-000000@us-west-2.amazonses.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|CY8PR11MB7195:EE_
+x-ms-office365-filtering-correlation-id: fbef334b-59a1-448b-d021-08dcad8a19ff
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?403E/sm0aoms3IyPT4sjRG4/d2vXM1kuGM/nmEOdP3045Gg4YJZyZYdHFjii?=
+ =?us-ascii?Q?YCbQ9BLmVS9dT+5v/3MhG/lOr5U+B7WS40pM4ViLnqFg8WeNg6fh+tIZshgr?=
+ =?us-ascii?Q?77oTdTF2xLzTQgPrQJ0OJWLBHqvj3vGeiyJytE3ySkez/nLh+80PgAASMtMb?=
+ =?us-ascii?Q?cLCKDbjYn5+9Io0n2ywePfI6wfZzt0fYyGb9yF4cQZxlMYHHJ093kOxYCgK+?=
+ =?us-ascii?Q?UyR6Kb1Etr89Rc4PROzC7dKnalXcyjA2Z/vzsF/5DOD2zaoUCJar6rahIflb?=
+ =?us-ascii?Q?SHdrzS911tkbabwa5jsVOx0ktSHhq+ENl1kZoFYxQ6DuOEfGv7ZXWWWET9xA?=
+ =?us-ascii?Q?ew+tcG0gN6eB400ZqpobqAH5P3gSmmrbNByA4fP3vp5frkIB5GtcJCgv4TiZ?=
+ =?us-ascii?Q?+WzwnQwJ+SIQbvaHvg2VndHPZGL06HLKvqipjs9d3pXrnrvo+0kzxuwdVLEh?=
+ =?us-ascii?Q?20XxtuuUsJ53ZuVUfuMmzX261HE09Hl0A215ulvj/IIp2lAcsu13wF3fa/Zh?=
+ =?us-ascii?Q?oFdX3mhfQaO+q0xdgKp08rmM+bYNFyqav1DWT55Rd9UTXNy5YKrcGtTIdNq1?=
+ =?us-ascii?Q?xlR1+EoUnT9n0zPjuWIaGpuHyQe4gxKdQpKdRnPKGxS5JlFtNCTwJvCeP1T5?=
+ =?us-ascii?Q?SG/wwa7dvP33AVmJ1CTlGv0P7twdjcwUM1AZcebiG+RkB9MlKjy85szGspQu?=
+ =?us-ascii?Q?2Hs24jcaqDZlAym00Zex5yk4gymsMTwai6EAgVN1+8emo1Z+8wSVEE/1pcro?=
+ =?us-ascii?Q?QvhtEBk3THHl4ywT82taybflu2ikl+H4fHV8lAMvIlEquZCWMk2f9QtiTLTj?=
+ =?us-ascii?Q?V/7ibIDVMa1Yv9ajXCprnpoDF7ql/wcsBheQD+stb6C+ZLfqbTtzUywr1ch7?=
+ =?us-ascii?Q?x4sqFnQoPfrpX7np0QrxPY1O45PhJKH2Y8+bDaDjNwBXNRA4dyns7Zjr77wA?=
+ =?us-ascii?Q?prDW8o/oydQryY54hU/w6FQZKAz1cQ8xtJEF7XzVV59aIQPCApS9Y4WQv0cp?=
+ =?us-ascii?Q?oqsFqd0H5qjFCmFb29a8MXoV3DfHbqDN5X5eOjMd+PsklCAQilApv42MHCMe?=
+ =?us-ascii?Q?YhutGVPr5zoCOuDVMtu9yPnHaRSBlC5+YFeVb8qSeGWbryF2Qcd1NJkQgPVk?=
+ =?us-ascii?Q?XfkQ/q0q2o5AGXCAsgwlzoWdLXo3uGtc33vzesQ63Wqw0KJdEuWm7x/zpUie?=
+ =?us-ascii?Q?7do4NPftu0fOlJsGEtKB6xAGouOI/aynynB5sMndpn7V1SPtFrG1AbhwjFHp?=
+ =?us-ascii?Q?JjAQLWWaqxrtJLuDUR/qu282+zQylNuvRDtdzxlKe6xgI/6DUL6NH8D9I2x0?=
+ =?us-ascii?Q?kqPNpE7lQDMuOgYEuL67k2XBT0LF2A4Qtqf9lHY72kYq9okibTR2GrnrZW/3?=
+ =?us-ascii?Q?+6wgdfk=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LBWN5gfVd8m72AheULuf0+JMzOq+XYP+ghXokat7OQC6J7KPFqpR79+VW2zV?=
+ =?us-ascii?Q?RyLpozk1oZ6rqng6e7xTZyagPkL0cIh14qTUz8v/0ltEp3ZeuiFjKQn1pfbv?=
+ =?us-ascii?Q?IqYOWMsm0Z164I70C0mABOra+aczxxLAuKMoSpncIFYqqfInVP5ycQwKpQ54?=
+ =?us-ascii?Q?yIsfdu3+53UMHnMmYohfzvzku6AfQxUBfouhoaU5mD/SEREZqPZCQ6gGpncn?=
+ =?us-ascii?Q?PKq4ZjL08/rrwUDEPoCyeSF8/8sTgLXSDRGnYg+TvF9gTVUJ+NZAN1BNTLD0?=
+ =?us-ascii?Q?ztC5/mvcMSk+ZC31eNe8FUHETdf1tTHqF/aRIJg2Y5nXNmMe1SBvy/Xj57pj?=
+ =?us-ascii?Q?kx1lVS1jyoVouunIttBAGnYctSn5eJnyFM7zxxHNTj950YGIn4Pdm+gcHlnA?=
+ =?us-ascii?Q?0MRqI8LlXbsiyzK9l8Twjfqg1NwSxmycSWP9eHqWsSXnxu7Kq7usJimDvV+l?=
+ =?us-ascii?Q?lWXvW8BRczu5Q+7SmVThBVO81TOZFqdws4PE73IcbMFWu3T0xWgQjYFGs23X?=
+ =?us-ascii?Q?Rvrw3QSwCiT/6GVAX5bB4IdkG6uB5HsNCN2ML37ATbw+tRorINh9IkttlRqm?=
+ =?us-ascii?Q?GuH6pfvb5o5eCR229ULvI3YNaEMnb9sWLqpKxuSVBCUBVITVUxAKDyRHHRkY?=
+ =?us-ascii?Q?xPvw/zvUVzXxJ0I/0wmOUtJy4LA2Ajd52rJSW0vWHDdEcG96M5XdNyaDp3Ij?=
+ =?us-ascii?Q?76jaS35OpWTFfX5haEQ3SEHQec3xFDpwz+SpcFTzQRrN53qWzbvt+qwDpwuR?=
+ =?us-ascii?Q?/9qM4zeEKjaWPDvkDHq8YmBOnw4wnHqYXi0TMJ+gttQh58pndIUkj3aWziaO?=
+ =?us-ascii?Q?ZY9kwScJaeTWoyhQFtNQ2rPiFwrrUZ3EknUSwAhH6nFd96ADnbdRcN2duXMe?=
+ =?us-ascii?Q?51OJ5ntcOkEhCectjvi0SVE07xqK7QH1QeXERd9X7a6lGPg2OHzhlguClTUx?=
+ =?us-ascii?Q?2C4MNAaMol/hQBFD5bxcWZAecTxZZgRAHU5s8I1BYMmT6PUV2bfo3nuRAaKV?=
+ =?us-ascii?Q?bHFiuSWNXrj095e3wYn0tGWEv3UUkBtTI8maBvbm6R+M0QlmZS6t3xNgWVSD?=
+ =?us-ascii?Q?2CefWCqbNBVmK8NjQ8jlA6EbLIkipEJVHFbbpFOzY8+5CaalhJChQTm0aNCf?=
+ =?us-ascii?Q?j2a2FRIhwpqc4YplMOMV1CDKF84+PjnPXnEAngBFdvD7p6OosI+NzrOqctUc?=
+ =?us-ascii?Q?Rwj9c9rjzn9R5880uvjVklnMYJDtFfkJ/IAsrKb0D3Gr39GfX7uWqAJvit6H?=
+ =?us-ascii?Q?Yn61zuZy9IrB/g3MtuQbvKfbRCBdha24Bw68KnAZsSvzT/D1XF4y/pp3YRtG?=
+ =?us-ascii?Q?lESqhFIt9Fp8XmRnhYWOL+ajuyCAg+Id4aJkiYeKhaQB+MlBGzDAYlGmlVqf?=
+ =?us-ascii?Q?deAzBm12G3+4LlknuQHu2+McVYJmDsBZFS78WSfHBGmoGYqvuzCHAn613OGc?=
+ =?us-ascii?Q?HE+mWKwt5+ef1RqKFUF3yNtSlR6v1kUDcczAmBk54NLqPUwkJnhmrxX6YDGH?=
+ =?us-ascii?Q?IZZCNp7rIFuubdDLgE4JDPkNqH16pELIc67JCqd26+cJC0LmJZMh/kcGd+zo?=
+ =?us-ascii?Q?2P/MTzpt1ASTzohjXJCwWm9yR7Y5vuu7lofRj86B?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 46Q5ADSa014772
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbef334b-59a1-448b-d021-08dcad8a19ff
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2024 15:46:23.2656
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: InqXBu7rR8t0LxHSqk+IdiHQPOBKxS+7/6SawPWKEgd0fuylokymRPNw8RINnZOnsGsmQtP4ywWqXM0KtI1qyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7195
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 26 Jul 2024 12:03:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63578
+ <yocto@lists.yoctoproject.org>; Fri, 26 Jul 2024 15:46:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63579
 
-From: Soumya Sambu <soumya.sambu@windriver.com>
-
-A race condition flaw was found in sssd where the GPO policy is
-not consistently applied for authenticated users. This may lead
-to improper authorization issues, granting or denying access to
-resources inappropriately.
-
-References:
-https://nvd.nist.gov/vuln/detail/CVE-2023-3758
-
-Upstream-patch:
-https://github.com/SSSD/sssd/commit/f4ebe1408e0bc67abfbfb5f0ca2ea13803b36=
-726
-
-Signed-off-by: Soumya Sambu <soumya.sambu@windriver.com>
----
- .../sssd/files/CVE-2023-3758.patch            | 220 ++++++++++++++++++
- .../recipes-security/sssd/sssd_2.9.2.bb       |   1 +
- 2 files changed, 221 insertions(+)
- create mode 100644 dynamic-layers/networking-layer/recipes-security/sssd=
-/files/CVE-2023-3758.patch
-
-diff --git a/dynamic-layers/networking-layer/recipes-security/sssd/files/=
-CVE-2023-3758.patch b/dynamic-layers/networking-layer/recipes-security/ss=
-sd/files/CVE-2023-3758.patch
-new file mode 100644
-index 0000000..7f39b39
---- /dev/null
-+++ b/dynamic-layers/networking-layer/recipes-security/sssd/files/CVE-202=
-3-3758.patch
-@@ -0,0 +1,220 @@
-+From f4ebe1408e0bc67abfbfb5f0ca2ea13803b36726 Mon Sep 17 00:00:00 2001
-+From: Sumit Bose <sbose@redhat.com>
-+Date: Wed, 8 Nov 2023 14:50:24 +0100
-+Subject: [PATCH] ad-gpo: use hash to store intermediate results
-+
-+Currently after the evaluation of a single GPO file the intermediate
-+results are stored in the cache and this cache entry is updated until
-+all applicable GPO files are evaluated. Finally the data in the cache is
-+used to make the decision of access is granted or rejected.
-+
-+If there are two or more access-control request running in parallel one
-+request might overwrite the cache object with intermediate data while
-+another request reads the cached data for the access decision and as a
-+result will do this decision based on intermediate data.
-+
-+To avoid this the intermediate results are not stored in the cache
-+anymore but in hash tables which are specific to the request. Only the
-+final result is written to the cache to have it available for offline
-+authentication.
-+
-+Reviewed-by: Alexey Tikhonov <atikhono@redhat.com>
-+Reviewed-by: Tom=C3=A1=C5=A1 Halman <thalman@redhat.com>
-+(cherry picked from commit d7db7971682da2dbf7642ac94940d6b0577ec35a)
-+
-+CVE: CVE-2023-3758
-+
-+Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/f4ebe1408=
-e0bc67abfbfb5f0ca2ea13803b36726]
-+
-+Signed-off-by: Soumya Sambu <soumya.sambu@windriver.com>
-+---
-+ src/providers/ad/ad_gpo.c | 116 +++++++++++++++++++++++++++++++++-----
-+ 1 file changed, 102 insertions(+), 14 deletions(-)
-+
-+diff --git a/src/providers/ad/ad_gpo.c b/src/providers/ad/ad_gpo.c
-+index 44e9cbb..cec0cb4 100644
-+--- a/src/providers/ad/ad_gpo.c
-++++ b/src/providers/ad/ad_gpo.c
-+@@ -1317,6 +1317,33 @@ ad_gpo_extract_policy_setting(TALLOC_CTX *mem_ctx=
-,
-+     return ret;
-+ }
-+
-++static errno_t
-++add_result_to_hash(hash_table_t *hash, const char *key, char *value)
-++{
-++    int hret;
-++    hash_key_t k;
-++    hash_value_t v;
-++
-++    if (hash =3D=3D NULL || key =3D=3D NULL || value =3D=3D NULL) {
-++        return EINVAL;
-++    }
-++
-++    k.type =3D HASH_KEY_CONST_STRING;
-++    k.c_str =3D key;
-++
-++    v.type =3D HASH_VALUE_PTR;
-++    v.ptr =3D value;
-++
-++    hret =3D hash_enter(hash, &k, &v);
-++    if (hret !=3D HASH_SUCCESS) {
-++        DEBUG(SSSDBG_OP_FAILURE, "Failed to add [%s][%s] to hash: [%s].=
-\n",
-++                                 key, value, hash_error_string(hret));
-++        return EIO;
-++    }
-++
-++    return EOK;
-++}
-++
-+ /*
-+  * This function parses the cse-specific (GP_EXT_GUID_SECURITY) filenam=
-e,
-+  * and stores the allow_key and deny_key of all of the gpo_map_types pr=
-esent
-+@@ -1324,6 +1351,7 @@ ad_gpo_extract_policy_setting(TALLOC_CTX *mem_ctx,
-+  */
-+ static errno_t
-+ ad_gpo_store_policy_settings(struct sss_domain_info *domain,
-++                             hash_table_t *allow_maps, hash_table_t *de=
-ny_maps,
-+                              const char *filename)
-+ {
-+     struct ini_cfgfile *file_ctx =3D NULL;
-+@@ -1457,14 +1485,14 @@ ad_gpo_store_policy_settings(struct sss_domain_i=
-nfo *domain,
-+                 goto done;
-+             } else if (ret !=3D ENOENT) {
-+                 const char *value =3D allow_value ? allow_value : empty=
-_val;
-+-                ret =3D sysdb_gpo_store_gpo_result_setting(domain,
-+-                                                         allow_key,
-+-                                                         value);
-++                ret =3D add_result_to_hash(allow_maps, allow_key,
-++                                         talloc_strdup(allow_maps, valu=
-e));
-+                 if (ret !=3D EOK) {
-+-                    DEBUG(SSSDBG_CRIT_FAILURE,
-+-                          "sysdb_gpo_store_gpo_result_setting failed fo=
-r key:"
-+-                          "'%s' value:'%s' [%d][%s]\n", allow_key, allo=
-w_value,
-+-                          ret, sss_strerror(ret));
-++                    DEBUG(SSSDBG_CRIT_FAILURE, "Failed to add key: [%s]=
- "
-++                                               "value: [%s] to allow ma=
-ps "
-++                                               "[%d][%s].\n",
-++                                               allow_key, value, ret,
-++                                               sss_strerror(ret));
-+                     goto done;
-+                 }
-+             }
-+@@ -1484,14 +1512,14 @@ ad_gpo_store_policy_settings(struct sss_domain_i=
-nfo *domain,
-+                 goto done;
-+             } else if (ret !=3D ENOENT) {
-+                 const char *value =3D deny_value ? deny_value : empty_v=
-al;
-+-                ret =3D sysdb_gpo_store_gpo_result_setting(domain,
-+-                                                         deny_key,
-+-                                                         value);
-++                ret =3D add_result_to_hash(deny_maps, deny_key,
-++                                         talloc_strdup(deny_maps, value=
-));
-+                 if (ret !=3D EOK) {
-+-                    DEBUG(SSSDBG_CRIT_FAILURE,
-+-                          "sysdb_gpo_store_gpo_result_setting failed fo=
-r key:"
-+-                          "'%s' value:'%s' [%d][%s]\n", deny_key, deny_=
-value,
-+-                          ret, sss_strerror(ret));
-++                    DEBUG(SSSDBG_CRIT_FAILURE, "Failed to add key: [%s]=
- "
-++                                               "value: [%s] to deny map=
-s "
-++                                               "[%d][%s].\n",
-++                                               deny_key, value, ret,
-++                                               sss_strerror(ret));
-+                     goto done;
-+                 }
-+             }
-+@@ -1784,6 +1812,8 @@ struct ad_gpo_access_state {
-+     int num_cse_filtered_gpos;
-+     int cse_gpo_index;
-+     const char *ad_domain;
-++    hash_table_t *allow_maps;
-++    hash_table_t *deny_maps;
-+ };
-+
-+ static void ad_gpo_connect_done(struct tevent_req *subreq);
-+@@ -1906,6 +1936,19 @@ ad_gpo_access_send(TALLOC_CTX *mem_ctx,
-+         goto immediately;
-+     }
-+
-++    ret =3D sss_hash_create(state, 0, &state->allow_maps);
-++    if (ret !=3D EOK) {
-++        DEBUG(SSSDBG_FATAL_FAILURE, "Could not create allow maps "
-++              "hash table [%d]: %s\n", ret, sss_strerror(ret));
-++        goto immediately;
-++    }
-++
-++    ret =3D sss_hash_create(state, 0, &state->deny_maps);
-++    if (ret !=3D EOK) {
-++        DEBUG(SSSDBG_FATAL_FAILURE, "Could not create deny maps "
-++              "hash table [%d]: %s\n", ret, sss_strerror(ret));
-++        goto immediately;
-++    }
-+
-+     subreq =3D sdap_id_op_connect_send(state->sdap_op, state, &ret);
-+     if (subreq =3D=3D NULL) {
-+@@ -2725,6 +2768,43 @@ ad_gpo_cse_step(struct tevent_req *req)
-+     return EAGAIN;
-+ }
-+
-++static errno_t
-++store_hash_maps_in_cache(struct sss_domain_info *domain,
-++                         hash_table_t *allow_maps, hash_table_t *deny_m=
-aps)
-++{
-++    int ret;
-++    struct hash_iter_context_t *iter;
-++    hash_entry_t *entry;
-++    size_t c;
-++    hash_table_t *hash_list[] =3D { allow_maps, deny_maps, NULL};
-++
-++
-++    for (c =3D 0; hash_list[c] !=3D NULL; c++) {
-++        iter =3D new_hash_iter_context(hash_list[c]);
-++        if (iter =3D=3D NULL) {
-++            DEBUG(SSSDBG_OP_FAILURE, "Failed to create hash iterator.\n=
-");
-++            return EINVAL;
-++        }
-++
-++        while ((entry =3D iter->next(iter)) !=3D NULL) {
-++            ret =3D sysdb_gpo_store_gpo_result_setting(domain,
-++                                                     entry->key.c_str,
-++                                                     entry->value.ptr);
-++            if (ret !=3D EOK) {
-++                free(iter);
-++                DEBUG(SSSDBG_OP_FAILURE,
-++                      "sysdb_gpo_store_gpo_result_setting failed for ke=
-y:"
-++                      "[%s] value:[%s] [%d][%s]\n", entry->key.c_str,
-++                      (char *) entry->value.ptr, ret, sss_strerror(ret)=
-);
-++                return ret;
-++            }
-++        }
-++        talloc_free(iter);
-++    }
-++
-++    return EOK;
-++}
-++
-+ /*
-+  * This cse-specific function (GP_EXT_GUID_SECURITY) increments the
-+  * cse_gpo_index until the policy settings for all applicable GPOs have=
- been
-+@@ -2766,6 +2846,7 @@ ad_gpo_cse_done(struct tevent_req *subreq)
-+      * (as part of the GPO Result object in the sysdb cache).
-+      */
-+     ret =3D ad_gpo_store_policy_settings(state->host_domain,
-++                                       state->allow_maps, state->deny_m=
-aps,
-+                                        cse_filtered_gpo->policy_filenam=
-e);
-+     if (ret !=3D EOK && ret !=3D ENOENT) {
-+         DEBUG(SSSDBG_OP_FAILURE,
-+@@ -2779,6 +2860,13 @@ ad_gpo_cse_done(struct tevent_req *subreq)
-+
-+     if (ret =3D=3D EOK) {
-+         /* ret is EOK only after all GPO policy files have been downloa=
-ded */
-++        ret =3D store_hash_maps_in_cache(state->host_domain,
-++                                       state->allow_maps, state->deny_m=
-aps);
-++        if (ret !=3D EOK) {
-++            DEBUG(SSSDBG_OP_FAILURE, "Failed to store evaluated GPO map=
-s "
-++                                     "[%d][%s].\n", ret, sss_strerror(r=
-et));
-++            goto done;
-++        }
-+         ret =3D ad_gpo_perform_hbac_processing(state,
-+                                              state->gpo_mode,
-+                                              state->gpo_map_type,
-+--
-+2.25.1
-diff --git a/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2=
-.9.2.bb b/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.9.=
-2.bb
-index d61471c..3e05858 100644
---- a/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.9.2.bb
-+++ b/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.9.2.bb
-@@ -25,6 +25,7 @@ SRC_URI =3D "https://github.com/SSSD/sssd/releases/down=
-load/${PV}/${BP}.tar.gz \
-            file://fix-ldblibdir.patch \
-            file://musl_fixup.patch \
-            file://0001-sssctl-add-error-analyzer.patch \
-+           file://CVE-2023-3758.patch \
-            "
- SRC_URI[sha256sum] =3D "827bc65d64132410e6dd3df003f04829d60387ec30e72b2d=
-4e22d93bb6f762ba"
+Hi All,
 =20
---=20
-2.40.0
+QA for yocto-5.1_M2.rc1 is completed. This is the full report for this rele=
+ase: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
+=20
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects.
+=20
+No new issue found.=20
+=20
+Thanks,
+Jing Hui
 
+
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
+lf
+> Of Pokybuild User
+> Sent: Wednesday, July 17, 2024 12:45 PM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [yocto] QA notification for completed autobuilder build (yocto-
+> 5.1_M2.rc1)
+>=20
+>=20
+>     A build flagged for QA (yocto-5.1_M2.rc1) was completed on the
+> autobuilder and is available at:
+>=20
+>=20
+>         https://autobuilder.yocto.io/pub/releases/yocto-5.1_M2.rc1
+>=20
+>=20
+>     Build URL:
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/7144
+>=20
+>     Build hash information:
+>=20
+>     bitbake: 1d7360031164f04887c792fb0b2dd86c6ccfcc23
+> meta-agl: 3f3bbd3871e5a7a4e9e275e2c957b98515cc30c3
+> meta-arm: 14d24b5526298cdfd6db65b6e11b54804a6a553f
+> meta-aws: 4d048eacb5cbdaeb3f37d0427cc8a810a8ba7b69
+> meta-clang: 1fdde55d951b7a8f1e537ccf56aca2dc90c40091
+> meta-intel: e97386254712047f27f5554da6470fe3fb65d07a
+> meta-mingw: e4d377d5ddb62b265536bd33dbccfbb0904f8701
+> meta-openembedded: f8342855a440fa5c4194fc57285e8db9e034fcaa
+> meta-virtualization: c138943fed29e768df990061c30d6f071b98ffc3
+> oecore: 758508614541c68dd6a2b7084e07287c71f40a8f
+> poky: e18d60deb0496f7c91f2de900d6c024b45b7910a
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
 
