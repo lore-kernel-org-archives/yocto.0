@@ -1,170 +1,185 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3607CC3DA4A
-	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 02:44:37 +0000 (UTC)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
- by mx.groups.io with SMTP id smtpd.web11.9358.1722307467601620798
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC946C3DA61
+	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 04:43:27 +0000 (UTC)
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+ by mx.groups.io with SMTP id smtpd.web10.10655.1722314598875851310
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 Jul 2024 19:44:27 -0700
+ Mon, 29 Jul 2024 21:43:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=JPQiHmpv;
- spf=pass (domain: gmail.com, ip: 209.85.167.176, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3db16b2c1d2so2980709b6e.2
-        for <yocto@lists.yoctoproject.org>; Mon, 29 Jul 2024 19:44:27 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ayx8/nLO;
+ spf=pass (domain: gmail.com, ip: 209.85.218.51, mailfrom: hassanchattarki@gmail.com)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a7abe5aa9d5so494713466b.1
+        for <yocto@lists.yoctoproject.org>; Mon, 29 Jul 2024 21:43:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722307467; x=1722912267; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1722314597; x=1722919397; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3D4ylBoF6qxQio0LXCaieuu77gJcOE1ciR7c+rUtdlg=;
-        b=JPQiHmpvhIM05KBimhoy96UOEu6kHpcLbly+hPwRU7TBsZPHlC5VmZIYMEZjU4WOzz
-         Nj4VhegF8P3Kr09cR3hmiFkgj6D8H5qTfzNItnbx2kn5Z7RP5DAi/7oJnSi0zNdmhL4E
-         I2X5zhWeisrzaUDCBmVfnH7OttKm41ev7bn8evdQrEwk3SLKqEs6s7RXZCY4cLv8A+FI
-         BskHLoeKixsEmXPl4KaWILASV1h0GXNxmj24g3bzH7sVltav1RENDJ1inkPhm5k0r67r
-         uyzmwnmgdYs1args6hlUQKNsUzi2O7y67jc2MB/6KgoRMYIwgx732YvzSNOllJntl6GN
-         WYKg==
+        bh=WXgYIumEsdRyAA5TtTLQYl+VNHABd1samsXFf+BbHqY=;
+        b=ayx8/nLOuTxNO8HMKbz6UdwJDJEeaJtg+BdA5wfJYQrjhtgbMpLYFxEp2GIQUbRftS
+         Qj8rtNcgHuJebKJFuhaXQ24twXQBYfVOoaECmsJU+L3xFmVY+1Ha0DGIxfz1Ot8M7khU
+         YZfk8049YBllgcxnycpOWizsfxFJzFP5SKj91GZ2n6UabdKIXcIHyaZutem3nkJxs+10
+         9Pe3jw0YMbNy1Ib9pSqU13gOAOnEnNZRbq7rlnWOGAxSrIKBSRY6Szqf6XHBXA36xMYJ
+         nAFVrIwUpwO8EPwp0kAsGehkB9dw4AfI8B+/ysxVEsYvhogV++/PBLtfcNpRYtTKFOKo
+         mrBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722307467; x=1722912267;
+        d=1e100.net; s=20230601; t=1722314597; x=1722919397;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3D4ylBoF6qxQio0LXCaieuu77gJcOE1ciR7c+rUtdlg=;
-        b=FZqKlBMzjFSqLpUYJ0xivKL1agTQk9eI42EVqO1L3oTuoeUyJ31kYCDT90iWLE5Ya/
-         4uOrpBOM2sMV7VS7KG2llX+XPgaBS8Jy7qqi5QtzI49I4zZp+AHQBYBhWG+UdFs99UII
-         KYnO9av+ZixeLnidjAfezAOagHIBjdLiP0W+wc6EWFO5fiWy0kbQ+wqcL7ApM33U1U9H
-         V2nVM1De7fieGH5m4OqCyuGdcpM8Cq/DFNZx4PoIx9yRCxwW6vp4+SlDBV2vAdQu/1su
-         r8T19Yl0o+wFTXuIGClVUJHe1vtRuCuizenjmALOSGJph4N2kPt3JNjS4nID3FvlaRpz
-         DutA==
-X-Forwarded-Encrypted: i=1; AJvYcCU4uCPBDRoxcMgtw8j3Dn3kswwJYz1/yULwWdc7eiI+SupzgEH8Z6Vc820czgHeI5yuKQn1wjXJ8XymrFrHl1PM6S94pSy6KyEYk6oS
-X-Gm-Message-State: AOJu0YwC9Yxm16KOxweVl5pY2i6VMgR5+cfjNwyWmae2w1vTDiPNnDQv
-	FjAuKYZnvu6PyCSCqn2Kl4V5OZY96vo6E4xUIMKLdyUN0uxBiWc7fa/pe1OVcUb0wTt1XPE+shJ
-	yOEyFdlDzjhZ4RxVa+7qhayfmWPE=
-X-Google-Smtp-Source: AGHT+IFk+S2wpb0H1sswvGmIIceQc/yKeFlKrB65JVjGTF5kBT1tLKDYSTUOfzyfc0N48ayHJaClPsai7v+yDWFhloY=
-X-Received: by 2002:a05:6870:90d5:b0:25e:2208:6c8a with SMTP id
- 586e51a60fabf-267d4caf6d5mr12922530fac.4.1722307466303; Mon, 29 Jul 2024
- 19:44:26 -0700 (PDT)
+        bh=WXgYIumEsdRyAA5TtTLQYl+VNHABd1samsXFf+BbHqY=;
+        b=v/VOgOY2Tz8q69TwhhU5Fx0pefHZkCuMk4PVmS4PJ4hTzVGN/s1lu7cMRBjeONU0sr
+         TJGuRksKg00QrVq8EQHoitN2agbvb2xtHjd85k9R2+Zf47FwYJnzlfeDLhcUadv8M4w6
+         QLXJCQiMNtf/LQLGigokZVrrPxIIZ5DinPQANgGUWycH3Kc7Or+iXzMo/DMwWPWPxBmV
+         0mo9yvOlDbetii8Qy1a7AjUXrmwYWT+nted9GeussztRpGHlJXQVXhT9o4ogJLNQF7t6
+         cB2eqw/D/zbmCHt7+iwpL0AOk83aYjRJ5uQILRHsSjtuiAYxEsAuaqvuN818liJKiP4B
+         0OKQ==
+X-Gm-Message-State: AOJu0YyBt9Et+UAr/P5N9GC8L1lM2t0wuij9CcHFH4u68+WeF/0LP/LW
+	jryKNcYdrjXt8lGed1317GfLHPJg6DtQLMcwsafhFBi6e9Owx2T6JKbKVxiHYAjno1DNDyimRju
+	q96ut5a9bVsrSorrRytN//e7QBmm1HA==
+X-Google-Smtp-Source: AGHT+IFMB8yvy7I8gU2GpG3YGk3KqKiwWSyksozFIG5vRXSAOlxgIMe8JfyVxMeGv9J2NbFDIVAa6xEH3P7XQIQ/EcE=
+X-Received: by 2002:a17:906:d555:b0:a7d:3ab9:6a5d with SMTP id
+ a640c23a62f3a-a7d40175219mr576092466b.69.1722314596368; Mon, 29 Jul 2024
+ 21:43:16 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAPJWBngSr4dYVn5KqQ7DQyAU2mCnj8us-YokK=RYZxpLW=uymg@mail.gmail.com>
- <CANNYZj9ZiejcV=5nbzC4KkgPjwuWd6yxoJmU_V8=TGj5Z7e-Ww@mail.gmail.com> <CAPJWBnhf3t+98btNFFEuosZ7R6eG-SLkbbXCdo1Zawn2-bFnqg@mail.gmail.com>
-In-Reply-To: <CAPJWBnhf3t+98btNFFEuosZ7R6eG-SLkbbXCdo1Zawn2-bFnqg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 29 Jul 2024 19:44:15 -0700
-Message-ID: <CAMKF1soqTPTY4sjq0rk_t0x5WfNrB1gtK_C1hAWw7n71bk1Ffg@mail.gmail.com>
+ <CANNYZj9ZiejcV=5nbzC4KkgPjwuWd6yxoJmU_V8=TGj5Z7e-Ww@mail.gmail.com>
+ <CAPJWBnhf3t+98btNFFEuosZ7R6eG-SLkbbXCdo1Zawn2-bFnqg@mail.gmail.com> <CAMKF1soqTPTY4sjq0rk_t0x5WfNrB1gtK_C1hAWw7n71bk1Ffg@mail.gmail.com>
+In-Reply-To: <CAMKF1soqTPTY4sjq0rk_t0x5WfNrB1gtK_C1hAWw7n71bk1Ffg@mail.gmail.com>
+From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
+Date: Tue, 30 Jul 2024 10:13:04 +0530
+Message-ID: <CAPJWBnjbrDm14+TjmvwSx87RgTGT30U1wUJfNN7zLnNCHdU-2g@mail.gmail.com>
 Subject: Re: [yocto] How to update kirkstone cmake version
-To: hassanchattarki@gmail.com, yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Content-Type: multipart/related; boundary="000000000000b9be6a061e6df43f"
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org, Alexander Kanavin <alex.kanavin@gmail.com>
+Content-Type: multipart/related; boundary="000000000000b56821061e6f9de7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 02:44:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63594
+ <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 04:43:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63595
 
---000000000000b9be6a061e6df43f
-Content-Type: multipart/alternative; boundary="000000000000b9be69061e6df43e"
+--000000000000b56821061e6f9de7
+Content-Type: multipart/alternative; boundary="000000000000b5681f061e6f9de6"
 
---000000000000b9be69061e6df43e
+--000000000000b5681f061e6f9de6
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Make sure you are using correct release which matches with the yocto
-release that the sdk is built out of. To add to the complexity a bit
-meta-qt6 tend to support multiple yocto releases from a single branch which
-usually correspond to qt6 release so check which version of qt6 is needed
-in your project if that=E2=80=99s not hard pressed then choose a version br=
-anch
-that=E2=80=99s supporting the yocto release that the sdk is being built out=
- of
+Thanks for the tip Khem, to be frank I need gn-native as it is a dependency
+for one of my recipes.
+PS: totally forgot to mention I am on kirkstone.
 
-On Mon, Jul 29, 2024 at 5:23=E2=80=AFPM MOHAMMED HASSAN via lists.yoctoproj=
-ect.org
-<hassanchattarki=3Dgmail.com@lists.yoctoproject.org> wrote:
 
-> I will connect with them, thanks!!!
->
->
-> On Tue, 30 Jul 2024 at 12:09=E2=80=AFAM, Alexander Kanavin <alex.kanavin@=
-gmail.com>
-> wrote:
->
->> You probably need to ask this from people maintaining meta-qt6?
->>
->> Alex
->>
->> On Mon, 29 Jul 2024 at 09:32, MOHAMMED HASSAN via lists.yoctoproject.org
->> <hassanchattarki=3Dgmail.com@lists.yoctoproject.org> wrote:
->>
->>> Hi guys,
->>> I have added layer qt-6 to add gn-native package in my build.
->>> I get error after do_fetch stage related to outdated cmake version.
->>> [image: image.png]
->>>  My desktop cmake version is 3.30. Can you guys suggest me how to
->>> change my SDK cmake version?
->>>
->>>
->>>
->>>
->>>
->>>
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#63592):
-> https://lists.yoctoproject.org/g/yocto/message/63592
-> Mute This Topic: https://lists.yoctoproject.org/mt/107604906/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> raj.khem@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+On Tue, Jul 30, 2024 at 8:14=E2=80=AFAM Khem Raj <raj.khem@gmail.com> wrote=
+:
 
---000000000000b9be69061e6df43e
+> Make sure you are using correct release which matches with the yocto
+> release that the sdk is built out of. To add to the complexity a bit
+> meta-qt6 tend to support multiple yocto releases from a single branch whi=
+ch
+> usually correspond to qt6 release so check which version of qt6 is needed
+> in your project if that=E2=80=99s not hard pressed then choose a version =
+branch
+> that=E2=80=99s supporting the yocto release that the sdk is being built o=
+ut of
+>
+> On Mon, Jul 29, 2024 at 5:23=E2=80=AFPM MOHAMMED HASSAN via lists.yoctopr=
+oject.org
+> <hassanchattarki=3Dgmail.com@lists.yoctoproject.org> wrote:
+>
+>> I will connect with them, thanks!!!
+>>
+>>
+>> On Tue, 30 Jul 2024 at 12:09=E2=80=AFAM, Alexander Kanavin <
+>> alex.kanavin@gmail.com> wrote:
+>>
+>>> You probably need to ask this from people maintaining meta-qt6?
+>>>
+>>> Alex
+>>>
+>>> On Mon, 29 Jul 2024 at 09:32, MOHAMMED HASSAN via lists.yoctoproject.or=
+g
+>>> <hassanchattarki=3Dgmail.com@lists.yoctoproject.org> wrote:
+>>>
+>>>> Hi guys,
+>>>> I have added layer qt-6 to add gn-native package in my build.
+>>>> I get error after do_fetch stage related to outdated cmake version.
+>>>> [image: image.png]
+>>>>  My desktop cmake version is 3.30. Can you guys suggest me how to
+>>>> change my SDK cmake version?
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>> Links: You receive all messages sent to this group.
+>> You automatically follow any topics you start or reply to.
+>> View/Reply Online (#63592):
+>> https://lists.yoctoproject.org/g/yocto/message/63592
+>> Mute This Topic: https://lists.yoctoproject.org/mt/107604906/1997914
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+>> raj.khem@gmail.com]
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>
+>>
+
+--000000000000b5681f061e6f9de6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Make sure you are using correct release which matches wit=
-h the yocto release that the sdk is built out of. To add to the complexity =
-a bit meta-qt6 tend to support multiple yocto releases from a single branch=
- which usually correspond to qt6 release so check which version of qt6 is n=
-eeded in your project if that=E2=80=99s not hard pressed then choose a vers=
-ion branch that=E2=80=99s supporting the yocto release that the sdk is bein=
-g built out of=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Mon, Jul 29, 2024 at 5:23=E2=80=AFPM MOHAMMED H=
-ASSAN via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org<=
-/a> &lt;hassanchattarki=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.or=
-g">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex"><div dir=3D"auto">I will connect with them, thanks!!!</div>=
-<div dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Tue, 30 Jul 2024 at 12:09=E2=80=AFAM, Alexand=
-er Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">=
-alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-s=
-tyle:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"><div dir=3D=
-"ltr"><div>You probably need to ask this from people maintaining meta-qt6?<=
-/div><div><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"=
-></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Mon, 29 Jul 2024 at 09:32, MOHAMMED HASSAN via <a href=3D"http://lists.yoct=
-oproject.org" target=3D"_blank">lists.yoctoproject.org</a> &lt;hassanchatta=
-rki=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org" target=3D"_blank"=
->gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div></div><div class=
-=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;bo=
-rder-left-color:rgb(204,204,204)"></blockquote></div><div class=3D"gmail_qu=
-ote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left-width:1px;border-left-style:solid;padding-left:1ex;border-left-co=
-lor:rgb(204,204,204)"><div dir=3D"ltr">Hi=C2=A0guys,<br><div>I have added l=
-ayer qt-6 to add gn-native package in my build.</div><div>I get error after=
- do_fetch stage related to outdated cmake version.</div><div><img src=3D"ci=
-d:ii_lz6o6c1x0" alt=3D"image.png" style=3D"width:844px;max-width:100%"><br>=
-</div><div>=C2=A0My desktop cmake version is 3.30. Can you guys suggest me =
-how to change=C2=A0my SDK cmake=C2=A0version?</div><div><br></div><div><br>=
-</div></div>
+<div dir=3D"ltr">Thanks for the tip Khem, to be frank I need gn-native as i=
+t is a dependency for one of my recipes.=C2=A0=C2=A0<div>PS: totally forgot=
+ to mention I am on kirkstone.<br><div><br></div></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 30, 2024=
+ at 8:14=E2=80=AFAM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.=
+khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"auto">Make sure you are using correct release whi=
+ch matches with the yocto release that the sdk is built out of. To add to t=
+he complexity a bit meta-qt6 tend to support multiple yocto releases from a=
+ single branch which usually correspond to qt6 release so check which versi=
+on of qt6 is needed in your project if that=E2=80=99s not hard pressed then=
+ choose a version branch that=E2=80=99s supporting the yocto release that t=
+he sdk is being built out of=C2=A0</div><div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jul 29, 2024 at 5:23=E2=80=
+=AFPM MOHAMMED HASSAN via <a href=3D"http://lists.yoctoproject.org" target=
+=3D"_blank">lists.yoctoproject.org</a> &lt;hassanchattarki=3D<a href=3D"mai=
+lto:gmail.com@lists.yoctoproject.org" target=3D"_blank">gmail.com@lists.yoc=
+toproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"auto">I will connect with them, thanks!!!</div><di=
+v dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Tue, 30 Jul 2024 at 12:09=E2=80=AFAM, Alexander =
+Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">ale=
+x.kanavin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex"><div dir=3D"ltr"><div>You probably need to ask this from=
+ people maintaining meta-qt6?</div><div><br></div><div>Alex<br></div></div>=
+<br><div class=3D"gmail_quote"></div><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Mon, 29 Jul 2024 at 09:32, MOHAMMED HASSAN vi=
+a <a href=3D"http://lists.yoctoproject.org" target=3D"_blank">lists.yoctopr=
+oject.org</a> &lt;hassanchattarki=3D<a href=3D"mailto:gmail.com@lists.yocto=
+project.org" target=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt; wro=
+te:<br></div></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"></blockquote></div><div class=3D"gmail_quote"><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi=C2=A0guys,<br=
+><div>I have added layer qt-6 to add gn-native package in my build.</div><d=
+iv>I get error after do_fetch stage related to outdated cmake version.</div=
+><div><img src=3D"cid:ii_lz6o6c1x0" alt=3D"image.png" style=3D"width: 844px=
+; max-width: 100%;"><br></div><div>=C2=A0My desktop cmake version is 3.30. =
+Can you guys suggest me how to change=C2=A0my SDK cmake=C2=A0version?</div>=
+<div><br></div><div><br></div></div>
 <br></blockquote></div><div class=3D"gmail_quote"><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-lef=
-t-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">
 <br>
 <br>
 </blockquote></div>
@@ -188,10 +203,11 @@ mail.com</a>]<br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 <br>
 </blockquote></div></div>
+</blockquote></div>
 
---000000000000b9be69061e6df43e--
+--000000000000b5681f061e6f9de6--
 
---000000000000b9be6a061e6df43f
+--000000000000b56821061e6f9de7
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
@@ -2997,5 +3013,5 @@ wfQXWAW7GfJ9Yv4LWVrwGuHMtd42u6u4orYdH2/27q6dFk1pvnfbmeshpDVj1dYvHKyXPk90jix4
 o7O0mrchAAAAAAAAAAAAwGvh9UjUshfZhFyze4uoKbge7Lk/rWnY+64BGDn4BBMub7ul1+Rx2mRL
 XakgNcjqTJpUrUFM6pmYjRKG8bxSHr7Zo34YbQgAAAAAAAAAAADwWvgfDidbue3DtNkAAAAASUVO
 RK5CYII=
---000000000000b9be6a061e6df43f--
+--000000000000b56821061e6f9de7--
 
