@@ -1,634 +1,201 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <Rahul.Kumar1@amd.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC00CC3DA49
-	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 12:40:40 +0000 (UTC)
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
- by mx.groups.io with SMTP id smtpd.web10.16405.1722343236701840434
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D50DCC3DA70
+	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 13:52:20 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (NAM10-BN7-obe.outbound.protection.outlook.com [40.107.92.63])
+ by mx.groups.io with SMTP id smtpd.web10.17831.1722347533279877720
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jul 2024 05:40:36 -0700
+ Tue, 30 Jul 2024 06:52:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=aDeKSuwl;
- spf=pass (domain: gmail.com, ip: 209.85.216.54, mailfrom: b.hutchman@gmail.com)
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2cb52e2cb33so2816039a91.0
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 05:40:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722343236; x=1722948036; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hCOxNcyG96neV0c7mU9IWo+mO7uPJ1RsPILtO0ILeBY=;
-        b=aDeKSuwlwBT9urNfyn8fYvrLF0CIid+olkQxnJkmH0lsVgR3m3BRFitwD+zK+wBvpD
-         yTivWY2v+aDprUQqKqZZUFro+mHr1PPJYNGTuoCgOXyiZchmpCr8hVTdyzPA1/1lMuGJ
-         Zbq+uIbcMQUGrQq3gap3Ymg8zCicO1JY/A+U4NbNWayL3ovlD936RMKSjZTF8g15mbt4
-         d5pUZmIU2z/dlaIiq3+9FjCsP5f+ibk7A2W/h9EDIooBhJbTr/DK6Dyou72q0Hc4VoM8
-         XQeTWfu6gqW8RO885Vf/mfBzA0aQChEhZR5nxtKvk++xgqSEY1NqfrUqh3K8rYC+1WyK
-         3vpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722343236; x=1722948036;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hCOxNcyG96neV0c7mU9IWo+mO7uPJ1RsPILtO0ILeBY=;
-        b=J+M5eDqE/rYDyDxyzi/ydkPPc/QJHD3uqcHL79LS1TO4SKQ6FrkSGfGVnfFEqQgv0J
-         /OfgAZRSdlKkZY350AEUs75NqdS2svvpdKy65aER1p49qtvXsM5tKRpGzQm26lcMwy06
-         u2CMzyffPQtsMP0W6ar1p2z1UYWJl2Sq6p4GeLiLi8Eo9tbpUyp4DMPcahVANIgDvtpt
-         cH0aciQL4yUMbLBXVlePSYaDrQG+JK0b+O1OUJZocApo0WVKKwG/F/3gRvsuRW1v2RLQ
-         bBAZhzl9yTeXBWO5E/8rWyVlgBLvq1ZSq1iFwtwouye5dalOctMsVECjy1Oyl1p/brM/
-         3xmw==
-X-Forwarded-Encrypted: i=1; AJvYcCX9yHRyh/Vzbk7iDipUBV9depoVVEIsr0VQKl38xvXhtE60m99JIA6DPDu3o+umH6Lz32zsCR7dhv+GlbeMQKKaDDjrzSV/LNElDX90
-X-Gm-Message-State: AOJu0YyXvzff5n7yDB5XWtAO0N8OCgw6hcaA9q9g1SXK3IyNko76Dmp3
-	SXFfgjRNY9I0DxxsmLU58SDvRmE9TlE9rqhHvkJRf4crvoOZeERV7DNYaB96xZI9L75HXXdqicc
-	DpeZ+6PwpUca2/PaqUmni401xoII=
-X-Google-Smtp-Source: AGHT+IGiJX6IkaQ9c4/dlk2WQlI3Vzj4n0rAssbDG0uuXu28cZMtbn8wlyL1qp3JacBHSBa0g0jNtaCy+YoPWMxVrMQ=
-X-Received: by 2002:a17:90a:5d14:b0:2c9:923e:faf1 with SMTP id
- 98e67ed59e1d1-2cf7e1c1bf4mr9494542a91.18.1722343235608; Tue, 30 Jul 2024
- 05:40:35 -0700 (PDT)
+ dkim=pass header.i=@amd.com header.s=selector1 header.b=0utOfF7v;
+ spf=permerror, err=parse error for token &{10 18 %{i}._ip.%{h}._ehlo.%{d}._spf.vali.email}: invalid domain name (domain: amd.com, ip: 40.107.92.63, mailfrom: rahul.kumar1@amd.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tmzACSagMRu7+HSeKI05OrE0m+KizYoCLHf9ggjWVnm6sICPIlcGQwfKqmTjGWvTkKl7bBf/m1mMnRbVQMqk7JziSfXEqo+FyXGuafSoIF4Qn2ZCzgQ3piYuYfU7HYQVbIHwFvYaT0w8Q8zn8CThIohPr7j1w8YDmw2/Ah8jpK97J+51czK5zHPUWpPSeNLUrIULH6pnmnjX35VGUWGzeBnx+LI6ibzQuIuNG9k/5RiFKmO3lKPyzM/mIO2l5m8UKxpJ2+nXsXz1iX1KSIvLj7/m9j9OxBGQi3j9lVSN8BoF9MSVGwSrKUxTvZOXSrePRjgThi5O13a5RfJGTgsdcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4nLVyZ8tG84OQ8jvA+9xCTMLwdpuS4MPyBdW3hgal4E=;
+ b=Jmbhupufk/+MwSa3Vy7p/RXJBl6eZxW4HrQk470nd34vQfgRqSSe5qvdcMtHM/JTBUO9NdO6vf3h//DJcu3vxEHXb9bOViyH3y0TAm1knBJ/XefYX5Mra/tNaboI85ynJGTggX6Ha3aGuoNvAFeyQDHnO08lC0KFXIzsII16lGgOgKEz57NqWcUTVGiAAZyqhljW/0qSmAebkRfsktvcueDbC1OMi1Ic0jzo4GJzqpIO8QOkyCXY1eMWR/QqFMPbOyTxpCwM4zvOqnSGZOhl/Q117M0DXlA6OW03uloYhk4o+XWZBp6hz2umoAa3YRk4ggjkR8uaKUH7nH+Cu2l/zQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4nLVyZ8tG84OQ8jvA+9xCTMLwdpuS4MPyBdW3hgal4E=;
+ b=0utOfF7v8sQne2NkDtjPbQw18TkkrlqGqJI4+oKB0afTo/8FTNQ4/AxjUihcjOX25C72N1BMxnFN7PLTP0Vm9jGI7BRmBpT4N8/rtEjjKlJ9m3SPrpZGIrlpaH3KWTBEFoiPqsxQUThm/Mxuy/QIapXcb0JYVWuxTasYeyHJhsA=
+Received: from MN0PR12MB5906.namprd12.prod.outlook.com (2603:10b6:208:37a::10)
+ by MN2PR12MB4062.namprd12.prod.outlook.com (2603:10b6:208:1d0::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Tue, 30 Jul
+ 2024 13:52:08 +0000
+Received: from MN0PR12MB5906.namprd12.prod.outlook.com
+ ([fe80::4b12:4ec9:f72b:ceb7]) by MN0PR12MB5906.namprd12.prod.outlook.com
+ ([fe80::4b12:4ec9:f72b:ceb7%5]) with mapi id 15.20.7807.026; Tue, 30 Jul 2024
+ 13:52:08 +0000
+From: "Kumar1, Rahul" <Rahul.Kumar1@amd.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: How to enable /var/log/kern
+Thread-Topic: How to enable /var/log/kern
+Thread-Index: AQHa4oeA/lhG+SV1ZEeGlm0a6ph2KQ==
+Date: Tue, 30 Jul 2024 13:52:08 +0000
+Message-ID: 
+ <MN0PR12MB5906A7619F31614B3AC16FBAC0B02@MN0PR12MB5906.namprd12.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-07-30T13:52:08.005Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5906:EE_|MN2PR12MB4062:EE_
+x-ms-office365-filtering-correlation-id: 03573432-8bf8-4280-b97d-08dcb09ecda8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: 
+ =?iso-8859-1?Q?WdFoDKRtSgX00J/fQZsyfgy2bFyWXGnWTYATutbKKz8Fc5jT1jcMj7Ddgn?=
+ =?iso-8859-1?Q?pR3Mz4vTCXWnR0WsGR33ow4Y8ICFb9m6JqLYk/CpPd6aG59NOELvrQSJIg?=
+ =?iso-8859-1?Q?nS+QA6C1NzP3rz9D3mzWGx3YF/erYVIDHxqrIyOW9glqW+f/oFrIp0JyqW?=
+ =?iso-8859-1?Q?pSkbwDxBeaFU9d60LIrIIsKmMjIlJpCevFYXhjhNuEb9opTeM2xPnZcTpn?=
+ =?iso-8859-1?Q?riBU49FoHghLBYg3d+JdiAOyclfTkFKoA7Z08KjVUgKjCu9dk+r2cv6tyw?=
+ =?iso-8859-1?Q?BnjLLwxalKilf6wIc7LeQxdNAnHAPlNRpzrtYDQqGBZGSGWceUcOMa8kOq?=
+ =?iso-8859-1?Q?EuyX2fGRnA5/e4z/3YWL/waujmELA0Ds1FgMqW6NlAvHEJU03LGQS0alOX?=
+ =?iso-8859-1?Q?ymmHTRUqgpGJ51gbQ9Fl0sTB2Kkw/uhCqO7ZZqIuM87VkFLQaChiknFmTd?=
+ =?iso-8859-1?Q?blU2AxRc8H3wlKdZr7F/0xk6JVTVcVrCfC5utH2f0UyVPc4oz56wn0oD3q?=
+ =?iso-8859-1?Q?SWKKbMd5OwJJAwoCWdvynIIcr+Cm6WiEjU3HOiCI3h9ic0HtMY+ehPW1dm?=
+ =?iso-8859-1?Q?rIh65jkUuUQQDVl+2X1WRq0s+b3xbYhB0w7TWFYXEw/RbODZ2cwMdpJ1KF?=
+ =?iso-8859-1?Q?ZN+bQLO5Si4xmkR5jgaoxD0YzHbBVIPWJWE7N7kVQd8ICGnJaaYZ508nc3?=
+ =?iso-8859-1?Q?QqzR2aY9wyVPlueUhn7HvTr02Bwcg8UzG+m30EXy35whzxxEKa3d1Bjy29?=
+ =?iso-8859-1?Q?47fQwte4eypHg0Bm6oXzUMV3MLB5RQSBdZvvoQDWt975AzMKvtQrfuHn1o?=
+ =?iso-8859-1?Q?uVL7BKJ+KWPWd1qfmjNc/yxGXwg6h/iQvGQI/+d9NcKvC1jBgj4/SVwvZu?=
+ =?iso-8859-1?Q?bMmatXgZzg8AxsLELVy5q+wMt0ns5qBgeJSL92HrmClY2SmsIrsNsgWL6b?=
+ =?iso-8859-1?Q?20Qil2G0qPJYEvn+OUuHb/QJcdd5bFrmAEwN/Q8RD/mNK3Sx0ECiHuDMKi?=
+ =?iso-8859-1?Q?6NmwCoAE21eEZRFcCDialC9BKEAqI/DPAlWO0CRfChaQQlkKjRCMfSALvu?=
+ =?iso-8859-1?Q?KhisyJ0RiNSvrAD0wa/BiJeew+goGfP8yUjKV4iLQKr2NsE5IYKEmQrwWh?=
+ =?iso-8859-1?Q?ZRKwo9HN8+ZiKlXjsAq7Bzvq8a+AsJFBDxj/oXVd2iaUl0xCVC90WMtb7k?=
+ =?iso-8859-1?Q?ZUVsM4kOzu9xaZFU5s+t1mreiApa3ezVV2J7wYuWfk8jgWZEhesYKpHg0I?=
+ =?iso-8859-1?Q?u0l5nQZTwmqPTWzRcz4yOdxz0nS1sRhHSANtF/xNdL2a67v23pHW7zuZae?=
+ =?iso-8859-1?Q?7uJNq+Ri+y9LdTfNSBRpJg8MDo/bAfUfev+PqVoZV8eTNY7H/vPg11iDlj?=
+ =?iso-8859-1?Q?f7T3SVyflb6EHtCdnwTQX8Cbsy3u3aVYEtrMPAV1kOJz4HEbklcm0LuayV?=
+ =?iso-8859-1?Q?tEZBSr2fjVke1CCmLs2PpU9AsO2A3S9BmR2DNw=3D=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5906.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?UOF1mpFQ5CsGSAJQdoHQrTujtZc43nNFNkFH3nCW24E3CiKQOhjbkS8Cdu?=
+ =?iso-8859-1?Q?gT/wdf62Cnry4zYQLOH6M4CSuTeeHgSqojzZz93AF6Hty5jIY91i8gAxYz?=
+ =?iso-8859-1?Q?LdLahGjHeSsy2dasuDkRcmEN05ZcVosE7sOsQtekJ021iFKnaA6xTpI912?=
+ =?iso-8859-1?Q?C2p25bBn0DOEgqdwUqmY4r0orjtZyyLv55siBRiDPXSLoe/03dIlxaQMkQ?=
+ =?iso-8859-1?Q?fSfpqDbTLvEdXW8oD80V+ejyLyTpUJOkeB0qYrKprBwl23Czvh7Im41fIM?=
+ =?iso-8859-1?Q?bKUG3xfhRpPro8YLpWnYBEfVh8WkRb4+snfqq3HOGL1sMqtAVNWb8qELQm?=
+ =?iso-8859-1?Q?JYnN9ELdRMBXtlpsgKSJFIKNaviPKVm86j8xb4AI+T5NVj223qA8ZGlsGa?=
+ =?iso-8859-1?Q?GmSy7K4PwKpYaGiRAYgPBWZMb6nTT/DwYhjfl2mmu+m/gW/XPhYoC8GzFW?=
+ =?iso-8859-1?Q?CQHFxLdpG1kSCQuPzVl8kGtpBQVezm/TFAtzG3mQOkAJAmFg2j2cIoQlMS?=
+ =?iso-8859-1?Q?zvOhOFtEFiVHlHf++FYxe/JjW5YWmyLj6JHN1qKEGirYEp24PJ91BygBbP?=
+ =?iso-8859-1?Q?rM3ygUmwvel9jL2QHpYoK0be/om9Fnl0t/M1KgmqNiaaf8Xe/US2uCQVjV?=
+ =?iso-8859-1?Q?9bTBGuloYTw6IwKVqGh95mPzstd8nqpVSG6WpgCR5aJY4CF7z3WlD2bhQZ?=
+ =?iso-8859-1?Q?GVo5QP6eElMFvROCpzwPyfnq93fGNfKu6zpanMB43qspCsjJ9/Gnzrt1Z4?=
+ =?iso-8859-1?Q?xidZtyNW9RNfvHvlcgX6jhBfs2NyRiZJuTOKWVQrbUmiRqRWN9TAFXOZl5?=
+ =?iso-8859-1?Q?XJqpTUJ5cXr/SBH9sQFDvu+3hQ2ViaD3DUu7K9lWjRxTBdB+oM7KJlpVV8?=
+ =?iso-8859-1?Q?EPX+hA/kz8GL3Jk7wQrtUM4+oLggfMKOOGVANTSf1dRn1O5kGrG6af6m1Z?=
+ =?iso-8859-1?Q?4grbJFl8RpLRDGfts2rIgpu1/agUi++zcIm28MPrxIWPhEZVtSB0wklJ5f?=
+ =?iso-8859-1?Q?9YkJ/UPLBqS3pXEYta6Je3pRKYCYeg3ny+5pqb6f2X660lLOq7hdlxZB0c?=
+ =?iso-8859-1?Q?8KYpi2BkuBCFeqU8kMjck6sWOSEJ/PzNubds+fP4fz/pyAAZZjyJotW8Qd?=
+ =?iso-8859-1?Q?UfnT8ekf9Cm/zHqsFhY9cHfoJaPEXNscQaaBR1OlmqyuTCvl4TKF/fptFI?=
+ =?iso-8859-1?Q?JeupTQ7bo0bK1YlnSlI9w6gNvhwHjIFe/ez0QlFszEwWZG8LyeW+uSOBkB?=
+ =?iso-8859-1?Q?AY5a0Th5re4yLOB712QYs/otcyO9+pyAGqeVgethbPdq8PdqlMzLI5kECs?=
+ =?iso-8859-1?Q?p+ftvJvlduC18aBO9DjL1cwK5sdhx9bVhqpCqrJM6Usr0fbHoetcPF7TPP?=
+ =?iso-8859-1?Q?j9NrixFkVbbUa0onv1FdQaCuCJ/j+aXV6wTQL0KwPRFHhidImns96LSIhk?=
+ =?iso-8859-1?Q?pjpSeIuwviEAbZGLxfUgduOwJi5kmr1xVM6QRA/EwIpuEonlRQHHh2bUsH?=
+ =?iso-8859-1?Q?+1Wp7x8gFC/3/cTaRh76Nlb+bqn59oy0cOZBNhDuItKp1HWIXr4jMThO/V?=
+ =?iso-8859-1?Q?UqS2jcGC9rtfzYHkki3Us2tRwPqNA8G8ZCABRdEYWWmYqtJbf8eJMIL44x?=
+ =?iso-8859-1?Q?fK5R/Hq9kK9jM=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_MN0PR12MB5906A7619F31614B3AC16FBAC0B02MN0PR12MB5906namp_"
 MIME-Version: 1.0
-References: <CAFZh4h_wh01sjAar-QqHsQ=KY4zLjmpmXuJc83OeYue7YyYW3A@mail.gmail.com>
- <CAFZh4h9iaCGdnDhxik9Qtq82f0MGU2eL+8nBa8qoCCJrH-xsGQ@mail.gmail.com>
- <d30f1655-0efa-440a-ac17-fe82342f4556@efficios.com> <CAFZh4h_pOCzpJ6ssdZ7ts3vSdJNfEtS+d+2Foi4qAY6oH0+VKw@mail.gmail.com>
- <33527830-3bf3-4bc3-a53d-55eaefb74902@efficios.com> <CAFZh4h8k+eGuVJLJ_1vA1_P7+3Hi7h+UgUSmoN51Paxyypw-fA@mail.gmail.com>
- <09087915-9e15-4485-b3d3-f48b245690ec@efficios.com> <CAFZh4h-_ixamDD4hMMETXGx8oA6Dr_3R5eFBeQPusFnKHEXKGg@mail.gmail.com>
- <d52b867f-c35c-497a-af92-dfbe4452794c@efficios.com> <CAFZh4h-Sp0HrUZZzfze0zwVcJznD1NeiJTpBt3hAfk=j1JieQw@mail.gmail.com>
- <85e9d8f5-572e-4d3b-87f7-5ad7d21dfb3f@efficios.com>
-In-Reply-To: <85e9d8f5-572e-4d3b-87f7-5ad7d21dfb3f@efficios.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-Date: Tue, 30 Jul 2024 08:40:24 -0400
-Message-ID: <CAFZh4h9kEvxH0nJw22=dGVA9xTDmshG_z_wv46qo+0cqgsbPRg@mail.gmail.com>
-Subject: Re: [lttng-dev] Using lttng-ust 2.13.6 from Yocto Kirkstone and
- getting weird segfault saying strlen_asimd.S can't be found.
-To: Kienan Stewart <kstewart@efficios.com>
-Cc: lttng-dev@lists.lttng.org, yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5906.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03573432-8bf8-4280-b97d-08dcb09ecda8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2024 13:52:08.0863
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CgI49fdK+CuURGNXxWRWaf+zm7/9SGztXD7F61+6Qzzcvc+kNa/yXruqWS5QKzDtuDLpCYSR6GEpYPN2aLSs2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4062
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 12:40:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63602
+ <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 13:52:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63603
 
-On Mon, Jul 29, 2024 at 3:03=E2=80=AFPM Kienan Stewart <kstewart@efficios.c=
-om> wrote:
->
-> Hi Brian,
->
-> On 7/25/24 3:54 PM, Brian Hutchinson wrote:
-> > Hi Kienan,
-> >
-> > I'll answer your questions below, but I've got questions on what I saw
-> > building and installing lttng-tools (2.13.13) and lttng-ust (2.13.8).
-> >
-> > Based on the struggles I've had trying to get lttng to work with my
-> > app over various Yocto versions (Dunfell & Kirkstone) and lttng
-> > version, I think the problems I'm facing are mostly around C++ and
-> > weak and hidden symbols in Yocto toolchain.
-> >
-> > When I started my app with the options you mentioned previously a
-> > while back, Id see things like:
-> >
-> > # LTTNG_UST_DEBUG=3D1 LTTNG_UST_REGISTER_TIMEOUT=3D-1 /opt/tc/TrafficCo=
-ntroller
-> > liblttng_ust_tracepoint[4012/4012]: Your compiler treats weak symbols
-> > with hidden visibility for integer objects as SAME address between
-> > compile units part of the same module. (in check_weak_hidden() at
-> > tracepoint.c:1012)
-> > liblttng_ust_tracepoint[4012/4012]: Your compiler treats weak symbols
-> > with hidden visibility for pointer objects as SAME address between
-> > compile units part of the same module. (in check_weak_hidden() at
-> > tracepoint.c:1016)
-> > liblttng_ust_tracepoint[4012/4012]: Your compiler treats weak symbols
-> > with hidden visibility for 24-byte structure objects as SAME address
-> > between compile units part of the same module. (in check_weak_hidden()
-> > at tracepoint.c:1020)
-> >
->
-> These messages are extra information for debugging and not indicative of
-> a problem in of itself. C.f.
-> https://github.com/lttng/lttng-ust/blob/24f7193c9b918bf714a40e9fc908eeb49=
-78ada1c/src/lib/lttng-ust-tracepoint/tracepoint.c#L1010
->
-> There is a unit test related to this:
-> https://github.com/lttng/lttng-ust/blob/24f7193c9b918bf714a40e9fc908eeb49=
-78ada1c/tests/unit/gcc-weak-hidden/main.c#L76
->
->
-> > I further researched this whole 'weak symbol' and 'hidden visibility'
-> > topic in the lttng-dev archives and it smells a lot like what I've
-> > been seeing.  You should be able to mix both tracef and tracepoint
-> > calls in souce code ... but I could not.  I could get a tracef call to
-> > work but if I put a tracepoint call in the same code then nothing
-> > would work.  This was with Dunfell 3.1.7 and earlier versions of
-> > lttng.
-> >
-> > At one point I could get a tracepoint call to work but I'd have to let
-> > our cmake build system build and link the tpp.c file and then turn
-> > around and use gcc to recompile it and copy it to where all the
-> > objects were to create the huge .a library the app was built against.
-> > That's when I first learned there are issues with C++.  I think g++ is
-> > used to build even .c files that aren't c++.
-> >
-> > Then if I tried to put a tracepoint in another sub project, none of
-> > the tracepoints would work and I'd get empty traces.  This is a
-> > symptom of the 'weak symbols with hidden visibility' issue ... and I
-> > finally found others that were having same issue in the archives.  I
-> > don't fully understand the issues here, although I do understand some
-> > of what's going on ... I just don't know what to do about it.
-> >
->
-> You said initially said that you're using `lttng_ust_tracepoint` exactly
-> as the hello world from the documentation; however, you have just
-> described several attempts at doing different things. Which case are we
-> trying to understand here?
+--_000_MN0PR12MB5906A7619F31614B3AC16FBAC0B02MN0PR12MB5906namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-lttng_ust_tracepoint.  I only mentioned prior tests for context to
-similar struggles from a year or more ago.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
+Hi ,
 
->
-> > At this point I was being encouraged to keep upgrading to newer
-> > versions of lttng.  Our app never changed, gcc & lttng etc., kept
-> > changing.  Now with newer versions nothing runs, all I get is an
-> > immediate segfault.  Again, I'm building just like I did before a year
-> > or so ago with older versions of Yocto and lttng.  I say all of that
-> > to give perspective and history of what I've seen and experienced.
-> > Now this TLS thing has entered the picture too and so far I've only
-> > changed lttng, I don't know if I should be applying patches to my gcc
-> > for that issue.  Like I said, I'm currently using Yocto Kirkstone
-> > 4.0.18 and 6.1.38 kernel.
-> >
-> > Now I'll move into the area of things I've seen building/installing
-> > lttng-tools and lttng-ust natively on the target environment I've
-> > setup where I can run 'make check' etc.  These are in the category of
-> > "hey, is this ok, should I be worried about this":
-> >
-> > While building lttng-tools I see things like:
-> >
-> > *** Warning: Linking the executable userspace-probe-elf-binary against
-> > the loadable module
-> > *** libfoo.so is not portable!
-> >
->
-> The library is for a test program. My understanding is that the library
-> is compiled that way to force a stripped shared object to be produced in
-> order to validate that symbol lookups in libraries with no symtab
-> function as expected by using the dynsym table.
->
-> C.f.
-> https://github.com/lttng/lttng-tools/commit/ef3dfe5d31c88fb548189a6441aaf=
-8b2afc0bd4b
->
-> > In file included from ../../../src/common/macros.h:15,
-> >                  from ../../../include/lttng/health-internal.h:19,
-> >                  from lttng-ctl-health.c:19:
-> > In function 'lttng_strnlen',
-> >     inlined from 'lttng_strncpy' at ../../../src/common/macros.h:128:6,
-> >     inlined from 'set_health_socket_path' at lttng-ctl-health.c:146:9,
-> >     inlined from 'lttng_health_query' at lttng-ctl-health.c:264:8:
-> > ../../../src/common/compat/string.h:19:16: warning: 'strnlen'
-> > specified bound 4096 may exceed source size 37 [-Wstringop-overread]
-> >    19 |         return strnlen(str, max);
-> >       |                ^~~~~~~~~~~~~~~~~
-> > lttng-ctl-health.c: At top level:
-> > cc1: note: unrecognized command-line option
-> > '-Wno-incomplete-setjmp-declaration' may have been intended to silence
-> > earlier diagnostics
->
-> This warning is addressed in
-> https://github.com/lttng/lttng-tools/commit/b25a59916106e5055be516f61f183=
-a48f459b0b3
->
-> > ** Warning: Linking the shared library libbar.la against the loadable m=
-odule
-> > *** libzzz.so is not portable!
-> >
-> > *** Warning: Linking the shared library libfoo.la against the loadable =
-module
-> > *** libbar.so is not portable!
-> >
-> > While installing lttng-tools I see things like this:
-> >
-> > make[4]: Entering directory '/opt/lttng/lttng-tools-2.13.13/src/lib/ltt=
-ng-ctl'
-> >   CC       lttng-ctl.lo
-> >   CC       snapshot.lo
-> >   CC       lttng-ctl-health.lo
-> > In file included from ../../../src/common/macros.h:15,
-> >                  from ../../../include/lttng/health-internal.h:19,
-> >                  from lttng-ctl-health.c:19:
-> > In function 'lttng_strnlen',
-> >     inlined from 'lttng_strncpy' at ../../../src/common/macros.h:128:6,
-> >     inlined from 'set_health_socket_path' at lttng-ctl-health.c:146:9,
-> >     inlined from 'lttng_health_query' at lttng-ctl-health.c:264:8:
-> > ../../../src/common/compat/string.h:19:16: warning: 'strnlen'
-> > specified bound 4096 may exceed source size 37 [-Wstringop-overread]
-> >    19 |         return strnlen(str, max);
-> >       |                ^~~~~~~~~~~~~~~~~
-> > lttng-ctl-health.c: At top level:
-> > cc1: note: unrecognized command-line option
-> > '-Wno-incomplete-setjmp-declaration' may have been intended to silence
-> > earlier diagnostics
-> >
-> > Making install in trigger-condition-event-matches
-> > make[2]: Entering directory
-> > '/opt/lttng/lttng-tools-2.13.13/doc/examples/trigger-condition-event-ma=
-tches'
-> >   CC       instrumented-app.o
-> >   CC       tracepoint-trigger-example.o
-> >   AR       libtracepoint-trigger-example.a
-> > ar: `u' modifier ignored since `D' is the default (see `U')
-> >
-> > While building lttng-ust I see things like:
-> >
-> > Making all in utils
-> > make[2]: Entering directory
-> > '/home/iadmin/lttng-ust/lttng-ust-2.13.8/tests/utils'
-> >   CC       tap.o
-> >   AR       libtap.a
-> > ar: `u' modifier ignored since `D' is the default (see `U')
-> >
->
-> While libtool now uses `cr` by default, automake still defines the
-> default to `cru` which is what ends up getting used in the example.
-> Since many distros have changed the configuration of ar such that 'D' is
-> the default rather than the previous behaviour 'U', 'u' is redundant.
->
-> The behaviour in automake has been changed in automake 1.16.90+.
->
-> C.f.
-> https://github.com/autotools-mirror/libtool/commit/418129bc63afc312701e84=
-cb8afa5ca413df1ab5
->
-> C.f.
-> http://git.savannah.gnu.org/cgit/automake.git/commit/?id=3D8cdbdda5aec652=
-c356fe6dbba96810202176ae75
->
-> > *** Warning: Linking the shared library libzero.la against the
-> > loadable module
-> > *** libfakeust0.so is not portable!
-> >   CCLD     app_noust_indirect_abi0
-> >
-> > *** Warning: Linking the executable app_noust_indirect_abi0 against
-> > the loadable module
-> > *** libzero.so is not portable!
-> >   CC       app_noust_indirect_abi0_abi1-app_noust.o
-> >   CC       libone.lo
-> >   CCLD     libone.la
-> >   CCLD     app_noust_indirect_abi0_abi1
-> >
-> > *** Warning: Linking the executable app_noust_indirect_abi0_abi1
-> > against the loadable module
-> > *** libzero.so is not portable!
-> >
-> > *** Warning: Linking the executable app_noust_indirect_abi0_abi1
-> > against the loadable module
-> > *** libone.so is not portable!
-> >   CC       app_noust_indirect_abi1-app_noust.o
-> >   CCLD     app_noust_indirect_abi1
-> >
-> > *** Warning: Linking the executable app_noust_indirect_abi0_abi1
-> > against the loadable module
-> > *** libone.so is not portable!
-> >   CC       app_noust_indirect_abi1-app_noust.o
-> >   CCLD     app_noust_indirect_abi1
-> >
-> > *** Warning: Linking the executable app_noust_indirect_abi1 against
-> > the loadable module
-> > *** libone.so is not portable!
-> >   CC       app_ust.o
-> >   CC       tp.o
-> >   CCLD     app_ust
-> >   CC       app_ust_dlopen.o
-> >   CCLD     app_ust_dlopen
-> >   CC       app_ust_indirect_abi0-app_ust.o
-> >   CC       app_ust_indirect_abi0-tp.o
-> >   CCLD     app_ust_indirect_abi0
-> >
-> > *** Warning: Linking the executable app_ust_indirect_abi0 against the
-> > loadable module
-> > *** libzero.so is not portable!
-> >   CC       app_ust_indirect_abi0_abi1-app_ust.o
-> >   CC       app_ust_indirect_abi0_abi1-tp.o
-> >   CCLD     app_ust_indirect_abi0_abi1
-> >
-> > *** Warning: Linking the executable app_ust_indirect_abi0_abi1 against
-> > the loadable module
-> > *** libzero.so is not portable!
-> >
-> > I don't know if these are ok or if I should be worried about any of tha=
-t.
-> >
->
-> These are all for different tests.
->
-> > ... now on to your questions below.
-> >
-> >
-> >
-> > On Wed, Jul 24, 2024 at 12:04=E2=80=AFPM Kienan Stewart <kstewart@effic=
-ios.com> wrote:
-> >>
-> >> Hi Brian,
-> >>
-> >> On 7/22/24 6:00 PM, Brian Hutchinson wrote:
-> >>> Hi Kienan,
-> >>>
-> >>> Took a while to gather your grocery list but I think I have most of i=
-t
-> >>> below ;)
-> >>
-> >> thanks for all the extra info. Replies inline below, but I'll cut a lo=
-t
-> >> of the long output for readability.
-> >>
-> >> tl;dr the environment continues to be weird, but my present suspicion =
-is
-> >> that something in either compilation, the linking of your app (eg. wit=
-h
-> >> ld when producing the executable), or some post linking stripping migh=
-t
-> >> be causing issues.
-> >
-> > I'm not aware of any stripping that's going on.  In fact everything is
-> > being built with debug symbols at the moment and I even turned off
-> > optimization ... even used the debug friendly -O flag to see if that
-> > made a difference.
-> >
-> >>
-> >> I will stop digging into further hypotheticals on my side as there is =
-no
-> >> reproducer for both the environment and the application. If you ever e=
-nd
-> >> up with a minimal reproducer that you can share, I'd be more than happ=
-y
-> >> to examine it.
-> >
-> > I'm planning on trying to make a small reproducer I can share but not t=
-here yet.
-> >
->
-> Great! I appreciate that you're taking the time to do so.
->
-> >>
-> >>>
-> >>> I may have not been clear.  Most of the application components are
-> >>> statically linked but I think there are some that are built as shared
-> >>> objects (.so's) so that's what I was referring to.  I know that
-> >>> lttng-ust is dynamically linked ... I think the lttng-ust docs say th=
-is
-> >>> is only option but also makes reference to the fact static linking wa=
-s
-> >>> once possible (in some versions of the documentation) but not support=
-ed
-> >>> anymore (I probably have the docs memorized by now ha, ha ... I've
-> >>> looked at many, many versions of them).
-> >>>
-> >>> Just for full disclosure my ldd looks like:
-> >>>
-> >>>          linux-vdso.so.1 (0x0000ffffab196000)
-> >>>          libfcgi.so.0 =3D> /usr/lib/libfcgi.so.0 (0x0000ffffa57f0000)
-> >>>          liblttng-ust.so.1 =3D> /usr/lib/liblttng-ust.so.1
-> >>> (0x0000ffffa5750000)
-> >>>          libxml2.so.2 =3D> /usr/lib/libxml2.so.2 (0x0000ffffa55d0000)
-> >>>          librt.so.1 =3D> /lib/librt.so.1 (0x0000ffffa55b0000)
-> >>>          libm.so.6 =3D> /lib/libm.so.6 (0x0000ffffa5510000)
-> >>>          libstdc++.so.6 =3D> /usr/lib/libstdc++.so.6 (0x0000ffffa52f0=
-000)
-> >>>          libgcc_s.so.1 =3D> /lib/libgcc_s.so.1 (0x0000ffffa52c0000)
-> >>>          libc.so.6 =3D> /lib/libc.so.6 (0x0000ffffa5110000)
-> >>>          /lib/ld-linux-aarch64.so.1 (0x0000ffffab15d000)
-> >>>          liblttng-ust-common.so.1 =3D>
-> >>> /usr/local/lib/liblttng-ust-common.so.1 (0x0000ffffa50e0000)
-> >>>          liblttng-ust-tracepoint.so.1 =3D>
-> >>> /usr/local/lib/liblttng-ust-tracepoint.so.1 (0x0000ffffa50a0000)
-> >>>          libpthread.so.0 =3D> /lib/libpthread.so.0 (0x0000ffffa508000=
-0)
-> >>>          libz.so.1 =3D> /lib/libz.so.1 (0x0000ffffa5050000)
-> >>>
-> >>>
-> >>
-> >> I find it very suspicious that `liblttng-ust.so.1` is in `/usr/lib`,
-> >> while the other lttng-ust libraries are being loaded from `/usr/local/=
-lib`.
-> >
-> > So Yocto puts all of the lttng libs into /usr/lib.  When I sent the
-> > previous info I was using lttng-tools and modules built by Yocto/OE
-> > and I setup a native build environment on the target so I could run
-> > 'make check' etc., and that's why there were things in /usr/local/lib
-> > because that's where you guys want stuff to be.  So I actually left
-> > the lttng-ust installables in /usr/local/build but also copied them to
-> > /usr/lib to overwrite old Yocto versions there.
-> >
->
-> It's not so much that it's "where we want it to be". The documentation
-> uses `/usr/local/lib` because `/usr/local` is meant for software
-> installed by the sysadmin administrator, as is the case when building a
-> custom version. `/usr/lib` should be used by packages shipped with the
-> system.
->
-> C.f. https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s09.html
->
-> You're free to do as you see fit, but when you start mixing and matching
-> libraries and some are put in /usr/lib by your system packages and some
-> you move there manually I find it more difficult to follow what is going =
-on.
->
-> >>
-> >> This information also matches the statedump and the LD_DEBUG info from
-> >> later on.
-> >>
-> >> Could you verify some of the following information:
-> >>
-> >> 1. In your build root for lttng-ust, enumerate all the liblttng*so
-> >> files. For each shared object, run `file $libname` and record the valu=
-e
-> >> of the BuildID hash.R5jow
-> >
-> > Sorry, I'm not following you here.  The only buildID hash I can think
-> > of is with 'eu-unstrip -n' but that's on core files, not individual
-> > libs.  And looking at the options I have for 'file' on my target, I
-> > don't see anything that looks like what you are asking.
->
-> Perhaps I wasn't clear, the command to run is really just `file`. As a
-> fuller example:
->
-> ```
-> $ file ./src/lib/lttng-ust-fork/.libs/liblttng-ust-fork.so.1.0.0
-> ./src/lib/lttng-ust-fork/.libs/liblttng-ust-fork.so.1.0.0: ELF 64-bit
-> LSB shared object, x86-64, version 1 (SYSV), dynamically linked,
-> BuildID[sha1]=3Db2b4a0fc449cf317e32c23e0bb57ea1ad702b702, with debug_info=
-,
-> not stripped
+How to enable /var/log/kern to see previous kern dmesg.
 
-Ok, feel stupid now.  When I ran the command before, I used short name
-and didn't do it on the long name and just got back:
+Thanks,
+Rahul
 
-# file /usr/lib/liblttng-ust.so
-/usr/lib/liblttng-ust.so: symbolic link to liblttng-ust.so.1.0.0
+--_000_MN0PR12MB5906A7619F31614B3AC16FBAC0B02MN0PR12MB5906namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-... and immediately looked at man page to try to figure out what
-switch showed BuildID etc., ha, ha.
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Calibri;font-size:10pt;color:#0000FF;margin:5pt;fon=
+t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+[AMD Official Use Only - AMD Internal Distribution Only]<br>
+</p>
+<br>
+<div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hi ,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+How to enable /var/log/kern to see previous kern dmesg.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Thanks,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Rahul</div>
+</div>
+</body>
+</html>
 
-When I do it on long name here is what I see:
-
-# file /usr/lib/liblttng-ust-common.so.1.0.0
-/usr/lib/liblttng-ust-common.so.1.0.0: ELF 64-bit LSB shared object,
-ARM aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3Da50c9a77163b6b91e1f84e57d167c7b77ae707a3, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-ctl.so.5.0.0
-/usr/lib/liblttng-ust-ctl.so.5.0.0: ELF 64-bit LSB shared object, ARM
-aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3D547cccac08721ed1c9a7f3c7ebf1de84ddba7fba, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-cyg-profile-fast.so.1.0.0
-/usr/lib/liblttng-ust-cyg-profile-fast.so.1.0.0: ELF 64-bit LSB shared
-object, ARM aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3Dad5f71ef5e83ab9a972488976c47db265d3360b9, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-cyg-profile.so.1.0.0
-/usr/lib/liblttng-ust-cyg-profile.so.1.0.0: ELF 64-bit LSB shared
-object, ARM aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3Dc2c246c1973bd3241aa4f7229fcbcb27ebe08e82, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-dl.so.1.0.0
-/usr/lib/liblttng-ust-dl.so.1.0.0: ELF 64-bit LSB shared object, ARM
-aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3D6082ee88c9394319bc3adff16b0b3ea9f8d549ec, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-fd.so.1.0.0
-/usr/lib/liblttng-ust-fd.so.1.0.0: ELF 64-bit LSB shared object, ARM
-aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3Da2813245af91abe98615771dfd7d5f19b033a410, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-fork.so.1.0.0
-/usr/lib/liblttng-ust-fork.so.1.0.0: ELF 64-bit LSB shared object, ARM
-aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3D86afa53808502873830c02290f477d4ff8013afb, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-libc-wrapper.so.1.0.0
-/usr/lib/liblttng-ust-libc-wrapper.so.1.0.0: ELF 64-bit LSB shared
-object, ARM aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3D52f391875a378b5f2c46747a58020b86cb7c9a83, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-pthread-wrapper.so.1.0.0
-/usr/lib/liblttng-ust-pthread-wrapper.so.1.0.0: ELF 64-bit LSB shared
-object, ARM aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3D7127223a7e8ed67c6697b95ae1f8ac107df7e47e, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust-tracepoint.so.1.0.0
-/usr/lib/liblttng-ust-tracepoint.so.1.0.0: ELF 64-bit LSB shared
-object, ARM aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3D5971b4d84ec1efe61c6d47c38e92de20569f0f49, with
-debug_info, not stripped
-# file /usr/lib/liblttng-ust.so.1.0.0
-/usr/lib/liblttng-ust.so.1.0.0: ELF 64-bit LSB shared object, ARM
-aarch64, version 1 (SYSV), dynamically linked,
-BuildID[sha1]=3Dce7097ae9bbf42a02dccd386fdfbd37e3224858b, with
-debug_info, not stripped
-
-
-cutting some stuff out cause it's getting long again.
-
->
-> Sounds like `make check` for lttng-tools passed then?
-
-At first no.  But I think this is because I built the new lttng-tools
-in my on target native environment and ran make check and forgot to do
-make install first, so it was using the older version of lttng-tools.
-
-So then I ran make install of lttng-tools and even did a make clean
-and rebuild of lttng-ust and re-installed it and ran make check on
-both (and things looked a lot better) ... that's where those warnings
-etc., I asked you about came from.
-
->
-> My understanding at this point is the unit tests are passing for
-> LTTng-UST on your system, as are the unit and regression tests for
-> LTTng-tools. The example programs shipped with LTTng-UST work on your
-> system, as does the example from the documentation. The statedump
-> tracepoints loaded from LTTng-UST are also working fine, as evinced by
-> the program logs and the LTTng trace you shared.
->
-> Despite my confusion about how exactly you're using the `hello world`
-> tracepoint in your application (as you've now described several
-> variations), the direction this points to for me are details related to
-> how you're using LTTng-UST and/or how are your building and linking your
-> application. To be clear, I don't mean to say that there is or is not an
-> issue in LTTng-UST, but to point at where to examine next in detail
-> including analysis of the produced object files.
-
-I compared the doc/examples/hello-static-lib to what I picked out of
-the LTTng documentation on the web site "Quick start" section and the
-traceprovider headder file is including stddef.h and mine isn't and
-the doc/examples/hello-static-lib/hello.c code is doing a sighandler
-and mine isn't doing any of that either.  I think I've probably posted
-it before but will do it again.  Here is what I'm calling my "hello".
-It's from the lttng documentation but I cut it down even further just
-to make sure I didn't fat finger something.  Like I said before, the
-full hello example from the documentation works.  But when I call
-pretty much the same code from my app it seg faults.
-
-I don't know if the differences I see between my "hello" and the
-"hello-static-lib" matter.
-
-hello-tp.h:
-
-#undef LTTNG_UST_TRACEPOINT_PROVIDER
-#define LTTNG_UST_TRACEPOINT_PROVIDER hello_world
-
-#undef LTTNG_UST_TRACEPOINT_INCLUDE
-#define LTTNG_UST_TRACEPOINT_INCLUDE "./hello-tp.h"
-
-#if !defined(_HELLO_TP_H) || defined(LTTNG_UST_TRACEPOINT_HEADER_MULTI_READ=
-)
-#define _HELLO_TP_H
-
-#include <lttng/tracepoint.h>
-
-LTTNG_UST_TRACEPOINT_EVENT(
-   hello_world,
-   my_first_tracepoint,
-   LTTNG_UST_TP_ARGS(
-       int, my_integer_arg
-   ),
-   LTTNG_UST_TP_FIELDS(
-       lttng_ust_field_integer(int, my_integer_field, my_integer_arg)
-   )
-)
-
-#endif /* _HELLO_TP_H */
-
-#include <lttng/tracepoint-event.h>
-
-hello-tp.c:
-
-#define LTTNG_UST_TRACEPOINT_CREATE_PROBES
-
-#include "hello-tp.h"
-
-From my_app:
-
-#define LTTNG_UST_TRACEPOINT_DEFINE
-//#define LTTNG_UST_TRACEPOINT_PROBE_DYNAMIC_LINKAGE
-#include "hello-tp.h"
-
-.
-.
-.
-lttng_ust_tracepoint(hello_world, my_first_tracepoint, 23, "hi there!");
-
-In the above case the tpp is static but I've tried to make it a shared
-object too (thus the commented out DYNAMIC_LINKAGE above) but get the
-same result.
-
-Again, I think the issue is probably g++ and weak/hidden symbol
-related and or TLS but that's based on the totality of what I've
-experienced over the past year or so and seeing the
-experiences/problems of others in the lttng-dev archives.
-
-Regards,
-
-Brian
+--_000_MN0PR12MB5906A7619F31614B3AC16FBAC0B02MN0PR12MB5906namp_--
 
