@@ -1,190 +1,110 @@
-Return-Path: <bbergquist@epc-instore.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BAA90C3DA70
-	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 19:35:02 +0000 (UTC)
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
- by mx.groups.io with SMTP id smtpd.web11.26293.1722368092427861910
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9627C3DA7F
+	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 20:02:22 +0000 (UTC)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web11.23301.1722360275492046018
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jul 2024 12:34:52 -0700
+ Tue, 30 Jul 2024 10:24:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@epc-instore.com header.s=google header.b=FLAXcbQ/;
- spf=permerror, err=too many SPF records (domain: epc-instore.com, ip: 209.85.219.51, mailfrom: bbergquist@epc-instore.com)
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6b7a3e4686eso28021216d6.1
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 12:34:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=C/qSJ6Kl;
+ spf=pass (domain: gmail.com, ip: 209.85.216.49, mailfrom: patryk.seregiet@gmail.com)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2cb4b7fef4aso3685930a91.0
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 10:24:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=epc-instore.com; s=google; t=1722368091; x=1722972891; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1722360275; x=1722965075; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=8khV8y4hJdPZpZy3GMLg3shfnh4wIzrw/jhMrCLokAg=;
-        b=FLAXcbQ/f3MHaA7xSVQBVLB3Mj/S3lGGvk81hPq4bystdA9A30uQJiDSb7m2YZvL7R
-         l+1dNqrjWF4mW6RVLjATnlKjacHEkUpq7UT6hEAW4r8LsP8GXUS0ZrPNAe/C3FuGoqEa
-         0kI+wOX1fwWKKZYYc8RyEvoWBSFprALI5+3EeO3x18gxC4KrBK7JmTKOBjulPE/Qluri
-         vnWl6fEC7VnyxYvIHN6M22t3srmQ5bdBAHMqOmyg7ppGjH6PPQfBXTma4E62vO9Pc15c
-         ep99a2QAvGhqJ8xUdTC6OayNV+HlXwuTuZpe8ZZgHAA2Ojx21tIUHGbrWGEckNuey8GE
-         orlg==
+        bh=Vglm3tbu24ZaHGPQkKfSlwHxdoYQJiyBfPdlgr4AZb8=;
+        b=C/qSJ6KlD+s45foDJ+kr/s26dS4ojE51/CH35Zt+K+buuhY7AkP5wbaZUp+KOUtrOZ
+         cmSAR3ait3wtSmjInSgTvaC6PyqlChKK1ytTXa19Kxc/VHJaJn590G5wBKmZhrlnYkRf
+         IoE7RqL2nkJ51SXpiEdU7yf3tyjHlzk4TYjMCYndcsjHOWnqNAXJ03InKUiABxo5fF+V
+         MZe/UvlPI9/+FJECaJTYTi+kS8jCu38CSxQ1mSy8BZzs2c8z53wxt0Meg77+yHfIxXB/
+         tO0T16xNYG8jroqXcocO4m1SPR49eaICG87oKnIxdmfg0xKCdCyYM+Khr4XkWbiObbl2
+         COkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722368091; x=1722972891;
+        d=1e100.net; s=20230601; t=1722360275; x=1722965075;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8khV8y4hJdPZpZy3GMLg3shfnh4wIzrw/jhMrCLokAg=;
-        b=DFo5XS0tJAcasiqkeTbiltU/x5yt+lxHV+IGLpX76BAlzcwzq0eU6qcUl5HSbkqOzx
-         QhiYQS5GOBjZUxQluNfREKLLbJHoQrhm+bb9ECLJBkhmpYgajl0PmSSES0DpKde2yqVw
-         COA8Eudq5ZqQrxwP9sD0rmaGkzqpxzeE4U813T83nPjxIuc/+DWzi/YeGdHs/mTNkSul
-         cBp7UKvZi2wpsDJ7d8nPk/eC/wvVy8wFfl6SJtn+NlYuD5Piq+O7+7/70M42Emhr5LbP
-         oNTdnuC5sHPezko12CwGPPmIY2Xjsod+msqr9wrZrT7W21BxERejfyW1ZaFCgUNtjnyx
-         0HEg==
-X-Gm-Message-State: AOJu0YwvWcItUfYXiR+c/KAWiAMY/Cvqnj9w8Kn0Jvpr56ROcuOFjz64
-	AN3URDZmfhy5E7U5yMjo/noQd7nOW6fgmnVMgw5KDkWIVX0tBakHufUi0RPOH0aGqd86f5MEIsa
-	fE8hOvZvPpmBbI/cgA41D9BMqPdFLCx3P+uSPUro+fMt9lTsqaEM=
-X-Google-Smtp-Source: AGHT+IG6m5MydxM5CN0WWlcat1UKeMdvIi6q2jGx6DjxcGzo2h5dhQ4rTh5veQOwUnIE2jnAPzhGfBBX88ZzIHgJb50=
-X-Received: by 2002:a05:6214:194a:b0:6b5:eba0:d0ab with SMTP id
- 6a1803df08f44-6bb559cf810mr133179966d6.15.1722368091124; Tue, 30 Jul 2024
- 12:34:51 -0700 (PDT)
+        bh=Vglm3tbu24ZaHGPQkKfSlwHxdoYQJiyBfPdlgr4AZb8=;
+        b=BHXMaOgbqUP+KIj2bbg0upSg19oK4GJfE4m5PaxNWmAOePcUf1OqgEBsO5bXBzfJ0M
+         HG8PVIMGYKfVU5O8LRuc7UY0c7pAoZf+If5casTmfZKtKYPDEaO0QFqSJbBLA0u5g7RO
+         bFsR7637os+619dS+vrmYF1XsfE/K/2ajzfm2CuXBKaToKq6SwkR6MYFk270p/t8xjxa
+         DIGmPHLXKpL12MXqnhqeYRZe+6/Hw/PudjFz5si4d4GkOqmP/kIsdHQBBbJxGw5a5twS
+         z/fgtewNqf68AZluPzdl9bg4N/JfiMDLwBkwiRL8L8uMOm01mjZa6U0pZefq+4aEeojB
+         OugA==
+X-Gm-Message-State: AOJu0Yygrz8TPEupHwngb+q86agmdER49xBGZ/e7+hVqwISs8APdHQ5C
+	vAlYpMpj9s/h/l3rmDsfGTHuBwAcKATCTpk7dejXSwt3LnYfFM5a9flI7abBWzMZiScbmEq+RjP
+	ie7eNJ5MCXQKRqFdjNGBW8HN3Uo4O9/ZbOXiTgQ==
+X-Google-Smtp-Source: AGHT+IFZEefqpDQbZsshsmey7GrTs3yU07nhqj03o3kuGKlwMXNrFfYqdwdgKQWpsojmoifW4wYKEk+KuFkd4JDPziA=
+X-Received: by 2002:a17:90a:6fe5:b0:2c9:cbdd:acd with SMTP id
+ 98e67ed59e1d1-2cf7e835b53mr13481692a91.35.1722360274701; Tue, 30 Jul 2024
+ 10:24:34 -0700 (PDT)
 MIME-Version: 1.0
-From: Brett Bergquist <bbergquist@epc-instore.com>
-Date: Tue, 30 Jul 2024 15:34:40 -0400
-Message-ID: <CAH+ZgJvGrC6fudef752LBNufu59e3z=_QJ_RtLPEiM_U5_1XKQ@mail.gmail.com>
-Subject: Question on how to enforce a task dependency
+From: "patryk seregiet" <patryk.seregiet@gmail.com>
+Date: Tue, 30 Jul 2024 19:24:23 +0200
+Message-ID: <CAOf3PZwgrx7jo7mjuQGJZ8YXxHaDrRi8mOiDY5JL-Zz92xx+sg@mail.gmail.com>
+Subject: Diff / Delta file between two rootfs images.
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000003e8ed5061e7c1295"
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 19:35:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63612
+ <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 20:02:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63613
 
---0000000000003e8ed5061e7c1295
-Content-Type: text/plain; charset="UTF-8"
+Hello,
+I'd like to create a diff/delta file between two rootfs images. I
+thought it would be as easy as using diff / rsync with some options,
+but it doesn't seem to be possible with just that, at least I couldn't
+manage it. So I wrote my own tool and it works, but it requires root
+to manipulate the files owned by other UIDs and GIDs (especially
+root).
 
-I have a recipe that basically is repackaging an Debian package.  We don't
-have the source so we cannot build the package directly.
+I know there's fakeroot, but my images have files owned by root and
+another ordinary users, so I cannot just make everything be owned by
+root. Here's the breakdown of my program and what I tried. I'd like
+any suggestion on how to achieve this easier and without sudo / root
+account.
 
-I have to patch the "postinst" file that is within the "control.tar.xz"
-file.   I wrote a task "do_prepare" that will expand the "control.tar.xz"
-file and I want to ensure the task is run before the "do_patch" task but
-after the "do_fetch" task.
+Oh and btw I am using ext4 images because I am using Mender (the over
+the air update software - https://mender.io/) and their final "mender
+artifact" is just the ext4 rootfs image with some extra metadata. I'd
+like to make a system that can produce a delta between these images.
+But if that's not possible I can just use the tarball created by Yocto
+(I'd just need to keep both or maybe Mender can be configured to use
+tarballs... not sure).
 
-I added this
+Mount ext4 images at dir1 and dir2 (can be done without root
+using fuse2fs, but in that case no files can be listed when using
+sudo... strange)
 
-addtask do_prepare after do_unpack before do_patch
+For all files in dir1 check if it exists in dir2, if not, write its name
+to ".deleted" file
 
-Sometimes this fails and the "do_patch" task does not see the extracted
-content to patch.   Adding in a "-D" to the bitbake command will sometimes
-cause a difference in what I perceive to be timing and the recipe builds
-fine.  I have not been able to figure out what the issue is.
+For all files in dir2 check if file exists in dir1. If not, copy it to
+output-dir
 
-If I look at the dependencies of the recipe's
-"zebra-scanner-corescanner:do_patch" task, I see for my recipe which is
-"zebra-scanner-corescanner"
+If both files exist compare them (size, uid, guid, st_mode, finally
+calculate and compare a hash)
 
-   - patch-native:do_populate_sysroot
-   - quilt-native:do_populate_sysroot
-   - zebra-scanner-corescanner:do_prepare
-   - zebra-scanner-corescanner:do_unpack
+if any of the above is different, copy it (using cp -a, which preserves
+all attributes). Also make all the directories for that file (mkdir -p).
 
-and for for the "zebra-scanner-corescanner:do_prepare" task I see:
+For all directories in output-dir check if it exists in dir2, if yes
+then copy all its attributes (stat -> chmod + chown).
+This is needed for all the directories we created using mkdir -p
 
-   - zebra-scanner-corescanner:do_unpack
+This leaves us with all the files that were different in output-dir
+and a list of files to be removed.
 
-Being a bit new to this, I think the "zebra-scanner-corescanner:do_patch"
-should wait for all of its tasks to complete before it runs and those tasks
-might be run in parallel, one of which will be the
-"zebra-scanner-corescanner:do_unpack" but the
-"zebra-scanner-corescanner:do_prepare" also has a dependency on the
-"zebra-scanner-corescanner:do_unpack" so ultimately the
-"zebra-scanner-corescanner:do_patch" should be waiting until the
-"zebra-scanner-corescanner:do_prepare" completes.
+Here's what I thought of doing:
+Do this in a docker image as a root (without the docker itself having
+any privileges). Can't make it work with ext4 being mounted, docker
+container can't access it (mountpoint is owned by root).
 
-However it appears that sometimes it does not.  Anyone have any ideas on
-this?
-
--- 
-Brett M. Bergquist
-*Distinguished Member Technical Staff*
-*EntryPoint Communications LLC*
-*30 Waterside Drive, Suite 100*
-*Farmington, CT 06032*
-
-Phone: (203) 206 3542
-Email: bbergquist@epc-instore.com
-
-CONFIDENTIALITY NOTICE
-This message (including any attachments) contains information that may be
-confidential.  If you are the intended recipient, and the message is marked
-confidential, by opening the message, you accept responsibility for
-treating the message and information contained in the message as
-confidential, including not distributing or disclosing its contents to any
-third party without the express written consent of the sender.  If you are
-not the intended recipient, you may not read, print, retain, use, copy,
-distribute or disclose to anyone the message or any information contained
-in the message, and such conduct is prohibited.  If you have received this
-message in error, please advise the sender by reply e-mail, and destroy all
-copies of the original message (including any attachments).  Sender
-reserves all rights of confidentiality and privilege, and nothing regarding
-this e-mail or its transmission is intended to be a waiver thereof.
-
---0000000000003e8ed5061e7c1295
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I have a recipe that basically is repackaging an Debian pa=
-ckage.=C2=A0 We don&#39;t have the source so we cannot build the package di=
-rectly.=C2=A0<div><br></div><div>I have to patch the &quot;postinst&quot; f=
-ile that is within the &quot;control.tar.xz&quot; file.=C2=A0 =C2=A0I wrote=
- a task &quot;do_prepare&quot; that will expand=C2=A0the &quot;control.tar.=
-xz&quot; file and I want to ensure the task is run before the &quot;do_patc=
-h&quot; task but after the &quot;do_fetch&quot; task.=C2=A0=C2=A0<br clear=
-=3D"all"><div><br></div><div>I added this=C2=A0</div><div><br></div></div><=
-blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"><div><div>ad=
-dtask do_prepare after do_unpack before do_patch</div></div><div><br></div>=
-</blockquote>Sometimes this fails and the &quot;do_patch&quot; task does no=
-t see the extracted content to patch.=C2=A0 =C2=A0Adding in a &quot;-D&quot=
-; to the bitbake command will sometimes cause a difference in what I percei=
-ve to be timing and the recipe builds fine.=C2=A0 I have not been able to f=
-igure=C2=A0out what the issue is.<div><br></div><div>If I look at the depen=
-dencies of the recipe&#39;s &quot;zebra-scanner-corescanner:do_patch&quot; =
-task, I see for my recipe which is &quot;zebra-scanner-corescanner&quot;</d=
-iv><div><ul><li>patch-native:do_populate_sysroot</li><li>quilt-native:do_po=
-pulate_sysroot</li><li>zebra-scanner-corescanner:do_prepare</li><li>zebra-s=
-canner-corescanner:do_unpack</li></ul><div>and for for the &quot;zebra-scan=
-ner-corescanner:do_prepare&quot; task I see:</div><div><ul><li>zebra-scanne=
-r-corescanner:do_unpack</li></ul><div>Being a bit new to this, I think the =
-&quot;zebra-scanner-corescanner:do_patch&quot; should wait for all of its t=
-asks to complete before it runs and those tasks might be run in parallel, o=
-ne of which will be the &quot;zebra-scanner-corescanner:do_unpack&quot; but=
- the &quot;zebra-scanner-corescanner:do_prepare&quot; also has a dependency=
- on the &quot;zebra-scanner-corescanner:do_unpack&quot; so ultimately the &=
-quot;zebra-scanner-corescanner:do_patch&quot; should be waiting until the &=
-quot;zebra-scanner-corescanner:do_prepare&quot; completes.=C2=A0 =C2=A0</di=
-v><div><br></div><div>However it appears that sometimes it does not.=C2=A0 =
-Anyone have any ideas on this?</div><div><br></div><div><span class=3D"gmai=
-l_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature=
-" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">Brett M. Bergquist<di=
-v><b>Distinguished Member Technical Staff</b></div><div><b>EntryPoint Commu=
-nications LLC</b></div><div><b>30 Waterside Drive, Suite 100</b></div><div>=
-<b>Farmington, CT 06032</b></div><div><b><br></b></div><div>Phone: (203) 20=
-6 3542</div><div>Email: <a href=3D"mailto:bbergquist@epc-instore.com" targe=
-t=3D"_blank">bbergquist@epc-instore.com</a></div><div><br></div><div><span =
-style=3D"color:rgb(34,34,34);font-family:&quot;Times New Roman&quot;,serif;=
-font-size:13.3333px">CONFIDENTIALITY NOTICE</span><br style=3D"color:rgb(34=
-,34,34);font-family:&quot;Times New Roman&quot;,serif;font-size:13.3333px">=
-<span style=3D"color:rgb(34,34,34);font-family:&quot;Times New Roman&quot;,=
-serif;font-size:13.3333px">This message (including any attachments) contain=
-s information that may be confidential.=C2=A0 If you are the intended recip=
-ient, and the message is marked confidential, by opening the message, you a=
-ccept responsibility for treating the message and information contained in =
-the message as confidential, including not distributing or disclosing its c=
-ontents to any third party without the express written consent of the sende=
-r.=C2=A0 If you are not the intended recipient, you may not read, print, re=
-tain, use, copy, distribute or disclose to anyone the message or any inform=
-ation contained in the message, and such conduct is prohibited.=C2=A0 If yo=
-u have received this message in error, please advise the sender by reply e-=
-mail, and destroy all copies of the original message (including any attachm=
-ents).=C2=A0 Sender reserves all rights of confidentiality and privilege, a=
-nd nothing regarding this e-mail or its transmission is intended to be a wa=
-iver thereof.</span><br></div></div></div></div></div></div></div>
-
---0000000000003e8ed5061e7c1295--
+Pozdrawiam / Best Regards
+Patryk Seregiet
 
