@@ -1,100 +1,91 @@
-Return-Path: <ecordonnier@snap.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED4F0C3DA70
-	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 17:04:41 +0000 (UTC)
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
- by mx.groups.io with SMTP id smtpd.web10.22619.1722359072972322974
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9435C3DA49
+	for <webhook@archiver.kernel.org>; Tue, 30 Jul 2024 17:16:51 +0000 (UTC)
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+ by mx.groups.io with SMTP id smtpd.web11.23133.1722359807328308320
  for <yocto@lists.yoctoproject.org>;
- Tue, 30 Jul 2024 10:04:33 -0700
+ Tue, 30 Jul 2024 10:16:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@snap.com header.s=google header.b=TQxYvEwR;
- spf=pass (domain: snapchat.com, ip: 209.85.167.42, mailfrom: ecordonnier@snapchat.com)
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52f0277daa5so7679426e87.0
-        for <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 10:04:32 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=iXDBng8y;
+ spf=pass (domain: gmail.com, ip: 209.85.160.50, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-26827ec5235so492590fac.2
+        for <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 10:16:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snap.com; s=google; t=1722359071; x=1722963871; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WObfrHKJ+/SQPjoTWePaTi2cN9kn7ukf2p4eRTEEwcw=;
-        b=TQxYvEwR7SVnf33R1QWtd5VPK3RRupXaPWvxCosUnwmD7TwDiXA7yQxw3eLwnTqxPI
-         xP7f1PTfmxk11zREY/6nfxRqvaLZL1gMp+85Y23F5ehVcUFcU2ynbm3+jt/xgsX/GaHJ
-         +Nz+LqqJzsgnkQGGhigncrn0IcVcj3GHpZvRk=
+        d=gmail.com; s=20230601; t=1722359806; x=1722964606; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6TxPlmcXOi+NyLMrVy+hH+JdcgwW5xdPLkPKDoVoCvE=;
+        b=iXDBng8yOgB/SZoL09OsP+tEr9yJ2NQJiNgFDTjcs10G8rGw2gRY7CJoDRS1uNNFLo
+         MrfPUwnLOQU40xuqc2Y9PTnXQCCbrz9V+FMf3A3LRZ/5iE6E2Uu1mRCfrRs7Nlss7sZr
+         6SWc5FYJ54ZJlDFoGOrLAduqfeqzKtBuRjNEGn0H2LCBd0+SATYGXNyty6VUF5GUePNd
+         IR28nWX+CmGHAu0cWxd3Z++wsS5W7lWw+LhtLuBwv7eX7F2ILntRMn/wEaZwDom1GY9O
+         B19dDldGTeIVP5IY3cfKR9Dqt13lVEVX62FC+8XYvMcrIGIdvBiQlqHorVmGWdCLooQB
+         eJXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722359071; x=1722963871;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WObfrHKJ+/SQPjoTWePaTi2cN9kn7ukf2p4eRTEEwcw=;
-        b=TWR/ltyONwyStxoAnsi6PY8UYeSzyyau0GB/mNNGaS6GQVI8XfPmeQBP5prECkSqHJ
-         PrYX2gW2/h4iIf/6T4uo6b9X24/udWIxAO13tI/1whTGU8kxglQSNGM0sZyhrdy/Brvg
-         XhsJSCIr7ixAP9SS0c8E8HqakuypNFR6xJxV9Sl/Grj9xrinvf8GGdHnq3SYY2+Bc3M7
-         4XuwFP/x55Ot5MzKKv5oo3CyWn+34LcikZdyuppwRmu9uLnD0Q0o4gMu8hllEkAY+nlf
-         mzkEIUnpxyxiVknyswYAeMQFBovAe5nyjBtPwBVT4oRMho1i3fx8dvYw4MMmwKNqhJye
-         XYEQ==
-X-Gm-Message-State: AOJu0Yw5K44Ws03t4xZ4Om958DF9X34h8uMZCVgz6ZIvMZPo+ILgTxVT
-	bnwEO8eTz5ca7yYJePBHOyC2vzYl7QEdqGk3NsXaFgOgs5Bw7mmcXaEUWoQ5slcV+y3hWn8Pz1F
-	noDJ/8YFfCiJ4jsSEy3M+dQHPxk1WlaFwMZ7QJg1aMDX6rZm3tez+kw==
-X-Google-Smtp-Source: AGHT+IFNmMgZ3XIHTXoXTi7XZPIhhTBnU4aRXj/qD0thV9O+NRuauIIwqZG4tj4dehDlf0w6BOVQ3fog/kday0dfT10=
-X-Received: by 2002:ac2:4db6:0:b0:52f:cd03:a850 with SMTP id
- 2adb3069b0e04-5309b27d44fmr7989363e87.32.1722359070603; Tue, 30 Jul 2024
- 10:04:30 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722359806; x=1722964606;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6TxPlmcXOi+NyLMrVy+hH+JdcgwW5xdPLkPKDoVoCvE=;
+        b=CeE+dyraLHlymTZ0SLhkKubV4jXcScSPWnUelTsnA/7bAG+BxORf4LHXoGIgvr63da
+         WZ/jC5O9smap/i1ta3SB0Dp6QlRIJ2AINA1XagMFYB1/RUXU8wtUjCI3i+CGE5qaYA8/
+         EkEGA7/zsEgk1SJ4+ZO0nJ9Ui+Bz2HRacRK6lxmMqrybxLtGgRJdTJXnsLUsCSycwhaJ
+         U+R3C3qUY5rnHvNZzxys4uZWBD7QH6M/q6a+HnwjMBgjkL/eqzY399dtAR9dQjMdiRtp
+         OoGyju936mM/iXtf3l453MyxO0ZlHqr4wXUrgoo6bgpnjpUj64GlOSwnsBivFu0G6pPA
+         xIPA==
+X-Gm-Message-State: AOJu0Yyge3mja5sgS+mthm+rCGk2Pbi3SfgL18Kc1wtFBa/gbs5dhVCR
+	TYkHbk1Gw7L/nKhbfZvDctTzki1gOUebnXPfSVtYWv6zuP37RuCvQEodGWvROOiLyWxz5zrGSoB
+	aMHLAk35+7X8jZ2FUfOZohJC5avI=
+X-Google-Smtp-Source: AGHT+IGvHF1F36B+KpjLmxNoik4SOuO9WJs/SKI21V7DqbooARdExD9Wo08Oe8fW4kaickz8Fs/xSmGDtVAbcCaxmXM=
+X-Received: by 2002:a05:6870:9216:b0:261:1046:66fc with SMTP id
+ 586e51a60fabf-267d4cde19fmr14022898fac.4.1722359806542; Tue, 30 Jul 2024
+ 10:16:46 -0700 (PDT)
 MIME-Version: 1.0
-From: Etienne Cordonnier <ecordonnier@snap.com>
-Date: Tue, 30 Jul 2024 19:04:19 +0200
-Message-ID: <CAHUKmYbbd_LgaHVaHzZt_JqHFVvaMDr25ZouS=Nnw6jrZxnCGg@mail.gmail.com>
-Subject: Meta-gplv2 replacement
-To: yocto@lists.yoctoproject.org
-Cc: Khem Raj <raj.khem@gmail.com>
-Content-Type: multipart/alternative; boundary="00000000000094a4b1061e79f84b"
+References: <CAHUKmYbbd_LgaHVaHzZt_JqHFVvaMDr25ZouS=Nnw6jrZxnCGg@mail.gmail.com>
+In-Reply-To: <CAHUKmYbbd_LgaHVaHzZt_JqHFVvaMDr25ZouS=Nnw6jrZxnCGg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 30 Jul 2024 10:16:19 -0700
+Message-ID: <CAMKF1so_L5CHdVyYbyo7Ut3XM3JvFGqxrfQ0Pqot9dpn27rjNw@mail.gmail.com>
+Subject: Re: Meta-gplv2 replacement
+To: Etienne Cordonnier <ecordonnier@snap.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 17:04:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63608
+ <yocto@lists.yoctoproject.org>; Tue, 30 Jul 2024 17:16:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63609
 
---00000000000094a4b1061e79f84b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Etienne
 
-Hi,
-I saw in the latest yocto-status email that this page was created regarding
-meta-gplv2 replacement:
+Thanks for the suggestion and I agree, it's a good alternative for
+coreutils tools, we must mention it in page.
 
-https://wiki.yoctoproject.org/wiki/Meta-gpl2_layer_replacement (thanks Khem=
-)
-
-I'd like to remind of the option to use uutils-coreutils from
-meta-openembedded/meta-oe/recipes-core/uutils-coreutils as a replacement of
-GNU coreutils (using PREFERRED_PROVIDER_coreutils =3D "uutils-coreutils"). =
-It
-is much easier than transitioning from coreutils to e.g. busybox, because
-the options used are the same in GNU coreutils and uutils-coreutils, while
-busybox uses different options.
-
-The caveat at the moment is that uutils-coreutils is still in beta phase,
-so some flags are still buggy. However the vast majority of the common
-flags work without any issue.
-
-=C3=89tienne
-
---00000000000094a4b1061e79f84b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br>I saw in the latest yocto-status email that this pa=
-ge was created regarding meta-gplv2 replacement:<br><br><a href=3D"https://=
-wiki.yoctoproject.org/wiki/Meta-gpl2_layer_replacement">https://wiki.yoctop=
-roject.org/wiki/Meta-gpl2_layer_replacement</a> (thanks Khem)<br><br>I&#39;=
-d like to remind of the option to use uutils-coreutils from meta-openembedd=
-ed/meta-oe/recipes-core/uutils-coreutils as a replacement of GNU coreutils =
-(using PREFERRED_PROVIDER_coreutils =3D &quot;uutils-coreutils&quot;). It i=
-s much easier than transitioning from coreutils to e.g. busybox, because th=
-e options used are the same in GNU coreutils and uutils-coreutils, while bu=
-sybox uses different options.<br><br>The caveat at the moment is that uutil=
-s-coreutils is still in beta phase, so some flags are still buggy. However =
-the vast majority of the common flags work without any issue.<br><br>=C3=89=
-tienne</div>
-
---00000000000094a4b1061e79f84b--
+On Tue, Jul 30, 2024 at 10:04=E2=80=AFAM Etienne Cordonnier
+<ecordonnier@snap.com> wrote:
+>
+> Hi,
+> I saw in the latest yocto-status email that this page was created regardi=
+ng meta-gplv2 replacement:
+>
+> https://wiki.yoctoproject.org/wiki/Meta-gpl2_layer_replacement (thanks Kh=
+em)
+>
+> I'd like to remind of the option to use uutils-coreutils from meta-openem=
+bedded/meta-oe/recipes-core/uutils-coreutils as a replacement of GNU coreut=
+ils (using PREFERRED_PROVIDER_coreutils =3D "uutils-coreutils"). It is much=
+ easier than transitioning from coreutils to e.g. busybox, because the opti=
+ons used are the same in GNU coreutils and uutils-coreutils, while busybox =
+uses different options.
+>
+> The caveat at the moment is that uutils-coreutils is still in beta phase,=
+ so some flags are still buggy. However the vast majority of the common fla=
+gs work without any issue.
+>
+> =C3=89tienne
 
