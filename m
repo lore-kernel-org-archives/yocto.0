@@ -1,271 +1,211 @@
-Return-Path: <leimaohui@fujitsu.com>
+Return-Path: <martin.jansa@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C6239C3DA7F
-	for <webhook@archiver.kernel.org>; Wed, 31 Jul 2024 08:31:06 +0000 (UTC)
-Received: from esa2.fujitsucc.c3s2.iphmx.com (esa2.fujitsucc.c3s2.iphmx.com [68.232.152.246])
- by mx.groups.io with SMTP id smtpd.web11.38488.1722414662119640195
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5410C3DA7F
+	for <webhook@archiver.kernel.org>; Wed, 31 Jul 2024 08:41:56 +0000 (UTC)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+ by mx.groups.io with SMTP id smtpd.web10.38321.1722415313377551954
  for <yocto@lists.yoctoproject.org>;
- Wed, 31 Jul 2024 01:31:03 -0700
+ Wed, 31 Jul 2024 01:41:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fujitsu.com header.s=fj1 header.b=AuN4wbFH;
- spf=neutral (domain: fujitsu.com, ip: 68.232.152.246, mailfrom: leimaohui@fujitsu.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj1;
-  t=1722414661; x=1753950661;
-  h=from:to:cc:subject:date:message-id:
-   content-transfer-encoding:mime-version;
-  bh=XiaBdhUQ3ZR2kQGzyf+zb6P6fuHWKeehPPUH7Amb0p4=;
-  b=AuN4wbFHv8XG1KrqHiPsxfehCEqWBrx188S86oNVl3KodPzQjW3UF0M9
-   HShKZa6i7vyRhNtjIuSqcWd5dHQKkWZXufdoOlMtTp6yXlGcx4VT3OH2S
-   c4aP1wc8FG2VD3e7UWlhpahc1htSEC0nB174sWfgC0pinPWEm9mGd9KJA
-   SNtqCqeno5n/fDfpDf6e80Wvj0DzvnuyDMAIK1S6MzTdK6DmA2iLSQtkj
-   Bj0eF30NHET6ozJ8dknfIp28q6cwGxxxt2dtwlFDm7Mg9uZC5gblFT7x+
-   z95OmtXina+hXQvag+RuqWWkxzWzN59fY7VskxCoeQvb381D0DdktZj4V
-   w==;
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="37870973"
-X-IronPort-AV: E=Sophos;i="6.09,251,1716217200"; 
-   d="scan'208";a="37870973"
-Received: from mail-japaneastazlp17010001.outbound.protection.outlook.com (HELO TY3P286CU002.outbound.protection.outlook.com) ([40.93.73.1])
-  by ob1.fujitsucc.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jul 2024 17:30:58 +0900
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DL1IZ+nSmwGHSoZ3kKJYSoiIoxjF8VudEBUq9NElM4EPZQfTBnjjREANDlnGj4793ZBzj6Y9/wJez8Br7too4TqDEW1nJAHmKb8V04EvZykyGIIWzTnHNuzBrt1C2j4mKhEVyC7xO6XZmmZbrifPrx4NHRQQqSBoZqQFei7szW9hinD9WrHB5podE/oogrRXt1g3kQkGmixvjzFl6bxIPcmS/g0QabcgIqEoptf/dDKajfh9CRilaHeC9Y9KqgDBGVe15pq0lPz2M+sT1vObb0DB8/CsR682QVQ59u+M/U4VBkzSCLxmtBdy5MONkDkaEkfOwbnwMlQmPuuQDSaiuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XiaBdhUQ3ZR2kQGzyf+zb6P6fuHWKeehPPUH7Amb0p4=;
- b=NkrGXzPl47JjronBh/6yvZzFCmgL0CFDGVHVGjYf9bFjQa/72YlGI2oROiOv/Xw+LixzS7QDrrqsYDNpQpKHeheM7hYLqsOQlJc8a8RgB4qRZOfXgOiq4W5LCyhJ+CXmOeC5GJAyMidl1e5ZhuFuD+ZJL7NdNZ3cp3A68B0chPVj5COQPdtnBV91PXCqJY6U3ibQRbqxUsUfI6N6j/EDZkSsrFt2YbTKjvnsEDktx0qx5X71RMe6CzzEpcobG4GDbWsa48agODCUA2psaOMbn8DMi8k0r6cCUjBL3FizEg2iOjtr5sN0/sAb7PEBCoDn7YHtR5kSl+8qB1raa6sccA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fujitsu.com; dmarc=pass action=none header.from=fujitsu.com;
- dkim=pass header.d=fujitsu.com; arc=none
-Received: from TY3PR01MB11056.jpnprd01.prod.outlook.com
- (2603:1096:400:3b4::12) by OS9PR01MB12133.jpnprd01.prod.outlook.com
- (2603:1096:604:2e7::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Wed, 31 Jul
- 2024 08:30:55 +0000
-Received: from TY3PR01MB11056.jpnprd01.prod.outlook.com
- ([fe80::c451:240d:2c34:96bc]) by TY3PR01MB11056.jpnprd01.prod.outlook.com
- ([fe80::c451:240d:2c34:96bc%4]) with mapi id 15.20.7828.016; Wed, 31 Jul 2024
- 08:30:55 +0000
-From: "Maohui Lei (Fujitsu)" <leimaohui@fujitsu.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-CC: "eric@eukrea.com" <eric@eukrea.com>, "max@igalia.com" <max@igalia.com>,
-	"Otavio Salvador (otavio@ossystems.com.br)" <otavio@ossystems.com.br>
-Subject: [yocto] [meta-browser] firefox build failed
-Thread-Topic: [yocto] [meta-browser] firefox build failed
-Thread-Index: AdrjI5bY2aDvq0gLR/2katgZuHcL/Q==
-Date: Wed, 31 Jul 2024 08:30:55 +0000
-Message-ID: 
- <TY3PR01MB1105638B4B35BBCE36E961111A0B12@TY3PR01MB11056.jpnprd01.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_ActionId=45f6f96b-8826-4abd-bd77-e40b2c775c85;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_ContentBits=0;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_Enabled=true;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_Method=Standard;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_Name=FUJITSU-RESTRICTED?;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_SetDate=2024-07-31T08:27:43Z;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_SiteId=a19f121d-81e1-4858-a9d8-736e267fd4c7;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=fujitsu.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11056:EE_|OS9PR01MB12133:EE_
-x-ms-office365-filtering-correlation-id: 73f96bf3-8bdf-44b7-97f3-08dcb13b18a0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|366016|376014|1800799024|38070700018|1580799027;
-x-microsoft-antispam-message-info: 
- =?shift_jis?B?NVUySGNBWWN5Z0xQeFE3OGt6WjBScnZwU0FwVUNpRE9wUnRSbXNEMmRZ?=
- =?shift_jis?B?TEIxMVErRjRPeGNGcUc5OUVPdjFTNEEzOUZOVllWQlBBeERzUUJuVHMx?=
- =?shift_jis?B?MTJoY09hd2NmeWpNK05qanJiQnl2V2hiYlJoRGRqOWwwQ1dvNmg1OERM?=
- =?shift_jis?B?c2o2aWJlWXFhalA4TkRBb2NyM3lObWNvckErVkd3V2gzL1ZWSzNENjZP?=
- =?shift_jis?B?MWw2Y3c4Q1RVdWZPV05jYzJGTU5ncXdUem5XUURqc1diR1VwR2R1SDM2?=
- =?shift_jis?B?a1hNNmFzaVAwblg5VnNhZ3g1WGVST3ByalhxZDhBMlI3UnBYN0d6dG04?=
- =?shift_jis?B?eVpDb1pyWUpPQzZlL0lOUlVaZXVkeENzRTRFZzZ0RTNLNENkMkV6RVZ1?=
- =?shift_jis?B?aVhwTTBZUnh3bHdwd3daUWVkYXhPdXMvNXVJVisyZUpYTkxTaVM1b3V5?=
- =?shift_jis?B?Z3gyUXgyV1BSMTBZb01pL3BOcVBCalV0Wml2b0NLMUNsdU1aS2FsTjJu?=
- =?shift_jis?B?VGZBK285aXAxUTE4czJIVGhNUzkrekVzbkxuMGlSM0hVTmZRTk9LYURE?=
- =?shift_jis?B?dDdxL2kyTmRqYjFzZkRWZFF1aXlFYmpxUUlkYVlGOXpoc01iaEI0UThY?=
- =?shift_jis?B?REhpb293VC8vT1JCWTJOS29rWVFzK1ZKVGJvU0xqS0ljc25lVXMvMTA4?=
- =?shift_jis?B?RU5obUFNb3hBLyt3cVZKeVQxc2doYllUY0k1R1I1d0xrSG56QUp2UDNT?=
- =?shift_jis?B?Y0lXU3hSYTE1NWFpbko1NHlKbW15eWl3TEozU2Z4azkvOGNkTW1LQ1JZ?=
- =?shift_jis?B?Ty9IZTB2VmpUa29FSmNUQXNrSWxXQWJiZkNpRjJTdHdDNlg3YmxYV2hG?=
- =?shift_jis?B?RmpyVWhwZStoZWtKWHV4cEora2M3OHF6eGVKMWNzV1RzWG5NODM2L1Rq?=
- =?shift_jis?B?SGM5bitJVzZCR0xJcmxTc2VCTE1UQXpuSFE0Ujk0dXFWWWxYemxuTk5W?=
- =?shift_jis?B?TGR3V0greVV4Rk5VUWg2RHRCZFRZVWFPUS90RkRwandFQk1ka1lhai9Y?=
- =?shift_jis?B?VUVobC9od0RwWEpYZzF6Q01FZ2ZVWmtVY2ZlSTJSaWFmazJJaWFCNUlR?=
- =?shift_jis?B?MTFCUnBlTlpoVThNQUt1S3hISk45SjVWMmNiNUVySHRMeXlva21IUHF4?=
- =?shift_jis?B?bFJlTXdnNG4raGN3Vk83Q0RNZlRoMHhySlhXVU1QcDV1YzZ0TE01Yk5R?=
- =?shift_jis?B?N29CbVdsYXE1bi90Rk1wWFZReVBaWW1FNDlCM3hjMWN0RGFiaGxUNlh4?=
- =?shift_jis?B?MjBTa2FyMURoN2JqdWgwM3RXM09ITVBjMTNGSXk0bWZ5bDZwMnEyNHg3?=
- =?shift_jis?B?d0lyUHl6SjhJS0Y0MEM4OVNoM3BaeFRtYUNCaXVYclZsSWhlejlLTzJo?=
- =?shift_jis?B?c0xnaXpRblliMHJlNHN3UmhnWWFjSmpDMlYvT2NLaG1oMGM0SngwZ2dj?=
- =?shift_jis?B?bDRIemtxWGhJTTFqZ211RDNFdXBydm9BMGZFL0Z6dEVQTjNmQUFjVVM4?=
- =?shift_jis?B?d1htaFVYN2Rub0licENnYU5BQW85NDBpQjBPakxTWTZOaU5LSDNlS3pl?=
- =?shift_jis?B?QWFhZWFNUkJRdmovTUluT1JpZVJGYk82bFVEMytDZE9TZ2JqQm5SZzcy?=
- =?shift_jis?B?dGcvZ0lOQkhINkl0U2lmalBDems1c3pjd2ptQnl4Q2xac2doN0dUSlJQ?=
- =?shift_jis?B?UlB3QTNEbkQxSzVLT0RqWFRnemppT3ZwcGlKeXhEcmZEb2lwWXZXVURn?=
- =?shift_jis?B?SnF1S3Nsb1M4OVFVaTJkWGpVRHc5S3JPK2o1OUMySWNsVS8vQ29HQUxS?=
- =?shift_jis?B?YmtWNlVyMkszTGI5T2ZldEJ0dmxaZjFXSUJxc2RudE14cDBMbVFQVEo1?=
- =?shift_jis?B?UW9nRnJoMUJQT20vNDJvRU8zNldreUdERlkwMkdqNURCeE9EVlpKMHVY?=
- =?shift_jis?B?U2p3cms4SmMyTWVlMngxUFByYkV6MERNOE0yd3FWQkt3THRuVis4akY0?=
- =?shift_jis?Q?RZRdX6RnHPF3TEh+HiU09K8=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11056.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018)(1580799027);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?shift_jis?B?ZTBacitVK0NJNEM4aWc0dWpWVDA0eUplZ21pcTZsL09vYlJCdTR2a042?=
- =?shift_jis?B?SGpXMEJOU3JwTFJObzlrRUNjTTJWK0RnVklRbUZDOVRLRXdCVys2QlhF?=
- =?shift_jis?B?RnI2QnJhKzI5dnd1bkgxZGI5U1dlSGJnK3NQNkFWWnhtdUNGdlFWTFBq?=
- =?shift_jis?B?TkZSNTF3eDFiQmNBajN2WVRob0JHQmdMNTNuTjdldWFRZXJmNjJQQ21H?=
- =?shift_jis?B?QUREajN3dnhJZmVIMlBqcUY3MmFDeWI3UU0yWWIrbUtxU3FmcnNvYi9j?=
- =?shift_jis?B?TUJKRmtkTytDV1NPN0Q2cEgzdnZvUElWNDliUWc1ZE5xRzhTenZFNmh0?=
- =?shift_jis?B?N081UWJRTmU5RytjbUpFbGR0Z0RDNmcyQlNOOVpRUHJWcWliNmNKV1dz?=
- =?shift_jis?B?RS9pR2JONGpKdUtTVDJUK2pUSW5EbUxiOW5vbUVsVzA4QVdCUklPWi9Y?=
- =?shift_jis?B?a1FFMzhpdTc1WU1YS01oWkltWm1aUkhHNFRva3U5MUIyQjMwaTRMN1ox?=
- =?shift_jis?B?RG5sMkdUTlNCMlFjOWc2U2EzR2JNUVpwLzBndzdmNTNSOGhkVFlDOGVT?=
- =?shift_jis?B?UDBBbEhEUk1FY3V0VzFySWNubE1ZaVExMjY2SmVKdStkQkt0cHZyeTBZ?=
- =?shift_jis?B?SENHd1RNMjd0TnlseUZVdW5XVUMzS29ZK0ZUbm5tZWFCbFFDRjhHb2JW?=
- =?shift_jis?B?dzNCRzZxTWZOQUpFME5tbGpycm5LVERLQXdBcVEzWEplQ1dtdjBqM3FK?=
- =?shift_jis?B?eXNjSGtiakxub0hBYzRqc0Z2eHBvOXNFZ1ZHdEh1YWJYUkhqUERsRXJz?=
- =?shift_jis?B?dWhpYmJ6V1pBNFc1SVMzODJPU3F2VGVMeEVYYXV2UDYvc2pnUGpIVlhU?=
- =?shift_jis?B?MGFQTmd2NGxTeFoxZ1FzQVlRU0hWajgraFRSRW5veXE5WFpuelBJbTJm?=
- =?shift_jis?B?ckFmeHluN3JqaEhKVnFidVBwMlZGMFVYdzQvczNtYlZITHNUSTZ2QTkz?=
- =?shift_jis?B?UHBISmdCc0hXSmNWMml6bnd5dXFLb2ZUNTUwQ1VmaklMOEtZVmRWZDdj?=
- =?shift_jis?B?QVJ1Q3pJQnhXWDVhUCtIbzB4SFJ1RXRFZm5JUnBhUUhFam5QenFGcURv?=
- =?shift_jis?B?alhkYU5ZZW5NajNTY1BxTHI5TWxHWStmMWkvNFNCb01nYVQ0N2dCd1U3?=
- =?shift_jis?B?dkhWUFVPK2JzbUFjdnA4NDJmSzNQZUI3NVpmQWp5Q1VBOWYxSWhWcEdx?=
- =?shift_jis?B?Z0ExSkRhOVBGL1I3ajNHVXRlS3FUM1NVbkFKbTZVZTh0WVBzQ0xnVlRE?=
- =?shift_jis?B?SnV6NExmTm5MZnBvaHlmY2xEZGVXSFI1QWo2R2dKNWVnTHJJdmRuSlpr?=
- =?shift_jis?B?WCtyYkdqSG5sK2tpbjVJdmN0VmlZWHNGN1YrUUdNTHlHc0RsNXc5Z0d6?=
- =?shift_jis?B?Zk9YWDA5WkEzU1hUU0NoK0pWOXJNaE9pVndBUDBsM2hidVFyNWs1NGZk?=
- =?shift_jis?B?NHBpZWtsbyt4M1BCcFR2M3c3b2ZUZmtuYytYR1ppbVRmeUxTc1h1cWdH?=
- =?shift_jis?B?amh3R3BxMldRamtvbUN2RWNJUHFuMVUxeXl5NTJDODBlK09reDZxWXJt?=
- =?shift_jis?B?OUJrRTNUYVFRUkxPS05qNnhoMEFOWVpMeXlzTVZpMVY2aC93d3JYY1Nu?=
- =?shift_jis?B?RmhrQVFTME5mTUNFbXZOcEdVcEJWdzJXcUx1OTFIT1RPNVU0ZGFaVndW?=
- =?shift_jis?B?UE9vMzFLaHAxRDM5TXRVUFlDZFBtTU40Zy9KWHFWUlhLaGxjNm1vTXZX?=
- =?shift_jis?B?OGx5VERGWEU4Q0dNUlFXT21CZjVMdjRSYTgyeVFJMUJrOHd4UkRwUFV1?=
- =?shift_jis?B?Z3J2a0hnZTFySHBTS3BDRjRnNGQ2N0lWbGQwa2JxSmpzUGJ5MDJ6RDc4?=
- =?shift_jis?B?QnNUbHZxTE5hMW8vZi9VUEhSd3JpbDVGY2VTdWNEdHJjK0QvbjBvd3pl?=
- =?shift_jis?B?RmlLcExyZFA3QlBYVHVqNG9sNVB6ZWpIR1JLSVZrU1UxMnp4bkVyRHlm?=
- =?shift_jis?B?NEg2RXpIWk5qcU14YmRYdmgzTDdrbGpWcGNzdWVFSlE2ZVhjT2JhdEpi?=
- =?shift_jis?B?NWF4ZGFBM2pBYXEzNjBPSkNzdTF6aVlLQ2tJbDRWY2tUNVRZbGdzMmFi?=
- =?shift_jis?B?akY3NGNLZU5hYlVCaEh1ZThHblNIaXRsZkxObFAvUzdlQXVHelFTRmw4?=
- =?shift_jis?B?TG8rSjZNY0hSbkFFZVdBYnlVV05tN3h3YmlydzRjRW16RGI1Y1hoaldn?=
- =?shift_jis?Q?Hn2v?=
-Content-Type: text/plain; charset="shift_jis"
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=X3BHbs0j;
+ spf=pass (domain: gmail.com, ip: 209.85.167.42, mailfrom: martin.jansa@gmail.com)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52efe4c7c16so8170418e87.0
+        for <yocto@lists.yoctoproject.org>; Wed, 31 Jul 2024 01:41:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722415311; x=1723020111; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KET0jvc/7720EWU1WHlHd6PfXy6fJuF/hRxdVpHV9eY=;
+        b=X3BHbs0ja0zWoDomcuQkv0ZjgKtZWj0jV8Ce/HNTD0RSSv0501R/NB/k7wN4lCKAW8
+         eoMRpLV1uDY9BMp2NdQAljemFPPdWwbPgl+rJcwz5i4klGimiNCndv+AuhlT6tDfpGT1
+         IUV3+OLnHCJn6EyC27Be+wdjXLAsouL7dYiz6Zo/LEcdFPDW9w2wmi8qvYwbFue4r/hm
+         uSll/R5Wghvv7pANoM93QVBYcHLQi003nPtn7Wz5Q2mjIWlv9P1lQG7aC5VVfKs4Eqai
+         vsd9nStn1H18i+YvygZPTy40BWe4lX6knI1HyyZ9r5vyl8cbd3A1wGtWQi420+Xn2LEw
+         jMUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722415311; x=1723020111;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KET0jvc/7720EWU1WHlHd6PfXy6fJuF/hRxdVpHV9eY=;
+        b=A1J+JrbKt2fcvimSzOT8KLQyN7BtyF9HqVWDYNNQMQ5PE1iTj8QurBiOMdRyXeDPyt
+         OOtBZb6iII5vXHxvtul7ida8vcVB0tePoiG4t7/lIvQ908iGjIEhVQXTBl3RARcMkD2q
+         ydC059HlipeyGPlKf4+N/nYt8/37Ag2vHKvamghiGhMt2xLO0Cg59Vxo6FJTFDrAHotk
+         Z35AbM2zErHqc939ZkkqIR70U0fnn/4er0gp1PhCa1/suhLGdBrqF2GZ2DwvRhfybE9b
+         I4xg9sOoXeWtq0LjaWjQfRg4lvJzBCxtiCqWZcC6ZKtJmJmuMXDvSXilFaGj1/xG3OmU
+         Ncxw==
+X-Gm-Message-State: AOJu0Yx60s9b3NZIoaKooDrlIGWuQg/AUC3jDBFmyI16Kag7hid5KDGr
+	40AmWdW9H8ecGgxG4EA8Cc+Qsu5qG9YID5AOCgpvqpH7X/E98NuqXQsBjLoXZzsJiJdynV25a3q
+	3pX4XoIrT3MmH9AOmM4FZyjIDR4vA2KGR
+X-Google-Smtp-Source: AGHT+IFglck1whpGqpAFDhIAsjpFmWbFUwEWqtWDNXstzVAjAhHb33W+aKpGGKm0iQD1ihAo0Rh9r+At6ueIrLEdv+I=
+X-Received: by 2002:ac2:5051:0:b0:524:43b2:d326 with SMTP id
+ 2adb3069b0e04-5309b2d7a12mr7858533e87.37.1722415310956; Wed, 31 Jul 2024
+ 01:41:50 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
-	fYECNsNVkPSjgYkMaQpl2pdlK9jCkwKeVfDf9truopD8+ZiCB8GfZJSpKwIxwydRxM0QK8Lyi39AdU5FH74fomiJIthkaCfY87/fYjE5GUtMA84t1txSXncXFG+XvtomX9wtsl1jVqxu6WmyPqtMFU6nCwRd8Ty2bc8K7FyGgs33isG9UHMFUP5FCsyMkric3G7KaWGhVGgGxkLLZAnDX58+ST5SgIrfXS4bqXPoC1e85s3+fKhbw3AMkLrInOg72GvKIaqQKn5UqpAIHuqz43kag6k2EomrrE3dXmP9yiSxC3KOFNdpJOpoGldyXCCOp2KQuodu0aScnAbmpJvdZypUpnl3TkAWdRCFwksU1d6f8VzZmMOBCo0J+ERP3vbp0UpGo1kaJ7fleGfn2Om6PLsE5ifKwCv4wZ/7jUsXv6MgXIF6EnqgSBHGQvqJkFMslznnLTXjP105SlnCHEhrXdyubDfQeTHUB3d1Ekgqt1rOOJyPZZYlxv8ZdsiFqXO4W0kCFqyOMyTvrQX0FVd/cIK25lzPlW0Ai6kV1cC7QTfE2Qb+Muav82z4rrUBZmEf4HeBgnNcLUN8gOIRb6Uxq6fGq6TuKU7mef7ID04sxVHBOLMPXe5Bnuy8ffNiGYY9
-X-OriginatorOrg: fujitsu.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11056.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73f96bf3-8bdf-44b7-97f3-08dcb13b18a0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2024 08:30:55.3729
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a19f121d-81e1-4858-a9d8-736e267fd4c7
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: y0YHBg08MIZO1M8qcYA1eckOSPIrSrL1sxOvCfGbECAFY/FMi6sO7r2JaXz/l9Qbv2pLF5vLJprPoy35ZFuq7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB12133
+References: <TY3PR01MB1105638B4B35BBCE36E961111A0B12@TY3PR01MB11056.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB1105638B4B35BBCE36E961111A0B12@TY3PR01MB11056.jpnprd01.prod.outlook.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Wed, 31 Jul 2024 10:41:37 +0200
+Message-ID: <CA+chaQdmbTkmKBrN0LLD-qxVrBRSYTk6F6Fc8FUe9oC7iqGfzA@mail.gmail.com>
+Subject: Re: [yocto] [meta-browser] firefox build failed
+To: yocto@lists.yoctoproject.org, leimaohui@fujitsu.com
+Cc: "eric@eukrea.com" <eric@eukrea.com>, "max@igalia.com" <max@igalia.com>, 
+	"Otavio Salvador (otavio@ossystems.com.br)" <otavio@ossystems.com.br>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 31 Jul 2024 08:31:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63624
+ <yocto@lists.yoctoproject.org>; Wed, 31 Jul 2024 08:41:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63625
 
-SGksDQoNCg0KSGksIGFsbCANCg0KSSB0cmllZCB0byBidWlsZCBmaXJlZm94IHdpdGggbWV0YS1i
-cm93c2VyLCBidXQgSSBtZXQgYnVpbGQgZXJyb3IgbGlrZSB0aGUgZm9sbG93aW5nLiBJIHdvbmRl
-ciBpZiB0aGVyZSBpcyBhbnkgcGF0Y2g/IA0KDQoxOjQ3LjMxIGVycm9yOiBwcm9jLW1hY3JvIGRl
-cml2ZSBwYW5pY2tlZA0KIDE6NDcuMzEgICAgLS0+IC91c3Ivc3JjL2RlYnVnL2ZpcmVmb3gvNjgu
-OS4wZXNyLXIwL2ZpcmVmb3gtNjguOS4wL3RoaXJkX3BhcnR5L3J1c3QvY3NzcGFyc2VyL3NyYy9j
-b2xvci5yczoyMjc6MzENCiAxOjQ3LjMxICAgICB8DQogMTo0Ny4zMSAyMjcgfCAgICAgICAgICAg
-ICAgICAgICBsZXQgZGVncmVlcyA9IG1hdGNoX2lnbm9yZV9hc2NpaV9jYXNlISB7ICYqdW5pdCwN
-CiAxOjQ3LjMxICAgICB8ICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXg0KIDE6NDcu
-MzEgMjI4IHwgfCAgICAgICAgICAgICAgICAgICAgICJkZWciID0+IHYsDQogMTo0Ny4zMSAyMjkg
-fCB8ICAgICAgICAgICAgICAgICAgICAgImdyYWQiID0+IHYgKiAzNjAuIC8gNDAwLiwNCiAxOjQ3
-LjMxIDIzMCB8IHwgICAgICAgICAgICAgICAgICAgICAicmFkIiA9PiB2ICogMzYwLiAvICgyLiAq
-IFBJKSwNCiAxOjQ3LjMxIDIzMSB8IHwgICAgICAgICAgICAgICAgICAgICAidHVybiIgPT4gdiAq
-IDM2MC4sDQogMTo0Ny4zMSAyMzIgfCB8ICAgICAgICAgICAgICAgICAgICAgXyA9PiByZXR1cm4g
-RXJyKGxvY2F0aW9uLm5ld191bmV4cGVjdGVkX3Rva2VuX2Vycm9yKFRva2VuOjpJZGVudCh1bml0
-LmNsb25lKCkpKSksDQogMTo0Ny4zMSAyMzMgfCB8ICAgICAgICAgICAgICAgICB9Ow0KIDE6NDcu
-MzEgICAgIHwgfF9fX19fX19fX19fX19fX19fXg0KIDE6NDcuMzEgICAgIHwNCiAxOjQ3LjMxICAg
-ICA9IGhlbHA6IG1lc3NhZ2U6IGV4cGVjdGVkIHN1ZmZpeCAiKS4wLCIgbm90IGZvdW5kIGluICIj
-W2FsbG93KHVudXNlZCldIGVudW0gUHJvY2VkdXJhbE1hc3F1ZXJhZGVEdW1teVR5cGVcbntcbiAg
-ICBJbnB1dCA9XG4gICAgKDAsIHN0cmluZ2lmeSFcbiAgICAoXCJkZWdcIiA9PiB2LCBcImdyYWRc
-IiA9PiB2ICogMzYwLiAvIDQwMC4sIFwicmFkXCIgPT4gdiAqIDM2MC4gLyAoMi4gKiBQSSksXG4g
-ICAgXCJ0dXJuXCIgPT4gdiAqIDM2MC4sIF8gPT4gcmV0dXJuXG4gICAgRXJyKGxvY2F0aW9uLm5l
-d191bmV4cGVjdGVkX3Rva2VuX2Vycm9yKFRva2VuIDo6XG4gICAgSWRlbnQodW5pdC5jbG9uZSgp
-KSkpLCkpLjBcbn0iDQogMTo0Ny4zMSAgICAgPSBub3RlOiB0aGlzIGVycm9yIG9yaWdpbmF0ZXMg
-aW4gdGhlIG1hY3JvIGBjc3NwYXJzZXJfaW50ZXJuYWxfX2ludm9rZV9wcm9jX21hY3JvYCB3aGlj
-aCBjb21lcyBmcm9tIHRoZSBleHBhbnNpb24gb2YgdGhlIG1hY3JvIGBtYXRjaF9pZ25vcmVfYXNj
-aWlfY2FzZWAgKGluIE5pZ2h0bHkgYnVpbGRzLCBydW4gd2l0aCAtWiBtYWNyby1iYWNrdHJhY2Ug
-Zm9yIG1vcmUgaW5mbykNCiAxOjQ3LjMxIGVycm9yOiBwcm9jLW1hY3JvIGRlcml2ZSBwYW5pY2tl
-ZA0KIDE6NDcuMzEgICAgLS0+IC91c3Ivc3JjL2RlYnVnL2ZpcmVmb3gvNjguOS4wZXNyLXIwL2Zp
-cmVmb3gtNjguOS4wL3RoaXJkX3BhcnR5L3J1c3QvY3NzcGFyc2VyL3NyYy9jb2xvci5yczozNzE6
-NQ0KIDE6NDcuMzEgICAgIHwNCiAxOjQ3LjMxIDM3MSB8IC8gICAgIGFzY2lpX2Nhc2VfaW5zZW5z
-aXRpdmVfcGhmX21hcCEgew0KLi4uLi4uDQoxOjQ3LjM4IGVycm9yW0UwNDI1XTogY2Fubm90IGZp
-bmQgdmFsdWUgYE1BWF9MRU5HVEhgIGluIHRoaXMgc2NvcGUNCiAxOjQ3LjM4ICAgIC0tPiAvdXNy
-L3NyYy9kZWJ1Zy9maXJlZm94LzY4LjkuMGVzci1yMC9maXJlZm94LTY4LjkuMC90aGlyZF9wYXJ0
-eS9ydXN0L2Nzc3BhcnNlci9zcmMvbWFjcm9zLnJzOjQ0OjU5DQogMTo0Ny4zOCAgICAgfA0KIDE6
-NDcuMzggNDQgIHwgICAgICAgICAgICAgICAgICAgY3NzcGFyc2VyX2ludGVybmFsX190b19sb3dl
-cmNhc2UhKCRpbnB1dCwgTUFYX0xFTkdUSCA9PiBsb3dlcmNhc2UpOw0KIDE6NDcuMzggICAgIHwg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgXl5eXl5eXl5eXiBub3QgZm91bmQgaW4gdGhpcyBzY29wZQ0KIDE6NDcuMzggICAgIHwNCiAx
-OjQ3LjM4ICAgIDo6OiAvdXNyL3NyYy9kZWJ1Zy9maXJlZm94LzY4LjkuMGVzci1yMC9maXJlZm94
-LTY4LjkuMC90aGlyZF9wYXJ0eS9ydXN0L2Nzc3BhcnNlci9zcmMvY29sb3IucnM6MjI3OjMxDQog
-MTo0Ny4zOCAgICAgfA0KIDE6NDcuMzggMjI3IHwgICAgICAgICAgICAgICAgICAgbGV0IGRlZ3Jl
-ZXMgPSBtYXRjaF9pZ25vcmVfYXNjaWlfY2FzZSEgeyAmKnVuaXQsDQogMTo0Ny4zOCAgICAgfCAg
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXy0NCiAxOjQ3LjM4IDIyOCB8IHwgICAgICAg
-ICAgICAgICAgICAgICAiZGVnIiA9PiB2LA0KIDE6NDcuMzggMjI5IHwgfCAgICAgICAgICAgICAg
-ICAgICAgICJncmFkIiA9PiB2ICogMzYwLiAvIDQwMC4sDQogMTo0Ny4zOCAyMzAgfCB8ICAgICAg
-ICAgICAgICAgICAgICAgInJhZCIgPT4gdiAqIDM2MC4gLyAoMi4gKiBQSSksDQogMTo0Ny4zOCAy
-MzEgfCB8ICAgICAgICAgICAgICAgICAgICAgInR1cm4iID0+IHYgKiAzNjAuLA0KIDE6NDcuMzgg
-MjMyIHwgfCAgICAgICAgICAgICAgICAgICAgIF8gPT4gcmV0dXJuIEVycihsb2NhdGlvbi5uZXdf
-dW5leHBlY3RlZF90b2tlbl9lcnJvcihUb2tlbjo6SWRlbnQodW5pdC5jbG9uZSgpKSkpLA0KIDE6
-NDcuMzggMjMzIHwgfCAgICAgICAgICAgICAgICAgfTsNCiAxOjQ3LjM4ICAgICB8IHxfX19fX19f
-X19fX19fX19fXy0gaW4gdGhpcyBtYWNybyBpbnZvY2F0aW9uDQogMTo0Ny4zOCAgICAgfA0KIDE6
-NDcuMzggICAgID0gbm90ZTogdGhpcyBlcnJvciBvcmlnaW5hdGVzIGluIHRoZSBtYWNybyBgbWF0
-Y2hfaWdub3JlX2FzY2lpX2Nhc2VgIChpbiBOaWdodGx5IGJ1aWxkcywgcnVuIHdpdGggLVogbWFj
-cm8tYmFja3RyYWNlIGZvciBtb3JlIGluZm8pDQogMTo0Ny4zOCBlcnJvcltFMDQyNV06IGNhbm5v
-dCBmaW5kIHZhbHVlIGBNQVhfTEVOR1RIYCBpbiB0aGlzIHNjb3BlDQogMTo0Ny4zOCAgICAtLT4g
-L3Vzci9zcmMvZGVidWcvZmlyZWZveC82OC45LjBlc3ItcjAvZmlyZWZveC02OC45LjAvdGhpcmRf
-cGFydHkvcnVzdC9jc3NwYXJzZXIvc3JjL21hY3Jvcy5yczo5NTo1OA0KIDE6NDcuMzggICAgIHwN
-CiAxOjQ3LjM5IDk1ICB8ICAgICAgICAgICAgICAgICAgIGNzc3BhcnNlcl9pbnRlcm5hbF9fdG9f
-bG93DQouLi4uLi4NCjE6NDcuOTEgZXJyb3I6IGNvdWxkIG5vdCBjb21waWxlIGBjc3NwYXJzZXJg
-IChsaWIpIGR1ZSB0byAxNCBwcmV2aW91cyBlcnJvcnMNCiAxOjQ3LjkxIHdhcm5pbmc6IGJ1aWxk
-IGZhaWxlZCwgd2FpdGluZyBmb3Igb3RoZXIgam9icyB0byBmaW5pc2guLi4NCiAxOjQ3Ljk5IElu
-IGZpbGUgaW5jbHVkZWQgZnJvbSAvdWJpbnV4LWRldi91YmludXgwMDEvYnVpbGQtdWJpbnV4L3Vi
-aW51eC0yMDI0MDYvcG9reS9idWlsZC10ZXN0LWZpcmVmb3gvdG1wL3dvcmsvY29yZTItNjQtcG9r
-eS1saW51eC9maXJlZm94LzY4LjkuMGVzci9maXJlZm94LTY4LjkuMC9maXJlZm94LWJ1aWxkLWRp
-ci9qcy9zcmMvVW5pZmllZF9jcHBfanNfc3JjMTEuY3BwOjI6DQogMTo0Ny45OSBJbiBmaWxlIGlu
-Y2x1ZGVkIGZyb20gL3ViaW51eC1kZXYvdWJpbnV4MDAxL2J1aWxkLXViaW51eC91YmludXgtMjAy
-NDA2L3Bva3kvYnVpbGQtdGVzdC1maXJlZm94L3RtcC93b3JrL2NvcmUyLTY0LXBva3ktbGludXgv
-ZmlyZWZveC82OC45LjBlc3IvZmlyZWZveC02OC45LjAvanMvc3JjL3ZtL0FyZ3VtZW50c09iamVj
-dC5jcHA6NzoNCiAxOjQ3Ljk5IEluIGZpbGUgaW5jbHVkZWQgZnJvbSAvdWJpbnV4LWRldi91Ymlu
-dXgwMDEvYnVpbGQtdWJpbnV4L3ViaW51eC0yMDI0MDYvcG9reS9idWlsZC10ZXN0LWZpcmVmb3gv
-dG1wL3dvcmsvY29yZTItNjQtcG9reS1saW51eC9maXJlZm94LzY4LjkuMGVzci9maXJlZm94LTY4
-LjkuMC9qcy9zcmMvdm0vQXJndW1lbnRzT2JqZWN0LWlubC5oOjEwOg0KIDE6NDcuOTkgSW4gZmls
-ZSBpbmNsdWRlZCBmcm9tIC91YmludXgtZGV2L3ViaW51eDAwMS9idWlsZC11YmludXgvdWJpbnV4
-LTIwMjQwNi9wb2t5L2J1aWxkLXRlc3QtZmlyZWZveC90bXAvd29yay9jb3JlMi02NC1wb2t5LWxp
-bnV4L2ZpcmVmb3gvNjguOS4wZXNyL2ZpcmVmb3gtNjguOS4wL2pzL3NyYy92bS9Bcmd1bWVudHNP
-YmplY3QuaDoxMjoNCiAxOjQ3Ljk5IEluIGZpbGUgaW5jbHVkZWQgZnJvbSAvdWJpbnV4LWRldi91
-YmludXgwMDEvYnVpbGQtdWJpbnV4L3ViaW51eC0yMDI0MDYvcG9reS9idWlsZC10ZXN0LWZpcmVm
-b3gvdG1wL3dvcmsvY29yZTItNjQtcG9reS1saW51eC9maXJlZm94LzY4LjkuMGVzci9maXJlZm94
-LTY4LjkuMC9qcy9zcmMvZ2MvQmFycmllci5oOjEzOg0KIDE6NDcuOTkgL3ViaW51eC1kZXYvdWJp
-bnV4MDAxL2J1aWxkLXViaW51eC91YmludXgtMjAyNDA2L3Bva3kvYnVpbGQtdGVzdC1maXJlZm94
-L3RtcC93b3JrL2NvcmUyLTY0LXBva3ktbGludXgvZmlyZWZveC82OC45LjBlc3IvZmlyZWZveC02
-OC45LjAvanMvc3JjL2djL1N0b3JlQnVmZmVyLmg6Mzg0OjE5OiB3YXJuaW5nOiBhbm9ueW1vdXMg
-bm9uLUMtY29tcGF0aWJsZSB0eXBlIGdpdmVuIG5hbWUgZm9yIGxpbmthZ2UgcHVycG9zZXMgYnkg
-dHlwZWRlZiBkZWNsYXJhdGlvbjsgYWRkIGEgdGFnIG5hbWUgaGVyZSBbLVdub24tYy10eXBlZGVm
-LWZvci1saW5rYWdlXQ0KIDE6NDguMDAgICAzODQgfCAgICAgdHlwZWRlZiBzdHJ1Y3Qgew0KIDE6
-NDguMDAgICAgICAgfCAgICAgICAgICAgICAgICAgICBeDQogMTo0OC4wMCAgICAgICB8ICAgICAg
-ICAgICAgICAgICAgICBIYXNoZXINCiAxOjQ4LjAwIC91YmludXgtZGV2L3ViaW51eDAwMS9idWls
-ZC11YmludXgvdWJpbnV4LTIwMjQwNi9wb2t5L2J1aWxkLXRlc3QtZmlyZWZveC90bXAvd29yay9j
-b3JlMi02NC1wb2t5LWxpbnV4L2ZpcmVmb3gvNjguOS4wZXNyL2ZpcmVmb3gtNjguOS4wL2pzL3Ny
-Yy9nYy9TdG9yZUJ1ZmZlci5oOjM4NTo3OiBub3RlOiB0eXBlIGlzIG5vdCBDLWNvbXBhdGlibGUg
-ZHVlIHRvIHRoaXMgbWVtYmVyIGRlY2xhcmF0aW9uDQogMTo0OC4wMCAgIDM4NSB8ICAgICAgIHR5
-cGVkZWYgU2xvdHNFZGdlIExvb2t1cDsNCiAxOjQ4LjAwICAgICAgIHwgICAgICAgXn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+DQoNCkJlc3QgcmVnYXJkcw0KbGVpDQo=
+Hi,
+
+please see:
+https://github.com/OSSystems/meta-browser/pull/822
+https://github.com/webdino/meta-browser/issues/2
+
+firefox wasn't updated in https://github.com/OSSystems/meta-browser
+for many years as you can see in:
+https://github.com/OSSystems/meta-browser/commits/master/meta-firefox
+and it's known not to build anymore as mentioned in second to last
+commit in meta-firefox:
+https://github.com/OSSystems/meta-browser/commit/3b4aeda5e672656cd209e56b09=
+a60bfff57e9139
+
+If you're inteersted in firefox than upgrading it to some recent
+firefox release should be the first step.
+
+Current ESR releases are 115 and 128.
+
+The 68 in meta-browser from 2019 is EOL for very long time and wasn't
+updated since 2020 https://hg.mozilla.org/releases/comm-esr68/.
+
+Regards,
+
+On Wed, Jul 31, 2024 at 10:31=E2=80=AFAM leimaohui via lists.yoctoproject.o=
+rg
+<leimaohui=3Dfujitsu.com@lists.yoctoproject.org> wrote:
+>
+> Hi,
+>
+>
+> Hi, all
+>
+> I tried to build firefox with meta-browser, but I met build error like th=
+e following. I wonder if there is any patch?
+>
+> 1:47.31 error: proc-macro derive panicked
+>  1:47.31    --> /usr/src/debug/firefox/68.9.0esr-r0/firefox-68.9.0/third_=
+party/rust/cssparser/src/color.rs:227:31
+>  1:47.31     |
+>  1:47.31 227 |                   let degrees =3D match_ignore_ascii_case!=
+ { &*unit,
+>  1:47.31     |  _______________________________^
+>  1:47.31 228 | |                     "deg" =3D> v,
+>  1:47.31 229 | |                     "grad" =3D> v * 360. / 400.,
+>  1:47.31 230 | |                     "rad" =3D> v * 360. / (2. * PI),
+>  1:47.31 231 | |                     "turn" =3D> v * 360.,
+>  1:47.31 232 | |                     _ =3D> return Err(location.new_unexp=
+ected_token_error(Token::Ident(unit.clone()))),
+>  1:47.31 233 | |                 };
+>  1:47.31     | |_________________^
+>  1:47.31     |
+>  1:47.31     =3D help: message: expected suffix ").0," not found in "#[al=
+low(unused)] enum ProceduralMasqueradeDummyType\n{\n    Input =3D\n    (0, =
+stringify!\n    (\"deg\" =3D> v, \"grad\" =3D> v * 360. / 400., \"rad\" =3D=
+> v * 360. / (2. * PI),\n    \"turn\" =3D> v * 360., _ =3D> return\n    Err=
+(location.new_unexpected_token_error(Token ::\n    Ident(unit.clone()))),))=
+.0\n}"
+>  1:47.31     =3D note: this error originates in the macro `cssparser_inte=
+rnal__invoke_proc_macro` which comes from the expansion of the macro `match=
+_ignore_ascii_case` (in Nightly builds, run with -Z macro-backtrace for mor=
+e info)
+>  1:47.31 error: proc-macro derive panicked
+>  1:47.31    --> /usr/src/debug/firefox/68.9.0esr-r0/firefox-68.9.0/third_=
+party/rust/cssparser/src/color.rs:371:5
+>  1:47.31     |
+>  1:47.31 371 | /     ascii_case_insensitive_phf_map! {
+> ......
+> 1:47.38 error[E0425]: cannot find value `MAX_LENGTH` in this scope
+>  1:47.38    --> /usr/src/debug/firefox/68.9.0esr-r0/firefox-68.9.0/third_=
+party/rust/cssparser/src/macros.rs:44:59
+>  1:47.38     |
+>  1:47.38 44  |                   cssparser_internal__to_lowercase!($input=
+, MAX_LENGTH =3D> lowercase);
+>  1:47.38     |                                                           =
+  ^^^^^^^^^^ not found in this scope
+>  1:47.38     |
+>  1:47.38    ::: /usr/src/debug/firefox/68.9.0esr-r0/firefox-68.9.0/third_=
+party/rust/cssparser/src/color.rs:227:31
+>  1:47.38     |
+>  1:47.38 227 |                   let degrees =3D match_ignore_ascii_case!=
+ { &*unit,
+>  1:47.38     |  _______________________________-
+>  1:47.38 228 | |                     "deg" =3D> v,
+>  1:47.38 229 | |                     "grad" =3D> v * 360. / 400.,
+>  1:47.38 230 | |                     "rad" =3D> v * 360. / (2. * PI),
+>  1:47.38 231 | |                     "turn" =3D> v * 360.,
+>  1:47.38 232 | |                     _ =3D> return Err(location.new_unexp=
+ected_token_error(Token::Ident(unit.clone()))),
+>  1:47.38 233 | |                 };
+>  1:47.38     | |_________________- in this macro invocation
+>  1:47.38     |
+>  1:47.38     =3D note: this error originates in the macro `match_ignore_a=
+scii_case` (in Nightly builds, run with -Z macro-backtrace for more info)
+>  1:47.38 error[E0425]: cannot find value `MAX_LENGTH` in this scope
+>  1:47.38    --> /usr/src/debug/firefox/68.9.0esr-r0/firefox-68.9.0/third_=
+party/rust/cssparser/src/macros.rs:95:58
+>  1:47.38     |
+>  1:47.39 95  |                   cssparser_internal__to_low
+> ......
+> 1:47.91 error: could not compile `cssparser` (lib) due to 14 previous err=
+ors
+>  1:47.91 warning: build failed, waiting for other jobs to finish...
+>  1:47.99 In file included from /ubinux-dev/ubinux001/build-ubinux/ubinux-=
+202406/poky/build-test-firefox/tmp/work/core2-64-poky-linux/firefox/68.9.0e=
+sr/firefox-68.9.0/firefox-build-dir/js/src/Unified_cpp_js_src11.cpp:2:
+>  1:47.99 In file included from /ubinux-dev/ubinux001/build-ubinux/ubinux-=
+202406/poky/build-test-firefox/tmp/work/core2-64-poky-linux/firefox/68.9.0e=
+sr/firefox-68.9.0/js/src/vm/ArgumentsObject.cpp:7:
+>  1:47.99 In file included from /ubinux-dev/ubinux001/build-ubinux/ubinux-=
+202406/poky/build-test-firefox/tmp/work/core2-64-poky-linux/firefox/68.9.0e=
+sr/firefox-68.9.0/js/src/vm/ArgumentsObject-inl.h:10:
+>  1:47.99 In file included from /ubinux-dev/ubinux001/build-ubinux/ubinux-=
+202406/poky/build-test-firefox/tmp/work/core2-64-poky-linux/firefox/68.9.0e=
+sr/firefox-68.9.0/js/src/vm/ArgumentsObject.h:12:
+>  1:47.99 In file included from /ubinux-dev/ubinux001/build-ubinux/ubinux-=
+202406/poky/build-test-firefox/tmp/work/core2-64-poky-linux/firefox/68.9.0e=
+sr/firefox-68.9.0/js/src/gc/Barrier.h:13:
+>  1:47.99 /ubinux-dev/ubinux001/build-ubinux/ubinux-202406/poky/build-test=
+-firefox/tmp/work/core2-64-poky-linux/firefox/68.9.0esr/firefox-68.9.0/js/s=
+rc/gc/StoreBuffer.h:384:19: warning: anonymous non-C-compatible type given =
+name for linkage purposes by typedef declaration; add a tag name here [-Wno=
+n-c-typedef-for-linkage]
+>  1:48.00   384 |     typedef struct {
+>  1:48.00       |                   ^
+>  1:48.00       |                    Hasher
+>  1:48.00 /ubinux-dev/ubinux001/build-ubinux/ubinux-202406/poky/build-test=
+-firefox/tmp/work/core2-64-poky-linux/firefox/68.9.0esr/firefox-68.9.0/js/s=
+rc/gc/StoreBuffer.h:385:7: note: type is not C-compatible due to this membe=
+r declaration
+>  1:48.00   385 |       typedef SlotsEdge Lookup;
+>  1:48.00       |       ^~~~~~~~~~~~~~~~~~~~~~~~
+>
+> Best regards
+> lei
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63624): https://lists.yoctoproject.org/g/yocto/messag=
+e/63624
+> Mute This Topic: https://lists.yoctoproject.org/mt/107642867/3617156
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [martin.jansa@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
