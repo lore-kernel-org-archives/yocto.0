@@ -2,123 +2,94 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B1ACC3DA4A
-	for <webhook@archiver.kernel.org>; Thu,  1 Aug 2024 13:34:17 +0000 (UTC)
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
- by mx.groups.io with SMTP id smtpd.web10.61665.1722491550924167028
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92957C3DA64
+	for <webhook@archiver.kernel.org>; Thu,  1 Aug 2024 14:01:37 +0000 (UTC)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+ by mx.groups.io with SMTP id smtpd.web11.68971.1722520890926313036
  for <yocto@lists.yoctoproject.org>;
- Wed, 31 Jul 2024 22:52:30 -0700
+ Thu, 01 Aug 2024 07:01:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=nJJcTp9n;
- spf=pass (domain: gmail.com, ip: 209.85.216.46, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2cd2f89825fso4496916a91.1
-        for <yocto@lists.yoctoproject.org>; Wed, 31 Jul 2024 22:52:30 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=QJK2o6GF;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.52, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-428e1915e7fso5613555e9.1
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Aug 2024 07:01:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722491550; x=1723096350; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linuxfoundation.org; s=google; t=1722520889; x=1723125689; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=k0KJ8AGJu63qJg2M29odg7AMemPCYImjQA5Z7vvwwv0=;
-        b=nJJcTp9n8TSG+hWimX3p0pAqOyGyVWAmHcQZZ7z+iTziBuhxTDyKtR1GmXFdLiA7Cd
-         ZDECU8xlnPW0mDKzfFsX5x1Sm1Egabm46T9v9RsCwZ5EwclFMks/SeLyyAt+3KAV53xQ
-         sVEYvDJrZHIriTpD5BbSH0zUN41aysKC/VoQj1lEclUk8Kk2mW8nbD9hIZ+o5SSCB3tX
-         RHmyDIKt2248NIYV5ZXoVQ2seXuVW9NNkqpZFHa0n43FUp4yzASYVXxvxF1j6iICP9As
-         iIFL13TJ5k7D2QPq5uTeJF4ddva4/ZgBnC5hrvnthuZMyhCwpXGoMjv8zYKXZkSU5g7Z
-         6U8Q==
+        bh=cotGrByrfZXqNmANcw4KvhJlPYXjJa/sK8IJMaQBoQU=;
+        b=QJK2o6GFkjALbtI5fIvg9UbcXJ5RuS7LbeIDFU2tfPlP+PjX/dTn8riLxOzDxmaZi1
+         A0MnHMr3jGqjO5oDbP6xWTQ9pt0nyHBWlHmDxF/zi7fUmldxx6bzb/P25VBad/LsJs89
+         DoseQmvM2H4tQ/ICJHYiwYqSws16BhnoSfsts=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722491550; x=1723096350;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=k0KJ8AGJu63qJg2M29odg7AMemPCYImjQA5Z7vvwwv0=;
-        b=Nvnlpx1pi45nc00Xdr/IHxknXreixo2xVwfDxux3LexGDnoY3v6EwXCKrUiQhjPTu1
-         OXzYAEVxYANYjo4gVgIkvbH1HfswTsewUzMqv42h+ESssQchqMvTjODcxQ0dz4ilQsyf
-         ZXWmDM/PtSEnLFlFF33FGCTuhtfgQO845GBg8BdnQx1Oi8bjGtyNwW61MdB8bRuJ/Pk0
-         8YDBWrIUuZOQVAiSe0xE2FGHu4ehKUNhpYXWarWhZTZT5eMGca8kWFZRfOC2QokMwaMO
-         FIMXoISZf5sKdMNn8Sdm+vL9aY/H2SfWl51l7eYlUyWek3YNr2hCiAK78E9PYqpBOtCY
-         TAlg==
-X-Gm-Message-State: AOJu0YybzMBZpV6k/Q9gaJZX/6GhexJ+3APcSW2Lt54qcmForfprEzWC
-	ICC0ytC1zqjtlNt0SKIwPsHkBmSWS2hjmr+tm/yRLXoXHdntSERXpPUjjh8uyd5/UEr0D2zDsNx
-	MOp0XGiEdBiic1DNhzqoZ70tEw+t8NWh5
-X-Google-Smtp-Source: AGHT+IGyfqmWLJyS3XnGZnUTgCesS1tNGhzmfqRyscK92+zdBGppFdnQkIgwyw9PZhQk2c+OohF9EKwjARYfrfdCiiY=
-X-Received: by 2002:a17:90a:3ec4:b0:2cb:4e14:fd5d with SMTP id
- 98e67ed59e1d1-2cfe7886018mr1860638a91.17.1722491549713; Wed, 31 Jul 2024
- 22:52:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAPfD7wkdkC3Wsu92gcPa9RtQs=hWyxXgKbH4kPfOmEfqhzmJNw@mail.gmail.com>
-In-Reply-To: <CAPfD7wkdkC3Wsu92gcPa9RtQs=hWyxXgKbH4kPfOmEfqhzmJNw@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 1 Aug 2024 07:52:18 +0200
-Message-ID: <CAGAf8LyJirHKKfw2Rh9Xf64WdkrnqFAEZkxGGGaGu2K+K0g4bg@mail.gmail.com>
-Subject: Re: [yocto] Using sshd with a non-bash shell
-To: yocto@lists.yoctoproject.org, mcorbin@lunarenergy.com
+        d=1e100.net; s=20230601; t=1722520889; x=1723125689;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=cotGrByrfZXqNmANcw4KvhJlPYXjJa/sK8IJMaQBoQU=;
+        b=tVJqYbBJLbOLdFrE7zNJDTw7gDaXu09KQuPLXRaVxk79iBXFr5tZE50gjkFdYCWWto
+         StIgZrhKZ1wOwvXCbxbsTRat7ExJWuUQuKUoYolQdXckZ/HL/jHqHID/bzAzqsnE3Xuc
+         fz+bHvIn8umqxap44M9CCoW5SJO1YafQ9UfeCrOs+s0yLyoK2RY/GRi26fQvTd3JWboM
+         Z4XvkiAluWRFoqiwt/imzWclKUEShot/TAlDUG9iwd6anbzlYvWpuIYFYKbTJlUU3KEB
+         MfuUcDrrI6c4iOGTknZo+7LtoLG7j9QRFMY0qI+Pgi/hcabXUL18YaYRbXEiVcR5mvuk
+         KSOA==
+X-Gm-Message-State: AOJu0YznjTvWzZ+Lep3TUgBkeCiuoZ3MoL41Fz011AIKWkO7EghjDD60
+	rLh91xRU5CZnLAQdjZbdLt08vIhXvfmsUuIM5aIB2BAhY2Y9lYXvNF5Kff3zfepPGePxzLvkCND
+	2qxo=
+X-Google-Smtp-Source: AGHT+IHQloBabzuvcY69PZImqDIp+5vGB6VGd+QOq0QUSthzjxAtzUHyCKPLI6w8/Yq8RWJpkTzBAQ==
+X-Received: by 2002:a05:600c:46d1:b0:426:67ad:38e3 with SMTP id 5b1f17b1804b1-428a99e030amr21772575e9.3.1722520888571;
+        Thu, 01 Aug 2024 07:01:28 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:6f1c:86e8:7d42:8e2f? ([2001:8b0:aba:5f3c:6f1c:86e8:7d42:8e2f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282b89aa86sm59194035e9.3.2024.08.01.07.01.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Aug 2024 07:01:28 -0700 (PDT)
+Message-ID: <c61a16a47d9d1a058b4fa9fdbc3178f4f60ce039.camel@linuxfoundation.org>
+Subject: Re: [yocto] running ptest without internet?
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org, jan.vermaete@gmail.com
+Date: Thu, 01 Aug 2024 15:01:27 +0100
+In-Reply-To: <CABF_=yi6Bfegi6D5wEB72dtafxdZByww_pruDRFD-3rUH69ZdQ@mail.gmail.com>
+References: 
+	<CABF_=yi6Bfegi6D5wEB72dtafxdZByww_pruDRFD-3rUH69ZdQ@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.0-1build2 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 01 Aug 2024 13:34:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63640
+ <yocto@lists.yoctoproject.org>; Thu, 01 Aug 2024 14:01:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63641
 
-Hello Mark,
+On Wed, 2024-07-31 at 20:50 +0200, Jan Vermaete via lists.yoctoproject.org =
+wrote:
+> I was wondering if there is a convention or agreement on what to do
+> with tests under ptests that do need internet but are running without?
+> An example could be a unittest of a package about networking that does
+> a ping to an URL.
 
-Just one question out of my curiosity?
+We haven't had anyone raise that as a requirement and we don't have any
+markup of the tests for it.
 
-Why ash (used in u-boot shell), not bash???
+The challenge is that ptests vary significantly in how they're run so
+we probably can't control if they're executed or not on a per test
+basis in a general way, only overall at the recipe level.
 
-Thank you,
-Zee
-_______
+> For now, Yocto assumes there is always a network/internet?
 
+For ptests, yes. We do assume the rest of the build can run offline
+outside of fetching.
 
-On Wed, Jul 31, 2024 at 5:55=E2=80=AFPM Mark Corbin via lists.yoctoproject.=
-org
-<mcorbin=3Dlunarenergy.com@lists.yoctoproject.org> wrote:
->
-> Hello
->
-> I was wondering whether anybody has any experience of running sshd succes=
-sfully on a system with a 'non-bash' shell?
->
-> We're using kirkstone 4.0.12 which has openssh 8.9p1 and systemd 250.5.
-> Both ssh and scp work as expected with '/bin/sh -> bash.bash' on the targ=
-et, but with '/bin/sh -> busybox.nosuid' (ash shell) the connections fail.
->
-> The sshd logs on the target show:
-> Jul 31 15:24:56 hc sshd[17826]: Connection from UNKNOWN port 65535 on 192=
-.168.12.246 port 65535
-> Jul 31 15:24:56 hc sshd[17826]: debug1: kex_exchange_identification: writ=
-e: Broken pipe
-> Jul 31 15:24:56 hc sshd[17826]: banner exchange: Connection from UNKNOWN =
-port 65535: Broken pipe
->
-> Some extra debug messages that I've added to both systemd and sshd show t=
-hat the incoming socket gets closed somewhere between the handover from the=
- systemd socket service to the systemd sshd service. This results in sshd b=
-eing unable to get any peer details.
->
-> I can't see anything obvious in either the systemd source or sshd source =
-that suggest a dependency on bash.
->
-> Any ideas gratefully appreciated.
->
-> Regards
->
-> Mark
->
-> --
->
-> Mark Corbin
-> Senior Software Engineer  |   lunarenergy.com   |  LinkedIn  |  Instagram
->
-> C2:Restricted unless otherwise stated.
->
-> Lunar Energy Limited is a company registered in England and Wales, author=
-ised and regulated by the Financial Conduct Authority under reference numbe=
-r 767876. Company registration number: 05631091. Registered office: 55 Bake=
-r Street, London, England, W1U 7EU
->
->
->=20
->
+> Or we could exclude those tests based on BB_NO_NETWORK?
+> Something else, or not in years a priority right now?
+
+You could just run the tests and create a list of known failures
+without network, then filter the results accordingly. You could also
+have a list of recipes whos ptests are known to access the internet and
+exclude those from your testing?
+
+Cheers,
+
+Richard
 
