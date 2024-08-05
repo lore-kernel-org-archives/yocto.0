@@ -1,299 +1,166 @@
-Return-Path: <david.daniel@vrag.ch>
+Return-Path: <uvv.mail@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6369EC3DA4A
-	for <webhook@archiver.kernel.org>; Mon,  5 Aug 2024 13:08:27 +0000 (UTC)
-Received: from ZRAP278CU002.outbound.protection.outlook.com (ZRAP278CU002.outbound.protection.outlook.com [52.101.186.62])
- by mx.groups.io with SMTP id smtpd.web11.7576.1722863303980004440
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E0FABC3DA4A
+	for <webhook@archiver.kernel.org>; Mon,  5 Aug 2024 14:53:47 +0000 (UTC)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+ by mx.groups.io with SMTP id smtpd.web11.9897.1722869617860541451
  for <yocto@lists.yoctoproject.org>;
- Mon, 05 Aug 2024 06:08:25 -0700
+ Mon, 05 Aug 2024 07:53:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vrag.onmicrosoft.com header.s=selector1-vrag-onmicrosoft-com header.b=wBHrcoe0;
- spf=pass (domain: vrag.ch, ip: 52.101.186.62, mailfrom: david.daniel@vrag.ch)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z4SS9uwe+fYddcrgUo/JS2kACSOStMFgropWee8NF52ooa+bT9qIrBKmzkyCFXWaT5HyRqeB3DNLaFxpyWolkvWzUzqzljtBgCRK5oTL5XupXweX2fYTqUwHvtktJKX16bERtA0ujz4mRUWIfWBPcCN8r3xk/wTyc7qCXpebv8ijFBf72sn5lJSwsqy9YE4bl3ZfERHIRLEBY5WqmjrBXtoF1x1avlps0Ffg98x8d1DCaRBkGmNwnGIthCq63bRg6yGctl/SpE/Ne/S1WqQKo6gal3cQseBfUW6H8YI0hy1a34cUMSkHcQdkT9xcuGx8f5x32Kk02pJUUku8VUbbKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gbqnbV01AeuiI+6NDwn+SB5EmUGdKCqHwbKE46JTObo=;
- b=wWdTZEf23pq0QOD1SDOLi1ZwQLZFO9ZAZxXJNfYfUfVDlcEqjhv+9Rvej9I9XWm7Jvp2onJLXrKbanXj025Fjp5vSuuwbgmL95HhM31iDFSMhbTvME5YvQEQjZGbFH7PsSXmtGKj+e4A84gcV1lPt+KObmbn0oRcgkktpEEgO5BWYOEV4peuoLOzkqgzXud+X4k+cJ3gZFzVS+rVdejvKIZ+Jsimd1sDyj4yg/4UrdDoF/ZuJdzTiQm/5urIHUuo+bQ7d4JuNy0NdDzfhQDy/VIYnrGbFCSzGhfJPRJHI6E5ZyUzyCWW5JU64wP+u/XKvrKrXcnXotxdRq2QQ+tTIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vrag.ch; dmarc=pass action=none header.from=vrag.ch; dkim=pass
- header.d=vrag.ch; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vrag.onmicrosoft.com;
- s=selector1-vrag-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gbqnbV01AeuiI+6NDwn+SB5EmUGdKCqHwbKE46JTObo=;
- b=wBHrcoe0M6DSKuPjxxgPvwtq+5k65w8NRSdXU7RFwi0GLpc0ydtnGe5nRMUIznW51me7yLnXwkU/LKSPZo/g0tFVsCxxFSWi4Mv1E6/od4zP58ptiLFSOfn3n4sIYYD44BGNrg0MWGpycYT/SirCsBntXGsbJeOAxXnSF5pkGlM=
-Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:21::12)
- by GV0P278MB0163.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:2f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.27; Mon, 5 Aug
- 2024 13:08:18 +0000
-Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
- ([fe80::9006:220c:1d6b:47dd]) by GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
- ([fe80::9006:220c:1d6b:47dd%7]) with mapi id 15.20.7828.023; Mon, 5 Aug 2024
- 13:08:18 +0000
-From: David Daniel <david.daniel@vrag.ch>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"alex.kanavin@gmail.com" <alex.kanavin@gmail.com>
-Subject: Re: [yocto] Missing patch status (upstream status)
-Thread-Topic: [yocto] Missing patch status (upstream status)
-Thread-Index: AQHa5zQ7X7TUFPpkkESB12UOxdcwCrIYoPIAgAABuQA=
-Date: Mon, 5 Aug 2024 13:08:18 +0000
-Message-ID: <2dd24ec7f822a7d0dfd6ab3653e66437df8a999c.camel@vrag.ch>
-References: <bc2a6e0bf1d7b9a02b215a0b26b4bbd9dd577072.camel@vrag.ch>
-	 <CANNYZj8mxUKHcYA1ahDWK3z+jNK+4CRHFW1L6Y3qc4-jOS5NJw@mail.gmail.com>
-In-Reply-To: 
- <CANNYZj8mxUKHcYA1ahDWK3z+jNK+4CRHFW1L6Y3qc4-jOS5NJw@mail.gmail.com>
-Accept-Language: de-CH, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vrag.ch;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GVAP278MB0085:EE_|GV0P278MB0163:EE_
-x-ms-office365-filtering-correlation-id: 5c1766dc-ee57-4f77-e59a-08dcb54facc6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|376014|366016|4022899009|1800799024|38070700018;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?R0JVOXBRRTZLN3J1bGs4cDMxK0htdlRZWjg5b0NEWG5CREo0Q3BOZnd2MWNy?=
- =?utf-8?B?NGhhdHV0bHNBMUJtS3ZDNVYvK2szQi95NzRYRmk3UzlnNHp6a1gva2dIRS84?=
- =?utf-8?B?SHUyN29rOTJOY2pvL1ppcm5Yc3RaWkdtNWNFcVVzVGxoK1JKRTlLK3V4dFYy?=
- =?utf-8?B?TmZLRSt3SVFxTklqZCtsV3p5eEdQS1h4d25VcjViV3U4ejB0KzhnTUliZzd5?=
- =?utf-8?B?VkJNbHFhV2h5TTZTaFBxRjhuS3BQNWdBY2FndVlMc3JkZ1VINEZRTHVDUFhi?=
- =?utf-8?B?UmRRSVVlbTRvYlBwTjFTOXFYWU1tVHJxdUJEeTBYSmJJSGhzV2kyZEVhY0lK?=
- =?utf-8?B?UGhzeXI2ME96cmM3T2FQN1YraDBTQUlCbGhJczdRWURRdjVLSS8zVDlES20r?=
- =?utf-8?B?VW5hY0RZU3JacU1pcjBwRXpiQ1V3YWEyUkJBMTdOeFJBK0Rza2xlbUt0QXBL?=
- =?utf-8?B?WGNhZklSYSsvR0IxZlBySmlEVy9qb0N5OUhwbjlHZC9adjJVaHVTT2hjUVlG?=
- =?utf-8?B?WmFjc2h0ekZFUGI4ait4c25qVWhaZ1BiR1JiQ2drRnJKT29HeXQyelY5alJ1?=
- =?utf-8?B?NUpVZjc0SUYyL1dJVi9ETjlZREZnWlhlYWowVXNOMCtneU44dEJCL09ManhN?=
- =?utf-8?B?YjVOZStyMTdtcVV4VVZXYXl6NWd3YzdPbktEbjhuT0xEaktHNGJoZG9MWTNO?=
- =?utf-8?B?a3dWYVpxQVIraVp5VHBEeFN2K3BqdkpTY0dtOW95NVd5RXc5ZS8vajJWVzdD?=
- =?utf-8?B?Y0lTeUlKb3ZxMFZJZmZaRU83RmttM2lZUmd1MXdnRHVkQTJlMzBhZk83Q3VB?=
- =?utf-8?B?NSt5MUt3TXltcVJLLzdKUmU2WXM5SnJ0K1lrQk4wb1EzdnJBOW1uemlzck52?=
- =?utf-8?B?Y3ZCOXhYaER2L3YraFZGZ1BRZTNkMDBvQUw5M2o0dlZEZ0lQT0Y1eDdaMUdY?=
- =?utf-8?B?SEE0WlR0LzRlZGc5UXBNQi81K0pjM29zQno5QStvcGFMcGFWMG1HK09rL0pp?=
- =?utf-8?B?L3VFNTMrbzhoc2N3bzFrMm9jQjhFYUY5eEtqT0E3TVpYZFhNY3VHOGViRjFy?=
- =?utf-8?B?N2xqdzdUTjJjNUpYQ0NTNEZhM3JkM0hVZzk3MEN4MzFBc3dxWFJaVmNCVUtL?=
- =?utf-8?B?c1hqWm4wYTBrcjZuNUZiV2ZzZ2VySFRiUTVtWUZtNEZVMVRUTExKU0lZS3RC?=
- =?utf-8?B?dHNjTnhCVEZvZ0FyUnBPa0F6Wi9Na1dmZGtFOVNaVDU1UW9EZUxOSDBEMmt6?=
- =?utf-8?B?RHp6V2dHN2l5cTZvR296dmtyaDZyOThJZStsTHdEOTh6L2ZmWHN3OEJMa3hW?=
- =?utf-8?B?Y0F1U2g3MjJ4K3g1R1VUQ3k1VTFiOTF1enpXKzVpMUJvYnRYL21IOUptOWo2?=
- =?utf-8?B?ZHFZUFhlUDJOQVhyM2w5VFBZYVZZQXlSekdFaFZjdllHNG9TTEZpbVMxcmUy?=
- =?utf-8?B?ck1rL2sxYUUwVzZBSkZGSTNWcGF6VmZjSjZMZSswQzlSZERpZjQyWi80cTB1?=
- =?utf-8?B?TFZhSzRucE9RZDBkOFlQanRiQnhabHJoZGQ3elMyd0N1Ym1SeGIzVjFLUlRD?=
- =?utf-8?B?MkxIVVdENitlK0J5RzdiNmtPZmhJWEI5TFc0eHZxTmFodGpzRDJXK0ZRV1Vr?=
- =?utf-8?B?dWtBdkdiSm5mcGZOQlQ5aUJ4L1lzV3gxK1BwRVVNQ0NCK1l5SFI4Z1NMdUhL?=
- =?utf-8?B?c0ZXWmcwSVlMSHhDck1PQTZPTENFWTlidDJFZmhFTUx0ZFNKenNvNUlFbGZU?=
- =?utf-8?B?eW11ZGtrMmtmU08wU3E0MmhBVERvaVc2LzFjTEd0TFllcG9OMGR0eC9EbkJr?=
- =?utf-8?B?c2ZvdUg4YmV4WWQ0UDFFQT09?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(4022899009)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?WG9YNmN4eDBxdEpkNWx6Nk9BNnJkS1V3L0h3SG5aODFVWnlKL2xMS2dRRmgz?=
- =?utf-8?B?STg3SDR1RVZ6TjBpY2hZK2RoVTlFYndONFNvRGtCNmVnUitoUWJURWFYM0w1?=
- =?utf-8?B?WkVXa0tLWGR0NGlZMXZOZ21YV2dJWnVjZzFZbFdWODdFVjZKcm8zRnN4bmNu?=
- =?utf-8?B?N3hrY285RXZUNGM3NTMyVTh1bWhXdEEvRklyTGd5Tm5vTUdOSEFzTlRLaFhS?=
- =?utf-8?B?VlZwMzlLS20zTlBQWTNnMlZRNmVSQTBpTVQ3NVAzeklGc25ZeWlweXdsdVBO?=
- =?utf-8?B?dzhiQXZKUHBOZExxSXdVaUZaZVM1bVJiZFZLdEJLekN5YzJYd2lCbzZRSlhR?=
- =?utf-8?B?bCszL2VJaDQ0aXdZVEhKclVZUGl5cHBlZ2g2TGhmWXl2aGh1aWpQYk1VUThj?=
- =?utf-8?B?b0FhZlhwWHBOaE5LWTJYYWhZOFFhRnFaamFHU1BTY0ptbmZ2WnBQcUJURnNU?=
- =?utf-8?B?QmVPZFhiZyt3bWpYS1F4amxSMkRzTlljYWcvb2pOUEh5RXVpUE9wWFRaVmFM?=
- =?utf-8?B?NW5RWUF5dGNyRTl6Sk9NbExuTDZybVllK1dxM3pHWjkyakhpOUpnVWpMMmxN?=
- =?utf-8?B?OVFsaFJ4Zk9MVnNrbGJkTFN3MlhwYnRsZStONWVLQWo3MGkrckJWMjh5VEZV?=
- =?utf-8?B?NHFsN21nbXN5RlJSdjJ3cEhEU0svMXF5V0hLQkc3UVBWYTZFZkdaNWQ0UmJN?=
- =?utf-8?B?ZS9NdWNRRDRBT0g3ZnpIV2dGUmFWYkVVVHYrclBEa1pHaEtFVFAzVW1mZmYr?=
- =?utf-8?B?Q1lWeHBGdXgva2FLQnZmNTVhWG1pZkhzd1luSmxadngrUVdlT1NiUjVRVHBj?=
- =?utf-8?B?ZG0wK0JWMjRrZTRaVi8ycWxvaGsxT005c0VjOW02R2pIbTFqdGUwQWlJM2lH?=
- =?utf-8?B?dUJTazFVNUtXSVBUMThUV010NHNuS3RGcjBQSjlQZ1dZZU9Zci96U25oVVN4?=
- =?utf-8?B?V3JGNWZYeGVPVUVGK0VhTVM4ZlNvQ3hOalcrVU1oM29ZRmEwZ1Vzek5wZngr?=
- =?utf-8?B?UkkyY3Ftbkx0eVp6MW83WENpZXREZVlDVUlPKys2MHBSeVZRZ1VPelBVSzg3?=
- =?utf-8?B?eWYvQ043WjltcjZMaXhRU09WUzdQcXlldTR3Y2toUUp5dlhFa0I5T3ZJTTdh?=
- =?utf-8?B?MEJMUlUyNGF6c05ackFuZHZEWEtmZWp2ZVR3Q2RrVDE2NEs5eDUzbjZGRER0?=
- =?utf-8?B?WFg1MFpteXNIMGVoMXkvT2Q1c3JqcjRQOVhRdTVkOEJsQWJqaXBjWmRIa1Fa?=
- =?utf-8?B?dVFybDZoUGhDc2twZXd2WUpmZHF5bmtrT3NMQlhCaU1VeWJveTZwR2dHYkFv?=
- =?utf-8?B?WVlwSjk4Z1pBcG1FMEwxSTE2aHExQ2lXN3FoQXZpVFVKd0xSbittNnhtMzBS?=
- =?utf-8?B?Q2hFS1p3Q0JzankyVTFJWWtxdnY1aERvdXJZTFRqaGpTUlczSFJvYWpMbms5?=
- =?utf-8?B?dStTUmxjNUQ1NUM1dTE0eXlZaEpTQjF3Yi9sN1JmT1VaalpOaVdub3VReGhp?=
- =?utf-8?B?RC9yRmE4LzVJUGtxUmNVZ0tXTWQzUnhuRkRzeHBEZDNJMUgveTB3YzNpUnd1?=
- =?utf-8?B?czZnZERVNUxkeC9WUm5hb0lnNlNBU0s5Z2kyRitnN3NyS3oweitxOUZ6c1do?=
- =?utf-8?B?UjlrRmtvRlRFU3I5STNFNXNqOGREOXJNdGczeXhhSTM5UnNob05JNWk1bXk0?=
- =?utf-8?B?SlQyRjMrd1BOQ3pKNHdBSytrTWhFMnVWU1oxeWROZkoxdVY5V1ZXOGZKdTVZ?=
- =?utf-8?B?UmZlSFFVV1VOYkE0bHBKV1h4OXFWTVE0NDk1SVpzOFl0dTY0NG01WUdQVHpa?=
- =?utf-8?B?eFd4OFpvcFkrRSt6VDc2TEdvU1JjSkk2ZlEwenRlY1BCQ2VWQWZ2YmtuNjRr?=
- =?utf-8?B?bHlwblUrTDhaTWhBUjg5Wi9RZmZtM2RYOW5sSEhCRXBSZnFsRi91ZnpZcW5X?=
- =?utf-8?B?ZzMwZm8rVUhmNitqdW1RcEdLWGZ3TnBUODNiY0pUcHZQZVFyMmV5UCtSdk15?=
- =?utf-8?B?a2tSRDhOMjRqNlpUZENRa2huMk5aN01sWDl2VW0xTzNPWHQxOGRyTnZrVk9v?=
- =?utf-8?B?dUZML3BReFZZV3plVnBFR2VIcEhyMG5TRE5PcW8wNmR0Qm4zbEZNZWhBcDFK?=
- =?utf-8?Q?FRaes1y5Zrgi6PGg0nd8pat6N?=
-Content-Type: multipart/alternative;
-	boundary="_000_2dd24ec7f822a7d0dfd6ab3653e66437df8a999ccamelvragch_"
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=N59BjpSe;
+ spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: uvv.mail@gmail.com)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e08724b2a08so8816365276.1
+        for <yocto@lists.yoctoproject.org>; Mon, 05 Aug 2024 07:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722869617; x=1723474417; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7LqUw7w4h3J3mt3W/Vh6k39ThVJDiXIUmZzF80srkTA=;
+        b=N59BjpSeI6WknZIAlEPVVOHZIaN7bsBSjd35hAKuU74EQJFJACXAZIBaa7mBGd+nnK
+         arluGVOBJHabcFEr1ElCFd30h9Ge85nLqeHpO/0e581BWsTjdxSI0j78Uxv43bnRozNd
+         O/5MdPtfVt4qsc1F+JSMIAwDWAf6TFl9bdLtGMAfsdW4DzQBAXPd4cxx+gVwCdrnPJPE
+         vAZwHS+lYPMPngLfqLQwN9oN76wLbs+Q9E1yzyAoN/mxU17wZQZMZqrHLdIPcAVdvl5Z
+         z8bpukim0FrXY8MODqEWTl0LKtMVUq/2JPb0Tdhm2zL+uNyRuDWY7PxLYv0HRZsmwVZ3
+         qdCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722869617; x=1723474417;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7LqUw7w4h3J3mt3W/Vh6k39ThVJDiXIUmZzF80srkTA=;
+        b=TWtW9lwjFwbRtJmLgDE0Ay8jE0P+clR7AaG3uO2J1A55Pn6S7TsfD3LXcTNs90KSbX
+         DG1gz9VfCUPmjUyHImGViNMh8NNpUP7K/gfSLoMqeqm6vrzeEYdsuR6bzjQazSfQbdmo
+         hulnNwZT44fWIz5n9W7iXV4VIF9d8cFvHJGOae9r4e+o0VE8yPb1awwk9REVYVerA64q
+         /H05IhHKXyOuvHOHI1jIojWG50nqifRbNr1TiV5wZwCF8dEyRC7NvBJ8jsf+AZacAdnC
+         vaaiY6YkDhC77hDHQLaKPja1NJsXGA0ZSNzK4kvGXNC3QGQH7VH3/tjczB0myxVKXgFX
+         qbbQ==
+X-Gm-Message-State: AOJu0YwATU44P95L8o+H27j4Dnyv8uw9knRRorKnuVk4hEmvPxGnPpz2
+	UFlWAeuDZqNR3NrxGqdenn+QlAIBQFu3xv8fFFxr52lE9SaeCYTj+MK3sEjFEGVxOFNfy8fpG/3
+	+BPa9SDjkMs06dlOZx81feXQmhSaU7Jlf
+X-Google-Smtp-Source: AGHT+IFDYKJKq92Pib15LuoVG2672au4GgtlokRe7gHuEL40wEVRgQHCjHcx5ygTly3dUYoxXPzYn/CnNWC8MZ78bUc=
+X-Received: by 2002:a25:ef46:0:b0:e0b:be99:1fd3 with SMTP id
+ 3f1490d57ef6-e0bde5217cbmr12632862276.48.1722869616706; Mon, 05 Aug 2024
+ 07:53:36 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: vrag.ch
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c1766dc-ee57-4f77-e59a-08dcb54facc6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2024 13:08:18.4982
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 71bd83c1-ce5c-4e57-8993-45bae4514c77
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Gti0Cfz5EuB82KFmKL6TC/biXajQ0s7RJ9qQqoYPbPaa7P6anoEdavJddHU1IXad00m87nF1yCWUsa+O619p5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV0P278MB0163
+References: <q01G.1720763841204258580.2k2I@lists.yoctoproject.org>
+In-Reply-To: <q01G.1720763841204258580.2k2I@lists.yoctoproject.org>
+From: Vyacheslav Yurkov <uvv.mail@gmail.com>
+Date: Mon, 5 Aug 2024 16:53:25 +0200
+Message-ID: <CAKHfEahP6--RfW8tL=i4HOo2Nch_o+9T1fgPi_0zF165PwMObg@mail.gmail.com>
+Subject: Re: [yocto] Inquiry Regarding Docker Execution Issue in overlayfs
+ Rootfs Configuration
+To: yocto@lists.yoctoproject.org, chwoo@ls-electric.com
+Content-Type: multipart/alternative; boundary="0000000000007f8e2f061ef0d7ce"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 05 Aug 2024 13:08:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63654
+ <yocto@lists.yoctoproject.org>; Mon, 05 Aug 2024 14:53:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63655
 
---_000_2dd24ec7f822a7d0dfd6ab3653e66437df8a999ccamelvragch_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000007f8e2f061ef0d7ce
+Content-Type: text/plain; charset="UTF-8"
 
-VGhhbmtzIGZvciB5b3VyIHF1aWNrIHJlc3BvbnNlLiBVbmZvcnR1bmF0ZWx5IHRoZSBjb2RlIGlz
-IG5vdCBhdmFpbGFibGUgcHVibGljbHkgYnV0IEkgY2FuIGVhc2lseSBwcm92aWRlIHRoZSByZWNp
-cGUgYW5kIHRoZSBwYXRjaC4uLg0KW0VESVRdDQpJIGp1c3QgcmVhbGl6ZWQgdGhhdCBJIGVkaXRl
-ZCB0aGUgd3JvbmcgcGF0Y2ggKGluIHRoZSB3cm9uZyBkaXJlY3RvcnkpLCBlZGl0aW5nIHRoZSBj
-b3JyZWN0IG9uZSBkb2VzIHdvcmsg8J+ZiO+4jy4NCg0KU28gc29ycnkgZm9yIHRoZSBub2lzZSwg
-aXQgd29ya3MuDQoNCkJSDQpEYXZlDQoNCkFtIE1vbnRhZywgZGVtIDA1LjA4LjIwMjQgdW0gMTY6
-MDIgKzAzMDAgc2NocmllYiBBbGV4YW5kZXIgS2FuYXZpbjoNCkNhbiB5b3UgcHVibGlzaCB0aGUg
-bGF5ZXIgdGhlIHBhdGNoIGlzIGluPyBPciBhdCBsZWFzdCBhdHRhY2ggdGhlIGNvbXBsZXRlIHBh
-dGNoIGZpbGUgYW5kIHJlY2lwZSB0aGF0IGJpdGJha2UgaXMgY29tcGxhaW5pbmcgYWJvdXQuDQoN
-Ckl04oCZcyBhIHNpbXBsZSBjaGVjayB3aXRoIGEgcmVnZXggYW5kIHNob3VsZCBqdXN0IHdvcmsu
-DQoNCkFsZXgNCg0KT24gTW9uIDUuIEF1ZyAyMDI0IGF0IDE1LjM3LCBEYXZpZCBEYW5pZWwgdmlh
-IGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8aHR0cDovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmc+IDxk
-YXZpZC5kYW5pZWw9dnJhZy5jaEBsaXN0cy55b2N0b3Byb2plY3Qub3JnPG1haWx0bzp2cmFnLmNo
-QGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+PiB3cm90ZToNCkhpIGFsbA0KDQpJIHJlYWxpemVkIHRo
-YXQgbXkgcHJvamVjdCBkb2VzIG5vdCBidWlsZCBhbnltb3JlLiBOb3cgYSBwYXRjaCBzdGF0dXMN
-CmlzIHJlcXVpcmVkIC0gYnV0IGV2ZW4gd2hlbiBJIHB1dCBpdCBpbiAodGhlIHBhdGNoIHN0YXR1
-cyksIHRoZSBlcnJvcg0KZG9lcyBub3QgZ28gYXdheToNCg0KRVJST1I6IGJvb3Rjb21tYW5kZXIt
-MS4wLXIwIGRvX3BhdGNoOiBRQSBJc3N1ZTogTWlzc2luZyBVcHN0cmVhbS1TdGF0dXMgaW4gcGF0
-Y2gNCi9tbnQvZGF0YS95b2N0by9iZjEzMy9tZXRhLWJmMTMzL3JlY2lwZXMtYnNwL2Jvb3Rjb21t
-YW5kZXIvZmlsZXMvb3BlbmJsdC1jbWFrZS1hZGQtaW5zdGFsbC5wYXRjaA0KUGxlYXNlIGFkZCBh
-Y2NvcmRpbmcgdG8gaHR0cHM6Ly9kb2NzLnlvY3RvcHJvamVjdC5vcmcvY29udHJpYnV0b3ItZ3Vp
-ZGUvcmVjaXBlLXN0eWxlLWd1aWRlLmh0bWwjcGF0Y2gtdXBzdHJlYW0tc3RhdHVzIC4gW3BhdGNo
-LXN0YXR1c10NCkVSUk9SOiBib290Y29tbWFuZGVyLTEuMC1yMCBkb19wYXRjaDogRmF0YWwgUUEg
-ZXJyb3JzIHdlcmUgZm91bmQsIGZhaWxpbmcgdGFzay4NCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1
-cmUgc3RvcmVkIGluOiAvbW50L2RhdGEveW9jdG8vYmYxMzMvYnVpbGQvdG1wL3dvcmsvcHBjNjRl
-NTUwMC12cmFnLWxpbnV4L2Jvb3Rjb21tYW5kZXIvMS4wL3RlbXAvbG9nLmRvX3BhdGNoLjE0ODMx
-NzgNCkVSUk9SOiBUYXNrICgvbW50L2RhdGEveW9jdG8vYmYxMzMvbWV0YS1iZjEzMy9yZWNpcGVz
-LWJzcC9ib290Y29tbWFuZGVyL2Jvb3Rjb21tYW5kZXJfMS4wLmJiOmRvX3BhdGNoKSBmYWlsZWQg
-d2l0aCBleGl0IGNvZGUgJzEnDQoNCldoYXQgSSBkaWQgYWRkIHdhcyBzb21ldGhpbmcgbGlrZToN
-Cg0KRml4IHRoZSBpbnN0YWxsYXRpb24gcGF0aCBmb3IgQ01ha2UgYmFzZWQgaW5zdGFsbHMuDQoN
-ClVwc3RyZWFtLVN0YXR1czogUGVuZGluZw0KDQoNCkNhbiBhbnlvbmUgcGxlZWVlYXNlIHRlbGwg
-bWUgd2hhdCBpcyBnb2luZyBvbiB0aGVyZT8gV2hhdCBpcyB0aGUNCmNvcnJlY3Qgc3ludGF4IC8g
-cmVxdWlyZW1lbnRzIC0gaW4gdGhlIGRvY3MgSSByZWFsbHkgY2Fubm90IHNlZQ0KYW55dGhpbmcg
-YXQgYWxsIHRoYXQgY291bGQgbGVhZCBtZSB0byB0aGUgY29ycmVjdCBhbnN3ZXIgKGdvdHRlbg0K
-ZnJvbSBodHRwczovL2RvY3MueW9jdG9wcm9qZWN0Lm9yZy9jb250cmlidXRvci1ndWlkZS9yZWNp
-cGUtc3R5bGUtZ3VpZGUuaHRtbCNwYXRjaC11cHN0cmVhbS1zdGF0dXMNCikuDQoNCkNhbiBJIHR1
-cm4gdGhpcyBvZmY/IEkgd291bGQgcmVhbGx5IGxpa2UgdG8gYmUgYWJsZSB0byBhcHBseSBwYXRj
-aGVzDQp3aGVuZXZlciBJIHRoaW5rIHRoaXMgaXMgbmVjZXNzYXJ5IC8gYXBwcm9wcmlhdGUgYW5k
-IG5vdCBoYXZlIGJpdGJha2UNCnJ1bGUgbWUgb3V0IG9uIHRoaXMuDQoNClRoYW5rcyBmb3IgYW55
-IGhpbnRzIQ0KDQpCUg0KRGF2ZQ0KDQotPS09LT0tPS09LT0tPS09LT0tPS09LQ0KTGlua3M6IFlv
-dSByZWNlaXZlIGFsbCBtZXNzYWdlcyBzZW50IHRvIHRoaXMgZ3JvdXAuDQpWaWV3L1JlcGx5IE9u
-bGluZSAoIzYzNjUxKTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbWVz
-c2FnZS82MzY1MQ0KTXV0ZSBUaGlzIFRvcGljOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5v
-cmcvbXQvMTA3NzMwNjg0LzE2ODY0ODkNCkdyb3VwIE93bmVyOiB5b2N0bytvd25lckBsaXN0cy55
-b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0byUyQm93bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmc+DQpVbnN1YnNjcmliZTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8v
-dW5zdWIgW2FsZXgua2FuYXZpbkBnbWFpbC5jb208bWFpbHRvOmFsZXgua2FuYXZpbkBnbWFpbC5j
-b20+XQ0KLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCg0KDQo=
+Hey ChangHyun,
+Sorry for the late response. Which modules do you use for overlayfs?
 
---_000_2dd24ec7f822a7d0dfd6ab3653e66437df8a999ccamelvragch_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <4C3704A067423740A992443784140A3E@CHEP278.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+If you use any of the bbclasses, I recall I had to switch them off, because
+as for now they can't handle a container. But I would be glad if you have a
+patch to extend the functionality.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZT5wcmUsY29kZSxhZGRyZXNzIHsNCiAg
-bWFyZ2luOiAwcHg7DQp9DQpoMSxoMixoMyxoNCxoNSxoNiB7DQogIG1hcmdpbi10b3A6IDAuMmVt
-Ow0KICBtYXJnaW4tYm90dG9tOiAwLjJlbTsNCn0NCm9sLHVsIHsNCiAgbWFyZ2luLXRvcDogMGVt
-Ow0KICBtYXJnaW4tYm90dG9tOiAwZW07DQp9DQpibG9ja3F1b3RlIHsNCiAgbWFyZ2luLXRvcDog
-MGVtOw0KICBtYXJnaW4tYm90dG9tOiAwZW07DQp9DQo8L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHk+
-DQo8ZGl2PlRoYW5rcyBmb3IgeW91ciBxdWljayByZXNwb25zZS4gVW5mb3J0dW5hdGVseSB0aGUg
-Y29kZSBpcyBub3QgYXZhaWxhYmxlIHB1YmxpY2x5IGJ1dCBJIGNhbiBlYXNpbHkgcHJvdmlkZSB0
-aGUgcmVjaXBlIGFuZCB0aGUgcGF0Y2guLi48L2Rpdj4NCjxkaXY+W0VESVRdPC9kaXY+DQo8ZGl2
-PkkganVzdCByZWFsaXplZCB0aGF0IEkgZWRpdGVkIHRoZSB3cm9uZyBwYXRjaCAoaW4gdGhlIHdy
-b25nIGRpcmVjdG9yeSksIGVkaXRpbmcgdGhlIGNvcnJlY3Qgb25lIGRvZXMgd29yayDwn5mI77iP
-LjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+U28gc29ycnkgZm9yIHRoZSBub2lzZSwg
-aXQgd29ya3MuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5CUjwvZGl2Pg0KPGRpdj5E
-YXZlPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5BbSBNb250YWcsIGRlbSAwNS4wOC4y
-MDI0IHVtIDE2OjAyICswMzAwIHNjaHJpZWIgQWxleGFuZGVyIEthbmF2aW46PC9kaXY+DQo8Ymxv
-Y2txdW90ZSB0eXBlPSJjaXRlIiBzdHlsZT0ibWFyZ2luOjAgMCAwIC44ZXg7IGJvcmRlci1sZWZ0
-OjJweCAjNzI5ZmNmIHNvbGlkO3BhZGRpbmctbGVmdDoxZXgiPg0KPGRpdiBkaXI9ImF1dG8iPkNh
-biB5b3UgcHVibGlzaCB0aGUgbGF5ZXIgdGhlIHBhdGNoIGlzIGluPyBPciBhdCBsZWFzdCBhdHRh
-Y2ggdGhlIGNvbXBsZXRlIHBhdGNoIGZpbGUgYW5kIHJlY2lwZSB0aGF0IGJpdGJha2UgaXMgY29t
-cGxhaW5pbmcgYWJvdXQuPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+PGJyPg0KPC9kaXY+DQo8ZGl2
-IGRpcj0iYXV0byI+SXTigJlzIGEgc2ltcGxlIGNoZWNrIHdpdGggYSByZWdleCBhbmQgc2hvdWxk
-IGp1c3Qgd29yay48L2Rpdj4NCjxkaXYgZGlyPSJhdXRvIj48YnI+DQo8L2Rpdj4NCjxkaXYgZGly
-PSJhdXRvIj5BbGV4PC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+PGJyPg0KPC9kaXY+DQo8ZGl2Pg0K
-PGRpdiBjbGFzcz0iZ21haWxfcXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9ImdtYWlsX2F0
-dHIiPk9uIE1vbiA1LiBBdWcgMjAyNCBhdCAxNS4zNywgRGF2aWQgRGFuaWVsIHZpYSA8YSBocmVm
-PSJodHRwOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyI+DQpsaXN0cy55b2N0b3Byb2plY3Qub3Jn
-PC9hPiAmbHQ7ZGF2aWQuZGFuaWVsPTxhIGhyZWY9Im1haWx0bzp2cmFnLmNoQGxpc3RzLnlvY3Rv
-cHJvamVjdC5vcmciPnZyYWcuY2hAbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7IHdyb3Rl
-Ojxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSIgc3R5bGU9Im1hcmdpbjowIDAg
-MCAuOGV4OyBib3JkZXItbGVmdDoycHggIzcyOWZjZiBzb2xpZDtwYWRkaW5nLWxlZnQ6MWV4Ij4N
-CjxkaXY+SGkgYWxsPGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCkkgcmVhbGl6ZWQgdGhhdCBteSBw
-cm9qZWN0IGRvZXMgbm90IGJ1aWxkIGFueW1vcmUuIE5vdyBhIHBhdGNoIHN0YXR1czxicj4NCmlz
-IHJlcXVpcmVkIC0gYnV0IGV2ZW4gd2hlbiBJIHB1dCBpdCBpbiAodGhlIHBhdGNoIHN0YXR1cyks
-IHRoZSBlcnJvcjxicj4NCmRvZXMgbm90IGdvIGF3YXk6PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4N
-CkVSUk9SOiBib290Y29tbWFuZGVyLTEuMC1yMCBkb19wYXRjaDogUUEgSXNzdWU6IE1pc3Npbmcg
-VXBzdHJlYW0tU3RhdHVzIGluIHBhdGNoPGJyPg0KL21udC9kYXRhL3lvY3RvL2JmMTMzL21ldGEt
-YmYxMzMvcmVjaXBlcy1ic3AvYm9vdGNvbW1hbmRlci9maWxlcy9vcGVuYmx0LWNtYWtlLWFkZC1p
-bnN0YWxsLnBhdGNoPGJyPg0KUGxlYXNlIGFkZCBhY2NvcmRpbmcgdG8gPGEgaHJlZj0iaHR0cHM6
-Ly9kb2NzLnlvY3RvcHJvamVjdC5vcmcvY29udHJpYnV0b3ItZ3VpZGUvcmVjaXBlLXN0eWxlLWd1
-aWRlLmh0bWwjcGF0Y2gtdXBzdHJlYW0tc3RhdHVzIiByZWw9Im5vcmVmZXJyZXIiIHRhcmdldD0i
-X2JsYW5rIj4NCmh0dHBzOi8vZG9jcy55b2N0b3Byb2plY3Qub3JnL2NvbnRyaWJ1dG9yLWd1aWRl
-L3JlY2lwZS1zdHlsZS1ndWlkZS5odG1sI3BhdGNoLXVwc3RyZWFtLXN0YXR1czwvYT4gLiBbcGF0
-Y2gtc3RhdHVzXTxicj4NCkVSUk9SOiBib290Y29tbWFuZGVyLTEuMC1yMCBkb19wYXRjaDogRmF0
-YWwgUUEgZXJyb3JzIHdlcmUgZm91bmQsIGZhaWxpbmcgdGFzay48YnI+DQpFUlJPUjogTG9nZmls
-ZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL21udC9kYXRhL3lvY3RvL2JmMTMzL2J1aWxkL3RtcC93
-b3JrL3BwYzY0ZTU1MDAtdnJhZy1saW51eC9ib290Y29tbWFuZGVyLzEuMC90ZW1wL2xvZy5kb19w
-YXRjaC4xNDgzMTc4PGJyPg0KRVJST1I6IFRhc2sgKC9tbnQvZGF0YS95b2N0by9iZjEzMy9tZXRh
-LWJmMTMzL3JlY2lwZXMtYnNwL2Jvb3Rjb21tYW5kZXIvYm9vdGNvbW1hbmRlcl8xLjAuYmI6ZG9f
-cGF0Y2gpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMSc8YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0K
-V2hhdCBJIGRpZCBhZGQgd2FzIHNvbWV0aGluZyZuYnNwO2xpa2U6PGJyPg0KPC9kaXY+DQo8ZGl2
-Pjxicj4NCkZpeCB0aGUgaW5zdGFsbGF0aW9uIHBhdGggZm9yIENNYWtlIGJhc2VkIGluc3RhbGxz
-Ljxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQpVcHN0cmVhbS1TdGF0dXM6IFBlbmRpbmc8YnI+DQo8
-L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCkNhbiBhbnlvbmUgcGxlZWVlYXNl
-IHRlbGwgbWUgd2hhdCBpcyBnb2luZyBvbiB0aGVyZT8gV2hhdCBpcyB0aGU8YnI+DQpjb3JyZWN0
-IHN5bnRheCAvIHJlcXVpcmVtZW50cyAtIGluIHRoZSBkb2NzIEkgcmVhbGx5IGNhbm5vdCBzZWU8
-YnI+DQphbnl0aGluZyBhdCBhbGwgdGhhdCBjb3VsZCBsZWFkIG1lIHRvIHRoZSBjb3JyZWN0IGFu
-c3dlciAoZ290dGVuPGJyPg0KZnJvbSZuYnNwOzxhIGhyZWY9Imh0dHBzOi8vZG9jcy55b2N0b3By
-b2plY3Qub3JnL2NvbnRyaWJ1dG9yLWd1aWRlL3JlY2lwZS1zdHlsZS1ndWlkZS5odG1sI3BhdGNo
-LXVwc3RyZWFtLXN0YXR1cyIgcmVsPSJub3JlZmVycmVyIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6
-Ly9kb2NzLnlvY3RvcHJvamVjdC5vcmcvY29udHJpYnV0b3ItZ3VpZGUvcmVjaXBlLXN0eWxlLWd1
-aWRlLmh0bWwjcGF0Y2gtdXBzdHJlYW0tc3RhdHVzPC9hPjxicj4NCikuPGJyPg0KPC9kaXY+DQo8
-ZGl2Pjxicj4NCkNhbiBJIHR1cm4gdGhpcyBvZmY/IEkgd291bGQgcmVhbGx5IGxpa2UgdG8gYmUg
-YWJsZSB0byBhcHBseSBwYXRjaGVzPGJyPg0Kd2hlbmV2ZXIgSSB0aGluayB0aGlzIGlzIG5lY2Vz
-c2FyeSAvIGFwcHJvcHJpYXRlIGFuZCBub3QgaGF2ZSBiaXRiYWtlPGJyPg0KcnVsZSBtZSBvdXQg
-b24gdGhpcy48YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KVGhhbmtzIGZvciBhbnkgaGludHMhPGJy
-Pg0KPC9kaXY+DQo8ZGl2Pjxicj4NCkJSPGJyPg0KRGF2ZTxicj4NCjwvZGl2Pg0KPGRpdj48YnI+
-DQotPS09LT0tPS09LT0tPS09LT0tPS09LTxicj4NCkxpbmtzOiBZb3UgcmVjZWl2ZSBhbGwgbWVz
-c2FnZXMgc2VudCB0byB0aGlzIGdyb3VwLjxicj4NClZpZXcvUmVwbHkgT25saW5lICgjNjM2NTEp
-OiA8YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdl
-LzYzNjUxIiByZWw9Im5vcmVmZXJyZXIiIHRhcmdldD0iX2JsYW5rIj4NCmh0dHBzOi8vbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL21lc3NhZ2UvNjM2NTE8L2E+PGJyPg0KTXV0ZSBUaGlz
-IFRvcGljOiA8YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvMTA3NzMw
-Njg0LzE2ODY0ODkiIHJlbD0ibm9yZWZlcnJlciIgdGFyZ2V0PSJfYmxhbmsiPg0KaHR0cHM6Ly9s
-aXN0cy55b2N0b3Byb2plY3Qub3JnL210LzEwNzczMDY4NC8xNjg2NDg5PC9hPjxicj4NCkdyb3Vw
-IE93bmVyOiA8YSBocmVmPSJtYWlsdG86eW9jdG8lMkJvd25lckBsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnIiB0YXJnZXQ9Il9ibGFuayI+DQp5b2N0bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qub3Jn
-PC9hPjxicj4NClVuc3Vic2NyaWJlOiA8YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVj
-dC5vcmcvZy95b2N0by91bnN1YiIgcmVsPSJub3JlZmVycmVyIiB0YXJnZXQ9Il9ibGFuayI+DQpo
-dHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YjwvYT4gWzxhIGhyZWY9
-Im1haWx0bzphbGV4LmthbmF2aW5AZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+YWxleC5rYW5h
-dmluQGdtYWlsLmNvbTwvYT5dPGJyPg0KLT0tPS09LT0tPS09LT0tPS09LT0tPS08YnI+DQo8L2Rp
-dj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9i
-bG9ja3F1b3RlPg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+PHNwYW4+PC9zcGFuPjwvZGl2Pg0K
-PC9ib2R5Pg0KPC9odG1sPg0K
+Regards,
+Slava
 
---_000_2dd24ec7f822a7d0dfd6ab3653e66437df8a999ccamelvragch_--
+On Fri, Jul 12, 2024, 07:57 chwoo via lists.yoctoproject.org <chwoo=
+ls-electric.com@lists.yoctoproject.org> wrote:
+
+> Dear Yocto developers,
+>
+> I hope this message finds you well. My name is ChangHyun Woo, and I am
+> currently engaged in developing Embedded Linux devices.
+>
+> I have been using the recipe from '
+> https://github.com/marcusfolkesson/meta-readonly-rootfs-overlay' to
+> configure the rootfs. However, I have encountered an issue: after
+> integrating Docker, I discovered that 'docker exec' does not function
+> within the overlayfs rootfs.
+>
+> Despite extensive searches across various platforms, I have been unable to
+> find a solution, prompting me to reach out to you for assistance. If I have
+> contacted the wrong place, I kindly ask for guidance on where to direct my
+> inquiry.
+>
+> Furthermore, if anyone has encountered and resolved a similar issue, I
+> would greatly appreciate any advice or solutions you could provide.
+>
+> Thank you for your attention to this matter.
+>
+> Best regards,
+> ChangHyun Woo
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63475):
+> https://lists.yoctoproject.org/g/yocto/message/63475
+> Mute This Topic: https://lists.yoctoproject.org/mt/107177614/4455192
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> uvv.mail@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--0000000000007f8e2f061ef0d7ce
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div>Hey ChangHyun,</div><div dir=3D"auto">Sorry for the =
+late response. Which modules do you use for overlayfs?</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">If you use any of the bbclasses, I recall I =
+had to switch them off, because as for now they can&#39;t handle a containe=
+r. But I would be glad if you have a patch to extend the functionality.</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">Regards,</div><div dir=3D"a=
+uto">Slava</div><div dir=3D"auto"><br><div class=3D"gmail_quote" dir=3D"aut=
+o"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jul 12, 2024, 07:57 chwoo =
+via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &l=
+t;chwoo=3D<a href=3D"mailto:ls-electric.com@lists.yoctoproject.org">ls-elec=
+tric.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><p>Dear Yocto developers,</p>
+<p>I hope this message finds you well. My name is ChangHyun Woo, and I am c=
+urrently engaged in developing Embedded Linux devices.</p>
+<p>I have been using the recipe from &#39;<a href=3D"https://github.com/mar=
+cusfolkesson/meta-readonly-rootfs-overlay" rel=3D"noreferrer noreferrer" ta=
+rget=3D"_blank">https://github.com/marcusfolkesson/meta-readonly-rootfs-ove=
+rlay</a>&#39; to configure the rootfs. However, I have encountered an issue=
+: after integrating Docker, I discovered that &#39;docker exec&#39; does no=
+t function within the overlayfs rootfs.</p>
+<p>Despite extensive searches across various platforms, I have been unable =
+to find a solution, prompting me to reach out to you for assistance. If I h=
+ave contacted the wrong place, I kindly ask for guidance on where to direct=
+ my inquiry.</p>
+<p>Furthermore, if anyone has encountered and resolved a similar issue, I w=
+ould greatly appreciate any advice or solutions you could provide.</p>
+<p>Thank you for your attention to this matter.</p>
+<p>Best regards,<br>ChangHyun Woo</p>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#63475): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/63475" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/63475</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/107177614/445=
+5192" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopr=
+oject.org/mt/107177614/4455192</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a> [<a href=3D"mailto:uvv.mail@gmail.com" target=3D"_blank"=
+ rel=3D"noreferrer">uvv.mail@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div></div>
+
+--0000000000007f8e2f061ef0d7ce--
 
