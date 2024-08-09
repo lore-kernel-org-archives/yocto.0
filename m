@@ -1,253 +1,292 @@
-Return-Path: <mahendrasondagar08@gmail.com>
+Return-Path: <ycnakajsph@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03809C3DA4A
-	for <webhook@archiver.kernel.org>; Thu,  8 Aug 2024 18:42:10 +0000 (UTC)
-Subject: nothing provides libpython3.6m.so.1.0()(64bit) needed by nativesdk-gcc-arm-none-eabi-11-r0.x86_64_nativesdk
-To: yocto@lists.yoctoproject.org
-From: "Mahendra Sondagar" <mahendrasondagar08@gmail.com>
-X-Originating-Location: Kosamba, Gujarat, IN (103.238.110.77)
-X-Originating-Platform: Linux Firefox 128
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6141C3DA4A
+	for <webhook@archiver.kernel.org>; Fri,  9 Aug 2024 12:56:05 +0000 (UTC)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+ by mx.groups.io with SMTP id smtpd.web11.83251.1723208158195529624
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 09 Aug 2024 05:55:58 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=JRxaIZzd;
+ spf=pass (domain: gmail.com, ip: 209.85.216.42, mailfrom: ycnakajsph@gmail.com)
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2cb4b7fef4aso1649912a91.0
+        for <yocto@lists.yoctoproject.org>; Fri, 09 Aug 2024 05:55:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723208157; x=1723812957; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yxTrNMy5sau3KoVKv18QG7rtrEjJplwQgo9SZlMF/ek=;
+        b=JRxaIZzdGjBe+X7nvS+O7v7XRv0CfpAoeHYZL4zeBPveuB8O67OBxPrrZsw65ABOhD
+         +HpunsRk0TK+t0KViWHxacbrx/rA2ojvFo1uh2gG1G2JsWoCduY16zxI56PeBs8pEimp
+         9i99E1EOijy7aWd7wsgTvduSs9GNxRJxJS6y8z5zzLwOQSCtsPvFKR1hvtbe1AzehoY7
+         9qy4dGNjvlRlsCwxDVuCo1VG6sl1gqCTpyaW1kV5MTMzl1lpbR8I7Koai0DLq+31vuLE
+         PAT4zKgMzLuMHRXHgONxDvm1m6q4SWkubjeqw5iYeM6SwugTup2qA503YrjfMD68T5cn
+         XnCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723208157; x=1723812957;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yxTrNMy5sau3KoVKv18QG7rtrEjJplwQgo9SZlMF/ek=;
+        b=eHmLEh0QRL3f2GKbp/t7zA+6U+3l1iM6HMQPhfbQXzQO2jyOx4mrF9HwRRFdk5HtuW
+         yuUG2PCT/OkhQuSwCeiXv9W2cIeKrxhM+TTMlUfbl+WHMFyoiMsv5vrnDxa1o5f+b/d5
+         0PCiqBY+fytLQLooAsOkkTBNpk19qAOOB6YJ8JauEDMSlQm20Ire5I8XsiXaqrlIaPbq
+         XUDu83VwqdGjKcR/Up54amn4+/Q93waI9G7PvGQo8vrfXLCaJ0B3/MvPWd4/+wN+3ZWa
+         4JcnrHcWRMykuuRDr0AE0Kw2DFSgY4nVe7wKFvSgUYf+hLo1n5VuL36beF8et5uDWZ9Y
+         yMkw==
+X-Gm-Message-State: AOJu0YyPR6caLyuvLvUhXhYpOk27yAr3ZHxpx/FiJjBq9BlxJC/JAtkA
+	b+4z2ZAs945ZWYoWEUHZgNZAf67RcpCJGTfjQWxJPvuIs0UTAUrJnASbu4haN+d6S4uLTTKGI+B
+	cn8AVUAIAkJWfcVarvekWtpN/WnOEYBdM
+X-Google-Smtp-Source: AGHT+IEtm5sUHnmKYNYlxtOlcEQ1s08L+c3CQg23muExqXGIdEakxhIQIiBYzVAz24xsY0GE0TzIx+FypteRfL0HFN0=
+X-Received: by 2002:a17:90b:124f:b0:2c9:cbdd:acd with SMTP id
+ 98e67ed59e1d1-2d1e807165amr1591638a91.35.1723208156693; Fri, 09 Aug 2024
+ 05:55:56 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 08 Aug 2024 11:42:00 -0700
-Message-ID: <Gr5W.1723142520164722541.ofY7@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="ngGmOJJ7rVMYhHUxNUCp"
+References: <17E9C992A189009E.19172@lists.yoctoproject.org>
+In-Reply-To: <17E9C992A189009E.19172@lists.yoctoproject.org>
+From: Yann CARDAILLAC Pro <yann.cardaillac@gmail.com>
+Date: Fri, 9 Aug 2024 14:55:43 +0200
+Message-ID: <CAC3TgAL6_p5qa9bCDoM3FGVRmKfR-d-Zhhfrj2bZE7CGh_Nm8Q@mail.gmail.com>
+Subject: Re: [yocto][meta-openembedded][poky] nodejs package broken
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000000dccad061f3faac5"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 08 Aug 2024 18:42:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63680
+ <yocto@lists.yoctoproject.org>; Fri, 09 Aug 2024 12:56:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63681
 
---ngGmOJJ7rVMYhHUxNUCp
-Content-Type: multipart/alternative; boundary="dzZ544CFzK2xEoLenmth"
-
---dzZ544CFzK2xEoLenmth
-Content-Type: text/plain; charset="utf-8"
+--0000000000000dccad061f3faac5
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi.. guys
-Hope all are doing well...
+Hi,
 
-I'm dealing with the Yocto Kirkstone with my custom -image
-In my case, everything is working well and I can boot my STM32MP1 board wit=
-h the custom image.
+So I've been continuing my investigation, it seems that the problem in the
+end is that node_modules from UNPACKDIR doesn't make it to S.
 
-My aim is to populate the SDK for the further development
+I've tried different method but :
 
->=20
-> I'm using the command bitbake -c populate_sdk custom-image, however durin=
-g
-> the mid of the build it's throwing the error as mentioned below
->=20
->=20
-> RROR: custom-image-1.0-r0 do_populate_sdk: Could not invoke dnf. Command
-> '/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tmp=
-/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/recipe-sysroot-native=
-/usr/bin/dnf
-> -v --rpmverbosity=3Dinfo -y -c
-> /home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tmp/=
-work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/sdk/image/etc/dnf/dnf.=
-conf
-> --setopt=3Dreposdir=3D/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-s=
-tm32mp1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/=
-sdk/image/etc/yum.repos.d
-> --installroot=3D/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp=
-1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/sdk/im=
-age
-> --setopt=3Dlogdir=3D/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm=
-32mp1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/te=
-mp
-> --repofrompath=3Doe-repo,/home/mahendra/Documents/MyWorkSpace/my-git/Yoct=
-o-stm32mp1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-=
-r0/oe-sdk-repo
-> --nogpgcheck install nativesdk-binutils nativesdk-cpp-symlinks
-> nativesdk-dtc nativesdk-fiptool-stm32mp nativesdk-flex
-> nativesdk-gcc-arm-none-eabi nativesdk-gcc-symlinks
-> nativesdk-glibc-gconv-utf-16 nativesdk-glibc-gconv-utf-32
-> nativesdk-libyaml nativesdk-libyaml-dev nativesdk-ncurses-libncursesw
-> nativesdk-openocd-stm32mp nativesdk-openssl-dev nativesdk-optee-sdk
-> nativesdk-packagegroup-sdk-host nativesdk-perl-module-encode
-> nativesdk-perl-module-encode-encoding
-> nativesdk-perl-module-encode-mime-header
-> nativesdk-perl-module-file-spec-functions nativesdk-perl-module-integer
-> nativesdk-perl-module-pod-text nativesdk-perl-module-term-ansicolor
-> nativesdk-python3 nativesdk-python3-cffi nativesdk-python3-cryptography
-> nativesdk-python3-dev nativesdk-python3-pillow nativesdk-python3-pycparse=
-r
-> nativesdk-python3-pycryptodomex nativesdk-python3-pyelftools
-> nativesdk-python3-setuptools nativesdk-sdcard-raw-tools
-> nativesdk-stm32wrapper4dbg nativesdk-svd-tools nativesdk-swig
-> nativesdk-u-boot-mkimage nativesdk-wayland
-> packagegroup-cross-canadian-stm32mp1' returned 1:
-> DNF version: 4.11.1
-> cachedir:
-> /home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tmp/=
-work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/sdk/image/var/cache/dn=
-f
->=20
-> Added oe-repo repo from
-> /home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tmp/=
-work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/oe-sdk-repo
->=20
-> User-Agent: constructed: 'libdnf (Ubuntu 20.04; generic; Linux.x86_64)'
-> repo: using cache for: oe-repo
-> oe-repo: using metadata from Tue 06 Aug 2024 06:12:23 PM UTC.
-> Last metadata expiration check: 0:00:01 ago on Thu 08 Aug 2024 06:30:38 P=
-M
-> UTC.
-> --> Starting dependency resolution
-> --> Finished dependency resolution
-> Error:
-> Problem: conflicting requests
-> - nothing provides libpython3.6m.so.1.0()(64bit) needed by
-> nativesdk-gcc-arm-none-eabi-11-r0.x86_64_nativesdk
-> (try to add '--skip-broken' to skip uninstallable packages)
-> ERROR: Logfile of failure stored in:
-> /home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tmp/=
-work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/temp/log.do_populate_s=
-dk.1764001
->=20
-> ERROR: Task
-> (/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/meta-custom/r=
-ecipes-core/images/custom-image.bb:do_populate_sdk)
-> failed with exit code '1'
->=20
->=20
+S =3D "${WORKDIR}/npm"
+UNPACKDIR =3D "${S}"
 
-Can any one help me here to figure-out the issue ?
+doesn't make it, when doing that, a repo npm/ is created, containing
+nodes_module (yeah!) but another repo npm/ is created inside it, so the
+problem stays the same...
 
-PS: I have already installed =C2=A0python3 python3-pip with the image.
-I have already added the meta-python layers with the image
+npm/npm/ contains all the sources
+npm/node_modules/ contains all the deps.
 
-pl. suggest
+I've seen that behavior in other packages too, do you have any idea what
+could be hapenning?
 
-I have attached my custom-image.bb file here for the reference
+I've made a very dirty fix, that copies UNPACKDIR to S, I'd like to get rid
+of it as soon as possible.
 
-pl. suggest
+Any hints about what could be wrong? Anyone saw that already?
 
-Thanks,
-Mahendra
+Bests,
 
---dzZ544CFzK2xEoLenmth
-Content-Type: text/html; charset="utf-8"
+Yann CARDAILLAC,
+
+
+On Thu, Aug 8, 2024 at 5:12=E2=80=AFPM Yann CARDAILLAC via lists.yoctoproje=
+ct.org
+<ycnakajsph=3Dgmail.com@lists.yoctoproject.org> wrote:
+
+> Hi yall,
+>
+> I'm upgrading nodejs apps and dependencies to scarthgap.
+>
+> I've been using the devtool way to build the dependencies packages, it's
+> working great when it's in the workspace generated by devtool, however as
+> soon as I move the package to my meta, then it doesn't work any more, it
+> seems that the dependencies of the package are not downloaded anymore.
+>
+> It looks like a lot to this very old issue :
+> https://yocto.yoctoproject.narkive.com/UmzCI675/and-npm-issue
+> <https://yocto.yoctoproject.narkive.com/UmzCI675/and-npm-issues>
+>
+> For instance, if we take the cors package, I can create the recipe like s=
+o
+> :
+>
+> *devtool add "npm://registry.npmjs.org/;package=3Dcors;version=3D2.8.5
+> <http://registry.npmjs.org/;package=3Dcors;version=3D2.8.5>"*
+>
+> so far so good, I can build the package by doing either:
+>
+> *bitbake cors*
+> or
+> *devtool build cors*
+>
+> both works perfectly. Now if I move the recipe either manually or with:
+>
+> *devtool finish cors*
+>
+> I will receive errors like :
+>
+> *ERROR: cors-2.8.5-r0 do_populate_lic: QA Issue: cors: LIC_FILES_CHKSUM
+> points to an invalid file:
+> yocto/build/tmp/work/cortexa53-crypto-poky-linux/cors/2.8.5/npm/node_modu=
+les/object-assign/license
+> [license-checksum]*
+>
+> When I look into the build directory the node_modules directory doesn't
+> even exist.
+>
+> When comparing the build directories between both methods I can see that
+> the one created by devtool looks way more complete than the one made by m=
+y
+> layer (even though it's strictly the same recipe).
+>
+> Here's the one from devtool :
+>
+> $ ls build/tmp/work/cortexa53-crypto-poky-linux/cors/2.8.5/
+> deploy-source-date-epoch  npm-cache     packages-split       pseudo
+>           sources-unpack
+> image                     npm-package   pkgdata
+>  recipe-sysroot         spdx
+> license-destdir           npm-registry  pkgdata-pdata-input
+>  recipe-sysroot-native  sysroot-destdir
+> npm-build                 package       pkgdata-sysroot
+>  source-date-epoch      temp
+>
+> Here's the one from my layer:
+> $ ls build/tmp/work/cortexa53-crypto-poky-linux/cors/2.8.5/
+> deploy-source-date-epoch  npm             recipe-sysroot-native
+>  sources-unpack  temp
+> license-destdir           recipe-sysroot  source-date-epoch      spdx
+>
+> It's possibly because we stopped at the job do_populate_lic but I don't
+> think it would happen that early in the build process but I might be wron=
+g.
+>
+> I might be doing something wrong or there might be a bug I don't know...
+>
+> Best regards,
+>
+> Yann CARDAILLAC,
+>
+> -------------------------------------------------------------------------=
+-------------------------------------------
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63679):
+> https://lists.yoctoproject.org/g/yocto/message/63679
+> Mute This Topic: https://lists.yoctoproject.org/mt/107791492/3617030
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> ycnakajsph@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--0000000000000dccad061f3faac5
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hi.. guys <br />Hope all are doing well...</div>
-<div>&nbsp;</div>
-<div>I'm dealing with the Yocto Kirkstone with my custom -image <br />In my=
- case, everything is working well and I can boot my STM32MP1 board with the=
- custom image.</div>
-<div>&nbsp;</div>
-<div>My aim is to populate the SDK for the further development</div>
-<div>&nbsp;</div>
-<blockquote>
-<div>I'm using the command bitbake -c populate_sdk custom-image, however du=
-ring the mid of the build it's throwing the error as mentioned below <br />=
-<br /><br />
-<div>RROR: custom-image-1.0-r0 do_populate_sdk: Could not invoke dnf. Comma=
-nd '/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tm=
-p/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/recipe-sysroot-nativ=
-e/usr/bin/dnf -v --rpmverbosity=3Dinfo -y -c /home/mahendra/Documents/MyWor=
-kSpace/my-git/Yocto-stm32mp1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi=
-/custom-image/1.0-r0/sdk/image/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/home=
-/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tmp/work/st=
-m32mp1-poky-linux-gnueabi/custom-image/1.0-r0/sdk/image/etc/yum.repos.d --i=
-nstallroot=3D/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/bui=
-ld-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/sdk/image -=
--setopt=3Dlogdir=3D/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32m=
-p1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/temp =
---repofrompath=3Doe-repo,/home/mahendra/Documents/MyWorkSpace/my-git/Yocto-=
-stm32mp1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0=
-/oe-sdk-repo --nogpgcheck install nativesdk-binutils nativesdk-cpp-symlinks=
- nativesdk-dtc nativesdk-fiptool-stm32mp nativesdk-flex nativesdk-gcc-arm-n=
-one-eabi nativesdk-gcc-symlinks nativesdk-glibc-gconv-utf-16 nativesdk-glib=
-c-gconv-utf-32 nativesdk-libyaml nativesdk-libyaml-dev nativesdk-ncurses-li=
-bncursesw nativesdk-openocd-stm32mp nativesdk-openssl-dev nativesdk-optee-s=
-dk nativesdk-packagegroup-sdk-host nativesdk-perl-module-encode nativesdk-p=
-erl-module-encode-encoding nativesdk-perl-module-encode-mime-header natives=
-dk-perl-module-file-spec-functions nativesdk-perl-module-integer nativesdk-=
-perl-module-pod-text nativesdk-perl-module-term-ansicolor nativesdk-python3=
- nativesdk-python3-cffi nativesdk-python3-cryptography nativesdk-python3-de=
-v nativesdk-python3-pillow nativesdk-python3-pycparser nativesdk-python3-py=
-cryptodomex nativesdk-python3-pyelftools nativesdk-python3-setuptools nativ=
-esdk-sdcard-raw-tools nativesdk-stm32wrapper4dbg nativesdk-svd-tools native=
-sdk-swig nativesdk-u-boot-mkimage nativesdk-wayland packagegroup-cross-cana=
-dian-stm32mp1' returned 1:<br />DNF version: 4.11.1<br />cachedir: /home/ma=
-hendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/build-mp1/tmp/work/stm32=
-mp1-poky-linux-gnueabi/custom-image/1.0-r0/sdk/image/var/cache/dnf<br />Add=
-ed oe-repo repo from /home/mahendra/Documents/MyWorkSpace/my-git/Yocto-stm3=
-2mp1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/custom-image/1.0-r0/oe-=
-sdk-repo<br />User-Agent: constructed: 'libdnf (Ubuntu 20.04; generic; Linu=
-x.x86_64)'<br />repo: using cache for: oe-repo<br />oe-repo: using metadata=
- from Tue 06 Aug 2024 06:12:23 PM UTC.<br />Last metadata expiration check:=
- 0:00:01 ago on Thu 08 Aug 2024 06:30:38 PM UTC.<br />--&gt; Starting depen=
-dency resolution<br />--&gt; Finished dependency resolution<br />Error:&nbs=
-p;<br />&nbsp;Problem: conflicting requests<br />&nbsp; - nothing provides =
-libpython3.6m.so.1.0()(64bit) needed by nativesdk-gcc-arm-none-eabi-11-r0.x=
-86_64_nativesdk<br />(try to add '--skip-broken' to skip uninstallable pack=
-ages)</div>
-<div>ERROR: Logfile of failure stored in: /home/mahendra/Documents/MyWorkSp=
-ace/my-git/Yocto-stm32mp1/build-mp1/tmp/work/stm32mp1-poky-linux-gnueabi/cu=
-stom-image/1.0-r0/temp/log.do_populate_sdk.1764001<br />ERROR: Task (/home/=
-mahendra/Documents/MyWorkSpace/my-git/Yocto-stm32mp1/meta-custom/recipes-co=
-re/images/custom-image.bb:do_populate_sdk) failed with exit code '1'</div>
-</div>
-<div>&nbsp;</div>
-</blockquote>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>Can any one help me here to figure-out the issue ?</div>
-<div>&nbsp;</div>
-<div>PS: I have already installed &nbsp;python3 python3-pip with the image.=
-</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have already added the meta-pyt=
-hon layers with the image <br /><br />pl. suggest <br /><br />I have attach=
-ed my custom-image.bb file here for the reference <br /><br />pl. suggest</=
-div>
-<div><br />Thanks,</div>
-<div>Mahendra</div>
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>So I&#39;ve been continu=
+ing my investigation, it seems that the problem in the end is that node_mod=
+ules from UNPACKDIR doesn&#39;t make it to S.</div><div><br></div><div>I&#3=
+9;ve tried different method but :</div><div><br></div><div>S =3D &quot;${WO=
+RKDIR}/npm&quot;<br>UNPACKDIR =3D &quot;${S}&quot;</div><div><br></div><div=
+>doesn&#39;t make it, when doing that, a repo npm/ is created, containing n=
+odes_module (yeah!) but another repo npm/ is created inside it, so the prob=
+lem stays the same...</div><div><br></div><div>npm/npm/ contains all the so=
+urces</div><div>npm/node_modules/ contains all the deps.<br></div><div><br>=
+</div><div>I&#39;ve seen that behavior in other packages too, do you have a=
+ny idea what could be hapenning?</div><div><br></div><div>I&#39;ve made a v=
+ery dirty fix, that copies UNPACKDIR to S, I&#39;d like to get rid of it as=
+ soon as possible.</div><div><br></div><div>Any hints about what could be w=
+rong? Anyone saw that already?<br></div><div><br></div><div>Bests,<br></div=
+><div><br></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartm=
+ail=3D"gmail_signature"><div dir=3D"ltr"><div>Yann CARDAILLAC,<br></div><br=
+></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Thu, Aug 8, 2024 at 5:12=E2=80=AFPM Yann CARDAILLAC v=
+ia <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt=
+;ycnakajsph=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.com=
+@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div>Hi yall,</div><div><br></div><div>I&#39;m upgrading nodejs apps and dep=
+endencies to scarthgap.</div><div><br></div><div>I&#39;ve been using the de=
+vtool way to build the dependencies packages, it&#39;s working great when i=
+t&#39;s in the workspace generated by devtool, however as soon as I move th=
+e package to my meta, then it doesn&#39;t work any more, it seems that the =
+dependencies of the package are not downloaded anymore.</div><div><br></div=
+><div>It looks like a lot to this very old issue :=20
 
---dzZ544CFzK2xEoLenmth--
+<span><span dir=3D"ltr"><a aria-label=3D"Lien https://yocto.yoctoproject.na=
+rkive.com/UmzCI675/and-npm-issues" id=3D"m_98076220601245534gmail-menur2j1"=
+ href=3D"https://yocto.yoctoproject.narkive.com/UmzCI675/and-npm-issues" re=
+l=3D"noreferrer noopener" title=3D"https://yocto.yoctoproject.narkive.com/u=
+mzci675/and-npm-issues" target=3D"_blank">https://yocto.yoctoproject.narkiv=
+e.com/UmzCI675/and-npm-issue</a></span></span>
 
---ngGmOJJ7rVMYhHUxNUCp
-Content-Type: application/octet-stream; name="custom-image.bb"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="custom-image.bb"
+</div><div><br></div><div>For instance, if we take the cors package, I can =
+create the recipe like so :</div><div><br></div><div><i>devtool add &quot;n=
+pm://<a href=3D"http://registry.npmjs.org/;package=3Dcors;version=3D2.8.5" =
+target=3D"_blank">registry.npmjs.org/;package=3Dcors;version=3D2.8.5</a>&qu=
+ot;</i></div><div><br></div><div>so far so good, I can build the package by=
+ doing either:</div><div><br></div><div><i>bitbake cors</i></div><div>or <b=
+r></div><div><i>devtool build cors</i></div><div><br></div><div>both works =
+perfectly. Now if I move the recipe either manually or with:</div><div><br>=
+</div><div><i>devtool finish cors</i></div><div><br></div><div>I will recei=
+ve errors like :<br><br></div><div><i>ERROR: cors-2.8.5-r0 do_populate_lic:=
+ QA Issue: cors: LIC_FILES_CHKSUM points to an invalid file: yocto/build/tm=
+p/work/cortexa53-crypto-poky-linux/cors/2.8.5/npm/node_modules/object-assig=
+n/license [license-checksum]</i></div><div><br></div><div>When I look into =
+the build directory the node_modules directory doesn&#39;t even exist. <br>=
+</div><div><br></div><div>When comparing the build directories between both=
+ methods I can see that the one created by devtool looks way more complete =
+than the one made by my layer (even though it&#39;s strictly the same recip=
+e).</div><div><br></div><div>Here&#39;s the one from devtool :</div><div><b=
+r></div><div>$ ls build/tmp/work/cortexa53-crypto-poky-linux/cors/2.8.5/<br=
+>deploy-source-date-epoch =C2=A0npm-cache =C2=A0 =C2=A0 packages-split =C2=
+=A0 =C2=A0 =C2=A0 pseudo =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 sources-unpack<br>image =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 npm-package =C2=A0 pkgdata =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0recipe-sysroot =C2=A0 =C2=A0 =C2=A0 =C2=A0 spdx=
+<br>license-destdir =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 npm-registry =C2=A0p=
+kgdata-pdata-input =C2=A0recipe-sysroot-native =C2=A0sysroot-destdir<br>npm=
+-build =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 package =C2=
+=A0 =C2=A0 =C2=A0 pkgdata-sysroot =C2=A0 =C2=A0 =C2=A0source-date-epoch =C2=
+=A0 =C2=A0 =C2=A0temp<br></div><div><br></div><div>Here&#39;s the one from =
+my layer:</div><div>$ ls build/tmp/work/cortexa53-crypto-poky-linux/cors/2.=
+8.5/<br>deploy-source-date-epoch =C2=A0npm =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 recipe-sysroot-native =C2=A0sources-unpack =C2=A0temp<br>license=
+-destdir =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 recipe-sysroot =C2=A0source-dat=
+e-epoch =C2=A0 =C2=A0 =C2=A0spdx<br></div><div><br></div><div>It&#39;s poss=
+ibly because we stopped at the job do_populate_lic but I don&#39;t think it=
+ would happen that early in the build process but I might be wrong.<br></di=
+v><div><br></div><div>I might be doing something wrong or there might be a =
+bug I don&#39;t know...</div><div><br></div><div>Best regards,<br></div><di=
+v><br></div><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr=
+"><div>Yann CARDAILLAC,<br></div>------------------------------------------=
+--------------------------------------------------------------------------<=
+br><br></div></div></div></div></div></div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#63679): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/63679" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/63679</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/107791492/361=
+7030" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/107791492/3617030</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:ycnakajsph@gmail.com" target=3D"_blank">ycnakajs=
+ph@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
-U1VNTUFSWSA9ICJNaW5pbWFsIGN1c3RvbSBpbWFnZSBmb3IgU1RNMzJNUDEtREsxIGJvYXJkIgoK
-QVVUSE9SPSAiTWFoZW5kcmEgU29uZGFnYXIgfCBtYWhlbmRyYXNvbmRhZ2FyMDhAZ21haWwuY29t
-IgoKSU1BR0VfSU5TVEFMTCA9ICJwYWNrYWdlZ3JvdXAtY29yZS1ib290ICR7Q09SRV9JTUFHRV9F
-WFRSQV9JTlNUQUxMfSIKCklNQUdFX0xJTkdVQVMgPSAiZW4tdXMiCgpMSUNFTlNFID0gIk1JVCIK
-CmluaGVyaXQgY29yZS1pbWFnZQppbmhlcml0IGV4dHJhdXNlcnMKCiMgU2V0IHJvb3RmcyB0byAy
-MDAgTWlCIGJ5IGRlZmF1bHQKSU1BR0VfT1ZFUkhFQURfRkFDVE9SID89ICIxLjIiCklNQUdFX1JP
-T1RGU19TSVpFID89ICIyMDQ4MDAiCgpJTUFHRV9GRVRBVVJFUyArPSAic3NoLXNlcnZlci1kcm9w
-YmVhciBzcGFsc2giCgpFWFRSQV9VU0VSU19QQVJBTVMgKz0gIiB1c2VyYWRkIC1tIC1zIC9iaW4v
-YmFzaCAtUCAnbWFoaScgcm9vdDsiCgoKI0luc3RhbGxpbmcgdGhlIHN1cHBvcnRlZCBsaWJyYXJp
-ZXMgCgpJTUFHRV9JTlNUQUxMOmFwcGVuZCA9ICIgcHl0aG9uMyBweXRob24zLXBpcCBcCiAgICAg
-ICAgICAgICAgICAgICAgICAgICB1c2J1dGlscyBwY2l1dGlscyBcCiAgICAgICAgICAgICAgICAg
-ICAgICAgICB1dGlsLWxpbnV4IFwKICAgICAgICAgICAgICAgICAgICAgICAgIGRyb3BiZWFyIFwK
-ICAgICAgICAgICAgICAgICAgICAgICAgIGhlbGxvLXdvcmxkIFwKICAgICAgICAgICAgICAgICAg
-ICAgICAgIGhlbGxvLXRlc3QgICBcCiAgICAgICAgICAgICAgICAgICAgICAgICBoZWxsby1tb2Qg
-XAogICAgICAgICAgICAgICAgICAgICAgICAgbXltYWtlICAgIFwKICAgICAgICAgICAgICAgICAg
-ICAgICAgIG1vZHVsZS1pbml0LXRvb2xzIFwKICAgICAgICAgICAgICAgICAgICAgICAgICIKCgoK
-CiMgQWRkaW5nIEJsdWV0b290aCBTdXBwb3J0IApJTUFHRV9JTlNUQUxMOmFwcGVuZCA9ICIgXAog
-ICAgICAgIGRidXMgXAogICAgICAgIGJsdWV6NSBcCiAgICAgICAgcGFja2FnZWdyb3VwLXRvb2xz
-LWJsdWV0b290aCBcCiAgICAgICAgZXhwYXQgXAoiCkRJU1RST19GRUFUVVJFUzphcHBlbmQgPSAi
-IFwKICAgICAgIGJsdWV0b290aCBcIAoiCiMgRHJpdmVycyBmb3IgdGhlIFRQTC1MaW5rIEJsdWV0
-b290aCBkb25nbGUgCiNJTUFHRV9JTlNUQUxMICs9ICJsaW51eC1maXJtd2FyZS1ydGw4NzYxYl9m
-dyIKI0lNQUdFX0lOU1RBTEwgKz0gImxpbnV4LWZpcm13YXJlLXJ0bDg3NjFiX2NvbmZpZyIKI0lN
-QUdFX0lOU1RBTEwgKz0gImxpbnV4LWZpcm13YXJlLXJ0bDgxODhldWZ3IgoKCiMgQWRkIGtlcm5l
-bCBtb2R1bGUgZm9yIFVTQiBXaUZpIGRyaXZlcgpJTUFHRV9JTlNUQUxMICs9ICJrZXJuZWwtbW9k
-dWxlLXI4MTg4ZXUgXAogICAgICAgICAgICAgICAgICBsaW51eC1maXJtd2FyZS1ydGw4MTg4IFwK
-ICAgICAgICAgICAgICAgICAgaXcgXAogICAgICAgICAgICAgICAgICB3cGEtc3VwcGxpY2FudCBc
-CiAgICAgICAgICAgICAgICAgIHdpcmVsZXNzLXJlZ2RiLXN0YXRpYyIKCgojIEF1dG9sb2FkIFdp
-RmkgZHJpdmVyIG9uIGJvb3QgKGZvciB0aGUgTG9kYWJsZSBrZXJuZWwgbW9kdWxlKQpLRVJORUxf
-TU9EVUxFX0FVVE9MT0FEICs9ICJyODE4OGV1IgoKSU1BR0VfRkVBVFVSRSArPSAic3BhbHNoIgpD
-T1JFX0lNQUdFX0VYVFJBX0lOU1RBTEwgKz0gIiBpMmMtdG9vbHMiCgoKVE9PTENIQUlOX0hPU1Rf
-VEFTSzphcHBlbmQgPSAiIG5hdGl2ZXNkay1weXRob24zIgpUT09MQ0hBSU5fVEFSR0VUX1RBU0s6
-YXBwZW5kID0gIiBsaWJjLXN0YXRpY2RldiIK
-
---ngGmOJJ7rVMYhHUxNUCp--
+--0000000000000dccad061f3faac5--
 
