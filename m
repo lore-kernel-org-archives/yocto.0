@@ -1,108 +1,204 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CCF83C3DA7F
-	for <webhook@archiver.kernel.org>; Mon, 12 Aug 2024 20:43:47 +0000 (UTC)
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
- by mx.groups.io with SMTP id smtpd.web10.57188.1723495419178994516
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C65F4C3DA7F
+	for <webhook@archiver.kernel.org>; Tue, 13 Aug 2024 02:33:09 +0000 (UTC)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web11.63421.1723516386238872744
  for <yocto@lists.yoctoproject.org>;
- Mon, 12 Aug 2024 13:43:39 -0700
+ Mon, 12 Aug 2024 19:33:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=DwxaVhGK;
- spf=pass (domain: gmail.com, ip: 209.85.167.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3db14339fb0so2848103b6e.2
-        for <yocto@lists.yoctoproject.org>; Mon, 12 Aug 2024 13:43:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BG0Js8vJ;
+ spf=pass (domain: gmail.com, ip: 209.85.216.48, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2d1bb65e906so3215018a91.3
+        for <yocto@lists.yoctoproject.org>; Mon, 12 Aug 2024 19:33:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723495418; x=1724100218; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HC/KauUCelrfIIpHjYkRfAARJK+6q6zgIJxfHkimf6U=;
-        b=DwxaVhGKmreUosx9tjTsL8MwjiZCcZS5YAeqFi9HI4Nfeij9j4EH4qJVQucfqXDsnF
-         9mBLenOy3+9e8SavR4Bur9i7adgJqqV1ATqRapBGy5gznB+9s4jO/8bB0OizSIRHMSTg
-         XgqrHLiQxx7DN5lJSQNOuxFq5HiBYL/i1o0dQj7Eo2KZvAWzWeH3dkwwnsq6sRNinyIx
-         VEndgqnzNp8LfYiGP38d20dmgTggLcP/QVAJmEPfGw3rcg2sbUMHJG2x1XCqIzF3lzjg
-         Pzkv5snwCm+L0q6CrC0kIVtBh0dnfa4nWTz9GFfLZHd/fS7QO+qjFUSqnPxH9peYja/2
-         8uyw==
+        d=gmail.com; s=20230601; t=1723516386; x=1724121186; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=bPLEN8bz/i3S8m9sJp1RrtS0CRSidt0RxSUd8wUKPNY=;
+        b=BG0Js8vJx2+r28IVmw0ZrpvFOhm8xUZxDISsdH9cY5VWZ70VbRz025D9AomoHLgKo/
+         nPc0nJnuuPmVujSUThSPwYFG4sTFW3kQiRqkhZrFEkbnuPkQ96fq7yQA1nbmJWaE4nbE
+         jH7uwomPiqbNG1fl40sCDCs/TR1rktdBUcEXVmo6kgQMv6RTMPU3k9Iips3Arw/4H4ey
+         Cu/5q/WDzsUjVW3gqPECI3ZuZOheqePBuSIYE1zFHbZ6AkfzwjbTF625NP3Cw6dBsfVu
+         nVHwyKk2tYL4/HPZx9iQovo96iAnvavGKbyjx9r+1Qti5ER27pnxEdkdnjpVXynPyt1B
+         5HHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723495418; x=1724100218;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HC/KauUCelrfIIpHjYkRfAARJK+6q6zgIJxfHkimf6U=;
-        b=pdgksbh/aU9+yTKlAStSF95WhPf5ZDvNWtiY3Q8t3sK8cOgllGDkqtyIggcTxDjubx
-         MjStoSiiKE9F3JXKD+zfqpCco5rKL7qxJCYbMPhkEcCDDW06+5ps4lt5+xUboz/grE0H
-         4hOmsF5fQ4yKDfGmh3L4z7DYJ9pkzy5iLZSGMdYqeoeploIrzbZV8nLYR6SYAiDi3rh1
-         1rGHeAhp2yxs2hD1cxuQnnHKxp/Fh0H+slsZKKTaI0WU3Wbdxm9j2HDsl+QAYVgwDheg
-         A77M4u5XSBjf8B14yocGIlGqE5stlAbiZcxQHS3Yh5x4kOhzeHimSi5l83rwHrgYkEeY
-         1eXQ==
-X-Gm-Message-State: AOJu0YxzV0zKh5BoXi2GGurMqP21vBQABbO+/TpMt/TiQ9Iu45eZc1yb
-	Y+oVEFBAOamPIjp7rZwGszJal7/mgahQ0ko60QbdX2rYNRb0eXN1j5/hGJHjXynAAaJdbfo7Wdv
-	G5COkjvopOUpNM/5coxsFLc0l1r6OBg==
-X-Google-Smtp-Source: AGHT+IG9f124z78WJT4+pviCYVCZKUgLQHO+35oUtVWMxEIJXQnQG2gSU29FOgl/Kq5BsQSWmoE3drAB/LOy/gwxFO0=
-X-Received: by 2002:a05:6808:6492:b0:3d5:5fbe:b2fa with SMTP id
- 5614622812f47-3dd1eea1b6cmr1400741b6e.35.1723495418144; Mon, 12 Aug 2024
- 13:43:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1723516386; x=1724121186;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bPLEN8bz/i3S8m9sJp1RrtS0CRSidt0RxSUd8wUKPNY=;
+        b=HM9ep8hfW7uMBL11T6G6Jwi+Kj+1wwRe3SGJ53sVRFMG4xdc5ROCPcrhO5RPYr1EU1
+         aBr/DfPZP6VYowb9pi+hPwTdYbd3NWMrz90HLrxFTE6TawPxo9HHBlSdRO9UDSMCfpiP
+         mQlvm1UmbzBOAmvGyB6J1dub8FO3Aqbu+fsuIAt51J/aY+RR2m55fB/vTb59YKKkCxfY
+         Yzh0iCNsTX9Hqr5oHQ/XmidLFY8eBL/YH7qrRh7D9L27TPkmops6JZDCf4BL6N2zOWrU
+         QKCAnEVxs+DVL0ve0yBIm2mozH6fv6dT98n2hw0EIs3/jP2G6OQ/lJYSR78a/X9Jtxl9
+         RP7A==
+X-Forwarded-Encrypted: i=1; AJvYcCXPxAi8JQlHEBzyBrzWEc03MhwVFHxjEHTgTroNmCrqaZQ9zb0AtGzmqpAdp+TLuMJExelEZzMwpT3NANc9MNqr52IesMcGS308uu2B
+X-Gm-Message-State: AOJu0YzM/tp0KZuzJJSqbXfpfr3tbby+mDBK3ktk1cPMXV6ilTtdzuI4
+	QkscpB+tMAOhhbkLI3fju41S2QJVnrdXAvatHwkyWvtIYwxZ/f1O7w1mIKrhrQuaCk/zXm7zZql
+	ZI3M4pcEtoSsi0trCmbMeREhLCEM=
+X-Google-Smtp-Source: AGHT+IF6bdN8l8EsGIBzkxjLp3xM95S/tzV0M8IWA024E2uXJNX3V4w5uGB0lrS8lMNOL+5RCjuQCd9JbcB3BDjRXX4=
+X-Received: by 2002:a17:90b:4a88:b0:2c8:a8f:c97 with SMTP id
+ 98e67ed59e1d1-2d392682c4amr2412083a91.37.1723516385470; Mon, 12 Aug 2024
+ 19:33:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALEqzqc_navEO-Q07KD=aCn3qNDHanZ8a2kLp0s7haqfW3Qofg@mail.gmail.com>
-In-Reply-To: <CALEqzqc_navEO-Q07KD=aCn3qNDHanZ8a2kLp0s7haqfW3Qofg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 12 Aug 2024 13:43:12 -0700
-Message-ID: <CAMKF1sobk2HAmLnJVbMPOdkyLKo+NzqOGDV0jtRArw=+o5QQ8w@mail.gmail.com>
-Subject: Re: [yocto] ot-br-posix error Scarthgap
-To: yocto@lists.yoctoproject.org, maik@quatt.io
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 12 Aug 2024 19:32:55 -0700
+Message-ID: <CAK5yBb_2kSdtZCqseLJkBjwW7zjdasR2p7eMoLc1ROXNtCSUWA@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ebb5bd061f876d04"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 12 Aug 2024 20:43:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63690
+ <yocto@lists.yoctoproject.org>; Tue, 13 Aug 2024 02:33:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63691
 
-On Mon, Aug 12, 2024 at 6:07=E2=80=AFAM Maik Vermeulen via
-lists.yoctoproject.org <maik=3Dquatt.io@lists.yoctoproject.org> wrote:
->
-> Hi,
->
-> Currently we are using Yocto Kirkstone and would like to connect to an Op=
-enthread RCP with Spinel RCP API version 10. The ot-br-posix recipe in Kirk=
-stone unfortunately uses a slightly older OpenThread version, which is not =
-compatible with our RCP USB dongle, and unfortunately there is no older fir=
-mware available for the dongle.We tried ignoring the version mismatch warni=
-ng with the --skip-rcp-compatibility-check option, but then it crashes when=
- we try to connect a client to our network, likely due to the mismatch.
->
-> Hence we tried using the Scarthgap recipe in our build, which builds succ=
-essfully but does not run:
-> systemd[1]: Started OpenThread Border Router Agent.
-> otbr-agent[2680]: 49d.17:17:20.280 [C] Platform------: ConfigFile() at co=
-nfig_file.cpp:50: Failure
-> systemd[1]: otbr-agent.service: Main process exited, code=3Dexited, statu=
-s=3D1/FAILURE
+--000000000000ebb5bd061f876d04
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-maybe try to obtain the backtrace by using gdb or some such ?
+All,
 
-> systemd[1]: otbr-agent.service: Failed with result 'exit-code'.
->
-> Are we using it incorrectly or is this a bug?
->
-> Thanks,
-> Kind regards,
->
-> --
-> Maik Vermeulen
-> Embedded Software Engineer
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#63687): https://lists.yoctoproject.org/g/yocto/messag=
-e/63687
-> Mute This Topic: https://lists.yoctoproject.org/mt/107855804/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 411
+unassigned or newcomer bugs.
+
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.1=E2=80=9D, =E2=80=9C5.2", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.1" and then =E2=80=9C5.2=E2=80=9D.
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--000000000000ebb5bd061f876d04
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 411 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.1=E2=80=9D, =E2=80=9C5.2&quot;, &quot;5.99&quot; and &quot;Future&quot;, t=
+he more pressing/urgent issues being in &quot;5.1&quot; and then =E2=80=9C5=
+.2=E2=80=9D.<br><br>Please review this link and if a bug is something you w=
+ould be able to help with either take ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an e-m=
+ail with the bug number you would like and I will assign it to you (please =
+make sure you have a Bugzilla account).  The list is at: <a href=3D"https:/=
+/wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_Bugs"=
+>https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcom=
+er_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoN=
+ormal" style=3D"background-image:initial;background-position:initial;backgr=
+ound-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-s=
+erif">Thanks,<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--000000000000ebb5bd061f876d04--
 
