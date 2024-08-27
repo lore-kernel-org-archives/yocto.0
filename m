@@ -1,164 +1,192 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DAD0EC5472F
-	for <webhook@archiver.kernel.org>; Tue, 27 Aug 2024 06:37:00 +0000 (UTC)
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
- by mx.groups.io with SMTP id smtpd.web10.72430.1724740617182733921
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D47EDC5320E
+	for <webhook@archiver.kernel.org>; Tue, 27 Aug 2024 09:31:11 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web11.73180.1724748783468037188
  for <yocto@lists.yoctoproject.org>;
- Mon, 26 Aug 2024 23:36:57 -0700
+ Tue, 27 Aug 2024 01:53:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=W9OLW3+v;
- spf=pass (domain: gmail.com, ip: 209.85.216.49, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2d3d0b06a2dso4240958a91.0
-        for <yocto@lists.yoctoproject.org>; Mon, 26 Aug 2024 23:36:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724740616; x=1725345416; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+QPc35Y1xZo/ld/lFr+CVEd4y8EbkXXG357bR0y9ANg=;
-        b=W9OLW3+voTZCo9A7wOI5wvf/7xYG9U9vUCbmZ7EgvlgCY6rLYsQJ+8D7mTD92yd/dj
-         dV4YEgc5fyuP3cKDuCyjk9oNPqpn0qnU2pM6iLgbscKe3X5LXd2yAwCATRi2SC4ImBHG
-         H7Q6TTdCiBx0uDPebIcGdRJR+suuAURDZ56bjO+ktkZC0+t08/ms/HOAs0h2n4Ij/jig
-         ZWbeHBsWKu3GWI8OG9fO3FwHoD89MWbMOLrW6+siGF4VT6YD8eoVQoUzX4Bb/wsVAKwE
-         XmHPKBKp8KUKSmatbm/0pqxEOvqZUIIb/2e57aqi17V7GsZ3asJONGTlxKGsxrMrcKxO
-         QIOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724740616; x=1725345416;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+QPc35Y1xZo/ld/lFr+CVEd4y8EbkXXG357bR0y9ANg=;
-        b=gLvKM1L9lVdKDHYAd9CrN28aCqFvV9LQf+89cwEf6+wFVhpn5gVWKTqY5R4I7+zqmL
-         SUK6YxuOkYvmgoCUtnUsLxV+vSbdtM8tkb8+RAO8Nlw/H8BD0Uaz0aZYYS+HNfu+uDTW
-         PlVI33I1DI4lL5a4+wskfv0scJSNEcset/3Urzad5qOxEgjO8oF0UxngcDrmyxD2lSZ/
-         fpp3NfrdNt6cGwETnUrR8ryfvgWpk39NG2f63tnItTf83A4jX2hfXotk/q/4BPXgesMP
-         nJ/yXHBjejblu6/k1VmL3QBXC6sp3RroYmcOIGKUYmWCPsqEGeHCHAaeSVKnJaoEEOEi
-         9Kbw==
-X-Gm-Message-State: AOJu0YzEKDoRjtfoHLa311zlKWOVR0UsHmdCNdeLsWXBBXcz+I8zn4W9
-	BMf7faWMDOzGb7HidMS3IZ4fFTIQvQUDCO1BkKmwGBv5N3VCoHuKzn4F3kn9JY4c7i24o3qbEMB
-	NdS916ZBLmOCQ7AwlX84ttVBdNJOVuqZi
-X-Google-Smtp-Source: AGHT+IF2RpwGS2AHV82cYvKCy6wquEQp3QodlL3kUexlrtfRjMODB7CPTB2gDPXNAExs+R69Lx6Ln9nrSLRSv56HKL0=
-X-Received: by 2002:a17:90a:d14f:b0:2d3:d7f4:8ace with SMTP id
- 98e67ed59e1d1-2d646b946a7mr14829389a91.8.1724740616280; Mon, 26 Aug 2024
- 23:36:56 -0700 (PDT)
+ dkim=none (message not signed); spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=8969404eb5=divya.chellam@windriver.com)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R6COHn029820
+	for <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 01:53:03 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.wrs.com [147.11.82.252])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 417at32njq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 01:53:02 -0700 (PDT)
+Received: from blr-linux-engg1.wrs.com (147.11.136.210) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 27 Aug 2024 01:53:00 -0700
+From: "dchellam" <Divya.Chellam@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [PATCH] tpm2-tools: fix CVE-2024-29039
+Date: Tue, 27 Aug 2024 08:52:39 +0000
+Message-ID: <20240827085239.644001-1-divya.chellam@windriver.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 26 Aug 2024 23:36:45 -0700
-Message-ID: <CAK5yBb9XpJtddY+n9N5WU4UVKRH499Y29zFB0ZgqDiDXdE5Swg@mail.gmail.com>
-Subject: Enhancements/Bugs closed WW34!
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c363ba0620a477d1"
+X-Originating-IP: [147.11.136.210]
+X-ClientProxiedBy: ala-exchng01.corp.ad.wrs.com (147.11.82.252) To
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252)
+X-Authority-Analysis: v=2.4 cv=F4YFdbhN c=1 sm=1 tr=0 ts=66cd93ee cx=c_pps a=/ZJR302f846pc/tyiSlYyQ==:117 a=/ZJR302f846pc/tyiSlYyQ==:17 a=HCiNrPZc1L8A:10 a=yoJbH4e0A30A:10 a=t7CeM3EgAAAA:8 a=xNf9USuDAAAA:8 a=NEAV23lmAAAA:8 a=bUQKSiCPAAAA:8
+ a=qHUOglpnbeFhvRd7ip0A:9 a=FdTzh2GWekK77mhwV6Dw:22 a=SEwjQc04WA-l_NiBhQ7s:22 a=-fHZXUhsFbuwFN3fwQAr:22
+X-Proofpoint-GUID: _zife1YzCgj-z5ctdQwqDa1zYRzoWyYg
+X-Proofpoint-ORIG-GUID: _zife1YzCgj-z5ctdQwqDa1zYRzoWyYg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-27_05,2024-08-26_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ bulkscore=0 suspectscore=0 lowpriorityscore=0 mlxlogscore=999
+ priorityscore=1501 impostorscore=0 spamscore=0 malwarescore=0
+ clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.21.0-2407110000 definitions=main-2408270065
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 06:37:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63745
+ <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 09:31:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63746
 
---000000000000c363ba0620a477d1
-Content-Type: text/plain; charset="UTF-8"
+From: Divya Chellam <divya.chellam@windriver.com>
 
-All,
+tpm2 is the source repository for the Trusted Platform Module (TPM2.0)
+tools. This vulnerability allows attackers to manipulate tpm2_checkquote
+outputs by altering the TPML_PCR_SELECTION in the PCR input file.
+As a result, digest values are incorrectly mapped to PCR slots and banks,
+providing a misleading picture of the TPM state. This issue has been
+patched in version 5.7.
 
-The below were the owners of enhancements or bugs closed during the last
-week!
-Who Count
-richard.purdie@linuxfoundation.org 1
-randy.macleod@windriver.com 1
-Grand Total 2
+Reference:
+https://security-tracker.debian.org/tracker/CVE-2024-29039
 
-Thanks,
+Upstream-patch:
+https://github.com/tpm2-software/tpm2-tools/commit/98599df9392a346216c5a059b8d35271286100bb
 
+Signed-off-by: Divya Chellam <divya.chellam@windriver.com>
+---
+ .../tpm2-tools/CVE-2024-29039.patch           | 92 +++++++++++++++++++
+ .../recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb |  4 +-
+ 2 files changed, 95 insertions(+), 1 deletion(-)
+ create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
 
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
+new file mode 100644
+index 0000000..e3dc5c9
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
+@@ -0,0 +1,92 @@
++From 98599df9392a346216c5a059b8d35271286100bb Mon Sep 17 00:00:00 2001
++From: Juergen Repp <juergen_repp@web.de>
++Date: Tue, 5 Mar 2024 22:11:38 +0100
++Subject: [PATCH] tpm2_checkquote: Add comparison of pcr selection. 
++
++The pcr selection which is passed with the --pcr parameter it not 
++compared with the attest. So it's possible to fake a valid 
++attestation.
++
++Fixes: CVE-2024-29039
++
++Signed-off-by: Juergen Repp <juergen_repp@web.de>
++Signed-off-by: Andreas Fuchs <andreas.fuchs@infineon.com>
++
++CVE: CVE-2024-29039
++
++Upstream-Status: Backport [https://github.com/tpm2-software/tpm2-tools/commit/98599df9392a346216c5a059b8d35271286100bb]
++
++Signed-off-by: Divya Chellam <divya.chellam@windriver.com>
++---
++ tools/misc/tpm2_checkquote.c | 41 +++++++++++++++++++++++++++++++++++-
++ 1 file changed, 40 insertions(+), 1 deletion(-)
++
++diff --git a/tools/misc/tpm2_checkquote.c b/tools/misc/tpm2_checkquote.c
++index 9225b25..d682f48 100644
++--- a/tools/misc/tpm2_checkquote.c
+++++ b/tools/misc/tpm2_checkquote.c
++@@ -48,6 +48,37 @@ static tpm2_verifysig_ctx ctx = {
++         .pcr_hash = TPM2B_TYPE_INIT(TPM2B_DIGEST, buffer),
++ };
++ 
+++static bool compare_pcr_selection(TPML_PCR_SELECTION *attest_sel, TPML_PCR_SELECTION *pcr_sel) {
+++    if (attest_sel->count != pcr_sel->count) {
+++        LOG_ERR("Selection sizes do not match.");
+++        return false;
+++    }
+++    for (uint32_t i = 0; i < attest_sel->count; i++) {
+++        for (uint32_t j = 0; j < pcr_sel->count; j++) {
+++            if (attest_sel->pcrSelections[i].hash ==
+++                pcr_sel->pcrSelections[j].hash) {
+++                if (attest_sel->pcrSelections[i].sizeofSelect !=
+++                        pcr_sel->pcrSelections[j].sizeofSelect) {
+++                    LOG_ERR("Bitmask size does not match");
+++                    return false;
+++                }
+++                if (memcmp(&attest_sel->pcrSelections[i].pcrSelect[0],
+++                           &pcr_sel->pcrSelections[j].pcrSelect[0],
+++                           attest_sel->pcrSelections[i].sizeofSelect) != 0) {
+++                    LOG_ERR("Selection bitmasks do not match");
+++                    return false;
+++                }
+++                break;
+++            }
+++            if (j == pcr_sel->count - 1) {
+++                LOG_ERR("Hash selections to not match.");
+++                return false;
+++            }
+++        }
+++    }
+++    return true;
+++}
+++
++ static bool verify_signature() {
++ 
++     bool result = false;
++@@ -212,7 +243,7 @@ static tool_rc init(void) {
++     }
++ 
++     TPM2B_ATTEST *msg = NULL;
++-    TPML_PCR_SELECTION pcr_select;
+++    TPML_PCR_SELECTION pcr_select = { 0 };
++     tpm2_pcrs * pcrs;
++     tool_rc return_value = tool_rc_general_error;
++ 
++@@ -279,6 +310,14 @@ static tool_rc init(void) {
++         goto err;
++     }
++ 
+++    if (ctx.flags.pcr) {
+++        if (!compare_pcr_selection(&ctx.attest.attested.quote.pcrSelect,
+++                                   &pcr_select)) {
+++            LOG_ERR("PCR selection does not match PCR slection from attest!");
+++            goto err;
+++        }
+++    }
+++
++     // Figure out the digest for this message
++     bool res = tpm2_openssl_hash_compute_data(ctx.halg, msg->attestationData,
++             msg->size, &ctx.msg_hash);
++-- 
++2.40.0
++
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
+index c20af7e..e4966d7 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
+@@ -6,7 +6,9 @@ SECTION = "tpm"
+ 
+ DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
+ 
+-SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
++SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz \
++           file://CVE-2024-29039.patch \
++          "
+ 
+ SRC_URI[sha256sum] = "c0b402f6a7b3456e8eb2445211e2d41c46c7e769e05fe4d8909ff64119f7a630"
+ 
+-- 
+2.40.0
 
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---000000000000c363ba0620a477d1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>The below were the owners of enhancements or bugs closed during =
-the last week!<br></span><div dir=3D"ltr" class=3D"gmail_signature" data-sm=
-artmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><table cellsp=
-acing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layou=
-t:fixed;font-size:11pt;font-family:Calibri;width:0px;border-collapse:collap=
-se;border:none"><colgroup><col width=3D"249"><col width=3D"42"></colgroup><=
-tbody><tr style=3D"height:20px"><td style=3D"border:1px solid rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(21=
-9,229,241);font-weight:bold">Who</td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(2=
-19,229,241);font-weight:bold">Count</td></tr><tr style=3D"height:20px"><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-"><a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.purdie@linu=
-xfoundation.org</a></td><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr>=
-<tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding=
-:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.c=
-om">randy.macleod@windriver.com</a></td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:ri=
-ght">1</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229=
-,241);font-weight:bold">Grand Total</td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;background-co=
-lor:rgb(219,229,241);font-weight:bold;text-align:right">2</td></tr></tbody>=
-</table><p class=3D"MsoNormal" style=3D"background-image:initial;background=
--position:initial;background-repeat:initial"><span style=3D"font-size:12pt;=
-font-family:Arial,sans-serif">Thanks,<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
-
---000000000000c363ba0620a477d1--
 
