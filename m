@@ -1,565 +1,361 @@
-Return-Path: <soumya.sambu@windriver.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CD9EC5472F
-	for <webhook@archiver.kernel.org>; Tue, 27 Aug 2024 14:25:03 +0000 (UTC)
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web11.79061.1724768696831296926
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EE4CC54734
+	for <webhook@archiver.kernel.org>; Tue, 27 Aug 2024 14:26:43 +0000 (UTC)
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (EUR02-VI1-obe.outbound.protection.outlook.com [40.107.241.79])
+ by mx.groups.io with SMTP id smtpd.web10.79603.1724768360179231643
  for <yocto@lists.yoctoproject.org>;
- Tue, 27 Aug 2024 07:24:56 -0700
+ Tue, 27 Aug 2024 07:19:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=89691699bf=soumya.sambu@windriver.com)
-Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47RBKskC020014
-	for <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 07:24:56 -0700
-Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2169.outbound.protection.outlook.com [104.47.59.169])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 417f1kav03-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 07:24:56 -0700 (PDT)
+ dkim=pass header.i=@movyon.com header.s=selector2 header.b=bX/ZjiK+;
+ spf=pass (domain: movyon.com, ip: 40.107.241.79, mailfrom: simone.bongini@movyon.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PVl9Qd0Rxqyy/X40imh0hdcEg8EwCfzay0tFlZR2J9W7BKZ2cnoZUCTW2YBG5teuAtBNDlSB5vOo+md9FW0YpPsyS900Sf4aHZ6IFSmNvrFzB59hd/JSs4jncqdoYN1aWVcHL6+y+6TegXC5OSSja6UvNu97ULFND2FYBbQqeOkPRjfZ5ZhdRRQfgGZgPWMqAXXsBeJgASdA3isAsSMUMG2JVKTq7ouvujEjcGlnXFiNHw65WY2eCPy7V8LL8jphbq/mMF9B2phUYLmjAiuL9oCnpOk7DP+xzF6rl/H+Q3R7+U6X2D+cFVWJKorbChZba3hsv55hZ+N+HAUQ7RzRPQ==
+ b=oU+5uKt0QEfRjcDc6rXBXjgLsIKZ/XcjjiXbGzNl5WE1r2jLaFGfZAQ0MC4rWvUmlQDdybBGN0g50JalgSkCM+644wQBi84TT8p/W94t6DCuJWE5JVBXGrchT33RRwdq1FCVl09Ww9fLnliF4I4THCShFASUNgSd1FqLs+fsFcrkqnOW1etelQo+boo8QANB6ZoTmrYBbxHwK0pXpOYGcd5/eEHV5d0Qsa7EGPzoXlV1xrXphYyK8Fmpsodft67hbWj3sVjd52yMA0m+rC5fRRh6Xqw4U/Bm+qKZR2FHh1l5mCWhtiIIVLmbGY8WqjKxsPey8YzM9dO6EhjIb71nnA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1uSrUBkwPLsjV1z3pARgLsQr1Lz1QoZfttnV2VWmR0E=;
- b=ewM7oZDd7E3d7KFlkLs1YsMZV1d2l2GwzLJV6S6KcpLfG0GmH5G3ND54PDTEeiUCE3J1/Vzm4R12x/ko1G6qjuE2LP1k0MRHdG/3Hxuk8A96h38iNuheAKlbxD+SXgm8OGDI678Hw1wS3Jcwhdak07w2LtlK7duuFFU/WNazaljfIzLoR4Aqg3YyFg7wV1MVvGFMip0cjCMzXpd9nakeNTvDdUOe88tFVhPqrWhhfnmOaDpV6ySjQ63jbceS9cNdeblR3HRGUdnDKQdiUD99gzHPCRjXT+aAsd9fZrXExpYLltXytpMLnTrEI48XnGMNJ0fjmxJ1fj+x35zBt9esbw==
+ bh=ed/f84DrwIhI9BGgArKykXUtCc53sk43Cl04HaQ/6Bs=;
+ b=iiz9yXs+EcNyktQy8+M5YB51ODaz/g4lRS4k9/7Gx2R+eQj7QO/Ix+vTLScd7WCHL+2nAz6VFvujiMomQdWDy0P6LGINSDTWqhQnywHx3ZRUHFjzTXicfeEdhrNOL83nNJFA8E9v4dOk4NvP/LW/KQChoYwE37TYu175d0Ehg5a5KgtgtgishgU8XP7lUc2YlCW1qEOVVDf6Dwq/H0j3Jp7x37kULGUy0ZZXEoegGCE34q3Jm89mkjC2E7dsSDgNdcqcZB10k97AAm28qu7bc12STt1KZLbe08A5GvUmV39bsqVN757Zwj0X2PCUTTqCMIDS37G3Q52ZAeSPOiM9Fg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from BYAPR11MB3397.namprd11.prod.outlook.com (2603:10b6:a03:1b::29)
- by MW4PR11MB6887.namprd11.prod.outlook.com (2603:10b6:303:225::16) with
+ smtp.mailfrom=movyon.com; dmarc=pass action=none header.from=movyon.com;
+ dkim=pass header.d=movyon.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=movyon.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ed/f84DrwIhI9BGgArKykXUtCc53sk43Cl04HaQ/6Bs=;
+ b=bX/ZjiK+hog3HJ9EPguaKIogo18n6UbR9Xp4Cvf8MUenDmDd5ccPDdXBEbKVbXMk189FNMaCo+0cLGJ1jWoVxmfRU2h9dcVEshzW+hu8kIfLPsR3YukbEjTH2/CNddVkrjM1vh2NCLM3IiYO5gl+ELc6PfCDMSwYPlJv/haIaN8KsUBVbingAqtKsRTpUOsD9sIGV7e0pHnGE6hx8lkOle7Tdyc9JiGIAlY5RdZlDcrMzkriTJc26xj79Xa3sUwZNNsJQWc6nOzofnSCEiDtH+2seZ8jqeYgDucmRRZCDA5ztAVZZpa6QyUkuEi2cVIlDByISw9RpUJ1QcJrr5xuEQ==
+Received: from DU2PR08MB7253.eurprd08.prod.outlook.com (2603:10a6:10:2d0::24)
+ by DB9PR08MB8227.eurprd08.prod.outlook.com (2603:10a6:10:39f::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Tue, 27 Aug
- 2024 14:24:51 +0000
-Received: from BYAPR11MB3397.namprd11.prod.outlook.com
- ([fe80::14d5:b763:637b:cb68]) by BYAPR11MB3397.namprd11.prod.outlook.com
- ([fe80::14d5:b763:637b:cb68%3]) with mapi id 15.20.7897.021; Tue, 27 Aug 2024
- 14:24:50 +0000
-From: "Sambu, Soumya" <Soumya.Sambu@windriver.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-        "Chellam,
- Divya" <Divya.Chellam@windriver.com>
-Subject: Re: [yocto] [PATCH] tpm2-tools: fix CVE-2024-29039
-Thread-Topic: [yocto] [PATCH] tpm2-tools: fix CVE-2024-29039
-Thread-Index: AQHa+GPfuN7VoiESzEOdT50sn3F907I7KJ2n
-Date: Tue, 27 Aug 2024 14:24:50 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.14; Tue, 27 Aug
+ 2024 14:19:15 +0000
+Received: from DU2PR08MB7253.eurprd08.prod.outlook.com
+ ([fe80::35b2:e4e1:400c:bba8]) by DU2PR08MB7253.eurprd08.prod.outlook.com
+ ([fe80::35b2:e4e1:400c:bba8%6]) with mapi id 15.20.7918.012; Tue, 27 Aug 2024
+ 14:19:15 +0000
+From: "Bongini, Simone" <simone.bongini@movyon.com>
+To: Marta Rybczynska <rybczynska@gmail.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] - Poky Kirkstone - [cve-update-db-native] - CERTIFICATE_VERIFY_FAILED
+Thread-Topic: [yocto] - Poky Kirkstone - [cve-update-db-native] -
+ CERTIFICATE_VERIFY_FAILED
+Thread-Index: 
+ AQHa+GVvBZr34cJKe0WFG6tfykEEhbI63DdYgAAATCiAAADBGYAAAFErgABHJICAAAHeqw==
+Date: Tue, 27 Aug 2024 14:19:15 +0000
 Message-ID: 
- <BYAPR11MB3397493860E3A016B023093D81942@BYAPR11MB3397.namprd11.prod.outlook.com>
-References: <20240827085239.644001-1-divya.chellam@windriver.com>
-In-Reply-To: <20240827085239.644001-1-divya.chellam@windriver.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-Mentions: Divya.Chellam@windriver.com
+ <DU2PR08MB7253F9C0D0DC81735FA82B4EEE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+References: 
+ <DU2PR08MB7253B2F4BDB924D5C31CE7DDEE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB72537A2152910D095FD52195EE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB7253B0D6BAEA8BD9CC15E550EE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB7253B4E88977BEDB59817B62EE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB72536BD03476E2EA40423E5AEE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <CAApg2=Q9tzQu=K5n4r-4MeKpXGd8GcjrG3FK537m_HrfBi599Q@mail.gmail.com>
+In-Reply-To: 
+ <CAApg2=Q9tzQu=K5n4r-4MeKpXGd8GcjrG3FK537m_HrfBi599Q@mail.gmail.com>
+Accept-Language: it-IT, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=movyon.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB3397:EE_|MW4PR11MB6887:EE_
-x-ms-office365-filtering-correlation-id: ca65ad85-ecc1-4537-7659-08dcc6a40320
+x-ms-traffictypediagnostic: DU2PR08MB7253:EE_|DB9PR08MB8227:EE_
+x-ms-office365-filtering-correlation-id: 85294543-3c12-418b-58fd-08dcc6a33b12
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|376014|38070700018;
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|38070700018;
 x-microsoft-antispam-message-info: 
- =?us-ascii?Q?p1OuNiPr52TKvwV8Eq3Uw6PuBJPSXe3+u04euvOTQQrXsfc72/rPFgM40kDk?=
- =?us-ascii?Q?gUHiJL1O8r4fvnWTH7ZDBgvUr52BKOq5RzY441KnEI8iRC5pf6pur6CavBEq?=
- =?us-ascii?Q?iWh0psfwGk/3mt/x1U+0x/PAYvYY9oEFyA/2OZZ1f/TL6YI081wDgA4PcOky?=
- =?us-ascii?Q?YFuCslK6vJvNxFzx5iETY7PtzIHz3hdithh5QzESJBbZXmR0oN71p6uMYK79?=
- =?us-ascii?Q?XhBt9bwgyxicr+efiHSj5kBwx0AAjJ7d25cH8Y9foX12GlyuDh77H939qZNN?=
- =?us-ascii?Q?JVJjxlchYYA+OXJdNx+XbzcvJd9jwhn6Llm+lHgneYQIwuLv1QVJoSR6ihyK?=
- =?us-ascii?Q?73x5Y+Exwvqa9RG6MYI9ZRAAhVy/gx64utq0DcL7ItsM5yqvrduE+9N4DYv+?=
- =?us-ascii?Q?d1jhdbg0imkGBPWobzC8vzc2M5vLboZrsTcnrY/iig+xRBM9RrLKDXgjyJeC?=
- =?us-ascii?Q?qDjK42k21te+nQpxGMDE8AppU8L+6FTHArKcW2MPdEbkim/Qq4F9x+iJ8mEp?=
- =?us-ascii?Q?Sz8/bZGvXVkr+WW4VNd+EliwfaYTa7yJKgdrwiCKHuJaM5jl3eslpRPAN0TW?=
- =?us-ascii?Q?ZjJM+5udHNox5OqwjfIHVt6toKuSybn5w/lsPTa2qXvkpvvkLUhlBJdQVHo8?=
- =?us-ascii?Q?iFL8BBu6zTP4RdYNCMtg5nGTHtVfHgb1CecC9fttELQO/cW/kfpumMxo4cLn?=
- =?us-ascii?Q?+/WXr3aTqZ+k+5Tn/ewzKORzW5vFeaPm052LfEc0BqHylmlUAEjhx1oI5Oa3?=
- =?us-ascii?Q?Ub1lmokVVXO6kEKXSJH+uXeE0b+kRM5rjZ++UYTLVDCR953PlmzZRGmQM7Hb?=
- =?us-ascii?Q?GW2JD+PE9WnBpUXxPWq3pbjBcZHUoH06igx2m9NdXBe8KNFgtzuC+ZL44K24?=
- =?us-ascii?Q?F1g91i6IOaDNVKE1zp9x8xjui0+uSP9D+fnmaZEZmIYWUzmhK4znpsVnR+Oh?=
- =?us-ascii?Q?H6iReDE82V9q2JlsoT9BIZO6lPdfK4C2JZ1mA+pGGy2iNIZB5iq1jpudePfa?=
- =?us-ascii?Q?pxZTLOiL0/8OrxY81A7MgdZLii+v6a037Cyjo6IhhLfPqg0JVHeKNhExQmti?=
- =?us-ascii?Q?Yp8omwJLmTyb9JNJ5h+vbWn0MRGepOpXdPUqCWczeShG1b8OJ6dn3yeXBg8w?=
- =?us-ascii?Q?h+5t5RX8YSkoOn69zh4zGyGhKZKIZqCE+2Vzf3JAjXwEYnitQeD0r+/U60r5?=
- =?us-ascii?Q?kQLG8uN6IScQIppyhK2dvuMKxn0bvkagNc3lLWEsdSDT3LUPmyE6JRTNCJAe?=
- =?us-ascii?Q?V3yyiKwieNDGvnxEEtw2Wowf5JL/QEnB4kwWvXhndpQSK39nRfdqLalplzl1?=
- =?us-ascii?Q?SL+949rx69rLR8jzB31E5f2Slx66IVL6RT3m5DMcu+E36Itwf4jj6YlD0Nbm?=
- =?us-ascii?Q?bEmHkS4=3D?=
+ =?utf-8?B?WE9ERktiWjZkc2dpWWZDU3V0RUJGemFUZmxzbW5GRktBMVJvTThoalIzYllU?=
+ =?utf-8?B?RlFEUm1Jb0cwTlZWUzIxVFJVNXZjdlJZMXVhemsvelE5ajc4bU5mQlRKWVJH?=
+ =?utf-8?B?ajVFak1wTEl5RktnOWVPV0pieE9ia0lvRmVpMTNLMW5VYWJMbCszY09Zbzda?=
+ =?utf-8?B?NWVZTVlOUm1iVkZsemFEbi92c2RRREVIcTFvVVRsRUIrVjNCSXlqNGdLNEE4?=
+ =?utf-8?B?eEhGdjY3ZkpNOWdXOHNudXNmdndFdEZxTUdrd2xJelhHdjljSVh2bU9SUEZE?=
+ =?utf-8?B?UERFa0FHYTB5Ry8vOVBob2xlWWZoRTJtMDZCeUFvSklBVWFTTFdQZEJzU2hy?=
+ =?utf-8?B?YnU4N21NTW9iZUVPazhhQ0tlY0VNaGxUcjNMUXo3bWpmWFlvNFN0UGRQS01p?=
+ =?utf-8?B?VGV3cXpTbVZyVkpsUE5pZ081VzNQcFRRYkF1MTFwSkxSUlc2aWZjeE96UUhI?=
+ =?utf-8?B?amI5ZXEyUVhUajVtWVloa3FLdnVzdDA4dWJqbnZ3TDZTa1VmOU43TlE5MlV1?=
+ =?utf-8?B?dUVLZHo1aXR5WXlxOVRtZ3dPRTVIRFBWZGI1NDB5Qy9kNHc5ZE95UUdtMXRW?=
+ =?utf-8?B?UjU2c0NGdEJ4VGEycit0U1dQT1JoclZnWmxSU0xwY053dzZWVFMxUTgxN1Z1?=
+ =?utf-8?B?UWVMRFY0TnlFOE02ckNjc3ZJY3FJNzM0SlVNM1M3Nlp3T3l3YWRkS0lXTEl1?=
+ =?utf-8?B?ejlOYlBUOThCMlJodXN0S0taYW4zVnhuYWR5SE1za1c1UEs3YTBpS0V4M2Vi?=
+ =?utf-8?B?LzhxczhTb3pIOHdFVWV2WUd4bVAyVy9Kc3pKTDFha1IwekE0NUdValVuOG9l?=
+ =?utf-8?B?b1hFSGk2TklsU0lrdWp2V2tzZFBRVTZjNFhuQ0IyYzJPTHNlc21VbldSRnlM?=
+ =?utf-8?B?S3dtSzUybnJCT0JvVUVNTEhGNzZFb2pISGtlNVFWcDBEd1NsT2tUVnVObFJD?=
+ =?utf-8?B?THJyS0pjdWFCNFA2cHFGRElGTVI2TDJ2akVJNEMvdkNDYTBRQlZvQ2FmM2VL?=
+ =?utf-8?B?MnVKaGh2NU96b2RMYzhsOGFrTXFCemR3S0N4N1NOUGxyd3R6aFFkRGYyMWly?=
+ =?utf-8?B?TlAxUjFvWlM5aDAyd2hJYURrQUhQZVNMZkphSmFYVnV4RzFXTlh1WnJCZzcw?=
+ =?utf-8?B?YVZQOUtOQXVXa284UWhYQUVtb20yZitqVGRuNy9BZHludzF5V0N5VzVobXlM?=
+ =?utf-8?B?cG12OUVRbk5sM2tFY1ZtTjFIdjJuaHNZZnppbThFRlU4L05aY3F5WTF5alg5?=
+ =?utf-8?B?RDdWbGZWZEozR2pOek10VzJCYXRPbG40aUxYalFWSUN2dGxPU0R6ZzZua0hz?=
+ =?utf-8?B?ZFdaQ2pjYm9ZWFNITWZRYjJxM2VmN2JCQ1NpQy9ab0VQeFdtZXJ3TEMwdzdB?=
+ =?utf-8?B?QVBqQy94akcyVlcrU2xDQ0wzd3dwWE9MTTZuNWUzNVNWNnU4elRIU2ZhNXVM?=
+ =?utf-8?B?NXo1NE85YkFwWXN5c0pxY0Fjd1lHbXdLZndiRjNvMGRMbGZEMEo3TlFTc082?=
+ =?utf-8?B?Y09sa3dnc2l3Ukg2eDlUczN0ckpBUUEyTEp5NWFkOExEV3VWaEptTEJqc0x2?=
+ =?utf-8?B?cll4YzNrQjAxYVNoYW9VWlRGanVNVkhjZXM2MS9DZjdUZCsrbHkzY29hME1R?=
+ =?utf-8?B?c0kxS3RLejc4TUpxak9tVTFvK2N1RVYwTE1TYnNZTHQrdTI3cFJPcXl0TUsy?=
+ =?utf-8?B?ZkpxNDVDZTBBRGdYRlcveE9iQi9QVWhsZUdoY0t2SXdOQ01NRnE2dTEzS0c2?=
+ =?utf-8?B?eTRWdmExaGZ5TE5ydFZVcW1renM0SlIrcDJQMTlDQWtraHFYcmt6SWVSTTQz?=
+ =?utf-8?B?Z0g2RkhXbnhtdXZCS2hzQT09?=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3397.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR08MB7253.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?HoCJVSoqEYP0zlQA8mLUcwp0ifdzwwxEGpMp4BeN8FLT8IesiR50RGvonVX2?=
- =?us-ascii?Q?m5ngip/15Nznzzhu8r/i6LhHlJKfVQLdwSgai2gXl3X3mDareXhmj9RDc0C5?=
- =?us-ascii?Q?N2BK56zXiXsphFpYqT9TST/pwBZJkTyVqX48UQXErJEiBzfqgIl0nMrxPHmM?=
- =?us-ascii?Q?k3yEnHtf1Xas9cyz3euRtu35Y9C5IbyHu/1P3dWQZ1VS/i8f6RHuYCanoyif?=
- =?us-ascii?Q?2l9EKGHYKJWcQfnFDByt+vFGWH8Ww99dBQKQeJqFUl3rFm5/4vOrs5kV17Tp?=
- =?us-ascii?Q?asQpFYbI/DyNHLR/XV6A7Zvl45LAJ7E0FRO3jXrBN2wKZLiI9drnGEqLXAFX?=
- =?us-ascii?Q?9jtCVIOCARp6ybuTQiPPghzWPPZGzT0/pKJJ01p0H1q5bsLdUhCPVyy1uVmy?=
- =?us-ascii?Q?jOvbRJ+NezFMTLlYeNQJmagHPJwsnlt/ybYq1tibP6fi+ae8A2CHWWBQMubG?=
- =?us-ascii?Q?dhpBG8soLZADv6vzVJKUS0drpI9w58jxxNjzWEXMtjHgv01Pz8K0sUU3A7In?=
- =?us-ascii?Q?QukY+KzieGE/1kd6cN/h5LQdOmt/I6JOw3Fz5Tgxd/djQRkaFU+7c1/Qhd8a?=
- =?us-ascii?Q?6RBKib2HFTDV79UfQfF6H3mo17CnUM1G7m8Z3qrUjvti1Hr0JiNhZsummVPb?=
- =?us-ascii?Q?fHInwcsI2geaAacs+Hvjp87puFddsiTbl/uklsNZHc/ziZWej8GmG6U+yQCi?=
- =?us-ascii?Q?AntuL5vQzbXD1dBd5rXx/dJ45bJzjh/sfrfnBoJkbKfXTN4SzplbprCbUrn9?=
- =?us-ascii?Q?LKl+wYOXk00C4vj3mZe8+4WE4VGeu5XAYLXuV/tZqoKSAuJK2WX751FF0jNt?=
- =?us-ascii?Q?FM5O726Hw/tbgMwJAizO5SUujzku6Okwg0umFwPwYgMbz/LiJO0tvOVhFplE?=
- =?us-ascii?Q?O6ArmuuTtJRgP/Fn5h7OmTh1bT8JMfKCHkdkZvQI2AjXSSQB8yTdG6eyArZ6?=
- =?us-ascii?Q?hQm5LEphdgIpzUb3DYvLClCoWg91fWEWubMCP6XjXGiXla/3DcFAX2GXTpWh?=
- =?us-ascii?Q?dnvzbAiraUOorEe85GoeaYnUQAL0bqk967BF0WAbHTIjYHKnlctgqa9pzaL9?=
- =?us-ascii?Q?6Q9zucchyE3qeQ1u95FflnUhWEdfHZwXBq/XNK8fVfxaC00f+wMPGY45385F?=
- =?us-ascii?Q?70TsLt9D/rSqRQ2DcaJeqmnhMS+J9cn8fJnWmXplOVL67n9qMmpGP5LcRsrn?=
- =?us-ascii?Q?agJjbMEUwIAz8rVYLUs7ezrlWm9pd+B3zxoR5wVZu1FlHuYBzJY5HUIXIeXi?=
- =?us-ascii?Q?LnUFlUDaKFkDp7rxh5xtVs8ygvFjC1dJxrDlWylEtkoGggQujXYbGgmxHoWI?=
- =?us-ascii?Q?uj4PStFwLd87m35kjqMqqIUBD8rv1VaiDTYYtLjzq+sX/czlHcGn3tCw9VPX?=
- =?us-ascii?Q?Nyt8pDtd5gFfVz97VzLV0MLNpocoYJstzoLo67TmQfzKTf+Gg3z8jtI1dB1z?=
- =?us-ascii?Q?PzUZcvWq3ZTCq6SbhttmN4RblTs6/ZGJHDMyDpmKzyg4jtG4oYKVx+YDC/fP?=
- =?us-ascii?Q?sBQiE3TjJoH2DaH+bksdL/UrCB+RHUyLAenBqU+Kfah4DRvUlPHpRM3exx6I?=
- =?us-ascii?Q?RO2tqsi1tkJSYfsiA3U3Ci59rJdQUg3GVvvCIfGR?=
-Content-Type: multipart/alternative;
-	boundary="_000_BYAPR11MB3397493860E3A016B023093D81942BYAPR11MB3397namp_"
+ =?utf-8?B?Vk52VGtVVzBTdk1uNHA1Y1NWNi9LRU45T0ZabTJRaXE3MlYyaDJjYXNTQ3Fq?=
+ =?utf-8?B?emRpK1hCL041RWFnSTZZcjdXZW9mQUF5U2VnUEpqK1duMWZGaHdFL3FDc29V?=
+ =?utf-8?B?a3BiMk1vaU9ndFJwSTlXcktBd1pOV1hGOUhFOW9KMUYrRDRyZ0ZmYXpoZ0p6?=
+ =?utf-8?B?NTdmRU9pTFNrNndZTnZKN1NiODFQeVMxQ2hrRDRiMCtML0h4TDdGYW4rQWpI?=
+ =?utf-8?B?TG5BbStJSlJ0QzZNdU1NVG1CSWtNS2tVcWVYck9Ubi9RWUV6dlNpRW1HS0th?=
+ =?utf-8?B?YWhGVTNxdGVmZk96Zk51MXpqRlRQeGZGR0xqVXFMR3MyNFRCcjZ4TVdJU0I2?=
+ =?utf-8?B?TmM1SkZvSVN2K01jWDBYelI3eENZS21YZGFtNWFDbEZ6Y1gvbXhRVmVrSWxY?=
+ =?utf-8?B?Z2tTV1dveEpCYlRZRnBkbXp6K1MzM2ZLT1hDYmltYmhudmtIVVRMRTJRbXJh?=
+ =?utf-8?B?d2VoL0F2ZmN5cGM0ME1yeFdZT1FSUkkvQTlHSE9lU2xtUjcxQ08yWDRwMFVo?=
+ =?utf-8?B?TDd2dk5UOVBUODB4NkoxL25KN1lXYjFmWG9PVG13Z1ozTEVEejlLc2hsM2FH?=
+ =?utf-8?B?U0dMNTBTMXNaampoQ2VxdXQraUM2MFJYa051d3JlT0NuRGgrOWh1NUJtRHUx?=
+ =?utf-8?B?Y3hGY0ZTVUUvTE90V2ZJTVlUVXAxOTM2SzNYSHNwUmhSV0hVUC82RFRrOGxS?=
+ =?utf-8?B?aW95dWg1UXorcGJ6dlQ2UUFaQm04cVZxTlIvbnpEMlplZDNhNmxPZGVlNUYx?=
+ =?utf-8?B?dmdKZGViNWUzeFFhVjd3dUU0ZnpUZEZ1dnpwNlVZV0xqMmVkWTVUWmk1TEZB?=
+ =?utf-8?B?dmYyUjlSbXludkFrTjV5OVRKVTZXZkZ1ellGRE1aRWx3d0ZtSkxaR3Z2SFpT?=
+ =?utf-8?B?T2VpQVFKbG5hdWVTbEF3eVdyWnNxNjd2aVg1cmQ3S1N4Rlo2eUdFSEFJTTRo?=
+ =?utf-8?B?QUhkRlBLdUpub3VZbDZWY1ZHaGtkZC9HS0s4SjFJOXJHME9LWnVmYkNCWFJ0?=
+ =?utf-8?B?QU0wUW9JNS9yZG9Sb0w2dXdSYVJ1Z282Y1U4YVlEVUVsbm5LL1h3dHovcmNn?=
+ =?utf-8?B?cTI5QjhHMk9ZMmRSL3phVGJmWC9pODN4aEdhczlZR3dXNmc4N1ZrUjRLUXJU?=
+ =?utf-8?B?TEZoNHN1V3hxbURRR1M1QnU5eXBWWjdRYnRtcGhZRXdLaVRzSE0wdmVzeHkv?=
+ =?utf-8?B?UWZJMzRwSUVRQ3hhT1htckZrcFQ3VUhVdU9wSWsyYUZ3SUYxZk1uWU15N0RV?=
+ =?utf-8?B?Mi9EWXZYall4MUJQSWlwa24vVXVOWlVsMGk1UjBsWURPcU1yajBOc2NXUFhm?=
+ =?utf-8?B?b0U5RXBWRThjaG9OR25abTVLNDc4ZGs4WlpLZzN3NGJTL3h2ZVBNK2t0aFpp?=
+ =?utf-8?B?VnVHN1JHb0JnVXRBYnhWdW9Cc04wUnVhZnBSL2RtTXlyTHdHczRYdFlNdXA4?=
+ =?utf-8?B?RHVjN0V4T2dQeDkrQkI4OTdDVTZNdHY5ZXZacnFqb2dhTXdDWnFZUitHRFhw?=
+ =?utf-8?B?NmpkZjJNNjk5V1V5NnZPTGZWQ1VOcHBaSDY2SHZvTTdyQnM1NXRCNExFckVD?=
+ =?utf-8?B?RG9OK09oUXBaT3drdUFuNUZyb091VE5yQmxWVzZEdnlaUWN5WnpTTllkNllZ?=
+ =?utf-8?B?YUR2U0VVY1RuRk9namxWSXRpYlZ3RXBUWWM0VVNnOCtabFpYZUNkWmU5ODFU?=
+ =?utf-8?B?by9NbDlTV1hqQzRlT1dSZkVsdWhVSGh2VWZJY0VPQy9oSWVFTVlyNDcvSE5L?=
+ =?utf-8?B?NlVxSVY1bW5KSzM1SWcrbU9BWUg1UG9rZEJTMlp1bWU1a1VUaUVnWjRiRXZL?=
+ =?utf-8?B?L0dGd3FycFQybENaREMrcnpudkIwcFphYStmeDdCSG42Vmc3M3kwVzZQa21E?=
+ =?utf-8?B?SXRSK0VxdDA2OW8yUzBVaFBuRElPM2hqMFdMdHpabUx1cDE5V2E3VTI3UjJZ?=
+ =?utf-8?B?Z0pHb0FneTkyZTZoa0RpcnYyTkc4OG52RnR0Smx3anVUaFh2OE9VSktTREZE?=
+ =?utf-8?B?QnRSRUNZZ2k2cnhEVFJCTmFvY3pGUTFpUElydTZDZzVINDMwV1VsVStsRXRN?=
+ =?utf-8?B?WGlUWElZMzBDYnhGQmYyMU0ybzR4c0tPSm5XazdzOEMvaGl2UGpNQW1KT0ha?=
+ =?utf-8?Q?IAjsFfDAxAFUpMSrsU8Efgq+i?=
 MIME-Version: 1.0
-X-OriginatorOrg: windriver.com
+X-OriginatorOrg: movyon.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3397.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca65ad85-ecc1-4537-7659-08dcc6a40320
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2024 14:24:50.9120
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR08MB7253.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85294543-3c12-418b-58fd-08dcc6a33b12
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2024 14:19:15.2378
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-id: 891db30d-5e6a-4854-9288-6a203bf7d40c
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tu7Jm7xdKw2NyWSqxIZCyFl7cZmWj7VOemydxQ2xCv7eEq7Mw4oxiYpoWdicHxxCbLr+Kxlmt2Yzea1g5h861Pzu6yZhaGUfsHXDn71SX1M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6887
-X-Proofpoint-ORIG-GUID: x8cA2KX5vePH-5en37KE6xALDyS4QWPQ
-X-Authority-Analysis: v=2.4 cv=McQ+uI/f c=1 sm=1 tr=0 ts=66cde1b8 cx=c_pps a=gHjWyi4SN+6fNgZLRl0D7Q==:117 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=yoJbH4e0A30A:10 a=bRTqI5nwn0kA:10 a=t7CeM3EgAAAA:8 a=iGHA9ds3AAAA:8 a=xNf9USuDAAAA:8
- a=NEAV23lmAAAA:8 a=bUQKSiCPAAAA:8 a=qHUOglpnbeFhvRd7ip0A:9 a=CjuIK1q_8ugA:10 a=AeQMEsc8cJ9VLwYuTUMA:9 a=R4ngUqk2nHtcrmUr:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10 a=lqcHg5cX4UMA:10 a=T1a-OTYGVawA:10 a=ImwWUX5h3JJ3gRE9moBe:22 a=FdTzh2GWekK77mhwV6Dw:22
- a=nM-MV4yxpKKO9kiQg6Ot:22 a=SEwjQc04WA-l_NiBhQ7s:22 a=-fHZXUhsFbuwFN3fwQAr:22
-X-Proofpoint-GUID: x8cA2KX5vePH-5en37KE6xALDyS4QWPQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-27_08,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 phishscore=0 bulkscore=0 priorityscore=1501 clxscore=1011
- mlxscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.21.0-2407110000 definitions=main-2408270107
+X-MS-Exchange-CrossTenant-userprincipalname: T0BHPdNNU1yrroh1rNkzcT3/r/VJyOfcBXgliZXrCjrFq7+BD3XG+YpVZB1BbEDLzXFy2N/KgZ0kLV0NgsZmvxgIolRZGeA/mB4tViNdhFQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB8227
+Content-Language: it-IT
+Content-Type: multipart/alternative;
+	boundary="_000_DU2PR08MB7253F9C0D0DC81735FA82B4EEE942DU2PR08MB7253eurp_"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 14:25:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63750
+ <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 14:26:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63751
 
---_000_BYAPR11MB3397493860E3A016B023093D81942BYAPR11MB3397namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_DU2PR08MB7253F9C0D0DC81735FA82B4EEE942DU2PR08MB7253eurp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Kindly ignore this mail, on behalf of @Chellam, Divya<mailto:Divya.Chellam@=
-windriver.com>.
+SGVsbG8gTWFydGEsDQp0aGFua3MgZm9yIHlvdXIgcmVwbHkuDQpZZXMsIGJ1dCBJJ20gbm90IHN0
+aWxsIGhhdmluZyBhbnkgaXNzdWUgd29ya2luZyBvbiBZb2N0byBiZWhpbmQgYSBjb21wYW55IHBy
+b3h5IChJJ20gYWJsZSB0byBmZXRjaCBhbGwgdGhlIG90aGVyIHRoaW5ncykuDQpEbyB5b3Uga25v
+dyBhIHdheSB0byBieXBhc3MgdGhpcyBwcm9ibGVtPyBEb3dubG9hZGluZyB0aGUgQ1ZFIERhdGFi
+YXNlIG91dCBvZiBZb2N0bz8NCg0KVGhhbmtzIGFnYWluIGFuZCBoYXZlIGEgZ29vZCBkYXksDQpT
+aW1vbmUNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkRhOiBNYXJ0YSBSeWJj
+enluc2thIDxyeWJjenluc2thQGdtYWlsLmNvbT4NCkludmlhdG86IG1hcnRlZMOsIDI3IGFnb3N0
+byAyMDI0IDE2OjA5DQpBOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0
+cy55b2N0b3Byb2plY3Qub3JnPjsgQm9uZ2luaSwgU2ltb25lIDxzaW1vbmUuYm9uZ2luaUBtb3Z5
+b24uY29tPg0KT2dnZXR0bzogUmU6IFt5b2N0b10gLSBQb2t5IEtpcmtzdG9uZSAtIFtjdmUtdXBk
+YXRlLWRiLW5hdGl2ZV0gLSBDRVJUSUZJQ0FURV9WRVJJRllfRkFJTEVEDQoNCg0KDQpPbiBUdWUs
+IEF1ZyAyNywgMjAyNCBhdCAxOjE44oCvUE0gQm9uZ2luaSwgU2ltb25lIHZpYSBsaXN0cy55b2N0
+b3Byb2plY3Qub3JnPGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwOi8vbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZ19fOyEhUFIzX1ZuQU9hMVhHd0Y0ZTBzYyFuejNYMm50b0VEalVkQkhXMUxp
+VXJ5Tl9VcVpFY05Ed0QxT3owZmExbFQ5S0NpcThDUE5fWF90V0oyOXRaSkpnMk52LTVIenVmeXlf
+Q0Y3bW9IZFBZQmskPiA8c2ltb25lLmJvbmdpbmk9bW92eW9uLmNvbUBsaXN0cy55b2N0b3Byb2pl
+Y3Qub3JnPG1haWx0bzptb3Z5b24uY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+PiB3cm90ZToN
+CkhlbGxvIEFsbCwNCm15IGZpcnN0IHBvc3QgaGVyZS4NCg0KSSdtIHRyeWluZyB0byBjaGVjayBt
+eSB5b2N0byBidWlsZCBhZ2FpbnN0IGN2ZSBpbnRyb2R1Y2luZw0KSU5IRVJJVCArPSAiY3ZlLWNo
+ZWNrIg0KaW4gbXkgbG9jYWwuY29uZg0KDQpCdXQgSSBnb3QNCldBUk5JTkc6IGN2ZS11cGRhdGUt
+ZGItbmF0aXZlLTEuMC1yMCBkb19mZXRjaDogRmFpbGVkIHRvIGZldGNoIENWRSBkYXRhICg8dXJs
+b3BlbiBlcnJvciBbU1NMOiBDRVJUSUZJQ0FURV9WRVJJRllfRkFJTEVEXSBjZXJ0aWZpY2F0ZSB2
+ZXJpZnkgZmFpbGVkOiB1bmFibGUgdG8gZ2V0IGxvY2FsIGlzc3VlciBjZXJ0aWZpY2F0ZSAoX3Nz
+bC5jOjExNDUpPikNCg0KQW55b25lIGVuY291bnRlcmVkIHRoaXMgcHJvYmxlbSB5ZXQ/DQoNCg0K
+SGVsbG8gU2ltb25lLA0KQXJlIHlvdSBwYXNzaW5nIGJ5IGEga2luZCBvZiBhIGNvbXBhbnkgcHJv
+eHk/IFRoZSBjZXJ0aWZpY2F0ZSB2YWxpZGF0ZXMganVzdCBmaW5lIGZyb20gdGhpcyBlbmQuDQoN
+CktpbmQgcmVnYXJkcywNCk1hcnRhDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+UXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmljYSAoaW5jbHVzaSBnbGkgYWxsZWdh
+dGkpIMOoIHJpc2VydmF0byBlZCDDqCByaXZvbHRvIGVzY2x1c2l2YW1lbnRlIGFsIGRlc3RpbmF0
+YXJpby4gTmUgw6gsIHBlcnRhbnRvLCB2aWV0YXRhIGxhIGNvcGlhLCBsYSBzdGFtcGEsIGxhIGRp
+dnVsZ2F6aW9uZSBvIGwndXRpbGl6em8gZGEgcGFydGUgZGkgcXVhbHNpYXNpIGFsdHJvIHNvZ2dl
+dHRvIG5vbiBhdXRvcml6emF0by4gUXVhbG9yYSBhYmJpYXRlIHJpY2V2dXRvIHF1ZXN0byBtZXNz
+YWdnaW8gcGVyIGVycm9yZSBzaWV0ZSBpbnZpdGF0aSBhIHByb3Z2ZWRlcmUgYWxsYSBzdWEgZGlz
+dHJ1emlvbmUgKGluY2x1c2kgaSBzdW9pIGFsbGVnYXRpKSBlIGEgZGFybmUgY29tdW5pY2F6aW9u
+ZSBhbCBtaXR0ZW50ZSBhIG1lenpvIHBvc3RhIGVsZXR0cm9uaWNhLiBHcmF6aWUuDQoNClRoaXMg
+ZS1tYWlsIChpbmNsdWRpbmcgYW55IGF0dGFjaG1lbnRzKSBpcyBjb25maWRlbnRpYWwgYW5kIG1h
+eSBjb250YWluIHByaXZpbGVnZWQgaW5mb3JtYXRpb24gaW50ZW5kZWQgZm9yIHRoZSBhZGRyZXNz
+ZWUocykgb25seS4gQ29weWluZywgcHJpbnRpbmcsIG1ha2luZyB1c2Ugb3IgZGlzY2xvc3VyZSBi
+eSBhbnlib2R5IGVsc2UgaXMgcHJvaGliaXRlZC4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVk
+IHJlY2lwaWVudCwgcGxlYXNlIGRlbGV0ZSB0aGlzIG1lc3NhZ2UgYW5kIGFueSBhdHRhY2htZW50
+cyBhbmQgbm90aWZ5IHRoZSBzZW5kZXIgYnkgcmV0dXJuIGUtbWFpbC4gVGhhbmsgeW91Lg0KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClF1ZXN0byBtZXNzYWdnaW8gZGkgcG9zdGEg
+ZWxldHRyb25pY2EgKGluY2x1c2kgZ2xpIGFsbGVnYXRpKSDDqCByaXNlcnZhdG8gZWQgw6ggcml2
+b2x0byBlc2NsdXNpdmFtZW50ZSBhbCBkZXN0aW5hdGFyaW8uIE5lIMOoLCBwZXJ0YW50bywgdmll
+dGF0YSBsYSBjb3BpYSwgbGEgc3RhbXBhLCBsYSBkaXZ1bGdhemlvbmUgbyBsJ3V0aWxpenpvIGRh
+IHBhcnRlIGRpIHF1YWxzaWFzaSBhbHRybyBzb2dnZXR0byBub24gYXV0b3JpenphdG8uIFF1YWxv
+cmEgYWJiaWF0ZSByaWNldnV0byBxdWVzdG8gbWVzc2FnZ2lvIHBlciBlcnJvcmUgc2lldGUgaW52
+aXRhdGkgYSBwcm92dmVkZXJlIGFsbGEgc3VhIGRpc3RydXppb25lIChpbmNsdXNpIGkgc3VvaSBh
+bGxlZ2F0aSkgZSBhIGRhcm5lIGNvbXVuaWNhemlvbmUgYWwgbWl0dGVudGUgYSBtZXp6byBwb3N0
+YSBlbGV0dHJvbmljYS4gR3JhemllLg0KDQpUaGlzIGUtbWFpbCAoaW5jbHVkaW5nIGFueSBhdHRh
+Y2htZW50cykgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgY29udGFpbiBwcml2aWxlZ2VkIGluZm9y
+bWF0aW9uIGludGVuZGVkIGZvciB0aGUgYWRkcmVzc2VlKHMpIG9ubHkuIENvcHlpbmcsIHByaW50
+aW5nLCBtYWtpbmcgdXNlIG9yIGRpc2Nsb3N1cmUgYnkgYW55Ym9keSBlbHNlIGlzIHByb2hpYml0
+ZWQuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIHBsZWFzZSBkZWxldGUg
+dGhpcyBtZXNzYWdlIGFuZCBhbnkgYXR0YWNobWVudHMgYW5kIG5vdGlmeSB0aGUgc2VuZGVyIGJ5
+IHJldHVybiBlLW1haWwuIFRoYW5rIHlvdS4NCg==
 
-Regards,
-Soumya
-________________________________
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
- of dchellam via lists.yoctoproject.org <Divya.Chellam=3Dwindriver.com@list=
-s.yoctoproject.org>
-Sent: Tuesday, August 27, 2024 2:22 PM
-To: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-Subject: [yocto] [PATCH] tpm2-tools: fix CVE-2024-29039
+--_000_DU2PR08MB7253F9C0D0DC81735FA82B4EEE942DU2PR08MB7253eurp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-From: Divya Chellam <divya.chellam@windriver.com>
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
+IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
+Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
+MXB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpIZWxsbyBNYXJ0YSw8L2Rpdj4NCjxkaXYgY2xh
+c3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJl
+ZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1z
+ZXJpZjsgZm9udC1zaXplOiAxMXB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQp0aGFua3MgZm9y
+IHlvdXIgcmVwbHkuPC9kaXY+DQo8ZGl2IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZv
+bnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNl
+LCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6
+IHJnYigwLCAwLCAwKTsiPg0KWWVzLCBidXQgSSdtIG5vdCBzdGlsbCBoYXZpbmcgYW55IGlzc3Vl
+IHdvcmtpbmcgb24gWW9jdG8gYmVoaW5kIGEgY29tcGFueSBwcm94eSAoSSdtIGFibGUgdG8gZmV0
+Y2ggYWxsIHRoZSBvdGhlciB0aGluZ3MpLjwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJv
+b2YiIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3Nf
+TVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
+IDExcHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkRvIHlvdSBrbm93IGEgd2F5IHRvIGJ5cGFz
+cyB0aGlzIHByb2JsZW0/IERvd25sb2FkaW5nIHRoZSBDVkUgRGF0YWJhc2Ugb3V0IG9mIFlvY3Rv
+PzwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTog
+QXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwg
+SGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDExcHQ7IGNvbG9yOiByZ2IoMCwgMCwg
+MCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJm
+b250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2Vydmlj
+ZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDExcHQ7IGNvbG9y
+OiByZ2IoMCwgMCwgMCk7Ij4NClRoYW5rcyBhZ2FpbiBhbmQgaGF2ZSBhIGdvb2QgZGF5LDwvZGl2
+Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3Ms
+IEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0
+aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDExcHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4N
+ClNpbW9uZTwvZGl2Pg0KPGRpdiBpZD0iYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxkaXYgaWQ9ImFw
+cGVuZG9uc2VuZCI+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19F
+bWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
+cmlmOyBmb250LXNpemU6MTFwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxo
+ciB0YWJpbmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazsgd2lkdGg6OTglIj4N
+CjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJDYWxpYnJpLCBz
+YW5zLXNlcmlmIiBjb2xvcj0iIzAwMDAwMCIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0Ij48Yj5EYTo8
+L2I+IE1hcnRhIFJ5YmN6eW5za2EgJmx0O3J5YmN6eW5za2FAZ21haWwuY29tJmd0Ozxicj4NCjxi
+PkludmlhdG86PC9iPiBtYXJ0ZWTDrCAyNyBhZ29zdG8gMjAyNCAxNjowOTxicj4NCjxiPkE6PC9i
+PiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnICZsdDt5b2N0b0BsaXN0cy55b2N0b3Byb2pl
+Y3Qub3JnJmd0OzsgQm9uZ2luaSwgU2ltb25lICZsdDtzaW1vbmUuYm9uZ2luaUBtb3Z5b24uY29t
+Jmd0Ozxicj4NCjxiPk9nZ2V0dG86PC9iPiBSZTogW3lvY3RvXSAtIFBva3kgS2lya3N0b25lIC0g
+W2N2ZS11cGRhdGUtZGItbmF0aXZlXSAtIENFUlRJRklDQVRFX1ZFUklGWV9GQUlMRUQ8L2ZvbnQ+
+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2
+IGRpcj0ibHRyIj48YnI+DQo8L2Rpdj4NCjxicj4NCjxkaXYgY2xhc3M9InhfZ21haWxfcXVvdGUi
+Pg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9InhfZ21haWxfYXR0ciI+T24gVHVlLCBBdWcgMjcsIDIw
+MjQgYXQgMToxOOKAr1BNIEJvbmdpbmksIFNpbW9uZSB2aWENCjxhIGhyZWY9Imh0dHBzOi8vdXJs
+ZGVmZW5zZS5jb20vdjMvX19odHRwOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZ19fOyEhUFIzX1Zu
+QU9hMVhHd0Y0ZTBzYyFuejNYMm50b0VEalVkQkhXMUxpVXJ5Tl9VcVpFY05Ed0QxT3owZmExbFQ5
+S0NpcThDUE5fWF90V0oyOXRaSkpnMk52LTVIenVmeXlfQ0Y3bW9IZFBZQmskIiBkYXRhLWF1dGg9
+Ik5vdEFwcGxpY2FibGUiPg0KbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4gJmx0O3NpbW9uZS5i
+b25naW5pPTxhIGhyZWY9Im1haWx0bzptb3Z5b24uY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmci
+Pm1vdnlvbi5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7IHdyb3RlOjxicj4NCjwv
+ZGl2Pg0KPGJsb2NrcXVvdGUgY2xhc3M9InhfZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4
+IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQpOyBw
+YWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXYgY2xhc3M9InhfbXNnLTQ2NjM5MTg5MjAxMzUxMDgzOTIi
+Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpBcHRvcyxBcHRvc19F
+bWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNl
+cmlmOyBmb250LXNpemU6MTFwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpIZWxsbyBBbGwsPC9kaXY+
+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246bHRyOyBmb250LWZhbWlseTpBcHRvcyxBcHRvc19FbWJl
+ZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlm
+OyBmb250LXNpemU6MTFwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpteSBmaXJzdCBwb3N0IGhlcmUu
+PC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246bHRyOyBmb250LWZhbWlseTpBcHRvcyxBcHRv
+c19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGljYSxzYW5z
+LXNlcmlmOyBmb250LXNpemU6MTFwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4N
+CjxkaXYgc3R5bGU9ImRpcmVjdGlvbjpsdHI7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVk
+ZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7
+IGZvbnQtc2l6ZToxMXB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkknbSB0cnlpbmcgdG8gY2hlY2sg
+bXkgeW9jdG8gYnVpbGQgYWdhaW5zdCBjdmUgaW50cm9kdWNpbmcmbmJzcDs8L2Rpdj4NCjxkaXYg
+c3R5bGU9ImRpcmVjdGlvbjpsdHI7IGZvbnQtZmFtaWx5OkFwdG9zLEFwdG9zX0VtYmVkZGVkRm9u
+dCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQt
+c2l6ZToxMXB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCklOSEVSSVQgKz0gJnF1b3Q7Y3ZlLWNoZWNr
+JnF1b3Q7PC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246bHRyOyBmb250LWZhbWlseTpBcHRv
+cyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZldGlj
+YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTFwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQppbiBteSBs
+b2NhbC5jb25mPC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246bHRyOyBmb250LWZhbWlseTpB
+cHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJpLEhlbHZl
+dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTFwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+
+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjpsdHI7IGZvbnQtZmFtaWx5OkFwdG9zLEFw
+dG9zX0VtYmVkZGVkRm9udCxBcHRvc19NU0ZvbnRTZXJ2aWNlLENhbGlicmksSGVsdmV0aWNhLHNh
+bnMtc2VyaWY7IGZvbnQtc2l6ZToxMXB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkJ1dCBJIGdvdDwv
+ZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOmx0cjsgZm9udC1mYW1pbHk6QXB0b3MsQXB0b3Nf
+RW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2UsQ2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1z
+ZXJpZjsgZm9udC1zaXplOjExcHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KV0FSTklORzogY3ZlLXVw
+ZGF0ZS1kYi1uYXRpdmUtMS4wLXIwIGRvX2ZldGNoOiBGYWlsZWQgdG8gZmV0Y2ggQ1ZFIGRhdGEg
+KCZsdDt1cmxvcGVuIGVycm9yIFtTU0w6IENFUlRJRklDQVRFX1ZFUklGWV9GQUlMRURdIGNlcnRp
+ZmljYXRlIHZlcmlmeSBmYWlsZWQ6IHVuYWJsZSB0byBnZXQgbG9jYWwgaXNzdWVyIGNlcnRpZmlj
+YXRlIChfc3NsLmM6MTE0NSkmZ3Q7KTwvZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOmx0cjsg
+Zm9udC1mYW1pbHk6QXB0b3MsQXB0b3NfRW1iZWRkZWRGb250LEFwdG9zX01TRm9udFNlcnZpY2Us
+Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjExcHQ7IGNvbG9yOnJnYigw
+LDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246bHRyOyBmb250LWZh
+bWlseTpBcHRvcyxBcHRvc19FbWJlZGRlZEZvbnQsQXB0b3NfTVNGb250U2VydmljZSxDYWxpYnJp
+LEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTFwdDsgY29sb3I6cmdiKDAsMCwwKSI+
+DQpBbnlvbmUgZW5jb3VudGVyZWQgdGhpcyBwcm9ibGVtIHlldD88L2Rpdj4NCjxicj4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5IZWxsbyBT
+aW1vbmUsPC9kaXY+DQo8ZGl2PkFyZSB5b3UgcGFzc2luZyBieSBhIGtpbmQgb2YgYSBjb21wYW55
+IHByb3h5PyBUaGUgY2VydGlmaWNhdGUgdmFsaWRhdGVzIGp1c3QgZmluZSBmcm9tIHRoaXMgZW5k
+LjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+S2luZCByZWdhcmRzLDwvZGl2Pg0KPGRp
+dj5NYXJ0YSA8YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGFsaWduPSJqdXN0aWZ5
+IiBzdHlsZT0iZm9udC1zaXplOjhwdDsgZm9udC1mYW1pbHk6J0NhbGlicmknLHNhbnMtc2VyaWYi
+Pg0KPGhyPg0KUXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmljYSAoaW5jbHVzaSBn
+bGkgYWxsZWdhdGkpIMOoIHJpc2VydmF0byBlZCDDqCByaXZvbHRvIGVzY2x1c2l2YW1lbnRlIGFs
+IGRlc3RpbmF0YXJpby4gTmUgw6gsIHBlcnRhbnRvLCB2aWV0YXRhIGxhIGNvcGlhLCBsYSBzdGFt
+cGEsIGxhIGRpdnVsZ2F6aW9uZSBvIGwndXRpbGl6em8gZGEgcGFydGUgZGkgcXVhbHNpYXNpIGFs
+dHJvIHNvZ2dldHRvIG5vbiBhdXRvcml6emF0by4gUXVhbG9yYSBhYmJpYXRlDQogcmljZXZ1dG8g
+cXVlc3RvIG1lc3NhZ2dpbyBwZXIgZXJyb3JlIHNpZXRlIGludml0YXRpIGEgcHJvdnZlZGVyZSBh
+bGxhIHN1YSBkaXN0cnV6aW9uZSAoaW5jbHVzaSBpIHN1b2kgYWxsZWdhdGkpIGUgYSBkYXJuZSBj
+b211bmljYXppb25lIGFsIG1pdHRlbnRlIGEgbWV6em8gcG9zdGEgZWxldHRyb25pY2EuIEdyYXpp
+ZS4NCjxicj4NCjxicj4NClRoaXMgZS1tYWlsIChpbmNsdWRpbmcgYW55IGF0dGFjaG1lbnRzKSBp
+cyBjb25maWRlbnRpYWwgYW5kIG1heSBjb250YWluIHByaXZpbGVnZWQgaW5mb3JtYXRpb24gaW50
+ZW5kZWQgZm9yIHRoZSBhZGRyZXNzZWUocykgb25seS4gQ29weWluZywgcHJpbnRpbmcsIG1ha2lu
+ZyB1c2Ugb3IgZGlzY2xvc3VyZSBieSBhbnlib2R5IGVsc2UgaXMgcHJvaGliaXRlZC4gSWYgeW91
+IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgcGxlYXNlIGRlbGV0ZQ0KIHRoaXMgbWVz
+c2FnZSBhbmQgYW55IGF0dGFjaG1lbnRzIGFuZCBub3RpZnkgdGhlIHNlbmRlciBieSByZXR1cm4g
+ZS1tYWlsLiBUaGFuayB5b3UuDQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1zaXpl
+OjhwdDsgIGZvbnQtZmFtaWx5OiAnQ2FsaWJyaScsc2Fucy1zZXJpZjsiIGFsaWduPSJqdXN0aWZ5
+Ij4NCjxocj4NClF1ZXN0byBtZXNzYWdnaW8gZGkgcG9zdGEgZWxldHRyb25pY2EgKGluY2x1c2kg
+Z2xpIGFsbGVnYXRpKSDDqCByaXNlcnZhdG8gZWQgw6ggcml2b2x0byBlc2NsdXNpdmFtZW50ZSBh
+bCBkZXN0aW5hdGFyaW8uIE5lIMOoLCBwZXJ0YW50bywgdmlldGF0YSBsYSBjb3BpYSwgbGEgc3Rh
+bXBhLCBsYSBkaXZ1bGdhemlvbmUgbyBsJ3V0aWxpenpvIGRhIHBhcnRlIGRpIHF1YWxzaWFzaSBh
+bHRybyBzb2dnZXR0byBub24gYXV0b3JpenphdG8uIFF1YWxvcmEgYWJiaWF0ZQ0KIHJpY2V2dXRv
+IHF1ZXN0byBtZXNzYWdnaW8gcGVyIGVycm9yZSBzaWV0ZSBpbnZpdGF0aSBhIHByb3Z2ZWRlcmUg
+YWxsYSBzdWEgZGlzdHJ1emlvbmUgKGluY2x1c2kgaSBzdW9pIGFsbGVnYXRpKSBlIGEgZGFybmUg
+Y29tdW5pY2F6aW9uZSBhbCBtaXR0ZW50ZSBhIG1lenpvIHBvc3RhIGVsZXR0cm9uaWNhLiBHcmF6
+aWUuDQo8YnI+DQo8YnI+DQpUaGlzIGUtbWFpbCAoaW5jbHVkaW5nIGFueSBhdHRhY2htZW50cykg
+aXMgY29uZmlkZW50aWFsIGFuZCBtYXkgY29udGFpbiBwcml2aWxlZ2VkIGluZm9ybWF0aW9uIGlu
+dGVuZGVkIGZvciB0aGUgYWRkcmVzc2VlKHMpIG9ubHkuIENvcHlpbmcsIHByaW50aW5nLCBtYWtp
+bmcgdXNlIG9yIGRpc2Nsb3N1cmUgYnkgYW55Ym9keSBlbHNlIGlzIHByb2hpYml0ZWQuIElmIHlv
+dSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIHBsZWFzZSBkZWxldGUNCiB0aGlzIG1l
+c3NhZ2UgYW5kIGFueSBhdHRhY2htZW50cyBhbmQgbm90aWZ5IHRoZSBzZW5kZXIgYnkgcmV0dXJu
+IGUtbWFpbC4gVGhhbmsgeW91Lg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-tpm2 is the source repository for the Trusted Platform Module (TPM2.0)
-tools. This vulnerability allows attackers to manipulate tpm2_checkquote
-outputs by altering the TPML_PCR_SELECTION in the PCR input file.
-As a result, digest values are incorrectly mapped to PCR slots and banks,
-providing a misleading picture of the TPM state. This issue has been
-patched in version 5.7.
-
-Reference:
-https://security-tracker.debian.org/tracker/CVE-2024-29039
-
-Upstream-patch:
-https://github.com/tpm2-software/tpm2-tools/commit/98599df9392a346216c5a059=
-b8d35271286100bb
-
-Signed-off-by: Divya Chellam <divya.chellam@windriver.com>
----
- .../tpm2-tools/CVE-2024-29039.patch           | 92 +++++++++++++++++++
- .../recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb |  4 +-
- 2 files changed, 95 insertions(+), 1 deletion(-)
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29=
-039.patch
-
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.pat=
-ch b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
-new file mode 100644
-index 0000000..e3dc5c9
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
-@@ -0,0 +1,92 @@
-+From 98599df9392a346216c5a059b8d35271286100bb Mon Sep 17 00:00:00 2001
-+From: Juergen Repp <juergen_repp@web.de>
-+Date: Tue, 5 Mar 2024 22:11:38 +0100
-+Subject: [PATCH] tpm2_checkquote: Add comparison of pcr selection.
-+
-+The pcr selection which is passed with the --pcr parameter it not
-+compared with the attest. So it's possible to fake a valid
-+attestation.
-+
-+Fixes: CVE-2024-29039
-+
-+Signed-off-by: Juergen Repp <juergen_repp@web.de>
-+Signed-off-by: Andreas Fuchs <andreas.fuchs@infineon.com>
-+
-+CVE: CVE-2024-29039
-+
-+Upstream-Status: Backport [https://github.com/tpm2-software/tpm2-tools/com=
-mit/98599df9392a346216c5a059b8d35271286100bb]
-+
-+Signed-off-by: Divya Chellam <divya.chellam@windriver.com>
-+---
-+ tools/misc/tpm2_checkquote.c | 41 +++++++++++++++++++++++++++++++++++-
-+ 1 file changed, 40 insertions(+), 1 deletion(-)
-+
-+diff --git a/tools/misc/tpm2_checkquote.c b/tools/misc/tpm2_checkquote.c
-+index 9225b25..d682f48 100644
-+--- a/tools/misc/tpm2_checkquote.c
-++++ b/tools/misc/tpm2_checkquote.c
-+@@ -48,6 +48,37 @@ static tpm2_verifysig_ctx ctx =3D {
-+         .pcr_hash =3D TPM2B_TYPE_INIT(TPM2B_DIGEST, buffer),
-+ };
-+
-++static bool compare_pcr_selection(TPML_PCR_SELECTION *attest_sel, TPML_PC=
-R_SELECTION *pcr_sel) {
-++    if (attest_sel->count !=3D pcr_sel->count) {
-++        LOG_ERR("Selection sizes do not match.");
-++        return false;
-++    }
-++    for (uint32_t i =3D 0; i < attest_sel->count; i++) {
-++        for (uint32_t j =3D 0; j < pcr_sel->count; j++) {
-++            if (attest_sel->pcrSelections[i].hash =3D=3D
-++                pcr_sel->pcrSelections[j].hash) {
-++                if (attest_sel->pcrSelections[i].sizeofSelect !=3D
-++                        pcr_sel->pcrSelections[j].sizeofSelect) {
-++                    LOG_ERR("Bitmask size does not match");
-++                    return false;
-++                }
-++                if (memcmp(&attest_sel->pcrSelections[i].pcrSelect[0],
-++                           &pcr_sel->pcrSelections[j].pcrSelect[0],
-++                           attest_sel->pcrSelections[i].sizeofSelect) !=
-=3D 0) {
-++                    LOG_ERR("Selection bitmasks do not match");
-++                    return false;
-++                }
-++                break;
-++            }
-++            if (j =3D=3D pcr_sel->count - 1) {
-++                LOG_ERR("Hash selections to not match.");
-++                return false;
-++            }
-++        }
-++    }
-++    return true;
-++}
-++
-+ static bool verify_signature() {
-+
-+     bool result =3D false;
-+@@ -212,7 +243,7 @@ static tool_rc init(void) {
-+     }
-+
-+     TPM2B_ATTEST *msg =3D NULL;
-+-    TPML_PCR_SELECTION pcr_select;
-++    TPML_PCR_SELECTION pcr_select =3D { 0 };
-+     tpm2_pcrs * pcrs;
-+     tool_rc return_value =3D tool_rc_general_error;
-+
-+@@ -279,6 +310,14 @@ static tool_rc init(void) {
-+         goto err;
-+     }
-+
-++    if (ctx.flags.pcr) {
-++        if (!compare_pcr_selection(&ctx.attest.attested.quote.pcrSelect,
-++                                   &pcr_select)) {
-++            LOG_ERR("PCR selection does not match PCR slection from attes=
-t!");
-++            goto err;
-++        }
-++    }
-++
-+     // Figure out the digest for this message
-+     bool res =3D tpm2_openssl_hash_compute_data(ctx.halg, msg->attestatio=
-nData,
-+             msg->size, &ctx.msg_hash);
-+--
-+2.40.0
-+
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb b/meta-tpm/=
-recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-index c20af7e..e4966d7 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-@@ -6,7 +6,9 @@ SECTION =3D "tpm"
-
- DEPENDS =3D "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
-
--SRC_URI =3D "https://github.com/tpm2-software/${BPN}/releases/download/${P=
-V}/${BPN}-${PV}.tar.gz"
-+SRC_URI =3D "https://github.com/tpm2-software/${BPN}/releases/download/${P=
-V}/${BPN}-${PV}.tar.gz \
-+           file://CVE-2024-29039.patch \
-+          "
-
- SRC_URI[sha256sum] =3D "c0b402f6a7b3456e8eb2445211e2d41c46c7e769e05fe4d890=
-9ff64119f7a630"
-
---
-2.40.0
-
-
---_000_BYAPR11MB3397493860E3A016B023093D81942BYAPR11MB3397namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Kindly ignore this mail, on behalf of <a href=3D"mailto:Divya.Chellam@windr=
-iver.com" id=3D"OWAAM700136" class=3D"tWKOu mention ms-bgc-nlr ms-fcl-b">
-@Chellam, Divya</a>.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Regards,<br>
-Soumya</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto@lists.yoctoproj=
-ect.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of dchellam via list=
-s.yoctoproject.org &lt;Divya.Chellam=3Dwindriver.com@lists.yoctoproject.org=
-&gt;<br>
-<b>Sent:</b> Tuesday, August 27, 2024 2:22 PM<br>
-<b>To:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
-;<br>
-<b>Subject:</b> [yocto] [PATCH] tpm2-tools: fix CVE-2024-29039</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">From: Divya Chellam &lt;divya.chellam@windriver.co=
-m&gt;<br>
-<br>
-tpm2 is the source repository for the Trusted Platform Module (TPM2.0)<br>
-tools. This vulnerability allows attackers to manipulate tpm2_checkquote<br=
->
-outputs by altering the TPML_PCR_SELECTION in the PCR input file.<br>
-As a result, digest values are incorrectly mapped to PCR slots and banks,<b=
-r>
-providing a misleading picture of the TPM state. This issue has been<br>
-patched in version 5.7.<br>
-<br>
-Reference:<br>
-<a href=3D"https://security-tracker.debian.org/tracker/CVE-2024-29039">http=
-s://security-tracker.debian.org/tracker/CVE-2024-29039</a><br>
-<br>
-Upstream-patch:<br>
-<a href=3D"https://github.com/tpm2-software/tpm2-tools/commit/98599df9392a3=
-46216c5a059b8d35271286100bb">https://github.com/tpm2-software/tpm2-tools/co=
-mmit/98599df9392a346216c5a059b8d35271286100bb</a><br>
-<br>
-Signed-off-by: Divya Chellam &lt;divya.chellam@windriver.com&gt;<br>
----<br>
-&nbsp;.../tpm2-tools/CVE-2024-29039.patch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; | 92 +++++++++++++++++++<br>
-&nbsp;.../recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb |&nbsp; 4 +-<br>
-&nbsp;2 files changed, 95 insertions(+), 1 deletion(-)<br>
-&nbsp;create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-20=
-24-29039.patch<br>
-<br>
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.pat=
-ch b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch<br>
-new file mode 100644<br>
-index 0000000..e3dc5c9<br>
---- /dev/null<br>
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch<br>
-@@ -0,0 +1,92 @@<br>
-+From 98599df9392a346216c5a059b8d35271286100bb Mon Sep 17 00:00:00 2001<br>
-+From: Juergen Repp &lt;juergen_repp@web.de&gt;<br>
-+Date: Tue, 5 Mar 2024 22:11:38 +0100<br>
-+Subject: [PATCH] tpm2_checkquote: Add comparison of pcr selection. <br>
-+<br>
-+The pcr selection which is passed with the --pcr parameter it not <br>
-+compared with the attest. So it's possible to fake a valid <br>
-+attestation.<br>
-+<br>
-+Fixes: CVE-2024-29039<br>
-+<br>
-+Signed-off-by: Juergen Repp &lt;juergen_repp@web.de&gt;<br>
-+Signed-off-by: Andreas Fuchs &lt;andreas.fuchs@infineon.com&gt;<br>
-+<br>
-+CVE: CVE-2024-29039<br>
-+<br>
-+Upstream-Status: Backport [<a href=3D"https://github.com/tpm2-software/tpm=
-2-tools/commit/98599df9392a346216c5a059b8d35271286100bb">https://github.com=
-/tpm2-software/tpm2-tools/commit/98599df9392a346216c5a059b8d35271286100bb</=
-a>]<br>
-+<br>
-+Signed-off-by: Divya Chellam &lt;divya.chellam@windriver.com&gt;<br>
-+---<br>
-+ tools/misc/tpm2_checkquote.c | 41 +++++++++++++++++++++++++++++++++++-<br=
->
-+ 1 file changed, 40 insertions(+), 1 deletion(-)<br>
-+<br>
-+diff --git a/tools/misc/tpm2_checkquote.c b/tools/misc/tpm2_checkquote.c<b=
-r>
-+index 9225b25..d682f48 100644<br>
-+--- a/tools/misc/tpm2_checkquote.c<br>
-++++ b/tools/misc/tpm2_checkquote.c<br>
-+@@ -48,6 +48,37 @@ static tpm2_verifysig_ctx ctx =3D {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .pcr_hash =3D TPM2B_TYPE_=
-INIT(TPM2B_DIGEST, buffer),<br>
-+ };<br>
-+ <br>
-++static bool compare_pcr_selection(TPML_PCR_SELECTION *attest_sel, TPML_PC=
-R_SELECTION *pcr_sel) {<br>
-++&nbsp;&nbsp;&nbsp; if (attest_sel-&gt;count !=3D pcr_sel-&gt;count) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOG_ERR(&quot;Selection sizes =
-do not match.&quot;);<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
-++&nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp; for (uint32_t i =3D 0; i &lt; attest_sel-&gt;count; i+=
-+) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (uint32_t j =3D 0; j &lt; =
-pcr_sel-&gt;count; j++) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (at=
-test_sel-&gt;pcrSelections[i].hash =3D=3D<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; pcr_sel-&gt;pcrSelections[j].hash) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; if (attest_sel-&gt;pcrSelections[i].sizeofSelect !=3D<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pcr_sel-&=
-gt;pcrSelections[j].sizeofSelect) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOG_ERR(&quot;Bitmask size does n=
-ot match&quot;);<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; if (memcmp(&amp;attest_sel-&gt;pcrSelections[i].pcrSelect=
-[0],<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; &amp;pcr_sel-&gt;pcrSelections[j].pcrSelect[0],<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; attest_sel-&gt;pcrSelections[i].sizeofSelect) !=3D 0) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOG_ERR(&quot;Selection bitmasks =
-do not match&quot;);<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; break;<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (j =
-=3D=3D pcr_sel-&gt;count - 1) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; LOG_ERR(&quot;Hash selections to not match.&quot;);<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; return false;<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp; return true;<br>
-++}<br>
-++<br>
-+ static bool verify_signature() {<br>
-+ <br>
-+&nbsp;&nbsp;&nbsp;&nbsp; bool result =3D false;<br>
-+@@ -212,7 +243,7 @@ static tool_rc init(void) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-+ <br>
-+&nbsp;&nbsp;&nbsp;&nbsp; TPM2B_ATTEST *msg =3D NULL;<br>
-+-&nbsp;&nbsp;&nbsp; TPML_PCR_SELECTION pcr_select;<br>
-++&nbsp;&nbsp;&nbsp; TPML_PCR_SELECTION pcr_select =3D { 0 };<br>
-+&nbsp;&nbsp;&nbsp;&nbsp; tpm2_pcrs * pcrs;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp; tool_rc return_value =3D tool_rc_general_error;<b=
-r>
-+ <br>
-+@@ -279,6 +310,14 @@ static tool_rc init(void) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-+ <br>
-++&nbsp;&nbsp;&nbsp; if (ctx.flags.pcr) {<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!compare_pcr_selection(&am=
-p;ctx.attest.attested.quote.pcrSelect,<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;pcr_select)) =
-{<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOG_ER=
-R(&quot;PCR selection does not match PCR slection from attest!&quot;);<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto e=
-rr;<br>
-++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-++&nbsp;&nbsp;&nbsp; }<br>
-++<br>
-+&nbsp;&nbsp;&nbsp;&nbsp; // Figure out the digest for this message<br>
-+&nbsp;&nbsp;&nbsp;&nbsp; bool res =3D tpm2_openssl_hash_compute_data(ctx.h=
-alg, msg-&gt;attestationData,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=
-sg-&gt;size, &amp;ctx.msg_hash);<br>
-+-- <br>
-+2.40.0<br>
-+<br>
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb b/meta-tpm/=
-recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb<br>
-index c20af7e..e4966d7 100644<br>
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb<br>
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb<br>
-@@ -6,7 +6,9 @@ SECTION =3D &quot;tpm&quot;<br>
-&nbsp;<br>
-&nbsp;DEPENDS =3D &quot;tpm2-abrmd tpm2-tss openssl curl autoconf-archive&q=
-uot;<br>
-&nbsp;<br>
--SRC_URI =3D &quot;<a href=3D"https://github.com/tpm2-software/${BPN}/relea=
-ses/download/${PV}/${BPN}-${PV}.tar.gz">https://github.com/tpm2-software/${=
-BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz</a>&quot;<br>
-+SRC_URI =3D &quot;<a href=3D""></a>https://github.com/tpm2-software/${BPN}=
-/releases/download/${PV}/${BPN}-${PV}.tar.gz \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=3D"fi=
-le://CVE-2024-29039.patch">file://CVE-2024-29039.patch</a> \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;<br>
-&nbsp;<br>
-&nbsp;SRC_URI[sha256sum] =3D &quot;c0b402f6a7b3456e8eb2445211e2d41c46c7e769=
-e05fe4d8909ff64119f7a630&quot;<br>
-&nbsp;<br>
--- <br>
-2.40.0<br>
-<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_BYAPR11MB3397493860E3A016B023093D81942BYAPR11MB3397namp_--
+--_000_DU2PR08MB7253F9C0D0DC81735FA82B4EEE942DU2PR08MB7253eurp_--
 
