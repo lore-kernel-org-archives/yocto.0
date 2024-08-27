@@ -1,192 +1,155 @@
-Return-Path: <Divya.Chellam@windriver.com>
+Return-Path: <rybczynska@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A95EC5472F
-	for <webhook@archiver.kernel.org>; Tue, 27 Aug 2024 13:51:13 +0000 (UTC)
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web11.78251.1724766671757619441
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3856BC5472F
+	for <webhook@archiver.kernel.org>; Tue, 27 Aug 2024 14:10:03 +0000 (UTC)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+ by mx.groups.io with SMTP id smtpd.web10.79404.1724767794455202340
  for <yocto@lists.yoctoproject.org>;
- Tue, 27 Aug 2024 06:51:11 -0700
+ Tue, 27 Aug 2024 07:09:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=8969404eb5=divya.chellam@windriver.com)
-Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47R3EPNE019113
-	for <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 06:51:11 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.wrs.com [147.11.82.252])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 417f1katek-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 06:51:11 -0700 (PDT)
-Received: from blr-linux-engg1.wrs.com (147.11.136.210) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 27 Aug 2024 06:51:08 -0700
-From: dchellam <divya.chellam@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [meta-security][kirkstone][PATCH 1/1] tpm2-tools: fix CVE-2024-29039
-Date: Tue, 27 Aug 2024 13:49:51 +0000
-Message-ID: <20240827134951.3139782-1-divya.chellam@windriver.com>
-X-Mailer: git-send-email 2.40.0
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=P1UT6Ppz;
+ spf=pass (domain: gmail.com, ip: 209.85.210.178, mailfrom: rybczynska@gmail.com)
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71423704ef3so4466397b3a.3
+        for <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 07:09:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724767793; x=1725372593; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RpUI8Z9mzizPyn800OxjAhRaB9G8ol7DRgY00KaNJfQ=;
+        b=P1UT6PpzJTfO8/v+rq1C10sFt3cY5vraAbgI7adhGEkWvt95Sz5sq7skq5qCNsSlAh
+         D4Ee4VhWCcx3YiqaE0V2fB0A3mWfBcSOxvGfWzBPtdwg1/zfO7fck/6bd/Ew+HdPiWMv
+         LzyWAQTemQ/2RNkJ0WOtpntNcmQ+EYV/IO/aMdfe5o5FOM5oPowuVGwpz1GnXJrpWApu
+         40G1UbUzFzTHPUIVsaloCHuI7xobE/m6QRAxtQVzJv35cprtjndp5ptDbc+OoxaFxVoj
+         HF3GsSnjGl9B+smyDIbTWtFiLPulxVzhs6voLz1TytK36AA/Xc3nKqvyPKydH/QV++s/
+         s8pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724767793; x=1725372593;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RpUI8Z9mzizPyn800OxjAhRaB9G8ol7DRgY00KaNJfQ=;
+        b=wfw5v8D/jfQVU/nzCvTc2Pfqbi9nux8IIwJMV1TsRO5s68fvhW6zK4z6N0bUdC4shu
+         H323Cyi6MDBGJeDG5KBY3Gk+SYJBqKDVfjHDCcwNXD/2oW4LLvR4oIf0vGtp85d0dTBN
+         KxBKoKt6rNbl+iETVGafMTza8se0t9gsKpEqWKV1OlU1lgqAgOGzcNX8SELP8dfJJBWK
+         YMyPKhVs4CCczxgYC1JTE5vW1a0D7hBFiqxNrVI620J6nDRvRPkv6bwMbF6riKCSvjkt
+         J/l0YVXYgPOPaZ0RgckYuLLnnUpdDA186129Xos25eoUoQTBDU4FByQ2jyB82WAYl8yQ
+         F/ZQ==
+X-Gm-Message-State: AOJu0YyqwsXPD5WPcNGr/JNZtqI2t59XgGG+1Hoz2XE88NVQBh8gjR6I
+	OtNmwKaMoqHnDLYhrXF1Ck1If9+YoDgDBsxCWfrvqCb3ynWywGa3QiIIKJaq1trQYzIhoEi+9i3
+	nxHrKkKf6JOxgnLfZ4+92J9rDufzRgQ==
+X-Google-Smtp-Source: AGHT+IEGPc6cU6LDLX8NTAUYy2ZduGZjAGu1R/conB1b8EP5Fb23Q7Qj9ph7G12rirv2rNCL/eZDOxbvdF0PWNC8nIk=
+X-Received: by 2002:a17:903:32d2:b0:202:20bf:461c with SMTP id
+ d9443c01a7336-2039e4a96demr165702515ad.31.1724767793260; Tue, 27 Aug 2024
+ 07:09:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [147.11.136.210]
-X-ClientProxiedBy: ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) To
- ala-exchng01.corp.ad.wrs.com (147.11.82.252)
-X-Proofpoint-ORIG-GUID: dDzZw-2Tq___TdqUn1HApPilf7BsS18F
-X-Authority-Analysis: v=2.4 cv=McQ+uI/f c=1 sm=1 tr=0 ts=66cdd9cf cx=c_pps a=/ZJR302f846pc/tyiSlYyQ==:117 a=/ZJR302f846pc/tyiSlYyQ==:17 a=HCiNrPZc1L8A:10 a=yoJbH4e0A30A:10 a=t7CeM3EgAAAA:8 a=xNf9USuDAAAA:8 a=NEAV23lmAAAA:8 a=bUQKSiCPAAAA:8
- a=qHUOglpnbeFhvRd7ip0A:9 a=FdTzh2GWekK77mhwV6Dw:22 a=SEwjQc04WA-l_NiBhQ7s:22 a=-fHZXUhsFbuwFN3fwQAr:22
-X-Proofpoint-GUID: dDzZw-2Tq___TdqUn1HApPilf7BsS18F
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-27_07,2024-08-27_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 phishscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
- mlxscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.21.0-2407110000 definitions=main-2408270102
+References: <DU2PR08MB7253B2F4BDB924D5C31CE7DDEE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB72537A2152910D095FD52195EE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB7253B0D6BAEA8BD9CC15E550EE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB7253B4E88977BEDB59817B62EE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+ <DU2PR08MB72536BD03476E2EA40423E5AEE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+In-Reply-To: <DU2PR08MB72536BD03476E2EA40423E5AEE942@DU2PR08MB7253.eurprd08.prod.outlook.com>
+From: Marta Rybczynska <rybczynska@gmail.com>
+Date: Tue, 27 Aug 2024 16:09:41 +0200
+Message-ID: <CAApg2=Q9tzQu=K5n4r-4MeKpXGd8GcjrG3FK537m_HrfBi599Q@mail.gmail.com>
+Subject: Re: [yocto] - Poky Kirkstone - [cve-update-db-native] - CERTIFICATE_VERIFY_FAILED
+To: yocto@lists.yoctoproject.org, simone.bongini@movyon.com
+Content-Type: multipart/alternative; boundary="000000000000a334c00620aacb25"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 13:51:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63748
+ <yocto@lists.yoctoproject.org>; Tue, 27 Aug 2024 14:10:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63749
 
-From: Divya Chellam <divya.chellam@windriver.com>
+--000000000000a334c00620aacb25
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-tpm2 is the source repository for the Trusted Platform Module (TPM2.0)
-tools. This vulnerability allows attackers to manipulate tpm2_checkquote
-outputs by altering the TPML_PCR_SELECTION in the PCR input file.
-As a result, digest values are incorrectly mapped to PCR slots and banks,
-providing a misleading picture of the TPM state. This issue has been
-patched in version 5.7.
+On Tue, Aug 27, 2024 at 1:18=E2=80=AFPM Bongini, Simone via lists.yoctoproj=
+ect.org
+<simone.bongini=3Dmovyon.com@lists.yoctoproject.org> wrote:
 
-Reference:
-https://security-tracker.debian.org/tracker/CVE-2024-29039
+> Hello All,
+> my first post here.
+>
+> I'm trying to check my yocto build against cve introducing
+> INHERIT +=3D "cve-check"
+> in my local.conf
+>
+> But I got
+> WARNING: cve-update-db-native-1.0-r0 do_fetch: Failed to fetch CVE data
+> (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify faile=
+d:
+> unable to get local issuer certificate (_ssl.c:1145)>)
+>
+> Anyone encountered this problem yet?
+>
+>
+Hello Simone,
+Are you passing by a kind of a company proxy? The certificate validates
+just fine from this end.
 
-Upstream-patch:
-https://github.com/tpm2-software/tpm2-tools/commit/98599df9392a346216c5a059b8d35271286100bb
+Kind regards,
+Marta
 
-Signed-off-by: Divya Chellam <divya.chellam@windriver.com>
----
- .../tpm2-tools/CVE-2024-29039.patch           | 92 +++++++++++++++++++
- .../recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb |  4 +-
- 2 files changed, 95 insertions(+), 1 deletion(-)
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
+--000000000000a334c00620aacb25
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
-new file mode 100644
-index 0000000..5a87152
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/CVE-2024-29039.patch
-@@ -0,0 +1,92 @@
-+From 98599df9392a346216c5a059b8d35271286100bb Mon Sep 17 00:00:00 2001
-+From: Juergen Repp <juergen_repp@web.de>
-+Date: Tue, 5 Mar 2024 22:11:38 +0100
-+Subject: [PATCH] tpm2_checkquote: Add comparison of pcr selection.
-+
-+The pcr selection which is passed with the --pcr parameter it not
-+compared with the attest. So it's possible to fake a valid
-+attestation.
-+
-+Fixes: CVE-2024-29039
-+
-+Signed-off-by: Juergen Repp <juergen_repp@web.de>
-+Signed-off-by: Andreas Fuchs <andreas.fuchs@infineon.com>
-+
-+CVE: CVE-2024-29039
-+
-+Upstream-Status: Backport [https://github.com/tpm2-software/tpm2-tools/commit/98599df9392a346216c5a059b8d35271286100bb]
-+
-+Signed-off-by: Divya Chellam <divya.chellam@windriver.com>
-+---
-+ tools/misc/tpm2_checkquote.c | 41 +++++++++++++++++++++++++++++++++++-
-+ 1 file changed, 40 insertions(+), 1 deletion(-)
-+
-+diff --git a/tools/misc/tpm2_checkquote.c b/tools/misc/tpm2_checkquote.c
-+index 6ce086f..8a2a154 100644
-+--- a/tools/misc/tpm2_checkquote.c
-++++ b/tools/misc/tpm2_checkquote.c
-+@@ -54,6 +54,37 @@ static tpm2_verifysig_ctx ctx = {
-+         .pcr_hash = TPM2B_TYPE_INIT(TPM2B_DIGEST, buffer),
-+ };
-+ 
-++static bool compare_pcr_selection(TPML_PCR_SELECTION *attest_sel, TPML_PCR_SELECTION *pcr_sel) {
-++    if (attest_sel->count != pcr_sel->count) {
-++        LOG_ERR("Selection sizes do not match.");
-++        return false;
-++    }
-++    for (uint32_t i = 0; i < attest_sel->count; i++) {
-++        for (uint32_t j = 0; j < pcr_sel->count; j++) {
-++            if (attest_sel->pcrSelections[i].hash ==
-++                pcr_sel->pcrSelections[j].hash) {
-++                if (attest_sel->pcrSelections[i].sizeofSelect !=
-++                        pcr_sel->pcrSelections[j].sizeofSelect) {
-++                    LOG_ERR("Bitmask size does not match");
-++                    return false;
-++                }
-++                if (memcmp(&attest_sel->pcrSelections[i].pcrSelect[0],
-++                           &pcr_sel->pcrSelections[j].pcrSelect[0],
-++                           attest_sel->pcrSelections[i].sizeofSelect) != 0) {
-++                    LOG_ERR("Selection bitmasks do not match");
-++                    return false;
-++                }
-++                break;
-++            }
-++            if (j == pcr_sel->count - 1) {
-++                LOG_ERR("Hash selections to not match.");
-++                return false;
-++            }
-++        }
-++    }
-++    return true;
-++}
-++
-+ static bool verify(void) {
-+ 
-+     bool result = false;
-+@@ -374,7 +405,7 @@ static tool_rc init(void) {
-+     }
-+ 
-+     TPM2B_ATTEST *msg = NULL;
-+-    TPML_PCR_SELECTION pcr_select;
-++    TPML_PCR_SELECTION pcr_select = { 0 };
-+     tpm2_pcrs *pcrs;
-+     tpm2_pcrs temp_pcrs = {};
-+     tool_rc return_value = tool_rc_general_error;
-+@@ -537,6 +568,14 @@ static tool_rc init(void) {
-+         goto err;
-+     }
-+ 
-++    if (ctx.flags.pcr) {
-++        if (!compare_pcr_selection(&ctx.attest.attested.quote.pcrSelect,
-++                                   &pcr_select)) {
-++            LOG_ERR("PCR selection does not match PCR slection from attest!");
-++            goto err;
-++        }
-++    }
-++
-+     // Figure out the digest for this message
-+     res = tpm2_openssl_hash_compute_data(ctx.halg, msg->attestationData,
-+             msg->size, &ctx.msg_hash);
-+-- 
-+2.40.0
-+
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-index c20af7e..e4966d7 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-@@ -6,7 +6,9 @@ SECTION = "tpm"
- 
- DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
- 
--SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
-+SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz \
-+           file://CVE-2024-29039.patch \
-+          "
- 
- SRC_URI[sha256sum] = "c0b402f6a7b3456e8eb2445211e2d41c46c7e769e05fe4d8909ff64119f7a630"
- 
--- 
-2.40.0
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 27, 2024 at 1:18=E2=80=AF=
+PM Bongini, Simone via <a href=3D"http://lists.yoctoproject.org">lists.yoct=
+oproject.org</a> &lt;simone.bongini=3D<a href=3D"mailto:movyon.com@lists.yo=
+ctoproject.org">movyon.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg-46639189=
+20135108392">
 
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Hello All,</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+my first post here.</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+I&#39;m trying to check my yocto build against cve introducing=C2=A0</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+INHERIT +=3D &quot;cve-check&quot;</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+in my local.conf</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+But I got</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+WARNING: cve-update-db-native-1.0-r0 do_fetch: Failed to fetch CVE data (&l=
+t;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed:=
+ unable to get local issuer certificate (_ssl.c:1145)&gt;)</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"direction:ltr;font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFo=
+ntService,Calibri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Anyone encountered this problem yet?</div><br></div></div></blockquote><div=
+><br></div><div>Hello Simone,</div><div>Are you passing by a kind of a comp=
+any proxy? The certificate validates just fine from this end.</div><div><br=
+></div><div>Kind regards,</div><div>Marta <br></div></div></div>
+
+--000000000000a334c00620aacb25--
 
