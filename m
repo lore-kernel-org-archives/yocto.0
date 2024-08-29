@@ -1,110 +1,167 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <cebel.efecan@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C36ACC83033
-	for <webhook@archiver.kernel.org>; Thu, 29 Aug 2024 10:37:53 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
- by mx.groups.io with SMTP id smtpd.web10.9780.1724927865606887167
- for <yocto@lists.yoctoproject.org>;
- Thu, 29 Aug 2024 03:37:45 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=iVhuWZDR;
- spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5334c4d6829so652481e87.2
-        for <yocto@lists.yoctoproject.org>; Thu, 29 Aug 2024 03:37:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724927864; x=1725532664; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qhEzfJ1E7twbUXkwNxakKw+vvTlugz53lY9+kfzo2Lk=;
-        b=iVhuWZDRjWE/pzzejCIx0j6bpgjC/KBK+8Iap7R+lLdqCrTTwynJon1TXCsaCQ7AUc
-         peEkGklAmCtWuhPvMJTfB4/cj8ZWMUV+HL/dYboieaNxVoNpoYNKoCtAdp3yf77qc0mE
-         kxOGZ2XC0bU+xVpfCO42G0fBtaCJ2YzwT4eYLImgsP9FGioqsDPAVvfoZd/tDekPP6Ns
-         qP31/QaHFn8kXEH/Y+t5tZ6RPq1JVfkFxeWer+qZmN1XYUe6VQVYZ3BdcVrQ4uIhzi8I
-         RG21dLKuC1ehugHIb/RhNGcj0aKDg5pZpnvCxZ/SNt1MWbysnO07RltVhX2DMWvQxi7B
-         iJxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724927864; x=1725532664;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qhEzfJ1E7twbUXkwNxakKw+vvTlugz53lY9+kfzo2Lk=;
-        b=Q9Nm5gXI6JFX8vR0uxYoPaP4xA+d0+GbHHd4gByTvoqZDJUX8BMBMwHucRNz12xeXA
-         qRWwjuyx2Npd6h0I5SmAijDdw68IsCWwo/H8dXUSbhEArLmjXAQAQ4YqkfiTeMc4YBkO
-         5LmYFoeihdaeao9xAes+qUWE3j+0v7fRFxz8Zmp+jKsZrwn+9eYmgQ6cJqkI5qGcl10c
-         QM6cyZmosx5itzqJVZbiYATcIuJHFVlDGVAYMtcjk+PQbpMQxQ/FC2ozu+s+KyvynYsB
-         YuH732Sx3ehNgkW59Pq6kqhcH4pKovz0RAB3lKhWIpkDnP9Qp0kYG5nYmwcCl91KCHTA
-         FXKw==
-X-Gm-Message-State: AOJu0Yy2rKpZHKgZWRZracdWMQK+IpfzbsEE5QIfRFyKfzA+zNFi6vEZ
-	4uQ1ED7i2+CFxJu8w2QOrw12nAlenFYUkeiBtBM0HpLILzSMAGVmq2gQexV//MKviA7GODLnXMg
-	HzXTztCiUt6DE3HTrgGDKuE48Gyc=
-X-Google-Smtp-Source: AGHT+IGE3CeCZWmN9VBCwKe1VyDEnSp77ThuGiEPaXvQFINYriMGULDYnjJLX4d6JzInUBb5SeJhrR4hrmRiBCq+6jg=
-X-Received: by 2002:a05:6512:3b14:b0:52c:c5c4:43d4 with SMTP id
- 2adb3069b0e04-5353e5b72abmr1513067e87.53.1724927862913; Thu, 29 Aug 2024
- 03:37:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <CANNYZj9zHSbewBuEn38NtNhGtydzN_QtgZFozgYuEaYeZ=Ms+Q@mail.gmail.com>
- <18822.1724927734724846009@lists.yoctoproject.org>
-In-Reply-To: <18822.1724927734724846009@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 29 Aug 2024 12:37:31 +0200
-Message-ID: <CANNYZj_Ls-58iQkQOXbQMP2NTAKWBn08ivkwUJ8_y2NcAQ5KXA@mail.gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D25C0C83039
+	for <webhook@archiver.kernel.org>; Thu, 29 Aug 2024 10:47:53 +0000 (UTC)
 Subject: Re: [yocto] Parallel task limit issue on 80 core (2 CPU) system
-To: cebel.efecan@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000088454f0620d0107f"
+To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
+From: "Efecan Cebel" <cebel.efecan@gmail.com>
+X-Originating-Location: Victoria, AU (155.190.60.30)
+X-Originating-Platform: Windows Chrome 128
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Thu, 29 Aug 2024 03:47:46 -0700
+References: <CANNYZj_Ls-58iQkQOXbQMP2NTAKWBn08ivkwUJ8_y2NcAQ5KXA@mail.gmail.com>
+In-Reply-To: <CANNYZj_Ls-58iQkQOXbQMP2NTAKWBn08ivkwUJ8_y2NcAQ5KXA@mail.gmail.com>
+Message-ID: <11473.1724928466443946335@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="QldU6XCxTincwBD26Hfv"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 29 Aug 2024 10:37:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63765
+ <yocto@lists.yoctoproject.org>; Thu, 29 Aug 2024 10:47:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63766
 
---00000000000088454f0620d0107f
-Content-Type: text/plain; charset="UTF-8"
-
-I am unable to see the image. It's possible there are no more tasks,
-because tasks dependencies prevent bitbake from adding more?
-
-Alex
-
-On Thu, 29 Aug 2024 at 12:35, Efecan Cebel via Lists.Yoctoproject.Org
-<cebel.efecan=gmail.com@lists.yoctoproject.org> wrote:
-
-> Hello,
->
-> Actually, a situation exactly like the image below occurs. I start the
-> build process, but 52 tasks are running at the same time. But I have 80
-> cores.
->
->
-> Best regards.
-> Efecan
->
-
---00000000000088454f0620d0107f
-Content-Type: text/html; charset="UTF-8"
+--QldU6XCxTincwBD26Hfv
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I am unable to see the image. It&#39;s possible there=
- are no more tasks, because tasks dependencies prevent bitbake from adding =
-more?</div><div><br></div><div>Alex<br></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 29 Aug 2024 at 12:35, =
-Efecan Cebel via <a href=3D"http://Lists.Yoctoproject.Org">Lists.Yoctoproje=
-ct.Org</a> &lt;cebel.efecan=3D<a href=3D"mailto:gmail.com@lists.yoctoprojec=
-t.org">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex"><div>Hello,</div>
-<div>=C2=A0</div>
-<div>Actually, a situation exactly like the image below occurs. I start the=
- build process, but 52 tasks are running at the same time. But I have 80 co=
-res.</div>
-<div>=C2=A0</div>
-<div><img width=3D"1314" height=3D"703"></div>
-<div>=C2=A0</div>
+Hello,
+
+Since you cannot see the image, I am adding the image I took during the bui=
+ld process as a log below.
+
+Currently 58 running tasks (4463 of 10569) 42%
+gcc-source-12.3.0-12.3.0-r0 do_fetch - 9m59s (pid 3098128) 95%
+systend-1_253.1-r0 do_fetch - 9ma3s (pid 3105813) 20% |#FMHHHIHHIHEHIHIHIHI=
+IHES
+rpm-native-1_4.18.1-r0 do_fetch - 9md2s (pid 3106271) 36%
+qtbase-native-6.5.0-r0 do_fetch - 9m35s (pid 3112941) 40%
+: vulkan-headers-1.3.239.0-r0 do_fetch - 9m35s (pid 3113002) 85%
+qtbase-6.5.0-r0 do_fetch - 9m34s (pid 3113027)
+qtdeclarative-native-6.5.0-r0 do_fetch - 9m25s (pid 3116190) 54%
+qtdeclarative-6.5.0-r0 do_fetch - 9m24s (pid 3116820)
+protobuf-native-3.21.12-r0 do_fetch - 9m12s (pid 3124608) 22% |HHHHHHIHEHIH=
+IHIHITHIHIRIINE
+protobuf-3.21.12-r0 do_fetch - 9m12s (pid 3124638)
+openjpeg-2.5.6-r0 do_fetch - 8m31s (pid 3135091) 39%
+qtquick3d-6.5.0-r0 do_fetch - 8mi2s (pid 3143227) 50%
+qtquick3d-native-6.5.0-r@ do_fetch - 8mils (pid 3143496)
+python3-pillow-9.4.0-r0 do_fetch - 7mdds (pid 3189167) 23% |HAMHIHHIHHHIAHH=
+IHIIHIHIRAINS
+thb-1_2021.8.6-r0 do_fetch - 7m37s (pid 3214348) 80%
+tesseract-5.3.0-r0 do_fetch - 7m15s (pid 3283840) 72%
+cross-localedef-native-2.37-r0 do_fetch - 7m10s (pid 3308595) 11% |mwmuwsni=
+ns
+googletest-1.13.0-r0 do_fetch - 7m8s (pid 3312882) 80%
+glm-0.9.9.8+0.9.9.9+g1tAUTOINC+efec5dbos1-ro do_fetch - 7m7s (pid 3314028) =
+66%
+nlohmann-json-3.11.2-r do_fetch - 7mds (pid 3317884) 14% |wummstustnins
+assimp-5.2.5-r0 do_fetch - 6ms8s (pid 3329388) 26%
+flatbuffers-2.0.7-r0 do_fetch - 6m57s (pid 3329660) 56%
+flatbuffers-native-2.0.7-r0 do_fetch - 6m56s (pid 3332064)
+tensor flow-protobuf-3.9.2-r0 do_fetch - 6mils (pid 3479741) 21% |wmwwmunsm=
+nummununmununsny
+tensor flow-protobuf-native-3.9.2-ro do_fetch - 6n7s (pid 3494283)
+vin-native-9.0.1592-r0 do_fetch - 6m6s (pid 3498144) 6% |wmwwnun
+notary-0.6.1+gitAUTOINC+d6e1431feb-r0 do_fetch - 6mis (pid 3505280) 83%
+go-distribution-2.6.6+gitAUTOINC+28602af35a-r6 do_fetch - 6mis (pid 3505950=
+) 46% |
+grpc-go-1.41.0+gitAUTOINC+5d8e5aad46-re do_fetch - 6mos (pid 3506630) 61%
+renderdoc-1.17.imx-r@ do_fetch - 5m35s (pid 3537352) 15% |#ststuintns
+vulkan-loader-1.3.239.0-r0 do_fetch - 5m31s (pid 3559029) 51%
+ot-daemon-0.1+g1tAUTOINC+98e644d538-r0 do_fetch - 5m30s (pid 3562942) 5% |#=
+##u#
+glibc-2.37-r1 do_unpack - 4m49s (pid 3606954)
+1tp-20230127-r0 do_fetch - 4n37s (pid 3612944) 24% |HmERHHHH HEH IRHTIEHIAH=
+HIRITINY
+linux-firmware-1_20230515-r0 do_fetch - 3m55s (pid 3644566) 23% |AHHHMHAHIH=
+HHIHHHIHHIRIHIANE
+ghostscript-10.0.0-r0 do_fetch - 3m43s (pid 3654249) 60%
+demo-experience-voice-demo-1.0+AUTOINC+f43c722686_ab9896ecd3-ro do_fetch - =
+3maes (pid 3655714) 62%
+tesseract-lang-4.1.0-r@ do_fetch - 3m32s (pid 3661577) 0%
+cortexn-toolchain-cross-armv7e-n-10.3-2021.10-r0 do_fetch - 3m24s (pid 3681=
+451) 27% |MtH#HAHIEHIHHHIEHIHIHIRIINY
+boost-build-native-1_1.81.0-r@ do_fetch - 3m23s (pid 3682781) 42%
+boost-native-1.81.0-r0 do_fetch - 3m22s (pid 3683030) 21% |#MHHIHHHEHIHHHIE=
+HIHINT
+ghostscript-native-10.0.0-r0 do_fetch - 3m18s (pid 3689764)
+android-tools-5.1.1.r37-r@ do_fetch - 2m55s (pid 3725026) 87%
+nss-native-3.74-ro do_compile - 2m23s (pid 3785347)
+cmake-native-3.25.2-r6 do_configure - 1m22s (pid 3913462)
+parted-native-3.5-ro do_configure - 53s (pid 3972009)
+iso-codes-4.15.0-r0 do_install - 28s (pid 4027719)
+binutils-cross-aarch64-2.40-ro do_compile - 11s (pid 4047164)
+: linux-libc-headers-6.1-r0 do_unpack - 9s (pid 4051739)
+coreutils-native-9.1-ro do_compile - 7s (pid 4056462)
+dpkg-native-1.21.22-r@ do_compile - 3s (pid 4071241)
+
+Best regards.
+Efecan
+
+--QldU6XCxTincwBD26Hfv
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hello,</div>
+<div>&nbsp;</div>
+<div>Since you cannot see the image, I am adding the image I took during th=
+e build process as a log below.</div>
+<div>&nbsp;</div>
+<div>Currently 58 running tasks (4463 of 10569) 42%<br />gcc-source-12.3.0-=
+12.3.0-r0 do_fetch - 9m59s (pid 3098128) 95%<br />systend-1_253.1-r0 do_fet=
+ch - 9ma3s (pid 3105813) 20% |#FMHHHIHHIHEHIHIHIHIIHES<br />rpm-native-1_4.=
+18.1-r0 do_fetch - 9md2s (pid 3106271) 36%<br />qtbase-native-6.5.0-r0 do_f=
+etch - 9m35s (pid 3112941) 40%<br />: vulkan-headers-1.3.239.0-r0 do_fetch =
+- 9m35s (pid 3113002) 85%<br />qtbase-6.5.0-r0 do_fetch - 9m34s (pid 311302=
+7)<br />qtdeclarative-native-6.5.0-r0 do_fetch - 9m25s (pid 3116190) 54%<br=
+ />qtdeclarative-6.5.0-r0 do_fetch - 9m24s (pid 3116820)<br />protobuf-nati=
+ve-3.21.12-r0 do_fetch - 9m12s (pid 3124608) 22% |HHHHHHIHEHIHIHIHITHIHIRII=
+NE<br />protobuf-3.21.12-r0 do_fetch - 9m12s (pid 3124638)<br />openjpeg-2.=
+5.6-r0 do_fetch - 8m31s (pid 3135091) 39%<br />qtquick3d-6.5.0-r0 do_fetch =
+- 8mi2s (pid 3143227) 50%<br />qtquick3d-native-6.5.0-r@ do_fetch - 8mils (=
+pid 3143496)<br />python3-pillow-9.4.0-r0 do_fetch - 7mdds (pid 3189167) 23=
+% |HAMHIHHIHHHIAHHIHIIHIHIRAINS<br />thb-1_2021.8.6-r0 do_fetch - 7m37s (pi=
+d 3214348) 80%<br />tesseract-5.3.0-r0 do_fetch - 7m15s (pid 3283840) 72%<b=
+r />cross-localedef-native-2.37-r0 do_fetch - 7m10s (pid 3308595) 11% |mwmu=
+wsnins<br />googletest-1.13.0-r0 do_fetch - 7m8s (pid 3312882) 80%<br />glm=
+-0.9.9.8+0.9.9.9+g1tAUTOINC+efec5dbos1-ro do_fetch - 7m7s (pid 3314028) 66%=
+<br />nlohmann-json-3.11.2-r do_fetch - 7mds (pid 3317884) 14% |wummstustni=
+ns<br />assimp-5.2.5-r0 do_fetch - 6ms8s (pid 3329388) 26%<br />flatbuffers=
+-2.0.7-r0 do_fetch - 6m57s (pid 3329660) 56%<br />flatbuffers-native-2.0.7-=
+r0 do_fetch - 6m56s (pid 3332064)<br />tensor flow-protobuf-3.9.2-r0 do_fet=
+ch - 6mils (pid 3479741) 21% |wmwwmunsmnummununmununsny<br />tensor flow-pr=
+otobuf-native-3.9.2-ro do_fetch - 6n7s (pid 3494283)<br />vin-native-9.0.15=
+92-r0 do_fetch - 6m6s (pid 3498144) 6% |wmwwnun<br />notary-0.6.1+gitAUTOIN=
+C+d6e1431feb-r0 do_fetch - 6mis (pid 3505280) 83%<br />go-distribution-2.6.=
+6+gitAUTOINC+28602af35a-r6 do_fetch - 6mis (pid 3505950) 46% |<br />grpc-go=
+-1.41.0+gitAUTOINC+5d8e5aad46-re do_fetch - 6mos (pid 3506630) 61%<br />ren=
+derdoc-1.17.imx-r@ do_fetch - 5m35s (pid 3537352) 15% |#ststuintns<br />vul=
+kan-loader-1.3.239.0-r0 do_fetch - 5m31s (pid 3559029) 51%<br />ot-daemon-0=
+.1+g1tAUTOINC+98e644d538-r0 do_fetch - 5m30s (pid 3562942) 5% |###u#<br />g=
+libc-2.37-r1 do_unpack - 4m49s (pid 3606954)<br />1tp-20230127-r0 do_fetch =
+- 4n37s (pid 3612944) 24% |HmERHHHH HEH IRHTIEHIAHHIRITINY<br />linux-firmw=
+are-1_20230515-r0 do_fetch - 3m55s (pid 3644566) 23% |AHHHMHAHIHHHIHHHIHHIR=
+IHIANE<br />ghostscript-10.0.0-r0 do_fetch - 3m43s (pid 3654249) 60%<br />d=
+emo-experience-voice-demo-1.0+AUTOINC+f43c722686_ab9896ecd3-ro do_fetch - 3=
+maes (pid 3655714) 62%<br />tesseract-lang-4.1.0-r@ do_fetch - 3m32s (pid 3=
+661577) 0%<br />cortexn-toolchain-cross-armv7e-n-10.3-2021.10-r0 do_fetch -=
+ 3m24s (pid 3681451) 27% |MtH#HAHIEHIHHHIEHIHIHIRIINY<br />boost-build-nati=
+ve-1_1.81.0-r@ do_fetch - 3m23s (pid 3682781) 42%<br />boost-native-1.81.0-=
+r0 do_fetch - 3m22s (pid 3683030) 21% |#MHHIHHHEHIHHHIEHIHINT<br />ghostscr=
+ipt-native-10.0.0-r0 do_fetch - 3m18s (pid 3689764)<br />android-tools-5.1.=
+1.r37-r@ do_fetch - 2m55s (pid 3725026) 87%<br />nss-native-3.74-ro do_comp=
+ile - 2m23s (pid 3785347)<br />cmake-native-3.25.2-r6 do_configure - 1m22s =
+(pid 3913462)<br />parted-native-3.5-ro do_configure - 53s (pid 3972009)<br=
+ />iso-codes-4.15.0-r0 do_install - 28s (pid 4027719)<br />binutils-cross-a=
+arch64-2.40-ro do_compile - 11s (pid 4047164)<br />: linux-libc-headers-6.1=
+-r0 do_unpack - 9s (pid 4051739)<br />coreutils-native-9.1-ro do_compile - =
+7s (pid 4056462)<br />dpkg-native-1.21.22-r@ do_compile - 3s (pid 4071241)<=
+/div>
+<div>&nbsp;</div>
 <div>Best regards.</div>
 <div>Efecan</div>
-</blockquote></div>
 
---00000000000088454f0620d0107f--
+--QldU6XCxTincwBD26Hfv--
 
