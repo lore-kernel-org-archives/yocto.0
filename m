@@ -1,238 +1,130 @@
-Return-Path: <vanusuri@mvista.com>
+Return-Path: <radoslav.pesek@microstep-mis.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F219CE7AFA
-	for <webhook@archiver.kernel.org>; Fri,  6 Sep 2024 09:40:04 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.31130.1725615601213072332
- for <yocto@lists.yoctoproject.org>;
- Fri, 06 Sep 2024 02:40:01 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=Zp9iA8BL;
- spf=pass (domain: mvista.com, ip: 209.85.208.181, mailfrom: vanusuri@mvista.com)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2f752d9ab62so6431071fa.3
-        for <yocto@lists.yoctoproject.org>; Fri, 06 Sep 2024 02:40:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1725615599; x=1726220399; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PXuCIU6ZEC/S9S2gPtQD+4DeZ9VSZTIqHsnnxZz5gJg=;
-        b=Zp9iA8BLEOcyCOGNDpaMIhvTNtgJxC/NBimW048x41m+nlrqFGDP5wKSILdTIykZZo
-         RINqMmu3WbRADMmdEKpvofavDNb0aPUTCfoplVnzkvRzdhKasifEZL9tlqWNjpPXsu3N
-         9d4TLRobhiCvDy8JFX1mMOpbd5+ZVPdl9HNw0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725615599; x=1726220399;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PXuCIU6ZEC/S9S2gPtQD+4DeZ9VSZTIqHsnnxZz5gJg=;
-        b=aALEvf6m6Xod37nJcELD2CIA0srcRnht1rVAsqLqYkydnCGrVEYI83EgCo5JkcD3Uh
-         oKvjhUS3zdd3R7RqCHVEsoQ5KM7dBLTJTu0WuED2nuVvRvmUi1x3B84ur2dzHrsTe2FC
-         Bge6noi/3phQphi/jKw2/gyEpH5luIduNMv5ZPDGpQVnN/AYTo+r6Ou0SJywxAg3kmEU
-         Poj/RGwLe4R5RKH/QMukKaj9CEGw++6USFXfhUFm7LIqll4lG/mDhg3YeZ/uEp5aqM49
-         aHiGE8BYDcf+0XyqUJ/C8sBiwI5vgNjzIIasAWV73+OOaFKoLZX+d8Rn6DIK4zMljcSt
-         XU5g==
-X-Gm-Message-State: AOJu0Ywdf33j085N6xQmUtbZPAOE4e/4amwomEdMBNZbvD6rv5EWHTBn
-	rbmpxu4wdIa3P4yRCVuTVUWwzm6WRMKcN8W64y5Jllo2F3VGF4Cbyvzpi1UOhVg8aGCJqo6YaXm
-	PBrhVmoBykqHsjjdE2lNm+0VaF1tiNy+MzEj5v6m96zZ14dugp8o=
-X-Google-Smtp-Source: AGHT+IGtxsutgNayReqWW4wVBeXKbT1Ae+LpCJ0aqDeGEc4x2Zw2PBPwOh9tGYFoSIpA1uF8yPbUevdoIYBl32PGYo8=
-X-Received: by 2002:a05:651c:b13:b0:2f1:6cb1:44c0 with SMTP id
- 38308e7fff4ca-2f61038c633mr205423651fa.6.1725615598823; Fri, 06 Sep 2024
- 02:39:58 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CF8C1CE7AFE
+	for <webhook@archiver.kernel.org>; Fri,  6 Sep 2024 10:38:04 +0000 (UTC)
+Subject: esdk devtool finish workflow
+To: yocto@lists.yoctoproject.org
+From: "Radoslav Pesek" <radoslav.pesek@microstep-mis.com>
+X-Originating-Location: Galanta, Trnava, SK (62.168.101.66)
+X-Originating-Platform: Windows Firefox 129
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <20240828114336.436725-1-vanusuri@mvista.com>
-In-Reply-To: <20240828114336.436725-1-vanusuri@mvista.com>
-From: Vijay Anusuri <vanusuri@mvista.com>
-Date: Fri, 6 Sep 2024 15:09:46 +0530
-Message-ID: <CANQUz1-q2LkXpHqMEFhPVbWOcjzSiJqC1qHH6JeAvpkAA0ihTA@mail.gmail.com>
-Subject: Re: [meta-security][kirkstone][PATCH] tpm2-tools: Upgrade 5.2 -> 5.7
-To: yocto@lists.yoctoproject.org, Armin Kuster <akuster808@gmail.com>
-Content-Type: multipart/alternative; boundary="000000000000c9843106217030a5"
+Date: Fri, 06 Sep 2024 03:37:51 -0700
+Message-ID: <Mqk8.1725619071816092089.4kMS@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="i2bZlBxb2WiC7DOAGm2T"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 06 Sep 2024 09:40:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63792
+ <yocto@lists.yoctoproject.org>; Fri, 06 Sep 2024 10:38:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63793
 
---000000000000c9843106217030a5
-Content-Type: text/plain; charset="UTF-8"
+--i2bZlBxb2WiC7DOAGm2T
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Armin,
+Hello,
 
-Gentle Reminder...!!!
-Any update on this ?
+I'm trying to do the following (after generating and installing my esdk and=
+ sourcing the environment script):
+* devtool modify recipe
+* do some coding and testing
+* devtool finish recipe meta-custom -m srcrev
 
-Thanks & Regards,
-Vijay
+I want just to update SRCREV of the recipe, *not* to create source code pat=
+ches (that's why i use -m srcrev) and *not* to create bbappend for the reci=
+pe, but:
+* if meta-custom is a layer under the esdk (esdk/layers/meta-custom), the i=
+ssue is, it isn't git repo separate from the other layers under esdk/layers=
+ (because whole esdk/layers directory is one git repo), so when i commit th=
+e changes made by devtool finish (updated SRCREV), i don't make the commit =
+in the original git commit history and am not sure how now to push the chan=
+ges to the git server
+* if meta-custom is git repo somewhere else on the my machine, cloned from =
+the original git repo, devtool finish doesn't just update the recipe (with =
+changed SRCREV), but creates an bbappend, which i don't like cause updating=
+ recipe seems to me to be cleaner then having recipe and bbappend
 
-On Wed, Aug 28, 2024 at 5:13=E2=80=AFPM <vanusuri@mvista.com> wrote:
+So i'm not sure, how to accomplish this. Maybe i'm just missing something o=
+r don't use esdk/devtool as it's intended. So, could somebody, please, expl=
+ain to me the intended workflow or why what i'm trying to do isn't possible=
+ (or how, if it is)? Cause what documentation/howtos regarding devtool fini=
+sh i came across, either didn't use it within esdk or didn't use the workfl=
+ow i'm trying to use. I also tried to search some explanation why sdk/layer=
+s is one git repo (instead of having the layers under esdk/layers cloned as=
+ separate git repos - as it actually works when you use devtool under yocto=
+ build system) or why devtool finish does create bbappend (and doesn't simp=
+ly update the recipe) when the layer you want to update isn't the original =
+layer, where the recipe comes from (which i guess, within esdk, it's esdk/l=
+ayers/meta-custom in my case) as for example mentioned here: https://www.op=
+enembedded.org/pipermail/openembedded-core/2016-July/123873.html, but to no=
+ avail.
 
-> From: Vijay Anusuri <vanusuri@mvista.com>
->
-> Include Security fixes:
-> Fixed CVE-2024-29038
-> Fixed CVE-2024-29039
->
-> Changelog:
-> https://github.com/tpm2-software/tpm2-tools/releases/tag/5.7
-> https://github.com/tpm2-software/tpm2-tools/releases/tag/5.6
-> https://github.com/tpm2-software/tpm2-tools/releases/tag/5.5
-> https://github.com/tpm2-software/tpm2-tools/releases/tag/5.4
-> https://github.com/tpm2-software/tpm2-tools/releases/tag/5.3
->
-> Signed-off-by: Vijay Anusuri <vanusuri@mvista.com>
-> ---
->  .../tpm2-tools/{tpm2-tools_5.2.bb =3D> tpm2-tools_5.7.bb}  | 9 ++-------
->  1 file changed, 2 insertions(+), 7 deletions(-)
->  rename meta-tpm/recipes-tpm2/tpm2-tools/{tpm2-tools_5.2.bb =3D>
-> tpm2-tools_5.7.bb} (51%)
->
-> diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-> b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.7.bb
-> similarity index 51%
-> rename from meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-> rename to meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.7.bb
-> index c20af7e..bd3d34b 100644
-> --- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-> +++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.7.bb
-> @@ -1,21 +1,16 @@
->  SUMMARY =3D "Tools for TPM2."
->  DESCRIPTION =3D "tpm2-tools"
->  LICENSE =3D "BSD-3-Clause"
-> -LIC_FILES_CHKSUM =3D
-> "file://doc/LICENSE;md5=3Da846608d090aa64494c45fc147cc12e3"
-> +LIC_FILES_CHKSUM =3D
-> "file://docs/LICENSE;md5=3Da846608d090aa64494c45fc147cc12e3"
->  SECTION =3D "tpm"
->
->  DEPENDS =3D "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
->
->  SRC_URI =3D "
-> https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${=
-PV}.tar.gz
-> "
->
-> -SRC_URI[sha256sum] =3D
-> "c0b402f6a7b3456e8eb2445211e2d41c46c7e769e05fe4d8909ff64119f7a630"
-> +SRC_URI[sha256sum] =3D
-> "3810d36b5079256f4f2f7ce552e22213d43b1031c131538df8a2dbc3c570983a"
->
->  inherit autotools pkgconfig bash-completion
->
-> -do_configure:prepend() {
-> -    # do not extract the version number from git
-> -    sed -i -e 's/m4_esyscmd_s(\[git describe --tags --always
-> --dirty\])/${PV}/' ${S}/configure.ac
-> -}
-> -
->  # need tss-esys
->  RDEPENDS:${PN} =3D "libtss2 tpm2-abrmd"
-> --
-> 2.25.1
->
->
+I didn't try it yet, but the only thing that could probably help is adding =
+my layer (cloned somewhere on my machine) to the esdk's bblayers.conf, but =
+then, i would have the layer twice in the bblayers.conf (the one that was i=
+nstalled with the esdk and the one added manually), or even try to remove t=
+he one that was installed with esdk, which i'm not sure whether it would wo=
+rk.
 
---000000000000c9843106217030a5
-Content-Type: text/html; charset="UTF-8"
+Currently i'm on scarthgap, if that makes any difference.
+
+Thank you for any clarification, Rado.
+
+--i2bZlBxb2WiC7DOAGm2T
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hi Armin,<br><br></div>Gentle Reminder...!!!<br>=
-</div><div>Any update on this ?</div><div><br></div><div>Thanks &amp; Regar=
-ds,</div><div>Vijay<br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, Aug 28, 2024 at 5:13=E2=80=AFPM &lt;<=
-a href=3D"mailto:vanusuri@mvista.com">vanusuri@mvista.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex">From: Vijay Anusur=
-i &lt;<a href=3D"mailto:vanusuri@mvista.com" target=3D"_blank">vanusuri@mvi=
-sta.com</a>&gt;<br>
-<br>
-Include Security fixes:<br>
-Fixed CVE-2024-29038<br>
-Fixed CVE-2024-29039<br>
-<br>
-Changelog:<br>
-<a href=3D"https://github.com/tpm2-software/tpm2-tools/releases/tag/5.7" re=
-l=3D"noreferrer" target=3D"_blank">https://github.com/tpm2-software/tpm2-to=
-ols/releases/tag/5.7</a><br>
-<a href=3D"https://github.com/tpm2-software/tpm2-tools/releases/tag/5.6" re=
-l=3D"noreferrer" target=3D"_blank">https://github.com/tpm2-software/tpm2-to=
-ols/releases/tag/5.6</a><br>
-<a href=3D"https://github.com/tpm2-software/tpm2-tools/releases/tag/5.5" re=
-l=3D"noreferrer" target=3D"_blank">https://github.com/tpm2-software/tpm2-to=
-ols/releases/tag/5.5</a><br>
-<a href=3D"https://github.com/tpm2-software/tpm2-tools/releases/tag/5.4" re=
-l=3D"noreferrer" target=3D"_blank">https://github.com/tpm2-software/tpm2-to=
-ols/releases/tag/5.4</a><br>
-<a href=3D"https://github.com/tpm2-software/tpm2-tools/releases/tag/5.3" re=
-l=3D"noreferrer" target=3D"_blank">https://github.com/tpm2-software/tpm2-to=
-ols/releases/tag/5.3</a><br>
-<br>
-Signed-off-by: Vijay Anusuri &lt;<a href=3D"mailto:vanusuri@mvista.com" tar=
-get=3D"_blank">vanusuri@mvista.com</a>&gt;<br>
----<br>
-=C2=A0.../tpm2-tools/{<a href=3D"http://tpm2-tools_5.2.bb" rel=3D"noreferre=
-r" target=3D"_blank">tpm2-tools_5.2.bb</a> =3D&gt; <a href=3D"http://tpm2-t=
-ools_5.7.bb" rel=3D"noreferrer" target=3D"_blank">tpm2-tools_5.7.bb</a>}=C2=
-=A0 | 9 ++-------<br>
-=C2=A01 file changed, 2 insertions(+), 7 deletions(-)<br>
-=C2=A0rename meta-tpm/recipes-tpm2/tpm2-tools/{<a href=3D"http://tpm2-tools=
-_5.2.bb" rel=3D"noreferrer" target=3D"_blank">tpm2-tools_5.2.bb</a> =3D&gt;=
- <a href=3D"http://tpm2-tools_5.7.bb" rel=3D"noreferrer" target=3D"_blank">=
-tpm2-tools_5.7.bb</a>} (51%)<br>
-<br>
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/<a href=3D"http://tpm2-tools_=
-5.2.bb" rel=3D"noreferrer" target=3D"_blank">tpm2-tools_5.2.bb</a> b/meta-t=
-pm/recipes-tpm2/tpm2-tools/<a href=3D"http://tpm2-tools_5.7.bb" rel=3D"nore=
-ferrer" target=3D"_blank">tpm2-tools_5.7.bb</a><br>
-similarity index 51%<br>
-rename from meta-tpm/recipes-tpm2/tpm2-tools/<a href=3D"http://tpm2-tools_5=
-.2.bb" rel=3D"noreferrer" target=3D"_blank">tpm2-tools_5.2.bb</a><br>
-rename to meta-tpm/recipes-tpm2/tpm2-tools/<a href=3D"http://tpm2-tools_5.7=
-.bb" rel=3D"noreferrer" target=3D"_blank">tpm2-tools_5.7.bb</a><br>
-index c20af7e..bd3d34b 100644<br>
---- a/meta-tpm/recipes-tpm2/tpm2-tools/<a href=3D"http://tpm2-tools_5.2.bb"=
- rel=3D"noreferrer" target=3D"_blank">tpm2-tools_5.2.bb</a><br>
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/<a href=3D"http://tpm2-tools_5.7.bb"=
- rel=3D"noreferrer" target=3D"_blank">tpm2-tools_5.7.bb</a><br>
-@@ -1,21 +1,16 @@<br>
-=C2=A0SUMMARY =3D &quot;Tools for TPM2.&quot;<br>
-=C2=A0DESCRIPTION =3D &quot;tpm2-tools&quot;<br>
-=C2=A0LICENSE =3D &quot;BSD-3-Clause&quot;<br>
--LIC_FILES_CHKSUM =3D &quot;file://doc/LICENSE;md5=3Da846608d090aa64494c45f=
-c147cc12e3&quot;<br>
-+LIC_FILES_CHKSUM =3D &quot;file://docs/LICENSE;md5=3Da846608d090aa64494c45=
-fc147cc12e3&quot;<br>
-=C2=A0SECTION =3D &quot;tpm&quot;<br>
-<br>
-=C2=A0DEPENDS =3D &quot;tpm2-abrmd tpm2-tss openssl curl autoconf-archive&q=
-uot;<br>
-<br>
-=C2=A0SRC_URI =3D &quot;<a href=3D"https://github.com/tpm2-software/$%7BBPN=
-%7D/releases/download/$%7BPV%7D/$%7BBPN%7D-$%7BPV%7D.tar.gz" rel=3D"norefer=
-rer" target=3D"_blank">https://github.com/tpm2-software/${BPN}/releases/dow=
-nload/${PV}/${BPN}-${PV}.tar.gz</a>&quot;<br>
-<br>
--SRC_URI[sha256sum] =3D &quot;c0b402f6a7b3456e8eb2445211e2d41c46c7e769e05fe=
-4d8909ff64119f7a630&quot;<br>
-+SRC_URI[sha256sum] =3D &quot;3810d36b5079256f4f2f7ce552e22213d43b1031c1315=
-38df8a2dbc3c570983a&quot;<br>
-<br>
-=C2=A0inherit autotools pkgconfig bash-completion<br>
-<br>
--do_configure:prepend() {<br>
--=C2=A0 =C2=A0 # do not extract the version number from git<br>
--=C2=A0 =C2=A0 sed -i -e &#39;s/m4_esyscmd_s(\[git describe --tags --always=
- --dirty\])/${PV}/&#39; ${S}/<a href=3D"http://configure.ac" rel=3D"norefer=
-rer" target=3D"_blank">configure.ac</a><br>
--}<br>
--<br>
-=C2=A0# need tss-esys<br>
-=C2=A0RDEPENDS:${PN} =3D &quot;libtss2 tpm2-abrmd&quot;<br>
--- <br>
-2.25.1<br>
-<br>
-</blockquote></div>
+<div>Hello,</div>
+<div>&nbsp;</div>
+<div>I'm trying to do the following (after generating and installing my esd=
+k and sourcing the environment script):</div>
+<div>* devtool modify recipe</div>
+<div>* do some coding and testing</div>
+<div>* devtool finish recipe meta-custom -m srcrev</div>
+<div>&nbsp;</div>
+<div>I want just to update SRCREV of the recipe, <strong>not </strong>to cr=
+eate source code patches (that's why i use -m srcrev) and <strong>not</stro=
+ng> to create bbappend for the recipe, but:</div>
+<div>* if meta-custom is a layer under the esdk (esdk/layers/meta-custom), =
+the issue is, it isn't git repo separate from the other layers under esdk/l=
+ayers (because whole esdk/layers directory is one git repo), so when i comm=
+it the changes made by devtool finish (updated SRCREV), i don't make the co=
+mmit in the original git commit history and am not sure how now to push the=
+ changes to the git server</div>
+<div>* if meta-custom is git repo somewhere else on the my machine, cloned =
+from the original git repo, devtool finish doesn't just update the recipe (=
+with changed SRCREV), but creates an bbappend, which i don't like cause upd=
+ating recipe seems to me to be cleaner then having recipe and bbappend</div=
+>
+<div>&nbsp;</div>
+<div>So i'm not sure, how to accomplish this. Maybe i'm just missing someth=
+ing or don't use esdk/devtool as it's intended. So, could somebody, please,=
+ explain to me the intended workflow or why what i'm trying to do isn't pos=
+sible (or how, if it is)? Cause what documentation/howtos regarding devtool=
+ finish i came across, either didn't use it within esdk or didn't use the w=
+orkflow i'm trying to use. I also tried to search some explanation why sdk/=
+layers is one git repo (instead of having the layers under esdk/layers clon=
+ed as separate git repos - as it actually works when you use devtool under =
+yocto build system) or why devtool finish does create bbappend (and doesn't=
+ simply update the recipe) when the layer you want to update isn't the orig=
+inal layer, where the recipe comes from (which i guess, within esdk, it's e=
+sdk/layers/meta-custom in my case) as for example mentioned here: https://w=
+ww.openembedded.org/pipermail/openembedded-core/2016-July/123873.html, but =
+to no avail.</div>
+<div>&nbsp;</div>
+<div>I didn't try it yet, but the only thing that could probably help is ad=
+ding my layer (cloned somewhere on my machine) to the esdk's bblayers.conf,=
+ but then, i would have the layer twice in the bblayers.conf (the one that =
+was installed with the esdk and the one added manually), or even try to rem=
+ove the one that was installed with esdk, which i'm not sure whether it wou=
+ld work.</div>
+<div>&nbsp;</div>
+<div>Currently i'm on scarthgap, if that makes any difference.</div>
+<div>&nbsp;</div>
+<div>Thank you for any clarification, Rado.</div>
+<div>&nbsp;</div>
 
---000000000000c9843106217030a5--
+--i2bZlBxb2WiC7DOAGm2T--
 
