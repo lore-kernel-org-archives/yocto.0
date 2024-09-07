@@ -1,58 +1,41 @@
-Return-Path: <radoslav.pesek@microstep-mis.com>
+Return-Path: <hchanuy@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B80C3CE7B19
-	for <webhook@archiver.kernel.org>; Fri,  6 Sep 2024 13:54:45 +0000 (UTC)
-Subject: Re: [yocto] esdk devtool finish workflow
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: "Radoslav Pesek" <radoslav.pesek@microstep-mis.com>
-X-Originating-Location: Galanta, Trnava, SK (62.168.101.66)
-X-Originating-Platform: Windows Firefox 129
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C170E6FE4F
+	for <webhook@archiver.kernel.org>; Sat,  7 Sep 2024 07:34:26 +0000 (UTC)
+Subject: Re: [yocto] How to use i686-linux-gnu-gcc instead of install multilib when using luajit
+To: hchanuy@gmail.com, yocto@lists.yoctoproject.org
+From: hchanuy@gmail.com
+X-Originating-Location: Helsinki, Uusimaa, FI (87.92.135.50)
+X-Originating-Platform: Linux Firefox 130
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Fri, 06 Sep 2024 06:54:36 -0700
-References: <CANNYZj_MOsO3Vu2YRfB3njTS-RZBmnzduCS3QMtcMdnZOoaswg@mail.gmail.com>
-In-Reply-To: <CANNYZj_MOsO3Vu2YRfB3njTS-RZBmnzduCS3QMtcMdnZOoaswg@mail.gmail.com>
-Message-ID: <2927.1725630876196244404@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="qMCuzJRAmi3HNvpCGv3K"
+Date: Sat, 07 Sep 2024 00:34:25 -0700
+References: <8axl.1725614606267108811.qj7E@lists.yoctoproject.org>
+In-Reply-To: <8axl.1725614606267108811.qj7E@lists.yoctoproject.org>
+Message-ID: <7911.1725694465005703678@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="G4imuzE6YhYFgDrWMepv"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 06 Sep 2024 13:54:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63795
+ <yocto@lists.yoctoproject.org>; Sat, 07 Sep 2024 07:34:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63796
 
---qMCuzJRAmi3HNvpCGv3K
+--G4imuzE6YhYFgDrWMepv
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Alex,
+Apparently, I have to put the full path to the compiler instead of just the=
+ executable name. So setting `HOST_CC=3D/usr/bin/i686-linux-gnu-gcc` works.
 
-thank you for the prompt reply. As for me personally, I am, actually, using=
- the yocto environment, as the yocto maintainer within our project, but wan=
-ted to create esdk for the developers as i hoped it would be easier for the=
-m to work with recipes and for me/us to maintain it all together - as oppos=
-ed to, for example, each of us having separate yocto environment. My impres=
-sion (from all the documentation/howtos i found) was that this is the way t=
-o go.
-
-Rado.
-
---qMCuzJRAmi3HNvpCGv3K
+--G4imuzE6YhYFgDrWMepv
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hi Alex,</div>
-<div>&nbsp;</div>
-<div>thank you for the prompt reply. As for me personally, I am, actually, =
-using the yocto environment, as the yocto maintainer within our project, bu=
-t wanted to create esdk for the developers as i hoped it would be easier fo=
-r them to work with recipes and for me/us to maintain it all together - as =
-opposed to, for example, each of us having separate yocto environment. My i=
-mpression (from all the documentation/howtos i found) was that this is the =
-way to go.</div>
-<div>&nbsp;</div>
-<div>Rado.</div>
+<div>Apparently, I have to put the full path to the compiler instead of jus=
+t the executable name. So setting `HOST_CC=3D/usr/bin/i686-linux-gnu-gcc` w=
+orks.</div>
 
---qMCuzJRAmi3HNvpCGv3K--
+--G4imuzE6YhYFgDrWMepv--
 
