@@ -1,273 +1,124 @@
-Return-Path: <sushma.siri1705@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A58B3EDE99A
-	for <webhook@archiver.kernel.org>; Tue, 10 Sep 2024 15:07:55 +0000 (UTC)
-Subject: Re: [yocto] Issues Integrating meta-marvell with Yocto Scarthgap Branch
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: sushma.siri1705@gmail.com
-X-Originating-Location: US (136.226.245.4)
-X-Originating-Platform: Linux Chrome 127
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA583EDE9A0
+	for <webhook@archiver.kernel.org>; Tue, 10 Sep 2024 15:46:45 +0000 (UTC)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+ by mx.groups.io with SMTP id smtpd.web11.26841.1725983204358721531
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 10 Sep 2024 08:46:44 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=c/aCJvRt;
+ spf=pass (domain: gmail.com, ip: 209.85.167.46, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53661ac5ba1so1034031e87.2
+        for <yocto@lists.yoctoproject.org>; Tue, 10 Sep 2024 08:46:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725983202; x=1726588002; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=f0MSMWnmP+T5Ss4Xj20EDXF5+M0r6/dXXNJoOGq5Yxw=;
+        b=c/aCJvRtqC6KSRbEd2FK4FDvnU/g/586z0pGGA0aWotnaeHt6g/0aaQnTKXKqo0ZYB
+         JrLpXE0GKDaWMv5t1CF+rbyCgZhBbqExXnj2gWAPimIjSPRHB2dRTlRzI0FiYnA4OrCt
+         eC9E4JtKBXdZ2kI5MhYTWRHty1kACOYIDdc/QMjWiW8H4JIdd5MnUMFqleNNCoCqcwzx
+         ze+W8v47KzTn1CAn1LUSQez4iOZo9iPyqtCQo5Ticm3zXEKezAjV8Bf9AGYDLiy94Eln
+         sEY2nBW7nM/ud5IVmjWBKl5I0/+7+kg0Qf11f4drNma7FgtYAkfd8wRm53mj3GI9WquU
+         iPGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725983202; x=1726588002;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f0MSMWnmP+T5Ss4Xj20EDXF5+M0r6/dXXNJoOGq5Yxw=;
+        b=j2P9284LutzWqBTho7UC88DY/R4scVjoHh/djBQRliP5KtZtD+xHKCXZmywGbfdnza
+         GtcbL31sQbeM9ZY8+ZfmgMIlzuP1cgRL0bMXOk9oKrXa+IS3px+mhpsAJBORUl0JRpyE
+         yNioown3OavQJCwiWxxoLhcztWhJMl6tGlqwv3vBXU2OdXj+KwLdB8MSROBiTvxzB62B
+         KWNEt7th1sarbnFmIb7A0JQLb4ZCcDzeA4osskhntaIxLcdTmrfEIDQ6bWoGia977OyH
+         m8xV6f3TzKfWSrAVy+/kSNhVoRan52kDzVIHzxux8knFGHUQm+XJ5PmBxd8mJHatt9f4
+         kM8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWMRSivmGNwjRhwyA0+bIQVuzIUq0U9RN7ax2CuPOHtGq5nE2kx1HiNzGMqoVsmGYovbWNDoQ==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yw0eBtkPAhb0tYK7DK0CMDxsGngiYbNcP6tO55qZJjT4TD3eV9M
+	2UK2jd+seaoAsUmkYftt222dK+9uLi8VlcEP+XDRoFo3jVZY5PkIX4ie9dBNJ2rcCOy6EXh5Y7N
+	1tzPHULg6ORHazhB+LamN6Fxw+lE=
+X-Google-Smtp-Source: AGHT+IEvvacJ7YfB+jBjOYVc7WG7eS7cn4qe30z4YBXmZzjS1/dF7pPAJ2zTNN0zgeUSMGcBG4TPLiidO5Ku+jmig/A=
+X-Received: by 2002:a05:6512:ea6:b0:52e:9c69:b25b with SMTP id
+ 2adb3069b0e04-536587b4390mr8748771e87.28.1725983201675; Tue, 10 Sep 2024
+ 08:46:41 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 10 Sep 2024 08:07:50 -0700
-References: <CANNYZj_Ov-T8itR=ixckftPB5oE6EJmSfdLnF76a=R2FjV_AVw@mail.gmail.com>
-In-Reply-To: <CANNYZj_Ov-T8itR=ixckftPB5oE6EJmSfdLnF76a=R2FjV_AVw@mail.gmail.com>
-Message-ID: <30802.1725980870975766147@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="XQy0FR3gJ1F5o2K9F1It"
+References: <20240502105745.3073153-1-alex.kanavin@gmail.com>
+ <8ddf5dac-2cb8-4c6a-b4e9-b8b281058cb1@ti.com> <CANNYZj8THxZ6y8sv3Y7A9br3zfh4GMpec4g4Y-+gMzGMJf5CAA@mail.gmail.com>
+ <fa52a7f7-d025-418a-b022-9d3e813ad2de@ti.com>
+In-Reply-To: <fa52a7f7-d025-418a-b022-9d3e813ad2de@ti.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 10 Sep 2024 17:46:30 +0200
+Message-ID: <CANNYZj9komRYgFeGb3tqoMoR3HWZrDsB+KVGW_2BYMtQcLV7wA@mail.gmail.com>
+Subject: Re: [bitbake-devel] [RFC PATCH] bitbake-setup: add the proof of
+ concept implementation
+To: Ryan Eatmon <reatmon@ti.com>
+Cc: bitbake-devel@lists.openembedded.org, yocto@lists.yoctoproject.org, 
+	openembedded-architecture@lists.openembedded.org, 
+	Alexander Kanavin <alex@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 10 Sep 2024 15:07:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63817
+ <yocto@lists.yoctoproject.org>; Tue, 10 Sep 2024 15:46:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63818
 
---XQy0FR3gJ1F5o2K9F1It
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, 10 Sept 2024 at 17:02, Ryan Eatmon <reatmon@ti.com> wrote:
+> You are correct.  I assumed that the string was the same format as the
+> SRC_URI.  This might be a little confusing for users as that means we
+> have two different interpretations for repo strings.
 
-Hi Alex,
+> Then what good is the key value for?  The current patch does not use
+> r_name except to look up the value under layers.  Should we just make
+> the JSON have this as an array of repos instead of a named hash?
+>
+> Or is there some planned thing coming later that might make use of this key?
 
-Thank you for your response.
+Please keep in mind that the format for the set of layers in the
+'sources' section follows precisely the json format used by layer
+setup tooling, which was discussed to death, and agreed with great
+difficulty quite some time ago, and then implemented in
+'bitbake-layers create-layer-setup' that writes it out and
+oe-setup-layers that consumes it and pulls the layers from the
+network.
 
-I=E2=80=99m working with the Marvell Armada 7040 board and haven't reached =
-out to Marvell for support yet.
+Then there's an additional ['configuration']['bitbake-setup'] section,
+which is new, and specifies what to do after checking out the layers.
 
-While integrating the meta-marvell layer from the krogoth branch into the s=
-carthgap Yocto workspace, I encountered several syntax errors, which I=E2=
-=80=99ve since resolved.
+This answers both of these points: 'sources' should list git repos in
+a way that can be given directly to git (so that we don't lock people
+into bitbake's git fetcher if they don't want to use that). And the
+key is used by oe-setup-layers as a 'name' of an entry to tell the
+user what is going on (bitbake-setup could do the same to hide the
+noisy git output, especially if we bolt on a nice interactive ncurses
+UI to it).
 
-However, I've now run into a new build error related to SPDX.
 
-Below is the error snippet:
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Build Output
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-sushma@sushma:~/poky/build$ bitbake core-image-full-cmdline
-WARNING: Layer marvell-layer should set LAYERSERIES_COMPAT_marvell-layer in=
- its conf/layer.conf file to list the core layer names it is compatible wit=
-h.
-Loading cache: 100% |######################################################=
-###########################################################################=
-#######################################| Time: 0:01:08
-Loaded 5181 entries from dependency cache.
-NOTE: Resolving any missing task queue dependencies
-Build Configuration:
-BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "2.8.0"
-BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "x86_64-linux"
-NATIVELSBSTRING =C2=A0 =C2=A0 =C2=A0=3D "universal"
-TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "aarch64-poky-linux"
-MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "db-88f7040-pca=
-c"
-DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "poky"
-DISTRO_VERSION =C2=A0 =C2=A0 =C2=A0 =3D "5.0.3"
-TUNE_FEATURES =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "aarch64"
-TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D ""
-meta
-meta-poky
-meta-yocto-bsp =C2=A0 =C2=A0 =C2=A0 =3D "scarthgap:8637aa34f0009421eb6c51a9=
-3588fe879950e1f4"
-meta-oe
-meta-python
-meta-networking
-meta-perl
-meta-webserver
-meta-gnome
-meta-multimedia
-meta-xfce
-meta-initramfs
-meta-filesystems =C2=A0 =C2=A0 =3D "scarthgap:1235dd4ed4a57e67683c045ad76b6=
-a0f9e896b45"
-meta-marvell =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "krogoth:49746295faf8de5c732c7=
-2f38301742e4954e501"
-Sstate summary: Wanted 1468 Local 777 Mirrors 0 Missed 691 Current 1130 (52=
-% match, 73% complete)#####################################################=
-###################### =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 | ETA: =C2=A00:00:22
-Removing 6 stale sstate objects for arch db_88f7040_pcac: 100% |###########=
-###########################################################################=
-#######################################| Time: 0:00:00
-Removing 272 stale sstate objects for arch aarch64: 100% |#################=
-###########################################################################=
-#######################################| Time: 0:00:08
-Removing 6 stale sstate objects for arch allarch: 100% |###################=
-###########################################################################=
-#######################################| Time: 0:00:00
-NOTE: Executing Tasks
-ERROR: run-postinsts-1.0-r0 do_create_spdx: Cannot find any SPDX file for r=
-ecipe initscripts, False sstate:initscripts:cortexa57-poky-linux:1.0:r0:cor=
-texa57:12: sstate:initscripts::1.0:r0::12:
-ERROR: Logfile of failure stored in: /home/sushma/poky/build/tmp/work/all-p=
-oky-linux/run-postinsts/1.0/temp/log.do_create_spdx.249820
-ERROR: Task (/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-post=
-insts_1.0.bb:do_create_spdx) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4059 tasks of which 4054 didn't need to be r=
-erun and 1 failed.
-Summary: 1 task failed:
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts_1.0.bb:=
-do_create_spdx
-Summary: There was 1 WARNING message.
-Summary: There was 1 ERROR message, returning a non-zero exit code.
+> Ideally this would be locked to oe-core as that is what is intended.
+> But I'm not sure how best to do that.
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Last few lines from file: /home/...../log.do_create_spdx.249820
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/files/aarch64
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts-1.0/arm=
-ada70xx
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts/armada7=
-0xx
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/files/armada70xx
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts-1.0/all=
-arch
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts/allarch
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/files/allarch
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts-1.0/
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts/
-/home/sushma/poky/meta/recipes-devtools/run-postinsts/files/
-DEBUG: Using /home/sushma/poky/meta/recipes-devtools/run-postinsts/run-post=
-insts/run-postinsts.service for run-postinsts.service
-DEBUG: Scanning 0 patches for CVEs
-ERROR: Cannot find any SPDX file for recipe initscripts, False sstate:inits=
-cripts:cortexa57-poky-linux:1.0:r0:cortexa57:12: sstate:initscripts::1.0:r0=
-::12:
-DEBUG: Python function do_create_spdx finished
+Indeed. Anyone can mimic oe-core in their rogue layer and be selected
+instead of the real oe-core.
 
---XQy0FR3gJ1F5o2K9F1It
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+> Side topic, would it make sense to allow for the existence of a config
+> file in the repos that would allow them to "register" features that can
+> processed by bitbake-setup to configure various things that the layer
+> requires/offers?  Right now we do this kind of thing for the
+> oe-setup-build script.  But I could see the framework being useful for
+> this kind of thing.
 
-<div>
-<div class=3D"flex-shrink-0 flex flex-col relative items-end">
-<div>
-<div class=3D"pt-0">
-<div class=3D"gizmo-bot-avatar flex h-8 w-8 items-center justify-center ove=
-rflow-hidden rounded-full">
-<div class=3D"relative p-1 rounded-sm flex items-center justify-center bg-t=
-oken-main-surface-primary text-token-text-primary h-8 w-8">&nbsp;</div>
-</div>
-</div>
-</div>
-</div>
-<div class=3D"group/conversation-turn relative flex w-full min-w-0 flex-col=
- agent-turn">
-<div class=3D"flex-col gap-1 md:gap-3">
-<div class=3D"flex max-w-full flex-col flex-grow">
-<div class=3D"min-h-[20px] text-message flex w-full flex-col items-end gap-=
-2 whitespace-normal break-words [.text-message+&amp;]:mt-5" dir=3D"auto" da=
-ta-message-author-role=3D"assistant" data-message-id=3D"84a66832-9cea-4b8e-=
-9bb8-afc7ef352bfa">
-<div class=3D"flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
-<div class=3D"markdown prose w-full break-words dark:prose-invert light">
-<p>Hi Alex,</p>
-<p>Thank you for your response.</p>
-<p>I&rsquo;m working with the Marvell Armada 7040 board and haven't reached=
- out to Marvell for support yet.</p>
-<p>While integrating the meta-marvell layer from the krogoth branch into th=
-e scarthgap Yocto workspace, I encountered several syntax errors, which I&r=
-squo;ve since resolved.</p>
-<p>However, I've now run into a new build error related to SPDX.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div>Below is the error snippet:</div>
-<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
-<div>Build Output</div>
-<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
-<div>
-<div>sushma@sushma:~/poky/build$ bitbake core-image-full-cmdline<br />WARNI=
-NG: Layer marvell-layer should set LAYERSERIES_COMPAT_marvell-layer in its =
-conf/layer.conf file to list the core layer names it is compatible with.<br=
- />Loading cache: 100% |###################################################=
-###########################################################################=
-##########################################| Time: 0:01:08<br />Loaded 5181 =
-entries from dependency cache.<br />NOTE: Resolving any missing task queue =
-dependencies</div>
-<div>Build Configuration:<br />BB_VERSION &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; =3D "2.8.0"<br />BUILD_SYS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "=
-x86_64-linux"<br />NATIVELSBSTRING &nbsp; &nbsp; &nbsp;=3D "universal"<br /=
->TARGET_SYS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "aarch64-poky-linux"<br =
-/>MACHINE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "db-88f7040-p=
-cac"<br />DISTRO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "poky=
-"<br />DISTRO_VERSION &nbsp; &nbsp; &nbsp; =3D "5.0.3"<br />TUNE_FEATURES &=
-nbsp; &nbsp; &nbsp; &nbsp;=3D "aarch64"<br />TARGET_FPU &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; =3D ""<br />meta &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp;&nbsp;<br />meta-poky &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-;<br />meta-yocto-bsp &nbsp; &nbsp; &nbsp; =3D "scarthgap:8637aa34f0009421e=
-b6c51a93588fe879950e1f4"<br />meta-oe &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp;<br />meta-python &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />meta-n=
-etworking &nbsp; &nbsp; &nbsp;<br />meta-perl &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp;<br />meta-webserver &nbsp; &nbsp; &nbsp;&nbsp;<br />meta-gnome=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br />meta-multimedia &nbsp; &nbsp=
-; &nbsp;<br />meta-xfce &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />meta=
--initramfs &nbsp; &nbsp; &nbsp;&nbsp;<br />meta-filesystems &nbsp; &nbsp; =
-=3D "scarthgap:1235dd4ed4a57e67683c045ad76b6a0f9e896b45"<br />meta-marvell =
-&nbsp; &nbsp; &nbsp; &nbsp; =3D "krogoth:49746295faf8de5c732c72f38301742e49=
-54e501"</div>
-<div>Sstate summary: Wanted 1468 Local 777 Mirrors 0 Missed 691 Current 113=
-0 (52% match, 73% complete)################################################=
-########################### &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; | ETA: &nbsp;0:00:22<br />Removing 6 stale sstate objects for arch=
- db_88f7040_pcac: 100% |###################################################=
-##########################################################################|=
- Time: 0:00:00<br />Removing 272 stale sstate objects for arch aarch64: 100=
-% |########################################################################=
-###########################################################| Time: 0:00:08<=
-br />Removing 6 stale sstate objects for arch allarch: 100% |##############=
-###########################################################################=
-############################################| Time: 0:00:00<br />NOTE: Exec=
-uting Tasks<br />ERROR: run-postinsts-1.0-r0 do_create_spdx: Cannot find an=
-y SPDX file for recipe initscripts, False sstate:initscripts:cortexa57-poky=
--linux:1.0:r0:cortexa57:12: sstate:initscripts::1.0:r0::12:<br />ERROR: Log=
-file of failure stored in: /home/sushma/poky/build/tmp/work/all-poky-linux/=
-run-postinsts/1.0/temp/log.do_create_spdx.249820<br />ERROR: Task (/home/su=
-shma/poky/meta/recipes-devtools/run-postinsts/run-postinsts_1.0.bb:do_creat=
-e_spdx) failed with exit code '1'<br />NOTE: Tasks Summary: Attempted 4059 =
-tasks of which 4054 didn't need to be rerun and 1 failed.</div>
-<div>Summary: 1 task failed:<br />&nbsp; /home/sushma/poky/meta/recipes-dev=
-tools/run-postinsts/run-postinsts_1.0.bb:do_create_spdx<br />Summary: There=
- was 1 WARNING message.<br />Summary: There was 1 ERROR message, returning =
-a non-zero exit code.</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-</div>
-<div>Last few lines from file: /home/...../log.do_create_spdx.249820</div>
-<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-</div>
-<div>&nbsp; &nbsp; /home/sushma/poky/meta/recipes-devtools/run-postinsts/fi=
-les/aarch64<br />&nbsp; &nbsp; /home/sushma/poky/meta/recipes-devtools/run-=
-postinsts/run-postinsts-1.0/armada70xx<br />&nbsp; &nbsp; /home/sushma/poky=
-/meta/recipes-devtools/run-postinsts/run-postinsts/armada70xx<br />&nbsp; &=
-nbsp; /home/sushma/poky/meta/recipes-devtools/run-postinsts/files/armada70x=
-x<br />&nbsp; &nbsp; /home/sushma/poky/meta/recipes-devtools/run-postinsts/=
-run-postinsts-1.0/allarch<br />&nbsp; &nbsp; /home/sushma/poky/meta/recipes=
--devtools/run-postinsts/run-postinsts/allarch<br />&nbsp; &nbsp; /home/sush=
-ma/poky/meta/recipes-devtools/run-postinsts/files/allarch<br />&nbsp; &nbsp=
-; /home/sushma/poky/meta/recipes-devtools/run-postinsts/run-postinsts-1.0/<=
-br />&nbsp; &nbsp; /home/sushma/poky/meta/recipes-devtools/run-postinsts/ru=
-n-postinsts/<br />&nbsp; &nbsp; /home/sushma/poky/meta/recipes-devtools/run=
--postinsts/files/<br />DEBUG: Using /home/sushma/poky/meta/recipes-devtools=
-/run-postinsts/run-postinsts/run-postinsts.service for run-postinsts.servic=
-e<br />DEBUG: Scanning 0 patches for CVEs<br />ERROR: Cannot find any SPDX =
-file for recipe initscripts, False sstate:initscripts:cortexa57-poky-linux:=
-1.0:r0:cortexa57:12: sstate:initscripts::1.0:r0::12:<br />DEBUG: Python fun=
-ction do_create_spdx finished</div>
-</div>
+I suppose you are talking about config fragments, which are discussed
+in a separate thread, and have their own prototype. Bitbake-setup will
+certainly gain support for those, but they need to be agreed on and
+implemented first.
 
---XQy0FR3gJ1F5o2K9F1It--
+As for allowing config entries that would direct bitbake-setup to run
+freeform shell scripts, I lean towards not supporting that. You can
+put them into 'targets' if you absolutely have to. We're trying to
+move away from custom and usually undocumented scripts with this
+effort.
+
+Alex
 
