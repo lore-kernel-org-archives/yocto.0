@@ -1,111 +1,90 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <joel.winarske@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DBE5EE57C8
-	for <webhook@archiver.kernel.org>; Wed, 11 Sep 2024 17:23:55 +0000 (UTC)
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
- by mx.groups.io with SMTP id smtpd.web10.27489.1726075427336974279
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CE70EE57D4
+	for <webhook@archiver.kernel.org>; Wed, 11 Sep 2024 20:17:36 +0000 (UTC)
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web11.31505.1726085852276776177
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Sep 2024 10:23:47 -0700
+ Wed, 11 Sep 2024 13:17:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=abwqcKe6;
- spf=pass (domain: gmail.com, ip: 209.85.167.180, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3e0465e6bd5so28086b6e.2
-        for <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 10:23:47 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ZrcM2VAi;
+ spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: joel.winarske@gmail.com)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2d88edf1340so148033a91.1
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 13:17:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726075426; x=1726680226; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dz2hruJOHXfkqwvTcn8Gq/L0oHm2cOBjw9Ss1HFeFgM=;
-        b=abwqcKe6lch6hWH8qjg9ZeCvO2Ac0O4brJWMYZlr+Xb55GwDDj+AAP+VYQjtHfnMs3
-         ZMhVUqfUYgJc4iQBUa4Ikygb1i3f+IvwCFM9/E8dy9SAKzF/mbWz2zXwuRyaJPcFFyQG
-         Xp0VbvgDofSfzZ4fpWDywdPLsJM+73WGf1v3o/Ckdqxr6fDYAYTRPnbV6pRpoQaFs3Yz
-         DMTIfOcVbN4huNHnQ9Rr+ShGKoeouriLJwwkmcZhfHgzLvD0y4eOzsDLBIopriZtYPlc
-         G2mng1RyNgz+QQVgS+2F2x3mys8fhGEQl9sZL76oaii6K+IcS3Pao10ENBXOfGq7cAQZ
-         D/GQ==
+        d=gmail.com; s=20230601; t=1726085852; x=1726690652; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RcsqIsMunbO9wegIUAghshqdg3F6Li2RtvYErVY+soY=;
+        b=ZrcM2VAiBbz0+vRunHIxho/i3I71oa6KnscpeTcJj6IQvl6W35JyRyLuX8yI+HGzv+
+         UPnw1wHUEAikkj7wb4p00GeDnqr/KBpNuovQqqOjtpSKcReRprbQysI9KAwL5cAclcF4
+         wuAOCsZiIMHFXU4y61RmLUeAGupfjHWgbG8tl4YxebPL4zv52IwsDviVNXlFvBkQe56a
+         tu54i0UkMbyGCppRv2dW7Knf8319E/twX6S8JzGmjwAd4+dphlT8/XqgVl1U5xUoe2pl
+         PRRU+tfI6pkl+fdVfQDvPOpNDBEyO9CMuVWzbb+6INOHtf+J5IZYvrjNKdByogyIIQ3j
+         /NRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726075426; x=1726680226;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dz2hruJOHXfkqwvTcn8Gq/L0oHm2cOBjw9Ss1HFeFgM=;
-        b=KTIifTtq876prcAvH4t2Cj3D6oq8iZpEQ5AK/ZKUC/M4QRxHckDoJKoT4obsYSQCVB
-         Wf7ADw+dUOijl4YJNysg5emIfn0+Q6hT3CRP1ZgoBzpvIDxABfKxNFLtZVz3o9udv9Lh
-         IyySZumdmi5PdC2cPZjREX+HkyHJK9Ol92PemEUlrMrTQs8JtDiicEtU9OQK8usIgCZF
-         /MfXVey417sm/xSyqjW4rQfEvJj+Tn+w9iCAGLDIKwMSbhATHxXTBAcKbQGGI1IfhEWz
-         6jEo1Dke5khHOSYsjZ73wtHh3scebhANS+MPykuIU7ERLAbjDpT9hle/SGqefw0x1fY/
-         ZrDQ==
-X-Gm-Message-State: AOJu0Yz/uuvUJ9OUWxRE0fzmpRK3Rn6LJ9eC7fz2LMWh5esGatGu0Z0r
-	gYiVz4dNub+DPq9UDPgCAVu6gyIuEXCn8JsiMVtuSHSf4xbBW8LN84cvvCSQTNksHha2YUZujQ5
-	AgV2QqdegvSV+ndmbVUM/Y5BKFXovPpK7CVU=
-X-Google-Smtp-Source: AGHT+IFTUGG1jiyrmZKtloHyKwqPTGiVO/Q20G68DOtwPcljsCqf0T3H97/+6k8j9RtmbcsllpoU7gnSdhKGE+OfHps=
-X-Received: by 2002:a05:6808:f93:b0:3e0:47eb:baa with SMTP id
- 5614622812f47-3e071a95b6dmr37095b6e.14.1726075426323; Wed, 11 Sep 2024
- 10:23:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726085852; x=1726690652;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RcsqIsMunbO9wegIUAghshqdg3F6Li2RtvYErVY+soY=;
+        b=GNtB6ui1a/atoYqTRoKVErI1uD+zbkOhrGPZz/aCrEJvTgXPL9YXgbMcfhx7hE4Wut
+         gZqItMCjwZzIUD6Ri79StuGMDuaDTMLKcqK0E8Z52q+sPf1uihYCnYCMAp/LKbgCl1Ab
+         qF9UTplhmiNoY8Fawd+hHqUtvctAjzjmM2LMcbYgaE1Lf57JqePu+o1bH6N+UnUZLqV+
+         TTlFtFETZULsJ0Ckd8R2m7i0ie/SX+6sfRaFU2xk+F0GWXctbl35N1MoUK2wivjbEaYB
+         +6kNAdffvwCP+kgavYC4Neuym1eQA9+6+9yJI5hwmsrD+RTpJ6osp628co0A3rzva2p/
+         HCPA==
+X-Gm-Message-State: AOJu0YzvOhNa7XY6k0eyZTDfh7fwp5TByb7eCw1fNympjb+heJLGzUAx
+	vrlrmoA5TXMaRQQQ9gVzsY6k6PSgobpZ6+TaPnNi4hckIXB/UC+YlAYeNKGryaIS8AXDjZrqPY9
+	f0NB2VExthCxiR6oYGmk+sIc1VuY=
+X-Google-Smtp-Source: AGHT+IFY53lInGFPzYlYQ8Hjk449jKeatQ+asNa6t4YAoAxdCvXoU2knX751BSWkgc28Gd3nfywdh0KB4138fXmPc1E=
+X-Received: by 2002:a17:90a:c241:b0:2d8:9226:aa94 with SMTP id
+ 98e67ed59e1d1-2db9ffa3b8amr439025a91.1.1726085851529; Wed, 11 Sep 2024
+ 13:17:31 -0700 (PDT)
 MIME-Version: 1.0
 References: <CABKMkPK18FnhuOT8ydnLXw-n-e_Y8rW_vg7AzwG4qgnXdsHQwQ@mail.gmail.com>
-In-Reply-To: <CABKMkPK18FnhuOT8ydnLXw-n-e_Y8rW_vg7AzwG4qgnXdsHQwQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 11 Sep 2024 10:23:20 -0700
-Message-ID: <CAMKF1soA_76OSa2Mt=s8O5Ws46X6S93F_9DwYu0f8Jqb2fpxJQ@mail.gmail.com>
+ <CAMKF1soA_76OSa2Mt=s8O5Ws46X6S93F_9DwYu0f8Jqb2fpxJQ@mail.gmail.com>
+In-Reply-To: <CAMKF1soA_76OSa2Mt=s8O5Ws46X6S93F_9DwYu0f8Jqb2fpxJQ@mail.gmail.com>
+From: Joel Winarske <joel.winarske@gmail.com>
+Date: Wed, 11 Sep 2024 13:17:20 -0700
+Message-ID: <CABKMkPKOmBZ8spNNi3YYxo+ASFPiZnBXcP_0Jrd_RuSeX6Dn_Q@mail.gmail.com>
 Subject: Re: [yocto] [scarthgap] dwarfsrcfiles + static lib built with clang
-To: yocto@lists.yoctoproject.org, joel.winarske@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000084efa0621ddae80"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 17:23:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63825
+ <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 20:17:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63826
 
-On Wed, Sep 11, 2024 at 6:56=E2=80=AFAM Joel Winarske via
-lists.yoctoproject.org
-<joel.winarske=3Dgmail.com@lists.yoctoproject.org> wrote:
->
-> Seeing this error when installing archive file to ${PN}-staticdev, (not p=
-rior seen on kirkstone or dunfell):
->
-> ```
-> ERROR: dwarfsrcfiles failed with exit code 1 (cmd was ['dwarfsrcfiles', '=
-/mnt/raid10/yocto/master/raspberry-pi5/tmp/work/cortexa76-poky-linux/filame=
-nt-vk/1.54.3/package/usr/lib/filament/libfilamat.a']):
-> dwarfsrcfiles: /mnt/raid10/yocto/master/raspberry-pi5/tmp/work/cortexa76-=
-poky-linux/filament-vk/1.54.3/package/usr/lib/filament/libfilamat.a: not a =
-valid ELF file
-> ```
->
-> Running readelf -h on the file I get:
->
-> `readelf: Error: This is a LLVM bitcode file - try extracing and then usi=
-ng llvm-bcanalyzer`
+--000000000000084efa0621ddae80
+Content-Type: text/plain; charset="UTF-8"
 
-This error tells me that the generated objects are containing lto
-intermediate information so
-the linker can re-invoke the compiler again to do whole program
-optimization. So you have two
-options, either disable LTO for this recipe if it is enabled by
-default, you might have a bit less
-optimized binary, or disable running dwarfsrcfile using something like
+Hi Khem,
 
-PACKAGE_DEBUG_STATIC_SPLIT =3D '0'
+Yes it is built with LTO. If I disable LTO it works.  I definitely need LTO
+enabled.
 
-in the recipe.
+Using `PACKAGE_DEBUG_STATIC_SPLIT = "0"` in the recipe has no effect on the
+error.
 
+If I set `INHIBIT_PACKAGE_DEBUG_SPLIT = "1"` it's happy.
 
->
-> Is there an override to handle clang generated archives?
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#63822): https://lists.yoctoproject.org/g/yocto/messag=
-e/63822
-> Mute This Topic: https://lists.yoctoproject.org/mt/108393840/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+Thanks Khem!
+
+--000000000000084efa0621ddae80
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Khem,</div><div><br></div><div>Ye=
+s it is built with LTO. If I disable LTO it works.=C2=A0 I definitely need =
+LTO enabled.<br></div><div><br></div><div>Using `PACKAGE_DEBUG_STATIC_SPLIT=
+ =3D &quot;0&quot;` in the recipe has no effect on the error.</div></div><d=
+iv><br></div><div>If I set `INHIBIT_PACKAGE_DEBUG_SPLIT =3D &quot;1&quot;` =
+it&#39;s happy.<br><br></div><div>Thanks Khem!<br></div><br></div>
+
+--000000000000084efa0621ddae80--
 
