@@ -1,91 +1,92 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CCFFEE49B5
-	for <webhook@archiver.kernel.org>; Wed, 11 Sep 2024 14:10:14 +0000 (UTC)
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
- by mx.groups.io with SMTP id smtpd.web10.22544.1726063811353314167
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 225B7EE57C2
+	for <webhook@archiver.kernel.org>; Wed, 11 Sep 2024 16:32:35 +0000 (UTC)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.web10.26160.1726072353529364194
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Sep 2024 07:10:11 -0700
+ Wed, 11 Sep 2024 09:32:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=a6ktd4gP;
- spf=pass (domain: gmail.com, ip: 209.85.208.174, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f762de00e5so48551361fa.3
-        for <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 07:10:11 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=YMP5mpji;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.49, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-374c84dcc90so41555f8f.1
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 09:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726063809; x=1726668609; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d4U9p9gjNwVNKB8Rhe3RyRyex3vdrxqJqeJdxXAbECw=;
-        b=a6ktd4gPfAGdeJcr4l4/4FkEkSVHY664GolO5Ns51qzWuZ5p3NNqGAQ4Dig6S3cfYo
-         eOaum2oVQfUS25SAcw9sYQ3xP0gqHcCugI3Cb/70JkYv4VIl8udlcyvCQ9sutdO66uJP
-         pG+7UziduvMzcY9s51PJ7sTabzv46/s6WQXMnoflow8b1MH8PXoED1BdVsXjbGUnmnMV
-         EF21d1RdF3j08Q1kTWXbuTaTk1OLf9oC4R8wTby2K8zyrZWoMuTA/Fc2mAKraoX9DFER
-         axZXPkA449y+wUntZCTZ6TX5H1zql0BgLJOYoYhgW6JgauFpFQrB9EpzZEbibX6Wd+39
-         6p0g==
+        d=linuxfoundation.org; s=google; t=1726072352; x=1726677152; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QV/ExFHdhcRy77m47cTz3VJX+b6EAVVjenGUaaTT8Tw=;
+        b=YMP5mpji4R8HQ/KHTwiM4YYp1QrznqkZZzrAFR5z98EDGtCL6MdFVu+k9wjUqM1yHa
+         nZA3sKBoxPKGKWpIHVcD9I2CpQIUZLJm4tw+2ySkLsruG4S3ydJSwbbQzt3rb2OrhMw1
+         hcYtVFgi4PkvU/e1fs48skINbO0o9qaA4mzvc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726063809; x=1726668609;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d4U9p9gjNwVNKB8Rhe3RyRyex3vdrxqJqeJdxXAbECw=;
-        b=FXKBXnbaOyZYd48WLHN6gqKgWTwveHXYXvUKxaU/YAji1Fl1P7RpETCuwjCfNutQZI
-         aEjDNQMkq0EBTEeDfREIJYSXvNTuPzjUYozCj4NO9RL5VJV8GBaUkWu0ZhAGcMW61ubu
-         eW5xiWv7iqkQ32DvIbwlOy7s69zqyegDrVlk8vE4bLEsQeUo9Nl2jXq+SHE4J2rf3zOw
-         pdTvelS//gcEaCsFO4i2D4pbzDZHAD9Z+QR9O3WIe37MMWbRy7Nfqf57OLlAlqCyLaJK
-         ivBl3MvKvOLKQs6SciWsnFq1kbMZbQbT5RvAconobWWbzDDoCDMGvKiywBIgkv2bkLiN
-         AM6Q==
-X-Gm-Message-State: AOJu0YyKmZbJT5zrtono/yYvRxzc8XWcsJGOO/RP2S1B8B5Ek/7Y+BZA
-	/E1lHKMDrGjEW6uo7Ao0FB7+N0nvDFjoZOsaahxAFX65oKD84ahSVCAcvQqW424iNcdYsKLeW/V
-	PLAgM03EsX6j64OP20HcMJ6cyMwdFXQ==
-X-Google-Smtp-Source: AGHT+IEtmewyB/GYutpcMJJI+hl1D6SFSCN4CkoW/xKswH0AW16qLAuMgRBcUU2Bj1r1EkpHnyrh4xx7p+GYQjgRy2o=
-X-Received: by 2002:a2e:a596:0:b0:2f1:a509:ce66 with SMTP id
- 38308e7fff4ca-2f751eb2524mr140948001fa.5.1726063808391; Wed, 11 Sep 2024
- 07:10:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <CABKMkPK18FnhuOT8ydnLXw-n-e_Y8rW_vg7AzwG4qgnXdsHQwQ@mail.gmail.com>
-In-Reply-To: <CABKMkPK18FnhuOT8ydnLXw-n-e_Y8rW_vg7AzwG4qgnXdsHQwQ@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 11 Sep 2024 16:09:57 +0200
-Message-ID: <CANNYZj_tWknK_HhTEZY4EHLJcJyW2aRHDS4EyZn2SSHFtABTXA@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1726072352; x=1726677152;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=QV/ExFHdhcRy77m47cTz3VJX+b6EAVVjenGUaaTT8Tw=;
+        b=nVLnCiNvLK4OLDjEcnScmncJOTYzRdapXFV4A8i8WmwE4MUQiTdt/WVHJ/uXKCayVW
+         Bsw0IpWNEZR2ugP/Gv2O+4ZLwIFG6rk6TUqVt+plJQf+LCeVrYjMGWK0hOsAWUkx/Qjk
+         axsZnsBMeLBdQt9pv0EQJD2FJ9WnEq3fYuUsCIn05ygAQWa2RS04RPHmbKcy7Q7536c4
+         +xbqoaAt0VxeAiaZdcyW0GzMJVbQWydVZsUfNngsMmZK5FZQjWXxUrnLSL5WrcU7kxGv
+         hpL4Z9kytKTOIEvZZ4V8FOWhr5polmqIhBtAZx48wzdUHGAoTbFMnfOJ1fgXBvyrm9gc
+         zd0Q==
+X-Gm-Message-State: AOJu0YwbB6ioHYz5eAVButnKs+Gu5Pzv3iw7Sqbk2uOpvMrAAXCAVzuC
+	j0sC9ecDvl+8SioIXgKQPTGYdQR/a6g7mR80HsFhoWRVC55C/X5Aos4pD5LBpdTXmAMq29DscXU
+	O
+X-Google-Smtp-Source: AGHT+IFGf0CtXWOi9AYNWmIUDytwHQwDCmgv7OoqJ5b73/TRmepsN8rRrLmwzM01XYH89Oqe1OuTug==
+X-Received: by 2002:adf:f645:0:b0:374:bb25:658e with SMTP id ffacd0b85a97d-378895d72f7mr9560555f8f.26.1726072351496;
+        Wed, 11 Sep 2024 09:32:31 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:c92b:2d23:b48c:9b3c? ([2001:8b0:aba:5f3c:c92b:2d23:b48c:9b3c])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956761c6sm12045751f8f.61.2024.09.11.09.32.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Sep 2024 09:32:30 -0700 (PDT)
+Message-ID: <94bd43d4c7598c76130d5b2517906f34893e8acf.camel@linuxfoundation.org>
 Subject: Re: [yocto] [scarthgap] dwarfsrcfiles + static lib built with clang
-To: yocto@lists.yoctoproject.org, joel.winarske@gmail.com
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com, 
+	joel.winarske@gmail.com
+Date: Wed, 11 Sep 2024 17:32:30 +0100
+In-Reply-To: <CANNYZj_tWknK_HhTEZY4EHLJcJyW2aRHDS4EyZn2SSHFtABTXA@mail.gmail.com>
+References: 
+	<CABKMkPK18FnhuOT8ydnLXw-n-e_Y8rW_vg7AzwG4qgnXdsHQwQ@mail.gmail.com>
+	 <CANNYZj_tWknK_HhTEZY4EHLJcJyW2aRHDS4EyZn2SSHFtABTXA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 14:10:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63823
+ <yocto@lists.yoctoproject.org>; Wed, 11 Sep 2024 16:32:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63824
 
-.a files are not ELF files, they're archives made with GNU ar. So it's
-not clear why dwarfsrcfiles is even run on that, but I don't think it
-should be.
+On Wed, 2024-09-11 at 16:09 +0200, Alexander Kanavin via
+lists.yoctoproject.org wrote:
+> .a files are not ELF files, they're archives made with GNU ar. So
+> it's not clear why dwarfsrcfiles is even run on that, but I don't
+> think it should be.
 
-Alex
+That isn't strictly true. Static libraries are=C2=A0collections of object
+files generated during compilation and "archived" together into a
+single file (a bit like tar does). Those object files are still ELF
+binaries.
 
-On Wed, 11 Sept 2024 at 15:56, Joel Winarske via
-lists.yoctoproject.org
-<joel.winarske=gmail.com@lists.yoctoproject.org> wrote:
->
-> Seeing this error when installing archive file to ${PN}-staticdev, (not prior seen on kirkstone or dunfell):
->
-> ```
-> ERROR: dwarfsrcfiles failed with exit code 1 (cmd was ['dwarfsrcfiles', '/mnt/raid10/yocto/master/raspberry-pi5/tmp/work/cortexa76-poky-linux/filament-vk/1.54.3/package/usr/lib/filament/libfilamat.a']):
-> dwarfsrcfiles: /mnt/raid10/yocto/master/raspberry-pi5/tmp/work/cortexa76-poky-linux/filament-vk/1.54.3/package/usr/lib/filament/libfilamat.a: not a valid ELF file
-> ```
->
-> Running readelf -h on the file I get:
->
-> `readelf: Error: This is a LLVM bitcode file - try extracing and then using llvm-bcanalyzer`
->
-> Is there an override to handle clang generated archives?
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#63822): https://lists.yoctoproject.org/g/yocto/message/63822
-> Mute This Topic: https://lists.yoctoproject.org/mt/108393840/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Those object files have debug information just like a normal object
+file has and as such, dwarfsrcfiles can extract debug info the same as
+normal.
+
+The issue is clang is using a format that our tool doesn't understand.
+We'd have to teach it that I guess to make it work, or accept the loss
+of information from the llvm built files.
+
+Cheers,
+
+Richard
+
+
+
 
