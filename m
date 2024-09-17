@@ -1,178 +1,193 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <michael@amarulasolutions.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40B72C3ABD7
-	for <webhook@archiver.kernel.org>; Tue, 17 Sep 2024 05:02:36 +0000 (UTC)
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
- by mx.groups.io with SMTP id smtpd.web10.14255.1726549347613337795
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 180B2C35FE4
+	for <webhook@archiver.kernel.org>; Tue, 17 Sep 2024 06:30:47 +0000 (UTC)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web11.15147.1726554645116765725
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Sep 2024 22:02:27 -0700
+ Mon, 16 Sep 2024 23:30:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=N/tH+2TZ;
- spf=pass (domain: gmail.com, ip: 209.85.210.178, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-718e11e4186so5014390b3a.2
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Sep 2024 22:02:27 -0700 (PDT)
+ dkim=pass header.i=@amarulasolutions.com header.s=google header.b=VycUUztK;
+ spf=pass (domain: amarulasolutions.com, ip: 209.85.208.175, mailfrom: michael@amarulasolutions.com)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2f761461150so54060451fa.0
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Sep 2024 23:30:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726549347; x=1727154147; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2f8KinJTi3xKq0FlQ58aVHWI2jSofDvo6RXkYGg1Vi0=;
-        b=N/tH+2TZOlsI5Jp6EMS1vPtVkDUOG/auqivF97s7VsGXme1WMqaw2luwuOgK2Jk8si
-         lziE92bl/LyHoXfUJCHqtcAmxxdHI4QeZwCJ7CoCGpdg+hAPhGx2kMRQyYo7ceOzAe+a
-         LphBVxlzMcroB3AwvMcOh609imBYw3X5KndSFmKyQ7qT6kbUhUI17LsXPgBwpOhFq1Bc
-         xUPf1ONQ4dyW4MO0UtEZSoWO/2doB7QS+Dk8kD9N/vOt7D73g7njq1e8k+6RyOwm482U
-         tQogbZBh29EfDssXNRsfSBvqyX+xQZJ6xdCnHtWmQ6zmckZBSBLXV06h521Xre2EQdh3
-         s5dA==
+        d=amarulasolutions.com; s=google; t=1726554638; x=1727159438; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fcwigeRYfdOyPvRmwkVKQdQabd/bg7/Y10WmaAXlIhY=;
+        b=VycUUztKsIwRN9anwG0uKSmMgnpB2G9J0zI58imzFHt88NThIae/Vqd3GHQOustZ/S
+         hHwWfWdjs/p9O8srHicLuFok0LP0dyUYbLLCgfiyc8CzVoQo8Uooyeub0ZPS/omWKovp
+         E/3yE2xZy321XH4gMNgUWnBtodW22+NukZmPc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726549347; x=1727154147;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2f8KinJTi3xKq0FlQ58aVHWI2jSofDvo6RXkYGg1Vi0=;
-        b=DIGSahn29ZNnQWdgc3BeFgORhBpYLZT/jz0IhD9gg9YpDP+MgZdvfZB9VLmvDRgDSv
-         Pm98SeqhKq6celUmeJZRuf8OaUpXZ+zowzrisxv9O5hYJUEjuie4lNgNVCUv+xWBcK26
-         +hnw79FYDVdsAupMxpPCBMLxqk9mr34CKgN2YnNlgrXlfPailUj2pqDDHVPVF63jD2MK
-         2rl1T/Ve+135cSI76Q+z1msnOTMUgbO4QeCsbcM5riA+BbDqIy5I84YjfpQJKiSgbQJu
-         5hWlvoULPrWl2w+8jOn0p8VSFkwz0AAAWwjlqnA+HVVxDLdSzfKLp75ZOIFAZel6WRNT
-         Te1A==
-X-Gm-Message-State: AOJu0YwKO5TE0PV/ixGAAB9+Elm4ivh/VMw6Q7rbyLjM0grNjOLCiR9g
-	x9bX1fjAU0KCADVUzyrKb3ia9QCTDQ+Qb8Cbey/sSv9qeeGrl+9e2UkLY04o1EQGg3wooiqFqWB
-	LhRtrMRKeTvx5+mb15buqa8Fob+K9zeFi
-X-Google-Smtp-Source: AGHT+IFi0FgaruKURPbK09IpgC4ftbIshT5NTjGGMxuKKa9xalEAgzhKAnbYxFIUViaZjgYGgo+zAgfvc2L3i6K6Phg=
-X-Received: by 2002:a05:6a00:92a6:b0:714:25ee:df58 with SMTP id
- d2e1a72fcca58-719261e772amr26835376b3a.18.1726549346779; Mon, 16 Sep 2024
- 22:02:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726554638; x=1727159438;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fcwigeRYfdOyPvRmwkVKQdQabd/bg7/Y10WmaAXlIhY=;
+        b=TksmuZcJwXWIZQvJo1PAXxAsr/afT7WNrT14R2WjIfg01nbnZsEhn7AlpMsQyxoCp7
+         zyKo4mJ4MavG/RPJVUEAej++BMoqOx2VP40yPJ6kXVZw+xdMCeuDWFO0FjEcpYrWDjlt
+         ytAOtECDwsJpqx4Yp1fp64yNfH0SLL5fHIWVOFGTP2CDvZVGmtDoY7PcYA3/WqsZkSU/
+         gYG38H1haJx4oXZdyspNfSVduezjmgSkKzkbOWuprRYeuoXRjTZLGRj/aLADQY6l4Odp
+         XOEmZIWkMbupwB8zc9CHTMQsKmrbq5JjcO3S6xIc/nMMk70kqHgoGOG8kO4MWimVWabW
+         V3Qg==
+X-Gm-Message-State: AOJu0YwOKAlBf+ZH+g7tkAC0BLx7nfqhDjgfv7CDGDrg7GYObJ6HReCU
+	D79DIbvVGfR4eZ4yFOL4lLryS8xAqLQkN9nT2R+IGnEh+WFptD2QflwLWjUhz61xGnNF72BOAT5
+	65z5/M5G9Xt1Dh16o8efQenY+LUi4jb8c6z8IHHeIonYGfTzRocM=
+X-Google-Smtp-Source: AGHT+IGZIZSR0ohT+asnroMjwznGzULtxOmzHWrOUEvupLyyOcYL1QvAnoIL8lnfE8zf5HlTNNhNyg8PDHKLNfG0ACs=
+X-Received: by 2002:a2e:be1e:0:b0:2f7:94d9:426a with SMTP id
+ 38308e7fff4ca-2f794d944c8mr81922931fa.5.1726554637791; Mon, 16 Sep 2024
+ 23:30:37 -0700 (PDT)
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 16 Sep 2024 22:02:15 -0700
-Message-ID: <CAK5yBb_FxPK-4Yzi1kJaMYMx8_5L6bySDo=xXGO_BRhWPbpT0Q@mail.gmail.com>
-Subject: Enhancements/Bugs closed WW37!
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000808a1a0622499866"
+References: <CAOf5uwkeGHLaV5xoq0PG_yOrX_B62QzXaaTGQP-BqLmUB-ytEA@mail.gmail.com>
+ <CAMKF1spHsz6Y5MxLvsiZMyLVAc2o_gWX7Wa2A2ZXHH-wG0ta7g@mail.gmail.com> <17F5749BD58D56E7.10184@lists.yoctoproject.org>
+In-Reply-To: <17F5749BD58D56E7.10184@lists.yoctoproject.org>
+From: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date: Tue, 17 Sep 2024 08:30:19 +0200
+Message-ID: <CAOf5uwm=_zPQAkFVhyVOskgC1xEjRk_XeGMSDPeHKNk9cmineg@mail.gmail.com>
+Subject: Re: [yocto] Jenkins warning-ng icon for yocto security report
+To: yocto@lists.yoctoproject.org, michael@amarulasolutions.com
+Cc: Khem Raj <raj.khem@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Sep 2024 05:02:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63846
+ <yocto@lists.yoctoproject.org>; Tue, 17 Sep 2024 06:30:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63847
 
---000000000000808a1a0622499866
-Content-Type: text/plain; charset="UTF-8"
+Hi all
 
-All,
+The yocto scanner integration in warning-ng plugin is released
 
-The below were the owners of enhancements or bugs closed during the last
-week!
-Who Count
-randy.macleod@windriver.com 3
-yoann.congal@smile.fr 1
-ross.burton@arm.com 1
-bruce.ashfield@gmail.com 1
-Grand Total 6
+https://plugins.jenkins.io/warnings-ng/releases/
 
-Thanks,
+What does it mean for people that are using Jenkins and yocto in their CI?
+
+They can record their issues on a complete dashboard with a simple step
+
+recordIssues sourceCodeRetention: 'LAST_BUILD', tools:
+[yoctoScanner(pattern: "cves.json")]
+
+Navigate the issues and find what are the vulnerabilities, go through
+the link and find the patches,
+using devtool to override the project, apply the patches and provide
+to their meta layer and then upstream,
+have a consistent history of vulnerability on building history.
+
+https://github.com/jenkinsci/warnings-ng-plugin
+
+This is a really small contribution possible only because there are
+other people working on opensource.
+
+Michael
+
+On Sun, Sep 15, 2024 at 5:30=E2=80=AFPM Michael Nazzareno Trimarchi via
+lists.yoctoproject.org
+<michael=3Damarulasolutions.com@lists.yoctoproject.org> wrote:
+>
+> Hi
+>
+> On Sat, Sep 14, 2024 at 9:27=E2=80=AFPM Khem Raj <raj.khem@gmail.com> wro=
+te:
+> >
+> > On Sat, Sep 14, 2024 at 11:41=E2=80=AFAM Michael Nazzareno Trimarchi vi=
+a
+> > lists.yoctoproject.org
+> > <michael=3Damarulasolutions.com@lists.yoctoproject.org> wrote:
+> > >
+> > > Hi all,
+> > >
+> > > I have sent the patches to be included in warning-ng to support yocto
+> > > security scanning result and looking for some icon representing the
+> > > can result
+> > >
+> > > https://fontawesome.com/icons/categories/security?f=3Dclassic&s=3Dsol=
+id
+> > > In the free section. Can anyone suggest one?
+> > >
+> > > More info here
+> > > https://github.com/jenkinsci/warnings-ng-plugin/pull/1824#discussion_=
+r1759750853
+> > >
+> > > The analytic model was already merged but now I would like to have th=
+e
+> > > proper icon there
+> >
+> > maybe something like below would be helpful
+> > https://www.yoctoproject.org/wp-content/uploads/sites/32/2023/09/YoctoP=
+roject_Logo_RGB_White_small.svg
+> >
+>
+> Trying to keep one that is representing security but that set and I
+> found a shield. Anyway how CI/CD is working in yocto,
+> I would like to connect to jenkins releases to track vulnerability
+> tranding using the plugin. Nice to allow everyone to check them
+> and then it's much more easy to apply and find patches that need to be
+> appied. How is done now?
+>
+> Michael
+>
+> > >
+> > > Michael
+> > >
+> > >
+> > > --
+> > > Michael Nazzareno Trimarchi
+> > > Co-Founder & Chief Executive Officer
+> > > M. +39 347 913 2170
+> > > michael@amarulasolutions.com
+> > > __________________________________
+> > >
+> > > Amarula Solutions BV
+> > > Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+> > > T. +31 (0)85 111 9172
+> > > info@amarulasolutions.com
+> > > www.amarulasolutions.com
+> > >
+> > >
+> > >
+>
+>
+>
+> --
+> Michael Nazzareno Trimarchi
+> Co-Founder & Chief Executive Officer
+> M. +39 347 913 2170
+> michael@amarulasolutions.com
+> __________________________________
+>
+> Amarula Solutions BV
+> Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+> T. +31 (0)85 111 9172
+> info@amarulasolutions.com
+> www.amarulasolutions.com
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63838): https://lists.yoctoproject.org/g/yocto/messag=
+e/63838
+> Mute This Topic: https://lists.yoctoproject.org/mt/108453353/1862104
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [michael@amarul=
+asolutions.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
 
+--=20
+Michael Nazzareno Trimarchi
+Co-Founder & Chief Executive Officer
+M. +39 347 913 2170
+michael@amarulasolutions.com
+__________________________________
 
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---000000000000808a1a0622499866
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
-ll,<br><br>The below were the owners of enhancements or bugs closed during =
-the last week!<br></span><div dir=3D"ltr" class=3D"gmail_signature" data-sm=
-artmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><table cellsp=
-acing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=3D"table-layou=
-t:fixed;font-size:11pt;font-family:Calibri;width:0px;border-collapse:collap=
-se;border:none"><colgroup><col width=3D"249"><col width=3D"42"></colgroup><=
-tbody><tr style=3D"height:20px"><td style=3D"border:1px solid rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(21=
-9,229,241);font-weight:bold">Who</td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(2=
-19,229,241);font-weight:bold">Count</td></tr><tr style=3D"height:20px"><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-"><a href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.co=
-m</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom;text-align:right">3</td></tr><tr style=3D"h=
-eight:20px"><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom"><a href=3D"mailto:yoann.congal@smile.fr">yoann.congal@smi=
-le.fr</a></td><td style=3D"border-width:1px;border-style:solid;border-color=
-:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr style=
-=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom"><a href=3D"mailto:ross.burton@arm.com">ross.burton@a=
-rm.com</a></td><td style=3D"border-width:1px;border-style:solid;border-colo=
-r:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;p=
-adding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr><tr style=
-=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom"><a href=3D"mailto:bruce.ashfield@gmail.com">bruce.as=
-hfield@gmail.com</a></td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">1</td></tr=
-><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);font-weig=
-ht:bold">Grand Total</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229=
-,241);font-weight:bold;text-align:right">6</td></tr></tbody></table><p clas=
-s=3D"MsoNormal" style=3D"background-image:initial;background-position:initi=
-al;background-repeat:initial"><span style=3D"font-size:12pt;font-family:Ari=
-al,sans-serif">Thanks,<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
-
---000000000000808a1a0622499866--
+Amarula Solutions BV
+Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+T. +31 (0)85 111 9172
+info@amarulasolutions.com
+www.amarulasolutions.com
 
