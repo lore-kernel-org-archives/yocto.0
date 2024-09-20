@@ -1,195 +1,147 @@
-Return-Path: <quaresma.jose@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D02A4CE8D43
-	for <webhook@archiver.kernel.org>; Fri, 20 Sep 2024 09:55:08 +0000 (UTC)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
- by mx.groups.io with SMTP id smtpd.web10.14575.1726826103013366607
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D431C78829
+	for <webhook@archiver.kernel.org>; Fri, 20 Sep 2024 11:34:39 +0000 (UTC)
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+ by mx.groups.io with SMTP id smtpd.web11.15880.1726832077371765049
  for <yocto@lists.yoctoproject.org>;
- Fri, 20 Sep 2024 02:55:03 -0700
+ Fri, 20 Sep 2024 04:34:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=IgN6c7BG;
- spf=pass (domain: gmail.com, ip: 209.85.217.54, mailfrom: quaresma.jose@gmail.com)
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-49bd3bf3b4cso913516137.3
-        for <yocto@lists.yoctoproject.org>; Fri, 20 Sep 2024 02:55:02 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=G5lR5ICw;
+ spf=pass (domain: gmail.com, ip: 209.85.161.46, mailfrom: raj.khem@gmail.com)
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5e1c65eb68aso1135417eaf.2
+        for <yocto@lists.yoctoproject.org>; Fri, 20 Sep 2024 04:34:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726826102; x=1727430902; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7B9ixlWI6KRDc6w8GbR5Z6orSinAkh16vBgNCto7BUU=;
-        b=IgN6c7BGkm17TFec/YrSmbJJ0/TJjJv5ZKnAl5cbpv+KrGA0VCrnmlC/jO2rD4M27J
-         Z9lqIcxmR2o+ugcFlJQE8vr1Kqx76l0XbMrOolYQVHObLMT8fX7Wo6mFg+ZHfGvr26jV
-         ZjTKHi6eJFvMNGZs+kezHQZxPZU8uLQKzqynA174N7yID123ctEd0EMFtxuh6io1+DT3
-         zkFuDwXGNyUekheByET/j/9n9Pp0L4x33cj+R7UV3/SidipApFICrP/XmeVyDbtPBk8y
-         ar1k1B/a12pQgOhoSVyFeKO8ZfY2Dse2gZjBBp3ovozLh/fNhaocSxtc8I1bmfoWEBvM
-         3N3w==
+        d=gmail.com; s=20230601; t=1726832076; x=1727436876; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=F7tcPxBd+x+DeHUlZjlEn4V5TT/7Ui84BiocqFRQeGw=;
+        b=G5lR5ICw9WJo+8yOHtFxG/DZ04hgpQ1+szjiMCW/Y6j89jkj46yR8e1jg6jsM0B3BC
+         ex9KypXW3iPMtNeWeOAiIiG+FfHRFVVGDMFEq6nfGxnOF7Jl9YpAutDTmxJnZQuLMIDB
+         w+iPMdsFMr6JnjrIhKPhufye3lzdSG+i/kcO2WtmLtnQXQpab1pnKs19zyoelKeVV5IS
+         nlcudFdhJ3NjlIx3SDJAXfnCurjyXa5eviCsNttiDwY3ARk0L0s4GntWcjGyMxP1e+tP
+         Q5EKt67HFpiz6Sfd2vQTVUGmZmWPZSVkjN/xdlGyhYowXe221jwPd2FGazVweXaYInHM
+         qt7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726826102; x=1727430902;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7B9ixlWI6KRDc6w8GbR5Z6orSinAkh16vBgNCto7BUU=;
-        b=gp/ln33ZCYCOHcjEuwbeP7MUIBChHlDTO857C4uq/gVrhEvET8VQ5aYQS6HIgknn7d
-         4dIGCJ8QCikwz8XB6gpR5T73ra6YuG3qZprYyqVAXx0g1RfahhlL9lb/YI9rYSu0iLx4
-         oD6+ec0h4tlhWpKFI0CakTMsDXCKlwX5dp1QWWcycxjnC85Ud91gEmirEQWFga7QfYk6
-         +cacaf2JtHdJ9BYHar8ly9Xawh/Kt7Uiufuy6jXSrS15y+WvZqzoeeOjDKUMNGKq2uAh
-         rqWnHhwQRTbXqupSydFl64ETtA/0oM+fU8Ca5fbbvt/XcGf/UsurPNBUYUEpaJtkX/wo
-         dazw==
-X-Gm-Message-State: AOJu0YxrR9ssnSEDQEKKvs1cojH0falgAr4u5gqbJ4Iz5KoZ6Dhw42Rd
-	iAQHHFwWsNt3/4ANWiwNjg9uzsy9Pz1mn2UXW6auVT/Mx4SpwaOUFdyhtojU9iBW6L5lzi0ivfK
-	r0IAaLmRdI7lWTbtqTrBET41BEe5lNB1O
-X-Google-Smtp-Source: AGHT+IFCP/NBjlz1s3pYXLaJSr+f/Tnt3ig8mosBSoENlYjgf9DHZf/2RKItfgL1tMe3THwyvUrW1XEUROvi37BaWok=
-X-Received: by 2002:a05:6102:511f:b0:492:a6fb:23cd with SMTP id
- ada2fe7eead31-49fc7537435mr3262468137.6.1726826101785; Fri, 20 Sep 2024
- 02:55:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726832076; x=1727436876;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F7tcPxBd+x+DeHUlZjlEn4V5TT/7Ui84BiocqFRQeGw=;
+        b=am6rJkluuNkNZyW+srHvTY13UH2xgQ4z/z9kr8af1759ka1RDig58kYspS87tqj6o/
+         aTeERP7BlHTKuRYGmTcDNgv2kFFylICL4imHInkFi9m/LVsE5VLs7qzJg8Cz3BOn1NtQ
+         sDXW7Y7rNx1yKNmOgfErU9W+lX8n+SUTnLRDzwm4eAiMV3Z4/xcfhRGydU/ok4CKgD1E
+         N0TJdCkBxvhAzIXCYc13vM6jAqeKUkynBqmEHdB5tEOqewfkpZPcC/1u9TdmeaKtPbvE
+         c1vFMExXPPvPSJlzZlyMESFjIakekOnQlc6DVTFppq7ers2czrevT0beBC+R84nqLMMF
+         73rQ==
+X-Gm-Message-State: AOJu0YxjFKpwGXhFbzNLuBP0gVpFzN3JCDxjewX55ix4MiLZf2ktHMlS
+	BT0jH93Q6xUKcoCRYCH2e+BJAeRM9LsJi6ouCZ90y7I3xYXZ33BxNljItxb22XqJmGSiwVy37LW
+	bP7n4IAcGjgla1dc5HSwMhB8X7Hw=
+X-Google-Smtp-Source: AGHT+IFUhZsQlHS1vCdqrywSXunasSC7MAu6vwRYW0JUGRopFMypOZdMXNEYl24e6nK+Vrx8V742hUswKtJag/nF8T4=
+X-Received: by 2002:a05:6820:1ac1:b0:5e1:ebaa:efc9 with SMTP id
+ 006d021491bc7-5e58d1a05e7mr999555eaf.8.1726832076506; Fri, 20 Sep 2024
+ 04:34:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <Isrj.1726816317462557237.ZoCh@lists.yoctoproject.org>
-In-Reply-To: <Isrj.1726816317462557237.ZoCh@lists.yoctoproject.org>
-From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Fri, 20 Sep 2024 10:54:50 +0100
-Message-ID: <CANPvuRk5F7sSq1bJHRs_WvRa_CkKyVJMTHR_yaR7ncDK7vLAhg@mail.gmail.com>
-Subject: Re: [yocto] How do changes get merged from master to release branches
-To: yocto@lists.yoctoproject.org, aleksandar.nikolic010@gmail.com
-Content-Type: multipart/alternative; boundary="00000000000062cb9e06228a085f"
+References: <CAMKF1sp080KnfUpP9zWVNyh2Jm6HQ-uh=U+HcLCGTFQqzO5_aw@mail.gmail.com>
+ <17877.1726817430762729816@lists.yoctoproject.org>
+In-Reply-To: <17877.1726817430762729816@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 20 Sep 2024 04:34:25 -0700
+Message-ID: <CAMKF1srBGaKNYeAAzW6oOa6pbw72=N8+t_zPNCdkR0x+fgzHrg@mail.gmail.com>
+Subject: Re: [yocto] Missing opencv files in toolchain #yocto
+To: poornesh.g@mindteck.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000081d04206228b6c3c"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 20 Sep 2024 09:55:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63873
+ <yocto@lists.yoctoproject.org>; Fri, 20 Sep 2024 11:34:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63874
 
---00000000000062cb9e06228a085f
+--00000000000081d04206228b6c3c
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Aleksandar,
+On Fri, Sep 20, 2024 at 3:30=E2=80=AFAM Poornesh G ( India - Bangalore ) vi=
+a
+Lists.Yoctoproject.Org <poornesh.g=3Dmindteck.com@lists.yoctoproject.org>
+wrote:
 
-Aleksandar Nikolic via lists.yoctoproject.org <aleksandar.nikolic010=3D
-gmail.com@lists.yoctoproject.org> escreveu (sexta, 20/09/2024 =C3=A0(s) 08:=
-11):
-
-> Hi,
+> Thanks Khem Raj for your replay.
 >
-> As the title says, I would like to understand how changes get merged from
-> master to release branches?  Is it done automatically or manually? Can I
-> read somewhere about this process?
+> I followed procedure suggested by you . I used *"bitbake -c populate_sdk
+> core-image-minimal"* , now I can get the opencv related files in my
+> toolchain.
+> But with this it seems few QT5 related files are missing so I could not
+> able to cross-compile my Qt5 application which was working with toolchain
+> created using "bitbake meta-toolchain-qt5".
 >
-> An example: a few of my commits are at the moment only on the master
-> branch. Some are fixes, which need to go to other branches as-is, while i=
-n
-> some other commits the changes contain the version (e.g. 5.0.2), meaning
-> those commits are not valid for branches other than scarthgap (e.g.
-> kirkstone). For the former - am I supposed to cherry-pick these "fix"
-> commits myself and provide a patch? For the latter - am I supposed to
-> provide fresh patches, which reflect the branch in question (e.g. instead
-> of having 5.0.2, the patch for kirkstone should have something like 4.0.2=
-1)?
+> *Error log:*
+>
+> *------------------------------------------------------------------------=
+---------------------------------------------------------------*
+> poornesh@IBE2113N:~/Desktop/qtapp/opencv/provu-v0.0.4.04$ qmake
+> Cannot find feature spec_pre.prf
+> Error processing project file:
+> /home/poornesh/Desktop/qtapp/opencv/provu-v0.0.4.04/provu.pro
+>
+> *------------------------------------------------------------------------=
+---------------------------------------------------------------*
+>
+>
+> May I get your suggestions on this !
 >
 
-OE-core have dedicated maintainers for specific branches/versions [1].
-The maintainer of the older and LTS branches constantly backport bug fixes
-from the master branch.
-But any user can help with this enfort sending patches as well:
-
-git cherry-pick -s -x ...
-git send-email --to=3Dopenembedded-core@lists.openembedded.org
---subject-prefix=3D"[OE-core][BRANCH_NAME][PATCH]" -1
-
-Where BRANCH_NAME should be replaced by the target branch:
-Styhead/Scarthgap/Kirkstone
-
-There is still a good contribution guide [2] on the Yocto
-documentation that can also help.
-
-[1] https://wiki.yoctoproject.org/wiki/Releases
-[2] https://docs.yoctoproject.org/contributor-guide/index.html
-
-Jose
+Add opencv to TOOLCHAIN_TARGET_TASK variable might help to get into non
+image based sdk
 
 
 >
-> Aleksandar
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#63871):
-> https://lists.yoctoproject.org/g/yocto/message/63871
-> Mute This Topic: https://lists.yoctoproject.org/mt/108554660/5052612
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> quaresma.jose@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+> Thanks,
 >
 
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---00000000000062cb9e06228a085f
+--00000000000081d04206228b6c3c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Aleksandar,<br></div><br><div class=3D=
-"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Aleksandar Nikolic via =
-<a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;al=
-eksandar.nikolic010=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">g=
-mail.com@lists.yoctoproject.org</a>&gt; escreveu (sexta, 20/09/2024 =C3=A0(=
-s) 08:11):<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>=
-Hi,</div>
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Sep 20, 2024 at 3:30=E2=80=AFAM Poornesh G ( India =
+- Bangalore ) via <a href=3D"http://Lists.Yoctoproject.Org">Lists.Yoctoproj=
+ect.Org</a> &lt;poornesh.g=3D<a href=3D"mailto:mindteck.com@lists.yoctoproj=
+ect.org">mindteck.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex"><div>Thanks Khem Raj for your replay.</div>
 <div>=C2=A0</div>
-<div>As the title says, I would like to understand how changes get merged f=
-rom master to release branches?=C2=A0 Is it done automatically or manually?=
- Can I read somewhere about this process?</div>
+<div>I followed procedure suggested by you . I used <strong>&quot;bitbake -=
+c populate_sdk core-image-minimal&quot;</strong> , now I can get the opencv=
+ related files in my toolchain.</div>
+<div>But with this it seems few QT5 related files are missing so I could no=
+t able to cross-compile my Qt5 application which was working with toolchain=
+ created using &quot;bitbake meta-toolchain-qt5&quot;.<br><br><strong>Error=
+ log:</strong></div>
+<div><strong>--------------------------------------------------------------=
+-------------------------------------------------------------------------</=
+strong></div>
+<div>poornesh@IBE2113N:~/Desktop/qtapp/opencv/provu-v0.0.4.04$ qmake=C2=A0<=
+br>Cannot find feature spec_pre.prf<br>Error processing project file: /home=
+/poornesh/Desktop/qtapp/opencv/provu-v0.0.4.04/<a href=3D"http://provu.pro"=
+ target=3D"_blank">provu.pro</a></div>
+<div><strong>--------------------------------------------------------------=
+-------------------------------------------------------------------------</=
+strong></div>
 <div>=C2=A0</div>
-<div>An example: a few of my commits are at the moment only on the master b=
-ranch. Some are fixes, which need to go to other branches as-is, while in s=
-ome other commits the changes contain the version (e.g. 5.0.2), meaning tho=
-se commits are not valid for branches other than scarthgap (e.g. kirkstone)=
-. For the former - am I supposed to cherry-pick these &quot;fix&quot; commi=
-ts myself and provide a patch? For the latter - am I supposed to provide fr=
-esh patches, which reflect the branch in question (e.g. instead of having 5=
-.0.2, the patch for kirkstone should have something like 4.0.21)?</div></bl=
-ockquote><div><br></div><div>OE-core have=C2=A0dedicated maintainers for sp=
-ecific branches/versions [1].</div><div>The maintainer=C2=A0of the older an=
-d LTS branches constantly backport bug fixes from the master branch.<br>But=
- any user can help with this enfort sending patches as well:</div><div><br>=
-git cherry-pick -s -x ...<br></div><div>git send-email --to=3D<a href=3D"ma=
-ilto:openembedded-core@lists.openembedded.org">openembedded-core@lists.open=
-embedded.org</a> --subject-prefix=3D&quot;[OE-core][BRANCH_NAME][PATCH]&quo=
-t; -1</div><div><br>Where BRANCH_NAME should be replaced by the target bran=
-ch: Styhead/Scarthgap/Kirkstone<br><br>There is still a good contribution g=
-uide [2] on the Yocto documentation=C2=A0that can also help.<br><br>[1] <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Releases">https://wiki.yoctoproj=
-ect.org/wiki/Releases</a></div><div>[2] <a href=3D"https://docs.yoctoprojec=
-t.org/contributor-guide/index.html">https://docs.yoctoproject.org/contribut=
-or-guide/index.html</a></div><div><br></div><div>Jose<br>=C2=A0</div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex">
 <div>=C2=A0</div>
-<div>Aleksandar=C2=A0</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#63871): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/63871" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/63871</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/108554660/505=
-2612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/108554660/5052612</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quare=
-sma.jose@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</div></div></div></=
-div>
+<div>May I get your suggestions on this !</div></blockquote><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">Add opencv to TOOLCHAIN_TARGET_TASK variable=
+ might help to get into non image based sdk</div><div dir=3D"auto"><br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex"><div dir=3D"auto"></div>
+<div>=C2=A0</div>
+<div>=C2=A0</div>
+<div>Thanks,</div>
+</blockquote></div></div>
 
---00000000000062cb9e06228a085f--
+--00000000000081d04206228b6c3c--
 
