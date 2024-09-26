@@ -1,96 +1,74 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2D56CDE021
-	for <webhook@archiver.kernel.org>; Thu, 26 Sep 2024 16:09:17 +0000 (UTC)
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
- by mx.groups.io with SMTP id smtpd.web10.47726.1727366950937271688
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E856DCDE03F
+	for <webhook@archiver.kernel.org>; Thu, 26 Sep 2024 22:31:09 +0000 (UTC)
+Received: from a27-192.smtp-out.us-west-2.amazonses.com (a27-192.smtp-out.us-west-2.amazonses.com [54.240.27.192])
+ by mx.groups.io with SMTP id smtpd.web11.56832.1727389860842449605
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Sep 2024 09:09:11 -0700
+ Thu, 26 Sep 2024 15:31:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=edFBdp+j;
- spf=pass (domain: gmail.com, ip: 209.85.161.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5dc93fa5639so575398eaf.1
-        for <yocto@lists.yoctoproject.org>; Thu, 26 Sep 2024 09:09:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727366950; x=1727971750; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QlAFfKcAyqCrr4znyfWeWR0s9WZ58JcRw3IZTj8daek=;
-        b=edFBdp+jhaEHut6bY7pIp4zwC/MvLmkuoPDBOr5VC6INmW4pN6NcWmiyqSTBYofHsn
-         4aqlNeFSnysGOA1iyjpw+TA9hepWO0hAzAueAeyPxwjvDawNN8LluUYea/11hvVnaSpj
-         srwjkRvbh3f7xR0IbN2RHJKfOJEBx9FuWlOmszmfz1xWAJoeG5X2401mGwsLYCErkuXX
-         eDkd5fWBDqLPAD5jQwyDIRrbrde5WpM5oh/0mFyUf5isXEb1EVtpwLhUTZD1y7LIiUx6
-         WmwZ6/qrN/F2cF2wX3ieGrCMt+O+xnyGCz0aJAIXrRGElLER0Jy7ZOz7+cGlDvHpdetH
-         JecA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727366950; x=1727971750;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QlAFfKcAyqCrr4znyfWeWR0s9WZ58JcRw3IZTj8daek=;
-        b=t6/6VoZ1r3c5IVt3Oxx5gRhZ5d60NvEdkt13UaB1kgksASDdXOoDN6Z9LKny1QIlDF
-         C8GcK/vEHpyw7unI7+lH1XsSq9F60yN0Pxm9x11KBbGI8wGDYNc/Q/Q/T53i2In5SgLd
-         RBVqlT5FB1cHdrIyHaTV3zipDkBykVAaA5iofNRGELtSni8aRfLPalNwfivfTL+ARGy/
-         Ii7sxrH1SYZSmIoctmLYtvH3Fcuvlx9MA/xoq1XJVOymBB6ZU/4fkDzCZU6wt5X50Mye
-         pixt7QlvglV4cm2yxMO7UwTc7wm6fGmvpIfNE8luqq01DlXkkwJUPl8z8Etj4iOfQsCq
-         Qfpg==
-X-Gm-Message-State: AOJu0YzQ7FuL4MvbNeAHbVrP6g8XXbLHmIca/UevgupXzVSbQu8/WzW6
-	FePT384QOAW987gHRSio3RnVecZbnEaq3wdA9OYHcnn+QeLxCB4jr83eltQjerro67KnJ2g2gm2
-	AJI4AoWMrXlLMJGraxRcX58BZDwLl3AKi
-X-Google-Smtp-Source: AGHT+IFYY56PeCyfOfnL4A6JikeXbiQlgPwcxkBKrW8SFNssoSlfIhm1svivD6RfCEC2PKP3qAuM9PoGXE6Os4+kYTc=
-X-Received: by 2002:a05:6870:ab11:b0:270:1295:af54 with SMTP id
- 586e51a60fabf-28710ab0ce1mr341397fac.28.1727366950116; Thu, 26 Sep 2024
- 09:09:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <XBmI.1727327966958373700.7wSP@lists.yoctoproject.org>
-In-Reply-To: <XBmI.1727327966958373700.7wSP@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 26 Sep 2024 09:08:44 -0700
-Message-ID: <CAMKF1srro0TVeRkAzWs==fUg1qL22xy6=3BvMRDwq3kLc2rH3Q@mail.gmail.com>
-Subject: Re: [yocto] Screen recording on wayland display server #yocto
-To: yocto@lists.yoctoproject.org, poornesh.g@mindteck.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@yoctoproject.org header.s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx header.b=hGIYMhTB;
+ dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=ugCMFmzv;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.192, mailfrom: 0101019230758073-d0f599c5-884b-48cd-bed3-7ed67d2ec5b0-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx; d=yoctoproject.org;
+	t=1727389860; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=qYPqNsk9cmYnJ8yC3rRGUKJ1q3aDPLMvqRRsjgKSdeE=;
+	b=hGIYMhTB0izaRQ9OjzFYfkfcXSQiCfpOsciT5gQJQWCyeoBQd5XAIFGusr5kI0oV
+	tTUw21cRYDWNxq9BBkrFG77WdMK/8vDU/mH39O/43GN0+CqC8NbxBS2D2xNXkMEK+5E
+	0F1rNE90GDPGkCtTe5dE7+IoLH5iTraVi+sdNUh8=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1727389860;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=qYPqNsk9cmYnJ8yC3rRGUKJ1q3aDPLMvqRRsjgKSdeE=;
+	b=ugCMFmzvIUoCAaLDRkbDNiyWid3ajDCuVUpFnClk6iFMMzVN6NE0QeEXptb8UvXA
+	fqT6o9zJlZFKiaCysVPEQcyg2huyHFr+sGtNCGG80aqKsyJlNB7AQujcZcZtPiUCdQQ
+	x/lgotDpuF5hqqKlNg7WjEKXmMezfDXs0bXV3y5A=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-5.0.4.rc3)
+Message-ID: <0101019230758073-d0f599c5-884b-48cd-bed3-7ed67d2ec5b0-000000@us-west-2.amazonses.com>
+Date: Thu, 26 Sep 2024 22:30:59 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2024.09.26-54.240.27.192
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 26 Sep 2024 16:09:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63895
+ <yocto@lists.yoctoproject.org>; Thu, 26 Sep 2024 22:31:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63896
 
-On Wed, Sep 25, 2024 at 10:19=E2=80=AFPM Poornesh G ( India - Bangalore ) v=
-ia
-lists.yoctoproject.org
-<poornesh.g=3Dmindteck.com@lists.yoctoproject.org> wrote:
->
-> Hi Everyone,
->
-> We have a medical device with LCD & HDMI interface running with yocto (ki=
-rkstone). I have Qt application running  on wayland display server from yoc=
-to.
-> Now I have a requirement of recording the entire Qt screen , as of now du=
-e to security features of wayland I could not able to able to capture scree=
-n using Qt . Please anyone help me with alternatives/suggestions to achieve=
- this.
-> Even I have included  ffmpeg, gstreamer  as well.
->
 
-I would suggest to look into pipewire to get this going.
+    A build flagged for QA (yocto-5.0.4.rc3) was completed on the autobuilder and is available at:
 
-> Thanks
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#63889): https://lists.yoctoproject.org/g/yocto/messag=
-e/63889
-> Mute This Topic: https://lists.yoctoproject.org/mt/108662798/1997914
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+
+        https://autobuilder.yocto.io/pub/releases/yocto-5.0.4.rc3
+
+
+    Build URL: https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/7360
+
+    Build hash information: 
+
+    bitbake: d251668d9a7a8dd25bd8767efb30d6d9ff8b1ad3
+meta-agl: 6debcd5420b798dd8c0b3052620cc5d8f3bcbff7
+meta-arm: 1947c000299c0330e8a866996505221a14c0e1ea
+meta-aws: 1bc413ef26efe835d7c2f68859cc36ebd4233903
+meta-clang: 2b7433611d80f6d0ee1b04156fa91fc73d3c2665
+meta-intel: c2bc8e27e9cc83654a23e8d89525fd9b1e781eb6
+meta-mingw: acbba477893ef87388effc4679b7f40ee49fc852
+meta-openembedded: 735ae0310870ffce07ce0c55c4f87c20ac161ff9
+meta-virtualization: 66ee8d268db25a9f2848bda6858c284c745f549f
+oecore: f888dd911529a828820799a7a1b75dfd3a44847c
+poky: 2034fc38eb4e63984d9bd6b260aa1bf95ce562e4
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
