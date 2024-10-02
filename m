@@ -1,226 +1,234 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <philip.dawson@datapath.co.uk>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A376DCF31A1
-	for <webhook@archiver.kernel.org>; Wed,  2 Oct 2024 08:25:12 +0000 (UTC)
-Received: from outbound.mail.protection.outlook.com (outbound.mail.protection.outlook.com [40.107.22.71])
- by mx.groups.io with SMTP id smtpd.web10.2521.1727857506993901133
- for <yocto@lists.yoctoproject.org>;
- Wed, 02 Oct 2024 01:25:07 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=Q1PIxmFF;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=Q1PIxmFF;
- spf=pass (domain: arm.com, ip: 40.107.22.71, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=rISX+T3K0qx+ciXG5Gm0gO8er/j5NJ+M5GUbnkit4hQWj5rat0ljWrjUSKqZyFRmCjFry1XnvGHzzQ3jywRMMbMuVDrDuwGn3DZeRM+JWu6nBWCFpj59GZtDhLZLrRLR8Py44A3KQfjD9sAFj7XkFETEBEKx//LrG55rhV/pyI+GNsctIhtglJe/YUdR5A9ieGXT2IhhJgv0C1CzTswj//Yn0wZFmMBpc4CUJhQc5zfj0lxVwB4+MDvAjnMvRvGUvvwFWE53JBjsWCzOkSpjf7e08UMyQMRbFTZ7PC7E2saY3pIsGlUGbufTPgLqlG5RNT1UJaAycGpSNN31ZBq7/Q==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4BbzX8AHb6Zu/isTMjFFwSkJh3r0/F9EmnGzFNJlRCM=;
- b=XxlTDGUNOdT+r2pHXEaiBsev7BTJiDsZQVufhVv9sXzNrMy6dP6pOQjoD2cntKGF8gfUHrQ/IpxG6kQ04PI7j/X81QvyFsWR79PPJPdYI4DqTXMCIfI7KYvpS6XsfqAIFXyCl/RIB7nBvCzQmKOcF8HbH0sFGk9eomwwiwfCaKwXxJQNoh2uoKFsZqlE48DWodRHh9MVcMeit+hgMVDD0UVNRwVR0jXFsrC69YJDUtW9drZfzIEWgxwDqeOYPYtP+IVSlcrBo4mtvIWA2yUfbpVL9DX9u/igiQt8V8uUHz4I+ICCirrD6Qak6OFz+YDlTO6ZgI8l5vsYSHu1rNUxaQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4BbzX8AHb6Zu/isTMjFFwSkJh3r0/F9EmnGzFNJlRCM=;
- b=Q1PIxmFFsnMUPPhl8AGE5EY+jvvn8v6o8IoNJuDfiIuHwTbr66Ijbf0b2uuyeIASV7LIM6NmOD/XzKKmaZPDXN4LtL2BxX7BZeAYOFMY0MfOORCgRmuoFP3YyXjVAD2dK8phZBgkJR040oRMpAhsJWE90iNJ8aiQ248+PvdoM+U=
-Received: from AS9PR05CA0130.eurprd05.prod.outlook.com (2603:10a6:20b:497::10)
- by DB9PR08MB6636.eurprd08.prod.outlook.com (2603:10a6:10:250::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.21; Wed, 2 Oct
- 2024 08:24:59 +0000
-Received: from AM2PEPF0001C70B.eurprd05.prod.outlook.com
- (2603:10a6:20b:497:cafe::4f) by AS9PR05CA0130.outlook.office365.com
- (2603:10a6:20b:497::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.34 via Frontend
- Transport; Wed, 2 Oct 2024 08:24:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
- pr=C
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- AM2PEPF0001C70B.mail.protection.outlook.com (10.167.16.199) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.7918.13
- via Frontend Transport; Wed, 2 Oct 2024 08:24:58 +0000
-Received: ("Tessian outbound bcce15e2414a:v473"); Wed, 02 Oct 2024 08:24:58 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: d2d5a85cb8ebac32
-X-TessianGatewayMetadata: 6d1QRktojM8tvWZofq0quOxHTLufiV1ZLxJkjh9zBWQ8jFXJ9YiozxPVaNYw56f3ZBAzxplznpNfWGtV4dIMcgylAmpQZwonj5B/ZgrfqzVKxpVoKUas4KvQEk1U6PwWRPhqiu30btA3hFpykVCinfXXqspxH4mbtZ/vWAccxGM=
-X-CR-MTA-TID: 64aa7808
-Received: from L94095c8ebb45.1
-	by 64aa7808-outbound-1.mta.getcheckrecipient.com id 380540C4-A530-4AAE-A56C-76C556A83338.1;
-	Wed, 02 Oct 2024 08:24:51 +0000
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id L94095c8ebb45.1
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Wed, 02 Oct 2024 08:24:51 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mhn1YfZMbDVA0QnqpmDHkDi0mDF90dESLBCQhxb9PAqRKeKGZ+Chy7tyduPxrr20zwwSjrdzKebW/ASYPgcLA7+ZLj+obU9vmDX0gS1YchwenEsl5IDMTo6CRE9QzMLhwDqwS4u4PXtNyKT0gajR1OjZkQZEUHXJWr9RsZSirkLPcvUQhrKUYJvAUOqpIEhcUooyo0VHfw7MVxI2PG3/MbQc6JrRuqRMtPyFx1xaXG2ajimSNmNNmjMyLUS+VJBNgBls7q3+qVzWBoxjwcimE8VmCBztiwXrmqCXSlejPnJyW5EjeFNOIMSNp6mMTr7F6VftXOar6Zic+h6rIY1zjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4BbzX8AHb6Zu/isTMjFFwSkJh3r0/F9EmnGzFNJlRCM=;
- b=LItrdZt5TrhbyJKzuxl6OH2OxSoJUxkQ8SO/DpUR4v6XQ2XEUfLfeC3Yuc2FNvRdaZZj0HEfue8FZnlsm52fzT/GOGCwv4i3r8kF25tr9/ieXNcUVheDtbd+CqWzJVvPFcbNKey+72QXUp14HtvOyOSlAjmI7YiMJPLpWMIavVtkxyD6gZSALp7tkVLUqnQfmCVsgfWlQ6PQRSPAIkHqqEmYbTe7/hQsj8PUaUIBqPH6sJBb3LAr5VbuDGtIpmmD9CGR7wgzS8o0HSKzOTFwWc8f6k4soNOC5HzNJoVXIAHYyFl3DttrIIKEbFLsFyVmOZTaN+gT0gcwnrAmN2OFGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4BbzX8AHb6Zu/isTMjFFwSkJh3r0/F9EmnGzFNJlRCM=;
- b=Q1PIxmFFsnMUPPhl8AGE5EY+jvvn8v6o8IoNJuDfiIuHwTbr66Ijbf0b2uuyeIASV7LIM6NmOD/XzKKmaZPDXN4LtL2BxX7BZeAYOFMY0MfOORCgRmuoFP3YyXjVAD2dK8phZBgkJR040oRMpAhsJWE90iNJ8aiQ248+PvdoM+U=
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
- by AS8PR08MB6727.eurprd08.prod.outlook.com (2603:10a6:20b:393::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Wed, 2 Oct
- 2024 08:24:49 +0000
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::9206:40ba:ef7e:729e]) by PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::9206:40ba:ef7e:729e%3]) with mapi id 15.20.8026.016; Wed, 2 Oct 2024
- 08:24:49 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, "sidali.teir@cysec.com"
-	<sidali.teir@cysec.com>
-Subject: Re: [yocto] sbinmerge feature (unification of bin and sbin)
-Thread-Topic: [yocto] sbinmerge feature (unification of bin and sbin)
-Thread-Index: AQHbFBtMncPKzYThWke6Nk3mnvRb6LJzINWA
-Date: Wed, 2 Oct 2024 08:24:49 +0000
-Message-ID: <094DD9BC-3A41-45D8-8E41-DAC9A8250C3B@arm.com>
-References: <JEoF.1727798532825470645.FHhy@lists.yoctoproject.org>
-In-Reply-To: <JEoF.1727798532825470645.FHhy@lists.yoctoproject.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3776.700.51.11.1)
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: 
-	PA4PR08MB7411:EE_|AS8PR08MB6727:EE_|AM2PEPF0001C70B:EE_|DB9PR08MB6636:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e80e209-4ef0-495f-e191-08dce2bbb3f7
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: 
- BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
-X-Microsoft-Antispam-Message-Info-Original: 
- =?utf-8?B?M3g2WHJPcUI2RnFhRmZXeXBZWTFMWnZnSkoxQ0M1T1dqWTE5N3VnUE5QaFpE?=
- =?utf-8?B?K1A5QlltbEtYL2JnYmgra1RpRkl3VnJObmZIZkUrNzVsZnI1ekkwbHcySlR3?=
- =?utf-8?B?eVp4UXhtTG1GamlibkVjdGREV2JMeVFEdk5hd3VEUXVuWHlyQklXTWY2V0lG?=
- =?utf-8?B?NTUyeDNObUoweVFDdk9UeUNrRWkwR1N3T25qeW03MWRnRVIrandVck5oWnlt?=
- =?utf-8?B?V2pRdDBnd2lmaDdMS0t3VXJEL1pyamtJN1M0MWQ3NlhsVmtkb0xPTGRHYXJk?=
- =?utf-8?B?a3YzakY3aGtwUEVDWUJSWDVWbi9yb3JBYmlyQjRTV25tcGRrR3cxcm5wbXhs?=
- =?utf-8?B?a1ZVYTBCQm9XNlV3UXdwbTArSnJJY2dlTFRsNDl6MjRBZWovbWZselFMaUhK?=
- =?utf-8?B?bS84MkxnelFxK0N2dXZqenNqS1M5YWdBaXk4TmlSYitkNk8xdlB1U2FHdTJk?=
- =?utf-8?B?bHBETktsVHVUNlRDMWdhbXVxVWpGdlBXVWE5VlN5RjNzcWJQeERiVDZFLzhV?=
- =?utf-8?B?bnlJTG5uMkdacFd6VU5lRmxnUVk1REd6YXNoZUFnYTErZ3NLbkZMRzZKcXQw?=
- =?utf-8?B?c1RERXlSM2taSmdUWjREamx2MzE2TmxzRVpUQWE2QXJRTFJuWGlwVXVmdVB1?=
- =?utf-8?B?d2JHdjQrWXdNU29TRGtGZFRjMzlyTmpyMVVpU2d4U2w2SmhSTTdSMWNYK3Vz?=
- =?utf-8?B?RHA4dzl1cDBaYmJPU3Y2eExjbUtmSVVHaHl3L0pidFdTanhWejZtcEhrWHRq?=
- =?utf-8?B?elpUYlpZQ21obnNFRkZBZExhVUF6aFlYc2NHdWpRY3JzdlN1RS9HTnJ4VGFZ?=
- =?utf-8?B?ZlRQTmg2bzFjbFVUV05KcG80d2t2M2t3M0VGRHc4OHdMd2FSNHB0VjlLTW5v?=
- =?utf-8?B?cGNDY1oxOEZIU20zMXdxa0Vwd0dLRjFTWG55WGNlYlBvY3ozNVl1R2QvZGRk?=
- =?utf-8?B?VW9iTURIMHpIQzVrTFlCaWsvYUFMWkd5bWNTc0xwd3V6OGxxczJOSDRJQVl2?=
- =?utf-8?B?dFpCclZqYlpsdmwwb0hpdkh0YlBaUjdxQWc3YkFWWGxWSVl1OFhDNDNNQVFa?=
- =?utf-8?B?dTJiektpcVhHblNHUVZYbVl5ajdFeEx0c0t6WVpkbkhOb056Z1ZGc25lenh4?=
- =?utf-8?B?SmdNZTBhKzZKbmJQamhhc0lRQzNoN29jQnNkWFd3QUF1anF0b1hoeWI3UXU0?=
- =?utf-8?B?VVo3UDJFN2xiTXNVUXpuTXZiMHJ2QWR4NlpsdURuSEtUem56cFYrdkxmWk95?=
- =?utf-8?B?RG9rbFdVUEtka3k5SXRCRzd5ZytCa3NaNVF2STNqbWM5Nnl3b2h6OFQrNGpa?=
- =?utf-8?B?NWRrckI0QVBvSm1HTlp1WU16a05MQ2RFZzVFQ2hvejZFWkg0QjdkY08wYmg0?=
- =?utf-8?B?bjJ4dTJKTTJBaDZ5OStCcW5VcG9XS2E2ZUJndEVNZUN1VmdxN0JsczVHNi9W?=
- =?utf-8?B?SVVYYWNGMzFncGN2a0tvMlZ3OUZSQ3VieGRRNTI1R1ptMkUvQmlidjBhcUJG?=
- =?utf-8?B?V05ZS2JOQVlGaFErQ3F3bEFJeUJmVmlxRDQwUlVSV3dhSURCTnpOMGpXWFZ0?=
- =?utf-8?B?bXdvSlYvTnlHRnpiV0JTWUV4cHlTelY2b013WFV1RGJmVkNhWXpBdDdaZTdW?=
- =?utf-8?B?c2dXMDJrc1lHdlNIc0MrTkRBbDAyQmFKVjFBTCs4ZDhJeUNvYnJ6My9tc0ow?=
- =?utf-8?B?ZmZTdlkwZzNIQTY2NGt2NndJTk1IRktvQ3lpTmJyWUxUK0tQMWRDY0xZTVo5?=
- =?utf-8?B?ZWppYkNNRTFxMzA4dXlyN0wwemp4endkWlhEQ09qU1RQdVdINUREcEVOMk9G?=
- =?utf-8?B?emZGU1N3VzRUSUxHTDhmdz09?=
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <80DEABB8F7D1FA4B93F3E8BA57BBABC2@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 87FD9CF31B0
+	for <webhook@archiver.kernel.org>; Wed,  2 Oct 2024 10:22:13 +0000 (UTC)
+Subject: bbappend prepend ordering with anonymous python function
+To: yocto@lists.yoctoproject.org
+From: philip.dawson@datapath.co.uk
+X-Originating-Location: Paddington, England, GB (212.69.51.233)
+X-Originating-Platform: Windows Firefox 130
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB6727
-Original-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-SkipListedInternetSender: 
- ip=[2603:10a6:102:2a3::12];domain=PA4PR08MB7411.eurprd08.prod.outlook.com
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- AM2PEPF0001C70B.eurprd05.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	56daa499-2ce9-4078-aee8-08dce2bbae74
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|35042699022|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?bytJOW9GQXBqL2R0eFBqQjhaanRxMS9aaXpyL0ZJMDIwbDRpK3c0bkpKbGxD?=
- =?utf-8?B?ZlRyYTkrbTloeURXemRIT043aTEzamR1OGNDOCtXQXkrZm16U2tzeHd4MnM2?=
- =?utf-8?B?M041S3dYZmEvSkVqeStETEpYTmJvTTRYdHY4RzlZOFNKS2VaU1VNSFFEMkhM?=
- =?utf-8?B?VTFQV3RJdXpUZUZYQVMxSlFzeFd6akZzZUlOVldwUm9UTDRpU1VNYVhseitP?=
- =?utf-8?B?RmtHc3lQY2gvZjJTUCtFK2lvaWxRTUlONm9aOW8zRGpkQW9KSzRvY1lmYUh4?=
- =?utf-8?B?aGNzakRBN0RFcnZlOUJ5blNRVnJSSHVaQS8wclRZMEg2UG9DKzUzb2syL1ZC?=
- =?utf-8?B?VENFVnluNWN6amVuaTluaTkrQmFuWkZhWkRERTd2bnpnOGFQeGJDU2ZaWmI4?=
- =?utf-8?B?cjdyQzMrS3lubGErNVRsV29kbW55VWxhc0NEaHp6M3dWVkpueVVKazRhZ0ZP?=
- =?utf-8?B?K2hvbngyeFdONWFuemY5dURPY0dyYkw1Rm8vblQrNkRvSVN3QmwzR2NFYmVF?=
- =?utf-8?B?RVA5UXhCdnAzd0UralAwbWhZWHczUFJYNlVuTFFNSmNxeHlKUXVCcDRSR2tu?=
- =?utf-8?B?Mmd2NE9WZUdjK2hpTjk2Tlh1REI5UVBUYkFPaUNLZmFOQStaSEZlVm82OVdj?=
- =?utf-8?B?T2ZPYUluU1RSaWNvYVRjV0s5MVEzVDRSdXhrMUxzbC9wNkw0eTNQc09INklz?=
- =?utf-8?B?YkJ5U3ZaVWxJeW1VOTJOdFNaeUVCNVYvRERtUTlCMEw1OVhINDFBS0Y1Vmd1?=
- =?utf-8?B?cFBVektKQXEzZVRBWENvUjhXaXUvM1B5bkJsVG1xdzRRbzZSUFJ5YkZMaVoz?=
- =?utf-8?B?WGVsT1A1MXBiK3lSems4aU10NnUwT1hIQXhxcTRJUGJaWkhVN01XSGZSYmhL?=
- =?utf-8?B?ek5sRzU5N3M1ZTlnS09rRDNqd3FKZGFSNmlpODg4aWh6QjFWVkxIcVNzL2F3?=
- =?utf-8?B?eW5PUjU1c0tVMzA3R3FXNzlIZk1QOXBjNWdHc3NPemFIejBDbXpJN2FQaVBv?=
- =?utf-8?B?VysxNTZLYWpEbUJIeDIrSks5YVZEQklyYUJDOGpPUTlEeFQwZGhsbU92UEx4?=
- =?utf-8?B?Qlk0R0REZjBuZTlFT05tU0M3WWdQaFV1S0xqaXFaOVVobDVocFZtdnF6N2Ev?=
- =?utf-8?B?Q2lNdlBGNFhRV1ZuYnBMZE16Q3JjK3d4Zk1Ha0F2VDZwNXhybVlVbUFhQUdw?=
- =?utf-8?B?MGFja1prMldGRkJPYXYxZThlU0JqbEljN3JvNVlHdmFoLzU3ejluOWNHN2th?=
- =?utf-8?B?eDh3eGhZWlUrZi83TEt1ZWVHUDhWQ1VmUTNPekFPaWhnd1A0V252WERwRTg4?=
- =?utf-8?B?RmhTcDkzeDZXM0g5YXRYTlFQR0ViODgxeWw0N2ZwWU5nYWhxeVBKSitkWW5X?=
- =?utf-8?B?Mld0S0ZpTGpYbC9adzM4MWd3U2NseVdIYjFJSjRLMm5XaElSb0laY2QreGMv?=
- =?utf-8?B?YlpFSWRjRnAveXVrcmhNdmgyRWMrbWF6YkZmeVVCTXFSVlg3b3NQUk5rVUtL?=
- =?utf-8?B?UnNPWGFiaWVCUjFmVnRpNnpLRzVMcUxJZ1Q5RVpqUXpraDk2UGtLL1h5RlNn?=
- =?utf-8?B?dzVoYTd1aDlEUVdHMkFEdFFhb0JwSC9rSXFYUVpYNXJhZDJvU2gweStTWFo0?=
- =?utf-8?B?anpBREduTEVNUG4yeCtFSExjZjQyWGRjaHh0U2N1Q21WWTV6Y3IyaGtLSnli?=
- =?utf-8?B?T1pHR0kybGF0WGFWWGdHeVJhR20raEFwK3BDU3BhY1lXalJ6M1hVUFNKLzhP?=
- =?utf-8?B?TnJBeUVjV2VwWGpiZS9PNWV5dlJRVjZPV1gvMEloNjNkS0FLV3ZtNlVKbkFy?=
- =?utf-8?B?NlNBeUUrVDk3aVlOZEh3VnVUL05tUTlNQnRmNnFaUStYWTUra2s5d2czd2hX?=
- =?utf-8?Q?Fjp1cPs0/fg+j?=
-X-Forefront-Antispam-Report: 
-	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230040)(376014)(35042699022)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 08:24:58.5427
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e80e209-4ef0-495f-e191-08dce2bbb3f7
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	AM2PEPF0001C70B.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB6636
+Date: Wed, 02 Oct 2024 03:22:12 -0700
+Message-ID: <V3Hm.1727864532625471243.Hfkh@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Gl77KtA9wQRNKhVWMRUu"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 02 Oct 2024 08:25:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63926
+ <yocto@lists.yoctoproject.org>; Wed, 02 Oct 2024 10:22:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63927
 
-T24gMSBPY3QgMjAyNCwgYXQgMTc6MDIsIFNpZC1BbGkgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmcgPHNpZGFsaS50ZWlyPWN5c2VjLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPiB3cm90ZToN
-Cj4gSSB3YXMgd29uZGVyaW5nIGlmIGl0J3MgaW4gdGhlIHJvYWRtYXAgdG8gaW5jbHVkZSB0aGUg
-YHNiaW5tZXJnZWAgZmVhdHVyZSAoc2FtZSBjb25jZXB0IGFzIHRoZSBgdXNybWVyZ2VgKSB0aGF0
-IHVuaWZ5IHVuaWZ5IGAvdXNyL2JpbmAgYW5kIGAvdXNyL3NiaW5gIChkZWZhdWx0IGluIEZlZG9y
-YSkuDQoNCkl0J3Mgbm90IG9uIHRoZSByb2FkbWFwLCBidXQgeW91IHRyeSB0aGlzIHlvdXJzZWxm
-IGluIHlvdXIgZGlzdHJvIGJ5IGp1c3Qgc2V0dGluZyBzYmluZGlyPSIke2JpbmRpcn3igJ0uICBU
-aGVyZSBtaWdodCBiZSBzb21lIGZhaWx1cmVzIGZyb20gaGFyZGNvZGVkIHBhdGhzLCBidXQgd2Xi
-gJlsbCBoYXBwaWx5IHRha2UgdGhvc2UgZml4ZXMuDQoNClJvc3M=
+--Gl77KtA9wQRNKhVWMRUu
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I'm trying to debug an issue which seems to be caused by the order of prepe=
+nd operations from bbappends with anonymous python functions.
+I'm using Xilinx Petalinux tools 2023.1 version which corresponds to Yocto =
+Langdale, but this feels like a generic bitbake/yocto question.
+
+I have two layers both with device-tree.bbappend files, both of which set F=
+ILESEXTRAPATHS:prepend, although sometimes through anonymous python functio=
+ns. I need my layer to apply the prepend last so we have the first entry in=
+ FILESEXTRAPATHS and our version of a file is found.
+
+The ultimate purpose of this is to find our version of the "config" file wi=
+th machine specific paths removed as it's stopping us from effectively shar=
+ing sstate cache using a network file server.
+
+The output from "bitbake-layers show-layers" shows that our layer has the h=
+igher priority:
+meta-xilinx-core =C2=A0 =C2=A0=C2=A0 <...snip...>/components/yocto/layers/m=
+eta-xilinx/meta-xilinx-core =C2=A05
+meta-datapath-esg=C2=A0 <...snip...>/yocto/meta-datapath-esg =C2=A09
+
+The meta-xilinx-core layer is a dynamic layer in Xilinx's meta-petalinux la=
+yer and in the layer.conf has:
+BBFILES_DYNAMIC +=3D " \
+<...snip...>
+xilinx:${LAYERDIR}/dynamic-layers/xilinx-core/recipes-*/*/*.bb \
+xilinx:${LAYERDIR}/dynamic-layers/xilinx-core/recipes-*/*/*.bbappend \
+<...snip...>
+"
+
+But when looking at the FILESEXTRAPATHS variable with "bitbake-getvar -r de=
+vice-tree FILESEXTRAPATHS" I can see that the lower priorty Xilinx dynamic =
+layer is prepending last via the anonymous python functions so their versio=
+n of the file is being found first:
+# $FILESEXTRAPATHS [17 operations]
+# =C2=A0 set? <...path...>/components/yocto/layers/poky/meta/conf/bitbake.c=
+onf:376
+# =C2=A0 =C2=A0 "__default:"
+# =C2=A0 set <...path...>/components/yocto/layers/poky/meta/conf/documentat=
+ion.conf:176
+# =C2=A0 =C2=A0 [doc] "Extends the search path the OpenEmbedded build syste=
+m uses when looking for files and patches as it processes recipes and appen=
+d files."
+<...snip...>
+# =C2=A0 :prepend <...path...>/components/yocto/layers/meta-petalinux/dynam=
+ic-layers/xilinx-core/recipes-bsp/device-tree/device-tree.bbappend:3
+# =C2=A0 =C2=A0 "<...path...>/components/yocto/layers/meta-petalinux/dynami=
+c-layers/xilinx-core/recipes-bsp/device-tree/files:"
+<...snip...>
+# =C2=A0 :prepend <...source path...>/yocto/meta-datapath-esg/recipes-bsp/d=
+evice-tree/device-tree.bbappend:2
+# =C2=A0 =C2=A0 "<...source path...>/yocto/meta-datapath-esg/recipes-bsp/de=
+vice-tree/files:"
+# =C2=A0 :prepend <...source path...>/yocto/meta-datapath-esg/recipes-bsp/d=
+evice-tree/device-tree.bbappend:11
+# =C2=A0 =C2=A0 "<...source path...>/yocto/meta-datapath-esg/recipes-bsp/de=
+vice-tree/../../../bsps/dgc219:"
+# =C2=A0 :prepend <...source path...>/yocto/meta-datapath-esg-dgc219/recipe=
+s-bsp/device-tree/device-tree.bbappend:7
+# =C2=A0 =C2=A0 "<...source path...>/yocto/meta-datapath-esg-dgc219/recipes=
+-bsp/device-tree/files:"
+# =C2=A0 prepend device-tree.bbappend:14 [__anon_18__home_phil_build_dgc219=
+_release_dgc219_components_yocto_layers_meta_petalinux_dynamic_layers_xilin=
+x_core_recipes_bsp_device_tree_device_tree_bbappend]
+# =C2=A0 =C2=A0 "<...path...>/project-spec/configs:"
+# =C2=A0 prepend device-tree.bbappend:16 [__anon_18__home_phil_build_dgc219=
+_release_dgc219_components_yocto_layers_meta_petalinux_dynamic_layers_xilin=
+x_core_recipes_bsp_device_tree_device_tree_bbappend]
+# =C2=A0 =C2=A0 "<...path...>/components/yocto/layers/meta-xilinx/meta-xili=
+nx-core/gen-machine-conf/gen-machine-scripts:"
+<...snip...>
+
+The relevant operations in the Xilinx bbappend are:
+FILESEXTRAPATHS:prepend :=3D "${@'${THISDIR}/files:' \
+if ((d.getVar('WITHIN_PLNX_FLOW') or '') !=3D '' and \
+not d.getVar("SYSTEM_DTFILE")) else ''}"
+
+python () {
+if d.getVar("CONFIG_DISABLE"):
+d.setVarFlag("do_configure", "noexec", "1")
+if d.getVar("WITHIN_PLNX_FLOW") and not d.getVar("SYSTEM_DTFILE"):
+d.appendVar('SRC_URI', ' file://config file://system-user.dtsi')
+sysconfig_dir =3D d.getVar('SYSCONFIG_DIR') or ''
+plnx_scriptspath =3D d.getVar('PLNX_SCRIPTS_PATH') or ''
+if sysconfig_dir:
+d.prependVar('FILESEXTRAPATHS', '%s:' % sysconfig_dir)
+if plnx_scriptspath:
+d.prependVar('FILESEXTRAPATHS', '%s:' % plnx_scriptspath)
+d.appendVar('SRC_URI', ' file://%s' % plnx_scriptspath)
+}
+
+Is this the expected ordering? (That prepends from anonymous python functio=
+ns d.prependVar() happen after VAR:prepend ignoring bbappend/layer ordering=
+/priority?
+
+Is there a way I can ensure my prepend comes last without having to BBMASK =
+out the Xilinx bbappend and recreate/modify it's contents elsewhere?
+
+Best Regards,
+Phil Dawson
+
+--Gl77KtA9wQRNKhVWMRUu
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi,</div>
+<div>&nbsp;</div>
+<div>I'm trying to debug an issue which seems to be caused by the order of =
+prepend operations from bbappends with anonymous python functions.</div>
+<div>I'm using Xilinx Petalinux tools 2023.1 version which corresponds to Y=
+octo Langdale, but this feels like a generic bitbake/yocto question.</div>
+<div>&nbsp;</div>
+<div>I have two layers both with device-tree.bbappend files, both of which =
+set FILESEXTRAPATHS:prepend, although sometimes through anonymous python fu=
+nctions. I need my layer to apply the prepend last so we have the first ent=
+ry in FILESEXTRAPATHS and our version of a file is found.</div>
+<div>&nbsp;</div>
+<div>The ultimate purpose of this is to find our version of the "config" fi=
+le with machine specific paths removed as it's stopping us from effectively=
+ sharing sstate cache using a network file server.</div>
+<div>&nbsp;</div>
+<div>The output from "bitbake-layers show-layers" shows that our layer has =
+the higher priority:</div>
+<div style=3D"padding-left: 40px;">meta-xilinx-core &nbsp; &nbsp;&nbsp; &lt=
+;...snip...&gt;/components/yocto/layers/meta-xilinx/meta-xilinx-core &nbsp;=
+5</div>
+<div style=3D"padding-left: 40px;">meta-datapath-esg&nbsp; &lt;...snip...&g=
+t;/yocto/meta-datapath-esg &nbsp;9</div>
+<div style=3D"padding-left: 40px;">&nbsp;</div>
+<div>The meta-xilinx-core layer is a dynamic layer in Xilinx's meta-petalin=
+ux layer and in the layer.conf has:</div>
+<div style=3D"padding-left: 40px;">BBFILES_DYNAMIC +=3D " \<br />&lt;...sni=
+p...&gt;<br />&nbsp; &nbsp; xilinx:${LAYERDIR}/dynamic-layers/xilinx-core/r=
+ecipes-*/*/*.bb \<br />&nbsp; &nbsp; xilinx:${LAYERDIR}/dynamic-layers/xili=
+nx-core/recipes-*/*/*.bbappend \<br />&lt;...snip...&gt;<br />&nbsp; &nbsp;=
+ "</div>
+<div>&nbsp;</div>
+<div>But when looking at the FILESEXTRAPATHS variable with "bitbake-getvar =
+-r device-tree FILESEXTRAPATHS" I can see that the lower priorty Xilinx dyn=
+amic layer is prepending last via the anonymous python functions so their v=
+ersion of the file is being found first:</div>
+<div style=3D"padding-left: 40px;"># $FILESEXTRAPATHS [17 operations]<br />=
+# &nbsp; set? &lt;...path...&gt;/components/yocto/layers/poky/meta/conf/bit=
+bake.conf:376<br /># &nbsp; &nbsp; "__default:"<br /># &nbsp; set &lt;...pa=
+th...&gt;/components/yocto/layers/poky/meta/conf/documentation.conf:176<br =
+/># &nbsp; &nbsp; [doc] "Extends the search path the OpenEmbedded build sys=
+tem uses when looking for files and patches as it processes recipes and app=
+end files."<br />&lt;...snip...&gt;<br /># &nbsp; :prepend &lt;...path...&g=
+t;/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/recipe=
+s-bsp/device-tree/device-tree.bbappend:3<br /># &nbsp; &nbsp; "&lt;...path.=
+..&gt;/components/yocto/layers/meta-petalinux/dynamic-layers/xilinx-core/re=
+cipes-bsp/device-tree/files:"<br />&lt;...snip...&gt;<br /># &nbsp; :prepen=
+d &lt;...source path...&gt;/yocto/meta-datapath-esg/recipes-bsp/device-tree=
+/device-tree.bbappend:2<br /># &nbsp; &nbsp; "&lt;...source path...&gt;/yoc=
+to/meta-datapath-esg/recipes-bsp/device-tree/files:"<br /># &nbsp; :prepend=
+ &lt;...source path...&gt;/yocto/meta-datapath-esg/recipes-bsp/device-tree/=
+device-tree.bbappend:11<br /># &nbsp; &nbsp; "&lt;...source path...&gt;/yoc=
+to/meta-datapath-esg/recipes-bsp/device-tree/../../../bsps/dgc219:"<br /># =
+&nbsp; :prepend &lt;...source path...&gt;/yocto/meta-datapath-esg-dgc219/re=
+cipes-bsp/device-tree/device-tree.bbappend:7<br /># &nbsp; &nbsp; "&lt;...s=
+ource path...&gt;/yocto/meta-datapath-esg-dgc219/recipes-bsp/device-tree/fi=
+les:"<br /># &nbsp; prepend device-tree.bbappend:14 [__anon_18__home_phil_b=
+uild_dgc219_release_dgc219_components_yocto_layers_meta_petalinux_dynamic_l=
+ayers_xilinx_core_recipes_bsp_device_tree_device_tree_bbappend]<br /># &nbs=
+p; &nbsp; "&lt;...path...&gt;/project-spec/configs:"<br /># &nbsp; prepend =
+device-tree.bbappend:16 [__anon_18__home_phil_build_dgc219_release_dgc219_c=
+omponents_yocto_layers_meta_petalinux_dynamic_layers_xilinx_core_recipes_bs=
+p_device_tree_device_tree_bbappend]<br /># &nbsp; &nbsp; "&lt;...path...&gt=
+;/components/yocto/layers/meta-xilinx/meta-xilinx-core/gen-machine-conf/gen=
+-machine-scripts:"<br />&lt;...snip...&gt;</div>
+<div>&nbsp;</div>
+<div>The relevant operations in the Xilinx bbappend are:</div>
+<div>
+<div style=3D"padding-left: 40px;">FILESEXTRAPATHS:prepend :=3D "${@'${THIS=
+DIR}/files:' \<br />&nbsp; &nbsp; &nbsp; &nbsp; if ((d.getVar('WITHIN_PLNX_=
+FLOW') or '') !=3D '' and \<br />&nbsp; &nbsp; &nbsp; &nbsp; not d.getVar("=
+SYSTEM_DTFILE")) else ''}"</div>
+<div style=3D"padding-left: 40px;">&nbsp;</div>
+<div style=3D"padding-left: 40px;">python () {<br />&nbsp; &nbsp; if d.getV=
+ar("CONFIG_DISABLE"):<br />&nbsp; &nbsp; &nbsp; &nbsp; d.setVarFlag("do_con=
+figure", "noexec", "1")</div>
+<div style=3D"padding-left: 40px;">&nbsp; &nbsp; if d.getVar("WITHIN_PLNX_F=
+LOW") and not d.getVar("SYSTEM_DTFILE"):<br />&nbsp; &nbsp; &nbsp; &nbsp; d=
+.appendVar('SRC_URI', ' file://config file://system-user.dtsi')<br />&nbsp;=
+ &nbsp; &nbsp; &nbsp; sysconfig_dir =3D d.getVar('SYSCONFIG_DIR') or ''<br =
+/>&nbsp; &nbsp; &nbsp; &nbsp; plnx_scriptspath =3D d.getVar('PLNX_SCRIPTS_P=
+ATH') or ''<br />&nbsp; &nbsp; &nbsp; &nbsp; if sysconfig_dir:<br />&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d.prependVar('FILESEXTRAPATHS', '%s:' % =
+sysconfig_dir)<br />&nbsp; &nbsp; &nbsp; &nbsp; if plnx_scriptspath:<br />&=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d.prependVar('FILESEXTRAPATHS', '%=
+s:' % plnx_scriptspath)<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d.ap=
+pendVar('SRC_URI', ' file://%s' % plnx_scriptspath)<br />}</div>
+</div>
+<div>&nbsp;</div>
+<div>Is this the expected ordering? (That prepends from anonymous python fu=
+nctions d.prependVar() happen after VAR:prepend ignoring bbappend/layer ord=
+ering/priority?<br /><br />Is there a way I can ensure my prepend comes las=
+t without having to BBMASK out the Xilinx bbappend and recreate/modify it's=
+ contents elsewhere?</div>
+<div>&nbsp;</div>
+<div>Best Regards,</div>
+<div>Phil Dawson</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+
+--Gl77KtA9wQRNKhVWMRUu--
 
