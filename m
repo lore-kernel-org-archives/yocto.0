@@ -1,106 +1,147 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <lpmeyer@ics.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B3C9CF8547
-	for <webhook@archiver.kernel.org>; Wed,  2 Oct 2024 22:55:00 +0000 (UTC)
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
- by mx.groups.io with SMTP id smtpd.web10.7449.1727909699647881828
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D8634CF34CF
+	for <webhook@archiver.kernel.org>; Thu,  3 Oct 2024 22:31:29 +0000 (UTC)
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+ by mx.groups.io with SMTP id smtpd.web11.9569.1727994683840041932
  for <yocto@lists.yoctoproject.org>;
- Wed, 02 Oct 2024 15:54:59 -0700
+ Thu, 03 Oct 2024 15:31:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=MXnYQFZs;
- spf=pass (domain: gmail.com, ip: 209.85.210.47, mailfrom: jpewhacker@gmail.com)
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-710e14e2134so193199a34.0
-        for <yocto@lists.yoctoproject.org>; Wed, 02 Oct 2024 15:54:59 -0700 (PDT)
+ dkim=pass header.i=@ics.com header.s=google header.b=e/rYsdLC;
+ spf=pass (domain: ics.com, ip: 209.85.210.54, mailfrom: lpmeyer@ics.com)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-710de2712eeso609824a34.3
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Oct 2024 15:31:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727909698; x=1728514498; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TOOr2zkWMJk5O30djLDpQHt0kNDd5EMgr3s7mcF7Iks=;
-        b=MXnYQFZsBBPbFpKo9yF5ppYFF0pLwKr6ubwmk2fAB+cWtx1Fot/iW0nE+bm9Z29nJb
-         QWVyYQWdIx18YeukRfPPawBh4DrjWRmbg/z6PjrIWzi1CekQPhrXW0SGfyxvqxV2z2rm
-         6lXkOlIcslcpTqhUeZpHCYmttdJI/NFk2Y0gEJ5B0/siW4chT90umYlDLA8EW13YngGi
-         Xi6poRvR7ucPW1e9IAHc5jCP/foEYamDSCy35wo36KYmiSP8IEooSPQM8VqGgMumMi1Y
-         aipRjd020gl6w2lNMfxY0pJjvGkv5Y83akksdmJogVCneH8rLaxthx6maQG16wlJ6ei1
-         IFgw==
+        d=ics.com; s=google; t=1727994683; x=1728599483; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jVlUXMRBcFGJ51MjkJWOPSyX+R5vGyvKEmZnkJVSgaQ=;
+        b=e/rYsdLCV1eLrjbs5W5lnHLC5X+Hob0CqZaxERmzSA/vxymV7ApIZPzXIeqk1ndTn5
+         TFvmMLdIX6KbUiXNaGBljVTT5kv9esQ8gLSNGaKf6QEPY1l3Z7skqmlXVz3WTiCFkILf
+         4fmZmbXTHClDI4VTCfPP7J/J/4EE2NVzB1vBF1l5+uX4kILgHTlww/YgNsHXcBXxJO8Y
+         aIFgzA4VbH1j8flXinsFBA6cftuyx5nu8GZsBnIP3sfSy6ON+QR+j7g0qsD3Zu6yxqbK
+         NsP0/xbih85N63sHvyLt3IlAEw0IoVptAkHZkbyaqrZYg3ARdRgJGnrxPWYXcsmqJ92U
+         ZVjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727909698; x=1728514498;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1727994683; x=1728599483;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TOOr2zkWMJk5O30djLDpQHt0kNDd5EMgr3s7mcF7Iks=;
-        b=KVHwr1pzfqH0xgDXvlwMUVplTcORonM5/NEgVs6zZC1T1D9izHFaGchsM7igsMvutl
-         ohSnei41ERPkrb8Fu1JE0/6DmKSzKyiOZw6zpLHS0/FswIIxCfke1YaH4YQ3H8hdP8j5
-         RaWohYNU+/NdIM9DhHbfEkhgOd1ZBoyxqRiZ8/L9+5v6R5cS42j2CNnTxYJX1FTPQ0zF
-         v6rXke0O5mRavwRTsk5yvog2hdRUu4w9+IZnKJAx7jKWFeAqNRXwePmPQVJkTkEySnG1
-         6aBfS2wDm4PXfEX9FCi/jU6LbfPlWAON4BQmz/lI3V4ghIrbiZuZI5zlqHc3PZFosrzC
-         4Q3Q==
-X-Gm-Message-State: AOJu0YzItXwxXBo8KuIaUaOWq4Svr8zHMYtrwW89WASK2puCo/Eg1jKI
-	e2pkY3vHTVqUlllWqLgtWvcqcfPc9E0wQb7CPfzHo11055uHWSUf3YcLJw==
-X-Google-Smtp-Source: AGHT+IEjTJua+RKMoTt+isH3Ajesj2M+0mFUKH0G8/pUNsOrDKSxB5xXL84pvs+UkEW8dd1QySEQlA==
-X-Received: by 2002:a05:6830:661c:b0:709:3431:94c3 with SMTP id 46e09a7af769-7153cde480dmr4024598a34.23.1727909698284;
-        Wed, 02 Oct 2024 15:54:58 -0700 (PDT)
-Received: from localhost.localdomain ([2601:282:4300:19e0::a216])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71547f1f037sm41308a34.36.2024.10.02.15.54.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 15:54:57 -0700 (PDT)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Joshua Watt <JPEWhacker@gmail.com>
-Subject: [yocto][meta-mingw][PATCH] oeqa: Set LANG in wine tests
-Date: Wed,  2 Oct 2024 16:54:51 -0600
-Message-ID: <20241002225451.263086-1-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.46.2
+        bh=jVlUXMRBcFGJ51MjkJWOPSyX+R5vGyvKEmZnkJVSgaQ=;
+        b=Wh/Nz8FAhD+tcDufU+06hu+vYLEiYin+rWxVI1W/HQ0cAq3BvbHNthVen3a2jBpiT5
+         oyVo8e/Qh39AchuQPk9cfncldliCTmutraFUg/2GQeUAv4LPSlTpILYlNPx1XfiILdVC
+         aghqO7putzeuUbspoH4h+lsc7BpOuZJwjRSFx/hsA2JETi8CRGxY9NNdTjeRfuCNZ51b
+         S8C//++xO4D6wK2CqfNjPTzbCcQMRhbcr614/8LQasnnp1EG1RxNdk21G+At+FTNNNLp
+         cRz9bgNy6nmjGJJfZq43MnW4ooC5d7GddN3UDBvbhFtRJgz2iVaJpxiaPNYLlA7XJfa9
+         gpFA==
+X-Gm-Message-State: AOJu0Yx4u++FMc2D7dG8AhibZ9vapofOVxjEMScTaTuwZMWuAlCV2KJF
+	S5JClGS/Jzz0ZSFgvIBB9GNDJsGNzvtKuiZa2PA+RXSaos/1y6bL9CQg6LqPCfE5shmcPYFv/C9
+	rtNkgOhb3fjKLCLjwCQLEDEjIqMidwJYpuQfCpW6RwG3nWtAfriA=
+X-Google-Smtp-Source: AGHT+IEr0Mfu6MaDGJYXLdmVxct2Fx8x1OkGcnwxwfV61tBWdO6JfTZvb/FgvaB3xzoIe1VajZrpejNL2q2E4g9DLbQ=
+X-Received: by 2002:a05:6830:3813:b0:713:722c:835f with SMTP id
+ 46e09a7af769-7154e934c19mr703403a34.18.1727994682765; Thu, 03 Oct 2024
+ 15:31:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: =?UTF-8?Q?Lisandro_P=C3=A9rez_Meyer?= <lpmeyer@ics.com>
+Date: Thu, 3 Oct 2024 19:31:07 -0300
+Message-ID: <CABqjNW8-m1TTbh=BzSvYsZSbuu7z56=sfEszdtsNcZWF7UdnQw@mail.gmail.com>
+Subject: [meta-raspberrypy] scarthgap: reproducing videos with VLC or Qt using
+ the GPU
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 02 Oct 2024 22:55:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63932
+ <yocto@lists.yoctoproject.org>; Thu, 03 Oct 2024 22:31:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63934
 
-Glib likes to try and determine the local name using the Windows
-GetConsoleOutputCP(), which doesn't work well running under wine in our
-test cases (it seems to be linked to stdin not being a terminal).
+Hi!
 
-This results in the error message:
+I have been trying to reproduce videos on a Raspberry Pi 4 64 bits with:
 
-GLib-WARNING (recursed) **: Failed to determine console output code page: Invalid access.. Falling back to UTF-8
+- VLC
+- Qt 5 Multimedia
+- Qt 6 Multimedia
 
-and then Glib falls back to the locale "UTF-8", which is invalid and the
-program will likely crash.
+But in all cases I am facing issues and/or decoding via CPU instead of
+using the GPU.
 
-In particular, pkg-config seems to be sensitive to this on some hosts
-(e.g. Ubuntu 24.04)
+Let me summarize my findings and hopefully you can guide me to a solution.
 
-Set the LANG variable to a valid language to make sure that this
-codepath in Glib is not triggered.
+In all cases I'm using Weston.
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- lib/oeqa/sdkmingw/context.py | 6 ++++++
- 1 file changed, 6 insertions(+)
+## VLC
 
-diff --git a/lib/oeqa/sdkmingw/context.py b/lib/oeqa/sdkmingw/context.py
-index 5319223..5869e57 100644
---- a/lib/oeqa/sdkmingw/context.py
-+++ b/lib/oeqa/sdkmingw/context.py
-@@ -40,6 +40,12 @@ class OESDKMinGWTestContext(OESDKTestContext):
-         # Convenience variables to make test cases easier to write
-         env['SDK_DIR'] = getattr(self, 'wine_sdk_dir', '')
- 
-+        # Set the language. If this is not set to a valid language, then
-+        # program that use glib will attempt to determine the language from
-+        # stdin, which results in an error, fallback to "UTF-8" which is
-+        # invalid and crash
-+        env["LANG"] = "C.UTF-8"
-+
-         return env
- 
-     def wine_path(self, p):
--- 
-2.46.2
+Currently VLC defaults to `rpidistro-vlc` which, I understand, it's a
+heavily patched VLC fork, and many patches are for using the GPU.
+I've tried building VLC but then found out that it requires an older
+taglib, failing to build from source. So I went ahead and forced an
+older taglib (1.12, perhaps too much) which allowed me to at least
+build VLC.
 
+I noticed however that rpidistro-vlc is currently being built without
+Qt, so I am using cvlc.
+
+When I run cvlc I get:
+
+```
+rpi4:~$ cvlc big-buck-bunny-1080-60fps.mp4
+[00000055b96bd120] main interface error: no suitable interface module
+[00000055b968f410] main libvlc error: interface "globalhotkeys,none"
+initialization failed
+[00000055b96bd120] dummy interface: using the dummy interface module...
+[0000007f740013f0] gles2 vout display error: parent window not available
+[0000007f740013f0] gl vout display error: parent window not available
+[0000007f740013f0] fb vout display error: cannot get terminal mode
+(Inappropriate ioctl for device)
+[0000007f94114d20] main video output error: video output creation failed
+[0000007f9cd826d0] main decoder error: failed to create video output
+[h264 @ 0x7f9cd92c30] get_buffer() failed
+[h264 @ 0x7f9cd92c30] thread_get_buffer() failed
+[h264 @ 0x7f9cd92c30] decode_slice_header error
+[h264 @ 0x7f9cd92c30] no frame!
+[0000007f780013f0] gles2 vout display error: parent window not available
+[0000007f780013f0] gl vout display error: parent window not available
+[0000007f780013f0] fb vout display error: cannot get terminal mode
+(Inappropriate ioctl for device)
+[0000007f74045e20] main video output error: video output creation failed
+[0000007f9cd826d0] main decoder error: failed to create video output
+[h264 @ 0x7f9cdae890] get_buffer() failed
+[h264 @ 0x7f9cdae890] thread_get_buffer() failed
+[h264 @ 0x7f9cdae890] decode_slice_header error
+[h264 @ 0x7f9cdae890] no frame!
+...
+```
+
+I noticed that RPi OS is shipping a newer version, so I took the time
+to build it, but got the same result.
+
+I did try to build it with Qt 5, but failed (I might need to apply
+extra patches...?)
+
+## Using Qt 5
+
+Any video example in Qt Multimedia is simply using the CPU to render,
+and goes REALLY slow.
+
+## Using Qt 6
+
+This is clearly still using the CPU but it's a little bit smoother than Qt =
+5.
+
+## Extra questions
+
+Maybe I need to go with 32 bits and use the userland video driver?
+Something else?
+
+Any feedback here will be highgly appreciated.
+
+Thanks in advance, Lisandro.
+
+--=20
+Lisandro P=C3=A9rez Meyer
+Embedded Platform Engineer
 
