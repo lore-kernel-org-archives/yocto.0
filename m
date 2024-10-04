@@ -1,108 +1,74 @@
-Return-Path: <philip.dawson@datapath.co.uk>
+Return-Path: <lpmeyer@ics.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF114CFA77B
-	for <webhook@archiver.kernel.org>; Fri,  4 Oct 2024 13:33:54 +0000 (UTC)
-Subject: Re: [yocto] sstate cache and task hash changing with constant base hash
-To: "Richard Purdie" <richard.purdie@linuxfoundation.org>, yocto@lists.yoctoproject.org
-From: philip.dawson@datapath.co.uk
-X-Originating-Location: Paddington, England, GB (212.69.51.233)
-X-Originating-Platform: Windows Firefox 130
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3C2CCF8853
+	for <webhook@archiver.kernel.org>; Fri,  4 Oct 2024 17:08:19 +0000 (UTC)
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+ by mx.groups.io with SMTP id smtpd.web11.10.1728061697714795941
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 04 Oct 2024 10:08:17 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@ics.com header.s=google header.b=Pti7lqw8;
+ spf=pass (domain: ics.com, ip: 209.85.161.47, mailfrom: lpmeyer@ics.com)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5e1b6e8720dso1231504eaf.0
+        for <yocto@lists.yoctoproject.org>; Fri, 04 Oct 2024 10:08:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ics.com; s=google; t=1728061697; x=1728666497; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DNZeSvYZtJcXnE/SoJz41OKL7xcw8oiw1CQ78CkCa08=;
+        b=Pti7lqw8GnIDJ5ssf96CrCrAPce8Y0gvhVuRzT2tp+qGHPjp1jrskgQkeCIflM/Eru
+         phZSx57en5PlYeCEms5p0KvdThbNTyzTrpY6tHqaaDJRvUgpYzPVsbiJPTe0UnsP5cTR
+         J24f1eLC7MYGGZQmVFNlV18wDIwmVAb+SubOq4UpumVUVHZ8qYzN/+X+qRMjrPiRj3OX
+         AyZvQZL3AVnm/+VVNkIVIPfu1Q4TRUps4Qe49Qf6QelPzcqBUOfQwT+ajHBNNnguw0gd
+         nX+ZhEO+fVsKeuRklOaLUGIYmtQ8i7M6Js9GXNBSLEchjfLBxDW+m45ns0Enn1lyq2K+
+         WbPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728061697; x=1728666497;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DNZeSvYZtJcXnE/SoJz41OKL7xcw8oiw1CQ78CkCa08=;
+        b=FPXedWEg966V+hf1KRWCFtC33wUN6o0HgQIY6OenK3/TgmMk2kG8InArPA62FFNuN2
+         MBPsMQXSq/nRkouBAlCfyNBDQYn5jnG1glgG7//mn5Jlbse7qEaYiTn3vY+rHveY1qgA
+         8DS6JCqep/AevRJBomWntz3mEeayA/e1cSDKajskEXvt07ccTtVuBKnr9XIBdBIlpKI2
+         DBCWI5flZPD4F5UyGysLYj/KBuU4Zo22gh9yhF4FqkKu9TZUXEt/8q3NLJzjQNMPhbaT
+         KgAXwoX2TdGV088IdBwgwo6C8SC002JZJO94Yz08TaEXujm32rhWjHnE0U94cA1+VDIh
+         VuHw==
+X-Gm-Message-State: AOJu0YwHuXrgu1D1BjNzkeQGH1pRziJaVaofMN4LM0eF+AdlERHFGjUw
+	Rnhk0LkOyiIozT2zQOIBvTMJ6P34yi4pn6Gkp2XXvmZdww0UY0kKCSHcHPWzAyunDi/abcdlKVi
+	Jfjx4SHtetHVLlGcteyM7s5vAD3xGOXmmb2jDvseSX+LzK56n
+X-Google-Smtp-Source: AGHT+IG2mkmIjPH73AP3yJ1AxIUh80BKju2sEkWSPA0wO5J7L0Pb1lPGEPn4bcRxGAFezSIrho6AMc9cFiuQ5qUIxcU=
+X-Received: by 2002:a05:6820:22aa:b0:5e5:b652:9d14 with SMTP id
+ 006d021491bc7-5e7cbf82e70mr2474893eaf.1.1728061696498; Fri, 04 Oct 2024
+ 10:08:16 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 04 Oct 2024 06:33:50 -0700
-References: <7c92a7e1df2a16f0cddd3bbf4ad6f7f4a335a754.camel@linuxfoundation.org>
-In-Reply-To: <7c92a7e1df2a16f0cddd3bbf4ad6f7f4a335a754.camel@linuxfoundation.org>
-Message-ID: <26848.1728048830776468426@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="CZWvhy6cO2vBVLWS67xk"
+References: <17FB120285840E5F.4329@lists.yoctoproject.org> <17FB13B161187F1E.32205@lists.yoctoproject.org>
+In-Reply-To: <17FB13B161187F1E.32205@lists.yoctoproject.org>
+From: =?UTF-8?Q?Lisandro_P=C3=A9rez_Meyer?= <lpmeyer@ics.com>
+Date: Fri, 4 Oct 2024 14:07:59 -0300
+Message-ID: <CABqjNW_M99zBmqN4Rjk74pED4+bQULOOKv=raB=kt5X4Hia_nQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-raspberrypy] scarthgap: reproducing videos with VLC
+ or Qt using the GPU
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000091f5d90623a9b7d4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 04 Oct 2024 13:33:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63942
+ <yocto@lists.yoctoproject.org>; Fri, 04 Oct 2024 17:08:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63943
 
---CZWvhy6cO2vBVLWS67xk
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--00000000000091f5d90623a9b7d4
+Content-Type: text/plain; charset="UTF-8"
 
->=20
-> That is a big clue in itself, that function was added for a reason. The
-> reason that code was added may be related to the problem.
->=20
-> https://git.openembedded.org/bitbake/commit/?id=3D5293a1b36eeb89f57577cb7=
-09ec7f293909039a1
->=20
->=20
->=20
->=20
->>=20
->>=20
->>> I don't understand how you have two siginfo files with different sigs
->>> and the same data.
->>=20
->> It's a mystery to me too at this point! Is there anything I can do to
->> get more information on how it's calculating the task hash?
->>=20
->> I'll try and run across more PCs as well to see if it's just the one
->> CI machine that's different.
->=20
-> I'd try adding the above commit as there were bugs in this area that
-> sound very similar to this.
->=20
->=20
->=20
+I could make Qt 6 to use rpidistro-ffmpeg which reduces the load to ~84%
+but still not as ideal as I would have expected. VLC on RPi OS does work
+nice...
 
-I've patched my siggen.py manually with changes from both the linked patche=
-s.
-I'm rebuilding now but it has understandably changed the sigs of a while bu=
-nch of tasks so I'll need to repopulate the caches and see if it's the same=
- across build machines which will take a while!
+--00000000000091f5d90623a9b7d4
+Content-Type: text/html; charset="UTF-8"
 
-The changes to siggen.py between langdale and scarthgap look pretty extensi=
-ve - Is there a chance they'll be contained to siggen.py enough that I can =
-lift the scarthgap version wholesale? Or is it likely to break when paired =
-with an older bitbake checkout?
+<div dir="ltr">I could make Qt 6 to use rpidistro-ffmpeg which reduces the load to ~84% but still not as ideal as I would have expected. VLC on RPi OS does work nice...<br></div>
 
-Thanks,
-Phil
-
---CZWvhy6cO2vBVLWS67xk
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<blockquote>
-<div>That is a big clue in itself, that function was added for a reason. Th=
-e<br />reason that code was added may be related to the problem.<br /><br /=
-><a href=3D"https://git.openembedded.org/bitbake/commit/?id=3D5293a1b36eeb8=
-9f57577cb709ec7f293909039a1" target=3D"_blank" rel=3D"noopener">https://git=
-.openembedded.org/bitbake/commit/?id=3D5293a1b36eeb89f57577cb709ec7f2939090=
-39a1</a><br /><br /><br />
-<blockquote>&nbsp;<br />
-<blockquote>I don't understand how you have two siginfo files with differen=
-t sigs<br />and the same data.</blockquote>
-It's a mystery to me too at this point! Is there anything I can do to<br />=
-get more information on how it's calculating the task hash?<br /><br />I'll=
- try and run across more PCs as well to see if it's just the one<br />CI ma=
-chine that's different.</blockquote>
-I'd try adding the above commit as there were bugs in this area that<br />s=
-ound very similar to this.</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</blockquote>
-<div>I've patched my siggen.py manually with changes from both the linked p=
-atches.</div>
-<div>I'm rebuilding now but it has understandably changed the sigs of a whi=
-le bunch of tasks so I'll need to repopulate the caches and see if it's the=
- same across build machines which will take a while!</div>
-<div>&nbsp;</div>
-<div>The changes to siggen.py between langdale and scarthgap look pretty ex=
-tensive - Is there a chance they'll be contained to siggen.py enough that I=
- can lift the scarthgap version wholesale? Or is it likely to break when pa=
-ired with an older bitbake checkout?</div>
-<div>&nbsp;</div>
-<div>Thanks,</div>
-<div>Phil</div>
-
---CZWvhy6cO2vBVLWS67xk--
+--00000000000091f5d90623a9b7d4--
 
