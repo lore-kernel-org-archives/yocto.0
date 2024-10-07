@@ -1,181 +1,106 @@
-Return-Path: <aleksandar.nikolic010@gmail.com>
+Return-Path: <lpmeyer@ics.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F4D2CFB441
-	for <webhook@archiver.kernel.org>; Mon,  7 Oct 2024 14:44:04 +0000 (UTC)
-Subject: Re: [yocto] Yocto Binary Distro
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: "Aleksandar Nikolic" <aleksandar.nikolic010@gmail.com>
-X-Originating-Location: Erlangen, Bavaria, DE (147.161.171.73)
-X-Originating-Platform: Windows Chrome 129
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 65C97CFB448
+	for <webhook@archiver.kernel.org>; Mon,  7 Oct 2024 15:11:54 +0000 (UTC)
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+ by mx.groups.io with SMTP id smtpd.web10.55642.1728313910237833177
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 07 Oct 2024 08:11:50 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@ics.com header.s=google header.b=ePB0fU1Y;
+ spf=pass (domain: ics.com, ip: 209.85.160.53, mailfrom: lpmeyer@ics.com)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-287f29182b0so589133fac.0
+        for <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 08:11:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ics.com; s=google; t=1728313909; x=1728918709; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g2BACOF0hSJL4x3xZoR5U5AnpbokSvWbTfKkCC5q4eY=;
+        b=ePB0fU1YmjQDlb+c+ROqAWmHdYTZ5YX1JrEmVL7Ymo5EmFHmW8GFldZSN2qtjZl3Bj
+         wibWqvtyK4kkRg5ccDGmRGy14D/EmwlILMTIu3p8UoEAjra4dgE1kWac+20WuGD/jnVT
+         IWvRDoD7HcpCRhYNq5fNAVO6Y8YKS3x7G2QM4IFWj0KEf+GNoNL65i4pEndTpHxOMpRz
+         I2j9aZssxzpTyh8+bVVc7xsPlmmG2cj6apCh4SkAIZcdDWrztsqnarM4J2+60Ta8gJwy
+         veFQ/mJ4g/wWzkGAy4PNYjhXVU0CI2qScvKQAgHF5ReSv5pEjCRS/TD5ZUnwXlMzcJWk
+         cVlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728313909; x=1728918709;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g2BACOF0hSJL4x3xZoR5U5AnpbokSvWbTfKkCC5q4eY=;
+        b=J+OQ08OHDr/A1Te+ulll90pBUkWmjNt51DFGtA/W8oHS4yRjZgalSPchz74YbVvTNA
+         PcfYTnHrz+ntf+jkh8goSnpYeLbYlc3g+9T4ZArAUusWbd50/H3PWikZF4nZ2PEhCMBH
+         wdwqBe6edFjZs2ubg6YHJXwDnipcV+4QQmnlNWlBx10ycMN2N8hg7PJaMd8wH7xzzbyc
+         kfBddYcMBBwy79TDdsAqtgyvI9bSqpzn6BNIccFs5J+/VypVTLz7V9S+xr00Be0gise0
+         22ntdxdvhDghpLeuG97K/5SrvuTUzGAWXI1TI/p4a3E10TO3Jai0IaRngD4NeO7dO7RM
+         N/Ew==
+X-Gm-Message-State: AOJu0Yxw1YsTWITIrsW9ev5EfPbCLrxDqqmFn+rIoLC6yfljVaNhJguJ
+	CbFPKa0/Wi27Qmuf0Xn79/sz2Ea05UxttaNA03N+db1a8JhJwz3Us84EioORbpGBi0/Bm+gvrG5
+	hobVGCRyU7j7zWX5T9AAlm/V69ln8H+CHSKtUBM5FlfI9cit2
+X-Google-Smtp-Source: AGHT+IFp6NfKKdNoAd5rvyK0e/ZfWLO0v9wFyQaFJAyEIc3GiztH9sU7YJxJ2c9y0XQl/I+O5CBhtvDHmxYEbpq5oAo=
+X-Received: by 2002:a05:687c:2bd7:b0:250:70bb:1a97 with SMTP id
+ 586e51a60fabf-287c1e16723mr7180358fac.24.1728313909001; Mon, 07 Oct 2024
+ 08:11:49 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 07 Oct 2024 07:43:59 -0700
-References: <CANNYZj_=Yoa0LxU-OqfJQA+D7MyOqPVZ7YZ0OFcmBZ5m93OiGw@mail.gmail.com>
-In-Reply-To: <CANNYZj_=Yoa0LxU-OqfJQA+D7MyOqPVZ7YZ0OFcmBZ5m93OiGw@mail.gmail.com>
-Message-ID: <2952.1728312239161653401@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="8jAsQGFv5h52wJDStTcx"
+References: <17FB120285840E5F.4329@lists.yoctoproject.org> <17FB13B161187F1E.32205@lists.yoctoproject.org>
+ <17FB4EF567AE3E89.29770@lists.yoctoproject.org>
+In-Reply-To: <17FB4EF567AE3E89.29770@lists.yoctoproject.org>
+From: =?UTF-8?Q?Lisandro_P=C3=A9rez_Meyer?= <lpmeyer@ics.com>
+Date: Mon, 7 Oct 2024 12:11:33 -0300
+Message-ID: <CABqjNW_sOfR3qF=_uxmAm+537GMpA_4UMyxLx0abwc+RFmfm6Q@mail.gmail.com>
+Subject: Re: [yocto] [meta-raspberrypy] scarthgap: reproducing videos with VLC
+ or Qt using the GPU
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000009b6bf40623e47094"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 14:44:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63946
+ <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 15:11:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63947
 
---8jAsQGFv5h52wJDStTcx
-Content-Type: text/plain; charset="utf-8"
+--0000000000009b6bf40623e47094
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 7, 2024 at 01:31 PM, Alexander Kanavin wrote:
+On Fri, Oct 4, 2024 at 2:08=E2=80=AFPM Lisandro P=C3=A9rez Meyer (ICS) via
+lists.yoctoproject.org <lpmeyer=3Dics.com@lists.yoctoproject.org> wrote:
 
->=20
-> On Mon, 7 Oct 2024 at 07:06, Aleksandar Nikolic via
-> lists.yoctoproject.org
-> <aleksandar.nikolic010=3Dgmail.com@lists.yoctoproject.org> wrote:
->=20
->> 1) When I build a recipe previously not installed in my image and want t=
-o
->> install it during runtime, the dnf install command fails, saying that th=
-e
->> package's dependencies are not met (see [2] for more info). This is fine=
-,
->> as I can see that the tmp/deploy/rpm directory does not contain all of t=
-he
->> package's dependencies nor the dependencies' WORKDIRs contain the
->> deploy-rpms directory. Is this behavior correct? Shouldn't building a
->> recipe also lead that all of its dependencies are not just built but als=
-o
->> packaged and put into the tpm/deploy/rpm directory (the same as with
->> building the image containing the package in question)?
->=20
-> The default behavior is that bitbake runs the absolute minimum of
-> tasks needed to complete the task you specify (in this case, producing
-> the rpm). Making a vim rpm requires only do_package of its
-> dependencies, but not their do_package_write_rpm.
->=20
-> If you want all dependent rpms too, this is easily done with:
-> bitbake --runall package_write_rpm vim
+> I could make Qt 6 to use rpidistro-ffmpeg which reduces the load to ~84%
+> but still not as ideal as I would have expected. VLC on RPi OS does work
+> nice...
+>
 
-Thanks, will try this later!
+OK, VLC requires x11 support to work. Now it's kind of obvious, but took me
+a while to get to that.
 
->=20
->=20
->> 2) Is there an official, stable, and not some hacky way to install alrea=
-dy
->> pre-built packages during the build and not later during runtime? So
->> instead of building from source or from the sstate-cache, to provide a U=
-RL
->> to a webserver holding packages, which would then be pulled and installe=
-d
->> (if I am not wrong Isar does this)?
->=20
-> If you ask me, pulling pre-built packages into a yocto image is in
-> itself a horrible hack that goes against yocto philosophy, and I would
-> not want yocto to help that or support it in any way.
->=20
-> We build from source. Isar can do what it wants, but I don't have to
-> like or support that.
->=20
-> There's a separate question of pulling pre-built *binaries* that
-> sometimes come in .rpm archives and repackaging them with recipes,
-> which is sort of supported if you list the rpm in SRC_URI (bitbake
-> will then fetch/unpack/repackage), but I don't like that either for
-> different reasons (vendor blobs are evil).
+It is still using ~220% of the CPU, but I think that's fixed in newer
+ffmpeg/vlc versions...
 
-I am of the same opinion and even though pre-built binaries do come in hand=
-y in some occasions, IMHO they bring a lot of other issues along and it's n=
-ot worth it. Just wanted to hear other opinions on the mailing list.
+--=20
+Lisandro P=C3=A9rez Meyer
+Embedded Platform Engineer
 
-Aleksandar
-
->=20
->=20
->> 3) Is enabling and using the package runtime management recommended and
->> encouraged when it comes to Yocto running on actual devices and not duri=
-ng
->> a development phase? IMHO we are talking about embedded devices here, wi=
-th
->> little or no user interaction, with secure boot enabled, atomic updates,
->> etc. and having a package management system such as dnf or apt is cool,
->> but is also kind of brittle (a simple power off during apt update can
->> break the system).
->=20
-> That's exactly correct. Classic package management (rpm/dpkg) was
-> created for the 'Unix workstation' use case where you want to provide
-> as much available disk space as possible to users (so A/B partitioning
-> is a non-starter), and users can easily add things they want to their
-> system. Nobody ever claimed that such mass-upgrade transactions can be
-> safely interrupted by a power outage, and in all likelihood you'll
-> have a half-updated system with an undefined behaviour on the next
-> boot.
->=20
-> Alex
-
---8jAsQGFv5h52wJDStTcx
-Content-Type: text/html; charset="utf-8"
+--0000000000009b6bf40623e47094
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>On Mon, Oct 7, 2024 at 01:31 PM, Alexander Kanavin wrote:</div>
-<div>
-<blockquote>On Mon, 7 Oct 2024 at 07:06, Aleksandar Nikolic via<br />lists.=
-yoctoproject.org<br />&lt;aleksandar.nikolic010=3Dgmail.com@lists.yoctoproj=
-ect.org&gt; wrote:<br />
-<blockquote>1) When I build a recipe previously not installed in my image a=
-nd want to install it during runtime, the dnf install command fails, saying=
- that the package's dependencies are not met (see [2] for more info). This =
-is fine, as I can see that the tmp/deploy/rpm directory does not contain al=
-l of the package's dependencies nor the dependencies' WORKDIRs contain the =
-deploy-rpms directory. Is this behavior correct? Shouldn't building a recip=
-e also lead that all of its dependencies are not just built but also packag=
-ed and put into the tpm/deploy/rpm directory (the same as with building the=
- image containing the package in question)?</blockquote>
-The default behavior is that bitbake runs the absolute minimum of<br />task=
-s needed to complete the task you specify (in this case, producing<br />the=
- rpm). Making a vim rpm requires only do_package of its<br />dependencies, =
-but not their do_package_write_rpm.<br /><br />If you want all dependent rp=
-ms too, this is easily done with:<br />bitbake --runall package_write_rpm v=
-im</blockquote>
-</div>
-<div>Thanks, will try this later!</div>
-<div><br />
-<blockquote>
-<blockquote>2) Is there an official, stable, and not some hacky way to inst=
-all already pre-built packages during the build and not later during runtim=
-e? So instead of building from source or from the sstate-cache, to provide =
-a URL to a webserver holding packages, which would then be pulled and insta=
-lled (if I am not wrong Isar does this)?</blockquote>
-If you ask me, pulling pre-built packages into a yocto image is in<br />its=
-elf a horrible hack that goes against yocto philosophy, and I would<br />no=
-t want yocto to help that or support it in any way.<br /><br />We build fro=
-m source. Isar can do what it wants, but I don't have to<br />like or suppo=
-rt that.<br /><br />There's a separate question of pulling pre-built *binar=
-ies* that<br />sometimes come in .rpm archives and repackaging them with re=
-cipes,<br />which is sort of supported if you list the rpm in SRC_URI (bitb=
-ake<br />will then fetch/unpack/repackage), but I don't like that either fo=
-r<br />different reasons (vendor blobs are evil).</blockquote>
-I am of the same opinion and even though pre-built binaries do come in hand=
-y in some occasions, IMHO they bring a lot of other issues along and it's n=
-ot worth it. Just wanted to hear other opinions on the mailing list.</div>
-<div>&nbsp;</div>
-<div>Aleksandar</div>
-<div><br />
-<blockquote>
-<blockquote>3) Is enabling and using the package runtime management recomme=
-nded and encouraged when it comes to Yocto running on actual devices and no=
-t during a development phase? IMHO we are talking about embedded devices he=
-re, with little or no user interaction, with secure boot enabled, atomic up=
-dates, etc. and having a package management system such as dnf or apt is co=
-ol, but is also kind of brittle (a simple power off during apt update can b=
-reak the system).</blockquote>
-That's exactly correct. Classic package management (rpm/dpkg) was<br />crea=
-ted for the 'Unix workstation' use case where you want to provide<br />as m=
-uch available disk space as possible to users (so A/B partitioning<br />is =
-a non-starter), and users can easily add things they want to their<br />sys=
-tem. Nobody ever claimed that such mass-upgrade transactions can be<br />sa=
-fely interrupted by a power outage, and in all likelihood you'll<br />have =
-a half-updated system with an undefined behaviour on the next<br />boot.<br=
- /><br />Alex</blockquote>
-</div>
+<div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Fri, Oct 4, 2024 at 2:08=E2=80=AFPM Lisandro P=C3=A9rez Meyer=
+ (ICS) via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org=
+</a> &lt;lpmeyer=3D<a href=3D"mailto:ics.com@lists.yoctoproject.org">ics.co=
+m@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr">I could make Qt 6 to use rpidistro=
+-ffmpeg which reduces the load to ~84% but still not as ideal as I would ha=
+ve expected. VLC on RPi OS does work nice...<br></div></blockquote><div><br=
+></div>OK, VLC requires x11 support to work. Now it&#39;s kind of obvious, =
+but took me a while to get to that.</div><div class=3D"gmail_quote"><br></d=
+iv><div class=3D"gmail_quote">It is still using ~220% of the CPU, but I thi=
+nk that&#39;s fixed in newer ffmpeg/vlc versions...<br clear=3D"all"></div>=
+<br><span class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" c=
+lass=3D"gmail_signature"><div dir=3D"ltr"><div>Lisandro P=C3=A9rez Meyer<br=
+></div>Embedded Platform Engineer<br></div></div></div>
 
---8jAsQGFv5h52wJDStTcx--
+--0000000000009b6bf40623e47094--
 
