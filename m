@@ -1,87 +1,94 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67B35CFA757
-	for <webhook@archiver.kernel.org>; Mon,  7 Oct 2024 21:16:29 +0000 (UTC)
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
- by mx.groups.io with SMTP id smtpd.web11.3529.1728335783936733189
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72A37CED242
+	for <webhook@archiver.kernel.org>; Mon,  7 Oct 2024 21:28:09 +0000 (UTC)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+ by mx.groups.io with SMTP id smtpd.web10.3782.1728336487764323092
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Oct 2024 14:16:24 -0700
+ Mon, 07 Oct 2024 14:28:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=CH00F3tL;
- spf=softfail (domain: sakoman.com, ip: 209.85.214.173, mailfrom: steve@sakoman.com)
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20ba733b904so48183205ad.1
-        for <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 14:16:23 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=KUQPmyA9;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42cb806623eso45369885e9.2
+        for <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 14:28:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1728335783; x=1728940583; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5OpY43dQxXgggIdTdxTQSZK+LUcGy4Aj8Fb2YBp8vis=;
-        b=CH00F3tLSWh352zsmNzNvYyPa4Dqd8zaJd2d0I/z3VpwVEC454f6qV5fZy5qr4lxVD
-         8tIb9TNJm1o03BVPLaaLMIN10oYy3ZS8TAcZFxbfHHg8fdMLgLj2XDzYLY+A66vyQbl5
-         2DSZsFomXBUx2+/z0pTZI61HaKqFN9rzZnopvM84H7OGqBIwuJVKDIGPZHiRsq+H8tbf
-         N4OosxSlJccsYvbeinO0/FWTN4OmPXrV0Uw17lT4BHn+dfyT4fGB7VY8ougKGPr9rlPJ
-         pl/9rhIyIM9c20lpb+P3IcUFGBQGCzimsIIglrf8PP1Q/ydPBtnaiC9NauXeETwqtaad
-         V6rg==
+        d=linuxfoundation.org; s=google; t=1728336486; x=1728941286; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=maj29vghkdjnDyzHmta6PVM+3/63Fn/hMPjFgUlM5t0=;
+        b=KUQPmyA9CqzyLl+zlxwR7842lNAwneXyFSPfDRImHKNZXlPEt735LjEDUoTiUq6Vzc
+         U36OHBmmMUBdSWQOYVHLvC0WXTHwzBY3Z13ZFHUNxJ7ndP4DTOtZCyGLuh5d7e+REGiM
+         sfgcEvL0MZZ46dsZGSBx3zfhix8koe8AF4Z/w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728335783; x=1728940583;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5OpY43dQxXgggIdTdxTQSZK+LUcGy4Aj8Fb2YBp8vis=;
-        b=md8ZFgiW5+o8c2EhD6/aa/QIek3w3ADpCSriQhIDcA6F1HS6x+XBvjJL2ksFRnWRhO
-         oGqyEtJJ0P1TDyQP+o0sr99ovSV14yubFWgD0CBjIGBuKtJgiBrc3bPBX45iYiiONiFJ
-         01dGRil3B4ZAbNv/tYfFOjsRNzwZvC+3blPlG2OfeXKPvJclgpLqCIZM5NUlHg1Q3IFg
-         NG6L2ZSodzNGOr8Lwlk2kiam1eX+pQyBcvpyLkLhD96KrD1Gr9+U4AVhS/Sx3vD+nA9m
-         pFh605Fx5aCKi/MECpvajkH9ltlVwC5j+b3XIFa/AvLOsI1vC1HhG4e4ejIs1Hu4TX7v
-         ZEIQ==
-X-Gm-Message-State: AOJu0YyGSbSA9wCBb/Ap3A2d9fEKVXdi/xpeKljg7JVOioroFQVtT6gU
-	7FGCK0AcX3AtQGYVKS0FRtyvdOHJYAgMaWdB2TIx8zf0b/2Ko3Na15ZEZLg5rTyIUIHs2Nxt1eH
-	M
-X-Google-Smtp-Source: AGHT+IHqeNrIY5T6b8ZrLnEXW0X8ViCEBCpJ6oA49a5NpGhn7k5miyolfm0rO+M3p3ifW8TOAReO6g==
-X-Received: by 2002:a17:903:40ce:b0:20b:a8d9:2a02 with SMTP id d9443c01a7336-20bfe072971mr197423815ad.36.1728335783049;
-        Mon, 07 Oct 2024 14:16:23 -0700 (PDT)
-Received: from hexa.. ([98.142.47.158])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c138d0696sm44038405ad.84.2024.10.07.14.16.22
+        d=1e100.net; s=20230601; t=1728336486; x=1728941286;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=maj29vghkdjnDyzHmta6PVM+3/63Fn/hMPjFgUlM5t0=;
+        b=FZX1Mt+I/HWQN0mUUqgDNOCTjAlAbyVS5hqGM7E6YCeU5uTqzABEVsFf7jEXW+83tl
+         qy9DWgbNC3kIQEQPnigNQzuwp3UbWfLbyG0nBz799dJci7os6teuatKhKaBLUGr4NX0T
+         G6SyojS7NErQEbZXmTrqd7O8GGZ7cgfb6r/FHgqMcamha3LPwg4d9M98OUYFwY+U/8KZ
+         461qQ9NeHO90mhEtzBIcXySUANVaEfptqTo8Ndtfi4IguX434evBwJoy2O28NOBmQGCZ
+         CIYLny0qFGw2nEwPINWPdRxQz4n09ugAZnfxGrd0gJnDBg4coZ6nMVCEOzRT9eand2SM
+         q7RQ==
+X-Gm-Message-State: AOJu0YzDF3WdUxqsXPLHYKpVQyP4niXt2kVvJyPGGjgAzrc8TToHy3CO
+	+eLFITNOJ4J07RhXMhGL6RAuOV+scwTj2Sf9RKA4EP2+uLsXlu3l1dybf96tURa94rTSdsbilTc
+	h
+X-Google-Smtp-Source: AGHT+IG9T9/0OF0xEuIqTSW3W2QYmn59DQSPzVGUPEgGX5MDuEGq4Ld0mPXDPxNfZ91HqIBiQk56EQ==
+X-Received: by 2002:a05:600c:1c98:b0:42c:b8c9:16cb with SMTP id 5b1f17b1804b1-42f85aa6991mr109280815e9.5.1728336485735;
+        Mon, 07 Oct 2024 14:28:05 -0700 (PDT)
+Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:4afa:9443:1775:54a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f86a20537sm105018445e9.15.2024.10.07.14.28.03
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 14:16:22 -0700 (PDT)
-From: Steve Sakoman <steve@sakoman.com>
+        Mon, 07 Oct 2024 14:28:04 -0700 (PDT)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][kirkstone] config.json: use buildtools for fedora40
-Date: Mon,  7 Oct 2024 14:16:17 -0700
-Message-Id: <35baaa3f73b2024fbdeb207674599481f208faf8.1728335711.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1728335711.git.steve@sakoman.com>
-References: <cover.1728335711.git.steve@sakoman.com>
+Subject: [yocto-autobuilder2] [PATCH] builders: Allow partial matching of helper branches
+Date: Mon,  7 Oct 2024 22:28:03 +0100
+Message-ID: <20241007212803.193484-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 21:16:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63952
+ <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 21:28:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63953
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
+Helper branches with names like contrib/kirkstone-nut don't work with
+worker restrictions currently. Try and fix this.
+
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- config.json | 1 +
- 1 file changed, 1 insertion(+)
+ builders.py | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/config.json b/config.json
-index f41df5f..790bed1 100644
---- a/config.json
-+++ b/config.json
-@@ -1345,6 +1345,7 @@
-         "debian8*" : "${BUILDTOOLS_URL}",
-         "debian9*" : "${BUILDTOOLS_URL}",
-         "centos7*" : "${BUILDTOOLS_URL}",
-+        "fedora40*" : "${BUILDTOOLS_URL}",
-         "ubuntu1604*" : "${BUILDTOOLS_URL}",
-         "ubuntu1804-ty-*" : "${BUILDTOOLS_URL}",
-         "ubuntu1804-arm-*" : "${BUILDTOOLS_ARM_URL}",
--- 
-2.34.1
-
+diff --git a/builders.py b/builders.py
+index b4685ec5..580ae264 100644
+--- a/builders.py
++++ b/builders.py
+@@ -158,12 +158,15 @@ def nextWorker(bldr, workers, buildrequest):
+     if '' in buildrequest.sources:
+         # Has to be a better way to do this
+         branch = buildrequest.sources[''].branch
+-    if branch and branch in config.workers_prev_releases and "bringup" not in bldr.name:
+-        possible_workers = []
+-        for w in workers:
+-            if w.worker.workername.startswith(config.workers_prev_releases[branch]):
+-                possible_workers.append(w)
+-        log.msg("nextWorker: Limiting %s to workers %s for %s" % (str(bldr), str(possible_workers), branch))
++    if branch and "bringup" not in bldr.name:
++        for branchname in config.workers_prev_releases:
++            if branch in branchname:
++                possible_workers = []
++                for w in workers:
++                    if w.worker.workername.startswith(config.workers_prev_releases[branchname]):
++                        possible_workers.append(w)
++                log.msg("nextWorker: Limiting %s to workers %s for %s" % (str(bldr), str(possible_workers), branchname))
++                break
+ 
+     if forced_worker == "*":
+         return random.choice(possible_workers) if possible_workers else None
 
