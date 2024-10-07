@@ -1,98 +1,169 @@
-Return-Path: <dbaryshkov@gmail.com>
+Return-Path: <aleksandar.nikolic010@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC1E5CFB458
-	for <webhook@archiver.kernel.org>; Mon,  7 Oct 2024 19:29:28 +0000 (UTC)
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
- by mx.groups.io with SMTP id smtpd.web11.660.1728329366945108776
- for <yocto@lists.yoctoproject.org>;
- Mon, 07 Oct 2024 12:29:27 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=efzubQMQ;
- spf=pass (domain: gmail.com, ip: 209.85.208.51, mailfrom: dbaryshkov@gmail.com)
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5c42f406e29so6437451a12.2
-        for <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 12:29:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728329365; x=1728934165; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jxha/Jx3ek0OmafTxYuhhzblTIcqatwvB1T/c8rPgmE=;
-        b=efzubQMQ0eJotLAcJJNDr4zrNnssdxKpgPil2SBnkqAmQOGsmibNGsN0LDvkuXCYM6
-         6CIDb5FQkD41UfILeaVPpEmzeKhKWYkjVPdSMzHfn44QLY/lPbOr2YrXMMcUIUR74dN7
-         2CldSk3buAp0XTkeJU+uxjeeUov6XCLxXg0pEJ2Wbtee2jRBRWkmxKQrIt41VTeju22y
-         0FHO+bedIZpy5kzpPBNqacmqQGS0n3WSSPhnSYRZiM5+QY2VBAzeUE8clqC/cxBpNw02
-         +PphX3Itb0yAx/NJqxMuePkzCDkl3Gs3hiTFaj+X7BqPWo4ofAPTx8Rw/Rz/A1AEntwI
-         uavQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728329365; x=1728934165;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jxha/Jx3ek0OmafTxYuhhzblTIcqatwvB1T/c8rPgmE=;
-        b=fZmJ03zsVRKNQZUawllXjI+PWOxZStcQ86J1kGoxuU/8Wm5ohY95lgFAdg18WytsRo
-         boS3jSsDBT3RUf+YcqQFATuvpDx/8pVeST4TYS/GVGDxt/Mc016wZUvpV3zJnneycHuG
-         pGrfoXhbklkSsLYZOK+awKGFCkWgSkiwiHKS6pXxFoys9Dx4j1PGW1Uu+9mXpo6KqhGd
-         KNrOoYGAPJGBzrLUDUEOo63hNUlk4QGF/F76GxaXr6BRgoE+Qmy28yjdRNDox83AAly5
-         Zzr/0CyAwn1QirI4e+Mp5o4IWy6CIkMR81vuDbga1+b4YCuLjkpIefdqg0da1SMC5W9P
-         yBJw==
-X-Gm-Message-State: AOJu0YzZ68XMus81S0T4yqiNfsuLQNvU2kzN2V76tKoHpaZPT3lzYdke
-	7jS7XKb5ZK8Kp325E1iMS4iGjcU4qyPhc9lExQSF5kR0R6jq4SLQ5jqVcnJcuA1kl56yASaKt6n
-	3qMRn0iST+hys3XnHTnWaO8fnF1w=
-X-Google-Smtp-Source: AGHT+IG0945IExb1Kf/BbpR98oykwlKSKpXE3Fv4XAiGNzcdKeIxSSqJOHqmnoYst+LZP1sC/j/5aI0hYbwjECrGYKw=
-X-Received: by 2002:a17:907:6d0d:b0:a99:374e:f3cb with SMTP id
- a640c23a62f3a-a99374ef56dmr1022971066b.46.1728329365148; Mon, 07 Oct 2024
- 12:29:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <fvqD.1728277436421735973.T2Af@lists.yoctoproject.org>
- <CANNYZj_=Yoa0LxU-OqfJQA+D7MyOqPVZ7YZ0OFcmBZ5m93OiGw@mail.gmail.com>
- <CALT56yM+rQR1L0VtyBdupurv2TokWLJ7sVXu3YjpTfXJt0ruVQ@mail.gmail.com> <CANNYZj-rtd=7xCcAkLM7C=CSmLPS5JqEYPhQcdpLQNtx-ZPPpQ@mail.gmail.com>
-In-Reply-To: <CANNYZj-rtd=7xCcAkLM7C=CSmLPS5JqEYPhQcdpLQNtx-ZPPpQ@mail.gmail.com>
-From: Dmitry Baryshkov <dbaryshkov@gmail.com>
-Date: Mon, 7 Oct 2024 21:29:14 +0200
-Message-ID: <CALT56yPtvqV-nOv931v7ZTR5T+3+szG_FG6GUuDfpruQGgMBAQ@mail.gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17D3BCFB45D
+	for <webhook@archiver.kernel.org>; Mon,  7 Oct 2024 20:34:19 +0000 (UTC)
 Subject: Re: [yocto] Yocto Binary Distro
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org, aleksandar.nikolic010@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+To: "Dmitry Baryshkov" <dbaryshkov@gmail.com>, yocto@lists.yoctoproject.org
+From: "Aleksandar Nikolic" <aleksandar.nikolic010@gmail.com>
+X-Originating-Location: Erlangen, Bavaria, DE (147.161.171.73)
+X-Originating-Platform: Windows Chrome 129
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Mon, 07 Oct 2024 13:34:16 -0700
+References: <CALT56yPtvqV-nOv931v7ZTR5T+3+szG_FG6GUuDfpruQGgMBAQ@mail.gmail.com>
+In-Reply-To: <CALT56yPtvqV-nOv931v7ZTR5T+3+szG_FG6GUuDfpruQGgMBAQ@mail.gmail.com>
+Message-ID: <16147.1728333256445916327@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="hFKLrJj9M2VlMeQg3rVI"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 19:29:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63950
+ <yocto@lists.yoctoproject.org>; Mon, 07 Oct 2024 20:34:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63951
 
-On Mon, 7 Oct 2024 at 21:27, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
->
-> On Mon, 7 Oct 2024 at 21:07, Dmitry Baryshkov <dbaryshkov@gmail.com> wrote:
-> > > If you ask me, pulling pre-built packages into a yocto image is in
-> > > itself a horrible hack that goes against yocto philosophy, and I would
-> > > not want yocto to help that or support it in any way.
->
-> ...
->
-> > So, as much as I like OE, if you are thinking about a binary distro, I
-> > think you'd better use some existing purposely binary distro (like
-> > Debian, Armbian or something from the RPM world). If you can afford
-> > having package management on the device, it's not tightly resource
-> > constrained. And thus there is no need to go Yocto way.
->
-> I think we're talking about two different things here, so just in case
-> I'd clarify the difference. Point two is about using bitbake to
-> somehow pull a big pile of prebuilt binary packages from the net and
-> assemble a target image out of them. I don't like that at all.
+--hFKLrJj9M2VlMeQg3rVI
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Ugh, no, thank you. I also hate that idea.
+Hi,
 
+I'll reply on the last message from Alex, but thanks Dmitry for your initia=
+l message and the story how we came from =C3=85ngr=C3=B6m to what we have n=
+ow. Also thanks to both of you for the extensive feedback!
+
+On Mon, Oct 7, 2024 at 09:29 PM, Dmitry Baryshkov wrote:
+
+>=20
+> On Mon, 7 Oct 2024 at 21:27, Alexander Kanavin <alex.kanavin@gmail.com>
+> wrote:
+>=20
+>> On Mon, 7 Oct 2024 at 21:07, Dmitry Baryshkov <dbaryshkov@gmail.com>
+>> wrote:
+>>=20
+>>>=20
+>>>> If you ask me, pulling pre-built packages into a yocto image is in
+>>>> itself a horrible hack that goes against yocto philosophy, and I would
+>>>> not want yocto to help that or support it in any way.
+>>>=20
+>>>=20
+>>=20
+>> ...
+>>=20
+>>=20
+>>> So, as much as I like OE, if you are thinking about a binary distro, I
+>>> think you'd better use some existing purposely binary distro (like
+>>> Debian, Armbian or something from the RPM world). If you can afford
+>>> having package management on the device, it's not tightly resource
+>>> constrained. And thus there is no need to go Yocto way.
+>>=20
+>> I think we're talking about two different things here, so just in case
+>> I'd clarify the difference. Point two is about using bitbake to
+>> somehow pull a big pile of prebuilt binary packages from the net and
+>> assemble a target image out of them. I don't like that at all.
+>=20
+> Ugh, no, thank you. I also hate that idea.
+
+Yep, thanks for separating these two use cases. Regarding the former one (p=
+ulling a bunch of prebuilt binary packages from a server and assembling a t=
+arget image out of them ), some coworkers want exactly this and I am trying=
+ to persuade them not to go down that path and just build from source. IMHO=
+, even though installing previously tested binaries might bring some assura=
+nce for the QM team, it brings a hell lot of issues with it which are easil=
+y avoided by building from source.
+
+>=20
+>=20
+>> On the other hand having a yocto-based binary distro, e.g. a target
+>> image with package management which feels like the traditional linux
+>> distributions is fine with me. I'm not particularly interested in it,
+>> and I'm also not sure it can work well, but people are welcome to work
+>> on it if they find it interesting or useful.
+>=20
+> Yep, I was thinking about the yocto-with-feeds.
+
+Yes, I also think this use case makes more sense than the first one, but I =
+also see it to be used during development only, so devs can install and use=
+ packages faster (than rebuilding the whole image). Updating a device in th=
+e field with a package management system is however in my opinion a no-go (=
+from the reasons previously stated by all).
+
+Aleksandar
+
+>=20
+> --
+> With best wishes
+> Dmitry
+
+--hFKLrJj9M2VlMeQg3rVI
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi,</div>
+<div>&nbsp;</div>
+<div>I'll reply on the last message from Alex, but thanks Dmitry for your i=
+nitial message and the story how we came from <span style=3D"color: #333333=
+; font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans'=
+, 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 16px; font-style: nor=
+mal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight=
+: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: =
+0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-strok=
+e-width: 0px; white-space: pre-wrap; background-color: #ffffff; text-decora=
+tion-thickness: initial; text-decoration-style: initial; text-decoration-co=
+lor: initial; display: inline !important; float: none;">&Aring;ngr&ouml;m t=
+o what we have now. Also thanks to both of you for the extensive feedback!<=
+/span></div>
+<div>&nbsp;</div>
+<div>On Mon, Oct 7, 2024 at 09:29 PM, Dmitry Baryshkov wrote:</div>
+<div>
+<blockquote>On Mon, 7 Oct 2024 at 21:27, Alexander Kanavin &lt;alex.kanavin=
+@gmail.com&gt; wrote:<br />
+<blockquote>On Mon, 7 Oct 2024 at 21:07, Dmitry Baryshkov &lt;dbaryshkov@gm=
+ail.com&gt; wrote:<br />
+<blockquote>
+<blockquote>If you ask me, pulling pre-built packages into a yocto image is=
+ in<br />itself a horrible hack that goes against yocto philosophy, and I w=
+ould<br />not want yocto to help that or support it in any way.</blockquote=
 >
-> On the other hand having a yocto-based binary distro, e.g. a target
-> image with package management which feels like the traditional linux
-> distributions is fine with me. I'm not particularly interested in it,
-> and I'm also not sure it can work well, but people are welcome to work
-> on it if they find it interesting or useful.
+</blockquote>
+...<br /><br />
+<blockquote>So, as much as I like OE, if you are thinking about a binary di=
+stro, I<br />think you'd better use some existing purposely binary distro (=
+like<br />Debian, Armbian or something from the RPM world). If you can affo=
+rd<br />having package management on the device, it's not tightly resource<=
+br />constrained. And thus there is no need to go Yocto way.</blockquote>
+I think we're talking about two different things here, so just in case<br /=
+>I'd clarify the difference. Point two is about using bitbake to<br />someh=
+ow pull a big pile of prebuilt binary packages from the net and<br />assemb=
+le a target image out of them. I don't like that at all.</blockquote>
+Ugh, no, thank you. I also hate that idea.</blockquote>
+</div>
+<div>Yep, thanks for separating these two use cases. Regarding the former o=
+ne (pulling a bunch of prebuilt binary packages from a server and assemblin=
+g a target image out of them ), some coworkers want exactly this and I am t=
+rying to persuade them not to go down that path and just build from source.=
+ IMHO, even though installing previously tested binaries might bring some a=
+ssurance for the QM team, it brings a hell lot of issues with it which are =
+easily avoided by building from source.</div>
+<div>&nbsp;</div>
+<div>
+<blockquote>
+<blockquote>On the other hand having a yocto-based binary distro, e.g. a ta=
+rget<br />image with package management which feels like the traditional li=
+nux<br />distributions is fine with me. I'm not particularly interested in =
+it,<br />and I'm also not sure it can work well, but people are welcome to =
+work<br />on it if they find it interesting or useful.</blockquote>
+Yep, I was thinking about the yocto-with-feeds.</blockquote>
+Yes, I also think this use case makes more sense than the first one, but I =
+also see it to be used during development only, so devs can install and use=
+ packages faster (than rebuilding the whole image). Updating a device in th=
+e field with a package management system is however in my opinion a no-go (=
+from the reasons previously stated by all).</div>
+<div>&nbsp;</div>
+<div>Aleksandar<br />
+<blockquote>-- <br />With best wishes<br />Dmitry</blockquote>
+</div>
 
-Yep, I was thinking about the yocto-with-feeds.
-
--- 
-With best wishes
-Dmitry
+--hFKLrJj9M2VlMeQg3rVI--
 
