@@ -1,56 +1,53 @@
-Return-Path: <Jesus.JimenezSanchez@verifone.com>
+Return-Path: <philip@balister.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F5DDCEFC21
-	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 15:11:02 +0000 (UTC)
-Subject: Help enabling the BT_QCA driver
-To: yocto@lists.yoctoproject.org
-From: "Jesus Jimenez Sanchez" <Jesus.JimenezSanchez@verifone.com>
-X-Originating-Location: DE (195.138.223.243)
-X-Originating-Platform: Linux Firefox 131
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2B01CEFC2A
+	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 16:23:52 +0000 (UTC)
+Received: from smtp4.emailarray.com (smtp4.emailarray.com [65.39.216.22])
+ by mx.groups.io with SMTP id smtpd.web10.13657.1728404631095948941
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 08 Oct 2024 09:23:51 -0700
+Authentication-Results: mx.groups.io;
+ dkim=none (message not signed); spf=pass (domain: balister.org, ip: 65.39.216.22, mailfrom: philip@balister.org)
+Received: (qmail 80941 invoked by uid 89); 8 Oct 2024 16:23:50 -0000
+X-Orig-Sender: philip@balister.org
+Received: from unknown (HELO ?192.168.11.155?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0A3My4xNTIuMTM0LjE1Mg==) (POLARISLOCAL)  
+  by smtp4.emailarray.com with SMTP; 8 Oct 2024 16:23:50 -0000
+Message-ID: <21b3da52-45b8-4336-8214-18b8d2435f5f@balister.org>
+Date: Tue, 8 Oct 2024 12:23:49 -0400
 MIME-Version: 1.0
-Date: Tue, 08 Oct 2024 08:10:56 -0700
-Message-ID: <THe4.1728400256824602958.rStN@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="EhxZ5emK8J27Bxbg080j"
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: "openembedded-members@lists.openembedded.org"
+ <openembedded-members@lists.openembedded.org>,
+ "openembedded-devel@lists.openembedded.org"
+ <openembedded-devel@lists.openembedded.org>,
+ openembedded-architecture
+ <openembedded-architecture@lists.openembedded.org>,
+ openembedded-core <openembedded-core@lists.openembedded.org>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: Philip Balister <philip@balister.org>
+Subject: Post FOSDEM Openembedded Workshop (Feb 3, in Brussels)
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 15:11:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63975
+ <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 16:23:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63976
 
---EhxZ5emK8J27Bxbg080j
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+The OpenEmbedded board has organized the fourth post FOSDEM workshop. 
+The website is live:
 
-Hello,
+https://pretalx.com/openembedded-workshop-2025/
 
-I'm using Yocto for a project at work and I need to enable the btqca driver=
-. I have tried using the menuconfig option in Yocto but the driver doesn't =
-appear there. I have also modified the .config file manually inside the bui=
-ld-** folder but the file gets rewritten with the old version when I build =
-the project.
+and the CFP is here:
 
-What should I do here for enabling this driver?
+https://pretalx.com/openembedded-workshop-2025/cfp
 
-Thank you.
+Please submit early and often! Tickets should be on sale in a few days 
+after we confirm a few settings.
 
---EhxZ5emK8J27Bxbg080j
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hello,</div>
-<div>&nbsp;</div>
-<div>I'm using Yocto for a project at work and I need to enable the btqca d=
-river. I have tried using the menuconfig option in Yocto but the driver doe=
-sn't appear there. I have also modified the .config file manually inside th=
-e build-** folder but the file gets rewritten with the old version when I b=
-uild the project.</div>
-<div>&nbsp;</div>
-<div>What should I do here for enabling this driver?</div>
-<div>&nbsp;</div>
-<div>Thank you.</div>
-
---EhxZ5emK8J27Bxbg080j--
+Philip
 
