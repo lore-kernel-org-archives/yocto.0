@@ -1,112 +1,111 @@
-Return-Path: <mikko.rapeli@linaro.org>
+Return-Path: <mtownsend1973@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 536EECED27F
-	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 08:53:10 +0000 (UTC)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
- by mx.groups.io with SMTP id smtpd.web11.4314.1728377587503970487
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60D32CFA754
+	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 09:00:10 +0000 (UTC)
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+ by mx.groups.io with SMTP id smtpd.web10.4492.1728378005333642346
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Oct 2024 01:53:07 -0700
+ Tue, 08 Oct 2024 02:00:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=sJmKbJDX;
- spf=pass (domain: linaro.org, ip: 209.85.208.178, mailfrom: mikko.rapeli@linaro.org)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fad0f66d49so79850891fa.3
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 01:53:07 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fvi9g6lP;
+ spf=pass (domain: gmail.com, ip: 209.85.161.49, mailfrom: mtownsend1973@gmail.com)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5e5a0519d00so1949481eaf.3
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 02:00:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728377586; x=1728982386; darn=lists.yoctoproject.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AT7BQ7XB4DWpl2EwGPaMYKYeNlpEGFh0wo6fYcayPw4=;
-        b=sJmKbJDXue2YKqSEsE5rM5tNi8DHIdTDbgKBsVCCH70xbZkSjmYR6Rsa3TlmDP6m4H
-         4SwBRd6eNEpnSQZ5h6u662jvdoCladjp0SH1Yy8vzuY6IzFy2ryhKDxah56W3igEoAnc
-         gOOrrx0E92x+rxjKvLAT5BoQCikg34LvS0k1SXfVIJFP7o/TafkJzs49XGJRt0xpxhwC
-         wJ5bFi9hFgjAOXhd49kSzwwqz++ps8ukWQrWPNinI7pXaGIHnbcJBO61KEbikPglqo09
-         busMvwhfV1hhr077o3XV+LOR/nAJHbtOzGAMgDYfycCLPL1JyuIG5paiW/w4+RuGjzi3
-         mfVw==
+        d=gmail.com; s=20230601; t=1728378004; x=1728982804; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=BQw588kcanDmRf3q4WDyhDAY0Y5sBWPNa3MmZUZXtzw=;
+        b=fvi9g6lPk6xXP6J0ggjK94J/mdke9mX1+wxJwiFDJB15n+g1D8CaYcGE6wNsSCUieS
+         1EKknvJW19uVfp9H5v5AOmKMtvyWr6sTZdlUqShOJhKT9SKb8ec8yka0c6nCBf0HQmaF
+         HQhTGXcK0AZET+6HELYcY2/xqnfzz2KZT/kNNS+hRS9meLOGKW9nPGGehdsDHdlvoKzJ
+         KCdERqhc1XlPcIjTfPWz4G204p5D/n7ev9/wBHhe2S54rZCon+UrR4CSVttyhM/pQzsV
+         CEAhkRXS8tuXIiBTIfJ+C7vR6JpU297iufxoT9gigdDgI9DJ2hbKb+slTdpYuCdD+HId
+         HFUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728377586; x=1728982386;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AT7BQ7XB4DWpl2EwGPaMYKYeNlpEGFh0wo6fYcayPw4=;
-        b=BeE79w++Oe0+rs43L+AwVLZVYrEL1Q9/KFw6dnMu8sNDM27K5UHF6OlEcl/saBKUu6
-         qBW2JlQDvu0WbzjVjKDKKUK9H2cZUaCNm8vyZ7e+itCrTEKOfZxwUnAb4d0jPnS+qPht
-         gJVXT81PNI7kICvhuzmpvZlhYfZz05QSXTisoaL2cxvBQAAv5iXRwhMs4/N4MgrcSsK+
-         hM+6sx+tWNn74PwTLJVyzyjxKrn5Bx5w1WfMLzDP6hWR49zik2LsSMRbB2K4uVSj8e+B
-         /UWAUsTG1azB32AupN/LkeEGcIsjtGC08QV2Rm4uHxtIZPPn0LQDhFmFZrmPkqebTyxy
-         f2fQ==
-X-Gm-Message-State: AOJu0YwVYbh+9sReeDPPhstLDBl+vzmr4oAmC/7WV6ppx6lvb/lSuYHk
-	8vkc2xDoOZiqIGSyNgWF9UQ4Lb207wbnkgIPp/69+JGtQv86KVbFBEtDmVVjMOw58f8KuAnc31W
-	ylv4=
-X-Google-Smtp-Source: AGHT+IFerICKAVSRjTjh1WYA5Ln/YP8/1qpwIgg2S56VdrJYAX+ITGe6xdSELKXu8c7ePGg1hx6I/g==
-X-Received: by 2002:a05:651c:1245:b0:2f7:4d86:5dcf with SMTP id 38308e7fff4ca-2faf3c661a4mr51275461fa.35.1728377585523;
-        Tue, 08 Oct 2024 01:53:05 -0700 (PDT)
-Received: from nuoska (78-27-76-97.bb.dnainternet.fi. [78.27.76.97])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2faf9adcc72sm10703271fa.62.2024.10.08.01.53.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 01:53:04 -0700 (PDT)
-Date: Tue, 8 Oct 2024 11:53:03 +0300
-From: Mikko Rapeli <mikko.rapeli@linaro.org>
-To: yocto@lists.yoctoproject.org, aleksandar.nikolic010@gmail.com
-Cc: Dmitry Baryshkov <dbaryshkov@gmail.com>
-Subject: Re: [yocto] Yocto Binary Distro
-Message-ID: <ZwTy7wiOzHJcVNjn@nuoska>
-References: <CALT56yOVpmvaS+oWDG1oJeOLOW2NbLq6TwCGwisFqh=4c95h8Q@mail.gmail.com>
- <11278.1728376247903375011@lists.yoctoproject.org>
+        d=1e100.net; s=20230601; t=1728378004; x=1728982804;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BQw588kcanDmRf3q4WDyhDAY0Y5sBWPNa3MmZUZXtzw=;
+        b=CMdCwVpRVx+/R/+yhCz+K7kT+tggs2K8Od3n9NHfyx+mecvQuQCCliZFa1k5ulQ0cN
+         bQlB4yO8u64hYkLzgPLM3iEX45md4sNZsjfJaar5/OU6AwfT9PcxYL7qnbmXkGRJgYVJ
+         mJPcs+4ObKSLKJSaaZmeETFyF9zKWTU5oh+H33sH2VD+qaRUV5AViwrBeFLjJGINeBIq
+         NGlKn/7oj1zUxy2iTQL31CGaauT5JJ/dsWgS5iobcf3yPnbrln1NGJbjkMkNnCQjgaDF
+         zrUn+op4RoAkFfFp4StUBl7+7ENKm6rsKXo1TQvEmHy+96MuRVo3mQ9595S/GgojfmcL
+         UwgQ==
+X-Gm-Message-State: AOJu0YyOP2fwvJUD5vFn75XZ5x6Ot6g609cvCmsALIYv2NxfojRvdmXF
+	yNaO6W2YbiTk6nCnk01fzt8wbumuhvwOfcyiWihq5XguYC19IzHDiFRTeAu+ZZdPDO9taSHAkMK
+	lCcwzmxORwVI4RK8a1D7RvUPAWx0MQlFy
+X-Google-Smtp-Source: AGHT+IFybF9WTYFO2Ekf12/Dvn3RQRtusvXcdYuIBB3Dsx+C4KB950YPOupf0Sy+StnHyo8c+D9YqssvGK3lhxKXKZY=
+X-Received: by 2002:a05:6870:55cd:b0:287:0:9ecc with SMTP id
+ 586e51a60fabf-287c2007bd3mr8903799fac.33.1728378004091; Tue, 08 Oct 2024
+ 02:00:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <11278.1728376247903375011@lists.yoctoproject.org>
+From: Martin Townsend <mtownsend1973@gmail.com>
+Date: Tue, 8 Oct 2024 09:59:52 +0100
+Message-ID: <CABatt_y=r7PznrwL1Mc6kcigZcmpcLQPmCuxCP4kzv81ObBXOg@mail.gmail.com>
+Subject: Scarthgap: rust-native: install error cannot find -lc++
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000f8bfe50623f35cd7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 08:53:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63959
+ <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 09:00:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63960
+
+--000000000000f8bfe50623f35cd7
+Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-On Tue, Oct 08, 2024 at 01:30:47AM -0700, Aleksandar Nikolic via lists.yoctoproject.org wrote:
-> On Tue, Oct 8, 2024 at 01:25 AM, Dmitry Baryshkov wrote:
-> 
-> > 
-> > Consider using shared SSTATE, it saves you from all the rebuilds,
-> > while keeping Yocto internals intact and sane.
-> 
-> We are using sstate cache, but if I am not mistaken it can happen that even though a package is in the sstate cache, there's a cache miss and the package gets rebuilt - and this is exactly what some coworkers would like to avoid, cause it means a different binary is on the target than the one previously built and tested. That's why I posted another question here (maybe 2 weeks ago) if there's a way to force Yocto to only use sstate-cache and fail if a package needs to be rebuilt or to print a list of packages which were built from source. But there's no an "easy" way to do it.
+I'm currently upgrading to Scarthgap and I have one outstanding issue in
+that rust-native is not installing.  The error message I see is
 
-Why is one compilation of the released recipe different from another? Who
-maintains the toolchains and dependencies?
+ = note: /ws//build/tmp/hosttools/ld: cannot find -lc++
+|           collect2: error: ld returned 1 exit status
 
-Yocto is for building from sources. It doesn't really have ABI checks and layers
-which would easily enable to freeze an ABI and integrate binaries on top
-of that. Every rebuild can change the ABIs in significant ways.
-The approach in bitbake is to rebuild full dependency tree if something changes.
-Compilers, glibc etc get updated all the time and it's important to know if something
-fails to compile, also to make sure that needed features are enabled, correct
-compile flags applied etc.
+I'm using clang by default, I have the following in local.conf
+TOOLCHAIN = "clang"
+TC_CXX_RUNTIME = "llvm"
+LIBCPLUSPLUS = "-stdlib=libc++
 
-It is possible to integrate binaries into yocto builds but then it must
-be understood that there are no ABI compatibility checks. The binary
-may start failing at any time. The recompilations may be costly but
-that's how yocto is. sstate cache helps but doesn't take away the
-full tree rebuilds when something e.g. native recipe changes.
+and the following in a distro conf
 
-IMO it is tricky to fight against this and it's better to accept it.
-If developers want stable ABIs and integrate binaries then other distros
-could be better but they come with different problems. Debian is hard to
-optimize for the full stack, e.g. distro and machine features. OBS
-may help building only subset of packages from scratch, but even there
-ABI checks may not exist and user need to rely on test automation to detect
-breakage.
+PREFERRED_PROVIDER_llvm = "clang"
+PREFERRED_PROVIDER_llvm-native = "clang-native"
+PREFERRED_PROVIDER_nativesdk-llvm = "nativesdk-clang"
+PROVIDES:pn-clang = "llvm"
+PROVIDES:pn-clang-native = "llvm-native"
+PROVIDES:pn-nativesdk-clang = "nativesdk-llvm"
 
-Yocto can build an SDK which can be used to generate 'golden' binaries but
-again compatibility of different SDK builds needs to be checked
-to know when binaries may start breaking. At various points ABIs change so
-much that all binarees need to be recompiled. Think of a security update
-which brings a new openssl version with incompatible ABI.
+I've tried the head of Scarthgap for poky and also the 5.0_M3 tag.
 
-Cheers,
+Any help greatly appreciated,
 
--Mikko
+Many Thanks,
+Martin.
+
+--000000000000f8bfe50623f35cd7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><br>I&#39;m currently upgrading to Scarthgap and I =
+have one outstanding issue in that rust-native is not installing.=C2=A0 The=
+ error message I see is<br><br>=C2=A0=3D note: /ws//build/tmp/hosttools/ld:=
+ cannot find -lc++<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 collect2: error:=
+ ld returned 1 exit status<br><br>I&#39;m using clang by default, I have th=
+e following in local.conf<br>TOOLCHAIN =3D &quot;clang&quot;<br>TC_CXX_RUNT=
+IME =3D &quot;llvm&quot;<br>LIBCPLUSPLUS =3D &quot;-stdlib=3Dlibc++<br><br>=
+and the following in a distro conf<br><br>PREFERRED_PROVIDER_llvm =3D &quot=
+;clang&quot;<br>PREFERRED_PROVIDER_llvm-native =3D &quot;clang-native&quot;=
+<br>PREFERRED_PROVIDER_nativesdk-llvm =3D &quot;nativesdk-clang&quot;<br>PR=
+OVIDES:pn-clang =3D &quot;llvm&quot;<br>PROVIDES:pn-clang-native =3D &quot;=
+llvm-native&quot;<br>PROVIDES:pn-nativesdk-clang =3D &quot;nativesdk-llvm&q=
+uot;<br><br>I&#39;ve tried the head of Scarthgap for poky and also the 5.0_=
+M3 tag.<br><br>Any help greatly appreciated,<br><br>Many Thanks,<br>Martin.=
+<br></div>
+
+--000000000000f8bfe50623f35cd7--
 
