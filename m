@@ -1,157 +1,78 @@
-Return-Path: <salahaldeen.altous@yahoo.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F33A7CEF154
-	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 11:18:10 +0000 (UTC)
-Subject: Re: [yocto] How I can update the Yocto SDK incrementally/partially?
-To: "Yoann Congal" <yoann.congal@smile.fr>, yocto@lists.yoctoproject.org
-From: "salahaldeen.altous@yahoo.com" <salahaldeen.altous@yahoo.com>
-X-Originating-Location: Ankara, TR (176.232.20.207)
-X-Originating-Platform: Linux Firefox 126
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 36510CEF15B
+	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 11:44:31 +0000 (UTC)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+ by mx.groups.io with SMTP id smtpd.web11.7098.1728387869723980355
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 08 Oct 2024 04:44:30 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=cACErSHk;
+ spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2fabc9bc5dfso62540911fa.0
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 04:44:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728387868; x=1728992668; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YHerFcfdGEIFJ7BSXz7xsK9EfNnOoQ8S0OaV8gDv1x8=;
+        b=cACErSHkbOUjPd7rw6ALs5fe3kpBohPqZbji/ePPl7XswECouikqJRp7GcgbrMspHT
+         txc56cN2etL+JMnXnGw+mtU1BQXj2sUlBLTXksxXgpcgFqLr1VYNAGWndCTUAbOrBpil
+         k5o7qTs8wO/H3bz0f/eTbYvhwu+YRTjJMLUGRcPngcz/uPwtGFXvJ47JW1SxiJhXx1Ll
+         LmzNGwuaHMWstqYIDkFjZKyeneu0pRrcM84fYLyz05CmJMUKEPyuJJ0svjZ7GUn38XKW
+         bmo8G8NS9M3/hGUiftOqqXxNSJwslMv7l4Ber0Yk2dNScjbzEUyQKN/PvBJ+EKbYID2e
+         bWSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728387868; x=1728992668;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YHerFcfdGEIFJ7BSXz7xsK9EfNnOoQ8S0OaV8gDv1x8=;
+        b=lfPgz7RcN3Cu8J1OcO/YqSb/yEul3Do3XMsFqFN7VvwMkXnv//6cfVpS7zDH1saqlK
+         o/5srL00pOKQxJ0StkMJcRhWXVEWHneZ+Jf26oJq5igRDGzVnAJnte5/A3g56mJft+/k
+         5cBkV1vJYmjKfzxJhxo4+DPg4MD1mKBHuWgCKdAsyL6BeUQJ61XBWu/u2c+5BfXa56AB
+         K8jCdGJAS6GxHId472MTJ1C0bXTcGaMZKhyZwl8gkVxLzHgpwShyITN/RjfVZCu3iAI2
+         Rq2qz/1t+SP1TFNUqpAH+CGsY417Nmd165WEUuHYwGrgJMlCMoKeu7vOmkdNgm+iH74X
+         F0Bw==
+X-Gm-Message-State: AOJu0YyfoasCNnSK9gxwe9vSVsynv5AtW25PlfSuetjrgbQo84UuVNc3
+	FQtJqD3YrAewqotz1Di5ozD7q9tOEbahVUq6y9c4v2AVqBZS3gejpEyzLRpg4qE976/6TRwMUqT
+	9X3OT0gwjYfX3d6Rw4hTeGx+8MiPvxg==
+X-Google-Smtp-Source: AGHT+IH5s2jFKvUyHTfOdJ+SBoIvoSastZY2SlwEgvbx/cksgKNNDSIE48IGBqlshV4U/iVCQdRKDJwRTMqU7OUNfdM=
+X-Received: by 2002:a05:6512:3511:b0:539:92b6:6d30 with SMTP id
+ 2adb3069b0e04-539ab87db52mr6538432e87.29.1728387867533; Tue, 08 Oct 2024
+ 04:44:27 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 08 Oct 2024 04:18:10 -0700
 References: <CAMSfU+5HUJE_5OSNdB3WuOBntX-S=Zb_pxgLBfaeSYtVhW7ePQ@mail.gmail.com>
-In-Reply-To: <CAMSfU+5HUJE_5OSNdB3WuOBntX-S=Zb_pxgLBfaeSYtVhW7ePQ@mail.gmail.com>
-Message-ID: <13803.1728386290751880136@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="pBLmtg6p3O9tEcNmPuVw"
+ <13803.1728386290751880136@lists.yoctoproject.org>
+In-Reply-To: <13803.1728386290751880136@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 8 Oct 2024 13:44:15 +0200
+Message-ID: <CANNYZj89pfink5PT2d+feT+qhVvkrtEH=ZqO8PNB20hFT5Kj-w@mail.gmail.com>
+Subject: Re: [yocto] How I can update the Yocto SDK incrementally/partially?
+To: yocto@lists.yoctoproject.org, salahaldeen.altous@yahoo.com
+Cc: Yoann Congal <yoann.congal@smile.fr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 11:18:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63968
+ <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 11:44:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63969
 
---pBLmtg6p3O9tEcNmPuVw
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, 8 Oct 2024 at 13:18, salahaldeen.altous@yahoo.com via
+lists.yoctoproject.org
+<salahaldeen.altous=3Dyahoo.com@lists.yoctoproject.org> wrote:
+> I was planning to used the normal SDK becuase the eSDK is 5 times bigger =
+for my custom board ~13 GB, I was looking for similar function to install o=
+nly few packages on the top of the normally SDK without rebuilding again. T=
+his would be helpful for the application developer who have no possibility =
+to bitbake a new SDK !! and receiveing incremental updates.
 
-On Tue, Oct 8, 2024 at 02:38 AM, Yoann Congal wrote:
+They need to start using yocto simply. You can share sstate with them
+so they don't have to rebuild everything.
 
->=20
->=20
->=20
-> Le=C2=A0mar. 8 oct. 2024 =C3=A0=C2=A011:27, salahaldeen.altous@yahoo.com =
-via lists.yoctoproject.org
-> ( http://lists.yoctoproject.org ) <salahaldeen.altous=3D yahoo.com@lists.=
-yoctoproject.org
-> > a =C3=A9crit=C2=A0:
->=20
->> Hi All,
->>=20
->> I have the need to update the yocto SDK incrementally without the need t=
-o
->> rebuild it every time from scratch.
->> I have the package management ipk enabled in my configuration.
->>=20
->> can I use opkg install after sourcing the SDK script? which requirement =
-I
->> need to get it running?
->> updating the rootfs on the target is working fine, but updating the SDK =
-is
->> not working
->>=20
->=20
->=20
-> That sounds like the eSDK : https://docs.yoctoproject.org/sdk-manual/exte=
-nsible.html#applying-updates-to-an-installed-extensible-sdk
->=20
-> Have you tried it?
->=20
-
-I was planning to used the normal SDK becuase the eSDK is 5 times bigger fo=
-r my custom board ~13 GB, I was looking for similar function to install onl=
-y few packages on the top of the normally SDK without rebuilding again. Thi=
-s would be helpful for the application developer who have no possibility to=
- bitbake a new SDK !! and receiveing incremental updates.
-
-Regards,
-Salahaldeen Altous
-
->=20
->=20
->=20
->=20
->=20
->> Regards,
->> Salahaldeen
->>=20
->>=20
->>=20
->=20
->=20
->=20
->=20
-> --
-> Yoann Congal
-> Smile ECS - Tech expert
->=20
->
-
---pBLmtg6p3O9tEcNmPuVw
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>On Tue, Oct 8, 2024 at 02:38 AM, Yoann Congal wrote:</div>
-<div>
-<blockquote>
-<div dir=3D"ltr">
-<div dir=3D"ltr">&nbsp;</div>
-<br />
-<div class=3D"gmail_quote">
-<div class=3D"gmail_attr" dir=3D"ltr">Le&nbsp;mar. 8 oct. 2024 &agrave;&nbs=
-p;11:27, <a href=3D"mailto:salahaldeen.altous@yahoo.com">salahaldeen.altous=
-@yahoo.com</a> via <a href=3D"http://lists.yoctoproject.org">lists.yoctopro=
-ject.org</a> &lt;salahaldeen.altous=3D<a href=3D"mailto:yahoo.com@lists.yoc=
-toproject.org">yahoo.com@lists.yoctoproject.org</a>&gt; a &eacute;crit&nbsp=
-;:</div>
-<blockquote class=3D"gmail_quote" style=3D"margin: 0px 0px 0px 0.8ex; borde=
-r-left: 1px solid #cccccc; padding-left: 1ex;">
-<div>Hi All,<br /><br />I have the need to update the yocto SDK incremental=
-ly without the need to rebuild it every time from scratch.<br />I have the =
-package management ipk enabled in my configuration. <br /><br />can I use o=
-pkg install after sourcing the SDK script? which requirement I need to get =
-it running?<br />updating the rootfs on the target is working fine, but upd=
-ating the SDK is not working</div>
-</blockquote>
-<div>&nbsp;</div>
-<div>That sounds like the eSDK : <a href=3D"https://docs.yoctoproject.org/s=
-dk-manual/extensible.html#applying-updates-to-an-installed-extensible-sdk">=
-https://docs.yoctoproject.org/sdk-manual/extensible.html#applying-updates-t=
-o-an-installed-extensible-sdk</a></div>
-<div>Have you tried it?</div>
-</div>
-</div>
-</blockquote>
-<br />I was planning to used the normal SDK becuase the eSDK is 5 times big=
-ger for my custom board ~13 GB, I was looking for similar function to insta=
-ll only few packages on the top of the normally SDK without rebuilding agai=
-n. This would be helpful for the application developer who have no possibil=
-ity to bitbake a new SDK !! and receiveing incremental updates.<br /><br />=
-Regards,<br />Salahaldeen Altous<br />
-<blockquote>
-<div dir=3D"ltr">
-<div class=3D"gmail_quote">
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<blockquote class=3D"gmail_quote" style=3D"margin: 0px 0px 0px 0.8ex; borde=
-r-left: 1px solid #cccccc; padding-left: 1ex;">
-<div>Regards,<br />Salahaldeen</div>
-<br /><br /></blockquote>
-</div>
-<br clear=3D"all" /><br /><span class=3D"gmail_signature_prefix">-- </span>=
-<br />
-<div class=3D"gmail_signature" dir=3D"ltr">
-<div dir=3D"ltr"><span style=3D"font-family: Raleway, regular;">Yoann Conga=
-l</span>
-<div><span style=3D"font-family: Raleway, regular;">Smile ECS - Tech expert=
-<br /></span></div>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-
---pBLmtg6p3O9tEcNmPuVw--
+Alex
 
