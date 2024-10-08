@@ -1,111 +1,168 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60D32CFA754
-	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 09:00:10 +0000 (UTC)
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
- by mx.groups.io with SMTP id smtpd.web10.4492.1728378005333642346
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B638CEF142
+	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 09:36:10 +0000 (UTC)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web11.5043.1728380162794245279
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Oct 2024 02:00:05 -0700
+ Tue, 08 Oct 2024 02:36:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=fvi9g6lP;
- spf=pass (domain: gmail.com, ip: 209.85.161.49, mailfrom: mtownsend1973@gmail.com)
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5e5a0519d00so1949481eaf.3
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 02:00:05 -0700 (PDT)
+ dkim=pass header.i=@smile.fr header.s=google header.b=lwERpslI;
+ spf=pass (domain: smile.fr, ip: 209.85.221.42, mailfrom: yoann.congal@smile.fr)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37cea34cb57so3275701f8f.0
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 02:36:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728378004; x=1728982804; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=BQw588kcanDmRf3q4WDyhDAY0Y5sBWPNa3MmZUZXtzw=;
-        b=fvi9g6lPk6xXP6J0ggjK94J/mdke9mX1+wxJwiFDJB15n+g1D8CaYcGE6wNsSCUieS
-         1EKknvJW19uVfp9H5v5AOmKMtvyWr6sTZdlUqShOJhKT9SKb8ec8yka0c6nCBf0HQmaF
-         HQhTGXcK0AZET+6HELYcY2/xqnfzz2KZT/kNNS+hRS9meLOGKW9nPGGehdsDHdlvoKzJ
-         KCdERqhc1XlPcIjTfPWz4G204p5D/n7ev9/wBHhe2S54rZCon+UrR4CSVttyhM/pQzsV
-         CEAhkRXS8tuXIiBTIfJ+C7vR6JpU297iufxoT9gigdDgI9DJ2hbKb+slTdpYuCdD+HId
-         HFUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728378004; x=1728982804;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+        d=smile.fr; s=google; t=1728380161; x=1728984961; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BQw588kcanDmRf3q4WDyhDAY0Y5sBWPNa3MmZUZXtzw=;
-        b=CMdCwVpRVx+/R/+yhCz+K7kT+tggs2K8Od3n9NHfyx+mecvQuQCCliZFa1k5ulQ0cN
-         bQlB4yO8u64hYkLzgPLM3iEX45md4sNZsjfJaar5/OU6AwfT9PcxYL7qnbmXkGRJgYVJ
-         mJPcs+4ObKSLKJSaaZmeETFyF9zKWTU5oh+H33sH2VD+qaRUV5AViwrBeFLjJGINeBIq
-         NGlKn/7oj1zUxy2iTQL31CGaauT5JJ/dsWgS5iobcf3yPnbrln1NGJbjkMkNnCQjgaDF
-         zrUn+op4RoAkFfFp4StUBl7+7ENKm6rsKXo1TQvEmHy+96MuRVo3mQ9595S/GgojfmcL
-         UwgQ==
-X-Gm-Message-State: AOJu0YyOP2fwvJUD5vFn75XZ5x6Ot6g609cvCmsALIYv2NxfojRvdmXF
-	yNaO6W2YbiTk6nCnk01fzt8wbumuhvwOfcyiWihq5XguYC19IzHDiFRTeAu+ZZdPDO9taSHAkMK
-	lCcwzmxORwVI4RK8a1D7RvUPAWx0MQlFy
-X-Google-Smtp-Source: AGHT+IFybF9WTYFO2Ekf12/Dvn3RQRtusvXcdYuIBB3Dsx+C4KB950YPOupf0Sy+StnHyo8c+D9YqssvGK3lhxKXKZY=
-X-Received: by 2002:a05:6870:55cd:b0:287:0:9ecc with SMTP id
- 586e51a60fabf-287c2007bd3mr8903799fac.33.1728378004091; Tue, 08 Oct 2024
- 02:00:04 -0700 (PDT)
+        bh=QfWyA9wQKp00dcSsanC9p+vhsfs0nCW5I6JSw1T5XI8=;
+        b=lwERpslI7F2efbCNVvWydhomps/iJtbCv3epS0o+vOBVWar04xb8SyEnElgBQ0i/Gi
+         YgCSFc6DMZ+uxoOxynnm8MNzq8KbEe1llH1vq7rQBPfifO09Sh/GDxGVzL0u1ICVI6hI
+         SaebMaKj2SD2qa7lC7moXhrgwAC3MboXf13no=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728380161; x=1728984961;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QfWyA9wQKp00dcSsanC9p+vhsfs0nCW5I6JSw1T5XI8=;
+        b=lcEmsk8XHnL63bcEFWzyzHMEA8PkCXIddxgrsB7uS724PVjWtCtv/rHMKJWtGo590l
+         s+OfDwG/+gzGK39LaEiONWZy935aO2PXWGDmZVa10CjuP17NhmJCp1bPcELsxLeZIGzP
+         CBkfmoCiezhY824diYaCF4/EXk0MXFpANEWudpdzFs0XmWtaBuI3s6aIGEjltO+5Yn6d
+         AFN6XPqhRrqtQv60jIZX0vgqPNp1H/tawvLqYcRQpATzdi/MQ19c/QY7TCn4HduEf5HI
+         fezvSL5ZvqiY4qb5/NNxfu8R9Tut+4jhJzWKOhg0DcyJzlbzuSTgZsrNhiAnzrV5eyIQ
+         RUOw==
+X-Gm-Message-State: AOJu0YyjYgHBEUkniqeJqe8QjiFlICHycutm8UHgQr7NZrjfzko5/PqO
+	cL/oNENINHOsugVsKFtiemornYYYjdK9EK4Ft5Fl8bhMKwo/qu6IauYvgW2LysHhtZDb+fUXlNM
+	8qyhmHH9DcadMBJuiRc+JT+3pYqQpNdVW4LjSU01cvNspIH5auZw=
+X-Google-Smtp-Source: AGHT+IFnOiC2yA797gklRjQ3AogvXa6MypcJtgXoOE8XUh0oHTVd7Ej4YP1yvn+qv4rfiVaVTWw+cM8S5gzfN8bxau0=
+X-Received: by 2002:a5d:4e45:0:b0:374:c0c5:3c05 with SMTP id
+ ffacd0b85a97d-37d0e7baf3fmr7724762f8f.42.1728380160601; Tue, 08 Oct 2024
+ 02:36:00 -0700 (PDT)
 MIME-Version: 1.0
-From: Martin Townsend <mtownsend1973@gmail.com>
-Date: Tue, 8 Oct 2024 09:59:52 +0100
-Message-ID: <CABatt_y=r7PznrwL1Mc6kcigZcmpcLQPmCuxCP4kzv81ObBXOg@mail.gmail.com>
-Subject: Scarthgap: rust-native: install error cannot find -lc++
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000f8bfe50623f35cd7"
+References: <7N2H.1728375193670366331.GQIa@lists.yoctoproject.org>
+In-Reply-To: <7N2H.1728375193670366331.GQIa@lists.yoctoproject.org>
+From: Yoann Congal <yoann.congal@smile.fr>
+Date: Tue, 8 Oct 2024 11:35:34 +0200
+Message-ID: <CAMSfU+6teJrU0C6w3dFXCA37mvVL0eSLCqXe1dwgnrEb67+CUQ@mail.gmail.com>
+Subject: Re: [yocto] Does yocto recipe support fetching from SRC_URC as ipk pakage?
+To: yocto@lists.yoctoproject.org, salahaldeen.altous@yahoo.com
+Content-Type: multipart/alternative; boundary="0000000000008290550623f3dd5a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 09:00:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63960
+ <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 09:36:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63964
 
---000000000000f8bfe50623f35cd7
+--0000000000008290550623f3dd5a
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Le mar. 8 oct. 2024 =C3=A0 11:27, salahaldeen.altous@yahoo.com via
+lists.yoctoproject.org <salahaldeen.altous=3Dyahoo.com@lists.yoctoproject.o=
+rg>
+a =C3=A9crit :
 
-I'm currently upgrading to Scarthgap and I have one outstanding issue in
-that rust-native is not installing.  The error message I see is
+> Hi All,
+>
+> I have one request from one custom to fetch the recipe from ipk package,
+> is this recommended?
+> Does any one tested fetching from ipk?
+>
+> the recipe looks like this
+>
+> SRC_URI =3D "http://your-server-url/path/to/package.ipk"
+> # Fetches the IPK and unpacks it
+> do_unpack[depends] +=3D "opkg-native:do_populate_sysroot"
+> S =3D "${WORKDIR}"
+>
+> # Install the package using opkg
+> do_install() {
+>     opkg-cl -o ${D} install ${WORKDIR}/package.ipk
+> }
+>
 
- = note: /ws//build/tmp/hosttools/ld: cannot find -lc++
-|           collect2: error: ld returned 1 exit status
+This looks like the bin_package class:
+https://git.yoctoproject.org/poky/plain/meta/classes-recipe/bin_package.bbc=
+lass
+https://docs.yoctoproject.org/ref-manual/classes.html#bin-package
 
-I'm using clang by default, I have the following in local.conf
-TOOLCHAIN = "clang"
-TC_CXX_RUNTIME = "llvm"
-LIBCPLUSPLUS = "-stdlib=libc++
+Have you found/looked into it?
 
-and the following in a distro conf
 
-PREFERRED_PROVIDER_llvm = "clang"
-PREFERRED_PROVIDER_llvm-native = "clang-native"
-PREFERRED_PROVIDER_nativesdk-llvm = "nativesdk-clang"
-PROVIDES:pn-clang = "llvm"
-PROVIDES:pn-clang-native = "llvm-native"
-PROVIDES:pn-nativesdk-clang = "nativesdk-llvm"
+>
+> Regards,
+> Salahaldeen
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#63962):
+> https://lists.yoctoproject.org/g/yocto/message/63962
+> Mute This Topic: https://lists.yoctoproject.org/mt/108885904/4316185
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> yoann.congal@smile.fr]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
-I've tried the head of Scarthgap for poky and also the 5.0_M3 tag.
+--=20
+Yoann Congal
+Smile ECS - Tech expert
 
-Any help greatly appreciated,
-
-Many Thanks,
-Martin.
-
---000000000000f8bfe50623f35cd7
+--0000000000008290550623f3dd5a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<br><br>I&#39;m currently upgrading to Scarthgap and I =
-have one outstanding issue in that rust-native is not installing.=C2=A0 The=
- error message I see is<br><br>=C2=A0=3D note: /ws//build/tmp/hosttools/ld:=
- cannot find -lc++<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 collect2: error:=
- ld returned 1 exit status<br><br>I&#39;m using clang by default, I have th=
-e following in local.conf<br>TOOLCHAIN =3D &quot;clang&quot;<br>TC_CXX_RUNT=
-IME =3D &quot;llvm&quot;<br>LIBCPLUSPLUS =3D &quot;-stdlib=3Dlibc++<br><br>=
-and the following in a distro conf<br><br>PREFERRED_PROVIDER_llvm =3D &quot=
-;clang&quot;<br>PREFERRED_PROVIDER_llvm-native =3D &quot;clang-native&quot;=
-<br>PREFERRED_PROVIDER_nativesdk-llvm =3D &quot;nativesdk-clang&quot;<br>PR=
-OVIDES:pn-clang =3D &quot;llvm&quot;<br>PROVIDES:pn-clang-native =3D &quot;=
-llvm-native&quot;<br>PROVIDES:pn-nativesdk-clang =3D &quot;nativesdk-llvm&q=
-uot;<br><br>I&#39;ve tried the head of Scarthgap for poky and also the 5.0_=
-M3 tag.<br><br>Any help greatly appreciated,<br><br>Many Thanks,<br>Martin.=
-<br></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 8 oct. 2024 =C3=A0=C2=A0=
+11:27, <a href=3D"mailto:salahaldeen.altous@yahoo.com">salahaldeen.altous@y=
+ahoo.com</a> via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproje=
+ct.org</a> &lt;salahaldeen.altous=3D<a href=3D"mailto:yahoo.com@lists.yocto=
+project.org">yahoo.com@lists.yoctoproject.org</a>&gt; a =C3=A9crit=C2=A0:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi All,<br><=
+br>I have one request from one custom to fetch the recipe from ipk package,=
+ is this recommended?<br>Does any one tested fetching from ipk?<br><br>the =
+recipe looks like this <br><br>
+<div>SRC_URI =3D &quot;<a href=3D"http://your-server-url/path/to/package.ip=
+k" target=3D"_blank">http://your-server-url/path/to/package.ipk</a>&quot;</=
+div>
+<div># Fetches the IPK and unpacks it<br>do_unpack[depends] +=3D &quot;opkg=
+-native:do_populate_sysroot&quot;<br>S =3D &quot;${WORKDIR}&quot;</div>
+<div><br># Install the package using opkg<br>do_install() {<br>=C2=A0 =C2=
+=A0 opkg-cl -o ${D} install ${WORKDIR}/package.ipk<br>}<br></div></div></bl=
+ockquote><div><br></div><div>This looks like the bin_package class:=C2=A0</=
+div><div><a href=3D"https://git.yoctoproject.org/poky/plain/meta/classes-re=
+cipe/bin_package.bbclass">https://git.yoctoproject.org/poky/plain/meta/clas=
+ses-recipe/bin_package.bbclass</a></div><div><a href=3D"https://docs.yoctop=
+roject.org/ref-manual/classes.html#bin-package">https://docs.yoctoproject.o=
+rg/ref-manual/classes.html#bin-package</a></div><div><br></div><div>Have yo=
+u found/looked into it?<br></div><div>=C2=A0</div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div><div><br>Regards,<br>Salahaldeen</div>
+</div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#63962): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/63962" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/63962</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/108885904/431=
+6185" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/108885904/4316185</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:yoann.congal@smile.fr" target=3D"_blank">yoann.c=
+ongal@smile.fr</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><br clear=3D"all"><br><span class=3D"gmail_signature_pre=
+fix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"l=
+tr"><font face=3D"Raleway, regular">Yoann Congal</font><div><font face=3D"R=
+aleway, regular">Smile ECS - Tech expert<br></font></div></div></div></div>
 
---000000000000f8bfe50623f35cd7--
+--0000000000008290550623f3dd5a--
 
