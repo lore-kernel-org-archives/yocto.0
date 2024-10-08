@@ -1,106 +1,80 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <mikko.rapeli@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53A31CEF15E
-	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 12:13:51 +0000 (UTC)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
- by mx.groups.io with SMTP id smtpd.web11.7616.1728389630065501256
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63076CEF160
+	for <webhook@archiver.kernel.org>; Tue,  8 Oct 2024 12:16:21 +0000 (UTC)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+ by mx.groups.io with SMTP id smtpd.web10.7708.1728389779750237071
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Oct 2024 05:13:50 -0700
+ Tue, 08 Oct 2024 05:16:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=UJ/McVP8;
- spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fabfc06c26so48256401fa.2
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 05:13:49 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=m3ky11nh;
+ spf=pass (domain: linaro.org, ip: 209.85.167.46, mailfrom: mikko.rapeli@linaro.org)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5398996acbeso6160480e87.1
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 05:16:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728389628; x=1728994428; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UyecKVARrRgQkeKdnk6+MBNxg/TtIcLMU4zHUL56A4E=;
-        b=UJ/McVP80VwMEfUgRnpUrTedl6qzEdfFuvH4MzrKcyCCNdfStlxnufz7iX1kZdZwt3
-         KZcR2ajszkMpuKImNhTyhKvpEnyVsU2kXJIdkY6DX/fAmorjuB3tecPErh73IGz2Nm7M
-         GYOQOZay2v019rJKaRlvUW7fZYkuWTuDs9lJpd2kdXjtIGzc4ypyFi70Ne7/yMtKtroT
-         TAHxEKkKT8kmKS4CAx6OwRK6n56m/jZbzsF1vFXfY1AiQXOSML0srCz2Srrl1PCuvJ/d
-         BeXwLVBQHjZimaX8yvyR9EB/s9nCFzL32CPa7B9Oh+Bum18gPSb9AIhv/9wGV+zT9CKy
-         TGgQ==
+        d=linaro.org; s=google; t=1728389778; x=1728994578; darn=lists.yoctoproject.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RXh1vFLdzKU0zcta3cthm62PgWGdQd75ffHcnIxbKNg=;
+        b=m3ky11nh/ch9Ti7zy6QCn6O6OfJ2uZtkJdcM0NKEvPh26bXwTjupsX3NHaudGQVvlq
+         Jz4ZV4v4pjbB3ZRAIKO+X/ViBTgZUHOkcReFQ3FMyR9XxxxchjIkK2WEvcUQLR2TSzXe
+         xVy6CbK3O2n9rhIYATc9nybciWpDkYDuTLoyrS/llbzMeaBxov7bi5BF2Y6kJL1BVr1K
+         4GaToSnZZhHi2GsR+Py5ocAqIsGfoaoRcd1tSLBG4AMBAcSSYm65cUBwxgBkqPq2xVkP
+         VvzodzeO3I3t7cLJj4pJ4rYfnhUC6jSdcWcmpglpvD9C4W0paPp/Vavj5hqrSGALAT0y
+         xQHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728389628; x=1728994428;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UyecKVARrRgQkeKdnk6+MBNxg/TtIcLMU4zHUL56A4E=;
-        b=DU4lz/KxOq9ecZNthnP0dnpEWVaYnVEJGR53pWThYmcGSuz92pMLmle8X2aJzQltKS
-         lF7cdyQunqVFQHgVR9uyvewcO11HAr+yVUNa1ZOo+KpUPbbmlC2M4zdpKQ+vXMhU+rcD
-         01CLn4wPiNMN3yLRQqZ0d0p/hK/TnZK1DMUCB4Jc/N7S0oVTFBE/htEdrivPOQppHVNH
-         ZDiHR4fDcdRzGEvohOPtNPuweEvEY7mK+5/jBRN+FVrvdq5NKmBii77ELEBKxaTe32yx
-         OP2qzRp8H3o/gsphk87hI73Z8oryxe6zNGD7q+/APZ6JLZ+98eEBItFB84WHbWrQCgy5
-         Mj9w==
-X-Gm-Message-State: AOJu0Ywo7CkO+Hgx1/eZsXHh5qvTAV27N7OLbf91/5PZBuEimKN+TCzK
-	u11grO0wBoDNvt0cRuKz8a4i5Lk+q/W0QEfaz05XEuRHYGLZwEWFOWX796YEGj0SxxnDSQJsYuM
-	UrsqVeUHbJHPUVlXUs5A4VvTiA70=
-X-Google-Smtp-Source: AGHT+IHvDTPb5d2QVbvUzgaiBIcPIufGDXPO1hHKDHjP3PK4S7U18fouC1ubF65opjVSai6LlD6M81Nzazb6/E358e0=
-X-Received: by 2002:a05:651c:19a6:b0:2fa:fc41:cf80 with SMTP id
- 38308e7fff4ca-2fafc41d377mr47080741fa.43.1728389627970; Tue, 08 Oct 2024
- 05:13:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <CANNYZj-0Dyh12N9-+nYO0V2S_=DBVJt0h-yastxKbF=KGdWtuw@mail.gmail.com>
- <13803.1728389045781254469@lists.yoctoproject.org>
-In-Reply-To: <13803.1728389045781254469@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 8 Oct 2024 14:13:36 +0200
-Message-ID: <CANNYZj9gbTXutxrxpJ54beyHSqR6c6d1VaML7a=_GLJsrpEh5w@mail.gmail.com>
-Subject: Re: [yocto] How I can update the Yocto SDK incrementally/partially?
-To: salahaldeen.altous@yahoo.com
+        d=1e100.net; s=20230601; t=1728389778; x=1728994578;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RXh1vFLdzKU0zcta3cthm62PgWGdQd75ffHcnIxbKNg=;
+        b=sApS3BLkFk/PgKABlj9y6u/Qp7gQP6lyRF/k3LBahhtnlxS/YqKIE+v3K6Lwphw/XG
+         kx5XIa9wX0h8B7W/kcVjRIEiqsaPVvXlXog7OVYjG4n4r8exgmh0ULQlBkQFjyUEy8GP
+         HB9aAbgMiB7XA7lPc34L1USyKIyk0FZwDk1cTdMwxhwQISf1+PinIrQvIDWYdf2oKK5W
+         bnWBPkvCfpB8wr3lwoKXyKg9+Wps/YMTnkoTU+YZH2WEUsXGYX6nnlV0ILUuoiDM0cdR
+         NFE3O+qJf1uc73afqlNhHpgHz+D+dNgPQIuJ30FtFLv/6NsXZZLCRkxT88Z4EwUDbjZ9
+         s5Bw==
+X-Gm-Message-State: AOJu0Yyb3Z2+NEg4OTSTW+HwL8t+m4LZY5P+Bv++ov+NMxCyREVKcn21
+	ChOZU3b98rlMp0s1LrhSF+TUdE+3PuwaTFnHSrglw0xhZwDqR/bd9i4DQq14LA0=
+X-Google-Smtp-Source: AGHT+IF0uM0vVV8enrjuxbe4D2aLUvfxQbsn5W9XQHXRtLeYul176s2ZuDPjoNuF9e52nSURm+QofA==
+X-Received: by 2002:a05:6512:3d93:b0:52c:e326:f4cf with SMTP id 2adb3069b0e04-539ab84e3a7mr8361980e87.3.1728389777705;
+        Tue, 08 Oct 2024 05:16:17 -0700 (PDT)
+Received: from nuoska (78-27-76-97.bb.dnainternet.fi. [78.27.76.97])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539aff2336fsm1190736e87.203.2024.10.08.05.16.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Oct 2024 05:16:17 -0700 (PDT)
+Date: Tue, 8 Oct 2024 15:16:15 +0300
+From: Mikko Rapeli <mikko.rapeli@linaro.org>
+To: aleksandar.nikolic010@gmail.com
 Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [yocto] Yocto Binary Distro
+Message-ID: <ZwUij4iATWocjO5S@nuoska>
+References: <ZwTy7wiOzHJcVNjn@nuoska>
+ <13803.1728389373850401480@lists.yoctoproject.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <13803.1728389373850401480@lists.yoctoproject.org>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 12:13:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63972
+ <yocto@lists.yoctoproject.org>; Tue, 08 Oct 2024 12:16:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/63973
 
-On Tue, 8 Oct 2024 at 14:04, salahaldeen.altous@yahoo.com via
-Lists.Yoctoproject.Org
-<salahaldeen.altous=3Dyahoo.com@lists.yoctoproject.org> wrote:
-> I would be happy if everyone can learn yocto. but in the real world is di=
-fferent.
-> We have application developer who is only looking to work with SDK withou=
-t knowing how to build with yocto.
->
-> One option is to use also eSDK but in my case is not applicable.
+Hi,
 
-They don't have to 'learn yocto' or use gigantic esdk tarballs or even
-regular sdk tarballs. They only need to replicate a yocto environment
-(blindly following your instructions) and then set up a SDK
-environment directly from there (again blindly following your
-instructions). Then things will work exactly as they do with SDK
-tarball, except you don't need to pass tarballs and ipks around, and
-they can easily add things they need to the SDK environment:
+On Tue, Oct 08, 2024 at 05:09:33AM -0700, Aleksandar Nikolic via Lists.Yoctoproject.Org wrote:
+> To build from the SDK occurred to us as well, but is there a offical/stable Yocto way to integrate those binaries back into the image? I don't like the idea of building a base image in Yocto, then building binaries separately in SDK and installing them back into the image with a custom script, as this for sure will be unstable and error-prone. Add atomic updates to that and it might become a nightmare to maintain for multiple products.
 
-https://docs.yoctoproject.org/sdk-manual/extensible.html#installing-the-ext=
-ensible-sdk
+bin_package.bbclass helps when SRC_UKI points to a binary RPM package:
 
-"Setting up the Extensible SDK environment directly in a Yocto build.
-This avoids having to produce, test, distribute and maintain separate
-SDK installer archives, which can get very large. There is only one
-environment for the regular Yocto build and the SDK and less code
-paths where things can go not according to plan. It=E2=80=99s easier to upd=
-ate
-the SDK: it simply means updating the Yocto layers with git fetch or
-layer management tooling. The SDK extensibility is better than in the
-second option: just run bitbake again to add more things to the
-sysroot, or add layers if even more things are required."
+https://docs.yoctoproject.org/singleindex.html#bin-package
 
-... and then there are specifics about what commands you need to issue
-to make it happen.
+but it does not solve the ABI issues. Those need to be managed separately.
 
-I still don't agree with all these 'application developers' who can't
-be bothered to learn at least a little bit about how their work is
-integrated into a complete system, but you can help them self-isolate
-from that if they really insist.
+Cheers,
 
-Alex
+-Mikko
 
