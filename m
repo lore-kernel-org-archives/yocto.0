@@ -1,266 +1,309 @@
-Return-Path: <yanmei.guo@boeing.com>
+Return-Path: <jahnavijha14@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13747CF07A7
-	for <webhook@archiver.kernel.org>; Thu, 10 Oct 2024 05:28:07 +0000 (UTC)
-Received: from ewa-mbsout-02.mbs.boeing.net (ewa-mbsout-02.mbs.boeing.net [130.76.20.195])
- by mx.groups.io with SMTP id smtpd.web10.36651.1728538077564941294
- for <yocto@lists.yoctoproject.org>;
- Wed, 09 Oct 2024 22:27:57 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@boeing.com header.s=boeing-s1912 header.b=I9o+1C7Q;
- spf=pass (domain: boeing.com, ip: 130.76.20.195, mailfrom: yanmei.guo@boeing.com)
-Received: from localhost (localhost [127.0.0.1])
-	by ewa-mbsout-02.mbs.boeing.net (8.15.2/8.15.2/DOWNSTREAM_MBSOUT) with SMTP id 49A5Rtwe024309;
-	Wed, 9 Oct 2024 22:27:55 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boeing.com;
-	s=boeing-s1912; t=1728538075;
-	bh=+hOVbmlwKofRjbWEHeUiW7/MtH9sFKSCUYbRA4eF33k=;
-	h=From:To:Subject:Date:References:In-Reply-To:From;
-	b=I9o+1C7QlAJR5B8AYwQ7ul0z5gvOxxrMQ7u0zBSDtMXe0SZYl067o279GBbZ6jmLE
-	 jFbRNtPyjt8J1dcjLWZE3xV1Bw+gF0jh4qOp4PUfrp1CkFdtkd1Iw+whj07hcRjK/E
-	 APIfmhdOToCmZ9dBaDCFSs0aC0uw0XTsMh7MLsdic8WvVLnOU+vruWQkirfRZZwA67
-	 cXOo6Qwto5cpezSxqjyjDMez2++EurUkEARbE/R/kAhct7R21P3f8yEQMKs/kDJXML
-	 1pPBzERx+FR4qU71f1Hj2+o3Fmhy4cNa9tF0uRgGILZkdA1swvIbtkpGNKWatC4R9g
-	 HKtL4l+RIO4Pg==
-Received: from XCH16-03-05.nos.boeing.com (xch16-03-05.nos.boeing.com [137.137.111.14])
-	by ewa-mbsout-02.mbs.boeing.net (8.15.2/8.15.2/8.15.2/UPSTREAM_MBSOUT) with ESMTPS id 49A5Rsd1024303
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Wed, 9 Oct 2024 22:27:54 -0700
-Received: from XCH16-03-03.nos.boeing.com (137.137.111.12) by
- XCH16-03-05.nos.boeing.com (137.137.111.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 9 Oct 2024 22:27:53 -0700
-Received: from XCH16-03-03.nos.boeing.com ([fe80::b528:dfb5:c89a:dd65]) by
- XCH16-03-03.nos.boeing.com ([fe80::b528:dfb5:c89a:dd65%5]) with mapi id
- 15.01.2507.039; Wed, 9 Oct 2024 22:27:53 -0700
-From: "Guo, Yanmei" <yanmei.guo@boeing.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-        "Jesus.JimenezSanchez@verifone.com" <Jesus.JimenezSanchez@verifone.com>
-Subject: RE: [EXTERNAL] Re: [yocto] Help enabling the BT_QCA driver
-Thread-Topic: [EXTERNAL] Re: [yocto] Help enabling the BT_QCA driver
-Thread-Index: AQHbGi7gE0Y6Fu3iVUCs56y6exCP7LJ/dMiQ
-Date: Thu, 10 Oct 2024 05:27:53 +0000
-Message-ID: <c3abd08e14094d17b776808fe437cfa2@boeing.com>
-References: <THe4.1728400256824602958.rStN@lists.yoctoproject.org>
- <10004.1728466643973723741@lists.yoctoproject.org>
-In-Reply-To: <10004.1728466643973723741@lists.yoctoproject.org>
-Accept-Language: en-AU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.137.12.6]
-x-tm-snts-smtp: 47BBD07FA5AC9B3B85670A6B5480DE92C6F4A7C4E6474A81B5B643DD3A819D3C2000:8
-Content-Type: multipart/alternative;
-	boundary="_000_c3abd08e14094d17b776808fe437cfa2boeingcom_"
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37E3CCF07A9
+	for <webhook@archiver.kernel.org>; Thu, 10 Oct 2024 05:58:07 +0000 (UTC)
+Subject: Yocto build fails when building with package Ppp version 2.5.0.
+To: yocto@lists.yoctoproject.org
+From: jahnavijha14@gmail.com
+X-Originating-Location: Bengaluru, Karnataka, IN (115.112.142.35)
+X-Originating-Platform: Windows Chrome 129
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
+Date: Wed, 09 Oct 2024 22:57:57 -0700
+Message-ID: <mVpm.1728539877124215925.Vcux@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="urXt3qLSUVYzPkaxL3q7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 10 Oct 2024 05:28:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64000
+ <yocto@lists.yoctoproject.org>; Thu, 10 Oct 2024 05:58:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64001
 
---_000_c3abd08e14094d17b776808fe437cfa2boeingcom_
+--urXt3qLSUVYzPkaxL3q7
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-Q291bGQgaXQgYmUgdGhhdCB5b3UgZGlzYWJsZWQgdGhlIHN1cHBvcnQgb2YgdGhlIGtlcm5lbCBt
-b2R1bGVzIGluIHRoZSBrY29uZmlnIGJ5IGFjY2lkZW50Pw0KVGhpcyBjb25maWcgaW4gcGFydGlj
-dWxhciwNCmBgYA0KQ09ORklHX01PRFVMRVM9eQ0KYGBgDQoNCi1NYXkNCkZyb206IHlvY3RvQGxp
-c3RzLnlvY3RvcHJvamVjdC5vcmcgPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IE9uIEJl
-aGFsZiBPZiBKZXN1cyBKaW1lbmV6IFNhbmNoZXogdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcN
-ClNlbnQ6IFdlZG5lc2RheSwgT2N0b2JlciA5LCAyMDI0IDg6MDcgUE0NClRvOiBKZXN1cyBKaW1l
-bmV6IFNhbmNoZXogPEplc3VzLkppbWVuZXpTYW5jaGV6QHZlcmlmb25lLmNvbT47IHlvY3RvQGxp
-c3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gSGVs
-cCBlbmFibGluZyB0aGUgQlRfUUNBIGRyaXZlcg0KDQoNCkVYVCBlbWFpbDogYmUgbWluZGZ1bCBv
-ZiBsaW5rcy9hdHRhY2htZW50cy4NCg0KDQoNCg0KSGVsbG8sDQoNCkkgd2FudGVkIHRvIGFkZCB0
-aGF0IEkgaGF2ZSBiZWVuIGFibGUgdG8gZW5hYmxlIHRoZSBkcml2ZXIgdXNpbmcgbWVudWNvbmZp
-ZyBieSBlbmFibGluZyBpdHMgZGVwZW5kZW5jaWVzLg0KDQpUaGUgcHJvYmxlbSBJJ20gZmFjaW5n
-IG5vdyBpcyB0aGF0IFlvY3RvIGlzIG5vdCBidWlsZGluZyB0aGUga2VybmVsIG9iamVjdCBmaWxl
-cyAoLmtvKSwgbm90IGV2ZW4gdGhlIG9uZXMgaXQgd2FzIGJ1aWxkaW5nIGJlZm9yZS4gQXMgZmFy
-IGFzIEkga25vdyBJIGhhdmUgb25seSBjaGFuZ2VkIHRoZSBjb25maWd1cmF0aW9uIHRvIGJ1aWxk
-IHRoaXMgbmV3IGRyaXZlciBidXQgSSBjb3VsZCBiZSB3cm9uZyBhbmQgbWF5YmUgdG91Y2hlIHdo
-ZXJlIEkgc2hvdWxkbid0Lg0KDQpJcyB0aGVyZSBhIHdheSB0byB0ZWxsIFlvY3RvIHRvIGJ1aWxk
-IHRob3NlIGtlcm5lbCBvYmplY3RzPw0KDQpUaGFuayB5b3UuDQo=
+I am using yocto Kirkstone to build my image. Kernel version: 5.15.
 
---_000_c3abd08e14094d17b776808fe437cfa2boeingcom_
+In order to upgrade package PPP, I added PPP package version 2.5.0 recipe t=
+o my custom layer. My aim is to upgrade PPP from 2.4.9( in default kirkston=
+e) to 2.5.0.
+
+PPP builds fine( bitbake ppp). But the overall image compilation fails (bit=
+bake rpb-console-image).=C2=A0 It fails in Network manager- 1.36.2 recipe f=
+ile in do_compile. The error is as follows:
+
+/////////////////////////////////////////////////Error/////////////////////=
+/////////////////////////////////////
+
+pppd-plugin.c.o -c ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c: In function 'nm_p=
+hasechange':
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:128:34: error: 'if=
+name' undeclared (first use in this function); did you mean 'rename'?
+|=C2=A0=C2=A0 128 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ifindex=
+ =3D if_nametoindex(ifname);
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 ^~~~~~
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 rename
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:128:34: note: each=
+ undeclared identifier is reported only once for each function it appears i=
+n
+| In file included from ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugi=
+n.c:14:
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c: In function 'nm_i=
+p_up':
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:169:63: error: 'if=
+unit' undeclared (first use in this function)
+|=C2=A0=C2=A0 169 |=C2=A0=C2=A0=C2=A0=C2=A0 guint32=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 pppd_made_up_address =3D htonl(0x0a404040 + ifunit=
+);
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:189:48: error: 'if=
+name' undeclared (first use in this function); did you mean 'rename'?
+|=C2=A0=C2=A0 189 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 g_variant_new_string(ifname));
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 ^~~~~~
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 rename
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c: In function 'nm_i=
+p6_up':
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:295:48: error: 'if=
+name' undeclared (first use in this function); did you mean 'rename'?
+|=C2=A0=C2=A0 295 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 g_variant_new_string(ifname));
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 ^~~~~~
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 rename
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c: In function 'add_=
+ip6_notifier':
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:409:9: warning: im=
+plicit declaration of function 'add_notifier'; did you mean 'add_ip6_notifi=
+er'? [-Wimplicit-function-declaration]
+|=C2=A0=C2=A0 409 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 add_not=
+ifier(notifier, nm_ip6_up, NULL);
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 ^~~~~~~~~~~~
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 add_ip6_notifier
+|
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:432:5: error: 'cha=
+p_passwd_hook' undeclared (first use in this function)
+|=C2=A0=C2=A0 432 |=C2=A0=C2=A0=C2=A0=C2=A0 chap_passwd_hook =3D get_creden=
+tials;
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~=
+~~~~~
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:433:5: error: 'cha=
+p_check_hook' undeclared (first use in this function)
+|=C2=A0=C2=A0 433 |=C2=A0=C2=A0=C2=A0=C2=A0 chap_check_hook=C2=A0 =3D get_c=
+hap_check;
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~=
+~~~~
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:434:5: error: 'pap=
+_passwd_hook' undeclared (first use in this function)
+|=C2=A0=C2=A0 434 |=C2=A0=C2=A0=C2=A0=C2=A0 pap_passwd_hook=C2=A0 =3D get_c=
+redentials;
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~=
+~~~~
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:435:5: error: 'pap=
+_check_hook' undeclared (first use in this function)
+|=C2=A0=C2=A0 435 |=C2=A0=C2=A0=C2=A0=C2=A0 pap_check_hook=C2=A0=C2=A0 =3D =
+get_pap_check;
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~=
+~~~
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:437:19: error: 'ph=
+asechange' undeclared (first use in this function); did you mean 'nm_phasec=
+hange'?
+|=C2=A0=C2=A0 437 |=C2=A0=C2=A0=C2=A0=C2=A0 add_notifier(&phasechange, nm_p=
+hasechange_hook, NULL);
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~=
+~~~~~~~~~
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nm=
+_phasechange
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:438:19: error: 'ip=
+_up_notifier' undeclared (first use in this function); did you mean 'add_ip=
+6_notifier'?
+|=C2=A0=C2=A0 438 |=C2=A0=C2=A0=C2=A0=C2=A0 add_notifier(&ip_up_notifier, n=
+m_ip_up, NULL);
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~=
+~~~~~~~~~~~~
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ad=
+d_ip6_notifier
+| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:439:19: error: 'ex=
+itnotify' undeclared (first use in this function); did you mean 'nm_exit_no=
+tify'?
+|=C2=A0=C2=A0 439 |=C2=A0=C2=A0=C2=A0=C2=A0 add_notifier(&exitnotify, nm_ex=
+it_notify, NULL);
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~=
+~~~~~~~~
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nm=
+_exit_notify
+
+--urXt3qLSUVYzPkaxL3q7
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
-MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
-IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlZlcmRhbmE7DQoJ
-cGFub3NlLTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
-eTpDb25zb2xhczsNCglwYW5vc2UtMToyIDExIDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBE
-ZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0K
-CXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29I
-eXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4
-dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9s
-bG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1k
-ZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwcmUNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1z
-by1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltYXJnaW46MGluOw0KCW1h
-cmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJD
-b3VyaWVyIE5ldyI7fQ0KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBk
-aXYuTXNvTGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRv
-cDowaW47DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltYXJnaW4tYm90dG9tOjBpbjsNCgltYXJnaW4t
-bGVmdDouNWluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnAubXNvbm9ybWFsMCwgbGkubXNv
-bm9ybWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1z
-by1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1i
-b3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJ
-Zm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0Kc3Bhbi5IVE1MUHJlZm9ybWF0dGVk
-Q2hhcg0KCXttc28tc3R5bGUtbmFtZToiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCI7DQoJ
-Zm9udC1mYW1pbHk6Q29uc29sYXM7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5
-cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJ
-Y29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBv
-cnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFy
-Z2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpX
-b3JkU2VjdGlvbjE7fQ0KLyogTGlzdCBEZWZpbml0aW9ucyAqLw0KQGxpc3QgbDANCgl7bXNvLWxp
-c3QtaWQ6MjI0ODI4NTE7DQoJbXNvLWxpc3QtdHlwZTpoeWJyaWQ7DQoJbXNvLWxpc3QtdGVtcGxh
-dGUtaWRzOjQxMjUyMTU5NCAxMTI2MjEzMzE2IDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3
-Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3Njk4NjkzO30NCkBsaXN0IGwwOmxl
-dmVsMQ0KCXttc28tbGV2ZWwtc3RhcnQtYXQ6MDsNCgltc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpi
-dWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6LTsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCglt
-c28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZv
-bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5
-OkNhbGlicmk7fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
-bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1z
-by1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9u
-dC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVsLW51
-bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFi
-LXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRl
-bnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7
-bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCglt
-c28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
-DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDps
-ZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0
-Om87DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlv
-bjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseToiQ291cmllciBOZXci
-O30NCkBsaXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJ
-bXNvLWxldmVsLXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZl
-bC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1p
-bHk6V2luZ2RpbmdzO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1h
-dDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25l
-Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47
-DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVt
-YmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0
-b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6
-LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJ
-e21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJ
-bXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0
-Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3Qg
-bDENCgl7bXNvLWxpc3QtaWQ6MTM1ODI2NTk2NzsNCgltc28tbGlzdC10eXBlOmh5YnJpZDsNCglt
-c28tbGlzdC10ZW1wbGF0ZS1pZHM6MTE1ODU4MDg1OCA5NDQyODc5MDIgNjc2OTg2OTEgNjc2OTg2
-OTMgNjc2OTg2ODkgNjc2OTg2OTEgNjc2OTg2OTMgNjc2OTg2ODkgNjc2OTg2OTEgNjc2OTg2OTM7
-fQ0KQGxpc3QgbDE6bGV2ZWwxDQoJe21zby1sZXZlbC1zdGFydC1hdDowOw0KCW1zby1sZXZlbC1u
-dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDotOw0KCW1zby1sZXZlbC10YWIt
-c3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVu
-dDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVh
-c3QtZm9udC1mYW1pbHk6Q2FsaWJyaTt9DQpAbGlzdCBsMTpsZXZlbDINCgl7bXNvLWxldmVsLW51
-bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVsLXRhYi1z
-dG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50
-Oi0uMjVpbjsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCkBsaXN0IGwxOmxldmVsMw0K
-CXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674KnOw0K
-CW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVm
-dDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30NCkBsaXN0
-IGwxOmxldmVsNA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVs
-LXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXIt
-cG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6U3ltYm9s
-O30NCkBsaXN0IGwxOmxldmVsNQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJ
-bXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwt
-bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5
-OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDE6bGV2ZWw2DQoJe21zby1sZXZlbC1udW1iZXItZm9y
-bWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5v
-bmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVp
-bjsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDE6bGV2ZWw3DQoJe21zby1sZXZl
-bC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVs
-LXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
-aW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw4DQoJ
-e21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1z
-by1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsN
-Cgl0ZXh0LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpAbGlz
-dCBsMTpsZXZlbDkNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
-bC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVy
-LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5Oldpbmdk
-aW5nczt9DQpvbA0KCXttYXJnaW4tYm90dG9tOjBpbjt9DQp1bA0KCXttYXJnaW4tYm90dG9tOjBp
-bjt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9
-IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPkNvdWxkIGl0IGJlIHRoYXQgeW91IGRpc2FibGVkIHRoZSBzdXBwb3J0IG9mIHRoZSBrZXJu
-ZWwgbW9kdWxlcyBpbiB0aGUga2NvbmZpZyBieSBhY2NpZGVudD88bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPlRoaXMgY29uZmlnIGluIHBhcnRpY3VsYXIsIDxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+YGBgPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5DT05GSUdfTU9EVUxFUz15PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5gYGA8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LU1heTxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVj
-dC5vcmcgJmx0O3lvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcmZ3Q7DQo8Yj5PbiBCZWhhbGYg
-T2YgPC9iPkplc3VzIEppbWVuZXogU2FuY2hleiB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxi
-cj4NCjxiPlNlbnQ6PC9iPiBXZWRuZXNkYXksIE9jdG9iZXIgOSwgMjAyNCA4OjA3IFBNPGJyPg0K
-PGI+VG86PC9iPiBKZXN1cyBKaW1lbmV6IFNhbmNoZXogJmx0O0plc3VzLkppbWVuZXpTYW5jaGV6
-QHZlcmlmb25lLmNvbSZndDs7IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5T
-dWJqZWN0OjwvYj4gW0VYVEVSTkFMXSBSZTogW3lvY3RvXSBIZWxwIGVuYWJsaW5nIHRoZSBCVF9R
-Q0EgZHJpdmVyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjx0YWJsZSBjbGFzcz0iTXNvTm9ybWFsVGFibGUiIGJvcmRlcj0iMCIgY2Vs
-bHNwYWNpbmc9IjQiIGNlbGxwYWRkaW5nPSIwIiB3aWR0aD0iMTAwJSIgc3R5bGU9IndpZHRoOjEw
-MC4wJSI+DQo8dGJvZHk+DQo8dHI+DQo8dGQgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGU7cGFkZGlu
-ZzouNzVwdCAuNzVwdCAuNzVwdCAuNzVwdCI+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxl
-IiBib3JkZXI9IjAiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgYWxpZ249ImxlZnQi
-IHdpZHRoPSIxMDAlIiBzdHlsZT0id2lkdGg6MTAwLjAlO21hcmdpbi1sZWZ0Oi43NXB0O21hcmdp
-bi1yaWdodDouNzVwdCI+DQo8dGJvZHk+DQo8dHI+DQo8dGQgc3R5bGU9ImJhY2tncm91bmQ6Izkx
-MEExOTtwYWRkaW5nOjUuMjVwdCAxLjVwdCA1LjI1cHQgMS41cHQiPjwvdGQ+DQo8dGQgd2lkdGg9
-IjEwMCUiIHN0eWxlPSJ3aWR0aDoxMDAuMCU7YmFja2dyb3VuZDojRkRGMkY0O3BhZGRpbmc6NS4y
-NXB0IDMuNzVwdCA1LjI1cHQgMTEuMjVwdDt3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
-YXJnaW4tYm90dG9tLWFsdDphdXRvO21zby1lbGVtZW50OmZyYW1lO21zby1lbGVtZW50LWZyYW1l
-LWhzcGFjZToyLjI1cHQ7bXNvLWVsZW1lbnQtd3JhcDphcm91bmQ7bXNvLWVsZW1lbnQtYW5jaG9y
-LXZlcnRpY2FsOnBhcmFncmFwaDttc28tZWxlbWVudC1hbmNob3ItaG9yaXpvbnRhbDpjb2x1bW47
-bXNvLWhlaWdodC1ydWxlOmV4YWN0bHkiPg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMyMTIxMjEi
-PkVYVCBlbWFpbDogYmUgbWluZGZ1bCBvZiBsaW5rcy9hdHRhY2htZW50cy48L3NwYW4+PG86cD48
-L286cD48L3A+DQo8L2Rpdj4NCjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8cHJl
-PjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PGJyPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwv
-cHJlPg0KPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+SGVsbG8sPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
-ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTAuMHB0Ij5JIHdhbnRlZCB0byBhZGQgdGhhdCBJIGhhdmUgYmVlbiBhYmxlIHRvIGVuYWJsZSB0
-aGUgZHJpdmVyIHVzaW5nIG1lbnVjb25maWcgYnkgZW5hYmxpbmcgaXRzIGRlcGVuZGVuY2llcy48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMC4wcHQiPlRoZSBwcm9ibGVtIEknbSBmYWNpbmcgbm93IGlzIHRoYXQgWW9jdG8g
-aXMgbm90IGJ1aWxkaW5nIHRoZSBrZXJuZWwgb2JqZWN0IGZpbGVzICgua28pLCBub3QgZXZlbiB0
-aGUgb25lcyBpdCB3YXMgYnVpbGRpbmcgYmVmb3JlLiBBcyBmYXIgYXMgSSBrbm93IEkgaGF2ZSBv
-bmx5IGNoYW5nZWQgdGhlIGNvbmZpZ3VyYXRpb24gdG8gYnVpbGQgdGhpcyBuZXcgZHJpdmVyDQog
-YnV0IEkgY291bGQgYmUgd3JvbmcgYW5kIG1heWJlIHRvdWNoZSB3aGVyZSBJIHNob3VsZG4ndC48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMC4wcHQiPklzIHRoZXJlIGEgd2F5IHRvIHRlbGwgWW9jdG8gdG8gYnVpbGQgdGhv
-c2Uga2VybmVsIG9iamVjdHM/PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQiPiZuYnNw
-OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0Ij5UaGFuayB5b3UuPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+<div>I am using yocto Kirkstone to build my image. Kernel version: 5.15.</d=
+iv>
+<div>&nbsp;</div>
+<div>In order to upgrade package PPP, I added PPP package version 2.5.0 rec=
+ipe to my custom layer. My aim is to upgrade PPP from 2.4.9( in default kir=
+kstone) to 2.5.0.&nbsp;</div>
+<div>&nbsp;</div>
+<div>PPP builds fine( bitbake ppp). But the overall image compilation fails=
+ (bitbake rpb-console-image).&nbsp; It fails in Network manager- 1.36.2 rec=
+ipe file in do_compile. The error is as follows:</div>
+<div>&nbsp;</div>
+<div>/////////////////////////////////////////////////Error////////////////=
+//////////////////////////////////////////</div>
+<div>&nbsp;</div>
+<div><span data-teams=3D"true"><span class=3D"ui-provider a b c d e f g h i=
+ j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir=3D"ltr">=
+pppd-plugin.c.o -c ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c<b=
+r />| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c: In function '=
+nm_phasechange':<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugi=
+n.c:128:34: error: 'ifname' undeclared (first use in this function); did yo=
+u mean 'rename'?<br />|&nbsp;&nbsp; 128 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; ifindex =3D if_nametoindex(ifname);<br />|&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^~~~~~=
+<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; rename<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-p=
+ppd-plugin.c:128:34: note: each undeclared identifier is reported only once=
+ for each function it appears in<br />| In file included from ../NetworkMan=
+ager-1.36.2/src/core/ppp/nm-pppd-plugin.c:14:<br />| ../NetworkManager-1.36=
+.2/src/core/ppp/nm-pppd-plugin.c: In function 'nm_ip_up':<br />| ../Network=
+Manager-1.36.2/src/core/ppp/nm-pppd-plugin.c:169:63: error: 'ifunit' undecl=
+ared (first use in this function)<br />|&nbsp;&nbsp; 169 |&nbsp;&nbsp;&nbsp=
+;&nbsp; guint32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pppd_made_u=
+p_address =3D htonl(0x0a404040 + ifunit);<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; ^~~~~~<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin=
+.c:189:48: error: 'ifname' undeclared (first use in this function); did you=
+ mean 'rename'?<br />|&nbsp;&nbsp; 189 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g_variant_new_string(ifname)=
+);<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^~~~~~<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rename<br /=
+>| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c: In function 'nm_=
+ip6_up':<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:295:=
+48: error: 'ifname' undeclared (first use in this function); did you mean '=
+rename'?<br />|&nbsp;&nbsp; 295 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g_variant_new_string(ifname));<br /=
+>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; ^~~~~~<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rename<br />| ../N=
+etworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c: In function 'add_ip6_no=
+tifier':<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:409:=
+9: warning: implicit declaration of function 'add_notifier'; did you mean '=
+add_ip6_notifier'? [-Wimplicit-function-declaration]<br />|&nbsp;&nbsp; 409=
+ |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add_notifier(notifier, n=
+m_ip6_up, NULL);<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^~~~~~~~~~~~<br />|&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add_ip6_n=
+otifier<br />|<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br />| ../Networ=
+kManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:432:5: error: 'chap_passwd_ho=
+ok' undeclared (first use in this function)<br />|&nbsp;&nbsp; 432 |&nbsp;&=
+nbsp;&nbsp;&nbsp; chap_passwd_hook =3D get_credentials;<br />|&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; ^~~~~~~~~~~~~~~~<br />| .=
+./NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:433:5: error: 'chap_c=
+heck_hook' undeclared (first use in this function)<br />|&nbsp;&nbsp; 433 |=
+&nbsp;&nbsp;&nbsp;&nbsp; chap_check_hook&nbsp; =3D get_chap_check;<br />|&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; ^~~~~~~~~~~~~~=
+~<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:434:5: erro=
+r: 'pap_passwd_hook' undeclared (first use in this function)<br />|&nbsp;&n=
+bsp; 434 |&nbsp;&nbsp;&nbsp;&nbsp; pap_passwd_hook&nbsp; =3D get_credential=
+s;<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; ^~~=
+~~~~~~~~~~~~<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-pppd-plugin.c:=
+435:5: error: 'pap_check_hook' undeclared (first use in this function)<br /=
+>|&nbsp;&nbsp; 435 |&nbsp;&nbsp;&nbsp;&nbsp; pap_check_hook&nbsp;&nbsp; =3D=
+ get_pap_check;<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nb=
+sp;&nbsp; ^~~~~~~~~~~~~~<br />| ../NetworkManager-1.36.2/src/core/ppp/nm-pp=
+pd-plugin.c:437:19: error: 'phasechange' undeclared (first use in this func=
+tion); did you mean 'nm_phasechange'?<br />|&nbsp;&nbsp; 437 |&nbsp;&nbsp;&=
+nbsp;&nbsp; add_notifier(&amp;phasechange, nm_phasechange_hook, NULL);<br /=
+>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^=
+~~~~~~~~~~<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; nm_phasechange<br />| ../NetworkManager-1.36.2/src/core/ppp/n=
+m-pppd-plugin.c:438:19: error: 'ip_up_notifier' undeclared (first use in th=
+is function); did you mean 'add_ip6_notifier'?<br />|&nbsp;&nbsp; 438 |&nbs=
+p;&nbsp;&nbsp;&nbsp; add_notifier(&amp;ip_up_notifier, nm_ip_up, NULL);<br =
+/>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+^~~~~~~~~~~~~~<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; add_ip6_notifier<br />| ../NetworkManager-1.36.2/src/core=
+/ppp/nm-pppd-plugin.c:439:19: error: 'exitnotify' undeclared (first use in =
+this function); did you mean 'nm_exit_notify'?<br />|&nbsp;&nbsp; 439 |&nbs=
+p;&nbsp;&nbsp;&nbsp; add_notifier(&amp;exitnotify, nm_exit_notify, NULL);<b=
+r />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; ^~~~~~~~~~<br />|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; nm_exit_notify</span></span></div>
 
---_000_c3abd08e14094d17b776808fe437cfa2boeingcom_--
-
+--urXt3qLSUVYzPkaxL3q7--
 
