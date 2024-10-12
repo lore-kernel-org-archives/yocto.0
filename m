@@ -1,102 +1,78 @@
-Return-Path: <aleksandar.nikolic010@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4D60D0EE31
-	for <webhook@archiver.kernel.org>; Fri, 11 Oct 2024 19:58:12 +0000 (UTC)
-Subject: Re: [yocto] Currect usage of pkgconfig / find_package(pkgconfig)
-To: "Ross Burton" <ross.burton@arm.com>, yocto@lists.yoctoproject.org
-From: "Aleksandar Nikolic" <aleksandar.nikolic010@gmail.com>
-X-Originating-Location: CH (147.161.251.86)
-X-Originating-Platform: Windows Chrome 129
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D3F4D1A45A
+	for <webhook@archiver.kernel.org>; Sat, 12 Oct 2024 09:00:38 +0000 (UTC)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+ by mx.groups.io with SMTP id smtpd.web10.7350.1728723634031948022
+ for <yocto@lists.yoctoproject.org>;
+ Sat, 12 Oct 2024 02:00:34 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=DM+qckF3;
+ spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53995380bb3so3736225e87.1
+        for <yocto@lists.yoctoproject.org>; Sat, 12 Oct 2024 02:00:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728723632; x=1729328432; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TJf5HKoanAZ6rFuklSYOpb0z3yhpeT2M0+xUra1GsWI=;
+        b=DM+qckF3NcHGcGC/6GA3wvewBCl/3XaOWN8KwGgqXV9OAXfnS3Mwou8Ku0niFkvwjT
+         LrBBFkGOFAkicktC26Vtl/M7ZRFGFYDlRlKOmlBWeYGCuT1TnPu/jrVhsIV4YsOmrZQP
+         GNFBAcAPCVMz/UwS8pK9Sf/lGQIYy/MRye0gNZxqsp4f+TcxJx72WfPm8S4lt7WnjdBw
+         HYO/zn9fqGLWK0prlhy971C/HdGFP2lyyLivqNZTx1tDyQglfGnNo7FEauWeOHAwHzi1
+         uo5bCxP1NEzmfnBCtX8dGqEuiH+GiWhE5JKerSqeZzniWZW/GGHrq94IWYcAR2nZy8cu
+         l2Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728723632; x=1729328432;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TJf5HKoanAZ6rFuklSYOpb0z3yhpeT2M0+xUra1GsWI=;
+        b=qG6955AkXHR1jRofx1q/IyohsgsCMopg0TODt4cFGxInSKwvaqB6tWfVeo7r74IpS0
+         cK03OEV0SPMZhKmhXISPv6yc0y9KIjq2rneTcznttbZFy9NX6/2fpGcq/K6MLtqapRDy
+         0vIEDaD/3/mCrJzOWyY802BX92OoMkhXfjCAT0Pwg0DN45lG0a6twkXuLnfdMMjsw7vk
+         8XotvizbMjUdV3XqqfEHwDgcBv5fjIY8zBSWgS2p93RSLEYfV/d+Wfd49sgKKKwpkasg
+         luSD6JTv32hqpsw16YCoQjKjR8i1ZuraMGXVQ59FA0rlfXPCKf6g+yaKnZSBrN4yPuA0
+         5v6w==
+X-Gm-Message-State: AOJu0Yxw9nf3mJJzsaQBS34yy+lEpwHq6jsrGLD9K3YmywWNvBLgL53w
+	DradMfQk576DcF/3RnnY1Z4Uh6svgoaATnX8rkrPiZFCvPkao0tCmQKYLZJ9M9rj3rfaBUYTmWI
+	KpDLcQ2GcxZ2Rvq8RORf84gYm//Y=
+X-Google-Smtp-Source: AGHT+IGioBiUbY93DOoh4CI3nSyq05QoFZDwnaO7cFr7liqxtwKhdrj2zJH7BKu8ns5oi+MIicl/X+yAnYLwnxkJSMY=
+X-Received: by 2002:a05:6512:2398:b0:539:e513:1f69 with SMTP id
+ 2adb3069b0e04-539e5132047mr999843e87.17.1728723631850; Sat, 12 Oct 2024
+ 02:00:31 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 11 Oct 2024 12:58:07 -0700
-References: <6AF5B7D9-5BE5-4262-B252-E912285BD591@arm.com>
-In-Reply-To: <6AF5B7D9-5BE5-4262-B252-E912285BD591@arm.com>
-Message-ID: <20572.1728676687865105553@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="OXsdsdqruaKCzpskdGSS"
+References: <CANNYZj-M=WJCA-ypRYpi3svbVb3ciJH2sd1VeEyQP5cXjevXcg@mail.gmail.com>
+ <24753.1728676151495526216@lists.yoctoproject.org>
+In-Reply-To: <24753.1728676151495526216@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Sat, 12 Oct 2024 11:00:20 +0200
+Message-ID: <CANNYZj9q_5N3hOdf4MD9VeVbO+XfgUHHNg-jv9H2LeHkmErHVA@mail.gmail.com>
+Subject: Re: [yocto] Currect usage of pkgconfig / find_package(pkgconfig)
+To: aleksandar.nikolic010@gmail.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 11 Oct 2024 19:58:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64012
+ <yocto@lists.yoctoproject.org>; Sat, 12 Oct 2024 09:00:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64013
 
---OXsdsdqruaKCzpskdGSS
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, 11 Oct 2024 at 21:49, Aleksandar Nikolic via
+Lists.Yoctoproject.Org
+<aleksandar.nikolic010=3Dgmail.com@lists.yoctoproject.org> wrote:
+> The A cmake project calls find_package(PkgConfig) because it uses the com=
+mand pkg_check_modules(). AFAIK this command just looks for modules, so I n=
+eed this in every cmake project which depends on A, basically meaning inher=
+iting pkconfig.bbclass is the only solution here.
 
-On Fri, Oct 11, 2024 at 01:01 PM, Ross Burton wrote:
+But what is it actually checking for? Is it something that only A
+would need? If so, then why consumers of A are forced to use the same
+file which contains checks for things they don't actually use?
 
->=20
-> On 11 Oct 2024, at 06:31, Aleksandar Nikolic via lists.yoctoproject.org
-> <aleksandar.nikolic010=3Dgmail.com@lists.yoctoproject.org> wrote:
->=20
->> It goes without saying, when I inherit the pkgconfig class in recipe B,
->> everything works as expected (because the pkg-config binary is found in
->> recipe-sysroot-native of recipe B), but this is also not correct, as
->> recipe B does not really depend on pkgconfig and shouldn't even know abo=
-ut
->> it.
->=20
-> But it does: it=E2=80=99s calling cmake macros that use pkgconfig. Inheri=
-ting the
-> class is the right thing to do here.
-
-I misspelled a bit, I was going to say "recipe B does not directly depend o=
-n pkgconfig, but rather through recipe A". What I meant by it was: I see re=
-cipe A as a blackbox which is supposed to bring all its dependencies with i=
-t and it does, except binaries (why they are not here has already been clea=
-red up by Alex). I was just thinking "If I didn't know what recipe A depend=
-s on, but only that my recipe B depends on A, I would never inherit pkgconf=
-ig as recipe B does not know about this dependency".=C2=A0But then again, I=
- fully understand why dependencies on executables aren't transitive in Yoct=
-o.
-
-Aleksandar
-
->=20
-> Ross
-
---OXsdsdqruaKCzpskdGSS
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>On Fri, Oct 11, 2024 at 01:01 PM, Ross Burton wrote:</div>
-<div>
-<blockquote>On 11 Oct 2024, at 06:31, Aleksandar Nikolic via lists.yoctopro=
-ject.org &lt;aleksandar.nikolic010=3Dgmail.com@lists.yoctoproject.org&gt; w=
-rote:<br />
-<blockquote>It goes without saying, when I inherit the pkgconfig class in r=
-ecipe B, everything works as expected (because the pkg-config binary is fou=
-nd in recipe-sysroot-native of recipe B), but this is also not correct, as =
-recipe B does not really depend on pkgconfig and shouldn't even know about =
-it.</blockquote>
-But it does: it&rsquo;s calling cmake macros that use pkgconfig. Inheriting=
- the class is the right thing to do here.</blockquote>
-I misspelled a bit, I was going to say "recipe B does not directly depend o=
-n pkgconfig, but rather through recipe A". What I meant by it was: I see re=
-cipe A as a blackbox which is supposed to bring all its dependencies with i=
-t and it does, except binaries (why they are not here has already been clea=
-red up by Alex). I was just thinking "If I didn't know what recipe A depend=
-s on, but only that my recipe B depends on A, I would never inherit pkgconf=
-ig as recipe B does not know about this dependency".&nbsp;But then again, I=
- fully understand why <span style=3D"color: #333333; font-family: system-ui=
-, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Ari=
-al, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', '=
-Noto Color Emoji'; font-size: 16px; font-style: normal; font-variant-ligatu=
-res: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: n=
-ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
-e; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-spac=
-e: pre-wrap; background-color: #ffffff; text-decoration-thickness: initial;=
- text-decoration-style: initial; text-decoration-color: initial; display: i=
-nline !important; float: none;">dependencies on executables aren't transiti=
-ve</span> in Yocto.</div>
-<div>&nbsp;</div>
-<div>Aleksandar</div>
-<div><br />
-<blockquote>Ross</blockquote>
-</div>
-
---OXsdsdqruaKCzpskdGSS--
+Alex
 
