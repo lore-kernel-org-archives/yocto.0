@@ -2,60 +2,60 @@ Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A759D2A542
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 18781D2A53D
 	for <webhook@archiver.kernel.org>; Wed, 16 Oct 2024 19:09:29 +0000 (UTC)
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
- by mx.groups.io with SMTP id smtpd.web10.30543.1729103812120160583
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+ by mx.groups.io with SMTP id smtpd.web11.30934.1729103452515767423
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Oct 2024 11:36:52 -0700
+ Wed, 16 Oct 2024 11:30:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=TMErbuy/;
- spf=pass (domain: gmail.com, ip: 209.85.210.172, mailfrom: aymericdumaz@gmail.com)
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-71e8235f0b6so63473b3a.3
-        for <yocto@lists.yoctoproject.org>; Wed, 16 Oct 2024 11:36:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=I4Npohsp;
+ spf=pass (domain: gmail.com, ip: 209.85.215.179, mailfrom: aymericdumaz@gmail.com)
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-7ea0ff74b15so83269a12.3
+        for <yocto@lists.yoctoproject.org>; Wed, 16 Oct 2024 11:30:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729103811; x=1729708611; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1729103452; x=1729708252; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=X5ehMAF75vqAT9sYPpaqUO4isfuOMMjoIkWTkzVFnnM=;
-        b=TMErbuy/7/DzctNOXWcKo73bHT1Qfg6q/0ok3oN7bDOyumzGcU3u/oykTxiAm0BS8i
-         hVEzsSRwoRfsQsgEfG/lQd3cc/ksa8HSeYuQPTVmX0teHrUxRzyw7FQWT/4mRPhJt8Ic
-         4T0XRWOshJ3CaZiOEhGKJrld57q+Hq6lyLRTEyex7hCF5Sojz5E099hXqGjV74cm7LSr
-         lu2uzABOa8if81f6BdFneB59vJisClh8qOWOLycugr1lmA6tXvXJTJt+w2kk02/getXh
-         yvl2TJclDjT80Im7cxHeR4EdEJEETMIPjccceWptCprc1LUOEQGBb7sl7XHScl0zK9Q/
-         U6Lg==
+        bh=uebwDq4d51jXdDbnwAMPYqYrpj/YPWM9HJBNzfCFx30=;
+        b=I4NpohspRgeGzTL75FvKdPDXAVmsVbzTPZeBhiVoUu8H6I6y1pxc1iQI8Sw8bRxZcI
+         imPZs/48gGjglxAOKsQAJN6mqq4nkz+CfsgKJ5+PEKkYTFzcrOqsubLFNRi9uJAX5IRo
+         cZ93+kMAQNmGwi0cO9OncpAyl6YWJgzQfqK+cnJz3DFVZiF0/tHdbHLhaC8ly87kZjDv
+         P0cvR6ExRCFXZIF+FxTDufYaHinQtc9dr1T50lHNTg37ZRiJv/Yf/LODDDkU7xKPCv/L
+         gCBpx+5/0KrEOuFNbtuqLHQC+7AH4aNfln2A33WvaLQD4WH8N8XAOyYqTppNxB/bXUt7
+         jbKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729103811; x=1729708611;
+        d=1e100.net; s=20230601; t=1729103452; x=1729708252;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=X5ehMAF75vqAT9sYPpaqUO4isfuOMMjoIkWTkzVFnnM=;
-        b=I5XF7GdOrRpqMo6W68qcJih6f9ulzbEHZFU3xtestL0951eKrf32WS4Vn6D6c9ssbB
-         K1qSN+TAyBm9mRmV96xgWQ0B7KwfxXs9AU5h7Y7nHg4vSsUzzPpdn9jKVNdEqpdNDETn
-         dl69Cq+krlLmt6+NoKuZE+Ovm4E1Q2hjQDI38cSzP4cAzQEfN0lANZtDU5TesEKCOFah
-         KcN+zlG5N08TFHzEw4Oe+X73iWBItHmZ7qme+CJyZcEvNDPwae+NMpXq9pm8/vzwRzT+
-         cFxhpFe3Dq0SVMEBoQFahNdGS+rdpY6Yt+qftp2LBz3nvPFP1KafRR0oEkI1s23IjrzR
-         fwFQ==
-X-Gm-Message-State: AOJu0YyGZwXjTW9q6Kn/oQjb4r+cwqGx6gsUa5bIW2B5pHRyIYpdL+X8
-	E3faelSCZ7iYwZbVxwOUTQHfOFYwjovX14NbE7l6nWdUh8ns0iQC64kq/fzX90vgcDe3b8I9Zns
-	4YAuICbfwfvNHUTxhD870pbnviPK11TT1
-X-Google-Smtp-Source: AGHT+IF6q+Gaxhos1BfdvqwLlqOgkPdote/3zGxz4KQJQIinhgTC6oTfoPsNokc0xe7uYj6EL/YVvu58N5D9Celm8F4=
-X-Received: by 2002:a05:6a00:1381:b0:71e:6743:7599 with SMTP id
- d2e1a72fcca58-71e67437b79mr16969362b3a.7.1729103811404; Wed, 16 Oct 2024
- 11:36:51 -0700 (PDT)
+        bh=uebwDq4d51jXdDbnwAMPYqYrpj/YPWM9HJBNzfCFx30=;
+        b=ZwiWjDw3+x2pqEsj2XxcJk1cpB30F0MyIWoDQnyzXQLtRueKsxopq7jOXsR4dlKpnb
+         kAKuR87URIs4c/ftSLyTu93Qz17p/SDGS/fWj6mx2OkxPFf0FzcGrYIMxb6UjulB4BF8
+         qw/G4MfyydH97zzg5mcpnTmyY4tQV9gf7U08D9dUe1YIVWbY8PGQJGvlJEiBU0M+1dpl
+         qpFGO6gCsGM9CsWY2hhePCY0Fn8PoVm4FRPBZ/XI0RrFz3R6RQ8NEWZesTHoh9naJqIv
+         jEUA+aX3BNRm6+eaNCPH0v30bZBtKVzy5bj8pXiIesMNpEh77INHjAoWNaBchyMR+FjS
+         8uMg==
+X-Gm-Message-State: AOJu0YyCzZ2T03s93EsRnE6VgBKnqw4B7gW/YTx6gvXpLr8GEZ+9ATDY
+	YpOUNs2GYsygDz4lzzSgYWIvAv0uLNfaMSxqHbsVmT+wGYVjHcxS8cwj261la+xZaXAgaKJ4XuV
+	yDKehDoRdA9euxN5TAhDF4gijn9edY+D+
+X-Google-Smtp-Source: AGHT+IEMzlaZS/xpPXHY240A2quDMgFxvg5rmdfK9oqE75xfmwURQXz2/aBK5ghTk+4gHW4aSxEvB+6HT+r/ce/37xc=
+X-Received: by 2002:a05:6a20:c990:b0:1cf:499c:f918 with SMTP id
+ adf61e73a8af0-1d905ecb898mr6344584637.18.1729103451647; Wed, 16 Oct 2024
+ 11:30:51 -0700 (PDT)
 MIME-Version: 1.0
 From: "Aymeric Dumaz" <aymericdumaz@gmail.com>
-Date: Wed, 16 Oct 2024 20:36:40 +0200
-Message-ID: <CAESSzZzsPfBz6DhFcCMfq7RWYMSJw-ats46J3Ms_SMeuiRK8VA@mail.gmail.com>
+Date: Wed, 16 Oct 2024 20:30:40 +0200
+Message-ID: <CAESSzZxmWtRkK3ZSZYqLeTp0kTESc4NP5Rc3Oi8oEzW2qWtbbQ@mail.gmail.com>
 Subject: Fetch recipes PV from a file?
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000075713806249c5ab5"
+Content-Type: multipart/alternative; boundary="00000000000003f58406249c45aa"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Wed, 16 Oct 2024 19:09:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64032
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64031
 
---00000000000075713806249c5ab5
+--00000000000003f58406249c45aa
 Content-Type: text/plain; charset="UTF-8"
 
 Hello, we use a script to generate updates for our products; it is
@@ -128,7 +128,7 @@ to be fixed.
 For each subprojects, multiple similar error messages for project_foo.bb:
 do_patch/do_fetch/do_unpack/do_configure/do_compile/do_install...
 
---00000000000075713806249c5ab5
+--00000000000003f58406249c45aa
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -171,7 +171,7 @@ s+&quot;, line)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 d.setVar(vars[=
 o.bb:do_patch, the basehash value changed from 14abf321 to 4af89bb2. The me=
 tadata is not deterministic and this needs to be fixed.<br><br>For each sub=
 projects, multiple similar error messages for project_foo.bb:do_patch/do_fe=
-tch/do_unpack/do_configure/do_compile/do_install...</div>
+tch/do_unpack/do_configure/do_compile/do_install...<br></div>
 
---00000000000075713806249c5ab5--
+--00000000000003f58406249c45aa--
 
