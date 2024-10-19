@@ -1,88 +1,140 @@
-Return-Path: <felix-kuhlmann@gmx.de>
+Return-Path: <karlo.strize.linux@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0008D3C90B
-	for <webhook@archiver.kernel.org>; Sat, 19 Oct 2024 11:50:02 +0000 (UTC)
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
- by mx.groups.io with SMTP id smtpd.web11.4899.1729338596694567773
- for <yocto@lists.yoctoproject.org>;
- Sat, 19 Oct 2024 04:49:57 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: signature did not verify: crypto/rsa: verification error" header.i=felix-kuhlmann@gmx.de header.s=s31663417 header.b=WnMsIfv/;
- spf=pass (domain: gmx.de, ip: 212.227.15.18, mailfrom: felix-kuhlmann@gmx.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1729338595; x=1729943395; i=felix-kuhlmann@gmx.de;
-	bh=tvr2AWeTiKYtcMeT+FnKSTUIJeEJhEqgwbSckwKm1iA=;
-	h=X-UI-Sender-Class:Date:From:To:Subject:Message-ID:MIME-Version:
-	 Content-Type:cc:content-transfer-encoding:content-type:date:from:
-	 message-id:mime-version:reply-to:subject:to;
-	b=WnMsIfv/qqbND/DFljEjIPrfyB45lLkAOtSMG8JN7TJUYfvrE+2uQnbwnmqQTbKS
-	 Gy2LSgf1JGgXkFEG2YqGKDb2iPt4G37xCCF1oLSTMaFB5/jVhbxlcwfOKpha6ot0h
-	 QQA3w7pma2bGj3S63dozeK6psw++0EeJ6XvKDRqG3PW9rnOGkR96kCTf1bho0ZbUv
-	 bmdirkPOZJk3gfd2nyTGcdW96w3+VzsfM3yx72goLu9InSRdBY+zgriQH+NdVpimG
-	 inEj/I+xSc2QgjtKEglQEu+GmdmH4nHp/33GEnnleEIW7jBxsBuczupFts6FwuLJ0
-	 oSMbMml3oduWTgh/Gg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from fedora ([213.172.123.58]) by mail.gmx.net (mrgmx005
- [212.227.17.184]) with ESMTPSA (Nemesis) id 1MYNNo-1tNfDl0v2I-00QcDz for
- <yocto@lists.yoctoproject.org>; Sat, 19 Oct 2024 13:49:55 +0200
-Date: Sat, 19 Oct 2024 13:50:22 +0200
-From: Felix Kuhlmann <felix-kuhlmann@gmx.de>
-To: yocto@lists.yoctoproject.org
-Subject: Question regarding executing an install script during the build of
- an image
-Message-ID: <ZxOc_m5GBfsY2Hhk@fedora>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8DF0D3C919
+	for <webhook@archiver.kernel.org>; Sat, 19 Oct 2024 15:36:13 +0000 (UTC)
+Subject: Re: [yocto] My Embedded Linux (Yocto) IDE setup #github
+To: "Adrian Freihofer" <adrian.freihofer@gmail.com>, yocto@lists.yoctoproject.org
+From: "Karlo Strize" <karlo.strize.linux@gmail.com>
+X-Originating-Location: Vis, Split-Dalmatia, HR (88.207.29.140)
+X-Originating-Platform: Linux Firefox 131
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Provags-ID: V03:K1:X49ao1gm26lU2yCv9wcWCSxeIUi9IC3u8mS4nIw0AADWUtuCp9j
- gwKf55tI2UxOa1nmhBsHB2NTZS/uccZ2qMpAXZ/WD9/omxCaIbBeB8pumQV5X2E0C+JOL3e
- rxTZny/Sn5sh8V2qs+O1itNCZ6L34xi0WEP7Sbe9QAo/+KkN9HE52WNPBSI4buV572zJJk4
- wfwSM0rCOsf2b0xuCM0UQ==
-UI-OutboundReport: notjunk:1;M01:P0:4fyqp68Jd3g=;wplaJk0wb4M4d1mL5O9Qaoy0DeL
- H9+j+i8fAnP4+N50wrgF4o3C/lAGN3HLkPj5uZasrwswdAPbAM9nN23YD/UimmxitHYIWZFDF
- o9E1FC2J8L6kokj0IOCxsk0lBrx0ElHLAw+eM+rHatbCcSMghCuEUQMRTY8E2udXi9HCt3BKA
- SBa4+3OJ2PhI4e9zDT76j3zrlMVCqSG15s2NhUrXgDuFZACHXWzKK9GX8WLj0t9j0PypBJ9k/
- fSfnQicNqEOQlfEuJI/XZuAnkfDvF1V4pN23nACByHvVQrEVIAur3QnYjbNMS3W42VjTwu0Gd
- gQ8T4JQo4PY0PcDATwaNW3ZqGEho6kZ1FUPderOKX8gWd1ldS8iTnuDNQMoaE+aRDqJSb6Mk5
- 9SV7IZg0JoOdtYnPv7NmGBjDjLyiN440PaXdNO0TAPcFI0/6aU5lsKU/udyaQ+Tnr5TdyWvPQ
- FQY7hoPa8Q22PKFGhrnWC2xV4ykMbxXYT9tL4L7s+IAxxpdclBBkVoNos6Ho+9wr3Vj4nSDJL
- mbebIqgP3/lcr5rokbfBsCjHGVh1Hzuzg2Td0xq5ZkS8o8i41qKEGTpshuB53nB9bEhLEW4so
- viWATkIf8pim41E1c86RW0sjgoAe2wgTYn7URzxej7gVETcFGh+D+xunZl1NS4meHwsK7RK4k
- S2WydSeRqXJzIntMU4mlqodRFDcLOT9Tbxx8ft6ChB3z4kh0joJ3KgHSarBUmdrmVyMC82zBZ
- xhpAAe6QsCiJerSmURLXQRrZds4aa9wO/L3soqSnovXNKE2a8VrFrfWvfXDenJGlI9cfge9pk
- BsbwyGd4vFhiK7gp+RX0oQiw==
+Date: Sat, 19 Oct 2024 08:36:06 -0700
+References: <903489d29397a0334b2c580c93e10938ff1289a0.camel@gmail.com>
+In-Reply-To: <903489d29397a0334b2c580c93e10938ff1289a0.camel@gmail.com>
+Message-ID: <13023.1729352166335055946@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="N5H5PdLmDQ9R0dG1iDvg"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 19 Oct 2024 11:50:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64051
+ <yocto@lists.yoctoproject.org>; Sat, 19 Oct 2024 15:36:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64052
 
-Hello everybody,
+--N5H5PdLmDQ9R0dG1iDvg
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I need your help with a project I'm currently working on.
-I want to create an image that contains the OpenPLC runtime, which is an
-open source soft PLC solution.
+Hi Adrian,
 
-The creators of this project provide a handy install script, which can
-be aquired through their project's GitHub repository.
+My entire bare metal embedded career I was using close source IDEs that wer=
+e based on Eclipse, GCC and GDB.
+To me it was ridiculous that the most important 90% of the stack was open s=
+ource, but I had to use outdated proprietary Eclipse package because of a f=
+ew Register View windows.
+Probably now for consumer ARM processors things have changed for the better=
+.
 
-My question now is, what would I have to write in a custom recipe in
-order to install this piece of software? From what I can tell, it also
-compiles code on the go, so Bitbake would have to do that with the
-cross compiler used for other aspects of the build as well.
+As you can see I had an itch to scratch :-)
 
-The solutions I've found online so far mostly centered around
-post-install scripts, which isn't what I'm looking for.
+My repo supports Yocto projects, Linux kernel only, C/C++ user applications=
+ and bare metal projects using 100% open source stack.
 
-My goal is to have a soft PLC system that boots up and starts the
-necessary services straight away. Usually, this is taken care of by the
-script.
+I didn't know devtool ide-sdk existed.
+It makes Visual Studio Code integration convenient and I wish this had exis=
+ted when I was starting my journey.
 
-If you have any better ideas or if you need further information, feel
-free to reply.
+I really think this is great work, but it heavily depends on close source M=
+icrosoft CPP extension (I understand the implementation is of vscode plugin=
+).
+Also oe-setup-vscode inserts settings for yocto-bitbake extension.
+yocto-bitbake extension is a great piece of work that brings an amazing set=
+ of features to the table, but my understanding is that it relays on Micros=
+oft close source stuff (please correct me if I'm wrong).
 
-Thanks in advance and best regards
-Felix Kuhlmann
+As you can see from the beginning of my post, I'm really happy that we can =
+build a product using only open source software like Linux kernel, u-boot, =
+openSSL.
+Building and maintaining a product with this complexity is hard so this was=
+ made easier with bitbake that is also open source.
+
+So riding on all this open source wave, its not my thing to add reliance on=
+ the close source tools.
+I'm not too excited to spend my free time by making openOCD work easier wit=
+h Microsoft's CPP debugger.
+Probably most people don't care, but I guess this is my thing:
+Making open source product with pure open source tools.
+
+I don't want to say that reliance on Microsoft's extensions is bad.
+All the mentioned work brings ease of use and functionality that wasn't the=
+re before and that is amazing.
+Again, I just prefer making a setup that uses only open source tools.
+
+Not sure if there is an interest to make devtool ide-sdk (and oe-setup-vsco=
+de) setup that will support only VSCodium with only 100% open source extens=
+ions, but I would be interested in that.
+If there is interest: I have more technical comments about the implementati=
+on, but I guess this post is long enough for now.
+
+Best regards,
+Karlo
+
+--N5H5PdLmDQ9R0dG1iDvg
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>
+<div>Hi Adrian,<br /><br /></div>
+<div>My entire bare metal embedded career I was using close source IDEs tha=
+t were based on Eclipse, GCC and GDB.<br />To me it was ridiculous that the=
+ most important 90% of the stack was open source, but I had to use outdated=
+ proprietary Eclipse package because of a few Register View windows.<br />P=
+robably now for consumer ARM processors things have changed for the better.=
+</div>
+<div>&nbsp;</div>
+<div>As you can see I had an itch to scratch :-)</div>
+<div>&nbsp;</div>
+<div>My repo supports Yocto projects, Linux kernel only, C/C++ user applica=
+tions and bare metal projects using 100% open source stack.</div>
+<div>&nbsp;</div>
+<div>I didn't know devtool ide-sdk existed.<br />It makes Visual Studio Cod=
+e integration convenient and I wish this had existed when I was starting my=
+ journey.</div>
+<div>&nbsp;</div>
+<div>I really think this is great work, but it heavily depends on close sou=
+rce Microsoft CPP extension (I understand the implementation is of vscode p=
+lugin).<br />Also oe-setup-vscode inserts settings for yocto-bitbake extens=
+ion.<br />yocto-bitbake extension is a great piece of work that brings an a=
+mazing set of features to the table, but my understanding is that it relays=
+ on Microsoft close source stuff (please correct me if I'm wrong).</div>
+<div>&nbsp;</div>
+<div>As you can see from the beginning of my post, I'm really happy that we=
+ can build a product using only open source software like Linux kernel, u-b=
+oot, openSSL.<br />Building and maintaining a product with this complexity =
+is hard so this was made easier with bitbake that is also open source.</div=
+>
+<div>&nbsp;</div>
+<div>So riding on all this open source wave, its not my thing to add relian=
+ce on the close source tools.<br />I'm not too excited to spend my free tim=
+e by making openOCD work easier with Microsoft's CPP debugger.<br />Probabl=
+y most people don't care, but I guess this is my thing:<br />Making open so=
+urce product with pure open source tools.</div>
+<div>&nbsp;</div>
+<div>I don't want to say that reliance on Microsoft's extensions is bad.<br=
+ />All the mentioned work brings ease of use and functionality that wasn't =
+there before and that is amazing.</div>
+<div>Again, I just prefer making a setup that uses only open source tools.<=
+/div>
+<div>&nbsp;</div>
+<div>Not sure if there is an interest to make devtool ide-sdk (and oe-setup=
+-vscode) setup that will support only VSCodium with only 100% open source e=
+xtensions, but I would be interested in that.</div>
+<div>If there is interest: I have more technical comments about the impleme=
+ntation, but I guess this post is long enough for now.</div>
+<div>&nbsp;</div>
+<div>Best regards,<br />Karlo</div>
+</div>
+
+--N5H5PdLmDQ9R0dG1iDvg--
 
