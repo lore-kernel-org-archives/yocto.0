@@ -1,361 +1,204 @@
-Return-Path: <adrian.freihofer@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13C13D17130
-	for <webhook@archiver.kernel.org>; Mon, 21 Oct 2024 20:13:50 +0000 (UTC)
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
- by mx.groups.io with SMTP id smtpd.web11.2221.1729541626054752264
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B4E6D17149
+	for <webhook@archiver.kernel.org>; Mon, 21 Oct 2024 23:31:11 +0000 (UTC)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+ by mx.groups.io with SMTP id smtpd.web10.6475.1729553464730422163
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Oct 2024 13:13:46 -0700
+ Mon, 21 Oct 2024 16:31:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=PVVexHFI;
- spf=pass (domain: gmail.com, ip: 209.85.161.49, mailfrom: adrian.freihofer@gmail.com)
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5e56759e6d7so2684666eaf.3
-        for <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 13:13:45 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=MBAe4YxV;
+ spf=pass (domain: gmail.com, ip: 209.85.216.46, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e2e23f2931so4013483a91.0
+        for <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 16:31:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729541625; x=1730146425; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DlyS5fW+AtwKNhLec5VU1RRYyvB+1nx+ZafxW0Dejq8=;
-        b=PVVexHFItUITHEGNA0LMCOflz9sHYKhJeaUKNockqimrIrAWtwQQ3VKGQJl2N7QgiO
-         fpjNd6P3J+igJu7DUfDbxzY9VDlUR5T78DiXeGJlC+vMd7A43ufIvL3N1dZ/sY35sWUW
-         bhBHvqaXOae5Mo7uoplKKgAiB8Aos5VCsknvCD+LQVzWBbZxZxQwlAcV7j98mB3FVwxW
-         OZcu9TSS1lOydoJ+s4BTzwM3UTPr7PHEaSknJDk2k+u+wu/oD0e0rnNuK2X4Qr3rGzmz
-         FYWTfYYoTX85/HcIcfq5EkTmOc0iamHgKfN8MI4tBxk6yBQ0jb1GB4kclqnDwEiCg86w
-         YQJQ==
+        d=gmail.com; s=20230601; t=1729553464; x=1730158264; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=T6ayPsDAUjz1aXsTBRzBQO25mivODpyWggHxdSZ5rI0=;
+        b=MBAe4YxVHs7aXvpqAniOOya9UOm06qzeMCe7lDY8s01c6X7iJrYjstzT/5L9h1US7j
+         eX3VYiZ6oOt6NF1kMeu3q4/Jwyxlwi0d0ComCcX1v+t6zKMatQHbI7EIfpV6Q+Q37YBs
+         6uKKFeeD/eHFW6XGDV6Qv/N2Sbq0azdpwOB3aWk8DL9mO0qi6naxhkAp22ztDEF8mbQi
+         eCSND0okyfzD0tF9BLO7v6unA1gLrDdAty4iP6bxnQ0Sy11/ySaCp+RHZ1P5eGvIa0gf
+         zmv1RkFcAeHlFaJlNcLQJ11NtMeyxvMWguRN9+t2cUv708YT9CFD9/DOJiRmYx6XjYIW
+         gooA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729541625; x=1730146425;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DlyS5fW+AtwKNhLec5VU1RRYyvB+1nx+ZafxW0Dejq8=;
-        b=dw3sg7PXugDGRSw5vrxBcKPJUntrEAoyZH1HG/4HAvBYDME0/l0/ihvCwZhNP5Lg+T
-         0IXUk0Gayu7KMMx4jbRL56SZJlOnLZyMpiJaVvcsK+Iewq6al8s+1Oqbh4hNlfNG4Q0N
-         Mr+IsAH8OfDSelEXvivSFz7sNHuiff20e0vcsTaDzWIGQzCj46dRrMW7s6n1Q1XlfiVa
-         +PYCjRL79gI9vCNhjbkHzlfZdtaEh6DubN3w3XKWjCWoPfZW3o2VVIHU2SV/7Q2rdgY2
-         Zc4P3/LDDmmK8ebNtb1iuW5jf7vTi2/UOZS9AuP2+L7NyKEzKQOnkcULKD6hl1l01R24
-         ojWw==
-X-Gm-Message-State: AOJu0YyWt18k4+VBXeuqxTSncKD8ZBDaEE+I6mo21d+iM+CKPSboH0Lq
-	1u+BKZGQIt/AH1Rqzjig8YYJRvXH8UT5eQKAXAXzvoQW4v4cDXJRMen3y03Y1GyduKFwz/uxAHv
-	n8XZZpUUrRNFYJRUIDL76u+HNCa+F/w==
-X-Google-Smtp-Source: AGHT+IHvgf3pQFiHinbgS8Kbaaz5Jc0DZ1I0D3nWFPxqsHZr6WHxBWIvnx/i4S1FmmOhQDLbGisXmHbthrxzD9Yv9kc=
-X-Received: by 2002:a05:6870:6488:b0:28c:8476:dd76 with SMTP id
- 586e51a60fabf-28cb00ff030mr290334fac.29.1729541625095; Mon, 21 Oct 2024
- 13:13:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729553464; x=1730158264;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T6ayPsDAUjz1aXsTBRzBQO25mivODpyWggHxdSZ5rI0=;
+        b=iNPTRPuYVSLuWufJrHSdLFwcvvQFf/NhwxrsJM0FZWJYkgHMo5dNea3RuE6wB1TNtl
+         aZb417jcVsRRQMm2xmwafjuEuBBQdhM5eCSPKw2gazNIH2BuilAUP0wmoyCqRo3FjKW0
+         CUVGxV2UEsJANa7BNM5A2qXO0FP/D/Sf/mbH44fvzcGDO7kjJsFVZMAEjAr19sTRfj7i
+         pSGy+vIlxurRYR7sQDNzLnG0EehWOPXd/H2jQmfX/VgErvVPL/AqeCk2pnYa2IiZ5ksN
+         lh4GK09uM3kAJSnZXdBYqt+VNl6nPFWA2zHYnRr724uBXl7Oh+1gjVlMChYvWwP793C6
+         RpEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNiz6h14fiMwLlHr9ZnqAfH9sWDKtgSDYWDcIkSAHybSa4e4ddUS4+/r0d/6AZsv5ggJ1oeA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YyU8Oal4Y8+j2yzWnnGIyPNmJxwZn/X+PATrUvQ1q9m7PBqifLi
+	f0SZhr+fuFzz3IgDsLz7EtalySEmqsDVMks2IEM+ULA7VIcQV5DuBKVpxBak9R34C1y9419j02C
+	JC97DqKKARxw8eXDdxtz/4g34ZgA=
+X-Google-Smtp-Source: AGHT+IGApSu+rUMxDErPBVh2PdlUqOTBqM7qYTRprb44K7cYq1SN3ILitwozTpKf6ydO0Iz82K5xyrsOCUWOIjsujPs=
+X-Received: by 2002:a17:90a:640d:b0:2e2:af04:8b64 with SMTP id
+ 98e67ed59e1d1-2e5616c5550mr16127734a91.7.1729553463853; Mon, 21 Oct 2024
+ 16:31:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <19kG.1729526063081260825.oijY@lists.yoctoproject.org>
-In-Reply-To: <19kG.1729526063081260825.oijY@lists.yoctoproject.org>
-From: Adrian Freihofer <adrian.freihofer@gmail.com>
-Date: Mon, 21 Oct 2024 22:13:34 +0200
-Message-ID: <CAB3asfjOAOcZFBvZB65b_z3EuXx6ryMwB094DWSO8mQUBqkfFQ@mail.gmail.com>
-Subject: Re: [yocto] reading tgz file and uncompress in rootfs
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, umeshyv@gmail.com
-Content-Type: multipart/alternative; boundary="00000000000030308b0625024aeb"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 21 Oct 2024 16:30:52 -0700
+Message-ID: <CAK5yBb_QbkoTDuOTR6djvfQL8GWUKS-cYkTKLoSPn2jJSAt4=g@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000d54a0e0625050b1b"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 20:13:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64072
+ <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 23:31:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64073
 
---00000000000030308b0625024aeb
+--000000000000d54a0e0625050b1b
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-umeshyv via lists.yoctoproject.org <umeshyv=3Dgmail.com@lists.yoctoproject.=
-org>
-schrieb am Mo., 21. Okt. 2024, 18:30:
+All,
 
-> Hi, I have requirement where recipe file reads set of .tgz files and it
-> should store in a location in rootfs and untar them(on freescale board).
-> Can you please show some pointers.
->
-> SUMMARY =3D " Tools"
-> LICENSE =3D "CLOSED"
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
->
-> SRCREV =3D "${AUTOREV}"
->
-> SRC_URI =3D "file://tool1.tgz
-> file://tool2.tgz
-> file://tool3.tgz
-> file://tool4.tgz"
->
-The default behavior for tar files is to download them (do_fetch task) and
-then extract them into WORKDIR (do_unpack task) or into UNPACKDIR if you
-are on a very new Yocto version.
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-That mean do_install should probably copy files but not call tar. It's
-simpler than what you are trying :=E2=81=A0-=E2=81=A0).
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-You can see what folder structure each of the tasks creates if you look
-into the WORKDIR of this recipe. You can find WORKDIR e.g. with
-bitbake-getvar -r recipe-name WORKDIR
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 410
+unassigned or newcomer bugs.
 
-Adrian
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.1=E2=80=9D, =E2=80=9C5.2", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.1" and then =E2=80=9C5.2=E2=80=9D.
 
-> do_install () {
-> install -d ${IMAGE_ROOTFS}/usr/share/sigma-tools
->
-> for file in ${WORKDIR}/.tgz;do
->
-> tar -xvzf $file -C ${IMAGE_ROOTFS}/usr/share/<folder>
->
-> done
->
-> Alternatively instead of for loop tried below
->
-> tar -xvzf file://tool1.tgz -C ${IMAGE_ROOTFS}/usr/share/<folder>
-> tar -xvzf file://tool2.tgz -C ${IMAGE_ROOTFS}/usr/share/<folder>
-> tar -xvzf file://tool3.tgz -C ${IMAGE_ROOTFS}/usr/share/<folder>
-> tar -xvzf file://tool4.tgz -C ${IMAGE_ROOTFS}/usr/share/<folder>
->
-> But when I build following is the error
->
-> DEBUG: Python function extend_recipe_sysroot finished
-> DEBUG: Executing shell function do_install
-> tar (child): Cannot connect to file: resolve failed
-> gzip: stdin: unexpected end of file
-> tar: Child returned status 128
-> tar: Error is not recoverable: exiting now
->
-> Can you please suggest to resolve errors and provide solutions
->
-> Thanks
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64070):
-> https://lists.yoctoproject.org/g/yocto/message/64070
-> Mute This Topic: https://lists.yoctoproject.org/mt/109136100/4454582
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> adrian.freihofer@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
---00000000000030308b0625024aeb
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--000000000000d54a0e0625050b1b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">umeshyv via <a href=3D"http://lists.yoctoproject.org">=
-lists.yoctoproject.org</a> &lt;umeshyv=3D<a href=3D"mailto:gmail.com@lists.=
-yoctoproject.org">gmail.com@lists.yoctoproject.org</a>&gt; schrieb am Mo., =
-21. Okt. 2024, 18:30:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">Hi, I have requirement where recipe file reads set of .tg=
-z files and it should store in a location in rootfs and untar them(on frees=
-cale board). Can you please show some pointers.</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">SUMMARY =3D &quot; Tools&quot;<br style=3D"outline:none!i=
-mportant">LICENSE =3D &quot;CLOSED&quot;</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&quot=
-;</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">SRCREV =3D &quot;${AUTOREV}&quot;</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">SRC_URI =3D &quot;file://tool1.tgz<br style=3D"outline:no=
-ne!important"><a style=3D"outline:none!important;color:#0052cc;text-decorat=
-ion:var(--aui-link-decoration)" rel=3D"nofollow noopener noreferrer">file:/=
-/tool2.tgz</a><br style=3D"outline:none!important"><a style=3D"outline:none=
-!important;color:#0052cc;text-decoration:var(--aui-link-decoration)" rel=3D=
-"nofollow noopener noreferrer">file://tool3.tgz</a><br style=3D"outline:non=
-e!important"><a style=3D"outline:none!important;color:#0052cc;text-decorati=
-on:var(--aui-link-decoration)" rel=3D"nofollow noopener noreferrer">file://=
-tool4.tgz</a>&quot;</p></div></blockquote></div></div><div dir=3D"auto">The=
- default behavior for tar files is to download them (do_fetch task) and the=
-n extract them into WORKDIR (do_unpack task) or into UNPACKDIR if you are o=
-n a very new Yocto version.</div><div dir=3D"auto"><br></div><div dir=3D"au=
-to">That mean do_install should probably copy files but not call tar. It&#3=
-9;s simpler than what you are trying :=E2=81=A0-=E2=81=A0).</div><div dir=
-=3D"auto"><br></div><div dir=3D"auto">You can see what folder structure eac=
-h of the tasks creates if you look into the WORKDIR of this recipe. You can=
- find WORKDIR e.g. with</div><div dir=3D"auto">bitbake-getvar -r recipe-nam=
-e WORKDIR=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Adrian</=
-div><div dir=3D"auto"></div><div dir=3D"auto"><div class=3D"gmail_quote"><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex"><div>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">do_install () {<br style=3D"outline:none!important"><tt s=
-tyle=3D"outline:none!important">install -d ${IMAGE_ROOTFS}/usr/share/sigma-=
-tools</tt></p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">for file in ${WORKDIR}/.tgz;do</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">tar -xvzf $file -C ${IMAGE_ROOTFS}/usr/share/&lt;folder&g=
-t;</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">done</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">Alternatively instead of for loop tried below</p>
-<div style=3D"outline:none!important;margin:9px 0px;padding:0px;border:1px =
-solid #c1c7d0;background:#f4f5f7;font-size:12px;line-height:1.33333;font-fa=
-mily:monospace;border-radius:3px;color:#111111;font-style:normal;font-varia=
-nt-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing=
-:normal;text-align:left;text-indent:0px;text-transform:none;word-spacing:0p=
-x;white-space:normal;text-decoration-style:initial;text-decoration-color:in=
-itial">
-<div style=3D"outline:none!important;margin:0px;padding:9px 12px">
-<pre style=3D"outline:none!important;margin:0px;padding:0px;max-height:30em=
-;overflow:auto;white-space:pre-wrap">tar -xvzf file://tool1.tgz -C ${IMAGE_=
-ROOTFS}/usr/share/&lt;folder&gt;
-tar -xvzf file://tool2.tgz -C ${IMAGE_ROOTFS}/usr/share/&lt;folder&gt;
-tar -xvzf file://tool3.tgz -C ${IMAGE_ROOTFS}/usr/share/&lt;folder&gt;
-tar -xvzf file://tool4.tgz -C ${IMAGE_ROOTFS}/usr/share/&lt;folder&gt;</pre=
->
-</div>
-</div>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">But when I build following is the error</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">DEBUG: Python function extend_recipe_sysroot finished</p>
-<div style=3D"outline:none!important;margin:0px;padding:0px;color:#111111;f=
-ont-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Roboto,Oxyge=
-n,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neue&#39;,=
-sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;f=
-ont-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:le=
-ft;text-indent:0px;text-transform:none;word-spacing:0px;white-space:normal;=
-background-color:#ffffff;text-decoration-style:initial;text-decoration-colo=
-r:initial">
-<table style=3D"outline:none!important;border-collapse:collapse;margin:5px =
-0px 5px 2px;width:auto;word-break:break-all">
-<tbody style=3D"outline:none!important">
-<tr style=3D"outline:none!important">
-<td style=3D"outline:none!important;border:1px solid #c1c7d0;padding:3px 4p=
-x">DEBUG: Executing shell function do_install</td>
-</tr>
-<tr style=3D"outline:none!important">
-<td style=3D"outline:none!important;border:1px solid #c1c7d0;padding:3px 4p=
-x">tar (child): Cannot connect to file: resolve failed</td>
-</tr>
-<tr style=3D"outline:none!important"></tr>
-<tr style=3D"outline:none!important">
-<td style=3D"outline:none!important;border:1px solid #c1c7d0;padding:3px 4p=
-x">gzip: stdin: unexpected end of file</td>
-</tr>
-<tr style=3D"outline:none!important">
-<td style=3D"outline:none!important;border:1px solid #c1c7d0;padding:3px 4p=
-x">tar: Child returned status 128</td>
-</tr>
-<tr style=3D"outline:none!important">
-<td style=3D"outline:none!important;border:1px solid #c1c7d0;padding:3px 4p=
-x">tar: Error is not recoverable: exiting now</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">Can you please suggest to resolve errors and provide solu=
-tions</p>
-<p style=3D"outline:none!important;margin:10px 0px 0px;padding:0px;color:#1=
-11111;font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&#39;,Robot=
-o,Oxygen,Ubuntu,&#39;Fira Sans&#39;,&#39;Droid Sans&#39;,&#39;Helvetica Neu=
-e&#39;,sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:left;text-indent:0px;text-transform:none;word-spacing:0px;white-space:=
-normal;background-color:#ffffff;text-decoration-style:initial;text-decorati=
-on-color:initial">Thanks</p>
-</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#64070): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/64070" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
-ists.yoctoproject.org/g/yocto/message/64070</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/109136100/445=
-4582" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopr=
-oject.org/mt/109136100/4454582</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
-/g/yocto/unsub</a> [<a href=3D"mailto:adrian.freihofer@gmail.com" target=3D=
-"_blank" rel=3D"noreferrer">adrian.freihofer@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div></div>
+<div dir=3D"ltr"><span style=3D"font-size:11pt;font-family:Calibri,Arial">A=
+ll,<br><br>The triage team is starting to try and collect up and classify b=
+ugs which a newcomer to the project would be able to work on in a way which=
+ means people can find them. They&#39;re being listed on the triage page un=
+der the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/wiki/=
+Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a>  Also please review: <a href=3D"https://www.openembedded.org=
+/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.org/w=
+iki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugzilla =
+account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"=
+>https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The idea is=
+ these bugs should be straight forward for a person to help work on who doe=
+sn&#39;t have deep experience with the project.  If anyone can help, please=
+ take ownership of the bug and send patches!  If anyone needs help/advice t=
+here are people on irc who can likely do so, or some of the more experience=
+d contributors will likely be happy to help too.<br><br>Also, the triage te=
+am meets weekly and does its best to handle the bugs reported into the Bugz=
+illa. The number of people attending that meeting has fallen, as have the n=
+umber of people available to help fix bugs. One of the things we hear users=
+ report is they don&#39;t know how to help. We (the triage team) are theref=
+ore going to start reporting out the currently 410 unassigned or newcomer b=
+ugs.<br><br>We&#39;re hoping people may be able to spare some time now and =
+again to help out with these.  Bugs are split into two types, &quot;true bu=
+gs&quot; where things don&#39;t work as they should and &quot;enhancements&=
+quot; which are features we&#39;d want to add to the system.  There are als=
+o roughly four different &quot;priority&quot; classes right now, =E2=80=9C5=
+.1=E2=80=9D, =E2=80=9C5.2&quot;, &quot;5.99&quot; and &quot;Future&quot;, t=
+he more pressing/urgent issues being in &quot;5.1&quot; and then =E2=80=9C5=
+.2=E2=80=9D.<br><br>Please review this link and if a bug is something you w=
+ould be able to help with either take ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an e-m=
+ail with the bug number you would like and I will assign it to you (please =
+make sure you have a Bugzilla account).  The list is at: <a href=3D"https:/=
+/wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_Bugs"=
+>https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcom=
+er_Bugs</a></span><br><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoN=
+ormal" style=3D"background-image:initial;background-position:initial;backgr=
+ound-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-s=
+erif">Thanks,<span></span></span></p>
 
---00000000000030308b0625024aeb--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--000000000000d54a0e0625050b1b--
 
