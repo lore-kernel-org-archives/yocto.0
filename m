@@ -1,362 +1,246 @@
-Return-Path: <aleksandar.nikolic010@gmail.com>
+Return-Path: <matthias.klein@optimeas.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A95B6D0E6C2
-	for <webhook@archiver.kernel.org>; Mon, 21 Oct 2024 07:36:26 +0000 (UTC)
-Subject: gstreamer1.0-plugins-good 1.24 fails with qt6 option
-To: yocto@lists.yoctoproject.org
-From: "Aleksandar Nikolic" <aleksandar.nikolic010@gmail.com>
-X-Originating-Location: Erlangen, Bavaria, DE (147.161.171.73)
-X-Originating-Platform: Windows Chrome 129
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EAF48D0E6CD
+	for <webhook@archiver.kernel.org>; Mon, 21 Oct 2024 08:33:56 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (EUR05-DB8-obe.outbound.protection.outlook.com [40.107.20.121])
+ by mx.groups.io with SMTP id smtpd.web11.41209.1729499631874804779
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 21 Oct 2024 01:33:52 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@optimeasgmbh.onmicrosoft.com header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=XK3yMMTv;
+ spf=pass (domain: optimeas.de, ip: 40.107.20.121, mailfrom: matthias.klein@optimeas.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k9Xo8vEc4sCR/HN4diXPdZEC+Lehmwxfj/pM5nLlcJKt2rzm7ILnmnaaVLRBbvv6d8SUKUw86HfqmJ10Cn08th8rs0EzMjK2CeSZtXIV6yWnuL2rwBOTRBxzq3Eg1W5EXhqO6mpkFSX8jzm2/rh8t5tPMh6hp+AIruxrhX8dvCHTQ2q6bX8WaOhfCsE37xANmtFxsBu2iY1M5GQkHje06/assEYX4S/+CpvuFpUDutxLD4NcBzaejL8pnW8KrlQvvOsIwxbrNOHKxGShUIcFPSFl7xBfF6eqdJdxh5pHB9XoOpxFWiYUiuKEn0aolc3QOUF+mJ40mpqzC0DltqEwkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j4pxlPwcNHjbCiL6t8ZWFDu9aSwv2EP7LF4eV9TNz2U=;
+ b=SpcqWMpGHAguwjMsCkuBcWIKj4GUO9Eb9Z26owNPBOCDU/+xSN0eUSO1yIdhDRF2kTGgg1oDk1zkypucluAjX2le5GdC4G8zaBHU7B8oOR/+eedJKE6tXcQRxRtlDElUKZ6wVH+aLHPGyX9VjIN9WirXdrkfIopUN94UDLS7yJfr7DwgN2CktONnBmQxYkZVWBKiPSUGLQN3zCsc9plY7ERf79M5y/RZ9OQw7nyDP2zubATRhC3V4BQCpl4IgD4EW0sK7BZQyyGm7mhfTJGRK6lRE6fbalUUBODEkYBeSVIINYulddQdkYc8zNnTVzyTVS426l0TPmPCpWuEIjcfTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=optimeas.de; dmarc=pass action=none header.from=optimeas.de;
+ dkim=pass header.d=optimeas.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j4pxlPwcNHjbCiL6t8ZWFDu9aSwv2EP7LF4eV9TNz2U=;
+ b=XK3yMMTvwOYXlx+Z7iZWqzZXijVaKW46DMMi1b6leUs187GZUnQaHEXd6OAry0MRvvsSY2a4y4qm2C1rCXmGjfs4htPSgVQzHzb3TwhVVRpbJvaTHepqFj22pl70QU48tdFvL7SjcbBFnc3wfMnvHjUsndvjw2nxqIDl6xmlv0w=
+Received: from PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:28e::9)
+ by DU2PR10MB7813.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:49c::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.15; Mon, 21 Oct
+ 2024 08:33:48 +0000
+Received: from PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::f52f:a369:6e49:d9a]) by PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::f52f:a369:6e49:d9a%7]) with mapi id 15.20.8093.014; Mon, 21 Oct 2024
+ 08:33:47 +0000
+From: Matthias Klein <matthias.klein@optimeas.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Strange problem when extending the linux-firmware package
+Thread-Topic: Strange problem when extending the linux-firmware package
+Thread-Index: Adsjksk5+RykX+C8TzCTp1YZKHQvaQ==
+Date: Mon, 21 Oct 2024 08:33:47 +0000
+Message-ID: 
+ <PAXPR10MB52772C5FC76FBDCB1FF4341599432@PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=optimeas.de;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR10MB5277:EE_|DU2PR10MB7813:EE_
+x-ms-office365-filtering-correlation-id: d567bfe1-efc1-4114-8d2b-08dcf1ab1553
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|376014|366016|10070799003|8096899003|38070700018;
+x-microsoft-antispam-message-info: 
+ =?us-ascii?Q?Pgjup2ESedKFc/ETJk7VYl1Iv9RFyySaOdRWYyLX/x71NqaCgq7gYUzDFV4y?=
+ =?us-ascii?Q?oyt30Rwb859qnE0jGdfG6eqSrz9VIHvv7zBBBwhssp3kZFSd4xNI2rGqfgV9?=
+ =?us-ascii?Q?CckZWN0VkJcatZf+5zxnc+YrfrpGZCbXhvygy87utMTWulLGhryZgoE22Llz?=
+ =?us-ascii?Q?rVNvUSw4ulpzGOxERDtlvc5UUfnMN1fbZyWUoT9ueQD53MOz5q7TzuMNYYEC?=
+ =?us-ascii?Q?501wDUwYgOxmmebkW9cH4mjZ5lT289WI1duMCROC7eAbcQmLsdM3y2zTyVgs?=
+ =?us-ascii?Q?2mbA9/qw4tnzNXOWDrjGzPmjK1Y+g7CtCGJPYB1r8zGZSO7TzyX3uma5C1tH?=
+ =?us-ascii?Q?H4uroZWVTk8goBFYsENLEQVUDENEHFMxZDyAqLnxmnFjW+L5CQKxzOxYVQaz?=
+ =?us-ascii?Q?aUewRkyhqdlJk1SlFEANCGe8mcyjrHu2ypa71Jrki0QqV8azIUhaZXW7GXWq?=
+ =?us-ascii?Q?F7HW2/CCBh+YK3fMnniW3SQIQHejL+e+GYghKsStXiZvzSaQJQ+iN5bfqk7O?=
+ =?us-ascii?Q?NIel8MuOS/N+Lid6S5RXZmETSwquQk9fxWOyHnGLFpKVAjq90SB9D+KrBLSq?=
+ =?us-ascii?Q?u86PG5yysUUVtWRxBVjOHc9CkNxIzXBQ6QQOvClulKHGb9LXA7cHYSxq0PqT?=
+ =?us-ascii?Q?M5tPctqtNbYBgfk/xf6jlaW6Y9gmVT0P3FBP7faSoXa7UhsucBPFgU3a4L6N?=
+ =?us-ascii?Q?7tVp0U8R2F2CtKO0YmU70MWAVVRTJKhHCOKsWjJ+j9rLhvqnb1weaILrroRE?=
+ =?us-ascii?Q?hWYlEodITFRva+FJqtDpD1t0qqYOR7p0SmK8QXhUaro2GjTcA5aR8/Hk8Lcl?=
+ =?us-ascii?Q?GhV0XBgmr4+AjL3uULNqS5RlywmCBLrBSq6WPbtDVTOlM5+qL8CrQa4z3BH8?=
+ =?us-ascii?Q?8YHxTxqFMEzf+hCuJcmFooBNSIFPcQpcU1+AwcjSxDMLjUtiZMimihktG2HD?=
+ =?us-ascii?Q?pLcfOo7GPibbyiffmnh3SPwuSKvr0LL8UGyGmK/8V+q4xWTNHQmQd4ADu70b?=
+ =?us-ascii?Q?ZedaqgJ3hCmiCNc8uizWTtygUWN5s14TBF0DtNkN+uiI5ZUFSb5KrgVu/Fce?=
+ =?us-ascii?Q?UaUnxdLgiAmTMmTt2F2G6oiA2vTF/SG0yIJDBc+2r8JQWKRNixXJVg4m/Z1f?=
+ =?us-ascii?Q?Xr0aS0B4M/RrRzTm1F8eAD1FuNsgyBhc23yk4In09SoF4I4K1Mt9Lw5pRnrq?=
+ =?us-ascii?Q?W5O0r+CCt4bV1vaep1mVLFxaKQfve9TTKamS6xp1smWclAGSgoxYrSYPtKkX?=
+ =?us-ascii?Q?tjXMF9oGv+NahLAI8dKm58BzyB8DDlLaODdcEjLibKAlS03CIq0hvJzrDJtm?=
+ =?us-ascii?Q?atZeSz4qmNJQvnvE2xvJWvHabhUna9+UPK1+u+32KEREMu9IthW9qfXf2Kp2?=
+ =?us-ascii?Q?1xdGH+A=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(10070799003)(8096899003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?n/m/f+y7vTqJdBFAC4XKAon5FvdHLBejEmk230BXUobL3eXZTh/zt3yEgTCj?=
+ =?us-ascii?Q?lfMkO6G890AA80XjWSR/WOLBDQyT36+cP9lMzA7piHuTPcigQStX5x6afuIK?=
+ =?us-ascii?Q?upihQBMt2UUriJdSOoSfL5tLmUFsNiRXItDXKTnpFpx2tPkhK7jqpvnJrImF?=
+ =?us-ascii?Q?z3EDw+kv2Ml3gpiJB2IDc4/ouFnqQn1yyTQBNBHcC5/Z7Pu5KcC0Nu8lSfoK?=
+ =?us-ascii?Q?fqZMOdLhuRZbjhYczFsmYf5n1FsYiEB8g0T6ppexSfKnxOmJjA4j8DapTCNo?=
+ =?us-ascii?Q?p0jRCgqrqcD/9aAxj52gt7lyq15RsalRhdJQVb0hs3tW/ARXtiL+/ybx8dfY?=
+ =?us-ascii?Q?wOTeji/Xg25WcTnmf3IZEVijb1TpghbfBLcZlSLAHKpHtqSog7QauqmExvtQ?=
+ =?us-ascii?Q?7aTGKoXvjylW3PSbuwhI22iCfiDp5z5YjzlL3gwXqXFZIXZdRPeD2cBqEZw/?=
+ =?us-ascii?Q?afsuw6eyPy7q00P2shar4wjrohzTGjQavg4pBtg4JboEBgW2Xkobb+ZH5wXV?=
+ =?us-ascii?Q?h6TM1sifoBj+Fx7kg1PkBuGRAU+xMeCqRMW8+WPe0G5Y2RCnLWxn7No8apuJ?=
+ =?us-ascii?Q?9pS5LBapMpXnAJ7HP314Uu0+kMolgkO78PdlHcQEVfrWqvpn9Y13A+hzgIYF?=
+ =?us-ascii?Q?JgNBayFMi/cxowrcmu0CwPfc01KPtPKTxXgkqextIqsm59BHt6R6BAIqWVjK?=
+ =?us-ascii?Q?Y8EL/nBacm38hXwpjmpqORN411UnU4LtejmO1F2YgHaeNZb7yq+0xRkZSuqC?=
+ =?us-ascii?Q?uFVDWFH3mXlbgj7zJAC0YHYqnb6iC4boY0hMXppRsXVvFYvpfIwiP8gOqCTv?=
+ =?us-ascii?Q?tzGLz+mudegTPnyKdXfFiVYXtGIOu8urbVGTJ3GIuaDhHWPxW+c401U2Cjjd?=
+ =?us-ascii?Q?m1VgtcM4s3Moqu4fcuGG3l0ouvi7s4G62SoOcBdywBie9MCDZNJBNJPZoG/o?=
+ =?us-ascii?Q?q/c6e9DpgJj1pd6qIEKQnzC7B8EsOD15GRM/7V393ZeeRRyjKj6WucoK00Dy?=
+ =?us-ascii?Q?Jik/ZbhTIu6jWwOo2wvUoxwg1UOHPS3GfDAadFVt1EAjZ4FAx9530JoSvs3m?=
+ =?us-ascii?Q?46lwQ78eyO/Vlw3v6Fwpfn51xgcE8cm9Pvt6C00Bkqs1RA+xLZkZxy2kHoql?=
+ =?us-ascii?Q?5cL7rLfu2Kst1DT5yH+8vmUq/aTnII8te3JUElKB5OW6Pj710Za/IepauN+l?=
+ =?us-ascii?Q?uVGQ6mLsQe4vMWxDkXf6PsvgPuEODYaPBnnUEfMBK0cmLAqsdjf1Qj1D72+F?=
+ =?us-ascii?Q?I/kSd4jysfvBvoj5Eeq/faf2qhr1Y6o+niPPKFSRR1XTu1EwhjUM0smYbZRK?=
+ =?us-ascii?Q?KBEvhq+pV6mNWsn65s4BozG9Yk3IqT6HKbCOU/p/4QmvkaNEY5D3+Ao479l4?=
+ =?us-ascii?Q?+6YBGH7/j1YbST/eq+xEKNv3vGOZYTR3Xn5iCc8MSEb1+T45nKSvrI7BdJAO?=
+ =?us-ascii?Q?TWkByOnXSyMuEFt1wnh9dPmAGDL9i7bK7WpFriU/BlfLCIM6HDfQ/n2MkwPO?=
+ =?us-ascii?Q?zateUul+DPG0R4qwQdt8SR6nx9F7CtVZl4k4u58b0hO9dGGFObo0hykPBqbN?=
+ =?us-ascii?Q?p7Q9HvDrLeSKxriTNrGr9819BkLpoHoeHVft6jT64EK/+gG23jxWcXdLxCt5?=
+ =?us-ascii?Q?MXIkDbZdMn+4JsCP8uUZhFDBHQnxh9R1SVlfykHh7ZzSMs70q3fZL2Pod2U2?=
+ =?us-ascii?Q?CpBLlg=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_PAXPR10MB52772C5FC76FBDCB1FF4341599432PAXPR10MB5277EURP_"
 MIME-Version: 1.0
-Date: Mon, 21 Oct 2024 00:36:20 -0700
-Message-ID: <2VJy.1729496180835487035.xwWs@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="kYPkuX9sG45DMK4PAtlw"
+X-OriginatorOrg: optimeas.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: d567bfe1-efc1-4114-8d2b-08dcf1ab1553
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2024 08:33:47.8757
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WT5fn2zUyWPu5zDwHb0ZQpHGPXDHkbHDWb3neJ4g6IyqzhgUNs7wDo64SgE9kS4y8ZBWwKRUcXX+64EN61war3uSpfG5P+pmtlb+yzEsLBA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR10MB7813
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 07:36:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64057
+ <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 08:33:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64058
 
---kYPkuX9sG45DMK4PAtlw
-Content-Type: text/plain; charset="utf-8"
+--_000_PAXPR10MB52772C5FC76FBDCB1FF4341599432PAXPR10MB5277EURP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Greetings,
+Hello,
 
-(Note that this is not a bug on master or anything)
+a few months ago I added Bluetooth firmware via a linux-firmware_%.bbappend=
+ file with the following line:
 
-I need the qml6glsing plugin so I tried the patch from [1] (see [2] for the=
- patch I have in my local repo). While the patch works for the 1.22.5 versi=
-on (I've tested this), the build fails if the patch is applied on the curre=
-nt version on master, which is at the time of writing 1.24.6. The error I a=
-m getting is in [3]. I haven't yet looked in details, at first it looks lik=
-e the build uses hosts paths when looking for headers (e.g. I/usr/include/6=
-.9.0 -I/usr/include/6.9.0/QtCore). If someone has experienced a similar iss=
-ue or have further info on gstreamer, please reply.
+FILES:${PN}-rtl8723 +=3D " ${nonarch_base_libdir}/firmware/rtl_bt/rtl8723*.=
+bin"
 
-Cheers
-Aleksandar
+I had added the linux-firmware-rtl8723 package to my image. Until a few day=
+s ago, this worked wonderfully.
 
-[1] gstreamer1.0-plugins-good: Provide Qt6 option for qmlgl - Patchwork (yo=
-ctoproject.org) ( https://patchwork.yoctoproject.org/project/oe-core/patch/=
-20231004160911.3030063-1-cordlandwehr@kde.org/#13895 )
+Since about October 18 or 19, adding the files ${nonarch_base_libdir}/firmw=
+are/rtl_bt/rtl8723*.bin causes all firmware packages to end up in the image=
+.
+In a way that is unexplainable to me, the package linux-firmware-rtl8723 se=
+ems to get a dependency on linux-firmware, which causes all firmware packag=
+es to end up in the image.
 
-[2]
---- a/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.24.6.bb
-+++ b/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.24.6.bb
-@@ -33,7 +33,7 @@ X11DEPENDS =3D "virtual/libx11 libsm libxrender libxfixes=
- libxdamage"
-X11ENABLEOPTS =3D "-Dximagesrc=3Denabled -Dximagesrc-xshm=3Denabled -Dximag=
-esrc-xfixes=3Denabled -Dximagesrc-xdamage=3Denabled"
-X11DISABLEOPTS =3D "-Dximagesrc=3Ddisabled -Dximagesrc-xshm=3Ddisabled -Dxi=
-magesrc-xfixes=3Ddisabled -Dximagesrc-xdamage=3Ddisabled"
--QT5WAYLANDDEPENDS =3D "${@bb.utils.contains("DISTRO_FEATURES", "wayland", =
-"qtwayland", "", d)}"
-+QTWAYLANDDEPENDS =3D "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "=
-qtwayland", "", d)}"
-PACKAGECONFIG[amrnb] =C2=A0 =C2=A0 =C2=A0=3D "-Damrnb=3Denabled,-Damrnb=3Dd=
-isabled,opencore-amr"
-PACKAGECONFIG[amrwb] =C2=A0 =C2=A0 =C2=A0=3D "-Damrwbdec=3Denabled,-Damrwbd=
-ec=3Ddisabled,opencore-amr"
-@@ -52,7 +52,8 @@ PACKAGECONFIG[libpng] =C2=A0 =C2=A0 =3D "-Dpng=3Denabled,=
--Dpng=3Ddisabled,libpng"
-PACKAGECONFIG[libv4l2] =C2=A0 =C2=A0=3D "-Dv4l2-libv4l2=3Denabled,-Dv4l2-li=
-bv4l2=3Ddisabled,v4l-utils"
-PACKAGECONFIG[mpg123] =C2=A0 =C2=A0 =3D "-Dmpg123=3Denabled,-Dmpg123=3Ddisa=
-bled,mpg123"
-PACKAGECONFIG[pulseaudio] =3D "-Dpulse=3Denabled,-Dpulse=3Ddisabled,pulseau=
-dio"
--PACKAGECONFIG[qt5] =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "-Dqt5=3Denabled,-Dqt5=
-=3Ddisabled,qtbase qtdeclarative qtbase-native qttools-native ${QT5WAYLANDD=
-EPENDS}"
-+PACKAGECONFIG[qt5] =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "-Dqt5=3Denabled,-Dqt5=
-=3Ddisabled,qtbase qtdeclarative qtbase-native qttools-native ${QTWAYLANDDE=
-PENDS}"
-+PACKAGECONFIG[qt6] =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "-Dqt6=3Denabled,-Dqt6=
-=3Ddisabled,qtbase qtdeclarative qtbase-native qttools-native ${QTWAYLANDDE=
-PENDS}"
-PACKAGECONFIG[soup2] =C2=A0 =C2=A0 =C2=A0=3D "-Dsoup=3Denabled,,libsoup-2.4=
-,,,soup3"
-PACKAGECONFIG[soup3] =C2=A0 =C2=A0 =C2=A0=3D "-Dsoup=3Denabled,,libsoup,,,s=
-oup2"
-PACKAGECONFIG[speex] =C2=A0 =C2=A0 =C2=A0=3D "-Dspeex=3Denabled,-Dspeex=3Dd=
-isabled,speex"
-@@ -63,6 +64,13 @@ PACKAGECONFIG[vpx] =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "-Dvpx=
-=3Denabled,-Dvpx=3Ddisabled,libvpx"
-PACKAGECONFIG[wavpack] =C2=A0 =C2=A0=3D "-Dwavpack=3Denabled,-Dwavpack=3Ddi=
-sabled,wavpack"
-PACKAGECONFIG[x11] =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "${X11ENABLEOPTS},${X11DI=
-SABLEOPTS},${X11DEPENDS}"
-+PACKAGECONFIG:append =3D "qt6"
-+
-+do_configure:prepend() {
-+ =C2=A0 =C2=A0# provide path to qtwaylandscanner
-+ =C2=A0 =C2=A0export PATH=3D${PATH}:${STAGING_DIR_NATIVE}${libexecdir}
-+}
-+
-EXTRA_OEMESON +=3D " \
--Ddoc=3Ddisabled \
--Daalib=3Ddisabled \
+Does anyone have any idea what is happening here?
 
-[3]
-| x86_64-poky-linux-g++ -m64 -march=3Dcore2 -mtune=3Dcore2 -msse3 -mfpmath=
-=3Dsse -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat=
--security -Werror=3Dformat-security --sysroot=3D/data/home/oganikol/project=
-s/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugi=
-ns-good/1.24.6/recipe-sysroot -Iext/qt6/libgstqml6.so.p -Iext/qt6 -I../gst-=
-plugins-good-1.24.6/ext/qt6 -I. -I../gst-plugins-good-1.24.6 -I../gst-plugi=
-ns-good-1.24.6/gst-libs -I/data/home/oganikol/projects/oss/git/poky/build-m=
-aster/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-=
-sysroot/usr/include/gstreamer-1.0 -I/data/home/oganikol/projects/oss/git/po=
-ky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24=
-.6/recipe-sysroot/usr/include/glib-2.0 -I/data/home/oganikol/projects/oss/g=
-it/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good=
-/1.24.6/recipe-sysroot/usr/lib/glib-2.0/include -I/data/home/oganikol/proje=
-cts/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plu=
-gins-good/1.24.6/recipe-sysroot/usr/include/orc-0.4 -I/data/home/oganikol/p=
-rojects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0=
--plugins-good/1.24.6/recipe-sysroot/usr/lib/gstreamer-1.0/include -I/data/h=
-ome/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linu=
-x/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/libdrm -I/dat=
-a/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-l=
-inux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtCore -I/=
-data/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-pok=
-y-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/lib/mkspecs/lin=
-ux-g++ -I/usr/include/6.9.0 -I/usr/include/6.9.0/QtCore -I/data/home/oganik=
-ol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreame=
-r1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtGui -I/usr/include/6.=
-9.0/QtGui -I/data/home/oganikol/projects/oss/git/poky/build-master/tmp/work=
-/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/in=
-clude/QtQml -I/data/home/oganikol/projects/oss/git/poky/build-master/tmp/wo=
-rk/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/=
-include/QtQmlIntegration -I/data/home/oganikol/projects/oss/git/poky/build-=
-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe=
--sysroot/usr/include/QtNetwork -I/usr/include/6.9.0/QtQml -I/data/home/ogan=
-ikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstrea=
-mer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtQuick -I/data/home/=
-oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gs=
-treamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtQmlMeta -I/data=
-/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-li=
-nux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtQmlWorker=
-Script -I/data/home/oganikol/projects/oss/git/poky/build-master/tmp/work/co=
-re2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/inclu=
-de/QtQmlModels -I/data/home/oganikol/projects/oss/git/poky/build-master/tmp=
-/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/u=
-sr/include/QtOpenGL -I/usr/include/6.9.0/QtQuick -I/data/home/oganikol/proj=
-ects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-pl=
-ugins-good/1.24.6/recipe-sysroot/usr/include/QtWaylandClient -fdiagnostics-=
-color=3Dalways -D_GLIBCXX_ASSERTIONS=3D1 -D_FILE_OFFSET_BITS=3D64 -Wall -Wi=
-nvalid-pch -std=3Dc++17 -Wmissing-declarations -Wredundant-decls -Wwrite-st=
-rings -Winit-self -Wmissing-include-dirs -Wno-multichar -Wvla -Wpointer-ari=
-th -O2 -g -fcanon-prefix-map -fmacro-prefix-map=3D/data/home/oganikol/proje=
-cts/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plu=
-gins-good/1.24.6/gst-plugins-good-1.24.6=3D/usr/src/debug/gstreamer1.0-plug=
-ins-good/1.24.6 -fdebug-prefix-map=3D/data/home/oganikol/projects/oss/git/p=
-oky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.2=
-4.6/gst-plugins-good-1.24.6=3D/usr/src/debug/gstreamer1.0-plugins-good/1.24=
-.6 -fmacro-prefix-map=3D/data/home/oganikol/projects/oss/git/poky/build-mas=
-ter/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/build=3D/=
-usr/src/debug/gstreamer1.0-plugins-good/1.24.6 -fdebug-prefix-map=3D/data/h=
-ome/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linu=
-x/gstreamer1.0-plugins-good/1.24.6/build=3D/usr/src/debug/gstreamer1.0-plug=
-ins-good/1.24.6 -fdebug-prefix-map=3D/data/home/oganikol/projects/oss/git/p=
-oky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.2=
-4.6/recipe-sysroot=3D -fmacro-prefix-map=3D/data/home/oganikol/projects/oss=
-/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-go=
-od/1.24.6/recipe-sysroot=3D -fdebug-prefix-map=3D/data/home/oganikol/projec=
-ts/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plug=
-ins-good/1.24.6/recipe-sysroot-native=3D -fmacro-prefix-map=3D/data/home/og=
-anikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstr=
-eamer1.0-plugins-good/1.24.6/recipe-sysroot-native=3D -pipe -fvisibility-in=
-lines-hidden -fPIC -pthread -DQT_WAYLANDCLIENT_LIB -DQT_QUICK_LIB -DQT_QMLM=
-ETA_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QMLMODELS_LIB -DQT_OPENGL_LIB -DQT_QM=
-L_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -=
-DHAVE_CONFIG_H -DHAVE_QT_QPA_HEADER '-DQT_QPA_HEADER=3D<6.9.0/QtGui/qpa/qpl=
-atformnativeinterface.h>' -DHAVE_QT_X11 -DHAVE_QT_WAYLAND -DHAVE_QT_EGLFS -=
-MD -MQ ext/qt6/libgstqml6.so.p/gstqsg6material.cc.o -MF ext/qt6/libgstqml6.=
-so.p/gstqsg6material.cc.o.d -o ext/qt6/libgstqml6.so.p/gstqsg6material.cc.o=
- -c ../gst-plugins-good-1.24.6/ext/qt6/gstqsg6material.cc
-| cc1plus: warning: /usr/include/6.9.0: No such file or directory [-Wmissin=
-g-include-dirs]
-| cc1plus: warning: /usr/include/6.9.0/QtCore: No such file or directory [-=
-Wmissing-include-dirs]
-| cc1plus: warning: /usr/include/6.9.0/QtGui: No such file or directory [-W=
-missing-include-dirs]
-| cc1plus: warning: /usr/include/6.9.0/QtQml: No such file or directory [-W=
-missing-include-dirs]
-| cc1plus: warning: /usr/include/6.9.0/QtQuick: No such file or directory [=
--Wmissing-include-dirs]
-| ../gst-plugins-good-1.24.6/ext/qt6/gstqsg6material.cc:32:10: fatal error:=
- private/qrhi_p.h: No such file or directory
-| =C2=A0 =C2=A032 | #include <private/qrhi_p.h>
-| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~~~~~~~~~~=
-~~
-| compilation terminated.
+Best regards,
+Matthias
 
---kYPkuX9sG45DMK4PAtlw
-Content-Type: text/html; charset="utf-8"
+--_000_PAXPR10MB52772C5FC76FBDCB1FF4341599432PAXPR10MB5277EURP_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Greetings,</div>
-<div>&nbsp;</div>
-<div>(Note that this is not a bug on master or anything)</div>
-<div>&nbsp;</div>
-<div>I need the qml6glsing plugin so I tried the patch from [1] (see [2] fo=
-r the patch I have in my local repo). While the patch works for the 1.22.5 =
-version (I've tested this), the build fails if the patch is applied on the =
-current version on master, which is at the time of writing 1.24.6. The erro=
-r I am getting is in [3]. I haven't yet looked in details, at first it look=
-s like the build uses hosts paths when looking for headers (e.g. I/usr/incl=
-ude/6.9.0 -I/usr/include/6.9.0/QtCore). If someone has experienced a simila=
-r issue or have further info on gstreamer, please reply.</div>
-<div>&nbsp;</div>
-<div>Cheers</div>
-<div>Aleksandar</div>
-<div>&nbsp;</div>
-<div>[1]&nbsp;<a href=3D"https://patchwork.yoctoproject.org/project/oe-core=
-/patch/20231004160911.3030063-1-cordlandwehr@kde.org/#13895">gstreamer1.0-p=
-lugins-good: Provide Qt6 option for qmlgl - Patchwork (yoctoproject.org)</a=
-></div>
-<div>&nbsp;</div>
-<div>[2]</div>
-<div>
-<div>--- a/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.24=
-.6.bb<br />+++ b/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-goo=
-d_1.24.6.bb<br />@@ -33,7 +33,7 @@ X11DEPENDS =3D "virtual/libx11 libsm lib=
-xrender libxfixes libxdamage"<br />&nbsp;X11ENABLEOPTS =3D "-Dximagesrc=3De=
-nabled -Dximagesrc-xshm=3Denabled -Dximagesrc-xfixes=3Denabled -Dximagesrc-=
-xdamage=3Denabled"<br />&nbsp;X11DISABLEOPTS =3D "-Dximagesrc=3Ddisabled -D=
-ximagesrc-xshm=3Ddisabled -Dximagesrc-xfixes=3Ddisabled -Dximagesrc-xdamage=
-=3Ddisabled"</div>
-<div>-QT5WAYLANDDEPENDS =3D "${@bb.utils.contains("DISTRO_FEATURES", "wayla=
-nd", "qtwayland", "", d)}"<br />+QTWAYLANDDEPENDS =3D "${@bb.utils.contains=
-("DISTRO_FEATURES", "wayland", "qtwayland", "", d)}"</div>
-<div>&nbsp;PACKAGECONFIG[amrnb] &nbsp; &nbsp; &nbsp;=3D "-Damrnb=3Denabled,=
--Damrnb=3Ddisabled,opencore-amr"<br />&nbsp;PACKAGECONFIG[amrwb] &nbsp; &nb=
-sp; &nbsp;=3D "-Damrwbdec=3Denabled,-Damrwbdec=3Ddisabled,opencore-amr"<br =
-/>@@ -52,7 +52,8 @@ PACKAGECONFIG[libpng] &nbsp; &nbsp; =3D "-Dpng=3Denable=
-d,-Dpng=3Ddisabled,libpng"<br />&nbsp;PACKAGECONFIG[libv4l2] &nbsp; &nbsp;=
-=3D "-Dv4l2-libv4l2=3Denabled,-Dv4l2-libv4l2=3Ddisabled,v4l-utils"<br />&nb=
-sp;PACKAGECONFIG[mpg123] &nbsp; &nbsp; =3D "-Dmpg123=3Denabled,-Dmpg123=3Dd=
-isabled,mpg123"<br />&nbsp;PACKAGECONFIG[pulseaudio] =3D "-Dpulse=3Denabled=
-,-Dpulse=3Ddisabled,pulseaudio"<br />-PACKAGECONFIG[qt5] &nbsp; &nbsp; &nbs=
-p; &nbsp;=3D "-Dqt5=3Denabled,-Dqt5=3Ddisabled,qtbase qtdeclarative qtbase-=
-native qttools-native ${QT5WAYLANDDEPENDS}"<br />+PACKAGECONFIG[qt5] &nbsp;=
- &nbsp; &nbsp; &nbsp;=3D "-Dqt5=3Denabled,-Dqt5=3Ddisabled,qtbase qtdeclara=
-tive qtbase-native qttools-native ${QTWAYLANDDEPENDS}"<br />+PACKAGECONFIG[=
-qt6] &nbsp; &nbsp; &nbsp; &nbsp;=3D "-Dqt6=3Denabled,-Dqt6=3Ddisabled,qtbas=
-e qtdeclarative qtbase-native qttools-native ${QTWAYLANDDEPENDS}"<br />&nbs=
-p;PACKAGECONFIG[soup2] &nbsp; &nbsp; &nbsp;=3D "-Dsoup=3Denabled,,libsoup-2=
-.4,,,soup3"<br />&nbsp;PACKAGECONFIG[soup3] &nbsp; &nbsp; &nbsp;=3D "-Dsoup=
-=3Denabled,,libsoup,,,soup2"<br />&nbsp;PACKAGECONFIG[speex] &nbsp; &nbsp; =
-&nbsp;=3D "-Dspeex=3Denabled,-Dspeex=3Ddisabled,speex"<br />@@ -63,6 +64,13=
- @@ PACKAGECONFIG[vpx] &nbsp; &nbsp; &nbsp; &nbsp;=3D "-Dvpx=3Denabled,-Dvp=
-x=3Ddisabled,libvpx"<br />&nbsp;PACKAGECONFIG[wavpack] &nbsp; &nbsp;=3D "-D=
-wavpack=3Denabled,-Dwavpack=3Ddisabled,wavpack"<br />&nbsp;PACKAGECONFIG[x1=
-1] &nbsp; &nbsp; &nbsp; &nbsp;=3D "${X11ENABLEOPTS},${X11DISABLEOPTS},${X11=
-DEPENDS}"</div>
-<div>+PACKAGECONFIG:append =3D "qt6"<br />+<br />+do_configure:prepend() {<=
-br />+ &nbsp; &nbsp;# provide path to qtwaylandscanner<br />+ &nbsp; &nbsp;=
-export PATH=3D${PATH}:${STAGING_DIR_NATIVE}${libexecdir}<br />+}<br />+<br =
-/>&nbsp;EXTRA_OEMESON +=3D " \<br />&nbsp; &nbsp; &nbsp;-Ddoc=3Ddisabled \<=
-br />&nbsp; &nbsp; &nbsp;-Daalib=3Ddisabled \</div>
-<div>&nbsp;</div>
-<div>
-<div>[3]</div>
-<div>| x86_64-poky-linux-g++ -m64 -march=3Dcore2 -mtune=3Dcore2 -msse3 -mfp=
-math=3Dsse -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=3D2 -Wformat -Wfo=
-rmat-security -Werror=3Dformat-security --sysroot=3D/data/home/oganikol/pro=
-jects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-p=
-lugins-good/1.24.6/recipe-sysroot -Iext/qt6/libgstqml6.so.p -Iext/qt6 -I../=
-gst-plugins-good-1.24.6/ext/qt6 -I. -I../gst-plugins-good-1.24.6 -I../gst-p=
-lugins-good-1.24.6/gst-libs -I/data/home/oganikol/projects/oss/git/poky/bui=
-ld-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/rec=
-ipe-sysroot/usr/include/gstreamer-1.0 -I/data/home/oganikol/projects/oss/gi=
-t/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/=
-1.24.6/recipe-sysroot/usr/include/glib-2.0 -I/data/home/oganikol/projects/o=
-ss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-=
-good/1.24.6/recipe-sysroot/usr/lib/glib-2.0/include -I/data/home/oganikol/p=
-rojects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0=
--plugins-good/1.24.6/recipe-sysroot/usr/include/orc-0.4 -I/data/home/oganik=
-ol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreame=
-r1.0-plugins-good/1.24.6/recipe-sysroot/usr/lib/gstreamer-1.0/include -I/da=
-ta/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-=
-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/libdrm -I=
-/data/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-po=
-ky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtCore=
- -I/data/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64=
--poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/lib/mkspecs=
-/linux-g++ -I/usr/include/6.9.0 -I/usr/include/6.9.0/QtCore -I/data/home/og=
-anikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstr=
-eamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtGui -I/usr/includ=
-e/6.9.0/QtGui -I/data/home/oganikol/projects/oss/git/poky/build-master/tmp/=
-work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/us=
-r/include/QtQml -I/data/home/oganikol/projects/oss/git/poky/build-master/tm=
-p/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/=
-usr/include/QtQmlIntegration -I/data/home/oganikol/projects/oss/git/poky/bu=
-ild-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/re=
-cipe-sysroot/usr/include/QtNetwork -I/usr/include/6.9.0/QtQml -I/data/home/=
-oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gs=
-treamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtQuick -I/data/h=
-ome/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linu=
-x/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtQmlMeta -I/=
-data/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-pok=
-y-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtQmlWo=
-rkerScript -I/data/home/oganikol/projects/oss/git/poky/build-master/tmp/wor=
-k/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysroot/usr/i=
-nclude/QtQmlModels -I/data/home/oganikol/projects/oss/git/poky/build-master=
-/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/recipe-sysro=
-ot/usr/include/QtOpenGL -I/usr/include/6.9.0/QtQuick -I/data/home/oganikol/=
-projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.=
-0-plugins-good/1.24.6/recipe-sysroot/usr/include/QtWaylandClient -fdiagnost=
-ics-color=3Dalways -D_GLIBCXX_ASSERTIONS=3D1 -D_FILE_OFFSET_BITS=3D64 -Wall=
- -Winvalid-pch -std=3Dc++17 -Wmissing-declarations -Wredundant-decls -Wwrit=
-e-strings -Winit-self -Wmissing-include-dirs -Wno-multichar -Wvla -Wpointer=
--arith -O2 -g -fcanon-prefix-map -fmacro-prefix-map=3D/data/home/oganikol/p=
-rojects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0=
--plugins-good/1.24.6/gst-plugins-good-1.24.6=3D/usr/src/debug/gstreamer1.0-=
-plugins-good/1.24.6 -fdebug-prefix-map=3D/data/home/oganikol/projects/oss/g=
-it/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good=
-/1.24.6/gst-plugins-good-1.24.6=3D/usr/src/debug/gstreamer1.0-plugins-good/=
-1.24.6 -fmacro-prefix-map=3D/data/home/oganikol/projects/oss/git/poky/build=
--master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good/1.24.6/build=
-=3D/usr/src/debug/gstreamer1.0-plugins-good/1.24.6 -fdebug-prefix-map=3D/da=
-ta/home/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-=
-linux/gstreamer1.0-plugins-good/1.24.6/build=3D/usr/src/debug/gstreamer1.0-=
-plugins-good/1.24.6 -fdebug-prefix-map=3D/data/home/oganikol/projects/oss/g=
-it/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugins-good=
-/1.24.6/recipe-sysroot=3D -fmacro-prefix-map=3D/data/home/oganikol/projects=
-/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-plugin=
-s-good/1.24.6/recipe-sysroot=3D -fdebug-prefix-map=3D/data/home/oganikol/pr=
-ojects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/gstreamer1.0-=
-plugins-good/1.24.6/recipe-sysroot-native=3D -fmacro-prefix-map=3D/data/hom=
-e/oganikol/projects/oss/git/poky/build-master/tmp/work/core2-64-poky-linux/=
-gstreamer1.0-plugins-good/1.24.6/recipe-sysroot-native=3D -pipe -fvisibilit=
-y-inlines-hidden -fPIC -pthread -DQT_WAYLANDCLIENT_LIB -DQT_QUICK_LIB -DQT_=
-QMLMETA_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QMLMODELS_LIB -DQT_OPENGL_LIB -DQ=
-T_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_L=
-IB -DHAVE_CONFIG_H -DHAVE_QT_QPA_HEADER '-DQT_QPA_HEADER=3D&lt;6.9.0/QtGui/=
-qpa/qplatformnativeinterface.h&gt;' -DHAVE_QT_X11 -DHAVE_QT_WAYLAND -DHAVE_=
-QT_EGLFS -MD -MQ ext/qt6/libgstqml6.so.p/gstqsg6material.cc.o -MF ext/qt6/l=
-ibgstqml6.so.p/gstqsg6material.cc.o.d -o ext/qt6/libgstqml6.so.p/gstqsg6mat=
-erial.cc.o -c ../gst-plugins-good-1.24.6/ext/qt6/gstqsg6material.cc<br />| =
-cc1plus: warning: /usr/include/6.9.0: No such file or directory [-Wmissing-=
-include-dirs]<br />| cc1plus: warning: /usr/include/6.9.0/QtCore: No such f=
-ile or directory [-Wmissing-include-dirs]<br />| cc1plus: warning: /usr/inc=
-lude/6.9.0/QtGui: No such file or directory [-Wmissing-include-dirs]<br />|=
- cc1plus: warning: /usr/include/6.9.0/QtQml: No such file or directory [-Wm=
-issing-include-dirs]<br />| cc1plus: warning: /usr/include/6.9.0/QtQuick: N=
-o such file or directory [-Wmissing-include-dirs]<br />| ../gst-plugins-goo=
-d-1.24.6/ext/qt6/gstqsg6material.cc:32:10: fatal error: private/qrhi_p.h: N=
-o such file or directory<br />| &nbsp; &nbsp;32 | #include &lt;private/qrhi=
-_p.h&gt;<br />| &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~=
-~~~~~~~~~~~~~~~~<br />| compilation terminated.</div>
-<div>&nbsp;</div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Aptos",sans-serif;
+	mso-ligatures:standardcontextual;
+	mso-fareast-language:EN-US;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:11.0pt;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:bre=
+ak-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal">a few months ago I added Bluetooth firmware via a li=
+nux-firmware_%.bbappend file with the following line:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">FILES:${PN}-rtl8723 +=3D &#8220; ${nonarch_base_libd=
+ir}/firmware/rtl_bt/rtl8723*.bin&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I had added the linux-firmware-rtl8723 package to my=
+ image. Until a few days ago, this worked wonderfully.<br>
+<br>
+Since about October 18 or 19, adding the files ${nonarch_base_libdir}/firmw=
+are/rtl_bt/rtl8723*.bin causes all firmware packages to end up in the image=
+.<o:p></o:p></p>
+<p class=3D"MsoNormal">In a way that is unexplainable to me, the package li=
+nux-firmware-rtl8723 seems to get a dependency on linux-firmware, which cau=
+ses all firmware packages to end up in the image.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Does anyone have any idea what is happening here?<o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Matthias<o:p></o:p></p>
 </div>
-</div>
+</body>
+</html>
 
---kYPkuX9sG45DMK4PAtlw--
+--_000_PAXPR10MB52772C5FC76FBDCB1FF4341599432PAXPR10MB5277EURP_--
 
