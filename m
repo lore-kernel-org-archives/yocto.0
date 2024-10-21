@@ -1,118 +1,175 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E5DED0E6E0
-	for <webhook@archiver.kernel.org>; Mon, 21 Oct 2024 10:16:47 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web11.42711.1729505800787675652
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 852E6D0E6E1
+	for <webhook@archiver.kernel.org>; Mon, 21 Oct 2024 10:21:17 +0000 (UTC)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+ by mx.groups.io with SMTP id smtpd.web10.40931.1729495556824610819
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Oct 2024 03:16:41 -0700
+ Mon, 21 Oct 2024 00:25:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Qo+g3hc2;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539fbe22ac0so4674860e87.2
-        for <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 03:16:40 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=WbeT0r71;
+ spf=pass (domain: gmail.com, ip: 209.85.208.171, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fb599aac99so39786331fa.1
+        for <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 00:25:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729505799; x=1730110599; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4o4giGZGE8mUHXWgd3GOsC4nlAaVGX5Kd/OFLjXqqys=;
-        b=Qo+g3hc2lBhYm5aC6DV15sZel6Z0nke/dc9QEV1GGzDGqD9tI5gbeITEiP72WglNe2
-         dAIoIz7HsanUvXjaxaeIuuGQ/jMUIk0T4JeZ7IVNRmxT3cjE7tDqiB4t1+SF+y5HpPyv
-         qpszlZfh7Hso6slpGqq4Yj8n1FUQI8C6JNeJzV8v3DrwwHLUp9FGIj+9Mc07ev8BwuVu
-         v118JL8I1z4doxzRGE2BNfgXgsBQ/Ubw9bFa3fpDiyMtG8OypJmbrRvAyOV9s11QaBIK
-         2/aN0DQpgJkgijhFZp5IQTKMf0THGc6sZxstp96/ndokiIvLe2uQ9fC75nXYv+sisQzN
-         cQ9A==
+        d=gmail.com; s=20230601; t=1729495553; x=1730100353; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GrBvDBGRacIZUT1yemDqi/fGGOkg3uIqRNZh4w0l5l0=;
+        b=WbeT0r71yc66QjMk+xHQHXpCy/2iXgJpYzbkVsCbb1UOBAjjx8qkIJ2YTG3GqPL06i
+         sqaY3fpJiMFtnxt3wvheIBPKEdUj+h9+XqGS7/R2fdm0/jObUgCKEQfTjYGVfXyRCXhQ
+         WwkXHqGPgLqONfRJKFYELD5QFq0zpESp3Ic1dEFAjX1XgKcynUeDS1WXl4oD39bqQQLT
+         q5je9IsJkcsW3pVtd41z3CBLttWPdcf3mc9rUOZiBOWfaMl93iaIqjb36o9C5yQalJuf
+         3fwHGERDoLLW2KicRrAvfgJyGz75Nhn8/5xkf3l+SQOsSkZ4gEU+3TvsFgieKfKVm+tL
+         UlLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729505799; x=1730110599;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4o4giGZGE8mUHXWgd3GOsC4nlAaVGX5Kd/OFLjXqqys=;
-        b=W+XG4jre91ntdlKiC8kJQgVrqMB8W9+3ZGCwVW9VDma+2GaL1d69MY/l8edOU+DvAn
-         VBgaRd7T+6/Sndl65AzxaPDOLsQUwzn91KZGZoGkkfkUZsTUPMUYvmC35pgzQBgnPhUm
-         77Cy7oeXNKnxoxwWiZoduwCDebu6YZ7528GBiVhSDvW1QA8Kxyt0mJyVjvURiqY2GnpT
-         JE/XqWQoJYf6idvJn+9aqSklyOdZ0wOkAp/SVL/AYK2HruDPQlEDTqXgrHAhTRDv3vPJ
-         2Y3HMvXL0QBfQ+fS2QEqHzvS2gW4At2c5KZ7m902xOvDOIxNR8wHKf0//okdLK9wFpA1
-         +oLg==
-X-Gm-Message-State: AOJu0Yy33kaWzN5fEKtFpYP2Mj7M7LerL6hNHlsezl2pZLNcKNn2UwAm
-	IumNctSg4Q+f5dDy9hdQKWOCi24vPRPb1uLYI4Y7pfmiTrs5VFQHZYYVxmGKHWPy/ERaVfJbtrO
-	5TDuQO6YWIDs3Ca6bfWol2ie1zqNnag==
-X-Google-Smtp-Source: AGHT+IFcuavaZelchL/aZOlzE1T5UMVGn+8y8lur/rR5eprEnjkGUgV6Lbs3P+ZNurzB+u29shQb0or/HJjQ6RolX5M=
-X-Received: by 2002:a05:6512:3054:b0:539:fd10:f07b with SMTP id
- 2adb3069b0e04-53a1549e243mr5622409e87.55.1729505798702; Mon, 21 Oct 2024
- 03:16:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729495553; x=1730100353;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GrBvDBGRacIZUT1yemDqi/fGGOkg3uIqRNZh4w0l5l0=;
+        b=Qk3J1r90MOyCWS/Brut5MWdfVkFGZnzwP2WJJlr/KlTVIdaswdnyja6dLs3Lz8rK04
+         Y8pWdQPbQUQL9BYLrKFl+8I1OXxOcxR+QjimI3SaS+APMIXYxHYJ1fOyMII+QBncEHQF
+         XlA+iHVGx6tAKYNr4fUOxc5je211x62BPjNcAGwr2hp0Q8FqlzTkxDkcxyF0feA5jf0V
+         OQ7eGwcL5TV9237jV2HHcXp6CFGzmDwXpQ8Dhs04nbmU3zR1OJONZeJicshQCxnHGoes
+         5XLjdSTEiTR42jA/GZrDVypWvhEPQK3KpHPZTLr1HhcetNHF3lsuX+3NaphiRN7b1sxb
+         rRoQ==
+X-Gm-Message-State: AOJu0YyhmdUdVTfGYYH8Q4EV14wdGUYdY/ZDkaiWl+eFA/O8dOL830BB
+	YzfY7SlMvgP6GybWJDacJV04S3/T3mte1qcLzirXs1Edl5ZSdQCb1E2WJ2i1h8AS78QCKvBKd5G
+	e55RBhMbmCkJ2ZFWjnlwWnTtoj7THDz9+
+X-Google-Smtp-Source: AGHT+IHUrEZoGVzftyjp6nJgUSWinMkbhHf1+wFVxcpUKQV3ep1qupFH8ggOGxbwJBsx4u4OACs9IZqzo6EcL63g8rs=
+X-Received: by 2002:a2e:2a83:0:b0:2fb:3e01:b2bd with SMTP id
+ 38308e7fff4ca-2fb82eb3db2mr37094401fa.21.1729495552964; Mon, 21 Oct 2024
+ 00:25:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <PAXPR10MB52772C5FC76FBDCB1FF4341599432@PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM>
-In-Reply-To: <PAXPR10MB52772C5FC76FBDCB1FF4341599432@PAXPR10MB5277.EURPRD10.PROD.OUTLOOK.COM>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 21 Oct 2024 12:16:26 +0200
-Message-ID: <CANNYZj83XvvQdzDWyHEL90PpYi1QbsfR1VMOT2BGgHsLWqtZXQ@mail.gmail.com>
-Subject: Re: [yocto] Strange problem when extending the linux-firmware package
-To: yocto@lists.yoctoproject.org, matthias.klein@optimeas.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Mon, 21 Oct 2024 09:25:39 +0200
+Message-ID: <CAGAf8Lya5tRX6CabEYHyMumvahpmd5AUBNERVz2sUyFaLcLUPg@mail.gmail.com>
+Subject: ERROR: Nothing PROVIDES 'virtual/kernel'
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="00000000000013568b0624f7906a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 10:16:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64061
+ <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 10:21:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64062
 
-You need to run 'bitbake -e linux-firmware' and check how RDEPENDS is forme=
-d.
+--00000000000013568b0624f7906a
+Content-Type: text/plain; charset="UTF-8"
 
-Alex
+Hello Yocto Community Support Team,
 
-On Mon, 21 Oct 2024 at 10:33, Matthias Klein via
-lists.yoctoproject.org
-<matthias.klein=3Doptimeas.de@lists.yoctoproject.org> wrote:
->
-> Hello,
->
->
->
-> a few months ago I added Bluetooth firmware via a linux-firmware_%.bbappe=
-nd file with the following line:
->
->
->
-> FILES:${PN}-rtl8723 +=3D =E2=80=9C ${nonarch_base_libdir}/firmware/rtl_bt=
-/rtl8723*.bin=E2=80=9D
->
->
->
-> I had added the linux-firmware-rtl8723 package to my image. Until a few d=
-ays ago, this worked wonderfully.
->
-> Since about October 18 or 19, adding the files ${nonarch_base_libdir}/fir=
-mware/rtl_bt/rtl8723*.bin causes all firmware packages to end up in the ima=
-ge.
->
-> In a way that is unexplainable to me, the package linux-firmware-rtl8723 =
-seems to get a dependency on linux-firmware, which causes all firmware pack=
-ages to end up in the image.
->
->
->
-> Does anyone have any idea what is happening here?
->
->
->
-> Best regards,
->
-> Matthias
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64058): https://lists.yoctoproject.org/g/yocto/messag=
-e/64058
-> Mute This Topic: https://lists.yoctoproject.org/mt/109128695/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+I have an interesting problem to report.
+
+Parsing recipes: 100%
+|########################################################################|
+Time: 0:02:30
+Parsing of 2829 .bb files complete (0 cached, 2829 parsed). 4811
+targets, 1885 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing PROVIDES 'quilt-native'
+quilt-native was skipped: incompatible with machine beaglebone-yocto
+(not in COMPATIBLE_MACHINE)
+ERROR: Nothing PROVIDES 'patch-replacement-native'
+patch-native PROVIDES patch-replacement-native but was skipped:
+incompatible with machine beaglebone-yocto (not in COMPATIBLE_MACHINE)
+ERROR: Nothing PROVIDES 'virtual/fakeroot-native'
+pseudo-native PROVIDES virtual/fakeroot-native but was skipped:
+incompatible with machine beaglebone-yocto (not in COMPATIBLE_MACHINE)
+ERROR: Nothing PROVIDES 'virtual/kernel'
+linux-mainline PROVIDES virtual/kernel but was skipped:
+PREFERRED_PROVIDER_virtual/kernel set to meta-bbb, not linux-mainline
+linux-stable PROVIDES virtual/kernel but was skipped:
+PREFERRED_PROVIDER_virtual/kernel set to meta-bbb, not linux-stable
+linux-yocto-tiny PROVIDES virtual/kernel but was skipped: incompatible
+with machine beaglebone-yocto (not in COMPATIBLE_MACHINE)
+
+Then, many packages fail, since the relationships are incomplete!
+
+Interestingly enough, this happens for the stable kernels'
+definitions. For mainline kernels the local config does work, no such
+issues!?
+
+The local config is attached to the email or stable kernels.
+Namely:
+
+## Define kernel version
+PREFERRED_PROVIDER_virtual/kernel ?= "meta-bbb"
+PREFERRED_VERSION_meta-bbb ?= "6.11%"
+PREFERRED_VERSION_meta-bbb-libc-headers="6.11%"
+...
+MACHINE ?= "beaglebone-yocto"
+## MACHINE ?= "beaglebone"
+DISTRO ??= "poky"
+
+For mainline it looks like this:
+
+## Define kernel version
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
+PREFERRED_VERSION_linux-mainline-libc-headers="6.11%"MACHINE ?=
+"beaglebone-yocto"
+PREFERRED_VERSION_linux-mainline ?= "6.11%"
+...
+MACHINE ?= "beaglebone-yocto"
+## MACHINE ?= "beaglebone"
+DISTRO ??= "poky"
+
+Now, I override poky kernel definitions with meta-bbb repo:
+https://github.com/ZoranStojsavljevic/meta-bbb/blob/styhead/conf/machine/beaglebone.conf
+
+Both the latest mainline recipe:
+https://github.com/ZoranStojsavljevic/meta-bbb/blob/styhead/recipes-kernel/linux/linux-mainline_6.11.bb
+
+And the linux-stable:
+https://github.com/ZoranStojsavljevic/meta-bbb/blob/styhead/recipes-kernel/linux/linux-stable_6.11.bb
+
+Any clue what the problem might be?
+
+Thank you,
+Zee
+_______
+
+--00000000000013568b0624f7906a
+Content-Type: text/plain; charset="US-ASCII"; name="local.conf"
+Content-Disposition: attachment; filename="local.conf"
+Content-Transfer-Encoding: base64
+Content-ID: <f_m2ime3ue0>
+X-Attachment-Id: f_m2ime3ue0
+
+IyBCZWFnbGVCb25lIEJsYWNrCkNPTkZfVkVSU0lPTiA9ICIyIgpQQVRDSFJFU09MVkUgPSAibm9v
+cCIKU1NUQVRFX0RJUiA/PSAiJHtUT1BESVJ9L3NzdGF0ZS1jYWNoZSIKRExfRElSID89ICIke1RP
+UERJUn0vZG93bmxvYWRzIgpUTVBESVIgPz0gIiR7VE9QRElSfS90bXAiClBBQ0tBR0VfQ0xBU1NF
+UyA/PSAicGFja2FnZV9ycG0gcGFja2FnZV9kZWIiCiMjIFNlbGVjdCBzeXN0ZW1kIGFzIGluaXQg
+bWFuYWdlcgpJTklUX01BTkFHRVIgPz0gInN5c3RlbWQiCiMjIFBBQ0tBR0VDT05GSUdfYXBwZW5k
+X3BuLXN5c3RlbWQgPSAiIG5ldHdvcmtkIgoKIyMgRGVmaW5lIGtlcm5lbCB2ZXJzaW9uClBSRUZF
+UlJFRF9QUk9WSURFUl92aXJ0dWFsL2tlcm5lbCA/PSAibWV0YS1iYmIiClBSRUZFUlJFRF9WRVJT
+SU9OX21ldGEtYmJiID89ICI2LjExJSIKUFJFRkVSUkVEX1ZFUlNJT05fbWV0YS1iYmItbGliYy1o
+ZWFkZXJzPSI2LjExJSIKIyMgUFJFRkVSUkVEX1ZFUlNJT05fbWV0YS1iYmIgPz0gIjYuMTAuJSIK
+IyMgUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwva2VybmVsID89ICJsaW51eC1tYWlubGluZSIK
+IyMgUFJFRkVSUkVEX1ZFUlNJT05fbGludXgtbWFpbmxpbmUtbGliYy1oZWFkZXJzPSI2LjExJSIK
+IyMgUFJFRkVSUkVEX1ZFUlNJT05fbGludXgtbWFpbmxpbmUgPz0gIjYuMTElIgoKIyMgbWFzayBm
+b3Igbm9uLW1lbmRlciBidWlsZHMKQkJNQVNLID0gIm1ldGEtYmJiL3JlY2lwZXMtbWVuZGVyIgoK
+IyMgVW5tYXNrIGNhbnV0aWxzIGluIG1ldGEtb3BlbmVtYmVkZGVkLyAob2UpIHNpbmNlIGl0IHdp
+bGwgYmUgdHJhY2tlZCBieSBvZSEKIyMgQkJNQVNLICs9ICJtZXRhLW9wZW5lbWJlZGRlZC9tZXRh
+LW9lL3JlY2lwZXMtZXh0ZW5kZWQvc29ja2V0Y2FuL2NhbnV0aWxzIgoKRVJST1JfUUE6cmVtb3Zl
+OnBuLXUtYm9vdCA9ICJwYXRjaC1zdGF0dXMiCgojIyBtYXNrIGZvciBub24tbGlieGNyeXB0IGJ1
+aWxkcyAodG9vIG1hbnkgZGVwZW5kZW5jaWVzKQojIyBCQk1BU0sgKz0gInBva3kvbWV0YS9yZWNp
+cGVzLWNvcmUvbGlieGNyeXB0LyIKIyMgTGlzdHMgcGFja2FnZXMgdGhhdCBzaG91bGQgbm90IGJl
+IGluc3RhbGxlZCBpbnRvIGFuIGltYWdlCiMjIFBBQ0tBR0VfRVhDTFVERTpwbi10YXJnZXRfaW1h
+Z2UgPSAibGlieGNyeXB0IgojIyBJTUFHRV9JTlNUQUxMOnJlbW92ZSA9ICIgbGlieGNyeXB0Igoj
+IyBQQUNLQUdFQ09ORklHOnJlbW92ZSA9ICIgbGlieGNyeXB0IgoKRVhUUkFfSU1BR0VfRkVBVFVS
+RVMgPSAiZGVidWctdHdlYWtzIgojIyAiZGhjcCI6IG9ic29sZXRlLCBmdW5jdGlvbmFsbHkgcmVw
+bGFjZWQgYnkgImRoY3BjZCIgYW5kICJrZWEiCiMjIENPUkVfSU1BR0VfRVhUUkFfSU5TVEFMTCAr
+PSAiZGhjcC1saWJzIGRoY3Atc2VydmVyIGRoY3Atc2VydmVyLWNvbmZpZyBkaGNwLWNsaWVudCBk
+aGNwLXJlbGF5IGRoY3Atb21zaGVsbCIKQ09SRV9JTUFHRV9FWFRSQV9JTlNUQUxMOmFwcGVuZCA9
+ICJvcGVuc3NoIGNtYWtlIGxpYnNvY2tldGNhbiBuZnMtdXRpbHMgcnQtdGVzdHMgc3RyYWNlIHBy
+b2NwcyBwYWNrYWdlZ3JvdXAtY29yZS1idWlsZGVzc2VudGlhbCAiCkRJU1RST19GRUFUVVJFUzph
+cHBlbmQgPSAiIG5mcyBzeXN0ZW1kIgpJTUFHRV9GU1RZUEVTOmFwcGVuZCA9ICIgY3Bpby54eiIK
+IyMgSU5IRVJJVCArPSAiZXh0cmF1c2VycyIKIyMgRVhUUkFfVVNFUlNfUEFSQU1TID0gInVzZXJt
+b2QgLVAgcm9vdCByb290OyIKCk1BQ0hJTkUgPz0gImJlYWdsZWJvbmUteW9jdG8iCiMjIE1BQ0hJ
+TkUgPz0gImJlYWdsZWJvbmUiCkRJU1RSTyA/Pz0gInBva3kiCkJCTVVMVElDT05GSUcgPz0gIiIK
+CiMjIEJCX05VTUJFUl9USFJFQURTID0gIjEiCiMjIFBBUkFMTEVMX01BS0UgPSAiLWogMSIK
+
+--00000000000013568b0624f7906a--
 
