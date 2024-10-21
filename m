@@ -1,73 +1,85 @@
-Return-Path: <koansoftware@gmail.com>
+Return-Path: <marcus.flyckt@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DD9ED3C927
-	for <webhook@archiver.kernel.org>; Sun, 20 Oct 2024 09:20:09 +0000 (UTC)
-Subject: Re: [yocto] Question regarding executing an install script during the build of an image
-To: "Felix Kuhlmann" <felix-kuhlmann@gmx.de>, yocto@lists.yoctoproject.org
-From: "Marco Cavallini" <koansoftware@gmail.com>
-X-Originating-Location: IT (95.229.48.41)
-X-Originating-Platform: Linux Firefox 131
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A474BD0E6C0
+	for <webhook@archiver.kernel.org>; Mon, 21 Oct 2024 07:32:06 +0000 (UTC)
+Subject: Question Regarding MACHINE_EXTRA_RDEPENDS vs MACHINE_EXTRA_RRECOMMENDS
+To: yocto@lists.yoctoproject.org
+From: "Marcus Flyckt" <marcus.flyckt@gmail.com>
+X-Originating-Location: =?UTF-8?B?S2FybHNrb2dhLCDDlnJlYnJvIENvdW50eSwgU0U=?= (195.22.86.94)
+X-Originating-Platform: Linux Chrome 128
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sun, 20 Oct 2024 02:19:59 -0700
-References: <ZxOc_m5GBfsY2Hhk@fedora>
-In-Reply-To: <ZxOc_m5GBfsY2Hhk@fedora>
-Message-ID: <15945.1729415999980937427@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="W3T6vsndSGFKGSBGv7z4"
+Date: Mon, 21 Oct 2024 00:32:04 -0700
+Message-ID: <wQRX.1729495924467332184.Nfcl@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="V1qyvV3wHsluT2bQup9p"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 20 Oct 2024 09:20:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64055
+ <yocto@lists.yoctoproject.org>; Mon, 21 Oct 2024 07:32:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64056
 
---W3T6vsndSGFKGSBGv7z4
+--V1qyvV3wHsluT2bQup9p
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Felix,
-probably I don't have enough details to give you a complete hint.
-However, the solution usually suggested is to create your own recipe, perha=
-ps using "recipetool create" [1] and then adapt its content (this is what I=
- usually explain during my Yocto training courses).
-Then you can include in your recipe the installation and the management of =
-a launcher script and its systemd service for example (if you are using sys=
-temd) [2].
+Hi,
 
-[1] https://docs.yoctoproject.org/next/dev-manual/new-recipe.html?highlight=
-=3Dsystemd
-[2] https://wiki.koansoftware.com/index.php/Add_a_systemd_service_file_into=
-_a_Yocto_image
+I have a question regarding the use of MACHINE_EXTRA_RDEPENDS and MACHINE_E=
+XTRA_RRECOMMENDS.
 
-Marco Cavallini
-Yocto Project ambassador
+I've written a kernel module to handle a specific aspect of our custom hard=
+ware, and I added it to
+MACHINE_EXTRA_RDEPENDS to ensure it's always installed. However, this trigg=
+ered the following SPDX error:
 
---W3T6vsndSGFKGSBGv7z4
+ERROR:[...] do_rootfs: Unable to find package with name 'kernel-module-my-m=
+odule' in SPDX file [...]/kernel-module-my-module-6.6.23-lf-6.6.y-lf-6.6.y-=
+06244-g79c903fdc910.spdx.json
+ERROR: Logfile of failure stored in: [...]/1.0/temp/log.do_rootfs.725497
+ERROR: Task ([...]:do_rootfs) failed with exit code '1'
+
+It seems that `create-spdx` is confusing the `kernel-module-my-module` pack=
+age with
+`kernel-module-my-module-$KERNEL_VERSION`. The error disappears when I use
+MACHINE_EXTRA_RRECOMMENDS instead.
+
+So my question is: is this a bug, or am I misusing MACHINE_EXTRA_RDEPENDS?
+
+Kind regards
+Marcus
+
+--V1qyvV3wHsluT2bQup9p
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hello Felix,</div>
-<div>probably I don't have enough details to give you a complete hint.</div=
->
-<div>However, the solution usually suggested is to create your own recipe, =
-perhaps using "recipetool create" [1] and then adapt its content (this is w=
-hat I usually explain during my Yocto training courses).</div>
-<div>Then you can include in your recipe the installation and the managemen=
-t of a launcher script and its systemd service for example (if you are usin=
-g systemd) [2].</div>
+<div>Hi,</div>
 <div>&nbsp;</div>
-<div>[1] <a href=3D"https://docs.yoctoproject.org/next/dev-manual/new-recip=
-e.html?highlight=3Dsystemd" target=3D"_blank" rel=3D"noopener">https://docs=
-.yoctoproject.org/next/dev-manual/new-recipe.html?highlight=3Dsystemd</a></=
-div>
-<div>[2] <a href=3D"https://wiki.koansoftware.com/index.php/Add_a_systemd_s=
-ervice_file_into_a_Yocto_image" target=3D"_blank" rel=3D"noopener">https://=
-wiki.koansoftware.com/index.php/Add_a_systemd_service_file_into_a_Yocto_ima=
-ge</a></div>
+<div>I have a question regarding the use of MACHINE_EXTRA_RDEPENDS and MACH=
+INE_EXTRA_RRECOMMENDS.</div>
 <div>&nbsp;</div>
-<div>Marco Cavallini</div>
-<div>Yocto Project ambassador</div>
+<div>I've written a kernel module to handle a specific aspect of our custom=
+ hardware, and I added it to</div>
+<div>MACHINE_EXTRA_RDEPENDS to ensure it's always installed. However, this =
+triggered the following SPDX error:</div>
+<div>&nbsp;</div>
+<div>ERROR:[...] do_rootfs: Unable to find package with name 'kernel-module=
+-my-module' in SPDX file [...]/kernel-module-my-module-6.6.23-lf-6.6.y-lf-6=
+.6.y-06244-g79c903fdc910.spdx.json<br />ERROR: Logfile of failure stored in=
+: [...]/1.0/temp/log.do_rootfs.725497<br />ERROR: Task ([...]:do_rootfs) fa=
+iled with exit code '1'</div>
+<div>&nbsp;</div>
+<div>It seems that `create-spdx` is confusing the `kernel-module-my-module`=
+ package with</div>
+<div>`kernel-module-my-module-$KERNEL_VERSION`. The error disappears when I=
+ use</div>
+<div>MACHINE_EXTRA_RRECOMMENDS instead.</div>
+<div>&nbsp;</div>
+<div>So my question is: is this a bug, or am I misusing MACHINE_EXTRA_RDEPE=
+NDS?</div>
+<div>&nbsp;</div>
+<div>Kind regards<br />Marcus</div>
 
---W3T6vsndSGFKGSBGv7z4--
+--V1qyvV3wHsluT2bQup9p--
 
