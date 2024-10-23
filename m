@@ -1,561 +1,279 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <bartiszosti@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F01D3D2C567
-	for <webhook@archiver.kernel.org>; Tue, 22 Oct 2024 14:57:05 +0000 (UTC)
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
- by mx.groups.io with SMTP id smtpd.web10.20509.1729609015911128657
- for <yocto@lists.yoctoproject.org>;
- Tue, 22 Oct 2024 07:56:56 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20230601.gappssmtp.com header.s=20230601 header.b=c15pyzhs;
- spf=pass (domain: ibeeto.com, ip: 209.85.215.180, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7ea7e250c54so3936762a12.0
-        for <yocto@lists.yoctoproject.org>; Tue, 22 Oct 2024 07:56:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20230601.gappssmtp.com; s=20230601; t=1729609015; x=1730213815; darn=lists.yoctoproject.org;
-        h=in-reply-to:autocrypt:from:content-language:references:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8UxmhaNyF3wv+1vRqJLsx8j02eHUrE6uuxASNi+HiWE=;
-        b=c15pyzhscfB4NLnPPBzTvFEKkFATSSG3j0ERTxGeno/HRECw5BAwc2JNdjkjZGpnqM
-         KqcCnT1p5Yk/Yhqgtdlf6wUaxBnUIc4QOjvkrAJy+6MU04qyNjEbf1sJE4CDOQBXacSw
-         DmgDBmnla5GNcRLNZzYO0nTEZXVgkuVpE9gL7VwlN7CHB/sx2F/zXFrpxXOVOTvX/Pha
-         YucW1E+Vm0PB1rsMcBwal8i15JOO7N1lF8kklk3qYq0Ug4/UfNNlXghGP9vhVxSKDmfF
-         5MvIt8uu31Xr38vX7Of3XidseL5uoJGoZYeMXwV54ZwVdWq0Uos5bFfveXpH/lQILU5S
-         +RIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729609015; x=1730213815;
-        h=in-reply-to:autocrypt:from:content-language:references:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8UxmhaNyF3wv+1vRqJLsx8j02eHUrE6uuxASNi+HiWE=;
-        b=d7l3eWE7Wp5Ps18e4RKtNSRab3YFrluJa37pd2tq4iI8RSVzIv3Rm2oh4jFXw2Y/fT
-         xR3kBoodK6E67L2iYeRNfGm3+gOVRsBUbzu4AGgmoWnVnxbIEdyKUvB3xeK7iM+3z2Ai
-         gP4SXzHPZMgnN99JJkpc5VU6VsvG8GEBoY/7x67na3Td5D0BaZb/k48Ccp4HU1v1+1rB
-         RlKr/VTuLHHHhG46mT7aFuf/sJT2+Yy3dwKHsIqq/iubXfJTsSk6l+5bahplVRSFlKst
-         /e7lqfd3o4rZPdUVsxerYisreum3/XdeM8MDJ/nyOEuZ76XhmIERltFW74NR3/YgqPff
-         wyQQ==
-X-Gm-Message-State: AOJu0Yy+eZvjFGhIdm70f3je6RVs0zW+cL+LFKi84QzzgrF+WyNKpMqm
-	TXgglChwu6k3je/4Q9ec8QN/TeZgh63KhwjYfecpUaaL44Ytd2cMDvE/0eG2DTjOiyaon1gMi1T
-	k
-X-Google-Smtp-Source: AGHT+IF4VoK8BWXXEQbmGyXwS+E4iByaA8R5gI7UEvtKUywPeyIXgFi9oQP1f2KxIS9sr/EXoKsk3A==
-X-Received: by 2002:a17:90b:120c:b0:2e5:5ff9:bee1 with SMTP id 98e67ed59e1d1-2e5618d0e13mr15893454a91.29.1729609014627;
-        Tue, 22 Oct 2024 07:56:54 -0700 (PDT)
-Received: from ?IPV6:2600:8801:8d00:d804:cd39:5769:28bb:21e2? ([2600:8801:8d00:d804:cd39:5769:28bb:21e2])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad366c85sm6281137a91.13.2024.10.22.07.56.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Oct 2024 07:56:54 -0700 (PDT)
-Content-Type: multipart/alternative;
- boundary="------------tRKQG879xAoO5IW6wjTt84Yq"
-Message-ID: <56e8f692-d95e-42f4-97bc-252aeda8e2c0@ibeeto.com>
-Date: Tue, 22 Oct 2024 07:56:53 -0700
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BDC1D2E021
+	for <webhook@archiver.kernel.org>; Wed, 23 Oct 2024 07:52:19 +0000 (UTC)
+Subject: Lack of Qt's libraries in the SDK. #cmake #imx8 #qt #scarthgap #sdk #yocto
+To: yocto@lists.yoctoproject.org
+From: bartiszosti@gmail.com
+X-Originating-Location: =?UTF-8?B?UmF3YSBNYXpvd2llY2thLCDFgcOzZMW6IFZvaXZvZGVzaGlwLCBQTA==?= (46.112.84.96)
+X-Originating-Platform: Windows Chrome 129
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Yocto Kirkstone login issue
-To: yocto@lists.yoctoproject.org, hassanchattarki@gmail.com
-References: <CAPJWBnja5zyWmG=sw5cjBNSstFMhQ-297rK8AC6d6g-GEiD0dw@mail.gmail.com>
-Content-Language: en-US
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-In-Reply-To: <CAPJWBnja5zyWmG=sw5cjBNSstFMhQ-297rK8AC6d6g-GEiD0dw@mail.gmail.com>
+Date: Wed, 23 Oct 2024 00:52:11 -0700
+Message-ID: <ksMx.1729669931763070130.Zh9Z@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="1KODXs3MEwPBVxZCJuFm"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 22 Oct 2024 14:57:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64088
+ <yocto@lists.yoctoproject.org>; Wed, 23 Oct 2024 07:52:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64089
 
-This is a multi-part message in MIME format.
---------------tRKQG879xAoO5IW6wjTt84Yq
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--1KODXs3MEwPBVxZCJuFm
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Any ideas what went wrong?
+Hello,
+I'm working on image which needs Qt6. I=C2=A0succeeded to add the layer, bu=
+ild the image and run it on the hardware.
+Next, I generated the SDK, so I generated it by the "-c populate_sdk" optio=
+n and also I inherited the "populate_sdk_qt6", correct, as well.
+The problem is that I can't build my application through the SDK, because:
+
+>=20
+> cmake ..
+> -- The CXX compiler identification is GNU 13.3.0
+> -- The C compiler identification is GNU 13.3.0
+> -- Detecting CXX compiler ABI info
+> -- Detecting CXX compiler ABI info - done
+> -- Check for working CXX compiler:
+> /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/bin/aarch64-fsl=
+-linux/aarch64-fsl-linux-g++
+> - skipped
+> -- Detecting CXX compile features
+> -- Detecting CXX compile features - done
+> -- Detecting C compiler ABI info
+> -- Detecting C compiler ABI info - done
+> -- Check for working C compiler:
+> /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/bin/aarch64-fsl=
+-linux/aarch64-fsl-linux-gcc
+> - skipped
+> -- Detecting C compile features
+> -- Detecting C compile features - done
+> -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+> -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+> -- Found Threads: TRUE
+> -- Performing Test HAVE_STDATOMIC
+> -- Performing Test HAVE_STDATOMIC - Success
+> -- Found WrapAtomic: TRUE
+> -- Performing Test HAVE_EGL
+> -- Performing Test HAVE_EGL - Success
+> -- Found EGL:
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/include
+> (found version "1.5")
+> -- Performing Test HAVE_GLESv2
+> -- Performing Test HAVE_GLESv2 - Success
+> -- Found GLESv2:
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/include
+> -- Found XKB:
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/libx=
+kbcommon.so
+> (found suitable version "1.6.0", minimum required is "0.5.0")
+> -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+> CMake Error at
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6QmlBuiltins/Qt6QmlBuiltinsTargets.cmake:128
+> (message):
+> The imported target "Qt6::QmlBuiltins" references the file
+> "/home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/lib=
+Qt6QmlBuiltins.a"
+>=20
+> but this file does not exist. =C2=A0Possible reasons include:
+> * The file was deleted, renamed, or moved to another location.
+> * An install or uninstall procedure did not complete successfully.
+> * The installation package was faulty and contained
+> "/home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cma=
+ke/Qt6QmlBuiltins/Qt6QmlBuiltinsTargets.cmake"
+>=20
+> but not all the files it references.
+> Call Stack (most recent call first):
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6QmlBuiltins/Qt6QmlBuiltinsConfig.cmake:65
+> (include)
+> /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/share/cmake-3.2=
+8/Modules/CMakeFindDependencyMacro.cmake:76
+> (find_package)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6/QtPublicDependencyHelpers.cmake:111
+> (find_dependency)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Qml/Qt6QmlDependencies.cmake:42
+> (_qt_internal_find_qt_dependencies)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Qml/Qt6QmlConfig.cmake:54
+> (include)
+> /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/share/cmake-3.2=
+8/Modules/CMakeFindDependencyMacro.cmake:76
+> (find_package)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6/QtPublicDependencyHelpers.cmake:111
+> (find_dependency)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Quick/Qt6QuickDependencies.cmake:42
+> (_qt_internal_find_qt_dependencies)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Quick/Qt6QuickConfig.cmake:53
+> (include)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6/Qt6Config.cmake:179
+> (find_package)
+> CMakeLists.txt:12 (find_package)
+>=20
+> CMake Warning at
+> /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/share/cmake-3.2=
+8/Modules/CMakeFindDependencyMacro.cmake:76
+> (find_package):
+> Found package configuration file:
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Qml/Qt6QmlConfig.cmake
+>=20
+> but it set Qt6Qml_FOUND to FALSE so package "Qt6Qml" is considered to be
+> NOT FOUND.
+> Call Stack (most recent call first):
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6/QtPublicDependencyHelpers.cmake:111
+> (find_dependency)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Quick/Qt6QuickDependencies.cmake:42
+> (_qt_internal_find_qt_dependencies)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Quick/Qt6QuickConfig.cmake:53
+> (include)
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6/Qt6Config.cmake:179
+> (find_package)
+> CMakeLists.txt:12 (find_package)
+>=20
+> CMake Warning at
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6/Qt6Config.cmake:179
+> (find_package):
+> Found package configuration file:
+> /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmak=
+e/Qt6Quick/Qt6QuickConfig.cmake
+>=20
+> but it set Qt6Quick_FOUND to FALSE so package "Qt6Quick" is considered to
+> be NOT FOUND.
+> Call Stack (most recent call first):
+> CMakeLists.txt:12 (find_package)
+>=20
+> -- Configuring incomplete, errors occurred!
+>=20
+>=20
+
+And I'm blocked. The "/home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fs=
+l-linux/usr/lib/libQt6QmlBuiltins.a" doesn;t exist, but this file is in "/h=
+ome/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/lib/libQt6QmlBuilti=
+ns.a". Do you know where the issue is?
+
+I tried the official meta-qt6 and from YoeDistro.
+
+--1KODXs3MEwPBVxZCJuFm
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hello,<br />I'm working on image which needs Qt6. I&nbsp;succeeded to =
+add the layer, build the image and run it on the hardware.<br />Next, I gen=
+erated the SDK, so I generated it by the "-c populate_sdk" option and also =
+I inherited the "populate_sdk_qt6", correct, as well.<br />The problem is t=
+hat I can't build my application through the SDK, because:<br /><br /></div=
 >
-> image.png
-> image.png
->
-With useradd the password has to be encrypted and the option is a 
-lowercase '-p':
+<blockquote>
+<div>
+<div>cmake ..<br />-- The CXX compiler identification is GNU 13.3.0<br />--=
+ The C compiler identification is GNU 13.3.0<br />-- Detecting CXX compiler=
+ ABI info<br />-- Detecting CXX compiler ABI info - done<br />-- Check for =
+working CXX compiler: /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux=
+/usr/bin/aarch64-fsl-linux/aarch64-fsl-linux-g++ - skipped<br />-- Detectin=
+g CXX compile features<br />-- Detecting CXX compile features - done<br />-=
+- Detecting C compiler ABI info<br />-- Detecting C compiler ABI info - don=
+e<br />-- Check for working C compiler: /home/bstk/Documents/sdk/sysroots/x=
+86_64-fslsdk-linux/usr/bin/aarch64-fsl-linux/aarch64-fsl-linux-gcc - skippe=
+d<br />-- Detecting C compile features<br />-- Detecting C compile features=
+ - done<br />-- Performing Test CMAKE_HAVE_LIBC_PTHREAD<br />-- Performing =
+Test CMAKE_HAVE_LIBC_PTHREAD - Success<br />-- Found Threads: TRUE &nbsp;<b=
+r />-- Performing Test HAVE_STDATOMIC<br />-- Performing Test HAVE_STDATOMI=
+C - Success<br />-- Found WrapAtomic: TRUE &nbsp;<br />-- Performing Test H=
+AVE_EGL<br />-- Performing Test HAVE_EGL - Success<br />-- Found EGL: /home=
+/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/include (found =
+version "1.5")&nbsp;<br />-- Performing Test HAVE_GLESv2<br />-- Performing=
+ Test HAVE_GLESv2 - Success<br />-- Found GLESv2: /home/bstk/Documents/sdk/=
+sysroots/cortexa53-crypto-fsl-linux/usr/include &nbsp;<br />-- Found XKB: /=
+home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/libxkbc=
+ommon.so (found suitable version "1.6.0", minimum required is "0.5.0")&nbsp=
+;<br />-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)&nb=
+sp;<br />CMake Error at /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-=
+fsl-linux/usr/lib/cmake/Qt6QmlBuiltins/Qt6QmlBuiltinsTargets.cmake:128 (mes=
+sage):<br />&nbsp; The imported target "Qt6::QmlBuiltins" references the fi=
+le</div>
+<div>&nbsp; &nbsp; &nbsp;"/home/bstk/Documents/sdk/sysroots/cortexa53-crypt=
+o-fsl-linux/usr/lib/libQt6QmlBuiltins.a"</div>
+<div>&nbsp; but this file does not exist. &nbsp;Possible reasons include:</=
+div>
+<div>&nbsp; * The file was deleted, renamed, or moved to another location.<=
+/div>
+<div>&nbsp; * An install or uninstall procedure did not complete successful=
+ly.</div>
+<div>&nbsp; * The installation package was faulty and contained</div>
+<div>&nbsp; &nbsp; &nbsp;"/home/bstk/Documents/sdk/sysroots/cortexa53-crypt=
+o-fsl-linux/usr/lib/cmake/Qt6QmlBuiltins/Qt6QmlBuiltinsTargets.cmake"</div>
+<div>&nbsp; but not all the files it references.</div>
+<div>Call Stack (most recent call first):<br />&nbsp; /home/bstk/Documents/=
+sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmake/Qt6QmlBuiltins/Qt6Qml=
+BuiltinsConfig.cmake:65 (include)<br />&nbsp; /home/bstk/Documents/sdk/sysr=
+oots/x86_64-fslsdk-linux/usr/share/cmake-3.28/Modules/CMakeFindDependencyMa=
+cro.cmake:76 (find_package)<br />&nbsp; /home/bstk/Documents/sdk/sysroots/c=
+ortexa53-crypto-fsl-linux/usr/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake=
+:111 (find_dependency)<br />&nbsp; /home/bstk/Documents/sdk/sysroots/cortex=
+a53-crypto-fsl-linux/usr/lib/cmake/Qt6Qml/Qt6QmlDependencies.cmake:42 (_qt_=
+internal_find_qt_dependencies)<br />&nbsp; /home/bstk/Documents/sdk/sysroot=
+s/cortexa53-crypto-fsl-linux/usr/lib/cmake/Qt6Qml/Qt6QmlConfig.cmake:54 (in=
+clude)<br />&nbsp; /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/us=
+r/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)=
+<br />&nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/u=
+sr/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:111 (find_dependency)<br /=
+>&nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/li=
+b/cmake/Qt6Quick/Qt6QuickDependencies.cmake:42 (_qt_internal_find_qt_depend=
+encies)<br />&nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-=
+linux/usr/lib/cmake/Qt6Quick/Qt6QuickConfig.cmake:53 (include)<br />&nbsp; =
+/home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmake/=
+Qt6/Qt6Config.cmake:179 (find_package)<br />&nbsp; CMakeLists.txt:12 (find_=
+package)</div>
+<div><br />CMake Warning at /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk=
+-linux/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find=
+_package):<br />&nbsp; Found package configuration file:</div>
+<div>&nbsp; &nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-l=
+inux/usr/lib/cmake/Qt6Qml/Qt6QmlConfig.cmake</div>
+<div>&nbsp; but it set Qt6Qml_FOUND to FALSE so package "Qt6Qml" is conside=
+red to be<br />&nbsp; NOT FOUND.<br />Call Stack (most recent call first):<=
+br />&nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/us=
+r/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:111 (find_dependency)<br />=
+&nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib=
+/cmake/Qt6Quick/Qt6QuickDependencies.cmake:42 (_qt_internal_find_qt_depende=
+ncies)<br />&nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-l=
+inux/usr/lib/cmake/Qt6Quick/Qt6QuickConfig.cmake:53 (include)<br />&nbsp; /=
+home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cmake/Q=
+t6/Qt6Config.cmake:179 (find_package)<br />&nbsp; CMakeLists.txt:12 (find_p=
+ackage)</div>
+<div><br />CMake Warning at /home/bstk/Documents/sdk/sysroots/cortexa53-cry=
+pto-fsl-linux/usr/lib/cmake/Qt6/Qt6Config.cmake:179 (find_package):<br />&n=
+bsp; Found package configuration file:</div>
+<div>&nbsp; &nbsp; /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-l=
+inux/usr/lib/cmake/Qt6Quick/Qt6QuickConfig.cmake</div>
+<div>&nbsp; but it set Qt6Quick_FOUND to FALSE so package "Qt6Quick" is con=
+sidered to<br />&nbsp; be NOT FOUND.<br />Call Stack (most recent call firs=
+t):<br />&nbsp; CMakeLists.txt:12 (find_package)</div>
+<div><br />-- Configuring incomplete, errors occurred!</div>
+<div>&nbsp;</div>
+</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>And I'm blocked. The "/home/bstk/Documents/sdk/sysroots/cortexa53-cryp=
+to-fsl-linux/usr/lib/libQt6QmlBuiltins.a" doesn;t exist, but this file is i=
+n "/home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/lib/libQt6QmlB=
+uiltins.a". Do you know where the issue is?&nbsp;<br /><br />I tried the of=
+ficial meta-qt6 and from YoeDistro.</div>
 
-EXTRA_USERS_PARAMS =  "useradd -m -p '`openssl passwd -6 root`' root; "
-
-:rjs
-
---------------tRKQG879xAoO5IW6wjTt84Yq
-Content-Type: multipart/related;
- boundary="------------PqnMyG00PRzLjI0a7XDc0WXr"
-
---------------PqnMyG00PRzLjI0a7XDc0WXr
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <blockquote type="cite"
-cite="mid:CAPJWBnja5zyWmG=sw5cjBNSstFMhQ-297rK8AC6d6g-GEiD0dw@mail.gmail.com">
-      <div dir="ltr">
-        <div>Any ideas what went wrong?</div>
-        <div><br>
-        </div>
-        <img src="cid:part1.7CoNrP0b.9mHLZFSo@ibeeto.com"
-          alt="image.png" width="428" height="65" class=""><br>
-        <div><img src="cid:part2.v5jAE8Oo.W32uJ8QQ@ibeeto.com"
-            alt="image.png" width="542" height="93" class=""><br>
-        </div>
-        <div><br>
-        </div>
-      </div>
-    </blockquote>
-    <p>With useradd the password has to be encrypted and the option is a
-      lowercase '-p':</p>
-    <p>EXTRA_USERS_PARAMS =  "useradd -m -p '`openssl passwd -6 root`'
-      root; "</p>
-    <p>:rjs<br>
-    </p>
-  </body>
-</html>
---------------PqnMyG00PRzLjI0a7XDc0WXr
-Content-Type: image/png; name="image.png"
-Content-Disposition: inline; filename="image.png"
-Content-Id: <part1.7CoNrP0b.9mHLZFSo@ibeeto.com>
-Content-Transfer-Encoding: base64
-
-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
---------------PqnMyG00PRzLjI0a7XDc0WXr
-Content-Type: image/png; name="image.png"
-Content-Disposition: inline; filename="image.png"
-Content-Id: <part2.v5jAE8Oo.W32uJ8QQ@ibeeto.com>
-Content-Transfer-Encoding: base64
-
-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
-
---------------PqnMyG00PRzLjI0a7XDc0WXr--
-
---------------tRKQG879xAoO5IW6wjTt84Yq--
+--1KODXs3MEwPBVxZCJuFm--
 
