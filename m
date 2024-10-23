@@ -1,208 +1,149 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE8EFD2E033
-	for <webhook@archiver.kernel.org>; Wed, 23 Oct 2024 09:34:29 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.4863.1729676067653686997
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72979CDDE60
+	for <webhook@archiver.kernel.org>; Wed, 23 Oct 2024 10:39:10 +0000 (UTC)
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+ by mx.groups.io with SMTP id smtpd.web11.4411.1729673538737311626
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Oct 2024 02:34:28 -0700
+ Wed, 23 Oct 2024 01:52:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Yaer6CHu;
- spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2fb388e64b0so65557331fa.0
-        for <yocto@lists.yoctoproject.org>; Wed, 23 Oct 2024 02:34:27 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=lZnodVbv;
+ spf=pass (domain: gmail.com, ip: 209.85.160.51, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2886e2b878dso2573047fac.2
+        for <yocto@lists.yoctoproject.org>; Wed, 23 Oct 2024 01:52:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729676065; x=1730280865; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1729673538; x=1730278338; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FbptRe6z2gBkliy27NG72tQ1IHAqWDgE/9GfvAMFGYU=;
-        b=Yaer6CHuMXw9gkjPP1WJoUv5ZMs7afTwVlDX0OSt3ECyOcFZfQ+GMXB2ZWZ7liu/fR
-         8P8WAktJwU2Yqf7F6MQR2mOkJ/AwOYWeJLNxsHTokhorpEqs8yUeLyu+aaoEroi/Vrtq
-         6xv9Nvfdc9nBrr86AAZHmaR4UudG6n+En06ai+hmttZz04wp/VAWPucEeGh47AVGk1Gm
-         LimKnJPBtG5Df0PI7P8KoZOEM2Q3vJW+gxzUEOTJnXh06yVi6DT2DjhjSOZVxgN+qzxM
-         XljSzswkHLYmeiweyTdWqFh20nTq2TgHKtLDgHMS/FA9wzbSYSxkERwLAIaOf1dWV4rR
-         OUIg==
+        bh=e9KSc+/Ars2b3LpaOC6mROAFHCXv/kiCRcUk4pU4zDM=;
+        b=lZnodVbvl6IIQeNX/8yF2imZkdRGZmqHtm58HIYXgJt8pnnqBx8Gkjugr7j0Z0Zmxq
+         qaLwofQADYYmSePj2EhLZI47DavlfbSYqK9VcLLHUWORanXevn22BI+/oJqpTL2Eb2pq
+         HP4CmqJ+n/6tzhe/hI9utcRDZbKe05Gjl3kBrWB/xUKJFiCKv4vrSUfXQ9ZX+Bdu9L2G
+         RLPrYhcfAd0PRFhnbWyfYmk/zBJDEESq6jraxlu1gho5z2dL9+BNCv+R51p0nERUKGlG
+         nmZjkz5QHJLhBw1PdimAQdmW2dI9STtdXt0x30oZsyy8knRoIMctf5WxPu0ez+UHBVuj
+         8gIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729676065; x=1730280865;
+        d=1e100.net; s=20230601; t=1729673538; x=1730278338;
         h=content-transfer-encoding:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FbptRe6z2gBkliy27NG72tQ1IHAqWDgE/9GfvAMFGYU=;
-        b=OtyJu17t1TigXBTx33oepifBVx9trGh4/EA14Ucrr2C1lrZ12My/8bCWzpX1SsI5dZ
-         TSJdxMHj1kMqLeAHeJsYUE7NpO7C2MV40u+wHaeHKlddkLlSwKOGBcmthko365Ioc8xV
-         kDNpMYeu2UaGNziPMw4semMXuNGgzrWpOMreMcck4hHaAl/LidwXIBbuSrwFWLAx1LtF
-         PkAqZy7dXynZXGTX/9voNo1MdZYTYb/FzqDrd7+w/mJcNTBSJMLsUvjTZbzozpEH6vaq
-         akldtIZ0cxpqwnbSXCzBElmtEHMNAyZMIihVDANZIvKbCf3Mn7XlhmrJs10wexenV42l
-         W7oQ==
-X-Gm-Message-State: AOJu0Yy+fMcD5R0V3ECY+PGo4YsQ9WZNuNvaML3zmwVRRW4GYyhfZujq
-	ObISm1BeVffU1JxXkjshtnC/1UH3S8c/tx9M1sLg102MS2npwarU0xgRTxW1sI/sCf+13kc41hh
-	Fl4MXNWrjWuZybEINzsNh4qC9tYdFmQ==
-X-Google-Smtp-Source: AGHT+IEoy035P5qunTBMqUMtkNP2FPMaibMWrTU4cRsgBC9DOX9/8OIFDkEH4HqKMPbyXSuJQtTZuUQIKQKnAlbn4Uo=
-X-Received: by 2002:a05:6512:6c5:b0:539:f922:bd4e with SMTP id
- 2adb3069b0e04-53b1a31236cmr895752e87.23.1729676064959; Wed, 23 Oct 2024
- 02:34:24 -0700 (PDT)
+        bh=e9KSc+/Ars2b3LpaOC6mROAFHCXv/kiCRcUk4pU4zDM=;
+        b=HFJYY3HQisx31JBIQlGuQfz9Or+89FsRYy+itfPOk/utblkKxJ2SrqoijZf95/LvAY
+         WAsjKKin5H40P1OTtfPllUGmvVaBIPA9PsbxbQep0rrPEi7sw6BKbcUD4melNVLDx9Yi
+         xBg4QC3nIVIrle0MKXJVJPhx42hF1HcNwlzt4i2N1lFxghc6RFuXPD57rh5DTNlZtv5h
+         yWySDRhOh/c+v1j/q2U8tXD7iUuZD11dO/urS6/BByzKmKMJ0mBB9I7q7syNxpMUpjrl
+         ZtR3vJX7BSDGqGuyfDI9v6qxBnS3Zi+AEi+dJ21fvBHvkxApWsJT9wVaOA+jTR3CVRw8
+         Yysg==
+X-Gm-Message-State: AOJu0YzG/dsDpFDd4Ln0oY229ngZq7n9TJQIPXzEF9FTOjF9ST1YL3X3
+	X/zvvN7wJIw+XXk/ABhZcuwl1IVDcHVIg8yeq1Mfru+FFkBIWXJ1XG8p8L5+9rqmb6gql++Dzv9
+	gILXxDyPprIThw/qQph3+xp0SUh9mfFqm
+X-Google-Smtp-Source: AGHT+IGqbSKaRf5zDrEsDvkzFUv3RQOuzormfZPUukor0YBWGDr0cHvGkZj68Nvd4rXifJnevnpH1FRhepFwsBavcMA=
+X-Received: by 2002:a05:6871:88e:b0:273:cc4a:6d84 with SMTP id
+ 586e51a60fabf-28ccb987ef1mr1965320fac.29.1729673537420; Wed, 23 Oct 2024
+ 01:52:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <ksMx.1729669931763070130.Zh9Z@lists.yoctoproject.org>
-In-Reply-To: <ksMx.1729669931763070130.Zh9Z@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 23 Oct 2024 11:34:12 +0200
-Message-ID: <CANNYZj8i4tt4h+05T99zfSP_nPPFzZm1azCu7KS_pXsnbKNDWg@mail.gmail.com>
-Subject: Re: [yocto] Lack of Qt's libraries in the SDK. #cmake #imx8 #qt
- #scarthgap #sdk #yocto
-To: yocto@lists.yoctoproject.org, bartiszosti@gmail.com
+References: <CAGAf8Lya5tRX6CabEYHyMumvahpmd5AUBNERVz2sUyFaLcLUPg@mail.gmail.com>
+ <24D459CD-39FE-4164-AEA5-A2FB14C047EE@arm.com> <18007503B01FE6A6.24795@lists.yoctoproject.org>
+In-Reply-To: <18007503B01FE6A6.24795@lists.yoctoproject.org>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Wed, 23 Oct 2024 10:52:05 +0200
+Message-ID: <CAGAf8LykSiRQ6QhSCS9eqypA11812HR9uyJvV+t=pByfnzGUjQ@mail.gmail.com>
+Subject: Re: [yocto] ERROR: Nothing PROVIDES 'virtual/kernel'
+To: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Oct 2024 09:34:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64090
+ <yocto@lists.yoctoproject.org>; Wed, 23 Oct 2024 10:39:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64091
 
-This should be reported to maintainers of meta-qt6 perhaps?
+Well... Thank you for the support.
 
-Alex
+I was right.
 
-On Wed, 23 Oct 2024 at 09:52, bartiszosti via lists.yoctoproject.org
-<bartiszosti=3Dgmail.com@lists.yoctoproject.org> wrote:
+ONLY sources for the kernel (defined in POKY).
+
+Mainline and Stable!
+
+Thank you all,
+Zee
+_______
+
+On Mon, Oct 21, 2024 at 1:42=E2=80=AFPM Zoran via lists.yoctoproject.org
+<zoran.stojsavljevic=3Dgmail.com@lists.yoctoproject.org> wrote:
 >
-> Hello,
-> I'm working on image which needs Qt6. I succeeded to add the layer, build=
- the image and run it on the hardware.
-> Next, I generated the SDK, so I generated it by the "-c populate_sdk" opt=
-ion and also I inherited the "populate_sdk_qt6", correct, as well.
-> The problem is that I can't build my application through the SDK, because=
-:
+> Hello people,
 >
-> cmake ..
-> -- The CXX compiler identification is GNU 13.3.0
-> -- The C compiler identification is GNU 13.3.0
-> -- Detecting CXX compiler ABI info
-> -- Detecting CXX compiler ABI info - done
-> -- Check for working CXX compiler: /home/bstk/Documents/sdk/sysroots/x86_=
-64-fslsdk-linux/usr/bin/aarch64-fsl-linux/aarch64-fsl-linux-g++ - skipped
-> -- Detecting CXX compile features
-> -- Detecting CXX compile features - done
-> -- Detecting C compiler ABI info
-> -- Detecting C compiler ABI info - done
-> -- Check for working C compiler: /home/bstk/Documents/sdk/sysroots/x86_64=
--fslsdk-linux/usr/bin/aarch64-fsl-linux/aarch64-fsl-linux-gcc - skipped
-> -- Detecting C compile features
-> -- Detecting C compile features - done
-> -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
-> -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
-> -- Found Threads: TRUE
-> -- Performing Test HAVE_STDATOMIC
-> -- Performing Test HAVE_STDATOMIC - Success
-> -- Found WrapAtomic: TRUE
-> -- Performing Test HAVE_EGL
-> -- Performing Test HAVE_EGL - Success
-> -- Found EGL: /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linu=
-x/usr/include (found version "1.5")
-> -- Performing Test HAVE_GLESv2
-> -- Performing Test HAVE_GLESv2 - Success
-> -- Found GLESv2: /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-l=
-inux/usr/include
-> -- Found XKB: /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linu=
-x/usr/lib/libxkbcommon.so (found suitable version "1.6.0", minimum required=
- is "0.5.0")
-> -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
-> CMake Error at /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-lin=
-ux/usr/lib/cmake/Qt6QmlBuiltins/Qt6QmlBuiltinsTargets.cmake:128 (message):
->   The imported target "Qt6::QmlBuiltins" references the file
->      "/home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/li=
-b/libQt6QmlBuiltins.a"
->   but this file does not exist.  Possible reasons include:
->   * The file was deleted, renamed, or moved to another location.
->   * An install or uninstall procedure did not complete successfully.
->   * The installation package was faulty and contained
->      "/home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/li=
-b/cmake/Qt6QmlBuiltins/Qt6QmlBuiltinsTargets.cmake"
->   but not all the files it references.
-> Call Stack (most recent call first):
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6QmlBuiltins/Qt6QmlBuiltinsConfig.cmake:65 (include)
->   /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/share/cmake-3=
-.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6/QtPublicDependencyHelpers.cmake:111 (find_dependency)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6Qml/Qt6QmlDependencies.cmake:42 (_qt_internal_find_qt_dependencies)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6Qml/Qt6QmlConfig.cmake:54 (include)
->   /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/share/cmake-3=
-.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6/QtPublicDependencyHelpers.cmake:111 (find_dependency)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6Quick/Qt6QuickDependencies.cmake:42 (_qt_internal_find_qt_dependenci=
-es)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6Quick/Qt6QuickConfig.cmake:53 (include)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6/Qt6Config.cmake:179 (find_package)
->   CMakeLists.txt:12 (find_package)
+> I think something changed recently, as usual, as you all, support
+> people change some stuff from release to release.
 >
-> CMake Warning at /home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/us=
-r/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)=
-:
->   Found package configuration file:
->     /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/=
-cmake/Qt6Qml/Qt6QmlConfig.cmake
->   but it set Qt6Qml_FOUND to FALSE so package "Qt6Qml" is considered to b=
-e
->   NOT FOUND.
-> Call Stack (most recent call first):
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6/QtPublicDependencyHelpers.cmake:111 (find_dependency)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6Quick/Qt6QuickDependencies.cmake:42 (_qt_internal_find_qt_dependenci=
-es)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6Quick/Qt6QuickConfig.cmake:53 (include)
->   /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/cm=
-ake/Qt6/Qt6Config.cmake:179 (find_package)
->   CMakeLists.txt:12 (find_package)
+> As an example:
+> S =3D "${WORKDIR}" is no longer supported
+> Replace the line that sets S to "${WORKDIR}" with the appropriate path
+> to your source files.
 >
-> CMake Warning at /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-l=
-inux/usr/lib/cmake/Qt6/Qt6Config.cmake:179 (find_package):
->   Found package configuration file:
->     /home/bstk/Documents/sdk/sysroots/cortexa53-crypto-fsl-linux/usr/lib/=
-cmake/Qt6Quick/Qt6QuickConfig.cmake
->   but it set Qt6Quick_FOUND to FALSE so package "Qt6Quick" is considered =
-to
->   be NOT FOUND.
-> Call Stack (most recent call first):
->   CMakeLists.txt:12 (find_package)
+> For example:
+> S =3D "${WORKDIR}/path/to/source"
+> _______
 >
-> -- Configuring incomplete, errors occurred!
+> I think I need to use mainline and stable as ONLY sources for the
+> kernel (defined in POKY). meta-bbb as kernel provider does NOT apply
+> anymore.
+>
+> I need to check this theory! I know that for the mainline it does work.
+>
+> Thank you,
+> Zee
+> _______
 >
 >
 >
-> And I'm blocked. The "/home/bstk/Documents/sdk/sysroots/cortexa53-crypto-=
-fsl-linux/usr/lib/libQt6QmlBuiltins.a" doesn;t exist, but this file is in "=
-/home/bstk/Documents/sdk/sysroots/x86_64-fslsdk-linux/usr/lib/libQt6QmlBuil=
-tins.a". Do you know where the issue is?
 >
-> I tried the official meta-qt6 and from YoeDistro.
 >
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64089): https://lists.yoctoproject.org/g/yocto/messag=
-e/64089
-> Mute This Topic: https://lists.yoctoproject.org/mt/109166871/1686489
-> Mute #cmake:https://lists.yoctoproject.org/g/yocto/mutehashtag/cmake
-> Mute #imx8:https://lists.yoctoproject.org/g/yocto/mutehashtag/imx8
-> Mute #qt:https://lists.yoctoproject.org/g/yocto/mutehashtag/qt
-> Mute #scarthgap:https://lists.yoctoproject.org/g/yocto/mutehashtag/scarth=
-gap
-> Mute #sdk:https://lists.yoctoproject.org/g/yocto/mutehashtag/sdk
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+> On Mon, Oct 21, 2024 at 12:29=E2=80=AFPM Ross Burton <Ross.Burton@arm.com=
+> wrote:
+> >
+> >
+> >
+> > > On 21 Oct 2024, at 08:25, Zoran via lists.yoctoproject.org <zoran.sto=
+jsavljevic=3Dgmail.com@lists.yoctoproject.org> wrote:
+> > >
+> > > Hello Yocto Community Support Team,
+> > >
+> > > I have an interesting problem to report.
+> > >
+> > > Parsing recipes: 100%
+> > > |####################################################################=
+####|
+> > > Time: 0:02:30
+> > > Parsing of 2829 .bb files complete (0 cached, 2829 parsed). 4811
+> > > targets, 1885 skipped, 0 masked, 0 errors.
+> > > NOTE: Resolving any missing task queue dependencies
+> > > ERROR: Nothing PROVIDES 'quilt-native'
+> > > quilt-native was skipped: incompatible with machine beaglebone-yocto
+> > > (not in COMPATIBLE_MACHINE)
+> >
+> > The kernel problems are not the source of your problem: this is.
+> >
+> > For some reason you=E2=80=99ve managed to break the native/target separ=
+ation: a native recipe shouldn=E2=80=99t care about the target machine.
+> >
+> > Glancing at the layer there=E2=80=99s quite a lot of cruft from older r=
+eleases still, so I suspect you=E2=80=99ve a bit of confusion in there some=
+where.
+> >
+> > FWIW, meta-ti has a beaglebone BSP that is supported by TI, and linux-y=
+octo is pretty much mainline, and if you want _exactly_ mainline then you c=
+an just SRCREV it to the right branch: the linux-yocto git tree contains th=
+e mainline tags too.
+> >
+> > Ross
+>
+>=20
 >
 
