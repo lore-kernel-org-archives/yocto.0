@@ -1,78 +1,118 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <philip.lorenz@bmw.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DC85CE8E97
-	for <webhook@archiver.kernel.org>; Thu, 24 Oct 2024 16:45:02 +0000 (UTC)
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
- by mx.groups.io with SMTP id smtpd.web10.1181.1729788293283746866
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C960CCE8E9B
+	for <webhook@archiver.kernel.org>; Thu, 24 Oct 2024 17:26:52 +0000 (UTC)
+Received: from esa9.hc324-48.eu.iphmx.com (esa9.hc324-48.eu.iphmx.com [207.54.69.27])
+ by mx.groups.io with SMTP id smtpd.web10.2224.1729790804109791575
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Oct 2024 09:44:53 -0700
+ Thu, 24 Oct 2024 10:26:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=jqrT9L7F;
- spf=pass (domain: gmail.com, ip: 209.85.167.42, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539fe76e802so1476924e87.1
-        for <yocto@lists.yoctoproject.org>; Thu, 24 Oct 2024 09:44:53 -0700 (PDT)
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=fijcmRlD;
+ spf=pass (domain: bmw.de, ip: 207.54.69.27, mailfrom: prvs=020f968a7=philip.lorenz@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729788291; x=1730393091; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TzIAB+4q8mJonJ4z97l4+VE4+APrJjKSrExx9jMyUx4=;
-        b=jqrT9L7FFSI6pgr51OgPbl9OcqLVNjT8X7P/Vn6D1RVWOkcssnefW+Qt/htSHN/nOY
-         bCyXupH75oUNjnl1p6dJrwGkwbQxPxNQ0Fp+5KTbdSaHETh4t3qX4Gzgqmq8v5qPHlzK
-         l1F7av4/8DKEiVs6VFpZzNP9HlFBf1Jtm1BKxriWQH1J7DvCGDDINTNQgxkvqg8GRglJ
-         RcdaEIe+iL4IWapNjRB9oBjJHI1PGzd3LZOtSpCHKXxjUNPI9DNS4AvBFSRrKaikpByC
-         tauMTP8RwIwUUuWflLqN/xNbwgCVbJQ5a7kUGVKuaFAM92wGHMwmk6Q9i4K075rj6eTJ
-         3KUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729788291; x=1730393091;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TzIAB+4q8mJonJ4z97l4+VE4+APrJjKSrExx9jMyUx4=;
-        b=NBekOFi6FzwahnNqpmAed3NsIuvM8J0Z0bYBFdDH/aym0QE1ETfd5/cezDiHdPMkRN
-         cy6+Rvcyu958VNgyCknd4M6SA2NyrL84TkWTdgW67MfDQZge3YsVNG5StOVVWqhrL+Td
-         5I54tTJuhIwLtTrkQNk0wjqAK53VvWREJoAkApcU1nqVRdAXZQMWVBK4ygx1BzKUsWTv
-         pZuKiJeeWM0zIQFMzNqwuVR1AWNmCfDTyPVZK/Seb4N/g1VoCacDxhpM4pBa79YSfBiA
-         qFi6s/AM/nx9OdAndMCVPu449o2ZTTObdq8y21Ju75e+KRijrCZJ+/8lA6g/oK+SR3mg
-         UFUg==
-X-Gm-Message-State: AOJu0Ywu7z1YvOx1tmPcM4G3cKpwfjftU1NucNc1gBP7PW7tb0Equ/+e
-	HFrASk8cOFFHXSrxTDej7F9rGqpain6fd146fbcgpDvzJwnlIHLKV0WvUenG6TglvARCcKAmZJl
-	DBrd1yI5WrENC8eWHM2SLslUcZVByMA==
-X-Google-Smtp-Source: AGHT+IHdLgUCqmrwitKdcmRX+7bX2sEGJtJJu0dYBZJhSCblP/U7m1cie9q0q3sQ4KqILt/2llyREtqmY6vMIaRciX0=
-X-Received: by 2002:a05:6512:3c98:b0:534:5453:ecda with SMTP id
- 2adb3069b0e04-53b1a3136d3mr4044411e87.23.1729788291097; Thu, 24 Oct 2024
- 09:44:51 -0700 (PDT)
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1729790803; x=1761326803;
+  h=message-id:date:mime-version:to:from:subject:
+   content-transfer-encoding;
+  bh=JNGOFXhzYzX3J03p3lrmUk9KzoFarl6TYawHkLX9Xm0=;
+  b=fijcmRlDRdb10eYRXcVWAfjIzNqW+I9vgIq9Jr5+jSD06xF+MRKqCbMa
+   XclEblo+2pVW4A97lRUBYjm98ZpYi+vsLgZBsYHb+wx8uZZP1dP9szyZd
+   8Osp6Wv/6TqU/ZEalonnlGH9wAjNe7oGt+9wWmCq48kuGJob9TqkALSuy
+   E=;
+X-CSE-ConnectionGUID: nKrh78i7Tn6o5uixf/VSSw==
+X-CSE-MsgGUID: XX6buiV0SmSEIcPOUdsjPw==
+Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
+ esa9.hc324-48.eu.iphmx.com with ESMTP/TLS; 24 Oct 2024 19:26:41 +0200
+Received: from esabb1.muc ([160.50.100.31])  by esagw6.muc with ESMTP/TLS;
+ 24 Oct 2024 19:26:42 +0200
+Received: from smucmp10e.bmwgroup.net (HELO SMUCMP10E.europe.bmw.corp) ([10.30.13.87])
+ by esabb1.muc with ESMTP/TLS; 24 Oct 2024 19:26:42 +0200
+Received: from [10.242.8.6] (10.30.85.200) by SMUCMP10E.europe.bmw.corp
+ (2a03:1e80:a15:58f::2027) with Microsoft SMTP Server (version=TLS;
+ Thu, 24 Oct 2024 19:26:40 +0200
+X-CSE-ConnectionGUID: dyUbY85JSy6ss/8h3qjKNg==
+X-CSE-MsgGUID: MwkaBrjTSZGPuhSKiwiETg==
+X-CSE-ConnectionGUID: zVwDYBDvQ1i7I7mXqrhrQQ==
+X-CSE-MsgGUID: OWC6pglSTsuvCIlMP6WseA==
+Message-ID: <96c0c00e-7d19-4c27-a7cb-f4f98cfca732@bmw.de>
+Date: Thu, 24 Oct 2024 19:26:37 +0200
 MIME-Version: 1.0
-References: <hr8z.1729679886163625789.9CMP@lists.yoctoproject.org>
- <17835.1729746148931815318@lists.yoctoproject.org> <CA+Kjy2wHN5=iAQd-GqMzGg2VE74wJzjsq4jn7xDUsKE0SYpaFQ@mail.gmail.com>
- <MW3PR18MB3513CC2B4CCCDE888E2391AE8B4E2@MW3PR18MB3513.namprd18.prod.outlook.com>
- <CANNYZj8iQSz07gdFwB5nhyOa3EfsZ04VEjNKaEdgKZGTyuucHg@mail.gmail.com> <CA+Kjy2yRBym9J=g9hWGBawAYxpE65Pki2QrO-nG_A5V2uw+uYA@mail.gmail.com>
-In-Reply-To: <CA+Kjy2yRBym9J=g9hWGBawAYxpE65Pki2QrO-nG_A5V2uw+uYA@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 24 Oct 2024 18:44:39 +0200
-Message-ID: <CANNYZj9S-2u-18zXGmdhPoPa0H8SyP=wCQ=8AToM9OEpM6tshg@mail.gmail.com>
-Subject: Re: [yocto] populate_sysroot not found in x86_64 x86_64_ubuntu-20.04 #yocto
-To: yocto@lists.yoctoproject.org, umeshyv@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+To: <yocto@lists.yoctoproject.org>
+From: Philip Lorenz <philip.lorenz@bmw.de>
+Subject: version-going-backwards issues with shared sstate cache
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SMUCMP07G.europe.bmw.corp (2a03:1e80:a15:58f::22aa) To
+ SMUCMP10E.europe.bmw.corp (2a03:1e80:a15:58f::2027)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 24 Oct 2024 16:45:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64114
+ <yocto@lists.yoctoproject.org>; Thu, 24 Oct 2024 17:26:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64115
 
-On Thu, 24 Oct 2024 at 18:05, umeshyv via lists.yoctoproject.org
-<umeshyv=gmail.com@lists.yoctoproject.org> wrote:
-> My understanding is that do_install() will uncompress tgz files in the target once successful. In the recipe I shared in the yocto forum will copy the tgz files to /opt/tools.
+Hi all,
 
-It will not do this, and you will end up with compressed .tgz files on
-your target device. So you need to delete do_install and SAVEDDIR
-assignment, then run 'bitbake -c unpack your-recipe', then go to
-${WORKDIR} and inspect where and how they were unpacked under that
-directory. Then you can re-write do_install() to copy the actual
-content out of ${WORKDIR} into ${D}/opt/tools/.
+we're currently in process of setting up a shared sstate stream between 
+our workers and have recently run into issues with 
+`version-going-backwards` package_qa errors being raised by builds 
+consuming the shared sstate.
 
-Also, do not call your recipe 'tools-native' - 'native' suffix has a
-special meaning, and should not be used for target recipes.
+In our setup all builders contribute to the shared sstate cache and the 
+builders are using a local PRserv database that is updated whenever 
+changes are merged to the mainline branch. Similarly a the buildhistory 
+is updated whenever commits are merged to the mainline branch and shared 
+with the builders.
 
-Alex
+We've been able to pinpoint the root cause to the following scenario:
+
+Consider a sequence of builds consisting of two commits (named #1 and 
+#2) . Both commits affect some recipe R.
+
+1. In the first build both commits are included. The PR allocated to the 
+packages of R is r0.1. The resulting sstate cache is uploaded to a 
+shared location so it can be used by subsequent builds.
+2. Commit #1 is merged. The build is run again, this time without commit 
+#2. The PR allocated to the packages of R is r0.2. The resulting sstate 
+cache is uploaded to a shared location so it can be used by subsequent 
+builds.
+3. The first build is repeated after merging in the latest branch 
+content. Given that this build includes both #1 (from the branch) and 
+#2, the task hashes are the same as in step 1. and the sstate entry is 
+reused causing a version-going-backwards error.
+
+Unfortunately, this scenario is fairly common in our setup (we typically 
+bundle commits for validation and pick the ones which pass so future 
+validation bundles end up combining merged and unmerged commits) and 
+we're now looking for ways to mitigate this.
+
+So far we've come up with the following options to mitigate this issue
+1. Stop using PRserv: This isn't our preferred option as we'd like to 
+judge from package names whether content has changed / might be different.
+2. Stop using sstate for the packagedata task: We haven't evaluated this 
+yet but the general idea is that an up-to-date PR number is allocated 
+from PRserv in `packagedata`. Given that we do not have a global PRServ 
+at play a new PR would be allocated in the third build and the version 
+would no longer be going backwards. This would not work if a global 
+PRserv database was used but this is not something that we are planning 
+to do.
+
+Is this issue generally known and are there any other recommendations on 
+how to deal with this?
+
+Thanks,
+
+Philip
+
+-- 
+Philip Lorenz
+BMW Car IT GmbH, Software-Plattform, -Integration Connected Company, Lise-Meitner-Straße 14, 89081 Ulm
+-------------------------------------------------------------------------
+BMW Car IT GmbH
+Management: Chris Brandt and Michael Böttrich
+Domicile and Court of Registry: München HRB 134810
+-------------------------------------------------------------------------
+
 
