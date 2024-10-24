@@ -1,229 +1,321 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <jairo.mejiaaponte@belden.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1B77D2E00F
-	for <webhook@archiver.kernel.org>; Thu, 24 Oct 2024 11:02:56 +0000 (UTC)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.59])
- by mx.groups.io with SMTP id smtpd.web10.12105.1729767768603158932
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29747CE8E64
+	for <webhook@archiver.kernel.org>; Thu, 24 Oct 2024 11:28:17 +0000 (UTC)
+Received: from mx0b-00015a02.pphosted.com (mx0b-00015a02.pphosted.com [205.220.178.250])
+ by mx.groups.io with SMTP id smtpd.web11.12375.1729769289887692841
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Oct 2024 04:02:49 -0700
+ Thu, 24 Oct 2024 04:28:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=o/6eB3Zn;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=o/6eB3Zn;
- spf=pass (domain: arm.com, ip: 40.107.21.59, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=FOdZq8KCRMAJSddRQ1pzmwzNqL120Mxzc6FjKZb+yOI/2Gkhy5eiqDwvg0GaYLFPyT2y1LS3lwDoAipk8iuyNjuhbHvkf6/id2BmUZ/y3+5Un0hbRauZekI9umuvIKCnnqYlZfjKbVLOPo7d9eiNa+2VmygrXMs7OQV235ZN1Cnec9i+j0CGbQi69TM3Xxn/jAAGzZg36F5TSclK8Cz8OCAibiiGL3qzmNeC/FxbwCMIc9sQLrs8f3CimLzFMO3l9r8bPDwXxiBH1+UVTox4oGxHG23ydJfv2tWRyOiA8fkt8AXOXEbP/Lo/SznwzYBIO1xsIkOMRhbgVypvhcUy8Q==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aSBXbzJ67aswtpFrxLV/houpFONvMTCrvp1IFxMOSWY=;
- b=PxkC27/NHhdtYsDQDGwghBgt421otuy3AGseHqpEo6cEYA/vermwWUP66NH30c3Sb+JlEBpmtN33EiYRp3GlK3BGN1Nw8n1+3TO0ce44xEwngIJeOz1TIQo4rKKdbW/SpOrafd3bBClL2lnVN490RfP81giNrquUCSML7R4sWvztDOBHgUsDdF2e1f1PamhKQV4uDcrPHXOMu0WAV8chQKpy6DZ2RtZXAdXHZKaydqRfGaIG9BSPbyJepFKaNKNZ+Vh3oniiVWNmBZmjMIIeek3gQnrA7efl2GSrmIYNfDmH0eVZqLBgcxixnwR9ECj77mUkjF56WlZZ/M7JveiWsg==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aSBXbzJ67aswtpFrxLV/houpFONvMTCrvp1IFxMOSWY=;
- b=o/6eB3Znh68bvdQMD02s6vSpPKBNXBpN28gHXftir8mG9TSms45h0/bHCt4RPCW92o5yDtmvdWKI3EyWIEczlp0fYTlQliSLnaXa1qKZVCdsVLWBRIbiLw2KGwYgKsqYpKF4X2qY47tJ4bt2IAD8y6VVyC5a1iI0v8voRqbBmuA=
-Received: from AM9P193CA0002.EURP193.PROD.OUTLOOK.COM (2603:10a6:20b:21e::7)
- by GV1PR08MB11091.eurprd08.prod.outlook.com (2603:10a6:150:1f4::11) with
+ dkim=pass header.i=@belden.com header.s=podpps1 header.b=Kw166rGR;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: belden.com, ip: 205.220.178.250, mailfrom: prvs=0027135c49=jairo.mejiaaponte@belden.com)
+Received: from pps.filterd (m0382793.ppops.net [127.0.0.1])
+	by mx0b-00015a02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49O70lZG010446;
+	Thu, 24 Oct 2024 07:28:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=belden.com; h=
+	content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=podpps1; bh=9RwAPMrLLNm9IHC6X9e51O01A6
+	0N1pLBPmr5EQEl6SU=; b=Kw166rGRzTWbcW5al4d94oY7PMhuSMuDuEh7qlVAxL
+	nk2rjRvCswRHh5kGrws6y44jLlj/hq5o7HihciZKIfMY9X67PAq6ymFfMfQWjtCj
+	MEVe/bt/EdrXVwVsxE3YQPRgCs854myfhZMi2zD2oqZNdBes4Q08mrloIL2lWxSK
+	sLDEmIcmL+xZc8ztEm/t0Py89ZpcS3ZEO36CPzXbvTq+Byy1OQTYR2IOFCV4LNEq
+	HvSgGriLwuW9YsLhbDT/kVVqnZtFiKqubfLM2hfL6OxGKhQFXEXxaAh0sIZtyzmN
+	O+S+jYs4p2Yk8vJGTC08pG1KRglVNQNarvbpRawpH2mg==
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2041.outbound.protection.outlook.com [104.47.55.41])
+	by mx0b-00015a02.pphosted.com (PPS) with ESMTPS id 42em4fbjc7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 24 Oct 2024 07:28:08 -0400 (EDT)
+Received: from MW3PR18MB3513.namprd18.prod.outlook.com (2603:10b6:303:53::8)
+ by BY3PR18MB4755.namprd18.prod.outlook.com (2603:10b6:a03:3ca::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Thu, 24 Oct
- 2024 11:02:44 +0000
-Received: from AM3PEPF0000A78E.eurprd04.prod.outlook.com
- (2603:10a6:20b:21e:cafe::ac) by AM9P193CA0002.outlook.office365.com
- (2603:10a6:20b:21e::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.29 via Frontend
- Transport; Thu, 24 Oct 2024 11:02:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
- pr=C
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- AM3PEPF0000A78E.mail.protection.outlook.com (10.167.16.117) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8093.14
- via Frontend Transport; Thu, 24 Oct 2024 11:02:43 +0000
-Received: ("Tessian outbound 4a86a9c66651:v490"); Thu, 24 Oct 2024 11:02:43 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: 988e553e7451c19a
-X-TessianGatewayMetadata: e8l+qKHAnz4deOit8gtp+DeSdHXUH5dxtQ1TYxp0Zii+DFHo6fCM5qb1XW5z58e70egqW+V0gEJoyAI777hvIVQHPMbL9fMV6pM42RT6I/Q5qpNd0zhaEP9R0XIzkMzuvbu6XaVRTSEFczJp11z5TWjisMei3ceV1cZ37ENAQ8s=
-X-CR-MTA-TID: 64aa7808
-Received: from Lce593d4ed8b7.1
-	by 64aa7808-outbound-1.mta.getcheckrecipient.com id 0A5FE409-7603-4A3B-AD61-5B4EFBD6A370.1;
-	Thu, 24 Oct 2024 11:02:35 +0000
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id Lce593d4ed8b7.1
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Thu, 24 Oct 2024 11:02:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AnmFPQH8AMaPRbhn4qEJYFVfFhWdyMH6ISxBXoDVfnlEMmYN7EczhLaNFOFl3RDAAbnnain1lph4UEjcyB++GvHjGtMwa8qpDDkAdNXz8SXLepHh+VkP7MhRxwSFV0ro86JrEgH9oaYVJ7EDMS+NY4PKqpXLbklRTWW/4rpNLpANapvUO2XEJzrI2rYKMb+zh5Su1H3gmaeRhP2ytPHEZg165kmbY9iL1FB3NPIteqWnWr/Gu49rU4atSt+cGJTyp6zmzA9aG1TE6nN6J7VmOJc8+GYteeOwXMXsAF/BoQqfBsUGRbCgZNFMx/Zze2pJbvQsoX7161fNNmUfrQIM9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aSBXbzJ67aswtpFrxLV/houpFONvMTCrvp1IFxMOSWY=;
- b=WMtcdDqywq9sgsO0AaJrEdL3txZlFuq/T5FoJCjwptg62NT+Xd/uz3CsDm1flDqjoZkHKOsDDblYNhVtQvtzhrCRnMvzWQLZWfOi9aEIjTAUooQVHdgaAAxVYJ6v23LElVtvMs3yca/6t6jzipS+TFTn3h7ujOMG6u96bNUQv1GGsI9JgtdWiowhcFAn9Y31LrJaNW5bQXsq+IrYCgZtxNXwZbkwDfEbuzBXBQ1r/qJFetm8SxAdfSN3HTjCsKDD36kXIRztEoaYZGUJBpNAD32H/DqQIheTCqNv/EpBDpQQuMDrid/wn7tIXXZJaLC8Q6lQrA7zjuflCqsc5o5QxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aSBXbzJ67aswtpFrxLV/houpFONvMTCrvp1IFxMOSWY=;
- b=o/6eB3Znh68bvdQMD02s6vSpPKBNXBpN28gHXftir8mG9TSms45h0/bHCt4RPCW92o5yDtmvdWKI3EyWIEczlp0fYTlQliSLnaXa1qKZVCdsVLWBRIbiLw2KGwYgKsqYpKF4X2qY47tJ4bt2IAD8y6VVyC5a1iI0v8voRqbBmuA=
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
- by PAVPR08MB9404.eurprd08.prod.outlook.com (2603:10a6:102:30f::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Thu, 24 Oct
- 2024 11:02:33 +0000
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::9206:40ba:ef7e:729e]) by PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::9206:40ba:ef7e:729e%3]) with mapi id 15.20.8069.027; Thu, 24 Oct 2024
- 11:02:33 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, "jmeyron@gmail.com"
-	<jmeyron@gmail.com>
-CC: Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [yocto] bitbake: enforce variables to be defined?
-Thread-Topic: [yocto] bitbake: enforce variables to be defined?
-Thread-Index: AQHbJdto+wvDnQUul02QfN3/VgDpALKVloUAgAASpwCAABOEgA==
-Date: Thu, 24 Oct 2024 11:02:33 +0000
-Message-ID: <9B89F23C-61C1-4C50-B70A-03DE4A61F825@arm.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.20; Thu, 24 Oct
+ 2024 11:28:05 +0000
+Received: from MW3PR18MB3513.namprd18.prod.outlook.com
+ ([fe80::4746:3d94:564:8d62]) by MW3PR18MB3513.namprd18.prod.outlook.com
+ ([fe80::4746:3d94:564:8d62%6]) with mapi id 15.20.8093.018; Thu, 24 Oct 2024
+ 11:28:05 +0000
+From: Jairo Mejia Aponte <Jairo.MejiaAponte@belden.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+        "jmeyron@gmail.com" <jmeyron@gmail.com>
+Thread-Topic: [EXTERNAL] Re: [yocto] bitbake: enforce variables to be defined?
+Thread-Index: AQHbJfEnmSTSyrgVQECacTo3tXNjQ7KVqQEAgAAN9F0=
+Date: Thu, 24 Oct 2024 11:28:05 +0000
+Message-ID: 
+ <MW3PR18MB3513BD0421254E2F216DEDB38B4E2@MW3PR18MB3513.namprd18.prod.outlook.com>
 References: <567180e3-3c9c-4422-9e93-b8b206ade10c@cherry.de>
  <16955.1729763552548028616@lists.yoctoproject.org>
 In-Reply-To: <16955.1729763552548028616@lists.yoctoproject.org>
 Accept-Language: en-GB, en-US
-Content-Language: en-US
+Content-Language: en-GB
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3776.700.51.11.1)
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: 
-	PA4PR08MB7411:EE_|PAVPR08MB9404:EE_|AM3PEPF0000A78E:EE_|GV1PR08MB11091:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f580c0e-73e0-4b58-6ccd-08dcf41b62ba
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: 
- BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
-X-Microsoft-Antispam-Message-Info-Original: 
- =?utf-8?B?bHhZa2RKbk1XNUZnaWxWWXJPRFBJNkFKazROQXFMVTBldDNrdmlUemxLNzRz?=
- =?utf-8?B?bHljS3YzUjYyQ0Z0eEJXL0ZwMldmOGhSYk1COVcxdU5IdVV2Q2Q4aXRsNnBP?=
- =?utf-8?B?U3ZUdHVFcEpwemJRRGdVWkRWVFZXWHlXWFFxR25PRlA4R2FUNDNNbklHZk9v?=
- =?utf-8?B?UkZoaHJTYm03OWhqN0lQeGxFL2lsZXRMdG9UcXVjdWI2YlVDQ3FEZFNyNjNG?=
- =?utf-8?B?VlphN3hoeGRxQVZIamFOSjBTWGg3YVh0dlhqMnhCaHNLSnJZbGF5WkR0MVFJ?=
- =?utf-8?B?QWRJMTJoRlMyS0ZEZnZZUHcxY1Y2dGtnSmtPc1hjMGU0UFptbGV0NnNTdDRt?=
- =?utf-8?B?NEh2eml1eWw5bGdSeFcyczdwbEUrVFREK01PdVllRFMxUkRYWmY4K0ZlcXlU?=
- =?utf-8?B?QVMzRXJGRFNvS2pDNUkxczc5OVc4cjFGZWNCRERHL2gyYlYwbG5oNHE5Tnoz?=
- =?utf-8?B?cGVtVzJ3VWprcVFuQWdKdTgyb293TU8xV2IwdG9sTVhIM3pHMEcxMDlhMFRD?=
- =?utf-8?B?Q0szeVp0SDhIeGo5dTNrQ3VINE4yVmpWc0F2QnlKdGQ0SmxUNmpqeW5jNkYv?=
- =?utf-8?B?UVNqeVdNbnhJU1VWNTRiakQ1QzFRK3lJYmhyeTUxT1l5c1hUenNmL0xqeFpP?=
- =?utf-8?B?cWp0c2cwVVQyM29HZW1HNEpIenNDYXJVUk0zcFJjNi95ZjdtNTgrREwwcmRH?=
- =?utf-8?B?K2FTa29lSFY5NWlFdEpOUXgwaXkyN2hnRTltcnpXTzArWmN1dXZ0blUxT2xT?=
- =?utf-8?B?Y3hlVm9nUy9yQlplZ3E5S0lxWmM0UzgvYVIwL1FYK1pGZmplNlBQb3Fubi9V?=
- =?utf-8?B?MnNieFIyVFJNK1A0WGY3bEo5MkZKN2k2VmhqWE1WbFVQWDR5VVFucXlFYjZT?=
- =?utf-8?B?QjdRNUJ4dVJTYlJreWp3bUJBQi9ESW9sWFdRYlJZUkk1SGFaRXp1SEJkdTZm?=
- =?utf-8?B?NGkvMndaWUdXSUxNWnV3L2FwelZVSFh5Q2ZCZVo5Z1VsUWs0aHFOYkF0YklB?=
- =?utf-8?B?UHI1NmVZMVpvV3JmYW9kU01ycGVFTEIyc2hpTnY2MFhyVHdqRXZlSkNmZ2dQ?=
- =?utf-8?B?eFpxL2FWNHVEaEQyQUZ5L3AyR3EzczYzSWptaWErSjgvZ2xtVHV0L29DWjN3?=
- =?utf-8?B?MzBmOEl1ZUk1VUd1OHRBK0QrZEdnQStsdjdITFBTUWJjRXFTVjFHa2t1MmZR?=
- =?utf-8?B?djEzc1FlOUZyUjBUSXR0MlQrL1VMRFc3RXRzcTd4cjZNTGYrVnJSc0N3eXJl?=
- =?utf-8?B?Vllpek9sYzVPbnlIUm9tbStVYkRoWFI4aTBjUmxDL2tUQUVOUFRHaG5Lbndn?=
- =?utf-8?B?RlkyZUhQblZsQWIrMnBFai9MTi8yTEZGaWxEM2NVQ1VuR1ZscmJuMXpLblJN?=
- =?utf-8?B?ckcvc1JKdVlucHpHWTdRU2ZZamtMVGdObFNBekltMzF6RklFYlFLRHZTNHcx?=
- =?utf-8?B?TGNDdU12MUdVdjBxN0FRZUJYam91a1ZnSWM0MzZONWdxSWl1SlFxV1c3cWxB?=
- =?utf-8?B?NDlMS2hXbTFYMXZTUFNBczNVNThrZWkyT2dSK2F3ajBVdjlWQURSNGIwaEJS?=
- =?utf-8?B?L05kVitCbE1lNTI1Q1JVL3RMcmhmS09DR1gvTFMzbFZSRlNHbzNoUE5OMTdW?=
- =?utf-8?B?OGp5U1dpZFhReXZQc21ISmpBTGZNTVBZTXArNlJmMERvUm5FMWZRc0tOeHRp?=
- =?utf-8?B?d2lLQXFuUGNnMzVlR3IwbDRqdGJGdElKNlRqZ0RRcC9TYXFGQmY5TTZvNStX?=
- =?utf-8?B?aVJCVmVvTjZNKzVnTHFTeXovRGtGL2dIdGg4VVlvTzFmaTR3TUZIaUc1bWNp?=
- =?utf-8?Q?KrhdUPZ84eila7zFal93vqJN6X3KU23wf+fOo=3D?=
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <39D4814B4352D342A85F31CA0B923693@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+msip_labels: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW3PR18MB3513:EE_|BY3PR18MB4755:EE_
+x-ms-office365-filtering-correlation-id: d66a949b-9f06-4a87-7056-08dcf41eede2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|366016|1800799024|376014|38070700018|8096899003;
+x-microsoft-antispam-message-info: 
+ =?us-ascii?Q?K5x41Jm5K4VgNYCjZvY2C3UD94zcc5xnKgWHHlVneoj9c2+A708FUKI00p+D?=
+ =?us-ascii?Q?cAyKKBupkBEKUKnQfWtjDgH/14UVCS9rD9g0pB4pgCXQ/HPbKN5TlGy/qvzd?=
+ =?us-ascii?Q?6ixGO6TxXvof444XnXJn3FzUHFZZPU3ss/vdIagtTZaYngT7705lBXK4gKCt?=
+ =?us-ascii?Q?X/oJNZBG8lHFSSjB63oQwCzvmi/71l5AwL+2KvzB09aNDcaJ+6hUT22Cs9FD?=
+ =?us-ascii?Q?9bIjYur/L02ITICm0NWsjPb9N80dhW0y106vQgz6fZBqLFDEL+HikhTaMgnn?=
+ =?us-ascii?Q?STaJaWYohC+2LasaeofcmvOAgTspvRnljSkuvyvfQs/rWnbyGeBU3YmrSaWU?=
+ =?us-ascii?Q?ejrp9e2bWHMcUrBQM7CMyaYojbMDH/cxn9xOJvdJIlE8TlcB4zS4C3Vq0MQO?=
+ =?us-ascii?Q?n7aDGLn45TNk04cBu5rWmKjL6sZnLIlD8Lyn9kliQecazsFmPRAvC9+BTwAv?=
+ =?us-ascii?Q?ov+oefZ9e2pTTMJuAWURg2NXxlojmDNe/Ci1lf2c2EnDLdtPui16ijMzDUOc?=
+ =?us-ascii?Q?7sr9A1kuhZd5wdoJyvhpmrb3+iiUX2Q1AJW7We1uMAY//RK/V3NBSJ6/274d?=
+ =?us-ascii?Q?Ixcht+V+evjhd2i4SdIq+dxvVwCxU1sfEAOwQJWIk3sCBoTsjLIyMLqYrO0o?=
+ =?us-ascii?Q?AJ6hcpT7TWwiAsSJt8Jvlnd+mFAC4Zk5lUbH8RivsX0rQVlLUAJFdd8kzTXL?=
+ =?us-ascii?Q?YN7+RF+2XdMh1cXXrzUm4Oq+Um3FQTwNEB7PAM6/416OkN0KAu0HUYmdG+9t?=
+ =?us-ascii?Q?LWbSQ2RErbA62fI1/bpvlX0ZkjAiYP5/qD/JsDESaYWEqoCqq2YVTloGzmWx?=
+ =?us-ascii?Q?+wg76hwXk490Z1k9ap9ZEVa4B4ILMIrOtvuccBoEqr6F4O2q2EnI8O505cTe?=
+ =?us-ascii?Q?NFCUoSnSeGyc0IfdUtigOxIScQ94EnE1qbsrZKW2ZKGu2wfH5ERs5OPDCNjV?=
+ =?us-ascii?Q?+4MwHKantyjNnXVMHOBvXYv/TQ2EHovFK2+DaRHekNhZwOgoES5+e2SBEJZv?=
+ =?us-ascii?Q?OklnoGfG5PXKk3kHF177vk8VOXf+TCYg9zxx5BoTtSxc49EGYoyNdVQ1Scbt?=
+ =?us-ascii?Q?PUv6s6cfv/xy91eQDfJdD8vvGWpBXql5zRz97V4+xEJvNQ+XhLTdSZRyrxjU?=
+ =?us-ascii?Q?mk1z20scE8YFcgnRwhRf0dxvAMRp4jERbckGIkL0SrloDf5DwKaF4hEMyX+R?=
+ =?us-ascii?Q?xHY5278xhut7rZl2XDxMlnj6k+hZHOE592EMsXa6RIxyGBcmRYSzUJnrO2Qe?=
+ =?us-ascii?Q?XO6mu5bU+Zf+oP7WD14EkBOKybPp3uly5HGwVqaec+QjCWs+L2FmngeryKEN?=
+ =?us-ascii?Q?k0QovY5LEGeuIjcYyO5ZNmH99jycWBscuWkI66rRDZV/mV9rqq2NbqOaeANR?=
+ =?us-ascii?Q?iH2tYmY=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW3PR18MB3513.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(8096899003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?ngogI4sVQRo/uMgVr4j+vFUsDm0CRGUlgJGTOyuUpgvBafatnDX7qfTs3IAg?=
+ =?us-ascii?Q?P+wbNdz8Wy4pB0QsOadTP8eO5oJ7f+3RPrFSUtSjOrVECIS20+61Ap+L4avd?=
+ =?us-ascii?Q?B1AMFSQOHNmJRa3OLdfXZXWAKmOWp0Jo+WGm+YzChjxdsYiy5iyPK5/lGXZq?=
+ =?us-ascii?Q?nwnthBslbJr2Iomz4YvjAaGsyu5ZRriYFntutjKkBuHYDJ9ZP6veUwXfqytP?=
+ =?us-ascii?Q?glHXmnePsCAwk8CixMcK8+bY+IYsS+UcgBkFaPmKnhQShqrjOssDRgeB2ze+?=
+ =?us-ascii?Q?+KNe6kcHkm40BMCwcUGEUbFX9mFToIRxtmdbiz0RlT90/esFMJrnKDHo/qgi?=
+ =?us-ascii?Q?EyIPVZddw7HLjBeJJ/QCo9ft5XnEQSombiA1oh39nBfe2R5BQmdVhun0drGn?=
+ =?us-ascii?Q?5bZHWlp4MLSmoG2sBwdEGf3fUkP/Mcdx6aSD2rLy5B0cm+W7JGiZDNG9OT3D?=
+ =?us-ascii?Q?CeegAfxt4xpYrYGejrNRF+jIS8/mncAXJLKE0zb4sEJbPkgf+trMzc6XKV+n?=
+ =?us-ascii?Q?eEByCPhfhB5zlqRLivAUnjHiHKZJklbYslL1vELK6ePkFOMnsJmmE9l1DkX/?=
+ =?us-ascii?Q?xwxG93jrknqCjZjtdPol28Ugr/XJ1xK2K7jHpRWd6mLLRLy2NnT88nGpl4Lb?=
+ =?us-ascii?Q?oghup0slDBrmcYOn0ZcyP0M0PpLDqlvUV4UYZCMjOiyRRR2Na8XarM+gXDq3?=
+ =?us-ascii?Q?HMpqf42sPTRXYT2GG84PcDLbWqBfjLw3EXTjujDyt4ho0xmQ82oykveqMdoz?=
+ =?us-ascii?Q?wC1xOd3lyD3U2HXUWiCyg0tQsmQGsEfCU4SKBtJ1GShaCxP1HuCam8J+MgfN?=
+ =?us-ascii?Q?W1yaDS+c1xh8YDpYbtSF8H5/nbD+ZlxESadZULujSGyC9qCxyhpaAn0HQ5vt?=
+ =?us-ascii?Q?4IrWcxges8TF2rqLl/K91f2wvViy2hd0o/AD48YPvS9QEdacLxHKrbrDimvD?=
+ =?us-ascii?Q?CkH6M35aX/cZKORmGdYomt91ohXax8f98+TvTyTUe26kT4U+wBqIBaYClI6W?=
+ =?us-ascii?Q?MlVpyEltLdFbzKTtPYnivNjKWyfKweqW8fB2wvhLB5IZCQ3sVy3ctbf/MUlI?=
+ =?us-ascii?Q?zJjUl1HdNaq3mZP51IUKUI4t6kqy9h0WHRw3yILxGCfRSnw3jG0A8GuxEs9q?=
+ =?us-ascii?Q?4+Vt6mAHt/kSpF8kz0OFUjswICjA2zJ8WYwhfww4DXiZcABOwgy0cX+90R94?=
+ =?us-ascii?Q?PZzAQkAKuP1GybLE+w2PeZhpKKvBOduuUj5NTi+d9fX0VUql3KFL51ape2e9?=
+ =?us-ascii?Q?ptXMTqddKlsxod0hY19vB+0Fh4I9Ozoh1WYVo8/qwzPfamRnNv2xcK/Al0fa?=
+ =?us-ascii?Q?AG5FfDhDZwGwDgwPEsArYgbd703EKfeRk0w/8XAGUCvgxXSEIiT1XJpXo/AI?=
+ =?us-ascii?Q?Pgwrd+S1t5TkmCUJmEQtnlHF9CU7wsaal6CT5QWw6Ddk1srCuDzYRXqvzvIq?=
+ =?us-ascii?Q?dXeL/e64B/ARE62EPEhUi+oj7QgU75wQ2BuPQxP8c+NXyY+ZAdkcvx0rAThv?=
+ =?us-ascii?Q?b+B+MRJTh+Q+uIicIMJteTNEjBDNifksIIv79LCJLOoTtjBpPIKmq62FS/yE?=
+ =?us-ascii?Q?zsaZ00JBau/Fzm90CgJDZoNnk1m5TTDG7Dy5f8Z7SIPO1nMjG2ZzCpLNuXai?=
+ =?us-ascii?Q?2A=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_"
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR08MB9404
-Original-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-SkipListedInternetSender: 
- ip=[2603:10a6:102:2a3::12];domain=PA4PR08MB7411.eurprd08.prod.outlook.com
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- AM3PEPF0000A78E.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	fe591988-0737-42ed-aff3-08dcf41b5ca0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|82310400026|35042699022|36860700013|376014;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?dnc0cGsxdmtnRTlzMzRwVUtPZ0t4NmNvc3ZLR2wxUG0wRmN2TWlhMnRkL0tk?=
- =?utf-8?B?VWhtODQrblF6SFZuWUxNajh2bUhCaTA2WkFYc1NVVDF1c1FGUFlHR0pXSFBq?=
- =?utf-8?B?OHhOOWRIYWRtaW1aM2VIa1BqRVpMNDBEUHpSZDhncnBtcEJ0TUR6Rm5Lc0lP?=
- =?utf-8?B?UDZ4U0ZpLzZHWWFXRTh6eTBMUjVoZEFqYU9tNUVXQnExOUkxKzFWZ3MzUHVV?=
- =?utf-8?B?SGMrd0xtMEl3eTdFZGdXYUU2SHZrTTN6SEFjUVhRQVI3RGRtd2FaWlNMV2xC?=
- =?utf-8?B?TXFHbVI4LzdrT1VaQjcxOHI0ZlUvQUZzQVRSeWVRRmVleThidVpzUFpqQ1Z2?=
- =?utf-8?B?REJMeUk3a0J3NkhxTmpJZGVLNEdIOG5jQnhnRkgvaFlCWFJwa3NBVUJTR2tS?=
- =?utf-8?B?M0xtdE15NVhtcUhvQlZ0aElvV3JhdCtGMGdPM21veHJRZUNISFB4VlFGVW1h?=
- =?utf-8?B?bURHRURZcXpadENwYkRJQnBzeis3R3pRL0NCYStlSVZidk1oc3Y2dlFuQ2M4?=
- =?utf-8?B?Wlh2bGt6bThTYkJIYVpHc252YmtBaGdXMldUOE1rQ3VxVEd3Tm5lNFdhVk93?=
- =?utf-8?B?UVFoMGRIU2k4bVhXU3paQUNXekdIN0pIRmhpMjRPVmppei91MmF2RmRQVndp?=
- =?utf-8?B?OXUxNXcxRzRMNG5hTytFZXVFRzQwNmhGMzhEZTVjTE0yVUNHUDdkdUEydTE2?=
- =?utf-8?B?ODd4U01OYU83amIwQkJqQktJUFJNeGo0VGRnd2M2dUNDQ1V1U3VrenhnaUpq?=
- =?utf-8?B?MENSM1lCYWVPQWJiOGZwRnl1cUZGaWIvb2RqSUxvMkQwZzJCNjY5L0I3S1l3?=
- =?utf-8?B?UXIzNUFFbWhVWUsrUjEyYWxqNmtjYkoyYnhKUnZnaWVlbWlVblRVK1d3Tmhp?=
- =?utf-8?B?WFh6a1VmckNOSDk0NTh2ZEZRM2Q4Q2xtU3RaUGVaL1hCSFhVQ2Q4alRjOVoy?=
- =?utf-8?B?TDk4c3ZyeVJuMnJrUTVFQ0tidG1Db3BkN29DVExIR3pLaGszMFhoUFBzWHZT?=
- =?utf-8?B?b29TSnF1OG5saGhPWjBTdXdKSUZFL2VBV1VKaW5kOXVNREZwRUN0dnJpbHhi?=
- =?utf-8?B?MTl2U0ExRE1nM1FseVVRbXJzSHFGTEJZZXhkc2g4cmh3cGhRS29EemV2RWRG?=
- =?utf-8?B?RGpRWGhyellhbkF5ZWFNN21pTnptMG01OCtxTTc2VUFMYVlDQll4U3k4dng0?=
- =?utf-8?B?dmZRN2Jjc2dQdVJOU0dNdzk4ZnVTeWJ0VllOYnRDTFBZdDhCdzRUK0dpQnNK?=
- =?utf-8?B?RGRRUGVCdklHOGdyYU9NRUY5WDBEa0JwdzVnV2ZmTUNPWVRQN3gvNGRFL1VE?=
- =?utf-8?B?WUxxeFl2VlU3TDRwVDRWQU9nK0FqUldVTldBZHhtdGE1aCtsM2RrM0pGRHpI?=
- =?utf-8?B?L1phNmRZVGJvL2VzNDF6WlFFMFF6K3l0ZGRyTm1iTXdXR2ZJNjZzNnN2elNO?=
- =?utf-8?B?ZmFrVXZtUEtlTnhMb2dRM2xpY0hZbVNobmVtNnI4Skp2UlBCekhNSFg2Z2h4?=
- =?utf-8?B?RTh4UHVaRUJleGJ2azViQk80SmEwR05MeVRRbXk5T0pRby9QRHFQNDRncGcy?=
- =?utf-8?B?YW0rbmhMd2JJMWlkYXh0K1F6aktWb1cwNDNTTTMrZHVrcGs4R0pLRWFqeEdn?=
- =?utf-8?B?MWtqODc1RVplOUJibHpzK3hGbWhWQ1gvMmN2REo1NkJYZUpFaW9JcE9TYlhH?=
- =?utf-8?B?UWpiVzl0OWczcWtrQzlab1puQitlOWozcklYcytTTndpYm5YMm9JbzVuWFZN?=
- =?utf-8?B?UmJmYi9VMGV4akR5OW8rM1Z6Wmd3SnczSCtNeTc0ODBFNmpoZm05dUF0ZzBD?=
- =?utf-8?B?VitZNU1TMHlka3FPMDhJbFdNMWorWUdMSmNaV0lXSmJSS0NRTzNyUUZlK1d5?=
- =?utf-8?B?dlVCbFVtaENYNnBjMm5oYWRFMUgrQkNIUDhqY3gwZEl5MEE9PQ==?=
-X-Forefront-Antispam-Report: 
-	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(35042699022)(36860700013)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 11:02:43.6978
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
+	oV8tJ1jAhO+07cpUaexe3dRUobCxMuycRscUztDBR+ZSmYQUx6rU6kp6Ll1BIVNuoichuijlCfNZmZDPIvVPTdf7k3qQB8ubK/BlL5boPvwDKfZ85FT45OAOqLcTSMzkY5GgN2TFVYRaKGRR0MBrg3hodjEaQh1e7wiwmvtmwohDPJOYzyZZCB1w87PakiktQpEz0rjabc1+Q7k2fZwG484irNImFoDQelvZom24397Zh/E7pqQiWybI66BOjEfFRKe//UHpaN5DuPxNhUEu1e7I2zZkbLWJvxwcI37cyCocMQWqcMZBmo/BvXMggygO7mw0J1BLf+0T4blTE+V8jgJLt5QxK7l4X2yLYGni7HTHWSzEzJZR6Db/Q5NH3+gghtB/L2S5h/4kM/8fGsYRp+pVryhLGJVhpixQILZUeABh4DR8TYhwLabojU9ib5iPqU4GuBd373z/lwvPbHuZtFuAkQonorlCw9m+oTj6NpU7TQiP5hgct1YLKUZENrnOd5R9+sRuE6Lx94E6g24BUYaJ8fNeX7HkEp7GjK3KR3jPQb2ULIKwzpAlyAd/tZ5meFJw5q9+++aVBKrI4k5vUQjw9uf6OEIAUbrI6kN71smfQlrZJfjtU5jB0G0X0dGZ7C7h3tDXnCpscm+tDE+cBg==
+X-OriginatorOrg: belden.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR18MB3513.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d66a949b-9f06-4a87-7056-08dcf41eede2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2024 11:28:05.6747
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f580c0e-73e0-4b58-6ccd-08dcf41b62ba
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	AM3PEPF0000A78E.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR08MB11091
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0f7367b1-44f7-45a7-bb10-563965c5f2e5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: a0zSc0Hee9CK/VpkCEYabtCnLDQ4qdqZ1XIVJZroBWceHHumdfT+WTZVqMhImfw0vN9zfwGo2TAE7bJSmHIX81PuUhcX3Pn3biqvon6FSqo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY3PR18MB4755
+X-Proofpoint-GUID: _PG3erKvM9Uh3izNnPBPz6n-2z0CH9VP
+X-Proofpoint-ORIG-GUID: _PG3erKvM9Uh3izNnPBPz6n-2z0CH9VP
+Subject: Re:  Re: [yocto] bitbake: enforce variables to be defined?
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ suspectscore=0 spamscore=0 phishscore=0 clxscore=1011 lowpriorityscore=0
+ mlxlogscore=512 malwarescore=0 bulkscore=0 adultscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410240093
+X-Proofpoint-TriggeredRule: module.spam.rule.outbound_notspam
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 24 Oct 2024 11:02:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64108
+ <yocto@lists.yoctoproject.org>; Thu, 24 Oct 2024 11:28:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64109
 
-DQoNCj4gT24gMjQgT2N0IDIwMjQsIGF0IDEwOjUyLCBKb2NlbHluIE1leXJvbiB2aWEgbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZyA8am1leXJvbj1nbWFpbC5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
-Zz4gd3JvdGU6DQo+IA0KPiBUaGFua3MgUXVlbnRpbiBmb3IgeW91ciBhbnN3ZXIuDQo+ICAgSSBr
-bm93IHRoYXQgSSBjYW4gZG8gdGhhdCBidXQgbXkgcXVlc3Rpb24gd2FzIG1vcmUgdG8ga25vdyBp
-ZiB0aGVyZSB3ZXJlIHN5c3RlbWF0aWMgd2F5IHRvIHRlbGwgQml0QmFrZSB0byBpbnNlcnQgInNl
-dCAtdSIgaW4gYWxsIGRvXyogdGFza3MgaW4gbXkgbGF5ZXIuDQoNCkZvciB0aGF0IGV4YWN0IHF1
-ZXN0aW9uOiBuby4NCg0KVGhlcmXigJlzIGFuIGFyZ3VtZW50IHRvIGJlIG1hZGUgdGhhdCBtYXli
-ZSBvdXIgdGFza3Mgc2hvdWxkIGJlIHN0cm9uZ2VyIGFuZCBkbyB0aGF0IGF1dG9tYXRpY2FsbHku
-ICBJ4oCZbSBjdXJpb3VzIGhvdyBtdWNoIGV4cGxvZGVzIHJpZ2h0IG5vdyBpZiB5b3UgZGlkIGl0
-IGdsb2JhbGx54oCmDQoNClJvc3M=
+--_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+If you need to add something to several recipes, you can create a bbclass a=
+nd make the recipes inherit it.
+
+Ex:
+
+SUMMARY =3D "Enables/disables compile flags for builds"
+
+TARGET_CFLAGS:append =3D "${@ ' -DTEST_ENV' if not d.getVar('RELEASE') else=
+ ''}"
+
+The else is empty, maybe it is not entirely clear in the example. This kind=
+ of approach can be made  for any you want. You can make an append of a tas=
+k and things like that.
+
+Then the recipes would only need to have the line:
+
+inherit <bbclass_name>
+
+Sincerely,
+
+
+Jairo R. Mejia Aponte
+
+________________________________
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
+ of Jocelyn Meyron <jmeyron@gmail.com>
+Sent: 24 October 2024 11:52 AM
+To: Quentin Schulz <quentin.schulz@cherry.de>; yocto@lists.yoctoproject.org=
+ <yocto@lists.yoctoproject.org>
+Subject: [EXTERNAL] Re: [yocto] bitbake: enforce variables to be defined?
+
+
+External Message:Use caution before opening links or attachments
+
+Thanks Quentin for your answer.
+
+I know that I can do that but my question was more to know if there were sy=
+stematic way to tell BitBake to insert "set -u" in all do_* tasks in my lay=
+er.
+
+**********************************************************************
+DISCLAIMER:
+Privileged and/or Confidential information may be contained in this message=
+. If you are not the addressee of this message, you may not copy, use or de=
+liver this message to anyone. In such event, you should destroy the message=
+ and kindly notify the sender by reply e-mail. It is understood that opinio=
+ns or conclusions that do not relate to the official business of the compan=
+y are neither given nor endorsed by the company. Thank You.
+
+--_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+Hi,&nbsp;</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+If you need to add something to several recipes, you can create a bbclass a=
+nd make the recipes
+<b>inherit</b>&nbsp;it.&nbsp;<br>
+<br>
+Ex:<br>
+<br>
+SUMMARY =3D &quot;Enables/disables compile flags for builds&quot;</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+TARGET_CFLAGS:append =3D &quot;${@ ' -DTEST_ENV' if not d.getVar('RELEASE')=
+ else ''}&quot;</div>
+<div id=3D"Signature" class=3D"elementToProof" style=3D"color: inherit;">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+The else is empty, maybe it is not entirely clear in the example. This kind=
+ of approach can be made&nbsp; for any you want. You can make an append of =
+a task and things like that.&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+<br>
+Then the recipes would only need to have the line:<br>
+<br>
+</div>
+<div style=3D"line-height: 19px; white-space: pre; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 11pt; color: rgb(0, 0, 0);">
+inherit &lt;bbclass_name&gt;<br>
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+Sincerely,</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<p style=3D"text-align: left; text-indent: 0px; background-color: white; ma=
+rgin: 0px;">
+<span style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService,=
+ Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);"><b>=
+Jairo R. Mejia Aponte</b></span></p>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto@lists.yoctoproj=
+ect.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of Jocelyn Meyron &l=
+t;jmeyron@gmail.com&gt;<br>
+<b>Sent:</b> 24 October 2024 11:52 AM<br>
+<b>To:</b> Quentin Schulz &lt;quentin.schulz@cherry.de&gt;; yocto@lists.yoc=
+toproject.org &lt;yocto@lists.yoctoproject.org&gt;<br>
+<b>Subject:</b> [EXTERNAL] Re: [yocto] bitbake: enforce variables to be def=
+ined?</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div><font face=3D"calibri light" size=3D"3" color=3D"red">
+<p><b>External Message:</font><font face=3D"calibri light" size=3D"3" color=
+=3D"red">Use caution before opening links or attachments</font></b></p>
+<p></p>
+</div>
+<div>Thanks Quentin for your answer.</div>
+<div>&nbsp;</div>
+<div>I know that I can do that but my question was more to know if there we=
+re systematic way to tell BitBake to insert &quot;set -u&quot; in all do_* =
+tasks in my layer.</div>
+</div>
+
+<HR>DISCLAIMER:<BR>
+Privileged and/or Confidential information may be contained in this message=
+. If you are not the addressee of this message, you may not copy, use or de=
+liver this message to anyone. In such event, you should destroy the message=
+ and kindly notify the sender by reply e-mail. It is understood that opinio=
+ns or conclusions that do not relate to the official business of the compan=
+y are neither given nor endorsed by the company. Thank You.<BR>
+</body>
+</html>
+
+--_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_--
 
