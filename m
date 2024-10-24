@@ -1,321 +1,181 @@
-Return-Path: <jairo.mejiaaponte@belden.com>
+Return-Path: <quentin.schulz@cherry.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 29747CE8E64
-	for <webhook@archiver.kernel.org>; Thu, 24 Oct 2024 11:28:17 +0000 (UTC)
-Received: from mx0b-00015a02.pphosted.com (mx0b-00015a02.pphosted.com [205.220.178.250])
- by mx.groups.io with SMTP id smtpd.web11.12375.1729769289887692841
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3736FCE8E67
+	for <webhook@archiver.kernel.org>; Thu, 24 Oct 2024 11:39:57 +0000 (UTC)
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (EUR03-VI1-obe.outbound.protection.outlook.com [40.107.103.78])
+ by mx.groups.io with SMTP id smtpd.web10.12571.1729769988682931974
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Oct 2024 04:28:10 -0700
+ Thu, 24 Oct 2024 04:39:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@belden.com header.s=podpps1 header.b=Kw166rGR;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: belden.com, ip: 205.220.178.250, mailfrom: prvs=0027135c49=jairo.mejiaaponte@belden.com)
-Received: from pps.filterd (m0382793.ppops.net [127.0.0.1])
-	by mx0b-00015a02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49O70lZG010446;
-	Thu, 24 Oct 2024 07:28:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=belden.com; h=
-	content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=podpps1; bh=9RwAPMrLLNm9IHC6X9e51O01A6
-	0N1pLBPmr5EQEl6SU=; b=Kw166rGRzTWbcW5al4d94oY7PMhuSMuDuEh7qlVAxL
-	nk2rjRvCswRHh5kGrws6y44jLlj/hq5o7HihciZKIfMY9X67PAq6ymFfMfQWjtCj
-	MEVe/bt/EdrXVwVsxE3YQPRgCs854myfhZMi2zD2oqZNdBes4Q08mrloIL2lWxSK
-	sLDEmIcmL+xZc8ztEm/t0Py89ZpcS3ZEO36CPzXbvTq+Byy1OQTYR2IOFCV4LNEq
-	HvSgGriLwuW9YsLhbDT/kVVqnZtFiKqubfLM2hfL6OxGKhQFXEXxaAh0sIZtyzmN
-	O+S+jYs4p2Yk8vJGTC08pG1KRglVNQNarvbpRawpH2mg==
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2041.outbound.protection.outlook.com [104.47.55.41])
-	by mx0b-00015a02.pphosted.com (PPS) with ESMTPS id 42em4fbjc7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 24 Oct 2024 07:28:08 -0400 (EDT)
-Received: from MW3PR18MB3513.namprd18.prod.outlook.com (2603:10b6:303:53::8)
- by BY3PR18MB4755.namprd18.prod.outlook.com (2603:10b6:a03:3ca::8) with
+ dkim=pass header.i=@cherry.de header.s=selector1 header.b=XCOrHpBw;
+ spf=pass (domain: cherry.de, ip: 40.107.103.78, mailfrom: quentin.schulz@cherry.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LevixiR8Iui4DAjIB1Xd0XcSkbJOJkgGPo7aSQDXaHRzLCt/LszHx62jNj0Yc6DkvkrTk/4JDtc3WTkQVgTgnMDSq2GqqbJybvYt9xfmyKtsL3+u70p6conIdUZDIUcbgFVxAf72QmhXoNbXb4I0avHQgBUTkT9TZKrkR22pfvC6ktpsncC4OJuOyWyozwiBMeyflw1GOCaD71QP2HTL/2JPKucPAv3yJvMeqsYiofVs+QMMb2obfWnO4sqVMYiPCIYIq7MFW2pLimgH76dHAOzrbnctY1fnlBVtd9ENWThWMvHrlrA5L7yKYidwTYnBaP8HWLwXz23zMBggyz0ZtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/1uInoYYvsxWt0bLtySBzHkEZRy8m/77CqZ1cwxICsc=;
+ b=HUPZNkOABdDfAvfgHLSosS1DQDJnSui0r8EG2HzaNpSR0k2YZ2w6f3EV3plcqKAAB/xwCfdT5cWF/4hB7W+DUjpX0FTYJLV25bHdpAfduPT63V65dGkz2V5bZuPDnMPffAWeaC7U9Q81k+3wzPmA6aUURtxkS4bxD81xyTPLhrSXZT2WIIzECrcsoubn5fqRPgnYoxp44BZS6bC25Lcx9QkCDE6WaMjtEGpp0s/bpXPgekfKjtWvAbA0x+MNKFa+0xLHB9RVWI15Q8G5gkRglQGCBc9hxRRnRqkuqW+q3Zw0dugFpNw0kG9F4Go98gdw2ibzoCjIK69C6U4etbgiOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/1uInoYYvsxWt0bLtySBzHkEZRy8m/77CqZ1cwxICsc=;
+ b=XCOrHpBwIUQY89R0YgDHedXZT/v1S9RnCkym+Q+OtijuNAgMSKgyXmpAzauB1g7UbPJTDq/t2rwBjAfe4gVUU+ipavTbwnkrtEOINrTQHcw6cTUJp+TTIQ4te36USeWTYY8Yiyo6BSeqLHvSx6jY+vK3KMA1T6rXodYA0nx65rU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
+ by PA4PR04MB7726.eurprd04.prod.outlook.com (2603:10a6:102:ea::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.20; Thu, 24 Oct
- 2024 11:28:05 +0000
-Received: from MW3PR18MB3513.namprd18.prod.outlook.com
- ([fe80::4746:3d94:564:8d62]) by MW3PR18MB3513.namprd18.prod.outlook.com
- ([fe80::4746:3d94:564:8d62%6]) with mapi id 15.20.8093.018; Thu, 24 Oct 2024
- 11:28:05 +0000
-From: Jairo Mejia Aponte <Jairo.MejiaAponte@belden.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-        "jmeyron@gmail.com" <jmeyron@gmail.com>
-Thread-Topic: [EXTERNAL] Re: [yocto] bitbake: enforce variables to be defined?
-Thread-Index: AQHbJfEnmSTSyrgVQECacTo3tXNjQ7KVqQEAgAAN9F0=
-Date: Thu, 24 Oct 2024 11:28:05 +0000
-Message-ID: 
- <MW3PR18MB3513BD0421254E2F216DEDB38B4E2@MW3PR18MB3513.namprd18.prod.outlook.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Thu, 24 Oct
+ 2024 11:39:44 +0000
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a%7]) with mapi id 15.20.8093.014; Thu, 24 Oct 2024
+ 11:39:44 +0000
+Message-ID: <0c491baf-f5b9-4508-8f3d-2ed4b3668c99@cherry.de>
+Date: Thu, 24 Oct 2024 13:39:43 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] bitbake: enforce variables to be defined?
+To: yocto@lists.yoctoproject.org, jairo.mejiaaponte@belden.com,
+ "jmeyron@gmail.com" <jmeyron@gmail.com>
 References: <567180e3-3c9c-4422-9e93-b8b206ade10c@cherry.de>
  <16955.1729763552548028616@lists.yoctoproject.org>
-In-Reply-To: <16955.1729763552548028616@lists.yoctoproject.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW3PR18MB3513:EE_|BY3PR18MB4755:EE_
-x-ms-office365-filtering-correlation-id: d66a949b-9f06-4a87-7056-08dcf41eede2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|366016|1800799024|376014|38070700018|8096899003;
-x-microsoft-antispam-message-info: 
- =?us-ascii?Q?K5x41Jm5K4VgNYCjZvY2C3UD94zcc5xnKgWHHlVneoj9c2+A708FUKI00p+D?=
- =?us-ascii?Q?cAyKKBupkBEKUKnQfWtjDgH/14UVCS9rD9g0pB4pgCXQ/HPbKN5TlGy/qvzd?=
- =?us-ascii?Q?6ixGO6TxXvof444XnXJn3FzUHFZZPU3ss/vdIagtTZaYngT7705lBXK4gKCt?=
- =?us-ascii?Q?X/oJNZBG8lHFSSjB63oQwCzvmi/71l5AwL+2KvzB09aNDcaJ+6hUT22Cs9FD?=
- =?us-ascii?Q?9bIjYur/L02ITICm0NWsjPb9N80dhW0y106vQgz6fZBqLFDEL+HikhTaMgnn?=
- =?us-ascii?Q?STaJaWYohC+2LasaeofcmvOAgTspvRnljSkuvyvfQs/rWnbyGeBU3YmrSaWU?=
- =?us-ascii?Q?ejrp9e2bWHMcUrBQM7CMyaYojbMDH/cxn9xOJvdJIlE8TlcB4zS4C3Vq0MQO?=
- =?us-ascii?Q?n7aDGLn45TNk04cBu5rWmKjL6sZnLIlD8Lyn9kliQecazsFmPRAvC9+BTwAv?=
- =?us-ascii?Q?ov+oefZ9e2pTTMJuAWURg2NXxlojmDNe/Ci1lf2c2EnDLdtPui16ijMzDUOc?=
- =?us-ascii?Q?7sr9A1kuhZd5wdoJyvhpmrb3+iiUX2Q1AJW7We1uMAY//RK/V3NBSJ6/274d?=
- =?us-ascii?Q?Ixcht+V+evjhd2i4SdIq+dxvVwCxU1sfEAOwQJWIk3sCBoTsjLIyMLqYrO0o?=
- =?us-ascii?Q?AJ6hcpT7TWwiAsSJt8Jvlnd+mFAC4Zk5lUbH8RivsX0rQVlLUAJFdd8kzTXL?=
- =?us-ascii?Q?YN7+RF+2XdMh1cXXrzUm4Oq+Um3FQTwNEB7PAM6/416OkN0KAu0HUYmdG+9t?=
- =?us-ascii?Q?LWbSQ2RErbA62fI1/bpvlX0ZkjAiYP5/qD/JsDESaYWEqoCqq2YVTloGzmWx?=
- =?us-ascii?Q?+wg76hwXk490Z1k9ap9ZEVa4B4ILMIrOtvuccBoEqr6F4O2q2EnI8O505cTe?=
- =?us-ascii?Q?NFCUoSnSeGyc0IfdUtigOxIScQ94EnE1qbsrZKW2ZKGu2wfH5ERs5OPDCNjV?=
- =?us-ascii?Q?+4MwHKantyjNnXVMHOBvXYv/TQ2EHovFK2+DaRHekNhZwOgoES5+e2SBEJZv?=
- =?us-ascii?Q?OklnoGfG5PXKk3kHF177vk8VOXf+TCYg9zxx5BoTtSxc49EGYoyNdVQ1Scbt?=
- =?us-ascii?Q?PUv6s6cfv/xy91eQDfJdD8vvGWpBXql5zRz97V4+xEJvNQ+XhLTdSZRyrxjU?=
- =?us-ascii?Q?mk1z20scE8YFcgnRwhRf0dxvAMRp4jERbckGIkL0SrloDf5DwKaF4hEMyX+R?=
- =?us-ascii?Q?xHY5278xhut7rZl2XDxMlnj6k+hZHOE592EMsXa6RIxyGBcmRYSzUJnrO2Qe?=
- =?us-ascii?Q?XO6mu5bU+Zf+oP7WD14EkBOKybPp3uly5HGwVqaec+QjCWs+L2FmngeryKEN?=
- =?us-ascii?Q?k0QovY5LEGeuIjcYyO5ZNmH99jycWBscuWkI66rRDZV/mV9rqq2NbqOaeANR?=
- =?us-ascii?Q?iH2tYmY=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW3PR18MB3513.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(8096899003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?ngogI4sVQRo/uMgVr4j+vFUsDm0CRGUlgJGTOyuUpgvBafatnDX7qfTs3IAg?=
- =?us-ascii?Q?P+wbNdz8Wy4pB0QsOadTP8eO5oJ7f+3RPrFSUtSjOrVECIS20+61Ap+L4avd?=
- =?us-ascii?Q?B1AMFSQOHNmJRa3OLdfXZXWAKmOWp0Jo+WGm+YzChjxdsYiy5iyPK5/lGXZq?=
- =?us-ascii?Q?nwnthBslbJr2Iomz4YvjAaGsyu5ZRriYFntutjKkBuHYDJ9ZP6veUwXfqytP?=
- =?us-ascii?Q?glHXmnePsCAwk8CixMcK8+bY+IYsS+UcgBkFaPmKnhQShqrjOssDRgeB2ze+?=
- =?us-ascii?Q?+KNe6kcHkm40BMCwcUGEUbFX9mFToIRxtmdbiz0RlT90/esFMJrnKDHo/qgi?=
- =?us-ascii?Q?EyIPVZddw7HLjBeJJ/QCo9ft5XnEQSombiA1oh39nBfe2R5BQmdVhun0drGn?=
- =?us-ascii?Q?5bZHWlp4MLSmoG2sBwdEGf3fUkP/Mcdx6aSD2rLy5B0cm+W7JGiZDNG9OT3D?=
- =?us-ascii?Q?CeegAfxt4xpYrYGejrNRF+jIS8/mncAXJLKE0zb4sEJbPkgf+trMzc6XKV+n?=
- =?us-ascii?Q?eEByCPhfhB5zlqRLivAUnjHiHKZJklbYslL1vELK6ePkFOMnsJmmE9l1DkX/?=
- =?us-ascii?Q?xwxG93jrknqCjZjtdPol28Ugr/XJ1xK2K7jHpRWd6mLLRLy2NnT88nGpl4Lb?=
- =?us-ascii?Q?oghup0slDBrmcYOn0ZcyP0M0PpLDqlvUV4UYZCMjOiyRRR2Na8XarM+gXDq3?=
- =?us-ascii?Q?HMpqf42sPTRXYT2GG84PcDLbWqBfjLw3EXTjujDyt4ho0xmQ82oykveqMdoz?=
- =?us-ascii?Q?wC1xOd3lyD3U2HXUWiCyg0tQsmQGsEfCU4SKBtJ1GShaCxP1HuCam8J+MgfN?=
- =?us-ascii?Q?W1yaDS+c1xh8YDpYbtSF8H5/nbD+ZlxESadZULujSGyC9qCxyhpaAn0HQ5vt?=
- =?us-ascii?Q?4IrWcxges8TF2rqLl/K91f2wvViy2hd0o/AD48YPvS9QEdacLxHKrbrDimvD?=
- =?us-ascii?Q?CkH6M35aX/cZKORmGdYomt91ohXax8f98+TvTyTUe26kT4U+wBqIBaYClI6W?=
- =?us-ascii?Q?MlVpyEltLdFbzKTtPYnivNjKWyfKweqW8fB2wvhLB5IZCQ3sVy3ctbf/MUlI?=
- =?us-ascii?Q?zJjUl1HdNaq3mZP51IUKUI4t6kqy9h0WHRw3yILxGCfRSnw3jG0A8GuxEs9q?=
- =?us-ascii?Q?4+Vt6mAHt/kSpF8kz0OFUjswICjA2zJ8WYwhfww4DXiZcABOwgy0cX+90R94?=
- =?us-ascii?Q?PZzAQkAKuP1GybLE+w2PeZhpKKvBOduuUj5NTi+d9fX0VUql3KFL51ape2e9?=
- =?us-ascii?Q?ptXMTqddKlsxod0hY19vB+0Fh4I9Ozoh1WYVo8/qwzPfamRnNv2xcK/Al0fa?=
- =?us-ascii?Q?AG5FfDhDZwGwDgwPEsArYgbd703EKfeRk0w/8XAGUCvgxXSEIiT1XJpXo/AI?=
- =?us-ascii?Q?Pgwrd+S1t5TkmCUJmEQtnlHF9CU7wsaal6CT5QWw6Ddk1srCuDzYRXqvzvIq?=
- =?us-ascii?Q?dXeL/e64B/ARE62EPEhUi+oj7QgU75wQ2BuPQxP8c+NXyY+ZAdkcvx0rAThv?=
- =?us-ascii?Q?b+B+MRJTh+Q+uIicIMJteTNEjBDNifksIIv79LCJLOoTtjBpPIKmq62FS/yE?=
- =?us-ascii?Q?zsaZ00JBau/Fzm90CgJDZoNnk1m5TTDG7Dy5f8Z7SIPO1nMjG2ZzCpLNuXai?=
- =?us-ascii?Q?2A=3D=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_"
+ <MW3PR18MB3513BD0421254E2F216DEDB38B4E2@MW3PR18MB3513.namprd18.prod.outlook.com>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <MW3PR18MB3513BD0421254E2F216DEDB38B4E2@MW3PR18MB3513.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0178.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b4::6) To AS8PR04MB8897.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42c::20)
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
-	oV8tJ1jAhO+07cpUaexe3dRUobCxMuycRscUztDBR+ZSmYQUx6rU6kp6Ll1BIVNuoichuijlCfNZmZDPIvVPTdf7k3qQB8ubK/BlL5boPvwDKfZ85FT45OAOqLcTSMzkY5GgN2TFVYRaKGRR0MBrg3hodjEaQh1e7wiwmvtmwohDPJOYzyZZCB1w87PakiktQpEz0rjabc1+Q7k2fZwG484irNImFoDQelvZom24397Zh/E7pqQiWybI66BOjEfFRKe//UHpaN5DuPxNhUEu1e7I2zZkbLWJvxwcI37cyCocMQWqcMZBmo/BvXMggygO7mw0J1BLf+0T4blTE+V8jgJLt5QxK7l4X2yLYGni7HTHWSzEzJZR6Db/Q5NH3+gghtB/L2S5h/4kM/8fGsYRp+pVryhLGJVhpixQILZUeABh4DR8TYhwLabojU9ib5iPqU4GuBd373z/lwvPbHuZtFuAkQonorlCw9m+oTj6NpU7TQiP5hgct1YLKUZENrnOd5R9+sRuE6Lx94E6g24BUYaJ8fNeX7HkEp7GjK3KR3jPQb2ULIKwzpAlyAd/tZ5meFJw5q9+++aVBKrI4k5vUQjw9uf6OEIAUbrI6kN71smfQlrZJfjtU5jB0G0X0dGZ7C7h3tDXnCpscm+tDE+cBg==
-X-OriginatorOrg: belden.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|PA4PR04MB7726:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7da1ad0e-330c-48ac-f625-08dcf4208e2a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?Z2plcVoxT2dWbC9DQmR1Qy9GNEQwWFhJeEhyaVQ2R1g3VEtEd1o5a3lXaHM4?=
+ =?utf-8?B?RTBsbmphSDZlb1JRS2hZSjNTampmWHpjakgwWmVVZkNncXl2Z0szMUpDUGpJ?=
+ =?utf-8?B?ZFIxSlkxS1d3bXZ0K3M0Zlp0MUgreXlsclRITjE0bVRSMEFLWng3UHk3bWlQ?=
+ =?utf-8?B?YXZNRkhiZW0zOUpJcTh1NFlmRTRxdUdCeHJkbzZnTnBqQ1Ixd241MGdzS0R2?=
+ =?utf-8?B?eXQrYVEwQ2FpbDZOanVqb29FWkFhMUduSDFhR2xNT3ZyWlk3TjlURzQzbmY2?=
+ =?utf-8?B?QmRDQzczazd2RnR6MXU1bGhCVVg2YzYzcitHZEV0Ti9pVlpFbithME5JVFov?=
+ =?utf-8?B?QlAxRUZSNVpXT01JaE9YUzRoMVZBMDFTdlM0TDRNZ2R1WitpMnl4OEU0bGsz?=
+ =?utf-8?B?QVFEdVd4R2tWQ1BuU0ZXc3RpTEZsYUdHeldGWkpLMk56OTU2V0FzcmdESE1I?=
+ =?utf-8?B?L01BQTFZdE16RzZ3NTBjVFZoMmJ1SGlQKzhOUWpVb3NPalMrV3BKNGxOYWlp?=
+ =?utf-8?B?ZFNiTFdzYXRxMzF1MkNocWxlenZRcnRkaTlyR2hNZmYrMmJhV3Aremo5TFBN?=
+ =?utf-8?B?b0Zkbks1eCtuNG1KZ0VTejRtSCsxQmZRcU91RDlwQk8xSFE1bjYzRlYzcWZH?=
+ =?utf-8?B?Ty8rR3MxZjF0QmR1NWdNZUlMNHk5YUcrZmlnWldpN21uSHNIcFJ5OG1QMHgr?=
+ =?utf-8?B?MkNRaWlESXFXRDdjVFh1VGZub3RFUk43UlhtN25wK0VvRm9QTVFSVVdoUlJn?=
+ =?utf-8?B?M2grbytRc3l1eXBmUUJ6OHFzUm1nV1VURnJuWTZDalZCdUIwTm9FaHk1czQ0?=
+ =?utf-8?B?Q0RmNUpEYWxnV2ZwZUJweFlNc0dDMmRhNE82TVAwaFBXQW0rd1AzRHU5cG1a?=
+ =?utf-8?B?VFNVL1ZEUWNSMGxsK0ZlT0g4bEVzczFZbzVHOGRxd2Z2UTJ5SEJNZGxpaVQv?=
+ =?utf-8?B?YWpuMDgxK1FidWtGdmRHdHk3N0JhTjBlcEtjRFkxNDQzeTB1cm1DbnBzWDNC?=
+ =?utf-8?B?SHBranI5aWIwZnJ3dWU5SkJ4NjdlWXZhdkVZWWRlSjVYN1N1d2NFbHo2SXIx?=
+ =?utf-8?B?VDRMRUFxRTgrTUM2SkZ4R0h0RHQwQ2h5RW52aXJHRFU0OTRqMEtqTEtkQU14?=
+ =?utf-8?B?akE3WDVERW04cTNHSXRSMXREMFZkdWYyRk5MZXgxRHhZRitJdVR2Z3ZoVjZp?=
+ =?utf-8?B?QTJlcUQ2L0M1Zi9jblBPRGtvM1VhZXBYTkxxZktaUTk0V3NEZ0R4czhFWHQ1?=
+ =?utf-8?B?QlFpcU1TTEsyQWhUU1p4ZkdzZXcvcWczS0t4L0U2K2RRdlJYV3VzNjJkVzZG?=
+ =?utf-8?B?S1N0UzlRL1NuSWswQXB2RDRabTJIdllLT0tKZ2xUU0duWlkwMVYrczlsNzNq?=
+ =?utf-8?B?WUlVMDk3UDY4SjhZeHkzNE5HNnMvZzJ4U0xFaDZRYmt3eEx3MFhueEcwQll2?=
+ =?utf-8?B?OXFPRko3azdZd1pWSllScURyUWtEZ0NKcTBhcXgvdk5rME1GMDdBc1JaeTBn?=
+ =?utf-8?B?R29FbzdBQjltY24vNDEwMmp6R1YyNzVzZXZrYVFyYUNFWjdySHN5cm5WWExJ?=
+ =?utf-8?B?UlZ5ZGNRYmtMOGpUd3JiOWNEYUhnaWd4OThqczFVOUZBNmRVOGpGano2ait4?=
+ =?utf-8?B?YmE2Rkh5WmNVejhTVVRhdHpNdENJQ25QMU01SjlBbkMxMFlybXpvdEdNTXNQ?=
+ =?utf-8?B?UHFjWHdYT2tXL3drdVNVMGsrMFZySjQwUUtRWGQ3NjhDN1Z1WkZUS1RhTWxJ?=
+ =?utf-8?Q?wXamDxO59AA3loBDz8=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?NWEyam1obHNPT0RuU3FCelp4TnJYem1YR3Zod0loMXlscWttSlJZNzY2T0xG?=
+ =?utf-8?B?azhGK0lZNytpSEg5eXhQMXBVOUc1M2ZVMEFlMnpKcHZHTFE1VnpHbGxiZkVw?=
+ =?utf-8?B?RXo0ZzJHNVlTaHFSbTZDbzJNMlBBUVBYQ0xRVFdKQS8vNVFzbmRjWklVdGlJ?=
+ =?utf-8?B?b25iS0phbHd3MjV0c1krbWpiZWo1RUw4WXE4dFhPbEFlaGx0VVhlZEgrSVFq?=
+ =?utf-8?B?a1B4VHpjcDRZNFdPcWc0a2p2ZEttZUZWclB4cngwd0FpWitrSDRJQ1hCK2Zl?=
+ =?utf-8?B?MkdhMUhNcUZuOUhkZ3FiMmxSZjFQUVVzUElQUE5oenZpRDA3NUVYZG9aZWdL?=
+ =?utf-8?B?OEQ5Z1B6RmJveXNRejVyUVBhUHhINlo3RGtqWmZ6M2VvUHlZbVlKNVVHRWZn?=
+ =?utf-8?B?WjNSY3ZqVDhnTkMyaGRibEFNVGJPZXlvSlUwYURLM09PS2ZTYkRhMXk3UjRD?=
+ =?utf-8?B?VEIrNi9paXFxYlFLSzN2eTdhZWZrWVlZL09HMDd4TU11Zjk2a2UzYUYyekYx?=
+ =?utf-8?B?STRLemN3T2JoZkxDYkVXdTVvZGcwdzhWUVFOaVhlRzczdzdGT3VIQmF3dWlh?=
+ =?utf-8?B?RDdmbkIremFyNnB3YjNQVXVmanVHVzlucC9qZmZ1WjBPWjFTejBjTDZYckxB?=
+ =?utf-8?B?dmpQdC9HM0NVQlFRNzMvMGJ1cTlGTWIwNEtEZVdHNFFtdzVHcUFQSVZDUGtp?=
+ =?utf-8?B?ZFFQMGlTTHU0bVlsSXFGTEdTQ1dhc0l5eU9FcndDQmtvNmF4emg2RWppRGgz?=
+ =?utf-8?B?R24xaXJ1Rm1GK0dWZUREVFVJRXhGdVovQ3hJQjROSzRXRis4TFlJU05xU3hl?=
+ =?utf-8?B?dWRqZVpITzNlWndyL29VSW9lR05ORHBvTnFCMm5BY1BjdkRNM1d4QVM0YzRG?=
+ =?utf-8?B?dVZQcTJGYnBoYlUzdXhieXVobVZVMDQzWTBEMS9ER0lUQXBoV3MxR05xdWhS?=
+ =?utf-8?B?SUtOd21MT3NYNThZQ3N2R3hWYmE0MWljd1RoTWVPblp1NTEza2xsanAwZkM1?=
+ =?utf-8?B?aHF6VVdtbXNXc0hBWGVCYjh4OGovNnhiSlZFNExWbkhrV2o5YS92SC9NTUtz?=
+ =?utf-8?B?MDhKc2VWcjZvU2xjRXFNWU9DR1RpUkxxMmR5R2ZyckJxTUlEUFN6ZFhESUNK?=
+ =?utf-8?B?cVBObkJ4aHlIY08yNU01b09TT1pVb1NCOGlSS1piL1R6ZlJkSHZLbDRlcFVX?=
+ =?utf-8?B?QTlqeHZRSnNvYnBjaFA1Y2tBTmNobHBMSlVtT21nMEp4SHg2N2hvR2tnazZI?=
+ =?utf-8?B?S3lJL0V5MUE2R2dGL2x2YzdKRElpckZmYkdCUzZabXBzdndIR0Z6QkRNS3I5?=
+ =?utf-8?B?MjdZT0NFUWtlSkxCYUUzSmN0TCtCUlVIR1FaMkJmZWsra21FQkVYSmkwc2dG?=
+ =?utf-8?B?aUU5akd2aG90WlNLdzhIb2dxYXdKS1RjZGpnOXI5dG9TUWVaNUdTMzBHM3JI?=
+ =?utf-8?B?NmNYTDFpMXYydHFRY0VGZzJKT0wwbW8wQlEvSG5rTE5HN1l3ZDJ6Y3MvVXI5?=
+ =?utf-8?B?R282RXZXWlFOS203andZWDdSdHF6anBBWHJnbE04QXNrdEJxZXpWZ2srcXk2?=
+ =?utf-8?B?aVQ0emZmNUVQTGFvaXBWdnhyRXNPaTBwOGM4eEpUQTdsOVpnSFNHWlpkYnpr?=
+ =?utf-8?B?LzJWZFkzWHg1WnlVUHVuT0dQZFBjbWU4cDduNEYwY2o5SjE5bWlyZm15b01D?=
+ =?utf-8?B?d2NjRVBXTzU0RzVyRG9zQ0RRZmhxT1VmWWE1aEdPUWxXL2RCQ084U3hVK0R1?=
+ =?utf-8?B?SnJoSSt5WENVVnpQcE42S05zMDIrL20vOUx5WlFvdGpDUzhPYXpwb2VwdHEw?=
+ =?utf-8?B?MU8yYVFFcElZVDRqN2pWaURtbFFyRndZZ1d0ZENkK1hGMVZnZG1STkFWbGNi?=
+ =?utf-8?B?YXlPSmVSb1VwRHk4aUFBVGxVSHVrSHF0K2xNOHRhc1l1T0ZyL2c2ZGFTaEhC?=
+ =?utf-8?B?V0daK0wvNXh2RmV5UENQekpPN284SC94SnZIYjA3N0txeWlpN0ZJRTA4eml0?=
+ =?utf-8?B?UDJ0ckg4UEFraDFYeDhFOHpiUnFtY0xFNWdYNXJJbVc0VnQyU2pYQS9pYmZH?=
+ =?utf-8?B?ZVRPUjVOVHllcy9ldEhYRndUMlpWci9ZdGhNdkc1Z25JaHM1ZjZWcVFMOUx3?=
+ =?utf-8?B?ckUzdkVjSnNKdlRHeUlJT3lrdTVPQkhiNy8wYkRvZnpKWXpEU25QWm4zRTBq?=
+ =?utf-8?B?K1E9PQ==?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7da1ad0e-330c-48ac-f625-08dcf4208e2a
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR18MB3513.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d66a949b-9f06-4a87-7056-08dcf41eede2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2024 11:28:05.6747
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 11:39:44.2917
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0f7367b1-44f7-45a7-bb10-563965c5f2e5
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: a0zSc0Hee9CK/VpkCEYabtCnLDQ4qdqZ1XIVJZroBWceHHumdfT+WTZVqMhImfw0vN9zfwGo2TAE7bJSmHIX81PuUhcX3Pn3biqvon6FSqo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY3PR18MB4755
-X-Proofpoint-GUID: _PG3erKvM9Uh3izNnPBPz6n-2z0CH9VP
-X-Proofpoint-ORIG-GUID: _PG3erKvM9Uh3izNnPBPz6n-2z0CH9VP
-Subject: Re:  Re: [yocto] bitbake: enforce variables to be defined?
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- suspectscore=0 spamscore=0 phishscore=0 clxscore=1011 lowpriorityscore=0
- mlxlogscore=512 malwarescore=0 bulkscore=0 adultscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410240093
-X-Proofpoint-TriggeredRule: module.spam.rule.outbound_notspam
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TAEoIoXjXcp0+wxGjCzhj1WZygnW6a8ITSeDDRF7roOPJtQiqBWZQrpMNhVaNlYQBRnJ2/Nd4ureAfguwGHVg2vacBU4+suitX1xMTanuxM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7726
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 24 Oct 2024 11:28:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64109
+ <yocto@lists.yoctoproject.org>; Thu, 24 Oct 2024 11:39:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64110
 
---_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 10/24/24 1:28 PM, Jairo Mejia Aponte via lists.yoctoproject.org wrote:
+> You don't often get email from jairo.mejiaaponte=belden.com@lists.yoctoproject.org. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+> Hi,
+> 
+> If you need to add something to several recipes, you can create a bbclass and make the recipes inherit it.
+> 
+> Ex:
+> 
+> SUMMARY = "Enables/disables compile flags for builds"
+> 
+> TARGET_CFLAGS:append = "${@ ' -DTEST_ENV' if not d.getVar('RELEASE') else ''}"
+> 
+> The else is empty, maybe it is not entirely clear in the example. This kind of approach can be made  for any you want. You can make an append of a task and things like that.
+> 
+> Then the recipes would only need to have the line:
+> 
+> inherit <bbclass_name>
+> 
 
-Hi,
+Additionally, you could dynamically add a prefunc and postfunc for each 
+task, provided you can detect which one is a shell task and not a python 
+task (though maybe having set -e in a python's task's prefunc would be 
+fine as well?), from anonymous python I guess?
 
-If you need to add something to several recipes, you can create a bbclass a=
-nd make the recipes inherit it.
+Just throwing ideas right now.
 
-Ex:
-
-SUMMARY =3D "Enables/disables compile flags for builds"
-
-TARGET_CFLAGS:append =3D "${@ ' -DTEST_ENV' if not d.getVar('RELEASE') else=
- ''}"
-
-The else is empty, maybe it is not entirely clear in the example. This kind=
- of approach can be made  for any you want. You can make an append of a tas=
-k and things like that.
-
-Then the recipes would only need to have the line:
-
-inherit <bbclass_name>
-
-Sincerely,
-
-
-Jairo R. Mejia Aponte
-
-________________________________
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
- of Jocelyn Meyron <jmeyron@gmail.com>
-Sent: 24 October 2024 11:52 AM
-To: Quentin Schulz <quentin.schulz@cherry.de>; yocto@lists.yoctoproject.org=
- <yocto@lists.yoctoproject.org>
-Subject: [EXTERNAL] Re: [yocto] bitbake: enforce variables to be defined?
-
-
-External Message:Use caution before opening links or attachments
-
-Thanks Quentin for your answer.
-
-I know that I can do that but my question was more to know if there were sy=
-stematic way to tell BitBake to insert "set -u" in all do_* tasks in my lay=
-er.
-
-**********************************************************************
-DISCLAIMER:
-Privileged and/or Confidential information may be contained in this message=
-. If you are not the addressee of this message, you may not copy, use or de=
-liver this message to anyone. In such event, you should destroy the message=
- and kindly notify the sender by reply e-mail. It is understood that opinio=
-ns or conclusions that do not relate to the official business of the compan=
-y are neither given nor endorsed by the company. Thank You.
-
---_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-Hi,&nbsp;</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-If you need to add something to several recipes, you can create a bbclass a=
-nd make the recipes
-<b>inherit</b>&nbsp;it.&nbsp;<br>
-<br>
-Ex:<br>
-<br>
-SUMMARY =3D &quot;Enables/disables compile flags for builds&quot;</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-TARGET_CFLAGS:append =3D &quot;${@ ' -DTEST_ENV' if not d.getVar('RELEASE')=
- else ''}&quot;</div>
-<div id=3D"Signature" class=3D"elementToProof" style=3D"color: inherit;">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-The else is empty, maybe it is not entirely clear in the example. This kind=
- of approach can be made&nbsp; for any you want. You can make an append of =
-a task and things like that.&nbsp;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-<br>
-Then the recipes would only need to have the line:<br>
-<br>
-</div>
-<div style=3D"line-height: 19px; white-space: pre; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 11pt; color: rgb(0, 0, 0);">
-inherit &lt;bbclass_name&gt;<br>
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-Sincerely,</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<p style=3D"text-align: left; text-indent: 0px; background-color: white; ma=
-rgin: 0px;">
-<span style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService,=
- Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);"><b>=
-Jairo R. Mejia Aponte</b></span></p>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto@lists.yoctoproj=
-ect.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of Jocelyn Meyron &l=
-t;jmeyron@gmail.com&gt;<br>
-<b>Sent:</b> 24 October 2024 11:52 AM<br>
-<b>To:</b> Quentin Schulz &lt;quentin.schulz@cherry.de&gt;; yocto@lists.yoc=
-toproject.org &lt;yocto@lists.yoctoproject.org&gt;<br>
-<b>Subject:</b> [EXTERNAL] Re: [yocto] bitbake: enforce variables to be def=
-ined?</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div><font face=3D"calibri light" size=3D"3" color=3D"red">
-<p><b>External Message:</font><font face=3D"calibri light" size=3D"3" color=
-=3D"red">Use caution before opening links or attachments</font></b></p>
-<p></p>
-</div>
-<div>Thanks Quentin for your answer.</div>
-<div>&nbsp;</div>
-<div>I know that I can do that but my question was more to know if there we=
-re systematic way to tell BitBake to insert &quot;set -u&quot; in all do_* =
-tasks in my layer.</div>
-</div>
-
-<HR>DISCLAIMER:<BR>
-Privileged and/or Confidential information may be contained in this message=
-. If you are not the addressee of this message, you may not copy, use or de=
-liver this message to anyone. In such event, you should destroy the message=
- and kindly notify the sender by reply e-mail. It is understood that opinio=
-ns or conclusions that do not relate to the official business of the compan=
-y are neither given nor endorsed by the company. Thank You.<BR>
-</body>
-</html>
-
---_000_MW3PR18MB3513BD0421254E2F216DEDB38B4E2MW3PR18MB3513namp_--
+Cheers,
+Quentin
 
