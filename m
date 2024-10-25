@@ -1,147 +1,83 @@
-Return-Path: <rprronadrit@gmail.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D08CD0C5FB
-	for <webhook@archiver.kernel.org>; Fri, 25 Oct 2024 10:24:47 +0000 (UTC)
-Subject: sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile) failed with exit code '1'
-To: yocto@lists.yoctoproject.org
-From: "RAVIKUMAR RONAD" <rprronadrit@gmail.com>
-X-Originating-Location: Bengaluru, Karnataka, IN (122.171.18.41)
-X-Originating-Platform: Windows Chrome 130
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB226D0C601
+	for <webhook@archiver.kernel.org>; Fri, 25 Oct 2024 11:55:27 +0000 (UTC)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web11.10290.1729857322829152373
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 25 Oct 2024 04:55:23 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=mjOpWFVo;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: skandigraun@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539f6e1f756so2316021e87.0
+        for <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 04:55:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729857321; x=1730462121; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Pw8wj1RPQLho/qrzsq3b0vQUg342ZgEwdLtqIhd2Mck=;
+        b=mjOpWFVoeMNZwyuxRgUfmMWuCgTn6mme2h9dnHoIAp+lL2MON2F9T8OJy4nhxXEMDw
+         1LBcTi0JPvI7uci2QzrdnkjXc+3WXWVQqPlAth2BHwyRTGfzQWW+el2J77oBrNRAr6Ot
+         cmIG40H0armIZh/OTtAhhF5V+En6SCVKUm5xLgLnd4Q5LJxxhqBjuNhVEG8HOCY3qle/
+         kP7j/m7pokZWgmgoOV+BJYndzzlEcLCCOBiW7uJAEHLvICN8iJ8JdsAiZUJR28pAIc95
+         OtHb56xPsC9FEsDUrL11uHdU5ZAGzxEkJksksf5rgRSVL66BhxQCmz1+14jizGuuZlDe
+         zjRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729857321; x=1730462121;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pw8wj1RPQLho/qrzsq3b0vQUg342ZgEwdLtqIhd2Mck=;
+        b=vaChrmjUWk0ENaihVcFqbBjdv+0dQ6oFVy+GLJgK/gNrTOexwVv9fqOxxACY4tLJLZ
+         IJerwlaCeAht7Zzgo9JWvJnCapEegOScou21oPOs13eC0hLqbqWBN7EH6m77IB64+IpP
+         rtVw2rHcDaA6+sOaFSqoMbbG0gBktNhdjxkLXXjhV9cXjxcYgvxgggO/ribrgQQjqlbJ
+         hEZ4AHsCKT7bVXhi9NjKgEh0CvXXQqivCj7DidHk9mWJb6dR6t470+A7gkKIwJbGpGwI
+         2EUfQXOYsERoRMI/6IuN9nktfmc32NDzlgJaD5lT/knUdnXrY+iQUvxQd5YGRNwr3kgO
+         6uJA==
+X-Gm-Message-State: AOJu0Yww+dyO/obV0dfUla/9jKvdwidionLP7/l+4iLyyy3PJiI16qSs
+	VtB1LouLMnXfqkm+Faz/ZHWw4anrk29dWZrvR136RO+9KEicP3vWzHLAzg==
+X-Google-Smtp-Source: AGHT+IEjBz/ZdeUXd0bHtULyjC/KGlP8h09nodVIiua0GJJnzki3kc1tdeMNCpofvIXiqF8oRvLpPg==
+X-Received: by 2002:a05:6512:ac1:b0:539:ea54:8d22 with SMTP id 2adb3069b0e04-53b23deb2d8mr3484708e87.18.1729857320324;
+        Fri, 25 Oct 2024 04:55:20 -0700 (PDT)
+Received: from [192.168.1.2] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b567838sm47078885e9.23.2024.10.25.04.55.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Oct 2024 04:55:19 -0700 (PDT)
+Message-ID: <97b78264-54b4-4644-a04c-0bbcfd83bb4d@gmail.com>
+Date: Fri, 25 Oct 2024 13:55:17 +0200
 MIME-Version: 1.0
-Date: Fri, 25 Oct 2024 03:24:43 -0700
-Message-ID: <L0FD.1729851883206053358.YL1F@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="rdknTmp9DTsXgk7Yf1V6"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile)
+ failed with exit code '1'
+To: yocto@lists.yoctoproject.org, rprronadrit@gmail.com
+References: <L0FD.1729851883206053358.YL1F@lists.yoctoproject.org>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <L0FD.1729851883206053358.YL1F@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 10:24:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64125
+ <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 11:55:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64126
 
---rdknTmp9DTsXgk7Yf1V6
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On 10/25/24 12:24, RAVIKUMAR RONAD via lists.yoctoproject.org wrote:
 
-Dear Experts,
+> *Output:*
+> *ERROR: Task 
+> (/home/calixto_admin/calixto-yocto-bsp/sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile) failed with exit code '1'
 
-I'm currently working on the BSP images for an i.MX6ULL processor-based cus=
-tom embedded board. I've created the machine file for the respective board,=
- & I'm trying to create a QT6 feature image. For this, I used the following=
- configuration and executed the command:
+Around the same error (at the end of the output) there should be a 
+message along the lines of
+"ERROR: Logfile of failure stored in: 
+/home/calixto_admin/calixto-yocto-bsp/sources/build/tmp/work/raspberrypi3_64-poky-linux/perf/1.0-r9/temp/log.do_compile.14505"
 
-DISTRO=3Dfslc-xwayland MACHINE=3Dimx6ull-versa256 source calixto-setup-rele=
-ase.sh -b build-xwayland
-
-$bitbake imx-image-full"
-
-Release: kirkstone
-Used Host machine for Build: Server PowerEdge T1440 with 24.04 OS
-
-But, I got the following issue:
-
-*Output:*
-*ERROR: Task (/home/calixto_admin/calixto-yocto-bsp/sources/poky/meta/recip=
-es-kernel/perf/perf.bb:do_compile) failed with exit code '1'
-
-* How to debug the perf.bb file ? is there any dependency do i need to add =
-or remove for this ? so
-
-Could someone please help me resolve this issue?
-
-Thanks & Regards,
-
-Ravikumar
-
---rdknTmp9DTsXgk7Yf1V6
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
-ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
-ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
-ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
-x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
-">Dear Experts,</p>
-<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
-ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
-ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
-ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
-x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
-">I'm currently working on the BSP images for an i.MX6ULL processor-based c=
-ustom embedded board. I've created the machine file for the respective boar=
-d, &amp; I'm trying to create a QT6 feature image. For this, I used the fol=
-lowing configuration and executed the command:</p>
-<pre class=3D"lia-code-sample  language-markup" style=3D"box-sizing: border=
--box; overflow: auto; font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu=
- Mono', monospace; font-size: 15px; display: block; padding: 13px; margin: =
-0.5em 0px; line-height: 1.71429; word-break: break-all; overflow-wrap: brea=
-k-word; color: #000000; background: #f5f2f0; border: 1px solid #cccccc; bor=
-der-radius: 5px; tab-size: 4; hyphens: none; white-space: pre-wrap; text-sh=
-adow: #ffffff 0px 1px; box-shadow: none; font-style: normal; font-variant-l=
-igatures: normal; font-variant-caps: normal; font-weight: 300; letter-spaci=
-ng: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform:=
- none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-d=
-ecoration-thickness: initial; text-decoration-style: initial; text-decorati=
-on-color: initial;"><code class=3D" language-markup" style=3D"box-sizing: b=
-order-box; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; =
-font-size: inherit; padding: 0px; color: inherit; background-color: transpa=
-rent; border-radius: 0px; white-space: pre-wrap;">DISTRO=3Dfslc-xwayland MA=
-CHINE=3Dimx6ull-versa256 source calixto-setup-release.sh -b build-xwayland
-
-$bitbake imx-image-full"</code></pre>
-<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
-ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
-ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
-ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
-x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
-">Release: kirkstone&nbsp;<br />Used Host machine for Build: Server PowerEd=
-ge T1440 with 24.04 OS&nbsp;</p>
-<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
-ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
-ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
-ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
-x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
-">But, I got the following issue:</p>
-<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
-ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
-ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
-ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
-x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
-"><strong style=3D"box-sizing: border-box; font-weight: bold;">Output:</str=
-ong><br style=3D"box-sizing: border-box;" /><strong style=3D"box-sizing: bo=
-rder-box; font-weight: bold;">ERROR: Task (/home/calixto_admin/calixto-yoct=
-o-bsp/sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile) failed with=
- exit code '1'<br /><br /><br /></strong>How to debug the perf.bb file ? is=
- there any dependency do i need to add or remove for this ? so&nbsp;</p>
-<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
-ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
-ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
-ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
-x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
-">Could someone please help me resolve this issue?<br /><br />Thanks &amp; =
-Regards,</p>
-<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
-ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
-ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
-ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
-x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
-">Ravikumar</p>
-
---rdknTmp9DTsXgk7Yf1V6--
+This file contains the output of the compilation step, and should also 
+shed some light on the actual problem. If it doesn't help you, posting 
+this file's content (or a link to it, if it is very big) could help us 
+helping you.
 
