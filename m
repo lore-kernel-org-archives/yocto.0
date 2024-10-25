@@ -1,75 +1,147 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <rprronadrit@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE558D0C5F6
-	for <webhook@archiver.kernel.org>; Fri, 25 Oct 2024 09:25:46 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
- by mx.groups.io with SMTP id smtpd.web10.8011.1729848339203858052
- for <yocto@lists.yoctoproject.org>;
- Fri, 25 Oct 2024 02:25:39 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=AWB7zVUt;
- spf=pass (domain: gmail.com, ip: 209.85.167.44, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53a0c160b94so2189149e87.2
-        for <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 02:25:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729848337; x=1730453137; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sXuwUviDLNjuBaFGLnQMecZZEslhg0nmftItc6Q7v3g=;
-        b=AWB7zVUt7cWajutaPwjtB1yyeQdqvbakJ844ZxYmLv5SToxK0TMq5anZOIBuNJSCPP
-         tdhX6bU4z+9ljrXIBjgYWqSl7Zu+hpqBT5Wr8kKiADm4KUICDFVcgaEyAhHLyTdQ1l8g
-         qGc2KUh5LgIbVDBmRR7Fl0TOIjaxe041KEDElvgjOQD15XxLanKz1rEUjWdZZQ6T0czI
-         X8qRsYoykta3LiD7Wz4NDorTjnaSfm+JQBfMuFX/OBAwg1xWGHYwSebqwUME5rsLNud5
-         C8Z6NUSVGeuHg5q17NlX7teH3Rn6pBoM7N0uw8CbCVU0OtpRPoj5arypdBwDbzEob4kt
-         epHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729848337; x=1730453137;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sXuwUviDLNjuBaFGLnQMecZZEslhg0nmftItc6Q7v3g=;
-        b=U2SLwuEkG5h70rjGUue16GIQ/mQVReM5D5LYygVgS1VQCIedRpXVXvw3TQHebrdhvd
-         9C4bjhGwsQHPbXGcBvnykyD64rI+0B89YEVlTdJDPm4m7xGknNamSP2jmiqG0/9XyFmS
-         21iatTjNeTDZeS3+iXUqTpS6Qkum0kVHOmL1VieDt6+4Tn+U0WPjWwl+iuSSIzM04byE
-         zCtuB3ze9Tavr03r3h9WUW54imjFe+bIQVoBkt/5q+leAzM76rTv10ckER/qI9wXFHsX
-         aQ+xdfEVKm+vKUfczn+Vs/iXEl3mx1yOdcxtE4S4nO7DKEVGUn8OPrtoz8uK4aLvVfIo
-         Xqbw==
-X-Gm-Message-State: AOJu0Ywr7HDKJEnlX8H3qnckUSjQRiBMH6qC5AWrzO2hS7O0WGRlbos6
-	r+MG+wsIfb9Xl99y4yKI3TCcoFg2Xxq4lMKcjJJxQ00bVXSErU4PMfpft8l48J0PrHLPJisgTSL
-	vh5EVVAILwTa3YkZXYkHEr3r2yS4=
-X-Google-Smtp-Source: AGHT+IEvruSUTl/GeE2+njVcMThIduKk6cf7Eqg9zSPYzLBX7uj34ew8hQ5g7hOGgjrJ1Z33lw6HxdU0gs/QuVv+S2Q=
-X-Received: by 2002:a05:6512:3082:b0:536:796b:4d94 with SMTP id
- 2adb3069b0e04-53b1a36195fmr5761780e87.41.1729848336994; Fri, 25 Oct 2024
- 02:25:36 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D08CD0C5FB
+	for <webhook@archiver.kernel.org>; Fri, 25 Oct 2024 10:24:47 +0000 (UTC)
+Subject: sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile) failed with exit code '1'
+To: yocto@lists.yoctoproject.org
+From: "RAVIKUMAR RONAD" <rprronadrit@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (122.171.18.41)
+X-Originating-Platform: Windows Chrome 130
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CANNYZj-o3-EKuAr7eg=+MWPJJJ-gAsw+WDC7ua-tWxT6KffuRg@mail.gmail.com>
- <31642.1729848103619250450@lists.yoctoproject.org>
-In-Reply-To: <31642.1729848103619250450@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 25 Oct 2024 11:25:25 +0200
-Message-ID: <CANNYZj-dV0yju36AhSXKpKaHRf0yXfZ1mikvuC47P-hb5jtgFw@mail.gmail.com>
-Subject: Re: [yocto] How to add postinst and prerm scripts to a recipe?
-To: hchanuy@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 25 Oct 2024 03:24:43 -0700
+Message-ID: <L0FD.1729851883206053358.YL1F@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="rdknTmp9DTsXgk7Yf1V6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 09:25:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64124
+ <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 10:24:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64125
 
-Why? prerm would work just the same and there are examples in meta/:
+--rdknTmp9DTsXgk7Yf1V6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-pkg_prerm:${PN} () {
-        sh run-my-prerm-script.sh
-}
+Dear Experts,
 
-Alex
+I'm currently working on the BSP images for an i.MX6ULL processor-based cus=
+tom embedded board. I've created the machine file for the respective board,=
+ & I'm trying to create a QT6 feature image. For this, I used the following=
+ configuration and executed the command:
 
-On Fri, 25 Oct 2024 at 11:21, Uy Ha via Lists.Yoctoproject.Org
-<hchanuy=gmail.com@lists.yoctoproject.org> wrote:
->
-> That works for postinst, but what about prerm? It is run only when the package is removed in future so it cannot be done at bitbake build time
+DISTRO=3Dfslc-xwayland MACHINE=3Dimx6ull-versa256 source calixto-setup-rele=
+ase.sh -b build-xwayland
+
+$bitbake imx-image-full"
+
+Release: kirkstone
+Used Host machine for Build: Server PowerEdge T1440 with 24.04 OS
+
+But, I got the following issue:
+
+*Output:*
+*ERROR: Task (/home/calixto_admin/calixto-yocto-bsp/sources/poky/meta/recip=
+es-kernel/perf/perf.bb:do_compile) failed with exit code '1'
+
+* How to debug the perf.bb file ? is there any dependency do i need to add =
+or remove for this ? so
+
+Could someone please help me resolve this issue?
+
+Thanks & Regards,
+
+Ravikumar
+
+--rdknTmp9DTsXgk7Yf1V6
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
+ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
+ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
+ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+">Dear Experts,</p>
+<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
+ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
+ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
+ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+">I'm currently working on the BSP images for an i.MX6ULL processor-based c=
+ustom embedded board. I've created the machine file for the respective boar=
+d, &amp; I'm trying to create a QT6 feature image. For this, I used the fol=
+lowing configuration and executed the command:</p>
+<pre class=3D"lia-code-sample  language-markup" style=3D"box-sizing: border=
+-box; overflow: auto; font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu=
+ Mono', monospace; font-size: 15px; display: block; padding: 13px; margin: =
+0.5em 0px; line-height: 1.71429; word-break: break-all; overflow-wrap: brea=
+k-word; color: #000000; background: #f5f2f0; border: 1px solid #cccccc; bor=
+der-radius: 5px; tab-size: 4; hyphens: none; white-space: pre-wrap; text-sh=
+adow: #ffffff 0px 1px; box-shadow: none; font-style: normal; font-variant-l=
+igatures: normal; font-variant-caps: normal; font-weight: 300; letter-spaci=
+ng: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform:=
+ none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-d=
+ecoration-thickness: initial; text-decoration-style: initial; text-decorati=
+on-color: initial;"><code class=3D" language-markup" style=3D"box-sizing: b=
+order-box; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; =
+font-size: inherit; padding: 0px; color: inherit; background-color: transpa=
+rent; border-radius: 0px; white-space: pre-wrap;">DISTRO=3Dfslc-xwayland MA=
+CHINE=3Dimx6ull-versa256 source calixto-setup-release.sh -b build-xwayland
+
+$bitbake imx-image-full"</code></pre>
+<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
+ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
+ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
+ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+">Release: kirkstone&nbsp;<br />Used Host machine for Build: Server PowerEd=
+ge T1440 with 24.04 OS&nbsp;</p>
+<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
+ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
+ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
+ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+">But, I got the following issue:</p>
+<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
+ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
+ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
+ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+"><strong style=3D"box-sizing: border-box; font-weight: bold;">Output:</str=
+ong><br style=3D"box-sizing: border-box;" /><strong style=3D"box-sizing: bo=
+rder-box; font-weight: bold;">ERROR: Task (/home/calixto_admin/calixto-yoct=
+o-bsp/sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile) failed with=
+ exit code '1'<br /><br /><br /></strong>How to debug the perf.bb file ? is=
+ there any dependency do i need to add or remove for this ? so&nbsp;</p>
+<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
+ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
+ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
+ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+">Could someone please help me resolve this issue?<br /><br />Thanks &amp; =
+Regards,</p>
+<p style=3D"box-sizing: border-box; margin: 0px 0px 15px; color: #333f48; f=
+ont-family: Poppins, sans-serif; font-size: 16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; let=
+ter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-t=
+ransform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; white-space: normal; background-color: #ffffff; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+">Ravikumar</p>
+
+--rdknTmp9DTsXgk7Yf1V6--
 
