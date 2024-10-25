@@ -1,83 +1,90 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <philip.lorenz@bmw.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AB226D0C601
-	for <webhook@archiver.kernel.org>; Fri, 25 Oct 2024 11:55:27 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web11.10290.1729857322829152373
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37945D0C614
+	for <webhook@archiver.kernel.org>; Fri, 25 Oct 2024 13:59:58 +0000 (UTC)
+Received: from esa10.hc324-48.eu.iphmx.com (esa10.hc324-48.eu.iphmx.com [207.54.69.29])
+ by mx.groups.io with SMTP id smtpd.web11.12676.1729864792426692524
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Oct 2024 04:55:23 -0700
+ Fri, 25 Oct 2024 06:59:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=mjOpWFVo;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: skandigraun@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539f6e1f756so2316021e87.0
-        for <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 04:55:22 -0700 (PDT)
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=RSKPlZA0;
+ spf=pass (domain: bmw.de, ip: 207.54.69.29, mailfrom: prvs=021463fce=philip.lorenz@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729857321; x=1730462121; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Pw8wj1RPQLho/qrzsq3b0vQUg342ZgEwdLtqIhd2Mck=;
-        b=mjOpWFVoeMNZwyuxRgUfmMWuCgTn6mme2h9dnHoIAp+lL2MON2F9T8OJy4nhxXEMDw
-         1LBcTi0JPvI7uci2QzrdnkjXc+3WXWVQqPlAth2BHwyRTGfzQWW+el2J77oBrNRAr6Ot
-         cmIG40H0armIZh/OTtAhhF5V+En6SCVKUm5xLgLnd4Q5LJxxhqBjuNhVEG8HOCY3qle/
-         kP7j/m7pokZWgmgoOV+BJYndzzlEcLCCOBiW7uJAEHLvICN8iJ8JdsAiZUJR28pAIc95
-         OtHb56xPsC9FEsDUrL11uHdU5ZAGzxEkJksksf5rgRSVL66BhxQCmz1+14jizGuuZlDe
-         zjRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729857321; x=1730462121;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pw8wj1RPQLho/qrzsq3b0vQUg342ZgEwdLtqIhd2Mck=;
-        b=vaChrmjUWk0ENaihVcFqbBjdv+0dQ6oFVy+GLJgK/gNrTOexwVv9fqOxxACY4tLJLZ
-         IJerwlaCeAht7Zzgo9JWvJnCapEegOScou21oPOs13eC0hLqbqWBN7EH6m77IB64+IpP
-         rtVw2rHcDaA6+sOaFSqoMbbG0gBktNhdjxkLXXjhV9cXjxcYgvxgggO/ribrgQQjqlbJ
-         hEZ4AHsCKT7bVXhi9NjKgEh0CvXXQqivCj7DidHk9mWJb6dR6t470+A7gkKIwJbGpGwI
-         2EUfQXOYsERoRMI/6IuN9nktfmc32NDzlgJaD5lT/knUdnXrY+iQUvxQd5YGRNwr3kgO
-         6uJA==
-X-Gm-Message-State: AOJu0Yww+dyO/obV0dfUla/9jKvdwidionLP7/l+4iLyyy3PJiI16qSs
-	VtB1LouLMnXfqkm+Faz/ZHWw4anrk29dWZrvR136RO+9KEicP3vWzHLAzg==
-X-Google-Smtp-Source: AGHT+IEjBz/ZdeUXd0bHtULyjC/KGlP8h09nodVIiua0GJJnzki3kc1tdeMNCpofvIXiqF8oRvLpPg==
-X-Received: by 2002:a05:6512:ac1:b0:539:ea54:8d22 with SMTP id 2adb3069b0e04-53b23deb2d8mr3484708e87.18.1729857320324;
-        Fri, 25 Oct 2024 04:55:20 -0700 (PDT)
-Received: from [192.168.1.2] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b567838sm47078885e9.23.2024.10.25.04.55.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 04:55:19 -0700 (PDT)
-Message-ID: <97b78264-54b4-4644-a04c-0bbcfd83bb4d@gmail.com>
-Date: Fri, 25 Oct 2024 13:55:17 +0200
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1729864792; x=1761400792;
+  h=message-id:date:mime-version:subject:to:references:cc:
+   from:in-reply-to:content-transfer-encoding;
+  bh=Khwte403ePb2WdJLNIy/VBCR9b2f4N1rkNsxbDEAFtM=;
+  b=RSKPlZA0+BG30dIpJvj0zgIHS7SOZSLuhTMiYlsudv3HXGLA6tTJRp0O
+   RGZ6AKy3ik3hrJbY/cV7T8AbXQhwarl6fbaNX40BVxPI+9eLAq5AFdE54
+   pYW2ZhQKcmG9w1wV7kXOkHCklaQFoRH8bDeiID2LIGRWLh1Z2GpHXWmzV
+   w=;
+X-CSE-ConnectionGUID: e+X3wJ1jTCy1QdYSTpoxnw==
+X-CSE-MsgGUID: jQMl3XE3TXmobS6U2IqfpQ==
+Received: from esagw2.bmwgroup.com (HELO esagw2.muc) ([160.46.252.38]) by
+ esa10.hc324-48.eu.iphmx.com with ESMTP/TLS; 25 Oct 2024 15:59:50 +0200
+Received: from esabb4.muc ([160.50.100.33])  by esagw2.muc with ESMTP/TLS;
+ 25 Oct 2024 15:59:49 +0200
+Received: from smucmp10e.bmwgroup.net (HELO SMUCMP10E.europe.bmw.corp) ([10.30.13.87])
+ by esabb4.muc with ESMTP/TLS; 25 Oct 2024 15:59:49 +0200
+Received: from [10.242.8.57] (10.30.85.203) by SMUCMP10E.europe.bmw.corp
+ (2a03:1e80:a15:58f::2027) with Microsoft SMTP Server (version=TLS;
+ Fri, 25 Oct 2024 15:59:48 +0200
+X-CSE-ConnectionGUID: MXzQFCYpT8W1FczvjYdGeQ==
+X-CSE-MsgGUID: 4o+Dy/d9TIGZHOPVg3fqhg==
+X-CSE-ConnectionGUID: 086ARVbFQ+2eP0r6gUjGOA==
+X-CSE-MsgGUID: vNyvEiiWSr+MnkzAaFgXjw==
+Message-ID: <4dd48c42-f36b-4fa1-b1c9-1b6a914c1f85@bmw.de>
+Date: Fri, 25 Oct 2024 15:59:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile)
- failed with exit code '1'
-To: yocto@lists.yoctoproject.org, rprronadrit@gmail.com
-References: <L0FD.1729851883206053358.YL1F@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <L0FD.1729851883206053358.YL1F@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [yocto] version-going-backwards issues with shared sstate cache
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+References: <96c0c00e-7d19-4c27-a7cb-f4f98cfca732@bmw.de>
+ <CANNYZj_-NX_k09uLbbzVrvZWNNV0v+Rae1h=USZPW0w_a71g9A@mail.gmail.com>
+CC: <yocto@lists.yoctoproject.org>
+From: Philip Lorenz <philip.lorenz@bmw.de>
+In-Reply-To: <CANNYZj_-NX_k09uLbbzVrvZWNNV0v+Rae1h=USZPW0w_a71g9A@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SMUCMP09G.europe.bmw.corp (2a03:1e80:a15:58f::1:2e) To
+ SMUCMP10E.europe.bmw.corp (2a03:1e80:a15:58f::2027)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 11:55:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64126
+ <yocto@lists.yoctoproject.org>; Fri, 25 Oct 2024 13:59:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64127
 
-On 10/25/24 12:24, RAVIKUMAR RONAD via lists.yoctoproject.org wrote:
+Hi Alex,
 
-> *Output:*
-> *ERROR: Task 
-> (/home/calixto_admin/calixto-yocto-bsp/sources/poky/meta/recipes-kernel/perf/perf.bb:do_compile) failed with exit code '1'
+On 25.10.24 11:07, Alexander Kanavin wrote:
+> On Thu, 24 Oct 2024 at 19:26, Philip Lorenz via lists.yoctoproject.org
+> <philip.lorenz=bmw.de@lists.yoctoproject.org> wrote:
+>> Is this issue generally known and are there any other recommendations on
+>> how to deal with this?
+> I don't really know much about this, but I would consider allocating
+> PR values only for things that have been reviewed merged and landed in
+> trunk via separate after-the-fact release pipeline. Volatile CI stuff
+> should perhaps be run without enabling the PR server at all.
 
-Around the same error (at the end of the output) there should be a 
-message along the lines of
-"ERROR: Logfile of failure stored in: 
-/home/calixto_admin/calixto-yocto-bsp/sources/build/tmp/work/raspberrypi3_64-poky-linux/perf/1.0-r9/temp/log.do_compile.14505"
+Wouldn't we then see version-going-backwards errors in the validation 
+builds (as the "mainline" builds which contribute to the shared 
+buildhistory will have higher PRs from PRserv)? We'd like to maximize 
+our cache reuse so in a perfect world even the write_package_* tasks 
+could be reused between the builds (which I believe we could do if we 
+combine hash equivalence with a non-cached packagedata task).
 
-This file contains the output of the compilation step, and should also 
-shed some light on the actual problem. If it doesn't help you, posting 
-this file's content (or a link to it, if it is very big) could help us 
-helping you.
+Philip
+
+-- 
+Philip Lorenz
+BMW Car IT GmbH, Software-Plattform, -Integration Connected Company, Lise-Meitner-Straße 14, 89081 Ulm
+-------------------------------------------------------------------------
+BMW Car IT GmbH
+Management: Chris Brandt and Michael Böttrich
+Domicile and Court of Registry: München HRB 134810
+-------------------------------------------------------------------------
+
 
