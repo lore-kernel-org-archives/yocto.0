@@ -1,169 +1,145 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <codusnocturnus@protonmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67F4CD1358B
-	for <webhook@archiver.kernel.org>; Sun, 27 Oct 2024 22:21:06 +0000 (UTC)
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
- by mx.groups.io with SMTP id smtpd.web11.39028.1730067661573615550
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69142D1358B
+	for <webhook@archiver.kernel.org>; Sun, 27 Oct 2024 22:49:56 +0000 (UTC)
+Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
+ by mx.groups.io with SMTP id smtpd.web11.39464.1730069395845444991
  for <yocto@lists.yoctoproject.org>;
- Sun, 27 Oct 2024 15:21:01 -0700
+ Sun, 27 Oct 2024 15:49:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=D9VWIzlb;
- spf=pass (domain: gmail.com, ip: 209.85.216.48, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2e2b9480617so2939405a91.1
-        for <yocto@lists.yoctoproject.org>; Sun, 27 Oct 2024 15:21:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730067660; x=1730672460; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RD0BHyDS0n9GhS8gTlDdq8SLK+WgVmKwAgSUFtmZEHs=;
-        b=D9VWIzlbq/NM2o2L7heGyDBp9tJum00HTShKr5BTIAf7PZb/QJywk0lRMUoLTPw+2E
-         w+TY/nPfQG9+N6W90TSx3I2QXhHsVocmUNFd2+Wxh7m2M20sQF6/6MI05rs/yWQI4Y5q
-         Z4rsz2OQxiqK1Eb3H+twcy2nDfqij36qAVI5Wuji3erV3KLd1oKFu8ZyOb1k0jBhsDrF
-         RnG5XEYtjj06JBv0mnGwI1Rrqv+E5tENTRwfVXYJkl1YYezzQXZWHA1+peCbfwo3+Qvm
-         jbtaxnVF7FRe9bvTir57Pj7F12Ni6uchXAfEGIk3q+J6EpqAEyUyCtDpe8Tf/ZU9lf/o
-         HlbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730067660; x=1730672460;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RD0BHyDS0n9GhS8gTlDdq8SLK+WgVmKwAgSUFtmZEHs=;
-        b=TYRXu4LPIG9KV8qowika7LlzHWeW091Xox0uI3rPG435L4qB58RWTFHVXTdQJ6PkFS
-         lOWxpDgA8bWHilsEqZ8IuLDonUAEDqhq6eJ8dLeMTiG1Dew53vwIVf2TwgWyInCZ2g0p
-         q5nCnvLkIlUrCpPB73qP1LSB/K3E+Yx5iIoigpOUd2NA3V94W4kmEyy4LIWtc99eSsF4
-         Lalp+avFGLrKjytXBPlzofrgmk55fAiz6cRgmbdvfqKDZDsLSDMyL82uWxlH1uwF9vvP
-         i/BfKF7rOdqCd1qOkujrOVj7WCFNB4EtUIy4xhR//t/wONRNQjntkSxq2IWC3ieKn0UJ
-         2THg==
-X-Gm-Message-State: AOJu0YwSuseyX26/gFuEenxOu9Vwljm+jaUW/ELFWDHZxMRmX33mjxWh
-	Pe8PrFDuBdyjn/aAgyKt81W8+RtiPRac/Qs3Pz78KPStI/q3vAwiVl3gdjTpPCPwiVgx2VSqhES
-	xAn/U3B8kTffS4NoXCybtgwZ0bhkES70ri9o=
-X-Google-Smtp-Source: AGHT+IFII1FF1hXM9+Dofx27WcvewCek+omsOmV2L9H7FwpFCJJeXkaehBVP4fG7EV8NQZYfGitlcZEdxeKULvvnHJc=
-X-Received: by 2002:a17:90a:5d11:b0:2e0:b65b:6b4d with SMTP id
- 98e67ed59e1d1-2e8f12e1370mr7141012a91.41.1730067660500; Sun, 27 Oct 2024
- 15:21:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <d8d28f79-8b34-4309-8778-49bae8267cf8@gmail.com> <27982.1729962606213889652@lists.yoctoproject.org>
-In-Reply-To: <27982.1729962606213889652@lists.yoctoproject.org>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Sun, 27 Oct 2024 18:20:49 -0400
-Message-ID: <CADkTA4NCoj4xTDQ4U-xyYosuJECWd0cMNWK8wUDSPJ7WGYHDMw@mail.gmail.com>
+ dkim=pass header.i=@protonmail.com header.s=protonmail3 header.b=Zkopw6Wn;
+ spf=pass (domain: protonmail.com, ip: 185.70.43.16, mailfrom: codusnocturnus@protonmail.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1730069393; x=1730328593;
+	bh=4RGfAhZtfaYX3g2Dzmx37JDWK84jZjMOJ32/M64V2mE=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=Zkopw6WnlJ8LWYFrp6M7WDOiDhmUGgui198jaIgZZ258wzBX5IzJb83ATw8+FZpfl
+	 IWSvwPfra1DC1Ug+JwsrHh7rGs1uPschRB2aCZbefgJpkXABfrufW7My3BKL2u+h+4
+	 f9GA0BCGOKlmxeivq7VbhXCTIRXo7GUd+ip9C4rar+kst1PUiO35ArP6grs27DNPR2
+	 eJIFWOMPXhE58cyIrdv9cP2Wg8RxPsKPue2oC4Ve+DJQ7tM5lDnHkknkSnBB2gP9oc
+	 3yteNiVMj+uJLZhE5OJk/Dzgh7qx8LsQRQXzrLYr8Ephebbc+gXZu0iS8il6n0l3Ra
+	 fs1rDvGMfoz0A==
+Date: Sun, 27 Oct 2024 22:49:49 +0000
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: codusnocturnus <codusnocturnus@protonmail.com>
+Cc: "haimbachar2008@gmail.com" <haimbachar2008@gmail.com>, Gyorgy Sarvari <skandigraun@gmail.com>
 Subject: Re: [yocto] How to set real time patch correctly? #honister
-To: yocto@lists.yoctoproject.org, haimbachar2008@gmail.com
-Cc: Gyorgy Sarvari <skandigraun@gmail.com>
-Content-Type: multipart/alternative; boundary="0000000000005777d506257cc483"
+Message-ID: <jwupHh780GGookLO8E-o4cVDtcLdc3wdpyAFvaZsyuknphKUSJzWU4JD4QIWwHxZ1eqjLVZ0Q27J8VJV9wrSdDGIZ42JI8AML08hSZyhzSU=@protonmail.com>
+In-Reply-To: <CADkTA4NCoj4xTDQ4U-xyYosuJECWd0cMNWK8wUDSPJ7WGYHDMw@mail.gmail.com>
+References: <d8d28f79-8b34-4309-8778-49bae8267cf8@gmail.com> <27982.1729962606213889652@lists.yoctoproject.org> <CADkTA4NCoj4xTDQ4U-xyYosuJECWd0cMNWK8wUDSPJ7WGYHDMw@mail.gmail.com>
+Feedback-ID: 22270428:user:proton
+X-Pm-Message-ID: 4de48df84a091d154454e8ca5e86f414aa9a3d6b
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1=_TxhRVgSB8ts4JASlFdi4nN4CO6fav0n5nUM5eoUHNk"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 27 Oct 2024 22:21:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64147
+ <yocto@lists.yoctoproject.org>; Sun, 27 Oct 2024 22:49:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64148
 
---0000000000005777d506257cc483
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--b1=_TxhRVgSB8ts4JASlFdi4nN4CO6fav0n5nUM5eoUHNk
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Alternatively:
+Tm8gbWFnaWMgZXhwZWN0ZWQuIEl0IHdpbGwganVzdCBiZSBuaWNlIHRvIG5vdCBoYXZlIHRvIGVz
+c2VudGlhbGx5IG1lcmdlIDMga2VybmVsIGZsYXZvcnMgdG9nZXRoZXIgdG8gZ2V0IGZ1bGwgUlQg
+Z29pbmcuCgpJIGhhZG7igJl0IHNlZW4gKG9yIGxvb2tlZCBmb3IpIHRoZSBYaWxpbnggdGFncyBp
+biBsaW51eC15b2N0byBiZWZvcmUuIEnigJl2ZSBhbHdheXMgYmVlbiBsZWVyeSBhYm91dCB1c2lu
+ZyBhbnl0aGluZyBvdGhlciB0aGFuIGxpbnV4LXhsbnguIFRoZXJlIGFyZSB1c3VhbGx5IGVub3Vn
+aCB0aGluZ3MgdG8gZG8gd2hlbiBtb3ZpbmcgYmV0d2VlbiBYaWxpbnggeW9jdG8gcmVsZWFzZXMg
+dGhhdCBJIGhhdmVu4oCZdCB3YW50ZWQgdG8gYWRkIG1vcmUgdGhpbmdzIHRvIHJlbWVtYmVyLCBi
+dXQgSSB3aWxsIGRlZmluaXRlbHkgdGFrZSBhIGxvb2suCgpUaGFua3MsCgpTZW50IGZyb20gW1By
+b3RvbiBNYWlsXShodHRwczovL3Byb3Rvbi5tZS9tYWlsL2hvbWUpIGZvciBpT1MKCk9uIFN1biwg
+T2N0IDI3LCAyMDI0IGF0IDE1OjIwLCBCcnVjZSBBc2hmaWVsZCA8W2JydWNlLmFzaGZpZWxkQGdt
+YWlsLmNvbV0obWFpbHRvOk9uIFN1biwgT2N0IDI3LCAyMDI0IGF0IDE1OjIwLCBCcnVjZSBBc2hm
+aWVsZCA8PGEgaHJlZj0pPiB3cm90ZToKCj4gQWx0ZXJuYXRpdmVseToKPgo+IGh0dHBzOi8vZ2l0
+LnlvY3RvcHJvamVjdC5vcmcvbGludXgteW9jdG8vbG9nLz9oPXY2LjYvc3RhbmRhcmQvcHJlZW1w
+dC1ydC9zZGt2Ni42L3hsbngtc29jCj4KPiBBbHNvLCBwbGVhc2UgYW55b25lIHJlYWRpbmcgdGhp
+cy4gRG8gbm90IGV4cGVjdCBhbnkgbWFnaWMgZnJvbSA2LjEyIHRvIG1ha2UgYWxsIHlvdXIgLXJ0
+IGRyZWFtcyBjb21lIHRydWUuIE91dHNpZGUgb2YgcGF0Y2hpbmcgdGhlIGtlcm5lbCwgYWxsIG9m
+IHRoZSBjaGFsbGVuZ2VzIHdpdGggc3VwcG9ydGluZyAtcnQgaW4gZW1iZWRkZWQgU0RLcyBhbmQg
+ZGV2aWNlcyB3aWxsIGJlIGV4YWN0bHkgdGhlIHNhbWUuIER1c3Qgb2ZmIG91ciB0cmFjaW5nIGFu
+ZCBsYXRlbmN5IHNwaWtlIGRlYnVnZ2luZyBza2lsbHMsIGJlY2F1c2UgeW91IGFyZSBnb2luZyB0
+byBuZWVkIHRoZW0uCj4KPiBDaGVlcnMsCj4KPiBCcnVjZQo+Cj4gT24gU2F0LCBPY3QgMjYsIDIw
+MjQgYXQgMToxMOKAr1BNIEhhaW1iYWNoIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxoYWlt
+YmFjaGFyMjAwOD0gZ21haWwuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IHdyb3RlOgo+Cj4+
+IERvIHlvdSBrbm93IGlmIHRoZXJlIGFueSBleGFtcGxlIG9mIHNldHRpbmcgdGhlIHJ0IHBhdGNo
+IHdpdGggWGlsaW54IGtlcm5lbD8KPj4gdGhlIGRlZmF1bHQgcHJvY2VkdXJlIG5vdCB3b3JraW5n
+IGFzIHlvdSBzYXkgaXTigJlzIGZvciB0aGUgdmFuaWxsYSBrZXJuZWwuCj4+Cj4+IFJlZ2FyZHMs
+Cj4+IEhhaW0KPgo+IC0tCj4KPiAtIFRob3Ugc2hhbHQgbm90IGZvbGxvdyB0aGUgTlVMTCBwb2lu
+dGVyLCBmb3IgY2hhb3MgYW5kIG1hZG5lc3MgYXdhaXQgdGhlZSBhdCBpdHMgZW5kCj4gLSAiVXNl
+IHRoZSBmb3JjZSBIYXJyeSIgLSBHYW5kYWxmLCBTdGFyIFRyZWsgSUk=
 
-https://git.yoctoproject.org/linux-yocto/log/?h=3Dv6.6/standard/preempt-rt/=
-sdkv6.6/xlnx-soc
+--b1=_TxhRVgSB8ts4JASlFdi4nN4CO6fav0n5nUM5eoUHNk
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Also, please anyone reading this. Do not expect any magic from 6.12 to make
-all your -rt dreams come true. Outside of patching the kernel, all of the
-challenges with supporting -rt in embedded SDKs and devices will be exactly
-the same. Dust off our tracing and latency spike debugging skills, because
-you are going to need them.
+PGh0bWw+PGhlYWQ+PC9oZWFkPjxib2R5PiAgIDxkaXYgZGlyPSJhdXRvIj5ObyBtYWdpYyBleHBl
+Y3RlZC4gSXQgd2lsbCBqdXN0IGJlIG5pY2UgdG8gbm90IGhhdmUgdG8gZXNzZW50aWFsbHkgbWVy
+Z2UgMyBrZXJuZWwgZmxhdm9ycyB0b2dldGhlciB0byBnZXQgZnVsbCBSVCBnb2luZy48L2Rpdj48
+ZGl2IGRpcj0iYXV0byI+PGJyPjwvZGl2PjxkaXYgZGlyPSJhdXRvIj5JIGhhZG7igJl0IHNlZW4g
+KG9yIGxvb2tlZCBmb3IpIHRoZSBYaWxpbnggdGFncyBpbiBsaW51eC15b2N0byBiZWZvcmUuIEni
+gJl2ZSBhbHdheXMgYmVlbiBsZWVyeSBhYm91dCB1c2luZyBhbnl0aGluZyBvdGhlciB0aGFuIGxp
+bnV4LXhsbnguIFRoZXJlIGFyZSB1c3VhbGx5IGVub3VnaCB0aGluZ3MgdG8gZG8gd2hlbiBtb3Zp
+bmcgYmV0d2VlbiBYaWxpbnggeW9jdG8gcmVsZWFzZXMgdGhhdCBJIGhhdmVu4oCZdCB3YW50ZWQg
+dG8gYWRkIG1vcmUgdGhpbmdzIHRvIHJlbWVtYmVyLCBidXQgSSB3aWxsIGRlZmluaXRlbHkgdGFr
+ZSBhIGxvb2suPC9kaXY+PGRpdiBkaXI9ImF1dG8iPjxicj48L2Rpdj48ZGl2IGRpcj0iYXV0byI+
+VGhhbmtzLDwvZGl2PjxkaXYgZGlyPSJhdXRvIj48YnI+PC9kaXY+PGRpdiBkaXI9ImF1dG8iPjxi
+cj48L2Rpdj48ZGl2Pjxicj48L2Rpdj4gPGRpdiBpZD0icHJvdG9ubWFpbF9tb2JpbGVfc2lnbmF0
+dXJlX2Jsb2NrIj48ZGl2PlNlbnQgZnJvbSA8YSBocmVmPSJodHRwczovL3Byb3Rvbi5tZS9tYWls
+L2hvbWUiPlByb3RvbiBNYWlsPC9hPiBmb3IgaU9TPC9kaXY+PC9kaXY+IDxkaXY+PGJyPjwvZGl2
+PjxkaXY+PGJyPjwvZGl2Pk9uIFN1biwgT2N0IDI3LCAyMDI0IGF0IDE1OjIwLCBCcnVjZSBBc2hm
+aWVsZCAmbHQ7PGEgY2xhc3M9IiIgaHJlZj0ibWFpbHRvOk9uIFN1biwgT2N0IDI3LCAyMDI0IGF0
+IDE1OjIwLCBCcnVjZSBBc2hmaWVsZCA8PGEgaHJlZj0iPmJydWNlLmFzaGZpZWxkQGdtYWlsLmNv
+bTwvYT4mZ3Q7IHdyb3RlOjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiIGNsYXNzPSJwcm90b25tYWls
+X3F1b3RlIj4gIDxkaXYgZGlyPSJsdHIiPg0KIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbCIg
+Y2xhc3M9ImdtYWlsX2RlZmF1bHQiPg0KICBBbHRlcm5hdGl2ZWx5Og0KIDwvZGl2Pg0KIDxkaXYg
+c3R5bGU9ImZvbnQtc2l6ZTpzbWFsbCIgY2xhc3M9ImdtYWlsX2RlZmF1bHQiPg0KICA8YnI+DQog
+PC9kaXY+DQogPGRpdiBzdHlsZT0iZm9udC1zaXplOnNtYWxsIiBjbGFzcz0iZ21haWxfZGVmYXVs
+dCI+DQogIDxhIGhyZWY9Imh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbGludXgteW9jdG8v
+bG9nLz9oPXY2LjYvc3RhbmRhcmQvcHJlZW1wdC1ydC9zZGt2Ni42L3hsbngtc29jIj5odHRwczov
+L2dpdC55b2N0b3Byb2plY3Qub3JnL2xpbnV4LXlvY3RvL2xvZy8/aD12Ni42L3N0YW5kYXJkL3By
+ZWVtcHQtcnQvc2RrdjYuNi94bG54LXNvYzwvYT4NCiAgPGJyPg0KIDwvZGl2Pg0KIDxkaXYgc3R5
+bGU9ImZvbnQtc2l6ZTpzbWFsbCIgY2xhc3M9ImdtYWlsX2RlZmF1bHQiPg0KICA8YnI+DQogPC9k
+aXY+DQogPGRpdiBzdHlsZT0iZm9udC1zaXplOnNtYWxsIiBjbGFzcz0iZ21haWxfZGVmYXVsdCI+
+DQogIEFsc28sIHBsZWFzZSBhbnlvbmUgcmVhZGluZyB0aGlzLiBEbyBub3QgZXhwZWN0IGFueSBt
+YWdpYyBmcm9tIDYuMTIgdG8gbWFrZSBhbGwgeW91ciAtcnQgZHJlYW1zIGNvbWUgdHJ1ZS4gT3V0
+c2lkZSBvZiBwYXRjaGluZyB0aGUga2VybmVsLCBhbGwgb2YgdGhlIGNoYWxsZW5nZXMgd2l0aCBz
+dXBwb3J0aW5nIC1ydCBpbiBlbWJlZGRlZCBTREtzIGFuZCBkZXZpY2VzIHdpbGwgYmUgZXhhY3Rs
+eSB0aGUgc2FtZS4gRHVzdCBvZmYgb3VyIHRyYWNpbmcgYW5kIGxhdGVuY3kgc3Bpa2UgZGVidWdn
+aW5nIHNraWxscywgYmVjYXVzZSB5b3UgYXJlIGdvaW5nIHRvIG5lZWQgdGhlbS4NCiA8L2Rpdj4N
+CiA8ZGl2IHN0eWxlPSJmb250LXNpemU6c21hbGwiIGNsYXNzPSJnbWFpbF9kZWZhdWx0Ij4NCiAg
+PGJyPg0KIDwvZGl2Pg0KIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbCIgY2xhc3M9ImdtYWls
+X2RlZmF1bHQiPg0KICBDaGVlcnMsDQogPC9kaXY+DQogPGRpdiBzdHlsZT0iZm9udC1zaXplOnNt
+YWxsIiBjbGFzcz0iZ21haWxfZGVmYXVsdCI+DQogIDxicj4NCiA8L2Rpdj4NCiA8ZGl2IHN0eWxl
+PSJmb250LXNpemU6c21hbGwiIGNsYXNzPSJnbWFpbF9kZWZhdWx0Ij4NCiAgQnJ1Y2UNCiA8L2Rp
+dj4NCjwvZGl2Pg0KPGJyPg0KPGRpdiBjbGFzcz0iZ21haWxfcXVvdGUiPg0KIDxkaXYgY2xhc3M9
+ImdtYWlsX2F0dHIiIGRpcj0ibHRyIj4NCiAgT24gU2F0LCBPY3QgMjYsIDIwMjQgYXQgMToxMOKA
+r1BNIEhhaW1iYWNoIHZpYSANCiAgPGEgaHJlZj0iaHR0cDovL2xpc3RzLnlvY3RvcHJvamVjdC5v
+cmciPmxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+ICZsdDtoYWltYmFjaGFyMjAwOD0NCiAgPGEg
+aHJlZj0ibWFpbHRvOmdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnIj5nbWFpbC5jb21A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7IHdyb3RlOg0KICA8YnI+DQogPC9kaXY+DQog
+PGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhleDtib3JkZXItbGVmdDox
+cHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRkaW5nLWxlZnQ6MWV4IiBjbGFzcz0iZ21haWxf
+cXVvdGUiPg0KICA8ZGl2Pg0KICAgRG8geW91IGtub3cgaWYgdGhlcmUgYW55IGV4YW1wbGUgb2Yg
+c2V0dGluZyB0aGUgcnQgcGF0Y2ggd2l0aCBYaWxpbngga2VybmVsPyZuYnNwOw0KICAgPGJyPnRo
+ZSBkZWZhdWx0IHByb2NlZHVyZSBub3Qgd29ya2luZyBhcyB5b3Ugc2F5IGl04oCZcyBmb3IgdGhl
+IHZhbmlsbGEga2VybmVsLg0KICA8L2Rpdj4gDQogIDxkaXY+DQogICAmbmJzcDsNCiAgPC9kaXY+
+IA0KICA8ZGl2Pg0KICAgUmVnYXJkcywNCiAgPC9kaXY+IA0KICA8ZGl2Pg0KICAgSGFpbQ0KICA8
+L2Rpdj4gDQogIDxicj4gDQogIDxicj4gDQogIDxicj4gDQogPC9ibG9ja3F1b3RlPg0KPC9kaXY+
+DQo8YnIgY2xlYXI9ImFsbCI+DQo8ZGl2Pg0KIDxicj4NCjwvZGl2Pg0KPHNwYW4gY2xhc3M9Imdt
+YWlsX3NpZ25hdHVyZV9wcmVmaXgiPi0tIDwvc3Bhbj4NCjxicj4NCjxkaXYgY2xhc3M9ImdtYWls
+X3NpZ25hdHVyZSIgZGlyPSJsdHIiPg0KIC0gVGhvdSBzaGFsdCBub3QgZm9sbG93IHRoZSBOVUxM
+IHBvaW50ZXIsIGZvciBjaGFvcyBhbmQgbWFkbmVzcyBhd2FpdCB0aGVlIGF0IGl0cyBlbmQNCiA8
+YnI+LSAiVXNlIHRoZSBmb3JjZSBIYXJyeSIgLSBHYW5kYWxmLCBTdGFyIFRyZWsgSUkNCiA8YnI+
+DQogPGJyPg0KPC9kaXY+PC9ibG9ja3F1b3RlPjwvYm9keT48L2h0bWw+
 
-Cheers,
 
-Bruce
+--b1=_TxhRVgSB8ts4JASlFdi4nN4CO6fav0n5nUM5eoUHNk--
 
-On Sat, Oct 26, 2024 at 1:10=E2=80=AFPM Haimbach via lists.yoctoproject.org
-<haimbachar2008=3Dgmail.com@lists.yoctoproject.org> wrote:
-
-> Do you know if there any example of setting the rt patch with Xilinx
-> kernel?
-> the default procedure not working as you say it=E2=80=99s for the vanilla=
- kernel.
->
-> Regards,
-> Haim
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64142):
-> https://lists.yoctoproject.org/g/yocto/message/64142
-> Mute This Topic: https://lists.yoctoproject.org/mt/109223260/1050810
-> Mute #honister:https://lists.yoctoproject.org/g/yocto/mutehashtag/honiste=
-r
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> bruce.ashfield@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end
-- "Use the force Harry" - Gandalf, Star Trek II
-
---0000000000005777d506257cc483
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Alt=
-ernatively:</div><div class=3D"gmail_default" style=3D"font-size:small"><br=
-></div><div class=3D"gmail_default" style=3D"font-size:small"><a href=3D"ht=
-tps://git.yoctoproject.org/linux-yocto/log/?h=3Dv6.6/standard/preempt-rt/sd=
-kv6.6/xlnx-soc">https://git.yoctoproject.org/linux-yocto/log/?h=3Dv6.6/stan=
-dard/preempt-rt/sdkv6.6/xlnx-soc</a><br></div><div class=3D"gmail_default" =
-style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"f=
-ont-size:small">Also, please anyone reading this. Do not expect any magic f=
-rom 6.12 to make all your -rt dreams come true. Outside of patching the ker=
-nel, all of the challenges with supporting -rt in embedded SDKs and devices=
- will be exactly the same. Dust off our tracing and latency spike debugging=
- skills, because you are going to need them.</div><div class=3D"gmail_defau=
-lt" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=
-=3D"font-size:small">Cheers,</div><div class=3D"gmail_default" style=3D"fon=
-t-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:sma=
-ll">Bruce</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Sat, Oct 26, 2024 at 1:10=E2=80=AFPM Haimbach via <a hre=
-f=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;haimbach=
-ar2008=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.com@list=
-s.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex"><div>Do you know if there any example of setting the rt p=
-atch with Xilinx kernel?=C2=A0<br>the default procedure not working as you =
-say it=E2=80=99s for the vanilla kernel.</div>
-<div>=C2=A0</div>
-<div>Regards,</div>
-<div>Haim</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#64142): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/64142" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/64142</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/109223260/105=
-0810" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/109223260/1050810</a><br>
-Mute #honister:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashta=
-g/honister" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject=
-.org/g/yocto/mutehashtag/honister</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruc=
-e.ashfield@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature">- =
-Thou shalt not follow the NULL pointer, for chaos and madness await thee at=
- its end<br>- &quot;Use the force Harry&quot; - Gandalf, Star Trek II<br><b=
-r></div>
-
---0000000000005777d506257cc483--
 
