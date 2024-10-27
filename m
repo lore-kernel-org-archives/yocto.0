@@ -1,83 +1,157 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <codusnocturnus@protonmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90AFAD13580
-	for <webhook@archiver.kernel.org>; Sun, 27 Oct 2024 20:01:25 +0000 (UTC)
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
- by mx.groups.io with SMTP id smtpd.web10.36529.1730059282939243022
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD832D13586
+	for <webhook@archiver.kernel.org>; Sun, 27 Oct 2024 20:39:35 +0000 (UTC)
+Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
+ by mx.groups.io with SMTP id smtpd.web11.37366.1730061573831092776
  for <yocto@lists.yoctoproject.org>;
- Sun, 27 Oct 2024 13:01:23 -0700
+ Sun, 27 Oct 2024 13:39:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=FBz2nBU7;
- spf=pass (domain: gmail.com, ip: 209.85.208.43, mailfrom: skandigraun@gmail.com)
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5c9428152c0so4153465a12.1
-        for <yocto@lists.yoctoproject.org>; Sun, 27 Oct 2024 13:01:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730059281; x=1730664081; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jmru3cDwDlNrNLwsKdBFi0Nloz6plQMhhsNPkPX5Lp0=;
-        b=FBz2nBU7kFVD2KSOLkImmZlYieyCDTxYLDsjOr53YZLOFkQC+ZVg3f/8JI67hmO7Z3
-         +AsyXxG4xKsda9aFA7+P/auhXs8qWpdDgiXjImOz7bwZPk+FbYk9sJeO194Riv3Tpes/
-         1lx9lGhz5pZqsWvHi8HItYBVZXzPS2p7YoxD7S6Qi0yTC05qwOVSISfW8tjkqnoFKRNI
-         B66Xg16IjKQ1UOaTwii06cGbt/tvrHrL7GGdIiYjgFQoX+qte82x/g1lzqU+zQb07OCA
-         RH252/8ptzyrF8f4PVKByZbAels6YzgkqsOEI3QnCRuBb2lEhxq1X4cqdlRKRhgKNCGw
-         lbDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730059281; x=1730664081;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jmru3cDwDlNrNLwsKdBFi0Nloz6plQMhhsNPkPX5Lp0=;
-        b=D4POLAGtMNvO0Pt6T8JMxq7t+m4GHb2qBtNPrlbIxQT+fwszj7CS1N1aeJhOTwGYMh
-         ccR2Vpw0Dl2B027vHaDY/Z0sGba0oul662vOVwGxz86ChFjkFgELDtKDnaJXVirCqkWw
-         Mu0ptnaZWIwZXA+G+ZZuH5e+jTYF4NmtsLKhlcyCb0Z0jdPknPPztmn04OqM82r4GH4L
-         UdChzlHQh1YLnUE+aIMGVC7oeFufkVXWnnqXzn+1opuiZt8mrXQ/6Qt1o49M23mVoBT4
-         5Jfsl7uyQ4b3NbodnqfOYfEUsiWf7WwnHzzUFDohlXMCjU8KLha1annrnJLug9m8kU6f
-         JoDg==
-X-Forwarded-Encrypted: i=1; AJvYcCWJs1R1s7Xwpet4HBGMoWr5CErJ3MZaiagaNZ6dbZpdNIpbdzKr5LSrgizkj5r+OYTYg/h9bg==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YzfBpi44rw0WDJmIcCSAG7PxKIItnHQznAdWdHvIf+PPx7cOo7Y
-	Mv5P80l6iNxzaUxVBx/Qjz2rNGj2P/uWSRGxIaFQwU19dpyIVF5S
-X-Google-Smtp-Source: AGHT+IFAYE/VqC1YnZ2qskigXy7HRmAOIvhj6yP+IXJhhmwrrJ6D5zSHDxusq2e5gGtqq/lVbmY9yQ==
-X-Received: by 2002:a17:907:7245:b0:a99:f8e2:edec with SMTP id a640c23a62f3a-a9de5d6f21cmr625083766b.21.1730059280877;
-        Sun, 27 Oct 2024 13:01:20 -0700 (PDT)
-Received: from [192.168.1.2] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b3099ddf1sm314056466b.149.2024.10.27.13.01.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Oct 2024 13:01:20 -0700 (PDT)
-Message-ID: <10024079-1e1e-4613-9d31-ccdf134f789c@gmail.com>
-Date: Sun, 27 Oct 2024 21:01:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+ dkim=pass header.i=@protonmail.com header.s=protonmail3 header.b=V7xhQ1v6;
+ spf=pass (domain: protonmail.com, ip: 185.70.40.133, mailfrom: codusnocturnus@protonmail.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1730061569; x=1730320769;
+	bh=dE9BGDqgXrpZNQoy5ubNt+FfeUZkqQXkF62RdTcBgls=;
+	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=V7xhQ1v6n9Zk+QVZCqPqMAvWMMqBMLpH00PErRC0kzWk97cVnTi+2w6Gmp1Nip/Oh
+	 ZTpLBlnqoKKA0pUuBzLho5CsA4aIEoi+waa65dPeKW0Ig+TqJhrUvxFLwmW4TRlZWD
+	 HkJVrBGSVrK2jTsLazLu7S1Xjc/l6XttCQk4YHtCv/wvLq2sRLytIvtE1BkldzsYO7
+	 VD+7zCF8XdJrcFphXYzZ0+BzEXZwj1ggGRx2Wuvs1a8CDWLmVkqKeGd5ZbNQHktqxN
+	 fGHwIjKm3EtuD5Hk6JemZPqXsgL11NDRMEpwtsR1FuRh52JX6WjgFlMJPvbi8aKa42
+	 p3pRKzCQH1Pdg==
+Date: Sun, 27 Oct 2024 20:39:25 +0000
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: codusnocturnus <codusnocturnus@protonmail.com>
 Subject: Re: [yocto] How to set real time patch correctly? #honister
-To: haimbachar2008@gmail.com, yocto@lists.yoctoproject.org
-References: <d8d28f79-8b34-4309-8778-49bae8267cf8@gmail.com>
- <27982.1729962606213889652@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <27982.1729962606213889652@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Message-ID: <UwH27fPQt7pKUPIrKWuQNwQLipObxjX_BLT6W3t6B8hqqnaQ0mMZ725V02LJ1RajSyQ2hZDx_ukPO_Qc43Pkuz3gs1n1U1eVYAgDxaTwBOQ=@protonmail.com>
+In-Reply-To: <10024079-1e1e-4613-9d31-ccdf134f789c@gmail.com>
+References: <d8d28f79-8b34-4309-8778-49bae8267cf8@gmail.com> <27982.1729962606213889652@lists.yoctoproject.org> <10024079-1e1e-4613-9d31-ccdf134f789c@gmail.com>
+Feedback-ID: 22270428:user:proton
+X-Pm-Message-ID: 560593dcb59b2842eff83b34a24c888eb95fd33f
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1=_4UIfBSNM08lZz34GELEIIcRgi2RGxGT3dAUxh8ipY"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 27 Oct 2024 20:01:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64145
+ <yocto@lists.yoctoproject.org>; Sun, 27 Oct 2024 20:39:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64146
 
-Based on some random googling[0], the RT patch is not supported 
-officially by the Xilinx kernel - and there is a not too nice unofficial 
-way, which doesn't look something that can be done nicely without hacks 
-using Yocto at the first sight.
+--b1=_4UIfBSNM08lZz34GELEIIcRgi2RGxGT3dAUxh8ipY
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Personally I would just prepare the source manually along some update 
-script, and host it on my local server to fetch it from... but possibly 
-the folks at meta-xilinx mailing list[1] could be a better help? It's 
-their kernel, most likely they have more hands-on experience.
+SXTigJlzIHRvdWdoIHdpdGggdGhlIGxsaW51eC14bG54IGtlcm5lbHMsIGJlY2F1c2UgdGhleSBp
+bmNsdWRlIHNvbWUgc3R1ZmYgZnJvbSB0aGUgUlQgcGF0Y2hlcywgYW5kIHlvdSBoYXZlIHRvIG1v
+ZGlmeSB0aGUgcGF0Y2ggZmlsZXMgdG8gZ2V0IHRoZW0gdG8gYXBwbHkuIFRoZW4gdGhlcmUgYXJl
+IHRoaW5ncyB0aGF0IHBhdGNoIG9rYXksIGJ1dCBicmVhayB0aGUgYnVpbGQsIGFuZCB5b3UgaGF2
+ZSB0byBjaGFzZSB0aGF0IGRvd24uCgpVcGRhdGluZyB0aGUgcGF0Y2hlcyBjYW4gZGVmaW5pdGVs
+eSBiZSB0ZWRpb3VzLCBidXQgSSBrZWVwIHRoZSByZXN1bHQgKGFzIGEgZnVsbCBwYXRjaCBzZXQp
+IGFsb25nIHdpdGggYSBiYmFwcGVuZCBpbiBteSBsb2NhbCBsYXllci4KCknigJl2ZSBiZWVuIGFi
+bGUgdG8gZ2V0IGEgd29ya2luZyBQUkVFTVBULVJUIGtlcm5lbCBpbnRvIG15IGltYWdlcywgZm9s
+bG93ZWQgYnkgbG90cyBvZiB0ZXN0aW5nIChjdXJyZW50bHkgb24gMjAyMy4yL0xhbmdkYWxlKS4K
+ClJlYWxseSBjYW7igJl0IHdhaXQgZm9yIGtlcm5lbCA2LjEyIHRvIG1ha2UgaXQgaW50byBhIHlv
+Y3RvIHJlbGVhc2UgYW5kIHRoZW4gaW50byBsaW51eC14bG54LgoKU2VudCBmcm9tIFtQcm90b24g
+TWFpbF0oaHR0cHM6Ly9wcm90b24ubWUvbWFpbC9ob21lKSBmb3IgaU9TCgpPbiBTdW4sIE9jdCAy
+NywgMjAyNCBhdCAxMzowMSwgR3lvcmd5IFNhcnZhcmkgPFtza2FuZGlncmF1bkBnbWFpbC5jb21d
+KG1haWx0bzpPbiBTdW4sIE9jdCAyNywgMjAyNCBhdCAxMzowMSwgR3lvcmd5IFNhcnZhcmkgPDxh
+IGhyZWY9KT4gd3JvdGU6Cgo+IEJhc2VkIG9uIHNvbWUgcmFuZG9tIGdvb2dsaW5nWzBdLCB0aGUg
+UlQgcGF0Y2ggaXMgbm90IHN1cHBvcnRlZAo+IG9mZmljaWFsbHkgYnkgdGhlIFhpbGlueCBrZXJu
+ZWwgLSBhbmQgdGhlcmUgaXMgYSBub3QgdG9vIG5pY2UgdW5vZmZpY2lhbAo+IHdheSwgd2hpY2gg
+ZG9lc24ndCBsb29rIHNvbWV0aGluZyB0aGF0IGNhbiBiZSBkb25lIG5pY2VseSB3aXRob3V0IGhh
+Y2tzCj4gdXNpbmcgWW9jdG8gYXQgdGhlIGZpcnN0IHNpZ2h0Lgo+Cj4gUGVyc29uYWxseSBJIHdv
+dWxkIGp1c3QgcHJlcGFyZSB0aGUgc291cmNlIG1hbnVhbGx5IGFsb25nIHNvbWUgdXBkYXRlCj4g
+c2NyaXB0LCBhbmQgaG9zdCBpdCBvbiBteSBsb2NhbCBzZXJ2ZXIgdG8gZmV0Y2ggaXQgZnJvbS4u
+LiBidXQgcG9zc2libHkKPiB0aGUgZm9sa3MgYXQgbWV0YS14aWxpbnggbWFpbGluZyBsaXN0WzFd
+IGNvdWxkIGJlIGEgYmV0dGVyIGhlbHA/IEl0J3MKPiB0aGVpciBrZXJuZWwsIG1vc3QgbGlrZWx5
+IHRoZXkgaGF2ZSBtb3JlIGhhbmRzLW9uIGV4cGVyaWVuY2UuCj4KPiBbMF06Cj4gaHR0cHM6Ly94
+aWxpbngtd2lraS5hdGxhc3NpYW4ubmV0L3dpa2kvc3BhY2VzL0EvcGFnZXMvMTg4NDI0MzUvUmVh
+bC1UaW1lK0xpbnV4Cj4gWzFdOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy9tZXRh
+LXhpbGlueAo+Cj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0KPiBMaW5rczogWW91IHJlY2VpdmUg
+YWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhpcyBncm91cC4KPiBWaWV3L1JlcGx5IE9ubGluZSAoIzY0
+MTQ1KTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS82NDE0
+NQo+IE11dGUgVGhpcyBUb3BpYzogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL210LzEw
+OTIyMzI2MC80ODY0MjQ3Cj4gTXV0ZSAjaG9uaXN0ZXI6aHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
+Y3Qub3JnL2cveW9jdG8vbXV0ZWhhc2h0YWcvaG9uaXN0ZXIKPiBHcm91cCBPd25lcjogeW9jdG8r
+b3duZXJAbGlzdHMueW9jdG9wcm9qZWN0Lm9yZwo+IFVuc3Vic2NyaWJlOiBodHRwczovL2xpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YiBbY29kdXNub2N0dXJudXNAcHJvdG9ubWFp
+bC5jb21dCj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0=
 
-[0]: 
-https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842435/Real-Time+Linux
-[1]: https://lists.yoctoproject.org/g/meta-xilinx
+--b1=_4UIfBSNM08lZz34GELEIIcRgi2RGxGT3dAUxh8ipY
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGhlYWQ+PC9oZWFkPjxib2R5PiAgIDxkaXYgZGlyPSJhdXRvIj5JdOKAmXMgdG91Z2gg
+d2l0aCB0aGUgbGxpbnV4LXhsbngga2VybmVscywgYmVjYXVzZSB0aGV5IGluY2x1ZGUgc29tZSBz
+dHVmZiBmcm9tIHRoZSBSVCBwYXRjaGVzLCBhbmQgeW91IGhhdmUgdG8gbW9kaWZ5IHRoZSBwYXRj
+aCBmaWxlcyB0byBnZXQgdGhlbSB0byBhcHBseS4gVGhlbiB0aGVyZSBhcmUgdGhpbmdzIHRoYXQg
+cGF0Y2ggb2theSwgYnV0IGJyZWFrIHRoZSBidWlsZCwgYW5kIHlvdSBoYXZlIHRvIGNoYXNlIHRo
+YXQgZG93bi48L2Rpdj48ZGl2IGRpcj0iYXV0byI+PGJyPjwvZGl2PjxkaXYgZGlyPSJhdXRvIj5V
+cGRhdGluZyB0aGUgcGF0Y2hlcyBjYW4gZGVmaW5pdGVseSBiZSB0ZWRpb3VzLCBidXQgSSBrZWVw
+IHRoZSByZXN1bHQgKGFzIGEgZnVsbCBwYXRjaCBzZXQpIGFsb25nIHdpdGggYSBiYmFwcGVuZCBp
+biBteSBsb2NhbCBsYXllci48L2Rpdj48ZGl2IGRpcj0iYXV0byI+PGJyPjwvZGl2PjxkaXYgZGly
+PSJhdXRvIj48c3BhbiBzdHlsZT0iOyA7IDtTYW4gRnJhbmNpc2NvJnF1b3Q7LCBIZWx2ZXRpY2Es
+IEFyaWFsLCBzYW5zLXNlcmlmOyA7IGZvbnQtc3R5bGU6IG5vcm1hbDsgOyBmb250LXdlaWdodDog
+NDAwOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyBvcnBoYW5zOiBhdXRvOyB0ZXh0LWFsaWduOiBz
+dGFydDsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRlLXNwYWNl
+OiBub3JtYWw7IHdpZG93czogYXV0bzsgd29yZC1zcGFjaW5nOiAwcHg7IDsgLXdlYmtpdC10ZXh0
+LXNpemUtYWRqdXN0OiBub25lOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7IDsgdGV4
+dC1kZWNvcmF0aW9uOiBub25lOyBkaXNwbGF5OiBpbmxpbmUgIWltcG9ydGFudDsgZmxvYXQ6IG5v
+bmU7IiBkaXI9ImF1dG8iPknigJl2ZSBiZWVuIGFibGUgdG8gZ2V0IGEgd29ya2luZyBQUkVFTVBU
+LVJUIGtlcm5lbCBpbnRvIG15IGltYWdlcywgZm9sbG93ZWQgYnkgbG90cyBvZiB0ZXN0aW5nIChj
+dXJyZW50bHkgb24gMjAyMy4yL0xhbmdkYWxlKS48L3NwYW4+PC9kaXY+PGRpdiBkaXI9ImF1dG8i
+PjxzcGFuIHN0eWxlPSI7IDsgO1NhbiBGcmFuY2lzY28mcXVvdDssIEhlbHZldGljYSwgQXJpYWws
+IHNhbnMtc2VyaWY7IDsgZm9udC1zdHlsZTogbm9ybWFsOyA7IGZvbnQtd2VpZ2h0OiA0MDA7IGxl
+dHRlci1zcGFjaW5nOiBub3JtYWw7IG9ycGhhbnM6IGF1dG87IHRleHQtYWxpZ246IHN0YXJ0OyB0
+ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1h
+bDsgd2lkb3dzOiBhdXRvOyB3b3JkLXNwYWNpbmc6IDBweDsgOyAtd2Via2l0LXRleHQtc2l6ZS1h
+ZGp1c3Q6IG5vbmU7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgOyB0ZXh0LWRlY29y
+YXRpb246IG5vbmU7IGRpc3BsYXk6IGlubGluZSAhaW1wb3J0YW50OyBmbG9hdDogbm9uZTsiIGRp
+cj0iYXV0byI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2IGRpcj0iYXV0byI+PHNwYW4gc3R5bGU9Ijsg
+OyA7U2FuIEZyYW5jaXNjbyZxdW90OywgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZjsgOyBm
+b250LXN0eWxlOiBub3JtYWw7IDsgZm9udC13ZWlnaHQ6IDQwMDsgbGV0dGVyLXNwYWNpbmc6IG5v
+cm1hbDsgb3JwaGFuczogYXV0bzsgdGV4dC1hbGlnbjogc3RhcnQ7IHRleHQtaW5kZW50OiAwcHg7
+IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFjZTogbm9ybWFsOyB3aWRvd3M6IGF1dG87
+IHdvcmQtc3BhY2luZzogMHB4OyA7IC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogbm9uZTsgLXdl
+YmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyA7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsgZGlz
+cGxheTogaW5saW5lICFpbXBvcnRhbnQ7IGZsb2F0OiBub25lOyIgZGlyPSJhdXRvIj4gUmVhbGx5
+IGNhbuKAmXQgd2FpdCBmb3Iga2VybmVsIDYuMTIgdG8gbWFrZSBpdCBpbnRvIGEgeW9jdG8gcmVs
+ZWFzZSBhbmQgdGhlbiBpbnRvIGxpbnV4LXhsbnguPC9zcGFuPjxicj48L2Rpdj48ZGl2Pjxicj48
+L2Rpdj4gPGRpdiBpZD0icHJvdG9ubWFpbF9tb2JpbGVfc2lnbmF0dXJlX2Jsb2NrIj48ZGl2PlNl
+bnQgZnJvbSA8YSBocmVmPSJodHRwczovL3Byb3Rvbi5tZS9tYWlsL2hvbWUiPlByb3RvbiBNYWls
+PC9hPiBmb3IgaU9TPC9kaXY+PC9kaXY+IDxkaXY+PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2Pk9u
+IFN1biwgT2N0IDI3LCAyMDI0IGF0IDEzOjAxLCBHeW9yZ3kgU2FydmFyaSAmbHQ7PGEgY2xhc3M9
+IiIgaHJlZj0ibWFpbHRvOk9uIFN1biwgT2N0IDI3LCAyMDI0IGF0IDEzOjAxLCBHeW9yZ3kgU2Fy
+dmFyaSA8PGEgaHJlZj0iPnNrYW5kaWdyYXVuQGdtYWlsLmNvbTwvYT4mZ3Q7IHdyb3RlOjxibG9j
+a3F1b3RlIHR5cGU9ImNpdGUiIGNsYXNzPSJwcm90b25tYWlsX3F1b3RlIj4gIEJhc2VkIG9uIHNv
+bWUgcmFuZG9tIGdvb2dsaW5nWzBdLCB0aGUgUlQgcGF0Y2ggaXMgbm90IHN1cHBvcnRlZA0KPGJy
+Pm9mZmljaWFsbHkgYnkgdGhlIFhpbGlueCBrZXJuZWwgLSBhbmQgdGhlcmUgaXMgYSBub3QgdG9v
+IG5pY2UgdW5vZmZpY2lhbA0KPGJyPndheSwgd2hpY2ggZG9lc24ndCBsb29rIHNvbWV0aGluZyB0
+aGF0IGNhbiBiZSBkb25lIG5pY2VseSB3aXRob3V0IGhhY2tzDQo8YnI+dXNpbmcgWW9jdG8gYXQg
+dGhlIGZpcnN0IHNpZ2h0Lg0KPGJyPg0KPGJyPlBlcnNvbmFsbHkgSSB3b3VsZCBqdXN0IHByZXBh
+cmUgdGhlIHNvdXJjZSBtYW51YWxseSBhbG9uZyBzb21lIHVwZGF0ZQ0KPGJyPnNjcmlwdCwgYW5k
+IGhvc3QgaXQgb24gbXkgbG9jYWwgc2VydmVyIHRvIGZldGNoIGl0IGZyb20uLi4gYnV0IHBvc3Np
+Ymx5DQo8YnI+dGhlIGZvbGtzIGF0IG1ldGEteGlsaW54IG1haWxpbmcgbGlzdFsxXSBjb3VsZCBi
+ZSBhIGJldHRlciBoZWxwPyBJdCdzDQo8YnI+dGhlaXIga2VybmVsLCBtb3N0IGxpa2VseSB0aGV5
+IGhhdmUgbW9yZSBoYW5kcy1vbiBleHBlcmllbmNlLg0KPGJyPg0KPGJyPlswXToNCjxicj5odHRw
+czovL3hpbGlueC13aWtpLmF0bGFzc2lhbi5uZXQvd2lraS9zcGFjZXMvQS9wYWdlcy8xODg0MjQz
+NS9SZWFsLVRpbWUrTGludXgNCjxicj5bMV06IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9y
+Zy9nL21ldGEteGlsaW54DQo8YnI+DQo8YnI+DQo8YnI+LT0tPS09LT0tPS09LT0tPS09LT0tPS0N
+Cjxicj5MaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhpcyBncm91cC4N
+Cjxicj5WaWV3L1JlcGx5IE9ubGluZSAoIzY0MTQ1KTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
+Y3Qub3JnL2cveW9jdG8vbWVzc2FnZS82NDE0NQ0KPGJyPk11dGUgVGhpcyBUb3BpYzogaHR0cHM6
+Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL210LzEwOTIyMzI2MC80ODY0MjQ3DQo8YnI+TXV0ZSAj
+aG9uaXN0ZXI6aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbXV0ZWhhc2h0
+YWcvaG9uaXN0ZXINCjxicj5Hcm91cCBPd25lcjogeW9jdG8rb3duZXJAbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZw0KPGJyPlVuc3Vic2NyaWJlOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcv
+Zy95b2N0by91bnN1YiBbY29kdXNub2N0dXJudXNAcHJvdG9ubWFpbC5jb21dDQo8YnI+LT0tPS09
+LT0tPS09LT0tPS09LT0tPS0NCjxicj4NCjxicj48L2Jsb2NrcXVvdGU+PC9ib2R5PjwvaHRtbD4=
+
+
+--b1=_4UIfBSNM08lZz34GELEIIcRgi2RGxGT3dAUxh8ipY--
 
 
