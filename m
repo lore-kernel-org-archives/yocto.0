@@ -1,86 +1,162 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <yishai1999@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2B78D6B6A5
-	for <webhook@archiver.kernel.org>; Wed, 30 Oct 2024 16:03:39 +0000 (UTC)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
- by mx.groups.io with SMTP id smtpd.web10.18904.1730304210722924242
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BAA16D6B6C3
+	for <webhook@archiver.kernel.org>; Wed, 30 Oct 2024 19:01:30 +0000 (UTC)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+ by mx.groups.io with SMTP id smtpd.web10.23579.1730314888082695725
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Oct 2024 09:03:31 -0700
+ Wed, 30 Oct 2024 12:01:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=aZRZbwc1;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.48, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4314c4cb752so65106435e9.2
-        for <yocto@lists.yoctoproject.org>; Wed, 30 Oct 2024 09:03:30 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Nxknh8BN;
+ spf=pass (domain: gmail.com, ip: 209.85.128.50, mailfrom: yishai1999@gmail.com)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4315baec69eso1235545e9.2
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Oct 2024 12:01:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1730304209; x=1730909009; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=hyvrzi74zrwWqm9aTSldsSmm1IQzgvZgCegztGwP1ao=;
-        b=aZRZbwc1hrl2mcu3jd0cFCf4jr0TQfxKAQOF+lEIz5iYp0aNdOa8eNZaLzqtekk4zX
-         KUM1ofH3dieU0Jun9Yu3nOtgiphIaKekExo5/th6AT6hgA5IyLtvCqpXlr99m9WOiiwk
-         JBjEroOgY4ZON8rliWc+X31LYY1rI+zrvmrdM=
+        d=gmail.com; s=20230601; t=1730314886; x=1730919686; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PK1QaOBP3RSmpuupy7sd44c48/DW0SRkHBWjX2QAf0U=;
+        b=Nxknh8BNW6NiZ15vKL0DH+KsWDUtEODvprIsJKzc+Xp9/lvZuFpyw/r5ZfKLt6g+M1
+         J6lVjiXF+mtSGFlgPJUpkKQJ6/o2Tj3tUyknAWtbRzhNp9+gxiZgUbOGeUgJ08ZLw/7b
+         Meaqt+v57045vmmXjXqgMHnb5q/WQN/RsrlJAP0/WHQYrdOGTgAfYA8PniKNT+JH0Egm
+         WZKJrSv4CGjO8dhhs4YDX950QvM3BjwcAjWgmZRgR3tIBcSryRc0OEb3+8SLThZ7pu0o
+         w+Vfj50CrhyJWLF7z0UlVcJPZO82Q4iUnxPxQlicq4aW3LKl/dSJYnLBPC/qZ2Pg//kU
+         hpzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730304209; x=1730909009;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hyvrzi74zrwWqm9aTSldsSmm1IQzgvZgCegztGwP1ao=;
-        b=pEOBObnc2xYEE108xLNL9itekM6jKEKYXbW/QZO9Jt3u3egsA1Y/7tn9c7RYiPcgdA
-         Z4ZB+jYjxBiDvKORi+aMeA/unkn3zx95jjN+o7l8T/xRaV/5KxHmviUrq7ga+vvehygc
-         NUKrYWTRFyQMcBk2j7M75j3Q1zhfBrtm4rYOoXUz9s6AUZyzXvAaPtpYec14QFYq9iAG
-         13UAbJ0bp4tmzTmKkqSYauGYabFKnr/0KZBp3oy4ZTYbp33CX1JMJZAP4fuvIglIkmGY
-         yYP+jmMGACQDh2GaKsG3X3jOK9oN8rPxcInX5dLGdTPy1DMFwGudsM+WtWxjXLEGG56R
-         BI9g==
-X-Gm-Message-State: AOJu0YyCF6q5spNUFwe4lf7CK3erww+BAe/d9o7t5ed34BDKXdA7eOOg
-	ScsETc/Q/mixi9NulaW1di49LCY0qMcoS9hDQsd6ydukZfa2MbKpuxZPv5D8DTU=
-X-Google-Smtp-Source: AGHT+IGdK/HgXI4xkrJ5grNY9HSOpuDOP0GhhyVM/S26DiKrLHW3SpH/jd/HMD0k2Xix7X9RJt830g==
-X-Received: by 2002:a05:6000:1569:b0:37d:3777:2ac6 with SMTP id ffacd0b85a97d-381be7d9781mr86391f8f.35.1730304208645;
-        Wed, 30 Oct 2024 09:03:28 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:65f1:8463:55dd:142d? ([2001:8b0:aba:5f3c:65f1:8463:55dd:142d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b1333bsm15630842f8f.14.2024.10.30.09.03.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Oct 2024 09:03:28 -0700 (PDT)
-Message-ID: <344f79e8e7093309dad81c72f4be7dc2d42a6161.camel@linuxfoundation.org>
-Subject: Re: [yocto][meta-mingw][PATCH] oeqa: Set LANG in wine tests
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Joshua Watt <jpewhacker@gmail.com>, Steve Sakoman <steve@sakoman.com>
-Cc: yocto@lists.yoctoproject.org
-Date: Wed, 30 Oct 2024 16:03:27 +0000
-In-Reply-To: <CAJdd5GZMVzeiuu55cmXXsAHvARvfTs_mOn9iv8UQEe+_kmwbUQ@mail.gmail.com>
-References: <20241002225451.263086-1-JPEWhacker@gmail.com>
-	 <CAOSpxdZSCzmXMJ-R2Xri8OcQw4Q38b6nkbH-F83sUO9vVgkMJw@mail.gmail.com>
-	 <CAJdd5GZMVzeiuu55cmXXsAHvARvfTs_mOn9iv8UQEe+_kmwbUQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.0-1 
+        d=1e100.net; s=20230601; t=1730314886; x=1730919686;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PK1QaOBP3RSmpuupy7sd44c48/DW0SRkHBWjX2QAf0U=;
+        b=oBWVS/d5d0ZUEme/ykByhcefNQUuXe5Dj+swqFpEZYsXWz12WVzVFOwUwVMKWuER5p
+         EFDv1KI5jkV/pk9brnm87sslqwA3g+GBgIOLyFhbFWIioao76XKPdEgQ9rtW9yFXFdE8
+         C1uOC2qHGXHvzjA7I5sek8F38SqOTa07hga1PHf5XEc8LLKRBx0fi1trGKtVvnHpt32S
+         gX+Ks0/7ANhAEPyAWlvkktumSmB6F+BKyOZ7Cd+kfKrE+WKkd+TTg242HTsmAdyihemc
+         jrPeU0L35JBdL4HJ8fZFPDR2EP6aodvCGLVB2a9fXgWMSazrvX2Yxo+pnbZFcRkCydno
+         omZg==
+X-Gm-Message-State: AOJu0Yx86ocMEJkkHdT3HxMBjOC7h2NVZE4jLfL/Pjd6t1FoB2wex2A2
+	XTTDOgYu+ngqkP8zmfeL8bOeN9K0X92KMokilpgFrE2zBu/nhoF+s/Ng1wft9M/AHTgnG4bYrY1
+	j5PaKVo4avB9+3ao0rmdNMUSDAyQ=
+X-Google-Smtp-Source: AGHT+IGegQipgkiJGzDyl8Ql+6jO1xS3tSdaoAVByn/16sUzs2Nxd3VA3TiZgQfreIzWID5ObudkyVEfOONfi171yJs=
+X-Received: by 2002:adf:e34b:0:b0:37d:498a:a23f with SMTP id
+ ffacd0b85a97d-380611f58e4mr12358322f8f.53.1730314886004; Wed, 30 Oct 2024
+ 12:01:26 -0700 (PDT)
 MIME-Version: 1.0
+References: <7affdd4a-b9f2-4177-b336-100b0e475337@cherry.de>
+ <21197.1730300069131332219@lists.yoctoproject.org> <b91237f1-539c-42cd-8223-5ac4ef471f9b@cherry.de>
+In-Reply-To: <b91237f1-539c-42cd-8223-5ac4ef471f9b@cherry.de>
+From: Yishai Jaffe <yishai1999@gmail.com>
+Date: Wed, 30 Oct 2024 21:01:14 +0200
+Message-ID: <CAJw49vpo++FVsfwMHe7c=A8-L7b_6NK7MuKmbj0WDK_b=J8Aaw@mail.gmail.com>
+Subject: Re: [yocto] Out-of-tree Kernel Modules
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000021493d0625b65442"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Oct 2024 16:03:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64188
+ <yocto@lists.yoctoproject.org>; Wed, 30 Oct 2024 19:01:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64189
 
-On Wed, 2024-10-30 at 10:02 -0600, Joshua Watt wrote:
-> On Wed, Oct 30, 2024 at 9:18=E2=80=AFAM Steve Sakoman <steve@sakoman.com>
-> wrote:
-> >=20
-> > Would it be possible to cherry-pick this commit to the styhead
-> > branch?
-> > =C2=A0I'm seeing the same issue there.
->=20
-> Yes, that would be a good idea. It's based on the build host, not
-> wine
-> or Yocto, so I suspect we would see it on any branch using that host.
->=20
-> Pretty sure it will cherry-pick cleanly, do you want me to send a
-> patch?
+--00000000000021493d0625b65442
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I've sorted it, thanks.
+Hi Quentin,
 
-Cheers,
+On Wed, Oct 30, 2024 at 5:01=E2=80=AFPM Quentin Schulz <quentin.schulz@cher=
+ry.de>
+wrote:
 
-Richard
+> Hi Yishai,
+>
+> On 10/30/24 3:54 PM, Yishai Jaffe via Lists.Yoctoproject.Org wrote:
+> > You don't often get email from yishai1999=3D
+> gmail.com@lists.yoctoproject.org. Learn why this is important<
+> https://aka.ms/LearnAboutSenderIdentification>
+> > Thanks Quentin,
+> > Changing the include to uapi/linux/sched/types.h solved the issue.
+> > But just so I'm clear on this - Can you explain when I should use uapi
+> headers vs when to use the regular linux/xxx headers?
+> >
+>
+> You should include the header where the structure is defined.
+>
+> The "issue" in Yocto is that the headers aren't coming from your kernel
+> sources but from a generic linux kernel header recipe, and this is made
+> on purpose. The generic linux kernel header recipe is at 6.6 in
+> Scarthgap. Styhead has 6.10. The structure is defined in a different
+> header in 6.6 and in 6.7+ (including 6.10), so your out-of-tree module
+> needs the path from 6.6 in order to compile in Scarthgap, but will need
+> another path from 6.7+ in order to compile in Styhead.
+>
+>
+I think my question wasn't clear enough.
+I meant to ask about the general usage of uapi header files.
+When are definitions put in the uapi headers and when are they in the
+regular linux headers?
+
+
+> You can handle that via #if in your code, if you need the exact same
+> source code to build on different Yocto/kernel versions. That is the
+> cross to bear when one develops out of tree kernel modules sadly.
+>
+> Cheers,
+> Quentin
+>
+
+--00000000000021493d0625b65442
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Quentin,</div><div dir=3D"ltr"><br></d=
+iv><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed,=
+ Oct 30, 2024 at 5:01=E2=80=AFPM Quentin Schulz &lt;<a href=3D"mailto:quent=
+in.schulz@cherry.de">quentin.schulz@cherry.de</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex">Hi Yishai,<br>
+<br>
+On 10/30/24 3:54 PM, Yishai Jaffe via <a href=3D"http://Lists.Yoctoproject.=
+Org" rel=3D"noreferrer" target=3D"_blank">Lists.Yoctoproject.Org</a> wrote:=
+<br>
+&gt; You don&#39;t often get email from yishai1999=3D<a href=3D"mailto:gmai=
+l.com@lists.yoctoproject.org" target=3D"_blank">gmail.com@lists.yoctoprojec=
+t.org</a>. Learn why this is important&lt;<a href=3D"https://aka.ms/LearnAb=
+outSenderIdentification" rel=3D"noreferrer" target=3D"_blank">https://aka.m=
+s/LearnAboutSenderIdentification</a>&gt;<br>
+&gt; Thanks Quentin,<br>
+&gt; Changing the include to uapi/linux/sched/types.h solved the issue.<br>
+&gt; But just so I&#39;m clear on this - Can you explain when I should use =
+uapi headers vs when to use the regular linux/xxx headers?<br>
+&gt; <br>
+<br>
+You should include the header where the structure is defined.<br>
+<br>
+The &quot;issue&quot; in Yocto is that the headers aren&#39;t coming from y=
+our kernel <br>
+sources but from a generic linux kernel header recipe, and this is made <br=
+>
+on purpose. The generic linux kernel header recipe is at 6.6 in <br>
+Scarthgap. Styhead has 6.10. The structure is defined in a different <br>
+header in 6.6 and in 6.7+ (including 6.10), so your out-of-tree module <br>
+needs the path from 6.6 in order to compile in Scarthgap, but will need <br=
+>
+another path from 6.7+ in order to compile in Styhead.<br>
+<br></blockquote><div><br class=3D"gmail-Apple-interchange-newline">I think=
+ my question wasn&#39;t clear enough.</div><div>I meant to ask about the ge=
+neral usage of uapi header files.</div><div>When are definitions put in the=
+ uapi headers and when are they in the regular linux headers?</div><div>=C2=
+=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+You can handle that via #if in your code, if you need the exact same <br>
+source code to build on different Yocto/kernel versions. That is the <br>
+cross to bear when one develops out of tree kernel modules sadly.<br>
+<br>
+Cheers,<br>
+Quentin<br>
+</blockquote></div></div>
+
+--00000000000021493d0625b65442--
 
