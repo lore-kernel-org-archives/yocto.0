@@ -1,102 +1,195 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <rania.taabouri@pixiimotors.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1FD6E674B0
-	for <webhook@archiver.kernel.org>; Fri,  1 Nov 2024 07:52:23 +0000 (UTC)
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
- by mx.groups.io with SMTP id smtpd.web11.32395.1730447538627470803
- for <yocto@lists.yoctoproject.org>;
- Fri, 01 Nov 2024 00:52:18 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=BppGrdR+;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.42, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d4c1b1455so1154989f8f.3
-        for <yocto@lists.yoctoproject.org>; Fri, 01 Nov 2024 00:52:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1730447537; x=1731052337; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y9eUDMpdIV2DSyLkLFUITeRds55uYhyU8bP5moofaE8=;
-        b=BppGrdR+x4grl14Ne9rs++MID9CbEwppBQY4t9ofNaSX1oUK6OH2+i0HejR0ph0HF8
-         8wF9IrshewDNIv1NjftCfJnb9c6VEcIeIK4dQfjpFeq1oV/NAV1ORtQt4jDPjUK8oyAo
-         cJ8W+4L1nIQxW7Zf7+z1pHvv7xCvJGmf853kA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730447537; x=1731052337;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Y9eUDMpdIV2DSyLkLFUITeRds55uYhyU8bP5moofaE8=;
-        b=ODIUPL6U6QyPZUw6AYoZfhw2/rbYt+/t3oQDQ0LCoHli0OApQMngDJzY7QZttvVftT
-         vP8dMpnwBTZwXXoghF88awthiB/GGmKf1+gYliHjXESEfyAyjwSIIf+N7OdMCaq93Xyv
-         thOdAnD6raQh7jzNM1nUeHywS2lyikDMSkgPADLdRcuQkM3+AUSg65eJycyPhEUS7ZaV
-         pUEmST4igq8YidoL5teCHeCZl7HPzIvV74JhbegHEdajPriLRcYfZYjXDWviIw+0BaHX
-         iTQUq6pvWC0ahvmcuVdFUq0fAhMO2y3lHuj9/UFXNA3pevclhlEteIw4degVfeOvyUtW
-         68Xg==
-X-Gm-Message-State: AOJu0YxcLlNuySGXL7MYPy2GxsJLrWYWrFnk2+pCdaOiJtcQrWkrc3v9
-	VFHwperbqSW3VPiCpBp4KWnSZPM8UkmdzuxBJkMOh7eidVMQgJDAc0uDEb9Bz24ihGE+d+IHiFp
-	gG3M=
-X-Google-Smtp-Source: AGHT+IEBMhE5yxF/3OBwu33neK7PDw160t3uofWcn3cwgBZqmprQRCfiZceZjBuEoLKtkkL/z5ANgA==
-X-Received: by 2002:adf:e2cf:0:b0:37c:cc4b:d1ea with SMTP id ffacd0b85a97d-381b710fbe8mr7948337f8f.53.1730447536727;
-        Fri, 01 Nov 2024 00:52:16 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:19be:469e:bfe3:503? ([2001:8b0:aba:5f3c:19be:469e:bfe3:503])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10eaafdsm4273662f8f.63.2024.11.01.00.52.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Nov 2024 00:52:16 -0700 (PDT)
-Message-ID: <7179c6c8b17fda7a9916a670c1bb127397ff0aca.camel@linuxfoundation.org>
-Subject: Re: [yocto] qemu-system-native fails to build with buildtools and
- certain host packages installed
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org, email@matthias-proske.de
-Date: Fri, 01 Nov 2024 07:52:15 +0000
-In-Reply-To: <9791.1730446919931332613@lists.yoctoproject.org>
-References: 
-	<2b22b133425c602519f5dc6cfeebfcab1f230676.camel@linuxfoundation.org>
-	 <9791.1730446919931332613@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.0-1 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F268DE674BB
+	for <webhook@archiver.kernel.org>; Fri,  1 Nov 2024 08:32:53 +0000 (UTC)
+Subject: Yocto Project Build Failure at do_rootfs Task
+To: yocto@lists.yoctoproject.org
+From: rania.taabouri@pixiimotors.com
+X-Originating-Location: TN (41.231.42.18)
+X-Originating-Platform: Linux Firefox 131
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Fri, 01 Nov 2024 01:32:48 -0700
+Message-ID: <irzl.1730449968781024214.F2I7@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="drdt9qKBbh0m80PTVhf7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 01 Nov 2024 07:52:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64200
+ <yocto@lists.yoctoproject.org>; Fri, 01 Nov 2024 08:32:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64201
 
-On Fri, 2024-11-01 at 00:41 -0700, email via lists.yoctoproject.org
-wrote:
-> On Thu, Oct 31, 2024 at 11:44 PM, Richard Purdie wrote:
+--drdt9qKBbh0m80PTVhf7
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+*Description* : I'm working on a Yocto Project ( kirkistone) build for a To=
+radex Apalis i.MX8 target, creating a custom multimedia image. During the f=
+inal build stage, specifically at the do_rootfs task, the process fails whe=
+n trying to install several packages (such as alsa-utils , bluealsa , ffmpe=
+g , etc.).
+
+The error shows repeated instances of a configuration problem with unknown =
+items SYSLOG_SU_ENAB and SYSLOG_SG_ENAB. Additionally, warnings indicate a =
+missing or non-executable shell ( /bin/false ) when running useradd and gro=
+upadd commands for certain services (e.g., dbus , rpcbind , systemd ).
+
 >=20
-> >=20
-> > On Thu, 2024-10-31 at 15:13 -0700, email via lists.yoctoproject.org
-> > wrote:
-> > > Should the recipe for qemu-system-native be adapted to filter out
-> > > libkeyutils? This doesn't seem to be straightforward as it is not
-> > > an
-> > > existing configure switch.
-> > > Any other thoughts on that?
-> >=20
-> > It shouldn't be finding keyutils and ideally that should have a
-> > configure option. If it doesn't, we'd need to add one and disable
-> > it.
-> > Hopefully upstream would take such a patch too.
-> >=20
-> > Cheers,
-> >=20
-> > Richard
-> >=20
+> ERROR: Unable to install packages. Command
+> '/home/rania/pixii_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-r=
+eference-multimedia-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
+> --volatile-cache -f
+> /home/rania/pixii_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-re=
+ference-multimedia-image/1.0-r0/opkg.conf
+> -t
+> /home/rania/pixii_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-re=
+ference-multimedia-image/1.0-r0/temp/ipktemp/
+> -o
+> /home/rania/pixii_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-re=
+ference-multimedia-image/1.0-r0/rootfs
+> --force_postinstall --prefer-arch-to-version =C2=A0 install alsa-utils ba=
+sh
+> bluealsa connman connman-client connman-plugin-ethernet
+> connman-plugin-loopback connman-plugin-wifi coreutils curl ffmpeg gpicvie=
+w
+> less makedevs media-files mime-support net-tools opkg
+> packagegroup-base-extended packagegroup-base-tdx-cli packagegroup-basic
+> packagegroup-boot packagegroup-core-boot packagegroup-core-weston
+> packagegroup-fsl-isp packagegroup-machine-tdx-cli packagegroup-tdx-cli
+> packagegroup-tdx-graphical packagegroup-tdx-qt5
+> packagegroup-wifi-fw-tdx-cli packagegroup-wifi-tdx-cli python3-openai
+> python3-pip python3-pyaudio python3-pydub python3-pyttsx3
+> python3-websockets rsync run-postinsts scooter-dash systemd-analyze
+> timestamp-service udev-extraconf util-linux v4l-utils
+> wayland-qtdemo-launch-cinematicexperience weston-xwayland xterm' returned
+> 255:
+> Installing media-files (1.2) on root
 >=20
-> Thanks for the quick reply.
-> There is a config switch for libkeyutils and it works for me - don't
-> know why I missed it before.
-> I'll prepare a patch, but I guess that should go to the openembedded-
-> core mailing list.
+>=20
 
-A patch sounds good, yes please. It should go to the openembedded-core
-list.
+configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
+configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
+useradd: Warning: missing or non-executable shell '/bin/false'
+Running useradd commands...
+NOTE: dbus: Performing useradd with [--root /home/rania/pixii_os/pixii_os/b=
+uild/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-r0/r=
+ootfs --system --home /var/lib/dbus =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0--no-crea=
+te-home --shell /bin/false =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0--user-group messag=
+ebus]
+configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
+configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
+useradd: Warning: missing or non-executable shell '/bin/false'
+Running useradd commands...
+NOTE: rpcbind: Performing useradd with [--root /home/rania/pixii_os/pixii_o=
+s/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-r=
+0/rootfs --system --no-create-home --home-dir / =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0--shell /bin/false =
+--user-group rpc]
+configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
+configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
+useradd: Warning: missing or non-executable shell '/bin/false'
+Running useradd commands...
+NOTE: systemd: Performing useradd with [--root /home/rania/pixii_os/pixii_o=
+s/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-r=
+0/rootfs --system -d / -M --shell /sbin/nologin systemd-bus-proxy]
+configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
+configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
+Running groupadd commands...
+NOTE: systemd: Performing groupadd with [--root /home/rania/pixii_os/pixii_=
+os/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-=
+r0/rootfs -r render]
+configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
+configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
+NOTE: systemd: Performing groupadd with [--root /home/rania/pixii_os/pixii_=
+os/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-=
+r0/rootfs -r sgx]
+configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)
+configuration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)
 
-Cheers,
+--drdt9qKBbh0m80PTVhf7
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Richard
+<div>
+<p><strong>Description</strong>: I'm working on a Yocto Project ( kirkiston=
+e) build for a Toradex Apalis i.MX8 target, creating a custom multimedia im=
+age. During the final build stage, specifically at the <code>do_rootfs</cod=
+e> task, the process fails when trying to install several packages (such as=
+ <code>alsa-utils</code>, <code>bluealsa</code>, <code>ffmpeg</code>, etc.)=
+.</p>
+<p>The error shows repeated instances of a configuration problem with unkno=
+wn items <code>SYSLOG_SU_ENAB</code> and <code>SYSLOG_SG_ENAB</code>. Addit=
+ionally, warnings indicate a missing or non-executable shell (<code>/bin/fa=
+lse</code>) when running <code>useradd</code> and <code>groupadd</code> com=
+mands for certain services (e.g., <code>dbus</code>, <code>rpcbind</code>, =
+<code>systemd</code>).</p>
+</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>ERROR: Unable to install packages. Command '/home/rania/pixii_os/pixii=
+_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0=
+-r0/recipe-sysroot-native/usr/bin/opkg --volatile-cache -f /home/rania/pixi=
+i_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia=
+-image/1.0-r0/opkg.conf -t /home/rania/pixii_os/pixii_os/build/tmp/work/apa=
+lis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-r0/temp/ipktemp/ -o /=
+home/rania/pixii_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-refer=
+ence-multimedia-image/1.0-r0/rootfs &nbsp;--force_postinstall --prefer-arch=
+-to-version &nbsp; install alsa-utils bash bluealsa connman connman-client =
+connman-plugin-ethernet connman-plugin-loopback connman-plugin-wifi coreuti=
+ls curl ffmpeg gpicview less makedevs media-files mime-support net-tools op=
+kg packagegroup-base-extended packagegroup-base-tdx-cli packagegroup-basic =
+packagegroup-boot packagegroup-core-boot packagegroup-core-weston packagegr=
+oup-fsl-isp packagegroup-machine-tdx-cli packagegroup-tdx-cli packagegroup-=
+tdx-graphical packagegroup-tdx-qt5 packagegroup-wifi-fw-tdx-cli packagegrou=
+p-wifi-tdx-cli python3-openai python3-pip python3-pyaudio python3-pydub pyt=
+hon3-pyttsx3 python3-websockets rsync run-postinsts scooter-dash systemd-an=
+alyze timestamp-service udev-extraconf util-linux v4l-utils wayland-qtdemo-=
+launch-cinematicexperience weston-xwayland xterm' returned 255:<br />Instal=
+ling media-files (1.2) on root</div>
+<div>&nbsp;</div>
+</blockquote>
+<div>configuration error - unknown item 'SYSLOG_SU_ENAB' (notify administra=
+tor)<br />configuration error - unknown item 'SYSLOG_SG_ENAB' (notify admin=
+istrator)<br />useradd: Warning: missing or non-executable shell '/bin/fals=
+e'<br />Running useradd commands...<br />NOTE: dbus: Performing useradd wit=
+h [--root /home/rania/pixii_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linu=
+x/tdx-reference-multimedia-image/1.0-r0/rootfs --system --home /var/lib/dbu=
+s &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp;--no-create-home --shell /bin/false &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp;--user-group messagebus]<br />configuration error - un=
+known item 'SYSLOG_SU_ENAB' (notify administrator)<br />configuration error=
+ - unknown item 'SYSLOG_SG_ENAB' (notify administrator)<br />useradd: Warni=
+ng: missing or non-executable shell '/bin/false'<br />Running useradd comma=
+nds...<br />NOTE: rpcbind: Performing useradd with [--root /home/rania/pixi=
+i_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia=
+-image/1.0-r0/rootfs --system --no-create-home --home-dir / &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;--shell=
+ /bin/false --user-group rpc]<br />configuration error - unknown item 'SYSL=
+OG_SU_ENAB' (notify administrator)<br />configuration error - unknown item =
+'SYSLOG_SG_ENAB' (notify administrator)<br />useradd: Warning: missing or n=
+on-executable shell '/bin/false'<br />Running useradd commands...<br />NOTE=
+: systemd: Performing useradd with [--root /home/rania/pixii_os/pixii_os/bu=
+ild/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-r0/ro=
+otfs --system -d / -M --shell /sbin/nologin systemd-bus-proxy]<br />configu=
+ration error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)<br />co=
+nfiguration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)<br=
+ />Running groupadd commands...<br />NOTE: systemd: Performing groupadd wit=
+h [--root /home/rania/pixii_os/pixii_os/build/tmp/work/apalis_imx8-tdx-linu=
+x/tdx-reference-multimedia-image/1.0-r0/rootfs -r render]<br />configuratio=
+n error - unknown item 'SYSLOG_SU_ENAB' (notify administrator)<br />configu=
+ration error - unknown item 'SYSLOG_SG_ENAB' (notify administrator)<br />NO=
+TE: systemd: Performing groupadd with [--root /home/rania/pixii_os/pixii_os=
+/build/tmp/work/apalis_imx8-tdx-linux/tdx-reference-multimedia-image/1.0-r0=
+/rootfs -r sgx]<br />configuration error - unknown item 'SYSLOG_SU_ENAB' (n=
+otify administrator)<br />configuration error - unknown item 'SYSLOG_SG_ENA=
+B' (notify administrator)</div>
+<div>
+<div>&nbsp;</div>
+</div>
+
+--drdt9qKBbh0m80PTVhf7--
 
