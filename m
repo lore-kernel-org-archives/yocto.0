@@ -1,186 +1,621 @@
-Return-Path: <quentin.schulz@cherry.de>
+Return-Path: <Logan.Grosz@b9c.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF291D43356
-	for <webhook@archiver.kernel.org>; Thu,  7 Nov 2024 12:08:54 +0000 (UTC)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.63])
- by mx.groups.io with SMTP id smtpd.web11.70208.1730981325290557118
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3FA2D43371
+	for <webhook@archiver.kernel.org>; Thu,  7 Nov 2024 15:34:45 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (NAM04-BN8-obe.outbound.protection.outlook.com [40.107.100.134])
+ by mx.groups.io with SMTP id smtpd.web10.75054.1730993675565960449
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Nov 2024 04:08:45 -0800
+ Thu, 07 Nov 2024 07:34:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cherry.de header.s=selector1 header.b=kpvpD8eN;
- spf=pass (domain: cherry.de, ip: 40.107.21.63, mailfrom: quentin.schulz@cherry.de)
+ dkim=pass header.i=@b9c.com header.s=selector1 header.b=WfMIE+71;
+ spf=pass (domain: b9c.com, ip: 40.107.100.134, mailfrom: logan.grosz@b9c.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hXI9ueGQHTBmE8klGhLrxwzbxN1NwGqdhEZZ0isXouCDzqkdQwwIitctjlnzVPRRK6vcCNWugj6p5lUPWi1lEAfjHkwkQZhF8wPghgGKk/oMGH+TOIMi7VyqYCQczFNG39kHDfVZ8I+/TgkOxUm9KgsromRya8NzPs0Gidq7ZcnJK0zqt79dIqXPZMF+X6E2sraI1TFVvt0Ozn3SDXjG+DE2XnnCt4iGyUNd1wZ1GqNAGh7KCD47HhOKmRUPfJqdyUPRCwO/+PjocjoUBZcTrhYtyB0YkUKYiYsVNeyY/VXEUX85p7PHlvLJkB4XqIbIi1LkiMTOzoLmwWqq88IyXw==
+ b=RmOqaq+SGKvEynx4QX+GChfg6+Gh4l1P/4YBBg/ftmMpm3wHESNTf+93QmiW/l4/qkwzEqMuUk0bHY5CRXFQvOLsgcb5SLuBsHSj5Gk7TJufQe5pvBXGfrUd18z36ho3ubQytdz/OeWnFol8BYh6SKAzb9oziFFXgJ+D4YgiXJjBn4Z8K8Tj2avC4httcRbApw4AMWyJ/VzcXl0J4xIwp0QKGi9ZuS9ld9R5f3b8fAck/gWwl9HSgU3+MU16IdOfkO3MHAg628QGoSQXiVuPhFRAavzHYqV/4qYN072N0DZN3olBDdtEgecAta/ivuEkURXqiZ4ybLA2EcWkV0USZA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+GL6hCt+02aKcJ4Mo5gw/quM0OnX3pmOoBViILcTaZg=;
- b=l1oTrIGbFOR4/Uem3MSDwNV/wxgxP8nKVtTT0zQDFPK/XqoUL4RuGQEDoxfsDvZ+QgbhAOCEHHr/SW9afRxyE2umv3FA1Jxy/iuTFSnbajZuAEmBdUe9SUFK4bW+mJSHSad3sDCXmHy7hKfxA4nJFH/rm1ymSylZxTTSV3qnwKFXi4Fy7a7pfelVz4A6Fsh+BmrEiqRKvvlmIILlCinQYfHZXs9RRSlUvb90nvc4qZkJWsf1G5w2X099kYQUqokowqAfGKXDIIKFHEZ86zS9AMCVv34nyrHTV8Xzl5Hl4+Flp9iULvPIIIflV/VYqYsP4/hVhCIWnF3Ivh3SZ7XksQ==
+ bh=UifpIADXnC3RdA//6TNjlPjgOXhTd44iFIIMd1vfr1g=;
+ b=ka87jPpqDi6tZpJ+fGDMWze2OvG4cVtsjnUoqFvHiJ9ICJsmijBUzGoyZSCfaUBGi3x1Lm8KtMWO3cZqXQF7Bb8Le94aVKWlDfrBNmSQXJY5VQ4hwQFETXw3xdN2lxMO63BsuJjbyww1pZ7oW5s6jDCVS7h5WAFdDgjkIB5ewqGAQzWU68egPmZATxQletyVPoBxCw4FfEP9qxMrZSygYaWsBPYIZsRTumtpB2+z3pe+usqdoUtS8wSWnQ15IQEtqxSGeLuax/PQDagZcGJOjZ5ijXyS8jlV1SX0FEwLY++KTlnAGWO18Nx9rQkZWv50JSLDI6CyqV6RQQ7aqBKEew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
+ smtp.mailfrom=b9c.com; dmarc=pass action=none header.from=b9c.com; dkim=pass
+ header.d=b9c.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=b9c.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+GL6hCt+02aKcJ4Mo5gw/quM0OnX3pmOoBViILcTaZg=;
- b=kpvpD8eNV5gpNDHr25fB3UJXbywZv1XoUiqA34OtbQMFauG+iMKuPvkMdenPXRiycCM3oW3Y2c69FHeoDVsKIHOnwPQJXeWQCDqsLXbGF2+KyGcvGgyGy4Kdy8X5pVU3AuCLzJrDxBVQSg0Qv0v69n8Xp7jGFOQc2HwywG+V95A=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by PA4PR04MB7888.eurprd04.prod.outlook.com (2603:10a6:102:b9::23) with
+ bh=UifpIADXnC3RdA//6TNjlPjgOXhTd44iFIIMd1vfr1g=;
+ b=WfMIE+71Z9nUGgXef1/hZ/Umd0mYeFH0XYi9GaRarO/RyZw+q61MmmbaaX5ZnGQvNGv1hHTfwhO7JFrrqgkLXY6cEy+9GC8wU/q2RYwn6B8xy0WsHzHz5sJTCOmd7BIlFwvkTyuPjD3SYNZeNzMMASERV+MYgVd62n7jtHbFj/4=
+Received: from MW4PR16MB5087.namprd16.prod.outlook.com (2603:10b6:303:1be::18)
+ by MW6PR16MB5541.namprd16.prod.outlook.com (2603:10b6:303:24a::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.18; Thu, 7 Nov
- 2024 12:08:40 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%7]) with mapi id 15.20.8137.019; Thu, 7 Nov 2024
- 12:08:40 +0000
-Message-ID: <c9c47880-69c6-4f9a-86b3-d2d935d21b72@cherry.de>
-Date: Thu, 7 Nov 2024 13:08:32 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] exclude layer from specific image when have multiple
- images
-To: haimbachar2008@gmail.com, yocto@lists.yoctoproject.org
-References: <4e77d221-831a-4985-96cc-8e9fcb301969@cherry.de>
- <2650.1730979175262611028@lists.yoctoproject.org>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Thu, 7 Nov
+ 2024 15:34:31 +0000
+Received: from MW4PR16MB5087.namprd16.prod.outlook.com
+ ([fe80::dd82:bdb7:3ca1:2b8]) by MW4PR16MB5087.namprd16.prod.outlook.com
+ ([fe80::dd82:bdb7:3ca1:2b8%4]) with mapi id 15.20.8114.028; Thu, 7 Nov 2024
+ 15:34:31 +0000
+From: Logan Grosz <Logan.Grosz@b9c.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Conditionally set SYSTEMD_SERVICE_${PN} based on version of another
+ package
+Thread-Topic: Conditionally set SYSTEMD_SERVICE_${PN} based on version of
+ another package
+Thread-Index: AQHbMSmFn2uCk95IKU6w+uInypq9tQ==
+Date: Thu, 7 Nov 2024 15:34:31 +0000
+Message-ID: 
+ <MW4PR16MB5087DC4C691E4B6A0F1F2070BB5C2@MW4PR16MB5087.namprd16.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <2650.1730979175262611028@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0135.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:94::19) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=b9c.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR16MB5087:EE_|MW6PR16MB5541:EE_
+x-ms-office365-filtering-correlation-id: ce535f1c-2465-4f54-9905-08dcff41acc6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|376014|366016|1800799024|8096899003|38070700018;
+x-microsoft-antispam-message-info: 
+ =?iso-8859-1?Q?fu0U2ipNDX0UnloIiQjsU/NxkJlTFeJGjDmiv7frnFD/WVkbPcTSrmM+W5?=
+ =?iso-8859-1?Q?ltZ74qg9k4wPGvAYtyIlvFiOoHXf1jFZwWeHjd+ka1rYgahJDtgZIBCPJ0?=
+ =?iso-8859-1?Q?xMNVFYqfzSmor+1XHFFcTv0IvA26a/fpO85MNMwBjWP5rkfv5Wqev8du8D?=
+ =?iso-8859-1?Q?EdmHM+G/WlcCGGueTsbmg0biFARO6ZezNX1ufAVvUyabUr5Debaw0eCLu1?=
+ =?iso-8859-1?Q?cj9u09y+Lpxko+0oZuNzALigTo3b3iFE37dP9cu4ks93SCcJs+eD490RL3?=
+ =?iso-8859-1?Q?p8ov9qpBbDzHPflZxS8psyv+02DGgq8Sv1viVdN/o8qEoQrq1+11BWJ3g7?=
+ =?iso-8859-1?Q?L7qZMY0NWQLqfqSx4VDDihFaKXpceP54pHVIwrBAqOLXc2jVzIzqwvwPly?=
+ =?iso-8859-1?Q?Xe7MerTgBIncgNQMPXS44p14ZiYoH7+NUHAMpbAbRFHLDXv5A2dCB5Y3Ib?=
+ =?iso-8859-1?Q?lAxugAV52VUe6JDcuLIvlkr7/M5mecOVSliatphJYQBctpjZwxg+60457c?=
+ =?iso-8859-1?Q?xFsTr6+4Ugp4DXHcqKQ9mkEVOx2VX0Y+wX2l4ppjyhCxDk8gPPWe+y3pio?=
+ =?iso-8859-1?Q?N3SPR5QENZ2ziZE1KhWS2HgTTKQkbicp9Uv4lVEbs3LXvDx4bjaIwC3x6n?=
+ =?iso-8859-1?Q?AyvoMD2f8nIwbY2jzSIkUc7F+b9mpJSrLcD8sPVEsVpk6mnDX1U15efI3N?=
+ =?iso-8859-1?Q?dlvJ1cMoZ5VHdwaxYm5h4FIvtfwj+W4mEtRcu+um3mh61hwj0o2SjHY9dd?=
+ =?iso-8859-1?Q?rp5SIhtTGN9fCwhTBQ8zt66TUYVTX19Rx+AAvyWRhzY1y9nX6zQPBYyjJl?=
+ =?iso-8859-1?Q?4gg5DLBcxxlnUO0epeB+cyykx6KyZvIz4mRvYcCTQYbDufYzaq3cKG8CKr?=
+ =?iso-8859-1?Q?+KUu+Y2ZAPFrkZEPz2ClqoueM6oWz9mrTuQTxBud9qM2SwrbBqZuPZ+nA1?=
+ =?iso-8859-1?Q?g36N1Iu+epXFyITTHtZxlvUflXGLqMDLIWcu0zDpHPuLd4tRVCyUboYefh?=
+ =?iso-8859-1?Q?K1Ko3gGuQ26YmOBlh5b3ZOOHkbK9CANF+B2RdLnk8LkOqiJY+BE0joaeOY?=
+ =?iso-8859-1?Q?GeIgxaKn6z9QgXNDVsqaBBQrzGYm8tl4foOogSLqGCL6tQw4R3iTbCGJdw?=
+ =?iso-8859-1?Q?IEaTNn4PJc/nLCdrQtHU/IHOtYrMMVO3rY03tAXFHguxF4ERrEuMNcEq93?=
+ =?iso-8859-1?Q?I3SJ30JdLTMZA58Bg1bH5d7fdEIrFIt6u8hkdOcS9s46YSoxMRV0QUU/mb?=
+ =?iso-8859-1?Q?79DX/C4D7ZqXUsF4hvWmFQJfEHGbQbyl61jyke7bbmIZ1YYSL/w9IKVOOX?=
+ =?iso-8859-1?Q?Bk+2z5yqlBvJU/qVurUESzosExobka1pJRHN5bjqHLI9wlAlPRcSdgJ8Gz?=
+ =?iso-8859-1?Q?3M9d3QX+j/N1C1OF8cb/XoNrrU5PSGF7ZZKIUYt/Ug3qgdbcKGQXI=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR16MB5087.namprd16.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(8096899003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?gY+UZA2UCwYYEm/E8zS6N+kioaXrRqPQ+KUBw5FZuPIkhRVa7X7C4QBC4u?=
+ =?iso-8859-1?Q?2G0qBtS7/Fj9EoOZawQaArPei/3ra3/nPjUU7Ag/tgOuBlKktZ7uPZESaU?=
+ =?iso-8859-1?Q?ofYTwkcK5Cj7TOeOxcUoNOCWVFbRcyNHonSxEsxmU5vXGS+JeMP3K+LltW?=
+ =?iso-8859-1?Q?8uSNnBlLd7vKVXJyrZT27n2fwBjZflXmNJfUsYDz8QgEiD6KGHwYv3kNgX?=
+ =?iso-8859-1?Q?rXZqcX06CqHiRWHkL/sbI4M7jqXu40uEL5IUBqDxYE28inCa6l94PKKdXf?=
+ =?iso-8859-1?Q?3ilJDmha3Uiwoe+UV/K+O5sMyDkDtJG92NB/5KbdKRRShdTWmFr1z8lKMD?=
+ =?iso-8859-1?Q?+6aL/IFJGSAnNP6XETTE22sOHhJpn0E/Qr2co0PbyH0kAbPb4J9xPS0RaK?=
+ =?iso-8859-1?Q?lOfkq6RXBZiJNlH3KOHMnfPesZk/vs+t6Ls7TThvf6w85hYSVIXT7s3fY7?=
+ =?iso-8859-1?Q?N6VfifYph0sZJVX+p+ROMasWCgzcsyL3fZzT0j9WEcj8xxz9qirPEPJtWU?=
+ =?iso-8859-1?Q?bwqR6L9Uyq+wbXpu6cf5wWMQsi12tGoCndVwh03zCIyic90DqpfZJbQNxg?=
+ =?iso-8859-1?Q?H1uyXdu48nnsxsmLGPRlGnN6dHjAIXKoXnMZI3QsiWq+oovqLSbGk3KcAB?=
+ =?iso-8859-1?Q?GitaG7O7C4i20KLC/8xEC+Wcreio0MTW9FcA0t24KKsDBDUn1qkBCkAN4f?=
+ =?iso-8859-1?Q?g2IFIcl/9kZowL/9Br9d0NST1EV67t44LCxc8fqaAjt/baFgGHe1f2glV+?=
+ =?iso-8859-1?Q?L+5Agdl2owsE8j21T2OmAu0eFQV+rsRdsok8xEaeBGmecKmRy/YQAVnkB5?=
+ =?iso-8859-1?Q?H9FeGkmTnh73ewFNFsOvoZZXGJ9xd+F5nLTU1RqF2coilAFgnSAqpzjgLa?=
+ =?iso-8859-1?Q?9OCzZhAo48lUcbprqL+5MB4Wc9ji47SpfD8KsaGmguMtAu9pA6+OBEUiRO?=
+ =?iso-8859-1?Q?KxdFgk7YcgaymY/Gy5Fn3N7ygxLo8/dh4zPjw0w4L16quUYLx1oQlgJK7i?=
+ =?iso-8859-1?Q?9+PwvR2isEYL053G1p91SQurItpmx2+5igjRN/C9Kv3h7dtk8xdyk5EiXL?=
+ =?iso-8859-1?Q?rNhQ316cWhkITQRiC+6qetpZhyO9/5sBE5kqaEJqUePogK6S847GpTkZxl?=
+ =?iso-8859-1?Q?DSv21xD530WjNpUuhFW7srLWALm6PSvDRBgUqFsD8+0gKSZWTUybcUykkB?=
+ =?iso-8859-1?Q?/QfA+rEHGMQ7S1zYImWYmsZDEmiNo2PauaZVBza8TdBLoJGbs1zsWSeOTa?=
+ =?iso-8859-1?Q?JUii8FeRqGfbrkktn+msazbageL7D4WE58b9hueS20YyY/zVWfNyCbPGip?=
+ =?iso-8859-1?Q?xwsRTdEENWxfvzq/xJfLHaooKZ3gCVJv/d0yD6cQH88zLj+LsYYRqCBvMy?=
+ =?iso-8859-1?Q?DWc/5zHNQlNjBheD0VJWSS1ixIaO+uxKsunPmV+RKqTi+bEa5sQR5LJ5IB?=
+ =?iso-8859-1?Q?em4PRrQHNH498OSYk4ti6qn7TJIRttP/1kkC94XkvN5oCDo1GWW9Y4VBnc?=
+ =?iso-8859-1?Q?kSVF71BMd7T2JynUONtaSj+q6/HQWgY185tnzKRFlBsnvp+HLYV5N9R2tb?=
+ =?iso-8859-1?Q?b9CX/D2DSYHfCLk45tczpAKHvB3HicAM7rgxdxf2RXEks7hLsd6xfDn5Fe?=
+ =?iso-8859-1?Q?ZnU4VecBW6pKnMepWhGfMQHjwrKMxt4O5j?=
+Content-Type: multipart/alternative;
+	boundary="_000_MW4PR16MB5087DC4C691E4B6A0F1F2070BB5C2MW4PR16MB5087namp_"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|PA4PR04MB7888:EE_
-X-MS-Office365-Filtering-Correlation-Id: 820028d1-9e5e-4e96-e965-08dcff24ea7f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?N2FTUExyKzBCZGdycTFIaDJ4Y1J5ZCtQTGlVRGMzL3pWb2lzazJYVFZoR2JF?=
- =?utf-8?B?d3FZYi9GWnlMdXpBUnFBQ1FvY0JNQXhhY3g3cWc1eTdOL1ljcllXZ05TUks3?=
- =?utf-8?B?cUNITWN0U0ZEdll4YVFGblhRNFJIMlBFNDVEVk5uSmpvSURZWUFONHJabHFl?=
- =?utf-8?B?dm9GSnA0NFBQbG1OSU9zcWFLUElsMUMzbTJGdDNyLzZscE8rNGRDdWtIK1lF?=
- =?utf-8?B?VE5JcUFIT3dmYTk1TXU4NHZvd2RhRU16UHhxdFpRemJBLytGQXNRV0FrWXdF?=
- =?utf-8?B?VjBYd2t5Vm8ybG9xSzNGYVRXK0xJSlBqdkJOcHV0NDBOZkdndjhKb0tRMVdm?=
- =?utf-8?B?VS9tNzJmNFJUWUpnNVloelNuVmZyVkJaRWEyVVgrdXFEM3FuYjBZMGhMWVVG?=
- =?utf-8?B?OENnZEtDaXlraDhBZTZvRXpnZ1AxMmQ5R2ZsN1BVc0M2dXRPOTd0YkwzVmtH?=
- =?utf-8?B?TG9ha3M4U3NPVU11YWsxdDNvK0R5clpXa2Z4RWVFelAwMU9RUWxvMmpTN2Ft?=
- =?utf-8?B?OXdYVlRRVXVvV0hlUjJORGw5WW0ranl5MlE5dTkyTWlneVlndTl1bS9rdDQ2?=
- =?utf-8?B?Mi8wVFgyUkJibUh3WEVrYnpBNEpIbHd4TFVTVnNOL2tOdk10ZC9MR1pHdlUy?=
- =?utf-8?B?cFE5NUJhVnNtZlY1TmpJeVltT3FYVHRpcFQybFZBc2dXK0hnTzhPeGZaKzFV?=
- =?utf-8?B?MWpieHJsb1U3WnZ0YXBJMTdpWEh6OXNyMDUzY1NJUGpPNHNIeXRSYkIzcUl2?=
- =?utf-8?B?UCthbnRZTWM1WHVtZGttSWlNSGpWbnNJdklpdFZRM2IwRmdQSElrU1R2YXBj?=
- =?utf-8?B?QUVHcGZNcXZpcm1YS2F3QTVIbDNCR0JoS0RHUkpITWI5NDRVT2xJOWhyVUJM?=
- =?utf-8?B?akRycHl1c0ltUDZxWVBTV0R6c1B6ZG9HdmhZRENXNFNWTngzQmRqczd2cU9m?=
- =?utf-8?B?SGVrK3hJVU1pemQ4M1FnbUhvc3h0bmpyRGdDc3NYZEs0OEt3NXdqMWl3ckVF?=
- =?utf-8?B?dWFER1pLL2VFWW80bjQrYVlZTG5KWkpLZXZPQmVDWVBkNFhmRXV4aUpJczRx?=
- =?utf-8?B?VDZGZ2FKak5KazBBSGtLWmpVV1g4dHlEQjVmM1A0UXU4MzJDczdES1VHaVpr?=
- =?utf-8?B?V2JIQXJ2NHJCUXJrSURTeGpJU2RrY25iQlRYeXhHY1NvUkFPcTB0T2NGem5p?=
- =?utf-8?B?dXZNT1A2RzYraDJBQjJ3NlJOMXI4NFBxM3Y2YjhWcXJHenN1UC81d05UOVJq?=
- =?utf-8?B?U3RTb0U0Q3hlcFdXYy9XUWFrb01kTTZKMzVveWgvT3RmTkk5WmhNOXhjeWNY?=
- =?utf-8?B?TXBHTGlBa3RDVzNST0UybFpuYWVuTDUxQlp4UW5IM2xnNGZBbG9vcC9LZ2Rm?=
- =?utf-8?B?Q2ZwOU4wYkU3WVlKaG5KbUVEUFV4Y2o1eDhVd2RnK3plVEhDWFJmSW5BU3J6?=
- =?utf-8?B?QWl0Njc0WW5GQ3F4TElNbnczSHFRTHBieE85UG1Rc1J3MWNUVWV2c0F2NC9X?=
- =?utf-8?B?NEJaTHc1bkl2UnpWL3ptTUZLVmNlVlVhQjE1YlJMQXgvN05ycWhVOWtFeTNp?=
- =?utf-8?B?MUhLdGwxYVdlQnV1eUkrQ3prVW5HWjZZeGZjWXZPcDlQbExCcGxhTmlZR083?=
- =?utf-8?B?VlRLQkRFa0ZhMU9pMlNlNnNKNHRyeWtZZjMrZ3FIVmtQNEFMTStWMFhLd0M0?=
- =?utf-8?B?TnNObGJGVTh3dHBIOUk1M0k4endJeVI3aWY3SjJlOEJhNjk0K2RkSE81RlBB?=
- =?utf-8?Q?raTy8Q45kcJry6Z+ckN1zOtvhI1jxxpnZJGsvjk?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?ZEV5ZUVjSTUrUVZhTXF4aXVHVmo1dEhnMHBQQXRPVEVHWUtReEU2bmFrc3o2?=
- =?utf-8?B?MVY4c1k3aHIyYk9XUlU5MndvcnBEazBZRVNGQldydWdFWlgxSlFROEg5Y0JE?=
- =?utf-8?B?VVlocE8xeWRBNTFRcSt0b3R6cnBLRjVSNVRWQTRYTmdpTmtPNUQyYVB0bkV2?=
- =?utf-8?B?Szd5YTFPWWJFN0VkM2MyaE9jVDZTYnBHWXdpTll4MVMvaHAvY0VtMW9IUWNv?=
- =?utf-8?B?dVZvbTFERXZIbndTU2ZhWjRkY2ZlYnZqL1I0K3h3ditlYkJoKzlFdjhFYmJ5?=
- =?utf-8?B?dW5kc3AvaVB1VWt1MXRjVVVCTzArNUl2aWtNMENqeGwwWjBtUFIyTDhiOU1v?=
- =?utf-8?B?YVM5bVY5ekFKUG9Ic0grMUNKMnptaVhXaHdTRElZcWVJVENlMVpySTRkZUoy?=
- =?utf-8?B?WWxtWUsyRWNqK1VLQW11b3lmcGJYdk16d3k3K1UvVnVkWkRuSDRxU0k3Qzhs?=
- =?utf-8?B?dng2WWtLMDVrenZxZGVQYmNSakMwbVRTSG1KZTNvRnhoSENpRVN3d1gvaXFw?=
- =?utf-8?B?RGM0dklBajRIcUdNZE8yeUoxZnZvazJqb0N5QVdSL2tNUGRubGRZcGVyWUhw?=
- =?utf-8?B?TTBzcnlnTUlJOWRxTGx0b1pmcGRwS3RMaHc2RDlaa0hGaVVDdzl1UVZqOVc1?=
- =?utf-8?B?NG9nY09TWVZGUjdoYWp2UjZ5WUtwSDNUUnlWNXRhcmV2S1hzS2lYMWtEcEdI?=
- =?utf-8?B?aXY0MytYUmVVWXQ1RmN0QkpQNnY5QU5IaTA3bFc1ZkQxS0NxZVNNb3U2NkRW?=
- =?utf-8?B?d1VIYk1wYnd2L1paYkszVEdqdElMdml6SGUzb3prRUJsSEM5c2NFVWhjRGF6?=
- =?utf-8?B?U0IxNHNSN3hxVnNzaUZwWGUzNWd6cEVaYnYyRjRNaDNHYlhYSlEyYlhQZWs1?=
- =?utf-8?B?eXFCUTBYVkxKWGF3ZFRic1ZPbGtzTTZ5UjUyOVpkUWRpbUtKL0ZaK2o2RFEv?=
- =?utf-8?B?RFFBRUxlZ0g3VDBHWWZXc2hJTmN2T09Rb2hmNzZza2lxbThpZHU4YjJGVDVt?=
- =?utf-8?B?Skw2eXJ0WmFEd3JPRitGYWZyR21IaFlibWpuYy9wbHh1cks0T1BHS0RsKzdQ?=
- =?utf-8?B?b3VnY29qSGJSY2tuSFlKdFEvZHBtYXM3TTIxTzc0Y1JPMEJmZURKTzJOR0Na?=
- =?utf-8?B?YjJpbXlLWnJzSERMaDJNSG9BaHY2RDZTQnNJYUlzYXNmMjkrdERDTVZSYkZG?=
- =?utf-8?B?allySWRvSjlmUW9XTk41NVFQQWsxZFZOSTFCaEVnTStJTVVnNG8zbGZhbGhq?=
- =?utf-8?B?eUVEaGZQSDhkSDhBQUQvZEtSOVhtYnRxNUozd1hNNkpBeGVFOE5UYzJLSmZE?=
- =?utf-8?B?K0dMNERoRDFHT0YvaDRFUThUb1hsY3hod2p2MUg1cE1vYitsb3hremZza21y?=
- =?utf-8?B?SWdRMXk3MXBoaHdKazhZRWdpRStJTVVQS1hEcjFxdVNIYVd1MkM0OVZTNEtm?=
- =?utf-8?B?VDJKaE91dGd1eGdZM2dQUkd6SE96R0tlWjNpdnpjbWcrZmFhdi9zQ2tYR2pJ?=
- =?utf-8?B?VWxDRkRNcEZ1ZEJQZVJDSzNTM055SEpsUDF5N0dtYUgvRHA2dDhYeFlHTlZz?=
- =?utf-8?B?dFBUWWE2MWY1eG1JWHpEUkJQTXdlS1VCRFdYMTAxcFJCOTRGNFVZbVY3RS8w?=
- =?utf-8?B?VHV4WHNtd25YWUtwejZSQXFVSS91ZlY4aEtuZDhPNWQ2TnF1RjdTZTkwcDJ3?=
- =?utf-8?B?em40a2J1eE9OVEVyZlE5M0tyLzVzN2VNblJjOElydjhYSlMrdWR1WWpsbzUz?=
- =?utf-8?B?WC9sTy9idHlWd3VxK01lTEJ3dWNnanAwYmpBZ0FUTnZsU2dpZGVMTlVZWVpS?=
- =?utf-8?B?NXRzUlJZcERRcEtkZUN3OHAwcG5VTUdETEsvMUVBQzdoTFh4blBkWjF1Tk1P?=
- =?utf-8?B?WEh3b1ZhN2pqMnF3ZG96SERtSHRzRy9jYlJYZTRIU0RhcXZNVXZkcjl3R3di?=
- =?utf-8?B?N1A4Z1piN0JJeEM4Vm10MXo0VHVibXR1OEp0d3I2R1FUUGZEMEQ3WTVxY1JI?=
- =?utf-8?B?eU1heXpiSjI2dDZ1NjcrWGU5aHl5UEx3eUxZL1BaNjFuSzExR25mWGpOVTAz?=
- =?utf-8?B?NldLRm9KL0JqUkpCSlIxcDRqSEo4eFRrU25uWXM5elVVMlNhRlhjL2Q2RWhC?=
- =?utf-8?B?YWoyYytoTHNFTmQ4UTZUNVp1Qzc3blhobmpSYnBhMkN5WW1ITFNRakJSNzdh?=
- =?utf-8?B?TkE9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 820028d1-9e5e-4e96-e965-08dcff24ea7f
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
+X-OriginatorOrg: b9c.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2024 12:08:40.0040
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR16MB5087.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce535f1c-2465-4f54-9905-08dcff41acc6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Nov 2024 15:34:31.5962
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CsaevPon/k8aPzV0YvbJ6WMVgtUsxnnUcLvVazCm17EcTYOwv96dZOOXxGMcPtpWdXmoz/r5thsoRUqLxHWQU1u/MkatJ67vKvB0OT6ozYo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7888
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3ace18e3-3825-4b3e-be2a-b5c73f048d39
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 14lcy17LCOxeGUTRxICar4EW3qFnFwE54+rRgXxQD1DJWVen3GaNfJmiQiilTKU6EW3VKsgDnLfP7GHg0XLc8g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR16MB5541
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Nov 2024 12:08:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64230
+ <yocto@lists.yoctoproject.org>; Thu, 07 Nov 2024 15:34:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64231
 
-Hi Haim,
+--_000_MW4PR16MB5087DC4C691E4B6A0F1F2070BB5C2MW4PR16MB5087namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/7/24 12:32 PM, Haimbach via Lists.Yoctoproject.Org wrote:
-> Hi,
-> 
-> I have layer which I add into it some patches and configuration files for the RT PATCH.
-> 
-> So I need for an example the RT patch for "Image-A", and for "Image-B" I don't need it.
-> 
+Hi, all
 
-You probably want a DISTRO here.
+My company is trying to migrate a newer version of Yocto and in an effort t=
+o do that I am making changes to our current layer to facilitate an easier =
+transition. One problem I encountered was SystemD 250 installs a target fac=
+tory-reset.target, but we already have a recipe that installs a that same f=
+ile. The recipe is as follows
 
-The issue is the image cannot decide which kernel to build for example. 
-So if you have two kernel recipes, one RT and the other one non-RT, then 
-you need a different mechanism. The selection is usually made via 
-PREFERRED_PROVIDER_virtual/kernel = "<your-recipe-name>" and since 
-recipes cannot impact other recipes and that an image recipe is a 
-recipe, that variable needs to be set in a conf file (distro, machine, 
-local, bblayers, etc...).
+```bitbake
+LICENSE =3D "CLOSED"
+SUMMARY =3D "A factory reset target"
+DESCRIPTION =3D "A recipe which provides a common means of creating factory=
+ reset \
+    tasks. Each application should attach to this target in order to perfor=
+m \
+    any tasks when the device needs to be reset."
 
-By having it in a distro conf file (let's say mydistro and mydistro-rt), 
-you can then build your image-A without RT by using DISTRO=mydistro and 
-image-B with RT by using DISTRO=mydistro-rt.
+SRC_URI =3D " \
+    file://factory-reset.target \
+    file://factory-reset-reboot.service \
+"
 
-Additionally, your recipes can now decide to apply the patches only for 
-the mydistro-rt by using the OVERRIDES mechanism:
+SYSTEMD_SERVICE_${PN} =3D " \
+    factory-reset.target \
+    factory-reset-reboot.service \
+"
 
-SRC_URI:append:mydistro-rt = " file://rt.patch"
+do_install() {
+    install -d ${D}/${systemd_system_unitdir}
+    install -m 0644 \
+        ${WORKDIR}/factory-reset.target \
+        ${WORKDIR}/factory-reset-reboot.service \
+        ${D}/${systemd_system_unitdir}
+}
 
-If you can provide the recipes, layers and content of the patches, we 
-may be able to guide you better.
+inherit systemd
+```
 
-Cheers,
-Quentin
+I figured I could get the version of systemd through its installed pkg-conf=
+ig, but I'd need to modify the content of `SYSTEMD_SERVICE_${PN`, so I trie=
+d this
+
+```bitbake
+LICENSE =3D "CLOSED"
+SUMMARY =3D "A factory reset target"
+DESCRIPTION =3D "A recipe which provides a common means of creating factory=
+ reset \
+    tasks. Each application should attach to this target in order to perfor=
+m \
+    any tasks when the device needs to be reset."
+
+DEPENDS =3D "systemd"
+
+SRC_URI =3D " \
+    file://factory-reset.target \
+    file://factory-reset-reboot.service \
+"
+
+python __anonymous() {
+    import subprocess
+
+    try:
+        output =3D subprocess.check_output(["pkg-config", "--modversion", "=
+systemd"]).decode("utf-8").strip()
+        systemd_version =3D int(output.split('.')[0])
+        d.setVar("SYSTEMD_VERSION", systemd_version)
+    except (subprocess.CalledProcessError, ValueError):
+        bb.warn("Could not determine systemd version. Assuming version < 25=
+0")
+        d.setVar("SYSTEMD_VERSION", 249)  # Default to 249 if systemd versi=
+on cannot be determined
+}
+
+SYSTEMD_SERVICE:${PN} =3D "factory-reset-reboot.service"
+SYSTEMD_SERVICE:${PN}:append =3D "${@ ' factory-reset.target' if int(d.getV=
+ar('SYSTEMD_VERSION')) < 250 else '' }"
+
+do_install() {
+    # systemd 250 introduces factory-reset.target for the same reasons we c=
+reated it in the first place
+    if [ ${SYSTEMD_VERSION} -lt 250 ]; then
+        install -d ${D}/${systemd_system_unitdir}
+        install -m 0644 ${WORKDIR}/factory-reset.target ${D}/${systemd_syst=
+em_unitdir}
+    fi
+
+    install -d ${D}/${systemd_system_unitdir}
+    install -m 0644 ${WORKDIR}/factory-reset-reboot.service ${D}/${systemd_=
+system_unitdir}
+}
+
+inherit systemd pkgconfig
+```
+
+Obviously, this has troubles at the parsing stage.. so, this won't work. I =
+was wondering if there was a nice solution to this problem so I can make my=
+ recipe compatible with both layer versions during the migration.
+
+Thank you,
+Logan
+
+--_000_MW4PR16MB5087DC4C691E4B6A0F1F2070BB5C2MW4PR16MB5087namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Hi, all</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+My company is trying to migrate a newer version of Yocto and in an effort t=
+o do that I am making changes to our current layer to facilitate an easier =
+transition. One problem I encountered was SystemD 250 installs a target
+<code>factory-reset.target</code>, but we already have a recipe that instal=
+ls a that same file. The recipe is as follows</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 40px; f=
+ont-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvet=
+ica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+```bitbake</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 40px; f=
+ont-family: &quot;Aptos Mono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService=
+, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
+LICENSE =3D &quot;CLOSED&quot;</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+SUMMARY =3D &quot;A factory reset target&quot;</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+DESCRIPTION =3D &quot;A recipe which provides a common means of creating fa=
+ctory reset \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; tasks. Each application should attach to this target in order=
+ to perform \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; any tasks when the device needs to be reset.&quot;</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+SRC_URI =3D &quot; \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; file://factory-reset.target \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; file://factory-reset-reboot.service \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&quot;</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+SYSTEMD_SERVICE_${PN} =3D &quot; \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; factory-reset.target \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; factory-reset-reboot.service \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&quot;</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+do_install() {</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; install -d ${D}/${systemd_system_unitdir}</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; install -m 0644 \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; ${WORKDIR}/factory-reset.target \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; ${WORKDIR}/factory-reset-reboot.service \</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; ${D}/${systemd_system_unitdir}</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+}</div>
+<div style=3D"direction: ltr; margin-left: 40px; font-family: &quot;Aptos M=
+ono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 1=
+2pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 40px; f=
+ont-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvet=
+ica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"font-family: &quot;Aptos Mono&quot;, Aptos_EmbeddedFont, Apt=
+os_MSFontService, monospace;">inherit systemd</span><br>
+```</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 40px; f=
+ont-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvet=
+ica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 0px; fo=
+nt-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+I figured I could get the version of systemd through its installed pkg-conf=
+ig, but I'd need to modify the content of `SYSTEMD_SERVICE_${PN`, so I trie=
+d this</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 0px; fo=
+nt-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 40px; f=
+ont-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvet=
+ica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+```bitbake</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 40px; f=
+ont-family: &quot;Aptos Mono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService=
+, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
+LICENSE =3D &quot;CLOSED&quot;</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+SUMMARY =3D &quot;A factory reset target&quot;</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+DESCRIPTION =3D &quot;A recipe which provides a common means of creating fa=
+ctory reset \</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; tasks.&nbsp;Each application should attach to this target in =
+order to perform \</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; any tasks when the device needs to be reset.&quot;</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+DEPENDS =3D&nbsp;&quot;systemd&quot;</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+SRC_URI =3D &quot; \</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; file://factory-reset.target \</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; file://factory-reset-reboot.service \</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&quot;</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+python __anonymous() {</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; import subprocess</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; try:</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; output =3D subprocess.check_output([&quot;pkg-c=
+onfig&quot;, &quot;--modversion&quot;, &quot;systemd&quot;]).decode(&quot;u=
+tf-8&quot;).strip()</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; systemd_version =3D int(output.split('.')[0])</=
+div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; d.setVar(&quot;SYSTEMD_VERSION&quot;, systemd_v=
+ersion)</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; except (subprocess.CalledProcessError, ValueError):</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; bb.warn(&quot;Could not determine systemd versi=
+on. Assuming version &lt; 250&quot;)</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; d.setVar(&quot;SYSTEMD_VERSION&quot;, 249) &nbs=
+p;# Default to 249 if systemd version cannot be determined</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+}</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"margin-left: 40px; font-family: &quo=
+t;Aptos Mono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; fon=
+t-size: 12pt; color: rgb(0, 0, 0);">
+SYSTEMD_SERVICE:${PN} =3D &quot;factory-reset-reboot.service&quot;</div>
+<div class=3D"elementToProof" style=3D"margin-left: 40px; font-family: &quo=
+t;Aptos Mono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; fon=
+t-size: 12pt; color: rgb(0, 0, 0);">
+SYSTEMD_SERVICE:${PN}:append =3D &quot;${@ ' factory-reset.target' if int(d=
+.getVar('SYSTEMD_VERSION')) &lt; 250 else '' }&quot;</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+do_install() {</div>
+<div class=3D"elementToProof" style=3D"margin-left: 40px; font-family: &quo=
+t;Aptos Mono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; fon=
+t-size: 12pt; color: rgb(0, 0, 0);">
+&nbsp; &nbsp; # systemd 250 introduces factory-reset.target for the same re=
+asons we created it in the first place</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; if [ ${SYSTEMD_VERSION} -lt 250 ]; then</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; install -d ${D}/${systemd_system_unitdir}</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; &nbsp; &nbsp; install -m 0644 ${WORKDIR}/factory-reset.target=
+ ${D}/${systemd_system_unitdir}</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; fi</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; install -d ${D}/${systemd_system_unitdir}</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+&nbsp; &nbsp; install -m 0644 ${WORKDIR}/factory-reset-reboot.service ${D}/=
+${systemd_system_unitdir}</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+}</div>
+<div style=3D"margin-left: 40px; font-family: &quot;Aptos Mono&quot;, Aptos=
+_EmbeddedFont, Aptos_MSFontService, monospace; font-size: 12pt; color: rgb(=
+0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"margin-left: 40px; font-family: &quo=
+t;Aptos Mono&quot;, Aptos_EmbeddedFont, Aptos_MSFontService, monospace; fon=
+t-size: 12pt; color: rgb(0, 0, 0);">
+inherit systemd pkgconfig</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 40px; f=
+ont-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvet=
+ica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+```</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 0px; fo=
+nt-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"direction: ltr; margin-left: 0px; fo=
+nt-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Obviously, this has troubles at the parsing stage.. so, this won't work. I =
+was wondering if there was a nice solution to this problem so I can make my=
+ recipe compatible with both layer versions during the migration.&nbsp;</di=
+v>
+<div id=3D"Signature" class=3D"elementToProof" style=3D"color: inherit;">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thank you,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Logan</div>
+</div>
+</body>
+</html>
+
+--_000_MW4PR16MB5087DC4C691E4B6A0F1F2070BB5C2MW4PR16MB5087namp_--
 
