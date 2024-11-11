@@ -2,59 +2,54 @@ Return-Path: <H.Wulff@kruss.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5851D2E9C9
-	for <webhook@archiver.kernel.org>; Mon, 11 Nov 2024 09:28:58 +0000 (UTC)
-Subject: Re: [yocto] Conditionally set SYSTEMD_SERVICE_${PN} based on version of another package
-To: "Logan Grosz" <Logan.Grosz@b9c.com>, yocto@lists.yoctoproject.org
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A49FBD2E9CC
+	for <webhook@archiver.kernel.org>; Mon, 11 Nov 2024 09:38:18 +0000 (UTC)
+Subject: Re: [yocto] swupdate applications, bootloader, how to update #swupdate #yocto #poky #stefanobabic
+To: barath.seeni09_ee@mepcoeng.ac.in, yocto@lists.yoctoproject.org
 From: "Hauke Wulff" <H.Wulff@kruss.de>
 X-Originating-Location: Hamburg, Free and Hanseatic City of Hamburg, DE (84.46.93.199)
 X-Originating-Platform: Windows Firefox 132
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 11 Nov 2024 01:28:53 -0800
-References: <MW4PR16MB5087DC4C691E4B6A0F1F2070BB5C2@MW4PR16MB5087.namprd16.prod.outlook.com>
-In-Reply-To: <MW4PR16MB5087DC4C691E4B6A0F1F2070BB5C2@MW4PR16MB5087.namprd16.prod.outlook.com>
-Message-ID: <20128.1731317333035757411@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="lq09KO6lrHXMpC3hXTQN"
+Date: Mon, 11 Nov 2024 01:38:14 -0800
+References: <20128.1731309142689302985@lists.yoctoproject.org>
+In-Reply-To: <20128.1731309142689302985@lists.yoctoproject.org>
+Message-ID: <29094.1731317894932685063@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0UCkFMdFPM28bBOt3BNu"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 Nov 2024 09:28:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64246
+ <yocto@lists.yoctoproject.org>; Mon, 11 Nov 2024 09:38:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64247
 
---lq09KO6lrHXMpC3hXTQN
+--0UCkFMdFPM28bBOt3BNu
 Content-Type: text/plain; charset="utf-8"; markup=markdown
 Content-Transfer-Encoding: quoted-printable
 
-How about replacing the recipe by a .bbappend and replacing the systemd fil=
-e(s) with something like:
-```
-FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
+Have a look at=20
 
-SRC_URI:remove =3D "${@bb.utils.contains('SYSTEMD_VERSION', '250', ' file:/=
-/factory-reset-yocto.target', '', d)}"
-SRC_URI:append =3D "${@bb.utils.contains('SYSTEMD_VERSION', '250', ' file:/=
-/your-factory-reset.target', '', d)}"
-```
-If you can live with touching your recipe.
+https://sbabic.github.io/swupdate/sw-description.html#bootloader
 
---lq09KO6lrHXMpC3hXTQN
+I'm pretty sure you get more help at:
+
+https://sbabic.github.io/swupdate/help_and_support.html
+
+
+--0UCkFMdFPM28bBOt3BNu
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>How about replacing the recipe by a .bbappend and replacing the systemd =
-file(s) with something like:</p>
-<pre class=3D"prettyprint"><code class=3D"language-unknown">FILESEXTRAPATHS=
-:prepend :=3D &#34;${THISDIR}/files:&#34;
+<p>Have a look at</p>
 
-SRC_URI:remove =3D &#34;${@bb.utils.contains(&#39;SYSTEMD_VERSION&#39;, &#3=
-9;250&#39;, &#39; file://factory-reset-yocto.target&#39;, &#39;&#39;, d)}&#=
-34;
-SRC_URI:append =3D &#34;${@bb.utils.contains(&#39;SYSTEMD_VERSION&#39;, &#3=
-9;250&#39;, &#39; file://your-factory-reset.target&#39;, &#39;&#39;, d)}&#3=
-4;
-</code></pre>
-<p>If you can live with touching your recipe.</p>
+<p><a href=3D"https://sbabic.github.io/swupdate/sw-description.html#bootloa=
+der" target=3D"_blank">https://sbabic.github.io/swupdate/sw-description.htm=
+l#bootloader</a></p>
 
---lq09KO6lrHXMpC3hXTQN--
+<p>I'm pretty sure you get more help at:</p>
+
+<p><a href=3D"https://sbabic.github.io/swupdate/help_and_support.html" targ=
+et=3D"_blank">https://sbabic.github.io/swupdate/help_and_support.html</a></=
+p>
+
+--0UCkFMdFPM28bBOt3BNu--
 
