@@ -1,98 +1,124 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <mau.salvi@yahoo.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06B8FD42BAF
-	for <webhook@archiver.kernel.org>; Tue, 12 Nov 2024 16:52:09 +0000 (UTC)
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
- by mx.groups.io with SMTP id smtpd.web10.91301.1731430327004078408
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3A63D41C31
+	for <webhook@archiver.kernel.org>; Wed, 13 Nov 2024 10:34:10 +0000 (UTC)
+Received: from sonic309-24.consmr.mail.ir2.yahoo.com (sonic309-24.consmr.mail.ir2.yahoo.com [77.238.179.82])
+ by mx.groups.io with SMTP id smtpd.web10.9149.1731494042637104452
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 Nov 2024 08:52:07 -0800
+ Wed, 13 Nov 2024 02:34:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=kNfTNFvZ;
- spf=pass (domain: gmail.com, ip: 209.85.218.49, mailfrom: skandigraun@gmail.com)
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a99fa009adcso397963566b.0
-        for <yocto@lists.yoctoproject.org>; Tue, 12 Nov 2024 08:52:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731430325; x=1732035125; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9VULEq5rp2k1IEJBwN+OB8ASxjJL2Eidado3leldTKQ=;
-        b=kNfTNFvZu8ReySPNmSao92PhzqBc4jDktT1ftMxYhorMl13eubyT1gDwt2ZFy1pudI
-         rCMjsDp7HV4N7tkAm9JyCHL1gewtNa56FppYYIGUpUJGu9oQIOpxMizwDk7POJk3aaQ9
-         xkdl9MyAGfF92dQz1dBWPY8Z3JfBx3GPRR+8GTi1UC8LzQbVd8ooSy+QAz1QMlK7zYp6
-         N8MMUYjckONvufYbTU77jOC/lr3EweLZOMfUSJvdxz2PkZRXTvJNStKDVr/uG1mMFPTy
-         Ec6b7INuAgfIEh/Nlj5FmbKnTT8CJQkj24mt1F3o1BNyhM5MVYuIOn1FsISQuEF6bMaj
-         Q/4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731430325; x=1732035125;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9VULEq5rp2k1IEJBwN+OB8ASxjJL2Eidado3leldTKQ=;
-        b=q1/e3AeKRwAUhKuu48+n2X/qR/O4buSctEabFbkaUM1i/LCQ7s6n8NBtgRBR8T9iMV
-         uA0rMLYy9/vtWPJi2uBsc0hBHzxFqY1mzBg74Av6t7ofm2AwRw0eD/eDyeAlyAi8gH0l
-         SzEk9Rt/D+H83xeUJXS57pgg+H3H/HCgXT1i+pR0wtXmYmx4EgCgWvUu73j98jR0fDop
-         91IHvqNBW4TgHRI9YUbdKhLjMSpMIlJqS+E/xmVc24f2VZf/QnBjOpjJrwdwhCo+sFZB
-         W0XTOmIthZYyWtvNLmjNsqpT1JUd1oPfl9J9JQm489AG44hPNOLroZz33yxkvjhWLl4X
-         FOnA==
-X-Gm-Message-State: AOJu0YwyPSkBWZR7+Eh0rWoBNsLBDW3Lr23dq/MDvrt8WNgzAP7JBpum
-	i3+6OIWucuXTvgLbBBHb0Fjv/oP5s9NX6d3e23HTHN8WnJfSKtNh
-X-Google-Smtp-Source: AGHT+IH7iegXafM/dfLEXQhxFY8wAlF0Hbn2CId1ndrC7PDwgLE+1GohloQXMj+t0Rix98AMINFipQ==
-X-Received: by 2002:a50:9f89:0:b0:5cf:11cc:91d3 with SMTP id 4fb4d7f45d1cf-5cf11cc9357mr14570631a12.9.1731430324992;
-        Tue, 12 Nov 2024 08:52:04 -0800 (PST)
-Received: from [192.168.1.2] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf03bb7fcasm6420866a12.52.2024.11.12.08.52.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 08:52:04 -0800 (PST)
-Message-ID: <ce59ef65-84ac-4f4c-bfa0-ed2b3b42b7e7@gmail.com>
-Date: Tue, 12 Nov 2024 17:52:03 +0100
+ dkim=pass header.i=@yahoo.com header.s=s2048 header.b=UIWIb79x;
+ spf=neutral (domain: yahoo.com, ip: 77.238.179.82, mailfrom: mau.salvi@yahoo.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1731494040; bh=XKWcOQ1yD4mf7QGxJYZTeSi4lb1uA0X+DZHf6TQSImQ=; h=Date:From:Subject:To:References:From:Subject:Reply-To; b=UIWIb79xJZcH9hdpBpLqClZseomqNQ7/2ydA5sy+wnqR6RkXfLPgZ6eosHijFPKX3OejAexhqAiqlRF1kKeI/XH+xtVHhj2wKE/exZVtVmHymjAbxaMNun3WFcADJnFbM7oy8U7vBbkbkHa6kTvZpBeUg2+MAd+XWmpUmqv2tnZtmQSpo0RBJ20hxPMjvtPeulQK72YluBsxEL3ZoqhsZZxHFGCAGhOxm2qR5+BjEXxkKJjphrEh5W2q/wz/kmwORCy1FiWUYlKK9S76bkW2LRogqo/UJYz7ODdukBs8dXpT1DKnGyd61a4mehf9kXbo136Zy1jDf35tBHF4IEGWWQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1731494040; bh=NHTUhoG804EwQHjV1SVk2KYAtjYAeXC8ca1d4Yh1qyl=; h=X-Sonic-MF:Date:From:Subject:To:From:Subject; b=m528f86RxF3tv0jxic+D3emjF5I1z1vB522ALHC8v5bYnRqfPsKrNrmCjSBcqBlywmy0iHSNH5MMwT6/hlWviFqSCX5KUFr1nJJ4cG4YE16MHGgK9vWMpZQhVmlQW5JsQ2T2gMUjih3qB+MyjWbm85b/PgGhtRpN5bftmHvu5TEUyRCfb3WEMgXB1+7T9O+RBbEF2DgRtXUEn7K+V6LgMOfdKLl31jvb6TtvWZ2fn6HOmhzxq2PCNI7gL0+CAQ7ETQDYROO/rYRLRRUSUM8gGqSphcx6lgcR3lC2g9a8sqI5mxrFySyVnPgoDC2Lemg6Do4wEW4VMfn8zuEBD6LcAA==
+X-YMail-OSG: md6i.9UVM1mB03ZW3AOWF64tafaEoRIzQBzdHjDtRYtjXFbwvpMTjnZ4Bn9q1CU
+ b2dzSHaPa58uPdwLvj4uZwGqSCpe.ry0V4nCmQusY9VS.at_Cyp4bmvRb8wv1lu_XLTlCm7SkTMu
+ E8ALn3GsXn0ImvvIZ3n3lyrxb0.j0aia3kfQs7GdwSKz8bTC3QG1VM4uUNO9RHuafRpQedNj8mFc
+ nwOlNholG1bJlfJ5ZziYUDrZ0ekUnKXjLiTF3DhCS0WZBw9d.n6VgfnkvH6lumbWg_kb_2zqX3EL
+ LvgBxp4RTV6Vk.6E5.31yBJXO1fwtcEoBDvs6KllX5fvMUBQoplolTS5nM4TKQSrdAkJ6P_Ic9JE
+ A0XMdDf.ZAsirXX8dbju2nwEMmpmjwJhhW0SG3VqfantPLxauof1jvBaNaCHFnt72hqBnwql3F6u
+ _qdYULtpR27fwA8ZOD92LyE2O2MtL0cP3e7iJ7OBFBDOGD0UgK5UIEGOlk9olmo2XcKbs7MK5nd.
+ .Rp3Ly3_tRIPKE_tBckwZtwEXQZJcX6_2LJwEEOI.idFNf._rsNR8xHPGV73wmIap2EppP4UjOjM
+ THryYVjc_1pMxWYXdb75JdXQuNJmFVQmTusD2vvvMEiUwUOY7RjDMGbUZ2.JplVtj.N8U8aJXwmQ
+ IoyDTpOsm2CtGM9p28MthmSU5aTMn98kgSI4aehHZtItdAyDSgsdNc0hh1stScZziHmLeUzuSI7x
+ CgTK3pg24sb8BQxDNxALtmyhyVvfbnca.5UzLcS.pm6sQEsqphgeQPdvWCJru1SCm9JggpUpQAti
+ m7rHwB52THIQLYDvdpiORC4aJ80GhDe4duLPprQjcNt5ceguLaKDk2TOK_r7xKm4SGsDu_nsLtN7
+ LSaboSc2bLU4q4q51sH8cNuchR.IobsCY6AJpsmLI5Us0NG5Uf5azOKPLMtuh27fFHizYrc2P2Aa
+ GgWsR1OSOeqcSikbsR4mFTdiCd1mQrNT9od5xn7D0330icBffZHn9z6HWiJzcLzKsfiGSK9hIXbQ
+ CSstd38y2ir_.LZLVBhE4RgmMNYm3aFptdFbRrLvksBTmgHzxT9fvJdVG20yf9oDZ9OdnrGjb_AR
+ OpmeQlFb.AKclJhkbRBhdabpBFXiYkcjm3CbVP16E2l4YsUBCiJDGumLCNBRn6DkWL6uUCSvfq_q
+ ZTLiaA3VaAc_D3CuBAfmxqx4GkiVgGd4RlLO2_hDNqyM.YLs.tLPEYlzvculcSJjZb58Z4KyTrxJ
+ 9TsPq95gdlX5mPcB4UxaxQ4Mj_NJ.V88xA46KCE6g65LRlNtiYh3Z.jP2Jx5kMpbQvCbSawLtHDJ
+ L0wgeO.eIoel99McPzwE5gpx2xkZC8YlPVyvxvBEiX9q2B0rsi3EaFqivylzda2cxzho8J71_arX
+ kvj847YpOlcyO._hkgF5_sXDuA0zzCZn23YWRYoxEsWbLkXHcPU4Lf01dCd0csHek4G4JYo9JW8N
+ NpOyE33JddUaf8Il.9.OwoBEibDa5Cm7OH_kCl33J1BGDOa4fZtnXvj523SjuBJtEiOZgwrdfp19
+ uxyF7yDIgpUUz8X4HGTqW4EjgYTg7uUXd8GcRCIgaSskxt78vMMovRuJPfPN0Ex6qviXFqIvpSwm
+ TquEqCVXO2kJttv8dSTwOm.6uld2T4sCwCXHrpnSBzMUaZ.lyNRwa2Wp8wBLnBtBdUSmRPHdo65r
+ AoEaq7B1.v3fmnq40BIQ.tyi4i42dzvzG6IG_4rQ.vR5Hn8IUCR07r7UVViuzkCudS5KH0usABPB
+ OBi3T.tiZBEutht0_DMaS3Y.3G9jaAYtcggdYSly5beagCZrdbV247n2_Y6mXPAXQXw8nXAi_uSi
+ 5w90ZxDnJ3WmcDfuliWYvQQ6N5zfJJWuBhX1g1W0QDVIIk6DfxK.jdN8A0gxjD7R.kwZJQ2eYiC3
+ INM.OZQyA54.omdRsjE8_PDPSZpC.JZu0_iYAhW3Kaoaf6ANVCBro1MCQzwgBcE9Q8EVQ6HCL5VW
+ 9VDfQWkFl6zCuOjJBJqCiTewQThmDaDWibFp0vgg8HD9FSHoEbteea1SYXY9GSIoW0WT8m.mLRNu
+ xBn7nxvfmP7H2NJsBoNOvcSZ0h0UDrpwu.jYGhM.ME57n9RJJAAaJqGpdA9WHhB67U20nBazBg0Z
+ 2ma7RMCApQvL28TPWlb0CfWwaquRPXdNiG7Cpt0bsTarVUI7kO_hBkZQz0fbKKSAH1p4stg_5ZZ8
+ QNB8-
+X-Sonic-MF: <mau.salvi@yahoo.com>
+X-Sonic-ID: 7d93c845-dbb2-4753-9864-3a31bc4efd33
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.ir2.yahoo.com with HTTP; Wed, 13 Nov 2024 10:34:00 +0000
+Received: by hermes--production-ir2-c694d79d9-fn2jw (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 9f1518faeff3000398428b4f3bc72678;
+          Wed, 13 Nov 2024 10:33:56 +0000 (UTC)
+Message-ID: <9bc31ba3-694e-46fe-b353-8fe52ddbfff7@yahoo.com>
+Date: Wed, 13 Nov 2024 11:33:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Id: 'weston': no such user issue Disable is required
-To: sateesh m <sateesh0457@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-References: <qdwm.1731305083820940791.ZN0b@lists.yoctoproject.org>
- <68e7b3be-48e9-4801-910a-51b0d136fc01@gmail.com>
- <CACsETSup3qgwz3HrA3yh_HQrZJteiP=BWaNuzfSespLVa9iR+Q@mail.gmail.com>
- <4eb6e8ee-3b1d-4536-beb7-4a4c4218739b@gmail.com>
- <CACsETSsO6OOVxZ=MgYMGv_Jepmn9OmgUBfDuiaEO3vFaAMbtWg@mail.gmail.com>
- <40d01dc1-7894-4163-ac1f-3807bcc92048@gmail.com>
- <CACsETSt+z2LxaQsUCh1K88S0APT88q+AgDKpGOcPMPDi=ntz5g@mail.gmail.com>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <CACsETSt+z2LxaQsUCh1K88S0APT88q+AgDKpGOcPMPDi=ntz5g@mail.gmail.com>
+Content-Language: en-US, it
+From: "Mauro S." <mau.salvi@yahoo.com>
+Subject: poky: logging scheme with journald
+To: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+References: <9bc31ba3-694e-46fe-b353-8fe52ddbfff7.ref@yahoo.com>
+X-Mailer: WebService/1.1.22876 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Nov 2024 16:52:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64270
+ <yocto@lists.yoctoproject.org>; Wed, 13 Nov 2024 10:34:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64271
 
-On 11/12/24 17:29, sateesh m wrote:
-> Hi Sarvari,
-> 
-> My intention if we disable weston we won't see this error.becuase I 
-> don't need display.
-> 
-> Could you please help me with this. Actually I am not clear about my end.
-> 
-> Thanks & Regards,
-> Sateesh
-> 
+Hi all,
 
-Usually (unless someone did some extra magic with the image recipe) 
-weston can be removed by ensuring that "weston" is not in the 
-IMAGE_FEATURES variable, and "wayland" is not in DISTRO_FEATURES.
+I would like to ask you some information about logging scheme in poky 
+when journald is in.
 
-Since your system is complaining about missing weston user, it looks 
-like that you don't have weston installed (You can also verify that by 
-listing all the installed packages in your system, just to make sure.)
+Without journald, by default logs are handled by busybox-klogd and 
+busybox-syslogd: klogd forwards kernel logs to syslogd, and syslogd 
+writes kernel and userspace logs in /var/log/messages.
 
-It just seems that you just still have something else that's expecting 
-weston to be installed for some reason, and complaining about it. That's 
-why it would be interesting to see what scripts are executed upon login, 
-and from them, which one is looking for weston user.
+When journald comes in, it would centralize whole system logging to 
+itself, handling both kernel logs and userspace logs. For userspace 
+logs, it creates the /dev/log symlink that points to 
+/run/systemd/journal/dev-log (by systemd-journald-dev-log.socket), so 
+logs generated by the syslog API (that  writes in /dev/log) should be 
+collected by journald.
+In poky, journald is configured with "ForwardToSysLog=yes" 
+(meta/recipes-core/systemd/systemd-conf/journald.conf), then the 
+collected logs are forwarded to a syslog daemon through 
+/run/systemd/journal/syslog socket. Then it is expected that the syslog 
+daemon reads this socket.
+Beside journald, busybox-syslogd and busybox-klogd are also started.
+
+What I observe is:
+- syslogd collects only some logs in /var/log/messages, seems only logs 
+from userspace  (e.g. logs generated by logger command). These logs are 
+not collected by journald. Additionally, syslog is not collecting logs 
+that journald is forwarding
+- journald emits "Forwarding to syslog missed X messages"
+- klogd is useless: kernel logs are captured by journald, so it does 
+nothing. In fact, if I stop the service, kernel logs still be logged in 
+journal
+
+Seems to me that first two issues happen because syslogd is listening 
+/dev/log (that journald would want for itself) instead of 
+/run/systemd/journal/syslog (socket prepared by journald to forward 
+logs): syslogd steals userspace logs from /dev/log (they don't reach 
+journald) and does not collect logs journald forwarded to 
+/run/systemd/journal/syslog.
+
+So, as far as I understood, when journald is in, busybox-syslogd should 
+be patched to listen to /run/systemd/journal/syslog instead of /dev/log 
+(it is not possible to change this with config file or from build 
+configuration). With this modification, journald will collect also 
+userspace logs, and all (kernel + userspace) logs forwarded by journald 
+will be collected by busybox-syslogd, and saved in /var/log/messages.
+Additionally, when journald is in, klogd should not be started.
+
+Am I missing something? Or actual behavior is the desired one?
+
+Sorry for the long mail.
+Thanks in advance
+-- 
+Mauro S.
+
 
