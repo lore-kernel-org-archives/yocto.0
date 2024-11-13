@@ -1,124 +1,141 @@
-Return-Path: <mau.salvi@yahoo.com>
+Return-Path: <tsoos99@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3A63D41C31
-	for <webhook@archiver.kernel.org>; Wed, 13 Nov 2024 10:34:10 +0000 (UTC)
-Received: from sonic309-24.consmr.mail.ir2.yahoo.com (sonic309-24.consmr.mail.ir2.yahoo.com [77.238.179.82])
- by mx.groups.io with SMTP id smtpd.web10.9149.1731494042637104452
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 080E9D637B2
+	for <webhook@archiver.kernel.org>; Wed, 13 Nov 2024 20:09:14 +0000 (UTC)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+ by mx.groups.io with SMTP id smtpd.web11.21091.1731528546337233385
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Nov 2024 02:34:02 -0800
+ Wed, 13 Nov 2024 12:09:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@yahoo.com header.s=s2048 header.b=UIWIb79x;
- spf=neutral (domain: yahoo.com, ip: 77.238.179.82, mailfrom: mau.salvi@yahoo.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1731494040; bh=XKWcOQ1yD4mf7QGxJYZTeSi4lb1uA0X+DZHf6TQSImQ=; h=Date:From:Subject:To:References:From:Subject:Reply-To; b=UIWIb79xJZcH9hdpBpLqClZseomqNQ7/2ydA5sy+wnqR6RkXfLPgZ6eosHijFPKX3OejAexhqAiqlRF1kKeI/XH+xtVHhj2wKE/exZVtVmHymjAbxaMNun3WFcADJnFbM7oy8U7vBbkbkHa6kTvZpBeUg2+MAd+XWmpUmqv2tnZtmQSpo0RBJ20hxPMjvtPeulQK72YluBsxEL3ZoqhsZZxHFGCAGhOxm2qR5+BjEXxkKJjphrEh5W2q/wz/kmwORCy1FiWUYlKK9S76bkW2LRogqo/UJYz7ODdukBs8dXpT1DKnGyd61a4mehf9kXbo136Zy1jDf35tBHF4IEGWWQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1731494040; bh=NHTUhoG804EwQHjV1SVk2KYAtjYAeXC8ca1d4Yh1qyl=; h=X-Sonic-MF:Date:From:Subject:To:From:Subject; b=m528f86RxF3tv0jxic+D3emjF5I1z1vB522ALHC8v5bYnRqfPsKrNrmCjSBcqBlywmy0iHSNH5MMwT6/hlWviFqSCX5KUFr1nJJ4cG4YE16MHGgK9vWMpZQhVmlQW5JsQ2T2gMUjih3qB+MyjWbm85b/PgGhtRpN5bftmHvu5TEUyRCfb3WEMgXB1+7T9O+RBbEF2DgRtXUEn7K+V6LgMOfdKLl31jvb6TtvWZ2fn6HOmhzxq2PCNI7gL0+CAQ7ETQDYROO/rYRLRRUSUM8gGqSphcx6lgcR3lC2g9a8sqI5mxrFySyVnPgoDC2Lemg6Do4wEW4VMfn8zuEBD6LcAA==
-X-YMail-OSG: md6i.9UVM1mB03ZW3AOWF64tafaEoRIzQBzdHjDtRYtjXFbwvpMTjnZ4Bn9q1CU
- b2dzSHaPa58uPdwLvj4uZwGqSCpe.ry0V4nCmQusY9VS.at_Cyp4bmvRb8wv1lu_XLTlCm7SkTMu
- E8ALn3GsXn0ImvvIZ3n3lyrxb0.j0aia3kfQs7GdwSKz8bTC3QG1VM4uUNO9RHuafRpQedNj8mFc
- nwOlNholG1bJlfJ5ZziYUDrZ0ekUnKXjLiTF3DhCS0WZBw9d.n6VgfnkvH6lumbWg_kb_2zqX3EL
- LvgBxp4RTV6Vk.6E5.31yBJXO1fwtcEoBDvs6KllX5fvMUBQoplolTS5nM4TKQSrdAkJ6P_Ic9JE
- A0XMdDf.ZAsirXX8dbju2nwEMmpmjwJhhW0SG3VqfantPLxauof1jvBaNaCHFnt72hqBnwql3F6u
- _qdYULtpR27fwA8ZOD92LyE2O2MtL0cP3e7iJ7OBFBDOGD0UgK5UIEGOlk9olmo2XcKbs7MK5nd.
- .Rp3Ly3_tRIPKE_tBckwZtwEXQZJcX6_2LJwEEOI.idFNf._rsNR8xHPGV73wmIap2EppP4UjOjM
- THryYVjc_1pMxWYXdb75JdXQuNJmFVQmTusD2vvvMEiUwUOY7RjDMGbUZ2.JplVtj.N8U8aJXwmQ
- IoyDTpOsm2CtGM9p28MthmSU5aTMn98kgSI4aehHZtItdAyDSgsdNc0hh1stScZziHmLeUzuSI7x
- CgTK3pg24sb8BQxDNxALtmyhyVvfbnca.5UzLcS.pm6sQEsqphgeQPdvWCJru1SCm9JggpUpQAti
- m7rHwB52THIQLYDvdpiORC4aJ80GhDe4duLPprQjcNt5ceguLaKDk2TOK_r7xKm4SGsDu_nsLtN7
- LSaboSc2bLU4q4q51sH8cNuchR.IobsCY6AJpsmLI5Us0NG5Uf5azOKPLMtuh27fFHizYrc2P2Aa
- GgWsR1OSOeqcSikbsR4mFTdiCd1mQrNT9od5xn7D0330icBffZHn9z6HWiJzcLzKsfiGSK9hIXbQ
- CSstd38y2ir_.LZLVBhE4RgmMNYm3aFptdFbRrLvksBTmgHzxT9fvJdVG20yf9oDZ9OdnrGjb_AR
- OpmeQlFb.AKclJhkbRBhdabpBFXiYkcjm3CbVP16E2l4YsUBCiJDGumLCNBRn6DkWL6uUCSvfq_q
- ZTLiaA3VaAc_D3CuBAfmxqx4GkiVgGd4RlLO2_hDNqyM.YLs.tLPEYlzvculcSJjZb58Z4KyTrxJ
- 9TsPq95gdlX5mPcB4UxaxQ4Mj_NJ.V88xA46KCE6g65LRlNtiYh3Z.jP2Jx5kMpbQvCbSawLtHDJ
- L0wgeO.eIoel99McPzwE5gpx2xkZC8YlPVyvxvBEiX9q2B0rsi3EaFqivylzda2cxzho8J71_arX
- kvj847YpOlcyO._hkgF5_sXDuA0zzCZn23YWRYoxEsWbLkXHcPU4Lf01dCd0csHek4G4JYo9JW8N
- NpOyE33JddUaf8Il.9.OwoBEibDa5Cm7OH_kCl33J1BGDOa4fZtnXvj523SjuBJtEiOZgwrdfp19
- uxyF7yDIgpUUz8X4HGTqW4EjgYTg7uUXd8GcRCIgaSskxt78vMMovRuJPfPN0Ex6qviXFqIvpSwm
- TquEqCVXO2kJttv8dSTwOm.6uld2T4sCwCXHrpnSBzMUaZ.lyNRwa2Wp8wBLnBtBdUSmRPHdo65r
- AoEaq7B1.v3fmnq40BIQ.tyi4i42dzvzG6IG_4rQ.vR5Hn8IUCR07r7UVViuzkCudS5KH0usABPB
- OBi3T.tiZBEutht0_DMaS3Y.3G9jaAYtcggdYSly5beagCZrdbV247n2_Y6mXPAXQXw8nXAi_uSi
- 5w90ZxDnJ3WmcDfuliWYvQQ6N5zfJJWuBhX1g1W0QDVIIk6DfxK.jdN8A0gxjD7R.kwZJQ2eYiC3
- INM.OZQyA54.omdRsjE8_PDPSZpC.JZu0_iYAhW3Kaoaf6ANVCBro1MCQzwgBcE9Q8EVQ6HCL5VW
- 9VDfQWkFl6zCuOjJBJqCiTewQThmDaDWibFp0vgg8HD9FSHoEbteea1SYXY9GSIoW0WT8m.mLRNu
- xBn7nxvfmP7H2NJsBoNOvcSZ0h0UDrpwu.jYGhM.ME57n9RJJAAaJqGpdA9WHhB67U20nBazBg0Z
- 2ma7RMCApQvL28TPWlb0CfWwaquRPXdNiG7Cpt0bsTarVUI7kO_hBkZQz0fbKKSAH1p4stg_5ZZ8
- QNB8-
-X-Sonic-MF: <mau.salvi@yahoo.com>
-X-Sonic-ID: 7d93c845-dbb2-4753-9864-3a31bc4efd33
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.ir2.yahoo.com with HTTP; Wed, 13 Nov 2024 10:34:00 +0000
-Received: by hermes--production-ir2-c694d79d9-fn2jw (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 9f1518faeff3000398428b4f3bc72678;
-          Wed, 13 Nov 2024 10:33:56 +0000 (UTC)
-Message-ID: <9bc31ba3-694e-46fe-b353-8fe52ddbfff7@yahoo.com>
-Date: Wed, 13 Nov 2024 11:33:55 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US, it
-From: "Mauro S." <mau.salvi@yahoo.com>
-Subject: poky: logging scheme with journald
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=jbFMZXCe;
+ spf=pass (domain: gmail.com, ip: 209.85.208.46, mailfrom: tsoos99@gmail.com)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5c96b2a10e1so11039745a12.2
+        for <yocto@lists.yoctoproject.org>; Wed, 13 Nov 2024 12:09:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731528544; x=1732133344; darn=lists.yoctoproject.org;
+        h=to:date:message-id:subject:mime-version:from:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=BSMSKkB3u6lEVDbib2SQZOwHERhLN5Wj94M6Vqr3o7M=;
+        b=jbFMZXCeeSDjhnrPW/RGUpk9N4M65NTZ9XlMDVJyRQhAAyELdSflTYu0/pbVDzRGuz
+         uqUxFMkDK5xCU1AmmsoFeq11FAqO88GE7SjmE8neC9ZtqZ10uXhW7XP+lQy9WBOxD0Xu
+         Xn8ImaBG+D2QZZU0jpMW7tHJIZIICvKffvTOWiiTxTueito7ms6t2tDI9PQYgobd+0tO
+         DyMxk1jBNyZfyGeKGQ2RcNK3zJLcbf6b1HsdHchdYoD+BDVL+iLknxZUfMuNcjjZx4VM
+         bTHrl/YWNXDduDyONxQ27Za8WaK3hEKvaaSs9HGtw4a2ptJKN/dh9jZzlyiKTHyne3RH
+         wL1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731528544; x=1732133344;
+        h=to:date:message-id:subject:mime-version:from:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BSMSKkB3u6lEVDbib2SQZOwHERhLN5Wj94M6Vqr3o7M=;
+        b=X8yclBkrix091h6SDi+ahthwx4i1agaXc//beBokEuzDc8CCd7jaKxkEHJUDvKELLn
+         10Ha30tBjGe6XFdqiPok+1q169tKi4gR21oY+FJXEsz9n9IWVdmLWOwv7REuLZYHw2rk
+         0KUIDpPS8Rc50OcOPlbc+HdCOlkALMPoW/qq+yn8BZ9BQOTBxFBN6z7OKVLsW8QLGhtS
+         8ZrKsw9+DFhWWbZZ7Npgf42k9V++CnnjKDTM05SvSVuhmWJ3qI3XXqgGdj4B+UhPB5Z6
+         A+7tkLz/ToetCAWPEpazc9lEGLwM2Zr/rVaGd1svm1A6Xojx213rHwErTUZ5GRV4ltVs
+         rc0g==
+X-Gm-Message-State: AOJu0YyDItDw8R3U8JPjDoxAZW7R7s4ongfaAywDU7reVbTzN7Pbu5IR
+	IVAnI0VUGWUEOh1mtIBLAR6gJCyCwZugiLejALjR3dvmRO3liszCDvmG9Q==
+X-Google-Smtp-Source: AGHT+IGt3LoGcMJJGvRpw74o2hzkQZeQEvAc5fjKJh5XSR5WjPsV+LcsvC41itOXBLir8SkPwglo4Q==
+X-Received: by 2002:a05:6402:2692:b0:5c8:9f81:43e4 with SMTP id 4fb4d7f45d1cf-5cf0a2faeb2mr18996169a12.7.1731528543382;
+        Wed, 13 Nov 2024 12:09:03 -0800 (PST)
+Received: from smtpclient.apple ([89.223.204.232])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf1d2cf5c5sm5280672a12.31.2024.11.13.12.09.02
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 13 Nov 2024 12:09:02 -0800 (PST)
+From: =?utf-8?B?VGFtw6FzIFNvw7Nz?= <tsoos99@gmail.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_507434EE-6A67-4554-843D-CA87B9572B92"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
+Subject: Kernel name is too long #poky #kirkstone
+Message-Id: <4F24401C-C73B-4F23-94BA-8FEF15D514CA@gmail.com>
+Date: Wed, 13 Nov 2024 21:08:51 +0100
 To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-References: <9bc31ba3-694e-46fe-b353-8fe52ddbfff7.ref@yahoo.com>
-X-Mailer: WebService/1.1.22876 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Mailer: Apple Mail (2.3826.200.121)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 13 Nov 2024 10:34:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64271
+ <yocto@lists.yoctoproject.org>; Wed, 13 Nov 2024 20:09:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64272
 
-Hi all,
 
-I would like to ask you some information about logging scheme in poky 
-when journald is in.
+--Apple-Mail=_507434EE-6A67-4554-843D-CA87B9572B92
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Without journald, by default logs are handled by busybox-klogd and 
-busybox-syslogd: klogd forwards kernel logs to syslogd, and syslogd 
-writes kernel and userspace logs in /var/log/messages.
+Hi,
 
-When journald comes in, it would centralize whole system logging to 
-itself, handling both kernel logs and userspace logs. For userspace 
-logs, it creates the /dev/log symlink that points to 
-/run/systemd/journal/dev-log (by systemd-journald-dev-log.socket), so 
-logs generated by the syslog API (that  writes in /dev/log) should be 
-collected by journald.
-In poky, journald is configured with "ForwardToSysLog=yes" 
-(meta/recipes-core/systemd/systemd-conf/journald.conf), then the 
-collected logs are forwarded to a syslog daemon through 
-/run/systemd/journal/syslog socket. Then it is expected that the syslog 
-daemon reads this socket.
-Beside journald, busybox-syslogd and busybox-klogd are also started.
+I=E2=80=99m trying to build an image for a custom board. The build works =
+fine with kirkstone-4.0.16, but it fails on 4.0.17. Here=E2=80=99s the =
+output from the kernel recipe:
 
-What I observe is:
-- syslogd collects only some logs in /var/log/messages, seems only logs 
-from userspace  (e.g. logs generated by logger command). These logs are 
-not collected by journald. Additionally, syslog is not collecting logs 
-that journald is forwarding
-- journald emits "Forwarding to syslog missed X messages"
-- klogd is useless: kernel logs are captured by journald, so it does 
-nothing. In fact, if I stop the service, kernel logs still be logged in 
-journal
+|   HOSTCC  scripts/dtc/libfdt/fdt_empty_tree.o
+| =
+"5.15.82-bsp-yocto-ampliphy-am335x-pd23.1.0-bsp-yocto-ampliphy-am335x-pd23=
+.1.0" exceeds 64 characters
+| make: *** =
+[/home/tamas/poky/build/tmp/work-shared/phyboard-regor-am335x-1/kernel-sou=
+rce/Makefile:1308: include/generated/utsrelease.h] Error 1
+| make: *** Waiting for unfinished jobs=E2=80=A6.
 
-Seems to me that first two issues happen because syslogd is listening 
-/dev/log (that journald would want for itself) instead of 
-/run/systemd/journal/syslog (socket prepared by journald to forward 
-logs): syslogd steals userspace logs from /dev/log (they don't reach 
-journald) and does not collect logs journald forwarded to 
-/run/systemd/journal/syslog.
+I saw the following fixes in the release notes that could be relevant:
+    =E2=80=A2 kernel.bbclass: introduce KERNEL_LOCALVERSION
+    =E2=80=A2 kernel: fix localversion in v6.3+
+    =E2=80=A2 kernel: make LOCALVERSION consistent between recipes
 
-So, as far as I understood, when journald is in, busybox-syslogd should 
-be patched to listen to /run/systemd/journal/syslog instead of /dev/log 
-(it is not possible to change this with config file or from build 
-configuration). With this modification, journald will collect also 
-userspace logs, and all (kernel + userspace) logs forwarded by journald 
-will be collected by busybox-syslogd, and saved in /var/log/messages.
-Additionally, when journald is in, klogd should not be started.
+I checked the config with menuconfig and saw the local version was set =
+to =E2=80=9C-bsp-yocto-ampliphy-am335x-pd23.1.0=E2=80=9D.
+On 4.0.16 it is also set to the same thing. This is a custom kernel =
+recipe that inherits kernel and kconfig.
 
-Am I missing something? Or actual behavior is the desired one?
+This is as far as I=E2=80=99ve gotten. I couldn=E2=80=99t figure out how =
+this local version is set. I tried searching for it, but I found nothing =
+suspicious.=20
+I also tried manually specifying KERNEL_LOCALVERSION in the kernel =
+recipe, but nothing changed.=20
 
-Sorry for the long mail.
-Thanks in advance
--- 
-Mauro S.
+How could I figure out what is wrong with the custom kernel recipe?
 
+--Apple-Mail=_507434EE-6A67-4554-843D-CA87B9572B92
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: =
+after-white-space;">Hi,<div><br></div><div>I=E2=80=99m trying to build =
+an image for a custom board. The build works fine with kirkstone-4.0.16, =
+but it fails on 4.0.17. Here=E2=80=99s the output from the kernel =
+recipe:</div><div><br></div><div><div>| &nbsp; HOSTCC =
+&nbsp;scripts/dtc/libfdt/fdt_empty_tree.o</div><div>| =
+"5.15.82-bsp-yocto-ampliphy-am335x-pd23.1.0-bsp-yocto-ampliphy-am335x-pd23=
+.1.0" exceeds 64 characters</div><div>| make: *** =
+[/home/tamas/poky/build/tmp/work-shared/phyboard-regor-am335x-1/kernel-sou=
+rce/Makefile:1308: include/generated/utsrelease.h] Error 1</div><div>| =
+make: *** Waiting for unfinished jobs=E2=80=A6.</div></div><div><br></div>=
+I saw the following fixes in the release notes that could be =
+relevant:<div><span class=3D"Apple-tab-span" style=3D"white-space:pre">  =
+  </span>=E2=80=A2 kernel.bbclass: introduce =
+KERNEL_LOCALVERSION</div><div><span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">    </span>=E2=80=A2 kernel: fix localversion =
+in v6.3+</div><div><span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">    </span>=E2=80=A2 kernel: make LOCALVERSION =
+consistent between recipes</div><div><br></div><div>I checked the config =
+with menuconfig and saw the local version was set to =
+=E2=80=9C-bsp-yocto-ampliphy-am335x-pd23.1.0=E2=80=9D.</div><div>On =
+4.0.16 it is also set to the same thing. This is a custom kernel recipe =
+that inherits <i>kernel</i> and =
+k<i>config.</i></div><div><br></div><div>This is as far as I=E2=80=99ve =
+gotten. I couldn=E2=80=99t figure out how this local version is set. I =
+tried searching for it, but I found nothing =
+suspicious.&nbsp;</div><div>I also tried manually specifying =
+KERNEL_LOCALVERSION in the kernel recipe, but nothing =
+changed.&nbsp;</div><div><br></div><div>How could I figure out what is =
+wrong with the custom kernel recipe?</div><div></div></body></html>=
+
+--Apple-Mail=_507434EE-6A67-4554-843D-CA87B9572B92--
 
