@@ -1,80 +1,88 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C040D68BCB
-	for <webhook@archiver.kernel.org>; Fri, 15 Nov 2024 16:22:23 +0000 (UTC)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
- by mx.groups.io with SMTP id smtpd.web10.24987.1731687738035986466
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC096D68BEF
+	for <webhook@archiver.kernel.org>; Sat, 16 Nov 2024 13:34:55 +0000 (UTC)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+ by mx.groups.io with SMTP id smtpd.web10.12638.1731764094066065057
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Nov 2024 08:22:18 -0800
+ Sat, 16 Nov 2024 05:34:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=L6l3cDpS;
- spf=pass (domain: gmail.com, ip: 209.85.218.54, mailfrom: skandigraun@gmail.com)
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a9ed49ec0f1so341046466b.1
-        for <yocto@lists.yoctoproject.org>; Fri, 15 Nov 2024 08:22:17 -0800 (PST)
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=LYIQwTOj;
+ spf=softfail (domain: sakoman.com, ip: 209.85.128.177, mailfrom: steve@sakoman.com)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6ee55cfa88cso14913767b3.3
+        for <yocto@lists.yoctoproject.org>; Sat, 16 Nov 2024 05:34:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731687736; x=1732292536; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jeCh6a73985ewvZAKL6p7OJzfS1zFminWdFOOSCHxsM=;
-        b=L6l3cDpSX9yaKj6Qm429wcvG57ob6iniaAVFi6btDxU/VJSieQ5QdCqB+MU86HJOmr
-         3OJ+irOFQLQjAa5/l/3eK6BS5r72kqzZiTWC+5yblyLtWs9OfBFcwnkoLm8em+eNDf2T
-         h7tYwKVTwLQivLsu+YJLQ3KoyL/pFxXmoVrGmHZlLDIYw5nRph7Bab2SODepgJ0tkQRV
-         iX1zSFTKWRetFP85nDzPArGCa/IbhBikFFsEZWUmYwfqTt4O4ohYykuL9CTN3fcLqcYD
-         Dt4JvpJSMdavCgV2iZmU0JO583mL259RvYil1WrkYgHwtyKjMvptOgWXnopxR1/ri0lO
-         haFA==
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1731764091; x=1732368891; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GoaEFS0hW6U6E5CbSXoxjK7IVint3Q0+qz7odjZFAjU=;
+        b=LYIQwTOjgtrRgw//Zt6DU2+q2+bfVdpJPwwOqDqsWorCVtIKIJchH4Mh5rHJYQL2RF
+         LG8JFPJKeTr/Esor2LR4j05/Vp4nqHsezoL9j4Q4COe/vwjw+oBxBTIpqajgLo1fJQ1L
+         TRpRiz8mUSJmBChqKuhVN+AO1NHlymjOi/vfDpsp8cNPmBMbeuc7bqPSUL65rydY619n
+         SfyepJwn09sBOCyiWXSY2z97LlXIm2HaoOHZXcgxMF2a8bICTv9pxcx73RCF8SbyS5om
+         uR4UlVR6huMLRhfkrzNnOulFZPTD0CekyAbHmOBuL1eP02BNwM7pTBthOMWyn6jCswLs
+         PepQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731687736; x=1732292536;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jeCh6a73985ewvZAKL6p7OJzfS1zFminWdFOOSCHxsM=;
-        b=oj3ivP8jm4XOxTB2PKGGFmmUEu/JBEi0RZOwdSFeJ6k8C7rFtyouXofNC33rueNgl4
-         h6FeLCa6u/8ZbCPnnqL9j7R/tZBF7zCZf7Rk76xThc64Nngb7tDN8ZbPA/S7GMhkwKAu
-         fMFWkzJIDgCiEHcFNXCKTtWeHV09yIst2WYd0IeBabXrtXwYMwppToocLb264FaMx+i0
-         ZyQCSPGvpL2+XvZhgCMVFvWCEchtvjpuZFt+5xjNgISJ502OG9TcGr1AZNanh5kbzqFZ
-         iu41qxZ2V8r0TL5U2pL+xVxm8HJfXukN/RjdKyHURm+LQge9WtRyUlq/irHJn4gn2ic9
-         BCcw==
-X-Gm-Message-State: AOJu0YxKcxHf8ujb9Ed6ehgGXOteahv7YAumc8xiK9bN4ySQpXbjf6UM
-	y7gbszB2FLeDS5r0jf/ip0yTXDja8XovXfZDq48fQHkbRc89foRmNV0zBA==
-X-Google-Smtp-Source: AGHT+IHyYZfn8gB7Yz5U0xhQvgqqInZ+ggPHLnUeQhT4d6JWFibmqqgD+a7TcximzsY5UzLOkpJPaA==
-X-Received: by 2002:a17:906:478c:b0:a9e:b14e:f912 with SMTP id a640c23a62f3a-aa483412301mr286299966b.23.1731687736112;
-        Fri, 15 Nov 2024 08:22:16 -0800 (PST)
-Received: from [192.168.1.2] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20df4fc07sm192139266b.44.2024.11.15.08.22.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Nov 2024 08:22:15 -0800 (PST)
-Message-ID: <2bb1bc17-0c88-4f39-aa6c-de503325471e@gmail.com>
-Date: Fri, 15 Nov 2024 17:22:14 +0100
+        d=1e100.net; s=20230601; t=1731764091; x=1732368891;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GoaEFS0hW6U6E5CbSXoxjK7IVint3Q0+qz7odjZFAjU=;
+        b=SlW3MHqd/x660UbpL1ZsTMLNQaeHMH1MCkPdZBkd2QXBpztTeH46eK7InE3P9pwCcl
+         DuMhfxMijHC54O3Sv+ACrG6dYNQxpc/bX/VWfx25K13UIsHmyDA2Nti08ZUw+bXUgpmC
+         Csca7KHwhLprABF3bzekiBZidLtdgN+B0o2vl8+y/YOi4kE/twRQtk1lNWIaX5Si2zLG
+         LxrpAVxgqcPthtnXd45n4orPvfMIADq1fahWtscSwCTFbYXGJgn9TuKDPT5pacypvdCq
+         p3b1dLnvj24MO96i08ClqwAsKGrH6w3QPFkzyenkyMG+TwreVhQjFRNxn6lVIFlTyWjU
+         Z+bQ==
+X-Gm-Message-State: AOJu0YxLCfT77YAtFCKvrG21YQRAoK0YMxvP6YFyT/Yu6um7C1YY6IND
+	rJ5hvumZ016P3e4jGJ5lPD3iJhMVE99yuQH1BgftrmdwvHKg/aVx4KwkDiljFl6IqKyb2tqIcNV
+	HCaL0aNntu0IxQl9Yez9oat9uBBqkoqArq4KS4G6oGIR6tnyChqk=
+X-Google-Smtp-Source: AGHT+IHho3DRmsTEa5hKqPtrOwCzLpDz2u4hNS2SPLNymPMr3ZNhuLnq14ue8rXGZTp4+5ylUB/cvsKzEzUnh0AcCP4=
+X-Received: by 2002:a05:690c:600a:b0:6e3:1f02:407b with SMTP id
+ 00721157ae682-6ee55bf066fmr61463737b3.11.1731764091223; Sat, 16 Nov 2024
+ 05:34:51 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] kernel headers missing head files when using SDK
- generated from populate_sdk
-To: yocto@lists.yoctoproject.org, crane2018@gmail.com
-References: <29094.1731350335316967481@lists.yoctoproject.org>
- <18918.1731594586526186591@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <18918.1731594586526186591@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Steve Sakoman <steve@sakoman.com>
+Date: Sat, 16 Nov 2024 05:34:40 -0800
+Message-ID: <CAOSpxdbKwz6Og979Mj0XUbxvrXtih5g-EY-prd4sypzLw-g8rQ@mail.gmail.com>
+Subject: QA notification for completed autobuilder build (yocto-4.0.23.rc1)
+To: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Cc: qa-build-notification@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Nov 2024 16:22:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64280
+ <yocto@lists.yoctoproject.org>; Sat, 16 Nov 2024 13:34:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64281
 
-Random idea: have you tried including kernel-devsrc when generating the sdk?
+A build flagged for QA (yocto-4.0.23.rc1) was completed on the
+autobuilder and is available at:
 
-TOOLCHAIN_TARGET_TASK:append = " kernel-devsrc "
 
-This supposed to include the final files from the KERNEL_STAGING_DIR, 
-which should have all the generated headers and other stuff.
+    https://valkyrie.yocto.io/pub/releases/yocto-4.0.23.rc1
 
-(As a quick check having this task, e.g. I could find my board dependent 
-cpucaps.h and headers from arch/arm64/include/asm folder also in my sdk. 
-Haven't loaded tried to load the source in an IDE nor tried to compile 
-anything with it, however.)
+
+Build URL: https://valkyrie.yoctoproject.org/#/builders/29/builds/447
+
+Build hash information:
+
+bitbake: fb73c495c45d1d4107cfd60b67a5b4f11a99647b
+meta-agl: 510a73d8ebcc5839c3a941c686175cb83922c0f3
+meta-arm: 936c02ec13661bd86a05f7f90e1b920d5092d670
+meta-aws: 57e4c1cb45078eeee295754226eb8e59802a137c
+meta-clang: 8bc893d735e5f779a2dcdc3992621d5ab371800d
+meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+meta-intel: 8514c60ac1a9a17ba20b17fa176119728a91dcf9
+meta-mingw: 87c22abb1f11be430caf4372e6b833dc7d77564e
+meta-openembedded: 4ad41baed6236d499804cbfc4f174042d84fce97
+meta-virtualization: c996df33763f292da5e7513c574272d7de23eafc
+oecore: fb45c5cf8c2b663af293acb069d446610f77ff1a
+poky: 8e092852b63e998d990b8f8e1aa91297dec4430f
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
 
