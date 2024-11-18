@@ -1,237 +1,156 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <hchanuy@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F729D60CF2
-	for <webhook@archiver.kernel.org>; Mon, 18 Nov 2024 21:18:15 +0000 (UTC)
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web11.4746.1731964688638139199
- for <yocto@lists.yoctoproject.org>;
- Mon, 18 Nov 2024 13:18:08 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=PJ8hNuLZ;
- spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2e9ff7a778cso3453808a91.1
-        for <yocto@lists.yoctoproject.org>; Mon, 18 Nov 2024 13:18:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731964688; x=1732569488; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=7bP0A7FBIS8Ttt42tXLsJ2wA6vR1maJ3ouQfOA8Hv4M=;
-        b=PJ8hNuLZRbWaKpl8r0stOMsoRUn5GEytK1UFIYjEGcUGjx4bHPUT+t/BJyjzQK/2KA
-         +O0x7VDTLSX+CFpW2D3Xt32VhISJ6CeX13i/ZH9zjqQSB2IO+X0JCXW+XJCfdet6qKM0
-         z55LsHpafqS8i574kC2VQ/gpTtP37gMA8nO/NMHSypaaRDeeeZ24DZoLxYtuvTJCKoag
-         BUsvIGsoqua4rX3AXqeWdRBJki4zcooq8vUApGNmA3aWC0L4kIVz4Y8ZFG7H+dee4uOi
-         ncKuzRkdkEAwOwPaiZ/xkcPYHG3p/EHFQZPlLcIvN04CSEd6RUTNSLLyTjnfFCiVbA93
-         CR0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731964688; x=1732569488;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7bP0A7FBIS8Ttt42tXLsJ2wA6vR1maJ3ouQfOA8Hv4M=;
-        b=rDqZHg/9D8pYmloP+xX7UUhj56IauM4Li/AYXwPa364WpTZIan0sq1CPJFMh7IUEK9
-         qZ2nYFWWRo1b1XYqq990MxvRvhkukQP2gbHtQWMqDzDpsRsXUiIpLSWac3Sf3xL0Hnvi
-         eGqqAyfL2taPtcZBfAn7vhbhIbAy1jKK48n4rAWaNjFhB/xX5+ucreOIY/gaWAxkXNzQ
-         jFsZrofJnCMDN+336Sq5lfdsCsUAbFC14/4cCtCptiXZO6qKs7j1MVOE+UDyNtCiPkNi
-         mkgvo9+RhXy3A5t2W38ZYfeevOCr7VMxaFR0+q+AZC3cEhiQZVaNjlG1IS2Ll8Lk4QXU
-         iH6w==
-X-Gm-Message-State: AOJu0YzgiCMLddB1+O9RmMI/tdOE7hi0aHHEOQRg1KiWoYUrzvnUvmVw
-	j4U+mn5B5ZeVoJnYIFUF8G/VOSHTqc1fazeda2KZeN8ViAQILipfMCJfACS/BbVWWfGihdag0Ah
-	k+rSeKq9kD3WnHd3h1v8vEWm+tuAXcRXsRxY=
-X-Google-Smtp-Source: AGHT+IGb8jTWZ1HuqS8qek3JFfdSZrba2Xhtsh+HAYgpNnpIXkzvBm2uorRLVC7sAi770wDEIucGXi5lP9O4e8N5sRI=
-X-Received: by 2002:a17:90b:3c44:b0:2ea:aa30:5ef1 with SMTP id
- 98e67ed59e1d1-2eaaa784060mr1179591a91.6.1731964687693; Mon, 18 Nov 2024
- 13:18:07 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4A26D60CE5
+	for <webhook@archiver.kernel.org>; Mon, 18 Nov 2024 21:19:45 +0000 (UTC)
+Subject: Re: [yocto] Sanity check on a flashing process design
+To: "Yoann Congal" <yoann.congal@smile.fr>, yocto@lists.yoctoproject.org
+From: "Uy Ha" <hchanuy@gmail.com>
+X-Originating-Location: Helsinki, Uusimaa, FI (87.92.135.50)
+X-Originating-Platform: Linux Firefox 132
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 18 Nov 2024 14:17:56 -0700
-Message-ID: <CAK5yBb-23wb_SQbfnXp5849rPz8qKW=XmQqa7-gp=mFtRyUf2w@mail.gmail.com>
-Subject: M+ & H bugs with Milestone Movements WW46
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Content-Type: multipart/alternative; boundary="000000000000f941970627367304"
+Date: Mon, 18 Nov 2024 13:19:38 -0800
+References: <CAMSfU+6Jp4=WmLE1UZVUsEk6FaApuOAqEsqkjZQ9TCj=_CNsLQ@mail.gmail.com>
+In-Reply-To: <CAMSfU+6Jp4=WmLE1UZVUsEk6FaApuOAqEsqkjZQ9TCj=_CNsLQ@mail.gmail.com>
+Message-ID: <6663.1731964778664692649@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="SOaRhTvtEBoXsE3cuQFq"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 18 Nov 2024 21:18:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64293
+ <yocto@lists.yoctoproject.org>; Mon, 18 Nov 2024 21:19:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64294
 
---000000000000f941970627367304
-Content-Type: text/plain; charset="UTF-8"
-
-All,
-
-YP M+ or high bugs which moved to a new milestone in WW46 are listed below:
-Priority Bug ID Short Description Changer Owner Was Became
-High 15647 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15647> glibc
-2.35 causes meson configure failures randy.macleod@windriver.com
-deepesh.varatharajan@windriver.com 0.0.0 4.0.23
-Medium+ 15288 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15288>
-systemtap
-is not reproducible randy.macleod@windriver.com
-mathieu.dubois-briand@bootlin.com 5.2 M3 5.2 M1
-15648 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15648> bitbake:
-server/process: Decrease idle/main loop frequency doesn't sync properly
-randy.macleod@windriver.com richard.purdie@linuxfoundation.org 0.0.0 5.2 M1
-
-Thanks,
-
-
-
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---000000000000f941970627367304
-Content-Type: text/html; charset="UTF-8"
+--SOaRhTvtEBoXsE3cuQFq
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
-al">All,<br><br>YP M+ or high bugs which moved to a new milestone in WW46 a=
-re listed below:=C2=A0<br></span></div><div dir=3D"ltr" class=3D"gmail_sign=
-ature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"=
-><table cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=
-=3D"table-layout:fixed;font-size:11pt;font-family:Calibri;width:0px;border-=
-collapse:collapse;border:none"><colgroup><col width=3D"63"><col width=3D"43=
-"><col width=3D"543"><col width=3D"235"><col width=3D"242"><col width=3D"53=
-"><col width=3D"53"></colgroup><tbody><tr style=3D"height:20px"><td style=
-=3D"border:1px solid rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-al=
-ign:bottom;background-color:rgb(219,229,241);font-weight:bold">Priority</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Bug ID=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,=
-0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Sh=
-ort Description</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);font-=
-weight:bold">Changer</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);=
-font-weight:bold">Owner</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,24=
-1);font-weight:bold">Was</td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,2=
-41);font-weight:bold">Became</td></tr><tr style=3D"height:20px"><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;font=
--weight:bold">High</td><td style=3D"border-width:1px;border-style:solid;bor=
-der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decorati=
-on-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D=
-"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15647" target=3D"_blan=
-k">15647</a></td><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom">glibc 2.35 causes meson configure f=
-ailures</td><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windrive=
-r.com">randy.macleod@windriver.com</a></td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:deepesh.varatharajan@windriver.com">deepesh.varatharajan@windriv=
-er.com</a></td><td style=3D"border-width:1px;border-style:solid;border-colo=
-r:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;p=
-adding:0px 3px;vertical-align:bottom">0.0.0</td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">4.0.=
-23</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-=
-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hi=
-dden;padding:0px 3px;vertical-align:bottom;font-weight:bold">Medium+</td><t=
-d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
-) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ve=
-rtical-align:bottom;font-weight:bold;text-decoration-line:underline;text-al=
-ign:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctopr=
-oject.org/show_bug.cgi?id=3D15288" target=3D"_blank">15288</a></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom">systemtap is not reproducible</td><td style=3D"border-width:=
-1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
-rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a =
-href=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a>=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom"><a href=3D"mailto:mathieu.dubois-briand@bootlin=
-.com">mathieu.dubois-briand@bootlin.com</a></td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.2 =
-M3</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(20=
-4,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0=
-px 3px;vertical-align:bottom">5.2 M1</td></tr><tr style=3D"height:20px"><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m"></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underli=
-ne;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzil=
-la.yoctoproject.org/show_bug.cgi?id=3D15648" target=3D"_blank">15648</a></t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom">bitbake: server/process: Decrease idle/main loop f=
-requency doesn&#39;t sync properly</td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"ma=
-ilto:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom"><a href=3D"mailto:richard.purdie@linuxfoundation.org">ric=
-hard.purdie@linuxfoundation.org</a></td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">0.0.0</td><t=
-d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
-) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ve=
-rtical-align:bottom">5.2 M1</td></tr></tbody></table><p class=3D"MsoNormal"=
- style=3D"background-image:initial;background-position:initial;background-r=
-epeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-serif">=
-Thanks,<span></span></span></p>
+>=20
+> Or you can boot your system not using eMMC (external USB, network
+> TFTP/NFS, ...) and then use bmaptool on your target to flash the eMMC.
+>=20
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+I am trying this approach now. I created a bootable USB (well, theoreticall=
+y bootable, I haven't actually managed to boot from it) using `bmaptool`. H=
+owever, I am not sure how to boot from it from the U-Boot console. I tried =
+loading the `fitImage` in the /boot and run `bootm` to boot (I am just tryi=
+ng random things at this point, I am not really sure what I am doing) but t=
+he kernel panics.
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
+The steps I have done:
+* Run: `usb start`
+* Load the `fitImage` into memory: `load usb 0:1 $loadaddr /boot/fitImage`
+* Boot: `bootm`
+Then the kernel panics with the following error message
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
+>=20
+> /dev/root: Can't open blockdev
+> VFS: Cannot open root device "(null)" or unknown-block(0,0): error -6
+> Please append a correct "root=3D" boot option; here are the available
+> partitions:
+> 0100 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram0
+> (driver?)
+> 0101 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram1
+> (driver?)
+> 0102 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram2
+> (driver?)
+> 0103 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram3
+> (driver?)
+> 0104 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram4
+> (driver?)
+> 0105 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram5
+> (driver?)
+> 0106 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram6
+> (driver?)
+> 0107 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram7
+> (driver?)
+> 0108 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram8
+> (driver?)
+> 0109 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram9
+> (driver?)
+> 010a =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram10
+> (driver?)
+> 010b =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram11
+> (driver?)
+> 010c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram12
+> (driver?)
+> 010d =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram13
+> (driver?)
+> 010e =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram14
+> (driver?)
+> 010f =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 65536 ram15
+> (driver?)
+> b300 =C2=A0 =C2=A0 =C2=A0 =C2=A0 7634944 mmcblk2
+> driver: mmcblk
+> b301 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0134010 mmcblk2p1 076c4a2a-01
+> b302 =C2=A0 =C2=A0 =C2=A0 =C2=A0 7496704 mmcblk2p2 076c4a2a-02
+> b308 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096 mmcblk2boot0
+> (driver?)
+> b310 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04096 mmcblk2boot1
+> (driver?)
+> Kernel panic - not syncing: VFS: Unable to mount root fs on
+> unknown-block(0,0)
+>=20
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
+What am I missing here?
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
+--SOaRhTvtEBoXsE3cuQFq
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
---000000000000f941970627367304--
+<blockquote>
+<div>Or you can boot your system not using eMMC (external USB, network TFTP=
+/NFS, ...) and then use bmaptool on your target to flash the eMMC.</div>
+</blockquote>
+<div>I am trying this approach now. I created a bootable USB (well, theoret=
+ically bootable, I haven't actually managed to boot from it) using `bmaptoo=
+l`. However, I am not sure how to boot from it from the U-Boot console. I t=
+ried loading the `fitImage` in the /boot and run `bootm` to boot (I am just=
+ trying random things at this point, I am not really sure what I am doing) =
+but the kernel panics.</div>
+<div>&nbsp;</div>
+<div>The steps I have done:</div>
+<ol>
+<li>Run: `usb start`</li>
+<li>Load the `fitImage` into memory: `load usb 0:1 $loadaddr /boot/fitImage=
+`</li>
+<li>Boot: `bootm`</li>
+</ol>
+<div>Then the kernel panics with the following error message</div>
+<blockquote>
+<div>
+<div>/dev/root: Can't open blockdev<br />VFS: Cannot open root device "(nul=
+l)" or unknown-block(0,0): error -6<br />Please append a correct "root=3D" =
+boot option; here are the available partitions:<br />0100 &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; 65536 ram0<br />&nbsp;(driver?)<br />0101 &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; 65536 ram1<br />&nbsp;(driver?)<br />0102 &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; 65536 ram2<br />&nbsp;(driver?)<br />0103 &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; 65536 ram3<br />&nbsp;(driver?)<br />0104 &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; 65536 ram4<br />&nbsp;(driver?)<br />0105 &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; 65536 ram5<br />&nbsp;(driver?)<br />0106 &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram6<br />&nbsp;(driver?)<br />0107 &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram7<br />&nbsp;(driver?)<br />0108 &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram8<br />&nbsp;(driver?)<br />0109=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram9<br />&nbsp;(driver?)<br />01=
+0a &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram10<br />&nbsp;(driver?)<br /=
+>010b &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram11<br />&nbsp;(driver?)<b=
+r />010c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram12<br />&nbsp;(driver?=
+)<br />010d &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram13<br />&nbsp;(driv=
+er?)<br />010e &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram14<br />&nbsp;(d=
+river?)<br />010f &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 65536 ram15<br />&nbsp=
+;(driver?)<br />b300 &nbsp; &nbsp; &nbsp; &nbsp; 7634944 mmcblk2<br />&nbsp=
+;driver: mmcblk<br />&nbsp; b301 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;134010 m=
+mcblk2p1 076c4a2a-01</div>
+<div>&nbsp; b302 &nbsp; &nbsp; &nbsp; &nbsp; 7496704 mmcblk2p2 076c4a2a-02<=
+/div>
+<div>b308 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4096 mmcblk2boot0<br />&=
+nbsp;(driver?)<br />b310 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4096 mmcb=
+lk2boot1<br />&nbsp;(driver?)<br />Kernel panic - not syncing: VFS: Unable =
+to mount root fs on unknown-block(0,0)</div>
+</div>
+</blockquote>
+<div>What am I missing here?</div>
+
+--SOaRhTvtEBoXsE3cuQFq--
 
