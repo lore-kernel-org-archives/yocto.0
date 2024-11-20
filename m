@@ -1,116 +1,71 @@
-Return-Path: <ninad@linux.ibm.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22E6DD44152
-	for <webhook@archiver.kernel.org>; Wed, 20 Nov 2024 14:47:35 +0000 (UTC)
-Subject: Having issue using gcc-sanitizer
-To: yocto@lists.yoctoproject.org
-From: "Ninad Palsule" <ninad@linux.ibm.com>
-X-Originating-Location: Round Rock, Texas, US (70.114.142.126)
-X-Originating-Platform: Linux Chrome 131
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C86DCD711BE
+	for <webhook@archiver.kernel.org>; Wed, 20 Nov 2024 15:53:35 +0000 (UTC)
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+ by mx.groups.io with SMTP id smtpd.web10.17033.1732118005772328947
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 20 Nov 2024 07:53:26 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=W0KU8Sry;
+ spf=pass (domain: gmail.com, ip: 209.85.208.50, mailfrom: skandigraun@gmail.com)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5cfaeed515bso5400354a12.1
+        for <yocto@lists.yoctoproject.org>; Wed, 20 Nov 2024 07:53:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732118004; x=1732722804; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Hwpdjv2PqW7NKxApEkNcO3I4QQ/WUo787BK6w9W7WOc=;
+        b=W0KU8SrykGIxrmvZ8j6y1CFI6+WRkT8tx2FbCTTXOZs5sspjys8JQn0okFjwPOsDEw
+         1kqKQCqpnGtq14Gb0z0n0UyRtC9zbua11Y40PRx6to1HsP6gDDXJvicnkm1EJmC/7f+h
+         fqARmY5FLP2hc9x+U+H9i8tGBmyO7XMvD5pyAAZx4v6AkHwaJIWzgaj/1o8XoKDoxObD
+         VZKZ9a/JHrDIpZDn3UInLu7BFZPM5JwjlYuyA8jMlkXNn+uUoSDYRwXjONAAb479DIEB
+         VoQehtYoXPo5UUj7FhlJcl0Hgxqz/prC7vUdB3y9vfLZPMUSx5BTCR6Q7O0Ocib/cwwv
+         vp6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732118004; x=1732722804;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hwpdjv2PqW7NKxApEkNcO3I4QQ/WUo787BK6w9W7WOc=;
+        b=BxFczixQrqMqdNnTDLWq2WV5LJWkFp5X4fFnjXIszQs2pf+UlK7rXJsgBtq9iMqYsl
+         uOrNFd2jjOY/bWYBBIgPrs6EPAUbXvajhGFBz5RxUTcls3cT8sYxdvJODvMsM56nZSC+
+         9lyfPvazNUSzHGz74WrgXhy7PxgIoGOeM5wUU3xeKZUFzIoSlT1OZyZwutu0OtU6Ef1A
+         IcQPCvTOyF7ZowaCik4anYonD3Met+lVRr1O7X1S7Qwo47wLPgWYPw/315NqOq9OzB9G
+         6THgnlmbWg9/AZ4JqKhE3d1Yy8EsaK/2fQfHKlRjx9rhrpfJUKM+/wQEGghlAj9ADvb2
+         9YsQ==
+X-Gm-Message-State: AOJu0YytGEpnGtSZoretgdoXc6glHeIaXBFEmZdjrzLDwEAKTsG9Y3vV
+	xWZcoJx79idddHa+jqS+O/9P7Q5q/aQS6HC4Swec5z8YWxiemPmcYUt2ug==
+X-Google-Smtp-Source: AGHT+IECfx/bOwkDYr/FC+j+8jEajKw4xe4f+S0moF96K0vqE29ROkBo0wqccI/gLXCivflZhds6/g==
+X-Received: by 2002:a17:906:dc90:b0:a99:d6cf:a1df with SMTP id a640c23a62f3a-aa4dd731225mr296459666b.46.1732118003991;
+        Wed, 20 Nov 2024 07:53:23 -0800 (PST)
+Received: from [192.168.1.2] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20dffd7b4sm787445666b.132.2024.11.20.07.53.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Nov 2024 07:53:23 -0800 (PST)
+Message-ID: <4521bb42-49ea-4fe6-9ef4-576d22eb66e5@gmail.com>
+Date: Wed, 20 Nov 2024 16:53:22 +0100
 MIME-Version: 1.0
-Date: Wed, 20 Nov 2024 06:47:29 -0800
-Message-ID: <YDQ9.1732114049670344547.UqVj@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="S0gIPG0HkJU2iEWDPJQ3"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Having issue using gcc-sanitizer
+To: yocto@lists.yoctoproject.org, ninad@linux.ibm.com
+References: <YDQ9.1732114049670344547.UqVj@lists.yoctoproject.org>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <YDQ9.1732114049670344547.UqVj@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Nov 2024 14:47:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64312
+ <yocto@lists.yoctoproject.org>; Wed, 20 Nov 2024 15:53:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64313
 
---S0gIPG0HkJU2iEWDPJQ3
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Try adding "gcc-sanitizers" to the compile time dependencies of your 
+application's recipe (DEPENDS variable)
 
-Hello,
 
-I want to add *-sanitize* option to my application. I performed following c=
-hanges.
-I see that *gcc-sanitize* target is pulled and compiled by application is n=
-ot linking the correct files.
-I am trying to use this target: meta/recipes-devtools/gcc/gcc-sanitizers_13=
-.2.bb
-Am I missing some changes to include this target for my app.
-
-*+++ b/meta-ibm/recipes-phosphor/mboxd/mboxd_%.bbappend*
-+FULL_OPTIMIZATION:append=3D" -Og -fsanitize=3Daddress,undefined "
-+TARGET_CPPFLAGS:append=3D" -O0 "
-
-*+++ b/meta-ibm/recipes-phosphor/images/obmc-phosphor-image.bbappend*
--OBMC_IMAGE_EXTRA_INSTALL:append:p10bmc =3D " mboxd"
-+OBMC_IMAGE_EXTRA_INSTALL:append:p10bmc =3D " mboxd mboxd-src mboxd-dbg lib=
-asan libubsan"
-
-*I am getting following errors in the mbox configure.*
-openbmc/build/p10bmc/tmp/work/armv7ahf-vfpv4d16-openbmc-linux-gnueabi/mboxd=
-/1.0+git/recipe-sysroot-native/usr/bin/arm-openbmc-linux-gnueabi/../../libe=
-xec/arm-openbmc-linux-gnueabi/gcc/arm-openbmc-linux-gnueabi/13.2.0/ld: cann=
-ot find libasan_preinit.o: No such file or directory
-openbmc/build/p10bmc/tmp/work/armv7ahf-vfpv4d16-openbmc-linux-gnueabi/mboxd=
-/1.0+git/recipe-sysroot-native/usr/bin/arm-openbmc-linux-gnueabi/../../libe=
-xec/arm-openbmc-linux-gnueabi/gcc/arm-openbmc-linux-gnueabi/13.2.0/ld: cann=
-ot find -lasan: No such file or directory
-openbmc/build/p10bmc/tmp/work/armv7ahf-vfpv4d16-openbmc-linux-gnueabi/mboxd=
-/1.0+git/recipe-sysroot-native/usr/bin/arm-openbmc-linux-gnueabi/../../libe=
-xec/arm-openbmc-linux-gnueabi/gcc/arm-openbmc-linux-gnueabi/13.2.0/ld: cann=
-ot find -lubsan: No such file or directory
-collect2: error: ld returned 1 exit status
-configure:4101: $? =3D 1
-configure:4142: result: no
-configure: failed program was:
-
-I appreciate your help!
-
-Thanks & Regards,
-Ninad Palsule
-
---S0gIPG0HkJU2iEWDPJQ3
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hello,</div>
-<div>&nbsp;</div>
-<div>I want to add <strong>-sanitize</strong> option to my application. I p=
-erformed following changes.</div>
-<div>I see that <strong>gcc-sanitize</strong> target is pulled and compiled=
- by application is not linking the correct files.</div>
-<div>I am trying to use this target: meta/recipes-devtools/gcc/gcc-sanitize=
-rs_13.2.bb</div>
-<div>Am I missing some changes to include this target for my app.</div>
-<div>&nbsp;</div>
-<div><strong>+++ b/meta-ibm/recipes-phosphor/mboxd/mboxd_%.bbappend</strong=
-><br />+FULL_OPTIMIZATION:append=3D" -Og -fsanitize=3Daddress,undefined "<b=
-r />+TARGET_CPPFLAGS:append=3D" -O0 "</div>
-<div>&nbsp;</div>
-<div><strong>+++ b/meta-ibm/recipes-phosphor/images/obmc-phosphor-image.bba=
-ppend</strong></div>
-<div>-OBMC_IMAGE_EXTRA_INSTALL:append:p10bmc =3D " mboxd"<br />+OBMC_IMAGE_=
-EXTRA_INSTALL:append:p10bmc =3D " mboxd mboxd-src mboxd-dbg libasan libubsa=
-n"</div>
-<div>&nbsp;</div>
-<div><strong>I am getting following errors in the mbox configure.</strong><=
-/div>
-<div>openbmc/build/p10bmc/tmp/work/armv7ahf-vfpv4d16-openbmc-linux-gnueabi/=
-mboxd/1.0+git/recipe-sysroot-native/usr/bin/arm-openbmc-linux-gnueabi/../..=
-/libexec/arm-openbmc-linux-gnueabi/gcc/arm-openbmc-linux-gnueabi/13.2.0/ld:=
- cannot find libasan_preinit.o: No such file or directory</div>
-<div>openbmc/build/p10bmc/tmp/work/armv7ahf-vfpv4d16-openbmc-linux-gnueabi/=
-mboxd/1.0+git/recipe-sysroot-native/usr/bin/arm-openbmc-linux-gnueabi/../..=
-/libexec/arm-openbmc-linux-gnueabi/gcc/arm-openbmc-linux-gnueabi/13.2.0/ld:=
- cannot find -lasan: No such file or directory</div>
-<div>openbmc/build/p10bmc/tmp/work/armv7ahf-vfpv4d16-openbmc-linux-gnueabi/=
-mboxd/1.0+git/recipe-sysroot-native/usr/bin/arm-openbmc-linux-gnueabi/../..=
-/libexec/arm-openbmc-linux-gnueabi/gcc/arm-openbmc-linux-gnueabi/13.2.0/ld:=
- cannot find -lubsan: No such file or directory<br />collect2: error: ld re=
-turned 1 exit status<br />configure:4101: $? =3D 1<br />configure:4142: res=
-ult: no<br />configure: failed program was:</div>
-<div>&nbsp;</div>
-<div>I appreciate your help!</div>
-<div>&nbsp;</div>
-<div>Thanks &amp; Regards,</div>
-<div>Ninad Palsule</div>
-
---S0gIPG0HkJU2iEWDPJQ3--
 
