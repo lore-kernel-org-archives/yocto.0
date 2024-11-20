@@ -1,71 +1,122 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <f_l_k@t-online.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 401AED6392B
-	for <webhook@archiver.kernel.org>; Wed, 20 Nov 2024 10:58:33 +0000 (UTC)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
- by mx.groups.io with SMTP id smtpd.web10.10818.1732100305539216279
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7037CD6392C
+	for <webhook@archiver.kernel.org>; Wed, 20 Nov 2024 11:07:13 +0000 (UTC)
+Received: from mailout10.t-online.de (mailout10.t-online.de [194.25.134.21])
+ by mx.groups.io with SMTP id smtpd.web10.10948.1732100811509367510
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Nov 2024 02:58:25 -0800
+ Wed, 20 Nov 2024 03:06:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=fBMv6/vS;
- spf=pass (domain: gmail.com, ip: 209.85.128.176, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6eeafd42dd8so18525407b3.0
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Nov 2024 02:58:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732100305; x=1732705105; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nvXm6vM9xie+iR6KcWvmXswwkCWxC8Vo9iGrgLiO/+o=;
-        b=fBMv6/vSgl46Rhb4atfzQ9zFV9d2cnMRyynTazJupoQXJ9ARQtyrKFgXE85nlWwZgB
-         BRp1mhT2U3RW5pfWsu0IrCn9iI/CIrN7UXvhaeWvBhagduNRS/jsGB0iLz8Zab4i4acK
-         /9qR6XuQEuOXTXBYxbgPYdIuV1KhNERiIeJRw4nes1nXLvks5dd+cplVdJtfXqrdel/T
-         ispBKFb+YAUyh2lxUMUSQPykAWivdR7D3QVtGFGRWkQQsddAhJM3eeb7/buGVUrkp+G2
-         UKIlyN2XJw40qwGpYZbz95bWBTceHWqZ47ky7gpY8kF6eO6i0kcIYXai7BAOaCw8sCB3
-         KkZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732100305; x=1732705105;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nvXm6vM9xie+iR6KcWvmXswwkCWxC8Vo9iGrgLiO/+o=;
-        b=eSmuCwffebCgn1TS2BwB+Jdjzxb5mJo2IWPpYcNZailBiJ1ewXKN6kNINjdh+KCfoT
-         scoRFQPTAnmboIjgdfxKorVU1wexd5oMGWn8udwjQSAtSzXqKjfqVQ4dV5RFLiYh4GdK
-         kNJO/ImYNYjKx7VDMXtiDND63tFATiENexkPC9KRrVDwJfhL7pHW4Do2ovjSYNbHM2eo
-         d3KZV/Ji72KwoneU+icNQBZfo+WBR/g3CGCzQdPH81+OFLA0PnOrZLn4BWv3wK7NVxVD
-         Tqj5jbisLe7dZBWFGZfe/TpwNC/3CmaamMRFHG2WBSEEFLInwCPoqt7dhU//3p9WI3zC
-         tNdQ==
-X-Gm-Message-State: AOJu0YxRZ1krIgzC8JO1QNCQ2UcoPDxbdCtY0FDgRQxuKsy+1nx4Sx4Y
-	a14W9gfpyg4drqci0oXsM/CeCq8Xt2mO/Vbuv5vicEjxgyoU21Esk9z8XAaXndAqvkvo7J4NyKi
-	dL0c6pqpkHNbtvZ7JeLaiokqc4XVWIQ==
-X-Google-Smtp-Source: AGHT+IHXMV+/Z1m11sCKPipBKPSi+rArM6P6lMRZn1H9Kypw7x29fqoOu5yg5Z+6nxzSo7/LhGHtWGD1eDcT+iorlnY=
-X-Received: by 2002:a05:690c:6703:b0:6ea:c741:7388 with SMTP id
- 00721157ae682-6eebd2b22f7mr24025897b3.39.1732100304598; Wed, 20 Nov 2024
- 02:58:24 -0800 (PST)
-MIME-Version: 1.0
-References: <DFqh.1732099913660193870.SnUS@lists.yoctoproject.org>
-In-Reply-To: <DFqh.1732099913660193870.SnUS@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 20 Nov 2024 11:58:13 +0100
-Message-ID: <CANNYZj_mD4Vnd3Vy0TPHXA4MCZMbs6vACapuiqPqjnROb1_Q4g@mail.gmail.com>
+ dkim=none (message not signed); spf=pass (domain: t-online.de, ip: 194.25.134.21, mailfrom: f_l_k@t-online.de)
+Received: from fwd85.aul.t-online.de (fwd85.aul.t-online.de [10.223.144.111])
+	by mailout10.t-online.de (Postfix) with SMTP id 514AA3D5;
+	Wed, 20 Nov 2024 12:06:49 +0100 (CET)
+Received: from [192.168.178.67] ([84.154.160.173]) by fwd85.t-online.de
+	with (TLSv1.3:TLS_AES_256_GCM_SHA384 encrypted)
+	esmtp id 1tDiXl-2O40iu0; Wed, 20 Nov 2024 12:06:45 +0100
+Date: Wed, 20 Nov 2024 12:09:12 +0100
+From: Markus Volk <f_l_k@t-online.de>
 Subject: Re: [yocto] gnome desktop with kirkstone #kirkstone #gnome
 To: yocto@lists.yoctoproject.org, Ankita.AN@exaleapsemi.com
-Content-Type: text/plain; charset="UTF-8"
+Message-Id: <CNX8NS.GTK71DJNMQEV@t-online.de>
+In-Reply-To: <DFqh.1732099913660193870.SnUS@lists.yoctoproject.org>
+References: <DFqh.1732099913660193870.SnUS@lists.yoctoproject.org>
+X-Mailer: geary/46.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=-0HhuiyU5Fw1oiW9xXG2M"
+X-TOI-EXPURGATEID: 150726::1732100806-F8FF5786-9954AD19/0/0 CLEAN NORMAL
+X-TOI-MSGID: d6e1f968-b260-4404-9a16-cabecb3bc9f4
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Nov 2024 10:58:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64305
+ <yocto@lists.yoctoproject.org>; Wed, 20 Nov 2024 11:07:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64306
 
-On Wed, 20 Nov 2024 at 11:51, Ankita.AN via lists.yoctoproject.org
-<Ankita.AN=exaleapsemi.com@lists.yoctoproject.org> wrote:
+--=-0HhuiyU5Fw1oiW9xXG2M
+Content-Type: text/plain; charset=us-ascii; format=flowed
+
+Hi,
+
+Webkitgtk is pulled in by gnome-control-center to provide support for 
+online-accounts/cloud-storage. Recent webkitgtk is still broken with 
+webassembly/jit for riscv64, so you should downgrade that to the 
+version that is included in oe-core
+
+On Wed, Nov 20 2024 at 02:51:53 AM -08:00:00, Ankita.AN@exaleapsemi.com 
+wrote:
+> HI,
+> I am trying to launch gnome desktop with kirkstone for riscv64(custom 
+> distro).
+> 
+> For trial purpose I used poky to build qemu image with gnome.
+> 
+> in local.conf
+> 
+> MACHINE ?= "qemux86-64"
+> DISTRO_FEATURES:append = " x11 wayland pam systemd gnome"
+> IMAGE_INSTALL:append = " gnome-session gnome-terminal 
+> gnome-control-center gnome-shell"
+> DISTRO_FEATURES += "polkit opengl"
+> 
+> and vi  
+> meta-openembedded/meta-gnome/recipes-core/images/core-image-gnome.bb
+> 
+> SUMMARY = "Minimal GNOME Desktop Image"
+> LICENSE = "MIT"
+> IMAGE_FEATURES += "ssh-server-dropbear"
+> IMAGE_INSTALL = "\
+>     gnome-session \
+>     gnome-terminal \
+>     gnome-shell \
+>     gnome-control-center \
+>     gdm \
+>     "
+> inherit core-image
+> 
+> 
 > The error I am facing is,
-> ERROR: Task (/home/vitthal/ankita/poky/meta/recipes-sato/webkit/webkitgtk_2.36.8.bb:do_compile) failed with exit code '1'
+> ERROR: Task 
+> (/home/vitthal/ankita/poky/meta/recipes-sato/webkit/webkitgtk_2.36.8.bb:do_compile) 
+> failed with exit code '1'
+> 
+> Any suggestions for this?
+> 
+> Thanks,
+> Ankita
 
-This is not the complete error message. Please do not truncate the
-messages from bitbake to just what you think the error is.
 
-You need to look at ${T}/log.do_compile for webkitgtk.
+--=-0HhuiyU5Fw1oiW9xXG2M
+Content-Type: text/html; charset=us-ascii
 
-Alex
+<div id="geary-body" dir="auto"><div>Hi,</div><div><br></div><div>Webkitgtk is pulled in by gnome-control-center to provide support for online-accounts/cloud-storage. Recent webkitgtk is still broken with webassembly/jit for riscv64, so you should downgrade that to the version that is included in oe-core</div></div><div id="geary-quote" dir="auto"><br>On Wed, Nov 20 2024 at 02:51:53 AM -08:00:00, Ankita.AN@exaleapsemi.com wrote:<br><blockquote type="cite"><div>HI,</div>
+<div>I am trying to launch gnome desktop with kirkstone for riscv64(custom distro).</div>
+<div>&nbsp;</div>
+<div>For trial purpose I used poky to build qemu image with gnome.</div>
+<div>&nbsp;</div>
+<div>in local.conf</div>
+<div>&nbsp;</div>
+<div>MACHINE ?= "qemux86-64"<br>DISTRO_FEATURES:append = " x11 wayland pam systemd gnome"<br>IMAGE_INSTALL:append = " gnome-session gnome-terminal gnome-control-center gnome-shell"<br>DISTRO_FEATURES += "polkit opengl"</div>
+<div>&nbsp;</div>
+<div>and vi&nbsp; meta-openembedded/meta-gnome/recipes-core/images/core-image-gnome.bb</div>
+<div>&nbsp;</div>
+<div>
+<div>SUMMARY = "Minimal GNOME Desktop Image"<br>LICENSE = "MIT"</div>
+<div>IMAGE_FEATURES += "ssh-server-dropbear"</div>
+<div>IMAGE_INSTALL = "\<br>&nbsp; &nbsp; gnome-session \<br>&nbsp; &nbsp; gnome-terminal \<br>&nbsp; &nbsp; gnome-shell \<br>&nbsp; &nbsp; gnome-control-center \<br>&nbsp; &nbsp; gdm \<br>&nbsp; &nbsp; "</div>
+<div>inherit core-image</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>The error I am facing is,</div>
+<div>ERROR: Task (/home/vitthal/ankita/poky/meta/recipes-sato/webkit/webkitgtk_2.36.8.bb:do_compile) failed with exit code '1'</div>
+<div>&nbsp;</div>
+<div>Any suggestions for this?</div>
+<div>&nbsp;</div>
+<div>Thanks,</div>
+<div>Ankita</div>
+</div>
+</blockquote></div>
+--=-0HhuiyU5Fw1oiW9xXG2M--
+
 
