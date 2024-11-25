@@ -1,189 +1,84 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 77DDBD58D63
-	for <webhook@archiver.kernel.org>; Mon, 25 Nov 2024 16:13:05 +0000 (UTC)
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
- by mx.groups.io with SMTP id smtpd.web10.22244.1732551181001344489
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 76675D59D60
+	for <webhook@archiver.kernel.org>; Mon, 25 Nov 2024 19:40:16 +0000 (UTC)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+ by mx.groups.io with SMTP id smtpd.web11.27828.1732563610918713070
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Nov 2024 08:13:01 -0800
+ Mon, 25 Nov 2024 11:40:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Hm9/SUfe;
- spf=pass (domain: gmail.com, ip: 209.85.167.171, mailfrom: raj.khem@gmail.com)
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3e602994635so2831164b6e.0
-        for <yocto@lists.yoctoproject.org>; Mon, 25 Nov 2024 08:13:00 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=U5MbHqmI;
+ spf=pass (domain: gmail.com, ip: 209.85.208.42, mailfrom: skandigraun@gmail.com)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5cfd28222f9so2664930a12.1
+        for <yocto@lists.yoctoproject.org>; Mon, 25 Nov 2024 11:40:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732551180; x=1733155980; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BmtGIRM+M9No8xcsQXdpR+rcSvwGsOEzwDe9v+6cn7I=;
-        b=Hm9/SUfeGsqNamHJX7+m5WYnVtrHzMej4eW0z40fXsqbrnOCOgoIgLVPau2XPtKucY
-         G6RgiiDlUgV72+xdF6c1iyEVfqiUmfIH6uxXb1cwFaxrvu9u00ZbsHr5jP2KSKbWpBpi
-         Re2AwNYClXE34yud6LiEp55+UJ1bCsgwVydy1po8xJUVZ+EmiiTXRpWu4vAE7o5T4mGi
-         uUvn3dsZsfbT3IKavkjmQ63gCQGNjaHx3xbQYU/HzHH13nmSssv7WV4SjwIDkQtbHMgu
-         LY9jQZfdp9AdQraxIK7qYIhZ6wQCdgfHxWodNdrwn7EJWz8kJjKH67E9rAVarfdB7H4a
-         BW6Q==
+        d=gmail.com; s=20230601; t=1732563609; x=1733168409; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6JAMC1xVSliHHoRul0ECcT2lMGC/mjQYMg9h0WcfO4Q=;
+        b=U5MbHqmIlaPtSY2FyMIjw+QODyOShe1aeLZARlDDG55OdWSFdmTaN/Ff+azS/P4qxq
+         CWjPKvC1MRuqmAVW5RiycGqHkVLs4kC9ftSsqA/Wfc3q9NBnP5aPJJb1CpVJewo0R5SP
+         LCYycoZ2rYa+J+fQzYTqw2W4gL3AYgdd+RaGajhQq8lJZ7D+3kPeXsqw/q3r9kwlYe/x
+         gEGhJeQQ+b+ti2qV5ywXQiCghjqSs6I60/wNXU64R14QUOvaPFPfTUyQmg3g8w7IyeXO
+         Y7WwKZt55GW1+Qh5kWwqQl+YVeF7Yq75KwtmJm7CP0H4EBs0Wzp9rauoiltOIuCdIAuQ
+         G4gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732551180; x=1733155980;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BmtGIRM+M9No8xcsQXdpR+rcSvwGsOEzwDe9v+6cn7I=;
-        b=ZYMnHqcu29sSxjEsCMPkYSh+MOOCh1nCdwyPOnLBIYH2T9POiwTCUV7WYdwF99xfGT
-         LRr19e0Ej8S6Fw9luKDstGEndDkRQ0NJ6c4VGaBesfDo93yGsRyUc/o0GFAy97hylHJ+
-         kHrf5rdD0PG4OWeha5mcrGdpN0klm7IKR/DJTU5S1TIgNq0OW4YaOPOYKQDeG2BDh6Um
-         prwvLtpNmujq3NzeoqiXUCUZiJe4qv2Bwy1mujZqtAUM1CSPYr2t3dAKN3P7tQgDb46l
-         Q/Lyb2p7syKHpqilmrPBV3gtSLWc9YrDeH91tvSb5njVHSWtVYfBoW2KhE2SJX9t0x23
-         WkCw==
-X-Gm-Message-State: AOJu0YzmFpnqamQ+I8pf9fPVwfbdKgJzzloYTHhNrFm4CNcLYEknMGBq
-	puJkR5nMQY5B6CLQPPpG6r4tVTh1BgwVyMpVBjfF3L7OvwvDY7gdhYELK1wzdQaFApBqqYN6+yW
-	jS9tW++o/GuekHk8xN6t+RHdLW5Vf8Q==
-X-Gm-Gg: ASbGncsqEEs7c5PSDBKYY3/WhZBIqzPkqCS+a/XHPsmu/N89N/exK/twD/OVOt18KdZ
-	/Axox/kknYYfh4vWoIfevuHv81AsfDmc=
-X-Google-Smtp-Source: AGHT+IGbfK8YB6UPZmYZSH6DROXPp1wIgt5bxIoxcDPV6dNTIE1jTOX/MwZv/7BSSvRFBAztOmJy+Q07evF4DVNQfPA=
-X-Received: by 2002:a05:6808:150e:b0:3ea:57cf:7c26 with SMTP id
- 5614622812f47-3ea57cf813amr401741b6e.19.1732551180023; Mon, 25 Nov 2024
- 08:13:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1732563609; x=1733168409;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6JAMC1xVSliHHoRul0ECcT2lMGC/mjQYMg9h0WcfO4Q=;
+        b=Trnwmz7zR9BcZ+Isvx9X+BEuULqY+loZRhTB0brybwYnKFuPJykYzo4zCE7fb02Uhj
+         9SDHhvU6tqfYzQ6x1TVRoXeRiIXqls2HX7lBqeM839Rt3QwB8DhaUiU4H06PfRoWN8KN
+         iVBTMEJ4zXSztKPW6edaFAayH3B3IiJ1UrRBASe81AYFh2NEDZ/Zmpae8HQ8rrjqxejq
+         UJf5ACY6NE90EcOT0mcSecgAj8ylQRciX6/nJZyg41/0tI6QBbYyNafPy0uNU2aHI2bh
+         MNST5Nc1/RuIhaKXIJSSRWFWEoanCVRdt+Snyg9mpPe8B1cBRr7LYM5hiOWnQoTQrEsx
+         32ig==
+X-Gm-Message-State: AOJu0YzK8Vnp9DpbjS4xO680K+XhLGC9uesa+QzT0IavmPio9TOOqgDr
+	B86RmxCYWI8H7x7IMke5sLckAf+VpKlxCFOaQ5GH/PIgBkmn5S0HlKZECg==
+X-Gm-Gg: ASbGnct9AtcNQPmdrDOncs1KhtjWtQGTZvRZoiEjbC9PUHasqDr0MtIK59SFU91poSg
+	onax4W7p8fSNEqrffnzz0BhICjGh69nR51mjOEY8N6BCmCitRcjSWLsY35SL4zH/POUQvjGCGV8
+	jp57w4RIFNtizY59Z154oebE90jV+mVi+nnlqFl8ZVSdptZPrzL8/N9jPiyXQAviW4xe1HOsaYu
+	M84HzoiKyr7zjfys0WMmlrPvN63V9kvLNRewjjlQaGHKERdlvzdoxA=
+X-Google-Smtp-Source: AGHT+IExgaF8ubxI04hjM+yI8ImHkkx9iu7fT+sY9BM4AGJ480Df6ntCNslxDAtAElKis+FbyWKzpQ==
+X-Received: by 2002:a05:6402:348e:b0:5d0:35ba:f12f with SMTP id 4fb4d7f45d1cf-5d035baf230mr11782755a12.14.1732563608907;
+        Mon, 25 Nov 2024 11:40:08 -0800 (PST)
+Received: from [192.168.1.2] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d01d3be73fsm4435009a12.39.2024.11.25.11.40.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Nov 2024 11:40:08 -0800 (PST)
+Message-ID: <f4977ec4-949d-4d1d-a154-5c84c56ca242@gmail.com>
+Date: Mon, 25 Nov 2024 20:40:07 +0100
 MIME-Version: 1.0
-References: <uLDAQA9NCYNb2YdDUyELhD7St0jSmMC214MYF8dgAa3gkIl8zZc-y3eTj-HP_HX0oPkiZVPaZ5oZpONslESKvwRgVM5mxovf0QXW4-faV_E=@protonmail.com>
-In-Reply-To: <uLDAQA9NCYNb2YdDUyELhD7St0jSmMC214MYF8dgAa3gkIl8zZc-y3eTj-HP_HX0oPkiZVPaZ5oZpONslESKvwRgVM5mxovf0QXW4-faV_E=@protonmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 25 Nov 2024 08:12:34 -0800
-Message-ID: <CAMKF1soMARmeK2ak5T_kQGakN21PBz2fc1fxJKmqNKCNaAmruQ@mail.gmail.com>
-Subject: Re: [yocto] poky master gcc 14.2 failing at do_compile
-To: yocto@lists.yoctoproject.org, kanakshilledar111@protonmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Unable to build airbrake npm module in Yocto Scarthgap
+ #devtool #scarthgap #npm #bitbake
+To: yocto@lists.yoctoproject.org, sampathkumar.n@rently.com
+References: <Ac0Y.1732508039366214005.99l5@lists.yoctoproject.org>
+ <2202.1732511607318810332@lists.yoctoproject.org>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <2202.1732511607318810332@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Nov 2024 16:13:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64340
+ <yocto@lists.yoctoproject.org>; Mon, 25 Nov 2024 19:40:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64341
 
-Hi Kanak,
+Following your description, it built on my machine without errors, once 
+I untangled the licenses of the dependencies.
 
-It seems the linker is running out of memory on you build host. So I
-wonder if you have enough RAM on the build host.
-or perhaps reduce the build parallelism that matches your build
-machine's resources.
+Have you changed the generated recipe on any way (beside fixing the 
+licenses, I guess)? Just for confirmation, the error also persists after 
+"bitbake -c clean airbrake" also, right?
 
-On Mon, Nov 25, 2024 at 7:10=E2=80=AFAM Kanak Shilledar via
-lists.yoctoproject.org
-<kanakshilledar111=3Dprotonmail.com@lists.yoctoproject.org> wrote:
->
-> Hi,
-> I am trying to build the `core-image-minimal` recipe for beaglev-ahead ma=
-chine which is in the [meta-riscv](https://github.com/riscv/meta-riscv) lay=
-er. I am using the master branch of poky as well as master branch of meta-r=
-iscv.
-> The build configuration looks like the following
->
-> ```
-> Build Configuration:
-> BB_VERSION           =3D "2.9.1"
-> BUILD_SYS            =3D "x86_64-linux"
-> NATIVELSBSTRING      =3D "universal"
-> TARGET_SYS           =3D "riscv64-poky-linux"
-> MACHINE              =3D "beaglev-ahead"
-> DISTRO               =3D "poky"
-> DISTRO_VERSION       =3D "5.1"
-> TUNE_FEATURES        =3D "riscv64"
-> meta
-> meta-poky
-> meta-yocto-bsp       =3D "master:88489115ae83f80f8f00f296f7f775ba24884744=
-"
-> meta-riscv           =3D "master:4b779658548197083a17269e25554ce6bddc8563=
-"
-> ```
->
-> The build fails for the recipe `gcc_14.2.bb:do_compile`.
->
-> ```
-> ... // SNIP ...
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: c-family/c-warn.o: in function `diagn=
-ose_mismatched_attributes(tree_node*, tree_node*)':
-> | /usr/src/debug/gcc/14.2.0/gcc/c-family/c-warn.cc:2685:(.text+0x5180): u=
-ndefined reference to `cxx_dialect'
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: /usr/src/debug/gcc/14.2.0/gcc/c-famil=
-y/c-warn.cc:2691:(.text+0x5184): undefined reference to `cxx_dialect'
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: c-family/c-warn.o: in function `maybe=
-_warn_shift_overflow(unsigned int, tree_node*, tree_node*)':
-> | /usr/src/debug/gcc/14.2.0/gcc/c-family/c-warn.cc:2708:(.text+0x522e): u=
-ndefined reference to `cxx_dialect'
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: /usr/src/debug/gcc/14.2.0/gcc/c-famil=
-y/c-warn.cc:2709:(.text+0x5242): undefined reference to `c_inhibit_evaluati=
-on_warnings'
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: /usr/src/debug/gcc/14.2.0/gcc/c-famil=
-y/c-warn.cc:2709:(.text+0x5246): undefined reference to `c_inhibit_evaluati=
-on_warnings'
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: /usr/src/debug/gcc/14.2.0/gcc/c-famil=
-y/c-warn.cc:2745:(.text+0x53f2): undefined reference to `bool_promoted_to_i=
-nt_p(tree_node*)'
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: c-family/c-warn.o: in function `maybe=
-_warn_sizeof_array_div(unsigned int, tree_node*, tree_node*, tree_node*, tr=
-ee_node*)':
-> | /usr/src/debug/gcc/14.2.0/gcc/c-family/c-warn.cc:3801:(.text+0x5d00): u=
-ndefined reference to `cxx_dialect'
-> | /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.2.0/rec=
-ipe-sysroot-native/usr/bin/riscv64-poky-linux/../../libexec/riscv64-poky-li=
-nux/gcc/riscv64-poky-linux/14.2.0/ld: /usr/src/debug/gcc/14.2.0/gcc/c-famil=
-y/c-warn.cc:3801:(.text+0x5d04): undefined reference to `cxx_dialect'
-> | collect2: fatal error: ld terminated with signal 9 [Killed]
-> | compilation terminated.
-> | make[1]: *** [../../../../../../../work-shared/gcc-14.2.0-r0/gcc-14.2.0=
-/gcc/c/Make-lang.in:87: cc1] Error 1
-> | make[1]: Leaving directory '/home/kanak/yocto/buildthead/tmp/work/riscv=
-64-poky-linux/gcc/14.2.0/gcc-14.2.0/build.riscv64-poky-linux.riscv64-poky-l=
-inux/gcc'
-> | make: *** [Makefile:4699: all-gcc] Error 2
-> | ERROR: oe_runmake failed
-> | WARNING: exit code 1 from a shell command.
-> ERROR: Task (/home/kanak/yocto/sources/poky/meta/recipes-devtools/gcc/gcc=
-_14.2.bb:do_compile) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 3635 tasks of which 3634 didn't need to be=
- rerun and 1 failed.
->
-> Summary: 1 task failed:
->   /home/kanak/yocto/sources/poky/meta/recipes-devtools/gcc/gcc_14.2.bb:do=
-_compile
->     log: /home/kanak/yocto/buildthead/tmp/work/riscv64-poky-linux/gcc/14.=
-2.0/temp/log.do_compile.1516845
-> Summary: There were 2 ERROR messages, returning a non-zero exit code.
-> ```
->
-> I have attached the full log below.
-> How can I resolve this issue?
-> I am using WSL running Ubuntu 22.04 and 5.15.153.1-microsoft-standard-WSL=
-2 kernel as the host.
->
-> Thanks and Regards,
-> Kanak Shilledar
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#64338): https://lists.yoctoproject.org/g/yocto/messag=
-e/64338
-> Mute This Topic: https://lists.yoctoproject.org/mt/109772609/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+Also, one thing that looks just a tiny little off: the Scarthgap branch 
+of meta-oe has nodejs 20.12.2, but your logs indicate 20.13.0.
+Are you using a custom nodejs recipe? (Though my gut feeling is that 
+this angle is a red herring, still...)
 
