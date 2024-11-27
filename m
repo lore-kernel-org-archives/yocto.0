@@ -1,49 +1,51 @@
-Return-Path: <aleksandar.nikolic010@gmail.com>
+Return-Path: <sateesh0457@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A6D9D609AB
-	for <webhook@archiver.kernel.org>; Wed, 27 Nov 2024 07:40:38 +0000 (UTC)
-Subject: Re: [yocto] Periodic cleanup of the downloads directory
-To: "Richard Purdie" <richard.purdie@linuxfoundation.org>, yocto@lists.yoctoproject.org
-From: "Aleksandar Nikolic" <aleksandar.nikolic010@gmail.com>
-X-Originating-Location: CH (147.161.139.87)
-X-Originating-Platform: Windows Chrome 131
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1874ED609B7
+	for <webhook@archiver.kernel.org>; Wed, 27 Nov 2024 08:48:19 +0000 (UTC)
+Subject: Re: [yocto] Disabling unused service to reduce boot time (Krikstone version)
+To: "Markus Volk" <f_l_k@t-online.de>, yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: SG (163.116.193.115)
+X-Originating-Platform: Linux Chrome 129
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Tue, 26 Nov 2024 23:40:33 -0800
-References: <096700bfc7f523d73c84362c225c4b0edb0f8fa7.camel@linuxfoundation.org>
-In-Reply-To: <096700bfc7f523d73c84362c225c4b0edb0f8fa7.camel@linuxfoundation.org>
-Message-ID: <14717.1732693233379951678@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="rzzxnK0y2jfgjv8e4r7U"
+Date: Wed, 27 Nov 2024 00:48:13 -0800
+References: <EYLLNS.RTHGM5HDF2WN3@t-online.de>
+In-Reply-To: <EYLLNS.RTHGM5HDF2WN3@t-online.de>
+Message-ID: <14717.1732697293417372320@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="gtQ0zR3P2v1u5S0Fj0Zm"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 27 Nov 2024 07:40:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64356
+ <yocto@lists.yoctoproject.org>; Wed, 27 Nov 2024 08:48:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64357
 
---rzzxnK0y2jfgjv8e4r7U
+--gtQ0zR3P2v1u5S0Fj0Zm
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Yep, you are right, not removing files from DL_DIR could help in the future=
- with older builds! And yes, we plan to either remove files older than X da=
-ys from sstate or to just build from scratch once a week. Thanks.
+Hi Have tried.
 
-Cheers,
-Aleksandar
+DISTRO_FEATURES:remove =3D "zeroconf polkit"
 
---rzzxnK0y2jfgjv8e4r7U
+SYSTEMD_AUTO_ENABLE:pn-avahi =3D "disable"
+SYSTEMD_AUTO_ENABLE:pn-ip6tables =3D "disable"
+
+Even not worked.Any other method ?
+
+--gtQ0zR3P2v1u5S0Fj0Zm
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Yep, you are right, not removing files from DL_DIR could help in the f=
-uture with older builds! And yes, we plan to either remove files older than=
- X days from sstate or to just build from scratch once a week. Thanks.</div=
->
+<div>Hi Have tried.</div>
 <div>&nbsp;</div>
-<div>Cheers,</div>
-<div>Aleksandar</div>
+<div>&nbsp;<br />DISTRO_FEATURES:remove =3D "zeroconf polkit"<br /><br />SY=
+STEMD_AUTO_ENABLE:pn-avahi =3D "disable"<br />SYSTEMD_AUTO_ENABLE:pn-ip6tab=
+les =3D "disable"<br /><br /></div>
+<div>&nbsp;</div>
+<div>Even not worked.Any other method ?</div>
 
---rzzxnK0y2jfgjv8e4r7U--
+--gtQ0zR3P2v1u5S0Fj0Zm--
 
