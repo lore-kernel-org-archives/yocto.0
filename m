@@ -1,73 +1,283 @@
-Return-Path: <Jesus.JimenezSanchez@verifone.com>
+Return-Path: <carlos.bejar-colonia@philips.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1443E77170
-	for <webhook@archiver.kernel.org>; Wed,  4 Dec 2024 16:41:54 +0000 (UTC)
-Subject: Installing empty directory
-To: yocto@lists.yoctoproject.org
-From: "Jesus Jimenez Sanchez" <Jesus.JimenezSanchez@verifone.com>
-X-Originating-Location: DE (195.138.223.243)
-X-Originating-Platform: Linux Firefox 133
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03D32E77170
+	for <webhook@archiver.kernel.org>; Wed,  4 Dec 2024 16:53:55 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.57])
+ by mx.groups.io with SMTP id smtpd.web11.19481.1733331233578299165
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 04 Dec 2024 08:53:54 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@philips.com header.s=selector1 header.b=MLfVPP0V;
+ spf=pass (domain: philips.com, ip: 40.107.22.57, mailfrom: carlos.bejar-colonia@philips.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vuzs6dVM4e98iJwEp7IlRWEzZaT7TvaX8AoJVT+gBwAACL13A4NXxu7CS7d3/0IQ3ilQbRs5ckHxaEGCnRYuavoaZbSdiy4QVLDr4foLRzlZXxXz2Ofm4h36UTyMNBio1kCdDwEJzdTKgEXt9gsZPZnYXuxyK3yPppG5f4SVaMIHMaJRO0I0BVGWNd/u64MomHk0tbV2OucDxJFZMp1p8bgRXjQnC1EhOaioVTBDC9qsL3LrISlLW8bQlUKQQue+so88OjLAgQQqm/uysFbrgVTNYRMlMQ8/Ciu9twnwTCtZEwrTZgSjIKB17GQvsKzMrYSSyiK6aQZaf/YAwdWyEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Pn72ylExdgH7Iy7mbKL9Ce8U8M6BK0ufqXxEa7h3m2U=;
+ b=NhomzLEGUufdhh1jtqi+VjLj5RKH2Q1536f1YtdVYHV6PUxMoR8UqSa9lQDAzNVsZJfom9ItpIA3KQ3qUzQrLt3mRGemrkwMGM0zVaOcISUdr7WQ43lQY52XuFhVm1CO/0bgjLOQxzO+2YsOz28TpVUlBXwUVFcQMk8iZ4E8r90ZQgVe5wG9A26EojFscf7rVH3mk5yhKJSJopZ7X8Q7K1uZKnuBwE8rB3xa85QNpPpjBCpU1Sofk8HcbDx2Mxtd+TRFOdWxou0AdfIXSi9oQoYIph7DUTJso/QCDqwCXZ1R7d8qEi8r6tME3ZY1IHBdsRDPBraZhDo27/di0aOMDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=philips.com; dmarc=pass action=none header.from=philips.com;
+ dkim=pass header.d=philips.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=philips.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pn72ylExdgH7Iy7mbKL9Ce8U8M6BK0ufqXxEa7h3m2U=;
+ b=MLfVPP0VlCieh2jqy/YYICviHwBRPsP3XeQLUBlMizifMM3B/0LXlMRcexOJTsui6YgsWoDUz7p9uyUUlwQAYZB/0rUs/oWMCFptq6kPKPspk/8OH//nstN5MRN+n2V8HfRXmHEstfBaYZxxdVp+yNYGkf0d/phmnPDtNZqiwKc=
+Received: from AM9P122MB0266.EURP122.PROD.OUTLOOK.COM (2603:10a6:20b:22d::7)
+ by PR3P122MB0291.EURP122.PROD.OUTLOOK.COM (2603:10a6:102:16::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.25; Wed, 4 Dec
+ 2024 16:53:49 +0000
+Received: from AM9P122MB0266.EURP122.PROD.OUTLOOK.COM
+ ([fe80::f4cd:ecf8:5c3f:cbf1]) by AM9P122MB0266.EURP122.PROD.OUTLOOK.COM
+ ([fe80::f4cd:ecf8:5c3f:cbf1%3]) with mapi id 15.20.8182.023; Wed, 4 Dec 2024
+ 16:53:49 +0000
+From: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"Jesus.JimenezSanchez@verifone.com" <Jesus.JimenezSanchez@verifone.com>
+Subject: RE: [yocto] Installing empty directory
+Thread-Topic: [yocto] Installing empty directory
+Thread-Index: AQHbRmtteAmhWXNoSUm1Ivgmn2vUqbLWTNiA
+Date: Wed, 4 Dec 2024 16:53:49 +0000
+Message-ID: 
+ <AM9P122MB0266D1F34895376563012228D6372@AM9P122MB0266.EURP122.PROD.OUTLOOK.COM>
+References: <pjL4.1733330505962809259.ABTE@lists.yoctoproject.org>
+In-Reply-To: <pjL4.1733330505962809259.ABTE@lists.yoctoproject.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=philips.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9P122MB0266:EE_|PR3P122MB0291:EE_
+x-ms-office365-filtering-correlation-id: f5167abb-4a13-4df3-a391-08dd148439df
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|376014|1800799024|366016|7053199007|8096899003|38070700018;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?UGRRQ1l6S25sMVNBZnFNd1FkT2F0L3kzdTdkNkpMQUhURytQNnFVdGJOcUhm?=
+ =?utf-8?B?cDZ6cmRKNmVXSjg0cFBBOSt0dzVUOGhXZzgxWFYxdHNETWJBNTAyQW1XQVJi?=
+ =?utf-8?B?R290L1JlSnQ0ME15NWtaWnRKc3pvSDVLcTN0SVFNUFNVSUV6ZllaN1MvQ2xa?=
+ =?utf-8?B?aCs3K1JJaWF4OFc2NUNNRFlsV1Z1cDNLZit6bXlib0I2b1J4KzY2ZElQZDdC?=
+ =?utf-8?B?ckRJc1JhS2xmekdzN1ArUmdCVnRxeUc5eHZQbjVTMUZtcnhvME1MU0Y3cW4r?=
+ =?utf-8?B?dlFPcUtBcVJ5TWZhRmFFcHg4TGdmeU5QdS9sSXpYYlRoU3BtMzYwbXp2RS9a?=
+ =?utf-8?B?VUVOSGhBSmJCa21EUlJxaXNOVnFOSTVjV0JTQnI3dVNHUWc2dWR4dnlVVDNS?=
+ =?utf-8?B?azB5NGpRWkVlNDZDdU9IOThkR3VxRGFhSFUzblZnWjd2ZitKbmZyay9sYUl3?=
+ =?utf-8?B?L2Z2d1FXTzJCaTB3VUY5NWVLb0YxL3BPbmJ5b1dZc0tFS1h5YmJpZjBGSHdJ?=
+ =?utf-8?B?OU4venlUWmFIY1RZTEhQWDd1K01sSi92N2ZpMjRDclRUdEdzVnRwbXY3TkNw?=
+ =?utf-8?B?K0UrZmZmRllnYzZaY0pkendYeUs0aldkdDU5U3RpOHE5RlFtME8rZkMrVkdZ?=
+ =?utf-8?B?OW9jQ21WT3UxeGFyQ3BOUmZ1R1Jpb2lRY3k0TG9WVkJSMEREeFpCbGZBMVdy?=
+ =?utf-8?B?L1dncmtRZHI5bHh1a1JtVDlJSG1waUFvQUtQYXBOSFplK1RHZk10YTZremFy?=
+ =?utf-8?B?OVhxUjNWVitRT2h2NjB6SE83ZHJudk0xWFUyQ0tVNTZlNGM0MHpKRXhXczh5?=
+ =?utf-8?B?dFJrZWJzMGQvV01yb1V0cHdQWmgzd1o3MHZUdndoWWEzU1NJczRtam9EbTQ3?=
+ =?utf-8?B?ZWI5K3JEVU9JNUZXU2xMME91Y25ZWUhEL1RFTU5PUTBieGJVY1J6dmVoaHM1?=
+ =?utf-8?B?Wm42RFBWMkQzUGk1ekoydlNydHAyd24wUkFDM3c1K1A3UGt0dWFiRld0WnhS?=
+ =?utf-8?B?cGx0SzRtWFZ1dzZSSittSjZoeHJzOGFncUwzTFQxSWMyTVNrY2c3Y1NYalVw?=
+ =?utf-8?B?R1Bad1lhRExXLzJRc3Q4anIxelA1SVNaQ2Z5d05yaUxWekg1NnBiam1yRmZa?=
+ =?utf-8?B?MDVKVDB3U25udXg0MWdyektmN1MwcUVSSUxvMXZSNTk1eEloajhPNC9WL0Uz?=
+ =?utf-8?B?bmhVMzhkSWZGZWM0dzRETmRLQ1MySzBVSWV6Q1Y3VTFaRGo2UHpUYU9VVi92?=
+ =?utf-8?B?Z0ZwbzRVTkVqSWt4Nnc0alVlRk1GYjM0RS9VeENMWXNKMHVqbmU3dDk5dUYx?=
+ =?utf-8?B?M1dVUWhBNU5PQzRCYWtKMklZY2IzZnVTaGNocTFNMEhMM1p1MGMvM3dJNUhI?=
+ =?utf-8?B?ME40bGEwWHZjNFMxZXlhaVBkT3l3U1g0bkpFNWJUc3EzR0Rvbnhqb1RqRGlP?=
+ =?utf-8?B?V0xnZmZKeXdoblM3VysxeVd5THdsVk5jZ3dQVUduNURiUFJOaW42VG5VSHFh?=
+ =?utf-8?B?aGlxRXdBRjB6L21WdDRPOFFGTkh4V1E2UHBiTjlodHhxRkVCU0pwQ0wrSkRw?=
+ =?utf-8?B?bFQvRTNtRkhobmUzdk5keHorY0ZVb0YzY1NvZTFsTk9RRktmZTA3Q1B6eHZa?=
+ =?utf-8?B?OEFOeWV4azQvbHZNdzNKZ2VtV09zdXR0RFhqTWtEb2dNMEM2dS9QKytSV215?=
+ =?utf-8?B?ZEZHdk5lU29Udlp3SVh6c2g1T3haeDZGZGQxc2xZS05vQWNJa245ZURBQnJW?=
+ =?utf-8?B?UlBiN0dOSUdvc2tqaUdEYXdFcHZKTEh6Y2NSQjEyaHR6NFRtV3ZaOGU5L0Nm?=
+ =?utf-8?B?akNoZjVhbTFwNFRmVDM2OHFISW81ZmYrRWZadXljekIzdWFnYWp3OWJrTkxw?=
+ =?utf-8?B?SzZReThxTGJiaC85VGh2K216UFFHU2ZrQzNUS3NaTEpFMGc9PQ==?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9P122MB0266.EURP122.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7053199007)(8096899003)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?UGxqZ3AwL1cwMU0xeE51dGQ4bkpNWUtxTFF0ZCt4a0lKd1VIbW9rYVRJbWpL?=
+ =?utf-8?B?OXo0TXlNZThyTVFPWG4vVHdkVVltb0NzZGRqaEtkdDhuU0V2SWtvdmRWankx?=
+ =?utf-8?B?YlVOdzNWS3dubEVpS1JXVjhwbkVjbFZNN05Eb1lJd3lVQ2lGZGRXcW92YVNR?=
+ =?utf-8?B?b21sSStzOEZ1Vmh1di8zcFBLQWIzSjArU21CbUpNUE0zSDJBeGJjc0F2RXQz?=
+ =?utf-8?B?NmcyVlhFT1RhMTFBT3pGTWViMTEwOWJDWVp6WExnaW04d2tMcGpHV2NuZW1i?=
+ =?utf-8?B?MXZVMlNWcFN5bnRhRnZhNGlLbS8yR2hPaHpHLzJaWHFzMGJjTTdVMUhRNzNE?=
+ =?utf-8?B?enoyR2tzTmJYWnBhTjlFTmFYR0hQQmtCN3BRVFV6bjcvdFdzWW9MMmV1MHJI?=
+ =?utf-8?B?dU40czhuMEtOUFlPWDdkQnRZQUNyMHJIOUVBM0tkNTVqeXNBOGdWTitJNXkz?=
+ =?utf-8?B?WGJJbWF1cHA4RHMrV2pXbi9uTEhNQkt5b0p0Uk1KYkpqZ2U0ZWpGaXhSeURB?=
+ =?utf-8?B?em1mdm9sRFBIcnI0bkVMNUpwcVZnUDB3Q0pFc2F6cFNkL1htcWdsalgwaTg1?=
+ =?utf-8?B?ZlJlK29oWXZESG1nZnZLZks4elh3UnBpcGpDQXhxYzRIS3hGK05WZE9mRERk?=
+ =?utf-8?B?QWRmM1ZZSlNYQmE4YWJjcjZOUktjRWQwZDl4SFdoa1N3UExENWNoSlMzdEFQ?=
+ =?utf-8?B?QzhZR0gzVDc3MGU2ZWpCMlB2ejVnU3BZdW5sbUxGbnFKVWxyUjhzbHBUMjN5?=
+ =?utf-8?B?K1A5bzBSM3RNdTJ1ZnJ5cUw3TnJNeTV3Z255Q1ZCS2FXVGNIN0I5NUpqUkI2?=
+ =?utf-8?B?SzJGMFpqRjF0b3BLbytROVkrZUwrZnJYR0RtTXdzbmtVckJUbWZnc1VvZmR1?=
+ =?utf-8?B?U21WVm9SdGloZDdWQ2NUZ2h5aW11c21vNmMyRmJBMXhpS3VrcDZDMGFsT0pv?=
+ =?utf-8?B?MHRCWnRBYVJ4NHNmOEpUU09veTdYVUpJWEhwaGhKY1R6eVVIWW03OGZhNUI5?=
+ =?utf-8?B?dDNBSjZMVFdXOFBKRjFoQVc0Ujk5T0hOdVhmZXZzazl0VGpvMWtCZkVVUEpq?=
+ =?utf-8?B?SlVNcW5Lak15WVU0b3BMd0FBN1pNYklEZ2NFcHlQR0pDdEVVVDUxNDE3U3lH?=
+ =?utf-8?B?R0szckJIcGdUaEE1Q3RBZGhLSDg4YmNQRXE3N3JSRUJhSjc2eElQWW9PM0dB?=
+ =?utf-8?B?OTFzQkZrMk1hS0VZMzhiaWpmZXJaODUvUWpReG43VHpxbUJOTkxIR1FXRWNV?=
+ =?utf-8?B?SytZZGQ2eGRSUnZwbGtsL1pLK21jYVA4MThGb2lLZWR0cXBkN2FzQTZnd0Ft?=
+ =?utf-8?B?cG5xdFdpZ05udzdlL2JiQ21HMUkvV3NncnZlRG9NTGFXVE1IaXAvRks3dlFB?=
+ =?utf-8?B?U281bnJnd2V2RThjMTN0ODJQQS9VY013WW1TMTYwcytqdkJDRlYxdHdHb0c4?=
+ =?utf-8?B?OUMxMS9NeDJGblRrcndOc1dGbzUrU0JqSDN1WnNyaVF2WHc5WTRzRDVHaUQz?=
+ =?utf-8?B?eldoeDk4OWZVVHVvT3hrK2ZyWElwc0thd2N1NWdwN2lDdjZrQXpjd2w0aWRG?=
+ =?utf-8?B?M2xEWGtYaFFIdnVQQmk2Z1BKTUQ0UVNJbmZta09LRDhwSEY3anlWWFMrV01R?=
+ =?utf-8?B?OGlEdkVHUDJoUVFjZHJLek9LcnpaR2k4REYxNUVlMXdZaGdJZk1GMVVVMUdL?=
+ =?utf-8?B?dzMyc09uVzlDbmhRc0svTE1HVmd3T3Jtem1tdmt0UzFOTG1GNzFaK2Q4M3E5?=
+ =?utf-8?B?b0hrUVFZSEJjUmtxRXIwNmJ3UHpPT2RmenE0K1RERlRBcW14QzQ2azhkZVp5?=
+ =?utf-8?B?a0grOW94UmlQdUxRaTNvOXpvUXRmWjk0dmhLNEpDWGI3M0tjTUN2MXVNUmhr?=
+ =?utf-8?B?QzZleFUxdEJlQm02MnE0UVZ2MjVUVnMvbnd4Q2xEWWNUUkVSZmRKei9LMHlz?=
+ =?utf-8?B?dytra2NwUkRtajdSeUx1NVJWNDdYZkhuU3FkYXhQdUNpOHBCV2xQVm9Bb2Qr?=
+ =?utf-8?B?REhzZld6eEpoajdiK0FyNFdzRlhCVEtnZHQrK014V3Y2SGRtMjVBQmNiNE1h?=
+ =?utf-8?B?dTZjaEZsOVM4aTBpNm9tbkhrU2p5ckl4cjljM1I1K1h6TDBZNkFqdHlmWVBF?=
+ =?utf-8?B?ZEtac0RHcFRPaDRVcmczWGliSDVOcXhGdm05YlIvbTJvYnp0dkhUOFlabzFT?=
+ =?utf-8?B?aGc9PQ==?=
+Content-Type: multipart/alternative;
+	boundary="_000_AM9P122MB0266D1F34895376563012228D6372AM9P122MB0266EURP_"
 MIME-Version: 1.0
-Date: Wed, 04 Dec 2024 08:41:45 -0800
-Message-ID: <pjL4.1733330505962809259.ABTE@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="bp780rpBziWytWX1hjTu"
+X-OriginatorOrg: philips.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9P122MB0266.EURP122.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5167abb-4a13-4df3-a391-08dd148439df
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2024 16:53:49.5452
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1a407a2d-7675-4d17-8692-b3ac285306e4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ExlZy8qU2mdyfdLLmLfnr8qusADmBJF9GHtsl+NAbaXPZDQWMrVTsz5cmVRGr3qIEuimK0zZ4FiUkCRewjNPC7H+Bpb2XweN/kzSBeIRj1GooTGJhqdctF39xsrtbNUx
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P122MB0291
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 04 Dec 2024 16:41:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64400
+ <yocto@lists.yoctoproject.org>; Wed, 04 Dec 2024 16:53:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64401
 
---bp780rpBziWytWX1hjTu
+--_000_AM9P122MB0266D1F34895376563012228D6372AM9P122MB0266EURP_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-Hello,
+V2hpY2ggeW9jdG8gdmVyc2lvbiBhcmUgeW91IHVzaW5nPw0KWW91IG1heSB3YW50IHRvIHRyeToN
+CkZJTEVTOiR7UE59ICs9ICIvYnRfZmlybXdhcmUiDQoNCg0KLUNhcmxvcw0KDQpGcm9tOiB5b2N0
+b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBP
+biBCZWhhbGYgT2YgSmVzdXMgSmltZW5leiBTYW5jaGV6IHZpYSBsaXN0cy55b2N0b3Byb2plY3Qu
+b3JnDQpTZW50OiBXZWRuZXNkYXksIERlY2VtYmVyIDQsIDIwMjQgMTE6NDIgQU0NClRvOiB5b2N0
+b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIEluc3RhbGxpbmcgZW1w
+dHkgZGlyZWN0b3J5DQoNCkNhdXRpb246IFRoaXMgZS1tYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRz
+aWRlIG9mIFBoaWxpcHMsIGJlIGNhcmVmdWwgZm9yIHBoaXNoaW5nLg0KDQpIZWxsbywNCg0KSSBh
+bSB0cnlpbmcgdG8gYWRkIGFuIGVtcHR5IGRpcmVjdG9yeSB1c2luZyBhIHJlY2lwZS4gSSBoYXZl
+IHRoaXMgaW4gdGhlIGRvX2luc3RhbGw6DQoNCmRvX2luc3RhbGwoKSB7DQogICAgaW5zdGFsbCAt
+ZCAke0R9L2J0X2Zpcm13YXJlDQp9DQoNCkZJTEVTXyR7UE59ICs9ICIvYnRfZmlybXdhcmUiDQoN
+CkJ1dCBJIGdldCB0aGUgZm9sbG93aW5nIGVycm9yOg0KDQpGaWxlcy9kaXJlY3RvcmllcyB3ZXJl
+IGluc3RhbGxlZCBidXQgbm90IHNoaXBwZWQgaW4gYW55IHBhY2thZ2U6DQogIC9idF9maXJtd2Fy
+ZQ0KUGxlYXNlIHNldCBGSUxFUyBzdWNoIHRoYXQgdGhlc2UgaXRlbXMgYXJlIHBhY2thZ2VkLiBB
+bHRlcm5hdGl2ZWx5IGlmIHRoZXkgYXJlIHVubmVlZGVkLCBhdm9pZCBpbnN0YWxsaW5nIHRoZW0g
+b3IgZGVsZXRlIHRoZW0gd2l0aGluIGRvX2luc3RhbGwuDQoNCldoYXQgYW0gSSBtaXNzaW5nIGhl
+cmU/IFdoYXQgc2hvdWxkIEkgYWRkIHRvIGdldCBpdCBzaGlwcGVkPw0KDQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXw0KVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlzIG1l
+c3NhZ2UgbWF5IGJlIGNvbmZpZGVudGlhbCBhbmQgbGVnYWxseSBwcm90ZWN0ZWQgdW5kZXIgYXBw
+bGljYWJsZSBsYXcuIFRoZSBtZXNzYWdlIGlzIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIGFkZHJl
+c3NlZShzKS4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgeW91IGFyZSBo
+ZXJlYnkgbm90aWZpZWQgdGhhdCBhbnkgdXNlLCBmb3J3YXJkaW5nLCBkaXNzZW1pbmF0aW9uLCBv
+ciByZXByb2R1Y3Rpb24gb2YgdGhpcyBtZXNzYWdlIGlzIHN0cmljdGx5IHByb2hpYml0ZWQgYW5k
+IG1heSBiZSB1bmxhd2Z1bC4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwg
+cGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBieSByZXR1cm4gZS1tYWlsIGFuZCBkZXN0cm95IGFs
+bCBjb3BpZXMgb2YgdGhlIG9yaWdpbmFsIG1lc3NhZ2UuDQo=
 
-I am trying to add an empty directory using a recipe. I have this in the do=
-_install:
-
-do_install() {
-install -d ${D}/bt_firmware
-}
-
-FILES_${PN} +=3D "/bt_firmware"
-
-But I get the following error:
-
-Files/directories were installed but not shipped in any package:
-/bt_firmware
-Please set FILES such that these items are packaged. Alternatively if they =
-are unneeded, avoid installing them or delete them within do_install.
-
-What am I missing here? What should I add to get it shipped?
-
---bp780rpBziWytWX1hjTu
+--_000_AM9P122MB0266D1F34895376563012228D6372AM9P122MB0266EURP_
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-<div>Hello,</div>
-<div>&nbsp;</div>
-<div>I am trying to add an empty directory using a recipe. I have this in t=
-he do_install:</div>
-<div>&nbsp;</div>
-<div>
-<div>do_install() {<br />&nbsp; &nbsp; install -d ${D}/bt_firmware</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>FILES_${PN} +=3D "/bt_firmware"</div>
-<div>&nbsp;</div>
-<div>But I get the following error:</div>
-<div>&nbsp;</div>
-<div>Files/directories were installed but not shipped in any package:<br />=
-&nbsp; /bt_firmware<br />Please set FILES such that these items are package=
-d. Alternatively if they are unneeded, avoid installing them or delete them=
- within do_install.</div>
-<div>&nbsp;</div>
-<div>What am I missing here? What should I add to get it shipped?</div>
-</div>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpBcHRvczt9DQovKiBTdHlsZSBEZWZpbml0
+aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJn
+aW46MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IkFwdG9zIixzYW5zLXNl
+cmlmO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5
+Ow0KCWZvbnQtZmFtaWx5OiJBcHRvcyIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
+Ci5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6
+ZToxMC4wcHQ7DQoJbXNvLWxpZ2F0dXJlczpub25lO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
+aXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2
+LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYg
+Z3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0i
+MTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86
+c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEi
+IC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBs
+YW5nPSJFTi1VUyIgbGluaz0iIzQ2Nzg4NiIgdmxpbms9IiM5NjYwN0QiIHN0eWxlPSJ3b3JkLXdy
+YXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPldoaWNoIHlvY3RvIHZlcnNp
+b24gYXJlIHlvdSB1c2luZz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+WW91IG1heSB3YW50IHRvIHRyeTo8
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5GSUxFUzxzcGFuIHN0
+eWxlPSJiYWNrZ3JvdW5kOnllbGxvdzttc28taGlnaGxpZ2h0OnllbGxvdyI+Ojwvc3Bhbj4ke1BO
+fSArPSAmcXVvdDsvYnRfZmlybXdhcmUmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPi1DYXJsb3M8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRl
+cjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAw
+aW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8
+L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcg
+Jmx0O3lvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcmZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9i
+Pkplc3VzIEppbWVuZXogU2FuY2hleiB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxi
+PlNlbnQ6PC9iPiBXZWRuZXNkYXksIERlY2VtYmVyIDQsIDIwMjQgMTE6NDIgQU08YnI+DQo8Yj5U
+bzo8L2I+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4g
+W3lvY3RvXSBJbnN0YWxsaW5nIGVtcHR5IGRpcmVjdG9yeTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpzb2xpZCAjOUM2NTAwIDEuMHB0O3BhZGRpbmc6Mi4wcHQg
+Mi4wcHQgMi4wcHQgMi4wcHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImxpbmUtaGVp
+Z2h0OjEyLjBwdDtiYWNrZ3JvdW5kOiNGRkVCOUMiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+OUM2NTAwIj5DYXV0aW9uOg0KPC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2si
+PlRoaXMgZS1tYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIG9mIFBoaWxpcHMsIGJlIGNhcmVm
+dWwgZm9yIHBoaXNoaW5nLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+SGVsbG8sPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPkkgYW0gdHJ5aW5nIHRvIGFkZCBhbiBlbXB0eSBkaXJlY3Rvcnkg
+dXNpbmcgYSByZWNpcGUuIEkgaGF2ZSB0aGlzIGluIHRoZSBkb19pbnN0YWxsOjxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZG9faW5z
+dGFsbCgpIHs8YnI+DQombmJzcDsgJm5ic3A7IGluc3RhbGwgLWQgJHtEfS9idF9maXJtd2FyZTxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+fTxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5GSUxFU18k
+e1BOfSArPSAmcXVvdDsvYnRfZmlybXdhcmUmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QnV0IEkgZ2V0IHRoZSBmb2xsb3dpbmcgZXJy
+b3I6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4m
+bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PkZpbGVzL2RpcmVjdG9yaWVzIHdlcmUgaW5zdGFsbGVkIGJ1dCBub3Qgc2hpcHBlZCBpbiBhbnkg
+cGFja2FnZTo8YnI+DQombmJzcDsgL2J0X2Zpcm13YXJlPGJyPg0KUGxlYXNlIHNldCBGSUxFUyBz
+dWNoIHRoYXQgdGhlc2UgaXRlbXMgYXJlIHBhY2thZ2VkLiBBbHRlcm5hdGl2ZWx5IGlmIHRoZXkg
+YXJlIHVubmVlZGVkLCBhdm9pZCBpbnN0YWxsaW5nIHRoZW0gb3IgZGVsZXRlIHRoZW0gd2l0aGlu
+IGRvX2luc3RhbGwuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPldoYXQgYW0gSSBtaXNzaW5nIGhlcmU/IFdoYXQgc2hvdWxkIEkgYWRkIHRvIGdl
+dCBpdCBzaGlwcGVkPzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8YnI+DQo8aHI+DQo8Zm9udCBmYWNlPSJBcmlhbCIgY29sb3I9IkdyYXkiIHNpemU9IjEi
+PlRoZSBpbmZvcm1hdGlvbiBjb250YWluZWQgaW4gdGhpcyBtZXNzYWdlIG1heSBiZSBjb25maWRl
+bnRpYWwgYW5kIGxlZ2FsbHkgcHJvdGVjdGVkIHVuZGVyIGFwcGxpY2FibGUgbGF3LiBUaGUgbWVz
+c2FnZSBpcyBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBhZGRyZXNzZWUocykuIElmIHlvdSBhcmUg
+bm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIHlvdSBhcmUgaGVyZWJ5IG5vdGlmaWVkDQogdGhh
+dCBhbnkgdXNlLCBmb3J3YXJkaW5nLCBkaXNzZW1pbmF0aW9uLCBvciByZXByb2R1Y3Rpb24gb2Yg
+dGhpcyBtZXNzYWdlIGlzIHN0cmljdGx5IHByb2hpYml0ZWQgYW5kIG1heSBiZSB1bmxhd2Z1bC4g
+SWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgcGxlYXNlIGNvbnRhY3QgdGhl
+IHNlbmRlciBieSByZXR1cm4gZS1tYWlsIGFuZCBkZXN0cm95IGFsbCBjb3BpZXMgb2YgdGhlIG9y
+aWdpbmFsIG1lc3NhZ2UuPGJyPg0KPC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---bp780rpBziWytWX1hjTu--
+--_000_AM9P122MB0266D1F34895376563012228D6372AM9P122MB0266EURP_--
 
