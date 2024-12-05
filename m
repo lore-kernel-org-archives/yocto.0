@@ -2,485 +2,578 @@ Return-Path: <posinaaravind0205@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A158E77170
-	for <webhook@archiver.kernel.org>; Thu,  5 Dec 2024 09:36:22 +0000 (UTC)
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
- by mx.groups.io with SMTP id smtpd.web11.6614.1733391377875646612
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84AB5E7716C
+	for <webhook@archiver.kernel.org>; Thu,  5 Dec 2024 09:54:32 +0000 (UTC)
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+ by mx.groups.io with SMTP id smtpd.web11.6943.1733392468088186419
  for <yocto@lists.yoctoproject.org>;
- Thu, 05 Dec 2024 01:36:17 -0800
+ Thu, 05 Dec 2024 01:54:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=iHBK/Ojq;
- spf=pass (domain: gmail.com, ip: 209.85.215.177, mailfrom: posinaaravind0205@gmail.com)
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7fcdbfd8090so571581a12.2
-        for <yocto@lists.yoctoproject.org>; Thu, 05 Dec 2024 01:36:17 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=YoMbLIAH;
+ spf=pass (domain: gmail.com, ip: 209.85.219.44, mailfrom: posinaaravind0205@gmail.com)
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6d87ceb58a0so6081716d6.0
+        for <yocto@lists.yoctoproject.org>; Thu, 05 Dec 2024 01:54:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733391377; x=1733996177; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1733392467; x=1733997267; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HXnYYPdILgSBuav7pjBBnwEopLttBKnC87fsT2xszBg=;
-        b=iHBK/OjqEvpYa6fIDPPpoDV7cYiNAn4kogZ5x0qqO3y9EM6w6U7aNimX0iGjnao2Uy
-         WnqDpPhd6DjFZreGr5UwtCV4RtmXXbEzm+srl0Gb1ERI/+fevLGRZhfFHbu+VTGsS5mV
-         Pn84AYJowt9HPRX1e3LWW/m/PPngQwG3yNcdOTS1LgMvsmIYzqrUqbomgTpZsnpF0ZIS
-         w+jd/VJSFsLvQDgqofsvwH16/n/uXQSX+gHWwZhOYcyvveysDWDspSNJ+kosBRAFfmQw
-         KXbOPw6PJq7esejF01gSdCzxe2SzrD0cY+70bHIljxv3iepw14eNcqjmbC5T6GhO1q1k
-         hg2g==
+        bh=sASwvnRWkSjyuaBF4oM1lx00XYmgpYC2WuJht3Bl8WY=;
+        b=YoMbLIAHK876kSAHyhCwUrd4696Pk2i9npyRKT4Xhy5Lw71yUVhDDP66ONb9ClURUC
+         E8o1zOePFn6IFs1W7n0JpMVE6Gf4xfq96VvpnV/yB6Yu57JtQidnxy5qVbCQbhMe2chw
+         09G0EZUu0oZlpV6ZFLC3rJfc71K+0fFbseW1LYzC61R6fHiTtF2h3rZ4i8ZMipy7w1Da
+         0rK22V1rgVtEwtN/A6O16OkFypyjFxO8F2/Ye5nmi/3+zY0xjEqpEYmc6HeMEEsdFM+G
+         GDljCHegR85CvYicRp3MdHFmFPFZCIEhz4RPie6EI/pnlMIvvGx9G2Aill8ARMp7hupx
+         n3Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733391377; x=1733996177;
+        d=1e100.net; s=20230601; t=1733392467; x=1733997267;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HXnYYPdILgSBuav7pjBBnwEopLttBKnC87fsT2xszBg=;
-        b=d5lD8PVCi6LHIpdZypYJ8TDK3MjIBYhj7sdDOxreRTfVE6MbnmngwfpW6Kd1T2bOgR
-         +w2m3KtVaK6KOquZQ04mr0VRZwTFs7GbOOge9p3ExtEwSFhczn3fdyf6/2kbZwGo2XYw
-         jncBWIeZfQrzp8cfCSmlH1oKCJNc0lRI89yDdC7drXRrr2QCon1KGHzDWMTPVqGvcDWL
-         2ksmwKRrfSQaIp9lmdAE5aJEgLUhGijg+25dsm/IdHK+6mi14NN51YiHX1BMORPIwi0V
-         nssc3u095M4E2lrEBGNsi+AIQE31GmpPTZhtc0cZYdpdJGcYII9dRD7IymBZvTk0W1Gy
-         hadQ==
-X-Gm-Message-State: AOJu0YyDDXzCE4Uq/MHzmqv8W9sKQjdb/8ymAJAYQyG+PZoqRisouUuH
-	3iGV1v2ENXE+LvXpORD6FxnkAi6xKIHHuNqh6T1A8/3wk5sRVi2XI1scpORiNW6daMkj5qLgf6y
-	C1SmZ97Bbv6+N9Xx+69/GOTzyifpFznbZ
-X-Gm-Gg: ASbGncvRHO5czr9pPHuH/OrqzOGp7i73x9lE1s/4ioRyhxeTn2pDxzWoE3SXiISsxs9
-	s+walTGpUz8Nj3GFn7Uo0yrj+1+HznQ==
-X-Google-Smtp-Source: AGHT+IGYmQrlpgD2lHf0QIXGyGF4Lk8NUwOnfFNy3LjsZZUtuNbDkmd09VzDnjLQMiKSPNdY1pmVqaugF5GxDdlXn1Y=
-X-Received: by 2002:a17:90b:1d43:b0:2ee:ed1c:e451 with SMTP id
- 98e67ed59e1d1-2ef011fc568mr14419296a91.15.1733391376672; Thu, 05 Dec 2024
- 01:36:16 -0800 (PST)
+        bh=sASwvnRWkSjyuaBF4oM1lx00XYmgpYC2WuJht3Bl8WY=;
+        b=qjTdVgKQ6IeClbIT80ONK4uLNb3kw7q6uVAcK4KjRA3jhjVxDXdO0HYIejsT6G/2F7
+         hxDg3BRxC7+zc8dkvBNwGPvtfARV0hEbnir5sXbVDkJENHnWesqUKd6k0/1YEvgWD6i7
+         mDJ0ty9psvlLj9Sjp5YPYo7rzEuJVkNJYEqtGxteyYdoFc7cQ5OwTMXq2mYhP7hotRj4
+         Cha+mk7TqHN0DuNdEca8/SzqIAlXiDRH4XQbbUr+Y1wxMEYcHVXXuet+15xJpcTyVKna
+         fhwNEM0tNihqFVR2sL1FbikxyphnHbZQdlscQwiZh5kXLETNawVo/A0tvz6EYuNToRu/
+         +D/g==
+X-Gm-Message-State: AOJu0YxECKwaWBLnDgQfqYizbJIVP6S1lModla1dUriyAfFNuhv44A2J
+	QtxpigF6rfcgWb+5+Mm0v3pmO2jeuod0gLecZ/c/+neppZh45qesOzuQtV8pFHfYdgutn7d58sB
+	q3vNrrk677Qd/X3SvgzVl+JrZgOQ+E+pe
+X-Gm-Gg: ASbGncsx8eFBgtMKQQs6M53p0OpO6yWc8gA+CdlOhHWxhHuVs4T5cZDiwcFtWB84hfb
+	molv36693o9wu9StwV3OCBi0VzkGhdr5fHA==
+X-Google-Smtp-Source: AGHT+IE2SNESjDjt3CVr9ByaKNw942PChdifQMy//jdriCE3Myu/rekhr96PYMZcpMhKp64lFw9SrgCqBx7bUQmVOeE=
+X-Received: by 2002:a17:90a:d450:b0:2ee:d96a:5831 with SMTP id
+ 98e67ed59e1d1-2ef01259f11mr14986037a91.30.1733392048770; Thu, 05 Dec 2024
+ 01:47:28 -0800 (PST)
 MIME-Version: 1.0
-References: <pjL4.1733330505962809259.ABTE@lists.yoctoproject.org>
- <AM9P122MB0266D1F34895376563012228D6372@AM9P122MB0266.EURP122.PROD.OUTLOOK.COM>
- <BN7PR03MB4305C62DFFC631CEA38BA04CF9302@BN7PR03MB4305.namprd03.prod.outlook.com>
-In-Reply-To: <BN7PR03MB4305C62DFFC631CEA38BA04CF9302@BN7PR03MB4305.namprd03.prod.outlook.com>
+References: <CALvuYr=oud5yZHATSO0PSxGsvY6BhAUGiP9kq=oZE5o-c5MgUA@mail.gmail.com>
+ <465a05d1-4268-476e-bd83-5eb82bd62922@cherry.de> <CALvuYr=6J5C4U6H4teLpa9HvKqto7wn5COfk9f9iJBWeK2dRDg@mail.gmail.com>
+ <a7e30b47-4e2a-477d-b7b3-ab059af37c4d@cherry.de>
+In-Reply-To: <a7e30b47-4e2a-477d-b7b3-ab059af37c4d@cherry.de>
 From: aravind posina <posinaaravind0205@gmail.com>
-Date: Thu, 5 Dec 2024 15:06:05 +0530
-Message-ID: <CALvuYrnyHjmj4+japnqWom4a_2La16ND8uq4bqaC3b5iu4LtGg@mail.gmail.com>
-Subject: Re: [yocto] Installing empty directory
-To: yocto@lists.yoctoproject.org, Jesus.JimenezSanchez@verifone.com
-Cc: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>
-Content-Type: multipart/alternative; boundary="00000000000043703e062882a11b"
+Date: Thu, 5 Dec 2024 15:17:17 +0530
+Message-ID: <CALvuYrnJKAC7OPAD=LZCmNKMSH2nMT5rCiSWhYM3VDP7qd93UQ@mail.gmail.com>
+Subject: Re: [yocto] Backporting in Yocto
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000052d2f6062882c9f5"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 05 Dec 2024 09:36:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64403
+ <yocto@lists.yoctoproject.org>; Thu, 05 Dec 2024 09:54:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64404
 
---00000000000043703e062882a11b
+--00000000000052d2f6062882c9f5
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-just insert one more line in your recipe like this.
+Building backport-include/backport/autoconf.h ... done.
+|   CC [M]
+ /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-ph=
+ytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_=
+0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/com=
+pat/main.o
+| arm-phytec-linux-gnueabi-gcc: error: missing argument to
+'-falign-functions=3D'
+| make[7]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:297:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/comp=
+at/main.o]
+Error 1
+| make[6]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/comp=
+at]
+Error 2
+| make[6]: *** Waiting for unfinished jobs....
+|   CC [M]
+ /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-ph=
+ytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_=
+0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/net=
+/wireless/core.o
+| arm-phytec-linux-gnueabi-gcc: error: missing argument to
+'-falign-functions=3D'
+|   CC [M]
+ /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-ph=
+ytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_=
+0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/net=
+/wireless/sysfs.o
+| make[7]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:297:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/net/=
+wireless/core.o]
+Error 1
+| make[7]: *** Waiting for unfinished jobs....
+| arm-phytec-linux-gnueabi-gcc: error: missing argument to
+'-falign-functions=3D'
+| make[7]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:297:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/net/=
+wireless/sysfs.o]
+Error 1
+| make[6]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/net/=
+wireless]
+Error 2
+|   CC [M]
+ /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-ph=
+ytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_=
+0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/dri=
+vers/net/wireless/broadcom/brcm80211/brcmutil/utils.o
+| arm-phytec-linux-gnueabi-gcc: error: missing argument to
+'-falign-functions=3D'
+| make[10]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:297:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless/broadcom/brcm80211/brcmutil/utils.o]
+Error 1
+| make[10]: *** Waiting for unfinished jobs....
+|   CC [M]
+ /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-ph=
+ytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_=
+0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/dri=
+vers/net/wireless/broadcom/brcm80211/brcmutil/d11.o
+| arm-phytec-linux-gnueabi-gcc: error: missing argument to
+'-falign-functions=3D'
+| make[10]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:297:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless/broadcom/brcm80211/brcmutil/d11.o]
+Error 1
+| make[9]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless/broadcom/brcm80211/brcmutil]
+Error 2
+| make[9]: *** Waiting for unfinished jobs....
+|   CC [M]
+ /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-ph=
+ytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_=
+0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/dri=
+vers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.o
+| arm-phytec-linux-gnueabi-gcc: error: missing argument to
+'-falign-functions=3D'
+| make[10]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:297:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.o]
+Error 1
+| make[9]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless/broadcom/brcm80211/brcmfmac]
+Error 2
+| make[8]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless/broadcom/brcm80211]
+Error 2
+| make[7]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless/broadcom]
+Error 2
+| make[6]: ***
+[/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/driv=
+ers/net/wireless]
+Error 2
+| make[5]: *** [/usr/src/linux-headers-5.15.0-126-generic/Makefile:1910:
+/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phy=
+tec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0=
+118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports]
+Error 2
+| make[4]: *** [Makefile:226: __sub-make] Error 2
+| make[3]: *** [Makefile.build:13: modules] Error 2
+| make[2]: *** [Makefile.real:88: modules] Error 2
+| make[1]: *** [Makefile:43: modules] Error 2
+| make: *** [Makefile:30: default] Error 2
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+| ERROR:
+ExecutionError('/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_se=
+gin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/temp/run.do_=
+compile.621697',
+1, None, None)
+ERROR: Task
+(/home/phytec/sanava-kernel/yocto/sources/meta-sanava/meta-bsp/recipes-kern=
+el/backports/backports-cypress_5.15.58.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 670 tasks of which 662 didn't need to be
+rerun and 1 failed.
+NOTE: Writing buildhistory
+NOTE: Writing buildhistory took: 2 seconds
 
-INSANE_SKIP_${PN} =3D "installed-vs-shipped"
+Summary: 1 task failed:
 
-if your moving empty directory also just try to give any name for better .
+/home/phytec/sanava-kernel/yocto/sources/meta-sanava/meta-bsp/recipes-kerne=
+l/backports/backports-cypress_5.15.58.bb:
+do_compile
+Summary: There were 2 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
-Thanks & Regards
+Above one is the actual error for that one . can you help me to resolve the
+issuse.
+
+thanks & Regards
 Aravind P
 
 
-On Thu, Dec 5, 2024 at 3:03=E2=80=AFPM Jesus Jimenez Sanchez via
-lists.yoctoproject.org <Jesus.JimenezSanchez=3D
-verifone.com@lists.yoctoproject.org> wrote:
+On Wed, Dec 4, 2024 at 3:16=E2=80=AFPM Quentin Schulz <quentin.schulz@cherr=
+y.de>
+wrote:
 
 > Hi,
 >
-> It turns out I was modifying a different copy of the recipe I was
-> building. FILES:${PN} +=3D "/bt_firmware" is working now.
+> On 12/4/24 6:35 AM, aravind posina wrote:
+> > Hi all
+> > can you help me out from the below error.
+> >
+> > ERROR: backports-cypress-5.15.58-r0 do_compile: oe_runmake failed
+> > ERROR: backports-cypress-5.15.58-r0 do_compile:
+> >
+> ExecutionError('/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_=
+segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/temp/run.d=
+o_compile.60669',
+> > 1, None, None)
+> > ERROR: Logfile of failure stored in:
+> >
+> /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-p=
+hytec-linux-gnueabi/backports-cypress/5.15.58-r0/temp/log.do_compile.60669
+> > Log data follows:
+> > | DEBUG: Executing shell function do_compile
+> > | NOTE: make -j 4
+> >
+> KERNEL_SRC=3D/home/phytec/sanava-kernel/yocto/build/tmp/work-shared/phybo=
+ard-segin-imx6ul-7/kernel-source
+> >
+> KERNEL_PATH=3D/home/phytec/sanava-kernel/yocto/build/tmp/work-shared/phyb=
+oard-segin-imx6ul-7/kernel-source
+> > KERNEL_VERSION=3D5.10.76-bsp-yocto-ampliphy-i.mx6ul-pd21.2.1
+> > CC=3Darm-phytec-linux-gnueabi-gcc  -mno-thumb-interwork -marm -fuse-ld=
+=3Dbfd
+> >
+> -fmacro-prefix-map=3D/home/phytec/sanava-kernel/yocto/build/tmp/work/phyb=
+oard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0=3D/us=
+r/src/debug/backports-cypress/5.15.58-r0
+> >
+> >
+>  -fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/build/tmp/work/phy=
+board_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0=3D/u=
+sr/src/debug/backports-cypress/5.15.58-r0
+> >
+> >
+>  -fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/build/tmp/work/phy=
+board_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/reci=
+pe-sysroot=3D
+> >
+> >
+>  -fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/build/tmp/work/phy=
+board_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/reci=
+pe-sysroot-native=3D
+> >
+>  -fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/build/tmp/work-sha=
+red/phyboard-segin-imx6ul-7/kernel-source=3D/usr/src/kernel
+> > LD=3Darm-phytec-linux-gnueabi-ld.bfd   AR=3Darm-phytec-linux-gnueabi-ar
+> >
+>  O=3D/home/phytec/sanava-kernel/yocto/build/tmp/work-shared/phyboard-segi=
+n-imx6ul-7/kernel-build-artifacts
+> > KBUILD_EXTRA_SYMBOLS=3D
+> > | Generating local configuration database from kernel ... done.
+> > | make[5]: 'conf' is up to date.
+> > | .config:1552:warning: symbol value 'm' invalid for CRYPTO_GF128MUL
+> > | .config:1561:warning: symbol value 'm' invalid for CRYPTO_GCM
+> > | .config:1563:warning: symbol value 'm' invalid for CRYPTO_CTR
+> > | .config:1570:warning: symbol value 'm' invalid for CRYPTO_GHASH
+> > | .config:1612:warning: symbol value 'm' invalid for CRC_CCITT
 >
-> Thank you anyways.
+> This doesn't look too good.
 >
+> > | *
+> > | * Restart config...
+> > | *
+> > | *
+> > | * Backports from "Linux" "v5.15.58-2024_0118-0-g1e8368db6e12"
+> (backports
+> > "v5.15.58-1-0-g42a95ce7")
+> > | *
+> > | Compile the package with debug info (BACKPORTED_DEBUG_INFO) [N/y/?] n
+> > | Build all compat code (BPAUTO_USERSEL_BUILD_ALL) [N/y/?] n
+> > | cfg80211 - wireless configuration API (CFG80211) [M/n/?] m
+> > |   nl80211 testmode command (NL80211_TESTMODE) [N/y/?] n
+> > |   enable developer warnings (CFG80211_DEVELOPER_WARNINGS) [N/y/?] n
+> > |   cfg80211 certification onus (CFG80211_CERTIFICATION_ONUS) [N/y/?] n
+> > |   enable powersave by default (CFG80211_DEFAULT_PS) [Y/n/?] y
+> > |   cfg80211 DebugFS entries (CFG80211_DEBUGFS) [N/y/?] n
+> > |   support CRDA (CFG80211_CRDA_SUPPORT) [Y/n/?] y
+> > |   cfg80211 wireless extensions compatibility (CFG80211_WEXT) [N/y/?]
+> (NEW)
+> > | Error in reading or end of file.
 >
-> Best regards,
-> Jes=C3=BAs Jim=C3=A9nez S=C3=A1nchez
-> ------------------------------
-> *From:* Bejar-Colonia, Carlos <carlos.bejar-colonia@philips.com>
-> *Sent:* Wednesday 4 December 2024 16:53
-> *To:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>; Jesus
-> Jimenez Sanchez <Jesus.JimenezSanchez@verifone.com>
-> *Subject:* RE: [yocto] Installing empty directory
+> And this is probably the issue? I assume this is waiting for some
+> interactive session so the user can say yes or no and nothing is input
+> as part of the build so it fails or is stuck there until it times out.
 >
-> You don't often get email from carlos.bejar-colonia@philips.com. Learn
-> why this is important <https://aka.ms/LearnAboutSenderIdentification>
+> This is likely due to using a defconfig/.config that was made for one
+> kernel version being used for another kernel version.
 >
-> *CAUTION:* This email originated from outside of our organization. Do not
-> click links or open attachments unless you recognize the sender and know
-> the content is safe.
->
-> Which yocto version are you using?
->
-> You may want to try:
->
-> FILES:${PN} +=3D "/bt_firmware"
->
->
->
->
->
-> -Carlos
->
->
->
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
-> Behalf Of *Jesus Jimenez Sanchez via lists.yoctoproject.org
-> *Sent:* Wednesday, December 4, 2024 11:42 AM
-> *To:* yocto@lists.yoctoproject.org
-> *Subject:* [yocto] Installing empty directory
->
->
->
-> *Caution: *This e-mail originated from outside of Philips, be careful for
-> phishing.
->
->
->
-> Hello,
->
->
->
-> I am trying to add an empty directory using a recipe. I have this in the
-> do_install:
->
->
->
-> do_install() {
->     install -d ${D}/bt_firmware
->
-> }
->
->
->
-> FILES_${PN} +=3D "/bt_firmware"
->
->
->
-> But I get the following error:
->
->
->
-> Files/directories were installed but not shipped in any package:
->   /bt_firmware
-> Please set FILES such that these items are packaged. Alternatively if the=
-y
-> are unneeded, avoid installing them or delete them within do_install.
->
->
->
-> What am I missing here? What should I add to get it shipped?
->
-> ------------------------------
-> The information contained in this message may be confidential and legally
-> protected under applicable law. The message is intended solely for the
-> addressee(s). If you are not the intended recipient, you are hereby
-> notified that any use, forwarding, dissemination, or reproduction of this
-> message is strictly prohibited and may be unlawful. If you are not the
-> intended recipient, please contact the sender by return e-mail and destro=
-y
-> all copies of the original message.
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64402):
-> https://lists.yoctoproject.org/g/yocto/message/64402
-> Mute This Topic: https://lists.yoctoproject.org/mt/109922958/8556823
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> posinaaravind0205@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+> Cheers,
+> Quentin
 >
 
---00000000000043703e062882a11b
+--00000000000052d2f6062882c9f5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">just insert one more line in your recipe like this.<br><br=
->INSANE_SKIP_${PN} =3D &quot;installed-vs-shipped&quot;<br><br>if your movi=
-ng empty directory also just try to give any name for better .<br><br>Thank=
-s &amp;=C2=A0Regards<br>Aravind P<div><br></div></div><br><div class=3D"gma=
-il_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Th=
-u, Dec 5, 2024 at 3:03=E2=80=AFPM Jesus Jimenez Sanchez via <a href=3D"http=
-://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;Jesus.JimenezSanc=
-hez=3D<a href=3D"mailto:verifone.com@lists.yoctoproject.org">verifone.com@l=
-ists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div class=3D"msg-7817359897175661708">
+<div dir=3D"ltr">Building backport-include/backport/autoconf.h ... done.<br=
+>| =C2=A0 CC [M] =C2=A0/home/phytec/sanava-kernel/yocto/build/tmp/work/phyb=
+oard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypre=
+ss-fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/=
+v5.15.58-backports/compat/main.o<br>| arm-phytec-linux-gnueabi-gcc: error: =
+missing argument to &#39;-falign-functions=3D&#39;<br>| make[7]: *** [/usr/=
+src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:297: /home/phyt=
+ec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phytec-linux-=
+gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0118/cypres=
+s-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/compat/main.o]=
+ Error 1<br>| make[6]: *** [/usr/src/linux-headers-5.15.0-126-generic/scrip=
+ts/Makefile.build:560: /home/phytec/sanava-kernel/yocto/build/tmp/work/phyb=
+oard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypre=
+ss-fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/=
+v5.15.58-backports/compat] Error 2<br>| make[6]: *** Waiting for unfinished=
+ jobs....<br>| =C2=A0 CC [M] =C2=A0/home/phytec/sanava-kernel/yocto/build/t=
+mp/work/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15=
+.58-r0/cypress-fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118=
+-module-src/v5.15.58-backports/net/wireless/core.o<br>| arm-phytec-linux-gn=
+ueabi-gcc: error: missing argument to &#39;-falign-functions=3D&#39;<br>| =
+=C2=A0 CC [M] =C2=A0/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboar=
+d_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-=
+fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.=
+15.58-backports/net/wireless/sysfs.o<br>| make[7]: *** [/usr/src/linux-head=
+ers-5.15.0-126-generic/scripts/Makefile.build:297: /home/phytec/sanava-kern=
+el/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backpo=
+rts-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0118/cypress-backports-v5=
+.15.58-2024_0118-module-src/v5.15.58-backports/net/wireless/core.o] Error 1=
+<br>| make[7]: *** Waiting for unfinished jobs....<br>| arm-phytec-linux-gn=
+ueabi-gcc: error: missing argument to &#39;-falign-functions=3D&#39;<br>| m=
+ake[7]: *** [/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.bui=
+ld:297: /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6=
+ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.5=
+8-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backpo=
+rts/net/wireless/sysfs.o] Error 1<br>| make[6]: *** [/usr/src/linux-headers=
+-5.15.0-126-generic/scripts/Makefile.build:560: /home/phytec/sanava-kernel/=
+yocto/build/tmp/work/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports=
+-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0118/cypress-backports-v5.15=
+.58-2024_0118-module-src/v5.15.58-backports/net/wireless] Error 2<br>| =C2=
+=A0 CC [M] =C2=A0/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_s=
+egin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fma=
+c-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.=
+58-backports/drivers/net/wireless/broadcom/brcm80211/brcmutil/utils.o<br>| =
+arm-phytec-linux-gnueabi-gcc: error: missing argument to &#39;-falign-funct=
+ions=3D&#39;<br>| make[10]: *** [/usr/src/linux-headers-5.15.0-126-generic/=
+scripts/Makefile.build:297: /home/phytec/sanava-kernel/yocto/build/tmp/work=
+/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/=
+cypress-fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module=
+-src/v5.15.58-backports/drivers/net/wireless/broadcom/brcm80211/brcmutil/ut=
+ils.o] Error 1<br>| make[10]: *** Waiting for unfinished jobs....<br>| =C2=
+=A0 CC [M] =C2=A0/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_s=
+egin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fma=
+c-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.=
+58-backports/drivers/net/wireless/broadcom/brcm80211/brcmutil/d11.o<br>| ar=
+m-phytec-linux-gnueabi-gcc: error: missing argument to &#39;-falign-functio=
+ns=3D&#39;<br>| make[10]: *** [/usr/src/linux-headers-5.15.0-126-generic/sc=
+ripts/Makefile.build:297: /home/phytec/sanava-kernel/yocto/build/tmp/work/p=
+hyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cy=
+press-fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-s=
+rc/v5.15.58-backports/drivers/net/wireless/broadcom/brcm80211/brcmutil/d11.=
+o] Error 1<br>| make[9]: *** [/usr/src/linux-headers-5.15.0-126-generic/scr=
+ipts/Makefile.build:560: /home/phytec/sanava-kernel/yocto/build/tmp/work/ph=
+yboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cyp=
+ress-fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-sr=
+c/v5.15.58-backports/drivers/net/wireless/broadcom/brcm80211/brcmutil] Erro=
+r 2<br>| make[9]: *** Waiting for unfinished jobs....<br>| =C2=A0 CC [M] =
+=C2=A0/home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul=
+_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-=
+2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backport=
+s/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.o<br>| arm-phyt=
+ec-linux-gnueabi-gcc: error: missing argument to &#39;-falign-functions=3D&=
+#39;<br>| make[10]: *** [/usr/src/linux-headers-5.15.0-126-generic/scripts/=
+Makefile.build:297: /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboar=
+d_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-=
+fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.=
+15.58-backports/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.o=
+] Error 1<br>| make[9]: *** [/usr/src/linux-headers-5.15.0-126-generic/scri=
+pts/Makefile.build:560: /home/phytec/sanava-kernel/yocto/build/tmp/work/phy=
+board_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypr=
+ess-fmac-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src=
+/v5.15.58-backports/drivers/net/wireless/broadcom/brcm80211/brcmfmac] Error=
+ 2<br>| make[8]: *** [/usr/src/linux-headers-5.15.0-126-generic/scripts/Mak=
+efile.build:560: /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_s=
+egin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fma=
+c-v5.15.58-2024_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.=
+58-backports/drivers/net/wireless/broadcom/brcm80211] Error 2<br>| make[7]:=
+ *** [/usr/src/linux-headers-5.15.0-126-generic/scripts/Makefile.build:560:=
+ /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-ph=
+ytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_=
+0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports/dri=
+vers/net/wireless/broadcom] Error 2<br>| make[6]: *** [/usr/src/linux-heade=
+rs-5.15.0-126-generic/scripts/Makefile.build:560: /home/phytec/sanava-kerne=
+l/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backpor=
+ts-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024_0118/cypress-backports-v5.=
+15.58-2024_0118-module-src/v5.15.58-backports/drivers/net/wireless] Error 2=
+<br>| make[5]: *** [/usr/src/linux-headers-5.15.0-126-generic/Makefile:1910=
+: /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-p=
+hytec-linux-gnueabi/backports-cypress/5.15.58-r0/cypress-fmac-v5.15.58-2024=
+_0118/cypress-backports-v5.15.58-2024_0118-module-src/v5.15.58-backports] E=
+rror 2<br>| make[4]: *** [Makefile:226: __sub-make] Error 2<br>| make[3]: *=
+** [Makefile.build:13: modules] Error 2<br>| make[2]: *** [Makefile.real:88=
+: modules] Error 2<br>| make[1]: *** [Makefile:43: modules] Error 2<br>| ma=
+ke: *** [Makefile:30: default] Error 2<br>| ERROR: oe_runmake failed<br>| W=
+ARNING: exit code 1 from a shell command.<br>| ERROR: ExecutionError(&#39;/=
+home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_7-phyt=
+ec-linux-gnueabi/backports-cypress/5.15.58-r0/temp/run.do_compile.621697&#3=
+9;, 1, None, None)<br>ERROR: Task (/home/phytec/sanava-kernel/yocto/sources=
+/meta-sanava/meta-bsp/recipes-kernel/backports/backports-cypress_5.15.58.bb=
+:do_compile) failed with exit code &#39;1&#39;<br>NOTE: Tasks Summary: Atte=
+mpted 670 tasks of which 662 didn&#39;t need to be rerun and 1 failed.<br>N=
+OTE: Writing buildhistory<br>NOTE: Writing buildhistory took: 2 seconds<br>=
+<br>Summary: 1 task failed:<br>=C2=A0 /home/phytec/sanava-kernel/yocto/sour=
+ces/meta-sanava/meta-bsp/recipes-kernel/backports/backports-cypress_5.15.58=
+.bb:do_compile<br>Summary: There were 2 WARNING messages shown.<br>Summary:=
+ There were 2 ERROR messages shown, returning a non-zero exit code.<br><br>=
+Above one is the actual error for that one . can you help me to resolve the=
+ issuse.<br><br>thanks &amp; Regards<br>Aravind P<div><br></div></div><br><=
+div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Wed, Dec 4, 2024 at 3:16=E2=80=AFPM Quentin Schulz &lt;<a hre=
+f=3D"mailto:quentin.schulz@cherry.de">quentin.schulz@cherry.de</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
+<br>
+On 12/4/24 6:35 AM, aravind posina wrote:<br>
+&gt; Hi all<br>
+&gt; can you help me out from the below error.<br>
+&gt; <br>
+&gt; ERROR: backports-cypress-5.15.58-r0 do_compile: oe_runmake failed<br>
+&gt; ERROR: backports-cypress-5.15.58-r0 do_compile:<br>
+&gt; ExecutionError(&#39;/home/phytec/sanava-kernel/yocto/build/tmp/work/ph=
+yboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/tem=
+p/run.do_compile.60669&#39;,<br>
+&gt; 1, None, None)<br>
+&gt; ERROR: Logfile of failure stored in:<br>
+&gt; /home/phytec/sanava-kernel/yocto/build/tmp/work/phyboard_segin_imx6ul_=
+7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0/temp/log.do_compile.606=
+69<br>
+&gt; Log data follows:<br>
+&gt; | DEBUG: Executing shell function do_compile<br>
+&gt; | NOTE: make -j 4<br>
+&gt; KERNEL_SRC=3D/home/phytec/sanava-kernel/yocto/build/tmp/work-shared/ph=
+yboard-segin-imx6ul-7/kernel-source<br>
+&gt; KERNEL_PATH=3D/home/phytec/sanava-kernel/yocto/build/tmp/work-shared/p=
+hyboard-segin-imx6ul-7/kernel-source<br>
+&gt; KERNEL_VERSION=3D5.10.76-bsp-yocto-ampliphy-i.mx6ul-pd21.2.1<br>
+&gt; CC=3Darm-phytec-linux-gnueabi-gcc=C2=A0 -mno-thumb-interwork -marm -fu=
+se-ld=3Dbfd<br>
+&gt; -fmacro-prefix-map=3D/home/phytec/sanava-kernel/yocto/build/tmp/work/p=
+hyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5.15.58-r0=3D=
+/usr/src/debug/backports-cypress/5.15.58-r0<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0-fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/buil=
+d/tmp/work/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5=
+.15.58-r0=3D/usr/src/debug/backports-cypress/5.15.58-r0<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0-fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/buil=
+d/tmp/work/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5=
+.15.58-r0/recipe-sysroot=3D<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0-fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/buil=
+d/tmp/work/phyboard_segin_imx6ul_7-phytec-linux-gnueabi/backports-cypress/5=
+.15.58-r0/recipe-sysroot-native=3D<br>
+&gt;=C2=A0 =C2=A0-fdebug-prefix-map=3D/home/phytec/sanava-kernel/yocto/buil=
+d/tmp/work-shared/phyboard-segin-imx6ul-7/kernel-source=3D/usr/src/kernel<b=
+r>
+&gt; LD=3Darm-phytec-linux-gnueabi-ld.bfd=C2=A0 =C2=A0AR=3Darm-phytec-linux=
+-gnueabi-ar<br>
+&gt;=C2=A0 =C2=A0O=3D/home/phytec/sanava-kernel/yocto/build/tmp/work-shared=
+/phyboard-segin-imx6ul-7/kernel-build-artifacts<br>
+&gt; KBUILD_EXTRA_SYMBOLS=3D<br>
+&gt; | Generating local configuration database from kernel ... done.<br>
+&gt; | make[5]: &#39;conf&#39; is up to date.<br>
+&gt; | .config:1552:warning: symbol value &#39;m&#39; invalid for CRYPTO_GF=
+128MUL<br>
+&gt; | .config:1561:warning: symbol value &#39;m&#39; invalid for CRYPTO_GC=
+M<br>
+&gt; | .config:1563:warning: symbol value &#39;m&#39; invalid for CRYPTO_CT=
+R<br>
+&gt; | .config:1570:warning: symbol value &#39;m&#39; invalid for CRYPTO_GH=
+ASH<br>
+&gt; | .config:1612:warning: symbol value &#39;m&#39; invalid for CRC_CCITT=
+<br>
+<br>
+This doesn&#39;t look too good.<br>
+<br>
+&gt; | *<br>
+&gt; | * Restart config...<br>
+&gt; | *<br>
+&gt; | *<br>
+&gt; | * Backports from &quot;Linux&quot; &quot;v5.15.58-2024_0118-0-g1e836=
+8db6e12&quot; (backports<br>
+&gt; &quot;v5.15.58-1-0-g42a95ce7&quot;)<br>
+&gt; | *<br>
+&gt; | Compile the package with debug info (BACKPORTED_DEBUG_INFO) [N/y/?] =
+n<br>
+&gt; | Build all compat code (BPAUTO_USERSEL_BUILD_ALL) [N/y/?] n<br>
+&gt; | cfg80211 - wireless configuration API (CFG80211) [M/n/?] m<br>
+&gt; |=C2=A0 =C2=A0nl80211 testmode command (NL80211_TESTMODE) [N/y/?] n<br=
+>
+&gt; |=C2=A0 =C2=A0enable developer warnings (CFG80211_DEVELOPER_WARNINGS) =
+[N/y/?] n<br>
+&gt; |=C2=A0 =C2=A0cfg80211 certification onus (CFG80211_CERTIFICATION_ONUS=
+) [N/y/?] n<br>
+&gt; |=C2=A0 =C2=A0enable powersave by default (CFG80211_DEFAULT_PS) [Y/n/?=
+] y<br>
+&gt; |=C2=A0 =C2=A0cfg80211 DebugFS entries (CFG80211_DEBUGFS) [N/y/?] n<br=
+>
+&gt; |=C2=A0 =C2=A0support CRDA (CFG80211_CRDA_SUPPORT) [Y/n/?] y<br>
+&gt; |=C2=A0 =C2=A0cfg80211 wireless extensions compatibility (CFG80211_WEX=
+T) [N/y/?] (NEW)<br>
+&gt; | Error in reading or end of file.<br>
+<br>
+And this is probably the issue? I assume this is waiting for some <br>
+interactive session so the user can say yes or no and nothing is input <br>
+as part of the build so it fails or is stuck there until it times out.<br>
+<br>
+This is likely due to using a defconfig/.config that was made for one <br>
+kernel version being used for another kernel version.<br>
+<br>
+Cheers,<br>
+Quentin<br>
+</blockquote></div>
 
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Hi,</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-It turns out I was modifying a different copy of the recipe I was building.=
- FILES:${PN} +=3D &quot;/bt_firmware&quot; is working now.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-Thank you anyways.</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"m_-992940567649146572Signature">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Best regards,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Jes=C3=BAs Jim=C3=A9nez S=C3=A1nchez</div>
-</div>
-<div id=3D"m_-992940567649146572appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_-992940567649146572divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
-libri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> =
-Bejar-Colonia, Carlos &lt;<a href=3D"mailto:carlos.bejar-colonia@philips.co=
-m" target=3D"_blank">carlos.bejar-colonia@philips.com</a>&gt;<br>
-<b>Sent:</b> Wednesday 4 December 2024 16:53<br>
-<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
-">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctop=
-roject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;; Jesus J=
-imenez Sanchez &lt;<a href=3D"mailto:Jesus.JimenezSanchez@verifone.com" tar=
-get=3D"_blank">Jesus.JimenezSanchez@verifone.com</a>&gt;<br>
-<b>Subject:</b> RE: [yocto] Installing empty directory</font>
-<div>=C2=A0</div>
-</div>
-
-<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
-<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" alig=
-n=3D"left" style=3D"background:revert;color:revert;direction:revert;font-si=
-ze:revert;height:revert;letter-spacing:revert;line-height:revert;margin:rev=
-ert;opacity:revert;outline:revert;overflow:revert;padding:revert;text-align=
-:revert;text-indent:revert;text-orientation:revert;text-overflow:revert;tex=
-t-transform:revert;vertical-align:revert;white-space:revert;word-break:reve=
-rt;word-spacing:revert;writing-mode:revert;zoom:revert;border:0px;display:t=
-able;width:100%;table-layout:fixed;float:none;border-spacing:0px">
-<tbody style=3D"background:revert;border:revert;color:revert;direction:reve=
-rt;font-size:revert;height:revert;letter-spacing:revert;line-height:revert;=
-margin:revert;opacity:revert;outline:revert;overflow:revert;padding:revert;=
-table-layout:revert;text-align:revert;text-indent:revert;text-orientation:r=
-evert;text-overflow:revert;text-transform:revert;vertical-align:revert;whit=
-e-space:revert;width:revert;word-break:revert;word-spacing:revert;writing-m=
-ode:revert;zoom:revert;display:block">
-<tr style=3D"background:revert;border:revert;color:revert;direction:revert;=
-display:revert;font-size:revert;height:revert;letter-spacing:revert;line-he=
-ight:revert;margin:revert;opacity:revert;outline:revert;overflow:revert;pad=
-ding:revert;table-layout:revert;text-align:revert;text-indent:revert;text-o=
-rientation:revert;text-overflow:revert;text-transform:revert;vertical-align=
-:revert;white-space:revert;width:revert;word-break:revert;word-spacing:reve=
-rt;writing-mode:revert;zoom:revert">
-<td valign=3D"middle" width=3D"1px" bgcolor=3D"#A6A6A6" cellpadding=3D"7px =
-2px 7px 2px" style=3D"background-image:revert;background-position:revert;ba=
-ckground-size:revert;background-repeat:revert;background-origin:revert;back=
-ground-clip:revert;border:revert;color:revert;direction:revert;display:reve=
-rt;font-size:revert;height:revert;letter-spacing:revert;line-height:revert;=
-margin:revert;opacity:revert;outline:revert;overflow:revert;table-layout:re=
-vert;text-align:revert;text-indent:revert;text-orientation:revert;text-over=
-flow:revert;text-transform:revert;vertical-align:revert;white-space:revert;=
-word-break:revert;word-spacing:revert;writing-mode:revert;zoom:revert;paddi=
-ng:7px 2px;background-color:rgb(166,166,166);width:0px">
-</td>
-<td valign=3D"middle" width=3D"100%" bgcolor=3D"#EAEAEA" cellpadding=3D"7px=
- 5px 7px 15px" color=3D"#212121" style=3D"background-image:revert;backgroun=
-d-position:revert;background-size:revert;background-repeat:revert;backgroun=
-d-origin:revert;background-clip:revert;border:revert;direction:revert;displ=
-ay:revert;height:revert;letter-spacing:revert;line-height:revert;margin:rev=
-ert;opacity:revert;outline:revert;overflow:revert;table-layout:revert;text-=
-indent:revert;text-orientation:revert;text-overflow:revert;text-transform:r=
-evert;vertical-align:revert;white-space:revert;word-break:revert;word-spaci=
-ng:revert;writing-mode:revert;zoom:revert;width:100%;background-color:rgb(2=
-34,234,234);padding:7px 5px 7px 15px;font-family:wf_segoe-ui_normal,&quot;S=
-egoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif;font-size:12px;f=
-ont-weight:normal;color:rgb(33,33,33);text-align:left">
-<div style=3D"background:revert;border:revert;color:revert;direction:revert=
-;display:revert;font-size:revert;height:revert;letter-spacing:revert;line-h=
-eight:revert;margin:revert;opacity:revert;outline:revert;overflow:revert;pa=
-dding:revert;table-layout:revert;text-align:revert;text-indent:revert;text-=
-orientation:revert;text-overflow:revert;text-transform:revert;vertical-alig=
-n:revert;white-space:revert;width:revert;word-break:revert;word-spacing:rev=
-ert;writing-mode:revert;zoom:revert">
-You don&#39;t often get email from <a href=3D"mailto:carlos.bejar-colonia@p=
-hilips.com" target=3D"_blank">carlos.bejar-colonia@philips.com</a>. <a href=
-=3D"https://aka.ms/LearnAboutSenderIdentification" style=3D"background:reve=
-rt;color:revert;direction:revert;display:revert;font-size:revert;opacity:re=
-vert" target=3D"_blank">
-Learn why this is important</a> </div>
-</td>
-<td valign=3D"middle" align=3D"left" width=3D"75px" bgcolor=3D"#EAEAEA" cel=
-lpadding=3D"7px 5px 7px 5px" color=3D"#212121" style=3D"background-image:re=
-vert;background-position:revert;background-size:revert;background-repeat:re=
-vert;background-origin:revert;background-clip:revert;border:revert;directio=
-n:revert;display:revert;height:revert;letter-spacing:revert;line-height:rev=
-ert;margin:revert;opacity:revert;outline:revert;overflow:revert;table-layou=
-t:revert;text-indent:revert;text-orientation:revert;text-overflow:revert;te=
-xt-transform:revert;vertical-align:revert;white-space:revert;word-break:rev=
-ert;word-spacing:revert;writing-mode:revert;zoom:revert;width:75px;backgrou=
-nd-color:rgb(234,234,234);padding:7px 5px;font-family:wf_segoe-ui_normal,&q=
-uot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif;font-size:1=
-2px;font-weight:normal;color:rgb(33,33,33);text-align:left">
-</td>
-</tr>
-</tbody>
-</table>
-<div>
-<p style=3D"margin-left:35.4pt"><span></span></p>
-<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" widt=
-h=3D"100%" style=3D"width:100%">
-<tbody>
-<tr>
-<td style=3D"background:rgb(187,165,85);padding:5.25pt 5.5pt 5.25pt 1.5pt">=
-<span></span></td>
-<td><span></span>
-</td><td width=3D"98%" style=3D"width:98.44%;background:rgb(255,229,153);pa=
-dding:5.25pt 3.75pt 5.25pt 11.25pt">
-<p><span><b><span style=3D"font-family:Arial,sans-serif;color:rgb(33,33,33)=
-">CAUTION:</span></b></span><span><span style=3D"font-family:Arial,sans-ser=
-if;color:rgb(33,33,33)"> This email originated from outside of our organiza=
-tion. Do not click
- links or open attachments unless you recognize the sender and know the con=
-tent is safe.
-</span><span style=3D"color:black"></span></span></p>
-</td>
-<td><span></span>
-</td></tr>
-</tbody>
-</table>
-<br>
-<div>
-<div>
-<p><span style=3D"font-size:11pt">Which yocto version are you using?</span>=
-</p>
-<p><span style=3D"font-size:11pt">You may want to try:</span></p>
-<p>FILES<span style=3D"background:yellow">:</span>${PN} +=3D &quot;/bt_firm=
-ware&quot;</p>
-<p><span style=3D"font-size:11pt">=C2=A0</span></p>
-<p><span style=3D"font-size:11pt">=C2=A0</span></p>
-<p><span style=3D"font-size:11pt">-Carlos</span></p>
-<p><span style=3D"font-size:11pt">=C2=A0</span></p>
-<div>
-<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
-top:1pt solid rgb(225,225,225);padding:3pt 0in 0in">
-<p><b><span style=3D"font-size:11pt;font-family:Calibri,sans-serif">From:</=
-span></b><span style=3D"font-size:11pt;font-family:Calibri,sans-serif"> <a =
-href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.=
-yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org" ta=
-rget=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;
-<b>On Behalf Of </b>Jesus Jimenez Sanchez via <a href=3D"http://lists.yocto=
-project.org" target=3D"_blank">lists.yoctoproject.org</a><br>
-<b>Sent:</b> Wednesday, December 4, 2024 11:42 AM<br>
-<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
-">yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] Installing empty directory</span></p>
-</div>
-</div>
-<p>=C2=A0</p>
-<div style=3D"border:1pt solid rgb(156,101,0);padding:2pt">
-<p style=3D"line-height:12pt;background:rgb(255,235,156)"><b><span style=3D=
-"font-size:10pt;font-family:Calibri,sans-serif;color:rgb(156,101,0)">Cautio=
-n:
-</span></b><span style=3D"font-size:10pt;font-family:Calibri,sans-serif;col=
-or:black">This e-mail originated from outside of Philips, be careful for ph=
-ishing.
-</span></p>
-</div>
-<p>=C2=A0</p>
-<div>
-<div>
-<p>Hello,</p>
-</div>
-<div>
-<p>=C2=A0</p>
-</div>
-<div>
-<p>I am trying to add an empty directory using a recipe. I have this in the=
- do_install:</p>
-</div>
-<div>
-<p>=C2=A0</p>
-</div>
-<div>
-<div>
-<p>do_install() {<br>
-=C2=A0 =C2=A0 install -d ${D}/bt_firmware</p>
-</div>
-<div>
-<p>}</p>
-</div>
-<div>
-<p>=C2=A0</p>
-</div>
-<div>
-<p>FILES_${PN} +=3D &quot;/bt_firmware&quot;</p>
-</div>
-<div>
-<p>=C2=A0</p>
-</div>
-<div>
-<p>But I get the following error:</p>
-</div>
-<div>
-<p>=C2=A0</p>
-</div>
-<div>
-<p>Files/directories were installed but not shipped in any package:<br>
-=C2=A0 /bt_firmware<br>
-Please set FILES such that these items are packaged. Alternatively if they =
-are unneeded, avoid installing them or delete them within do_install.</p>
-</div>
-<div>
-<p>=C2=A0</p>
-</div>
-<div>
-<p>What am I missing here? What should I add to get it shipped?</p>
-</div>
-</div>
-</div>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Gray" size=3D"1">The information contained in=
- this message may be confidential and legally protected under applicable la=
-w. The message is intended solely for the addressee(s). If you are not the =
-intended recipient, you are hereby notified
- that any use, forwarding, dissemination, or reproduction of this message i=
-s strictly prohibited and may be unlawful. If you are not the intended reci=
-pient, please contact the sender by return e-mail and destroy all copies of=
- the original message.<br>
-</font></div>
-</div>
-</div>
-</div>
-
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#64402): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/64402" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/64402</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/109922958/855=
-6823" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/109922958/8556823</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:posinaaravind0205@gmail.com" target=3D"_blank">p=
-osinaaravind0205@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</div></blockquote></div>
-
---00000000000043703e062882a11b--
+--00000000000052d2f6062882c9f5--
 
