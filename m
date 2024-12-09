@@ -2,53 +2,87 @@ Return-Path: <hassanchattarki@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1363E7717D
-	for <webhook@archiver.kernel.org>; Mon,  9 Dec 2024 11:42:11 +0000 (UTC)
-Subject: Re: [yocto] How to add ARM trust zone TA and CA in my os image
-To: "Ross Burton" <ross.burton@arm.com>, yocto@lists.yoctoproject.org
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B34E3E7717D
+	for <webhook@archiver.kernel.org>; Mon,  9 Dec 2024 11:45:21 +0000 (UTC)
+Subject: Re: [yocto] How to install files in root directory
+To: "aravind posina" <posinaaravind0205@gmail.com>, yocto@lists.yoctoproject.org
 From: "MOHAMMED HASSAN" <hassanchattarki@gmail.com>
 X-Originating-Location: Hyderabad, Telangana, IN (183.82.1.74)
 X-Originating-Platform: Linux Chrome 130
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 09 Dec 2024 03:42:04 -0800
-References: <0EAFCB74-983C-4EEB-AF2C-74E5F850B816@arm.com>
-In-Reply-To: <0EAFCB74-983C-4EEB-AF2C-74E5F850B816@arm.com>
-Message-ID: <15637.1733744524844652799@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="QhIDLWBxQaJwScyor73M"
+Date: Mon, 09 Dec 2024 03:45:21 -0800
+References: <CALvuYrmW4YabKyAPs43GYOihOeEL67=u7+yy_2EMeawSmPzHQg@mail.gmail.com>
+In-Reply-To: <CALvuYrmW4YabKyAPs43GYOihOeEL67=u7+yy_2EMeawSmPzHQg@mail.gmail.com>
+Message-ID: <15637.1733744721485146927@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="iETwcA7EkGuR7rrasATL"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2024 11:42:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64415
+ <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2024 11:45:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64416
 
---QhIDLWBxQaJwScyor73M
+--iETwcA7EkGuR7rrasATL
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ross,
-Well you are right. But I need to develop the TA and CA first. They wont su=
-pport me on it due to security constraints. So i needed to implement it mys=
-elf.
-I am thinking of having an application that would allow me store some secre=
-t data like key in the RPMB block of the eMMC. Any resources that you guys =
-might be aware of can be of help to me.
+It didnt work for me guys.
+I want to place the file in my root home directory.
+
+# Root home directory
+ROOT_HOME ??=3D "/root"
+
+if you guys have suggestions for me please let me know. I have tried the fo=
+llowing lines below but none worked.
+
+install -d ${D}/${HOME}
+install -m 0755 my-file ${D}/${HOME}/my-file
+
+and also tried
+
+install -d ${D}/root
+install -m 0755 my-file ${D}/root/my-file
+
+none worked.
+
+Please let me know if they are any more options i can try.
 
 Thanks
+Hassan
 
---QhIDLWBxQaJwScyor73M
+--iETwcA7EkGuR7rrasATL
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hi Ross,</div>
-<div>Well you are right. But I need to develop the TA and CA first. They wo=
-nt support me on it due to security constraints. So i needed to implement i=
-t myself.</div>
-<div>I am thinking of having an application that would allow me store some =
-secret data like key in the RPMB block of the eMMC. Any resources that you =
-guys might be aware of can be of help to me.</div>
+<div>It didnt work for me guys.</div>
+<div>I want to place the file in my root home directory.</div>
+<div>&nbsp;</div>
+<div># Root home directory<br />ROOT_HOME ??=3D "/root"<br />&nbsp;</div>
+<div>if you guys have suggestions for me please let me know. I have tried t=
+he following lines below but none worked.</div>
+<div>&nbsp;</div>
+<div>
+<div>&nbsp;</div>
+<div><span style=3D"white-space: normal;"><span style=3D"white-space: pre;"=
+> </span>install -d ${D}/${HOME}</span></div>
+<div>&nbsp;install -m 0755 my-file ${D}/${HOME}/my-file</div>
+<div>&nbsp;</div>
+<div>and also tried&nbsp;</div>
+<div>
+<div>&nbsp;</div>
+<div><span style=3D"white-space: normal;"><span style=3D"white-space: pre;"=
+> </span>install -d ${D}/root</span></div>
+<div>&nbsp;install -m 0755 my-file ${D}/root/my-file</div>
+<div>&nbsp;</div>
+<div>none worked.</div>
+<div>&nbsp;</div>
+<div>Please let me know if they are any more options i can try.</div>
 <div>&nbsp;</div>
 <div>Thanks</div>
+<div>Hassan</div>
+<div>&nbsp;</div>
+</div>
+</div>
 
---QhIDLWBxQaJwScyor73M--
+--iETwcA7EkGuR7rrasATL--
 
