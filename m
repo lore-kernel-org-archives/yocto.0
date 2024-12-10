@@ -1,157 +1,209 @@
-Return-Path: <joel.winarske@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E49CE77180
-	for <webhook@archiver.kernel.org>; Tue, 10 Dec 2024 00:52:14 +0000 (UTC)
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
- by mx.groups.io with SMTP id smtpd.web10.751.1733791926893746849
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5248E7717F
+	for <webhook@archiver.kernel.org>; Tue, 10 Dec 2024 05:20:16 +0000 (UTC)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web10.3455.1733808016362586525
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2024 16:52:06 -0800
+ Mon, 09 Dec 2024 21:20:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=OtPgSLsO;
- spf=pass (domain: gmail.com, ip: 209.85.215.171, mailfrom: joel.winarske@gmail.com)
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7fd45005a09so1284779a12.2
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2024 16:52:06 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=SkTdY+4H;
+ spf=pass (domain: gmail.com, ip: 209.85.216.49, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2eed82ca5b4so4420895a91.2
+        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2024 21:20:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733791926; x=1734396726; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1733808016; x=1734412816; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=A1YDOgE4fiTwcN77M1TK6TFqaqNkrTj6ZHQTE56fzKU=;
-        b=OtPgSLsOf2PISN+8nMi8HtNlCqITqnNFHTM4A03jtknH38QU/yIkfcv+jvUZEhu4ue
-         9asXqBuOkTvZ5o2JFJyQdk+5YvlbhYM1UrXOU7uqKyWFhpSTJ7UICr+A8ttMH/4Pb6D1
-         Ift811urnmaO/LRJsc9ziaf5i0qMBtRtr2kLXK4MwSg82luKEY39///vwX9AX5CRHR6g
-         yYMI0DBzKCoB2slPPuHDJzLHToQYEUQEcvonJHVwytDlh+4W3oGqSQSEt8xIiYSyZLk5
-         1wcI6Qv9OC223Pt5z2S5+9UsE1ruC2jUEibCyMDjDZLPBqkMk0ECbedPAxrr6D/khWAR
-         sz2w==
+        bh=qlYHW3DWAwkcVDdYIITwrvBRzBAcltAo2bnuyaeQFO4=;
+        b=SkTdY+4H3S8nczwS0MJ2W0sqMpXBRy7Ycboc4SRwDiqov/9tCLyqP49Lqo1GRL+8OQ
+         qNU5Xy1dc9ZQQLpOBs7T6sUYiHyrTsd4igztElgwKG4csD72w8FIdwgFiJUFNHHJLDuR
+         ucRKfvPdlTnsnxnXnB+3KJJ9V4Ct57VpHx4thBz31xtyBlGBUxS7X99NRqG/usPASQOG
+         7ik4uPtu7VU713rorJhNxcPmoRe+JoNDuRmWiOiJdYvZvjXZxsXipvDOmyKnDlmZrMD6
+         xRM2rKu4dtmExHS5/pO4KTlTMHjw/sh7Q05Bty9Q7Fo/aYaD+u7Z96CY0uoYAkWudUvY
+         42BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733791926; x=1734396726;
+        d=1e100.net; s=20230601; t=1733808016; x=1734412816;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A1YDOgE4fiTwcN77M1TK6TFqaqNkrTj6ZHQTE56fzKU=;
-        b=tgD9Bo6gOcgfxf0XkLXP2iEOQMzlz88ALoQc9nViZZaSEusfX9WanrZaRoG7bh6LZf
-         IHL+YqGzcm64JboZ6VucObtTo7MMmrcb4IirmxqjoVw1xowUQihCDh/NKB5HGjuoedl+
-         GaAboThVOccGESCyRKoyG3HURNHXchLyqk13EyBRSyb7Z0VgBcnKCDin1hoPGuzyswI/
-         IhdCm5Rzy/7jJ7zKr+S7pRh2gALjNIX85Ax62ERGIqhpEKmv8pZtIfghS+EEc8L1Ls2v
-         pl0Ci5giIFs/78QpCHqfOV2VwxDiro5t17F47xIXd6SSXzEGP/uAwP55SVTWMdrXxOyA
-         FdZg==
-X-Gm-Message-State: AOJu0YzQY/+EmoMO1pAWslkLNdubtpzV4GRMXWeL3xMlSgFz7oTNmR/K
-	smTQZi0aV+1oTIf9eIRzRbe1PjiOugbP/Cy0nP2KdEBJH2SIYJvzAOahXuz4iS+oBEwIlXSdSMX
-	hTKX5a3GmpaoMnViIeD5w82NFSSIy0/Yr3YI=
-X-Gm-Gg: ASbGncsbxIYeGlq1BLUt7oi2oFofEskkMHURVCMQPXBP/P0V82x7S6TQjTSXpAH6isi
-	uHQyNn5wml9Bv3omir/Cn4Y16UyGWo9+Ojw==
-X-Google-Smtp-Source: AGHT+IF+BEfAHyNkdK6rJkN6+Dye7yFlaauwWlS3ilefUqB2jlrVwMY5L4sjJetpNLXlDqbCEQbY9C0rkew6W/j7oVk=
-X-Received: by 2002:a17:903:2282:b0:216:7175:41bd with SMTP id
- d9443c01a7336-21671754397mr15662375ad.39.1733791925438; Mon, 09 Dec 2024
- 16:52:05 -0800 (PST)
+        bh=qlYHW3DWAwkcVDdYIITwrvBRzBAcltAo2bnuyaeQFO4=;
+        b=fSSu6Osnya3muLR76Ky/TwGUR4q6WeC/qtY95hsrShbbP0Zqj+OJAZ1dU6AsNnSkg/
+         yR2jy+Z91KUWE/zjEU2+pBgnAkNzszTJjTyoihjMUFzj84WxG5FXpM0mdje6yDKtadHQ
+         9y8kFBn3Q4+i20pj0dzni3/Sa23eFOf1n2x9Zu9YZRZYyq47rC7uzL9DXWLv5wYhiXEx
+         GiK7rBe0jtyXRXvmAC2tHQf92ag5gFwbZM2iP+oEES//NaPMC4UPmpHzp+iZJG9rri5c
+         FWMFSTcbVlDJNscucvnTUuxvmhLG75+4XsMAGe/gv/LTC7pGmQ2RHFPUa/0XG0o7JdNV
+         3FKw==
+X-Forwarded-Encrypted: i=1; AJvYcCXGjIBCHxqGQmXqVS+xaHDginUvnIBh8iSek1nl2Ynglsbg8FS5pRUopNeieahCswET1iDHjQ==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Ywtmd4aZmN0HrYr/G/v8vUcrbxVeM5CMhuvRZKkP1PbGd9jSEy3
+	ZsdStxrR/av8tbvz68ybWpbDaYW4YTxrjwiGv6oWfUMn/hKxCYL3dyKvRZDIudAGqrWib/Mrfrh
+	qHqcX7tlLTpixg47MdI5JLFi6aNE=
+X-Gm-Gg: ASbGncstMtE6DbRHdYFujLTR9OWGr/K4X/8dQNErVIr8JXOg35fHgZKiKsZzaXmTgSz
+	CBwDllgUpPIk0PLY3N7jir2oPrV/iLAY6P2Z6SRmYmdTL1l40qhb4iTeRQxsUwD121u8U+Q==
+X-Google-Smtp-Source: AGHT+IEmgDkAaUw2tBUwqzBz0LAAn58WeVHtMGisAGiP3mepvxGoLSbl3jTeuXUhQZY15Lg7k/QEVDD0LZVtKMaGHHQ=
+X-Received: by 2002:a17:90a:e7c3:b0:2ea:9ccb:d1f4 with SMTP id
+ 98e67ed59e1d1-2efcef27dbcmr5399377a91.0.1733808015612; Mon, 09 Dec 2024
+ 21:20:15 -0800 (PST)
 MIME-Version: 1.0
-From: Joel Winarske <joel.winarske@gmail.com>
-Date: Mon, 9 Dec 2024 16:51:53 -0800
-Message-ID: <CABKMkP+yADHpT7q3LjhfE0VLN92Ct6MGd3ywAm_AJN4se+LVGQ@mail.gmail.com>
-Subject: [scarthgap] meson.current_source_dir()
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000d494370628dfe3e4"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 9 Dec 2024 22:20:04 -0700
+Message-ID: <CAK5yBb_e1ok6isj+zYyGYGu9LbPV0T7Dj-dysVvMpMXYQ8gLJA@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000e121930628e3a2df"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 10 Dec 2024 00:52:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64419
+ <yocto@lists.yoctoproject.org>; Tue, 10 Dec 2024 05:20:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64420
 
---000000000000d494370628dfe3e4
+--000000000000e121930628e3a2df
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Building on scarthgap I'm seeing a problem using meson.
+All,
 
-meson snippet:
-```
-lvgl_opt_var = cmake.subproject_options()
-lvgl_c_flags = '-DEGL_NO_X11 -DLV_CONF_PATH=' + meson.current_source_dir()
-+ '/lv_conf.h'
-lvgl_cxx_flags = '-DEGL_NO_X11 -DLV_CONF_PATH=' +
-meson.current_source_dir() + '/lv_conf.h'
-lvgl_opt_var.add_cmake_defines(
-    {
-        'CMAKE_VERBOSE_MAKEFILE' : true,
-        'CMAKE_C_FLAGS' : lvgl_c_flags,
-        'CMAKE_CXX_FLAGS' : lvgl_cxx_flags })
-```
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-Build Error:
-```
-| In file included from ../git/subprojects/lvgl/src/core/lv_group.h:16,
-|                  from
-../git/subprojects/lvgl/src/core/lv_group_private.h:17,
-|                  from ../git/subprojects/lvgl/src/core/lv_group.c:9:
-| ../git/subprojects/lvgl/src/core/../lv_conf_internal.h:54:42: fatal
-error:
-/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/lv_conf.h:
-No such file or directory
-|    54 |         #include __LV_TO_STR(LV_CONF_PATH)
-|       |                                          ^
-| compilation terminated.
-```
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-Observations:
-```
-$ ls -la
-/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/lv_conf.h
-ls: cannot access
-'/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/lv_conf.h':
-No such file or directory
-```
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 419 unassign=
+ed
+or newcomer bugs.
 
-```
-$ ls -la
-/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-linux/libdrmpp/git/git/examples/lvgl/lv_conf.h
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.2=E2=80=9D, =E2=80=9C5.3", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.2" and then =E2=80=9C5.3=E2=80=9D.
 
--rw-r--r--. 1 joel joel 36431 Dec  9 16:39
-/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-linux/libdrmpp/git/git/examples/lvgl/lv_conf.h
-```
-
-The same meson snippet works correctly on desktop
-
-Why does `meson.current_source_dir()` in Yocto build return an incorrect
-path?
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
 Thanks,
-Joel
 
---000000000000d494370628dfe3e4
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--000000000000e121930628e3a2df
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Building on scarthgap I&#39;m seeing a problem using =
-meson.</div><div><br></div><div>meson snippet:<br>```<br>lvgl_opt_var =3D c=
-make.subproject_options()<br>lvgl_c_flags =3D &#39;-DEGL_NO_X11 -DLV_CONF_P=
-ATH=3D&#39; + meson.current_source_dir() + &#39;/lv_conf.h&#39;<br>lvgl_cxx=
-_flags =3D &#39;-DEGL_NO_X11 -DLV_CONF_PATH=3D&#39; + meson.current_source_=
-dir() + &#39;/lv_conf.h&#39;<br>lvgl_opt_var.add_cmake_defines(<br>=C2=A0 =
-=C2=A0 {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;CMAKE_VERBOSE_MAKEFILE&#39; : =
-true,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;CMAKE_C_FLAGS&#39; : lvgl_c_flags=
-,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;CMAKE_CXX_FLAGS&#39; : lvgl_cxx_flags=
- })<br>```<br><br>Build Error:<br>```<br>| In file included from ../git/sub=
-projects/lvgl/src/core/lv_group.h:16,<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../git/subprojects/lvgl/src/core/lv_gro=
-up_private.h:17,<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0from ../git/subprojects/lvgl/src/core/lv_group.c:9:<br>| ../git/s=
-ubprojects/lvgl/src/core/../lv_conf_internal.h:54:42: fatal error: /mnt/rai=
-d10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/example=
-s/lvgl/lv_conf.h: No such file or directory<br>| =C2=A0 =C2=A054 | =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 #include __LV_TO_STR(LV_CONF_PATH)<br>| =C2=A0 =C2=A0 =
-=C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0^<br>| compilation terminated.<br>```<br><br>Observations:<br>```<br>=
-$ ls -la /mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmp=
-p/git/git/examples/lvgl/lv_conf.h<br>ls: cannot access &#39;/mnt/raid10/yoc=
-to/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/=
-lv_conf.h&#39;: No such file or directory<br>```</div><div><br></div><div>`=
-``<br>$ ls -la /mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-lin=
-ux/libdrmpp/git/git/examples/lvgl/lv_conf.h <br>-rw-r--r--. 1 joel joel 364=
-31 Dec =C2=A09 16:39 /mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-po=
-ky-linux/libdrmpp/git/git/examples/lvgl/lv_conf.h</div><div>```<br></div><d=
-iv><br></div><div>The same meson snippet works correctly on desktop<br></di=
-v><div><br>Why does `meson.current_source_dir()` in Yocto build return an i=
-ncorrect path?<br><br></div><div>Thanks,<br></div><div>Joel<br></div></div>
+<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
+al">All,<br><br>The triage team is starting to try and collect up and class=
+ify bugs which a newcomer to the project would be able to work on in a way =
+which means people can find them. They&#39;re being listed on the triage pa=
+ge under the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/=
+wiki/Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triag=
+e#Newcomer_Bugs</a>  Also please review: <a href=3D"https://www.openembedde=
+d.org/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.=
+org/wiki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugz=
+illa account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount=
+.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The id=
+ea is these bugs should be straight forward for a person to help work on wh=
+o doesn&#39;t have deep experience with the project.  If anyone can help, p=
+lease take ownership of the bug and send patches!  If anyone needs help/adv=
+ice there are people on irc who can likely do so, or some of the more exper=
+ienced contributors will likely be happy to help too.<br><br>Also, the tria=
+ge team meets weekly and does its best to handle the bugs reported into the=
+ Bugzilla. The number of people attending that meeting has fallen, as have =
+the number of people available to help fix bugs. One of the things we hear =
+users report is they don&#39;t know how to help. We (the triage team) are t=
+herefore going to start reporting out the currently 419</span><span style=
+=3D"font-family:Calibri,Arial;font-size:11pt">=C2=A0unassigned or newcomer =
+bugs.</span></div><div><span style=3D"font-size:11pt;font-family:Calibri,Ar=
+ial"><br>We&#39;re hoping people may be able to spare some time now and aga=
+in to help out with these.  Bugs are split into two types, &quot;true bugs&=
+quot; where things don&#39;t work as they should and &quot;enhancements&quo=
+t; which are features we&#39;d want to add to the system.  There are also r=
+oughly four different &quot;priority&quot; classes right now, =E2=80=9C5.2=
+=E2=80=9D, =E2=80=9C5.3&quot;, &quot;5.99&quot; and &quot;Future&quot;, the=
+ more pressing/urgent issues being in &quot;5.2&quot; and then =E2=80=9C5.3=
+=E2=80=9D.<br><br>Please review this link and if a bug is something you wou=
+ld be able to help with either take ownership of the bug, or send me (<a hr=
+ef=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an e-mai=
+l with the bug number you would like and I will assign it to you (please ma=
+ke sure you have a Bugzilla account).  The list is at: <a href=3D"https://w=
+iki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer_Bugs">h=
+ttps://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer=
+_Bugs</a></span></div><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoN=
+ormal" style=3D"background-image:initial;background-position:initial;backgr=
+ound-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-s=
+erif">Thanks,<span></span></span></p>
 
---000000000000d494370628dfe3e4--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--000000000000e121930628e3a2df--
 
