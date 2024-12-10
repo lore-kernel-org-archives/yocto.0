@@ -1,101 +1,157 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <joel.winarske@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CAE3E77182
-	for <webhook@archiver.kernel.org>; Mon,  9 Dec 2024 12:27:12 +0000 (UTC)
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
- by mx.groups.io with SMTP id smtpd.web11.100112.1733747227347122694
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E49CE77180
+	for <webhook@archiver.kernel.org>; Tue, 10 Dec 2024 00:52:14 +0000 (UTC)
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+ by mx.groups.io with SMTP id smtpd.web10.751.1733791926893746849
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2024 04:27:07 -0800
+ Mon, 09 Dec 2024 16:52:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=P47vHWOs;
- spf=pass (domain: gmail.com, ip: 209.85.218.45, mailfrom: skandigraun@gmail.com)
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aa67ac42819so188565266b.0
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2024 04:27:07 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=OtPgSLsO;
+ spf=pass (domain: gmail.com, ip: 209.85.215.171, mailfrom: joel.winarske@gmail.com)
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7fd45005a09so1284779a12.2
+        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2024 16:52:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733747226; x=1734352026; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8kZ8uzqI/KHgSCw2wlxUe61vJL90SIRMGsWx3gbtn2M=;
-        b=P47vHWOsaTirb12Gc7ilHVbkihUsBsHA1Nkikj2Xxj3vnpqny2Ujh+vHGCxCwTWnLv
-         s/oWC1JsiStrlTvdFecV4tZxWrbMA/cLDoyg4UXaxO2zZkkutx5SRjHDalFUHwPZ5t50
-         JYWsRE1ZV6+m0CZINOxn9VWudrtMEOPQpvhpsZRdl4Z81GrQqOdEI9il+bhqaXJhvN+D
-         PwFIiXa0Ex1U7SFQOx91ffvtFVXPo1RYJTBhtcSmL3Np9yx6heqMkxVUaQfJbbjKJYWB
-         QIqz1d1EBbvZYPEl0rtpBniXVUCIN5DXc0GAbO4Q9XuwBdNBAILiPMt5wMjewunQNl6c
-         1cUQ==
+        d=gmail.com; s=20230601; t=1733791926; x=1734396726; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=A1YDOgE4fiTwcN77M1TK6TFqaqNkrTj6ZHQTE56fzKU=;
+        b=OtPgSLsOf2PISN+8nMi8HtNlCqITqnNFHTM4A03jtknH38QU/yIkfcv+jvUZEhu4ue
+         9asXqBuOkTvZ5o2JFJyQdk+5YvlbhYM1UrXOU7uqKyWFhpSTJ7UICr+A8ttMH/4Pb6D1
+         Ift811urnmaO/LRJsc9ziaf5i0qMBtRtr2kLXK4MwSg82luKEY39///vwX9AX5CRHR6g
+         yYMI0DBzKCoB2slPPuHDJzLHToQYEUQEcvonJHVwytDlh+4W3oGqSQSEt8xIiYSyZLk5
+         1wcI6Qv9OC223Pt5z2S5+9UsE1ruC2jUEibCyMDjDZLPBqkMk0ECbedPAxrr6D/khWAR
+         sz2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733747226; x=1734352026;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8kZ8uzqI/KHgSCw2wlxUe61vJL90SIRMGsWx3gbtn2M=;
-        b=DJPrWRU5HS0brUwtHdt2QXG1TTSgH0lK5Z7hGVxgHRGZ3fnrkRF1wy0qpqoAILcuDO
-         SOjNsDzDH+FnktLA3OUGo51IIVl3e9PsRs4mlZfqkTFX5HDt6TMwWqcW+2QeIimy8WOe
-         N8JvQ3B/WS5ReXtELpxv0QfQ+UVFWuBiHGRWry1Le9Gb6bd8+i9k3DMI6qVs6gkVJq6c
-         d7DOk2QUbdPQCwTpIOYcx7HEJY6sKlKani2ObbtBdiKTyraWz0BiRguGRcYekjur1frR
-         dhXeTS2DiJtVdAJJx1HwlABlQ5/zLpNgMT+kI3QeCu0ArDTy7PuExjn6X1vScE7RaxDy
-         YQKA==
-X-Gm-Message-State: AOJu0YyNSYzHER68hPk+/oyFirjxsEfIomtPDOe8UNvcD6GumhREjQfE
-	Ln+felnZmiv/J2TSTIJRIffMLdKNghFELfkWelhf8gTb3r1V4v6gc40xEwjM7J0=
-X-Gm-Gg: ASbGncudSx2DA4y7J428lCF11Zmx2OehxeBiqKFfi1+q6FjYeuewzjua2/CtQNZhPip
-	HxgYMBZLc7GxS15mrRMtHJmH9o7AQy+9GcLo/bPsce7le/lKaln/crUDY40dr8aoA/GXZx2dLcc
-	m3btWTcH57hog8ImX4mYY6BA6I3q2yVvvXbouMZoOAlWmR+tR35Pq7h7qffXP54f7vvRWySf0ZT
-	2LId+AZQIRxv90mXZE+tuW2cP2dGUQ3KtyX28qsa4A9W5wAd/Lb+LC7Vw==
-X-Google-Smtp-Source: AGHT+IHxKqRTg4lsmPegR2Nl+N/246qq7B5b3V5Swm+urWJpqtX2mOs5iCjXfquVUizbhvh5pJibdA==
-X-Received: by 2002:a17:907:2cd6:b0:aa6:93c4:c68b with SMTP id a640c23a62f3a-aa693c4d1f0mr156521866b.32.1733747225423;
-        Mon, 09 Dec 2024 04:27:05 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa683a0a736sm177700366b.142.2024.12.09.04.27.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 04:27:04 -0800 (PST)
-Message-ID: <37255ef2-97cf-4d70-8cb9-237510cbd3a0@gmail.com>
-Date: Mon, 9 Dec 2024 13:27:03 +0100
+        d=1e100.net; s=20230601; t=1733791926; x=1734396726;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A1YDOgE4fiTwcN77M1TK6TFqaqNkrTj6ZHQTE56fzKU=;
+        b=tgD9Bo6gOcgfxf0XkLXP2iEOQMzlz88ALoQc9nViZZaSEusfX9WanrZaRoG7bh6LZf
+         IHL+YqGzcm64JboZ6VucObtTo7MMmrcb4IirmxqjoVw1xowUQihCDh/NKB5HGjuoedl+
+         GaAboThVOccGESCyRKoyG3HURNHXchLyqk13EyBRSyb7Z0VgBcnKCDin1hoPGuzyswI/
+         IhdCm5Rzy/7jJ7zKr+S7pRh2gALjNIX85Ax62ERGIqhpEKmv8pZtIfghS+EEc8L1Ls2v
+         pl0Ci5giIFs/78QpCHqfOV2VwxDiro5t17F47xIXd6SSXzEGP/uAwP55SVTWMdrXxOyA
+         FdZg==
+X-Gm-Message-State: AOJu0YzQY/+EmoMO1pAWslkLNdubtpzV4GRMXWeL3xMlSgFz7oTNmR/K
+	smTQZi0aV+1oTIf9eIRzRbe1PjiOugbP/Cy0nP2KdEBJH2SIYJvzAOahXuz4iS+oBEwIlXSdSMX
+	hTKX5a3GmpaoMnViIeD5w82NFSSIy0/Yr3YI=
+X-Gm-Gg: ASbGncsbxIYeGlq1BLUt7oi2oFofEskkMHURVCMQPXBP/P0V82x7S6TQjTSXpAH6isi
+	uHQyNn5wml9Bv3omir/Cn4Y16UyGWo9+Ojw==
+X-Google-Smtp-Source: AGHT+IF+BEfAHyNkdK6rJkN6+Dye7yFlaauwWlS3ilefUqB2jlrVwMY5L4sjJetpNLXlDqbCEQbY9C0rkew6W/j7oVk=
+X-Received: by 2002:a17:903:2282:b0:216:7175:41bd with SMTP id
+ d9443c01a7336-21671754397mr15662375ad.39.1733791925438; Mon, 09 Dec 2024
+ 16:52:05 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] How to install files in root directory
-To: yocto@lists.yoctoproject.org, hassanchattarki@gmail.com,
- aravind posina <posinaaravind0205@gmail.com>
-References: <CALvuYrmW4YabKyAPs43GYOihOeEL67=u7+yy_2EMeawSmPzHQg@mail.gmail.com>
- <15637.1733744721485146927@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <15637.1733744721485146927@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Joel Winarske <joel.winarske@gmail.com>
+Date: Mon, 9 Dec 2024 16:51:53 -0800
+Message-ID: <CABKMkP+yADHpT7q3LjhfE0VLN92Ct6MGd3ywAm_AJN4se+LVGQ@mail.gmail.com>
+Subject: [scarthgap] meson.current_source_dir()
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000d494370628dfe3e4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2024 12:27:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64418
+ <yocto@lists.yoctoproject.org>; Tue, 10 Dec 2024 00:52:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64419
 
-On 09.12.24 12:45, MOHAMMED HASSAN via lists.yoctoproject.org wrote:
-> It didnt work for me guys.
-> I want to place the file in my root home directory.
-> # Root home directory
-> ROOT_HOME ??= "/root"
-> if you guys have suggestions for me please let me know. I have tried 
-> the following lines below but none worked.
-> install -d ${D}/${HOME}
->  install -m 0755 my-file ${D}/${HOME}/my-file
-> and also tried
-> install -d ${D}/root
->  install -m 0755 my-file ${D}/root/my-file
-> none worked.
-> Please let me know if they are any more options i can try.
-> Thanks
-> Hassan
->
+--000000000000d494370628dfe3e4
+Content-Type: text/plain; charset="UTF-8"
 
-Just thinking loudly: home folders are special on their own, and root 
-home is even more special.
+Building on scarthgap I'm seeing a problem using meson.
 
-Adding files to home folders is usually done through the /etc/skel 
-directory, that's content is supposed to be copied into newly created 
-users' folders by useradd. However not sure if it works with root also. 
-Haven't tried it, though that would be my first try. My second would be 
-to copy the file somewhere else, and have an init script checks upon 
-startup if the file is at the correct place...
+meson snippet:
+```
+lvgl_opt_var = cmake.subproject_options()
+lvgl_c_flags = '-DEGL_NO_X11 -DLV_CONF_PATH=' + meson.current_source_dir()
++ '/lv_conf.h'
+lvgl_cxx_flags = '-DEGL_NO_X11 -DLV_CONF_PATH=' +
+meson.current_source_dir() + '/lv_conf.h'
+lvgl_opt_var.add_cmake_defines(
+    {
+        'CMAKE_VERBOSE_MAKEFILE' : true,
+        'CMAKE_C_FLAGS' : lvgl_c_flags,
+        'CMAKE_CXX_FLAGS' : lvgl_cxx_flags })
+```
 
+Build Error:
+```
+| In file included from ../git/subprojects/lvgl/src/core/lv_group.h:16,
+|                  from
+../git/subprojects/lvgl/src/core/lv_group_private.h:17,
+|                  from ../git/subprojects/lvgl/src/core/lv_group.c:9:
+| ../git/subprojects/lvgl/src/core/../lv_conf_internal.h:54:42: fatal
+error:
+/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/lv_conf.h:
+No such file or directory
+|    54 |         #include __LV_TO_STR(LV_CONF_PATH)
+|       |                                          ^
+| compilation terminated.
+```
+
+Observations:
+```
+$ ls -la
+/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/lv_conf.h
+ls: cannot access
+'/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/lv_conf.h':
+No such file or directory
+```
+
+```
+$ ls -la
+/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-linux/libdrmpp/git/git/examples/lvgl/lv_conf.h
+
+-rw-r--r--. 1 joel joel 36431 Dec  9 16:39
+/mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-linux/libdrmpp/git/git/examples/lvgl/lv_conf.h
+```
+
+The same meson snippet works correctly on desktop
+
+Why does `meson.current_source_dir()` in Yocto build return an incorrect
+path?
+
+Thanks,
+Joel
+
+--000000000000d494370628dfe3e4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Building on scarthgap I&#39;m seeing a problem using =
+meson.</div><div><br></div><div>meson snippet:<br>```<br>lvgl_opt_var =3D c=
+make.subproject_options()<br>lvgl_c_flags =3D &#39;-DEGL_NO_X11 -DLV_CONF_P=
+ATH=3D&#39; + meson.current_source_dir() + &#39;/lv_conf.h&#39;<br>lvgl_cxx=
+_flags =3D &#39;-DEGL_NO_X11 -DLV_CONF_PATH=3D&#39; + meson.current_source_=
+dir() + &#39;/lv_conf.h&#39;<br>lvgl_opt_var.add_cmake_defines(<br>=C2=A0 =
+=C2=A0 {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;CMAKE_VERBOSE_MAKEFILE&#39; : =
+true,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;CMAKE_C_FLAGS&#39; : lvgl_c_flags=
+,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;CMAKE_CXX_FLAGS&#39; : lvgl_cxx_flags=
+ })<br>```<br><br>Build Error:<br>```<br>| In file included from ../git/sub=
+projects/lvgl/src/core/lv_group.h:16,<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../git/subprojects/lvgl/src/core/lv_gro=
+up_private.h:17,<br>| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0from ../git/subprojects/lvgl/src/core/lv_group.c:9:<br>| ../git/s=
+ubprojects/lvgl/src/core/../lv_conf_internal.h:54:42: fatal error: /mnt/rai=
+d10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/example=
+s/lvgl/lv_conf.h: No such file or directory<br>| =C2=A0 =C2=A054 | =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 #include __LV_TO_STR(LV_CONF_PATH)<br>| =C2=A0 =C2=A0 =
+=C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0^<br>| compilation terminated.<br>```<br><br>Observations:<br>```<br>=
+$ ls -la /mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmp=
+p/git/git/examples/lvgl/lv_conf.h<br>ls: cannot access &#39;/mnt/raid10/yoc=
+to/scarthgap/up2u/tmp/work/corei7-64-poky-1/libdrmpp/git/git/examples/lvgl/=
+lv_conf.h&#39;: No such file or directory<br>```</div><div><br></div><div>`=
+``<br>$ ls -la /mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-poky-lin=
+ux/libdrmpp/git/git/examples/lvgl/lv_conf.h <br>-rw-r--r--. 1 joel joel 364=
+31 Dec =C2=A09 16:39 /mnt/raid10/yocto/scarthgap/up2u/tmp/work/corei7-64-po=
+ky-linux/libdrmpp/git/git/examples/lvgl/lv_conf.h</div><div>```<br></div><d=
+iv><br></div><div>The same meson snippet works correctly on desktop<br></di=
+v><div><br>Why does `meson.current_source_dir()` in Yocto build return an i=
+ncorrect path?<br><br></div><div>Thanks,<br></div><div>Joel<br></div></div>
+
+--000000000000d494370628dfe3e4--
 
