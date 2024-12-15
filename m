@@ -1,119 +1,96 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D0EDE7717F
-	for <webhook@archiver.kernel.org>; Fri, 13 Dec 2024 17:54:38 +0000 (UTC)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
- by mx.groups.io with SMTP id smtpd.web11.1675.1734112469369948893
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 604B1E7716A
+	for <webhook@archiver.kernel.org>; Sun, 15 Dec 2024 22:48:05 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+ by mx.groups.io with SMTP id smtpd.web11.44829.1734302881700004851
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Dec 2024 09:54:29 -0800
+ Sun, 15 Dec 2024 14:48:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=SvN0YIiV;
- spf=softfail (domain: sakoman.com, ip: 209.85.219.169, mailfrom: steve@sakoman.com)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e3f4364c4easo1820750276.0
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Dec 2024 09:54:29 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=AmaHREh3;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.48, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4361815b96cso22431385e9.1
+        for <yocto@lists.yoctoproject.org>; Sun, 15 Dec 2024 14:48:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1734112468; x=1734717268; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vmzc5/HZ4TLCINzfB9sozUyd2PS3YTCN7rhJJvtAz1E=;
-        b=SvN0YIiVa6dCXFtwpySQ2QESBkz5WDXEFvoM4/dseZCzUoENZnPWmcxKNAx13ekXhE
-         sGWX6fze4pIHpzPwfV0OxcV75dQRNA0w+PoJ6tbBABCXZdGoZ40hvvyZKAqRhqUbZySQ
-         AYsCDOiRoayX1J3R+yhCMGOYjwKUJaC5M5dPdTrqBFEwKRHWyEXVdBpGtfG9krxhKFOj
-         J+pLrijk/372YSau+d/4uhmg21vNmc3OHSVWLR/o5d1SSGCfXXYgsD90rtXIRqBusdul
-         qBe/BLY1qnXmBVm/KobXP15RKK/+HW+mwicfwkmlhvKy3sopkM2NdJyAF9YG7VnTqFn4
-         i8OQ==
+        d=linuxfoundation.org; s=google; t=1734302880; x=1734907680; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:date:cc:to:from
+         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=goxLA4LCPs48fGjSFJ9hpOXi4tWeo/Nq8DhgxUGfGaE=;
+        b=AmaHREh3vyZ8EeQKJo6KTCaEskH5Q0ZvMBb4BZQUAKKiV1EpBMwAizkOzcS961ds0W
+         beTV7cFWFmncNG5XKgGuvOVL6vFpcQln3pdCJxQgQkfsMrYBbAESUn14lyYXSAFDrhJy
+         IfUE+Rzv+7xGKdljVvoCrKOUKKsxlY2hpT96g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734112468; x=1734717268;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vmzc5/HZ4TLCINzfB9sozUyd2PS3YTCN7rhJJvtAz1E=;
-        b=TR8VMLJJlmMEVl3ZJME2f26L4+dT0/t5iTe8xFPwKJyp/rquwKAw/jnzVEUm6ffO0Q
-         Kl6knE0FLJGc6YmNJg9+nH2CTcz1kiso8tqZQLS+aNBsTy3tl3g1bWSOw47Bz4XI3cJQ
-         dmT7R5g/fWpTGmrf8NanM0F0rISiiatH9aw2tQMRpeFE9+ZklQaQaFALdi3FBdU0Soww
-         PIyr5pjchjXwUXNVSVc98/iHvnSqERgP8Akg2jbFFs+iFLJ/jhERGtmVDtGGgvJ4Nb00
-         18uZx/GeZ30lT6gvAFLMyr4WWM9Mr2n07H1QkOK15cvstuu60hFK0KdvS/vRf7oUmvgM
-         FCSg==
-X-Gm-Message-State: AOJu0Yz2pHIXEO4hv7Lfb8FnUNTTi69ZpgMDd5Y31INlHYqXsFp513md
-	wxoC6l6gwHmDegcRIRWOnf3eE6++Hpch3gXxHwT7eKqua1c6HqwlwyqYk++0u1DagfSA7h24o2Z
-	VjjgEz/FicQdDV9vRrp3rGN6bUT1pCHgq1Tbj8g==
-X-Gm-Gg: ASbGncvIsreSKas2Si1taiwkivn8y18a0O/5IOgqvqVu4dgQf9rIiGNiEqBcSaP+36L
-	mpiez00w092SlXc/9WY6tFAK08XcPuU/Nv3w4kA==
-X-Google-Smtp-Source: AGHT+IEvSNwNwlVkG8y01/eGptokBoPIJL2RrYHCj04erN60kg2IWDkJXlUBWk1BAfHDJhdyaTOZ+uqBVhVBYkEeZYs=
-X-Received: by 2002:a05:6902:2191:b0:e38:9d2e:4162 with SMTP id
- 3f1490d57ef6-e438a474d5amr3086967276.12.1734112468333; Fri, 13 Dec 2024
- 09:54:28 -0800 (PST)
-MIME-Version: 1.0
-References: <CAGDS+nkB+EyEg8FOQUbjt+aeAs5DBLEtsMojDjyarvLM=ikT4g@mail.gmail.com>
-In-Reply-To: <CAGDS+nkB+EyEg8FOQUbjt+aeAs5DBLEtsMojDjyarvLM=ikT4g@mail.gmail.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Fri, 13 Dec 2024 09:54:17 -0800
-Message-ID: <CAOSpxdZTB05gYsbQ_xJVkoBft1su1cZFQgYOCT=WBNVTnZQPJg@mail.gmail.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-5.0.6.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
+        d=1e100.net; s=20230601; t=1734302880; x=1734907680;
+        h=mime-version:user-agent:content-transfer-encoding:date:cc:to:from
+         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=goxLA4LCPs48fGjSFJ9hpOXi4tWeo/Nq8DhgxUGfGaE=;
+        b=hWDFOUiLCE6s11m7x49YKui9GgYK11DDGivWyH9ZzXRJryO9nBOX+ijvl31R/uDNGY
+         xOEN/BrLQWyLRtY7cUHWXP6QjPniDwcoYv/6iz0qqujpCr+zbaktCDAyHgBa0bgh8Cgh
+         e9la4u1AsPGFS83Ah99cwCAPqxaN8M/zp17lFvAna+MzVT15iGwy221zgrO8mHulL3BZ
+         RPpT14lYvLjKw2ZES9c5IEz/A00IynMI7htuXs60Pd6V6i+eg8p5PpmZ2qoFuOJVotED
+         p7TvaE00w3eUsVH9tovAqH4ee5I0eXlo9Fd14GEX1Vr8xYhB1UDan8ZF9/VYwKvVnOQ6
+         q6FA==
+X-Gm-Message-State: AOJu0Ywtayn4PVrUmrZe7Tux6cbOMEirMjY55BEx6HhVpUGANVWb7Du5
+	TtUrimZWi5Ahh5hYizvS3CcVUqUkKPijkiQxMlQkqSwLVkphHjrk8ulv8A2gyrgzDmlm+ieySJ/
+	a
+X-Gm-Gg: ASbGncv8tkqgsrJLH7rg9FRa/HsD97Lr6GIXG09QUbOAdGe5j+pY5kbvdbM4NBxUGUz
+	TSwLtF+YYXJ7kLox3x6EQN5WTtlio1pJRMNJ78YfQoTWHnLmMHPgeQx8fZnBIq5mry1UkJ9fOzK
+	DHfSffOUyWi0VemRSMQroJ+VImscn7M4RA/aiSZiAZk5PL6PsEZnZgE5s9fP4qUXaHGKqQCT6jc
+	v3MtEgojWtCyv3Z2rOD4cUbPUZ2lZ/nni52WU63vtlh6ErzMPSniFNW5xfTXzWxMbvF1DWRkp8u
+	kRQ9hZXOczVu5vJQBgTGeJYBrZS0P/2yrQkoc1FUk8babA==
+X-Google-Smtp-Source: AGHT+IHblYqogcPyFg5e0994WsA3xymHpgn4umkPEpPyn3XjkAH22u3ZosUN060m+fMRPXB6oCUT4A==
+X-Received: by 2002:a05:6000:2a4:b0:382:4115:1ccb with SMTP id ffacd0b85a97d-38880abfbefmr9134577f8f.7.1734302879607;
+        Sun, 15 Dec 2024 14:47:59 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:444d:802f:f68a:bc3c? ([2001:8b0:aba:5f3c:444d:802f:f68a:bc3c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4363602d940sm66579765e9.12.2024.12.15.14.47.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Dec 2024 14:47:58 -0800 (PST)
+Message-ID: <2157aff053df3e53717993042e587b20e256f87b.camel@linuxfoundation.org>
+Subject: QA notification for completed autobuilder build (yocto-5.2_M1.rc2)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
+Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
+Date: Sun, 15 Dec 2024 22:47:57 +0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.0-1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 13 Dec 2024 17:54:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64446
+ <yocto@lists.yoctoproject.org>; Sun, 15 Dec 2024 22:48:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64447
 
-This was an all green build except for the meta-agl-core test.  A
-series of commits to meta-agl this morning broke master and scarthgap
-builds.
+    A build flagged for QA (yocto-5.2_M1.rc2) was completed on the
+autobuilder and is available at:
 
-The test passed prior to these commits.  I think we are good to
-proceed with QA on this rc1 build.
 
-Steve
+        https://valkyrie.yocto.io/pub/releases/yocto-5.2_M1.rc2
 
-On Fri, Dec 13, 2024 at 9:51=E2=80=AFAM Steve Sakoman via
-lists.yoctoproject.org <sakoman=3Dgmail.com@lists.yoctoproject.org>
-wrote:
->
-> A build flagged for QA (yocto-5.0.6.rc1) was completed on the
-> autobuilder and is available at:
->
->     https://valkyrie.yocto.io/pub/releases/yocto-5.0.6.rc1
->
-> Build URL: https://valkyrie.yoctoproject.org/#/builders/29/builds/639
->
-> Build hash information:
->
-> bitbake: f40a3a477d5241b697bf2fb030dd804c1ff5839f
-> meta-agl: 2e060732691ed8fcee6725cf8ebc92e887bfd188
-> meta-arm: 7088279c0ab00c7dabefdd4544951b4746b48476
-> meta-aws: ee5bb55697723ccf692592e0b37ad268869e1c0c
-> meta-clang: 9fbfa9db33131abdf3870a94f00199eb53e276e5
-> meta-intel: b61d5310fcb4e5077bb4b1de0228dc45ba69510f
-> meta-mingw: acbba477893ef87388effc4679b7f40ee49fc852
-> meta-openembedded: b8d1a14f7f3b76457c36752202ea7ae5881b6654
-> meta-virtualization: 450941a1b6df96285691e8c23d4f332d3c88a994
-> oecore: 336eec6808710f260a5336ca8ca98139a80ccb14
-> poky: 2541a8171f91812a4b16e7dc4da0d77d2318a256
->
->
->
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#486): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/486
-> Mute This Topic: https://lists.yoctoproject.org/mt/110101835/3620601
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/12627247/3620601/791647976/xyzzy [steve@sakoman.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+
+    Build URL:
+https://valkyrie.yoctoproject.org/#/builders/29/builds/647
+
+    Build hash information:=20
+
+    bitbake: ba90fe673aa87cb0cda9b2e465ebe2063551f527
+meta-agl: c036aa7b02f8cdf0f9190358bb8d8128c47c689b
+meta-arm: b2c43dbf9b4e7c22038bdd5d01633962afe8f18f
+meta-aws: 74dc7bc21a81c82fa9640997da206ee097704341
+meta-clang: 147349b7334b8a25b96bb08c2361ae0ae95e7eb6
+meta-intel: d0150964ca7c6a83d38ba54cda3e19b34d274f80
+meta-mingw: 220a8ad605d60247df27d3a66facc89c1854ed10
+meta-openembedded: da51096bcf257723a929c799bc6934877de81fa5
+meta-virtualization: c1f668c337a56457acacbbefe4d1f1989202ba95
+oecore: e345b34703d4fa5e0bc9a82ac33b7c1fd84f99fe
+poky: fafd1db382cc24c53c17170df82780f9d593ca1f
+
+
+   =20
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org  =20
 
