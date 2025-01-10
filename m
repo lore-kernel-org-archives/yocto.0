@@ -1,130 +1,97 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <enguerrand.de-ribaucourt@savoirfairelinux.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22022E77188
-	for <webhook@archiver.kernel.org>; Fri, 10 Jan 2025 14:22:10 +0000 (UTC)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
- by mx.groups.io with SMTP id smtpd.web10.19547.1736518923982761336
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D004FE77188
+	for <webhook@archiver.kernel.org>; Fri, 10 Jan 2025 16:29:30 +0000 (UTC)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+ by mx.groups.io with SMTP id smtpd.web10.23190.1736526566991714692
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Jan 2025 06:22:04 -0800
+ Fri, 10 Jan 2025 08:29:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Kgv+M1ON;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.49, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4361fe642ddso22733785e9.2
-        for <yocto@lists.yoctoproject.org>; Fri, 10 Jan 2025 06:22:03 -0800 (PST)
+ dkim=pass header.i=@savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=gHRFxIb+;
+ spf=pass (domain: savoirfairelinux.com, ip: 208.88.110.44, mailfrom: enguerrand.de-ribaucourt@savoirfairelinux.com)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id D970A9C62BD;
+	Fri, 10 Jan 2025 11:29:25 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id drCE0bsyAR6S; Fri, 10 Jan 2025 11:29:25 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 618219C6885;
+	Fri, 10 Jan 2025 11:29:25 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 618219C6885
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1736518922; x=1737123722; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=SEn2BoWfxu+nrRGzfT24T8ZGMIh7qCPpQA3Gnl+F4lI=;
-        b=Kgv+M1ONTpsVfhGWzBonM55qFBS32rFL0NqNcheCCZKXJUpe0cojEvlikm98GDXKzR
-         l/Ve/CFHRmjnyN91OOhp/opVPhb65MIfkE7/RbO83V1zyPEQEedaux9M8pcDmV485sKL
-         pVG0k17TXQfreWaS9TitpZmvAvFPe62aFJfBc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736518922; x=1737123722;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SEn2BoWfxu+nrRGzfT24T8ZGMIh7qCPpQA3Gnl+F4lI=;
-        b=UODYgLsJqX2oRcL/rAMJPMAI6IgMNsKtk9UrWxOVUTr8cKQ2T7uJYvRaI8c/ImBdCw
-         PW2r6gGkfakf8YTGAiQVfk+hqYOccFwvqiMklxspBXM48s4s5qyNa9kqavzZ0Bj0wVnJ
-         /YVp1xiBSsk+R0I536jnd1dQiHUTb/HFJi9ify4i8NCQVdjOruXh2BJEgHndqccOFiRC
-         1nfylsMhHArj79/lMmXFTGT3xOJ2ZmpY5ufj/Sz1esvgcwE9kLEuuUoOBIEmu70I4lMp
-         rd3CCz0piwz+7Du3QjfTOsV2AoKhmzqvEA0AtckcD8GSFgUALFen1lfrOBqZ/PiCuOZs
-         4Gnw==
-X-Gm-Message-State: AOJu0YyP7bfoeI8GR+/r7f2aIVbXqxLwsqLsMQCgq3ipru5BnRcKiVpL
-	yzx4jVQnQopCFbhNMkTFzbRFGAULjtvXrT/DG18IZOqkJgBuOO/f+yHkerwli6a9jpbs3YNS4Kn
-	W6L8=
-X-Gm-Gg: ASbGncsbph3WHa/5gNbvhytbMdASyDS/TEZHFkKFswO9R3Y98SFh4bNeHIB+fbQ6vn5
-	qKT+q8rX8iExWONJMAjZ9+KWj6EnpKD2PMjJm1QChmCgGy8tzbtDCs9y25MFP4NLbx0mcervair
-	Bjhh5Lts3FBiBH+j8yLBIt1vHeGTN6ObF+zh34rujVP80PjrWTMYBtmf3vJhDJRMEmU2VG02rxS
-	u9P2l5rbxM74OXTi+j0VUom1FuuYY9co98IgRuYKVCN5QG1vWmla7rrTnX4wD5F5/r4fTVqu49X
-	h65ab4oQEW+56z36q5zKbggCmnTzx2adSPs3gyCBUnOLNw==
-X-Google-Smtp-Source: AGHT+IE/pDXp34Pa80F7tJmRV1qGiPXO4uztjWiJRbzcedevlDCYrdsbzFhq2y+6w6+POtcNuyLxMw==
-X-Received: by 2002:a05:600c:c0e:b0:436:488f:4d8 with SMTP id 5b1f17b1804b1-436eb9a154amr68473635e9.11.1736518921939;
-        Fri, 10 Jan 2025 06:22:01 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:d75e:67c5:40ee:6f3d? ([2001:8b0:aba:5f3c:d75e:67c5:40ee:6f3d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e6251asm56474045e9.40.2025.01.10.06.22.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 06:22:01 -0800 (PST)
-Message-ID: <3333711ed2425169284562ae706434425df28cbe.camel@linuxfoundation.org>
-Subject: Re: [yocto] [linux-yocto][poky][master][PATCH] module.bbclass:
- enhance KBUILD_EXTRA_SYMBOLS retrieval
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org, dchvs11@gmail.com
-Cc: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Fri, 10 Jan 2025 14:22:00 +0000
-In-Reply-To: <20250110030847.4839-1-dchvs11@gmail.com>
-References: <20250110030847.4839-1-dchvs11@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.0-1 
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1736526565; bh=x9KhgF82SpLV9m8Fh+Uh/Nt9lnlRBi7sOPi4JQfZPQ8=;
+	h=Message-ID:Date:MIME-Version:From:To;
+	b=gHRFxIb+cX+u45hiupCZvL1Mr482H0uAgXhgE+vX1LOIfkk9i6M96E1KYNkj1C7/U
+	 PvrPwCgOJqmBbUD7SsKpQtXKP4rrT6PH0ppcLAQZb4DeYrBmKAgWJF4+1sHerBF/qs
+	 GmQwykRBZz+F/cwvQr9HmmPUuXUb4SIZUfvGHzvaGIkfxwj2fVLVN6XTkFyT81u55E
+	 qobcR1cqNGvTPfubu173UaFGrz3YLkKjZ9743wrmBMvhWTnfs80lUg6hAKEOsbh2US
+	 jbkvEQVvaor1N1jk/D3Wp+0VQywldD9oTBuJ4dHpsBvsc041TX+2oNpnwR+uxF+nIB
+	 CNyWueEJBmr+g==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 8VnT19eBc8Bz; Fri, 10 Jan 2025 11:29:25 -0500 (EST)
+Received: from [192.168.216.123] (80-15-101-118.ftth.fr.orangecustomers.net [80.15.101.118])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id AC6669C62BD;
+	Fri, 10 Jan 2025 11:29:24 -0500 (EST)
+Message-ID: <b3100b96-b96a-4e00-b1d9-c6ce692d7f9f@savoirfairelinux.com>
+Date: Fri, 10 Jan 2025 17:29:23 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Enguerrand de Ribaucourt <enguerrand.de-ribaucourt@savoirfairelinux.com>
+Subject: [ANNOUNCEMENT] VS Code Yocto Project extension v2.8.0 is released
+To: yocto-announce@lists.yoctoproject.org, yocto@lists.yoctoproject.org
+Cc: Mohammed Raza <mohammed.raza@savoirfairelinux.com>,
+ Ross Burton <Ross.Burton@arm.com>,
+ Richard Purdie <richard.purdie@linuxfoundation.org>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Jan 2025 14:22:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64530
+ <yocto@lists.yoctoproject.org>; Fri, 10 Jan 2025 16:29:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64531
 
-On Fri, 2025-01-10 at 03:08 +0000, Daniel via lists.yoctoproject.org wrote:
-> Kernel packages may not always use the kernel-module- prefix. However,
-> those listed in DEPENDS will consistently add Module.symvers to the
-> STAGING_INCDIR.
->=20
-> Signed-off-by: Daniel Chaves <dchvs11@gmail.com>
-> ---
-> =C2=A0meta/classes-recipe/module.bbclass | 14 +++++++-------
-> =C2=A01 file changed, 7 insertions(+), 7 deletions(-)
->=20
-> diff --git a/meta/classes-recipe/module.bbclass b/meta/classes-recipe/mod=
-ule.bbclass
-> index f2f0b25a2d..0f16522866 100644
-> --- a/meta/classes-recipe/module.bbclass
-> +++ b/meta/classes-recipe/module.bbclass
-> @@ -11,13 +11,13 @@ EXTRA_OEMAKE +=3D "KERNEL_SRC=3D${STAGING_KERNEL_DIR}=
-"
-> =C2=A0MODULES_INSTALL_TARGET ?=3D "modules_install"
-> =C2=A0MODULES_MODULE_SYMVERS_LOCATION ?=3D ""
-> =C2=A0
-> -python __anonymous () {
-> -=C2=A0=C2=A0=C2=A0 depends =3D d.getVar('DEPENDS')
-> -=C2=A0=C2=A0=C2=A0 extra_symbols =3D []
-> -=C2=A0=C2=A0=C2=A0 for dep in depends.split():
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if dep.startswith("kernel-mod=
-ule-"):
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 extra=
-_symbols.append("${STAGING_INCDIR}/" + dep + "/Module.symvers")
-> -=C2=A0=C2=A0=C2=A0 d.setVar('KBUILD_EXTRA_SYMBOLS', " ".join(extra_symbo=
-ls))
-> +python () {
-> +=C2=A0=C2=A0=C2=A0 import glob
-> +
-> +=C2=A0=C2=A0=C2=A0 extra_symbols =3D glob.glob(d.getVar('STAGING_INCDIR'=
-) + "/*/Module.symvers")
-> +
-> +=C2=A0=C2=A0=C2=A0 d.setVar('KBUILD_EXTRA_SYMBOLS', d.getVar('KBUILD_EXT=
-RA_SYMBOLS') + " " + \
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 " ".join(extra_symbols))
-> =C2=A0}
-> =C2=A0
-> =C2=A0python do_package:prepend () {
+Hello,
 
-This is going to lead to non-determinism since STAGING_INCDIR may or
-may not exist (e.g. at parsing time before the build) and the value
-will therefore change.
+We are thrilled to announce the release of v2.8.0 of the official VS 
+Code Yocto Project's extension.
 
-If we really want/need to do that I'd at least expect an explanation of
-why the changes don't matter and how they don't affect task checksums.
+Download is available through the VSCode marketplace at:
+  - 
+https://marketplace.visualstudio.com/items?itemName=yocto-project.yocto-bitbake
 
-As Alexandre mentions, this also needs to be submitted to the OE-Core
-list.
+Check out our blog post showcasing the latest features at:
+  - 
+https://blog.savoirfairelinux.com/en-ca/2025/introducing-the-v2-8-release-of-the-yocto-project-extension-for-vs-code
 
-Cheers,
+Happy coding,
 
-Richard
+Enguerrand de Ribaucourt
+Savoir-faire Linux
 
+-------------------------------
+Changelog for v2.8.0:
+-------------------------------
 
-
+  - Renamed command "Pick configuration" to "Change active 
+buildConfiguration"
+  - Automatically re-scan when changing buildConfiguration
+  - Cache per-buildConfiguration scan results
+  - Make the recipes view appear as "loading" while a scan is ongoing
+  - Add "Change active buildConfiguration" to the main contextual menus
+  - Update dependencies and make according changes
+  - Verify Open VSX publisher for "The Yocto Project"
+  - Rate-limit loading bars in the debug logs
+  - Add support for the new `devtool modify --debug-build` option
+  - Add the "bitbake.disableDevtoolDebugBuild" setting to disable this 
+new default behavior
+  - Fix an issue with the highlighting of the word "python"
+  - Improve compatibility and documentation around kas-container's 
+ssh-agent option
 
