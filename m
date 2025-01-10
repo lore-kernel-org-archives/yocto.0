@@ -1,87 +1,106 @@
-Return-Path: <dchvs11@gmail.com>
+Return-Path: <alexandre.belloni@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E3D72E7719A
-	for <webhook@archiver.kernel.org>; Fri, 10 Jan 2025 03:08:56 +0000 (UTC)
-Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
- by mx.groups.io with SMTP id smtpd.web11.10950.1736478531921489178
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23ECFE7719C
+	for <webhook@archiver.kernel.org>; Fri, 10 Jan 2025 07:43:18 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web11.13780.1736494993860522564
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Jan 2025 19:08:52 -0800
+ Thu, 09 Jan 2025 23:43:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: amazon.com, ip: 99.78.197.218, mailfrom: prvs=098a0f86d=redgarch@amazon.com)
-X-IronPort-AV: E=Sophos;i="6.12,302,1728950400"; 
-   d="scan'208";a="368030943"
-Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.25.36.210])
-  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2025 03:08:52 +0000
-Received: from EX19MTAUEC002.ant.amazon.com [10.0.29.78:30906]
- by smtpin.naws.us-east-1.prod.farcaster.email.amazon.dev [10.0.60.92:2525] with esmtp (Farcaster)
- id a8270587-e16d-4097-863e-cd33cb10a839; Fri, 10 Jan 2025 03:08:50 +0000 (UTC)
-X-Farcaster-Flow-ID: a8270587-e16d-4097-863e-cd33cb10a839
-Received: from EX19MTAUEA001.ant.amazon.com (10.252.134.203) by
- EX19MTAUEC002.ant.amazon.com (10.252.135.253) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1258.39;
- Fri, 10 Jan 2025 03:08:50 +0000
-Received: from email-imr-corp-prod-pdx-all-2c-c4413280.us-west-2.amazon.com
- (10.43.8.2) by mail-relay.amazon.com (10.252.134.102) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id
- 15.2.1258.39 via Frontend Transport; Fri, 10 Jan 2025 03:08:49 +0000
-Received: from dev-dsk-redgarch-1a-35ea4916.us-east-1.amazon.com (dev-dsk-redgarch-1a-35ea4916.us-east-1.amazon.com [10.200.210.68])
-	by email-imr-corp-prod-pdx-all-2c-c4413280.us-west-2.amazon.com (Postfix) with ESMTP id 69FCFA013E;
-	Fri, 10 Jan 2025 03:08:49 +0000 (UTC)
-Received: by dev-dsk-redgarch-1a-35ea4916.us-east-1.amazon.com (Postfix, from userid 21629701)
-	id 2BC397C88; Fri, 10 Jan 2025 03:08:49 +0000 (UTC)
-From: Daniel Chaves <dchvs11@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-CC: Daniel Chaves <dchvs11@gmail.com>
-Subject: [linux-yocto][poky][master][PATCH] module.bbclass: enhance KBUILD_EXTRA_SYMBOLS retrieval
-Date: Fri, 10 Jan 2025 03:08:47 +0000
-Message-ID: <20250110030847.4839-1-dchvs11@gmail.com>
-X-Mailer: git-send-email 2.40.1
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=UkZhEkg4;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: alexandre.belloni@bootlin.com)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7A5A7FF805;
+	Fri, 10 Jan 2025 07:43:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736494991;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=38+d27GoLFy6vzY1yx7F1mPpX37O8ZWPxsoab7qOoj8=;
+	b=UkZhEkg4VMVcbganLmgirXO+KWjJZvlb3IexI1Olj1EYg3cCrwxfoVcSfRyEcENWCWypkC
+	wDXE9LDal56SKYYDmuQzntGoiMyupfOGHCzMznjSneDHUAv4+D/7/5u/vlVv6wBU2VXqHS
+	HyuW9hPBx6cUCKoCxXCZnqf+UODe+PJT1AGihgVi5R8QxhHzUKPoJf8impxJMGMsdJDKAP
+	uln9PxjOss5MukoO8Zw5X7lRQ2EYp3e4fhHNodqqPEKYyQPJ4H+jTQwYzEHhVWgKLLt2Bx
+	LOQsf8Gh+jNmvuzAkTVeYZqws58s+MVm6RTy/ir0PpnVlT4zafqHjaamW7D3BQ==
+Date: Fri, 10 Jan 2025 08:43:11 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: yocto@lists.yoctoproject.org, dchvs11@gmail.com
+Subject: Re: [yocto] [linux-yocto][poky][master][PATCH] module.bbclass:
+ enhance KBUILD_EXTRA_SYMBOLS retrieval
+Message-ID: <2025011007431120b9a500@mail.local>
+References: <20250110030847.4839-1-dchvs11@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250110030847.4839-1-dchvs11@gmail.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Jan 2025 03:08:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64525
+ <yocto@lists.yoctoproject.org>; Fri, 10 Jan 2025 07:43:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64526
 
-Kernel packages may not always use the kernel-module- prefix. However,
-those listed in DEPENDS will consistently add Module.symvers to the
-STAGING_INCDIR.
+Hello,
 
-Signed-off-by: Daniel Chaves <dchvs11@gmail.com>
----
- meta/classes-recipe/module.bbclass | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+This should be sent to the oe-core mailing list, see README.OE-Core.md.
 
-diff --git a/meta/classes-recipe/module.bbclass b/meta/classes-recipe/module.bbclass
-index f2f0b25a2d..0f16522866 100644
---- a/meta/classes-recipe/module.bbclass
-+++ b/meta/classes-recipe/module.bbclass
-@@ -11,13 +11,13 @@ EXTRA_OEMAKE += "KERNEL_SRC=${STAGING_KERNEL_DIR}"
- MODULES_INSTALL_TARGET ?= "modules_install"
- MODULES_MODULE_SYMVERS_LOCATION ?= ""
- 
--python __anonymous () {
--    depends = d.getVar('DEPENDS')
--    extra_symbols = []
--    for dep in depends.split():
--        if dep.startswith("kernel-module-"):
--            extra_symbols.append("${STAGING_INCDIR}/" + dep + "/Module.symvers")
--    d.setVar('KBUILD_EXTRA_SYMBOLS', " ".join(extra_symbols))
-+python () {
-+    import glob
-+
-+    extra_symbols = glob.glob(d.getVar('STAGING_INCDIR') + "/*/Module.symvers")
-+
-+    d.setVar('KBUILD_EXTRA_SYMBOLS', d.getVar('KBUILD_EXTRA_SYMBOLS') + " " + \
-+        " ".join(extra_symbols))
- }
- 
- python do_package:prepend () {
+On 10/01/2025 03:08:47+0000, Daniel via lists.yoctoproject.org wrote:
+> Kernel packages may not always use the kernel-module- prefix. However,
+> those listed in DEPENDS will consistently add Module.symvers to the
+> STAGING_INCDIR.
+> 
+> Signed-off-by: Daniel Chaves <dchvs11@gmail.com>
+> ---
+>  meta/classes-recipe/module.bbclass | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/meta/classes-recipe/module.bbclass b/meta/classes-recipe/module.bbclass
+> index f2f0b25a2d..0f16522866 100644
+> --- a/meta/classes-recipe/module.bbclass
+> +++ b/meta/classes-recipe/module.bbclass
+> @@ -11,13 +11,13 @@ EXTRA_OEMAKE += "KERNEL_SRC=${STAGING_KERNEL_DIR}"
+>  MODULES_INSTALL_TARGET ?= "modules_install"
+>  MODULES_MODULE_SYMVERS_LOCATION ?= ""
+>  
+> -python __anonymous () {
+> -    depends = d.getVar('DEPENDS')
+> -    extra_symbols = []
+> -    for dep in depends.split():
+> -        if dep.startswith("kernel-module-"):
+> -            extra_symbols.append("${STAGING_INCDIR}/" + dep + "/Module.symvers")
+> -    d.setVar('KBUILD_EXTRA_SYMBOLS', " ".join(extra_symbols))
+> +python () {
+
+Why did you remove __anonymous?
+
+> +    import glob
+> +
+> +    extra_symbols = glob.glob(d.getVar('STAGING_INCDIR') + "/*/Module.symvers")
+> +
+> +    d.setVar('KBUILD_EXTRA_SYMBOLS', d.getVar('KBUILD_EXTRA_SYMBOLS') + " " + \
+> +        " ".join(extra_symbols))
+>  }
+>  
+>  python do_package:prepend () {
+> -- 
+> 2.40.1
+> 
+
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#64525): https://lists.yoctoproject.org/g/yocto/message/64525
+> Mute This Topic: https://lists.yoctoproject.org/mt/110529511/3617179
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alexandre.belloni@bootlin.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
+
+
 -- 
-2.40.1
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
