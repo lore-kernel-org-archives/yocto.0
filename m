@@ -1,91 +1,87 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <dchvs11@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E39CE7719D
-	for <webhook@archiver.kernel.org>; Thu,  9 Jan 2025 22:28:25 +0000 (UTC)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
- by mx.groups.io with SMTP id smtpd.web11.5810.1736461701461933767
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3D72E7719A
+	for <webhook@archiver.kernel.org>; Fri, 10 Jan 2025 03:08:56 +0000 (UTC)
+Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
+ by mx.groups.io with SMTP id smtpd.web11.10950.1736478531921489178
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Jan 2025 14:28:21 -0800
+ Thu, 09 Jan 2025 19:08:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=Ta9sMrbT;
- spf=softfail (domain: sakoman.com, ip: 209.85.219.172, mailfrom: steve@sakoman.com)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e399e904940so2227761276.2
-        for <yocto@lists.yoctoproject.org>; Thu, 09 Jan 2025 14:28:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1736461700; x=1737066500; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=xQqOVya4AB2P5fAT2mwS0ClmICD293fT+lDVEkpgsiQ=;
-        b=Ta9sMrbTUeJ3DMX5dQCljj/fwIO4GsRmiBmHgqv/A2oKxj1ByiCA7lKMo+Yz/H0Txv
-         22bXUhMWbsNHCVcCoMAZM0n5w5CEPiR14uzbwEFJypnFYyEOb9mNn9o2lFFx6Yz2xbFZ
-         gYeEhUV0Ja8wrujrGxlFOIvqiqWGtaXRQvdydPHfC5jnx8J0pvuuOkmqpy58ykqMIc1c
-         hpr1rol96ATiEZyEpzo0PYz3CXQKX2mF4FU+PCk5n6n/3Zkd4yyZBfjA79x0rLPmFBsq
-         GwTmLETLvSRFLW3VFXE57gdwxUadpmmwYsEt5Y2DkFEUaWUW6JGLTO69OfRbw0JMLy8Z
-         OfxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736461700; x=1737066500;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xQqOVya4AB2P5fAT2mwS0ClmICD293fT+lDVEkpgsiQ=;
-        b=mouJ7Y18xunDkQNLwh9JvqQAAt0WCpEc2OJ04ZGdH5xNKPtQlQnR2ljrW01aZMWZfI
-         vACBsi2pfPOBUWU6qKSbjmGYrubn/ksioYib8SDrq39TItdaEtffQmO6708WZHzuT28O
-         hqC6GN2GVCvDWBqcIsb/71l+lQHrzvfkndlUFXH9uDtrwNunHA6eAPMHOAnews2A9WMT
-         JAKX9N47p/FAaqIzgtchLNUs/5t66zq/KGFGLawUxs3NvoHjDhXivHjqQ6brU3+Y8UFH
-         mi2dSZfH/qxvf9us4uBf7oEiah+m9WBsUkJeo4QOHyn8F4EEmiOfLmXTM+s+KepGWCq1
-         hjVg==
-X-Gm-Message-State: AOJu0YxymUbaL2ZJz8PRH1QTybpBkiPlyRrYP3qO0B9+U5HP6cG/QKdj
-	Nb6W5EUbjNOdKdyrNSbI6Geq6QxBt+Y+GXqP82CnLsseIOr8e4cRPPlnCOg/atbZLJnWGmcKUFk
-	XjGcyh/Tva038p0N0ZMLsr3PAMhcd2G3ELWOt89KuWd0XadFe0jR3Cw==
-X-Gm-Gg: ASbGncuMl1z0etjWkfsEmV7yMIFy3QbwIu2LZ6nGIQO9NpxEL6MdkdbvLQy7fynZ19o
-	KzFsR6S9m1nWMzyYfzQrc9ug5Xiih/w4oUgLbNw==
-X-Google-Smtp-Source: AGHT+IFJCGZScwROqjbsUn9FlbKueDAv2DLMNdmy5NfSYlUf3nSTW2EYO3pPy3NDDwWnZNtju5syikp+PJlF5pJqx9I=
-X-Received: by 2002:a05:6902:1581:b0:e3c:a022:b53a with SMTP id
- 3f1490d57ef6-e54ee173c20mr7079842276.28.1736461700522; Thu, 09 Jan 2025
- 14:28:20 -0800 (PST)
+ dkim=none (message not signed); spf=pass (domain: amazon.com, ip: 99.78.197.218, mailfrom: prvs=098a0f86d=redgarch@amazon.com)
+X-IronPort-AV: E=Sophos;i="6.12,302,1728950400"; 
+   d="scan'208";a="368030943"
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO smtpout.prod.us-east-1.prod.farcaster.email.amazon.dev) ([10.25.36.210])
+  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2025 03:08:52 +0000
+Received: from EX19MTAUEC002.ant.amazon.com [10.0.29.78:30906]
+ by smtpin.naws.us-east-1.prod.farcaster.email.amazon.dev [10.0.60.92:2525] with esmtp (Farcaster)
+ id a8270587-e16d-4097-863e-cd33cb10a839; Fri, 10 Jan 2025 03:08:50 +0000 (UTC)
+X-Farcaster-Flow-ID: a8270587-e16d-4097-863e-cd33cb10a839
+Received: from EX19MTAUEA001.ant.amazon.com (10.252.134.203) by
+ EX19MTAUEC002.ant.amazon.com (10.252.135.253) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1258.39;
+ Fri, 10 Jan 2025 03:08:50 +0000
+Received: from email-imr-corp-prod-pdx-all-2c-c4413280.us-west-2.amazon.com
+ (10.43.8.2) by mail-relay.amazon.com (10.252.134.102) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id
+ 15.2.1258.39 via Frontend Transport; Fri, 10 Jan 2025 03:08:49 +0000
+Received: from dev-dsk-redgarch-1a-35ea4916.us-east-1.amazon.com (dev-dsk-redgarch-1a-35ea4916.us-east-1.amazon.com [10.200.210.68])
+	by email-imr-corp-prod-pdx-all-2c-c4413280.us-west-2.amazon.com (Postfix) with ESMTP id 69FCFA013E;
+	Fri, 10 Jan 2025 03:08:49 +0000 (UTC)
+Received: by dev-dsk-redgarch-1a-35ea4916.us-east-1.amazon.com (Postfix, from userid 21629701)
+	id 2BC397C88; Fri, 10 Jan 2025 03:08:49 +0000 (UTC)
+From: Daniel Chaves <dchvs11@gmail.com>
+To: <yocto@lists.yoctoproject.org>
+CC: Daniel Chaves <dchvs11@gmail.com>
+Subject: [linux-yocto][poky][master][PATCH] module.bbclass: enhance KBUILD_EXTRA_SYMBOLS retrieval
+Date: Fri, 10 Jan 2025 03:08:47 +0000
+Message-ID: <20250110030847.4839-1-dchvs11@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-From: Steve Sakoman <steve@sakoman.com>
-Date: Thu, 9 Jan 2025 14:28:09 -0800
-X-Gm-Features: AbW1kvYzuYaVUCDf9UmKBEb1Hg2dlXcwHnhHZzHhdn35-rxcxgxE08AooQ6Shr8
-Message-ID: <CAOSpxdb5xR3BHif6-swTPdqFoibSAn4KEtZHSiLd3Xi0T75mxA@mail.gmail.com>
-Subject: QA notification for completed autobuilder build (yocto-4.024.rc1)
-To: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Cc: qa-build-notification@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 09 Jan 2025 22:28:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64524
+ <yocto@lists.yoctoproject.org>; Fri, 10 Jan 2025 03:08:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64525
 
-A build flagged for QA (yocto-4.024.rc1) was completed on the
-autobuilder and is available at:
+Kernel packages may not always use the kernel-module- prefix. However,
+those listed in DEPENDS will consistently add Module.symvers to the
+STAGING_INCDIR.
 
+Signed-off-by: Daniel Chaves <dchvs11@gmail.com>
+---
+ meta/classes-recipe/module.bbclass | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-    https://valkyrie.yocto.io/pub/releases/yocto-4.024.rc1
+diff --git a/meta/classes-recipe/module.bbclass b/meta/classes-recipe/module.bbclass
+index f2f0b25a2d..0f16522866 100644
+--- a/meta/classes-recipe/module.bbclass
++++ b/meta/classes-recipe/module.bbclass
+@@ -11,13 +11,13 @@ EXTRA_OEMAKE += "KERNEL_SRC=${STAGING_KERNEL_DIR}"
+ MODULES_INSTALL_TARGET ?= "modules_install"
+ MODULES_MODULE_SYMVERS_LOCATION ?= ""
+ 
+-python __anonymous () {
+-    depends = d.getVar('DEPENDS')
+-    extra_symbols = []
+-    for dep in depends.split():
+-        if dep.startswith("kernel-module-"):
+-            extra_symbols.append("${STAGING_INCDIR}/" + dep + "/Module.symvers")
+-    d.setVar('KBUILD_EXTRA_SYMBOLS', " ".join(extra_symbols))
++python () {
++    import glob
++
++    extra_symbols = glob.glob(d.getVar('STAGING_INCDIR') + "/*/Module.symvers")
++
++    d.setVar('KBUILD_EXTRA_SYMBOLS', d.getVar('KBUILD_EXTRA_SYMBOLS') + " " + \
++        " ".join(extra_symbols))
+ }
+ 
+ python do_package:prepend () {
+-- 
+2.40.1
 
-
-Build URL: https://valkyrie.yoctoproject.org/#/builders/29/builds/778
-
-Build hash information:
-
-bitbake: 3f88b005244a0afb5d5c7260e54a94a453ec9b3e
-meta-agl: a120153e6d3b7c23075aa0557cfab31dc2887b67
-meta-arm: 936c02ec13661bd86a05f7f90e1b920d5092d670
-meta-aws: b7de336e93c991a51c4df9195c9789e1e5904311
-meta-clang: b33aa9c7f54807c113c44b0f2c15a5c5d88ae5ee
-meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-meta-intel: 31e3dbc89af2b8dcac889f31cc0911018abbf55d
-meta-mingw: 87c22abb1f11be430caf4372e6b833dc7d77564e
-meta-openembedded: 7b3fdcdfaab2fc964bbf9eec2cce4e03001fa8cf
-meta-virtualization: a055d7dcafc58855081a5eac9a46b93b9b51012b
-oecore: a270d4c957259761bcc7382fcc54642a02f9fc7d
-poky: f50532593651dff82bc952288d786c55038c2c86
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
 
