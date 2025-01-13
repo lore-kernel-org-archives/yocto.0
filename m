@@ -1,108 +1,331 @@
-Return-Path: <enguerrand.de-ribaucourt@savoirfairelinux.com>
+Return-Path: <adrian.freihofer@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4FE45E7719E
-	for <webhook@archiver.kernel.org>; Mon, 13 Jan 2025 08:37:45 +0000 (UTC)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
- by mx.groups.io with SMTP id smtpd.web10.12506.1736757457751061581
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3AE62E7719F
+	for <webhook@archiver.kernel.org>; Mon, 13 Jan 2025 11:37:26 +0000 (UTC)
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+ by mx.groups.io with SMTP id smtpd.web11.15135.1736768242514184407
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Jan 2025 00:37:38 -0800
+ Mon, 13 Jan 2025 03:37:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=j7CTG2oR;
- spf=pass (domain: savoirfairelinux.com, ip: 208.88.110.44, mailfrom: enguerrand.de-ribaucourt@savoirfairelinux.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8F4619C6448;
-	Mon, 13 Jan 2025 03:37:36 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id ikkJwrLXLdPv; Mon, 13 Jan 2025 03:37:35 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id AB6829C8649;
-	Mon, 13 Jan 2025 03:37:35 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com AB6829C8649
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ABQHH6Rh;
+ spf=pass (domain: gmail.com, ip: 209.85.161.54, mailfrom: adrian.freihofer@gmail.com)
+Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5f32168ddd8so1662595eaf.3
+        for <yocto@lists.yoctoproject.org>; Mon, 13 Jan 2025 03:37:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1736757455; bh=CDNYZN3IGh1Ka76PTJ4PMOPbwdcqOT/d9SrFVI++wtk=;
-	h=Message-ID:Date:MIME-Version:To:From;
-	b=j7CTG2oR5o8Loj3sahi5BMm2C0lzyomPAB3uJ0KLTVYHtLwTT+IR20u4Lrj2V90mB
-	 4a93m1+NhopLJb+kK6odVz78iqBR3f9jkK0kyKngN88RyJGYqFQ5huskU6jskcrDII
-	 ELcGZGb9i+nqwFy+cyx3g4CbyfgbhMB+j5f3rY1/ndo1yEnZzhOzOvFDuTMvsg1Ab4
-	 IX2B1lIAXEVRqjtOudqH57CstWESrUovwZxuwj1cMX2pSO8ETst/oaS2LC0z40fN5V
-	 0T32cT8m2BqkKBIf/BVh3NprqBml3Jy0bK7ePnCP3sXbDEXbRwWZzmsuk+J4NvG+VZ
-	 g63CGi40VImBw==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id uWUbH7KM5jrI; Mon, 13 Jan 2025 03:37:35 -0500 (EST)
-Received: from [192.168.216.123] (80-15-101-118.ftth.fr.orangecustomers.net [80.15.101.118])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 025ED9C6448;
-	Mon, 13 Jan 2025 03:37:34 -0500 (EST)
-Message-ID: <8b896dd0-cc32-49cb-846e-5b5667f45384@savoirfairelinux.com>
-Date: Mon, 13 Jan 2025 09:37:34 +0100
+        d=gmail.com; s=20230601; t=1736768241; x=1737373041; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3bAhBaECZSZ5ubBJq6NmvYRtbjZlx80gLMdgdPfpMmg=;
+        b=ABQHH6RhelHDGuZxJNjnhqicALUmMXVsT0bTPeUQKL+wOBPJC7PlqWm48Puln50GYF
+         dabaSCmhsK1KzG5ipeH2EZg/nvV1QECL1D3vJVz2WZyPxf69gT2FPwcfgyB4LEAMOhge
+         FqxEyxdkYq5VGLElel9NxbS+lY9+HqxKWJ1Vo1QahRQDwgJzkh7Sfz1WdexgBzHhYPb+
+         QZaByPNlUOkLxBpo7KfxvDslqbeqNonkm935ZM6rbug1mRBGPGXe2ZZVCKtrfzVduDVL
+         3XdNhSIx1CXcvq+UTOyKPADBRPZY7vYFktmN+eHJHzouTvG1Maml/4uIlHDD3N2bTEz+
+         dB4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736768241; x=1737373041;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3bAhBaECZSZ5ubBJq6NmvYRtbjZlx80gLMdgdPfpMmg=;
+        b=d8IVDN2qeFn+SoANrrmQ5h3tvAiQM41ZO0FmvbV1e/Hvu+X9c0LwXoaRS3E3qL+3nU
+         +KGGHwVvSdTYJtrDUlBcafwBSS4TY2egjs63LXVmn5LgTsU8r3o92aCdKuJDerxoi+sK
+         YGWM35DatQaZ4+rxbXE53HQ2HYLIPssyb07P+ECF+zk97QPhAhff7U/T7dFAZhFFzS+X
+         /maPux1WY7L4bUCgM/ngR5MkCd4sEHziCcAJWrkTMHJ/u0mMKBxJk5BaPYoUelG6NdtJ
+         vU69gsKDC12AOExGd5TkyZ7lzoAxooePFoPykMUk04l2JU3yS216L06wHRGzU2AYR5Bd
+         iwPA==
+X-Forwarded-Encrypted: i=1; AJvYcCX9w2qIn0ih8HFL0eQqRfudIQ34n3seUUbYrIiXz/mxIY4u26FbNoIGO4GdrXoIj4gh5H64oA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YwXg3/rV6+iPFzsQI0z8QDRi+MAwCeHIHL8H/NXFxoxvG4QXEz6
+	Ga43LlMKjGWqFjVzUjdGWCoVwakeWTWVl7ARFBnCoRAinl/5atP57FH8DFDIa9f+h1JJjKsz/V5
+	kfo40/niUhPgHQwBkjbIXREnMSz4=
+X-Gm-Gg: ASbGncsNCShndajtctmlW3CmnT8CqAInYOufK1NAcscdwu4E/fXQqnxG31xxv0p7852
+	BVaMw/gaVQco5ZSmOdah68ARiIuNLcHNoG1H6QAc=
+X-Google-Smtp-Source: AGHT+IHgRn3Ja3cxzkpNjg5F6/hYK+5MjissS23QfLKkgZO4guHUrbPWD+Ovyc1RVfvBA9e+27kGgfJ6yUMxDt+/ryg=
+X-Received: by 2002:a05:6871:800a:b0:29e:3bea:7e60 with SMTP id
+ 586e51a60fabf-2aa0698375emr10582540fac.38.1736768241214; Mon, 13 Jan 2025
+ 03:37:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [ANNOUNCEMENT] VS Code Yocto Project extension v2.8.0 is
- released
-To: Marco Cavallini <koansoftware@gmail.com>, yocto@lists.yoctoproject.org
 References: <b3100b96-b96a-4e00-b1d9-c6ce692d7f9f@savoirfairelinux.com>
- <4715.1736592180949118299@lists.yoctoproject.org>
-Content-Language: en-US
-From: Enguerrand de Ribaucourt <enguerrand.de-ribaucourt@savoirfairelinux.com>
-Cc: adrian freihofer <adrian.freihofer@gmail.com>
-In-Reply-To: <4715.1736592180949118299@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <4715.1736592180949118299@lists.yoctoproject.org> <8b896dd0-cc32-49cb-846e-5b5667f45384@savoirfairelinux.com>
+In-Reply-To: <8b896dd0-cc32-49cb-846e-5b5667f45384@savoirfairelinux.com>
+From: Adrian Freihofer <adrian.freihofer@gmail.com>
+Date: Mon, 13 Jan 2025 12:37:10 +0100
+X-Gm-Features: AbW1kvaxHA_7qTUxVl5oW6DlSvFEf2VzhqLSuePvCLGfQuM-6-IaTP-8s5B78fc
+Message-ID: <CAB3asfg12hoNV1ZOA0xvgq=zNSvWejyF_mvN-tBpjiJ5ovMMhg@mail.gmail.com>
+Subject: Re: [yocto] [ANNOUNCEMENT] VS Code Yocto Project extension v2.8.0 is released
+To: Enguerrand de Ribaucourt <enguerrand.de-ribaucourt@savoirfairelinux.com>
+Cc: Marco Cavallini <koansoftware@gmail.com>, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000132e77062b94deec"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Jan 2025 08:37:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64534
+ <yocto@lists.yoctoproject.org>; Mon, 13 Jan 2025 11:37:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64535
 
-Hello Marco,
+--000000000000132e77062b94deec
+Content-Type: text/plain; charset="UTF-8"
 
-The main configuration guide is the README that you will find on the 
-extension's marketplace page and github repository [1]. It lists the 
-settings which also have their documentation brought up when you write 
-your .vscode/settings.json. You'll also find an example for a basic 
-oe-init-build-env configuration in the first few lines.
+Hi Marco,
 
-There is also poky/scripts/oe-setup-vscode which will generate a simple 
-.vscode/settings.json automatically through oe-init-build-env. You need 
-a recent version of poky, and no existing .vscode for it to activate.
+Here is the commit (and the commit message) which probably explains some
+details:
+https://git.yoctoproject.org/poky/commit/?id=dfe98713729ceb329813ac00f6035dcfb470b469
 
-We have identified that setting up the extension is currently a bit 
-un-intuitive for beginners. This is why we are planning to add a 
-"walkthrough" view [2].
+I use it like this when I start vscode for the first time in a build
+environment:
 
-Let me know if you need any additional help. You can also submit an 
-issue on our github.
+# Close all VSCode instances
+cd poky
+rm -rf .vscode  # Make sure .vscode gets generated by oe-init-build-env
+. oe-init-build-env
+code .
 
-Best Regards,
+This generates a valid initial configuration for VSCode. Then everything
+works as expected.
 
-  - [1] github README: https://github.com/yoctoproject/vscode-bitbake
-  - [2] walkthrough issue: 
-https://github.com/yoctoproject/vscode-bitbake/issues/360
 
-On 11/01/2025 11:43, Marco Cavallini via lists.yoctoproject.org wrote:
-> Hi Enguerrand,
-> thank you for updating the extension.
-> However the most struggling part of this VScode extension is to learn 
-> how to setup it with an existing project.
-> Most of the videos and presentations are showing features like syntax 
-> highlighting and so on.
-> I haven't been able to find any valid document nor video showing how to 
-> setup it using a recent VScode YP extension.
-> Let's suppose one starts from the beginning cloning poky and setting the 
-> default 'oe-init-build-env'.
-> Is the VScode YP extension able to detect the default setting like a 
-> build directory and local.conf and bblayers.conf.
-> Would you mind to point me out to any resource showing that?
-> Just my two cents ;-)
+Using projects with multiple build directories is possible as well. We have
+projects where the oe-init-build-env is provided by a layer. It contains
+something like this:
+
+# Generate an initial configuration for VSCode and the yocto-bitbake plugin.
+OEINIT=$(dirname "$THIS_SCRIPT")
+OEINIT=$(readlink -f "$OEINIT")
+if command -v code > /dev/null && [ ! -d "$OEINIT/.vscode" ]; then
+"$OEINIT"/scripts/oe-setup-vscode "$OEINIT" "$BUILDDIR" "$OEINIT"/build*
+fi
+unset OEINIT
+unset THIS_SCRIPT
+
+This generates a settings.json with
+
+"bitbake.buildConfigurations": [
+{ "name": "ccp-sd", "pathToBuildFolder": "${workspaceFolder}/build-1" },
+{ "name": "ccp", "pathToBuildFolder": "${workspaceFolder}/build-2" },
+
+which allows you to switch the active build folder from the UI in the right
+bottom corner.
+
+Unfortunately it's not 100% self explaining, I agree.
+
+Regards,
+Adrian
+
+
+
+Am Mo., 13. Jan. 2025 um 09:37 Uhr schrieb Enguerrand de Ribaucourt <
+enguerrand.de-ribaucourt@savoirfairelinux.com>:
+
+> Hello Marco,
+>
+> The main configuration guide is the README that you will find on the
+> extension's marketplace page and github repository [1]. It lists the
+> settings which also have their documentation brought up when you write
+> your .vscode/settings.json. You'll also find an example for a basic
+> oe-init-build-env configuration in the first few lines.
+>
+> There is also poky/scripts/oe-setup-vscode which will generate a simple
+> .vscode/settings.json automatically through oe-init-build-env. You need
+> a recent version of poky, and no existing .vscode for it to activate.
+>
+> We have identified that setting up the extension is currently a bit
+> un-intuitive for beginners. This is why we are planning to add a
+> "walkthrough" view [2].
+>
+> Let me know if you need any additional help. You can also submit an
+> issue on our github.
+>
+> Best Regards,
+>
+>   - [1] github README: https://github.com/yoctoproject/vscode-bitbake
+>   - [2] walkthrough issue:
+> https://github.com/yoctoproject/vscode-bitbake/issues/360
+>
+> On 11/01/2025 11:43, Marco Cavallini via lists.yoctoproject.org wrote:
+> > Hi Enguerrand,
+> > thank you for updating the extension.
+> > However the most struggling part of this VScode extension is to learn
+> > how to setup it with an existing project.
+> > Most of the videos and presentations are showing features like syntax
+> > highlighting and so on.
+> > I haven't been able to find any valid document nor video showing how to
+> > setup it using a recent VScode YP extension.
+> > Let's suppose one starts from the beginning cloning poky and setting the
+> > default 'oe-init-build-env'.
+> > Is the VScode YP extension able to detect the default setting like a
+> > build directory and local.conf and bblayers.conf.
+> > Would you mind to point me out to any resource showing that?
+> > Just my two cents ;-)
+> > --
+> > Marco
+>
 > --
-> Marco
+> Savoir-faire Linux
+> Enguerrand de Ribaucourt
+>
 
--- 
-Savoir-faire Linux
-Enguerrand de Ribaucourt
+--000000000000132e77062b94deec
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Marco,</div><div><br></div><div>H=
+ere is the commit (and the commit message) which probably explains some det=
+ails: <a href=3D"https://git.yoctoproject.org/poky/commit/?id=3Ddfe98713729=
+ceb329813ac00f6035dcfb470b469">https://git.yoctoproject.org/poky/commit/?id=
+=3Ddfe98713729ceb329813ac00f6035dcfb470b469</a></div><div><br></div><div>I =
+use it like this when I start vscode for the first time in a build environm=
+ent:</div><div><br></div><div># Close all VSCode instances<br></div><div>cd=
+ poky</div><div>rm -rf .vscode=C2=A0 # Make sure .vscode gets generated by =
+oe-init-build-env<br></div><div>. oe-init-build-env</div><div>code .</div><=
+div><br></div><div>This generates a valid initial configuration for VSCode.=
+ Then everything works as expected.</div><div><br></div><div><br></div><div=
+>Using projects with multiple build directories is possible as well. We hav=
+e projects where the oe-init-build-env is provided by a layer. It contains =
+something like this:</div><div><br></div><div><div style=3D"color:rgb(204,2=
+04,204);background-color:rgb(31,31,31);font-family:&quot;Droid Sans Mono&qu=
+ot;,&quot;monospace&quot;,monospace;font-weight:normal;font-size:14px;line-=
+height:19px;white-space:pre"><div><span style=3D"color:rgb(106,153,85)"># G=
+enerate an initial configuration for VSCode and the yocto-bitbake plugin.</=
+span></div><div><span style=3D"color:rgb(156,220,254)">OEINIT</span><span s=
+tyle=3D"color:rgb(212,212,212)">=3D</span><span style=3D"color:rgb(204,204,=
+204)">$(</span><span style=3D"color:rgb(220,220,170)">dirname</span><span s=
+tyle=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(206,145,12=
+0)">&quot;</span><span style=3D"color:rgb(156,220,254)">$THIS_SCRIPT</span>=
+<span style=3D"color:rgb(206,145,120)">&quot;</span><span style=3D"color:rg=
+b(204,204,204)">)</span></div><div><span style=3D"color:rgb(156,220,254)">O=
+EINIT</span><span style=3D"color:rgb(212,212,212)">=3D</span><span style=3D=
+"color:rgb(204,204,204)">$(</span><span style=3D"color:rgb(220,220,170)">re=
+adlink</span><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"=
+color:rgb(86,156,214)">-f</span><span style=3D"color:rgb(204,204,204)"> </s=
+pan><span style=3D"color:rgb(206,145,120)">&quot;</span><span style=3D"colo=
+r:rgb(156,220,254)">$OEINIT</span><span style=3D"color:rgb(206,145,120)">&q=
+uot;</span><span style=3D"color:rgb(204,204,204)">)</span></div><div><span =
+style=3D"color:rgb(197,134,192)">if</span><span style=3D"color:rgb(204,204,=
+204)"> </span><span style=3D"color:rgb(220,220,170)">command</span><span st=
+yle=3D"color:rgb(204,204,204)"> </span><span style=3D"color:rgb(86,156,214)=
+">-v</span><span style=3D"color:rgb(204,204,204)"> </span><span style=3D"co=
+lor:rgb(206,145,120)">code</span><span style=3D"color:rgb(204,204,204)"> </=
+span><span style=3D"color:rgb(212,212,212)">&gt;</span><span style=3D"color=
+:rgb(204,204,204)"> </span><span style=3D"color:rgb(206,145,120)">/dev/null=
+</span><span style=3D"color:rgb(204,204,204)"> &amp;&amp; [ </span><span st=
+yle=3D"color:rgb(212,212,212)">!</span><span style=3D"color:rgb(204,204,204=
+)"> </span><span style=3D"color:rgb(212,212,212)">-d</span><span style=3D"c=
+olor:rgb(204,204,204)"> </span><span style=3D"color:rgb(206,145,120)">&quot=
+;</span><span style=3D"color:rgb(156,220,254)">$OEINIT</span><span style=3D=
+"color:rgb(206,145,120)">/.vscode&quot;</span><span style=3D"color:rgb(204,=
+204,204)"> ]; </span><span style=3D"color:rgb(197,134,192)">then</span></di=
+v><div><span style=3D"color:rgb(204,204,204)">    </span><span style=3D"col=
+or:rgb(220,220,170)">&quot;</span><span style=3D"color:rgb(156,220,254)">$O=
+EINIT</span><span style=3D"color:rgb(220,220,170)">&quot;</span><span style=
+=3D"color:rgb(220,220,170)">/scripts/oe-setup-vscode</span><span style=3D"c=
+olor:rgb(204,204,204)"> </span><span style=3D"color:rgb(206,145,120)">&quot=
+;</span><span style=3D"color:rgb(156,220,254)">$OEINIT</span><span style=3D=
+"color:rgb(206,145,120)">&quot;</span><span style=3D"color:rgb(204,204,204)=
+"> </span><span style=3D"color:rgb(206,145,120)">&quot;</span><span style=
+=3D"color:rgb(156,220,254)">$BUILDDIR</span><span style=3D"color:rgb(206,14=
+5,120)">&quot;</span><span style=3D"color:rgb(204,204,204)"> </span><span s=
+tyle=3D"color:rgb(206,145,120)">&quot;</span><span style=3D"color:rgb(156,2=
+20,254)">$OEINIT</span><span style=3D"color:rgb(206,145,120)">&quot;/build<=
+/span><span style=3D"color:rgb(86,156,214)">*</span></div><div><span style=
+=3D"color:rgb(197,134,192)">fi</span></div><div><span style=3D"color:rgb(22=
+0,220,170)">unset</span><span style=3D"color:rgb(204,204,204)"> </span><spa=
+n style=3D"color:rgb(206,145,120)">OEINIT</span></div><div><span style=3D"c=
+olor:rgb(220,220,170)">unset</span><span style=3D"color:rgb(204,204,204)"> =
+</span><span style=3D"color:rgb(206,145,120)">THIS_SCRIPT</span></div></div=
+></div><div><br></div><div>This generates a settings.json with<br><br><div =
+style=3D"color:rgb(204,204,204);background-color:rgb(31,31,31);font-family:=
+&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace;font-weight:nor=
+mal;font-size:14px;line-height:19px;white-space:pre"><div><span style=3D"co=
+lor:rgb(204,204,204)">   </span><span style=3D"color:rgb(156,220,254)">&quo=
+t;bitbake.buildConfigurations&quot;</span><span style=3D"color:rgb(204,204,=
+204)">: [</span></div><div><span style=3D"color:rgb(204,204,204)">        {=
+ </span><span style=3D"color:rgb(156,220,254)">&quot;name&quot;</span><span=
+ style=3D"color:rgb(204,204,204)">: </span><span style=3D"color:rgb(206,145=
+,120)">&quot;ccp-sd&quot;</span><span style=3D"color:rgb(204,204,204)">, </=
+span><span style=3D"color:rgb(156,220,254)">&quot;pathToBuildFolder&quot;</=
+span><span style=3D"color:rgb(204,204,204)">: </span><span style=3D"color:r=
+gb(206,145,120)">&quot;${workspaceFolder}/build-1&quot;</span><span style=
+=3D"color:rgb(204,204,204)"> },</span></div><div><span style=3D"color:rgb(2=
+04,204,204)">        { </span><span style=3D"color:rgb(156,220,254)">&quot;=
+name&quot;</span><span style=3D"color:rgb(204,204,204)">: </span><span styl=
+e=3D"color:rgb(206,145,120)">&quot;ccp&quot;</span><span style=3D"color:rgb=
+(204,204,204)">, </span><span style=3D"color:rgb(156,220,254)">&quot;pathTo=
+BuildFolder&quot;</span><span style=3D"color:rgb(204,204,204)">: </span><sp=
+an style=3D"color:rgb(206,145,120)">&quot;${workspaceFolder}/build-2&quot;<=
+/span><span style=3D"color:rgb(204,204,204)"> },</span></div></div></div></=
+div><div><br></div><div>which allows you to switch the active build folder =
+from the UI in the right bottom corner.</div><div><br></div><div>Unfortunat=
+ely it&#39;s not 100% self explaining, I agree.</div><div><br></div><div>Re=
+gards,</div><div>Adrian<br></div><div><br></div><div><br></div><div><br></d=
+iv><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">Am Mo., 13. Jan. 2025 um 09:37=C2=A0Uhr schrieb Enguerrand =
+de Ribaucourt &lt;<a href=3D"mailto:enguerrand.de-ribaucourt@savoirfairelin=
+ux.com">enguerrand.de-ribaucourt@savoirfairelinux.com</a>&gt;:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">Hello Marco,<br>
+<br>
+The main configuration guide is the README that you will find on the <br>
+extension&#39;s marketplace page and github repository [1]. It lists the <b=
+r>
+settings which also have their documentation brought up when you write <br>
+your .vscode/settings.json. You&#39;ll also find an example for a basic <br=
+>
+oe-init-build-env configuration in the first few lines.<br>
+<br>
+There is also poky/scripts/oe-setup-vscode which will generate a simple <br=
+>
+.vscode/settings.json automatically through oe-init-build-env. You need <br=
+>
+a recent version of poky, and no existing .vscode for it to activate.<br>
+<br>
+We have identified that setting up the extension is currently a bit <br>
+un-intuitive for beginners. This is why we are planning to add a <br>
+&quot;walkthrough&quot; view [2].<br>
+<br>
+Let me know if you need any additional help. You can also submit an <br>
+issue on our github.<br>
+<br>
+Best Regards,<br>
+<br>
+=C2=A0 - [1] github README: <a href=3D"https://github.com/yoctoproject/vsco=
+de-bitbake" rel=3D"noreferrer" target=3D"_blank">https://github.com/yoctopr=
+oject/vscode-bitbake</a><br>
+=C2=A0 - [2] walkthrough issue: <br>
+<a href=3D"https://github.com/yoctoproject/vscode-bitbake/issues/360" rel=
+=3D"noreferrer" target=3D"_blank">https://github.com/yoctoproject/vscode-bi=
+tbake/issues/360</a><br>
+<br>
+On 11/01/2025 11:43, Marco Cavallini via <a href=3D"http://lists.yoctoproje=
+ct.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a> wro=
+te:<br>
+&gt; Hi Enguerrand,<br>
+&gt; thank you for updating the extension.<br>
+&gt; However the most struggling part of this VScode extension is to learn =
+<br>
+&gt; how to setup it with an existing project.<br>
+&gt; Most of the videos and presentations are showing features like syntax =
+<br>
+&gt; highlighting and so on.<br>
+&gt; I haven&#39;t been able to find any valid document nor video showing h=
+ow to <br>
+&gt; setup it using a recent VScode YP extension.<br>
+&gt; Let&#39;s suppose one starts from the beginning cloning poky and setti=
+ng the <br>
+&gt; default &#39;oe-init-build-env&#39;.<br>
+&gt; Is the VScode YP extension able to detect the default setting like a <=
+br>
+&gt; build directory and local.conf and bblayers.conf.<br>
+&gt; Would you mind to point me out to any resource showing that?<br>
+&gt; Just my two cents ;-)<br>
+&gt; --<br>
+&gt; Marco<br>
+<br>
+-- <br>
+Savoir-faire Linux<br>
+Enguerrand de Ribaucourt<br>
+</blockquote></div></div>
+
+--000000000000132e77062b94deec--
 
