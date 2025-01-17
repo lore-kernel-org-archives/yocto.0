@@ -1,85 +1,135 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <kjeld.flarup@liberalismen.dk>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46BB6C02185
-	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 14:19:39 +0000 (UTC)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
- by mx.groups.io with SMTP id smtpd.web10.11610.1737123569528519178
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57517C02183
+	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 14:25:49 +0000 (UTC)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+ by mx.groups.io with SMTP id smtpd.web11.11681.1737123945947544206
  for <yocto@lists.yoctoproject.org>;
- Fri, 17 Jan 2025 06:19:29 -0800
+ Fri, 17 Jan 2025 06:25:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=EJ/HIm5E;
- spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6d8f75b31bfso21671746d6.3
-        for <yocto@lists.yoctoproject.org>; Fri, 17 Jan 2025 06:19:29 -0800 (PST)
+ dkim=pass header.i=@liberalismen-dk.20230601.gappssmtp.com header.s=20230601 header.b=fybukIov;
+ spf=none, err=permanent DNS error (domain: liberalismen.dk, ip: 209.85.218.49, mailfrom: kfc@liberalismen.dk)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aaf3c3c104fso419553666b.1
+        for <yocto@lists.yoctoproject.org>; Fri, 17 Jan 2025 06:25:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737123568; x=1737728368; darn=lists.yoctoproject.org;
+        d=liberalismen-dk.20230601.gappssmtp.com; s=20230601; t=1737123944; x=1737728744; darn=lists.yoctoproject.org;
         h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=IhWgXmM7V5v7/kH2MWAooS0yRl5eEw5syxDwHhzu9TU=;
-        b=EJ/HIm5EhYo9scwF8fSpqVSKH/oM8TblODY5mdxoX/23ED365LyOvSolhYbfsypMXO
-         jGxYLzg9IeZI5OpJj7z0thJT90stRBwnAiXaTxUNnvVavNR9NjyPvzgzECRyblkP/Jfi
-         8dAjWzzrxJiIq21JkcUcFg+LCWOGgXjyPEVtSDQV3tqkYIFDMHGhcGnJQhBwhT9PlLl9
-         bU2/v8NnJmRrsYfl9VIS2sW+rPmt3i1moO6fISMs7xhOecYvQg8gTyV8F5CNIQKegkqz
-         94UV5X5MQbGkP9CaESA24CoDG6JGwn//9PBMummjB0a91mqg97GR2dbiACxjIU8pm01n
-         ptog==
+        bh=UI0mzBK/ADRX8jSRnlErh7Px5VLj5/WH0xxe9BeXN1A=;
+        b=fybukIovACtJ1xZFgRUdpyYqRdPKV2QzUzdIQCw961vf/43qPpKW7tDg5PnBgUFXhc
+         Saveqv+Jt0qk8hCOAFC/QZeznQW0l6y7p0nRKTeYHXLkRPLK4LfvKd3CDQYmpHUCa9yy
+         pJtkHg2AmdIUO/78jxE/c0xaSMyqmh4Oga77lRPMniLeA8pqWLPAZQuM3UBa64TuVZWf
+         arfgG0algg940sLDvKbDmdGbJVvNEvlCEGzXndrnfbL5VyFn9exJnqxhNXy/NAhb3Eol
+         /efPP6PVJXoYQmGzrmJtMWms+47tme18Lgb/VG/epud5p17g1X+HZNxNKnrRP9lxTlTB
+         4nbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737123568; x=1737728368;
+        d=1e100.net; s=20230601; t=1737123944; x=1737728744;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IhWgXmM7V5v7/kH2MWAooS0yRl5eEw5syxDwHhzu9TU=;
-        b=miRfH463diAPqiE0RkOG+fGo2DKqfo1Bb7lC+RWeyM/dKXmXfkz3bysxVMFm47iu/v
-         jOOcShBHuvHr3mla1YVjFNq5H4ZVSO9DzVFrv3LlrX9pzNXYXSzK7x5viRJoOQMx7Xvn
-         +AwgVhJltd7V+/OgcXzEXDo0xqdXp+kLSJUX6YIf891YSMO0M2Vv8KdD6iNoFNv84JeG
-         7GimpOWCWXhKYEHv81vJJ3ZolFlYjNYlwCQs50Yqs31xTc/+MeAMmcWj9qtNNGXQpAiN
-         Z0RcFSFS9MnOe3ZVr2rw3aEFu1NSMmZMh+W20/9Opq56aNsXwpsYdxP7JaRoUEVX1m2X
-         t5ng==
-X-Forwarded-Encrypted: i=1; AJvYcCU25m3B+Zw+45w1w2j75sVw7WJI1Sjs7d+0QntR048pjxzWRosrys5fqMxokz6QJkW1gVWQFA==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YxiTcYR0zvpF/0pxx+s1ro+y+2PNUTUtd2zi/EineHeS+HWXtS+
-	JE41TgmnVkFt3zEQaq9VyBOlkBA70IyfXCacZLc1fPV/tw/B+xiJQnMwEqr2uUpTmzyOk5Yjkxs
-	hUioKXPYo/xNSWlX8l1gmCy2MJa8dSeE/
-X-Gm-Gg: ASbGnctI54yXKZ5VeY2Gn9l6q3lnr45lGBqVKLNR3ssPR5blMzN7mkV8eTm1zGbE4hy
-	FW5jGUhwMmfHxReRGRU6E9caJ9Zca6VcPrPCgeGpb/4EEBgMme9jOLZXDiMwJ+ERqnZqtUi1L
-X-Google-Smtp-Source: AGHT+IESdxwIewHFNkKzmBCfx/Wh8KKqGUzP4bylR+A/5ZLeuUqlPkt2FfvtZ+d8uvTzNklTwFj9X/3cQsnHmqM254o=
-X-Received: by 2002:a05:6214:5404:b0:6d8:a754:9647 with SMTP id
- 6a1803df08f44-6e1b217d4a4mr50054996d6.17.1737123568647; Fri, 17 Jan 2025
- 06:19:28 -0800 (PST)
+        bh=UI0mzBK/ADRX8jSRnlErh7Px5VLj5/WH0xxe9BeXN1A=;
+        b=ft43cnBWKCYXme8X3rEzaPPad7OmXH7hicgBZxRVrJyBpxcgoLs999rSTfwjLwJAjH
+         GJI1mLNRyfT3c34mfVyK8n5M/xYll6qah417fkqGAO4Aidq1OxS6uIyAmwmZo2OB0YmG
+         dmjmntCRyrZZdNA7xEwmcOuvfLa3ESxqt3xsHxlBhFhWfpzuh7HjGa50F+W+IKu3HCCS
+         S8qYaRySYMrwSsTSgryhHBGtp6WgthA58MImH9BSVcsA9iWYokc3sd45WQxG+liGirCi
+         5dJlI0//QSmENAcMrSbgkFD6a5TyiyTcS4diKlJRLB+fj/saLkBdQdPOkDK3bdjm2yRj
+         f9Tw==
+X-Gm-Message-State: AOJu0YzMJ6SDicAdDlR2VMHEOwkSYxmVoBlcTZ/uqsWChUmrFFEC/kHV
+	aq7DA2VqW+EiXK3NaN98rRSS66z/uZKO0DRR30o6I23xNX7YyIge8sUVk2/tNq3XV+UPjuXGF31
+	Zf1V0P52PiThKlmc8YNh9rCMazPa/V8iSzZwWF+IAtZxak5xbg2o=
+X-Gm-Gg: ASbGncsXJGLgaT7XCGWIoWYnBxKNOvEjFYqN9YKld1ZfVoBHhpymDt2LTAq0ycEeJV4
+	lcHGAtu8qnMkSJ/46unqded8Z0Up0eYBt3YA=
+X-Google-Smtp-Source: AGHT+IHJdASZHYjSmIw8/+7TSjsdifB1L1fup01Y7/XB3XMYdpREl/Id7yXEyQTL60T1Y1GCwETbYsPV9sJqMSPKiQE=
+X-Received: by 2002:a17:907:97d6:b0:aa6:8ed8:a82d with SMTP id
+ a640c23a62f3a-ab38b163bf5mr272365966b.31.1737123944038; Fri, 17 Jan 2025
+ 06:25:44 -0800 (PST)
 MIME-Version: 1.0
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 17 Jan 2025 15:19:17 +0100
-X-Gm-Features: AbW1kvaSA5pjlvLXeJ8L0frKEORhx0hpc1t4e_OAThQFkdOVBhfgFH_lrQSiWUQ
-Message-ID: <CANNYZj9KBw9-1sB86f_xqeYuE3rLpT1Dt2sDYbjjNC==EdBJeg@mail.gmail.com>
-Subject: bitbake-setup, where we're at?
-To: bitbake-devel <bitbake-devel@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+From: Kjeld Flarup <kjeld.flarup@liberalismen.dk>
+Date: Fri, 17 Jan 2025 15:25:32 +0100
+X-Gm-Features: AbW1kvaDQoRz2kbdSir0AWbwKIrfXXa0pg4-Q5gyQWAFnKLH5poYYK5MazrgfpE
+Message-ID: <CACRoYp_pFeOTE9VYZh+tsvrXbgXXX2YgsCCSDt06CB1BrUcpzg@mail.gmail.com>
+Subject: do_unpack:append
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000009d9e54062be7afca"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 17 Jan 2025 14:19:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64581
+ <yocto@lists.yoctoproject.org>; Fri, 17 Jan 2025 14:25:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64582
 
-Hello all,
+--0000000000009d9e54062be7afca
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I've posted the latest iteration of the RFC bitbake-setup prototype;
-the major change in this one is that it is now testable with
-bitbake-selftest:
+I try to write an append for do_unpack
+do_unpack:append() {
+  echo Hello
+}
 
-https://patchwork.yoctoproject.org/project/bitbake/list/?series=30849
+But it looks like it is parsed as Python
 
-I'd even say it's no longer a proof of concept, and is, in theory,
-suitable for production work. If the subject of reproducible,
-end-to-end yocto build setups (with a single command, against a single
-config file) is interesting to you, then get it and play with it.
+                     parser =3D bb.codeparser.PythonParser(key, logger)
+    >                parser.parse_python(value,
+filename=3Dvarflags.get("filename"), lineno=3Dvarflags.get("lineno"))
+                     deps =3D deps | parser.references
+  File "/tmp/yocto/meta-poky/bitbake/lib/bb/codeparser.py", line 358, in
+PythonParser.parse_python(node=3D"\n    bb.build.exec_func('base_do_unpack'=
+,
+d)\n  echo Hello\n", lineno=3D1, filename=3D'autogenerated', fixedhash=3DNo=
+ne):
+             node =3D "\n" * int(lineno) + node
+    >        code =3D compile(check_indent(str(node)), filename, "exec",
+                            ast.PyCF_ONLY_AST)
+  File "autogenerated", line 3
+    echo Hello
+              ^
+IndentationError: unindent does not match any outer indentation level
 
-Now is the time where we can still easily make breaking revisions to
-it; once bitbake-setup lands in master and starts gaining users,
-making any changes becomes much, much harder. Implementing things from
-intuition, experience, and personal preferences is okay; getting real
-feedback is much better.
+Isn't this possible using shell
 
-Thanks,
-Alex
+--------------------- Med Liberalistiske Hilsner ----------------------
+
+   Civilingeni=C3=B8r, Kjeld Flarup - Mit sind er mere =C3=A5bent end min t=
+egnebog
+   Sofienlundvej 6B, 7560 Hjerm, Tlf: 40 29 41 49
+   Den ikke akademiske hjemmeside for liberalismen - www.liberalismen.dk
+
+--0000000000009d9e54062be7afca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I try to write an append for do_unpack=C2=A0</div><di=
+v>do_unpack:append() {<br>=C2=A0 echo Hello<br>}<br></div><div><br></div><d=
+iv>But it looks like it is parsed as Python</div><div><br></div><div><font =
+face=3D"monospace">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0parser =3D bb.codeparser.PythonParser(key, logger)<br>=
+=C2=A0 =C2=A0 &gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0p=
+arser.parse_python(value, filename=3Dvarflags.get(&quot;filename&quot;), li=
+neno=3Dvarflags.get(&quot;lineno&quot;))<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0deps =3D deps | parser.referen=
+ces<br>=C2=A0 File &quot;/tmp/yocto/meta-poky/bitbake/lib/bb/codeparser.py&=
+quot;, line 358, in PythonParser.parse_python(node=3D&quot;\n =C2=A0 =C2=A0=
+bb.build.exec_func(&#39;base_do_unpack&#39;, d)\n =C2=A0echo Hello\n&quot;,=
+ lineno=3D1, filename=3D&#39;autogenerated&#39;, fixedhash=3DNone):<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0node =3D &quot;\n&quot; * int(=
+lineno) + node<br>=C2=A0 =C2=A0 &gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0code =3D co=
+mpile(check_indent(str(node)), filename, &quot;exec&quot;,<br>=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 ast.PyCF_ONLY_AST)<br>=C2=A0 File &quot;autogenerated&quot;, lin=
+e 3<br>=C2=A0 =C2=A0 echo Hello<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 ^<br>IndentationError: unindent does not match any outer indenta=
+tion level<br></font></div><div><br></div><div>Isn&#39;t this possible usin=
+g shell</div><div><br></div><div><div dir=3D"ltr" class=3D"gmail_signature"=
+ data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><p>-------------------=
+-- Med Liberalistiske Hilsner ----------------------</p><pre cols=3D"72">  =
+ Civilingeni=C3=B8r, Kjeld Flarup - Mit sind er mere =C3=A5bent end min teg=
+nebog
+   Sofienlundvej 6B, 7560 Hjerm, Tlf: 40 29 41 49
+   Den ikke akademiske hjemmeside for liberalismen - <a href=3D"http://www.=
+liberalismen.dk" target=3D"_blank">www.liberalismen.dk</a>
+
+</pre></div></div></div></div>
+
+--0000000000009d9e54062be7afca--
 
