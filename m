@@ -1,135 +1,77 @@
-Return-Path: <philip.dawson@datapath.co.uk>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2DACDC02183
-	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 13:53:29 +0000 (UTC)
-Subject: Advice for tracking down changes that invalidate sstate cache across builds
-To: yocto@lists.yoctoproject.org
-From: philip.dawson@datapath.co.uk
-X-Originating-Location: Paddington, England, GB (212.69.51.233)
-X-Originating-Platform: Windows Firefox 134
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33B32C02183
+	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 14:03:09 +0000 (UTC)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+ by mx.groups.io with SMTP id smtpd.web11.11145.1737122579772055921
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 17 Jan 2025 06:02:59 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=YUMyRIQ6;
+ spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6d900c27af7so22878056d6.2
+        for <yocto@lists.yoctoproject.org>; Fri, 17 Jan 2025 06:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737122579; x=1737727379; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x/b7gTXPHoYSB06sd/oX545G/7O+bxw+o4QdHJ51eIk=;
+        b=YUMyRIQ6SBHBNHmigHgUtL4Ver6LUBdHzTFYQsCUOl7srXb/OmWrkFccKAIcjb9xHM
+         prXbtMlCmHfLsBnNhwMZbB1Lsh2lgZPPQVuB66DOuy2peCZnH+ll7bRysCQqajZA/G6G
+         cle0fn/yuybjVu9gZjQ2lRa+pjIf3ztfO5wzISf/EZJ1NMwynZXA/mDd04UQlT5GsdnL
+         UhqyhvRFMNtokscvEfSHfcXC4Z0WknQ/hxW6/Wa7OYdsY8DV2yjVQ3uLQh3sx9kZM5p+
+         JtqUTxkIbZOcKtvKrO8bqzC8EUmu3RDcHZOmNK4YFYLM1Dfrce0FhYn7zyM6dhoQtsxz
+         TMOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737122579; x=1737727379;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x/b7gTXPHoYSB06sd/oX545G/7O+bxw+o4QdHJ51eIk=;
+        b=gnd4q0AKaeq2CPSqOF1OaDkeMu85SENRZUy7rTwABXeAYlafZrZvO7Z+G/FcGsYU+R
+         xh7KPIIZ0fXy3rDJimQxWdHQr0FZsSHKdrgYGDfrp8kvYufYm/jXD2HrNGPghJecy3bd
+         SvPFDZkZ8aXlp2aWVKH/dXAzdrhr3QfpORwsHV62rha23HyzC0mlNC6mLjfX/T1DfIc1
+         U5FBCUJWjhAVISEeWIQOBHoEJxO9L7pbBj6nmpdRRbRaGc8vpPYjx64EU27It8kKY8yY
+         Go4HeHqQZu6OherKrVvyuqRu5xELovwq7FW2Kg9pGTCXVBA8yW4/i95jnXY7sieiZc2i
+         NGbw==
+X-Gm-Message-State: AOJu0YygvnHEnWNWrfxB2AUJ/r2Os1runBgVZrLyKmd1SUgh2Qwl87Kj
+	fr7btm+/DWUOtpd0UGflp8wV/CaciE4EAiHM26GQftf8naMktyFvfru3QYBJAy5JCudWbbwXoKH
+	Usk0JS+jjGNVzPI/Q9ZKondFTLtYzUCJQ
+X-Gm-Gg: ASbGncshtZ1+q8ZmyTwU7zFnAKJwwXVE9M1Z6KhocOOXzpD3KYEIZhHRJbxALIQu9PL
+	2arLt4HCqHx/gJ1Mv4+5eegkobnsS99rTXVJ9/bKAF+zAj/jDfkpWnwDWX91Pl0kKrEzqwIH1
+X-Google-Smtp-Source: AGHT+IF2iFwi2klD4LWMspkIzC/F3bmeccZVxWKDe81wQv0m4/tciAls8+nKohWuozXoK9QPpG6VGs1/wmZz0xcbib8=
+X-Received: by 2002:ad4:5dcd:0:b0:6da:dc79:a3d2 with SMTP id
+ 6a1803df08f44-6e1b2171505mr48458546d6.5.1737122578691; Fri, 17 Jan 2025
+ 06:02:58 -0800 (PST)
 MIME-Version: 1.0
-Date: Fri, 17 Jan 2025 05:53:24 -0800
-Message-ID: <Ri6f.1737122004068036139.nOLu@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="Lvj3FSfWcagZodi9uetZ"
+References: <Ri6f.1737122004068036139.nOLu@lists.yoctoproject.org>
+In-Reply-To: <Ri6f.1737122004068036139.nOLu@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 17 Jan 2025 15:02:47 +0100
+X-Gm-Features: AbW1kvaXFGmjm1Al3mSuUJzMKtmu-4Cdm5tx_NvcjaguXGcDFV5y6MtlkBz2sNc
+Message-ID: <CANNYZj94udOxVo8C95Ou_goUSsSJx2_UcATAAFfD4Ma70JdTNQ@mail.gmail.com>
+Subject: Re: [yocto] Advice for tracking down changes that invalidate sstate
+ cache across builds
+To: yocto@lists.yoctoproject.org, philip.dawson@datapath.co.uk
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 17 Jan 2025 13:53:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64577
+ <yocto@lists.yoctoproject.org>; Fri, 17 Jan 2025 14:03:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64578
 
---Lvj3FSfWcagZodi9uetZ
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, 17 Jan 2025 at 14:53, philip.dawson via lists.yoctoproject.org
+<philip.dawson=datapath.co.uk@lists.yoctoproject.org> wrote:
 
-Hi,
+> I feel like i must be missing an easier way here? Or I'm going about this in the wrong way?
 
-I'm looking for some advice on how to track down why sstate cache isn't bei=
-ng used in some builds for some recipes/tasks.
+If you're using scarthgap or more recent release, 'bitbake -S
+printdiff' is as good as such a tool can possibly be. I would suggest
+starting with a simple experiments with plain poky, or studying the
+selftests in class SStatePrintdiff (in
+meta/lib/oeqa/selftest/cases/sstatetests.py) before running it on a
+complex real world scenario.
 
-I don't have a specific problem right now but I often run into a scenario w=
-here builds are taking much longer than expected on a developers machine. I=
-t usually comes down to an early dependency having changed for some reason =
-(for example a recent one was a sneaky build path dependency in a Xilinx re=
-cipe).
-
-To complicate things we:
-- Build across many machines (developers and build servers etc).
-- Have multiple sstate caches (developer local, our network cache, Xilinx i=
-nternet cache).
-- Have multiple boards that build with largely overlapping sets of recipes =
-but differ in the contents of a few low level ones like the device tree (wh=
-ich is a dependency of the kernel so the kernel changes, then our drivers c=
-hange, then our applications change, etc). This makes finding the sstate ca=
-che file that hasn't been used this time (when it normally would be) hard t=
-o identify as there are often lots of versions of cache for a single recipe=
- in the various caches.
-- Have a few recipes that will change almost every build (putting build ver=
-sion numbers into the image for example).
-- Use Xilinx PetaLinux tools.
-
-What is the best way of tracking down the specific task that has changed an=
-d caused a whole swathe of others to rebuild?
-
-Currently I have a mostly manual process of try and guess the earliest reci=
-pes (by looking at the first few non-setscene tasks in the logs). Then comp=
-are the stamps against the relevant siginfo files in the various caches and=
- try to find the most recent one, which i can then bitbake-diffsigs against=
- to find a difference. Often this is in a dependency and then I have to man=
-ually track the changes again till I find a concrete difference to investig=
-ate.
-
-I've tried to write my own tool to investigate but not gotten very far as I=
- run into the complexities of the sstate and trying to work out things like=
- the SSTATE_VERSION and SSTATE_PKGARCH. I also can't see a good way of sear=
-ching the webserver that hosts the sstate cache for a near miss cache file =
-as I won't know the checksum from the build!
-
-I feel like i must be missing an easier way here? Or I'm going about this i=
-n the wrong way?
-
-Any advice would be greatly appreciated.
-
-Best Regards,
-Phil Dawson
-
---Lvj3FSfWcagZodi9uetZ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hi,</div>
-<div>&nbsp;</div>
-<div>I'm looking for some advice on how to track down why sstate cache isn'=
-t being used in some builds for some recipes/tasks.</div>
-<div>&nbsp;</div>
-<div>I don't have a specific problem right now but I often run into a scena=
-rio where builds are taking much longer than expected on a developers machi=
-ne. It usually comes down to an early dependency having changed for some re=
-ason (for example a recent one was a sneaky build path dependency in a Xili=
-nx recipe).</div>
-<div>&nbsp;</div>
-<div>To complicate things we:</div>
-<div>&nbsp;- Build across many machines (developers and build servers etc).=
-</div>
-<div>&nbsp;- Have multiple sstate caches (developer local, our network cach=
-e, Xilinx internet cache).</div>
-<div>&nbsp;- Have multiple boards that build with largely overlapping sets =
-of recipes but differ in the contents of a few low level ones like the devi=
-ce tree (which is a dependency of the kernel so the kernel changes, then ou=
-r drivers change, then our applications change, etc). This makes finding th=
-e sstate cache file that hasn't been used this time (when it normally would=
- be) hard to identify as there are often lots of versions of cache for a si=
-ngle recipe in the various caches.</div>
-<div>&nbsp;- Have a few recipes that will change almost every build (puttin=
-g build version numbers into the image for example).</div>
-<div>&nbsp;- Use Xilinx PetaLinux tools.</div>
-<div>&nbsp;</div>
-<div>What is the best way of tracking down the specific task that has chang=
-ed and caused a whole swathe of others to rebuild?</div>
-<div>&nbsp;</div>
-<div>Currently I have a mostly manual process of try and guess the earliest=
- recipes (by looking at the first few non-setscene tasks in the logs). Then=
- compare the stamps against the relevant siginfo files in the various cache=
-s and try to find the most recent one, which i can then bitbake-diffsigs ag=
-ainst to find a difference. Often this is in a dependency and then I have t=
-o manually track the changes again till I find a concrete difference to inv=
-estigate.</div>
-<div>&nbsp;</div>
-<div>I've tried to write my own tool to investigate but not gotten very far=
- as I run into the complexities of the sstate and trying to work out things=
- like the SSTATE_VERSION and SSTATE_PKGARCH. I also can't see a good way of=
- searching the webserver that hosts the sstate cache for a near miss cache =
-file as I won't know the checksum from the build!</div>
-<div>&nbsp;</div>
-<div>I feel like i must be missing an easier way here? Or I'm going about t=
-his in the wrong way?</div>
-<div>&nbsp;</div>
-<div>Any advice would be greatly appreciated.</div>
-<div>&nbsp;</div>
-<div>Best Regards,</div>
-<div>Phil Dawson</div>
-
---Lvj3FSfWcagZodi9uetZ--
+Alex
 
