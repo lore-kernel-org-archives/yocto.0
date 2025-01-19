@@ -1,72 +1,126 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7FF6C02183
-	for <webhook@archiver.kernel.org>; Sun, 19 Jan 2025 10:16:34 +0000 (UTC)
-Received: from posta.faresoftware.it (posta.faresoftware.it [93.51.112.187])
- by mx.groups.io with SMTP id smtpd.web10.13223.1737281791437262560
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88ED2C02183
+	for <webhook@archiver.kernel.org>; Sun, 19 Jan 2025 12:49:35 +0000 (UTC)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+ by mx.groups.io with SMTP id smtpd.web10.14667.1737290974414663795
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jan 2025 02:16:32 -0800
+ Sun, 19 Jan 2025 04:49:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@faresoftware.it header.s=20210817 header.b=Cota/3b2;
- spf=pass (domain: faresoftware.it, ip: 93.51.112.187, mailfrom: mauro@faresoftware.it)
-Message-ID: <77bad18f-3b09-4712-a9f5-3aacf6506102@faresoftware.it>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=faresoftware.it;
-	s=20210817; t=1737281788;
-	bh=/CUHk6XUdD3eecDpdQoUtnohe3RusRou+2v2q1+mh/s=;
-	h=Date:To:From:Subject;
-	b=Cota/3b2ahxluG3kj+vBt37xOdwpJ4m+TCrjm+E+EUQgbFj+6QE7lEflBKONjkhsX
-	 c6kuFvTqIkfajeotGao9gsYUu04pmPFf0PtFpqZVZx1fyXKok1dU578jhJVapL08hF
-	 ZAG00ATaMrlHmpBeuKa5fqvVZFo0Py+7t4qUOg3aMpnQWz/DRUVWQhv2jQxO1c2GMW
-	 Mz2LelGQDeZu0onF2P2TbBUdu4/h5t/YhGzzDp3hNUnZcyS/VezPfOUMVYI9fpD0Nr
-	 5eIsfzN7M9Of8K4Wqu2i6IjjXKSPaX35JaxE7CQ1/Ve+1wMSwRywT27kvAToZW6PSV
-	 BTfsd13b6swJw==
-Date: Sun, 19 Jan 2025 11:16:26 +0100
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=gjdoEPw7;
+ spf=pass (domain: gmail.com, ip: 209.85.128.50, mailfrom: skandigraun@gmail.com)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43634b570c1so24540025e9.0
+        for <yocto@lists.yoctoproject.org>; Sun, 19 Jan 2025 04:49:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737290973; x=1737895773; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=O7Iw2DuHN/bwG4Jh9pGgMLxRV/2/YnqQHWADCdsHj5w=;
+        b=gjdoEPw7I4hsyFInzgLPCWrtIqCGTQr1OqsMiUoQZ05B2AxTy0PwdNF/PEr0LQznGa
+         R9dRQGsx5bK065mPUaDT0xa86bdcG7rqIuGNadPZJarehW3n7/0qM9vHrWwCq/a5HxnW
+         jznNufh1nTvvmr8/v/b4FBSmECuqROaIfqb2+hj2A9DeOFqDIclIW2/npG8wFhajBhOg
+         AFlA20rcy0TD8SQB/lWfk4I6CTvJhXKa11ZyOaMEoTsgX3TlXz7u0d4zzTb5Rpb9u11T
+         F2WogQlolVYOMwKV1wv2gu7nRmmdxEn8AlHfntQtxA994OTynqbWr10sx2jibx4ZQrMC
+         kl1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737290973; x=1737895773;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O7Iw2DuHN/bwG4Jh9pGgMLxRV/2/YnqQHWADCdsHj5w=;
+        b=GSdNvRLxZVxaPAcUPRZ84OH9MFDVJfw+IaTWa9eCKjTAQky7KIEhxcHQjI3JnAmx1i
+         CgnjD0tHhEyAtt+EklKwNd2dEjyr9bdV3RkRjZL6Ipfxa4FnCxiXBeRFofEJl0ULx3pp
+         M1G6BBx0vpgH/sunqUqwmfwy5epFxlHeFgXsn1PbZREoPiaPdJuqHaCa6RksdYDzCmbS
+         zW2c1u/GJrQVfkbaYBcecg8VKwIFBYE/0j7OAMQokgqot6IOYCpzaonczVfn6W/IsSw5
+         YmhYSqZ2sOnZoKrVQWgG33m31Ep6gL6VGQAyEb4XET7M216JE+faBuZI+QurxFYukPnk
+         04Rw==
+X-Gm-Message-State: AOJu0YwuSWFMqJQy5cEfPdXYSkVuAvIlsnC0r/HgK7MSzofm+iHpCbAH
+	Prpp/4tj7bxiOCrn7Z8Zq7Qu6h1RTe+c0k2V0tMrWyfRDJ/EPNRC0+uTVg==
+X-Gm-Gg: ASbGnctoPPpwASKIq6pakZwPStzEb4WDYREJkFM3nudfoN4gzl+h0ND8m3rfnsXQgtH
+	RG46yZr5mG0L86QmCsReoPP+7vcV43HHMbM303oMSHkPMZNMq/STM9yS6ZNvDG6IwDnVFxV7oTG
+	rmVVm8bUogTnS5lIMiha19m8UdI5wOyUaQZnHD2roR2nsYco+7RSe1LfovKWVNb+GvPsDq/MvAp
+	s+x5Yn41RB+mXnPO+hft3yHeykzTZtjaT8J7kUcu5+gJT1MyWt7NCosHqplV/m0mUiKHE3JBe/u
+	Uw==
+X-Google-Smtp-Source: AGHT+IEW8qXAtqbdwF6gdS/gXCGSqUjprAvYOqroUz/yje0ZzqqHJzobfMbLSEALoTtTBbbCT0Kg/g==
+X-Received: by 2002:a05:6000:144a:b0:38a:87cc:fb2c with SMTP id ffacd0b85a97d-38bf56629cbmr8631334f8f.18.1737290972415;
+        Sun, 19 Jan 2025 04:49:32 -0800 (PST)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf322a859sm7452888f8f.43.2025.01.19.04.49.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jan 2025 04:49:31 -0800 (PST)
+Message-ID: <083a5026-a99e-472a-9a4f-1164b0e2114e@gmail.com>
+Date: Sun, 19 Jan 2025 13:49:30 +0100
 MIME-Version: 1.0
-To: yocto@lists.yoctoproject.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] MIRRORS variable
+To: yocto@lists.yoctoproject.org, mauro@faresoftware.it
+References: <77bad18f-3b09-4712-a9f5-3aacf6506102@faresoftware.it>
 Content-Language: en-US
-From: Mauro Ziliani <mauro@faresoftware.it>
-Subject: MIRRORS variable
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <77bad18f-3b09-4712-a9f5-3aacf6506102@faresoftware.it>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-X-Synology-MCP-Status: no
-X-Synology-Spam-Status: score=-3.101, required 8, autolearn=ham, FROM_HAS_DN 0, FROM_EQ_ENVFROM 0, BAYES_HAM -3, TO_DN_NONE 0, TO_MATCH_ENVRCPT_ALL 0, MIME_GOOD -0.1, MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001, RCVD_COUNT_ZERO 0, ARC_NA 0, RCPT_COUNT_ONE 0, MISSING_XM_UA 0, MIME_TRACE 0, __NOT_SPOOFED 0
-X-Synology-Spam-Flag: no
-X-Synology-Virus-Status: no
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 19 Jan 2025 10:16:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64589
+ <yocto@lists.yoctoproject.org>; Sun, 19 Jan 2025 12:49:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64590
 
-Hi all.
+You can find a number of examples in the mirrors.bbclass[1] file. Also 
+note that in git URIs Bitbake expects "/" separator between the host and 
+path, not ":". I think this should work:
 
-Which is the correct syntax of MIRRORS variable?
+MIRRORS += " git://user@nas-archivio/var/home/git;protocol=ssh 
+git://git@gitlab.newsoc.it:2289/projects;protocol=ssh "
 
-I need to replace
+One more thing: make sure to use explicit commit hash in your recipe for 
+SRCREV. If you use something that needs to be resolved to a revision 
+(tag, AUTOREV...) than Bitbake will try to connect to the upstream 
+first, to resolve the commit, ignoring the MIRRORS.
 
-git://user@nas-archivio:/var/home/git;protocol=3Dssh=C2=A0 with=20
-git://git@gitlab.newsoc.it:2289:/projects;protocol=3Dssh
+[1]: 
+https://git.yoctoproject.org/poky/tree/meta/classes-global/mirrors.bbclass
 
-
-I put this in local.conf
-
-
-MIRRORS +=3D \
-
-git://user@nas-archivio:/var/home/git;protocol=3Dssh=C2=A0 \
-
-git://git@gitlab.newsoc.it:2289:/projects;protocol=3Dssh \n \
-
-"
-
-
-but the fetcher doesn't the replace.
-
-
-Best regards
-
- =C2=A0 MZ
-
+On 19.01.25 11:16, Mauro Ziliani via lists.yoctoproject.org wrote:
+> Hi all.
+>
+> Which is the correct syntax of MIRRORS variable?
+>
+> I need to replace
+>
+> git://user@nas-archivio:/var/home/git;protocol=ssh  with 
+> git://git@gitlab.newsoc.it:2289:/projects;protocol=ssh
+>
+>
+> I put this in local.conf
+>
+>
+> MIRRORS += \
+>
+> git://user@nas-archivio:/var/home/git;protocol=ssh  \
+>
+> git://git@gitlab.newsoc.it:2289:/projects;protocol=ssh \n \
+>
+> "
+>
+>
+> but the fetcher doesn't the replace.
+>
+>
+> Best regards
+>
+>   MZ
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#64589): https://lists.yoctoproject.org/g/yocto/message/64589
+> Mute This Topic: https://lists.yoctoproject.org/mt/110696165/6084445
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
