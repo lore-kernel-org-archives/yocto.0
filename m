@@ -1,230 +1,343 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <hongxu.jia@eng.windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA8E6C0218B
-	for <webhook@archiver.kernel.org>; Tue, 21 Jan 2025 18:16:34 +0000 (UTC)
-Received: from PA4PR04CU001.outbound.protection.outlook.com (PA4PR04CU001.outbound.protection.outlook.com [40.107.162.50])
- by mx.groups.io with SMTP id smtpd.web11.22613.1737483389550982848
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E914C02182
+	for <webhook@archiver.kernel.org>; Wed, 22 Jan 2025 03:02:27 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web11.34177.1737514942018868343
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Jan 2025 10:16:30 -0800
+ Tue, 21 Jan 2025 19:02:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=sTcqmxkE;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=sTcqmxkE;
- spf=pass (domain: arm.com, ip: 40.107.162.50, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=vcufEf8mWQtSVdMC78Dk6vHcSI4M3NpG6LAhXaOQ+GhfKuaedN++73iOpG//s4Tua5MSFCUfOmsMiiJGfhBr+TtdlEELdpCjHoikCeBoteeyyCG0JLraWzUVzogP9mCRpYqHcM3HU5pe0djU9Adv0RYM2SG1ICGRURQzaF2aN8l6z83UStQvHsJxsKeV3swlegsQMj0Ffj0jO7csdsqQdLK9s/zBXn5ZzuhhukGn4KfQ3sYU/pVLvogaXqLloGFSm+Z5Gv8IGymAHkn8q2SEfjFF6ik7J88c4K7IN96zK5xMnuiF1SJBAddKum0ZCCfB45mDYT76th7Nj4f03oIPtQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0o77KAEppmN86mDc4U+XGOT8+PyeplofWtzsJwY1QY0=;
- b=CU5qeSoJK9WE0THhBRFan/E4t8LBuAG6gwWxJORaYIH/KO5Caa1WujwuWy7CZsocpHFBZJNXjFmKyfJtk7oehW0B88y7126aYxNqqdd0C6EoUidlJK8/udFfxhrvOfur5yMXnMBsUUTB1Vs6VwyzE+OSXDDAO9E3gfjMWA9bg8jklMeKU0FJCdrM2PyceeppYYVoCBvWkGnM+XJBbFb9OmJeEOgwV3zocN44oV+YTuOCJftEAl42AMjtiQVkXiSpZldzSzLJNOhYusucRnEp+8svbtwNGwZVno4/yMgYgj1OjGQWkQv9jK9yOI3ojqR08fLR1nnvO2vgFVjf70JCIw==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0o77KAEppmN86mDc4U+XGOT8+PyeplofWtzsJwY1QY0=;
- b=sTcqmxkEYE98H1SKEXwYKpuUZbVtZYQEdsf7ql5DJadU2e+mbRmCF8u7JF1dj4SGuOY1zysy01JxkwjXG4fb9BQBteiYZzZlkcWQ8r7pftA0EBjf7z1efRbIThkiMMjWuZIXsiq79/F3NEBJ2V7p41aU46voRc9KTUVnO3Z/Nu8=
-Received: from DB7PR05CA0008.eurprd05.prod.outlook.com (2603:10a6:10:36::21)
- by FRZPR08MB11097.eurprd08.prod.outlook.com (2603:10a6:d10:13d::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Tue, 21 Jan
- 2025 18:16:26 +0000
-Received: from DB1PEPF000509FA.eurprd03.prod.outlook.com
- (2603:10a6:10:36:cafe::e0) by DB7PR05CA0008.outlook.office365.com
- (2603:10a6:10:36::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.21 via Frontend Transport; Tue,
- 21 Jan 2025 18:16:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
- pr=C
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- DB1PEPF000509FA.mail.protection.outlook.com (10.167.242.36) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8377.8
- via Frontend Transport; Tue, 21 Jan 2025 18:16:25 +0000
-Received: ("Tessian outbound 29bc2c4ca0fe:v543"); Tue, 21 Jan 2025 18:16:25 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: 1a8eeddba0fa62c7
-X-TessianGatewayMetadata: GiFmMZ4+d0f7lTq4PVoQdXaPtLk03RMaIi4NjypyG5Nv1OTEUZCkC4MK9mpyyEB81P4S7zf8UggP4uNfwpSEoy1CjY4BeJBXTPp27hK52Rj6y+WbPpzwyLXJTtHRYA1cO8E4gpN+JsMZcFeByDgbyuQkIw5jlJ5HnJ2wwPg3qLM=
-X-CR-MTA-TID: 64aa7808
-Received: from Lc428d3d25f30.1
-	by 64aa7808-outbound-1.mta.getcheckrecipient.com id A497893C-6C0E-4776-ACFE-7ED6587D54A8.1;
-	Tue, 21 Jan 2025 18:16:19 +0000
-Received: from PA4PR04CU001.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id Lc428d3d25f30.1
-    (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-    Tue, 21 Jan 2025 18:16:19 +0000
+ dkim=none (message not signed); spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=31178f137b=hongxu.jia@windriver.com)
+Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50M26eWl017794;
+	Wed, 22 Jan 2025 03:02:12 GMT
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2175.outbound.protection.outlook.com [104.47.55.175])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 44aqk3g1d9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 03:02:12 +0000 (GMT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=INGMT0TfRfhWhpidqUHgek9/l7hf4QYpquC618Et+fd/F72amXdS111ICm39ZCVR/dsZAPWsDURgTDieGPCjN1yqpRXsIrUAZR19b23vUMMGPJHQJO1zlhataISG8m/EMfxfb0wnFSSi2woNbZuKVgsUGSmuKd6mCcEqG6zqO1Rt9D2OM7OmWwfndNTxZCZA1H8uZ9I6toStAT/MK584dJKhydDqWno5NArVJ/JEB7LKEtJMofGyFAgHsLRgOGBG+debht7ofuS2YOEZP2Os3Re8tUvlXEq8xNXFf6YwgUx/YuHUrNvxk823RmDKYvG1YQgiRJBo0AoDdMecRbd9sg==
+ b=CrexoxdWPKBGLORuqRqp45rB8iGxW+zetuEe5lxdD5N722H8B1LSzSv7X6CQ2bWvTipoLNrcQJ1F+B8WhxOsBXE/nJMgGjGhbuMZwOs0bcpIHiJfmrUZemX6KMK65a7p6qSxyt9Sr2wxKjWxXN4yr8NTjiElahYddziB2fI9X79JUjbdUB3yZJJbnnYTBHhVZEJ7AW7HxGjGmzWww8OlU4hVLdMq+BJwuQqkJsUDTa3dYnmQayyWOZsrgINJbjXi+r4Xtx4cN27+xvahvyVZMb11DfdotkWtt4TkVZYXscpQr8FJCmcUheeTMGBkxK7BoH1Dd4q34liaJfYos/MEXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0o77KAEppmN86mDc4U+XGOT8+PyeplofWtzsJwY1QY0=;
- b=t4f4I8q0E5hrHUWm88DJLGTkGjSzFJQGvP9ofTTHNxtpYMd+j+I92xR8r0jLiIM5tQMm9kYqiYnf+K5Z23f4gxkyoWHV2ubvXaIoefWUEnQzyh8pNMZWwMjgjCA3hTJ2L9hjeS6ZpMJ3nH1tH7X1pakQwSSd3va29DcBXMjSmlEH2SWY8POLF+UavQRIrE6JFsBoyKt36tYNddRScVh+UmSSaO8nh/IxniO72LboLiQqSVr2Quo1Xc16yt3jB/LftZDEOx11oCupAfXmEx5Zdp8uI7dFnF1c1PqjYra/kW8R/OAvsHZ6ZyH0nnVZEZfNy4zFEGZLXHGXBbUnc79ejQ==
+ bh=jEzK5qihLUjNiukRfEJUJB5qZ8yxdpXVgIaNZZ+qp5s=;
+ b=mHDXbx2aJFSr1CPOiDZm5et5VkDhwpXqwTzH56CJM31rtamO5vj75hPFcfMY4G2vaZat8Nu2ikN+zvhHNQ5kdeDkxvzO71497pExy0RKNI1ZnBV1z172UDQkHORrnEVPjVg4x9c2ExhNCGjnA2L2c5SV3w9rA5IxwTPrdL0j1TuMfz7k7hCUQh4gFFWSgFAhzdTaU+AUBoT/I2M2149UPF845i92oW9lgAWMzDzanoVjVroJ6Qn16T+bcuBiRdoKHoyxskG+2IL8bbEhVgJX+9JCe4MCsNsM/PHbdqq2mdz3kP2W1gvSNYVeIa51HoN3y1LgW8zpd4TlINVcSRxvuA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0o77KAEppmN86mDc4U+XGOT8+PyeplofWtzsJwY1QY0=;
- b=sTcqmxkEYE98H1SKEXwYKpuUZbVtZYQEdsf7ql5DJadU2e+mbRmCF8u7JF1dj4SGuOY1zysy01JxkwjXG4fb9BQBteiYZzZlkcWQ8r7pftA0EBjf7z1efRbIThkiMMjWuZIXsiq79/F3NEBJ2V7p41aU46voRc9KTUVnO3Z/Nu8=
-Received: from AS4PR08MB7429.eurprd08.prod.outlook.com (2603:10a6:20b:4e1::9)
- by PA4PR08MB6254.eurprd08.prod.outlook.com (2603:10a6:102:f3::11) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from PH7PR11MB7608.namprd11.prod.outlook.com (2603:10b6:510:269::20)
+ by PH0PR11MB5950.namprd11.prod.outlook.com (2603:10b6:510:14f::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Tue, 21 Jan
- 2025 18:16:15 +0000
-Received: from AS4PR08MB7429.eurprd08.prod.outlook.com
- ([fe80::8db5:7772:a426:2afe]) by AS4PR08MB7429.eurprd08.prod.outlook.com
- ([fe80::8db5:7772:a426:2afe%3]) with mapi id 15.20.8356.020; Tue, 21 Jan 2025
- 18:16:15 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: "Roos, Thomas" <throos@amazon.de>
-CC: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] [poky] [master] [PATCH] gcc-sanitizers.inc: fix for
- aarch64
-Thread-Topic: [yocto] [poky] [master] [PATCH] gcc-sanitizers.inc: fix for
- aarch64
-Thread-Index: AQHbbCTAwEuHTOs/y0ypTwfUvyuv2rMhffkAgAAIyACAAAIHgA==
-Date: Tue, 21 Jan 2025 18:16:15 +0000
-Message-ID: <E2BDDD8D-640F-429F-BB4F-605421F80C3E@arm.com>
-References: <20250121165115.362609-1-throos@amazon.de>
- <3469A2E8-B686-441B-9658-D1FDF4B4BD1D@arm.com>
- <09f166f5-cd70-4fe8-aa76-112fc376d69a@email.android.com>
-In-Reply-To: <09f166f5-cd70-4fe8-aa76-112fc376d69a@email.android.com>
-Accept-Language: en-GB, en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Wed, 22 Jan
+ 2025 03:02:09 +0000
+Received: from PH7PR11MB7608.namprd11.prod.outlook.com
+ ([fe80::ef64:bc9f:eb8c:e6e]) by PH7PR11MB7608.namprd11.prod.outlook.com
+ ([fe80::ef64:bc9f:eb8c:e6e%2]) with mapi id 15.20.8356.017; Wed, 22 Jan 2025
+ 03:02:09 +0000
+Content-Type: multipart/alternative;
+ boundary="------------LdcouWWHlr0yHkrMjyTUG5PZ"
+Message-ID: <94123028-002b-43d6-bf3d-6aa9d67899ae@windriver.com>
+Date: Wed, 22 Jan 2025 11:02:02 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-tensorflow] Request for creating a scarthgap branch
+To: "Shilwant, Chirag" <c-shilwant@ti.com>,
+        "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Cc: "Khasim, Syed Mohammed" <khasim@ti.com>, "Davis, Andrew" <afd@ti.com>,
+        "Singh, Vishnu" <v-singh1@ti.com>,
+        "Qi.Chen@windriver.com" <Qi.Chen@windriver.com>,
+        "jiahongxujia@163.com" <jiahongxujia@163.com>
+References: <99f187fb3f1e40cc80e43852257f17f2@ti.com>
+ <f7e63aa3c45e452e83b6e3f95ab20faa@ti.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3826.300.87.4.3)
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: 
-	AS4PR08MB7429:EE_|PA4PR08MB6254:EE_|DB1PEPF000509FA:EE_|FRZPR08MB11097:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e3ef2de-d8ff-4f15-f8e4-08dd3a47b7e8
-x-checkrecipientrouted: true
-nodisclaimer: true
+From: Hongxu Jia <hongxu.jia@windriver.com>
+In-Reply-To: <f7e63aa3c45e452e83b6e3f95ab20faa@ti.com>
+X-ClientProxiedBy: TYCPR01CA0178.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b2::19) To PH7PR11MB7608.namprd11.prod.outlook.com
+ (2603:10b6:510:269::20)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7608:EE_|PH0PR11MB5950:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0d2d33f-675b-4809-8ac6-08dd3a91292d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: 
- BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
-X-Microsoft-Antispam-Message-Info-Original: 
- =?utf-8?B?UWJGaVlaUVZpbHNlOTBzd2ViVXVPU016Q3pNMVRQSnRndVBtSXcrc0VWbzEv?=
- =?utf-8?B?Y1hkSWpXZks3Y0xYaXhkbXM3S0VId3NPMGFpWGpSNFl2eFNFQUFIWmVSTk9U?=
- =?utf-8?B?THIvQ2oxNTQ0SnN1Q0VlaXl3blAvYnJZZUoxTmVqaVl3RUJ0cEszczMxRE0w?=
- =?utf-8?B?eVFjbzk4VWRCcmZOeStrYXRwUVBxUHZCZDlOUXFzZE1qcTN0WHRDRU85TzBv?=
- =?utf-8?B?ZzVtb1hiQUV0aEFTaTIxelk4eEVBMVlKb1NSQTZsWWdmSmhxajNuNkZ0Rzgz?=
- =?utf-8?B?NG9YSFhPV3J4aW81SDdvOHBrSkFXMDkyRS9xN1lNazArUkZPR0ZEcDNyV0F4?=
- =?utf-8?B?eVN3emQ5cDFhSm12YTJCcnhLUVJ5bG1LNVFHMnF2eVBQc0Z0akUrRnBwSlVO?=
- =?utf-8?B?L2JlTElJSUdyK2JzMnBzQ2pvaDN4c0J1UGxEZm1nWFdUY2NLVmp0M0NDVTlv?=
- =?utf-8?B?TzRkS0ZKaEJEK0Y2NVRSa3gzbUQzNVJOcTMxUkR4eVRhUmRYUGNPTDEwUkhl?=
- =?utf-8?B?R29pOFpmT0RzSjJzdllXbHhIYTFHWDhZUnRNN3BCb0krSDlQV3ZWOWlBOTU4?=
- =?utf-8?B?ZDFSZ0N1TDhMSnNGc1luNUZwZ3J2d0M1R1VzYXVjOU0yTXJWUG4rV3pIdTdw?=
- =?utf-8?B?VXBvMm1EY1ZjcldkOTB1QmhoUTVvYTNlcm5BYUhLb2htT1BPWTB4VFRtdTd0?=
- =?utf-8?B?Y3k0djZFRzczWVZZTzFtdlpLU2k1MGZkdCtGanVaME1QanVUS2J2c3A1dERT?=
- =?utf-8?B?U2RCc2hjUXJ2dFh4azZLUDZXb21tVG9wU3g4RTdLelZnUytGTy9TM3lGZUxp?=
- =?utf-8?B?Tm0wZ1lxbE1pNVBJTHJnVDl1SWVxUFVQMzRMK3U5QjB0Y1BjaE9VMVBRWWZp?=
- =?utf-8?B?TWpremM5SmJGalBYYUE1eDBqaU92enFyZ0FzamE1UzBxd056cmcybXFudElr?=
- =?utf-8?B?b09LakJaM3ZDT1FYSEZpbm9HK0I1VjhZVm54eUh3cFUrUXhtN1U5Y2NNVjVh?=
- =?utf-8?B?V3pjWWlKT0JSSndya2ozQTZ0bmtXUm42eno0WG1QY2gvN0hnMnJ4TC93K1hS?=
- =?utf-8?B?VS9pcXIzem5vSXl6cmg2cmtHOXMwbGw3dVdYWDREVzg1engveERPNE1nVisx?=
- =?utf-8?B?UWxlYmdURUZxMFVXODRSZGlZMTVMT0p3UlFWbW1ZZnIxeElOek9KQkdpSkpW?=
- =?utf-8?B?b0Q5S3FpeVQrVFFQdkQrV1NCRS9YRHRDZDZqZmNiNjBieWpZRWREcW04azBU?=
- =?utf-8?B?NEMydm9hd0hEV3NQRmZQNkdoSnF1aWprZ0xtTStBSFRlVTJrZG51N0UxQ0Uw?=
- =?utf-8?B?ZHlNd0JmV0VLNlFEaDJrZ2RhS3plRWVjaG11VE05ME9OZHJZR2tKcTNUWmJN?=
- =?utf-8?B?QlcrYktHMkdPWlVpOEdIWExBbzJCbVNWUGNVOVIwRERXajd3a2kwYXYyVVhD?=
- =?utf-8?B?cjlqemVmUTdnRmRsdlA4NUJpM2s5Y0xtK0h1bnJDRSs4ZGIyM29SYWtBSGRo?=
- =?utf-8?B?blZ1S3dqOHhGYk1zV0Vjc1FGaU1WYzd2L25pZFZTcm55MFdaV1RtRldKR2c5?=
- =?utf-8?B?bWNhelBNVDhtQzNzRHh4L0RrVTBOcmpIR2dsc2lzenhKcWY5OEc4VU1kTzhi?=
- =?utf-8?B?MmxUZkJ1NVp6UXdQb3o4MVZEalF0cDBTZCtSSlRTQWFCSmFVVFdoNkJSMjlX?=
- =?utf-8?B?Y3NmUFZXYi9pQytQOThlbSt1ME5yRGlzbERSY1FyMnBpQm8zU1N4MkdmTXJX?=
- =?utf-8?B?UzF5RW9wWWlyeWt0Wlg4dkJra2NZenh2dUo4VlA0SUN4ZXNsNjg3QlAwbGN0?=
- =?utf-8?B?QTRYOVhrelBWZUhVQzEreTBOUVNoS3hSdGUxM3k2WVZIOHZxK0ZOanBrczFT?=
- =?utf-8?B?MnlGdmNMeUdhai8vTEV3SEJNeWo3ZC9zY3cvcXBoMjdKQUFlaVZUQzdGMW52?=
- =?utf-8?Q?RK/s5GV6rw0fLawNzbhO9vBgZRWnBZyi?=
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR08MB7429.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <46EB6F393E32B640875DC50CDEB966DC@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR08MB6254
-Original-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-SkipListedInternetSender: 
- ip=[2603:10a6:20b:4e1::9];domain=AS4PR08MB7429.eurprd08.prod.outlook.com
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- DB1PEPF000509FA.eurprd03.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	55d939d9-1bbb-4d6c-a790-08dd3a47b1cb
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|14060799003|1800799024|376014|36860700013|35042699022|82310400026;
+	BCL:0;ARA:13230040|1800799024|376014|366016|13003099007|8096899003;
 X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?YytwSXliNUNjc2N2YnBBSzJ4WlorNmlYRWxKQnBPdGJ5RTN2RHJWa0Y1TFVH?=
- =?utf-8?B?c0RhL21qQVlyWWpiV09SSmlDUS9xaitYVEw4STlGd0hHemkzazZtb2pRakN6?=
- =?utf-8?B?bUJQcnczQUdTaVhNSkJLZG9zNnN0ZkQyeHp4VWZsUmV2bDVXWThWNkdZRVdh?=
- =?utf-8?B?RUd0d0Z1SlFwbmxaMHpSbWVodWRaWCt0M2FBd0pRL28vTWFqUi9UcFJkbXhB?=
- =?utf-8?B?Y2lQNThpR3M5N1pqZDhWZ1VTblcyU0V3NXBTYXcyeVowY3hYWlRHTnVCYkRX?=
- =?utf-8?B?ZDRhaWcvdm1ta25RL1YvZlVoVk5nN3VrMEFZMU9NOU9odWgxM0VnL3A3WnhO?=
- =?utf-8?B?OXNOeDROQlBiNVRvMUp2Slg3Z3Y4YWtkdVk0NnY5TzJuSEtGS3I4RDRadGlC?=
- =?utf-8?B?RERTWURLcGhESzlGaEVWK3hiZmNwV2h5N0tDZkxDb3lDRmROV1JZQWdLcWlF?=
- =?utf-8?B?dnN4M0NJaWZpcTdRN0Rxc29qMElPWENQeko5SlE0ZzkrcjV1MlB6Mi9xRUVV?=
- =?utf-8?B?N0VjNWl3MitFWXJUSXE3Z3I4akxFWFJhVWZqTmNjTHBkd2JzUnBOZEFlS2NM?=
- =?utf-8?B?YUxIT3ZBVGg0TDNZK3ZiZDFkOHpYbWh5ektvYXNodzdhS3BPeXRoNWU0RXRm?=
- =?utf-8?B?T0QyTjFQWC9IR2puMmUrb3lVTzEvcnlraWRKbmRkRnkva1Zkalc4Q0MrSWpr?=
- =?utf-8?B?RWRLUVJRZDBNVTI3S1FoSXdKcFNiZEU3MHZzTGNlb0crbS94N0xyQitCNkZY?=
- =?utf-8?B?d1NPOUtNQWIwTUxkZUUraEtpMHdFQ3NEck5aMG9MdHE1S1IwL0VpL0doOVdT?=
- =?utf-8?B?b3oya1BwaUlSZEZQN3I5cXpEb1dGcVJOQ1N5Y1RlLzhGMHRkaGtZSFRGTDcv?=
- =?utf-8?B?ejZudVpaYi9ZcjhCa2swMWJLZ0UySVBsVFhuVHlQRklldXVmeWtjT3pXRGta?=
- =?utf-8?B?ODIrVEJzOXRrczQza0t3TVZtSW5wandNTVphUEJHK3pnOHZqTkZybmdTNkdy?=
- =?utf-8?B?RlpMU0dYV240MUdFTHlhYUMreUoyWGpIQXFxSW5velFURVd3ZHZ4VFRuWk5h?=
- =?utf-8?B?SmZQUC9oQ0dPL1BHbmF1M0p3cjhKZ2xYdlY4OGl0bStaN3IxZzlrMjhEZWp3?=
- =?utf-8?B?RXJHOGpRbG9aalNGMTU0SUorNVFCZnhEZndJdnVQKzJjcitKMk9tc3dFNkxU?=
- =?utf-8?B?bjhwNTZOS1l4eHZRRk5VSE85c2Qxa1poNFVSMDdHM1BRYWdLMUVzNzhYZThq?=
- =?utf-8?B?ZVh4VVV1TEZ0YnFKbEZReENXTy9wbVJYYUo4YXJPczJJQ1N0U2xyakJpK0lO?=
- =?utf-8?B?L0VhTlhTTDBMSnduOTZLVTZsZGI2cWdVb3VJTk80NHhvaHEyR0RHMTk0Z3NL?=
- =?utf-8?B?bi9vRzBpVkhPTkhYS0R0WW5EMThOVEtmVlUrUHdtUzVrSHozb0FvZExTWHN0?=
- =?utf-8?B?N3RFRXNZWDZRRGhQWjZqRExzZmVFREpoajVBNzczeHlWek9tbFFNQWdhS1Bx?=
- =?utf-8?B?amJZaXZXTWVIOWJ6eW5xRU80ZGp5ekx0bXpxVHpOcHRFakgzOUZjT0ZNTXoz?=
- =?utf-8?B?YzZpQXVtVnVJM3lCRG03NnhvajdzM2xwOEtiTU9xc3BrTkVNWFR6WUN0T2RK?=
- =?utf-8?B?dmFKa2hITmFIVkhmU05EOTRibG1Xam4rdE53NWxkTjB0Tk5ZS3Q0OW9SVnJ5?=
- =?utf-8?B?cFlabmRFZHpab0tZMTJOQlQwS1lQbkZMMWdBLzRCQ0M1cENaSTdXeC9mSXBn?=
- =?utf-8?B?UWp1YlRVYkhydi9BR0tjMTdoY3Nxazc0Yzc0WjI0WDVRK2M4b2hXVWo0Tlp2?=
- =?utf-8?B?L0RHbDg2MVJLVDdncjBuVlVRalRiODlJalBIa3JVQndMalNZM0dyeGV5Mklm?=
- =?utf-8?B?YmN5cU9jc3htY01pT2JvWVpub3JPbk14cmdOSEhIRDM3OW5OdjJvYzJ1Tk1C?=
- =?utf-8?B?c3cwODFVazFPM3dMb21QS2RhUzMxNHM5TStEUFlnOXJnTVlNdXZMRktLZmxT?=
- =?utf-8?Q?Ye+YaIT842k0U08HFlojgcUjmldze4=3D?=
+	=?utf-8?B?Q3hsLzFoNSs4NWZ4MVhtVjVtZ2kzNzNGcmlOM2xaOHJSRVlWa2lZWWk2eXNU?=
+ =?utf-8?B?dFJrZXc0cnp1RitOM2ljVTIyaVBueHNXN3JGckl0dEVFdmZtZlpMSjVsRVd0?=
+ =?utf-8?B?OEZSbGxmd2Q5TldlN09XTFBXQTEyTkhxbTUwbjRkSFNwNXIva3ZBNkw1Y2VO?=
+ =?utf-8?B?aUF3S2ZmR28zZ2s1QTlBamhtSlZXdDRmMEVvU2dqVmJSYkdvM0lrdU9HTUw4?=
+ =?utf-8?B?VHMvOU5iOFdDZWtYeUZzc3gyS25IMjFYMlFnMzRWUW84ZGtwcXlESUtaRUVL?=
+ =?utf-8?B?NU1qSG9ZYkthRkpMVkVzMW1VUVh1MUV0R1N4YjNjZ0toUksyUVFkOHdLTW92?=
+ =?utf-8?B?NGVpZkN4ZmgvNU9UVnZDZ1ZXWjVVamlXMGRhRU9zK1RMbmg2aWFtSkdwTmxq?=
+ =?utf-8?B?WXcyc2JRb1ZiV0JiVDdNR3JQNHIwUnppL1Q2VVB4eVVMdC95WHI3a3VGdmc1?=
+ =?utf-8?B?QmRKcUVwVFJQaGNWWUtFMWRkWWNEOXFFak9qbDBsSVJyMTByVUVYaklCWjJm?=
+ =?utf-8?B?SklNbEdZMGYvbEpCL0pGcWNPK0RETUgzVHhhU0lzejk0aXVuUnJ2SHFRUTA2?=
+ =?utf-8?B?S1REWjFDalVXeFIzdlNQa1ZhOVpXRWlKRHV4U1JqQlRQVG96YzNDU0pjb1E3?=
+ =?utf-8?B?a0V3T3B0TU90N3dYMzFPZ3E4c1RPVzhndG5WZURRNWNjWWtmWCtvMGZSNFBu?=
+ =?utf-8?B?M1BqcE5lQ0h5SGQwdjUyci92d0x2ejM4Ky9aeGhJSUdnaE5YOEs2YVFuR1Y4?=
+ =?utf-8?B?REhpK0xiaHY3Mnp1eHhpY0tpek5IK05YNHVKUFNBRGJyQ2gwRTNzQTk0dXM0?=
+ =?utf-8?B?b0lRUStzNDdQamJyUXVKQWplUHVuZ0N4VUhsZ1BkeWRFejQ5Nk0rMExPMCtX?=
+ =?utf-8?B?YWlpNGNvUFRGSDFreVFGbUQzZU9tZ3BRL2ZwWlZhTTA1NUpNa2NUR1kyQXpO?=
+ =?utf-8?B?bEVuQjF5NkFwaVNhRE1wWG15ZlVSMHkxMlREYTBmODMwNmNqWVBDWkNQUVdH?=
+ =?utf-8?B?UEp1QXl2T1ZiMG9zdTZYY3NpeXdpeGU4VFJ3ZlgzMlVmZ2FQWm5VZ0J4TFJI?=
+ =?utf-8?B?WDJVZ2RqaVpVWlJYTTNjVy8yTis1bFJRT1VQYVI4eXdwVlQ1Vk5Rdi9kZllp?=
+ =?utf-8?B?RUxSa25FWGFqeHErbGU4SHdjcUlHU3J5b3VITHdNYmMrMEhhUXFSYm13aTJQ?=
+ =?utf-8?B?K1ZSM210QS9IY0VqME80anZoL1VsQnYweGFUNkNlSHovRWhEZVJCSmdraUhh?=
+ =?utf-8?B?RHU4M2NzQ3JzOXhubENkZ0h4UUhHR3FiQVUxcHFHK24wZGtJV3pPb3ZhOEFr?=
+ =?utf-8?B?WWNjM1VxRzB2bmxUZVZtRTZGRUZwN25KL01TNDJ5MmxUWFNyWDhRejI2T3lu?=
+ =?utf-8?B?WnlFelFyNWZxQWVpR2tlNXpPRWMrdko3ZTR3QStTY2VxbjZmOEN1UjJlRUR0?=
+ =?utf-8?B?dGhRR2RubzJjZ0pCQnh1OEp6ZTJWUUxLRVEvb0Fwa2dXd1ozTk0yVGVFT2dW?=
+ =?utf-8?B?UkZUVUp6dWxSaG5rRXFIcDMxeERSWldkVUhKbktiV1VnN2h3d01XWVFSUkNZ?=
+ =?utf-8?B?M2E4em1HQWJuTG1KcEZnWENMV3c5L1hhajlkb1hiQ1BYbDZLTnltaXZEb1RN?=
+ =?utf-8?B?cnF5NTJJSElwa1JTKzIrWGNuQ3N1aWJ5L0JoeksrclpZV2twbTZ5cHFKeTNM?=
+ =?utf-8?B?Q2twWHRUTldiV1Y1TEVWZGdxeG1HSW9qOFovN3Y1M0Z6bGRDY3A2bW9kQUVW?=
+ =?utf-8?B?ZlovRnZyY0NhTXdOZE1zVkFwbTdHSkJXQ1liT3RZS1hUZm1kUFNuckNoZUQr?=
+ =?utf-8?B?SGFIeVlzLytRNlJGN0FYUT09?=
 X-Forefront-Antispam-Report: 
-	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:64aa7808-outbound-1.mta.getcheckrecipient.com;CAT:NONE;SFS:(13230040)(14060799003)(1800799024)(376014)(36860700013)(35042699022)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2025 18:16:25.9066
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB7608.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(13003099007)(8096899003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?b0JZZC9kT3lOaDRtNGdLallxdkRwdUVheHhZQkpPOWFpQnBpZE94Q2Y0MGdQ?=
+ =?utf-8?B?N1dvKzNmNEcxRHgyS29HbGtJRWdsTkR4UmJuYWZZanEwd0xkS3ova1pqN0x4?=
+ =?utf-8?B?VEFYRkNSbFVZU3JNNVROSTQ5SmlnS3Z5ZEdMOUlJNm02VXVaaCtYQjJmRkli?=
+ =?utf-8?B?NHFBTHJhd29MQ3U2T1Zzd3h5cFZjT3NSQklyOHJKNjdXYzdIaUFSTEI5K2E4?=
+ =?utf-8?B?VlV0d0RnVjhwakJHNVprMUpOR0RDdEVyMFdKZzNzQmZjdldESElJaVdadkVy?=
+ =?utf-8?B?c21JUnVYYzJoMktIbzFkenVNSUZnSnNYN3IvcG1WUFF6TW85ZTZpbXAvc3da?=
+ =?utf-8?B?dWRFZXBTaWRDSWZGQTU0NzZKaVpieGtUNWJSdWxTNUU0Rjh6citxQTNpSzZM?=
+ =?utf-8?B?Y0JBdlZFYTkya01VQmlLblhQbDRKNkwvRmFublUvYjJrK2htR1MvdDhTQ2o5?=
+ =?utf-8?B?OWM2K21LRlhmYkUwemZmY3VCY2ZJbFp5UUhKcmRGaDQ2eFlJL0w2azFLUFEw?=
+ =?utf-8?B?REl6cEUvRCtUWmNJZCt3c0x3Ni9ZNWdBaDVyT1MzWXRxQ1E5YloyUlpldHBs?=
+ =?utf-8?B?SGtJd3hyeGt0QnpPRWNZa1NTVzZadHYxMjNFdmZsTjRETzhjcTVzeEFBT1Za?=
+ =?utf-8?B?cUNFcGhTSnhYQ0RXWDVZbkhrTlFhQnViWlhJZGVKOWVGekdhSStHSnlmVVJo?=
+ =?utf-8?B?QnNhZ1YwQTFJMTdmc3AySk5PQWtLdnhkcFlCdUNWbXFqYkFhM29JeGcraFJN?=
+ =?utf-8?B?K1ZoUDQ3NXZOcVdCUWxUQnEreGYrOGJiVHN1dGo0R2RvRFhOdEU5L3FDaC9l?=
+ =?utf-8?B?R01RZ1dlVVJicnc1NlhDdjVNc2tCQ0FZRUZ3U0VoYlN1Rit3bEl4eU5TMUd1?=
+ =?utf-8?B?dHU0dFlvWXNoQkt3MFU2dGJrUXBlbWtHRWdjY082QWVvVVRuWG5mcS8rc0J5?=
+ =?utf-8?B?UXlaT2hSZm5lRjBCQmFkYnJLYjFiSGJPMmgwWEdock9jRXRvUGI2QWdVMGFk?=
+ =?utf-8?B?Sm5EM3FUcmw2bmRFQmMzVVpzN3c1WkkwWWF1a0M2ZWxSRmtFV2ZJRUVqVVBD?=
+ =?utf-8?B?cmx0NHorRnlWY3JhS0trd0NnZERuc1VyVnNYQ0xPVUVldzVRaTVpclNjVFgw?=
+ =?utf-8?B?ZnROdHQ1emdhVUdsYVdKeTcvQWI0RW5PN3pZTnAybnJEVjlVRGNsbkRHOSti?=
+ =?utf-8?B?NGxWWm9HZzgvaExOZHZIQjVhdDhtTTByNU1xUGNZY3pVMzl2dnMyYlI5WHpa?=
+ =?utf-8?B?ei8wQ0VydklaalRuQzRXM2tEYUhhQVFmd2RIbGkrR0x5dkwvSHcvVzNBOHhy?=
+ =?utf-8?B?Z1NoVnczMjlnV1ZYeXo1aEZPT1g1QlpONFFwa1JJbXV6NjEvcWVkYkkvTVRP?=
+ =?utf-8?B?UWJlbThQUnBrZzJvYXNZS1JSU01penFFeHl3WW1NaTI2NHBDQ21kVlY1VzZY?=
+ =?utf-8?B?ZWZ0c2h2OHF5NUxrTXBTMDVzbWhKZ3djSEF5ekxqcDJVQjJMWmxLdE5JZ2c5?=
+ =?utf-8?B?a2FWYU8xNWl1ZWluWVRURzhzdzNSbnhGQThjWi81MnVrT1lEMTZkQVd6NmUv?=
+ =?utf-8?B?MDNHRGsvc3cyWE9yVFg5SFcyUTRlN1d6bTRLQ0JYU01TenFYNlAxalV1U2J1?=
+ =?utf-8?B?ZXVzQ2hPY3lyWmNYM1M0YVl1YVhaeXA4SmlzZjZtcEMwOWovTzJ4WG9VYm12?=
+ =?utf-8?B?RjlTZzhJMFZjUHdRZXhXNlpSc0JMVnpFZERsWm04WFBIamxPUG5DRVFGLzFU?=
+ =?utf-8?B?UDhYMkcyVmpja0ZYUzZXUWtrZCtXN3plZTVGdURCUHRpRUhMSHFtY3JDQW91?=
+ =?utf-8?B?ZlNjeCtvQjRSeXZrYXBDbUdJRXBVOVB3bmcyVndTcTVYYklkd0VrYzBzYXQr?=
+ =?utf-8?B?dHg1TWNTR2VWbXQ1WDV4RHFIdjh5RkhRdkNaQmdjUE4vb1A1Ym9mejEwTlBH?=
+ =?utf-8?B?bHZZK0lodFREOGQ3Q085T05YM1BFUFZMbk5lZkZ3QnRoRFBCM3BzSjA3UGox?=
+ =?utf-8?B?L1E4bkhzbFNrUzB1dzZoRVgzNUErN2swL0xmelhVeHlGRjAvNk9XRENNbE1x?=
+ =?utf-8?B?L2d1N2FPUGRHbG5oL2ZCazdqYnVSWHhxd2YxM2hLemJhOTVLNkhpOENwNFlz?=
+ =?utf-8?B?ZlBhZnVnUTRGOVhIdG5zalBXZnMvTnVobUoyVFEyNW5QNW53TFFIaE1zNk5l?=
+ =?utf-8?B?RVE9PQ==?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0d2d33f-675b-4809-8ac6-08dd3a91292d
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7608.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2025 03:02:09.3740
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e3ef2de-d8ff-4f15-f8e4-08dd3a47b7e8
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	DB1PEPF000509FA.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FRZPR08MB11097
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: P9R9u9aG6GECt6J6yfdEO8Zdy5N74jHKhyz5bmTSby73pPd2NpBpduEeK2VU++mfgsZZdn07ZKoKR4eL8o/mudfmSKFhlX3aMVfbIFxFuDg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5950
+X-Proofpoint-GUID: SOlde7D8jItQPLbHKXYSQl0nmqswSapF
+X-Proofpoint-ORIG-GUID: SOlde7D8jItQPLbHKXYSQl0nmqswSapF
+X-Authority-Analysis: v=2.4 cv=fZVXy1QF c=1 sm=1 tr=0 ts=67905fb4 cx=c_pps a=F+2k2gSOfOtDHduSTNWrfg==:117 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=VdSt8ZQiCzkA:10 a=bRTqI5nwn0kA:10 a=iGHA9ds3AAAA:8
+ a=Q4-j1AaZAAAA:8 a=t7CeM3EgAAAA:8 a=Byx-y9mGAAAA:8 a=jCQTRHFRa1ZjAGMXw_wA:9 a=QEXdDO2ut3YA:10 a=sozttTNsAAAA:8 a=avHHCX2ZTCMeQAyhq8oA:9 a=JvpXSZ4wZ7lnvz46:21 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10 a=lqcHg5cX4UMA:10 a=nM-MV4yxpKKO9kiQg6Ot:22
+ a=9H3Qd4_ONW2Ztcrla5EB:22 a=FdTzh2GWekK77mhwV6Dw:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-22_01,2025-01-21_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 mlxscore=0 phishscore=0 malwarescore=0 spamscore=0
+ priorityscore=1501 adultscore=0 bulkscore=0 clxscore=1011 impostorscore=0
+ suspectscore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.21.0-2411120000 definitions=main-2501220019
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 21 Jan 2025 18:16:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64605
+ <yocto@lists.yoctoproject.org>; Wed, 22 Jan 2025 03:02:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64606
 
-T24gMjEgSmFuIDIwMjUsIGF0IDE4OjA4LCBSb29zLCBUaG9tYXMgPHRocm9vc0BhbWF6b24uZGU+
-IHdyb3RlOg0KPiANCj4gUmlnaHQuIFNvIHNob3VsZCBJIGNyZWF0ZSBhIHYyIG9mIHRoYXQgcGF0
-Y2g/IA0KDQoNClBsZWFzZSwgYW5kIHB1dCB0aGUgYnVnIGxpbmsgaW4gYSBjb21tZW50IHNvIHRo
-ZSByYXRpb25hbGUgZG9lc27igJl0IGhhdmUgdG8gYmUgZHVnIG91dCBvZiBnaXQgaGlzdG9yeS4N
-Cg0KUm9zcw==
+--------------LdcouWWHlr0yHkrMjyTUG5PZ
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 1/21/25 13:55, Shilwant, Chirag wrote:
+> **
+> *CAUTION: This email comes from a non Wind River email account!*
+> Do not click links or open attachments unless you recognize the sender 
+> and know the content is safe.
+>
+> + Yocto Community
+>
+> ------------------------------------------------------------------------
+> *From:* Shilwant, Chirag
+> *Sent:* 21 January 2025 11:21:37
+> *To:* yocto@yoctoproject.org; Qi.Chen@windriver.com; 
+> hongxu.jia@windriver.com; jiahongxujia@163.com
+> *Cc:* Khasim, Syed Mohammed; Davis, Andrew; Singh, Vishnu; Shilwant, 
+> Chirag
+> *Subject:* [meta-tensorflow] Request for creating a scarthgap branch
+>
+> Hi meta-tensorflow maintainers,
+>
+>
+> I am reaching out to request the creation of a new branch in the 
+> meta-tensorflow
+> repository to support yocto scarthgap.
+>
+> Currently, the master branch claims to support both scarthgap and 
+> styhead [1] which
+> is no longer accurate. Recent changes related to UNPACKDIR [2], which 
+> are only applicable
+> to styhead, were made in the meta-tensorflow layer [3]. As a result, 
+> the master branch is now
+> incompatible with scarthgap.
+>
+> To ensure that scarthgap users can continue to use the meta-tensorflow 
+> layer, I kindly request
+> that a new branch be created to support the same. This will allow us 
+> to maintain a separate code-base
+> for scarthgap, unaffected by the styhead specific changes.
+>
+Done, branch scarthgap is created
+
+
+https://git.yoctoproject.org/meta-tensorflow/log/?h=scarthgap
+
+
+//Hongxu
+
+> Regards,
+> Chirag
+> ---
+>
+> [1]: 
+> https://git.yoctoproject.org/meta-tensorflow/tree/conf/layer.conf#n14 
+> <https://urldefense.com/v3/__https://git.yoctoproject.org/meta-tensorflow/tree/conf/layer.conf*n14__;Iw!!AjveYdw8EvQ!cjgw84dwnF7LC-08LAFhBS9kboWgzPHQPbnm0evagm0UUQp-UEzvwO5BPFCLN0BaFe_clAU6VdfMhmm-Du6t$>
+>
+> [2]: 
+> https://git.openembedded.org/openembedded-core/commit/?id=e022d62ba917790af2121da57646271ef17c03fa 
+> <https://urldefense.com/v3/__https://git.openembedded.org/openembedded-core/commit/?id=e022d62ba917790af2121da57646271ef17c03fa__;!!AjveYdw8EvQ!cjgw84dwnF7LC-08LAFhBS9kboWgzPHQPbnm0evagm0UUQp-UEzvwO5BPFCLN0BaFe_clAU6VdfMhqRWsVDE$>
+>
+> [3]: 
+> https://git.yoctoproject.org/meta-tensorflow/commit/?id=2f82dc8383436b68a22e2ee93d697167fee15ab6 
+> <https://urldefense.com/v3/__https://git.yoctoproject.org/meta-tensorflow/commit/?id=2f82dc8383436b68a22e2ee93d697167fee15ab6__;!!AjveYdw8EvQ!cjgw84dwnF7LC-08LAFhBS9kboWgzPHQPbnm0evagm0UUQp-UEzvwO5BPFCLN0BaFe_clAU6VdfMhie11cgm$>
+
+
+--------------LdcouWWHlr0yHkrMjyTUG5PZ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 1/21/25 13:55, Shilwant, Chirag
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:f7e63aa3c45e452e83b6e3f95ab20faa@ti.com">
+      
+      <style type="text/css" style="display:none;">P {margin-top:0;margin-bottom:0;}</style>
+      <strong>
+      </strong>
+      <div style="border:solid #9c6500 1pt;padding:2pt;background:#fcfc03"><strong><class="msonormal" style="line-height:11pt"><span style="font-size:11pt;color:#000">CAUTION: This email
+              comes from a non Wind River email account!</span></class="msonormal"></strong><br>
+        <class="msonormal" style="line-height:10pt3"><span style="font-size:10pt;color:#000">Do not click links or open
+            attachments unless you recognize the sender and know the
+            content is safe.</span><br>
+        </class="msonormal"></div>
+      <div>
+        <style type="text/css" style="display:none;">P {margin-top:0;margin-bottom:0;}</style>
+        <div id="divtagdefaultwrapper" style="font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;" dir="ltr">
+          <p>+ <span>Yocto Community</span><br>
+          </p>
+        </div>
+        <hr style="display:inline-block;width:98%" tabindex="-1">
+        <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt" face="Calibri, sans-serif" color="#000000"><b>From:</b>
+            Shilwant, Chirag<br>
+            <b>Sent:</b> 21 January 2025 11:21:37<br>
+            <b>To:</b> <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>; <a class="moz-txt-link-abbreviated" href="mailto:Qi.Chen@windriver.com">Qi.Chen@windriver.com</a>;
+            <a class="moz-txt-link-abbreviated" href="mailto:hongxu.jia@windriver.com">hongxu.jia@windriver.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:jiahongxujia@163.com">jiahongxujia@163.com</a><br>
+            <b>Cc:</b> Khasim, Syed Mohammed; Davis, Andrew; Singh,
+            Vishnu; Shilwant, Chirag<br>
+            <b>Subject:</b> [meta-tensorflow] Request for creating a
+            scarthgap branch</font>
+          <div>&nbsp;</div>
+        </div>
+        <div>
+          <div id="divtagdefaultwrapper" dir="ltr" style="font-size: 12pt; color: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+            <p>Hi meta-tensorflow maintainers,<br>
+            </p>
+            <p><br>
+            </p>
+            <div>I am reaching out to request the creation of a new
+              branch in the meta-tensorflow<br>
+              repository to support yocto scarthgap.<br>
+              <br>
+              Currently, the master branch claims to support both
+              scarthgap and styhead [1] which<br>
+              is no longer accurate. Recent changes related to UNPACKDIR
+              [2], which are only applicable<br>
+              to styhead, were made in the meta-tensorflow layer [3]. As
+              a result, the master branch is now<br>
+              incompatible with scarthgap.<br>
+              <br>
+              To ensure that scarthgap users can continue to use the
+              meta-tensorflow layer, I kindly request<br>
+              that a new branch be created to support the same. This
+              will allow us to maintain a separate code-base<br>
+              for scarthgap, unaffected by the styhead specific changes.<br>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p>Done, branch scarthgap is created<br>
+    </p>
+    <p><br>
+    </p>
+    <p><a class="moz-txt-link-freetext" href="https://git.yoctoproject.org/meta-tensorflow/log/?h=scarthgap">https://git.yoctoproject.org/meta-tensorflow/log/?h=scarthgap</a><br>
+    </p>
+    <p><br>
+    </p>
+    <p>//Hongxu<br>
+    </p>
+    <blockquote type="cite" cite="mid:f7e63aa3c45e452e83b6e3f95ab20faa@ti.com">
+      <div>
+        <div>
+          <div id="divtagdefaultwrapper" dir="ltr" style="font-size: 12pt; color: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+            Regards,<br>
+            Chirag<br>
+            ---<br>
+            <br>
+            <div>[1]: <a href="https://urldefense.com/v3/__https://git.yoctoproject.org/meta-tensorflow/tree/conf/layer.conf*n14__;Iw!!AjveYdw8EvQ!cjgw84dwnF7LC-08LAFhBS9kboWgzPHQPbnm0evagm0UUQp-UEzvwO5BPFCLN0BaFe_clAU6VdfMhmm-Du6t$" class="OWAAutoLink" moz-do-not-send="true">
+https://git.yoctoproject.org/meta-tensorflow/tree/conf/layer.conf#n14</a><br>
+              <br>
+              [2]: <a href="https://urldefense.com/v3/__https://git.openembedded.org/openembedded-core/commit/?id=e022d62ba917790af2121da57646271ef17c03fa__;!!AjveYdw8EvQ!cjgw84dwnF7LC-08LAFhBS9kboWgzPHQPbnm0evagm0UUQp-UEzvwO5BPFCLN0BaFe_clAU6VdfMhqRWsVDE$" class="OWAAutoLink" moz-do-not-send="true">
+https://git.openembedded.org/openembedded-core/commit/?id=e022d62ba917790af2121da57646271ef17c03fa</a><br>
+              <br>
+              [3]: <a href="https://urldefense.com/v3/__https://git.yoctoproject.org/meta-tensorflow/commit/?id=2f82dc8383436b68a22e2ee93d697167fee15ab6__;!!AjveYdw8EvQ!cjgw84dwnF7LC-08LAFhBS9kboWgzPHQPbnm0evagm0UUQp-UEzvwO5BPFCLN0BaFe_clAU6VdfMhie11cgm$" class="OWAAutoLink" id="LPlnk605915" moz-do-not-send="true">
+https://git.yoctoproject.org/meta-tensorflow/commit/?id=2f82dc8383436b68a22e2ee93d697167fee15ab6</a><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------LdcouWWHlr0yHkrMjyTUG5PZ--
 
