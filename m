@@ -1,139 +1,139 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <michael.opdenacker@rootcommit.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D80B7C02188
-	for <webhook@archiver.kernel.org>; Mon, 27 Jan 2025 14:39:50 +0000 (UTC)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
- by mx.groups.io with SMTP id smtpd.web11.52817.1737988785697821877
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 06074C02188
+	for <webhook@archiver.kernel.org>; Mon, 27 Jan 2025 14:48:21 +0000 (UTC)
+Received: from dormouse.ash.relay.mailchannels.net (dormouse.ash.relay.mailchannels.net [23.83.222.50])
+ by mx.groups.io with SMTP id smtpd.web10.53208.1737989292025210204
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jan 2025 06:39:46 -0800
+ Mon, 27 Jan 2025 06:48:12 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=N4NlMZ1i;
- spf=pass (domain: gmail.com, ip: 209.85.128.52, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-438a3216fc2so46793655e9.1
-        for <yocto@lists.yoctoproject.org>; Mon, 27 Jan 2025 06:39:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737988784; x=1738593584; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=uANs9MgGq6YZ/x3WJT1CHYqo6ZLXhQz1VIwgsAjU0kg=;
-        b=N4NlMZ1ihTbdA5p7HAavUBkoZJ1AQGYa1UvpfiZCfTnTo87DFmWXIlcCGbA8XyLkNb
-         Yy1mmJN5wjS7tSeyISLPCaH96NIjN0ooX5xoSNOFxls2rloMgz+RXk8tcBsjadtKiYc2
-         Mg97oxkDmmtQBjN25aiy+Fhb0qoBbPHoc04eaWQlRfb8NFE5bXSvJPTZXEixNWac/F6d
-         a6yijxTozrtEygu/GaHqWonxtdte/3JsBQdt1Jq7JnCQoV6C9p1iCI8G3BksebNS07Yb
-         6FvFHdbox+TZoUInZ2L5oRkgoa5M0yeCWMbqhAJlVN0BMp/4pErE2Aeua53Zm2EtEZcI
-         6zLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737988784; x=1738593584;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uANs9MgGq6YZ/x3WJT1CHYqo6ZLXhQz1VIwgsAjU0kg=;
-        b=EWxMd7EwAX7G25HXibyeKsnGvkrS+vzQo9hsL2F5jqbMPRu0l/4RQVFDaBe0LXyB9R
-         E1+JO/JlLDqs9ElztCQdoUQqUIGaXg72yPDHQ0tyMoOzmWZpCYFB6tRFDC/CF9kuFbgW
-         NVLID+xwPBxA7E2BjYE5lY2qFXac7y2QU23ECnFTnxHp0q1CmsBymm+VI5KT5EItRpZJ
-         M9qhpY7clJRzYC9Acd/yq++T9j+nmd3TpWn0ke1Fb0l7I7SPB+Us5XhGRMLJ9IZ7Enbe
-         obUcb7a4+UGBLVDkZ4opNp+1ygD0B0JbG7av+O/EtI2EUVnaHBRJzOJjQrb6AIld4BJ4
-         I1Eg==
-X-Gm-Message-State: AOJu0Yw4dTfI0adw67HSmBdkWG6e/Re5r+K94hbGNunAs7vCiMMVoIYx
-	Q8os/i3h6CY2JiN/U9Fo8b/2bZF6pM2Hgt54Rf68h6IE8Hwg751kGkS7Sg==
-X-Gm-Gg: ASbGncvMXgEu2px1oG9YqSD8Zm2iIIz5rQaLOjhgRNJrlMrmOIDrP8UrVxaOGZm1v+w
-	2Rn6JlrcznaJsECM2Oq+MnzLJval41YQAkZAUEy1iDFCx+h2NA1Uqq+Mixm2UZTokyy7mn/H9rd
-	Omt+nSq7FL6ooB2rhEmtU5sV8dNG4tAr8sLnRqtaKJQvDLRXGgxvvV8w0zQABwRRR6kEMiOr/Ai
-	e0qMYAQTgKKlCqFh85ii0YGLIKAeditrfDMpraWlx7BVwvr401CDgayOkbNJIeVM4UuXE7eq8VR
-	9/2VB5yGFusX5b7JLXFNcUs=
-X-Google-Smtp-Source: AGHT+IGyiLXc6uQoCffe4bVj3vZV+cJfy+7UwkWHW1qXQ4zSOmSyb5q0cHFNvxkViY/Xk/zYS3eLqQ==
-X-Received: by 2002:a05:600c:a45:b0:436:faeb:2a0b with SMTP id 5b1f17b1804b1-438913e32bemr396881485e9.15.1737988783818;
-        Mon, 27 Jan 2025 06:39:43 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd575468sm132436815e9.39.2025.01.27.06.39.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jan 2025 06:39:43 -0800 (PST)
-Message-ID: <79a79a8a-7494-45d1-9333-22c18deeb2c3@gmail.com>
-Date: Mon, 27 Jan 2025 15:39:42 +0100
+ dkim=fail reason="dkim: body hash did not verify" header.i=@rootcommit.com header.s=hostingermail-a header.b=AvZeUAjH;
+ spf=pass (domain: rootcommit.com, ip: 23.83.222.50, mailfrom: michael.opdenacker@rootcommit.com)
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 1136C782A28;
+	Mon, 27 Jan 2025 14:48:11 +0000 (UTC)
+Received: from fr-int-smtpout4.hostinger.io (trex-9.trex.outbound.svc.cluster.local [100.117.34.192])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id DE19F781C6F;
+	Mon, 27 Jan 2025 14:48:09 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1737989290; a=rsa-sha256;
+	cv=none;
+	b=mGjSczUNpyxKq/z83s+DO9yf2ElRWipPW2PxppU+uTWLi65bdmqVxbt/eGHQHiQhUiGcvs
+	Zr0fRWbMi21D6+DfMMj2vBrlqHV/PZAnjk15BJT1hdyg5lMEf2VGjKj0tT936m0n7Ufe0J
+	hq3gC1eQpHNykcmKQdaFAIXLrfEfnXfSmUX9UdP6VhlBgw18ZKD6sVSgukCYYq4Djs71JM
+	KTpFiaeBrOS/2AGMPkEoZSgxOAUfOyKyAls+Gu4XqpjuXEC2HI8dzOz6A7MIV30xFwnjCI
+	Rm6Smhnrv1QL4l6bY8Mq/NZc3D6urF8jhcihdOVyxO6KYe25xkN3mzg2elYuWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1737989290;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=5pa7yEc1WnHzc4yAcMdi/JVI0VyxE/GlK3wSUGNKjys=;
+	b=AF5jxquo4R4LCmOE1PRGNfQ2lhQxP0BXdsJnjJBzShG9FDUfDEw+yn5TIBvETCcM7B08do
+	4bXvGGOOedVWmYEWyvA+wmTCceJSUUayxAk/61HjSYklDfFmOEz3X+3QpOqrCsndVJljH8
+	yiS39Zh2lDppKPMqzwkEazUu/QqB5f2JBqt27W/T52DKpDI83Zsg7CAEbHUjNcqjRhdDhX
+	AxgbQ6S0RTYxQpfehaUW3DGIZhucbUkN3dNnVDNYGwRsFhhnrdK9ByTkMV4tXk4Id8o8cB
+	LY9idtid7RD12mfqMRy9IhGLu/1q/NT7solqgGbh5rfiupZt+nYlJbYbu/Ramg==
+ARC-Authentication-Results: i=1;
+	rspamd-dd4dc9979-sx6tl;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: 
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Well-Made-Juvenile: 17da3bba74b7445c_1737989290710_718422041
+X-MC-Loop-Signature: 1737989290709:3929773109
+X-MC-Ingress-Time: 1737989290709
+Received: from fr-int-smtpout4.hostinger.io (fr-int-smtpout4.hostinger.io
+ [89.116.146.83])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.117.34.192 (trex/7.0.2);
+	Mon, 27 Jan 2025 14:48:10 +0000
+Message-ID: <7e0a1c17-1615-4fc1-937f-897a8329a8f6@rootcommit.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1737989288;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5pa7yEc1WnHzc4yAcMdi/JVI0VyxE/GlK3wSUGNKjys=;
+	b=AvZeUAjHv1i6D8Py31g3/AGFKiaiLM4JwXURWss0XtL7C+5gbZCWis/U6dbOrUhUwwRb9A
+	aAr/ZuooljUxgrIJDr6I9ZCeLkmCQ6nIEgphvIMl+zAm2YDWbnUOxHk15PTfjjogQUnBL9
+	2PxQmn7c+pxNCRIWC5+F/bEMegg5nNJAEcRghlYlFd6r9JBBt0RllXG7sAdsJRhpXbS6F9
+	in5+23wG/nkAeufmOwU7Z2SHJ0PBZrVjEr+ptC8CXF7KYduDlDah77V9fGv7z6eBVK3RvV
+	JaM0d4rC+yC9ZPnmteeSm4a6k+bgbx+Cck/+xmNWucdYpQ5dTNLEYXIeJ2SQeg==
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
+Cc: michael.opdenacker@rootcommit.com
 Subject: Re: [yocto] kernel append file with dts in SRC_URI and subdir
-To: yocto@lists.yoctoproject.org, david.daniel@vrag.ch
+To: yocto@lists.yoctoproject.org, skandigraun@gmail.com, david.daniel@vrag.ch
 References: <6761dc4a56d319b617e61e18fb37df8e6c5e227b.camel@vrag.ch>
  <4dff1359-2be1-4ad7-b7f0-22e9f968edd2@gmail.com>
- <a1657de15b95836d7694155634388de223edae86.camel@vrag.ch>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <a1657de15b95836d7694155634388de223edae86.camel@vrag.ch>
+Content-Language: en-US, fr
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Organization: Root Commit
+In-Reply-To: <4dff1359-2be1-4ad7-b7f0-22e9f968edd2@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Mon, 27 Jan 2025 14:48:07 +0000 (UTC)
+X-CM-Envelope: MS4xfIIUcGN88Jgpr+1UcmNpkM3axIxp9saxt+Id12sZdp5JqC7bRPaXEjYJWQkJRVUlTOH9Dpbbruby7Hwuppr3YmTLsBwB/9CHd0OjO+QIs9wEA+ZcErhN WEvmE2YxM7xWF2mrLxCNc3GQ6BYBb6hPv6LDi5BAsz1SVupXG/KEZBbOhe1fCdDmeuFHrZbpf9+8FxbyCNI0/QVpdL2hqqWd47BP2A+X1EDkNS7epHvTm+jY yVw2POEp8NEBq9VLJBUdJ+JVswLI3/w3WZaLY97ZzizXQfxUpMlmsAhSezngMHYTGpmRjF6P0h2XAkZvI9m2lQNtBFZy/9TqmKut+55hSF+AtTlGl01mqyuJ JchwWFGof+BfgG1z0dZLwD7Z3xRGH4AXQ2cmcga/2AYIXBmpRP4TdAjTbXtuvHI9uydZ35QXTqf+vCL7Ueannqbr6pZ4RA==
+X-CM-Analysis: v=2.4 cv=BvTPwpX5 c=1 sm=1 tr=0 ts=67979ca7 a=5sFyb09FKKSKUZCskZwQtQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=iGHA9ds3AAAA:8 a=j1yhTYC8qQdP0btuIVEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=NcxpMcIZDGm-g932nG_k:22 a=nM-MV4yxpKKO9kiQg6Ot:22
+X-AuthUser: michael.opdenacker@rootcommit.com
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 Jan 2025 14:39:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64640
+ <yocto@lists.yoctoproject.org>; Mon, 27 Jan 2025 14:48:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64641
 
-For git fetcher, if the unpack directory already exists at the time of 
-unpacking, then it first gets deleted recursively: 
-https://git.yoctoproject.org/poky/tree/bitbake/lib/bb/fetch2/git.py#n660 
-- it doesn't check if the content conflicts or not :)
+Hi Dave,
 
-On 27.01.25 15:33, David Daniel via lists.yoctoproject.org wrote:
-> Ah I see. That's weird though, as the name is unique, it shouldn't
-> collide with any existing file. But adding as a patch sounds
-> reasonable. I'll try this instead and see.
-> Thanks!
+On 1/27/25 15:10, Gyorgy Sarvari via lists.yoctoproject.org wrote:
+> Depending on the order of unpacking, it is possible that your dts file=20
+> overwritten by the actual kernel source.
 >
-> Am Montag, dem 27.01.2025 um 15:10 +0100 schrieb Gyorgy Sarvari:
->> Depending on the order of unpacking, it is possible that your dts
->> file
->> overwritten by the actual kernel source.
+> Try adding it as a patch?
+
+
+I agree. As far as I have seen, it's more frequent to use a patch to add=20
+files to the sources.
+
+>
+> On 27.01.25 12:12, David Daniel via lists.yoctoproject.org wrote:
+>> Hi
 >>
->> Try adding it as a patch?
+>> I am trying to figure out why the following snippet of a kernel
+>> .bbappend file does not populate the custom device tree source file in
+>> the proper location:
 >>
->> On 27.01.25 12:12, David Daniel via lists.yoctoproject.org wrote:
->>> Hi
->>>
->>> I am trying to figure out why the following snippet of a kernel
->>> .bbappend file does not populate the custom device tree source file
->>> in
->>> the proper location:
->>>
->>>
->>>       FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
->>>       SRC_URI += "\
->>>        file://defconfig;name=config \
->>>       
->>> file://cf200.dts;name=dts;subdir=git/arch/${ARCH}/boot/dts/freescale
->>>   \
->>>       "
->>>
->>>       COMPATIBLE_MACHINE = "(cf200)"
->>>    
->>> It also seems the configuration is not applied. If I rename the
->>> defconfig file to doesntexist the build fails early. The defconfig
->>> file
->>> does get placed within the sources-unpack folder though. Within the
->>> sources-unpack folder there is no dts file though and the dts file
->>> is
->>> as well not placed within the dts folder of the kernel build or
->>> source
->>> folder.
->>>
->>> Is it possible to modify a kernel somewhat like this? What am I
->>> doing
->>> wrong?
->>>
->>> Thanks for any hints!
->>> Dave
->>>
->>>
->>>
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64639): https://lists.yoctoproject.org/g/yocto/message/64639
-> Mute This Topic: https://lists.yoctoproject.org/mt/110836825/6084445
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+>>
+>> =C2=A0=C2=A0=C2=A0=C2=A0 FILESEXTRAPATHS:prepend :=3D "${THISDIR}/file=
+s:"
+>> =C2=A0=C2=A0=C2=A0=C2=A0 SRC_URI +=3D "\
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://defconfig;name=3Dconfig \
+>> file://cf200.dts;name=3Ddts;subdir=3Dgit/arch/${ARCH}/boot/dts/freesca=
+le \
+>> =C2=A0=C2=A0=C2=A0=C2=A0 "
+
+
+I guess you're using "name=3D" for checksums, right?
+
+Did you check that ARCH is defined here? You may try to hardcore its=20
+value here.
+
+Cheers
+Michael.
+
+--=20
+Michael Opdenacker
+Root Commit
+Yocto Project and OpenEmbedded Training course - Learn by doing:
+https://rootcommit.com/training/yocto/
+
 
