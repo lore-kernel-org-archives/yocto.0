@@ -1,248 +1,165 @@
-Return-Path: <ganesh.manoj.mahajan@signify.com>
+Return-Path: <kontakt@daniel-kampert.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23502C0218D
-	for <webhook@archiver.kernel.org>; Tue, 28 Jan 2025 07:22:06 +0000 (UTC)
-Subject: [scarthgap]  circular dependency in meta-raspberrypi  #scarthgap #yocto #raspberrypi
-To: yocto@lists.yoctoproject.org
-From: "Ganesh Mahajan" <ganesh.manoj.mahajan@signify.com>
-X-Originating-Location: IN (165.225.124.181)
-X-Originating-Platform: Windows Chrome 131
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 474BCC0218D
+	for <webhook@archiver.kernel.org>; Tue, 28 Jan 2025 07:45:16 +0000 (UTC)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.23])
+ by mx.groups.io with SMTP id smtpd.web11.12866.1738050315440885770
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 27 Jan 2025 23:45:15 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0002 header.b=b3x48KdQ;
+ dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0003 header.b=TwUDJZ2o;
+ spf=none, err=permanent DNS error (domain: daniel-kampert.de, ip: 85.215.255.23, mailfrom: kontakt@daniel-kampert.de)
+ARC-Seal: i=1; a=rsa-sha256; t=1738050313; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Z7603zbSp/Rs0mz4SVEmQzlwpLeQkuoZzUfelgwdC98nh4+sYN363kkgkBDlrli9AT
+    LMZrD5NAEhcB6AcobVVKU4k+aG/loeAsXKbkwBpTnEOzIKAoe0/XbCHUL7eeezT3ACh3
+    zCr7KtD66BOU6ZOgTjhCHDvVWFEu3iTnqTRKm8eVtfEpUaBcU2nXnlTwhY23iSaqvfxz
+    bZ0wsTgpwB4jQzXX4lvZWoyqubdcANR91/4gf1G9xzolBFDWKYkwHg5N9xeSZkemPE9g
+    SnE7bKGnnZlrf1Fek9amojxllhnz/mooHTpG5lHtT0PqIVHccNv4YtPxZ3EJ82ovV4ce
+    S5MQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1738050313;
+    s=strato-dkim-0002; d=strato.com;
+    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
+    bh=U79c+IYlmleqSTHDoyD9/ayjQoAP52rfgaHOJO8WjHk=;
+    b=MDSTawmG8Lm5WmH+GF2UI0LWZMOaUrtjt222pjiolvsf4b38b53On+jm65AQgLTadN
+    AzTLzbq/xC2dtR1gbdbQtp/wNOJHbaFsFy1xqoLsRTjfe9wF2v1j0sHfEVI5I9PBm/EO
+    XQfJwoPFu031pG57qQcDQYO1vgsW2kDAyIPfWsaIsuLwICVSZ0g0wo645HXagr4+NXZe
+    30Op/X/vpV5ZYWN6eyWibsqVXIDA4wDdGyxaoJJIe9WaAcTxmBX8D9FnKJOfzKclvr98
+    p+fTYPZ3JGGwzM17Pvqy2eMEGrjt2CH0bps9wsAlgNpDY1GUegpdyLC0UJ8xqdtndSjB
+    mZdA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1738050313;
+    s=strato-dkim-0002; d=daniel-kampert.de;
+    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
+    bh=U79c+IYlmleqSTHDoyD9/ayjQoAP52rfgaHOJO8WjHk=;
+    b=b3x48KdQQCGDOdduAxg4OMp8eoEVFWbVVJyO1vtYXRVl/KQJZ+mYseVdX0Qh/fIIgW
+    iMtRUunSfOmdd2FBkCxiYzt876wrraP0Cox00d9UfI57cSftLCBo57wTxOhTJ2USmXzO
+    LHvddi57B/dbWoc9zb6AePjvhUk7cD0vHpYGbQFkEnxXb2+7TmVQw0vTm3Rp8uNdCNh1
+    /DDuCJkmLdIJKRJFVfxCNoM2bOWzoWXpKKfpraQWttO44+eaEZjv8J2V+jH6cNQFDWUO
+    ghqt4Kv28UWBIusqhwZsXFmU0tmhfdJRVFArKlOAiiG295nBM4GdFI0Suv8kKEohBNBi
+    sIrQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1738050313;
+    s=strato-dkim-0003; d=daniel-kampert.de;
+    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
+    bh=U79c+IYlmleqSTHDoyD9/ayjQoAP52rfgaHOJO8WjHk=;
+    b=TwUDJZ2osVt7WopkEO+rP4mGXNAizPud98qBjIw/t7V+BmcHsX4aW+xgdBhgUGayEu
+    bvDeBrNfQ6LiClv2zoDg==
+X-RZG-AUTH: ":J2MKYUGjb98fESEFCJFViw9Avy7eC0lbL9IJtUAlr//iX6qLOAGQ/pwD7T1oMG+TLVuVbxkCQk4="
+Received: from ox-live-app403.back.ox.d0m.de
+    by smtp-ox.front (RZmta 51.2.17 AUTH)
+    with ESMTPSA id j04bdd10S7jDxNl
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate)
+    for <yocto@lists.yoctoproject.org>;
+    Tue, 28 Jan 2025 08:45:13 +0100 (CET)
+Date: Tue, 28 Jan 2025 08:45:13 +0100 (CET)
+From: Daniel Kampert <kontakt@daniel-kampert.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <1632036912.2804242.1738050313269@webmail.strato.de>
+Subject: QA issue with ladspa_dsp.so
 MIME-Version: 1.0
-Date: Mon, 27 Jan 2025 23:22:01 -0800
-Message-ID: <58gF.1738048921468211634.1FDg@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="6Y3NCBw0XXreSNvrjZW7"
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2804241_1733460335.1738050313267"
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.6-Rev72
+X-Originating-Client: open-xchange-appsuite
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 28 Jan 2025 07:22:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64656
+ <yocto@lists.yoctoproject.org>; Tue, 28 Jan 2025 07:45:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64657
 
---6Y3NCBw0XXreSNvrjZW7
-Content-Type: text/plain; charset="utf-8"
+------=_Part_2804241_1733460335.1738050313267
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Trying to build scarthgap image facing below error.
-
-ERROR: Task /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux=
--raspberrypi_6.6.bb:do_collect_spdx_deps has circular dependency on /home/b=
-uild/project/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb=
-:do_create_spdx
-ERROR: Command execution failed: 1
-
-Their is a commit for error https://patchwork.yoctoproject.org/project/oe-c=
-ore/patch/20230602133453.229023-3-richard.purdie@linuxfoundation.org/
-but for scarthgap it has been updated.
-i.e. the function names have been changed in scarthgap and the commit made.
-
-Scarthgap has below func
-def collect_direct_deps ( d , dep_task ):
-current_task =3D "do_" + d. getVar ( "BB_CURRENTTASK" )
-pn =3D d. getVar ( "PN" )
-
-taskdepdata =3D d. getVar ( "BB_TASKDEPDATA" , False )
-
-for this_dep in taskdepdata. values ():
-if this_dep [ 0 ] =3D=3D pn and this_dep [ 1 ] =3D=3D current_task :
-break
-else :
-bb. fatal ( f "Unable to find this {pn}:{current_task} in taskdepdata" )
-
-deps =3D set ()
-for dep_name in this_dep [ 3 ]:
-dep_data =3D taskdepdata [ dep_name ]
-if dep_data [ 1 ] =3D=3D dep_task and dep_data [ 0 ] ! =3D pn :
-deps. add (( dep_data [ 0 ] , dep_data [ 7 ]))
-
-return sorted ( deps )
-
-collect_direct_deps [ vardepsexclude ] +=3D "BB_TASKDEPDATA"
-collect_direct_deps [ vardeps ] +=3D "DEPENDS"
-
-And the commit has
-
-def collect_direct_deps(d, dep_task):
-current_task =3D "do_" + d.getVar("BB_CURRENTTASK")
-pn =3D d.getVar("PN")
-taskdepdata =3D d.getVar("BB_TASKDEPDATA", False)
-for this_dep in taskdepdata.values():
-if this_dep[0] =3D=3D pn and this_dep[1] =3D=3D current_task:
-break
-else:
-bb.fatal(f"Unable to find this {pn}:{current_task} in taskdepdata")
-deps =3D set()
-for dep_name in this_dep[3]:
-dep_data =3D taskdepdata[dep_name]
-if dep_data[1] =3D=3D dep_task and dep_data[0] !=3D pn:
-deps.add((dep_data[0], dep_data[7]))
-return sorted(deps)
-collect_direct_deps[vardepsexclude] +=3D "BB_TASKDEPDATA"
-collect_direct_deps[vardeps] +=3D "DEPENDS"
-
-I this causing the issue?
-
-Ganesh Mahajan
-
---6Y3NCBw0XXreSNvrjZW7
-Content-Type: text/html; charset="utf-8"
+I try to port an echo cancellation recipe to Kirkstone and run into this is=
+sue:
+=20
+ERROR: audio-1.0-r0 do_package_qa: QA Issue: /usr/lib/ladspa/ladspa_dsp.so =
+contained in package audio requires libltdl.so.7()(64bit), but no providers=
+ found in RDEPENDS:audio? [file-rdeps]
+ERROR: audio-1.0-r0 do_package_qa: Fatal QA errors were found, failing task=
+.
+ERROR: Logfile of failure stored in: .../build/tmp/work/cortexa53-tdx-linux=
+/audio/1.0-r0/temp/log.do_package_qa.489020
+ERROR: Task (.../recipes-init/audio/audio_1.0.bb:do_package_qa) failed with=
+ exit code '1
+=20
+And I already tried to fix this issue with adding
+=20
+RDEPENDS_${PN}:append =3D "libltdl"
+=20
+to the "audio" package of my recipe, but it still doesn=C2=B4t work. What i=
+s the correct way to fix it?
+=20
+Thanks!
+------=_Part_2804241_1733460335.1738050313267
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div>Trying to build scarthgap image facing below error.<br /><br />ERROR: =
-Task /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-raspbe=
-rrypi_6.6.bb:do_collect_spdx_deps has circular dependency on /home/build/pr=
-oject/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_cre=
-ate_spdx<br />ERROR: Command execution failed: 1<br /><br />Their is a comm=
-it for error <a href=3D"https://patchwork.yoctoproject.org/project/oe-core/=
-patch/20230602133453.229023-3-richard.purdie@linuxfoundation.org/" target=
-=3D"_blank" rel=3D"noopener">https://patchwork.yoctoproject.org/project/oe-=
-core/patch/20230602133453.229023-3-richard.purdie@linuxfoundation.org/</a>&=
-nbsp;<br />but for scarthgap it has been updated.<br />i.e. the function na=
-mes have been changed in scarthgap and the commit made.<br /><br />Scarthga=
-p has below func</div>
-<div style=3D"color: #cccccc; background-color: #1f1f1f; font-family: Conso=
-las, 'Courier New', monospace; font-weight: normal; font-size: 14px; line-h=
-eight: 19px; white-space: pre;">
-<div><span style=3D"color: #569cd6;">def</span><span style=3D"color: #ccccc=
-c;"> </span><span style=3D"color: #dcdcaa;">collect_direct_deps</span><span=
- style=3D"color: #cccccc;">(</span><span style=3D"color: #9cdcfe;">d</span>=
-<span style=3D"color: #d4d4d4;">,</span><span style=3D"color: #cccccc;"> </=
-span><span style=3D"color: #9cdcfe;">dep_task</span><span style=3D"color: #=
-cccccc;">):</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #9cdcfe;">current_task</span><span style=3D"color: #cccccc;"> </span><=
-span style=3D"color: #d4d4d4;">=3D</span><span style=3D"color: #cccccc;"> <=
-/span><span style=3D"color: #ce9178;">"do_"</span><span style=3D"color: #cc=
-cccc;"> + </span><span style=3D"color: #9cdcfe;">d</span><span style=3D"col=
-or: #d4d4d4;">.</span><span style=3D"color: #dcdcaa;">getVar</span><span st=
-yle=3D"color: #cccccc;">(</span><span style=3D"color: #ce9178;">"BB_CURRENT=
-TASK"</span><span style=3D"color: #cccccc;">)</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #9cdcfe;">pn</span><span style=3D"color: #cccccc;"> </span><span style=
-=3D"color: #d4d4d4;">=3D</span><span style=3D"color: #cccccc;"> </span><spa=
-n style=3D"color: #9cdcfe;">d</span><span style=3D"color: #d4d4d4;">.</span=
-><span style=3D"color: #dcdcaa;">getVar</span><span style=3D"color: #cccccc=
-;">(</span><span style=3D"color: #ce9178;">"PN"</span><span style=3D"color:=
- #cccccc;">)</span></div>
-<br />
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #9cdcfe;">taskdepdata</span><span style=3D"color: #cccccc;"> </span><s=
-pan style=3D"color: #d4d4d4;">=3D</span><span style=3D"color: #cccccc;"> </=
-span><span style=3D"color: #9cdcfe;">d</span><span style=3D"color: #d4d4d4;=
-">.</span><span style=3D"color: #dcdcaa;">getVar</span><span style=3D"color=
-: #cccccc;">(</span><span style=3D"color: #ce9178;">"BB_TASKDEPDATA"</span>=
-<span style=3D"color: #d4d4d4;">,</span><span style=3D"color: #cccccc;"> </=
-span><span style=3D"color: #569cd6;">False</span><span style=3D"color: #ccc=
-ccc;">)</span></div>
-<br />
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #c586c0;">for</span><span style=3D"color: #cccccc;"> </span><span styl=
-e=3D"color: #9cdcfe;">this_dep</span><span style=3D"color: #cccccc;"> </spa=
-n><span style=3D"color: #569cd6;">in</span><span style=3D"color: #cccccc;">=
- </span><span style=3D"color: #9cdcfe;">taskdepdata</span><span style=3D"co=
-lor: #d4d4d4;">.</span><span style=3D"color: #dcdcaa;">values</span><span s=
-tyle=3D"color: #cccccc;">():</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; &nbsp; &nbsp; </span><sp=
-an style=3D"color: #c586c0;">if</span><span style=3D"color: #cccccc;"> </sp=
-an><span style=3D"color: #9cdcfe;">this_dep</span><span style=3D"color: #cc=
-cccc;">[</span><span style=3D"color: #b5cea8;">0</span><span style=3D"color=
-: #cccccc;">] </span><span style=3D"color: #d4d4d4;">=3D=3D</span><span sty=
-le=3D"color: #cccccc;"> </span><span style=3D"color: #9cdcfe;">pn</span><sp=
-an style=3D"color: #cccccc;"> </span><span style=3D"color: #569cd6;">and</s=
-pan><span style=3D"color: #cccccc;"> </span><span style=3D"color: #9cdcfe;"=
->this_dep</span><span style=3D"color: #cccccc;">[</span><span style=3D"colo=
-r: #b5cea8;">1</span><span style=3D"color: #cccccc;">] </span><span style=
-=3D"color: #d4d4d4;">=3D=3D</span><span style=3D"color: #cccccc;"> </span><=
-span style=3D"color: #9cdcfe;">current_task</span><span style=3D"color: #cc=
-cccc;">:</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; </span><span style=3D"color: #c586c0;">break</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #c586c0;">else</span><span style=3D"color: #cccccc;">:</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; &nbsp; &nbsp; </span><sp=
-an style=3D"color: #9cdcfe;">bb</span><span style=3D"color: #d4d4d4;">.</sp=
-an><span style=3D"color: #dcdcaa;">fatal</span><span style=3D"color: #ccccc=
-c;">(</span><span style=3D"color: #9cdcfe;">f</span><span style=3D"color: #=
-ce9178;">"Unable to find this {pn}:{current_task} in taskdepdata"</span><sp=
-an style=3D"color: #cccccc;">)</span></div>
-<br />
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #9cdcfe;">deps</span><span style=3D"color: #cccccc;"> </span><span sty=
-le=3D"color: #d4d4d4;">=3D</span><span style=3D"color: #cccccc;"> </span><s=
-pan style=3D"color: #dcdcaa;">set</span><span style=3D"color: #cccccc;">()<=
-/span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #c586c0;">for</span><span style=3D"color: #cccccc;"> </span><span styl=
-e=3D"color: #9cdcfe;">dep_name</span><span style=3D"color: #cccccc;"> </spa=
-n><span style=3D"color: #569cd6;">in</span><span style=3D"color: #cccccc;">=
- </span><span style=3D"color: #9cdcfe;">this_dep</span><span style=3D"color=
-: #cccccc;">[</span><span style=3D"color: #b5cea8;">3</span><span style=3D"=
-color: #cccccc;">]:</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; &nbsp; &nbsp; </span><sp=
-an style=3D"color: #9cdcfe;">dep_data</span><span style=3D"color: #cccccc;"=
-> </span><span style=3D"color: #d4d4d4;">=3D</span><span style=3D"color: #c=
-ccccc;"> </span><span style=3D"color: #9cdcfe;">taskdepdata</span><span sty=
-le=3D"color: #cccccc;">[</span><span style=3D"color: #9cdcfe;">dep_name</sp=
-an><span style=3D"color: #cccccc;">]</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; &nbsp; &nbsp; </span><sp=
-an style=3D"color: #c586c0;">if</span><span style=3D"color: #cccccc;"> </sp=
-an><span style=3D"color: #9cdcfe;">dep_data</span><span style=3D"color: #cc=
-cccc;">[</span><span style=3D"color: #b5cea8;">1</span><span style=3D"color=
-: #cccccc;">] </span><span style=3D"color: #d4d4d4;">=3D=3D</span><span sty=
-le=3D"color: #cccccc;"> </span><span style=3D"color: #9cdcfe;">dep_task</sp=
-an><span style=3D"color: #cccccc;"> </span><span style=3D"color: #569cd6;">=
-and</span><span style=3D"color: #cccccc;"> </span><span style=3D"color: #9c=
-dcfe;">dep_data</span><span style=3D"color: #cccccc;">[</span><span style=
-=3D"color: #b5cea8;">0</span><span style=3D"color: #cccccc;">] !</span><spa=
-n style=3D"color: #d4d4d4;">=3D</span><span style=3D"color: #cccccc;"> </sp=
-an><span style=3D"color: #9cdcfe;">pn</span><span style=3D"color: #cccccc;"=
->:</span></div>
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; </span><span style=3D"color: #9cdcfe;">deps</span><span style=3D"color:=
- #d4d4d4;">.</span><span style=3D"color: #dcdcaa;">add</span><span style=3D=
-"color: #cccccc;">((</span><span style=3D"color: #9cdcfe;">dep_data</span><=
-span style=3D"color: #cccccc;">[</span><span style=3D"color: #b5cea8;">0</s=
-pan><span style=3D"color: #cccccc;">]</span><span style=3D"color: #d4d4d4;"=
->,</span><span style=3D"color: #cccccc;"> </span><span style=3D"color: #9cd=
-cfe;">dep_data</span><span style=3D"color: #cccccc;">[</span><span style=3D=
-"color: #b5cea8;">7</span><span style=3D"color: #cccccc;">]))</span></div>
-<br />
-<div><span style=3D"color: #cccccc;">&nbsp; &nbsp; </span><span style=3D"co=
-lor: #c586c0;">return</span><span style=3D"color: #cccccc;"> </span><span s=
-tyle=3D"color: #dcdcaa;">sorted</span><span style=3D"color: #cccccc;">(</sp=
-an><span style=3D"color: #9cdcfe;">deps</span><span style=3D"color: #cccccc=
-;">)</span></div>
-<br />
-<div><span style=3D"color: #9cdcfe;">collect_direct_deps</span><span style=
-=3D"color: #cccccc;">[</span><span style=3D"color: #9cdcfe;">vardepsexclude=
-</span><span style=3D"color: #cccccc;">] </span><span style=3D"color: #d4d4=
-d4;">+=3D</span><span style=3D"color: #cccccc;"> </span><span style=3D"colo=
-r: #ce9178;">"BB_TASKDEPDATA"</span></div>
-<div><span style=3D"color: #9cdcfe;">collect_direct_deps</span><span style=
-=3D"color: #cccccc;">[</span><span style=3D"color: #9cdcfe;">vardeps</span>=
-<span style=3D"color: #cccccc;">] </span><span style=3D"color: #d4d4d4;">+=
-=3D</span><span style=3D"color: #cccccc;"> </span><span style=3D"color: #ce=
-9178;">"DEPENDS"</span></div>
-</div>
-<div><br />And the commit has<br /><br /></div>
-<div>def collect_direct_deps(d, dep_task):<br />current_task =3D "do_" + d.=
-getVar("BB_CURRENTTASK")<br />&nbsp; &nbsp; pn =3D d.getVar("PN")</div>
-<div>&nbsp; &nbsp; taskdepdata =3D d.getVar("BB_TASKDEPDATA", False)</div>
-<div>&nbsp; &nbsp; for this_dep in taskdepdata.values():<br />&nbsp; &nbsp;=
- &nbsp; &nbsp; if this_dep[0] =3D=3D pn and this_dep[1] =3D=3D current_task=
-:<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break<br />&nbsp; &nbsp; e=
-lse:<br />&nbsp; &nbsp; &nbsp; &nbsp; bb.fatal(f"Unable to find this {pn}:{=
-current_task} in taskdepdata")</div>
-<div>&nbsp; &nbsp; deps =3D set()<br />&nbsp; &nbsp; for dep_name in this_d=
-ep[3]:<br />&nbsp; &nbsp; &nbsp; &nbsp; dep_data =3D taskdepdata[dep_name]<=
-br />&nbsp; &nbsp; &nbsp; &nbsp; if dep_data[1] =3D=3D dep_task and dep_dat=
-a[0] !=3D pn:<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; deps.add((dep_=
-data[0], dep_data[7]))</div>
-<div>&nbsp; &nbsp; return sorted(deps)</div>
-<div>collect_direct_deps[vardepsexclude] +=3D "BB_TASKDEPDATA"<br />collect=
-_direct_deps[vardeps] +=3D "DEPENDS"</div>
-<div><br />I this causing the issue?<br /><br />Ganesh Mahajan</div>
-
---6Y3NCBw0XXreSNvrjZW7--
+<!doctype html>
+<html>
+ <head>=20
+  <meta charset=3D"UTF-8">=20
+ </head>
+ <body>
+  <div class=3D"default-style">
+   I try to port an echo cancellation recipe to Kirkstone and run into this=
+ issue:
+  </div>=20
+  <div class=3D"default-style">
+   &nbsp;
+  </div>=20
+  <div class=3D"default-style">
+   <em>ERROR: audio-1.0-r0 do_package_qa: QA Issue: /usr/lib/ladspa/ladspa_=
+dsp.so contained in package audio requires libltdl.so.7()(64bit), but no pr=
+oviders found in RDEPENDS:audio? [file-rdeps]</em>
+   <br><em>ERROR: audio-1.0-r0 do_package_qa: Fatal QA errors were found, f=
+ailing task.</em>
+   <br><em>ERROR: Logfile of failure stored in: .../build/tmp/work/cortexa5=
+3-tdx-linux/audio/1.0-r0/temp/log.do_package_qa.489020</em>
+   <br><em>ERROR: Task (.../recipes-init/audio/audio_1.0.bb:do_package_qa) =
+failed with exit code '1</em>
+  </div>=20
+  <div class=3D"default-style">
+   &nbsp;
+  </div>=20
+  <div class=3D"io-ox-signature">=20
+   <div class=3D"default-style">
+    And I already tried to fix this issue with adding
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    <em>RDEPENDS_${PN}:append =3D "libltdl"</em>
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    to the "audio" package of my recipe, but it still doesn=C2=B4t work. Wh=
+at is the correct way to fix it?
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    Thanks!
+   </div>=20
+  </div>=20
+ </body>
+</html>
+------=_Part_2804241_1733460335.1738050313267--
 
