@@ -1,134 +1,108 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <scott.murray@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCBAFC0218D
-	for <webhook@archiver.kernel.org>; Wed, 29 Jan 2025 14:07:36 +0000 (UTC)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
- by mx.groups.io with SMTP id smtpd.web10.13217.1738159650882140145
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84CCFC0218D
+	for <webhook@archiver.kernel.org>; Wed, 29 Jan 2025 18:58:18 +0000 (UTC)
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+ by mx.groups.io with SMTP id smtpd.web11.20545.1738177089799282408
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Jan 2025 06:07:31 -0800
+ Wed, 29 Jan 2025 10:58:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=WAa8RCJv;
- spf=pass (domain: gmail.com, ip: 209.85.128.47, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-436202dd7f6so78675085e9.0
-        for <yocto@lists.yoctoproject.org>; Wed, 29 Jan 2025 06:07:30 -0800 (PST)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=nRagAfMv;
+ spf=pass (domain: konsulko.com, ip: 209.85.166.178, mailfrom: scott.murray@konsulko.com)
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3a9caa3726fso3193085ab.1
+        for <yocto@lists.yoctoproject.org>; Wed, 29 Jan 2025 10:58:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738159649; x=1738764449; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Bpw6K6FSSDlRkyF8Pmt+yTs2OijJ9rAoIXSpFMX7LzQ=;
-        b=WAa8RCJvyktaIolC3BQeWlpEM3p5/VweL8SV4HAGpTExvN+HUF5+3lCbv2X7FEVNwP
-         PlXqM0HQivblHCR0slUJUxpzFQMDd0Nz2o0gTt5s0OU/U8gnhcDe8anz/xYevSjywCEN
-         0AfU/JRxgDjAZpwqHM6wZlo9xEcL7b8L/6jp3t/POqhMEt3NBj5TQRIhb5Tk+MgP86ft
-         6zZyNySpwxxpsiOvfU4Avz3Hi5G8qOG0ZzYn+vJIqJFgJcM7skujF2R+voEleg7OtQbg
-         iFrG62/NrklGE/ulULrmjQNotuIu3nXji8Ak+Vt4mFP64oYVtchves54R9wUOW1yBJ/3
-         6UGg==
+        d=konsulko.com; s=google; t=1738177089; x=1738781889; darn=lists.yoctoproject.org;
+        h=mime-version:message-id:subject:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/4KjogVT6BhzEIO9YBqKF4YffvG2xPu89ok7/PMbYvE=;
+        b=nRagAfMvukGWGjcPLLo5KaTiF49Wze37TvTt5auD38kXKGNJUsQNTEDn/B1PVFcWkO
+         slZPXh64tl/jjZOHjjKs5hBvA5cxEaEwyjs2VeXJUvrxwBH7MMaXVPb0RrrxSqs/wkjZ
+         tXWIbmhDmdR+NjHtUjABHhYFvCTpnRtLS0ATs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738159649; x=1738764449;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bpw6K6FSSDlRkyF8Pmt+yTs2OijJ9rAoIXSpFMX7LzQ=;
-        b=Lmu2KoBx7fLRbbKbBjU4YVjZTyFPn4AZga87Ti868xq4cuI0c8tU6kVnX/y/6DdGQx
-         cDZa9SnYhigT2Bqwz0azePZtByNHPtHfwaRkaSiP9AgRihHJm7fd+qvT0Nh0GatYhqke
-         7Kvkf5ENhWdwoMwP4rytT5o3oOYsEUjQBDwOl+z61jcZcIUMibEBpTK8RlW22ieMoMQc
-         W/40LedHgVPeQvpUp88TuuP7Hkng9s37wWFM4bkrVbjHOjp/g8dVACx4oWKSM3xVKJbl
-         iXm/zOxTIdBqYVDpmDagym25T4SxEAITQvPGRtTLq4rX3aqqfXfuYrf4GdUGRWIPPe/k
-         Wc5g==
-X-Gm-Message-State: AOJu0YypN9I8lh10/81w7UaE5gklEZyaT9wbUmuyPyNWXnKcJS6RMwNl
-	ejQKtyQHv/KXWbwGBbwGqkfipfFoOgUO7hl1M7SlcZBbGJ/A23KPjSDTsg==
-X-Gm-Gg: ASbGnctwYOrX4ze7bvWCkDRKO9NwDpFUnMHRvS1xBPV+oL3VIjiAy9h7r+PCAuZKm7L
-	+TECxn4xFUK4NMLLoYIzS+YNxxDLgvZUQDlvzH7t7brofzhpWFrwsRxisO1y+ewJdoHuBtoLLa0
-	QSgQ47RV7UpC1CNR7Ozblb5rQrleGcDc/ycTvoVeLfXSInmAzPDFQ+VC2NC9SOXijbYCWjkQYGc
-	uwoXG9T6iBZY8zk8ad0AYmnf6329ymfNEeneUe8TO6HCd8LOpCBHVZ0P/SukFXHRzcWHa3m6zf7
-	CqaJa/apP2mKFH79GvjyL0g=
-X-Google-Smtp-Source: AGHT+IG8rfwoxPxkXHt2/JFn1DfqQ/JkcqEcLRHTxStc2oGu4qXVaz56IXGrjUfWIFeYsFX3+7wbDA==
-X-Received: by 2002:a05:600c:4f87:b0:434:a7e3:db5c with SMTP id 5b1f17b1804b1-438e01fd812mr12678005e9.11.1738159648788;
-        Wed, 29 Jan 2025 06:07:28 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438dcc263f0sm24270455e9.9.2025.01.29.06.07.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jan 2025 06:07:28 -0800 (PST)
-Message-ID: <83aaf6d3-0944-4b45-bca1-dbde9fd6d77e@gmail.com>
-Date: Wed, 29 Jan 2025 15:07:27 +0100
+        d=1e100.net; s=20230601; t=1738177089; x=1738781889;
+        h=mime-version:message-id:subject:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/4KjogVT6BhzEIO9YBqKF4YffvG2xPu89ok7/PMbYvE=;
+        b=UpaoXG4+yJJTFf7h+VSgI+KuSPY4zzgG8uRu06ufQI4i3iQfS8nWPH2+jHnBPpSBSm
+         Euu/SRFZwrwt2CVD97357falJY2zIqlZ1h7K7uXSV/jhubaIeK8djp8qnbPEpGdQYvAC
+         DEZOnNgMSBdzWOAsfZ0FEn0/oZK632TK29TaYOf/WY/h57oD0CCmb203rPILgC/9b3VG
+         +rwqHxall65+aWznFZA5R43mftgJG9+n2jAjec9jxqws+iqXAUbxr6/0ZSAlfplgMehR
+         fOHrmAn7eR1hocHKQYkJGqIjZsv7Z/PIo43314CjV/87cBEJVzjLhm8Qv3ZigxDuXxg9
+         WYfg==
+X-Forwarded-Encrypted: i=1; AJvYcCWylBXt59jmZ8tT8zmJkT80A5sU/WsUQHCH3f1TpzkDqnsCQ9ijbb2wQegSU8jliVhocMV0rA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YzriIrECCnPGXXaNWGN4jDAM/YaFxK9Yl5kSqmyffwArYAIE4RT
+	aqbllf+CJbr+8XfdsOCtCrDpo1fhaOGnI6RQ+nbNE/cv2WRf2nDwjrTf6FUN4tg88x7F4k1YJZG
+	Y
+X-Gm-Gg: ASbGncsGvLy4DGVlFVsG+FuT+ChfPRXolct6g0hlhUAIZITL9CCsNiQU4/++T3R/eXF
+	MiGq2jyF4Ykc9Mz31Kt1xKtgArKvKoUSDI6WeE7N3+u9VDHnsvNLr0gw0FY3vEh4mMO538nQlOM
+	+SD/Gt4f43GJ9pHBqnyhk5j+m0AntvJUUhzQV32TAfx+KdTL2amWAm71pqv3rouBV7jD6Zq1rsQ
+	6/R3UQbv8uD03jRYizE5bZ/GsOgiiaQrmfGxwmAT67RXsIKVpQU218lq93U1yZbBtyLG/8ck0Oi
+	OXGiMQX+4dBfzx7XbgJppwVKVmVB4ssH3JO+LtVfE7Gx2+F4fg==
+X-Google-Smtp-Source: AGHT+IFKjqhUKum5+m8PO52QDSOXccVGC4XghB4Ha3RFhBp9zVfHg05/tK4v1NpausCGwWuP5ycvlQ==
+X-Received: by 2002:a05:6e02:1cad:b0:3cf:6ea9:9c0f with SMTP id e9e14a558f8ab-3d008f97f7bmr3880695ab.8.1738177088960;
+        Wed, 29 Jan 2025 10:58:08 -0800 (PST)
+Received: from godzilla (107-179-213-3.cpe.teksavvy.com. [107.179.213.3])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ec5cceee79sm869035173.126.2025.01.29.10.58.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 10:58:08 -0800 (PST)
+Date: Wed, 29 Jan 2025 13:58:07 -0500 (EST)
+From: Scott Murray <scott.murray@konsulko.com>
+To: yocto-patches@lists.yoctoproject.org, yocto@lists.yoctoproject.org
+Subject: [meta-lts-mixins][kirkstone/rust] RFC on librsvg support
+Message-ID: <5ed9ec27-cc24-f086-afe9-c77ead2f359e@konsulko.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [scarthgap] circular dependency issue #kernel #rpi
- #scarthgap #yocto
-To: yocto@lists.yoctoproject.org, ganesh.manoj.mahajan@signify.com
-References: <XAWg.1738151518148913098.vKhK@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <XAWg.1738151518148913098.vKhK@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 29 Jan 2025 14:07:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64671
+ <yocto@lists.yoctoproject.org>; Wed, 29 Jan 2025 18:58:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64672
 
-Do you have a lot of modifications for the layers/recipes?
+I have just pushed out the patch series to bump the scarthgap/rust mixin
+to Rust 1.81.0, and I have the same mostly in hand for kirkstone/rust, but
+there is an issue I wanted to get community feedback on before committing
+to a course of action.
 
-I would debugging this on a very basic level: remove your modifications 
-(comment local.conf modifications, and other global changes, along with 
-bbappends that are changing the base layers), and check if you can build 
-it successfully. If you can, then start adding back them slowly, while 
-you keep checking if you can still build the image. Once it breaks, at 
-least you have a more exact point of reference to investigate.
+The issue stems from librsvg >= 2.59 now needing at least meson 1.2.0,
+which is a lot newer than what is available in kirkstone.  That rules
+out backporting the librsvg 2.59.2 upgrade from oe-core into the mixin,
+and dropping support of some kind is not feasible as the librsvg 2.52.10
+recipe in poky kirkstone does not build with the backported Rust toolchain
+changes (note I mean the various bbclasses here, I've not gotten to the
+point of trying to build it with Rust 1.81.0).  Another more general issue
+here for kirkstone branch users is that librsvg upstream have recently
+updated their supported release list to just 2.59.x due to the effort
+required to backport fixes[1].
 
-(FWIW, I have built kernel 6.6.22 on Scarthgap for Rpi3, Rpi3-64 and 
-Rpi4 over the course of the past 3 days without problems, but that was 
-with my own config... mentioning this only as a note that the kernel is 
-not impossible to build with this setup)
+The upshot of the above is that is raises the question of how folks would
+like me to proceed with librsvg in the mixin.  I see the following options
+in order of likely increasing effort:
 
-On 29.01.25 12:51, Ganesh Mahajan via lists.yoctoproject.org wrote:
-> I am trying to build scarthgap image using : bitbake -k wac-core-image
->
-> I got below error
-> ERROR: Task 
-> /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_collect_spdx_deps 
-> has circular dependency on 
-> /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_create_spdx
-> ERROR: Command execution failed: 1
->
-> above error is been fixed in this commit for scartrhgap : 
-> https://git.yoctoproject.org/poky/commit/?h=scarthgap&id=15acbd10906568a1ed9c548b465f1cb6b5205202 
-> <https://git.yoctoproject.org/poky/commit/?h=scarthgap&id=15acbd10906568a1ed9c548b465f1cb6b5205202>
->
-> But their is also a commit were in the function names have been 
-> changed : [03/11] classes/create-spdx-2.2: Fix build time dependency 
-> calculations - Patchwork 
-> <https://patchwork.yoctoproject.org/project/oe-core/patch/20230602133453.229023-3-richard.purdie@linuxfoundation.org/>
-> Above commits are for error mentioned above just that there is change 
-> in function names for create-spdx-2.2
->
-> To get rid of the error i added INHERIT:remove += "create-spdx" to my 
-> local.conf above issue resolved with the commit but i came across  
-> below error
-> ERROR: Task 
-> /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_package 
-> has circular dependency on 
-> /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_packagedata
-> ERROR: Command execution failed: 1
->
-> Am I missing something i am working on scarthgap-5.0.5 version
->
->
-> Ganesh Mahajan
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64670): https://lists.yoctoproject.org/g/yocto/message/64670
-> Mute This Topic: https://lists.yoctoproject.org/mt/110876502/6084445
-> Mute #kernel:https://lists.yoctoproject.org/g/yocto/mutehashtag/kernel
-> Mute #rpi:https://lists.yoctoproject.org/g/yocto/mutehashtag/rpi
-> Mute #scarthgap:https://lists.yoctoproject.org/g/yocto/mutehashtag/scarthgap
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+1. I stick with the librsvg 2.58.2 recipe and leave things alone unless
+   it stops building on a future Rust upgrade.  This is effectively
+   sweeping the issue under the rug for now.
+2. I do upgrades to newer librsvg 2.58.x releases (currently 2.58.5)
+   in the mixin to perhaps provide a bit better story wrt security fixes.
+3. I drop the librsvg backports in the mixin in favor of attempting to
+   instead carry a replacement recipe that builds the same librsvg 2.52.x
+   (currently 2.52.10) that is in poky kirkstone with the newer Rust
+   toolchain.  As mentioned above, at the moment I'm currently unsure if
+   2.52.x will build with 1.81.0, so there is some more risk on that
+   front.  The argument for this would be matching what stock kirkstone
+   provides.
+
+I would appreciate input from users of the mixin on which approach they
+would like to see, especially options (2) vs (3).  I'm sort of ruling out
+significant hackery to enable using new meson for building librsvg, but if
+someone has already done similar without needing to carry a lot of
+baggage, I could maybe be convinced to try that approach...
+
+Thanks,
+
+Scott
+
+[1] https://gitlab.gnome.org/GNOME/librsvg/-/commit/7672fc63
 
