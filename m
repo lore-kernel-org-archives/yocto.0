@@ -2,164 +2,100 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C76EDC0218A
-	for <webhook@archiver.kernel.org>; Thu, 30 Jan 2025 19:23:55 +0000 (UTC)
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
- by mx.groups.io with SMTP id smtpd.web11.2872.1738265033592056753
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D8161C0218A
+	for <webhook@archiver.kernel.org>; Thu, 30 Jan 2025 19:37:35 +0000 (UTC)
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+ by mx.groups.io with SMTP id smtpd.web10.3092.1738265851650286586
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Jan 2025 11:23:53 -0800
+ Thu, 30 Jan 2025 11:37:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=aEtcpIbr;
- spf=pass (domain: gmail.com, ip: 209.85.160.51, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2a88c7fabdeso594618fac.1
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2025 11:23:53 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=PA36YHDR;
+ spf=pass (domain: gmail.com, ip: 209.85.167.178, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3ebb1652729so627912b6e.3;
+        Thu, 30 Jan 2025 11:37:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738265032; x=1738869832; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=gmail.com; s=20230601; t=1738265851; x=1738870651; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IHb/6XTw0QbGET5lmg8iDE1hfD4CsJQnhVtP3AOo+0g=;
-        b=aEtcpIbrx8sCLVmTUsRutwyqwNcBd2Kg8q+TWzgryxpmpGLKLnEa2jey0mRXnH2eFn
-         PWj1joWYmxIkjzGYxrvbRIb1o4+lJQal2ki1LzDeVYFWP4K7G1HmKR3BZ7aO+H5Am27o
-         V8U0NCTCxMfgU2CdloDcrgcHfa8eGlg2Uxy0zoz22RAn6kNR0yjh0TBanxb4oX90M73X
-         tos0Ujx93xY9NGUx+q6tVpIhH0Fm+1xHwjxOwTbEGRBDa//7qUekPioqxyFglTw8e66C
-         Ve7rj29IATaV0rh9TtaeHjUHogXhDuLCU5+0Rdsni4EMbplSBSDrUS+yXke6f0i4PPBq
-         VFSw==
+        bh=dlZuLS1bC4w6T1dl/y6wnsSLH+epWqvuduYcs2ZuAfI=;
+        b=PA36YHDRw7+bIs87AznFJhCnDkNVOM/TSDnRP7h3014punwdcQpLzIEiNFAI7Ehh7l
+         zyg8jBo3cbL3ykyjYr86MIJV84LGZQ5E1sUmZ03O61dTBGn906fH1UHv8arHdiBavIve
+         51PT+Vqm0KLGfFwpoPBX2lTbC1Rra0E/BZmKS0Xy/FrUn8n9ZDjBgQCkITw/brSIyMe6
+         1ahZmrlgzf/aYd+NcK4v2Jf4nZxHHLIFoY1+6ICe5PFvA/sBLD+zMLVZkZcGDsXhaF+b
+         yTH2SAdRjMLEfy5Od8L13bGXirw2nQgtUtA0IOdaKFDmX2AygAOPusiO1ArmsIg77FWB
+         GLRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738265032; x=1738869832;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=1e100.net; s=20230601; t=1738265851; x=1738870651;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IHb/6XTw0QbGET5lmg8iDE1hfD4CsJQnhVtP3AOo+0g=;
-        b=HrCL5J/pR4WNSMZ4+5f9O2VgsKhMP0UgLaW3rh+BaooE7nWM5LfuWBYygP6nee3KoT
-         bWzj2YxUjNSMcDEhZZg7Os/Uv8CPbyGZMOWEB2ZLE6F3ir9trCL2yHP9qETqbWmOjzaQ
-         tT+e7Wmki6wA9ZFrHFjBf+MxaqS96CxF2XaaQUXvd8dqmMWN7F3DPQvVTV8H8gC63s9E
-         +y75JJ0CFh7puN1LrU7KscsfhEKKUpTz/joEObRo8j/1ibaN+eY9LX8W/11TFEMET10a
-         SyWR49RLPzWlIYFVHSoeO3ZVqz97D+4TOj50HjRBSUTZ7MKdMhBBL3kbHJsCAyA69LkJ
-         k6Yw==
-X-Gm-Message-State: AOJu0Yy+qNW5B3tXrEfdRR2rm7cEiAr2xgCYGiMhmo4JO1+ay1OCZOt7
-	POtL9uFdRm6eAkKwdfYyazvK8aLmxITeZE+6MS5ds3d3py7pcl/ZMCREaYwBUVbU5l+Git+Cwj8
-	KNoBWyqnlQpYKYK+Yxihfp1sEiW+v3xn3rAI=
-X-Gm-Gg: ASbGncuyTYhxfrnju9VkG384Ep65pdsT8Id4tThSqH/kLdIfR/4qvAuHx69PPJtGcVt
-	130SufvJ4lUt6S0dS5KNoUKvVjxtu4N1Vhm2MrBok1bpIk2MKRhWR6e+/n9HHUcgXXmqvAV6HLP
-	DuXxyZQUBFNCPDbm5Qz58/qlXzvQ==
-X-Google-Smtp-Source: AGHT+IFnr4wZEN4ZFNfQ5gHZS2dkxDcIwBSCLclXuimVH2ZPdDY6YrGdPCzSLFXj81DIQGYV8ppKEvjhHWtjrL5hP8g=
-X-Received: by 2002:a05:6870:6e89:b0:29e:65b3:27f5 with SMTP id
- 586e51a60fabf-2b32f0a8141mr5056595fac.19.1738265031695; Thu, 30 Jan 2025
- 11:23:51 -0800 (PST)
+        bh=dlZuLS1bC4w6T1dl/y6wnsSLH+epWqvuduYcs2ZuAfI=;
+        b=OxN1XCumAYinD/mGqenCgHLmwy9oahXaKyOd8ZZwO/4pdtOnfhiIk6pTU31maxk/WK
+         Vz2Bx4qsz8DwW8K0KDFfY1lFJNfUEc+eQ1VSfPxQKdzpcNC3RzyjyU4U0sEFK01DZJEX
+         4rrxxay8zM8BBncXyFdebyQXIebab9AhwDaVWwVqgzaGrjey1Pai9hl8kFB8V8Bcqcck
+         Sf/VXgP+6WLWBLt5Nz67EOdPIrL3we7pxHyJpA2zLiVbP0lgeS2qRFYmeOnKWvnHU275
+         xLnbqfyBtgLz+iOlR0pbTeZG9a55D8XRGgMOO6We5gELf5KrLg6t4CrvVc9oG2ezDEbP
+         JOWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTagHRnFSIzY+8TKNeJhz8cSEKohtqqXJ9zorAQOpvSwkFaXEHmUhLpwqClxuh0qOWQOiT/g==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yz3xjCzvNufWCKoY6SxfodLP3/fl942bCZd1Eq0pWdxsrdcE9xv
+	ZIDEum2JDJQFQm4nVWGdIC36FwUwikAVYqGkUs87u6Elji169lj6Husly3SQorgKKu2xVew2uUW
+	0/Itj4DwFv1Yub37uWTMy1EGU6wA=
+X-Gm-Gg: ASbGncvKUj9BMZPKRJlzPgCCIsmuAukztEsEYf93xN672G1VeNfXN1NDDaLjVWtZtVw
+	zoO6RJ8XH1X8wsAMLo74sbj0UZebU1MteAziUYUsloy3yFUDhd3VczkJ5xnyNKsx1kWyixjg9z1
+	BGOTsaE9Lpc1+zMkISPZ3uCTHL0w==
+X-Google-Smtp-Source: AGHT+IEhSXvUBnsVLFMPeoGdQIM9t1RYBI9NpYX4UeRl2b0gEg5hR4DXQHWcYdifX9bd8C3/NPuodr+J2XmdKY9Yar4=
+X-Received: by 2002:a05:6871:6188:b0:29e:569a:f90d with SMTP id
+ 586e51a60fabf-2b32f34a430mr4826837fac.32.1738265850877; Thu, 30 Jan 2025
+ 11:37:30 -0800 (PST)
 MIME-Version: 1.0
-References: <1646221241.2878887.1738090865572@webmail.strato.de>
-In-Reply-To: <1646221241.2878887.1738090865572@webmail.strato.de>
+References: <CAMKF1so+CuiYgvadZM9APzGZLP=+4ACs_5U-kqCU9VtykP8WLQ@mail.gmail.com>
+ <Z5uffus3AOUpBb6B@gmail.com>
+In-Reply-To: <Z5uffus3AOUpBb6B@gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 30 Jan 2025 11:23:25 -0800
-X-Gm-Features: AWEUYZmtRVo2Ky9YzeHkeYJoTfemJAKQM01kCGUMsBOnN2SyPotSLDSJ6rS2gmc
-Message-ID: <CAMKF1sr3cdQKOF2f8MWsepgp+iyr8sMti+Mzxafwo+JP5ffdfg@mail.gmail.com>
-Subject: Re: [yocto] Building Chromium for Toradex Verdin Module (Kirkstone)
-To: yocto@lists.yoctoproject.org, kontakt@daniel-kampert.de
+Date: Thu, 30 Jan 2025 11:37:04 -0800
+X-Gm-Features: AWEUYZnuPCy1up5sGnauG-iUyBbkkispDc3Q_FuPee-u3rC7xoFF1GiJnW9UUZ8
+Message-ID: <CAMKF1sqS4vF7Z8=at5QMNwTshKCQ4Vgvg8KVSqvtGA1QTmfOLg@mail.gmail.com>
+Subject: Re: Request to apply patch
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Linux Yocto <linux-yocto@lists.yoctoproject.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2025 19:23:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64681
+ <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2025 19:37:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64682
 
-Can you check the build cmds ands see if
-use_ozone=3Dtrue use_wayland=3Dtrue are set or not
+Thanks for the update.
 
-On Tue, Jan 28, 2025 at 11:01=E2=80=AFAM Daniel Kampert via
-lists.yoctoproject.org
-<kontakt=3Ddaniel-kampert.de@lists.yoctoproject.org> wrote:
+On Thu, Jan 30, 2025 at 7:49=E2=80=AFAM Bruce Ashfield <bruce.ashfield@gmai=
+l.com> wrote:
 >
-> Hi,
+> I've merged the patch to 6.12 and have staged it for any
+> future versions.
 >
-> I try to build Chromium for a Toradex module and a custom Kirkstone BSP w=
-ith the help of this guide from Toradex: https://developer.toradex.com/linu=
-x-bsp/6/application-development/gui/how-to-use-web-browser-linux.
+> SRCREV bumps should be out shortly.
 >
-> I had a few issues with applying these patches so I had to remove a few b=
-ecause Yocto was complaining that some patches were already applied. After =
-fixing this I run into this issue:
+> Bruce
 >
-> | aarch64-tdx-linux-ld.lld: error: undefined symbol: createFrameBuffer(vo=
-id*, void*, int, int)
-> | >>> referenced by entry_points.cpp:1745 (./../../third_party/swiftshade=
-r/src/OpenGL/libGLESv2/entry_points.cpp:1745)
-> | >>> thinlto-cache/llvmcache-4D23FCCCC063500613CA78894C3B40A545B5F5A7:(L=
-ibGLESv2exports::LibGLESv2exports())
-> | >>> referenced by entry_points.cpp:1745 (./../../third_party/swiftshade=
-r/src/OpenGL/libGLESv2/entry_points.cpp:1745)
-> | >>> thinlto-cache/llvmcache-4D23FCCCC063500613CA78894C3B40A545B5F5A7:(L=
-ibGLESv2exports::LibGLESv2exports())
-> | clang-14: error: linker command failed with exit code 1 (use -v to see =
-invocation)
+> In message: Request to apply patch
+> on 28/01/2025 Khem Raj wrote:
 >
-> With the following build configuration:
->
-> BB_VERSION =3D "2.0.0"
-> BUILD_SYS =3D "x86_64-linux"
-> NATIVELSBSTRING =3D "universal"
-> TARGET_SYS =3D "aarch64-tdx-linux"
-> MACHINE =3D "verdin-imx8mp"
-> DISTRO =3D "tdx-wayland"
-> DISTRO_VERSION =3D "6.8.1-devel-20250128181443+build.0"
-> TUNE_FEATURES =3D "aarch64 armv8a crc cortexa53"
-> TARGET_FPU =3D ""
-> meta-filesystems
-> meta-gnome
-> meta-xfce
-> meta-initramfs
-> meta-networking
-> meta-multimedia
-> meta-python =3D "HEAD:66ec16850573a7ec69248b81f9904cdfba79b930"
-> meta-clang =3D "kirkstone:d7f827890d0865c9862eeaee42fd367515d59557"
-> meta =3D "HEAD:8c32d91b64ae296d7832ddeb42983f4f3c237946"
-> meta-oe
-> meta-webserver =3D "HEAD:de8681b4a2a101b99dd2c48d89a7de2ccd9a961f"
-> meta-virtualization =3D "HEAD:a055d7dcafc58855081a5eac9a46b93b9b51012b"
-> meta-cloud-services
-> meta-openstack =3D "HEAD:783826eceb1b09496099f00a008062c0f9f4ee4e"
-> meta-toradex-nxp =3D "HEAD:a82c2e40db2991924b21b12eb141e6fe5b62bb13"
-> meta-toradex-bsp-common =3D "HEAD:ba654fce46cb76cf9b5141a219506f27db9d81b=
-b"
-> meta-toradex-demos =3D "HEAD:ad72d14becf6b54c1c76864eb691a369307672fa"
-> meta-toradex-distro =3D "HEAD:3c38a3acc69b7ad28908044bc2735a9d4f2b4e9f"
-> meta-toradex-chromium =3D "kirkstone:dabc120c27d7050a5fc881dbfda1bbf8410d=
-be72"
-> meta-freescale-distro =3D "HEAD:d5bbb487b2816dfc74984a78b67f7361ce404253"
-> meta-freescale =3D "HEAD:c525e0c19bdc46d45f71873b5f286f49abb69418"
-> meta-freescale-3rdparty =3D "HEAD:48516272d97f9415e0ee3ab54a923e4c40143e6=
-9"
-> meta-tpm =3D "HEAD:b9cf9cd639bc8d1b4828eb0bd012b71486d35176"
-> meta-qt5 =3D "HEAD:644ebf220245bdc06e7696ccc90acc97a0dd2566"
-> meta-poky =3D "HEAD:6e8a5bac75ca114ef2b4d3ca150b3f501519ea8f"
-> meta-lts-mixins =3D "kirkstone/rust:9bc06b6a761f28cf82aae8a99afe27ed5e2ce=
-4c9"
-> meta-rust-bin =3D "<unknown>:<unknown>"
-> meta-chromium =3D "HEAD:e232c2e21b96dc092d9af8bea4b3a528e7a46dd6"
->
-> Has anybody an idea where the issue comes from?
->
-> Thanks!
->
-> Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
->
-> Ing. Daniel Kampert, M. Sc.
-> Embedded Systems Solutions
-> Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland
-> Phone: +49 (0)174 6932561
-> E-Mail: kontakt@daniel-kampert.de
-> Web: www.daniel-kampert.de
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#64667): https://lists.yoctoproject.org/g/yocto/messag=
-e/64667
-> Mute This Topic: https://lists.yoctoproject.org/mt/110864825/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+> > Hi Bruce,
+> >
+> > With recent, changs in include poisoning patch for GCC, there are new
+> > latent issues coming to light. one of them was while cross building
+> > intel-speed-select recipe which is built from kernel sources, and
+> > kernel makefile hardcodes the paths, I have sent a patch to fix it to
+> > lkml
+> >
+> > https://lore.kernel.org/lkml/20250129033932.2576077-1-raj.khem@gmail.co=
+m/T/#u
+> >
+> > Please consider applying it for linux-yocto kernel 6.12+
+> >
+> > Thanks
+> > -Khem
 
