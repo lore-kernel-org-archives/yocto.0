@@ -1,85 +1,100 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ganesh.manoj.mahajan@signify.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 97C6BC02192
-	for <webhook@archiver.kernel.org>; Mon,  3 Feb 2025 10:53:08 +0000 (UTC)
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
- by mx.groups.io with SMTP id smtpd.web10.85276.1738579973718655926
- for <yocto@lists.yoctoproject.org>;
- Mon, 03 Feb 2025 02:52:53 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=iOCQDtlc;
- spf=pass (domain: gmail.com, ip: 209.85.219.44, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6d8e773ad77so31795356d6.2
-        for <yocto@lists.yoctoproject.org>; Mon, 03 Feb 2025 02:52:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738579973; x=1739184773; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gmoEKdwlDV2gr0OGXITjg9pa8hwlPnaxfSY9GeOhV1A=;
-        b=iOCQDtlc/2qWhY+cPwDMwmw3zj77eCDuT8XP48QruFv0WEvM2tOdbtxF0Qzwx4O07m
-         YQSJ6DBFYWoPpBgJ7DbJhbVv8W2Go9oJLekqdpetUrXi03KPVr6ufymy+y4BcXb4mA9K
-         d2EGJtFqRjbjDYx5K3Kc74XPQMDadhJ7oBT4E5oH4RRjPl+lZHdtR+QeZo9iCRI1mGIC
-         JtXs9y3SuriOInMCD9T5qcYGpReXS86JBYRdc1vhm+SaKg6AEXnbaiS1RvRnX2C+4RxE
-         DL2p3TrSrxeZeruqm+ugNBLJvARObLEXR5ox/d9Oq2TJuBzscQcMqBAiLF9VJVhwhThp
-         Yh9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738579973; x=1739184773;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gmoEKdwlDV2gr0OGXITjg9pa8hwlPnaxfSY9GeOhV1A=;
-        b=U8NfEJBuIOzB/ufyJXdDBVoAhhAenYjwWl0l004R+J0e9huQyt367Y3lAK6Fp4yci6
-         LYyksibFMCm1+I8n44RmXzsTIy2Ssp1ZKZBuSLbTyy1A6vbnd3GCEgJTupj4fr7gCCS/
-         wxkzRFWY+VTWoJoNBT60uxpCmJavDhvLpbMCDuSc0dyNvVLwpL/z8QxyYP1uXKTgOO8A
-         0NaQA4/REyYuAgATkqeN3XeWlsQ9OmyEjw/3fF/I/ddgqhO++Xgj4aWTHJslg0DzwxCU
-         8R+lrxW5+EdIeoDP253w3khl1BGWrEHTTHm+U7Ad9GN50Q4f7fr8lIyGilHdcyoWAP33
-         iHwg==
-X-Gm-Message-State: AOJu0Yyvu57/WLMTmdf+xqZRn2V9zrPepIX7vPjXrW85XYqhaaQ2Rhal
-	PDFLY+Vr9jZ9ErkVgI6yPHiSpEIjGQkOtfBvTtqSMgHcMWyKRJ1Uvev9tfnosr+O7IzszLjogrg
-	QQpouPNFG8ahFfqelAT+joD11FwWcdg==
-X-Gm-Gg: ASbGncu1iXBn8ddQvjJCKvqh1Lf2GIhraNaQ98gaFyugkHyKaWCLACIiqpjh/dNqwEv
-	DfKp+J+VtyQeYrNlfXufDQveGHwk/6ly6UROh0qxAlggMgFC8BPKamjRO9m//zGUFJBsHLNrvse
-	wG7wIpcgRKFpl/rvow9y6vvXx50ymqhHY=
-X-Google-Smtp-Source: AGHT+IE3XAV6xwN7U2mJOUZCp23eU/eAdAY8OyY8XdnJl0qbjRH+UaPS9NHnlyS7VmEJ7N1e+4lAhnaTjKU5471CU00=
-X-Received: by 2002:a0c:e583:0:b0:6e2:6527:6932 with SMTP id
- 6a1803df08f44-6e265276966mr85389576d6.30.1738579972766; Mon, 03 Feb 2025
- 02:52:52 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84AB6C02196
+	for <webhook@archiver.kernel.org>; Mon,  3 Feb 2025 13:22:09 +0000 (UTC)
+Subject: Re: [yocto] [scarthgap] circular dependency issue #kernel #rpi #scarthgap #yocto
+To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
+From: "Ganesh Mahajan" <ganesh.manoj.mahajan@signify.com>
+X-Originating-Location: Pune, Maharashtra, IN (165.225.120.182)
+X-Originating-Platform: Windows Chrome 132
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAOOAcKdtLmVtz0r5SYwmqyrUgf+PzMhhovg9jen=k6h5UVKvXg@mail.gmail.com>
- <CAOOAcKcCJNjTECq6eqWi+E4-rPG1aAC5Hy=Yj4KP-45J57Bqyg@mail.gmail.com> <CAMSfU+6fz9nyqz+vmQOE6saVkexT=DHVqUoitWyCs1=Vqu4GGA@mail.gmail.com>
-In-Reply-To: <CAMSfU+6fz9nyqz+vmQOE6saVkexT=DHVqUoitWyCs1=Vqu4GGA@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 3 Feb 2025 11:52:41 +0100
-X-Gm-Features: AWEUYZkYaEnaMM8xmvj1Zrs7DdPO8OO1bCrLTCdSuqImM-MCTUbh9MSEsDHHygA
-Message-ID: <CANNYZj8dHU8-VmXPjX9nkC4nvUr-CzM4VczNt=P_jp59UjiEyA@mail.gmail.com>
-Subject: Re: [yocto] Incompatible license in yocto
-To: yocto@lists.yoctoproject.org, yoann.congal@smile.fr
-Cc: manjurrnayak96@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 03 Feb 2025 05:22:02 -0800
+References: <3173826e-18ba-4b1e-9db3-0e0cd4d3f027@gmail.com>
+In-Reply-To: <3173826e-18ba-4b1e-9db3-0e0cd4d3f027@gmail.com>
+Message-ID: <32276.1738588922552068848@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="soqJYwh0HnBsB3Qm7YWc"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Feb 2025 10:53:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64699
+ <yocto@lists.yoctoproject.org>; Mon, 03 Feb 2025 13:22:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64700
 
-On Mon, 3 Feb 2025 at 11:26, Yoann Congal via lists.yoctoproject.org
-<yoann.congal=smile.fr@lists.yoctoproject.org> wrote:
->> I'm trying to add INCOMPATIBLE_LICENSE = "GPL-3.0* LGPL-3.0*"  to yocto build. I made this changes in distro include files but after making this changes getting lot of compilation errors. Could you help me with this?
+--soqJYwh0HnBsB3Qm7YWc
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'd like to know where the advice to set this global setting came
-from. It's deprecated in favour of per-image license restrictions.
+Hi Gyorgy,
 
+Thanks it worked was able to built image for *raspberrypi4*
+As you suggested i did remove my custom layer and tried to build for *MACHI=
+NE =3D raspberrypi4* it built successfully.
+And i started to add in layer by layer and recipe by recipe but when i add =
+recipe named recipes-security i get circular dependency issue.
 
-> You may want to explore using https://git.yoctoproject.org/poky/tree/meta/conf/distro/include/no-gplv3.inc in your distro. That may fix some of the problems.
+ERROR: Task /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux=
+-raspberrypi_6.6.bb:do_package has circular dependency on /home/build/proje=
+ct/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_packag=
+edata
+ERROR: Command execution failed: 1
 
-The first thing is to set the restriction only in the product image,
-and then see what the remaining issues are.
+Ganesh Mahajan
 
-no-gplv3.inc is meant as a showcase of examples for breaking
-dependency chains when issues occur, but it just as well may result in
-a unusable configuration for the actual product.
+--soqJYwh0HnBsB3Qm7YWc
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Alex
+<div><span style=3D"color: #333333; font-family: system-ui, 'Segoe UI', Rob=
+oto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, '=
+Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'=
+; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font=
+-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2=
+; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wor=
+d-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; backgr=
+ound-color: #ffffff; text-decoration-thickness: initial; text-decoration-st=
+yle: initial; text-decoration-color: initial; display: inline !important; f=
+loat: none;">Hi<span>&nbsp;</span></span><span style=3D"box-sizing: border-=
+box; overflow-wrap: break-word !important; color: #333333; font-size: 16px;=
+ font-style: normal; font-variant-ligatures: normal; font-variant-caps: nor=
+mal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: star=
+t; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -w=
+ebkit-text-stroke-width: 0px; white-space: normal; text-decoration-thicknes=
+s: initial; text-decoration-style: initial; text-decoration-color: initial;=
+ font-family: system-ui, Roboto, Arial, sans-serif; background-color: #ffff=
+ff; display: inline;"><span style=3D"box-sizing: border-box; overflow-wrap:=
+ break-word !important; color: #333333; font-family: system-ui, Roboto, Ari=
+al, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; lett=
+er-spacing: normal; text-align: start; text-transform: none; word-spacing: =
+0px; background-color: #ffffff; display: inline;">Gyorgy,</span></span></di=
+v>
+<div><span style=3D"box-sizing: border-box; overflow-wrap: break-word !impo=
+rtant; color: #333333; font-size: 16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-=
+space: normal; text-decoration-thickness: initial; text-decoration-style: i=
+nitial; text-decoration-color: initial; font-family: system-ui, Roboto, Ari=
+al, sans-serif; background-color: #ffffff; display: inline;"><br />Thanks i=
+t worked was able to built image for <span style=3D"box-sizing: border-box;=
+ overflow-wrap: break-word !important; color: #333333; font-size: 16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; t=
+ext-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webki=
+t-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: i=
+nitial; text-decoration-style: initial; text-decoration-color: initial; fon=
+t-family: system-ui, Roboto, Arial, sans-serif; background-color: #ffffff; =
+display: inline;"><strong>raspberrypi4&nbsp;</strong></span><br />As you su=
+ggested i did remove my custom layer and tried to build for <strong>MACHINE=
+ =3D raspberrypi4&nbsp; &nbsp;</strong>it built successfully.&nbsp;<br />An=
+d i started to add in layer by layer and recipe by recipe but when i add re=
+cipe named recipes-security i get circular dependency issue.<br /><br />ERR=
+OR: Task /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-ra=
+spberrypi_6.6.bb:do_package has circular dependency on /home/build/project/=
+meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_packageda=
+ta<br />ERROR: Command execution failed: 1<br /><br />Ganesh Mahajan<br /><=
+br /><br /></span></div>
+
+--soqJYwh0HnBsB3Qm7YWc--
 
