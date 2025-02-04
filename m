@@ -1,102 +1,147 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <manjurrnayak96@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3E21C02198
-	for <webhook@archiver.kernel.org>; Mon,  3 Feb 2025 19:01:02 +0000 (UTC)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
- by mx.groups.io with SMTP id smtpd.web11.96294.1738609261116898120
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 630AEC0218F
+	for <webhook@archiver.kernel.org>; Tue,  4 Feb 2025 04:19:15 +0000 (UTC)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+ by mx.groups.io with SMTP id smtpd.web10.108856.1738642752626475611
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Feb 2025 11:01:01 -0800
+ Mon, 03 Feb 2025 20:19:12 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Z1By7XBX;
- spf=pass (domain: gmail.com, ip: 209.85.128.45, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-436326dcb1cso33038595e9.0
-        for <yocto@lists.yoctoproject.org>; Mon, 03 Feb 2025 11:01:00 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BmJF8mqI;
+ spf=pass (domain: gmail.com, ip: 209.85.128.176, mailfrom: manjurrnayak96@gmail.com)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6f768e9be1aso35504207b3.0
+        for <yocto@lists.yoctoproject.org>; Mon, 03 Feb 2025 20:19:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738609259; x=1739214059; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=pFxkedZhe46cTA4uAPgFwf7cSJT+9xWPMUhui/3H414=;
-        b=Z1By7XBXA+MORfbnXXPZfhrqOZ51Vn6qV5FHDch7JlY3hWk5Snl+z70xOU+WGYxToy
-         B6M+iuB2SnLo21fJsYOJJNNzFTZlTfze9dtsGukbxNW6ahnmpAz0+2emImMYDVS2V1rd
-         B8K6XWb4DPMX5yPCeJuzkpWn5yhtJsXXNJiCPXDgkoHKIH/zGOpQoGsiTzLO3sIAjBEH
-         W+tt/SoHagN6P9G7TXsDbURTzHKpmQ9L2g2HG4qJ2ot2gTHXn8C89TpgHd84Y5nQrJe+
-         34ttBk3K9S8xUXkuLg7Ru2dZbWyNU9nG8hB2YwX23Ipq8GooaQay2fxqd7FvRB2XO6I2
-         sOTA==
+        d=gmail.com; s=20230601; t=1738642752; x=1739247552; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bQ4Bm1AvdoP9TW+9ceKGVyPIKe7Hwgl/P3IJH7pk1pU=;
+        b=BmJF8mqIC4tj173nrFBbe0OyGvBd0fGgBsZQOBuvXQMvcyxqDWM0heaXgcazf5MAEd
+         GDi/NsNniG0tJXg4TelBMwL0Y0VwLxBkqGjZO7/sO5gZO4n8dCLvpOKsu7KLYYsk16bm
+         HA++TW6vWnVu9UjyVX+925UH3UoGzH/5kKN/MZAXrVVLropdsiNI2HGHrfHEJrLhplDX
+         gI0NRXE3oaJh/1swN8M/hZShlMxYTupBVO2rPsxTYM0rJzEOJmQ27Uve73HmkXl7nGbl
+         5YB/Yr8eXihL2IF9f7fI7w9O+Jdk1kJuZqkk84+DiBxLd5vOaYONDhsBiEIQCSLJkmrc
+         xHxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738609259; x=1739214059;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pFxkedZhe46cTA4uAPgFwf7cSJT+9xWPMUhui/3H414=;
-        b=uYaPxWuVI2lFz/vyxQrO1iMPUtqPmYmoE8NZxmgQ4fPaEJrYQp0Qi1xmXhLZicmEKD
-         JLH+PnYaoEvSmNrZJ3z20JFS0JR8R+Qsyxeep8OKFFlHT/4v37QgJoFuZ2VCXI7jkCie
-         yMxaPV3DanrM96OQUByhhgKQL6CeZfbQkYQcOZ4696XfB/n3A6xk6eBSdrj6WnqZeiLj
-         DtZPYswxX+nWCeq+PKTpEH2HX6UN0oJFciwrnGntSQcNGzLY1ZLM5Hj7vtGtQ7ppjOYK
-         r46sO/8nTB3E41/Sd5I3yOxajuSQeOaMDGbGQP34T4eBQzOzOcpp1E1FQwEbYkmUShmJ
-         SlDA==
-X-Forwarded-Encrypted: i=1; AJvYcCUGqmCqWhgYFsLLobKlHDsM9eUXrbvvpY0+GH/A1cvQvV4NAdHeqYnZDggqdPerDbyhaavhTQ==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YxIc9iEt0ZxsEhaR3V6uo5qng0GXDDiYMYwK6b7AEhpDdAM8yBi
-	Ups3bbQpALKQxoWMFYzYPD0nJJ0SO5SKON9xFG9dD/obR8WIziIP
-X-Gm-Gg: ASbGncshxnHOmLBosiEfVaVAIsI9ZBl1Ng2EhndI5wx7WeQ3wYFPZ7d7wICY+nbBcVJ
-	u5FVKXZAg65xjLgtQKR0io9ZhvydRbNoXK/cIESMCg6n4JicHwqP+PJdd8PaAZjp5rY71IeC/1A
-	DTa8OvKr333v0skE7dMYQNc08TcNJdwNTCjtrOAQD/M8QoFSDjZGbZtrw4f+wDWiNLtSytE/uHi
-	1VprhmIP+ice6fSinz8W/1DVoszMWcyImbGFMY9xnuSADMs8sAkoUZDtR74kXDb9rK0l1V8Dq5B
-	QsaNfl+qk+sKsZSUmNHLav0=
-X-Google-Smtp-Source: AGHT+IHNa4CZjyF+eNioXBIFWyI02rcbBMtBAQh+e0ppHIuYb6zWVPUiqtTnEUGXo+BMeH+XRY+fVA==
-X-Received: by 2002:a05:600c:3b98:b0:434:a4fe:cd71 with SMTP id 5b1f17b1804b1-438dc3be214mr202529785e9.12.1738609259258;
-        Mon, 03 Feb 2025 11:00:59 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c5c0ec78esm13354309f8f.3.2025.02.03.11.00.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Feb 2025 11:00:58 -0800 (PST)
-Message-ID: <988b61ed-7fe4-44d8-b00c-fad3346c9703@gmail.com>
-Date: Mon, 3 Feb 2025 20:00:58 +0100
+        d=1e100.net; s=20230601; t=1738642752; x=1739247552;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bQ4Bm1AvdoP9TW+9ceKGVyPIKe7Hwgl/P3IJH7pk1pU=;
+        b=mJZttXUUrhI0wtb+cUFLX5D1Tyd4va+zr/Qg1Rx8T7T4dEoyQi5Ygdsj68TE70yChF
+         fosb2k6Ef/xzIFx70uEeIBy/vNDXilV7LvQT6Pk9oZP0TPtlHzbVFDl9Sb91CJOoD6Ct
+         nRNL2PUiZkLNEANsuE3sQvEb/0Mpm/+yn6qkNr/b78S1zG6cLaz5Lowz+rwIWdLsq27O
+         MPmTYtwPbTYQccZMBze6EHF5vbQSyAd0cpkGaXoVM90B2I4JBDox3rDidi7yOdx4045j
+         +COjfn/3wdsLuaXSl7EdbRxnPQR1tefIiORnekflXlO7O7r8yRfJgyYNr9BLuMZrbfnY
+         275Q==
+X-Gm-Message-State: AOJu0YzmzjnUjydTIqe5wgbR3FUpk3/kDh20G0dkOl/wVA++GhIf1cS/
+	0QLXfjZuxvOcobeOHqJktIvBXdBOIrSkLG8dgIy3YwZj1s38uvdpKR2H7i34u/JZuBACc3iPxGO
+	40EDUHUdSMFOyEaJ5kdlWwKRMzg0=
+X-Gm-Gg: ASbGncs/MZtodQI2xPu/X/pl0+9TPxJkLJBwhlgH/bMLJDl2aEJmXWfO/hl/uTkv1C8
+	fPTXBznlj76TlViA8VAM72F0OkuYxtGbpN0hEe3dFIdr6dCmN6t020iZ9e23tHteP2V/NeXBx
+X-Google-Smtp-Source: AGHT+IEaRdx4gXB1Rp75amkpLdB6BGv7/xzErjyWUwrFfdJojMRjQ8QKO+M3W+cwfIU5W4awzUSq5K71sVQGBld3EM8=
+X-Received: by 2002:a05:690c:3691:b0:6f9:544f:67ec with SMTP id
+ 00721157ae682-6f9775d0b59mr15886347b3.18.1738642751731; Mon, 03 Feb 2025
+ 20:19:11 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [scarthgap] circular dependency issue #kernel #rpi
- #scarthgap #yocto
-To: ganesh.manoj.mahajan@signify.com, yocto@lists.yoctoproject.org
-References: <3173826e-18ba-4b1e-9db3-0e0cd4d3f027@gmail.com>
- <32276.1738588922552068848@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <32276.1738588922552068848@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <CAOOAcKdtLmVtz0r5SYwmqyrUgf+PzMhhovg9jen=k6h5UVKvXg@mail.gmail.com>
+ <CAOOAcKcCJNjTECq6eqWi+E4-rPG1aAC5Hy=Yj4KP-45J57Bqyg@mail.gmail.com>
+ <CAMSfU+6fz9nyqz+vmQOE6saVkexT=DHVqUoitWyCs1=Vqu4GGA@mail.gmail.com> <CANNYZj8dHU8-VmXPjX9nkC4nvUr-CzM4VczNt=P_jp59UjiEyA@mail.gmail.com>
+In-Reply-To: <CANNYZj8dHU8-VmXPjX9nkC4nvUr-CzM4VczNt=P_jp59UjiEyA@mail.gmail.com>
+From: Manju RR <manjurrnayak96@gmail.com>
+Date: Tue, 4 Feb 2025 09:49:01 +0530
+X-Gm-Features: AWEUYZmZBHFEt7eg38VAfrSuuEuodV-IhRjv2K_Dxev2qlV_THr62ZSYg-iMNSc
+Message-ID: <CAOOAcKdebh4g_oj3aQdzJ3mE5qmDkNqJ_Xp68R=N5BxtyMd9mw@mail.gmail.com>
+Subject: Re: [yocto] Incompatible license in yocto
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: yocto@lists.yoctoproject.org, yoann.congal@smile.fr
+Content-Type: multipart/alternative; boundary="0000000000009bc19c062d494fdb"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 03 Feb 2025 19:01:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64701
+ <yocto@lists.yoctoproject.org>; Tue, 04 Feb 2025 04:19:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64702
 
-Even though you don't mention it explicitly, it sounds like you actually 
-found the root cause, is this not the case?
+--0000000000009bc19c062d494fdb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-If not: there are multiple "recipes-security" folders in popular layers: 
-there is one in meta-oe, meta-security, meta-selinux... and more. Which 
-one do you mean (especially, which recipes do you use from the folder)? 
-If it's something not common, is it available online to try/check?
+Here I need to check for everything image build. After making this change
+I'm trying to build every image and seeing lot of compilation errors.
 
+On Mon, 3 Feb, 2025, 4:22=E2=80=AFpm Alexander Kanavin, <alex.kanavin@gmail=
+.com>
+wrote:
 
-On 03.02.25 14:22, Ganesh Mahajan via Lists.Yoctoproject.Org wrote:
-> HiGyorgy,
+> On Mon, 3 Feb 2025 at 11:26, Yoann Congal via lists.yoctoproject.org
+> <yoann.congal=3Dsmile.fr@lists.yoctoproject.org> wrote:
+> >> I'm trying to add INCOMPATIBLE_LICENSE =3D "GPL-3.0* LGPL-3.0*"  to yo=
+cto
+> build. I made this changes in distro include files but after making this
+> changes getting lot of compilation errors. Could you help me with this?
 >
-> Thanks it worked was able to built image for *raspberrypi4 *
-> As you suggested i did remove my custom layer and tried to build for 
-> *MACHINE = raspberrypi4 *it built successfully.
-> And i started to add in layer by layer and recipe by recipe but when i 
-> add recipe named recipes-security i get circular dependency issue.
->
-> ERROR: Task 
-> /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_package 
-> has circular dependency on 
-> /home/build/project/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_6.6.bb:do_packagedata
-> ERROR: Command execution failed: 1
->
-> Ganesh Mahajan
+> I'd like to know where the advice to set this global setting came
+> from. It's deprecated in favour of per-image license restrictions.
 >
 >
+> > You may want to explore using
+> https://git.yoctoproject.org/poky/tree/meta/conf/distro/include/no-gplv3.=
+inc
+> in your distro. That may fix some of the problems.
+>
+> The first thing is to set the restriction only in the product image,
+> and then see what the remaining issues are.
+>
+> no-gplv3.inc is meant as a showcase of examples for breaking
+> dependency chains when issues occur, but it just as well may result in
+> a unusable configuration for the actual product.
+>
+> Alex
+>
+
+--0000000000009bc19c062d494fdb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Here I need to check for everything image build. After makin=
+g this change I&#39;m trying to build every image and seeing lot of compila=
+tion errors.</p>
+<br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, 3 Feb, 2025, 4:22=E2=80=AFpm Alexander Kanavin, &lt=
+;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex">On Mon, 3 Feb 2025 at 11:26, =
+Yoann Congal via <a href=3D"http://lists.yoctoproject.org" rel=3D"noreferre=
+r noreferrer" target=3D"_blank">lists.yoctoproject.org</a><br>
+&lt;yoann.congal=3D<a href=3D"mailto:smile.fr@lists.yoctoproject.org" targe=
+t=3D"_blank" rel=3D"noreferrer">smile.fr@lists.yoctoproject.org</a>&gt; wro=
+te:<br>
+&gt;&gt; I&#39;m trying to add INCOMPATIBLE_LICENSE =3D &quot;GPL-3.0* LGPL=
+-3.0*&quot;=C2=A0 to yocto build. I made this changes in distro include fil=
+es but after making this changes getting lot of compilation errors. Could y=
+ou help me with this?<br>
+<br>
+I&#39;d like to know where the advice to set this global setting came<br>
+from. It&#39;s deprecated in favour of per-image license restrictions.<br>
+<br>
+<br>
+&gt; You may want to explore using <a href=3D"https://git.yoctoproject.org/=
+poky/tree/meta/conf/distro/include/no-gplv3.inc" rel=3D"noreferrer noreferr=
+er" target=3D"_blank">https://git.yoctoproject.org/poky/tree/meta/conf/dist=
+ro/include/no-gplv3.inc</a> in your distro. That may fix some of the proble=
+ms.<br>
+<br>
+The first thing is to set the restriction only in the product image,<br>
+and then see what the remaining issues are.<br>
+<br>
+no-gplv3.inc is meant as a showcase of examples for breaking<br>
+dependency chains when issues occur, but it just as well may result in<br>
+a unusable configuration for the actual product.<br>
+<br>
+Alex<br>
+</blockquote></div>
+
+--0000000000009bc19c062d494fdb--
 
