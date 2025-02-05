@@ -1,316 +1,315 @@
-Return-Path: <david.daniel@vrag.ch>
+Return-Path: <jdowd@slashdevslashnull.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0C4CC02192
-	for <webhook@archiver.kernel.org>; Wed,  5 Feb 2025 15:38:38 +0000 (UTC)
-Received: from ZRZP278CU001.outbound.protection.outlook.com (ZRZP278CU001.outbound.protection.outlook.com [40.107.167.7])
- by mx.groups.io with SMTP id smtpd.web10.15034.1738769911441766547
- for <yocto@lists.yoctoproject.org>;
- Wed, 05 Feb 2025 07:38:32 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vrag.onmicrosoft.com header.s=selector1-vrag-onmicrosoft-com header.b=wMPuFVVX;
- spf=pass (domain: vrag.ch, ip: 40.107.167.7, mailfrom: david.daniel@vrag.ch)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rQSx/5dYbRo2FgIBEJo1hv1tbZdLbrVgATFyN3v+pBDbyeJfj1vOppzkXskdZN7qcUt58Wb1nEJcAndVnU6Cpf+3TGa5ug7yFGA12zVF8gE2bsKibJaqw9Kp2reugFZi+zsyHRonp4RWpt9UXbnW8erc2PyaTZ+FCe0rVAIt59ZSTew4+xoVJdfwbJW7V8qMEZiCFNRnZ23/HGEc0dpckEujy83xBcRLtIQ8neKsx3hw7QyeutxGLCyUahOvYfOoBkmGx07Xu01CoUb/KCWB55537a9dpsyI4Ue2nZTDJIeJGMSUQZsSrLjckpoQzaB9M72o75U9gHnDxBrjrzi57g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7olw9RGpU85YjFV+oOvHJLOwgZTyGXNoNzuXAm+57cc=;
- b=OsHcS6oyf8pjjN49w2fhcAOSjPLyodQ/rhGMVsfFbZAtX9l0A52MO+Fg2WLPhQkx72qu1q5zYXxOHmNgwPDzY0utI6rE/j4cupGz7xS8z7Jwr+eRJ+l/opsv5bh/fl/BM0w597/gd0ZauztJ3PdU2Z3TkXNak+xhxzYK2hlV5JgyjJHBbIvq1O625o4Y2ih+AkPXWQlpWra3tQWBpdk+owFErKgbbTQXTfiXeYoEtw8ywsjL8EZ6Oi8RrNI8+Fmge4xFgqIxZgMlWk/iTlnc7CnBhMBS4KOYAs78iLSpwAosNtcG0hLDnb/FTVZcbrE0AIH6HT/JKoghHCuGlcdDHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vrag.ch; dmarc=pass action=none header.from=vrag.ch; dkim=pass
- header.d=vrag.ch; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vrag.onmicrosoft.com;
- s=selector1-vrag-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7olw9RGpU85YjFV+oOvHJLOwgZTyGXNoNzuXAm+57cc=;
- b=wMPuFVVXPCu5UCEmQQC5wDK0i/AfaDn4QxoMO2b38nJy6pideLJCSSj27HCqE8pdn8OIpCkMTRRYRkPI2+pdNATQK22gaIcVon8+8DxG2L7qR8JX2YMGsSnwSfSG1lGuDvII1VnbsfdeM3R3WPFncgSoOl97NuVZ4fxDay0Pbf8=
-Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:21::12)
- by ZR0P278MB1677.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:a5::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.26; Wed, 5 Feb
- 2025 15:38:27 +0000
-Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
- ([fe80::9006:220c:1d6b:47dd]) by GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
- ([fe80::9006:220c:1d6b:47dd%7]) with mapi id 15.20.8422.010; Wed, 5 Feb 2025
- 15:38:27 +0000
-From: David Daniel <david.daniel@vrag.ch>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] imx-boot / u-boot for iMX95
-Thread-Topic: [yocto] imx-boot / u-boot for iMX95
-Thread-Index: AQHbd7cGBfJRpagUf0ODEW7w8PtrMrM4wWIAgAAXKwA=
-Date: Wed, 5 Feb 2025 15:38:27 +0000
-Message-ID: <be536befe3ba83293debb292f6cf1da72cd7364e.camel@vrag.ch>
-References: <7da91a921033b4465f9b7d28af5665e8d8cc7cfd.camel@vrag.ch>
-	 <4a9f2e3d-13a8-4624-a6a5-6f8ede4a00a5@gmail.com>
-In-Reply-To: <4a9f2e3d-13a8-4624-a6a5-6f8ede4a00a5@gmail.com>
-Accept-Language: de-CH, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vrag.ch;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GVAP278MB0085:EE_|ZR0P278MB1677:EE_
-x-ms-office365-filtering-correlation-id: 8991668e-3cb8-4759-f13f-08dd45fb228c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|366016|1800799024|376014|4022899009|38070700018;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?UG1NT3QvZWIrdGpIRHNqNDZKNy8yTEI0Vk9VcnpKUzZMYmdlQWxNZGlSUGdI?=
- =?utf-8?B?cGl0UkRRb1V0OXB3QUp5Vko0R3NmY3JtbzBOUUhBWGRMQjc5cXRzMVpqNlFw?=
- =?utf-8?B?TktqRHlwckR2aEEwdWJrNU5Wc05UNUJPR1BsZTZnb2JzR1VrbUlpSCs2Y1J5?=
- =?utf-8?B?Z2ZMOEFkUERNUDcrMnVFb2U5cURCMUxEcDFtK0ZCWmkvdU5od1dXcnZKVUFh?=
- =?utf-8?B?NTRPbzdrSHV0WGlWNTdIWnhBTnA2anZqbjF1WnVXUHVSdGQySWtLWkxIZmdD?=
- =?utf-8?B?YjNiemJOT0l4QUN0TVBlanAyZmlXcGJ4elFieUErRFdpQWVyQXF5OHJZS2hK?=
- =?utf-8?B?UzNpSU00cllnSENKeWsreTQwbFVBVWJreVRQRFBac0t4aFRiUjZhN3A3TVJs?=
- =?utf-8?B?TlVBTld4cjM0SnhjMG13d2JQZzFWbTJTMUF3eStnYmpxdFJQUmdkaVNDU08y?=
- =?utf-8?B?STQvWDIxVi9aZGJHaWxNWnVTNkRxbStRU3RlTm5jNTQ3WkNMSmllUXVQVVdD?=
- =?utf-8?B?cnRkRkJ4M2RQNHhHOVlyQ0RNT1QwOW1jM0ljK3lpdWhOVDd5Qzd5czJITEVl?=
- =?utf-8?B?Vk9MSFAzTnZMWTdiUDIvOGZYT0V4aDNKVE5KNm5zc3pFcHUrbVAyWC96UUJR?=
- =?utf-8?B?SWROdG9RSFFuMHd3dGRISlQwa3BKUkZMN200WVNUZ0pwTUs0czN4V25zZk84?=
- =?utf-8?B?ZGJVc3FrYk5XZUlNVWU3c3Z3NEhpZThJdGs5Z1UzUkoyT29WYU9FRDRTaG11?=
- =?utf-8?B?MURxK3FoMHQ3ZTNGcmo1ZVdJRUV0a1dkYm1wUjcrdjYzSDZnRzFNWExpc3hG?=
- =?utf-8?B?R1JQYkFRTXNvaXRiVzZadTFPVWtTNEdxcmdwMFR4Wittc0pJYXZyRis3bDJ4?=
- =?utf-8?B?ZWFqbGdrR3ZHdlc1djl5TjhtRHQ1bElFTmJ5Sys4MzFLUW1XL2xBem5rNWRk?=
- =?utf-8?B?bzROcVRnL01zRnRTNm9rM0ZUVHFYWFRINUxtYW5pQ2NQM1g5dFVlUTcyaVhC?=
- =?utf-8?B?Z01QYXpIOFdaSDBOblFwb04xM1N0bnFuN1BidHJLSG92S3lqaGo2RmEwSFRC?=
- =?utf-8?B?Z1RkcEc3eURHdXpqYWpMYnJxbDQrVThZYkMrZHVsNzNjdm0rdHpnTjNRcndv?=
- =?utf-8?B?SVNFMG9mbzJRcTcxTzNWb1ZkKzRlU3lremlKaWxGWmppT0FHWElrRWIrenlM?=
- =?utf-8?B?NVNncUxxMWswSm96bzFxOHloTHpZSy9DeFVpbjNPZURrRVRIUE9qUktIdTlO?=
- =?utf-8?B?c0dDcVA1ZXdDbWRXaVR3NlZNWmRDL1IrdVJkUXV2bUFna2E0N2lUczNyYVZB?=
- =?utf-8?B?UW1MN2I2Z3RZbXM1Y2w3S2VXOWgxVW1nTEltSHQydjN5Q1NQMXFxSTg0cDFr?=
- =?utf-8?B?UDkvdWVIbXdJRDVyR09lbDdjV0UzNWpGelZJVDFXMXZ5aEoxSUt3ell4QVJT?=
- =?utf-8?B?VTZPRHI1WG1iOVRtbjExWGdlL2pQaDhRTGhxZUc4UlpSeUdMR0VoKzNzWVVK?=
- =?utf-8?B?TG56bjRDbDJmMlU0S2Z4Rk5WY1FpRzRYZ0RhRm9vOVFGa21PRElKQ1drV0VN?=
- =?utf-8?B?SnpoaUxlZ0NtOGRYVUtvdmoyTTNNcUo0d01YdTB3ck1YeExzRVhlbE1iR3Jn?=
- =?utf-8?B?SE1sYWJvaG5rWWNCK2UwUVJHVXRvNkxsaGxZMVpBZlZmemk1ditZRGtSajYr?=
- =?utf-8?B?R3pSVU1aRTBYTjhnb2dpQWxxMFJtWWF4TThsWTFYanBUOE1IQnlZekVZSDZn?=
- =?utf-8?B?S3ZIUkNiQkpoSDVOSUk0b2w3WFVVNkNKMVVWcXlHVnRNWE41Mmg3K2gzUFlZ?=
- =?utf-8?B?Y3FTVEhPbE0xd0lCMTVqN01vNU5ncjBoNlpGajdRUm5qeGlGU1pQNUQ5SW1O?=
- =?utf-8?Q?KOW/Ya03p9HuC?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(4022899009)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?dTlycGppQkFzZVpMUm9EQ2hJR3B2WkJmV0ZDVlIrZFdqdVR2WWF2d0F1dGhj?=
- =?utf-8?B?dkxkdXpqeEVsM3Z2eHVySHRrNjM4QjIzWnJTNGsrUnpDcTE2MldWd2ZESzJQ?=
- =?utf-8?B?TThLMW9VTDlqYzZpWW50VE4zbUFFY21NMVhieWI3YkZEM2dFMHk3Y2FzN3Vx?=
- =?utf-8?B?amRad2FKa0Mwby9BeU5TR0xiMTFRTlh5YUpRU0VNT1AvU1VKRTZVV2ZUazlY?=
- =?utf-8?B?M2N5cFZyamNYTUFhS2tkalNETm5IVkdQU1V4VDNxeHlLcGx4bWNNLy9pMFhw?=
- =?utf-8?B?V1ZnQzhpWFE2bmxUbFNhTkYvd1VTcXhrSVd0c3VGV2tmTzVDRXRyemE1Y1Z3?=
- =?utf-8?B?OS8wRzEvZnl0S2loelcwUTVDakNGaDdDMlJvYzlxUTBOMlJDc25LWE9YbU5Y?=
- =?utf-8?B?bnBZc0s3dm15Mll5N1RFbkNqWTJnQjNvSFVNQk4vZ0s1T2FRbnlPcXNUb3Qx?=
- =?utf-8?B?WHh0WjVJekM1UnJISHJZZm9Mb1pqb05KWlBLRWxnZzFFbzFMTi9sTDB6SlZu?=
- =?utf-8?B?NVBTemIrZkhITmt5K01QdUJ6S0U1RlorREhvaXhLL1JrSWJwN1lsL1hlZlRY?=
- =?utf-8?B?bktEcmlFdWN1elVUZGpVL0RQOVJoa25YaElrTFROamsrNzNKbFNYUFBTM2lB?=
- =?utf-8?B?RlNFbFZYaWJyZkZjbVh6YXhZaXhtS3pkQXhFQjRpcmdKbHVYbW1sWUswTWVo?=
- =?utf-8?B?RUkwVGVEN2tTbGJpTE1kVUxzOHFTbFJlOG5oYlZNZExBQ1J5RDdzWFl0ZHRC?=
- =?utf-8?B?RWROUnM4RUNzQkYyNytkTTd0cHFQa1J1bU1ueDc4YldIUW9Fb0FlZVhrbU42?=
- =?utf-8?B?VEtqbzRWT0pZS3JxR09NU2pPZXBMbHY3eEFNdkd1dlU1VDVQSGV6cXlPdC9F?=
- =?utf-8?B?a2xWRXdOWnNWTm5RR3NuZ1RVTUJxU0xveER4ZjRHZlIwL1NSY0JhZVdGR1Bt?=
- =?utf-8?B?Q0kzQnl0ak1pdzhGZDdndkhVbFhrVEJRVFR0SlJGN1BpYlhWc0ZHaXJ4UGFZ?=
- =?utf-8?B?MGRxdmtZeUxDeVg5K29sUEFyQ0hFZmZ6TWcyaXZpamtKYnhSN0phWEJ6SU5l?=
- =?utf-8?B?b0hBQk9wU2g3ekcxQ2Q1TEU2U3VlRG9MaGNHK0FGSnc2T3JTMlNZTGF0TVVz?=
- =?utf-8?B?cVh0clE1ck9xL29xb25BZ3kwbXk0aFNtSmxRaFMwdDZsdUxJcE5uMXFwa0pH?=
- =?utf-8?B?aVJSNm1SakM1a2hYb0VKRHFSQUFJS1FqUCtzdXpLYzdycnJkQ2dEK2lIbWhi?=
- =?utf-8?B?dGkyNE5Yb1RCYTNmeXJpQlhrYkdlYm1iOGRPQXh3anF4eTA2bVlSaTJwY0VX?=
- =?utf-8?B?cDhSYU1uR2FaaWlZcXZlNEh2ai9oTVhGN3FtVVZ5QzQ3MUdLTjJjRjVxaGRk?=
- =?utf-8?B?SEdZU1piZnBLY0RiRmZSWjRKV3Z0dXd3TnNEUmw1Wlp0RHlnMmFKeGJuajZa?=
- =?utf-8?B?cWlyVGREelNPRHdNUUNBVHBodXpjMUZCMmR5Qzc4b3hoQ3NHSzloUFRxeUVi?=
- =?utf-8?B?ZHhOOGx5OGpvc3ZycHpwQnVXNXR2QVl1VFpteXdrWmRLSmN1SFNkcndvUU50?=
- =?utf-8?B?dlpQeWFEa0lEZzRCR2g1MzJtcEVrVXMyWnZiMC9DVFJYMEYzek5COWZ5Y1dX?=
- =?utf-8?B?dk9peWNSdm04b3NPWVplM1Z2ME8wNUdmM3laN3g3S0hhUWxLbWhDWWk4L1lE?=
- =?utf-8?B?eUZvRllqNEFBdkFJeTB2SVc1dUNwSEFNeEJUSU5hSXNJZ2psRUNqOGpDbC9p?=
- =?utf-8?B?ZjlRcG5uL0k2OEJSRkZ5RXhXblhMVFdhMS93a1h1UmkwQnFHOHNuY2tUdXpz?=
- =?utf-8?B?NnlST21jdUZ0Vmw0d2RFeGFyQXQ5Mk1YcUNBRTgrTG1iK2pqck9ac0t0V3BN?=
- =?utf-8?B?bzh5L0ZWVTBEZGRxNEJOcm54M2FnSG5mM1ZxSFFIYUM1bS90UFR4aFV0VU1r?=
- =?utf-8?B?eDNHR0k3bk9CZDBNQ1ZwaGFEOTJRSE1uWi91V1QvVVNGOGUwYzJ5bEZZcmk4?=
- =?utf-8?B?MXJDbFNxQ2RSenpJbDQxY200Y0QxTkFVVGs4QURNUnVOL2ZOc3JQQ04zVHpX?=
- =?utf-8?B?MG1HU2diWGRLUTNoR3JFRGZWd1F2a2lGaEROaFIrTDZCeU1NOEFLSTdPalNl?=
- =?utf-8?Q?YJm6AfqFZuMKZ+8nALptDJ9Fw?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C7F5BBA67164314D914FF2BB5F50DF8D@CHEP278.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98955C02192
+	for <webhook@archiver.kernel.org>; Wed,  5 Feb 2025 18:38:59 +0000 (UTC)
+Subject: Unable to boot a raspberry Pi Zero 2 W using the master branch of Yocto #raspberrypi #raspberrypi0-wifi
+To: yocto@lists.yoctoproject.org
+From: jdowd@slashdevslashnull.org
+X-Originating-Location: Ottawa, Ontario, CA (184.175.41.163)
+X-Originating-Platform: Linux Chrome 132
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OriginatorOrg: vrag.ch
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8991668e-3cb8-4759-f13f-08dd45fb228c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Feb 2025 15:38:27.4742
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 71bd83c1-ce5c-4e57-8993-45bae4514c77
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mNGZ17jaHKJmbRnnxKX8UuAskI2vQk1riaGvZBFfaFj9tb2i2pXJsEuEomaXyem2DBghT1vE/4IhRx+Y0HrscA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR0P278MB1677
+Date: Wed, 05 Feb 2025 10:38:55 -0800
+Message-ID: <0tqD.1738780735709560111.Ua03@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="BBC44KKgg5AXvqcIIOar"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 05 Feb 2025 15:38:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64716
+ <yocto@lists.yoctoproject.org>; Wed, 05 Feb 2025 18:38:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64717
 
-VGhhbmtzIGEgbG90ISBJIHdpbGwgdHJ5IHRoYXQgdG9tb3Jyb3cgYW5kIHNlZSB3aGF0IEkgY2Fu
-IGZpbmQgb3V0Lg0KDQpBbSBNaXR0d29jaCwgZGVtIDA1LjAyLjIwMjUgdW0gMTU6MTUgKzAxMDAg
-c2NocmllYiBHeW9yZ3kgU2FydmFyaToNCj4gT25lIGdlbmVyaWMgdGhvdWdodCwgd2hpY2ggbWF5
-IG9yIG1heSBub3QgYmUgYSB3YXN0ZSBvZiB0aW1lOg0KPiANCj4gVGFrZSBhIGxvb2sgYXQgdGhp
-cyBhcnRpY2xlLCBvbiBob3cgdG8gZHVtcCBzaWdkYXRhOiANCj4gaHR0cHM6Ly93aWtpLnlvY3Rv
-cHJvamVjdC5vcmcvd2lraS9UaXBzQW5kVHJpY2tzL1VuZGVyc3RhbmRpbmdfd2hhdF9jaGFuZ2Vk
-XyhkaWZmc2lnc19ldGMpDQo+IMKgDQo+IC0gaXQgaXMgbWVhbnQgdG8gaW52ZXN0aWdhdGUgc3N0
-YXRlLWNhY2hlLW1pc3NlcywgYnV0IEkgdGhpbmsgaXQNCj4gKm1pZ2h0KiANCj4gaGVscCB5b3Ug
-dG9vOg0KPiANCj4gMS4gQ2hlY2sgaWYgdGhlIHRoZSBnZW5lcmF0ZWQgJHtCfS8uY29uZmlnIGZp
-bGVzIGFyZSB0aGUgc2FtZSBhZnRlcg0KPiB0aGUgDQo+IGRvX2NvbmZpZ3VyZSBzdGVwIGZvciBi
-b3RoIHZlcnNpb25zLg0KPiAyLiBJZiB0aGUgLmNvbmZpZyBmaWxlcyBhcmUgdGhlIHNhbWUsIHJ1
-biBkb19jb21waWxlIGZvciBib3RoIHUtDQo+IGJvb3RzLiANCj4gSWYgdGhleSBhcmUgZGlmZmVy
-ZW50LCBydW4gZG9fZmV0Y2ggYW5kIGRvX2NvbmZpZ3VyZSBhdCBsZWFzdC4NCj4gMi4gU2F2ZSB0
-aGUgZ2VuZXJhdGVkIHNpZ25hdHVyZXMNCj4gMy4gRHVtcCB0aGUgY29udGVudCBvZiBib3RoIHNp
-Z25hdHVyZXMgYW5kIHJ1biBhIGRpZmYgb24gdGhlbSB0byBzZWUgDQo+IHdoYXQncyBkaWZmZXJl
-bnQgYmV0d2VlbiB0aGUgcmVjaXBlcy4gVGhlc2Ugc2lnbmF0dXJlcyBzdXBwb3NlZCB0byANCj4g
-Y29udGFpbiBtb3N0IChhbGw/KSByZWxldmFudCBmdW5jdGlvbnMsIHZhcmlhYmxlcyBhbmQgdGhl
-aXIgdmFsdWVzDQo+IHVzZWQgDQo+IGZvciB0aGUgdGFzay4gQXQgdGhlIGZpcnN0IHRpbWUgSSdk
-IGVzcGVjaWFsbHkgY29uY2VudHJhdGUgb24NCj4gdmFyaWFibGUgDQo+IG5hbWVzIGNvbnRhaW5p
-bmcgIkJPT1QiLCBhbmQgbWF5YmUgb24gdGhlIGNvbXBpbGVyIGZsYWdzLg0KPiANCj4gT24gMDUu
-MDIuMjUgMTE6MTYsIERhdmlkIERhbmllbCB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyB3cm90
-ZToNCj4gPiBIaSBhbGwNCj4gPiBXZSByZWNlaXZlZCBhbiBpTVg5NSBEYXJ0IGV2YWxraXQgYm9h
-cmQgZnJvbSBWYXJpc2NpdGUgYW5kIEkgYW0NCj4gPiBwcmVwYXJpbmcgb3VyDQo+ID4gYnNwIGxh
-eWVyIGZvciB0aGUgbWFjaGluZSB0aGF0IHdpbGwgYmUgZGVyaXZlZCBmcm9tIHRoYXQgYm9hcmQu
-IE5vdw0KPiA+IEkgd2FudGVkIHRvDQo+ID4gaW50ZWdyYXRlIHUtYm9vdCBhbmQgaW14LWJvb3Qg
-aW50byBvdXIgaW1hZ2UgYW5kIHdlbnQgYWhlYWQgYW5kDQo+ID4gdG9vayBhIGxvb2sgYXQNCj4g
-PiBWYXJpc2NpdGVzIGxheWVycyAtIHRoZXkgYWxyZWFkeSBwcm92aWRlIHNvbWUgc2V0dXAgZm9y
-IGEgWW9jdG8NCj4gPiBidWlsZCBzbyBJDQo+ID4gdGhvdWdoIEkgd2lsbCBqdXN0IGdyYWIgdGhl
-IHUtYm9vdCBmcm9tIHRoZWlyIHJlcG9zaXRvcnkgYW5kIGJ1aWxkDQo+ID4gdGhhdCB0aGUNCj4g
-PiBzYW1lIHdheSB0aGV5IGRvIGl0LiBOb3cgaXQgdHVybnMgb3V0IG15IGJ1aWxkIGRvZXMgbm90
-IGJvb3QsIHRoZQ0KPiA+IHUtYm9vdA0KPiA+IGJpbmFyaWVzIGFuZCB0aGUgaW14LWJvb3QgYmlu
-YXJ5IGFyZSBkaWZmZXJlbnQgZnJvbSB0aGUgVmFyaXNjaXRlcw0KPiA+IGJ1aWxkIC0gSQ0KPiA+
-IGNhbm5vdCBmaWd1cmUgb3V0IHdoYXQgSSBhbSBtaXNzaW5nIHNpbmNlIEkgd2VudCB1cCBhbmQg
-ZG93biB0aGUNCj4gPiByZWNpcGVzIGFuZA0KPiA+IGJpdGJha2VzIGVudmlyb25tZW50IGFuZCBj
-YW5ub3QgZmluZCBhbnkgZGlmZmVyZW5jZS4NCj4gPiANCj4gPiBJIGFtIHVzaW5nIHRoZSBmb2xs
-b3dpbmcgc2V0dXAgaW4gdGhlIG1hY2hpbmUgY29uZmlndXJhdGlvbjoNCj4gPiANCj4gPiDCoMKg
-wqDCoCBUVU5FX0ZFQVRVUkVTID0gImFhcmNoNjQgYXJtdjhhLTJhIGNyYyBjcnlwdG8gY29ydGV4
-YTU1Ig0KPiA+IMKgwqDCoMKgIHJlcXVpcmUgY29uZi9tYWNoaW5lL2luY2x1ZGUvaW14OTUtZXZr
-LmluYw0KPiA+IMKgwqDCoMKgIElOSEVSSVQgKz0gImltYWdlLWJ1aWxkaW5mbyINCj4gPiANCj4g
-PiDCoMKgwqDCoCBJTVhfREVGQVVMVF9CU1AgPSAibnhwIg0KPiA+IMKgwqDCoMKgIElNWF9ERUZB
-VUxUX0JPT1RMT0FERVIgPSAidS1ib290LWNmMjAwIg0KPiA+IMKgwqDCoMKgIElNWF9ERUZBVUxU
-X0JPT1RMT0FERVI6dXNlLW54cC1ic3AgPSAidS1ib290LWNmMjAwIg0KPiA+IA0KPiA+IMKgwqDC
-oMKgIE1BQ0hJTkVfRkVBVFVSRVMgPSAicGNpIHVzYmhvc3QgdmZhdCBhbHNhIHRvdWNoc2NyZWVu
-IHNjcmVlbg0KPiA+IHBjaSBibHVldG9vdGggd2lmaSBzY3JlZW4gbnhwaXc2MTItc2RpbyINCj4g
-PiDCoMKgwqDCoCBNQUNISU5FX0ZFQVRVUkVTOnJlbW92ZSA9ICJ4ZW4gamFpbGhvdXNlIGRwZGsg
-bnhwd2lmaS1hbGwtc2Rpbw0KPiA+IG54cHdpZmktYWxsLXBjaWUiDQo+ID4gDQo+ID4gwqDCoMKg
-wqAgVUJPT1RfQ09ORklHX0JBU0VOQU1FID0gImlteDk1X3Zhcl9kYXJ0Ig0KPiA+IMKgwqDCoMKg
-IFVCT09UX0NPTkZJRyA9ICJzZCINCj4gPiDCoMKgwqDCoCBVQk9PVF9DT05GSUdbc2RdwqDCoMKg
-ID0gIiR7VUJPT1RfQ09ORklHX0JBU0VOQU1FfV9kZWZjb25maWciDQo+ID4gwqDCoMKgwqAgVUJP
-T1RfQ09ORklHW2ZzcGldwqAgPQ0KPiA+ICIke1VCT09UX0NPTkZJR19CQVNFTkFNRX1fZnNwaV9k
-ZWZjb25maWciDQo+ID4gwqDCoMKgwqAgVUJPT1RfRFRCX05BTUUgPSAiaW14OTUtdmFyLWRhcnQt
-ZHQ4bWN1c3RvbWJvYXJkLmR0YiINCj4gPiDCoMKgwqDCoCBTUExfQklOQVJZID0gInNwbC91LWJv
-b3Qtc3BsLmJpbiINCj4gPiDCoMKgwqDCoCBMT0FEQUREUiA9ICIiDQo+ID4gwqDCoMKgwqAgVUJP
-T1RfU1VGRklYID0gImJpbiINCj4gPiDCoMKgwqDCoCBVQk9PVF9NQUtFX1RBUkdFVCA9ICIiDQo+
-ID4gDQo+ID4gwqDCoMKgwqAgSU1YQk9PVF9UQVJHRVRTID0gImZsYXNoX2E1NSINCj4gPiDCoMKg
-wqDCoCBJTVhfQk9PVF9TT0NfVEFSR0VUID0gImlNWDk1Ig0KPiA+IMKgwqDCoMKgIElNWF9CT09U
-X1NFRUsgPSAiMzIiDQo+ID4gwqDCoMKgwqAgSU1YQk9PVF9WQVJJQU5UID0gIiINCj4gPiANCj4g
-PiDCoMKgwqDCoCBPRUlfQk9BUkTCoCA9ICJteDk1bHA1Ig0KPiA+IMKgwqDCoMKgIEREUl9UWVBF
-wqDCoCA9ICJscGRkcjUiDQo+ID4gDQo+ID4gwqDCoMKgwqAgRERSX0ZJUk1XQVJFX05BTUUgPSAi
-IFwNCj4gPiDCoMKgwqDCoMKgwqDCoMKgIGxwZGRyNV9kbWVtX3YyMDIzMTEuYmluIFwNCj4gPiDC
-oMKgwqDCoMKgwqDCoMKgIGxwZGRyNV9kbWVtX3FiX3YyMDIzMTEuYmluIFwNCj4gPiDCoMKgwqDC
-oMKgwqDCoMKgIGxwZGRyNV9pbWVtX3YyMDIzMTEuYmluIFwNCj4gPiDCoMKgwqDCoMKgwqDCoMKg
-IGxwZGRyNV9pbWVtX3FiX3YyMDIzMTEuYmluIFwNCj4gPiDCoMKgwqDCoCAiDQo+ID4gwqDCoMKg
-wqAgU1lTVEVNX01BTkFHRVJfRklSTVdBUkVfQkFTRU5BTUUgPSAibTMzX2ltYWdlIg0KPiA+IMKg
-wqDCoMKgIFNZU1RFTV9NQU5BR0VSX0ZJUk1XQVJFX05BTUXCoMKgwqDCoCA9ICJtMzNfaW1hZ2Ut
-bXg5NWV2ayINCj4gPiANCj4gPiBXaXRoIHRoZSBmb2xsb3dpbmcgcmVjaXBlIGZvciB1LWJvb3Qg
-LSBJIGFtIHVzaW5nIHRoZSBzYW1lIHZlcnNpb24NCj4gPiB3aXRoIHRoZQ0KPiA+IHNhbWUgY29u
-ZmlndXJhdGlvbiBhbmQgdGhlIHNhbWUgZGV2aWNlIHRyZWUgYmluYXJ5IHRoYXQgVmFyaXNjaXRl
-DQo+ID4gaXMgdXNpbmc6DQo+ID4gDQo+ID4gwqDCoMKgwqAgcmVxdWlyZSByZWNpcGVzLWJzcC91
-LWJvb3QvdS1ib290LmluYw0KPiA+IA0KPiA+IMKgwqDCoMKgIFBST1ZJREVTICs9ICJ1LWJvb3Qi
-DQo+ID4gwqDCoMKgwqAgREVQRU5EUyArPSAiYmlzb24tbmF0aXZlIGJjLW5hdGl2ZSBkdGMtbmF0
-aXZlIGdudXRscy1uYXRpdmUiDQo+ID4gDQo+ID4gwqDCoMKgwqAgTElDRU5TRSA9ICJHUEwtMi4w
-LW9yLWxhdGVyIg0KPiA+IMKgwqDCoMKgIExJQ19GSUxFU19DSEtTVU0gPQ0KPiA+ICJmaWxlOi8v
-TGljZW5zZXMvZ3BsLTIuMC50eHQ7bWQ1PWIyMzRlZTRkNjlmNWZjZTQ0ODZhODBmZGFmNGE0MjYz
-Ig0KPiA+IA0KPiA+IMKgwqDCoMKgIFVCT09UX1NSQyA/PSAiZ2l0Oi8vZ2l0aHViLmNvbS92YXJp
-Z2l0L3Vib290LQ0KPiA+IGlteDtwcm90b2NvbD1odHRwcyINCj4gPiANCj4gPiDCoMKgwqDCoCBT
-UkNCUkFOQ0ggPSAibGZfdjIwMjQuMDRfNi42LjIzLTIuMC4wX3ZhcjAxIg0KPiA+IMKgwqDCoMKg
-IFNSQ1JFViA9ICIyMzVkMjU5ZThjNDM2MmU3MjU1Njc3OTE3MjhhNzRiYzJkNDQ0MWUyIg0KPiA+
-IMKgwqDCoMKgIFVCT09UX0lOSVRJQUxfRU5WX0RFVklDRSA9ICJzZCINCj4gPiANCj4gPiDCoMKg
-wqDCoCBTUkNfVVJJID0gIiR7VUJPT1RfU1JDfTticmFuY2g9JHtTUkNCUkFOQ0h9IFwNCj4gPiDC
-oMKgwqDCoMKgwqDCoMKgIGZpbGU6Ly9md19lbnYuY29uZmlnwqBcDQo+ID4gwqDCoMKgwqAgIg0K
-PiA+IA0KPiA+IMKgwqDCoMKgIFMgPSAiJHtXT1JLRElSfS9naXQiDQo+ID4gDQo+ID4gwqDCoMKg
-wqAgTE9DQUxWRVJTSU9OID89ICItY2YyMDAiDQo+ID4gwqDCoMKgwqAgUFYgPSAiMSINCj4gPiAN
-Cj4gPiDCoMKgwqDCoCBCT09UX1RPT0xTID0gImlteC1ib290LXRvb2xzIg0KPiA+IA0KPiA+IMKg
-wqDCoMKgIFVCT09UX0lOSVRJQUxfRU5WID0gInUtYm9vdC1pbml0aWFsLWVudiINCj4gPiDCoMKg
-wqDCoCBVQk9PVF9JTklUSUFMX0VOVl9ERVZJQ0UgPSAic2QiDQo+ID4gwqDCoMKgwqAgVUJPT1Rf
-Q09ORklHID0gInNkIg0KPiA+IA0KPiA+IMKgwqDCoMKgIGRvX2luc3RhbGw6YXBwZW5kKCkgew0K
-PiA+IMKgwqDCoMKgwqDCoMKgwqAgbG4gLXNmICR7VUJPT1RfSU5JVElBTF9FTlZ9LSR7VUJPT1Rf
-SU5JVElBTF9FTlZfREVWSUNFfQ0KPiA+ICR7RH0vJHtzeXNjb25mZGlyfS8ke1VCT09UX0lOSVRJ
-QUxfRU5WfQ0KPiA+IMKgwqDCoMKgIH0NCj4gPiANCj4gPiDCoMKgwqDCoCBQQUNLQUdFX0FSQ0gg
-PSAiJHtNQUNISU5FX0FSQ0h9Ig0KPiA+IA0KPiA+IFRoZSByZXN1bHRpbmcgc3BsIGFuZCB1LWJv
-b3QgYmluYXJpZXMgYXJlIG9uZSB0byB0d28ga2Igc21hbGxlcg0KPiA+IHRoYW4gdGhlIG9uZXMN
-Cj4gPiB0aGF0IGFyZSBjcmVhdGVkIGJ5IHRoZSB2ZW5kb3Igb2YgdGhlIGJvYXJkLiBXZSBkbyBu
-b3QgbmVlZCBhbnkNCj4gPiBiaW5hcnkgb24gdGhlDQo+ID4gTTcgeWV0IGFuZCBJIHRob3VnaHQg
-dGhpcyB3b3VsZCBiZSBvcHRpb25hbCwgc28gSSB0aG91Z2h0IHRoaXMNCj4gPiB3b3VsZCBiZSBm
-aW5lIGFzDQo+ID4gbG9uZyBhcyBJIG9ubHkgc3BlZmljeSBgZmxhc2hfYTU1YCBhbmQgbm90IGBm
-bGFzaF9hbGxgLg0KPiA+IA0KPiA+IFRoYXQgd2F5IEkgZ2V0IHRoZSBmb2xsb3dpbmcgaW4gdGhl
-IGRlcGxveSBkaXJlY3Rvcnkgb2YgaW14LWJvb3QtDQo+ID4gdG9vbHM6DQo+ID4gDQo+ID4gwqDC
-oMKgwqAgLnJ3LXItLXItLSBkYXZpZCBkYXZpZMKgIDY0IEtCIFR1ZSBGZWLCoCA0IDE0OjA3OjU0
-IDIwMjUNCj4gPiBscGRkcjVfZG1lbV9xYl92MjAyMzExLmJpbg0KPiA+IMKgwqDCoMKgIC5ydy1y
-LS1yLS0gZGF2aWQgZGF2aWTCoCA2NCBLQiBUdWUgRmViwqAgNCAxNDowNzo1NCAyMDI1DQo+ID4g
-bHBkZHI1X2RtZW1fdjIwMjMxMS5iaW4NCj4gPiDCoMKgwqDCoCAucnctci0tci0tIGRhdmlkIGRh
-dmlkwqAgMjUgS0IgVHVlIEZlYsKgIDQgMTQ6MDc6NTQgMjAyNQ0KPiA+IGxwZGRyNV9pbWVtX3Fi
-X3YyMDIzMTEuYmluDQo+ID4gwqDCoMKgwqAgLnJ3LXItLXItLSBkYXZpZCBkYXZpZMKgIDYzIEtC
-IFR1ZSBGZWLCoCA0IDE0OjA3OjU0IDIwMjUNCj4gPiBscGRkcjVfaW1lbV92MjAyMzExLmJpbg0K
-PiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQgZGF2aWQgMTU0IEtCIFR1ZSBGZWLCoCA0IDE0
-OjA3OjU0IDIwMjUNCj4gPiBtMzNfaW1hZ2UtbXg5NWV2ay5iaW4NCj4gPiDCoMKgwqDCoCAucnd4
-ci14ci14IGRhdmlkIGRhdmlkwqAgNTYgS0IgVHVlIEZlYsKgIDQgMTQ6MDc6NTQgMjAyNQ0KPiA+
-IG1raW1hZ2VfaW14OA0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQgZGF2aWQgMjEyIEtC
-IFR1ZSBGZWLCoCA0IDE0OjA3OjU0IDIwMjUgbXg5NWEwLQ0KPiA+IGFoYWItY29udGFpbmVyLmlt
-Zw0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQgZGF2aWTCoCA5MiBLQiBUdWUgRmViwqAg
-NCAxNDowNzo1NCAyMDI1IG9laS0NCj4gPiBtMzMtZGRyLmJpbg0KPiA+IMKgwqDCoMKgIC5ydy1y
-LS1yLS0gZGF2aWQgZGF2aWQgMy42IEtCIFR1ZSBGZWLCoCA0IDE0OjA3OjU0IDIwMjUgb2VpLQ0K
-PiA+IG0zMy10Y20uYmluDQo+ID4gwqDCoMKgwqAgLnJ3LXItLXItLSBkYXZpZCBkYXZpZMKgIDE5
-IEtCIFR1ZSBGZWLCoCA0IDE0OjA3OjU0IDIwMjUgc29jLm1haw0KPiA+IMKgwqDCoMKgIC5ydy1y
-LS1yLS0gZGF2aWQgZGF2aWQgOTMyIEtCIFR1ZSBGZWLCoCA0IDE0OjA3OjU0IDIwMjUgdS1ib290
-LQ0KPiA+IGNmMjAwLmJpbi1zZA0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQgZGF2aWQg
-MTM4IEtCIFR1ZSBGZWLCoCA0IDE0OjA3OjU0IDIwMjUgdS1ib290LQ0KPiA+IHNwbC5iaW4tY2Yy
-MDAtc2QNCj4gPiANCj4gPiBXaGVyZWFzIHRoZSBjb3JyZXNwb25kaW5nIGRpcmVjdG9yeSBmcm9t
-IFZhcmlzY2l0ZSBsb29rcyBsaWtlIHRoZQ0KPiA+IGZvbGxvd2luZzoNCj4gPiANCj4gPiDCoMKg
-wqDCoCAucnctci0tci0tIGRhdmlkIGRhdmlkwqAgMzMgS0IgTW9uIEZlYsKgIDMgMTE6MjU6MDcg
-MjAyNSBibDMxLQ0KPiA+IGlteDk1LmJpbg0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQg
-ZGF2aWTCoCAzNSBLQiBNb24gRmViwqAgMyAxNjoyNTowNSAyMDI1IGlteDk1LQ0KPiA+IDE5eDE5
-LWV2a19tN19UQ01fcG93ZXJfbW9kZV9zd2l0Y2hfcnRvc19pbXg5NV9zbV9jbTcuYmluDQo+ID4g
-wqDCoMKgwqAgLnJ3LXItLXItLSBkYXZpZCBkYXZpZMKgIDY0IEtCIE1vbiBGZWLCoCAzIDE2OjI1
-OjA1IDIwMjUNCj4gPiBscGRkcjVfZG1lbV9xYl92MjAyMzExLmJpbg0KPiA+IMKgwqDCoMKgIC5y
-dy1yLS1yLS0gZGF2aWQgZGF2aWTCoCA2NCBLQiBNb24gRmViwqAgMyAxNjoyNTowNSAyMDI1DQo+
-ID4gbHBkZHI1X2RtZW1fdjIwMjMxMS5iaW4NCj4gPiDCoMKgwqDCoCAucnctci0tci0tIGRhdmlk
-IGRhdmlkwqAgMjUgS0IgTW9uIEZlYsKgIDMgMTY6MjU6MDUgMjAyNQ0KPiA+IGxwZGRyNV9pbWVt
-X3FiX3YyMDIzMTEuYmluDQo+ID4gwqDCoMKgwqAgLnJ3LXItLXItLSBkYXZpZCBkYXZpZMKgIDYz
-IEtCIE1vbiBGZWLCoCAzIDE2OjI1OjA1IDIwMjUNCj4gPiBscGRkcjVfaW1lbV92MjAyMzExLmJp
-bg0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQgZGF2aWQgMTQzIEtCIE1vbiBGZWLCoCAz
-IDE2OjI1OjA1IDIwMjUNCj4gPiBtMzNfaW1hZ2UtbXg5NWV2ay5iaW4NCj4gPiDCoMKgwqDCoCAu
-cnd4ci14ci14IGRhdmlkIGRhdmlkwqAgNTYgS0IgTW9uIEZlYsKgIDMgMTY6MjU6MDUgMjAyNQ0K
-PiA+IG1raW1hZ2VfaW14OA0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQgZGF2aWQgMTky
-IEtCIE1vbiBGZWLCoCAzIDE2OjI1OjA1IDIwMjUgbXg5NWEwLQ0KPiA+IGFoYWItY29udGFpbmVy
-LmltZw0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0gZGF2aWQgZGF2aWTCoCA5MCBLQiBNb24gRmVi
-wqAgMyAxNjoyNTowNSAyMDI1IG9laS0NCj4gPiBtMzMtZGRyLmJpbg0KPiA+IMKgwqDCoMKgIC5y
-dy1yLS1yLS0gZGF2aWQgZGF2aWQgMi40IEtCIE1vbiBGZWLCoCAzIDE2OjI1OjA1IDIwMjUgb2Vp
-LQ0KPiA+IG0zMy10Y20uYmluDQo+ID4gwqDCoMKgwqAgLnJ3LXItLXItLSBkYXZpZCBkYXZpZMKg
-IDE5IEtCIE1vbiBGZWLCoCAzIDE2OjI1OjA1IDIwMjUgc29jLm1haw0KPiA+IMKgwqDCoMKgIC5y
-dy1yLS1yLS0gZGF2aWQgZGF2aWQgOTM1IEtCIE1vbiBGZWLCoCAzIDE2OjI1OjA1IDIwMjUgdS1i
-b290LQ0KPiA+IGlteDk1LXZhci1kYXJ0LmJpbi1zZA0KPiA+IMKgwqDCoMKgIC5ydy1yLS1yLS0g
-ZGF2aWQgZGF2aWQgMTM5IEtCIE1vbiBGZWLCoCAzIDE2OjI1OjA1IDIwMjUgdS1ib290LQ0KPiA+
-IHNwbC5iaW4taW14OTUtdmFyLWRhcnQtc2QNCj4gPiANCj4gPiBJIGRvbid0IHVuZGVyc3RhbmQg
-d2h5IHRoZSBibDMxLWlteDk1LmJpbiBpcyBwcmVzZW50IGluIHRoZSB2ZW5kb3JzDQo+ID4gZGVw
-bG95bWVudA0KPiA+IGZvbGRlciBzaW5jZSBvcHRlZSBpcyBub3QgZW5hYmxlZC4gSSBvbmx5IGdl
-dCB0aGlzIGJpbmFyeSBkZXBsb3llZA0KPiA+IHdoZW4gb3B0ZWUNCj4gPiBpcyBlbmFibGVkIGlu
-IG15IGJ1aWxkLiBJIGFsc28gZG9uJ3QgdW5kZXJzdGFuZCBob3cgaXQgaXMgcG9zc2libGUNCj4g
-PiB0aGF0IHRoZQ0KPiA+IHNhbWUgdS1ib290IHBhY2thZ2Ugd2l0aCB0aGUgc2FtZSBjb25maWd1
-cmF0aW9uIGFuZCB0aGUgc2FtZSBkZXZpY2UNCj4gPiB0cmVlIGJpbmFyeQ0KPiA+IHJlc3VsdHMg
-aW4gYSBkaWZmZXJlbnQgdS1ib290IGV4ZWN1dGFibGUuDQo+ID4gDQo+ID4gVGhhbmtzIGZvciBh
-bnkgaGludHMhDQo+ID4gDQo+ID4gRGF2ZQ0KPiA+IA0KPiA+IC09LT0tPS09LT0tPS09LT0tPS09
-LT0tDQo+ID4gTGlua3M6IFlvdSByZWNlaXZlIGFsbCBtZXNzYWdlcyBzZW50IHRvIHRoaXMgZ3Jv
-dXAuDQo+ID4gVmlldy9SZXBseSBPbmxpbmUgKCM2NDcxMSk6DQo+ID4gaHR0cHM6Ly9saXN0cy55
-b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS82NDcxMQ0KPiA+IE11dGUgVGhpcyBUb3Bp
-YzoNCj4gPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvMTExMDA5NzY5LzYwODQ0
-NDUNCj4gPiBHcm91cCBPd25lcjogeW9jdG8rb3duZXJAbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0K
-PiA+IFVuc3Vic2NyaWJlOg0KPiA+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lv
-Y3RvL3Vuc3ViwqBbc2thbmRpZ3JhdW5AZ21haWwuY29tDQo+ID4gXQ0KPiA+IC09LT0tPS09LT0t
-PS09LT0tPS09LT0tDQo+ID4gDQoNCg0KDQoNCg==
+--BBC44KKgg5AXvqcIIOar
+Content-Type: multipart/alternative; boundary="GBhRs9UvmBsHsKivpI4H"
+
+--GBhRs9UvmBsHsKivpI4H
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I have a recently purchased Raspberry Pi Zero 2 W (Jan. 2025) which does wo=
+rk with the raspberry Pi environment. I want to use Yocto going forward as =
+I develop my application. For now, I would just like to see this board boot=
+ using my own built image. I've cloned the latest Yocto repo along with the=
+ "meta-raspberrypi".
+
+I've done these modifications:
+
+In local.conf
+
+>=20
+> MACHINE ??=3D "raspberrypi0-wifi"
+> ...
+> INHERIT +=3D "rm_work"
+> DL_DIR ?=3D "/home/users/yocto_shared/downloads"
+> SSTATE_DIR ?=3D "/home/users/yocto_shared/sstate-cache"
+> # for CPU count and how many parallel threads will be used
+> BB_NUMBER_THREADS =3D "6"
+> MACHINE_FEATURES =3D " bluetooth wifi usbhost"
+> PREFERRED_PROVIDER_virtual/kernel =3D "linux-raspberrypi"
+> IMAGE_INSTALL:append =3D " linux-firmware-bcm43430 wpa-supplicant dhcpcd"
+> ENABLE_UART =3D "1"
+> SERIAL_CONSOLE =3D "tty1"
+> DISABLE_RPI_BOOT_LOGO =3D "1"
+> DISABLE_OVERSCAN =3D "1"
+> DISABLE_SPLASH =3D "1"
+> BOOT_DELAY =3D "0"
+> GPU_MEM =3D "16"
+> PACKAGE_CLASSES =3D "package_ipk"
+> DISTRO_FEATURES:append =3D " wifi "
+> IMAGE_FSTYPES =3D "tar.bz2 ext4 rpi-sdimg"
+> SDIMG_ROOTFS_TYPE =3D "ext4"
+>=20
+>=20
+
+In bblayers.conf I've added the layer meta-raspberrypi
+
+My next step is to build using the command "bitbake core-image-minimal". Th=
+is gives me my first question, am I building the correct target? It does bu=
+ild and I get my rpi-sdimg file and when it is placed on the SD card (using=
+ "dd") I can see my image files all laid out as I would expect.
+
+I had to edit the config.txt file that is part of the boot sequence. I've a=
+ttached the one I'm using. Essentially the changes I did from the one that =
+Yocto generated was to enable the serial output (I also modified bootcode.b=
+in as you can see in the output) do aid in debugging. I also made sure that=
+ bootcode.bin knew I was loading a 32-bit kernel.
+
+When I boot, I get the desiired output up until the handoff from bootcode.b=
+in to the kernel. The output goes silent at that point. I presume that the =
+system is dead. The LED on the raspberrypi Zero 2 W board stays solid.
+
+I've attached my output from the console (raspi0-boot.txt).
+
+I've tried to replace the kernel from the raspberry Pi environment with my =
+yocto built one but I get the same output. I've also done some changes so t=
+hat I was able to see if I could get a 32-bit u-boot to load, I get the sam=
+e issues.
+
+I'm looking for some advice as to how to proceed. Have I run into a "wrong =
+image format" issue? Is there some kind of arcane format that the raspberry=
+ Pi's bootcode.bin requires? Or, am I running into a device tree issue? As =
+far as I can tell, the console output from the staged boot loader from Pi i=
+s the last line expected before the kernel starts to output it's start up s=
+equence. So I presume that the image is unable to be executed.
+
+Thanks in advance for any advice.
+
+Cheers!!
+
+--GBhRs9UvmBsHsKivpI4H
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>I have a recently purchased Raspberry Pi Zero 2 W (Jan. 2025) which do=
+es work with the raspberry Pi environment. I want to use Yocto going forwar=
+d as I develop my application. For now, I would just like to see this board=
+ boot using my own built image. I've cloned the latest Yocto repo along wit=
+h the "meta-raspberrypi".</div>
+<div>&nbsp;</div>
+<div>I've done these modifications:</div>
+<div>&nbsp;</div>
+<div>In local.conf</div>
+<blockquote>
+<div>MACHINE ??=3D "raspberrypi0-wifi"</div>
+<div>...</div>
+<div>
+<div>INHERIT +=3D "rm_work"</div>
+<div>DL_DIR ?=3D "/home/users/yocto_shared/downloads"<br />SSTATE_DIR ?=3D =
+"/home/users/yocto_shared/sstate-cache"</div>
+<div># for CPU count and how many parallel threads will be used<br />BB_NUM=
+BER_THREADS =3D "6"<br />MACHINE_FEATURES =3D " bluetooth wifi usbhost"</di=
+v>
+<div>PREFERRED_PROVIDER_virtual/kernel =3D "linux-raspberrypi"<br />IMAGE_I=
+NSTALL:append =3D " linux-firmware-bcm43430 wpa-supplicant dhcpcd"<br />ENA=
+BLE_UART =3D "1"<br />SERIAL_CONSOLE =3D "tty1"<br />DISABLE_RPI_BOOT_LOGO =
+=3D "1"<br />DISABLE_OVERSCAN =3D "1"<br />DISABLE_SPLASH =3D "1"<br />BOOT=
+_DELAY =3D "0"<br />GPU_MEM =3D "16"<br />PACKAGE_CLASSES =3D "package_ipk"=
+<br />DISTRO_FEATURES:append =3D " wifi "<br />IMAGE_FSTYPES =3D "tar.bz2 e=
+xt4 rpi-sdimg"<br />SDIMG_ROOTFS_TYPE =3D "ext4"</div>
+<div>&nbsp;</div>
+</div>
+</blockquote>
+<div>In bblayers.conf I've added the layer meta-raspberrypi</div>
+<div>&nbsp;</div>
+<div>My next step is to build using the command "bitbake core-image-minimal=
+". This gives me my first question, am I building the correct target? It do=
+es build and I get my rpi-sdimg file and when it is placed on the SD card (=
+using "dd") I can see my image files all laid out as I would expect.</div>
+<div>&nbsp;</div>
+<div>I had to edit the config.txt file that is part of the boot sequence. I=
+'ve attached the one I'm using. Essentially the changes I did from the one =
+that Yocto generated was to enable the serial output (I also modified bootc=
+ode.bin as you can see in the output) do aid in debugging. I also made sure=
+ that bootcode.bin knew I was loading a 32-bit kernel.</div>
+<div>&nbsp;</div>
+<div>When I boot, I get the desiired output up until the handoff from bootc=
+ode.bin to the kernel. The output goes silent at that point. I presume that=
+ the system is dead. The LED on the raspberrypi Zero 2 W board stays solid.=
+</div>
+<div>&nbsp;</div>
+<div>I've attached my output from the console (raspi0-boot.txt).</div>
+<div>&nbsp;</div>
+<div>I've tried to replace the kernel from the raspberry Pi environment wit=
+h my yocto built one but I get the same output. I've also done some changes=
+ so that I was able to see if I could get a 32-bit u-boot to load, I get th=
+e same issues.</div>
+<div>&nbsp;</div>
+<div>I'm looking for some advice as to how to proceed. Have I run into a "w=
+rong image format" issue? Is there some kind of arcane format that the rasp=
+berry Pi's bootcode.bin requires? Or, am I running into a device tree issue=
+? As far as I can tell, the console output from the staged boot loader from=
+ Pi is the last line expected before the kernel starts to output it's start=
+ up sequence. So I presume that the image is unable to be executed.</div>
+<div>&nbsp;</div>
+<div>Thanks in advance for any advice.</div>
+<div>&nbsp;</div>
+<div>Cheers!!</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+
+--GBhRs9UvmBsHsKivpI4H--
+
+--BBC44KKgg5AXvqcIIOar
+Content-Type: text/plain; name="config.txt"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="config.txt"
+
+IyBGb3IgbW9yZSBvcHRpb25zIGFuZCBpbmZvcm1hdGlvbiBzZWUKIyBodHRwOi8vcnBmLmlvL2Nv
+bmZpZ3R4dAojIFNvbWUgc2V0dGluZ3MgbWF5IGltcGFjdCBkZXZpY2UgZnVuY3Rpb25hbGl0eS4g
+U2VlIGxpbmsgYWJvdmUgZm9yIGRldGFpbHMKCiMgdW5jb21tZW50IGlmIHlvdSBnZXQgbm8gcGlj
+dHVyZSBvbiBIRE1JIGZvciBhIGRlZmF1bHQgInNhZmUiIG1vZGUKI2hkbWlfc2FmZT0xCgojIHVu
+Y29tbWVudCB0aGUgZm9sbG93aW5nIHRvIGFkanVzdCBvdmVyc2Nhbi4gVXNlIHBvc2l0aXZlIG51
+bWJlcnMgaWYgY29uc29sZQojIGdvZXMgb2ZmIHNjcmVlbiwgYW5kIG5lZ2F0aXZlIGlmIHRoZXJl
+IGlzIHRvbyBtdWNoIGJvcmRlcgojb3ZlcnNjYW5fbGVmdD0xNgojb3ZlcnNjYW5fcmlnaHQ9MTYK
+I292ZXJzY2FuX3RvcD0xNgojb3ZlcnNjYW5fYm90dG9tPTE2CgojIHVuY29tbWVudCB0byBmb3Jj
+ZSBhIGNvbnNvbGUgc2l6ZS4gQnkgZGVmYXVsdCBpdCB3aWxsIGJlIGRpc3BsYXkncyBzaXplIG1p
+bnVzCiMgb3ZlcnNjYW4uCiNmcmFtZWJ1ZmZlcl93aWR0aD0xMjgwCiNmcmFtZWJ1ZmZlcl9oZWln
+aHQ9NzIwCgojIHVuY29tbWVudCBpZiBoZG1pIGRpc3BsYXkgaXMgbm90IGRldGVjdGVkIGFuZCBj
+b21wb3NpdGUgaXMgYmVpbmcgb3V0cHV0CiNoZG1pX2ZvcmNlX2hvdHBsdWc9MQoKIyB1bmNvbW1l
+bnQgdG8gZm9yY2UgYSBzcGVjaWZpYyBIRE1JIG1vZGUgKHRoaXMgd2lsbCBmb3JjZSBWR0EpCiNo
+ZG1pX2dyb3VwPTEKI2hkbWlfbW9kZT0xCgojIHVuY29tbWVudCB0byBmb3JjZSBhIEhETUkgbW9k
+ZSByYXRoZXIgdGhhbiBEVkkuIFRoaXMgY2FuIG1ha2UgYXVkaW8gd29yayBpbgojIERNVCAoY29t
+cHV0ZXIgbW9uaXRvcikgbW9kZXMKI2hkbWlfZHJpdmU9MgoKIyB1bmNvbW1lbnQgdG8gaW5jcmVh
+c2Ugc2lnbmFsIHRvIEhETUksIGlmIHlvdSBoYXZlIGludGVyZmVyZW5jZSwgYmxhbmtpbmcsIG9y
+CiMgbm8gZGlzcGxheQojY29uZmlnX2hkbWlfYm9vc3Q9NAoKIyB1bmNvbW1lbnQgZm9yIGNvbXBv
+c2l0ZSBQQUwKI3NkdHZfbW9kZT0yCgojdW5jb21tZW50IHRvIG92ZXJjbG9jayB0aGUgYXJtLiA3
+MDAgTUh6IGlzIHRoZSBkZWZhdWx0LgojYXJtX2ZyZXE9ODAwCgojIFVuY29tbWVudCBzb21lIG9y
+IGFsbCBvZiB0aGVzZSB0byBlbmFibGUgdGhlIG9wdGlvbmFsIGhhcmR3YXJlIGludGVyZmFjZXMK
+I2R0cGFyYW09aTJjX2FybT1vbgojZHRwYXJhbT1pMnM9b24KI2R0cGFyYW09c3BpPW9uCgojIFVu
+Y29tbWVudCB0aGlzIHRvIGVuYWJsZSBpbmZyYXJlZCBjb21tdW5pY2F0aW9uLgojZHRvdmVybGF5
+PWdwaW8taXIsZ3Bpb19waW49MTcKI2R0b3ZlcmxheT1ncGlvLWlyLXR4LGdwaW9fcGluPTE4Cgoj
+IEFkZGl0aW9uYWwgb3ZlcmxheXMgYW5kIHBhcmFtZXRlcnMgYXJlIGRvY3VtZW50ZWQgL2Jvb3Qv
+b3ZlcmxheXMvUkVBRE1FCgojIEVuYWJsZSBhdWRpbyAobG9hZHMgc25kX2JjbTI4MzUpCmR0cGFy
+YW09YXVkaW89b24KCiMgQXV0b21hdGljYWxseSBsb2FkIG92ZXJsYXlzIGZvciBkZXRlY3RlZCBj
+YW1lcmFzCmNhbWVyYV9hdXRvX2RldGVjdD0xCgojIEF1dG9tYXRpY2FsbHkgbG9hZCBvdmVybGF5
+cyBmb3IgZGV0ZWN0ZWQgRFNJIGRpc3BsYXlzCmRpc3BsYXlfYXV0b19kZXRlY3Q9MQoKIyBFbmFi
+bGUgRFJNIFZDNCBWM0QgZHJpdmVyCmR0b3ZlcmxheT12YzQta21zLXYzZAptYXhfZnJhbWVidWZm
+ZXJzPTIKCiMgUnVuIGluIDY0LWJpdCBtb2RlCmFybV82NGJpdD0wCgojIERpc2FibGUgY29tcGVu
+c2F0aW9uIGZvciBkaXNwbGF5cyB3aXRoIG92ZXJzY2FuCmRpc2FibGVfb3ZlcnNjYW49MQoKW2Nt
+NF0KIyBFbmFibGUgaG9zdCBtb2RlIG9uIHRoZSAyNzExIGJ1aWx0LWluIFhIQ0kgVVNCIGNvbnRy
+b2xsZXIuCiMgVGhpcyBsaW5lIHNob3VsZCBiZSByZW1vdmVkIGlmIHRoZSBsZWdhY3kgRFdDMiBj
+b250cm9sbGVyIGlzIHJlcXVpcmVkCiMgKGUuZy4gZm9yIFVTQiBkZXZpY2UgbW9kZSkgb3IgaWYg
+VVNCIHN1cHBvcnQgaXMgbm90IHJlcXVpcmVkLgpvdGdfbW9kZT0xCgpbYWxsXQoKW3BpNF0KIyBS
+dW4gYXMgZmFzdCBhcyBmaXJtd2FyZSAvIGJvYXJkIGFsbG93cwphcm1fYm9vc3Q9MQoKW2FsbF0K
+ZW5hYmxlX3JwMV91YXJ0PTEKdWFydF8ybmRzdGFnZT0xCmVuYWJsZV91YXJ0PTEKI2tlcm5lbD11
+LWJvb3QuYmVpbmcK
+
+--BBC44KKgg5AXvqcIIOar
+Content-Type: text/plain; name="raspi0-boot.txt"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="raspi0-boot.txt"
+
+UmFzcGJlcnJ5IFBpIEJvb3Rjb2RlCgpGb3VuZCBTRCBjYXJkLCBjb25maWcudHh0ID0gMSwgc3Rh
+cnQuZWxmID0gMSwgcmVjb3ZlcnkuZWxmID0gMCwgdGltZW91dCA9IDAKUmVhZCBGaWxlOiBjb25m
+aWcudHh0LCAyMTc4IChieXRlcykKCgoKClJhc3BiZXJyeSBQaSBCb290Y29kZQpSZWFkIEZpbGU6
+IGNvbmZpZy50eHQsIDIxNzgKUmVhZCBGaWxlOiBzdGFydC5lbGYsIDI5ODA1NDQgKGJ5dGVzKQpS
+ZWFkIEZpbGU6IGZpeHVwLmRhdCwgNzMwMyAoYnl0ZXMpCk1FU1M6MDA6MDA6MDEuMDA5OTMxOjA6
+IGJyZnM6IEZpbGUgcmVhZDogL21mcy9zZC9jb25maWcudHh0Ck1FU1M6MDA6MDA6MDEuMDE1MDk1
+OjA6IGJyZnM6IEZpbGUgcmVhZDogMjE3OCBieXRlcwpNRVNTOjAwOjAwOjAxLjA1MDkyODowOiBI
+RE1JMDpFRElEIGVycm9yIHJlYWRpbmcgRURJRCBibG9jayAwIGF0dGVtcHQgMApNRVNTOjAwOjAw
+OjAxLjA1NzA5MjowOiBIRE1JMDpFRElEIGVycm9yIHJlYWRpbmcgRURJRCBibG9jayAwIGF0dGVt
+cHQgMQpNRVNTOjAwOjAwOjAxLjA2MzQyODowOiBIRE1JMDpFRElEIGVycm9yIHJlYWRpbmcgRURJ
+RCBibG9jayAwIGF0dGVtcHQgMgpNRVNTOjAwOjAwOjAxLjA2OTc2NTowOiBIRE1JMDpFRElEIGVy
+cm9yIHJlYWRpbmcgRURJRCBibG9jayAwIGF0dGVtcHQgMwpNRVNTOjAwOjAwOjAxLjA3NjEwMjow
+OiBIRE1JMDpFRElEIGVycm9yIHJlYWRpbmcgRURJRCBibG9jayAwIGF0dGVtcHQgNApNRVNTOjAw
+OjAwOjAxLjA4MjQzODowOiBIRE1JMDpFRElEIGVycm9yIHJlYWRpbmcgRURJRCBibG9jayAwIGF0
+dGVtcHQgNQpNRVNTOjAwOjAwOjAxLjA4ODc3NjowOiBIRE1JMDpFRElEIGVycm9yIHJlYWRpbmcg
+RURJRCBibG9jayAwIGF0dGVtcHQgNgpNRVNTOjAwOjAwOjAxLjA5NTExMjowOiBIRE1JMDpFRElE
+IGVycm9yIHJlYWRpbmcgRURJRCBibG9jayAwIGF0dGVtcHQgNwpNRVNTOjAwOjAwOjAxLjEwMTQ0
+OTowOiBIRE1JMDpFRElEIGVycm9yIHJlYWRpbmcgRURJRCBibG9jayAwIGF0dGVtcHQgOApNRVNT
+OjAwOjAwOjAxLjEwNzc4NjowOiBIRE1JMDpFRElEIGVycm9yIHJlYWRpbmcgRURJRCBibG9jayAw
+IGF0dGVtcHQgOQpNRVNTOjAwOjAwOjAxLjExMzg4MTowOiBIRE1JMDpFRElEIGdpdmluZyB1cCBv
+biByZWFkaW5nIEVESUQgYmxvY2sgMApNRVNTOjAwOjAwOjAxLjEyMTIyNjowOiBicmZzOiBGaWxl
+IHJlYWQ6IC9tZnMvc2QvY29uZmlnLnR4dApNRVNTOjAwOjAwOjAxLjEyNjQzOTowOiBncGlvbWFu
+OiBncGlvbWFuX2dldF9waW5fbnVtOiBwaW4gTEVEU19QV1JfT0sgbm90IGRlZmluZWQKTUVTUzow
+MDowMDowMS42MzM3MzI6MDogZ3Bpb21hbjogZ3Bpb21hbl9nZXRfcGluX251bTogcGluIExFRFNf
+UFdSX09LIG5vdCBkZWZpbmVkCk1FU1M6MDA6MDA6MDEuNjM5NTU2OjA6ICoqKiBSZXN0YXJ0IGxv
+Z2dpbmcKTUVTUzowMDowMDowMS42NDM0Mjg6MDogYnJmczogRmlsZSByZWFkOiAyMTc4IGJ5dGVz
+Ck1FU1M6MDA6MDA6MDEuNjQ4ODAwOjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBF
+RElEIGJsb2NrIDAgYXR0ZW1wdCAwCk1FU1M6MDA6MDA6MDEuNjU2MTMwOjA6IGhkbWk6IEhETUkw
+OkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCAxCk1FU1M6MDA6MDA6MDEu
+NjYyOTg5OjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0
+ZW1wdCAyCk1FU1M6MDA6MDA6MDEuNjY5ODQ2OjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVh
+ZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCAzCk1FU1M6MDA6MDA6MDEuNjc2NzA0OjA6IGhkbWk6
+IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA0Ck1FU1M6MDA6
+MDA6MDEuNjgzNTYxOjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2Nr
+IDAgYXR0ZW1wdCA1Ck1FU1M6MDA6MDA6MDEuNjkwNDE5OjA6IGhkbWk6IEhETUkwOkVESUQgZXJy
+b3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA2Ck1FU1M6MDA6MDA6MDEuNjk3Mjc3OjA6
+IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA3Ck1F
+U1M6MDA6MDA6MDEuNzA0MTM0OjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElE
+IGJsb2NrIDAgYXR0ZW1wdCA4Ck1FU1M6MDA6MDA6MDEuNzEwOTkyOjA6IGhkbWk6IEhETUkwOkVE
+SUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA5Ck1FU1M6MDA6MDA6MDEuNzE3
+NjA4OjA6IGhkbWk6IEhETUkwOkVESUQgZ2l2aW5nIHVwIG9uIHJlYWRpbmcgRURJRCBibG9jayAw
+Ck1FU1M6MDA6MDA6MDEuNzIzNTExOjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBF
+RElEIGJsb2NrIDAgYXR0ZW1wdCAwCk1FU1M6MDA6MDA6MDEuNzMxMzA0OjA6IGhkbWk6IEhETUkw
+OkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCAxCk1FU1M6MDA6MDA6MDEu
+NzM4MTYyOjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0
+ZW1wdCAyCk1FU1M6MDA6MDA6MDEuNzQ1MDE5OjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVh
+ZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCAzCk1FU1M6MDA6MDA6MDEuNzUxODc4OjA6IGhkbWk6
+IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA0Ck1FU1M6MDA6
+MDA6MDEuNzU4NzM2OjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2Nr
+IDAgYXR0ZW1wdCA1Ck1FU1M6MDA6MDA6MDEuNzY1NTkyOjA6IGhkbWk6IEhETUkwOkVESUQgZXJy
+b3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA2Ck1FU1M6MDA6MDA6MDEuNzcyNDUwOjA6
+IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA3Ck1F
+U1M6MDA6MDA6MDEuNzc5MzA4OjA6IGhkbWk6IEhETUkwOkVESUQgZXJyb3IgcmVhZGluZyBFRElE
+IGJsb2NrIDAgYXR0ZW1wdCA4Ck1FU1M6MDA6MDA6MDEuNzg2MTY1OjA6IGhkbWk6IEhETUkwOkVE
+SUQgZXJyb3IgcmVhZGluZyBFRElEIGJsb2NrIDAgYXR0ZW1wdCA5Ck1FU1M6MDA6MDA6MDEuNzky
+NzgxOjA6IGhkbWk6IEhETUkwOkVESUQgZ2l2aW5nIHVwIG9uIHJlYWRpbmcgRURJRCBibG9jayAw
+Ck1FU1M6MDA6MDA6MDEuNzk4Mzk2OjA6IGhkbWk6IEhETUk6aGRtaV9nZXRfc3RhdGUgaXMgZGVw
+cmVjYXRlZCwgdXNlIGhkbWlfZ2V0X2Rpc3BsYXlfc3RhdGUgaW5zdGVhZApNRVNTOjAwOjAwOjAx
+LjgwNzE0MTowOiBIRE1JMDogaGRtaV9waXhlbF9lbmNvZGluZzogMTYyMDAwMDAwCk1FU1M6MDA6
+MDA6MDEuODEyODU3OjA6IHZlYzogdmVjX21pZGRsZXdhcmVfcG93ZXJfb246IHZlY19iYXNlOiAw
+eDdlODA2MDAwIHJldi1pZCAweDAwMDAyNzA4IEAgdmVjOiAweDdlODA2MTAwIEAgMHgwMDAwMDQy
+MCBlbmM6IDB4N2U4MDYwNjAgQCAweDAwMDAwMjIwIGNnbXNhZTogMHg3ZTgwNjA1YyBAIDB4MDAw
+MDAwMDAKTUVTUzowMDowMDowMS44NDIxNDU6MDogZHRiX2ZpbGUgJ2JjbTI3MTAtcnBpLXplcm8t
+Mi13LmR0YicKTUVTUzowMDowMDowMS44NDY0OTQ6MDogZHRiX2ZpbGUgJ2JjbTI3MTAtcnBpLXpl
+cm8tMi5kdGInCk1FU1M6MDA6MDA6MDEuODU1MjQ5OjA6IGJyZnM6IEZpbGUgcmVhZDogL21mcy9z
+ZC9iY20yNzEwLXJwaS16ZXJvLTIuZHRiCk1FU1M6MDA6MDA6MDEuODYwMTcyOjA6IExvYWRlZCAn
+YmNtMjcxMC1ycGktemVyby0yLmR0YicgdG8gMHgxMDAgc2l6ZSAweDgzOTgKTUVTUzowMDowMDow
+MS44ODE4NTY6MDogYnJmczogRmlsZSByZWFkOiAzMzY4OCBieXRlcwpNRVNTOjAwOjAwOjAxLjg4
+NjY5MTowOiBicmZzOiBGaWxlIHJlYWQ6IC9tZnMvc2Qvb3ZlcmxheXMvb3ZlcmxheV9tYXAuZHRi
+Ck1FU1M6MDA6MDA6MDEuOTI1MTgzOjA6IGJyZnM6IEZpbGUgcmVhZDogNTQ1MSBieXRlcwpNRVNT
+OjAwOjAwOjAxLjkzMDAzMzowOiBicmZzOiBGaWxlIHJlYWQ6IC9tZnMvc2QvY29uZmlnLnR4dApN
+RVNTOjAwOjAwOjAxLjkzNDUxOTowOiBkdHBhcmFtOiBhdWRpbz1vbgpNRVNTOjAwOjAwOjAxLjk0
+NDU1MTowOiBicmZzOiBGaWxlIHJlYWQ6IDIxNzggYnl0ZXMKTUVTUzowMDowMDowMS45NTA4NjE6
+MDogYnJmczogRmlsZSByZWFkOiAvbWZzL3NkL292ZXJsYXlzL3ZjNC1rbXMtdjNkLmR0Ym8KTUVT
+UzowMDowMDowMi4wMDE3MTk6MDogTG9hZGVkIG92ZXJsYXkgJ3ZjNC1rbXMtdjNkJwpNRVNTOjAw
+OjAwOjAyLjEwNTk0MDowOiBicmZzOiBGaWxlIHJlYWQ6IDI3NjAgYnl0ZXMKTUVTUzowMDowMDow
+Mi4xMDk4MDM6MDogYnJmczogRmlsZSByZWFkOiAvbWZzL3NkL2NtZGxpbmUudHh0Ck1FU1M6MDA6
+MDA6MDIuMTE0NTM0OjA6IFJlYWQgY29tbWFuZCBsaW5lIGZyb20gZmlsZSAnY21kbGluZS50eHQn
+OgpNRVNTOjAwOjAwOjAyLjEyMDQwNDowOiAnZHdjX290Zy5scG1fZW5hYmxlPTAgY29uc29sZT1z
+ZXJpYWwwLDExNTIwMCByb290PS9kZXYvbW1jYmxrMHAyIHJvb3Rmc3R5cGU9ZXh0NCByb290d2Fp
+dCAgbG9nby5ub2xvZ28gbmV0LmlmbmFtZXM9MCcKTUVTUzowMDowMDowMi4xNDkyNjg6MDogZ3Bp
+b21hbjogZ3Bpb21hbl9nZXRfcGluX251bTogcGluIEVNTUNfRU5BQkxFIG5vdCBkZWZpbmVkCk1F
+U1M6MDA6MDA6MDIuNTY3MDk3OjA6IGJyZnM6IEZpbGUgcmVhZDogMTE2IGJ5dGVzCk1FU1M6MDA6
+MDA6MDIuNjA0NzUyOjA6IGJyZnM6IEZpbGUgcmVhZDogL21mcy9zZC9rZXJuZWwuaW1nCk1FU1M6
+MDA6MDA6MDIuNjA4NjA0OjA6IExvYWRlZCAna2VybmVsLmltZycgdG8gMHg4MDAwIHNpemUgMHg4
+Mjc2YwpNRVNTOjAwOjAwOjAyLjYxNDUxNjowOiBEZXZpY2UgdHJlZSBsb2FkZWQgdG8gMHgxYmZl
+NzcwMCAoc2l6ZSAweDg4NWIpCk1FU1M6MDA6MDA6MDIuNjIxNjMwOjA6IHVhcnQ6IFNldCBQTDAx
+MSBiYXVkIHJhdGUgdG8gMTAzNDQ4LjMwMDAwMCBIegpNRVNTOjAwOjAwOjAyLjYyODQ0MjowOiB1
+YXJ0OiBCYXVkIHJhdGUgY2hhbmdlIGRvbmUuLi4KTUVTUzowMDowMDowMi42MzE4NTc6MDogdWFy
+dDogQmF1ZCByYXRlCgo=
+
+--BBC44KKgg5AXvqcIIOar--
 
