@@ -2,155 +2,96 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A82EDC0219B
-	for <webhook@archiver.kernel.org>; Tue, 11 Feb 2025 17:30:25 +0000 (UTC)
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web11.123.1739295016412376349
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1858DC0219E
+	for <webhook@archiver.kernel.org>; Tue, 11 Feb 2025 18:42:37 +0000 (UTC)
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+ by mx.groups.io with SMTP id smtpd.web10.920.1739299353202251543
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Feb 2025 09:30:16 -0800
+ Tue, 11 Feb 2025 10:42:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=ju60th96;
- spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6e45258610bso28265976d6.1
-        for <yocto@lists.yoctoproject.org>; Tue, 11 Feb 2025 09:30:16 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=WDqAN/jB;
+ spf=pass (domain: gmail.com, ip: 209.85.219.46, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6ddcff5a823so39381986d6.0;
+        Tue, 11 Feb 2025 10:42:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739295015; x=1739899815; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=j2SUqE9l/T6/HRqK2dJkQpJCuZY1G4bqwaZwsMHKbhU=;
-        b=ju60th96MdJX81wAcz5jOvuAEvri6HOHUFN2uT2xpf9Y1OA3fYL2hN1AQ2d/TtR/IM
-         aNlC8xEQEI3H6dmeRQcnVrtZP8sIJUDWTDIEvvtvGGqoPEMjhAqM4WCmhwsVIhZwO8VQ
-         lJGcRVWvbDmB1UO5bAFps6McUrMJ6/Tf4GA9QDI1oWfNy8L50yRUrcYqIL3/xhroMg8t
-         MKOBtW2nA/8j0KTN/nV+Yl5j19QeASgwPrzwnNUnlWdLRg64ac3sP1M36AXLM6fT+9rO
-         pm8jboEZ38TdJcSpBpUigexreHFVyHNgNc0rfs2nSRefktrmxP/VGHtiSOwBHYhLnWWr
-         lQwg==
+        d=gmail.com; s=20230601; t=1739299352; x=1739904152; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lvfciSMH16E2qxLXJvnDRk4w3hrtZMJjcNmeEsDxM5A=;
+        b=WDqAN/jBKD0CnqRuEhtJsMjClxXEFeE/Aq/Vjt6L3LVlzpX8zWsUKwEDQa+IgXJPez
+         r+iWoXh7nJYgxDCV7bpT9lh0N57Fz40J7QeQ2+0l4dURJ7yuXf/c8F5auTgRfTSNbUsB
+         TN8Gwal72kDud+oYqP7KzFS+BjU8xP7DtK3BoD0PGk6feHs8ppr2dGnJAUMJrC0TC+oj
+         MfrjB1s4SC8fwDkV9yXZwKqv+/HqDx5HEaiE9xwnHXzol5ovYBPpyhtxGw+/VxqLHY2/
+         yADmiqEB4ohVR2nlfHwxK5IFamPz1SRy0dzm9L4YYjSxhldYtONdH6SJuEVLPs0NOfAQ
+         oDgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739295015; x=1739899815;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j2SUqE9l/T6/HRqK2dJkQpJCuZY1G4bqwaZwsMHKbhU=;
-        b=X2JdU6SuOGFwJMSrNn5XsqkUKPG/u/8xQXbgjxOFN/jIrKmsCA60K9ccAZ6/k/Yvei
-         RTZboVCcBVuM/PwVJ68hzosoPfc4h3HWqcOj/h2MEVOQoWE7Yt1llcoOkeORdKstbHK1
-         vFpOA2HfjBZ22xm4UgzWnrgzAKWDEhDz7Cta6HHytjUPK7qy+XlvCZoKV+f5aFNkrTGh
-         qD/ccWlw6cFPUUgAyOJiQSqHYn6VOL8tlTzqx5wWJewBn9RM08bI++hvtShtsx4nESjA
-         sgXWJAGVfjU3AsXhutzSZRGC1uy8iTE2H37njCD5X9lOxX70fug4A4mNbfIRQXEEbfHm
-         6Atw==
-X-Gm-Message-State: AOJu0Yy9/FuoFD3TSW5X4zXjK9dm3DDj2VAvAuagoQ4yoSoeRliQUAp9
-	HQdg0OizuU9cHJbM6jME2NM2rEJ3xvyJUH2ZYd4+WYooqd6QnoK7xnzRIOEn/Viu0Q0Rl2YM+Hk
-	m9I+C/AYCC/6rXadj/z6E2DhOTSmqO2gm
-X-Gm-Gg: ASbGncs6JmIaCm0SGPZ5sBl8WbbT54eJ91Dd/18Zklmugy5DNA3OA0wZW795YqV6LEw
-	4TRj0Tb6EmkTLuyxLBr9k3+IK2Iv9osgjYwI76EDrlS+RtqKSniNYJdn+T4AdvkXRQcKaHqA6Pz
-	JeK3VSskBrHXt2tcvSZzoan06CQUil9UA=
-X-Google-Smtp-Source: AGHT+IEfE6ogVw8CHbwKkRKWrRWS30JZNRawwL/wP2MHjcY5HKFxXUBg60D1kFYrURYF9lEmDiEp7h1vjvob8ICNGZ0=
-X-Received: by 2002:a05:6214:4114:b0:6d8:b733:47c with SMTP id
- 6a1803df08f44-6e468072943mr55734946d6.22.1739295015401; Tue, 11 Feb 2025
- 09:30:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739299352; x=1739904152;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lvfciSMH16E2qxLXJvnDRk4w3hrtZMJjcNmeEsDxM5A=;
+        b=a9colaNMW4UAhygCdrHqRFQJh1K0PVHePBeXEJQL5OuHqDzDTa+8UvhQkgIX7NGMyK
+         iJjZDkDJTnXHv2uRk7XVYtUYR9vW6ibO23N5dvYkmgob5UJ5odNUCPatJOhB0zjj6VrH
+         FNH4GS23oai5v//2EdNO2TUeMFauNRACAm4Tmwdd4yOf4fcI7DB7y6rikgpKpLmHBOT9
+         IcYZBVQOU3ePgEdayyVI+2M6XCq6rOvGH7xRGJpuI4PN5S05P2AXwmQIbeDsq8yCyfBs
+         fj5b7eT/1AzGesCy2EEU02h2H/10m9CITFl7ihgprF4+pd36Hn0WQa5tAKhEzUy6+msK
+         iWhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWfvA9My8IOIqpLXdp1jE1fPVG5uRslgb8fj2lRATKAe0en3DV94pUBI7X8bnKpMsfGGsz82eWA9tRsyl0=@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yye+3dTPt/aWPfDzQXgvQIH9yy9MZHhRT2Ral6nVkDRecmhBf4K
+	Bg9Fb7Kb9PUmzF0+P/wiXPY1zXH6MwOBQM+1ZL4Z+6TVoVyO022qTelOBSCEIygSYoN3elADg01
+	lCR8cKK2tTej+j9c/x4rwbuErruM81w==
+X-Gm-Gg: ASbGncu9hJg10SdUSWWh3TfrTCMJ/I4y3SmgQqzzl/FOwHIjoSl2SytDMFmvFn88JbN
+	N3Y2yLC4KseJlkwiFDsE6wgRjBVpCey8LvUel5pHSSm1QmdrHTDOOH/vbv6qtSTfYE6jHHYBDS3
+	+HCygreigcCoRWLZlUyuXDOIAE9hW8Kdg=
+X-Google-Smtp-Source: AGHT+IGU0tvDgrim2fNnpgLGjl92AfSV22V1q9hInNSuqjmYvNTEtlLC7UQiAE7a9kRYbhiz/YYyS3C0zGoZSgzRg7Y=
+X-Received: by 2002:a05:6214:5016:b0:6d8:8cb0:b40d with SMTP id
+ 6a1803df08f44-6e46ede4467mr6329456d6.39.1739299352187; Tue, 11 Feb 2025
+ 10:42:32 -0800 (PST)
 MIME-Version: 1.0
-References: <leMn.1739290302619551038.wlRL@lists.yoctoproject.org> <3a8c9af1-8b3c-426d-8ddb-038981c5e561@gmail.com>
-In-Reply-To: <3a8c9af1-8b3c-426d-8ddb-038981c5e561@gmail.com>
+References: <CAK5yBb9Fr9MFy5uub2_pTRWmVbt96OWBJ5ty+eAB9Qn+LYa_Wg@mail.gmail.com>
+In-Reply-To: <CAK5yBb9Fr9MFy5uub2_pTRWmVbt96OWBJ5ty+eAB9Qn+LYa_Wg@mail.gmail.com>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 11 Feb 2025 18:30:04 +0100
-X-Gm-Features: AWEUYZl5xS87ASyo9dJYFTlxLG3_8ivlbm4Zf-SaGAWqglkwiz94ldCnpddJ9NY
-Message-ID: <CANNYZj8VvtKSDnCn0SVAj7LZeVzeOeKqh4y_2hcKti+TegnfSg@mail.gmail.com>
-Subject: Re: [yocto] Installing pre-built DEB files
-To: yocto@lists.yoctoproject.org, skandigraun@gmail.com
-Cc: r@cmss.com
+Date: Tue, 11 Feb 2025 19:42:20 +0100
+X-Gm-Features: AWEUYZl3ITgRLWG6uLIKKHwpXswMJBtjk07tdhRsE2l5CcZkgtuaAXbzlzsy-YQ
+Message-ID: <CANNYZj-PbWQDa5hAc5X6sqHVMvJ0QE01XXwytya8rprwvSsqag@mail.gmail.com>
+Subject: Re: [OE-core] Yocto Project Status 11 Feb. 2025 (WW07)
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: ",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
+	yocto-status@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 11 Feb 2025 17:30:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64770
+ <yocto@lists.yoctoproject.org>; Tue, 11 Feb 2025 18:42:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64771
 
-No. Do not do this. It's not going to work, especially when you take
-binaries built for a different system. I do not have time to give a
-lecture about why, you just need to trust me.
+On Tue, 11 Feb 2025 at 16:57, Stephen Jolley via
+lists.openembedded.org
+<sjolley.yp.pm=3Dgmail.com@lists.openembedded.org> wrote:
+> We=E2=80=99d like to request help to process the open github pull request=
+s for openembedded-core and bitbake:
+>
+> https://github.com/openembedded/openembedded-core/pulls
+>
+> https://github.com/openembedded/bitbake/pulls
+>
+> Having these open doesn=E2=80=99t look good for the projects and we can=
+=E2=80=99t disable them, some have been open for a long time. We did alread=
+y clean up the poky pull requests.
 
-We have a recipe that builds parted from source:
-https://git.yoctoproject.org/poky/tree/meta/recipes-extended/parted
+I'm sorry but I have to say a couple of unpleasant things. Here goes.
 
-Use it.
+The only processing I would be willing to do is mass-closing these
+pull requests with a polite note to submit them according to the
+official process. Otherwise this tacitly admits github as a valid way
+to contribute, and we're not ready for that, and possible will never
+be.
+
+While we're at it, how were these repositories created in the first
+place, and what was the plan for the pull requests they would attract?
+Should we delete these repositories now?
 
 Alex
-
-On Tue, 11 Feb 2025 at 18:05, Gyorgy Sarvari via
-lists.yoctoproject.org <skandigraun=gmail.com@lists.yoctoproject.org>
-wrote:
->
-> Your first destination should be the log.do_install file in the WORKDIR
-> of the recipe, which should have the output of the dpkg commands. That
-> should shed some light on this mystery, hopefully.
->
-> Sidenote: DEB files are actually two compressed tar files in a single
-> archive. If nothing else works, you can extract the tar files with "ar x
-> $DEBFILE" - the data.tar.* file has the content that you can just copy
-> to your rootfs (it also has the folder structure prepared). If you pass
-> the tar.* files in the SRC_URI, even the extraction could be handled by
-> bitbake. (Assuming that no post-install magic is done by the deb files,
-> which would be at least unusual for libraries and -dev packages)
->
-> On 11.02.25 17:11, R Keith Beal via lists.yoctoproject.org wrote:
-> > I am working with NXP's Flex-Builder.
-> > I need to add the libraries and headers for parted.
-> > On Ubuntu there is a package called libprated-dev I am trying to
-> > replicate.
-> > The LAYERSCAPE SDK is using bitbake 1.5.
-> > I know I probably shouldn't be installing DEBs directly, but, adding
-> > recipes for libprated and all of its dependencies is beyond the scope
-> > of the project.
-> >
-> > I came-up with this recipe, it reports no errors but the files are not
-> > installed in the RFS.
-> >
-> >     SUMMARY = "Development libraries and headers for libparted"
-> >     #SECTION = "console/tools"
-> >     LICENSE="CLOSED"
-> >     LIC_FILES_CHKSUM=""
-> >     SRC_URI = " \
-> >         file://libdevmapper-event1.02.1_1.02.155-3_arm64.deb \
-> >         file://libudev-dev_257.2-3_arm64.deb \
-> >         file://libdevmapper-dev_1.02.201-1_arm64.deb \
-> >         file://libparted-dev_3.6-4+b1_arm64.deb \
-> >     "
-> >     SRCREV = ""
-> >     PV = "0.1.0"
-> >     S = "${WORKDIR}/git"
-> >     DEPENDS = "parted"
-> >     # inherit pkgconfig
-> >     # Install in this order
-> >     # libdevmapper-event1.02.1_1.02.155-3_arm64.deb
-> >     # libudev-dev_257.2-3_arm64.deb
-> >     # libdevmapper-dev_1.02.201-1_arm64.deb
-> >     # libparted-dev_3.6-4+b1_arm64.deb
-> >     do_install() {
-> >         touch ${STAGING_DIR_NATIVE}/var/lib/dpkg/status
-> >         ${STAGING_BINDIR_NATIVE}/dpkg --instdir=${D}/ \
-> >         --admindir=${STAGING_DIR_NATIVE}/var/lib/dpkg/ \
-> >          -i ${WORKDIR}/libdevmapper-event1.02.1_1.02.155-3_arm64.deb
-> >         ${STAGING_BINDIR_NATIVE}/dpkg --instdir=${D}/ \
-> >         --admindir=${STAGING_DIR_NATIVE}/var/lib/dpkg/ \
-> >          -i ${WORKDIR}/libudev-dev_257.2-3_arm64.deb
-> >         ${STAGING_BINDIR_NATIVE}/dpkg --instdir=${D}/ \
-> >         --admindir=${STAGING_DIR_NATIVE}/var/lib/dpkg/ \
-> >          -i ${WORKDIR}/libdevmapper-dev_1.02.201-1_arm64.deb
-> >         ${STAGING_BINDIR_NATIVE}/dpkg --instdir=${D}/ \
-> >         --admindir=${STAGING_DIR_NATIVE}/var/lib/dpkg/ \
-> >          -i ${WORKDIR}/libparted-dev_3.6-4+b1_arm64.deb
-> >     }
-> >
-> >
-> >
-> >
-> >
-> >
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64769): https://lists.yoctoproject.org/g/yocto/message/64769
-> Mute This Topic: https://lists.yoctoproject.org/mt/111125016/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
