@@ -1,261 +1,320 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <marek.belisko@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 003AFC02198
-	for <webhook@archiver.kernel.org>; Wed, 12 Feb 2025 11:20:05 +0000 (UTC)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
- by mx.groups.io with SMTP id smtpd.web11.13426.1739359204218878332
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B614C021A1
+	for <webhook@archiver.kernel.org>; Wed, 12 Feb 2025 12:33:16 +0000 (UTC)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web11.14626.1739363590149828015
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 Feb 2025 03:20:04 -0800
+ Wed, 12 Feb 2025 04:33:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile.fr header.s=google header.b=zceQ7IO3;
- spf=pass (domain: smile.fr, ip: 209.85.128.44, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43944c51e41so33767755e9.0
-        for <yocto@lists.yoctoproject.org>; Wed, 12 Feb 2025 03:20:03 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ar9dAF1Q;
+ spf=pass (domain: gmail.com, ip: 209.85.221.51, mailfrom: marek.belisko@gmail.com)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-38dd93ace00so2111249f8f.1
+        for <yocto@lists.yoctoproject.org>; Wed, 12 Feb 2025 04:33:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1739359202; x=1739964002; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1739363588; x=1739968388; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=P1MFb0uWMBwcayTjzFruv+sTsW1m5ogzZR695U4s9Og=;
-        b=zceQ7IO35YEA7xgudJ4mpr+v4M1TtQcG4g//CIAVoVoYcxUlEs+Mqo1jR/J5G+C9jM
-         o6q2Nu5eBaclkE3Y86FwJEWDINeaAeeXxpLS6ZYgDvckxiQVtdTV0lyx/oXwT3lNFaS3
-         p1mbVy/94ggpHbadCRHLf3Qh1+mK1qhdqa9T0=
+        bh=bhz87qPeyKTqe3W7aEwEMgsc22csUXUkjbyj/ZdXSIg=;
+        b=ar9dAF1QWoLVsgm0Zsn882BxVJ+LakB6i0SVTNeZ+TD8ZIf+d7hD/nBUrxIKcx6CsB
+         8TlDz1x34vcXywlMjYKf8LXixqpn+jNpwbQ7KInEzsjYOFoV8fB+CUj3E3Cd9hwPT7M5
+         S3DXlH4rpS/u1iVF95EJLxDQD9CDgbkCnQ1d+4LQZMCyhsMfj30fgt2xJK79z4CsTyr5
+         gUj8HH2XnxZsZX5LGhxpBn6SdTBFnYzioR1HOpeiYWEap4L2QKLBd1SJR1v3dMeHiDz8
+         2jCrl8C7kUwocVkLtVpPqLp/dLE76W0u9CL2xjWk6b9ExcOV6Ax9rgMP2m7qUImfTVAf
+         890Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739359202; x=1739964002;
+        d=1e100.net; s=20230601; t=1739363588; x=1739968388;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=P1MFb0uWMBwcayTjzFruv+sTsW1m5ogzZR695U4s9Og=;
-        b=tg1aICNl2E15E2D9roEwLE8OawgkcpZEC8nOeOJvNMf5az9VuVnbww95YjMha4Z7/I
-         N6Ng2jgzyBmlfwFhdTyaWB6Gt5p7AsLUQfRGaaoDfDH2ubxv/xg1BSuLdePOI9RYgj75
-         skH4ThCt03iu2WhZWYvTVM4/gRspa/4lWwm6Z5EnZFpgVTwh2LcpOEtx14wRAQEFBXPy
-         Zz22Vto3eLS7uS1bbvWvy0v68gyGau6TWqE8HDdzHVU9A++XWX8HZ8UxU3g7rPVQTZla
-         CWJ6SjIjAa6WzDjnN8Dzxcla1jGbsrOmqJIeCU7pihztuvEFWX1SCREQUxpXeV55xNh9
-         OjEA==
-X-Gm-Message-State: AOJu0Yw3ZWIYcIWKhTgtRec4DQQPiimgZyQzCaO5mRuSRJCyPsq96yB8
-	OBSQMuKCjnOoA20rdG9xpOmDyMOubKF8BY5AAvyM7bvz6QOPAeZZjYxkuAqjfZStjg36qYq3YE2
-	JfZ/CmtbU+NaYGX/YJDp7OSQQr2SifvG1NaNicg==
-X-Gm-Gg: ASbGncs07iH7hH81XrejPGvxzxU1XR6JCn7rChm9IIFXrWuqaleOS0v+e0Esrdx7Y31
-	oJA9zZuNzXll5KE7mGNT9Z2/GxMphAaI0Ic537hQg2Bj1SvU6r84rHTkqAOjs2980BT99nnY1SV
-	SkVOJmk6o9D05q0t74D6wVrlJn7g+j
-X-Google-Smtp-Source: AGHT+IGU0Vpkvc07s5q97hy4xo+1DhJLKEfYYCy8l6W2/WHU0CTPmmbyAFyLC8M1zquyJArQrkG7nl0W7PuhlSXidkk=
-X-Received: by 2002:a5d:64cd:0:b0:385:deca:f7cf with SMTP id
- ffacd0b85a97d-38dea25bb44mr2372222f8f.8.1739359202597; Wed, 12 Feb 2025
- 03:20:02 -0800 (PST)
+        bh=bhz87qPeyKTqe3W7aEwEMgsc22csUXUkjbyj/ZdXSIg=;
+        b=R3402uShMHOjj5WFtl3ckLRDAClN6JttvfjfP3fiYyBl4EicOe7uQ8C2ucEptsV+JF
+         79bKJrU/OLkIiOOE9BtA0XIB6g3kGwH20W1XLaeMUWeE+kDyITGIUfLQMQxqZGEPZmin
+         gMu9PU6TXSlVtN2DAukkyaVTb+vtaZAo0hQbe2fF+2TXcCTMWaDl22HLjcEGl7WcJayT
+         /EPB9aVJFbenxWzSRaoEudll09gWxCNCZhzuvsr/zi/XHaDarXYzVxBwwhkHen+pZvzX
+         wQHmEByUK9jtrbA80dWqWVaKxefsPlT28yziGpgMet8OuklbZNmAaxXnC93nJmT7GKNM
+         JjIg==
+X-Gm-Message-State: AOJu0YyZ7/5o4mENo4mRwYKUE27eodWwKXW21VdtKu3qSdaAkc3frC58
+	rU/wLe2aMO83Kyfla66uVvuoIFrkImx77wb9UkOSrQyQyBSLxoNcF7ogz+AdU7SPuil+uklXFHj
+	Oibba9pabgcZddh181pb9NOQ4w0gtjpcgVtE=
+X-Gm-Gg: ASbGncvrkNi7QSJBx+4Ud4Id7+8whvxBmRSl21s51XGNeJLT6hp2jq2bsvG2/MGCGMm
+	1V4QX9pNhVkTazeMmPKU8udq+hGWuJif+wvHgsKSoLhPvcdUrzthwwVydigpjfiCL4Qc5On4z
+X-Google-Smtp-Source: AGHT+IGq7ZTts3RUTlwW2GRhiKiJDt8IBALqB0C+VV8RJAhG034uGceKxB+q+eob2v/Mc7i/98RLmrO1rwaYS++zxr0=
+X-Received: by 2002:a5d:5989:0:b0:38d:e15e:17e9 with SMTP id
+ ffacd0b85a97d-38dea2d5fefmr2863345f8f.35.1739363587993; Wed, 12 Feb 2025
+ 04:33:07 -0800 (PST)
 MIME-Version: 1.0
-References: <CAK5yBb9Fr9MFy5uub2_pTRWmVbt96OWBJ5ty+eAB9Qn+LYa_Wg@mail.gmail.com>
- <CANNYZj-PbWQDa5hAc5X6sqHVMvJ0QE01XXwytya8rprwvSsqag@mail.gmail.com>
- <d22a4cec5e317e62f1f44d8d9a810cf4745ccb48.camel@linuxfoundation.org>
- <CAMSfU+6d7gvYkjC5sbUPu6D_hOOF43ZUnM_NMEwmLUxZn6ysSA@mail.gmail.com> <4e883a56eb9b74a5663d7ad258194d16b1c79912.camel@linuxfoundation.org>
-In-Reply-To: <4e883a56eb9b74a5663d7ad258194d16b1c79912.camel@linuxfoundation.org>
-From: Yoann Congal <yoann.congal@smile.fr>
-Date: Wed, 12 Feb 2025 12:19:49 +0100
-X-Gm-Features: AWEUYZmxHXjgDwYiGrlj_mLdnuEet_PwPA1RKLb2ME_a3dqAJ3ntKi9Z509vtn0
-Message-ID: <CAMSfU+44qwScnoDP4As37TNHYvwx5mBmTdGEQgq_VVz7woh6sQ@mail.gmail.com>
-Subject: Re: [yocto] [OE-core] Yocto Project Status 11 Feb. 2025 (WW07)
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto Mailing list <yocto@lists.yoctoproject.org>, 
-	Alexander Kanavin <alex.kanavin@gmail.com>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000686f67062df01f39"
+References: <CAAfyv37oMLcEqExL57bReJcF_h56=fv9_8RFrvNONVM=gX416A@mail.gmail.com>
+ <05bd87e8-d7ac-4764-a252-b6efedeb0ae6@cherry.de> <181D9A3A290C6D2C.30382@lists.yoctoproject.org>
+In-Reply-To: <181D9A3A290C6D2C.30382@lists.yoctoproject.org>
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Wed, 12 Feb 2025 13:32:56 +0100
+X-Gm-Features: AWEUYZkKtRFV8ntSUth2kFfSzY_XH09CrmfeVvruMXp4ZFEAoRcyRf0EA7_hE54
+Message-ID: <CAAfyv34Y8KiXFKpJSKm4mkq3UsqVgCMk8dQr3UJ1fKQEj9ZXYg@mail.gmail.com>
+Subject: Re: [yocto] [meta-rockchip] rk3328 loader for emmc flashing
+To: yocto@lists.yoctoproject.org, marek.belisko@gmail.com
+Cc: Quentin Schulz <quentin.schulz@cherry.de>
+Content-Type: multipart/alternative; boundary="000000000000cc3939062df124d7"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 12 Feb 2025 11:20:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64782
+ <yocto@lists.yoctoproject.org>; Wed, 12 Feb 2025 12:33:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64783
 
---000000000000686f67062df01f39
+--000000000000cc3939062df124d7
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Le mer. 12 f=C3=A9vr. 2025 =C3=A0 10:51, Richard Purdie <
-richard.purdie@linuxfoundation.org> a =C3=A9crit :
+Hi,
+On Fri, Jan 24, 2025 at 11:30=E2=80=AFAM Marek Belisko via lists.yoctoproje=
+ct.org
+<marek.belisko=3Dgmail.com@lists.yoctoproject.org> wrote:
 
-> On Wed, 2025-02-12 at 09:08 +0100, Yoann Congal wrote:
-> > Le mer. 12 f=C3=A9vr. 2025 =C3=A0 00:36, Richard Purdie via lists.yocto=
-project.org
-> <richard.purdie=3Dlinuxfoundation.org@lists.yoctoproject.org> a =C3=A9cri=
-t :
-> > > The repositories were added to try and share bandwidth costs, give
-> > > people easier mirrors and various other justifications. I warned
-> > > strongly about the pull request problems at the time, I was told it
-> > > would get handled and people would help and I was over reacting. Some
-> > > of the people who made those offers aren't active with the project an=
-y
-> > > more, other things just drifted with time. At one point I ended up
-> > > having to add those mirrors to my own push scripts and maintain them
-> > > because nobody else was willing and we had complaints they were not u=
-p
-> > > to date.
-> > >
-> > > You used to be able to disable pull requests for six month periods, i=
-t
-> > > looks like you can no longer do that and it was a pain having to try
-> > > and remember anyway.
-> > >
-> > > The bandwidth/mirror/backup benefits are valid and I'd be reluctant t=
-o
-> > > delete them as some people can only discover things through github to=
-o.
-> > > Google indexing doesn't work well with our own server.
-> > >
-> > > So I guess I made my own peace with their existence. I know touching
-> > > them will make it look more like a condoned submission method but I
-> > > really don't see many good options here. Removing them is a simple ea=
-sy
-> > > option but life sometimes isn't easy/simple.
-> >
-> > We can try things to push users out of github :
-> > * Leaving a fake PR at the top of the list with a title along the
-> > line of "Please don't open a PR but instead go to <contributing guide
-> > link>"
-> > * using the PR template (the text pre-filled for the new PR
-> > description) to convey the same info
-> > * A bot that automatically answer the PRs with a comment with the
-> > same idea (the bot could also close the PR but that might be a bit
-> > harsh)
+> Hi Quentin,
 >
-> If anyone has experience of setting this up I'd welcome help. The
-> things I did learn briefly looking yesterday are that:
+> On Fri, Jan 24, 2025 at 11:15=E2=80=AFAM Quentin Schulz <quentin.schulz@c=
+herry.de>
+> wrote:
 >
-> * the template requires putting .git* files in the repo which is a bit
-> annoying
+>> Hi Marek,
+>>
+>> On 1/24/25 11:04 AM, Marek Belisko via lists.yoctoproject.org wrote:
+>> > Hello,
+>> >
+>> > I'm trying to add support for rk3328-evb. I've added a machine and
+>> built a
+>> > minimal image which I would like to flash to emmc. For flashing I'm
+>> usually
+>> > using rkdeveloptool which download some binary blok (loader) and then
+>> can
+>> > flash wic image (at least I'm doing that for radxa boards). Does anybo=
+dy
+>> > have an idea where I can find such loader pls? I've tried this :
+>> > https://xdaforums.com/attachments/for-rk3328-devices-rar.5168743/ but
+>> none
+>> > of them works (it prints: Opening loader failed, exiting download
+>> boot!).
+>> > I've tried to use MiniLoaderAll.bin from the vendor but this one just
+>> > prints some garbage to the serial port and I cannot download wic after
+>> that.
+>> >
+>>
+>> I do not have any RK3328 board available, but the instructions so far
+>> are the same for RK3399, PX30 and RK3588 (the boards I do have access to=
+).
+>>
+>> https://github.com/rockchip-linux/rkbin
+>> tools/boot_merger RKBOOT/RK3328MINIALL.ini
+>>
+>> This will generate an rk3328_loader_v1.21.250.bin file at the root of
+>> rkbin directory. Use that as argument for `rkdeveloptool db` command.
+>>
+> Thanks a lot for that.
 >
-> * there is a way to do it in a separate repo but that would apply to
-> all repos, not just oe-core and bitbake, at least from what I read
->
-> * our type of account may or may not have some of the features needed
-> for bots and so on
->
-> So I'm not against any of these but it could do with someone with some
-> experience. I can probably learn what is needed but I have time
-> challenges like everyone else.
->
-> There will probably be a need to maintain any bot going forward too.
->
+I made build from meta-rockchip with added rk3328 machine (basically copy
+of some other 3328) and was able to flash it but TPL hangs in following way=
+:
+ U-Boot TPL 2022.01 (Jan 10 2022 - 18:46:34)
+data training error
+col error
+data training error
+DDR3, 333MHz
+BW=3D16 Col=3D12 Bk=3D8 CS0 Row=3D16 CS=3D1 Die BW=3D8 Size=3D4096MB
 
-I volunteer to setup a PoC in my repos to see what is possible given those
-constraints.
+It's some vendor custom board and they don't provide support but from what
+I understand it's just close of evk.
+Do you have some idea what should be checked before I dig into the u-boot?
+Thanks
 
-I'm more experienced in Gitlab than GitHub but I should be able to
-translate.
+>
+>> If your board is using a different baudrate or console mux/controller,
+>> you can modify its configuration for the DDR bin blob (first stage
+>> bootloader contained in rk3328_loader_*.bin) by editing
+>> tools/ddrbin_param.txt and then calling tools/ddrbin_tool.py rk3328 on
+>> bin/rk33/rk3328_ddr_*.bin. Since there are two, you need to know which
+>> one to edit. Reading RKBOOT/RK3328MINIALL.ini, the 333MHz one is used.
+>>
+>> FYI, you can also replace rkdeveloptool with rockusb from Collabora,
+>> available here:
+>> https://github.com/collabora/rockchiprs/tree/main/rockusb/examples What
+>> I like about it is that it handles bmap files for flashing on the eMMC :=
+)
+>>
+> Oh perfect. Didn't know about that one. Maybe we can put that info to
+> meta-rockchip wiki/README.
+>
+>>
+>> Cheers,
+>> Quentin
+>>
+>
+> Thanks and BR,
+>
+> marek
+>
+> --
+> as simple and primitive as possible
+> -------------------------------------------------
+> Marek Belisko - OPEN-NANDRA
+> Freelance Developer
+>
+> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> Tel: +421 915 052 184
+> skype: marekwhite
+> twitter: #opennandra
+> web: http://open-nandra.com
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#64624):
+> https://lists.yoctoproject.org/g/yocto/message/64624
+> Mute This Topic: https://lists.yoctoproject.org/mt/110787954/900721
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> marek.belisko@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+> BR,
 
-Obviously, if anyone has direct experience on that, don't hesitate to speak
-up.
+marek
 
-What kind of account does the yocto project has on GitHub?
+--=20
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
-Cheers,
->
-> Richard
->
->
->
->
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
---000000000000686f67062df01f39
+--000000000000cc3939062df124d7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><div><br><br><br><div class=3D"gmail_quote gmail_quote_co=
-ntainer"><div dir=3D"ltr" class=3D"gmail_attr">Le mer. 12 f=C3=A9vr. 2025 =
-=C3=A0 10:51, Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoun=
-dation.org">richard.purdie@linuxfoundation.org</a>&gt; a =C3=A9crit=C2=A0:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Wed, 2025-02-=
-12 at 09:08 +0100, Yoann Congal wrote:<br>
-&gt; Le=C2=A0mer. 12 f=C3=A9vr. 2025 =C3=A0=C2=A000:36, Richard Purdie via =
-<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer noreferrer" tar=
-get=3D"_blank">lists.yoctoproject.org</a> &lt;richard.purdie=3D<a href=3D"m=
-ailto:linuxfoundation.org@lists.yoctoproject.org" target=3D"_blank" rel=3D"=
-noreferrer">linuxfoundation.org@lists.yoctoproject.org</a>&gt; a =C3=A9crit=
-=C2=A0:<br>
-&gt; &gt; The repositories were added to try and share bandwidth costs, giv=
-e<br>
-&gt; &gt; people easier mirrors and various other justifications. I warned<=
-br>
-&gt; &gt; strongly about the pull request problems at the time, I was told =
-it<br>
-&gt; &gt; would get handled and people would help and I was over reacting. =
-Some<br>
-&gt; &gt; of the people who made those offers aren&#39;t active with the pr=
-oject any<br>
-&gt; &gt; more, other things just drifted with time. At one point I ended u=
-p<br>
-&gt; &gt; having to add those mirrors to my own push scripts and maintain t=
-hem<br>
-&gt; &gt; because nobody else was willing and we had complaints they were n=
-ot up<br>
-&gt; &gt; to date.<br>
-&gt; &gt; <br>
-&gt; &gt; You used to be able to disable pull requests for six month period=
-s, it<br>
-&gt; &gt; looks like you can no longer do that and it was a pain having to =
-try<br>
-&gt; &gt; and remember anyway.<br>
-&gt; &gt; <br>
-&gt; &gt; The bandwidth/mirror/backup benefits are valid and I&#39;d be rel=
-uctant to<br>
-&gt; &gt; delete them as some people can only discover things through githu=
-b too.<br>
-&gt; &gt; Google indexing doesn&#39;t work well with our own server.<br>
-&gt; &gt; <br>
-&gt; &gt; So I guess I made my own peace with their existence. I know touch=
-ing<br>
-&gt; &gt; them will make it look more like a condoned submission method but=
- I<br>
-&gt; &gt; really don&#39;t see many good options here. Removing them is a s=
-imple easy<br>
-&gt; &gt; option but life sometimes isn&#39;t easy/simple.<br>
+<div dir=3D"ltr"><div>Hi,</div><div dir=3D"ltr">On Fri, Jan 24, 2025 at 11:=
+30=E2=80=AFAM Marek Belisko via <a href=3D"http://lists.yoctoproject.org">l=
+ists.yoctoproject.org</a> &lt;marek.belisko=3D<a href=3D"mailto:gmail.com@l=
+ists.yoctoproject.org">gmail.com@lists.yoctoproject.org</a>&gt; wrote:</div=
+><div class=3D"gmail_quote gmail_quote_container"><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Quentin,</div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fr=
+i, Jan 24, 2025 at 11:15=E2=80=AFAM Quentin Schulz &lt;<a href=3D"mailto:qu=
+entin.schulz@cherry.de" target=3D"_blank">quentin.schulz@cherry.de</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Marek,=
+<br>
+<br>
+On 1/24/25 11:04 AM, Marek Belisko via <a href=3D"http://lists.yoctoproject=
+.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a> wrote=
+:<br>
+&gt; Hello,<br>
 &gt; <br>
-&gt; We can try things to push users out of github :<br>
-&gt; * Leaving a fake PR at the top of the list with a title along the<br>
-&gt; line of &quot;Please don&#39;t open a PR but instead go to &lt;contrib=
-uting guide<br>
-&gt; link&gt;&quot;<br>
-&gt; * using the PR template (the text pre-filled for the new PR<br>
-&gt; description) to convey the same info<br>
-&gt; * A bot that automatically answer the PRs with a comment with the<br>
-&gt; same idea (the bot could also close the PR but that might be a bit<br>
-&gt; harsh)<br>
+&gt; I&#39;m trying to add support for rk3328-evb. I&#39;ve added a machine=
+ and built a<br>
+&gt; minimal image which I would like to flash to emmc. For flashing I&#39;=
+m usually<br>
+&gt; using rkdeveloptool which download some binary blok (loader) and then =
+can<br>
+&gt; flash wic image (at least I&#39;m doing that for radxa boards). Does a=
+nybody<br>
+&gt; have an idea where I can find such loader pls? I&#39;ve tried this :<b=
+r>
+&gt; <a href=3D"https://xdaforums.com/attachments/for-rk3328-devices-rar.51=
+68743/" rel=3D"noreferrer" target=3D"_blank">https://xdaforums.com/attachme=
+nts/for-rk3328-devices-rar.5168743/</a> but none<br>
+&gt; of them works (it prints: Opening loader failed, exiting download boot=
+!).<br>
+&gt; I&#39;ve tried to use MiniLoaderAll.bin from the vendor but this one j=
+ust<br>
+&gt; prints some garbage to the serial port and I cannot download wic after=
+ that.<br>
+&gt; <br>
 <br>
-If anyone has experience of setting this up I&#39;d welcome help. The<br>
-things I did learn briefly looking yesterday are that:<br>
-<br>
-* the template requires putting .git* files in the repo which is a bit<br>
-annoying<br>
-<br>
-* there is a way to do it in a separate repo but that would apply to<br>
-all repos, not just oe-core and bitbake, at least from what I read<br>
-<br>
-* our type of account may or may not have some of the features needed<br>
-for bots and so on<br>
-<br>
-So I&#39;m not against any of these but it could do with someone with some<=
+I do not have any RK3328 board available, but the instructions so far <br>
+are the same for RK3399, PX30 and RK3588 (the boards I do have access to).<=
 br>
-experience. I can probably learn what is needed but I have time<br>
-challenges like everyone else.<br>
 <br>
-There will probably be a need to maintain any bot going forward too.<br></b=
-lockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"auto">I volun=
-teer to setup a PoC in my repos to see what is possible given those constra=
-ints.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I&#39;m more exper=
-ienced in Gitlab than GitHub but I should be able to translate.</div><div d=
-ir=3D"auto"><br></div><div dir=3D"auto">Obviously, if anyone has direct exp=
-erience on that, don&#39;t hesitate to speak up.</div><div dir=3D"auto"><br=
-></div><div dir=3D"auto">What kind of account does the yocto project has on=
- GitHub?</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"g=
-mail_quote gmail_quote_container"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
+<a href=3D"https://github.com/rockchip-linux/rkbin" rel=3D"noreferrer" targ=
+et=3D"_blank">https://github.com/rockchip-linux/rkbin</a><br>
+tools/boot_merger RKBOOT/RK3328MINIALL.ini<br>
+<br>
+This will generate an rk3328_loader_v1.21.250.bin file at the root of <br>
+rkbin directory. Use that as argument for `rkdeveloptool db` command.<br></=
+blockquote><div>Thanks a lot for that.</div></div></div></blockquote><div>I=
+ made build from meta-rockchip with added rk3328 machine (basically copy of=
+ some other 3328) and was able to flash it but TPL hangs in following way:<=
+br>=C2=A0U-Boot TPL 2022.01 (Jan 10 2022 - 18:46:34)</div>data training err=
+or<br>col error<br>data training error<br>DDR3, 333MHz<br>BW=3D16 Col=3D12 =
+Bk=3D8 CS0 Row=3D16 CS=3D1 Die BW=3D8 Size=3D4096MB</div><div class=3D"gmai=
+l_quote gmail_quote_container"><br></div><div class=3D"gmail_quote gmail_qu=
+ote_container">It&#39;s some vendor custom board and they don&#39;t provide=
+ support but from what I understand it&#39;s just close of evk.=C2=A0</div>=
+<div class=3D"gmail_quote gmail_quote_container">Do you have some idea what=
+ should be checked before=C2=A0I dig into the u-boot? Thanks<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail=
+_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+If your board is using a different baudrate or console mux/controller, <br>
+you can modify its configuration for the DDR bin blob (first stage <br>
+bootloader contained in rk3328_loader_*.bin) by editing <br>
+tools/ddrbin_param.txt and then calling tools/ddrbin_tool.py rk3328 on <br>
+bin/rk33/rk3328_ddr_*.bin. Since there are two, you need to know which <br>
+one to edit. Reading RKBOOT/RK3328MINIALL.ini, the 333MHz one is used.<br>
+<br>
+FYI, you can also replace rkdeveloptool with rockusb from Collabora, <br>
+available here: <br>
+<a href=3D"https://github.com/collabora/rockchiprs/tree/main/rockusb/exampl=
+es" rel=3D"noreferrer" target=3D"_blank">https://github.com/collabora/rockc=
+hiprs/tree/main/rockusb/examples</a> What <br>
+I like about it is that it handles bmap files for flashing on the eMMC :)<b=
+r></blockquote><div>Oh perfect. Didn&#39;t know about that one. Maybe we ca=
+n put that info to meta-rockchip wiki/README.</div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex">
+<br>
 Cheers,<br>
+Quentin<br>
+</blockquote></div><div><br clear=3D"all"></div><div>Thanks and BR,</div><d=
+iv><br></div><div>marek</div><div><br></div><span class=3D"gmail_signature_=
+prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature">as simple =
+and primitive as possible<br>----------------------------------------------=
+---<br>Marek Belisko - OPEN-NANDRA<br>Freelance Developer<br><br>Ruska Nova=
+ Ves 219 | Presov, 08005 Slovak Republic<br>Tel: +421 915 052 184<br>skype:=
+ marekwhite<br>twitter: #opennandra<br>web: <a href=3D"http://open-nandra.c=
+om" target=3D"_blank">http://open-nandra.com</a></div></div>
 <br>
-Richard<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#64624): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/64624" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/64624</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/110787954/900=
+721" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/110787954/900721</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:marek.belisko@gmail.com" target=3D"_blank">marek=
+.belisko@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 <br>
-<br>
-<br>
-</blockquote></div></div></div>
+</blockquote></div><div>BR,</div><div><br></div><div>marek</div><div><br></=
+div><span class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" c=
+lass=3D"gmail_signature">as simple and primitive as possible<br>-----------=
+--------------------------------------<br>Marek Belisko - OPEN-NANDRA<br>Fr=
+eelance Developer<br><br>Ruska Nova Ves 219 | Presov, 08005 Slovak Republic=
+<br>Tel: +421 915 052 184<br>skype: marekwhite<br>twitter: #opennandra<br>w=
+eb: <a href=3D"http://open-nandra.com" target=3D"_blank">http://open-nandra=
+.com</a></div></div>
 
---000000000000686f67062df01f39--
+--000000000000cc3939062df124d7--
 
