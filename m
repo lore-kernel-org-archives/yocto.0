@@ -1,73 +1,128 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <jdowd@slashdevslashnull.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A5FCC021A0
-	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 11:58:11 +0000 (UTC)
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
- by mx.groups.io with SMTP id smtpd.web10.7659.1739441007924145624
- for <yocto@lists.yoctoproject.org>;
- Thu, 13 Feb 2025 02:03:33 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@codethink.co.uk header.s=imap5-20230908 header.b=rw7jSEoM;
- spf=pass (domain: codethink.co.uk, ip: 78.40.148.171, mailfrom: tomas.veiga@codethink.co.uk)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=codethink.co.uk; s=imap5-20230908; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Message-ID:References:In-Reply-To:Subject:To:From:Date:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Ex9fAJzIbz9aIDar0ROXaR2dNASDcuQldHTXsUvkyX4=; b=rw7jSEoMMnsKiObgMTe7SDNtYi
-	X/NNHcntrF+Dnf8xiDuWB371jUIDDvQUz2TeAHX8oXK0jt8woAegAEN6vEikbW2ckbaRk4GT9ExZ/
-	3hC6KoABpV/w6cbmvXXdA/HuulrwKaBzNxdqW+Wd94C3XA9sKWVW+lrnArCbGUJk+ERizsfyYt8Sh
-	f0z3Vg+OAdms9PJkBWb8n/ivvbRALRWri952Yz30n+cOvcyqJcJ4evQViXfJ+96f/2XWMMe/nGfwG
-	tO70pwAiSpfXJiAbxVwRUlz7ScyIXLzXDp2ccT2KxZNviy2wNoXw8Hsog+laJuVm9h+eqeJih6dd+
-	2tM45sZg==;
-Received: from ipa12.colo.codethink.co.uk ([78.40.148.178] helo=webmail.codethink.co.uk)
-	by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-	id 1tiW45-007hWw-D4
-	for <yocto@lists.yoctoproject.org> ; Thu, 13 Feb 2025 10:03:25 +0000
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1338BC0219D
+	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 14:59:22 +0000 (UTC)
+Subject: Re: [yocto] PREFERRED_VERSION not being populated onto the rootfs image
+To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
+From: "John" <jdowd@slashdevslashnull.org>
+X-Originating-Location: Ottawa, Ontario, CA (184.175.41.163)
+X-Originating-Platform: Linux Chrome 133
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Thu, 13 Feb 2025 10:03:25 +0000
-From: "Tomas Veiga" <tomas.veiga@codethink.co.uk>
-To: yocto@lists.yoctoproject.org
-Subject: libgfortran.spec not found
-In-Reply-To: <a61584d0a85706d66ed9acad0c7b1c1c@codethink.co.uk>
-References: <a61584d0a85706d66ed9acad0c7b1c1c@codethink.co.uk>
-Message-ID: <247c3cd3a7efe93dfb3fcfa29944c175@codethink.co.uk>
-X-Sender: tomas.veiga@codethink.co.uk
-Sender: tomas.veiga@codethink.co.uk
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Thu, 13 Feb 2025 06:59:19 -0800
+References: <CANNYZj-oJA0qnr9+Djg94gN469cJJ18ym_nf2Bu3wph+_3RNig@mail.gmail.com>
+In-Reply-To: <CANNYZj-oJA0qnr9+Djg94gN469cJJ18ym_nf2Bu3wph+_3RNig@mail.gmail.com>
+Message-ID: <873.1739458759066142451@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="29kH403uJ0605r9YRKnt"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 11:58:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64799
+ <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 14:59:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64800
 
-Hello,
+--29kH403uJ0605r9YRKnt
+Content-Type: multipart/alternative; boundary="LfFdIvfZkoqL1WOaFzvZ"
 
-I'm trying to build the gcc toolchain with Yocto.
+--LfFdIvfZkoqL1WOaFzvZ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm currently building it with `bitbake meta-toolchain -c populate_sdk` 
-and then running the installer 
-`tmp/deploy/sdk/poky-glibc-x86_64-core-image-sato-core2-64-toolchain-ext-5.2.999.sh`.
+Alexander,
 
-gcc and g++ work fine, but gfortran doesn't, getting the error:
-`x86_64-poky-linux-gfortran: fatal error: cannot read spec file 
-‘libgfortran.spec’: No such file or directory
-compilation terminated.`
+Thanks for your reply.
 
-I've tried copying the `libgfortran.spec` file from 
-`./build/tmp/sysroots-components/core2-64/libgfortran/usr/lib/libgfortran.spec` 
-to 
-`sysroots/x86_64-pokysdk-linux/usr/lib/x86_64-poky-linux/gcc/x86_64-poky-linux/14.2.0/libgfortran.spec` 
-but then I get several `no such file or directory` errors for Scrt1.o, 
-crti.o, crtbegins.o, etc....
+I've attached my new configure file that lives in: poky/meta-raspberrypi/co=
+nf/machine
 
-I've also tried these suggestions but made no difference. 
-https://low-level.wiki/yocto/yocto-insectarium.html
+Mea Culpa: I created this configure file and am using the MACHINE ??=3D "ra=
+spberrypi0-64-wf.conf" in my local.conf file.
 
-Hoping anyone has got any insight?
+Since the raspberrypi Zero support does not work out of the box. There is a=
+n issue in that it has to build as a 64 bit image or Raspberry Pi's boot lo=
+ader won't load it. And then, the kernel modules are missing... and then th=
+e WIFI isn't installed completely and doesn't work anyways... etc... I crea=
+ted my own machine configuration file.
+
+My current state has the image booting, I have a serial connection and thro=
+ugh it I can try to bring up wifi by hand but the wpa-supplicant won't conn=
+ect. My searches have found some information that it is a recent patch that=
+ has a side effect of not letting wpa-supplicant work with some raspberry P=
+i's. I gather an older version (2.9) does work so that's why I'm doing this=
+.
+
+I have no idea where the log file you referred to is or how to make bitbake=
+ generate it.
+
+I did do a:
+
+>=20
+> $ bitbake -c cleanall wpa-supplicant
+>=20
+
+I can see that the correct version is referenced.
+
+Cheers!!
+
+--LfFdIvfZkoqL1WOaFzvZ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Alexander,</div>
+<div>&nbsp;</div>
+<div>Thanks for your reply.</div>
+<div>&nbsp;</div>
+<div>I've attached my new configure file that lives in: <span style=3D"font=
+-family: monospace;"><span style=3D"font-weight: bold; color: #5454ff; back=
+ground-color: #ffffff;">poky/meta-raspberrypi/conf/machine</span><br /></sp=
+an></div>
+<div>&nbsp;</div>
+<div>Mea Culpa: I created this configure file and am using the MACHINE ??=
+=3D "raspberrypi0-64-wf.conf" in my local.conf file.</div>
+<div>&nbsp;</div>
+<div>Since the raspberrypi Zero support does not work out of the box. There=
+ is an issue in that it has to build as a 64 bit image or Raspberry Pi's bo=
+ot loader won't load it. And then, the kernel modules are missing... and th=
+en the WIFI isn't installed completely and doesn't work anyways... etc... I=
+ created my own machine configuration file.</div>
+<div>&nbsp;</div>
+<div>My current state has the image booting, I have a serial connection and=
+ through it I can try to bring up wifi by hand but the wpa-supplicant won't=
+ connect. My searches have found some information that it is a recent patch=
+ that has a side effect of not letting wpa-supplicant work with some raspbe=
+rry Pi's. I gather an older version (2.9) does work so that's why I'm doing=
+ this.</div>
+<div>&nbsp;</div>
+<div>I have no idea where the log file you referred to is or how to make bi=
+tbake generate it.</div>
+<div>&nbsp;</div>
+<div>I did do a:</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>$ bitbake -c cleanall wpa-supplicant</div>
+</blockquote>
+<div>I can see that the correct version is referenced.</div>
+<div>&nbsp;</div>
+<div>Cheers!!</div>
+<div>&nbsp;</div>
+
+--LfFdIvfZkoqL1WOaFzvZ--
+
+--29kH403uJ0605r9YRKnt
+Content-Type: application/octet-stream; name="raspberrypi0-64-wf.conf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="raspberrypi0-64-wf.conf"
+
+I0BUWVBFOiBNYWNoaW5lCiNATkFNRTogUmFzcGJlcnJ5UGkwIDIgV2lmaSBEZXZlbG9wbWVudCBC
+b2FyZAojQERFU0NSSVBUSU9OOiBNYWNoaW5lIGNvbmZpZ3VyYXRpb24gZm9yIHRoZSBSYXNwYmVy
+cnlQaTAgMiBXaWZpIGluIDY0IGJpdHMgbW9kZQoKTUFDSElORU9WRVJSSURFUyA9LiAicmFzcGJl
+cnJ5cGkzLTY0OiIKCmluY2x1ZGUgY29uZi9tYWNoaW5lL3Jhc3BiZXJyeXBpMy02NC5jb25mCgpQ
+UkVGRVJSRURfVkVSU0lPTl93cGEtc3VwcGxpY2FudCA9ICIyLjkiCgpNQUNISU5FX0VYVFJBX1JS
+RUNPTU1FTkRTICs9ICJcCiAgICBsaW51eC1maXJtd2FyZS1ycGlkaXN0cm8tYmNtNDM0MzYgXAog
+ICAgbGludXgtZmlybXdhcmUtcnBpZGlzdHJvLWJjbTQzNDM2cyBcCiAgICBibHVlei1maXJtd2Fy
+ZS1ycGlkaXN0cm8tYmNtNDM0MzBiMC1oY2QgXAoiCgpSUElfS0VSTkVMX0RFVklDRVRSRUUgPSAi
+IFwKICAgIGJyb2FkY29tL2JjbTI3MTAtcnBpLXplcm8tMi5kdGIgXAogICAgIgo=
+
+--29kH403uJ0605r9YRKnt--
 
