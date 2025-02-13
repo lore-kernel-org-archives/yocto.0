@@ -1,166 +1,79 @@
-Return-Path: <paul.buxton@codasip.com>
+Return-Path: <jdowd@slashdevslashnull.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B4F8C021A0
-	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 16:42:06 +0000 (UTC)
-Subject: Clarification of <packagename>-src, PACKAGE_DEBUG_SPLIT_STYLE and debug symbols in general.
-To: yocto@lists.yoctoproject.org
-From: paul.buxton@codasip.com
-X-Originating-Location: St Albans, England, GB (82.7.74.198)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 830F7C021A0
+	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 17:49:53 +0000 (UTC)
+Subject: Re: [yocto] PREFERRED_VERSION not being populated onto the rootfs image
+To: "John" <jdowd@slashdevslashnull.org>, yocto@lists.yoctoproject.org
+From: "John" <jdowd@slashdevslashnull.org>
+X-Originating-Location: Ottawa, Ontario, CA (184.175.41.163)
 X-Originating-Platform: Linux Chrome 133
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Thu, 13 Feb 2025 08:42:05 -0800
-Message-ID: <s6cG.1739464925165872010.U1bf@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="jEqZkFLS673dhZUBA65U"
+Date: Thu, 13 Feb 2025 09:49:44 -0800
+References: <13254.1739463914284453219@lists.yoctoproject.org>
+In-Reply-To: <13254.1739463914284453219@lists.yoctoproject.org>
+Message-ID: <18350.1739468984755588893@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="UDz7Ycc2mFTf35WDAjCq"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 16:42:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64804
+ <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 17:49:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64805
 
---jEqZkFLS673dhZUBA65U
+--UDz7Ycc2mFTf35WDAjCq
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+So, I added "dhcpcd" to this line in my local.conf file:
 
-I am wanting to debug on my target with gdb, so added the debug symbols by =
-adding the <packagename>-dbg to the IMAGE_INSTALL variable.
-This does indeed get the debug symbols onto the target, but no source code.=
- After reading the information on the PACKAGE_DEBUG_SPLIT_STYLE I realised =
-that it defaults to debug-with-srcpkg. Which requires the installation of t=
-he src package separately.
-I added this for my application (I am using the gnu hello program as a reci=
-pe I added using devtool).
-This seems to have install some source, but not the source for the main app=
-lication (just some libraries).
-So I assumed that my recipe should explicitly setup the src package?
-Thinking this was the case I looked at matchbox-terminal. However when I tr=
-y to install the source for that it cannot find the recipe at all, which su=
-rprised me as one of the official recipes of the Poky distribution.
-e.g.
-IMAGE_INSTALL:append =3D" hello hello-dbg hello-src matchbox-terminal-dbg"
+>=20
+> IMAGE_INSTALL:append =3D " linux-firmware-bcm43430 bluez5 i2c-tools
+> wpa-supplicant dhcpcd"
+>=20
 
-Will build and installs symbols for both hello and matchbox-terminal as wel=
-l as 'some' source for hello (but not the main file).
+and voila, I have my wpa_supplicant v2.9 installed.... so any ideas why thi=
+s worked?
 
-IMAGE_INSTALL:append =3D" hello hello-dbg hello-src matchbox-terminal-dbg m=
-atchbox-terminal-src"
+And with that, I ran the wpa_supplicant and I now have wifi working on a ra=
+spberry Pi Zero 2 W running a Yocto 64-bit image.
 
-Will not build, failing on the matchbox-terminal-src package not being prov=
-ided.
+The negative is that wpa-supplicant 2.9 doesn't take a passphrase that's en=
+coded so I have a clear text PSK in the file. That will need to be fixed. I=
+ guess the patch that causes the issues with 2.11 needs to be identified an=
+d removed. I'm sure that will be tedious.
 
-So my question, am I right in thinking packages need to explicitly provide =
-the -src package, if so is it unusual that matchbox-terminal doesn't? Are t=
-here any recommendations for a package that does? (I just want to test out =
-debugging on the target!).
+Any tests or information about my build that is requested will certainly be=
+ done if you think it will be constructive and helpful to the cause.
 
-Thanks for reading this far!
-Paul
+Cheers!!
 
---jEqZkFLS673dhZUBA65U
+--UDz7Ycc2mFTf35WDAjCq
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hi all,</div>
+<div>So, I added "dhcpcd" to this line in my local.conf file:</div>
+<blockquote>
+<div>IMAGE_INSTALL:append =3D " linux-firmware-bcm43430 bluez5 i2c-tools wp=
+a-supplicant dhcpcd"</div>
+</blockquote>
+<div>and voila, I have my wpa_supplicant v2.9 installed.... so any ideas wh=
+y this worked?</div>
 <div>&nbsp;</div>
-<div>I am wanting to debug on my target with gdb, so added the debug symbol=
-s by adding the &lt;packagename&gt;-dbg to the IMAGE_INSTALL variable.</div=
->
-<div>This does indeed get the debug symbols onto the target, but no source =
-code. After reading the information on the PACKAGE_DEBUG_SPLIT_STYLE I real=
-ised that it defaults to <span style=3D"color: #333333; font-family: Courie=
-r, monospace; font-size: medium; font-style: normal; font-variant-ligatures=
-: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: norm=
-al; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; w=
-idows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: n=
-ormal; background-color: #fcfcfc; text-decoration-thickness: initial; text-=
-decoration-style: initial; text-decoration-color: initial; display: inline =
-!important; float: none;">debug-with-srcpkg. Which requires the installatio=
-n of the src package separately.</span></div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">I added this for my application (I am using the gnu hello program as =
-a recipe I added using devtool).</span></div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">This seems to have install some source, but not the source for the ma=
-in application (just some libraries).<br />So I assumed that my recipe shou=
-ld explicitly setup the src package?<br />Thinking this was the case I look=
-ed at matchbox-terminal. However when I try to install the source for that =
-it cannot find the recipe at all, which surprised me as one of the official=
- recipes of the Poky distribution.</span></div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">e.g.</span></div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">IMAGE_INSTALL:append =3D" hello hello-dbg hello-src matchbox-terminal=
--dbg"<br /></span></div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">Will build and installs symbols for both hello and matchbox-terminal =
-as well as 'some' source for hello (but not the main file).</span></div>
+<div>And with that, I ran the wpa_supplicant and I now have wifi working on=
+ a raspberry Pi Zero 2 W running a Yocto 64-bit image.</div>
 <div>&nbsp;</div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">IMAGE_INSTALL:append =3D" hello hello-dbg hello-src matchbox-terminal=
--dbg matchbox-terminal-src"<br /></span></div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">Will not build, failing on the matchbox-terminal-src package not bein=
-g provided.</span></div>
+<div>The negative is that wpa-supplicant 2.9 doesn't take a passphrase that=
+'s encoded so I have a clear text PSK in the file. That will need to be fix=
+ed. I guess the patch that causes the issues with 2.11 needs to be identifi=
+ed and removed. I'm sure that will be tedious.</div>
 <div>&nbsp;</div>
-<div><span style=3D"color: #333333; font-family: Courier, monospace; font-s=
-ize: medium; font-style: normal; font-variant-ligatures: normal; font-varia=
-nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
--align: left; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
-ng: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-co=
-lor: #fcfcfc; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial; display: inline !important; float: n=
-one;">So my question, am I right in thinking packages need to explicitly pr=
-ovide the -src package, if so is it unusual that matchbox-terminal doesn't?=
- Are there any recommendations for a package that does? (I just want to tes=
-t out debugging on the target!).</span></div>
+<div>Any tests or information about my build that is requested will certain=
+ly be done if you think it will be constructive and helpful to the cause.</=
+div>
 <div>&nbsp;</div>
-<div>Thanks for reading this far!<br />Paul</div>
+<div>Cheers!!</div>
 
---jEqZkFLS673dhZUBA65U--
+--UDz7Ycc2mFTf35WDAjCq--
 
