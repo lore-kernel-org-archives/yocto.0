@@ -2,90 +2,96 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E78AC021A4
-	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 08:49:20 +0000 (UTC)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
- by mx.groups.io with SMTP id smtpd.web11.6788.1739436552655940090
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33FCBC021A0
+	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 08:58:30 +0000 (UTC)
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+ by mx.groups.io with SMTP id smtpd.web10.6937.1739437088515509039
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Feb 2025 00:49:12 -0800
+ Thu, 13 Feb 2025 00:58:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=TyHyy4D7;
- spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6e65a00556aso5723426d6.3
-        for <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 00:49:12 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=FwUI911t;
+ spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6e1b11859a7so3783946d6.1
+        for <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 00:58:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739436551; x=1740041351; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RmVbaF61foG6JnS22C9udciCKhJU8tosnknR2l4FPpc=;
-        b=TyHyy4D799GJtUafEwMO+TN/UmGvx4hfS7hahDXtwvsxXB6aBYPNR8kF1wwmskATlV
-         6JT2Nd18OEaRcSTV9w5sWuA+ntKCvsCu8vecJmDMi/6QtKa+wn+TPtchRo9Q0Q45eQJM
-         /hBrnm6xisQ2hhWUTG5KezIJ2oc8PSwXYwqit6cfDQ+hLX/OtWKzRmJ0pOs0bOhP3UN8
-         pxnwC5Gm2fC9Tg+/fukB9sb5RTMGc22hzTUk0cUgdCOCyeWOYnza56WcS5Z1L8KtjfaH
-         WcPPvtaNa0RBKZmy2MUA1CErhB/6BbeMMjJb9+/TTxKombPu+MmJfMIpnWDpIUTp+PYd
-         DtUw==
+        d=gmail.com; s=20230601; t=1739437087; x=1740041887; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GzmcoCk0ZA03JH5SjYenrY3Z8katj+hy39vnsopuGtM=;
+        b=FwUI911t9eaIjnObDaMMDnlB1UDvL5jJ5UGbZJP3rG8g1tsPo5EVICXH0dl4dhKkyb
+         2ICfsuOMQi7/GocPkCwzIH8mQ/B4gaqQ3CiFNGh8PJp9ic1DAH9E2h7e5kbKdy4UtJ6O
+         woLg2fdcGR16ZVQnJBzbkeLMUVOx2CkxMzNHddMDB6r7Zs9AoAqTKyJfWlE6D4/Ji5VH
+         /eSniG1GFbmBVH3MxevmfOa4jsjoxrco/VnRHgrsnx7zyZ5Iv7PpEO9cmAo3zkyNNeyM
+         MALXdy/g10QlOaJlt3skTJRnLTQmDDYOobvbIIqNcx6y0DG2TUJJYiiNfw6g7CFXHuol
+         05Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739436551; x=1740041351;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RmVbaF61foG6JnS22C9udciCKhJU8tosnknR2l4FPpc=;
-        b=PPXXo/ipjOk4i2GorDfmRDfyrfwl75x+txgDJtVDTqbnx4Xi+Rq807wcvkOt1t5D7/
-         /nRC/8yhpiQ9ZgtcuvSkN8UJpVe0Kb0dXkFPw6dIExpVAhM4uUmUX6vJtZ7bEy6fIesE
-         u0400JVxNiJTsWDDtLDbKurHPKGHUWYltQ6IPkCN+qhTVhZ/YZV5I66VVwOVlWikVeWQ
-         ouEBjjGj2ZdRV2gx95WXdk7nXfhqlhmHcGCp6oIQHAKurEB3EDniPljLHrCtViXt2zNs
-         pnruJsTGVLFtKI2LNmClASgV2HqQM7nBQzAemX2uNeCBqv5QlN+cfzA9SQwC2lf00oZI
-         suww==
-X-Forwarded-Encrypted: i=1; AJvYcCVU0wX9sutWqqkEm/BOVHF5ZK1FUcNlNys6o15fFCgP0TVHrb9HHYFHcqkX0Kp2BjFeR2S6Zw==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yz8Z00xyleOXjlTodMtZqrlTQprjXZEVk8nXvjMurVe1bLWhZNg
-	1wqN/xI7TMo9OrNo87qcVlN7j6d6vpS8Kmo8jagBcvHdz2dEOHJko2XJEQkiQTmXGUqaA3eZo/Z
-	oSfZ51Wlwf3l2CVU2JePBWcl1WMk=
-X-Gm-Gg: ASbGncuN+1kZNXA5wl27j/L2v+DD4fpQ5pYFeeGz5NP6CeFLPNDRn3/Y5mSc0nwGyxg
-	L9KT6i0arMV9xRLRCFiT83h70CwDFyLqnWvATVpQ1VQTwmAxo5tdpspHQ10MDSkeAvy0J4rO7Zt
-	ZnsbX+KFztFY0LUA1nXaRGrHUBwZPHGVc=
-X-Google-Smtp-Source: AGHT+IGioQn/HX21SCcdt4wUc6EBCKKbTveiMIS/LW+rVpiqvnCNiIQFFITH7xnZquKEkE3ywKBBMhumdxIHsusM+sw=
-X-Received: by 2002:a05:6214:5098:b0:6d8:aeda:dd93 with SMTP id
- 6a1803df08f44-6e65c155eadmr46100436d6.39.1739436551616; Thu, 13 Feb 2025
- 00:49:11 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739437087; x=1740041887;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GzmcoCk0ZA03JH5SjYenrY3Z8katj+hy39vnsopuGtM=;
+        b=d9Db/f9UyJExhoqI06aPFUnRaUg8o1+DqR/0qSySR/0tgjeUqG8yxNNgtyyF4cabWH
+         jwxUdc/kGV5g6IK4eQ49RhECGP+UZ5dudFC5Av/+c2AL0O0YEw+/0WnELNxNZVnLKlR7
+         jnoqBxi446wco9jVXkt94sEKFfVOXWcSTZkelnqJcMek6Q1o1hAc84LVi8vzoAvGGQ3n
+         0OZmC32jTEnwapkzTce6jkwQr9/6R5HNXwccufOcrcEXAYqWRNZPd5xJeY5nyGjAkyOy
+         WjHI4OHdVt5QENO3rv9pSbOAYvHY7vH2/usTP5e/VnPELM6WwL5ujLPLrv/BuREgg+lH
+         xKJQ==
+X-Gm-Message-State: AOJu0YwdTceDnla3tDPu6ALGfdnW1myfKbMLTnRGQtgmqo1VzawYrW0Q
+	dBeMexj3ko+dTMMYIWhpJEAaxQE2caIgtlm4LM3H5Mq6YLID0VfBNUdHwGTmb7qiFQY7Kf04Vse
+	UQoMbFwIFbZDTXbRjjskkLpWDHS0vYg==
+X-Gm-Gg: ASbGncvq6/Z7F/yuTQLkdZ47+j1Z4nBKUAFMIQ2JpQV6tilnIU+3WeKrU6+GLWUkclb
+	2QceKHR/KIgM956mCW1/aWDZRf6iFlBp3GLA0KFqxaD7W6oE0X+EGoWfH/Jfx/iXnM5q36tJxNU
+	1ZLMVXve7HtiFXYmNInXMP/5Snc+mE6eY=
+X-Google-Smtp-Source: AGHT+IHAbxSVaEemPc7hn/crkE/GTF4aB7rc6wZxZYk42Qm80+IpQSuQMYrteYhR9Zl5THofZZtTPrk2tOqyzd6L4A8=
+X-Received: by 2002:a05:6214:1303:b0:6e4:2d8e:5cce with SMTP id
+ 6a1803df08f44-6e46edacde7mr150972146d6.36.1739437087554; Thu, 13 Feb 2025
+ 00:58:07 -0800 (PST)
 MIME-Version: 1.0
-References: <CAK5yBb9Fr9MFy5uub2_pTRWmVbt96OWBJ5ty+eAB9Qn+LYa_Wg@mail.gmail.com>
- <CANNYZj-PbWQDa5hAc5X6sqHVMvJ0QE01XXwytya8rprwvSsqag@mail.gmail.com>
- <d22a4cec5e317e62f1f44d8d9a810cf4745ccb48.camel@linuxfoundation.org>
- <CAMSfU+6d7gvYkjC5sbUPu6D_hOOF43ZUnM_NMEwmLUxZn6ysSA@mail.gmail.com>
- <4e883a56eb9b74a5663d7ad258194d16b1c79912.camel@linuxfoundation.org>
- <CAMSfU+44qwScnoDP4As37TNHYvwx5mBmTdGEQgq_VVz7woh6sQ@mail.gmail.com> <CAMSfU+4MY-JVmWPUixJYiUrtKd2CXHrJuQ0sMJJrrkLzrvAuvA@mail.gmail.com>
-In-Reply-To: <CAMSfU+4MY-JVmWPUixJYiUrtKd2CXHrJuQ0sMJJrrkLzrvAuvA@mail.gmail.com>
+References: <YAJV.1739390248887972780.yPpo@lists.yoctoproject.org>
+In-Reply-To: <YAJV.1739390248887972780.yPpo@lists.yoctoproject.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 13 Feb 2025 09:48:58 +0100
-X-Gm-Features: AWEUYZl6ttCObkqINtPsH83f7gYmLGYKKMS_HriExcZOzdNMWmGsAp59cJtfpiY
-Message-ID: <CANNYZj_8o=SHOn-kRBxzwc8vp3omCL290SA-jKkL_En1m2SWEA@mail.gmail.com>
-Subject: Re: [yocto] [OE-core] Yocto Project Status 11 Feb. 2025 (WW07)
-To: Yoann Congal <yoann.congal@smile.fr>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Yocto Mailing list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Date: Thu, 13 Feb 2025 09:57:56 +0100
+X-Gm-Features: AWEUYZnxaHdJOe6K02tHKmxMKnG7TfPqh1QGy0rVsXBuJHi7F-_f0CBhyoeAPwY
+Message-ID: <CANNYZj-oJA0qnr9+Djg94gN469cJJ18ym_nf2Bu3wph+_3RNig@mail.gmail.com>
+Subject: Re: [yocto] PREFERRED_VERSION not being populated onto the rootfs image
+To: yocto@lists.yoctoproject.org, jdowd@slashdevslashnull.org
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 08:49:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64789
+ <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 08:58:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64790
 
-On Thu, 13 Feb 2025 at 00:04, Yoann Congal <yoann.congal@smile.fr> wrote:
+You're not saying what the configure file is and where is it. Can you show that?
 
-> I did not find a magic silver bullet that would solve everything (I discovered that Gitlab is way more flexible on this subject).
-> I guess we need to find a compromise between what a github user sees and the effort we are willing to put into it.
+Help arrives quicker if we can reproduce the problem or at least see
+your setup exactly.
 
-So as I understand, there are no 'settings' in github openembedded
-organization we can tweak and everything is through repos?
-
-Then here's the plan:
-- someone with rights to manage overall
-https://github.com/openembedded org creates an empty .github repo and
-gives Yoann rights to manage it.
-- Yoann opens pull requests to that repo, and notifies of them here
-- any needed github specific tweaks to individual repos are proposed
-and merged through the standard mailing list process.
+Does log.do_rootfs for your image say which version of wpa supplicant
+gets installed?
 
 Alex
+
+On Wed, 12 Feb 2025 at 20:57, John via lists.yoctoproject.org
+<jdowd=slashdevslashnull.org@lists.yoctoproject.org> wrote:
+>
+> In the latest stable version of Yocto, I've been building an image for a raspberry Pi board which has a wifi i/f on it. While trying to bring up the wifi connection I need to roll back the version of wpa_supplicant that it is using.
+>
+> In the raspberrypi configure file I've put in "PREFERRED_VERSION_wpa-supplicant = "2.9". The version that is being used currently is 2.11.
+>
+> I've then created a recipe file for that version and made sure that it compiles using bitbake. (Had some patching issues, all fixed).
+>
+> I then run the command "bitbake core-image-minimal" and boot with the subsequent image. When I query the version of wpa-supplicant I get 2.11.
+>
+> I'm unable to find any "PRIORITY" variable of any kind. Why is it grabbing the incorrect version? What have I forgotten to do?
+>
+> Cheers!!
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#64787): https://lists.yoctoproject.org/g/yocto/message/64787
+> Mute This Topic: https://lists.yoctoproject.org/mt/111149982/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
