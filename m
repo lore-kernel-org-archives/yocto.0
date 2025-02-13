@@ -1,97 +1,175 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 33FCBC021A0
-	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 08:58:30 +0000 (UTC)
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
- by mx.groups.io with SMTP id smtpd.web10.6937.1739437088515509039
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54682C0219D
+	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 09:19:30 +0000 (UTC)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+ by mx.groups.io with SMTP id smtpd.web11.7116.1739438366711236146
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Feb 2025 00:58:08 -0800
+ Thu, 13 Feb 2025 01:19:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=FwUI911t;
- spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6e1b11859a7so3783946d6.1
-        for <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 00:58:08 -0800 (PST)
+ dkim=pass header.i=@smile.fr header.s=google header.b=oeg+Puwn;
+ spf=pass (domain: smile.fr, ip: 209.85.128.49, mailfrom: yoann.congal@smile.fr)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4395f81db4dso3468845e9.1
+        for <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 01:19:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739437087; x=1740041887; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GzmcoCk0ZA03JH5SjYenrY3Z8katj+hy39vnsopuGtM=;
-        b=FwUI911t9eaIjnObDaMMDnlB1UDvL5jJ5UGbZJP3rG8g1tsPo5EVICXH0dl4dhKkyb
-         2ICfsuOMQi7/GocPkCwzIH8mQ/B4gaqQ3CiFNGh8PJp9ic1DAH9E2h7e5kbKdy4UtJ6O
-         woLg2fdcGR16ZVQnJBzbkeLMUVOx2CkxMzNHddMDB6r7Zs9AoAqTKyJfWlE6D4/Ji5VH
-         /eSniG1GFbmBVH3MxevmfOa4jsjoxrco/VnRHgrsnx7zyZ5Iv7PpEO9cmAo3zkyNNeyM
-         MALXdy/g10QlOaJlt3skTJRnLTQmDDYOobvbIIqNcx6y0DG2TUJJYiiNfw6g7CFXHuol
-         05Xg==
+        d=smile.fr; s=google; t=1739438365; x=1740043165; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=for+kPmKtXo7WcGOFvFar5sBeVgubSiuydmxpaL27tk=;
+        b=oeg+Puwngmt8gin0ebINwmHNfy4Fq/Mg9MV+ynCU1V/LFg2uCnXdFHPYZc5l/xLhiJ
+         NODuFX+Zl4dWheP2rhJ4f9MvMLz7vJ+aU/r09jRAn6Ln7cXd8ThhfKaQ0sCzy1rRGcwW
+         R+Tku3mY7UimD3kHWHW8RDdYJjs7/SHpL5JoQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739437087; x=1740041887;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GzmcoCk0ZA03JH5SjYenrY3Z8katj+hy39vnsopuGtM=;
-        b=d9Db/f9UyJExhoqI06aPFUnRaUg8o1+DqR/0qSySR/0tgjeUqG8yxNNgtyyF4cabWH
-         jwxUdc/kGV5g6IK4eQ49RhECGP+UZ5dudFC5Av/+c2AL0O0YEw+/0WnELNxNZVnLKlR7
-         jnoqBxi446wco9jVXkt94sEKFfVOXWcSTZkelnqJcMek6Q1o1hAc84LVi8vzoAvGGQ3n
-         0OZmC32jTEnwapkzTce6jkwQr9/6R5HNXwccufOcrcEXAYqWRNZPd5xJeY5nyGjAkyOy
-         WjHI4OHdVt5QENO3rv9pSbOAYvHY7vH2/usTP5e/VnPELM6WwL5ujLPLrv/BuREgg+lH
-         xKJQ==
-X-Gm-Message-State: AOJu0YwdTceDnla3tDPu6ALGfdnW1myfKbMLTnRGQtgmqo1VzawYrW0Q
-	dBeMexj3ko+dTMMYIWhpJEAaxQE2caIgtlm4LM3H5Mq6YLID0VfBNUdHwGTmb7qiFQY7Kf04Vse
-	UQoMbFwIFbZDTXbRjjskkLpWDHS0vYg==
-X-Gm-Gg: ASbGncvq6/Z7F/yuTQLkdZ47+j1Z4nBKUAFMIQ2JpQV6tilnIU+3WeKrU6+GLWUkclb
-	2QceKHR/KIgM956mCW1/aWDZRf6iFlBp3GLA0KFqxaD7W6oE0X+EGoWfH/Jfx/iXnM5q36tJxNU
-	1ZLMVXve7HtiFXYmNInXMP/5Snc+mE6eY=
-X-Google-Smtp-Source: AGHT+IHAbxSVaEemPc7hn/crkE/GTF4aB7rc6wZxZYk42Qm80+IpQSuQMYrteYhR9Zl5THofZZtTPrk2tOqyzd6L4A8=
-X-Received: by 2002:a05:6214:1303:b0:6e4:2d8e:5cce with SMTP id
- 6a1803df08f44-6e46edacde7mr150972146d6.36.1739437087554; Thu, 13 Feb 2025
- 00:58:07 -0800 (PST)
+        d=1e100.net; s=20230601; t=1739438365; x=1740043165;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=for+kPmKtXo7WcGOFvFar5sBeVgubSiuydmxpaL27tk=;
+        b=aLsIi/C2c5k5NxzW4n/DFZMmoS2Sk1HP11YgtEg0zEL8MxIyq7IsG85pjRsAsxd3A9
+         jfdlDjK1Jybh+EOs9G4Pr5V8fjOU6EwA2K8/SqtLLWcZbgQLuzxjnesuw7i12yDiS8yo
+         2UZb4PkXbWiVxwCTEWg0VUvSA9oevuBqx5JIV+K/KeL2vNFjR/tzs/T3Hm7IQHrDgTUY
+         IjbgwjkBtoPOzth2Q7V+o1v8R3e5zBu7bKV6MAUP+oo+3O9m3z1mBGLPIRXyizBkL+nz
+         CzYLUKIxYhcjWNvXLKJezeiSHOErNCj7I2KC59m+957M8RBxXygmRW9YXpYuIZpRJ2B4
+         3TKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUiIEjABov09aUi2i997SYv9cRqrkGarvVIBCpTNxgpsW0BF/+EkKMhqx4aRYp+3oJqB2VGKg==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yxg6sdrgs/DYG5yIwzhQFibfrX+yyRdhAOfy27hNelLpVMimy4g
+	HRGRQdy08PqX8pEuVFuAlBdzFglPCTU0MaVPJiu2xJyN9fu2i6Dqccmn/GYaofWOvbJTW+EIkjt
+	SrtGIiNAKChIsGMQxjQj2GEGgiuM6f7GAAXg01A==
+X-Gm-Gg: ASbGncsdx+yYtofCeGj0b5iWb4wwUbab2dkNG8KR36072HzVuTM3jbRI5a59Ja0Q+iU
+	DuG43mHoTQ391wDF14muRCRdmdz5Z15Qxh1wHV7//zJb3B8jqcKI9dwFwKfBRCevlkKruXg8vdD
+	Qw5B8tGxChN9MKtJEHuo/bs5xVBTc=
+X-Google-Smtp-Source: AGHT+IEwPikyM6M6S5Erqa+f3vw5lL4ybl+6uo0qIeCjoSIeNzBctUVjt4K/1VHOiTRdkdR8rS57MXV7BmmsykYbkBI=
+X-Received: by 2002:a05:600c:4f49:b0:434:f9ad:7222 with SMTP id
+ 5b1f17b1804b1-43960e8d3f8mr19544815e9.7.1739438364765; Thu, 13 Feb 2025
+ 01:19:24 -0800 (PST)
 MIME-Version: 1.0
-References: <YAJV.1739390248887972780.yPpo@lists.yoctoproject.org>
-In-Reply-To: <YAJV.1739390248887972780.yPpo@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 13 Feb 2025 09:57:56 +0100
-X-Gm-Features: AWEUYZnxaHdJOe6K02tHKmxMKnG7TfPqh1QGy0rVsXBuJHi7F-_f0CBhyoeAPwY
-Message-ID: <CANNYZj-oJA0qnr9+Djg94gN469cJJ18ym_nf2Bu3wph+_3RNig@mail.gmail.com>
-Subject: Re: [yocto] PREFERRED_VERSION not being populated onto the rootfs image
-To: yocto@lists.yoctoproject.org, jdowd@slashdevslashnull.org
-Content-Type: text/plain; charset="UTF-8"
+References: <CAK5yBb9Fr9MFy5uub2_pTRWmVbt96OWBJ5ty+eAB9Qn+LYa_Wg@mail.gmail.com>
+ <CANNYZj-PbWQDa5hAc5X6sqHVMvJ0QE01XXwytya8rprwvSsqag@mail.gmail.com>
+ <d22a4cec5e317e62f1f44d8d9a810cf4745ccb48.camel@linuxfoundation.org>
+ <CAMSfU+6d7gvYkjC5sbUPu6D_hOOF43ZUnM_NMEwmLUxZn6ysSA@mail.gmail.com>
+ <4e883a56eb9b74a5663d7ad258194d16b1c79912.camel@linuxfoundation.org>
+ <CAMSfU+44qwScnoDP4As37TNHYvwx5mBmTdGEQgq_VVz7woh6sQ@mail.gmail.com>
+ <CAMSfU+4MY-JVmWPUixJYiUrtKd2CXHrJuQ0sMJJrrkLzrvAuvA@mail.gmail.com> <CANNYZj_8o=SHOn-kRBxzwc8vp3omCL290SA-jKkL_En1m2SWEA@mail.gmail.com>
+In-Reply-To: <CANNYZj_8o=SHOn-kRBxzwc8vp3omCL290SA-jKkL_En1m2SWEA@mail.gmail.com>
+From: Yoann Congal <yoann.congal@smile.fr>
+Date: Thu, 13 Feb 2025 10:18:58 +0100
+X-Gm-Features: AWEUYZm1iKZthBa7dL9qLwBUK45tRD0tAyD5IgU2Izn5w8HMNJE-J-guEuRYt6c
+Message-ID: <CAMSfU+6erOUr6-8yOGLhBEugNhkrHn775+3X4rmTGp6Q20o5Bg@mail.gmail.com>
+Subject: Re: [yocto] [OE-core] Yocto Project Status 11 Feb. 2025 (WW07)
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	Yocto Mailing list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="000000000000d7499e062e028dc1"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 08:58:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64790
+ <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 09:19:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64791
 
-You're not saying what the configure file is and where is it. Can you show that?
+--000000000000d7499e062e028dc1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Help arrives quicker if we can reproduce the problem or at least see
-your setup exactly.
+Hello,
 
-Does log.do_rootfs for your image say which version of wpa supplicant
-gets installed?
+Le jeu. 13 f=C3=A9vr. 2025 =C3=A0 09:49, Alexander Kanavin <alex.kanavin@gm=
+ail.com> a
+=C3=A9crit :
 
-Alex
+> On Thu, 13 Feb 2025 at 00:04, Yoann Congal <yoann.congal@smile.fr> wrote:
+>
+> > I did not find a magic silver bullet that would solve everything (I
+> discovered that Gitlab is way more flexible on this subject).
+> > I guess we need to find a compromise between what a github user sees an=
+d
+> the effort we are willing to put into it.
+>
+> So as I understand, there are no 'settings' in github openembedded
+> organization we can tweak and everything is through repos?
+>
+> Then here's the plan:
+> - someone with rights to manage overall
+> https://github.com/openembedded org creates an empty .github repo and
+> gives Yoann rights to manage it.
+>
 
-On Wed, 12 Feb 2025 at 20:57, John via lists.yoctoproject.org
-<jdowd=slashdevslashnull.org@lists.yoctoproject.org> wrote:
+To me, the https://github.com/openembedded subject is different from
+https://github.com/yoctoproject/
+
+On OE, issues are acted upon, PR merged (example
+<https://github.com/openembedded/meta-openembedded/pull/931>). Even if not
+recommended, from a contributor perspective, it does work. I don't know if
+the situation is clear enough to set up something.
+
+On YP, the situation is clearer, there are repos
+<https://github.com/yoctoproject/vscode-bitbake> that use the github
+workflow (issues/PR) and others that don't. Here, I feel that we can setup
+the .github repo.
+
+- Yoann opens pull requests to that repo, and notifies of them here
+> - any needed github specific tweaks to individual repos are proposed
+> and merged through the standard mailing list process.
 >
-> In the latest stable version of Yocto, I've been building an image for a raspberry Pi board which has a wifi i/f on it. While trying to bring up the wifi connection I need to roll back the version of wpa_supplicant that it is using.
+> Alex
 >
-> In the raspberrypi configure file I've put in "PREFERRED_VERSION_wpa-supplicant = "2.9". The version that is being used currently is 2.11.
->
-> I've then created a recipe file for that version and made sure that it compiles using bitbake. (Had some patching issues, all fixed).
->
-> I then run the command "bitbake core-image-minimal" and boot with the subsequent image. When I query the version of wpa-supplicant I get 2.11.
->
-> I'm unable to find any "PRIORITY" variable of any kind. Why is it grabbing the incorrect version? What have I forgotten to do?
->
-> Cheers!!
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64787): https://lists.yoctoproject.org/g/yocto/message/64787
-> Mute This Topic: https://lists.yoctoproject.org/mt/111149982/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+
+--=20
+Yoann Congal
+Smile ECS - Tech expert
+
+--000000000000d7499e062e028dc1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hello,</div><div><br></div><div class=3D"=
+gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">Le=
+=C2=A0jeu. 13 f=C3=A9vr. 2025 =C3=A0=C2=A009:49, Alexander Kanavin &lt;<a h=
+ref=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt; a =C3=
+=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">O=
+n Thu, 13 Feb 2025 at 00:04, Yoann Congal &lt;<a href=3D"mailto:yoann.conga=
+l@smile.fr" target=3D"_blank">yoann.congal@smile.fr</a>&gt; wrote:<br>
+<br>
+&gt; I did not find a magic silver bullet that would solve everything (I di=
+scovered that Gitlab is way more flexible on this subject).<br>
+&gt; I guess we need to find a compromise between what a github user sees a=
+nd the effort we are willing to put into it.<br>
+<br>
+So as I understand, there are no &#39;settings&#39; in github openembedded<=
+br>
+organization we can tweak and everything is through repos?<br>
+<br>
+Then here&#39;s the plan:<br>
+- someone with rights to manage overall<br>
+<a href=3D"https://github.com/openembedded" rel=3D"noreferrer" target=3D"_b=
+lank">https://github.com/openembedded</a> org creates an empty .github repo=
+ and<br>
+gives Yoann rights to manage it.<br>
+</blockquote><div><br></div><div>To me, the <a href=3D"https://github.com/o=
+penembedded" rel=3D"noreferrer" target=3D"_blank">https://github.com/openem=
+bedded</a> subject is different from <a href=3D"https://github.com/yoctopro=
+ject/">https://github.com/yoctoproject/<br></a></div><div><br></div><div>On=
+ OE, issues are acted upon, PR merged (<a href=3D"https://github.com/openem=
+bedded/meta-openembedded/pull/931">example</a>). Even if not recommended, f=
+rom a contributor perspective, it does work. I don&#39;t know if the situat=
+ion is clear enough to set up something.</div><div><br></div><div>On YP, th=
+e situation is clearer, there are <a href=3D"https://github.com/yoctoprojec=
+t/vscode-bitbake">repos</a> that use the github workflow (issues/PR) and ot=
+hers that don&#39;t. Here, I feel that we can setup the .github repo.</div>=
+<div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">- Yoann op=
+ens pull requests to that repo, and notifies of them here<br>
+- any needed github specific tweaks to individual repos are proposed<br>
+and merged through the standard mailing list process.<br>
+<br>
+Alex<br></blockquote><div>=C2=A0</div></div><span class=3D"gmail_signature_=
+prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=
+=3D"ltr"><font face=3D"Raleway, regular">Yoann Congal</font><div><font face=
+=3D"Raleway, regular">Smile ECS - Tech expert<br></font></div></div></div><=
+/div>
+
+--000000000000d7499e062e028dc1--
 
