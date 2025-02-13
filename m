@@ -1,49 +1,52 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 875D1C021A0
-	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 09:53:20 +0000 (UTC)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web10.7560.1739440392542543466
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79C70C0219D
+	for <webhook@archiver.kernel.org>; Thu, 13 Feb 2025 09:54:40 +0000 (UTC)
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+ by mx.groups.io with SMTP id smtpd.web10.7576.1739440477795716742
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Feb 2025 01:53:12 -0800
+ Thu, 13 Feb 2025 01:54:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile.fr header.s=google header.b=vrYoRpDz;
- spf=pass (domain: smile.fr, ip: 209.85.128.46, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4395a06cf43so3962825e9.2
-        for <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 01:53:12 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=AUkmFzqo;
+ spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6dd1962a75bso5064856d6.3
+        for <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 01:54:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1739440391; x=1740045191; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1739440477; x=1740045277; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdjJEkYYd50oR6Hkyv4SZ0G40z2EMtSvLiDv3LHEmjw=;
-        b=vrYoRpDzP0lyF6u4Htlt6/CMhNBWHMxAT/kKc+o99hifghrn+qdR60PnZORNoeazk/
-         hntdS34MQE39eOQvZSN0+nQOjJBFY89euKbURYKUZXI8mohmpvsH8LBVDLu2dJVi+i2l
-         yLNI/KLIjeaMhGVfyVQheFwPkWXTulGJa+CsU=
+        bh=tRIukruhtxFPp7GNbttsxyH2Nu9ZyzqA7pqpxSyu6+A=;
+        b=AUkmFzqo6RSZI8eBUnZbFvs9CBMcxomiw5f3kvreoT6gcRzTt0c1LiUpUOFNnHtIIy
+         THviTpOSfBZfjuuOxO1pX6/tlKu1qRTexWYAewerydURYguTnYws8d7Z5hsfRWbnYH3F
+         k5ge94hGOREgBwlDoDxiMYL/8FWJ3bHcif2UXZUw0uOfEz2wsYCezCrx0pVEbAnDJjCs
+         esAMMp3iRn5p9RzpbzcodMOTwh3874SQckgjaqjDAUHSEm40Kw9O1E90xUW48OOjUY85
+         jUrkTxLY262UOAs/Dsf6t1KqaG1Lhq85GmE2BFj5zi2QD4x1F7MfJ90nTrGXsuqQDxH5
+         aLUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739440391; x=1740045191;
+        d=1e100.net; s=20230601; t=1739440477; x=1740045277;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cdjJEkYYd50oR6Hkyv4SZ0G40z2EMtSvLiDv3LHEmjw=;
-        b=asRp2A3qbkiZiu1+V4WwtXz+SSOg+VyCD4VEYiG85kiKNdN2VdBtO632gqc9eisdUx
-         SudCd2vMhpjdOUIWLUeg1XTk1p0gjonEBjIGCnglRCC1CnHPt/d5ex5PiV4+xqAGpkIX
-         A/lmNcNU/G1x8Io5CHvlQWrGyDKumlRn6C92DN62oevEMiyaPz51lbOD57XfW4El487O
-         RmdvQOFNWEVkRZSHwifGGrcYODjAfs+SDYKC7rH4PmzA7623HIsI/fLuewbSrmjV7Fmd
-         cG4AoC+SsiyO6cvlnLwvoFCt4l1v4DDeKw0u3bKTIBmD+V74mB2yGpd2wvGsMZlSvx6C
-         ZvNw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+eybS9EAhNzJZbbRpvVffiHamKq/sRfsw0MeaYJmvIlb4qAhfLS2AjskOc/+pxyy5VxghhA==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yx3vDfyKmoZ68ZOO0d/wZevnetywJsx7vOeUjo52uLkYw4lI+sQ
-	+uwGSxVCBkNMNbpw8d6aKdUJiRm/h9iBi3Ti3S7EpZwssT5MOEZ78YLDYZWoBFIjnGwd65HPwb4
-	QECcAXXyhhtTHH1Qq+VCZt0L8X5OgUiuHjNdD8G0j+H7yWuUu
-X-Gm-Gg: ASbGnct9iIv0dEeh5eZSOZbyDdQ5aUuZbjeyfUWgCLrPBtWGOj3QtC2hBvH0s8VCH2H
-	TYa2cODIZfTmebW9mm0pEQIOTesn2YaFfaUvqr7Kc1qf6Ozhw0vvN88kgu3w8qURM21Oa/ZI7tF
-	GaBt8XSJEh14qeHWxJET5FcTpCx48=
-X-Google-Smtp-Source: AGHT+IHtQvV04f1GgnmjDw37VUOTe6z3D2r3gELAw4cxtAcf5Fb2HmczDI7oOxI1pYRP/haCk0HxKt3cFmdYc++K00o=
-X-Received: by 2002:a05:600c:3b8f:b0:439:34d3:63c0 with SMTP id
- 5b1f17b1804b1-43960185dc9mr29496505e9.16.1739440390860; Thu, 13 Feb 2025
- 01:53:10 -0800 (PST)
+        bh=tRIukruhtxFPp7GNbttsxyH2Nu9ZyzqA7pqpxSyu6+A=;
+        b=Zh/jlcDQ5nFLzZY2ex4iUMIFq7Gs24NlYZUq47y/RiRXTPUaXuZby2BZzwmFisXrEF
+         U7S3Ba4z5rNsK0n/79ELKPXoqiKk4oZMVgfg/qKYcab2Wu25OUErTh6KtSzQwjtx+03f
+         Lex6PIMZ83swgk5J/O+tNUv+JexT5i2mX6/ADVUL2X2WgTmvt9yvGVnkdI4AZT16Sp8m
+         EhJG3lm79l8nU9DwdPQbYqQGRLMfMdsnHiKVJDD46Bt83RH+2fIAxEHhINyGsmhRmhMC
+         RHTrhViCdfPmy+L2Znj0HWzDcTnS1usVMIwWeUmE/COsx5puTl8snJYWmf62d9wrGXPJ
+         W/cg==
+X-Forwarded-Encrypted: i=1; AJvYcCWggvOccfCnvoXrNOaJrdVIZ56MzcCctMq1POE0dZksvF5ODKTAce5V9fF3NiJfyQl5ruB1aA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YykriI+zCOS96eZ1viJPbBN/gCwApQE5DEn5YlLUYFWvQP8PfZm
+	Qpowz92pHi4fCnl0x8dRIN5hZmBk63dkjoAeMz1QDVVU2WThTACPzxp6803ZoCJnRYPcHxRS7Hk
+	8ZvnxfDTkpCu4yKnV64e9AiFECZs=
+X-Gm-Gg: ASbGncv/aiZSJADwBglhGat4yygBfYrNdLkJE5SawWHkA6S/kCsgzPMwjh18XaeMyDK
+	fyzkgbaR/z2INLII7RzjSA5n8USmpS3a9Sgp8uSI4/P67jjcQhvy3ADWej6ZgeIeW99oOwcDchu
+	D+Wrpo1MC6XpOxpSPUBWDbppCMwXYt5iY=
+X-Google-Smtp-Source: AGHT+IFBWHHgVbWtXHE5Wlqeq64h0EU6ghYYqjZfQe0ES9Euxx9Exicw/eCXFRmG8t1CbJdYaMScT3eLCUH6RIrmdAk=
+X-Received: by 2002:a05:6214:27c9:b0:6e6:60f6:56cf with SMTP id
+ 6a1803df08f44-6e660f65961mr5492076d6.5.1739440476861; Thu, 13 Feb 2025
+ 01:54:36 -0800 (PST)
 MIME-Version: 1.0
 References: <CAK5yBb9Fr9MFy5uub2_pTRWmVbt96OWBJ5ty+eAB9Qn+LYa_Wg@mail.gmail.com>
  <CANNYZj-PbWQDa5hAc5X6sqHVMvJ0QE01XXwytya8rprwvSsqag@mail.gmail.com>
@@ -53,112 +56,34 @@ References: <CAK5yBb9Fr9MFy5uub2_pTRWmVbt96OWBJ5ty+eAB9Qn+LYa_Wg@mail.gmail.com>
  <CAMSfU+44qwScnoDP4As37TNHYvwx5mBmTdGEQgq_VVz7woh6sQ@mail.gmail.com>
  <CAMSfU+4MY-JVmWPUixJYiUrtKd2CXHrJuQ0sMJJrrkLzrvAuvA@mail.gmail.com>
  <CANNYZj_8o=SHOn-kRBxzwc8vp3omCL290SA-jKkL_En1m2SWEA@mail.gmail.com>
- <2c1bcbb1d5b75b925d9af2bd300d376a973e314e.camel@linuxfoundation.org> <CANNYZj88RSkyChK6NwJU2OVxmGXzD2W8UcGyYe92ii8v8hdFqQ@mail.gmail.com>
-In-Reply-To: <CANNYZj88RSkyChK6NwJU2OVxmGXzD2W8UcGyYe92ii8v8hdFqQ@mail.gmail.com>
-From: Yoann Congal <yoann.congal@smile.fr>
-Date: Thu, 13 Feb 2025 10:52:44 +0100
-X-Gm-Features: AWEUYZlFyLK2BobtxmnLq_5iJ-cIFNzN-E7-_YXQ0Bo-65PWqGSyQ_sDFqz1vnQ
-Message-ID: <CAMSfU+5Af0=w0N_kK1HLx4nNnQqGOv54C2qC-e7Q0Lm5NQ0Vrw@mail.gmail.com>
+ <2c1bcbb1d5b75b925d9af2bd300d376a973e314e.camel@linuxfoundation.org>
+ <CANNYZj88RSkyChK6NwJU2OVxmGXzD2W8UcGyYe92ii8v8hdFqQ@mail.gmail.com> <CAMSfU+5Af0=w0N_kK1HLx4nNnQqGOv54C2qC-e7Q0Lm5NQ0Vrw@mail.gmail.com>
+In-Reply-To: <CAMSfU+5Af0=w0N_kK1HLx4nNnQqGOv54C2qC-e7Q0Lm5NQ0Vrw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 13 Feb 2025 10:54:25 +0100
+X-Gm-Features: AWEUYZm_YgjDjWALnOOxRjWVXUFRoquoFmZVEoqxzK97qkS7kS4-Q3OH7JlmlkU
+Message-ID: <CANNYZj_8qPoOjhR=uR_7WRZu0V0YdhbcN43fA6mbnQBU5198fw@mail.gmail.com>
 Subject: Re: [yocto] [OE-core] Yocto Project Status 11 Feb. 2025 (WW07)
-To: Alexander Kanavin <alex.kanavin@gmail.com>
+To: Yoann Congal <yoann.congal@smile.fr>
 Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
 	Yocto Mailing list <yocto@lists.yoctoproject.org>, 
 	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="0000000000009b0c1f062e0306a0"
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 09:53:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64794
+ <yocto@lists.yoctoproject.org>; Thu, 13 Feb 2025 09:54:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64795
 
---0000000000009b0c1f062e0306a0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 13 Feb 2025 at 10:53, Yoann Congal <yoann.congal@smile.fr> wrote:
+>> > I don't think the github repo is going to work for either YP or OE
+>> > since there are repositories in both that use pull requests and we
+>> > can't have a one size fits all message. I think that means we would
+>> > have to do this with a .github directory in the repos themselves.
 
-Le jeu. 13 f=C3=A9vr. 2025 =C3=A0 10:50, Alexander Kanavin <alex.kanavin@gm=
-ail.com> a
-=C3=A9crit :
+> That would mean to create a ".github/" directory in those. Are we ready to do this?
 
-> On Thu, 13 Feb 2025 at 10:45, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> > I don't think the github repo is going to work for either YP or OE
-> > since there are repositories in both that use pull requests and we
-> > can't have a one size fits all message. I think that means we would
-> > have to do this with a .github directory in the repos themselves.
-> >
-> > Also note, the global repos probably need TSC agreement. On a per repo
-> > basis it would fall to the maintainer.
-> >
-> > Yoann: Thanks for looking into this!
->
-> Alright. Then Yoann, can you propose patches specifically to these
-> two, with the aim of gently pushing back against new pull
-> requests/redirecting them to mailing list? It doesn't need to be
-> perfect, just a proposal (or several proposals) that we can select
-> from and refine.
->
-> https://github.com/openembedded/bitbake
-> https://github.com/openembedded/openembedded-core
->
+I think so. RP pretty much confirmed this just above?
 
-That would mean to create a ".github/" directory in those. Are we ready to
-do this?
-
-
-> Alex
->
-
-
---=20
-Yoann Congal
-Smile ECS - Tech expert
-
---0000000000009b0c1f062e0306a0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0jeu. 13=
- f=C3=A9vr. 2025 =C3=A0=C2=A010:50, Alexander Kanavin &lt;<a href=3D"mailto=
-:alex.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt; a =C3=A9crit=C2=A0:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Thu, 13 Feb =
-2025 at 10:45, Richard Purdie<br>
-&lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_blank"=
->richard.purdie@linuxfoundation.org</a>&gt; wrote:<br>
-&gt; I don&#39;t think the github repo is going to work for either YP or OE=
-<br>
-&gt; since there are repositories in both that use pull requests and we<br>
-&gt; can&#39;t have a one size fits all message. I think that means we woul=
-d<br>
-&gt; have to do this with a .github directory in the repos themselves.<br>
-&gt;<br>
-&gt; Also note, the global repos probably need TSC agreement. On a per repo=
-<br>
-&gt; basis it would fall to the maintainer.<br>
-&gt;<br>
-&gt; Yoann: Thanks for looking into this!<br>
-<br>
-Alright. Then Yoann, can you propose patches specifically to these<br>
-two, with the aim of gently pushing back against new pull<br>
-requests/redirecting them to mailing list? It doesn&#39;t need to be<br>
-perfect, just a proposal (or several proposals) that we can select<br>
-from and refine.<br>
-<br>
-<a href=3D"https://github.com/openembedded/bitbake" rel=3D"noreferrer" targ=
-et=3D"_blank">https://github.com/openembedded/bitbake</a><br>
-<a href=3D"https://github.com/openembedded/openembedded-core" rel=3D"norefe=
-rrer" target=3D"_blank">https://github.com/openembedded/openembedded-core</=
-a><br></blockquote><div><br></div><div>That would mean to create a &quot;.g=
-ithub/&quot; directory in those. Are we ready to do this?</div><div>=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">
-Alex<br>
-</blockquote></div><div><br clear=3D"all"></div><br><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr"><font face=3D"Raleway, regular">Yoann Congal</font><div><fon=
-t face=3D"Raleway, regular">Smile ECS - Tech expert<br></font></div></div><=
-/div></div>
-
---0000000000009b0c1f062e0306a0--
+Alex
 
