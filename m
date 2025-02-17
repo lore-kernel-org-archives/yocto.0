@@ -1,97 +1,92 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <t.f.g.geelen@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D1D1C021AA
-	for <webhook@archiver.kernel.org>; Mon, 17 Feb 2025 17:46:21 +0000 (UTC)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
- by mx.groups.io with SMTP id smtpd.web11.58636.1739814380146702993
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E7F6C021A9
+	for <webhook@archiver.kernel.org>; Mon, 17 Feb 2025 18:09:44 +0000 (UTC)
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+ by mx.groups.io with SMTP id smtpd.web11.275.1739815779398352088
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2025 09:46:20 -0800
+ Mon, 17 Feb 2025 10:09:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=VbksPCsM;
- spf=pass (domain: gmail.com, ip: 209.85.128.41, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4398c8c8b2cso8598375e9.2
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2025 09:46:19 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=A88uJT1q;
+ spf=pass (domain: gmail.com, ip: 209.85.216.51, mailfrom: t.f.g.geelen@gmail.com)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2fc291f7ddbso5123671a91.1
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2025 10:09:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739814378; x=1740419178; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JuarFNR9dfawKsISftcmygI2N1gnpThQBsUlOvhApzI=;
-        b=VbksPCsM/yK/QArmfYzGlAtr8W6FCvHgYccFrOi9hfxvj+u66UNCHFDVZMWFWgKFEF
-         yCRUaulmbMIUcvpLQHnHSE/BTix1/8StXb2vt/Q544G7Busyjo6W/wkFZ2bteeXSscMl
-         oilJquUGtuXYHAYpyI1VgnO59d4+55aJt2t3mHTrqu+DlntwF8Agq9QT2NjvQCalJDXx
-         FxWbfxUtI3RnD9SPdIVd0s2pA1UZ/ljZ45mFSt2EDrQyip7NhjZMLmyuzwBi11CyjDTF
-         L/fqatw+4GXDj0b+nVvd27hB22bwt0CqiCKtcqR87iSZ4/LgpFMBguOOVfeI+fLQtTet
-         mOOw==
+        d=gmail.com; s=20230601; t=1739815778; x=1740420578; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=j72kbChqpCUn6vJiNa7wrq1fIAVA2HTcZD4/CHsP050=;
+        b=A88uJT1q0cuhdeQwyqm1e1c6CWiOmeNTODrtR+G/p5bXaAAtj2eP4UODP7wv9/eYam
+         4g+XrBYnJgU08BG8Qlu98wkctRjU4KIHnoty3FlgDbHcofZ7sPM3q6NcO044+pHXADnB
+         kV3GQ5tT82P2b+GPjJT0ejF06/B0oLxE6+i6WeTwvhiByIo4KK/ehkewgoXB/cEPBeyQ
+         4fyBb1ZtLCkMrzAbLUfs+eNHjedSZoJUiflNs3WtgwbhMFx0ROKbOQ8rllok5Zp3lUmv
+         r3abCOVB2QDHi/EoKnBqPdRVzZgLNDvtobN2SW6F5UwoexIXlhLi+jM3DukOnOtxhgAk
+         RVoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739814378; x=1740419178;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JuarFNR9dfawKsISftcmygI2N1gnpThQBsUlOvhApzI=;
-        b=i0INa+Rpv5gheq2T30QIBMrKWrYW4MEUJqQRClgHJO3CIhntI/4reFUvMK8czzsKb6
-         8YFvsyhNS2BRiuuiXrWaVKpdTC8iZL/pBDV8m1IS5WxAOo4yC+ik5bgIhNFTvk1qgXfB
-         xXUcMcg0R7Qt/iVCWLgGRfQD9qpaNyaSy/7jXI+6WUp1iyK3BaksWNeguYFXGSaN5XlA
-         gaNCjiywdJRz6MWm1OEzKpA8IvY1dF15p+EUCcfP17GzYoZbA32eFk8bRMzqI72GJtrM
-         hcJ9W4qw1lf5Nl8zCmfs8PIaskGnabXMVT+UeIsOEMjmtSLxjcVXcNvxPhfqhcghqL8D
-         3/Hw==
-X-Forwarded-Encrypted: i=1; AJvYcCVXYdSLa82U1NozUQ06vjm6zKJYrmMF8t5zEBtVK3pnFnQarxDaOHhxCGSIWk+wdsYyA7KbCg==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yyw0zo8c9M4h0BBM3YCpGxKFD3/zhngAKZHVV1Q7Idn72jpsXqr
-	/hwaWc/wNde7grTRAUVZCVyHwPFsnYSIRZFmGWMOHX4EYeLwF98ZjqKXQA==
-X-Gm-Gg: ASbGnctsyLtLdYD6UGi8dEoQd4p+G7U/qfcO5y8+zbea6fyjv5O/akEi+VBGqtzYrKS
-	SZL4SkS3FRl3DZmpFegNdzpqXsVUditwcHgaZRxwSJ3JZn6joOeO03P8tuyghZQgNldxLUjpNVr
-	8nFXYnhGroBVZIcIQTojNm0i31CNVS0v6xpdT1SthVQXKPRUTpe2lXYbPwL6QhB/ryNtl59sZxD
-	LxVcodiumXxRvRDqTZJkf6KZ5/ZsGNHXDZHJp/FE+RCUGAfLJ9sgd9I2KvkkUOJQcylVt3ng3gY
-	LaO/dFdpsT7LyzKa40a4/2Y=
-X-Google-Smtp-Source: AGHT+IFO8zegMbm1Rvhz48OeDlWNnlIyqtC1ucZJHUciNomBII9DQPPSeDh31l5zRrrrWtu/QkDVUg==
-X-Received: by 2002:a05:600c:4588:b0:439:48f6:dd6e with SMTP id 5b1f17b1804b1-4396e717cbdmr93515625e9.19.1739814378074;
-        Mon, 17 Feb 2025 09:46:18 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38f258f5efdsm12674457f8f.43.2025.02.17.09.46.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2025 09:46:17 -0800 (PST)
-Message-ID: <b73c5f9e-4db7-4a02-b1aa-119328e72b69@gmail.com>
-Date: Mon, 17 Feb 2025 18:46:16 +0100
+        d=1e100.net; s=20230601; t=1739815778; x=1740420578;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j72kbChqpCUn6vJiNa7wrq1fIAVA2HTcZD4/CHsP050=;
+        b=MHrlazygsEuuXKyTQjemR753JQ5xYX19+ngr5jKGYciS9jCFR9dIAyZkxc9CHXNCN1
+         Al81f64w/WcCJKvtAVlkq0/2UEoR08f6y0G96APCEEhRS+uc2vNn1BXy2BXcUtMQcpYv
+         f3Vu+ZIJOfGwfztddxAVjTvlEwQ5zypdrPeUCYEDnKY/H6HdQkQAy1QAGGVRdCEXmdL2
+         HrOwodML7yKIix74Tu5tpJWNJ0brKtdBA4Mt6HqiB2fDPJ80OZRReXKKiygGpqcjNPNX
+         0+t4LSk9+Z6qDQrCUHwE4lUGjCavOx/qIMqdZZ0kEPHbgCdcQ6MEuSh955BHGC0bTRO0
+         VY+w==
+X-Gm-Message-State: AOJu0Yw94LAqLuYghpyevyigPkmswyO4v4yqpltM0WjK9su7q66ZGsDV
+	TqkSAamWNiWPJoih0P9edHTek7V3OD643Y1bPGn+2nYmXfzRllPxUB3JByDfzqa+AJOQX52evrT
+	vGCcgV1BXj+8LfGjQ+kayB+rHFUEaSyyh
+X-Gm-Gg: ASbGncskuufRkirZ6r7h02FfocKLTDkzDJIorP594KTDI0KT/bXCtMCqqwo2+Fxc/W+
+	kXhKFiYhS8Qzq6GaUIu9XENx0q8UXoevDCiVqXChoePpVLBYXG0x+wO0HeKFcbnaJ/l78uR8=
+X-Google-Smtp-Source: AGHT+IFHkHoZVbNHG0ZJKwfh+vt6myPXK7sBy3tqJyy/gnAO/i9dFIQ8O6WOOmL9Nh7IA2fSQQDEV2uB+HabYp8urzo=
+X-Received: by 2002:a17:90b:510c:b0:2ee:ab29:1a57 with SMTP id
+ 98e67ed59e1d1-2fc40d13203mr16879579a91.2.1739815776829; Mon, 17 Feb 2025
+ 10:09:36 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [yocto scarthgap] do_configure failed for pth-2.0.7
- package #scarthgap #yocto #autotools #bitbake
-To: kavita.mnnit@gmail.com, yocto@lists.yoctoproject.org
-References: <b69d48e5-7062-443a-be53-521852cbd10e@gmail.com>
- <15793.1738003555647274530@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <15793.1738003555647274530@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Tom Geelen <t.f.g.geelen@gmail.com>
+Date: Mon, 17 Feb 2025 19:09:27 +0100
+X-Gm-Features: AWEUYZkKD0bQP_LM70ZUOWfQYzClrblBmQEr3dSjLCBieXRBoXcucLyacYq0Eg4
+Message-ID: <CAJo0Az7KJrcS0FvCXLfiT3P_MnSpacWp8mJo5Fe_gc-8drRrxg@mail.gmail.com>
+Subject: [auh] Question setting up AUH locally
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2025 17:46:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64820
+ <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2025 18:09:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64821
 
-I'm almost sure that this is way too late, sorry if this is the case...
+Hi all,
 
-Earlier today I already had the luck of debugging some other autoconf
-scripts, and this one came to my mind, and wanted to take a look at it.
-There seems to be a typo in the config script (slipped quotation), which
-was apparently handled differently by previous autoconf versions.
+I am currently trying to set up AUH locally in order to ease the
+maintenance of the layer I'm maintaining (meta-homeassistant).
+I have followed the steps given here
+https://docs.yoctoproject.org/dev-manual/upgrading-recipes.html and
+have configured it to parse all the recipes in my layer (99% python
+based recipes).
 
-If you are still interested, you can find the necessary patch for pth
-here:
-https://gist.github.com/OldManYellsAtCloud/3d3419a4799749ee1adb98e22122b54f
+Now I have a problem. It correctly parses all recipes, however it
+finds no upgrade candidates. This is strange as I know some are in
+need of an upgrade, and a newer version is available on pypi for
+instance. Moreover I get quite some skips with the following error:
 
-It compiled for me successfully on Scarthgap, and I could also link a
-simple program against it successfully, which it also ran fine. (Can't
-guarantee though anything)
+Skip package meta-homeassistant/python3-hass-nabucasa (status =
+UNKNOWN_BROKEN, current version = 0.87.0, next version = 0.80.0)
 
-On 27.01.25 19:45, kavita.mnnit via Lists.Yoctoproject.Org wrote:
-> Here is the path to the recipe which is unable to build with the
-> autoconf 2.72e recipe
->  
-> https://git.openembedded.org/openembedded-core/tree/meta/recipes-support/pth/pth_2.0.7.bb?h=fido
->  
-> Please let me know, if you need any other information.
+Where does it get the 'next version' value from as the latest version
+upstream is 0.92.0.
+I might have misconfigured something. I used the default
+upgrade-helper.conf with the following additions:
+
+layer_mode=yes
+layer_name=meta-homeassistant
+layer_dir=BUILDDIR/../sources/meta-homeassistant
+layer_machines=qemux86-64
+
+Thanks in advance,
+
+Tom
 
