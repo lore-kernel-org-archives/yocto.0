@@ -1,111 +1,144 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <landervanloock@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 739A0C021B2
-	for <webhook@archiver.kernel.org>; Tue, 25 Feb 2025 16:53:43 +0000 (UTC)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
- by mx.groups.io with SMTP id smtpd.web10.13574.1740502414974859264
- for <yocto@lists.yoctoproject.org>;
- Tue, 25 Feb 2025 08:53:35 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=bokDJyMB;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.41, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38f1e8efef5so3488348f8f.1
-        for <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 08:53:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1740502413; x=1741107213; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XNpIvmlRqmvZKnCsZuZjcrcLS0XfDRyukvoj/nStqHw=;
-        b=bokDJyMBsMnZRZOZfNR6snQtoWV/nhyvliNCIryZ+MWYkXD3w5Be14v5muhoo2pec7
-         pkiVia/FGvGM9YmO6jXp5TKDRG29+5y5CLY8cRd3CbmDS0PpE525v1WDEyLOn8D+Ac9+
-         pl2wLl+loVZ712jLLFYavNV1Iub+SCMxugiZc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740502413; x=1741107213;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XNpIvmlRqmvZKnCsZuZjcrcLS0XfDRyukvoj/nStqHw=;
-        b=OR2atWNZLgPG3OzamKo5LaBKql9TA+BZ/MS3a+SFACydVCmQinpwl8gEFY5HN5zQsq
-         cwvcUksqNympBu7/G+TSf5lU5zACqjDiWmt0wMycNgofg4LZully1TDtgNH/DeQECw+/
-         Sdiwk9VM6aGvvJ+MUDc7Gq+bdzCCI57ibReRnjPNJMCTVVbPlVJfUYVEecD7JXoBb8SN
-         FIthRt4OyxhMOSurOfHnbFRwArvlEsUuvIPOru2pwmo2+4OKOlzcr3fTjaPWzZye0pEp
-         TfvegSfFPYENtC0ESbNMYfAgwcA64kIQiAO12nBA/RpwEU9svgvar6NH422I0y1vRz7C
-         Ubog==
-X-Forwarded-Encrypted: i=1; AJvYcCVRxQFlNCAUkYH3n/Qy0J5kQ5TLwuzMLN4GXbPqbkEUgEXZhryzk0glQ6VgEzoImP/lbK1yzw==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YzdTBbFvcT2zO8f3U3vdG5AkedV99GXAQSoAId5sLfFuCsjdYUg
-	vZVWhFMt7CbwTs5rKLKf3BzGUhpbod5897t+j651GShh4KWQdPsMPr6gWsc0apk=
-X-Gm-Gg: ASbGncucMLNWp01n4A3Cf0Xeq/4/463Y/SXykjjQ2lOkf0yHNF9tQwVzRhk9sDbn+sE
-	O83kfi9W95jLePH3dPmpujBui6tZE/xGdzUp6Vra8uHWJteGxSWfvgQp+Xh95PgbSXFpiD/UeV2
-	VATxRhJTzpDohBvIJWCKRauUtaX1dgm2NzRuBIOZ680gh3yrydJlk0MCUDmKkAlB4U94+0C+DKe
-	1xbBUCXkDMBCbDe74s15x1qBKDenq4z2TOCJooacDJK28v/BaixW6kw+4Lz76LutcwlcQqDICo1
-	+Yu/iStCRAIYbfeanxhW165/3Pgkh8FyeHy+wkH59Mmj+VZ23kVYta2WYZFr8cPduzw32tlCncB
-	LyhfN2Wn3nscyX+8=
-X-Google-Smtp-Source: AGHT+IE7UGEiHvmu4uRyYr+R4bv6ttrYvI4QsF/emNmTz1mF9wB7aGn/TNI5R2IbTYxMCB9N9oAqcw==
-X-Received: by 2002:a05:6000:1a86:b0:38d:e6f4:5a87 with SMTP id ffacd0b85a97d-390cc5ef3c8mr3727300f8f.10.1740502413459;
-        Tue, 25 Feb 2025 08:53:33 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:92c7:7a17:f809:bc92? ([2001:8b0:aba:5f3c:92c7:7a17:f809:bc92])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390cd8fceeasm2910405f8f.95.2025.02.25.08.53.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2025 08:53:31 -0800 (PST)
-Message-ID: <9ee46ddb0ffbab94b2015eb81e711845be9b4471.camel@linuxfoundation.org>
-Subject: Re: [yocto][meta-mingw][PATCH] oeqa: Set LANG in wine tests
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Steve Sakoman <steve@sakoman.com>
-Cc: Joshua Watt <jpewhacker@gmail.com>, yocto@lists.yoctoproject.org
-Date: Tue, 25 Feb 2025 16:53:30 +0000
-In-Reply-To: <CAOSpxdZT+tuqP0CmKUrZR7W+i6-2PPuHwWcdk33_48R-1c66Pw@mail.gmail.com>
-References: <20241002225451.263086-1-JPEWhacker@gmail.com>
-	 <CAOSpxdZSCzmXMJ-R2Xri8OcQw4Q38b6nkbH-F83sUO9vVgkMJw@mail.gmail.com>
-	 <CAJdd5GZMVzeiuu55cmXXsAHvARvfTs_mOn9iv8UQEe+_kmwbUQ@mail.gmail.com>
-	 <344f79e8e7093309dad81c72f4be7dc2d42a6161.camel@linuxfoundation.org>
-	 <CAOSpxdZT+tuqP0CmKUrZR7W+i6-2PPuHwWcdk33_48R-1c66Pw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2-0ubuntu1 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6547AC021B2
+	for <webhook@archiver.kernel.org>; Tue, 25 Feb 2025 21:32:20 +0000 (UTC)
+Subject: Btrfs Root Filesystem Remount Issue with systemd on Yocto
+To: yocto@lists.yoctoproject.org
+From: landervanloock@gmail.com
+X-Originating-Location: Antwerp, Flanders, BE (94.110.112.215)
+X-Originating-Platform: Linux Firefox 135
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Tue, 25 Feb 2025 13:32:15 -0800
+Message-ID: <8cDU.1740519135015977787.rlM0@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="XYoAl0jKfV4mJHfiV3Uo"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 16:53:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64869
+ <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 21:32:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64870
 
-On Tue, 2025-02-25 at 08:29 -0800, Steve Sakoman wrote:
-> On Wed, Oct 30, 2024 at 9:03=E2=80=AFAM Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> >=20
-> > On Wed, 2024-10-30 at 10:02 -0600, Joshua Watt wrote:
-> > > On Wed, Oct 30, 2024 at 9:18=E2=80=AFAM Steve Sakoman <steve@sakoman.=
-com>
-> > > wrote:
-> > > >=20
-> > > > Would it be possible to cherry-pick this commit to the styhead
-> > > > branch?
-> > > > =C2=A0I'm seeing the same issue there.
-> > >=20
-> > > Yes, that would be a good idea. It's based on the build host, not
-> > > wine
-> > > or Yocto, so I suspect we would see it on any branch using that
-> > > host.
-> > >=20
-> > > Pretty sure it will cherry-pick cleanly, do you want me to send a
-> > > patch?
-> >=20
-> > I've sorted it, thanks.
->=20
-> Looks like this was backported to kirkstone and styhead, but not
-> scarthgap.
->=20
-> I'm seeing scarthgap meta-mingw failures when running on Ubuntu 24.04
-> workers.
->=20
-> Can we backport to scarthgap too?
+--XYoAl0jKfV4mJHfiV3Uo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Done.
+Hello everyone,
 
-Cheers,
+I'm experiencing an issue on my custom Yocto-built system where my Btrfs ro=
+ot filesystem (mounted as root using Btrfs) ends up being mounted read-only=
+ during boot. It appears that the systemd-remount-fs.service fails to prope=
+rly remount the filesystem, even though the initial kernel mount succeeds.
 
-Richard
+*System details:*
+
+* Yocto project build (using meta-tegra layer for Jetson Orin Nano)
+* Kernel: linux-yocto 6.12.11
+* Systemd: 257.3
+* Root filesystem type: Btrfs
+
+*Issue description:* During boot, the kernel mounts the Btrfs root filesyst=
+em correctly. However, later in the boot process, systemd-remount-fs attemp=
+ts to remount the root and other filesystems with modified mount options, a=
+nd fails with errors like =E2=80=9Cmust be superuser to use mount=E2=80=9D.=
+ This failure forces the system into maintenance mode because subsequent mo=
+unts (e.g. /tmp) also fail.
+
+I have increased the debug log levels (using kernel parameters such as syst=
+emd.log_level=3Ddebug and udev.log_priority=3Ddebug ) to gather more detail=
+ed logs, but I=E2=80=99m still trying to pinpoint the exact reason for the =
+failure. It seems likely that the new remount method introduced in systemd =
+257 (and later) doesn=E2=80=99t play well with Btrfs once the filesystem is=
+ already mounted.
+
+*Steps already taken:*
+
+* Verified that the initial kernel mount of Btrfs is successful.
+* Confirmed that /etc/fstab contains the correct options.
+* Enabled extra logging for systemd and udev to capture more debug output.
+* Considered workarounds such as disabling systemd-remount-fs or adjusting =
+mount options to avoid a remount.
+
+*Questions:*
+
+* Does anyone have experience with a similar issue on Yocto systems using B=
+trfs and systemd 257+?
+* Are there any known workarounds or configuration tweaks (in fstab or syst=
+emd) that can prevent systemd-remount-fs from attempting a problematic remo=
+unt?
+* What additional debug steps would you recommend to isolate the issue furt=
+her?
+
+Any help or pointers to relevant documentation or similar issues would be g=
+reatly appreciated.
+
+Thank you!
+
+--XYoAl0jKfV4mJHfiV3Uo
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>
+<p data-start=3D"1172" data-end=3D"1197">Hello everyone,</p>
+<p data-start=3D"1199" data-end=3D"1500">I'm experiencing an issue on my cu=
+stom Yocto-built system where my Btrfs root filesystem (mounted as root usi=
+ng Btrfs) ends up being mounted read-only during boot. It appears that the =
+<code data-start=3D"1383" data-end=3D"1411">systemd-remount-fs.service</cod=
+e> fails to properly remount the filesystem, even though the initial kernel=
+ mount succeeds.</p>
+<p data-start=3D"1502" data-end=3D"1521"><strong data-start=3D"1502" data-e=
+nd=3D"1521">System details:</strong></p>
+<ul data-start=3D"1522" data-end=3D"1666">
+<li data-start=3D"1522" data-end=3D"1589">Yocto project build (using meta-t=
+egra layer for Jetson Orin Nano)</li>
+<li data-start=3D"1590" data-end=3D"1619">Kernel: linux-yocto 6.12.11</li>
+<li data-start=3D"1620" data-end=3D"1636">Systemd: 257.3</li>
+<li data-start=3D"1637" data-end=3D"1666">Root filesystem type: Btrfs</li>
+</ul>
+<p data-start=3D"1668" data-end=3D"2056"><strong data-start=3D"1668" data-e=
+nd=3D"1690">Issue description:</strong> During boot, the kernel mounts the =
+Btrfs root filesystem correctly. However, later in the boot process, system=
+d-remount-fs attempts to remount the root and other filesystems with modifi=
+ed mount options, and fails with errors like &ldquo;must be superuser to us=
+e mount&rdquo;. This failure forces the system into maintenance mode becaus=
+e subsequent mounts (e.g. /tmp) also fail.</p>
+<p data-start=3D"2058" data-end=3D"2433">I have increased the debug log lev=
+els (using kernel parameters such as <code data-start=3D"2129" data-end=3D"=
+2154">systemd.log_level=3Ddebug</code> and <code data-start=3D"2159" data-e=
+nd=3D"2184">udev.log_priority=3Ddebug</code>) to gather more detailed logs,=
+ but I&rsquo;m still trying to pinpoint the exact reason for the failure. I=
+t seems likely that the new remount method introduced in systemd 257 (and l=
+ater) doesn&rsquo;t play well with Btrfs once the filesystem is already mou=
+nted.</p>
+<p data-start=3D"2435" data-end=3D"2459"><strong data-start=3D"2435" data-e=
+nd=3D"2459">Steps already taken:</strong></p>
+<ul data-start=3D"2460" data-end=3D"2766">
+<li data-start=3D"2460" data-end=3D"2524">Verified that the initial kernel =
+mount of Btrfs is successful.</li>
+<li data-start=3D"2525" data-end=3D"2582">Confirmed that /etc/fstab contain=
+s the correct options.</li>
+<li data-start=3D"2583" data-end=3D"2657">Enabled extra logging for systemd=
+ and udev to capture more debug output.</li>
+<li data-start=3D"2658" data-end=3D"2766">Considered workarounds such as di=
+sabling systemd-remount-fs or adjusting mount options to avoid a remount.</=
+li>
+</ul>
+<p data-start=3D"2768" data-end=3D"2782"><strong data-start=3D"2768" data-e=
+nd=3D"2782">Questions:</strong></p>
+<ol data-start=3D"2783" data-end=3D"3118">
+<li data-start=3D"2783" data-end=3D"2881">Does anyone have experience with =
+a similar issue on Yocto systems using Btrfs and systemd 257+?</li>
+<li data-start=3D"2882" data-end=3D"3037">Are there any known workarounds o=
+r configuration tweaks (in fstab or systemd) that can prevent systemd-remou=
+nt-fs from attempting a problematic remount?</li>
+<li data-start=3D"3038" data-end=3D"3118">What additional debug steps would=
+ you recommend to isolate the issue further?</li>
+</ol>
+<p data-start=3D"3120" data-end=3D"3214">Any help or pointers to relevant d=
+ocumentation or similar issues would be greatly appreciated.</p>
+<p data-start=3D"3216" data-end=3D"3226">Thank you!</p>
+</div>
+
+--XYoAl0jKfV4mJHfiV3Uo--
 
