@@ -1,133 +1,101 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 546E5C021B2
-	for <webhook@archiver.kernel.org>; Tue, 25 Feb 2025 16:03:03 +0000 (UTC)
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
- by mx.groups.io with SMTP id smtpd.web10.11877.1740499380769641165
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 75E3CC021B8
+	for <webhook@archiver.kernel.org>; Tue, 25 Feb 2025 16:29:43 +0000 (UTC)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+ by mx.groups.io with SMTP id smtpd.web10.12865.1740500982461875118
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Feb 2025 08:03:00 -0800
+ Tue, 25 Feb 2025 08:29:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=OPJH4Wmk;
- spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6ddcff5a823so46364086d6.0
-        for <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 08:03:00 -0800 (PST)
+ dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=Yy0UES8/;
+ spf=softfail (domain: sakoman.com, ip: 209.85.219.179, mailfrom: steve@sakoman.com)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e455bf1f4d3so4336501276.2
+        for <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 08:29:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740499380; x=1741104180; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1740500981; x=1741105781; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i6MMxgUPqsWv1Imcol0BotMw5y/4Xqx+QYjZM4uKm0k=;
-        b=OPJH4WmkRy30B0ynUpn1e2DlO1Tq43KTSBHj0t+vmNigGJT0xgtFNs+WttGcvI//kv
-         4SLdzs/mlSqb4tMwPbPIzPNStG/ub6fL665L8E+0Me21QIsNKDCedVq5binVpgkcIG/d
-         uuHE75OcQucLDk0vvzydyYoONuDoilC0KCjwdwU3c01tjF5L9DzKRhWKolmv7KupymMj
-         u6nsA53kMa8OSMLNySzjRol69X8J64/Xz/s4YIFdwkWgXiE0MAomd2W0VnS7PVUgA4st
-         4IKe8FtKNM9Cx4bb5NtadT3bDIPL0/gY+woopfHF+H7NWIKrsF63xV9sC+3PF4eN5Y55
-         wqRA==
+        bh=JVxxZQ4M4nl9aO5iatWjaZNt9ijgUFLSrWOOFSu6tkk=;
+        b=Yy0UES8/4SC7rMQsHlgS/2gxMKirmlg6tWgzbUELsJ7x/kZGwfA/cr0P+09NcI5Nsh
+         A9SQfaFMDjBNKLV0dfil2w6CJ1hmdhOulXnZLbeRODqAw1W0BIiN+wuLnzq3l1XgwNVS
+         WNiO1QvcLr09T5o8+oO4T05VLUiwKamK/QuWztdWiNtIuiC72M9KOrhriiflV3DAcdGT
+         kumVC+xIrmhn3DjBUiT8zIsmUdontp7bbkQM1wbjw+wAM/sm4LiAKQmYO5Oyvm5LLTDv
+         Y693Z85lCOEoPkjRjfe6M97Wo01EuGt4yU6kkvUZgBvofc/thCZ0ImlqDlKXXZ/2Em7v
+         UPYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740499380; x=1741104180;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=1e100.net; s=20230601; t=1740500981; x=1741105781;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=i6MMxgUPqsWv1Imcol0BotMw5y/4Xqx+QYjZM4uKm0k=;
-        b=K0Qvi0TNkwWCHT6yWYswnuS/EseSl8xQIPOHIls3VRLPc5mAydPzU7OENLk9gsWRC4
-         Zg5KLMAb3HP3csJxhcQCocXV27H3IgByesE5j0ODKIvZ0mmuss5ZRTCdeCJdeL0VfE4o
-         S7oK19tnMR/lU/R3ffPziW1PXxfqom/3MC/gzUw3xwykZAo7oG2LNpCtC9l/6rH0Jkz2
-         U3sLqNSzDQ4FVHl+sqKoSWOMWJb4iim9MGdgzI7saRsfoM++wkUmm1Mknyw0YQx5vsfW
-         BXpKAMj5XnKCg+s9shxddXxYyPsl1oUEIlx+zzGTxUNhCfscoogbYZXG+dxQtu1JfmSv
-         RLzg==
-X-Gm-Message-State: AOJu0Yxe7WXFS8o74AOjbHrkCeBW38IE8M5k+BCEOVHiQqT7OsChBGYJ
-	Ha6l5GwG48g7OTHMNX/Xr9SfdjKLVGC483BOwxcluF5YYRJ/ZInv/HKCKWq93fkZOhrxYt73fSA
-	BdrvWViLxHSnaSuKIqrvDmSDdvcfeuw==
-X-Gm-Gg: ASbGncvgphKbm5kCn54MxktHToWZFWLsPVbtXQ7USIKbb4A/GEurAYAc9aK7xLVNuyD
-	Pb0dGYuUqLxaD/uA2buQFza5AJg6ywA+/hAIlQIZINUDUBDp2zNdVAKFLvOSLxhHdwqAExZFxoi
-	PqP2aB//blJ0fuDMHvFZbF22jBAFRC2RaHZnidUAp2/w==
-X-Google-Smtp-Source: AGHT+IH0rN5eIvuImpjJXPNFW/zk0kNcdxa4zBJe+fY05fJVPTPzglBHz5tStxArwLRwOtp9RcEil6DQAlHv2fhpk5E=
-X-Received: by 2002:a05:6214:300e:b0:6e6:602f:ef68 with SMTP id
- 6a1803df08f44-6e6ae7f6c1cmr238386216d6.10.1740499379564; Tue, 25 Feb 2025
- 08:02:59 -0800 (PST)
+        bh=JVxxZQ4M4nl9aO5iatWjaZNt9ijgUFLSrWOOFSu6tkk=;
+        b=uFncJH7sBTcz3ikI3BSkr/YsmapZd/Ug70KaumwS0HyDigWrGmPQZJtGnRmzHiaGR6
+         ubCf8+TxZkOHU17sr0zOo9Ptn4WhnsDYwA2GDMf86IpWSFMwHdlelMaVSb1CFSEsfF+N
+         687BygBgvCPTebifUReGDf+qK8K/juc2deEzQsb330kcTAqnyHuTrMlc1b8ya3/f+fiK
+         LNCOxP115VlfOxfxWxyYiIw7SBq5gZjZQUWH8VSSCJUatwm9XVGlL4kRnXnc3nBXKH2z
+         D2qvioJ9m8Xs1RkwKPfkpxIyQsrBWJZkGWqO2ekKJzh55abE/EAepGiySklXYVdHMZnn
+         elOg==
+X-Forwarded-Encrypted: i=1; AJvYcCWVVUgipc6noPGJF96dNa2/O5DfJA/6J41pV0ZEhtjAxvumSpjbIhgEPwd0BmJEy4facYaoHQ==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yzwn2lrp0LdKFkl55nKBf7daPHTHf2ORZMPKfm2ZnoWlAQBoY06
+	iqz1JFqy1bvWKLoCRE57JZ/zPcTwm//jZnQLsdLqdjqgg38Bn96VGOj3byvBbCc4NGwqpbjoO5C
+	sfeDk/j4KdC1O26tr4BMvSayeAyIgQG+9xK/A4A==
+X-Gm-Gg: ASbGnctWgtIFgoz/1NPrixVW5MNogdvlvez6o99CZejUTa6VQB5SsvBqDwze8ebbqWS
+	gTYzoul3pqt/btieIcOT5mUA2Dds+VH99tLs55fBgcEukgQhC3lPEo0oOH/CXl0ChL2lJSWFGUq
+	jfINO/7Jy4BGow9VorqR3ZaRGLemiz5nkNlwN0kuY=
+X-Google-Smtp-Source: AGHT+IGkbl6fxLrA+FnOF2GC5r2VnXmbtXJFmahx51KXsKpxKtCusgm4Eb9BSHwpBo8VtWfg0hiLPSeFcsJtijWOQUU=
+X-Received: by 2002:a05:690c:48c1:b0:6f9:7356:4662 with SMTP id
+ 00721157ae682-6fd21deb66amr1429577b3.16.1740500981447; Tue, 25 Feb 2025
+ 08:29:41 -0800 (PST)
 MIME-Version: 1.0
-References: <751653524.2812887.1740495957756@webmail.strato.de>
-In-Reply-To: <751653524.2812887.1740495957756@webmail.strato.de>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 25 Feb 2025 17:02:48 +0100
-X-Gm-Features: AQ5f1JoIFw-nLW8Tlh3Vit1hHdbCt7hiiwb3g8VQfm8l2aqKM96Ploz3npSwiiQ
-Message-ID: <CANNYZj9hSsTKV5PEHztiJ6z+9DBTaQTLzCor0K7xi4mfUq-m5Q@mail.gmail.com>
-Subject: Re: [yocto] Yocto Dunfell - Modify OpenSSH configuration
-To: yocto@lists.yoctoproject.org, kontakt@daniel-kampert.de
+References: <20241002225451.263086-1-JPEWhacker@gmail.com> <CAOSpxdZSCzmXMJ-R2Xri8OcQw4Q38b6nkbH-F83sUO9vVgkMJw@mail.gmail.com>
+ <CAJdd5GZMVzeiuu55cmXXsAHvARvfTs_mOn9iv8UQEe+_kmwbUQ@mail.gmail.com> <344f79e8e7093309dad81c72f4be7dc2d42a6161.camel@linuxfoundation.org>
+In-Reply-To: <344f79e8e7093309dad81c72f4be7dc2d42a6161.camel@linuxfoundation.org>
+From: Steve Sakoman <steve@sakoman.com>
+Date: Tue, 25 Feb 2025 08:29:30 -0800
+X-Gm-Features: AWEUYZm2LxZZcyTGRcj0h0BESleHNy7wik1pkKpVPLXPNMYVdg2yuXysLwlasww
+Message-ID: <CAOSpxdZT+tuqP0CmKUrZR7W+i6-2PPuHwWcdk33_48R-1c66Pw@mail.gmail.com>
+Subject: Re: [yocto][meta-mingw][PATCH] oeqa: Set LANG in wine tests
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Joshua Watt <jpewhacker@gmail.com>, yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 16:03:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64867
+ <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 16:29:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64868
 
-Either the needed changes aren't being packaged correctly (check
-${WORKDIR}/packages-splt for openssh recipe), or the needed package
-isn't being installed into the image (check
-${WORKDIR}/temp/log.do_rootfs for the image).
+On Wed, Oct 30, 2024 at 9:03=E2=80=AFAM Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+>
+> On Wed, 2024-10-30 at 10:02 -0600, Joshua Watt wrote:
+> > On Wed, Oct 30, 2024 at 9:18=E2=80=AFAM Steve Sakoman <steve@sakoman.co=
+m>
+> > wrote:
+> > >
+> > > Would it be possible to cherry-pick this commit to the styhead
+> > > branch?
+> > >  I'm seeing the same issue there.
+> >
+> > Yes, that would be a good idea. It's based on the build host, not
+> > wine
+> > or Yocto, so I suspect we would see it on any branch using that host.
+> >
+> > Pretty sure it will cherry-pick cleanly, do you want me to send a
+> > patch?
+>
+> I've sorted it, thanks.
 
-Alex
+Looks like this was backported to kirkstone and styhead, but not scarthgap.
 
-On Tue, 25 Feb 2025 at 16:06, Daniel Kampert via
-lists.yoctoproject.org
-<kontakt=3Ddaniel-kampert.de@lists.yoctoproject.org> wrote:
->
-> Hi,
->
-> I=C2=B4m working on a Dunfell BSP (Toradex BSP5) and want to add and modi=
-fy the OpenSSH configuration. So I=C2=B4ve added "recipes-connectivity/open=
-ssh/openssh_%.bbappend" with this content
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
->
-> # Apply the SSH configuration
-> # - Disable password authentication
-> # - Disable X11 forwarding
-> # - Enable public key authentication
-> do_install_append () {
->   sed -i -e 's:^#PubkeyAuthentication.*$:PubkeyAuthentication yes:g' ${D}=
-${sysconfdir}/ssh/sshd_config
->   sed -i -e 's:^#PasswordAuthentication.*$:PasswordAuthentication no:g' $=
-{D}${sysconfdir}/ssh/sshd_config
->   sed -i -e 's:^#ChallengeResponseAuthentication.*$:ChallengeResponseAuth=
-entication no:g' ${D}${sysconfdir}/ssh/sshd_config
->   sed -i -e 's:^#UsePAM.*$:UsePAM no:g' ${D}${sysconfdir}/ssh/sshd_config
->   sed -i -e 's:^#X11Forwarding.*$:X11Forwarding no:g' ${D}${sysconfdir}/s=
-sh/sshd_config
->
->   install -d 0700 ${D}${ROOT_HOME}/.ssh
->   install -m 0600 "${TOPDIR}/keys/ssh/${DEPLOY_ENV}/id_ed25519.pub" ${D}$=
-{ROOT_HOME}/.ssh/authorized_keys
-> }
-> FILES_${PN} +=3D "${ROOT_HOME}/.ssh/*"
->
-> And I added TASK_BASIC_SSHDAEMON =3D "openssh-sshd openssh-sftp openssh-s=
-ftp-server" to my OS configuration. The generated image contains OpenSSH (I=
-=C2=B4ve checked the version) but no authorized_keys or modified configurat=
-ion.
->
-> What is wrong here?
->
-> Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
->
-> Ing. Daniel Kampert, M. Sc.
-> Embedded Systems Solutions
-> Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland
-> Phone: +49 (0)174 6932561
-> E-Mail: kontakt@daniel-kampert.de
-> Web: www.daniel-kampert.de
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64865): https://lists.yoctoproject.org/g/yocto/messag=
-e/64865
-> Mute This Topic: https://lists.yoctoproject.org/mt/111378266/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+I'm seeing scarthgap meta-mingw failures when running on Ubuntu 24.04 worke=
+rs.
+
+Can we backport to scarthgap too?
+
+Thanks,
+
+Steve
 
