@@ -2,65 +2,65 @@ Return-Path: <kontakt@daniel-kampert.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D06BDC021B8
-	for <webhook@archiver.kernel.org>; Wed, 26 Feb 2025 06:44:38 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
- by mx.groups.io with SMTP id smtpd.web11.691.1740552270766276685
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3649C19776
+	for <webhook@archiver.kernel.org>; Wed, 26 Feb 2025 10:07:49 +0000 (UTC)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.23])
+ by mx.groups.io with SMTP id smtpd.web11.2568.1740564466704100134
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Feb 2025 22:44:31 -0800
+ Wed, 26 Feb 2025 02:07:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0002 header.b=srF+2Zn3;
- dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0003 header.b=TwioLayF;
- spf=none, err=permanent DNS error (domain: daniel-kampert.de, ip: 85.215.255.52, mailfrom: kontakt@daniel-kampert.de)
-ARC-Seal: i=1; a=rsa-sha256; t=1740552267; cv=none;
+ dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0002 header.b=r4EFO7so;
+ dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0003 header.b=XOMLHc31;
+ spf=none, err=permanent DNS error (domain: daniel-kampert.de, ip: 85.215.255.23, mailfrom: kontakt@daniel-kampert.de)
+ARC-Seal: i=1; a=rsa-sha256; t=1740564463; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=tkmp172c4pLBEAd0jLSZvdUnTwfem1Ydl5KuL9QWPPlXJfXKpAfMQW3euTy30rDzq3
-    VuG2GID/WrcZQy4NwLDY8QxQGG7iEuwFFht3NVuvcHuEm9Rc3qO2oXFl2/90ldMUIwkn
-    avJCh38e/qUPilsl7CCFxuEC5tB9XJOKWeMmc8Xkd83HxgJrzlbSSIpTm2dNkTCuA6iM
-    W9t83UJ959CPoz84Q+Fnmo8duIgTANO9RVOwNyOS6OCdH5Pw4LEPGZCeU+JCRRKd834D
-    SaaXTCfPyWA654Ijgab2UhbsYN9upd1A7uBGbnwMOAiiWD+JVM1W3i7VKVl0xw/Q0A3O
-    rfAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1740552267;
+    b=dgbpo9hPpP4fp6UsD6Aq1/G+izPzJ0JkrU7Cmk8S2Qd2bgbe2p8jiwzZmwSI8hFxZ5
+    rWfo2BzFA0ONbc2nKogHtDcl/US+2d8v/bM314zb/BGEXel7SZ/VjlLdBrhkho960uRS
+    zuziReHU3eZwcOsncKG+Zb+rdvuojXwosInnwFhqd5RhuOsmlx1NY8PzUNfe7LEbwRa4
+    SnPAnVuDODNA5BgsUlKIxkZl8c4yUZNjoS0dnSMsRWSbwY3Ol2H8ZmAXAcP1fHNL+6P1
+    K+3Xm0uInruWm0Zf1/TntsCnovAgku3FmdfiGRznf/Kd0z+TKAmnM97/Zt1AqljvteZY
+    4ucg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1740564463;
     s=strato-dkim-0002; d=strato.com;
     h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=NyEGcuBk386ltzJZf5tV0DSNejwMj9yEJi4eENVbWaM=;
-    b=SrnZTbqFOhWvoaIP26k+KA5kDBhC4bI/74PRa7b7yCxOVR55DaweCBi3Ymu5xIVdWQ
-    GRTbmfFxfw5HrgnEfMU/XL3C8Oxe6aCKt8AiO6dQLg+Mgd1FILzAYPHDCu0g/FBhjhyk
-    7S7eHt+3I7yFmRc1tqpEh2LkCzcAJRd5hpoWbxZaq+WQ34FmKEtk/tuRC308rPaL8Md+
-    qxAVeQsbAXS4CUH6OetlFzGsOQY8nsi7JmG4IvmnfMCGwgi+RJP1rsK0j1cU4t0p1k9T
-    0iF7mp+b2v/C6Z0vn2AnojgKVCZeO26PUEoMu5M5GXZWtZqNNPU+vnVz9ahXAwJpG1vp
-    UEmA==
+    bh=NhaHOXMsUV6q6DzUrbtAMED4ffQP7jI3kj9hddcKKtA=;
+    b=nDxLOUW+aYFHBucUhrS+yEg8+XjnLnaa4lMHB04dr8I5xh4h4d4NDb3KV1QEbr6jT+
+    k0cu9Zyy7qu5WPHOQ/gE/engGbWu3JAIaNFdZEtaXEFh6+AFqDXVMZqWqzSBe8KJp9DF
+    rU4EhxJIsssExQYbMOX5/JHtJl2P7Ica4+COHtmzZGf6XBHMswyyv2XxRAtPDfly16en
+    ZVHTSdoBSwmI/64QtvWBfn+h22oyWtbKY7h8TQHKYzDqPC74W97tMUYaIIPc1qIxoHre
+    HBdYt2h6xcIpSBlrltSn5aqB6S+DThrxoZYk709OhjkBTa9PFWu6b7bkz9kdvwJ1j0CW
+    2dCg==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1740552267;
+X-RZG-CLASS-ID: mo00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1740564463;
     s=strato-dkim-0002; d=daniel-kampert.de;
     h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=NyEGcuBk386ltzJZf5tV0DSNejwMj9yEJi4eENVbWaM=;
-    b=srF+2Zn3dki7YxR2EgFp7npo7z0bXz2vyzNqWmOFZ975zAzKJd9X6HeAtyIN+VRMZh
-    V0sNRoMsl0abs//IYdT8IDFxDeZ3WvZguk8XgjC7T4t8tqVk22ry4J3YcQSfSMhFMLf1
-    3PEEpm/O/HGIP5LRrYMFE1W5Eck549U8t4jOIEf6v7YA0XJkm2gSfj7evT0ejxt00Qod
-    Mm7FLo+7JSqxfdQT73k3dE8jrDNbAd67HAQbWxAhQEHLkZk4ULv7MjK40iLAxWBYILlf
-    gJ2dj9TDvNzOEUx0uSN0eyMp7iL/S75fKztzF/jkA8hTOAInjVRPuKN8q1IxjVUnxi2g
-    aO2g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1740552267;
+    bh=NhaHOXMsUV6q6DzUrbtAMED4ffQP7jI3kj9hddcKKtA=;
+    b=r4EFO7so2XshiOtHOsfsHucfSeavvJHFRG01/DTPbT1JnK39A4yNi1iadrQNrOuNny
+    2vIGXJGpe1ZRRBEXAzsVpPBdfIQgyqoEimhDzx6TpFN0acWrF39zRkb223VoT24S41Vl
+    DJCKFCzYeFOBQDGEPFDrkmtvPzWELTOMhyl4b9ux+efvqHYTyse5Xds7xBiol0MAigjK
+    ymQyUOC1SAB3XQme75w+ySNBoMNH290JLTLcdaLxLCS8unklDp/3zq2/VW8sISLL0BiR
+    DbCdnLuSaVr8m/OSK0d0vGdzqa6WbUlngTnDs+eqw/yJvJB6CN2Xl6Q1xZzBFA3RS52G
+    RaNg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1740564463;
     s=strato-dkim-0003; d=daniel-kampert.de;
     h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=NyEGcuBk386ltzJZf5tV0DSNejwMj9yEJi4eENVbWaM=;
-    b=TwioLayFr1NzKoYBWnd3npZ8MJrwodRfIsP5jO0dtXX+BPVi6u+3L6mP9iKAVG94u9
-    70vFWQgOsRin2fqBHtBg==
+    bh=NhaHOXMsUV6q6DzUrbtAMED4ffQP7jI3kj9hddcKKtA=;
+    b=XOMLHc310wz3Sock4J2ZOl5nQINt3B4Ptth0hwZdtTIRZunY/xXiLNwhregLZUD3+3
+    uUdWv8V3lDmj1pDqqEBQ==
 X-RZG-AUTH: ":J2MKYUGjb98fESEFCJFViw9Avy7eC0lbL9IJtUAlr//iX6qLOAGQ/pwD7T1oMG+TLVuVbxkCQk4="
-Received: from ox-live-app405.back.ox.d0m.de
+Received: from ox-live-app301.back.ox.d0m.de
     by smtp-ox.front (RZmta 51.2.23 AUTH)
-    with ESMTPSA id jfbddf11Q6iRBjG
+    with ESMTPSA id jfbddf11QA7hCoI
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
 	(Client did not present a certificate);
-    Wed, 26 Feb 2025 07:44:27 +0100 (CET)
-Date: Wed, 26 Feb 2025 07:44:27 +0100 (CET)
+    Wed, 26 Feb 2025 11:07:43 +0100 (CET)
+Date: Wed, 26 Feb 2025 11:07:43 +0100 (CET)
 From: Daniel Kampert <kontakt@daniel-kampert.de>
 To: yocto@lists.yoctoproject.org, alex.kiernan@gmail.com,
 	"Alex Kiernan via lists.yoctoproject.org"
@@ -68,7 +68,7 @@ To: yocto@lists.yoctoproject.org, alex.kiernan@gmail.com,
 Cc: Alexander Kanavin <alex.kanavin@gmail.com>,
 	"Alexander Kanavin via lists.yoctoproject.org"
  <alex.kanavin=gmail.com@lists.yoctoproject.org>
-Message-ID: <1876183039.586827.1740552267669@webmail.strato.de>
+Message-ID: <167856995.3098114.1740564463842@webmail.strato.de>
 In-Reply-To: <CAO5Uq5SRGhgxeRBLJ-=hUZUJy5pauJCCMGqYQxcwqM1L3WYiJA@mail.gmail.com>
 References: <751653524.2812887.1740495957756@webmail.strato.de>
  <CANNYZj9hSsTKV5PEHztiJ6z+9DBTaQTLzCor0K7xi4mfUq-m5Q@mail.gmail.com>
@@ -77,7 +77,7 @@ References: <751653524.2812887.1740495957756@webmail.strato.de>
 Subject: Re: [yocto] Yocto Dunfell - Modify OpenSSH configuration
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 
-	boundary="----=_Part_586826_2051323024.1740552267659"
+	boundary="----=_Part_3098113_1901967399.1740564463831"
 X-Priority: 3
 Importance: Normal
 X-Mailer: Open-Xchange Mailer v7.10.6-Rev73
@@ -86,25 +86,42 @@ Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Feb 2025 06:44:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64876
+ <yocto@lists.yoctoproject.org>; Wed, 26 Feb 2025 10:07:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64877
 
-------=_Part_586826_2051323024.1740552267659
+------=_Part_3098113_1901967399.1740564463831
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 Hi Alex,
 =20
-I=C2=B4ve put the bbappend file in "recipes-connectivity" in my meta-layer
+I=C2=B4ve checked "run.do_install" and the installation command is availabl=
+e:
 =20
-meta-layer
-  recipes-connectivity
-    openssh
-      openssh_%.bbappend
+install -d .../build/tmp/work/aarch64-tdx-linux/openssh/8.2p1-r0/image/home=
+/root/.ssh
+install -m 0600 .../build/keys/ssh/dev/id_hannah_ed25519.pub .../build/tmp/=
+work/aarch64-tdx-linux/openssh/8.2p1-r0/image/home/root/.ssh/authorized_key=
+s
 =20
-I=C2=B4ve also figured out that the IPK contains the authorized_keys file, =
-so I started a new build. Maybe my build was messed up.
+I also get a QA issue when I remove "FILES_{PN}" from the bbappend file and=
+ the other commands from it were executed successfully. But the "authorized=
+_keys" file is still missing. I=C2=B4ve changed the bbappend file in the fo=
+llowing way
+=20
+SRC_URI +=3D " \
+file://sshd_config \
+"
+=20
+do_install_append () {
+  install -m 0644 ${WORKDIR}/sshd_config ${D}${sysconfdir}/ssh
+  install -d ${D}${ROOT_HOME}/.ssh
+  install -m 0600 ${TOPDIR}/keys/ssh/${DEPLOY_ENV}/id_hannah_ed25519.pub ${=
+D}${ROOT_HOME}/.ssh/authorized_keys
+}
+=20
+FILES_${PN} +=3D "${ROOT_HOME}/.ssh/*"
 
 > Alex Kiernan via lists.yoctoproject.org <alex.kiernan=3Dgmail.com@lists.y=
 octoproject.org> hat am 26.02.2025 07:32 CET geschrieben:
@@ -244,7 +261,7 @@ Phone: +49 (0)174 6932561
 E-Mail: kontakt@daniel-kampert.de mailto:kontakt@daniel-kampert.de
 Web: www.daniel-kampert.de https://www.daniel-kampert.de
 
-------=_Part_586826_2051323024.1740552267659
+------=_Part_3098113_1901967399.1740564463831
 MIME-Version: 1.0
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
@@ -262,30 +279,56 @@ Content-Transfer-Encoding: quoted-printable
    &nbsp;
   </div>=20
   <div class=3D"default-style">
-   I=C2=B4ve put the bbappend file in "recipes-connectivity" in my meta-lay=
-er
+   I=C2=B4ve checked "run.do_install" and the installation command is avail=
+able:
   </div>=20
   <div class=3D"default-style">
    &nbsp;
   </div>=20
   <div class=3D"default-style">
-   meta-layer
-  </div>=20
-  <div class=3D"default-style">
-   &nbsp; recipes-connectivity
-  </div>=20
-  <div class=3D"default-style">
-   &nbsp; &nbsp; openssh
-  </div>=20
-  <div class=3D"default-style">
-   &nbsp; &nbsp; &nbsp; openssh_%.bbappend
+   install -d .../build/tmp/work/aarch64-tdx-linux/openssh/8.2p1-r0/image/h=
+ome/root/.ssh
+   <br>install -m 0600 .../build/keys/ssh/dev/id_hannah_ed25519.pub .../bui=
+ld/tmp/work/aarch64-tdx-linux/openssh/8.2p1-r0/image/home/root/.ssh/authori=
+zed_keys
   </div>=20
   <div class=3D"default-style">
    &nbsp;
   </div>=20
   <div class=3D"default-style">
-   I=C2=B4ve also figured out that the IPK contains the authorized_keys fil=
-e, so I started a new build. Maybe my build was messed up.
+   I also get a QA issue when I remove "FILES_{PN}" from the bbappend file =
+and the other commands from it were executed successfully. But the "authori=
+zed_keys" file is still missing. I=C2=B4ve changed the bbappend file in the=
+ following way
+  </div>=20
+  <div class=3D"default-style">
+   &nbsp;
+  </div>=20
+  <div class=3D"default-style">=20
+   <div class=3D"default-style">
+    SRC_URI +=3D " \
+    <br>file://sshd_config \
+    <br>"
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    do_install_append () {
+    <br>&nbsp; install -m 0644 ${WORKDIR}/sshd_config ${D}${sysconfdir}/ssh
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp; install -d ${D}${ROOT_HOME}/.ssh
+    <br>&nbsp; install -m 0600 ${TOPDIR}/keys/ssh/${DEPLOY_ENV}/id_hannah_e=
+d25519.pub ${D}${ROOT_HOME}/.ssh/authorized_keys
+    <br>}
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    FILES_${PN} +=3D "${ROOT_HOME}/.ssh/*"
+   </div>=20
   </div>=20
   <blockquote type=3D"cite">=20
    <div>
@@ -482,5 +525,5 @@ pert.de</a>
   </div>=20
  </body>
 </html>
-------=_Part_586826_2051323024.1740552267659--
+------=_Part_3098113_1901967399.1740564463831--
 
