@@ -1,58 +1,55 @@
-Return-Path: <landervanloock@gmail.com>
+Return-Path: <sateesh0457@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCC6CC021B2
-	for <webhook@archiver.kernel.org>; Tue, 25 Feb 2025 23:25:36 +0000 (UTC)
-Subject: Re: [yocto] Btrfs Root Filesystem Remount Issue with systemd on Yocto
-To: "Leon Woestenberg" <leon@sidebranch.com>, yocto@lists.yoctoproject.org
-From: "Lander0606" <landervanloock@gmail.com>
-X-Originating-Location: Antwerp, Flanders, BE (94.110.112.215)
-X-Originating-Platform: Linux Firefox 135
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8AA54C021A4
+	for <webhook@archiver.kernel.org>; Wed, 26 Feb 2025 04:07:44 +0000 (UTC)
+Subject: cve-update-db-native-1.0-r0 do_populate_cve_db
+To: yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Hyderabad, Telangana, IN (14.98.167.76)
+X-Originating-Platform: Linux Firefox 113
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Tue, 25 Feb 2025 15:25:32 -0800
-References: <CAMjhiJi=+9Ta4aGsNWUYrMnwi+pxim44Q9MNpViBZV_fi+P2Wg@mail.gmail.com>
-In-Reply-To: <CAMjhiJi=+9Ta4aGsNWUYrMnwi+pxim44Q9MNpViBZV_fi+P2Wg@mail.gmail.com>
-Message-ID: <16235.1740525932760509826@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="kD1Z9m20HbSvgI4XYd8V"
+Date: Tue, 25 Feb 2025 20:07:42 -0800
+Message-ID: <wgaO.1740542862948388964.u8YG@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="mxv8XmNh0XCtYuxUnoqo"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2025 23:25:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64872
+ <yocto@lists.yoctoproject.org>; Wed, 26 Feb 2025 04:07:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64873
 
---kD1Z9m20HbSvgI4XYd8V
+--mxv8XmNh0XCtYuxUnoqo
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
->=20
-> Are the device and mount points owned by UID 0 (zero)?
->=20
+Hi Team,
 
-Using the ls -lah command on my host machine reveals that the mount point i=
-s indeed owned by my user account, not root. Strange, an image created from=
- the scarthgap branch the same way as now on the master leads to the correc=
-t mount point permissions (root). Is there any way how I can change the own=
-er of the mointpoint in my Yocto project?
+WARNING: cve-update-db-native-1.0-r0 do_populate_cve_db: Failed to fetch CV=
+E data ([SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:=
+852)) I am tryint to generate cve data. I am using poky dunfell sources pyt=
+hon version 2.7.17. Is any one faced same issue? How can resolve this issue=
+ please suggest me.
 
-Thanks in advance for the help!
+Thanks & Regards,
+Sateesh
 
---kD1Z9m20HbSvgI4XYd8V
+--mxv8XmNh0XCtYuxUnoqo
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<blockquote>
-<div>Are the device and mount points owned by UID 0 (zero)?</div>
-</blockquote>
-<div>Using the ls -lah command on my host machine reveals that the mount po=
-int is indeed owned by my user account, not root. Strange, an image created=
- from the scarthgap branch the same way as now on the master leads to the c=
-orrect mount point permissions (root). Is there any way how I can change th=
-e owner of the mointpoint in my Yocto project?</div>
+<div>Hi Team,</div>
 <div>&nbsp;</div>
-<div>Thanks in advance for the help!</div>
+<div>WARNING: cve-update-db-native-1.0-r0 do_populate_cve_db: Failed to fet=
+ch CVE data ([SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_s=
+sl.c:852)) I am tryint to generate cve data. I am using poky dunfell source=
+s python version 2.7.17. Is any one faced same issue? How can resolve this =
+issue please suggest me.</div>
 <div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>Thanks &amp; Regards,</div>
+<div>Sateesh</div>
 
---kD1Z9m20HbSvgI4XYd8V--
+--mxv8XmNh0XCtYuxUnoqo--
 
