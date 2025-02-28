@@ -1,356 +1,363 @@
-Return-Path: <ccasciato@21sw.us>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7A23C282C1
-	for <webhook@archiver.kernel.org>; Fri, 28 Feb 2025 15:46:19 +0000 (UTC)
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (NAM02-BN1-obe.outbound.protection.outlook.com [40.107.212.98])
- by mx.groups.io with SMTP id smtpd.web10.19006.1740757572633185581
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6536C282C1
+	for <webhook@archiver.kernel.org>; Fri, 28 Feb 2025 16:07:49 +0000 (UTC)
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+ by mx.groups.io with SMTP id smtpd.web10.19593.1740758860210903360
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Feb 2025 07:46:13 -0800
+ Fri, 28 Feb 2025 08:07:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@21sw.us header.s=selector1 header.b=Vn3bK5+d;
- spf=pass (domain: 21sw.us, ip: 40.107.212.98, mailfrom: ccasciato@21sw.us)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vCubtOhf0cxMdm4kv7QGYviHJQVnJn7oscbQeFX+5Kc2Gna3F22oJ/fAzIW1mv3oN28PDnSG+KtI1V70oJ8LChLgxlA+tznOkQPhoqYj4KB7Nasxcd36GGYTNjtX3dCv9lmUDub5dv/D9yUMIAIuMBRnUFxy+SHAdEVUI1ga7rshIxlJDTDZxFS/2w7DPc8QZlBTj9G1upDCdivWA9NC5/hUovDuzCiMT6cXDrQxUzu48qVvw7xxth/lX+/RyDONLbEN74WdDguRKP/8TZjmpGc4iUQ61soxpDoG+272OvWYiKtiPXygi1PGlJBa9Sp0ShmJpwTux4rVx6Baj/DV5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L4s0gjheA66KnP82mWl4B19+v2rKJa8scUTRJJJqbCk=;
- b=MoJ9fCkWj1hzD891I6GiPuF8K/DeyqcraHWKJ4KvP0n546euVGIPxWC2irCUri/3ldsziGAMJsv5Uhjfp9PWOgTFdwDn48nPBAqbK9c7TrLhnD09ggR6EoetpCWUc13+uzpm2gxyftOaNHdA/yiQQ6tdTVRRLpqV1rIBjDxfUTqmEbcboSN5o6gvE8lZUgqsGa4kTOhHVyRneJLY76o/oXijtBgraZM1ZhayXi5o6AN/l76vC3nm+lx54C9SkBez5TQ8MmxC6aOPSCix50ks4HKOuIK5ADzQnpUFwqLct8OlM4hWRp8ejHjrPS/VNuO/U7bRotAZ98RYu1B4elfRIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=21sw.us; dmarc=pass action=none header.from=21sw.us; dkim=pass
- header.d=21sw.us; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=21sw.us; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L4s0gjheA66KnP82mWl4B19+v2rKJa8scUTRJJJqbCk=;
- b=Vn3bK5+dNWN/rV8v+vrWJaqw0/n56u40j6/pTlGvb7cf0AT7n6sVw/sDBUb9TT+axbSOb/XYkOVQXTzYZTIG0EQgqGi13DJArF5jTPh+Ei/VKfxDHxBAq8k/rNO2isrdY6+Un4mBtHFLnr3sVb0Tazsq3Ivol8D4w+xK+c2aO76n5c31YCTzKtYaNH9bhnv26UbdgTznPQILVNz79zPEF/u2RBCBh9IR1QWDqUtfpVq98SjP4rRLr4E6pJAy+ZEnGk247hnMvlDndEM15+abtbDUCKT8kGvR+YqyTw79CawFPm6UbhMi71R7gElbkjGDrc3mZdcCM6c7LMs1PnoytQ==
-Received: from MN0PR22MB5515.namprd22.prod.outlook.com (2603:10b6:208:4c7::12)
- by SJ2PR22MB5060.namprd22.prod.outlook.com (2603:10b6:a03:589::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.15; Fri, 28 Feb
- 2025 15:46:07 +0000
-Received: from MN0PR22MB5515.namprd22.prod.outlook.com
- ([fe80::7b97:a11c:793c:c238]) by MN0PR22MB5515.namprd22.prod.outlook.com
- ([fe80::7b97:a11c:793c:c238%5]) with mapi id 15.20.8511.008; Fri, 28 Feb 2025
- 15:46:07 +0000
-From: Clayton Casciato <ccasciato@21sw.us>
-To: Yoann Congal <yoann.congal@smile.fr>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>, "raj.khem@gmail.com" <raj.khem@gmail.com>
-Subject: Re: [yocto] devtool error on "modify" with patches
-Thread-Topic: [yocto] devtool error on "modify" with patches
-Thread-Index: AQHbiZNuWgb0aMSChUiQj+debw2BFbNcGSuAgABZt4CAAGeCcw==
-Date: Fri, 28 Feb 2025 15:46:07 +0000
-Message-ID: 
- <MN0PR22MB55158651AD86D574DF5633AAB7CC2@MN0PR22MB5515.namprd22.prod.outlook.com>
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=alvunxyw;
+ spf=pass (domain: gmail.com, ip: 209.85.160.54, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2a88c7fabdeso1453141fac.1
+        for <yocto@lists.yoctoproject.org>; Fri, 28 Feb 2025 08:07:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740758859; x=1741363659; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hjUjy+eJqPJqmQxh8fqIEqIpGQoHIjW2RRv7xbKxoi4=;
+        b=alvunxywd+F/3ys1T7MY5UqWhNu1UHt2VgXqBjY/aHcl7xgEM3nojvadCTJpGE6NxX
+         +vSzIgs7Cd+2ieSml9TnukOEI0Pos70u0lyEZsyANQlmG4LYorxkhLWE5Y4+XuvpL2vh
+         9A7wObDiSkN166za+OFnrxJfISIDA0csi7hUVN86EDPqiQ2/LsehvsNsxCA90nLgDK4+
+         +JX5ajgI8qsJeshobPggKxvwI5SS80luk8kVEQ/x0xA0+S1TK1fiHzhk2SBoEf+0U5Rk
+         jEqG9UpfZ6FgaFiYeIInI8RRGHLIwlU05Gt2oC87eeXTJgfcWTDgazeetOM1Q1RirEe9
+         Xc3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740758859; x=1741363659;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hjUjy+eJqPJqmQxh8fqIEqIpGQoHIjW2RRv7xbKxoi4=;
+        b=Gjp61HTgY4idkEthUZMjFOD4ydgz+yyzqZ6x2IlrUfadMHeiyVyBEVQS7Sn1F8Vn57
+         DDbSbeibxscxIj0t0kjDXYTmJ0EK6RqVlHxFMqup4JDPEZjdN+8U8fCXOV8XQwBU/cz/
+         htffrhgsfRTWfpjqZcaD4R0ezfZwCATag/reb7z+39F9o53VZrRWPMYKNgTdPQGEoJl9
+         LM0Q9nf1N8I7tuJkBih6dr3E7+bCn83NgYX/JV77ooP2hivVacvhzi+PB8qgxXv5qMQz
+         4gv/z+So5ZsP/jDHHHai97XUz7CPRO3xq8WiHKyx0cPD4Nz9/HjAwmUq8mMfpeJ0rTGT
+         qHZw==
+X-Forwarded-Encrypted: i=1; AJvYcCWOlcqbucdoeXvBeHrCXn3UtaHUQCS0itNBwOlzuJ/HLGdz5Bb/m0pj4CrC8QE9D9tyP0h0jA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YxvdXgAd67R9km08QNrCkPFTXHuERreVi4s2q5U907mpL+8Rvu1
+	dFAD6okisxuNY1FbTLrehGpIBRJ92YaG/+DnxuqUKA/An33RPa563yet+VB/C0vpJCZuWwDaOtq
+	rxTFat5hM2lkCKn8zBrxxg90A9PU=
+X-Gm-Gg: ASbGncseLZW6tNedzLBXKk7bWTrgPPegQ2VEzzUh+JUhMVLFuSVTsuQAzv/SEsribXE
+	DYL6BnvjkHF4EOCi2rrQbR8u1sWU25z9hkQW4RRn2ZYtAPq6rzajkmf80BfAdPptt9CII1W6w80
+	7dnQRZ+45fQYrrhGs9sDFOXkRl2xyP40qoySts4dlm
+X-Google-Smtp-Source: AGHT+IHSbxdwAy6DrkMmUkh+0+MH2rrM3/kiJisRsJo03sA569KsJi9ePk/laIhU0oh37sDWDRGv0yrnd+uKsHprbAg=
+X-Received: by 2002:a05:6870:ce93:b0:2bc:9915:aeaa with SMTP id
+ 586e51a60fabf-2c178317eeemr2448748fac.5.1740758859300; Fri, 28 Feb 2025
+ 08:07:39 -0800 (PST)
+MIME-Version: 1.0
 References: <ULf5.1740714416323187991.vYPQ@lists.yoctoproject.org>
  <CAMKF1sp1QeYA_ZzzmtJNM17Vv2W4DAxXDUghh0YLe-BGyKFx+g@mail.gmail.com>
- <CAMSfU+4A8EF=GGBfakZnjLeHj59fdOpw2eAXPMch-gAGhdgGFQ@mail.gmail.com>
-In-Reply-To: 
- <CAMSfU+4A8EF=GGBfakZnjLeHj59fdOpw2eAXPMch-gAGhdgGFQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=21sw.us;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR22MB5515:EE_|SJ2PR22MB5060:EE_
-x-ms-office365-filtering-correlation-id: 212c326e-d82c-4585-d713-08dd580f0409
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|366016|1800799024|376014|38070700018|13003099007|80162021|7053199007|8096899003;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?eWgzeWE5WXlmaHl4V0ZHODJZdEptM0UzOXMyanRPaHFqckdNTGNKUjEwb2Nk?=
- =?utf-8?B?aVZJSnVZUkwzbk1oVGZxdWZOTkd5UnNJblV6d1pnTURWN1RTcUU2Z05DdUlQ?=
- =?utf-8?B?MDdiTG5uWTNtTVAxaHpHWC9aSldzVjR4WU5hTjZqQ1gxekdCY1BOU1pkRFdY?=
- =?utf-8?B?RS82RGJoeVFwWlhhc3RHV1ZGRFhpRkdGbWd0R3lISnR4N0I2U2dKM1pZdzhF?=
- =?utf-8?B?OERXVFk5Y0RycHB3anlMbysrRHhWekZKMFRFdFE1UHB5elVRNlRLY2h6QlZQ?=
- =?utf-8?B?L21xUXlrVWNUQUFqWGNZMzZRblZMdFhKcnpvMzU5WTdJanVVcitYM3N4RmFw?=
- =?utf-8?B?VUd5WURKY0ExdVVwWEx6TTRkckh5QjdvdjNldEk2eFBWNkE1NTlrWlJUa2ZQ?=
- =?utf-8?B?b1p6SEJLaHJtbmhFSndsdzZWcjdSOGtHWnIzcFZvWGhEOFp1QVlxQUYxYjJo?=
- =?utf-8?B?cnNFNWE4aEtkZGxYN0ZlbjNNNGxlWlF5S2hIYzhpNWRlalA2R1lMdEd5bXdR?=
- =?utf-8?B?Zk52R2V0VkJQZWV0RVl2cWlyTzFiRkJaVHZ2aVZRMnlKZmUrRjlhTGY1SXJ5?=
- =?utf-8?B?bU84dU1VdkMwQldNcUFuOExPNWZjL0lILzQ4TC9ZY1ZqZjRDb294NE5iM2Uz?=
- =?utf-8?B?dm9JUU1JcTI5TWVKUW1xRnFCMzNTSW0wTjQrS05nTXBFQWR1dE5IaFJ2YzV1?=
- =?utf-8?B?RVg4ejIyMGVCZE9XM25tS05XZm1KY1B0bXlsWlBUd2RkMEl4czNJMVBiYk9p?=
- =?utf-8?B?cE1QVHJMWExVQWJQbUk4bFlhYVhjdXRSQnVxaDlleWRNMlV0eFEwbjJ5Y3oz?=
- =?utf-8?B?ZG5FYzIzL1ZDeEw1dTQvWUkrU1JoejNhOGp6cS9KUWhtUnRTTnlNL0ZoRFdl?=
- =?utf-8?B?c1BtWUp6aklxbU1JM0lYbGZnQ1hmdHVxaDZNK1NSdHJOQWRNTnA5SGpXWU4z?=
- =?utf-8?B?OVdwbndaZnloV0p0MDd0TFlVeFZaL2FDM2ZlNEF5U1lsbGUvNGU1aTF5WFda?=
- =?utf-8?B?WjV6ZWtUN2ZTQlpTREZReUkvZUxDRkZTVjJELzZ1Zlk3SXUxdGkrSFpMTGxw?=
- =?utf-8?B?TXVVNWJkL2xNbHc0enorNWIyK1lWbk1vbzNrVUF4c1lKVnpCbVJLaEF5V3RD?=
- =?utf-8?B?WVI5RHQ0VVliYkUxTy8vRlQzcjNGUWtQdDFyNlA4YmRFb1JsSzJCb1ZxVzhC?=
- =?utf-8?B?OVFKdFVUZ3FPbGcwbUYrYzJpVGtJaU9XUmd4OEVWMFJnMklyWUxMN1FrbWN4?=
- =?utf-8?B?V3BJQ2lqQ2I1QkZUUnFmSDVtVXJEY1NqRi9BdEU3bmhrRHBrQUZZYkxHaVRB?=
- =?utf-8?B?azhFWW5kNzYrTzFqclFsNmZBL1ZYSTJRWm5qMUxBZFF6dHRlZS9YeWNwdEp6?=
- =?utf-8?B?TVIwRlJWeVdkc1NVQ1FGaStuY2FPck1Fd0F6N3IyOGNVY3MrSWZ1TmlRdUts?=
- =?utf-8?B?L0hXd3dWeXRaUnBqbHR4VFltWE1zOC93ekI2bWRXYmQ2TnQ4VzFUbkszTHlh?=
- =?utf-8?B?Z2dIL3djMWVXeWVIcXJIZlcyUHN5L1plbXdtYTJSb0VqdzJwejU3ZWxxWU1T?=
- =?utf-8?B?T0t4QnYvaDdiZmdsVG5zR0tVYXVZOTk3aVdrRmVIdWd3cU5GK3hPOVR6a0RH?=
- =?utf-8?B?MVpxMmJMWnVDYlprU1dyRVBjb2FMeWVaOElUMjdVaVlHL0VFOTlKK3FPZHdl?=
- =?utf-8?B?TEZyTzVZU3VGRGwxWjgrVC9HRnZNaE55dXVvR1h5RnU4WWNUZW9uZVFWNGZy?=
- =?utf-8?B?cklVd284UVpiNEJXckJ0V0Rjc0E0MzB2NTd3QVdlUjB0N2JOUjFNZzNldXVz?=
- =?utf-8?B?R0JMcmhJeS9yelJxYXpYaUsxQU55N2pQcEVIVlhZMVFqSE1DS29lTWJhWGs1?=
- =?utf-8?B?dkZ6d09xbTRDbTR6NlQ3a0prSEpIWDJ0T0lMSm1UL1RPZ2c9PQ==?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR22MB5515.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(13003099007)(80162021)(7053199007)(8096899003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?bTEza1NWU2IrTGNmaDZRelc3RUhKWU9FT3hHLzI4b2RLZ2pFUExBN1FPNElq?=
- =?utf-8?B?dm1BOHNTQTBic3RsZjdodlIyMlBPUThJWk55Kyswcit5VG5XMFAvUGVqNnpU?=
- =?utf-8?B?UjZXanFsOVFWY251M29JUGxGaFUxMVoxOFZQbWtTY2p6U1RwWk01VDhXTHY2?=
- =?utf-8?B?b0Z5NWh2ZE1oelNmalBGQkdIK1MrZFRpbDVlQVQ1eXFPK24vUEJVeE9zUWhM?=
- =?utf-8?B?RUY3QUMrUW5RN0N0c2RXOW1oMW1HRDJGeVhTRkVuQXVDOGRSUmhhdDJHR1VX?=
- =?utf-8?B?c01OZHdMV0k3QW1EUGdaZ01XNXk0NGlaRnJUckVxY3lXZ2RmbHRRMFZpcjRP?=
- =?utf-8?B?Sm5OTXkrLzlCV05DaGJCOG5sN2NZVjkyL2x1MGowTDVNSDhMQ3BWYmtSYitM?=
- =?utf-8?B?eklxMlZ0ZnArSGRFQ3IwUTFmeHVEbzd6TktTelhGSEZVV3pCektiVCtGVEFk?=
- =?utf-8?B?cGV1dWx3MTY0T0xZWmM1OGFFaWgvdGk1bkZJcmd6MnFIeEhkTURBT1dCa2FE?=
- =?utf-8?B?bHZtcjlzaXFTdUd5UHoyQVlEMjI0dU1KWURqS1JMa2R0WkpkUk1DRHRDNzNr?=
- =?utf-8?B?VjNWUGlaTmx1L3ZaRDBxQ1dPQ1dWcm9KRUhiSGk5QUFBa0paT3hhb2I1ZnNx?=
- =?utf-8?B?WEE4WG4xVHRTWVNpT1hrb1FYSnppckdpQ1lqZ2NFb2tFOVJyUnRWaVFzQ0No?=
- =?utf-8?B?cFVwaVhmZ2JKdGFpbi94RUNSUWxwRHI1NWVQQ2NkQ2hHOW5rNzZ3L0cxZllY?=
- =?utf-8?B?QXdQTkxSdFdpRVYrZVpWUEU5STRxVStBM00rTGxHMStNODljei81ZDRrVUU0?=
- =?utf-8?B?L0hKZmRQWXNxeFdxQ2hFaUQxb1NrU0pyNGI0cTgwa2NHZkF2Q3RDQ1pUV3pC?=
- =?utf-8?B?eUJaYm9xTmJTK1d4NXM5RWpRZ0oxK2dXcFptQ1RlOVJ3QURyS1lPR0ZSdThs?=
- =?utf-8?B?WldXa05zTG92Q3F1MlliVmpRaDh3STc4TG9MQlFWem1XMVBiZUJaRmtSaGVZ?=
- =?utf-8?B?MXFOMFZScTVRV3h5MUVMVXludmtxbHlIeUdNNnM5RmJ5cTR4QXFHTllSWTFC?=
- =?utf-8?B?VXh1b2lZWkFGRFZNU1I5cEtZdlFmMTBUVU1Mb3Vna0U3L2IwY0ZZV095c1Jk?=
- =?utf-8?B?b1QyS1F1OVR2a0M5UUFTVDBYSmQ5WjJvVjhtTWVXTmg4RFhtRTV4alN5aDh4?=
- =?utf-8?B?cER0ays2YnQ4YlkzVUp4VXVmMit1cUprQkdaQ3B2M25Ca2lPbEdEa3Y2R3dZ?=
- =?utf-8?B?MVgrL1dCdjZTaVF0ejVTcVlETkx3eEw5dGFWeHNIV0JuL0ZPbEpYRkdsOXo2?=
- =?utf-8?B?L0dnK3Z1ak05YXFBU1pxeVNGTjRrL21FalI0eDZlZDh0cjA5SjFtZy9wNE1j?=
- =?utf-8?B?OWxHTTFkSjY4TFRDZlA3WlI5WXZ4YktPY2ZxbzRYN1ZWQjhTUGhTM2RFSFI3?=
- =?utf-8?B?cnZ1VXFDK251ZDd0b3VvamZ1RTlXQlRDNjJLcDI3M09HdTd3bnZzM0hBWTFI?=
- =?utf-8?B?YkE4Q1BrL3hLQ3Y3R3l4UkQraTZDUy9yYlhRN0t0YmFwMm9GbmpETTA3Mk1R?=
- =?utf-8?B?L2FudXp6RjdteHo2WGZxbndGdmVwUHRVSGtFOERnaUtQMjhDTUhvMVJnVFRY?=
- =?utf-8?B?Kyt2anhNbDh2N002eXliY0dUWnRVeHVqeGdOcDVrLyt4KzludENvOTlKNk5G?=
- =?utf-8?B?T0p5RG5KdkNSUkxka1ZMdzZDL0tYeUw1bFhqaXJTd1phbTRUb2QyQWQvNkdj?=
- =?utf-8?B?RUlVSU1ia0p4aTk1a29MRjMrZGptcmMxNWtBWVN6MDErRnI5QzYzaFk4aDNj?=
- =?utf-8?B?OUFpMi9TOHpORTZHWHdZWmE1STRYa2Nuc2E5eVVsVlk1V01FMzRDYTh3MGZQ?=
- =?utf-8?B?elpneEhLNGQ5OUZyZFJrOWordEx3Y3JVbStBQms4eFNvYXkwNGpQQWtnMGsw?=
- =?utf-8?B?eE5LRmlQOXMxSjJUTjdoSDFXYlh4SVk2ZEdGRmtYNXpmdjJWYXhkdzcxRXpP?=
- =?utf-8?B?SlVaSHFmNlRIZlhuQ1dPdVlpRzlkYVBKVjBhaWRoNDBPN0RZd0gzZlc4OXBz?=
- =?utf-8?B?ZW0vcytRRXNoS2o4YmNXbExJMk5qNXRaQld3cUpsU3ZkdWovT2xUaHBDOGNV?=
- =?utf-8?Q?O2Rk=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_MN0PR22MB55158651AD86D574DF5633AAB7CC2MN0PR22MB5515namp_"
-MIME-Version: 1.0
-X-OriginatorOrg: 21sw.us
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR22MB5515.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 212c326e-d82c-4585-d713-08dd580f0409
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2025 15:46:07.1412
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5f4ac144-0fc5-4d2d-b796-d7cf051f555a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VIiIpWYNPc4PUYuwCbimFSCVHCWp4IfvS89UlW2lioaq89MG5WYR6kzkEeSe1iKNtEm1Y8r5bDAye5RRL735nw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR22MB5060
+ <CAMSfU+4A8EF=GGBfakZnjLeHj59fdOpw2eAXPMch-gAGhdgGFQ@mail.gmail.com> <MN0PR22MB55158651AD86D574DF5633AAB7CC2@MN0PR22MB5515.namprd22.prod.outlook.com>
+In-Reply-To: <MN0PR22MB55158651AD86D574DF5633AAB7CC2@MN0PR22MB5515.namprd22.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 28 Feb 2025 08:07:27 -0800
+X-Gm-Features: AQ5f1JosO-KVafmCvQt9iI7XAI-AsnZHfkmqhmPeMtUGFQK5i4YxXW2f0tDp4o4
+Message-ID: <CAMKF1spWT=4b72CsJR18qup=G-kj6G_OXwJh2j-TaMQsCwpofA@mail.gmail.com>
+Subject: Re: [yocto] devtool error on "modify" with patches
+To: Clayton Casciato <ccasciato@21sw.us>
+Cc: Yoann Congal <yoann.congal@smile.fr>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000072c679062f3601c6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Feb 2025 15:46:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64893
+ <yocto@lists.yoctoproject.org>; Fri, 28 Feb 2025 16:07:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64894
 
---_000_MN0PR22MB55158651AD86D574DF5633AAB7CC2MN0PR22MB5515namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000072c679062f3601c6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-WWVzLCBJIGFtIHVzaW5nIGFuIFNTSCBrZXkuDQoNCkRpc2FibGluZyAiY29tbWl0LmdwZ3NpZ24i
-IGluIHRoZSBnbG9iYWwgY29uZmlnIHJlc29sdmVkIHRoZSBpc3N1ZS4NCg0KSGVyZSBpcyB0aGUg
-YXNzb2NpYXRlZCBmdW5jdGlvbiBmb3IgcmVmZXJlbmNlOg0KaHR0cHM6Ly9naXQub3BlbmVtYmVk
-ZGVkLm9yZy9vcGVuZW1iZWRkZWQtY29yZS90cmVlL3NjcmlwdHMvbGliL2RldnRvb2wvX19pbml0
-X18ucHk/aD1zY2FydGhnYXAmaWQ9NGUxYjkyODk0NTBiNWU3OTQ2YmQ1OTk5Yzk1YTNlZTIxNGFh
-YjhhNSNuMTkzDQoNClRoYW5rIHlvdSBib3RoIGZvciB0aGUgaGVscCENCg0KLS0NCkNsYXl0b24g
-Q2FzY2lhdG8NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IFlvYW5u
-IENvbmdhbCA8eW9hbm4uY29uZ2FsQHNtaWxlLmZyPg0KU2VudDogRnJpZGF5LCBGZWJydWFyeSAy
-OCwgMjAyNSAyOjI3IEFNDQpUbzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZz47IHJhai5raGVtQGdtYWlsLmNvbSA8cmFqLmtoZW1AZ21h
-aWwuY29tPg0KQ2M6IENsYXl0b24gQ2FzY2lhdG8gPGNjYXNjaWF0b0AyMXN3LnVzPg0KU3ViamVj
-dDogUmU6IFt5b2N0b10gZGV2dG9vbCBlcnJvciBvbiAibW9kaWZ5IiB3aXRoIHBhdGNoZXMNCg0K
-DQoNCkxlIHZlbi4gMjggZsOpdnIuIDIwMjUgw6AgMDU6MDcsIEtoZW0gUmFqIHZpYSBsaXN0cy55
-b2N0b3Byb2plY3Qub3JnPGh0dHA6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnPiA8cmFqLmtoZW09
-Z21haWwuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOmdtYWlsLmNvbUBsaXN0cy55
-b2N0b3Byb2plY3Qub3JnPj4gYSDDqWNyaXQgOg0KT24gVGh1LCBGZWIgMjcsIDIwMjUgYXQgNzo0
-NuKAr1BNIENsYXl0b24gQ2FzY2lhdG8gdmlhDQpsaXN0cy55b2N0b3Byb2plY3Qub3JnPGh0dHA6
-Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnPiA8Y2Nhc2NpYXRvPTIxc3cudXNAbGlzdHMueW9jdG9w
-cm9qZWN0Lm9yZzxtYWlsdG86MjFzdy51c0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPj4NCndyb3Rl
-Og0KPg0KPiBJIGhhdmUgbm90IGhhZCBzdWNjZXNzIHVzaW5nIGRldnRvb2wgYWdhaW5zdCByZWNp
-cGVzIHdpdGggZXhpc3RpbmcgcGF0Y2hlcy4NCj4gSSBkbyBub3QgaGF2ZSBhbnkgbW9kaWZpY2F0
-aW9ucyB0byB0aGVzZSByZWNpcGVzIGFuZCB0aGV5IHBhdGNoIGFuZCBidWlsZCBmaW5lIHVzaW5n
-IGJpdGJha2UuDQo+DQo+IC0tDQo+DQo+IHBva3kkIGRldnRvb2wgbW9kaWZ5IGlwcm91dGUyDQo+
-IFsuLi5dDQo+IEVSUk9SOiBFeGVjdXRpb24gb2YgJ2dpdCAtYyB1c2VyLm5hbWU8aHR0cDovL3Vz
-ZXIubmFtZT49XCJPcGVuRW1iZWRkZWRcIiAtYyB1c2VyLmVtYWlsPVwib2UucGF0Y2hAb2VcIiBj
-b21taXQgLXEgLW0gIkluaXRpYWwgY29tbWl0IGZyb20gdXBzdHJlYW0gYXQgdmVyc2lvbiA2LjEz
-LjAiJyBmYWlsZWQgd2l0aCBleGl0IGNvZGUgMTI4Og0KPiBlcnJvcjogY2Fubm90IHJ1biBzc2gt
-a2V5Z2VuOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQo+IGVycm9yOg0KPiBmYXRhbDogZmFp
-bGVkIHRvIHdyaXRlIGNvbW1pdCBvYmplY3QNCj4NCj4gRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVy
-ZSBzdG9yZWQgaW46IFsuLi5dL3Bva3kvYnVpbGQvdG1wL3dvcmsvY29ydGV4YThoZi1uZW9uLXBv
-a3ktbGludXgtZ251ZWFiaS9pcHJvdXRlMi82LjEzLjAvZGV2dG9vbHRtcC1qc2hiamphMS90ZW1w
-L2xvZy5kb191bnBhY2suMTc3NzAzMg0KPg0KPiAtLQ0KPg0KPiBUaGUgbG9nZmlsZSBkb2VzIG5v
-dCBleGlzdDoNCj4NCj4gcG9reSQgbHMgWy4uLl0vcG9reS9idWlsZC90bXAvd29yay9jb3J0ZXhh
-OGhmLW5lb24tcG9reS1saW51eC1nbnVlYWJpL2lwcm91dGUyLzYuMTMuMC8NCj4gY29uZmlndXJl
-LnNzdGF0ZSAgZGVidWdzb3VyY2VzLmxpc3QgIGRlcGxveS1ycG1zICBkZXBsb3ktc291cmNlLWRh
-dGUtZXBvY2ggIGltYWdlICBpcHJvdXRlMi02LjEzLjAgIGlwcm91dGUyLnNwZWMgIGxpY2Vuc2Ut
-ZGVzdGRpciAgcGFja2FnZSAgcGFja2FnZXMtc3BsaXQgIHBrZ2RhdGEgIHBrZ2RhdGEtcGRhdGEt
-aW5wdXQgIHBrZ2RhdGEtc3lzcm9vdCAgcHNldWRvICByZWNpcGUtc3lzcm9vdCAgcmVjaXBlLXN5
-c3Jvb3QtbmF0aXZlICBzb3VyY2UtZGF0ZS1lcG9jaCAgc291cmNlcy11bnBhY2sgIHNwZHggIHN5
-c3Jvb3QtZGVzdGRpciAgdGVtcA0KPg0KPiAtLQ0KPg0KPiBXaGVuIHVzaW5nIC0tZGVidWcsIEkg
-c2VlIHRoaXM6DQo+DQo+IFsuLi5dDQo+IHwgREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBkZXZ0b29s
-X3Bvc3RfdW5wYWNrIGZpbmlzaGVkDQo+IEVSUk9SOiBFeHRyYWN0aW5nIHNvdXJjZSBmb3IgaXBy
-b3V0ZTIgZmFpbGVkDQo+DQo+IC0tDQo+DQo+IEFueSBzdWdnZXN0aW9ucz8NCg0KSXQgc2VlbXMg
-eW91ciBnaXQgaXMuIGNvbmZpZ3VyZWQgdG8gdXNlIHNzaCwgbWF5YmUgdXNlIEhUVFBTIGluc3Rl
-YWQNCm9mIFNTSCBpbiBnaXQgb3Igc2V0DQpvciBtYXliZSBpbnN0YWxsIG9wZW5zc2gtY2xpZW50
-IHBhY2thZ2UgaW4geW91ciBtYWNoaW5lIHdoaWNoIHNob3VsZA0KcHJvdmlkZSBzc2gta2V5Z2Vu
-LCBtYWtlIHN1cmUgdGhlIHBhdGgNCml0IHJlc2lkZXMgaW4gaXMgaW4gUEFUSA0KDQpEb2VzIHlv
-dXIgZ2l0IGNsaWVudCBpcyBjb25maWd1cmVkIHRvIHNpZ24gY29tbWl0cyB3aXRoIGEgU1NIIGtl
-eT8NCmh0dHBzOi8vZG9jcy5naXRodWIuY29tL2ZyL2F1dGhlbnRpY2F0aW9uL21hbmFnaW5nLWNv
-bW1pdC1zaWduYXR1cmUtdmVyaWZpY2F0aW9uL3RlbGxpbmctZ2l0LWFib3V0LXlvdXItc2lnbmlu
-Zy1rZXkjdGVsbGluZy1naXQtYWJvdXQteW91ci1zc2gta2V5DQpUaGUgcmVsZXZhbnQgY29uZmln
-dXJhdGlvbnMgc2VlbXMgdG8gYmUgImdwZy5mb3JtYXQiIGFuZCAidXNlci5zaWduaW5na2V5Ig0K
-DQotLQ0KWW9hbm4gQ29uZ2FsDQpTbWlsZSBFQ1MgLSBUZWNoIGV4cGVydA0K
+On Fri, Feb 28, 2025 at 7:46=E2=80=AFAM Clayton Casciato <ccasciato@21sw.us=
+> wrote:
 
---_000_MN0PR22MB55158651AD86D574DF5633AAB7CC2MN0PR22MB5515namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Yes, I am using an SSH key.
+>
+> Disabling "commit.gpgsign" in the global config resolved the issue.
+>
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
-Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpZZXMsIEkgYW0gdXNpbmcgYW4gU1NIIGtleS48
-L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFw
-dG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhl
-bHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDAp
-OyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9u
-dC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2Us
-IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjog
-cmdiKDAsIDAsIDApOyI+DQpEaXNhYmxpbmcgJnF1b3Q7Y29tbWl0LmdwZ3NpZ24mcXVvdDsgaW4g
-dGhlIGdsb2JhbCBjb25maWcgcmVzb2x2ZWQgdGhlIGlzc3VlLjwvZGl2Pg0KPGRpdiBjbGFzcz0i
-ZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVk
-Rm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlm
-OyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0K
-PGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFw
-dG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNh
-LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhl
-cmUgaXMgdGhlIGFzc29jaWF0ZWQgZnVuY3Rpb24gZm9yIHJlZmVyZW5jZTo8L2Rpdj4NCjxkaXYg
-Y2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19F
-bWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YSBocmVm
-PSJodHRwczovL2dpdC5vcGVuZW1iZWRkZWQub3JnL29wZW5lbWJlZGRlZC1jb3JlL3RyZWUvc2Ny
-aXB0cy9saWIvZGV2dG9vbC9fX2luaXRfXy5weT9oPXNjYXJ0aGdhcCZhbXA7aWQ9NGUxYjkyODk0
-NTBiNWU3OTQ2YmQ1OTk5Yzk1YTNlZTIxNGFhYjhhNSNuMTkzIj5odHRwczovL2dpdC5vcGVuZW1i
-ZWRkZWQub3JnL29wZW5lbWJlZGRlZC1jb3JlL3RyZWUvc2NyaXB0cy9saWIvZGV2dG9vbC9fX2lu
-aXRfXy5weT9oPXNjYXJ0aGdhcCZhbXA7aWQ9NGUxYjkyODk0NTBiNWU3OTQ2YmQ1OTk5Yzk1YTNl
-ZTIxNGFhYjhhNSNuMTkzPC9hPjwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiIHN0
-eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwgQXB0b3NfTVNGb250
-U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7
-IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iZWxlbWVu
-dFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTogQXB0b3MsIEFwdG9zX0VtYmVkZGVkRm9udCwg
-QXB0b3NfTVNGb250U2VydmljZSwgQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250
-LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NClRoYW5rIHlvdSBib3RoIGZvciB0
-aGUgaGVscCE8L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1m
-YW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENh
-bGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
-KDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9IlNpZ25hdHVyZSIgY2xhc3M9ImVs
-ZW1lbnRUb1Byb29mIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1i
-ZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KLS08L2Rpdj4N
-CjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1iZWRkZWRGb250LCBBcHRv
-c19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6
-ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KQ2xheXRvbiBDYXNjaWF0bzwvZGl2Pg0K
-PC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1m
-YW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01TRm9udFNlcnZpY2UsIENh
-bGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
-KDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJs
-b2NrOyB3aWR0aDogOTglOyI+DQo8ZGl2IGRpcj0ibHRyIiBpZD0iZGl2UnBseUZ3ZE1zZyI+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEx
-cHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij48Yj5Gcm9tOjwvYj4mbmJzcDtZb2FubiBDb25nYWwg
-Jmx0O3lvYW5uLmNvbmdhbEBzbWlsZS5mciZndDs8YnI+DQo8Yj5TZW50OjwvYj4mbmJzcDtGcmlk
-YXksIEZlYnJ1YXJ5IDI4LCAyMDI1IDI6MjcgQU08YnI+DQo8Yj5Ubzo8L2I+Jm5ic3A7eW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZn
-dDs7IHJhai5raGVtQGdtYWlsLmNvbSAmbHQ7cmFqLmtoZW1AZ21haWwuY29tJmd0Ozxicj4NCjxi
-PkNjOjwvYj4mbmJzcDtDbGF5dG9uIENhc2NpYXRvICZsdDtjY2FzY2lhdG9AMjFzdy51cyZndDs8
-YnI+DQo8Yj5TdWJqZWN0OjwvYj4mbmJzcDtSZTogW3lvY3RvXSBkZXZ0b29sIGVycm9yIG9uICZx
-dW90O21vZGlmeSZxdW90OyB3aXRoIHBhdGNoZXM8L3NwYW4+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0K
-PC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPjxicj4NCjwvZGl2Pg0KPGRpdiBz
-dHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlv
-bjogbHRyOyI+TGUmbmJzcDt2ZW4uIDI4IGbDqXZyLiAyMDI1IMOgJm5ic3A7MDU6MDcsIEtoZW0g
-UmFqIHZpYSA8YSBocmVmPSJodHRwOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyIgaWQ9Ik9XQTdh
-MzZlMTI1LTkyNmEtMzAzYS0xMDJiLTc1OWQ4MTYwYWEzZiIgY2xhc3M9Ik9XQUF1dG9MaW5rIiBk
-YXRhLWF1dGg9Ik5vdEFwcGxpY2FibGUiPg0KbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mbmJz
-cDsmbHQ7cmFqLmtoZW09PGEgaHJlZj0ibWFpbHRvOmdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnIiBpZD0iT1dBMGY5ZWU4MWQtMzUxZC0yYzY4LTMzZDEtYTMxMDBhYjlkOTg2IiBjbGFz
-cz0iT1dBQXV0b0xpbmsiPmdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPC9hPiZndDsg
-YSDDqWNyaXQmbmJzcDs6PC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luOiAwcHggMHB4
-IDBweCAwLjhleDsgcGFkZGluZy1sZWZ0OiAxZXg7IGJvcmRlci1sZWZ0OiAxcHggc29saWQgcmdi
-KDIwNCwgMjA0LCAyMDQpOyI+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsiPk9uIFRodSwg
-RmViIDI3LCAyMDI1IGF0IDc6NDbigK9QTSBDbGF5dG9uIENhc2NpYXRvIHZpYTxicj4NCjxhIGhy
-ZWY9Imh0dHA6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnIiBpZD0iT1dBOTZmOGE5YmYtMmIzMC0z
-YTlhLTI3MzktY2IwODQ1YmEyNTVkIiBjbGFzcz0iT1dBQXV0b0xpbmsiIGRhdGEtYXV0aD0iTm90
-QXBwbGljYWJsZSI+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mbmJzcDsmbHQ7Y2Nhc2NpYXRv
-PTxhIGhyZWY9Im1haWx0bzoyMXN3LnVzQGxpc3RzLnlvY3RvcHJvamVjdC5vcmciIGlkPSJPV0Ez
-NDVkZTA4ZS1iMTMyLThlZDItNTA4OC1iZTc3NTJjMTUyZjAiIGNsYXNzPSJPV0FBdXRvTGluayI+
-MjFzdy51c0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPC9hPiZndDs8YnI+DQp3cm90ZTo8YnI+DQom
-Z3Q7PGJyPg0KJmd0OyBJIGhhdmUgbm90IGhhZCBzdWNjZXNzIHVzaW5nIGRldnRvb2wgYWdhaW5z
-dCByZWNpcGVzIHdpdGggZXhpc3RpbmcgcGF0Y2hlcy48YnI+DQomZ3Q7IEkgZG8gbm90IGhhdmUg
-YW55IG1vZGlmaWNhdGlvbnMgdG8gdGhlc2UgcmVjaXBlcyBhbmQgdGhleSBwYXRjaCBhbmQgYnVp
-bGQgZmluZSB1c2luZyBiaXRiYWtlLjxicj4NCiZndDs8YnI+DQomZ3Q7IC0tPGJyPg0KJmd0Ozxi
-cj4NCiZndDsgcG9reSQgZGV2dG9vbCBtb2RpZnkgaXByb3V0ZTI8YnI+DQomZ3Q7IFsuLi5dPGJy
-Pg0KJmd0OyBFUlJPUjogRXhlY3V0aW9uIG9mICdnaXQgLWMgPGEgaHJlZj0iaHR0cDovL3VzZXIu
-bmFtZSIgaWQ9Ik9XQTI4MDM4MGMxLWI4ZmYtZjJmMy0xNzBjLWNiNmIwMDdlNTM3ZiIgY2xhc3M9
-Ik9XQUF1dG9MaW5rIiBkYXRhLWF1dGg9Ik5vdEFwcGxpY2FibGUiPg0KdXNlci5uYW1lPC9hPj1c
-JnF1b3Q7T3BlbkVtYmVkZGVkXCZxdW90OyAtYyB1c2VyLmVtYWlsPVwmcXVvdDtvZS5wYXRjaEBv
-ZVwmcXVvdDsgY29tbWl0IC1xIC1tICZxdW90O0luaXRpYWwgY29tbWl0IGZyb20gdXBzdHJlYW0g
-YXQgdmVyc2lvbiA2LjEzLjAmcXVvdDsnIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAxMjg6PGJyPg0K
-Jmd0OyBlcnJvcjogY2Fubm90IHJ1biBzc2gta2V5Z2VuOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0
-b3J5PGJyPg0KJmd0OyBlcnJvcjo8YnI+DQomZ3Q7IGZhdGFsOiBmYWlsZWQgdG8gd3JpdGUgY29t
-bWl0IG9iamVjdDxicj4NCiZndDs8YnI+DQomZ3Q7IEVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUg
-c3RvcmVkIGluOiBbLi4uXS9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcnRleGE4aGYtbmVvbi1wb2t5
-LWxpbnV4LWdudWVhYmkvaXByb3V0ZTIvNi4xMy4wL2RldnRvb2x0bXAtanNoYmpqYTEvdGVtcC9s
-b2cuZG9fdW5wYWNrLjE3NzcwMzI8YnI+DQomZ3Q7PGJyPg0KJmd0OyAtLTxicj4NCiZndDs8YnI+
-DQomZ3Q7IFRoZSBsb2dmaWxlIGRvZXMgbm90IGV4aXN0Ojxicj4NCiZndDs8YnI+DQomZ3Q7IHBv
-a3kkIGxzIFsuLi5dL3Bva3kvYnVpbGQvdG1wL3dvcmsvY29ydGV4YThoZi1uZW9uLXBva3ktbGlu
-dXgtZ251ZWFiaS9pcHJvdXRlMi82LjEzLjAvPGJyPg0KJmd0OyBjb25maWd1cmUuc3N0YXRlJm5i
-c3A7IGRlYnVnc291cmNlcy5saXN0Jm5ic3A7IGRlcGxveS1ycG1zJm5ic3A7IGRlcGxveS1zb3Vy
-Y2UtZGF0ZS1lcG9jaCZuYnNwOyBpbWFnZSZuYnNwOyBpcHJvdXRlMi02LjEzLjAmbmJzcDsgaXBy
-b3V0ZTIuc3BlYyZuYnNwOyBsaWNlbnNlLWRlc3RkaXImbmJzcDsgcGFja2FnZSZuYnNwOyBwYWNr
-YWdlcy1zcGxpdCZuYnNwOyBwa2dkYXRhJm5ic3A7IHBrZ2RhdGEtcGRhdGEtaW5wdXQmbmJzcDsg
-cGtnZGF0YS1zeXNyb290Jm5ic3A7IHBzZXVkbyZuYnNwOyByZWNpcGUtc3lzcm9vdCZuYnNwOyBy
-ZWNpcGUtc3lzcm9vdC1uYXRpdmUmbmJzcDsgc291cmNlLWRhdGUtZXBvY2gmbmJzcDsNCiBzb3Vy
-Y2VzLXVucGFjayZuYnNwOyBzcGR4Jm5ic3A7IHN5c3Jvb3QtZGVzdGRpciZuYnNwOyB0ZW1wPGJy
-Pg0KJmd0Ozxicj4NCiZndDsgLS08YnI+DQomZ3Q7PGJyPg0KJmd0OyBXaGVuIHVzaW5nIC0tZGVi
-dWcsIEkgc2VlIHRoaXM6PGJyPg0KJmd0Ozxicj4NCiZndDsgWy4uLl08YnI+DQomZ3Q7IHwgREVC
-VUc6IFB5dGhvbiBmdW5jdGlvbiBkZXZ0b29sX3Bvc3RfdW5wYWNrIGZpbmlzaGVkPGJyPg0KJmd0
-OyBFUlJPUjogRXh0cmFjdGluZyBzb3VyY2UgZm9yIGlwcm91dGUyIGZhaWxlZDxicj4NCiZndDs8
-YnI+DQomZ3Q7IC0tPGJyPg0KJmd0Ozxicj4NCiZndDsgQW55IHN1Z2dlc3Rpb25zPzxicj4NCjxi
-cj4NCkl0IHNlZW1zIHlvdXIgZ2l0IGlzLiBjb25maWd1cmVkIHRvIHVzZSBzc2gsIG1heWJlIHVz
-ZSBIVFRQUyBpbnN0ZWFkPGJyPg0Kb2YgU1NIIGluIGdpdCBvciBzZXQ8YnI+DQpvciBtYXliZSBp
-bnN0YWxsIG9wZW5zc2gtY2xpZW50IHBhY2thZ2UgaW4geW91ciBtYWNoaW5lIHdoaWNoIHNob3Vs
-ZDxicj4NCnByb3ZpZGUgc3NoLWtleWdlbiwgbWFrZSBzdXJlIHRoZSBwYXRoPGJyPg0KaXQgcmVz
-aWRlcyBpbiBpcyBpbiBQQVRIPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2IHN0eWxlPSJkaXJl
-Y3Rpb246IGx0cjsiPjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij5E
-b2VzIHlvdXIgZ2l0IGNsaWVudCBpcyBjb25maWd1cmVkIHRvIHNpZ24gY29tbWl0cyB3aXRoIGEg
-U1NIIGtleT88L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+PGEgaHJlZj0iaHR0
-cHM6Ly9kb2NzLmdpdGh1Yi5jb20vZnIvYXV0aGVudGljYXRpb24vbWFuYWdpbmctY29tbWl0LXNp
-Z25hdHVyZS12ZXJpZmljYXRpb24vdGVsbGluZy1naXQtYWJvdXQteW91ci1zaWduaW5nLWtleSN0
-ZWxsaW5nLWdpdC1hYm91dC15b3VyLXNzaC1rZXkiIGlkPSJPV0E5MzE0MGViMC1iODIwLTUxYzEt
-YmU0Ni01ZmU0YmUwOWRlZjciIGNsYXNzPSJPV0FBdXRvTGluayIgZGF0YS1hdXRoPSJOb3RBcHBs
-aWNhYmxlIj5odHRwczovL2RvY3MuZ2l0aHViLmNvbS9mci9hdXRoZW50aWNhdGlvbi9tYW5hZ2lu
-Zy1jb21taXQtc2lnbmF0dXJlLXZlcmlmaWNhdGlvbi90ZWxsaW5nLWdpdC1hYm91dC15b3VyLXNp
-Z25pbmcta2V5I3RlbGxpbmctZ2l0LWFib3V0LXlvdXItc3NoLWtleTwvYT48L2Rpdj4NCjxkaXYg
-c3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+VGhlIHJlbGV2YW50IGNvbmZpZ3VyYXRpb25zIHNlZW1z
-IHRvIGJlICZxdW90O2dwZy5mb3JtYXQmcXVvdDsgYW5kICZxdW90O3VzZXIuc2lnbmluZ2tleSZx
-dW90OzwvZGl2Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7Ij48YnI+DQo8L2Rpdj4NCjxk
-aXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyI+LS08L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlv
-bjogbHRyOyBmb250LWZhbWlseTogUmFsZXdheSwgcmVndWxhcjsiPllvYW5uIENvbmdhbDwvZGl2
-Pg0KPGRpdiBzdHlsZT0iZGlyZWN0aW9uOiBsdHI7IGZvbnQtZmFtaWx5OiBSYWxld2F5LCByZWd1
-bGFyOyI+U21pbGUgRUNTIC0gVGVjaCBleHBlcnQ8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+Yes that=E2=80=99s a known think I have run into as well in past
 
---_000_MN0PR22MB55158651AD86D574DF5633AAB7CC2MN0PR22MB5515namp_--
+>
+> Here is the associated function for reference:
+>
+> https://git.openembedded.org/openembedded-core/tree/scripts/lib/devtool/_=
+_init__.py?h=3Dscarthgap&id=3D4e1b9289450b5e7946bd5999c95a3ee214aab8a5#n193
+>
+> Thank you both for the help!
+>
+> --
+> Clayton Casciato
+>
+> ------------------------------
+> *From:* Yoann Congal <yoann.congal@smile.fr>
+> *Sent:* Friday, February 28, 2025 2:27 AM
+> *To:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>;
+> raj.khem@gmail.com <raj.khem@gmail.com>
+> *Cc:* Clayton Casciato <ccasciato@21sw.us>
+> *Subject:* Re: [yocto] devtool error on "modify" with patches
+>
+>
+>
+> Le ven. 28 f=C3=A9vr. 2025 =C3=A0 05:07, Khem Raj via lists.yoctoproject.=
+org
+>  <raj.khem=3Dgmail.com@lists.yoctoproject.org> a =C3=A9crit :
+>
+> On Thu, Feb 27, 2025 at 7:46=E2=80=AFPM Clayton Casciato via
+> lists.yoctoproject.org <ccasciato=3D21sw.us@lists.yoctoproject.org>
+> wrote:
+> >
+> > I have not had success using devtool against recipes with existing
+> patches.
+> > I do not have any modifications to these recipes and they patch and
+> build fine using bitbake.
+> >
+> > --
+> >
+> > poky$ devtool modify iproute2
+> > [...]
+> > ERROR: Execution of 'git -c user.name=3D\"OpenEmbedded\" -c
+> user.email=3D\"oe.patch@oe\" commit -q -m "Initial commit from upstream a=
+t
+> version 6.13.0"' failed with exit code 128:
+> > error: cannot run ssh-keygen: No such file or directory
+> > error:
+> > fatal: failed to write commit object
+> >
+> > ERROR: Logfile of failure stored in:
+> [...]/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/iproute2/6.1=
+3.0/devtooltmp-jshbjja1/temp/log.do_unpack.1777032
+> >
+> > --
+> >
+> > The logfile does not exist:
+> >
+> > poky$ ls
+> [...]/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/iproute2/6.1=
+3.0/
+> > configure.sstate  debugsources.list  deploy-rpms
+> deploy-source-date-epoch  image  iproute2-6.13.0  iproute2.spec
+> license-destdir  package  packages-split  pkgdata  pkgdata-pdata-input
+> pkgdata-sysroot  pseudo  recipe-sysroot  recipe-sysroot-native
+> source-date-epoch  sources-unpack  spdx  sysroot-destdir  temp
+> >
+> > --
+> >
+> > When using --debug, I see this:
+> >
+> > [...]
+> > | DEBUG: Python function devtool_post_unpack finished
+> > ERROR: Extracting source for iproute2 failed
+> >
+> > --
+> >
+> > Any suggestions?
+>
+> It seems your git is. configured to use ssh, maybe use HTTPS instead
+> of SSH in git or set
+> or maybe install openssh-client package in your machine which should
+> provide ssh-keygen, make sure the path
+> it resides in is in PATH
+>
+>
+> Does your git client is configured to sign commits with a SSH key?
+>
+> https://docs.github.com/fr/authentication/managing-commit-signature-verif=
+ication/telling-git-about-your-signing-key#telling-git-about-your-ssh-key
+> The relevant configurations seems to be "gpg.format" and "user.signingkey=
+"
+>
+> --
+> Yoann Congal
+> Smile ECS - Tech expert
+>
+
+--00000000000072c679062f3601c6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div><br><div class=3D"gmail_quote gmail_quote_container"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 28, 2025 at 7:46=E2=80=AFAM=
+ Clayton Casciato &lt;<a href=3D"mailto:ccasciato@21sw.us">ccasciato@21sw.u=
+s</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Yes, I am using an SSH key.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Disabling &quot;commit.gpgsign&quot; in the global config resolved the issu=
+e.</div></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Ye=
+s that=E2=80=99s a known think I have run into as well in past=C2=A0</div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div style=3D"font-family:Ap=
+tos,Aptos_EmbeddedFont,Aptos_MSFontService,Calibri,Helvetica,sans-serif;fon=
+t-size:12pt;color:rgb(0,0,0)" dir=3D"auto"></div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Here is the associated function for reference:</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<a href=3D"https://git.openembedded.org/openembedded-core/tree/scripts/lib/=
+devtool/__init__.py?h=3Dscarthgap&amp;id=3D4e1b9289450b5e7946bd5999c95a3ee2=
+14aab8a5#n193" target=3D"_blank">https://git.openembedded.org/openembedded-=
+core/tree/scripts/lib/devtool/__init__.py?h=3Dscarthgap&amp;id=3D4e1b928945=
+0b5e7946bd5999c95a3ee214aab8a5#n193</a></div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Thank you both for the help!</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_-6229904657862203106Signature">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+--</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+Clayton Casciato</div>
+</div>
+<div id=3D"m_-6229904657862203106appendonsend"></div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+<br>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div dir=3D"ltr" id=3D"m_-6229904657862203106divRplyFwdMsg"><span style=3D"=
+font-family:Calibri,sans-serif;font-size:11pt;color:rgb(0,0,0)"><b>From:</b=
+>=C2=A0Yoann Congal &lt;<a href=3D"mailto:yoann.congal@smile.fr" target=3D"=
+_blank">yoann.congal@smile.fr</a>&gt;<br>
+<b>Sent:</b>=C2=A0Friday, February 28, 2025 2:27 AM<br>
+<b>To:</b>=C2=A0<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_=
+blank">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.y=
+octoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;; <a=
+ href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a=
+> &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmai=
+l.com</a>&gt;<br>
+<b>Cc:</b>=C2=A0Clayton Casciato &lt;<a href=3D"mailto:ccasciato@21sw.us" t=
+arget=3D"_blank">ccasciato@21sw.us</a>&gt;<br>
+<b>Subject:</b>=C2=A0Re: [yocto] devtool error on &quot;modify&quot; with p=
+atches</span>
+<div>=C2=A0</div>
+</div></div><div dir=3D"ltr">
+<div style=3D"direction:ltr"><br>
+</div>
+<div style=3D"direction:ltr"><br>
+</div>
+<div style=3D"direction:ltr">Le=C2=A0ven. 28 f=C3=A9vr. 2025 =C3=A0=C2=A005=
+:07, Khem Raj via <a href=3D"http://lists.yoctoproject.org" id=3D"m_-622990=
+4657862203106OWA7a36e125-926a-303a-102b-759d8160aa3f" target=3D"_blank">
+lists.yoctoproject.org</a>=C2=A0&lt;raj.khem=3D<a href=3D"mailto:gmail.com@=
+lists.yoctoproject.org" id=3D"m_-6229904657862203106OWA0f9ee81d-351d-2c68-3=
+3d1-a3100ab9d986" target=3D"_blank">gmail.com@lists.yoctoproject.org</a>&gt=
+; a =C3=A9crit=C2=A0:</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left:=
+1px solid rgb(204,204,204)">
+<div style=3D"direction:ltr">On Thu, Feb 27, 2025 at 7:46=E2=80=AFPM Clayto=
+n Casciato via<br>
+<a href=3D"http://lists.yoctoproject.org" id=3D"m_-6229904657862203106OWA96=
+f8a9bf-2b30-3a9a-2739-cb0845ba255d" target=3D"_blank">lists.yoctoproject.or=
+g</a>=C2=A0&lt;ccasciato=3D<a href=3D"mailto:21sw.us@lists.yoctoproject.org=
+" id=3D"m_-6229904657862203106OWA345de08e-b132-8ed2-5088-be7752c152f0" targ=
+et=3D"_blank">21sw.us@lists.yoctoproject.org</a>&gt;<br>
+wrote:<br>
+&gt;<br>
+&gt; I have not had success using devtool against recipes with existing pat=
+ches.<br>
+&gt; I do not have any modifications to these recipes and they patch and bu=
+ild fine using bitbake.<br>
+&gt;<br>
+&gt; --<br>
+&gt;<br>
+&gt; poky$ devtool modify iproute2<br>
+&gt; [...]<br>
+&gt; ERROR: Execution of &#39;git -c <a href=3D"http://user.name" id=3D"m_-=
+6229904657862203106OWA280380c1-b8ff-f2f3-170c-cb6b007e537f" target=3D"_blan=
+k">
+user.name</a>=3D\&quot;OpenEmbedded\&quot; -c user.email=3D\&quot;oe.patch@=
+oe\&quot; commit -q -m &quot;Initial commit from upstream at version 6.13.0=
+&quot;&#39; failed with exit code 128:<br>
+&gt; error: cannot run ssh-keygen: No such file or directory<br>
+&gt; error:<br>
+&gt; fatal: failed to write commit object<br>
+&gt;<br>
+&gt; ERROR: Logfile of failure stored in: [...]/poky/build/tmp/work/cortexa=
+8hf-neon-poky-linux-gnueabi/iproute2/6.13.0/devtooltmp-jshbjja1/temp/log.do=
+_unpack.1777032<br>
+&gt;<br>
+&gt; --<br>
+&gt;<br>
+&gt; The logfile does not exist:<br>
+&gt;<br>
+&gt; poky$ ls [...]/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/=
+iproute2/6.13.0/<br>
+&gt; configure.sstate=C2=A0 debugsources.list=C2=A0 deploy-rpms=C2=A0 deplo=
+y-source-date-epoch=C2=A0 image=C2=A0 iproute2-6.13.0=C2=A0 iproute2.spec=
+=C2=A0 license-destdir=C2=A0 package=C2=A0 packages-split=C2=A0 pkgdata=C2=
+=A0 pkgdata-pdata-input=C2=A0 pkgdata-sysroot=C2=A0 pseudo=C2=A0 recipe-sys=
+root=C2=A0 recipe-sysroot-native=C2=A0 source-date-epoch=C2=A0
+ sources-unpack=C2=A0 spdx=C2=A0 sysroot-destdir=C2=A0 temp<br>
+&gt;<br>
+&gt; --<br>
+&gt;<br>
+&gt; When using --debug, I see this:<br>
+&gt;<br>
+&gt; [...]<br>
+&gt; | DEBUG: Python function devtool_post_unpack finished<br>
+&gt; ERROR: Extracting source for iproute2 failed<br>
+&gt;<br>
+&gt; --<br>
+&gt;<br>
+&gt; Any suggestions?<br>
+<br>
+It seems your git is. configured to use ssh, maybe use HTTPS instead<br>
+of SSH in git or set<br>
+or maybe install openssh-client package in your machine which should<br>
+provide ssh-keygen, make sure the path<br>
+it resides in is in PATH</div>
+</blockquote>
+<div style=3D"direction:ltr"><br>
+</div>
+<div style=3D"direction:ltr">Does your git client is configured to sign com=
+mits with a SSH key?</div>
+<div style=3D"direction:ltr"><a href=3D"https://docs.github.com/fr/authenti=
+cation/managing-commit-signature-verification/telling-git-about-your-signin=
+g-key#telling-git-about-your-ssh-key" id=3D"m_-6229904657862203106OWA93140e=
+b0-b820-51c1-be46-5fe4be09def7" target=3D"_blank">https://docs.github.com/f=
+r/authentication/managing-commit-signature-verification/telling-git-about-y=
+our-signing-key#telling-git-about-your-ssh-key</a></div>
+<div style=3D"direction:ltr">The relevant configurations seems to be &quot;=
+gpg.format&quot; and &quot;user.signingkey&quot;</div>
+<div style=3D"direction:ltr"><br>
+</div>
+<div style=3D"direction:ltr">--</div>
+<div style=3D"direction:ltr;font-family:Raleway,regular">Yoann Congal</div>
+<div style=3D"direction:ltr;font-family:Raleway,regular">Smile ECS - Tech e=
+xpert</div>
+</div>
+
+</blockquote></div></div>
+
+--00000000000072c679062f3601c6--
 
