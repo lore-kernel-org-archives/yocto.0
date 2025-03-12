@@ -1,175 +1,233 @@
-Return-Path: <quentin.schulz@cherry.de>
+Return-Path: <kontakt@daniel-kampert.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34240C28B28
-	for <webhook@archiver.kernel.org>; Wed, 12 Mar 2025 12:47:29 +0000 (UTC)
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (DB3PR0202CU003.outbound.protection.outlook.com [52.101.65.59])
- by mx.groups.io with SMTP id smtpd.web10.35949.1741783629080575938
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B017C28B28
+	for <webhook@archiver.kernel.org>; Wed, 12 Mar 2025 15:43:01 +0000 (UTC)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.219])
+ by mx.groups.io with SMTP id smtpd.web11.40652.1741794177469912945
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 Mar 2025 05:47:09 -0700
+ Wed, 12 Mar 2025 08:42:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cherry.de header.s=selector1 header.b=kUba6Bo5;
- spf=pass (domain: cherry.de, ip: 52.101.65.59, mailfrom: quentin.schulz@cherry.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JY9IkWz+6Ncty8mEOfZQUDawyAQ6Jzts1wcmlBO4p/1hqqnUg1lO9WUj7kPQ/BenxPtjlQDZnsyqw6SXZmjeUE+U1oP/aFsA1SdvQe2piySfDrWHUR7ojPszl0QPx20CshpHwjuNSQJWRAM7copPzR7eOAQn12y/njcjDt5aoxDOpgSBKt25Pqx8L0wE/lGEQVwkqckggt8wZ5xTT6XarTIW4dO2iooSjWtrsNFIq1cP2u0/G7rISvXRIN0PpFYjLIou/n6Y7ABOg9anH/KC9OxSWT0EN+UVdj64wTPOgzX/t47nVGkO4frtE0OjA+KjmXDmrBjRaBoRAWktWxIAsA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7TwgaVEe5a9JFV3JYWgwbKam/pKWOYfoezt+7nJf/C4=;
- b=LSTQqKitzNM6BuSEzXrWWV4B8q/M1IgVdPOYgq6tyNchaA17mh8dzTb2JDp0MO9l8niSeeHSJGjHAdrlIZ2iTWHuSsf8BdCsJEZ/XNDMVMNLdFtHfp7YXsOm9/E8+DOhUhemXR+rD4Ea+SVcNKV7syGRfGAtxxj2XIBtUc7N2z7LH5nyUbdgGlPahRPghkVvsvL4JrV+Gmf4C49X0QqDwJF4qQ8dCngWELemFraz6gpWmGafmeNi9jCMz44OWOWewWvo+jZYnbXjmU4ICZnmU6Nia8kUK34dKyTKsB12fXlo6z3ZF7G5Ar8FDnEpB1fOhe4ARy5MrMjf9jn+KIhGvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7TwgaVEe5a9JFV3JYWgwbKam/pKWOYfoezt+7nJf/C4=;
- b=kUba6Bo54KJForm5Vi8OMInwrJtVpeeAsysEqfhr+D6zcCWp2X1mDqfJWb6ssEyHDlyB101sKBv34s7HGEBYvmGxHvBMP1/M0b9CPvNKBzqpAGLECuuPCEBEwuSMIHVpOW+XXH+eEptlusCh/JF/Raaq5IQcB1iOaOLt2r7K5k8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by VI0PR04MB10951.eurprd04.prod.outlook.com (2603:10a6:800:25c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Wed, 12 Mar
- 2025 12:47:04 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%6]) with mapi id 15.20.8511.026; Wed, 12 Mar 2025
- 12:46:58 +0000
-Message-ID: <52f162e1-7f75-4ea8-9d37-eebdddcdf2da@cherry.de>
-Date: Wed, 12 Mar 2025 13:46:57 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Linux LTS kernel upgrade strategy for Yocto Poky
-To: yocto@lists.yoctoproject.org, mwen@ambarella.com
-References: <yBST.1741783392825809496.3HmV@lists.yoctoproject.org>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <yBST.1741783392825809496.3HmV@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0020.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c9::18) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+ dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0002 header.b=Nw+iMo5V;
+ dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0003 header.b=Tg9L+cHr;
+ spf=none, err=permanent DNS error (domain: daniel-kampert.de, ip: 81.169.146.219, mailfrom: kontakt@daniel-kampert.de)
+ARC-Seal: i=1; a=rsa-sha256; t=1741794175; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=C2pQe2W1gNxn/5dh5AYZSpnY1xxDFNoyG2EJopk2jFGVDhODzo17aobpQJFNmjnFUF
+    tud1IEwURw9rS7xjcpjzinublQe12czOWOWi46jwgtcCi+gdW2TN/SLzC7d9qrVaaJgy
+    1pDLK8qZBb2d2gNYBHyty4+V9jUaNWJ/w4Mkuh7XlDOCyzMY6sbT4M4aRiZUIzf0CF0s
+    H9HceoTIVLoTeoWMqE05I6L877oAvBNLqrt7CSnwO1rpPdpNsLpibvYIpoxQxXusNAG+
+    SI1lgE0+IpAZlo/LkHWRd0IS/wwU4tJE9vOw5Y5+J6SZsC4POrkIZrqKgpouE2PhrlbR
+    mZcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1741794175;
+    s=strato-dkim-0002; d=strato.com;
+    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
+    bh=eW341CTch14adY8e3Pu1qwJfseNcTc0Bcae/s+d2TCU=;
+    b=VZgrNX0RsXXeBrJ774ZFjQnsrm13tIUl6S+vWkalJUYHUaOSZZ5U+w1hxRBZ57Hh6D
+    c+GDVpanXjwuB1dAUMA5bYVZXNNFX16PMR9ErgisEvyBi9d/mqAVMEm5FuZxXnRfsMqB
+    ZNcmPlUp6ZyO3IMDAPQ2gr2+yR9gZ2DwkyRnoZGBzyfWr4Q9MhW0frCgVGgnUDMK7lzY
+    oKVLAGqgEAH7M9tT+k1a4qH6YOGWMG8zqYCNhiFrAkBHFAyveOX9AA/yXCBO8SnjyJ2J
+    uU17jJal25eNl+78iaS8tHkda89WfvgIXhngN3w6af4/LcP+0SdFCZ9uTjHpleNNJlVE
+    TGlA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1741794175;
+    s=strato-dkim-0002; d=daniel-kampert.de;
+    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
+    bh=eW341CTch14adY8e3Pu1qwJfseNcTc0Bcae/s+d2TCU=;
+    b=Nw+iMo5V36+i6TqeZjJc9UjIveG96k1JO47EMS1NvwhKgcD8p2BS/kYOirFtaBd1Xv
+    QCnIsJ0sD++AP4fB5O6Ic4ZlmPKUc3nbQD87sd+idMG0pijRYlxqR8khbwBs/grxfIyG
+    256BOZGrbi+TvRMeg6Tcj5qWU58g3wCEkfvNAIu9DkBjOURJ2wPSL98gBq+5utPUbLrG
+    VGIUlt3oaS+cGJBKvwnBUl8nZfwyXm/EfQkB09nbrrmy57qySfteRONI/CPSdPHRnrnT
+    A2wKnT5+ZWwQt1AOUl3mNRzHVncAzg4hVMZHxouRtHPbc8u+A1LRUhWuzhmSMH064Jca
+    kt8g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1741794175;
+    s=strato-dkim-0003; d=daniel-kampert.de;
+    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
+    bh=eW341CTch14adY8e3Pu1qwJfseNcTc0Bcae/s+d2TCU=;
+    b=Tg9L+cHrtMVLsxPC14IaFTU0WQgdqFtK0Q7Ft+y51AJ0Lo/E+eim3E/kVqDuscoAuM
+    jzN0qRRwmMl4KYg596Cw==
+X-RZG-AUTH: ":J2MKYUGjb98fESEFCJFViw9Avy7eC0lbL9IJtUAlr//iX6qLOAGQ/pwD7T1oMG+TLVuVbxkCQk4="
+Received: from ox-live-app305.back.ox.d0m.de
+    by smtp-ox.front (RZmta 51.3.0 AUTH)
+    with ESMTPSA id j1bda812CFgtaR9
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate)
+    for <yocto@lists.yoctoproject.org>;
+    Wed, 12 Mar 2025 16:42:55 +0100 (CET)
+Date: Wed, 12 Mar 2025 16:42:55 +0100 (CET)
+From: Daniel Kampert <kontakt@daniel-kampert.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <78350915.5121127.1741794175287@webmail.strato.de>
+Subject: Copy file from ZIP archive to image
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|VI0PR04MB10951:EE_
-X-MS-Office365-Filtering-Correlation-Id: c85068f3-b937-4810-b770-08dd6163fa18
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?THkyYm1jZlFPZGtKQ0prbnJQclQwU2t0OWp2R0REd0RYQzFOVEdyTktIYWF4?=
- =?utf-8?B?SG0xSnNBaGh2d1JGN1U1NjFPS0M3d2k2Sk03OWNCWWxJbUIrbUJENzdCZzNK?=
- =?utf-8?B?L2FDYmluczNXWHRQMTNGZ2l2QjBScndVbFRaNzFXUlFSanNMSkYzcGM3bUNO?=
- =?utf-8?B?R0lEaDlId1VNYmRiKzkvSzJVTXptQWJSQ3dLVGpqa0ZqbEJhWTN2UzQrNjRC?=
- =?utf-8?B?MUJiY0hGVTJna3hNcGVjL2luaGxoMm5HaUViYTdodnAzdTk2Zzh2QlVRZ09h?=
- =?utf-8?B?WUNPUXQyK2JqbUdVd1l0ZDdpM0JmMWFwMEpleCtOK2s1TW9GVlZ6QWE5eEFp?=
- =?utf-8?B?b2gxc2lwS0dVV1RyN1pIVmhTSkdjdThBUFcyemptRGtVMFJ3YUJGVktnMTBY?=
- =?utf-8?B?UnhyRUo2OGd1dDNxRGFzOThtci9CUWFXaUpEZ3dhS0pIOVc3UzkwVU53UkhP?=
- =?utf-8?B?OUtLU2dTWjVSU2lUV1ZCNllEZ05IL1k1VWNvcGk3UDFBdnNFSWUzQW5qQ2xH?=
- =?utf-8?B?eVVEYTFnZ3A4OERyOVJjZzZVWldXY0lOWXNRUkxZejFzN3FMWHVyQXNsTnJp?=
- =?utf-8?B?WUhURTcyeGxtMVI3TXVjUiswT2YvajNzbGxuTktET2V6Q0RUcW1VTmh1VVdl?=
- =?utf-8?B?VVcvWGFtcmtRRTZBSUh4ajE2cjVBNGhPTkhicWVWWkQxWHhvemRXUi94MEVk?=
- =?utf-8?B?RXhWWlR5ZWN4WFV5ZjRhSmhWMjVFcXhmTGtybnA1NmlzV1RWcFVIUEoxQUtN?=
- =?utf-8?B?TEljQmpPTGVXOS9XU2tJc0hwZWxvVjZubGxPdGtKYndHYnl5bFZGNXZjS1Fv?=
- =?utf-8?B?dDBFSXR1VWM3a3hXVUdJNm9MbytHc1JodFBOUGQvRlZMRE55bm8xc2xYWUlZ?=
- =?utf-8?B?T1FmMS9HUnUxV1I5a2FEWWh0d3doQXYrM0E2WDBwNElaNGczSFZsZ05kaUtq?=
- =?utf-8?B?VFdLLzkxMXpaSTlzdUI0SFdTWnBjVWhuNkphMzFsVFZFS0xTblo5TDBRc2M2?=
- =?utf-8?B?OFZLYjhzQXdCd2R4ZGZBR2tMUzNlMjdNclkvZWZlaElRaEk4dkgzM3NmVUhM?=
- =?utf-8?B?OUdNUjE4Q0JRejVuRi9aVEZmbzUrWEI3RlVUMkdyWFlUdFk0WC9GOWFmc3lF?=
- =?utf-8?B?U0I2L1R6NVBDWjRNMHowR00rbmZYb2ZIUHZHbHI2enM5amluVkQreU5MbzJT?=
- =?utf-8?B?N050K20vejNOL3M1YmlaaG5GbzJjeFViWkRMcjhDNG1NMVh0NTZBTFQ1VFZw?=
- =?utf-8?B?T2lWMlR1OVJOdFlZTGhiQ2gzYjVzS2RFK2hidVlQay9aZzd6TVlTam55TExy?=
- =?utf-8?B?a0FyOFJKM3NZRm9NbnZSeGNzVkw2UHovYVFhSlRnZEJhU1JVWWZodDdjWklC?=
- =?utf-8?B?cEFUZjZSQ0ovYW9sYkNpbzBOS1FlNmZ1VEhDNStEdUxGVXA0U3ZVMEx2cHNS?=
- =?utf-8?B?N1dXK3dZVWxpQVpqVmxpVkJibGJDeG9NcXU2SWpKOWQwK3JBZzFNNXdobkw5?=
- =?utf-8?B?c1VhTHJoSU0yRTVGZE1sQU5mRTR2dDBRaWk1d1Y3WjhZanUyYUdOeUp1VkM4?=
- =?utf-8?B?V0RkWVhyNFgzSGw0R1ZkUmNkbGVsYzBEdU10eUllZmU2bERqbFd3VFNWQ0pM?=
- =?utf-8?B?RjR2TDhSZzdFSXlYd1YvWEQybnlVaEgyclJUTFh5VUZYTlZ1QnEvY1M2Q2Iv?=
- =?utf-8?B?cWlIZGpteTh5NFBEM3dudklWTUVjK1ZaNytleEdPeTE1eW5BZzgzbkZQZFlB?=
- =?utf-8?B?MzNZQzlySDMweEVlZWFYNk1rNjEzZGs1d1F5T3R0TEdMS1dtNDc1UVZWZWFD?=
- =?utf-8?B?S1VqOXBEWmVhVHFkVzlVVS94NXZOYTNVT2txckY1Nm9JdWNPKzBUaUhvTmZn?=
- =?utf-8?Q?fqJYx2kaLIlXl?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?RGkvQlE3Mms0eHlWeHR3OTMwMFNkWXZaeWJwUHpWUVR1ekFRVWpOenZQeGRk?=
- =?utf-8?B?aU1IVGlabWUvU3lZWFpJUWdLMzNRbkp6eTVPYmovcDhkcHFOS0oyaU5rWUVD?=
- =?utf-8?B?eDlMVHVUeDFwcVpDOVpoR2hjdzZLTmd5WVNYbnpicDZpRXBHZWRHRHNZVTRF?=
- =?utf-8?B?dEV5V01kd0VVQ3dsbGtNQmdYeU94TDNhTjlTUkhpWFFJUTNVdUdac1ZFU2li?=
- =?utf-8?B?Z2hlZmJCUXFMMnZqOXN2cFlIajU4YzhONGZjYk9ISjVyMGVDYUxGVXY4YVp3?=
- =?utf-8?B?V3p1UVhBVXhZaDdGRjlKTTdwTUMzM3UvS0lhQnhvZVViSEZmK2Z3cytsdUlH?=
- =?utf-8?B?YXMyeGlSMFZmYmdLeGVUM3c5YWt3TTFiU3QrbElBano1eTBBRXFsWVZneTRB?=
- =?utf-8?B?RWJUSEtxZlFLSFpQcmd6ZndJckRxcmRRMzNnWlB2Q1lZSWNhM0Ewc1QzVW5P?=
- =?utf-8?B?dWdjRUZXR1pBdnE5OUMzWXIzQjZmN3RLeExhaGluOVFUSFlPVGpsZWkyUVha?=
- =?utf-8?B?c1pKbDdmV2dOWHJneGJxK2xnakxrMjZiN0NEMFlEdE04OVh3c3VMc2ZOTFpC?=
- =?utf-8?B?NzhVaDIvRklkQytwUE03dUtYcDFrQ3lGbWgyRHRmM0w0WVZlSlBpTXJGQ1Bh?=
- =?utf-8?B?Z2UwdTlTa0JhczRGc3FXR1R0ZWYzd1pjZjdTUlJIRkp5YlNkbGlVdzUwb0pG?=
- =?utf-8?B?RUxsMFZLS3BCWGIzeFR4RTNFSXUwVnRqK216WjVLNXY0Zk9wcWZtd256OG80?=
- =?utf-8?B?dlNGSFNqZjV5bzNnTUtuMVFNQllvTkZXczllcnpKcGc1V1FzR1BwT3JhL2ZR?=
- =?utf-8?B?N1VQc0lpUFdMVzdReXI2blFRSlJ6WEtJYVpIYVB0b2E5NFBwYlZlbm9Cc3lw?=
- =?utf-8?B?MzZ5M1RvTGdhMk5ZcmRQMFNzZnNxUEs1MWtvdnJQcW5XaFYwcEU2T1VsSlVC?=
- =?utf-8?B?VCtzQXFiRTQ1VHMrN0IrN1Y3anc2dFZacVJuaitHZWtXWXIxZ2lGaUVRekU2?=
- =?utf-8?B?VkpOR3FYcXlKbDBiTmtnbWo2UGFIVkI3QktaZVptNU8wQVJST3Jrd1JycC8x?=
- =?utf-8?B?ZmJWOE9DSGd1Q3k4cE9CTVNmY0ZCRUJvdkxiTTBEcHNjRkxlMmdYTStjUTB1?=
- =?utf-8?B?ZFFLTXlWUFRPMnVOaXZ0WEdjTkk3UWlNWWV5ZW5uYnFFVFUzMlRXTVVjVEg4?=
- =?utf-8?B?ZWd0U0dPcE9RRjJFS05WUzgyTGZrcHZub3FRZWJFcUpQSHFoeDFOeWNjVENi?=
- =?utf-8?B?azJkYkZhU1pKY2VYNXJDWnlOOFBwSDh5cXFIZC96eSt0bnNCbHRxSXBqNHVN?=
- =?utf-8?B?OGRBU1l5SVZiL2hDVVYxQzFqWFUvREZRWENVd1NNTEFPZ01vUkhIUlFZcmNq?=
- =?utf-8?B?V1phWmxkcmEvUlJmY2FrWUlPTmlCaXNObWVrMnlGWWo2elFsdWZDSnV2RXI4?=
- =?utf-8?B?dk1JakxUdXR3MkxjKzlkaXFTTjltNkJTN2w5U1NPdDE0TEMwRU5oREwyTGp2?=
- =?utf-8?B?Nm1PQnROTWEzM09DMWJLVXNSakNxb1hsREkzeFRLaythYSt2NG5WU21jRjd1?=
- =?utf-8?B?TmZzUTFQOWtzU0hrN3JJUWlaK0ttVUs0Z3NXcVJVZTdha1RZbU9LV3FnaDZT?=
- =?utf-8?B?MVh3NlNOcVBVVTRLcHl5MnhPZVJES0FZelY5bTFSNDh2VmdJQmQ4azM3Z1lS?=
- =?utf-8?B?aDNSWHlNVG5RTncyQVVPYk5aVHdYVzNDTit2RWZHV3dTREM3a1N1cHhGSEgx?=
- =?utf-8?B?YndBNGVYWjkvRGUvS2ppeXlnc1kwQUFEMUxPWWRUcjRwWXIraEJ1UEloTzRP?=
- =?utf-8?B?V2hVUHl1MERNRVJMSiszTGVMdmFrS2hUWGM1d1VWc1l0eDQ1OU1SSTdTUThX?=
- =?utf-8?B?UElZZlNNNVgzOFlaL21rNXFhNkV2bUhkTUg0WjhhTDVxOGVDOE9yanR5ZmY4?=
- =?utf-8?B?WEpWaUhiL2JFdldKSU9BbUtGVklxaHFVa0lsTXpnaVFIMHZJU3ZyZ1pta2hI?=
- =?utf-8?B?YUthUjBhS3FWYklLMlEwY3ZydWkvRTMxa2MyRkt3TU8xUjNBZ2JHMUlHYjg2?=
- =?utf-8?B?VEppbUkxTDhQNTZDQ1kvUHRUZzEyN2dnS0ZvSXlaWEhpaUZLa1QwRnBrQWk2?=
- =?utf-8?B?ai9QL0JrN2ZXd1cyTk12N080b1EvZmxVYk8zNkk0ek91NHhRTUQxSHpsZXlR?=
- =?utf-8?B?MUE9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: c85068f3-b937-4810-b770-08dd6163fa18
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2025 12:46:58.4046
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7kt+9sgHXJuNxLbr7kd6qrcznhSVrodp4ULkf+NzgtmbouLubyv8TcH7ZEVNN7LIuxkJJEr6lcAwT0HoneubXd5fo9FhKPmW/7jQm0W9B64=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10951
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5121126_1459683704.1741794175284"
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.6-Rev73
+X-Originating-Client: open-xchange-appsuite
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 12 Mar 2025 12:47:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64944
+ <yocto@lists.yoctoproject.org>; Wed, 12 Mar 2025 15:43:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64945
 
-Hi,
+------=_Part_5121126_1459683704.1741794175284
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 3/12/25 1:43 PM, Ming Wen via lists.yoctoproject.org wrote:
-> You don't often get email from mwen=ambarella.com@lists.yoctoproject.org. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
-> 
-> Hi Yocto Maintainers:
-> 
-> 
-> 
-> As you may know, per Linux community, the Linux LTS kernel support will be reduced from 6 years to 2 years.
-> 
-> This means that every Linux LTS major kernel version (IE. 6.12) will be EOL (end of life) in 2 years.
-> 
-> 
-> 
-> How do you think and respond to this Linux LTS kernel support update? For LTS Poky, will you also choose to follow closely with the pace of Linux community for Linux kernel upgradation before current version expires?
-> 
+I have a ZIP archive with some media, html and JSON files and I want to cop=
+y them with this recipe
+=20
+SUMMARY =3D "Frontend application"
+LICENSE =3D "Proprietary"
+LIC_FILES_CHKSUM =3D " \
+file://${WORKDIR}/LICENSE;md5=3D03fe683ef28b9ddfe7f658a0f4b3b80e \
+"
+SRC_URI =3D " \
+file://LICENSE \
+file://frontend.zip \
+"
+do_install () {
+  install -d ${D}/opt/app/frontend
+  cp -r ${WORKDIR}/build/* ${D}/opt/app/frontend
+}
+FILES_${PN} +=3D "/opt/app/frontend/*"
+=20
+But I get these errors
 
-This is/was being discussed here if I'm not mistaken: 
-https://lore.kernel.org/openembedded-core/CAOSpxdbC-=6htz0g8i8NpcrmTsTpDXM0AkxtAO334KHEmKgu5Q@mail.gmail.com/
+ERROR: frontend-1.0-r0 do_package: Fatal errors occurred in subprocesses:
+'utf-8' codec can't decode byte 0x9a in position 619: invalid start byte: T=
+raceback (most recent call last):
+File "/BSP5/os/build/../layers/openembedded-core/meta/lib/oe/utils.py", lin=
+e 280, in run
+ret =3D self._target(*self._args, **self._kwargs)
+File "/BSP5/os/build/../layers/openembedded-core/meta/lib/oe/package.py", l=
+ine 251, in filedeprunner
+output =3D subprocess.check_output(shlex.split(rpmdeps) + pkgfiles, stderr=
+=3Dsubprocess.STDOUT).decode("utf-8")
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x9a in position 619: i=
+nvalid start byte
+=20
+How can I fix them?
+=20
+Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
+=20
+Ing. Daniel Kampert, M. Sc.
+Embedded Systems Solutions
+Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland
+Phone: +49 (0)174 6932561
+E-Mail: kontakt@daniel-kampert.de mailto:kontakt@daniel-kampert.de
+Web: www.daniel-kampert.de https://www.daniel-kampert.de
+------=_Part_5121126_1459683704.1741794175284
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
-Quentin
+<!doctype html>
+<html>
+ <head>=20
+  <meta charset=3D"UTF-8">=20
+ </head>
+ <body>
+  <div class=3D"default-style">
+   I have a ZIP archive with some media, html and JSON files and I want to =
+copy them with this recipe
+  </div>=20
+  <div class=3D"default-style">
+   &nbsp;
+  </div>=20
+  <div class=3D"default-style">=20
+   <div class=3D"default-style">
+    SUMMARY =3D "Frontend application"
+   </div>=20
+   <div class=3D"default-style">
+    LICENSE =3D "Proprietary"
+    <br>LIC_FILES_CHKSUM =3D " \
+    <br>file://${WORKDIR}/LICENSE;md5=3D03fe683ef28b9ddfe7f658a0f4b3b80e \
+    <br>"
+   </div>=20
+   <div class=3D"default-style">
+    SRC_URI =3D " \
+    <br>file://LICENSE \
+    <br>file://frontend.zip \
+    <br>"
+   </div>=20
+   <div class=3D"default-style">
+    do_install () {
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp; install -d ${D}/opt/app/frontend
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp; cp -r ${WORKDIR}/build/* ${D}/opt/app/frontend
+    <br>}
+   </div>=20
+   <div class=3D"default-style">
+    FILES_${PN} +=3D "/opt/app/frontend/*"
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    But I get these errors
+    <br>
+    <br>
+   </div>=20
+   <div class=3D"default-style">
+    ERROR: frontend-1.0-r0 do_package: Fatal errors occurred in subprocesse=
+s:
+    <br>'utf-8' codec can't decode byte 0x9a in position 619: invalid start=
+ byte: Traceback (most recent call last):
+    <br>File "/BSP5/os/build/../layers/openembedded-core/meta/lib/oe/utils.=
+py", line 280, in run
+    <br>ret =3D self._target(*self._args, **self._kwargs)
+    <br>File "/BSP5/os/build/../layers/openembedded-core/meta/lib/oe/packag=
+e.py", line 251, in filedeprunner
+    <br>output =3D subprocess.check_output(shlex.split(rpmdeps) + pkgfiles,=
+ stderr=3Dsubprocess.STDOUT).decode("utf-8")
+    <br>UnicodeDecodeError: 'utf-8' codec can't decode byte 0x9a in positio=
+n 619: invalid start byte
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    How can I fix them?
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+  </div>=20
+  <div class=3D"io-ox-signature">=20
+   <div class=3D"default-style">
+    Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
+   </div>=20
+   <div class=3D"default-style">
+    &nbsp;
+   </div>=20
+   <div class=3D"default-style">
+    Ing. Daniel Kampert, M. Sc.=20
+    <br>Embedded Systems Solutions
+   </div>=20
+   <div class=3D"default-style">=20
+    <div>
+     Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland=20
+     <br>Phone: +49 (0)174 6932561=20
+     <br>E-Mail: <a href=3D"mailto:kontakt@daniel-kampert.de">kontakt@danie=
+l-kampert.de</a>=20
+     <br>Web:&nbsp;<a href=3D"https://www.daniel-kampert.de">www.daniel-kam=
+pert.de</a>
+    </div>=20
+   </div>=20
+  </div>=20
+ </body>
+</html>
+------=_Part_5121126_1459683704.1741794175284--
 
